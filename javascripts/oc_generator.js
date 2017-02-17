@@ -36,7 +36,13 @@ function describe(){
 		
 		intro += "<li> Moon: " +players[i].moon
 		
-		intro += "<Li> Defining Interests: " +getRandomElementFromArray(interests) + " and " + getRandomElementFromArray(interests);
+		var i1 = getRandomElementFromArray(interests);
+		var i2 = getRandomElementFromArray(interests);
+		//var i2 = i1
+		intro += "<Li> Defining Interests: " +i1 + " and " + i2;
+		if(i1 == i2){
+			intro += " (That wasn't a glitch. They are simply the best there is at " +i1 + ".)"
+		}
 		intro += "<Li>  Quirk: " + players[i].quirk.stringExplanation() +"</li>";
 		intro += "Sample: " 
 		if(players[i].isTroll){
