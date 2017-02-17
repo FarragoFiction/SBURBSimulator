@@ -1,0 +1,16 @@
+#container {
+    float:left;
+    width:75%;
+}
+#player1 {
+    float:left;
+    width:30%;
+}
+#player2 {
+    float:left;
+    width:40%;
+}
+#player3 {
+    float:left;
+    width:30%;
+}
