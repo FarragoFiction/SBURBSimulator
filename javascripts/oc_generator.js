@@ -6,12 +6,19 @@ window.onload = function() {
 function reroll(){
 	makePlayers();
 	describe();
+  drawSpriteAll();
 }
+
+function drawSpriteAll(){
+  for(var i = 0; i<players.length; i++){
+      drawSprite("canvas"+(i+1), players[i]);
+  }
+}
+
 function describe(){
-	
 	for(var i = 0; i<players.length; i++){
 		decideTroll(players[i]);
-		var intro = "";
+		var intro = "<canvas id='canvas" + (i+1) +"' width='250' height='250'>  </canvas>";
 		intro += "<h1> " + players[i].htmlTitle() +" </h1>"
 		intro += "<ul>"
 		intro += "<li> Land: " + players[i].land
@@ -21,7 +28,7 @@ function describe(){
 		}else{
 			intro += "Human"
 		}
-		intro += "<li>Blood Color:" 
+		intro += "<li>Blood Color:"
 		intro += "<font color= '" + players[i].bloodColor + "'> "
 		intro +=  players[i].bloodColor + "</font>"
 		if(players[i].isTroll && players[i].aspect == "Blood"){
@@ -33,9 +40,9 @@ function describe(){
 			intro += " (Heiress) ";
 		}
 		intro += "<li> Guardian: " + players[i].lusus
-		
+
 		intro += "<li> Moon: " +players[i].moon
-		
+
 		var i1 = getRandomElementFromArray(interests);
 		var i2 = getRandomElementFromArray(interests);
 		//var i2 = i1
@@ -44,7 +51,7 @@ function describe(){
 			intro += " (That wasn't a glitch. They are simply the best there is at " +i1 + ".)"
 		}
 		intro += "<Li>  Quirk: " + players[i].quirk.stringExplanation() +"</li>";
-		intro += "Sample: " 
+		intro += "Sample: "
 		if(players[i].isTroll){
 			intro += "<font color= '" + players[i].bloodColor + "'> "
 		}else{
@@ -54,7 +61,7 @@ function describe(){
 		intro += " <br><br> <div id = 'gibberish" +i+"'>"
 		randomParagraph("#gibberish"+i, players[i]);
 		intro += "</div></font>"
-		
+
 		intro += "</ul>"
 		$("#player"+(i+1)).html(intro);
 	}
@@ -72,8 +79,8 @@ function decideLusus(player){
 	}else{
 		player.lusus = getRandomElementFromArray(landlususTypes);
 	}
-	
-	
+
+
 }
 
 function randomParagraph(div, player){
@@ -98,9 +105,10 @@ function decideTroll(player){
 function makePlayers(){
 	players = [];
 	available_classes = classes.slice(0); //re-init available classes. make deep copy
-	available_aspects = nonrequired_aspects.slice(0);
+	available_aspects = nonrequired_aspects.slice(0); //required_aspects
+  available_aspects = available_aspects.concat(required_aspects.slice(0));
 	var numPlayers = 3;
-	
+
 	for(var i = 0; i<numPlayers; i++){
 		players.push(randomPlayer());
 	}

@@ -3,6 +3,7 @@
 		 <link rel="stylesheet" href="css/oc.css">
 		<script type="text/javascript" src="javascripts/jquery-1.7.1.min.js"></script>
 		<script type="text/javascript" src="javascripts/player.js"></script>
+		<script type="text/javascript" src="javascripts/handle_sprites.js"></script>
 		<script type="text/javascript" src="javascripts/oc_generator.js"></script>
 		<script type="text/javascript" src="javascripts/random_tables.js"></script>
 		<script type="text/javascript" src="javascripts/quirk.js"></script>
@@ -11,14 +12,24 @@
 		</title>
 	</head>
 	<body>
-		Do you like any of these? If not: 
+		Do you like any of these? If not:
 		<button onclick="reroll()">Reroll</button><br>
 		<div id = "container">
-			<div id = "player1"/></div>
-			<div id = "player2" /> </div>
-			<div id = "player3" ></div>
+			<div id = "player1"/>
+					<canvas id="canvas1" width="250" height="250">  </canvas>
+		  </div>
+			<div id = "player2" />
+		 			<canvas id="canvas2" width="250" height="250">  </canvas>
+		  </div>
+			<div id = "player3" >
+					<canvas id="canvas3" width="250" height="250">  </canvas>
+			</div>
 		</div>
-		
+
 		<div id = "debug"></div>
+		<br>
+		<img id = "godtiers" src = "images/godtiers.png">
+		<img src = "images/horns.png">
+		<img id="test" src = "images/test.png">
 	</body>
 </html>
