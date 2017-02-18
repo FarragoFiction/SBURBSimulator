@@ -70,9 +70,47 @@ function playerToSprite(player){
     }
     var class_mod_x=0;
     var class_mod_y=0;
+    if(player.class_name == "Page"){
+      class_mod_x = -10;
+      class_mod_y = 0;
+    }else if(player.class_name == "Knight" ){
+      class_mod_x = 155;
+      class_mod_y = 0;
+    }else if(player.class_name == "Witch" ){
+      class_mod_x = 320;
+      class_mod_y = 0;
+    }else if(player.class_name == "Sylph" ){
+      class_mod_x = 490;
+      class_mod_y = 0;
+    }else if(player.class_name == "Thief" ){
+      class_mod_x = 0;
+      class_mod_y = 230;
+    }else if(player.class_name == "Rogue" ){
+      class_mod_x = 155;
+      class_mod_y = 230;
+    }else if(player.class_name == "Seer" ){
+      class_mod_x = 330;
+      class_mod_y = 230;
+    }else if(player.class_name == "Mage" ){
+      class_mod_x = 490;
+      class_mod_y = 230;
+    }else if(player.class_name == "Heir" ){
+      class_mod_x = 5;//windsock too big
+      class_mod_y = 480;
+    }else if(player.class_name == "Maid" ){
+      class_mod_x = 165;
+      class_mod_y = 480;
+    }else if(player.class_name == "Prince" ){
+      class_mod_x = 322;
+      class_mod_y = 480;
+    }else if(player.class_name == "Bard" ){
+      class_mod_x = 480;
+      class_mod_y = 480;
+    }
+
     var x = origin_x+class_mod_x;
     var y = origin_y+class_mod_y;
     //ctx.drawImage(sprites,srcX,srcY,srcW,srcH,destX,destY,destW,destH);
-    alert("x: "+x+", y"+y);
-    return [x,y,150,200, 0,0,150,200];
+    //alert("x: "+x+", y"+y);
+    return [x,y,160,200, 0,0,160,200];
 }
