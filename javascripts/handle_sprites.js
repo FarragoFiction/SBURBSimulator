@@ -1,3 +1,20 @@
+function trollify(canvas,player){
+   //red_array = red_context.getImageData(0, 0, red_canvas.width, red_canvas.height).data;
+   //alert("I should trollify");
+   ctx = canvas.getContext('2d');
+   var img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
+   //4 byte color array
+   for(var i = 0; i<img_data.data.length; i += 4){
+     if(img_data.data[i] == 255 && img_data.data[i+1] == 255 &&img_data.data[i+2] == 255){
+       img_data.data[i] = 180;
+       img_data.data[i+1] = 180;
+       img_data.data[i+2] = 180;
+       img_data.data[i+3] = 255;
+     }
+   }
+   ctx.putImageData(img_data, 0, 0);
+}
+
 function drawSprite(canvas, player){
   var width = 250;
   var height = 250;
@@ -16,7 +33,9 @@ function drawSprite(canvas, player){
   var position = playerToSprite(player);
   //then troll proccess???
   ctx.drawImage(sprites,position[0],position[1],position[2],position[3],position[4],position[5],position[6],position[7]);
-
+  if(player.isTroll){
+    trollify(canvas,player);
+  }
 
   //ctx.drawImage(sprite, 100, 100);
 }
