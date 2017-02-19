@@ -170,15 +170,15 @@ function playerToSprite(canvas, player){
 
 function aspectPalletSwap(canvas, player){
   //replace all outlines with black
-  var oldcolor1 = "#ff7f00"; //shirt
-  var oldcolor2 = "#f95900"; //pants
-  var oldcolor3 = "#fd1000"; //hat
-  var oldcolor4 = "#fbff00"; //symbol
+  var oldshirt = "#ff7f00"; //shirt
+  var oldpants = "#f95900"; //pants
+  var oldhat = "#fd1000"; //hat
+  var oldsymbol= "#fbff00"; //symbol
   var oldcolor5 = "#e56500"; //outline
-  var oldcolor6 = "#d41000"; //darker hat
-  var oldcolor7 = "#00e4ff"; //shoes
+  var olddarkhat = "#d41000"; //darker hat
+  var oldshoes = "#00e4ff"; //shoes
   var oldcolor8 = "#00a7be"; //shoes outline
-  var oldcolor9 = "#ff1800"; //darker cape
+  var olddarkcape = "#ff1800"; //darker cape
   var oldcolor10 = "#aafaff"; //light shoes
   var oldcolor11 = "#da4f00"; //another outline....
   var oldcolor12 = "#f13a00"; //cape outline
@@ -200,15 +200,59 @@ function aspectPalletSwap(canvas, player){
   var oldcolor27 = "#fe4700"// cape outline
   var oldcolor28 = "#fd8b00"// bard outline
 
-  swapColors(canvas, oldcolor1, "#b4b4b4")
-  swapColors(canvas, oldcolor2, "#b4b4b4")
-  swapColors(canvas, oldcolor3, "#b4b4b4")
-  swapColors(canvas, oldcolor4, "#b4b4b4")
+  var newshirt = "#b4b4b4"
+  var newpants = "#b4b4b4"
+  var newhat = "#b4b4b4"
+  var newsymbol = "#b4b4b4"
+  var newcolor5 = "#b4b4b4"
+  var newdarkhat = "#b4b4b4"
+  var newshoes = "#b4b4b4"
+  var newcolor8 = "#b4b4b4"
+  var newdarkcape = "#b4b4b4"
+
+  if(player.aspect =="Light"){
+    newshirt = "#ff7f00"
+    newpants = "#f95900"
+    newhat = "#fd1000"
+    newdarkhat = "#d41000"; //darker hat
+    newdarkcape = "#ff1800";
+    newsymbol="#fbff00"
+    newshoes ="#00e4ff"
+  }else if(player.aspect =="Breath"){
+    newshirt = "#0087eb"
+    newpants = "#006be1"
+    newhat = "#0046d1"
+    newdarkhat ="#003396"
+    newdarkcape ="#0052f3"
+    newsymbol="#10e0ff"
+    newshoes ="#fefd49"
+  }else if(player.aspect =="Time"){
+    newshirt = "#b70d0e"
+    newpants = "#8e1516"
+    newhat = "#3c0404"
+    newdarkhat ="#1f0000"
+    newdarkcape ="#510606"
+    newsymbol="#ff2106"
+    newshoes ="#000000"
+  }else if(player.aspect =="Space"){
+    newshirt = "#030303"
+    newpants = "#2f2f30"
+    newhat = "#1d1d1d"
+    newdarkhat ="#141414"
+    newdarkcape ="#2f2f30"
+    newsymbol="#efefef"
+    newshoes ="#ff2106"
+  }
+
+  swapColors(canvas, oldshirt, newshirt);
+  swapColors(canvas, oldpants, newpants)
+  swapColors(canvas, oldhat, newhat)
+  swapColors(canvas, oldsymbol, newsymbol)
   swapColors(canvas, oldcolor5, "#000000")
-  swapColors(canvas, oldcolor6, "#b4b4b4")
-  swapColors(canvas, oldcolor7, "#b4b4b4")
+  swapColors(canvas, olddarkhat, newdarkhat)
+  swapColors(canvas, oldshoes, newshoes)
   swapColors(canvas, oldcolor8, "#000000")
-  swapColors(canvas, oldcolor9, "#b4b4b4")
+  swapColors(canvas, olddarkcape, newdarkcape)
   swapColors(canvas, oldcolor10, "#000000")
   swapColors(canvas, oldcolor11, "#000000")
   swapColors(canvas, oldcolor12, "#000000")
