@@ -18,7 +18,7 @@ function drawSpriteAll(){
 function describe(){
 	for(var i = 0; i<players.length; i++){
 		decideTroll(players[i]);
-		var intro = "<canvas id='canvas" + (i+1) +"' width='250' height='250'>  </canvas>";
+		var intro = "<canvas id='canvas" + (i+1) +"' width='400' height='300'>  </canvas>";
 		intro += "<h1> " + players[i].htmlTitle() +" </h1>"
 		intro += "<ul>"
 		intro += "<li> Land: " + players[i].land

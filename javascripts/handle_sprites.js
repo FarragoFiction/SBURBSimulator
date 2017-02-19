@@ -1,24 +1,86 @@
 function trollify(canvas,player){
    //red_array = red_context.getImageData(0, 0, red_canvas.width, red_canvas.height).data;
    //alert("I should trollify");
-   ctx = canvas.getContext('2d');
-   var img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
-   //4 byte color array
-   for(var i = 0; i<img_data.data.length; i += 4){
-     if(img_data.data[i] == 255 && img_data.data[i+1] == 255 &&img_data.data[i+2] == 255){
-       img_data.data[i] = 180;
-       img_data.data[i+1] = 180;
-       img_data.data[i+2] = 180;
-       img_data.data[i+3] = 255;
-     }
-   }
-   ctx.putImageData(img_data, 0, 0);
+  //wings first, replace black and red with blood color with two opacities
+   greySkin(canvas,player);
+   horns(canvas,player);
 }
 
+function greySkin(canvas, player){
+  ctx = canvas.getContext('2d');
+  var img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
+  //4 byte color array
+  for(var i = 0; i<img_data.data.length; i += 4){
+    if(img_data.data[i] == 255 && img_data.data[i+1] == 255 &&img_data.data[i+2] == 255){
+      img_data.data[i] = 180;
+      img_data.data[i+1] = 180;
+      img_data.data[i+2] = 180;
+      img_data.data[i+3] = 255;
+    }
+    /*  bg to check canvas size
+    img_data.data[i] = 0;
+    img_data.data[i+1] = 0;
+    img_data.data[i+2] = 0;
+    img_data.data[i+3] = 255;
+    */
+  }
+  ctx.putImageData(img_data, 0, 0);
+}
+
+function horns(canvas, player){
+    var num = leftHorn(canvas,player);
+    rightHorn(num, canvas,player);
+  /*  ctx = canvas.getContext('2d');
+    var horns = document.getElementById("test_horn");
+    var width = horns.width;//replace these with sprite sheet
+  	var height = horns.height;
+    ctx.drawImage(horns,0,0,width,height);
+    */
+}
+//horns are no longer a sprite sheet. tracy and kristi and brandon gave me advice.
+//position horns on an image as big as the canvas. put the horns directly on the
+//place where the head of every sprite would be.
+//same for wings eventually.
+function leftHorn(canvas, player){
+    ctx = canvas.getContext('2d');
+    var randNum = getRandomInt(1,9);
+    var imageString = "left"+randNum + ".png";
+    addImageTag(imageString)
+    var img=document.getElementById(imageString);
+    var width = img.width;
+  	var height = img.height;
+  	ctx.drawImage(img,0,0,width,height);
+    //console.log("Random number is: " + randNum)
+    return randNum; //right horn has high chance of matching left horn
+}
+//parse horns sprite sheet. render a random right horn.
+//right horn should be at: 120,40
+function rightHorn(randNum, canvas, player){
+  console.log("doing right horn");
+  ctx = canvas.getContext('2d');
+  if(Math.random() > .2){ //preference for symmetry
+    randNum = getRandomInt(1,9);
+  }
+  var imageString = "right"+randNum + ".png";
+  addImageTag(imageString)
+  var img=document.getElementById(imageString);
+  var width = img.width;
+  var height = img.height;
+  ctx.drawImage(img,0,0,width,height);
+}
+
+function addImageTag(url){
+  console.log(url);
+	//only do it if image hasn't already been added.
+	if(document.getElementById(url) == null) {
+		var tag = '<img id ="' + url + '" src = "images/' + url + '" style="display:none">';
+		$("#image_staging").append(tag);
+	}
+}
+
+
 function drawSprite(canvas, player){
-  var width = 250;
-  var height = 250;
-  console.log("looking for canvas: " + canvas);
+  //console.log("looking for canvas: " + canvas);
   canvas = $("#"+canvas)[0]; //don't want jquery object, want contents
   ctx = canvas.getContext('2d');
   //sprite = new Image();
@@ -30,9 +92,11 @@ function drawSprite(canvas, player){
 	//var width = img.width;
 	//var height = img.height;
 	//ctx.drawImage(sprites,0,0,width,height);
-  var position = playerToSprite(player);
+  playerToSprite(canvas,player);
   //then troll proccess???
-  ctx.drawImage(sprites,position[0],position[1],position[2],position[3],position[4],position[5],position[6],position[7]);
+  //this was for sprite sheet
+  //ctx.drawImage(sprites,position[0],position[1],position[2],position[3],canvas.width/2,canvas.height/2,position[6],position[7]);
+  //ctx.drawImage(img,canvas.width/2,canvas.height/2,width,height);
   if(player.isTroll){
     trollify(canvas,player);
   }
@@ -40,12 +104,53 @@ function drawSprite(canvas, player){
   //ctx.drawImage(sprite, 100, 100);
 }
 
+function playerToSprite(canvas, player){
+  //draw class, then color like aspect, then draw chest icon
+  //ctx.drawImage(img,canvas.width/2,canvas.height/2,width,height);
+  var imageString = "";
+  if(player.class_name == "Page"){
+    imageString = "001.png"
+  }else if(player.class_name == "Knight" ){
+    imageString = "002.png"
+  }else if(player.class_name == "Witch" ){
+    imageString = "003.png"
+  }else if(player.class_name == "Sylph" ){
+    imageString = "004.png"
+  }else if(player.class_name == "Thief" ){
+    imageString = "005.png"
+  }else if(player.class_name == "Rogue" ){
+    imageString = "006.png"
+  }else if(player.class_name == "Seer" ){
+    imageString = "007.png"
+  }else if(player.class_name == "Mage" ){
+    imageString = "008.png"
+  }else if(player.class_name == "Heir" ){
+    imageString = "009.png"
+  }else if(player.class_name == "Maid" ){
+    imageString = "010.png"
+  }else if(player.class_name == "Prince" ){
+    imageString = "011.png"
+  }else if(player.class_name == "Bard" ){
+    imageString = "012.png"
+  }
+
+  addImageTag(imageString)
+  var img=document.getElementById(imageString);
+  var width = img.width;
+  var height = img.height;
+  ctx.drawImage(img,width/6,height/4,width,height);
+
+}
+
+
 //return array of vales for draw image
   //ctx.drawImage(sprites,srcX,srcY,srcW,srcH,destX,destY,destW,destH);
 //page knight witch sylph
 // thief rogue seer  mage
 // heir  maid  prince bard
-function playerToSprite(player){
+//Tracy is going to get me individual sprites rather than this mess.
+//will help with horns.
+function playerToSpriteOld(player){
     //aspect determines origin
     //class determines position relative to that origin.
     var origin_x = 0;
