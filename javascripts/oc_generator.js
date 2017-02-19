@@ -59,7 +59,7 @@ function describe(){
 		}
 		intro += players[i].quirk.translate(" The quick brown fox (named Lacy) jumped over the lazy dog (named Barkey) over 1234567890 times for reasons. It sure was exciting! I wonder why he did that? Was he going to be late? I wonder....I guess we'll just have to wait and see.");
 		intro += " <br><br> <div id = 'gibberish" +i+"'>"
-		randomParagraph("#gibberish"+i, players[i]);
+		//randomParagraph("#gibberish"+i, players[i]);
 		intro += "</div></font>"
 
 		intro += "</ul>"

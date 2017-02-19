@@ -6,15 +6,35 @@ function trollify(canvas,player){
    horns(canvas,player);
 }
 
-function greySkin(canvas, player){
+//mod from http://stackoverflow.com/questions/21646738/convert-hex-to-rgba
+function hexToRgbA(hex){
+    var c;
+    if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+        c= hex.substring(1).split('');
+        if(c.length== 3){
+            c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+        }
+        c= '0x'+c.join('');
+        //return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+',1)';
+        return [(c>>16)&255, (c>>8)&255, c&255]
+    }
+    throw new Error('Bad Hex ' + hex);
+}
+
+
+//swaps one hex color with another.
+function swapColors(canvas, color1, color2){
+  var oldc = hexToRgbA(color1);
+  var newc= hexToRgbA(color2);
+  // console.log("replacing: " + oldc  + " with " + newc);
   ctx = canvas.getContext('2d');
   var img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
   //4 byte color array
   for(var i = 0; i<img_data.data.length; i += 4){
-    if(img_data.data[i] == 255 && img_data.data[i+1] == 255 &&img_data.data[i+2] == 255){
-      img_data.data[i] = 180;
-      img_data.data[i+1] = 180;
-      img_data.data[i+2] = 180;
+    if(img_data.data[i] == oldc[0] && img_data.data[i+1] == oldc[1] &&img_data.data[i+2] == oldc[2]){
+      img_data.data[i] = newc[0];
+      img_data.data[i+1] = newc[1];
+      img_data.data[i+2] = newc[2];
       img_data.data[i+3] = 255;
     }
     /*  bg to check canvas size
@@ -25,6 +45,11 @@ function greySkin(canvas, player){
     */
   }
   ctx.putImageData(img_data, 0, 0);
+
+}
+
+function greySkin(canvas){
+  swapColors(canvas, "#ffffff", "#b4b4b4")
 }
 
 function horns(canvas, player){
@@ -139,7 +164,70 @@ function playerToSprite(canvas, player){
   var width = img.width;
   var height = img.height;
   ctx.drawImage(img,width/6,height/4,width,height);
+  aspectPalletSwap(canvas, player);
 
+}
+
+function aspectPalletSwap(canvas, player){
+  //replace all outlines with black
+  var oldcolor1 = "#ff7f00"; //shirt
+  var oldcolor2 = "#f95900"; //pants
+  var oldcolor3 = "#fd1000"; //hat
+  var oldcolor4 = "#fbff00"; //symbol
+  var oldcolor5 = "#e56500"; //outline
+  var oldcolor6 = "#d41000"; //darker hat
+  var oldcolor7 = "#00e4ff"; //shoes
+  var oldcolor8 = "#00a7be"; //shoes outline
+  var oldcolor9 = "#ff1800"; //darker cape
+  var oldcolor10 = "#aafaff"; //light shoes
+  var oldcolor11 = "#da4f00"; //another outline....
+  var oldcolor12 = "#f13a00"; //cape outline
+  var oldcolor13 = "#fc8700"; //shirt outline
+  var oldcolor14 = "#00c5de"; //shoes outline
+  var oldcolor15 = "#f27200"; //shirt line
+  var oldcolor16 = "#fe1400"; //more outline
+  var oldcolor17 = "#f23e00"; //outline
+  var oldcolor18 ="#fdbf00"; //symbol outline
+  var oldcolor19 ="#ff4b00";//outline
+  var oldcolor20 = "#e95400";//outline
+  var oldcolor20 = "#eb2f00";//outline
+  var oldcolor21 = "#55d0de"//shoes outline
+  var oldcolor22 = "#e91400" //cape outline
+  var oldcolor23 = "#e95400" //pants outline
+  var oldcolor24 = "#00a5bd"//shoes outline
+  var oldcolor25 = "#ffcb00"//socks outline
+  var oldcolor26 = "#fde500"//socks outline
+  var oldcolor27 = "#fe4700"// cape outline
+  var oldcolor28 = "#fd8b00"// bard outline
+
+  swapColors(canvas, oldcolor1, "#b4b4b4")
+  swapColors(canvas, oldcolor2, "#b4b4b4")
+  swapColors(canvas, oldcolor3, "#b4b4b4")
+  swapColors(canvas, oldcolor4, "#b4b4b4")
+  swapColors(canvas, oldcolor5, "#000000")
+  swapColors(canvas, oldcolor6, "#b4b4b4")
+  swapColors(canvas, oldcolor7, "#b4b4b4")
+  swapColors(canvas, oldcolor8, "#000000")
+  swapColors(canvas, oldcolor9, "#b4b4b4")
+  swapColors(canvas, oldcolor10, "#000000")
+  swapColors(canvas, oldcolor11, "#000000")
+  swapColors(canvas, oldcolor12, "#000000")
+  swapColors(canvas, oldcolor13, "#000000")
+  swapColors(canvas, oldcolor14, "#000000")
+  swapColors(canvas, oldcolor15, "#000000")
+  swapColors(canvas, oldcolor16, "#000000")
+  swapColors(canvas, oldcolor17, "#000000")
+  swapColors(canvas, oldcolor18, "#000000")
+  swapColors(canvas, oldcolor19, "#000000")
+  swapColors(canvas, oldcolor20, "#000000")
+  swapColors(canvas, oldcolor21, "#000000")
+  swapColors(canvas, oldcolor22, "#000000")
+  swapColors(canvas, oldcolor23, "#000000")
+  swapColors(canvas, oldcolor24, "#000000")
+  swapColors(canvas, oldcolor25, "#000000")
+  swapColors(canvas, oldcolor26, "#000000")
+  swapColors(canvas, oldcolor27, "#000000")
+  swapColors(canvas, oldcolor28, "#000000")
 }
 
 
