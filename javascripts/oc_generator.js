@@ -110,6 +110,7 @@ function makePlayers(){
 	var numPlayers = 3;
 
 	for(var i = 0; i<numPlayers; i++){
-		players.push(randomPlayer());
+		players.push(randomPlayerWithoutRemoving());
 	}
+  players[0].class_name = "Page"
 }

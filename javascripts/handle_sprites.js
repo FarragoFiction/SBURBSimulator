@@ -170,46 +170,116 @@ function playerToSprite(canvas, player){
 
 function aspectPalletSwap(canvas, player){
   //replace all outlines with black
-  var oldshirt = "#ff7f00"; //shirt
-  var oldpants = "#f95900"; //pants
-  var oldhat = "#fd1000"; //hat
-  var oldsymbol= "#fbff00"; //symbol
-  var oldcolor5 = "#e56500"; //outline
-  var olddarkhat = "#d41000"; //darker hat
-  var oldshoes = "#00e4ff"; //shoes
-  var oldcolor8 = "#00a7be"; //shoes outline
-  var olddarkcape = "#ff1800"; //darker cape
-  var oldcolor10 = "#aafaff"; //light shoes
-  var oldcolor11 = "#da4f00"; //another outline....
-  var oldcolor12 = "#f13a00"; //cape outline
-  var oldcolor13 = "#fc8700"; //shirt outline
-  var oldcolor14 = "#00c5de"; //shoes outline
-  var oldcolor15 = "#f27200"; //shirt line
-  var oldcolor16 = "#fe1400"; //more outline
-  var oldcolor17 = "#f23e00"; //outline
-  var oldcolor18 ="#fdbf00"; //symbol outline
-  var oldcolor19 ="#ff4b00";//outline
-  var oldcolor20 = "#e95400";//outline
-  var oldcolor20 = "#eb2f00";//outline
-  var oldcolor21 = "#55d0de"//shoes outline
-  var oldcolor22 = "#e91400" //cape outline
-  var oldcolor23 = "#e95400" //pants outline
-  var oldcolor24 = "#00a5bd"//shoes outline
-  var oldcolor25 = "#ffcb00"//socks outline
-  var oldcolor26 = "#fde500"//socks outline
-  var oldcolor27 = "#fe4700"// cape outline
-  var oldcolor28 = "#fd8b00"// bard outline
+  var oldcolor1 = "#ff7f00"; //shirt
+  var oldcolor2 = "#f95900"; //pants
+  var oldcolor3 = "#fd1000"; //hat
+  var oldcolor4 = "#fbff00"; //symbol fefd49
+  var oldcolor5 = "#ff0000"; //darker hat
+  var oldcolor6 = "#00e4ff"; //shoes
 
-  var newshirt = "#b4b4b4"
-  var newpants = "#b4b4b4"
-  var newhat = "#b4b4b4"
-  var newsymbol = "#b4b4b4"
-  var newcolor5 = "#b4b4b4"
-  var newdarkhat = "#b4b4b4"
-  var newshoes = "#b4b4b4"
-  var newcolor8 = "#b4b4b4"
-  var newdarkcape = "#b4b4b4"
+  var newcolor1 = "#b4b4b4";
+  var newcolor2 = "#b4b4b4";
+  var newcolor3 = "#b4b4b4";
+  var newcolor4 = "#b4b4b4";
+  var newcolor5 = "#b4b4b4";
+  var newcolor6 = "#b4b4b4";
 
+  //why does this bug out color replacement???
+  if(player.aspect =="Light"){
+    newcolor1 = "#ff7f00"
+    newcolor2 = "#f95900"
+    newcolor3 = "#fd1000"
+    newcolor4 ="#fbff00"
+    newcolor5 = "#d41000"; //darker hat
+    oldcolor6 ="#00e4ff"
+  }else if(player.aspect =="Breath"){
+    newcolor1 = "#0087eb"
+    newcolor2 = "#006be1"
+    newcolor3 = "#0046d1"
+    newcolor4 = "#10e0ff"
+    newcolor5 = "#003396"
+    newcolor6 = "#fefd49"
+  }else if(player.aspect =="Time"){
+    newcolor1 = "#b70d0e"
+    newcolor2 = "#8e1516"
+    newcolor3 = "#3c0404"
+    newcolor4 ="#ff2106"
+    newcolor5 ="#1f0000"
+    newcolor6 ="#000000"
+  }else if(player.aspect =="Space"){
+    newcolor1 = "#030303"
+    newcolor2 = "#2f2f30"
+    newcolor3 = "#1d1d1d"
+    newcolor4 ="#efefef"
+    newcolor5 ="#141414"
+    newcolor6 ="#ff2106"
+  }else if(player.aspect =="Heart"){
+    newcolor1 = "#6b0829" //shirt
+    newcolor2 = "#55142a" //pants
+    newcolor3 = "#3c0d1f"  //hat
+    newcolor4 ="#bd1864"  //symbol
+    newcolor5 ="#260914"  //dark hat
+    newcolor6 ="#1d572e"  //shoes
+  }else if(player.aspect =="Mind"){
+    newcolor1 = "#3da35a" //shirt
+    newcolor2 = "#3b7e4f" //pants
+    newcolor3 = "#164524"  //hat
+    newcolor4 ="#06ffc9"  //symbol
+    newcolor5 ="#11371d"  //dark hat
+    newcolor6 ="#11371d"  //shoes
+  }else if(player.aspect =="Life"){
+    newcolor1 = "#ccc4b5" //shirt
+    newcolor2 = "#a29989" //pants
+    newcolor3 = "#494132"  //hat
+    newcolor4 ="#76c34e"  //symbol
+    newcolor5 ="#2d271e"  //dark hat
+    newcolor6 ="#00164f"  //shoes
+  }else if(player.aspect =="Void"){
+    newcolor1 = "#033476" //shirt
+    newcolor2 = "#004cb2" //pants
+    newcolor3 = "#00103c"  //hat
+    newcolor4 ="#0b1741"  //symbol
+    newcolor5 ="#00071a"  //dark hat
+    newcolor6 ="#ccc4b5"  //shoes
+  }else if(player.aspect =="Hope"){
+    newcolor1 = "#ffe094" //shirt
+    newcolor2 = "#f6c54a" //pants
+    newcolor3 = "#f7bb2c"  //hat
+    newcolor4 ="#fcf0c7"  //symbol
+    newcolor5 ="#dba523"  //dark hat
+    newcolor6 ="#164524"  //shoes
+  }
+  else if(player.aspect =="Doom"){
+    newcolor1 = "#204020" //shirt
+    newcolor2 = "#192c16" //pants
+    newcolor3 = "#141614"  //hat
+    newcolor4 ="#0f0f0f"  //symbol
+    newcolor5 ="#0b0d0b"  //dark hat
+    newcolor6 ="#ffe094"  //shoes
+  }else if(player.aspect =="Rage"){
+    newcolor1 = "#381b76" //shirt
+    newcolor2 = "#281d36" //pants
+    newcolor3 = "#6d34a6"  //hat
+    newcolor4 ="#994bb3"  //symbol
+    newcolor5 ="#592d86"  //dark hat
+    newcolor6 ="#3d190a"  //shoes
+  }else if(player.aspect =="Blood"){
+    newcolor1 = "#3d190a" //shirt
+    newcolor2 = "#5c2913" //pants
+    newcolor3 = "#230200"  //hat
+    newcolor4 ="#ba1016"  //symbol
+    newcolor5 ="#110000"  //dark hat
+    newcolor6 ="#381b76"  //shoes
+  }
+
+
+  swapColors(canvas, oldcolor1, newcolor1)
+  swapColors(canvas, oldcolor2, newcolor2)
+  swapColors(canvas, oldcolor3, newcolor3)
+  swapColors(canvas, oldcolor4, newcolor4)
+  swapColors(canvas, oldcolor5, newcolor5)
+  swapColors(canvas, oldcolor6, newcolor6)
+  /*
   if(player.aspect =="Light"){
     newshirt = "#ff7f00"
     newpants = "#f95900"
@@ -272,6 +342,7 @@ function aspectPalletSwap(canvas, player){
   swapColors(canvas, oldcolor26, "#000000")
   swapColors(canvas, oldcolor27, "#000000")
   swapColors(canvas, oldcolor28, "#000000")
+  */
 }
 
 

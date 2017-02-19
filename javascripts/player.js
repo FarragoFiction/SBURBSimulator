@@ -5,7 +5,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 	this.kernel_sprite = kernel_sprite;
 	this.relationships = [];
 	this.moon = moon;
-	this.power = 1; 
+	this.power = 1;
 	this.leveledTheHellUp = false; //triggers level up scene.
 	this.godTier = false;
 	this.dreamSelf = true;
@@ -13,14 +13,14 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 	this.bloodColor = "#ff0000" //human red.
 	this.lusus = "Adult Human"
 	this.quirk = null;
-	this.dead = false; 
+	this.dead = false;
 	this.godDestiny = godDestiny;
 	this.doomedClones = 0; //mostly only used by time player, functions as extra life (i.e. dave got stabbed by jack, but it was just a doomed dave)
 	//should only be false if killed permananetly as god tier
-	this.canGodTierRevive = true;  //even if a god tier perma dies, a life or time player or whatever can brings them back. 
+	this.canGodTierRevive = true;  //even if a god tier perma dies, a life or time player or whatever can brings them back.
 	this.isDreamSelf = false;
 	//players can be triggered for various things. higher their triggerLevle, greater chance of going murdermode or GrimDark.
-	this.triggerLevel = 0; 
+	this.triggerLevel = 0;
 	this.murderMode = false;  //kill all players you don't like. odds of a just death skyrockets.
   	this.grimDark = false;  //all relationships set to 0. power up a lot. odds of  a just death skyrockets.
 	this.leader = false;
@@ -28,20 +28,20 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 	this.denizenFaced = false; //when faced, you double in power (including future power increases.)
 	this.denizenDefeated = false;
 	this.causeOfDeath = ""; //fill in every time you die. only matters if you're dead at end
-	this.doomedTimeClones = 0; //only used by Time player. works as extra lives and power multiplier (against king/queen only). 
+	this.doomedTimeClones = 0; //only used by Time player. works as extra lives and power multiplier (against king/queen only).
 	//for space player, this is necessary for frog breeding to be minimally succesfull.
-	
+
 	this.title = function(){
 		var ret = "";
-		
+
 		if(this.murderMode){
 			ret += "Murder Mode ";
 		}
-		
+
 		if(this.grimDark){
 			ret += "Grim Dark ";
 		}
-		
+
 		if(this.godTier){
 			ret+= "God Tier "
 		}else if(this.isDreamSelf){
@@ -50,30 +50,30 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 		ret+= this.class_name + " of " + this.aspect;
 		return ret;
 	}
-	
-	
+
+
 	this.getRandomLevel = function(){
 		if(Math.random() > .5){
 			return getRandomLevelFromAspect(this.aspect);
 		}else{
 			return getRandomLevelFromClass(this.class_name);
 		}
-		
+
 	}
-	
+
 	this.getRandomQuest = function(){
 		if(Math.random() > .5 || this.aspect == "Space"){ //space players pretty much only get FrogBreeding duty.
 			return getRandomQuestFromAspect(this.aspect);
 		}else{
 			return getRandomQuestFromClass(this.class_name);
 		}
-		
+
 	}
-	
+
 	this.getDenizen = function(){
 		return getDenizenFromAspect(this.aspect);
 	}
-	
+
 	//more likely if lots of people hate you
 	this.justDeath = function(){
 		var ret = false;
@@ -90,7 +90,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 
 		return ret;
 	}
-	
+
 	//more likely if lots of people like you
 	this.heroicDeath = function(){
 		var ret = false;
@@ -109,10 +109,10 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 		}
 		return ret;
 	}
-	
+
 	this.increasePower = function(){
 		var powerBoost = 1;
-		
+
 		if(this.aspect == "Blood"){
 			this.boostAllRelationships();
 		}else if(this.aspect == "Rage"){
@@ -121,30 +121,30 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 		if(this.class_name == "Page"){  //they don't have many quests, but once they get going they are hard to stop.
 			powerBoost = powerBoost * 5;
 		}
-		
+
 		if(this.godTier){
 			powerBoost = powerBoost * 100;  //god tiers are ridiculously strong.
 		}
-		
+
 		if(this.denizenDefeated){
 			powerBoost = powerBoost * 2; //permanent doubling of stats forever.
 		}
-		
+
 		this.power += powerBoost;
-		
+
 		if(this.power % 10 == 0){
 			this.leveledTheHellUp = true;
 		}
 	}
-	
+
 	this.shortLand = function(){
 		return this.land.match(/\b(\w)/g).join('').toUpperCase();
 	}
-	
+
 	this.htmlTitle = function(){
 		return getFontColorFromAspect(this.aspect) + this.title() + "</font>"
 	}
-	
+
 	this.generateRelationships = function(friends){
 		for(var i = 0; i<friends.length; i++){
 			if(friends[i] != this){  //No, Karkat, you can't be your own Kismesis.
@@ -152,7 +152,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 			}
 		}
 	}
-	
+
 	this.checkBloodBoost = function(players){
 		if(this.aspect == "Blood"){
 			for(var i = 0; i<players.length; i++){
@@ -160,25 +160,25 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 			}
 		}
 	}
-	
+
 	this.nullAllRelationships = function(){
 		for(var i = 0; i<this.relationships.length; i++){
 			this.relationships[i].value = 0;
 		}
 	}
-	
+
 	this.boostAllRelationships = function(){
 		for(var i = 0; i<this.relationships.length; i++){
 			this.relationships[i].increase();
 		}
 	}
-	
+
 	this.damageAllRelationships = function(){
 		for(var i = 0; i<this.relationships.length; i++){
 			this.relationships[i].decrease();
 		}
 	}
-	
+
 	this.getRelationshipWith = function(player){
 		for(var i = 0; i<this.relationships.length; i++){
 			if(this.relationships[i].target == player){
@@ -186,7 +186,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 			}
 		}
 	}
-	
+
 	this.getWhoLikesMeBestFromList = function(potentialFriends){
 		var bestRelationshipSoFar = this.relationships[0];
 		var friend = bestRelationshipSoFar.target;
@@ -205,7 +205,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 			return friend;
 		}
 	}
-	
+
 	this.getWhoLikesMeLeastFromList = function(potentialFriends){
 		var worstRelationshipSoFar = this.relationships[0];
 		var enemy = worstRelationshipSoFar.target;
@@ -224,7 +224,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 			return enemy;
 		}
 	}
-	
+
 	this.hasRelationshipDrama = function(){
 		for(var i = 0; i<this.relationships.length; i++){
 			this.relationships[i].type(); //check to see if there is a relationship change.
@@ -234,7 +234,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 		}
 		return false;
 	}
-	
+
 	this.getRelationshipDrama = function(){
 		var ret = [];
 		for(var i = 0; i<this.relationships.length; i++){
@@ -245,8 +245,8 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 		}
 		return ret;
 	}
-	
-	
+
+
 	this.getFriendsFromList = function(potentialFriends){
 		var ret = [];
 		for(var i = 0; i<potentialFriends.length; i++){
@@ -260,7 +260,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 		}
 		return ret;
 	}
-	
+
 	this.getEnemiesFromList = function(potentialEnemies){
 		var ret = [];
 		for(var i = 0; i<potentialEnemies.length; i++){
@@ -274,7 +274,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 		}
 		return ret;
 	}
-	
+
 	this.getBestFriendFromList = function(potentialFriends){
 		var bestRelationshipSoFar = this.relationships[0];
 		for(var i = 0; i<potentialFriends.length; i++){
@@ -291,7 +291,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 			return bestRelationshipSoFar.target;
 		}
 	}
-	
+
 	this.getWorstEnemyFromList = function(potentialFriends){
 		var worstRelationshipSoFar = this.relationships[0];
 		for(var i = 0; i<potentialFriends.length; i++){
@@ -308,7 +308,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 			return worstRelationshipSoFar.target;
 		}
 	}
-	
+
 	this.getFriends = function(){
 		var ret = [];
 		for(var i = 0; i<this.relationships.length; i++){
@@ -318,7 +318,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 		}
 		return ret;
 	}
-	
+
 	this.getEnemies = function(){
 		var ret = [];
 		for(var i = 0; i<this.relationships.length; i++){
@@ -328,7 +328,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 		}
 		return ret;
 	}
-	
+
 }
 
 function getFontColorFromAspect(aspect){
@@ -369,11 +369,11 @@ function randomPlayerWithClaspect(c,a){
 	}else if(Math.random() > .9){
 		k = getRandomElementFromArray(fortune_prototypings);
 	}
-	
+
 	var gd = false;
 	if(Math.random() > .5){
 		gd =true;
-	}	
+	}
 	var m = getRandomElementFromArray(moons);
 	return new Player(c,a,l,k,m,gd);
 }
@@ -384,7 +384,17 @@ function randomPlayer(){
 	var a = getRandomElementFromArray(available_aspects);
 	removeFromArray(a, available_aspects);
 	return randomPlayerWithClaspect(c,a);
-	
+
+}
+
+function randomPlayerWithoutRemoving(){
+	//remove class AND aspect from available
+	var c = getRandomElementFromArray(available_classes);
+	//removeFromArray(c, available_classes);
+	var a = getRandomElementFromArray(available_aspects);
+	//removeFromArray(a, available_aspects);
+	return randomPlayerWithClaspect(c,a);
+
 }
 
 function randomSpacePlayer(){
@@ -435,7 +445,7 @@ function findClassPlayer(playerList, class_name){
 
 function findStrongestPlayer(playerList){
 	var strongest = playerList[0];
-	
+
 	for(var i= 0; i<playerList.length; i++){
 		var p = playerList[i];
 		if(p.power > strongest.power){
