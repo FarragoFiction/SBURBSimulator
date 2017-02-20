@@ -240,8 +240,9 @@ function aspectSymbol(canvas, player){
 }
 
 function aspectPalletSwap(canvas, player){
-  //replace all outlines with black
-
+  //not all browsers do png gama info correctly. Chrome does, firefox does not, mostly.
+  //remove it entirely with this command
+  //pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB infile.png outfile.png
   var oldcolor1 = "#ff8800"; //shirt
   var oldcolor2 = "#e76700"; //pants
   var oldcolor3 = "#fa4900"; //hat
