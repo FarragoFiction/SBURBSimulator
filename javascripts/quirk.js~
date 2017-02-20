@@ -6,7 +6,7 @@ function Quirk(){
 	this.prefix = ""; //what do you put at the start of a line?
 	this.suffix = ""; //what do you put at the end of a line?
 	this.capitalization = 0;  //0 == none, 4 = alternating, 5= inverted, 3 = begining of every word, 1 = normal, 2 = ALL 
-	this.favoriteNumber = getRandomInt(0,10);
+	this.favoriteNumber = getRandomInt(0,12);
 	
 	//take an input string and quirkify it.
 	this.translate = function(input){
