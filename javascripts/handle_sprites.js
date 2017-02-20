@@ -222,7 +222,18 @@ function playerToSprite(canvas, player){
   var height = img.height;
   ctx.drawImage(img,width/6,height/4,width,height);
   aspectPalletSwap(canvas, player);
+  aspectSymbol(canvas, player);
 
+}
+
+function aspectSymbol(canvas, player){
+    ctx = canvas.getContext('2d');
+    var imageString = player.aspect + ".png"
+    addImageTag(imageString)
+    var img=document.getElementById(imageString);
+    var width = img.width;
+    var height = img.height;
+    ctx.drawImage(img,0,0,width,height);
 }
 
 function aspectPalletSwap(canvas, player){
