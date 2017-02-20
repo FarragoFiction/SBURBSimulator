@@ -6,7 +6,8 @@ window.onload = function() {
 function reroll(){
 	makePlayers();
 	describe();
-  drawSpriteAll();
+ 	drawSpriteAll();
+	setTimeout(function(){ drawSpriteAll(); }, 3000);  //images aren't always loaded by the time i try to draw them the first time.
 }
 
 function drawSpriteAll(){
@@ -112,5 +113,5 @@ function makePlayers(){
 	for(var i = 0; i<numPlayers; i++){
 		players.push(randomPlayerWithoutRemoving());
 	}
-  //players[0].class_name = "Bard"
+  //players[0].class_name = "Bard" for testing
 }

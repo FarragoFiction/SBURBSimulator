@@ -112,8 +112,8 @@ function fins(canvas, player){
 }
 
 function horns(canvas, player){
-    var num = leftHorn(canvas,player);
-    rightHorn(num, canvas,player);
+    leftHorn(canvas,player);
+    rightHorn(canvas,player);
 }
 //horns are no longer a sprite sheet. tracy and kristi and brandon gave me advice.
 //position horns on an image as big as the canvas. put the horns directly on the
@@ -121,25 +121,28 @@ function horns(canvas, player){
 //same for wings eventually.
 function leftHorn(canvas, player){
     ctx = canvas.getContext('2d');
-    var randNum = getRandomInt(1,9);
-    var imageString = "left"+randNum + ".png";
+	if(player.leftHorn == 0){
+    	player.leftHorn = getRandomInt(1,9);
+	}
+    var imageString = "left"+player.leftHorn + ".png";
     addImageTag(imageString)
     var img=document.getElementById(imageString);
     var width = img.width;
   	var height = img.height;
   	ctx.drawImage(img,0,0,width,height);
     //console.log("Random number is: " + randNum)
-    return randNum; //right horn has high chance of matching left horn
 }
 //parse horns sprite sheet. render a random right horn.
 //right horn should be at: 120,40
-function rightHorn(randNum, canvas, player){
+function rightHorn(canvas, player){
   console.log("doing right horn");
   ctx = canvas.getContext('2d');
-  if(Math.random() > .1){ //preference for symmetry
-    randNum = getRandomInt(1,9);
+  if(player.rightHorn == 0 &&Math.random() > .1 ){ //preference for symmetry
+    player.rightHorn = getRandomInt(1,9);
+  }else if(player.rightHorn == 0){
+	player.rightHorn = player.leftHorn;
   }
-  var imageString = "right"+randNum + ".png";
+  var imageString = "right"+player.rightHorn + ".png";
   addImageTag(imageString)
 
   var img=document.getElementById(imageString);

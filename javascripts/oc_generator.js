@@ -6,7 +6,8 @@ window.onload = function() {
 function reroll(){
 	makePlayers();
 	describe();
-  drawSpriteAll();
+ 	drawSpriteAll();
+	setTimeout(function(){ drawSpriteAll(); }, 1000);  //images aren't always loaded by the time i try to draw them the first time.
 }
 
 function drawSpriteAll(){
