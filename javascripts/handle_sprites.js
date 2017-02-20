@@ -96,8 +96,9 @@ function wings(canvas,player){
   var height = img.height;
   ctx.drawImage(img,0,0,width,height);
 
-  swapColors50(canvas, "#00ff2a",player.bloodColor);
   swapColors(canvas, "#ff0000",player.bloodColor);
+  swapColors50(canvas, "#00ff2a",player.bloodColor);
+  
 }
 
 function fins(canvas, player){
