@@ -154,4 +154,5 @@ function makePlayers(){
 		players.push(randomPlayerWithoutRemoving());
 	}
  // players[0].class_name = "Page" //for testing
+
 }

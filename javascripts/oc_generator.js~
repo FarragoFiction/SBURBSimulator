@@ -109,7 +109,7 @@ function makeAspectDropDown(){
 	available_aspects = nonrequired_aspects.slice(0); //required_aspects
     available_aspects = available_aspects.concat(required_aspects.slice(0));
 	var html = '<select name="aspect">'
-  	html += '<option value="any" selected = "selected">Any</option>'
+  	html += '<option value="Any" selected = "selected">Any</option>'
 	for(var i = 0; i< available_aspects.length; i++){
 		html += '<option value="' + available_aspects[i] + '" >' + available_aspects[i]+'</option>'
 	}
@@ -154,4 +154,5 @@ function makePlayers(){
 		players.push(randomPlayerWithoutRemoving());
 	}
  // players[0].class_name = "Page" //for testing
+	players[0].quirk.favoriteNumber = 0;
 }
