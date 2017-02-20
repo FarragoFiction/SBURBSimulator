@@ -88,7 +88,7 @@ function wings(canvas,player){
 
   ctx = canvas.getContext('2d');
   //var num = player.quirk.favoriteNumber;
-	var num = 8;
+	var num = 9;
   var imageString = "wing"+num + ".png";
   addImageTag(imageString)
   var img=document.getElementById(imageString);
