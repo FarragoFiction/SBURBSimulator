@@ -96,7 +96,7 @@ function wings(canvas,player){
   ctx.drawImage(img,0,0,width,height);
 
   swapColors50(canvas, "#00ff2a",player.bloodColor);
-  swapColors(canvas, "#ff0018",player.bloodColor);
+  swapColors(canvas, "#ff0000",player.bloodColor);
 }
 
 function fins(canvas, player){
