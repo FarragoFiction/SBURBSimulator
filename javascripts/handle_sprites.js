@@ -242,12 +242,12 @@ function aspectSymbol(canvas, player){
 function aspectPalletSwap(canvas, player){
   //replace all outlines with black
 
-  var oldcolor1 = "#ff852b"; //shirt
-  var oldcolor2 = "#fa6623"; //pants
-  var oldcolor3 = "#ff4a1f"; //hat
-  var oldcolor4 = "#fffa62"; //symbol fefd49
-  var oldcolor5 = "#d43918"; //darker hat
-  var oldcolor6 = "#00e0fd"; //shoes
+  var oldcolor1 = "#ff8800"; //shirt
+  var oldcolor2 = "#e76700"; //pants
+  var oldcolor3 = "#fa4900"; //hat
+  var oldcolor4 = "#fefd49"; //symbol fefd49
+  var oldcolor5 = "#c33700"; //darker hat
+  var oldcolor6 = "#10e0ff"; //shoes
 
   var newcolor1 = "#b4b4b4";
   var newcolor2 = "#b4b4b4";

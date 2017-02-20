@@ -113,5 +113,5 @@ function makePlayers(){
 	for(var i = 0; i<numPlayers; i++){
 		players.push(randomPlayerWithoutRemoving());
 	}
-  //players[0].class_name = "Bard" for testing
+  players[0].class_name = "Page" //for testing
 }
