@@ -170,11 +170,12 @@ function playerToSprite(canvas, player){
 
 function aspectPalletSwap(canvas, player){
   //replace all outlines with black
+
   var oldcolor1 = "#ff7f00"; //shirt
   var oldcolor2 = "#f95900"; //pants
   var oldcolor3 = "#fd1000"; //hat
   var oldcolor4 = "#fbff00"; //symbol fefd49
-  var oldcolor5 = "#ff0000"; //darker hat
+  var oldcolor5 = "#c33700"; //darker hat
   var oldcolor6 = "#00e4ff"; //shoes
 
   var newcolor1 = "#b4b4b4";
