@@ -2,6 +2,7 @@ function trollify(canvas,player){
    //red_array = red_context.getImageData(0, 0, red_canvas.width, red_canvas.height).data;
    //alert("I should trollify");
   //wings first, replace black and red with blood color with two opacities
+  // wings(canvas,player);
    greySkin(canvas,player);
    horns(canvas,player);
 }
@@ -48,19 +49,58 @@ function swapColors(canvas, color1, color2){
 
 }
 
+function swapColors50(canvas, color1, color2){
+  var oldc = hexToRgbA(color1);
+  var newc= hexToRgbA(color2);
+  // console.log("replacing: " + oldc  + " with " + newc);
+  ctx = canvas.getContext('2d');
+  var img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
+  //4 byte color array
+  for(var i = 0; i<img_data.data.length; i += 4){
+    if(img_data.data[i] == oldc[0] && img_data.data[i+1] == oldc[1] &&img_data.data[i+2] == oldc[2]){
+      img_data.data[i] = newc[0];
+      img_data.data[i+1] = newc[1];
+      img_data.data[i+2] = newc[2];
+      img_data.data[i+3] = 128;
+    }
+    /*  bg to check canvas size
+    img_data.data[i] = 0;
+    img_data.data[i+1] = 0;
+    img_data.data[i+2] = 0;
+    img_data.data[i+3] = 255;
+    */
+  }
+  ctx.putImageData(img_data, 0, 0);
+
+}
+
 function greySkin(canvas){
   swapColors(canvas, "#ffffff", "#b4b4b4")
+}
+
+function wings(canvas,player){
+  //blood players have no wings, all other players have wings matching
+  //favorite color
+  if(player.aspect == "Blood"){
+    return;
+  }
+
+  ctx = canvas.getContext('2d');
+  var num = player.quirk.favoriteNumber;
+  var imageString = "wing"+num + ".png";
+  addImageTag(imageString)
+  var img=document.getElementById(imageString);
+  var width = img.width;
+  var height = img.height;
+  ctx.drawImage(img,0,0,width,height);
+  
+  swapColors50(canvas, "#00ff2a",player.bloodColor);
+  swapColors(canvas, "#ff0018",player.bloodColor);
 }
 
 function horns(canvas, player){
     var num = leftHorn(canvas,player);
     rightHorn(num, canvas,player);
-  /*  ctx = canvas.getContext('2d');
-    var horns = document.getElementById("test_horn");
-    var width = horns.width;//replace these with sprite sheet
-  	var height = horns.height;
-    ctx.drawImage(horns,0,0,width,height);
-    */
 }
 //horns are no longer a sprite sheet. tracy and kristi and brandon gave me advice.
 //position horns on an image as big as the canvas. put the horns directly on the
@@ -88,6 +128,7 @@ function rightHorn(randNum, canvas, player){
   }
   var imageString = "right"+randNum + ".png";
   addImageTag(imageString)
+
   var img=document.getElementById(imageString);
   var width = img.width;
   var height = img.height;
@@ -117,6 +158,9 @@ function drawSprite(canvas, player){
 	//var width = img.width;
 	//var height = img.height;
 	//ctx.drawImage(sprites,0,0,width,height);
+  if(player.isTroll){//wings before sprite
+    wings(canvas,player);
+  }
   playerToSprite(canvas,player);
   //then troll proccess???
   //this was for sprite sheet
