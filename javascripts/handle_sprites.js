@@ -4,6 +4,7 @@ function trollify(canvas,player){
   //wings first, replace black and red with blood color with two opacities
   // wings(canvas,player);
    greySkin(canvas,player);
+   fins(canvas, player);
    horns(canvas,player);
 }
 
@@ -75,7 +76,7 @@ function swapColors50(canvas, color1, color2){
 }
 
 function greySkin(canvas){
-  swapColors(canvas, "#ffffff", "#b4b4b4")
+  swapColors(canvas, "#ffffff", "#c4c4c4")
 }
 
 function wings(canvas,player){
@@ -93,9 +94,21 @@ function wings(canvas,player){
   var width = img.width;
   var height = img.height;
   ctx.drawImage(img,0,0,width,height);
-  
+
   swapColors50(canvas, "#00ff2a",player.bloodColor);
   swapColors(canvas, "#ff0018",player.bloodColor);
+}
+
+function fins(canvas, player){
+  if(player.bloodColor == "#610061" || player.bloodColor == "#99004d"){
+    ctx = canvas.getContext('2d');
+    var imageString = "fins.png";
+    addImageTag(imageString)
+    var img=document.getElementById(imageString);
+    var width = img.width;
+    var height = img.height;
+    ctx.drawImage(img,0,0,width,height);
+  }
 }
 
 function horns(canvas, player){
