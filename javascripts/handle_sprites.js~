@@ -134,8 +134,8 @@ function leftHorn(canvas, player){
 }
 //parse horns sprite sheet. render a random right horn.
 //right horn should be at: 120,40
-function rightHorn(randNum, canvas, player){
-  console.log("doing right horn");
+function rightHorn(canvas, player){
+ // console.log("doing right horn");
   ctx = canvas.getContext('2d');
   if(player.rightHorn == 0 &&Math.random() > .1 ){ //preference for symmetry
     player.rightHorn = getRandomInt(1,9);
@@ -152,7 +152,7 @@ function rightHorn(randNum, canvas, player){
 }
 
 function addImageTag(url){
-  console.log(url);
+  //console.log(url);
 	//only do it if image hasn't already been added.
 	if(document.getElementById(url) == null) {
 		var tag = '<img id ="' + url + '" src = "images/' + url + '" style="display:none">';
