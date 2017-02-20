@@ -136,7 +136,7 @@ function leftHorn(canvas, player){
 function rightHorn(randNum, canvas, player){
   console.log("doing right horn");
   ctx = canvas.getContext('2d');
-  if(Math.random() > .2){ //preference for symmetry
+  if(Math.random() > .1){ //preference for symmetry
     randNum = getRandomInt(1,9);
   }
   var imageString = "right"+randNum + ".png";
