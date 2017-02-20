@@ -1,6 +1,8 @@
 var players = [];
 
 window.onload = function() {
+	makeAspectDropDown();
+	makeClassDropDown();
     reroll();
 }
 function reroll(){
@@ -103,15 +105,53 @@ function decideTroll(player){
 	}
 }
 
+function makeAspectDropDown(){
+	available_aspects = nonrequired_aspects.slice(0); //required_aspects
+    available_aspects = available_aspects.concat(required_aspects.slice(0));
+	var html = '<select name="aspect">'
+  	html += '<option value="any" selected = "selected">Any</option>'
+	for(var i = 0; i< available_aspects.length; i++){
+		html += '<option value="' + available_aspects[i] + '" >' + available_aspects[i]+'</option>'
+	}
+	html += '</select>'
+	$("#aspectList").append(html);
+}
+
+function makeClassDropDown(){
+	available_classes = classes.slice(0); //re-init available classes. make deep copy
+	var html = '<select name="className">'
+  	html += '<option value="Any" selected = "selected">Any</option>'
+	for(var i = 0; i< available_classes.length; i++){
+		html += '<option value="' + available_classes[i] +'">' + available_classes[i]+'</option>'
+	}
+	html += '</select>'
+	$("#classList").append(html);
+}
+
+
 function makePlayers(){
 	players = [];
-	available_classes = classes.slice(0); //re-init available classes. make deep copy
-	available_aspects = nonrequired_aspects.slice(0); //required_aspects
-  available_aspects = available_aspects.concat(required_aspects.slice(0));
+	
+	if($('[name="className"] option:selected').val() == "Any"){
+		available_classes = classes.slice(0); //re-init available classes. make deep copy
+	}else{
+		available_classes = [$('[name="className"] option:selected').val()];	
+	}
+
+	if($('[name="aspect"] option:selected').val() == "Any"){
+		available_aspects = nonrequired_aspects.slice(0); //required_aspects
+   		available_aspects = available_aspects.concat(required_aspects.slice(0));
+	}else{
+		available_aspects = [$('[name="aspect"] option:selected').val()];	
+	}
+
+	
+	
+	
 	var numPlayers = 3;
 
 	for(var i = 0; i<numPlayers; i++){
 		players.push(randomPlayerWithoutRemoving());
 	}
-  players[0].class_name = "Page" for testing
+ // players[0].class_name = "Page" //for testing
 }

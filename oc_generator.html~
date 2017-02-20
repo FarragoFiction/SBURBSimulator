@@ -13,7 +13,7 @@
 	</head>
 	<body>
 		Do you like any of these? If not:
-		<button onclick="reroll()">Reroll</button><br> <div id = "classList">Class: </div> <div id = "aspectList"> Aspect: </div>
+		<button onclick="reroll()">Reroll</button><br> <div id = "aspectList"></div> <div id = "classList"></div>
 		<div id = "container">
 			<div id = "player1"/>
 					<canvas id="canvas1" width="0" height="0">  </canvas>
