@@ -35,6 +35,7 @@ function makeBG(canvasId){
 function writeToCanvas(canvasId, player){
 	var space_between_lines = 25;
 	var left_margin = 10;
+	var line_height = 18;
 	var start = 350;
 	var current = 350;
 	var canvas = document.getElementById(canvasId);
@@ -55,7 +56,9 @@ function writeToCanvas(canvasId, player){
 
 	ctx.fillText("Moon: " + player.moon,left_margin,current + space_between_lines*5);
 
-	ctx.fillText("Qurik: " + player.quirk.rawStringExplanation(),left_margin,current + space_between_lines*6);
+	//TODO need to handle new line myself.  font is 18 px tall. work with that. each new line adds to the count (which is now 6)
+	ctx.fillText("Quirk: " + player.quirk.rawStringExplanation(),left_margin,current + space_between_lines*6);
+	
 
 }
 
