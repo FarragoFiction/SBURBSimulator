@@ -5,9 +5,10 @@ function Quirk(){
 	this.spelling = 0;  //0 = bad typos (think roxy), 1 = some typos, 2 = perfect spelling
 	this.prefix = ""; //what do you put at the start of a line?
 	this.suffix = ""; //what do you put at the end of a line?
-	this.capitalization = 0;  //0 == none, 4 = alternating, 5= inverted, 3 = begining of every word, 1 = normal, 2 = ALL 
-	this.favoriteNumber = getRandomInt(0,10);
-	
+	this.capitalization = 0;  //0 == none, 4 = alternating, 5= inverted, 3 = begining of every word, 1 = normal, 2 = ALL
+	this.favoriteNumber = getRandomInt(0,12);
+	//this.favoriteNumber = 12;
+	//4 and 6 and 12 has green not change, 7 has SOME green not change
 	//take an input string and quirkify it.
 	this.translate = function(input){
 		var ret = input;
@@ -21,7 +22,7 @@ function Quirk(){
 
 	this.rawStringExplanation = function(){
 		var ret = "\n * Capitalization: ";
-		
+
 		if(this.capitalization==0){
 			ret += " all lower case "
 		}else if(this.capitalization==4){
@@ -35,7 +36,7 @@ function Quirk(){
 		}else if(this.capitalization==2){
 			ret += " all caps "
 		}
-		
+
 		ret += "\n * Punctuation: "
 		if(this.punctuation==0){
 			ret += " no punctuation "
@@ -45,18 +46,18 @@ function Quirk(){
 			ret += " perfect punctuation "
 		}else if(this.punctuation==3){
 			ret += " excessive punctuation "
-		}	
+		}
 
 		if(this.prefix != ""){
 			ret += "\n *  Prefix: " + this.prefix;
 		}
-		
+
 		if(this.suffix != ""){
 			ret += "\n *  Suffix: " + this.suffix;
 		}
-		
+
 		ret += "\n * Favorite Number: " + this.favoriteNumber;
-		
+
 		if(this.lettersToReplace.length > 0){
 			ret += " \n * Replaces: "
 		}
@@ -65,13 +66,13 @@ function Quirk(){
 			ret += "\n \t " + this.lettersToReplace[i][0] + " with " + this.lettersToReplace[i][1];
 		}
 
-		
+
 		return ret;
 	}
-	
+
 	this.stringExplanation = function(){
 		var ret = "<br>Capitalization: ";
-		
+
 		if(this.capitalization==0){
 			ret += " all lower case "
 		}else if(this.capitalization==4){
@@ -85,7 +86,7 @@ function Quirk(){
 		}else if(this.capitalization==2){
 			ret += " all caps "
 		}
-		
+
 		ret += "<Br> Punctuation: "
 		if(this.punctuation==0){
 			ret += " no punctuation "
@@ -95,18 +96,18 @@ function Quirk(){
 			ret += " perfect punctuation "
 		}else if(this.punctuation==3){
 			ret += " excessive punctuation "
-		}	
+		}
 
 		if(this.prefix != ""){
 			ret += "<br> Prefix: " + this.prefix;
 		}
-		
+
 		if(this.suffix != ""){
 			ret += "<br> Suffix: " + this.suffix;
 		}
-		
+
 		ret += "<br> Favorite Number: " + this.favoriteNumber;
-		
+
 		if(this.lettersToReplace.length > 0){
 			ret += " <br>Replaces: "
 		}
@@ -116,15 +117,15 @@ function Quirk(){
 		}
 		return ret;
 	}
-	
+
 	this.handlePrefix = function(input){
 		return this.prefix + " " + input;
 	}
-	
+
 	this.handleSuffix=function(input){
 		return input + " " + this.suffix;
 	}
-	
+
 	this.handleReplacements = function(input){
 		var ret = input;
 		for(var i = 0; i<this.lettersToReplace.length; i++){
@@ -133,7 +134,7 @@ function Quirk(){
 		}
 		return ret;
 	}
-	
+
 	this.handlePunctuation = function(input){
 		var ret = input;
 		if(this.punctuation==0){
@@ -147,12 +148,12 @@ function Quirk(){
 		}else if(this.punctuation==3){
 			ret = multiplyCharacter(ret,"!", this.favoriteNumber);
 			ret = multiplyCharacter(ret,"?", this.favoriteNumber);
-		}	
+		}
 		return ret;
 	}
-	
 
-	
+
+
 	this.handleCapitilization = function (input){
 		var ret = input;
 		if(this.capitalization==0){
@@ -182,7 +183,7 @@ function Quirk(){
 		}
 		return ret;
 	}
-	
+
 
 }
 
@@ -229,12 +230,12 @@ function randomTrollQuirk(){
 		}else{
 			ret.suffix = getRandomElementFromArray(prefixes);
 		}
-		
+
 		if(ret.suffix.length == 1){
 			ret.suffix  = multiplyCharacter(ret.suffix, ret.suffix[0], ret.favoriteNumber);
 		}
 	}
-	
+
 	if(ret.favoriteNumber == 1){
 		if(Math.random()>.5) ret.lettersToReplace.push(["I","1"]);
 		if(Math.random()>.5) ret.lettersToReplace.push(["i","1"]);
@@ -300,7 +301,7 @@ function randomTrollQuirk(){
 	for(var i = 0; i< roomLeft; i++){
 		ret.lettersToReplace.push(getOneRandomReplaceArray());
 	}
-	
+
 	return ret;
 }
 
@@ -339,7 +340,7 @@ function getOneNormalReplaceArray(){
 	return getRandomElementFromArray(arr);
 }
 
-//% to cross or x.  8 for b.  69 for oo.  o+ for o 
+//% to cross or x.  8 for b.  69 for oo.  o+ for o
 function getOneRandomReplaceArray(){
 	arr = [["x","%"],["X","%"],["s","z"],["w","vv"],["w","v"],["v","w"],["!","~"],["N","|\\/"]];
 	arr.push(["M","|\\/|"]);
@@ -362,6 +363,6 @@ function getOneRandomReplaceArray(){
 	if(Math.random() > .5){
 		return getRandomElementFromArray(arr);
 	}
-	
+
 	return getOneNormalReplaceArray(); //if i get here, just do a normal one.
 }
