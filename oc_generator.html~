@@ -15,14 +15,22 @@
 		Do you like any of these? If not:
 		<button onclick="reroll()">Reroll</button><br> <div id = "classList">Class: </div> <div id = "aspectList"> Aspect: </div>
 		<div id = "container">
-			<div id = "player13"/>
+			<div id = "player1"/>
 				<div id = "canvas1url"></div>			
 				<canvas id="canvas1" width="400" height="1000">  </canvas>
 		  	</div>
-			<div id = "player23" />
+			<div id = "player2" />
 				<div id = "canvas2url"></div>		
 		 		<canvas id="canvas2" width="400" height="1000">  </canvas>
-		  </div>
+		  	</div>
+			<div id = "player3" />
+				<div id = "canvas3url"></div>		
+		 		<canvas id="canvas3" width="400" height="1000">  </canvas>
+		  	</div>
+			<div id = "player4" />
+				<div id = "canvas2url"></div>		
+		 		<canvas id="canvas4" width="400" height="1000">  </canvas>
+		  	</div>
 		</div>
 
 		<div id = "debug"></div>

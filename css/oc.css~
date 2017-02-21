@@ -4,9 +4,11 @@
 }
 #player1 {
     float:left;
+    width:50%;
 }
 #player2 {
     float:left;
+    width:50%;
 }
 #player3 {
     float:left;
