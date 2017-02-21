@@ -17,15 +17,15 @@
 		<div id = "container">
 			<div id = "player1"/>
 				<div id = "canvas1url"></div>			
-				<canvas id="canvas1" width="400" height="800">  </canvas>
+				<canvas id="canvas1" width="300" height="1000">  </canvas>
 		  	</div>
 			<div id = "player2" />
 				<div id = "canvas2url"></div>		
-		 		<canvas id="canvas2" width="400" height="800">  </canvas>
+		 		<canvas id="canvas2" width="400" height="1000">  </canvas>
 		  </div>
 			<div id = "player3" >
 				<div id = "canvas3url"></div>		
-				<canvas id="canvas3" width="400" height="800">  </canvas>
+				<canvas id="canvas3" width="400" height="1000">  </canvas>
 			</div>
 		</div>
 

@@ -56,7 +56,7 @@ function writeToCanvas(canvasId, player){
 	ctx.fillText(player.title(),canvas.width/4,current);
 
 	//interests
-	ctx.font = "18px Times New Roman"
+	ctx.font = "12px Times New Roman"
 	ctx.fillStyle = "#000000"
 	ctx.fillText("Interests: " + player.interests,left_margin,current + space_between_lines*2);
 
@@ -75,7 +75,7 @@ function writeToCanvas(canvasId, player){
 	}else{
 			color2 = getColorFromAspect(player.aspect);
 	}
-	fillTextMultiLine(canvas, "Quirk: " + player.quirk.rawStringExplanation() + "\n * Sample: \n", text2, color2, left_margin, current + space_between_lines*6);
+	fillTextMultiLine(canvas, "Quirk: " + player.quirk.rawStringExplanation() + "\n \n Sample: \n", text2, color2, left_margin, current + space_between_lines*6);
 	dataURLs[canvasId] = canvas.toDataURL();
 
       // set canvasImg image src to dataURL

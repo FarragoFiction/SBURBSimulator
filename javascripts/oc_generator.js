@@ -53,10 +53,10 @@ function writeToCanvas(canvasId, player){
 	//title
     ctx.font = "40px Times New Roman"
 	ctx.fillStyle = getColorFromAspect(player.aspect)
-	ctx.fillText(player.title(),canvas.width/4,current);
+	ctx.fillText(player.title(),left_margin*2,current);
 
 	//interests
-	ctx.font = "18px Times New Roman"
+	ctx.font = "12px Times New Roman"
 	ctx.fillStyle = "#000000"
 	ctx.fillText("Interests: " + player.interests,left_margin,current + space_between_lines*2);
 
