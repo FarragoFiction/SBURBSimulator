@@ -6,7 +6,7 @@ function Quirk(){
 	this.prefix = ""; //what do you put at the start of a line?
 	this.suffix = ""; //what do you put at the end of a line?
 	this.capitalization = 0;  //0 == none, 4 = alternating, 5= inverted, 3 = begining of every word, 1 = normal, 2 = ALL 
-	this.favoriteNumber = getRandomInt(0,12);
+	this.favoriteNumber = getRandomInt(0,10);
 	
 	//take an input string and quirkify it.
 	this.translate = function(input){
@@ -16,6 +16,54 @@ function Quirk(){
 		ret = this.handlePunctuation(ret);
 		ret = this.handlePrefix(ret);  //even if troll speaks in lowercase, 8=D needs to be as is.
 		ret = this.handleSuffix(ret);
+		return ret;
+	}
+
+	this.rawStringExplanation = function(){
+		var ret = "\nCapitalization: ";
+		
+		if(this.capitalization==0){
+			ret += " all lower case "
+		}else if(this.capitalization==4){
+			ret += " alternating "
+		}else if(this.capitalization==5){
+			ret += " inverted "
+		}else if(this.capitalization==3){
+			ret += " begining of every word "
+		}else if(this.capitalization==1){
+			ret += " normal "
+		}else if(this.capitalization==2){
+			ret += " all caps "
+		}
+		
+		ret += "\n Punctuation: "
+		if(this.punctuation==0){
+			ret += " no punctuation "
+		}else if(this.punctuation==1){
+			ret += " ends of sentences "
+		}else if(this.punctuation==2){
+			ret += " perfect punctuation "
+		}else if(this.punctuation==3){
+			ret += " excessive punctuation "
+		}	
+
+		if(this.prefix != ""){
+			ret += "\n Prefix: " + this.prefix;
+		}
+		
+		if(this.suffix != ""){
+			ret += "\n Suffix: " + this.suffix;
+		}
+		
+		ret += "\n Favorite Number: " + this.favoriteNumber;
+		
+		if(this.lettersToReplace.length > 0){
+			ret += " \nReplaces: "
+		}
+		for(var i = 0; i<this.lettersToReplace.length; i++){
+			//$("#debug").append(i);
+			ret += "\n\t " + this.lettersToReplace[i][0] + " with " + this.lettersToReplace[i][1];
+		}
 		return ret;
 	}
 	

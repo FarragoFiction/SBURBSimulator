@@ -14,14 +14,57 @@ function reroll(){
 
 function drawSpriteAll(){
   for(var i = 0; i<players.length; i++){
+	  makeBG("canvas"+(i+1))
       drawSprite("canvas"+(i+1), players[i]);
+	  writeToCanvas('canvas'+(i+1), players[i]);
   }
+}
+
+function makeBG(canvasId){
+	var c = document.getElementById(canvasId);
+	var ctx = c.getContext("2d");
+
+	var grd = ctx.createLinearGradient(0, 0, 170, 0);
+	grd.addColorStop(0, "#fefefe");
+	grd.addColorStop(1, "#f1f1f1");
+
+	ctx.fillStyle = grd;
+	ctx.fillRect(0, 0, c.width, c.height);
+}
+
+function writeToCanvas(canvasId, player){
+	var space_between_lines = 25;
+	var left_margin = 10;
+	var start = 350;
+	var current = 350;
+	var canvas = document.getElementById(canvasId);
+	var ctx = canvas.getContext("2d");
+	//title
+    ctx.font = "30px Times New Roman"
+	ctx.fillStyle = getColorFromAspect(player.aspect)
+	ctx.fillText(player.title(),canvas.width/3,current);
+
+	//interests
+	ctx.font = "18px Times New Roman"
+	ctx.fillStyle = "#000000"
+	ctx.fillText("Interests: " + player.interests,left_margin,current + space_between_lines*2);
+
+	ctx.fillText("Guardian: " + player.lusus,left_margin,current + space_between_lines*3);
+
+	ctx.fillText("Land: " + player.land,left_margin,current + space_between_lines*4);
+
+	ctx.fillText("Moon: " + player.moon,left_margin,current + space_between_lines*5);
+
+	ctx.fillText("Qurik: " + player.quirk.rawStringExplanation(),left_margin,current + space_between_lines*6);
+
 }
 
 function describe(){
 	for(var i = 0; i<players.length; i++){
-		decideTroll(players[i]);
-		var intro = "<canvas id='canvas" + (i+1) +"' width='400' height='300'>  </canvas>";
+		//decideTroll(players[i]);
+		var intro = "<canvas id='canvas" + (i+1) +"' width='400' height='800'>  </canvas>";
+		
+		//want to move all this into the canvas.
 		intro += "<h1> " + players[i].htmlTitle() +" </h1>"
 		intro += "<ul>"
 		intro += "<li> Land: " + players[i].land
@@ -151,7 +194,9 @@ function makePlayers(){
 	var numPlayers = 3;
 
 	for(var i = 0; i<numPlayers; i++){
-		players.push(randomPlayerWithoutRemoving());
+		p = (randomPlayerWithoutRemoving());
+		decideTroll(p);
+		players.push(p);
 	}
  // players[0].class_name = "Page" //for testing
 

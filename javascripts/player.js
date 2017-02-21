@@ -1,4 +1,4 @@
-function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
+function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, interests){
 	this.class_name = class_name;
 	this.aspect = aspect;
 	this.land = land; //TODO maybe separate this out. lands can be in charge of quests?
@@ -12,6 +12,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 	this.isTroll = false; //later
 	this.bloodColor = "#ff0000" //human red.
 	this.leftHorn = 0;
+	this.interests = interests;
 	this.rightHorn = 0;
 	this.lusus = "Adult Human"
 	this.quirk = null;
@@ -333,7 +334,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 
 }
 
-function getFontColorFromAspect(aspect){
+function getColorFromAspect(aspect){
 	var color = "";
 	if(aspect == "Space"){
 		color = "#00ff00";
@@ -360,7 +361,12 @@ function getFontColorFromAspect(aspect){
 	}else if(aspect == "Life"){
 		color = "#ccc3bf";
 	}
-	return "<font color= '" + color + "'> ";
+	return color;
+}
+
+
+function getFontColorFromAspect(aspect){
+	return "<font color= '" + getColorFromAspect(aspect) + "'> ";
 }
 
 function randomPlayerWithClaspect(c,a){
@@ -377,7 +383,11 @@ function randomPlayerWithClaspect(c,a){
 		gd =true;
 	}
 	var m = getRandomElementFromArray(moons);
-	return new Player(c,a,l,k,m,gd);
+
+	var i1 = getRandomElementFromArray(interests);
+	var i2 = getRandomElementFromArray(interests);
+	var i = i1 + " and " + i2; 
+	return new Player(c,a,l,k,m,gd, i);
 }
 function randomPlayer(){
 	//remove class AND aspect from available

@@ -18,6 +18,54 @@ function Quirk(){
 		ret = this.handleSuffix(ret);
 		return ret;
 	}
+
+	this.rawStringExplanation = function(){
+		var ret = "\nCapitalization: ";
+		
+		if(this.capitalization==0){
+			ret += " all lower case "
+		}else if(this.capitalization==4){
+			ret += " alternating "
+		}else if(this.capitalization==5){
+			ret += " inverted "
+		}else if(this.capitalization==3){
+			ret += " begining of every word "
+		}else if(this.capitalization==1){
+			ret += " normal "
+		}else if(this.capitalization==2){
+			ret += " all caps "
+		}
+		
+		ret += "\n Punctuation: "
+		if(this.punctuation==0){
+			ret += " no punctuation "
+		}else if(this.punctuation==1){
+			ret += " ends of sentences "
+		}else if(this.punctuation==2){
+			ret += " perfect punctuation "
+		}else if(this.punctuation==3){
+			ret += " excessive punctuation "
+		}	
+
+		if(this.prefix != ""){
+			ret += "\n Prefix: " + this.prefix;
+		}
+		
+		if(this.suffix != ""){
+			ret += "\n Suffix: " + this.suffix;
+		}
+		
+		ret += "\n Favorite Number: " + this.favoriteNumber;
+		
+		if(this.lettersToReplace.length > 0){
+			ret += " \nReplaces: "
+		}
+		for(var i = 0; i<this.lettersToReplace.length; i++){
+			//$("#debug").append(i);
+			ret += "\n\t " + this.lettersToReplace[i][0] + " with " + this.lettersToReplace[i][1];
+		}
+		return ret;
+	}
 	
 	this.stringExplanation = function(){
 		var ret = "<br>Capitalization: ";
