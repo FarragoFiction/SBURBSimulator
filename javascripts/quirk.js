@@ -20,7 +20,7 @@ function Quirk(){
 	}
 
 	this.rawStringExplanation = function(){
-		var ret = "\nCapitalization: ";
+		var ret = "\n * Capitalization: ";
 		
 		if(this.capitalization==0){
 			ret += " all lower case "
@@ -36,7 +36,7 @@ function Quirk(){
 			ret += " all caps "
 		}
 		
-		ret += "\n Punctuation: "
+		ret += "\n * Punctuation: "
 		if(this.punctuation==0){
 			ret += " no punctuation "
 		}else if(this.punctuation==1){
@@ -48,24 +48,24 @@ function Quirk(){
 		}	
 
 		if(this.prefix != ""){
-			ret += "\n Prefix: " + this.prefix;
+			ret += "\n *  Prefix: " + this.prefix;
 		}
 		
 		if(this.suffix != ""){
-			ret += "\n Suffix: " + this.suffix;
+			ret += "\n *  Suffix: " + this.suffix;
 		}
 		
-		ret += "\n Favorite Number: " + this.favoriteNumber;
+		ret += "\n * Favorite Number: " + this.favoriteNumber;
 		
 		if(this.lettersToReplace.length > 0){
-			ret += " \nReplaces: "
+			ret += " \n * Replaces: "
 		}
 		for(var i = 0; i<this.lettersToReplace.length; i++){
 			//$("#debug").append(i);
-			ret += "\n\t " + this.lettersToReplace[i][0] + " with " + this.lettersToReplace[i][1];
+			ret += "\n \t " + this.lettersToReplace[i][0] + " with " + this.lettersToReplace[i][1];
 		}
 
-		ret += "\nSample: \n" + this.translate(" The quick brown fox (named Lacy) jumped over the lazy dog (named Barkey) over 1234567890 times for reasons. It sure was exciting! I wonder why he did that? Was he going to be late? I wonder....I guess we'll just have to wait and see.");
+		
 		return ret;
 	}
 	
