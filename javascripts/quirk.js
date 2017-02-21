@@ -328,8 +328,10 @@ function getOneNormalReplaceArray(){
 	if(Math.random()>.9) return["can't","can not"];
 	if(Math.random()>.9) return["ro","bro"];
 	if(Math.random()>.9) return["Ro","Bro"];
+	if(Math.random()>.9) return["the","teh"];
 	if(Math.random()>.9) return["aren't","aint"];
 	if(Math.random()>.9) return["Aren't","Aint"];
+	if(Math.random()>.9) return["ie","ei"];
 	return ["hackers","haxorz"];
 }
 
