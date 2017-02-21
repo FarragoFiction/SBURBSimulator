@@ -305,60 +305,63 @@ function randomTrollQuirk(){
 }
 
 function getOneNormalReplaceArray(){
-	if(Math.random()>.9) return["ing","in"];
-	if(Math.random()>.9) return["have to","hafta"];
-	if(Math.random()>.9) return["Have to","Hafta"];
-	if(Math.random()>.9) return["want to","wanna"];
-	if(Math.random()>.9) return["going to","gonna"];
-	if(Math.random()>.9) return["Want to","wanna"];
-	if(Math.random()>.9) return["Going to","gonna"];
-	if(Math.random()>.9) return["I'm","I am"];
-	if(Math.random()>.9) return["You're","you are"];
-	if(Math.random()>.9) return["We're","we are"];
-	if(Math.random()>.9) return["Don't","do not"];
-	if(Math.random()>.9) return["Won't","will not"];
-	if(Math.random()>.9) return["Didn't","did not"];
-	if(Math.random()>.9) return["Can't","can't"];
-	if(Math.random()>.9) return["We'll","We will"];
-	if(Math.random()>.9) return["you're","you are"];
-	if(Math.random()>.9) return["we're","we are"];
-	if(Math.random()>.9) return["don't","do not"];
-	if(Math.random()>.9) return["won't","will not"];
-	if(Math.random()>.9) return["didn't","did not"];
-	if(Math.random()>.9) return["can't","can not"];
-	if(Math.random()>.9) return["ro","bro"];
-	if(Math.random()>.9) return["Ro","Bro"];
-	if(Math.random()>.9) return["the","teh"];
-	if(Math.random()>.9) return["aren't","aint"];
-	if(Math.random()>.9) return["Aren't","Aint"];
-	if(Math.random()>.9) return["ie","ei"];
-	return ["hackers","haxorz"];
+	arr = [];
+	arr.push(["ing","in"]);
+	arr.push(["have to","hafta"]);
+	arr.push(["Have to","Hafta"]);
+	arr.push(["want to","wanna"]);
+	arr.push(["going to","gonna"]);
+	arr.push(["Want to","wanna"]);
+	arr.push(["Going to","gonna"]);
+	arr.push(["I'm","I am"]);
+	arr.push(["You're","you are"]);
+	arr.push(["We're","we are"]);
+	arr.push(["Don't","do not"]);
+	arr.push(["Won't","will not"]);
+	arr.push(["Didn't","did not"]);
+	arr.push(["Can't","can't"]);
+	arr.push(["We'll","We will"]);
+	arr.push(["you're","you are"]);
+	arr.push(["we're","we are"]);
+	arr.push(["don't","do not"]);
+	arr.push(["won't","will not"]);
+	arr.push(["didn't","did not"]);
+	arr.push(["can't","can not"]);
+	arr.push(["ro","bro"]);
+	arr.push(["Ro","Bro"]);
+	arr.push(["the","teh"]);
+	arr.push(["aren't","aint"]);
+	arr.push(["Aren't","Aint"]);
+	arr.push(["ie","ei"]);
+	arr.push(["though","tho"]);
+	arr.push(["you","u"]);
+	arr.push(["right", "rite"]);
+	return getRandomElementFromArray(arr);
 }
 
 //% to cross or x.  8 for b.  69 for oo.  o+ for o 
 function getOneRandomReplaceArray(){
-	if(Math.random()>.9) return["x","%"];
-	if(Math.random()>.9) return["X","%"];
-	if(Math.random()>.9) return["ing","in"];
-	if(Math.random()>.9) return["s","z"];
-	if(Math.random()>.9) return["w","vv"];
-	if(Math.random()>.9) return["w","v"];
-	if(Math.random()>.9) return["v","w"];
-	if(Math.random()>.9) return["!","~"];
-	if(Math.random()>.9) return["N","|\\/"];
-	if(Math.random()>.9) return["M","|\\/|"];
-	if(Math.random()>.9) return["W","\\/\\/"];
-	if(Math.random()>.9) return["H",")("];
-	if(Math.random()>.9) return["H","|-|"];
-	if(Math.random()>.9) return["oo","69"];
-	if(Math.random()>.9) return["OO","69"];
-	if(Math.random()>.9) return["o","o+"];
-	if(Math.random()>.9) return["plus","+"];
-	if(Math.random()>.9) return["happy",":)"];
-	if(Math.random()>.9) return["sad",":("];
-	if(Math.random()>.9) return["love","<3"];
-	if(Math.random()>.9) return["loo","100"];
-	if(Math.random()>.9) return["dog","cat"];
+	arr = [["x","%"],["X","%"],["s","z"],["w","vv"],["w","v"],["v","w"],["!","~"],["N","|\\/"]];
+	arr.push(["M","|\\/|"]);
+	arr.push(["W","\\/\\/"]);
+	arr.push(["H",")("]);
+	arr.push(["H","|-|"]);
+	arr.push(["oo","69"]);
+	arr.push(["OO","69"]);
+	arr.push(["o","o+"]);
+	arr.push(["plus","+"]);
+	arr.push(["happy",":)"]);
+	arr.push(["sad",":("]);
+	arr.push(["love","<3"]);
+	arr.push(["loo","100"]);
+	arr.push(["dog","cat"]);
+	arr.push(["s","th"]);
+	arr.push(["s","c"]);
+	arr.push(["c","s"]);
+
+	if(Math.random() > .5){
+		return getRandomElementFromArray(arr);
+	}
 	
 	return getOneNormalReplaceArray(); //if i get here, just do a normal one.
 }
