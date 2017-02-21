@@ -124,7 +124,7 @@ function horns(canvas, player){
 function leftHorn(canvas, player){
     ctx = canvas.getContext('2d');
 	if(player.leftHorn == 0){
-    	player.leftHorn = getRandomInt(1,20);
+    	player.leftHorn = getRandomInt(1,30);
 	}
     var imageString = "left"+player.leftHorn + ".png";
     addImageTag(imageString)
@@ -140,7 +140,7 @@ function rightHorn(canvas, player){
  // console.log("doing right horn");
   ctx = canvas.getContext('2d');
   if(player.rightHorn == 0 &&Math.random() > .9 ){ //preference for symmetry
-    player.rightHorn = getRandomInt(1,20);
+    player.rightHorn = getRandomInt(1,30);
   }else if(player.rightHorn == 0){
 	player.rightHorn = player.leftHorn;
   }
