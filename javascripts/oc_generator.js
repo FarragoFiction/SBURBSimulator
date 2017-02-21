@@ -1,5 +1,5 @@
 var players = [];
-
+var dataURLs = {};
 window.onload = function() {
 	makeAspectDropDown();
 	makeClassDropDown();
@@ -7,9 +7,19 @@ window.onload = function() {
 }
 function reroll(){
 	makePlayers();
-	describe();
+	//describe();
  	drawSpriteAll();
-	setTimeout(function(){ drawSpriteAll(); }, 1000);  //images aren't always loaded by the time i try to draw them the first time.
+	setTimeout(function(){ 
+		drawSpriteAll();
+		renderDownloadURLs(); 
+	}, 1000);  //images aren't always loaded by the time i try to draw them the first time.
+}
+
+function renderDownloadURLs(){
+	var keys = Object.keys(dataURLs);
+	for(var i = 0; i<keys.length; i++){
+		$("#"+keys[i]+"url").html("<a href = '" +dataURLs[keys[i]] + "'> Download Charcter</a><br>" );
+	}
 }
 
 function drawSpriteAll(){
@@ -41,9 +51,9 @@ function writeToCanvas(canvasId, player){
 	var canvas = document.getElementById(canvasId);
 	var ctx = canvas.getContext("2d");
 	//title
-    ctx.font = "30px Times New Roman"
+    ctx.font = "40px Times New Roman"
 	ctx.fillStyle = getColorFromAspect(player.aspect)
-	ctx.fillText(player.title(),canvas.width/3,current);
+	ctx.fillText(player.title(),canvas.width/4,current);
 
 	//interests
 	ctx.font = "18px Times New Roman"
@@ -58,6 +68,11 @@ function writeToCanvas(canvasId, player){
 
 	//TODO need to handle new line myself.  font is 18 px tall. work with that. each new line adds to the count (which is now 6)
 	ctx.fillText("Quirk: " + player.quirk.rawStringExplanation(),left_margin,current + space_between_lines*6);
+
+	dataURLs[canvasId] = canvas.toDataURL();
+
+      // set canvasImg image src to dataURL
+      // so it can be saved as an image
 	
 
 }
