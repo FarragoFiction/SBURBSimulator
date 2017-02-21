@@ -55,7 +55,8 @@ function writeToCanvas(canvasId, player){
 
 	ctx.fillText("Moon: " + player.moon,left_margin,current + space_between_lines*5);
 
-	ctx.fillText("Qurik: " + player.quirk.rawStringExplanation(),left_margin,current + space_between_lines*6);
+	ctx.fillText("Quirk: " + player.quirk.rawStringExplanation(),left_margin,current + space_between_lines*6);
+	
 
 }
 

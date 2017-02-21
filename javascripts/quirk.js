@@ -64,6 +64,8 @@ function Quirk(){
 			//$("#debug").append(i);
 			ret += "\n\t " + this.lettersToReplace[i][0] + " with " + this.lettersToReplace[i][1];
 		}
+
+		ret += "\nSample: \n" + this.translate(" The quick brown fox (named Lacy) jumped over the lazy dog (named Barkey) over 1234567890 times for reasons. It sure was exciting! I wonder why he did that? Was he going to be late? I wonder....I guess we'll just have to wait and see.");
 		return ret;
 	}
 	
