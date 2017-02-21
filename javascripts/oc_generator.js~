@@ -259,7 +259,7 @@ function makePlayers(){
 	
 	
 	
-	var numPlayers = 2;
+	var numPlayers = 4;
 
 	for(var i = 0; i<numPlayers; i++){
 		p = (randomPlayerWithoutRemoving());

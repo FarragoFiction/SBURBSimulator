@@ -18,7 +18,7 @@ function reroll(){
 function renderDownloadURLs(){
 	var keys = Object.keys(dataURLs);
 	for(var i = 0; i<keys.length; i++){
-		$("#"+keys[i]+"url").html("<a href = '" +dataURLs[keys[i]] + "'> Download Character</a><br>" );
+		$("#"+keys[i]+"url").html("<a href = '" +dataURLs[keys[i]] + "'  target='_blank'> Download Character</a><br>" );
 	}
 }
 
