@@ -18,7 +18,7 @@ function reroll(){
 function renderDownloadURLs(){
 	var keys = Object.keys(dataURLs);
 	for(var i = 0; i<keys.length; i++){
-		$("#"+keys[i]+"url").html("<a href = '" +dataURLs[keys[i]] + "'> Download Charcter</a><br>" );
+		$("#"+keys[i]+"url").html("<a href = '" +dataURLs[keys[i]] + "'> Download Character</a><br>" );
 	}
 }
 
@@ -56,7 +56,7 @@ function writeToCanvas(canvasId, player){
 	ctx.fillText(player.title(),left_margin*2,current);
 
 	//interests
-	ctx.font = "12px Times New Roman"
+	ctx.font = "18px Times New Roman"
 	ctx.fillStyle = "#000000"
 	ctx.fillText("Interests: " + player.interests,left_margin,current + space_between_lines*2);
 
@@ -126,7 +126,7 @@ function wrap_text(ctx, text, x, y, lineHeight, maxWidth, textAlign) {
   }
 }
 
-
+//deprecated in favor of pure canvas
 function describe(){
 	for(var i = 0; i<players.length; i++){
 		//decideTroll(players[i]);
@@ -259,7 +259,7 @@ function makePlayers(){
 	
 	
 	
-	var numPlayers = 3;
+	var numPlayers = 2;
 
 	for(var i = 0; i<numPlayers; i++){
 		p = (randomPlayerWithoutRemoving());

@@ -53,10 +53,10 @@ function writeToCanvas(canvasId, player){
 	//title
     ctx.font = "40px Times New Roman"
 	ctx.fillStyle = getColorFromAspect(player.aspect)
-	ctx.fillText(player.title(),canvas.width/4,current);
+	ctx.fillText(player.title(),left_margin*2,current);
 
 	//interests
-	ctx.font = "12px Times New Roman"
+	ctx.font = "18px Times New Roman"
 	ctx.fillStyle = "#000000"
 	ctx.fillText("Interests: " + player.interests,left_margin,current + space_between_lines*2);
 
@@ -126,7 +126,7 @@ function wrap_text(ctx, text, x, y, lineHeight, maxWidth, textAlign) {
   }
 }
 
-
+//deprecated in favor of pure canvas
 function describe(){
 	for(var i = 0; i<players.length; i++){
 		//decideTroll(players[i]);
@@ -259,7 +259,7 @@ function makePlayers(){
 	
 	
 	
-	var numPlayers = 3;
+	var numPlayers = 2;
 
 	for(var i = 0; i<numPlayers; i++){
 		p = (randomPlayerWithoutRemoving());
