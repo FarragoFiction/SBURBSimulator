@@ -3,15 +3,16 @@ var dataURLs = {};
 window.onload = function() {
 	makeAspectDropDown();
 	makeClassDropDown();
-    reroll();
+	makeSpeciesDropDown();
+  reroll();
 }
 function reroll(){
 	makePlayers();
 	//describe();
  	drawSpriteAll();
-	setTimeout(function(){ 
+	setTimeout(function(){
 		drawSpriteAll();
-		renderDownloadURLs(); 
+		renderDownloadURLs();
 	}, 1000);  //images aren't always loaded by the time i try to draw them the first time.
 }
 
@@ -35,8 +36,8 @@ function makeBG(canvasId){
 	var ctx = c.getContext("2d");
 
 	var grd = ctx.createLinearGradient(0, 0, 170, 0);
-	grd.addColorStop(0, "#fefefe");
-	grd.addColorStop(1, "#f1f1f1");
+	grd.addColorStop(0, "#fefeff");
+	grd.addColorStop(1, "#f1f1ff");
 
 	ctx.fillStyle = grd;
 	ctx.fillRect(0, 0, c.width, c.height);
@@ -84,7 +85,7 @@ function writeToCanvas(canvasId, player){
 
 //http://stackoverflow.com/questions/5026961/html5-canvas-ctx-filltext-wont-do-line-breaks/21574562#21574562
 function fillTextMultiLine(canvas, text1, text2, color2, x, y) {
-	var ctx = canvas.getContext("2d");  	
+	var ctx = canvas.getContext("2d");
 	var lineHeight = ctx.measureText("M").width * 1.2;
     var lines = text1.split("\n");
  	for (var i = 0; i < lines.length; ++i) {
@@ -131,7 +132,7 @@ function describe(){
 	for(var i = 0; i<players.length; i++){
 		//decideTroll(players[i]);
 		var intro = "<canvas id='canvas" + (i+1) +"' width='400' height='800'>  </canvas>";
-		
+
 		//want to move all this into the canvas.
 		intro += "<h1> " + players[i].htmlTitle() +" </h1>"
 		intro += "<ul>"
@@ -206,7 +207,12 @@ function randomParagraph(div, player){
 }
 
 function decideTroll(player){
-	if(Math.random() > .5){
+	if($('[name="species"] option:selected').val() == "Any" && Math.random() > .5 ){
+		player.isTroll = true;
+		decideHemoCaste(player);
+		decideLusus(player);
+		player.quirk = randomTrollQuirk();
+	}else if($('[name="species"] option:selected').val() == "Troll"){
 		player.isTroll = true;
 		decideHemoCaste(player);
 		decideLusus(player);
@@ -228,6 +234,16 @@ function makeAspectDropDown(){
 	$("#aspectList").append(html);
 }
 
+function makeSpeciesDropDown(){
+	var html = '<select name="species">'
+  html += '<option value="Any" selected = "selected">Any</option>'
+	html += '<option value="Human">Human</option>'
+	html += '<option value="Troll" >Troll</option>'
+	html += '</select>'
+	$("#speciesList").append(html);
+}
+
+
 function makeClassDropDown(){
 	available_classes = classes.slice(0); //re-init available classes. make deep copy
 	var html = '<select name="className">'
@@ -242,23 +258,23 @@ function makeClassDropDown(){
 
 function makePlayers(){
 	players = [];
-	
+
 	if($('[name="className"] option:selected').val() == "Any"){
 		available_classes = classes.slice(0); //re-init available classes. make deep copy
 	}else{
-		available_classes = [$('[name="className"] option:selected').val()];	
+		available_classes = [$('[name="className"] option:selected').val()];
 	}
 
 	if($('[name="aspect"] option:selected').val() == "Any"){
 		available_aspects = nonrequired_aspects.slice(0); //required_aspects
    		available_aspects = available_aspects.concat(required_aspects.slice(0));
 	}else{
-		available_aspects = [$('[name="aspect"] option:selected').val()];	
+		available_aspects = [$('[name="aspect"] option:selected').val()];
 	}
 
-	
-	
-	
+
+
+
 	var numPlayers = 4;
 
 	for(var i = 0; i<numPlayers; i++){
