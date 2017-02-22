@@ -408,8 +408,8 @@ this.goodMild = "Friends";
 var goodMildDesc = ["a pretty good kid", "nice enough", "merely tolerable", "just friendly"];
 var goodBigDesc = ["the most fascinating human left", "distractingly pretty", "really hot"];
 var bigMildDesc = ["kind of a jerk", "sort of an asshole", "only sort of irritating", "just a little annoying"];
-var bigBadDesc = ["just the smelliest bag of assholes", "the most infuriating asshole around", "most likely to fuck everyone over", "dangerous"];	
-	
+var bigBadDesc = ["just the smelliest bag of assholes", "the most infuriating asshole around", "most likely to fuck everyone over", "dangerous"];
+
 
 var democracyTasks = ["WV gives talks to a random Carpacian boy, demanding he support democracy."," WV gathers followers using techniques learned from reading a book on Carpacian etiquette. "];
 democracyTasks.push(" WV demonstrates tactical knowledge to Dersites, convincing them they can win against the King. ");
@@ -451,3 +451,16 @@ interests = interests.concat(["Typography", "Movie Making", "Script Writing", "S
 
 var prefixes = ["8=D",">->","//", "tumut",")","><>","(", "$", "?", "=begin", "=end"]
 prefixes = prefixes.concat(["<3","<3<","<>","c3<","{","}","[","]","'",".",",","~","!","~","^","&","#","@","%","*"]);
+
+//not as extreme as a troll quirk, but...
+var conversational_quirks = [["like", "liek"],["ing","in"],["have to","hafta"], ["want to","wanna"],["going to","gonna"], ["i'm","i am"],["you're","you are"],["we're","we are"],["Don't","do not"]];
+conversational_quirks = conversational_quirks.concat([["Won't","will not"],["Didn't","did not"],["Can't","can't"],["We'll","We will"],["the","teh"],["aren't","aint"],["ie","ei"],["though","tho"],["you","u"],["right","rite"]]);
+
+var very_quirks = [["very","adequately"],["very","really"],["very","super"],["very", "amazingly"],["very","hella"],["very","extremely"],["very","absolutely"],["very","mega"],["very ","extra"],["very","ultra"],["very","hecka"],["very","totes"]];
+
+var good_quirks = [["good,agreeable"],["good", "marvelous"],["good", "ace"],["good", "wonderful"],["good","sweet"],["good","dope"],["good","awesome"],["good","great"],["good","amazing"],["good","perfect"],["good","amazing"],["good","super good"],["good","acceptable"]];
+var lol_quirks = [["lol","haha"],["lol","ehehe"],["lol","heh"],["lol","omg lol"],["lol","rofl"],["lol","funny"],["lol",""],["lol","hee"],["lol","lawl"],["lol","roflcopter"],["lol","..."],["lol","bwahah"],["lol","*giggle*"]];
+var greeting_quirks = [["hey", "hi"],["hey", "hello"],["hey", "greetings"],["hey", "yo"],["hey", "sup"]];
+var dude_quirks = [["dude","guy"],["dude","man"],["dude","you"],["dude","friend"],["dude","asshole"],["dude","fella"],["dude","bro"]];
+var curse_quirks = [["fuck", "shit"],["fuck", "cocks"],["fuck", "nope"],["fuck", "goddammit"],["fuck", "damn it"],["fuck", "..."],["fuck", "...great."]];
+console.log("TODO figure out how to make conversational quirks ignore case");

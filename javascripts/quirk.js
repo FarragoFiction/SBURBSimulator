@@ -305,39 +305,10 @@ function randomTrollQuirk(){
 	return ret;
 }
 
+
 function getOneNormalReplaceArray(){
-	arr = [];
-	arr.push(["ing","in"]);
-	arr.push(["have to","hafta"]);
-	arr.push(["Have to","Hafta"]);
-	arr.push(["want to","wanna"]);
-	arr.push(["going to","gonna"]);
-	arr.push(["Want to","wanna"]);
-	arr.push(["Going to","gonna"]);
-	arr.push(["I'm","I am"]);
-	arr.push(["You're","you are"]);
-	arr.push(["We're","we are"]);
-	arr.push(["Don't","do not"]);
-	arr.push(["Won't","will not"]);
-	arr.push(["Didn't","did not"]);
-	arr.push(["Can't","can't"]);
-	arr.push(["We'll","We will"]);
-	arr.push(["you're","you are"]);
-	arr.push(["we're","we are"]);
-	arr.push(["don't","do not"]);
-	arr.push(["won't","will not"]);
-	arr.push(["didn't","did not"]);
-	arr.push(["can't","can not"]);
-	arr.push(["ro","bro"]);
-	arr.push(["Ro","Bro"]);
-	arr.push(["the","teh"]);
-	arr.push(["aren't","aint"]);
-	arr.push(["Aren't","Aint"]);
-	arr.push(["ie","ei"]);
-	arr.push(["though","tho"]);
-	arr.push(["you","u"]);
-	arr.push(["right", "rite"]);
-	return getRandomElementFromArray(arr);
+	//these should ignore case.
+	return getRandomElementFromArray(conversational_quirks);
 }
 
 //% to cross or x.  8 for b.  69 for oo.  o+ for o
