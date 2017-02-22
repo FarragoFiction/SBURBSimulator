@@ -7,7 +7,7 @@ function Quirk(){
 	this.suffix = ""; //what do you put at the end of a line?
 	this.capitalization = 0;  //0 == none, 4 = alternating, 5= inverted, 3 = begining of every word, 1 = normal, 2 = ALL
 	this.favoriteNumber = getRandomInt(0,12);
-	this.favoriteNumber = 4;
+	//this.favoriteNumber = 4;
 	//4 and 6 and 12 has green not change, 7 has SOME green not change
 	//take an input string and quirkify it.
 	this.translate = function(input){
