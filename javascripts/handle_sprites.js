@@ -181,6 +181,7 @@ function start_loading_images(ctx, canvas, view)
     img.src = url_for_image(view)+"&center"
 }
 //this one is slighlty more useful. instead of async, just asks if image is loaded or not. 
+http://stackoverflow.com/questions/1977871/check-if-an-image-is-loaded-no-errors-in-javascript
 for now i'm okay with just waiting a half second, though.
 function imgLoaded(imgElement) {
   return imgElement.complete && imgElement.naturalHeight !== 0;
