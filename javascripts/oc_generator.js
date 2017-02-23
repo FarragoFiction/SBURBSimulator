@@ -13,7 +13,7 @@ function reroll(){
 	setTimeout(function(){
 		//drawSpriteAll(); //drawing sprites the first time will handle this.
 		renderDownloadURLs();
-	}, 1000);  //images aren't always loaded by the time i try to draw them the first time.
+	}, 500);  //images aren't always loaded by the time i try to draw them the first time.
 }
 
 function renderDownloadURLs(){
@@ -26,7 +26,7 @@ function renderDownloadURLs(){
 function drawSpriteAll(){
   for(var i = 0; i<players.length; i++){
 	  makeBG(document.getElementById("canvas"+(i+1)));
-      drawSprite(document.getElementById("canvas"+(i+1)), players[i]);
+      drawSprite(document.getElementById("canvas"+(i+1)), players[i],500);
 	  writeToCanvas(document.getElementById("canvas"+(i+1)), players[i]); 
 	  makeWriteDataURL("canvas"+(i+1) )//for writing data.
   }

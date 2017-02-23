@@ -182,7 +182,8 @@ function start_loading_images(ctx, canvas, view)
 }
 */
 
-function drawSprite(canvas, player,isRepeat){
+function drawSprite(canvas, player, repeatTime, isRepeat){
+	//debug("Drawing sprite for: " + player.title());
   //console.log("looking for canvas: " + canvas);
  // canvas = $("#"+canvasId)[0]; //don't want jquery object, want contents
   ctx = canvas.getContext('2d');
@@ -212,7 +213,7 @@ function drawSprite(canvas, player,isRepeat){
 	 //alert("redrawing")
 	setTimeout(function(){
 			drawSprite(canvas,player,true)
-	}, 1000);  //images aren't always loaded by the time i try to draw them the first time.
+	}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
   }
 }
 
