@@ -276,6 +276,10 @@ function indexToWords(i){
 	return words[i];
 }
 
+function debug(str){
+	$("#debug").append("<br>" + str);
+}
+
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 

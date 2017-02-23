@@ -163,6 +163,8 @@ function addImageTag(url){
 
 }
 /* code that implies a different way i could load images. with an async callback to img.onload
+Hrrrm. Problem is that async would mean that things would be rendered in the wrong order.
+could have something that knows when ALL things in a single sprite have been rendered?
 function start_loading_images(ctx, canvas, view)
 {
     var img = new Image()
@@ -180,7 +182,7 @@ function start_loading_images(ctx, canvas, view)
 }
 */
 
-function drawSprite(canvas, player){
+function drawSprite(canvas, player,isRepeat){
   //console.log("looking for canvas: " + canvas);
  // canvas = $("#"+canvasId)[0]; //don't want jquery object, want contents
   ctx = canvas.getContext('2d');
@@ -206,6 +208,12 @@ function drawSprite(canvas, player){
   }
 
   //ctx.drawImage(sprite, 100, 100);
+  if(!isRepeat){
+	 //alert("redrawing")
+	setTimeout(function(){
+			drawSprite(canvas,player,true)
+	}, 100);  //images aren't always loaded by the time i try to draw them the first time.
+  }
 }
 
 

@@ -11,7 +11,7 @@ function reroll(){
 	//describe();
  	drawSpriteAll();
 	setTimeout(function(){
-		drawSpriteAll();
+		//drawSpriteAll(); //drawing sprites the first time will handle this.
 		renderDownloadURLs();
 	}, 1000);  //images aren't always loaded by the time i try to draw them the first time.
 }

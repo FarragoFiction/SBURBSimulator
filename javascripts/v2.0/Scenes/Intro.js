@@ -14,10 +14,8 @@ function Intro(){
 		var canvasHTML = "<br><canvas id='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		var spriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		debug("BUG: Why does the OC Generator load images within a second, but This does not?");
 		drawSprite(spriteBuffer,this.player)
-		setTimeout(function(){
-			drawSprite(spriteBuffer,this.player)
-		}, 1000);  //images aren't always loaded by the time i try to draw them the first time.
 		copyTmpCanvasToRealCanvasAtPos(document.getElementById("canvas"+ (div.attr("id"))), spriteBuffer,-100,0)
 	}
 	
@@ -28,7 +26,7 @@ function Intro(){
 	
 	//i is so you know entry order
 	this.content = function(div,i){
-		var narration = "The " + this.player.htmlTitle() + " enters the game " + indexToWords(i) + ". ";
+		var narration = "<br>The " + this.player.htmlTitle() + " enters the game " + indexToWords(i) + ". ";
 		if(this.player.leader){
 			narration += "They are definitely the leader.";
 		}
