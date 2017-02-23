@@ -52,3 +52,12 @@ Should troll players have different base sprite? Black shirt with aspect symbol 
 
 
 A super ambitious possibility is to render Jack as well. Along with his prototypings. Would need to do artwork. Bluh.
+
+Multiple people have requested character names. Okay. Consider this.  Cons are that it would get rid of the genericness
+of the characters, which I kind of like. But adding dialog and quirks already does that.
+
+...
+...
+...
+Should I bite the bullet and add hair as well? Will have to add before horns for trolls.
+Hair can be black or white if human. black if troll.
