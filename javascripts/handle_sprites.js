@@ -206,6 +206,7 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
     wings(canvas,player);
   }
   playerToSprite(canvas,player);
+  hair();
   //then troll proccess???
   //this was for sprite sheet
   //ctx.drawImage(sprites,position[0],position[1],position[2],position[3],canvas.width/2,canvas.height/2,position[6],position[7]);
@@ -215,10 +216,11 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
   }
 
   //ctx.drawImage(sprite, 100, 100);
-  if(!isRepeat){
+  if(!isRepeat){ //first time i call it this will be null
 	 //alert("redrawing")
+	 debug("Redrawing");
 	setTimeout(function(){
-			drawSprite(canvas,player,true)
+			drawSprite(canvas,player,repeatTime,true)
 	}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
   }
 }
@@ -232,6 +234,15 @@ function playerToSprite(canvas, player){
 	}
 	//TODO have dream sprites, too.
 	//TODO check for murder mode or grim darkness.
+}
+
+function hair(canvas, player){
+	var imageString = "hair1.png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,width/6,height/4,width,height);
 }
 
 function regularSprite(canvas, player){

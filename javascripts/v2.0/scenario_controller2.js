@@ -30,6 +30,7 @@ window.onload = function() {
 		randomizeEntryOrder();
 	}
 	intro();
+	debug("Consider having ticks be a button press that clears the current story, rather than all at once. Only do this if too many canvases");
 }
 
 function newScene(){
@@ -55,7 +56,6 @@ function intro(){
 }
 
 function randomizeEntryOrder(){
-	debug("shuffling")
 	players = shuffle(players);
 }
 
