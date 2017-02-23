@@ -15,7 +15,7 @@ function Intro(){
 		var canvasHTML = "<br><canvas id='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		var spriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-		debug(" Need to render different non-godtier outfits. Use favorite number, just like wings. Will never see that wings and outfits pair, cause wings are only with godtier");
+		debug(" Need to render different non-godtier outfits. Use class, just like godtier.");
 		drawSprite(spriteBuffer,this.player,repeatTime)
 		//give sprite time to draw, don't try to grab it right away.
 		setTimeout(function(){

@@ -279,12 +279,11 @@ function makePlayers(){
 	}
 
 
-
-
 	var numPlayers = 4;
 
 	for(var i = 0; i<numPlayers; i++){
 		p = (randomPlayerWithoutRemoving());
+		p.godTier = true;
 		decideTroll(p);
 		players.push(p);
 	}

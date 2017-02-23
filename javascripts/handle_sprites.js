@@ -225,7 +225,54 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
 
 
 function playerToSprite(canvas, player){
-    //draw class, then color like aspect, then draw chest icon
+    if(player.godTier){
+		godTierSprite(canvas, player);
+	}
+
+}
+
+function regularSprite(canvas, player){
+	var imageString = "";
+  if(player.class_name == "Page"){
+    imageString = "reg001.png"
+  }else if(player.class_name == "Knight" ){
+    imageString = "reg002.png"
+  }else if(player.class_name == "Witch" ){
+    imageString = "reg003.png"
+  }else if(player.class_name == "Sylph" ){
+    imageString = "reg004.png"
+  }else if(player.class_name == "Thief" ){
+    imageString = "reg005.png"
+  }else if(player.class_name == "Rogue" ){
+    imageString = "reg006.png"
+  }else if(player.class_name == "Seer" ){
+    imageString = "reg007.png"
+  }else if(player.class_name == "Mage" ){
+    imageString = "reg008.png"
+  }else if(player.class_name == "Heir" ){
+    imageString = "reg009.png"
+  }else if(player.class_name == "Maid" ){
+    imageString = "reg010.png"
+  }else if(player.class_name == "Prince" ){
+    imageString = "reg011.png"
+  }else if(player.class_name == "Bard" ){
+    imageString = "reg012.png"
+  }
+  addImageTag(imageString)
+  var img=document.getElementById(imageString);
+  var width = img.width;
+  var height = img.height;
+  ctx.drawImage(img,width/6,height/4,width,height);
+  aspectPalletSwap(canvas, player);
+  aspectSymbol(canvas, player);
+}
+
+function dreamerSprite(canvas, player){
+	
+}
+
+function godTierSprite(canvas, player){
+	//draw class, then color like aspect, then draw chest icon
   //ctx.drawImage(img,canvas.width/2,canvas.height/2,width,height);
   var imageString = "";
   if(player.class_name == "Page"){
@@ -260,7 +307,6 @@ function playerToSprite(canvas, player){
   ctx.drawImage(img,width/6,height/4,width,height);
   aspectPalletSwap(canvas, player);
   aspectSymbol(canvas, player);
-
 }
 
 function aspectSymbol(canvas, player){
