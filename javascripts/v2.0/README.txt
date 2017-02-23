@@ -63,3 +63,5 @@ Shit. I'd have to pick genders. I don't want to care about things like "maids ar
 ...
 Should I bite the bullet and add hair as well? Will have to add before horns for trolls.
 Hair can be black or white if human. black if troll.
+
+And, as always, kill Hitler. Shit. I mean bugs.
