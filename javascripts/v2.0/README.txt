@@ -49,3 +49,6 @@ Make skin darker grey than even a troll in grimdark mode. How to show Murder Mod
 
 Add troll players. In addition to weirder quirks and godtier modes, they need to have 2d relationships. Implement this.
 Should troll players have different base sprite? Black shirt with aspect symbol in blood color maybe???
+
+
+A super ambitious possibility is to render Jack as well. Along with his prototypings. Would need to do artwork. Bluh.
