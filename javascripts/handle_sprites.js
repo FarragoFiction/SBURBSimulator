@@ -227,8 +227,11 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
 function playerToSprite(canvas, player){
     if(player.godTier){
 		godTierSprite(canvas, player);
+	}else{
+		regularSprite(canvas, player);
 	}
-
+	//TODO have dream sprites, too.
+	//TODO check for murder mode or grim darkness.
 }
 
 function regularSprite(canvas, player){
@@ -264,7 +267,7 @@ function regularSprite(canvas, player){
   var height = img.height;
   ctx.drawImage(img,width/6,height/4,width,height);
   aspectPalletSwap(canvas, player);
-  aspectSymbol(canvas, player);
+  //aspectSymbol(canvas, player);
 }
 
 function dreamerSprite(canvas, player){
