@@ -165,7 +165,7 @@ function addImageTag(url){
 
 function drawSprite(canvas, player){
   //console.log("looking for canvas: " + canvas);
-  canvas = $("#"+canvas)[0]; //don't want jquery object, want contents
+ // canvas = $("#"+canvasId)[0]; //don't want jquery object, want contents
   ctx = canvas.getContext('2d');
   //sprite = new Image();
   //sprite.src = 'test.png';
@@ -515,4 +515,17 @@ function playerToSpriteOld(player){
     //ctx.drawImage(sprites,srcX,srcY,srcW,srcH,destX,destY,destW,destH);
     //alert("x: "+x+", y"+y);
     return [x,y,160,200, 0,0,160,200];
+}
+
+function getBufferCanvas(canvas){
+	var tmp_canvas = document.createElement('canvas');
+	tmp_canvas.height = canvas.height;
+	tmp_canvas.width = canvas.width;
+	return tmp_canvas;
+}
+
+
+function copyTmpCanvasToRealCanvas(canvas, tmp_canvas){
+	ctx = canvas.getContext('2d');
+	ctx.drawImage(tmp_canvas, 0, 0);
 }

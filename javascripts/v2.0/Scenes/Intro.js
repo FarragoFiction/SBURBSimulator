@@ -8,6 +8,20 @@ function Intro(){
 		return true; //this should never be in the main array. call manually.
 	}
 	
+	//draw sprite in it's entirety to a virtual canvas first. 
+	//then make a real canvas and render it to it. 
+	this.draw  = function(div){
+		var canvasHTML = "<canvas id='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		var spriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawSprite(spriteBuffer,this.player)
+	}
+	
+	//make a pesterchum skin and stick text into it. How much can I fit?
+	this.chat = function(div){
+		
+	}
+	
 	//i is so you know entry order
 	this.content = function(div,i){
 		var narration = "The " + this.player.htmlTitle() + " enters the game " + indexToWords(i) + ". ";
@@ -26,5 +40,6 @@ function Intro(){
 			}
 		}
 		div.append(narration);
+		this.draw(div);
 	}
 }

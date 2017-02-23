@@ -25,14 +25,19 @@ function renderDownloadURLs(){
 
 function drawSpriteAll(){
   for(var i = 0; i<players.length; i++){
-	  makeBG("canvas"+(i+1))
-      drawSprite("canvas"+(i+1), players[i]);
-	  writeToCanvas('canvas'+(i+1), players[i]);
+	  makeBG(document.getElementById("canvas"+(i+1)));
+      drawSprite(document.getElementById("canvas"+(i+1)), players[i]);
+	  writeToCanvas(document.getElementById("canvas"+(i+1)), players[i]); 
+	  makeWriteDataURL("canvas"+(i+1) )//for writing data.
   }
 }
 
-function makeBG(canvasId){
-	var c = document.getElementById(canvasId);
+function makeWriteDataURL(canvasId){
+	canvas = document.getElementById(canvasId);
+	dataURLs[canvasId] = canvas.toDataURL();
+}
+function makeBG(c){
+	//var c = document.getElementById(canvasId);
 	var ctx = c.getContext("2d");
 
 	var grd = ctx.createLinearGradient(0, 0, 170, 0);
@@ -43,13 +48,12 @@ function makeBG(canvasId){
 	ctx.fillRect(0, 0, c.width, c.height);
 }
 
-function writeToCanvas(canvasId, player){
+function writeToCanvas(canvas, player,canvasId){
 	var space_between_lines = 25;
 	var left_margin = 10;
 	var line_height = 18;
 	var start = 350;
 	var current = 350;
-	var canvas = document.getElementById(canvasId);
 	var ctx = canvas.getContext("2d");
 	//title
     ctx.font = "40px Times New Roman"
@@ -79,7 +83,7 @@ function writeToCanvas(canvasId, player){
 			color2 = getColorFromAspect(player.aspect);
 	}
 	fillTextMultiLine(canvas, "Quirk: " + player.quirk.rawStringExplanation() + "\n \n Sample: \n", text2, color2, left_margin, current + space_between_lines*7);
-	dataURLs[canvasId] = canvas.toDataURL();
+	
 
       // set canvasImg image src to dataURL
       // so it can be saved as an image
