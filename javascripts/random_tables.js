@@ -439,7 +439,7 @@ var prince_quests = ["destroying enemies thoroughly"];
 prince_quests.push("riding in at the last minute to defeat the local consorts hated enemies");
 prince_quests.push("learning to grow as a person, despite the holes in their personality");
 var seer_quests = ["making the various bullshit rules of SBURB part of their personal mythos"];
-seer_quests.push("collaborating with the exiled future carpacians to manipulate Prospit and Derse according to how its supposed to go");
+seer_quests.push("collaborating with the exiled future carapacians to manipulate Prospit and Derse according to how its supposed to go");
 seer_quests.push("suddenly understanding everything, and casting sincere doubt at the laughable insinuation that they ever didn't");
 var witch_quests = ["performing elaborate punch card alchemy through the use of a novelty witch's cauldron"];
 witch_quests.push("deciding which way to go in a series of way-too-long mazes");
@@ -473,7 +473,7 @@ var bigMildDesc = ["kind of a jerk", "sort of an asshole", "only sort of irritat
 var bigBadDesc = ["just the smelliest bag of assholes", "the most infuriating asshole around", "most likely to fuck everyone over", "dangerous"];
 
 
-var democracyTasks = ["WV gives talks to a random Carpacian boy, demanding he support democracy."," WV gathers followers using techniques learned from reading a book on Carpacian etiquette. "];
+var democracyTasks = ["WV gives talks to a random carapacian boy, demanding he support democracy."," WV gathers followers using techniques learned from reading a book on carapacian etiquette. "];
 democracyTasks.push(" WV demonstrates tactical knowledge to Dersites, convincing them they can win against the King. ");
 democracyTasks.push(" WV gives rousing speeches to Prospitians, emphasizing that they share the same goal. ");
 democracyTasks.push(" WV gives rousing speeches to Dersites, listing every crime the King and Queen have commited against their own people. ");
@@ -488,7 +488,7 @@ democracySuperTasks.push("");
 var mayorDistractionTasks = [" WV is distracted eating green objects rather than recruiting for his army. "];
 mayorDistractionTasks.push( " WV is distracted planning the civil infrastructure of a city, rather than recruiting for his army.");
 mayorDistractionTasks.push(" WV is distracted fantasizing about how great of a mayor he will be. ");
-mayorDistractionTasks.push(" WV accidentally tried to recruit Carpacians already part of his army. Stupid stupid stupid! ");
+mayorDistractionTasks.push(" WV accidentally tried to recruit carapacians already part of his army. Stupid stupid stupid! ");
 
 
 var bloodColors = ["#A10000","#a25203","#a1a100","#658200","#416600","#078446","#008282","#004182","#0021cb","#631db4","#610061","#99004d"];
