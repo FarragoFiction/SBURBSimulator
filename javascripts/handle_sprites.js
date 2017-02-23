@@ -180,6 +180,12 @@ function start_loading_images(ctx, canvas, view)
     }
     img.src = url_for_image(view)+"&center"
 }
+//this one is slighlty more useful. instead of async, just asks if image is loaded or not. 
+for now i'm okay with just waiting a half second, though.
+function imgLoaded(imgElement) {
+  return imgElement.complete && imgElement.naturalHeight !== 0;
+}
+
 */
 
 function drawSprite(canvas, player, repeatTime, isRepeat){
@@ -216,7 +222,6 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
 	}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
   }
 }
-
 
 
 function playerToSprite(canvas, player){
