@@ -9,7 +9,8 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, inter
 	this.power = 1;
 	this.leveledTheHellUp = false; //triggers level up scene.
 	this.godTier = false;
-	this.hair = 4;
+	this.hair = getRandomInt(1,34);
+	//this.hair = 22;
 	this.hairColor = getRandomElementFromArray(human_hair_colors);
 	this.dreamSelf = true;
 	this.isTroll = false; //later

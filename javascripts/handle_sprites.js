@@ -238,7 +238,7 @@ function playerToSprite(canvas, player){
 }
 
 function hair(canvas, player){
-	var imageString = "hair1.png"
+	var imageString = "hair"+player.hair+".png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
 	var width = img.width;
