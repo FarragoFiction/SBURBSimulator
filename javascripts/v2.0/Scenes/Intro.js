@@ -11,11 +11,11 @@ function Intro(){
 	//draw sprite in it's entirety to a virtual canvas first. 
 	//then make a real canvas and render it to it. 
 	this.draw  = function(div){
-		var repeatTime = 500;
+		var repeatTime = 1000;
 		var canvasHTML = "<br><canvas id='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		var spriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-		debug("BUG: Why does the OC Generator load images within a second, but This does not? Oh because redrawing happens to sprite canvas.");
+		debug(" Need to render different non-godtier outfits. Use favorite number, just like wings. Will never see that wings and outfits pair, cause wings are only with godtier");
 		drawSprite(spriteBuffer,this.player,repeatTime)
 		//give sprite time to draw, don't try to grab it right away.
 		setTimeout(function(){

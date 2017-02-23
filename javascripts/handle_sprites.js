@@ -196,7 +196,6 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
   ctx = canvas.getContext('2d');
   //sprite = new Image();
   //sprite.src = 'test.png';
-  var sprites = document.getElementById("godtiers");
   //need to get sprite from sprite sheet
   //then if trolls, do post proccesing.
   //grey skin, horns, wings in blood color
