@@ -238,18 +238,18 @@ function playerToSprite(canvas, player){
 }
 
 function hair(canvas, player){
-	var imageString = "hair4.png"
+	var imageString = "hair2.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
 	var width = img.width;
 	var height = img.height;
 	ctx.drawImage(img,width/6,height/4,width,height);
 	if(player.isTroll){
-		swapColors(canvas, "#ff0000", "#000000");
-		swapColors50(canvas, "#00ff2a", player.bloodColor);
+		swapColors(canvas, "#313131", "#000000");
+		swapColors(canvas, "#202020", player.bloodColor);
 	}else{
-		swapColors(canvas, "#ff0000", getRandomElementFromArray(human_hair_colors));
-		swapColors50(canvas, "#00ff2a", getRandomElementFromArray(human_hair_colors));
+		swapColors(canvas, "#313131", getRandomElementFromArray(human_hair_colors));
+		swapColors(canvas, "#202020", getColorFromAspect(player.aspect));
 	}
 }
 
