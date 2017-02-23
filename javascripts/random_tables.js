@@ -271,6 +271,11 @@ function randomFromTwoArraysOrdered(arr1, arr2){
 	return [getRandomElementFromArray(arr1), getRandomElementFromArray(arr2)];
 }
 
+function indexToWords(i){
+	var words = ["first","second","third","fourth","fifth","sixth","seventh","eighth","ninth","tenth","eleventh","twelfth",];
+	return words[i];
+}
+
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 

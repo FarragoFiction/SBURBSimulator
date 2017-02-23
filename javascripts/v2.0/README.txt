@@ -44,8 +44,11 @@ based on aspect?
 
 Keep track of what leader knows.  Can't flip out about a player death they are unaware of, right?
 
+Oh man, if leader is one who started sidequest with jack (or at least matches his chump profile), he should try to argue with the 
+player who suggests exiling jack. YES. So tasty.
+
 For player graphics: need base sprite with shirt in aspect color. Need Prospit/Derse sprites.
-Make skin darker grey than even a troll in grimdark mode. How to show Murder Mode (gamzees eeyes were red, but i don't have eyes)
+Make skin darker grey than even a troll in grimdark mode. How to show Murder Mode (gamzees eyes were red, but i don't have eyes)
 
 Add troll players. In addition to weirder quirks and godtier modes, they need to have 2d relationships. Implement this.
 Should troll players have different base sprite? Black shirt with aspect symbol in blood color maybe???

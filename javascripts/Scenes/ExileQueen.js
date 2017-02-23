@@ -4,7 +4,8 @@ function ExileQueen(){
 	
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return (queenStrength < 10) && (jackStrength > 0) && (!queenUncrowned);
+		//trying to make queen's corpse stop being exiled.
+		return (queenStrength < 10) && (jackStrength > 0) && (!queenUncrowned) && (queenStrength >0);
 	}
 	
 	this.content = function(){
