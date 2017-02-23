@@ -1,5 +1,6 @@
-function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, interests){
+function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, interests, chat_handle){
 	this.class_name = class_name;
+	this.chatHandle = chat_handle;
 	this.aspect = aspect;
 	this.land = land; //TODO maybe separate this out. lands can be in charge of quests?
 	this.kernel_sprite = kernel_sprite;
@@ -387,7 +388,8 @@ function randomPlayerWithClaspect(c,a){
 	var i1 = getRandomElementFromArray(interests);
 	var i2 = getRandomElementFromArray(interests);
 	var i = i1 + " and " + i2; 
-	return new Player(c,a,l,k,m,gd, i);
+	var ch = getRandomChatHandle(c,a);;
+	return new Player(c,a,l,k,m,gd, i,ch);
 }
 function randomPlayer(){
 	//remove class AND aspect from available

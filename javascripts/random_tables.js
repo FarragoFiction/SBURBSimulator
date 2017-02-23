@@ -67,6 +67,64 @@ function getRandomLandFromAspect(aspect){
 	return "Land of " + tmp[0] + " and " + tmp[1];
 }
 
+function getRandomChatHandle(class_name, aspect){
+	var first_arr = [];
+	if(aspect == "Space"){
+		first_arr = space_handles;
+	}else if(aspect == "Time"){
+		first_arr = time_handles;
+	}else if(aspect == "Breath"){
+		first_arr = breath_handles;
+	}else if(aspect == "Doom"){
+		first_arr = doom_handles;
+	}else if(aspect == "Blood"){
+		first_arr = blood_handles;
+	}else if(aspect == "Heart"){
+		first_arr = heart_handles;
+	}else if(aspect == "Mind"){
+		first_arr = mind_handles;
+	}else if(aspect == "Light"){
+		first_arr = light_handles;
+	}else if(aspect == "Void"){
+		first_arr = void_handles;
+	}else if(aspect == "Rage"){
+		first_arr = rage_handles;
+	}else if(aspect == "Hope"){
+		first_arr = hope_handles;
+	}else if(aspect == "Life"){
+		first_arr = life_handles;
+	}
+	
+	var second_arr = [];
+	if(class_name == "Maid"){
+		second_arr = maid_handles;
+	}else if(class_name == "Page"){
+		second_arr = page_handles;
+	}else if(class_name == "Mage"){
+		second_arr = mage_handles;
+	}else if(class_name == "Knight"){
+		second_arr = knight_handles;
+	}else if(class_name == "Rogue"){
+		second_arr = rogue_handles;
+	}else if(class_name == "Sylph"){
+		second_arr = sylph_handles;
+	}else if(class_name == "Seer"){
+		second_arr = seer_handles;
+	}else if(class_name == "Thief"){
+		second_arr = thief_handles;
+	}else if(class_name == "Heir"){
+		second_arr = heir_handles;
+	}else if(class_name == "Bard"){
+		second_arr = bard_handles;
+	}else if(class_name == "Prince"){
+		second_arr = prince_handles;
+	}else if(class_name == "Witch"){
+		second_arr = witch_handles;
+	}
+	var tmp =  randomFromTwoArraysOrdered(second_arr, first_arr);
+	return tmp[0]  + tmp[1];
+}
+
 function getRandomLevelFromAspect(aspect){
 	//console.log("looking for level from aspect");
 	var first_arr = [];
@@ -207,6 +265,10 @@ function randomFromTwoArrays(arr1, arr2){
 	}else{
 		return [getRandomElementFromArray(arr1), getRandomElementFromArray(arr2)];
 	}
+}
+
+function randomFromTwoArraysOrdered(arr1, arr2){
+	return [getRandomElementFromArray(arr1), getRandomElementFromArray(arr2)];
 }
 
 function shuffle(array) {
@@ -464,3 +526,37 @@ var greeting_quirks = [["hey", "hi"],["hey", "hello"],["hey", "greetings"],["hey
 var dude_quirks = [["dude","guy"],["dude","man"],["dude","you"],["dude","friend"],["dude","asshole"],["dude","fella"],["dude","bro"]];
 var curse_quirks = [["fuck", "shit"],["fuck", "cocks"],["fuck", "nope"],["fuck", "goddammit"],["fuck", "damn it"],["fuck", "..."],["fuck", "...great."]];
 console.log("TODO figure out how to make conversational quirks ignore case");
+
+
+
+
+var maid_handles = ["meandering","motley","musing","mischievous","macabre", "maiden"];
+var page_handles = ["passionate","patient","peaceful","perfect","perceptive"];
+var mage_handles = ["magnificent","managerial","major","majestic","mannerly"];
+var knight_handles = ["keen","knightly","kooky","kindred","kinetic"];
+var rogue_handles = ["rouge","radical","retrobate","roguish","retroactive"];
+var sylph_handles = ["surly","sour","sweet","stylish","soaring", "serene"];
+var thief_handles = ["talented","terrible","talkative","tenacious","tried"];
+var heir_handles = ["honorable","humble","hot","horrific","hardened"];
+var bard_handles = ["benign","blissful","boisterous","bonkers","broken"];
+var prince_handles = ["precocious","priceless","proficient","prominent","proper"];
+var witch_handles = ["wondering","wonderful","wacky","withering","worldly"];
+var seer_handles = ["sightly","sanctimonious","sarcastic","sassy","scintillating","synergistic"];
+
+var space_handles = ["Salamander","Salientia","Spacer","Scientist","Synergy"];
+var time_handles = ["Teetotaler","Traveler","Tailor","Taster","Target", "Teacher", "Therapist"];
+var breath_handles = ["Biologist","Backpacker","Babysitter","Baker","Balooner"];
+var doom_handles = ["Dancer","Dean","Decorator","Deliverer","Director"];
+var blood_handles = ["Buyer","Butler","Butcher","Barber","Bowler"];
+var heart_handles = ["Heart","Hacker","Harbinger","Handler","Helper", "Historian", "Hobbyist"];
+var mind_handles = ["Machine","Magician","Magistrate","Mechanic","Mediator", "Messenger"];
+var light_handles = ["Laborer","Launderer","Layabout","Legend","Lawyer", "Lifeguard"];
+var void_handles = ["Vagrant","Vegetarian","Veterinarian","Vigilante","Virtuoso"];
+var rage_handles = ["Raconteur","Reveler","Reader","Reporter","Racketeer"];
+var hope_handles = ["Honcho","Humorist","Horse","Haberdasher","Hooligan"];
+var life_handles = ["Leader","Lecturer","Liason","Loyalist","Lyricist"];
+
+
+
+
+

@@ -61,11 +61,13 @@ function writeToCanvas(canvasId, player){
 	ctx.fillStyle = "#000000"
 	ctx.fillText("Interests: " + player.interests,left_margin,current + space_between_lines*2);
 
-	ctx.fillText("Guardian: " + player.lusus,left_margin,current + space_between_lines*3);
+	ctx.fillText("Chat Handle: " + player.chatHandle,left_margin,current + space_between_lines*3);
+	
+	ctx.fillText("Guardian: " + player.lusus,left_margin,current + space_between_lines*4);
 
-	ctx.fillText("Land: " + player.land,left_margin,current + space_between_lines*4);
+	ctx.fillText("Land: " + player.land,left_margin,current + space_between_lines*5);
 
-	ctx.fillText("Moon: " + player.moon,left_margin,current + space_between_lines*5);
+	ctx.fillText("Moon: " + player.moon,left_margin,current + space_between_lines*6);
 
 	//TODO need to handle new line myself.  font is 18 px tall. work with that. each new line adds to the count (which is now 6)
 	//ctx.fillText("Quirk: " + player.quirk.rawStringExplanation(),left_margin,current + space_between_lines*6);
@@ -76,7 +78,7 @@ function writeToCanvas(canvasId, player){
 	}else{
 			color2 = getColorFromAspect(player.aspect);
 	}
-	fillTextMultiLine(canvas, "Quirk: " + player.quirk.rawStringExplanation() + "\n \n Sample: \n", text2, color2, left_margin, current + space_between_lines*6);
+	fillTextMultiLine(canvas, "Quirk: " + player.quirk.rawStringExplanation() + "\n \n Sample: \n", text2, color2, left_margin, current + space_between_lines*7);
 	dataURLs[canvasId] = canvas.toDataURL();
 
       // set canvasImg image src to dataURL
