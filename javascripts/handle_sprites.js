@@ -212,7 +212,7 @@ function drawSprite(canvas, player,isRepeat){
 	 //alert("redrawing")
 	setTimeout(function(){
 			drawSprite(canvas,player,true)
-	}, 100);  //images aren't always loaded by the time i try to draw them the first time.
+	}, 1000);  //images aren't always loaded by the time i try to draw them the first time.
   }
 }
 
