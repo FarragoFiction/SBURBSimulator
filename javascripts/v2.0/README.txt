@@ -56,7 +56,10 @@ A super ambitious possibility is to render Jack as well. Along with his prototyp
 Multiple people have requested character names. Okay. Consider this.  Cons are that it would get rid of the genericness
 of the characters, which I kind of like. But adding dialog and quirks already does that.
 
-Shit. I'd have to pick genders. I don't want to care about things like "maids are always girls".
+Shit. I'd have to pick genders. I don't want to care about things like "maids are always girls".  And holy heck: PRONOUNS. 
+I HATE THOSE THINGS. Why does english have so many different pronouns?  Bluh. "They" is so much easier for a sim like this.
+Maybe I'll just call people by their chat handle initials
+and ignore picking real names. Even if I add hair to sprites, it'll be genderless. 
 
 ...
 ...
