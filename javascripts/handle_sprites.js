@@ -206,7 +206,7 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
     wings(canvas,player);
   }
   playerToSprite(canvas,player);
-  hair();
+  hair(canvas, player);
   //then troll proccess???
   //this was for sprite sheet
   //ctx.drawImage(sprites,position[0],position[1],position[2],position[3],canvas.width/2,canvas.height/2,position[6],position[7]);
@@ -227,6 +227,7 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
 
 
 function playerToSprite(canvas, player){
+	ctx = canvas.getContext('2d');
     if(player.godTier){
 		godTierSprite(canvas, player);
 	}else{
@@ -237,12 +238,19 @@ function playerToSprite(canvas, player){
 }
 
 function hair(canvas, player){
-	var imageString = "hair1.png"
+	var imageString = "hair4.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
 	var width = img.width;
 	var height = img.height;
 	ctx.drawImage(img,width/6,height/4,width,height);
+	if(player.isTroll){
+		swapColors(canvas, "#ff0000", "#000000");
+		swapColors50(canvas, "#00ff2a", player.bloodColor);
+	}else{
+		swapColors(canvas, "#ff0000", getRandomElementFromArray(human_hair_colors));
+		swapColors50(canvas, "#00ff2a", getRandomElementFromArray(human_hair_colors));
+	}
 }
 
 function regularSprite(canvas, player){

@@ -565,7 +565,7 @@ var rage_handles = ["Raconteur","Reveler","Reader","Reporter","Racketeer"];
 var hope_handles = ["Honcho","Humorist","Horse","Haberdasher","Hooligan"];
 var life_handles = ["Leader","Lecturer","Liason","Loyalist","Lyricist"];
 
-
+var human_hair_colors = ["#68410a","#000000","#f3f28d","#cf6338","#f6ff00","#fff3bd","#724107","#382207","#ff5a00","#3f1904","#ffd46d","#473200","#91683c"];
 
 
 
