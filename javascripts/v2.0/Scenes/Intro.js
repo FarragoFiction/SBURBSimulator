@@ -11,10 +11,14 @@ function Intro(){
 	//draw sprite in it's entirety to a virtual canvas first. 
 	//then make a real canvas and render it to it. 
 	this.draw  = function(div){
-		var canvasHTML = "<canvas id='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		var canvasHTML = "<br><canvas id='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		var spriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawSprite(spriteBuffer,this.player)
+		setTimeout(function(){
+			drawSprite(spriteBuffer,this.player)
+		}, 1000);  //images aren't always loaded by the time i try to draw them the first time.
+		copyTmpCanvasToRealCanvasAtPos(document.getElementById("canvas"+ (div.attr("id"))), spriteBuffer,-100,0)
 	}
 	
 	//make a pesterchum skin and stick text into it. How much can I fit?

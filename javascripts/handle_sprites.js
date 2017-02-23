@@ -160,8 +160,25 @@ function addImageTag(url){
 		var tag = '<img id ="' + url + '" src = "images/' + url + '" style="display:none">';
 		$("#image_staging").append(tag);
 	}
-}
 
+}
+/* code that implies a different way i could load images. with an async callback to img.onload
+function start_loading_images(ctx, canvas, view)
+{
+    var img = new Image()
+    img.onload = function() {
+        //console.log(this)
+
+        x = canvas.width/2 - this.width/2
+        y = canvas.height/2 - this.height/2
+        ctx.drawImage(this, x,y)
+        debug_image = this
+
+        load_more_images(ctx, canvas, view, img.width, img.height)
+    }
+    img.src = url_for_image(view)+"&center"
+}
+*/
 
 function drawSprite(canvas, player){
   //console.log("looking for canvas: " + canvas);
@@ -191,8 +208,10 @@ function drawSprite(canvas, player){
   //ctx.drawImage(sprite, 100, 100);
 }
 
+
+
 function playerToSprite(canvas, player){
-  //draw class, then color like aspect, then draw chest icon
+    //draw class, then color like aspect, then draw chest icon
   //ctx.drawImage(img,canvas.width/2,canvas.height/2,width,height);
   var imageString = "";
   if(player.class_name == "Page"){
@@ -220,7 +239,6 @@ function playerToSprite(canvas, player){
   }else if(player.class_name == "Bard" ){
     imageString = "012.png"
   }
-
   addImageTag(imageString)
   var img=document.getElementById(imageString);
   var width = img.width;
@@ -522,6 +540,11 @@ function getBufferCanvas(canvas){
 	tmp_canvas.height = canvas.height;
 	tmp_canvas.width = canvas.width;
 	return tmp_canvas;
+}
+
+function copyTmpCanvasToRealCanvasAtPos(canvas, tmp_canvas, x, y){
+	ctx = canvas.getContext('2d');
+	ctx.drawImage(tmp_canvas, x, y);
 }
 
 
