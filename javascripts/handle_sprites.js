@@ -238,7 +238,7 @@ function playerToSprite(canvas, player){
 }
 
 function hair(canvas, player){
-	var imageString = "hair2.png"
+	var imageString = "hair1.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
 	var width = img.width;
@@ -248,7 +248,7 @@ function hair(canvas, player){
 		swapColors(canvas, "#313131", "#000000");
 		swapColors(canvas, "#202020", player.bloodColor);
 	}else{
-		swapColors(canvas, "#313131", getRandomElementFromArray(human_hair_colors));
+		swapColors(canvas, "#313131", player.hairColor);
 		swapColors(canvas, "#202020", getColorFromAspect(player.aspect));
 	}
 }
