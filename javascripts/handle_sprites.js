@@ -190,7 +190,7 @@ function imgLoaded(imgElement) {
 */
 
 function drawSprite(canvas, player, repeatTime, isRepeat){
-	//debug("Drawing sprite for: " + player.title());
+  debug("Drawing sprite for: " + player.title());
   //console.log("looking for canvas: " + canvas);
  // canvas = $("#"+canvasId)[0]; //don't want jquery object, want contents
   ctx = canvas.getContext('2d');
@@ -202,12 +202,12 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
 	//var width = img.width;
 	//var height = img.height;
 	//ctx.drawImage(sprites,0,0,width,height);
-  if(player.isTroll){//wings before sprite
+  if(player.isTroll&& player.godTier){//wings before sprite
     wings(canvas,player);
   }
   playerToSprite(canvas,player);
   hair(canvas, player);
-  if(player.class_name == "Prince"){
+  if(player.class_name == "Prince" && player.godTier){
 	  princeTiara(canvas, player);
   }
   //then troll proccess???

@@ -4,16 +4,20 @@ window.onload = function() {
 	makeAspectDropDown();
 	makeClassDropDown();
 	makeSpeciesDropDown();
+	 $('#godTier').attr('checked','checked');
   reroll();
 }
 function reroll(){
 	makePlayers();
 	//describe();
  	drawSpriteAll();
-	setTimeout(function(){
-		//drawSpriteAll(); //drawing sprites the first time will handle this.
-		renderDownloadURLs();
-	}, 1000);  //images aren't always loaded by the time i try to draw them the first time.
+	
+	 $('#godTier').change(function() {
+		 for(var i = 0; i<players.length; i++){
+			 players[i].godTier = !players[i].godTier;
+		 }
+		 drawSpriteAll();
+	 });
 }
 
 function renderDownloadURLs(){
@@ -21,15 +25,23 @@ function renderDownloadURLs(){
 	for(var i = 0; i<keys.length; i++){
 		$("#"+keys[i]+"url").html("<a href = '" +dataURLs[keys[i]] + "'  target='_blank'> Download Character</a><br>" );
 	}
+	//drawSpriteAll();
 }
 
 function drawSpriteAll(){
-  for(var i = 0; i<players.length; i++){
+	for(var i = 0; i<players.length; i++){
 	  makeBG(document.getElementById("canvas"+(i+1)));
       drawSprite(document.getElementById("canvas"+(i+1)), players[i],1000);
 	  writeToCanvas(document.getElementById("canvas"+(i+1)), players[i]); 
 	  makeWriteDataURL("canvas"+(i+1) )//for writing data.
-  }
+	  
+	}
+	
+	setTimeout(function(){
+		//drawSpriteAll(); //drawing sprites the first time will handle this.
+		renderDownloadURLs();
+	}, 1000);  //images aren't always loaded by the time i try to draw them the first time.
+	
 }
 
 function makeWriteDataURL(canvasId){
@@ -283,7 +295,12 @@ function makePlayers(){
 
 	for(var i = 0; i<numPlayers; i++){
 		p = (randomPlayerWithoutRemoving());
-		p.godTier = true;
+		if( $('#godTier').attr('checked')=='checked'){
+			p.godTier = true;
+		}else{
+			p.godTier = false;
+		}
+		
 		decideTroll(p);
 		players.push(p);
 	}
