@@ -710,7 +710,7 @@ function fillChatTextMultiLine(canvas, chat, player1, player2, x, y) {
 		}
 		
    		//ctx.fillText(ct, x, y);  //TODO wrap this text.
-		var lines_wrapped = wrap_text(ctx, ct, x, y, lineHeight, canvas.width-5, "left")
+		var lines_wrapped = wrap_text(ctx, ct, x, y, lineHeight, canvas.width, "left")
   		y += lineHeight * lines_wrapped;
   	}
 	//word wrap these
