@@ -267,7 +267,14 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, inter
 		}
 		return ret;
 	}
-
+	
+	this.getChatFontColor = function(){
+		if(this.isTroll){
+			return this.bloodColor;
+		}else{
+			return getColorFromAspect(this.aspect);
+		}
+	}
 
 	this.getFriendsFromList = function(potentialFriends){
 		var ret = [];

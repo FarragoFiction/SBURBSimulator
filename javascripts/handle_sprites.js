@@ -226,7 +226,7 @@ function drawChat(canvas, player1, player2, chat, repeatTime){
 
 function drawChatText(canvas, player1, player2, introText, chat){
 	var space_between_lines = 25;
-	var left_margin = 10;
+	var left_margin = 3;
 	var line_height = 18;
 	var start = 18;
 	var current = 18;
@@ -235,6 +235,7 @@ function drawChatText(canvas, player1, player2, introText, chat){
 	ctx.fillStyle = "#000000";
 	ctx.fillText(introText,left_margin*2,current);
 	//need custom multi line method that allows for differnet color lines
+	fillChatTextMultiLine(canvas, chat, player1, player2, left_margin, current+line_height*2); 
 	
 }
 
@@ -685,6 +686,20 @@ function fillTextMultiLine(canvas, text1, text2, color2, x, y) {
 	//word wrap these
 	ctx.fillStyle = color2
  	wrap_text(ctx, text2, x, y, lineHeight, 3*canvas.width/4, "left");
+	ctx.fillStyle = "#000000"
+}
+
+//matches line color to player font color
+function fillChatTextMultiLine(canvas, chat, player1, player2, x, y) {
+	var ctx = canvas.getContext("2d");
+	var lineHeight = ctx.measureText("M").width * 1.2;
+    var lines = chat.split("\n");
+ 	for (var i = 0; i < lines.length; ++i) {
+		//does the text begin with player 1's chat handle short? if so: getChatFontColor
+   		ctx.fillText(lines[i], x, y);  //TODO wrap this text.
+  		y += lineHeight;
+  	}
+	//word wrap these
 	ctx.fillStyle = "#000000"
 }
 
