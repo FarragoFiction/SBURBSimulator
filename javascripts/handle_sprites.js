@@ -190,8 +190,8 @@ function imgLoaded(imgElement) {
 */
 
 //need to parse the text to figure out who is talking to determine color for chat.
-function drawChat(canvas, player1, player2, intro, chat, repeatTime){
-	debug("drawing chat")
+function drawChat(canvas, player1, player2, chat, repeatTime){
+	//debug("drawing chat")
 	//draw sprites to buffer (don't want them pallete swapping each other)
 	//then to main canvas
 	var canvasSpriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
@@ -209,12 +209,33 @@ function drawChat(canvas, player1, player2, intro, chat, repeatTime){
 	var p2SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 	drawSpriteTurnways(p2SpriteBuffer,player2,repeatTime)
 	
+	//don't need buffer for text?
+	var textSpriteBuffer = getBufferCanvas(document.getElementById("chat_text_template"));
+	var introText = "-- " +player1.chatHandle + " [" + player1.chatHandleShort()+ "] began pestering ";
+	introText += player2.chatHandle + " [" + player2.chatHandleShort()+ "] --";
+	drawChatText(textSpriteBuffer,player1, player2, introText, chat)
+	//drawBG(textSpriteBuffer, "#ff9999", "#ff00ff") //test that it's actually being rendered.
 	//p1 on left, chat in middle, p2 on right and flipped turnways.
 	setTimeout(function(){
 			copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,-100,0)
 			copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,230,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, textSpriteBuffer,244,51)
 			copyTmpCanvasToRealCanvasAtPos(canvas, p2SpriteBuffer,650,0)//where should i put this?
 		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
+}
+
+function drawChatText(canvas, player1, player2, introText, chat){
+	var space_between_lines = 25;
+	var left_margin = 10;
+	var line_height = 18;
+	var start = 18;
+	var current = 18;
+	var ctx = canvas.getContext("2d");
+	ctx.font = "12px Times New Roman"
+	ctx.fillStyle = "#000000";
+	ctx.fillText(introText,left_margin*2,current);
+	//need custom multi line method that allows for differnet color lines
+	
 }
 
 function drawBG(canvas, color1, color2){
@@ -534,70 +555,7 @@ function aspectPalletSwap(canvas, player){
   swapColors(canvas, oldcolor4, newcolor4)
   swapColors(canvas, oldcolor5, newcolor5)
   swapColors(canvas, oldcolor6, newcolor6)
-  /*
-  if(player.aspect =="Light"){
-    newshirt = "#ff7f00"
-    newpants = "#f95900"
-    newhat = "#fd1000"
-    newdarkhat = "#d41000"; //darker hat
-    newdarkcape = "#ff1800";
-    newsymbol="#fbff00"
-    newshoes ="#00e4ff"
-  }else if(player.aspect =="Breath"){
-    newshirt = "#0087eb"
-    newpants = "#006be1"
-    newhat = "#0046d1"
-    newdarkhat ="#003396"
-    newdarkcape ="#0052f3"
-    newsymbol="#10e0ff"
-    newshoes ="#fefd49"
-  }else if(player.aspect =="Time"){
-    newshirt = "#b70d0e"
-    newpants = "#8e1516"
-    newhat = "#3c0404"
-    newdarkhat ="#1f0000"
-    newdarkcape ="#510606"
-    newsymbol="#ff2106"
-    newshoes ="#000000"
-  }else if(player.aspect =="Space"){
-    newshirt = "#030303"
-    newpants = "#2f2f30"
-    newhat = "#1d1d1d"
-    newdarkhat ="#141414"
-    newdarkcape ="#2f2f30"
-    newsymbol="#efefef"
-    newshoes ="#ff2106"
-  }
-
-  swapColors(canvas, oldshirt, newshirt);
-  swapColors(canvas, oldpants, newpants)
-  swapColors(canvas, oldhat, newhat)
-  swapColors(canvas, oldsymbol, newsymbol)
-  swapColors(canvas, oldcolor5, "#000000")
-  swapColors(canvas, olddarkhat, newdarkhat)
-  swapColors(canvas, oldshoes, newshoes)
-  swapColors(canvas, oldcolor8, "#000000")
-  swapColors(canvas, olddarkcape, newdarkcape)
-  swapColors(canvas, oldcolor10, "#000000")
-  swapColors(canvas, oldcolor11, "#000000")
-  swapColors(canvas, oldcolor12, "#000000")
-  swapColors(canvas, oldcolor13, "#000000")
-  swapColors(canvas, oldcolor14, "#000000")
-  swapColors(canvas, oldcolor15, "#000000")
-  swapColors(canvas, oldcolor16, "#000000")
-  swapColors(canvas, oldcolor17, "#000000")
-  swapColors(canvas, oldcolor18, "#000000")
-  swapColors(canvas, oldcolor19, "#000000")
-  swapColors(canvas, oldcolor20, "#000000")
-  swapColors(canvas, oldcolor21, "#000000")
-  swapColors(canvas, oldcolor22, "#000000")
-  swapColors(canvas, oldcolor23, "#000000")
-  swapColors(canvas, oldcolor24, "#000000")
-  swapColors(canvas, oldcolor25, "#000000")
-  swapColors(canvas, oldcolor26, "#000000")
-  swapColors(canvas, oldcolor27, "#000000")
-  swapColors(canvas, oldcolor28, "#000000")
-  */
+ 
 }
 
 
@@ -713,4 +671,48 @@ function copyTmpCanvasToRealCanvasAtPos(canvas, tmp_canvas, x, y){
 function copyTmpCanvasToRealCanvas(canvas, tmp_canvas){
 	ctx = canvas.getContext('2d');
 	ctx.drawImage(tmp_canvas, 0, 0);
+}
+
+//http://stackoverflow.com/questions/5026961/html5-canvas-ctx-filltext-wont-do-line-breaks/21574562#21574562
+function fillTextMultiLine(canvas, text1, text2, color2, x, y) {
+	var ctx = canvas.getContext("2d");
+	var lineHeight = ctx.measureText("M").width * 1.2;
+    var lines = text1.split("\n");
+ 	for (var i = 0; i < lines.length; ++i) {
+   		ctx.fillText(lines[i], x, y);
+  		y += lineHeight;
+  	}
+	//word wrap these
+	ctx.fillStyle = color2
+ 	wrap_text(ctx, text2, x, y, lineHeight, 3*canvas.width/4, "left");
+	ctx.fillStyle = "#000000"
+}
+
+//http://stackoverflow.com/questions/5026961/html5-canvas-ctx-filltext-wont-do-line-breaks
+function wrap_text(ctx, text, x, y, lineHeight, maxWidth, textAlign) {
+  if(!textAlign) textAlign = 'center'
+  ctx.textAlign = textAlign
+  var words = text.split(' ')
+  var lines = []
+  var sliceFrom = 0
+  for(var i = 0; i < words.length; i++) {
+    var chunk = words.slice(sliceFrom, i).join(' ')
+    var last = i === words.length - 1
+    var bigger = ctx.measureText(chunk).width > maxWidth
+    if(bigger) {
+      lines.push(words.slice(sliceFrom, i).join(' '))
+      sliceFrom = i
+    }
+    if(last) {
+      lines.push(words.slice(sliceFrom, words.length).join(' '))
+      sliceFrom = i
+    }
+  }
+  var offsetY = 0
+  var offsetX = 0
+  if(textAlign === 'center') offsetX = maxWidth / 2
+  for(var i = 0; i < lines.length; i++) {
+    ctx.fillText(lines[i], x + offsetX, y + offsetY)
+    offsetY = offsetY + lineHeight
+  }
 }

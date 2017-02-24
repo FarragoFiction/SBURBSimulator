@@ -106,49 +106,7 @@ function writeToCanvas(canvas, player,canvasId){
       // so it can be saved as an image
 }
 
-//http://stackoverflow.com/questions/5026961/html5-canvas-ctx-filltext-wont-do-line-breaks/21574562#21574562
-function fillTextMultiLine(canvas, text1, text2, color2, x, y) {
-	var ctx = canvas.getContext("2d");
-	var lineHeight = ctx.measureText("M").width * 1.2;
-    var lines = text1.split("\n");
- 	for (var i = 0; i < lines.length; ++i) {
-   		ctx.fillText(lines[i], x, y);
-  		y += lineHeight;
-  	}
-	//word wrap these
-	ctx.fillStyle = color2
- 	wrap_text(ctx, text2, x, y, lineHeight, 3*canvas.width/4, "left");
-	ctx.fillStyle = "#000000"
-}
 
-//http://stackoverflow.com/questions/5026961/html5-canvas-ctx-filltext-wont-do-line-breaks
-function wrap_text(ctx, text, x, y, lineHeight, maxWidth, textAlign) {
-  if(!textAlign) textAlign = 'center'
-  ctx.textAlign = textAlign
-  var words = text.split(' ')
-  var lines = []
-  var sliceFrom = 0
-  for(var i = 0; i < words.length; i++) {
-    var chunk = words.slice(sliceFrom, i).join(' ')
-    var last = i === words.length - 1
-    var bigger = ctx.measureText(chunk).width > maxWidth
-    if(bigger) {
-      lines.push(words.slice(sliceFrom, i).join(' '))
-      sliceFrom = i
-    }
-    if(last) {
-      lines.push(words.slice(sliceFrom, words.length).join(' '))
-      sliceFrom = i
-    }
-  }
-  var offsetY = 0
-  var offsetX = 0
-  if(textAlign === 'center') offsetX = maxWidth / 2
-  for(var i = 0; i < lines.length; i++) {
-    ctx.fillText(lines[i], x + offsetX, y + offsetY)
-    offsetY = offsetY + lineHeight
-  }
-}
 
 //deprecated in favor of pure canvas
 function describe(){
