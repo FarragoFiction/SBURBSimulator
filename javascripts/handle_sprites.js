@@ -33,7 +33,7 @@ function swapColors(canvas, color1, color2){
   var img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
   //4 byte color array
   for(var i = 0; i<img_data.data.length; i += 4){
-    if(img_data.data[i] == oldc[0] && img_data.data[i+1] == oldc[1] &&img_data.data[i+2] == oldc[2]){
+    if(img_data.data[i] == oldc[0] && img_data.data[i+1] == oldc[1] &&img_data.data[i+2] == oldc[2]&&img_data.data[i+3] == 255){
       img_data.data[i] = newc[0];
       img_data.data[i+1] = newc[1];
       img_data.data[i+2] = newc[2];
