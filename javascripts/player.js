@@ -384,7 +384,7 @@ function getColorFromAspect(aspect){
 	}else if(aspect == "Heart"){
 		color = "#ff3399";
 	}else if(aspect == "Mind"){
-		color = "#00ffcc";
+		color = "#3da35a";
 	}else if(aspect == "Light"){
 		color = "#ff9933";
 	}else if(aspect == "Void"){

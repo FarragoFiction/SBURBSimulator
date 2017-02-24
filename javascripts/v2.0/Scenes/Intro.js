@@ -33,7 +33,7 @@ function Intro(){
 		var chatText = player1Start+ player1.quirk.translate("This is just a test.\n");
 		chatText += player2Start + player2.quirk.translate("I can believe it. It's very shitty.\n");
 		chatText += player1Start + player1.quirk.translate("Hey! Not everybody can have perfectly polished tests!\n");
-		chatText += player2Start + player2.quirk.translate("Maybe. But EVERYBODY should be able to handle word wrap.  It's like, a standard fucking thing, right? Unless this is the test where you finally do, and then don't I look like an asshole?\n");
+		chatText += player2Start + player2.quirk.translate("Maybe. But EVERYBODY should be able to handle word wrap.  It's like, a standard freaking thing, right? Unless this is the test where you finally do, and then don't I look like an asshole? But I bet you didn't actually get word wrap right, yet.\n");
 		chatText += player2Start + player2.quirk.translate("So. The question is: Did you?\n");
 		chatText += player1Start + player1.quirk.translate("Hopy Shit, it looks like I did!\n");
 		//TODO change text based on p1 and p2 relationships.  and vice versa. p1 is all flirty, p2 is a dick. yeeeessss.....

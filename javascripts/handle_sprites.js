@@ -226,7 +226,7 @@ function drawChat(canvas, player1, player2, chat, repeatTime){
 
 function drawChatText(canvas, player1, player2, introText, chat){
 	var space_between_lines = 25;
-	var left_margin = 3;
+	var left_margin = 8;
 	var line_height = 18;
 	var start = 18;
 	var current = 18;
@@ -708,9 +708,7 @@ function fillChatTextMultiLine(canvas, chat, player1, player2, x, y) {
 		}else{
 			ctx.fillStyle = "#000000"
 		}
-		
-   		//ctx.fillText(ct, x, y);  //TODO wrap this text.
-		var lines_wrapped = wrap_text(ctx, ct, x, y, lineHeight, canvas.width, "left")
+		var lines_wrapped = wrap_text(ctx, ct, x, y, lineHeight, canvas.width-50, "left")
   		y += lineHeight * lines_wrapped;
   	}
 	//word wrap these

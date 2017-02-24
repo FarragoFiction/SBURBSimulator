@@ -2,7 +2,7 @@
 function Quirk(){
 	this.lettersToReplace = [] //array of two element arrays. ["e", "3"], ["two",2] would be two examples. e replaced by 3 and two replaced by 2
 	this.punctuation = 0; //0 = none, 1 = ends of sentences, 2 = perfect punctuation 3= excessive punctuation
-	this.spelling = 0;  //0 = bad typos (think roxy), 1 = some typos, 2 = perfect spelling
+	this.spelling = 0;  //0 = bad typos (think roxy), 1 = some typos, 2 = perfect spelling //not used, replaced with letterstoreplace
 	this.prefix = ""; //what do you put at the start of a line?
 	this.suffix = ""; //what do you put at the end of a line?
 	this.capitalization = 0;  //0 == none, 4 = alternating, 5= inverted, 3 = begining of every word, 1 = normal, 2 = ALL

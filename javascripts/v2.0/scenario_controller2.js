@@ -59,6 +59,15 @@ function randomizeEntryOrder(){
 	players = shuffle(players);
 }
 
+function makeAuthorAvatar(){
+	players[0].aspect = "Mind"
+	players[0].class_name = "Maid"
+	players[0].hair = 13;
+	players[0].quirk.punctuation = 3;
+	players[0].quirk.capitalization = 1;
+	players[0].chatHandle = "jadedResearcher"
+}
+
 function init(){
 	available_classes = classes; //re-init available classes.
 	available_aspects = nonrequired_aspects;
@@ -70,8 +79,10 @@ function init(){
 		players.push(randomPlayer());
 	}
 	
+	players[0].hairColor = "#331200"
 	for(var j = 0; j<players.length; j++){
 		players[j].generateRelationships(players);
 		players[j].quirk = randomHumanQuirk();
 	}
+	//makeAuthorAvatar();
 }
