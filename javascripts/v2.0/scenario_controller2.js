@@ -30,7 +30,7 @@ window.onload = function() {
 	if(!debugMode){
 		randomizeEntryOrder();
 	}
-	authorMessage();
+	//authorMessage();
 	intro();
 	//make a new intro scene that has characters talk about their lands with their best friends/worst enemies. 
 	//refacor other scenario controller to use special scenes (not part of scene controller) rather than
@@ -98,6 +98,6 @@ function init(){
 	players[0].hairColor = "#331200"
 	for(var j = 0; j<players.length; j++){
 		players[j].generateRelationships(players);
-		players[j].quirk = randomHumanQuirk();
+		players[j].quirk = randomHumanSim();
 	}
 }

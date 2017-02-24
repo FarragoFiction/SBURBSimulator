@@ -1,6 +1,7 @@
 
 function Quirk(){
 	this.lettersToReplace = [] //array of two element arrays. ["e", "3"], ["two",2] would be two examples. e replaced by 3 and two replaced by 2
+	this.lettersToReplaceIgnoreCase = []
 	this.punctuation = 0; //0 = none, 1 = ends of sentences, 2 = perfect punctuation 3= excessive punctuation
 	this.spelling = 0;  //0 = bad typos (think roxy), 1 = some typos, 2 = perfect spelling //not used, replaced with letterstoreplace
 	this.prefix = ""; //what do you put at the start of a line?
@@ -14,6 +15,8 @@ function Quirk(){
 		var ret = input;
 		ret = this.handleCapitilization(ret);
 		ret = this.handleReplacements(ret);
+		ret = this.handleReplacementsIgnoreCase(ret);
+		ret = this.handleCapitilization(ret);//do it a second time 'cause ignore case made it's replacements all lower case
 		ret = this.handlePunctuation(ret);
 		ret = this.handlePrefix(ret);  //even if troll speaks in lowercase, 8=D needs to be as is.
 		ret = this.handleSuffix(ret);
@@ -134,6 +137,17 @@ function Quirk(){
 		}
 		return ret;
 	}
+	
+	this.handleReplacementsIgnoreCase = function(input){
+		var ret = input;
+		for(var i = 0; i<this.lettersToReplaceIgnoreCase.length; i++){
+			//$("#debug").append("Replacing: " +this.lettersToReplace[i][0] );
+			//g makes it replace all, i makes it ignore case
+			ret= ret.replace(new RegExp(this.lettersToReplaceIgnoreCase[i][0], 'ig'),this.lettersToReplaceIgnoreCase[i][1]);
+		}
+		return ret;
+	}
+
 
 	this.handlePunctuation = function(input){
 		var ret = input;
@@ -209,6 +223,27 @@ function randomHumanQuirk(){
 	for(var i = 0; i< roomLeft; i++){
 		ret.lettersToReplace.push(getOneNormalReplaceArray());
 	}
+	//$("#debug").append("Human letters to replace: " + ret.lettersToReplace.length);
+	return ret;
+}
+
+//since I'm not gonna list 'em out, have more quirks, and make sure you have certain CATEGORIES of quirk.
+function randomHumanSim(){
+	var ret = new Quirk();
+	ret.capitalization = getRandomInt(0,2);
+	ret.punctuation = getRandomInt(0,3);
+	var roomLeft = getRandomInt(0,6) - ret.lettersToReplace.length;
+	if(roomLeft < 0) roomLeft = 0;
+	for(var i = 0; i< roomLeft; i++){
+		ret.lettersToReplace.push(getOneNormalReplaceArray());
+	}
+	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(very_quirks));
+	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(good_quirks));
+	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(lol_quirks));
+	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(greeting_quirks));
+	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(dude_quirks));
+	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(curse_quirks));
+
 	//$("#debug").append("Human letters to replace: " + ret.lettersToReplace.length);
 	return ret;
 }

@@ -529,11 +529,12 @@ conversational_quirks = conversational_quirks.concat([["Won't","will not"],["Did
 
 var very_quirks = [["very","adequately"],["very","really"],["very","super"],["very", "amazingly"],["very","hella"],["very","extremely"],["very","absolutely"],["very","mega"],["very ","extra"],["very","ultra"],["very","hecka"],["very","totes"]];
 
-var good_quirks = [["good,agreeable"],["good", "marvelous"],["good", "ace"],["good", "wonderful"],["good","sweet"],["good","dope"],["good","awesome"],["good","great"],["good","amazing"],["good","perfect"],["good","amazing"],["good","super good"],["good","acceptable"]];
-var lol_quirks = [["lol","haha"],["lol","ehehe"],["lol","heh"],["lol","omg lol"],["lol","rofl"],["lol","funny"],["lol",""],["lol","hee"],["lol","lawl"],["lol","roflcopter"],["lol","..."],["lol","bwahah"],["lol","*giggle*"]];
-var greeting_quirks = [["hey", "hi"],["hey", "hello"],["hey", "greetings"],["hey", "yo"],["hey", "sup"]];
-var dude_quirks = [["dude","guy"],["dude","man"],["dude","you"],["dude","friend"],["dude","asshole"],["dude","fella"],["dude","bro"]];
-var curse_quirks = [["fuck", "shit"],["fuck", "cocks"],["fuck", "nope"],["fuck", "goddammit"],["fuck", "damn it"],["fuck", "..."],["fuck", "...great."]];
+var good_quirks = [["good,good"],["good,agreeable"],["good", "marvelous"],["good", "ace"],["good", "wonderful"],["good","sweet"],["good","dope"],["good","awesome"],["good","great"],["good","amazing"],["good","perfect"],["good","amazing"],["good","super good"],["good","acceptable"]];
+var lol_quirks = [["lol","lol"],["lol","haha"],["lol","ehehe"],["lol","heh"],["lol","omg lol"],["lol","rofl"],["lol","funny"],["lol",""],["lol","hee"],["lol","lawl"],["lol","roflcopter"],["lol","..."],["lol","bwahah"],["lol","*giggle*"],["lol",":)"]];
+var greeting_quirks = [["hey", "hey"],["hey", "hi"],["hey", "hello"],["hey", "greetings"],["hey", "yo"],["hey", "sup"]];
+var dude_quirks = [["dude","guy"], ["dude","guy"],["dude","man"],["dude","you"],["dude","friend"],["dude","asshole"],["dude","fella"],["dude","bro"]];
+var curse_quirks = [["fuck", "fuck"],["fuck", "shit"],["fuck", "cocks"],["fuck", "nope"],["fuck", "goddammit"],["fuck", "damn it"],["fuck", "..."],["fuck", "...great."]];
+var smiley_quirks = [[":)", ":)"],[":)", ":0)"],[":)", ":]"],[":)", ":B"],[":)", ">: ]"]];
 console.log("TODO figure out how to make conversational quirks ignore case");
 
 

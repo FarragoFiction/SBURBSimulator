@@ -27,14 +27,19 @@ function Intro(){
 			player2 = player1.getWorstEnemyFromList(players);
 			
 		}
+		if(player2 == null){
+			return; //give up, forever alone.
+			
+		}
 		
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
 		
-		var chatText = player1Start+ player1.quirk.translate("I'm in the medium!\n");
-		chatText += player2Start + player2.quirk.translate("Wow, what's it like?\n");
+		var chatText = player1Start+ player1.quirk.translate("Hey, I'm in the medium!\n");
+		chatText += player2Start + player2.quirk.translate("Good, what's it like?\n");
 		chatText += player1Start + player1.quirk.translate("It's the " + player1.land +"\n");
 		chatText += player1Start + player1.quirk.translate("So, like, full of <TODO PARSE ONE WORD OF LAND>\n");
+		chatText += player2Start + player2.quirk.translate("lol\n");
 		chatText += player2Start + player2.quirk.translate("<Don't forget to change dialog based on relationships> <or classpect?><light players could be all 'oh, so you're an x player?'>\n");
 		//TODO change text based on p1 and p2 relationships.  and vice versa. p1 is all flirty, p2 is a dick. yeeeessss.....
 		//var spriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
@@ -43,7 +48,6 @@ function Intro(){
 	
 	//i is so you know entry order
 	this.renderContent = function(div,i){
-		debug("need to handle dialog next")
 		var narration = "<br>The " + this.player.htmlTitle() + " enters the game " + indexToWords(i) + ". ";
 		if(this.player.leader){
 			narration += "They are definitely the leader.";
