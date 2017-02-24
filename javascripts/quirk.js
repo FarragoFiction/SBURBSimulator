@@ -14,10 +14,11 @@ function Quirk(){
 	this.translate = function(input){
 		var ret = input;
 		ret = this.handleCapitilization(ret);
+		ret = this.handlePunctuation(ret);  //don't want to accidentally murder smileys
 		ret = this.handleReplacements(ret);
 		ret = this.handleReplacementsIgnoreCase(ret);
 		ret = this.handleCapitilization(ret);//do it a second time 'cause ignore case made it's replacements all lower case
-		ret = this.handlePunctuation(ret);
+		
 		ret = this.handlePrefix(ret);  //even if troll speaks in lowercase, 8=D needs to be as is.
 		ret = this.handleSuffix(ret);
 		return ret;
@@ -218,6 +219,9 @@ function randomHumanQuirk(){
 	var ret = new Quirk();
 	ret.capitalization = getRandomInt(0,2);
 	ret.punctuation = getRandomInt(0,3);
+	if(ret.capitalization == 2 && Math.random() >.2){ //seriously, less all caps.
+		ret.capitalization = getRandomInt(0,1);
+	}
 	var roomLeft = getRandomInt(0,6) - ret.lettersToReplace.length;
 	if(roomLeft < 0) roomLeft = 0;
 	for(var i = 0; i< roomLeft; i++){
@@ -232,7 +236,10 @@ function randomHumanSim(){
 	var ret = new Quirk();
 	ret.capitalization = getRandomInt(0,2);
 	ret.punctuation = getRandomInt(0,3);
-	var roomLeft = getRandomInt(0,6) - ret.lettersToReplace.length;
+	if(ret.capitalization == 2 && Math.random() >.2){ //seriously, less all caps.
+		ret.capitalization = getRandomInt(0,1);
+	}
+	var roomLeft = getRandomInt(0,10) - ret.lettersToReplace.length;
 	if(roomLeft < 0) roomLeft = 0;
 	for(var i = 0; i< roomLeft; i++){
 		ret.lettersToReplace.push(getOneNormalReplaceArray());
