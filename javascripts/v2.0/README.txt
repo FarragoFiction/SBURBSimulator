@@ -1,5 +1,11 @@
 Goals:
 
+WAITWAITWAIT hold the phone. Do I need NEW SCENES, or do I just need to add a RENDER METHOD to old scenes that is optionally called.
+
+I have been a foold (though not much of one 'cause it didn't start yet).  If I make new scenes, I have 2x debug COMBO. I don't want that.
+Nobody wants that. If I use exactly the same scenes with a render method, then everything is great. Debug once, run twice.
+
+
 Let Users enter names for players, just like in Homestuck. (and apparently hunger games simulator)
 
 Write a new scenario controller.  Write new scenes and scene controller. Keep as much of

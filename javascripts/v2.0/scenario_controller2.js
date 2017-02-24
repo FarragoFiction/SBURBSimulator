@@ -16,6 +16,7 @@ var spriteWidth = 400;
 var spriteHeight = 300;
 var canvasWidth = 1000;
 var canvasHeight = 300;
+var version2 = true;
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas. 
 //should there be only one canvas?  Can have player sprites be written to a virtual canvas first, then copied to main one.
@@ -29,7 +30,13 @@ window.onload = function() {
 	if(!debugMode){
 		randomizeEntryOrder();
 	}
+	//authorMessage();
 	intro();
+	//make a new intro scene that has characters talk about their lands with their best friends/worst enemies. 
+	//refacor other scenario controller to use special scenes (not part of scene controller) rather than
+	//have messy internal methods.
+	//all other scenes are handled through the scene controller like normal, which will check if var version2 = true;
+	//and if so will call "render" rather than "content"
 	debug("Consider having ticks be a button press that clears the current story, rather than all at once. Only do this if too many canvases");
 }
 
@@ -40,14 +47,18 @@ function newScene(){
 	return $("#scene"+currentSceneNum);
 }
 
+function authorMessage(){
+	makeAuthorAvatar();
+	introScene = new AuthorMessage();
+	introScene.trigger(players, players[0])
+	introScene.content(newScene(),0); //new scenes take care of displaying on their own.
+}
+
 function intro(){
 	introScene = new Intro();
 	
 	for(var i = 0; i<players.length; i++){
 		var p = players[i];
-		if(i==0){
-			p.leader = true;
-		}
 		introScene.trigger(players, p)
 		//$("#story").append(introScene.content());
 		introScene.content(newScene(),i); //new scenes take care of displaying on their own.
@@ -57,14 +68,17 @@ function intro(){
 
 function randomizeEntryOrder(){
 	players = shuffle(players);
+	players[0].leader = true;
 }
 
 function makeAuthorAvatar(){
 	players[0].aspect = "Mind"
 	players[0].class_name = "Maid"
 	players[0].hair = 13;
+	players[0].hairColor = "#291200";
 	players[0].quirk.punctuation = 3;
 	players[0].quirk.capitalization = 1;
+	players[0].quirk.favoriteNumber = 3;
 	players[0].chatHandle = "jadedResearcher"
 }
 
@@ -84,5 +98,4 @@ function init(){
 		players[j].generateRelationships(players);
 		players[j].quirk = randomHumanQuirk();
 	}
-	//makeAuthorAvatar();
 }
