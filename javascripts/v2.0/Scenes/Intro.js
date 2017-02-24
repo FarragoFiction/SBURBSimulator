@@ -27,6 +27,9 @@ function Intro(){
 	//TODO consider making this a method in handleSprites, so ALL scenes can get at it. 
 	//make a pesterchum skin and stick text into it. How much can I fit?
 	this.chat = function(div){
+		var repeatTime = 1000;
+		var canvasHTML = "<br><canvas id='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
 		//first, find/make pesterchum skin. Want it to be no more than 300 tall for now.
 		//then, have some text I want to render to it.
 		//filter through quirks, and render.  (you can splurge and make more quirks here, future me)
@@ -43,17 +46,25 @@ function Intro(){
 		intro += player2.chatHandle + "[ " + player2.chatHandleShort()+ "]";
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShort()+ ":";
-		var chat = player1Start+ player1.quirk.translate("This is just a test.");
-		chat += player2Start + player2.quirk.translate("I can believe it. It's pretty shitty.");
+		var chatText = player1Start+ player1.quirk.translate("This is just a test.");
+		chatText += player2Start + player2.quirk.translate("I can believe it. It's pretty shitty.");
 		debug("fix chat initials code. only getting first cause no space separation");
 		debug(intro);
-		debug(chat);
-		var spriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
-		drawChat(spriteBuffer, player1, player2, intro, chat);
+		debug(chatText);
+		//var spriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
+		drawChat(document.getElementById("canvas"+ (div.attr("id"))), player1, player2, intro, chatText, repeatTime);
+		/*
 		setTimeout(function(){
-			copyTmpCanvasToRealCanvasAtPos(document.getElementById("canvas"+ (div.attr("id"))), spriteBuffer,300,0)
-		}, 1000);  //images aren't always loaded by the time i try to draw them the first time.
+			copyTmpCanvasToRealCanvasAtPos(document.getElementById("canvas"+ (div.attr("id"))), spriteBuffer,250,0)
+		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
 		
+		var spriteBuffer2 = getBufferCanvas(document.getElementById("sprite_template"));
+		 drawBG(spriteBuffer2, "#ff9999", "#ff00ff")
+		drawSpriteTurnways(spriteBuffer,player2,repeatTime)
+		setTimeout(function(){
+			copyTmpCanvasToRealCanvasAtPos(document.getElementById("canvas"+ (div.attr("id"))), spriteBuffer2,0,0)
+		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
+		*/
 	}
 	
 	//i is so you know entry order
@@ -75,7 +86,7 @@ function Intro(){
 			}
 		}
 		div.append(narration);
-		this.draw(div);
+		//this.draw(div);
 		this.chat(div);
 	}
 }

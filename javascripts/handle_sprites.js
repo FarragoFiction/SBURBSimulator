@@ -190,16 +190,67 @@ function imgLoaded(imgElement) {
 */
 
 //need to parse the text to figure out who is talking to determine color for chat.
-function drawChat(canvas, player1, player2, intro, chat){
+function drawChat(canvas, player1, player2, intro, chat, repeatTime){
 	debug("drawing chat")
-	ctx = canvas.getContext('2d');
+	//draw sprites to buffer (don't want them pallete swapping each other)
+	//then to main canvas
+	var canvasSpriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
+	ctx = canvasSpriteBuffer.getContext('2d');
 	var imageString = "pesterchum.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
 	var width = img.width;
 	var height = img.height;
 	ctx.drawImage(img,0,0,width,height);
+	
+	var p1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+	drawSprite(p1SpriteBuffer,player1,repeatTime)
+	
+	var p2SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+	drawSpriteTurnways(p2SpriteBuffer,player2,repeatTime)
+	
+	//p1 on left, chat in middle, p2 on right and flipped turnways.
+	setTimeout(function(){
+			copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,-100,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,230,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, p2SpriteBuffer,650,0)//where should i put this?
+		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
 }
+
+function drawBG(canvas, color1, color2){
+	//var c = document.getElementById(canvasId);
+	var ctx = canvas.getContext("2d");
+
+	var grd = ctx.createLinearGradient(0, 0, 170, 0);
+	grd.addColorStop(0, color1);
+	grd.addColorStop(1, color2);
+
+	ctx.fillStyle = grd;
+	ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function drawSpriteTurnways(canvas, player, repeatTime, isRepeat){
+  ctx = canvas.getContext('2d');
+  ctx.translate(canvas.width, 0);
+  ctx.scale(-1, 1);
+  if(player.isTroll&& player.godTier){//wings before sprite
+    wings(canvas,player);
+  }
+  playerToSprite(canvas,player);
+  hair(canvas, player);
+  if(player.class_name == "Prince" && player.godTier){
+	  princeTiara(canvas, player);
+  }
+  if(player.isTroll){
+    trollify(canvas,player);
+  }
+  if(!isRepeat){ //first time i call it this will be null
+	setTimeout(function(){
+			drawSprite(canvas,player,repeatTime,true)
+	}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
+  }
+}
+
 
 function drawSprite(canvas, player, repeatTime, isRepeat){
   //debug("Drawing sprite for: " + player.title());

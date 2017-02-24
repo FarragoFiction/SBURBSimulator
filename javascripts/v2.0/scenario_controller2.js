@@ -14,7 +14,7 @@ var introScene;
 var currentSceneNum = 0;
 var spriteWidth = 400;
 var spriteHeight = 300;
-var canvasWidth = 800;
+var canvasWidth = 1000;
 var canvasHeight = 300;
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas. 
