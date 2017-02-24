@@ -36,12 +36,14 @@ function drawSpriteAll(){
 	  makeBG(document.getElementById("canvas"+(i+1)));
       drawSprite(document.getElementById("canvas"+(i+1)), players[i],1000);
 	  writeToCanvas(document.getElementById("canvas"+(i+1)), players[i]); 
-	  makeWriteDataURL("canvas"+(i+1) )//for writing data.
-	  
+	  //makeWriteDataURL("canvas"+(i+1) )//for writing data.  too early to do it here, might not see full render
 	}
 	
 	setTimeout(function(){
 		//drawSpriteAll(); //drawing sprites the first time will handle this.
+		for(var i = 0; i<players.length; i++){
+			makeWriteDataURL("canvas"+(i+1) )//for writing data. 
+	}
 		renderDownloadURLs();
 	}, 1000);  //images aren't always loaded by the time i try to draw them the first time.
 	
