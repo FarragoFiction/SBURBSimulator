@@ -1,5 +1,7 @@
 Goals:
 
+Let Users enter names for players, just like in Homestuck. (and apparently hunger games simulator)
+
 Write a new scenario controller.  Write new scenes and scene controller. Keep as much of
 everything else as you can.
 
@@ -74,6 +76,5 @@ And, as always, kill Hitler. Shit. I mean bugs.
 
 BUGS:
 
-*Death sometimes doesn't stick. a player can be killed by both Queen AND King, for example.
-
+confirm dead queens can't be exiled anymore
 

@@ -207,6 +207,9 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
   }
   playerToSprite(canvas,player);
   hair(canvas, player);
+  if(player.class_name == "Prince"){
+	  princeTiara(canvas, player);
+  }
   //then troll proccess???
   //this was for sprite sheet
   //ctx.drawImage(sprites,position[0],position[1],position[2],position[3],canvas.width/2,canvas.height/2,position[6],position[7]);
@@ -238,6 +241,7 @@ function playerToSprite(canvas, player){
 }
 
 function hair(canvas, player){
+	ctx = canvas.getContext('2d');
 	var imageString = "hair"+player.hair+".png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
@@ -251,6 +255,19 @@ function hair(canvas, player){
 		swapColors(canvas, "#313131", player.hairColor);
 		swapColors(canvas, "#202020", getColorFromAspect(player.aspect));
 	}
+}
+
+function princeTiara(canvas, player){
+	var imageString = "prince_hat.png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	var c2 = getBufferCanvas(canvas); //don't want to do color replacement on the existing image.
+	ctx2 = c2.getContext('2d');
+	ctx2.drawImage(img,width/6,height/4,width,height);
+	aspectPalletSwap(c2, player);
+	copyTmpCanvasToRealCanvas(canvas, c2)
 }
 
 function regularSprite(canvas, player){
