@@ -190,7 +190,7 @@ function imgLoaded(imgElement) {
 */
 
 function drawSprite(canvas, player, repeatTime, isRepeat){
-  debug("Drawing sprite for: " + player.title());
+  //debug("Drawing sprite for: " + player.title());
   //console.log("looking for canvas: " + canvas);
  // canvas = $("#"+canvasId)[0]; //don't want jquery object, want contents
   ctx = canvas.getContext('2d');
@@ -221,7 +221,7 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
   //ctx.drawImage(sprite, 100, 100);
   if(!isRepeat){ //first time i call it this will be null
 	 //alert("redrawing")
-	 debug("Redrawing");
+	 //debug("Redrawing");
 	setTimeout(function(){
 			drawSprite(canvas,player,repeatTime,true)
 	}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
