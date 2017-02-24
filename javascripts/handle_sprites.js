@@ -694,10 +694,24 @@ function fillChatTextMultiLine(canvas, chat, player1, player2, x, y) {
 	var ctx = canvas.getContext("2d");
 	var lineHeight = ctx.measureText("M").width * 1.2;
     var lines = chat.split("\n");
+	var player1Start = player1.chatHandleShort()
+	var player2Start = player2.chatHandleShortCheckDup(player1Start);
  	for (var i = 0; i < lines.length; ++i) {
 		//does the text begin with player 1's chat handle short? if so: getChatFontColor
-   		ctx.fillText(lines[i], x, y);  //TODO wrap this text.
-  		y += lineHeight;
+		var ct = lines[i].trim();
+		
+		//check player 2 first 'cause they'll be more specific if they have same initials
+		if(ct.startsWith(player2Start)){
+			ctx.fillStyle = player2.getChatFontColor();
+		}else if(ct.startsWith(player1Start)){
+			ctx.fillStyle = player1.getChatFontColor();
+		}else{
+			ctx.fillStyle = "#000000"
+		}
+		
+   		//ctx.fillText(ct, x, y);  //TODO wrap this text.
+		var lines_wrapped = wrap_text(ctx, ct, x, y, lineHeight, canvas.width-5, "left")
+  		y += lineHeight * lines_wrapped;
   	}
 	//word wrap these
 	ctx.fillStyle = "#000000"
@@ -730,4 +744,6 @@ function wrap_text(ctx, text, x, y, lineHeight, maxWidth, textAlign) {
     ctx.fillText(lines[i], x + offsetX, y + offsetY)
     offsetY = offsetY + lineHeight
   }
+  //need to return how many lines i created so that whatever called me knows where to put ITS next line.
+  return lines.length;
 }

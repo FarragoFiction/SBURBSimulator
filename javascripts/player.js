@@ -42,6 +42,15 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, inter
 		return this.chatHandle.match(/\b(\w)|[A-Z]/g).join('').toUpperCase();
 	}
 	
+	this.chatHandleShortCheckDup = function(otherHandle){
+		var tmp= this.chatHandle.match(/\b(\w)|[A-Z]/g).join('').toUpperCase();
+		if(tmp == otherHandle){
+			tmp = tmp + "2";
+		}
+		return tmp;
+	}
+	
+	
 	this.title = function(){
 		var ret = "";
 
