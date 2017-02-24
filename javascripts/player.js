@@ -394,7 +394,7 @@ function getColorFromAspect(aspect){
 	}else if(aspect == "Hope"){
 		color = "#ffcc66";
 	}else if(aspect == "Life"){
-		color = "#ccc3bf";
+		color = "#494132";
 	}
 	return color;
 }

@@ -53,7 +53,7 @@ function authorMessage(){
 	makeAuthorAvatar();
 	introScene = new AuthorMessage();
 	introScene.trigger(players, players[0])
-	introScene.content(newScene(),0); //new scenes take care of displaying on their own.
+	introScene.renderContent(newScene(),0); //new scenes take care of displaying on their own.
 }
 
 function intro(){
