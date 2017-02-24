@@ -71,3 +71,9 @@ Should I bite the bullet and add hair as well? Will have to add before horns for
 Hair can be black or white if human. black if troll.
 
 And, as always, kill Hitler. Shit. I mean bugs.
+
+BUGS:
+
+*Death sometimes doesn't stick. a player can be killed by both Queen AND King, for example.
+
+

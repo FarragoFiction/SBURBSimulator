@@ -57,6 +57,13 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, inter
 		ret+= this.class_name + " of " + this.aspect;
 		return ret;
 	}
+	
+	this.titleBasic = function(){
+		var ret = "";
+
+		ret+= this.class_name + " of " + this.aspect;
+		return ret;
+	}
 
 
 	this.getRandomLevel = function(){
@@ -150,6 +157,10 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, inter
 
 	this.htmlTitle = function(){
 		return getFontColorFromAspect(this.aspect) + this.title() + "</font>"
+	}
+	
+	this.htmlTitleBasic = function(){
+		return getFontColorFromAspect(this.aspect) + this.titleBasic() + "</font>"
 	}
 
 	this.generateRelationships = function(friends){
@@ -509,6 +520,17 @@ function getPlayersTitles(playerList){
 		var ret = playerList[0].htmlTitle();
 		for(var i = 1; i<playerList.length; i++){
 			ret += " and " + playerList[i].htmlTitle();
+		}
+		return ret;
+}
+
+function getPlayersTitlesBasic(playerList){
+	if(playerList.length == 0){
+		return "";
+	}
+		var ret = playerList[0].htmlTitle();
+		for(var i = 1; i<playerList.length; i++){
+			ret += " and " + playerList[i].htmlTitleBasic();
 		}
 		return ret;
 	}

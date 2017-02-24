@@ -17,7 +17,7 @@ function DoEctobiology(){
 		ectoBiologyStarted = true;
 		var ret = " Through a series of wacky, yet inevitable in hindsight, coincidences, the " + this.leader.htmlTitle();
 		ret += " finds themselves in the veil of meteors surrounding the Medium. ";
-		ret +=  " A button is pushed, and suddenly there are little tiny baby version of " + getPlayersTitles(players); 
+		ret +=  " A button is pushed, and suddenly there are little tiny baby version of " + getPlayersTitlesBasic(players); 
 		ret += ". Plus a bunch of superfluous extra babies. ";
 		ret += " What is even going on here? ";
 		this.leader.increasePower();
