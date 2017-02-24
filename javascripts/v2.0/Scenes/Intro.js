@@ -35,12 +35,17 @@ function Intro(){
 		//when trolls happen, should they use trollian?
 		var player1 = this.player;
 		var player2 = player1.getBestFriendFromList(players);
+		if(player2 == null){
+			player2 = player1.getWorstEnemyFromList(players);
+			
+		}
 		var intro = "-- " +player1.chatHandle + "[ " + player1.chatHandleShort()+ "] began pestering ";
 		intro += player2.chatHandle + "[ " + player2.chatHandleShort()+ "]";
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShort()+ ":";
 		var chat = player1Start+ player1.quirk.translate("This is just a test.");
 		chat += player2Start + player2.quirk.translate("I can believe it. It's pretty shitty.");
+		debug("fix chat initials code. only getting first cause no space separation");
 		debug(intro);
 		debug(chat);
 		var spriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
