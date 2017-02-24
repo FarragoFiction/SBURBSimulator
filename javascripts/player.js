@@ -39,7 +39,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, inter
 	//for space player, this is necessary for frog breeding to be minimally succesfull.
 
 	this.chatHandleShort = function(){
-		return this.chatHandle.match(/\b(\w)/g).join('').toUpperCase();
+		return this.chatHandle.match(/\b(\w)|[A-Z]/g).join('').toUpperCase();
 	}
 	
 	this.title = function(){
