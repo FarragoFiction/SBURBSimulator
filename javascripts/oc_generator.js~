@@ -5,7 +5,6 @@ window.onload = function() {
 	makeClassDropDown();
 	makeSpeciesDropDown();
 	 $('#godTier').attr('checked','checked');
-	 
 	 $('#godTier').change(function() {
 	 	console.log("change");
 		 for(var i = 0; i<players.length; i++){
