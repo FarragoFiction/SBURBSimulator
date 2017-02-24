@@ -33,7 +33,7 @@ function getDenizenFromAspect(aspect){
 	}else if(aspect == "Life"){
 		return life_denizen;
 	}
-	return "ERROR 404: Denizen Not Found"
+	return "ERROR 404: Denizen Not Found"//it will be HILARIOUS if this ever prints out.
 }
 
 function getRandomLandFromAspect(aspect){

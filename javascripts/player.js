@@ -38,6 +38,10 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, inter
 	this.doomedTimeClones = 0; //only used by Time player. works as extra lives and power multiplier (against king/queen only).
 	//for space player, this is necessary for frog breeding to be minimally succesfull.
 
+	this.chatHandleShort = function(){
+		return this.chatHandle.match(/\b(\w)/g).join('').toUpperCase();
+	}
+	
 	this.title = function(){
 		var ret = "";
 

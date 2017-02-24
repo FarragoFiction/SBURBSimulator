@@ -72,5 +72,6 @@ function init(){
 	
 	for(var j = 0; j<players.length; j++){
 		players[j].generateRelationships(players);
+		players[j].quirk = randomHumanQuirk();
 	}
 }

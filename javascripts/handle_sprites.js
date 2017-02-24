@@ -189,6 +189,18 @@ function imgLoaded(imgElement) {
 
 */
 
+//need to parse the text to figure out who is talking to determine color for chat.
+function drawChat(canvas, player1, player2, intro, chat){
+	debug("drawing chat")
+	ctx = canvas.getContext('2d');
+	var imageString = "pesterchum.png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,0,0,width,height);
+}
+
 function drawSprite(canvas, player, repeatTime, isRepeat){
   //debug("Drawing sprite for: " + player.title());
   //console.log("looking for canvas: " + canvas);
