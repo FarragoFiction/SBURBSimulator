@@ -30,13 +30,15 @@ window.onload = function() {
 	if(!debugMode){
 		randomizeEntryOrder();
 	}
-	//authorMessage();
+	authorMessage();
 	intro();
 	//make a new intro scene that has characters talk about their lands with their best friends/worst enemies. 
 	//refacor other scenario controller to use special scenes (not part of scene controller) rather than
 	//have messy internal methods.
 	//all other scenes are handled through the scene controller like normal, which will check if var version2 = true;
 	//and if so will call "render" rather than "content"
+	debug("refactor old scenes to render themselves rather than return a string. If content() 1.0, if renderContent(), 2.0")
+	debug("oh, and update quirks so that players have a quirk for every main class. and they ignore case");
 	debug("Consider having ticks be a button press that clears the current story, rather than all at once. Only do this if too many canvases");
 }
 
@@ -61,7 +63,7 @@ function intro(){
 		var p = players[i];
 		introScene.trigger(players, p)
 		//$("#story").append(introScene.content());
-		introScene.content(newScene(),i); //new scenes take care of displaying on their own.
+		introScene.renderContent(newScene(),i); //new scenes take care of displaying on their own.
 	}
 	
 }

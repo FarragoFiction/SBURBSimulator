@@ -30,19 +30,19 @@ function Intro(){
 		
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
-		var chatText = player1Start+ player1.quirk.translate("This is just a test.\n");
-		chatText += player2Start + player2.quirk.translate("I can believe it. It's very shitty.\n");
-		chatText += player1Start + player1.quirk.translate("Hey! Not everybody can have perfectly polished tests!\n");
-		chatText += player2Start + player2.quirk.translate("Maybe. But EVERYBODY should be able to handle word wrap.  It's like, a standard freaking thing, right? Unless this is the test where you finally do, and then don't I look like an asshole? But I bet you didn't actually get word wrap right, yet.\n");
-		chatText += player2Start + player2.quirk.translate("So. The question is: Did you?\n");
-		chatText += player1Start + player1.quirk.translate("Hopy Shit, it looks like I did!\n");
+		
+		var chatText = player1Start+ player1.quirk.translate("I'm in the medium!\n");
+		chatText += player2Start + player2.quirk.translate("Wow, what's it like?\n");
+		chatText += player1Start + player1.quirk.translate("It's the " + player1.land +"\n");
+		chatText += player1Start + player1.quirk.translate("So, like, full of <TODO PARSE ONE WORD OF LAND>\n");
+		chatText += player2Start + player2.quirk.translate("<Don't forget to change dialog based on relationships> <or classpect?><light players could be all 'oh, so you're an x player?'>\n");
 		//TODO change text based on p1 and p2 relationships.  and vice versa. p1 is all flirty, p2 is a dick. yeeeessss.....
 		//var spriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
 		drawChat(document.getElementById("canvas"+ (div.attr("id"))), player1, player2, chatText, repeatTime);
 	}
 	
 	//i is so you know entry order
-	this.content = function(div,i){
+	this.renderContent = function(div,i){
 		debug("need to handle dialog next")
 		var narration = "<br>The " + this.player.htmlTitle() + " enters the game " + indexToWords(i) + ". ";
 		if(this.player.leader){
@@ -61,5 +61,10 @@ function Intro(){
 		}
 		div.append(narration);
 		this.chat(div);
+	}
+	
+	this.content = function(div, i){
+		var ret = " TODO: Figure out what a non 2.0 version of the Intro scene would look like. "
+		div.append(ret);
 	}
 }

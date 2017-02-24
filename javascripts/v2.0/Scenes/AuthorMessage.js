@@ -42,24 +42,14 @@ function AuthorMessage(){
 	}
 	
 	//i is so you know entry order
-	this.content = function(div,i){
-		debug("need to handle dialog next")
-		var narration = "<br>The " + this.player.htmlTitle() + " enters the game " + indexToWords(i) + ". ";
-		if(this.player.leader){
-			narration += "They are definitely the leader.";
-		}
-		if(this.player.godDestiny){
-			narration += " They appear to be destined for greatness. ";
-		}
-		narration += " They boggle vacantly at the " + this.player.land + ". ";
-		
-		for(var j = 0; j<this.player.relationships.length; j++){
-			var r = this.player.relationships[j];
-			if(r.type() != "Friends" && r.type() != "Rivals"){
-				narration += "They are " + r.description() + ". ";
-			}
-		}
+	this.renderContent = function(div){
+		var narration = "<br>And now, a message from me. jadedResearcher."
 		div.append(narration);
 		this.chat(div);
+	}
+	
+	this.content = function(div,i){
+		var narration = "<br>And now, a message from me. jadedResearcher. Wait. You're not in 2.0 mode. Nevermind."
+		div.append(narration);
 	}
 }
