@@ -15,7 +15,6 @@ function Intro(){
 		var canvasHTML = "<br><canvas id='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		var spriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-		debug(" Need to render hair. For godtier prince, put tiara over it.");
 		drawSprite(spriteBuffer,this.player,repeatTime)
 		//give sprite time to draw, don't try to grab it right away.
 		setTimeout(function(){
@@ -30,6 +29,7 @@ function Intro(){
 	
 	//i is so you know entry order
 	this.content = function(div,i){
+		debug("need to handle dialog next")
 		var narration = "<br>The " + this.player.htmlTitle() + " enters the game " + indexToWords(i) + ". ";
 		if(this.player.leader){
 			narration += "They are definitely the leader.";
