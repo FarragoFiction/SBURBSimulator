@@ -37,14 +37,14 @@ function FightQueen(){
 		}
 	}
 	
-	this.getDeadList = function(){
-		var numStabbings = getRandomInt(0,players.length);
+	this.getDeadList = function(living){
+		var numStabbings = getRandomInt(0,living.length);
 		var ret = [];
-		if(players.length == 0){
+		if(living.length == 0){
 			return ret;
 		}
 		for(var i = 0; i<=numStabbings; i++){
-			ret.push(getRandomElementFromArray(players));
+			ret.push(getRandomElementFromArray(living));
 		}
 		return Array.from(new Set(ret));
 	}
@@ -72,7 +72,7 @@ function FightQueen(){
 			queenStrength = 0;
 			this.levelPlayers(living);
 		}else{
-			var deadPlayers = this.getDeadList();
+			var deadPlayers = this.getDeadList(living);
 			if(deadPlayers.length > 0){
 				ret += " The queen efficiently destroys the " + getPlayersTitles(deadPlayers) + ".  DEAD.";
 			}
