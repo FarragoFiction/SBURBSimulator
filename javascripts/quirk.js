@@ -142,7 +142,8 @@ function Quirk(){
 	this.handleReplacementsIgnoreCase = function(input){
 		var ret = input;
 		for(var i = 0; i<this.lettersToReplaceIgnoreCase.length; i++){
-			//$("#debug").append("Replacing: " +this.lettersToReplace[i][0] );
+			//$("#debug").append("Replacing: " +this.lettersToReplaceIgnoreCase[i][0] );
+			//console.log("Replacing: " +this.lettersToReplaceIgnoreCase[i][0] )
 			//g makes it replace all, i makes it ignore case
 			ret= ret.replace(new RegExp(this.lettersToReplaceIgnoreCase[i][0], 'ig'),this.lettersToReplaceIgnoreCase[i][1]);
 		}

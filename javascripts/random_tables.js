@@ -626,19 +626,19 @@ prefixes = prefixes.concat(["<3","<3<","<>","c3<","{","}","[","]","'",".",",","~
 
 //not as extreme as a troll quirk, but...
 var conversational_quirks = [["like", "liek"],["ing","in"],["have to","hafta"], ["want to","wanna"],["going to","gonna"], ["i'm","i am"],["you're","you are"],["we're","we are"],["forever","5ever"]];
-conversational_quirks = conversational_quirks.concat([["school","skool"],["the","teh"],["aren't","aint"],["ie","ei"],["though","tho"],["you","u"],["right","rite"]]);
+conversational_quirks = conversational_quirks.concat([["don't know", "dunno"],["school","skool"],["the","teh"],["aren't","aint"],["ie","ei"],["though","tho"],["you","u"],["right","rite"]]);
 conversational_quirks = conversational_quirks.concat([["n't"," not"], ["'m'"," am"]]);
 
-var very_quirks = [["very","adequately"],["very","really"],["very","super"],["very", "amazingly"],["very","hella"],["very","extremely"],["very","absolutely"],["very","mega"],["very ","extra"],["very","ultra"],["very","hecka"],["very","totes"]];
-var good_quirks = [["good,good"],["good,agreeable"],["good", "marvelous"],["good", "ace"],["good", "wonderful"],["good","sweet"],["good","dope"],["good","awesome"],["good","great"],["good","amazing"],["good","perfect"],["good","amazing"],["good","super good"],["good","acceptable"]];
+var very_quirks = [["\\bvery\\b","adequately"],["\\bvery\\b","really"],["\\bvery\\b","super"],["\\bvery\\b", "amazingly"],["\\bvery\\b","hella"],["\\bvery\\b","extremely"],["\\bvery\\b","absolutely"],["\\bvery\\b","mega"],["\\bvery\\b ","extra"],["\\bvery\\b","ultra"],["\\bvery\\b","hecka"],["\\bvery\\b","totes"]];
+var good_quirks = [["\\bgood\\b","good"],["\\bgood\\b","agreeable"],["\\bgood\\b", "marvelous"],["\\bgood\\b", "ace"],["\\bgood\\b", "wonderful"],["\\bgood\\b","sweet"],["\\bgood\\b","dope"],["\\bgood\\b","awesome"],["\\bgood\\b","great"],["\\bgood\\b","amazing"],["\\bgood\\b","perfect"],["\\bgood\\b","amazing"],["\\bgood\\b","super good"],["\\bgood\\b","acceptable"]];
 var lol_quirks = [["lol","lol"],["lol","haha"],["lol","ehehe"],["lol","heh"],["lol","omg lol"],["lol","rofl"],["lol","funny"],["lol",""],["lol","hee"],["lol","lawl"],["lol","roflcopter"],["lol","..."],["lol","bwahah"],["lol","*giggle*"],["lol",":)"]];
-var greeting_quirks = [["hey", "hey"],["hey", "hi"],["hey", "hello"],["hey", "greetings"],["hey", "yo"],["hey", "sup"]];
+var greeting_quirks = [["\\bhey\\b", "hey"],["\\bhey\\b", "hi"],["\\bhey\\b", "hello"],["\\bhey\\b", "greetings"],["\\bhey\\b", "yo"],["\\bhey\\b", "sup"]];
 var dude_quirks = [["dude","guy"], ["dude","guy"],["dude","man"],["dude","you"],["dude","friend"],["dude","asshole"],["dude","fella"],["dude","bro"]];
 var curse_quirks = [["fuck", "fuck"],["fuck", "shit"],["fuck", "cocks"],["fuck", "nope"],["fuck", "goddammit"],["fuck", "damn it"],["fuck", "..."],["fuck", "...great."]];
 //problem: these are likely to be inside of other words.
 console.log("problem: these are likely to be inside of other words.");
-var yes_quirks = [["yes","yes"],["yes","right"],["yes","yeah"],["yes","yep"],["yes","sure"],["yes","okay"]];
-var no_quirks = [["no","no"],["no","absolutely not"],["no","never in a million years"],["no","no"],["no","nope"],["no","no way"]];
+var yes_quirks = [["\\byes\\b","yes"],["\\byes\\b","right"],["\\byes\\b","yeah"],["\\byes\\b","yep"],["\\byes\\b","sure"],["\\byes\\b","okay"]];
+var no_quirks = [["\\bno\\b","no"],["\\bno\\b","absolutely not"],["\\bno\\b","never in a million years"],["\\bno\\b","no"],["\\bno\\b","nope"],["\\bno\\b","no way"]];
 
 var smiley_quirks = [[":)", ":)"],[":)", ":0)"],[":)", ":]"],[":)", ":B"],[":)", ">: ]"]];
 
