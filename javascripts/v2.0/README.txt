@@ -52,7 +52,7 @@ based on aspect?
 
 Keep track of what leader knows.  Can't flip out about a player death they are unaware of, right?
 
-Oh man, if leader is one who started sidequest with jack (or at least matches his chump profile), he should try to argue with the 
+Oh man, if leader is one who started sidequest with jack (or at least matches his chump profile), he should try to argue with the
 player who suggests exiling jack. YES. So tasty.
 
 For player graphics: need base sprite with shirt in aspect color. Need Prospit/Derse sprites.
@@ -67,10 +67,10 @@ A super ambitious possibility is to render Jack as well. Along with his prototyp
 Multiple people have requested character names. Okay. Consider this.  Cons are that it would get rid of the genericness
 of the characters, which I kind of like. But adding dialog and quirks already does that.
 
-Shit. I'd have to pick genders. I don't want to care about things like "maids are always girls".  And holy heck: PRONOUNS. 
+Shit. I'd have to pick genders. I don't want to care about things like "maids are always girls".  And holy heck: PRONOUNS.
 I HATE THOSE THINGS. Why does english have so many different pronouns?  Bluh. "They" is so much easier for a sim like this.
 Maybe I'll just call people by their chat handle initials
-and ignore picking real names. Even if I add hair to sprites, it'll be genderless. 
+and ignore picking real names. Even if I add hair to sprites, it'll be genderless.
 
 ...
 ...
@@ -84,3 +84,4 @@ BUGS:
 
 confirm dead queens can't be exiled anymore
 
+best bug: "My witch of light entered murder mode somehow, killed two people, got resurrected, and then blamed the non-dream version of herself for the deaths as though they were a different person."
