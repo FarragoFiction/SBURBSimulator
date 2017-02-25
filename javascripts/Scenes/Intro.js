@@ -1,5 +1,5 @@
 function Intro(){
-	this.canRepeat = false;	
+	this.canRepeat = false;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.player = null;
 	this.trigger = function(playerList, player){
@@ -7,8 +7,8 @@ function Intro(){
 		this.player = player;
 		return true; //this should never be in the main array. call manually.
 	}
-	
-	//TODO consider making this a method in handleSprites, so ALL scenes can get at it. 
+
+	//TODO consider making this a method in handleSprites, so ALL scenes can get at it.
 	//make a pesterchum skin and stick text into it. How much can I fit?
 	//describe what land is like "It's full of...Peace", get word that isn't 'Land', 'of' or 'and'.
 	this.chat = function(div){
@@ -25,27 +25,28 @@ function Intro(){
 		var player2 = player1.getBestFriendFromList(players);
 		if(player2 == null){
 			player2 = player1.getWorstEnemyFromList(players);
-			
+
 		}
 		if(player2 == null){
 			return; //give up, forever alone.
-			
+
 		}
-		
+
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
-		
+
 		var chatText = player1Start+ player1.quirk.translate("Hey, I'm in the medium!\n");
 		chatText += player2Start + player2.quirk.translate("Good, what's it like?\n");
 		chatText += player1Start + player1.quirk.translate("It's the " + player1.land +"\n");
 		chatText += player1Start + player1.quirk.translate("So, like, full of <TODO PARSE ONE WORD OF LAND>\n");
 		chatText += player2Start + player2.quirk.translate("lol\n");
 		chatText += player2Start + player2.quirk.translate("<Don't forget to change dialog based on relationships> <or classpect?><light players could be all 'oh, so you're an x player?'>\n");
+    chatText += player1Start + player1.quirk.translate("Yes. Or no. I'm not sure. I don't know. \n");
 		//TODO change text based on p1 and p2 relationships.  and vice versa. p1 is all flirty, p2 is a dick. yeeeessss.....
 		//var spriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
 		drawChat(document.getElementById("canvas"+ (div.attr("id"))), player1, player2, chatText, repeatTime);
 	}
-	
+
 	//i is so you know entry order
 	this.renderContent = function(div,i){
 		var narration = "<br>The " + this.player.htmlTitle() + " enters the game " + indexToWords(i) + ". ";
@@ -56,7 +57,7 @@ function Intro(){
 			narration += " They appear to be destined for greatness. ";
 		}
 		narration += " They boggle vacantly at the " + this.player.land + ". ";
-		
+
 		for(var j = 0; j<this.player.relationships.length; j++){
 			var r = this.player.relationships[j];
 			if(r.type() != "Friends" && r.type() != "Rivals"){
@@ -66,7 +67,7 @@ function Intro(){
 		div.append(narration);
 		this.chat(div);
 	}
-	
+
 	this.content = function(div, i){
 		var ret = " TODO: Figure out what a non 2.0 version of the Intro scene would look like. "
 		div.append(ret);

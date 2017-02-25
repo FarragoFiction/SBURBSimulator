@@ -250,6 +250,8 @@ function randomHumanSim(){
 	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(greeting_quirks));
 	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(dude_quirks));
 	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(curse_quirks));
+	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(yes_quirks));
+	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(no_quirks));
 	//smileys have special characters, do later
 	//ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(smiley_quirks));
 
