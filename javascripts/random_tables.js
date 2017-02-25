@@ -156,7 +156,35 @@ function getLevelFromFree(){
 }
 
 function getLevelFromInterests(i, interest){
-  return "interests: " + interest
+	if(music_interests.indexOf(interest) != -1){
+			return getRandomElementFromArray(music_levels)
+	}else if (culture_interests.indexOf(interest) != -1){
+			return getRandomElementFromArray(culture_levels)
+	}else if (writing_interests.indexOf(interest) != -1){
+			return getRandomElementFromArray(writing_levels)
+	}else if (pop_culture_interests.indexOf(interest) != -1){
+			return getRandomElementFromArray(pop_culture_levels)
+	}else if (technology_interests.indexOf(interest) != -1){
+			return getRandomElementFromArray(technology_levels)
+	}else if (social_interests.indexOf(interest) != -1){
+			return getRandomElementFromArray(social_levels)
+	}else if (romantic_interests.indexOf(interest) != -1){
+			return getRandomElementFromArray(romantic_levels)
+	}else if (academic_interests.indexOf(interest) != -1){
+			return getRandomElementFromArray(academic_levels)
+	}else if (comedy_interests.indexOf(interest) != -1){
+			return getRandomElementFromArray(comedy_levels)
+	}else if (domestic_interests.indexOf(interest) != -1){
+			return getRandomElementFromArray(domestic_levels)
+	}else if (athletic_interests.indexOf(interest) != -1){
+			return getRandomElementFromArray(athletic_levels)
+	}else if (terrible_interests.indexOf(interest) != -1){
+			return getRandomElementFromArray(terrible_levels)
+	}else if (fantasy_interests.indexOf(interest) != -1){
+			return getRandomElementFromArray(fantasy_levels)
+	}else if (justice_interests.indexOf(interest) != -1){
+			return getRandomElementFromArray(justice_levels)
+	}
 }
 function getLevelFromAspect(i, aspect){
 	//console.log("looking for level from aspect, i is " + i);
@@ -411,6 +439,21 @@ var witch_levels = ["WESTWORD WORRYBITER","BUBBLETROUBLER","EYE OF GRINCH"];
 var seer_levels = ["SEEING iDOG","PIPSQUEAK PROGNOSTICATOR","SCAMPERVIEWER 5000"];
 
 var free_levels = ["NIPPER CADET","PESKY URCHIN","BRAVESPROUT","JUVESQUIRT","RUMPUS BUSTER","CHAMP-FRY","ANKLEBITER","CALLOUSED TENDERFOOT","RASCALSPRAT","GRITTY MIDGET","BRITCHES RIPPER","ALIEN URCHIN"]
+//only need two for each. since each player has two interests, combines to 4
+var music_levels = ["SINGING SCURRYWORT","MUSICAL MOPPET"];
+var culture_levels = ["APPRENTICE ARTIST","CULTURE BUCKAROO"];
+var writing_levels = ["SHAKY SHAKESPEARE","QUILL RUINER"];
+var pop_culture_levels = ["TRIVIA SMARTYPANTS","NIGHTLY NABBER"];
+var technology_levels = ["HURRYWORTH HACKER","CLANKER CURMUDGEON"];
+var social_levels = ["FRIEND-TO-ALL","FRIEND COLLECTOR"];
+var romantic_levels = ["QUESTING CUPID","ROMANCE EXPERT"];
+var academic_levels = ["NERDY NOODLER","SCAMPERING SCIENTIST"];
+var comedy_levels = ["PRATFALL PRIEST","BEAGLE PUSS DARTABOUT"];
+var domestic_levels = ["BATTERBRAT","GRITTY GUARDIAN"];
+var athletic_levels = ["MUSCLES HOARDER","BODY BOOSTER"];
+var terrible_levels = ["ENEMY #1","JERKWAD JOURNEYER"];
+var fantasy_levels = ["FAKEY FAKE LOVER","FANTASTIC DREAMER"];
+var justice_levels = ["JUSTICE JUICER","BALANCE RUMBLER"];
 
 var space_quests = ["messing with a variety of frogs that were previously paradox cloned"];
 space_quests.push("paradox cloning a variety of frogs, after making a serious note to mess with them later");
@@ -547,24 +590,27 @@ seaLususTypes = seaLususTypes.concat(["Dive Beast", "Honkbird", "Sea Bear", "Sea
 
 interests = []
 
-var music_interests = ["Rap","Music","Song Writing","Musicals","Dance"];
-var culture_interests = ["Drawing","Painting","Documentaries","Writing","Fan Art", "Fan Fiction","Graffiti","Fashion","Theater","Fine Art", "Literature","Books", "Movie Making", "Script Writing"];
+var music_interests = ["Rap","Music","Song Writing","Musicals","Dance", "Singing"];
+var culture_interests = ["Drawing","Painting","Documentaries","Fan Art" ,"Graffiti","Fashion","Theater","Fine Art", "Literature","Books", "Movie Making"];
+var writing_interests = ["Writing", "Fan Fiction","Script Writing"];
 var pop_culture_interests = ["Action Movies", "Superheroes", "Supervillains", "Video Games", "Movies", "Television"];
-var technology_interests = ["Programming", "Hacking","Robots","Artificial Intelligence"];
-var social_interests = ["Religion","Animal Training", "Pets","Animals","Girls", "Boys","Romance","Social Justice","Online Roleplaying", "Live Action Roleplaying","Tabletop Roleplaying", "Role Playing","Social Media", "Relationships"];
+var technology_interests = ["Programming", "Hacking","Robots","Artificial Intelligence", "Engineering"];
+var social_interests = ["Religion","Animal Training", "Pets","Animals","Online Roleplaying", "Live Action Roleplaying","Tabletop Roleplaying", "Role Playing","Social Media"];
+var romantic_interests = ["Girls", "Boys","Romance","Relationships", "Love", "Romantic Comedies"];
 var academic_interests = ["Knowledge","Physics", "Biology", "Chemistry","Geneology","Science","Molecular Gastronomy","Model Trains","Politics","Geography", "Cartography","Typography"];
-var comedy_interests = ["Pranks","Comedy"];
+var comedy_interests = ["Pranks","Comedy", "Jokes", "Puns", "Stand-up Comedy"];
 var domestic_interests = ["Meditation","Babies","Peace","Knitting","Cooking", "Baking","Gardening", "Crochet", "Scrapbooking"];
 var athletic_interests = ["Astronomy","Yoga","Fitness", "Sports","Boxing", "Track and Field", "Swimming"];
 var terrible_interests = ["Money","Violence", "Death","Animal Fights","Insults","Hoarding","Status","Racism", "Online Trolling","Cultural Appropriation"];
 var fantasy_interests = ["Humans", "Trolls", "Science Fiction", "Fantasy","Ninjas","Aliens","Conspiracies","Faeries", "Elves", "Vampires", "Undead"];
-var justice_interests = ["Detectives","Mysteries","Leadership","Revolution","Justice","Equality"]
-var misc_interests = [];
+var justice_interests = ["Social Justice","Detectives","Mysteries","Leadership","Revolution","Justice","Equality"]
 interests = interests.concat(music_interests);
 interests = interests.concat(culture_interests);
+interests = interests.concat(writing_interests);
 interests = interests.concat(pop_culture_interests);
 interests = interests.concat(technology_interests);
 interests = interests.concat(social_interests);
+interests = interests.concat(romantic_interests);
 interests = interests.concat(academic_interests);
 interests = interests.concat(comedy_interests);
 interests = interests.concat(domestic_interests);
@@ -572,7 +618,7 @@ interests = interests.concat(athletic_interests);
 interests = interests.concat(terrible_interests);
 interests = interests.concat(fantasy_interests);
 interests = interests.concat(justice_interests);
-interests = interests.concat(misc_interests);
+
 
 var prefixes = ["8=D",">->","//", "tumut",")","><>","(", "$", "?", "=begin", "=end"]
 prefixes = prefixes.concat(["<3","<3<","<>","c3<","{","}","[","]","'",".",",","~","!","~","^","&","#","@","%","*"]);
