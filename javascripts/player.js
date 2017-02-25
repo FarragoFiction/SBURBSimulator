@@ -1,13 +1,17 @@
-function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, interests, chat_handle){
+function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, chat_handle){
 	this.class_name = class_name;
 	this.chatHandle = chat_handle;
 	this.aspect = aspect;
-	this.land = land; //TODO maybe separate this out. lands can be in charge of quests?
+	this.land = land;
+	this.interest1 = getRandomElementFromArray(interests);
+	this.interest2 = getRandomElementFromArray(interests);
 	this.kernel_sprite = kernel_sprite;
 	this.relationships = [];
 	this.moon = moon;
 	this.power = 1;
 	this.leveledTheHellUp = false; //triggers level up scene.
+	this.mylevels = getLevelArray(this);//make them ahead of time for echeladder graphic
+	this.level_index = 0; //what level AM I?
 	this.godTier = false;
 	this.hair = getRandomInt(1,34);
 	//this.hair = 16;
@@ -41,7 +45,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, inter
 	this.chatHandleShort = function(){
 		return this.chatHandle.match(/\b(\w)|[A-Z]/g).join('').toUpperCase();
 	}
-	
+
 	this.chatHandleShortCheckDup = function(otherHandle){
 		var tmp= this.chatHandle.match(/\b(\w)|[A-Z]/g).join('').toUpperCase();
 		if(tmp == otherHandle){
@@ -49,8 +53,8 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, inter
 		}
 		return tmp;
 	}
-	
-	
+
+
 	this.title = function(){
 		var ret = "";
 
@@ -70,7 +74,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, inter
 		ret+= this.class_name + " of " + this.aspect;
 		return ret;
 	}
-	
+
 	this.titleBasic = function(){
 		var ret = "";
 
@@ -78,14 +82,20 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, inter
 		return ret;
 	}
 
-
+	//old method from 1.0
 	this.getRandomLevel = function(){
 		if(Math.random() > .5){
 			return getRandomLevelFromAspect(this.aspect);
 		}else{
 			return getRandomLevelFromClass(this.class_name);
 		}
+	}
 
+//new method having to pick 16 levels before entering the medium
+	this.getNextLevel = function(){
+		var ret= this.mylevels[this.level_index];
+		this.level_index ++;
+		return ret;
 	}
 
 	this.getRandomQuest = function(){
@@ -171,7 +181,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, inter
 	this.htmlTitle = function(){
 		return getFontColorFromAspect(this.aspect) + this.title() + "</font>"
 	}
-	
+
 	this.htmlTitleBasic = function(){
 		return getFontColorFromAspect(this.aspect) + this.titleBasic() + "</font>"
 	}
@@ -276,7 +286,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, inter
 		}
 		return ret;
 	}
-	
+
 	this.getChatFontColor = function(){
 		if(this.isTroll){
 			return this.bloodColor;
@@ -419,11 +429,8 @@ function randomPlayerWithClaspect(c,a){
 	}
 	var m = getRandomElementFromArray(moons);
 
-	var i1 = getRandomElementFromArray(interests);
-	var i2 = getRandomElementFromArray(interests);
-	var i = i1 + " and " + i2; 
 	var ch = getRandomChatHandle(c,a);;
-	return new Player(c,a,l,k,m,gd, i,ch);
+	return new Player(c,a,l,k,m,gd,ch);
 }
 function randomPlayer(){
 	//remove class AND aspect from available

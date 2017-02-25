@@ -36,6 +36,38 @@ function getDenizenFromAspect(aspect){
 	return "ERROR 404: Denizen Not Found"//it will be HILARIOUS if this ever prints out.
 }
 
+//use class,aspect, and interests to generate a 16 element level array.
+//need to happen ahead of time and have more variety to display on
+//echeladder graphic.
+function getLevelArray(player){
+	var ret = [];
+	/*
+	first element is first element in class,
+	second is first element in aspect
+	third is first element in interests (condense interests into categories)
+	fourth is just straight up random.
+	so...modulo.
+	*/
+	for(var i = 0; i<16; i++){
+			if(i%4 == 0 && i< 12){
+				//get the i/4th element from the class level array.
+				//if i =4, would get element 1. if i = 12, would get element 3.
+				ret.push(getLevelFromClass(Math.round(i/4), player.class_name))
+			}else if(i%4 == 1  && i< 12){
+				ret.push(getLevelFromAspect(Math.round(i/4), player.aspect))
+			}else if(i%4==2 || i> 12){
+				if(i<8){
+					ret.push(getLevelFromInterests(Math.round(i/4), player.interest1))
+				}else{
+					ret.push(getLevelFromInterests(Math.round(i/4), player.interest2))
+				}
+			}else if(i%4 == 3){
+				ret.push(getLevelFromFree()); //don't care about repeats here. should be long enough.
+			}
+	}
+	return ret;
+}
+
 function getRandomLandFromAspect(aspect){
 	var first_arr = [];
 	if(aspect == "Space"){
@@ -94,7 +126,7 @@ function getRandomChatHandle(class_name, aspect){
 	}else if(aspect == "Life"){
 		first_arr = life_handles;
 	}
-	
+
 	var second_arr = [];
 	if(class_name == "Maid"){
 		second_arr = maid_handles;
@@ -125,8 +157,15 @@ function getRandomChatHandle(class_name, aspect){
 	return tmp[0]  + tmp[1];
 }
 
-function getRandomLevelFromAspect(aspect){
-	//console.log("looking for level from aspect");
+function getLevelFromFree(){
+	return "TODO"
+}
+
+function getLevelFromInterests(i, interest){
+  return "interests"
+}
+function getLevelFromAspect(i, aspect){
+	//console.log("looking for level from aspect, i is " + i);
 	var first_arr = [];
 	if(aspect == "Space"){
 		first_arr = space_levels;
@@ -153,10 +192,11 @@ function getRandomLevelFromAspect(aspect){
 	}else if(aspect == "Life"){
 		first_arr = life_levels;
 	}
-	return getRandomElementFromArray(first_arr);
+	//console.log("found: " + first_arr[i])
+	return first_arr[i];
 }
 
-function getRandomLevelFromClass(class_name){
+function getLevelFromClass(i,class_name){
 	//console.log("looking for level from class");
 	var first_arr = [];
 	if(class_name == "Maid"){
@@ -184,7 +224,7 @@ function getRandomLevelFromClass(class_name){
 	}else if(class_name == "Witch"){
 		first_arr = witch_levels;
 	}
-	return getRandomElementFromArray(first_arr);
+	return first_arr[i];
 }
 
 function getRandomQuestFromAspect(aspect){
@@ -535,7 +575,6 @@ var greeting_quirks = [["hey", "hey"],["hey", "hi"],["hey", "hello"],["hey", "gr
 var dude_quirks = [["dude","guy"], ["dude","guy"],["dude","man"],["dude","you"],["dude","friend"],["dude","asshole"],["dude","fella"],["dude","bro"]];
 var curse_quirks = [["fuck", "fuck"],["fuck", "shit"],["fuck", "cocks"],["fuck", "nope"],["fuck", "goddammit"],["fuck", "damn it"],["fuck", "..."],["fuck", "...great."]];
 var smiley_quirks = [[":)", ":)"],[":)", ":0)"],[":)", ":]"],[":)", ":B"],[":)", ">: ]"]];
-console.log("TODO figure out how to make conversational quirks ignore case");
 
 
 
@@ -567,6 +606,3 @@ var hope_handles = ["Honcho","Humorist","Horse","Haberdasher","Hooligan"];
 var life_handles = ["Leader","Lecturer","Liason","Loyalist","Lyricist"];
 
 var human_hair_colors = ["#68410a","#000000","#000000","#000000","#f3f28d","#cf6338","#feffd7","#fff3bd","#724107","#382207","#ff5a00","#3f1904","#ffd46d","#473200","#91683c"];
-
-
-

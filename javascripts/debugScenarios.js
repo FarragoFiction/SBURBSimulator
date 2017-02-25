@@ -1,3 +1,13 @@
+function debugLevelTheHellUp(){
+	for(var j = 0; j<players.length; j++){
+		players[j].leveledTheHellUp = true;
+	}
+	var s = new LevelTheHellUp();
+	if(s.trigger(players)){
+		$("#story").append(s.content()+ "<br><br> ");
+	}
+}
+
 function generateDebugPlayers1(){
 	//Player(class_name, aspect, land, kernel_sprite, moon)
 	players.push(new Player("Knight", "Time", "Land of Headbanging and Stress", "Bugs", "Prospit", true));
@@ -8,7 +18,7 @@ function generateDebugPlayers1(){
 	players.push(new Player("Witch", "Light", "Land of Bugs and More Bugs", "First Guardian", "Derse",false));
 	players.push(new Player("Thief", "Hope", "Land of Why and Serious", "Debug", "Derse",false));
 	players.push(new Player("Rogue", "Heart", "Land of Flipping and Shit", "Spray", "Derse",false));
-	
+
 	for(var j = 0; j<players.length; j++){
 		players[j].generateRelationships(players);
 	}
@@ -21,7 +31,7 @@ function generateVoidLeader(){
 	players.push(new Player("Seer", "Time", "Land of Nothing and More Nothing", "Frog", "Prospit", true));
 	players.push(new Player("Mage", "Mind", "Land of Slides and Whistles", "Lame", "Prospit", false));
 	players.push(new Player("Thief", "Hope", "Land of Why and Serious", "Debug", "Derse",false));
-	
+
 	for(var j = 0; j<players.length; j++){
 		players[j].generateRelationships(players);
 	}
@@ -36,7 +46,7 @@ function generateDebugBloodPlayers(){
 	players.push(new Player("Witch", "Space", "Land of Bugs and More Bugs", "First Guardian", "Derse",false));
 	players.push(new Player("Thief", "Time", "Land of Why and Serious", "Debug", "Derse",false));
 	players.push(new Player("Rogue", "Blood", "Land of Flipping and Shit", "Spray", "Derse",false));
-	
+
 	for(var j = 0; j<players.length; j++){
 		players[j].generateRelationships(players);
 	}
@@ -51,7 +61,7 @@ function generateDebugRagePlayers(){
 	players.push(new Player("Witch", "Space", "Land of Bugs and More Bugs", "First Guardian", "Derse",false));
 	players.push(new Player("Thief", "Time", "Land of Why and Serious", "Debug", "Derse",false));
 	players.push(new Player("Rogue", "Rage", "Land of Flipping and Shit", "Spray", "Derse",false));
-	
+
 	for(var j = 0; j<players.length; j++){
 		players[j].generateRelationships(players);
 	}
@@ -71,7 +81,7 @@ function generateDebugAllPlayers(){
 	players.push(new Player("Prince", "Breath", "Land of Here and There", "Beer", "Derse",true));
 	players.push(new Player("Bard", "Heart", "Land of Fake and Magic", "Nonsense", "Prospit",true));
 
-	
+
 	for(var j = 0; j<players.length; j++){
 		players[j].generateRelationships(players);
 	}
@@ -90,7 +100,7 @@ function voidLeaderInit(){
 	available_aspects = nonrequired_aspects;
 	//generateDebugPlayers1();
 	generateVoidLeader();
-	
+
 
 }
 

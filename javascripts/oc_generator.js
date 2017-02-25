@@ -5,21 +5,21 @@ window.onload = function() {
 	makeClassDropDown();
 	makeSpeciesDropDown();
 	 $('#godTier').attr('checked','checked');
-	 
+
 	 $('#godTier').change(function() {
 	 	console.log("change");
 		 for(var i = 0; i<players.length; i++){
 			 players[i].godTier = !players[i].godTier;
 		 }
 		 drawSpriteAll();
-	 });	 
+	 });
   reroll();
 }
 function reroll(){
 	makePlayers();
 	//describe();
  	drawSpriteAll();
-	
+
 
 }
 
@@ -35,18 +35,18 @@ function drawSpriteAll(){
 	for(var i = 0; i<players.length; i++){
 	  makeBG(document.getElementById("canvas"+(i+1)));
       drawSprite(document.getElementById("canvas"+(i+1)), players[i],1000);
-	  writeToCanvas(document.getElementById("canvas"+(i+1)), players[i]); 
+	  writeToCanvas(document.getElementById("canvas"+(i+1)), players[i]);
 	  //makeWriteDataURL("canvas"+(i+1) )//for writing data.  too early to do it here, might not see full render
 	}
-	
+
 	setTimeout(function(){
 		//drawSpriteAll(); //drawing sprites the first time will handle this.
 		for(var i = 0; i<players.length; i++){
-			makeWriteDataURL("canvas"+(i+1) )//for writing data. 
+			makeWriteDataURL("canvas"+(i+1) )//for writing data.
 	}
 		renderDownloadURLs();
 	}, 1000);  //images aren't always loaded by the time i try to draw them the first time.
-	
+
 }
 
 function makeWriteDataURL(canvasId){
@@ -80,10 +80,11 @@ function writeToCanvas(canvas, player,canvasId){
 	//interests
 	ctx.font = "18px Times New Roman"
 	ctx.fillStyle = "#000000"
-	ctx.fillText("Interests: " + player.interests,left_margin,current + space_between_lines*2);
+	var interests = player.interest1 + " and " + player.interest2;
+	ctx.fillText("Interests: " + interests,left_margin,current + space_between_lines*2);
 
 	ctx.fillText("Chat Handle: " + player.chatHandle,left_margin,current + space_between_lines*3);
-	
+
 	ctx.fillText("Guardian: " + player.lusus,left_margin,current + space_between_lines*4);
 
 	ctx.fillText("Land: " + player.land,left_margin,current + space_between_lines*5);
@@ -94,9 +95,9 @@ function writeToCanvas(canvas, player,canvasId){
 	//ctx.fillText("Quirk: " + player.quirk.rawStringExplanation(),left_margin,current + space_between_lines*6);
 	var text2 = player.quirk.translate(" The quick brown fox (named Lacy) jumped over the lazy dog (named Barkey) over 1234567890 times for reasons. It sure was exciting! I wonder why he did that? Was he going to be late? I wonder....I guess we'll just have to wait and see.");
 	var color2 = player.getChatFontColor();
-	
+
 	fillTextMultiLine(canvas, "Quirk: " + player.quirk.rawStringExplanation() + "\n \n Sample: \n", text2, color2, left_margin, current + space_between_lines*7);
-	
+
 
       // set canvasImg image src to dataURL
       // so it can be saved as an image
@@ -259,7 +260,7 @@ function makePlayers(){
 		}else{
 			p.godTier = false;
 		}
-		
+
 		decideTroll(p);
 		players.push(p);
 	}

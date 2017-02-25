@@ -1,7 +1,7 @@
 function LevelTheHellUp(){
-	this.canRepeat = true;	
+	this.canRepeat = true;
 	this.playerList = [];  //what players are already in the medium when i trigger?
-	
+
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		for(var i = 0; i<playerList.length; i++){  //can happen even after death, because why not?
@@ -12,7 +12,7 @@ function LevelTheHellUp(){
 		}
 		return false;
 	}
-	
+
 	this.getBoonies = function(p){
 		var num = + p.power * 15;
 		var denomination = " BOONDOLLARS";
@@ -33,19 +33,21 @@ function LevelTheHellUp(){
 		num += Math.floor(Math.random()*75);
 		return num + denomination;
 	}
-	
+
 	this.content = function(){
 		var ret = "";
 		for(var i = 0; i<this.playerList.length; i++){
 			var p = this.playerList[i];
 			if(p.leveledTheHellUp){
-				var levelName = p.getRandomLevel();
-				ret += " The " + p.htmlTitle();
-				if(p.dead){
-					ret += "'s corpse "
-				}
-				ret += " skyrockets up the ECHELADDER to a new rung: " + levelName;
-				ret +=	" and earns " + this.getBoonies(p) + ". ";
+				var levelName = p.getNextLevel(); //could be undefined
+				if(levelName){
+					ret += " The " + p.htmlTitle();
+					if(p.dead){
+						ret += "'s corpse "
+					}
+					ret += " skyrockets up the ECHELADDER to a new rung: " + levelName;
+					ret +=	" and earns " + this.getBoonies(p) + ". ";
+			}
 				p.leveledTheHellUp = false;
 			}
 		}

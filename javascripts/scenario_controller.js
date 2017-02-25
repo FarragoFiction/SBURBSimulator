@@ -6,7 +6,7 @@ var jackStrength = 50;
 var hardStrength = 250;  //what consititutes a  'hard' game.
 var democracyStrength = 0;
 var queenUncrowned = false;  //if she loses her ring, she doesn't get stronger with further prototypes
-var reckoningStarted = false; //can't god tier if you are definitely on skaia. 
+var reckoningStarted = false; //can't god tier if you are definitely on skaia.
 var ectoBiologyStarted = false;
 var doomedTimeline = false;
 var debugMode = false;
@@ -18,30 +18,37 @@ window.onload = function() {
 	if(!debugMode){
 		randomizeEntryOrder();
 	}
-	introducePlayers();
-	
-	//TODO random tick until reckoning. 
-	
-	//experiment with shorter sessions. does it make the chance of failure greater? don't want so many words.
-	//max of 50 is enough, 30 seems to not let good ending happen?
-	for(var i = 0; i<getRandomInt(10,30); i++){
-		if(!doomedTimeline){ //TODO (if it's a doomed timeline, figure out why and prevent it (did leader permadie without ectobiology happening or last player entering?)
-			tick();
-		}
-	}
-	
-	introduceReckoning();
-	reckoningStarted = true; 
-	//all reckonings are the same length???
-	for(var i = 0; i<10; i++){
-		if(!doomedTimeline){
-			reckoningTick();
-		}
-	}
-	
-	if(!doomedTimeline){
-		conclusion();
-	}
+
+  if(!debugMode){
+  	introducePlayers();
+
+  	//TODO random tick until reckoning.
+
+  	//experiment with shorter sessions. does it make the chance of failure greater? don't want so many words.
+  	//max of 50 is enough, 30 seems to not let good ending happen?
+  	for(var i = 0; i<getRandomInt(10,30); i++){
+  		if(!doomedTimeline){ //TODO (if it's a doomed timeline, figure out why and prevent it (did leader permadie without ectobiology happening or last player entering?)
+  			tick();
+  		}
+  	}
+
+  	introduceReckoning();
+  	reckoningStarted = true;
+  	//all reckonings are the same length???
+  	for(var i = 0; i<10; i++){
+  		if(!doomedTimeline){
+  			reckoningTick();
+  		}
+  	}
+
+  	if(!doomedTimeline){
+  		conclusion();
+  	}
+}else{
+  debugLevelTheHellUp();
+  debugLevelTheHellUp();
+  debugLevelTheHellUp();
+}
 
 };
 
@@ -63,11 +70,11 @@ function init(){
 	var numPlayers = getRandomInt(2,12);
 	players.push(randomSpacePlayer());
 	players.push(randomTimePlayer());
-	
+
 	for(var i = 2; i<numPlayers; i++){
 		players.push(randomPlayer());
 	}
-	
+
 	for(var j = 0; j<players.length; j++){
 		players[j].generateRelationships(players);
 	}
@@ -111,7 +118,7 @@ function introduceReckoning(){
 		doomedTimeline = true;
 		intro += "<br><br>";
 		$("#story").append(intro);
-		return intro; 
+		return intro;
 	}
 	var living = findLivingPlayers(players);
 	if(living.length > 0){
@@ -149,8 +156,8 @@ function conclusion(){
 				end += democracyBonus();
 				end += " <Br><br> The door to the new universe is revealed. Everyone files in. <Br><Br> Thanks for Playing. ";
 			}
-			
-			
+
+
 		}else{
 			end += "Unfortunately, the " + spacePlayer.htmlTitle() + " was unable to complete frog breeding duties. ";
 			end += " They only got " + (spacePlayer.landLevel/10*100) + "% of the way through. ";
@@ -166,7 +173,7 @@ function conclusion(){
 	var strongest = findStrongestPlayer(players)
 	end += "The MVP of the session was: " + strongest.htmlTitle() + " with a power of: " + strongest.power;
 	$("#story").append(end);
-	
+
 }
 
 function democracyBonus(){
@@ -203,7 +210,7 @@ function mournDead(){
 	}else{
 		ret += " The consorts and Carpacians both Prospitian and Dersite alike mourn their fallen heroes. ";
 	}
-	
+
 	for(var i = 0; i< dead.length; i++){
 		var p = dead[i];
 		ret += " The " + p.htmlTitle() + " died " + p.causeOfDeath + ". ";
@@ -217,7 +224,7 @@ function mournDead(){
 	}
 	ret += "<Br><Br>"
 	return ret;
-	
+
 }
 
 function introducePlayers(){
@@ -233,7 +240,7 @@ function introducePlayers(){
 			intro += " They appear to be destined for greatness. ";
 		}
 		intro += " They boggle vacantly at the " + p.land + ". ";
-		
+
 		for(var j = 0; j<p.relationships.length; j++){
 			var r = p.relationships[j];
 			if(r.type() != "Friends" && r.type() != "Rivals"){
@@ -285,13 +292,13 @@ function isThereMeetup(playersInMedium){
 			}else if(r2.value < 0){
 				meetup += " The " + you.htmlTitle() + " shows up at "  + me.shortLand() + " to brag about their higher levels. ";
 			}else{
-				meetup += " The " + you.htmlTitle() + " wanders over to " + me.shortLand() + " on accident. "; 
+				meetup += " The " + you.htmlTitle() + " wanders over to " + me.shortLand() + " on accident. ";
 			}
-			
+
 			meetup += getRelationshipFlavorText(r1,r2, me, you);
-			
+
 			return meetup; //only one meetup per intro
-			
+
 		}
 	}
 	return meetup;

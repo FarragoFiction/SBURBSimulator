@@ -1,12 +1,12 @@
-//knows about all scene classes. 
+//knows about all scene classes.
 
-//gets called by the scenario_controller with a list of players in the medium. 
+//gets called by the scenario_controller with a list of players in the medium.
 //generates a list of scenes to happen 'now' with these players.
-//not all players have to get a scene, and no player can have more than one scene. 
+//not all players have to get a scene, and no player can have more than one scene.
 
 //blood and page players most likely to get scenes with other people.
 //blood players slightly improve all relationships a friend has when they see them.
-var availablePlayers = [];  //which players are available for scenes or whatever. 
+var availablePlayers = [];  //which players are available for scenes or whatever.
 var scenes = [new StartDemocracy(), new JackBeginScheming(), new KingPowerful(), new QueenRejectRing(), new JackPromotion(), new JackRampage(), new GiveJackBullshitWeapon()];
 //relationship drama has a high priority because it can distract a session from actually making progress. happened to universe a trolls.
 scenes = scenes.concat([new RelationshipDrama(), new BeTriggered(), new EngageMurderMode(), new GoGrimDark(), new MurderPlayers(), new DisengageMurderMode()]);
@@ -17,7 +17,7 @@ scenes = scenes.concat([new SolvePuzzles(), new ExploreMoon()]);
 
 scenes = scenes.concat([new LevelTheHellUp()]);
 
-//make sure kiss, then godtier, then godtierrevival, then any other form of revival. 
+//make sure kiss, then godtier, then godtierrevival, then any other form of revival.
 var deathScenes = [ new SaveDoomedTimeLine(), new CorpseSmooch(), new GetTiger(), new GodTierRevival()];  //are always available.
 var reckoningScenes = [new FightQueen(), new FightKing()];
 
@@ -52,7 +52,7 @@ function processReckoning(playerList){
 			ret += s.content() + " <br><br> ";
 		}
 	}
-	
+
 	for(var i = 0; i<deathScenes.length; i++){
 		var s = deathScenes[i];
 		if(s.trigger(playerList)){
@@ -88,7 +88,7 @@ function processScenes(playerList){
 			}
 		}
 	}
-	
+
 	for(var i = 0; i<deathScenes.length; i++){
 		var s = deathScenes[i];
 		if(s.trigger(playerList)){
@@ -97,8 +97,8 @@ function processScenes(playerList){
 			ret += s.content() + " <br><br> ";
 		}
 	}
-	
-	
-	
+
+
+
 	return ret;
 }
