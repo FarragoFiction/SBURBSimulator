@@ -53,7 +53,8 @@ function getLevelArray(player){
 				if(i<8){
 					ret.push(getLevelFromInterests(Math.round(i/4), player.interest1))
 				}else{
-					ret.push(getLevelFromInterests(Math.round(i/4), player.interest2))
+					//only 0 and 2 are valid, so if 3 or 4, go backwards.
+					ret.push(getLevelFromInterests(Math.round((i-8)/4), player.interest2))
 				}
 			}else if(i%4 == 0 || i < 4){
 				ret.push(getLevelFromFree()); //don't care about repeats here. should be long enough.
@@ -157,33 +158,33 @@ function getLevelFromFree(){
 
 function getLevelFromInterests(i, interest){
 	if(music_interests.indexOf(interest) != -1){
-			return getRandomElementFromArray(music_levels)
+			return music_levels[i]
 	}else if (culture_interests.indexOf(interest) != -1){
-			return getRandomElementFromArray(culture_levels)
+			return culture_levels[i]
 	}else if (writing_interests.indexOf(interest) != -1){
-			return getRandomElementFromArray(writing_levels)
+			return writing_levels[i]
 	}else if (pop_culture_interests.indexOf(interest) != -1){
-			return getRandomElementFromArray(pop_culture_levels)
+			return pop_culture_levels[i]
 	}else if (technology_interests.indexOf(interest) != -1){
-			return getRandomElementFromArray(technology_levels)
+			return technology_levels[i]
 	}else if (social_interests.indexOf(interest) != -1){
-			return getRandomElementFromArray(social_levels)
+			return social_levels[i]
 	}else if (romantic_interests.indexOf(interest) != -1){
-			return getRandomElementFromArray(romantic_levels)
+			return romantic_levels[i]
 	}else if (academic_interests.indexOf(interest) != -1){
-			return getRandomElementFromArray(academic_levels)
+			return academic_levels[i]
 	}else if (comedy_interests.indexOf(interest) != -1){
-			return getRandomElementFromArray(comedy_levels)
+			return comedy_levels[i]
 	}else if (domestic_interests.indexOf(interest) != -1){
-			return getRandomElementFromArray(domestic_levels)
+			return domestic_levels[i]
 	}else if (athletic_interests.indexOf(interest) != -1){
-			return getRandomElementFromArray(athletic_levels)
+			return athletic_levels[i]
 	}else if (terrible_interests.indexOf(interest) != -1){
-			return getRandomElementFromArray(terrible_levels)
+			return terrible_levels[i]
 	}else if (fantasy_interests.indexOf(interest) != -1){
-			return getRandomElementFromArray(fantasy_levels)
+			return fantasy_levels[i]
 	}else if (justice_interests.indexOf(interest) != -1){
-			return getRandomElementFromArray(justice_levels)
+			return justice_levels[i]
 	}
 }
 function getLevelFromAspect(i, aspect){
