@@ -9,7 +9,7 @@ var queenUncrowned = false;  //if she loses her ring, she doesn't get stronger w
 var reckoningStarted = false; //can't god tier if you are definitely on skaia.
 var ectoBiologyStarted = false;
 var doomedTimeline = false;
-var debugMode = true;
+var debugMode = false;
 window.onload = function() {
     init();
 	//exileQueenInit();
