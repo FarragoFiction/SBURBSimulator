@@ -8,7 +8,6 @@ window.onload = function() {
 	 $('#godTier').attr('checked','checked');
 
 	 $('#godTier').change(function() {
-	 	console.log("change");
 		 for(var i = 0; i<players.length; i++){
 			 players[i].godTier = !players[i].godTier;
 		 }
@@ -212,7 +211,7 @@ function makeColorDropDown(){
 	var html = '<select name="color">'
   	html += '<option value="Any" selected = "selected">Any</option>'
 	for(var i = 0; i< bloodColors.length; i++){
-		html += '<option  style="background:'+bloodColors[i]+' value="' + bloodColors[i] + '" >' + bloodColors[i]+'</option>'
+		html += '<option  style="background:'+bloodColors[i]+'"" value="' + bloodColors[i] + '" >' + bloodColors[i]+'</option>'
 	}
 	html += '</select>'
 	$("#colorList").append(html);
