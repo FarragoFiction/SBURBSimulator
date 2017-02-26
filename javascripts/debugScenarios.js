@@ -3,8 +3,11 @@ function debugLevelTheHellUp(){
 		players[j].leveledTheHellUp = true;
 	}
 	var s = new LevelTheHellUp();
-	if(s.trigger(players)){
+	if(s.trigger(players) && !version2){
+		alert("v1 " + version2);
 		$("#story").append(s.content()+ "<br><br> ");
+	}else if (s.trigger(players) && version2){
+		s.renderContent(newScene());
 	}
 }
 

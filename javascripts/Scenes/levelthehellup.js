@@ -34,6 +34,47 @@ function LevelTheHellUp(){
 		return num + denomination;
 	}
 
+	this.renderForPlayer = function(div,player){
+		var narration = "";
+		var repeatTime = 1000;
+		var divID = (div.attr("id")) + "_" + player.chatHandle;
+		var narrationHTML = "<br><div id = 'narration" + divID + "'></div>";
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(narrationHTML);
+		div.append(canvasHTML);
+		var narrationDiv = $("#narration"+divID);
+		//different format for canvas code
+		var canvasDiv = document.getElementById("canvas"+ divID);
+		var levelName = player.getNextLevel(); //could be undefined
+		var boonies = this.getBoonies(player)
+		if(levelName){
+			narration += " The " + player.htmlTitle();
+			if(player.dead){
+				narration += "'s corpse "
+			}
+			narration += " skyrockets up the ECHELADDER to a new rung: " + levelName;
+			narration +=	" and earns " + boonies + ". ";
+		}
+		narrationDiv.append(narration);
+		//pause between characters, to give time to render.
+		setTimeout(function(){
+				drawLevelUp(canvasDiv, player,repeatTime)
+			}, repeatTime/2);  //images aren't always loaded by the time i try to draw them the first time.
+
+	}
+
+  //2.0 stuff
+	this.renderContent = function(div){
+      var narration = "";
+			for(var i = 0; i<this.playerList.length; i++){
+				var p = this.playerList[i];
+				if(p.leveledTheHellUp){
+					this.renderForPlayer(div, p);
+					p.leveledTheHellUp = false;
+				}
+			}
+	}
+
 	this.content = function(){
 		var ret = "";
 		for(var i = 0; i<this.playerList.length; i++){

@@ -44,7 +44,9 @@ function Intro(){
     chatText += player1Start + player1.quirk.translate("Yes. Or no. I'm not sure. I don't know. \n");
 		//TODO change text based on p1 and p2 relationships.  and vice versa. p1 is all flirty, p2 is a dick. yeeeessss.....
 		//var spriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
-		drawChat(document.getElementById("canvas"+ (div.attr("id"))), player1, player2, chatText, repeatTime);
+		setTimeout(function(){
+			drawChat(document.getElementById("canvas"+ (div.attr("id"))), player1, player2, chatText, repeatTime);
+		}, repeatTime*1.2);  //images aren't always loaded by the time i try to draw them the first time.
 	}
 
 	//i is so you know entry order

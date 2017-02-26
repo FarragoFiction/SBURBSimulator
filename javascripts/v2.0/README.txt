@@ -85,3 +85,4 @@ BUGS:
 confirm dead queens can't be exiled anymore
 
 best bug: "My witch of light entered murder mode somehow, killed two people, got resurrected, and then blamed the non-dream version of herself for the deaths as though they were a different person."
+SHOULD only blame their worst enemy, and shouldn't be your own worst enemy....hrrmrmmm

@@ -23,7 +23,8 @@ function hexToRgbA(hex){
     throw new Error('Bad Hex ' + hex);
 }
 
-
+//if speed becomes an issue, take in array of color pairs to swap out
+//rather than call this method once for each color
 //swaps one hex color with another.
 function swapColors(canvas, color1, color2){
   var oldc = hexToRgbA(color1);
@@ -98,7 +99,7 @@ function wings(canvas,player){
 
   swapColors(canvas, "#ff0000",player.bloodColor);
   swapColors50(canvas, "#00ff2a",player.bloodColor);
-  
+
 }
 
 function fins(canvas, player){
@@ -180,7 +181,7 @@ function start_loading_images(ctx, canvas, view)
     }
     img.src = url_for_image(view)+"&center"
 }
-//this one is slighlty more useful. instead of async, just asks if image is loaded or not. 
+//this one is slighlty more useful. instead of async, just asks if image is loaded or not.
 http://stackoverflow.com/questions/1977871/check-if-an-image-is-loaded-no-errors-in-javascript
 for now i'm okay with just waiting a half second, though.
 function imgLoaded(imgElement) {
@@ -188,6 +189,22 @@ function imgLoaded(imgElement) {
 }
 
 */
+
+//player on left, echeladder on right. text with boonies. all levels listed
+//obtained levels have a colored background, others have black.
+function drawLevelUp(canvas, player,repeatTime){
+  //for echeladder
+  var canvasSpriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
+  ctx = canvasSpriteBuffer.getContext('2d');
+
+  var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+	drawSprite(pSpriteBuffer,player,repeatTime)
+
+  setTimeout(function(){
+			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
+		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
+
+}
 
 //need to parse the text to figure out who is talking to determine color for chat.
 function drawChat(canvas, player1, player2, chat, repeatTime){
@@ -202,13 +219,13 @@ function drawChat(canvas, player1, player2, chat, repeatTime){
 	var width = img.width;
 	var height = img.height;
 	ctx.drawImage(img,0,0,width,height);
-	
+
 	var p1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 	drawSprite(p1SpriteBuffer,player1,repeatTime)
-	
+
 	var p2SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 	drawSpriteTurnways(p2SpriteBuffer,player2,repeatTime)
-	
+
 	//don't need buffer for text?
 	var textSpriteBuffer = getBufferCanvas(document.getElementById("chat_text_template"));
 	var introText = "-- " +player1.chatHandle + " [" + player1.chatHandleShort()+ "] began pestering ";
@@ -235,8 +252,8 @@ function drawChatText(canvas, player1, player2, introText, chat){
 	ctx.fillStyle = "#000000";
 	ctx.fillText(introText,left_margin*2,current);
 	//need custom multi line method that allows for differnet color lines
-	fillChatTextMultiLine(canvas, chat, player1, player2, left_margin, current+line_height*2); 
-	
+	fillChatTextMultiLine(canvas, chat, player1, player2, left_margin, current+line_height*2);
+
 }
 
 function drawBG(canvas, color1, color2){
@@ -392,7 +409,7 @@ function regularSprite(canvas, player){
 }
 
 function dreamerSprite(canvas, player){
-	
+
 }
 
 function godTierSprite(canvas, player){
@@ -556,7 +573,7 @@ function aspectPalletSwap(canvas, player){
   swapColors(canvas, oldcolor4, newcolor4)
   swapColors(canvas, oldcolor5, newcolor5)
   swapColors(canvas, oldcolor6, newcolor6)
- 
+
 }
 
 
@@ -699,7 +716,7 @@ function fillChatTextMultiLine(canvas, chat, player1, player2, x, y) {
  	for (var i = 0; i < lines.length; ++i) {
 		//does the text begin with player 1's chat handle short? if so: getChatFontColor
 		var ct = lines[i].trim();
-		
+
 		//check player 2 first 'cause they'll be more specific if they have same initials
 		if(ct.startsWith(player2Start)){
 			ctx.fillStyle = player2.getChatFontColor();

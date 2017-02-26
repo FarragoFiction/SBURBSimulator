@@ -6,7 +6,7 @@ var jackStrength = 50;
 var hardStrength = 250;  //what consititutes a  'hard' game.
 var democracyStrength = 0;
 var queenUncrowned = false;  //if she loses her ring, she doesn't get stronger with further prototypes
-var reckoningStarted = false; //can't god tier if you are definitely on skaia. 
+var reckoningStarted = false; //can't god tier if you are definitely on skaia.
 var ectoBiologyStarted = false;
 var doomedTimeline = false;
 var debugMode = false;
@@ -18,7 +18,7 @@ var canvasWidth = 1000;
 var canvasHeight = 300;
 var version2 = true;
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
-//every scene can update the narration, or the canvas. 
+//every scene can update the narration, or the canvas.
 //should there be only one canvas?  Can have player sprites be written to a virtual canvas first, then copied to main one.
 //main canvas is either Leader + PesterChumWindow + 1 or more Players (in chat or group chat with leader)
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
@@ -31,8 +31,10 @@ window.onload = function() {
 		randomizeEntryOrder();
 	}
 	//authorMessage();
+
 	intro();
-	//make a new intro scene that has characters talk about their lands with their best friends/worst enemies. 
+
+	//make a new intro scene that has characters talk about their lands with their best friends/worst enemies.
 	//refacor other scenario controller to use special scenes (not part of scene controller) rather than
 	//have messy internal methods.
 	//all other scenes are handled through the scene controller like normal, which will check if var version2 = true;
@@ -40,6 +42,19 @@ window.onload = function() {
 	debug("refactor old scenes to render themselves rather than return a string. If content() 1.0, if renderContent(), 2.0")
 	debug("oh, and update quirks so that players have a quirk for every main class. and they ignore case");
 	debug("Consider having ticks be a button press that clears the current story, rather than all at once. Only do this if too many canvases");
+  //really hangs if i call this 18 Times
+  //so...speed is definitely an issue for full experience.
+  //might want to wait a second between renders to see if that is the problem.
+  //or see if the problem is the number of canvases
+  //okay. putting a timeout between level ups helps. but the fact that multiple players
+  //level up at the same time, and all have their own canvases is a problem.
+  //pause inside of the level scene?
+  for(i=0;i<10;i++){
+    setTimeout(function(){
+  			debugLevelTheHellUp();
+  		}, 2000);  //images aren't always loaded by the time i try to draw them the first time.
+
+  }
 }
 
 function newScene(){
@@ -58,14 +73,14 @@ function authorMessage(){
 
 function intro(){
 	introScene = new Intro();
-	
+
 	for(var i = 0; i<players.length; i++){
 		var p = players[i];
 		introScene.trigger(players, p)
 		//$("#story").append(introScene.content());
 		introScene.renderContent(newScene(),i); //new scenes take care of displaying on their own.
 	}
-	
+
 }
 
 function randomizeEntryOrder(){
@@ -90,11 +105,11 @@ function init(){
 	var numPlayers = getRandomInt(2,12);
 	players.push(randomSpacePlayer());
 	players.push(randomTimePlayer());
-	
+
 	for(var i = 2; i<numPlayers; i++){
 		players.push(randomPlayer());
 	}
-	
+
 	players[0].hairColor = "#331200"
 	for(var j = 0; j<players.length; j++){
 		players[j].generateRelationships(players);
