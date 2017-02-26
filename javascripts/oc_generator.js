@@ -4,6 +4,7 @@ window.onload = function() {
 	makeAspectDropDown();
 	makeClassDropDown();
 	makeSpeciesDropDown();
+	makeColorDropDown();
 	 $('#godTier').attr('checked','checked');
 
 	 $('#godTier').change(function() {
@@ -162,7 +163,14 @@ function describe(){
 
 function decideHemoCaste(player){
 	if(player.aspect != "Blood"){  //sorry karkat
-		player.bloodColor = getRandomElementFromArray(bloodColors);
+		if($('[name="color"] option:selected').val() == "Any"){
+			player.bloodColor = getRandomElementFromArray(bloodColors);
+		}else{
+			//do i want blood color to be a drop down, too? can make bg the blood color?
+			player.bloodColor = $('[name="color"] option:selected').val();
+		}
+
+
 	}
 }
 
@@ -198,6 +206,16 @@ function decideTroll(player){
 	}else{
 		player.quirk = randomHumanQuirk();
 	}
+}
+
+function makeColorDropDown(){
+	var html = '<select name="color">'
+  	html += '<option value="Any" selected = "selected">Any</option>'
+	for(var i = 0; i< bloodColors.length; i++){
+		html += '<option  style="background:'+bloodColors[i]+' value="' + bloodColors[i] + '" >' + bloodColors[i]+'</option>'
+	}
+	html += '</select>'
+	$("#colorList").append(html);
 }
 
 function makeAspectDropDown(){
