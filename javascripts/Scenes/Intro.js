@@ -34,16 +34,40 @@ function Intro(){
 
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
-
-		var chatText = player1Start+ player1.quirk.translate("Hey, I'm in the medium!\n");
-		chatText += player2Start + player2.quirk.translate("Good, what's it like?\n");
-		chatText += player1Start + player1.quirk.translate("It's the " + player1.land +"\n");
-		chatText += player1Start + player1.quirk.translate("So, like, full of <TODO PARSE ONE WORD OF LAND>\n");
-		chatText += player2Start + player2.quirk.translate("lol\n");
-		chatText += player2Start + player2.quirk.translate("<Mention prototyping. Don't forget to change dialog based on relationships> <or classpect?><light players could be all 'oh, so you're an x player?'>\n");
-    chatText += player1Start + player1.quirk.translate("Yes. Or no. I'm not sure. I don't know. \n");
-		//TODO change text based on p1 and p2 relationships.  and vice versa. p1 is all flirty, p2 is a dick. yeeeessss.....
-		//var spriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
+		var r1 = player1.getRelationshipWith(player2);
+		var r2 = player2.getRelationshipWith(player1);
+		
+		var chatText = "";
+		if(r1.type() == r1.goodBig){
+			chatText += chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm in the medium!");
+		}else{
+			chatText += chatLine(player1Start, player1,"Hey, I'm in the medium!");
+		}
+				
+		
+		chatText += chatLine(player2Start, player2,"Good, what's it like?");
+		chatText += chatLine(player1Start, player1,"It's the " + player1.land +"");
+		chatText += chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")+".");
+		chatText +=chatLine(player2Start, player2,"lol");
+		chatText += chatLine(player1Start, player1,"So, like, I prototyped my kernel whatever with a " + player1.kernel_sprite +".\n");
+		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
+			if(player2.aspect != "Light"){
+				chatText += chatLine(player2Start, player2,"That will probably have no serious, long term consequences.");
+			}else{
+				chatText += chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
+			}
+		}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
+			if(player2.aspect != "Light"){
+				chatText += chatLine(player2Start, player2,"What did that do?");
+				chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.kernel_sprite);
+			}else{
+				chatText += chatLine(player2Start, player2,"Huh. That sounds cool.");
+			}
+		}else{
+			chatText += chatLine(player2Start, player2,"What did that do?");
+			chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.kernel_sprite);
+		}
+		
 		setTimeout(function(){
 			drawChat(document.getElementById("canvas"+ (div.attr("id"))), player1, player2, chatText, repeatTime);
 		}, repeatTime*1.2);  //images aren't always loaded by the time i try to draw them the first time.
@@ -76,12 +100,9 @@ function Intro(){
 			if(!queenUncrowned && queenStrength > 0){
 				queenStrength = queenStrength + 100;
 			}
-			narration += " A " + this.player.kernel_sprite + " fell into their kernel sprite just before entering. ";
-			narration += " It's a good thing none of their actions here will have serious longterm consequences. ";
+			
 		}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
-			narration += " Prototyping with the " + this.player.kernel_sprite + " just before entering the Medium would prove to be critical for later success. "
 		}else{
-			narration += " They managed to prototype their kernel with a " + this.player.kernel_sprite + ". ";
 		}
 		
 		div.append(narration);

@@ -86,6 +86,11 @@ function callNextSceneWithDelay(index){
 
 }
 
+//scenes call this
+function chatLine(start, player, line){
+	return start + player.quirk.translate(line).trim()+"\n";
+}
+
 function newScene(){
 	currentSceneNum ++;
 	var div = "<div id='scene"+currentSceneNum+"'></div>";

@@ -53,6 +53,8 @@ window.onload = function() {
 
 };
 
+
+
 function tick(){
 	$("#story").append(processScenes(players));
 }
