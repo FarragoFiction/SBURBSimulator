@@ -21,6 +21,11 @@ function RelationshipDrama(){
 	this.renderForPlayer = function (div, player){
 		var player1 = player;
 		var player2 = player.getBestFriendFromList(players);
+		var relationships = player.getRelationshipDrama();
+		for(var j = 0; j<relationships.length; j++){
+				this.processDrama(player, relationships[j]);  //or drama dnever leaves
+			}
+		
 		if(!player2){
 			return;
 		}
@@ -38,15 +43,25 @@ function RelationshipDrama(){
 		var r2 = player2.getRelationshipWith(player1);
 		
 		var chatText = "";
-		chatText += chatLine(player1Start, player1, "TODO: Relationship stuff. I used to think " + player2.chatHandleShort() + " was " + this.generateOldOpinion(player.getRelationshipDrama()[0]));
-		
+		var relationship = relationships[0]
+		chatText += chatLine(player1Start, player1, "TODO: Relationship stuff. I used to think " + player2.chatHandleShort() + " was " +this.generateOldOpinion(relationship ));
+		if(relationship.target == player2){
+			chatText += chatLine(player1Start, player1, "So...hey.");
+			chatText += chatLine(player2Start, player2, "Hey?");
+			chatText += chatLine(player1Start, player1, "I have no idea how to say this so I'm just going to do it.");
+			chatText += chatLine(player1Start, player1, "I used to think you were "+ this.generateOldOpinion(relationship ));
+			chatText += chatLine(player2Start, player2, "?");
+			chatText += chatLine(player1Start, player1, "But now....");
+			//maybe have different things happen here based on class?
+			chatText += chatLine(player1Start, player1, "Fuck, this is too hard. Nevermind.");
+		}
 		setTimeout(function(){
 			drawChat(canvasDiv, player1, player2, chatText, repeatTime);
 		}, repeatTime*1.2);  //images aren't always loaded by the time i try to draw them the first time.
 	}
 	
 	this.renderContent = function(div){
-		alert('drama')
+		alert("drama!");
 		//div.append(this.content());
 		for(var i = 0; i<this.dramaPlayers.length; i++){
 				var p = this.dramaPlayers[i];
