@@ -209,6 +209,7 @@ function drawLevelUp(canvas, player,repeatTime){
   //list all leves, first on bottom.
   
   var levelsBuffer = getBufferCanvas(document.getElementById("echeladder_template"));
+  //drawBG(levelsBuffer, "#ff9999", "#ff00ff") //test that it's actually being rendered.
   writeLevels(levelsBuffer,player)
   
   //color levels based on which level i just got
@@ -219,22 +220,26 @@ function drawLevelUp(canvas, player,repeatTime){
   setTimeout(function(){
 			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
 			copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,250,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, levelsBuffer,250,0)
 		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
 
 }
 
 //no image, so no repeat needed.
 function writeLevels(canvas, player){
-	var space_between_lines = 25;
-	var left_margin = 8;
-	var line_height = 18;
-	var start = 18;
-	var current = 18;
+	var left_margin = 101; //center
+	var line_height = 17.3;
+	var start = 295; //start at bottom, go up
+	var current = start;
 	var ctx = canvas.getContext("2d");
-	ctx.font = "12px Courier New"
-	//ctx.font-weight = "bold";
-	ctx.fillStyle = "#000000";
-	ctx.fillText("Hello World",left_margin*2,current);
+	ctx.textAlign="center"; 
+	ctx.font = "bold 12px Courier New"
+	ctx.fillStyle = "#ffffff";
+	
+	for(var i = 0; i<player.mylevels.length; i++){
+		ctx.fillText(player.mylevels[i],left_margin,current);
+		current = current - line_height;
+	}
 }
 
 //need to parse the text to figure out who is talking to determine color for chat.

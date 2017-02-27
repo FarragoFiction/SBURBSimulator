@@ -68,7 +68,7 @@ function callNextSceneWithDelay(index){
   			debugLevelTheHellUp();  //in scene controller, make this choose scene from array. trigger, then content, etc.
 			index += 1;
 			callNextSceneWithDelay(index)
-  		}, (players.length*1000+2000));  //want all players to be done with their setTimeOuts
+  		}, (2000));  //want all players to be done with their setTimeOuts players.length*1000+2000
 
 
 }
