@@ -197,6 +197,7 @@ function imgLoaded(imgElement) {
 //obtained levels have a colored background, others have black.
 function drawLevelUp(canvas, player,repeatTime){
 	if(player.godTier){
+		console.log("god tier");
 		return drawLevelUpGodTier(canvas, player,repeatTime);
 	}
   //for echeladder
@@ -236,13 +237,7 @@ function drawLevelUpGodTier(canvas, player,repeatTime){
 	
 	
 	var symbolBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-	ctx = symbolBuffer.getContext('2d');
-	var imageString = player.aspect + "Big.png"
-	addImageTag(imageString)
-	var img=document.getElementById(imageString);
-	var width = img.width;
-	var height = img.height;
-	ctx.drawImage(img,0,0,width,height);
+	drawGodSymbolBG(symbolBuffer, player);
 	
 	var godBuffer = getBufferCanvas(document.getElementById("godtierlevelup_template"));
 	ctx = godBuffer.getContext('2d');
@@ -255,11 +250,39 @@ function drawLevelUpGodTier(canvas, player,repeatTime){
 	
 	var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 	drawSprite(pSpriteBuffer,player,repeatTime)
+	
+	var levelBuffer = getBufferCanvas(document.getElementById("godtierlevelup_template"));
+	//drawBG(levelBuffer, "#ff0000", "#00ff00");
+	writeLevelGod(levelBuffer, player);
+	
 	setTimeout(function(){
 			copyTmpCanvasToRealCanvasAtPos(canvas, symbolBuffer,150,0)
 			copyTmpCanvasToRealCanvasAtPos(canvas, godBuffer,0,230)
 			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,100,-50)
+			copyTmpCanvasToRealCanvasAtPos(canvas, levelBuffer,0,235)
 		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
+}
+
+function drawGodSymbolBG(canvas, player){
+	ctx = canvas.getContext('2d');
+	var imageString = player.aspect + "Big.png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,0,0,width,height);
+	
+}
+
+function writeLevelGod(canvas, player){
+	var left_margin = 0; //center
+	var ctx = canvas.getContext("2d");
+	ctx.textAlign="center"; 
+	ctx.font = "bold 32px Times New Roman"
+	ctx.fillStyle = "#000000";
+	ctx.fillText(player.mylevels[player.level_index],canvas.width/2,32);
+	ctx.fillStyle = "#ffffff";
+	ctx.fillText(player.mylevels[player.level_index],canvas.width/2+1,32); //shadow
 }
 
 //no image, so no repeat needed.
