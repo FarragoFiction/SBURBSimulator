@@ -18,8 +18,41 @@ function RelationshipDrama(){
 		return this.dramaPlayers.length > 0;
 	}
 	
+	this.renderForPlayer = function (div, player){
+		var player1 = player;
+		var player2 = player.getBestFriendFromList(players);
+		if(!player2){
+			return;
+		}
+		var repeatTime = 1000;
+		
+		
+		var divID = (div.attr("id")) + "_" + player1.chatHandle;
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		//different format for canvas code
+		var canvasDiv = document.getElementById("canvas"+ divID);
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var r1 = player1.getRelationshipWith(player2);
+		var r2 = player2.getRelationshipWith(player1);
+		
+		var chatText = "";
+		chatText += chatLine(player1Start, player1, "TODO: Relationship stuff. I used to think " + player2.chatHandleShort() + " was " + this.generateOldOpinion(player.getRelationshipDrama()[0]));
+		
+		setTimeout(function(){
+			drawChat(canvasDiv, player1, player2, chatText, repeatTime);
+		}, repeatTime*1.2);  //images aren't always loaded by the time i try to draw them the first time.
+	}
+	
 	this.renderContent = function(div){
-		div.append(this.content());
+		alert('drama')
+		//div.append(this.content());
+		for(var i = 0; i<this.dramaPlayers.length; i++){
+				var p = this.dramaPlayers[i];
+				this.renderForPlayer(div, p);
+			}
+		
 	}
 	
 	this.matchTypeToOpinion = function(type, relationship){

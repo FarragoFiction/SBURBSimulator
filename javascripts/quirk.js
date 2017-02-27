@@ -240,7 +240,11 @@ function randomHumanSim(){
 	if(ret.capitalization == 2 && Math.random() >.2){ //seriously, less all caps.
 		ret.capitalization = getRandomInt(0,1);
 	}
-	var roomLeft = getRandomInt(0,10) - ret.lettersToReplace.length;
+	var roomLeft = 0;
+	//most people spell things, fine, other people have random problems
+	if(Math.random() > 0.50){
+		var roomLeft = getRandomInt(0,10);
+	}
 	if(roomLeft < 0) roomLeft = 0;
 	for(var i = 0; i< roomLeft; i++){
 		ret.lettersToReplaceIgnoreCase.push(getOneNormalReplaceArray());
