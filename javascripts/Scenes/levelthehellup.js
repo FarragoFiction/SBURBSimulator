@@ -57,9 +57,11 @@ function LevelTheHellUp(){
 		}
 		narrationDiv.append(narration);
 		//pause between characters, to give time to render.
+		if(levelName){
 		setTimeout(function(){
 				drawLevelUp(canvasDiv, player,repeatTime)
 			}, repeatTime/2);  //images aren't always loaded by the time i try to draw them the first time.
+		}
 
 	}
 

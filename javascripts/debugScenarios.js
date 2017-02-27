@@ -1,6 +1,6 @@
 function debugLevelTheHellUp(){
-	for(var j = 0; j<players.length; j++){
-		players[j].leveledTheHellUp = true;
+	for(var j = 0; j<2; j++){
+		players[j].leveledTheHellUp = true; //only .evel 2 players up
 	}
 	var s = new LevelTheHellUp();
 	if(s.trigger(players) && !version2){

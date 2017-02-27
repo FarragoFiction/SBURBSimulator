@@ -26,6 +26,8 @@ function hexToRgbA(hex){
 //if speed becomes an issue, take in array of color pairs to swap out
 //rather than call this method once for each color
 //swaps one hex color with another.
+//wait no, would be same amount of things. just would have nested for loops instead of 
+//multiple calls
 function swapColors(canvas, color1, color2){
   var oldc = hexToRgbA(color1);
   var newc= hexToRgbA(color2);
@@ -50,6 +52,7 @@ function swapColors(canvas, color1, color2){
   ctx.putImageData(img_data, 0, 0);
 
 }
+
 
 function swapColors50(canvas, color1, color2){
   var oldc = hexToRgbA(color1);
@@ -202,19 +205,27 @@ function drawLevelUp(canvas, player,repeatTime){
   var width = img.width;
   var height = img.height;
   ctx.drawImage(img,0,0,width,height);
+  swapColors(canvasSpriteBuffer, "#4a92f7", getColorFromAspect(player.aspect));
+  for(var i = 0; i<level_bg_colors.length; i++){
+	  if(player.level_index-1 < i){
+		swapColors(canvasSpriteBuffer, level_bg_colors[i], "#000000" ); //black out levels i don't yet have
+	  }
+  }
 
+  
   var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
   drawSprite(pSpriteBuffer,player,repeatTime)
+  
   
   //list all leves, first on bottom.
   
   var levelsBuffer = getBufferCanvas(document.getElementById("echeladder_template"));
-  //drawBG(levelsBuffer, "#ff9999", "#ff00ff") //test that it's actually being rendered.
-  writeLevels(levelsBuffer,player)
+
+  
+  writeLevels(levelsBuffer,player) //level_bg_colors,level_font_colors
   
   //color levels based on which level i just got
-  //  (make new swap color method that takes array of colors, go back and retroactively use it for aspects)
-	//display boonies in denominations of dollars?
+  //display boonies in denominations of dollars?
 	
 
   setTimeout(function(){
@@ -237,6 +248,11 @@ function writeLevels(canvas, player){
 	ctx.fillStyle = "#ffffff";
 	
 	for(var i = 0; i<player.mylevels.length; i++){
+		if(player.level_index > i){
+			ctx.fillStyle = level_font_colors[i];
+		}else{
+			ctx.fillStyle = "#ffffff";
+		}
 		ctx.fillText(player.mylevels[i],left_margin,current);
 		current = current - line_height;
 	}

@@ -60,7 +60,7 @@ window.onload = function() {
 //if index is more than length, index is zero (loops) 
 //have a stop condition of reckoningStarted
 function callNextSceneWithDelay(index){
-	if(index > 12 || reckoningStarted){
+	if(index > 17 || reckoningStarted){
 		//alert("I should be done at: " +index)
 		return;
 	}
@@ -68,7 +68,7 @@ function callNextSceneWithDelay(index){
   			debugLevelTheHellUp();  //in scene controller, make this choose scene from array. trigger, then content, etc.
 			index += 1;
 			callNextSceneWithDelay(index)
-  		}, (2000));  //want all players to be done with their setTimeOuts players.length*1000+2000
+  		}, (players.length*1000+2000));  //want all players to be done with their setTimeOuts players.length*1000+2000
 
 
 }

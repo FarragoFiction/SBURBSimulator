@@ -456,6 +456,9 @@ var terrible_levels = ["ENEMY #1","JERKWAD JOURNEYER"];
 var fantasy_levels = ["FAKEY FAKE LOVER","FANTASTIC DREAMER"];
 var justice_levels = ["JUSTICE JUICER","BALANCE RUMBLER"];
 
+var level_bg_colors = ["#8ff74a","#ba1212","#ffffee","#f0ff00","#9c00ff","#2b6ade","#003614","#f8e69f","#0000ff","#eaeaea","#ff9600","#581212","#ffa6ac","#1f7636","#ffe1fc","#fcff00"];
+var level_font_colors = ["#264d0c","#ff00d2","#ff0000","#626800","#da92e0","#022e41","#aaffa6","#000052","#6dffdb","#e5d200","#00911b","#ff0000","#5e005f","#fbff8d","#000000","#"];
+
 var space_quests = ["messing with a variety of frogs that were previously paradox cloned"];
 space_quests.push("paradox cloning a variety of frogs, after making a serious note to mess with them later");
 space_quests.push("combining paradox slime from multiple frogs together to make paradox offspring");
