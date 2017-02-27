@@ -61,7 +61,7 @@ window.onload = function() {
 //have a stop condition of reckoningStarted
 function callNextSceneWithDelay(index){
 	if(index > 12 || reckoningStarted){
-		alert("I should be done at: " +index)
+		//alert("I should be done at: " +index)
 		return;
 	}
 	setTimeout(function(){

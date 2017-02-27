@@ -196,14 +196,45 @@ function drawLevelUp(canvas, player,repeatTime){
   //for echeladder
   var canvasSpriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
   ctx = canvasSpriteBuffer.getContext('2d');
+  var imageString = "echeladder.png"
+  addImageTag(imageString)
+  var img=document.getElementById(imageString);
+  var width = img.width;
+  var height = img.height;
+  ctx.drawImage(img,0,0,width,height);
 
   var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-	drawSprite(pSpriteBuffer,player,repeatTime)
+  drawSprite(pSpriteBuffer,player,repeatTime)
+  
+  //list all leves, first on bottom.
+  
+  var levelsBuffer = getBufferCanvas(document.getElementById("echeladder_template"));
+  writeLevels(levelsBuffer,player)
+  
+  //color levels based on which level i just got
+  //  (make new swap color method that takes array of colors, go back and retroactively use it for aspects)
+	//display boonies in denominations of dollars?
+	
 
   setTimeout(function(){
 			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,250,0)
 		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
 
+}
+
+//no image, so no repeat needed.
+function writeLevels(canvas, player){
+	var space_between_lines = 25;
+	var left_margin = 8;
+	var line_height = 18;
+	var start = 18;
+	var current = 18;
+	var ctx = canvas.getContext("2d");
+	ctx.font = "12px Courier New"
+	//ctx.font-weight = "bold";
+	ctx.fillStyle = "#000000";
+	ctx.fillText("Hello World",left_margin*2,current);
 }
 
 //need to parse the text to figure out who is talking to determine color for chat.
@@ -270,6 +301,7 @@ function drawBG(canvas, color1, color2){
 
 function drawSpriteTurnways(canvas, player, repeatTime, isRepeat){
   ctx = canvas.getContext('2d');
+  ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
   ctx.translate(canvas.width, 0);
   ctx.scale(-1, 1);
   if(player.isTroll&& player.godTier){//wings before sprite
@@ -296,6 +328,7 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
   //console.log("looking for canvas: " + canvas);
  // canvas = $("#"+canvasId)[0]; //don't want jquery object, want contents
   ctx = canvas.getContext('2d');
+  ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
   //sprite = new Image();
   //sprite.src = 'test.png';
   //need to get sprite from sprite sheet
