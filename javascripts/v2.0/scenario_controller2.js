@@ -39,8 +39,8 @@ window.onload = function() {
 	//have messy internal methods.
 	//all other scenes are handled through the scene controller like normal, which will check if var version2 = true;
 	//and if so will call "render" rather than "content"
-	debug("refactor old scenes to render themselves rather than return a string. If content() 1.0, if renderContent(), 2.0")
-	debug("oh, and update quirks so that players have a quirk for every main class. and they ignore case");
+	debug("have old scenes have a 'renderContent' method. if in 2.0, call that, but with timeouts between.  (need time to render)")
+	debug("change leveling scene if godTier")
 	debug("Consider having ticks be a button press that clears the current story, rather than all at once. Only do this if too many canvases");
   //really hangs if i call this 18 Times
   //so...speed is definitely an issue for full experience.
@@ -60,12 +60,12 @@ window.onload = function() {
 //if index is more than length, index is zero (loops) 
 //have a stop condition of reckoningStarted
 function callNextSceneWithDelay(index){
-	if(index > 17 || reckoningStarted){
+	if(index > 2 || reckoningStarted){
 		//alert("I should be done at: " +index)
 		return;
 	}
 	setTimeout(function(){
-  			debugLevelTheHellUp();  //in scene controller, make this choose scene from array. trigger, then content, etc.
+  			debugGodTierLevelTheHellUp();  //in scene controller, make this choose scene from array. trigger, then content, etc.
 			index += 1;
 			callNextSceneWithDelay(index)
   		}, (players.length*1000+2000));  //want all players to be done with their setTimeOuts players.length*1000+2000

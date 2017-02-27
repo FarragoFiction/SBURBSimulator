@@ -196,6 +196,9 @@ function imgLoaded(imgElement) {
 //player on left, echeladder on right. text with boonies. all levels listed
 //obtained levels have a colored background, others have black.
 function drawLevelUp(canvas, player,repeatTime){
+	if(player.godTier){
+		return drawLevelUpGodTier(canvas, player,repeatTime);
+	}
   //for echeladder
   var canvasSpriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
   ctx = canvasSpriteBuffer.getContext('2d');
@@ -212,28 +215,51 @@ function drawLevelUp(canvas, player,repeatTime){
 	  }
   }
 
-  
   var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
   drawSprite(pSpriteBuffer,player,repeatTime)
-  
-  
-  //list all leves, first on bottom.
-  
-  var levelsBuffer = getBufferCanvas(document.getElementById("echeladder_template"));
 
-  
+  var levelsBuffer = getBufferCanvas(document.getElementById("echeladder_template"));
   writeLevels(levelsBuffer,player) //level_bg_colors,level_font_colors
   
-  //color levels based on which level i just got
-  //display boonies in denominations of dollars?
-	
-
   setTimeout(function(){
 			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
 			copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,250,0)
 			copyTmpCanvasToRealCanvasAtPos(canvas, levelsBuffer,250,0)
 		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
 
+}
+
+//player in center, on platform, level name underneath them. aspect symbol behind them.
+//bg color is shirt color
+function drawLevelUpGodTier(canvas, player,repeatTime){
+	drawBGRadialWithWidth(canvas, 650, "#000000",getShirtColorFromAspect(player.aspect)) 
+	
+	
+	var symbolBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+	ctx = symbolBuffer.getContext('2d');
+	var imageString = player.aspect + "Big.png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,0,0,width,height);
+	
+	var godBuffer = getBufferCanvas(document.getElementById("godtierlevelup_template"));
+	ctx = godBuffer.getContext('2d');
+	var imageString = "godtierlevelup.png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,0,0,width,height);
+	
+	var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+	drawSprite(pSpriteBuffer,player,repeatTime)
+	setTimeout(function(){
+			copyTmpCanvasToRealCanvasAtPos(canvas, symbolBuffer,150,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, godBuffer,0,230)
+			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,100,-50)
+		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
 }
 
 //no image, so no repeat needed.
@@ -318,6 +344,18 @@ function drawBG(canvas, color1, color2){
 
 	ctx.fillStyle = grd;
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function drawBGRadialWithWidth(canvas, width, color1, color2){
+	//var c = document.getElementById(canvasId);
+	var ctx = canvas.getContext("2d");
+
+	var grd = ctx.createRadialGradient(width/2,canvas.height/2,5,width,canvas.height,width);
+	grd.addColorStop(0, color1);
+	grd.addColorStop(1, color2);
+
+	ctx.fillStyle = grd;
+	ctx.fillRect(0, 0, width, canvas.height);
 }
 
 function drawSpriteTurnways(canvas, player, repeatTime, isRepeat){

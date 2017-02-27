@@ -409,6 +409,35 @@ function getColorFromAspect(aspect){
 	return color;
 }
 
+function getShirtColorFromAspect(aspect){
+	var color = "";
+	if(aspect == "Space"){
+		color = "#030303";
+	}else if(aspect == "Time"){
+		color = "#b70d0e";
+	}else if(aspect == "Breath"){
+		color = "#0087eb";
+	}else if(aspect == "Doom"){
+		color = "#204020";
+	}else if(aspect == "Blood"){
+		color = "#3d190a";
+	}else if(aspect == "Heart"){
+		color = "#6b0829";
+	}else if(aspect == "Mind"){
+		color = "#3da35a";
+	}else if(aspect == "Light"){
+		color = "#ff7f00";
+	}else if(aspect == "Void"){
+		color = "#000066";
+	}else if(aspect == "Rage"){
+		color = "#9900cc";
+	}else if(aspect == "Hope"){
+		color = "#ffe094";
+	}else if(aspect == "Life"){
+		color = "#ccc4b5";
+	}
+	return color;
+}
 
 function getFontColorFromAspect(aspect){
 	return "<font color= '" + getColorFromAspect(aspect) + "'> ";
