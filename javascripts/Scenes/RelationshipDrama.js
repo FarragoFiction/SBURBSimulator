@@ -18,6 +18,10 @@ function RelationshipDrama(){
 		return this.dramaPlayers.length > 0;
 	}
 	
+	this.renderContent = function(div){
+		div.append(this.content());
+	}
+	
 	this.matchTypeToOpinion = function(type, relationship){
 		if(type == relationship.badBig){
 			return getRandomElementFromArray(bigBadDesc);

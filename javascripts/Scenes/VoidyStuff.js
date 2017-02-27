@@ -8,6 +8,10 @@ function VoidyStuff(){
 		return this.player != null;
 	}
 	
+	this.renderContent = function(div){
+		div.append(this.content());
+	}
+	
 	this.content = function(){
 		removeFromArray(this.player, availablePlayers);
 		var ret = "The " + this.player.htmlTitle() + " is doing...something. It's kind of hard to see.";

@@ -10,6 +10,9 @@ function PowerDemocracy(){
 		return (democracyStrength > 0);
 	}
 	
+	this.renderContent = function(div){
+		div.append(this.content());
+	}
 
 	
 	this.content = function(){

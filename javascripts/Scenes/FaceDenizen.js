@@ -15,6 +15,10 @@ function FaceDenizen(){
 		return this.denizenFighters.length > 0;
 	}
 	
+	this.renderContent = function(div){
+		div.append(this.content());
+	}
+	
 	this.content = function(){
 		var ret = "";
 		for(var i = 0; i<this.denizenFighters.length; i++){

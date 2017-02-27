@@ -13,6 +13,10 @@ function DoEctobiology(){
 		return false;
 	}
 	
+	this.renderContent = function(div){
+		div.append(this.content());
+	}
+	
 	this.content = function(){
 		ectoBiologyStarted = true;
 		var ret = " Through a series of wacky, yet inevitable in hindsight, coincidences, the " + this.leader.htmlTitle();

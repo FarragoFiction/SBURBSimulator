@@ -16,6 +16,10 @@ function ExileQueen(){
 		return ret;
 	}
 	
+	this.renderContent = function(div){
+		div.append(this.content());
+	}
+	
 	this.convertPlayerNumberToWords = function(){
 		if(players.length == 2){
 			return "TWO";

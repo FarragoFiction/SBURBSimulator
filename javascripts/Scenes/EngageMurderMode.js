@@ -17,6 +17,10 @@ function EngageMurderMode(){
 		return false;
 	}
 	
+	this.renderContent = function(div){
+		div.append(this.content());
+	}
+	
 	this.content = function(){
 		//console.log("murder mode");
 		this.player.increasePower();

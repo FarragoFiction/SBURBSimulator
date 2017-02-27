@@ -59,7 +59,11 @@ function SolvePuzzles(){
 			this.player1.boostAllRelationships();
 		}
 	}
-
+	
+	
+	this.renderContent = function(div){
+		div.append(this.content());
+	}
 	
 	this.content = function(){
 		var ret = "";

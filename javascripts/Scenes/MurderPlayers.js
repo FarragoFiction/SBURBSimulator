@@ -17,6 +17,10 @@ function MurderPlayers(){
 		return this.murderers.length > null;
 	}
 	
+	this.renderContent = function(div){
+		div.append(this.content());
+	}
+	
 	this.friendsOfVictimHateYou = function(victim, murderer, livePlayers){
 		//just, fuck that guy.
 		var ret = "";

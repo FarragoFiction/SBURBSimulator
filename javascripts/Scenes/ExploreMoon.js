@@ -38,6 +38,10 @@ function ExploreMoon(){
 		}
 		
 	}
+	
+	this.renderContent = function(div){
+		div.append(this.content());
+	}
 	this.trigger = function(playerList){
 		this.player1 = null; //reset
 		this.player2 = null;

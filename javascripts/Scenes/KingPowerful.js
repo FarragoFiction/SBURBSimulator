@@ -7,6 +7,10 @@ function KingPowerful(){
 		return kingStrength > hardStrength;
 	}
 	
+	this.renderContent = function(div){
+		div.append(this.content());
+	}
+	
 	this.content = function(){
 		var badPrototyping = findBadPrototyping(this.playerList);
 		var ret = " At this point, the various prototypings from " +this.playerList.length;
@@ -18,4 +22,6 @@ function KingPowerful(){
 		}
 		return ret;
 	}
+	
+
 }

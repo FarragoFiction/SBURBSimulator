@@ -25,6 +25,18 @@ function debugGodTierLevelTheHellUp(){
 	}
 }
 
+function debugPowerfulKing(){
+	kingStrength = 10000;
+	var s = new KingPowerful();
+	if(s.trigger(players) && !version2){
+		//alert("v1 " + version2);
+		$("#story").append(s.content()+ "<br><br> ");
+	}else if (s.trigger(players) && version2){
+		s.renderContent(newScene());
+	}
+	
+}
+
 function generateDebugPlayers1(){
 	//Player(class_name, aspect, land, kernel_sprite, moon)
 	players.push(new Player("Knight", "Time", "Land of Headbanging and Stress", "Bugs", "Prospit", true));

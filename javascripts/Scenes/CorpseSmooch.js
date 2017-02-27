@@ -21,6 +21,10 @@ function CorpseSmooch(){
 		
 	}
 	
+	this.renderContent = function(div){
+		div.append(this.content());
+	}
+	
 	//prefer to be smooched by prince who doesn't hate you, or person who likes you best. 
 	this.content = function(){
 		var ret = "";

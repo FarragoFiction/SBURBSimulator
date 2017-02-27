@@ -13,6 +13,10 @@ function SaveDoomedTimeLine(){
 		return (this.ectoDoom() || this.playerDoom() || this.randomDoom());
 	}
 	
+	this.renderContent = function(div){
+		div.append(this.content());
+	}
+	
 	this.leaderIsFucked = function(){
 		if(this.leaderPlayer.dead && !this.leaderPlayer.dreamSelf && !this.leaderPlayer.godTier && !this.leaderPlayer.godDestiny){
 			return true;	

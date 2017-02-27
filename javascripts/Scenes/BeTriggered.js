@@ -17,6 +17,10 @@ function BeTriggered(){
 		return this.triggeredPlayers.length > 0;
 	}
 	
+	this.renderContent = function(div){
+		div.append(this.content());
+	}
+	
 	this.IsPlayerTriggered = function(player){
 		//are any of your friends  dead?
 		var deadPlayers = findDeadPlayers(players);

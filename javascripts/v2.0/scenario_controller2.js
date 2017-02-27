@@ -17,6 +17,7 @@ var spriteHeight = 300;
 var canvasWidth = 1000;
 var canvasHeight = 300;
 var version2 = true;
+var timeTillReckoning = getRandomInt(10,30);
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.
 //should there be only one canvas?  Can have player sprites be written to a virtual canvas first, then copied to main one.
@@ -33,6 +34,7 @@ window.onload = function() {
 	//authorMessage();
 
 	intro();
+	
 
 	//make a new intro scene that has characters talk about their lands with their best friends/worst enemies.
 	//refacor other scenario controller to use special scenes (not part of scene controller) rather than
@@ -42,14 +44,20 @@ window.onload = function() {
 	debug("have old scenes have a 'renderContent' method. if in 2.0, call that, but with timeouts between.  (need time to render)")
 	debug("change leveling scene if godTier")
 	debug("Consider having ticks be a button press that clears the current story, rather than all at once. Only do this if too many canvases");
-  //really hangs if i call this 18 Times
-  //so...speed is definitely an issue for full experience.
-  //might want to wait a second between renders to see if that is the problem.
-  //or see if the problem is the number of canvases
-  //okay. putting a timeout between level ups helps. but the fact that multiple players
-  //level up at the same time, and all have their own canvases is a problem.
-  //pause inside of the level scene?
-  callNextSceneWithDelay(0);
+    tick();
+}
+
+function tick(){
+	if(timeTillReckoning > 0){
+		setTimeout(function(){
+			timeTillReckoning += -1;
+			processScenes2(players);
+			tick();
+		},2000);	
+	}else{
+	
+		debug("TODO: Handle post reckoning");
+	}
 }
 
 //testing this out with debugLevelTheHellUp, but eventually want this in scene controller.

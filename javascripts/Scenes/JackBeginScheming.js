@@ -26,6 +26,10 @@ function JackBeginScheming(){
 		return (jackStrength >= queenStrength) && (this.friend != null);
 	}
 	
+	this.renderContent = function(div){
+		div.append(this.content);
+	}
+	
 	this.content = function(){
 		this.friend.increasePower();
 		removeFromArray(this.friend, availablePlayers);

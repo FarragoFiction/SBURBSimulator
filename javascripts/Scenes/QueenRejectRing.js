@@ -8,6 +8,10 @@ function QueenRejectRing(){
 		return goodPrototyping != null && queenStrength > 0;
 	}
 	
+	this.renderContent = function(div){
+		div.append(this.content());
+	}
+	
 	this.content = function(){
 		queenStrength = 50;
 		queenUncrowned = true;

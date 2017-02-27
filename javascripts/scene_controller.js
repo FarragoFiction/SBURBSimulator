@@ -63,6 +63,32 @@ function processReckoning(playerList){
 	return ret;
 }
 
+function processScenes2(playerList){
+	var ret = "";
+	setAvailablePlayers(playerList);
+	for(var i = 0; i<available_scenes.length; i++){
+		var s = available_scenes[i];
+		//var debugQueen = queenStrength;
+		if(s.trigger(playerList)){
+			s.renderContent(newScene());
+			if(!s.canRepeat){
+				removeFromArray(s,available_scenes);
+			}
+		}
+	}
+
+	for(var i = 0; i<deathScenes.length; i++){
+		var s = deathScenes[i];
+		if(s.trigger(playerList)){
+			s.renderContent(newScene());
+		}
+	}
+
+
+
+	return ret;
+}
+
 //playerlist is everybody in the medium
 //might not be all players in the begining.
 //can't just add an "if 2.0" check, btw.

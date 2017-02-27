@@ -20,6 +20,10 @@ function GoGrimDark(){
 		return false;
 	}
 	
+	this.renderContent = function(div){
+		div.append(this.content());
+	}
+	
 	this.content = function(){
 		this.player.increasePower();
 		removeFromArray(this.player, availablePlayers);

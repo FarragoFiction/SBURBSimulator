@@ -23,6 +23,10 @@ function FightKing(){
 		}
 	}
 	
+	this.renderContent = function(div){
+		div.append(this.content());
+	}
+	
 	this.minorLevelPlayers = function(stabbings){
 		for(var i = 0; i<stabbings.length; i++){
 			stabbings[i].increasePower();

@@ -22,6 +22,10 @@ function prepareToExileJack(){
 		}
 	}
 	
+	this.renderContent = function(div){
+		div.append(this.content());
+	}
+	
 	this.trigger = function(playerList){
 		this.player = null;
 		this.playerList = playerList;

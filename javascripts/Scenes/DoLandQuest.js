@@ -37,6 +37,10 @@ function DoLandQuest(){
 		return this.playersPlusHelpers.length > 0;
 	}
 	
+	this.renderContent = function(div){
+		div.append(this.content());
+	}
+	
 	this.lookForHelper = function(player){
 		var helper = null;
 		

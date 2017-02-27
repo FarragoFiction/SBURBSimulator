@@ -14,6 +14,10 @@ function PlanToExileJack(){
 		}
 	}
 	
+	this.renderContent = function(div){
+		div.append(this.content());
+	}
+	
 	//a player has to be not busy to be your friend right now.
 	this.trigger = function(playerList){
 		this.playerList = playerList;

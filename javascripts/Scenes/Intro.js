@@ -40,7 +40,7 @@ function Intro(){
 		chatText += player1Start + player1.quirk.translate("It's the " + player1.land +"\n");
 		chatText += player1Start + player1.quirk.translate("So, like, full of <TODO PARSE ONE WORD OF LAND>\n");
 		chatText += player2Start + player2.quirk.translate("lol\n");
-		chatText += player2Start + player2.quirk.translate("<Don't forget to change dialog based on relationships> <or classpect?><light players could be all 'oh, so you're an x player?'>\n");
+		chatText += player2Start + player2.quirk.translate("<Mention prototyping. Don't forget to change dialog based on relationships> <or classpect?><light players could be all 'oh, so you're an x player?'>\n");
     chatText += player1Start + player1.quirk.translate("Yes. Or no. I'm not sure. I don't know. \n");
 		//TODO change text based on p1 and p2 relationships.  and vice versa. p1 is all flirty, p2 is a dick. yeeeessss.....
 		//var spriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
@@ -66,6 +66,24 @@ function Intro(){
 				narration += "They are " + r.description() + ". ";
 			}
 		}
+		
+		kingStrength = kingStrength + 20;
+		if(!queenUncrowned && queenStrength > 0){
+			queenStrength = queenStrength + 10;
+		}
+		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
+			kingStrength = kingStrength + 200;
+			if(!queenUncrowned && queenStrength > 0){
+				queenStrength = queenStrength + 100;
+			}
+			narration += " A " + this.player.kernel_sprite + " fell into their kernel sprite just before entering. ";
+			narration += " It's a good thing none of their actions here will have serious longterm consequences. ";
+		}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
+			narration += " Prototyping with the " + this.player.kernel_sprite + " just before entering the Medium would prove to be critical for later success. "
+		}else{
+			narration += " They managed to prototype their kernel with a " + this.player.kernel_sprite + ". ";
+		}
+		
 		div.append(narration);
 		this.chat(div);
 	}
