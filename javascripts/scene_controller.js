@@ -65,6 +65,9 @@ function processReckoning(playerList){
 
 //playerlist is everybody in the medium
 //might not be all players in the begining.
+//can't just add an "if 2.0" check, btw.
+//need to have a pause between each scene to give time for rendering.
+//gotta test method in scenario_controller2.js move here, modify
 function processScenes(playerList){
 	var ret = "";
 	setAvailablePlayers(playerList);

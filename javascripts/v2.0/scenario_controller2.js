@@ -49,12 +49,28 @@ window.onload = function() {
   //okay. putting a timeout between level ups helps. but the fact that multiple players
   //level up at the same time, and all have their own canvases is a problem.
   //pause inside of the level scene?
-  for(i=0;i<10;i++){
-    setTimeout(function(){
-  			debugLevelTheHellUp();
-  		}, 2000);  //images aren't always loaded by the time i try to draw them the first time.
+  callNextSceneWithDelay(0);
+}
 
-  }
+//testing this out with debugLevelTheHellUp, but eventually want this in scene controller.
+//can't just put a timeout in a forloop, all that does is change WHEN it calls all the players nearly
+//simultaneously.
+//in scene controller, would pass a current index so it knows what next scene is.
+//ignore it now.
+//if index is more than length, index is zero (loops) 
+//have a stop condition of reckoningStarted
+function callNextSceneWithDelay(index){
+	if(index > 12 || reckoningStarted){
+		alert("I should be done at: " +index)
+		return;
+	}
+	setTimeout(function(){
+  			debugLevelTheHellUp();  //in scene controller, make this choose scene from array. trigger, then content, etc.
+			index += 1;
+			callNextSceneWithDelay(index)
+  		}, (players.length*1000+2000));  //want all players to be done with their setTimeOuts
+
+
 }
 
 function newScene(){
