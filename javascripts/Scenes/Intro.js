@@ -61,6 +61,7 @@ function Intro(){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"What did that do?");
 				chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.kernel_sprite);
+				chatText += chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
 			}else{
 				chatText += chatLine(player2Start, player2,"Huh. That sounds cool.");
 			}

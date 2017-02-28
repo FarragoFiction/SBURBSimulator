@@ -38,7 +38,7 @@ window.onload = function() {
 	//debugGodTierLevelTheHellUp();
 	//debugCorpseLevelTheHellUp();
 	//debugGodTierRevive();
-	//debugCorpseSmooch();
+	debugCorpseSmooch();
 	debug("Add blood in blood color")
 
 	//make a new intro scene that has characters talk about their lands with their best friends/worst enemies.

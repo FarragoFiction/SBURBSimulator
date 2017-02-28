@@ -33,12 +33,19 @@ function CorpseSmooch(){
 		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawSprite(pSpriteBuffer,royalty,repeatTime)
 		
+		dead_player.isDreamSelf = false;  //temporarily show non dream version
 		var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawSpriteDead(dSpriteBuffer,dead_player,repeatTime)
+		
+		var moonBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawMoon(moonBuffer, dead_player);
+		dead_player.isDreamSelf = true;
+		drawSprite(dSpriteBuffer,dead_player,repeatTime)
 		
 		setTimeout(function(){
 			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
 			copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,100,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, moonBuffer,600,0)
 		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
 
 	}

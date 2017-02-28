@@ -63,6 +63,7 @@ function RelationshipDrama(){
 	this.renderContent = function(div){
 		//alert("drama!");
 		//div.append(this.content());
+		debug("if too triggered, either talk to friend, angst privately or half-confess. talking to friend reduces trigger. class determines how untriggered you have to be to confress");
 		for(var i = 0; i<this.dramaPlayers.length; i++){
 				var p = this.dramaPlayers[i];
 				this.renderForPlayer(div, p);

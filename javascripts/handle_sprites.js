@@ -31,6 +31,7 @@ function rainbowSwap(canvas){
 	//4 byte color array
 	for(var i = 0; i<img_data.data.length; i += 4){
 		if(img_data.data[i+3] >= 128){
+		  //would some sort of fractal look better here?
 		  img_data.data[i] = getRandomInt(0,255);
 		  img_data.data[i+1] =(i/canvas.width+ getRandomInt(0,50))%255;
 		  img_data.data[i+2] = (i/canvas.height +getRandomInt(0,50))%255;
@@ -364,6 +365,16 @@ function drawGodSymbolBG(canvas, player){
 	
 }
 
+function drawMoon(canvas, player){
+	ctx = canvas.getContext('2d');
+	var imageString =player.moon + ".png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,0,0,width,height);
+}
+
 function writeLevelGod(canvas, player){
 	var left_margin = 0; //center
 	var ctx = canvas.getContext("2d");
@@ -577,6 +588,9 @@ function playerToSprite(canvas, player){
 	ctx = canvas.getContext('2d');
     if(player.godTier){
 		godTierSprite(canvas, player);
+	}else if (player.isDreamSelf)
+	{
+		dreamSprite(canvas, player)
 	}else{
 		regularSprite(canvas, player);
 	}
@@ -650,8 +664,39 @@ function regularSprite(canvas, player){
   //aspectSymbol(canvas, player);
 }
 
-function dreamerSprite(canvas, player){
-
+function dreamSprite(canvas, player){
+	var imageString = "";
+  if(player.class_name == "Page"){
+    imageString = "reg001.png"
+  }else if(player.class_name == "Knight" ){
+    imageString = "reg002.png"
+  }else if(player.class_name == "Witch" ){
+    imageString = "reg003.png"
+  }else if(player.class_name == "Sylph" ){
+    imageString = "reg004.png"
+  }else if(player.class_name == "Thief" ){
+    imageString = "reg005.png"
+  }else if(player.class_name == "Rogue" ){
+    imageString = "reg006.png"
+  }else if(player.class_name == "Seer" ){
+    imageString = "reg007.png"
+  }else if(player.class_name == "Mage" ){
+    imageString = "reg008.png"
+  }else if(player.class_name == "Heir" ){
+    imageString = "reg009.png"
+  }else if(player.class_name == "Maid" ){
+    imageString = "reg010.png"
+  }else if(player.class_name == "Prince" ){
+    imageString = "reg011.png"
+  }else if(player.class_name == "Bard" ){
+    imageString = "reg012.png"
+  }
+  addImageTag(imageString)
+  var img=document.getElementById(imageString);
+  var width = img.width;
+  var height = img.height;
+  ctx.drawImage(img,width/6,height/4,width,height);
+  dreamPalletSwap(canvas, player);
 }
 
 function godTierSprite(canvas, player){
@@ -702,6 +747,50 @@ function aspectSymbol(canvas, player){
     ctx.drawImage(img,0,0,width,height);
 }
 
+function dreamSymbol(canvas, player){
+    ctx = canvas.getContext('2d');
+    var imageString = player.moon + "_symbol.png"
+    addImageTag(imageString)
+    var img=document.getElementById(imageString);
+    var width = img.width;
+    var height = img.height;
+    ctx.drawImage(img,0,0,width,height);
+}
+
+
+function dreamPalletSwap(canvas, player){
+	var oldcolor1 = "#ff8800"; //shirt
+	var oldcolor2 = "#e76700"; //pants
+	var oldcolor3 = "#fa4900"; //hat
+	var oldcolor4 = "#fefd49"; //symbol fefd49
+	var oldcolor5 = "#c33700"; //darker hat
+	var oldcolor6 = "#10e0ff"; //shoes
+
+	var newcolor1 = "#de00ff";
+	var newcolor2 = "#de00ff";
+	var newcolor3 = "#de00ff";
+	var newcolor4 = "#f092ff";
+	var newcolor5 = "#a200b7";
+	var newcolor6 = player.bloodColor;
+	
+	if(player.moon =="Prospit"){
+		newcolor1 = "#ffe034"
+		newcolor2 = "#ffff00"
+		newcolor3 = "#ffe034"
+		newcolor4 ="#ffff00"
+		newcolor5 = "#ffe034"; //darker hat
+	}
+	
+	swapColors(canvas, oldcolor1, newcolor1)
+	swapColors(canvas, oldcolor2, newcolor2)
+	swapColors(canvas, oldcolor3, newcolor3)
+	swapColors(canvas, oldcolor4, newcolor4)
+	swapColors(canvas, oldcolor5, newcolor5)
+	swapColors(canvas, oldcolor6, newcolor6)
+	dreamSymbol(canvas, player);
+	
+}
+
 function aspectPalletSwap(canvas, player){
   //not all browsers do png gama info correctly. Chrome does, firefox does not, mostly.
   //remove it entirely with this command
@@ -727,7 +816,7 @@ function aspectPalletSwap(canvas, player){
     newcolor3 = "#fd1000"
     newcolor4 ="#fbff00"
     newcolor5 = "#d41000"; //darker hat
-    oldcolor6 ="#00e4ff"
+    newcolor6 ="#00e4ff"
   }else if(player.aspect =="Breath"){
     newcolor1 = "#0087eb"
     newcolor2 = "#006be1"
