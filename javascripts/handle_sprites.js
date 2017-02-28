@@ -211,7 +211,7 @@ function drawLevelUp(canvas, player,repeatTime){
   ctx.drawImage(img,0,0,width,height);
   swapColors(canvasSpriteBuffer, "#4a92f7", getColorFromAspect(player.aspect));
   for(var i = 0; i<level_bg_colors.length; i++){
-	  if(player.level_index-1 < i){
+	  if(player.level_index < i){
 		swapColors(canvasSpriteBuffer, level_bg_colors[i], "#000000" ); //black out levels i don't yet have
 	  }
   }
@@ -297,7 +297,7 @@ function writeLevels(canvas, player){
 	ctx.fillStyle = "#ffffff";
 	
 	for(var i = 0; i<player.mylevels.length; i++){
-		if(player.level_index > i){
+		if(player.level_index+1 > i){
 			ctx.fillStyle = level_font_colors[i];
 		}else{
 			ctx.fillStyle = "#ffffff";

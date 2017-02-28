@@ -27,6 +27,7 @@ function JackBeginScheming(){
 	}
 	
 	this.renderContent = function(div){
+		debug("TODO: have whoever jack approaches message living leader. ");
 		div.append(this.content);
 	}
 	

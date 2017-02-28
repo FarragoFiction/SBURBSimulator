@@ -34,15 +34,14 @@ window.onload = function() {
 	//authorMessage();
 
 	intro();
-	
+	debugGodTier();
 
 	//make a new intro scene that has characters talk about their lands with their best friends/worst enemies.
 	//refacor other scenario controller to use special scenes (not part of scene controller) rather than
 	//have messy internal methods.
 	//all other scenes are handled through the scene controller like normal, which will check if var version2 = true;
 	//and if so will call "render" rather than "content"
-	debug("have old scenes have a 'renderContent' method. if in 2.0, call that, but with timeouts between.  (need time to render)")
-	debug("change leveling scene if godTier")
+	debug("find places to insert dialogue or graphics. gravestones, at end, for example. sideways bleeding dead players in middle.")
 	debug("Consider having ticks be a button press that clears the current story, rather than all at once. Only do this if too many canvases");
     tick();
 }

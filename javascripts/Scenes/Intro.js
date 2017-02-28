@@ -22,13 +22,14 @@ function Intro(){
 		//do what homestuck does and put some text in image but rest in pesterlog?
 		//when trolls happen, should they use trollian?
 		var player1 = this.player;
-		var player2 = player1.getBestFriendFromList(players);
+		var player2 = player1.getBestFriendFromList(findLivingPlayers(players));
 		if(player2 == null){
-			player2 = player1.getWorstEnemyFromList(players);
+			player2 = player1.getWorstEnemyFromList(findLivingPlayers(players));
 
 		}
+
 		if(player2 == null){
-			return; //give up, forever alone.
+			return div.append(this.content()); //give up, forever alone.
 
 		}
 
@@ -47,7 +48,7 @@ function Intro(){
 		
 		chatText += chatLine(player2Start, player2,"Good, what's it like?");
 		chatText += chatLine(player1Start, player1,"It's the " + player1.land +"");
-		chatText += chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")+".");
+		chatText += chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+".");
 		chatText +=chatLine(player2Start, player2,"lol");
 		chatText += chatLine(player1Start, player1,"So...I prototyped my kernel whatever with a " + player1.kernel_sprite +".\n");
 		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {

@@ -20,14 +20,14 @@ function RelationshipDrama(){
 	
 	this.renderForPlayer = function (div, player){
 		var player1 = player;
-		var player2 = player.getBestFriendFromList(players);
+		var player2 = player.getBestFriendFromList(findLivingPlayers(players));
 		var relationships = player.getRelationshipDrama();
 		for(var j = 0; j<relationships.length; j++){
 				this.processDrama(player, relationships[j]);  //or drama dnever leaves
 			}
 		
 		if(!player2){
-			return;
+			return div.append(this.content() + " Too bad the " + player.htmlTitle() + " doesn't have anybody to talk to about this. ");
 		}
 		var repeatTime = 1000;
 		
@@ -61,7 +61,7 @@ function RelationshipDrama(){
 	}
 	
 	this.renderContent = function(div){
-		alert("drama!");
+		//alert("drama!");
 		//div.append(this.content());
 		for(var i = 0; i<this.dramaPlayers.length; i++){
 				var p = this.dramaPlayers[i];

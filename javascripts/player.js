@@ -11,7 +11,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, chat_
 	this.power = 1;
 	this.leveledTheHellUp = false; //triggers level up scene.
 	this.mylevels = getLevelArray(this);//make them ahead of time for echeladder graphic
-	this.level_index = 0; //what level AM I?
+	this.level_index = -1; //will be ++ before i query
 	this.godTier = false;
 	this.hair = getRandomInt(1,34);
 	//this.hair = 16;
@@ -93,8 +93,8 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, chat_
 
 //new method having to pick 16 levels before entering the medium
 	this.getNextLevel = function(){
-		var ret= this.mylevels[this.level_index];
 		this.level_index ++;
+		var ret= this.mylevels[this.level_index];
 		return ret;
 	}
 
