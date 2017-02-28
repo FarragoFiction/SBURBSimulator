@@ -419,7 +419,6 @@ function getOneRandomReplaceArray(){
 	arr.push(["loo","100"]);
 	arr.push(["dog","cat"]);
 	arr.push(["s","th"]);
-	arr.push(["s","c"]);
 	arr.push(["c","s"]);
 
 	if(Math.random() > .5){

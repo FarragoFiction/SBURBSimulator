@@ -186,6 +186,5 @@ function init(){
 		}else{
 			p.quirk = randomHumanSim();
 		}
-		debug("TODO: Give trolls troll quirks")
 	}
 }
