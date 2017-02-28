@@ -50,7 +50,7 @@ window.onload = function() {
 	debug("consider keeping track of async tasks in array. if too many at a time, put new async tasks in second array, only activate and add to first array when it is empty enough");
     
 	debug("enabling ticks causes people to be rendered dead or godtier before it actually happens. s in rendering, working on haveing player snapshots rendered to fix this..");
-	//tick();
+	tick();
 }
 
 function tick(){
@@ -150,8 +150,6 @@ function decideLusus(player){
 	}else{
 		player.lusus = getRandomElementFromArray(landlususTypes);
 	}
-
-
 }
 
 function decideTroll(player){

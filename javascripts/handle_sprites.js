@@ -520,6 +520,7 @@ function drawSpriteTurnways(canvas, player, repeatTime, isRepeat){
 }
 
 function makeRenderingSnapshot(player){
+	debug("Why are horns randomizing???");
 	var ret = new PlayerSnapshot();
 	ret.dead = player.dead;
 	ret.isTroll = player.isTroll
@@ -534,6 +535,7 @@ function makeRenderingSnapshot(player){
 	ret.chatHandle = player.chatHandle
 	ret.leftHorn = player.leftHorn;
 	ret.rightHorn = player.rightHorn;
+	ret.quirk = player.quirk;
 	return ret;
 }
 function drawSprite(canvas, player, repeatTime, isRepeat){

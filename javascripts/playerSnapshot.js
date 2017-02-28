@@ -16,6 +16,7 @@ function PlayerSnapshot(){
 	this.chatHandle = null;
 	this.leftHorn = null;
 	this.rightHorn = null;
+	this.quirk = null;
 	
 	this.chatHandleShort = function(){
 		return this.chatHandle.match(/\b(\w)|[A-Z]/g).join('').toUpperCase();
