@@ -77,7 +77,6 @@ function Intro(){
 
 	//i is so you know entry order
 	this.renderContent = function(div,i){
-		debug("Need to be able to call regular ticks between intro scenes.")
 		var narration = "<br>The " + this.player.htmlTitle() + " enters the game " + indexToWords(i) + ". ";
 		if(this.player.leader){
 			narration += "They are definitely the leader.";
