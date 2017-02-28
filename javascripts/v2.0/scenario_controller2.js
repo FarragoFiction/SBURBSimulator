@@ -34,7 +34,8 @@ window.onload = function() {
 	//authorMessage();
 
 	intro();
-	debugGodTierRevive();
+	//debugGodTierRevive();
+	debug("Add blood in blood color")
 
 	//make a new intro scene that has characters talk about their lands with their best friends/worst enemies.
 	//refacor other scenario controller to use special scenes (not part of scene controller) rather than
@@ -132,6 +133,31 @@ function makeAuthorAvatar(){
 	players[0].chatHandle = "jadedResearcher"
 }
 
+function decideHemoCaste(player){
+	if(player.aspect != "Blood"){  //sorry karkat
+		player.bloodColor = getRandomElementFromArray(bloodColors);
+	}
+}
+
+function decideLusus(player){
+	if(player.bloodColor == "#610061" || player.bloodColor == "#99004d" || players.bloodColor == "#631db4" ){
+		player.lusus = getRandomElementFromArray(seaLususTypes);
+	}else{
+		player.lusus = getRandomElementFromArray(landlususTypes);
+	}
+
+
+}
+
+function decideTroll(player){
+	if(Math.random() > 0.5 ){
+		player.isTroll = true;
+		decideHemoCaste(player);
+		decideLusus(player);
+		player.kernel_sprite = player.lusus;
+	}
+}
+
 function init(){
 	available_classes = classes; //re-init available classes.
 	available_aspects = nonrequired_aspects;
@@ -145,7 +171,10 @@ function init(){
 
 	players[0].hairColor = "#331200"
 	for(var j = 0; j<players.length; j++){
-		players[j].generateRelationships(players);
-		players[j].quirk = randomHumanSim();
+		var p = players[j];
+		decideTroll(p);
+		p.generateRelationships(players);
+		p.quirk = randomHumanSim();
+		debug("TODO: Give trolls troll quirks")
 	}
 }

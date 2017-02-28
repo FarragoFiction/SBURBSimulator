@@ -471,6 +471,7 @@ function drawSpriteDead(canvas, player, repeatTime, isRepeat){
   if(player.isTroll&& player.godTier){//wings before sprite
     wings(canvas,player);
   }
+  bloodPuddle(canvas, player);
   playerToSprite(canvas,player);
   hair(canvas, player);
   if(player.class_name == "Prince" && player.godTier){
@@ -479,11 +480,23 @@ function drawSpriteDead(canvas, player, repeatTime, isRepeat){
   if(player.isTroll){
     trollify(canvas,player);
   }
+  debug("draw dead text");
   if(!isRepeat){ //first time i call it this will be null
 	setTimeout(function(){
 			drawSprite(canvas,player,repeatTime,true)
 	}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
   }
+}
+
+function bloodPuddle(canvas,player){
+    ctx = canvas.getContext('2d');
+	var imageString = "blood_puddle.png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,width/6,height/4,width,height);
+	swapColors(canvas, "#fffc00", player.bloodColor);
 }
 
 function drawSpriteTurnways(canvas, player, repeatTime, isRepeat){
