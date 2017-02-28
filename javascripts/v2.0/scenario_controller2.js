@@ -32,14 +32,14 @@ window.onload = function() {
 		randomizeEntryOrder();
 	}
 	//authorMessage();
-
+	
 	intro();
+	debugJackScheme();
 	//debugLevelTheHellUp();
 	//debugGodTierLevelTheHellUp();
 	//debugCorpseLevelTheHellUp();
 	//debugGodTierRevive();
 	//debugCorpseSmooch();
-	debug("Add blood in blood color")
 
 	//make a new intro scene that has characters talk about their lands with their best friends/worst enemies.
 	//refacor other scenario controller to use special scenes (not part of scene controller) rather than
@@ -48,47 +48,24 @@ window.onload = function() {
 	//and if so will call "render" rather than "content"
 	debug("render dream self, find places to insert dialogue or graphics. gravestones, at end, for example. sideways bleeding dead players in middle.")
 	debug("Consider having ticks be a button press that clears the current story, rather than all at once. Only do this if too many canvases");
-    tick();
+    
+	//tick();
 }
 
 function tick(){
 	if(timeTillReckoning > 0){
 		setTimeout(function(){
 			timeTillReckoning += -1;
-			processScenes2(players);
+			processScenes2(availablePlayers);
 			tick();
-		},2000);	
+		},availablePlayers.length * 1000);	
 	}else{
 	
 		debug("TODO: Handle post reckoning");
 	}
 }
 
-//testing this out with debugLevelTheHellUp, but eventually want this in scene controller.
-//can't just put a timeout in a forloop, all that does is change WHEN it calls all the players nearly
-//simultaneously.
-//in scene controller, would pass a current index so it knows what next scene is.
-//ignore it now.
-//if index is more than length, index is zero (loops) 
-//have a stop condition of reckoningStarted
-function callNextSceneWithDelay(index){
-	if(index > 4 || reckoningStarted){
-		//alert("I should be done at: " +index)
-		return;
-	}
-	setTimeout(function(){
-		if(index<2){
-			debugLevelTheHellUp(); 
-		}else{
-			debugGodTierLevelTheHellUp(); 
-		}
-  			 //in scene controller, make this choose scene from array. trigger, then content, etc.
-		index += 1;
-		callNextSceneWithDelay(index)
-  		}, (players.length*100+2000));  //want all players to be done with their setTimeOuts players.length*1000+2000
 
-
-}
 
 //scenes call this
 function chatLine(start, player, line){
@@ -109,15 +86,35 @@ function authorMessage(){
 	introScene.renderContent(newScene(),0); //new scenes take care of displaying on their own.
 }
 
+function callNextIntroWithDelay(player_index){
+	if(player_index >= players.length){
+		return;
+	}
+	setTimeout(function(){
+		var s = new Intro();
+		var p = players[player_index];
+		var playersInMedium = players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.
+		s.trigger(players, p)
+		s.renderContent(newScene(),player_index); //new scenes take care of displaying on their own.
+		processScenes2(playersInMedium);
+		player_index += 1;
+		callNextIntroWithDelay(player_index)
+  		}, player_index * 1000);  //want all players to be done with their setTimeOuts players.length*1000+2000
+}
+
+
 function intro(){
-	introScene = new Intro();
+	callNextIntroWithDelay(0);
+	/*introScene = new Intro();
 
 	for(var i = 0; i<players.length; i++){
+		var playersInMedium = players.slice(0, i+1); //anybody past me isn't in the medium, yet.
 		var p = players[i];
 		introScene.trigger(players, p)
 		//$("#story").append(introScene.content());
 		introScene.renderContent(newScene(),i); //new scenes take care of displaying on their own.
-	}
+		processScenes2(playersInMedium);
+	}*/
 
 }
 

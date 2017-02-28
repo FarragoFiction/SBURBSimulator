@@ -73,6 +73,27 @@ function Relationship(initial_value, target_player){
 	
 }
 
+function getRelationshipFlavorGreeting(r1, r2, me, you){
+	var ret = "";
+	if(r1.type() == r1.goodBig && r2.type() == r2.goodBig){
+		ret += " Hey! ";
+	}else if(r2.type() == r2.goodBig){
+		ret += "Hey.";
+	}else if(r1.type() == r1.goodBig){
+		ret += " Uh, hey!";
+	}else if(r1.type() == r1.badBig && r2.type() == r2.badBig){
+		ret += " Hey, asshole.";
+	}else if(r2.type() == r2.badBig){
+		ret += "Er...hey?"
+	}else if(r1.type() == r2.badBig){
+		ret += "I'll make this quick. ";
+	}else{
+		ret += "Hey."
+	}
+	return ret;
+	
+}
+
 function getRelationshipFlavorText(r1, r2, me, you){
 	var ret = "";
 	if(r1.type() == r1.goodBig && r2.type() == r2.goodBig){

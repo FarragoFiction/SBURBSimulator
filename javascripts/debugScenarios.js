@@ -11,6 +11,18 @@ function debugLevelTheHellUp(){
 	}
 }
 
+function debugJackScheme(){
+	queenStrength = 20;
+	players[0].class_name = "Page" //make a chump for Jack to talk to.
+	var s = new JackBeginScheming();
+	if(s.trigger(players) && !version2){
+		//alert("v1 " + version2);
+		$("#story").append(s.content()+ "<br><br> ");
+	}else if (s.trigger(players) && version2){
+		s.renderContent(newScene());
+	}
+}
+
 function debugCorpseLevelTheHellUp(){
 	for(var j = 0; j<2; j++){
 		players[j].dead = true;

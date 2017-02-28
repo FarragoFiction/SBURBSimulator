@@ -64,6 +64,7 @@ function processReckoning(playerList){
 }
 
 function processScenes2(playerList){
+	debug("processing scenes")
 	var ret = "";
 	setAvailablePlayers(playerList);
 	for(var i = 0; i<available_scenes.length; i++){
@@ -85,8 +86,31 @@ function processScenes2(playerList){
 	}
 
 
-
+	//setAvailablePlayers(playerList);
+	//callNextSceneWithDelay(available_scenes,0) //why doesn't this work. only call it with above commented out.
 	return ret;
+}
+
+function callNextSceneWithDelay(scenes, index, death){
+	//debug("scene index: " + index)
+	if(index > scenes.length && !death){
+		callNextSceneWithDelay(death_scenes,0,true);
+	}else if(index > scenes.length && death == true){
+		return;
+	}
+	setTimeout(function(){
+		var s =scenes[index];
+		if(s.trigger(playerList)){
+			debub("scene trigger")
+			s.renderContent(newScene());
+			if(!s.canRepeat){
+				removeFromArray(s,available_scenes);
+			}
+		}
+  			 //in scene controller, make this choose scene from array. trigger, then content, etc.
+		index += 1;
+		callNextSceneWithDelay(scenes, index)
+  		}, 100);  //want all players to be done with their setTimeOuts players.length*1000+2000
 }
 
 //playerlist is everybody in the medium
