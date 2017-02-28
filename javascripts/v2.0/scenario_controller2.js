@@ -41,7 +41,7 @@ window.onload = function() {
 	//have messy internal methods.
 	//all other scenes are handled through the scene controller like normal, which will check if var version2 = true;
 	//and if so will call "render" rather than "content"
-	debug("find places to insert dialogue or graphics. gravestones, at end, for example. sideways bleeding dead players in middle.")
+	debug("render dream self, find places to insert dialogue or graphics. gravestones, at end, for example. sideways bleeding dead players in middle.")
 	debug("Consider having ticks be a button press that clears the current story, rather than all at once. Only do this if too many canvases");
     tick();
 }

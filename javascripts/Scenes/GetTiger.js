@@ -25,7 +25,19 @@ function GetTiger(){
 	
 	this.renderContent = function(div){
 		div.append(this.content());
+		var repeatTime = 1000;
+		var divID = (div.attr("id")) + "_tiger";
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		//different format for canvas code
+		var canvasDiv = document.getElementById("canvas"+ divID);
+		var players = this.deadPlayersToGodTier;
+		setTimeout(function(){
+			drawGetTiger(canvasDiv, players,repeatTime)
+		}, repeatTime/2);  //images aren't always loaded by the time i try to draw them the first time.
+		
 	}
+	
 	
 	this.content = function(){
 		var ret = getPlayersTitles(this.deadPlayersToGodTier) + " was always destined to take a Legendary Nap, and upon waking, become a God Tier. ";

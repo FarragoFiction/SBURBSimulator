@@ -23,6 +23,22 @@ function hexToRgbA(hex){
     throw new Error('Bad Hex ' + hex);
 }
 
+
+function rainbowSwap(canvas){
+	ctx = canvas.getContext('2d');
+	var img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
+	var colorRatio = 1/canvas.width;
+	//4 byte color array
+	for(var i = 0; i<img_data.data.length; i += 4){
+		if(img_data.data[i+3] == 255){
+		  img_data.data[i] = getRandomInt(0,255);
+		  img_data.data[i+1] =(i/canvas.width+ getRandomInt(0,50))%255;
+		  img_data.data[i+2] = (i/canvas.height +getRandomInt(0,50))%255;
+		  img_data.data[i+3] = 255;
+		}
+	}
+	ctx.putImageData(img_data, 0, 0);
+}
 //if speed becomes an issue, take in array of color pairs to swap out
 //rather than call this method once for each color
 //swaps one hex color with another.
@@ -192,6 +208,29 @@ function imgLoaded(imgElement) {
 }
 
 */
+
+function drawGetTiger(canvas, players, repeatTime){
+	var spriteBuffers = [];
+	for(var i = 0; i<players.length; i++){
+		spriteBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
+		drawSprite(spriteBuffers[i],players[i],repeatTime)
+	}
+	
+	setTimeout(function(){
+			var x = -275;
+			var y = -50;
+			
+			for(var i = 0; i<spriteBuffers.length; i++){
+				if(i == 6){
+					x = -300; //down a row
+					y = 100;
+				}
+				x = x +150;
+				copyTmpCanvasToRealCanvasAtPos(canvas, spriteBuffers[i],x,y)
+			}
+			rainbowSwap(canvas);
+		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
+}
 
 //player on left, echeladder on right. text with boonies. all levels listed
 //obtained levels have a colored background, others have black.

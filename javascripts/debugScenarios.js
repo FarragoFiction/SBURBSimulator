@@ -26,7 +26,7 @@ function debugGodTierLevelTheHellUp(){
 }
 
 function debugGodTier(){
-	for(var j = 0; j<2; j++){
+	for(var j = 0; j<players.length; j++){
 		players[j].godDestiny = true;
 		players[j].dead = true; //only .evel 2 players up
 	}
