@@ -34,7 +34,7 @@ window.onload = function() {
 	//authorMessage();
 	
 	intro();
-	debugJackScheme();
+	//debugJackScheme();
 	//debugLevelTheHellUp();
 	//debugGodTierLevelTheHellUp();
 	//debugCorpseLevelTheHellUp();
@@ -49,7 +49,7 @@ window.onload = function() {
 	debug("render player snapshots, not players.   gravestones, at end")
 	debug("consider keeping track of async tasks in array. if too many at a time, put new async tasks in second array, only activate and add to first array when it is empty enough");
     
-	debug("enabling ticks causes people to be rendered dead or godtier before it actually happens. Maybe stop having delays in rendering, make it all synchronous, and find another way to make sure images are loaded...");
+	debug("enabling ticks causes people to be rendered dead or godtier before it actually happens. s in rendering, working on haveing player snapshots rendered to fix this..");
 	//tick();
 }
 
