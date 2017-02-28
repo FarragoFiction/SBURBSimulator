@@ -19,9 +19,13 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, chat_
 	this.dreamSelf = true;
 	this.isTroll = false; //later
 	this.bloodColor = "#ff0000" //human red.
-	this.leftHorn = 0;
+	this.leftHorn =  getRandomInt(1,46);
+	this.rightHorn = this.leftHorn;
+	if(Math.random() > .8 ){ //preference for symmetry
+		this.rightHorn = getRandomInt(1,46);
+	}
 	this.interests = interests;
-	this.rightHorn = 0;
+	this.rightHorn =  getRandomInt(1,46);
 	this.lusus = "Adult Human"
 	this.quirk = null;
 	this.dead = false;
