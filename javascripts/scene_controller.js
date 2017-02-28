@@ -85,11 +85,10 @@ function processScenes2(playerList){
 	}
 
 
-	//setAvailablePlayers(playerList);
-	//callNextSceneWithDelay(available_scenes,0) //why doesn't this work. only call it with above commented out.
 	return ret;
 }
 
+//unnecccesarry. tick has delay, not scenes (and especially not scenes that don't even triger)
 function callNextSceneWithDelay(scenes, index, death){
 	//debug("scene index: " + index)
 	if(index > scenes.length && !death){
