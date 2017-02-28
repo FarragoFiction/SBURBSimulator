@@ -49,6 +49,7 @@ window.onload = function() {
 	debug("render dream self, find places to insert dialogue or graphics. gravestones, at end, for example. sideways bleeding dead players in middle.")
 	debug("Consider having ticks be a button press that clears the current story, rather than all at once. Only do this if too many canvases");
     
+	debug("enabling ticks causes people to be rendered dead or godtier before it actually happens. Maybe stop having delays in rendering, make it all synchronous, and find another way to make sure images are loaded...");
 	//tick();
 }
 

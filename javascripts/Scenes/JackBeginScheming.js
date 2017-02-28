@@ -71,13 +71,16 @@ function JackBeginScheming(){
 				chatText += chatLine(player1Start, player1,"Yep, espionage and stuff has to be way easier than a huge boss fight.")
 			}
 		}
-		chatText += chatLine(player1Start, player1,"On a side note, he's a litle stabby. ")
+		chatText += chatLine(player1Start, player1,"On a side note, he's a little stabby. ")
 		chatText += chatLine(player2Start, player2,"!");
 		if(this.smart(player1)){
 				chatText += chatLine(player1Start, player1,"Yeah. Definitely going to keep an eye on him. ")
 			}else{
-				chatText += chatLine(player1Start, player1," But I'm pretty sure at least ONE of those stabs was on accident.")
-				chatText += chatLine(player1Start, player1," It's... kind of how he says 'hello'?")
+				chatText += chatLine(player1Start, player1,"But I'm pretty sure at least ONE of those stabs was on accident.")
+				chatText += chatLine(player1Start, player1,"It's... kind of how he says 'hello'?")
+				if(this.smart(player2)){
+					chatText += chatLine(player2Start, player2,"Why do I even bother?")
+				}
 			}
 		
 		setTimeout(function(){
@@ -86,7 +89,6 @@ function JackBeginScheming(){
 	}
 	
 	this.renderContent = function(div){
-		debug("TODO: have whoever jack approaches message living leader. "+div);
 		if(!this.friend){
 			return;
 		}
@@ -99,10 +101,8 @@ function JackBeginScheming(){
 		var player2 = getLeader(findLivingPlayers(players));
 		if(player2 && player2 != player1){
 			//player tells leader what happened.
-			debug("chat with leader: " + player2.title())
 			this.chatWithFriend(div,player1, player2)
 		}else if(player2 == player1){
-			debug("chat with friend: " + player2.title())
 			//leader gossips with friends
 			player2 = player1.getBestFriendFromList(findLivingPlayers(players));
 			if(!player2){
