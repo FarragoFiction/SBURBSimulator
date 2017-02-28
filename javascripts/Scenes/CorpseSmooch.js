@@ -23,6 +23,62 @@ function CorpseSmooch(){
 	
 	this.renderContent = function(div){
 		div.append(this.content());
+		for(var i = 0; i<this.dreamersToRevive.length; i++){
+			this.renderForPlayer(div, this.dreamersToRevive[i]);
+		}
+	}
+	
+	//smoocher on left, corpse on right, them waking up on prospit/derse on far right
+	this.drawCorpseSmooch = function(canvas, dead_player, royalty, repeatTime){
+		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawSprite(pSpriteBuffer,royalty,repeatTime)
+		
+		var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawSpriteDead(dSpriteBuffer,dead_player,repeatTime)
+		
+		setTimeout(function(){
+			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,100,0)
+		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
+
+	}
+	
+	this.getRoyalty = function(d){
+		var royalty = d.getWhoLikesMeBestFromList(findLivingPlayers(availablePlayers));
+			
+		if(!royalty){
+			//okay, princes are traditional...
+			royalty = findClassPlayer(findLivingPlayers(availablePlayers), "Prince");
+		}
+		if(!royalty){
+			//okay, anybody free?
+			royalty = getRandomElementFromArray(findLivingPlayers(availablePlayers));
+		}
+		
+		//shit, maybe your best friend can drop what they are doing to save your ass?
+		if(!royalty){
+			royalty = d.getWhoLikesMeBestFromList(findLivingPlayers(players));
+		}
+		//is ANYBODY even alive out there????
+		if(!royalty){
+			royalty = getRandomElementFromArray(findLivingPlayers(players));
+		}
+		return royalty;
+	}
+	
+	this.renderForPlayer = function(div, deadPlayer){
+		var repeatTime = 1000;
+		var divID = (div.attr("id")) + "_" + deadPlayer.chatHandle;
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		var canvasDiv = document.getElementById("canvas"+ divID);
+		var royalty = this.getRoyalty(deadPlayer)
+		var context = this; //bulshit scoping inside of timeout
+		
+		
+		setTimeout(function(){
+			context.drawCorpseSmooch(canvasDiv, deadPlayer, royalty, repeatTime)
+		}, repeatTime/2);  //images aren't always loaded by the time i try to draw them the first time.
 	}
 	
 	//prefer to be smooched by prince who doesn't hate you, or person who likes you best. 
@@ -32,25 +88,7 @@ function CorpseSmooch(){
 		for(var i = 0; i<this.dreamersToRevive.length; i++){
 			var d = this.dreamersToRevive[i];
 			//have best friend mac on you.
-			var royalty = d.getWhoLikesMeBestFromList(findLivingPlayers(availablePlayers));
-			
-			if(!royalty){
-				//okay, princes are traditional...
-				royalty = findClassPlayer(findLivingPlayers(availablePlayers), "Prince");
-			}
-			if(!royalty){
-				//okay, anybody free?
-				royalty = getRandomElementFromArray(findLivingPlayers(availablePlayers));
-			}
-			
-			//shit, maybe your best friend can drop what they are doing to save your ass?
-			if(!royalty){
-				royalty = d.getWhoLikesMeBestFromList(findLivingPlayers(players));
-			}
-			//is ANYBODY even alive out there????
-			if(!royalty){
-				royalty = getRandomElementFromArray(findLivingPlayers(players));
-			}
+			var royalty = this.getRoyalty(d);
 			
 			if(royalty){
 				royalty.triggerLevel ++;

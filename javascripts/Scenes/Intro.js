@@ -50,7 +50,7 @@ function Intro(){
 		chatText += chatLine(player1Start, player1,"It's the " + player1.land +"");
 		chatText += chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+".");
 		chatText +=chatLine(player2Start, player2,"lol");
-		chatText += chatLine(player1Start, player1,"So...I prototyped my kernel whatever with a " + player1.kernel_sprite +".\n");
+		chatText += chatLine(player1Start, player1,"So... I prototyped my kernel whatever with a " + player1.kernel_sprite +".\n");
 		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");

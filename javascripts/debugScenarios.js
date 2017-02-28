@@ -39,6 +39,19 @@ function debugGodTier(){
 	}
 }
 
+function debugCorpseSmooch(){
+	for(var j = 0; j<2; j++){
+		players[j].dead = true;
+	}
+	var s = new CorpseSmooch();
+	if(s.trigger(players) && !version2){
+		//alert("v1 " + version2);
+		$("#story").append(s.content()+ "<br><br> ");
+	}else if (s.trigger(players) && version2){
+		s.renderContent(newScene());
+	}
+}
+
 function debugGodTierRevive(){
 	for(var j = 0; j<players.length; j++){
 		players[j].godTier = true;

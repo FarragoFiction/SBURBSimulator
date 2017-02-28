@@ -35,6 +35,7 @@ window.onload = function() {
 
 	intro();
 	//debugGodTierRevive();
+	debugCorpseSmooch();
 	debug("Add blood in blood color")
 
 	//make a new intro scene that has characters talk about their lands with their best friends/worst enemies.

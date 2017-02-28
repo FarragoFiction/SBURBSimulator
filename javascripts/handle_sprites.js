@@ -299,16 +299,20 @@ function drawLevelUp(canvas, player,repeatTime){
   }
 
   var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-  drawSprite(pSpriteBuffer,player,repeatTime)
+  	if(player.dead){
+		drawSpriteDead(pSpriteBuffer,player,repeatTime)
+	}else{
+		drawSprite(pSpriteBuffer,player,repeatTime)
+	}
 
   var levelsBuffer = getBufferCanvas(document.getElementById("echeladder_template"));
   writeLevels(levelsBuffer,player) //level_bg_colors,level_font_colors
   
   setTimeout(function(){
-			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
-			copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,250,0)
-			copyTmpCanvasToRealCanvasAtPos(canvas, levelsBuffer,250,0)
-		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
+		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,250,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, levelsBuffer,250,0)
+	}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
 
 }
 
@@ -331,7 +335,11 @@ function drawLevelUpGodTier(canvas, player,repeatTime){
 	ctx.drawImage(img,0,0,width,height);
 	
 	var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-	drawSprite(pSpriteBuffer,player,repeatTime)
+	if(player.dead){
+		drawSpriteDead(pSpriteBuffer,player,repeatTime)
+	}else{
+		drawSprite(pSpriteBuffer,player,repeatTime)
+	}
 	
 	var levelBuffer = getBufferCanvas(document.getElementById("godtierlevelup_template"));
 	//drawBG(levelBuffer, "#ff0000", "#00ff00");
@@ -463,6 +471,7 @@ function drawBGRadialWithWidth(canvas, width, color1, color2){
 	ctx.fillRect(0, 0, width, canvas.height);
 }
 
+//not just a conditional inside of drawSprite because what if i want to do flashbacks to before death?
 function drawSpriteDead(canvas, player, repeatTime, isRepeat){
   ctx = canvas.getContext('2d');
   ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
