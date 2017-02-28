@@ -31,11 +31,14 @@ window.onload = function() {
 	if(!debugMode){
 		randomizeEntryOrder();
 	}
-	//authorMessage();
+	authorMessage();
 
 	intro();
+	//debugLevelTheHellUp();
+	//debugGodTierLevelTheHellUp();
+	debugCorpseLevelTheHellUp();
 	//debugGodTierRevive();
-	debugCorpseSmooch();
+	//debugCorpseSmooch();
 	debug("Add blood in blood color")
 
 	//make a new intro scene that has characters talk about their lands with their best friends/worst enemies.
@@ -132,6 +135,9 @@ function makeAuthorAvatar(){
 	players[0].quirk.capitalization = 1;
 	players[0].quirk.favoriteNumber = 3;
 	players[0].chatHandle = "jadedResearcher"
+	players[0].isTroll = false
+	players[0].bloodColor = "#ff0000"
+	players[0].mylevels = ["INSTEAD","a CORPSE JUST RENDERS HERE","STILL CAN LEVEL UP.","OH, AND CORPSES.","SAME LEVELS","BUT STILL HAVE","IMAGE","THEY GET A DIFFERENT","BEFORE MAXING OUT","IF THEY GODTIER","AND GO UP THE LADDER","LEVELS NOW","16 PREDETERMINED","HAVE","PLAYERS","I FINISHED ECHELADDERS."];
 }
 
 function decideHemoCaste(player){

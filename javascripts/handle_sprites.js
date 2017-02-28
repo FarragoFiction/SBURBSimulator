@@ -30,7 +30,7 @@ function rainbowSwap(canvas){
 	var colorRatio = 1/canvas.width;
 	//4 byte color array
 	for(var i = 0; i<img_data.data.length; i += 4){
-		if(img_data.data[i+3] == 255){
+		if(img_data.data[i+3] >= 128){
 		  img_data.data[i] = getRandomInt(0,255);
 		  img_data.data[i+1] =(i/canvas.width+ getRandomInt(0,50))%255;
 		  img_data.data[i+2] = (i/canvas.height +getRandomInt(0,50))%255;
