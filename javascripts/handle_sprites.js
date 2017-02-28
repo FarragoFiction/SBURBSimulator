@@ -1,3 +1,4 @@
+var asyncNumSprites = 0;
 function trollify(canvas,player){
    //red_array = red_context.getImageData(0, 0, red_canvas.width, red_canvas.height).data;
    //alert("I should trollify");
@@ -495,6 +496,7 @@ function bloodPuddle(canvas,player){
 }
 
 function drawSpriteTurnways(canvas, player, repeatTime, isRepeat){
+	player = makeRenderingSnapshot(player);
   ctx = canvas.getContext('2d');
   ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
   ctx.translate(canvas.width, 0);
@@ -517,8 +519,25 @@ function drawSpriteTurnways(canvas, player, repeatTime, isRepeat){
   }
 }
 
-
+function makeRenderingSnapshot(player){
+	var ret = new PlayerSnapshot();
+	ret.dead = player.dead;
+	ret.isTroll = player.isTroll
+	ret.godTier = player.godTier;
+	ret.class_name = player.class_name;
+	ret.aspect = player.aspect;
+	ret.isDreamSelf = player.isDreamSelf;
+	ret.hair = player.hair;
+	ret.bloodColor = player.bloodColor;
+	ret.hairColor = player.hairColor;
+	ret.moon = player.moon;
+	ret.chatHandle = player.chatHandle
+	ret.leftHorn = player.leftHorn;
+	ret.rightHorn = player.rightHorn;
+	return ret;
+}
 function drawSprite(canvas, player, repeatTime, isRepeat){
+	player = makeRenderingSnapshot(player);
   //debug("Drawing sprite for: " + player.title());
   //console.log("looking for canvas: " + canvas);
  // canvas = $("#"+canvasId)[0]; //don't want jquery object, want contents
@@ -560,9 +579,12 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
   if(!isRepeat){ //first time i call it this will be null
 	 //alert("redrawing")
 	 //debug("Redrawing");
+	 asyncNumSprites +=1;
 	setTimeout(function(){
 		drawSprite(canvas,player,repeatTime,true)
-	}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
+	}, repeatTime,true);  //images aren't always loaded by the time i try to draw them the first time.
+  }else{
+	  asyncNumSprites += -1
   }
 }
 

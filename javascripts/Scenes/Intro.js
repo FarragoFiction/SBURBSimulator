@@ -12,6 +12,7 @@ function Intro(){
 	//make a pesterchum skin and stick text into it. How much can I fit?
 	//describe what land is like "It's full of...Peace", get word that isn't 'Land', 'of' or 'and'.
 	this.chat = function(div){
+		console.log(div);
 		var repeatTime = 1000;
 		var canvasHTML = "<br><canvas id='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);

@@ -1,6 +1,7 @@
 //keeps track of information the sprite needs to render itself
 //allows player to go ahead and change while their snapshot remains the same
 //even with asynchronous rendering.
+//renderer calls this, not any individual scenes.
 function PlayerSnapshot(){
 	this.dead = null;
 	this.isTroll = null
@@ -12,13 +13,20 @@ function PlayerSnapshot(){
 	this.bloodColor = null;
 	this.hairColor = null;
 	this.moon = null;
+	this.chatHandle = null;
+	this.leftHorn = null;
+	this.rightHorn = null;
 	
-	this.chatHandleShort() = function(){
-		
+	this.chatHandleShort = function(){
+		return this.chatHandle.match(/\b(\w)|[A-Z]/g).join('').toUpperCase();
 	}
-	
-	this.chatHandleShortCheckDup(player1Start) = function(){
-		
+
+	this.chatHandleShortCheckDup = function(otherHandle){
+		var tmp= this.chatHandle.match(/\b(\w)|[A-Z]/g).join('').toUpperCase();
+		if(tmp == otherHandle){
+			tmp = tmp + "2";
+		}
+		return tmp;
 	}
 	
 }
