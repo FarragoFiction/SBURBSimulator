@@ -39,6 +39,20 @@ function debugGodTier(){
 	}
 }
 
+function debugGodTierRevive(){
+	for(var j = 0; j<players.length; j++){
+		players[j].godTier = true;
+		players[j].dead = true; //only .evel 2 players up
+	}
+	var s = new GodTierRevival();
+	if(s.trigger(players) && !version2){
+		//alert("v1 " + version2);
+		$("#story").append(s.content()+ "<br><br> ");
+	}else if (s.trigger(players) && version2){
+		s.renderContent(newScene());
+	}
+}
+
 function debugPowerfulKing(){
 	kingStrength = 10000;
 	var s = new KingPowerful();

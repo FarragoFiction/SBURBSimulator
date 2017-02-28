@@ -21,6 +21,30 @@ function GodTierRevival(){
 	
 	this.renderContent = function(div){
 		div.append(this.content());
+		var repeatTime = 1000;
+		var divID = (div.attr("id")) + "_tiger";
+		var ch = canvasHeight;
+		if(this.godsToRevive.length > 6){
+			ch = canvasHeight*2;
+		}
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
+		div.append(canvasHTML);
+		//different format for canvas code
+		var canvasDiv = document.getElementById("canvas"+ divID);
+		var live_players = [];
+		var dead_players = [];
+		for(var i = 0; i<this.godsToRevive.length; i++){
+			var p = this.godsToRevive[i]
+			if(p.dead == false){
+				live_players.push(this.godsToRevive[i]);
+			}else{
+				dead_players.push(this.godsToRevive[i]);
+			}
+		}
+
+		setTimeout(function(){
+			drawGodRevival(canvasDiv, live_players, dead_players,repeatTime)
+		}, repeatTime/2);  //images aren't always loaded by the time i try to draw them the first time.
 	}
 	
 	this.content = function(){

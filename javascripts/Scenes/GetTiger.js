@@ -27,7 +27,11 @@ function GetTiger(){
 		div.append(this.content());
 		var repeatTime = 1000;
 		var divID = (div.attr("id")) + "_tiger";
-		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		var ch = canvasHeight;
+		if(this.deadPlayersToGodTier.length > 6){
+			ch = canvasHeight*2;
+		}
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = document.getElementById("canvas"+ divID);

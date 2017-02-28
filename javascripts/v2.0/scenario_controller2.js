@@ -34,7 +34,7 @@ window.onload = function() {
 	//authorMessage();
 
 	intro();
-	debugGodTier();
+	debugGodTierRevive();
 
 	//make a new intro scene that has characters talk about their lands with their best friends/worst enemies.
 	//refacor other scenario controller to use special scenes (not part of scene controller) rather than

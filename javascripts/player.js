@@ -125,6 +125,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, chat_
 			}
 		}
 
+		//return true; //for testing
 		return ret;
 	}
 

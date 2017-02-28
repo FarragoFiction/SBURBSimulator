@@ -209,6 +209,49 @@ function imgLoaded(imgElement) {
 
 */
 
+function drawGodRevival(canvas, live_players, dead_players, repeatTime){
+	var live_spriteBuffers = [];
+	var dead_spriteBuffers = [];
+	for(var i = 0; i<live_players.length; i++){
+		live_spriteBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
+		drawSprite(live_spriteBuffers[i],live_players[i],repeatTime)
+	}
+	
+	for(var i = 0; i<dead_players.length; i++){
+		dead_spriteBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
+		//drawBG(dead_spriteBuffers[i], "#00ff00", "#ff0000")
+		drawSpriteDead(dead_spriteBuffers[i],dead_players[i],repeatTime)
+	}
+	
+	setTimeout(function(){
+			var x = -275;
+			var y = -50;
+			var total = 0;
+			for(var i = 0; i<live_spriteBuffers.length; i++){
+				if(i == 6){
+					x = -300; //down a row
+					y = 100;
+				}
+				x = x +150;
+				copyTmpCanvasToRealCanvasAtPos(canvas, live_spriteBuffers[i],x,y)
+			}
+			total += live_spriteBuffers.length;
+			rainbowSwap(canvas);
+			y += 50; //dead players need to be rendered higher. 
+			for(var i = 0; i<dead_spriteBuffers.length; i++){
+				if(total == 6){
+					x = -300; //down a row
+					y += 120;
+				}
+				x = x +150;
+				copyTmpCanvasToRealCanvasAtPos(canvas, dead_spriteBuffers[i],x,y)
+				total ++;
+			}
+			//no rainbow for the dead.
+		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
+}
+
+
 function drawGetTiger(canvas, players, repeatTime){
 	var spriteBuffers = [];
 	for(var i = 0; i<players.length; i++){
@@ -418,6 +461,29 @@ function drawBGRadialWithWidth(canvas, width, color1, color2){
 
 	ctx.fillStyle = grd;
 	ctx.fillRect(0, 0, width, canvas.height);
+}
+
+function drawSpriteDead(canvas, player, repeatTime, isRepeat){
+  ctx = canvas.getContext('2d');
+  ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
+  ctx.translate(canvas.width, 0);
+  ctx.rotate(90*Math.PI/180);
+  if(player.isTroll&& player.godTier){//wings before sprite
+    wings(canvas,player);
+  }
+  playerToSprite(canvas,player);
+  hair(canvas, player);
+  if(player.class_name == "Prince" && player.godTier){
+	  princeTiara(canvas, player);
+  }
+  if(player.isTroll){
+    trollify(canvas,player);
+  }
+  if(!isRepeat){ //first time i call it this will be null
+	setTimeout(function(){
+			drawSprite(canvas,player,repeatTime,true)
+	}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
+  }
 }
 
 function drawSpriteTurnways(canvas, player, repeatTime, isRepeat){
