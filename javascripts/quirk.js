@@ -265,29 +265,8 @@ function randomHumanSim(){
 	return ret;
 }
 
-//troll quirks are more extreme
-function randomTrollQuirk(){
-	var ret = new Quirk();
-	ret.capitalization = getRandomInt(0,5);
-	ret.punctuation = getRandomInt(0,3);
-	if(Math.random() > .5){
-		ret.prefix = getRandomElementFromArray(prefixes);
-		if(ret.prefix.length == 1){
-			ret.prefix = multiplyCharacter(ret.prefix, ret.prefix[0], ret.favoriteNumber);
-		}
-	}
-	if(Math.random() > .5){
-		if(ret.prefix != "" && Math.random()>.7){ //mostly just repeat your prefix
-			ret.suffix = ret.prefix;
-		}else{
-			ret.suffix = getRandomElementFromArray(prefixes);
-		}
 
-		if(ret.suffix.length == 1){
-			ret.suffix  = multiplyCharacter(ret.suffix, ret.suffix[0], ret.favoriteNumber);
-		}
-	}
-
+function addNumberQuirk(ret){
 	if(ret.favoriteNumber == 1){
 		if(Math.random()>.5) ret.lettersToReplace.push(["I","1"]);
 		if(Math.random()>.5) ret.lettersToReplace.push(["i","1"]);
@@ -348,6 +327,66 @@ function randomTrollQuirk(){
 		if(Math.random()>.5) ret.lettersToReplace.push(["oh","0"]);
 		if(Math.random()>.5) ret.lettersToReplace.push(["OH","0"]);
 	}
+	return ret;
+}
+
+//since I'm not gonna list 'em out, have more quirks, and make sure you have certain CATEGORIES of quirk.
+function randomTrollSim(){
+	var ret = new Quirk();
+	ret.capitalization = getRandomInt(0,2);
+	ret.punctuation = getRandomInt(0,3);
+	if(ret.capitalization == 2 && Math.random() >.2){ //seriously, less all caps.
+		ret.capitalization = getRandomInt(0,1);
+	}
+	var roomLeft = 0;
+	//most people spell things, fine, other people have random problems
+	if(Math.random() > 0.50){
+		var roomLeft = getRandomInt(0,10);
+	}
+	if(roomLeft < 0) roomLeft = 0;
+	for(var i = 0; i< roomLeft; i++){
+		ret.lettersToReplaceIgnoreCase.push(getOneRandomReplaceArray());
+	}
+	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(very_quirks));
+	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(good_quirks));
+	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(lol_quirks));
+	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(greeting_quirks));
+	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(dude_quirks));
+	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(curse_quirks));
+	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(yes_quirks));
+	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(no_quirks));
+	//smileys have special characters, do later
+	//ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(smiley_quirks));
+	
+	ret =addNumberQuirk(ret);
+	//$("#debug").append("Human letters to replace: " + ret.lettersToReplace.length);
+	return ret;
+}
+
+//troll quirks are more extreme
+function randomTrollQuirk(){
+	var ret = new Quirk();
+	ret.capitalization = getRandomInt(0,5);
+	ret.punctuation = getRandomInt(0,3);
+	if(Math.random() > .5){
+		ret.prefix = getRandomElementFromArray(prefixes);
+		if(ret.prefix.length == 1){
+			ret.prefix = multiplyCharacter(ret.prefix, ret.prefix[0], ret.favoriteNumber);
+		}
+	}
+	if(Math.random() > .5){
+		if(ret.prefix != "" && Math.random()>.7){ //mostly just repeat your prefix
+			ret.suffix = ret.prefix;
+		}else{
+			ret.suffix = getRandomElementFromArray(prefixes);
+		}
+
+		if(ret.suffix.length == 1){
+			ret.suffix  = multiplyCharacter(ret.suffix, ret.suffix[0], ret.favoriteNumber);
+		}
+	}
+
+	ret =addNumberQuirk(ret);
 	var roomLeft = getRandomInt(0,6) - ret.lettersToReplace.length;
 	if(roomLeft < 0) roomLeft = 0;
 	for(var i = 0; i< roomLeft; i++){

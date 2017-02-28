@@ -31,12 +31,12 @@ window.onload = function() {
 	if(!debugMode){
 		randomizeEntryOrder();
 	}
-	authorMessage();
+	//authorMessage();
 
 	intro();
 	//debugLevelTheHellUp();
 	//debugGodTierLevelTheHellUp();
-	debugCorpseLevelTheHellUp();
+	//debugCorpseLevelTheHellUp();
 	//debugGodTierRevive();
 	//debugCorpseSmooch();
 	debug("Add blood in blood color")
@@ -157,7 +157,7 @@ function decideLusus(player){
 }
 
 function decideTroll(player){
-	if(Math.random() > 0.5 ){
+	if(Math.random() > 0.75 ){
 		player.isTroll = true;
 		decideHemoCaste(player);
 		decideLusus(player);
@@ -181,7 +181,11 @@ function init(){
 		var p = players[j];
 		decideTroll(p);
 		p.generateRelationships(players);
-		p.quirk = randomHumanSim();
+		if(p.isTroll){
+			p.quirk = randomTrollSim()
+		}else{
+			p.quirk = randomHumanSim();
+		}
 		debug("TODO: Give trolls troll quirks")
 	}
 }
