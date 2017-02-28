@@ -221,7 +221,7 @@ function drawGodRevival(canvas, live_players, dead_players, repeatTime){
 	for(var i = 0; i<dead_players.length; i++){
 		dead_spriteBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
 		//drawBG(dead_spriteBuffers[i], "#00ff00", "#ff0000")
-		drawSpriteDead(dead_spriteBuffers[i],dead_players[i],repeatTime)
+		drawSprite(dead_spriteBuffers[i],dead_players[i],repeatTime)
 	}
 	
 	setTimeout(function(){
@@ -301,7 +301,7 @@ function drawLevelUp(canvas, player,repeatTime){
 
   var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
   	if(player.dead){
-		drawSpriteDead(pSpriteBuffer,player,repeatTime)
+		drawSprite(pSpriteBuffer,player,repeatTime)
 	}else{
 		drawSprite(pSpriteBuffer,player,repeatTime)
 	}
@@ -337,7 +337,7 @@ function drawLevelUpGodTier(canvas, player,repeatTime){
 	
 	var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 	if(player.dead){
-		drawSpriteDead(pSpriteBuffer,player,repeatTime)
+		drawSprite(pSpriteBuffer,player,repeatTime)
 	}else{
 		drawSprite(pSpriteBuffer,player,repeatTime)
 	}
@@ -482,31 +482,6 @@ function drawBGRadialWithWidth(canvas, width, color1, color2){
 	ctx.fillRect(0, 0, width, canvas.height);
 }
 
-//not just a conditional inside of drawSprite because what if i want to do flashbacks to before death?
-function drawSpriteDead(canvas, player, repeatTime, isRepeat){
-  ctx = canvas.getContext('2d');
-  ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
-  ctx.translate(canvas.width, 0);
-  ctx.rotate(90*Math.PI/180);
-  if(player.isTroll&& player.godTier){//wings before sprite
-    wings(canvas,player);
-  }
-  bloodPuddle(canvas, player);
-  playerToSprite(canvas,player);
-  hair(canvas, player);
-  if(player.class_name == "Prince" && player.godTier){
-	  princeTiara(canvas, player);
-  }
-  if(player.isTroll){
-    trollify(canvas,player);
-  }
-  debug("draw dead text");
-  if(!isRepeat){ //first time i call it this will be null
-	setTimeout(function(){
-			drawSprite(canvas,player,repeatTime,true)
-	}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
-  }
-}
 
 function bloodPuddle(canvas,player){
     ctx = canvas.getContext('2d');
@@ -549,6 +524,10 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
  // canvas = $("#"+canvasId)[0]; //don't want jquery object, want contents
   ctx = canvas.getContext('2d');
   ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
+  if(player.dead && !isRepeat){//only rotate once
+	ctx.translate(canvas.width, 0);
+	ctx.rotate(90*Math.PI/180);
+  }
   //sprite = new Image();
   //sprite.src = 'test.png';
   //need to get sprite from sprite sheet
@@ -559,6 +538,10 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
 	//ctx.drawImage(sprites,0,0,width,height);
   if(player.isTroll&& player.godTier){//wings before sprite
     wings(canvas,player);
+  }
+  
+  if(player.dead){
+	   bloodPuddle(canvas, player);
   }
   playerToSprite(canvas,player);
   hair(canvas, player);
