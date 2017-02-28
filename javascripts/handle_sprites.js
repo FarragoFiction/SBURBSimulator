@@ -561,7 +561,7 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
 	 //alert("redrawing")
 	 //debug("Redrawing");
 	setTimeout(function(){
-			drawSprite(canvas,player,repeatTime,true)
+		drawSprite(canvas,player,repeatTime,true)
 	}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
   }
 }

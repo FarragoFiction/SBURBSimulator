@@ -46,7 +46,7 @@ window.onload = function() {
 	//have messy internal methods.
 	//all other scenes are handled through the scene controller like normal, which will check if var version2 = true;
 	//and if so will call "render" rather than "content"
-	debug("render dream self, find places to insert dialogue or graphics. gravestones, at end, for example. sideways bleeding dead players in middle.")
+	debug("render player snapshots, not players.   gravestones, at end")
 	debug("consider keeping track of async tasks in array. if too many at a time, put new async tasks in second array, only activate and add to first array when it is empty enough");
     
 	debug("enabling ticks causes people to be rendered dead or godtier before it actually happens. Maybe stop having delays in rendering, make it all synchronous, and find another way to make sure images are loaded...");
