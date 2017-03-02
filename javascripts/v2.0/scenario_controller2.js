@@ -32,7 +32,7 @@ window.onload = function() {
 		randomizeEntryOrder();
 	}
 	//authorMessage();
-  debug(" dialog different if grimdark. terse. aggressive. Also, nonsense font?")
+  debug(" dialog different if grimdark. terse. aggressive. Also, nonsense font and scrambled? make othe rplayer not understand?")
 	intro();
   debugGrimDark();
 	//debugJackScheme();
