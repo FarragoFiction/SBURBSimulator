@@ -76,6 +76,9 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, chat_
 			ret+= "Dream ";
 		}
 		ret+= this.class_name + " of " + this.aspect;
+		if(this.dead){
+			ret += "'s Corpse"
+		}
 		return ret;
 	}
 

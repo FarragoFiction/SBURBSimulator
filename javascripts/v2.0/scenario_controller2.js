@@ -32,9 +32,9 @@ window.onload = function() {
 		randomizeEntryOrder();
 	}
 	//authorMessage();
-	
+
 	intro();
-	//debugJackScheme();
+	debugJackScheme();
 	//debugLevelTheHellUp();
 	//debugGodTierLevelTheHellUp();
 	//debugCorpseLevelTheHellUp();
@@ -48,7 +48,7 @@ window.onload = function() {
 	//and if so will call "render" rather than "content"
 	debug("render player snapshots, not players.   gravestones, at end")
 	debug("consider keeping track of async tasks in array. if too many at a time, put new async tasks in second array, only activate and add to first array when it is empty enough");
-    
+
 	debug("enabling ticks causes people to be rendered dead or godtier before it actually happens. s in rendering, working on haveing player snapshots rendered to fix this..");
 	tick();
 }
@@ -59,9 +59,9 @@ function tick(){
 			timeTillReckoning += -1;
 			processScenes2(availablePlayers);
 			tick();
-		},availablePlayers.length * 1000);	
+		},availablePlayers.length * 1000);
 	}else{
-	
+
 		debug("TODO: Handle post reckoning");
 	}
 }
