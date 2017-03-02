@@ -11,6 +11,13 @@ function debugLevelTheHellUp(){
 	}
 }
 
+function debugGrimDark(){
+	for(var j = 0; j<2; j++){
+		players[j].grimDark = true; //only .evel 2 players up
+	}
+
+}
+
 function debugJackScheme(){
 	queenStrength = 20;
 	players[0].class_name = "Page" //make a chump for Jack to talk to.
@@ -101,7 +108,7 @@ function debugPowerfulKing(){
 	}else if (s.trigger(players) && version2){
 		s.renderContent(newScene());
 	}
-	
+
 }
 
 function generateDebugPlayers1(){

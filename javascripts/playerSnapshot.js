@@ -11,13 +11,15 @@ function PlayerSnapshot(){
 	this.isDreamSelf = null;
 	this.hair = null;
 	this.bloodColor = null;
+	this.grimDark = null;
+	this.murderMode = null;
 	this.hairColor = null;
 	this.moon = null;
 	this.chatHandle = null;
 	this.leftHorn = null;
 	this.rightHorn = null;
 	this.quirk = null;
-	
+
 	this.chatHandleShort = function(){
 		return this.chatHandle.match(/\b(\w)|[A-Z]/g).join('').toUpperCase();
 	}
@@ -29,5 +31,5 @@ function PlayerSnapshot(){
 		}
 		return tmp;
 	}
-	
+
 }

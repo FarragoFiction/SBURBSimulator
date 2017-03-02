@@ -44,7 +44,7 @@ function rainbowSwap(canvas){
 //if speed becomes an issue, take in array of color pairs to swap out
 //rather than call this method once for each color
 //swaps one hex color with another.
-//wait no, would be same amount of things. just would have nested for loops instead of 
+//wait no, would be same amount of things. just would have nested for loops instead of
 //multiple calls
 function swapColors(canvas, color1, color2){
   var oldc = hexToRgbA(color1);
@@ -95,6 +95,10 @@ function swapColors50(canvas, color1, color2){
   }
   ctx.putImageData(img_data, 0, 0);
 
+}
+
+function grimDarkSkin(canvas){
+  swapColors(canvas, "#ffffff", "#424242")
 }
 
 function greySkin(canvas){
@@ -158,7 +162,7 @@ function leftHorn(canvas, player){
 function rightHorn(canvas, player){
  // console.log("doing right horn");
   ctx = canvas.getContext('2d');
- 
+
   var imageString = "right"+player.rightHorn + ".png";
   addImageTag(imageString)
 
@@ -211,13 +215,13 @@ function drawGodRevival(canvas, live_players, dead_players, repeatTime){
 		live_spriteBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
 		drawSprite(live_spriteBuffers[i],live_players[i],repeatTime)
 	}
-	
+
 	for(var i = 0; i<dead_players.length; i++){
 		dead_spriteBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
 		//drawBG(dead_spriteBuffers[i], "#00ff00", "#ff0000")
 		drawSprite(dead_spriteBuffers[i],dead_players[i],repeatTime)
 	}
-	
+
 	setTimeout(function(){
 			var x = -275;
 			var y = -50;
@@ -232,7 +236,7 @@ function drawGodRevival(canvas, live_players, dead_players, repeatTime){
 			}
 			total += live_spriteBuffers.length;
 			rainbowSwap(canvas);
-			y += 50; //dead players need to be rendered higher. 
+			y += 50; //dead players need to be rendered higher.
 			for(var i = 0; i<dead_spriteBuffers.length; i++){
 				if(total == 6){
 					x = -300; //down a row
@@ -253,11 +257,11 @@ function drawGetTiger(canvas, players, repeatTime){
 		spriteBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
 		drawSprite(spriteBuffers[i],players[i],repeatTime)
 	}
-	
+
 	setTimeout(function(){
 			var x = -275;
 			var y = -50;
-			
+
 			for(var i = 0; i<spriteBuffers.length; i++){
 				if(i == 6){
 					x = -300; //down a row
@@ -302,7 +306,7 @@ function drawLevelUp(canvas, player,repeatTime){
 
   var levelsBuffer = getBufferCanvas(document.getElementById("echeladder_template"));
   writeLevels(levelsBuffer,player) //level_bg_colors,level_font_colors
-  
+
   setTimeout(function(){
 		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
 		copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,250,0)
@@ -314,12 +318,12 @@ function drawLevelUp(canvas, player,repeatTime){
 //player in center, on platform, level name underneath them. aspect symbol behind them.
 //bg color is shirt color
 function drawLevelUpGodTier(canvas, player,repeatTime){
-	drawBGRadialWithWidth(canvas, 650, "#000000",getShirtColorFromAspect(player.aspect)) 
-	
-	
+	drawBGRadialWithWidth(canvas, 650, "#000000",getShirtColorFromAspect(player.aspect))
+
+
 	var symbolBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 	drawGodSymbolBG(symbolBuffer, player);
-	
+
 	var godBuffer = getBufferCanvas(document.getElementById("godtierlevelup_template"));
 	ctx = godBuffer.getContext('2d');
 	var imageString = "godtierlevelup.png"
@@ -328,18 +332,18 @@ function drawLevelUpGodTier(canvas, player,repeatTime){
 	var width = img.width;
 	var height = img.height;
 	ctx.drawImage(img,0,0,width,height);
-	
+
 	var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 	if(player.dead){
 		drawSprite(pSpriteBuffer,player,repeatTime)
 	}else{
 		drawSprite(pSpriteBuffer,player,repeatTime)
 	}
-	
+
 	var levelBuffer = getBufferCanvas(document.getElementById("godtierlevelup_template"));
 	//drawBG(levelBuffer, "#ff0000", "#00ff00");
 	writeLevelGod(levelBuffer, player);
-	
+
 	setTimeout(function(){
 			copyTmpCanvasToRealCanvasAtPos(canvas, symbolBuffer,150,0)
 			copyTmpCanvasToRealCanvasAtPos(canvas, godBuffer,0,230)
@@ -356,7 +360,7 @@ function drawGodSymbolBG(canvas, player){
 	var width = img.width;
 	var height = img.height;
 	ctx.drawImage(img,0,0,width,height);
-	
+
 }
 
 function drawMoon(canvas, player){
@@ -372,7 +376,7 @@ function drawMoon(canvas, player){
 function writeLevelGod(canvas, player){
 	var left_margin = 0; //center
 	var ctx = canvas.getContext("2d");
-	ctx.textAlign="center"; 
+	ctx.textAlign="center";
 	ctx.font = "bold 32px Times New Roman"
 	ctx.fillStyle = "#000000";
 	ctx.fillText(player.mylevels[player.level_index],canvas.width/2,32);
@@ -387,10 +391,10 @@ function writeLevels(canvas, player){
 	var start = 295; //start at bottom, go up
 	var current = start;
 	var ctx = canvas.getContext("2d");
-	ctx.textAlign="center"; 
+	ctx.textAlign="center";
 	ctx.font = "bold 12px Courier New"
 	ctx.fillStyle = "#ffffff";
-	
+
 	for(var i = 0; i<player.mylevels.length; i++){
 		if(player.level_index+1 > i){
 			ctx.fillStyle = level_font_colors[i];
@@ -502,6 +506,11 @@ function drawSpriteTurnways(canvas, player, repeatTime, isRepeat){
   if(player.class_name == "Prince" && player.godTier){
 	  princeTiara(canvas, player);
   }
+
+  if(player.grimDark == true){
+    grimDarkSkin(canvas, player)
+  }
+
   if(player.isTroll){
     trollify(canvas,player);
   }
@@ -514,6 +523,8 @@ function drawSpriteTurnways(canvas, player, repeatTime, isRepeat){
 
 function makeRenderingSnapshot(player){
 	var ret = new PlayerSnapshot();
+  ret.grimDark = player.grimDark;
+	ret.murderMode = player.murderMode;
 	ret.dead = player.dead;
 	ret.isTroll = player.isTroll
 	ret.godTier = player.godTier;
@@ -552,7 +563,7 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
   if(player.isTroll&& player.godTier){//wings before sprite
     wings(canvas,player);
   }
-  
+
   if(player.dead){
 	   bloodPuddle(canvas, player);
   }
@@ -561,6 +572,10 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
   if(player.class_name == "Prince" && player.godTier){
 	  princeTiara(canvas, player);
   }
+
+  if(player.grimDark == true){
+    grimDarkSkin(canvas, player)
+  }
   //then troll proccess???
   //this was for sprite sheet
   //ctx.drawImage(sprites,position[0],position[1],position[2],position[3],canvas.width/2,canvas.height/2,position[6],position[7]);
@@ -568,6 +583,8 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
   if(player.isTroll){
     trollify(canvas,player);
   }
+
+
 
   //ctx.drawImage(sprite, 100, 100);
   if(!isRepeat){ //first time i call it this will be null
@@ -771,7 +788,7 @@ function dreamPalletSwap(canvas, player){
 	var newcolor4 = "#f092ff";
 	var newcolor5 = "#a200b7";
 	var newcolor6 = player.bloodColor;
-	
+
 	if(player.moon =="Prospit"){
 		newcolor1 = "#ffe034"
 		newcolor2 = "#ffff00"
@@ -779,7 +796,7 @@ function dreamPalletSwap(canvas, player){
 		newcolor4 ="#ffff00"
 		newcolor5 = "#ffe034"; //darker hat
 	}
-	
+
 	swapColors(canvas, oldcolor1, newcolor1)
 	swapColors(canvas, oldcolor2, newcolor2)
 	swapColors(canvas, oldcolor3, newcolor3)
@@ -787,7 +804,7 @@ function dreamPalletSwap(canvas, player){
 	swapColors(canvas, oldcolor5, newcolor5)
 	swapColors(canvas, oldcolor6, newcolor6)
 	dreamSymbol(canvas, player);
-	
+
 }
 
 function aspectPalletSwap(canvas, player){

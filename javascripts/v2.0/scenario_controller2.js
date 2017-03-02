@@ -34,7 +34,8 @@ window.onload = function() {
 	//authorMessage();
 
 	intro();
-	debugJackScheme();
+  debugGrimDark();
+	//debugJackScheme();
 	//debugLevelTheHellUp();
 	//debugGodTierLevelTheHellUp();
 	//debugCorpseLevelTheHellUp();

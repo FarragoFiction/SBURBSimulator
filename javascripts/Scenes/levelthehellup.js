@@ -49,9 +49,7 @@ function LevelTheHellUp(){
 		var boonies = this.getBoonies(player)
 		if(levelName){
 			narration += " The " + player.htmlTitle();
-			if(player.dead){
-				narration += "'s corpse "
-			}
+
 			narration += " skyrockets up the ECHELADDER to a new rung: " + levelName;
 			narration +=	" and earns " + boonies + ". ";
 		}
@@ -83,9 +81,7 @@ function LevelTheHellUp(){
 				var levelName = p.getNextLevel(); //could be undefined
 				if(levelName){
 					ret += " The " + p.htmlTitle();
-					if(p.dead){
-						ret += "'s corpse "
-					}
+
 					ret += " skyrockets up the ECHELADDER to a new rung: " + levelName;
 					ret +=	" and earns " + this.getBoonies(p) + ". ";
 			}
