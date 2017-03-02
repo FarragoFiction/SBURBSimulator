@@ -38,15 +38,15 @@ function Intro(){
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
-		
+
 		var chatText = "";
 		if(r1.type() == r1.goodBig){
 			chatText += chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm in the medium!");
 		}else{
 			chatText += chatLine(player1Start, player1,"Hey, I'm in the medium!");
 		}
-				
-		
+
+
 		chatText += chatLine(player2Start, player2,"Good, what's it like?");
 		chatText += chatLine(player1Start, player1,"It's the " + player1.land +"");
 		chatText += chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+".");
@@ -70,10 +70,8 @@ function Intro(){
 			chatText += chatLine(player2Start, player2,"What did that do?");
 			chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.kernel_sprite);
 		}
-		
-		setTimeout(function(){
+		//don't need timeout here.
 			drawChat(document.getElementById("canvas"+ (div.attr("id"))), player1, player2, chatText, repeatTime);
-		}, repeatTime*1.2);  //images aren't always loaded by the time i try to draw them the first time.
 	}
 
 	//i is so you know entry order
@@ -93,7 +91,7 @@ function Intro(){
 				narration += "They are " + r.description() + ". ";
 			}
 		}
-		
+
 		kingStrength = kingStrength + 20;
 		if(!queenUncrowned && queenStrength > 0){
 			queenStrength = queenStrength + 10;
@@ -103,11 +101,11 @@ function Intro(){
 			if(!queenUncrowned && queenStrength > 0){
 				queenStrength = queenStrength + 100;
 			}
-			
+
 		}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
 		}else{
 		}
-		
+
 		div.append(narration);
 		this.chat(div);
 		availablePlayers.push(this.player);

@@ -64,6 +64,8 @@ function processReckoning(playerList){
 }
 
 function processScenes2(playerList){
+	//console.log("processing scene");
+	$("#story").append("processing scene");
 	var ret = "";
 	setAvailablePlayers(playerList);
 	for(var i = 0; i<available_scenes.length; i++){

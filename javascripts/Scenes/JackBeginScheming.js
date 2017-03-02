@@ -1,9 +1,9 @@
 function JackBeginScheming(){
-	this.canRepeat = false;	
+	this.canRepeat = false;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.friend = null;
-	
-	//blood or page or thief or rogue. 
+
+	//blood or page or thief or rogue.
 	this.findSympatheticPlayer = function(){
 		this.friend =  findAspectPlayer(availablePlayers, "Blood");
 		if(this.friend == null){
@@ -14,7 +14,7 @@ function JackBeginScheming(){
 			this.friend =  findClassPlayer(availablePlayers, "Rogue");
 		}
 	}
-	
+
 	//a player has to be not busy to be your friend right now.
 	this.trigger = function(playerList){
 		this.playerList = playerList;
@@ -24,12 +24,12 @@ function JackBeginScheming(){
 		this.findSympatheticPlayer();
 		return (jackStrength >= queenStrength) && (this.friend != null);
 	}
-	
-	
+
+
 	this.smart = function(player){
 		return ((player.aspect == "Light" || player.class_name == "Seer") ||(player.aspect == "Doom" || player.aspect == "Mind"))
 	}
-	
+
 	this.chatWithFriend = function(div,player1, player2){
 		var repeatTime = 1000;
 		var divID = (div.attr("id")) + "_" + player1.chatHandle;
@@ -41,7 +41,7 @@ function JackBeginScheming(){
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
-		
+
 		var chatText = "";
 		chatText += chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2))
 		chatText += chatLine(player2Start, player2,getRelationshipFlavorGreeting(r2, r1, player2, player1))
@@ -82,12 +82,10 @@ function JackBeginScheming(){
 					chatText += chatLine(player2Start, player2,"Why do I even bother?")
 				}
 			}
-		
-		setTimeout(function(){
+
 			drawChat(canvasDiv, player1, player2, chatText, repeatTime);
-		}, repeatTime*1.2);  //images aren't always loaded by the time i try to draw them the first time.
 	}
-	
+
 	this.renderContent = function(div){
 		if(!this.friend){
 			return;
@@ -109,13 +107,13 @@ function JackBeginScheming(){
 				return div.append(this.content);
 			}else{
 				this.chatWithFriend(div,player1, player2)
-			}	
+			}
 		}else{
 			//we get a narration
 			div.append(this.content);
-		}		
+		}
 	}
-	
+
 	this.content = function(){
 		if(this.friend){
 			this.friend.increasePower();

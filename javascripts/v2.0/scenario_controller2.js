@@ -50,14 +50,14 @@ window.onload = function() {
 	debug("consider keeping track of async tasks in array. if too many at a time, put new async tasks in second array, only activate and add to first array when it is empty enough");
 
 	debug("enabling ticks causes people to be rendered dead or godtier before it actually happens. s in rendering, working on haveing player snapshots rendered to fix this..");
-	tick();
+	//tick();  dont tick here, tick after intro
 }
 
 function tick(){
 	if(timeTillReckoning > 0){
 		setTimeout(function(){
 			timeTillReckoning += -1;
-			processScenes2(availablePlayers);
+			processScenes2(players);
 			tick();
 		},availablePlayers.length * 1000);
 	}else{
@@ -89,6 +89,7 @@ function authorMessage(){
 
 function callNextIntroWithDelay(player_index){
 	if(player_index >= players.length){
+    tick();//NOW start ticking
 		return;
 	}
 	setTimeout(function(){
@@ -105,8 +106,10 @@ function callNextIntroWithDelay(player_index){
 
 
 function intro(){
+  //delay is needed here because this is when images are first loaded.
 	callNextIntroWithDelay(0);
-	/*introScene = new Intro();
+  /* //
+	introScene = new Intro();
 
 	for(var i = 0; i<players.length; i++){
 		var playersInMedium = players.slice(0, i+1); //anybody past me isn't in the medium, yet.
