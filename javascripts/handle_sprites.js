@@ -1067,8 +1067,18 @@ function fillChatTextMultiLine(canvas, chat, player1, player2, x, y) {
 		//check player 2 first 'cause they'll be more specific if they have same initials
 		if(ct.startsWith(player2Start)){
 			ctx.fillStyle = player2.getChatFontColor();
+      if(player2.grimDark == true) {
+        	ctx.font = "12px horrorterror"
+      }else{
+        	ctx.font = "12px Times New Roman"
+      }
 		}else if(ct.startsWith(player1Start)){
 			ctx.fillStyle = player1.getChatFontColor();
+      if(player1.grimDark == true){
+        	ctx.font = "12px horrorterror"
+      }else{
+        	ctx.font = "12px Times New Roman"
+      }
 		}else{
 			ctx.fillStyle = "#000000"
 		}
