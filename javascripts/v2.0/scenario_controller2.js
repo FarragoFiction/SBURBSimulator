@@ -35,7 +35,7 @@ window.onload = function() {
   debug(" dialog different if grimdark. terse. aggressive. Also, nonsense font and scrambled? make othe rplayer not understand?")
 	intro();
   debugGrimDark();
-	//debugJackScheme();
+	debugJackScheme();
 	//debugLevelTheHellUp();
 	//debugGodTierLevelTheHellUp();
 	//debugCorpseLevelTheHellUp();
@@ -70,7 +70,11 @@ function tick(){
 
 //scenes call this
 function chatLine(start, player, line){
-	return start + player.quirk.translate(line).trim()+"\n";
+  if(player.grimDark == true){
+    return start + line.trim()+"\n"; //no whimsy for grim dark players
+  }else{
+    return start + player.quirk.translate(line).trim()+"\n";
+  }
 }
 
 function newScene(){

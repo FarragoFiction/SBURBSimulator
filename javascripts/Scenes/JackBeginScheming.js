@@ -30,18 +30,102 @@ function JackBeginScheming(){
 		return ((player.aspect == "Light" || player.class_name == "Seer") ||(player.aspect == "Doom" || player.aspect == "Mind"))
 	}
 
-	this.chatWithFriend = function(div,player1, player2){
-		var repeatTime = 1000;
-		var divID = (div.attr("id")) + "_" + player1.chatHandle;
-		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
-		div.append(canvasHTML);
-		//different format for canvas code
-		var canvasDiv = document.getElementById("canvas"+ divID);
+	//player2 is grimdark, reacting to jack player
+	this.grimChat2 = function(div, player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
-		var r1 = player1.getRelationshipWith(player2);
-		var r2 = player2.getRelationshipWith(player1);
+		var chatText = "";
 
+		chatText += chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2))
+		chatText += chatLine(player1Start, player1,"So, this Dersite named Jack showed up. Apparently he wants to help us exile the Black Queen?")
+		chatText += chatLine(player1Start, player1,"Something about a grudge?")
+		chatText += chatLine(player1Start, player1,"So I told him we'd see what we could do. ")
+		if(this.smart(player2)){
+			chatText += chatLine(player2Start, player2,"You are a fool. Jack is more dangerous than the Queen.");
+			chatText += chatLine(player2Start, player2,"Empowering him will only make this game harder. ");
+			if(this.smart(player1)){
+				chatText +=  chatLine(player1Start, player1,"Yes, and pissing him off will make the game impossible.")
+				chatText +=  chatLine(player1Start, player1,"We need to weaken the Queen anyways. ")
+				chatText +=  chatLine(player1Start, player1,"We just have to be careful not to let him take her ring. ")
+				chatText += chatLine(player2Start, player2,"I don't care.");
+				chatText += chatLine(player1Start, player1,"Yes, I know. Goodbye. ")
+			}else{
+				chatText +=  chatLine(player1Start, player1,"Well, I'd like to see YOU say 'no' to Jack when he's stabbing you. ")
+				chatText += chatLine(player2Start, player2,"You are a fool.");
+			}
+		}else{
+			chatText += chatLine(player2Start, player2,"I don't care.");
+			chatText += chatLine(player1Start, player1,"Yes. Well... If you ever do care, ping me and I'll bring you up to speed.")
+		}
+		return chatText;
+	}
+
+//player1 is grimdark, communicating jack stuff
+	this.grimChat1 = function(div, player1, player2){
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var chatText = "";
+		chatText += chatLine(player1Start, player1,"In order to beat the Queen, we will be working with a Dersite named Jack to exile her. ")
+		if(player2.aspect == "Light" || player2.class_name == "Seer"){
+			chatText += chatLine(player2Start, player2,"... are you SURE that's a good idea?");
+			if(this.smart(player1)){
+				chatText += chatLine(player1Start, player1,"The Queen needs exiled. Jack gaining power is a risk I am willing to take.")
+			}else{
+				chatText += chatLine(player1Start, player1,"Beating this game is the only thing that matters. ")
+			}
+		}else if(player2.aspect == "Doom" || player2.aspect == "Mind"){
+			chatText += chatLine(player2Start, player2,"Somehow, I'm getting a bad feeling from this.");
+			if(this.smart(player1)){
+				chatText += chatLine(player1Start, player1,"I commend your foresight. Jack is not to be trusted. But the Queen must be exiled.")
+			}else{
+				chatText += chatLine(player1Start, player1,"Your feelings are irrelevant. ")
+			}
+		}else{
+			chatText += chatLine(player2Start, player2,"Cool, side quests for the win.");
+			chatText += chatLine(player2Start, player2,"Anything's gotta be better than taking her head on. I hear she's a huge bitch.");
+			if(this.smart(player1)){
+				chatText += chatLine(player1Start, player1,"You are a fool. ")
+			}else{
+				chatText += chatLine(player1Start, player1,"We shall win.")
+			}
+		}
+		return chatText;
+	}
+
+//both players are grimdark. 1 met jack
+	this.grimChatBoth = function(div, player1, player2){
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var chatText = "";
+		chatText += chatLine(player1Start, player1,"In order to beat the Queen, we will be working with a Dersite named Jack to exile her. ")
+		if(player2.aspect == "Light" || player2.class_name == "Seer"){
+			chatText += chatLine(player2Start, player2,"I forsee problems.");
+			if(this.smart(player1)){
+				chatText += chatLine(player1Start, player1,"The Queen needs exiled. Jack gaining power is a risk I am willing to take.")
+			}else{
+				chatText += chatLine(player1Start, player1,"Beating this game is the only thing that matters. ")
+			}
+		}else if(player2.aspect == "Doom" || player2.aspect == "Mind"){
+			chatText += chatLine(player2Start, player2,"This endeavor is doomed.");
+			if(this.smart(player1)){
+				chatText += chatLine(player1Start, player1,"I commend your foresight. Jack is not to be trusted. But the Queen must be exiled.")
+			}else{
+				chatText += chatLine(player1Start, player1,"Everything in this game is doomed. ")
+			}
+		}else{
+			chatText += chatLine(player2Start, player2,"Yes.");
+			if(this.smart(player1)){
+				chatText += chatLine(player1Start, player1,"I will monitor Jack for signs of treachery.")
+			}else{
+				chatText += chatLine(player1Start, player1,"We shall win.")
+			}
+		}
+		return chatText;
+	}
+
+	this.normalConvo = function(div, player1, player2){
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var chatText = "";
 		chatText += chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2))
 		chatText += chatLine(player2Start, player2,getRelationshipFlavorGreeting(r2, r1, player2, player1))
@@ -82,8 +166,33 @@ function JackBeginScheming(){
 					chatText += chatLine(player2Start, player2,"Why do I even bother?")
 				}
 			}
+			return chatText;
+	}
 
-			drawChat(canvasDiv, player1, player2, chatText, repeatTime);
+	this.chatWithFriend = function(div,player1, player2){
+		var repeatTime = 1000;
+		var divID = (div.attr("id")) + "_" + player1.chatHandle;
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		//different format for canvas code
+		var canvasDiv = document.getElementById("canvas"+ divID);
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var r1 = player1.getRelationshipWith(player2);
+		var r2 = player2.getRelationshipWith(player1);
+
+		var chatText = "";
+		if(player1.grimDark == true && player2.grimDark == true){
+			chatText += this.grimChatBoth(div,player1, player2);
+		}else if(player1.grimDark == true){
+			chatText += this.grimChat1(div,player1, player2);
+		}else if(player2.grimDark == true){
+			chatText += this.grimChat2(div,player1, player2);
+		}else{
+			chatText += this.normalConvo(div,player1, player2);
+		}
+
+		drawChat(canvasDiv, player1, player2, chatText, repeatTime);
 	}
 
 	this.renderContent = function(div){

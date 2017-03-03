@@ -6,6 +6,7 @@ function Quirk(){
 	this.spelling = 0;  //0 = bad typos (think roxy), 1 = some typos, 2 = perfect spelling //not used, replaced with letterstoreplace
 	this.prefix = ""; //what do you put at the start of a line?
 	this.suffix = ""; //what do you put at the end of a line?
+	//if in murdermode, rerandomize capitalization quirk.
 	this.capitalization = 0;  //0 == none, 4 = alternating, 5= inverted, 3 = begining of every word, 1 = normal, 2 = ALL
 	this.favoriteNumber = getRandomInt(0,12);
 	//this.favoriteNumber = 8;
@@ -232,6 +233,10 @@ function randomHumanQuirk(){
 	return ret;
 }
 
+function randomCapitalQuirk(){
+	return getRandomInt(0,5);
+
+}
 //since I'm not gonna list 'em out, have more quirks, and make sure you have certain CATEGORIES of quirk.
 function randomHumanSim(){
 	var ret = new Quirk();
@@ -334,7 +339,7 @@ function addNumberQuirk(ret){
 function randomTrollSim(){
 	var ret = new Quirk();
 	ret.capitalization = getRandomInt(0,2);
-	ret.punctuation = getRandomInt(0,3);
+	ret.punctuation = getRandomInt(0,5);
 	if(ret.capitalization == 2 && Math.random() >.2){ //seriously, less all caps.
 		ret.capitalization = getRandomInt(0,1);
 	}
@@ -357,7 +362,7 @@ function randomTrollSim(){
 	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(no_quirks));
 	//smileys have special characters, do later
 	//ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(smiley_quirks));
-	
+
 	ret =addNumberQuirk(ret);
 	//$("#debug").append("Human letters to replace: " + ret.lettersToReplace.length);
 	return ret;
@@ -367,7 +372,7 @@ function randomTrollSim(){
 function randomTrollQuirk(){
 	var ret = new Quirk();
 	ret.capitalization = getRandomInt(0,5);
-	ret.punctuation = getRandomInt(0,3);
+	ret.punctuation = getRandomInt(0,5);
 	if(Math.random() > .5){
 		ret.prefix = getRandomElementFromArray(prefixes);
 		if(ret.prefix.length == 1){

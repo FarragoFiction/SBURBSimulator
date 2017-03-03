@@ -8,11 +8,26 @@ function Intro(){
 		return true; //this should never be in the main array. call manually.
 	}
 
+	this.grimPlayer2Chat = function(div, player1, player2){
+			var player1Start = player1.chatHandleShort()+ ": "
+			var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		  var chatText = "";
+			chatText += chatLine(player2Start, player2,"I don't care.");
+			chatText += chatLine(player1Start, player1,"Whoa, uh. Are you okay?");
+			chatText += chatLine(player2Start, player2,"I don't care.");
+			chatText += chatLine(player1Start, player1,"Um...");
+			chatText += chatLine(player2Start, player2,"Fine. Tell me about your Land.");
+			chatText += chatLine(player1Start, player1,"Oh. Um. It's the " + player1.land +".");
+			chatText += chatLine(player2Start, player2,"And your kernel?");
+			chatText += chatLine(player1Start, player1,"A " + player1.kernel_sprite +".\n");
+			chatText += chatLine(player2Start, player2,"Social obligation complete. Goodbye.");
+			return chatText;
+	}
+
 	//TODO consider making this a method in handleSprites, so ALL scenes can get at it.
 	//make a pesterchum skin and stick text into it. How much can I fit?
 	//describe what land is like "It's full of...Peace", get word that isn't 'Land', 'of' or 'and'.
 	this.chat = function(div){
-		console.log(div);
 		var repeatTime = 1000;
 		var canvasHTML = "<br><canvas id='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
@@ -46,30 +61,33 @@ function Intro(){
 			chatText += chatLine(player1Start, player1,"Hey, I'm in the medium!");
 		}
 
-
-		chatText += chatLine(player2Start, player2,"Good, what's it like?");
-		chatText += chatLine(player1Start, player1,"It's the " + player1.land +"");
-		chatText += chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+".");
-		chatText +=chatLine(player2Start, player2,"lol");
-		chatText += chatLine(player1Start, player1,"So... I prototyped my kernel whatever with a " + player1.kernel_sprite +".\n");
-		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
-			if(player2.aspect != "Light" && player2.class_name != "Seer"){
-				chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
+		if(player2.grimDark == true){
+			chatText += this.grimPlayer2Chat(div, player1, player2);
+		}else{
+			chatText += chatLine(player2Start, player2,"Good, what's it like?");
+			chatText += chatLine(player1Start, player1,"It's the " + player1.land +".");
+			chatText += chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+".");
+			chatText +=chatLine(player2Start, player2,"lol");
+			chatText += chatLine(player1Start, player1,"So... I prototyped my kernel whatever with a " + player1.kernel_sprite +".\n");
+			if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
+				if(player2.aspect != "Light" && player2.class_name != "Seer"){
+					chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
+				}else{
+					chatText += chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
+				}
+			}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
+				if(player2.aspect != "Light" && player2.class_name != "Seer"){
+					chatText += chatLine(player2Start, player2,"What did that do?");
+					chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.kernel_sprite);
+					chatText += chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
+				}else{
+					chatText += chatLine(player2Start, player2,"Huh. That sounds cool.");
+				}
 			}else{
-				chatText += chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
-			}
-		}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
-			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"What did that do?");
 				chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.kernel_sprite);
-				chatText += chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
-			}else{
-				chatText += chatLine(player2Start, player2,"Huh. That sounds cool.");
 			}
-		}else{
-			chatText += chatLine(player2Start, player2,"What did that do?");
-			chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.kernel_sprite);
-		}
+	}
 		//don't need timeout here.
 			drawChat(document.getElementById("canvas"+ (div.attr("id"))), player1, player2, chatText, repeatTime);
 	}
