@@ -40,10 +40,8 @@ function CorpseSmooch(){
 
 
 
-		setTimeout(function(){
 			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
 			copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,100,0)
-		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
 
 		//want to let corpse render before i revive it
 			var moonBuffer = getBufferCanvas(document.getElementById("canvas_template"));
