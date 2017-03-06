@@ -1,8 +1,8 @@
 function PlanToExileJack(){
-	this.canRepeat = false;	
+	this.canRepeat = false;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.planner = null;
-	//blood or page or thief or rogue. 
+	//blood or page or thief or rogue.
 	this.findSympatheticPlayer = function(){
 		this.planner =  findAspectPlayer(availablePlayers, "Mind");
 		if(this.planner == null){
@@ -13,20 +13,93 @@ function PlanToExileJack(){
 			this.planner =  findClassPlayer(availablePlayers, "Seer");
 		}
 	}
-	
-	this.chatWithFriend = function(div,player1, player2){
-		var repeatTime = 1000;
-		var divID = (div.attr("id")) + "_" + player1.chatHandle;
-		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
-		div.append(canvasHTML);
-		//different format for canvas code
-		var canvasDiv = document.getElementById("canvas"+ divID);
+
+	this.grimChat2 = function(div, player1, player2){
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var chatText = "";
+
+		chatText += chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2))
+		chatText += chatLine(player1Start, player1,"So, new plan. Jack is WAY too stabby, we need to exile him.")
+		if(this.smart(player2)){
+				chatText += chatLine(player2Start, player2,"Agreed.")
+		}else{
+			chatText += chatLine(player2Start, player2,"I don't see how this helps us beat the game.")
+			chatText += chatLine(player1Start, player1,"Look, if we're constantly being stabbed, then we're not exactly climbing our echeladders, right?")
+			chatText += chatLine(player1Start, player1,"Just trust me, we can focus on the game once the stabs stop.")
+		}
+		chatText += chatLine(player1Start, player1,"We'll keep up the ruse of exiling the Black Queen.")
+		chatText += chatLine(player1Start, player1,"But also 'accidentally' take out Jack's allies at the same time.")
+		chatText += chatLine(player1Start, player1,"Then, we exile Jack.")
+		chatText += chatLine(player2Start, player2,"Fine.")
+
+		return chatText;
+	}
+
+	//player1 is grimdark, communicating jack stuff
+		this.grimChat1 = function(div, player1, player2){
+			var player1Start = player1.chatHandleShort()+ ": "
+			var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+			var chatText = "";
+
+			chatText += chatLine(player1Start, player1,"In order to beat the game quicker, we will now be exiling Jack.")
+
+			if(this.smart(player2)){
+				chatText += chatLine(player2Start, player2,"Makes sense. How will we pull it off without getting stabbed?")
+				chatText += chatLine(player1Start, player1,"We will continue working with Jack to exile the Black Queen.");
+				chatText += chatLine(player1Start, player1,"While also exiling Jack's allies and weakening him in other ways. With deniability.");
+				chatText += chatLine(player2Start, player2,"Here's hoping it works.")
+			}else{
+				chatText += chatLine(player2Start, player2,"What!? No way! He's our ALLY!")
+				chatText += chatLine(player1Start, player1,"You are a fool. His betrayal is inevitable.")
+				chatText += chatLine(player2Start, player2,"Okay. MAYBE he's a little stabby.  But that's part of his charm!")
+				chatText += chatLine(player2Start, player2,"Also, he is way too terrifying to backstab.")
+				chatText += chatLine(player1Start, player1,"Ideally, he will never suspect our treachery.");
+				chatText += chatLine(player1Start, player1,"We will continue working with Jack to exile the Black Queen.");
+				chatText += chatLine(player1Start, player1,"While also exiling Jack's allies and weakening him in other ways. With deniability.");
+				chatText += chatLine(player2Start, player2,"Fuck.")
+			}
+
+			return chatText;
+
+		}
+
+	this.grimChatBoth = function(div, player1, player2){
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var chatText = "";
+
+		chatText += chatLine(player1Start, player1,"In order to beat the game quicker, we will now be exiling Jack.")
+
+		if(this.smart(player2)){
+			chatText += chatLine(player2Start, player2,"Agreed.");
+			chatText += chatLine(player1Start, player1,"We will continue working with Jack to exile the Black Queen.");
+			chatText += chatLine(player1Start, player1,"While also exiling Jack's allies and weakening him in other ways. With deniability.");
+			chatText += chatLine(player2Start, player2,"Fine.");
+		}else{
+			chatText += chatLine(player2Start, player2,"I don't see how this helps us beat the game.");
+			chatText += chatLine(player1Start, player1,"You are a fool. His betrayal is inevitable.");
+			chatText += chatLine(player2Start, player2,"It might not become relevant until we have left the Medium.");
+			chatText += chatLine(player1Start, player1,"I want nothing to risk our Ascension.");
+			chatText += chatLine(player2Start, player2,"Betraying Jack is a risk of its own.");
+			chatText += chatLine(player1Start, player1,"Ideally, he will never suspect our treachery.");
+			chatText += chatLine(player1Start, player1,"We will continue working with Jack to exile the Black Queen.");
+			chatText += chatLine(player1Start, player1,"While also exiling Jack's allies and weakening him in other ways. With deniability.");
+			chatText += chatLine(player2Start, player2,"I will hold you accountable should this fail.");
+		}
+
+
+
+		return chatText;
+	}
+
+	this.normalConvo = function(div, player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
-		
 		var chatText = "";
+
 		chatText += chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2))
 		chatText += chatLine(player2Start, player2,getRelationshipFlavorGreeting(r2, r1, player2, player1))
 		chatText += chatLine(player1Start, player1,"So, new plan. Jack is WAY too stabby, we need to exile him.")
@@ -46,17 +119,37 @@ function PlanToExileJack(){
 			chatText += chatLine(player2Start, player2,"I want it on the official record that this is a bad idea.")
 			chatText += chatLine(player1Start, player1,"Yes.")
 		}
-		
-		
-		setTimeout(function(){
-			drawChat(canvasDiv, player1, player2, chatText, repeatTime);
-		}, repeatTime*1.2);  //images aren't always loaded by the time i try to draw them the first time.
+
+		return chatText;
 	}
-	
+
+	this.chatWithFriend = function(div,player1, player2){
+		var repeatTime = 1000;
+		var divID = (div.attr("id")) + "_" + player1.chatHandle;
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		//different format for canvas code
+		var canvasDiv = document.getElementById("canvas"+ divID);
+
+
+		var chatText = "";
+		if(player1.grimDark == true && player2.grimDark == true){
+			chatText += this.grimChatBoth(div,player1, player2);
+		}else if(player1.grimDark == true){
+			chatText += this.grimChat1(div,player1, player2);
+		}else if(player2.grimDark == true){
+			chatText += this.grimChat2(div,player1, player2);
+		}else{
+			chatText += this.normalConvo(div,player1, player2);
+		}
+
+			drawChat(canvasDiv, player1, player2, chatText, repeatTime);
+	}
+
 	this.smart = function(player){
 		return ((player.aspect == "Light" || player.class_name == "Seer") ||(player.aspect == "Doom" || player.aspect == "Mind"))
 	}
-	
+
 	this.renderContent = function(div){
 		debug("planning to exile jack")
 		if(!this.planner){
@@ -79,20 +172,20 @@ function PlanToExileJack(){
 				return div.append(this.content);
 			}else{
 				this.chatWithFriend(div,player1, player2)
-			}	
+			}
 		}else{
 			//we get a narration
 			div.append(this.content);
 		}
 	}
-	
+
 	//a player has to be not busy to be your friend right now.
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		this.findSympatheticPlayer();
 		return this.planner != null && jackStrength != 0 && queenStrength != 0; //don't plan to exile jack if he's already fllipping the fuck out.
 	}
-	
+
 	this.content = function(){
 		this.planner.increasePower();
 		removeFromArray(this.planner, availablePlayers);
