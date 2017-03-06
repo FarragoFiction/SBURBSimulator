@@ -343,6 +343,24 @@ function randomTrollSim(){
 	if(ret.capitalization == 2 && Math.random() >.2){ //seriously, less all caps.
 		ret.capitalization = getRandomInt(0,1);
 	}
+
+	if(Math.random() > .5){
+		ret.prefix = getRandomElementFromArray(prefixes);
+		if(ret.prefix.length == 1){
+			ret.prefix = multiplyCharacter(ret.prefix, ret.prefix[0], ret.favoriteNumber);
+		}
+	}
+	if(Math.random() > .5){
+		if(ret.prefix != "" && Math.random()>.7){ //mostly just repeat your prefix
+			ret.suffix = ret.prefix;
+		}else{
+			ret.suffix = getRandomElementFromArray(prefixes);
+		}
+
+		if(ret.suffix.length == 1){
+			ret.suffix  = multiplyCharacter(ret.suffix, ret.suffix[0], ret.favoriteNumber);
+		}
+	}
 	var roomLeft = 0;
 	//most people spell things, fine, other people have random problems
 	if(Math.random() > 0.50){
