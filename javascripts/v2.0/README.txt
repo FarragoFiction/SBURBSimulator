@@ -88,3 +88,5 @@ best bug: "My witch of light entered murder mode somehow, killed two people, got
 SHOULD only blame their worst enemy, and shouldn't be your own worst enemy....hrrmrmmm
 
 Why....why are players sometimes spawning dead? cause of death was "after being shown too many stabs from Jack"... ...what the hell? probably a timing issue....
+
+"The Murder Mode Grim Dark Page of Rage brutally murders that asshole, the Sylph of Light's Corpse. The Witch of Mind is pretty pissed that their friend was killed. "
