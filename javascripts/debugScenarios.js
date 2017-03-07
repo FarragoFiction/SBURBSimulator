@@ -24,7 +24,7 @@ function debugTriggerLevel(){
 	}
 
 }
-//does this even work?
+//does this even work? oh, yeah, it does, but won't trigger until land quests are done
 function debugRelationshipDrama(){
 	var p1 = players[0];
 	var enemy = p1.getWorstEnemyFromList(players);
