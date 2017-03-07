@@ -65,16 +65,18 @@ function MurderPlayers(){
 				
 				if(worstEnemy.power < m.power*2){  //more likely to kill enemy than be killed. element of surprise
 					m.increasePower();
-					worstEnemy.dead = true;
+					
 					worstEnemy.causeOfDeath = "fighting the " + m.htmlTitle();
 					ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". ";
 					ret += this.friendsOfVictimHateYou(worstEnemy, m, livePlayers);
+					worstEnemy.dead = true;
 				}else{
 					worstEnemy.increasePower();
-					m.dead = true;
+					
 					m.causeOfDeath = "being put down like a rabid dog by " + worstEnemy.htmlTitle()
 					ret += " The " + m.htmlTitle() + " attempts to brutally murders that asshole, the " + worstEnemy.htmlTitle();
 					ret += ",but instead gets murdered first, in self-defense. ";
+					m.dead = true;
 				}
 			}else{
 				ret += " The " + m.htmlTitle() + " can't find anybody they hate enough to murder. They calm down a little. ";
