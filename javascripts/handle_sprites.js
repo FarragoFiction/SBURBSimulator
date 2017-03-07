@@ -127,6 +127,16 @@ function wings(canvas,player){
 
 }
 
+function grimDarkHalo(canvas){
+	ctx = canvas.getContext('2d');
+    var imageString = "grimdark.png";
+    addImageTag(imageString)
+    var img=document.getElementById(imageString);
+    var width = img.width;
+    var height = img.height;
+    ctx.drawImage(img,0,0,width,height);
+}
+
 function fins(canvas, player){
   if(player.bloodColor == "#610061" || player.bloodColor == "#99004d"){
     ctx = canvas.getContext('2d');
@@ -435,9 +445,9 @@ function drawChat(canvas, player1, player2, chat, repeatTime){
 	//p1 on left, chat in middle, p2 on right and flipped turnways.
 	setTimeout(function(){
 			copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,-100,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, p2SpriteBuffer,650,0)//where should i put this?
 			copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,230,0)
 			copyTmpCanvasToRealCanvasAtPos(canvas, textSpriteBuffer,244,51)
-			copyTmpCanvasToRealCanvasAtPos(canvas, p2SpriteBuffer,650,0)//where should i put this?
 		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
 }
 
@@ -498,6 +508,11 @@ function drawSpriteTurnways(canvas, player, repeatTime, isRepeat){
   ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
   ctx.translate(canvas.width, 0);
   ctx.scale(-1, 1);
+  
+  if(player.grimDark == true){
+    grimDarkHalo(canvas)
+  }
+  
   if(player.isTroll&& player.godTier){//wings before sprite
     wings(canvas,player);
   }
@@ -559,7 +574,11 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
   //grey skin, horns, wings in blood color
 	//var width = img.width;
 	//var height = img.height;
-	//ctx.drawImage(sprites,0,0,width,height);
+	//ctx.drawImage(sprites,0,0,width,height);	
+  if(player.grimDark == true){
+    grimDarkHalo(canvas)
+  }
+	
   if(player.isTroll&& player.godTier){//wings before sprite
     wings(canvas,player);
   }
