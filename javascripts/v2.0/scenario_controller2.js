@@ -33,7 +33,8 @@ window.onload = function() {
 	}
 	//authorMessage();
 	intro();
-	debugTriggerLevel();
+	//debugRelationshipDrama();
+	//debugTriggerLevel();
 	//debugGrimDark();
 	//debugJackScheme();
 	//debugLevelTheHellUp();

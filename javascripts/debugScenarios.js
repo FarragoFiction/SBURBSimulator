@@ -24,6 +24,18 @@ function debugTriggerLevel(){
 	}
 
 }
+//does this even work?
+function debugRelationshipDrama(){
+	var p1 = players[0];
+	var enemy = p1.getWorstEnemyFromList(players);
+	p1.getRelationshipWith(enemy).value += 10;  //suddenly love them.
+	p1.getRelationshipWith(enemy).drama = true
+	var p2 = players[1];
+	var friend = p2.getBestFriendFromList(players);
+	p2.getRelationshipWith(friend).value += -10;  //suddenly hate them.
+	p2.getRelationshipWith(friend).drama = true
+	
+}
 
 function debugJackScheme(){
 	queenStrength = 20;

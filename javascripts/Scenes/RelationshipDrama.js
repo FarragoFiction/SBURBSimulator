@@ -22,7 +22,7 @@ function RelationshipDrama(){
 	
 	this.confessFeelings = function(div, player,crush){
 		var relationship = player.getRelationshipWith(crush);
-		var divID = (div.attr("id")) + "_" + crush.chatHandle;
+		var divID = (div.attr("id")) + "_" + crush.chatHandle+"_crush";
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
@@ -37,14 +37,16 @@ function RelationshipDrama(){
 			narration += "It's especially tragic that they didn't realize this until the " + crush.htmlTitle() + " died.";
 			div.append(narration);
 		}
+		
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+
 		chatText += chatLine(player1Start, player1, "So...hey.");
 		chatText += chatLine(player2Start, player2, "Hey?");
 		chatText += chatLine(player1Start, player1, "I have no idea how to say this so I'm just going to do it.");
 		chatText += chatLine(player2Start, player2, "?");
 		chatText += chatLine(player1Start, player1, "I like you.  Romantically.");
 		
-		var player1Start = player1.chatHandleShort()+ ": "
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = relationship;
 		var r2 = player2.getRelationshipWith(player1);
 		
@@ -64,13 +66,14 @@ function RelationshipDrama(){
 
 		relationship.drama = false; //it is consumed.
 		relationship.old_type = relationship.saved_type;
+		drawChat(canvasDiv, player1, player2, chatText, 1000);
 	}
 	
 	//goes different if best friend has crush on player
 	//or on crushee.
 	this.relationshipAdvice = function(div,player,crush){
 		var relationship = player.getRelationshipWith(crush);
-		var divID = (div.attr("id")) + "_" + crush.chatHandle;
+		var divID = (div.attr("id")) + "_" + crush.chatHandle+"_crush";
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
@@ -78,7 +81,7 @@ function RelationshipDrama(){
 		
 		var chatText = "";
 		var player1 = player;
-		var player2 = getLivingBestFriendBesidesCrush(player, crush);
+		var player2 = this.getLivingBestFriendBesidesCrush(player, crush);
 		
 		if(player2 == null){
 			var narration = "<br>The " + player.htmlTitle() + " used to think that the " + crush.htmlTitle() + " was ";
@@ -177,6 +180,7 @@ function RelationshipDrama(){
 				}
 			}
 		}
+		drawChat(canvasDiv, player1, player2, chatText, 1000);
 	}
 	
 	//goes different if best friend has crush on player
@@ -186,7 +190,7 @@ function RelationshipDrama(){
 		relationship.drama = false; //it is consumed.
 		relationship.old_type = relationship.saved_type;
 		var relationship = player.getRelationshipWith(jerk);
-		var divID = (div.attr("id")) + "_" + jerk.chatHandle;
+		var divID = (div.attr("id")) + "_" + jerk.chatHandle+"_jerk";
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
@@ -194,7 +198,7 @@ function RelationshipDrama(){
 		
 		var chatText = "";
 		var player1 = player;
-		var player2 = getLivingBestFriendBesidesCrush(player, jerk);
+		var player2 = this.getLivingBestFriendBesidesCrush(player, jerk);
 		
 		if(player2 == null){
 			var narration = "<br>The " + player.htmlTitle() + " used to think that the " + relationship.target.htmlTitle() + " was ";
@@ -225,6 +229,7 @@ function RelationshipDrama(){
 				chatText += chatLine(player1Start, player1,"Yeah, I kind of feel like an asshole, now");
 			}
 		}
+		drawChat(canvasDiv, player1, player2, chatText, 1000);
 		
 	}
 	
@@ -232,7 +237,7 @@ function RelationshipDrama(){
 	this.antagonizeJerk = function(div,player,jerk){
 		relationship.drama = false; //it is consumed.
 		relationship.old_type = relationship.saved_type;
-		var divID = (div.attr("id")) + "_" + jerk.chatHandle;
+		var divID = (div.attr("id")) + "_" + jerk.chatHandle+"_jerk";
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
@@ -271,7 +276,6 @@ function RelationshipDrama(){
 			chatText += chatLine(player2Start, player2,"Holy shit. ");
 			chatText += chatLine(player2Start, player2,"And here I thought you were " + this.generateNewOpinion(r2) + ".");
 		}
-		
 		drawChat(canvasDiv, player1, player2, chatText, 1000);
 	}
 	
@@ -305,12 +309,14 @@ function RelationshipDrama(){
 		for(var j = 0; j<relationships.length; j++){
 			var r = relationships[j];
 			if(r.type() == r.goodBig){
+				debug("positive drama")
 				if(player.triggerLevel < 2){
 					this.confessFeelings(div, player, r.target)
 				}else{
 					this.relationshipAdvice(div, player, r.target)
 				}
 			}else if(r.type() == r.bigBad){
+					debug("negative drama")
 				if(player.triggerLevel < 2){
 					this.ventAboutJerk(div, player, r.target)
 				}else{
@@ -318,6 +324,7 @@ function RelationshipDrama(){
 				}
 			}else{
 				//narration. but is it really worth it for something so small?
+				debug("tiny drama")
 			}
 			
 		}

@@ -53,7 +53,7 @@ function Relationship(initial_value, target_player){
 			return this.saved_type; //don't cause drama if you just met them.
 		}
 		
-		if(Math.random() > 0.2){
+		if(Math.random() > 0.25){
 			//enter or leave a relationship, or vaccilate.
 			this.old_type = this.saved_type;
 			this.saved_type = this.changeType();
