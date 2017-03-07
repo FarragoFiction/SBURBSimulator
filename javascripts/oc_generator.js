@@ -136,8 +136,8 @@ function describe(){
 
 		intro += "<li> Moon: " +players[i].moon
 
-		var i1 = getRandomElementFromArray(interests);
-		var i2 = getRandomElementFromArray(interests);
+		var i1 = players[i].interest1;
+		var i2 = players[i].interest2;
 		//var i2 = i1
 		intro += "<Li> Defining Interests: " +i1 + " and " + i2;
 		if(i1 == i2){
