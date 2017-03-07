@@ -56,7 +56,7 @@ function RelationshipDrama(){
 			chatText += chatLine(player2Start, player2,"Holy shit!");
 		}else if(r2.type() ==r2.badBig){
 			chatText += chatLine(player2Start, player2, "lol");
-			chatText += chatLine(player2Start, player2, "Well, I think YOU are " + his.generateNewOpinion(r2) + "!");
+			chatText += chatLine(player2Start, player2, "Well, I think YOU are " + this.generateNewOpinion(r2) + "!");
 			chatText += chatLine(player2Start, player2, "so fuck off!");
 		}else{
 			chatText += chatLine(player2Start, player2,"Fuck. I'm sorry. I just don't feel that way about you. ");
@@ -310,13 +310,13 @@ function RelationshipDrama(){
 			var r = relationships[j];
 			if(r.type() == r.goodBig){
 				debug("positive drama")
-				if(player.triggerLevel < 2){
+				if(player.triggerLevel < 1){
 					this.confessFeelings(div, player, r.target)
 				}else{
 					this.relationshipAdvice(div, player, r.target)
 				}
 			}else if(r.type() == r.bigBad){
-					debug("negative drama")
+				debug("negative drama")
 				if(player.triggerLevel < 2){
 					this.ventAboutJerk(div, player, r.target)
 				}else{
@@ -324,7 +324,7 @@ function RelationshipDrama(){
 				}
 			}else{
 				//narration. but is it really worth it for something so small?
-				debug("tiny drama")
+				//debug("tiny drama")
 			}
 			
 		}

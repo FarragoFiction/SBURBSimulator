@@ -50,7 +50,13 @@ function Relationship(initial_value, target_player){
 			this.drama = false;
 			this.saved_type = this.changeType();
 			this.old_type = this.saved_type;
-			return this.saved_type; //don't cause drama if you just met them.
+			//if it's big drama, you can have your scene
+			if(this.saved_type == this.goodBig || this.saved_type == this.badBig){
+				debug("inside relationship.js, figure out why drama being true doesn't make drama dialogue happen.")
+				//this.drama = true;
+				//this.old_type = this.goodMild;
+			}
+			return this.saved_type; 
 		}
 		
 		if(Math.random() > 0.25){
