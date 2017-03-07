@@ -18,6 +18,13 @@ function debugGrimDark(){
 
 }
 
+function debugTriggerLevel(){
+	for(var j = 0; j<2; j++){
+		players[j].triggerLevel = 10;
+	}
+
+}
+
 function debugJackScheme(){
 	queenStrength = 20;
 	players[0].class_name = "Page" //make a chump for Jack to talk to.

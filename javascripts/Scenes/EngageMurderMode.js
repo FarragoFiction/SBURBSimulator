@@ -17,8 +17,210 @@ function EngageMurderMode(){
 		return false;
 	}
 	
+	this.grimChat2 = function(div, player1, player2){
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var r1 = player1.getRelationshipWith(player2);
+		var r2 = player2.getRelationshipWith(player1);
+		var chatText = "";
+		chatText += chatLine(player1Start, player1,"...")
+		chatText += chatLine(player2Start, player2,getRelationshipFlavorGreeting(r2, r1, player2, player1))
+		chatText += chatLine(player1Start, player1,"You're going to die. And I'm going to see it. I'm going to DO it.")
+		chatText += chatLine(player2Start, player2,"I don't care. Everything in this game wants to kill me, may as well add the Players to the list.")
+		chatText += chatLine(player1Start, player1,"Fuck you. You are too far gone to even CARE that I'm going to kill you.")
+		return chatText;
+	}
+	
+	//a normal convo goes differently based on target players's aspect/class and relationship with murderer
+	this.normalConvo = function(div, player1, player2){
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var r1 = player1.getRelationshipWith(player2);
+		var r2 = player2.getRelationshipWith(player1);
+		var chatText = "";
+		chatText += chatLine(player1Start, player1,"...")
+		chatText += chatLine(player2Start, player2,getRelationshipFlavorGreeting(r2, r1, player2, player1))
+		chatText += chatLine(player1Start, player1,"You're going to die. And I'm going to see it. I'm going to DO it.")
+		if(player2.aspect == "Blood" || player2.aspect == "Sylph"){  //try to repair relationship
+			chatText += this.repairConvo(div, player1, player2);
+		}else if(player2.aspect == "Mind" || player2.class == "Bard" ){ //try to redirect madness at another target
+			chatText += this.redirectConvo(div, player1, player2);
+		}else if(player2.aspect == "Rage" || player2.class == "Knight" ){ //welcome the challenge
+			chatText += this.blusterConvo(div, player1, player2);
+		}else{
+			chatText += this.panicConvo(div, player1, player2);
+		}
+		
+		return chatText;
+		
+	}
+	
+	//panic
+	this.panicConvo = function(div, player1, player2){
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var r1 = player1.getRelationshipWith(player2);
+		var r2 = player2.getRelationshipWith(player1);
+		var chatText = "";
+		chatText += chatLine(player2Start, player2,"Oh, fuck.")
+		chatText += chatLine(player2Start, player2,"Fuck.")
+		chatText += chatLine(player2Start, player2,"Fuck.")
+		chatText += chatLine(player2Start, player2,"What the hell? Why did you snap NOW? Why ME?")
+		chatText += chatLine(player2Start, player2,"Fuck. Please no....")
+		chatText += chatLine(player1Start, player1,"See you soon! :)")
+		chatText += chatLine(player2Start, player2,"Oh, god.")
+		return chatText;
+	}
+	
+	//you want to fight, bro?
+	this.blusterConvo = function(div, player1, player2){
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var r1 = player1.getRelationshipWith(player2);
+		var r2 = player2.getRelationshipWith(player1);
+		var chatText = "";
+		if(r2.type() == r2.badBig){
+			chatText += chatLine(player2Start, player2,"You want to fight, bro? Let's do it. You and me.")
+			chatText += chatLine(player1Start, player1,"It won't be a fight. It'll be a goddamned MASSACRE.")
+			chatText += chatLine(player2Start, player2,"You're on.")
+		}else{
+			chatText += chatLine(player2Start, player2,"Oh fuck.")
+			chatText += chatLine(player2Start, player2,"Fuck.")
+			chatText += chatLine(player2Start, player2,"You know I'm not just going to LET you kill me right?")
+			chatText += chatLine(player2Start, player2,"Please don't make me kill you in self defense.")
+			chatText += chatLine(player1Start, player1,"See you soon! :)")
+		}
+		
+		return chatText;
+	}
+	
+	//make them hate someone else more.
+	this.redirectConvo = function(div, player1, player2){
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var r1 = player1.getRelationshipWith(player2);
+		var r2 = player2.getRelationshipWith(player1);
+		var chatText = "";
+		
+		if(r2.type() == r2.badBig){
+			chatText += chatLine(player2Start, player2,"Look, I get it. I've been a flaming asshole to you.")
+			chatText += chatLine(player2Start, player2,"But am I REALLY the one you want to kill FIRST?")
+			var alternative = player2.getWorstEnemyFromList(livePlayers);
+			if(alternative){
+				chatText += chatLine(player2Start, player2,"What about " + alternative.chatHandle + " ?")
+				chatText += chatLine(player2Start, player2,"Haven't they been worse to you?")
+				var r3 = player1.getRelationshipWith(alternative);
+				if(r3.value > 0){
+					chatText += chatLine(player1Start, player1,"ARRRRRGGGH! THIS IS WHY I HATE YOU!")
+					chatText += chatLine(player1Start, player1,"YOU ARE A MILLION TIMES WORSE THAN " + alternative.chatHandle)
+					chatText += chatLine(player1Start, player1,"Prepare to die.")
+					chatText += chatLine(player2Start, player2,"Fuck. Worth a shot.")
+					r1.decrease();
+				}else{
+					chatText += chatLine(player1Start, player1,"... Maybe. Maybe you have a point.")
+					r3.decrease();
+				}
+			}else{
+				chatText += chatLine(player1Start, player1,"No, there really isn't. Prepare to die.")
+				chatText += chatLine(player2Start, player2,"Fuck. Worth a shot.")
+			}
+		}else if(r2.type() == r2.goodBig){
+			chatText += chatLine(player2Start, player2,"But...why? I LIKE you! I've been nice to you! Why ME?")
+			var alternative = player2.getWorstEnemyFromList(livePlayers);
+			if(alternative){
+				chatText += chatLine(player2Start, player2,alternative.chatHandle + "is a million times worse than me! ")
+				var r3 = player1.getRelationshipWith(alternative);
+				if(r3.value > 0){
+					chatText += chatLine(player1Start, player1,"No, they really aren't. Prepare to die.")
+				}else{
+					chatText += chatLine(player1Start, player1,"Maybe you have a point.")
+					r3.decrease();
+					r1.increase();
+				}
+			}else{
+				chatText += chatLine(player1Start, player1,"You sure haven't shown it. Prepare to die.")
+			}
+			
+		}else{
+			chatText += chatLine(player2Start, player2,"Oh fuck.")
+			chatText += chatLine(player2Start, player2,"Okay, but, am I the best person to rage out on?")
+			if(alternative){
+				chatText += chatLine(player2Start, player2,"What about " + alternative.chatHandle + " ?")
+				chatText += chatLine(player2Start, player2,"Haven't they been worse to you?")
+				var r3 = player1.getRelationshipWith(alternative);
+				if(r3.value > 0){
+					chatText += chatLine(player1Start, player1,"ARRRRRGGGH! THIS IS WHY I HATE YOU!")
+					chatText += chatLine(player1Start, player1,"YOU ARE A MILLION TIMES WORSE THAN " + alternative.chatHandle)
+					chatText += chatLine(player1Start, player1,"Prepare to die.")
+					chatText += chatLine(player2Start, player2,"Fuck. Worth a shot.")
+					r1.decrease();
+				}else{
+					chatText += chatLine(player1Start, player1,"... Maybe. Maybe you have a point.")
+					r3.decrease();
+				}
+			}else{
+				chatText += chatLine(player1Start, player1,"Prepare to die.")
+				chatText += chatLine(player2Start, player2,"Fuck. Worth a shot.")
+			}
+			
+		}
+		
+		return chatText;
+	}
+	
+	
+	//reduce trigger a bit?
+	this.repairConvo = function(div, player1, player2){
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var r1 = player1.getRelationshipWith(player2);
+		var r2 = player2.getRelationshipWith(player1);
+		var chatText = "";
+		
+		chatText += chatLine(player2Start, player2,"Oh, fuck.")
+		chatText += chatLine(player2Start, player2,"Fuck.")
+		chatText += chatLine(player2Start, player2,"Look, I get that you have trouble controling your temper.")
+		chatText += chatLine(player2Start, player2,"But you can be better than that.")
+		if(Math.random() > .7){
+			r1.increase();
+			player1.triggerLevel += -1;
+			chatText += chatLine(player2Start, player2,"Why don't we meet up in person. We can vent about whatever's bothering you. Nobody has to do anything that can't be undone.")				
+			chatText += chatLine(player1Start, player1,"Fuck. Maybe. I... I need to go think about this.")
+		}else{
+			player1.triggerLevel += 1;
+			r1.decrease();
+			chatText += chatLine(player2Start, player2,"I mean, probably. Everybody has at least some goodness in them, right? Even you?")
+			chatText += chatLine(player1Start, player1,"You fucker. Always pretending to be above it all. To be better than me.")
+			chatText += chatLine(player1Start, player1,"Well try being superior when you're dead.")
+		}
+		
+		return chatText;
+	}
+	
+	this.chat = function(div){
+		var repeatTime = 1000;
+		var canvasHTML = "<br><canvas id='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		var livePlayers = findLivingPlayers(players);
+		var canvasDiv = document.getElementById("canvas"+  (div.attr("id")));
+		var player1 = this.player;
+		var player2 = player1.getWorstEnemyFromList(livePlayers);
+		if(player2 == null){
+			return;//nobody i actually want to kill??? why am i in murder mode?
+		}
+		
+		var chatText = "";
+		if(player2.grimDark == true){
+			chatText += this.grimChat2(div,player1, player2);
+		}else{
+			chatText += this.normalConvo(div,player1, player2);
+		}
+		drawChat(canvasDiv, player1, player2, chatText, repeatTime);
+	}
+	
 	this.renderContent = function(div){
 		div.append(this.content());
+		this.chat(div);
 	}
 	
 	this.content = function(){

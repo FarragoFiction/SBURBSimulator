@@ -34,6 +34,7 @@ window.onload = function() {
 	//authorMessage();
   debug(" dialog different if grimdark. terse. aggressive. Also, nonsense font and scrambled? make othe rplayer not understand?")
 	intro();
+	debugTriggerLevel();
 	//debugGrimDark();
 	//debugJackScheme();
 	//debugLevelTheHellUp();
