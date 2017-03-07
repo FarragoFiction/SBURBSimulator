@@ -14,7 +14,7 @@ function Quirk(){
 	//take an input string and quirkify it.
 	this.translate = function(input){
 		var ret = input;
-		ret = this.handleCapitilization(ret);
+		//ret = this.handleCapitilization(ret);
 		ret = this.handlePunctuation(ret);  //don't want to accidentally murder smileys
 		ret = this.handleReplacements(ret);
 		ret = this.handleReplacementsIgnoreCase(ret);
