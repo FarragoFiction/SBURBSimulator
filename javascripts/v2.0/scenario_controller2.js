@@ -24,6 +24,8 @@ var timeTillReckoning = getRandomInt(10,30);
 //main canvas is either Leader + PesterChumWindow + 1 or more Players (in chat or group chat with leader)
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
+	debug("let relationship drama happen for all living players, not just available ones, or drama only happens at end. or do i want that?")
+	
    init();
 	//exileQueenInit();
 	//murderModeInit();
