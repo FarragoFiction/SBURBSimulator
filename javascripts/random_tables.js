@@ -640,7 +640,7 @@ var dude_quirks = [["dude","guy"], ["dude","guy"],["dude","man"],["dude","you"],
 var curse_quirks = [["fuck", "fuck"],["fuck", "shit"],["fuck", "cocks"],["fuck", "nope"],["fuck", "goddammit"],["fuck", "damn it"],["fuck", "..."],["fuck", "...great."]];
 //problem: these are likely to be inside of other words.
 var yes_quirks = [["\\byes\\b","yes"],["\\byes\\b","yeppers"],["\\byes\\b","right"],["\\byes\\b","yeah"],["\\byes\\b","yep"],["\\byes\\b","sure"],["\\byes\\b","okay"]];
-var no_quirks = [["\\bno\\b","no"],["\\bno\\b","absolutely not"],["\\bno\\b","never in a million years"],["\\bno\\b","no"],["\\bno\\b","nope"],["\\bno\\b","no way"]];
+var no_quirks = [["\\bnope\\b","no"],["\\bnope\\b","absolutely no"],["\\bnope\\b","no"],["\\bnope\\b","no"],["\\bnope\\b","nope"],["\\bnope\\b","no way"]];
 
 var smiley_quirks = [[":)", ":)"],[":)", ":0)"],[":)", ":]"],[":)", ":B"],[":)", ">: ]"]];
 

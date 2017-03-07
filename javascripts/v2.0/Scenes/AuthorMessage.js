@@ -21,21 +21,26 @@ function AuthorMessage(){
 		//does it fit in screen? If it doesn't, what should i do? scroll bars? make pesterchum taller?
 		//do what homestuck does and put some text in image but rest in pesterlog?
 		//when trolls happen, should they use trollian?
-		var player1 = this.player;
-		var player2 = player1.getBestFriendFromList(players);
+		var player2 = this.player;  //author gets pestered
+		var player1 = player2.getBestFriendFromList(players);
 		if(player2 == null){
-			player2 = player1.getWorstEnemyFromList(players);
+			player2 = player2.getWorstEnemyFromList(players);
 			
 		}
 		
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
-		var chatText = player1Start+ player1.quirk.translate("This is just a test.\n");
-		chatText += player2Start + player2.quirk.translate("I can believe it. It's very shitty.\n");
-		chatText += player1Start + player1.quirk.translate("Hey! Not everybody can have perfectly polished tests!\n");
-		chatText += player2Start + player2.quirk.translate("Maybe. But EVERYBODY should be able to handle word wrap.  It's like, a standard freaking thing, right? Unless this is the test where you finally do, and then don't I look like an asshole? But I bet you didn't actually get word wrap right, yet.\n");
-		chatText += player2Start + player2.quirk.translate("So. The question is: Did you?\n");
-		chatText += player1Start + player1.quirk.translate("Hopy Shit, it looks like I did!\n");
+		var chatText = chatLine(player1Start, player1,"So, I hear you have grimdark stuff going on now?");
+		chatText += chatLine(player2Start, player2,"I don't care.");
+		chatText += chatLine(player1Start, player1,"Yeah, just like that! Your font is all shitty and hard to read.");
+		chatText += chatLine(player1Start, player1,"And you have no sense of humor.");
+		chatText += chatLine(player1Start, player1,"And you aren't using your quirks.");
+		chatText += chatLine(player1Start, player1,"And you have that grimdark miasma around you. And your skin is even darker than a troll's. ");
+		chatText += chatLine(player2Start, player2,"If it doesn't effect how the simulation works, why would I care?");
+		chatText += chatLine(player1Start, player1,"Well, being grimdark erases your relationships, right? It matters to the simulation if you care enough about someone to help them.");
+		chatText += chatLine(player2Start, player2,"Why did I go to the trouble to add relationships to this? They don't matter.");
+		chatText += chatLine(player1Start, player1,"Geez, grimdark players really are boring. Hopefully you'll die soon and clear that up. Death fixes everything. Well, I mean, unless it's permanent.");
+
 		//TODO change text based on p1 and p2 relationships.  and vice versa. p1 is all flirty, p2 is a dick. yeeeessss.....
 		//var spriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
 		drawChat(document.getElementById("canvas"+ (div.attr("id"))), player1, player2, chatText, repeatTime);

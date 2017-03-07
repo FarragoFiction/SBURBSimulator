@@ -59,10 +59,16 @@ function CorpseSmooch(){
 		if(!royalty){
 			//okay, princes are traditional...
 			royalty = findClassPlayer(findLivingPlayers(availablePlayers), "Prince");
+			if(royalty && royalty.grimDark == true){
+				royalty = null; //grim dark won't corpse smooch unless they actual want to.
+			}
 		}
 		if(!royalty){
 			//okay, anybody free?
 			royalty = getRandomElementFromArray(findLivingPlayers(availablePlayers));
+			if(royalty && royalty.grimDark == true){
+				royalty = null; //grim dark won't corpse smooch unless they actual want to.
+			}
 		}
 
 		//shit, maybe your best friend can drop what they are doing to save your ass?
@@ -72,6 +78,9 @@ function CorpseSmooch(){
 		//is ANYBODY even alive out there????
 		if(!royalty){
 			royalty = getRandomElementFromArray(findLivingPlayers(players));
+			if(royalty && royalty.grimDark == true){
+				royalty = null; //grim dark won't corpse smooch unless they actual want to.
+			}
 		}
 		return royalty;
 	}

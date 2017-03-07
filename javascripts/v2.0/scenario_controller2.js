@@ -34,8 +34,8 @@ window.onload = function() {
 	//authorMessage();
   debug(" dialog different if grimdark. terse. aggressive. Also, nonsense font and scrambled? make othe rplayer not understand?")
 	intro();
-  debugGrimDark();
-	debugJackScheme();
+	//debugGrimDark();
+	//debugJackScheme();
 	//debugLevelTheHellUp();
 	//debugGodTierLevelTheHellUp();
 	//debugCorpseLevelTheHellUp();
@@ -132,6 +132,7 @@ function randomizeEntryOrder(){
 }
 
 function makeAuthorAvatar(){
+	players[0].grimDark = true;
 	players[0].aspect = "Mind"
 	players[0].class_name = "Maid"
 	players[0].hair = 13;
