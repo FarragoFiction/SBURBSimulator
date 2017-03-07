@@ -338,7 +338,7 @@ function addNumberQuirk(ret){
 //since I'm not gonna list 'em out, have more quirks, and make sure you have certain CATEGORIES of quirk.
 function randomTrollSim(){
 	var ret = new Quirk();
-	ret.capitalization = getRandomInt(0,2);
+	ret.capitalization = getRandomInt(0,5);
 	ret.punctuation = getRandomInt(0,5);
 	if(ret.capitalization == 2 && Math.random() >.2){ //seriously, less all caps.
 		ret.capitalization = getRandomInt(0,1);

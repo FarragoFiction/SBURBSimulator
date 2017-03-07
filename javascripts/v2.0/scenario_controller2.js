@@ -32,7 +32,6 @@ window.onload = function() {
 		randomizeEntryOrder();
 	}
 	//authorMessage();
-  debug(" dialog different if grimdark. terse. aggressive. Also, nonsense font and scrambled? make othe rplayer not understand?")
 	intro();
 	debugTriggerLevel();
 	//debugGrimDark();
@@ -50,7 +49,7 @@ window.onload = function() {
 	//and if so will call "render" rather than "content"
 	debug("consider keeping track of async tasks in array. if too many at a time, put new async tasks in second array, only activate and add to first array when it is empty enough");
 
-	debug("enabling ticks causes people to be rendered dead or godtier before it actually happens. s in rendering, working on haveing player snapshots rendered to fix this..");
+	debug("relationship text. reckoning");
 	//tick();  dont tick here, tick after intro
 }
 
@@ -133,13 +132,13 @@ function randomizeEntryOrder(){
 }
 
 function makeAuthorAvatar(){
-	players[0].grimDark = true;
+	players[0].grimDark = false;
 	players[0].aspect = "Mind"
 	players[0].class_name = "Maid"
 	players[0].hair = 13;
 	players[0].hairColor = "#291200";
 	players[0].quirk.punctuation = 3;
-	players[0].quirk.capitalization = 1;
+	players[0].quirk.capitalization = 5;
 	players[0].quirk.favoriteNumber = 3;
 	players[0].chatHandle = "jadedResearcher"
 	players[0].isTroll = false

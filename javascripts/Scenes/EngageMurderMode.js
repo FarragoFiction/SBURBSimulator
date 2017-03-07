@@ -220,7 +220,7 @@ function EngageMurderMode(){
 	
 	this.renderContent = function(div){
 		//reset capitilization quirk, why isn't this working?
-		this.player.quirk.punctuation = getRandomInt(0,5);
+		this.player.quirk.capitalization = getRandomInt(0,5);
 		div.append(this.content());
 		this.chat(div);
 	}
