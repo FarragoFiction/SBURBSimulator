@@ -58,7 +58,7 @@ function CorpseSmooch(){
 			return null;
 		}
 		var r = royalty.getRelationshipWith(player);
-		if(r.type() == r.badBig){
+		if(r.value < 0){
 			return null;
 		}
 		return royalty;

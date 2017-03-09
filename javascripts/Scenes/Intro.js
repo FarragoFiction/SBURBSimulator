@@ -103,6 +103,14 @@ function Intro(){
 		if(this.player.godDestiny){
 			narration += " They appear to be destined for greatness. ";
 		}
+		
+		if(this.player.dead==true){
+			narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably."
+			div.append(narration);
+			availablePlayers.push(this.player);
+			return;
+		}
+		
 		narration += " They boggle vacantly at the " + this.player.land + ". ";
 
 		for(var j = 0; j<this.player.relationships.length; j++){

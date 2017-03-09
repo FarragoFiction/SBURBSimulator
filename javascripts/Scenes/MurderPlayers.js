@@ -51,7 +51,7 @@ function MurderPlayers(){
 			var worstEnemy = m.getWorstEnemyFromList(livePlayers);
 			removeFromArray(m, availablePlayers);
 			var ret = "";
-			if(worstEnemy){
+			if(worstEnemy && worstEnemy.dead == false){  //seriously, don't kill corpses!!!
 				removeFromArray(worstEnemy, availablePlayers);
 				//if blood player is at all competant, can talk down murder mode player.
 				if(worstEnemy.aspect == "Blood" && worstEnemy.power > 2){
