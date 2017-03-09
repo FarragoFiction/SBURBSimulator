@@ -39,6 +39,7 @@ function JackRampage(){
 			stabbings[i].increasePower();
 			stabbings[i].increasePower();
 			stabbings[i].increasePower();
+			p.level_index +=2;
 			stabbings[i].leveledTheHellUp = true;
 		}
 	}

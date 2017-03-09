@@ -32,6 +32,7 @@ function FaceDenizen(){
 					ret += " They win handly, and obtain untold levels of power and sweet sweet hoarde grist. They gain all the levels. All of them. ";
 					p.denizenFaced = true;
 					p.power = p.power*2;  //current and future doubling of power.
+					p.level_index +=3;
 					p.leveledTheHellUp = true;
 					p.denizenDefeated = true;
 				}else{

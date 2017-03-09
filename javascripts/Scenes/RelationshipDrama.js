@@ -41,7 +41,7 @@ function RelationshipDrama(){
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
 
-		chatText += chatLine(player1Start, player1, "So...hey.");
+		chatText += chatLine(player1Start, player1, "So... hey.");
 		chatText += chatLine(player2Start, player2, "Hey?");
 		chatText += chatLine(player1Start, player1, "I have no idea how to say this so I'm just going to do it.");
 		chatText += chatLine(player2Start, player2, "?");
