@@ -9,8 +9,8 @@ function RelationshipDrama(){
 		this.playerList = playerList;
 		this.dramaPlayers = [];
 		//CAN change how ou feel about somebody not yet in the medium
-		for(var i = 0; i< players.length; i++){
-			var p = players[i];
+		for(var i = 0; i< playerList.length; i++){
+			var p = playerList[i];
 			if(p.hasRelationshipDrama()){
 				this.dramaPlayers.push(p)
 			}

@@ -25,7 +25,7 @@ var timeTillReckoning = getRandomInt(10,30);
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
 	debug("let relationship drama happen for all living players, not just available ones, or drama only happens at end. or do i want that?")
-	
+	debug("why can't i level up more than one at a time, even if i increase level index?");
    init();
 	//exileQueenInit();
 	//murderModeInit();
@@ -166,6 +166,7 @@ function decideLusus(player){
 function decideTroll(player){
 	if(Math.random() > 0.75 ){
 		player.isTroll = true;
+		player.triggerLevel ++;//trolls are less stable
 		decideHemoCaste(player);
 		decideLusus(player);
 		player.kernel_sprite = player.lusus;
