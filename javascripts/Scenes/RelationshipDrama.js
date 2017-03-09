@@ -97,8 +97,8 @@ function RelationshipDrama(){
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = relationship;
 		var r2 = player2.getRelationshipWith(player1);
-		var r2crush = player2.getRelationshipWith(crush);
-		alert("I am: " + player2.title() + " and my relationship with : " + crush.title() + " is being checked")
+		var r2crush = player2.getRelationshipWith(crush);  //sometimes crush is same as best friend...despite all my best efforts.
+		//alert("I am: " + player2.title() + " and my relationship with : " + crush.title() + " is being checked")
 		var chatText = "";
 
 		chatText += chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2))
@@ -282,9 +282,9 @@ function RelationshipDrama(){
 	
 	this.getLivingBestFriendBesidesCrush = function(player,crush){
 		var living = findLivingPlayers(players)
-		alert("removing crush: " + crush.title() + " from array: " + living.length)
+		//alert("removing crush: " + crush.title() + " from array: " + living.length)
 		removeFromArray(crush, living)
-		alert("removed crush: " + crush.title() + " from array: " + living.length)
+		//alert("removed crush: " + crush.title() + " from array: " + living.length)
 		if(living.length>0){
 			return player.getBestFriendFromList(living,"getLivingBestFriendBesidesCrush"+living);
 		}
