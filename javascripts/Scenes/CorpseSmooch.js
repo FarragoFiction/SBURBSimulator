@@ -61,7 +61,7 @@ function CorpseSmooch(){
 		dead_player.isDreamSelf = true;
 		drawSprite(moonBuffer,dead_player,repeatTime)
 		copyTmpCanvasToRealCanvasAtPos(canvas, moonBuffer,600,0)
-		this.makeAlive(deadPlayer); //make SURE the player is alive after smooches.
+		this.makeAlive(dead_player); //make SURE the player is alive after smooches.
 
 	}
 	
