@@ -27,6 +27,20 @@ function CorpseSmooch(){
 			this.renderForPlayer(div, this.dreamersToRevive[i]);
 		}
 	}
+	
+	this.makeAlive = function(d){
+		d.dead = false;
+		d.dreamSelf = false;
+		d.isDreamSelf = true;
+		d.murderMode = false;
+		d.grimDark = false;
+		d.triggerLevel = 1;
+	}
+	
+	this.makeDead = function(d){
+		d.dreamSelf = false;
+		d.dead = true;
+	}
 
 	//smoocher on left, corpse on right, them waking up on prospit/derse on far right
 	this.drawCorpseSmooch = function(canvas, dead_player, royalty, repeatTime){
@@ -47,6 +61,7 @@ function CorpseSmooch(){
 		dead_player.isDreamSelf = true;
 		drawSprite(moonBuffer,dead_player,repeatTime)
 		copyTmpCanvasToRealCanvasAtPos(canvas, moonBuffer,600,0)
+		this.makeAlive(deadPlayer); //make SURE the player is alive after smooches.
 
 	}
 	
@@ -120,17 +135,12 @@ function CorpseSmooch(){
 				royalty.triggerLevel ++;
 				ret += " The " + royalty.htmlTitle() + ", as a member of the royalty of " + royalty.moon + ", administers the universal remedy for the unawakened ";
 				ret += " to the " + d.htmlTitle() + ". Their dream self takes over on " + d.moon + ". ";
-				d.dead = false;
-				d.dreamSelf = false;
-				d.isDreamSelf = true;
-				d.murderMode = false;
-				d.grimDark = false;
-				d.triggerLevel = 1;
+				this.makeAlive(d);
 				combo ++;
 			}else{
 				ret += d.htmlTitle() + "'s corpse waits patiently for the kiss of life. But nobody came. ";
 				ret += " Their dream self dies as well. ";
-				d.dreamSelf = false;
+				this.makeDead(d);
 			}
 		}
 		if(combo > 1){
