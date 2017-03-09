@@ -62,13 +62,21 @@ function EngageMurderMode(){
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 		var chatText = "";
-		chatText += chatLine(player2Start, player2,"Oh, fuck.")
-		chatText += chatLine(player2Start, player2,"Fuck.")
-		chatText += chatLine(player2Start, player2,"Fuck.")
-		chatText += chatLine(player2Start, player2,"What the hell? Why did you snap NOW? Why ME?")
-		chatText += chatLine(player2Start, player2,"Fuck. Please no....")
-		chatText += chatLine(player1Start, player1,"See you soon! :)")
-		chatText += chatLine(player2Start, player2,"Oh, god.")
+		if(r2.type() == r2.badBig){
+			chatText += chatLine(player2Start, player2,"Oh, fuck.")
+			chatText += chatLine(player2Start, player2,"Oh, fuck. I always knew you were an asshole, but THIS!?")
+			chatText += chatLine(player2Start, player2,"What the hell? Why did you snap NOW? Why ME?")
+			chatText += chatLine(player1Start, player1,"See you soon! :)")
+			chatText += chatLine(player2Start, player2,"Oh, god.")
+		}else{
+			chatText += chatLine(player2Start, player2,"Oh, fuck.")
+			chatText += chatLine(player2Start, player2,"Fuck.")
+			chatText += chatLine(player2Start, player2,"Fuck.")
+			chatText += chatLine(player2Start, player2,"What the hell? Why did you snap NOW? Why ME?")
+			chatText += chatLine(player2Start, player2,"Fuck. Please no....")
+			chatText += chatLine(player1Start, player1,"See you soon! :)")
+			chatText += chatLine(player2Start, player2,"Oh, god.")
+		}
 		return chatText;
 	}
 	

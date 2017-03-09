@@ -26,7 +26,7 @@ function DoEctobiology(){
 		ret += " What is even going on here? ";
 		this.leader.increasePower();
 		this.leader.leveledTheHellUp = true;
-		p.level_index +=3;
+		this.leader.level_index +=3;
 		return ret;
 	}
 }

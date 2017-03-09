@@ -189,6 +189,9 @@ function PlanToExileJack(){
 	}
 
 	this.content = function(){
+		if(!this.planner){
+			return;//this should theoretically never happen
+		}
 		this.planner.increasePower();
 		removeFromArray(this.planner, availablePlayers);
 		available_scenes.unshift( new prepareToExileJack());

@@ -38,18 +38,15 @@ function CorpseSmooch(){
 		var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawSprite(dSpriteBuffer,dead_player,repeatTime)
 
+		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,100,0)
 
-
-			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
-			copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,100,0)
-
-		//want to let corpse render before i revive it
-			var moonBuffer = getBufferCanvas(document.getElementById("canvas_template"));
-			drawMoon(moonBuffer, dead_player);
-			dead_player.dead = false;
-			dead_player.isDreamSelf = true;
-			drawSprite(moonBuffer,dead_player,repeatTime)
-			copyTmpCanvasToRealCanvasAtPos(canvas, moonBuffer,600,0)
+		var moonBuffer = getBufferCanvas(document.getElementById("canvas_template"));
+		drawMoon(moonBuffer, dead_player);
+		dead_player.dead = false;
+		dead_player.isDreamSelf = true;
+		drawSprite(moonBuffer,dead_player,repeatTime)
+		copyTmpCanvasToRealCanvasAtPos(canvas, moonBuffer,600,0)
 
 	}
 	
@@ -99,19 +96,15 @@ function CorpseSmooch(){
 		return royalty;
 	}
 
-	this.renderForPlayer = function(div, deadPlayer){
-		var repeatTime = 1000;
-		var divID = (div.attr("id")) + "_" + deadPlayer.chatHandle;
-		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
-		div.append(canvasHTML);
-		var canvasDiv = document.getElementById("canvas"+ divID);
+	this.renderForPlayer = function(div, deadPlayer){	
 		var royalty = this.getRoyalty(deadPlayer)
-		var context = this; //bulshit scoping inside of timeout
-
-
-		setTimeout(function(){
-			context.drawCorpseSmooch(canvasDiv, deadPlayer, royalty, repeatTime)
-		}, repeatTime/2);  //images aren't always loaded by the time i try to draw them the first time.
+		if(royalty){
+			var divID = (div.attr("id")) + "_" + deadPlayer.chatHandle;
+			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+			div.append(canvasHTML);
+			var canvasDiv = document.getElementById("canvas"+ divID);
+			this.drawCorpseSmooch(canvasDiv, deadPlayer, royalty, 1000)
+		}
 	}
 
 	//prefer to be smooched by prince who doesn't hate you, or person who likes you best.

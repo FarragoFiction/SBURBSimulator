@@ -282,7 +282,10 @@ function RelationshipDrama(){
 	this.getLivingBestFriendBesidesCrush = function(player,crush){
 		var living = findLivingPlayers(players)
 		living = removeFromArray(crush, living)
-		return player.getBestFriendFromList(living);
+		if(living.length>0){
+			return player.getBestFriendFromList(living,"getLivingBestFriendBesidesCrush"+living);
+		}
+		return null;
 	}
 		
 	

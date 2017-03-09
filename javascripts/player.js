@@ -331,7 +331,10 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, chat_
 		return ret;
 	}
 
-	this.getBestFriendFromList = function(potentialFriends){
+	this.getBestFriendFromList = function(potentialFriends, debugCallBack){
+		if(potentialFriends == null){
+			alert(debugCallBack)
+		}
 		var bestRelationshipSoFar = this.relationships[0];
 		for(var i = 0; i<potentialFriends.length; i++){
 			var p =  potentialFriends[i];

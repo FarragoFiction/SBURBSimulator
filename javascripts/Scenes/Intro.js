@@ -38,7 +38,7 @@ function Intro(){
 		//do what homestuck does and put some text in image but rest in pesterlog?
 		//when trolls happen, should they use trollian?
 		var player1 = this.player;
-		var player2 = player1.getBestFriendFromList(findLivingPlayers(players));
+		var player2 = player1.getBestFriendFromList(findLivingPlayers(players), "intro chat");
 		if(player2 == null){
 			player2 = player1.getWorstEnemyFromList(findLivingPlayers(players));
 

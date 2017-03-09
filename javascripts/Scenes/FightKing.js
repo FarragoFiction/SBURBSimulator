@@ -20,7 +20,7 @@ function FightKing(){
 			stabbings[i].increasePower();
 			stabbings[i].increasePower();
 			stabbings[i].leveledTheHellUp = true;
-			p.level_index +=2;
+			stabbings.level_index +=2;
 		}
 	}
 	
