@@ -82,12 +82,12 @@ function CorpseSmooch(){
 		royalty = this.ignoreEnemies(d, royalty);
 		//shit, maybe your best friend can drop what they are doing to save your ass?
 		if(!royalty){
-			royalty = d.getWhoLikesMeBestFromList(findLivingPlayers(players));
+			royalty = d.getWhoLikesMeBestFromList(findLivingPlayers(this.playerList));
 		}
 		royalty = this.ignoreEnemies(d, royalty);
 		//is ANYBODY even alive out there????
 		if(!royalty){
-			royalty = getRandomElementFromArray(findLivingPlayers(players));
+			royalty = getRandomElementFromArray(findLivingPlayers(this.playerList));
 			if(royalty && royalty.grimDark == true){
 				royalty = null; //grim dark won't corpse smooch unless they actual want to.
 			}
