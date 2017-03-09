@@ -184,7 +184,6 @@ function init(){
 		players.push(randomPlayer());
 	}
 
-	players[0].hairColor = "#331200"
 	for(var j = 0; j<players.length; j++){
 		var p = players[j];
 		decideTroll(p);
