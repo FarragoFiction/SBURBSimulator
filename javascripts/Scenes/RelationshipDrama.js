@@ -22,7 +22,7 @@ function RelationshipDrama(){
 	
 	this.confessFeelings = function(div, player,crush){
 		var relationship = player.getRelationshipWith(crush);
-		var divID = (div.attr("id")) + "_" + crush.chatHandle+"_crush";
+		var divID = (div.attr("id")) + "_" + player.chatHandle+"confess_crush_"+crush.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
@@ -73,7 +73,7 @@ function RelationshipDrama(){
 	//or on crushee.
 	this.relationshipAdvice = function(div,player,crush){
 		var relationship = player.getRelationshipWith(crush);
-		var divID = (div.attr("id")) + "_" + crush.chatHandle+"_crush";
+		var divID = (div.attr("id")) + "_" + player.chatHandle+"advice_crush_"+crush.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
@@ -81,7 +81,7 @@ function RelationshipDrama(){
 		
 		var chatText = "";
 		var player1 = player;
-		var player2 = this.getLivingBestFriendBesidesCrush(player, crush);
+		var player2 = this.getLivingBestFriendBesidesCrush(player, crush); //this is currently returnin the crush in question. why?
 		
 		if(player2 == null){
 			var narration = "<br>The " + player.htmlTitle() + " used to think that the " + crush.htmlTitle() + " was ";
@@ -98,6 +98,7 @@ function RelationshipDrama(){
 		var r1 = relationship;
 		var r2 = player2.getRelationshipWith(player1);
 		var r2crush = player2.getRelationshipWith(crush);
+		alert("I am: " + player2.title() + " and my relationship with : " + crush.title() + " is being checked")
 		var chatText = "";
 
 		chatText += chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2))
@@ -127,7 +128,7 @@ function RelationshipDrama(){
 					chatText += chatLine(player2Start, player2,"I guess I can see that. If that's your thing.");
 					chatText += chatLine(player1Start, player1,"They are amazing...");
 				}
-			}else if(r2.crush.type() == r2crush.badBig){ //friend thinks they are an asshole.
+			}else if(r2crush.type() == r2crush.badBig){ //friend thinks they are an asshole.
 				if(player2.class_name == "Page" || player2.class_name == "Maid" || player2.class_name == "Sylph" || player2.aspect == "Blood"){
 					chatText += chatLine(player2Start, player2,"Wow! Huh. You should follow your heart.");
 					chatText += chatLine(player1Start, player1,"You think so?");
@@ -190,7 +191,7 @@ function RelationshipDrama(){
 		relationship.drama = false; //it is consumed.
 		relationship.old_type = relationship.saved_type;
 		var relationship = player.getRelationshipWith(jerk);
-		var divID = (div.attr("id")) + "_" + jerk.chatHandle+"_jerk";
+		var divID = (div.attr("id")) + "_" + player.chatHandle+"vent_jerk_"+jerk.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
@@ -237,7 +238,7 @@ function RelationshipDrama(){
 	this.antagonizeJerk = function(div,player,jerk){
 		relationship.drama = false; //it is consumed.
 		relationship.old_type = relationship.saved_type;
-		var divID = (div.attr("id")) + "_" + jerk.chatHandle+"_jerk";
+		var divID = (div.attr("id")) + "_" + player.chatHandle+"antagonize_jerk_"+jerk.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
@@ -281,7 +282,9 @@ function RelationshipDrama(){
 	
 	this.getLivingBestFriendBesidesCrush = function(player,crush){
 		var living = findLivingPlayers(players)
-		living = removeFromArray(crush, living)
+		alert("removing crush: " + crush.title() + " from array: " + living.length)
+		removeFromArray(crush, living)
+		alert("removed crush: " + crush.title() + " from array: " + living.length)
 		if(living.length>0){
 			return player.getBestFriendFromList(living,"getLivingBestFriendBesidesCrush"+living);
 		}
