@@ -70,7 +70,7 @@ function CorpseSmooch(){
 			return null;
 		}
 		var r = royalty.getRelationshipWith(player);
-		if(r.value < 0){
+		if(!r || (r && r.value < 0)){
 			return null;
 		}
 		return royalty;
