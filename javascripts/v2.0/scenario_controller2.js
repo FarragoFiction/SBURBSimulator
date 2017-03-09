@@ -36,7 +36,7 @@ window.onload = function() {
 	//authorMessage();
 	intro();
 	//debugRelationshipDrama();
-	//debugTriggerLevel();
+	debugTriggerLevel();
 	//debugGrimDark();
 	//debugJackScheme();
 	//debugLevelTheHellUp();

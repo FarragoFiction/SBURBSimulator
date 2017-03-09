@@ -344,13 +344,13 @@ function randomTrollSim(){
 		ret.capitalization = getRandomInt(0,1);
 	}
 
-	if(Math.random() > .5){
+	if(Math.random() > .85){
 		ret.prefix = getRandomElementFromArray(prefixes);
 		if(ret.prefix.length == 1){
 			ret.prefix = multiplyCharacter(ret.prefix, ret.prefix[0], ret.favoriteNumber);
 		}
 	}
-	if(Math.random() > .5){
+	if(Math.random() > .85){
 		if(ret.prefix != "" && Math.random()>.7){ //mostly just repeat your prefix
 			ret.suffix = ret.prefix;
 		}else{

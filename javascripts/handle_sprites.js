@@ -587,6 +587,11 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
 	   bloodPuddle(canvas, player);
   }
   playerToSprite(canvas,player);
+  
+  if(player.murderMode == true){
+	  scratch_face(canvas, player);
+  }
+  
   hair(canvas, player);
   if(player.class_name == "Prince" && player.godTier){
 	  princeTiara(canvas, player);
@@ -631,6 +636,18 @@ function playerToSprite(canvas, player){
 	}
 	//TODO have dream sprites, too.
 	//TODO check for murder mode or grim darkness.
+}
+
+
+function scratch_face(canvas, player){
+	ctx = canvas.getContext('2d');
+	var imageString = "scratch_face.png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,width/6,height/4,width,height);
+	swapColors(canvas, "#440a7f", player.bloodColor); //it's their own blood
 }
 
 function hair(canvas, player){

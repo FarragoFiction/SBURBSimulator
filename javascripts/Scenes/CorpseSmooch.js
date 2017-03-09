@@ -52,10 +52,21 @@ function CorpseSmooch(){
 			copyTmpCanvasToRealCanvasAtPos(canvas, moonBuffer,600,0)
 
 	}
+	
+	this.ignoreEnemies = function(player, royalty){
+		if(!royalty){
+			return null;
+		}
+		var r = royalty.getRelationshipWith(player);
+		if(r.type() == r.badBig){
+			return null;
+		}
+		return royalty;
+	}
 
 	this.getRoyalty = function(d){
 		var royalty = d.getWhoLikesMeBestFromList(findLivingPlayers(availablePlayers));
-
+		royalty = this.ignoreEnemies(d, royalty);
 		if(!royalty){
 			//okay, princes are traditional...
 			royalty = findClassPlayer(findLivingPlayers(availablePlayers), "Prince");
@@ -63,6 +74,7 @@ function CorpseSmooch(){
 				royalty = null; //grim dark won't corpse smooch unless they actual want to.
 			}
 		}
+		royalty = this.ignoreEnemies(d, royalty);
 		if(!royalty){
 			//okay, anybody free?
 			royalty = getRandomElementFromArray(findLivingPlayers(availablePlayers));
@@ -70,11 +82,12 @@ function CorpseSmooch(){
 				royalty = null; //grim dark won't corpse smooch unless they actual want to.
 			}
 		}
-
+		royalty = this.ignoreEnemies(d, royalty);
 		//shit, maybe your best friend can drop what they are doing to save your ass?
 		if(!royalty){
 			royalty = d.getWhoLikesMeBestFromList(findLivingPlayers(players));
 		}
+		royalty = this.ignoreEnemies(d, royalty);
 		//is ANYBODY even alive out there????
 		if(!royalty){
 			royalty = getRandomElementFromArray(findLivingPlayers(players));
@@ -82,6 +95,7 @@ function CorpseSmooch(){
 				royalty = null; //grim dark won't corpse smooch unless they actual want to.
 			}
 		}
+		royalty = this.ignoreEnemies(d, royalty);
 		return royalty;
 	}
 
