@@ -7,9 +7,13 @@ function GoGrimDark(){
 		this.playerList = playerList;
 		//select a random player. if they've been triggered, random chance of going grim dark (based on how triggered.)
 		this.player = getRandomElementFromArray(availablePlayers);
+		var moon = 0;
+		if(player.moon == "Derse"){
+			moon = 1;
+		}
 		if(this.player){
-			if(this.player.triggerLevel > 0 && !this.player.grimDark){
-				if((Math.random() * 10) < this.player.triggerLevel){
+			if(this.player.triggerLevel + moon > 0 && !this.player.grimDark){  //easier to grimdark if you have access to horror terrors.
+				if((Math.random() * 10) < this.player.triggerLevel +moon){
 					if(this.player.murderMode && Math.random() < .5) { //slightly less chance of being both
 						return false;
 					}
