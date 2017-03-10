@@ -24,8 +24,7 @@ var timeTillReckoning = getRandomInt(10,30);
 //main canvas is either Leader + PesterChumWindow + 1 or more Players (in chat or group chat with leader)
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
-	debug("let relationship drama happen for all living players, not just available ones, or drama only happens at end. or do i want that?")
-	debug("why can't i level up more than one at a time, even if i increase level index?");
+	debug("okay, need a scene for the reckoning. and ways to call final battles");
    init();
 	//exileQueenInit();
 	//murderModeInit();
