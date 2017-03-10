@@ -126,14 +126,20 @@ function getRandomChatHandle(class_name, aspect,interest1, interest2){
 	}else{
 		first = getBlandHandle1(className);
 	}
+	if(first == ""){
+		getBlandHandle1(className);  //might have forgot to have a interest handle of the right letter.
+	}
 
 	var second = "";
 	if(rand>.3){
 		second = getInterestHandle2(class_name, interest1);
 	}else if(rand > .6){
-		first = getInterestHandle2(class_name, interest2);
+		second = getInterestHandle2(class_name, interest2);
 	}else{
-		first = getBlandHandle2(aspect);
+		second = getBlandHandle2(aspect);
+	}
+	if(second = ""){
+		second = getBlandHandle2(aspect);
 	}
 	return first+second;
 }
@@ -763,20 +769,20 @@ seaLususTypes = seaLususTypes.concat(["Dive Beast", "Honkbird", "Sea Bear", "Sea
 
 interests = []
 
-var music_interests = ["Rap","Music","Song Writing","Musicals","Dance", "Singing"];
+var music_interests = ["Rap","Music","Song Writing","Musicals","Dance", "Singing","Ballet","Playing Guitar","Playing Piano", "Mixtapes","Turntables"];
 var culture_interests = ["Drawing","Painting","Documentaries","Fan Art" ,"Graffiti","Fashion","Theater","Fine Art", "Literature","Books", "Movie Making"];
-var writing_interests = ["Writing", "Fan Fiction","Script Writing"];
-var pop_culture_interests = ["Action Movies", "Superheroes", "Supervillains", "Video Games", "Movies", "Television"];
-var technology_interests = ["Programming", "Hacking","Robots","Artificial Intelligence", "Engineering"];
-var social_interests = ["Religion","Animal Training", "Pets","Animals","Online Roleplaying", "Live Action Roleplaying","Tabletop Roleplaying", "Role Playing","Social Media"];
-var romantic_interests = ["Girls", "Boys","Romance","Relationships", "Love", "Romantic Comedies"];
+var writing_interests = ["Writing", "Fan Fiction","Script Writing","Character Creation","Dungeon Mastering", "Authoring"];
+var pop_culture_interests = ["Action Movies", "Superheroes", "Supervillains", "Video Games", "Movies", "Television","Comic Books","TV","Heroes"];
+var technology_interests = ["Programming", "Hacking","Robots","Artificial Intelligence", "Engineering","Manufacturing","Cyborgs", "Androids","A.I.","Automation"];
+var social_interests = ["Psychology","Religion","Animal Training", "Pets","Animals","Online Roleplaying", "Live Action Roleplaying","Tabletop Roleplaying", "Role Playing","Social Media"];
+var romantic_interests = ["Girls", "Boys","Romance","Relationships", "Love", "Romantic Comedies","Fate","Dating"];
 var academic_interests = ["Astronomy","Knowledge","Physics", "Biology", "Chemistry","Geneology","Science","Molecular Gastronomy","Model Trains","Politics","Geography", "Cartography","Typography"];
-var comedy_interests = ["Pranks","Comedy", "Jokes", "Puns", "Stand-up Comedy"];
-var domestic_interests = ["Meditation","Babies","Peace","Knitting","Cooking", "Baking","Gardening", "Crochet", "Scrapbooking"];
+var comedy_interests = ["Pranks","Comedy", "Jokes", "Puns", "Stand-up Comedy","Humor","Comics","Satire","Knock Knock Jokes"];
+var domestic_interests = ["Gardening","Meditation","Babies","Peace","Knitting","Cooking", "Baking","Gardening", "Crochet", "Scrapbooking"];
 var athletic_interests = ["Yoga","Fitness", "Sports","Boxing", "Track and Field", "Swimming"];
-var terrible_interests = ["Money","Violence", "Death","Animal Fights","Insults","Hoarding","Status","Racism", "Online Trolling","Cultural Appropriation"];
+var terrible_interests = ["Money","Violence", "Death","Animal Fights","Insults","Hoarding","Status","Racism", "Online Trolling","Cultural Appropriation","Intimidation","Fighting","Genocide","Murder","War"];
 var fantasy_interests = ["Humans", "Trolls", "Science Fiction", "Fantasy","Ninjas","Aliens","Conspiracies","Faeries", "Elves", "Vampires", "Undead"];
-var justice_interests = ["Social Justice","Detectives","Mysteries","Leadership","Revolution","Justice","Equality"]
+var justice_interests = ["Social Justice","Detectives","Mysteries","Leadership","Revolution","Justice","Equality","Sherlock Holmes"]
 interests = interests.concat(music_interests);
 interests = interests.concat(culture_interests);
 interests = interests.concat(writing_interests);
@@ -845,6 +851,22 @@ var prince_handles = ["precocious","priceless","proficient","prominent","proper"
 var witch_handles = ["wondering","wonderful","wacky","withering","worldly"];
 var seer_handles = ["sightly","sanctimonious","sarcastic","sassy","scintillating","synergistic"];
 
+var music_handles1 = ["musical","pianist","melodious","keyboard","rhythmic","singing","tuneful","harmonious","beating","pitch","waltzing","synthesized","piano","serenading"];
+var culture_handles1 = ["monochrome","poetic","majestic","keen","realistic","serious","theaterical","haute","beautiful","priceless","watercolor","sensational", "highbrow"];
+var writing_handles1 = ["meandering","pageturning","mysterious","knowledgeable","reporting","scribing","tricky","hardcover","bookish","page","writing","scribbler"];
+var pop_culture_handles1 = ["mega","player","mighty","knightly","roguish","super","turbo","titanic","heroic","bitchin","power","wonder","wonderful", "sensational"];
+var technology_handles1 = ["machinist","programming","mechanical","kilo","robotic","silicon","techno","hardware","battery","python","windows","serial"];
+var social_handles1 = ["master","playful","matchmaking","kind","regular","social","trusting","honest","benign","precious","wondering","sarcastic", "talkative"];
+var romantic_handles1 = ["matchmaking","passionate","kinky","romantic","serendipitous","true","hearts","blushing","precious","warm","serenading","mesmerizing"];
+var academic_handles1 = ["researching","machiavellian","princeton","pedagogical","theoretical","hypothetical","meandering","scholarly","biological","pants","spectacled","scientist","scholastic"];
+var comedy_handles1 = ["mercurial","beagle","sarcastic","satirical","mime","pantomime","practicing","pranking","wokka","kooky","haha","humor","talkative"];
+var domestic_handles1 = ["motherly","patient","missing","knitting","rising","stylish","trendy","homey","baking","recipe","",""];
+var athletic_handles1 = ["kinetic", "muscley", "preening", "mighty", "running", "sporty", "tennis", "hard", "ball", "winning", "trophey", "sports", "physical", "sturdy", "strapping", "hardy", "brawny", "burly", "robust", "strong", "muscular", "phenomenal"];
+var terrible_handles1 = ["tyranical","murderous","persnickety","mundane","killer","rough","sneering","hateful","bastard","pungent","wasted","snooty","wicked"];
+var fantasy_handles1 = ["musing","pacific","minotaurs","kappas","restful","serene","titans","hazy","best","peaceful","witchs","sylphic"]
+var justice_handles1 = ["mysterious","police","mind","keen","retribution","saving","tracking","hardboiled","broken","perceptive","watching","searching"];
+
+
 var space_handles = ["Salamander","Salientia","Spacer","Scientist","Synergy"];
 var time_handles = ["Teetotaler","Traveler","Tailor","Taster","Target", "Teacher", "Therapist"];
 var breath_handles = ["Biologist","Backpacker","Babysitter","Baker","Balooner"];
@@ -858,34 +880,23 @@ var rage_handles = ["Raconteur","Reveler","Reader","Reporter","Racketeer"];
 var hope_handles = ["Honcho","Humorist","Horse","Haberdasher","Hooligan"];
 var life_handles = ["Leader","Lecturer","Liason","Loyalist","Lyricist"];
 
-var music_handles1 = ["musical","pianist","melodious","keyboard","rhythmic","singing","tuneful","harmonious","beating","pitch","waltzing","synthesized","piano","serenading"];
-var culture_handles1 = ["monochrome","poetic","majestic","keen","realistic","serious","theaterical","haute","beautiful","priceless","watercolor","sensational", "highbrow"];
-var writing_handles1 = ["meandering","pageturning","mysterious","knowledgeable","reporting","scribing","tricky","hardcover","bookish","page","writing","scribbler"];
-var pop_culture_handles1 = ["mega","player","mighty","knightly","roguish","super","turbo","titanic","heroic","bitchin","power","wonder","wonderful", "strong"];
-var technology_handles1 = ["machinist","programming","mechanical","kilo","robotic","silicon","techno","hardware","battery","python","windows","serial"];
-var social_handles1 = ["master","playful","matchmaking","kind","regular","social","trusting","honest","benign","precious","wondering","sarcastic", "talkative"];
-var romantic_handles1 = ["matchmaking","passionate","kinky","romantic","serendipitous","true","hearts","blushing","precious","warm","serenading","mesmerizing"];
-var academic_handles1 = ["machiavellian","princeton","pedagogical","theoretical","hypothetical","meandering","scholarly","biological","pants","spectacled","scientist","scholastic"];
-var comedy_handles1 = ["beagle","sarcastic","satirical","mime","pantomime","practicing","pranking","wokka","kooky","haha","humor","talkative"];
-var domestic_handles1 = ["motherly","patient","missing","knitting","rising","stylish","trendy","homey","baking","recipe","",""];
-var athletic_handles1 = ["kinetic", "muscley", "preening", "mighty", "running", "sporty", "tennis", "hard", "ball", "winning", "trophey", "sports", "physical", "sturdy", "strapping", "hardy", "brawny", "burly", "robust", "strong", "muscular", "phenomenal"];
-var terrible_handles1 = ["tyranical","","","","","","","","","","",""];
-var fantasy_handles1 = ["","","","","","","","","","","",""];
-var justice_handles1 = ["","","","","","","","","","","",""];
+var music_handles2 = ["Siren","Singer","Tenor","Trumpeter","Baritone","Dancer","Ballerina","Harpsicordist","Musician","Lutist","Violist","Rapper","Harpist","Lyricist","Virtuoso"];
+var culture_handles2 = ["Dramatist","Repository","Museum","Librarian","Hegemony","Hierarchy","Davinci","Renaissance","Viniculture","Treaty","Balmoral","Beauty"];
+var writing_handles2 = ["Shakespeare","Host","Bard","Drifter","Reader","Booker","Missive","Labret","Lacuna","Varvel","Hagiomaniac","Traveler"];
+var pop_culture_handles2 = ["Superhero","Supervillain","Hero","Villain","Liason","Director","Repeat","Blockbuster","Movie","Mission","Legend","Buddy","Spy","Bystander"];
+var technology_handles2 = ["Roboticist","Hacker","Haxor","Technologist","Robot","Machine","Machinist","Droid","Binary","Breaker","Vaporware","Lag","Laptop"];
+var social_handles2 = ["Socialist","Defender","Mentor","Leader","Veterinarian","Therapist","Buddy","Healer","Helper","Mender","Lender","Dog","Bishop"];
+var romantic_handles2 = ["Romantic","Dreamer","Beau","Hearthrob","Virtue","Beauty","Rainbow","Heart","Magnet","Miracle","Serendipity","Team"];
+var academic_handles2 = ["Researcher","Scientist","Trainer","Biologist","Minerologist","Lecturer","Herbalist","Dean","Director","Honcho","Minder","Verbalist"];
+var comedy_handles2 = ["Laugher","Humorist","Trickster","Sellout","Dummy","Silly","Bum","Huckster","Raconteur","Mime","Leaper","Vaudevillian","Baboon","Boor"];
+var domestic_handles2 = ["Baker","Darner","Mender","Mentor","Launderer","Vegetarian","Tailor","Teacher","Hestia","Helper","Decorator","Sewer"];
+var athletic_handles2 = ["Swimmer","Trainer","Baller","Handler","Runner","Leaper","Racer","Vaulter","Major","Tracker","Heavy","Brawn","Darter"];
+var terrible_handles2 = ["Butcher","Barbarian","Tyrant","Superior","Bastard","Dastard","Despot","Bitch","Horror","Victim","Hellhound","Devil","Demon","Shark","Lupin", "Mindflayer","Mummy","Hoarder"];
+var fantasy_handles2 = ["Dragon","Magician","Sandman","Shinigami","Tengu","Beauty","Harpy","Dwarf","Vampire","Lamia","Roc","Mermaid","Siren","Manticore","Banshee","Basilisk","Boggart"];
+var justice_handles2 = ["Detective","Defender","Laywer","Loyalist","Liason","Vigilante","Tracker","Moralist","Retribution","Watchman","Searcher","Perception","Rebel"];
 
-var music_handles2 = ["","","","","","","","","","","",""];
-var culture_handles2 = ["","","","","","","","","","","",""];
-var writing_handles2 = ["","","","","","","","","","","",""];
-var pop_culture_handles2 = ["","","","","","","","","","","",""];
-var technology_handles2 = ["","","","","","","","","","","",""];
-var social_handles2 = ["","","","","","","","","","","",""];
-var romantic_handles2 = ["","","","","","","","","","","",""];
-var academic_handles2 = ["","","","","","","","","","","",""];
-var comedy_handles2 = ["","","","","","","","","","","",""];
-var domestic_handles2 = ["","","","","","","","","","","",""];
-var athletic_handles2 = ["","","","","","","","","","","",""];
-var terrible_handles2 = ["","","","","","","","","","","",""];
-var fantasy_handles2 = ["","","","","","","","","","","",""];
-var justice_handles2 = ["","","","","","","","","","","",""];
+
+
+
 
 var human_hair_colors = ["#68410a","#000000","#000000","#000000","#f3f28d","#cf6338","#feffd7","#fff3bd","#724107","#382207","#ff5a00","#3f1904","#ffd46d","#473200","#91683c"];
