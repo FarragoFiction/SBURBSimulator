@@ -53,14 +53,19 @@ function RelationshipDrama(){
 		if(r2.type() == r2.goodBig){
 			chatText += chatLine(player2Start, player2,"!");
 			chatText += chatLine(player2Start, player2,"Wow... I ... I feel the same way!");
-			chatText += chatLine(player2Start, player2,"Holy shit!");
+			chatText += chatLine(player1Start, player1,"Holy shit!");
 		}else if(r2.type() ==r2.badBig){
 			chatText += chatLine(player2Start, player2, "lol");
 			chatText += chatLine(player2Start, player2, "Well, I think YOU are " + this.generateNewOpinion(r2) + "!");
 			chatText += chatLine(player2Start, player2, "so fuck off!");
 		}else{
-			chatText += chatLine(player2Start, player2,"Fuck. I'm sorry. I just don't feel that way about you. ");
-			chatText += chatLine(player1Start, player1,"Fuck. Thanks for being honest. ");
+			if(player2.grimDark){
+				chatText += chatLine(player2Start, player2,"Your feelings are irrelevant. ");
+				chatText += chatLine(player1Start, player1,"Fuck. Thanks for being honest. ");
+			}else{
+				chatText += chatLine(player2Start, player2,"Fuck. I'm sorry. I just don't feel that way about you. ");
+				chatText += chatLine(player1Start, player1,"Fuck. Thanks for being honest. ");
+			}
 
 		}
 
