@@ -8,10 +8,11 @@ function EngageMurderMode(){
 		//select a random player. if they've been triggered, random chance of going murderMode if enemies (based on how triggered.)
 		this.player = getRandomElementFromArray(availablePlayers);
 		var moon = 0;
-		if(this.player.moon == "Prospit"){
-			moon = 1;
-		}
+
 		if(this.player){
+			if(this.player.moon == "Prospit"){
+				moon = 1;
+			}
 			if(this.player.triggerLevel > 0 &&  !this.player.murderMode && this.player.getEnemies().length > 0){
 				if((Math.random() * 10) < this.player.triggerLevel+moon){  //easier to go crazy if you SEE all your friends dying already. (in prospit clouds)
 					return true;
