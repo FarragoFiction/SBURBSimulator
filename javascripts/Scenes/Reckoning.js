@@ -5,7 +5,7 @@ function Reckoning(){
 		this.playerList = playerList;
 		return true; //this should never be in the main array. call manually.
 	}
-	
+
 
 	//i is so you know entry order
 	this.renderContent = function(div){
@@ -35,6 +35,7 @@ function Reckoning(){
 			doomedTimeline = true;
 			intro += "<br><br>";
 			$("#story").append(intro);
+			renderScratchButton();
 			return intro;
 		}
 		var living = findLivingPlayers(players);

@@ -60,7 +60,28 @@ window.onload = function() {
 	//tick();  dont tick here, tick after intro
 }
 
+function renderScratchButton(){
+	alert("scratch available");
+	if(!scratched){
+		var html = '<button type="button" onclick="scratch">Would You Like To Scratch Session?</button>';
+		$("story").append(html);
+}
+}
+//TODO if i wanted to, I could have mixed sessions like in canon.
+//not erasing the players, after all.
 function scratch(){
+	frogStatus = 0;
+	kingStrength = 100; //can use this to extrapolate enemy strength.
+	queenStrength = 100;
+	jackStrength = 50;
+	hardStrength = 250;  //what consititutes a  'hard' game.
+	democracyStrength = 0;
+	queenUncrowned = false;  //if she loses her ring, she doesn't get stronger with further prototypes
+	reckoningStarted = false; //can't god tier if you are definitely on skaia.
+	//ectobiology not reset. if performed in previous session, it's done.
+	//if not, it's not. like how the alpha session trolls didn't perform ectobiology, so Karkat did.
+  doomedTimeline = false;
+	scratched = true;
 	var scratch = "The session has been scratched. The " + getPlayersTitlesBasic(players) + " will now be the beloved guardians.";
   scratch += " Their former guardians, the " + getPlayersTitlesBasic(guardians) + " will now be the players.";
 	scratch += " The new players will be given stat boosts to give them a better chance than the previous generation."
@@ -95,6 +116,8 @@ function scratch(){
 	playerDiv.append(canvasHTML);
 	var canvasDiv = document.getElementById("canvas"+ playerID);
 	poseAsATeam(canvasDiv, players, 2000); //everybody, even corpses, pose as a team.
+
+	intro();
 
 }
 

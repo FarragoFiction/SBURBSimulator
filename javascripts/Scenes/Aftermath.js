@@ -5,8 +5,8 @@ function Aftermath(){
 		this.playerList = playerList;
 		return true; //this should never be in the main array. call manually.
 	}
-	
-	
+
+
 	this.democracyBonus = function(){
 		var ret = "";
 		if(democracyStrength == 0){
@@ -60,15 +60,15 @@ function Aftermath(){
 			}
 		}
 		div.append(ret);
-		
+
 	}
-	
+
 	this.drawMourning = function(div, dead_player, friend){
 		var divID = (div.attr("id")) + "_" + dead_player.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvasDiv = document.getElementById("canvas"+ divID);
-			
+
 		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawSprite(pSpriteBuffer,friend,1000)
 
@@ -79,7 +79,7 @@ function Aftermath(){
 		copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
 	}
 
-	
+
 	this.renderContent = function(div){
 		var living = findLivingPlayers(players);
 		var end = "<Br>";
@@ -102,6 +102,8 @@ function Aftermath(){
 					end += " The door to the new universe is revealed.  As the leader reaches for it, a disaster strikes.   ";
 					end += " Apparently the new universe's sickness manifested as its version of SBURB interfering with yours. ";
 					end += " Your way into the new universe is barred, and you remain trapped in the medium.  <Br><br>Game Over.";
+					end += "Or is it?"
+					renderScratchButton();
 				}else{
 					end += this.democracyBonus();
 					end += " <Br><br> The door to the new universe is revealed. Everyone files in. <Br><Br> Thanks for Playing. ";
@@ -112,6 +114,8 @@ function Aftermath(){
 				end += " Who knew that such a pointless mini-game was actually crucial to the ending? ";
 				end += " No universe frog, no new universe to live in. Thems the breaks. ";
 				end += " If it's any consolation, it really does suck to fight so hard only to fail at the last minute. <Br><Br>Game Over.";
+				end += "Or is it?"
+				renderScratchButton();
 			}
 	}else{
 		div.append(end);
@@ -119,19 +123,21 @@ function Aftermath(){
 		this.mournDead(div);
 		end += this.democracyBonus();
 		end += " The players have failed. No new universe is created. Their home universe is left unfertilized. <Br><Br>Game Over. ";
+		end += "Or is it?"
+		renderScratchButton();
 	}
 	var strongest = findStrongestPlayer(players)
 	end += "The MVP of the session was: " + strongest.htmlTitle() + " with a power of: " + strongest.power;
 	end += "<br>Thanks for Playing!<br>"
 	div.append(end);
 	var divID = (div.attr("id")) + "_aftermath" ;
-	
+
 	var ch = canvasHeight;
 	if(players.length > 6){
 		ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
 	}
 	var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
-	
+
 	div.append(canvasHTML);
 	var canvasDiv = document.getElementById("canvas"+ divID);
 	poseAsATeam(canvasDiv, players, 2000); //everybody, even corpses, pose as a team.
