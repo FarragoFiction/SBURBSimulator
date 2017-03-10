@@ -1,0 +1,61 @@
+function Reckoning(){
+	this.canRepeat = false;
+	this.playerList = [];  //what players are already in the medium when i trigger?
+	this.trigger = function(playerList){
+		this.playerList = playerList;
+		return true; //this should never be in the main array. call manually.
+	}
+	
+
+	//i is so you know entry order
+	this.renderContent = function(div){
+		var intro = "<br><br> The reckoning has begun.  The Black King has defeated his Prospitian counterpart, initiating a meteor storm to destroy Skaia. ";
+		var leader = getLeader(players);
+		if(ectoBiologyStarted){
+			intro += " Remember those random baby versions of the players the " + leader.titleBasic() + " made? " ;
+			intro += " Yeah, that didn't stop being a thing that was true. ";
+			intro += " It turns out that those babies ended up on the meteors heading straight to Skaia. "
+			intro += " And to defend itself, Skaia totally teleported those babies back in time, and to Earth. "
+			intro += "We are all blown away by this stunning revelation.  Wow, those babies were the players? Really?  Like, a paradox?  Huh. "
+		}else if(!ectoBiologyStarted && leader.aspect == "Time" &&!leader.dead){
+			ectoBiologyStarted = true;
+			intro += " Okay. Don't panic. But it turns out that the " + leader.htmlTitle() + " completly forgot to close one of their time loops. ";
+			intro += " They were totally supposed to take care of the ectobiology. It's cool though, they'll just go back in time and take care of it now. ";
+			intro += " They warp back to the present in a cloud of clocks and gears before you even realize they were gone. See, nothing to worry about. ";
+		}
+		else{
+			intro += " So. I don't know if YOU know that this was supposed to be a thing, but the " + leader.htmlTitle();
+			intro += " was totally supposed to have taken care of the ectobiology. ";
+			intro += " They didn't. They totally didn't.  And now, it turns out that none of the players could have possibly been born in the first place. ";
+			intro += " Textbook case of a doomed timeline.  Apparently the Time Player ";
+			if(findAspectPlayer(players, "Time").doomedTimeClones >0){
+				intro += ", despite all the doomed time clone shenanigans, ";
+			}
+			intro += "was not on the ball with timeline management. Nothing you can do about it. <Br><Br>GAME OVER.";
+			doomedTimeline = true;
+			intro += "<br><br>";
+			$("#story").append(intro);
+			return intro;
+		}
+		var living = findLivingPlayers(players);
+		if(living.length > 0){
+			intro += " <br><br>Getting back to the King, all the players can do now is try to defeat him before they lose their Ultimate Reward. ";
+			intro += " The Ultimate Reward allows the players to create a new Universe frog, and live inside of it. ";
+			intro += " Without it, they'll be trapped in the Medium forever. (Barring shenanigans). ";
+			intro += living.length + " players, the  " + getPlayersTitles(living) + " will fight the Dersite Royalty and try to prove themselves worthy of the Ultimate Reward. ";
+		}else{
+			intro += " No one is alive. <BR><BR>Game Over. ";
+			var strongest = findStrongestPlayer(players)
+			intro += "The MVP of the session was: " + strongest.htmlTitle() + " with a power of: " + strongest.power;
+		}
+		intro += "<br><br>";
+
+		div.append(intro);
+
+	}
+
+	this.content = function(div, i){
+		var ret = " TODO: Figure out what a non 2.0 version of the Intro scene would look like. "
+		div.append(ret);
+	}
+}

@@ -24,7 +24,7 @@ var timeTillReckoning = getRandomInt(10,30);
 //main canvas is either Leader + PesterChumWindow + 1 or more Players (in chat or group chat with leader)
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
-	debug("okay, need a scene for the reckoning. and ways to call final battles");
+	debug("okay, need a scene for the reckoning. and ways to call final battles,and then aftermath (mourning etc)");
    init();
 	//exileQueenInit();
 	//murderModeInit();
@@ -64,8 +64,30 @@ function tick(){
 		},availablePlayers.length * 1000);
 	}else{
 
-		debug("TODO: Handle post reckoning");
+		reckoning();
 	}
+}
+
+function reckoning(){
+	var s = new Reckoning();
+	s.trigger(players)
+	s.renderContent(newScene());
+	
+	reckoningTick();
+}
+
+function reckoningTick(){
+	if(timeTillReckoning > -10){
+		setTimeout(function(){
+			timeTillReckoning += -1;
+			processReckoning(players)
+			reckoning();
+		},1000);
+	}else{
+
+		debug("Handle Ending. Mourning, universe, etc.")
+	}
+	
 }
 
 

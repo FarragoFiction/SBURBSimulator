@@ -36,6 +36,7 @@ function RelationshipDrama(){
 			narration += this.generateOldOpinion(relationship) + ", but now they can't help but think they are " + this.generateNewOpinion(relationship) + ".";
 			narration += "It's especially tragic that they didn't realize this until the " + crush.htmlTitle() + " died.";
 			div.append(narration);
+			return;
 		}
 		
 		var player1Start = player1.chatHandleShort()+ ": "
@@ -96,6 +97,7 @@ function RelationshipDrama(){
 			}
 			narration += "It's a shame the " + player.htmlTitle() + " has nobody to talk to about this. ";
 			div.append(narration);
+			return;
 		}
 		player.triggerLevel += -3;  //talking about it helps.
 		var player1Start = player1.chatHandleShort()+ ": "
@@ -103,6 +105,7 @@ function RelationshipDrama(){
 		var r1 = relationship;
 		var r2 = player2.getRelationshipWith(player1);
 		var r2crush = player2.getRelationshipWith(crush);  //sometimes crush is same as best friend...despite all my best efforts.
+		
 		//alert("I am: " + player2.title() + " and my relationship with : " + crush.title() + " is being checked")
 		var chatText = "";
 
@@ -214,6 +217,7 @@ function RelationshipDrama(){
 			}
 			narration += "It's a shame the " + player.htmlTitle() + " has nobody to talk to about this. ";
 			div.append(narration);
+			return;
 		}
 		player.triggerLevel += -3;  //talking about it helps.
 		var player1Start = player1.chatHandleShort()+ ": "

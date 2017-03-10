@@ -766,7 +766,7 @@ landlususTypes = landlususTypes.concat(["Slither Beast","Wiggle Beast","Honkbird
 landlususTypes = landlususTypes.concat(["March Bug","Nibble Vermin","Woolbeast", "Hop Beast", "Stink Creature", "Speed Beast", "Jump Creature", "Fight Beast", "Claw Beast", "Tooth Beast", "Armor Beast","Trap Beast"]);
 
 
-var seaLususTypes = ["Zap Beast""Slither Beast", "Electric Beast", "Whale", "Sky Horse", "Sea Meow Beast", "Sea Hoofbeast", "Cuttlefish", "Horror Terror", "Swim Beast", "Sea Goat", "Tooth Beast", "Light Beast"]
+var seaLususTypes = ["Zap Beast","Slither Beast", "Electric Beast", "Whale", "Sky Horse", "Sea Meow Beast", "Sea Hoofbeast", "Cuttlefish", "Horror Terror", "Swim Beast", "Sea Goat", "Tooth Beast", "Light Beast"]
 seaLususTypes = seaLususTypes.concat(["Dive Beast", "Honkbird", "Sea Bear", "Sea Armorbeast"]);
 
 interests = []
