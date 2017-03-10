@@ -763,10 +763,10 @@ var bloodColors = ["#A10000","#a25203","#a1a100","#658200","#416600","#078446","
 
 var landlususTypes = ["Hoofbeast","Meow Beast","Bark Beast","Nut Creature ","Gobblefiend","Bicyclops","Centaur","Fairy Bull"];
 landlususTypes = landlususTypes.concat(["Slither Beast","Wiggle Beast","Honkbird","Dig Beast","Cholerbear","Antler Beast","Dragon","Ram Beast","Crab","Spider","Thief Beast"]);
-landlususTypes = landlususTypes.concat(["March Bug","Nibble Vermin","Woolbeast", "Hop Beast", "Stink Creature", "Speed Beast", "Jump Creature", "Fight Beast", "Claw Beast", "Tooth Beast", "Armorbeast"]);
+landlususTypes = landlususTypes.concat(["March Bug","Nibble Vermin","Woolbeast", "Hop Beast", "Stink Creature", "Speed Beast", "Jump Creature", "Fight Beast", "Claw Beast", "Tooth Beast", "Armor Beast","Trap Beast"]);
 
 
-var seaLususTypes = ["Slither Beast", "Electric Beast", "Whale", "Sky Horse", "Sea Meow Beast", "Sea Hoofbeast", "Cuttlefish", "Horror Terror", "Swim Beast", "Sea Goat", "Tooth Beast", "Light Beast"]
+var seaLususTypes = ["Zap Beast""Slither Beast", "Electric Beast", "Whale", "Sky Horse", "Sea Meow Beast", "Sea Hoofbeast", "Cuttlefish", "Horror Terror", "Swim Beast", "Sea Goat", "Tooth Beast", "Light Beast"]
 seaLususTypes = seaLususTypes.concat(["Dive Beast", "Honkbird", "Sea Bear", "Sea Armorbeast"]);
 
 interests = []
