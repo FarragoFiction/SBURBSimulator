@@ -35,6 +35,10 @@ function LevelTheHellUp(){
 	}
 
 	this.renderForPlayer = function(div,player){
+		var levelName = player.getNextLevel(); //could be undefined
+		if(!levelName){
+			return; //don't make a blank div
+		}
 		var narration = "";
 		var repeatTime = 1000;
 		var divID = (div.attr("id")) + "_" + player.chatHandle;
@@ -45,7 +49,7 @@ function LevelTheHellUp(){
 		var narrationDiv = $("#narration"+divID);
 		//different format for canvas code
 		var canvasDiv = document.getElementById("canvas"+ divID);
-		var levelName = player.getNextLevel(); //could be undefined
+		
 		var boonies = this.getBoonies(player)
 		if(levelName){
 			narration += " The " + player.htmlTitle();

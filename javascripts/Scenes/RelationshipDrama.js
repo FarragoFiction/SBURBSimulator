@@ -83,7 +83,7 @@ function RelationshipDrama(){
 		var player1 = player;
 		var player2 = this.getLivingBestFriendBesidesCrush(player, crush); //this is currently returnin the crush in question. why?
 		
-		if(player2 == null){
+		if(!player2){
 			var narration = "<br>The " + player.htmlTitle() + " used to think that the " + crush.htmlTitle() + " was ";
 			narration += this.generateOldOpinion(relationship) + ", but now they can't help but think they are " + this.generateNewOpinion(relationship) + ".";
 			if(crush.dead == true){
