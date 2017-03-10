@@ -8,7 +8,7 @@ function EngageMurderMode(){
 		//select a random player. if they've been triggered, random chance of going murderMode if enemies (based on how triggered.)
 		this.player = getRandomElementFromArray(availablePlayers);
 		var moon = 0;
-		if(player.moon == "Prospit"){
+		if(this.player.moon == "Prospit"){
 			moon = 1;
 		}
 		if(this.player){

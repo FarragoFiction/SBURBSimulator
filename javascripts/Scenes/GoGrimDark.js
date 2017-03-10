@@ -8,7 +8,7 @@ function GoGrimDark(){
 		//select a random player. if they've been triggered, random chance of going grim dark (based on how triggered.)
 		this.player = getRandomElementFromArray(availablePlayers);
 		var moon = 0;
-		if(player.moon == "Derse"){
+		if(this.player.moon == "Derse"){
 			moon = 1;
 		}
 		if(this.player){
