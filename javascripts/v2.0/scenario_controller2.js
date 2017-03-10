@@ -1,4 +1,5 @@
 var players = [];
+var guardians = [];
 var frogStatus = 0;
 var kingStrength = 100; //can use this to extrapolate enemy strength.
 var queenStrength = 100;
@@ -9,6 +10,7 @@ var queenUncrowned = false;  //if she loses her ring, she doesn't get stronger w
 var reckoningStarted = false; //can't god tier if you are definitely on skaia.
 var ectoBiologyStarted = false;
 var doomedTimeline = false;
+var scratched = false;
 var debugMode = false;
 var introScene;
 var currentSceneNum = 0;
@@ -34,6 +36,7 @@ window.onload = function() {
 	if(!debugMode){
 		randomizeEntryOrder();
 	}
+	makeGuardians(); //after entry order established
 	//authorMessage();
 	intro();
 	//debugRelationshipDrama();
@@ -57,8 +60,46 @@ window.onload = function() {
 	//tick();  dont tick here, tick after intro
 }
 
+function scratch(){
+	var scratch = "The session has been scratched. The " + getPlayersTitlesBasic(players) + " will now be the beloved guardians.";
+  scratch += " Their former guardians, the " + getPlayersTitlesBasic(guardians) + " will now be the players.";
+	scratch += " The new players will be given stat boosts to give them a better chance than the previous generation."
+	scratch += " What will happen?"
+	var tmp = players;
+	players = guardians;
+	guardians = tmp;
+	$("#story").html(scratch);
+
+
+	var guardianDiv = newScene();
+	var guardianID = (guardianDiv.attr("id")) + "_guardians" ;
+	var ch = canvasHeight;
+	if(guardians.length > 6){
+		ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
+	}
+	var canvasHTML = "<br><canvas id='canvas" + guardianID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
+
+	guardianDiv.append(canvasHTML);
+	var canvasDiv = document.getElementById("canvas"+ guardianID);
+	poseAsATeam(canvasDiv, guardians, 2000); //everybody, even corpses, pose as a team.
+
+
+	var playerDiv = newScene();
+	var playerID = (playerDiv.attr("id")) + "_players" ;
+	var ch = canvasHeight;
+	if(players.length > 6){
+		ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
+	}
+	var canvasHTML = "<br><canvas id='canvas" + playerID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
+
+	playerDiv.append(canvasHTML);
+	var canvasDiv = document.getElementById("canvas"+ playerID);
+	poseAsATeam(canvasDiv, players, 2000); //everybody, even corpses, pose as a team.
+
+}
+
 function tick(){
-	if(timeTillReckoning > 0){
+	if(timeTillReckoning > 0 && !doomedTimeline){
 		setTimeout(function(){
 			timeTillReckoning += -1;
 			processScenes2(players);
@@ -91,7 +132,7 @@ function reckoningTick(){
 		s.trigger(players)
 		s.renderContent(newScene());
 	}
-	
+
 }
 
 
@@ -197,6 +238,40 @@ function decideTroll(player){
 		player.kernel_sprite = player.lusus;
 	}
 }
+//species, hair and blood color is the same, horns and favorite number. aspect.  Thats it.
+//when scratch, get rid of story dif. make blank. scratch has to be button press.
+function makeGuardians(){
+	available_classes = classes.slice(0);
+	available_aspects = nonrequired_aspects.slice(0); //required_aspects
+	available_aspects = available_aspects.concat(required_aspects.slice(0));
+	for(var i = 0; i<players.length; i++){
+		  var player = players[i];
+			var guardian = randomPlayerWithoutRemoving();
+			guardian.isTroll = player.isTroll;
+			if(guardian.isTroll){
+				guardian.quirk = randomTrollSim()
+			}else{
+				guardian.quirk = randomHumanSim();
+			}
+			guardian.quirk.favoriteNumber = player.quirk.favoriteNumber;
+			guardian.bloodColor = player.bloodColor;
+			guardian.lusus = player.lusus;
+			guardian.hairColor = player.hairColor;
+			guardian.aspect = player.aspect;
+			guardian.leftHorn = player.leftHorn;
+			guardian.rightHorn = player.rightHorn;
+			guardian.level_index = 5; //scratched kids start more leveled up
+			guardian.power = 50;
+			guardians.leader = player.leader;
+			guardian.reinit();//redo levels and land based on real aspect
+			guardians.push(guardian);
+	}
+
+	for(var j = 0; j<guardians.length; j++){
+		var g = guardians[j];
+		g.generateRelationships(guardians);
+	}
+}
 
 function init(){
 	available_classes = classes; //re-init available classes.
@@ -219,4 +294,5 @@ function init(){
 			p.quirk = randomHumanSim();
 		}
 	}
+
 }

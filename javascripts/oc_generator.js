@@ -262,7 +262,7 @@ function makePlayers(){
 
 	if($('[name="aspect"] option:selected').val() == "Any"){
 		available_aspects = nonrequired_aspects.slice(0); //required_aspects
-   		available_aspects = available_aspects.concat(required_aspects.slice(0));
+   	available_aspects = available_aspects.concat(required_aspects.slice(0));
 	}else{
 		available_aspects = [$('[name="aspect"] option:selected').val()];
 	}

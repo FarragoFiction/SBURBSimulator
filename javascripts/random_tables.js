@@ -117,6 +117,7 @@ function getRandomLandFromAspect(aspect){
 
 //handle can either be about interests, or your claspect. each word can be separately origined
 function getRandomChatHandle(class_name, aspect,interest1, interest2){
+	//console.log("Class: " + class_name + "aspect: " + aspect);
 	var first = "";
 	var rand = Math.random();
 	if(rand>0.3){

@@ -1,4 +1,12 @@
 function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
+
+  //call if I overrode claspect or interest or anything
+	this.reinit = function(){
+		this.chatHandle = getRandomChatHandle(this.class_name,this.aspect,this.interest1, this.interest2);
+		this.mylevels = getLevelArray(this);//make them ahead of time for echeladder graphic
+		this.land = getRandomLandFromAspect(this.aspect);
+	}
+
 	this.class_name = class_name;
 	this.aspect = aspect;
 	this.land = land;
@@ -24,7 +32,6 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 	if(Math.random() > .8 ){ //preference for symmetry
 		this.rightHorn = getRandomInt(1,46);
 	}
-	this.interests = interests;
 	this.rightHorn =  getRandomInt(1,46);
 	this.lusus = "Adult Human"
 	this.quirk = null;
@@ -45,7 +52,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 	this.causeOfDeath = ""; //fill in every time you die. only matters if you're dead at end
 	this.doomedTimeClones =  getRandomInt(0,2); //help fight the final boss(es). not every doomed clone is seen to warp in.
 	//for space player, this is necessary for frog breeding to be minimally succesfull.
-	
+
 
 
 	this.chatHandleShort = function(){
@@ -59,7 +66,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 		}
 		return tmp;
 	}
-	
+
 		//people like them less and also they are more triggered.
 	this.consequencesForTerriblePlayer  = function(){
 		if((terrible_interests.indexOf(this.interest1) != -1)){
@@ -68,7 +75,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 			this.damageAllRelationshipsWithMe();
 			this.triggerLevel ++;
 		}
-		
+
 		if((terrible_interests.indexOf(this.interest2) != -1)){
 			this.damageAllRelationshipsWithMe();
 			this.damageAllRelationshipsWithMe();
@@ -85,7 +92,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 			this.boostAllRelationshipsWithMe();
 			this.triggerLevel +=-1;
 		}
-		
+
 		if((social_interests.indexOf(this.interest2) != -1)){
 			this.boostAllRelationshipsWithMe();
 			this.boostAllRelationshipsWithMe();
@@ -117,7 +124,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 		}
 		return ret;
 	}
-	
+
 	this.htmlTitleBasic = function(){
 			return getFontColorFromAspect(this.aspect) + this.titleBasic() + "</font>"
 	}
@@ -261,14 +268,14 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 			this.relationships[i].increase();
 		}
 	}
-	
+
 	//you like people less
 	this.damageAllRelationships = function(){
 		for(var i = 0; i<this.relationships.length; i++){
 			this.relationships[i].decrease();
 		}
 	}
-	
+
 	//people like you more
 	this.boostAllRelationshipsWithMe = function(){
 		for(var i = 0; i<players.length; i++){
@@ -278,7 +285,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 			}
 		}
 	}
-	
+
 	//people like you less
 	this.damageAllRelationshipsWithMe = function(){
 		for(var i = 0; i<players.length; i++){
