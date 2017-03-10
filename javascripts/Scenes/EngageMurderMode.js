@@ -48,9 +48,9 @@ function EngageMurderMode(){
 		chatText += chatLine(player1Start, player1,"You're going to die. And I'm going to see it. I'm going to DO it.")
 		if(player2.aspect == "Blood" || player2.aspect == "Sylph"){  //try to repair relationship
 			chatText += this.repairConvo(div, player1, player2);
-		}else if(player2.aspect == "Mind" || player2.class == "Bard" ){ //try to redirect madness at another target
+		}else if(player2.aspect == "Mind" || player2.class_name == "Bard" ){ //try to redirect madness at another target
 			chatText += this.redirectConvo(div, player1, player2);
-		}else if(player2.aspect == "Rage" || player2.class == "Knight" ){ //welcome the challenge
+		}else if(player2.aspect == "Rage" || player2.class_name == "Knight" ){ //welcome the challenge
 			chatText += this.blusterConvo(div, player1, player2);
 		}else{
 			chatText += this.panicConvo(div, player1, player2);
@@ -124,7 +124,7 @@ function EngageMurderMode(){
 				chatText += chatLine(player2Start, player2,"What about " + alternative.chatHandle + " ?")
 				chatText += chatLine(player2Start, player2,"Haven't they been worse to you?")
 				var r3 = player1.getRelationshipWith(alternative);
-				if(r3.value > 0){
+				if(!r3 || r3.value > 0){
 					chatText += chatLine(player1Start, player1,"ARRRRRGGGH! THIS IS WHY I HATE YOU!")
 					chatText += chatLine(player1Start, player1,"YOU ARE A MILLION TIMES WORSE THAN " + alternative.chatHandle)
 					chatText += chatLine(player1Start, player1,"Prepare to die.")

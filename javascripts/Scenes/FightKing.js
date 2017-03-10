@@ -24,16 +24,39 @@ function FightKing(){
 		}
 	}
 	
-	//includes time clones
-	this.getGoodGuys = function(){
+
+		
+this.getGoodGuys = function(){
 		var living = findLivingPlayers(players);
 		var timePlayer = findAspectPlayer(players, "Time");
-		var savedDeath = timePlayer.dead;
-		timePlayer.dead = false; //doomed time clones aren't dead, yet
+
 		for(var i = 0; i<timePlayer.doomedTimeClones; i++){
-			living.push(timePlayer);
+			var timeClone = makeRenderingSnapshot(timePlayer);
+			timeClone.dead = false;
+			//from a different timeline, things went differently.
+			var rand = Math.random();
+			if(rand>.2){
+				timeClone.godTier = !timeClone.godTier;
+			}else if(rand>.4){
+				timeClone.isDreamSelf = !timeClone.isDreamSelf;
+			}else if(rand>.6){
+				timeClone.grimDark = !timeClone.grimDark;
+			}else if(rand>.8){
+				timeClone.murderMode = !timeClone.murderMode;
+			}
+			
+			var rand = Math.random(); //reroll for second set of traits. like grim dark dream self.
+			if(rand>.2){
+				timeClone.godTier = !timeClone.godTier;
+			}else if(rand>.4){
+				timeClone.isDreamSelf = !timeClone.isDreamSelf;
+			}else if(rand>.6){
+				timeClone.grimDark = !timeClone.grimDark;
+			}else if(rand>.8){
+				timeClone.murderMode = !timeClone.murderMode;
+			}
+			living.push(timeClone);
 		}
-		timePlayer.dead = savedDeath;
 		return living;
 	}
 	
@@ -44,7 +67,7 @@ function FightKing(){
 		var ch = canvasHeight;
 		var fightingPlayers = this.getGoodGuys();
 		if(fightingPlayers.length > 6){
-			ch = canvasHeight*2; //a little bigger than two rows, cause time clones
+			ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
 		}
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
 		div.append(canvasHTML);

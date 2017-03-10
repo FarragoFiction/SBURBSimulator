@@ -10,6 +10,10 @@ function SaveDoomedTimeLine(){
 		if(this.timePlayer.dead){  //a dead time player can't prevent shit.
 			return false;
 		}
+		
+		if(this.timePlayer.maxDoomedClones > this.timePlayer.doomedTimeClones){
+			return false;
+		}
 		return (this.ectoDoom() || this.playerDoom() || this.randomDoom());
 	}
 	
