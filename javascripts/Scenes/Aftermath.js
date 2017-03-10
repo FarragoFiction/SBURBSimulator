@@ -123,8 +123,6 @@ function Aftermath(){
 		this.mournDead(div);
 		end += this.democracyBonus();
 		end += " The players have failed. No new universe is created. Their home universe is left unfertilized. <Br><Br>Game Over. ";
-		end += "Or is it?"
-		renderScratchButton();
 	}
 	var strongest = findStrongestPlayer(players)
 	end += "The MVP of the session was: " + strongest.htmlTitle() + " with a power of: " + strongest.power;

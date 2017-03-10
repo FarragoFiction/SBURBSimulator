@@ -19,7 +19,7 @@ function RelationshipDrama(){
 	}
 
 
-	
+
 	this.confessFeelings = function(div, player,crush){
 		var relationship = player.getRelationshipWith(crush);
 		var divID = (div.attr("id")) + "_" + player.chatHandle+"confess_crush_"+crush.chatHandle;
@@ -30,7 +30,7 @@ function RelationshipDrama(){
 		var chatText = "";
 		var player1 = player;
 		var player2 = crush;
-		
+
 		if(crush.dead == true){
 			var narration = "<br>The " + player.htmlTitle() + " used to think that the " + crush.htmlTitle() + " was ";
 			narration += this.generateOldOpinion(relationship) + ", but now they can't help but think they are " + this.generateNewOpinion(relationship) + ".";
@@ -38,7 +38,7 @@ function RelationshipDrama(){
 			div.append(narration);
 			return;
 		}
-		
+
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
 
@@ -47,10 +47,10 @@ function RelationshipDrama(){
 		chatText += chatLine(player1Start, player1, "I have no idea how to say this so I'm just going to do it.");
 		chatText += chatLine(player2Start, player2, "?");
 		chatText += chatLine(player1Start, player1, "I like you.  Romantically.");
-		
+
 		var r1 = relationship;
 		var r2 = player2.getRelationshipWith(player1);
-		
+
 		if(r2.type() == r2.goodBig){
 			chatText += chatLine(player2Start, player2,"!");
 			chatText += chatLine(player2Start, player2,"Wow... I ... I feel the same way!");
@@ -74,7 +74,7 @@ function RelationshipDrama(){
 		relationship.old_type = relationship.saved_type;
 		drawChat(canvasDiv, player1, player2, chatText, 1000);
 	}
-	
+
 	//goes different if best friend has crush on player
 	//or on crushee.
 	this.relationshipAdvice = function(div,player,crush){
@@ -84,7 +84,7 @@ function RelationshipDrama(){
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = document.getElementById("canvas"+ divID);
-		
+
 		var chatText = "";
 		var player1 = player;
 		var player2 = this.getLivingBestFriendBesidesCrush(player, crush); //this is currently returnin the crush in question. why?
@@ -105,7 +105,7 @@ function RelationshipDrama(){
 		var r2 = player2.getRelationshipWith(player1);
 		var r2crush = player2.getRelationshipWith(crush);  //sometimes crush is same as best friend...despite all my best efforts.
 
-		
+
 		//alert("I am: " + player2.title() + " and my relationship with : " + crush.title() + " is being checked")
 		var chatText = "";
 
@@ -164,7 +164,7 @@ function RelationshipDrama(){
 						chatText += chatLine(player2Start, player2,"Fuck! Um... Okay, I hate to do this to you...but...I think you're " + this.generateNewOpinion(r2) + ".");
 						chatText += chatLine(player1Start, player1,"Oh!");
 						chatText += chatLine(player1Start, player1,"Um...");
-						if(r1.type() == goodBig){
+						if(r1.type() == r1.goodBig){
 							chatText += chatLine(player1Start, player1,"I...kind of like you, too?");
 							chatText += chatLine(player1Start, player1,"I assumed you wouldn't like me back, God, this is so awkward.");
 							chatText += chatLine(player2Start, player2,"Holy shit.");
@@ -192,7 +192,7 @@ function RelationshipDrama(){
 		}
 		drawChat(canvasDiv, player1, player2, chatText, 1000);
 	}
-	
+
 	//goes different if best friend has crush on player
 	//or on jerk.
 	//if no one to vent about, narrate, but mention lonliness. no trigger reduction.
@@ -205,11 +205,11 @@ function RelationshipDrama(){
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = document.getElementById("canvas"+ divID);
-		
+
 		var chatText = "";
 		var player1 = player;
 		var player2 = this.getLivingBestFriendBesidesCrush(player, jerk);
-		
+
 		if(player2 == null){
 			var narration = "<br>The " + player.htmlTitle() + " used to think that the " + relationship.target.htmlTitle() + " was ";
 			narration += this.generateOldOpinion(relationship) + ", but now they can't help but think they are " + this.generateNewOpinion(relationship) + ".";
@@ -241,9 +241,9 @@ function RelationshipDrama(){
 			}
 		}
 		drawChat(canvasDiv, player1, player2, chatText, 1000);
-		
+
 	}
-	
+
 	//notice if they are dead.
 	this.antagonizeJerk = function(div,player,jerk){
 		relationship.drama = false; //it is consumed.
@@ -253,10 +253,10 @@ function RelationshipDrama(){
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = document.getElementById("canvas"+ divID);
-		
+
 		var relationship = player.getRelationshipWith(jerk);
-		
-		
+
+
 		if(jerk.dead == true){
 			var narration = "<br>The " + player.htmlTitle() + " used to think that the " + relationship.target.htmlTitle() + " was ";
 			narration += this.generateOldOpinion(relationship) + ", but now they can't help but think they are " + this.generateNewOpinion(relationship) + ".";
@@ -264,7 +264,7 @@ function RelationshipDrama(){
 			div.append(narration);
 			return;
 		}
-		
+
 		var chatText = "";
 		var player1 = player;
 		var player2 = jerk;
@@ -289,7 +289,7 @@ function RelationshipDrama(){
 		}
 		drawChat(canvasDiv, player1, player2, chatText, 1000);
 	}
-	
+
 	this.getLivingBestFriendBesidesCrush = function(player,crush){
 		var living = findLivingPlayers(players)
 		//alert("removing crush: " + crush.title() + " from array: " + living.length)
@@ -300,28 +300,28 @@ function RelationshipDrama(){
 		}
 		return null;
 	}
-		
-	
+
+
 		/*
 	  //if too triggered and you have a crush on someone, don't message them directly
 	  //instead chat up a friend (if you have one) and ask for advice. that will lower trigger level
 	  //and NEXT time you should be able to talk to them.  drama only disabled once you talk to them.
-	  //or stop liking them. 
-	  
+	  //or stop liking them.
+
 	  //if you have a new enemy, and not triggered enough, you can talk to a friend to try to cool down.
 	  //if you have a new enemy and are triggered, you will taunt them.
 	  //either way, drama disabled.
-	  
+
 	  the person you vent to needs to be alive and NOT the person you are having drama with
-	  
+
 	  claspect matters for how triggered you need to be, maybe?
-	  
+
 	  //figure out what to do for other relationship types.
 	*/
 	this.renderForPlayer = function (div, player){
 		var player1 = player;
 		var relationships = player.getRelationshipDrama();
-		
+
 		for(var j = 0; j<relationships.length; j++){
 			var r = relationships[j];
 			if(r.type() == r.goodBig){
@@ -342,15 +342,15 @@ function RelationshipDrama(){
 				//narration. but is it really worth it for something so small?
 				//debug("tiny drama")
 			}
-			
+
 		}
-		
-		
+
+
 		/*
 		for(var j = 0; j<relationships.length; j++){
 				this.processDrama(player, relationships[j]);  //or drama dnever leaves
 		}
-	
+
 		if(!player2){
 			return div.append(this.content() + " Too bad the " + player.htmlTitle() + " doesn't have anybody to talk to about this. ");
 		}

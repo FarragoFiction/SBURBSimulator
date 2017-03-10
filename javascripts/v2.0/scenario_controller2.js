@@ -18,6 +18,7 @@ var spriteWidth = 400;
 var spriteHeight = 300;
 var canvasWidth = 1000;
 var canvasHeight = 300;
+var repeatTime = 500;
 var version2 = true;
 var timeTillReckoning = getRandomInt(10,30);
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
@@ -61,14 +62,29 @@ window.onload = function() {
 }
 
 function renderScratchButton(){
-	alert("scratch available");
-	if(!scratched){
-		var html = '<button type="button" onclick="scratch">Would You Like To Scratch Session?</button>';
-		$("story").append(html);
+	//alert("scratch [possible]");
+	//can't scratch if it was a a total party wipe. just a regular doomed timeline.
+	var living = findLivingPlayers(players);
+	if(living.length > 0){
+		var timePlayer = findAspectPlayer(players, "Time");
+		if(!scratched){
+			alert(living.length  + " living players and the " + timePlayer.land + " makes a scratch available!");
+			var html = '<button type="button" onclick="scratchConfirm()">Would You Like To Scratch Session?</button>';
+			$("#story").append(html);
+		}
+	}
 }
+
+function scratchConfirm(){
+	var scratchConfirmed = confirm("This session is doomed. Scratching this session will erase it. A new session will be generated, but you will no longer be able to view this session. Is this okay?");
+	if(scratchConfirmed){
+		scratch();
+	}
 }
+
 //TODO if i wanted to, I could have mixed sessions like in canon.
 //not erasing the players, after all.
+//or could have an afterlife where they meet guardian players???
 function scratch(){
 	frogStatus = 0;
 	kingStrength = 100; //can use this to extrapolate enemy strength.
@@ -127,7 +143,7 @@ function tick(){
 			timeTillReckoning += -1;
 			processScenes2(players);
 			tick();
-		},1000); //or availablePlayers.length * *1000?
+		},repeatTime); //or availablePlayers.length * *1000?
 	}else{
 
 		reckoning();
@@ -149,7 +165,7 @@ function reckoningTick(){
 			timeTillReckoning += -1;
 			processReckoning2(players)
 			reckoningTick();
-		},1000);
+		},repeatTime);
 	}else{
 		var s = new Aftermath();
 		s.trigger(players)
@@ -197,7 +213,7 @@ function callNextIntroWithDelay(player_index){
 		processScenes2(playersInMedium);
 		player_index += 1;
 		callNextIntroWithDelay(player_index)
-  		}, player_index * 1000);  //want all players to be done with their setTimeOuts players.length*1000+2000
+	},  repeatTime);  //want all players to be done with their setTimeOuts players.length*1000+2000
 }
 
 
@@ -264,11 +280,13 @@ function decideTroll(player){
 //species, hair and blood color is the same, horns and favorite number. aspect.  Thats it.
 //when scratch, get rid of story dif. make blank. scratch has to be button press.
 function makeGuardians(){
+	console.log("Making guardians")
 	available_classes = classes.slice(0);
 	available_aspects = nonrequired_aspects.slice(0); //required_aspects
 	available_aspects = available_aspects.concat(required_aspects.slice(0));
 	for(var i = 0; i<players.length; i++){
 		  var player = players[i];
+			console.log("guardian for " + player.titleBasic());
 			var guardian = randomPlayerWithoutRemoving();
 			guardian.isTroll = player.isTroll;
 			if(guardian.isTroll){
@@ -285,7 +303,7 @@ function makeGuardians(){
 			guardian.rightHorn = player.rightHorn;
 			guardian.level_index = 5; //scratched kids start more leveled up
 			guardian.power = 50;
-			guardians.leader = player.leader;
+			guardian.leader = player.leader;
 			guardian.reinit();//redo levels and land based on real aspect
 			guardians.push(guardian);
 	}
@@ -297,8 +315,8 @@ function makeGuardians(){
 }
 
 function init(){
-	available_classes = classes; //re-init available classes.
-	available_aspects = nonrequired_aspects;
+	available_classes = classes.slice(0); //re-init available classes.
+	available_aspects = nonrequired_aspects.slice(0);
 	var numPlayers = getRandomInt(2,12);
 	players.push(randomSpacePlayer());
 	players.push(randomTimePlayer());
