@@ -325,14 +325,14 @@ function RelationshipDrama(){
 		for(var j = 0; j<relationships.length; j++){
 			var r = relationships[j];
 			if(r.type() == r.goodBig){
-				debug("positive drama")
+				//debug("positive drama")
 				if(player.triggerLevel < 1){
 					this.confessFeelings(div, player, r.target)
 				}else{
 					this.relationshipAdvice(div, player, r.target)
 				}
 			}else if(r.type() == r.bigBad){
-				debug("negative drama")
+				//debug("negative drama")
 				if(player.triggerLevel < 2){
 					this.ventAboutJerk(div, player, r.target)
 				}else{
