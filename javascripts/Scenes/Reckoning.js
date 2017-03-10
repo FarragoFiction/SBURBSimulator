@@ -24,7 +24,7 @@ function Reckoning(){
 			intro += " They warp back to the present in a cloud of clocks and gears before you even realize they were gone. See, nothing to worry about. ";
 		}
 		else{
-			intro += " So. I don't know if YOU know that this was supposed to be a thing, but the " + leader.htmlTitle();
+			intro += " So. I don't know if YOU know that this was supposed to be a thing, but the " + leader.htmlTitleBasic();
 			intro += " was totally supposed to have taken care of the ectobiology. ";
 			intro += " They didn't. They totally didn't.  And now, it turns out that none of the players could have possibly been born in the first place. ";
 			intro += " Textbook case of a doomed timeline.  Apparently the Time Player ";

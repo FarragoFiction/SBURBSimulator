@@ -30,12 +30,12 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 	this.quirk = null;
 	this.dead = false;
 	this.godDestiny = godDestiny;
-	this.doomedClones = getRandomInt(0,2); //we don't necessarily see EVERY doomed time clone warp in.
+	//this.doomedClones = getRandomInt(0,2); //we don't necessarily see EVERY doomed time clone warp in.
 	//should only be false if killed permananetly as god tier
 	this.canGodTierRevive = true;  //even if a god tier perma dies, a life or time player or whatever can brings them back.
 	this.isDreamSelf = false;
 	//players can be triggered for various things. higher their triggerLevle, greater chance of going murdermode or GrimDark.
-	this.triggerLevel = 0;
+	this.triggerLevel = -1; //make up for moon bonus
 	this.murderMode = false;  //kill all players you don't like. odds of a just death skyrockets.
   	this.grimDark = false;  //all relationships set to 0. power up a lot. odds of  a just death skyrockets.
 	this.leader = false;
@@ -43,7 +43,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 	this.denizenFaced = false; //when faced, you double in power (including future power increases.)
 	this.denizenDefeated = false;
 	this.causeOfDeath = ""; //fill in every time you die. only matters if you're dead at end
-	this.doomedTimeClones = 0; //only used by Time player. works as extra lives and power multiplier (against king/queen only).
+	this.doomedTimeClones =  getRandomInt(0,2); //help fight the final boss(es). not every doomed clone is seen to warp in.
 	//for space player, this is necessary for frog breeding to be minimally succesfull.
 	
 

@@ -234,6 +234,9 @@ function poseAsATeam(canvas,players, repeatTime){
 				if(i == 6){
 					x = -300; //down a row
 					y = 100;
+				}else if(i==12){//could be more than 12 cause time shenanigans.
+					x = -300; //down a row
+					y = 250;
 				}
 				x = x +150;
 				copyTmpCanvasToRealCanvasAtPos(canvas, spriteBuffers[i],x,y)

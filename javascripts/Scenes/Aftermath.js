@@ -37,21 +37,21 @@ function Aftermath(){
 		}
 		var ret = "<br><br>";
 		if(living.length > 0){
-			ret += " Victory is not without it's price. " + dead.length + " players are dead, never to revive. There is time for mourning. ";
+			ret += " Victory is not without it's price. " + dead.length + " players are dead, never to revive. There is time for mourning. <br>";
 		}else{
 			ret += " The consorts and Carpacians both Prospitian and Dersite alike mourn their fallen heroes. ";
 		}
 
 		for(var i = 0; i< dead.length; i++){
 			var p = dead[i];
-			ret += " The " + p.htmlTitle() + " died " + p.causeOfDeath + ". ";
+			ret += "<br> The " + p.htmlTitle() + " died " + p.causeOfDeath + ". ";
 			var friend = p.getWhoLikesMeBestFromList(living);
 			var enemy = p.getWhoLikesMeLeastFromList(living);
 			if(friend){
 				ret += " They are mourned by the" + friend.htmlTitle() + ". ";
 				div.append(ret);
 				ret = "";
-				ret += this.drawMourning(div, p,friend);
+				this.drawMourning(div, p,friend);
 				div.append(ret);
 			}else if(enemy){
 				ret += " The " +enemy.htmlTitle() + " feels awkward about not missing them at all. ";
@@ -86,7 +86,7 @@ function Aftermath(){
 		if(living.length == players.length){
 			end += " All "
 		}
-		end += living.length + " players are alive." ;
+		end += living.length + " players are alive.<BR>" ;
 		if(living.length > 0){
 			div.append(end);//write text, render mourning
 			end = "<Br>";
@@ -125,7 +125,13 @@ function Aftermath(){
 	end += "<br>Thanks for Playing!<br>"
 	div.append(end);
 	var divID = (div.attr("id")) + "_aftermath" ;
-	var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+	
+	var ch = canvasHeight;
+	if(players.length > 6){
+		ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
+	}
+	var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
+	
 	div.append(canvasHTML);
 	var canvasDiv = document.getElementById("canvas"+ divID);
 	poseAsATeam(canvasDiv, players, 2000); //everybody, even corpses, pose as a team.

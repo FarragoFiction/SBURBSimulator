@@ -88,8 +88,7 @@ function RelationshipDrama(){
 		var chatText = "";
 		var player1 = player;
 		var player2 = this.getLivingBestFriendBesidesCrush(player, crush); //this is currently returnin the crush in question. why?
-		var r2crush = player2.getRelationshipWith(crush);  //sometimes crush is same as best friend...despite all my best efforts.
-		if(!player2 || !r2crush){
+		if(!player2 || player2 == crush){
 			var narration = "<br>The " + player.htmlTitle() + " used to think that the " + crush.htmlTitle() + " was ";
 			narration += this.generateOldOpinion(relationship) + ", but now they can't help but think they are " + this.generateNewOpinion(relationship) + ".";
 			if(crush.dead == true){
@@ -104,7 +103,8 @@ function RelationshipDrama(){
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = relationship;
 		var r2 = player2.getRelationshipWith(player1);
-		
+		var r2crush = player2.getRelationshipWith(crush);  //sometimes crush is same as best friend...despite all my best efforts.
+
 		
 		//alert("I am: " + player2.title() + " and my relationship with : " + crush.title() + " is being checked")
 		var chatText = "";
