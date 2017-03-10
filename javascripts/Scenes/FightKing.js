@@ -124,7 +124,7 @@ this.getGoodGuys = function(){
 		var timePlayer = findAspectPlayer(players, "Time"); //doesn't matter if THEY are alive or dead, they still have doomed time clones.
 		if(timePlayer.doomedTimeClones > 0){
 			//throw an extra one at them from nowhere just to make sure it's plural. whatever. who's counting here?
-			ret += (timePlayer.doomedTimeClones) + " doomed time clones of the " + timePlayer.htmlTitle() + " show up from various points in the timeline to help out. ";
+			ret += (timePlayer.doomedTimeClones) + " doomed time clones of the " + timePlayer.htmlTitleBasic() + " show up from various points in the timeline to help out. ";
 			partyPower += 100 * (timePlayer.doomedTimeClones);
 		}
 		

@@ -49,9 +49,14 @@ function Aftermath(){
 			var enemy = p.getWhoLikesMeLeastFromList(living);
 			if(friend){
 				ret += " They are mourned by the" + friend.htmlTitle() + ". ";
+				div.append(ret);
+				ret = "";
 				ret += this.drawMourning(div, p,friend);
+				div.append(ret);
 			}else if(enemy){
 				ret += " The " +enemy.htmlTitle() + " feels awkward about not missing them at all. ";
+				div.append(ret);
+				ret = "";
 			}
 		}
 		div.append(ret);
@@ -59,61 +64,70 @@ function Aftermath(){
 	}
 	
 	this.drawMourning = function(div, dead_player, friend){
-		var divID = (div.attr("id")) + "_" + deadPlayer.chatHandle;
+		var divID = (div.attr("id")) + "_" + dead_player.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvasDiv = document.getElementById("canvas"+ divID);
 			
 		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-		drawSprite(pSpriteBuffer,friend,repeatTime)
+		drawSprite(pSpriteBuffer,friend,1000)
 
 		var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-		drawSprite(dSpriteBuffer,dead_player,repeatTime)
+		drawSprite(dSpriteBuffer,dead_player,1000)
 
-		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,100,0)
+		copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
+		copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
 	}
 
 	
 	this.renderContent = function(div){
 		var living = findLivingPlayers(players);
-		var end = living.length + " players are alive." ;
-		if(living.length > 0){
-		
-		end += this.mournDead(div);
-		var spacePlayer = findAspectPlayer(players, "Space");
-		if(spacePlayer.landLevel >= 6){
-			end += " Luckily, the " + spacePlayer.htmlTitle() + " was diligent in frog breeding duties. ";
-			if(spacePlayer.landLevel < 8){
-				end += " The frog looks... a little sick or something, though... That probably won't matter. You're sure of it. ";
-			}
-			end += " The frog is deployed, and grows to massive proportions, and lets out a breath taking Vast Croak.  ";
-			if(spacePlayer.landLevel < 8){
-				end += " The door to the new universe is revealed.  As the leader reaches for it, a disaster strikes.   ";
-				end += " Apparently the new universe's sickness manifested as its version of SBURB interfering with yours. ";
-				end += " Your way into the new universe is barred, and you remain trapped in the medium.  <Br><br>Game Over.";
-			}else{
-				end += democracyBonus();
-				end += " <Br><br> The door to the new universe is revealed. Everyone files in. <Br><Br> Thanks for Playing. ";
-			}
-
-
-		}else{
-			end += "Unfortunately, the " + spacePlayer.htmlTitle() + " was unable to complete frog breeding duties. ";
-			end += " They only got " + (spacePlayer.landLevel/10*100) + "% of the way through. ";
-			end += " Who knew that such a pointless mini-game was actually crucial to the ending? ";
-			end += " No universe frog, no new universe to live in. Thems the breaks. ";
-			end += " If it's any consolation, it really does suck to fight so hard only to fail at the last minute. <Br><Br>Game Over.";
+		var end = "<Br>";
+		if(living.length == players.length){
+			end += " All "
 		}
+		end += living.length + " players are alive." ;
+		if(living.length > 0){
+			div.append(end);//write text, render mourning
+			end = "<Br>";
+			this.mournDead(div);
+			var spacePlayer = findAspectPlayer(players, "Space");
+			if(spacePlayer.landLevel >= 6){
+				end += " Luckily, the " + spacePlayer.htmlTitle() + " was diligent in frog breeding duties. ";
+				if(spacePlayer.landLevel < 8){
+					end += " The frog looks... a little sick or something, though... That probably won't matter. You're sure of it. ";
+				}
+				end += " The frog is deployed, and grows to massive proportions, and lets out a breath taking Vast Croak.  ";
+				if(spacePlayer.landLevel < 8){
+					end += " The door to the new universe is revealed.  As the leader reaches for it, a disaster strikes.   ";
+					end += " Apparently the new universe's sickness manifested as its version of SBURB interfering with yours. ";
+					end += " Your way into the new universe is barred, and you remain trapped in the medium.  <Br><br>Game Over.";
+				}else{
+					end += this.democracyBonus();
+					end += " <Br><br> The door to the new universe is revealed. Everyone files in. <Br><Br> Thanks for Playing. ";
+				}
+			}else{
+				end += "Unfortunately, the " + spacePlayer.htmlTitle() + " was unable to complete frog breeding duties. ";
+				end += " They only got " + (spacePlayer.landLevel/10*100) + "% of the way through. ";
+				end += " Who knew that such a pointless mini-game was actually crucial to the ending? ";
+				end += " No universe frog, no new universe to live in. Thems the breaks. ";
+				end += " If it's any consolation, it really does suck to fight so hard only to fail at the last minute. <Br><Br>Game Over.";
+			}
 	}else{
+		div.append(end);
+		end = "<Br>";
 		this.mournDead(div);
 		end += this.democracyBonus();
 		end += " The players have failed. No new universe is created. Their home universe is left unfertilized. <Br><Br>Game Over. ";
 	}
 	var strongest = findStrongestPlayer(players)
 	end += "The MVP of the session was: " + strongest.htmlTitle() + " with a power of: " + strongest.power;
-
+	end += "<br>Thanks for Playing!<br>"
 	div.append(end);
+	var divID = (div.attr("id")) + "_aftermath" ;
+	var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+	div.append(canvasHTML);
+	var canvasDiv = document.getElementById("canvas"+ divID);
 	poseAsATeam(canvasDiv, players, 2000); //everybody, even corpses, pose as a team.
 
 	}

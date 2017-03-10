@@ -24,6 +24,7 @@ var timeTillReckoning = getRandomInt(10,30);
 //main canvas is either Leader + PesterChumWindow + 1 or more Players (in chat or group chat with leader)
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
+	debug("more varieites of introduction")
 	debug("if i wanter rending to be more complex than just wait a second, make an object that keeps track of all parts of a rendering and only writes it to the canas when all are loaded");
 	debug("If I want to do the scartch, then reboot with same number of players, with same hair colors/blood colors/aspects, but everything else random");
    init();

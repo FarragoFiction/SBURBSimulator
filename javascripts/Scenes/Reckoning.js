@@ -12,7 +12,7 @@ function Reckoning(){
 		var intro = "<br><br> The reckoning has begun.  The Black King has defeated his Prospitian counterpart, initiating a meteor storm to destroy Skaia. ";
 		var leader = getLeader(players);
 		if(ectoBiologyStarted){
-			intro += " Remember those random baby versions of the players the " + leader.titleBasic() + " made? " ;
+			intro += " Remember those random baby versions of the players the " + leader.htmlTitleBasic() + " made? " ;
 			intro += " Yeah, that didn't stop being a thing that was true. ";
 			intro += " It turns out that those babies ended up on the meteors heading straight to Skaia. "
 			intro += " And to defend itself, Skaia totally teleported those babies back in time, and to Earth. "

@@ -11,9 +11,6 @@ function SaveDoomedTimeLine(){
 			return false;
 		}
 		
-		if(this.timePlayer.maxDoomedClones > this.timePlayer.doomedTimeClones){
-			return false;
-		}
 		return (this.ectoDoom() || this.playerDoom() || this.randomDoom());
 	}
 	
@@ -47,18 +44,18 @@ function SaveDoomedTimeLine(){
 	}
 	
 	this.content = function(){
-		var ret = "A " + this.timePlayer.htmlTitle() + " suddenly warps in from the future. ";
+		var ret = "A " + this.timePlayer.htmlTitleBasic() + " suddenly warps in from the future. ";
 		ret += " They come with a dire warning of a doomed timeline. ";
 		
 		if(this.ectoDoom()){
-			ret += " If the " + this.leaderPlayer.htmlTitle() + " dies right now, ";
+			ret += " If the " + this.leaderPlayer.htmlTitleBasic() + " dies right now, ";
 			ret += " none of the Players will even be born in the first place (Long story, just trust them). ";
 			ret += " They make it so that never happened. Forget about it. ";
 			this.leaderPlayer.dead = false;
 		}else if(this.playerDoom()){
-			ret += " If the " + this.leaderPlayer.htmlTitle() + " dies right now, ";
-			ret += " the " +this.playerList[this.playerList.length-1].htmlTitle() + " will never even make it into the medium. ";
-			ret += " after all, the " + this.leaderPlayer.htmlTitle() + " is their server player. ";
+			ret += " If the " + this.leaderPlayer.htmlTitleBasic() + " dies right now, ";
+			ret += " the " +this.playerList[this.playerList.length-1].htmlTitleBasic() + " will never even make it into the medium. ";
+			ret += " after all, the " + this.leaderPlayer.htmlTitleBasic() + " is their server player. ";
 			ret += " They make it so that never happened. Forget about it. ";
 			this.leaderPlayer.dead = false;
 		}else{
@@ -70,7 +67,7 @@ function SaveDoomedTimeLine(){
 			}
 		}
 		
-		ret += " The " + this.timePlayer.htmlTitle() + " has sacrificed themselves to prevent this from happening. ";
+		ret += " The " + this.timePlayer.htmlTitleBasic() + " has sacrificed themselves to prevent this from happening. ";
 		ret += " YOUR session's " + this.timePlayer.htmlTitle() + " is fine, don't worry about it...but THIS one is now doomed. ";
 		ret += " Least they can do after saving everyone is to time travel to where they can do the most good. ";
 		ret += " After doing something inscrutable, they vanish in a cloud of clocks and gears. ";

@@ -135,6 +135,7 @@ function RelationshipDrama(){
 					chatText += chatLine(player2Start, player2,"I, hadn't noticed?");
 					chatText += chatLine(player2Start, player2,"I guess I can see that. If that's your thing.");
 					chatText += chatLine(player1Start, player1,"They are amazing...");
+					r2.decrease();
 				}
 			}else if(r2crush.type() == r2crush.badBig){ //friend thinks they are an asshole.
 				if(player2.class_name == "Page" || player2.class_name == "Maid" || player2.class_name == "Sylph" || player2.aspect == "Blood"){

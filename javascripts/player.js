@@ -30,8 +30,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 	this.quirk = null;
 	this.dead = false;
 	this.godDestiny = godDestiny;
-	this.maxDoomedClones = getRandomInt(10);
-	this.doomedClones = 0; //mostly only used by time player, functions as extra life (i.e. dave got stabbed by jack, but it was just a doomed dave)
+	this.doomedClones = getRandomInt(0,2); //we don't necessarily see EVERY doomed time clone warp in.
 	//should only be false if killed permananetly as god tier
 	this.canGodTierRevive = true;  //even if a god tier perma dies, a life or time player or whatever can brings them back.
 	this.isDreamSelf = false;
@@ -117,6 +116,10 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 			ret += "'s Corpse"
 		}
 		return ret;
+	}
+	
+	this.htmlTitleBasic = function(){
+			return getFontColorFromAspect(this.aspect) + this.titleBasic() + "</font>"
 	}
 
 	this.titleBasic = function(){
