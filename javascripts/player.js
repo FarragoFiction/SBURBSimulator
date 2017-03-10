@@ -45,6 +45,8 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 	this.causeOfDeath = ""; //fill in every time you die. only matters if you're dead at end
 	this.doomedTimeClones = 0; //only used by Time player. works as extra lives and power multiplier (against king/queen only).
 	//for space player, this is necessary for frog breeding to be minimally succesfull.
+	
+
 
 	this.chatHandleShort = function(){
 		return this.chatHandle.match(/\b(\w)|[A-Z]/g).join('').toUpperCase();
@@ -56,6 +58,40 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 			tmp = tmp + "2";
 		}
 		return tmp;
+	}
+	
+		//people like them less and also they are more triggered.
+	this.consequencesForTerriblePlayer  = function(){
+		if((terrible_interests.indexOf(this.interest1) != -1)){
+			this.damageAllRelationshipsWithMe();
+			this.damageAllRelationshipsWithMe();
+			this.damageAllRelationshipsWithMe();
+			this.triggerLevel ++;
+		}
+		
+		if((terrible_interests.indexOf(this.interest2) != -1)){
+			this.damageAllRelationshipsWithMe();
+			this.damageAllRelationshipsWithMe();
+			this.damageAllRelationshipsWithMe();
+			this.triggerLevel ++;
+		}
+	}
+
+	//people like them more and also they are less triggered.
+	this.consequencesForGoodPlayer = function(){
+		if((social_interests.indexOf(this.interest1) != -1)){
+			this.boostAllRelationshipsWithMe();
+			this.boostAllRelationshipsWithMe();
+			this.boostAllRelationshipsWithMe();
+			this.triggerLevel +=-1;
+		}
+		
+		if((social_interests.indexOf(this.interest2) != -1)){
+			this.boostAllRelationshipsWithMe();
+			this.boostAllRelationshipsWithMe();
+			this.boostAllRelationshipsWithMe();
+			this.triggerLevel +=-1;
+		}
 	}
 
 
@@ -215,16 +251,37 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 			this.relationships[i].value = 0;
 		}
 	}
-
+	//you like people more
 	this.boostAllRelationships = function(){
 		for(var i = 0; i<this.relationships.length; i++){
 			this.relationships[i].increase();
 		}
 	}
-
+	
+	//you like people less
 	this.damageAllRelationships = function(){
 		for(var i = 0; i<this.relationships.length; i++){
 			this.relationships[i].decrease();
+		}
+	}
+	
+	//people like you more
+	this.boostAllRelationshipsWithMe = function(){
+		for(var i = 0; i<players.length; i++){
+			var r = this.getRelationshipWith(players[i])
+			if(r){
+				r.increase();
+			}
+		}
+	}
+	
+	//people like you less
+	this.damageAllRelationshipsWithMe = function(){
+		for(var i = 0; i<players.length; i++){
+			var r = this.getRelationshipWith(players[i])
+			if(r){
+				r.decrease();
+			}
 		}
 	}
 
@@ -387,6 +444,9 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 		}
 		return ret;
 	}
+	//can't escape consequences.
+	this.consequencesForGoodPlayer();
+	this.consequencesForTerriblePlayer();
 
 }
 

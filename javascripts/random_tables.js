@@ -143,6 +143,8 @@ function getRandomChatHandle(class_name, aspect,interest1, interest2){
 	return first+second;
 }
 
+
+
 function getInterestHandle1(class_name,interest){
 	if(music_interests.indexOf(interest) != -1){
 			return getRandomElementFromArrayThatStartsWith(music_handles1, class_name.toLowerCase()[0]);
