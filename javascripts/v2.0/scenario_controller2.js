@@ -25,6 +25,7 @@ var timeTillReckoning = getRandomInt(10,30);
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
 	debug("okay, need a scene for the reckoning. and ways to call final battles,and then aftermath (mourning etc)");
+	debug("If I want to do the scartch, then reboot with same number of players, with same hair colors/blood colors/aspects, but everything else random");
    init();
 	//exileQueenInit();
 	//murderModeInit();
@@ -61,7 +62,7 @@ function tick(){
 			timeTillReckoning += -1;
 			processScenes2(players);
 			tick();
-		},availablePlayers.length * 1000);
+		},1000); //or availablePlayers.length * *1000?
 	}else{
 
 		reckoning();
@@ -72,16 +73,17 @@ function reckoning(){
 	var s = new Reckoning();
 	s.trigger(players)
 	s.renderContent(newScene());
-	
-	reckoningTick();
+	if(!doomedTimeline){
+		reckoningTick();
+	}
 }
 
 function reckoningTick(){
 	if(timeTillReckoning > -10){
 		setTimeout(function(){
 			timeTillReckoning += -1;
-			processReckoning(players)
-			reckoning();
+			processReckoning2(players)
+			reckoningTick();
 		},1000);
 	}else{
 

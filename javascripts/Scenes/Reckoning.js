@@ -42,7 +42,7 @@ function Reckoning(){
 			intro += " <br><br>Getting back to the King, all the players can do now is try to defeat him before they lose their Ultimate Reward. ";
 			intro += " The Ultimate Reward allows the players to create a new Universe frog, and live inside of it. ";
 			intro += " Without it, they'll be trapped in the Medium forever. (Barring shenanigans). ";
-			intro += living.length + " players, the  " + getPlayersTitles(living) + " will fight the Dersite Royalty and try to prove themselves worthy of the Ultimate Reward. ";
+			intro += living.length + " players will fight the Dersite Royalty and try to prove themselves worthy of the Ultimate Reward. ";
 		}else{
 			intro += " No one is alive. <BR><BR>Game Over. ";
 			var strongest = findStrongestPlayer(players)

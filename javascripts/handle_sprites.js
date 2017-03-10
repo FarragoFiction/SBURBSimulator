@@ -218,6 +218,29 @@ function imgLoaded(imgElement) {
 
 */
 
+//might be repeats of players in there, cause of time clones
+function poseAsATeam(canvas,players, repeatTime){
+	var spriteBuffers = [];
+	for(var i = 0; i<players.length; i++){
+		spriteBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
+		drawSprite(spriteBuffers[i],players[i],repeatTime)
+	}
+	
+	setTimeout(function(){
+			var x = -275;
+			var y = -50;
+			var total = 0;
+			for(var i = 0; i<spriteBuffers.length; i++){
+				if(i == 6){
+					x = -300; //down a row
+					y = 100;
+				}
+				x = x +150;
+				copyTmpCanvasToRealCanvasAtPos(canvas, spriteBuffers[i],x,y)
+			}
+		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
+}
+
 function drawGodRevival(canvas, live_players, dead_players, repeatTime){
 	var live_spriteBuffers = [];
 	var dead_spriteBuffers = [];

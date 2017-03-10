@@ -90,6 +90,27 @@ function processScenes2(playerList){
 	return ret;
 }
 
+//playerlist is everybody in the medium
+//might not be all players in the begining.
+function processReckoning2(playerList){
+	var ret = "";
+	for(var i = 0; i<reckoningScenes.length; i++){
+		var s = reckoningScenes[i];
+		if(s.trigger(playerList)){
+			s.renderContent(newScene());
+		}
+	}
+
+	for(var i = 0; i<deathScenes.length; i++){
+		var s = deathScenes[i];
+		if(s.trigger(playerList)){
+			s.renderContent(newScene());
+		}
+	}
+
+	return ret;
+}
+
 //unnecccesarry. tick has delay, not scenes (and especially not scenes that don't even triger)
 function callNextSceneWithDelay(scenes, index, death){
 	//debug("scene index: " + index)

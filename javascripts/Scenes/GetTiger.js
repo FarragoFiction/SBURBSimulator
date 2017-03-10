@@ -37,10 +37,8 @@ function GetTiger(){
 		var canvasDiv = document.getElementById("canvas"+ divID);
 		var players = this.deadPlayersToGodTier;
 		
-		setTimeout(function(){
-			drawGetTiger(canvasDiv, players,repeatTime)
-		}, repeatTime/2);  //images aren't always loaded by the time i try to draw them the first time.
-		
+		drawGetTiger(canvasDiv, players,repeatTime)
+	
 	}
 	
 	

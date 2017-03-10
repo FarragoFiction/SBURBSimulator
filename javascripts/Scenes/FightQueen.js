@@ -14,6 +14,24 @@ function FightQueen(){
 		}
 	}
 	
+	//render each living player, each time clone, and some dersites/prospitan rabble (maybe)
+	this.renderGoodguys = function(div){
+		var repeatTime = 1000;
+		var divID = (div.attr("id")) + "_final_boss";
+		var ch = canvasHeight;
+		var fightingPlayers = this.getGoodGuys();
+		if(fightingPlayers.length > 6){
+			ch = canvasHeight*2; //a little bigger than two rows, cause time clones
+		}
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
+		div.append(canvasHTML);
+		//different format for canvas code
+		var canvasDiv = document.getElementById("canvas"+ divID);
+		poseAsATeam(canvasDiv, fightingPlayers, 2000);
+	}
+	
+
+	
 	this.levelPlayers = function(stabbings){
 		for(var i = 0; i<stabbings.length; i++){
 			stabbings[i].increasePower();
@@ -25,7 +43,10 @@ function FightQueen(){
 	}
 	
 	this.renderContent = function(div){
+		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
+		div.append("<br>");
 		div.append(this.content());
+		
 	}
 	
 	this.minorLevelPlayers = function(stabbings){
