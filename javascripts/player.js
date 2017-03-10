@@ -1,10 +1,10 @@
-function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny, chat_handle){
+function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 	this.class_name = class_name;
-	this.chatHandle = chat_handle;
 	this.aspect = aspect;
 	this.land = land;
 	this.interest1 = getRandomElementFromArray(interests);
 	this.interest2 = getRandomElementFromArray(interests);
+	this.chatHandle = getRandomChatHandle(this.class_name,this.aspect,this.interest1, this.interest2);
 	this.kernel_sprite = kernel_sprite;
 	this.relationships = [];
 	this.moon = moon;
@@ -468,9 +468,7 @@ function randomPlayerWithClaspect(c,a){
 		gd =true;
 	}
 	var m = getRandomElementFromArray(moons);
-
-	var ch = getRandomChatHandle(c,a);;
-	return new Player(c,a,l,k,m,gd,ch);
+	return new Player(c,a,l,k,m,gd);
 }
 function randomPlayer(){
 	//remove class AND aspect from available

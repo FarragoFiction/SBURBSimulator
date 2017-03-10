@@ -119,26 +119,25 @@ function getRandomLandFromAspect(aspect){
 function getRandomChatHandle(class_name, aspect,interest1, interest2){
 	var first = "";
 	var rand = Math.random();
-	if(rand>.3){
+	if(rand>0.3){
 		first = getInterestHandle1(class_name, interest1);
 	}else if(rand > .6){
 		first = getInterestHandle1(class_name, interest2);
 	}else{
-		first = getBlandHandle1(className);
+		first = getBlandHandle1(class_name);
 	}
-	if(first == ""){
-		getBlandHandle1(className);  //might have forgot to have a interest handle of the right letter.
+	if(!first || first == ""){
+		first = getBlandHandle1(class_name);  //might have forgot to have a interest handle of the right letter.
 	}
-
 	var second = "";
 	if(rand>.3){
-		second = getInterestHandle2(class_name, interest1);
+		second = getInterestHandle2(aspect, interest1);
 	}else if(rand > .6){
-		second = getInterestHandle2(class_name, interest2);
+		second = getInterestHandle2(aspect, interest2);
 	}else{
 		second = getBlandHandle2(aspect);
 	}
-	if(second = ""){
+	if(!second || second == ""){
 		second = getBlandHandle2(aspect);
 	}
 	return first+second;
@@ -174,6 +173,7 @@ function getInterestHandle1(class_name,interest){
 	}else if (justice_interests.indexOf(interest) != -1){
 			return getRandomElementFromArrayThatStartsWith(justice_handles1, class_name.toLowerCase()[0]);
 	}
+	console.log("I didn't return anything!? What was my interest: " + interest)
 }
 
 function getInterestHandle2(aspect,interest){
@@ -184,7 +184,7 @@ function getInterestHandle2(aspect,interest){
 	}else if (writing_interests.indexOf(interest) != -1){
 		return getRandomElementFromArrayThatStartsWith(writing_handles2, aspect.toUpperCase()[0]);
 	}else if (pop_culture_interests.indexOf(interest) != -1){
-		return getRandomElementFromArrayThatStartsWith(pop_culture_handles2_handles2, aspect.toUpperCase()[0]);
+		return getRandomElementFromArrayThatStartsWith(pop_culture_handles2, aspect.toUpperCase()[0]);
 	}else if (technology_interests.indexOf(interest) != -1){
 		return getRandomElementFromArrayThatStartsWith(technology_handles2, aspect.toUpperCase()[0]);
 	}else if (social_interests.indexOf(interest) != -1){
@@ -853,7 +853,7 @@ var seer_handles = ["sightly","sanctimonious","sarcastic","sassy","scintillating
 
 var music_handles1 = ["musical","pianist","melodious","keyboard","rhythmic","singing","tuneful","harmonious","beating","pitch","waltzing","synthesized","piano","serenading"];
 var culture_handles1 = ["monochrome","poetic","majestic","keen","realistic","serious","theaterical","haute","beautiful","priceless","watercolor","sensational", "highbrow"];
-var writing_handles1 = ["meandering","pageturning","mysterious","knowledgeable","reporting","scribing","tricky","hardcover","bookish","page","writing","scribbler"];
+var writing_handles1 = ["scribbling","meandering","pageturning","mysterious","knowledgeable","reporting","scribing","tricky","hardcover","bookish","page","writing","scribbler"];
 var pop_culture_handles1 = ["mega","player","mighty","knightly","roguish","super","turbo","titanic","heroic","bitchin","power","wonder","wonderful", "sensational"];
 var technology_handles1 = ["machinist","programming","mechanical","kilo","robotic","silicon","techno","hardware","battery","python","windows","serial"];
 var social_handles1 = ["master","playful","matchmaking","kind","regular","social","trusting","honest","benign","precious","wondering","sarcastic", "talkative"];
