@@ -71,6 +71,8 @@ function renderScratchButton(){
 			alert(living.length  + " living players and the " + timePlayer.land + " makes a scratch available!");
 			var html = '<button type="button" onclick="scratchConfirm()">Would You Like To Scratch Session?</button>';
 			$("#story").append(html);
+		}else{
+			$("#story").append("<br>This session is already scratched. No further scratches available.");
 		}
 	}
 }
@@ -86,6 +88,7 @@ function scratchConfirm(){
 //not erasing the players, after all.
 //or could have an afterlife where they meet guardian players???
 function scratch(){
+	timeTillReckoning = getRandomInt(10,30);
 	frogStatus = 0;
 	kingStrength = 100; //can use this to extrapolate enemy strength.
 	queenStrength = 100;

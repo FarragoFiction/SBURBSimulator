@@ -102,7 +102,7 @@ function Aftermath(){
 					end += " The door to the new universe is revealed.  As the leader reaches for it, a disaster strikes.   ";
 					end += " Apparently the new universe's sickness manifested as its version of SBURB interfering with yours. ";
 					end += " Your way into the new universe is barred, and you remain trapped in the medium.  <Br><br>Game Over.";
-					end += "Or is it?"
+					end += " Or is it?"
 					renderScratchButton();
 				}else{
 					end += this.democracyBonus();
@@ -114,7 +114,7 @@ function Aftermath(){
 				end += " Who knew that such a pointless mini-game was actually crucial to the ending? ";
 				end += " No universe frog, no new universe to live in. Thems the breaks. ";
 				end += " If it's any consolation, it really does suck to fight so hard only to fail at the last minute. <Br><Br>Game Over.";
-				end += "Or is it?"
+				end += " Or is it? "
 				renderScratchButton();
 			}
 	}else{
@@ -125,7 +125,7 @@ function Aftermath(){
 		end += " The players have failed. No new universe is created. Their home universe is left unfertilized. <Br><Br>Game Over. ";
 	}
 	var strongest = findStrongestPlayer(players)
-	end += "The MVP of the session was: " + strongest.htmlTitle() + " with a power of: " + strongest.power;
+	end += " The MVP of the session was: " + strongest.htmlTitle() + " with a power of: " + strongest.power;
 	end += "<br>Thanks for Playing!<br>"
 	div.append(end);
 	var divID = (div.attr("id")) + "_aftermath" ;
