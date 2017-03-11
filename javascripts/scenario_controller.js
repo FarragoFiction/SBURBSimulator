@@ -10,7 +10,8 @@ var reckoningStarted = false; //can't god tier if you are definitely on skaia.
 var ectoBiologyStarted = false;
 var doomedTimeline = false;
 var debugMode = false;
- 
+var scratched = false;
+
 window.onload = function() {
     init();
 	//exileQueenInit();
