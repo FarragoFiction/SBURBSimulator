@@ -37,7 +37,7 @@ window.onload = function() {
 	if(!debugMode){
 		randomizeEntryOrder();
 	}
-	authorMessage();
+	//authorMessage();
 	makeGuardians(); //after entry order established
 
 	intro();
