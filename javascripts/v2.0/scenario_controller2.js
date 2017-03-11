@@ -37,8 +37,9 @@ window.onload = function() {
 	if(!debugMode){
 		randomizeEntryOrder();
 	}
+	authorMessage();
 	makeGuardians(); //after entry order established
-	//authorMessage();
+
 	intro();
 	//debugRelationshipDrama();
 	//debugTriggerLevel();

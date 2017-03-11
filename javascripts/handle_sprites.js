@@ -9,14 +9,14 @@ function trollify(canvas,player){
    horns(canvas,player);
 }
 
-function babyTrollify(canvas,player){
+function babyTrollify(canvas,player,isRepeat){
    //red_array = red_context.getImageData(0, 0, red_canvas.width, red_canvas.height).data;
    //alert("I should trollify");
   //wings first, replace black and red with blood color with two opacities
   // wings(canvas,player);
    greySkin(canvas,player);
-   fins(canvas, player);
-   babyHorns(canvas,player);
+   babyFins(canvas, player);
+   babyHorns(canvas,player,isRepeat);
 }
 
 //mod from http://stackoverflow.com/questions/21646738/convert-hex-to-rgba
@@ -159,14 +159,26 @@ function fins(canvas, player){
   }
 }
 
+function babyFins(canvas, player){
+  if(player.bloodColor == "#610061" || player.bloodColor == "#99004d"){
+    ctx = canvas.getContext('2d');
+    var imageString = "fins.png";
+    addImageTag(imageString)
+    var img=document.getElementById(imageString);
+    var width = img.width;
+    var height = img.height;
+    ctx.drawImage(img,-width/7,-height/4,width,height);
+  }
+}
+
 function horns(canvas, player){
     leftHorn(canvas,player);
     rightHorn(canvas,player);
 }
 
-function babyHorns(canvas, player){
-    babyLeftHorn(canvas,player);
-    babyRightHorn(canvas,player);
+function babyHorns(canvas, player,isRepeat){
+    babyLeftHorn(canvas,player,isRepeat);
+    babyRightHorn(canvas,player,isRepeat);
 }
 
 //horns are no longer a sprite sheet. tracy and kristi and brandon gave me advice.
@@ -202,27 +214,27 @@ function rightHorn(canvas, player){
 
 function babyLeftHorn(canvas, player){
     ctx = canvas.getContext('2d');
-    ctx.scale(.5,1);
+    //ctx.scale(.5,1);
     var imageString = "left"+player.leftHorn + ".png";
     addImageTag(imageString)
     var img=document.getElementById(imageString);
     var width = img.width;
   	var height = img.height;
-  	ctx.drawImage(img,width/6,-height/4,width,height);
+  	ctx.drawImage(img,-width/6,-height/4,width,height);
 }
 
 //eventually all sprites will be standardized and won't need baby vs regular
 function babyRightHorn(canvas, player){
  // console.log("doing right horn");
   ctx = canvas.getContext('2d');
-  ctx.scale(.5,1);//closer together?
+//  ctx.scale(.5,1);//closer together?
   var imageString = "right"+player.rightHorn + ".png";
   addImageTag(imageString)
 
   var img=document.getElementById(imageString);
   var width = img.width;
   var height = img.height;
-  ctx.drawImage(img,10*width/6,-height/4,width,height);
+  ctx.drawImage(img,-width/7,-height/4,width,height);
 }
 
 function addImageTag(url){
@@ -292,16 +304,16 @@ function poseBabiesAsATeam(canvas, leader, players, guardians, repeatTime){
 			}
       //guardians down a bit
       x = 50;
-      y += 50;
+      y += 100;
       for(var i = 0; i<guardianBuffers.length; i++){
 				if(i == 6){
-					x = 25; //down a row
+					x = 50; //down a row
 					y += 75;
 				}
 				x = x +100;
 				copyTmpCanvasToRealCanvasAtPos(canvas, guardianBuffers[i],x,y)
 			}
-  });
+  },repeatTime);
 }
 
 //might be repeats of players in there, cause of time clones
@@ -674,12 +686,13 @@ function drawBabySprite(canvas, player, repeatTime, isRepeat){
     ctx = canvas.getContext('2d');
     ctx.imageSmoothingEnabled = false;
     //don't forget to shrink baby
-
-    ctx.scale(0.5,0.5);
+    if(!isRepeat){
+      ctx.scale(0.5,0.5);
+    }
     babySprite(canvas,player);
     babyHair(canvas, player);
     if(player.isTroll){
-      babyTrollify(canvas,player);
+      babyTrollify(canvas,player,isRepeat); //it scales horns too
     }
 
 
@@ -962,9 +975,9 @@ function babySprite(canvas,player){
   var height = img.height;
   ctx.drawImage(img,0,0,width,height);
   if(player.isTroll){
-    swapColors(canvas, "#ff0000",player.bloodColor);
+    swapColors(canvas, "#585858",player.bloodColor);
   }else{
-    aspectPalletSwap(canvas, player);
+    swapColors(canvas, "#e76700",getShirtColorFromAspect(player.aspect));
   }
 }
 
