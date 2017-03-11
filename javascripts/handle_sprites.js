@@ -167,7 +167,7 @@ function babyFins(canvas, player){
     var img=document.getElementById(imageString);
     var width = img.width;
     var height = img.height;
-    ctx.drawImage(img,-width/7,-height/4,width,height);
+    ctx.drawImage(img,-width/7,-height/5,width,height);
   }
 }
 
