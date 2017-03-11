@@ -184,17 +184,7 @@ function leftHorn(canvas, player){
     //console.log("Random number is: " + randNum)
 }
 
-function babyLeftHorn(canvas, player){
-    ctx = canvas.getContext('2d');
-    ctx.scale(.5,.5);
-    var imageString = "left"+player.leftHorn + ".png";
-    addImageTag(imageString)
-    var img=document.getElementById(imageString);
-    var width = img.width;
-  	var height = img.height;
-  	ctx.drawImage(img,-width/6,-height/4,width,height);
-    //console.log("Random number is: " + randNum)
-}
+
 //parse horns sprite sheet. render a random right horn.
 //right horn should be at: 120,40
 function rightHorn(canvas, player){
@@ -210,18 +200,29 @@ function rightHorn(canvas, player){
   ctx.drawImage(img,0,0,width,height);
 }
 
+function babyLeftHorn(canvas, player){
+    ctx = canvas.getContext('2d');
+    ctx.scale(.5,1);
+    var imageString = "left"+player.leftHorn + ".png";
+    addImageTag(imageString)
+    var img=document.getElementById(imageString);
+    var width = img.width;
+  	var height = img.height;
+  	ctx.drawImage(img,width/6,-height/4,width,height);
+}
+
 //eventually all sprites will be standardized and won't need baby vs regular
 function babyRightHorn(canvas, player){
  // console.log("doing right horn");
   ctx = canvas.getContext('2d');
-  ctx.scale(.5,.5);
+  ctx.scale(.5,1);//closer together?
   var imageString = "right"+player.rightHorn + ".png";
   addImageTag(imageString)
 
   var img=document.getElementById(imageString);
   var width = img.width;
   var height = img.height;
-  ctx.drawImage(img,width/6,height/4,width,height);
+  ctx.drawImage(img,10*width/6,-height/4,width,height);
 }
 
 function addImageTag(url){
@@ -278,24 +279,24 @@ function poseBabiesAsATeam(canvas, leader, players, guardians, repeatTime){
   setTimeout(function(){
 		  copyTmpCanvasToRealCanvasAtPos(canvas, leaderBuffer,-100,0)
 
-      var x = 25;
+      var x = 50;
 			var y = 0;
 			var total = 0;
 			for(var i = 0; i<playerBuffers.length; i++){
 				if(i == 6){
-					x = 0; //down a row
+					x = 50; //down a row
 					y = 75;
 				}
 				x = x +100;
 				copyTmpCanvasToRealCanvasAtPos(canvas, playerBuffers[i],x,y)
 			}
       //guardians down a bit
-      x = 25;
+      x = 50;
       y += 50;
       for(var i = 0; i<guardianBuffers.length; i++){
 				if(i == 6){
-					x = 0; //down a row
-					y = 75;
+					x = 25; //down a row
+					y += 75;
 				}
 				x = x +100;
 				copyTmpCanvasToRealCanvasAtPos(canvas, guardianBuffers[i],x,y)
