@@ -13,8 +13,25 @@ function DoEctobiology(){
 		return false;
 	}
 
+  //could be up to 24 babies to draw (so many babies)
+	this.drawLeaderPlusBabies = function(div){
+		alert("drawing babies")
+		var repeatTime = 1000;
+		var divID = (div.attr("id")) + "_babies";
+		var ch = canvasHeight;
+		if(players.length > 6){
+			ch = canvasHeight*1.5;
+		}
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
+		div.append(canvasHTML);
+		//different format for canvas code
+		var canvasDiv = document.getElementById("canvas"+ divID);
+		poseBabiesAsATeam(canvasDiv, this.leader, players, guardians, 12000);
+	}
+
 	this.renderContent = function(div){
 		div.append(this.content());
+		this.drawLeaderPlusBabies(div);
 	}
 
 	this.content = function(){

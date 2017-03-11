@@ -9,6 +9,16 @@ function trollify(canvas,player){
    horns(canvas,player);
 }
 
+function trollify(canvas,player){
+   //red_array = red_context.getImageData(0, 0, red_canvas.width, red_canvas.height).data;
+   //alert("I should trollify");
+  //wings first, replace black and red with blood color with two opacities
+  // wings(canvas,player);
+   greySkin(canvas,player);
+   fins(canvas, player);
+   babyHorns(canvas,player);
+}
+
 //mod from http://stackoverflow.com/questions/21646738/convert-hex-to-rgba
 function hexToRgbA(hex){
     var c;
@@ -218,6 +228,49 @@ function imgLoaded(imgElement) {
 
 */
 
+//leader is an adult, though.
+function poseBabiesAsATeam(canvas, leader, players, guardians, repeatTime){
+  var playerBuffers = [];
+  var guardianBuffers = [];
+  var leaderBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+  drawSprite(leaderBuffer, leader, repeatTime);
+  for(var i = 0; i<players.length; i++){
+		playerBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
+		drawBabySprite(playerBuffers[i],players[i],repeatTime);
+	}
+  for(var i = 0; i<guardians.length; i++){
+		guardianBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
+		drawBabySprite(guardianBuffers[i],guardians[i],repeatTime);
+	}
+  //leader on far left, babies arranged to right.
+  setTimeout(function(){
+		  copyTmpCanvasToRealCanvasAtPos(canvas, leaderBuffer,-100,0)
+
+      var x = 25;
+			var y = 0;
+			var total = 0;
+			for(var i = 0; i<playerBuffers.length; i++){
+				if(i == 6){
+					x = 0; //down a row
+					y = 75;
+				}
+				x = x +100;
+				copyTmpCanvasToRealCanvasAtPos(canvas, playerBuffers[i],x,y)
+			}
+      //guardians down a bit
+      x = 25;
+      y = 100;
+      for(var i = 0; i<guardianBuffers.length; i++){
+				if(i == 6){
+					x = 0; //down a row
+					y = 75;
+				}
+				x = x +100;
+				copyTmpCanvasToRealCanvasAtPos(canvas, guardianBuffers[i],x,y)
+			}
+  });
+}
+
 //might be repeats of players in there, cause of time clones
 function poseAsATeam(canvas,players, repeatTime){
 	var spriteBuffers = [];
@@ -225,7 +278,7 @@ function poseAsATeam(canvas,players, repeatTime){
 		spriteBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
 		drawSprite(spriteBuffers[i],players[i],repeatTime)
 	}
-	
+
 	setTimeout(function(){
 			var x = -275;
 			var y = -50;
@@ -534,11 +587,11 @@ function drawSpriteTurnways(canvas, player, repeatTime, isRepeat){
   ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
   ctx.translate(canvas.width, 0);
   ctx.scale(-1, 1);
-  
+
   if(player.grimDark == true){
     grimDarkHalo(canvas)
   }
-  
+
   if(player.isTroll&& player.godTier){//wings before sprite
     wings(canvas,player);
   }
@@ -582,6 +635,36 @@ function makeRenderingSnapshot(player){
 	ret.quirk = player.quirk;
 	return ret;
 }
+
+function drawBabySprite(canvas, player, repeatTime, isRepeat){
+    player = makeRenderingSnapshot(player);//probably dont need to, but whatever
+    ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
+    //don't forget to shrink baby
+
+    ctx.scale(0.5,0.5);
+    babySprite(canvas,player);
+    babyHair(canvas, player);
+    if(player.isTroll){
+      babyTrollify(canvas,player);
+    }
+
+
+    //ctx.drawImage(sprite, 100, 100);
+    if(!isRepeat){ //first time i call it this will be null
+     //alert("redrawing")
+     //debug("Redrawing");
+     asyncNumSprites +=1;
+    setTimeout(function(){
+      drawBabySprite(canvas,player,repeatTime,true)
+    }, repeatTime,true);  //images aren't always loaded by the time i try to draw them the first time.
+    }else{
+      asyncNumSprites += -1
+    }
+
+}
+
+
 function drawSprite(canvas, player, repeatTime, isRepeat){
 	player = makeRenderingSnapshot(player);
   //debug("Drawing sprite for: " + player.title());
@@ -600,11 +683,11 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
   //grey skin, horns, wings in blood color
 	//var width = img.width;
 	//var height = img.height;
-	//ctx.drawImage(sprites,0,0,width,height);	
+	//ctx.drawImage(sprites,0,0,width,height);
   if(player.grimDark == true){
     grimDarkHalo(canvas)
   }
-	
+
   if(player.isTroll&& player.godTier){//wings before sprite
     wings(canvas,player);
   }
@@ -613,11 +696,11 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
 	   bloodPuddle(canvas, player);
   }
   playerToSprite(canvas,player);
-  
+
   if(player.murderMode == true){
 	  scratch_face(canvas, player);
   }
-  
+
   hair(canvas, player);
   if(player.class_name == "Prince" && player.godTier){
 	  princeTiara(canvas, player);
@@ -674,6 +757,25 @@ function scratch_face(canvas, player){
 	var height = img.height;
 	ctx.drawImage(img,width/6,height/4,width,height);
 	swapColors(canvas, "#440a7f", player.bloodColor); //it's their own blood
+}
+
+//i think laziness is why regular hair isn't drawn centered right
+//regular adult sprite isn't the right size.
+function babyHair(canvas, player){
+	ctx = canvas.getContext('2d');
+	var imageString = "hair"+player.hair+".png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,0,0,width,height);
+	if(player.isTroll){
+		swapColors(canvas, "#313131", "#000000");
+		swapColors(canvas, "#202020", player.bloodColor);
+	}else{
+		swapColors(canvas, "#313131", player.hairColor);
+		swapColors(canvas, "#202020", getColorFromAspect(player.aspect));
+	}
 }
 
 function hair(canvas, player){
@@ -813,6 +915,17 @@ function godTierSprite(canvas, player){
   ctx.drawImage(img,width/6,height/4,width,height);
   aspectPalletSwap(canvas, player);
   aspectSymbol(canvas, player);
+}
+
+function babySprite(canvas,player){
+  ctx = canvas.getContext('2d');
+  var imageString = "baby.png"
+  addImageTag(imageString)
+  var img=document.getElementById(imageString);
+  var width = img.width;
+  var height = img.height;
+  ctx.drawImage(img,0,0,width,height);
+  aspectPalletSwap(canvas, player);
 }
 
 function aspectSymbol(canvas, player){
