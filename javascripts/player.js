@@ -50,7 +50,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 	this.denizenFaced = false; //when faced, you double in power (including future power increases.)
 	this.denizenDefeated = false;
 	this.causeOfDeath = ""; //fill in every time you die. only matters if you're dead at end
-	this.doomedTimeClones =  getRandomInt(0,2); //help fight the final boss(es). not every doomed clone is seen to warp in.
+	this.doomedTimeClones =  0; //help fight the final boss(es). not every doomed clone is seen to warp in.
 	//for space player, this is necessary for frog breeding to be minimally succesfull.
 
 
