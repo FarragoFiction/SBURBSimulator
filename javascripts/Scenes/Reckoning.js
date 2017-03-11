@@ -13,6 +13,9 @@ function Reckoning(){
 		var leader = getLeader(players);
 		if(ectoBiologyStarted){
 			intro += " Remember those random baby versions of the players the " + leader.htmlTitleBasic() + " made? " ;
+			if(scratched){
+				intro += "Wait... DID they make the babies? Or, was it their guardian, the " + getLeader(guardians).htmlTitleBasic() +"? Scratched sessions are so confusing...";
+			}
 			intro += " Yeah, that didn't stop being a thing that was true. ";
 			intro += " It turns out that those babies ended up on the meteors heading straight to Skaia. "
 			intro += " And to defend itself, Skaia totally teleported those babies back in time, and to Earth. "
@@ -45,7 +48,7 @@ function Reckoning(){
 			intro += " Without it, they'll be trapped in the Medium forever. (Barring shenanigans). ";
 			intro += living.length + " players will fight the Dersite Royalty and try to prove themselves worthy of the Ultimate Reward. ";
 		}else{
-			intro += " No one is alive. <BR><BR>Game Over. ";
+			intro += " <br><br>No one is alive. <BR><BR>Game Over. ";
 			var strongest = findStrongestPlayer(players)
 			intro += "The MVP of the session was: " + strongest.htmlTitle() + " with a power of: " + strongest.power;
 		}

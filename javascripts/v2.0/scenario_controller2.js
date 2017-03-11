@@ -29,7 +29,7 @@ var timeTillReckoning = getRandomInt(10,30);
 window.onload = function() {
 	debug("more varieites of introduction")
 	debug("if i wanter rending to be more complex than just wait a second, make an object that keeps track of all parts of a rendering and only writes it to the canas when all are loaded");
-	debug("If I want to do the scartch, then reboot with same number of players, with same hair colors/blood colors/aspects, but everything else random");
+	debug("render baby sprites and smaller hair, guardians, too");
    init();
 	//exileQueenInit();
 	//murderModeInit();
@@ -109,6 +109,7 @@ function scratch(){
 	players = guardians;
 	guardians = tmp;
 	$("#story").html(scratch);
+	window.scrollTo(0, 0);
 
 
 	var guardianDiv = newScene();
