@@ -9,7 +9,7 @@ function trollify(canvas,player){
    horns(canvas,player);
 }
 
-function trollify(canvas,player){
+function babyTrollify(canvas,player){
    //red_array = red_context.getImageData(0, 0, red_canvas.width, red_canvas.height).data;
    //alert("I should trollify");
   //wings first, replace black and red with blood color with two opacities
@@ -163,6 +163,12 @@ function horns(canvas, player){
     leftHorn(canvas,player);
     rightHorn(canvas,player);
 }
+
+function babyHorns(canvas, player){
+    babyLeftHorn(canvas,player);
+    babyRightHorn(canvas,player);
+}
+
 //horns are no longer a sprite sheet. tracy and kristi and brandon gave me advice.
 //position horns on an image as big as the canvas. put the horns directly on the
 //place where the head of every sprite would be.
@@ -175,6 +181,18 @@ function leftHorn(canvas, player){
     var width = img.width;
   	var height = img.height;
   	ctx.drawImage(img,0,0,width,height);
+    //console.log("Random number is: " + randNum)
+}
+
+function babyLeftHorn(canvas, player){
+    ctx = canvas.getContext('2d');
+    ctx.scale(.5,.5);
+    var imageString = "left"+player.leftHorn + ".png";
+    addImageTag(imageString)
+    var img=document.getElementById(imageString);
+    var width = img.width;
+  	var height = img.height;
+  	ctx.drawImage(img,-width/6,-height/4,width,height);
     //console.log("Random number is: " + randNum)
 }
 //parse horns sprite sheet. render a random right horn.
@@ -190,6 +208,20 @@ function rightHorn(canvas, player){
   var width = img.width;
   var height = img.height;
   ctx.drawImage(img,0,0,width,height);
+}
+
+//eventually all sprites will be standardized and won't need baby vs regular
+function babyRightHorn(canvas, player){
+ // console.log("doing right horn");
+  ctx = canvas.getContext('2d');
+  ctx.scale(.5,.5);
+  var imageString = "right"+player.rightHorn + ".png";
+  addImageTag(imageString)
+
+  var img=document.getElementById(imageString);
+  var width = img.width;
+  var height = img.height;
+  ctx.drawImage(img,width/6,height/4,width,height);
 }
 
 function addImageTag(url){
@@ -259,7 +291,7 @@ function poseBabiesAsATeam(canvas, leader, players, guardians, repeatTime){
 			}
       //guardians down a bit
       x = 25;
-      y = 100;
+      y += 50;
       for(var i = 0; i<guardianBuffers.length; i++){
 				if(i == 6){
 					x = 0; //down a row
@@ -920,12 +952,19 @@ function godTierSprite(canvas, player){
 function babySprite(canvas,player){
   ctx = canvas.getContext('2d');
   var imageString = "baby.png"
+  if(player.isTroll){
+    imageString = "grub.png";
+  }
   addImageTag(imageString)
   var img=document.getElementById(imageString);
   var width = img.width;
   var height = img.height;
   ctx.drawImage(img,0,0,width,height);
-  aspectPalletSwap(canvas, player);
+  if(player.isTroll){
+    swapColors(canvas, "#ff0000",player.bloodColor);
+  }else{
+    aspectPalletSwap(canvas, player);
+  }
 }
 
 function aspectSymbol(canvas, player){
