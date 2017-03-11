@@ -15,7 +15,7 @@ function DoEctobiology(){
 
   //could be up to 24 babies to draw (so many babies)
 	this.drawLeaderPlusBabies = function(div){
-		alert("drawing babies")
+		//alert("drawing babies")
 		var repeatTime = 1000;
 		var divID = (div.attr("id")) + "_babies";
 		var ch = canvasHeight;
