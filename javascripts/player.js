@@ -42,7 +42,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 	this.canGodTierRevive = true;  //even if a god tier perma dies, a life or time player or whatever can brings them back.
 	this.isDreamSelf = false;
 	//players can be triggered for various things. higher their triggerLevle, greater chance of going murdermode or GrimDark.
-	this.triggerLevel = -1; //make up for moon bonus
+	this.triggerLevel = -2; //make up for moon bonus
 	this.murderMode = false;  //kill all players you don't like. odds of a just death skyrockets.
   	this.grimDark = false;  //all relationships set to 0. power up a lot. odds of  a just death skyrockets.
 	this.leader = false;

@@ -283,13 +283,13 @@ function decideTroll(player){
 //species, hair and blood color is the same, horns and favorite number. aspect.  Thats it.
 //when scratch, get rid of story dif. make blank. scratch has to be button press.
 function makeGuardians(){
-	console.log("Making guardians")
+	//console.log("Making guardians")
 	available_classes = classes.slice(0);
 	available_aspects = nonrequired_aspects.slice(0); //required_aspects
 	available_aspects = available_aspects.concat(required_aspects.slice(0));
 	for(var i = 0; i<players.length; i++){
 		  var player = players[i];
-			console.log("guardian for " + player.titleBasic());
+			//console.log("guardian for " + player.titleBasic());
 			var guardian = randomPlayerWithoutRemoving();
 			guardian.isTroll = player.isTroll;
 			if(guardian.isTroll){
