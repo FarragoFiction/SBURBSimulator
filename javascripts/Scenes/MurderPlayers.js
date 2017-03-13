@@ -90,7 +90,7 @@ function MurderPlayers(){
 		var livePlayers = this.playerList; //just because they are alive doesn't mean they are in the medium
 		for(var i = 0; i<this.murderers.length; i++){
 			var m = this.murderers[i];
-			var worstEnemy = m.getWorstEnemyFromList(livePlayers);
+			var worstEnemy = m.getWorstEnemyFromList(availablePlayers);
 			removeFromArray(m, availablePlayers);
 			var ret = "";
 			if(worstEnemy && worstEnemy.dead == false){
