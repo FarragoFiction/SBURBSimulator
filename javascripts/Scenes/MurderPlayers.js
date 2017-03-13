@@ -125,6 +125,8 @@ function MurderPlayers(){
 					ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". ";
 					ret += this.friendsOfVictimHateYou(worstEnemy, m, livePlayers);
 					worstEnemy.dead = true;
+					var r = worstEnemy.getRelationshipWith(m);
+					r.value = -10; //you are not happy with murderer
 					m.victimBlood = worstEnemy.bloodColor;
 					this.renderMurder(div, m, worstEnemy)
 				}else{
@@ -134,6 +136,8 @@ function MurderPlayers(){
 					ret += " The " + m.htmlTitle() + " attempts to brutally murders that asshole, the " + worstEnemy.htmlTitle();
 					ret += ",but instead gets murdered first, in self-defense. ";
 					m.dead = true;
+					var r = worstEnemy.getRelationshipWith(m);
+					r.value = -10; //you are not happy with murderer
 					worstEnemy.victimBlood = m.bloodColor;
 					this.renderMurder(div,worstEnemy, m);
 				}
