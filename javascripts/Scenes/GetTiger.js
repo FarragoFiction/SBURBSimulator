@@ -79,6 +79,7 @@ function GetTiger(){
 			p.dead = false;
 			p.power += 200;
 			p.canGodTierRevive = true;
+			p.victimBlood = null;
 		}
 		return ret;
 	}

@@ -32,9 +32,7 @@ window.onload = function() {
 	debug("if i wanter rending to be more complex than just wait a second, make an object that keeps track of all parts of a rendering and only writes it to the canas when all are loaded");
 	debug("render baby sprites and smaller hair, guardians, too");
    init();
-	//exileQueenInit();
-	//murderModeInit();
-	//voidLeaderInit();
+
 	if(!debugMode){
 		randomizeEntryOrder();
 	}
@@ -43,7 +41,7 @@ window.onload = function() {
 
 	intro();
 	//debugRelationshipDrama();
-	//debugTriggerLevel();
+	debugTriggerLevel();
 	//debugGrimDark();
 	//debugJackScheme();
 	//debugLevelTheHellUp();
@@ -275,7 +273,7 @@ function decideLusus(player){
 }
 
 function decideTroll(player){
-	if(Math.random() > 0.75 ){
+	if(Math.random() > 0.25 ){
 		player.isTroll = true;
 		player.triggerLevel ++;//trolls are less stable
 		decideHemoCaste(player);

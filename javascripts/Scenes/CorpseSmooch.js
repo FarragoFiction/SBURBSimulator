@@ -22,7 +22,7 @@ function CorpseSmooch(){
 	}
 
 	this.renderContent = function(div){
-		div.append(this.content());
+		div.append(this.contentForRender());
 		for(var i = 0; i<this.dreamersToRevive.length; i++){
 			this.renderForPlayer(div, this.dreamersToRevive[i]);
 		}
@@ -35,6 +35,7 @@ function CorpseSmooch(){
 		d.murderMode = false;
 		d.grimDark = false;
 		d.triggerLevel = 1;
+		d.victimBlood = null; //clean face
 	}
 	
 	this.makeDead = function(d){
@@ -119,7 +120,37 @@ function CorpseSmooch(){
 			div.append(canvasHTML);
 			var canvasDiv = document.getElementById("canvas"+ divID);
 			this.drawCorpseSmooch(canvasDiv, deadPlayer, royalty, 1000)
+		}else{
+			this.makeDead(deadPlayer); //dream self dies, too
 		}
+	}
+	
+	//don't actually bring themt o life yet, cause it gets rid of grimdark/murdermode etc.
+	this.contentForRender = function(){
+		var ret = "";
+		var combo = 0;
+		for(var i = 0; i<this.dreamersToRevive.length; i++){
+			var d = this.dreamersToRevive[i];
+			//have best friend mac on you.
+			var royalty = this.getRoyalty(d);
+
+			if(royalty){
+				royalty.triggerLevel ++;
+				ret += " The " + royalty.htmlTitle() + ", as a member of the royalty of " + royalty.moon + ", administers the universal remedy for the unawakened ";
+				ret += " to the " + d.htmlTitle() + ". Their dream self takes over on " + d.moon + ". ";
+				//this.makeAlive(d);
+				combo ++;
+			}else{
+				ret += d.htmlTitle() + "'s corpse waits patiently for the kiss of life. But nobody came. ";
+				ret += " Their dream self dies as well. ";
+				//this.makeDead(d);
+			}
+		}
+		if(combo > 1){
+			ret += combo +"X CORPSEMOOCH COMBO!!!";
+		}
+		//x times corpse smooch combo
+		return ret;
 	}
 
 	//prefer to be smooched by prince who doesn't hate you, or person who likes you best.

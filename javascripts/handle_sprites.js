@@ -662,7 +662,8 @@ function drawSpriteTurnways(canvas, player, repeatTime, isRepeat){
 
 function makeRenderingSnapshot(player){
 	var ret = new PlayerSnapshot();
-  ret.grimDark = player.grimDark;
+	ret.grimDark = player.grimDark;
+	ret.victimBlood = player.victimBlood;
 	ret.murderMode = player.murderMode;
 	ret.dead = player.dead;
 	ret.isTroll = player.isTroll
@@ -742,7 +743,7 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
 	   bloodPuddle(canvas, player);
   }
   playerToSprite(canvas,player);
-
+  bloody_face(canvas, player)//not just for murder mode, because you can kill another player if THEY are murder mode.
   if(player.murderMode == true){
 	  scratch_face(canvas, player);
   }
@@ -803,6 +804,20 @@ function scratch_face(canvas, player){
 	var height = img.height;
 	ctx.drawImage(img,width/6,height/4,width,height);
 	swapColors(canvas, "#440a7f", player.bloodColor); //it's their own blood
+}
+
+//not just murder mode, you could have killed a murder mode player.
+function bloody_face(canvas, player){
+	if(player.victimBlood){
+		ctx = canvas.getContext('2d');
+		var imageString = "bloody_face.png"
+		addImageTag(imageString)
+		var img=document.getElementById(imageString);
+		var width = img.width;
+		var height = img.height;
+		ctx.drawImage(img,width/6,height/4,width,height);
+		swapColors(canvas, "#440a7f", player.victimBlood); //it's not their own blood
+	}
 }
 
 //i think laziness is why regular hair isn't drawn centered right
