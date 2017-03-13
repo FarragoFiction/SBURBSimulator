@@ -820,6 +820,16 @@ function bloody_face(canvas, player){
 	}
 }
 
+function drawDiamond(canvas){
+	ctx = canvas.getContext('2d');
+		var imageString = "Moirail.png"
+		addImageTag(imageString)
+		var img=document.getElementById(imageString);
+		var width = img.width;
+		var height = img.height;
+		ctx.drawImage(img,0,0,width,height);
+}
+
 //i think laziness is why regular hair isn't drawn centered right
 //regular adult sprite isn't the right size.
 function babyHair(canvas, player){
