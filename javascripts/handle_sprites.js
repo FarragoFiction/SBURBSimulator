@@ -585,12 +585,12 @@ function drawRelationshipChat(canvas, player1, player2, chat, repeatTime){
 	//drawBG(textSpriteBuffer, "#ff9999", "#ff00ff") //test that it's actually being rendered.
 	//p1 on left, chat in middle, p2 on right and flipped turnways.
 	setTimeout(function(){
-			copyTmpCanvasToRealCanvasAtPos(canvas, r1SpriteBuffer,-100,0)
-			copyTmpCanvasToRealCanvasAtPos(canvas, r2SpriteBuffer,650,0)
-			copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,-100,0)
-			copyTmpCanvasToRealCanvasAtPos(canvas, p2SpriteBuffer,650,0)//where should i put this?
-			copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,230,0)
-			copyTmpCanvasToRealCanvasAtPos(canvas, textSpriteBuffer,244,51)
+		copyTmpCanvasToRealCanvasAtPos(canvas, r1SpriteBuffer,0,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, r2SpriteBuffer,600,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,-100,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, p2SpriteBuffer,650,0)//where should i put this?
+		copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,230,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, textSpriteBuffer,244,51)
 		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
 }
 
@@ -876,32 +876,32 @@ function bloody_face(canvas, player){
 
 function drawDiamond(canvas){
 	ctx = canvas.getContext('2d');
-		var imageString = "Moirail.png"
-		addImageTag(imageString)
-		var img=document.getElementById(imageString);
-		var width = img.width;
-		var height = img.height;
-		ctx.drawImage(img,0,0,width,height);
+	var imageString = "Moirail.png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,0,0,width,height);
 }
 
 function drawHeart(canvas){
 	ctx = canvas.getContext('2d');
-		var imageString = "Matesprit.png"
-		addImageTag(imageString)
-		var img=document.getElementById(imageString);
-		var width = img.width;
-		var height = img.height;
-		ctx.drawImage(img,0,0,width,height);
+	var imageString = "Matesprit.png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,0,0,width,height);
 }
 
 function drawSpade(canvas){
 	ctx = canvas.getContext('2d');
-		var imageString = "Kismesis.png"
-		addImageTag(imageString)
-		var img=document.getElementById(imageString);
-		var width = img.width;
-		var height = img.height;
-		ctx.drawImage(img,0,0,width,height);
+	var imageString = "Kismesis.png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,0,0,width,height);
 }
 
 //i think laziness is why regular hair isn't drawn centered right

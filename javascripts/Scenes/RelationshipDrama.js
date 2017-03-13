@@ -23,11 +23,9 @@ function RelationshipDrama(){
 	this.confessFeelings = function(div, player,crush){
 		debug("confession!!!")
 		var relationship = player.getRelationshipWith(crush);
-		var divID = (div.attr("id")) + "_" + player.chatHandle+"confess_crush_"+crush.chatHandle;
-		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
-		div.append(canvasHTML);
+		
 		//different format for canvas code
-		var canvasDiv = document.getElementById("canvas"+ divID);
+		
 		var chatText = "";
 		var player1 = player;
 		var player2 = crush;
@@ -39,7 +37,10 @@ function RelationshipDrama(){
 			div.append(narration);
 			return;
 		}
-
+		var divID = (div.attr("id")) + "_" + player.chatHandle+"confess_crush_"+crush.chatHandle;
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		var canvasDiv = document.getElementById("canvas"+ divID);
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
 
@@ -80,11 +81,7 @@ function RelationshipDrama(){
 	//or on crushee.
 	this.relationshipAdvice = function(div,player,crush){
 		var relationship = player.getRelationshipWith(crush);
-		var divID = (div.attr("id")) + "_" + player.chatHandle+"advice_crush_"+crush.chatHandle;
-		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
-		div.append(canvasHTML);
-		//different format for canvas code
-		var canvasDiv = document.getElementById("canvas"+ divID);
+		
 
 		var chatText = "";
 		var player1 = player;
@@ -99,6 +96,12 @@ function RelationshipDrama(){
 			div.append(narration);
 			return;
 		}
+		
+		var divID = (div.attr("id")) + "_" + player.chatHandle+"advice_crush_"+crush.chatHandle;
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		//different format for canvas code
+		var canvasDiv = document.getElementById("canvas"+ divID);
 		player.triggerLevel += -3;  //talking about it helps.
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
@@ -202,11 +205,7 @@ function RelationshipDrama(){
 		var relationship = player.getRelationshipWith(jerk);
 		relationship.drama = false; //it is consumed.
 		relationship.old_type = relationship.saved_type;
-		var divID = (div.attr("id")) + "_" + player.chatHandle+"vent_jerk_"+jerk.chatHandle;
-		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
-		div.append(canvasHTML);
-		//different format for canvas code
-		var canvasDiv = document.getElementById("canvas"+ divID);
+		
 
 		var chatText = "";
 		var player1 = player;
@@ -222,6 +221,11 @@ function RelationshipDrama(){
 			div.append(narration);
 			return;
 		}
+		var divID = (div.attr("id")) + "_" + player.chatHandle+"vent_jerk_"+jerk.chatHandle;
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		//different format for canvas code
+		var canvasDiv = document.getElementById("canvas"+ divID);
 		player.triggerLevel += -3;  //talking about it helps.
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
@@ -252,14 +256,8 @@ function RelationshipDrama(){
 		var relationship = player.getRelationshipWith(jerk);
 		relationship.drama = false; //it is consumed.
 		relationship.old_type = relationship.saved_type;
-		var divID = (div.attr("id")) + "_" + player.chatHandle+"antagonize_jerk_"+jerk.chatHandle;
-		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
-		div.append(canvasHTML);
-		//different format for canvas code
-		var canvasDiv = document.getElementById("canvas"+ divID);
-
 		
-
+		
 
 		if(jerk.dead == true){
 			var narration = "<br>The " + player.htmlTitle() + " used to think that the " + relationship.target.htmlTitle() + " was ";
@@ -268,7 +266,11 @@ function RelationshipDrama(){
 			div.append(narration);
 			return;
 		}
-
+		var divID = (div.attr("id")) + "_" + player.chatHandle+"antagonize_jerk_"+jerk.chatHandle;
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		var canvasDiv = document.getElementById("canvas"+ divID);
+		//different format for canvas code
 		var chatText = "";
 		var player1 = player;
 		var player2 = jerk;
