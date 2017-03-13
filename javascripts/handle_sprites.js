@@ -586,7 +586,7 @@ function drawRelationshipChat(canvas, player1, player2, chat, repeatTime){
 	//p1 on left, chat in middle, p2 on right and flipped turnways.
 	setTimeout(function(){
 		copyTmpCanvasToRealCanvasAtPos(canvas, r1SpriteBuffer,0,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, r2SpriteBuffer,600,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, r2SpriteBuffer,650,0)
 		copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,-100,0)
 		copyTmpCanvasToRealCanvasAtPos(canvas, p2SpriteBuffer,650,0)//where should i put this?
 		copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,230,0)
