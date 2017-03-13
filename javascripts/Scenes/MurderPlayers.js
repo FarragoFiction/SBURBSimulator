@@ -95,11 +95,44 @@ function MurderPlayers(){
 		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,x,0) 
 	}
 	
+	//random Auspistice settles their shit down.  this will probably be pretty rare.
+	this.renderClubs = function(div, murderer, victim, club){
+		debug("OMG, clubs happened.")
+		var divID = (div.attr("id")) + "_" + diamond.chatHandle;
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		var canvas = document.getElementById("canvas"+ divID);
+		
+		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawSprite(pSpriteBuffer,murderer,1000)
+		
+		var vSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawSprite(pSpriteBuffer,victim,1000)
+
+		var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawSpriteTurnways(dSpriteBuffer,club,1000)  //facing non-middle leafs
+
+
+		if(murderer.isTroll == true || diamond.isTroll == true || club.isTroll == true){  //humans have regular romance, but if even one is a troll, this is romance.
+			//alert("diamonds")
+			var diSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+			drawClub(diSpriteBuffer,1000) //Auspisticism
+			copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,75,0)
+		}
+		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, vSpriteBuffer,x,50) 
+		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,x,100) 
+	}
+	
 	this.contentForRender = function(div){
 		var livePlayers = this.playerList; //just because they are alive doesn't mean they are in the medium
 		for(var i = 0; i<this.murderers.length; i++){
 			var m = this.murderers[i];
 			var worstEnemy = m.getWorstEnemyFromList(availablePlayers);
+			var living = findLivingPlayers(players)
+			removeFromArray(worstEnemy, living)
+			var ausp = getRandomElementFromArray(living)
+			var notEnemy = m.getWorstEnemyFromList(availablePlayers);
 			removeFromArray(m, availablePlayers);
 			var ret = "";
 			if(worstEnemy && worstEnemy.dead == false){
@@ -127,6 +160,18 @@ function MurderPlayers(){
 					this.renderDiamonds(div, m, worstEnemy);
 					var r = m.getRelationshipWith(worstEnemy);
 					r.value = 1;
+				}else if(ausp != null && r.type() == r.badBig){  //they hate you back....
+					///auspitism, but who is middle leaf?
+					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
+					ret += "(who hates them back just as much), but instead is interupted by the " + aus.htmlTitle() + ", who convinces everyone to settle their shit down. ";
+					m.murderMode = false;
+					m.triggerLevel = 1;
+					this.renderClubs(div, m, worstEnemy,ausp);
+					var r = m.getRelationshipWith(ausp); //neutral to middle leaf, but unchanged about each other.
+					r.value = 1;
+					var r2 = worstEnemy.getRelationshipWith(ausp);
+					r2.value = 1;
+
 				}else if(worstEnemy.power < m.power*2){  //more likely to kill enemy than be killed. element of surprise
 					m.increasePower();
 					

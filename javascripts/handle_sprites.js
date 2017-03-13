@@ -896,6 +896,16 @@ function drawHeart(canvas){
 
 function drawSpade(canvas){
 	ctx = canvas.getContext('2d');
+	var imageString = "Auspisticism.png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,0,0,width,height);
+}
+
+function drawSpade(canvas){
+	ctx = canvas.getContext('2d');
 	var imageString = "Kismesis.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
