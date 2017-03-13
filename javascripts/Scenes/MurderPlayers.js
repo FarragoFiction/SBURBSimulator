@@ -30,6 +30,10 @@ function MurderPlayers(){
 				var rm = p.getRelationshipWith(murderer);
 				var rv = p.getRelationshipWith(victim);
 				//more they liked the victim, the more they hate you.
+				if(rv.type() == rv.goodBig){
+					rm.value = -20;
+					ret += " The " + p.htmlTitle() + " is enraged that their crush was killed. ";
+				}
 				if(rv.value > 0){  //iff i actually liked the guy.
 					for(var j = 0; j< rv.value; j++){
 						rm.decrease();
