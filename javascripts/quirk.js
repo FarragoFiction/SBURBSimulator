@@ -14,7 +14,7 @@ function Quirk(){
 	//take an input string and quirkify it.
 	this.translate = function(input){
 		var ret = input;
-		//ret = this.handleCapitilization(ret);
+		ret = this.handleCapitilization(ret); //i originally had this line commented out. Why? It caused some quirks to not work (like replacing "E" with 3, but the sentence wasn't allCAPS yet)
 		ret = this.handlePunctuation(ret);  //don't want to accidentally murder smileys
 		ret = this.handleReplacements(ret);
 		ret = this.handleReplacementsIgnoreCase(ret);
