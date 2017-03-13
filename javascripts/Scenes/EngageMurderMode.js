@@ -213,7 +213,7 @@ function EngageMurderMode(){
 	
 	this.chat = function(div){
 		var repeatTime = 1000;
-		
+		var livePlayers = findLivingPlayers(players);
 		var player1 = this.player;
 		var player2 = player1.getWorstEnemyFromList(livePlayers);
 		if(player2 == null){
@@ -221,7 +221,7 @@ function EngageMurderMode(){
 		}
 		var canvasHTML = "<br><canvas id='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
-		var livePlayers = findLivingPlayers(players);
+		
 		var canvasDiv = document.getElementById("canvas"+  (div.attr("id")));
 		
 		var chatText = "";
