@@ -103,6 +103,9 @@ function MurderPlayers(){
 					worstEnemy.checkBloodBoost(livePlayers);
 					m.triggerLevel = 1;
 					this.renderDiamonds(div, m, worstEnemy);
+					//don't hate your new diamond buddy
+					var r = m.getRelationshipWith(worstEnemy);
+					r.value = 1;
 					return ret; //don't try to murder. (and also blood powers stop any other potential murders);
 				}
 				var r = worstEnemy.getRelationshipWith(m)
@@ -113,6 +116,8 @@ function MurderPlayers(){
 					m.murderMode = false;
 					m.triggerLevel = 1;
 					this.renderDiamonds(div, m, worstEnemy);
+					var r = m.getRelationshipWith(worstEnemy);
+					r.value = 1;
 				}else if(worstEnemy.power < m.power*2){  //more likely to kill enemy than be killed. element of surprise
 					m.increasePower();
 					
