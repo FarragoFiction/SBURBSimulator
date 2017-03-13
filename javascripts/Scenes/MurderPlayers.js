@@ -135,7 +135,7 @@ function MurderPlayers(){
 					ret += ",but instead gets murdered first, in self-defense. ";
 					m.dead = true;
 					worstEnemy.victimBlood = m.bloodColor;
-					this.renderMurder(worstEnemy, m);
+					this.renderMurder(div,worstEnemy, m);
 				}
 			}else{
 				ret += " The " + m.htmlTitle() + " can't find anybody they hate enough to murder. They calm down a little. ";
