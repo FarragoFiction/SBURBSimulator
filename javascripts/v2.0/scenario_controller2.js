@@ -41,8 +41,8 @@ window.onload = function() {
 	makeGuardians(); //after entry order established
 
 	intro();
-	//debugRelationshipDrama();
-	debugTriggerLevel();
+	debugRelationshipDrama();
+	//debugTriggerLevel();
 	//debugGrimDark();
 	//debugJackScheme();
 	//debugLevelTheHellUp();
