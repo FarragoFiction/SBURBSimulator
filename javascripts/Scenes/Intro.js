@@ -96,7 +96,8 @@ function Intro(){
 	this.renderContent = function(div,i){
 		var narration = "<br>The " + this.player.htmlTitle() + " enters the game " + indexToWords(i) + ". ";
 		
-		narration += "They have many INTERESTS, including " +this.player.interest1 + " and " + this.player.interest2 + ". ";
+		narration += " They have many INTERESTS, including " +this.player.interest1 + " and " + this.player.interest2 + ". ";
+		narration += " Their chat handle is " + this.player.chatHandle + ". "
 		if(this.player.leader){
 			narration += "They are definitely the leader.";
 		}
