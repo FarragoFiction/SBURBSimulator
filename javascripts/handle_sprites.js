@@ -540,6 +540,60 @@ function writeLevels(canvas, player){
 	}
 }
 
+function drawRelationshipChat(canvas, player1, player2, chat, repeatTime){
+	var canvasSpriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
+	ctx = canvasSpriteBuffer.getContext('2d');
+	var imageString = "pesterchum.png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,0,0,width,height);
+
+	var p1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+	drawSprite(p1SpriteBuffer,player1,repeatTime)
+
+	var p2SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+	drawSpriteTurnways(p2SpriteBuffer,player2,repeatTime)
+
+	//don't need buffer for text?
+	var textSpriteBuffer = getBufferCanvas(document.getElementById("chat_text_template"));
+	var introText = "-- " +player1.chatHandle + " [" + player1.chatHandleShort()+ "] began pestering ";
+	introText += player2.chatHandle + " [" + player2.chatHandleShort()+ "] --";
+	drawChatText(textSpriteBuffer,player1, player2, introText, chat)
+	
+	//heart or spades (moirallegence doesn't get confessed, it's more actiony)  spades is trolls only
+	
+	
+	var r1 = player1.getRelationshipWith(player2);
+	var r2 = player2.getRelationshipWith(player1);
+	var r1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+	var r2SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+	if(r1.type() == r1.goodBig){
+		drawHeart(canvas, r1SpriteBuffer)
+	}else if(r1.type() == r1.badBig && player1.isTroll == true){
+		drawSpade(canvas, r1SpriteBuffer)
+	}
+	
+	if(r2.type() == r2.goodBig){
+		drawHeart(canvas, r2SpriteBuffer)
+	}else if(r2.type() == r2.badBig && player2.isTroll == true){
+		drawSpade(canvas, r2SpriteBuffer)
+	}
+	
+	
+	//drawBG(textSpriteBuffer, "#ff9999", "#ff00ff") //test that it's actually being rendered.
+	//p1 on left, chat in middle, p2 on right and flipped turnways.
+	setTimeout(function(){
+			copyTmpCanvasToRealCanvasAtPos(canvas, r1SpriteBuffer,-100,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, r2SpriteBuffer,650,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,-100,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, p2SpriteBuffer,650,0)//where should i put this?
+			copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,230,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, textSpriteBuffer,244,51)
+		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
+}
+
 //need to parse the text to figure out who is talking to determine color for chat.
 function drawChat(canvas, player1, player2, chat, repeatTime){
 	//debug("drawing chat")
@@ -823,6 +877,26 @@ function bloody_face(canvas, player){
 function drawDiamond(canvas){
 	ctx = canvas.getContext('2d');
 		var imageString = "Moirail.png"
+		addImageTag(imageString)
+		var img=document.getElementById(imageString);
+		var width = img.width;
+		var height = img.height;
+		ctx.drawImage(img,0,0,width,height);
+}
+
+function drawHeart(canvas){
+	ctx = canvas.getContext('2d');
+		var imageString = "Matesprit.png"
+		addImageTag(imageString)
+		var img=document.getElementById(imageString);
+		var width = img.width;
+		var height = img.height;
+		ctx.drawImage(img,0,0,width,height);
+}
+
+function drawSpade(canvas){
+	ctx = canvas.getContext('2d');
+		var imageString = "Kismesis.png"
 		addImageTag(imageString)
 		var img=document.getElementById(imageString);
 		var width = img.width;

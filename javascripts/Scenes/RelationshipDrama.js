@@ -72,7 +72,7 @@ function RelationshipDrama(){
 
 		relationship.drama = false; //it is consumed.
 		relationship.old_type = relationship.saved_type;
-		drawChat(canvasDiv, player1, player2, chatText, 1000);
+		drawRelationshipChat(canvasDiv, player1, player2, chatText, 1000);
 	}
 
 	//goes different if best friend has crush on player
@@ -288,7 +288,7 @@ function RelationshipDrama(){
 			chatText += chatLine(player2Start, player2,"Holy shit. ");
 			chatText += chatLine(player2Start, player2,"And here I thought you were " + this.generateNewOpinion(r2) + ".");
 		}
-		drawChat(canvasDiv, player1, player2, chatText, 1000);
+		drawRelationshipChat(canvasDiv, player1, player2, chatText, 1000);
 	}
 
 	this.getLivingBestFriendBesidesCrush = function(player,crush){
