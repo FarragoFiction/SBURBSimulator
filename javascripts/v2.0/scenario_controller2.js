@@ -28,6 +28,7 @@ var timeTillReckoning = getRandomInt(10,30);
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
 	debug("more varieites of introduction")
+	debug("after 3.0, definitely add a new html page where you can create characters and then run a sim with them. ")
 	debug("if i wanter rending to be more complex than just wait a second, make an object that keeps track of all parts of a rendering and only writes it to the canas when all are loaded");
 	debug("render baby sprites and smaller hair, guardians, too");
    init();
