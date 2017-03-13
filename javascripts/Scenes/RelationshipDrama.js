@@ -246,11 +246,11 @@ function RelationshipDrama(){
 				chatText += chatLine(player1Start, player1,"Yeah, I kind of feel like an asshole, now");
 			}
 		}else{
-			if(r2jerk.type() = r2jerk.badBig){
+			if(r2jerk.type() == r2jerk.badBig){
 				chatText += chatLine(player2Start, player2,"Oh my god, I know, right?");
 				chatText += chatLine(player2Start, player2,"I can't freaking stand them.");
 				chatText += chatLine(player1Start, player1,"Represent.");
-			}else if(r2jerk.type() = r2jerk.goodBig){
+			}else if(r2jerk.type() == r2jerk.goodBig){
 				chatText += chatLine(player2Start, player2,"!");
 				chatText += chatLine(player2Start, player2,"Really?");
 				chatText += chatLine(player2Start, player2,"I like them okay...");
