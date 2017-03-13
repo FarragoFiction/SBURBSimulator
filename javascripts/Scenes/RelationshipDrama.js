@@ -245,6 +245,31 @@ function RelationshipDrama(){
 			}else{
 				chatText += chatLine(player1Start, player1,"Yeah, I kind of feel like an asshole, now");
 			}
+		}else{
+			if(r2jerk.type() = r2jerk.badBig){
+				chatText += chatLine(player2Start, player2,"Oh my god, I know, right?");
+				chatText += chatLine(player2Start, player2,"I can't freaking stand them.");
+				chatText += chatLine(player1Start, player1,"Represent.");
+			}else if(r2jerk.type() = r2jerk.goodBig){{
+				chatText += chatLine(player2Start, player2,"!");
+				chatText += chatLine(player2Start, player2,"Really?");
+				chatText += chatLine(player2Start, player2,"I like them okay...");
+				chatText += chatLine(player1Start, player1,"Great, now I have to question all your life decisions.");
+			}else{
+				chatText += chatLine(player2Start, player2,"Eh, they're okay.");
+				if(player2.isTroll == false && player1.isTroll == true){
+					chatText += chatLine(player2Start, player2,"Wait!  Is this a spades thing? That's a thing trolls do, right?");
+					chatText += chatLine(player1Start, player1,"Oh. My. God. Just because I am a troll doesn't mean I have a black crush on every asshole that passes by.");
+					chatText += chatLine(player2Start, player2,"Geez, sorry...");
+				}else if(player2.isTroll == true && player1.isTroll == false){
+					chatText += chatLine(player2Start, player2,"If that's what you're into, I mean. I can't see it.");
+					chatText += chatLine(player1Start, player1,"Wait, what? Oh! No! Geez, I'm HUMAN, remember!? I do NOT have some weird troll crush on this asshole.");
+					chatText += chatLine(player2Start, player2,"Geez, sorry...");
+				}else{
+					chatText += chatLine(player2Start, player2,"Why do you hate them so much?");
+					chatText += chatLine(player1Start, player1,"I don't know. They just...ugh. They suck. That's all there is to say on the matter.");
+				}
+			}
 		}
 		drawChat(canvasDiv, player1, player2, chatText, 1000);
 
