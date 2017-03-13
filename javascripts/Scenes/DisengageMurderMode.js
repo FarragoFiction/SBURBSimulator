@@ -16,7 +16,7 @@ function DisengageMurderMode(){
 	}
 	
 	this.renderContent = function(div){
-		div.append(this.content());
+		div.append("<br>"+this.content());
 	}
 	
 	this.content = function(){

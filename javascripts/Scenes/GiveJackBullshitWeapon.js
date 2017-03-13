@@ -18,7 +18,7 @@ function GiveJackBullshitWeapon(){
 	}
 	
 	this.renderContent = function(div){
-		div.append(this.content());
+		div.append("<br>"+this.content());
 	}
 	
 	this.convertPlayerNumberToWords = function(){

@@ -22,7 +22,7 @@ function CorpseSmooch(){
 	}
 
 	this.renderContent = function(div){
-		div.append(this.contentForRender());
+		div.append("<br>"+this.contentForRender());
 		for(var i = 0; i<this.dreamersToRevive.length; i++){
 			this.renderForPlayer(div, this.dreamersToRevive[i]);
 		}

@@ -18,7 +18,7 @@ function BeTriggered(){
 	}
 	
 	this.renderContent = function(div){
-		div.append(this.content());
+		div.append("<br>"+this.content());
 	}
 	
 	this.IsPlayerTriggered = function(player){

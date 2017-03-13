@@ -29,7 +29,7 @@ function StartDemocracy(){
 	}
 	
 	this.renderContent = function(div){
-		div.append(this.content());
+		div.append("<br>"+this.content());
 	}
 	
 	//a player has to be not busy to be your friend right now.

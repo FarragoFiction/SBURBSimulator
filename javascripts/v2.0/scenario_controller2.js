@@ -41,7 +41,7 @@ window.onload = function() {
 
 	intro();
 	//debugRelationshipDrama();
-	debugTriggerLevel();
+	//debugTriggerLevel();
 	//debugGrimDark();
 	//debugJackScheme();
 	//debugLevelTheHellUp();
@@ -273,7 +273,7 @@ function decideLusus(player){
 }
 
 function decideTroll(player){
-	if(Math.random() > 0.25 ){
+	if(Math.random() > 0.55 ){
 		player.isTroll = true;
 		player.triggerLevel ++;//trolls are less stable
 		decideHemoCaste(player);

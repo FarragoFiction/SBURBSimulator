@@ -17,7 +17,7 @@ function PrepareToExileQueen(){
 	}
 	
 	this.renderContent = function(div){
-		div.append(this.content());
+		div.append("<br>"+this.content());
 	}
 	
 	this.trigger = function(playerList){

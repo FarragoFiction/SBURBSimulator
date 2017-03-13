@@ -44,7 +44,7 @@ function Aftermath(){
 
 		for(var i = 0; i< dead.length; i++){
 			var p = dead[i];
-			ret += "<br> The " + p.htmlTitle() + " died " + p.causeOfDeath + ". ";
+			ret += "<br> The " + p.htmlTitleBasic() + " died " + p.causeOfDeath + ". ";
 			var friend = p.getWhoLikesMeBestFromList(living);
 			var enemy = p.getWhoLikesMeLeastFromList(living);
 			if(friend){

@@ -20,7 +20,7 @@ function GodTierRevival(){
 	}
 	
 	this.renderContent = function(div){
-		div.append(this.content());
+		div.append("<br>"+this.content());
 		var repeatTime = 1000;
 		var divID = (div.attr("id")) + "_tiger";
 		var ch = canvasHeight;
