@@ -163,7 +163,7 @@ function MurderPlayers(){
 				}else if(ausp != null && r.type() == r.badBig){  //they hate you back....
 					///auspitism, but who is middle leaf?
 					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
-					ret += "(who hates them back just as much), but instead is interupted by the " + aus.htmlTitle() + ", who convinces everyone to settle their shit down. ";
+					ret += "(who hates them back just as much), but instead is interupted by the " + ausp.htmlTitle() + ", who convinces everyone to settle their shit down. ";
 					m.murderMode = false;
 					m.triggerLevel = 1;
 					this.renderClubs(div, m, worstEnemy,ausp);
