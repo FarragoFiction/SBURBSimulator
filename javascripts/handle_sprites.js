@@ -570,15 +570,15 @@ function drawRelationshipChat(canvas, player1, player2, chat, repeatTime){
 	var r1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 	var r2SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 	if(r1.type() == r1.goodBig){
-		drawHeart(canvas, r1SpriteBuffer)
+		drawHeart(r1SpriteBuffer)
 	}else if(r1.type() == r1.badBig && player1.isTroll == true){
-		drawSpade(canvas, r1SpriteBuffer)
+		drawSpade(r1SpriteBuffer)
 	}
 	
 	if(r2.type() == r2.goodBig){
-		drawHeart(canvas, r2SpriteBuffer)
+		drawHeart(r2SpriteBuffer)
 	}else if(r2.type() == r2.badBig && player2.isTroll == true){
-		drawSpade(canvas, r2SpriteBuffer)
+		drawSpade(r2SpriteBuffer)
 	}
 	
 	

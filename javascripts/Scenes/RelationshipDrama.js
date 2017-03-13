@@ -21,6 +21,7 @@ function RelationshipDrama(){
 
 
 	this.confessFeelings = function(div, player,crush){
+		debug("confession!!!")
 		var relationship = player.getRelationshipWith(crush);
 		var divID = (div.attr("id")) + "_" + player.chatHandle+"confess_crush_"+crush.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
@@ -197,9 +198,10 @@ function RelationshipDrama(){
 	//or on jerk.
 	//if no one to vent about, narrate, but mention lonliness. no trigger reduction.
 	this.ventAboutJerk = function(div,player,jerk){
+		
+		var relationship = player.getRelationshipWith(jerk);
 		relationship.drama = false; //it is consumed.
 		relationship.old_type = relationship.saved_type;
-		var relationship = player.getRelationshipWith(jerk);
 		var divID = (div.attr("id")) + "_" + player.chatHandle+"vent_jerk_"+jerk.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
@@ -247,6 +249,7 @@ function RelationshipDrama(){
 	//notice if they are dead.
 	this.antagonizeJerk = function(div,player,jerk){
 		debug("antagonizing a jerk.") //is this ever even happening???
+		var relationship = player.getRelationshipWith(jerk);
 		relationship.drama = false; //it is consumed.
 		relationship.old_type = relationship.saved_type;
 		var divID = (div.attr("id")) + "_" + player.chatHandle+"antagonize_jerk_"+jerk.chatHandle;
@@ -255,7 +258,7 @@ function RelationshipDrama(){
 		//different format for canvas code
 		var canvasDiv = document.getElementById("canvas"+ divID);
 
-		var relationship = player.getRelationshipWith(jerk);
+		
 
 
 		if(jerk.dead == true){
@@ -326,14 +329,12 @@ function RelationshipDrama(){
 		for(var j = 0; j<relationships.length; j++){
 			var r = relationships[j];
 			if(r.type() == r.goodBig){
-				//debug("positive drama")
 				if(player.triggerLevel < 1){
 					this.confessFeelings(div, player, r.target)
 				}else{
 					this.relationshipAdvice(div, player, r.target)
 				}
 			}else if(r.type() == r.badBig){
-				//debug("negative drama")
 				if(player.triggerLevel < 2){
 					this.ventAboutJerk(div, player, r.target)
 				}else{
@@ -386,7 +387,6 @@ function RelationshipDrama(){
 	}
 
 	this.renderContent = function(div){
-		//alert("drama!");
 		//div.append(this.content());
 		for(var i = 0; i<this.dramaPlayers.length; i++){
 				var p = this.dramaPlayers[i];
