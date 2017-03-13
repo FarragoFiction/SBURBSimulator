@@ -31,7 +31,7 @@ window.onload = function() {
 	debug("after 3.0, definitely add a new html page where you can create characters and then run a sim with them. ")
 	debug("if i wanter rending to be more complex than just wait a second, make an object that keeps track of all parts of a rendering and only writes it to the canas when all are loaded");
 	debug("refactor sprites to all be at 0,0, because otherwise baby sprites (especially fins) are weird");
-	debug("~~~~~~~~~~~~keep track of relationships? Render Hearts/Diamonds/Spades/Clubs during aftermath as well, maybe? Or maybe just...let it be. ")
+	debug("~~~~~~~~~~~~add heart or spades background to romantic confessions. if player reciprocates, they have bg symbol, too ")
    init();
 
 	if(!debugMode){

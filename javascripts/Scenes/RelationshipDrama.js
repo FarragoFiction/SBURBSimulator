@@ -246,6 +246,7 @@ function RelationshipDrama(){
 
 	//notice if they are dead.
 	this.antagonizeJerk = function(div,player,jerk){
+		debug("antagonizing a jerk.") //is this ever even happening???
 		relationship.drama = false; //it is consumed.
 		relationship.old_type = relationship.saved_type;
 		var divID = (div.attr("id")) + "_" + player.chatHandle+"antagonize_jerk_"+jerk.chatHandle;
@@ -331,7 +332,7 @@ function RelationshipDrama(){
 				}else{
 					this.relationshipAdvice(div, player, r.target)
 				}
-			}else if(r.type() == r.bigBad){
+			}else if(r.type() == r.badBig){
 				//debug("negative drama")
 				if(player.triggerLevel < 2){
 					this.ventAboutJerk(div, player, r.target)
