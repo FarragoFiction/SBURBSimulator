@@ -894,7 +894,7 @@ function drawHeart(canvas){
 	ctx.drawImage(img,0,0,width,height);
 }
 
-function drawSpade(canvas){
+function drawClub(canvas){
 	ctx = canvas.getContext('2d');
 	var imageString = "Auspisticism.png"
 	addImageTag(imageString)
