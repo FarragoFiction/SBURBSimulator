@@ -33,8 +33,10 @@ function MurderPlayers(){
 				if(rv.type() == rv.goodBig){
 					rm.value = -20;
 					ret += " The " + p.htmlTitle() + " is enraged that their crush was killed. ";
-				}
-				if(rv.value > 0){  //iff i actually liked the guy.
+				}else if(rv.type() == rv.badBig){
+					rm.increase();
+					ret += " The " + p.htmlTitle() + " is pretty happy that their enemy was killed. ";
+				}else if(rv.value > 0){  //iff i actually liked the guy.
 					for(var j = 0; j< rv.value; j++){
 						rm.decrease();
 					}
