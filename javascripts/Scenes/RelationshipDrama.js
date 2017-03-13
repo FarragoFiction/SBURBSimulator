@@ -268,6 +268,9 @@ function RelationshipDrama(){
 				}else{
 					chatText += chatLine(player2Start, player2,"Why do you hate them so much?");
 					chatText += chatLine(player1Start, player1,"I don't know. They just...ugh. They suck. That's all there is to say on the matter.");
+					if(player2.isTroll == true && player1.isTroll == true){
+						chatText += chatLine(player2Start, player2,"Whatever floats your boat.");
+					}
 				}
 			}
 		}
