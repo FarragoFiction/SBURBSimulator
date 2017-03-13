@@ -23,6 +23,10 @@ function Intro(){
 			chatText += chatLine(player2Start, player2,"Social obligation complete. Goodbye.");
 			return chatText;
 	}
+	
+	var getNormalChat = function(div){
+		
+	}
 
 	//TODO consider making this a method in handleSprites, so ALL scenes can get at it.
 	//make a pesterchum skin and stick text into it. How much can I fit?
