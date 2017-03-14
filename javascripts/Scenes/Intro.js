@@ -76,6 +76,59 @@ function Intro(){
 		return chatText;
 	}
 
+	this.terribleChat = function(player1, player2){
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var r1 = player1.getRelationshipWith(player2);
+		var r2 = player2.getRelationshipWith(player1);
+
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var chatText = "";
+		chatText += chatLine(player1Start, player1,"I am fucking FINALLY in the medium!");
+
+		chatText += chatLine(player2Start, player2,"Good, what's it like?");
+		chatText += chatLine(player1Start, player1,"It's the " + player1.land +".");
+		chatText += chatLine(player1Start, player1,"And I am going to rule it with an iron fist.");
+		chatText +=chatLine(player2Start, player2,"lol");
+		var born = "born"
+		if(player1.isTroll == true){
+			born = "hatched"
+		}
+		chatText += chatLine(player1Start, player1,"Seriously, I was " + born + " for this.");
+		chatText += chatLine(player1Start, player1,"I even prototyped my kernel with a " + player1.kernel_sprite +".\n");
+		if(player1.isTroll == true){
+			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
+			chatText += chatLine(player1Start, player1,"Yep! Who better to assist me on my epic quest? ");
+
+		}
+		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
+			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+				chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
+				chatText += chatLine(player1Start, player1, "Fuck you. It will obviously give me a huge edge in this game.");
+			}else{
+				chatText += chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
+				chatText += chatLine(player1Start, player1, "Fuck you. It will obviously give me a huge edge in this game.");
+				chatText += chatLine(player2Start, player2,"Eh.");
+			}
+		}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
+			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+				chatText += chatLine(player2Start, player2,"What did that do?");
+				chatText += chatLine(player1Start, player1, "Obviously give me an advantage.");
+				chatText += chatLine(player2Start, player2,"You know, I think you're right.");
+			}else{
+				chatText += chatLine(player2Start, player2,"What did that do?");
+				chatText += chatLine(player1Start, player1, "Obviously give me an advantage.");
+				chatText += chatLine(player2Start, player2,"Huh. Probably. ");
+			}
+		}else{
+			chatText += chatLine(player2Start, player2,"What did that do?");
+			chatText += chatLine(player1Start, player1, "I'm not sure NOW, but I just know it'll turn out to have been a good idea.");
+			chatText += chatLine(player2Start, player2,"Huh.");
+		}
+		return chatText;
+	}
+
 	this.cultureChat = function(player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
@@ -130,6 +183,10 @@ function Intro(){
 		debug("TODO: have different intros based on interests, classpect and species")
 		if(playerLikesCulture(player1)){
 			return this.cultureChat(player1, player2);
+		}
+
+		if(playerLikesTerrible(player1)){
+			return this.terribleChat(player1, player2);
 		}
 		/*
 		interests = interests.concat(music_interests);
