@@ -11,6 +11,24 @@ function debugLevelTheHellUp(){
 	}
 }
 
+function debugRoyalRumble(){
+	alert("royal rumble!")
+	for(var j = 0; j<players.length; j++){
+		var p = players[j]
+		players[j].isTroll = true; //only .evel 2 players up
+		players[j].bloodColor = "#99004d"
+		decideLusus(p);
+		p.kernel_sprite = p.lusus;
+		p.relationships = [];
+		p.quirk = null;
+		p.generateRelationships(players);  //heiresses hate each other
+		p.quirk = randomTrollSim(p)
+		p.quirk = randomHumanSim(p);
+		
+	}
+
+}
+
 function debugGrimDark(){
 	for(var j = 0; j<2; j++){
 		players[j].grimDark = true; //only .evel 2 players up

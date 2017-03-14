@@ -40,9 +40,10 @@ window.onload = function() {
 	if(!debugMode){
 		randomizeEntryOrder();
 	}
+	debugRoyalRumble();
 	//authorMessage();
 	makeGuardians(); //after entry order established
-
+	
 	intro();
 	//debugRelationshipDrama();
 	//debugTriggerLevel();
@@ -298,9 +299,9 @@ function makeGuardians(){
 			var guardian = randomPlayerWithoutRemoving();
 			guardian.isTroll = player.isTroll;
 			if(guardian.isTroll){
-				guardian.quirk = randomTrollSim()
+				guardian.quirk = randomTrollSim(guardian)
 			}else{
-				guardian.quirk = randomHumanSim();
+				guardian.quirk = randomHumanSim(guardian);
 			}
 			guardian.quirk.favoriteNumber = player.quirk.favoriteNumber;
 			guardian.bloodColor = player.bloodColor;
@@ -338,9 +339,9 @@ function init(){
 		decideTroll(p);
 		p.generateRelationships(players);
 		if(p.isTroll){
-			p.quirk = randomTrollSim(player)
+			p.quirk = randomTrollSim(p)
 		}else{
-			p.quirk = randomHumanSim(player);
+			p.quirk = randomHumanSim(p);
 		}
 	}
 
