@@ -70,7 +70,7 @@ function EngageMurderMode(){
 		var chatText = "";
 		chatText += chatLine(player2Start, player2,"Oh my god! Can we NOT do this right now!?")
 		chatText += chatLine(player2Start, player2,"If I can ignore my biological imperitive to murder you right in your stupid face, so can you!")
-		chatText += chatLine(player2Start, player2,"Why the fuck did skaia stick TWO Heirresses in the medium together!?")
+		chatText += chatLine(player2Start, player2,"Why the fuck did skaia stick multiple Heirresses in the medium together!?")
 		chatText += chatLine(player1Start, player1,"See you soon! :)")
 		chatText += chatLine(player1Start, player1,"You asshole!")
 		return chatText;

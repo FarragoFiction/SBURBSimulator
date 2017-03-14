@@ -98,7 +98,7 @@ function MurderPlayers(){
 	//random Auspistice settles their shit down.  this will probably be pretty rare.
 	this.renderClubs = function(div, murderer, victim, club){
 		debug("OMG, clubs happened.")
-		var divID = (div.attr("id")) + "_" + diamond.chatHandle;
+		var divID = (div.attr("id")) + "_" + club.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = document.getElementById("canvas"+ divID);
@@ -113,7 +113,7 @@ function MurderPlayers(){
 		drawSpriteTurnways(dSpriteBuffer,club,1000)  //facing non-middle leafs
 
 
-		if(murderer.isTroll == true || diamond.isTroll == true || club.isTroll == true){  //humans have regular romance, but if even one is a troll, this is romance.
+		if(murderer.isTroll == true || club.isTroll == true || club.isTroll == true){  //humans have regular romance, but if even one is a troll, this is romance.
 			//alert("diamonds")
 			var diSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 			drawClub(diSpriteBuffer,1000) //Auspisticism
