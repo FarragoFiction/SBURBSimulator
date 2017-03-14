@@ -245,7 +245,15 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 	this.generateRelationships = function(friends){
 		for(var i = 0; i<friends.length; i++){
 			if(friends[i] != this){  //No, Karkat, you can't be your own Kismesis.
-				this.relationships.push(randomRelationship(friends[i]));
+				//one time in a random sim two heirresses decided to kill each other and this was so amazing and canon compliant
+				//that it needs to be a thing.
+				var r = randomRelationship(friends[i])
+				if(this.isTroll && this.bloodColor == "99004d" && friends[i].isTroll && friends[i].bloodColor == "99004d"){
+					r.value = -20; //biological imperitive to fight for throne.
+					this.trigger ++;
+					friends[i].trigger ++;
+				}
+				this.relationships.push(r);
 			}
 		}
 	}
