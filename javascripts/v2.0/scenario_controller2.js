@@ -32,6 +32,7 @@ window.onload = function() {
 	debug("if i wanter rending to be more complex than just wait a second, make an object that keeps track of all parts of a rendering and only writes it to the canas when all are loaded");
 	debug("refactor sprites to all be at 0,0, because otherwise baby sprites (especially fins) are weird");
 	debug("sprite for Yx corpse smooch combo")
+	debug("speech bubble for converstion theme? jack/mayor/a player aspect?");
    init();
 
 	if(!debugMode){
