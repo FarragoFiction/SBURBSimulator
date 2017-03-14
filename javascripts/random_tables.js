@@ -146,6 +146,8 @@ function getRandomChatHandle(class_name, aspect,interest1, interest2){
 
 function whatDoPlayersHaveInCommon(player1, player2){
 	debug("TODO: have method for returning a string that the players have in common. interest wise. might be good for relationships.")
+	//either category in general, or can return if they have something specific in common, like singing. (that would be hella rare)
+	//return "smart" if academic. In a sentence, "we're both smart/cultured/musical/domestic/extroverted/etc."
 }
 
 function playerLikesMusic(player){
@@ -158,6 +160,62 @@ function playerLikesMusic(player){
 
 function playerLikesCulture(player){
 		if(culture_interests.indexOf(player.interest1) != -1 || culture_interests.indexOf(player.interest2) != -1 ){
+			return true;
+		}else{
+			return false;
+		}
+}
+
+function playerLikesWriting(player){
+		if(writing_interests.indexOf(player.interest1) != -1 || writing_interests.indexOf(player.interest2) != -1 ){
+			return true;
+		}else{
+			return false;
+		}
+}
+
+function playerLikesPopculture(player){
+		if(pop_culture_interests.indexOf(player.interest1) != -1 || pop_culture_interests.indexOf(player.interest2) != -1 ){
+			return true;
+		}else{
+			return false;
+		}
+}
+
+function playerLikesTechnology(player){
+		if(technology_interests.indexOf(player.interest1) != -1 || technology_interests.indexOf(player.interest2) != -1 ){
+			return true;
+		}else{
+			return false;
+		}
+}
+
+function playerLikesSocial(player){
+		if(social_interests.indexOf(player.interest1) != -1 || social_interests.indexOf(player.interest2) != -1 ){
+			return true;
+		}else{
+			return false;
+		}
+}
+
+function playerLikesRomantic(player){
+		if(romantic_interests.indexOf(player.interest1) != -1 || romantic_interests.indexOf(player.interest2) != -1 ){
+			return true;
+		}else{
+			return false;
+		}
+}
+
+function playerLikesAcademic(player){
+		if(academic_interests.indexOf(player.interest1) != -1 || academic_interests.indexOf(player.interest2) != -1 ){
+			return true;
+		}else{
+			return false;
+		}
+}
+
+function playerLikesComedy(player){
+		if(comedy_interests.indexOf(player.interest1) != -1 || comedy_interests.indexOf(player.interest2) != -1 ){
 			return true;
 		}else{
 			return false;
