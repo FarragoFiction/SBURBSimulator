@@ -34,6 +34,7 @@ window.onload = function() {
 	debug("sprite for Yx corpse smooch combo")
 	debug("more varied romantic rejection convos");
 	debug("speech bubble for converstion theme? jack/mayor/a player aspect?");
+	debug("rainbow godtier be rendered behind regular godtier on revival. lets godtier outfit be seen. makes it look like an aura without having to do edge detection")
    init();
 
 	if(!debugMode){
