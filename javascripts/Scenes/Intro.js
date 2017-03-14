@@ -140,7 +140,6 @@ function Intro(){
 		chatText +=chatLine(player2Start, player2,"lol");
 		chatText += chatLine(player1Start, player1,"Have you made it in, yet?");
 		if(this.playerList.indexOf(player2) != -1){
-			alert("I think there are " +this.playerList.length + " players in the medium already.")
 			chatText +=chatLine(player2Start, player2,"Yep, I'm exploring the " + player2.land + ".");
 			chatText += chatLine(player1Start, player1,"Yay! We're SBURB buddies!");
 		}else{
