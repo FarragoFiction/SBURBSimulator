@@ -28,13 +28,13 @@ function Intro(){
 			chatText += chatLine(player2Start, player2,"Social obligation complete. Goodbye.");
 			return chatText;
 	}
-	
+
 	this.getNormalChat = function(player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
-		
+
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var chatText = "";
@@ -52,7 +52,7 @@ function Intro(){
 		if(player1.isTroll == true){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
-			
+
 		}
 		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
@@ -74,13 +74,13 @@ function Intro(){
 		}
 		return chatText;
 	}
-	
-	this.cultureChat = function(){
+
+	this.cultureChat = function(player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
-		
+
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var chatText = "";
@@ -98,7 +98,7 @@ function Intro(){
 		if(player1.isTroll == true){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
-			
+
 		}
 		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
@@ -121,12 +121,15 @@ function Intro(){
 		}
 		return chatText;
 	}
-	
+
 	this.getChat = function(player1, player2){
 		if(player2.grimDark == true){
 			 return this.grimPlayer2Chat(player1, player2);
 		}
 		debug("TODO: have different intros based on interests, classpect and species")
+		if(playerLikesCulture(player1)){
+			return this.cultureChat(player1, player2);
+		}
 		/*
 		interests = interests.concat(music_interests);
 		interests = interests.concat(culture_interests);
@@ -171,7 +174,7 @@ function Intro(){
 
 		}
 
-		
+
 
 		var chatText = this.getChat(player1,player2);
 		//don't need timeout here.
@@ -181,7 +184,7 @@ function Intro(){
 	//i is so you know entry order
 	this.renderContent = function(div,i){
 		var narration = "<br>The " + this.player.htmlTitle() + " enters the game " + indexToWords(i) + ". ";
-		
+
 		narration += " They have many INTERESTS, including " +this.player.interest1 + " and " + this.player.interest2 + ". ";
 		narration += " Their chat handle is " + this.player.chatHandle + ". "
 		if(this.player.leader){
@@ -190,14 +193,14 @@ function Intro(){
 		if(this.player.godDestiny){
 			narration += " They appear to be destined for greatness. ";
 		}
-		
+
 		if(this.player.dead==true){
 			narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably."
 			div.append(narration);
 			availablePlayers.push(this.player);
 			return;
 		}
-		
+
 		narration += " They boggle vacantly at the " + this.player.land + ". ";
 
 		for(var j = 0; j<this.player.relationships.length; j++){

@@ -144,6 +144,27 @@ function getRandomChatHandle(class_name, aspect,interest1, interest2){
 	return first+second;
 }
 
+function whatDoPlayersHaveInCommon(player1, player2){
+	debug("TODO: have method for returning a string that the players have in common. interest wise. might be good for relationships.")
+}
+
+function playerLikesMusic(player){
+		if(music_interests.indexOf(player.interest1) != -1 || music_interests.indexOf(player.interest2) != -1 ){
+			return true;
+		}else{
+			return false;
+		}
+}
+
+function playerLikesCulture(player){
+		if(culture_interests.indexOf(player.interest1) != -1 || culture_interests.indexOf(player.interest2) != -1 ){
+			return true;
+		}else{
+			return false;
+		}
+}
+
+
 
 
 function getInterestHandle1(class_name,interest){
