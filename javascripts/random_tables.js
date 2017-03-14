@@ -1044,6 +1044,10 @@ var athletic_quirks = [];
 var terrible_quirks = [];
 var fantasy_quirks = [["very","fairy"]];
 var justice_quirks = [];
+
+
+var fish_quirks = [["god","glub"],["god","cod"],["fuck","glub"],["really","reely"],["kill","krill"],["thing","fin"],["well","whale"],["purpose","porpoise"],["better","betta"],["help","kelp"],["see","sea"],["friend","frond"],["crazy","craysea"]];
+
 //not as extreme as a troll quirk, but...
 var conversational_quirks = [["oh my god","omg"],["like", "liek"],["ing","in"],["have to","hafta"], ["want to","wanna"],["going to","gonna"], ["i'm","i am"],["you're","you are"],["we're","we are"],["forever","5ever"]];
 conversational_quirks = conversational_quirks.concat([["don't know", "dunno"],["school","skool"],["the","teh"],["aren't","aint"],["ie","ei"],["though","tho"],["you","u"],["right","rite"]]);

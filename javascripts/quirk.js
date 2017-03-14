@@ -238,7 +238,7 @@ function randomCapitalQuirk(){
 
 }
 //since I'm not gonna list 'em out, have more quirks, and make sure you have certain CATEGORIES of quirk.
-function randomHumanSim(){
+function randomHumanSim(player){
 	var ret = new Quirk();
 	ret.capitalization = getRandomInt(0,2);
 	ret.punctuation = getRandomInt(0,3);
@@ -336,7 +336,7 @@ function addNumberQuirk(ret){
 }
 
 //since I'm not gonna list 'em out, have more quirks, and make sure you have certain CATEGORIES of quirk.
-function randomTrollSim(){
+function randomTrollSim(player){
 	var ret = new Quirk();
 	ret.capitalization = getRandomInt(0,5);
 	ret.punctuation = getRandomInt(0,5);
@@ -368,6 +368,9 @@ function randomTrollSim(){
 	}
 	if(roomLeft < 0) roomLeft = 0;
 	for(var i = 0; i< roomLeft; i++){
+		if(player.bloodColor == "#99004d" || player.bloodColor == "#610061"){
+			ret.lettersToReplaceIgnoreCase.push(getOneRandomFishArray());
+		}
 		ret.lettersToReplaceIgnoreCase.push(getOneRandomReplaceArray());
 	}
 	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(very_quirks));
@@ -387,7 +390,7 @@ function randomTrollSim(){
 }
 
 //troll quirks are more extreme
-function randomTrollQuirk(){
+function randomTrollQuirk(player){
 	var ret = new Quirk();
 	ret.capitalization = getRandomInt(0,5);
 	ret.punctuation = getRandomInt(0,5);
@@ -413,6 +416,9 @@ function randomTrollQuirk(){
 	var roomLeft = getRandomInt(0,6) - ret.lettersToReplace.length;
 	if(roomLeft < 0) roomLeft = 0;
 	for(var i = 0; i< roomLeft; i++){
+		if(player.bloodColor == "#99004d" || player.bloodColor == "#610061"){
+			ret.lettersToReplace.push(getOneRandomFishArray());
+		}
 		ret.lettersToReplace.push(getOneRandomReplaceArray());
 	}
 
@@ -423,6 +429,10 @@ function randomTrollQuirk(){
 function getOneNormalReplaceArray(){
 	//these should ignore case.
 	return getRandomElementFromArray(conversational_quirks);
+}
+
+function getOneRandomFishArray(){
+	return getRandomElementFromArray(fish_quirks);
 }
 
 //% to cross or x.  8 for b.  69 for oo.  o+ for o

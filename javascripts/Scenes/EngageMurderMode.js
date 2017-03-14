@@ -46,7 +46,9 @@ function EngageMurderMode(){
 		chatText += chatLine(player1Start, player1,"...")
 		chatText += chatLine(player2Start, player2,getRelationshipFlavorGreeting(r2, r1, player2, player1))
 		chatText += chatLine(player1Start, player1,"You're going to die. And I'm going to see it. I'm going to DO it.")
-		if(player2.aspect == "Blood" || player2.aspect == "Sylph"){  //try to repair relationship
+		if(player1.isTroll && player1.bloodColor == "#99004d" && player2.isTroll && player2.bloodColor == "#99004d")){
+			chatText += this.heirressConvo(div, player1, player2);
+		}else if(player2.aspect == "Blood" || player2.aspect == "Sylph"){  //try to repair relationship
 			chatText += this.repairConvo(div, player1, player2);
 		}else if(player2.aspect == "Mind" || player2.class_name == "Bard" ){ //try to redirect madness at another target
 			chatText += this.redirectConvo(div, player1, player2);
@@ -58,6 +60,19 @@ function EngageMurderMode(){
 		
 		return chatText;
 		
+	}
+	
+	this.heirressConvo = function(div, player1, player2){
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var r1 = player1.getRelationshipWith(player2);
+		var r2 = player2.getRelationshipWith(player1);
+		var chatText = "";
+		chatText += chatLine(player2Start, player2,"Oh my god! Can we NOT do this right now!?")
+		chatText += chatLine(player2Start, player2,"If I can ignore my biological imperitive to murder you right in your stupid face, so can you!")
+		chatText += chatLine(player2Start, player2,"Why the fuck did skaia stick TWO Heirresses in the medium together!?")
+		chatText += chatLine(player1Start, player1,"See you soon! :)")
+		chatText += chatLine(player1Start, player1,"You asshole!")
 	}
 	
 	//panic

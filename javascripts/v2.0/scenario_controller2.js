@@ -338,9 +338,9 @@ function init(){
 		decideTroll(p);
 		p.generateRelationships(players);
 		if(p.isTroll){
-			p.quirk = randomTrollSim()
+			p.quirk = randomTrollSim(player)
 		}else{
-			p.quirk = randomHumanSim();
+			p.quirk = randomHumanSim(player);
 		}
 	}
 
