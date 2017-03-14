@@ -118,8 +118,8 @@ function MurderPlayers(){
 			copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,75,0)
 		}
 		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, vSpriteBuffer,50,0) 
-		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,100,0) 
+		copyTmpCanvasToRealCanvasAtPos(canvas, vSpriteBuffer,100,0) 
+		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,150,0) 
 	}
 	
 	this.contentForRender = function(div){
@@ -130,7 +130,10 @@ function MurderPlayers(){
 			var living = findLivingPlayers(players)
 			removeFromArray(worstEnemy, living)
 			var ausp = getRandomElementFromArray(living)
-			var notEnemy = m.getWorstEnemyFromList(availablePlayers);
+			if(ausp == worstEnemy || ausp == m){
+				ausp = null;
+			}
+			//var notEnemy = m.getWorstEnemyFromList(availablePlayers);
 			removeFromArray(m, availablePlayers);
 			var ret = "";
 			if(worstEnemy && worstEnemy.dead == false){
@@ -165,10 +168,10 @@ function MurderPlayers(){
 					m.murderMode = false;
 					m.triggerLevel = 1;
 					this.renderClubs(div, m, worstEnemy,ausp);
-					//var r = m.getRelationshipWith(ausp); //neutral to middle leaf, but unchanged about each other.
-					//r.value = 1;
-					//var r2 = worstEnemy.getRelationshipWith(ausp);
-					//r2.value = 1;
+					var r = m.getRelationshipWith(ausp); //neutral to middle leaf, but unchanged about each other.
+					r.value = 1;
+					var r2 = worstEnemy.getRelationshipWith(ausp);
+					r2.value = 1;
 
 				}else if(worstEnemy.power < m.power*2){  //more likely to kill enemy than be killed. element of surprise
 					m.increasePower();
