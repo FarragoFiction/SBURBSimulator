@@ -273,7 +273,7 @@ function RelationshipDrama(){
 				}else{
 					chatText += chatLine(player2Start, player2,"Why do you hate them so much?");
 					var trait = whatDontPlayersHaveInCommon(player1, jerk);
-					chatText += chatLine(player1Start, player1,"They are just so...so...so " + trait +"! That's all there is to say on the matter.");
+					chatText += chatLine(player1Start, player1,"They are just so...so... " + trait +"! That's all there is to say on the matter.");
 					if(player2.isTroll == true && player1.isTroll == true){
 						chatText += chatLine(player2Start, player2,"Whatever floats your boat.");
 					}
@@ -381,7 +381,7 @@ function RelationshipDrama(){
 					this.relationshipAdvice(div, player, r.target)
 				}
 			}else if(r.type() == r.badBig){
-				if(player.triggerLevel < 2){
+				if(player.triggerLevel < 1){
 					this.ventAboutJerk(div, player, r.target)
 				}else{
 					this.antagonizeJerk(div, player, r.target) //not thinking clearly, gonna start shit.
