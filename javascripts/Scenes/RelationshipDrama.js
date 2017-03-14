@@ -23,9 +23,9 @@ function RelationshipDrama(){
 	this.confessFeelings = function(div, player,crush){
 		debug("confession!!!")
 		var relationship = player.getRelationshipWith(crush);
-		
+
 		//different format for canvas code
-		
+
 		var chatText = "";
 		var player1 = player;
 		var player2 = crush;
@@ -81,7 +81,7 @@ function RelationshipDrama(){
 	//or on crushee.
 	this.relationshipAdvice = function(div,player,crush){
 		var relationship = player.getRelationshipWith(crush);
-		
+
 
 		var chatText = "";
 		var player1 = player;
@@ -96,7 +96,7 @@ function RelationshipDrama(){
 			div.append(narration);
 			return;
 		}
-		
+
 		var divID = (div.attr("id")) + "_" + player.chatHandle+"advice_crush_"+crush.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
@@ -184,12 +184,17 @@ function RelationshipDrama(){
 						chatText += chatLine(player1Start, player1,"I couldn't keep it bottled up anymore...");
 					}
 				}else{  //generic advice
-					chatText += chatLine(player2Start, player2,"Cool! You should tell them though! Why tell me?");
-					chatText += chatLine(player1Start, player1,"Gah! I can't do that! What if they hate me!?");
-					chatText += chatLine(player1Start, player1,"I would just die.");
-					chatText += chatLine(player2Start, player2,"Well, what are you gaining by putting it off?");
-					chatText += chatLine(player2Start, player2,"Somebody else could beat you to the punch!");
-					chatText += chatLine(player1Start, player1,"Maybe...");
+					chatText += chatLine(player2Start, player2,"Cool! What do you like about them?");
+					var trait = whatDoPlayersHaveInCommon(player1, crush);
+					chatText += chatLine(player1Start, player1,"They are just so...so...so " + trait);
+					if(trait != "nice"){
+						chatText += chatLine(player2Start, player2,"Heh, they sound perfect for you, then.");
+						chatText += chatLine(player1Start, player1,"Thanks!");
+					}else{
+						chatText += chatLine(player2Start, player2,"Huh. Do you actually KNOW anything about them?");
+						chatText += chatLine(player1Start, player1,"I'm getting there!");
+					}
+
 					//TODO maybe have another scene where they get a second chance at confessing, even if it's not fresh drama?
 				}
 			}
@@ -201,11 +206,11 @@ function RelationshipDrama(){
 	//or on jerk.
 	//if no one to vent about, narrate, but mention lonliness. no trigger reduction.
 	this.ventAboutJerk = function(div,player,jerk){
-		
+
 		var relationship = player.getRelationshipWith(jerk);
 		relationship.drama = false; //it is consumed.
 		relationship.old_type = relationship.saved_type;
-		
+
 
 		var chatText = "";
 		var player1 = player;
@@ -284,8 +289,8 @@ function RelationshipDrama(){
 		var relationship = player.getRelationshipWith(jerk);
 		relationship.drama = false; //it is consumed.
 		relationship.old_type = relationship.saved_type;
-		
-		
+
+
 
 		if(jerk.dead == true){
 			var narration = "<br>The " + player.htmlTitle() + " used to think that the " + relationship.target.htmlTitle() + " was ";

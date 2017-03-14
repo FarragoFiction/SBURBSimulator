@@ -147,9 +147,6 @@ function getRandomChatHandle(class_name, aspect,interest1, interest2){
 //can also repurpose this by passing in same plaeyr for both slots to get an adjative about them. Hell yes. Laziness FTW.
 //What do you like about them? They are just so X. (Yes. Hell Yes. Hell FUCKING Yes.)
 function whatDoPlayersHaveInCommon(player1, player2){
-	debug("TODO: have method for returning a string that the players have in common. interest wise. might be good for relationships.")
-	//either category in general, or can return if they have something specific in common, like singing. (that would be hella rare)
-	//return "smart" if academic. In a sentence, "we're both smart/cultured/musical/domestic/extroverted/etc."
 	if(playerLikesMusic(player1) && playerLikesMusic(player2) ){
 		return "musical"
 	}
