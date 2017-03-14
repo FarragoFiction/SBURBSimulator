@@ -276,6 +276,8 @@ function RelationshipDrama(){
 					chatText += chatLine(player1Start, player1,"They are just so...so... " + trait +"! That's all there is to say on the matter.");
 					if(player2.isTroll == true && player1.isTroll == true){
 						chatText += chatLine(player2Start, player2,"Whatever floats your boat.");
+						chatText += chatLine(player1Start, player1,"Oh god... is this really coming off as a black crush?");
+						chatText += chatLine(player1Start, player1,"Fuck. I hope not.");
 					}
 				}
 			}
