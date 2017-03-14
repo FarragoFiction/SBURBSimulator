@@ -85,7 +85,6 @@ function MurderPlayers(){
 
 		var x = 100;
 		if(murderer.isTroll == true || diamond.isTroll == true){  //humans have regular romance, but if even one is a troll, this is romance.
-			alert("diamonds")
 			var diSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 			drawDiamond(diSpriteBuffer,1000)
 			x = 50; //stand closer cause romance
@@ -119,8 +118,8 @@ function MurderPlayers(){
 			copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,75,0)
 		}
 		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, vSpriteBuffer,50,50) 
-		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,100,100) 
+		copyTmpCanvasToRealCanvasAtPos(canvas, vSpriteBuffer,50,0) 
+		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,100,0) 
 	}
 	
 	this.contentForRender = function(div){
