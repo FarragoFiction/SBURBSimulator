@@ -267,11 +267,12 @@ function Intro(){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"What did that do?");
 				chatText += chatLine(player1Start, player1, "Obviously give me an advantage.");
-				chatText += chatLine(player2Start, player2,"You know, I think you're right.");
+				chatText += chatLine(player2Start, player2,"Huh. Probably. ");
 			}else{
 				chatText += chatLine(player2Start, player2,"What did that do?");
 				chatText += chatLine(player1Start, player1, "Obviously give me an advantage.");
-				chatText += chatLine(player2Start, player2,"Huh. Probably. ");
+				
+				chatText += chatLine(player2Start, player2,"You know, I think you're right.");
 			}
 		}else{
 			chatText += chatLine(player2Start, player2,"What did that do?");
