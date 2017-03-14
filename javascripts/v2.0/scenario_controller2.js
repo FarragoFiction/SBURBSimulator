@@ -215,7 +215,7 @@ function callNextIntroWithDelay(player_index){
 		var s = new Intro();
 		var p = players[player_index];
 		var playersInMedium = players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.
-		s.trigger(players, p)
+		s.trigger(playersInMedium, p)
 		s.renderContent(newScene(),player_index); //new scenes take care of displaying on their own.
 		processScenes2(playersInMedium);
 		player_index += 1;
