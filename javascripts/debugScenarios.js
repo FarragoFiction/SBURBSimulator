@@ -17,6 +17,7 @@ function debugRoyalRumble(){
 		var p = players[j]
 		players[j].isTroll = true; //only .evel 2 players up
 		players[j].bloodColor = "#99004d"
+		players[j].triggerLevel = 10;
 		decideLusus(p);
 		p.kernel_sprite = p.lusus;
 		p.relationships = [];
