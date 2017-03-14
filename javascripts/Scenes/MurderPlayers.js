@@ -106,7 +106,7 @@ function MurderPlayers(){
 		drawSprite(pSpriteBuffer,murderer,1000)
 		
 		var vSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-		drawSprite(pSpriteBuffer,victim,1000)
+		drawSprite(vSpriteBuffer,victim,1000)
 
 		var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawSpriteTurnways(dSpriteBuffer,club,1000)  //facing non-middle leafs
@@ -115,11 +115,11 @@ function MurderPlayers(){
 		if(murderer.isTroll == true || club.isTroll == true || club.isTroll == true){  //humans have regular romance, but if even one is a troll, this is romance.
 			var diSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 			drawClub(diSpriteBuffer,1000) //Auspisticism
-			copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,75,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,300,0)
 		}
 		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, vSpriteBuffer,100,0) 
-		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,150,0) 
+		copyTmpCanvasToRealCanvasAtPos(canvas, vSpriteBuffer,150,0) 
+		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,400,0) 
 	}
 	
 	this.contentForRender = function(div){

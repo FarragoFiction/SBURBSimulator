@@ -371,9 +371,7 @@ function randomTrollSim(player){
 		ret.lettersToReplaceIgnoreCase.push(getOneRandomReplaceArray());
 	}
 	
-	if(player.bloodColor == "#99004d" || player.bloodColor == "#610061"){
-			ret.lettersToReplaceIgnoreCase.concat(fish_quirks);
-	}
+	
 	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(very_quirks));
 	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(good_quirks));
 	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(lol_quirks));
@@ -382,6 +380,9 @@ function randomTrollSim(player){
 	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(curse_quirks));
 	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(yes_quirks));
 	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(no_quirks));
+	if(player.bloodColor == "#99004d" || player.bloodColor == "#610061"){
+		ret.lettersToReplaceIgnoreCase = ret.lettersToReplaceIgnoreCase.concat(fish_quirks);
+	}
 	//smileys have special characters, do later
 	//ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(smiley_quirks));
 
