@@ -85,7 +85,7 @@ function MurderPlayers(){
 
 		var x = 100;
 		if(murderer.isTroll == true || diamond.isTroll == true){  //humans have regular romance, but if even one is a troll, this is romance.
-			//alert("diamonds")
+			alert("diamonds")
 			var diSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 			drawDiamond(diSpriteBuffer,1000)
 			x = 50; //stand closer cause romance
@@ -97,7 +97,7 @@ function MurderPlayers(){
 	
 	//random Auspistice settles their shit down.  this will probably be pretty rare.
 	this.renderClubs = function(div, murderer, victim, club){
-		debug("OMG, clubs happened.")
+		alert("clubs)")
 		var divID = (div.attr("id")) + "_" + club.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
@@ -114,14 +114,13 @@ function MurderPlayers(){
 
 
 		if(murderer.isTroll == true || club.isTroll == true || club.isTroll == true){  //humans have regular romance, but if even one is a troll, this is romance.
-			//alert("diamonds")
 			var diSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 			drawClub(diSpriteBuffer,1000) //Auspisticism
 			copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,75,0)
 		}
 		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, vSpriteBuffer,x,50) 
-		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,x,100) 
+		copyTmpCanvasToRealCanvasAtPos(canvas, vSpriteBuffer,50,50) 
+		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,100,100) 
 	}
 	
 	this.contentForRender = function(div){
@@ -167,10 +166,10 @@ function MurderPlayers(){
 					m.murderMode = false;
 					m.triggerLevel = 1;
 					this.renderClubs(div, m, worstEnemy,ausp);
-					var r = m.getRelationshipWith(ausp); //neutral to middle leaf, but unchanged about each other.
-					r.value = 1;
-					var r2 = worstEnemy.getRelationshipWith(ausp);
-					r2.value = 1;
+					//var r = m.getRelationshipWith(ausp); //neutral to middle leaf, but unchanged about each other.
+					//r.value = 1;
+					//var r2 = worstEnemy.getRelationshipWith(ausp);
+					//r2.value = 1;
 
 				}else if(worstEnemy.power < m.power*2){  //more likely to kill enemy than be killed. element of surprise
 					m.increasePower();

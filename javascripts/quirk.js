@@ -368,10 +368,11 @@ function randomTrollSim(player){
 	}
 	if(roomLeft < 0) roomLeft = 0;
 	for(var i = 0; i< roomLeft; i++){
-		if(player.bloodColor == "#99004d" || player.bloodColor == "#610061"){
-			ret.lettersToReplaceIgnoreCase.push(getOneRandomFishArray());
-		}
 		ret.lettersToReplaceIgnoreCase.push(getOneRandomReplaceArray());
+	}
+	
+	if(player.bloodColor == "#99004d" || player.bloodColor == "#610061"){
+			ret.lettersToReplaceIgnoreCase.concat(fish_quirks);
 	}
 	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(very_quirks));
 	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(good_quirks));
