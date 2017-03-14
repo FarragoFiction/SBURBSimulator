@@ -96,7 +96,7 @@ function MurderPlayers(){
 	
 	//random Auspistice settles their shit down.  this will probably be pretty rare.
 	this.renderClubs = function(div, murderer, victim, club){
-		alert("clubs)")
+		//alert("clubs)")
 		var divID = (div.attr("id")) + "_" + club.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
