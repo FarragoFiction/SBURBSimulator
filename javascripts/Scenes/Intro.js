@@ -143,9 +143,15 @@ function Intro(){
 			chatText +=chatLine(player2Start, player2,"Yep, I'm exploring the " + player2.land + ".");
 			chatText += chatLine(player1Start, player1,"Yay! We're SBURB buddies!");
 		}else{
+			if(player2.aspect != "Time"){
 			chatText +=chatLine(player2Start, player2,"Nope, still waiting.");
 			chatText += chatLine(player1Start, player1,"Aww... I'll make sure to grind extra hard to help you out when you're in!");
 			chatText +=chatLine(player2Start, player2,"Thanks!");
+			}else{
+				chatText +=chatLine(player2Start, player2,"Well...I mean...yes and no?");
+				chatText +=chatLine(player2Start, player2,"Past me isn't in yet, but current me (which is future me from your perspective) has been in awhile. Time shenanigans. ");
+				chatText += chatLine(player1Start, player1,"!  This game is way more confusing than I thought!");
+			}
 		}
 		chatText += chatLine(player1Start, player1,"So... I prototyped my kernel thingy with a " + player1.kernel_sprite +".\n");
 		if(player1.isTroll == true){
