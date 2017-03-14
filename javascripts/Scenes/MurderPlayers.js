@@ -115,7 +115,7 @@ function MurderPlayers(){
 		if(murderer.isTroll == true || club.isTroll == true || club.isTroll == true){  //humans have regular romance, but if even one is a troll, this is romance.
 			var diSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 			drawClub(diSpriteBuffer,1000) //Auspisticism
-			copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,350,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,375,50)
 		}
 		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
 		copyTmpCanvasToRealCanvasAtPos(canvas, vSpriteBuffer,100,0) 

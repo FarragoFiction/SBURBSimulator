@@ -12,12 +12,13 @@ function Intro(){
 			var r1 = player1.getRelationshipWith(player2);
 			var player1Start = player1.chatHandleShort()+ ": "
 			var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+			var chatText = "";
 			if(r1.type() == r1.goodBig){
 				chatText += chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm in the medium!");
 			}else{
 				chatText += chatLine(player1Start, player1,"Hey, I'm in the medium!");
 			}
-			var chatText = "";
+			
 			chatText += chatLine(player2Start, player2,"I don't care.");
 			chatText += chatLine(player1Start, player1,"Whoa, uh. Are you okay?");
 			chatText += chatLine(player2Start, player2,"I don't care.");
