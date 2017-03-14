@@ -23,9 +23,7 @@ function debugRoyalRumble(){
 		p.relationships = [];
 		p.quirk = null;
 		p.generateRelationships(players);  //heiresses hate each other
-		p.quirk = randomTrollSim(p)
-		p.quirk = randomHumanSim(p);
-		
+		p.quirk = randomTrollSim(p)		
 	}
 
 }
