@@ -30,7 +30,7 @@ function Intro(){
 			return chatText;
 	}
 
-	this.getAcademicChat = function(player1, player2){
+	this.academicChat = function(player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = player1.getRelationshipWith(player2);
