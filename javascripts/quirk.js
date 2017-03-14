@@ -381,7 +381,7 @@ function randomTrollSim(player){
 	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(yes_quirks));
 	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(no_quirks));
 	if(player.bloodColor == "#99004d" || player.bloodColor == "#610061"){
-		debug("why is fish quirks not be added?")
+		debug("why are fish quirks not being added?")
 		ret.lettersToReplaceIgnoreCase = ret.lettersToReplaceIgnoreCase.concat(fish_quirks);
 	}
 	//smileys have special characters, do later
