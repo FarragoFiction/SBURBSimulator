@@ -144,6 +144,8 @@ function getRandomChatHandle(class_name, aspect,interest1, interest2){
 	return first+second;
 }
 
+//can also repurpose this by passing in same plaeyr for both slots to get an adjative about them. Hell yes. Laziness FTW.
+//What do you like about them? They are just so X. (Yes. Hell Yes. Hell FUCKING Yes.)
 function whatDoPlayersHaveInCommon(player1, player2){
 	debug("TODO: have method for returning a string that the players have in common. interest wise. might be good for relationships.")
 	//either category in general, or can return if they have something specific in common, like singing. (that would be hella rare)
@@ -151,8 +153,53 @@ function whatDoPlayersHaveInCommon(player1, player2){
 	if(playerLikesMusic(player1) && playerLikesMusic(player2) ){
 		return "musical"
 	}
+	if(playerLikesCulture(player1) && playerLikesCulture(player2) ){
+		return "cultured"
+	}
+	if(playerLikesWriting(player1) && playerLikesWriting(player2) ){
+		return "lettered"
+	}
+	if(playerLikesPopculture(player1) && playerLikesPopculture(player2) ){
+		return "geeky"
+	}
+	if(playerLikesTechnology(player1) && playerLikesTechnology(player2) ){
+		return "techy"
+	}
+	if(playerLikesSocial(player1) && playerLikesSocial(player2) ){
+		return "extroverted"
+	}
+	if(playerLikesRomantic(player1) && playerLikesRomantic(player2) ){
+		return "romantics"
+	}
+	if(playerLikesAcademic(player1) && playerLikesAcademic(player2) ){
+		return "smart"
+	}
+	if(playerLikesComedy(player1) && playerLikesComedy(player2) ){
+		return "funny"
+	}
+	if(playerLikesComedy(player1) && playerLikesComedy(player2) ){
+		return "funny"
+	}
+	if(playerLikesDomestic(player1) && playerLikesDomestic(player2) ){
+		return "domestic"
+	}
+	if(playerLikesDomestic(player1) && playerLikesDomestic(player2) ){
+		return "domestic"
+	}
+	if(playerLikesAthletic(player1) && playerLikesAthletic(player2) ){
+		return "athletic"
+	}
+	if(playerLikesTerrible(player1) && playerLikesTerrible(player2) ){
+		return "honest" //'just telling it like it is' *rolls eyes*
+	}
+	if(playerLikesFantasy(player1) && playerLikesFantasy(player2) ){
+		return "imaginative"
+	}
+	if(playerLikesJustice(player1) && playerLikesJustice(player2) ){
+		return "fair-minded"
+	}
 
-	return "nice"
+	return "nice"//the defaultiest of traits.
 }
 
 function playerLikesMusic(player){
