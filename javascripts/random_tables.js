@@ -148,6 +148,11 @@ function whatDoPlayersHaveInCommon(player1, player2){
 	debug("TODO: have method for returning a string that the players have in common. interest wise. might be good for relationships.")
 	//either category in general, or can return if they have something specific in common, like singing. (that would be hella rare)
 	//return "smart" if academic. In a sentence, "we're both smart/cultured/musical/domestic/extroverted/etc."
+	if(playerLikesMusic(player1) && playerLikesMusic(player2) ){
+		return "musical"
+	}
+
+	return "nice"
 }
 
 function playerLikesMusic(player){
@@ -222,6 +227,45 @@ function playerLikesComedy(player){
 		}
 }
 
+function playerLikesDomestic(player){
+		if(domestic_interests.indexOf(player.interest1) != -1 || domestic_interests.indexOf(player.interest2) != -1 ){
+			return true;
+		}else{
+			return false;
+		}
+}
+
+function playerLikesAthletic(player){
+		if(athletic_interests.indexOf(player.interest1) != -1 || athletic_interests.indexOf(player.interest2) != -1 ){
+			return true;
+		}else{
+			return false;
+		}
+}
+
+function playerLikesTerrible(player){
+		if(terrible_interests.indexOf(player.interest1) != -1 || terrible_interests.indexOf(player.interest2) != -1 ){
+			return true;
+		}else{
+			return false;
+		}
+}
+
+function playerLikesFantasy(player){
+		if(fantasy_interests.indexOf(player.interest1) != -1 || fantasy_interests.indexOf(player.interest2) != -1 ){
+			return true;
+		}else{
+			return false;
+		}
+}
+
+function playerLikesJustice(player){
+		if(justice_interests.indexOf(player.interest1) != -1 || justice_interests.indexOf(player.interest2) != -1 ){
+			return true;
+		}else{
+			return false;
+		}
+}
 
 
 
