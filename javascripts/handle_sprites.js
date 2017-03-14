@@ -561,10 +561,10 @@ function drawRelationshipChat(canvas, player1, player2, chat, repeatTime){
 	var introText = "-- " +player1.chatHandle + " [" + player1.chatHandleShort()+ "] began pestering ";
 	introText += player2.chatHandle + " [" + player2.chatHandleShort()+ "] --";
 	drawChatText(textSpriteBuffer,player1, player2, introText, chat)
-	
+
 	//heart or spades (moirallegence doesn't get confessed, it's more actiony)  spades is trolls only
-	
-	
+
+
 	var r1 = player1.getRelationshipWith(player2);
 	var r2 = player2.getRelationshipWith(player1);
 	var r1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
@@ -574,19 +574,19 @@ function drawRelationshipChat(canvas, player1, player2, chat, repeatTime){
 	}else if(r1.type() == r1.badBig && player1.isTroll == true){
 		drawSpade(r1SpriteBuffer)
 	}
-	
+
 	if(r2.type() == r2.goodBig){
 		drawHeart(r2SpriteBuffer)
 	}else if(r2.type() == r2.badBig && player2.isTroll == true){
 		drawSpade(r2SpriteBuffer)
 	}
-	
-	
+
+
 	//drawBG(textSpriteBuffer, "#ff9999", "#ff00ff") //test that it's actually being rendered.
 	//p1 on left, chat in middle, p2 on right and flipped turnways.
 	setTimeout(function(){
 		copyTmpCanvasToRealCanvasAtPos(canvas, r1SpriteBuffer,0,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, r2SpriteBuffer,650,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, r2SpriteBuffer,700,0)
 		copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,-100,0)
 		copyTmpCanvasToRealCanvasAtPos(canvas, p2SpriteBuffer,650,0)//where should i put this?
 		copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,230,0)

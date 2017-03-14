@@ -272,7 +272,8 @@ function RelationshipDrama(){
 					chatText += chatLine(player2Start, player2,"Geez, sorry...");
 				}else{
 					chatText += chatLine(player2Start, player2,"Why do you hate them so much?");
-					chatText += chatLine(player1Start, player1,"I don't know. They just...ugh. They suck. That's all there is to say on the matter.");
+					var trait = whatDontPlayersHaveInCommon(player1, jerk);
+					chatText += chatLine(player1Start, player1,"They are just so...so...so " + trait +"! That's all there is to say on the matter.");
 					if(player2.isTroll == true && player1.isTroll == true){
 						chatText += chatLine(player2Start, player2,"Whatever floats your boat.");
 					}
@@ -320,8 +321,18 @@ function RelationshipDrama(){
 		if(r2.type() == r2.badBig){
 			chatText += chatLine(player2Start, player2,"The feeling is mutual, asshole. ");
 			chatText += chatLine(player2Start, player2,"You are " + this.generateNewOpinion(r2) + ", times a million.");
+			var trait = whatDontPlayersHaveInCommon(player1, player2);
+			var trait2 = whatDontPlayersHaveInCommon(player2, player1);
+			chatText += chatLine(player1Start, player1,"God, why are you so " + trait + "?");
+			chatText += chatLine(player1Start, player1,"Fuck you, at least I'm not " + trait2 + "!");
+
 		}else if(r2.type == r2.goodBig){
 			chatText += chatLine(player2Start, player2,"Wow. Yes. Way to be an asshole. ");
+			var trait = whatDontPlayersHaveInCommon(player1, player2);
+			chatText += chatLine(player1Start, player1,"God, why are you so " + trait + "?");
+			chatText += chatLine(player2Start, player2,"And that's my cue to leave this chat. ");
+			r2.decrease();
+			r2.decrease();//broken heart
 		}else{
 			chatText += chatLine(player2Start, player2,"Holy shit. ");
 			chatText += chatLine(player2Start, player2,"And here I thought you were " + this.generateNewOpinion(r2) + ".");

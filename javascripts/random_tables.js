@@ -166,7 +166,7 @@ function whatDoPlayersHaveInCommon(player1, player2){
 		return "extroverted"
 	}
 	if(playerLikesRomantic(player1) && playerLikesRomantic(player2) ){
-		return "romantics"
+		return "romantic"
 	}
 	if(playerLikesAcademic(player1) && playerLikesAcademic(player2) ){
 		return "smart"
@@ -174,12 +174,7 @@ function whatDoPlayersHaveInCommon(player1, player2){
 	if(playerLikesComedy(player1) && playerLikesComedy(player2) ){
 		return "funny"
 	}
-	if(playerLikesComedy(player1) && playerLikesComedy(player2) ){
-		return "funny"
-	}
-	if(playerLikesDomestic(player1) && playerLikesDomestic(player2) ){
-		return "domestic"
-	}
+
 	if(playerLikesDomestic(player1) && playerLikesDomestic(player2) ){
 		return "domestic"
 	}
@@ -198,6 +193,68 @@ function whatDoPlayersHaveInCommon(player1, player2){
 
 	return "nice"//the defaultiest of traits.
 }
+
+//what are bad words to describe these traits?
+function whatDontPlayersHaveInCommon(player1, player2){
+
+	if(!playerLikesCulture(player1) && playerLikesCulture(player2) ){
+		return "pretentious"
+	}
+
+	if(!playerLikesTerrible(player1) && playerLikesTerrible(player2) ){
+		return "terrible" //'just telling it like it is' *rolls eyes*
+	}
+
+	if(!playerLikesPopculture(player1) && playerLikesPopculture(player2) ){
+		return "frivolous"
+	}
+
+	if(!playerLikesSocial(player1) && playerLikesSocial(player2) ){
+		return "shallow"
+	}
+
+	if(!playerLikesAcademic(player1) && playerLikesAcademic(player2) ){
+		return "nerdy"
+	}
+
+	if(!playerLikesComedy(player1) && playerLikesComedy(player2) ){
+		return "dorky"
+	}
+
+	if(!playerLikesMusic(player1) && playerLikesMusic(player2) ){
+		return "loud"
+	}
+
+	if(!playerLikesWriting(player1) && playerLikesWriting(player2) ){
+		return "wordy"
+	}
+
+	if(!playerLikesTechnology(player1) && playerLikesTechnology(player2) ){
+		return "awkward"
+	}
+
+	if(!playerLikesRomantic(player1) && playerLikesRomantic(player2) ){
+		return "obsessive"
+	}
+
+	if(!playerLikesDomestic(player1) && playerLikesDomestic(player2) ){
+		return "boring"
+	}
+
+	if(!playerLikesAthletic(player1) && playerLikesAthletic(player2) ){
+		return "dumb"
+	}
+
+	if(!playerLikesFantasy(player1) && playerLikesFantasy(player2) ){
+		return "whimpy"
+	}
+	if(!playerLikesJustice(player1) && playerLikesJustice(player2) ){
+		return "harsh"
+	}
+
+	return "annoying"//the defaultiest of traits.
+}
+
 
 function playerLikesMusic(player){
 		if(music_interests.indexOf(player.interest1) != -1 || music_interests.indexOf(player.interest2) != -1 ){
