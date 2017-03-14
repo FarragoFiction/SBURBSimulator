@@ -76,6 +76,105 @@ function Intro(){
 		return chatText;
 	}
 
+	this.popcultureChat = function(player1, player2){
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var r1 = player1.getRelationshipWith(player2);
+		var r2 = player2.getRelationshipWith(player1);
+
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var chatText = "";
+
+		chatText += chatLine(player1Start, player1,"Oh man, I'm finally in the medium!");
+		chatText += chatLine(player2Start, player2,"Good, what's it like?");
+		chatText += chatLine(player1Start, player1,"It's the " + player1.land +".");
+		chatText += chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+". It's just like something out of a VIDEO GAME!");
+		chatText +=chatLine(player2Start, player2,"lol, it IS a video game, or did you forget?");
+		chatText += chatLine(player1Start, player1,"Well, yeah, but...like...SBURB is not a NORMAL video game. You know what I mean.");
+		chatText += chatLine(player1Start, player1,"ANYWAYS... I prototyped my kernel thingy with a " + player1.kernel_sprite +".\n");
+		if(player1.isTroll == true){
+			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
+			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
+
+		}
+		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
+			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+				chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
+			}else{
+				chatText += chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
+			}
+		}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
+			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+				chatText += chatLine(player2Start, player2,"What did that do?");
+				chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.kernel_sprite + " like a customization kind of thing? ");
+				chatText += chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
+			}else{
+				chatText += chatLine(player2Start, player2,"Huh. That sounds cool.");
+			}
+		}else{
+			chatText += chatLine(player2Start, player2,"What did that do?");
+			chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.kernel_sprite+ " like a customization kind of thing? ");
+		}
+		return chatText;
+	}
+
+	this.socialChat = function(player1, player2){
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var r1 = player1.getRelationshipWith(player2);
+		var r2 = player2.getRelationshipWith(player1);
+
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var chatText = "";
+		if(r1.type() == r1.goodBig){
+			chatText += chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I made it to the medium safely!");
+		}else{
+			chatText += chatLine(player1Start, player1,"Hey, I made it to the medium safely!");
+		}
+
+		chatText += chatLine(player2Start, player2,"Good, what's it like?");
+		chatText += chatLine(player1Start, player1,"It's the " + player1.land +".");
+		chatText += chatLine(player1Start, player1,"It's chock full of " + player1.land.split("Land of ")[1]+".");
+		chatText +=chatLine(player2Start, player2,"lol");
+		chatText += chatLine(player1Start, player1,"Have you made it in, yet?");
+		if(this.playerList.indexOf(player2) != -1)){
+			chatText +=chatLine(player2Start, player2,"Yep, I'm exploring the " + player2.land + ".");
+			chatText += chatLine(player1Start, player1,"Yay! We're SBURB buddies!");
+		}else{
+			chatText +=chatLine(player2Start, player2,"Nope, still waiting.");
+			chatText += chatLine(player1Start, player1,"Aww... I'll make sure to grind extra hard to help you out when you're in!");
+			chatText +=chatLine(player2Start, player2,"Thanks!");
+		}
+		chatText += chatLine(player1Start, player1,"So... I prototyped my kernel thingy with a " + player1.kernel_sprite +".\n");
+		if(player1.isTroll == true){
+			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
+			chatText += chatLine(player1Start, player1,":/  Yeah... It was so sad when they died. But now I'm happy because SBURB brought them back! ");
+			chatText +=chatLine(player2Start, player2,"Oh, man....");
+			return chatText; // too depressing to keep going.
+		}
+		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
+			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+				chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
+			}else{
+				chatText += chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
+			}
+		}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
+			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+				chatText += chatLine(player2Start, player2,"What did that do?");
+				chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.kernel_sprite);
+				chatText += chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
+			}else{
+				chatText += chatLine(player2Start, player2,"Huh. That sounds cool.");
+			}
+		}else{
+			chatText += chatLine(player2Start, player2,"What did that do?");
+			chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.kernel_sprite);
+		}
+		return chatText;
+	}
+
 	this.getNormalChat = function(player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
@@ -239,6 +338,16 @@ function Intro(){
 		if(playerLikesAcademic(player1)){
 			return this.academicChat(player1, player2);
 		}
+
+		if(playerLikesPopculture(player1)){
+			return this.popcultureChat(player1, player2);
+		}
+
+		if(playerLikesSocial(player1)){
+			return this.socialChat(player1, player2);
+		}
+
+
 		/*
 		interests = interests.concat(music_interests);
 		interests = interests.concat(culture_interests);
