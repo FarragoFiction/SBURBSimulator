@@ -21,7 +21,7 @@ function RelationshipDrama(){
 
 
 	this.confessFeelings = function(div, player,crush){
-		debug("confession!!!")
+		//debug("confession!!!")
 		var relationship = player.getRelationshipWith(crush);
 
 		//different format for canvas code
@@ -238,7 +238,7 @@ function RelationshipDrama(){
 		var r2 = player2.getRelationshipWith(player1);
 		var r2jerk = player2.getRelationshipWith(jerk);
 		var chatText = "";
-
+		var trait = whatDontPlayersHaveInCommon(player1, jerk);
 		chatText += chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2))
 		chatText += chatLine(player2Start, player2,getRelationshipFlavorGreeting(r2, r1, player2, player1))
 		chatText += chatLine(player1Start, player1,"Oh my god, I can't STAND " + jerk.chatHandle + ", they are " + this.generateNewOpinion(r1) + ", you know?");
@@ -268,11 +268,11 @@ function RelationshipDrama(){
 					chatText += chatLine(player2Start, player2,"Geez, sorry...");
 				}else if(player2.isTroll == true && player1.isTroll == false){
 					chatText += chatLine(player2Start, player2,"If that's what you're into, I mean. I can't see it.");
-					chatText += chatLine(player1Start, player1,"Wait, what? Oh! No! Geez, I'm HUMAN, remember!? I do NOT have some weird troll crush on this asshole.");
+					chatText += chatLine(player1Start, player1,"Wait, what? Oh! No! Geez, I'm HUMAN, remember!? I do NOT have some weird troll crush on this " + trait + " asshole.");
 					chatText += chatLine(player2Start, player2,"Geez, sorry...");
 				}else{
 					chatText += chatLine(player2Start, player2,"Why do you hate them so much?");
-					var trait = whatDontPlayersHaveInCommon(player1, jerk);
+					
 					chatText += chatLine(player1Start, player1,"They are just so...so... " + trait +"! That's all there is to say on the matter.");
 					if(player2.isTroll == true && player1.isTroll == true){
 						chatText += chatLine(player2Start, player2,"Whatever floats your boat.");

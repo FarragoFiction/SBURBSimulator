@@ -169,14 +169,14 @@ function Intro(){
 		}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"What did that do?");
-				chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.kernel_sprite);
+				chatText += chatLine(player1Start, player1, "It made the enemies look like a "+player1.kernel_sprite);
 				chatText += chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
 			}else{
 				chatText += chatLine(player2Start, player2,"Huh. That sounds cool.");
 			}
 		}else{
 			chatText += chatLine(player2Start, player2,"What did that do?");
-			chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.kernel_sprite);
+			chatText += chatLine(player1Start, player1, "It made the enemies look like a "+player1.kernel_sprite);
 		}
 		return chatText;
 	}
@@ -223,6 +223,52 @@ function Intro(){
 		}else{
 			chatText += chatLine(player2Start, player2,"What did that do?");
 			chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.kernel_sprite);
+		}
+		return chatText;
+	}
+	
+	this.fantasyChat = function(player1, player2){
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var r1 = player1.getRelationshipWith(player2);
+		var r2 = player2.getRelationshipWith(player1);
+
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var chatText = "";
+		if(r1.type() == r1.goodBig){
+			chatText += chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm in the medium!");
+		}else{
+			chatText += chatLine(player1Start, player1,"Hey, I'm in the medium!");
+		}
+
+		chatText += chatLine(player2Start, player2,"Good, what's it like?");
+		chatText += chatLine(player1Start, player1,"It's the " + player1.land +".");
+		chatText += chatLine(player1Start, player1,"It's so cool! Like something out of a story! I always KNEW I'd have an adventure like this one day!");
+		chatText +=chatLine(player2Start, player2,"lol");
+		chatText += chatLine(player1Start, player1,"So... I prototyped my kernelsprite with a " + player1.kernel_sprite +".\n");
+		if(player1.isTroll == true){
+			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
+			chatText += chatLine(player1Start, player1,":/  Yeah... That probably wouldn't have happened in a story. ");
+
+		}
+		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
+			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+				chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
+			}else{
+				chatText += chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
+			}
+		}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
+			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+				chatText += chatLine(player2Start, player2,"What did that do?");
+				chatText += chatLine(player1Start, player1, "I think it  made the enemies look like a "+player1.kernel_sprite);
+				chatText += chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
+			}else{
+				chatText += chatLine(player2Start, player2,"Huh. That sounds cool.");
+			}
+		}else{
+			chatText += chatLine(player2Start, player2,"What did that do?");
+			chatText += chatLine(player1Start, player1, "I think it  made the enemies look like a "+player1.kernel_sprite);
 		}
 		return chatText;
 	}
@@ -333,7 +379,6 @@ function Intro(){
 		if(player2.grimDark == true){
 			 return this.grimPlayer2Chat(player1, player2);
 		}
-		debug("TODO: have different intros based on interests, classpect and species")
 		if(playerLikesCulture(player1)){
 			return this.cultureChat(player1, player2);
 		}
@@ -352,6 +397,10 @@ function Intro(){
 
 		if(playerLikesSocial(player1)){
 			return this.socialChat(player1, player2);
+		}
+		
+		if(playerLikesFantasy(player1) || playerLikesWriting(player1) ){
+			return this.fantasyChat(player1, player2);
 		}
 
 
