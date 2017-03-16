@@ -1,8 +1,8 @@
 function EngageMurderMode(){
-	this.canRepeat = true;	
+	this.canRepeat = true;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.player = null;
-	
+
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		//select a random player. if they've been triggered, random chance of going murderMode if enemies (based on how triggered.)
@@ -21,7 +21,7 @@ function EngageMurderMode(){
 		}
 		return false;
 	}
-	
+
 	this.grimChat2 = function(div, player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
@@ -35,7 +35,7 @@ function EngageMurderMode(){
 		chatText += chatLine(player1Start, player1,"Fuck you. You are too far gone to even CARE that I'm going to kill you.")
 		return chatText;
 	}
-	
+
 	//a normal convo goes differently based on target players's aspect/class and relationship with murderer
 	this.normalConvo = function(div, player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
@@ -57,11 +57,11 @@ function EngageMurderMode(){
 		}else{
 			chatText += this.panicConvo(div, player1, player2);
 		}
-		
+
 		return chatText;
-		
+
 	}
-	
+
 	this.heirressConvo = function(div, player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
@@ -75,7 +75,7 @@ function EngageMurderMode(){
 		chatText += chatLine(player1Start, player1,"You asshole!")
 		return chatText;
 	}
-	
+
 	//panic
 	this.panicConvo = function(div, player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
@@ -100,7 +100,7 @@ function EngageMurderMode(){
 		}
 		return chatText;
 	}
-	
+
 	//you want to fight, bro?
 	this.blusterConvo = function(div, player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
@@ -119,10 +119,10 @@ function EngageMurderMode(){
 			chatText += chatLine(player2Start, player2,"Please don't make me kill you in self defense.")
 			chatText += chatLine(player1Start, player1,"See you soon! :)")
 		}
-		
+
 		return chatText;
 	}
-	
+
 	//make them hate someone else more.
 	this.redirectConvo = function(div, player1, player2){
 		var livePlayers = findLivingPlayers(players);
@@ -131,7 +131,7 @@ function EngageMurderMode(){
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 		var chatText = "";
-		
+
 		if(r2.type() == r2.badBig){
 			chatText += chatLine(player2Start, player2,"Look, I get it. I've been a flaming asshole to you.")
 			chatText += chatLine(player2Start, player2,"But am I REALLY the one you want to kill FIRST?")
@@ -170,7 +170,7 @@ function EngageMurderMode(){
 			}else{
 				chatText += chatLine(player1Start, player1,"You sure haven't shown it. Prepare to die.")
 			}
-			
+
 		}else{
 			chatText += chatLine(player2Start, player2,"Oh fuck.")
 			chatText += chatLine(player2Start, player2,"Okay, but, am I the best person to rage out on?")
@@ -192,13 +192,13 @@ function EngageMurderMode(){
 				chatText += chatLine(player1Start, player1,"Prepare to die.")
 				chatText += chatLine(player2Start, player2,"Fuck. Worth a shot.")
 			}
-			
+
 		}
-		
+
 		return chatText;
 	}
-	
-	
+
+
 	//reduce trigger a bit?
 	this.repairConvo = function(div, player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
@@ -206,7 +206,7 @@ function EngageMurderMode(){
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 		var chatText = "";
-		
+
 		chatText += chatLine(player2Start, player2,"Oh, fuck.")
 		chatText += chatLine(player2Start, player2,"Fuck.")
 		chatText += chatLine(player2Start, player2,"Look, I get that you have trouble controling your temper.")
@@ -214,7 +214,7 @@ function EngageMurderMode(){
 		if(Math.random() > .7){
 			r1.increase();
 			player1.triggerLevel += -1;
-			chatText += chatLine(player2Start, player2,"Why don't we meet up in person. We can vent about whatever's bothering you. Nobody has to do anything that can't be undone.")				
+			chatText += chatLine(player2Start, player2,"Why don't we meet up in person. We can vent about whatever's bothering you. Nobody has to do anything that can't be undone.")
 			chatText += chatLine(player1Start, player1,"Fuck. Maybe. I... I need to go think about this.")
 		}else{
 			player1.triggerLevel += 1;
@@ -223,23 +223,23 @@ function EngageMurderMode(){
 			chatText += chatLine(player1Start, player1,"You asshole. Always pretending to be above it all. To be better than me.")
 			chatText += chatLine(player1Start, player1,"Well try being superior when you're dead.")
 		}
-		
+
 		return chatText;
 	}
-	
+
 	this.chat = function(div){
 		var repeatTime = 1000;
 		var livePlayers = findLivingPlayers(players);
 		var player1 = this.player;
 		var player2 = player1.getWorstEnemyFromList(livePlayers);
-		if(player2 == null){
+		if(player2 == null || player2.dead == true){
 			return;//nobody i actually want to kill??? why am i in murder mode?
 		}
 		var canvasHTML = "<br><canvas id='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
-		
+
 		var canvasDiv = document.getElementById("canvas"+  (div.attr("id")));
-		
+
 		var chatText = "";
 		if(player2.grimDark == true){
 			chatText += this.grimChat2(div,player1, player2);
@@ -248,14 +248,14 @@ function EngageMurderMode(){
 		}
 		drawChat(canvasDiv, player1, player2, chatText, repeatTime);
 	}
-	
+
 	this.renderContent = function(div){
 		//reset capitilization quirk, why isn't this working?
 		this.player.quirk.capitalization = getRandomInt(0,5);
 		div.append("<br>"+this.content());
 		this.chat(div);
 	}
-	
+
 	this.content = function(){
 		//console.log("murder mode");
 		this.player.increasePower();

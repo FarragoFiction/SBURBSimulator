@@ -44,7 +44,7 @@ function Aftermath(){
 
 		for(var i = 0; i< dead.length; i++){
 			var p = dead[i];
-			ret += "<br> The " + p.htmlTitleBasic() + " died " + p.causeOfDeath + ". ";
+			ret += "<br><br> The " + p.htmlTitleBasic() + " died " + p.causeOfDeath + ". ";
 			var friend = p.getWhoLikesMeBestFromList(living);
 			var enemy = p.getWhoLikesMeLeastFromList(living);
 			if(friend){
@@ -54,7 +54,7 @@ function Aftermath(){
 				this.drawMourning(div, p,friend);
 				div.append(ret);
 			}else if(enemy){
-				ret += " The " +enemy.htmlTitle() + " feels awkward about not missing them at all. ";
+				ret += " The " +enemy.htmlTitle() + " feels awkward about not missing them at all. <br><br>";
 				div.append(ret);
 				ret = "";
 			}
