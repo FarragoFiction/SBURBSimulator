@@ -40,7 +40,7 @@ window.onload = function() {
 	if(!debugMode){
 		randomizeEntryOrder();
 	}
-	debugRoyalRumble();
+	//debugRoyalRumble();
 	//authorMessage();
 	makeGuardians(); //after entry order established
 	

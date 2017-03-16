@@ -288,7 +288,7 @@ function RelationshipDrama(){
 
 	//notice if they are dead.
 	this.antagonizeJerk = function(div,player,jerk){
-		debug("antagonizing a jerk.") //is this ever even happening???
+		//debug("antagonizing a jerk.") //is this ever even happening???
 		var relationship = player.getRelationshipWith(jerk);
 		relationship.drama = false; //it is consumed.
 		relationship.old_type = relationship.saved_type;

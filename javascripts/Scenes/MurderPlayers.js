@@ -64,8 +64,10 @@ function MurderPlayers(){
 		var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawSprite(dSpriteBuffer,victim,1000)
 
-		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,100,0)
+		setTimeout(function(){
+			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,100,0)
+		},1000);
 
 	}
 	
@@ -90,8 +92,10 @@ function MurderPlayers(){
 			x = 50; //stand closer cause romance
 			copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,75,0)
 		}
-		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,x,0) 
+		setTimeout(function(){
+			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,x,0) 
+		},1000);
 	}
 	
 	//random Auspistice settles their shit down.  this will probably be pretty rare.
@@ -117,9 +121,11 @@ function MurderPlayers(){
 			drawClub(diSpriteBuffer,1000) //Auspisticism
 			copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,375,50)
 		}
-		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, vSpriteBuffer,100,0) 
-		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,400,0) 
+		setTimeout(function(){
+			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, vSpriteBuffer,100,0) 
+			copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,400,0)
+		},1000);		
 	}
 	
 	this.contentForRender = function(div){

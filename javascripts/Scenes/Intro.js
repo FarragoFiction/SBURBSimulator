@@ -30,6 +30,54 @@ function Intro(){
 			chatText += chatLine(player2Start, player2,"Social obligation complete. Goodbye.");
 			return chatText;
 	}
+	
+	this.lightChat = function(player1,player2){
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var r1 = player1.getRelationshipWith(player2);
+		var r2 = player2.getRelationshipWith(player1);
+
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var chatText = "";
+		if(r1.type() == r1.goodBig){
+			chatText += chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm in the medium!");
+		}else{
+			chatText += chatLine(player1Start, player1,"Hey, I'm in the medium!");
+		}
+
+		chatText += chatLine(player2Start, player2,"Good, what's it like?");
+		chatText += chatLine(player1Start, player1,"It appears to be the " + player1.land +".");
+		chatText += chatLine(player1Start, player1,"I guess it has something to do with my title? I am apparently the ' " + player1.title() + "'. ");
+		chatText +=chatLine(player2Start, player2,"Whatever THAT means. ");
+		chatText += chatLine(player1Start, player1,"Yes. Also, I prototyped my kernelsprite with a " + player1.kernel_sprite +".\n");
+		if(player1.isTroll == true){
+			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
+			chatText += chatLine(player1Start, player1,":/  Yeah... I think SBURB hates guardians. ");
+
+		}
+		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
+			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+				chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
+				chatText += chatLine(player1Start, player1, "I suspect it will prove to have been a very bad idea.");
+			}else{
+				chatText += chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
+				chatText += chatLine(player1Start, player1, "Agreed.");
+			}
+		}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
+			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+				chatText += chatLine(player2Start, player2,"What did that do?");
+				chatText += chatLine(player1Start, player1, "I suspect it will prove to have been a very good idea.");
+			}else{
+				chatText += chatLine(player2Start, player2,"Huh. That sounds cool.");
+				chatText += chatLine(player2Start, player2,"Yes.");
+			}
+		}else{
+			chatText += chatLine(player2Start, player2,"What did that do?");
+			chatText += chatLine(player1Start, player1, "I suspect it will prove to have been very pointless.");
+		}
+		return chatText;
+	}
 
 	this.academicChat = function(player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
@@ -149,7 +197,7 @@ function Intro(){
 			chatText += chatLine(player1Start, player1,"Aww... I'll make sure to grind extra hard to help you out when you're in!");
 			chatText +=chatLine(player2Start, player2,"Thanks!");
 			}else{
-				chatText +=chatLine(player2Start, player2,"Well...I mean...yes and no?");
+				chatText +=chatLine(player2Start, player2,"Well...I mean...yes and also no?");
 				chatText +=chatLine(player2Start, player2,"Past me isn't in yet, but current me (which is future me from your perspective) has been in awhile. Time shenanigans. ");
 				chatText += chatLine(player1Start, player1,"!  This game is way more confusing than I thought!");
 			}
@@ -379,6 +427,10 @@ function Intro(){
 	this.getChat = function(player1, player2){
 		if(player2.grimDark == true){
 			 return this.grimPlayer2Chat(player1, player2);
+		}
+		
+		if(player1.aspect == "Light" || player1.class_name == "Seer"){
+			return this.lightChat(player1, player2);
 		}
 		if(playerLikesCulture(player1)){
 			return this.cultureChat(player1, player2);
