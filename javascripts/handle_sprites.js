@@ -627,6 +627,8 @@ function drawComboText(canvas,comboNum){
 	alert(comboNum + "x CORPSESMOOCH COMBO!!!")
 	var ctx = canvas.getContext("2d");
 	ctx.font = "14px Courier New Bold"
+	//i wish the below two lines would disable anti-aliasing for the font.
+	//then it could be the homestuck font :/
 	ctx.imageSmoothingEnabled = false;
 	ctx.scale(4,4);
 	ctx.fillStyle = "#ff0000";  //bright candy red (most common blood color)
