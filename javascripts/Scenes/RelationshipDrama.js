@@ -70,7 +70,7 @@ function RelationshipDrama(){
 				chatText += chatLine(player1Start, player1,"Fuck. You're grimdark, aren't you. Fuck.");
 			}else{
 				chatText += chatLine(player2Start, player2,"Fuck. I'm sorry. I just don't feel that way about you. ");
-				if(playerLikesRomance(player1) || player1.aspect == "Mind"){
+				if(playerLikesRomantic(player1) || player1.aspect == "Mind"){
 					chatText += chatLine(player1Start, player1,"Fuck. Thanks for being honest. ");
 				}else{
 					chatText += chatLine(player1Start, player1,"But...but...WHY!? I tried so hard to be nice to you!");
