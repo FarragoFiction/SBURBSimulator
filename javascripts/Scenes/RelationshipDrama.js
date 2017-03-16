@@ -74,11 +74,18 @@ function RelationshipDrama(){
 				if(playerLikesRomantic(player1) || player1.aspect == "Mind"){
 					chatText += chatLine(player1Start, player1,"Fuck. Thanks for being honest. ");
 					player1.triggerLevel += 0.5; //not triggered MUCH, but keeps them from continuing to confess to other people. I mean. Hypothetically.
-				}else{
-					chatText += chatLine(player1Start, player1,"But...but...WHY!? I tried so hard to be nice to you!");
+				}else if(player1.class_name == "Bard" || player2.aspect == "Rage" || playerLikesTerrible(player1){
+					chatText += chatLine(player1Start, player1,"But... but...WHY!? I tried so hard to be nice to you!");
 					chatText += player2Start+"  Look, I'll level with you. I'm even dropping my dumb quirk, okay? It doesn't matter if you're nice. I'm sorry.  I can't just change the way I feel just because maybe you deserve it.\n";
 					chatText += chatLine(player1Start, player1,"Fuck.");
 					player1.triggerLevel += 0.5;
+				}else if(player1.class_name == "Page" || player2.aspect == "Blood" || playerLikesAcademic(player1){
+					chatText += chatLine(player1Start, player1,"But... I was even brave and told you and everything...");
+					chatText += chatLine(player2Start, player2,"And that's really impressive! But... I can't MAKE myself like you back? You know? ");
+					chatText += chatLine(player1Start, player1,"I know...");
+					
+				}else{
+					chatText += chatLine(player1Start, player1,"Oh.");
 				}
 			}
 
