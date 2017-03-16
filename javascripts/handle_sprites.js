@@ -634,7 +634,7 @@ function drawComboText(canvas,comboNum){
 	for(var i = 0; i<comboNum; i++){
 		excite += "!"
 	}
-	ctx.fillText(comboNum + "x CORPSESMOOCH COMBO"+excite,8,8);
+	ctx.fillText(comboNum + "x CORPSESMOOCH COMBO"+excite,80,80);
 	
 }
 

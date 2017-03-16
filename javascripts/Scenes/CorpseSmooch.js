@@ -129,11 +129,11 @@ function CorpseSmooch(){
 		}else{
 			this.makeDead(deadPlayer); //dream self dies, too
 		}
-		if(combo>1){
+		if(true || combo>1){
 			var divID = (div.attr("id")) + "_" + deadPlayer.chatHandle;
-			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+			var canvasHTML = "<br><canvas id='canvasCombo" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
-			var canvasDiv = document.getElementById("canvas"+ divID);
+			var canvasDiv = document.getElementById("canvasCombo"+ divID);
 			this.drawCombo(canvasDiv, combo);
 		}
 	}
