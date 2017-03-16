@@ -1108,9 +1108,9 @@ function dreamPalletSwap(canvas, player){
 	var new_color11 = "#de00ff";
 
 	if(player.moon =="Prospit"){
-		newcolor1 = "#ffe034"
-		newcolor2 = "#ffff00"
-		newcolor5 = "#ffe034"; 
+		new_color1 = "#ffe034"
+		new_color2 = "#ffff00"
+		new_color5 = "#ffe034"; 
 		new_color6 = "#ffe034";
 		new_color7 = "#ffe034";
 		new_color8 = "#ffe034";
