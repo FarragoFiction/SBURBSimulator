@@ -61,7 +61,7 @@ function RelationshipDrama(){
 			chatText += chatLine(player2Start, player2, "lol");
 			chatText += chatLine(player2Start, player2, "Well, I think YOU are " + this.generateNewOpinion(r2) + "!");
 			chatText += chatLine(player2Start, player2, "so fuck off!");
-			player1.triggerLevel = 10;
+			player1.triggerLevel ++;
 			r1.value = -20;
 			//this is not going to go well.
 		}else{
