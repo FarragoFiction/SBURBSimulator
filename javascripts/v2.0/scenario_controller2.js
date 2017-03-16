@@ -29,7 +29,7 @@ var timeTillReckoning = getRandomInt(10,30);
 window.onload = function() {
    init();
 	 debug("refactor rendering. no more timeouts. wait until all body parts onLoad finishes. make an object to keep track of all of the layers. when they are all done, or have timed out. render.");
-
+	 debug("Wait, could have a 'loading' bar. Start the sim, but don't do intro or anything else. Load the bodies and all releveant images. have an 'on load' callback for all of them. Basically, prestage all my images. hair, horns, wings, fins, bodies, blood, spades, anything this specific sim (and it's guardians) would need.  THEN do intro.");
 	if(!debugMode){
 		randomizeEntryOrder();
 	}
