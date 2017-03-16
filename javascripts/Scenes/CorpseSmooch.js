@@ -31,7 +31,7 @@ function CorpseSmooch(){
 		
 		if(this.combo>1){
 			var divID = (div.attr("id")) + "_" + "combo";
-			var canvasHTML = "<br><canvas id='canvasCombo" + divID+"' width='" +canvasWidth + "' height="+canvasHeight/4 + "'>  </canvas>";
+			var canvasHTML = "<br><canvas id='canvasCombo" + divID+"' width='" +canvasWidth + "' height="+canvasHeight/3 + "'>  </canvas>";
 			div.append(canvasHTML);
 			var canvasDiv = document.getElementById("canvasCombo"+ divID);
 			this.drawCombo(canvasDiv, this.combo);
