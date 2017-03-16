@@ -74,7 +74,7 @@ function RelationshipDrama(){
 					chatText += chatLine(player1Start, player1,"Fuck. Thanks for being honest. ");
 				}else{
 					chatText += chatLine(player1Start, player1,"But...but...WHY!? I tried so hard to be nice to you!");
-					chatText += player2Start,+"Look, I'll level with you. I'm even dropping my dumb quirk, okay? It doesn't matter if you're nice. I'm sorry.  I can't just change the way I feel because maybe you deserve it.";
+					chatText += player2Start+"  Look, I'll level with you. I'm even dropping my dumb quirk, okay? It doesn't matter if you're nice. I'm sorry.  I can't just change the way I feel just because maybe you deserve it.\n";
 					chatText += chatLine(player1Start, player1,"Fuck.");
 				}
 			}
@@ -335,7 +335,7 @@ function RelationshipDrama(){
 			var trait = whatDontPlayersHaveInCommon(player1, player2);
 			var trait2 = whatDontPlayersHaveInCommon(player2, player1);
 			chatText += chatLine(player1Start, player1,"God, why are you so " + trait + "?");
-			chatText += chatLine(player1Start, player1,"Fuck you, at least I'm not " + trait2 + "!");
+			chatText += chatLine(player2Start, player2,"Fuck you, at least I'm not " + trait2 + "!");
 
 		}else if(r2.type == r2.goodBig){
 			chatText += chatLine(player2Start, player2,"Wow. Yes. Way to be an asshole. ");
