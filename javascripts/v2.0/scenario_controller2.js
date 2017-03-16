@@ -313,6 +313,11 @@ function makeGuardians(){
 			guardian.level_index = 5; //scratched kids start more leveled up
 			guardian.power = 50;
 			guardian.leader = player.leader;
+			if(Math.random() >0.5){ //have SOMETHING in common with your ectorelative.
+				guardian.interest1 = player.interest1;
+			}else{
+				guardian.interest2 = player.interest2;
+			}
 			guardian.reinit();//redo levels and land based on real aspect
 			guardians.push(guardian);
 	}
