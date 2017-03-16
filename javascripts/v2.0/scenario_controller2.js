@@ -27,12 +27,6 @@ var timeTillReckoning = getRandomInt(10,30);
 //main canvas is either Leader + PesterChumWindow + 1 or more Players (in chat or group chat with leader)
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
-	debug("after 3.0, definitely add a new html page where you can create characters and then run a sim with them. ")
-	debug("if i wanter rending to be more complex than just wait a second, make an object that keeps track of all parts of a rendering and only writes it to the canas when all are loaded");
-	debug("sprite for Yx corpse smooch combo")
-	debug("more varied romantic rejection convos. sometimes stop using quirk (like feferi did rejecting eridan)");
-	debug("speech bubble for converstion theme? jack/mayor/a player aspect?");
-	debug("rainbow godtier be rendered behind regular godtier on revival. lets godtier outfit be seen. makes it look like an aura without having to do edge detection")
    init();
 
 	if(!debugMode){
@@ -41,7 +35,7 @@ window.onload = function() {
 	//debugRoyalRumble();
 	//authorMessage();
 	makeGuardians(); //after entry order established
-	
+
 	intro();
 	//debugRelationshipDrama();
 	//debugTriggerLevel();
@@ -58,9 +52,7 @@ window.onload = function() {
 	//have messy internal methods.
 	//all other scenes are handled through the scene controller like normal, which will check if var version2 = true;
 	//and if so will call "render" rather than "content"
-	debug("consider keeping track of async tasks in array. if too many at a time, put new async tasks in second array, only activate and add to first array when it is empty enough");
 
-	debug("relationship text. reckoning");
 	//tick();  dont tick here, tick after intro
 }
 

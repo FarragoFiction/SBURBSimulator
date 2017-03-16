@@ -153,7 +153,6 @@ function PlanToExileJack(){
 	}
 
 	this.renderContent = function(div){
-		debug("planning to exile jack")
 		if(!this.planner){
 			return;
 		}
