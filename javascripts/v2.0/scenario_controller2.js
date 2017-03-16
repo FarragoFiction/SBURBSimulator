@@ -27,10 +27,9 @@ var timeTillReckoning = getRandomInt(10,30);
 //main canvas is either Leader + PesterChumWindow + 1 or more Players (in chat or group chat with leader)
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
-	debug("more varieites of introduction, also flesh out method in random_tables to see if players have an interest category in common")
 	debug("after 3.0, definitely add a new html page where you can create characters and then run a sim with them. ")
 	debug("if i wanter rending to be more complex than just wait a second, make an object that keeps track of all parts of a rendering and only writes it to the canas when all are loaded");
-	debug("refactor sprites to all be at 0,0, because otherwise baby sprites (especially fins) are weird");
+	debug("why are quirk replacements sometimes all caps?seems to happen with unchanged capitilization. doesn't happen in replacement, definitely.")
 	debug("sprite for Yx corpse smooch combo")
 	debug("more varied romantic rejection convos");
 	debug("speech bubble for converstion theme? jack/mayor/a player aspect?");

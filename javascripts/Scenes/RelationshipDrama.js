@@ -340,7 +340,11 @@ function RelationshipDrama(){
 			chatText += chatLine(player2Start, player2,"And here I thought you were " + this.generateNewOpinion(r2) + ".");
 			if(player2.isTroll == true){
 				chatText += chatLine(player2Start, player2,"I just don't hate you enough. ");
-				chatText += chatLine(player1Start, player1,"Fuck.");
+				if(player1.isTroll == true){
+					chatText += chatLine(player1Start, player1,"Fuck.");
+				}else{
+					chatText += chatLine(player1Start, player1,"Wait. What!? Oh GOD, no! I am a HUMAN you dumb fuck! I DO NOT HAVE A CRUSH ON YOU!");
+				}
 			}
 		}
 		drawRelationshipChat(canvasDiv, player1, player2, chatText, 1000);
