@@ -30,7 +30,7 @@ function CorpseSmooch(){
 		}
 		
 		if(true || this.combo>1){
-			var divID = (div.attr("id")) + "_" + deadPlayer.chatHandle;
+			var divID = (div.attr("id")) + "_" + "combo";
 			var canvasHTML = "<br><canvas id='canvasCombo" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
 			var canvasDiv = document.getElementById("canvasCombo"+ divID);
