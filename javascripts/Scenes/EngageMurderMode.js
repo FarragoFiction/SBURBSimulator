@@ -220,7 +220,7 @@ function EngageMurderMode(){
 			player1.triggerLevel += 1;
 			r1.decrease();
 			chatText += chatLine(player2Start, player2,"I mean, probably. Everybody has at least some goodness in them, right? Even you?")
-			chatText += chatLine(player1Start, player1,"You fucker. Always pretending to be above it all. To be better than me.")
+			chatText += chatLine(player1Start, player1,"You asshole. Always pretending to be above it all. To be better than me.")
 			chatText += chatLine(player1Start, player1,"Well try being superior when you're dead.")
 		}
 		
