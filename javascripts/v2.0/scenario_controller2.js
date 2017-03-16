@@ -28,6 +28,7 @@ var timeTillReckoning = getRandomInt(10,30);
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
    init();
+	 debug("refactor rendering. no more timeouts. wait until all body parts onLoad finishes. make an object to keep track of all of the layers. when they are all done, or have timed out. render.");
 
 	if(!debugMode){
 		randomizeEntryOrder();
