@@ -1126,12 +1126,19 @@ function dreamSymbol(canvas, player){
 
 
 function dreamPalletSwap(canvas, player){
-	var oldcolor1 = "#ff8800"; //shirt
-	var oldcolor2 = "#e76700"; //pants
-	var oldcolor3 = "#fa4900"; //hat
-	var oldcolor4 = "#fefd49"; //symbol fefd49
-	var oldcolor5 = "#c33700"; //darker hat
-	var oldcolor6 = "#10e0ff"; //shoes
+	var oldcolor1 = "#FEFD49"; 
+	var oldcolor2 = "#FEC910"; 
+	var oldcolor3 = "#10E0FF"; 
+	var oldcolor4 = "#00A4BB";
+	var oldcolor5 = "#FA4900";
+	var oldcolor6 = "#E94200"; 
+	
+	var oldcolor7 = "#C33700"; 
+	var oldcolor8 = "#FF8800"; 
+	var oldcolor9 = "#D66E04"; 
+	var oldcolor10 = "#E76700"; 
+	var oldcolor11 = "#c33700";
+	var oldcolor12 = "#CA5B00";
 
 	var newcolor1 = "#de00ff";
 	var newcolor2 = "#de00ff";
@@ -1162,115 +1169,192 @@ function aspectPalletSwap(canvas, player){
   //not all browsers do png gama info correctly. Chrome does, firefox does not, mostly.
   //remove it entirely with this command
   //pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB infile.png outfile.png
-  var oldcolor1 = "#ff8800"; //shirt
-  var oldcolor2 = "#e76700"; //pants
-  var oldcolor3 = "#fa4900"; //hat
-  var oldcolor4 = "#fefd49"; //symbol fefd49
-  var oldcolor5 = "#c33700"; //darker hat
-  var oldcolor6 = "#10e0ff"; //shoes
+	var oldcolor1 = "#FEFD49"; 
+	var oldcolor2 = "#FEC910"; 
+	var oldcolor3 = "#10E0FF"; 
+	var oldcolor4 = "#00A4BB";
+	var oldcolor5 = "#FA4900";
+	var oldcolor6 = "#E94200"; 
 
-  var newcolor1 = "#b4b4b4";
-  var newcolor2 = "#b4b4b4";
-  var newcolor3 = "#b4b4b4";
-  var newcolor4 = "#b4b4b4";
-  var newcolor5 = "#b4b4b4";
-  var newcolor6 = "#b4b4b4";
+	var oldcolor7 = "#C33700"; 
+	var oldcolor8 = "#FF8800"; 
+	var oldcolor9 = "#D66E04"; 
+	var oldcolor10 = "#E76700"; 
+	var oldcolor11 = "#CA5B00";
 
-  //why does this bug out color replacement???
+	var new_color1 = "#b4b4b4";
+	var new_color2 = "#b4b4b4";
+	var new_color3 = "#b4b4b4";
+	var new_color4 = "#b4b4b4";
+	var new_color5 = "#b4b4b4";
+	var new_color6 = "#b4b4b4";
+	var new_color7 = "#b4b4b4";
+	var new_color8 = "#b4b4b4";
+	var new_color9 = "#b4b4b4";
+	var new_color10 = "#b4b4b4";
+	var new_color11 = "#b4b4b4";
+
+
+  //I am the GREETEST. Figured out how to make spreadsheet auto gen code: ="new_color"&ROW()&"='#" &B23 &"';"
   if(player.aspect =="Light"){
-    newcolor1 = "#ff7f00"
-    newcolor2 = "#f95900"
-    newcolor3 = "#fd1000"
-    newcolor4 ="#fbff00"
-    newcolor5 = "#d41000"; //darker hat
-    newcolor6 ="#00e4ff"
+    new_color1='#FEFD49';
+	new_color2='#FEC910';
+	new_color3='#10E0FF';
+	new_color4='#00A4BB';
+	new_color5='#FA4900';
+	new_color6='#E94200';
+	new_color7='#C33700';
+	new_color8='#FF8800';
+	new_color9='#D66E04';
+	new_color10='#E76700';
+	new_color11='#CA5B00'; 
   }else if(player.aspect =="Breath"){
-    newcolor1 = "#0087eb"
-    newcolor2 = "#006be1"
-    newcolor3 = "#0046d1"
-    newcolor4 = "#10e0ff"
-    newcolor5 = "#003396"
-    newcolor6 = "#fefd49"
+    new_color1='#10E0FF';
+	new_color2='#00A4BB';
+	new_color3='#FEFD49';
+	new_color4='#D6D601';
+	new_color5='#0052F3';
+	new_color6='#0046D1';
+	new_color7='#003396';
+	new_color8='#0087EB';
+	new_color9='#0070ED';
+	new_color10='#006BE1';
+	new_color11='#0054B0';
   }else if(player.aspect =="Time"){
-    newcolor1 = "#b70d0e"
-    newcolor2 = "#8e1516"
-    newcolor3 = "#3c0404"
-    newcolor4 ="#ff2106"
-    newcolor5 ="#1f0000"
-    newcolor6 ="#000000"
+    new_color1='#FF2106';
+	new_color2='#AD1604';
+	new_color3='#030303';
+	new_color4='#242424';
+	new_color5='#510606';
+	new_color6='#3C0404';
+	new_color7='#1F0000';
+	new_color8='#B70D0E';
+	new_color9='#970203';
+	new_color10='#8E1516';
+	new_color11='#640707';
   }else if(player.aspect =="Space"){
-    newcolor1 = "#030303"
-    newcolor2 = "#2f2f30"
-    newcolor3 = "#1d1d1d"
-    newcolor4 ="#efefef"
-    newcolor5 ="#141414"
-    newcolor6 ="#ff2106"
+    new_color1='#EFEFEF';
+	new_color2='#DEDEDE';
+	new_color3='#FF2106';
+	new_color4='#B01200';
+	new_color5='#2F2F30';
+	new_color6='#1D1D1D';
+	new_color7='#080808';
+	new_color8='#030303';
+	new_color9='#242424';
+	new_color10='#333333';
+	new_color11='#141414';
   }else if(player.aspect =="Heart"){
-    newcolor1 = "#6b0829" //shirt
-    newcolor2 = "#55142a" //pants
-    newcolor3 = "#3c0d1f"  //hat
-    newcolor4 ="#bd1864"  //symbol
-    newcolor5 ="#260914"  //dark hat
-    newcolor6 ="#1d572e"  //shoes
+    new_color1='#BD1864';
+	new_color2='#780F3F';
+	new_color3='#1D572E';
+	new_color4='#11371D';
+	new_color5='#4C1026';
+	new_color6='#3C0D1F';
+	new_color7='#260914';
+	new_color8='#6B0829';
+	new_color9='#4A0818';
+	new_color10='#55142A';
+	new_color11='#3D0E1E';
   }else if(player.aspect =="Mind"){
-    newcolor1 = "#3da35a" //shirt
-    newcolor2 = "#3b7e4f" //pants
-    newcolor3 = "#164524"  //hat
-    newcolor4 ="#06ffc9"  //symbol
-    newcolor5 ="#11371d"  //dark hat
-    newcolor6 ="#11371d"  //shoes
+    new_color1='#06FFC9';
+	new_color2='#04A885';
+	new_color3='#6E0E2E';
+	new_color4='#4A0818';
+	new_color5='#1D572E';
+	new_color6='#164524';
+	new_color7='#11371D';
+	new_color8='#3DA35A';
+	new_color9='#2E7A43';
+	new_color10='#3B7E4F';
+	new_color11='#265133';
   }else if(player.aspect =="Life"){
-    newcolor1 = "#ccc4b5" //shirt
-    newcolor2 = "#a29989" //pants
-    newcolor3 = "#494132"  //hat
-    newcolor4 ="#76c34e"  //symbol
-    newcolor5 ="#2d271e"  //dark hat
-    newcolor6 ="#00164f"  //shoes
+    new_color1='#76C34E';
+	new_color2='#4F8234';
+	new_color3='#00164F';
+	new_color4='#000766';
+	new_color5='#605542';
+	new_color6='#494132';
+	new_color7='#2D271E';
+	new_color8='#CCC4B5';
+	new_color9='#A89F8D';
+	new_color10='#A29989';
+	new_color11='#918673';
   }else if(player.aspect =="Void"){
-    newcolor1 = "#033476" //shirt
-    newcolor2 = "#004cb2" //pants
-    newcolor3 = "#00103c"  //hat
-    newcolor4 ="#0b1741"  //symbol
-    newcolor5 ="#00071a"  //dark hat
-    newcolor6 ="#ccc4b5"  //shoes
+    new_color1='#0B1030';
+	new_color2='#04091A';
+	new_color3='#CCC4B5';
+	new_color4='#A89F8D';
+	new_color5='#00164F';
+	new_color6='#00103C';
+	new_color7='#00071A';
+	new_color8='#033476';
+	new_color9='#02285B';
+	new_color10='#004CB2';
+	new_color11='#003E91';
   }else if(player.aspect =="Hope"){
-    newcolor1 = "#ffe094" //shirt
-    newcolor2 = "#f6c54a" //pants
-    newcolor3 = "#f7bb2c"  //hat
-    newcolor4 ="#fcf0c7"  //symbol
-    newcolor5 ="#dba523"  //dark hat
-    newcolor6 ="#164524"  //shoes
+    new_color1='#FDF9EC';
+	new_color2='#D6C794';
+	new_color3='#164524';
+	new_color4='#06280C';
+	new_color5='#FFC331';
+	new_color6='#F7BB2C';
+	new_color7='#DBA523';
+	new_color8='#FFE094';
+	new_color9='#E8C15E';
+	new_color10='#F6C54A';
+	new_color11='#EDAF0C';
   }
   else if(player.aspect =="Doom"){
-    newcolor1 = "#204020" //shirt
-    newcolor2 = "#192c16" //pants
-    newcolor3 = "#141614"  //hat
-    newcolor4 ="#0f0f0f"  //symbol
-    newcolor5 ="#0b0d0b"  //dark hat
-    newcolor6 ="#ffe094"  //shoes
+    new_color1='#0F0F0F';
+	new_color2='#010101';
+	new_color3='#E8C15E';
+	new_color4='#C7A140';
+	new_color5='#1E211E';
+	new_color6='#141614';
+	new_color7='#0B0D0B';
+	new_color8='#204020';
+	new_color9='#11200F';
+	new_color10='#192C16';
+	new_color11='#121F10';
   }else if(player.aspect =="Rage"){
-    newcolor1 = "#381b76" //shirt
-    newcolor2 = "#281d36" //pants
-    newcolor3 = "#6d34a6"  //hat
-    newcolor4 ="#994bb3"  //symbol
-    newcolor5 ="#592d86"  //dark hat
-    newcolor6 ="#3d190a"  //shoes
+    new_color1='#974AA7';
+	new_color2='#6B347D';
+	new_color3='#3D190A';
+	new_color4='#2C1207';
+	new_color5='#7C3FBA';
+	new_color6='#6D34A6';
+	new_color7='#592D86';
+	new_color8='#381B76';
+	new_color9='#1E0C47';
+	new_color10='#281D36';
+	new_color11='#1D1526';
   }else if(player.aspect =="Blood"){
-    newcolor1 = "#3d190a" //shirt
-    newcolor2 = "#5c2913" //pants
-    newcolor3 = "#230200"  //hat
-    newcolor4 ="#ba1016"  //symbol
-    newcolor5 ="#110000"  //dark hat
-    newcolor6 ="#381b76"  //shoes
+    new_color1='#BA1016';
+	new_color2='#820B0F';
+	new_color3='#381B76';
+	new_color4='#1E0C47';
+	new_color5='#290704';
+	new_color6='#230200';
+	new_color7='#110000';
+	new_color8='#3D190A';
+	new_color9='#2C1207';
+	new_color10='#5C2913';
+	new_color11='#4C1F0D';
   }
 
 
-  swapColors(canvas, oldcolor1, newcolor1)
-  swapColors(canvas, oldcolor2, newcolor2)
-  swapColors(canvas, oldcolor3, newcolor3)
-  swapColors(canvas, oldcolor4, newcolor4)
-  swapColors(canvas, oldcolor5, newcolor5)
-  swapColors(canvas, oldcolor6, newcolor6)
+  swapColors(canvas, oldcolor1, new_color1)
+  swapColors(canvas, oldcolor2, new_color2)
+  swapColors(canvas, oldcolor3, new_color3)
+  swapColors(canvas, oldcolor4, new_color4)
+  swapColors(canvas, oldcolor5, new_color5)
+  swapColors(canvas, oldcolor6, new_color6)
+  swapColors(canvas, oldcolor7, new_color7)
+  swapColors(canvas, oldcolor8, new_color8)
+  swapColors(canvas, oldcolor9, new_color9)
+  swapColors(canvas, oldcolor10, new_color10)
+  swapColors(canvas, oldcolor11, new_color11)
 
 }
 
