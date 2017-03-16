@@ -44,7 +44,7 @@ window.onload = function() {
 	
 	intro();
 	//debugRelationshipDrama();
-	debugTriggerLevel();
+	//debugTriggerLevel();
 	//debugGrimDark();
 	//debugJackScheme();
 	//debugLevelTheHellUp();
