@@ -1088,35 +1088,48 @@ function dreamPalletSwap(canvas, player){
 	var oldcolor4 = "#00A4BB";
 	var oldcolor5 = "#FA4900";
 	var oldcolor6 = "#E94200"; 
-	
+
 	var oldcolor7 = "#C33700"; 
 	var oldcolor8 = "#FF8800"; 
 	var oldcolor9 = "#D66E04"; 
 	var oldcolor10 = "#E76700"; 
-	var oldcolor11 = "#c33700";
-	var oldcolor12 = "#CA5B00";
+	var oldcolor11 = "#CA5B00";
 
-	var newcolor1 = "#de00ff";
-	var newcolor2 = "#de00ff";
-	var newcolor3 = "#de00ff";
-	var newcolor4 = "#f092ff";
-	var newcolor5 = "#a200b7";
-	var newcolor6 = player.bloodColor;
+	var new_color1 = "#de00ff";
+	var new_color2 = "#de00ff";
+	var new_color3 = player.bloodColor;
+	var new_color4 = player.bloodColor;
+	var new_color5 = "#a200b7";
+	var new_color6 = "#de00ff";
+	var new_color7 = "#de00ff";
+	var new_color8 = "#de00ff";
+	var new_color9 = "#de00ff";
+	var new_color10 = "#de00ff";
+	var new_color11 = "#de00ff";
 
 	if(player.moon =="Prospit"){
 		newcolor1 = "#ffe034"
 		newcolor2 = "#ffff00"
-		newcolor3 = "#ffe034"
-		newcolor4 ="#ffff00"
-		newcolor5 = "#ffe034"; //darker hat
+		newcolor5 = "#ffe034"; 
+		new_color6 = "#ffe034";
+		new_color7 = "#ffe034";
+		new_color8 = "#ffe034";
+		new_color9 = "#ffe034";
+		new_color10 = "#ffe034";
+		new_color11 = "#ffe034";
 	}
 
-	swapColors(canvas, oldcolor1, newcolor1)
-	swapColors(canvas, oldcolor2, newcolor2)
-	swapColors(canvas, oldcolor3, newcolor3)
-	swapColors(canvas, oldcolor4, newcolor4)
-	swapColors(canvas, oldcolor5, newcolor5)
-	swapColors(canvas, oldcolor6, newcolor6)
+	swapColors(canvas, oldcolor1, new_color1)
+	swapColors(canvas, oldcolor2, new_color2)
+	swapColors(canvas, oldcolor3, new_color3)
+	swapColors(canvas, oldcolor4, new_color4)
+	swapColors(canvas, oldcolor5, new_color5)
+	swapColors(canvas, oldcolor6, new_color6)
+	swapColors(canvas, oldcolor7, new_color7)
+	swapColors(canvas, oldcolor8, new_color8)
+	swapColors(canvas, oldcolor9, new_color9)
+	swapColors(canvas, oldcolor10, new_color10)
+	swapColors(canvas, oldcolor11, new_color11)
 	dreamSymbol(canvas, player);
 
 }
