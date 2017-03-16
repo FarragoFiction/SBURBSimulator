@@ -250,8 +250,8 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 				var r = randomRelationship(friends[i])
 				if(this.isTroll && this.bloodColor == "#99004d" && friends[i].isTroll && friends[i].bloodColor == "#99004d"){
 					r.value = -20; //biological imperitive to fight for throne.
-					this.trigger ++;
-					friends[i].trigger ++;
+					this.triggerLevel ++;
+					friends[i].triggerLevel ++;
 				}
 				this.relationships.push(r);
 			}

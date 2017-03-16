@@ -61,13 +61,22 @@ function RelationshipDrama(){
 			chatText += chatLine(player2Start, player2, "lol");
 			chatText += chatLine(player2Start, player2, "Well, I think YOU are " + this.generateNewOpinion(r2) + "!");
 			chatText += chatLine(player2Start, player2, "so fuck off!");
+			player1.triggerLevel = 10;
+			r1.value = -20;
+			//this is not going to go well.
 		}else{
 			if(player2.grimDark){
 				chatText += chatLine(player2Start, player2,"Your feelings are irrelevant. ");
-				chatText += chatLine(player1Start, player1,"Fuck. Thanks for being honest. ");
+				chatText += chatLine(player1Start, player1,"Fuck. You're grimdark, aren't you. Fuck.");
 			}else{
 				chatText += chatLine(player2Start, player2,"Fuck. I'm sorry. I just don't feel that way about you. ");
-				chatText += chatLine(player1Start, player1,"Fuck. Thanks for being honest. ");
+				if(playerLikesRomance(player1) || player1.aspect == "Mind"){
+					chatText += chatLine(player1Start, player1,"Fuck. Thanks for being honest. ");
+				}else{
+					chatText += chatLine(player1Start, player1,"But...but...WHY!? I tried so hard to be nice to you!");
+					chatText += player2Start,+"Look, I'll level with you. I'm even dropping my dumb quirk, okay? It doesn't matter if you're nice. I'm sorry.  I can't just change the way I feel because maybe you deserve it.";
+					chatText += chatLine(player1Start, player1,"Fuck.");
+				}
 			}
 
 		}
