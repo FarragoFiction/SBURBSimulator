@@ -341,12 +341,12 @@ function drawGodRevival(canvas, live_players, dead_players, repeatTime){
 			total += live_spriteBuffers.length;
 			rainbowSwap(canvas);
 			//render again, but offset, makes rainbow an aura
-			var x = -270;
-			var y = -45;
+			var x = -260;
+			var y = -35;
 			for(var i = 0; i<live_spriteBuffers.length; i++){
 				if(i == 6){
-					x = -295; //down a row
-					y = 95;
+					x = -285; //down a row
+					y = 85;
 				}
 				x = x +150;
 				copyTmpCanvasToRealCanvasAtPos(canvas, live_spriteBuffers[i],x,y)
@@ -388,12 +388,12 @@ function drawGetTiger(canvas, players, repeatTime){
 			rainbowSwap(canvas);
 			
 			//render again, but offset, makes rainbow an aura
-			var x = -270;
-			var y = -45;
+			var x = -260;
+			var y = -35;
 			for(var i = 0; i<spriteBuffers.length; i++){
 				if(i == 6){
-					x = -295; //down a row
-					y = 95;
+					x = -285; //down a row
+					y = 85;
 				}
 				x = x +150;
 				copyTmpCanvasToRealCanvasAtPos(canvas, spriteBuffers[i],x,y)
@@ -620,6 +620,22 @@ function drawChat(canvas, player1, player2, chat, repeatTime){
 			copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,230,0)
 			copyTmpCanvasToRealCanvasAtPos(canvas, textSpriteBuffer,244,51)
 		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
+}
+
+
+function drawComboText(canvas,comboNum){
+	alert(comboNum + "x CORPSESMOOCH COMBO!!!")
+	var ctx = canvas.getContext("2d");
+	ctx.font = "14px Courier New Bold"
+	ctx.imageSmoothingEnabled = false;
+	ctx.scale(4,4);
+	ctx.fillStyle = "#ff0000";  //bright candy red (most common blood color)
+	var excite = "";
+	for(var i = 0; i<comboNum; i++){
+		excite += "!"
+	}
+	ctx.fillText(comboNum + "x CORPSESMOOCH COMBO"+excite,8,8);
+	
 }
 
 function drawChatText(canvas, player1, player2, introText, chat){

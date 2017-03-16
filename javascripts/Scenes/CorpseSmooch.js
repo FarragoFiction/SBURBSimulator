@@ -66,6 +66,10 @@ function CorpseSmooch(){
 
 	}
 	
+	this.drawCombo = function(canvas,comboNum){
+		drawComboText(canvas, comboNum);
+	}
+	
 	this.ignoreEnemies = function(player, royalty){
 		if(!royalty){
 			return null;
@@ -114,14 +118,23 @@ function CorpseSmooch(){
 
 	this.renderForPlayer = function(div, deadPlayer){	
 		var royalty = this.getRoyalty(deadPlayer)
+		var combo = 0;
 		if(royalty){
 			var divID = (div.attr("id")) + "_" + deadPlayer.chatHandle;
 			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
 			var canvasDiv = document.getElementById("canvas"+ divID);
 			this.drawCorpseSmooch(canvasDiv, deadPlayer, royalty, 1000)
+			combo += 1;
 		}else{
 			this.makeDead(deadPlayer); //dream self dies, too
+		}
+		if(combo>1){
+			var divID = (div.attr("id")) + "_" + deadPlayer.chatHandle;
+			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+			div.append(canvasHTML);
+			var canvasDiv = document.getElementById("canvas"+ divID);
+			this.drawCombo(canvasDiv, combo);
 		}
 	}
 	
