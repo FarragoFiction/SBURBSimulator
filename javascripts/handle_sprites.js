@@ -1095,7 +1095,8 @@ function babySprite(canvas,player){
   }
   addImageTag(imageString)
   var img=document.getElementById(imageString);
-
+  var width = img.width;
+  var height = img.height;
   ctx.drawImage(img,0,0,width,height);
   if(player.isTroll){
     swapColors(canvas, "#585858",player.bloodColor);
