@@ -34,7 +34,7 @@ function CorpseSmooch(){
 			var canvasHTML = "<br><canvas id='canvasCombo" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
 			var canvasDiv = document.getElementById("canvasCombo"+ divID);
-			this.drawCombo(canvasDiv, combo);
+			this.drawCombo(canvasDiv, this.combo);
 		}
 	}
 	
