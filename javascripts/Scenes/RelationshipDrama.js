@@ -68,14 +68,17 @@ function RelationshipDrama(){
 			if(player2.grimDark){
 				chatText += chatLine(player2Start, player2,"Your feelings are irrelevant. ");
 				chatText += chatLine(player1Start, player1,"Fuck. You're grimdark, aren't you. Fuck.");
+				player1.triggerLevel ++;
 			}else{
 				chatText += chatLine(player2Start, player2,"Fuck. I'm sorry. I just don't feel that way about you. ");
 				if(playerLikesRomantic(player1) || player1.aspect == "Mind"){
 					chatText += chatLine(player1Start, player1,"Fuck. Thanks for being honest. ");
+					player1.triggerLevel += 0.5; //not triggered MUCH, but keeps them from continuing to confess to other people. I mean. Hypothetically.
 				}else{
 					chatText += chatLine(player1Start, player1,"But...but...WHY!? I tried so hard to be nice to you!");
 					chatText += player2Start+"  Look, I'll level with you. I'm even dropping my dumb quirk, okay? It doesn't matter if you're nice. I'm sorry.  I can't just change the way I feel just because maybe you deserve it.\n";
 					chatText += chatLine(player1Start, player1,"Fuck.");
+					player1.triggerLevel += 0.5;
 				}
 			}
 
