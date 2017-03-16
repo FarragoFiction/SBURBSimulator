@@ -129,7 +129,7 @@ function CorpseSmooch(){
 		}else{
 			this.makeDead(deadPlayer); //dream self dies, too
 		}
-		if(true || combo>1){
+		if(combo>1){
 			var divID = (div.attr("id")) + "_" + deadPlayer.chatHandle;
 			var canvasHTML = "<br><canvas id='canvasCombo" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
