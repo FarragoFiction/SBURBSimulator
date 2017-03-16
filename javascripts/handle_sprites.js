@@ -5,7 +5,10 @@ function trollify(canvas,player){
   //wings first, replace black and red with blood color with two opacities
   // wings(canvas,player);
    greySkin(canvas,player);
-   fins(canvas, player);
+   //fins(canvas, player);
+   //TODO eventually call fins with hair, not troll stuff
+   fin1(canvas, player);
+   fin2(canvas, player);
    horns(canvas,player);
 }
 
@@ -125,7 +128,7 @@ function wings(canvas,player){
   ctx = canvas.getContext('2d');
   var num = player.quirk.favoriteNumber;
   //var num = 5;
-  var imageString = "wing"+num + ".png";
+  var imageString = "Wings/wing"+num + ".png";
   addImageTag(imageString)
   var img=document.getElementById(imageString);
   var width = img.width;
@@ -146,11 +149,23 @@ function grimDarkHalo(canvas){
     var height = img.height;
     ctx.drawImage(img,0,0,width,height);
 }
-
-function fins(canvas, player){
+//TODO, eventually render fin1, then hair, then fin2
+function fin1(canvas, player){
   if(player.bloodColor == "#610061" || player.bloodColor == "#99004d"){
     ctx = canvas.getContext('2d');
-    var imageString = "fins.png";
+    var imageString = "fin1.png";
+    addImageTag(imageString)
+    var img=document.getElementById(imageString);
+    var width = img.width;
+    var height = img.height;
+    ctx.drawImage(img,0,0,width,height);
+  }
+}
+
+function fin2(canvas, player){
+  if(player.bloodColor == "#610061" || player.bloodColor == "#99004d"){
+    ctx = canvas.getContext('2d');
+    var imageString = "fin2.png";
     addImageTag(imageString)
     var img=document.getElementById(imageString);
     var width = img.width;
@@ -187,7 +202,7 @@ function babyHorns(canvas, player,isRepeat){
 //same for wings eventually.
 function leftHorn(canvas, player){
     ctx = canvas.getContext('2d');
-    var imageString = "left"+player.leftHorn + ".png";
+    var imageString = "Horns/left"+player.leftHorn + ".png";
     addImageTag(imageString)
     var img=document.getElementById(imageString);
     var width = img.width;
@@ -203,7 +218,7 @@ function rightHorn(canvas, player){
  // console.log("doing right horn");
   ctx = canvas.getContext('2d');
 
-  var imageString = "right"+player.rightHorn + ".png";
+  var imageString = "Horns/right"+player.rightHorn + ".png";
   addImageTag(imageString)
 
   var img=document.getElementById(imageString);
@@ -940,7 +955,7 @@ function hair(canvas, player){
 	var img=document.getElementById(imageString);
 	var width = img.width;
 	var height = img.height;
-	ctx.drawImage(img,width/6,height/4,width,height);
+	ctx.drawImage(img,0,0,width,height);
 	if(player.isTroll){
 		swapColors(canvas, "#313131", "#000000");
 		swapColors(canvas, "#202020", player.bloodColor);
@@ -964,124 +979,123 @@ function princeTiara(canvas, player){
 }
 
 function regularSprite(canvas, player){
-	var imageString = "";
+	var imageString = "Bodies/";
   if(player.class_name == "Page"){
-    imageString = "reg001.png"
+    imageString += "reg001.png"
   }else if(player.class_name == "Knight" ){
-    imageString = "reg002.png"
+    imageString += "reg002.png"
   }else if(player.class_name == "Witch" ){
-    imageString = "reg003.png"
+    imageString += "reg003.png"
   }else if(player.class_name == "Sylph" ){
-    imageString = "reg004.png"
+    imageString += "reg004.png"
   }else if(player.class_name == "Thief" ){
-    imageString = "reg005.png"
+    imageString += "reg005.png"
   }else if(player.class_name == "Rogue" ){
-    imageString = "reg006.png"
+    imageString += "reg006.png"
   }else if(player.class_name == "Seer" ){
-    imageString = "reg007.png"
+    imageString += "reg007.png"
   }else if(player.class_name == "Mage" ){
-    imageString = "reg008.png"
+    imageString += "reg008.png"
   }else if(player.class_name == "Heir" ){
-    imageString = "reg009.png"
+    imageString += "reg009.png"
   }else if(player.class_name == "Maid" ){
-    imageString = "reg010.png"
+    imageString += "reg010.png"
   }else if(player.class_name == "Prince" ){
-    imageString = "reg011.png"
+    imageString += "reg011.png"
   }else if(player.class_name == "Bard" ){
-    imageString = "reg012.png"
+    imageString += "reg012.png"
   }
   addImageTag(imageString)
   var img=document.getElementById(imageString);
   var width = img.width;
   var height = img.height;
-  ctx.drawImage(img,width/6,height/4,width,height);
+  ctx.drawImage(img,0,0,width,height);
   aspectPalletSwap(canvas, player);
   //aspectSymbol(canvas, player);
 }
 
 function dreamSprite(canvas, player){
-	var imageString = "";
+var imageString = "Bodies/";
   if(player.class_name == "Page"){
-    imageString = "reg001.png"
+    imageString += "reg001.png"
   }else if(player.class_name == "Knight" ){
-    imageString = "reg002.png"
+    imageString += "reg002.png"
   }else if(player.class_name == "Witch" ){
-    imageString = "reg003.png"
+    imageString += "reg003.png"
   }else if(player.class_name == "Sylph" ){
-    imageString = "reg004.png"
+    imageString += "reg004.png"
   }else if(player.class_name == "Thief" ){
-    imageString = "reg005.png"
+    imageString += "reg005.png"
   }else if(player.class_name == "Rogue" ){
-    imageString = "reg006.png"
+    imageString += "reg006.png"
   }else if(player.class_name == "Seer" ){
-    imageString = "reg007.png"
+    imageString += "reg007.png"
   }else if(player.class_name == "Mage" ){
-    imageString = "reg008.png"
+    imageString += "reg008.png"
   }else if(player.class_name == "Heir" ){
-    imageString = "reg009.png"
+    imageString += "reg009.png"
   }else if(player.class_name == "Maid" ){
-    imageString = "reg010.png"
+    imageString += "reg010.png"
   }else if(player.class_name == "Prince" ){
-    imageString = "reg011.png"
+    imageString += "reg011.png"
   }else if(player.class_name == "Bard" ){
-    imageString = "reg012.png"
+    imageString += "reg012.png"
   }
   addImageTag(imageString)
   var img=document.getElementById(imageString);
   var width = img.width;
   var height = img.height;
-  ctx.drawImage(img,width/6,height/4,width,height);
+  ctx.drawImage(img,0,0,width,height);
   dreamPalletSwap(canvas, player);
 }
 
 function godTierSprite(canvas, player){
 	//draw class, then color like aspect, then draw chest icon
   //ctx.drawImage(img,canvas.width/2,canvas.height/2,width,height);
-  var imageString = "";
+	var imageString = "Bodies/";
   if(player.class_name == "Page"){
-    imageString = "001.png"
+    imageString += "001.png"
   }else if(player.class_name == "Knight" ){
-    imageString = "002.png"
+    imageString += "002.png"
   }else if(player.class_name == "Witch" ){
-    imageString = "003.png"
+    imageString += "003.png"
   }else if(player.class_name == "Sylph" ){
-    imageString = "004.png"
+    imageString += "004.png"
   }else if(player.class_name == "Thief" ){
-    imageString = "005.png"
+    imageString += "005.png"
   }else if(player.class_name == "Rogue" ){
-    imageString = "006.png"
+    imageString += "006.png"
   }else if(player.class_name == "Seer" ){
-    imageString = "007.png"
+    imageString += "007.png"
   }else if(player.class_name == "Mage" ){
-    imageString = "008.png"
+    imageString += "008.png"
   }else if(player.class_name == "Heir" ){
-    imageString = "009.png"
+    imageString += "009.png"
   }else if(player.class_name == "Maid" ){
-    imageString = "010.png"
+    imageString += "010.png"
   }else if(player.class_name == "Prince" ){
-    imageString = "011.png"
+    imageString += "011.png"
   }else if(player.class_name == "Bard" ){
-    imageString = "012.png"
+    imageString += "012.png"
   }
   addImageTag(imageString)
   var img=document.getElementById(imageString);
   var width = img.width;
   var height = img.height;
-  ctx.drawImage(img,width/6,height/4,width,height);
+  ctx.drawImage(img,0,0,width,height);
   aspectPalletSwap(canvas, player);
   aspectSymbol(canvas, player);
 }
 
 function babySprite(canvas,player){
   ctx = canvas.getContext('2d');
-  var imageString = "baby.png"
+  var imageString = "Bodies/baby.png"
   if(player.isTroll){
-    imageString = "grub.png";
+    imageString = "Bodies/grub.png";
   }
   addImageTag(imageString)
   var img=document.getElementById(imageString);
-  var width = img.width;
-  var height = img.height;
+
   ctx.drawImage(img,0,0,width,height);
   if(player.isTroll){
     swapColors(canvas, "#585858",player.bloodColor);
