@@ -29,7 +29,6 @@ var timeTillReckoning = getRandomInt(10,30);
 window.onload = function() {
 	debug("after 3.0, definitely add a new html page where you can create characters and then run a sim with them. ")
 	debug("if i wanter rending to be more complex than just wait a second, make an object that keeps track of all parts of a rendering and only writes it to the canas when all are loaded");
-	debug("why are quirk replacements sometimes all caps?seems to happen with unchanged capitilization. doesn't happen in replacement, definitely.")
 	debug("sprite for Yx corpse smooch combo")
 	debug("more varied romantic rejection convos. sometimes stop using quirk (like feferi did rejecting eridan)");
 	debug("speech bubble for converstion theme? jack/mayor/a player aspect?");

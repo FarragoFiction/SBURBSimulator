@@ -19,6 +19,9 @@ function Quirk(){
 		ret = this.handleReplacements(ret);
 		ret = this.handleReplacementsIgnoreCase(ret);
 		ret = this.handleCapitilization(ret);//do it a second time 'cause ignore case made it's replacements all lower case
+		if(this.capitalization == 5){
+			ret = this.handleCapitilization(ret);//do it a third time cause now it's normal
+		}
 
 		ret = this.handlePrefix(ret);  //even if troll speaks in lowercase, 8=D needs to be as is.
 		ret = this.handleSuffix(ret);
