@@ -3,6 +3,7 @@ function CorpseSmooch(){
 	this.canRepeat = true;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.dreamersToRevive = [];
+	this.combo = 0;
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
@@ -22,9 +23,18 @@ function CorpseSmooch(){
 	}
 
 	this.renderContent = function(div){
+		this.combo = 0;
 		div.append("<br>"+this.contentForRender());
 		for(var i = 0; i<this.dreamersToRevive.length; i++){
 			this.renderForPlayer(div, this.dreamersToRevive[i]);
+		}
+		
+		if(true || this.combo>1){
+			var divID = (div.attr("id")) + "_" + deadPlayer.chatHandle;
+			var canvasHTML = "<br><canvas id='canvasCombo" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+			div.append(canvasHTML);
+			var canvasDiv = document.getElementById("canvasCombo"+ divID);
+			this.drawCombo(canvasDiv, combo);
 		}
 	}
 	
@@ -118,30 +128,22 @@ function CorpseSmooch(){
 
 	this.renderForPlayer = function(div, deadPlayer){	
 		var royalty = this.getRoyalty(deadPlayer)
-		var combo = 0;
 		if(royalty){
 			var divID = (div.attr("id")) + "_" + deadPlayer.chatHandle;
 			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
 			var canvasDiv = document.getElementById("canvas"+ divID);
 			this.drawCorpseSmooch(canvasDiv, deadPlayer, royalty, 1000)
-			combo += 1;
 		}else{
 			this.makeDead(deadPlayer); //dream self dies, too
 		}
-		if(combo>1){
-			var divID = (div.attr("id")) + "_" + deadPlayer.chatHandle;
-			var canvasHTML = "<br><canvas id='canvasCombo" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
-			div.append(canvasHTML);
-			var canvasDiv = document.getElementById("canvasCombo"+ divID);
-			this.drawCombo(canvasDiv, combo);
-		}
+
 	}
 	
 	//don't actually bring themt o life yet, cause it gets rid of grimdark/murdermode etc.
 	this.contentForRender = function(){
 		var ret = "";
-		var combo = 0;
+		this.combo = 0;
 		for(var i = 0; i<this.dreamersToRevive.length; i++){
 			var d = this.dreamersToRevive[i];
 			//have best friend mac on you.
@@ -152,15 +154,15 @@ function CorpseSmooch(){
 				ret += " The " + royalty.htmlTitle() + ", as a member of the royalty of " + royalty.moon + ", administers the universal remedy for the unawakened ";
 				ret += " to the " + d.htmlTitle() + ". Their dream self takes over on " + d.moon + ". ";
 				//this.makeAlive(d);
-				combo ++;
+				this.combo ++;
 			}else{
 				ret += d.htmlTitle() + "'s corpse waits patiently for the kiss of life. But nobody came. ";
 				ret += " Their dream self dies as well. ";
 				//this.makeDead(d);
 			}
 		}
-		if(combo > 1){
-			ret += combo +"X CORPSEMOOCH COMBO!!!";
+		if(this.combo > 1){
+			ret += this.combo +"X CORPSEMOOCH COMBO!!!";
 		}
 		//x times corpse smooch combo
 		return ret;
