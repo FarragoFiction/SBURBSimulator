@@ -128,6 +128,7 @@ function wings(canvas,player){
 
   swapColors(canvas, "#ff0000",player.bloodColor);
   swapColors50(canvas, "#00ff2a",player.bloodColor);
+  swapColors50(canvas, "#00ff00",player.bloodColor); //I have NO idea why some browsers render the lime parts of the wing as 00ff00 but whatever.
 
 }
 
@@ -386,7 +387,7 @@ function drawGetTiger(canvas, players, repeatTime){
 				copyTmpCanvasToRealCanvasAtPos(canvas, spriteBuffers[i],x,y)
 			}
 			rainbowSwap(canvas);
-			
+
 			//render again, but offset, makes rainbow an aura
 			var x = -260;
 			var y = -35;
@@ -637,7 +638,7 @@ function drawComboText(canvas,comboNum){
 		excite += "!"
 	}
 	ctx.fillText(comboNum + "x CORPSESMOOCH COMBO"+excite,20,20);
-	
+
 }
 
 function drawChatText(canvas, player1, player2, introText, chat){
@@ -1123,17 +1124,17 @@ function dreamSymbol(canvas, player){
 
 
 function dreamPalletSwap(canvas, player){
-	var oldcolor1 = "#FEFD49"; 
-	var oldcolor2 = "#FEC910"; 
-	var oldcolor3 = "#10E0FF"; 
+	var oldcolor1 = "#FEFD49";
+	var oldcolor2 = "#FEC910";
+	var oldcolor3 = "#10E0FF";
 	var oldcolor4 = "#00A4BB";
 	var oldcolor5 = "#FA4900";
-	var oldcolor6 = "#E94200"; 
+	var oldcolor6 = "#E94200";
 
-	var oldcolor7 = "#C33700"; 
-	var oldcolor8 = "#FF8800"; 
-	var oldcolor9 = "#D66E04"; 
-	var oldcolor10 = "#E76700"; 
+	var oldcolor7 = "#C33700";
+	var oldcolor8 = "#FF8800";
+	var oldcolor9 = "#D66E04";
+	var oldcolor10 = "#E76700";
 	var oldcolor11 = "#CA5B00";
 
 	var new_color1 = "#de00ff";
@@ -1151,7 +1152,7 @@ function dreamPalletSwap(canvas, player){
 	if(player.moon =="Prospit"){
 		new_color1 = "#ffff00"
 		new_color2 = "#ffff00"
-		new_color5 = "#ffe034"; 
+		new_color5 = "#ffe034";
 		new_color6 = "#ffff00";
 		new_color7 = "#ffff00";
 		new_color8 = "#ffff00";
@@ -1179,17 +1180,17 @@ function aspectPalletSwap(canvas, player){
   //not all browsers do png gama info correctly. Chrome does, firefox does not, mostly.
   //remove it entirely with this command
   //pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB infile.png outfile.png
-	var oldcolor1 = "#FEFD49"; 
-	var oldcolor2 = "#FEC910"; 
-	var oldcolor3 = "#10E0FF"; 
+	var oldcolor1 = "#FEFD49";
+	var oldcolor2 = "#FEC910";
+	var oldcolor3 = "#10E0FF";
 	var oldcolor4 = "#00A4BB";
 	var oldcolor5 = "#FA4900";
-	var oldcolor6 = "#E94200"; 
+	var oldcolor6 = "#E94200";
 
-	var oldcolor7 = "#C33700"; 
-	var oldcolor8 = "#FF8800"; 
-	var oldcolor9 = "#D66E04"; 
-	var oldcolor10 = "#E76700"; 
+	var oldcolor7 = "#C33700";
+	var oldcolor8 = "#FF8800";
+	var oldcolor9 = "#D66E04";
+	var oldcolor10 = "#E76700";
 	var oldcolor11 = "#CA5B00";
 
 	var new_color1 = "#b4b4b4";
@@ -1217,7 +1218,7 @@ function aspectPalletSwap(canvas, player){
 	new_color8='#FF8800';
 	new_color9='#D66E04';
 	new_color10='#E76700';
-	new_color11='#CA5B00'; 
+	new_color11='#CA5B00';
   }else if(player.aspect =="Breath"){
     new_color1='#10E0FF';
 	new_color2='#00A4BB';
