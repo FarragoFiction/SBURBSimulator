@@ -12,15 +12,6 @@ function trollify(canvas,player){
    horns(canvas,player);
 }
 
-function babyTrollify(canvas,player,isRepeat){
-   //red_array = red_context.getImageData(0, 0, red_canvas.width, red_canvas.height).data;
-   //alert("I should trollify");
-  //wings first, replace black and red with blood color with two opacities
-  // wings(canvas,player);
-   greySkin(canvas,player);
-   babyFins(canvas, player);
-   babyHorns(canvas,player,isRepeat);
-}
 
 //mod from http://stackoverflow.com/questions/21646738/convert-hex-to-rgba
 function hexToRgbA(hex){
@@ -174,27 +165,14 @@ function fin2(canvas, player){
   }
 }
 
-function babyFins(canvas, player){
-  if(player.bloodColor == "#610061" || player.bloodColor == "#99004d"){
-    ctx = canvas.getContext('2d');
-    var imageString = "fins.png";
-    addImageTag(imageString)
-    var img=document.getElementById(imageString);
-    var width = img.width;
-    var height = img.height;
-    ctx.drawImage(img,-width/7,-height/5,width,height);
-  }
-}
+
 
 function horns(canvas, player){
     leftHorn(canvas,player);
     rightHorn(canvas,player);
 }
 
-function babyHorns(canvas, player,isRepeat){
-    babyLeftHorn(canvas,player,isRepeat);
-    babyRightHorn(canvas,player,isRepeat);
-}
+
 
 //horns are no longer a sprite sheet. tracy and kristi and brandon gave me advice.
 //position horns on an image as big as the canvas. put the horns directly on the
@@ -227,30 +205,7 @@ function rightHorn(canvas, player){
   ctx.drawImage(img,0,0,width,height);
 }
 
-function babyLeftHorn(canvas, player){
-    ctx = canvas.getContext('2d');
-    //ctx.scale(.5,1);
-    var imageString = "left"+player.leftHorn + ".png";
-    addImageTag(imageString)
-    var img=document.getElementById(imageString);
-    var width = img.width;
-  	var height = img.height;
-  	ctx.drawImage(img,-width/6,-height/4,width,height);
-}
 
-//eventually all sprites will be standardized and won't need baby vs regular
-function babyRightHorn(canvas, player){
- // console.log("doing right horn");
-  ctx = canvas.getContext('2d');
-//  ctx.scale(.5,1);//closer together?
-  var imageString = "right"+player.rightHorn + ".png";
-  addImageTag(imageString)
-
-  var img=document.getElementById(imageString);
-  var width = img.width;
-  var height = img.height;
-  ctx.drawImage(img,-width/7,-height/4,width,height);
-}
 
 function addImageTag(url){
   //console.log(url);
@@ -762,7 +717,7 @@ function drawBabySprite(canvas, player, repeatTime, isRepeat){
     babySprite(canvas,player);
     babyHair(canvas, player);
     if(player.isTroll){
-      babyTrollify(canvas,player,isRepeat); //it scales horns too
+      trollify(canvas,player,isRepeat); //it scales horns too
     }
 
 
