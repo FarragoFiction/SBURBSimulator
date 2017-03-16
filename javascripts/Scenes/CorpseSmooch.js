@@ -29,7 +29,7 @@ function CorpseSmooch(){
 			this.renderForPlayer(div, this.dreamersToRevive[i]);
 		}
 		
-		if(true || this.combo>1){
+		if(this.combo>1){
 			var divID = (div.attr("id")) + "_" + "combo";
 			var canvasHTML = "<br><canvas id='canvasCombo" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);

@@ -624,7 +624,7 @@ function drawChat(canvas, player1, player2, chat, repeatTime){
 
 
 function drawComboText(canvas,comboNum){
-	alert(comboNum + "x CORPSESMOOCH COMBO!!!")
+	//alert(comboNum + "x CORPSESMOOCH COMBO!!!")
 	var ctx = canvas.getContext("2d");
 	ctx.font = "14px Courier New Bold"
 	//i wish the below two lines would disable anti-aliasing for the font.
