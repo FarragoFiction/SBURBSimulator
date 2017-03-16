@@ -390,13 +390,13 @@ function drawGetTiger(canvas, players, repeatTime){
 			//render again, but offset, makes rainbow an aura
 			var x = -270;
 			var y = -45;
-			for(var i = 0; i<live_spriteBuffers.length; i++){
+			for(var i = 0; i<spriteBuffers.length; i++){
 				if(i == 6){
 					x = -295; //down a row
 					y = 95;
 				}
 				x = x +150;
-				copyTmpCanvasToRealCanvasAtPos(canvas, live_spriteBuffers[i],x,y)
+				copyTmpCanvasToRealCanvasAtPos(canvas, spriteBuffers[i],x,y)
 			}
 		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
 }
