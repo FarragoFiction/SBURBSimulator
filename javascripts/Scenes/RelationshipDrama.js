@@ -354,6 +354,10 @@ function RelationshipDrama(){
 				}else{
 					chatText += chatLine(player1Start, player1,"Wait. What!? Oh GOD, no! I am a HUMAN you dumb fuck! I DO NOT HAVE A CRUSH ON YOU!");
 				}
+			}else{
+				if(player1.isTroll == true){
+					chatText += chatLine(player1Start, player1,"Fuck.");
+				}
 			}
 		}
 		drawRelationshipChat(canvasDiv, player1, player2, chatText, 1000);
