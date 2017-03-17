@@ -54,10 +54,9 @@ window.onload = function() {
 }
 
 function shareableURL(){
-	var str = '<a href = "index2.html?seed=' +initial_seed +'">Shareable URL </a>'
+	var str = '<a href = "index2.html?seed=' +initial_seed +'">Shareable URL </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <a href = "index2.html">Random Session URL </a> '
 	$("#seedText").html(str);
 }
-
 function initRandomness(){
 	timeTillReckoning = getRandomInt(10,30);
     sessionType = Math.seededRandom(); //human, troll or mixed.
