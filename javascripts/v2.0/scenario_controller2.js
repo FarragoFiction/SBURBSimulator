@@ -362,6 +362,7 @@ function session612(){
 		player = players[i];
 		var guardian = guardians[i]
 		player.isTroll = true;
+		guardian.isTroll = true;
 		guardian.generateRelationships(guardians);
 		player.generateRelationships(players);
 		session612IndexToTrollAncestor(player, i);
