@@ -83,6 +83,10 @@ function JackRampage(){
 		}else if(partyPower > jackStrength){		
 			ret += " Jack fails to stab " + getPlayersTitles(stabbings);
 			ret += "  He goes away to stab someone else, licking his wounds. ";
+			if(Math.random()>.9){
+				ret += " Bored of this, he decides to show his stabs to BOTH the Black and White Kings.  The battle is over. The Reckoning will soon start."
+				timeTillReckoning = 0; 
+			}
 			this.minorLevelPlayers(stabbings);
 			jackStrength += -10;
 		}else if(partyPower == jackStrength){
