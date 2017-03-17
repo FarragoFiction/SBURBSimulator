@@ -197,7 +197,7 @@ function Intro(){
 			chatText += chatLine(player1Start, player1,"Aww... I'll make sure to grind extra hard to help you out when you're in!");
 			chatText +=chatLine(player2Start, player2,"Thanks!");
 			}else{
-				chatText +=chatLine(player2Start, player2,"Well...I mean...yes and also no?");
+				chatText +=chatLine(player2Start, player2,"Well... I mean... yes and also no?");
 				chatText +=chatLine(player2Start, player2,"Past me isn't in yet, but current me (which is future me from your perspective) has been in awhile. Time shenanigans. ");
 				chatText += chatLine(player1Start, player1,"!  This game is way more confusing than I thought!");
 			}
