@@ -69,6 +69,8 @@ function JackRampage(){
 			}else{
 				ret += " Jack listlessly shows his stabs to a few Dersite pawns. "
 			}
+			ret += " Bored of this, he decides to show his stabs to BOTH the Black and White Kings.  The battle is over. The Reckoning will soon start."
+			timeTillReckoning = 0; 
 			return ret;
 		}
 		this.setPlayersUnavailable(stabbings);
