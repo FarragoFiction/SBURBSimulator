@@ -31,7 +31,10 @@ window.onload = function() {
 	if(!debugMode){
 		randomizeEntryOrder();
 	}
-	//debugRoyalRumble();
+	//easter egg ^_^
+	if(window.location.search.substr(1) == "royalRumble=true"){
+		debugRoyalRumble();
+	}
 	//authorMessage();
 	makeGuardians(); //after entry order established
 	load(players, guardians); //in loading.js
