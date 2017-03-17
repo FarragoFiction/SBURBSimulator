@@ -187,8 +187,11 @@ function RelationshipDrama(){
 					player1.triggerLevel += 0.5;
 				}else if(player1.class_name == "Page" || player2.aspect == "Blood" || playerLikesAcademic(player1)){
 					chatText += chatLine(player1Start, player1,"But... I was even brave and told you and everything...");
-					if(player2.class_name == "Knight" || player2.aspect == "Rage" || playerLikesAcademic(player2)){
+					if(player2.class_name == "Knight" || player2.aspect == "Rage" || playerLikesCulture(player2)){
 						chatText += chatLine(player2Start, player2,"And that's really impressive! But... I can't MAKE myself like you back? You know? ");
+						chatText += chatLine(player1Start, player1,"I know...");
+					}else if(player2.class_name == "Page" || player2.aspect == "Blood" || playerLikesAcademic(player2)){
+						chatText += chatLine(player2Start, player2,"And I get that! And I wish I liked you back. But I don't.");
 						chatText += chatLine(player1Start, player1,"I know...");
 					}else{
 						chatText += chatLine(player2Start, player2,"I don't know what to tell you. ");
