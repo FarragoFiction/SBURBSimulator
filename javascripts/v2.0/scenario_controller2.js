@@ -130,7 +130,7 @@ function renderScratchButton(){
 		if(!scratched){
 			//this is apparently spoilery.
 			//alert(living.length  + " living players and the " + timePlayer.land + " makes a scratch available!");
-			var html = '<img src="Images/Scratch.png" onclick="scratchConfirm()"><br>Click To Scratch Session?';
+			var html = '<img src="images/Scratch.png" onclick="scratchConfirm()"><br>Click To Scratch Session?';
 			$("#story").append(html);
 		}else{
 			$("#story").append("<br>This session is already scratched. No further scratches available.");
