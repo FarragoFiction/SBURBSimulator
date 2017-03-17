@@ -37,6 +37,7 @@ window.onload = function() {
 		Math.seed = tmp;
 		initial_seed = tmp;
 	}
+	
 	initRandomness();
 	shareableURL();
 	
@@ -44,6 +45,15 @@ window.onload = function() {
 	
 	if(!debugMode){
 		randomizeEntryOrder();
+	}
+	
+	//i cannot resist
+	if(initial_seed == 413){
+		session413();
+	}else if(initial_seed == 612){
+		session612();
+	}else if(initial_seed == 111111){
+		session111111()
 	}
 	//easter egg ^_^
 	if(getParameterByName("royalRumble")  == "true"){
@@ -291,6 +301,71 @@ function intro(){
 function randomizeEntryOrder(){
 	players = shuffle(players);
 	players[0].leader = true;
+}
+
+function session413(){
+	
+}
+
+//can't control HOW the session will turn out, but can at least give it the right players.
+function session612(){
+	for(var i = 0; i<12;i++){
+		var player;
+		if(i<players.length){
+			player = players[i];
+		}else{
+			player = randomPlayer();
+			player.quirk = randomTrollSim(player);
+			players.push(player);
+		}
+		session612IndexToTroll(player, i);
+	}
+	
+	for(var i = 0; i<12;i++){
+		player = players[i];
+		player.isTroll = true;
+		player.generateRelationships(players);
+		session612IndexToTroll(player, i);
+	}
+}
+//karkat, terezi, gamzee, equius, aradia, nepeta, tavros, vriska, kanaya, eridan, feferi, sollux
+function session612IndexToTroll(player, index){
+	if(index == 0){
+		player.aspect = "Blood"
+		player.class_name = "Knight"
+		player.hair = 18;
+		player.leftHorn = 21;
+		player.rightHorn = 21;
+	}else if(index == 1){
+		player.aspect = "Mind"
+		player.class_name = "Seer"
+		player.hair = 10;
+		player.leftHorn = 46;
+		player.rightHorn = 46;
+	}else if(index == 2){
+		player.aspect = "Rage"
+		player.class_name = "Bard"
+		player.hair = 29;
+		player.leftHorn = 9;
+		player.rightHorn = 9;
+	}else if(index == 3){
+		player.aspect = "Void"
+		player.class_name = "Heir"
+		player.hair = 8;
+		player.leftHorn = 43;
+		player.rightHorn = 43;
+	}else if(index == 4){
+		player.aspect = "Time"
+		player.class_name = "Maid"
+		player.hair = 23;
+		player.leftHorn = 36;
+		player.rightHorn = 36;
+	}
+}
+
+//inversion of 413
+function session111111(){
+	
 }
 
 function makeAuthorAvatar(){
