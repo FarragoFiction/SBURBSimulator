@@ -21,7 +21,7 @@ var canvasHeight = 300;
 var repeatTime = 500;
 var version2 = true;
 var timeTillReckoning = getRandomInt(10,30); //these will be wrong if seed is set
-var sessionType = Math.seededRandom(); //human, troll or mixed. 
+var sessionType = Math.seededRandom(); //human, troll or mixed.
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.
 //should there be only one canvas?  Can have player sprites be written to a virtual canvas first, then copied to main one.
@@ -37,16 +37,16 @@ window.onload = function() {
 		Math.seed = tmp;
 		initial_seed = tmp;
 	}
-	
+
 	initRandomness();
 	shareableURL();
-	
+
     init();
-	
+
 	if(!debugMode){
 		randomizeEntryOrder();
 	}
-	
+
 	//i cannot resist
 	if(initial_seed == 413){
 		session413();
@@ -65,7 +65,7 @@ window.onload = function() {
 	load(players, guardians); //in loading.js
 
 	//intro();  //~~~~~~LOADING SCRIPT WILL CALL THIS~~~~~~~~~
-	
+
 
 	//debugRelationshipDrama();
 	//debugTriggerLevel();
@@ -110,7 +110,7 @@ function checkSGRUB(){
 	//can only get here if all are trolls.
 	$(document).attr("title", "SGRUB Story Generator 2.0 by jadedResearcher");
 	$("#heading").html("SGRUB Story Generator 2.0 by jadedResearcher (art assistance by karmicRetribution) ");
-	
+
 }
 function getSessionType(){
 	if(sessionType > .6){
@@ -128,8 +128,9 @@ function renderScratchButton(){
 	if(living.length > 0){
 		var timePlayer = findAspectPlayer(players, "Time");
 		if(!scratched){
-			alert(living.length  + " living players and the " + timePlayer.land + " makes a scratch available!");
-			var html = '<button type="button" onclick="scratchConfirm()">Would You Like To Scratch Session?</button>';
+			//this is apparently spoilery.
+			//alert(living.length  + " living players and the " + timePlayer.land + " makes a scratch available!");
+			var html = '<img src="Images/Scratch.png" onclick="scratchConfirm()"><br>Click To Scratch Session?';
 			$("#story").append(html);
 		}else{
 			$("#story").append("<br>This session is already scratched. No further scratches available.");
@@ -304,7 +305,7 @@ function randomizeEntryOrder(){
 }
 
 function session413(){
-	
+
 }
 
 //can't control HOW the session will turn out, but can at least give it the right players.
@@ -320,7 +321,7 @@ function session612(){
 		}
 		session612IndexToTroll(player, i);
 	}
-	
+
 	for(var i = 0; i<12;i++){
 		player = players[i];
 		player.isTroll = true;
@@ -371,7 +372,7 @@ function session612IndexToTroll(player, index){
 
 //inversion of 413
 function session111111(){
-	
+
 }
 
 function makeAuthorAvatar(){
@@ -407,7 +408,7 @@ function decideTroll(player){
 	if(getSessionType() == "Human"){
 		return;
 	}
-	
+
 	if(getSessionType() == "Troll" || (getSessionType() == "Mixed" &&Math.seededRandom() > 0.5) ){
 		player.isTroll = true;
 		player.triggerLevel ++;//trolls are less stable
