@@ -726,7 +726,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.chatHandle = "caligulasAquarium"
 	}else if(index == 10){
 		player.aspect = "Life"
-		player.class_name = "Theif"
+		player.class_name = "Thief"
 		player.hair = 1;
 		player.leftHorn = 35;
 		player.rightHorn = 35;

@@ -53,6 +53,11 @@ function loadImage(img){
 			imagesLoaded ++;
 			checkDone();
   };
+
+  imageObj.onerror = function(){
+    debug("Error loading image: " + this.src)
+    //alert(this.src)
+  }
       imageObj.src = "images/"+img;
 }
 
@@ -80,7 +85,7 @@ function loadOther(){
 	for(var i = 1; i<4; i++){
 		loadImage("Bodies/baby"+i + ".png")
 	}
-	
+
 	for(var i = 1; i<4; i++){
 		loadImage("Bodies/grub"+i + ".png")
 	}
