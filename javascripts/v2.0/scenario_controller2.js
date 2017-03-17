@@ -38,7 +38,7 @@ window.onload = function() {
     init();
 	
 	if(!debugMode){
-		randomizeEntryOrder();
+		//randomizeEntryOrder();
 	}
 	//easter egg ^_^
 	if(getParameterByName("royalRumble")  == "true"){
