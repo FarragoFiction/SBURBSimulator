@@ -497,7 +497,7 @@ function session612IndexToTroll(player, index){
 		player.leftHorn = 26;
 		player.rightHorn = 26;
 		player.bloodColor = "#078446";
-		player.quirk.capitalization = 1;
+		player.quirk.capitalization = 3;
 		player.quirk.favoriteNumber = 5;
 		player.quirk.punctuation = 2;
 		player.quirk.lettersToReplace = [];
@@ -533,7 +533,7 @@ function session612IndexToTroll(player, index){
 		player.quirk.punctuation = 2;
 		player.quirk.favoriteNumber = 9;
 		player.quirk.lettersToReplace = [];
-		player.quirk.lettersToReplaceIgnoreCase = [["h",")()"],["e","-E"]];
+		player.quirk.lettersToReplaceIgnoreCase = [["h",")("],["e","-E"]];
 		player.kernel_sprite = "Horrorterror"
 		player.interest1 = "Animals"
 		player.interest2 = "Social Jusice"
