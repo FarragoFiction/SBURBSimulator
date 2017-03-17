@@ -30,10 +30,9 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 	this.bloodColor = "#ff0000" //human red.
 	this.leftHorn =  getRandomInt(1,46);
 	this.rightHorn = this.leftHorn;
-	if(Math.random() > .9 ){ //preference for symmetry
+	if(Math.random() > .8 ){ //preference for symmetry
 		this.rightHorn = getRandomInt(1,46);
 	}
-	this.rightHorn =  getRandomInt(1,46);
 	this.lusus = "Adult Human"
 	this.quirk = null;
 	this.dead = false;
