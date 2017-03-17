@@ -963,7 +963,7 @@ this.goodMild = "Friends";
 var goodMildDesc = ["a pretty good kid", "nice enough", "merely tolerable", "just friendly"];
 var goodBigDesc = ["the most fascinating human left", "distractingly pretty", "really hot"];
 var bigMildDesc = ["kind of a jerk", "sort of an asshole", "only sort of irritating", "just a little annoying"];
-var bigBadDesc = ["just the smelliest bag of assholes", "the most infuriating asshole around", "most likely to fuck everyone over", "dangerous"];
+var bigBadDesc = ["just the smelliest bag of assholes", "the most infuriating asshole around", "most likely to screw everyone over", "dangerous"];
 
 
 var democracyTasks = ["WV gives talks to a random carapacian boy, demanding he support democracy."," WV gathers followers using techniques learned from reading a book on carapacian etiquette. "];
