@@ -63,6 +63,7 @@ function RelationshipDrama(){
 			chatText += chatLine(player2Start, player2, "so fuck off!");
 			player1.triggerLevel ++;
 			r1.value = -20;
+			//TODO: BUG/UNINTENDED THING. Even though player is confessing flushed, shows them with a spade 'cause now they hate their crush.
 			//this is not going to go well.
 		}else{
 			if(player2.grimDark){
