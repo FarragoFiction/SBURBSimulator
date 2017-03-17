@@ -311,7 +311,7 @@ function RelationshipDrama(){
 						chatText += chatLine(player1Start, player1,"Oh!");
 						chatText += chatLine(player1Start, player1,"Um...");
 						if(r1.type() == r1.goodBig){
-							chatText += chatLine(player1Start, player1,"I...kind of like you, too?");
+							chatText += chatLine(player1Start, player1,"I... kind of like you, too?");
 							chatText += chatLine(player1Start, player1,"I assumed you wouldn't like me back, God, this is so awkward.");
 							chatText += chatLine(player2Start, player2,"Holy shit.");
 						}else{
