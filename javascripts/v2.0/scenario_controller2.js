@@ -20,7 +20,7 @@ var canvasWidth = 1000;
 var canvasHeight = 300;
 var repeatTime = 500;
 var version2 = true;
-var timeTillReckoning = getRandomInt(10,30);
+var timeTillReckoning = getRandomInt(10,30); //these will be wrong if seed is set
 var sessionType = Math.seededRandom(); //human, troll or mixed. 
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.
@@ -34,6 +34,7 @@ window.onload = function() {
 		Math.seed = getParameterByName("seed");
 		initial_seed = getParameterByName("seed");
 	}
+	initRandomness();
 	shareableURL();
 	
     init();
@@ -63,6 +64,12 @@ window.onload = function() {
 	//debugGodTierRevive();
 	//debugCorpseSmooch();
 }
+
+function initRandomness(){
+	timeTillReckoning = getRandomInt(10,30);
+    sessionType = Math.seededRandom(); //human, troll or mixed.
+}
+
 
 function getParameterByName(name, url) {
     if (!url) {
