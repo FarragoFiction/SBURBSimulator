@@ -17,12 +17,110 @@ function RelationshipDrama(){
 		}
 		return this.dramaPlayers.length > 0;
 	}
+	
+	//poor eridan?
+	this.confessTooManyFeeling = function(div, player, crush){
+		var relationship = player.getRelationshipWith(crush);
+		var makeHate = false;
+		//different format for canvas code
 
+		var chatText = "";
+		var player1 = player;
+		var player2 = crush;
+
+		var divID = (div.attr("id")) + "_" + player.chatHandle+"confess_crush_"+crush.chatHandle;
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		var canvasDiv = document.getElementById("canvas"+ divID);
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+
+		chatText += chatLine(player1Start, player1, "So... hey.");
+		chatText += chatLine(player2Start, player2, "Hey?");
+		
+		chatText += chatLine(player1Start, player1, "I feel like an asshole.");
+		chatText += chatLine(player1Start, player1, "I have had so many fucking crushes. ");
+		chatText += chatLine(player1Start, player1, "I'd understand if you didn't take me seriously. But I like you. A lot.");
+		
+		player1.number_confessions ++;
+		player2.number_times_confessed_to ++;
+		
+		
+		var r1 = relationship;
+		var r2 = player2.getRelationshipWith(player1);
+
+		if(r2.type() == r2.goodBig){
+			chatText += chatLine(player2Start, player2,"!");
+			chatText += chatLine(player2Start, player2,"Wow... I ... I feel the same way!");
+			chatText += chatLine(player1Start, player1,"Holy shit! Even though I've been hitting on everybody?");
+			chatText += chatLine(player2Start, player2,"Honestly, I was kind of insulted you hit on everybody BUT ME.");
+			chatText += chatLine(player1Start, player1,"Holy shit.");
+		}else if(r2.type() ==r2.badBig){
+			chatText += chatLine(player2Start, player2, "lol");
+			chatText += chatLine(player2Start, player2, "You really think I'm dumb enough to fall for that?");
+			chatText += chatLine(player2Start, player2, "You are " + this.generateNewOpinion(r2) + "!");
+			chatText += chatLine(player2Start, player2, "so fuck off!");
+			makeHate = true;
+			//don't set hate here. Even though player is confessing flushed, shows them with a spade 'cause now they hate their crush.
+			//this is not going to go well.
+		}else{
+			if(player2.grimDark){
+				chatText += chatLine(player2Start, player2,"Your feelings are irrelevant. Your promiscuity is irrelevant.");
+				chatText += chatLine(player1Start, player1,"Fuck. You're grimdark, aren't you. Fuck. I've made a huge mistake.");
+				player1.triggerLevel ++;
+			}else{
+				chatText += chatLine(player2Start, player2,"Fuck. I'm sorry. I just don't feel that way about you. ");
+				if(playerLikesRomantic(player1) || player1.aspect == "Mind"){
+					chatText += chatLine(player1Start, player1,"Fuck. I'm sorry I didn't keep it to myself. ");
+					if(playerLikesRomantic(player2) || player2.aspect == "Mind" || player2.aspect == "Rage"){
+						chatText += chatLine(player2Start, player2,"Better than keeping it bottled up. ");
+					}
+					player1.triggerLevel += 1; 
+				}else if(player1.class_name == "Bard" || player2.aspect == "Rage" || playerLikesTerrible(player1)){
+					chatText += chatLine(player1Start, player1,"Fuck. Why don't I ever learn that people suck?");
+					if(player2.class_name == "Seer" || player2.aspect == "Blood" || playerLikesRomantic(player2)){
+						chatText += chatLine(player2Start, player2,"Holy fucking shit. And you wonder why nobody likes you? ");
+						var makeHate = true;  //easier to hate after so many rejections. poor eridan.
+					}
+					player1.triggerLevel += 1;
+				}else if(player1.class_name == "Page" || player2.aspect == "Blood" || playerLikesAcademic(player1)){
+					chatText += chatLine(player1Start, player1,"But... I was even brave and told you and everything...");
+					if(player2.class_name == "Knight" || player2.aspect == "Rage" || playerLikesAcademic(player2)){
+						chatText += chatLine(player2Start, player2,"Fuck. But you've been 'brave' enough to hit on EVERYBODY! ");
+						chatText += chatLine(player1Start, player1,"What else am I supposed to do? Ignoring how I feel is cowardice, right?");
+						chatText += chatLine(player2Start, player2,"Man, it's like your emotions are calibrated wrong. I can't just tell you 'fall in love less easily'. Fuck.");
+						player1.triggerLevel ++;
+					}else{
+						chatText += chatLine(player2Start, player2,"I don't know what to tell you. ");
+						chatText += chatLine(player1Start, player1,"Fuck");
+					}
+					
+				}else{
+					chatText += chatLine(player1Start, player1,"Oh. Yes. That's what I expected.");
+					player1.triggerLevel ++;
+				}
+			}
+			
+			if(player2.number_times_confessed_to > 3){
+				chatText += chatLine(player2Start, player2,"What is it with everybody having a crush on me? ");
+			}
+		}
+		relationship.drama = false; //it is consumed.
+		relationship.old_type = relationship.saved_type;
+		drawRelationshipChat(canvasDiv, player1, player2, chatText, 1000);
+		
+		if(makeHate == true){
+			player1.triggerLevel ++;
+			r1.value = -20;
+		}
+		
+	}
 
 
 	this.confessFeelings = function(div, player,crush){
 		//debug("confession!!!")
 		var relationship = player.getRelationshipWith(crush);
+		var makeHate = false;
 
 		//different format for canvas code
 
@@ -37,6 +135,9 @@ function RelationshipDrama(){
 			div.append(narration);
 			return;
 		}
+		if(player1.number_confessions > 3){
+			return confessTooManyFeeling(div, player, crush); //don't just keep spinning your wheels.
+		}
 		var divID = (div.attr("id")) + "_" + player.chatHandle+"confess_crush_"+crush.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
@@ -49,7 +150,8 @@ function RelationshipDrama(){
 		chatText += chatLine(player1Start, player1, "I have no idea how to say this so I'm just going to do it.");
 		chatText += chatLine(player2Start, player2, "?");
 		chatText += chatLine(player1Start, player1, "I like you.  Romantically.");
-
+		player1.number_confessions ++;
+		player2.number_times_confessed_to ++;
 		var r1 = relationship;
 		var r2 = player2.getRelationshipWith(player1);
 
@@ -61,9 +163,8 @@ function RelationshipDrama(){
 			chatText += chatLine(player2Start, player2, "lol");
 			chatText += chatLine(player2Start, player2, "Well, I think YOU are " + this.generateNewOpinion(r2) + "!");
 			chatText += chatLine(player2Start, player2, "so fuck off!");
-			player1.triggerLevel ++;
-			r1.value = -20;
-			//TODO: BUG/UNINTENDED THING. Even though player is confessing flushed, shows them with a spade 'cause now they hate their crush.
+			makeHate = true;
+			//don't set hate here. Even though player is confessing flushed, shows them with a spade 'cause now they hate their crush.
 			//this is not going to go well.
 		}else{
 			if(player2.grimDark){
@@ -77,17 +178,30 @@ function RelationshipDrama(){
 					player1.triggerLevel += 0.5; //not triggered MUCH, but keeps them from continuing to confess to other people. I mean. Hypothetically.
 				}else if(player1.class_name == "Bard" || player2.aspect == "Rage" || playerLikesTerrible(player1)){
 					chatText += chatLine(player1Start, player1,"But... but...WHY!? I tried so hard to be nice to you!");
-					chatText += player2Start+"  Look, I'll level with you. I'm even dropping my dumb quirk, okay? It doesn't matter if you're nice. I'm sorry.  I can't just change the way I feel just because maybe you deserve it.\n";
+					if(player2.class_name == "Seer" || player2.aspect == "Blood" || playerLikesRomantic(player2)){
+						chatText += player2Start+"  Look, I'll level with you. I'm even dropping my dumb quirk, okay? It doesn't matter if you're nice. I'm sorry.  I can't just change the way I feel just because maybe you deserve it.\n";
+					}else{
+						chatText += chatLine(player2Start, player2,"Fuck. I just don't. I'm sorry. ");
+					}
 					chatText += chatLine(player1Start, player1,"Fuck.");
 					player1.triggerLevel += 0.5;
 				}else if(player1.class_name == "Page" || player2.aspect == "Blood" || playerLikesAcademic(player1)){
 					chatText += chatLine(player1Start, player1,"But... I was even brave and told you and everything...");
-					chatText += chatLine(player2Start, player2,"And that's really impressive! But... I can't MAKE myself like you back? You know? ");
-					chatText += chatLine(player1Start, player1,"I know...");
+					if(player2.class_name == "Knight" || player2.aspect == "Rage" || playerLikesAcademic(player2)){
+						chatText += chatLine(player2Start, player2,"And that's really impressive! But... I can't MAKE myself like you back? You know? ");
+						chatText += chatLine(player1Start, player1,"I know...");
+					}else{
+						chatText += chatLine(player2Start, player2,"I don't know what to tell you. ");
+						chatText += chatLine(player1Start, player1,"Fuck");
+					}
 					
 				}else{
 					chatText += chatLine(player1Start, player1,"Oh.");
+					player1.triggerLevel += 0.5;
 				}
+			}
+			if(player2.number_times_confessed_to > 3){
+				chatText += chatLine(player2Start, player2,"What is it with everybody having a crush on me? ");
 			}
 
 		}
@@ -95,6 +209,10 @@ function RelationshipDrama(){
 		relationship.drama = false; //it is consumed.
 		relationship.old_type = relationship.saved_type;
 		drawRelationshipChat(canvasDiv, player1, player2, chatText, 1000);
+		if(makeHate == true){
+			player1.triggerLevel ++;
+			r1.value = -20;
+		}
 	}
 
 	//goes different if best friend has crush on player
@@ -151,7 +269,7 @@ function RelationshipDrama(){
 					chatText += chatLine(player1Start, player1,"You think so?");
 					chatText += chatLine(player2Start, player2,"Absolutely.");
 				}else if(player2.class_name == "Knight" || player2.class_name == "Seer" || player2.class_name == "Heir" || player2.aspect == "Mind"){ //fight player1
-					chatText += chatLine(player2Start, player2,"Fuck! Me, too.");
+					chatText += chatLine(player2Start, player2,"Fuck! I like them, too.");
 					chatText += chatLine(player1Start, player1,"Well, fuck.");
 					chatText += chatLine(player1Start, player1,"At least we have good taste?");
 				}else{  //try to ignore feelings
