@@ -712,10 +712,10 @@ function getRandomSeed() {
 Math.seededRandom = function(max, min) {
     max = max || 1;
     min = min || 0;
- 
+
     Math.seed = (Math.seed * 9301 + 49297) % 233280;
     var rnd = Math.seed / 233280;
- 
+
     return min + rnd * (max - min);
 }
 
@@ -837,7 +837,7 @@ prototypings = prototypings.concat(["Mouse","Gerbil","Hamster","Sugar Glider","R
 prototypings = prototypings.concat(["Opossum","Penguin","Koala","Walrus","Dachshund","Ocelot","Tiger","Lion", "Cougar"]);
 prototypings = prototypings.concat(["Stoner","Student","Librarian","Teacher","Jockey","Butler","Rapper","Poet", "Astronaut", "Cowboy"]);
 
-var disastor_prototypings = ["First Guardian", "Horror Terror", "Dragon", "Alien", "Teacher", "Clown"];
+var disastor_prototypings = ["First Guardian", "Horrorterror", "Dragon", "Alien", "Teacher", "Clown"];
 disastor_prototypings = disastor_prototypings.concat(["Zombie","Demon","Monster","Vampire","Pumpkin","Werewolf","Puppet",]);
 var fortune_prototypings = ["Frog","Lizard", "Salamander", "Iguana", "Crocodile", "Turtle", "Snake"];
 
@@ -1018,7 +1018,7 @@ landlususTypes = landlususTypes.concat(["Slither Beast","Wiggle Beast","Honkbird
 landlususTypes = landlususTypes.concat(["March Bug","Nibble Vermin","Woolbeast", "Hop Beast", "Stink Creature", "Speed Beast", "Jump Creature", "Fight Beast", "Claw Beast", "Tooth Beast", "Armor Beast","Trap Beast"]);
 
 
-var seaLususTypes = ["Zap Beast","Slither Beast", "Electric Beast", "Whale", "Sky Horse", "Sea Meow Beast", "Sea Hoofbeast", "Cuttlefish", "Horror Terror", "Swim Beast", "Sea Goat", "Tooth Beast", "Light Beast"]
+var seaLususTypes = ["Zap Beast","Slither Beast", "Electric Beast", "Whale", "Sky Horse", "Sea Meow Beast", "Sea Hoofbeast", "Cuttlefish", "Horrorterror", "Swim Beast", "Sea Goat", "Tooth Beast", "Light Beast"]
 seaLususTypes = seaLususTypes.concat(["Dive Beast", "Honkbird", "Sea Bear", "Sea Armorbeast"]);
 
 interests = []
@@ -1035,7 +1035,7 @@ var comedy_interests = ["Puppets","Pranks","Comedy", "Jokes", "Puns", "Stand-up 
 var domestic_interests = ["Sewing", "Fashion","Gardening","Meditation","Babies","Peace","Knitting","Cooking", "Baking","Gardening", "Crochet", "Scrapbooking"];
 var athletic_interests = ["Yoga","Fitness", "Sports","Boxing", "Track and Field", "Swimming", "Baseball", "Hockey", "Football", "Basketball", "Weight Lifting"];
 var terrible_interests = ["Clowns", "Money","Violence", "Death","Animal Fights","Insults","Hoarding","Status","Racism", "Online Trolling","Intimidation","Fighting","Genocide","Murder","War"];
-var fantasy_interests = ["Wizards", "HorrorTerrors", "Mermaids", "Unicorns", "Science Fiction", "Fantasy","Ninjas","Aliens","Conspiracies","Faeries", "Elves", "Vampires", "Undead"];
+var fantasy_interests = ["Wizards", "Horrorterrors", "Mermaids", "Unicorns", "Science Fiction", "Fantasy","Ninjas","Aliens","Conspiracies","Faeries", "Elves", "Vampires", "Undead"];
 var justice_interests = ["Social Justice","Detectives","Mysteries","Leadership","Revolution","Justice","Equality","Sherlock Holmes"]
 interests = interests.concat(music_interests);
 interests = interests.concat(culture_interests);
