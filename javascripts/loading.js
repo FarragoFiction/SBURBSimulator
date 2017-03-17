@@ -94,6 +94,6 @@ function loadPlayer(player){
 	if(player.isTroll == true){
 		loadImage("Wings/wing"+player.quirk.favoriteNumber + ".png")
 		loadImage("Horns/left"+player.leftHorn + ".png");
-		loadImage("Horns/right"+player.leftHorn + ".png");
+		loadImage("Horns/right"+player.rightHorn + ".png");
 	}
 }
