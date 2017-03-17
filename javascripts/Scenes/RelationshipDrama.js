@@ -193,7 +193,7 @@ function RelationshipDrama(){
 						chatText += chatLine(player1Start, player1,"I know...");
 					}else if(player2.class_name == "Page" || player2.aspect == "Blood" || playerLikesAcademic(player2)){
 						chatText += chatLine(player2Start, player2,"And I get that! And I wish I liked you back. But I don't.");
-						chatText += chatLine(player1Start, player1,"I know...");
+						chatText += chatLine(player1Start, player1,"Fuck.");
 					}else{
 						chatText += chatLine(player2Start, player2,"I don't know what to tell you. ");
 						chatText += chatLine(player1Start, player1,"Fuck");

@@ -201,8 +201,14 @@ function MurderPlayers(){
 					this.renderMurder(div,worstEnemy, m);
 				}
 			}else{
-				ret += " The " + m.htmlTitle() + " can't find anybody they hate enough to murder. They calm down a little. ";
-				m.triggerLevel += -1;
+				
+				m.triggerLevel += -3;
+				if(m.triggerLevel<1){ //did I REALLY not have a way to leave murder mode other than romance or death?
+					m.murderMode = false;
+					ret += " The " + m.htmlTitle() + " has officially settled their shit. ";
+				}else{
+					ret += " The " + m.htmlTitle() + " can't find anybody they hate enough to murder. They calm down a little. ";
+				}
 			}
 		}
 		removeFromArray(m, availablePlayers);
