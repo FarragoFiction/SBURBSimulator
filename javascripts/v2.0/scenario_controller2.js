@@ -37,8 +37,11 @@ window.onload = function() {
 	//debugRoyalRumble();
 	//authorMessage();
 	makeGuardians(); //after entry order established
+	load(players, guardians); //in loading.js
 
-	intro();
+	//intro();  //~~~~~~LOADING SCRIPT WILL CALL THIS~~~~~~~~~
+
+
 	//debugRelationshipDrama();
 	//debugTriggerLevel();
 	//debugGrimDark();

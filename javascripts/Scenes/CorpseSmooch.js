@@ -28,7 +28,7 @@ function CorpseSmooch(){
 		for(var i = 0; i<this.dreamersToRevive.length; i++){
 			this.renderForPlayer(div, this.dreamersToRevive[i]);
 		}
-		
+
 		if(this.combo>1){
 			var divID = (div.attr("id")) + "_" + "combo";
 			var canvasHTML = "<br><canvas id='canvasCombo" + divID+"' width='" +canvasWidth + "' height="+canvasHeight/3 + "'>  </canvas>";
@@ -37,7 +37,7 @@ function CorpseSmooch(){
 			this.drawCombo(canvasDiv, this.combo);
 		}
 	}
-	
+
 	this.makeAlive = function(d){
 		d.dead = false;
 		d.dreamSelf = false;
@@ -47,7 +47,7 @@ function CorpseSmooch(){
 		d.triggerLevel = 1;
 		d.victimBlood = null; //clean face
 	}
-	
+
 	this.makeDead = function(d){
 		d.dreamSelf = false;
 		d.dead = true;
@@ -75,11 +75,11 @@ function CorpseSmooch(){
 		this.makeAlive(dead_player); //make SURE the player is alive after smooches.
 
 	}
-	
+
 	this.drawCombo = function(canvas,comboNum){
 		drawComboText(canvas, comboNum);
 	}
-	
+
 	this.ignoreEnemies = function(player, royalty){
 		if(!royalty){
 			return null;
@@ -126,7 +126,7 @@ function CorpseSmooch(){
 		return royalty;
 	}
 
-	this.renderForPlayer = function(div, deadPlayer){	
+	this.renderForPlayer = function(div, deadPlayer){
 		var royalty = this.getRoyalty(deadPlayer)
 		if(royalty){
 			var divID = (div.attr("id")) + "_" + deadPlayer.chatHandle;
@@ -139,7 +139,7 @@ function CorpseSmooch(){
 		}
 
 	}
-	
+
 	//don't actually bring themt o life yet, cause it gets rid of grimdark/murdermode etc.
 	this.contentForRender = function(){
 		var ret = "";

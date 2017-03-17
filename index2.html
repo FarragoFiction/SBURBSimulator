@@ -8,6 +8,7 @@
 	</style>
 		<link rel="stylesheet" href="css/oc.css">
 		<script type="text/javascript" src="javascripts/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="javascripts/loading.js"></script>
 		<script type="text/javascript" src="javascripts/player.js"></script>
 		<script type="text/javascript" src="javascripts/playerSnapshot.js"></script>
 		<script type="text/javascript" src="javascripts/quirk.js"></script>
@@ -61,37 +62,16 @@
 		<h2>SBURB Story Generator 2.0 by jadedResearcher </h2>
 		<a href = "about.html">About/FAQ</a>
 		<div id = "debug"></div>
+		<canvas id="loading" width="500" height="354">  </canvas>
+
 		<div id = "story"></div>
 		<canvas id="echeladder_template" width="202" height="300">  </canvas>
 		<canvas id="sprite_template" width="400" height="300">  </canvas>
 		<canvas id="canvas_template" width="1000" height="300">  </canvas>
 		<canvas id="chat_text_template" width="472" height="239">  </canvas>
 		<canvas id="godtierlevelup_template" width="650" height="151">  </canvas>
+		<img id="loading.png" src = "images/loading.png" style="display:none">
 		<div id = "image_staging">  </div>
-		<img id="pesterchum.png" src = "images/pesterchum.png" style="display:none">
-		<img id="echeladder.png" src = "images/echeladder.png" style="display:none">
-		<img id="godtierlevelup.png" src = "images/godtierlevelup.png" style="display:none">
-		<img id="TimeBig.png" src = "images/TimeBig.png" style="display:none">
-		<img id="BreathBig.png" src = "images/BreathBig.png" style="display:none">
-		<img id="DoomBig.png" src = "images/DoomBig.png" style="display:none">
-		<img id="BloodBig.png" src = "images/BloodBig.png" style="display:none">
-		<img id="HeartBig.png" src = "images/HeartBig.png" style="display:none">
-		<img id="SpaceBig.png" src = "images/SpaceBig.png" style="display:none">
-		<img id="MindBig.png" src = "images/MindBig.png" style="display:none">
-		<img id="LightBig.png" src = "images/LightBig.png" style="display:none">
-		<img id="VoidBig.png" src = "images/VoidBig.png" style="display:none">
-		<img id="RageBig.png" src = "images/RageBig.png" style="display:none">
-		<img id="HopeBig.png" src = "images/HopeBig.png" style="display:none">
-		<img id="LifeBig.png" src = "images/LifeBig.png" style="display:none">
-		<img id="blood_puddle.png" src = "images/blood_puddle.png" style="display:none">
-		<img id="Prospit.png" src = "images/Prospit.png" style="display:none">
-		<img id="Derse.png" src = "images/Derse.png" style="display:none">
-		<img id="Bodies/baby.png" src = "images/Bodies/baby.png" style="display:none">
-		<img id="scratch_face.png" src = "images/scratch_face.png" style="display:none">
-		<img id="bloody_face.png" src = "images/bloody_face.png" style="display:none">
-		<img id="Moirail.png" src = "images/Moirail.png" style="display:none">
-		<img id="Kismesis.png" src = "images/Kismesis.png" style="display:none">
-		<img id="Matesprit.png" src = "images/Matesprit.png" style="display:none">
-		<img id="Auspisticism.png" src = "images/Auspisticism.png" style="display:none">
+		<div id = "loading_image_staging">  </div>
 	</body>
 </html>

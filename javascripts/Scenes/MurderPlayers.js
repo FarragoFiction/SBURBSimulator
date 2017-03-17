@@ -1,8 +1,8 @@
 function MurderPlayers(){
-	this.canRepeat = true;	
+	this.canRepeat = true;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.murderers = [];
-	
+
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		this.murderers = [];
@@ -16,11 +16,11 @@ function MurderPlayers(){
 
 		return this.murderers.length > null;
 	}
-	
+
 	this.renderContent = function(div){
 		div.append("<br>"+this.contentForRender(div));
 	}
-	
+
 	this.friendsOfVictimHateYou = function(victim, murderer, livePlayers){
 		//just, fuck that guy.
 		var ret = "";
@@ -48,39 +48,37 @@ function MurderPlayers(){
 			}
 		}
 		return ret;
-		
+
 	}
-	
+
 	//not necessarily murder mode player, could be self defense.
 	this.renderMurder = function(div,murderer, victim){
 		var divID = (div.attr("id")) + "_" + victim.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = document.getElementById("canvas"+ divID);
-		
+
 		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawSprite(pSpriteBuffer,murderer,1000)
 
 		var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawSprite(dSpriteBuffer,victim,1000)
 
-		setTimeout(function(){
-			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
-			copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,100,0)
-		},1000);
+		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,100,0)
 
 	}
-	
+
 	//diamond faces murderer, calms them the hell down and hug bumps are shared.
 	this.renderDiamonds = function(div, murderer, diamond){
 		var divID = (div.attr("id")) + "_" + diamond.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = document.getElementById("canvas"+ divID);
-		
+
 		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawSprite(pSpriteBuffer,murderer,1000)
-		
+
 
 		var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawSpriteTurnways(dSpriteBuffer,diamond,1000)
@@ -94,10 +92,10 @@ function MurderPlayers(){
 		}
 		setTimeout(function(){
 			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
-			copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,x,0) 
+			copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,x,0)
 		},1000);
 	}
-	
+
 	//random Auspistice settles their shit down.  this will probably be pretty rare.
 	this.renderClubs = function(div, murderer, victim, club){
 		//alert("clubs)")
@@ -105,10 +103,10 @@ function MurderPlayers(){
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = document.getElementById("canvas"+ divID);
-		
+
 		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawSprite(pSpriteBuffer,murderer,1000)
-		
+
 		var vSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawSprite(vSpriteBuffer,victim,1000)
 
@@ -123,11 +121,11 @@ function MurderPlayers(){
 		}
 		setTimeout(function(){
 			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
-			copyTmpCanvasToRealCanvasAtPos(canvas, vSpriteBuffer,100,0) 
+			copyTmpCanvasToRealCanvasAtPos(canvas, vSpriteBuffer,100,0)
 			copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,400,0)
-		},1000);		
+		},1000);
 	}
-	
+
 	this.contentForRender = function(div){
 		var livePlayers = this.playerList; //just because they are alive doesn't mean they are in the medium
 		for(var i = 0; i<this.murderers.length; i++){
@@ -181,7 +179,7 @@ function MurderPlayers(){
 
 				}else if(worstEnemy.power < m.power*2){  //more likely to kill enemy than be killed. element of surprise
 					m.increasePower();
-					
+
 					worstEnemy.causeOfDeath = "fighting the " + m.htmlTitle();
 					ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". ";
 					ret += this.friendsOfVictimHateYou(worstEnemy, m, livePlayers);
@@ -192,7 +190,7 @@ function MurderPlayers(){
 					this.renderMurder(div, m, worstEnemy)
 				}else{
 					worstEnemy.increasePower();
-					
+
 					m.causeOfDeath = "being put down like a rabid dog by " + worstEnemy.htmlTitle()
 					ret += " The " + m.htmlTitle() + " attempts to brutally murders that asshole, the " + worstEnemy.htmlTitle();
 					ret += ",but instead gets murdered first, in self-defense. ";
@@ -210,9 +208,9 @@ function MurderPlayers(){
 		removeFromArray(m, availablePlayers);
 		return ret;
 	}
-	
 
-	
+
+
 	this.content = function(){
 		var livePlayers = this.playerList; //just because they are alive doesn't mean they are in the medium
 		for(var i = 0; i<this.murderers.length; i++){
@@ -231,7 +229,7 @@ function MurderPlayers(){
 					m.triggerLevel = 1;
 					return ret; //don't try to murder. (and also blood powers stop any other potential murders);
 				}
-				
+
 				var r = worstEnemy.getRelationshipWith(m)
 				if(r.type() == r.goodBig ){
 					//moiralligance.
@@ -242,7 +240,7 @@ function MurderPlayers(){
 					this.renderDiamonds(div, m, worstEnemy);
 				}else if(worstEnemy.power < m.power*2){  //more likely to kill enemy than be killed. element of surprise
 					m.increasePower();
-					
+
 					worstEnemy.causeOfDeath = "fighting the " + m.htmlTitle();
 					ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". ";
 					ret += this.friendsOfVictimHateYou(worstEnemy, m, livePlayers);
@@ -250,7 +248,7 @@ function MurderPlayers(){
 					m.victimBlood = worstEnemy.bloodColor;
 				}else{
 					worstEnemy.increasePower();
-					
+
 					m.causeOfDeath = "being put down like a rabid dog by " + worstEnemy.htmlTitle()
 					ret += " The " + m.htmlTitle() + " attempts to brutally murders that asshole, the " + worstEnemy.htmlTitle();
 					ret += ",but instead gets murdered first, in self-defense. ";

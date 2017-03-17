@@ -259,32 +259,30 @@ function poseBabiesAsATeam(canvas, leader, players, guardians, repeatTime){
 		drawBabySprite(guardianBuffers[i],guardians[i],repeatTime);
 	}
   //leader on far left, babies arranged to right.
-  setTimeout(function(){
-		  copyTmpCanvasToRealCanvasAtPos(canvas, leaderBuffer,-100,0)
+	  copyTmpCanvasToRealCanvasAtPos(canvas, leaderBuffer,-100,0)
 
-      var x = 50;
-			var y = 0;
-			var total = 0;
-			for(var i = 0; i<playerBuffers.length; i++){
-				if(i == 6){
-					x = 50; //down a row
-					y = 75;
-				}
-				x = x +100;
-				copyTmpCanvasToRealCanvasAtPos(canvas, playerBuffers[i],x,y)
+    var x = 50;
+		var y = 0;
+		var total = 0;
+		for(var i = 0; i<playerBuffers.length; i++){
+			if(i == 6){
+				x = 50; //down a row
+				y = 75;
 			}
-      //guardians down a bit
-      x = 50;
-      y += 100;
-      for(var i = 0; i<guardianBuffers.length; i++){
-				if(i == 6){
-					x = 50; //down a row
-					y += 75;
-				}
-				x = x +100;
-				copyTmpCanvasToRealCanvasAtPos(canvas, guardianBuffers[i],x,y)
+			x = x +100;
+			copyTmpCanvasToRealCanvasAtPos(canvas, playerBuffers[i],x,y)
+		}
+    //guardians down a bit
+    x = 50;
+    y += 100;
+    for(var i = 0; i<guardianBuffers.length; i++){
+			if(i == 6){
+				x = 50; //down a row
+				y += 75;
 			}
-  },repeatTime);
+			x = x +100;
+			copyTmpCanvasToRealCanvasAtPos(canvas, guardianBuffers[i],x,y)
+		}
 }
 
 //might be repeats of players in there, cause of time clones
@@ -294,23 +292,20 @@ function poseAsATeam(canvas,players, repeatTime){
 		spriteBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
 		drawSprite(spriteBuffers[i],players[i],repeatTime)
 	}
-
-	setTimeout(function(){
-			var x = -275;
-			var y = -50;
-			var total = 0;
-			for(var i = 0; i<spriteBuffers.length; i++){
-				if(i == 6){
-					x = -300; //down a row
-					y = 100;
-				}else if(i==12){//could be more than 12 cause time shenanigans.
-					x = -300; //down a row
-					y = 250;
-				}
-				x = x +150;
-				copyTmpCanvasToRealCanvasAtPos(canvas, spriteBuffers[i],x,y)
+		var x = -275;
+		var y = -50;
+		var total = 0;
+		for(var i = 0; i<spriteBuffers.length; i++){
+			if(i == 6){
+				x = -300; //down a row
+				y = 100;
+			}else if(i==12){//could be more than 12 cause time shenanigans.
+				x = -300; //down a row
+				y = 250;
 			}
-		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
+			x = x +150;
+			copyTmpCanvasToRealCanvasAtPos(canvas, spriteBuffers[i],x,y)
+		}
 }
 
 function drawGodRevival(canvas, live_players, dead_players, repeatTime){
@@ -327,43 +322,40 @@ function drawGodRevival(canvas, live_players, dead_players, repeatTime){
 		drawSprite(dead_spriteBuffers[i],dead_players[i],repeatTime)
 	}
 
-	setTimeout(function(){
-			var x = -275;
-			var y = -50;
-			var total = 0;
-			for(var i = 0; i<live_spriteBuffers.length; i++){
-				if(i == 6){
-					x = -300; //down a row
-					y = 100;
-				}
-				x = x +150;
-				copyTmpCanvasToRealCanvasAtPos(canvas, live_spriteBuffers[i],x,y)
+		var x = -275;
+		var y = -50;
+		var total = 0;
+		for(var i = 0; i<live_spriteBuffers.length; i++){
+			if(i == 6){
+				x = -300; //down a row
+				y = 100;
 			}
-			total += live_spriteBuffers.length;
-			rainbowSwap(canvas);
-			//render again, but offset, makes rainbow an aura
-			var x = -260;
-			var y = -35;
-			for(var i = 0; i<live_spriteBuffers.length; i++){
-				if(i == 6){
-					x = -285; //down a row
-					y = 85;
-				}
-				x = x +150;
-				copyTmpCanvasToRealCanvasAtPos(canvas, live_spriteBuffers[i],x,y)
+			x = x +150;
+			copyTmpCanvasToRealCanvasAtPos(canvas, live_spriteBuffers[i],x,y)
+		}
+		total += live_spriteBuffers.length;
+		rainbowSwap(canvas);
+		//render again, but offset, makes rainbow an aura
+		var x = -260;
+		var y = -35;
+		for(var i = 0; i<live_spriteBuffers.length; i++){
+			if(i == 6){
+				x = -285; //down a row
+				y = 85;
 			}
-			y += 50; //dead players need to be rendered higher.
-			for(var i = 0; i<dead_spriteBuffers.length; i++){
-				if(total == 6){
-					x = -300; //down a row
-					y += 120;
-				}
-				x = x +150;
-				copyTmpCanvasToRealCanvasAtPos(canvas, dead_spriteBuffers[i],x,y)
-				total ++;
+			x = x +150;
+			copyTmpCanvasToRealCanvasAtPos(canvas, live_spriteBuffers[i],x,y)
+		}
+		y += 50; //dead players need to be rendered higher.
+		for(var i = 0; i<dead_spriteBuffers.length; i++){
+			if(total == 6){
+				x = -300; //down a row
+				y += 120;
 			}
-			//no rainbow for the dead.
-		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
+			x = x +150;
+			copyTmpCanvasToRealCanvasAtPos(canvas, dead_spriteBuffers[i],x,y)
+			total ++;
+		}
 }
 
 
@@ -374,32 +366,30 @@ function drawGetTiger(canvas, players, repeatTime){
 		drawSprite(spriteBuffers[i],players[i],repeatTime)
 	}
 
-	setTimeout(function(){
-			var x = -275;
-			var y = -50;
+		var x = -275;
+		var y = -50;
 
-			for(var i = 0; i<spriteBuffers.length; i++){
-				if(i == 6){
-					x = -300; //down a row
-					y = 100;
-				}
-				x = x +150;
-				copyTmpCanvasToRealCanvasAtPos(canvas, spriteBuffers[i],x,y)
+		for(var i = 0; i<spriteBuffers.length; i++){
+			if(i == 6){
+				x = -300; //down a row
+				y = 100;
 			}
-			rainbowSwap(canvas);
+			x = x +150;
+			copyTmpCanvasToRealCanvasAtPos(canvas, spriteBuffers[i],x,y)
+		}
+		rainbowSwap(canvas);
 
-			//render again, but offset, makes rainbow an aura
-			var x = -260;
-			var y = -35;
-			for(var i = 0; i<spriteBuffers.length; i++){
-				if(i == 6){
-					x = -285; //down a row
-					y = 85;
-				}
-				x = x +150;
-				copyTmpCanvasToRealCanvasAtPos(canvas, spriteBuffers[i],x,y)
+		//render again, but offset, makes rainbow an aura
+		var x = -260;
+		var y = -35;
+		for(var i = 0; i<spriteBuffers.length; i++){
+			if(i == 6){
+				x = -285; //down a row
+				y = 85;
 			}
-		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
+			x = x +150;
+			copyTmpCanvasToRealCanvasAtPos(canvas, spriteBuffers[i],x,y)
+		}
 }
 
 //player on left, echeladder on right. text with boonies. all levels listed
@@ -435,11 +425,9 @@ function drawLevelUp(canvas, player,repeatTime){
   var levelsBuffer = getBufferCanvas(document.getElementById("echeladder_template"));
   writeLevels(levelsBuffer,player) //level_bg_colors,level_font_colors
 
-  setTimeout(function(){
-		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,250,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, levelsBuffer,250,0)
-	}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
+	copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
+	copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,250,0)
+	copyTmpCanvasToRealCanvasAtPos(canvas, levelsBuffer,250,0)
 
 }
 
@@ -472,12 +460,10 @@ function drawLevelUpGodTier(canvas, player,repeatTime){
 	//drawBG(levelBuffer, "#ff0000", "#00ff00");
 	writeLevelGod(levelBuffer, player);
 
-	setTimeout(function(){
-			copyTmpCanvasToRealCanvasAtPos(canvas, symbolBuffer,150,0)
-			copyTmpCanvasToRealCanvasAtPos(canvas, godBuffer,0,230)
-			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,100,-50)
-			copyTmpCanvasToRealCanvasAtPos(canvas, levelBuffer,0,235)
-		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
+	copyTmpCanvasToRealCanvasAtPos(canvas, symbolBuffer,150,0)
+	copyTmpCanvasToRealCanvasAtPos(canvas, godBuffer,0,230)
+	copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,100,-50)
+	copyTmpCanvasToRealCanvasAtPos(canvas, levelBuffer,0,235)
 }
 
 function drawGodSymbolBG(canvas, player){
@@ -578,14 +564,12 @@ function drawRelationshipChat(canvas, player1, player2, chat, repeatTime){
 
 	//drawBG(textSpriteBuffer, "#ff9999", "#ff00ff") //test that it's actually being rendered.
 	//p1 on left, chat in middle, p2 on right and flipped turnways.
-	setTimeout(function(){
-		copyTmpCanvasToRealCanvasAtPos(canvas, r1SpriteBuffer,0,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, r2SpriteBuffer,750,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,-100,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, p2SpriteBuffer,650,0)//where should i put this?
-		copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,230,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, textSpriteBuffer,244,51)
-		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
+	copyTmpCanvasToRealCanvasAtPos(canvas, r1SpriteBuffer,0,0)
+	copyTmpCanvasToRealCanvasAtPos(canvas, r2SpriteBuffer,750,0)
+	copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,-100,0)
+	copyTmpCanvasToRealCanvasAtPos(canvas, p2SpriteBuffer,650,0)//where should i put this?
+	copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,230,0)
+	copyTmpCanvasToRealCanvasAtPos(canvas, textSpriteBuffer,244,51)
 }
 
 //need to parse the text to figure out who is talking to determine color for chat.
@@ -615,12 +599,10 @@ function drawChat(canvas, player1, player2, chat, repeatTime){
 	drawChatText(textSpriteBuffer,player1, player2, introText, chat)
 	//drawBG(textSpriteBuffer, "#ff9999", "#ff00ff") //test that it's actually being rendered.
 	//p1 on left, chat in middle, p2 on right and flipped turnways.
-	setTimeout(function(){
-			copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,-100,0)
-			copyTmpCanvasToRealCanvasAtPos(canvas, p2SpriteBuffer,650,0)//where should i put this?
-			copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,230,0)
-			copyTmpCanvasToRealCanvasAtPos(canvas, textSpriteBuffer,244,51)
-		}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
+	copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,-100,0)
+	copyTmpCanvasToRealCanvasAtPos(canvas, p2SpriteBuffer,650,0)//where should i put this?
+	copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,230,0)
+	copyTmpCanvasToRealCanvasAtPos(canvas, textSpriteBuffer,244,51)
 }
 
 
@@ -692,7 +674,7 @@ function bloodPuddle(canvas,player){
 	swapColors(canvas, "#fffc00", player.bloodColor);
 }
 
-function drawSpriteTurnways(canvas, player, repeatTime, isRepeat){
+function drawSpriteTurnways(canvas, player){
 	player = makeRenderingSnapshot(player);
   ctx = canvas.getContext('2d');
   ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
@@ -719,11 +701,7 @@ function drawSpriteTurnways(canvas, player, repeatTime, isRepeat){
   if(player.isTroll){
     trollify(canvas,player);
   }
-  if(!isRepeat){ //first time i call it this will be null
-	setTimeout(function(){
-			drawSprite(canvas,player,repeatTime,true)
-	}, repeatTime);  //images aren't always loaded by the time i try to draw them the first time.
-  }
+
 }
 
 function makeRenderingSnapshot(player){
@@ -763,22 +741,10 @@ function drawBabySprite(canvas, player, repeatTime, isRepeat){
     }
 
 
-    //ctx.drawImage(sprite, 100, 100);
-    if(!isRepeat){ //first time i call it this will be null
-     //alert("redrawing")
-     //debug("Redrawing");
-     asyncNumSprites +=1;
-    setTimeout(function(){
-      drawBabySprite(canvas,player,repeatTime,true)
-    }, repeatTime,true);  //images aren't always loaded by the time i try to draw them the first time.
-    }else{
-      asyncNumSprites += -1
-    }
-
 }
 
 
-function drawSprite(canvas, player, repeatTime, isRepeat){
+function drawSprite(canvas, player){
 	player = makeRenderingSnapshot(player);
   //debug("Drawing sprite for: " + player.title());
   //console.log("looking for canvas: " + canvas);
@@ -830,19 +796,6 @@ function drawSprite(canvas, player, repeatTime, isRepeat){
     trollify(canvas,player);
   }
 
-
-
-  //ctx.drawImage(sprite, 100, 100);
-  if(!isRepeat){ //first time i call it this will be null
-	 //alert("redrawing")
-	 //debug("Redrawing");
-	 asyncNumSprites +=1;
-	setTimeout(function(){
-		drawSprite(canvas,player,repeatTime,true)
-	}, repeatTime,true);  //images aren't always loaded by the time i try to draw them the first time.
-  }else{
-	  asyncNumSprites += -1
-  }
 }
 
 
@@ -975,8 +928,8 @@ function princeTiara(canvas, player){
 	copyTmpCanvasToRealCanvas(canvas, c2)
 }
 
-function regularSprite(canvas, player){
-	var imageString = "Bodies/";
+function playerToRegularBody(player){
+  var imageString = "Bodies/";
   if(player.class_name == "Page"){
     imageString += "reg001.png"
   }else if(player.class_name == "Knight" ){
@@ -1002,6 +955,11 @@ function regularSprite(canvas, player){
   }else if(player.class_name == "Bard" ){
     imageString += "reg012.png"
   }
+  return imageString;
+}
+
+function regularSprite(canvas, player){
+	var imageString = playerToRegularBody(player);
   addImageTag(imageString)
   var img=document.getElementById(imageString);
   var width = img.width;
@@ -1012,32 +970,7 @@ function regularSprite(canvas, player){
 }
 
 function dreamSprite(canvas, player){
-var imageString = "Bodies/";
-  if(player.class_name == "Page"){
-    imageString += "reg001.png"
-  }else if(player.class_name == "Knight" ){
-    imageString += "reg002.png"
-  }else if(player.class_name == "Witch" ){
-    imageString += "reg003.png"
-  }else if(player.class_name == "Sylph" ){
-    imageString += "reg004.png"
-  }else if(player.class_name == "Thief" ){
-    imageString += "reg005.png"
-  }else if(player.class_name == "Rogue" ){
-    imageString += "reg006.png"
-  }else if(player.class_name == "Seer" ){
-    imageString += "reg007.png"
-  }else if(player.class_name == "Mage" ){
-    imageString += "reg008.png"
-  }else if(player.class_name == "Heir" ){
-    imageString += "reg009.png"
-  }else if(player.class_name == "Maid" ){
-    imageString += "reg010.png"
-  }else if(player.class_name == "Prince" ){
-    imageString += "reg011.png"
-  }else if(player.class_name == "Bard" ){
-    imageString += "reg012.png"
-  }
+  var imageString = playerToRegularBody(player);
   addImageTag(imageString)
   var img=document.getElementById(imageString);
   var width = img.width;
@@ -1046,10 +979,8 @@ var imageString = "Bodies/";
   dreamPalletSwap(canvas, player);
 }
 
-function godTierSprite(canvas, player){
-	//draw class, then color like aspect, then draw chest icon
-  //ctx.drawImage(img,canvas.width/2,canvas.height/2,width,height);
-	var imageString = "Bodies/";
+function playerToGodBody(player){
+  var imageString = "Bodies/";
   if(player.class_name == "Page"){
     imageString += "001.png"
   }else if(player.class_name == "Knight" ){
@@ -1075,6 +1006,13 @@ function godTierSprite(canvas, player){
   }else if(player.class_name == "Bard" ){
     imageString += "012.png"
   }
+  return imageString;
+}
+
+function godTierSprite(canvas, player){
+	//draw class, then color like aspect, then draw chest icon
+  //ctx.drawImage(img,canvas.width/2,canvas.height/2,width,height);
+	var imageString = playerToGodBody(player);
   addImageTag(imageString)
   var img=document.getElementById(imageString);
   var width = img.width;
