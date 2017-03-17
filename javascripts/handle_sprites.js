@@ -751,7 +751,7 @@ function drawSprite(canvas, player){
  // canvas = $("#"+canvasId)[0]; //don't want jquery object, want contents
   ctx = canvas.getContext('2d');
   ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
-  if(player.dead && !isRepeat){//only rotate once
+  if(player.dead){//only rotate once
 	ctx.translate(canvas.width, 0);
 	ctx.rotate(90*Math.PI/180);
   }

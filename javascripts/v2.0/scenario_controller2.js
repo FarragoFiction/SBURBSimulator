@@ -43,7 +43,7 @@ window.onload = function() {
 
 
 	//debugRelationshipDrama();
-	//debugTriggerLevel();
+	debugTriggerLevel();
 	//debugGrimDark();
 	//debugJackScheme();
 	//debugLevelTheHellUp();
@@ -142,6 +142,7 @@ function scratch(){
 }
 
 function tick(){
+	alert("ticking")
 	if(timeTillReckoning > 0 && !doomedTimeline){
 		setTimeout(function(){
 			timeTillReckoning += -1;
