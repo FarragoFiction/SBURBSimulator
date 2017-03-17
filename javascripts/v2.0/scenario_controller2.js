@@ -371,6 +371,11 @@ function session612IndexToTroll(player, index){
 		player.rightHorn = 21;
 		player.quirk.capitalization = 2;
 		player.quirk.punctuation = 2;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [];
+		player.kernel_sprite = "Crab"
+		player.interest1 = "Romance"
+		player.interest2 = "Leadership"
 	}else if(index == 1){
 		player.aspect = "Mind"
 		player.class_name = "Seer"
@@ -382,6 +387,9 @@ function session612IndexToTroll(player, index){
 		player.quirk.punctuation = 2;
 		player.quirk.favoriteNumber = 4;
 		player.quirk.lettersToReplace = [["E","3"],["I","1"],["A","4"]];
+		player.kernel_sprite = "Dragon"
+		player.interest1 = "Justice"
+		player.interest2 = "Live Action Roleplaying"
 	}else if(index == 2){
 		player.aspect = "Rage"
 		player.class_name = "Bard"
@@ -389,6 +397,14 @@ function session612IndexToTroll(player, index){
 		player.leftHorn = 29;
 		player.rightHorn = 29;
 		player.bloodColor = "#631db4";
+		player.quirk.capitalization = 4;
+		player.quirk.punctuation = 2;
+		player.quirk.favoriteNumber = 10;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [["fuck","motherfuck"]];
+		player.kernel_sprite = "Seagoat"
+		player.interest1 = "Clowns"
+		player.interest2 = "Religion"
 	}else if(index == 3){
 		player.aspect = "Void"
 		player.class_name = "Heir"
@@ -396,6 +412,16 @@ function session612IndexToTroll(player, index){
 		player.leftHorn = 43;
 		player.rightHorn = 43;
 		player.bloodColor = "#0021cb";
+		player.quirk.capitalization = 1;
+		player.quirk.punctuation = 2;
+		player.quirk.favoriteNumber = 10;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [["x","%"],["fuck","fiddlesticks"]];
+		player.quirk.prefix = "D -->"
+		player.quirk.suffix = ""
+		player.kernel_sprite = "Centaur"
+		player.interest1 = "Racism"
+		player.interest2 = "Weight Lifting"
 	}else if(index == 4){
 		player.aspect = "Time"
 		player.class_name = "Maid"
@@ -403,6 +429,14 @@ function session612IndexToTroll(player, index){
 		player.leftHorn = 36;
 		player.rightHorn = 36;
 		player.bloodColor = "#A10000";
+		player.quirk.capitalization = 1;
+		player.quirk.punctuation = 2;
+		player.quirk.favoriteNumber = 0;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [["o","0"]];
+		player.kernel_sprite = "Frog"
+		player.interest1 = "Archaeology"
+		player.interest2 = "Death"
 	}else if(index == 5){
 		player.aspect = "Heart"
 		player.class_name = "Rogue"
@@ -410,6 +444,14 @@ function session612IndexToTroll(player, index){
 		player.leftHorn = 22;
 		player.rightHorn = 22;
 		player.bloodColor = "#416600";
+		player.quirk.capitalization = 1;
+		player.quirk.punctuation = 2;
+		player.quirk.favoriteNumber = 3;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [["ee","33"]];
+		player.kernel_sprite = "Meowbeast"
+		player.interest1 = "Role Playing"
+		player.interest2 = "Romance"
 	}else if(index == 6){
 		player.aspect = "Breath"
 		player.class_name = "Page"
@@ -417,6 +459,14 @@ function session612IndexToTroll(player, index){
 		player.leftHorn = 28;
 		player.rightHorn = 28;
 		player.bloodColor = "#a25203";
+		player.quirk.favoriteNumber = 1;
+		player.quirk.capitalization = 5;
+		player.quirk.punctuation = 2;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [];
+		player.kernel_sprite = "Fairy Bull"
+		player.interest1 = "Faeries"
+		player.interest2 = "Animals"
 	}else if(index == 7){
 		player.aspect = "Light"
 		player.class_name = "Thief"
@@ -424,6 +474,14 @@ function session612IndexToTroll(player, index){
 		player.leftHorn = 27;
 		player.rightHorn = 27;
 		player.bloodColor = "#004182";
+		player.quirk.capitalization = 1;
+		player.quirk.punctuation = 2;
+		player.quirk.lettersToReplace = [];
+		player.quirk.favoriteNumber = 8;
+		player.quirk.lettersToReplaceIgnoreCase = [["b","8"]];
+		player.interest1 = "Treasure"
+		player.interest2 = "Live Action Roleplaying"
+		player.kernel_sprite = "Spider"
 	}else if(index == 8){
 		player.aspect = "Space"
 		player.class_name = "Sylph"
@@ -431,6 +489,14 @@ function session612IndexToTroll(player, index){
 		player.leftHorn = 26;
 		player.rightHorn = 26;
 		player.bloodColor = "#078446";
+		player.quirk.capitalization = 1;
+		player.quirk.favoriteNumber = 5;
+		player.quirk.punctuation = 2;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [];
+		player.kernel_sprite = "Mother Grub"
+		player.interest1 = "Vampires"
+		player.interest2 = "Fashion"
 	}else if(index == 9){
 		player.aspect = "Hope"
 		player.class_name = "Prince"
@@ -438,6 +504,14 @@ function session612IndexToTroll(player, index){
 		player.leftHorn = 19;
 		player.rightHorn = 19;
 		player.bloodColor = "#610061";
+		player.quirk.capitalization = 1;
+		player.quirk.punctuation = 2;
+		player.quirk.favoriteNumber = 7;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [["ing","in"], ["v","vv"], ["w","ww"]];
+		player.kernel_sprite = "Skyhorse"
+		player.interest1 = "Genocide"
+		player.interest2 = "History"
 	}else if(index == 10){
 		player.aspect = "Life"
 		player.class_name = "Witch"
@@ -445,6 +519,14 @@ function session612IndexToTroll(player, index){
 		player.leftHorn = 35;
 		player.rightHorn = 35;
 		player.bloodColor = "#99004d";
+		player.quirk.capitalization = 1;
+		player.quirk.punctuation = 2;
+		player.quirk.favoriteNumber = 9;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [["h",")()"],["e","-E"]];
+		player.kernel_sprite = "Horrorterror"
+		player.interest1 = "Animals"
+		player.interest2 = "Social Jusice"
 	}else if(index == 11){
 		player.aspect = "Doom"
 		player.class_name = "Mage"
@@ -452,6 +534,13 @@ function session612IndexToTroll(player, index){
 		player.leftHorn = 33;
 		player.rightHorn = 33;
 		player.bloodColor = "#a1a100";
+		player.quirk.capitalization = 1;
+		player.quirk.punctuation = 2;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [["i","ii"],["s","2"]];
+		player.kernel_sprite = "Bicyclops"
+		player.interest1 = "Hacking"
+		player.interest2 = "Programming"
 	}
 }
 
