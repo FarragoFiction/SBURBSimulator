@@ -29,10 +29,13 @@ var sessionType = Math.seededRandom(); //human, troll or mixed.
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
 	//these bitches are SHAREABLE.
-	debug("session type is different every time. WHY? players are always the same claspect. but if they are troll can vary, who their best friend is can vary, and their order can vary")
 	if(getParameterByName("seed")){
 		Math.seed = getParameterByName("seed");
 		initial_seed = getParameterByName("seed");
+	}else{
+		var tmp = getRandomSeed();
+		Math.seed = tmp;
+		initial_seed = tmp;
 	}
 	initRandomness();
 	shareableURL();
