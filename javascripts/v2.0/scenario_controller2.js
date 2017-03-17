@@ -360,6 +360,12 @@ function session612IndexToTroll(player, index){
 		player.hair = 23;
 		player.leftHorn = 36;
 		player.rightHorn = 36;
+	}else if(index == 5){
+		player.aspect = "Heart"
+		player.class_name = "Rogue"
+		player.hair = 7;
+		player.leftHorn = 22;
+		player.rightHorn = 22;
 	}
 }
 
