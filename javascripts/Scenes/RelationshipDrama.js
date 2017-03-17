@@ -136,7 +136,7 @@ function RelationshipDrama(){
 			return;
 		}
 		if(player1.number_confessions > 3){
-			alert("why can't I hold all these feels?")
+			//alert("why can't I hold all these feels?")
 			return this.confessTooManyFeeling(div, player, crush); //don't just keep spinning your wheels.
 		}
 		var divID = (div.attr("id")) + "_" + player.chatHandle+"confess_crush_"+crush.chatHandle;

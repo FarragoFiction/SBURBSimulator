@@ -202,9 +202,10 @@ function MurderPlayers(){
 				}
 			}else{
 				
-				m.triggerLevel += -3;
+				m.triggerLevel += -5;
 				if(m.triggerLevel<1){ //did I REALLY not have a way to leave murder mode other than romance or death?
 					m.murderMode = false;
+					alert("shit settled")
 					ret += " The " + m.htmlTitle() + " has officially settled their shit. ";
 				}else{
 					ret += " The " + m.htmlTitle() + " can't find anybody they hate enough to murder. They calm down a little. ";
