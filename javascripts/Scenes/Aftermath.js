@@ -93,7 +93,7 @@ function Aftermath(){
 			this.mournDead(div);
 			var spacePlayer = findAspectPlayer(players, "Space");
 			if(spacePlayer.landLevel >= 6){
-				end += " Luckily, the " + spacePlayer.htmlTitle() + " was diligent in frog breeding duties. ";
+				end += "<br> Luckily, the " + spacePlayer.htmlTitle() + " was diligent in frog breeding duties. ";
 				if(spacePlayer.landLevel < 8){
 					end += " The frog looks... a little sick or something, though... That probably won't matter. You're sure of it. ";
 				}
@@ -110,7 +110,7 @@ function Aftermath(){
 					end += " <Br><br> The door to the new universe is revealed. Everyone files in. <Br><Br> Thanks for Playing. ";
 				}
 			}else{
-				end += "Unfortunately, the " + spacePlayer.htmlTitle() + " was unable to complete frog breeding duties. ";
+				end += "<br>Unfortunately, the " + spacePlayer.htmlTitle() + " was unable to complete frog breeding duties. ";
 				end += " They only got " + (spacePlayer.landLevel/10*100) + "% of the way through. ";
 				end += " Who knew that such a pointless mini-game was actually crucial to the ending? ";
 				end += " No universe frog, no new universe to live in. Thems the breaks. ";
@@ -123,10 +123,10 @@ function Aftermath(){
 		end = "<Br>";
 		this.mournDead(div);
 		end += this.democracyBonus();
-		end += " The players have failed. No new universe is created. Their home universe is left unfertilized. <Br><Br>Game Over. ";
+		end += " <br>The players have failed. No new universe is created. Their home universe is left unfertilized. <Br><Br>Game Over. ";
 	}
 	var strongest = findStrongestPlayer(players)
-	end += " The MVP of the session was: " + strongest.htmlTitle() + " with a power of: " + strongest.power;
+	end += "<br> The MVP of the session was: " + strongest.htmlTitle() + " with a power of: " + strongest.power;
 	end += "<br>Thanks for Playing!<br>"
 	div.append(end);
 	var divID = (div.attr("id")) + "_aftermath" ;
