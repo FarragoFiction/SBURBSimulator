@@ -801,7 +801,7 @@ free_land_titles = free_land_titles.concat(["Suburbs","Cities","Neighborhoods","
 
 
 
-var prototypings = ["Cow","Bird","Bug","Grandma","Dad","Mom","Cat","Dog","Pigeon","Octopus","Nick Cage","Fish","Kitten"];
+var prototypings = ["Cow","Bird","Bug","Grandma","Uncle","Aunt","Cat","Dog","Pigeon","Octopus","Nick Cage","Fish","Kitten"];
 prototypings = prototypings.concat(["Worm","Doll","Pony","Horse","Bear","Goat","Rat","Sheep","Crab","Spider","Raccoon"]);
 prototypings = prototypings.concat(["Crow","Chicken","Duck","Sparrow","Dove","Goose","Turkey","Kangaroo","Lawyer","Doctor"]);
 prototypings = prototypings.concat(["Ladybug","Butterfly","Fly","Mosquito","Centipede","Praying Mantis","Dragonfly","Ant"]);
@@ -1046,7 +1046,7 @@ var fantasy_quirks = [["very","fairy"]];
 var justice_quirks = [];
 
 
-var fish_quirks = [["ass","bass"],["god","glub"],["god","cod"],["fuck","glub"],["really","reely"],["kill","krill"],["thing","fin"],["well","whale"],["purpose","porpoise"],["better","betta"],["help","kelp"],["see","sea"],["friend","frond"],["crazy","craysea"]];
+var fish_quirks = [["ass","bass"],["god","glub"],["god","cod"],["fuck","glub"],["really","reely"],["kill","krill"],["thing","fin"],["well","whale"],["purpose","porpoise"],["better","betta"],["help","kelp"],["see","sea"],["friend","frond"],["crazy","craysea"], ["kid","squid"]];
 
 //not as extreme as a troll quirk, but...
 var conversational_quirks = [["guess","suppose"],["oh my god","omg"],["like", "liek"],["ing","in"],["have to","hafta"], ["want to","wanna"],["going to","gonna"], ["i'm","i am"],["you're","you are"],["we're","we are"],["forever","5ever"]];
@@ -1059,7 +1059,7 @@ var asshole_quirks = [["asshole", "asshole"],["asshole", "fucker"],["asshole", "
 var lol_quirks = [["lol","lol"],["lol","haha"],["lol","ehehe"],["lol","heh"],["lol","omg lol"],["lol","rofl"],["lol","funny"],["lol",""],["lol","hee"],["lol","lawl"],["lol","roflcopter"],["lol","..."],["lol","bwahah"],["lol","*giggle*"],["lol",":)"]];
 var greeting_quirks = [["\\bhey\\b", "hey"],["\\bhey\\b", "hi"],["\\bhey\\b", "hello"],["\\bhey\\b", "greetings"],["\\bhey\\b", "yo"],["\\bhey\\b", "sup"]];
 var dude_quirks = [["dude","guy"], ["dude","guy"],["dude","man"],["dude","you"],["dude","friend"],["dude","asshole"],["dude","fella"],["dude","bro"]];
-var curse_quirks = [["\\bfuck\\b", "fuck"],["\\bfuck\\b", "shit"],["\\bfuck\\b", "cocks"],["\\bfuck\\b", "nope"],["\\bfuck\\b", "goddammit"],["\\bfuck\\b", "damn it"],["\\bfuck\\b", "..."],["\\bfuck\\b", "...great."],["\\bfuck\\b", "crap"],["\\bfuck\\b", "fiddlesticks"],["\\bfuck\\b", "darn"],["\\bfuck\\b", "dang"],["\\bfuck\\b", "omg"]];
+var curse_quirks = [["\\bfuck\\b", "fuck"],["\\bfuck\\b", "shit"],["\\bfuck\\b", "cocks"],["\\bfuck\\b", "nope"],["\\bfuck\\b", "goddammit"],["\\bfuck\\b", "damn"],["\\bfuck\\b", "..."],["\\bfuck\\b", "...great."],["\\bfuck\\b", "crap"],["\\bfuck\\b", "fiddlesticks"],["\\bfuck\\b", "darn"],["\\bfuck\\b", "dang"],["\\bfuck\\b", "omg"]];
 //problem: these are likely to be inside of other words.
 var yes_quirks = [["\\byes\\b","certainly"],["\\byes\\b","indeed"],["\\byes\\b","yes"],["\\byes\\b","yeppers"],["\\byes\\b","right"],["\\byes\\b","yeah"],["\\byes\\b","yep"],["\\byes\\b","sure"],["\\byes\\b","okay"]];
 var no_quirks = [["\\bnope\\b","no"],["\\bnope\\b","absolutely no"],["\\bnope\\b","no"],["\\bnope\\b","no"],["\\bnope\\b","nope"],["\\bnope\\b","no way"]];
