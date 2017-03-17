@@ -31,10 +31,12 @@ window.onload = function() {
 	//these bitches are SHAREABLE.
 	if(getParameterByName("seed")){
 		Math.seed = getParameterByName("seed");
-		initial_seed = Math.seed;
+		initial_seed = getParameterByName("seed");
 	}
 	shareableURL();
+	
     init();
+	
 	if(!debugMode){
 		randomizeEntryOrder();
 	}
@@ -48,7 +50,7 @@ window.onload = function() {
 	load(players, guardians); //in loading.js
 
 	//intro();  //~~~~~~LOADING SCRIPT WILL CALL THIS~~~~~~~~~
-
+	
 
 	//debugRelationshipDrama();
 	//debugTriggerLevel();
@@ -59,14 +61,6 @@ window.onload = function() {
 	//debugCorpseLevelTheHellUp();
 	//debugGodTierRevive();
 	//debugCorpseSmooch();
-
-	//make a new intro scene that has characters talk about their lands with their best friends/worst enemies.
-	//refacor other scenario controller to use special scenes (not part of scene controller) rather than
-	//have messy internal methods.
-	//all other scenes are handled through the scene controller like normal, which will check if var version2 = true;
-	//and if so will call "render" rather than "content"
-
-	//tick();  dont tick here, tick after intro
 }
 
 function getParameterByName(name, url) {
@@ -94,7 +88,7 @@ function checkSGRUB(){
 	}
 	//can only get here if all are trolls.
 	$(document).attr("title", "SGRUB Story Generator 2.0 by jadedResearcher");
-	$("#heading").html("SGRUB Story Generator 2.0 by jadedResearcher (wings by karmicRetribution) ");
+	$("#heading").html("SGRUB Story Generator 2.0 by jadedResearcher (art assistance by karmicRetribution) ");
 	
 }
 function getSessionType(){

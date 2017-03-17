@@ -771,6 +771,7 @@ function debug(str){
 	$("#debug").append("<br>" + str);
 }
 
+//why does this not work with seeded randomness?
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
