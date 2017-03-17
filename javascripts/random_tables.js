@@ -1,5 +1,8 @@
 //little bobby tables
 
+//going to refactor so that all randomness is seeded.
+Math.seed = getRandomSeed();
+
 function getRandomElementFromArray(array){
 	var min = 0;
 	var max = array.length-1;
@@ -690,7 +693,29 @@ function getRandomQuestFromAspect(aspect){
  * Using Math.round() will give you a non-uniform distribution!
  */
 function getRandomInt(min, max) {
+    return Math.floor(Math.seededRandom() * (max - min + 1)) + min;
+}
+
+//using a seed will let me make the simulations predictable. This enables sharing AND bullshit cloud predictions.
+//and stable time loops. and god, i'm getting the vapors here.
+function getRandomSeed() {
+	var min = 0;
+	var max = 413*612*1025;
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+ 
+// in order to work 'Math.seed' must NOT be undefined,
+// so in any case, you HAVE to provide a Math.seed
+Math.seededRandom = function(max, min) {
+    max = max || 1;
+    min = min || 0;
+ 
+    Math.seed = (Math.seed * 9301 + 49297) % 233280;
+    var rnd = Math.seed / 233280;
+ 
+    return min + rnd * (max - min);
 }
 
 function getRandomQuestFromClass(class_name){

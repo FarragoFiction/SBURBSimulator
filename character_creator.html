@@ -1,0 +1,78 @@
+<html>
+	<head>
+	<style>
+		@font-face {
+				font-family: horrorterror;
+				src: url(MISTERTWIGGY.TTF);
+		}
+	</style>
+		<link rel="stylesheet" href="css/oc.css">
+		<script type="text/javascript" src="javascripts/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="javascripts/loading.js"></script>
+		<script type="text/javascript" src="javascripts/player.js"></script>
+		<script type="text/javascript" src="javascripts/playerSnapshot.js"></script>
+		<script type="text/javascript" src="javascripts/quirk.js"></script>
+		<script type="text/javascript" src="javascripts/debugScenarios.js"></script>
+		<script type="text/javascript" src="javascripts/relationship.js"></script>
+		<script type="text/javascript" src="javascripts/v2.0/char_creator.js"></script>
+		<script type="text/javascript" src="javascripts/random_tables.js"></script>
+		<script type="text/javascript" src="javascripts/handle_sprites.js"></script>
+		<script type="text/javascript" src="javascripts/v2.0/Scenes/AuthorMessage.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/Intro.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/Reckoning.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/Aftermath.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/KingPowerful.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/QueenRejectRing.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/PrepareToExileQueen.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/PlanToExileJack.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/GiveJackBullshitWeapon.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/PrepareToExileJack.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/ExileQueen.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/ExileJack.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/JackBeginScheming.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/levelthehellup.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/JackRampage.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/JackPromotion.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/SolvePuzzles.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/ExploreMoon.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/GetTiger.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/GodTierRevival.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/CorpseSmooch.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/GoGrimDark.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/EngageMurderMode.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/BeTriggered.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/DisengageMurderMode.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/MurderPlayers.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/FightQueen.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/FightKing.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/VoidyStuff.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/DoLandQuest.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/FaceDenizen.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/DoEctobiology.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/RelationshipDrama.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/SaveDoomedTimeline.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/StartDemocracy.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/PowerDemocracy.js"></script>
+		<script type="text/javascript" src="javascripts/scene_controller.js"></script>
+		<title>
+			SBURB Story Generator 2.0 by jadedResearcher
+		</title>
+	</head>
+	<body>
+		<h2 id = "heading">SBURB Story Generator 2.0 by jadedResearcher (wings by karmicRetribution) </h2>
+		<a href = "about.html">About/FAQ</a>
+		<div id = "debug"></div>
+		<button id="start" onclick="startSim()">Start Simulation</button>
+		<canvas id="loading" width="500" height="354">  </canvas>
+
+		<div id = "story"></div>
+		<canvas id="echeladder_template" width="202" height="300">  </canvas>
+		<canvas id="sprite_template" width="400" height="300">  </canvas>
+		<canvas id="canvas_template" width="1000" height="300">  </canvas>
+		<canvas id="chat_text_template" width="472" height="239">  </canvas>
+		<canvas id="godtierlevelup_template" width="650" height="151">  </canvas>
+		<img id="loading.png" src = "images/loading.png" style="display:none">
+		<div id = "image_staging">  </div>
+		<div id = "loading_image_staging">  </div>
+	</body>
+</html>
