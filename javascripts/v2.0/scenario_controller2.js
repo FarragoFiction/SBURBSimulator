@@ -54,6 +54,8 @@ window.onload = function() {
 		session612();
 	}else if(initial_seed == 111111){
 		session111111()
+	}else if(initial_seed == 33){
+		session33();
 	}
 	//easter egg ^_^
 	if(getParameterByName("royalRumble")  == "true"){
@@ -308,8 +310,8 @@ function session413(){
 
 }
 
-//can't control HOW the session will turn out, but can at least give it the right players.
-function session612(){
+//12 dead nepetas
+function session33(){
 	for(var i = 0; i<12;i++){
 		var player;
 		if(i<players.length){
@@ -326,9 +328,39 @@ function session612(){
 		player = players[i];
 		player.isTroll = true;
 		player.generateRelationships(players);
+		if(player.aspect != "Time" && player.aspect != "Space"){
+			player.aspect = "Heart"
+			player.class_name = "Rogue"
+		}
+		player.hair = 7;
+		player.leftHorn = 22;
+		player.rightHorn = 22;
+		player.bloodColor = "#416600";
+	}
+
+}
+
+//can't control HOW the session will turn out, but can at least give it the right players.
+function session612(){
+	for(var i = 0; i<12;i++){
+		var player;
+		if(i<players.length){
+			player = players[i];
+		}else{
+			player = randomPlayer();
+			player.quirk = randomTrollSim(player);
+			players.push(player);
+		}
+	}
+
+	for(var i = 0; i<12;i++){
+		player = players[i];
+		player.isTroll = true;
+		player.generateRelationships(players);
 		session612IndexToTroll(player, i);
 	}
 }
+//["#A10000","#a25203","#a1a100","#658200","#416600","#078446","#008282","#004182","#0021cb","#631db4","#610061","#99004d"]
 //karkat, terezi, gamzee, equius, aradia, nepeta, tavros, vriska, kanaya, eridan, feferi, sollux
 function session612IndexToTroll(player, index){
 	if(index == 0){
@@ -343,30 +375,42 @@ function session612IndexToTroll(player, index){
 		player.hair = 10;
 		player.leftHorn = 46;
 		player.rightHorn = 46;
+		player.bloodColor = "#008282";
 	}else if(index == 2){
 		player.aspect = "Rage"
 		player.class_name = "Bard"
 		player.hair = 29;
 		player.leftHorn = 9;
 		player.rightHorn = 9;
+		player.bloodColor = "#631db4";
 	}else if(index == 3){
 		player.aspect = "Void"
 		player.class_name = "Heir"
 		player.hair = 8;
 		player.leftHorn = 43;
 		player.rightHorn = 43;
+		player.bloodColor = "#0021cb";
 	}else if(index == 4){
 		player.aspect = "Time"
 		player.class_name = "Maid"
 		player.hair = 23;
 		player.leftHorn = 36;
 		player.rightHorn = 36;
+		player.bloodColor = "#A10000";
 	}else if(index == 5){
 		player.aspect = "Heart"
 		player.class_name = "Rogue"
 		player.hair = 7;
 		player.leftHorn = 22;
 		player.rightHorn = 22;
+		player.bloodColor = "#416600";
+	}else if(index == 6){
+		player.aspect = "Heart"
+		player.class_name = "Rogue"
+		player.hair = 7;
+		player.leftHorn = 22;
+		player.rightHorn = 22;
+		player.bloodColor = "#416600";
 	}
 }
 
