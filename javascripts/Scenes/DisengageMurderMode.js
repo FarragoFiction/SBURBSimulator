@@ -16,6 +16,7 @@ function DisengageMurderMode(){
 	}
 	
 	this.renderContent = function(div){
+		//alert("disengaged")
 		div.append("<br>"+this.content());
 	}
 	
