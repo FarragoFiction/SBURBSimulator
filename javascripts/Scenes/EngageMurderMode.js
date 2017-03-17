@@ -142,7 +142,7 @@ function EngageMurderMode(){
 				var r3 = player1.getRelationshipWith(alternative);
 				if(!r3 || r3.value > 0){
 					chatText += chatLine(player1Start, player1,"ARRRRRGGGH! THIS IS WHY I HATE YOU!")
-					chatText += chatLine(player1Start, player1,"YOU ARE A MILLION TIMES WORSE THAN " + alternative.chatHandle)
+					chatText += chatLine(player1Start, player1,"YOU ARE A MILLION TIMES WORSE THAN " + alternative.chatHandle.toUpperCase())
 					chatText += chatLine(player1Start, player1,"Prepare to die.")
 					chatText += chatLine(player2Start, player2,"Fuck. Worth a shot.")
 					r1.decrease();
