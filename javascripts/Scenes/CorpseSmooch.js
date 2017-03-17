@@ -24,10 +24,7 @@ function CorpseSmooch(){
 
 	this.renderContent = function(div){
 		this.combo = 0;
-		div.append("<br>"+this.contentForRender());
-		for(var i = 0; i<this.dreamersToRevive.length; i++){
-			this.renderForPlayer(div, this.dreamersToRevive[i]);
-		}
+		div.append("<br>"+this.contentForRender(div));
 
 		if(this.combo>1){
 			var divID = (div.attr("id")) + "_" + "combo";
@@ -141,7 +138,7 @@ function CorpseSmooch(){
 	}
 
 	//don't actually bring themt o life yet, cause it gets rid of grimdark/murdermode etc.
-	this.contentForRender = function(){
+	this.contentForRender = function(div){
 		var ret = "";
 		this.combo = 0;
 		for(var i = 0; i<this.dreamersToRevive.length; i++){
@@ -153,6 +150,7 @@ function CorpseSmooch(){
 				royalty.triggerLevel ++;
 				ret += " The " + royalty.htmlTitle() + ", as a member of the royalty of " + royalty.moon + ", administers the universal remedy for the unawakened ";
 				ret += " to the " + d.htmlTitle() + ". Their dream self takes over on " + d.moon + ". ";
+				this.renderForPlayer(div, this.dreamersToRevive[i]);
 				//this.makeAlive(d);
 				this.combo ++;
 			}else{
