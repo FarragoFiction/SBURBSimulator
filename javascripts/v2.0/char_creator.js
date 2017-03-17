@@ -39,8 +39,12 @@ window.onload = function() {
 	//these bitches are SHAREABLE.
 	if(getParameterByName("seed")){
 		Math.seed = getParameterByName("seed");
-		Math.seededRandom = Math.seed;
+		initial_seed = Math.seed;
 	}
+	
+	debug("initial_seed:" + initial_seed);
+	debug("timeTillReckoning:" +timeTillReckoning);
+	debug("sessionType:" +sessionType)
 	
 }
 
