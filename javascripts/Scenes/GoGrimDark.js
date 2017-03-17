@@ -15,8 +15,8 @@ function GoGrimDark(){
 				moon = 1;
 			}
 			if(this.player.triggerLevel + moon > 0 && !this.player.grimDark){  //easier to grimdark if you have access to horror terrors.
-				if((Math.random() * 10) < this.player.triggerLevel +moon){
-					if(this.player.murderMode && Math.random() < .5) { //slightly less chance of being both
+				if((Math.seededRandom() * 10) < this.player.triggerLevel +moon){
+					if(this.player.murderMode && Math.seededRandom() < .5) { //slightly less chance of being both
 						return false;
 					}
 					return true;

@@ -14,7 +14,7 @@ function EngageMurderMode(){
 				moon = 1;
 			}
 			if(this.player.triggerLevel > 0 &&  !this.player.murderMode && this.player.getEnemies().length > 0){
-				if((Math.random() * 10) < this.player.triggerLevel+moon){  //easier to go crazy if you SEE all your friends dying already. (in prospit clouds)
+				if((Math.seededRandom() * 10) < this.player.triggerLevel+moon){  //easier to go crazy if you SEE all your friends dying already. (in prospit clouds)
 					return true;
 				}
 			}
@@ -211,7 +211,7 @@ function EngageMurderMode(){
 		chatText += chatLine(player2Start, player2,"Fuck.")
 		chatText += chatLine(player2Start, player2,"Look, I get that you have trouble controling your temper.")
 		chatText += chatLine(player2Start, player2,"But you can be better than that.")
-		if(Math.random() > .7){
+		if(Math.seededRandom() > .7){
 			r1.increase();
 			player1.triggerLevel += -1;
 			chatText += chatLine(player2Start, player2,"Why don't we meet up in person. We can vent about whatever's bothering you. Nobody has to do anything that can't be undone.")

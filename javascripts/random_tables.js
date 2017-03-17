@@ -1,12 +1,12 @@
 //little bobby tables
 
 //going to refactor so that all randomness is seeded.
-Math.seed = getRandomSeed();
-
+Math.seed = getRandomSeed();  //can be overwritten on load
+var initial_seed = Math.seed;
 function getRandomElementFromArray(array){
 	var min = 0;
 	var max = array.length-1;
-	var i = Math.floor(Math.random() * (max - min + 1)) + min;
+	var i = Math.floor(Math.seededRandom() * (max - min + 1)) + min;
 	return array[i];
 }
 
@@ -14,7 +14,7 @@ function getRandomElementFromArrayThatStartsWith(array,letter){
 	var array = makeFilteredCopyForLetters(array, letter);
 	var min = 0;
 	var max = array.length-1;
-	var i = Math.floor(Math.random() * (max - min + 1)) + min;
+	var i = Math.floor(Math.seededRandom() * (max - min + 1)) + min;
 	return array[i];
 }
 
@@ -122,7 +122,7 @@ function getRandomLandFromAspect(aspect){
 function getRandomChatHandle(class_name, aspect,interest1, interest2){
 	//console.log("Class: " + class_name + "aspect: " + aspect);
 	var first = "";
-	var rand = Math.random();
+	var rand = Math.seededRandom();
 	if(rand>0.3){
 		first = getInterestHandle1(class_name, interest1);
 	}else if(rand > .6){
@@ -696,6 +696,7 @@ function getRandomInt(min, max) {
     return Math.floor(Math.seededRandom() * (max - min + 1)) + min;
 }
 
+//
 //using a seed will let me make the simulations predictable. This enables sharing AND bullshit cloud predictions.
 //and stable time loops. and god, i'm getting the vapors here.
 function getRandomSeed() {
@@ -705,7 +706,7 @@ function getRandomSeed() {
 }
 
 
- 
+ //I am in love:  http://indiegamr.com/generate-repeatable-random-numbers-in-js/
 // in order to work 'Math.seed' must NOT be undefined,
 // so in any case, you HAVE to provide a Math.seed
 Math.seededRandom = function(max, min) {
@@ -750,7 +751,7 @@ function getRandomQuestFromClass(class_name){
 }
 
 function randomFromTwoArrays(arr1, arr2){
-	if(Math.random() > .5){
+	if(Math.seededRandom() > .5){
 		return [getRandomElementFromArray(arr2), getRandomElementFromArray(arr1)];
 	}else{
 		return [getRandomElementFromArray(arr1), getRandomElementFromArray(arr2)];
@@ -777,7 +778,7 @@ function shuffle(array) {
   while (0 !== currentIndex) {
 
     // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
+    randomIndex = Math.floor(Math.seededRandom() * currentIndex);
     currentIndex -= 1;
 
     // And swap it with the current element.

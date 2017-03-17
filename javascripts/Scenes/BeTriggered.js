@@ -9,7 +9,7 @@ function BeTriggered(){
 		for(var i = 0; i<availablePlayers.length; i++){
 			var p = availablePlayers[i];
 			var trigger = this.IsPlayerTriggered(p)
-			if(trigger != " absolutely nothing " && Math.random()>.6){ //mostly DON'T flip out
+			if(trigger != " absolutely nothing " && Math.seededRandom()>.6){ //mostly DON'T flip out
 				this.triggers.push(trigger);
 				this.triggeredPlayers.push(p);
 			}
@@ -31,7 +31,7 @@ function BeTriggered(){
 		
 		//small chance
 		if(deadPlayers.length > 0){
-			if(Math.random() > 0.9){
+			if(Math.seededRandom() > 0.9){
 				player.triggerLevel ++;
 				return deadPlayers.length +" dead players ";
 			}
@@ -46,7 +46,7 @@ function BeTriggered(){
 		
 		//bigger chance
 		if(deadFriends.length > 0){
-			if(Math.random() > 0.5){
+			if(Math.seededRandom() > 0.5){
 				player.triggerLevel ++;
 				return deadFriends.length + " dead friends";
 			}
@@ -62,7 +62,7 @@ function BeTriggered(){
 		
 		//huge chance, the dead outnumber the living.
 		if(deadPlayers.length > livePlayers.length){
-			if(Math.random() > 0.1){
+			if(Math.seededRandom() > 0.1){
 				player.triggerLevel ++;
 				player.triggerLevel ++;
 				player.triggerLevel ++;
@@ -70,11 +70,11 @@ function BeTriggered(){
 			}
 		}	
 		
-		if(player.doomedTimeClones > 0 && Math.random() > .9){
+		if(player.doomedTimeClones > 0 && Math.seededRandom() > .9){
 			return " their own doomed Time Clones ";
 		}
 		
-		if(player.denizenFaced && player.denizenDefeated && Math.random() > .95){
+		if(player.denizenFaced && player.denizenDefeated && Math.seededRandom() > .95){
 			return " how terrifying " +player.getDenizen() + " was " ;
 		}
 		

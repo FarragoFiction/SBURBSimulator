@@ -8,7 +8,7 @@ function DoEctobiology(){
 		this.playerList = playerList;
 		this.leader = getLeader(availablePlayers);  //dead men do no ectobiology
 		if(this.leader){
-			return this.leader.power > (Math.random()*100); //can't do it right out of the bat. might never do it
+			return this.leader.power > (Math.seededRandom()*100); //can't do it right out of the bat. might never do it
 		}
 		return false;
 	}

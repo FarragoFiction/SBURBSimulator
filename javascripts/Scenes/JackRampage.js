@@ -64,7 +64,7 @@ function JackRampage(){
 		var stabbings = this.getStabList();
 		var ret = "";
 		if(stabbings.length == 0){
-			if(Math.random() > .5){
+			if(Math.seededRandom() > .5){
 				ret += " Jack listlessly shows his stabs to a few Prospitian pawns. "
 			}else{
 				ret += " Jack listlessly shows his stabs to a few Dersite pawns. "
@@ -83,7 +83,7 @@ function JackRampage(){
 		}else if(partyPower > jackStrength){		
 			ret += " Jack fails to stab " + getPlayersTitles(stabbings);
 			ret += "  He goes away to stab someone else, licking his wounds. ";
-			if(Math.random()>.9){
+			if(Math.seededRandom()>.9){
 				ret += " Bored of this, he decides to show his stabs to BOTH the Black and White Kings.  The battle is over. The Reckoning will soon start."
 				timeTillReckoning = 0; 
 			}

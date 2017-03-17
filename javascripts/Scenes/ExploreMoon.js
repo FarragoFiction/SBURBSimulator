@@ -30,7 +30,7 @@ function ExploreMoon(){
 		}
 		
 		//if i'm not blood or page, random roll for a friend.
-		if(availablePlayers.length > 1 && Math.random() > .5){
+		if(availablePlayers.length > 1 && Math.seededRandom() > .5){
 			this.player2 = getRandomElementFromArray(availablePlayers);
 			if(this.player1 == this.player2 || !this.player2.dreamSelf || this.player1.moon != this.player2.moon){
 				this.player2 = null;

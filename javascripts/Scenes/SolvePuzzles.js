@@ -25,7 +25,7 @@ function SolvePuzzles(){
 		}
 		
 		//if i'm not blood or page, random roll for a friend.
-		if(availablePlayers.length > 1 && Math.random() > .5){
+		if(availablePlayers.length > 1 && Math.seededRandom() > .5){
 			this.player2 = getRandomElementFromArray(availablePlayers);
 			if(this.player2 == this.player1 && this.player1.aspect != "Time"){  //only time player can help themselves out.
 				this.player2 == null

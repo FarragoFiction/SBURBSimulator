@@ -58,7 +58,7 @@ function Relationship(initial_value, target_player){
 			return this.saved_type; 
 		}
 		
-		if(Math.random() > 0.25){
+		if(Math.seededRandom() > 0.25){
 			//enter or leave a relationship, or vaccilate.
 			this.old_type = this.saved_type;
 			this.saved_type = this.changeType();
@@ -122,5 +122,5 @@ function randomRelationship(targetPlayer){
 }
 
 function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.floor(Math.seededRandom() * (max - min + 1)) + min;
 }

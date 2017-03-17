@@ -40,7 +40,7 @@ function SaveDoomedTimeLine(){
 	}
 	
 	this.randomDoom = function(){
-		return Math.random() > .95
+		return Math.seededRandom() > .95
 	}
 	
 	this.content = function(){

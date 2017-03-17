@@ -32,7 +32,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 	this.bloodColor = "#ff0000" //human red.
 	this.leftHorn =  getRandomInt(1,46);
 	this.rightHorn = this.leftHorn;
-	if(Math.random() > .7 ){ //preference for symmetry
+	if(Math.seededRandom() > .7 ){ //preference for symmetry
 		this.rightHorn = getRandomInt(1,46);
 	}
 	this.lusus = "Adult Human"
@@ -140,7 +140,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 
 	//old method from 1.0
 	this.getRandomLevel = function(){
-		if(Math.random() > .5){
+		if(Math.seededRandom() > .5){
 			return getRandomLevelFromAspect(this.aspect);
 		}else{
 			return getRandomLevelFromClass(this.class_name);
@@ -155,7 +155,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 	}
 
 	this.getRandomQuest = function(){
-		if(Math.random() > .5 || this.aspect == "Space"){ //space players pretty much only get FrogBreeding duty.
+		if(Math.seededRandom() > .5 || this.aspect == "Space"){ //space players pretty much only get FrogBreeding duty.
 			return getRandomQuestFromAspect(this.aspect);
 		}else{
 			return getRandomQuestFromClass(this.class_name);
@@ -172,11 +172,11 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 		var ret = false;
 		//if much less friends than enemies.
 		if(this.getFriends().length < this.getEnemies().length){
-			if(Math.random() > .9){ //just deaths are rarer without things like triggers.
+			if(Math.seededRandom() > .9){ //just deaths are rarer without things like triggers.
 				ret = true;
 			}
 			//way more likely to be a just death if you're being an asshole.
-			if((this.murderMode || this.grimDark) && Math.random()>.2){
+			if((this.murderMode || this.grimDark) && Math.seededRandom()>.2){
 				ret = true;
 			}
 		}
@@ -190,11 +190,11 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 		var ret = false;
 		//if far more enemies than friends.
 		if(this.getFriends().length > this.getEnemies().length ){
-			if(Math.random() > .6){
+			if(Math.seededRandom() > .6){
 				ret = true;
 			}
 			//extra likely if you just killed the king/queen, you hero you.
-			if(kingStrength <=0 && Math.random()>.2){
+			if(kingStrength <=0 && Math.seededRandom()>.2){
 				ret = true;
 			}
 		}
@@ -570,14 +570,14 @@ function getFontColorFromAspect(aspect){
 function randomPlayerWithClaspect(c,a){
 	var l = getRandomLandFromAspect(a);
 	var k = getRandomElementFromArray(prototypings);
-	if(c == "Witch" || Math.random() > .99){
+	if(c == "Witch" || Math.seededRandom() > .99){
 		k = getRandomElementFromArray(disastor_prototypings);
-	}else if(Math.random() > .9){
+	}else if(Math.seededRandom() > .9){
 		k = getRandomElementFromArray(fortune_prototypings);
 	}
 
 	var gd = false;
-	if(Math.random() > .5){
+	if(Math.seededRandom() > .5){
 		gd =true;
 	}
 	var m = getRandomElementFromArray(moons);

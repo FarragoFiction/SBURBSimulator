@@ -34,7 +34,7 @@ this.getGoodGuys = function(){
 			var timeClone = makeRenderingSnapshot(timePlayer);
 			timeClone.dead = false;
 			//from a different timeline, things went differently.
-			var rand = Math.random();
+			var rand = Math.seededRandom();
 			if(rand>.2){
 				timeClone.godTier = !timeClone.godTier;
 			}else if(rand>.4){
@@ -45,7 +45,7 @@ this.getGoodGuys = function(){
 				timeClone.murderMode = !timeClone.murderMode;
 			}
 			
-			var rand = Math.random(); //reroll for second set of traits. like grim dark dream self.
+			var rand = Math.seededRandom(); //reroll for second set of traits. like grim dark dream self.
 			if(rand>.2){
 				timeClone.godTier = !timeClone.godTier;
 			}else if(rand>.4){

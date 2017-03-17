@@ -21,19 +21,25 @@ var canvasHeight = 300;
 var repeatTime = 500;
 var version2 = true;
 var timeTillReckoning = getRandomInt(10,30);
-var sessionType = Math.random(); //human, troll or mixed. 
+var sessionType = Math.seededRandom(); //human, troll or mixed. 
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.
 //should there be only one canvas?  Can have player sprites be written to a virtual canvas first, then copied to main one.
 //main canvas is either Leader + PesterChumWindow + 1 or more Players (in chat or group chat with leader)
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
-   init();
+	//these bitches are SHAREABLE.
+	if(getParameterByName("seed")){
+		Math.seed = getParameterByName("seed");
+		initial_seed = Math.seed;
+	}
+	shareableURL();
+    init();
 	if(!debugMode){
 		randomizeEntryOrder();
 	}
 	//easter egg ^_^
-	if(window.location.search.substr(1) == "royalRumble=true"){
+	if(getParameterByName("royalRumble")  == "true"){
 		debugRoyalRumble();
 	}
 	//authorMessage();
@@ -61,6 +67,23 @@ window.onload = function() {
 	//and if so will call "render" rather than "content"
 
 	//tick();  dont tick here, tick after intro
+}
+
+function getParameterByName(name, url) {
+    if (!url) {
+      url = window.location.href;
+    }
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function shareableURL(){
+	var str = '<a href = "index2.html?seed=' +initial_seed +'">Shareable URL </a>'
+	$("#seedText").html(str);
 }
 
 function checkSGRUB(){
@@ -299,7 +322,7 @@ function decideTroll(player){
 		return;
 	}
 	
-	if(getSessionType() == "Troll" || (getSessionType() == "Mixed" &&Math.random() > 0.5) ){
+	if(getSessionType() == "Troll" || (getSessionType() == "Mixed" &&Math.seededRandom() > 0.5) ){
 		player.isTroll = true;
 		player.triggerLevel ++;//trolls are less stable
 		decideHemoCaste(player);
@@ -337,7 +360,7 @@ function makeGuardians(){
 			guardian.level_index = 5; //scratched kids start more leveled up
 			guardian.power = 50;
 			guardian.leader = player.leader;
-			if(Math.random() >0.5){ //have SOMETHING in common with your ectorelative.
+			if(Math.seededRandom() >0.5){ //have SOMETHING in common with your ectorelative.
 				guardian.interest1 = player.interest1;
 			}else{
 				guardian.interest2 = player.interest2;

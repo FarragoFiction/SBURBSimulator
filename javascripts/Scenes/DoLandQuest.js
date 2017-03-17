@@ -54,7 +54,7 @@ function DoLandQuest(){
 			}
 		}
 		
-		if(player.aspect == "Time" && Math.random() > .2){ //time players often partner up with themselves
+		if(player.aspect == "Time" && Math.seededRandom() > .2){ //time players often partner up with themselves
 			return player;
 		}
 		
@@ -69,7 +69,7 @@ function DoLandQuest(){
 
 		
 		//if i'm not blood or page, or space, or maybe time random roll for a friend.
-		if(availablePlayers.length > 1 && Math.random() > .5){
+		if(availablePlayers.length > 1 && Math.seededRandom() > .5){
 			helper = getRandomElementFromArray(availablePlayers);
 			if(player == helper ){  
 				return null;
@@ -164,7 +164,7 @@ function DoLandQuest(){
 				ret += " does";
 			}
 			
-			if(Math.random() >0.8){
+			if(Math.seededRandom() >0.8){
 				ret += " quests at " + player.shortLand();
 			}else{
 				ret += " quests in the " + player.land;

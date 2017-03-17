@@ -224,7 +224,7 @@ function randomHumanQuirk(){
 	var ret = new Quirk();
 	ret.capitalization = getRandomInt(0,2);
 	ret.punctuation = getRandomInt(0,3);
-	if(ret.capitalization == 2 && Math.random() >.2){ //seriously, less all caps.
+	if(ret.capitalization == 2 && Math.seededRandom() >.2){ //seriously, less all caps.
 		ret.capitalization = getRandomInt(0,1);
 	}
 	var roomLeft = getRandomInt(0,6) - ret.lettersToReplace.length;
@@ -245,12 +245,12 @@ function randomHumanSim(player){
 	var ret = new Quirk();
 	ret.capitalization = getRandomInt(0,2);
 	ret.punctuation = getRandomInt(0,3);
-	if(ret.capitalization == 2 && Math.random() >.2){ //seriously, less all caps.
+	if(ret.capitalization == 2 && Math.seededRandom() >.2){ //seriously, less all caps.
 		ret.capitalization = getRandomInt(0,1);
 	}
 	var roomLeft = 0;
 	//most people spell things, fine, other people have random problems
-	if(Math.random() > 0.50){
+	if(Math.seededRandom() > 0.50){
 		var roomLeft = getRandomInt(0,10);
 	}
 	if(roomLeft < 0) roomLeft = 0;
@@ -277,64 +277,64 @@ function randomHumanSim(player){
 
 function addNumberQuirk(ret){
 	if(ret.favoriteNumber == 1){
-		if(Math.random()>.5) ret.lettersToReplace.push(["I","1"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["i","1"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["l","1"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["L","1"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["won","1"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["I","1"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["i","1"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["l","1"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["L","1"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["won","1"]);
 	}else if(ret.favoriteNumber == 2){
-		if(Math.random()>.5) ret.lettersToReplace.push(["S","2"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["s","2"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["Z","2"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["z","2"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["too","2"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["to","2"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["two","2"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["S","2"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["s","2"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["Z","2"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["z","2"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["too","2"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["to","2"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["two","2"]);
 	}else if(ret.favoriteNumber == 3){
-		if(Math.random()>.5) ret.lettersToReplace.push(["E","3"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["e","3"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["E","3"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["e","3"]);
 	}else if(ret.favoriteNumber == 4){
-		if(Math.random()>.5) ret.lettersToReplace.push(["A","4"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["a","4"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["for","4"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["four","4"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["A","4"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["a","4"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["for","4"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["four","4"]);
 	}else if(ret.favoriteNumber == 5){
-		if(Math.random()>.5) ret.lettersToReplace.push(["S","5"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["s","5"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["Z","5"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["z","5"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["S","5"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["s","5"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["Z","5"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["z","5"]);
 	}else if(ret.favoriteNumber == 6){
-		if(Math.random()>.5) ret.lettersToReplace.push(["G","6"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["G","6"]);
 	}else if(ret.favoriteNumber == 7){
-		if(Math.random()>.5) ret.lettersToReplace.push(["T","7"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["t","7"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["T","7"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["t","7"]);
 	}else if(ret.favoriteNumber == 8){
-		if(Math.random()>.5) ret.lettersToReplace.push(["ate","8"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["eight","8"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["EIGHT","8"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["B","8"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["ate","8"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["eight","8"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["EIGHT","8"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["B","8"]);
 	}else if(ret.favoriteNumber == 9){
-		if(Math.random()>.5) ret.lettersToReplace.push(["g","9"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["nine","9"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["NINE","9"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["g","9"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["nine","9"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["NINE","9"]);
 	}else if(ret.favoriteNumber == 10){
-		if(Math.random()>.5) ret.lettersToReplace.push(["ten","10"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["TEN","10"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["lo","10"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["ten","10"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["TEN","10"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["lo","10"]);
 	}else if(ret.favoriteNumber == 11){
-		if(Math.random()>.5) ret.lettersToReplace.push(["ll","11"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["II","11"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["ii","11"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["ll","11"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["II","11"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["ii","11"]);
 	}else if(ret.favoriteNumber == 12){
-		if(Math.random()>.5) ret.lettersToReplace.push(["is","12"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["IS","12"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["iz","12"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["IZ","12"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["is","12"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["IS","12"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["iz","12"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["IZ","12"]);
 	}else if(ret.favoriteNumber == 0){
-		if(Math.random()>.5) ret.lettersToReplace.push(["o","0"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["O","0"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["oh","0"]);
-		if(Math.random()>.5) ret.lettersToReplace.push(["OH","0"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["o","0"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["O","0"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["oh","0"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["OH","0"]);
 	}
 	return ret;
 }
@@ -344,18 +344,18 @@ function randomTrollSim(player){
 	var ret = new Quirk();
 	ret.capitalization = getRandomInt(0,5);
 	ret.punctuation = getRandomInt(0,5);
-	if(ret.capitalization == 2 && Math.random() >.2){ //seriously, less all caps.
+	if(ret.capitalization == 2 && Math.seededRandom() >.2){ //seriously, less all caps.
 		ret.capitalization = getRandomInt(0,1);
 	}
 
-	if(Math.random() > .85){
+	if(Math.seededRandom() > .85){
 		ret.prefix = getRandomElementFromArray(prefixes);
 		if(ret.prefix.length == 1){
 			ret.prefix = multiplyCharacter(ret.prefix, ret.prefix[0], ret.favoriteNumber);
 		}
 	}
-	if(Math.random() > .85){
-		if(ret.prefix != "" && Math.random()>.7){ //mostly just repeat your prefix
+	if(Math.seededRandom() > .85){
+		if(ret.prefix != "" && Math.seededRandom()>.7){ //mostly just repeat your prefix
 			ret.suffix = ret.prefix;
 		}else{
 			ret.suffix = getRandomElementFromArray(prefixes);
@@ -367,7 +367,7 @@ function randomTrollSim(player){
 	}
 	var roomLeft = 0;
 	//most people spell things, fine, other people have random problems
-	if(Math.random() > 0.50){
+	if(Math.seededRandom() > 0.50){
 		var roomLeft = getRandomInt(0,10);
 	}
 	if(roomLeft < 0) roomLeft = 0;
@@ -401,14 +401,14 @@ function randomTrollQuirk(player){
 	var ret = new Quirk();
 	ret.capitalization = getRandomInt(0,5);
 	ret.punctuation = getRandomInt(0,5);
-	if(Math.random() > .5){
+	if(Math.seededRandom() > .5){
 		ret.prefix = getRandomElementFromArray(prefixes);
 		if(ret.prefix.length == 1){
 			ret.prefix = multiplyCharacter(ret.prefix, ret.prefix[0], ret.favoriteNumber);
 		}
 	}
-	if(Math.random() > .5){
-		if(ret.prefix != "" && Math.random()>.7){ //mostly just repeat your prefix
+	if(Math.seededRandom() > .5){
+		if(ret.prefix != "" && Math.seededRandom()>.7){ //mostly just repeat your prefix
 			ret.suffix = ret.prefix;
 		}else{
 			ret.suffix = getRandomElementFromArray(prefixes);
@@ -461,7 +461,7 @@ function getOneRandomReplaceArray(){
 	arr.push(["s","th"]);
 	arr.push(["c","s"]);
 
-	if(Math.random() > .5){
+	if(Math.seededRandom() > .5){
 		return getRandomElementFromArray(arr);
 	}
 

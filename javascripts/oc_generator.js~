@@ -227,7 +227,7 @@ function randomParagraph(div, player){
 }
 
 function decideTroll(player){
-	if($('[name="species"] option:selected').val() == "Any" && Math.random() > .5 ){
+	if($('[name="species"] option:selected').val() == "Any" && Math.seededRandom() > .5 ){
 		player.isTroll = true;
 		decideHemoCaste(player);
 		decideLusus(player);

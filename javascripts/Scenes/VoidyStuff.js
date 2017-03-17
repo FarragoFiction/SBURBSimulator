@@ -15,22 +15,22 @@ function VoidyStuff(){
 	this.content = function(){
 		removeFromArray(this.player, availablePlayers);
 		var ret = "The " + this.player.htmlTitle() + " is doing...something. It's kind of hard to see.";
-		var rand = Math.random();
+		var rand = Math.seededRandom();
 
 		if(rand > .3){
 			this.player.boostAllRelationships();
 		}else if(rand > .5){
 			this.player.damageAllRelationships();
 			ret += " Everybody seems to be pretty pissed at them, though. ";
-			if(Math.random() > .9){  //randomly go grim dark when you aren't looking
+			if(Math.seededRandom() > .9){  //randomly go grim dark when you aren't looking
 				this.player.triggerLevel = 3;
 				this.player.grimDark = true;
 				ret += " You get a bad feeling about this. ";
-			}else if(Math.random() > .9){
+			}else if(Math.seededRandom() > .9){
 				this.player.triggerLevel = 3;
 				this.player.murderMode = true;
 				ret += " You get a bad feeling about this. ";
-			}else if (Math.random() > .95){
+			}else if (Math.seededRandom() > .95){
 				this.player.dead = true;
 				this.causeOfDeath = "doing voidy shenanigans, probably"
 				ret += " You get a bad feeling about this. ";
@@ -39,7 +39,7 @@ function VoidyStuff(){
 			this.player.increasePower();
 		}
 		
-		if(Math.random() > .5){
+		if(Math.seededRandom() > .5){
 			this.player.landLevel ++;
 			ret += " Their consorts seem pretty happy, though. " ;
 		}else{
@@ -49,20 +49,20 @@ function VoidyStuff(){
 			ret += " The Dersites sure seem to be mad at them, though. ";
 		}
 		
-		if(this.player.godDestiny && Math.random()>0.8){  //just randomly freaking god tier.
+		if(this.player.godDestiny && Math.seededRandom()>0.8){  //just randomly freaking god tier.
 			this.player.godTier = true;
 			this.player.dreamSelf = false;
 			ret += " What was that dark blue light on " + this.player.shortLand() + "? ";
 		}
-		if(this.player.leader && !ectoBiologyStarted && Math.random() > .8){
+		if(this.player.leader && !ectoBiologyStarted && Math.seededRandom() > .8){
 			ectoBiologyStarted = true;
 			ret += " Wait. Are those BABIES!? What is even going on here?";
 		}
 		
-		if(this.player.landLevel >= 6 && !this.player.denizenFaced && Math.random() > .5){
+		if(this.player.landLevel >= 6 && !this.player.denizenFaced && Math.seededRandom() > .5){
 			this.player.denizenFaced = true;
 			ret += " Why is the denizen, " + this.player.getDenizen() + " bellowing so loudly on " + this.player.shortLand() + "? ";
-			if(Math.random() >.5){
+			if(Math.seededRandom() >.5){
 				this.player.power = this.player.power*2;  //current and future doubling of power.
 				this.player.leveledTheHellUp = true;
 				this.player.denizenDefeated = true;

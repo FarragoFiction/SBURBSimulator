@@ -30,7 +30,7 @@ function LevelTheHellUp(){
 			num = Math.floor(num/1000)
 			denomination = " BOONBUCKS"
 		}
-		num += Math.floor(Math.random()*75);
+		num += Math.floor(Math.seededRandom()*75);
 		return num + denomination;
 	}
 

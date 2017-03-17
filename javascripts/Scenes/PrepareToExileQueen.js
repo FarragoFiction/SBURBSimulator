@@ -58,7 +58,7 @@ function PrepareToExileQueen(){
 	this.content = function(){
 		this.player.increasePower();
 		removeFromArray(this.player, availablePlayers);
-		var rand = Math.random();
+		var rand = Math.seededRandom();
 		if(rand > .3){
 			return this.harrassContent();
 		}else if(rand > .6){

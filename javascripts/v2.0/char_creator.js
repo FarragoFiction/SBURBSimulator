@@ -21,7 +21,7 @@ var canvasHeight = 300;
 var repeatTime = 500;
 var version2 = true;
 var timeTillReckoning = getRandomInt(10,30);
-var sessionType = Math.random(); //human, troll or mixed. 
+var sessionType = Math.seededRandom(); //human, troll or mixed. 
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.
 //should there be only one canvas?  Can have player sprites be written to a virtual canvas first, then copied to main one.
@@ -36,6 +36,24 @@ window.onload = function() {
 	debug("DOES javascript let me specify seeds? If so, replace all random with this. Then can debug even easier. MOST of the random is in character creation. Off the top of my head, it's also in corpse smooches, jack finding a weapond and what exactly is done to exile jack/queen. And who gets stabbed.")
 	//authorMessage();
 	
+	//these bitches are SHAREABLE.
+	if(getParameterByName("seed")){
+		Math.seed = getParameterByName("seed");
+		Math.seededRandom = Math.seed;
+	}
+	
+}
+
+function getParameterByName(name, url) {
+    if (!url) {
+      url = window.location.href;
+    }
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
 function startSim(){
@@ -284,7 +302,7 @@ function decideTroll(player){
 		return;
 	}
 	
-	if(getSessionType() == "Troll" || (getSessionType() == "Mixed" &&Math.random() > 0.5) ){
+	if(getSessionType() == "Troll" || (getSessionType() == "Mixed" &&Math.seededRandom() > 0.5) ){
 		player.isTroll = true;
 		player.triggerLevel ++;//trolls are less stable
 		decideHemoCaste(player);
@@ -322,7 +340,7 @@ function makeGuardians(){
 			guardian.level_index = 5; //scratched kids start more leveled up
 			guardian.power = 50;
 			guardian.leader = player.leader;
-			if(Math.random() >0.5){ //have SOMETHING in common with your ectorelative.
+			if(Math.seededRandom() >0.5){ //have SOMETHING in common with your ectorelative.
 				guardian.interest1 = player.interest1;
 			}else{
 				guardian.interest2 = player.interest2;

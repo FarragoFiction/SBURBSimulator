@@ -17,7 +17,7 @@ function PowerDemocracy(){
 	
 	this.content = function(){
 		var ret = "";
-		var rand = Math.random();
+		var rand = Math.seededRandom();
 		if(rand < .25){
 			ret += getRandomElementFromArray(democracyTasks);
 			democracyStrength += 5;
