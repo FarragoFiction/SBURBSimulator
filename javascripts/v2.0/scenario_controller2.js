@@ -380,8 +380,8 @@ function session612IndexToTroll(player, index){
 		player.aspect = "Rage"
 		player.class_name = "Bard"
 		player.hair = 29;
-		player.leftHorn = 9;
-		player.rightHorn = 9;
+		player.leftHorn = 29;
+		player.rightHorn = 29;
 		player.bloodColor = "#631db4";
 	}else if(index == 3){
 		player.aspect = "Void"
@@ -405,12 +405,47 @@ function session612IndexToTroll(player, index){
 		player.rightHorn = 22;
 		player.bloodColor = "#416600";
 	}else if(index == 6){
-		player.aspect = "Heart"
-		player.class_name = "Rogue"
-		player.hair = 7;
-		player.leftHorn = 22;
-		player.rightHorn = 22;
-		player.bloodColor = "#416600";
+		player.aspect = "Breath"
+		player.class_name = "Page"
+		player.hair = 33;
+		player.leftHorn = 28;
+		player.rightHorn = 28;
+		player.bloodColor = "#a25203";
+	}else if(index == 7){
+		player.aspect = "Light"
+		player.class_name = "Thief"
+		player.hair = 14;
+		player.leftHorn = 27;
+		player.rightHorn = 27;
+		player.bloodColor = "#004182";
+	}else if(index == 8){
+		player.aspect = "Space"
+		player.class_name = "Sylph"
+		player.hair = 5;
+		player.leftHorn = 26;
+		player.rightHorn = 26;
+		player.bloodColor = "#078446";
+	}else if(index == 9){
+		player.aspect = "Hope"
+		player.class_name = "Prince"
+		player.hair = 6;
+		player.leftHorn = 19;
+		player.rightHorn = 19;
+		player.bloodColor = "#610061";
+	}else if(index == 10){
+		player.aspect = "Life"
+		player.class_name = "Witch"
+		player.hair = 1;
+		player.leftHorn = 35;
+		player.rightHorn = 35;
+		player.bloodColor = "#99004d";
+	}else if(index == 11){
+		player.aspect = "Doom"
+		player.class_name = "Mage"
+		player.hair = 2;
+		player.leftHorn = 33;
+		player.rightHorn = 33;
+		player.bloodColor = "#a1a100";
 	}
 }
 

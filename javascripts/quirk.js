@@ -377,8 +377,8 @@ function randomTrollSim(player){
 			ret.lettersToReplaceIgnoreCase.push(getOneRandomFishArray());
 		}
 	}
-	
-	
+
+
 	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(very_quirks));
 	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(good_quirks));
 	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(lol_quirks));
@@ -387,7 +387,7 @@ function randomTrollSim(player){
 	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(curse_quirks));
 	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(yes_quirks));
 	ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(no_quirks));
-	
+
 	//smileys have special characters, do later
 	//ret.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(smiley_quirks));
 
