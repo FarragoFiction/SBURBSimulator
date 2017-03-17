@@ -577,7 +577,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["oo","69"]];
 		player.kernel_sprite = "Crab"
-		player.interest1 = "Romance"
+		player.interest1 = "Social Justice"
 		player.interest2 = "Leadership"
 		player.chatHandle = "carcinoGeneticist"
 	}else if(index == 1){
