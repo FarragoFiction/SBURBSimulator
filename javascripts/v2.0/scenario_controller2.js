@@ -99,10 +99,10 @@ function scratch(){
 	reckoningStarted = false; //can't god tier if you are definitely on skaia.
 	//ectobiology not reset. if performed in previous session, it's done.
 	//if not, it's not. like how the alpha session trolls didn't perform ectobiology, so Karkat did.
-  doomedTimeline = false;
+	doomedTimeline = false;
 	scratched = true;
 	var scratch = "The session has been scratched. The " + getPlayersTitlesBasic(players) + " will now be the beloved guardians.";
-  scratch += " Their former guardians, the " + getPlayersTitlesBasic(guardians) + " will now be the players.";
+	scratch += " Their former guardians, the " + getPlayersTitlesBasic(guardians) + " will now be the players.";
 	scratch += " The new players will be given stat boosts to give them a better chance than the previous generation."
 	scratch += " What will happen?"
 	var tmp = players;
@@ -291,7 +291,7 @@ function makeGuardians(){
 	for(var i = 0; i<players.length; i++){
 		  var player = players[i];
 			//console.log("guardian for " + player.titleBasic());
-			var guardian = randomPlayerWithoutRemoving();
+			var guardian = randomPlayer();
 			guardian.isTroll = player.isTroll;
 			if(guardian.isTroll){
 				guardian.quirk = randomTrollSim(guardian)
