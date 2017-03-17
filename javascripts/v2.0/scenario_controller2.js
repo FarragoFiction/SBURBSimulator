@@ -327,6 +327,9 @@ function makeGuardians(){
 			guardian.quirk.favoriteNumber = player.quirk.favoriteNumber;
 			guardian.bloodColor = player.bloodColor;
 			guardian.lusus = player.lusus;
+			if(guardian.isTroll == true){ //trolls always use lusus.
+				guardian.kernel_sprite = player.kernel_sprite;
+			}
 			guardian.hairColor = player.hairColor;
 			guardian.aspect = player.aspect;
 			guardian.leftHorn = player.leftHorn;
