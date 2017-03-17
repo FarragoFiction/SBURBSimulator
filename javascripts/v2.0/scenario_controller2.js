@@ -369,6 +369,8 @@ function session612IndexToTroll(player, index){
 		player.hair = 18;
 		player.leftHorn = 21;
 		player.rightHorn = 21;
+		player.quirk.capitalization = 2;
+		player.quirk.punctuation = 2;
 	}else if(index == 1){
 		player.aspect = "Mind"
 		player.class_name = "Seer"
@@ -376,6 +378,10 @@ function session612IndexToTroll(player, index){
 		player.leftHorn = 46;
 		player.rightHorn = 46;
 		player.bloodColor = "#008282";
+		player.quirk.capitalization = 2;
+		player.quirk.punctuation = 2;
+		player.quirk.favoriteNumber = 4;
+		player.quirk.lettersToReplace = [["E","3"],["I","1"],["A","4"]];
 	}else if(index == 2){
 		player.aspect = "Rage"
 		player.class_name = "Bard"
