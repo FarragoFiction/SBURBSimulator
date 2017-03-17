@@ -160,6 +160,9 @@ function MurderPlayers(){
 					//moiralligance.
 					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
 					ret += ", but instead gets talked down hardcore. Shit is downright tender.";
+					if(m.dead == true){ //they could have been killed by another murder player in this same tick
+						ret += " The task is made especially easy (yet tragic) by the " + m.htmlTitle() + " being in the middle of dying. "
+					}
 					m.murderMode = false;
 					m.triggerLevel = 1;
 					this.renderDiamonds(div, m, worstEnemy);
@@ -169,6 +172,9 @@ function MurderPlayers(){
 					///auspitism, but who is middle leaf?
 					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
 					ret += "(who hates them back just as much), but instead is interupted by the " + ausp.htmlTitle() + ", who convinces everyone to settle their shit down. ";
+					if(m.dead == true){ //they could have been killed by another murder player in this same tick
+						ret += " The task is made especially easy by the " + m.htmlTitle() + " dying partway through. "
+					}
 					m.murderMode = false;
 					m.triggerLevel = 1;
 					this.renderClubs(div, m, worstEnemy,ausp);
@@ -182,6 +188,9 @@ function MurderPlayers(){
 
 					worstEnemy.causeOfDeath = "fighting the " + m.htmlTitle();
 					ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". ";
+					if(m.dead == true){ //they could have been killed by another murder player in this same tick
+						ret += " Every one is very impressed that they managed to do it while dying."
+					}
 					ret += this.friendsOfVictimHateYou(worstEnemy, m, livePlayers);
 					worstEnemy.dead = true;
 					var r = worstEnemy.getRelationshipWith(m);
@@ -194,6 +203,9 @@ function MurderPlayers(){
 					m.causeOfDeath = "being put down like a rabid dog by " + worstEnemy.htmlTitle()
 					ret += " The " + m.htmlTitle() + " attempts to brutally murders that asshole, the " + worstEnemy.htmlTitle();
 					ret += ",but instead gets murdered first, in self-defense. ";
+					if(m.dead == true){ //they could have been killed by another murder player in this same tick
+						ret += " The task is made especially easy by the " + m.htmlTitle() + " being already in the proccess of dying. "
+					}
 					m.dead = true;
 					var r = worstEnemy.getRelationshipWith(m);
 					r.value = -10; //you are not happy with murderer

@@ -131,7 +131,7 @@ function RelationshipDrama(){
 		if(crush.dead == true){
 			var narration = "<br>The " + player.htmlTitle() + " used to think that the " + crush.htmlTitle() + " was ";
 			narration += this.generateOldOpinion(relationship) + ", but now they can't help but think they are " + this.generateNewOpinion(relationship) + ".";
-			narration += "It's especially tragic that they didn't realize this until the " + crush.htmlTitle() + " died.";
+			narration += " It's especially tragic that they didn't realize this until the " + crush.htmlTitle() + " died.";
 			div.append(narration);
 			return;
 		}

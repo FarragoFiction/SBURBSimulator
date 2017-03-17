@@ -424,7 +424,8 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 			}
 		}
 		//can't be my best friend if they're an enemy
-		if(bestRelationshipSoFar.value > 0){
+		//I SHOULD NOT HAVE A RELATIONSHIP WITH MYSELF. but if i do, don't return it.
+		if(bestRelationshipSoFar.value > 0 && bestRelationshipSoFar.target != this){
 			return bestRelationshipSoFar.target;
 		}
 	}
@@ -441,7 +442,8 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 			}
 		}
 		//can't be my worst enemy if they're a friend.
-		if(worstRelationshipSoFar.value < 0){
+		//I SHOULD NOT HAVE A RELATIONSHIP WITH MYSELF. but if i do, don't return it.
+		if(worstRelationshipSoFar.value < 0 && worstRelationshipSoFar.target != this){
 			return worstRelationshipSoFar.target;
 		}
 	}
