@@ -156,7 +156,7 @@ function CorpseSmooch(){
 			}else{
 				ret += d.htmlTitle() + "'s corpse waits patiently for the kiss of life. But nobody came. ";
 				ret += " Their dream self dies as well. ";
-				//this.makeDead(d);
+				this.makeDead(d);
 			}
 		}
 		if(this.combo > 1){
