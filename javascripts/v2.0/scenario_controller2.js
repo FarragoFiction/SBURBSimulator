@@ -38,6 +38,7 @@ window.onload = function() {
 	}
 	//authorMessage();
 	makeGuardians(); //after entry order established
+	checkSGRUB();
 	load(players, guardians); //in loading.js
 
 	//intro();  //~~~~~~LOADING SCRIPT WILL CALL THIS~~~~~~~~~
@@ -62,12 +63,21 @@ window.onload = function() {
 	//tick();  dont tick here, tick after intro
 }
 
+function checkSGRUB(){
+	for(var i = 0; i<players.length; i++){
+		if(players[i].isTroll == false){
+			return;
+		}
+	}
+	//can only get here if all are trolls.
+	$(document).attr("title", "SGRUB Story Generator 2.0 by jadedResearcher");
+	$("#heading").html("SGRUB Story Generator 2.0 by jadedResearcher (wings by karmicRetribution) ");
+	
+}
 function getSessionType(){
 	if(sessionType > .6){
 		return "Human"
 	}else if(sessionType > .3){
-		 $(document).attr("title", "SGRUB Story Generator 2.0 by jadedResearcher");
-		 $("#heading").html("SGRUB Story Generator 2.0 by jadedResearcher (wings by karmicRetribution) ");
 		return "Troll"
 	}
 	return "Mixed"
