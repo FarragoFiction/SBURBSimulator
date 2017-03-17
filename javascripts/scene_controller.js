@@ -9,7 +9,7 @@
 var availablePlayers = [];  //which players are available for scenes or whatever.
 var scenes = [new StartDemocracy(), new JackBeginScheming(), new KingPowerful(), new QueenRejectRing(), new JackPromotion(), new JackRampage(), new GiveJackBullshitWeapon()];
 //relationship drama has a high priority because it can distract a session from actually making progress. happened to universe a trolls.
-scenes = scenes.concat([new RelationshipDrama(), new BeTriggered(), new EngageMurderMode(), new GoGrimDark(), new MurderPlayers(), new DisengageMurderMode()]);
+scenes = scenes.concat([new RelationshipDrama(), new BeTriggered(), new EngageMurderMode(), new GoGrimDark(),  new DisengageMurderMode(),new MurderPlayers()]);
 scenes = scenes.concat([new VoidyStuff(), new FaceDenizen(), new DoEctobiology(), new DoLandQuest()]);
 
 scenes = scenes.concat([new SolvePuzzles(), new ExploreMoon()]);
