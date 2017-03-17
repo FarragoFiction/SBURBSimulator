@@ -11,7 +11,7 @@ function RelationshipDrama(){
 		//CAN change how ou feel about somebody not yet in the medium
 		for(var i = 0; i< playerList.length; i++){
 			var p = playerList[i];
-			if(p.hasRelationshipDrama()){
+			if(p.hasRelationshipDrama() && p.dead == false){ //stop corpse confessions!
 				this.dramaPlayers.push(p)
 			}
 		}
