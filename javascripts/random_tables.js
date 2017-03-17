@@ -961,7 +961,7 @@ this.goodMild = "Friends";
 	this.badBig = "Enemies";
 	*/
 var goodMildDesc = ["a pretty good kid", "nice enough", "merely tolerable", "just friendly"];
-var goodBigDesc = ["the most fascinating human left", "distractingly pretty", "really hot"];
+var goodBigDesc = ["the most fascinating kid left", "distractingly pretty", "really hot"];
 var bigMildDesc = ["kind of a jerk", "sort of an asshole", "only sort of irritating", "just a little annoying"];
 var bigBadDesc = ["just the smelliest bag of assholes", "the most infuriating asshole around", "most likely to screw everyone over", "dangerous"];
 
