@@ -723,6 +723,7 @@ function makeRenderingSnapshot(player){
 	ret.leftHorn = player.leftHorn;
 	ret.rightHorn = player.rightHorn;
 	ret.quirk = player.quirk;
+	ret.baby = player.baby;
 	return ret;
 }
 
@@ -735,7 +736,7 @@ function drawBabySprite(canvas, player, repeatTime, isRepeat){
       ctx.scale(0.5,0.5);
     }
     babySprite(canvas,player);
-    babyHair(canvas, player);
+    hair(canvas, player);
     if(player.isTroll){
       trollify(canvas,player,isRepeat); //it scales horns too
     }
@@ -1024,9 +1025,9 @@ function godTierSprite(canvas, player){
 
 function babySprite(canvas,player){
   ctx = canvas.getContext('2d');
-  var imageString = "Bodies/baby.png"
+  var imageString = "Bodies/baby"+player.baby + ".png"
   if(player.isTroll){
-    imageString = "Bodies/grub.png";
+    imageString = "Bodies/grub"+player.baby + ".png"
   }
   addImageTag(imageString)
   var img=document.getElementById(imageString);
@@ -1037,6 +1038,7 @@ function babySprite(canvas,player){
     swapColors(canvas, "#585858",player.bloodColor);
   }else{
     swapColors(canvas, "#e76700",getShirtColorFromAspect(player.aspect));
+	swapColors(canvas, "#ca5b00",getDarkShirtColorFromAspect(player.aspect));
   }
 }
 

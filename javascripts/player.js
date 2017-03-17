@@ -6,7 +6,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 		this.mylevels = getLevelArray(this);//make them ahead of time for echeladder graphic
 		this.land = getRandomLandFromAspect(this.aspect);
 	}
-
+	this.baby = getRandomInt(1,3)//more than 1 baby sprite
 	this.class_name = class_name;
 	this.number_confessions = 0;
 	this.number_times_confessed_to = 0;
@@ -529,6 +529,36 @@ function getShirtColorFromAspect(aspect){
 		color = "#ffe094";
 	}else if(aspect == "Life"){
 		color = "#ccc4b5";
+	}
+	return color;
+}
+
+function getDarkShirtColorFromAspect(aspect){
+	var color = "";
+	if(aspect == "Space"){
+		color = "#242424";
+	}else if(aspect == "Time"){
+		color = "#970203";
+	}else if(aspect == "Breath"){
+		color = "#0070ED";
+	}else if(aspect == "Doom"){
+		color = "#11200F";
+	}else if(aspect == "Blood"){
+		color = "#2C1207";
+	}else if(aspect == "Heart"){
+		color = "#6B0829";
+	}else if(aspect == "Mind"){
+		color = "#3DA35A";
+	}else if(aspect == "Light"){
+		color = "#D66E04";
+	}else if(aspect == "Void"){
+		color = "#02285B";
+	}else if(aspect == "Rage"){
+		color = "#1E0C47";
+	}else if(aspect == "Hope"){
+		color = "#E8C15E";
+	}else if(aspect == "Life"){
+		color = "#CCC4B5";
 	}
 	return color;
 }

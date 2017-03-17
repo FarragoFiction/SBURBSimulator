@@ -20,6 +20,7 @@ function PlayerSnapshot(){
 	this.rightHorn = null;
 	this.quirk = null;
 	this.victimBlood = null;
+	this.baby = null;
 
 	this.chatHandleShort = function(){
 		return this.chatHandle.match(/\b(\w)|[A-Z]/g).join('').toUpperCase();

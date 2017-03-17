@@ -76,8 +76,14 @@ function loadOther(){
 	loadImage("Auspisticism.png")
 	loadImage("Kismesis.png")
 	loadImage("prince_hat.png")
-	loadImage("Bodies/baby.png")
-	loadImage("Bodies/grub.png")
+
+	for(var i = 1; i<4; i++){
+		loadImage("Bodies/baby"+i + ".png")
+	}
+	
+	for(var i = 1; i<4; i++){
+		loadImage("Bodies/grub"+i + ".png")
+	}
 }
 
 //load hair, horns, wings, regular sprite, god sprite, fins, aspect symbol, moon symbol for each player
@@ -95,5 +101,8 @@ function loadPlayer(player){
 		loadImage("Wings/wing"+player.quirk.favoriteNumber + ".png")
 		loadImage("Horns/left"+player.leftHorn + ".png");
 		loadImage("Horns/right"+player.rightHorn + ".png");
+		//loadImage("Bodies/grub"+player.baby + ".png")
+	}else{
+		//loadImage("Bodies/baby"+player.baby + ".png")
 	}
 }
