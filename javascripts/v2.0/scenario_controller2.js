@@ -376,6 +376,7 @@ function session612IndexToTroll(player, index){
 		player.kernel_sprite = "Crab"
 		player.interest1 = "Romance"
 		player.interest2 = "Leadership"
+		player.chatHandle = "carcinoGeneticist"
 	}else if(index == 1){
 		player.aspect = "Mind"
 		player.class_name = "Seer"
@@ -390,6 +391,7 @@ function session612IndexToTroll(player, index){
 		player.kernel_sprite = "Dragon"
 		player.interest1 = "Justice"
 		player.interest2 = "Live Action Roleplaying"
+		player.chatHandle = "gallowsCalibrator"
 	}else if(index == 2){
 		player.aspect = "Rage"
 		player.class_name = "Bard"
@@ -405,6 +407,7 @@ function session612IndexToTroll(player, index){
 		player.kernel_sprite = "Seagoat"
 		player.interest1 = "Clowns"
 		player.interest2 = "Religion"
+		player.chatHandle = "terminallyCapricious"
 	}else if(index == 3){
 		player.aspect = "Void"
 		player.class_name = "Heir"
@@ -422,6 +425,7 @@ function session612IndexToTroll(player, index){
 		player.kernel_sprite = "Centaur"
 		player.interest1 = "Racism"
 		player.interest2 = "Weight Lifting"
+		player.chatHandle = "centaursTestacle"
 	}else if(index == 4){
 		player.aspect = "Time"
 		player.class_name = "Maid"
@@ -437,6 +441,7 @@ function session612IndexToTroll(player, index){
 		player.kernel_sprite = "Frog"
 		player.interest1 = "Archaeology"
 		player.interest2 = "Death"
+		player.chatHandle = "apocalypseArisen"
 	}else if(index == 5){
 		player.aspect = "Heart"
 		player.class_name = "Rogue"
@@ -452,6 +457,7 @@ function session612IndexToTroll(player, index){
 		player.kernel_sprite = "Meowbeast"
 		player.interest1 = "Role Playing"
 		player.interest2 = "Romance"
+		player.chatHandle = "arsenicCatnip"
 	}else if(index == 6){
 		player.aspect = "Breath"
 		player.class_name = "Page"
@@ -467,6 +473,7 @@ function session612IndexToTroll(player, index){
 		player.kernel_sprite = "Fairy Bull"
 		player.interest1 = "Faeries"
 		player.interest2 = "Animals"
+		player.chatHandle = "adiosToreador"
 	}else if(index == 7){
 		player.aspect = "Light"
 		player.class_name = "Thief"
@@ -482,6 +489,7 @@ function session612IndexToTroll(player, index){
 		player.interest1 = "Treasure"
 		player.interest2 = "Live Action Roleplaying"
 		player.kernel_sprite = "Spider"
+		player.chatHandle = "arachnidsGrip"
 	}else if(index == 8){
 		player.aspect = "Space"
 		player.class_name = "Sylph"
@@ -497,6 +505,7 @@ function session612IndexToTroll(player, index){
 		player.kernel_sprite = "Mother Grub"
 		player.interest1 = "Vampires"
 		player.interest2 = "Fashion"
+		player.chatHandle = "grimAuxiliatrix"
 	}else if(index == 9){
 		player.aspect = "Hope"
 		player.class_name = "Prince"
@@ -512,6 +521,7 @@ function session612IndexToTroll(player, index){
 		player.kernel_sprite = "Skyhorse"
 		player.interest1 = "Genocide"
 		player.interest2 = "History"
+		player.chatHandle = "caligulasAquarium"
 	}else if(index == 10){
 		player.aspect = "Life"
 		player.class_name = "Witch"
@@ -527,6 +537,7 @@ function session612IndexToTroll(player, index){
 		player.kernel_sprite = "Horrorterror"
 		player.interest1 = "Animals"
 		player.interest2 = "Social Jusice"
+		player.chatHandle = "cuttlefishCuller"
 	}else if(index == 11){
 		player.aspect = "Doom"
 		player.class_name = "Mage"
@@ -541,6 +552,7 @@ function session612IndexToTroll(player, index){
 		player.kernel_sprite = "Bicyclops"
 		player.interest1 = "Hacking"
 		player.interest2 = "Programming"
+		player.chatHandle = "twinArmageddons"
 	}
 }
 
