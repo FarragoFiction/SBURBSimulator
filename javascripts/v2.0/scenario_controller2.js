@@ -21,6 +21,7 @@ var canvasHeight = 300;
 var repeatTime = 500;
 var version2 = true;
 var timeTillReckoning = getRandomInt(10,30);
+var sessionType = Math.random(); //human, troll or mixed. 
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.
 //should there be only one canvas?  Can have player sprites be written to a virtual canvas first, then copied to main one.
@@ -59,6 +60,17 @@ window.onload = function() {
 	//and if so will call "render" rather than "content"
 
 	//tick();  dont tick here, tick after intro
+}
+
+function getSessionType(){
+	if(sessionType > .6){
+		return "Human"
+	}else if(sessionType > .3){
+		 $(document).attr("title", "SGRUB Story Generator 2.0 by jadedResearcher");
+		 $("#heading").html("SGRUB Story Generator 2.0 by jadedResearcher (wings by karmicRetribution) ");
+		return "Troll"
+	}
+	return "Mixed"
 }
 
 function renderScratchButton(){
@@ -273,7 +285,11 @@ function decideLusus(player){
 }
 
 function decideTroll(player){
-	if(Math.random() > 0.55 ){
+	if(getSessionType() == "Human"){
+		return;
+	}
+	
+	if(getSessionType() == "Troll" || (getSessionType() == "Mixed" &&Math.random() > 0.5) ){
 		player.isTroll = true;
 		player.triggerLevel ++;//trolls are less stable
 		decideHemoCaste(player);
