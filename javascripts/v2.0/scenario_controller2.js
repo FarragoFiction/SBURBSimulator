@@ -250,7 +250,7 @@ function makeAuthorAvatar(){
 	players[0].hair = 13;
 	players[0].hairColor = "#291200";
 	players[0].quirk.punctuation = 3;
-	players[0].quirk.capitalization = 5;
+	players[0].quirk.capitalization = 1;
 	players[0].quirk.favoriteNumber = 3;
 	players[0].chatHandle = "jadedResearcher"
 	players[0].isTroll = false
