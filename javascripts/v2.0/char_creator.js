@@ -39,13 +39,23 @@ window.onload = function() {
 	//these bitches are SHAREABLE.
 	if(getParameterByName("seed")){
 		Math.seed = getParameterByName("seed");
-		initial_seed = Math.seed;
+		initial_seed = getParameterByName("seed");
+	}else{
+		var tmp = getRandomSeed();
+		Math.seed = tmp;
+		initial_seed = tmp;
 	}
 	initRandomness();
+	shareableURL();
 	debug("initial_seed:" + initial_seed);
 	debug("timeTillReckoning:" +timeTillReckoning);
 	debug("sessionType:" +sessionType)
 	
+}
+
+function shareableURL(){
+	var str = '<a href = "index2.html?seed=' +initial_seed +'">Shareable URL </a>'
+	$("#seedText").html(str);
 }
 
 function initRandomness(){
@@ -83,7 +93,7 @@ function checkSGRUB(){
 	}
 	//can only get here if all are trolls.
 	$(document).attr("title", "SGRUB Story Generator 2.0 by jadedResearcher");
-	$("#heading").html("SGRUB Story Generator 2.0 by jadedResearcher (wings by karmicRetribution) ");
+	$("#heading").html("SGRUB Story Generator 2.0 by jadedResearcher (art assistance by karmicRetribution) ");
 	
 }
 function getSessionType(){
