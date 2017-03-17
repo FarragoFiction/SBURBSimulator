@@ -28,9 +28,6 @@ var timeTillReckoning = getRandomInt(10,30);
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
    init();
-	 debug("refactor rendering. no more timeouts. wait until all body parts onLoad finishes. make an object to keep track of all of the layers. when they are all done, or have timed out. render.");
-	 debug("Wait, could have a 'loading' bar. Start the sim, but don't do intro or anything else. Load the bodies and all releveant images. have an 'on load' callback for all of them. Basically, prestage all my images. hair, horns, wings, fins, bodies, blood, spades, anything this specific sim (and it's guardians) would need.  THEN do intro.");
-	 debug("load images to NOT the staging area. that way if anything goes into the staging area, I know I missed it. Get rid of preloaded images.");
 	if(!debugMode){
 		randomizeEntryOrder();
 	}
@@ -43,7 +40,7 @@ window.onload = function() {
 
 
 	//debugRelationshipDrama();
-	debugTriggerLevel();
+	//debugTriggerLevel();
 	//debugGrimDark();
 	//debugJackScheme();
 	//debugLevelTheHellUp();
@@ -142,7 +139,6 @@ function scratch(){
 }
 
 function tick(){
-	alert("ticking")
 	if(timeTillReckoning > 0 && !doomedTimeline){
 		setTimeout(function(){
 			timeTillReckoning += -1;
