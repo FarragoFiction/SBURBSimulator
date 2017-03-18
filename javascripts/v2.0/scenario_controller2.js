@@ -574,10 +574,10 @@ function session612IndexToTrollAncestor(player, index){
 		player.hair = 18;
 		player.leftHorn = 21;
 		player.rightHorn = 21;
-		player.quirk.capitalization = 2;
+		player.quirk.capitalization = 1;
 		player.quirk.punctuation = 2;
 		player.quirk.lettersToReplace = [];
-		player.quirk.lettersToReplaceIgnoreCase = [["oo","69"]];
+		player.quirk.lettersToReplaceIgnoreCase = [["oo","69"], ["b","6"],["o","9"]];
 		player.kernel_sprite = "Crab"
 		player.interest1 = "Social Justice"
 		player.interest2 = "Leadership"
@@ -654,7 +654,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.leftHorn = 22;
 		player.rightHorn = 22;
 		player.bloodColor = "#416600";
-		player.quirk.capitalization = 1;
+		player.quirk.capitalization = 2;
 		player.quirk.punctuation = 2;
 		player.quirk.favoriteNumber = 3;
 		player.quirk.lettersToReplace = [];
@@ -671,10 +671,10 @@ function session612IndexToTrollAncestor(player, index){
 		player.rightHorn = 28;
 		player.bloodColor = "#a25203";
 		player.quirk.favoriteNumber = 1;
-		player.quirk.capitalization = 5;
+		player.quirk.capitalization = 0;
 		player.quirk.punctuation = 2;
 		player.quirk.lettersToReplace = [];
-		player.quirk.lettersToReplaceIgnoreCase = [];
+		player.quirk.lettersToReplaceIgnoreCase = ["i","1"];
 		player.kernel_sprite = "Fairy Bull"
 		player.interest1 = "Movies"
 		player.interest2 = "Animals"
@@ -723,7 +723,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.quirk.punctuation = 2;
 		player.quirk.favoriteNumber = 7;
 		player.quirk.lettersToReplace = [];
-		player.quirk.lettersToReplaceIgnoreCase = [["ing","in"], ["v","vv"], ["w","ww"]];
+		player.quirk.lettersToReplaceIgnoreCase = [["ing","in"], ["v","vw"], ["w","wv"]];
 		player.kernel_sprite = "Skyhorse"
 		player.interest1 = "Romance"
 		player.interest2 = "History"
