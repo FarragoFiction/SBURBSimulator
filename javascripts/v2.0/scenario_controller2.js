@@ -341,9 +341,15 @@ function session413IndexToHuman(player,index){
 		player.aspect = "Breath"
 		player.hair  =3;
 		player.hairColor = "#000000"
+		player.chatHandle = "ectoBiologist"
+		player.interest1 = "Pranking"
+		player.interest2 = "Action Movies"
 	}else if(index == 1){
 		player.class_name = "Seer"
 		player.aspect = "Light"
+		player.chatHandle = "tentacleTherapist"
+		player.interest1 = "Writing"
+		player.interest2 = "Horrorterrors"
 		player.hair  =20;
 		player.hairColor = "#fff3bd"
 	}else if(index == 2){
@@ -351,31 +357,50 @@ function session413IndexToHuman(player,index){
 		player.aspect = "Time"
 		player.hairColor = "#feffd7"
 		player.hair  =22;
+		player.chatHandle = "turntechGodhead"
+		player.interest1 = "Rap"
+		player.interest2 = "Irony"
 	}else if(index == 3){
 		player.class_name = "Witch"
 		player.aspect = "Space"
 		player.hair  =9;
 		player.hairColor = "#3f1904"
+		player.chatHandle = "gardenGnostic"
+		player.interest1 = "Physics"
+		player.interest2 = "Gardening"
 	}else if(index == 4){
 		player.class_name = "Maid"
 		player.aspect = "Life"
 		player.hair  =5;
 		player.hairColor = "#000000"
+		player.chatHandle = "gutsyGumshoe"
+		player.interest1 = "Pranking"
+		player.interest2 = "Baking"
 	}else if(index == 5){
 		player.class_name = "Rogue"
 		player.aspect = "Void"
 		player.hair  =24;
 		player.hairColor = "#fff3bd"
+		player.chatHandle = "tipsyGnostalgic"
+		player.interest1 = "Writing"
+		player.interest2 = "Wizards"
 	}else if(index == 6){
 		player.class_name = "Prince"
 		player.aspect = "Heart"
 		player.hair  =17;
 		player.hairColor = "#feffd7"
+		player.chatHandle = "timaeusTestified"
+		player.interest1 = "Irony"
+		player.interest2 = "Robots"
+
 	}else if(index == 7){
 		player.class_name = "Page"
 		player.aspect = "Hope"
 		player.hair  =30;
 		player.hairColor = "#3f1904"
+		player.chatHandle = "golgothasTerror"
+		player.interest1 = "Physics"
+		player.interest2 = "Movies"
 	}
 
 }
