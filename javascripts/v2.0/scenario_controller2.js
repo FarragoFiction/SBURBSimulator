@@ -345,6 +345,10 @@ function session413IndexToHuman(player,index){
 		player.interest1 = "Pranking"
 		player.interest2 = "Action Movies"
 		player.kernel_sprite = "Clown"
+		player.quirk.capitalization = 0;
+		player.quirk.punctuation = 1;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [["lol","hehehe"]];
 	}else if(index == 1){
 		player.class_name = "Seer"
 		player.aspect = "Light"
@@ -354,6 +358,10 @@ function session413IndexToHuman(player,index){
 		player.hair  =20;
 		player.hairColor = "#fff3bd"
 		player.kernel_sprite = "Cat"
+		player.quirk.capitalization = 2;
+		player.quirk.punctuation = 1;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [["hey","greetings"],["yes", "certainly"]];
 	}else if(index == 2){
 		player.class_name = "Knight"
 		player.aspect = "Time"
@@ -363,6 +371,10 @@ function session413IndexToHuman(player,index){
 		player.interest1 = "Rap"
 		player.interest2 = "Irony"
 		player.kernel_sprite = "Puppet"
+		player.quirk.capitalization = 0;
+		player.quirk.punctuation = 0;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [["hey","sup"]];
 	}else if(index == 3){
 		player.class_name = "Witch"
 		player.aspect = "Space"
@@ -372,6 +384,11 @@ function session413IndexToHuman(player,index){
 		player.interest1 = "Physics"
 		player.interest2 = "Gardening"
 		player.kernel_sprite = "First Guardian"
+		player.quirk.capitalization = 0;
+		player.quirk.punctuation = 3;
+		player.favoriteNumber = 5;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [];
 	}else if(index == 4){
 		player.class_name = "Maid"
 		player.aspect = "Life"
@@ -381,6 +398,10 @@ function session413IndexToHuman(player,index){
 		player.interest1 = "Pranking"
 		player.interest2 = "Baking"
 		player.kernel_sprite = "Mistake"
+		player.quirk.capitalization = 1;
+		player.quirk.punctuation = 2;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [["lol","hoo hoo"]];
 	}else if(index == 5){
 		player.class_name = "Rogue"
 		player.aspect = "Void"
@@ -389,6 +410,11 @@ function session413IndexToHuman(player,index){
 		player.chatHandle = "tipsyGnostalgic"
 		player.interest1 = "Writing"
 		player.interest2 = "Wizards"
+		player.quirk.capitalization = 0;
+		player.quirk.punctuation = 0;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [["like","liek"]];
+
 		player.kernel_sprite = "Troll"
 	}else if(index == 6){
 		player.class_name = "Prince"
@@ -399,6 +425,10 @@ function session413IndexToHuman(player,index){
 		player.interest1 = "Irony"
 		player.interest2 = "Robots"
 		player.kernel_sprite = "Robot Horse Weirdo"
+		player.quirk.capitalization = 1;
+		player.quirk.punctuation = 2;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [["hey","sup"]];
 
 	}else if(index == 7){
 		player.class_name = "Page"
@@ -409,6 +439,10 @@ function session413IndexToHuman(player,index){
 		player.interest1 = "Physics"
 		player.interest2 = "Movies"
 		player.kernel_sprite = "Buddy"
+		player.quirk.capitalization = 1;
+		player.quirk.punctuation = 1;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [["lol","good one"]];
 	}
 
 }
