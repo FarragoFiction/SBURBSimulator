@@ -479,7 +479,7 @@ function session612IndexToTroll(player, index){
 		player.quirk.capitalization = 5;
 		player.quirk.punctuation = 2;
 		player.quirk.lettersToReplace = [];
-		player.quirk.lettersToReplaceIgnoreCase = [];
+		player.quirk.lettersToReplaceIgnoreCase = [["fuck","um"]];
 		player.kernel_sprite = "Fairy Bull"
 		player.interest1 = "Faeries"
 		player.interest2 = "Animals"
