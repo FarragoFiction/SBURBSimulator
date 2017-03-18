@@ -344,7 +344,7 @@ function session413IndexToHuman(player,index){
 		player.hair  =3;
 		player.hairColor = "#000000"
 		player.chatHandle = "ectoBiologist"
-		player.interest1 = "Pranking"
+		player.interest1 = "Pranks"
 		player.interest2 = "Action Movies"
 		player.kernel_sprite = "Clown"
 		player.quirk.capitalization = 0;
@@ -402,7 +402,7 @@ function session413IndexToHuman(player,index){
 		player.hair  =5;
 		player.hairColor = "#000000"
 		player.chatHandle = "gutsyGumshoe"
-		player.interest1 = "Pranking"
+		player.interest1 = "Pranks"
 		player.interest2 = "Baking"
 		player.kernel_sprite = "Mistake"
 		player.quirk.capitalization = 1;
