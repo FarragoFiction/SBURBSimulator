@@ -340,6 +340,7 @@ function session413(){
 function session413IndexToHuman(player,index){
 	if(index == 0){
 		player.class_name = "Heir"
+		player.godDestiny = true;
 		player.aspect = "Breath"
 		player.hair  =3;
 		player.hairColor = "#000000"
@@ -353,6 +354,7 @@ function session413IndexToHuman(player,index){
 		player.quirk.lettersToReplaceIgnoreCase = [["lol","hehehe"]];
 		player.land = "Land of Wind and Shade"
 	}else if(index == 1){
+		player.godDestiny = true;
 		player.class_name = "Seer"
 		player.land = "Land of Light and Rain"
 		player.aspect = "Light"
@@ -380,6 +382,7 @@ function session413IndexToHuman(player,index){
 		player.quirk.punctuation = 0;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["hey","sup"]];
+		player.godDestiny = true;
 	}else if(index == 3){
 		player.class_name = "Witch"
 		player.land = "Land of Frost and Frogs"
@@ -395,8 +398,10 @@ function session413IndexToHuman(player,index){
 		player.favoriteNumber = 5;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [];
+		player.godDestiny = true;
 	}else if(index == 4){
 		player.class_name = "Maid"
+		player.godDestiny = true;
 		player.aspect = "Life"
 		player.land = "Land of Crypts and Helium"
 		player.hair  =5;
@@ -422,6 +427,7 @@ function session413IndexToHuman(player,index){
 		player.quirk.punctuation = 0;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["like","liek"], ["school","skool"]];
+		player.godDestiny = true;
 
 		player.kernel_sprite = "Troll"
 	}else if(index == 6){
@@ -438,6 +444,7 @@ function session413IndexToHuman(player,index){
 		player.quirk.punctuation = 2;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["hey","sup"]];
+		player.godDestiny = true;
 
 	}else if(index == 7){
 		player.class_name = "Page"
@@ -453,6 +460,7 @@ function session413IndexToHuman(player,index){
 		player.quirk.punctuation = 1;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["lol","good one"]];
+		player.godDestiny = true;
 	}
 
 }
