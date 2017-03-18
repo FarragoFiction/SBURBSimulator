@@ -344,6 +344,7 @@ function session413IndexToHuman(player,index){
 		player.chatHandle = "ectoBiologist"
 		player.interest1 = "Pranking"
 		player.interest2 = "Action Movies"
+		player.kernel_sprite = "Clown"
 	}else if(index == 1){
 		player.class_name = "Seer"
 		player.aspect = "Light"
@@ -352,6 +353,7 @@ function session413IndexToHuman(player,index){
 		player.interest2 = "Horrorterrors"
 		player.hair  =20;
 		player.hairColor = "#fff3bd"
+		player.kernel_sprite = "Cat"
 	}else if(index == 2){
 		player.class_name = "Knight"
 		player.aspect = "Time"
@@ -360,6 +362,7 @@ function session413IndexToHuman(player,index){
 		player.chatHandle = "turntechGodhead"
 		player.interest1 = "Rap"
 		player.interest2 = "Irony"
+		player.kernel_sprite = "Puppet"
 	}else if(index == 3){
 		player.class_name = "Witch"
 		player.aspect = "Space"
@@ -368,6 +371,7 @@ function session413IndexToHuman(player,index){
 		player.chatHandle = "gardenGnostic"
 		player.interest1 = "Physics"
 		player.interest2 = "Gardening"
+		player.kernel_sprite = "First Guardian"
 	}else if(index == 4){
 		player.class_name = "Maid"
 		player.aspect = "Life"
@@ -376,6 +380,7 @@ function session413IndexToHuman(player,index){
 		player.chatHandle = "gutsyGumshoe"
 		player.interest1 = "Pranking"
 		player.interest2 = "Baking"
+		player.kernel_sprite = "Mistake"
 	}else if(index == 5){
 		player.class_name = "Rogue"
 		player.aspect = "Void"
@@ -384,6 +389,7 @@ function session413IndexToHuman(player,index){
 		player.chatHandle = "tipsyGnostalgic"
 		player.interest1 = "Writing"
 		player.interest2 = "Wizards"
+		player.kernel_sprite = "Troll"
 	}else if(index == 6){
 		player.class_name = "Prince"
 		player.aspect = "Heart"
@@ -392,6 +398,7 @@ function session413IndexToHuman(player,index){
 		player.chatHandle = "timaeusTestified"
 		player.interest1 = "Irony"
 		player.interest2 = "Robots"
+		player.kernel_sprite = "Robot Horse Weirdo"
 
 	}else if(index == 7){
 		player.class_name = "Page"
@@ -401,6 +408,7 @@ function session413IndexToHuman(player,index){
 		player.chatHandle = "golgothasTerror"
 		player.interest1 = "Physics"
 		player.interest2 = "Movies"
+		player.kernel_sprite = "Buddy"
 	}
 
 }
