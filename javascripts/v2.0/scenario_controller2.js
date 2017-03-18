@@ -451,6 +451,7 @@ function session612IndexToTroll(player, index){
 		player.interest1 = "Archaeology"
 		player.interest2 = "Death"
 		player.chatHandle = "apocalypseArisen"
+		player.godDestiny = true;
 	}else if(index == 5){
 		player.aspect = "Heart"
 		player.class_name = "Rogue"
@@ -499,6 +500,7 @@ function session612IndexToTroll(player, index){
 		player.interest2 = "Live Action Roleplaying"
 		player.kernel_sprite = "Spider"
 		player.chatHandle = "arachnidsGrip"
+		player.godDestiny = true;
 	}else if(index == 8){
 		player.aspect = "Space"
 		player.class_name = "Sylph"
@@ -693,6 +695,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.interest2 = "Live Action Roleplaying"
 		player.kernel_sprite = "Spider"
 		player.chatHandle = "arachnidsGrip"
+		player.godDestiny = true;
 	}else if(index == 8){
 		player.aspect = "Space"
 		player.class_name = "Maid"
@@ -741,6 +744,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.interest1 = "Animals"
 		player.interest2 = "Money"
 		player.chatHandle = "cuttlefishCuller"
+		player.godDestiny = true;
 	}else if(index == 11){
 		player.aspect = "Doom"
 		player.class_name = "Heir"
