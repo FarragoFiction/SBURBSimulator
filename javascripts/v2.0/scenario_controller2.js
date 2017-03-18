@@ -308,7 +308,7 @@ function randomizeEntryOrder(){
 }
 
 function session413(){
-	for(var i = 0; i<12;i++){
+	for(var i = 0; i<8;i++){
 		var player;
 		var guardian;
 		if(i<players.length){
@@ -323,7 +323,7 @@ function session413(){
 		}
 	}
 
-	for(var i = 0; i<12;i++){
+	for(var i = 0; i<8;i++){
 		player = players[i];
 		var guardian = guardians[i]
 		player.isTroll = false;
@@ -339,27 +339,43 @@ function session413IndexToHuman(player,index){
 	if(index == 0){
 		player.class_name = "Heir"
 		player.aspect = "Breath"
+		player.hair  =3;
+		player.hairColor = "#000000"
 	}else if(index == 1){
 		player.class_name = "Seer"
 		player.aspect = "Light"
+		player.hair  =20;
+		player.hairColor = "#fff3bd"
 	}else if(index == 2){
 		player.class_name = "Knight"
 		player.aspect = "Time"
+		player.hairColor = "#feffd7"
+		player.hair  =22;
 	}else if(index == 3){
 		player.class_name = "Witch"
 		player.aspect = "Space"
+		player.hair  =9;
+		player.hairColor = "#3f1904"
 	}else if(index == 4){
 		player.class_name = "Maid"
 		player.aspect = "Life"
+		player.hair  =5;
+		player.hairColor = "#000000"
 	}else if(index == 5){
 		player.class_name = "Rogue"
 		player.aspect = "Void"
+		player.hair  =24;
+		player.hairColor = "#fff3bd"
 	}else if(index == 6){
 		player.class_name = "Prince"
 		player.aspect = "Heart"
+		player.hair  =17;
+		player.hairColor = "#feffd7"
 	}else if(index == 7){
 		player.class_name = "Page"
 		player.aspect = "Hope"
+		player.hair  =30;
+		player.hairColor = "#3f1904"
 	}
 
 }
