@@ -118,7 +118,7 @@ function getRelationshipFlavorText(r1, r2, me, you){
 }
 
 function randomBlandRelationship(targetPlayer){
-	return new Relationship(0, targetPlayer);
+	return new Relationship(1, targetPlayer);
 }
 
 function randomRelationship(targetPlayer){
