@@ -720,7 +720,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.rightHorn = 19;
 		player.bloodColor = "#610061";
 		player.quirk.capitalization = 1;
-		player.quirk.punctuation = 2;
+		player.quirk.punctuation = 1;
 		player.quirk.favoriteNumber = 7;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["ing","in"], ["v","vw"], ["w","wv"]];
@@ -738,8 +738,8 @@ function session612IndexToTrollAncestor(player, index){
 		player.quirk.capitalization = 1;
 		player.quirk.punctuation = 2;
 		player.quirk.favoriteNumber = 9;
-		player.quirk.lettersToReplace = [];
-		player.quirk.lettersToReplaceIgnoreCase = [["h",")("],["e","-E"], ["fuck","glub"],  ["god","cod"]];
+		player.quirk.lettersToReplace = [ ["H",")("],];
+		player.quirk.lettersToReplaceIgnoreCase = [["ing","in"],["e","-E"], ["fuck","glub"],  ["god","cod"]];
 		player.kernel_sprite = "Horrorterror"
 		player.interest1 = "Animals"
 		player.interest2 = "Money"
