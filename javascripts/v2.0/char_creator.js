@@ -21,21 +21,20 @@ var canvasHeight = 300;
 var repeatTime = 500;
 var version2 = true;
 var timeTillReckoning = getRandomInt(10,30); //thes will be wrong if seed inputed
-var sessionType = Math.seededRandom(); //human, troll or mixed. 
+var sessionType = Math.seededRandom(); //human, troll or mixed.
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.
 //should there be only one canvas?  Can have player sprites be written to a virtual canvas first, then copied to main one.
 //main canvas is either Leader + PesterChumWindow + 1 or more Players (in chat or group chat with leader)
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
-	
+
 	debug("Specify number of players. Initialized random. If less players than current, just don't render all, but don't rerandomize unseen players. (make sure to get rid of before sim start, tho) ")
 	debug("Practical edits:  species, class, aspect, moon, chatHandle, interests(from stupidly huge drop down?)")
 	debug("aesthetic edits: blood color (if troll), hair type, hair color, horns.")
-	debug("I can use this to see just how random the simulation really is. If it's not too random, I can grab out the randomness and have it be predictable based on a random seed.  Once I do that, the simulation will be fully predictable. And then. Oh, and then...Skaia clouds, and fate bullshit and time shenanigans and doomed timelines will be SOOOOO much more interesting. ")
-	debug("DOES javascript let me specify seeds? If so, replace all random with this. Then can debug even easier. MOST of the random is in character creation. Off the top of my head, it's also in corpse smooches, jack finding a weapond and what exactly is done to exile jack/queen. And who gets stabbed.")
+	debug(" also let people select which seed to run their characters with. how much will that matter?")
 	//authorMessage();
-	
+
 	//these bitches are SHAREABLE.
 	if(getParameterByName("seed")){
 		Math.seed = getParameterByName("seed");
@@ -50,7 +49,7 @@ window.onload = function() {
 	debug("initial_seed:" + initial_seed);
 	debug("timeTillReckoning:" +timeTillReckoning);
 	debug("sessionType:" +sessionType)
-	
+
 }
 
 function shareableURL(){
@@ -93,7 +92,7 @@ function checkSGRUB(){
 	//can only get here if all are trolls.
 	$(document).attr("title", "SGRUB Story Generator 2.0 by jadedResearcher");
 	$("#heading").html("SGRUB Story Generator 2.0 by jadedResearcher (art assistance by karmicRetribution) ");
-	
+
 }
 function getSessionType(){
 	if(sessionType > .6){
@@ -319,7 +318,7 @@ function decideTroll(player){
 	if(getSessionType() == "Human"){
 		return;
 	}
-	
+
 	if(getSessionType() == "Troll" || (getSessionType() == "Mixed" &&Math.seededRandom() > 0.5) ){
 		player.isTroll = true;
 		player.triggerLevel ++;//trolls are less stable
