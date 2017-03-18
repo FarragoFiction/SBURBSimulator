@@ -889,7 +889,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.quirk.capitalization = 0;
 		player.quirk.punctuation = 2;
 		player.quirk.lettersToReplace = [];
-		player.quirk.lettersToReplaceIgnoreCase = ["i","1"];
+		player.quirk.lettersToReplaceIgnoreCase = [["i","1"]];
 		player.kernel_sprite = "Fairy Bull"
 		player.interest1 = "Movies"
 		player.interest2 = "Animals"
