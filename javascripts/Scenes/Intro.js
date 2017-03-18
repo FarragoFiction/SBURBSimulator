@@ -557,7 +557,7 @@ function Intro(){
 	}
 
 	this.content = function(div, i){
-		var ret = " TODO: Figure out what a non 2.0 version of the Intro scene would look like. "
-		div.append(ret);
+		//var ret = " TODO: Figure out what a non 2.0 version of the Intro scene would look like. "
+		//div.append(ret);
 	}
 }

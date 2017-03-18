@@ -332,6 +332,8 @@ function session413(){
 		player.generateBlandRelationships(players);
 		session413IndexToHuman(player, i);
 		session413IndexToAncestor(guardian, i);//just call regular with a different index
+		player.mylevels = getLevelArray(player);
+		guardian.mylevels = getLevelArray(guardian);
 	}
 }
 
@@ -492,6 +494,8 @@ function session33(){
 			guardians.push(guardian);
 		}
 		session612IndexToTroll(player, i);
+		player.mylevels = getLevelArray(player);
+		guardian.mylevels = getLevelArray(guardian);
 	}
 
 	for(var i = 0; i<12;i++){
@@ -548,6 +552,8 @@ function session612(){
 		player.generateRelationships(players);
 		session612IndexToTrollAncestor(player, i);
 		session612IndexToTroll(guardian, i);
+		player.mylevels = getLevelArray(player);
+		guardian.mylevels = getLevelArray(guardian);
 	}
 }
 //["#A10000","#a25203","#a1a100","#658200","#416600","#078446","#008282","#004182","#0021cb","#631db4","#610061","#99004d"]
