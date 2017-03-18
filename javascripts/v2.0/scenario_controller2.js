@@ -308,7 +308,81 @@ function randomizeEntryOrder(){
 }
 
 function session413(){
+	for(var i = 0; i<12;i++){
+		var player;
+		var guardian;
+		if(i<players.length){
+			player = players[i];
+		}else{
+			player = randomPlayerWithClaspect("Page", "Void");
+			guardian = randomPlayerWithClaspect("Page", "Void");
+			guardian.quirk = randomHumanSim(guardian);
+			player.quirk = randomHumanSim(player);
+			guardians.push(guardian);
+			players.push(player);
+		}
+	}
 
+	for(var i = 0; i<12;i++){
+		player = players[i];
+		var guardian = guardians[i]
+		player.isTroll = false;
+		guardian.isTroll = false;
+		guardian.generateRelationships(guardians);
+		player.generateRelationships(players);
+		session413IndexToHuman(player, i);
+		session413IndexToAncestor(guardian, i);//just call regular with a different index
+	}
+}
+
+function session413IndexToHuman(player,index){
+	if(index == 0){
+		player.class_name = "Heir"
+		player.aspect = "Breath"
+	}else if(index == 1){
+		player.class_name = "Seer"
+		player.aspect = "Light"
+	}else if(index == 2){
+		player.class_name = "Knight"
+		player.aspect = "Time"
+	}else if(index == 3){
+		player.class_name = "Witch"
+		player.aspect = "Space"
+	}else if(index == 4){
+		player.class_name = "Maid"
+		player.aspect = "Life"
+	}else if(index == 5){
+		player.class_name = "Rogue"
+		player.aspect = "Void"
+	}else if(index == 6){
+		player.class_name = "Prince"
+		player.aspect = "Heart"
+	}else if(index == 7){
+		player.class_name = "Page"
+		player.aspect = "Hope"
+	}
+
+}
+
+//just hange index and return whatever regular does. pretend janes goes in first
+function session413IndexToAncestor(player,index){
+	if(index == 0){
+		session413IndexToHuman(player, 4)
+	}else if(index == 1){
+		session413IndexToHuman(player, 5)
+	}else if(index == 2){
+		session413IndexToHuman(player, 6)
+	}else if(index == 3){
+		session413IndexToHuman(player, 7)
+	}else if(index == 4){
+		session413IndexToHuman(player, 0)
+	}else if(index == 5){
+		session413IndexToHuman(player, 1)
+	}else if(index == 6){
+		session413IndexToHuman(player, 2)
+	}else if(index == 7){
+		session413IndexToHuman(player, 3)
+	}
 }
 
 //12 dead nepetas
@@ -508,7 +582,7 @@ function session612IndexToTroll(player, index){
 		player.rightHorn = 27;
 		player.bloodColor = "#004182";
 		player.quirk.capitalization = 1;
-		player.quirk.punctuation = 2;
+		player.quirk.punctuation = 3;
 		player.quirk.lettersToReplace = [];
 		player.quirk.favoriteNumber = 8;
 		player.quirk.lettersToReplaceIgnoreCase = [["b","8"]];
