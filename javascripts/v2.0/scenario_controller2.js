@@ -763,6 +763,7 @@ function session612IndexToTroll(player, index){
 function session612IndexToTrollAncestor(player, index){
 	if(index == 0){
 		player.aspect = "Blood"
+		player.land = "Land of Pulse and Haze"
 		player.class_name = "Seer"
 		player.hair = 18;
 		player.leftHorn = 21;
@@ -776,6 +777,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.interest2 = "Leadership"
 		player.chatHandle = "carcinoGeneticist"
 	}else if(index == 1){
+		player.land = "Land of Thought and Flow"
 		player.aspect = "Mind"
 		player.class_name = "Knight"
 		player.hair = 10;
@@ -791,6 +793,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.interest2 = "Video Games"
 		player.chatHandle = "gallowsCalibrator"
 	}else if(index == 2){
+		player.land = "Land of Mirth and Tents"
 		player.aspect = "Rage"
 		player.class_name = "Prince"
 		player.hair = 29;
@@ -808,6 +811,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.chatHandle = "terminallyCapricious"
 	}else if(index == 3){
 		player.aspect = "Void"
+		player.land = "Land of Caves and Silence"
 		player.class_name = "Page"
 		player.hair = 8;
 		player.leftHorn = 43;
@@ -827,6 +831,7 @@ function session612IndexToTrollAncestor(player, index){
 	}else if(index == 4){
 		player.aspect = "Time"
 		player.class_name = "Witch"
+		player.land = "Land of Quartz and Melody"
 		player.hair = 23;
 		player.leftHorn = 36;
 		player.rightHorn = 36;
@@ -843,6 +848,7 @@ function session612IndexToTrollAncestor(player, index){
 	}else if(index == 5){
 		player.aspect = "Heart"
 		player.class_name = "Mage"
+		player.land = "Land of Little Cubes and Tea"
 		player.hair = 7;
 		player.leftHorn = 22;
 		player.rightHorn = 22;
@@ -858,6 +864,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.chatHandle = "arsenicCatnip"
 	}else if(index == 6){
 		player.aspect = "Breath"
+		player.land = "Land of Sand and Zephyr"
 		player.class_name = "Rogue"
 		player.hair = 33;
 		player.leftHorn = 28;
@@ -874,6 +881,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.chatHandle = "adiosToreador"
 	}else if(index == 7){
 		player.aspect = "Light"
+		player.land = "Land of Maps and Treasure"
 		player.class_name = "Sylph"
 		player.hair = 14;
 		player.leftHorn = 27;
@@ -891,6 +899,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.godDestiny = true;
 	}else if(index == 8){
 		player.aspect = "Space"
+		player.land = "Land of Frost and Frogs"
 		player.class_name = "Maid"
 		player.hair = 5;
 		player.leftHorn = 26;
@@ -907,6 +916,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.chatHandle = "grimAuxiliatrix"
 	}else if(index == 9){
 		player.aspect = "Hope"
+		player.land = "Land of Wrath and Angels"
 		player.class_name = "Bard"
 		player.hair = 6;
 		player.leftHorn = 19;
@@ -923,6 +933,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.chatHandle = "caligulasAquarium"
 	}else if(index == 10){
 		player.aspect = "Life"
+		player.land = "Land of Dew and Glass"
 		player.class_name = "Thief"
 		player.hair = 1;
 		player.leftHorn = 35;
@@ -940,6 +951,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.godDestiny = true;
 	}else if(index == 11){
 		player.aspect = "Doom"
+		player.land = "Land of Brains and Fire"
 		player.class_name = "Heir"
 		player.hair = 2;
 		player.leftHorn = 33;
