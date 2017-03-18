@@ -652,6 +652,7 @@ function session612IndexToTroll(player, index){
 		player.interest2 = "Death"
 		player.chatHandle = "apocalypseArisen"
 		player.godDestiny = true;
+		player.doomedTimeClones = 5;
 	}else if(index == 5){
 		player.aspect = "Heart"
 		player.land = "Land of Little Cubes and Tea"
