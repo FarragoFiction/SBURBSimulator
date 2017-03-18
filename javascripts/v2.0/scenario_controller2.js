@@ -349,8 +349,10 @@ function session413IndexToHuman(player,index){
 		player.quirk.punctuation = 1;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["lol","hehehe"]];
+		player.land = "Land of Wind and Shade"
 	}else if(index == 1){
 		player.class_name = "Seer"
+		player.land = "Land of Light and Rain"
 		player.aspect = "Light"
 		player.chatHandle = "tentacleTherapist"
 		player.interest1 = "Writing"
@@ -364,6 +366,7 @@ function session413IndexToHuman(player,index){
 		player.quirk.lettersToReplaceIgnoreCase = [["hey","greetings"],["yes", "certainly"]];
 	}else if(index == 2){
 		player.class_name = "Knight"
+		player.land = "Land of Heat and Clockwork"
 		player.aspect = "Time"
 		player.hairColor = "#feffd7"
 		player.hair  =22;
@@ -377,6 +380,7 @@ function session413IndexToHuman(player,index){
 		player.quirk.lettersToReplaceIgnoreCase = [["hey","sup"]];
 	}else if(index == 3){
 		player.class_name = "Witch"
+		player.land = "Land of Frost and Frogs"
 		player.aspect = "Space"
 		player.hair  =9;
 		player.hairColor = "#3f1904"
@@ -392,6 +396,7 @@ function session413IndexToHuman(player,index){
 	}else if(index == 4){
 		player.class_name = "Maid"
 		player.aspect = "Life"
+		player.land = "Land of Crypts and Helium"
 		player.hair  =5;
 		player.hairColor = "#000000"
 		player.chatHandle = "gutsyGumshoe"
@@ -404,6 +409,7 @@ function session413IndexToHuman(player,index){
 		player.quirk.lettersToReplaceIgnoreCase = [["lol","hoo hoo"]];
 	}else if(index == 5){
 		player.class_name = "Rogue"
+		player.land = "Land of Pyramids and Neon"
 		player.aspect = "Void"
 		player.hair  =24;
 		player.hairColor = "#fff3bd"
@@ -413,11 +419,12 @@ function session413IndexToHuman(player,index){
 		player.quirk.capitalization = 0;
 		player.quirk.punctuation = 0;
 		player.quirk.lettersToReplace = [];
-		player.quirk.lettersToReplaceIgnoreCase = [["like","liek"]];
+		player.quirk.lettersToReplaceIgnoreCase = [["like","liek"], ["school","skool"]];
 
 		player.kernel_sprite = "Troll"
 	}else if(index == 6){
 		player.class_name = "Prince"
+		player.land = "Land of Tombs and Krypton"
 		player.aspect = "Heart"
 		player.hair  =17;
 		player.hairColor = "#feffd7"
@@ -432,6 +439,7 @@ function session413IndexToHuman(player,index){
 
 	}else if(index == 7){
 		player.class_name = "Page"
+		player.land = "Land of Mounds and Xenon"
 		player.aspect = "Hope"
 		player.hair  =30;
 		player.hairColor = "#3f1904"
@@ -547,6 +555,7 @@ function session612(){
 function session612IndexToTroll(player, index){
 	if(index == 0){
 		player.aspect = "Blood"
+		player.land = "Land of Pulse and Haze"
 		player.class_name = "Knight"
 		player.hair = 18;
 		player.leftHorn = 21;
@@ -561,6 +570,7 @@ function session612IndexToTroll(player, index){
 		player.chatHandle = "carcinoGeneticist"
 	}else if(index == 1){
 		player.aspect = "Mind"
+		player.land = "Land of Thought and Flow"
 		player.class_name = "Seer"
 		player.hair = 10;
 		player.leftHorn = 46;
@@ -576,6 +586,7 @@ function session612IndexToTroll(player, index){
 		player.chatHandle = "gallowsCalibrator"
 	}else if(index == 2){
 		player.aspect = "Rage"
+		player.land = "Land of Mirth and Tents"
 		player.class_name = "Bard"
 		player.hair = 29;
 		player.leftHorn = 29;
@@ -591,6 +602,7 @@ function session612IndexToTroll(player, index){
 		player.interest2 = "Religion"
 		player.chatHandle = "terminallyCapricious"
 	}else if(index == 3){
+		player.land = "Land of Caves and Silence"
 		player.aspect = "Void"
 		player.class_name = "Heir"
 		player.hair = 8;
@@ -611,6 +623,7 @@ function session612IndexToTroll(player, index){
 	}else if(index == 4){
 		player.aspect = "Time"
 		player.class_name = "Maid"
+		player.land = "Land of Quartz and Melody"
 		player.hair = 23;
 		player.leftHorn = 36;
 		player.rightHorn = 36;
@@ -627,6 +640,7 @@ function session612IndexToTroll(player, index){
 		player.godDestiny = true;
 	}else if(index == 5){
 		player.aspect = "Heart"
+		player.land = "Land of Little Cubes and Tea"
 		player.class_name = "Rogue"
 		player.hair = 7;
 		player.leftHorn = 22;
@@ -643,6 +657,7 @@ function session612IndexToTroll(player, index){
 		player.chatHandle = "arsenicCatnip"
 	}else if(index == 6){
 		player.aspect = "Breath"
+		player.land = "Land of Sand and Zephyr"
 		player.class_name = "Page"
 		player.hair = 33;
 		player.leftHorn = 28;
@@ -658,6 +673,7 @@ function session612IndexToTroll(player, index){
 		player.interest2 = "Animals"
 		player.chatHandle = "adiosToreador"
 	}else if(index == 7){
+		player.land = "Land of Maps and Treasure"
 		player.aspect = "Light"
 		player.class_name = "Thief"
 		player.hair = 14;
@@ -675,6 +691,7 @@ function session612IndexToTroll(player, index){
 		player.chatHandle = "arachnidsGrip"
 		player.godDestiny = true;
 	}else if(index == 8){
+		player.land = "Land of Rays and Frogs"
 		player.aspect = "Space"
 		player.class_name = "Sylph"
 		player.hair = 5;
@@ -691,6 +708,7 @@ function session612IndexToTroll(player, index){
 		player.interest2 = "Fashion"
 		player.chatHandle = "grimAuxiliatrix"
 	}else if(index == 9){
+		player.land = "Land of Wrath and Angels"
 		player.aspect = "Hope"
 		player.class_name = "Prince"
 		player.hair = 6;
@@ -707,6 +725,7 @@ function session612IndexToTroll(player, index){
 		player.interest2 = "History"
 		player.chatHandle = "caligulasAquarium"
 	}else if(index == 10){
+		player.land = "Land of Dew and Glass"
 		player.aspect = "Life"
 		player.class_name = "Witch"
 		player.hair = 1;
@@ -723,6 +742,7 @@ function session612IndexToTroll(player, index){
 		player.interest2 = "Social Jusice"
 		player.chatHandle = "cuttlefishCuller"
 	}else if(index == 11){
+		player.land = "Land of Brains and Fire"
 		player.aspect = "Doom"
 		player.class_name = "Mage"
 		player.hair = 2;

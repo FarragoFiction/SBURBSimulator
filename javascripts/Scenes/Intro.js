@@ -18,7 +18,7 @@ function Intro(){
 			}else{
 				chatText += chatLine(player1Start, player1,"Hey, I'm in the medium!");
 			}
-			
+
 			chatText += chatLine(player2Start, player2,"I don't care.");
 			chatText += chatLine(player1Start, player1,"Whoa, uh. Are you okay?");
 			chatText += chatLine(player2Start, player2,"I don't care.");
@@ -30,7 +30,7 @@ function Intro(){
 			chatText += chatLine(player2Start, player2,"Social obligation complete. Goodbye.");
 			return chatText;
 	}
-	
+
 	this.lightChat = function(player1,player2){
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
@@ -140,7 +140,7 @@ function Intro(){
 		chatText += chatLine(player1Start, player1,"It's the " + player1.land +".");
 		chatText += chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+". It's just like something out of a VIDEO GAME!");
 		chatText +=chatLine(player2Start, player2,"lol, it IS a video game, or did you forget?");
-		chatText += chatLine(player1Start, player1,"Well, yeah, but...like...SBURB is not a NORMAL video game. You know what I mean.");
+		chatText += chatLine(player1Start, player1,"Well, yeah, but... like... SBURB is not a NORMAL video game. You know what I mean.");
 		chatText += chatLine(player1Start, player1,"ANYWAYS... I prototyped my kernel thingy with a " + player1.kernel_sprite +".\n");
 		if(player1.isTroll == true){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
@@ -275,7 +275,7 @@ function Intro(){
 		}
 		return chatText;
 	}
-	
+
 	this.fantasyChat = function(player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
@@ -366,7 +366,7 @@ function Intro(){
 			}else{
 				chatText += chatLine(player2Start, player2,"What did that do?");
 				chatText += chatLine(player1Start, player1, "Obviously give me an advantage.");
-				
+
 				chatText += chatLine(player2Start, player2,"You know, I think you're right.");
 			}
 		}else{
@@ -428,7 +428,7 @@ function Intro(){
 		if(player2.grimDark == true){
 			 return this.grimPlayer2Chat(player1, player2);
 		}
-		
+
 		if(player1.aspect == "Light" || player1.class_name == "Seer"){
 			return this.lightChat(player1, player2);
 		}
@@ -451,7 +451,7 @@ function Intro(){
 		if(playerLikesSocial(player1)){
 			return this.socialChat(player1, player2);
 		}
-		
+
 		if(playerLikesFantasy(player1) || playerLikesWriting(player1) ){
 			return this.fantasyChat(player1, player2);
 		}
