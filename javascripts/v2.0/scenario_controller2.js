@@ -328,8 +328,8 @@ function session413(){
 		var guardian = guardians[i]
 		player.isTroll = false;
 		guardian.isTroll = false;
-		guardian.generateRelationships(guardians);
-		player.generateRelationships(players);
+		guardian.generateBlandRelationships(guardians);
+		player.generateBlandRelationships(players);
 		session413IndexToHuman(player, i);
 		session413IndexToAncestor(guardian, i);//just call regular with a different index
 	}

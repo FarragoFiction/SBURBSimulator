@@ -23,7 +23,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 	this.mylevels = getLevelArray(this);//make them ahead of time for echeladder graphic
 	this.level_index = -1; //will be ++ before i query
 	this.godTier = false;
-	this.victimBlood = null; //used for murdermode players. 
+	this.victimBlood = null; //used for murdermode players.
 	this.hair = getRandomInt(1,34);
 	//this.hair = 16;
 	this.hairColor = getRandomElementFromArray(human_hair_colors);
@@ -241,6 +241,22 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 
 	this.htmlTitleBasic = function(){
 		return getFontColorFromAspect(this.aspect) + this.titleBasic() + "</font>"
+	}
+
+	this.generateBlandRelationships = function(friends){
+		for(var i = 0; i<friends.length; i++){
+			if(friends[i] != this){  //No, Karkat, you can't be your own Kismesis.
+				//one time in a random sim two heirresses decided to kill each other and this was so amazing and canon compliant
+				//that it needs to be a thing.
+				var r = randomBlandRelationship(friends[i])
+				if(this.isTroll && this.bloodColor == "#99004d" && friends[i].isTroll && friends[i].bloodColor == "#99004d"){
+					r.value = -20; //biological imperitive to fight for throne.
+					this.triggerLevel ++;
+					friends[i].triggerLevel ++;
+				}
+				this.relationships.push(r);
+			}
+		}
 	}
 
 	this.generateRelationships = function(friends){

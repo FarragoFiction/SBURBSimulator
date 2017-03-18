@@ -1,6 +1,6 @@
 
 //can be positive or negative. if high enough, can
-//turn into romance in a quadrant. 
+//turn into romance in a quadrant.
 function Relationship(initial_value, target_player){
 	this.value = initial_value;
 	this.target = target_player;
@@ -11,7 +11,7 @@ function Relationship(initial_value, target_player){
 	this.goodBig = "Totally In Love";
 	this.badMild = "Rivals";
 	this.badBig = "Enemies";
-	
+
 	//eventually, when i adapt this to be SGRUB, have 2d relationships.  feel good or bad, feel concupiscient or not.
 	//also trolls are rivals unless value is at least 5 (more likely to be enemies than friends)
 	this.changeType = function(){
@@ -25,8 +25,8 @@ function Relationship(initial_value, target_player){
 			return this.badMild;
 		}
 	}
-	
-	
+
+
 	//for most interactions, the relationship will grow along it's current trajectory.
 	this.moreOfSame = function(){
 		if(this.value >= 0){
@@ -35,16 +35,16 @@ function Relationship(initial_value, target_player){
 			this.decrease();
 		}
 	}
-	
+
 	this.increase = function(){
 		this.value ++;
 	}
-	
+
 	this.decrease = function(){
 		this.value += -1;
 	}
-	
-	
+
+
 	this.type = function(){
 		if(this.saved_type == "" ){
 			this.drama = false;
@@ -55,15 +55,15 @@ function Relationship(initial_value, target_player){
 				this.drama = true;
 				this.old_type = this.goodMild;
 			}
-			return this.saved_type; 
+			return this.saved_type;
 		}
-		
+
 		if(Math.seededRandom() > 0.25){
 			//enter or leave a relationship, or vaccilate.
 			this.old_type = this.saved_type;
 			this.saved_type = this.changeType();
 		}
-		
+
 		if(this.old_type != this.saved_type){
 			this.drama = true;
 		}else{
@@ -71,11 +71,11 @@ function Relationship(initial_value, target_player){
 		}
 		return this.saved_type;
 	}
-	
+
 	this.description = function(){
 		return this.type() + " with the " + this.target.htmlTitle();
 	}
-	
+
 }
 
 function getRelationshipFlavorGreeting(r1, r2, me, you){
@@ -96,7 +96,7 @@ function getRelationshipFlavorGreeting(r1, r2, me, you){
 		ret += "Hey."
 	}
 	return ret;
-	
+
 }
 
 function getRelationshipFlavorText(r1, r2, me, you){
@@ -115,6 +115,10 @@ function getRelationshipFlavorText(r1, r2, me, you){
 		ret += " The" + me.htmlTitle() + " is irritable around the " + you.htmlTitle() + ". ";
 	}
 	return ret;
+}
+
+function randomBlandRelationship(targetPlayer){
+	return new Relationship(0, targetPlayer);
 }
 
 function randomRelationship(targetPlayer){
