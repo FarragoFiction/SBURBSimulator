@@ -315,28 +315,44 @@ function session413(){
 function session33(){
 	for(var i = 0; i<12;i++){
 		var player;
+		var guardian;
 		if(i<players.length){
 			player = players[i];
 		}else{
-			player = randomPlayer();
+			guardian = randomPlayerWithClaspect("Rogue", "Heart");
+			player = randomPlayerWithClaspect("Rogue", "Heart");
 			player.quirk = randomTrollSim(player);
+			guardian.quirk = randomTrollSim(player);
 			players.push(player);
+			guardians.push(guardian);
 		}
 		session612IndexToTroll(player, i);
 	}
 
 	for(var i = 0; i<12;i++){
 		player = players[i];
+		guardian = guardians[i]
 		player.isTroll = true;
+		guardian.isTroll = true;
 		player.generateRelationships(players);
+		guardian.generateRelationships(guardians);
 		if(player.aspect != "Time" && player.aspect != "Space"){
 			player.aspect = "Heart"
 			player.class_name = "Rogue"
+		}
+		if(guardian.aspect != "Time" && guardian.aspect != "Space"){
+			guardian.aspect = "Heart"
+			guardian.class_name = "Rogue"
 		}
 		player.hair = 7;
 		player.leftHorn = 22;
 		player.rightHorn = 22;
 		player.bloodColor = "#416600";
+
+		guardian.hair = 7;
+		guardian.leftHorn = 22;
+		guardian.rightHorn = 22;
+		guardian.bloodColor = "#416600";
 	}
 
 }
