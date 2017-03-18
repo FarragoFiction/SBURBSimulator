@@ -360,7 +360,7 @@ function session413IndexToHuman(player,index){
 		player.hair  =20;
 		player.hairColor = "#fff3bd"
 		player.kernel_sprite = "Cat"
-		player.quirk.capitalization = 2;
+		player.quirk.capitalization = 1;
 		player.quirk.punctuation = 1;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["hey","greetings"],["yes", "certainly"]];
