@@ -33,6 +33,7 @@ window.onload = function() {
 	debug("Practical edits:  species, class, aspect, moon, chatHandle, interests(from stupidly huge drop down?)")
 	debug("aesthetic edits: blood color (if troll), hair type, hair color, horns.")
 	debug(" also let people select which seed to run their characters with. how much will that matter?")
+	debug("add moon prophecies. ")
 	//authorMessage();
 
 	//these bitches are SHAREABLE.
