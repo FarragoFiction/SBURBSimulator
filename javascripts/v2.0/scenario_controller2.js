@@ -596,8 +596,8 @@ function session612IndexToTroll(player, index){
 		player.interest1 = "Romance"
 		player.interest2 = "Leadership"
 		player.chatHandle = "carcinoGeneticist"
-		player.suffix = ""
-		player.prefix = ""
+		player.quirk.suffix = ""
+		player.quirk.prefix = ""
 	}else if(index == 1){
 		player.aspect = "Mind"
 		player.land = "Land of Thought and Flow"
@@ -614,8 +614,8 @@ function session612IndexToTroll(player, index){
 		player.interest1 = "Justice"
 		player.interest2 = "Live Action Roleplaying"
 		player.chatHandle = "gallowsCalibrator"
-		player.suffix = ""
-		player.prefix = ""
+		player.quirk.suffix = ""
+		player.quirk.prefix = ""
 	}else if(index == 2){
 		player.aspect = "Rage"
 		player.land = "Land of Mirth and Tents"
@@ -633,8 +633,8 @@ function session612IndexToTroll(player, index){
 		player.interest1 = "Clowns"
 		player.interest2 = "Religion"
 		player.chatHandle = "terminallyCapricious"
-		player.suffix = ""
-		player.prefix = ""
+		player.quirk.suffix = ""
+		player.quirk.prefix = ""
 	}else if(index == 3){
 		player.land = "Land of Caves and Silence"
 		player.aspect = "Void"
@@ -674,8 +674,8 @@ function session612IndexToTroll(player, index){
 		player.chatHandle = "apocalypseArisen"
 		player.godDestiny = true;
 		player.doomedTimeClones = 5;
-		player.suffix = ""
-		player.prefix = ""
+		player.quirk.suffix = ""
+		player.quirk.prefix = ""
 	}else if(index == 5){
 		player.aspect = "Heart"
 		player.land = "Land of Little Cubes and Tea"
@@ -693,8 +693,8 @@ function session612IndexToTroll(player, index){
 		player.interest1 = "Role Playing"
 		player.interest2 = "Romance"
 		player.chatHandle = "arsenicCatnip"
-		player.suffix = ""
-		player.prefix = ""
+		player.quirk.suffix = ""
+		player.quirk.prefix = ""
 	}else if(index == 6){
 		player.aspect = "Breath"
 		player.land = "Land of Sand and Zephyr"
@@ -712,8 +712,8 @@ function session612IndexToTroll(player, index){
 		player.interest1 = "Faeries"
 		player.interest2 = "Animals"
 		player.chatHandle = "adiosToreador"
-		player.suffix = ""
-		player.prefix = ""
+		player.quirk.suffix = ""
+		player.quirk.prefix = ""
 	}else if(index == 7){
 		player.land = "Land of Maps and Treasure"
 		player.aspect = "Light"
@@ -731,8 +731,8 @@ function session612IndexToTroll(player, index){
 		player.interest2 = "Live Action Roleplaying"
 		player.kernel_sprite = "Spider"
 		player.chatHandle = "arachnidsGrip"
-		player.suffix = ""
-		player.prefix = ""
+		player.quirk.suffix = ""
+		player.quirk.prefix = ""
 		player.godDestiny = true;
 	}else if(index == 8){
 		player.land = "Land of Rays and Frogs"
@@ -751,8 +751,8 @@ function session612IndexToTroll(player, index){
 		player.interest1 = "Vampires"
 		player.interest2 = "Fashion"
 		player.chatHandle = "grimAuxiliatrix"
-		player.suffix = ""
-		player.prefix = ""
+		player.quirk.suffix = ""
+		player.quirk.prefix = ""
 	}else if(index == 9){
 		player.land = "Land of Wrath and Angels"
 		player.aspect = "Hope"
@@ -770,8 +770,8 @@ function session612IndexToTroll(player, index){
 		player.interest1 = "Genocide"
 		player.interest2 = "History"
 		player.chatHandle = "caligulasAquarium"
-		player.suffix = ""
-		player.prefix = ""
+		player.quirk.suffix = ""
+		player.quirk.prefix = ""
 	}else if(index == 10){
 		player.land = "Land of Dew and Glass"
 		player.aspect = "Life"
@@ -789,8 +789,8 @@ function session612IndexToTroll(player, index){
 		player.interest1 = "Animals"
 		player.interest2 = "Social Jusice"
 		player.chatHandle = "cuttlefishCuller"
-		player.suffix = ""
-		player.prefix = ""
+		player.quirk.suffix = ""
+		player.quirk.prefix = ""
 	}else if(index == 11){
 		player.land = "Land of Brains and Fire"
 		player.aspect = "Doom"
@@ -807,8 +807,8 @@ function session612IndexToTroll(player, index){
 		player.interest1 = "Hacking"
 		player.interest2 = "Programming"
 		player.chatHandle = "twinArmageddons"
-		player.suffix = ""
-		player.prefix = ""
+		player.quirk.suffix = ""
+		player.quirk.prefix = ""
 	}
 }
 
@@ -829,8 +829,8 @@ function session612IndexToTrollAncestor(player, index){
 		player.interest1 = "Social Justice"
 		player.interest2 = "Leadership"
 		player.chatHandle = "carcinoGeneticist"
-		player.suffix = ""
-		player.prefix = ""
+		player.quirk.suffix = ""
+		player.quirk..prefix = ""
 	}else if(index == 1){
 		player.land = "Land of Thought and Flow"
 		player.aspect = "Mind"
@@ -847,8 +847,8 @@ function session612IndexToTrollAncestor(player, index){
 		player.interest1 = "Justice"
 		player.interest2 = "Video Games"
 		player.chatHandle = "gallowsCalibrator"
-		player.suffix = ""
-		player.prefix = ""
+		player.quirk..suffix = ""
+		player.quirk..prefix = ""
 	}else if(index == 2){
 		player.land = "Land of Mirth and Tents"
 		player.aspect = "Rage"
@@ -866,8 +866,8 @@ function session612IndexToTrollAncestor(player, index){
 		player.interest1 = "Death"
 		player.interest2 = "Religion"
 		player.chatHandle = "terminallyCapricious"
-		player.suffix = ""
-		player.prefix = ""
+		player.quirk.suffix = ""
+		player.quirk.prefix = ""
 	}else if(index == 3){
 		player.aspect = "Void"
 		player.land = "Land of Caves and Silence"
@@ -904,8 +904,8 @@ function session612IndexToTrollAncestor(player, index){
 		player.interest1 = "Intimidation"
 		player.interest2 = "Death"
 		player.chatHandle = "apocalypseArisen"
-		player.suffix = ""
-		player.prefix = ""
+		player.quirk.suffix = ""
+		player.quirk.prefix = ""
 	}else if(index == 5){
 		player.aspect = "Heart"
 		player.class_name = "Mage"
@@ -923,8 +923,8 @@ function session612IndexToTrollAncestor(player, index){
 		player.interest1 = "TV"
 		player.interest2 = "Romance"
 		player.chatHandle = "arsenicCatnip"
-		player.suffix = ""
-		player.prefix = ""
+		player.quirk.suffix = ""
+		player.quirk.prefix = ""
 	}else if(index == 6){
 		player.aspect = "Breath"
 		player.land = "Land of Sand and Zephyr"
@@ -943,8 +943,8 @@ function session612IndexToTrollAncestor(player, index){
 		player.interest1 = "Movies"
 		player.interest2 = "Animals"
 		player.chatHandle = "adiosToreador"
-		player.suffix = ""
-		player.prefix = ""
+		player.quirk.suffix = ""
+		player.quirk.prefix = ""
 	}else if(index == 7){
 		player.aspect = "Light"
 		player.land = "Land of Maps and Treasure"
@@ -963,8 +963,8 @@ function session612IndexToTrollAncestor(player, index){
 		player.kernel_sprite = "Spider"
 		player.chatHandle = "arachnidsGrip"
 		player.godDestiny = true;
-		player.suffix = ""
-		player.prefix = ""
+		player.quirk.suffix = ""
+		player.quirk.prefix = ""
 	}else if(index == 8){
 		player.aspect = "Space"
 		player.land = "Land of Frost and Frogs"
@@ -982,8 +982,8 @@ function session612IndexToTrollAncestor(player, index){
 		player.interest1 = "Love"
 		player.interest2 = "Fashion"
 		player.chatHandle = "grimAuxiliatrix"
-		player.suffix = ""
-		player.prefix = ""
+		player.quirk.suffix = ""
+		player.quirk.prefix = ""
 	}else if(index == 9){
 		player.aspect = "Hope"
 		player.land = "Land of Wrath and Angels"
@@ -1001,8 +1001,8 @@ function session612IndexToTrollAncestor(player, index){
 		player.interest1 = "Romance"
 		player.interest2 = "History"
 		player.chatHandle = "caligulasAquarium"
-		player.suffix = ""
-		player.prefix = ""
+		player.quirk.suffix = ""
+		player.quirk.prefix = ""
 	}else if(index == 10){
 		player.aspect = "Life"
 		player.land = "Land of Dew and Glass"
@@ -1021,8 +1021,8 @@ function session612IndexToTrollAncestor(player, index){
 		player.interest2 = "Money"
 		player.chatHandle = "cuttlefishCuller"
 		player.godDestiny = true;
-		player.suffix = ""
-		player.prefix = ""
+		player.quirk.suffix = ""
+		player.quirk.prefix = ""
 	}else if(index == 11){
 		player.aspect = "Doom"
 		player.land = "Land of Brains and Fire"
@@ -1039,8 +1039,8 @@ function session612IndexToTrollAncestor(player, index){
 		player.interest1 = "Video Games"
 		player.interest2 = "Programming"
 		player.chatHandle = "twinArmageddons"
-		player.suffix = ""
-		player.prefix = ""
+		player.quirk.suffix = ""
+		player.quirk.prefix = ""
 	}
 }
 
