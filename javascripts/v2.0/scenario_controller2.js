@@ -354,7 +354,9 @@ function session413IndexToHuman(player,index){
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["lol","hehehe"]];
 		player.land = "Land of Wind and Shade"
+		player.moon = "Prospit"
 	}else if(index == 1){
+		player.moon = "Derse"
 		player.bloodColor = "#ff0000"
 		player.godDestiny = true;
 		player.class_name = "Seer"
@@ -373,6 +375,7 @@ function session413IndexToHuman(player,index){
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
 	}else if(index == 2){
+		player.moon = "Derse"
 		player.bloodColor = "#ff0000"
 		player.class_name = "Knight"
 		player.land = "Land of Heat and Clockwork"
@@ -391,6 +394,7 @@ function session413IndexToHuman(player,index){
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
 	}else if(index == 3){
+		player.moon = "Prospit"
 		player.bloodColor = "#ff0000"
 		player.class_name = "Witch"
 		player.land = "Land of Frost and Frogs"
@@ -410,6 +414,7 @@ function session413IndexToHuman(player,index){
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
 	}else if(index == 4){
+		player.moon = "Prospit"
 		player.bloodColor = "#ff0000"
 		player.class_name = "Maid"
 		player.godDestiny = true;
@@ -428,6 +433,7 @@ function session413IndexToHuman(player,index){
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
 	}else if(index == 5){
+		player.moon = "Derse"
 		player.bloodColor = "#ff0000"
 		player.class_name = "Rogue"
 		player.land = "Land of Pyramids and Neon"
@@ -446,6 +452,7 @@ function session413IndexToHuman(player,index){
 		player.quirk.prefix = ""
 		player.kernel_sprite = "Troll"
 	}else if(index == 6){
+		player.moon = "Derse"
 		player.bloodColor = "#ff0000"
 		player.class_name = "Prince"
 		player.land = "Land of Tombs and Krypton"
@@ -465,6 +472,7 @@ function session413IndexToHuman(player,index){
 		player.quirk.prefix = ""
 
 	}else if(index == 7){
+		player.moon = "Prospit"
 		player.bloodColor = "#ff0000"
 		player.class_name = "Page"
 		player.land = "Land of Mounds and Xenon"
@@ -590,6 +598,7 @@ function session612(){
 function session612IndexToTroll(player, index){
 	if(index == 0){
 		player.aspect = "Blood"
+		player.moon = "Prospit"
 		player.bloodColor = "#ff0000"
 		player.land = "Land of Pulse and Haze"
 		player.class_name = "Knight"
@@ -607,6 +616,7 @@ function session612IndexToTroll(player, index){
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
 	}else if(index == 1){
+		player.moon = "Prospit"
 		player.aspect = "Mind"
 		player.land = "Land of Thought and Flow"
 		player.class_name = "Seer"
@@ -625,6 +635,7 @@ function session612IndexToTroll(player, index){
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
 	}else if(index == 2){
+		player.moon = "Prospit"
 		player.aspect = "Rage"
 		player.land = "Land of Mirth and Tents"
 		player.class_name = "Bard"
@@ -644,6 +655,7 @@ function session612IndexToTroll(player, index){
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
 	}else if(index == 3){
+		player.moon = "Derse"
 		player.land = "Land of Caves and Silence"
 		player.aspect = "Void"
 		player.class_name = "Heir"
@@ -664,6 +676,7 @@ function session612IndexToTroll(player, index){
 		player.chatHandle = "centaursTesticle"
 
 	}else if(index == 4){
+		player.moon = "Derse"
 		player.aspect = "Time"
 		player.class_name = "Maid"
 		player.land = "Land of Quartz and Melody"
@@ -685,6 +698,7 @@ function session612IndexToTroll(player, index){
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
 	}else if(index == 5){
+		player.moon = "Derse"
 		player.aspect = "Heart"
 		player.land = "Land of Little Cubes and Tea"
 		player.class_name = "Rogue"
@@ -704,6 +718,7 @@ function session612IndexToTroll(player, index){
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
 	}else if(index == 6){
+		player.moon = "Prospit"
 		player.aspect = "Breath"
 		player.land = "Land of Sand and Zephyr"
 		player.class_name = "Page"
@@ -723,6 +738,7 @@ function session612IndexToTroll(player, index){
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
 	}else if(index == 7){
+		player.moon = "Prospit"
 		player.land = "Land of Maps and Treasure"
 		player.aspect = "Light"
 		player.class_name = "Thief"
@@ -743,6 +759,7 @@ function session612IndexToTroll(player, index){
 		player.quirk.prefix = ""
 		player.godDestiny = true;
 	}else if(index == 8){
+		player.moon = "Prospit"
 		player.land = "Land of Rays and Frogs"
 		player.aspect = "Space"
 		player.class_name = "Sylph"
@@ -762,6 +779,7 @@ function session612IndexToTroll(player, index){
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
 	}else if(index == 9){
+		player.moon = "Derse"
 		player.land = "Land of Wrath and Angels"
 		player.aspect = "Hope"
 		player.class_name = "Prince"
@@ -781,6 +799,7 @@ function session612IndexToTroll(player, index){
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
 	}else if(index == 10){
+		player.moon = "Derse"
 		player.land = "Land of Dew and Glass"
 		player.aspect = "Life"
 		player.class_name = "Witch"
@@ -800,6 +819,7 @@ function session612IndexToTroll(player, index){
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
 	}else if(index == 11){
+		player.moon = "Derse"//no way to have two dream selves righ tnow.
 		player.land = "Land of Brains and Fire"
 		player.aspect = "Doom"
 		player.class_name = "Mage"
@@ -822,6 +842,7 @@ function session612IndexToTroll(player, index){
 
 function session612IndexToTrollAncestor(player, index){
 	if(index == 0){
+		player.moon = "Prospit"
 		player.aspect = "Blood"
 		player.bloodColor = "#ff0000"
 		player.land = "Land of Pulse and Haze"
@@ -840,6 +861,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
 	}else if(index == 1){
+		player.moon = "Prospit"
 		player.land = "Land of Thought and Flow"
 		player.aspect = "Mind"
 		player.class_name = "Knight"
@@ -858,6 +880,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
 	}else if(index == 2){
+		player.moon = "Prospit"
 		player.land = "Land of Mirth and Tents"
 		player.aspect = "Rage"
 		player.class_name = "Prince"
@@ -877,6 +900,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
 	}else if(index == 3){
+		player.moon = "Derse"
 		player.aspect = "Void"
 		player.land = "Land of Caves and Silence"
 		player.class_name = "Page"
@@ -896,6 +920,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.interest2 = "Weight Lifting"
 		player.chatHandle = "centaursTesticle"
 	}else if(index == 4){
+		player.moon = "Derse"
 		player.aspect = "Time"
 		player.class_name = "Witch"
 		player.land = "Land of Quartz and Melody"
@@ -916,6 +941,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.quirk.prefix = ""
 	}else if(index == 5){
 		player.aspect = "Heart"
+		player.moon = "Derse"
 		player.class_name = "Mage"
 		player.land = "Land of Little Cubes and Tea"
 		player.hair = 7;
@@ -935,6 +961,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.quirk.prefix = ""
 	}else if(index == 6){
 		player.aspect = "Breath"
+		player.moon = "Prospit"
 		player.land = "Land of Sand and Zephyr"
 		player.class_name = "Rogue"
 		player.hair = 33;
@@ -955,6 +982,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.quirk.prefix = ""
 	}else if(index == 7){
 		player.aspect = "Light"
+		player.moon = "Prospit"
 		player.land = "Land of Maps and Treasure"
 		player.class_name = "Sylph"
 		player.hair = 14;
@@ -975,6 +1003,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.quirk.prefix = ""
 	}else if(index == 8){
 		player.aspect = "Space"
+		player.moon = "Prospit"
 		player.land = "Land of Frost and Frogs"
 		player.class_name = "Maid"
 		player.hair = 5;
@@ -994,6 +1023,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.quirk.prefix = ""
 	}else if(index == 9){
 		player.aspect = "Hope"
+		player.moon = "Derse"
 		player.land = "Land of Wrath and Angels"
 		player.class_name = "Bard"
 		player.hair = 6;
@@ -1012,6 +1042,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
 	}else if(index == 10){
+		player.moon = "Derse"
 		player.aspect = "Life"
 		player.land = "Land of Dew and Glass"
 		player.class_name = "Thief"
@@ -1033,6 +1064,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.quirk.prefix = ""
 	}else if(index == 11){
 		player.aspect = "Doom"
+		player.moon = "Derse"
 		player.land = "Land of Brains and Fire"
 		player.class_name = "Heir"
 		player.hair = 2;
