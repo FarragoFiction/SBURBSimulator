@@ -55,7 +55,7 @@ function SaveDoomedTimeLine(){
 		ret += " They come with a dire warning of a doomed timeline. ";
 
 		if(this.reason == "Leader killed before ectobiology."){
-			alert("ecto doom")
+			//alert("ecto doom")
 			ret += " If the " + this.leaderPlayer.htmlTitleBasic() + " dies right now, ";
 			ret += " none of the Players will even be born in the first place (Long story, just trust them). ";
 			ret += " They make it so that never happened. Forget about it. ";
