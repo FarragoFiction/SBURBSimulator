@@ -710,6 +710,7 @@ function getRandomSeed() {
 // in order to work 'Math.seed' must NOT be undefined,
 // so in any case, you HAVE to provide a Math.seed
 Math.seededRandom = function(max, min) {
+	console.log("getting random seed");
     max = max || 1;
     min = min || 0;
 

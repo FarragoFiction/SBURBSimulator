@@ -1,6 +1,6 @@
 var players = [];
 //looking for rare sessions or doing moon prophecies. not rendering.
-var simulationMode = true;
+var simulationMode = false;
 var guardians = [];
 var frogStatus = 0;
 var kingStrength = 100; //can use this to extrapolate enemy strength.
@@ -52,7 +52,9 @@ var numSimulationsToDo = 0;
 window.onload = function() {
 		debug("Problem. First session is perfect, subsequent sessions are not. Wait, no, sometimes first isn't perfect either???  225266971  is murdermode if simulationMode = false, but grimdark (and sometimes murdermode) if simulationMode = true.  why?")
 	//these bitches are SHAREABLE.
-	  debug("Hypothesis, does loading or rendering use up a seed?")
+	  debug("Hypothesis, does loading or rendering use up a seed? YES: Found rainbowSwap consuming seeds. And that definitely changed the sim. but not perfect yet.")
+    debug("Oh god, it's worse than that. When simulationMode == true, use 4434 seeds.  When simulationMode == false, use 1430")
+		debug("heart/spade close scenes just like clubs/diamonds")
 	if(getParameterByName("seed")){
 		Math.seed = getParameterByName("seed");
 		initial_seed = getParameterByName("seed");
