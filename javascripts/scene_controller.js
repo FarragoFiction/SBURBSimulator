@@ -7,6 +7,8 @@
 //blood and page players most likely to get scenes with other people.
 //blood players slightly improve all relationships a friend has when they see them.
 var availablePlayers = [];  //which players are available for scenes or whatever.
+var scenesTriggered = [];
+
 var scenes = [new StartDemocracy(), new JackBeginScheming(), new KingPowerful(), new QueenRejectRing(), new JackPromotion(), new JackRampage(), new GiveJackBullshitWeapon()];
 //relationship drama has a high priority because it can distract a session from actually making progress. happened to universe a trolls.
 scenes = scenes.concat([new RelationshipDrama(), new BeTriggered(), new EngageMurderMode(), new GoGrimDark(),  new DisengageMurderMode(),new MurderPlayers()]);
@@ -47,6 +49,7 @@ function processReckoning(playerList){
 	for(var i = 0; i<reckoningScenes.length; i++){
 		var s = reckoningScenes[i];
 		if(s.trigger(playerList)){
+			scenesTriggered.push(s);
 			//console.log(s);
 			//console.log("was triggered");
 			ret += s.content() + " <br><br> ";
@@ -56,6 +59,7 @@ function processReckoning(playerList){
 	for(var i = 0; i<deathScenes.length; i++){
 		var s = deathScenes[i];
 		if(s.trigger(playerList)){
+			scenesTriggered.push(s);
 			ret += s.content() + " <br><br> ";
 		}
 	}
@@ -72,6 +76,7 @@ function processScenes2(playerList){
 		var s = available_scenes[i];
 		//var debugQueen = queenStrength;
 		if(s.trigger(playerList)){
+			scenesTriggered.push(s);
 			s.renderContent(newScene());
 			if(!s.canRepeat){
 				removeFromArray(s,available_scenes);
@@ -82,6 +87,7 @@ function processScenes2(playerList){
 	for(var i = 0; i<deathScenes.length; i++){
 		var s = deathScenes[i];
 		if(s.trigger(playerList)){
+			scenesTriggered.push(s);
 			s.renderContent(newScene());
 		}
 	}
@@ -97,6 +103,7 @@ function processReckoning2(playerList){
 	for(var i = 0; i<reckoningScenes.length; i++){
 		var s = reckoningScenes[i];
 		if(s.trigger(playerList)){
+			scenesTriggered.push(s);
 			s.renderContent(newScene());
 		}
 	}
@@ -104,6 +111,7 @@ function processReckoning2(playerList){
 	for(var i = 0; i<deathScenes.length; i++){
 		var s = deathScenes[i];
 		if(s.trigger(playerList)){
+			scenesTriggered.push(s);
 			s.renderContent(newScene());
 		}
 	}
@@ -122,7 +130,7 @@ function callNextSceneWithDelay(scenes, index, death){
 	setTimeout(function(){
 		var s =scenes[index];
 		if(s.trigger(playerList)){
-			debub("scene trigger")
+			scenesTriggered.push(s);
 			s.renderContent(newScene());
 			if(!s.canRepeat){
 				removeFromArray(s,available_scenes);
@@ -146,7 +154,7 @@ function processScenes(playerList){
 		var s = available_scenes[i];
 		//var debugQueen = queenStrength;
 		if(s.trigger(playerList)){
-
+			scenesTriggered.push(s);
 			//console.log("was triggered");
 			var content = s.content()
 			if(content != ""){
@@ -168,6 +176,7 @@ function processScenes(playerList){
 		if(s.trigger(playerList)){
 			//console.log(s);
 			//console.log("was triggered");
+			scenesTriggered.push(s);
 			ret += s.content() + " <br><br> ";
 		}
 	}

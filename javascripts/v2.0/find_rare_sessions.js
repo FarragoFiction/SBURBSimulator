@@ -1,7 +1,7 @@
 var players = [];
-var guardians = [];
 //looking for rare sessions or doing moon prophecies. not rendering.
-var simulationMode = false;
+var simulationMode = true;
+var guardians = [];
 var frogStatus = 0;
 var kingStrength = 100; //can use this to extrapolate enemy strength.
 var queenStrength = 100;
@@ -20,8 +20,8 @@ var spriteWidth = 400;
 var spriteHeight = 300;
 var canvasWidth = 1000;
 var canvasHeight = 300;
-var repeatTime = 500;
-var version2 = true;
+var repeatTime = 5;
+var version2 = true; //even though idon't want  to render content, 2.0 is different from 1.0 (think of dialog that triggers)
 var timeTillReckoning = getRandomInt(10,30); //these will be wrong if seed is set
 var sessionType = Math.seededRandom(); //human, troll or mixed.
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
@@ -31,56 +31,15 @@ var sessionType = Math.seededRandom(); //human, troll or mixed.
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
 	//these bitches are SHAREABLE.
-	if(getParameterByName("seed")){
-		Math.seed = getParameterByName("seed");
-		initial_seed = getParameterByName("seed");
-	}else{
-		var tmp = getRandomSeed();
-		Math.seed = tmp;
-		initial_seed = tmp;
-	}
-
-	initRandomness();
-	shareableURL();
-
-    init();
-
-	if(!debugMode){
-		randomizeEntryOrder();
-	}
-
-
-	//easter egg ^_^
-	if(getParameterByName("royalRumble")  == "true"){
-		debugRoyalRumble();
-	}
+	 initRandomness();
+  init();
+	randomizeEntryOrder();
 	//authorMessage();
 	makeGuardians(); //after entry order established
-	//i cannot resist
-	if(initial_seed == 413){
-		session413();
-	}else if(initial_seed == 612){
-		session612();
-	}else if(initial_seed == 1025){
-		session1025()
-	}else if(initial_seed == 33){
-		session33();
-	}
 	checkSGRUB();
-	load(players, guardians); //in loading.js
+	//load(players, guardians); //in loading.js no graphics
 
-	//intro();  //~~~~~~LOADING SCRIPT WILL CALL THIS~~~~~~~~~
-
-
-	//debugRelationshipDrama();
-	//debugTriggerLevel();
-	//debugGrimDark();
-	//debugJackScheme();
-	//debugLevelTheHellUp();
-	//debugGodTierLevelTheHellUp();
-	//debugCorpseLevelTheHellUp();
-	//debugGodTierRevive();
-	//debugCorpseSmooch();
+	intro();
 }
 
 function initRandomness(){

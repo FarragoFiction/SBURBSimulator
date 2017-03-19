@@ -30,6 +30,9 @@ function hexToRgbA(hex){
 
 
 function rainbowSwap(canvas){
+  if(checkSimMode() == true){
+    return;
+  }
 	ctx = canvas.getContext('2d');
 	var img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
 	var colorRatio = 1/canvas.width;
@@ -51,6 +54,9 @@ function rainbowSwap(canvas){
 //wait no, would be same amount of things. just would have nested for loops instead of
 //multiple calls
 function swapColors(canvas, color1, color2){
+  if(checkSimMode() == true){
+    return;
+  }
   var oldc = hexToRgbA(color1);
   var newc= hexToRgbA(color2);
   // console.log("replacing: " + oldc  + " with " + newc);
@@ -77,6 +83,9 @@ function swapColors(canvas, color1, color2){
 
 
 function swapColors50(canvas, color1, color2){
+  if(checkSimMode() == true){
+    return;
+  }
   var oldc = hexToRgbA(color1);
   var newc= hexToRgbA(color2);
   // console.log("replacing: " + oldc  + " with " + newc);
@@ -246,6 +255,9 @@ function imgLoaded(imgElement) {
 
 //leader is an adult, though.
 function poseBabiesAsATeam(canvas, leader, players, guardians, repeatTime){
+  if(checkSimMode() == true){
+    return;
+  }
   var playerBuffers = [];
   var guardianBuffers = [];
   var leaderBuffer = getBufferCanvas(document.getElementById("sprite_template"));
@@ -287,6 +299,9 @@ function poseBabiesAsATeam(canvas, leader, players, guardians, repeatTime){
 
 //might be repeats of players in there, cause of time clones
 function poseAsATeam(canvas,players, repeatTime){
+  if(checkSimMode() == true){
+    return;
+  }
 	var spriteBuffers = [];
 	for(var i = 0; i<players.length; i++){
 		spriteBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
@@ -309,6 +324,9 @@ function poseAsATeam(canvas,players, repeatTime){
 }
 
 function drawGodRevival(canvas, live_players, dead_players, repeatTime){
+  if(checkSimMode() == true){
+    return;
+  }
 	var live_spriteBuffers = [];
 	var dead_spriteBuffers = [];
 	for(var i = 0; i<live_players.length; i++){
@@ -360,6 +378,9 @@ function drawGodRevival(canvas, live_players, dead_players, repeatTime){
 
 
 function drawGetTiger(canvas, players, repeatTime){
+  if(checkSimMode() == true){
+    return;
+  }
 	var spriteBuffers = [];
 	for(var i = 0; i<players.length; i++){
 		spriteBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
@@ -395,6 +416,9 @@ function drawGetTiger(canvas, players, repeatTime){
 //player on left, echeladder on right. text with boonies. all levels listed
 //obtained levels have a colored background, others have black.
 function drawLevelUp(canvas, player,repeatTime){
+  if(checkSimMode() == true){
+    return;
+  }
 	if(player.godTier){
 		console.log("god tier");
 		return drawLevelUpGodTier(canvas, player,repeatTime);
@@ -478,6 +502,9 @@ function drawGodSymbolBG(canvas, player){
 }
 
 function drawMoon(canvas, player){
+  if(checkSimMode() == true){
+    return;
+  }
 	ctx = canvas.getContext('2d');
 	var imageString =player.moon + ".png"
 	addImageTag(imageString)
@@ -521,6 +548,9 @@ function writeLevels(canvas, player){
 }
 
 function drawRelationshipChat(canvas, player1, player2, chat, repeatTime){
+  if(checkSimMode() == true){
+    return;
+  }
 	var canvasSpriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
 	ctx = canvasSpriteBuffer.getContext('2d');
 	var imageString = "pesterchum.png"
@@ -572,8 +602,20 @@ function drawRelationshipChat(canvas, player1, player2, chat, repeatTime){
 	copyTmpCanvasToRealCanvasAtPos(canvas, textSpriteBuffer,244,51)
 }
 
+function checkSimMode(){
+  if(simulationMode == true){
+    //looking for rare sessions, or getting moon prophecies.
+    console.log("no canvas, are we simulatating the simulation?")
+    return true;
+  }
+  return false
+}
+
 //need to parse the text to figure out who is talking to determine color for chat.
 function drawChat(canvas, player1, player2, chat, repeatTime){
+  if(checkSimMode() == true){
+    return;
+  }
 	//debug("drawing chat")
 	//draw sprites to buffer (don't want them pallete swapping each other)
 	//then to main canvas
@@ -728,6 +770,9 @@ function makeRenderingSnapshot(player){
 }
 
 function drawBabySprite(canvas, player, repeatTime, isRepeat){
+  if(checkSimMode() == true){
+    return;
+  }
     player = makeRenderingSnapshot(player);//probably dont need to, but whatever
     ctx = canvas.getContext('2d');
     ctx.imageSmoothingEnabled = false;
@@ -746,6 +791,9 @@ function drawBabySprite(canvas, player, repeatTime, isRepeat){
 
 
 function drawSprite(canvas, player){
+  if(checkSimMode() == true){
+    return;
+  }
 	player = makeRenderingSnapshot(player);
   //debug("Drawing sprite for: " + player.title());
   //console.log("looking for canvas: " + canvas);
@@ -1407,6 +1455,9 @@ function playerToSpriteOld(player){
 }
 
 function getBufferCanvas(canvas){
+  if(checkSimMode(canvas)){
+    return;
+  }
 	var tmp_canvas = document.createElement('canvas');
 	tmp_canvas.height = canvas.height;
 	tmp_canvas.width = canvas.width;
@@ -1414,12 +1465,18 @@ function getBufferCanvas(canvas){
 }
 
 function copyTmpCanvasToRealCanvasAtPos(canvas, tmp_canvas, x, y){
+  if(checkSimMode() == true){
+    return;
+  }
 	ctx = canvas.getContext('2d');
 	ctx.drawImage(tmp_canvas, x, y);
 }
 
 
 function copyTmpCanvasToRealCanvas(canvas, tmp_canvas){
+  if(checkSimMode() == true){
+    return;
+  }
 	ctx = canvas.getContext('2d');
 	ctx.drawImage(tmp_canvas, 0, 0);
 }
