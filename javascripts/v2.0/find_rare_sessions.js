@@ -39,6 +39,7 @@ var timesQueenRejectRing = 0;
 var timesSavedDoomedTimeLine = 0;
 var timesInterestingSaveDoomedTimeLine = 0;
 var timesDemocracyStart = 0;
+var timesScratchesAvailable =0;
 
 var numSimulationsDone = 0;
 var numSimulationsToDo = 10;
@@ -114,6 +115,7 @@ function getSessionType(){
 }
 
 function renderScratchButton(){
+	timesScratchesAvailable ++;
 	summarizeSession(true);
 }
 
@@ -371,6 +373,8 @@ var timesInterestingSaveDoomedTimeLine = 0;
 var timesDemocracyStart = 0;*/
 function printStats(){
 	var str = "<br>Number Sessions: " + sessionsSimulated.length;
+	//timesScratchesAvailable
+	str += "<Br>Times Scratches Available: " + timesScratchesAvailable + " (" + Math.round((timesScratchesAvailable/sessionsSimulated.length)*100) + "%)";
 	str += "<Br>Times Ectobiology: " + timesEcto + " (" + Math.round((timesEcto/sessionsSimulated.length)*100) + "%)";
 	str += "<Br>Times Fought Denizen (at least once): " + timesDenizen + " (" + Math.round((timesDenizen/sessionsSimulated.length)*100) + "%)";;
 	str += "<Br>Times Exiled Jack: " + timesExileJack + " (" + Math.round((timesExileJack/sessionsSimulated.length)*100) + "%)";;
