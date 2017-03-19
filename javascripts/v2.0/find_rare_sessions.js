@@ -54,6 +54,8 @@ window.onload = function() {
 	//these bitches are SHAREABLE.
 	  debug("Hypothesis, does loading or rendering use up a seed? YES: Found rainbowSwap consuming seeds. And that definitely changed the sim. but not perfect yet.")
     debug("Oh god, it's worse than that. When simulationMode == true, use 4434 seeds.  When simulationMode == false, use 1430")
+		debug("try never rendering but allowing loading. sim false, rendering off: 4550 sim true, rendering off: 4550. so rendering is the problem, not loading.")
+		debug("simulation true, rendering 4550. simulation false, rendering 4434");
 		debug("heart/spade close scenes just like clubs/diamonds")
 	if(getParameterByName("seed")){
 		Math.seed = getParameterByName("seed");

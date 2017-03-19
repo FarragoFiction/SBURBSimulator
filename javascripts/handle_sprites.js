@@ -420,7 +420,7 @@ function drawLevelUp(canvas, player,repeatTime){
     return;
   }
 	if(player.godTier){
-		console.log("god tier");
+		//console.log("god tier");
 		return drawLevelUpGodTier(canvas, player,repeatTime);
 	}
   //for echeladder
@@ -603,9 +603,10 @@ function drawRelationshipChat(canvas, player1, player2, chat, repeatTime){
 }
 
 function checkSimMode(){
+  //return true; // debugging, is loading the problem, or is this method?
   if(simulationMode == true){
     //looking for rare sessions, or getting moon prophecies.
-    console.log("no canvas, are we simulatating the simulation?")
+  //  console.log("no canvas, are we simulatating the simulation?")
     return true;
   }
   return false
