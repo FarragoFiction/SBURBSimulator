@@ -128,6 +128,7 @@ function reinit(){
 	players = [];
 	guardians = [];
 	scenesTriggered = [];
+	doomedTimelineReasons = []
 	available_classes = classes.slice(0);
 	available_aspects = nonrequired_aspects.slice(0); //required_aspects
 	available_aspects = available_aspects.concat(required_aspects.slice(0));
@@ -337,9 +338,9 @@ function summarizeSession(scratchAvailable){
 		alert("should be done")
 		return;
 	}else{
-		var tmp = getRandomSeed();
-		Math.seed = tmp;
-		initial_seed = tmp;
+		//var tmp = getRandomSeed();
+		//Math.seed = tmp;
+		initial_seed = Math.seed;
 		initRandomness();
 		reinit();
 		init();
