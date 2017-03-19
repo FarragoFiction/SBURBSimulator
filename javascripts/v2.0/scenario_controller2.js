@@ -1080,7 +1080,8 @@ function session1025(){
 			}else if(i == 11){
 				index = 7;
 			}
-			session612IndexToTrollAncestor(player, index);
+			session612IndexToTrollTroll(player, index);
+			session612IndexToTrollTroll(guardian, index);
 		}
 
 		guardian.generateRelationships(guardians);
