@@ -337,7 +337,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 			var p =  potentialFriends[i];
 			if(p!=this){
 				var r = p.getRelationshipWith(this);
-				if(r.value > bestRelationshipSoFar.value){
+				if(r && r.value > bestRelationshipSoFar.value){
 					bestRelationshipSoFar = r;
 					friend = p;
 				}
@@ -356,7 +356,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 			var p =  potentialFriends[i];
 			if(p != this){
 				var r = p.getRelationshipWith(this);
-				if(r.value < worstRelationshipSoFar.value){
+				if(r && r.value < worstRelationshipSoFar.value){
 					worstRelationshipSoFar = r;
 					enemy = p;
 				}

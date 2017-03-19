@@ -25,6 +25,7 @@ var version2 = true; //even though idon't want  to render content, 2.0 is differ
 var timeTillReckoning = getRandomInt(10,30); //these will be wrong if seed is set
 var sessionType = Math.seededRandom(); //human, troll or mixed.
 
+var sessionsSimulated = []
 var timesEcto = 0;
 var timesDenizen = 0;
 var timesExileJack = 0;
@@ -242,6 +243,11 @@ function summarizeScene(scenesTriggered, str){
 }
 
 function summarizeSession(scratchAvailable){
+	//don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
+	if(sessionsSimulated.indexOf(initial_seed) != -1){
+		return;
+	}
+	sessionsSimulated.push(initial_seed);
 	$("#story").html("");
 	var str = "<Br><hr>Session: " + initial_seed + " scenes: " + scenesTriggered.length;
 	if(scratchAvailable){
@@ -328,6 +334,8 @@ function summarizeSession(scratchAvailable){
 	numSimulationsDone ++;
 	if(numSimulationsDone > numSimulationsToDo){
 		printStats();
+		alert("should be done")
+		return;
 	}else{
 		var tmp = getRandomSeed();
 		Math.seed = tmp;
@@ -361,19 +369,20 @@ var timesSavedDoomedTimeLine = 0;
 var timesInterestingSaveDoomedTimeLine = 0;
 var timesDemocracyStart = 0;*/
 function printStats(){
-	var str = "<Br>Times Ectobiology: " + timesEcto;
-	str += "<Br>Times Fought Denizen (at least once): " + timesDenizen;
-	str += "<Br>Times Exiled Jack: " + timesExileJack;
-	str += "<Br>Times Exiled Queen: " + timesExileQueen;
-	str += "<Br>Times Jack Got a Bullshit Weapon: " + timesJackWeapon;
-	str += "<Br>Times Jack Schemed: " + timesJackScheme;
-	str += "<Br>Times Jack Rampaged: " + timesJackRampage;
-	str += "<Br>Times Jack Promoted: " + timesJackPromotion;
-	str += "<Br>Times King Powerful: " + timesKingPowerful;
-	str += "<Br>Times Queen Rejected Ring: " + timesQueenRejectRing;
-	str += "<Br>Times Doomed Timelines: " + timesSavedDoomedTimeLine;
-	str += "<Br>Times Interesting Doomed Timelines: " + timesInterestingSaveDoomedTimeLine;
-	str += "<Br>Times Fought Democracy Side Quest Activated: " + timesDemocracyStart;
+	var str = "<br>Number Sessions: " + sessionsSimulated.length;
+	str += "<Br>Times Ectobiology: " + timesEcto + " (" + Math.round((timesEcto/sessionsSimulated.length)*100) + "%)";
+	str += "<Br>Times Fought Denizen (at least once): " + timesDenizen + " (" + Math.round((timesDenizen/sessionsSimulated.length)*100) + "%)";;
+	str += "<Br>Times Exiled Jack: " + timesExileJack + " (" + Math.round((timesExileJack/sessionsSimulated.length)*100) + "%)";;
+	str += "<Br>Times Exiled Queen: " + timesExileQueen+ " (" + Math.round((timesExileQueen/sessionsSimulated.length)*100) + "%)";;
+	str += "<Br>Times Jack Got a Bullshit Weapon: " + timesJackWeapon+ " (" + Math.round((timesJackWeapon/sessionsSimulated.length)*100) + "%)";;
+	str += "<Br>Times Jack Schemed: " + timesJackScheme+ " (" + Math.round((timesJackScheme/sessionsSimulated.length)*100) + "%)";;
+	str += "<Br>Times Jack Rampaged: " + timesJackRampage+ " (" + Math.round((timesJackRampage/sessionsSimulated.length)*100) + "%)";;
+	str += "<Br>Times Jack Promoted: " + timesJackPromotion+ " (" + Math.round((timesJackPromotion/sessionsSimulated.length)*100) + "%)";;
+	str += "<Br>Times King Powerful: " + timesKingPowerful+ " (" + Math.round((timesKingPowerful/sessionsSimulated.length)*100) + "%)";;
+	str += "<Br>Times Queen Rejected Ring: " + timesQueenRejectRing+ " (" + Math.round((timesQueenRejectRing/sessionsSimulated.length)*100) + "%)";;
+	str += "<Br>Times Doomed Timelines: " + timesSavedDoomedTimeLine+ " (" + Math.round((timesSavedDoomedTimeLine/sessionsSimulated.length)*100) + "%)";;
+	str += "<Br>Times Interesting Doomed Timelines: " + timesInterestingSaveDoomedTimeLine+ " (" + Math.round((timesInterestingSaveDoomedTimeLine/sessionsSimulated.length)*100) + "%)";;
+	str += "<Br>Times Fought Democracy Side Quest Activated: " + timesDemocracyStart+ " (" + Math.round((timesDemocracyStart/sessionsSimulated.length)*100) + "%)";;
 	$("#stats").append(str);
 }
 
