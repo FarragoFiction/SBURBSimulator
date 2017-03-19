@@ -39,6 +39,8 @@ var timesSavedDoomedTimeLine = 0;
 var timesInterestingSaveDoomedTimeLine = 0;
 var timesDemocracyStart = 0;
 
+var numSimulationsDone = 0;
+var numSimulationsToDo = 10;
 
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.
@@ -121,11 +123,14 @@ function scratchConfirm(){
 	}
 }
 
-//TODO if i wanted to, I could have mixed sessions like in canon.
-//not erasing the players, after all.
-//or could have an afterlife where they meet guardian players???
-function scratch(){
-	available_scenes = scenes;  //was forgetting to reset this, so scratched players had less to do.
+function reinit(){
+	players = [];
+	guardians = [];
+	scenesTriggered = [];
+	available_classes = classes.slice(0);
+	available_aspects = nonrequired_aspects.slice(0); //required_aspects
+	available_aspects = available_aspects.concat(required_aspects.slice(0));
+	available_scenes = scenes.slice(0);  //was forgetting to reset this, so scratched players had less to do.
 	timeTillReckoning = getRandomInt(10,30);
 	frogStatus = 0;
 	kingStrength = 100; //can use this to extrapolate enemy strength.
@@ -138,6 +143,13 @@ function scratch(){
 	//ectobiology not reset. if performed in previous session, it's done.
 	//if not, it's not. like how the alpha session trolls didn't perform ectobiology, so Karkat did.
 	doomedTimeline = false;
+}
+
+//TODO if i wanted to, I could have mixed sessions like in canon.
+//not erasing the players, after all.
+//or could have an afterlife where they meet guardian players???
+function scratch(){
+	reinit();
 	scratched = true;
 	var scratch = "The session has been scratched. The " + getPlayersTitlesBasic(players) + " will now be the beloved guardians.";
 	scratch += " Their former guardians, the " + getPlayersTitlesBasic(guardians) + " will now be the players.";
@@ -219,7 +231,6 @@ function reckoningTick(){
 function findSceneNamed(scenesToCheck, name){
 	for(var i = 0; i<scenesToCheck.length; i++){
 		if(scenesToCheck[i].constructor.name == name){
-			console.log(scenesToCheck[i])
 			return scenesToCheck[i];
 		}
 	}
@@ -232,7 +243,7 @@ function summarizeScene(scenesTriggered, str){
 
 function summarizeSession(scratchAvailable){
 	$("#story").html("");
-	var str = "Session: " + initial_seed + " scenes: " + scenesTriggered.length;
+	var str = "<Br><hr>Session: " + initial_seed + " scenes: " + scenesTriggered.length;
 	if(scratchAvailable){
 		str += "<b>&nbsp&nbsp&nbsp&nbspScratch Available</b>"
 	}
@@ -313,6 +324,26 @@ function summarizeSession(scratchAvailable){
 
 	checkDoomedTimelines();
 	debug(str);
+
+	numSimulationsDone ++;
+	if(numSimulationsDone > numSimulationsToDo){
+		printStats();
+	}else{
+		var tmp = getRandomSeed();
+		Math.seed = tmp;
+		initial_seed = tmp;
+		initRandomness();
+		reinit();
+		init();
+		randomizeEntryOrder();
+		//authorMessage();
+		makeGuardians(); //after entry order established
+		checkSGRUB();
+		//load(players, guardians); //in loading.js no graphics
+
+		intro();
+
+	}
 }
 
 
