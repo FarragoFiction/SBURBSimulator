@@ -60,7 +60,7 @@ window.onload = function() {
 		Math.seed = tmp;
 		initial_seed = tmp;
 	}
-	 initRandomness();
+	initRandomness();
   init();
 	randomizeEntryOrder();
 	//authorMessage();
@@ -73,7 +73,7 @@ window.onload = function() {
 
 function initRandomness(){
 	timeTillReckoning = getRandomInt(10,30);
-    sessionType = Math.seededRandom(); //human, troll or mixed.
+  sessionType = Math.seededRandom(); //human, troll or mixed.
 }
 
 
@@ -252,7 +252,7 @@ function summarizeSession(scratchAvailable){
 	}
 	sessionsSimulated.push(initial_seed);
 	$("#story").html("");
-	var str = "<Br><hr>Session: " + initial_seed + " scenes: " + scenesTriggered.length + " Leader: " + getLeader(players).title() ;
+	var str = "<Br><hr>Session: " + initial_seed + " scenes: " + scenesTriggered.length + " Leader: (if this doesn't match, either player gen is wrong, or randomize session is wrong.) " + getLeader(players).title() ;
 	if(scratchAvailable){
 		str += "<b>&nbsp&nbsp&nbsp&nbspScratch Available</b>"
 	}
@@ -342,10 +342,10 @@ function summarizeSession(scratchAvailable){
 	}else{
 		//var tmp = getRandomSeed();
 		//Math.seed = tmp;
-		initial_seed = Math.seed;
+		initial_seed = Math.seed; //does this break predictable randomness?
+		//initial_seed = tmp;
 		initRandomness();
-		reinit();
-		init();
+	  init();
 		randomizeEntryOrder();
 		//authorMessage();
 		makeGuardians(); //after entry order established
@@ -1345,6 +1345,7 @@ function decideTroll(player){
 //species, hair and blood color is the same, horns and favorite number. aspect.  Thats it.
 //when scratch, get rid of story dif. make blank. scratch has to be button press.
 function makeGuardians(){
+	guardians = [];
 	//console.log("Making guardians")
 	available_classes = classes.slice(0);
 	available_aspects = nonrequired_aspects.slice(0); //required_aspects
@@ -1388,6 +1389,7 @@ function makeGuardians(){
 }
 
 function init(){
+	players = [];
 	available_classes = classes.slice(0); //re-init available classes.
 	available_aspects = nonrequired_aspects.slice(0);
 	var numPlayers = getRandomInt(2,12);
