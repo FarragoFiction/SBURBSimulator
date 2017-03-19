@@ -65,7 +65,7 @@ window.onload = function() {
 	randomizeEntryOrder();
 	//authorMessage();
 	makeGuardians(); //after entry order established
-	checkSGRUB();
+	//checkSGRUB();
 	//load(players, guardians); //in loading.js no graphics
 
 	intro();
@@ -349,7 +349,7 @@ function summarizeSession(scratchAvailable){
 		randomizeEntryOrder();
 		//authorMessage();
 		makeGuardians(); //after entry order established
-		checkSGRUB();
+		//checkSGRUB();
 		//load(players, guardians); //in loading.js no graphics
 
 		intro();
