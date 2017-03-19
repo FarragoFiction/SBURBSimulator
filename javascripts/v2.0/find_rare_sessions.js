@@ -24,6 +24,22 @@ var repeatTime = 5;
 var version2 = true; //even though idon't want  to render content, 2.0 is different from 1.0 (think of dialog that triggers)
 var timeTillReckoning = getRandomInt(10,30); //these will be wrong if seed is set
 var sessionType = Math.seededRandom(); //human, troll or mixed.
+
+var timesEcto = 0;
+var timesDenizen = 0;
+var timesExileJack = 0;
+var timesExileQueen = 0;
+var timesJackWeapon = 0;
+var timesJackScheme = 0;
+var timesJackRampage = 0;
+var timesJackPromotion = 0;
+var timesKingPowerful = 0;
+var timesQueenRejectRing = 0;
+var timesSavedDoomedTimeLine = 0;
+var timesInterestingSaveDoomedTimeLine = 0;
+var timesDemocracyStart = 0;
+
+
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.
 //should there be only one canvas?  Can have player sprites be written to a virtual canvas first, then copied to main one.
@@ -220,27 +236,129 @@ function summarizeSession(scratchAvailable){
 	if(scratchAvailable){
 		str += "<b>&nbsp&nbsp&nbsp&nbspScratch Available</b>"
 	}
-	str += summarizeScene(scenesTriggered, "DoEctobiology")
-	str += summarizeScene(scenesTriggered, "FaceDenizen")
-	str += summarizeScene(scenesTriggered, "ExileJack")
-	str += summarizeScene(scenesTriggered, "ExileQueen")
-	str += summarizeScene(scenesTriggered, "GiveJackBullshitWeapon")
-	str += summarizeScene(scenesTriggered, "JackBeginScheming")
-	str += summarizeScene(scenesTriggered, "JackPromotion")
-	str += summarizeScene(scenesTriggered, "JackRampage")
-	str += summarizeScene(scenesTriggered, "KingPowerful")
-	str += summarizeScene(scenesTriggered, "QueenRejectRing")
+	var tmp = "";
+	tmp =  summarizeScene(scenesTriggered, "DoEctobiology")
+	if(tmp != "No"){
+		timesEcto ++;
+	}
+	str += tmp;
+
+	tmp =  summarizeScene(scenesTriggered, "FaceDenizen")
+	if(tmp != "No"){
+		timesDenizen ++;
+	}
+	str += tmp;
+
+	tmp =  summarizeScene(scenesTriggered, "ExileJack")
+	if(tmp != "No"){
+		timesExileJack ++;
+	}
+	str += tmp;
+
+
+	tmp =  summarizeScene(scenesTriggered, "ExileQueen")
+	if(tmp != "No"){
+		timesExileQueen ++;
+	}
+	str += tmp;
+
+
+	tmp =  summarizeScene(scenesTriggered, "GiveJackBullshitWeapon")
+	if(tmp != "No"){
+		timesJackWeapon ++;
+	}
+	str += tmp;
+
+	tmp =  summarizeScene(scenesTriggered, "JackBeginScheming")
+	if(tmp != "No"){
+		timesJackScheme ++;
+	}
+	str += tmp;
+
+
+	tmp =  summarizeScene(scenesTriggered, "JackPromotion")
+	if(tmp != "No"){
+		timesJackPromotion ++;
+	}
+	str += tmp;
+
+	tmp =  summarizeScene(scenesTriggered, "JackRampage")
+	if(tmp != "No"){
+		timesJackRampage ++;
+	}
+	str += tmp;
+
+
+	tmp =  summarizeScene(scenesTriggered, "KingPowerful")
+	if(tmp != "No"){
+		timesKingPowerful ++;
+	}
+	str += tmp;
+
+	tmp =  summarizeScene(scenesTriggered, "QueenRejectRing")
+	if(tmp != "No"){
+		timesQueenRejectRing ++;
+	}
+	str += tmp;
+
+
+  //stats for this will happen in checkDoomedTimeLines
 	str += summarizeScene(scenesTriggered, "SaveDoomedTimeLine") + doomedTimelineReasons;
-	str += summarizeScene(scenesTriggered, "StartDemocracy")
+
+	tmp =  summarizeScene(scenesTriggered, "StartDemocracy")
+	if(tmp != "No"){
+		timesDemocracyStart ++;
+	}
+	str += tmp;
+
 	checkDoomedTimelines();
 	debug(str);
 }
 
+
+/*var timesEcto = 0;
+var timesDenizen = 0;
+var timesExileJack = 0;
+var timesExileQueen = 0;
+var timesJackWeapon = 0;
+var timesJackScheme = 0;
+var timesJackRampage = 0;
+var timesJackPromotion = 0;
+var timesKingPowerful = 0;
+var timesQueenRejectRing = 0;
+var timesSavedDoomedTimeLine = 0;
+var timesInterestingSaveDoomedTimeLine = 0;
+var timesDemocracyStart = 0;*/
+function printStats(){
+	var str = "<Br>Times Ectobiology: " + timesEcto;
+	str += "<Br>Times Fought Denizen (at least once): " + timesDenizen;
+	str += "<Br>Times Exiled Jack: " + timesExileJack;
+	str += "<Br>Times Exiled Queen: " + timesExileQueen;
+	str += "<Br>Times Jack Got a Bullshit Weapon: " + timesJackWeapon;
+	str += "<Br>Times Jack Schemed: " + timesJackScheme;
+	str += "<Br>Times Jack Rampaged: " + timesJackRampage;
+	str += "<Br>Times Jack Promoted: " + timesJackPromotion;
+	str += "<Br>Times King Powerful: " + timesKingPowerful;
+	str += "<Br>Times Queen Rejected Ring: " + timesQueenRejectRing;
+	str += "<Br>Times Doomed Timelines: " + timesSavedDoomedTimeLine;
+	str += "<Br>Times Interesting Doomed Timelines: " + timesInterestingSaveDoomedTimeLine;
+	str += "<Br>Times Fought Democracy Side Quest Activated: " + timesDemocracyStart;
+	$("#stats").append(str);
+}
+
+
+
 function checkDoomedTimelines(){
 	for(var i= 0; i<doomedTimelineReasons.length; i ++){
+		timesSavedDoomedTimeLine ++;
 		if(doomedTimelineReasons[i] != "Random."){
-			alert("found an interesting doomed timeline" + doomedTimelineReasons[i])
+			//alert("found an interesting doomed timeline" + doomedTimelineReasons[i])
+			timesInterestingSaveDoomedTimeLine ++;
+			return;
 		}
+	}
+	if(doomedTimelineReasons.length > 1){
+		timesSavedDoomedTimeLine ++;
 	}
 }
 
