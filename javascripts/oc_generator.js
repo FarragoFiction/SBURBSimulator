@@ -1,4 +1,5 @@
 var players = [];
+var simulationMode = false;
 var dataURLs = {};
 window.onload = function() {
 	makeAspectDropDown();

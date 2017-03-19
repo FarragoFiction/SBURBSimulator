@@ -1,5 +1,6 @@
 var players = [];
 var frogStatus = 0;
+var simulationMode = false;
 var kingStrength = 100; //can use this to extrapolate enemy strength.
 var queenStrength = 100;
 var jackStrength = 50;
