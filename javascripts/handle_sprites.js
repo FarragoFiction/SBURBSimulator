@@ -40,9 +40,9 @@ function rainbowSwap(canvas){
 	for(var i = 0; i<img_data.data.length; i += 4){
 		if(img_data.data[i+3] >= 128){
 		  //would some sort of fractal look better here?
-		  img_data.data[i] = getRandomInt(0,255);
-		  img_data.data[i+1] =(i/canvas.width+ getRandomInt(0,50))%255;
-		  img_data.data[i+2] = (i/canvas.height +getRandomInt(0,50))%255;
+		  img_data.data[i] = (i*canvas.width)%255;
+		  img_data.data[i+1] =(i*canvas.width)/255;
+		  img_data.data[i+2] = i%255;
 		  img_data.data[i+3] = 255;
 		}
 	}

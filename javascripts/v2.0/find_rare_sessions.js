@@ -42,7 +42,7 @@ var timesDemocracyStart = 0;
 var timesScratchesAvailable =0;
 
 var numSimulationsDone = 0;
-var numSimulationsToDo = 1;
+var numSimulationsToDo = 0;
 
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.
@@ -50,8 +50,9 @@ var numSimulationsToDo = 1;
 //main canvas is either Leader + PesterChumWindow + 1 or more Players (in chat or group chat with leader)
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
-		debug("Problem. Even though session ids are different, scenes always play out the same way.")
+		debug("Problem. First session is perfect, subsequent sessions are not. Wait, no, sometimes first isn't perfect either???  225266971  is murdermode if simulationMode = false, but grimdark (and sometimes murdermode) if simulationMode = true.  why?")
 	//these bitches are SHAREABLE.
+	  debug("Hypothesis, does loading or rendering use up a seed?")
 	if(getParameterByName("seed")){
 		Math.seed = getParameterByName("seed");
 		initial_seed = getParameterByName("seed");
@@ -66,9 +67,11 @@ window.onload = function() {
 	//authorMessage();
 	makeGuardians(); //after entry order established
 	//checkSGRUB();
-	//load(players, guardians); //in loading.js no graphics
-
-	intro();
+	if(simulationMode == true){
+		intro();
+	}else{
+		load(players, guardians); //in loading.js
+	}
 }
 
 function initRandomness(){
@@ -251,7 +254,7 @@ function summarizeSession(scratchAvailable){
 		return;
 	}
 	sessionsSimulated.push(initial_seed);
-	$("#story").html("");
+	//$("#story").html("");
 	var str = "<Br><hr>Session: " + initial_seed + " scenes: " + scenesTriggered.length + " Leader:  " + getLeader(players).title() ;
 	if(scratchAvailable){
 		str += "<b>&nbsp&nbsp&nbsp&nbspScratch Available</b>"
@@ -340,11 +343,11 @@ function summarizeSession(scratchAvailable){
 		alert("should be done")
 		return;
 	}else{
-		var tmp = getRandomSeed();
-		Math.seed = tmp;
+		//var tmp = getRandomSeed();
+		//Math.seed = tmp;
 		doomedTimelineReasons = []
-		//initial_seed = Math.seed; //does this break predictable randomness?
-		initial_seed = tmp;
+		initial_seed = Math.seed; //does this break predictable randomness?
+		//initial_seed = tmp;
 		initRandomness();
 	  init();
 		randomizeEntryOrder();
