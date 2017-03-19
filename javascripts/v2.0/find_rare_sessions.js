@@ -238,65 +238,65 @@ function summarizeSession(scratchAvailable){
 	}
 	var tmp = "";
 	tmp =  summarizeScene(scenesTriggered, "DoEctobiology")
-	if(tmp != "No"){
+	if(findSceneNamed(scenesTriggered,"DoEctobiology") != "No"){
 		timesEcto ++;
 	}
 	str += tmp;
 
 	tmp =  summarizeScene(scenesTriggered, "FaceDenizen")
-	if(tmp != "No"){
+	if(findSceneNamed(scenesTriggered,"FaceDenizen") != "No"){
 		timesDenizen ++;
 	}
 	str += tmp;
 
 	tmp =  summarizeScene(scenesTriggered, "ExileJack")
-	if(tmp != "No"){
+	if(findSceneNamed(scenesTriggered,"ExileJack") != "No"){
 		timesExileJack ++;
 	}
 	str += tmp;
 
 
 	tmp =  summarizeScene(scenesTriggered, "ExileQueen")
-	if(tmp != "No"){
+	if(findSceneNamed(scenesTriggered,"ExileQueen") != "No"){
 		timesExileQueen ++;
 	}
 	str += tmp;
 
 
 	tmp =  summarizeScene(scenesTriggered, "GiveJackBullshitWeapon")
-	if(tmp != "No"){
+	if(findSceneNamed(scenesTriggered,"GiveJackBullshitWeapon") != "No"){
 		timesJackWeapon ++;
 	}
 	str += tmp;
 
 	tmp =  summarizeScene(scenesTriggered, "JackBeginScheming")
-	if(tmp != "No"){
+	if(findSceneNamed(scenesTriggered,"JackBeginScheming") != "No"){
 		timesJackScheme ++;
 	}
 	str += tmp;
 
 
 	tmp =  summarizeScene(scenesTriggered, "JackPromotion")
-	if(tmp != "No"){
+	if(findSceneNamed(scenesTriggered,"JackPromotion") != "No"){
 		timesJackPromotion ++;
 	}
 	str += tmp;
 
 	tmp =  summarizeScene(scenesTriggered, "JackRampage")
-	if(tmp != "No"){
+	if(findSceneNamed(scenesTriggered,"JackRampage") != "No"){
 		timesJackRampage ++;
 	}
 	str += tmp;
 
 
 	tmp =  summarizeScene(scenesTriggered, "KingPowerful")
-	if(tmp != "No"){
+	if(findSceneNamed(scenesTriggered,"KingPowerful") != "No"){
 		timesKingPowerful ++;
 	}
 	str += tmp;
 
 	tmp =  summarizeScene(scenesTriggered, "QueenRejectRing")
-	if(tmp != "No"){
+	if(findSceneNamed(scenesTriggered,"QueenRejectRing") != "No"){
 		timesQueenRejectRing ++;
 	}
 	str += tmp;
@@ -306,7 +306,7 @@ function summarizeSession(scratchAvailable){
 	str += summarizeScene(scenesTriggered, "SaveDoomedTimeLine") + doomedTimelineReasons;
 
 	tmp =  summarizeScene(scenesTriggered, "StartDemocracy")
-	if(tmp != "No"){
+	if(findSceneNamed(scenesTriggered,"StartDemocracy") != "No"){
 		timesDemocracyStart ++;
 	}
 	str += tmp;
