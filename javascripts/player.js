@@ -199,7 +199,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 			}
 		}
 		if(ret){
-			console.log("heroic death");
+			//console.log("heroic death");
 		}
 		return ret;
 	}
