@@ -214,13 +214,18 @@ function findSceneNamed(scenesToCheck, name){
 	return "No"
 }
 
+function summarizeScene(scenesTriggered, str){
+	return "<br>&nbsp&nbsp&nbsp&nbsp" +str + " : " + findSceneNamed(scenesTriggered,str)
+}
+
 function summarizeSession(){
 	$("#story").html("");
 	var str = "Session: " + initial_seed + " scenes: " + scenesTriggered.length;
-	str += "<br>&nbsp&nbsp&nbsp&nbsp Ectobiology: " + findSceneNamed(scenesTriggered,"DoEctobiology")
-	str += "<br>&nbsp&nbsp&nbsp&nbsp Denizen(s) Faced: " + findSceneNamed(scenesTriggered,"FaceDenizen")
-	str += "<br>&nbsp&nbsp&nbsp&nbsp Jack Exiled: " + findSceneNamed(scenesTriggered,"ExileJack")
-	str += "<br>&nbsp&nbsp&nbsp&nbsp Queen Exiled: " + findSceneNamed(scenesTriggered,"ExileQueen")
+	str += summarizeScene(scenesTriggered, "DoEctobiology")
+	str += summarizeScene(scenesTriggered, "FaceDenizen")
+	str += summarizeScene(scenesTriggered, "ExileJack")
+	str += summarizeScene(scenesTriggered, "ExileQueen")
+	str += summarizeScene(scenesTriggered, "GiveJackBullshitWeapon")
 	debug(str);
 }
 
