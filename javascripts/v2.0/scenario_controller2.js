@@ -582,6 +582,7 @@ function session612(){
 function session612IndexToTroll(player, index){
 	if(index == 0){
 		player.aspect = "Blood"
+		player.bloodColor = "#ff0000"
 		player.land = "Land of Pulse and Haze"
 		player.class_name = "Knight"
 		player.hair = 18;
@@ -814,6 +815,7 @@ function session612IndexToTroll(player, index){
 function session612IndexToTrollAncestor(player, index){
 	if(index == 0){
 		player.aspect = "Blood"
+		player.bloodColor = "#ff0000"
 		player.land = "Land of Pulse and Haze"
 		player.class_name = "Seer"
 		player.hair = 18;
