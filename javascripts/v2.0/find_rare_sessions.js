@@ -200,8 +200,28 @@ function reckoningTick(){
 		var s = new Aftermath();
 		s.trigger(players)
 		s.renderContent(newScene());
+		summarizeSession();
 	}
 
+}
+function findSceneNamed(scenesToCheck, name){
+	for(var i = 0; i<scenesToCheck.length; i++){
+		if(scenesToCheck[i].constructor.name == name){
+			console.log(scenesToCheck[i])
+			return scenesToCheck[i];
+		}
+	}
+	return "No"
+}
+
+function summarizeSession(){
+	$("#story").html("");
+	var str = "Session: " + initial_seed + " scenes: " + scenesTriggered.length;
+	str += "<br>&nbsp&nbsp&nbsp&nbsp Ectobiology: " + findSceneNamed(scenesTriggered,"DoEctobiology")
+	str += "<br>&nbsp&nbsp&nbsp&nbsp Denizen(s) Faced: " + findSceneNamed(scenesTriggered,"FaceDenizen")
+	str += "<br>&nbsp&nbsp&nbsp&nbsp Jack Exiled: " + findSceneNamed(scenesTriggered,"ExileJack")
+	str += "<br>&nbsp&nbsp&nbsp&nbsp Queen Exiled: " + findSceneNamed(scenesTriggered,"ExileQueen")
+	debug(str);
 }
 
 

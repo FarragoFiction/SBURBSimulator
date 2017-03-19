@@ -717,6 +717,9 @@ function bloodPuddle(canvas,player){
 }
 
 function drawSpriteTurnways(canvas, player){
+  if(checkSimMode() == true){
+    return;
+  }
 	player = makeRenderingSnapshot(player);
   ctx = canvas.getContext('2d');
   ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
@@ -889,6 +892,9 @@ function bloody_face(canvas, player){
 }
 
 function drawDiamond(canvas){
+  if(checkSimMode() == true){
+    return;
+  }
 	ctx = canvas.getContext('2d');
 	var imageString = "Moirail.png"
 	addImageTag(imageString)
@@ -899,6 +905,9 @@ function drawDiamond(canvas){
 }
 
 function drawHeart(canvas){
+  if(checkSimMode() == true){
+    return;
+  }
 	ctx = canvas.getContext('2d');
 	var imageString = "Matesprit.png"
 	addImageTag(imageString)
@@ -909,6 +918,9 @@ function drawHeart(canvas){
 }
 
 function drawClub(canvas){
+  if(checkSimMode() == true){
+    return;
+  }
 	ctx = canvas.getContext('2d');
 	var imageString = "Auspisticism.png"
 	addImageTag(imageString)
@@ -919,6 +931,9 @@ function drawClub(canvas){
 }
 
 function drawSpade(canvas){
+  if(checkSimMode() == true){
+    return;
+  }
 	ctx = canvas.getContext('2d');
 	var imageString = "Kismesis.png"
 	addImageTag(imageString)
