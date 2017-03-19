@@ -152,6 +152,7 @@ function scratchConfirm(){
 //not erasing the players, after all.
 //or could have an afterlife where they meet guardian players???
 function scratch(){
+	available_scenes = scenes;  //was forgetting to reset this, so scratched players had less to do.
 	timeTillReckoning = getRandomInt(10,30);
 	frogStatus = 0;
 	kingStrength = 100; //can use this to extrapolate enemy strength.
