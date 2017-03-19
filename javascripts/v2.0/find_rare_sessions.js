@@ -387,7 +387,7 @@ function printStats(){
 	str += "<Br>Times Queen Rejected Ring: " + timesQueenRejectRing+ " (" + Math.round((timesQueenRejectRing/sessionsSimulated.length)*100) + "%)";;
 	str += "<Br>Times Doomed Timelines: " + timesSavedDoomedTimeLine+ " (" + Math.round((timesSavedDoomedTimeLine/sessionsSimulated.length)*100) + "%)";;
 	str += "<Br>Times Interesting Doomed Timelines: " + timesInterestingSaveDoomedTimeLine+ " (" + Math.round((timesInterestingSaveDoomedTimeLine/sessionsSimulated.length)*100) + "%)";;
-	str += "<Br>Times Fought Democracy Side Quest Activated: " + timesDemocracyStart+ " (" + Math.round((timesDemocracyStart/sessionsSimulated.length)*100) + "%)";;
+	str += "<Br>Times Democracy Side Quest Activated: " + timesDemocracyStart+ " (" + Math.round((timesDemocracyStart/sessionsSimulated.length)*100) + "%)";;
 	$("#stats").append(str);
 }
 
