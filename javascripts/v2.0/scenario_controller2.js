@@ -339,6 +339,7 @@ function session413(){
 
 function session413IndexToHuman(player,index){
 	if(index == 0){
+		player.bloodColor = "#ff0000"
 		player.class_name = "Heir"
 		player.godDestiny = true;
 		player.aspect = "Breath"
@@ -354,6 +355,7 @@ function session413IndexToHuman(player,index){
 		player.quirk.lettersToReplaceIgnoreCase = [["lol","hehehe"]];
 		player.land = "Land of Wind and Shade"
 	}else if(index == 1){
+		player.bloodColor = "#ff0000"
 		player.godDestiny = true;
 		player.class_name = "Seer"
 		player.land = "Land of Light and Rain"
@@ -371,6 +373,7 @@ function session413IndexToHuman(player,index){
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
 	}else if(index == 2){
+		player.bloodColor = "#ff0000"
 		player.class_name = "Knight"
 		player.land = "Land of Heat and Clockwork"
 		player.aspect = "Time"
@@ -388,6 +391,7 @@ function session413IndexToHuman(player,index){
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
 	}else if(index == 3){
+		player.bloodColor = "#ff0000"
 		player.class_name = "Witch"
 		player.land = "Land of Frost and Frogs"
 		player.aspect = "Space"
@@ -406,6 +410,7 @@ function session413IndexToHuman(player,index){
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
 	}else if(index == 4){
+		player.bloodColor = "#ff0000"
 		player.class_name = "Maid"
 		player.godDestiny = true;
 		player.aspect = "Life"
@@ -423,6 +428,7 @@ function session413IndexToHuman(player,index){
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
 	}else if(index == 5){
+		player.bloodColor = "#ff0000"
 		player.class_name = "Rogue"
 		player.land = "Land of Pyramids and Neon"
 		player.aspect = "Void"
@@ -440,6 +446,7 @@ function session413IndexToHuman(player,index){
 		player.quirk.prefix = ""
 		player.kernel_sprite = "Troll"
 	}else if(index == 6){
+		player.bloodColor = "#ff0000"
 		player.class_name = "Prince"
 		player.land = "Land of Tombs and Krypton"
 		player.aspect = "Heart"
@@ -458,6 +465,7 @@ function session413IndexToHuman(player,index){
 		player.quirk.prefix = ""
 
 	}else if(index == 7){
+		player.bloodColor = "#ff0000"
 		player.class_name = "Page"
 		player.land = "Land of Mounds and Xenon"
 		player.aspect = "Hope"
