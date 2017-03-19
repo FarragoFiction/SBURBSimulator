@@ -252,7 +252,7 @@ function summarizeSession(scratchAvailable){
 	}
 	sessionsSimulated.push(initial_seed);
 	$("#story").html("");
-	var str = "<Br><hr>Session: " + initial_seed + " scenes: " + scenesTriggered.length;
+	var str = "<Br><hr>Session: " + initial_seed + " scenes: " + scenesTriggered.length + " Leader: " + getLeader(players).title() ;
 	if(scratchAvailable){
 		str += "<b>&nbsp&nbsp&nbsp&nbspScratch Available</b>"
 	}
