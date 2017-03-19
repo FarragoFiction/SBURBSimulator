@@ -830,7 +830,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.interest2 = "Leadership"
 		player.chatHandle = "carcinoGeneticist"
 		player.quirk.suffix = ""
-		player.quirk..prefix = ""
+		player.quirk.prefix = ""
 	}else if(index == 1){
 		player.land = "Land of Thought and Flow"
 		player.aspect = "Mind"
@@ -847,8 +847,8 @@ function session612IndexToTrollAncestor(player, index){
 		player.interest1 = "Justice"
 		player.interest2 = "Video Games"
 		player.chatHandle = "gallowsCalibrator"
-		player.quirk..suffix = ""
-		player.quirk..prefix = ""
+		player.quirk.suffix = ""
+		player.quirk.prefix = ""
 	}else if(index == 2){
 		player.land = "Land of Mirth and Tents"
 		player.aspect = "Rage"
