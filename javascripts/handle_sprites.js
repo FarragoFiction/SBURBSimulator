@@ -1471,9 +1471,7 @@ function playerToSpriteOld(player){
 }
 
 function getBufferCanvas(canvas){
-  if(checkSimMode(canvas)){
-    return;
-  }
+
 	var tmp_canvas = document.createElement('canvas');
 	tmp_canvas.height = canvas.height;
 	tmp_canvas.width = canvas.width;
@@ -1481,18 +1479,12 @@ function getBufferCanvas(canvas){
 }
 
 function copyTmpCanvasToRealCanvasAtPos(canvas, tmp_canvas, x, y){
-  if(checkSimMode() == true){
-    return;
-  }
 	ctx = canvas.getContext('2d');
 	ctx.drawImage(tmp_canvas, x, y);
 }
 
 
 function copyTmpCanvasToRealCanvas(canvas, tmp_canvas){
-  if(checkSimMode() == true){
-    return;
-  }
 	ctx = canvas.getContext('2d');
 	ctx.drawImage(tmp_canvas, 0, 0);
 }
