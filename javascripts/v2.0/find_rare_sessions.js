@@ -30,7 +30,16 @@ var sessionType = Math.seededRandom(); //human, troll or mixed.
 //main canvas is either Leader + PesterChumWindow + 1 or more Players (in chat or group chat with leader)
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
+
 	//these bitches are SHAREABLE.
+	if(getParameterByName("seed")){
+		Math.seed = getParameterByName("seed");
+		initial_seed = getParameterByName("seed");
+	}else{
+		var tmp = getRandomSeed();
+		Math.seed = tmp;
+		initial_seed = tmp;
+	}
 	 initRandomness();
   init();
 	randomizeEntryOrder();
@@ -221,7 +230,7 @@ function summarizeSession(scratchAvailable){
 	str += summarizeScene(scenesTriggered, "JackRampage")
 	str += summarizeScene(scenesTriggered, "KingPowerful")
 	str += summarizeScene(scenesTriggered, "QueenRejectRing")
-	str += summarizeScene(scenesTriggered, "SaveDoomedTimeLine")
+	str += summarizeScene(scenesTriggered, "SaveDoomedTimeLine") + doomedTimelineReasons;
 	str += summarizeScene(scenesTriggered, "StartDemocracy")
 	debug(str);
 }
