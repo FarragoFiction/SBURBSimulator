@@ -252,7 +252,7 @@ function summarizeSession(scratchAvailable){
 	}
 	sessionsSimulated.push(initial_seed);
 	$("#story").html("");
-	var str = "<Br><hr>Session: " + initial_seed + " scenes: " + scenesTriggered.length + " Leader: (if this doesn't match, either player gen is wrong, or randomize session is wrong.) " + getLeader(players).title() ;
+	var str = "<Br><hr>Session: " + initial_seed + " scenes: " + scenesTriggered.length + " Leader:  " + getLeader(players).title() ;
 	if(scratchAvailable){
 		str += "<b>&nbsp&nbsp&nbsp&nbspScratch Available</b>"
 	}
@@ -342,6 +342,7 @@ function summarizeSession(scratchAvailable){
 	}else{
 		//var tmp = getRandomSeed();
 		//Math.seed = tmp;
+		doomedTimelineReasons = []
 		initial_seed = Math.seed; //does this break predictable randomness?
 		//initial_seed = tmp;
 		initRandomness();

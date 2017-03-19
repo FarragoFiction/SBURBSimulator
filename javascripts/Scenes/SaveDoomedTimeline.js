@@ -8,9 +8,11 @@ function SaveDoomedTimeLine(){
 		this.leaderPlayer = getLeader(players);
 		this.playerList = playerList;
 		if(this.timePlayer.dead){  //a dead time player can't prevent shit.
+			console.log("time player is dead, not triggering")
+			console.log(this.timePlayer);
 			return false;
 		}
-
+		console.log("time player is not dead,  triggering")
 		return (this.ectoDoom() || this.playerDoom() || this.randomDoom());
 	}
 
