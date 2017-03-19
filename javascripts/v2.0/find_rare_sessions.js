@@ -232,7 +232,16 @@ function summarizeSession(scratchAvailable){
 	str += summarizeScene(scenesTriggered, "QueenRejectRing")
 	str += summarizeScene(scenesTriggered, "SaveDoomedTimeLine") + doomedTimelineReasons;
 	str += summarizeScene(scenesTriggered, "StartDemocracy")
+	checkDoomedTimelines();
 	debug(str);
+}
+
+function checkDoomedTimelines(){
+	for(var i= 0; i<doomedTimelineReasons.length; i ++){
+		if(doomedTimelineReasons[i] != "Random."){
+			alert("found an interesting doomed timeline" + doomedTimelineReasons[i])
+		}
+	}
 }
 
 
