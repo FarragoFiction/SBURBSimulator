@@ -42,7 +42,7 @@ function rainbowSwap(canvas){
 		  //would some sort of fractal look better here?
 		  img_data.data[i] = (i*canvas.width)%255;
 		  img_data.data[i+1] =(i*canvas.width)/255;
-		  img_data.data[i+2] = i%255;
+		  img_data.data[i+2] = (i*canvas.height)%255;
 		  img_data.data[i+3] = 255;
 		}
 	}
