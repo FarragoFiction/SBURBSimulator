@@ -86,20 +86,7 @@ function getSessionType(){
 }
 
 function renderScratchButton(){
-	//alert("scratch [possible]");
-	//can't scratch if it was a a total party wipe. just a regular doomed timeline.
-	var living = findLivingPlayers(players);
-	if(living.length > 0){
-		var timePlayer = findAspectPlayer(players, "Time");
-		if(!scratched){
-			//this is apparently spoilery.
-			//alert(living.length  + " living players and the " + timePlayer.land + " makes a scratch available!");
-			var html = '<img src="images/Scratch.png" onclick="scratchConfirm()"><br>Click To Scratch Session?';
-			$("#story").append(html);
-		}else{
-			$("#story").append("<br>This session is already scratched. No further scratches available.");
-		}
-	}
+	summarizeSession(true);
 }
 
 function scratchConfirm(){
@@ -218,14 +205,24 @@ function summarizeScene(scenesTriggered, str){
 	return "<br>&nbsp&nbsp&nbsp&nbsp" +str + " : " + findSceneNamed(scenesTriggered,str)
 }
 
-function summarizeSession(){
+function summarizeSession(scratchAvailable){
 	$("#story").html("");
 	var str = "Session: " + initial_seed + " scenes: " + scenesTriggered.length;
+	if(scratchAvailable){
+		str += "<b>&nbsp&nbsp&nbsp&nbspScratch Available</b>"
+	}
 	str += summarizeScene(scenesTriggered, "DoEctobiology")
 	str += summarizeScene(scenesTriggered, "FaceDenizen")
 	str += summarizeScene(scenesTriggered, "ExileJack")
 	str += summarizeScene(scenesTriggered, "ExileQueen")
 	str += summarizeScene(scenesTriggered, "GiveJackBullshitWeapon")
+	str += summarizeScene(scenesTriggered, "JackBeginScheming")
+	str += summarizeScene(scenesTriggered, "JackPromotion")
+	str += summarizeScene(scenesTriggered, "JackRampage")
+	str += summarizeScene(scenesTriggered, "KingPowerful")
+	str += summarizeScene(scenesTriggered, "QueenRejectRing")
+	str += summarizeScene(scenesTriggered, "SaveDoomedTimeLine")
+	str += summarizeScene(scenesTriggered, "StartDemocracy")
 	debug(str);
 }
 
