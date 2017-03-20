@@ -1,6 +1,6 @@
 var players = [];
 //looking for rare sessions or doing moon prophecies. not rendering.
-var simulationMode = false;
+var simulationMode = true;
 var guardians = [];
 var frogStatus = 0;
 var kingStrength = 100; //can use this to extrapolate enemy strength.

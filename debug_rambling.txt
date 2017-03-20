@@ -143,5 +143,12 @@ Also, now I need to go make sure anywhere i'm using type() is saved_type unless 
 
 Fuck. Fuck. It's still happening though, even though i found an obvious use of random seeds.
 
+Oh god, I just realized that before when i was rendering empty buffers, I thought it was right that it was still pirouetting.
+that's wrong. damng. 
+
+Wait. no, that's actually right. the rendered version is wrong. acrobatic piroutte is right because it's when less seeds.
+
+compare both versions.
+
 
 

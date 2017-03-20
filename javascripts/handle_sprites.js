@@ -548,10 +548,10 @@ function writeLevels(canvas, player){
 }
 
 function drawRelationshipChat(canvas, player1, player2, chat, repeatTime){
-  /*		
+  	
   if(checkSimMode() == true){
     return;
-  }*/
+  }
 	var canvasSpriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
 	ctx = canvasSpriteBuffer.getContext('2d');
 	var imageString = "pesterchum.png"
