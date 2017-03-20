@@ -46,7 +46,8 @@ function reinit(){
 	available_classes = classes.slice(0);
 	available_aspects = nonrequired_aspects.slice(0); //required_aspects
 	available_aspects = available_aspects.concat(required_aspects.slice(0));
-	curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);  //was forgetting to reset this, so scratched players had less to do.
+	curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);
+	curSessionGlobalVar.doomedTimeline = false;
 }
 
 
@@ -207,6 +208,7 @@ function tick(){
 }
 
 function reckoning(){
+	//console.log('reckoning')
 	var s = new Reckoning(curSessionGlobalVar);
 	s.trigger(curSessionGlobalVar.players)
 	s.renderContent(curSessionGlobalVar.newScene());
