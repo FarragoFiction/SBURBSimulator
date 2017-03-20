@@ -75,6 +75,7 @@ function SaveDoomedTimeLine(){
 					doomedTimelineReasons.push(this.reason)
 					ret += " They need to do the ectobiology right freaking now, or none of the players will ever even be born.";
 			}else{
+				this.reason = "Shenanigans"
 				doomedTimelineReasons.push(this.reason)
 				ret += " It's too complicated to explain, but everyone has already screwed up beyond repair. Just trust them. ";
 			}

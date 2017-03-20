@@ -420,7 +420,7 @@ function printStats(){
 function checkDoomedTimelines(){
 	for(var i= 0; i<doomedTimelineReasons.length; i ++){
 		timesSavedDoomedTimeLine ++;
-		if(doomedTimelineReasons[i] != "Random."){
+		if(doomedTimelineReasons[i] != "Shenanigans."){
 			//alert("found an interesting doomed timeline" + doomedTimelineReasons[i])
 			timesInterestingSaveDoomedTimeLine ++;
 			return;
