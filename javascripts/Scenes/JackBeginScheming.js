@@ -206,11 +206,11 @@ function JackBeginScheming(session){
 		}
 		this.friend.increasePower();
 		removeFromArray(this.friend, this.session.availablePlayers);
-		available_scenes.unshift( new PrepareToExileQueen(session));  //make it top priority, so unshift, don't push
-		available_scenes.unshift( new PlanToExileJack(session));  //make it top priority, so unshift, don't push
-		available_scenes.unshift( new ExileQueen(session));  //make it top priority, so unshift, don't push
+		this.session.available_scenes.unshift( new PrepareToExileQueen(session));  //make it top priority, so unshift, don't push
+		this.session.available_scenes.unshift( new PlanToExileJack(session));  //make it top priority, so unshift, don't push
+		this.session.available_scenes.unshift( new ExileQueen(session));  //make it top priority, so unshift, don't push
 		var player1 = this.friend;
-		var player2 = getLeader(findLivingPlayers(players));
+		var player2 = getLeader(findLivingPlayers(this.session.players));
 		if(player2 && player2 != player1){
 			//player tells leader what happened.
 			this.chatWithFriend(div,player1, player2)

@@ -30,13 +30,13 @@ function prepareToExileJack(session){
 		this.player = null;
 		this.playerList = playerList;
 		this.findSufficientPlayer(this.session.availablePlayers);
-		return (this.player != null) && (jackStrength > 0 && jackStrength < 300); //if he's too strong, he'll just show you his stabs. give up
+		return (this.player != null) && (	this.session.jackStrength > 0 && 	this.session.jackStrength < 300); //if he's too strong, he'll just show you his stabs. give up
 	}
 	
 	this.spyContent = function(){
 		var ret = "The " + this.player.htmlTitle() + " performs a daring spy mission,";
-		if(this.player.power > kingStrength/100){
-			jackStrength += -10;
+		if(this.player.power > 	this.session.kingStrength/100){
+			this.session.jackStrength += -10;
 			ret += " gaining valuable intel to use against Jack Noir. ";
 		}else{
 			ret += " but hilariously bungles it. ";
@@ -46,8 +46,8 @@ function prepareToExileJack(session){
 	
 	this.assasinationContent = function(){
 		var ret = "The " + this.player.htmlTitle() + " performs a daring assasination mission against one of Jack Noir's minions,";
-		if(this.player.power > kingStrength/100){
-			jackStrength += -15;
+		if(this.player.power > this.session.kingStrength/100){
+			this.session.jackStrength += -15;
 			ret += " losing him a valuable ally. ";
 		}else{
 			ret += " but hilariously bungles it. ";
@@ -57,7 +57,7 @@ function prepareToExileJack(session){
 	
 	this.harrassContent = function(){
 		var ret = "The " + this.player.htmlTitle() + " makes a general nuisance of themselves to Jack Noir, but in a deniable way. ";
-		jackStrength += -5;
+		this.session.jackStrength += -5;
 		return ret;
 	}
 	

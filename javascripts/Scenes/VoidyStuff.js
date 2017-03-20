@@ -44,9 +44,9 @@ function VoidyStuff(session){
 			this.player.landLevel ++;
 			ret += " Their consorts seem pretty happy, though. " ;
 		}else{
-			queenStrength += -5;
-			jackStrength += -5;
-			kingStrength += -5;
+			this.session.queenStrength += -5;
+			this.session.jackStrength += -5;
+			this.session.kingStrength += -5;
 			ret += " The Dersites sure seem to be mad at them, though. ";
 		}
 		

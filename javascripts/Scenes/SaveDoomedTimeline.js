@@ -31,7 +31,7 @@ function SaveDoomedTimeLine(session){
 	}
 
 	this.ectoDoom = function(){
-		if(this.leaderIsFucked() && !ectoBiologyStarted){
+		if(this.leaderIsFucked() && !this.session.ectoBiologyStarted){
 			this.reason = "Leader killed before ectobiology."
 			return true; //paradox, the babies never get made.
 		}
@@ -70,7 +70,7 @@ function SaveDoomedTimeLine(session){
 			this.leaderPlayer.dead = false;
 			this.session.doomedTimelineReasons.push(this.reason)
 		}else{
-			if(this.timePlayer.leader && !ectoBiologyStarted ){
+			if(this.timePlayer.leader && !this.session.ectoBiologyStarted ){
 					this.session.ectoBiologyStarted = true;
 					this.reason = "Time player didn't do ectobiology."
 					session.doomedTimelineReasons.push(this.reason)

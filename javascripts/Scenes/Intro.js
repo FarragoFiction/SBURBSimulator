@@ -523,9 +523,10 @@ function Intro(session){
 		}
 
 		if(this.player.dead==true){
+			console.log(session.session_id + " dead player enters, " +this.player.title())
 			narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably."
 			div.append(narration);
-			availablePlayers.push(this.player);
+			this.session.availablePlayers.push(this.player);
 			return;
 		}
 

@@ -159,17 +159,17 @@ function PlanToExileJack(session){
 		}
 		this.planner.increasePower();
 		removeFromArray(this.planner, this.session.availablePlayers);
-		available_scenes.unshift( new prepareToExileJack());
-		available_scenes.unshift( new ExileJack());
-		available_scenes.unshift( new ExileQueen());  //make it top priority, so unshift, don't push
+		this.session.available_scenes.unshift( new prepareToExileJack(this.session));
+		this.session.available_scenes.unshift( new ExileJack(this.session));
+		this.session.available_scenes.unshift( new ExileQueen(this.session));  //make it top priority, so unshift, don't push
 		var player1 = this.planner;
-		var player2 = getLeader(findLivingPlayers(players));
+		var player2 = getLeader(findLivingPlayers(	this.session.players));
 		if(player2 && player2 != player1){
 			//player tells leader what happened.
 			this.chatWithFriend(div,player1, player2)
 		}else if(player2 == player1){
 			//leader gossips with friends
-			player2 = player1.getBestFriendFromList(findLivingPlayers(players));
+			player2 = player1.getBestFriendFromList(findLivingPlayers(	this.session.players));
 			if(!player2){
 				return div.append(this.content);
 			}else{
@@ -185,7 +185,7 @@ function PlanToExileJack(session){
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		this.findSympatheticPlayer();
-		return this.planner != null && jackStrength != 0 && queenStrength != 0; 
+		return this.planner != null && 	this.session.jackStrength != 0 && 	this.session.queenStrength != 0; 
 	}
 
 	this.content = function(){
@@ -194,8 +194,8 @@ function PlanToExileJack(session){
 		}
 		this.planner.increasePower();
 		removeFromArray(this.planner, this.session.availablePlayers);
-		available_scenes.unshift( new prepareToExileJack());
-		available_scenes.unshift( new ExileJack());
+		this.session.available_scenes.unshift( new prepareToExileJack(this.session));
+		this.session.available_scenes.unshift( new ExileJack(this.session));
 		var ret = " The " + this.planner.htmlTitle() + " is getting a bad feeling about Jack Noir. "
 		ret += " Even though he is their ally, he has stabbed players on multiple occasions, for example. ";
 		ret += "There's only so many 'accidents' a single Desite can reasonably have. ";

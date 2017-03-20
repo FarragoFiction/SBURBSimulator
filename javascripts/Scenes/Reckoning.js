@@ -50,7 +50,7 @@ function Reckoning(session){
 			intro += living.length + " players will fight the Dersite Royalty and try to prove themselves worthy of the Ultimate Reward. ";
 		}else{
 			intro += " <br><br>No one is alive. <BR><BR>Game Over. ";
-			var strongest = findStrongestPlayer(players)
+			var strongest = findStrongestPlayer(this.session.players)
 			intro += "The MVP of the session was: " + strongest.htmlTitle() + " with a power of: " + strongest.power;
 		}
 		intro += "<br><br>";
