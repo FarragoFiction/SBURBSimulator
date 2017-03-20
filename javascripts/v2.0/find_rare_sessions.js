@@ -46,6 +46,7 @@ window.onload = function() {
 	//these bitches are SHAREABLE.
 	debug ("don't forget to confirm refactor index.html and index2.html")
 	debug("most sessions fail according to canon.")
+	debug("log how often total party wipe happens")
 	debug("heart/spade close scenes just like clubs/diamonds")
 	if(getParameterByName("seed")){
 		Math.seed = getParameterByName("seed");
