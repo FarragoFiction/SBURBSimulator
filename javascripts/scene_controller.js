@@ -98,12 +98,12 @@ function processScenes2(playerList,session){
 
 //playerlist is everybody in the medium
 //might not be all players in the begining.
-function processReckoning2(playerList){
+function processReckoning2(playerList,session){
 	var ret = "";
 	for(var i = 0; i<session.reckoningScenes.length; i++){
 		var s = session.reckoningScenes[i];
 		if(s.trigger(playerList)){
-			scenesTriggered.push(s);
+			session.scenesTriggered.push(s);
 			s.renderContent(session.newScene());
 		}
 	}
@@ -111,7 +111,7 @@ function processReckoning2(playerList){
 	for(var i = 0; i<session.deathScenes.length; i++){
 		var s = session.deathScenes[i];
 		if(s.trigger(playerList)){
-			scenesTriggered.push(s);
+			session.scenesTriggered.push(s);
 			s.renderContent(session.newScene());
 		}
 	}

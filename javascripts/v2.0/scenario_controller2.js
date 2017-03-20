@@ -1,29 +1,12 @@
-var players = [];
-var guardians = [];
-//looking for rare sessions or doing moon prophecies. not rendering.
 var simulationMode = false;
-var frogStatus = 0;
-var kingStrength = 100; //can use this to extrapolate enemy strength.
-var queenStrength = 100;
-var jackStrength = 50;
-var hardStrength = 275;  //what consititutes a  'hard' game.
-var democracyStrength = 0;
-var queenUncrowned = false;  //if she loses her ring, she doesn't get stronger with further prototypes
-var reckoningStarted = false; //can't god tier if you are definitely on skaia.
-var ectoBiologyStarted = false;
-var doomedTimeline = false;
-var scratched = false;
 var debugMode = false;
-var introScene;
-var currentSceneNum = 0;
 var spriteWidth = 400;
 var spriteHeight = 300;
 var canvasWidth = 1000;
 var canvasHeight = 300;
-var repeatTime = 500;
-var version2 = true;
-var timeTillReckoning = 0; //these will be wrong if seed is set
-var sessionType = -413; //human, troll or mixed.
+var repeatTime = 5;
+var version2 = true; //even though idon't want  to render content, 2.0 is different from 1.0 (think of dialog that triggers)
+
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.
 //should there be only one canvas?  Can have player sprites be written to a virtual canvas first, then copied to main one.
@@ -40,22 +23,16 @@ window.onload = function() {
 		initial_seed = tmp;
 	}
 
-	initRandomness();
 	shareableURL();
-
-    init();
-
-	if(!debugMode){
-		randomizeEntryOrder();
-	}
 
 
 	//easter egg ^_^
+	debug("TODO re-add easter eggs after refactor")
+	/*  
 	if(getParameterByName("royalRumble")  == "true"){
 		debugRoyalRumble();
 	}
 	//authorMessage();
-	makeGuardians(); //after entry order established
 	//i cannot resist
 	if(initial_seed == 413){
 		session413();
@@ -66,8 +43,9 @@ window.onload = function() {
 	}else if(initial_seed == 33){
 		session33();
 	}
-	checkSGRUB();
-	load(players, guardians); //in loading.js
+	
+	*/
+	startSession();
 
 	//intro();  //~~~~~~LOADING SCRIPT WILL CALL THIS~~~~~~~~~
 
@@ -83,10 +61,28 @@ window.onload = function() {
 	//debugCorpseSmooch();
 }
 
-function initRandomness(){
-	timeTillReckoning = getRandomInt(10,30);
-    sessionType = Math.seededRandom(); //human, troll or mixed.
+function reinit(){
+	available_classes = classes.slice(0);
+	available_aspects = nonrequired_aspects.slice(0); //required_aspects
+	available_aspects = available_aspects.concat(required_aspects.slice(0));
+	curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);  //was forgetting to reset this, so scratched players had less to do.
 }
+
+
+function startSession(){
+	curSessionGlobalVar = new Session(initial_seed)
+	createScenesForSession(curSessionGlobalVar);
+	reinit();
+	//initPlayersRandomness();
+	curSessionGlobalVar.makePlayers();
+	curSessionGlobalVar.randomizeEntryOrder();
+	//authorMessage();
+	curSessionGlobalVar.makeGuardians(); //after entry order established
+	checkSGRUB();
+
+	load(curSessionGlobalVar.players, curSessionGlobalVar.guardians); //in loading.js
+}
+
 
 
 function getParameterByName(name, url) {
@@ -107,16 +103,17 @@ function shareableURL(){
 }
 
 function checkSGRUB(){
-	for(var i = 0; i<players.length; i++){
-		if(players[i].isTroll == false){
+	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+		if(curSessionGlobalVar.players[i].isTroll == false){
 			return;
 		}
 	}
 	//can only get here if all are trolls.
 	$(document).attr("title", "SGRUB Story Generator 2.0 by jadedResearcher");
 	$("#heading").html("SGRUB Story Generator 2.0 by jadedResearcher (art assistance by karmicRetribution) ");
-
 }
+
+
 function getSessionType(){
 	if(sessionType > .6){
 		return "Human"
@@ -129,10 +126,10 @@ function getSessionType(){
 function renderScratchButton(){
 	//alert("scratch [possible]");
 	//can't scratch if it was a a total party wipe. just a regular doomed timeline.
-	var living = findLivingPlayers(players);
+	var living = findLivingPlayers(curSessionGlobalVar.players);
 	if(living.length > 0){
-		var timePlayer = findAspectPlayer(players, "Time");
-		if(!scratched){
+		var timePlayer = findAspectPlayer(curSessionGlobalVar.players, "Time");
+		if(!curSessionGlobalVar.scratched){
 			//this is apparently spoilery.
 			//alert(living.length  + " living players and the " + timePlayer.land + " makes a scratch available!");
 			var html = '<img src="images/Scratch.png" onclick="scratchConfirm()"><br>Click To Scratch Session?';
@@ -154,27 +151,15 @@ function scratchConfirm(){
 //not erasing the players, after all.
 //or could have an afterlife where they meet guardian players???
 function scratch(){
-	available_scenes = scenes;  //was forgetting to reset this, so scratched players had less to do.
-	timeTillReckoning = getRandomInt(10,30);
-	frogStatus = 0;
-	kingStrength = 100; //can use this to extrapolate enemy strength.
-	queenStrength = 100;
-	jackStrength = 50;
-	hardStrength = 250;  //what consititutes a  'hard' game.
-	democracyStrength = 0;
-	queenUncrowned = false;  //if she loses her ring, she doesn't get stronger with further prototypes
-	reckoningStarted = false; //can't god tier if you are definitely on skaia.
-	//ectobiology not reset. if performed in previous session, it's done.
-	//if not, it's not. like how the alpha session trolls didn't perform ectobiology, so Karkat did.
-	doomedTimeline = false;
-	scratched = true;
-	var scratch = "The session has been scratched. The " + getPlayersTitlesBasic(players) + " will now be the beloved guardians.";
-	scratch += " Their former guardians, the " + getPlayersTitlesBasic(guardians) + " will now be the players.";
+	reinit();
+	curSessionGlobalVar.scratched = true;
+	var scratch = "The session has been scratched. The " + getPlayersTitlesBasic(curSessionGlobalVar.players) + " will now be the beloved guardians.";
+	scratch += " Their former guardians, the " + getPlayersTitlesBasic(curSessionGlobalVar.guardians) + " will now be the players.";
 	scratch += " The new players will be given stat boosts to give them a better chance than the previous generation."
 	scratch += " What will happen?"
-	var tmp = players;
-	players = guardians;
-	guardians = tmp;
+	var tmp = curSessionGlobalVar.players;
+	curSessionGlobalVar.players = guardians;
+	curSessionGlobalVar.guardians = tmp;
 	$("#story").html(scratch);
 	window.scrollTo(0, 0);
 
@@ -189,7 +174,7 @@ function scratch(){
 
 	guardianDiv.append(canvasHTML);
 	var canvasDiv = document.getElementById("canvas"+ guardianID);
-	poseAsATeam(canvasDiv, guardians, 2000); //everybody, even corpses, pose as a team.
+	poseAsATeam(canvasDiv, curSessionGlobalVar.guardians, 2000); //everybody, even corpses, pose as a team.
 
 
 	var playerDiv = newScene();
@@ -202,18 +187,18 @@ function scratch(){
 
 	playerDiv.append(canvasHTML);
 	var canvasDiv = document.getElementById("canvas"+ playerID);
-	poseAsATeam(canvasDiv, players, 2000); //everybody, even corpses, pose as a team.
+	poseAsATeam(canvasDiv, curSessionGlobalVar.players, 2000); //everybody, even corpses, pose as a team.
 
 	intro();
+
 
 }
 
 function tick(){
-	//console.log(timeTillReckoning)
-	if(timeTillReckoning > 0 && !doomedTimeline){
+	if(curSessionGlobalVar.timeTillReckoning > 0 && !curSessionGlobalVar.doomedTimeline){
 		setTimeout(function(){
-			timeTillReckoning += -1;
-			processScenes2(players);
+			curSessionGlobalVar.timeTillReckoning += -1;
+			processScenes2(curSessionGlobalVar.players,curSessionGlobalVar);
 			tick();
 		},repeatTime); //or availablePlayers.length * *1000?
 	}else{
@@ -223,28 +208,29 @@ function tick(){
 }
 
 function reckoning(){
-	var s = new Reckoning();
-	s.trigger(players)
-	s.renderContent(newScene());
-	if(!doomedTimeline){
+	var s = new Reckoning(curSessionGlobalVar);
+	s.trigger(curSessionGlobalVar.players)
+	s.renderContent(curSessionGlobalVar.newScene());
+	if(!curSessionGlobalVar.doomedTimeline){
 		reckoningTick();
 	}
 }
 
 function reckoningTick(){
-	if(timeTillReckoning > -10){
+	if(curSessionGlobalVar.timeTillReckoning > -10){
 		setTimeout(function(){
-			timeTillReckoning += -1;
-			processReckoning2(players)
+			curSessionGlobalVar.timeTillReckoning += -1;
+			processReckoning2(curSessionGlobalVar.players,curSessionGlobalVar)
 			reckoningTick();
 		},repeatTime);
 	}else{
-		var s = new Aftermath();
-		s.trigger(players)
-		s.renderContent(newScene());
+		var s = new Aftermath(curSessionGlobalVar);
+		s.trigger(curSessionGlobalVar.players)
+		s.renderContent(curSessionGlobalVar.newScene());
 	}
 
 }
+
 
 
 
@@ -257,32 +243,27 @@ function chatLine(start, player, line){
   }
 }
 
-function newScene(){
-	currentSceneNum ++;
-	var div = "<div id='scene"+currentSceneNum+"'></div>";
-	$("#story").append(div);
-	return $("#scene"+currentSceneNum);
-}
 
 function authorMessage(){
 	makeAuthorAvatar();
-	introScene = new AuthorMessage();
+	introScene = new AuthorMessage(curSessionGlobalVar);
 	introScene.trigger(players, players[0])
 	introScene.renderContent(newScene(),0); //new scenes take care of displaying on their own.
 }
 
+
 function callNextIntroWithDelay(player_index){
-	if(player_index >= players.length){
-    tick();//NOW start ticking
+	if(player_index >= curSessionGlobalVar.players.length){
+		tick();//NOW start ticking
 		return;
 	}
 	setTimeout(function(){
-		var s = new Intro();
-		var p = players[player_index];
-		var playersInMedium = players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.
+		var s = new Intro(curSessionGlobalVar);
+		var p = curSessionGlobalVar.players[player_index];
+		var playersInMedium = curSessionGlobalVar.players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.
 		s.trigger(playersInMedium, p)
-		s.renderContent(newScene(),player_index); //new scenes take care of displaying on their own.
-		processScenes2(playersInMedium);
+		s.renderContent(curSessionGlobalVar.newScene(),player_index); //new scenes take care of displaying on their own.
+		processScenes2(playersInMedium,curSessionGlobalVar);
 		player_index += 1;
 		callNextIntroWithDelay(player_index)
 	},  repeatTime);  //want all players to be done with their setTimeOuts players.length*1000+2000
@@ -290,26 +271,9 @@ function callNextIntroWithDelay(player_index){
 
 
 function intro(){
-  //delay is needed here because this is when images are first loaded.
 	callNextIntroWithDelay(0);
-  /* //
-	introScene = new Intro();
-
-	for(var i = 0; i<players.length; i++){
-		var playersInMedium = players.slice(0, i+1); //anybody past me isn't in the medium, yet.
-		var p = players[i];
-		introScene.trigger(players, p)
-		//$("#story").append(introScene.content());
-		introScene.renderContent(newScene(),i); //new scenes take care of displaying on their own.
-		processScenes2(playersInMedium);
-	}*/
-
 }
 
-function randomizeEntryOrder(){
-	players = shuffle(players);
-	players[0].leader = true;
-}
 
 function session413(){
 	for(var i = 0; i<8;i++){
@@ -1154,98 +1118,5 @@ function makeAuthorAvatar(){
 	players[0].mylevels = ["INSTEAD","a CORPSE JUST RENDERS HERE","STILL CAN LEVEL UP.","OH, AND CORPSES.","SAME LEVELS","BUT STILL HAVE","IMAGE","THEY GET A DIFFERENT","BEFORE MAXING OUT","IF THEY GODTIER","AND GO UP THE LADDER","LEVELS NOW","16 PREDETERMINED","HAVE","PLAYERS","I FINISHED ECHELADDERS."];
 }
 
-function decideHemoCaste(player){
-	if(player.aspect != "Blood"){  //sorry karkat
-		player.bloodColor = getRandomElementFromArray(bloodColors);
-	}
-}
 
-function decideLusus(player){
-	if(player.bloodColor == "#610061" || player.bloodColor == "#99004d" || players.bloodColor == "#631db4" ){
-		player.lusus = getRandomElementFromArray(seaLususTypes);
-	}else{
-		player.lusus = getRandomElementFromArray(landlususTypes);
-	}
-}
 
-function decideTroll(player){
-	if(getSessionType() == "Human"){
-		return;
-	}
-
-	if(getSessionType() == "Troll" || (getSessionType() == "Mixed" &&Math.seededRandom() > 0.5) ){
-		player.isTroll = true;
-		player.triggerLevel ++;//trolls are less stable
-		decideHemoCaste(player);
-		decideLusus(player);
-		player.kernel_sprite = player.lusus;
-	}
-}
-//species, hair and blood color is the same, horns and favorite number. aspect.  Thats it.
-//when scratch, get rid of story dif. make blank. scratch has to be button press.
-function makeGuardians(){
-	//console.log("Making guardians")
-	available_classes = classes.slice(0);
-	available_aspects = nonrequired_aspects.slice(0); //required_aspects
-	available_aspects = available_aspects.concat(required_aspects.slice(0));
-	for(var i = 0; i<players.length; i++){
-		  var player = players[i];
-			//console.log("guardian for " + player.titleBasic());
-			var guardian = randomPlayer();
-			guardian.isTroll = player.isTroll;
-			if(guardian.isTroll){
-				guardian.quirk = randomTrollSim(guardian)
-			}else{
-				guardian.quirk = randomHumanSim(guardian);
-			}
-			guardian.quirk.favoriteNumber = player.quirk.favoriteNumber;
-			guardian.bloodColor = player.bloodColor;
-			guardian.lusus = player.lusus;
-			if(guardian.isTroll == true){ //trolls always use lusus.
-				guardian.kernel_sprite = player.kernel_sprite;
-			}
-			guardian.hairColor = player.hairColor;
-			guardian.aspect = player.aspect;
-			guardian.leftHorn = player.leftHorn;
-			guardian.rightHorn = player.rightHorn;
-			guardian.level_index = 5; //scratched kids start more leveled up
-			guardian.power = 50;
-			guardian.leader = player.leader;
-			if(Math.seededRandom() >0.5){ //have SOMETHING in common with your ectorelative.
-				guardian.interest1 = player.interest1;
-			}else{
-				guardian.interest2 = player.interest2;
-			}
-			guardian.reinit();//redo levels and land based on real aspect
-			guardians.push(guardian);
-	}
-
-	for(var j = 0; j<guardians.length; j++){
-		var g = guardians[j];
-		g.generateRelationships(guardians);
-	}
-}
-
-function init(){
-	available_classes = classes.slice(0); //re-init available classes.
-	available_aspects = nonrequired_aspects.slice(0);
-	var numPlayers = getRandomInt(2,12);
-	players.push(randomSpacePlayer());
-	players.push(randomTimePlayer());
-
-	for(var i = 2; i<numPlayers; i++){
-		players.push(randomPlayer());
-	}
-
-	for(var j = 0; j<players.length; j++){
-		var p = players[j];
-		decideTroll(p);
-		p.generateRelationships(players);
-		if(p.isTroll){
-			p.quirk = randomTrollSim(p)
-		}else{
-			p.quirk = randomHumanSim(p);
-		}
-	}
-
-}

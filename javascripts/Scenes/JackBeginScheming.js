@@ -205,7 +205,7 @@ function JackBeginScheming(session){
 			return;
 		}
 		this.friend.increasePower();
-		removeFromArray(this.friend, availablePlayers);
+		removeFromArray(this.friend, this.session.availablePlayers);
 		available_scenes.unshift( new PrepareToExileQueen(session));  //make it top priority, so unshift, don't push
 		available_scenes.unshift( new PlanToExileJack(session));  //make it top priority, so unshift, don't push
 		available_scenes.unshift( new ExileQueen(session));  //make it top priority, so unshift, don't push

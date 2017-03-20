@@ -1,8 +1,6 @@
 //looking for rare sessions or doing moon prophecies. not rendering.
 var simulationMode = true;
 var debugMode = false;
-var introScene;
-var currentSceneNum = 0;
 var spriteWidth = 400;
 var spriteHeight = 300;
 var canvasWidth = 1000;
@@ -73,7 +71,7 @@ function startSession(){
 	if(simulationMode == true){
 		intro();
 	}else{
-		load(players, guardians); //in loading.js
+		load(curSessionGlobalVar.players, curSessionGlobalVar.guardians); //in loading.js
 	}
 }
 
@@ -105,14 +103,6 @@ function checkSGRUB(){
 	$(document).attr("title", "SGRUB Story Generator 2.0 by jadedResearcher");
 	$("#heading").html("SGRUB Story Generator 2.0 by jadedResearcher (art assistance by karmicRetribution) ");
 
-}
-function getSessionType(){
-	if(sessionType > .6){
-		return "Human"
-	}else if(sessionType > .3){
-		return "Troll"
-	}
-	return "Mixed"
 }
 
 function renderScratchButton(){
@@ -203,15 +193,15 @@ function reckoning(){
 }
 
 function reckoningTick(){
-	if(timeTillReckoning > -10){
+	if(curSessionGlobalVar.timeTillReckoning > -10){
 		setTimeout(function(){
-			timeTillReckoning += -1;
+			curSessionGlobalVar.timeTillReckoning += -1;
 			processReckoning2(curSessionGlobalVar.players,curSessionGlobalVar)
 			reckoningTick();
 		},repeatTime);
 	}else{
 		var s = new Aftermath(curSessionGlobalVar);
-		s.trigger(players)
+		s.trigger(curSessionGlobalVar.players)
 		s.renderContent(curSessionGlobalVar.newScene());
 		summarizeSession();
 	}
@@ -348,20 +338,7 @@ function callNextIntroWithDelay(player_index){
 
 
 function intro(){
-  //delay is needed here because this is when images are first loaded.
 	callNextIntroWithDelay(0);
-  /* //
-	introScene = new Intro();
-
-	for(var i = 0; i<players.length; i++){
-		var playersInMedium = players.slice(0, i+1); //anybody past me isn't in the medium, yet.
-		var p = players[i];
-		introScene.trigger(players, p)
-		//$("#story").append(introScene.content());
-		introScene.renderContent(newScene(),i); //new scenes take care of displaying on their own.
-		processScenes2(playersInMedium);
-	}*/
-
 }
 
 

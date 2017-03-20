@@ -10,15 +10,15 @@ function Aftermath(session){
 
 	this.democracyBonus = function(){
 		var ret = "";
-		if(democracyStrength == 0){
+		if(this.session.democracyStrength == 0){
 			return ret;
 		}
-		if(democracyStrength > 10 && findLivingPlayers(players).length > 0 ){
+		if(this.session.democracyStrength > 10 && findLivingPlayers(this.session.players).length > 0 ){
 			ret += "The adorable Warweary Villein has been duly elected Mayor by the assembeled consorts and Carpacians. "
 			ret += " His acceptance speech consists of promising to be a really great mayor that everyone loves who is totally amazing and heroic and brave. "
 			ret += " He organizes the consort and Carpacians' immigration to the new Universe. ";
 		}else{
-			if(findLivingPlayers(players).length > 0){
+			if(this.session.findLivingPlayers(this.session.players).length > 0){
 				ret += " The Warweary Villein feels the sting of defeat. Although he helped the Players win their session, the cost was too great.";
 				ret += " There can be no democracy in a nation with only one citizen left alive. ";
 				ret += " He becomes the Wayward Vagabond, and exiles himself to the remains of the Players old world, rather than follow them to the new one.";
@@ -31,8 +31,8 @@ function Aftermath(session){
 	}
 
 	this.mournDead = function(div){
-		var dead = findDeadPlayers(players);
-		var living = findLivingPlayers(players);
+		var dead = findDeadPlayers(this.session.players);
+		var living = findLivingPlayers(this.session.players);
 		if(dead.length == 0){
 			return "";
 		}
@@ -82,9 +82,9 @@ function Aftermath(session){
 
 
 	this.renderContent = function(div){
-		var living = findLivingPlayers(players);
+		var living = findLivingPlayers(this.session.players);
 		var end = "<Br>";
-		if(living.length == players.length){
+		if(living.length == this.session.players.length){
 			end += " All "
 		}
 		end += living.length + " players are alive.<BR>" ;
@@ -92,7 +92,7 @@ function Aftermath(session){
 			div.append(end);//write text, render mourning
 			end = "<Br>";
 			this.mournDead(div);
-			var spacePlayer = findAspectPlayer(players, "Space");
+			var spacePlayer = findAspectPlayer(this.session.players, "Space");
 			if(spacePlayer.landLevel >= 6){
 				end += "<br> Luckily, the " + spacePlayer.htmlTitle() + " was diligent in frog breeding duties. ";
 				if(spacePlayer.landLevel < 8){
@@ -126,21 +126,21 @@ function Aftermath(session){
 		end += this.democracyBonus();
 		end += " <br>The players have failed. No new universe is created. Their home universe is left unfertilized. <Br><Br>Game Over. ";
 	}
-	var strongest = findStrongestPlayer(players)
+	var strongest = findStrongestPlayer(this.session.players)
 	end += "<br> The MVP of the session was: " + strongest.htmlTitle() + " with a power of: " + strongest.power;
 	end += "<br>Thanks for Playing!<br>"
 	div.append(end);
 	var divID = (div.attr("id")) + "_aftermath" ;
 
 	var ch = canvasHeight;
-	if(players.length > 6){
+	if(this.session.players.length > 6){
 		ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
 	}
 	var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
 
 	div.append(canvasHTML);
 	var canvasDiv = document.getElementById("canvas"+ divID);
-	poseAsATeam(canvasDiv, players, 2000); //everybody, even corpses, pose as a team.
+	poseAsATeam(canvasDiv, this.session.players, 2000); //everybody, even corpses, pose as a team.
 
 	}
 
