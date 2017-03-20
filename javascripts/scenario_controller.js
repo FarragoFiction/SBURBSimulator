@@ -5,7 +5,7 @@ var simulationMode = false;
 var debugMode = false;
 
 window.onload = function() {
-	debug("Be Patient, refactoring this code to match 2.0")
+	//debug("Be Patient, refactoring this code to match 2.0")
 	startSession();
 	/*
     init();
