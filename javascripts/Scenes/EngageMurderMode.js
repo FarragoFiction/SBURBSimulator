@@ -126,7 +126,7 @@ function EngageMurderMode(session){
 
 	//make them hate someone else more.
 	this.redirectConvo = function(div, player1, player2){
-		var livePlayers = findLivingPlayers(players);
+		var livePlayers = findLivingPlayers(this.session.players);
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = player1.getRelationshipWith(player2);
@@ -230,7 +230,7 @@ function EngageMurderMode(session){
 
 	this.chat = function(div){
 		var repeatTime = 1000;
-		var livePlayers = findLivingPlayers(players);
+		var livePlayers = findLivingPlayers(this.session.players);
 		var player1 = this.player;
 		var player2 = player1.getWorstEnemyFromList(livePlayers);
 		if(player2 == null || player2.dead == true){

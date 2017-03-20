@@ -14,7 +14,7 @@ function Reckoning(session){
 		var leader = getLeader(this.session.players);
 		if(this.session.ectoBiologyStarted){
 			intro += " Remember those random baby versions of the players the " + leader.htmlTitleBasic() + " made? " ;
-			if(scratched){
+			if(this.session.scratched){
 				intro += "Wait... DID they make the babies? Or, was it their guardian, the " + getLeader(guardians).htmlTitleBasic() +"? Scratched sessions are so confusing...";
 			}
 			intro += " Yeah, that didn't stop being a thing that was true. ";
@@ -36,7 +36,7 @@ function Reckoning(session){
 				intro += ", despite all the doomed time clone shenanigans, ";
 			}
 			intro += "was not on the ball with timeline management. Nothing you can do about it. <Br><Br>GAME OVER.";
-			doomedTimeline = true;
+			this.session.doomedTimeline = true;
 			intro += "<br><br>";
 			$("#story").append(intro);
 			renderScratchButton();

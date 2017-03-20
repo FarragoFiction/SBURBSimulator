@@ -36,7 +36,7 @@ function DoEctobiology(session){
 	}
 
 	this.content = function(){
-		ectoBiologyStarted = true;
+		this.session.ectoBiologyStarted = true;
 		var ret = " Through a series of wacky, yet inevitable in hindsight, coincidences, the " + this.leader.htmlTitle();
 		ret += " finds themselves in the veil of meteors surrounding the Medium. ";
 		ret +=  " A button is pushed, and suddenly there are little tiny baby version of " + getPlayersTitlesBasic(this.session.players);

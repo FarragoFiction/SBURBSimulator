@@ -60,7 +60,7 @@ function SaveDoomedTimeLine(session){
 			ret += " If the " + this.leaderPlayer.htmlTitleBasic() + " dies right now, ";
 			ret += " none of the Players will even be born in the first place (Long story, just trust them). ";
 			ret += " They make it so that never happened. Forget about it. ";
-			doomedTimelineReasons.push(this.reason)
+			this.session.doomedTimelineReasons.push(this.reason)
 			this.leaderPlayer.dead = false;
 		}else if(this.reason == "Leader killed before all players in medium."){
 			ret += " If the " + this.leaderPlayer.htmlTitleBasic() + " dies right now, ";
@@ -68,16 +68,16 @@ function SaveDoomedTimeLine(session){
 			ret += " after all, the " + this.leaderPlayer.htmlTitleBasic() + " is their server player. ";
 			ret += " They make it so that never happened. Forget about it. ";
 			this.leaderPlayer.dead = false;
-			doomedTimelineReasons.push(this.reason)
+			this.session.doomedTimelineReasons.push(this.reason)
 		}else{
 			if(this.timePlayer.leader && !ectoBiologyStarted ){
-					ectoBiologyStarted = true;
+					this.session.ectoBiologyStarted = true;
 					this.reason = "Time player didn't do ectobiology."
-					doomedTimelineReasons.push(this.reason)
+					session.doomedTimelineReasons.push(this.reason)
 					ret += " They need to do the ectobiology right freaking now, or none of the players will ever even be born.";
 			}else{
 				this.reason = "Shenanigans"
-				doomedTimelineReasons.push(this.reason)
+				session.doomedTimelineReasons.push(this.reason)
 				ret += " It's too complicated to explain, but everyone has already screwed up beyond repair. Just trust them. ";
 			}
 		}

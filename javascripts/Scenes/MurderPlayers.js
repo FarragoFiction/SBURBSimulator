@@ -132,7 +132,7 @@ function MurderPlayers(session){
 		for(var i = 0; i<this.murderers.length; i++){
 			var m = this.murderers[i];
 			var worstEnemy = m.getWorstEnemyFromList(this.session.availablePlayers);
-			var living = findLivingPlayers(players)
+			var living = findLivingPlayers(this.session.players)
 			removeFromArray(worstEnemy, living)
 			var ausp = getRandomElementFromArray(living)
 			if(ausp == worstEnemy || ausp == m){

@@ -87,7 +87,7 @@ function processScenes2(playerList,session){
 	for(var i = 0; i<session.deathScenes.length; i++){
 		var s = session.deathScenes[i];
 		if(s.trigger(playerList)){
-			scenesTriggered.push(s);
+			session.scenesTriggered.push(s);
 			s.renderContent(session.newScene());
 		}
 	}

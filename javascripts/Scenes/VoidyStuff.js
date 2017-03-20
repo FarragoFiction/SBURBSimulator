@@ -56,7 +56,7 @@ function VoidyStuff(session){
 			ret += " What was that dark blue light on " + this.player.shortLand() + "? ";
 		}
 		if(this.player.leader && !ectoBiologyStarted && Math.seededRandom() > .8){
-			ectoBiologyStarted = true;
+			this.session.ectoBiologyStarted = true;
 			ret += " Wait. Are those BABIES!? What is even going on here?";
 		}
 		

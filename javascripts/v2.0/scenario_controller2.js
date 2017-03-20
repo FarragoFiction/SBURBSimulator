@@ -195,6 +195,7 @@ function scratch(){
 }
 
 function tick(){
+	//console.log("Tick: " + curSessionGlobalVar.timeTillReckoning)
 	if(curSessionGlobalVar.timeTillReckoning > 0 && !curSessionGlobalVar.doomedTimeline){
 		setTimeout(function(){
 			curSessionGlobalVar.timeTillReckoning += -1;
@@ -217,6 +218,7 @@ function reckoning(){
 }
 
 function reckoningTick(){
+	//console.log("Reckoning Tick: " + curSessionGlobalVar.timeTillReckoning)
 	if(curSessionGlobalVar.timeTillReckoning > -10){
 		setTimeout(function(){
 			curSessionGlobalVar.timeTillReckoning += -1;
