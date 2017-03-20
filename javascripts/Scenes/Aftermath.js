@@ -93,13 +93,13 @@ function Aftermath(session){
 			end = "<Br>";
 			this.mournDead(div);
 			var spacePlayer = findAspectPlayer(this.session.players, "Space");
-			if(spacePlayer.landLevel >= 18){
+			if(spacePlayer.landLevel >= this.session.minFrogLevel){
 				end += "<br> Luckily, the " + spacePlayer.htmlTitle() + " was diligent in frog breeding duties. ";
 				if(spacePlayer.landLevel < 28){
 					end += " The frog looks... a little sick or something, though... That probably won't matter. You're sure of it. ";
 				}
 				end += " The frog is deployed, and grows to massive proportions, and lets out a breath taking Vast Croak.  ";
-				if(spacePlayer.landLevel < 28){
+				if(spacePlayer.landLevel < this.session.goodFrogLevel){
 					end += " The door to the new universe is revealed.  As the leader reaches for it, a disaster strikes.   ";
 					end += " Apparently the new universe's sickness manifested as its version of SBURB interfering with yours. ";
 					end += " Your way into the new universe is barred, and you remain trapped in the medium.  <Br><br>Game Over.";
@@ -112,7 +112,7 @@ function Aftermath(session){
 				}
 			}else{
 				end += "<br>Unfortunately, the " + spacePlayer.htmlTitle() + " was unable to complete frog breeding duties. ";
-				end += " They only got " + (spacePlayer.landLevel/10*100) + "% of the way through. ";
+				end += " They only got " + Math.round(spacePlayer.landLevel/this.session.minFrogLevel*100) + "% of the way through. ";
 				end += " Who knew that such a pointless mini-game was actually crucial to the ending? ";
 				end += " No universe frog, no new universe to live in. Thems the breaks. ";
 				end += " If it's any consolation, it really does suck to fight so hard only to fail at the last minute. <Br><Br>Game Over.";

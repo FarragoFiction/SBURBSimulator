@@ -8,6 +8,8 @@ function Session(session_id){
 	this.queenStrength = 100;
 	this.jackStrength = 50;
 	this.hardStrength = 275;
+	this.minFrogLevel = 18;
+	this.goodFrogLevel = 28;
 	this.democracyStrength = 0;
 	this.reckoningStarted = false;
 	this.ectoBiologyStarted = false;
@@ -233,8 +235,8 @@ function Session(session_id){
 		var spacePlayer = findAspectPlayer(this.players, "Space");
 		var result = "No Frog"
 
-		if(spacePlayer.landLevel >= 18){
-			if(spacePlayer.landLevel < 28){
+		if(spacePlayer.landLevel >= this.minFrogLevel){
+			if(spacePlayer.landLevel < this.goodFrogLevel){
 				timesSickFrog ++;
 				result = "Sick Frog"
 
