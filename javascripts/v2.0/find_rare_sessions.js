@@ -40,6 +40,9 @@ var timesSavedDoomedTimeLine = 0;
 var timesInterestingSaveDoomedTimeLine = 0;
 var timesDemocracyStart = 0;
 var timesScratchesAvailable =0;
+var timesSickFrog = 0;
+var timesNoFrog  = 0;
+var timesFullFrog = 0;
 
 var numSimulationsDone = 0;
 var numSimulationsToDo = 10;
@@ -50,13 +53,9 @@ var numSimulationsToDo = 10;
 //main canvas is either Leader + PesterChumWindow + 1 or more Players (in chat or group chat with leader)
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
-		debug("Problem. First session is perfect, subsequent sessions are not. Wait, no, sometimes first isn't perfect either???  225266971  is murdermode if simulationMode = false, but grimdark (and sometimes murdermode) if simulationMode = true.  why?")
 	//these bitches are SHAREABLE.
-	  debug("Hypothesis, does loading or rendering use up a seed? YES: Found rainbowSwap consuming seeds. And that definitely changed the sim. but not perfect yet.")
-    debug("Oh god, it's worse than that. When simulationMode == true, use 4434 seeds.  When simulationMode == false, use 1430")
-		debug("try never rendering but allowing loading. sim false, rendering off: 4550 sim true, rendering off: 4550. so rendering is the problem, not loading.")
-		debug("simulation true, rendering 4550. simulation false, rendering 4434");
-		debug("heart/spade close scenes just like clubs/diamonds")
+	
+	debug("heart/spade close scenes just like clubs/diamonds")
 	if(getParameterByName("seed")){
 		Math.seed = getParameterByName("seed");
 		initial_seed = getParameterByName("seed");
@@ -260,7 +259,7 @@ function summarizeSession(scratchAvailable){
 	sessionsSimulated.push(initial_seed);
 	$("#story").html("");
 	var strongest = findStrongestPlayer(players)
-	var str = "<Br><hr>Session: " + initial_seed + " scenes: " + scenesTriggered.length + " Leader:  " + getLeader(players).title() + "MVP: " + strongest.htmlTitle()+ " with a power of: " + strongest.power;;
+	var str = "<Br><hr>Session: " + initial_seed + " scenes: " + scenesTriggered.length + " Leader:  " + getLeader(players).title() + " MVP: " + strongest.htmlTitle()+ " with a power of: " + strongest.power;;
 	if(scratchAvailable){
 		str += "<b>&nbsp&nbsp&nbsp&nbspScratch Available</b>"
 	}
@@ -338,6 +337,19 @@ function summarizeSession(scratchAvailable){
 		timesDemocracyStart ++;
 	}
 	str += tmp;
+	
+	var spacePlayer = findAspectPlayer(players, "Space");
+	var result = "No Frog"
+	if(spacePlayer.landLevel < 8){
+		result = "Full Frog"
+		timesFullFrog ++;
+	}else if(spacePlayer.landLevel >= 6){
+		result = "Sick Frog"
+		timesSickFrog ++;
+	}else{
+		timesNoFrog ++;
+	}
+	str += "<br>&nbsp&nbsp&nbsp&nbspFrog Breeding: " + result
 
 	checkDoomedTimelines();
 	debug(str);
@@ -383,6 +395,9 @@ var timesDemocracyStart = 0;*/
 function printStats(){
 	var str = "<br>Number Sessions: " + sessionsSimulated.length;
 	//timesScratchesAvailable
+	str+= "<Br>Times Frogs Full: " + timesFullFrog+ " (" + Math.round((timesFullFrog/sessionsSimulated.length)*100) + "%)";;
+	str += "<Br>Times Frogs Sick: " + timesSickFrog+ " (" + Math.round((timesSickFrog/sessionsSimulated.length)*100) + "%)";;
+	str += "<br>Times No Frog: " + timesNoFrog+ " (" + Math.round((timesNoFrog/sessionsSimulated.length)*100) + "%)";;
 	str += "<Br>Times Scratches Available: " + timesScratchesAvailable + " (" + Math.round((timesScratchesAvailable/sessionsSimulated.length)*100) + "%)";
 	str += "<Br>Times Ectobiology: " + timesEcto + " (" + Math.round((timesEcto/sessionsSimulated.length)*100) + "%)";
 	str += "<Br>Times Fought Denizen (at least once): " + timesDenizen + " (" + Math.round((timesDenizen/sessionsSimulated.length)*100) + "%)";;
