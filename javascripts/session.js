@@ -236,10 +236,11 @@ function Session(session_id){
 		if(spacePlayer.landLevel >= 6){
 			if(spacePlayer.landLevel < 8){
 				timesSickFrog ++;
+				result = "Sick Frog"
 				
 			}else{
 				timesFullFrog ++;
-				result = "Sick Frog"
+				result = "Full Frog"
 			}
 		}else{
 			timesNoFrog ++;
