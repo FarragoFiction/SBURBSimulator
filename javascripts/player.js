@@ -209,7 +209,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 				ret = true;
 			}
 			//extra likely if you just killed the king/queen, you hero you.
-			if(kingStrength <=0 && Math.seededRandom()>.2){
+			if(curSessionGlobalVar.kingStrength <=0 && Math.seededRandom()>.2){
 				ret = true;
 			}
 		}

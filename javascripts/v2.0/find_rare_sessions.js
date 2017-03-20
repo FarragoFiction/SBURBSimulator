@@ -35,7 +35,7 @@ var timesMurderMode = 0;
 var totalFrogLevel = 0;
 
 var numSimulationsDone = 0;
-var numSimulationsToDo = 50;
+var numSimulationsToDo = 9;
 
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.
@@ -44,7 +44,7 @@ var numSimulationsToDo = 50;
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
 	//these bitches are SHAREABLE.
-	debug("refactoring, adding a session object");
+	debug("why are players dead before entering a session, but ONLY on repeats?");
 	debug ("don't forget to refactor index.html and index2.html")
 	debug("heart/spade close scenes just like clubs/diamonds")
 	if(getParameterByName("seed")){
@@ -224,16 +224,18 @@ function summarizeSession(scratchAvailable){
 	debug(str);
 
 	numSimulationsDone ++;
-	if(numSimulationsDone > numSimulationsToDo){
+	if(numSimulationsDone >= numSimulationsToDo){
 		printStats();
 		alert("should be done")
 		return;
 	}else{
-		//var tmp = getRandomSeed();
-		//Math.seed = tmp;
-		//doomedTimelineReasons = []
-		initial_seed = Math.seed; //does this break predictable randomness?
-		startSession();
+		setTimeout(function(){
+			//var tmp = getRandomSeed();
+			//Math.seed = tmp;
+			//doomedTimelineReasons = []
+			initial_seed = Math.seed; //does this break predictable randomness?
+			startSession();
+		},repeatTime*2); //since ticks are on time out, one might hit right as this is called, don't want that, cause causes players to be dead or godtier at start of next session
 	}
 }
 
