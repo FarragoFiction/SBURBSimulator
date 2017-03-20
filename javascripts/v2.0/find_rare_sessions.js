@@ -35,7 +35,7 @@ var timesMurderMode = 0;
 var totalFrogLevel = 0;
 
 var numSimulationsDone = 0;
-var numSimulationsToDo = 9;
+var numSimulationsToDo = 50;
 
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.
@@ -214,11 +214,11 @@ function reckoningTick(){
 function summarizeSession(scratchAvailable){
 	//don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
 	if(sessionsSimulated.indexOf(initial_seed) != -1){
-		console.log("skipping a repeat session: " + initial_seed)
+		//console.log("skipping a repeat session: " + initial_seed)
 		return;
 	}
 	sessionsSimulated.push(initial_seed);
-	//$("#story").html("");
+	$("#story").html("");
 	var str = curSessionGlobalVar.summarize(scratchAvailable);
 	checkDoomedTimelines();
 	debug(str);
