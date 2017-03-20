@@ -22,8 +22,8 @@ var canvasWidth = 1000;
 var canvasHeight = 300;
 var repeatTime = 5;
 var version2 = true; //even though idon't want  to render content, 2.0 is different from 1.0 (think of dialog that triggers)
-var timeTillReckoning = getRandomInt(10,30); //these will be wrong if seed is set
-var sessionType = Math.seededRandom(); //human, troll or mixed.
+var timeTillReckoning = 0; //these will be wrong if seed is set
+var sessionType = -413; //human, troll or mixed.
 
 var sessionsSimulated = []
 var timesEcto = 0;
@@ -442,7 +442,7 @@ function authorMessage(){
 
 function callNextIntroWithDelay(player_index){
 	if(player_index >= players.length){
-    tick();//NOW start ticking
+		tick();//NOW start ticking
 		return;
 	}
 	setTimeout(function(){

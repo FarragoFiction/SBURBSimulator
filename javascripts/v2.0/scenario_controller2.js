@@ -22,8 +22,8 @@ var canvasWidth = 1000;
 var canvasHeight = 300;
 var repeatTime = 500;
 var version2 = true;
-var timeTillReckoning = getRandomInt(10,30); //these will be wrong if seed is set
-var sessionType = Math.seededRandom(); //human, troll or mixed.
+var timeTillReckoning = 0; //these will be wrong if seed is set
+var sessionType = -413; //human, troll or mixed.
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.
 //should there be only one canvas?  Can have player sprites be written to a virtual canvas first, then copied to main one.

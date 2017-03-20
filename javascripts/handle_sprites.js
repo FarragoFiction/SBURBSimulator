@@ -548,9 +548,10 @@ function writeLevels(canvas, player){
 }
 
 function drawRelationshipChat(canvas, player1, player2, chat, repeatTime){
+  /*		
   if(checkSimMode() == true){
     return;
-  }
+  }*/
 	var canvasSpriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
 	ctx = canvasSpriteBuffer.getContext('2d');
 	var imageString = "pesterchum.png"
@@ -574,20 +575,21 @@ function drawRelationshipChat(canvas, player1, player2, chat, repeatTime){
 
 	//heart or spades (moirallegence doesn't get confessed, it's more actiony)  spades is trolls only
 
-
+	
 	var r1 = player1.getRelationshipWith(player2);
 	var r2 = player2.getRelationshipWith(player1);
 	var r1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 	var r2SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-	if(r1.type() == r1.goodBig){
+	
+	if(r1.saved_type == r1.goodBig){
 		drawHeart(r1SpriteBuffer)
-	}else if(r1.type() == r1.badBig && player1.isTroll == true){
+	}else if(r1.saved_type == r1.badBig && player1.isTroll == true){
 		drawSpade(r1SpriteBuffer)
 	}
 
-	if(r2.type() == r2.goodBig){
+	if(r2.saved_type == r2.goodBig){
 		drawHeart(r2SpriteBuffer)
-	}else if(r2.type() == r2.badBig && player2.isTroll == true){
+	}else if(r2.saved_type == r2.badBig && player2.isTroll == true){
 		drawSpade(r2SpriteBuffer)
 	}
 
@@ -1471,9 +1473,7 @@ function playerToSpriteOld(player){
 }
 
 function getBufferCanvas(canvas){
-  if(checkSimMode(canvas)){
-    return;
-  }
+
 	var tmp_canvas = document.createElement('canvas');
 	tmp_canvas.height = canvas.height;
 	tmp_canvas.width = canvas.width;
@@ -1481,18 +1481,14 @@ function getBufferCanvas(canvas){
 }
 
 function copyTmpCanvasToRealCanvasAtPos(canvas, tmp_canvas, x, y){
-  if(checkSimMode() == true){
-    return;
-  }
+
 	ctx = canvas.getContext('2d');
 	ctx.drawImage(tmp_canvas, x, y);
 }
 
 
 function copyTmpCanvasToRealCanvas(canvas, tmp_canvas){
-  if(checkSimMode() == true){
-    return;
-  }
+
 	ctx = canvas.getContext('2d');
 	ctx.drawImage(tmp_canvas, 0, 0);
 }
