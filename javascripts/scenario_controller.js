@@ -6,6 +6,7 @@ var debugMode = false;
 
 window.onload = function() {
 	debug("Be Patient, refactoring this code to match 2.0")
+	startSession();
 	/*
     init();
 	//exileQueenInit();
@@ -49,13 +50,52 @@ window.onload = function() {
 };
 
 
+function reinit(){
+	available_classes = classes.slice(0);
+	available_aspects = nonrequired_aspects.slice(0); //required_aspects
+	available_aspects = available_aspects.concat(required_aspects.slice(0));
+	curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);  //was forgetting to reset this, so scratched players had less to do.
+}
+
+
+function startSession(){
+	curSessionGlobalVar = new Session(initial_seed)
+	createScenesForSession(curSessionGlobalVar);
+	reinit();
+	//initPlayersRandomness();
+	curSessionGlobalVar.makePlayers();
+	curSessionGlobalVar.randomizeEntryOrder();
+	//authorMessage();
+	//curSessionGlobalVar.makeGuardians(); //after entry order established
+	introducePlayers();
+	
+	for(var i = 0; i<getRandomInt(10,30); i++){
+  		if(!doomedTimeline){ //TODO (if it's a doomed timeline, figure out why and prevent it (did leader permadie without ectobiology happening or last player entering?)
+  			tick();
+  		}
+  	}
+
+  	introduceReckoning();
+  	curSessionGlobalVar.reckoningStarted = true;
+  	//all reckonings are the same length???
+  	for(var i = 0; i<10; i++){
+  		if(!curSessionGlobalVar.doomedTimeline){
+  			reckoningTick();
+  		}
+  	}
+
+  	if(!curSessionGlobalVar.doomedTimeline){
+  		conclusion();
+  	}
+	
+}
 
 function tick(){
-	$("#story").append(processScenes(players));
+	$("#story").append(processScenes(players,curSessionGlobalVar));
 }
 
 function reckoningTick(){
-	$("#story").append(processReckoning(players));
+	$("#story").append(processReckoning(players,curSessionGlobalVar));
 }
 
 
@@ -75,7 +115,7 @@ function indexToWords(i){
 
 function introduceReckoning(){
 	var intro = " The reckoning has begun.  The Black King has defeated his Prospitian counterpart, initiating a meteor storm to destroy Skaia. ";
-	var leader = getLeader(players);
+	var leader = getLeader(curSessionGlobalVar.players);
 	if(ectoBiologyStarted){
 		intro += " Remember those random baby versions of the players the " + leader.htmlTitle() + " made? " ;
 		intro += " Yeah, that didn't stop being a thing that was true. ";
@@ -210,9 +250,9 @@ function mournDead(){
 }
 
 function introducePlayers(){
-	for(var i = 0; i<players.length; i++){
-		var p = players[i];
-		var playersInMedium = players.slice(0, i+1); //anybody past me isn't in the medium, yet.
+	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+		var p = curSessionGlobalVar.players[i];
+		var playersInMedium =curSessionGlobalVar. players.slice(0, i+1); //anybody past me isn't in the medium, yet.
 		var intro = "The " + p.htmlTitle() + " enters the game " + indexToWords(i) + ". ";
 		if(i == 0){
 			intro += " They are definitely the leader. ";
@@ -229,14 +269,14 @@ function introducePlayers(){
 				intro += "They are " + r.description() + ". ";
 			}
 		}
-		kingStrength = kingStrength + 20;
-		if(!queenUncrowned && queenStrength > 0){
-			queenStrength = queenStrength + 10;
+		curSessionGlobalVar.kingStrength = curSessionGlobalVar.kingStrength + 20;
+		if(curSessionGlobalVar.queenStrength > 0){
+			curSessionGlobalVar.queenStrength = curSessionGlobalVar.queenStrength + 10;
 		}
 		if(disastor_prototypings.indexOf(p.kernel_sprite) != -1) {
-			kingStrength = kingStrength + 200;
-			if(!queenUncrowned && queenStrength > 0){
-				queenStrength = queenStrength + 100;
+			curSessionGlobalVar.kingStrength = curSessionGlobalVar.kingStrength + 200;
+			if(curSessionGlobalVar.queenStrength > 0){
+				curSessionGlobalVar.queenStrength = curSessionGlobalVar.queenStrength + 100;
 			}
 			intro += " A " + p.kernel_sprite + " fell into their kernel sprite just before entering. ";
 			intro += " It's a good thing none of their actions here will have serious longterm consequences. ";

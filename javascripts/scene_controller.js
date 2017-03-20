@@ -44,12 +44,12 @@ function setAvailablePlayers(playerList,session){
 
 //playerlist is everybody in the medium
 //might not be all players in the begining.
-function processReckoning(playerList){
+function processReckoning(playerList,session){
 	var ret = "";
 	for(var i = 0; i<reckoningScenes.length; i++){
 		var s = reckoningScenes[i];
 		if(s.trigger(playerList)){
-			scenesTriggered.push(s);
+			session.scenesTriggered.push(s);
 			//console.log(s);
 			//console.log("was triggered");
 			ret += s.content() + " <br><br> ";
@@ -126,14 +126,14 @@ function processReckoning2(playerList,session){
 //can't just add an "if 2.0" check, btw.
 //need to have a pause between each scene to give time for rendering.
 //gotta test method in scenario_controller2.js move here, modify
-function processScenes(playerList){
+function processScenes(playerList,session){
 	var ret = "";
-	setAvailablePlayers(playerList);
+	setAvailablePlayers(playerList,session);
 	for(var i = 0; i<available_scenes.length; i++){
 		var s = available_scenes[i];
 		//var debugQueen = queenStrength;
 		if(s.trigger(playerList)){
-			scenesTriggered.push(s);
+			session.scenesTriggered.push(s);
 			//console.log("was triggered");
 			var content = s.content()
 			if(content != ""){
@@ -145,7 +145,7 @@ function processScenes(playerList){
 				//console.log(s);
 			//}
 			if(!s.canRepeat){
-				removeFromArray(s,available_scenes);
+				removeFromArray(s,session.available_scenes);
 			}
 		}
 	}
