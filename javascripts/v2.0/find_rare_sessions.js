@@ -35,7 +35,7 @@ var timesMurderMode = 0;
 var totalFrogLevel = 0;
 
 var numSimulationsDone = 0;
-var numSimulationsToDo = 50;
+var numSimulationsToDo = 2;
 
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.

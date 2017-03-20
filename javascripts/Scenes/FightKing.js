@@ -1,20 +1,20 @@
 function FightKing(session){
 	this.canRepeat = true;
-	this.session = session;	
+	this.session = session;
 	this.playerList = [];  //what players are already in the medium when i trigger?
-	
+
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return (this.session.kingStregth > 0) &&  (queenStrength <= 0) && (findLivingPlayers(this.session.players).length != 0) ;
+		return (this.session.kingstrength > 0) &&  (this.session.queenStrength <= 0) && (findLivingPlayers(this.session.players).length != 0) ;
 	}
-	
+
 	this.killPlayers = function(stabbings){
 		for(var i = 0; i<stabbings.length; i++){
 			stabbings[i].dead = true;
 			stabbings[i].causeOfDeath = "fighting the Black King";
 		}
 	}
-	
+
 	this.levelPlayers = function(stabbings){
 		for(var i = 0; i<stabbings.length; i++){
 			stabbings[i].increasePower();
@@ -24,9 +24,9 @@ function FightKing(session){
 			stabbings.level_index +=2;
 		}
 	}
-	
 
-		
+
+
 this.getGoodGuys = function(){
 		var living = findLivingPlayers(this.session.players);
 		var timePlayer = findAspectPlayer(this.session.players, "Time");
@@ -45,7 +45,7 @@ this.getGoodGuys = function(){
 			}else if(rand>.8){
 				timeClone.murderMode = !timeClone.murderMode;
 			}
-			
+
 			var rand = Math.seededRandom(); //reroll for second set of traits. like grim dark dream self.
 			if(rand>.2){
 				timeClone.godTier = !timeClone.godTier;
@@ -60,7 +60,7 @@ this.getGoodGuys = function(){
 		}
 		return living;
 	}
-	
+
 	//render each living player, each time clone, and some dersites/prospitan rabble (maybe)
 	this.renderGoodguys = function(div){
 		var repeatTime = 1000;
@@ -76,28 +76,28 @@ this.getGoodGuys = function(){
 		var canvasDiv = document.getElementById("canvas"+ divID);
 		poseAsATeam(canvasDiv, fightingPlayers, 2000);
 	}
-	
+
 	this.renderContent = function(div){
 		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
 		div.append("<br>");
 		div.append(this.content());
-		
+
 	}
-	
+
 	this.minorLevelPlayers = function(stabbings){
 		for(var i = 0; i<stabbings.length; i++){
 			stabbings[i].increasePower();
 		}
 	}
-	
 
-	
+
+
 	this.setPlayersUnavailable = function(stabbings){
 		for(var i = 0; i<stabbings.length; i++){
 			removeFromArray(stabbings[i], this.session.availablePlayers);
 		}
 	}
-	
+
 	this.getDeadList = function(living){
 		var numStabbings = getRandomInt(0,living.length);
 		var ret = [];
@@ -109,9 +109,9 @@ this.getGoodGuys = function(){
 		}
 		return Array.from(new Set(ret));
 	}
-	
-	
-	
+
+
+
 	this.content = function(){
 		var badPrototyping = findBadPrototyping(this.playerList);
 		var living = findLivingPlayers(this.session.players);
@@ -119,7 +119,7 @@ this.getGoodGuys = function(){
 		if(badPrototyping){
 			ret += " He is made especially terrifying with the addition of the " + badPrototyping + ". ";
 		}
-		
+
 		this.setPlayersUnavailable(living);
 		var partyPower = getPartyPower(living);
 		var timePlayer = findAspectPlayer(this.session.players, "Time"); //doesn't matter if THEY are alive or dead, they still have doomed time clones.
@@ -128,16 +128,16 @@ this.getGoodGuys = function(){
 			ret += (timePlayer.doomedTimeClones) + " doomed time clones of the " + timePlayer.htmlTitleBasic() + " show up from various points in the timeline to help out. ";
 			partyPower += 100 * (timePlayer.doomedTimeClones);
 		}
-		
+
 		if(democracyStrength > 1){
 			ret += " The Warweary Villein has assembled an army to help the Players. ";
 			partyPower += democracyStrength;
 			democracyStrength += -1 * getRandomInt(0,democracyStrength-1); //how badly is democracy hurt?
 		}
-		
-		if(partyPower > this.session.kingStregth*5){
+
+		if(partyPower > this.session.kingstrength*5){
 			ret += "The Players easily defeat the King, no sweat. It was easy. He is DEAD. ";
-			this.session.kingStregth = 0;
+			this.session.kingstrength = 0;
 			this.levelPlayers(living);
 		}else{
 			var deadPlayers = this.getDeadList(living);
@@ -151,17 +151,17 @@ this.getGoodGuys = function(){
 			living = findLivingPlayers(this.session.players);
 			if(living.length > 0 ){
 				ret += " After the smoke clears, the king is defeated. DEAD.";
-				this.session.kingStregth = 0;
+				this.session.kingstrength = 0;
 				this.levelPlayers(living);
 			}else{
 				ret += " The party is defeated. ";
 			}
 		}
-		
-		if(this.session.kingStregth > 10){
-			this.session.kingStregth += -10;
+
+		if(this.session.kingstrength > 10){
+			this.session.kingstrength += -10;
 		}
 		return ret;
-		
+
 	}
 }
