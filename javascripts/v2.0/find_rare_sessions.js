@@ -42,7 +42,7 @@ var timesDemocracyStart = 0;
 var timesScratchesAvailable =0;
 
 var numSimulationsDone = 0;
-var numSimulationsToDo = 0;
+var numSimulationsToDo = 10;
 
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.
@@ -258,8 +258,9 @@ function summarizeSession(scratchAvailable){
 		return;
 	}
 	sessionsSimulated.push(initial_seed);
-	//$("#story").html("");
-	var str = "<Br><hr>Session: " + initial_seed + " scenes: " + scenesTriggered.length + " Leader:  " + getLeader(players).title() ;
+	$("#story").html("");
+	var strongest = findStrongestPlayer(players)
+	var str = "<Br><hr>Session: " + initial_seed + " scenes: " + scenesTriggered.length + " Leader:  " + getLeader(players).title() + "MVP: " + strongest.htmlTitle()+ " with a power of: " + strongest.power;;
 	if(scratchAvailable){
 		str += "<b>&nbsp&nbsp&nbsp&nbspScratch Available</b>"
 	}

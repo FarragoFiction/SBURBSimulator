@@ -1,4 +1,6 @@
 var asyncNumSprites = 0;
+//~~~~~~~~~~~IMPORTANT~~~~~~~~~~LET NOTHING HERE BE RANDOM
+//OR PREDICTIONS AND TIME LOOPS AND AI SEARCHES WILL BE WRONG
 function trollify(canvas,player){
    //red_array = red_context.getImageData(0, 0, red_canvas.width, red_canvas.height).data;
    //alert("I should trollify");
