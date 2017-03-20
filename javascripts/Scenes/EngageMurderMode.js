@@ -15,7 +15,7 @@ function EngageMurderMode(session){
 				moon = 1;
 			}
 			if(this.player.triggerLevel > 0 &&  !this.player.murderMode && this.player.getEnemies().length > 0){
-				if((Math.seededRandom() * 20) < this.player.triggerLevel+moon){  //easier to go crazy if you SEE all your friends dying already. (in prospit clouds)
+				if((Math.seededRandom() * 10) < this.player.triggerLevel+moon){  //easier to go crazy if you SEE all your friends dying already. (in prospit clouds)
 					return true;
 				}
 			}

@@ -16,11 +16,11 @@ function GoGrimDark(session){
 				moon = 1;
 			}
 			if(this.player.triggerLevel + moon > 0 && !this.player.grimDark){  //easier to grimdark if you have access to horror terrors.
-				if((Math.seededRandom() * 10) < this.player.triggerLevel +moon-12){
+				if((Math.seededRandom() * 10) < this.player.triggerLevel +moon-2){
 					if(this.player.murderMode && Math.seededRandom() < .5) { //slightly less chance of being both
 						return false;
 					}
-					//console.log("Going Grim dark with trigger of: " + this.player.triggerLevel)
+					console.log("Going Grim dark with trigger of: " + this.player.triggerLevel)
 					return true;
 				}
 			}
