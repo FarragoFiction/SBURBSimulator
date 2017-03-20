@@ -20,7 +20,7 @@ function GoGrimDark(session){
 					if(this.player.murderMode && Math.seededRandom() < .5) { //slightly less chance of being both
 						return false;
 					}
-					console.log("Going Grim dark with trigger of: " + this.player.triggerLevel)
+					//console.log("Going Grim dark with trigger of: " + this.player.triggerLevel)
 					return true;
 				}
 			}
