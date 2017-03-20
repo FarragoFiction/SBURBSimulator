@@ -8,7 +8,6 @@ function JackPromotion(){
 	}
 	
 	this.content = function(){
-		console.log("jack prmotion")
 		jackStrength = kingStrength * 2;
 		var ret = " In a shocking turn of events, Jack Noir claims the Black Queen's RING OF ORBS " + this.convertPlayerNumberToWords();
 		ret += "FOLD. "

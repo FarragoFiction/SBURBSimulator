@@ -9,7 +9,7 @@ var jackStrength = 50;
 var hardStrength = 275;  //what consititutes a  'hard' game.
 var democracyStrength = 0;
 var queenUncrowned = false;  //if she loses her ring, she doesn't get stronger with further prototypes
-var reckoningStarted = false; //can't god tier if you are definitely on skaia.
+var reckoningStarted = false; //can't god tier if you are definitPlayersely on skaia.
 var ectoBiologyStarted = false;
 var doomedTimeline = false;
 var scratched = false;
@@ -60,6 +60,9 @@ window.onload = function() {
 	//these bitches are SHAREABLE.
 	debug("jack is rampaging more times than he should get the opportunity to....")
 	debug("dang, the simulation are off again. checked a jack rampage session and it was fine. no rampage.")
+	debug("I'm even finding some sessions that can't agree on who the leader is. what is going on?")
+	debug("maybe problem is what number simulation your are? first sim is always right again. ")
+	debug("what is happening different before initialing players between first sim and second sim? ")
 	debug("some sessions don't end in a catchable way from here, but are fine for real")
 	debug("heart/spade close scenes just like clubs/diamonds")
 	if(getParameterByName("seed")){
@@ -70,8 +73,8 @@ window.onload = function() {
 		Math.seed = tmp;
 		initial_seed = tmp;
 	}
-	initRandomness();
-  init();
+	reinit();
+	initPlayers();
 	randomizeEntryOrder();
 	//authorMessage();
 	makeGuardians(); //after entry order established
@@ -83,9 +86,19 @@ window.onload = function() {
 	}
 }
 
-function initRandomness(){
-	timeTillReckoning = getRandomInt(10,30);
-  sessionType = Math.seededRandom(); //human, troll or mixed.
+function start(){
+	reinit();
+	//initPlayersRandomness();
+	initPlayers();
+	randomizeEntryOrder();
+	//authorMessage();
+	makeGuardians(); //after entry order established
+	//checkSGRUB();
+	if(simulationMode == true){
+		intro();
+	}else{
+		load(players, guardians); //in loading.js
+	}
 }
 
 
@@ -156,11 +169,12 @@ function reinit(){
 	hardStrength = 250;  //what consititutes a  'hard' game.
 	democracyStrength = 0;
 	queenUncrowned = false;  //if she loses her ring, she doesn't get stronger with further prototypes
-	reckoningStarted = false; //can't god tier if you are definitely on skaia.
+	reckoningStarted = false; //can't god tier if you are definitPlayersely on skaia.
 	//ectobiology not reset. if performed in previous session, it's done.
 	//if not, it's not. like how the alpha session trolls didn't perform ectobiology, so Karkat did.
 	doomedTimeline = false;
 	//console.log("scenes after reinit: " + scenesTriggered.length)
+	sessionType = Math.seededRandom();
 }
 
 //TODO if i wanted to, I could have mixed sessions like in canon.
@@ -396,10 +410,12 @@ function summarizeSession(scratchAvailable){
 		//Math.seed = tmp;
 		//doomedTimelineReasons = []
 		initial_seed = Math.seed; //does this break predictable randomness?
+		start();
+		/*
 		//initial_seed = tmp;
-		initRandomness();
+		initPlayersRandomness();
 		reinit();
-		init();
+		initPlayers();
 		randomizeEntryOrder();
 		//authorMessage();
 		makeGuardians(); //after entry order established
@@ -407,6 +423,7 @@ function summarizeSession(scratchAvailable){
 		//load(players, guardians); //in loading.js no graphics
 
 		intro();
+		*/
 
 	}
 }
@@ -462,7 +479,7 @@ function printStats(){
 function checkDoomedTimelines(){
 	for(var i= 0; i<doomedTimelineReasons.length; i ++){
 		timesSavedDoomedTimeLine ++;
-		if(doomedTimelineReasons[i] != "Shenanigans."){
+		if(doomedTimelineReasons[i] != "Shenanigans"){
 			//alert("found an interesting doomed timeline" + doomedTimelineReasons[i])
 			timesInterestingSaveDoomedTimeLine ++;
 			return;
@@ -613,9 +630,9 @@ function makeGuardians(){
 	}
 }
 
-function init(){
+function initPlayers(){
 	players = [];
-	available_classes = classes.slice(0); //re-init available classes.
+	available_classes = classes.slice(0); //re-initPlayers available classes.
 	available_aspects = nonrequired_aspects.slice(0);
 	var numPlayers = getRandomInt(2,12);
 	players.push(randomSpacePlayer());
