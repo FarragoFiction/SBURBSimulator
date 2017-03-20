@@ -1,12 +1,12 @@
 function prepareToExileJack(session){
 	this.session = session;
-	this.canRepeat = true;	
+	this.canRepeat = true;
 	this.playerList = [];  //what players are already in the medium when i trigger?
-	this.player = null; 
-	
+	this.player = null;
+
 	this.findSufficientPlayer = function(){
 		this.player =  findAspectPlayer(this.session.availablePlayers, "Void");
-		
+
 		if(this.player == null){
 			this.player =  findAspectPlayer(this.session.availablePlayers, "Mind");
 		}else if(this.player == null){
@@ -21,46 +21,46 @@ function prepareToExileJack(session){
 			this.player =  findAspectPlayer(this.session.availablePlayers, "Light");
 		}
 	}
-	
+
 	this.renderContent = function(div){
 		div.append("<br>"+this.content());
 	}
-	
+
 	this.trigger = function(playerList){
 		this.player = null;
 		this.playerList = playerList;
 		this.findSufficientPlayer(this.session.availablePlayers);
 		return (this.player != null) && (	this.session.jackStrength > 0 && 	this.session.jackStrength < 300); //if he's too strong, he'll just show you his stabs. give up
 	}
-	
+
 	this.spyContent = function(){
 		var ret = "The " + this.player.htmlTitle() + " performs a daring spy mission,";
 		if(this.player.power > 	this.session.kingStrength/100){
-			this.session.jackStrength += -10;
+			this.session.jackStrength += -5;
 			ret += " gaining valuable intel to use against Jack Noir. ";
 		}else{
 			ret += " but hilariously bungles it. ";
 		}
 		return ret;
 	}
-	
+
 	this.assasinationContent = function(){
 		var ret = "The " + this.player.htmlTitle() + " performs a daring assasination mission against one of Jack Noir's minions,";
 		if(this.player.power > this.session.kingStrength/100){
-			this.session.jackStrength += -15;
+			this.session.jackStrength += -10;
 			ret += " losing him a valuable ally. ";
 		}else{
 			ret += " but hilariously bungles it. ";
 		}
 		return ret;
 	}
-	
+
 	this.harrassContent = function(){
 		var ret = "The " + this.player.htmlTitle() + " makes a general nuisance of themselves to Jack Noir, but in a deniable way. ";
-		this.session.jackStrength += -5;
+		this.session.jackStrength += -2;
 		return ret;
 	}
-	
+
 	this.content = function(){
 		this.player.increasePower();
 		removeFromArray(this.player, this.session.availablePlayers);
