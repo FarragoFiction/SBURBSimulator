@@ -7,7 +7,7 @@
 //blood and page players most likely to get scenes with other people.
 //blood players slightly improve all relationships a friend has when they see them.
 var availablePlayers = [];  //which players are available for scenes or whatever.
-var scenesTriggered = [];
+var scenesTriggered = []; //scenesTriggered
 var doomedTimelineReasons = [];
 
 var scenes = [new StartDemocracy(), new JackBeginScheming(), new KingPowerful(), new QueenRejectRing(), new JackPromotion(), new JackRampage(), new GiveJackBullshitWeapon()];

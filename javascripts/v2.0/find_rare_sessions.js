@@ -29,6 +29,7 @@ var sessionsSimulated = []
 var timesEcto = 0;
 var timesDenizen = 0;
 var timesExileJack = 0;
+var timesPlanExileJack = 0;
 var timesExileQueen = 0;
 var timesJackWeapon = 0;
 var timesJackScheme = 0;
@@ -43,9 +44,12 @@ var timesScratchesAvailable =0;
 var timesSickFrog = 0;
 var timesNoFrog  = 0;
 var timesFullFrog = 0;
+var timesGrimDark = 0;
+var timesMurderMode = 0;
+var totalFrogLevel = 0;
 
 var numSimulationsDone = 0;
-var numSimulationsToDo = 10;
+var numSimulationsToDo = 50;
 
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.
@@ -54,7 +58,8 @@ var numSimulationsToDo = 10;
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
 	//these bitches are SHAREABLE.
-	
+	debug("Maybe my stats are wrong. says 33 grim dark sessions, but only 5 are shown having triggered. Huh. Why are there 2479 scenes triggered? from a single session? should be blanking them out between sessions. just like doomedTimeLineReasons...");
+	debug("some sessions don't end in a catchable way from here, but are fine for real")
 	debug("heart/spade close scenes just like clubs/diamonds")
 	if(getParameterByName("seed")){
 		Math.seed = getParameterByName("seed");
@@ -133,6 +138,7 @@ function scratchConfirm(){
 }
 
 function reinit(){
+	//console.log("scenes before reinit: " + scenesTriggered.length)
 	players = [];
 	guardians = [];
 	scenesTriggered = [];
@@ -153,6 +159,7 @@ function reinit(){
 	//ectobiology not reset. if performed in previous session, it's done.
 	//if not, it's not. like how the alpha session trolls didn't perform ectobiology, so Karkat did.
 	doomedTimeline = false;
+	//console.log("scenes after reinit: " + scenesTriggered.length)
 }
 
 //TODO if i wanted to, I could have mixed sessions like in canon.
@@ -254,6 +261,7 @@ function summarizeScene(scenesTriggered, str){
 function summarizeSession(scratchAvailable){
 	//don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
 	if(sessionsSimulated.indexOf(initial_seed) != -1){
+		console.log("skipping a repeat session: " + initial_seed)
 		return;
 	}
 	sessionsSimulated.push(initial_seed);
@@ -276,6 +284,13 @@ function summarizeSession(scratchAvailable){
 	}
 	str += tmp;
 
+	
+	tmp =  summarizeScene(scenesTriggered, "PlanToExileJack")
+	if(findSceneNamed(scenesTriggered,"PlanToExileJack") != "No"){
+		timesPlanExileJack ++;
+	}
+	str += tmp;
+	
 	tmp =  summarizeScene(scenesTriggered, "ExileJack")
 	if(findSceneNamed(scenesTriggered,"ExileJack") != "No"){
 		timesExileJack ++;
@@ -338,18 +353,34 @@ function summarizeSession(scratchAvailable){
 	}
 	str += tmp;
 	
+	tmp =  summarizeScene(scenesTriggered, "EngageMurderMode")
+	if(findSceneNamed(scenesTriggered,"EngageMurderMode") != "No"){
+		timesMurderMode ++;
+	}
+	str += tmp;
+	
+	tmp =  summarizeScene(scenesTriggered, "GoGrimDark")
+	if(findSceneNamed(scenesTriggered,"GoGrimDark") != "No"){
+		timesGrimDark ++;
+	}
+	str += tmp;
+	
 	var spacePlayer = findAspectPlayer(players, "Space");
 	var result = "No Frog"
-	if(spacePlayer.landLevel < 8){
-		result = "Full Frog"
-		timesFullFrog ++;
-	}else if(spacePlayer.landLevel >= 6){
-		result = "Sick Frog"
-		timesSickFrog ++;
+	
+	if(spacePlayer.landLevel >= 6){
+		if(spacePlayer.landLevel < 8){
+			timesSickFrog ++;
+			
+		}else{
+			timesFullFrog ++;
+			result = "Sick Frog"
+		}
 	}else{
 		timesNoFrog ++;
 	}
-	str += "<br>&nbsp&nbsp&nbsp&nbspFrog Breeding: " + result
+	totalFrogLevel += spacePlayer.landLevel;
+	str += "<br>&nbsp&nbsp&nbsp&nbspFrog Breeding: " + result +  " (" + spacePlayer.landLevel +")"
 
 	checkDoomedTimelines();
 	debug(str);
@@ -362,11 +393,12 @@ function summarizeSession(scratchAvailable){
 	}else{
 		//var tmp = getRandomSeed();
 		//Math.seed = tmp;
-		doomedTimelineReasons = []
+		//doomedTimelineReasons = []
 		initial_seed = Math.seed; //does this break predictable randomness?
 		//initial_seed = tmp;
 		initRandomness();
-	  init();
+		reinit();
+		init();
 		randomizeEntryOrder();
 		//authorMessage();
 		makeGuardians(); //after entry order established
@@ -395,13 +427,22 @@ var timesDemocracyStart = 0;*/
 function printStats(){
 	var str = "<br>Number Sessions: " + sessionsSimulated.length;
 	//timesScratchesAvailable
+	str += "<br> Average Frog Level: " + totalFrogLevel/sessionsSimulated.length;
 	str+= "<Br>Times Frogs Full: " + timesFullFrog+ " (" + Math.round((timesFullFrog/sessionsSimulated.length)*100) + "%)";;
 	str += "<Br>Times Frogs Sick: " + timesSickFrog+ " (" + Math.round((timesSickFrog/sessionsSimulated.length)*100) + "%)";;
 	str += "<br>Times No Frog: " + timesNoFrog+ " (" + Math.round((timesNoFrog/sessionsSimulated.length)*100) + "%)";;
 	str += "<Br>Times Scratches Available: " + timesScratchesAvailable + " (" + Math.round((timesScratchesAvailable/sessionsSimulated.length)*100) + "%)";
 	str += "<Br>Times Ectobiology: " + timesEcto + " (" + Math.round((timesEcto/sessionsSimulated.length)*100) + "%)";
-	str += "<Br>Times Fought Denizen (at least once): " + timesDenizen + " (" + Math.round((timesDenizen/sessionsSimulated.length)*100) + "%)";;
+	
+	str += "<Br>Times GrimDark (at least one player): " + timesGrimDark + " (" + Math.round((timesGrimDark/sessionsSimulated.length)*100) + "%)";
+		
+	str += "<Br>Times MurderMode (at least one player): " + timesMurderMode + " (" + Math.round((timesMurderMode/sessionsSimulated.length)*100) + "%)";
+			
+	str += "<Br>Times Fought Denizen (at least once): " + timesDenizen + " (" + Math.round((timesDenizen/sessionsSimulated.length)*100) + "%)";
+	
 	str += "<Br>Times Exiled Jack: " + timesExileJack + " (" + Math.round((timesExileJack/sessionsSimulated.length)*100) + "%)";;
+	str += "<Br>Times Planned To Exiled Jack: " + timesPlanExileJack + " (" + Math.round((timesPlanExileJack/sessionsSimulated.length)*100) + "%)";;
+	
 	str += "<Br>Times Exiled Queen: " + timesExileQueen+ " (" + Math.round((timesExileQueen/sessionsSimulated.length)*100) + "%)";;
 	str += "<Br>Times Jack Got a Bullshit Weapon: " + timesJackWeapon+ " (" + Math.round((timesJackWeapon/sessionsSimulated.length)*100) + "%)";;
 	str += "<Br>Times Jack Schemed: " + timesJackScheme+ " (" + Math.round((timesJackScheme/sessionsSimulated.length)*100) + "%)";;

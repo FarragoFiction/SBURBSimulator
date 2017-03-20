@@ -209,6 +209,7 @@ function scratch(){
 }
 
 function tick(){
+	//console.log(timeTillReckoning)
 	if(timeTillReckoning > 0 && !doomedTimeline){
 		setTimeout(function(){
 			timeTillReckoning += -1;
