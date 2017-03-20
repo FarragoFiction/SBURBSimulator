@@ -162,6 +162,21 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 		}
 
 	}
+	
+	this.decideHemoCaste  =function (){
+		if(this.aspect != "Blood"){  //sorry karkat
+			this.bloodColor = getRandomElementFromArray(bloodColors);
+		}
+	}
+
+	this.decideLusus = function(player){
+		if(this.bloodColor == "#610061" || this.bloodColor == "#99004d" || this.bloodColor == "#631db4" ){
+			this.lusus = getRandomElementFromArray(seaLususTypes);
+		}else{
+			this.lusus = getRandomElementFromArray(landlususTypes);
+		}
+	}
+
 
 	this.getDenizen = function(){
 		return getDenizenFromAspect(this.aspect);
@@ -304,8 +319,8 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 
 	//people like you more
 	this.boostAllRelationshipsWithMe = function(){
-		for(var i = 0; i<players.length; i++){
-			var r = this.getRelationshipWith(players[i])
+		for(var i = 0; i<session.players.length; i++){
+			var r = this.getRelationshipWith(session.players[i])
 			if(r){
 				r.increase();
 			}
@@ -314,8 +329,8 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 
 	//people like you less
 	this.damageAllRelationshipsWithMe = function(){
-		for(var i = 0; i<players.length; i++){
-			var r = this.getRelationshipWith(players[i])
+		for(var i = 0; i<session.players.length; i++){
+			var r = this.getRelationshipWith(session.players[i])
 			if(r){
 				r.decrease();
 			}

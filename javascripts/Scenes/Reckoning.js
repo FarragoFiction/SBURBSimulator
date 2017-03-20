@@ -1,5 +1,6 @@
-function Reckoning(){
+function Reckoning(session){
 	this.canRepeat = false;
+	this.session=session;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.trigger = function(playerList){
 		this.playerList = playerList;
@@ -10,8 +11,8 @@ function Reckoning(){
 	//i is so you know entry order
 	this.renderContent = function(div){
 		var intro = "<br><br> The reckoning has begun.  The Black King has defeated his Prospitian counterpart, initiating a meteor storm to destroy Skaia. ";
-		var leader = getLeader(players);
-		if(ectoBiologyStarted){
+		var leader = getLeader(this.session.players);
+		if(this.session.ectoBiologyStarted){
 			intro += " Remember those random baby versions of the players the " + leader.htmlTitleBasic() + " made? " ;
 			if(scratched){
 				intro += "Wait... DID they make the babies? Or, was it their guardian, the " + getLeader(guardians).htmlTitleBasic() +"? Scratched sessions are so confusing...";
@@ -20,8 +21,8 @@ function Reckoning(){
 			intro += " It turns out that those babies ended up on the meteors heading straight to Skaia. "
 			intro += " And to defend itself, Skaia totally teleported those babies back in time, and to Earth. "
 			intro += "We are all blown away by this stunning revelation.  Wow, those babies were the players? Really?  Like, a paradox?  Huh. "
-		}else if(!ectoBiologyStarted && leader.aspect == "Time" &&!leader.dead){
-			ectoBiologyStarted = true;
+		}else if(!this.session.ectoBiologyStarted && leader.aspect == "Time" &&!leader.dead){
+			this.session.ectoBiologyStarted = true;
 			intro += " Okay. Don't panic. But it turns out that the " + leader.htmlTitle() + " completly forgot to close one of their time loops. ";
 			intro += " They were totally supposed to take care of the ectobiology. It's cool though, they'll just go back in time and take care of it now. ";
 			intro += " They warp back to the present in a cloud of clocks and gears before you even realize they were gone. See, nothing to worry about. ";
@@ -31,7 +32,7 @@ function Reckoning(){
 			intro += " was totally supposed to have taken care of the ectobiology. ";
 			intro += " They didn't. They totally didn't.  And now, it turns out that none of the players could have possibly been born in the first place. ";
 			intro += " Textbook case of a doomed timeline.  Apparently the Time Player ";
-			if(findAspectPlayer(players, "Time").doomedTimeClones >0){
+			if(findAspectPlayer(session.players, "Time").doomedTimeClones >0){
 				intro += ", despite all the doomed time clone shenanigans, ";
 			}
 			intro += "was not on the ball with timeline management. Nothing you can do about it. <Br><Br>GAME OVER.";
@@ -41,7 +42,7 @@ function Reckoning(){
 			renderScratchButton();
 			return intro;
 		}
-		var living = findLivingPlayers(players);
+		var living = findLivingPlayers(this.session.players);
 		if(living.length > 0){
 			intro += " <br><br>Getting back to the King, all the players can do now is try to defeat him before they lose their Ultimate Reward. ";
 			intro += " The Ultimate Reward allows the players to create a new Universe frog, and live inside of it. ";

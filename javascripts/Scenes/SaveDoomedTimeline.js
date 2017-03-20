@@ -1,12 +1,13 @@
 //if leader dies before last player is in OR before performing ectobiology, it's a doomed timeline.
-function SaveDoomedTimeLine(){
+function SaveDoomedTimeLine(session){
+	this.session=session;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.timePlayer = null;
 	this.leaderPlayer = null;
 	this.reason = "";
 	this.trigger = function(playerList){
-		this.timePlayer = findAspectPlayer(players, "Time"); //they don't have to be in the medium, though
-		this.leaderPlayer = getLeader(players);
+		this.timePlayer = findAspectPlayer(session.players, "Time"); //they don't have to be in the medium, though
+		this.leaderPlayer = getLeader(session.players);
 		this.playerList = playerList;
 		/*
 		if(this.timePlayer.dead){  //a dead time player can't prevent shit.
@@ -38,8 +39,8 @@ function SaveDoomedTimeLine(){
 	}
 
 	this.playerDoom = function(){
-		if(this.leaderIsFucked() && this.playerList.length < players.length){
-			this.reason = "Leader killed before all players in medium.";
+		if(this.leaderIsFucked() && this.playerList.length < session.players.length){
+			this.reason = "Leader killed before all session.players in medium.";
 			return true; //not everybody is in, leader can't be server for final player
 		}
 		return false;

@@ -11,20 +11,21 @@
   During ending, if democracy = true, mention that.
 */
 
-function StartDemocracy(){
+function StartDemocracy(session){
+	this.session=session;
 	this.canRepeat = false;	
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.friend = null;
 	
 	//blood or page or thief or rogue. 
 	this.findSympatheticPlayer = function(){
-		this.friend =  findClassPlayer(availablePlayers, "Rogue");
+		this.friend =  findClassPlayer(this.playerList, "Rogue");
 		if(this.friend == null){
-			this.friend =  findClassPlayer(availablePlayers, "Page");
+			this.friend =  findClassPlayer(this.playerList, "Page");
 		}else if(this.friend == null){
-			this.friend =  findAspectPlayer(availablePlayers, "Mind");
+			this.friend =  findAspectPlayer(this.playerList, "Mind");
 		}else if(this.friend == null){
-			this.friend =  findAspectPlayer(availablePlayers, "Hope");
+			this.friend =  findAspectPlayer(this.playerList, "Hope");
 		}
 	}
 	
@@ -35,12 +36,12 @@ function StartDemocracy(){
 	//a player has to be not busy to be your friend right now.
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		if(kingStrength <= 0 || queenStrength <= 0){  //the dead can't scheme or be schemed against
+		if(this.session.kingStrength <= 0 ||this.session.queenStrength <= 0){  //the dead can't scheme or be schemed against
 			return false;
 		}
 		this.findSympatheticPlayer();
 		
-		return (democracyStrength <= 0 ) && (this.friend != null);
+		return (this.session.democracyStrength <= 0 ) && (this.friend != null);
 	}
 	
 	this.content = function(){

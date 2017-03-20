@@ -1,11 +1,12 @@
-function QueenRejectRing(){
-	this.canRepeat = false;	
+function QueenRejectRing(session){
+	this.canRepeat = false;
+	this.session = session;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		var goodPrototyping = findGoodPrototyping(this.playerList);
-		return goodPrototyping != null && queenStrength > 0;
+		return goodPrototyping != null && this.session.queenStrength > 0;
 	}
 	
 	this.renderContent = function(div){
@@ -13,7 +14,7 @@ function QueenRejectRing(){
 	}
 	
 	this.content = function(){
-		queenStrength = 50;
+		this.session.queenStrength = 50;
 		queenUncrowned = true;
 		var goodPrototyping = findGoodPrototyping(this.playerList);
 		var ret = "The Queen, with her RING OF ORBS " + this.convertPlayerNumberToWords();
@@ -24,15 +25,15 @@ function QueenRejectRing(){
 		}
 		
 		ret += ". ";
-		if(this.playerList.length != players.length){
+		if(this.playerList.length != this.session.players.length){
 			ret += " She would even stand eventually being prototyped with " ;
-			ret += players[this.playerList.length].kernel_sprite ;
+			ret += this.session.players[this.playerList.length].kernel_sprite ;
 		}
-		for(var i = this.playerList.length+1; i<players.length; i++){
-			ret += ", and " + players[i].kernel_sprite;
+		for(var i = this.playerList.length+1; i<this.session.players.length; i++){
+			ret += ", and " + this.session.players[i].kernel_sprite;
 		}
 		
-		if(this.playerList.length != players.length){
+		if(this.playerList.length != this.session.players.length){
 			ret += ". ";
 		}
 		
@@ -47,27 +48,27 @@ function QueenRejectRing(){
 	}
 	
 	this.convertPlayerNumberToWords = function(){
-		if(players.length == 2){
+		if(this.session.players.length == 2){
 			return "TWO";
-		}else if(players.length == 3){
+		}else if(this.session.players.length == 3){
 			return "THREE";
-		}else if(players.length == 4){
+		}else if(this.session.players.length == 4){
 			return "FOUR";
-		}else if(players.length == 5){
+		}else if(this.session.players.length == 5){
 			return "FIVE";
-		}else if(players.length == 6){
+		}else if(this.session.players.length == 6){
 			return "SIX";
-		}else if(players.length == 7){
+		}else if(this.session.players.length == 7){
 			return "SEVEN";
-		}else if(players.length == 8){
+		}else if(this.session.players.length == 8){
 			return "EIGHT";
-		}else if(players.length == 9){
+		}else if(this.session.players.length == 9){
 			return "NINE";
-		}else if(players.length == 10){
+		}else if(this.session.players.length == 10){
 			return "TEN";
-		}else if(players.length == 11){
+		}else if(this.session.players.length == 11){
 			return "ELEVEN";
-		}else if(players.length == 12){
+		}else if(this.session.players.length == 12){
 			return "TWELVE";
 		}
 	}

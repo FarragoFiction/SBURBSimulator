@@ -1,28 +1,29 @@
-function JackBeginScheming(){
+function JackBeginScheming(session){
 	this.canRepeat = false;
+	this.session=session;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.friend = null;
 
 	//blood or page or thief or rogue.
 	this.findSympatheticPlayer = function(){
-		this.friend =  findAspectPlayer(availablePlayers, "Blood");
+		this.friend =  findAspectPlayer(this.session.availablePlayers, "Blood");
 		if(this.friend == null){
-			this.friend =  findClassPlayer(availablePlayers, "Page");
+			this.friend =  findClassPlayer(this.session.availablePlayers, "Page");
 		}else if(this.friend == null){
-			this.friend =  findClassPlayer(availablePlayers, "Thief");
+			this.friend =  findClassPlayer(this.session.availablePlayers, "Thief");
 		}else if(this.friend == null){
-			this.friend =  findClassPlayer(availablePlayers, "Rogue");
+			this.friend =  findClassPlayer(this.session.availablePlayers, "Rogue");
 		}
 	}
 
 	//a player has to be not busy to be your friend right now.
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		if(jackStrength <= 0 || queenStrength <= 0){  //the dead can't scheme or be schemed against
+		if(this.session.jackStrength <= 0 || this.session.queenStrength <= 0){  //the dead can't scheme or be schemed against
 			return false;
 		}
 		this.findSympatheticPlayer();
-		return (jackStrength >= queenStrength) && (this.friend != null);
+		return (this.session.jackStrength >= this.session.queenStrength) && (this.friend != null);
 	}
 
 
