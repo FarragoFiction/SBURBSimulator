@@ -46,8 +46,8 @@ function setAvailablePlayers(playerList,session){
 //might not be all players in the begining.
 function processReckoning(playerList,session){
 	var ret = "";
-	for(var i = 0; i<reckoningScenes.length; i++){
-		var s = reckoningScenes[i];
+	for(var i = 0; i<session.reckoningScenes.length; i++){
+		var s = session.reckoningScenes[i];
 		if(s.trigger(playerList)){
 			session.scenesTriggered.push(s);
 			//console.log(s);
@@ -56,10 +56,10 @@ function processReckoning(playerList,session){
 		}
 	}
 
-	for(var i = 0; i<deathScenes.length; i++){
-		var s = deathScenes[i];
+	for(var i = 0; i<session.deathScenes.length; i++){
+		var s = session.deathScenes[i];
 		if(s.trigger(playerList)){
-			scenesTriggered.push(s);
+			session.scenesTriggered.push(s);
 			ret += s.content() + " <br><br> ";
 		}
 	}
@@ -127,10 +127,11 @@ function processReckoning2(playerList,session){
 //need to have a pause between each scene to give time for rendering.
 //gotta test method in scenario_controller2.js move here, modify
 function processScenes(playerList,session){
+	//console.log(session)
 	var ret = "";
 	setAvailablePlayers(playerList,session);
-	for(var i = 0; i<available_scenes.length; i++){
-		var s = available_scenes[i];
+	for(var i = 0; i<session.available_scenes.length; i++){
+		var s = session.available_scenes[i];
 		//var debugQueen = queenStrength;
 		if(s.trigger(playerList)){
 			session.scenesTriggered.push(s);
@@ -150,12 +151,12 @@ function processScenes(playerList,session){
 		}
 	}
 
-	for(var i = 0; i<deathScenes.length; i++){
-		var s = deathScenes[i];
+	for(var i = 0; i<session.deathScenes.length; i++){
+		var s = session.deathScenes[i];
 		if(s.trigger(playerList)){
 			//console.log(s);
 			//console.log("was triggered");
-			scenesTriggered.push(s);
+			session.scenesTriggered.push(s);
 			ret += s.content() + " <br><br> ";
 		}
 	}

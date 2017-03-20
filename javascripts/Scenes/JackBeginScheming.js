@@ -232,9 +232,9 @@ function JackBeginScheming(session){
 		if(this.friend){
 			this.friend.increasePower();
 			removeFromArray(this.friend, this.session.availablePlayers);
-			this.session.available_scenes.unshift( new PrepareToExileQueen());  //make it top priority, so unshift, don't push
-			this.session.available_scenes.unshift( new PlanToExileJack());  //make it top priority, so unshift, don't push
-			this.session.available_scenes.unshift( new ExileQueen());  //make it top priority, so unshift, don't push
+			this.session.available_scenes.unshift( new PrepareToExileQueen(this.session));  //make it top priority, so unshift, don't push
+			this.session.available_scenes.unshift( new PlanToExileJack(this.session));  //make it top priority, so unshift, don't push
+			this.session.available_scenes.unshift( new ExileQueen(this.session));  //make it top priority, so unshift, don't push
 			var ret = " Archagent Jack Noir has not let the Queen's relative weakness go unnoticed. ";
 			ret += " He meets with the " + this.friend.htmlTitle() + " at " + this.friend.shortLand() + " and begins scheming to exile her. ";
 			ret += " You can tell he likes the " + this.friend.htmlTitle() + " because he only stabbed them, like, three times, tops. ";
