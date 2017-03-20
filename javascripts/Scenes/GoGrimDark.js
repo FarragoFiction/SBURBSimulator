@@ -1,22 +1,22 @@
 function GoGrimDark(session){
 	this.session = session;
-	this.canRepeat = true;	
+	this.canRepeat = true;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.player = null;
-	
+
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		//select a random player. if they've been triggered, random chance of going grim dark (based on how triggered.)
 		this.player = getRandomElementFromArray(this.session.availablePlayers);
 
 		if(this.player){
-			
+
 			var moon = 0;
 			if(this.player.moon == "Derse"){
 				moon = 1;
 			}
 			if(this.player.triggerLevel + moon > 0 && !this.player.grimDark){  //easier to grimdark if you have access to horror terrors.
-				if((Math.seededRandom() * 10) < this.player.triggerLevel +moon-2){
+				if((Math.seededRandom() * 10) < this.player.triggerLevel +moon-1){
 					if(this.player.murderMode && Math.seededRandom() < .5) { //slightly less chance of being both
 						return false;
 					}
@@ -27,11 +27,11 @@ function GoGrimDark(session){
 		}
 		return false;
 	}
-	
+
 	this.renderContent = function(div){
 		div.append("<br>"+this.content());
 	}
-	
+
 	this.content = function(){
 		this.player.increasePower();
 		removeFromArray(this.player, this.session.availablePlayers);

@@ -5,7 +5,7 @@ function GiveJackBullshitWeapon(session){
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return (this.session.jackStrength < this.session.queenStrength*2) && (this.session.jackStrength > 0 && Math.seededRandom() > .999);
+		return (this.session.jackStrength < this.session.queenStrength*2) && (this.session.jackStrength > 0 && Math.seededRandom() > .99);
 	}
 
 	this.content = function(){
