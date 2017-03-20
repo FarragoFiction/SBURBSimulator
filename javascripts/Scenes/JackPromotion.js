@@ -4,10 +4,11 @@ function JackPromotion(){
 	
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return (jackStrength > queenStrength*2) && (jackStrength > 0) && !queenUncrowned && queenStrength >  -9999;
+		return (jackStrength > queenStrength*2) && (jackStrength > 0) && queenStrength >  -9999;
 	}
 	
 	this.content = function(){
+		console.log("jack prmotion")
 		jackStrength = kingStrength * 2;
 		var ret = " In a shocking turn of events, Jack Noir claims the Black Queen's RING OF ORBS " + this.convertPlayerNumberToWords();
 		ret += "FOLD. "

@@ -59,6 +59,7 @@ var numSimulationsToDo = 50;
 window.onload = function() {
 	//these bitches are SHAREABLE.
 	debug("jack is rampaging more times than he should get the opportunity to....")
+	debug("dang, the simulation are off again. checked a jack rampage session and it was fine. no rampage.")
 	debug("some sessions don't end in a catchable way from here, but are fine for real")
 	debug("heart/spade close scenes just like clubs/diamonds")
 	if(getParameterByName("seed")){
@@ -267,7 +268,7 @@ function summarizeSession(scratchAvailable){
 	sessionsSimulated.push(initial_seed);
 	$("#story").html("");
 	var strongest = findStrongestPlayer(players)
-	var str = "<Br><hr>Session: " + initial_seed + " scenes: " + scenesTriggered.length + " Leader:  " + getLeader(players).title() + " MVP: " + strongest.htmlTitle()+ " with a power of: " + strongest.power;;
+	var str = "<Br><hr><a href = 'index2.html?seed="+ initial_seed +"'>Session: " + initial_seed + "</a> scenes: " + scenesTriggered.length + " Leader:  " + getLeader(players).title() + " MVP: " + strongest.htmlTitle()+ " with a power of: " + strongest.power;;
 	if(scratchAvailable){
 		str += "<b>&nbsp&nbsp&nbsp&nbspScratch Available</b>"
 	}
