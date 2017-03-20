@@ -21,10 +21,6 @@ function StartDemocracy(session){
 	this.findSympatheticPlayer = function(){
 		this.friend =  findClassPlayer(this.playerList, "Rogue");
 		if(this.friend == null){
-			this.friend =  findClassPlayer(this.playerList, "Page");
-		}else if(this.friend == null){
-			this.friend =  findAspectPlayer(this.playerList, "Mind");
-		}else if(this.friend == null){
 			this.friend =  findAspectPlayer(this.playerList, "Hope");
 		}
 	}
