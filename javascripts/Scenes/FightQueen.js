@@ -113,6 +113,7 @@ function FightQueen(){
 	
 	
 	this.content = function(){
+		console.log("Queen Strength : " + queenStrength)
 		var badPrototyping = findBadPrototyping(this.playerList);
 		var living = findLivingPlayers(players);
 		var ret = " Before the players can reach the Black King, they are intercepted by the Black Queen. ";

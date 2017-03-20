@@ -4,7 +4,7 @@ function JackPromotion(){
 	
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return (jackStrength > queenStrength*2) && (jackStrength > 0) && !queenUncrowned;
+		return (jackStrength > queenStrength*2) && (jackStrength > 0) && !queenUncrowned && queenStrength >  -9999;
 	}
 	
 	this.content = function(){

@@ -1,15 +1,15 @@
 function ExileQueen(){
-	this.canRepeat = false;	
+	this.canRepeat = true;	
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		//trying to make queen's corpse stop being exiled.
-		return (queenStrength < 10) && (jackStrength > 0) && (!queenUncrowned) && (queenStrength >0);
+		return (queenStrength < 10) && (queenStrength > -9999);
 	}
 	
 	this.content = function(){
-		queenStrength = 0;
+		queenStrength = -9999;
 		var ret = " The plan has been performed flawlessly.  The Black Queen has been exiled to the post-Apocalyptic version of Earth, never to be heard from again. ";
 		ret += " Her RING OF ORBS " + this.convertPlayerNumberToWords() + "FOLD is destroyed before her exile in a daring mission. ";
 		queenUncrowned = true; //jack can't steal ring

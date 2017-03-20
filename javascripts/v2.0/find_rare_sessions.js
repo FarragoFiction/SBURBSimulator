@@ -58,7 +58,7 @@ var numSimulationsToDo = 50;
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
 	//these bitches are SHAREABLE.
-	debug("Maybe my stats are wrong. says 33 grim dark sessions, but only 5 are shown having triggered. Huh. Why are there 2479 scenes triggered? from a single session? should be blanking them out between sessions. just like doomedTimeLineReasons...");
+
 	debug("some sessions don't end in a catchable way from here, but are fine for real")
 	debug("heart/spade close scenes just like clubs/diamonds")
 	if(getParameterByName("seed")){

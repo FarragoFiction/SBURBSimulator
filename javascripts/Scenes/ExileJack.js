@@ -4,7 +4,7 @@ function ExileJack(){
 	
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return (jackStrength < 10) && (jackStrength > 0);
+		return (jackStrength < 10) && (jackStrength >  -9999);
 	}
 	
 	this.renderContent = function(div){
@@ -12,7 +12,7 @@ function ExileJack(){
 	}
 	
 	this.content = function(){
-		jackStrength = 0;
+		jackStrength =  -9999;
 		var ret = " The plan has been performed flawlessly.  Jack has been exiled to the post-Apocalyptic version of Earth before he can cause too much damage.";
 		return ret;
 	}

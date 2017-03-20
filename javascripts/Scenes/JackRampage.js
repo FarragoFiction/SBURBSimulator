@@ -7,7 +7,7 @@ function JackRampage(){
 	this.canRepeat = true;	
 	
 	this.trigger = function(playerList){
-		return jackStrength > kingStrength && jackStrength != 0; //Jack does not stop showing us his stabs.
+		return jackStrength > kingStrength && jackStrength > 0; //Jack does not stop showing us his stabs.
 	}
 	
 	this.getStabList = function(){
@@ -77,7 +77,7 @@ function JackRampage(){
 		var partyPower = getPartyPower(stabbings);
 		if(partyPower > jackStrength*5){
 			ret += getPlayersTitles(stabbings) + " suprise Jack with stabbings of their own. He is DEAD. ";
-			jackStrength = 0;
+			jackStrength =  -9999;
 			this.levelPlayers(stabbings);
 			ret += findDeadPlayers(players).length + " players are dead in the wake of his rampage. ";
 		}else if(partyPower > jackStrength){		

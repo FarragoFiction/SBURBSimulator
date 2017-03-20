@@ -184,7 +184,7 @@ function PlanToExileJack(){
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		this.findSympatheticPlayer();
-		return this.planner != null && jackStrength != 0 && queenStrength != 0; //don't plan to exile jack if he's already fllipping the fuck out.
+		return this.planner != null && jackStrength != 0 && queenStrength != 0; 
 	}
 
 	this.content = function(){
