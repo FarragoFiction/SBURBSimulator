@@ -1,7 +1,7 @@
-function PowerDemocracy(){
+function PowerDemocracy(session){
 	this.canRepeat = true;	
 	this.playerList = [];  //what players are already in the medium when i trigger?
-	
+	this.session = session;
 	//a player has to be not busy to be your friend right now.
 	this.trigger = function(playerList){
 		this.playerList = playerList;

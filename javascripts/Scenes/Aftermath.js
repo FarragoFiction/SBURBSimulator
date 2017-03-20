@@ -1,4 +1,5 @@
-function Aftermath(){
+function Aftermath(session){
+	this.session = session;
 	this.canRepeat = false;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.trigger = function(playerList){

@@ -1,5 +1,6 @@
-function ExploreMoon(){
+function ExploreMoon(session){
 	this.canRepeat = true;	
+	this.session = session;
 	this.player1 = null;
 	this.player2 = null; //optional
 	
@@ -11,8 +12,8 @@ function ExploreMoon(){
 		}
 		
 		if(player.aspect == "Blood" || player.class_name == "Page"){
-			if(availablePlayers.length > 1){
-				this.player2 = getRandomElementFromArray(availablePlayers);
+			if(this.session.availablePlayers.length > 1){
+				this.player2 = getRandomElementFromArray(this.session.availablePlayers);
 				if(this.player2 == this.player1){
 					this.player1 = null;
 					this.player2 = null;
@@ -30,8 +31,8 @@ function ExploreMoon(){
 		}
 		
 		//if i'm not blood or page, random roll for a friend.
-		if(availablePlayers.length > 1 && Math.seededRandom() > .5){
-			this.player2 = getRandomElementFromArray(availablePlayers);
+		if(this.session.availablePlayers.length > 1 && Math.seededRandom() > .5){
+			this.player2 = getRandomElementFromArray(this.session.availablePlayers);
 			if(this.player1 == this.player2 || !this.player2.dreamSelf || this.player1.moon != this.player2.moon){
 				this.player2 = null;
 			}
@@ -45,13 +46,13 @@ function ExploreMoon(){
 	this.trigger = function(playerList){
 		this.player1 = null; //reset
 		this.player2 = null;
-		for(var i = 0; i<availablePlayers.length; i++){
-			this.checkPlayer(availablePlayers[i]);
+		for(var i = 0; i<this.session.availablePlayers.length; i++){
+			this.checkPlayer(this.session.availablePlayers[i]);
 			if(this.player1 != null){
 				return true;
 			}
 		}
-		if(this.player1 == null || availablePlayers.length == 0){
+		if(this.player1 == null || this.session.availablePlayers.length == 0){
 			return false;
 		}
 		return true;
@@ -72,8 +73,8 @@ function ExploreMoon(){
 	this.content = function(){
 		var ret = "";
 		//remove player1 and player2 from available player list.
-		removeFromArray(this.player1, availablePlayers);
-		removeFromArray(this.player2, availablePlayers);
+		removeFromArray(this.player1, this.session.availablePlayers);
+		removeFromArray(this.player2, this.session.availablePlayers);
 		var r1 = null;
 		var r2 = null;
 		this.player1.increasePower();

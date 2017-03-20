@@ -1,5 +1,6 @@
-function FightKing(){
-	this.canRepeat = true;	
+function FightKing(session){
+	this.canRepeat = true;
+	this.session = session;	
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	
 	this.trigger = function(playerList){
@@ -93,7 +94,7 @@ this.getGoodGuys = function(){
 	
 	this.setPlayersUnavailable = function(stabbings){
 		for(var i = 0; i<stabbings.length; i++){
-			removeFromArray(stabbings[i], availablePlayers);
+			removeFromArray(stabbings[i], this.session.availablePlayers);
 		}
 	}
 	

@@ -1,5 +1,6 @@
-function FightQueen(){
-	this.canRepeat = true;	
+function FightQueen(sesion){
+	this.canRepeat = true;
+	this.session = session;	
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	
 	this.trigger = function(playerList){
@@ -94,7 +95,7 @@ function FightQueen(){
 	
 	this.setPlayersUnavailable = function(stabbings){
 		for(var i = 0; i<stabbings.length; i++){
-			removeFromArray(stabbings[i], availablePlayers);
+			removeFromArray(stabbings[i], this.session.availablePlayers);
 		}
 	}
 	

@@ -1,24 +1,24 @@
-function prepareToExileJack(){
-	
+function prepareToExileJack(session){
+	this.session = session;
 	this.canRepeat = true;	
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.player = null; 
 	
 	this.findSufficientPlayer = function(){
-		this.player =  findAspectPlayer(availablePlayers, "Void");
+		this.player =  findAspectPlayer(this.session.availablePlayers, "Void");
 		
 		if(this.player == null){
-			this.player =  findAspectPlayer(availablePlayers, "Mind");
+			this.player =  findAspectPlayer(this.session.availablePlayers, "Mind");
 		}else if(this.player == null){
-			this.player =  findClassPlayer(availablePlayers, "Thief");
+			this.player =  findClassPlayer(this.session.availablePlayers, "Thief");
 		}else if(this.player == null){
-			this.player =  findClassPlayer(availablePlayers, "Rogue");
+			this.player =  findClassPlayer(this.session.availablePlayers, "Rogue");
 		}else if(this.player == null){
-			this.player =  findClassPlayer(availablePlayers, "Seer");
+			this.player =  findClassPlayer(this.session.availablePlayers, "Seer");
 		}else if(this.player == null){
-			this.player =  findAspecstPlayer(availablePlayers, "Doom");
+			this.player =  findAspecstPlayer(this.session.availablePlayers, "Doom");
 		}else if(this.player == null){
-			this.player =  findAspectPlayer(availablePlayers, "Light");
+			this.player =  findAspectPlayer(this.session.availablePlayers, "Light");
 		}
 	}
 	
@@ -29,7 +29,7 @@ function prepareToExileJack(){
 	this.trigger = function(playerList){
 		this.player = null;
 		this.playerList = playerList;
-		this.findSufficientPlayer(availablePlayers);
+		this.findSufficientPlayer(this.session.availablePlayers);
 		return (this.player != null) && (jackStrength > 0 && jackStrength < 300); //if he's too strong, he'll just show you his stabs. give up
 	}
 	
@@ -63,7 +63,7 @@ function prepareToExileJack(){
 	
 	this.content = function(){
 		this.player.increasePower();
-		removeFromArray(this.player, availablePlayers);
+		removeFromArray(this.player, this.session.availablePlayers);
 		var rand = Math.seededRandom();
 		if(rand > .3){
 			return this.harrassContent();

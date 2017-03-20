@@ -1,10 +1,11 @@
-function VoidyStuff(){
+function VoidyStuff(session){
+	this.session = session;
 	this.canRepeat = true;	
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.player = null;
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		this.player = findAspectPlayer(availablePlayers, "Void");
+		this.player = findAspectPlayer(this.session.availablePlayers, "Void");
 		return this.player != null;
 	}
 	
@@ -13,7 +14,7 @@ function VoidyStuff(){
 	}
 	
 	this.content = function(){
-		removeFromArray(this.player, availablePlayers);
+		removeFromArray(this.player, this.session.availablePlayers);
 		var ret = "The " + this.player.htmlTitle() + " is doing...something. It's kind of hard to see.";
 		var rand = Math.seededRandom();
 

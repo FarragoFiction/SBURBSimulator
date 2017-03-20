@@ -1,6 +1,7 @@
 //only one player at a time.
 //compare old relationship with new relationship.
-function RelationshipDrama(){
+function RelationshipDrama(session){
+	this.session = session;
 	this.canRepeat = true;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.dramaPlayers = [];

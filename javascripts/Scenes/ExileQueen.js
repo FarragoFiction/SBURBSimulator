@@ -1,4 +1,5 @@
-function ExileQueen(){
+function ExileQueen(session){
+	this.session = session;
 	this.canRepeat = true;	
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	

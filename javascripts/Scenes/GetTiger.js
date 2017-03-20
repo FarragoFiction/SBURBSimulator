@@ -1,6 +1,7 @@
 //known to lesser mortals as God Tier
-function GetTiger(){
+function GetTiger(session){
 	this.canRepeat = true;	
+	this.session = session;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.deadPlayersToGodTier = [];
 	

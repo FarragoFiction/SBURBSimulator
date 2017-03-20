@@ -1,12 +1,13 @@
 //only needs to happen once, but if it DOESN'T happen before reckoning (or leader is permanently killed) doomed timeline.
-function DoEctobiology(){
+function DoEctobiology(session){
+	this.session = session;
 	this.canRepeat = false;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.leader = null;
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		this.leader = getLeader(availablePlayers);  //dead men do no ectobiology
+		this.leader = getLeader(this.session.availablePlayers);  //dead men do no ectobiology
 		if(this.leader){
 			return this.leader.power > (Math.seededRandom()*100); //can't do it right out of the bat. might never do it
 		}

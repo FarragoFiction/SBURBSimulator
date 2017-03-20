@@ -1,5 +1,6 @@
-function ExileJack(){
+function ExileJack(session){
 	this.canRepeat = false;	
+	this.session = session;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	
 	this.trigger = function(playerList){

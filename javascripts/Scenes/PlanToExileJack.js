@@ -1,16 +1,17 @@
-function PlanToExileJack(){
+function PlanToExileJack(session){
 	this.canRepeat = false;
+	this.session = session;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.planner = null;
 	//blood or page or thief or rogue.
 	this.findSympatheticPlayer = function(){
-		this.planner =  findAspectPlayer(availablePlayers, "Mind");
+		this.planner =  findAspectPlayer(this.session.availablePlayers, "Mind");
 		if(this.planner == null){
-			this.planner =  findAspectPlayer(availablePlayers, "Doom");
+			this.planner =  findAspectPlayer(this.session.availablePlayers, "Doom");
 		}else if(this.planner == null){
-			this.planner =  findAspectPlayer(availablePlayers, "Light");
+			this.planner =  findAspectPlayer(this.session.availablePlayers, "Light");
 		}else if(this.planner == null){
-			this.planner =  findClassPlayer(availablePlayers, "Seer");
+			this.planner =  findClassPlayer(this.session.availablePlayers, "Seer");
 		}
 	}
 
@@ -157,7 +158,7 @@ function PlanToExileJack(){
 			return;
 		}
 		this.planner.increasePower();
-		removeFromArray(this.planner, availablePlayers);
+		removeFromArray(this.planner, this.session.availablePlayers);
 		available_scenes.unshift( new prepareToExileJack());
 		available_scenes.unshift( new ExileJack());
 		available_scenes.unshift( new ExileQueen());  //make it top priority, so unshift, don't push
@@ -192,7 +193,7 @@ function PlanToExileJack(){
 			return;//this should theoretically never happen
 		}
 		this.planner.increasePower();
-		removeFromArray(this.planner, availablePlayers);
+		removeFromArray(this.planner, this.session.availablePlayers);
 		available_scenes.unshift( new prepareToExileJack());
 		available_scenes.unshift( new ExileJack());
 		var ret = " The " + this.planner.htmlTitle() + " is getting a bad feeling about Jack Noir. "

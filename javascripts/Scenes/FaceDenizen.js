@@ -1,13 +1,14 @@
-function FaceDenizen(){
+function FaceDenizen(session){
 	this.canRepeat = false;	
+	this.session = session;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.denizenFighters = [];
 	
 	this.trigger = function(playerList){
 		this.denizenFighters = [];
 		this.playerList = playerList;
-		for(var i = 0; i<availablePlayers.length; i++){
-			var p = availablePlayers[i]
+		for(var i = 0; i<this.session.availablePlayers.length; i++){
+			var p = this.session.availablePlayers[i]
 			if(p.landLevel >= 6 && !p.denizenFaced){
 				this.denizenFighters.push(p);
 			}
@@ -23,7 +24,7 @@ function FaceDenizen(){
 		var ret = "";
 		for(var i = 0; i<this.denizenFighters.length; i++){
 			var p = this.denizenFighters[i];
-			removeFromArray(p, availablePlayers);
+			removeFromArray(p, this.session.availablePlayers);
 			//ret += "Debug Power: " + p.power;
 			//fight denizen
 			if(p.getFriends().length < p.getEnemies().length){
