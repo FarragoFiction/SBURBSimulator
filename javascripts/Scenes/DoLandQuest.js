@@ -3,8 +3,9 @@
 //get quest from either class or aspect array in random tables. if space, only aspect array (frog);
 
 //can get help from another player, different bonuses based on claspect if so.
-function DoLandQuest(){
+function DoLandQuest(session){
 	this.canRepeat = true;	
+	this.session = session;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.playersPlusHelpers = []; //who is doing a land quest this turn?
 	
@@ -12,8 +13,8 @@ function DoLandQuest(){
 		//console.log("do land quest trigger?")
 		this.playersPlusHelpers = [];
 		
-		for(var i = 0; i<availablePlayers.length; i++){
-			var p = availablePlayers[i]
+		for(var i = 0; i<this.session.availablePlayers.length; i++){
+			var p = this.session.availablePlayers[i]
 			if(p.power > 2){ //can't be first thing you do in medium.
 				if(p.landLevel < 6 || p.aspect == "Space"){  //space player is the only one who can go over 100 (for better frog)
 					var helper = this.lookForHelper(p);
@@ -22,13 +23,13 @@ function DoLandQuest(){
 					if((p.aspect == "Blood" || p.class_name == "Page") ){// if page or blood player, can't do it on own.
 						if(playerPlusHelper[1] != null){
 							this.playersPlusHelpers.push(playerPlusHelper);
-							removeFromArray(p, availablePlayers);
-							removeFromArray(helper, availablePlayers); //don't let my helper do their own quests.
+							removeFromArray(p, this.session.availablePlayers);
+							removeFromArray(helper, this.session.availablePlayers); //don't let my helper do their own quests.
 						}
 					}else{
 						this.playersPlusHelpers.push(playerPlusHelper);
-						removeFromArray(p, availablePlayers);
-						removeFromArray(helper, availablePlayers); //don't let my helper do their own quests.
+						removeFromArray(p, this.session.availablePlayers);
+						removeFromArray(helper, this.session.availablePlayers); //don't let my helper do their own quests.
 					}					
 				}
 			}
@@ -46,7 +47,7 @@ function DoLandQuest(){
 		
 		//space player can ONLY be helped by knight, and knight prioritizes this
 		if(player.aspect == "Space"){
-			helper = findClassPlayer(availablePlayers, "Knight");
+			helper = findClassPlayer(this.session.availablePlayers, "Knight");
 			if(helper != player){ //a knight of space can't help themselves.
 				return helper;
 			}else{
@@ -59,8 +60,8 @@ function DoLandQuest(){
 		}
 		
 		if(player.aspect == "Blood" || player.class_name == "Page"){ //they NEED help.
-			if(availablePlayers.length > 1){
-				helper = getRandomElementFromArray(availablePlayers);			
+			if(this.session.availablePlayers.length > 1){
+				helper = getRandomElementFromArray(this.session.availablePlayers);			
 			}else{
 				this.player1 = null; 
 				return null;
@@ -69,8 +70,8 @@ function DoLandQuest(){
 
 		
 		//if i'm not blood or page, or space, or maybe time random roll for a friend.
-		if(availablePlayers.length > 1 && Math.seededRandom() > .5){
-			helper = getRandomElementFromArray(availablePlayers);
+		if(this.session.availablePlayers.length > 1 && Math.seededRandom() > .5){
+			helper = getRandomElementFromArray(this.session.availablePlayers);
 			if(player == helper ){  
 				return null;
 			}

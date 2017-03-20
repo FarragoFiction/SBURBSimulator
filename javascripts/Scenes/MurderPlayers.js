@@ -1,4 +1,5 @@
-function MurderPlayers(){
+function MurderPlayers(session){
+	this.session = session;
 	this.canRepeat = true;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.murderers = [];
@@ -7,10 +8,10 @@ function MurderPlayers(){
 		this.playerList = playerList;
 		this.murderers = [];
 		//select a random player. if they've been triggered, random chance of going murderMode if enemies (based on how triggered.)
-		this.player = getRandomElementFromArray(availablePlayers);
-		for(var i = 0; i<availablePlayers.length; i++){
-			if(availablePlayers[i].murderMode){
-				this.murderers.push(availablePlayers[i]);
+		this.player = getRandomElementFromArray(this.session.availablePlayers);
+		for(var i = 0; i<this.session.availablePlayers.length; i++){
+			if(this.session.availablePlayers[i].murderMode){
+				this.murderers.push(this.session.availablePlayers[i]);
 			}
 		}
 
@@ -130,18 +131,18 @@ function MurderPlayers(){
 		var livePlayers = this.playerList; //just because they are alive doesn't mean they are in the medium
 		for(var i = 0; i<this.murderers.length; i++){
 			var m = this.murderers[i];
-			var worstEnemy = m.getWorstEnemyFromList(availablePlayers);
-			var living = findLivingPlayers(players)
+			var worstEnemy = m.getWorstEnemyFromList(this.session.availablePlayers);
+			var living = findLivingPlayers(this.session.players)
 			removeFromArray(worstEnemy, living)
 			var ausp = getRandomElementFromArray(living)
 			if(ausp == worstEnemy || ausp == m){
 				ausp = null;
 			}
-			//var notEnemy = m.getWorstEnemyFromList(availablePlayers);
-			removeFromArray(m, availablePlayers);
+			//var notEnemy = m.getWorstEnemyFromList(this.session.availablePlayers);
+			removeFromArray(m, this.session.availablePlayers);
 			var ret = "";
 			if(worstEnemy && worstEnemy.dead == false){
-				removeFromArray(worstEnemy, availablePlayers);
+				removeFromArray(worstEnemy, this.session.availablePlayers);
 				//if blood player is at all competant, can talk down murder mode player.
 				if(worstEnemy.aspect == "Blood" && worstEnemy.power > 2){
 					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
@@ -224,7 +225,7 @@ function MurderPlayers(){
 				}
 			}
 		}
-		removeFromArray(m, availablePlayers);
+		removeFromArray(m, this.session.availablePlayers);
 		return ret;
 	}
 
@@ -235,10 +236,10 @@ function MurderPlayers(){
 		for(var i = 0; i<this.murderers.length; i++){
 			var m = this.murderers[i];
 			var worstEnemy = m.getWorstEnemyFromList(livePlayers);
-			removeFromArray(m, availablePlayers);
+			removeFromArray(m, this.session.availablePlayers);
 			var ret = "";
 			if(worstEnemy && worstEnemy.dead == false){
-				removeFromArray(worstEnemy, availablePlayers);
+				removeFromArray(worstEnemy, this.session.availablePlayers);
 				//if blood player is at all competant, can talk down murder mode player.
 				if(worstEnemy.aspect == "Blood" && worstEnemy.power > 2){
 					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
@@ -279,7 +280,7 @@ function MurderPlayers(){
 				m.triggerLevel += -1;
 			}
 		}
-		removeFromArray(m, availablePlayers);
+		removeFromArray(m, this.session.availablePlayers);
 		return ret;
 	}
 }

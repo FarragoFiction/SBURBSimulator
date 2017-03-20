@@ -1,4 +1,5 @@
-function EngageMurderMode(){
+function EngageMurderMode(session){
+	this.session = session;
 	this.canRepeat = true;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.player = null;
@@ -6,7 +7,7 @@ function EngageMurderMode(){
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		//select a random player. if they've been triggered, random chance of going murderMode if enemies (based on how triggered.)
-		this.player = getRandomElementFromArray(availablePlayers);
+		this.player = getRandomElementFromArray(this.session.availablePlayers);
 		var moon = 0;
 
 		if(this.player){
@@ -125,7 +126,7 @@ function EngageMurderMode(){
 
 	//make them hate someone else more.
 	this.redirectConvo = function(div, player1, player2){
-		var livePlayers = findLivingPlayers(players);
+		var livePlayers = findLivingPlayers(this.session.players);
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = player1.getRelationshipWith(player2);
@@ -229,7 +230,7 @@ function EngageMurderMode(){
 
 	this.chat = function(div){
 		var repeatTime = 1000;
-		var livePlayers = findLivingPlayers(players);
+		var livePlayers = findLivingPlayers(this.session.players);
 		var player1 = this.player;
 		var player2 = player1.getWorstEnemyFromList(livePlayers);
 		if(player2 == null || player2.dead == true){
@@ -259,7 +260,7 @@ function EngageMurderMode(){
 	this.content = function(){
 		//console.log("murder mode");
 		this.player.increasePower();
-		removeFromArray(this.player, availablePlayers);
+		removeFromArray(this.player, this.session.availablePlayers);
 		var ret = "The " + this.player.htmlTitle() + " has taken an acrobatic fucking pirouette off the handle and into a giant pile of crazy.  ";
 		ret += " They engage Murder Mode while thinking of their enemies " + getPlayersTitles(this.player.getEnemies()) + ". ";
 		ret += " This is completely terrifying. ";

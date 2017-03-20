@@ -1,12 +1,13 @@
 //if leader dies before last player is in OR before performing ectobiology, it's a doomed timeline.
-function SaveDoomedTimeLine(){
+function SaveDoomedTimeLine(session){
+	this.session=session;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.timePlayer = null;
 	this.leaderPlayer = null;
 	this.reason = "";
 	this.trigger = function(playerList){
-		this.timePlayer = findAspectPlayer(players, "Time"); //they don't have to be in the medium, though
-		this.leaderPlayer = getLeader(players);
+		this.timePlayer = findAspectPlayer(session.players, "Time"); //they don't have to be in the medium, though
+		this.leaderPlayer = getLeader(session.players);
 		this.playerList = playerList;
 		/*
 		if(this.timePlayer.dead){  //a dead time player can't prevent shit.
@@ -30,7 +31,7 @@ function SaveDoomedTimeLine(){
 	}
 
 	this.ectoDoom = function(){
-		if(this.leaderIsFucked() && !ectoBiologyStarted){
+		if(this.leaderIsFucked() && !this.session.ectoBiologyStarted){
 			this.reason = "Leader killed before ectobiology."
 			return true; //paradox, the babies never get made.
 		}
@@ -38,8 +39,8 @@ function SaveDoomedTimeLine(){
 	}
 
 	this.playerDoom = function(){
-		if(this.leaderIsFucked() && this.playerList.length < players.length){
-			this.reason = "Leader killed before all players in medium.";
+		if(this.leaderIsFucked() && this.playerList.length < session.players.length){
+			this.reason = "Leader killed before all session.players in medium.";
 			return true; //not everybody is in, leader can't be server for final player
 		}
 		return false;
@@ -59,7 +60,7 @@ function SaveDoomedTimeLine(){
 			ret += " If the " + this.leaderPlayer.htmlTitleBasic() + " dies right now, ";
 			ret += " none of the Players will even be born in the first place (Long story, just trust them). ";
 			ret += " They make it so that never happened. Forget about it. ";
-			doomedTimelineReasons.push(this.reason)
+			this.session.doomedTimelineReasons.push(this.reason)
 			this.leaderPlayer.dead = false;
 		}else if(this.reason == "Leader killed before all players in medium."){
 			ret += " If the " + this.leaderPlayer.htmlTitleBasic() + " dies right now, ";
@@ -67,15 +68,16 @@ function SaveDoomedTimeLine(){
 			ret += " after all, the " + this.leaderPlayer.htmlTitleBasic() + " is their server player. ";
 			ret += " They make it so that never happened. Forget about it. ";
 			this.leaderPlayer.dead = false;
-			doomedTimelineReasons.push(this.reason)
+			this.session.doomedTimelineReasons.push(this.reason)
 		}else{
-			if(this.timePlayer.leader && !ectoBiologyStarted ){
-					ectoBiologyStarted = true;
+			if(this.timePlayer.leader && !this.session.ectoBiologyStarted ){
+					this.session.ectoBiologyStarted = true;
 					this.reason = "Time player didn't do ectobiology."
-					doomedTimelineReasons.push(this.reason)
+					session.doomedTimelineReasons.push(this.reason)
 					ret += " They need to do the ectobiology right freaking now, or none of the players will ever even be born.";
 			}else{
-				doomedTimelineReasons.push(this.reason)
+				this.reason = "Shenanigans"
+				session.doomedTimelineReasons.push(this.reason)
 				ret += " It's too complicated to explain, but everyone has already screwed up beyond repair. Just trust them. ";
 			}
 		}

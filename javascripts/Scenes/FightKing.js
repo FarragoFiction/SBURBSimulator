@@ -1,10 +1,11 @@
-function FightKing(){
-	this.canRepeat = true;	
+function FightKing(session){
+	this.canRepeat = true;
+	this.session = session;	
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return (kingStrength > 0) &&  (queenStrength <= 0) && (findLivingPlayers(players).length != 0) ;
+		return (this.session.kingStregth > 0) &&  (queenStrength <= 0) && (findLivingPlayers(this.session.players).length != 0) ;
 	}
 	
 	this.killPlayers = function(stabbings){
@@ -27,8 +28,8 @@ function FightKing(){
 
 		
 this.getGoodGuys = function(){
-		var living = findLivingPlayers(players);
-		var timePlayer = findAspectPlayer(players, "Time");
+		var living = findLivingPlayers(this.session.players);
+		var timePlayer = findAspectPlayer(this.session.players, "Time");
 
 		for(var i = 0; i<timePlayer.doomedTimeClones; i++){
 			var timeClone = makeRenderingSnapshot(timePlayer);
@@ -93,7 +94,7 @@ this.getGoodGuys = function(){
 	
 	this.setPlayersUnavailable = function(stabbings){
 		for(var i = 0; i<stabbings.length; i++){
-			removeFromArray(stabbings[i], availablePlayers);
+			removeFromArray(stabbings[i], this.session.availablePlayers);
 		}
 	}
 	
@@ -113,7 +114,7 @@ this.getGoodGuys = function(){
 	
 	this.content = function(){
 		var badPrototyping = findBadPrototyping(this.playerList);
-		var living = findLivingPlayers(players);
+		var living = findLivingPlayers(this.session.players);
 		var ret = " It is time for the final opponent, the Black King. ";
 		if(badPrototyping){
 			ret += " He is made especially terrifying with the addition of the " + badPrototyping + ". ";
@@ -121,7 +122,7 @@ this.getGoodGuys = function(){
 		
 		this.setPlayersUnavailable(living);
 		var partyPower = getPartyPower(living);
-		var timePlayer = findAspectPlayer(players, "Time"); //doesn't matter if THEY are alive or dead, they still have doomed time clones.
+		var timePlayer = findAspectPlayer(this.session.players, "Time"); //doesn't matter if THEY are alive or dead, they still have doomed time clones.
 		if(timePlayer.doomedTimeClones > 0){
 			//throw an extra one at them from nowhere just to make sure it's plural. whatever. who's counting here?
 			ret += (timePlayer.doomedTimeClones) + " doomed time clones of the " + timePlayer.htmlTitleBasic() + " show up from various points in the timeline to help out. ";
@@ -134,9 +135,9 @@ this.getGoodGuys = function(){
 			democracyStrength += -1 * getRandomInt(0,democracyStrength-1); //how badly is democracy hurt?
 		}
 		
-		if(partyPower > kingStrength*5){
+		if(partyPower > this.session.kingStregth*5){
 			ret += "The Players easily defeat the King, no sweat. It was easy. He is DEAD. ";
-			kingStrength = 0;
+			this.session.kingStregth = 0;
 			this.levelPlayers(living);
 		}else{
 			var deadPlayers = this.getDeadList(living);
@@ -147,18 +148,18 @@ this.getGoodGuys = function(){
 				ret += " The King decimates the democractically assembled Army. ";
 			}
 			this.killPlayers(deadPlayers);
-			living = findLivingPlayers(players);
+			living = findLivingPlayers(this.session.players);
 			if(living.length > 0 ){
 				ret += " After the smoke clears, the king is defeated. DEAD.";
-				kingStrength = 0;
+				this.session.kingStregth = 0;
 				this.levelPlayers(living);
 			}else{
 				ret += " The party is defeated. ";
 			}
 		}
 		
-		if(kingStrength > 10){
-			kingStrength += -10;
+		if(this.session.kingStregth > 10){
+			this.session.kingStregth += -10;
 		}
 		return ret;
 		

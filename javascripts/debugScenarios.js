@@ -13,16 +13,16 @@ function debugLevelTheHellUp(){
 
 function debugRoyalRumble(){
 	alert("royal rumble!")
-	for(var j = 0; j<players.length; j++){
-		var p = players[j]
-		players[j].isTroll = true; //only .evel 2 players up
-		players[j].bloodColor = "#99004d"
-		players[j].triggerLevel = 10;
-		decideLusus(p);
+	for(var j = 0; j<curSessionGlobalVar.players.length; j++){
+		var p = curSessionGlobalVar.players[j]
+		p.isTroll = true; //only .evel 2 players up
+		p.bloodColor = "#99004d"
+		p.triggerLevel = 10;
+		p.decideLusus(p);
 		p.kernel_sprite = p.lusus;
 		p.relationships = [];
 		p.quirk = null;
-		p.generateRelationships(players);  //heiresses hate each other
+		p.generateRelationships(curSessionGlobalVar.players);  //heiresses hate each other
 		p.quirk = randomTrollSim(p)		
 	}
 

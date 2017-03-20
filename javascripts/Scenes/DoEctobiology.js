@@ -1,12 +1,13 @@
 //only needs to happen once, but if it DOESN'T happen before reckoning (or leader is permanently killed) doomed timeline.
-function DoEctobiology(){
+function DoEctobiology(session){
+	this.session = session;
 	this.canRepeat = false;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.leader = null;
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		this.leader = getLeader(availablePlayers);  //dead men do no ectobiology
+		this.leader = getLeader(this.session.availablePlayers);  //dead men do no ectobiology
 		if(this.leader){
 			return this.leader.power > (Math.seededRandom()*100); //can't do it right out of the bat. might never do it
 		}
@@ -19,14 +20,14 @@ function DoEctobiology(){
 		var repeatTime = 1000;
 		var divID = (div.attr("id")) + "_babies";
 		var ch = canvasHeight;
-		if(players.length > 6){
+		if(this.session.players.length > 6){
 			ch = canvasHeight*1.5;
 		}
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = document.getElementById("canvas"+ divID);
-		poseBabiesAsATeam(canvasDiv, this.leader, players, guardians, 4000);
+		poseBabiesAsATeam(canvasDiv, this.leader, this.session.players, this.session.guardians, 4000);
 	}
 
 	this.renderContent = function(div){
@@ -35,11 +36,11 @@ function DoEctobiology(){
 	}
 
 	this.content = function(){
-		ectoBiologyStarted = true;
+		this.session.ectoBiologyStarted = true;
 		var ret = " Through a series of wacky, yet inevitable in hindsight, coincidences, the " + this.leader.htmlTitle();
 		ret += " finds themselves in the veil of meteors surrounding the Medium. ";
-		ret +=  " A button is pushed, and suddenly there are little tiny baby version of " + getPlayersTitlesBasic(players);
-		if(scratched){
+		ret +=  " A button is pushed, and suddenly there are little tiny baby version of " + getPlayersTitlesBasic(this.session.players);
+		if(session.scratched){
 			ret += " Plus baby versions of all the players from the pre-scratch session?"
 			ret += " No wonder that session went so poorly: It was always destined to be scatched or nobody would be born in the first place."
 		}else{

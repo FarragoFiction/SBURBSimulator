@@ -1,13 +1,13 @@
-function PowerDemocracy(){
+function PowerDemocracy(session){
 	this.canRepeat = true;	
 	this.playerList = [];  //what players are already in the medium when i trigger?
-	
+	this.session = session;
 	//a player has to be not busy to be your friend right now.
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 
 		
-		return (democracyStrength > 0);
+		return (this.session.democracyStrength > 0);
 	}
 	
 	this.renderContent = function(div){
@@ -20,13 +20,13 @@ function PowerDemocracy(){
 		var rand = Math.seededRandom();
 		if(rand < .25){
 			ret += getRandomElementFromArray(democracyTasks);
-			democracyStrength += 5;
+			this.session.democracyStrength += 5;
 		}else if(rand < .5){
 			ret += getRandomElementFromArray(democracyTasks);
-			democracyStrength += 10;
+			this.session.democracyStrength += 10;
 		}else if(rand < .75){
 			ret += getRandomElementFromArray(democracySuperTasks);
-			democracyStrength += 50;
+			this.session.democracyStrength += 50;
 		}else{
 			//do nothing.
 			ret += getRandomElementFromArray(mayorDistractionTasks);

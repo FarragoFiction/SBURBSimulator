@@ -1,16 +1,17 @@
-function PlanToExileJack(){
+function PlanToExileJack(session){
 	this.canRepeat = false;
+	this.session = session;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.planner = null;
 	//blood or page or thief or rogue.
 	this.findSympatheticPlayer = function(){
-		this.planner =  findAspectPlayer(availablePlayers, "Mind");
+		this.planner =  findAspectPlayer(this.session.availablePlayers, "Mind");
 		if(this.planner == null){
-			this.planner =  findAspectPlayer(availablePlayers, "Doom");
+			this.planner =  findAspectPlayer(this.session.availablePlayers, "Doom");
 		}else if(this.planner == null){
-			this.planner =  findAspectPlayer(availablePlayers, "Light");
+			this.planner =  findAspectPlayer(this.session.availablePlayers, "Light");
 		}else if(this.planner == null){
-			this.planner =  findClassPlayer(availablePlayers, "Seer");
+			this.planner =  findClassPlayer(this.session.availablePlayers, "Seer");
 		}
 	}
 
@@ -157,18 +158,18 @@ function PlanToExileJack(){
 			return;
 		}
 		this.planner.increasePower();
-		removeFromArray(this.planner, availablePlayers);
-		available_scenes.unshift( new prepareToExileJack());
-		available_scenes.unshift( new ExileJack());
-		available_scenes.unshift( new ExileQueen());  //make it top priority, so unshift, don't push
+		removeFromArray(this.planner, this.session.availablePlayers);
+		this.session.available_scenes.unshift( new prepareToExileJack(this.session));
+		this.session.available_scenes.unshift( new ExileJack(this.session));
+		this.session.available_scenes.unshift( new ExileQueen(this.session));  //make it top priority, so unshift, don't push
 		var player1 = this.planner;
-		var player2 = getLeader(findLivingPlayers(players));
+		var player2 = getLeader(findLivingPlayers(	this.session.players));
 		if(player2 && player2 != player1){
 			//player tells leader what happened.
 			this.chatWithFriend(div,player1, player2)
 		}else if(player2 == player1){
 			//leader gossips with friends
-			player2 = player1.getBestFriendFromList(findLivingPlayers(players));
+			player2 = player1.getBestFriendFromList(findLivingPlayers(	this.session.players));
 			if(!player2){
 				return div.append(this.content);
 			}else{
@@ -184,7 +185,7 @@ function PlanToExileJack(){
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		this.findSympatheticPlayer();
-		return this.planner != null && jackStrength != 0 && queenStrength != 0; //don't plan to exile jack if he's already fllipping the fuck out.
+		return this.planner != null && 	this.session.jackStrength != 0 && 	this.session.queenStrength != 0; 
 	}
 
 	this.content = function(){
@@ -192,9 +193,9 @@ function PlanToExileJack(){
 			return;//this should theoretically never happen
 		}
 		this.planner.increasePower();
-		removeFromArray(this.planner, availablePlayers);
-		available_scenes.unshift( new prepareToExileJack());
-		available_scenes.unshift( new ExileJack());
+		removeFromArray(this.planner, this.session.availablePlayers);
+		this.session.available_scenes.unshift( new prepareToExileJack(this.session));
+		this.session.available_scenes.unshift( new ExileJack(this.session));
 		var ret = " The " + this.planner.htmlTitle() + " is getting a bad feeling about Jack Noir. "
 		ret += " Even though he is their ally, he has stabbed players on multiple occasions, for example. ";
 		ret += "There's only so many 'accidents' a single Desite can reasonably have. ";

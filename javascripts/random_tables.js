@@ -700,6 +700,7 @@ function getRandomInt(min, max) {
 //using a seed will let me make the simulations predictable. This enables sharing AND bullshit cloud predictions.
 //and stable time loops. and god, i'm getting the vapors here.
 function getRandomSeed() {
+	//console.log("getting a random seed, probably to reinit the seed")
 	var min = 0;
 	var max = 413*612*1025;
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -710,7 +711,7 @@ function getRandomSeed() {
 // in order to work 'Math.seed' must NOT be undefined,
 // so in any case, you HAVE to provide a Math.seed
 Math.seededRandom = function(max, min) {
-	console.log("getting random seed");
+	//console.log("getting seeded random");
     max = max || 1;
     min = min || 0;
 
@@ -1112,7 +1113,7 @@ var witch_handles = ["wondering","wonderful","wacky","withering","worldly"];
 var seer_handles = ["sightly","sanctimonious","sarcastic","sassy","scintillating","synergistic"];
 
 var music_handles1 = ["musical","pianist","melodious","keyboard","rhythmic","singing","tuneful","harmonious","beating","pitch","waltzing","synthesized","piano","serenading"];
-var culture_handles1 = ["monochrome","poetic","majestic","keen","realistic","serious","theaterical","haute","beautiful","priceless","watercolor","sensational", "highbrow"];
+var culture_handles1 = ["monochrome","poetic","majestic","keen","realistic","serious","theatrical","haute","beautiful","priceless","watercolor","sensational", "highbrow"];
 var writing_handles1 = ["wordy","scribbling","meandering","pageturning","mysterious","knowledgeable","reporting","scribing","tricky","hardcover","bookish","page","writing","scribbler"];
 var pop_culture_handles1 = ["worthy","mega","player","mighty","knightly","roguish","super","turbo","titanic","heroic","bitchin","power","wonder","wonderful", "sensational"];
 var technology_handles1 = ["kludge","machinist","programming","mechanical","kilo","robotic","silicon","techno","hardware","battery","python","windows","serial"];

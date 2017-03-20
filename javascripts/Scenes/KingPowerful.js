@@ -1,10 +1,11 @@
-function KingPowerful(){
+function KingPowerful(session){
+	this.session=session;
 	this.canRepeat = false;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return kingStrength > hardStrength;
+		return this.session.kingStrength > this.session.hardStrength;
 	}
 
 	this.renderContent = function(div){
@@ -20,7 +21,7 @@ function KingPowerful(){
 		ret += " players, especially the " + badPrototyping;
 		ret += ", have made the enemies  far too powerful. ";
 
-		if(this.playerList.length < players.length){
+		if(this.playerList.length < this.session.players.length){
 			ret += " Further prototypings will only serve to further strengthen the enemies. ";
 		}
 		return ret;

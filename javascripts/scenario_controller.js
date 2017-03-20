@@ -1,19 +1,13 @@
-var players = [];
-var frogStatus = 0;
+var curSessionGlobalVar;
+
 var simulationMode = false;
-var kingStrength = 100; //can use this to extrapolate enemy strength.
-var queenStrength = 100;
-var jackStrength = 50;
-var hardStrength = kingStrength+20*12;  //what consititutes a  'hard' game.
-var democracyStrength = 0;
-var queenUncrowned = false;  //if she loses her ring, she doesn't get stronger with further prototypes
-var reckoningStarted = false; //can't god tier if you are definitely on skaia.
-var ectoBiologyStarted = false;
-var doomedTimeline = false;
+
 var debugMode = false;
-var scratched = false;
 
 window.onload = function() {
+	//debug("Be Patient, refactoring this code to match 2.0")
+	startSession();
+	/*
     init();
 	//exileQueenInit();
 	//murderModeInit();
@@ -52,38 +46,61 @@ window.onload = function() {
     debugLevelTheHellUp();
   }
 }
-
+*/
 };
 
 
+function reinit(){
+	available_classes = classes.slice(0);
+	available_aspects = nonrequired_aspects.slice(0); //required_aspects
+	available_aspects = available_aspects.concat(required_aspects.slice(0));
+	curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);  //was forgetting to reset this, so scratched players had less to do.
+}
+
+
+function startSession(){
+	curSessionGlobalVar = new Session(initial_seed)
+	createScenesForSession(curSessionGlobalVar);
+	reinit();
+	//initPlayersRandomness();
+	curSessionGlobalVar.makePlayers();
+	curSessionGlobalVar.randomizeEntryOrder();
+	//authorMessage();
+	//curSessionGlobalVar.makeGuardians(); //after entry order established
+	introducePlayers();
+	
+	for(var i = 0; i<getRandomInt(10,30); i++){
+  		if(!curSessionGlobalVar.doomedTimeline){ //TODO (if it's a doomed timeline, figure out why and prevent it (did leader permadie without ectobiology happening or last player entering?)
+  			tick();
+  		}
+  	}
+
+  	introduceReckoning();
+  	curSessionGlobalVar.reckoningStarted = true;
+  	//all reckonings are the same length???
+  	for(var i = 0; i<10; i++){
+  		if(!curSessionGlobalVar.doomedTimeline){
+  			reckoningTick();
+  		}
+  	}
+
+  	if(!curSessionGlobalVar.doomedTimeline){
+  		conclusion();
+  	}
+	
+}
 
 function tick(){
-	$("#story").append(processScenes(players));
+	$("#story").append(processScenes(curSessionGlobalVar.players,curSessionGlobalVar));
 }
 
 function reckoningTick(){
-	$("#story").append(processReckoning(players));
+	$("#story").append(processReckoning(curSessionGlobalVar.players,curSessionGlobalVar));
 }
 
-function randomizeEntryOrder(){
-	players = shuffle(players);
-}
 
-function init(){
-	available_classes = classes; //re-init available classes.
-	available_aspects = nonrequired_aspects;
-	var numPlayers = getRandomInt(2,12);
-	players.push(randomSpacePlayer());
-	players.push(randomTimePlayer());
 
-	for(var i = 2; i<numPlayers; i++){
-		players.push(randomPlayer());
-	}
 
-	for(var j = 0; j<players.length; j++){
-		players[j].generateRelationships(players);
-	}
-}
 
 function printPlayers(){
 	for(var i = 0; i<players.length; i++){
@@ -98,15 +115,15 @@ function indexToWords(i){
 
 function introduceReckoning(){
 	var intro = " The reckoning has begun.  The Black King has defeated his Prospitian counterpart, initiating a meteor storm to destroy Skaia. ";
-	var leader = getLeader(players);
-	if(ectoBiologyStarted){
+	var leader = getLeader(curSessionGlobalVar.players);
+	if(curSessionGlobalVar.ectoBiologyStarted){
 		intro += " Remember those random baby versions of the players the " + leader.htmlTitle() + " made? " ;
 		intro += " Yeah, that didn't stop being a thing that was true. ";
 		intro += " It turns out that those babies ended up on the meteors heading straight to Skaia. "
 		intro += " And to defend itself, Skaia totally teleported those babies back in time, and to Earth. "
 		intro += "We are all blown away by this stunning revelation.  Wow, those babies were the players? Really?  Like, a paradox?  Huh. "
-	}else if(!ectoBiologyStarted && leader.aspect == "Time" &&!leader.dead){
-		ectoBiologyStarted = true;
+	}else if(!curSessionGlobalVar.ectoBiologyStarted && leader.aspect == "Time" &&!leader.dead){
+		curSessionGlobalVar.ectoBiologyStarted = true;
 		intro += " Okay. Don't panic. But it turns out that the " + leader.htmlTitle() + " completly forgot to close one of their time loops. ";
 		intro += " They were totally supposed to take care of the ectobiology. It's cool though, they'll just go back in time and take care of it now. ";
 		intro += " They warp back to the present in a cloud of clocks and gears before you even realize they were gone. See, nothing to worry about. ";
@@ -116,7 +133,7 @@ function introduceReckoning(){
 		intro += " was totally supposed to have taken care of the ectobiology. ";
 		intro += " They didn't. They totally didn't.  And now, it turns out that none of the players could have possibly been born in the first place. ";
 		intro += " Textbook case of a doomed timeline.  Apparently the Time Player ";
-		if(findAspectPlayer(players, "Time").doomedTimeClones >0){
+		if(findAspectPlayer(curSessionGlobalVar.players, "Time").doomedTimeClones >0){
 			intro += ", despite all the doomed time clone shenanigans, ";
 		}
 		intro += "was not on the ball with timeline management. Nothing you can do about it. <Br><Br>GAME OVER.";
@@ -125,7 +142,7 @@ function introduceReckoning(){
 		$("#story").append(intro);
 		return intro;
 	}
-	var living = findLivingPlayers(players);
+	var living = findLivingPlayers(curSessionGlobalVar.players);
 	if(living.length > 0){
 		intro += " <br><br>Getting back to the King, all the players can do now is try to defeat him before they lose their Ultimate Reward. ";
 		intro += " The Ultimate Reward allows the players to create a new Universe frog, and live inside of it. ";
@@ -133,7 +150,7 @@ function introduceReckoning(){
 		intro += living.length + " players, the  " + getPlayersTitles(living) + " will fight the Dersite Royalty and try to prove themselves worthy of the Ultimate Reward. ";
 	}else{
 		intro += " No one is alive. <BR><BR>Game Over. ";
-		var strongest = findStrongestPlayer(players)
+		var strongest = findStrongestPlayer(curSessionGlobalVar.players)
 		intro += "The MVP of the session was: " + strongest.htmlTitle() + " with a power of: " + strongest.power;
 	}
 	intro += "<br><br>";
@@ -141,12 +158,12 @@ function introduceReckoning(){
 }
 
 function conclusion(){
-	var living = findLivingPlayers(players);
+	var living = findLivingPlayers(curSessionGlobalVar.players);
 	var end = living.length + " players are alive." ;
 	if(living.length > 0){
 		end += " The " + getPlayersTitles(living) + " fought bravely against the Black King and won. ";
 		end += mournDead();
-		var spacePlayer = findAspectPlayer(players, "Space");
+		var spacePlayer = findAspectPlayer(curSessionGlobalVar.players, "Space");
 		if(spacePlayer.landLevel >= 6){
 			end += " Luckily, the " + spacePlayer.htmlTitle() + " was diligent in frog breeding duties. ";
 			if(spacePlayer.landLevel < 8){
@@ -175,7 +192,7 @@ function conclusion(){
 		end += democracyBonus();
 		end += " The players have failed. No new universe is created. Their home universe is left unfertilized. <Br><Br>Game Over. ";
 	}
-	var strongest = findStrongestPlayer(players)
+	var strongest = findStrongestPlayer(curSessionGlobalVar.players)
 	end += "The MVP of the session was: " + strongest.htmlTitle() + " with a power of: " + strongest.power;
 	$("#story").append(end);
 
@@ -183,10 +200,10 @@ function conclusion(){
 
 function democracyBonus(){
 	var ret = "";
-	if(democracyStrength == 0){
+	if(curSessionGlobalVar.democracyStrength == 0){
 		return ret;
 	}
-	if(democracyStrength > 10 && findLivingPlayers(players).length > 0 ){
+	if(curSessionGlobalVar.democracyStrength > 10 && findLivingPlayers(curSessionGlobalVar.players).length > 0 ){
 		ret += "The adorable Warweary Villein has been duly elected Mayor by the assembeled consorts and Carpacians. "
 		ret += " His acceptance speech consists of promising to be a really great mayor that everyone loves who is totally amazing and heroic and brave. "
 		ret += " He organizes the consort and Carpacians' immigration to the new Universe. ";
@@ -204,8 +221,8 @@ function democracyBonus(){
 }
 
 function mournDead(){
-	var dead = findDeadPlayers(players);
-	var living = findLivingPlayers(players);
+	var dead = findDeadPlayers(curSessionGlobalVar.players);
+	var living = findLivingPlayers(curSessionGlobalVar.players);
 	if(dead.length == 0){
 		return "";
 	}
@@ -233,9 +250,9 @@ function mournDead(){
 }
 
 function introducePlayers(){
-	for(var i = 0; i<players.length; i++){
-		var p = players[i];
-		var playersInMedium = players.slice(0, i+1); //anybody past me isn't in the medium, yet.
+	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+		var p = curSessionGlobalVar.players[i];
+		var playersInMedium =curSessionGlobalVar. players.slice(0, i+1); //anybody past me isn't in the medium, yet.
 		var intro = "The " + p.htmlTitle() + " enters the game " + indexToWords(i) + ". ";
 		if(i == 0){
 			intro += " They are definitely the leader. ";
@@ -252,14 +269,14 @@ function introducePlayers(){
 				intro += "They are " + r.description() + ". ";
 			}
 		}
-		kingStrength = kingStrength + 20;
-		if(!queenUncrowned && queenStrength > 0){
-			queenStrength = queenStrength + 10;
+		curSessionGlobalVar.kingStrength = curSessionGlobalVar.kingStrength + 20;
+		if(curSessionGlobalVar.queenStrength > 0){
+			curSessionGlobalVar.queenStrength = curSessionGlobalVar.queenStrength + 10;
 		}
 		if(disastor_prototypings.indexOf(p.kernel_sprite) != -1) {
-			kingStrength = kingStrength + 200;
-			if(!queenUncrowned && queenStrength > 0){
-				queenStrength = queenStrength + 100;
+			curSessionGlobalVar.kingStrength = curSessionGlobalVar.kingStrength + 200;
+			if(curSessionGlobalVar.queenStrength > 0){
+				curSessionGlobalVar.queenStrength = curSessionGlobalVar.queenStrength + 100;
 			}
 			intro += " A " + p.kernel_sprite + " fell into their kernel sprite just before entering. ";
 			intro += " It's a good thing none of their actions here will have serious longterm consequences. ";
@@ -272,7 +289,7 @@ function introducePlayers(){
 		intro += "<br><br>";
 		$("#story").append(intro);
 		//scenes can happen even if all players aren't in medium yet.
-		$("#story").append(processScenes(playersInMedium));
+		$("#story").append(processScenes(playersInMedium,curSessionGlobalVar));
 	}
 }
 

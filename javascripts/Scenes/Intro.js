@@ -1,6 +1,7 @@
-function Intro(){
+function Intro(session){
 	this.canRepeat = false;
-	this.playerList = [];  //what players are already in the medium when i trigger?
+	this.session=session;
+	this.playerList = [];  //whatthis.session.players are already in the medium when i trigger?
 	this.player = null;
 	this.trigger = function(playerList, player){
 		this.playerList = playerList;
@@ -490,9 +491,9 @@ function Intro(){
 		//do what homestuck does and put some text in image but rest in pesterlog?
 		//when trolls happen, should they use trollian?
 		var player1 = this.player;
-		var player2 = player1.getBestFriendFromList(findLivingPlayers(players), "intro chat");
+		var player2 = player1.getBestFriendFromList(findLivingPlayers(this.session.players), "intro chat");
 		if(player2 == null){
-			player2 = player1.getWorstEnemyFromList(findLivingPlayers(players));
+			player2 = player1.getWorstEnemyFromList(findLivingPlayers(this.session.players));
 
 		}
 
@@ -522,9 +523,10 @@ function Intro(){
 		}
 
 		if(this.player.dead==true){
+			console.log(session.session_id + " dead player enters, " +this.player.title())
 			narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably."
 			div.append(narration);
-			availablePlayers.push(this.player);
+			this.session.availablePlayers.push(this.player);
 			return;
 		}
 
@@ -537,14 +539,14 @@ function Intro(){
 			}
 		}
 
-		kingStrength = kingStrength + 20;
-		if(!queenUncrowned && queenStrength > 0){
-			queenStrength = queenStrength + 10;
+		this.session.kingStrength = this.session.kingStrength + 20;
+		if(this.session.queenStrength > 0){
+			this.session.queenStrength = this.session.queenStrength + 10;
 		}
 		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
-			kingStrength = kingStrength + 200;
-			if(!queenUncrowned && queenStrength > 0){
-				queenStrength = queenStrength + 100;
+			this.session.kingStrength = this.session.kingStrength + 200;
+			if(this.session.queenStrength > 0){
+				this.session.queenStrength = this.session.queenStrength + 100;
 			}
 
 		}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
@@ -553,7 +555,7 @@ function Intro(){
 
 		div.append(narration);
 		this.chat(div);
-		availablePlayers.push(this.player);
+		this.session.availablePlayers.push(this.player);
 	}
 
 	this.content = function(div, i){

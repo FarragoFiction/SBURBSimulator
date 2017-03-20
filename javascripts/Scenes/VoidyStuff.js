@@ -1,10 +1,11 @@
-function VoidyStuff(){
+function VoidyStuff(session){
+	this.session = session;
 	this.canRepeat = true;	
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.player = null;
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		this.player = findAspectPlayer(availablePlayers, "Void");
+		this.player = findAspectPlayer(this.session.availablePlayers, "Void");
 		return this.player != null;
 	}
 	
@@ -13,7 +14,7 @@ function VoidyStuff(){
 	}
 	
 	this.content = function(){
-		removeFromArray(this.player, availablePlayers);
+		removeFromArray(this.player, this.session.availablePlayers);
 		var ret = "The " + this.player.htmlTitle() + " is doing...something. It's kind of hard to see.";
 		var rand = Math.seededRandom();
 
@@ -43,9 +44,9 @@ function VoidyStuff(){
 			this.player.landLevel ++;
 			ret += " Their consorts seem pretty happy, though. " ;
 		}else{
-			queenStrength += -5;
-			jackStrength += -5;
-			kingStrength += -5;
+			this.session.queenStrength += -5;
+			this.session.jackStrength += -5;
+			this.session.kingStrength += -5;
 			ret += " The Dersites sure seem to be mad at them, though. ";
 		}
 		
@@ -54,8 +55,8 @@ function VoidyStuff(){
 			this.player.dreamSelf = false;
 			ret += " What was that dark blue light on " + this.player.shortLand() + "? ";
 		}
-		if(this.player.leader && !ectoBiologyStarted && Math.seededRandom() > .8){
-			ectoBiologyStarted = true;
+		if(this.player.leader && !this.session.ectoBiologyStarted && Math.seededRandom() > .8){
+			this.session.ectoBiologyStarted = true;
 			ret += " Wait. Are those BABIES!? What is even going on here?";
 		}
 		

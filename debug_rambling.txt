@@ -1,0 +1,154 @@
+sim=true
+2
+2175
+
+2
+2175
+
+sim=false
+2
+659
+2870
+
+
+sim == false
+no intro/loading
+2
+1000
+
+
+sim == true
+no intro/loading
+2
+1000
+
+even with everything off, those 2 are still being got.
+why?
+oh, time till reckoning and sessionType. i will initialize them to non random.
+
+
+now simmode gets me 2040, with intro and loading. instead of 2175. so confused.
+
+simodd false (so rendering) gets me
+659
+2870
+
+so whether or not there is more in rendering is different for different sessions.
+
+what if only intro, no tick
+659
+800 
+
+vs
+
+1000
+
+so rendering uses 459 more seeds. why.
+
+okay, lets look at the "real" sim.
+real page	ai finder simulation = false
+977		659
+2870		2870
+
+I wonder why rendering has the console statements print 
+out in 2 parts, and not consistently in 2 parts?
+Like...both things have 2870 as the second part.
+But the first part is different. Why?
+
+The second part seems to be the important part...
+The MVP of the session was: Grim Dark Heir of Rage's Corpse with a power of: 203
+The MVP of the session was: Grim Dark Heir of Rage's Corpse with a power of: 203
+Both have same result, even same power (which means everything was the same, basically)
+
+IS THE SEED GETTING RESET?
+Is that why only number of seeds being got AFTER a point matter?
+
+Nope. only called once.
+
+Okay. What do I know?
+
+There is a problem even in the intro stuff. 
+That greatly shortens the stuff I have to look into.
+
+Simulation = false is identical to the real stuff,
+so only need to debug one page.
+
+Question: What happens in the intro (when sim=false).
+
+Where/when does it differ from sim-true?
+
+Both intros are identical.  But...use different amount of seeds?  Okay, 
+maybe directly measureing seeds isn't the best way? with regular ticks on,
+ where do they start to differ?
+
+4kmonitor ftw that i can put these side by side to compare
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!
+The very last thing that is the same is 
+The Maid of Void makes a general nuisance of themselves to the Black Queen. 
+
+Then,sim-false the Heir of Rage black flirts with Knight of Space,
+ and gets rejected. Then ectobiology happens.
+
+Then,sim-true, "
+The Heir of Rage has taken an acrobatic fucking pirouette off the handle and into a giant pile of crazy. They engage Murder Mode while thinking of their enemies Knight of Space and Seer of Time and Page of Light and Rogue of Mind and Sylph of Heart and Thief of Breath. This is completely terrifying. "
+
+
+Yeah, that would hella cause a difference between sessions.
+
+So, is relationshipChat somehow using up randomness?
+There is a space for a chatlog in the sim-true version...
+But, the relationshipDrama should still be happening, just not being rendered....
+it's not the first chat, but it IS the first relationship chat.
+
+HR is antagonizing a jerk, which means they are indeed triggered (possibly just as much as when they engage murder mode)
+
+printing out the text that would have been there, it is the same for both of them.
+drawRelationshipChat doesn't seem to consume random.
+
+Okay, what if I allow that thing to render, but nothing else. Does source of difference dissappear?
+
+
+....What. The. Hell. It freaking APPEARS TO!? Smae MVP with same power and everything. This makes no sense.
+I'm not actually even rendering anything but text, 'cause still no loading.
+
+Alright. WHY is this happening?
+
+
+Alright, well, drawChat and drawRelationshipChat are actually pretty similar. So look for their differences.
+
+dRC gets the relationship to know if they should render heart or spade or nothing. Is that it? Doesn't appear to consume
+a seed. if i comment it out, will sim-false do an accrobatic piorrette (both literally and figuarativelY)
+
+Yep. Still doesn't make sense. But NOT rendering the heart or spade causes acrobatic pirouettes.
+
+Look deeper.
+
+It's not from rendering their empty buffers. still acrobatic pirouette
+
+Is it getting the relationship? No.
+
+Is it drawing the symbol?
+
+Is it .....fuck. FUCK!!!!
+
+I'm asking the relationship what type it is! That's WRONG! That's allowing it to recalculate
+the relationship (for example, fall out of love). I'm supposed to be querying the savedType.
+THAT was consuming the random!
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!I AM THE GREEEEEEETEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Also, now I need to go make sure anywhere i'm using type() is saved_type unless i really meant it.
+
+Fuck. Fuck. It's still happening though, even though i found an obvious use of random seeds.
+
+Oh god, I just realized that before when i was rendering empty buffers, I thought it was right that it was still pirouetting.
+that's wrong. damng. 
+
+Wait. no, that's actually right. the rendered version is wrong. acrobatic piroutte is right because it's when less seeds.
+
+compare both versions.
+
+
+

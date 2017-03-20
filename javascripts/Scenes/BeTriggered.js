@@ -1,4 +1,5 @@
-function BeTriggered(){
+function BeTriggered(session){
+	this.session = session;
 	this.canRepeat = true;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.triggeredPlayers = [];
@@ -7,8 +8,8 @@ function BeTriggered(){
 		this.playerList = playerList;
 		this.triggeredPlayers = [];
 		this.triggers = [];
-		for(var i = 0; i<availablePlayers.length; i++){
-			var p = availablePlayers[i];
+		for(var i = 0; i<this.session.availablePlayers.length; i++){
+			var p = this.session.availablePlayers[i];
 			var trigger = this.IsPlayerTriggered(p)
 			if(trigger != " absolutely nothing " && Math.seededRandom()>.6){ //mostly DON'T flip out
 				this.triggers.push(trigger);
@@ -24,11 +25,11 @@ function BeTriggered(){
 
 	this.IsPlayerTriggered = function(player){
 		//are any of your friends  dead?
-		var deadPlayers = findDeadPlayers(players);
+		var deadPlayers = findDeadPlayers(this.session.players);
 		var deadFriends = player.getFriendsFromList(deadPlayers);
-		var livePlayers = findLivingPlayers(players);
-		var worstEnemy = player.getWorstEnemyFromList(players);
-		var bestFriend = player.getBestFriendFromList(players);
+		var livePlayers = findLivingPlayers(this.session.players);
+		var worstEnemy = player.getWorstEnemyFromList(this.session.players);
+		var bestFriend = player.getBestFriendFromList(this.session.players);
 
 		//small chance
 		if(deadPlayers.length > 0){
@@ -88,7 +89,7 @@ function BeTriggered(){
 		var ret = "";
 		for(var i = 0; i<this.triggeredPlayers.length; i++){
 			var p = this.triggeredPlayers[i];
-			removeFromArray(p, availablePlayers);
+			removeFromArray(p, this.session.availablePlayers);
 			ret += " The " +p.htmlTitle() + " is currently too busy flipping the fuck out about "
 			ret += this.triggers[i] + " to be anything but a useless piece of gargbage. ";
 			p.triggerLevel ++;

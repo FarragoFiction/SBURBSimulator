@@ -1,7 +1,7 @@
-function LevelTheHellUp(){
+function LevelTheHellUp(session){
 	this.canRepeat = true;
 	this.playerList = [];  //what players are already in the medium when i trigger?
-
+	this.session = session;
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		for(var i = 0; i<playerList.length; i++){  //can happen even after death, because why not?

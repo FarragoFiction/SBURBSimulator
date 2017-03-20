@@ -1,4 +1,4 @@
-function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
+function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestiny){
 
   //call if I overrode claspect or interest or anything
 	this.reinit = function(){
@@ -162,6 +162,21 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 		}
 
 	}
+	
+	this.decideHemoCaste  =function (){
+		if(this.aspect != "Blood"){  //sorry karkat
+			this.bloodColor = getRandomElementFromArray(bloodColors);
+		}
+	}
+
+	this.decideLusus = function(player){
+		if(this.bloodColor == "#610061" || this.bloodColor == "#99004d" || this.bloodColor == "#631db4" ){
+			this.lusus = getRandomElementFromArray(seaLususTypes);
+		}else{
+			this.lusus = getRandomElementFromArray(landlususTypes);
+		}
+	}
+
 
 	this.getDenizen = function(){
 		return getDenizenFromAspect(this.aspect);
@@ -194,7 +209,7 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 				ret = true;
 			}
 			//extra likely if you just killed the king/queen, you hero you.
-			if(kingStrength <=0 && Math.seededRandom()>.2){
+			if(curSessionGlobalVar.kingStrength <=0 && Math.seededRandom()>.2){
 				ret = true;
 			}
 		}
@@ -304,8 +319,8 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 
 	//people like you more
 	this.boostAllRelationshipsWithMe = function(){
-		for(var i = 0; i<players.length; i++){
-			var r = this.getRelationshipWith(players[i])
+		for(var i = 0; i<session.players.length; i++){
+			var r = this.getRelationshipWith(session.players[i])
 			if(r){
 				r.increase();
 			}
@@ -314,8 +329,8 @@ function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
 
 	//people like you less
 	this.damageAllRelationshipsWithMe = function(){
-		for(var i = 0; i<players.length; i++){
-			var r = this.getRelationshipWith(players[i])
+		for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+			var r = this.getRelationshipWith(curSessionGlobalVar.players[i])
 			if(r){
 				r.decrease();
 			}
@@ -583,7 +598,7 @@ function getFontColorFromAspect(aspect){
 	return "<font color= '" + getColorFromAspect(aspect) + "'> ";
 }
 
-function randomPlayerWithClaspect(c,a){
+function randomPlayerWithClaspect(session, c,a){
 	var l = getRandomLandFromAspect(a);
 	var k = getRandomElementFromArray(prototypings);
 	if(c == "Witch" || Math.seededRandom() > .99){
@@ -597,42 +612,42 @@ function randomPlayerWithClaspect(c,a){
 		gd =true;
 	}
 	var m = getRandomElementFromArray(moons);
-	return new Player(c,a,l,k,m,gd);
+	return new Player(session,c,a,l,k,m,gd);
 }
-function randomPlayer(){
+function randomPlayer(session){
 	//remove class AND aspect from available
 	var c = getRandomElementFromArray(available_classes);
 	removeFromArray(c, available_classes);
 	var a = getRandomElementFromArray(available_aspects);
 	removeFromArray(a, available_aspects);
-	return randomPlayerWithClaspect(c,a);
+	return randomPlayerWithClaspect(session,c,a);
 
 }
 
-function randomPlayerWithoutRemoving(){
+function randomPlayerWithoutRemoving(session){
 	//remove class AND aspect from available
 	var c = getRandomElementFromArray(available_classes);
 	//removeFromArray(c, available_classes);
 	var a = getRandomElementFromArray(available_aspects);
 	//removeFromArray(a, available_aspects);
-	return randomPlayerWithClaspect(c,a);
+	return randomPlayerWithClaspect(session,c,a);
 
 }
 
-function randomSpacePlayer(){
+function randomSpacePlayer(session){
 	//remove class from available
 	var c = getRandomElementFromArray(available_classes);
 	removeFromArray(c, available_classes);
 	var a = required_aspects[0];
-	return randomPlayerWithClaspect(c,a);
+	return randomPlayerWithClaspect(session,c,a);
 }
 
-function randomTimePlayer(){
+function randomTimePlayer(session){
 	//remove class from available
 	var c = getRandomElementFromArray(available_classes);
 	removeFromArray(c, available_classes);
 	var a = required_aspects[1];
-	return randomPlayerWithClaspect(c,a);
+	return randomPlayerWithClaspect(session,c,a);
 }
 
 function findAspectPlayer(playerList, aspect){

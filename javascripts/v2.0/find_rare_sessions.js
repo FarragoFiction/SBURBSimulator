@@ -1,34 +1,21 @@
-var players = [];
 //looking for rare sessions or doing moon prophecies. not rendering.
-var simulationMode = false;
-var guardians = [];
-var frogStatus = 0;
-var kingStrength = 100; //can use this to extrapolate enemy strength.
-var queenStrength = 100;
-var jackStrength = 50;
-var hardStrength = 275;  //what consititutes a  'hard' game.
-var democracyStrength = 0;
-var queenUncrowned = false;  //if she loses her ring, she doesn't get stronger with further prototypes
-var reckoningStarted = false; //can't god tier if you are definitely on skaia.
-var ectoBiologyStarted = false;
-var doomedTimeline = false;
-var scratched = false;
+var simulationMode = true;
 var debugMode = false;
-var introScene;
-var currentSceneNum = 0;
 var spriteWidth = 400;
 var spriteHeight = 300;
 var canvasWidth = 1000;
 var canvasHeight = 300;
 var repeatTime = 5;
 var version2 = true; //even though idon't want  to render content, 2.0 is different from 1.0 (think of dialog that triggers)
-var timeTillReckoning = getRandomInt(10,30); //these will be wrong if seed is set
-var sessionType = Math.seededRandom(); //human, troll or mixed.
 
+
+var sessionObjects = []
+var curSessionGlobalVar;
 var sessionsSimulated = []
 var timesEcto = 0;
 var timesDenizen = 0;
 var timesExileJack = 0;
+var timesPlanExileJack = 0;
 var timesExileQueen = 0;
 var timesJackWeapon = 0;
 var timesJackScheme = 0;
@@ -40,9 +27,15 @@ var timesSavedDoomedTimeLine = 0;
 var timesInterestingSaveDoomedTimeLine = 0;
 var timesDemocracyStart = 0;
 var timesScratchesAvailable =0;
+var timesSickFrog = 0;
+var timesNoFrog  = 0;
+var timesFullFrog = 0;
+var timesGrimDark = 0;
+var timesMurderMode = 0;
+var totalFrogLevel = 0;
 
 var numSimulationsDone = 0;
-var numSimulationsToDo = 0;
+var numSimulationsToDo = 50;
 
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.
@@ -50,13 +43,12 @@ var numSimulationsToDo = 0;
 //main canvas is either Leader + PesterChumWindow + 1 or more Players (in chat or group chat with leader)
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
-		debug("Problem. First session is perfect, subsequent sessions are not. Wait, no, sometimes first isn't perfect either???  225266971  is murdermode if simulationMode = false, but grimdark (and sometimes murdermode) if simulationMode = true.  why?")
 	//these bitches are SHAREABLE.
-	  debug("Hypothesis, does loading or rendering use up a seed? YES: Found rainbowSwap consuming seeds. And that definitely changed the sim. but not perfect yet.")
-    debug("Oh god, it's worse than that. When simulationMode == true, use 4434 seeds.  When simulationMode == false, use 1430")
-		debug("try never rendering but allowing loading. sim false, rendering off: 4550 sim true, rendering off: 4550. so rendering is the problem, not loading.")
-		debug("simulation true, rendering 4550. simulation false, rendering 4434. differeince of 116 wait. wait wait wait. if i render there is LESS now? Not more? So...what? ");
-		debug("heart/spade close scenes just like clubs/diamonds")
+
+	debug ("don't forget to confirm refactor index.html and index2.html")
+	debug("most sessions fail according to canon.")
+	debug("log how often total party wipe happens")
+	debug("heart/spade close scenes just like clubs/diamonds")
 	if(getParameterByName("seed")){
 		Math.seed = getParameterByName("seed");
 		initial_seed = getParameterByName("seed");
@@ -65,22 +57,24 @@ window.onload = function() {
 		Math.seed = tmp;
 		initial_seed = tmp;
 	}
-	initRandomness();
-  init();
-	randomizeEntryOrder();
+	startSession();
+}
+
+function startSession(){
+	curSessionGlobalVar = new Session(initial_seed)
+	createScenesForSession(curSessionGlobalVar);
+	reinit();
+	//initPlayersRandomness();
+	curSessionGlobalVar.makePlayers();
+	curSessionGlobalVar.randomizeEntryOrder();
 	//authorMessage();
-	makeGuardians(); //after entry order established
+	curSessionGlobalVar.makeGuardians(); //after entry order established
 	//checkSGRUB();
 	if(simulationMode == true){
 		intro();
 	}else{
-		load(players, guardians); //in loading.js
+		load(curSessionGlobalVar.players, curSessionGlobalVar.guardians); //in loading.js
 	}
-}
-
-function initRandomness(){
-	timeTillReckoning = getRandomInt(10,30);
-  sessionType = Math.seededRandom(); //human, troll or mixed.
 }
 
 
@@ -112,14 +106,6 @@ function checkSGRUB(){
 	$("#heading").html("SGRUB Story Generator 2.0 by jadedResearcher (art assistance by karmicRetribution) ");
 
 }
-function getSessionType(){
-	if(sessionType > .6){
-		return "Human"
-	}else if(sessionType > .3){
-		return "Troll"
-	}
-	return "Mixed"
-}
 
 function renderScratchButton(){
 	timesScratchesAvailable ++;
@@ -134,26 +120,10 @@ function scratchConfirm(){
 }
 
 function reinit(){
-	players = [];
-	guardians = [];
-	scenesTriggered = [];
-	doomedTimelineReasons = []
 	available_classes = classes.slice(0);
 	available_aspects = nonrequired_aspects.slice(0); //required_aspects
 	available_aspects = available_aspects.concat(required_aspects.slice(0));
-	available_scenes = scenes.slice(0);  //was forgetting to reset this, so scratched players had less to do.
-	timeTillReckoning = getRandomInt(10,30);
-	frogStatus = 0;
-	kingStrength = 100; //can use this to extrapolate enemy strength.
-	queenStrength = 100;
-	jackStrength = 50;
-	hardStrength = 250;  //what consititutes a  'hard' game.
-	democracyStrength = 0;
-	queenUncrowned = false;  //if she loses her ring, she doesn't get stronger with further prototypes
-	reckoningStarted = false; //can't god tier if you are definitely on skaia.
-	//ectobiology not reset. if performed in previous session, it's done.
-	//if not, it's not. like how the alpha session trolls didn't perform ectobiology, so Karkat did.
-	doomedTimeline = false;
+	curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);  //was forgetting to reset this, so scratched players had less to do.
 }
 
 //TODO if i wanted to, I could have mixed sessions like in canon.
@@ -161,14 +131,14 @@ function reinit(){
 //or could have an afterlife where they meet guardian players???
 function scratch(){
 	reinit();
-	scratched = true;
-	var scratch = "The session has been scratched. The " + getPlayersTitlesBasic(players) + " will now be the beloved guardians.";
-	scratch += " Their former guardians, the " + getPlayersTitlesBasic(guardians) + " will now be the players.";
+	curSessionGlobalVar.scratched = true;
+	var scratch = "The session has been scratched. The " + getPlayersTitlesBasic(curSessionGlobalVar.players) + " will now be the beloved guardians.";
+	scratch += " Their former guardians, the " + getPlayersTitlesBasic(curSessionGlobalVar.guardians) + " will now be the players.";
 	scratch += " The new players will be given stat boosts to give them a better chance than the previous generation."
 	scratch += " What will happen?"
-	var tmp = players;
-	players = guardians;
-	guardians = tmp;
+	var tmp = curSessionGlobalVar.players;
+	curSessionGlobalVar.players = guardians;
+	curSessionGlobalVar.guardians = tmp;
 	$("#story").html(scratch);
 	window.scrollTo(0, 0);
 
@@ -183,7 +153,7 @@ function scratch(){
 
 	guardianDiv.append(canvasHTML);
 	var canvasDiv = document.getElementById("canvas"+ guardianID);
-	poseAsATeam(canvasDiv, guardians, 2000); //everybody, even corpses, pose as a team.
+	poseAsATeam(canvasDiv, curSessionGlobalVar.guardians, 2000); //everybody, even corpses, pose as a team.
 
 
 	var playerDiv = newScene();
@@ -196,17 +166,17 @@ function scratch(){
 
 	playerDiv.append(canvasHTML);
 	var canvasDiv = document.getElementById("canvas"+ playerID);
-	poseAsATeam(canvasDiv, players, 2000); //everybody, even corpses, pose as a team.
+	poseAsATeam(canvasDiv, curSessionGlobalVar.players, 2000); //everybody, even corpses, pose as a team.
 
 	intro();
 
 }
 
 function tick(){
-	if(timeTillReckoning > 0 && !doomedTimeline){
+	if(curSessionGlobalVar.timeTillReckoning > 0 && !curSessionGlobalVar.doomedTimeline){
 		setTimeout(function(){
-			timeTillReckoning += -1;
-			processScenes2(players);
+			curSessionGlobalVar.timeTillReckoning += -1;
+			processScenes2(curSessionGlobalVar.players,curSessionGlobalVar);
 			tick();
 		},repeatTime); //or availablePlayers.length * *1000?
 	}else{
@@ -216,152 +186,58 @@ function tick(){
 }
 
 function reckoning(){
-	var s = new Reckoning();
-	s.trigger(players)
-	s.renderContent(newScene());
-	if(!doomedTimeline){
+	var s = new Reckoning(curSessionGlobalVar);
+	s.trigger(curSessionGlobalVar.players)
+	s.renderContent(curSessionGlobalVar.newScene());
+	if(!curSessionGlobalVar.doomedTimeline){
 		reckoningTick();
 	}
 }
 
 function reckoningTick(){
-	if(timeTillReckoning > -10){
+	if(curSessionGlobalVar.timeTillReckoning > -10){
 		setTimeout(function(){
-			timeTillReckoning += -1;
-			processReckoning2(players)
+			curSessionGlobalVar.timeTillReckoning += -1;
+			processReckoning2(curSessionGlobalVar.players,curSessionGlobalVar)
 			reckoningTick();
 		},repeatTime);
 	}else{
-		var s = new Aftermath();
-		s.trigger(players)
-		s.renderContent(newScene());
+		var s = new Aftermath(curSessionGlobalVar);
+		s.trigger(curSessionGlobalVar.players)
+		s.renderContent(curSessionGlobalVar.newScene());
 		summarizeSession();
 	}
 
 }
-function findSceneNamed(scenesToCheck, name){
-	for(var i = 0; i<scenesToCheck.length; i++){
-		if(scenesToCheck[i].constructor.name == name){
-			return scenesToCheck[i];
-		}
-	}
-	return "No"
-}
 
-function summarizeScene(scenesTriggered, str){
-	return "<br>&nbsp&nbsp&nbsp&nbsp" +str + " : " + findSceneNamed(scenesTriggered,str)
-}
+
+
 
 function summarizeSession(scratchAvailable){
 	//don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
 	if(sessionsSimulated.indexOf(initial_seed) != -1){
+		//console.log("skipping a repeat session: " + initial_seed)
 		return;
 	}
 	sessionsSimulated.push(initial_seed);
-	//$("#story").html("");
-	var str = "<Br><hr>Session: " + initial_seed + " scenes: " + scenesTriggered.length + " Leader:  " + getLeader(players).title() ;
-	if(scratchAvailable){
-		str += "<b>&nbsp&nbsp&nbsp&nbspScratch Available</b>"
-	}
-	var tmp = "";
-	tmp =  summarizeScene(scenesTriggered, "DoEctobiology")
-	if(findSceneNamed(scenesTriggered,"DoEctobiology") != "No"){
-		timesEcto ++;
-	}
-	str += tmp;
-
-	tmp =  summarizeScene(scenesTriggered, "FaceDenizen")
-	if(findSceneNamed(scenesTriggered,"FaceDenizen") != "No"){
-		timesDenizen ++;
-	}
-	str += tmp;
-
-	tmp =  summarizeScene(scenesTriggered, "ExileJack")
-	if(findSceneNamed(scenesTriggered,"ExileJack") != "No"){
-		timesExileJack ++;
-	}
-	str += tmp;
-
-
-	tmp =  summarizeScene(scenesTriggered, "ExileQueen")
-	if(findSceneNamed(scenesTriggered,"ExileQueen") != "No"){
-		timesExileQueen ++;
-	}
-	str += tmp;
-
-
-	tmp =  summarizeScene(scenesTriggered, "GiveJackBullshitWeapon")
-	if(findSceneNamed(scenesTriggered,"GiveJackBullshitWeapon") != "No"){
-		timesJackWeapon ++;
-	}
-	str += tmp;
-
-	tmp =  summarizeScene(scenesTriggered, "JackBeginScheming")
-	if(findSceneNamed(scenesTriggered,"JackBeginScheming") != "No"){
-		timesJackScheme ++;
-	}
-	str += tmp;
-
-
-	tmp =  summarizeScene(scenesTriggered, "JackPromotion")
-	if(findSceneNamed(scenesTriggered,"JackPromotion") != "No"){
-		timesJackPromotion ++;
-	}
-	str += tmp;
-
-	tmp =  summarizeScene(scenesTriggered, "JackRampage")
-	if(findSceneNamed(scenesTriggered,"JackRampage") != "No"){
-		timesJackRampage ++;
-	}
-	str += tmp;
-
-
-	tmp =  summarizeScene(scenesTriggered, "KingPowerful")
-	if(findSceneNamed(scenesTriggered,"KingPowerful") != "No"){
-		timesKingPowerful ++;
-	}
-	str += tmp;
-
-	tmp =  summarizeScene(scenesTriggered, "QueenRejectRing")
-	if(findSceneNamed(scenesTriggered,"QueenRejectRing") != "No"){
-		timesQueenRejectRing ++;
-	}
-	str += tmp;
-
-
-  //stats for this will happen in checkDoomedTimeLines
-	str += summarizeScene(scenesTriggered, "SaveDoomedTimeLine") + doomedTimelineReasons;
-
-	tmp =  summarizeScene(scenesTriggered, "StartDemocracy")
-	if(findSceneNamed(scenesTriggered,"StartDemocracy") != "No"){
-		timesDemocracyStart ++;
-	}
-	str += tmp;
-
+	$("#story").html("");
+	var str = curSessionGlobalVar.summarize(scratchAvailable);
 	checkDoomedTimelines();
 	debug(str);
 
 	numSimulationsDone ++;
-	if(numSimulationsDone > numSimulationsToDo){
+	if(numSimulationsDone >= numSimulationsToDo){
 		printStats();
 		alert("should be done")
 		return;
 	}else{
-		//var tmp = getRandomSeed();
-		//Math.seed = tmp;
-		doomedTimelineReasons = []
-		initial_seed = Math.seed; //does this break predictable randomness?
-		//initial_seed = tmp;
-		initRandomness();
-	  init();
-		randomizeEntryOrder();
-		//authorMessage();
-		makeGuardians(); //after entry order established
-		//checkSGRUB();
-		//load(players, guardians); //in loading.js no graphics
-
-		intro();
-
+		setTimeout(function(){
+			//var tmp = getRandomSeed();
+			//Math.seed = tmp;
+			//doomedTimelineReasons = []
+			initial_seed = Math.seed; //does this break predictable randomness?
+			startSession();
+		},repeatTime*2); //since ticks are on time out, one might hit right as this is called, don't want that, cause causes players to be dead or godtier at start of next session
 	}
 }
 
@@ -382,10 +258,22 @@ var timesDemocracyStart = 0;*/
 function printStats(){
 	var str = "<br>Number Sessions: " + sessionsSimulated.length;
 	//timesScratchesAvailable
+	str += "<br> Average Frog Level: " + totalFrogLevel/sessionsSimulated.length;
+	str+= "<Br>Times Frogs Full: " + timesFullFrog+ " (" + Math.round((timesFullFrog/sessionsSimulated.length)*100) + "%)";;
+	str += "<Br>Times Frogs Sick: " + timesSickFrog+ " (" + Math.round((timesSickFrog/sessionsSimulated.length)*100) + "%)";;
+	str += "<br>Times No Frog: " + timesNoFrog+ " (" + Math.round((timesNoFrog/sessionsSimulated.length)*100) + "%)";;
 	str += "<Br>Times Scratches Available: " + timesScratchesAvailable + " (" + Math.round((timesScratchesAvailable/sessionsSimulated.length)*100) + "%)";
 	str += "<Br>Times Ectobiology: " + timesEcto + " (" + Math.round((timesEcto/sessionsSimulated.length)*100) + "%)";
-	str += "<Br>Times Fought Denizen (at least once): " + timesDenizen + " (" + Math.round((timesDenizen/sessionsSimulated.length)*100) + "%)";;
+
+	str += "<Br>Times GrimDark (at least one player): " + timesGrimDark + " (" + Math.round((timesGrimDark/sessionsSimulated.length)*100) + "%)";
+
+	str += "<Br>Times MurderMode (at least one player): " + timesMurderMode + " (" + Math.round((timesMurderMode/sessionsSimulated.length)*100) + "%)";
+
+	str += "<Br>Times Fought Denizen (at least once): " + timesDenizen + " (" + Math.round((timesDenizen/sessionsSimulated.length)*100) + "%)";
+
 	str += "<Br>Times Exiled Jack: " + timesExileJack + " (" + Math.round((timesExileJack/sessionsSimulated.length)*100) + "%)";;
+	str += "<Br>Times Planned To Exiled Jack: " + timesPlanExileJack + " (" + Math.round((timesPlanExileJack/sessionsSimulated.length)*100) + "%)";;
+
 	str += "<Br>Times Exiled Queen: " + timesExileQueen+ " (" + Math.round((timesExileQueen/sessionsSimulated.length)*100) + "%)";;
 	str += "<Br>Times Jack Got a Bullshit Weapon: " + timesJackWeapon+ " (" + Math.round((timesJackWeapon/sessionsSimulated.length)*100) + "%)";;
 	str += "<Br>Times Jack Schemed: " + timesJackScheme+ " (" + Math.round((timesJackScheme/sessionsSimulated.length)*100) + "%)";;
@@ -402,15 +290,15 @@ function printStats(){
 
 
 function checkDoomedTimelines(){
-	for(var i= 0; i<doomedTimelineReasons.length; i ++){
+	for(var i= 0; i<curSessionGlobalVar.doomedTimelineReasons.length; i ++){
 		timesSavedDoomedTimeLine ++;
-		if(doomedTimelineReasons[i] != "Random."){
+		if(curSessionGlobalVar.doomedTimelineReasons[i] != "Shenanigans"){
 			//alert("found an interesting doomed timeline" + doomedTimelineReasons[i])
 			timesInterestingSaveDoomedTimeLine ++;
 			return;
 		}
 	}
-	if(doomedTimelineReasons.length > 1){
+	if(curSessionGlobalVar.doomedTimelineReasons.length > 1){
 		timesSavedDoomedTimeLine ++;
 	}
 }
@@ -426,32 +314,27 @@ function chatLine(start, player, line){
   }
 }
 
-function newScene(){
-	currentSceneNum ++;
-	var div = "<div id='scene"+currentSceneNum+"'></div>";
-	$("#story").append(div);
-	return $("#scene"+currentSceneNum);
-}
+
 
 function authorMessage(){
 	makeAuthorAvatar();
-	introScene = new AuthorMessage();
+	introScene = new AuthorMessage(curSessionGlobalVar);
 	introScene.trigger(players, players[0])
 	introScene.renderContent(newScene(),0); //new scenes take care of displaying on their own.
 }
 
 function callNextIntroWithDelay(player_index){
-	if(player_index >= players.length){
-    tick();//NOW start ticking
+	if(player_index >= curSessionGlobalVar.players.length){
+		tick();//NOW start ticking
 		return;
 	}
 	setTimeout(function(){
-		var s = new Intro();
-		var p = players[player_index];
-		var playersInMedium = players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.
+		var s = new Intro(curSessionGlobalVar);
+		var p = curSessionGlobalVar.players[player_index];
+		var playersInMedium = curSessionGlobalVar.players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.
 		s.trigger(playersInMedium, p)
-		s.renderContent(newScene(),player_index); //new scenes take care of displaying on their own.
-		processScenes2(playersInMedium);
+		s.renderContent(curSessionGlobalVar.newScene(),player_index); //new scenes take care of displaying on their own.
+		processScenes2(playersInMedium,curSessionGlobalVar);
 		player_index += 1;
 		callNextIntroWithDelay(player_index)
 	},  repeatTime);  //want all players to be done with their setTimeOuts players.length*1000+2000
@@ -459,123 +342,5 @@ function callNextIntroWithDelay(player_index){
 
 
 function intro(){
-  //delay is needed here because this is when images are first loaded.
 	callNextIntroWithDelay(0);
-  /* //
-	introScene = new Intro();
-
-	for(var i = 0; i<players.length; i++){
-		var playersInMedium = players.slice(0, i+1); //anybody past me isn't in the medium, yet.
-		var p = players[i];
-		introScene.trigger(players, p)
-		//$("#story").append(introScene.content());
-		introScene.renderContent(newScene(),i); //new scenes take care of displaying on their own.
-		processScenes2(playersInMedium);
-	}*/
-
-}
-
-function randomizeEntryOrder(){
-	players = shuffle(players);
-	players[0].leader = true;
-}
-
-
-
-function decideHemoCaste(player){
-	if(player.aspect != "Blood"){  //sorry karkat
-		player.bloodColor = getRandomElementFromArray(bloodColors);
-	}
-}
-
-function decideLusus(player){
-	if(player.bloodColor == "#610061" || player.bloodColor == "#99004d" || players.bloodColor == "#631db4" ){
-		player.lusus = getRandomElementFromArray(seaLususTypes);
-	}else{
-		player.lusus = getRandomElementFromArray(landlususTypes);
-	}
-}
-
-function decideTroll(player){
-	if(getSessionType() == "Human"){
-		return;
-	}
-
-	if(getSessionType() == "Troll" || (getSessionType() == "Mixed" &&Math.seededRandom() > 0.5) ){
-		player.isTroll = true;
-		player.triggerLevel ++;//trolls are less stable
-		decideHemoCaste(player);
-		decideLusus(player);
-		player.kernel_sprite = player.lusus;
-	}
-}
-//species, hair and blood color is the same, horns and favorite number. aspect.  Thats it.
-//when scratch, get rid of story dif. make blank. scratch has to be button press.
-function makeGuardians(){
-	guardians = [];
-	//console.log("Making guardians")
-	available_classes = classes.slice(0);
-	available_aspects = nonrequired_aspects.slice(0); //required_aspects
-	available_aspects = available_aspects.concat(required_aspects.slice(0));
-	for(var i = 0; i<players.length; i++){
-		  var player = players[i];
-			//console.log("guardian for " + player.titleBasic());
-			var guardian = randomPlayer();
-			guardian.isTroll = player.isTroll;
-			if(guardian.isTroll){
-				guardian.quirk = randomTrollSim(guardian)
-			}else{
-				guardian.quirk = randomHumanSim(guardian);
-			}
-			guardian.quirk.favoriteNumber = player.quirk.favoriteNumber;
-			guardian.bloodColor = player.bloodColor;
-			guardian.lusus = player.lusus;
-			if(guardian.isTroll == true){ //trolls always use lusus.
-				guardian.kernel_sprite = player.kernel_sprite;
-			}
-			guardian.hairColor = player.hairColor;
-			guardian.aspect = player.aspect;
-			guardian.leftHorn = player.leftHorn;
-			guardian.rightHorn = player.rightHorn;
-			guardian.level_index = 5; //scratched kids start more leveled up
-			guardian.power = 50;
-			guardian.leader = player.leader;
-			if(Math.seededRandom() >0.5){ //have SOMETHING in common with your ectorelative.
-				guardian.interest1 = player.interest1;
-			}else{
-				guardian.interest2 = player.interest2;
-			}
-			guardian.reinit();//redo levels and land based on real aspect
-			guardians.push(guardian);
-	}
-
-	for(var j = 0; j<guardians.length; j++){
-		var g = guardians[j];
-		g.generateRelationships(guardians);
-	}
-}
-
-function init(){
-	players = [];
-	available_classes = classes.slice(0); //re-init available classes.
-	available_aspects = nonrequired_aspects.slice(0);
-	var numPlayers = getRandomInt(2,12);
-	players.push(randomSpacePlayer());
-	players.push(randomTimePlayer());
-
-	for(var i = 2; i<numPlayers; i++){
-		players.push(randomPlayer());
-	}
-
-	for(var j = 0; j<players.length; j++){
-		var p = players[j];
-		decideTroll(p);
-		p.generateRelationships(players);
-		if(p.isTroll){
-			p.quirk = randomTrollSim(p)
-		}else{
-			p.quirk = randomHumanSim(p);
-		}
-	}
-
 }

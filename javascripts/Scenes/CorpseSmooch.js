@@ -1,5 +1,6 @@
 //x times corpse smooch combo.
-function CorpseSmooch(){
+function CorpseSmooch(session){
+	this.session = session;
 	this.canRepeat = true;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.dreamersToRevive = [];
@@ -89,11 +90,11 @@ function CorpseSmooch(){
 	}
 
 	this.getRoyalty = function(d){
-		var royalty = d.getWhoLikesMeBestFromList(findLivingPlayers(availablePlayers));
+		var royalty = d.getWhoLikesMeBestFromList(findLivingPlayers(this.session.availablePlayers));
 		royalty = this.ignoreEnemies(d, royalty);
 		if(!royalty){
 			//okay, princes are traditional...
-			royalty = findClassPlayer(findLivingPlayers(availablePlayers), "Prince");
+			royalty = findClassPlayer(findLivingPlayers(this.session.availablePlayers), "Prince");
 			if(royalty && royalty.grimDark == true){
 				royalty = null; //grim dark won't corpse smooch unless they actual want to.
 			}
@@ -101,7 +102,7 @@ function CorpseSmooch(){
 		royalty = this.ignoreEnemies(d, royalty);
 		if(!royalty){
 			//okay, anybody free?
-			royalty = getRandomElementFromArray(findLivingPlayers(availablePlayers));
+			royalty = getRandomElementFromArray(findLivingPlayers(this.session.availablePlayers));
 			if(royalty && royalty.grimDark == true){
 				royalty = null; //grim dark won't corpse smooch unless they actual want to.
 			}

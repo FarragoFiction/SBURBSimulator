@@ -1,4 +1,6 @@
 var asyncNumSprites = 0;
+//~~~~~~~~~~~IMPORTANT~~~~~~~~~~LET NOTHING HERE BE RANDOM
+//OR PREDICTIONS AND TIME LOOPS AND AI SEARCHES WILL BE WRONG
 function trollify(canvas,player){
    //red_array = red_context.getImageData(0, 0, red_canvas.width, red_canvas.height).data;
    //alert("I should trollify");
@@ -548,6 +550,7 @@ function writeLevels(canvas, player){
 }
 
 function drawRelationshipChat(canvas, player1, player2, chat, repeatTime){
+
   if(checkSimMode() == true){
     return;
   }
@@ -579,15 +582,16 @@ function drawRelationshipChat(canvas, player1, player2, chat, repeatTime){
 	var r2 = player2.getRelationshipWith(player1);
 	var r1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 	var r2SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-	if(r1.type() == r1.goodBig){
+
+	if(r1.saved_type == r1.goodBig){
 		drawHeart(r1SpriteBuffer)
-	}else if(r1.type() == r1.badBig && player1.isTroll == true){
+	}else if(r1.saved_type == r1.badBig && player1.isTroll == true){
 		drawSpade(r1SpriteBuffer)
 	}
 
-	if(r2.type() == r2.goodBig){
+	if(r2.saved_type == r2.goodBig){
 		drawHeart(r2SpriteBuffer)
-	}else if(r2.type() == r2.badBig && player2.isTroll == true){
+	}else if(r2.saved_type == r2.badBig && player2.isTroll == true){
 		drawSpade(r2SpriteBuffer)
 	}
 
@@ -1479,7 +1483,7 @@ function getBufferCanvas(canvas){
 }
 
 function copyTmpCanvasToRealCanvasAtPos(canvas, tmp_canvas, x, y){
-	ctx = canvas.getContext('2d');
+  ctx = canvas.getContext('2d');
 	ctx.drawImage(tmp_canvas, x, y);
 }
 

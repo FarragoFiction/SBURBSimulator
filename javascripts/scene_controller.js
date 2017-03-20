@@ -6,61 +6,60 @@
 
 //blood and page players most likely to get scenes with other people.
 //blood players slightly improve all relationships a friend has when they see them.
-var availablePlayers = [];  //which players are available for scenes or whatever.
-var scenesTriggered = [];
-var doomedTimelineReasons = [];
-
-var scenes = [new StartDemocracy(), new JackBeginScheming(), new KingPowerful(), new QueenRejectRing(), new JackPromotion(), new JackRampage(), new GiveJackBullshitWeapon()];
-//relationship drama has a high priority because it can distract a session from actually making progress. happened to universe a trolls.
-scenes = scenes.concat([new RelationshipDrama(), new BeTriggered(), new EngageMurderMode(), new GoGrimDark(),  new DisengageMurderMode(),new MurderPlayers()]);
-scenes = scenes.concat([new VoidyStuff(), new FaceDenizen(), new DoEctobiology(), new DoLandQuest()]);
-
-scenes = scenes.concat([new SolvePuzzles(), new ExploreMoon()]);
 
 
-scenes = scenes.concat([new LevelTheHellUp()]);
 
-//make sure kiss, then godtier, then godtierrevival, then any other form of revival.
-var deathScenes = [ new SaveDoomedTimeLine(), new CorpseSmooch(), new GetTiger(), new GodTierRevival()];  //are always available.
-var reckoningScenes = [new FightQueen(), new FightKing()];
 
-//scenes can add other scenes to available scene list. (for example, spy missions being added if Jack began scheming)
-var available_scenes = []; //remove scenes from this if they get used up.
-//make non shallow copy.
-for(var i = 0; i<scenes.length; i++){
-	available_scenes.push(scenes[i]);
+function createScenesForSession(session){
+	session.scenes = [new StartDemocracy(session), new JackBeginScheming(session), new KingPowerful(session), new QueenRejectRing(session), new JackPromotion(session), new JackRampage(session), new GiveJackBullshitWeapon(session)];
+	//relationship drama has a high priority because it can distract a session from actually making progress. happened to universe a trolls.
+	session.scenes = session.scenes.concat([new RelationshipDrama(session), new BeTriggered(session), new EngageMurderMode(session), new GoGrimDark(session),  new DisengageMurderMode(session),new MurderPlayers(session)]);
+	session.scenes = session.scenes.concat([new VoidyStuff(session), new FaceDenizen(session), new DoEctobiology(session), new DoLandQuest(session)]);
+	session.scenes = session.scenes.concat([new SolvePuzzles(session), new ExploreMoon(session)]);
+	session.scenes = session.scenes.concat([new LevelTheHellUp(session)]);
+
+	//make sure kiss, then godtier, then godtierrevival, then any other form of revival.
+	session.deathScenes = [ new SaveDoomedTimeLine(session), new CorpseSmooch(session), new GetTiger(session), new GodTierRevival(session)];  //are always available.
+	session.reckoningScenes = [new FightQueen(session), new FightKing(session)];
+
+	//scenes can add other scenes to available scene list. (for example, spy missions being added if Jack began scheming)
+	session.available_scenes = []; //remove scenes from this if they get used up.
+	//make non shallow copy.
+	for(var i = 0; i<session.scenes.length; i++){
+		session.available_scenes.push(session.scenes[i]);
+	}
 }
 
 //makes copy of player list (no shallow copies!!!!)
-function setAvailablePlayers(playerList){
-	availablePlayers = [];
+function setAvailablePlayers(playerList,session){
+	session.availablePlayers = [];
 	for(var i = 0; i<playerList.length; i++){
 		//dead players are always unavailable.
 		if(!playerList[i].dead){
-			availablePlayers.push(playerList[i]);
+			session.availablePlayers.push(playerList[i]);
 		}
 	}
-	return availablePlayers;
+	return session.availablePlayers;
 }
 
 //playerlist is everybody in the medium
 //might not be all players in the begining.
-function processReckoning(playerList){
+function processReckoning(playerList,session){
 	var ret = "";
-	for(var i = 0; i<reckoningScenes.length; i++){
-		var s = reckoningScenes[i];
+	for(var i = 0; i<session.reckoningScenes.length; i++){
+		var s = session.reckoningScenes[i];
 		if(s.trigger(playerList)){
-			scenesTriggered.push(s);
+			session.scenesTriggered.push(s);
 			//console.log(s);
 			//console.log("was triggered");
 			ret += s.content() + " <br><br> ";
 		}
 	}
 
-	for(var i = 0; i<deathScenes.length; i++){
-		var s = deathScenes[i];
+	for(var i = 0; i<session.deathScenes.length; i++){
+		var s = session.deathScenes[i];
 		if(s.trigger(playerList)){
-			scenesTriggered.push(s);
+			session.scenesTriggered.push(s);
 			ret += s.content() + " <br><br> ";
 		}
 	}
@@ -68,28 +67,28 @@ function processReckoning(playerList){
 	return ret;
 }
 
-function processScenes2(playerList){
+function processScenes2(playerList,session){
 	//console.log("processing scene");
 	//$("#story").append("processing scene");
 	var ret = "";
-	setAvailablePlayers(playerList);
-	for(var i = 0; i<available_scenes.length; i++){
-		var s = available_scenes[i];
+	setAvailablePlayers(playerList,session);
+	for(var i = 0; i<session.available_scenes.length; i++){
+		var s = session.available_scenes[i];
 		//var debugQueen = queenStrength;
 		if(s.trigger(playerList)){
-			scenesTriggered.push(s);
-			s.renderContent(newScene());
+			session.scenesTriggered.push(s);
+			s.renderContent(session.newScene());
 			if(!s.canRepeat){
-				removeFromArray(s,available_scenes);
+				removeFromArray(s,session.available_scenes);
 			}
 		}
 	}
 
-	for(var i = 0; i<deathScenes.length; i++){
-		var s = deathScenes[i];
+	for(var i = 0; i<session.deathScenes.length; i++){
+		var s = session.deathScenes[i];
 		if(s.trigger(playerList)){
-			scenesTriggered.push(s);
-			s.renderContent(newScene());
+			session.scenesTriggered.push(s);
+			s.renderContent(session.newScene());
 		}
 	}
 
@@ -99,63 +98,43 @@ function processScenes2(playerList){
 
 //playerlist is everybody in the medium
 //might not be all players in the begining.
-function processReckoning2(playerList){
+function processReckoning2(playerList,session){
 	var ret = "";
-	for(var i = 0; i<reckoningScenes.length; i++){
-		var s = reckoningScenes[i];
+	for(var i = 0; i<session.reckoningScenes.length; i++){
+		var s = session.reckoningScenes[i];
 		if(s.trigger(playerList)){
-			scenesTriggered.push(s);
-			s.renderContent(newScene());
+			session.scenesTriggered.push(s);
+			s.renderContent(session.newScene());
 		}
 	}
 
-	for(var i = 0; i<deathScenes.length; i++){
-		var s = deathScenes[i];
+	for(var i = 0; i<session.deathScenes.length; i++){
+		var s = session.deathScenes[i];
 		if(s.trigger(playerList)){
-			scenesTriggered.push(s);
-			s.renderContent(newScene());
+			session.scenesTriggered.push(s);
+			s.renderContent(session.newScene());
 		}
 	}
 
 	return ret;
 }
 
-//unnecccesarry. tick has delay, not scenes (and especially not scenes that don't even triger)
-function callNextSceneWithDelay(scenes, index, death){
-	//debug("scene index: " + index)
-	if(index > scenes.length && !death){
-		callNextSceneWithDelay(death_scenes,0,true);
-	}else if(index > scenes.length && death == true){
-		return;
-	}
-	setTimeout(function(){
-		var s =scenes[index];
-		if(s.trigger(playerList)){
-			scenesTriggered.push(s);
-			s.renderContent(newScene());
-			if(!s.canRepeat){
-				removeFromArray(s,available_scenes);
-			}
-		}
-  			 //in scene controller, make this choose scene from array. trigger, then content, etc.
-		index += 1;
-		callNextSceneWithDelay(scenes, index)
-  		}, 100);  //want all players to be done with their setTimeOuts players.length*1000+2000
-}
+
 
 //playerlist is everybody in the medium
 //might not be all players in the begining.
 //can't just add an "if 2.0" check, btw.
 //need to have a pause between each scene to give time for rendering.
 //gotta test method in scenario_controller2.js move here, modify
-function processScenes(playerList){
+function processScenes(playerList,session){
+	//console.log(session)
 	var ret = "";
-	setAvailablePlayers(playerList);
-	for(var i = 0; i<available_scenes.length; i++){
-		var s = available_scenes[i];
+	setAvailablePlayers(playerList,session);
+	for(var i = 0; i<session.available_scenes.length; i++){
+		var s = session.available_scenes[i];
 		//var debugQueen = queenStrength;
 		if(s.trigger(playerList)){
-			scenesTriggered.push(s);
+			session.scenesTriggered.push(s);
 			//console.log("was triggered");
 			var content = s.content()
 			if(content != ""){
@@ -167,17 +146,17 @@ function processScenes(playerList){
 				//console.log(s);
 			//}
 			if(!s.canRepeat){
-				removeFromArray(s,available_scenes);
+				removeFromArray(s,session.available_scenes);
 			}
 		}
 	}
 
-	for(var i = 0; i<deathScenes.length; i++){
-		var s = deathScenes[i];
+	for(var i = 0; i<session.deathScenes.length; i++){
+		var s = session.deathScenes[i];
 		if(s.trigger(playerList)){
 			//console.log(s);
 			//console.log("was triggered");
-			scenesTriggered.push(s);
+			session.scenesTriggered.push(s);
 			ret += s.content() + " <br><br> ";
 		}
 	}

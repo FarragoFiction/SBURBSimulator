@@ -1,19 +1,20 @@
-function GiveJackBullshitWeapon(){
+function GiveJackBullshitWeapon(session){
+	this.session = session;
 	this.canRepeat = false;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return (jackStrength < queenStrength*2) && (jackStrength > 0 && Math.seededRandom() > .99);
+		return (this.session.jackStrength < this.session.queenStrength*2) && (this.session.jackStrength > 0 && Math.seededRandom() > .99);
 	}
 
 	this.content = function(){
 
-		jackStrength = queenStrength + 5;
+		this.session.jackStrength = this.session.queenStrength + 5;
 		var ret = " Jack Noir is tired of putting up with the STUPID LOUSY WISE AND JUST LEADER, what a royal pain in the ass. ";
 		ret += " It's bad enough she makes him handle every single piece of paperwork in all of Derse, does she really need to rub salt in his wounds and make him dress up in frivolous outfits as well?";
 		ret += " So, it's no surprise that Jack murders the Black Queen the second he finds a Legendary weapon amongst the confiscated packages of Prospit. ";
-		queenStrength = 0;
+		this.session.queenStrength = 0;
 		return ret;
 	}
 

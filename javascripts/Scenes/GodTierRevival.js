@@ -1,5 +1,6 @@
-function GodTierRevival(){
-	this.canRepeat = true;	
+function GodTierRevival(session){
+	this.canRepeat = true;
+	this.session = session;	
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.godsToRevive = []; 
 	
