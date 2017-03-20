@@ -36,7 +36,7 @@ function prepareToExileJack(){
 	this.spyContent = function(){
 		var ret = "The " + this.player.htmlTitle() + " performs a daring spy mission,";
 		if(this.player.power > kingStrength/100){
-			jackStrength += -10*2;
+			jackStrength += -10;
 			ret += " gaining valuable intel to use against Jack Noir. ";
 		}else{
 			ret += " but hilariously bungles it. ";
@@ -47,7 +47,7 @@ function prepareToExileJack(){
 	this.assasinationContent = function(){
 		var ret = "The " + this.player.htmlTitle() + " performs a daring assasination mission against one of Jack Noir's minions,";
 		if(this.player.power > kingStrength/100){
-			jackStrength += -15*2;
+			jackStrength += -15;
 			ret += " losing him a valuable ally. ";
 		}else{
 			ret += " but hilariously bungles it. ";
@@ -57,7 +57,7 @@ function prepareToExileJack(){
 	
 	this.harrassContent = function(){
 		var ret = "The " + this.player.htmlTitle() + " makes a general nuisance of themselves to Jack Noir, but in a deniable way. ";
-		jackStrength += -5*2;
+		jackStrength += -5;
 		return ret;
 	}
 	

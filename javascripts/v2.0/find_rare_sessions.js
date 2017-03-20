@@ -58,7 +58,7 @@ var numSimulationsToDo = 50;
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
 	//these bitches are SHAREABLE.
-
+	debug("jack is rampaging more times than he should get the opportunity to....")
 	debug("some sessions don't end in a catchable way from here, but are fine for real")
 	debug("heart/spade close scenes just like clubs/diamonds")
 	if(getParameterByName("seed")){
