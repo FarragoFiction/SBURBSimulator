@@ -24,7 +24,7 @@ function Session(session_id){
 	this.available_scenes = [];
 	this.availablePlayers = [];  //which players are available for scenes or whatever.
 
-	
+
 	this.makePlayers = function(){
 		this.players = [];
 		available_classes = classes.slice(0); //re-initPlayers available classes.
@@ -48,7 +48,7 @@ function Session(session_id){
 			}
 		}
 	}
-	
+
 	this.makeGuardians = function(){
 		this.guardians = [];
 		//console.log("Making guardians")
@@ -92,12 +92,12 @@ function Session(session_id){
 			g.generateRelationships(this.guardians);
 		}
 	}
-	
+
 	this.randomizeEntryOrder = function(){
 		this.players = shuffle(this.players);
 		this.players[0].leader = true;
 	}
-	
+
 	this.decideTroll = function decideTroll(player){
 		if(this.getSessionType() == "Human"){
 			return;
@@ -112,7 +112,7 @@ function Session(session_id){
 		}
 	}
 
-	
+
 	this.getSessionType = function(){
 		if(this.sessionType > .6){
 			return "Human"
@@ -122,14 +122,14 @@ function Session(session_id){
 		return "Mixed"
 	}
 
-	
+
 	this.newScene = function(){
 		this.currentSceneNum ++;
 		var div = "<div id='scene"+this.currentSceneNum+"'></div>";
 		$("#story").append(div);
 		return $("#scene"+this.currentSceneNum);
 	}
-	
+
 	this.summarize = function(scratchAvailable){
 		var strongest = findStrongestPlayer(this.players)
 		var str = "<Br><hr><a href = 'index2.html?seed="+ this.session_id +"'>Session: " + this.session_id + "</a> scenes: " + this.scenesTriggered.length + " Leader:  " + getLeader(this.players).title() + " MVP: " + strongest.htmlTitle()+ " with a power of: " + strongest.power;;
@@ -149,13 +149,13 @@ function Session(session_id){
 		}
 		str += tmp;
 
-		
+
 		tmp =  summarizeScene(this.scenesTriggered, "PlanToExileJack")
 		if(findSceneNamed(this.scenesTriggered,"PlanToExileJack") != "No"){
 			timesPlanExileJack ++;
 		}
 		str += tmp;
-		
+
 		tmp =  summarizeScene(this.scenesTriggered, "ExileJack")
 		if(findSceneNamed(this.scenesTriggered,"ExileJack") != "No"){
 			timesExileJack ++;
@@ -217,27 +217,27 @@ function Session(session_id){
 			timesDemocracyStart ++;
 		}
 		str += tmp;
-		
+
 		tmp =  summarizeScene(this.scenesTriggered, "EngageMurderMode")
 		if(findSceneNamed(this.scenesTriggered,"EngageMurderMode") != "No"){
 			timesMurderMode ++;
 		}
 		str += tmp;
-		
+
 		tmp =  summarizeScene(this.scenesTriggered, "GoGrimDark")
 		if(findSceneNamed(this.scenesTriggered,"GoGrimDark") != "No"){
 			timesGrimDark ++;
 		}
 		str += tmp;
-		
+
 		var spacePlayer = findAspectPlayer(this.players, "Space");
 		var result = "No Frog"
-		
-		if(spacePlayer.landLevel >= 6){
-			if(spacePlayer.landLevel < 8){
+
+		if(spacePlayer.landLevel >= 18){
+			if(spacePlayer.landLevel < 28){
 				timesSickFrog ++;
 				result = "Sick Frog"
-				
+
 			}else{
 				timesFullFrog ++;
 				result = "Full Frog"
@@ -250,7 +250,7 @@ function Session(session_id){
 
 		checkDoomedTimelines();
 		return(str)
-		
+
 	}
 }
 

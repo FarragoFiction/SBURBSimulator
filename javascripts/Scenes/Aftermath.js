@@ -93,13 +93,13 @@ function Aftermath(session){
 			end = "<Br>";
 			this.mournDead(div);
 			var spacePlayer = findAspectPlayer(this.session.players, "Space");
-			if(spacePlayer.landLevel >= 6){
+			if(spacePlayer.landLevel >= 18){
 				end += "<br> Luckily, the " + spacePlayer.htmlTitle() + " was diligent in frog breeding duties. ";
-				if(spacePlayer.landLevel < 8){
+				if(spacePlayer.landLevel < 28){
 					end += " The frog looks... a little sick or something, though... That probably won't matter. You're sure of it. ";
 				}
 				end += " The frog is deployed, and grows to massive proportions, and lets out a breath taking Vast Croak.  ";
-				if(spacePlayer.landLevel < 8){
+				if(spacePlayer.landLevel < 28){
 					end += " The door to the new universe is revealed.  As the leader reaches for it, a disaster strikes.   ";
 					end += " Apparently the new universe's sickness manifested as its version of SBURB interfering with yours. ";
 					end += " Your way into the new universe is barred, and you remain trapped in the medium.  <Br><br>Game Over.";
