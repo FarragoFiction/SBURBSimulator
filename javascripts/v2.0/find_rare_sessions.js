@@ -197,7 +197,7 @@ function reckoning(){
 	var s = new Reckoning(curSessionGlobalVar);
 	s.trigger(curSessionGlobalVar.players)
 	s.renderContent(curSessionGlobalVar.newScene());
-	if(!doomedTimeline){
+	if(!curSessionGlobalVar.doomedTimeline){
 		reckoningTick();
 	}
 }

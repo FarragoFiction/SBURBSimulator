@@ -498,7 +498,7 @@ function RelationshipDrama(session){
 	}
 
 	this.getLivingBestFriendBesidesCrush = function(player,crush){
-		var living = findLivingPlayers(players)
+		var living = findLivingPlayers(this.session.players)
 		//alert("removing crush: " + crush.title() + " from array: " + living.length)
 		removeFromArray(crush, living)
 		//alert("removed crush: " + crush.title() + " from array: " + living.length)
