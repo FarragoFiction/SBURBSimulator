@@ -25,26 +25,6 @@ window.onload = function() {
 
 	shareableURL();
 
-
-	//easter egg ^_^
-	debug("TODO re-add easter eggs after refactor")
-	/*  
-	if(getParameterByName("royalRumble")  == "true"){
-		debugRoyalRumble();
-	}
-	//authorMessage();
-	//i cannot resist
-	if(initial_seed == 413){
-		session413();
-	}else if(initial_seed == 612){
-		session612();
-	}else if(initial_seed == 1025){
-		session1025()
-	}else if(initial_seed == 33){
-		session33();
-	}
-	
-	*/
 	startSession();
 
 	//intro();  //~~~~~~LOADING SCRIPT WILL CALL THIS~~~~~~~~~
@@ -78,6 +58,23 @@ function startSession(){
 	curSessionGlobalVar.randomizeEntryOrder();
 	//authorMessage();
 	curSessionGlobalVar.makeGuardians(); //after entry order established
+	//easter egg ^_^
+	if(getParameterByName("royalRumble")  == "true"){
+		debugRoyalRumble();
+	}
+	//authorMessage();
+	//i cannot resist
+	if(initial_seed == 413){
+		session413();
+	}else if(initial_seed == 612){
+		session612();
+	}else if(initial_seed == 1025){
+		session1025()
+	}else if(initial_seed == 33){
+		session33();
+	}
+	
+	
 	checkSGRUB();
 
 	load(curSessionGlobalVar.players, curSessionGlobalVar.guardians); //in loading.js
