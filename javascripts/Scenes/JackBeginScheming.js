@@ -216,7 +216,7 @@ function JackBeginScheming(session){
 			this.chatWithFriend(div,player1, player2)
 		}else if(player2 == player1){
 			//leader gossips with friends
-			player2 = player1.getBestFriendFromList(findLivingPlayers(players));
+			player2 = player1.getBestFriendFromList(findLivingPlayers(this.session.players));
 			if(!player2){
 				return div.append(this.content);
 			}else{

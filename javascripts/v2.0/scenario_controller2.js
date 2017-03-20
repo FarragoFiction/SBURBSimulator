@@ -549,8 +549,8 @@ function session612(){
 	}
 
 	for(var i = 0; i<12;i++){
-		player = players[i];
-		var guardian = guardians[i]
+		player = curSessionGlobalVar.players[i];
+		var guardian = curSessionGlobalVar.guardians[i]
 		player.isTroll = true;
 		guardian.isTroll = true;
 		guardian.generateRelationships(curSessionGlobalVar.guardians);
@@ -1057,21 +1057,21 @@ function session1025(){
 	for(var i = 0; i<12;i++){
 		var player;
 		var guardian;
-		if(i<players.length){
-			player = players[i];
+		if(i<curSessionGlobalVar.players.length){
+			player = curSessionGlobalVar.players[i];
 		}else{
 			player = randomPlayerWithClaspect("Page", "Void");
 			guardian = randomPlayerWithClaspect("Page", "Void");
 			guardian.quirk = randomTrollSim(guardian);
 			player.quirk = randomTrollSim(player);
-			guardians.push(guardian);
-			players.push(player);
+			curSessionGlobalVar.guardians.push(guardian);
+			curSessionGlobalVar.players.push(player);
 		}
 	}
 
 	for(var i = 0; i<12;i++){
-		player = players[i];
-		var guardian = guardians[i]
+		player = curSessionGlobalVar.players[i];
+		var guardian = curSessionGlobalVar.guardians[i]
 		if(i<8){
 			player.isTroll = false;
 			guardian.isTroll = false;
@@ -1094,8 +1094,8 @@ function session1025(){
 			session612IndexToTroll(guardian, index);
 		}
 
-		guardian.generateRelationships(guardians);
-		player.generateRelationships(players);
+		guardian.generateRelationships(curSessionGlobalVar.guardians);
+		player.generateRelationships(curSessionGlobalVar.players);
 
 		player.mylevels = getLevelArray(player);
 		guardian.mylevels = getLevelArray(guardian);
