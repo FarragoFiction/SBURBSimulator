@@ -1,10 +1,10 @@
 //known to lesser mortals as God Tier
 function GetTiger(session){
-	this.canRepeat = true;	
+	this.canRepeat = true;
 	this.session = session;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.deadPlayersToGodTier = [];
-	
+
 	//doesn't matter if dream self 'cause sacrificial slab.
 	this.trigger = function(playerList){
 		this.playerList = playerList;
@@ -12,7 +12,7 @@ function GetTiger(session){
 		if(this.session.reckoningStarted){
 			return false; //can't god tier if you are definitely on skaia. (makes king fight too easy)
 		}
-		//all dead players who aren't god tier and are destined to be god tier god tier now. 
+		//all dead players who aren't god tier and are destined to be god tier god tier now.
 		var deadPlayers = findDeadPlayers(playerList);
 		for(var i = 0; i<deadPlayers.length; i++){
 			var p = deadPlayers[i];
@@ -21,9 +21,9 @@ function GetTiger(session){
 			}
 		}
 		return this.deadPlayersToGodTier.length > 0;
-		
+
 	}
-	
+
 	this.renderContent = function(div){
 		div.append(this.content());
 		var repeatTime = 1000;
@@ -37,18 +37,18 @@ function GetTiger(session){
 		//different format for canvas code
 		var canvasDiv = document.getElementById("canvas"+ divID);
 		var players = this.deadPlayersToGodTier;
-		
+
 		drawGetTiger(canvasDiv, players,repeatTime)
-	
+
 	}
-	
-	
+
+
 	this.content = function(){
 		var ret = getPlayersTitles(this.deadPlayersToGodTier) + " was always destined to take a Legendary Nap, and upon waking, become a God Tier. ";
-		
+
 		var withd = findPlayersWithDreamSelves(this.deadPlayersToGodTier);
 		var withoutd = findPlayersWithoutDreamSelves(this.deadPlayersToGodTier);
-		
+
 		if(withd){
 			for(var i = 0; i< withd.length; i++){
 				var p = withd[i];
@@ -56,20 +56,20 @@ function GetTiger(session){
 				ret +="On " + p.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
 			}
 		}
-		
+
 		if(withoutd){
 			for(var i = 0; i< withoutd.length; i++){
 				var p = withoutd[i];
 				ret += " Upon a wacky series of events leaving their corpse on their SACRIFICIAL SLAB on " + p.moon + ", the " + p.htmlTitle() + " glows and ascends to the God Tiers with a sweet new outfit."
 			}
 		}
-		
+
 		ret += " They are now extremely powerful. ";
-		
+
 		if(findClassPlayer(this.deadPlayersToGodTier, "Page") != null){
 			ret += " Everyone fails to ignore the Page's outfit. ";
 		}
-		
+
 		for(var  i = 0; i<this.deadPlayersToGodTier.length; i++){
 			var p = this.deadPlayersToGodTier[i];
 			p.godTier = true;

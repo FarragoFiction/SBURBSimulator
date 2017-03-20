@@ -10,6 +10,7 @@ function Reckoning(session){
 
 	//i is so you know entry order
 	this.renderContent = function(div){
+		this.session.reckoningStarted = true;
 		var intro = "<br><br> The reckoning has begun.  The Black King has defeated his Prospitian counterpart, initiating a meteor storm to destroy Skaia. ";
 		var leader = getLeader(this.session.players);
 		if(this.session.ectoBiologyStarted){
