@@ -278,25 +278,25 @@ function session413(){
 	for(var i = 0; i<8;i++){
 		var player;
 		var guardian;
-		if(i<players.length){
-			player = players[i];
+		if(i< curSessionGlobalVar.players.length){
+			player = curSessionGlobalVar.players[i];
 		}else{
-			player = randomPlayerWithClaspect("Page", "Void");
-			guardian = randomPlayerWithClaspect("Page", "Void");
+			player = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
+			guardian = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
 			guardian.quirk = randomHumanSim(guardian);
 			player.quirk = randomHumanSim(player);
-			guardians.push(guardian);
-			players.push(player);
+			curSessionGlobalVar.guardians.push(guardian);
+			curSessionGlobalVar.players.push(player);
 		}
 	}
 
 	for(var i = 0; i<8;i++){
-		player = players[i];
-		var guardian = guardians[i]
+		player = curSessionGlobalVar.players[i];
+		var guardian = curSessionGlobalVar.guardians[i]
 		player.isTroll = false;
 		guardian.isTroll = false;
-		guardian.generateBlandRelationships(guardians);
-		player.generateBlandRelationships(players);
+		guardian.generateBlandRelationships(curSessionGlobalVar.guardians);
+		player.generateBlandRelationships(curSessionGlobalVar.players);
 		session413IndexToHuman(player, i);
 		session413IndexToAncestor(guardian, i);//just call regular with a different index
 		player.mylevels = getLevelArray(player);
@@ -410,6 +410,7 @@ function session413IndexToHuman(player,index){
 		player.chatHandle = "tipsyGnostalgic"
 		player.interest1 = "Writing"
 		player.interest2 = "Wizards"
+		//HI!!! HOW ARE YOU!?
 		player.quirk.capitalization = 0;
 		player.quirk.punctuation = 0;
 		player.quirk.lettersToReplace = [];
@@ -487,11 +488,11 @@ function session33(){
 	for(var i = 0; i<12;i++){
 		var player;
 		var guardian;
-		if(i<players.length){
-			player = players[i];
+		if(i<curSessionGlobalVar.players.length){
+			player = curSessionGlobalVar.players[i];
 		}else{
-			guardian = randomPlayerWithClaspect("Rogue", "Heart");
-			player = randomPlayerWithClaspect("Rogue", "Heart");
+			guardian = randomPlayerWithClaspect(curSessionGlobalVar,"Rogue", "Heart");
+			player = randomPlayerWithClaspect(curSessionGlobalVar,"Rogue", "Heart");
 			player.quirk = randomTrollSim(player);
 			guardian.quirk = randomTrollSim(player);
 			players.push(player);
@@ -503,12 +504,12 @@ function session33(){
 	}
 
 	for(var i = 0; i<12;i++){
-		player = players[i];
-		guardian = guardians[i]
+		player = curSessionGlobalVar.players[i];
+		guardian = curSessionGlobalVar.guardians[i]
 		player.isTroll = true;
 		guardian.isTroll = true;
-		player.generateRelationships(players);
-		guardian.generateRelationships(guardians);
+		player.generateRelationships(curSessionGlobalVar.players);
+		guardian.generateRelationships(curSessionGlobalVar.guardians);
 		if(player.aspect != "Time" && player.aspect != "Space"){
 			player.aspect = "Heart"
 			player.class_name = "Rogue"
@@ -535,15 +536,15 @@ function session612(){
 	for(var i = 0; i<12;i++){
 		var player;
 		var guardian;
-		if(i<players.length){
-			player = players[i];
+		if(i<curSessionGlobalVar.players.length){
+			player = curSessionGlobalVar.players[i];
 		}else{
-			player = randomPlayerWithClaspect("Page", "Void");
-			guardian = randomPlayerWithClaspect("Page", "Void");
+			player = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
+			guardian = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
 			guardian.quirk = randomTrollSim(guardian);
 			player.quirk = randomTrollSim(player);
-			guardians.push(guardian);
-			players.push(player);
+			curSessionGlobalVar.guardians.push(guardian);
+			curSessionGlobalVar.players.push(player);
 		}
 	}
 
@@ -552,8 +553,8 @@ function session612(){
 		var guardian = guardians[i]
 		player.isTroll = true;
 		guardian.isTroll = true;
-		guardian.generateRelationships(guardians);
-		player.generateRelationships(players);
+		guardian.generateRelationships(curSessionGlobalVar.guardians);
+		player.generateRelationships(curSessionGlobalVar.players);
 		session612IndexToTrollAncestor(player, i);
 		session612IndexToTroll(guardian, i);
 		player.mylevels = getLevelArray(player);

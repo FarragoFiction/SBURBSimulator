@@ -329,8 +329,8 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 
 	//people like you less
 	this.damageAllRelationshipsWithMe = function(){
-		for(var i = 0; i<session.players.length; i++){
-			var r = this.getRelationshipWith(session.players[i])
+		for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+			var r = this.getRelationshipWith(curSessionGlobalVar.players[i])
 			if(r){
 				r.decrease();
 			}
