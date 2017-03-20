@@ -348,20 +348,20 @@ function randomTrollSim(player){
 		ret.capitalization = getRandomInt(0,1);
 	}
 
-	if(Math.seededRandom() > .85){
+	if(Math.seededRandom() > .95){
 		ret.prefix = getRandomElementFromArray(prefixes);
-		if(ret.prefix.length == 1){
+		if(ret.prefix.length == 1 && ret.favoriteNumber < 8){
 			ret.prefix = multiplyCharacter(ret.prefix, ret.prefix[0], ret.favoriteNumber);
 		}
 	}
-	if(Math.seededRandom() > .85){
+	if(Math.seededRandom() > .95){
 		if(ret.prefix != "" && Math.seededRandom()>.7){ //mostly just repeat your prefix
 			ret.suffix = ret.prefix;
 		}else{
 			ret.suffix = getRandomElementFromArray(prefixes);
 		}
 
-		if(ret.suffix.length == 1){
+		if(ret.suffix.length == 1 && ret.favoriteNumber < 8){
 			ret.suffix  = multiplyCharacter(ret.suffix, ret.suffix[0], ret.favoriteNumber);
 		}
 	}
