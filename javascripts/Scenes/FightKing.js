@@ -5,7 +5,8 @@ function FightKing(session){
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return (this.session.kingstrength > 0) &&  (this.session.queenStrength <= 0) && (findLivingPlayers(this.session.players).length != 0) ;
+		//console.log('fight kin trigger?')
+		return (this.session.kingStrength > 0) &&  (this.session.queenStrength <= 0) && (findLivingPlayers(this.session.players).length != 0) ;
 	}
 
 	this.killPlayers = function(stabbings){
@@ -129,37 +130,37 @@ this.getGoodGuys = function(){
 			partyPower += 100 * (timePlayer.doomedTimeClones);
 		}
 
-		if(democracyStrength > 1){
+		if(this.session.democracyStrength > 1){
 			ret += " The Warweary Villein has assembled an army to help the Players. ";
-			partyPower += democracyStrength;
-			democracyStrength += -1 * getRandomInt(0,democracyStrength-1); //how badly is democracy hurt?
+			partyPower += this.session.democracyStrength;
+			this.session.democracyStrength += -1 * getRandomInt(0,this.session.democracyStrength-1); //how badly is democracy hurt?
 		}
 
-		if(partyPower > this.session.kingstrength*5){
+		if(partyPower > this.session.kingStrength*5){
 			ret += "The Players easily defeat the King, no sweat. It was easy. He is DEAD. ";
-			this.session.kingstrength = 0;
+			this.session.kingStrength = 0;
 			this.levelPlayers(living);
 		}else{
 			var deadPlayers = this.getDeadList(living);
 			if(deadPlayers.length > 0){
 				ret += " The king brutally destroys the " + getPlayersTitles(deadPlayers) + ".  DEAD.";
 			}
-			if(democracyStrength < 10){
+			if(this.session.democracyStrength < 10){
 				ret += " The King decimates the democractically assembled Army. ";
 			}
 			this.killPlayers(deadPlayers);
 			living = findLivingPlayers(this.session.players);
 			if(living.length > 0 ){
 				ret += " After the smoke clears, the king is defeated. DEAD.";
-				this.session.kingstrength = 0;
+				this.session.kingStrength = 0;
 				this.levelPlayers(living);
 			}else{
 				ret += " The party is defeated. ";
 			}
 		}
 
-		if(this.session.kingstrength > 10){
-			this.session.kingstrength += -10;
+		if(this.session.kingStrength > 10){
+			this.session.kingStrength += -10;
 		}
 		return ret;
 
