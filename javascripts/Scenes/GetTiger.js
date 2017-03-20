@@ -9,7 +9,7 @@ function GetTiger(session){
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		this.deadPlayersToGodTier = [];
-		if(reckoningStarted){
+		if(this.session.reckoningStarted){
 			return false; //can't god tier if you are definitely on skaia. (makes king fight too easy)
 		}
 		//all dead players who aren't god tier and are destined to be god tier god tier now. 

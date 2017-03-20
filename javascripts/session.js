@@ -30,11 +30,11 @@ function Session(session_id){
 		available_classes = classes.slice(0); //re-initPlayers available classes.
 		available_aspects = nonrequired_aspects.slice(0);
 		var numPlayers = getRandomInt(2,12);
-		this.players.push(randomSpacePlayer());
-		this.players.push(randomTimePlayer());
+		this.players.push(randomSpacePlayer(this));
+		this.players.push(randomTimePlayer(this));
 
 		for(var i = 2; i<numPlayers; i++){
-			this.players.push(randomPlayer());
+			this.players.push(randomPlayer(this));
 		}
 
 		for(var j = 0; j<this.players.length; j++){
@@ -58,7 +58,7 @@ function Session(session_id){
 		for(var i = 0; i<this.players.length; i++){
 			  var player = this.players[i];
 				//console.log("guardian for " + player.titleBasic());
-				var guardian = randomPlayer();
+				var guardian = randomPlayer(this);
 				guardian.isTroll = player.isTroll;
 				if(guardian.isTroll){
 					guardian.quirk = randomTrollSim(guardian)

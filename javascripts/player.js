@@ -1,4 +1,4 @@
-function Player(class_name, aspect, land, kernel_sprite, moon, godDestiny){
+function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestiny){
 
   //call if I overrode claspect or interest or anything
 	this.reinit = function(){
@@ -598,7 +598,7 @@ function getFontColorFromAspect(aspect){
 	return "<font color= '" + getColorFromAspect(aspect) + "'> ";
 }
 
-function randomPlayerWithClaspect(c,a){
+function randomPlayerWithClaspect(session, c,a){
 	var l = getRandomLandFromAspect(a);
 	var k = getRandomElementFromArray(prototypings);
 	if(c == "Witch" || Math.seededRandom() > .99){
@@ -612,42 +612,42 @@ function randomPlayerWithClaspect(c,a){
 		gd =true;
 	}
 	var m = getRandomElementFromArray(moons);
-	return new Player(c,a,l,k,m,gd);
+	return new Player(session,c,a,l,k,m,gd);
 }
-function randomPlayer(){
+function randomPlayer(session){
 	//remove class AND aspect from available
 	var c = getRandomElementFromArray(available_classes);
 	removeFromArray(c, available_classes);
 	var a = getRandomElementFromArray(available_aspects);
 	removeFromArray(a, available_aspects);
-	return randomPlayerWithClaspect(c,a);
+	return randomPlayerWithClaspect(session,c,a);
 
 }
 
-function randomPlayerWithoutRemoving(){
+function randomPlayerWithoutRemoving(session){
 	//remove class AND aspect from available
 	var c = getRandomElementFromArray(available_classes);
 	//removeFromArray(c, available_classes);
 	var a = getRandomElementFromArray(available_aspects);
 	//removeFromArray(a, available_aspects);
-	return randomPlayerWithClaspect(c,a);
+	return randomPlayerWithClaspect(session,c,a);
 
 }
 
-function randomSpacePlayer(){
+function randomSpacePlayer(session){
 	//remove class from available
 	var c = getRandomElementFromArray(available_classes);
 	removeFromArray(c, available_classes);
 	var a = required_aspects[0];
-	return randomPlayerWithClaspect(c,a);
+	return randomPlayerWithClaspect(session,c,a);
 }
 
-function randomTimePlayer(){
+function randomTimePlayer(session){
 	//remove class from available
 	var c = getRandomElementFromArray(available_classes);
 	removeFromArray(c, available_classes);
 	var a = required_aspects[1];
-	return randomPlayerWithClaspect(c,a);
+	return randomPlayerWithClaspect(session,c,a);
 }
 
 function findAspectPlayer(playerList, aspect){

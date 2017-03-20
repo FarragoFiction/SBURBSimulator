@@ -296,7 +296,7 @@ function printStats(){
 
 
 function checkDoomedTimelines(){
-	for(var i= 0; i<session.doomedTimelineReasons.length; i ++){
+	for(var i= 0; i<curSessionGlobalVar.doomedTimelineReasons.length; i ++){
 		timesSavedDoomedTimeLine ++;
 		if(doomedTimelineReasons[i] != "Shenanigans"){
 			//alert("found an interesting doomed timeline" + doomedTimelineReasons[i])

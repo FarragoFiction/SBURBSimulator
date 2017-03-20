@@ -20,14 +20,14 @@ function DoEctobiology(session){
 		var repeatTime = 1000;
 		var divID = (div.attr("id")) + "_babies";
 		var ch = canvasHeight;
-		if(players.length > 6){
+		if(this.session.players.length > 6){
 			ch = canvasHeight*1.5;
 		}
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = document.getElementById("canvas"+ divID);
-		poseBabiesAsATeam(canvasDiv, this.leader, players, guardians, 4000);
+		poseBabiesAsATeam(canvasDiv, this.leader, this.session.players, this.session.guardians, 4000);
 	}
 
 	this.renderContent = function(div){
@@ -39,8 +39,8 @@ function DoEctobiology(session){
 		ectoBiologyStarted = true;
 		var ret = " Through a series of wacky, yet inevitable in hindsight, coincidences, the " + this.leader.htmlTitle();
 		ret += " finds themselves in the veil of meteors surrounding the Medium. ";
-		ret +=  " A button is pushed, and suddenly there are little tiny baby version of " + getPlayersTitlesBasic(players);
-		if(scratched){
+		ret +=  " A button is pushed, and suddenly there are little tiny baby version of " + getPlayersTitlesBasic(this.session.players);
+		if(session.scratched){
 			ret += " Plus baby versions of all the players from the pre-scratch session?"
 			ret += " No wonder that session went so poorly: It was always destined to be scatched or nobody would be born in the first place."
 		}else{

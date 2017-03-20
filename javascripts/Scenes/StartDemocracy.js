@@ -46,10 +46,10 @@ function StartDemocracy(session){
 	
 	this.content = function(){
 		this.friend.increasePower();
-		removeFromArray(this.friend, availablePlayers);
-		available_scenes.unshift( new PrepareToExileQueen());  //make it top priority, so unshift, don't push
-		available_scenes.unshift( new ExileQueen());  //make it top priority, so unshift, don't push
-		available_scenes.unshift( new PowerDemocracy());  //make it top priority, so unshift, don't push
+		removeFromArray(this.friend, this.session.availablePlayers);
+		this.session.available_scenes.unshift( new PrepareToExileQueen(session));  //make it top priority, so unshift, don't push
+		this.session.available_scenes.unshift( new ExileQueen(session));  //make it top priority, so unshift, don't push
+		this.session.available_scenes.unshift( new PowerDemocracy(session));  //make it top priority, so unshift, don't push
 
 		var ret = " The " + this.friend.htmlTitle() + " is just minding their own business when they are approached by an adorable little Dersite. ";
 		ret += " The Dersite introduces himself as a Warweary Villein hoping to recruit a Champion. ";
@@ -57,7 +57,7 @@ function StartDemocracy(session){
 		ret += " The Warweary Villein just hates the Monarchy.  They are petty, bossy tyrants and are really full of themselves and are basically awful in every way. "
 		ret += " The " + this.friend.htmlTitle() + " can't help but be persuaded by the adorable rant. Look at the little guy's clenched fists! ";
 		ret += " A plan is hatched to exile the Queen, and the Dersite promises an army to help fight the King. ";
-		democracyStrength += 50;
+		this.session.democracyStrength += 50;
 		return ret;
 	}
 }

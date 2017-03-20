@@ -1,4 +1,4 @@
-function FightQueen(sesion){
+function FightQueen(session){
 	this.canRepeat = true;
 	this.session = session;	
 	this.playerList = [];  //what players are already in the medium when i trigger?
