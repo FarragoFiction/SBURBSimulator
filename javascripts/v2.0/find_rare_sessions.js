@@ -44,7 +44,7 @@ var numSimulationsToDo = 50;
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
 	//these bitches are SHAREABLE.
-	debug ("don't forget to refactor index.html and index2.html")
+	debug ("don't forget to confirm refactor index.html and index2.html")
 	debug("heart/spade close scenes just like clubs/diamonds")
 	if(getParameterByName("seed")){
 		Math.seed = getParameterByName("seed");
