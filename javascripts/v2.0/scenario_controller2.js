@@ -6,6 +6,7 @@ var canvasWidth = 1000;
 var canvasHeight = 300;
 var repeatTime = 5;
 var version2 = true; //even though idon't want  to render content, 2.0 is different from 1.0 (think of dialog that triggers)
+var curSessionGlobalVar;
 
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.

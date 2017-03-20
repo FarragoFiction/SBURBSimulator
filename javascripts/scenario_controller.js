@@ -1,19 +1,12 @@
-var players = [];
-var frogStatus = 0;
+var curSessionGlobalVar;
+
 var simulationMode = false;
-var kingStrength = 100; //can use this to extrapolate enemy strength.
-var queenStrength = 100;
-var jackStrength = 50;
-var hardStrength = kingStrength+20*12;  //what consititutes a  'hard' game.
-var democracyStrength = 0;
-var queenUncrowned = false;  //if she loses her ring, she doesn't get stronger with further prototypes
-var reckoningStarted = false; //can't god tier if you are definitely on skaia.
-var ectoBiologyStarted = false;
-var doomedTimeline = false;
+
 var debugMode = false;
-var scratched = false;
 
 window.onload = function() {
+	debug("Be Patient, refactoring this code to match 2.0")
+	/*
     init();
 	//exileQueenInit();
 	//murderModeInit();
@@ -52,7 +45,7 @@ window.onload = function() {
     debugLevelTheHellUp();
   }
 }
-
+*/
 };
 
 
@@ -65,25 +58,9 @@ function reckoningTick(){
 	$("#story").append(processReckoning(players));
 }
 
-function randomizeEntryOrder(){
-	players = shuffle(players);
-}
 
-function init(){
-	available_classes = classes; //re-init available classes.
-	available_aspects = nonrequired_aspects;
-	var numPlayers = getRandomInt(2,12);
-	players.push(randomSpacePlayer());
-	players.push(randomTimePlayer());
 
-	for(var i = 2; i<numPlayers; i++){
-		players.push(randomPlayer());
-	}
 
-	for(var j = 0; j<players.length; j++){
-		players[j].generateRelationships(players);
-	}
-}
 
 function printPlayers(){
 	for(var i = 0; i<players.length; i++){

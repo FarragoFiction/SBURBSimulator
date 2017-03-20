@@ -44,7 +44,6 @@ var numSimulationsToDo = 50;
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
 	//these bitches are SHAREABLE.
-	debug("why are players dead before entering a session, but ONLY on repeats?");
 	debug ("don't forget to refactor index.html and index2.html")
 	debug("heart/spade close scenes just like clubs/diamonds")
 	if(getParameterByName("seed")){
