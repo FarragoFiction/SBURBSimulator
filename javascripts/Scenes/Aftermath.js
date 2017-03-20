@@ -18,7 +18,7 @@ function Aftermath(session){
 			ret += " His acceptance speech consists of promising to be a really great mayor that everyone loves who is totally amazing and heroic and brave. "
 			ret += " He organizes the consort and Carpacians' immigration to the new Universe. ";
 		}else{
-			if(this.session.findLivingPlayers(this.session.players).length > 0){
+			if(findLivingPlayers(this.session.players).length > 0){
 				ret += " The Warweary Villein feels the sting of defeat. Although he helped the Players win their session, the cost was too great.";
 				ret += " There can be no democracy in a nation with only one citizen left alive. ";
 				ret += " He becomes the Wayward Vagabond, and exiles himself to the remains of the Players old world, rather than follow them to the new one.";
