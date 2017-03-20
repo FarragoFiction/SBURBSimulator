@@ -74,8 +74,8 @@ function startSession(){
 	}else if(initial_seed == 33){
 		session33();
 	}
-	
-	
+
+
 	checkSGRUB();
 
 	load(curSessionGlobalVar.players, curSessionGlobalVar.guardians); //in loading.js
@@ -156,16 +156,16 @@ function scratch(){
 	scratch += " The new players will be given stat boosts to give them a better chance than the previous generation."
 	scratch += " What will happen?"
 	var tmp = curSessionGlobalVar.players;
-	curSessionGlobalVar.players = guardians;
+	curSessionGlobalVar.players = curSessionGlobalVar.guardians;
 	curSessionGlobalVar.guardians = tmp;
 	$("#story").html(scratch);
 	window.scrollTo(0, 0);
 
 
-	var guardianDiv = newScene();
+	var guardianDiv = curSessionGlobalVar.newScene();
 	var guardianID = (guardianDiv.attr("id")) + "_guardians" ;
 	var ch = canvasHeight;
-	if(guardians.length > 6){
+	if(curSessionGlobalVar.guardians.length > 6){
 		ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
 	}
 	var canvasHTML = "<br><canvas id='canvas" + guardianID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
@@ -175,10 +175,10 @@ function scratch(){
 	poseAsATeam(canvasDiv, curSessionGlobalVar.guardians, 2000); //everybody, even corpses, pose as a team.
 
 
-	var playerDiv = newScene();
+	var playerDiv = curSessionGlobalVar.newScene();
 	var playerID = (playerDiv.attr("id")) + "_players" ;
 	var ch = canvasHeight;
-	if(players.length > 6){
+	if(curSessionGlobalVar.players.length > 6){
 		ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
 	}
 	var canvasHTML = "<br><canvas id='canvas" + playerID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
@@ -1118,6 +1118,3 @@ function makeAuthorAvatar(){
 	players[0].bloodColor = "#ff0000"
 	players[0].mylevels = ["INSTEAD","a CORPSE JUST RENDERS HERE","STILL CAN LEVEL UP.","OH, AND CORPSES.","SAME LEVELS","BUT STILL HAVE","IMAGE","THEY GET A DIFFERENT","BEFORE MAXING OUT","IF THEY GODTIER","AND GO UP THE LADDER","LEVELS NOW","16 PREDETERMINED","HAVE","PLAYERS","I FINISHED ECHELADDERS."];
 }
-
-
-
