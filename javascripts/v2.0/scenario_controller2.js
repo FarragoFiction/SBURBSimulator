@@ -126,7 +126,7 @@ function renderScratchButton(){
 	//alert("scratch [possible]");
 	//can't scratch if it was a a total party wipe. just a regular doomed timeline.
 	var living = findLivingPlayers(curSessionGlobalVar.players);
-	if(living.length > 0 && curSessionGlobalVar.makeCombinedSession == false){
+	if(living.length > 0 && (curSessionGlobalVar.makeCombinedSession == false && curSessionGlobalVar.hadCombinedSession == false)){
 		var timePlayer = findAspectPlayer(curSessionGlobalVar.players, "Time");
 		if(!curSessionGlobalVar.scratched){
 			//this is apparently spoilery.

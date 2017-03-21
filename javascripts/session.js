@@ -29,6 +29,7 @@ function Session(session_id){
 
 
 	//child sessions are basically any session with an ID that matches the seed you stop on
+	//TODO could possibly be constrained to need a space or time player to navigage. or godtier light/doom??? could further require the player be from derse
 	this.initializeCombinedSession = function(){
 		var living = findLivingPlayers(this.players);
 		//nobody is the leader anymore. 

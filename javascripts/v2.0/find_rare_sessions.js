@@ -203,6 +203,9 @@ function reckoningTick(){
 		s.trigger(curSessionGlobalVar.players)
 		s.renderContent(curSessionGlobalVar.newScene());
 		
+		
+		summarizeSession();
+		/*//for some reason whether or not a combo session is available isn't working?
 		if(curSessionGlobalVar.makeCombinedSession == true){
 			setTimeout(function(){
 				processCombinedSession();  //make sure everything is done rendering first
@@ -210,12 +213,14 @@ function reckoningTick(){
 		}else{
 			summarizeSession();
 		}
+		*/
 		
 	}
 
 }
 
 function processCombinedSession(){
+	initial_seed = Math.seed;
 	var newcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
 	if(newcurSessionGlobalVar){
 		timesComboSession ++;
@@ -233,11 +238,11 @@ function processCombinedSession(){
 
 function summarizeSession(scratchAvailable){
 	//don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
-	if(sessionsSimulated.indexOf(initial_seed) != -1){
-		//console.log("skipping a repeat session: " + initial_seed)
+	if(sessionsSimulated.indexOf(curSessionGlobalVar.session_id) != -1){
+		//console.log("skipping a repeat session: " + curSessionGlobalVar.session_id)
 		return;
 	}
-	sessionsSimulated.push(initial_seed);
+	sessionsSimulated.push(curSessionGlobalVar.session_id);
 	$("#story").html("");
 	var str = curSessionGlobalVar.summarize(scratchAvailable);
 	checkDoomedTimelines();
