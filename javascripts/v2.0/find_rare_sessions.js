@@ -36,7 +36,7 @@ var timesComboSession = 0;
 var totalFrogLevel = 0;
 
 var numSimulationsDone = 0;
-var numSimulationsToDo = 2;
+var numSimulationsToDo = 52;
 
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.
@@ -46,8 +46,7 @@ var numSimulationsToDo = 2;
 window.onload = function() {
 	//these bitches are SHAREABLE.
 	
-	debug("Problem: generating wrong session to be child session for combo session. Session 2022 should make a child of 206577 (and is in index2.html) but is 163241. wrong wrong wrong.");
-	debug("Ah, timeout was the problem. for some reason?")
+	debug("2022 has a combo session");
 	debug("log how often total party wipe happens")
 	debug("test combo session: 212740")
 
@@ -103,6 +102,9 @@ function shareableURL(){
 
 function renderScratchButton(session){
 	timesScratchesAvailable ++;
+	if(session.ectoBiologyStarted == false){
+		summarizeSession(session);
+	}
 }
 
 function scratchConfirm(){
@@ -217,10 +219,8 @@ function processCombinedSession(){
 	initial_seed = Math.seed;
 	var newcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
 	if(newcurSessionGlobalVar){
-		console.log("combosession")
 		timesComboSession ++;
 		curSessionGlobalVar = newcurSessionGlobalVar;
-		console.log(curSessionGlobalVar.players)
 		$("#story").append("<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session " + curSessionGlobalVar.session_id + ". ");
 		intro();
 	}else{

@@ -37,7 +37,7 @@ function DoEctobiology(session){
 	}
 
 	this.content = function(){
-		console.log("doing ectobiology for session " + this.session.session_id)
+		//console.log("doing ectobiology for session " + this.session.session_id)
 		this.session.ectoBiologyStarted = true;
 		this.playersMade = findPlayersWithoutEctobiologicalSource(this.session.players);
 		setEctobiologicalSource(this.session.players, session.session_id)

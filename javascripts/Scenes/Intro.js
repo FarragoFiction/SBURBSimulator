@@ -523,7 +523,7 @@ function Intro(session){
 	this.renderContent = function(div,i){
 		var narration = "";
 		if(this.player.land == null){
-			console.log("This session is:  " + this.session.session_id + " and the " + this.player.title() + " is from session: " + this.player.ectoBiologicalSource + " and their land is: " + this.player.land);
+			//console.log("This session is:  " + this.session.session_id + " and the " + this.player.title() + " is from session: " + this.player.ectoBiologicalSource + " and their land is: " + this.player.land);
 		}
 		if(!this.player.fromThisSession(this.session)){
 			narration += "<br>The " + this.player.htmlTitle() + " has been in contact with the native players of this session for most of their lives. It's weird how time flows differently between universes. Now, after inumerable shenanigans, they will finally be able to meet up face to face." 
