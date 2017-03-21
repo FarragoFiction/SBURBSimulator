@@ -424,8 +424,28 @@ function Intro(session){
 		}
 		return chatText;
 	}
+	
+	this.alienChat = function(player1, player2){
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var r1 = player1.getRelationshipWith(player2);
+		var r2 = player2.getRelationshipWith(player1);
+
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var chatText = "";
+		if(r1.type() == r1.goodBig){
+			chatText += chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm finally in your session.");
+		}else{
+			chatText += chatLine(player1Start, player1,"Hey, I'm finally in your session.");
+		}
+	}
 
 	this.getChat = function(player1, player2){
+		if(this.player.ectoBiologicalSource != null && this.player.ectoBiologicalSource != this.session.session_id){
+			alienChat(player1,player2);
+		}
+		
 		if(player2.grimDark == true){
 			 return this.grimPlayer2Chat(player1, player2);
 		}
@@ -457,23 +477,6 @@ function Intro(session){
 			return this.fantasyChat(player1, player2);
 		}
 
-
-		/*
-		interests = interests.concat(music_interests);
-		interests = interests.concat(culture_interests);
-		interests = interests.concat(writing_interests);
-		interests = interests.concat(pop_culture_interests);
-		interests = interests.concat(technology_interests);
-		interests = interests.concat(social_interests);
-		interests = interests.concat(romantic_interests);
-		interests = interests.concat(academic_interests);
-		interests = interests.concat(comedy_interests);
-		interests = interests.concat(domestic_interests);
-		interests = interests.concat(athletic_interests);
-		interests = interests.concat(terrible_interests);
-		interests = interests.concat(fantasy_interests);
-		interests = interests.concat(justice_interests);
-		*/
 		return this.getNormalChat(player1, player2);
 	}
 
@@ -491,18 +494,20 @@ function Intro(session){
 		//do what homestuck does and put some text in image but rest in pesterlog?
 		//when trolls happen, should they use trollian?
 		var player1 = this.player;
+		
 		var player2 = player1.getBestFriendFromList(findLivingPlayers(this.session.players), "intro chat");
 		if(player2 == null){
 			player2 = player1.getWorstEnemyFromList(findLivingPlayers(this.session.players));
 
 		}
 
+		
 		if(player2 == null){
 			return div.append(this.content()); //give up, forever alone.
 
 		}
 
-
+		
 
 		var chatText = this.getChat(player1,player2);
 		//don't need timeout here.
@@ -511,48 +516,51 @@ function Intro(session){
 
 	//i is so you know entry order
 	this.renderContent = function(div,i){
-		var narration = "<br>The " + this.player.htmlTitle() + " enters the game " + indexToWords(i) + ". ";
-
-		narration += " They have many INTERESTS, including " +this.player.interest1 + " and " + this.player.interest2 + ". ";
-		narration += " Their chat handle is " + this.player.chatHandle + ". "
-		if(this.player.leader){
-			narration += "They are definitely the leader.";
-		}
-		if(this.player.godDestiny){
-			narration += " They appear to be destined for greatness. ";
-		}
-
-		if(this.player.dead==true){
-			console.log(session.session_id + " dead player enters, " +this.player.title())
-			narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably."
-			div.append(narration);
-			this.session.availablePlayers.push(this.player);
-			return;
-		}
-
-		narration += " They boggle vacantly at the " + this.player.land + ". ";
-
-		for(var j = 0; j<this.player.relationships.length; j++){
-			var r = this.player.relationships[j];
-			if(r.type() != "Friends" && r.type() != "Rivals"){
-				narration += "They are " + r.description() + ". ";
-			}
-		}
-
-		this.session.kingStrength = this.session.kingStrength + 20;
-		if(this.session.queenStrength > 0){
-			this.session.queenStrength = this.session.queenStrength + 10;
-		}
-		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
-			this.session.kingStrength = this.session.kingStrength + 200;
-			if(this.session.queenStrength > 0){
-				this.session.queenStrength = this.session.queenStrength + 100;
-			}
-
-		}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
+		var narration = "";
+		if(this.player.ectoBiologicalSource != null && this.player.ectoBiologicalSource != this.session.session_id){
+			narration += "<br>The " + this.player.htmlTitle() + " has been in contact with the native players of this session for most of their lives. It's weird how time flows differently between universes. Now, after inumerable shenanigans, they will finally be able to meet up face to face." 
 		}else{
-		}
+			narration += "<br>The " + this.player.htmlTitle() + " enters the game " + indexToWords(i) + ". ";
 
+			narration += " They have many INTERESTS, including " +this.player.interest1 + " and " + this.player.interest2 + ". ";
+			narration += " Their chat handle is " + this.player.chatHandle + ". "
+			if(this.player.leader){
+				narration += "They are definitely the leader.";
+			}
+			if(this.player.godDestiny){
+				narration += " They appear to be destined for greatness. ";
+			}
+
+			if(this.player.dead==true){
+				console.log(session.session_id + " dead player enters, " +this.player.title())
+				narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably."
+				div.append(narration);
+				this.session.availablePlayers.push(this.player);
+				return;
+			}
+
+			narration += " They boggle vacantly at the " + this.player.land + ". ";
+
+			for(var j = 0; j<this.player.relationships.length; j++){
+				var r = this.player.relationships[j];
+				if(r.type() != "Friends" && r.type() != "Rivals"){
+					narration += "They are " + r.description() + ". ";
+				}
+			}
+
+			this.session.kingStrength = this.session.kingStrength + 20;
+			if(this.session.queenStrength > 0){
+				this.session.queenStrength = this.session.queenStrength + 10;
+			}
+			if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
+				this.session.kingStrength = this.session.kingStrength + 200;
+				if(this.session.queenStrength > 0){
+					this.session.queenStrength = this.session.queenStrength + 100;
+				}
+
+			}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
+			}		
+		}
 		div.append(narration);
 		this.chat(div);
 		this.session.availablePlayers.push(this.player);

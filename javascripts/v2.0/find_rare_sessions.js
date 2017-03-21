@@ -32,6 +32,7 @@ var timesNoFrog  = 0;
 var timesFullFrog = 0;
 var timesGrimDark = 0;
 var timesMurderMode = 0;
+var timesComboSession = 0;
 var totalFrogLevel = 0;
 
 var numSimulationsDone = 0;
@@ -45,10 +46,16 @@ var numSimulationsToDo = 52;
 window.onload = function() {
 	//these bitches are SHAREABLE.
 
-	debug ("don't forget to confirm refactor index.html and index2.html")
-	debug("most sessions fail according to canon.")
+	debug ("if sick frog and less than 6 living players, combine sessions")
+	debug("Okay, so, like....frog status is decided in the aftermath.  Session combine (cascade?) would have to be done in session. reset a bunch of params, put current living players on back burner, generate new players, etc.  but TICKING is happening outside of a session. It's a thing that the UI is in charge of, basically. SHOULD that be the case? Should a session tick itself?")
+	debug("If  a session DOESN'T tick itself...what happens?  I...guess...the UI would be looking for a cascade vvariable, same as looking for reckoning variables. i don't think i'll need to refactor that much, honestly. ")
+	debug("special intro for a player with no land, who's ectobiologicalSource is not the current session. they don't enter the medium immidately. but arrive before final battle")
+	debug("small chance of, if doomed because no ectobiology, but sick frog, won't end at reckoning, and instead will be created in next session")
 	debug("log how often total party wipe happens")
+		debug("test combo session: 115411")
+
 	debug("heart/spade close scenes just like clubs/diamonds")
+	debug("This is a list of sessions, where each session is a child of the previous session (even if it never got to make them)")
 	if(getParameterByName("seed")){
 		Math.seed = getParameterByName("seed");
 		initial_seed = getParameterByName("seed");
@@ -235,7 +242,7 @@ function summarizeSession(scratchAvailable){
 			//var tmp = getRandomSeed();
 			//Math.seed = tmp;
 			//doomedTimelineReasons = []
-			initial_seed = Math.seed; //does this break predictable randomness?
+			initial_seed = Math.seed; //child session
 			startSession();
 		},repeatTime*2); //since ticks are on time out, one might hit right as this is called, don't want that, cause causes players to be dead or godtier at start of next session
 	}
@@ -263,6 +270,7 @@ function printStats(){
 	str += "<Br>Times Frogs Sick: " + timesSickFrog+ " (" + Math.round((timesSickFrog/sessionsSimulated.length)*100) + "%)";;
 	str += "<br>Times No Frog: " + timesNoFrog+ " (" + Math.round((timesNoFrog/sessionsSimulated.length)*100) + "%)";;
 	str += "<Br>Times Scratches Available: " + timesScratchesAvailable + " (" + Math.round((timesScratchesAvailable/sessionsSimulated.length)*100) + "%)";
+		str += "<Br>Times Combo Session Possible: " + timesComboSession + " (" + Math.round((timesComboSession/sessionsSimulated.length)*100) + "%)";
 	str += "<Br>Times Ectobiology: " + timesEcto + " (" + Math.round((timesEcto/sessionsSimulated.length)*100) + "%)";
 
 	str += "<Br>Times GrimDark (at least one player): " + timesGrimDark + " (" + Math.round((timesGrimDark/sessionsSimulated.length)*100) + "%)";

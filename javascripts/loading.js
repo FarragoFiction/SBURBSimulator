@@ -4,7 +4,7 @@ var imagesLoaded = 0;
 //load everything while showing a progress bar. delete loadingCanvas when done.
 function load(players, guardians){
   var canvas = document.getElementById("loading");
-	var ctx = canvas.getContext('2d');
+  var ctx = canvas.getContext('2d');
   var imageString = "loading.png";
   var img=document.getElementById(imageString);
   var width = img.width;
@@ -18,6 +18,9 @@ function loadAllImages(players, guardians){
 	//same number of players and guardians
 	for(var i = 0; i<players.length; i++){
 		loadPlayer(players[i]);
+	}
+	//guardians aren't going to match players if combo session
+	for(var i = 0; i<guardians.length; i++){
 		loadPlayer(guardians[i]);
 	}
 
@@ -39,7 +42,7 @@ function addImageTagLoading(url){
 
 function checkDone(){
 	if(imagesLoaded != 0 && imagesWaiting == imagesLoaded){
-		$("#loading").remove(); //not loading anymore
+		//$("#loading").remove(); //not loading anymore
 		intro();
 	}
 }

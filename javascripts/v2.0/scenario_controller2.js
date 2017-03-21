@@ -126,7 +126,7 @@ function renderScratchButton(){
 	//alert("scratch [possible]");
 	//can't scratch if it was a a total party wipe. just a regular doomed timeline.
 	var living = findLivingPlayers(curSessionGlobalVar.players);
-	if(living.length > 0){
+	if(living.length > 0 && curSessionGlobalVar.makeCombinedSession == false){
 		var timePlayer = findAspectPlayer(curSessionGlobalVar.players, "Time");
 		if(!curSessionGlobalVar.scratched){
 			//this is apparently spoilery.
@@ -229,6 +229,21 @@ function reckoningTick(){
 		var s = new Aftermath(curSessionGlobalVar);
 		s.trigger(curSessionGlobalVar.players)
 		s.renderContent(curSessionGlobalVar.newScene());
+		if(curSessionGlobalVar.makeCombinedSession == true){
+			setTimeout(function(){
+				processCombinedSession();  //make sure everything is done rendering first
+			},repeatTime*2);
+		}
+	}
+
+}
+
+function processCombinedSession(){
+	curSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
+	if(curSessionGlobalVar){
+		$("#story").append("<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there. ");
+		checkSGRUB();
+		load(curSessionGlobalVar.players, curSessionGlobalVar.guardians); //in loading.js
 	}
 
 }

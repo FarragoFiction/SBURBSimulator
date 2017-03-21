@@ -2,7 +2,6 @@
 function Session(session_id){
 	this.session_id = session_id; //initial seed
 	this.players = [];
-	this.availa
 	this.guardians = [];
 	this.kingStrength = 100;
 	this.queenStrength = 100;
@@ -14,9 +13,10 @@ function Session(session_id){
 	this.reckoningStarted = false;
 	this.ectoBiologyStarted = false;
 	this.doomedTimeline = false;
+	this.makeCombinedSession = false; //happens if sick frog and few living players
 	this.scratched = false;
 	this.timeTillReckoning = getRandomInt(10,30);
-	this.sessionType = Math.seededRandom();;
+	this.sessionType = Math.seededRandom();
 	this.scenesTriggered = []; //this.scenesTriggered
 	this.doomedTimelineReasons = [];
 	this.currentSceneNum = 0;
@@ -27,6 +27,48 @@ function Session(session_id){
 	this.availablePlayers = [];  //which players are available for scenes or whatever.
 
 
+	//child sessions are basically any session with an ID that matches the seed you stop on
+	this.initializeCombinedSession = function(){
+		var living = findLivingPlayers(this.players);
+		//nobody is the leader anymore. 
+		var newSession = new Session(Math.seed);  //this is a real session that could have gone on without these new players.
+		newSession.currentSceneNum = this.currentSceneNum;
+		newSession.makePlayers();
+		newSession.randomizeEntryOrder();
+		newSession.makeGuardians();
+		if(living.length + newSession.players.length > 12){
+			console.log("New session cannot support living players. Already has " + newSession.players.length + " and would need to add: " + living.length)
+			return;  //their child session is not able to support them
+		}
+		console.log("TODO add a method for a session to simulate itself. if this session EVER can support the new players, insert them there");
+		for(var i = 0; i<living.length; i++){
+			var survivor = living[i];
+			survivor.land = null;
+			survivor.dreamSelf = false;
+			survivor.godDestiny = false;
+			survivor.leader = false;
+			survivor.generateRelationships(newSession.players); //don't need to regenerate relationship with your old friends
+			for(var j= 0; j<newSession.players.length; j++){
+				var player = newSession.players[i];
+				player.generateRelationships(living);
+				//survivors have been talking to players for a very long time, because time has no meaning between univereses. 
+				var r1 = survivor.getRelationshipWith(player);
+				var r2 = player.getRelationshipWith(survivor);
+				r1.moreOfSame();
+				r1.moreOfSame();
+				//been longer from player perspective
+				r2.moreOfSame();
+				r2.moreOfSame();
+				r2.moreOfSame();
+				r2.moreOfSame();
+
+			}
+		}
+		newSession.players= newSession.players.concat(living);
+		createScenesForSession(newSession);
+		return newSession;
+	}
+	
 	this.makePlayers = function(){
 		this.players = [];
 		available_classes = classes.slice(0); //re-initPlayers available classes.
@@ -41,13 +83,21 @@ function Session(session_id){
 
 		for(var j = 0; j<this.players.length; j++){
 			var p = this.players[j];
-			this.decideTroll(p);
+		
 			p.generateRelationships(this.players);
+			this.decideTroll(p);
+			
 			if(p.isTroll){
 				p.quirk = randomTrollSim(p)
 			}else{
 				p.quirk = randomHumanSim(p);
 			}
+		}
+		
+		for(var k = 0; k<this.players.length; k++){
+			//can't escape consequences.
+			this.players[k].consequencesForGoodPlayer();
+			this.players[k].consequencesForTerriblePlayer();
 		}
 	}
 
@@ -93,6 +143,12 @@ function Session(session_id){
 			var g = this.guardians[j];
 			g.generateRelationships(this.guardians);
 		}
+		
+		for(var k = 0; k<this.guardians.length; k++){
+			//can't escape consequences.
+			this.guardians[k].consequencesForGoodPlayer();
+			this.guardians[k].consequencesForTerriblePlayer();
+		}
 	}
 
 	this.randomizeEntryOrder = function(){
@@ -137,6 +193,11 @@ function Session(session_id){
 		var str = "<Br><hr><a href = 'index2.html?seed="+ this.session_id +"'>Session: " + this.session_id + "</a> scenes: " + this.scenesTriggered.length + " Leader:  " + getLeader(this.players).title() + " MVP: " + strongest.htmlTitle()+ " with a power of: " + strongest.power;;
 		if(scratchAvailable){
 			str += "<b>&nbsp&nbsp&nbsp&nbspScratch Available</b>"
+		}
+		
+		if(this.combinedSession){
+			str += "<b>&nbsp&nbsp&nbsp&nbspCombined Session Possible</b>"
+			timesComboSession ++;
 		}
 		var tmp = "";
 		tmp =  summarizeScene(this.scenesTriggered, "DoEctobiology")

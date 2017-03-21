@@ -7,6 +7,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		this.land = getRandomLandFromAspect(this.aspect);
 	}
 	this.baby = getRandomInt(1,3)//more than 1 baby sprite
+	this.ectoBiologicalSource = null; //might not be created in their own session now.
 	this.class_name = class_name;
 	this.number_confessions = 0;
 	this.number_times_confessed_to = 0;
@@ -286,8 +287,12 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 					friends[i].triggerLevel ++;
 				}
 				this.relationships.push(r);
+			}else{
+				//console.log(this.title() + "Not generating a relationship with: " + friends[i].title());
 			}
 		}
+		
+
 	}
 
 	this.checkBloodBoost = function(players){
@@ -343,6 +348,9 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 				return this.relationships[i];
 			}
 		}
+		//this should only be happening if this == player. what is going on here!???
+		//ah, was trying to make consequences for interets before making relationships
+		//console.log("I am : " + this.title() + " and I couldn't find a relationship with: " + player.title() + " even though I have this many relationships " + this.relationships.length);
 	}
 
 	this.getWhoLikesMeBestFromList = function(potentialFriends){
@@ -441,9 +449,6 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 
 	this.getBestFriendFromList = function(potentialFriends, debugCallBack){
-		if(potentialFriends == null){
-			alert(debugCallBack)
-		}
 		var bestRelationshipSoFar = this.relationships[0];
 		for(var i = 0; i<potentialFriends.length; i++){
 			var p =  potentialFriends[i];
@@ -498,9 +503,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 		return ret;
 	}
-	//can't escape consequences.
-	this.consequencesForGoodPlayer();
-	this.consequencesForTerriblePlayer();
+	
 
 }
 
@@ -765,8 +768,37 @@ function findPlayersWithoutDreamSelves(playerList){
 	}
 	return ret;
 }
+//don't override existing source
+function setEctobiologicalSource(playerList,source){
+	for(var i= 0; i<playerList.length; i++){
+		var p = playerList[i];
+		if(p.ectoBiologicalSource == null){
+			p.ectoBiologicalSource = source;
+		}
+	}
+}
 
+function findPlayersWithoutEctobiologicalSource(playerList){
+	ret = [];
+	for(var i= 0; i<playerList.length; i++){
+		var p = playerList[i];
+		if(p.ectoBiologicalSource == null){
+			ret.push(p);
+		}
+	}
+	return ret;
+}
 
+function findPlayersFromSessionWithId(playerList, source){
+	ret = [];
+	for(var i= 0; i<playerList.length; i++){
+		var p = playerList[i];
+		if(!p.ectoBiologicalSource == source){
+			ret.push(p);
+		}
+	}
+	return ret;
+}
 
 function findBadPrototyping(playerList){
 	for(var i= 0; i<playerList.length; i++){

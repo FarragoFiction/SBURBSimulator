@@ -57,6 +57,7 @@ function VoidyStuff(session){
 		}
 		if(this.player.leader && !this.session.ectoBiologyStarted && Math.seededRandom() > .8){
 			this.session.ectoBiologyStarted = true;
+			setEctobiologicalSource(this.session.players, session.session_id)
 			ret += " Wait. Are those BABIES!? What is even going on here?";
 		}
 		

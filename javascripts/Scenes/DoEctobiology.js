@@ -4,6 +4,7 @@ function DoEctobiology(session){
 	this.canRepeat = false;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.leader = null;
+	this.playersMade = []; //keep track because not all players get made (multi session bullshit)
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
@@ -27,7 +28,7 @@ function DoEctobiology(session){
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = document.getElementById("canvas"+ divID);
-		poseBabiesAsATeam(canvasDiv, this.leader, this.session.players, this.session.guardians, 4000);
+		poseBabiesAsATeam(canvasDiv, this.leader, this.playersMade, this.session.guardians, 4000);
 	}
 
 	this.renderContent = function(div){
@@ -37,9 +38,11 @@ function DoEctobiology(session){
 
 	this.content = function(){
 		this.session.ectoBiologyStarted = true;
+		this.playersMade = findPlayersWithoutEctobiologicalSource(this.session.players);
+		setEctobiologicalSource(this.session.players, session.session_id)
 		var ret = " Through a series of wacky, yet inevitable in hindsight, coincidences, the " + this.leader.htmlTitle();
 		ret += " finds themselves in the veil of meteors surrounding the Medium. ";
-		ret +=  " A button is pushed, and suddenly there are little tiny baby version of " + getPlayersTitlesBasic(this.session.players);
+		ret +=  " A button is pushed, and suddenly there are little tiny baby version of " + getPlayersTitlesBasic(this.playersMade);
 		if(session.scratched){
 			ret += " Plus baby versions of all the players from the pre-scratch session?"
 			ret += " No wonder that session went so poorly: It was always destined to be scatched or nobody would be born in the first place."

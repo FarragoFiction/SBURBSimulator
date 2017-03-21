@@ -104,6 +104,7 @@ function Aftermath(session){
 					end += " Apparently the new universe's sickness manifested as its version of SBURB interfering with yours. ";
 					end += " Your way into the new universe is barred, and you remain trapped in the medium.  <Br><br>Game Over.";
 					end += " Or is it?"
+					this.session.makeCombinedSession = true; //triggers opportunity for mixed session
 					//I am hella tempted to implement mixed sessions here, like the troll/human session in canon.
 					renderScratchButton();
 				}else{
