@@ -40,10 +40,10 @@ function Session(session_id){
 		newSession.randomizeEntryOrder();
 		newSession.makeGuardians();
 		if(living.length + newSession.players.length > 12){
-			console.log("New session " + newSession.session_id +" cannot support living players. Already has " + newSession.players.length + " and would need to add: " + living.length)
+			//console.log("New session " + newSession.session_id +" cannot support living players. Already has " + newSession.players.length + " and would need to add: " + living.length)
 			return;  //their child session is not able to support them
 		}
-		console.log("TODO add a method for a session to simulate itself. if this session EVER can support the new players, insert them there");
+		//console.log("TODO add a method for a session to simulate itself. if this session EVER can support the new players, insert them there");
 		for(var i = 0; i<living.length; i++){
 			var survivor = living[i];
 			survivor.land = null;
@@ -203,6 +203,11 @@ function Session(session_id){
 		if(this.parentSession != null){
 			str += "<br><b>&nbsp&nbsp&nbsp&nbspCombined Session From: " + this.parentSession + "</b>"
 			//timesComboSession ++;
+		}
+		var living = findLivingPlayers(this.players);
+		str += "<br><b>&nbsp&nbsp&nbsp&nbspLiving Players: " + living.length+ "</b>"
+		if(living.length == 0){
+			timesTotalPartyWipe ++;
 		}
 		var tmp = "";
 		tmp =  summarizeScene(this.scenesTriggered, "DoEctobiology")

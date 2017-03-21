@@ -33,6 +33,7 @@ var timesFullFrog = 0;
 var timesGrimDark = 0;
 var timesMurderMode = 0;
 var timesComboSession = 0;
+var timesTotalPartyWipe = 0;
 var totalFrogLevel = 0;
 
 var numSimulationsDone = 0;
@@ -281,7 +282,9 @@ function printStats(){
 	str += "<Br>Times Frogs Sick: " + timesSickFrog+ " (" + Math.round((timesSickFrog/sessionsSimulated.length)*100) + "%)";;
 	str += "<br>Times No Frog: " + timesNoFrog+ " (" + Math.round((timesNoFrog/sessionsSimulated.length)*100) + "%)";;
 	str += "<Br>Times Scratches Available: " + timesScratchesAvailable + " (" + Math.round((timesScratchesAvailable/sessionsSimulated.length)*100) + "%)";
-		str += "<Br>Times Combo Session Possible: " + timesComboSession + " (" + Math.round((timesComboSession/sessionsSimulated.length)*100) + "%)";
+	str += "<Br>Times Combo Session Possible: " + timesComboSession + " (" + Math.round((timesComboSession/sessionsSimulated.length)*100) + "%)";
+		
+	str +="<Br>Times Total Party Wipe: " + timesTotalPartyWipe + " (" + Math.round((timesTotalPartyWipe/sessionsSimulated.length)*100) + "%)";
 	str += "<Br>Times Ectobiology: " + timesEcto + " (" + Math.round((timesEcto/sessionsSimulated.length)*100) + "%)";
 
 	str += "<Br>Times GrimDark (at least one player): " + timesGrimDark + " (" + Math.round((timesGrimDark/sessionsSimulated.length)*100) + "%)";
