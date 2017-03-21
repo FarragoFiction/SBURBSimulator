@@ -45,14 +45,14 @@ var numSimulationsToDo = 52;
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
 	//these bitches are SHAREABLE.
-
+	debug("current bug: some combo sessions have both univereses have same id or something??? should not happen witch of breath should have 84953 , but instead has child id of 232465");
 	debug ("if sick frog and less than 6 living players, combine sessions")
 	debug("Okay, so, like....frog status is decided in the aftermath.  Session combine (cascade?) would have to be done in session. reset a bunch of params, put current living players on back burner, generate new players, etc.  but TICKING is happening outside of a session. It's a thing that the UI is in charge of, basically. SHOULD that be the case? Should a session tick itself?")
 	debug("If  a session DOESN'T tick itself...what happens?  I...guess...the UI would be looking for a cascade vvariable, same as looking for reckoning variables. i don't think i'll need to refactor that much, honestly. ")
 	debug("special intro for a player with no land, who's ectobiologicalSource is not the current session. they don't enter the medium immidately. but arrive before final battle")
 	debug("small chance of, if doomed because no ectobiology, but sick frog, won't end at reckoning, and instead will be created in next session")
 	debug("log how often total party wipe happens")
-		debug("test combo session: 212740")
+	debug("test combo session: 212740")
 
 	debug("heart/spade close scenes just like clubs/diamonds")
 	debug("This is a list of sessions, where each session is a child of the previous session (even if it never got to make them)")
@@ -218,7 +218,9 @@ function reckoningTick(){
 function processCombinedSession(){
 	var newcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
 	if(newcurSessionGlobalVar){
+		timesComboSession ++;
 		curSessionGlobalVar = newcurSessionGlobalVar;
+		console.log(curSessionGlobalVar.players)
 		$("#story").append("<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session " + curSessionGlobalVar.session_id + ". ");
 		intro();
 	}else{

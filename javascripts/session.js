@@ -24,6 +24,7 @@ function Session(session_id){
 	this.reckoningScenes = [];
 	this.deathScenes = [];
 	this.available_scenes = [];
+	this.hadCombinedSession = false;
 	this.availablePlayers = [];  //which players are available for scenes or whatever.
 
 
@@ -65,7 +66,9 @@ function Session(session_id){
 			}
 		}
 		newSession.players= newSession.players.concat(living);
+		newSession.hadCombinedSession = true;
 		createScenesForSession(newSession);
+		console.log("Session: " + this.session_id + " has made child universe: " + newSession.session_id)
 		return newSession;
 	}
 	
@@ -195,9 +198,9 @@ function Session(session_id){
 			str += "<b>&nbsp&nbsp&nbsp&nbspScratch Available</b>"
 		}
 		
-		if(this.makeCombinedSession){
-			str += "<b>&nbsp&nbsp&nbsp&nbspCombined Session Possible</b>"
-			timesComboSession ++;
+		if(this.hadCombinedSession){
+			str += "<b>&nbsp&nbsp&nbsp&nbspCombined Session</b>"
+			//timesComboSession ++;
 		}
 		var tmp = "";
 		tmp =  summarizeScene(this.scenesTriggered, "DoEctobiology")
