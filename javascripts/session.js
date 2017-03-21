@@ -49,7 +49,7 @@ function Session(session_id){
 			survivor.leader = false;
 			survivor.generateRelationships(newSession.players); //don't need to regenerate relationship with your old friends
 			for(var j= 0; j<newSession.players.length; j++){
-				var player = newSession.players[i];
+				var player = newSession.players[j];
 				player.generateRelationships(living);
 				//survivors have been talking to players for a very long time, because time has no meaning between univereses. 
 				var r1 = survivor.getRelationshipWith(player);
@@ -195,7 +195,7 @@ function Session(session_id){
 			str += "<b>&nbsp&nbsp&nbsp&nbspScratch Available</b>"
 		}
 		
-		if(this.combinedSession){
+		if(this.makeCombinedSession){
 			str += "<b>&nbsp&nbsp&nbsp&nbspCombined Session Possible</b>"
 			timesComboSession ++;
 		}

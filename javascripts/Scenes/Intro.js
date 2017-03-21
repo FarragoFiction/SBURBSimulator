@@ -443,7 +443,7 @@ function Intro(session){
 
 	this.getChat = function(player1, player2){
 		if(this.player.ectoBiologicalSource != null && this.player.ectoBiologicalSource != this.session.session_id){
-			alienChat(player1,player2);
+			this.alienChat(player1,player2);
 		}
 		
 		if(player2.grimDark == true){
