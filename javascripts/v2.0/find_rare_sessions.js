@@ -47,12 +47,8 @@ var numSimulationsToDo = 52;
 window.onload = function() {
 	//these bitches are SHAREABLE.
 	
-	debug("2022 has a combo session");
-	debug("log how often total party wipe happens")
-	debug("test combo session: 212740")
-
-	debug("heart/spade close scenes just like clubs/diamonds")
-	debug("This is a list of sessions, where each session is a child of the previous session (even if it never got to make them)")
+	//debug("2022 has a combo session");
+	
 	if(getParameterByName("seed")){
 		Math.seed = getParameterByName("seed");
 		initial_seed = getParameterByName("seed");
