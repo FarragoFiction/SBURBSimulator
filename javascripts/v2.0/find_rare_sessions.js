@@ -45,9 +45,8 @@ var numSimulationsToDo = 2;
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
 	//these bitches are SHAREABLE.
-	debug("current bug: some combo sessions have both univereses have same id or something??? should not happen witch of breath should have 84953 , but instead has child id of 232465");
 	
-	debug("Problem: generating wrong session to be child session for combo session. Should be 206577 (and is in index2.html) but is 2022. wrong wrong wrong.");
+	debug("Problem: generating wrong session to be child session for combo session. Session 2022 should make a child of 206577 (and is in index2.html) but is 163241. wrong wrong wrong.");
 	
 	debug("log how often total party wipe happens")
 	debug("test combo session: 212740")
