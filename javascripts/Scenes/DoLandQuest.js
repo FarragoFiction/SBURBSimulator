@@ -16,7 +16,7 @@ function DoLandQuest(session){
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var p = this.session.availablePlayers[i]
 			if(p.power > 2){ //can't be first thing you do in medium.
-				if(p.landLevel < 6 || p.aspect == "Space"){  //space player is the only one who can go over 100 (for better frog)
+				if(p.land != null && p.landLevel < 6 || p.aspect == "Space"){  //space player is the only one who can go over 100 (for better frog). can't do quests if land destroyed
 					var helper = this.lookForHelper(p);
 					var playerPlusHelper = [p,helper];
 					

@@ -56,6 +56,9 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	this.doomedTimeClones =  0; //help fight the final boss(es). not every doomed clone is seen to warp in.
 	//for space player, this is necessary for frog breeding to be minimally succesfull.
 
+	this.fromThisSession = function(session){
+		return (this.ectoBiologicalSource == null || this.ectoBiologicalSource == session.session_id)
+	}
 
 
 	this.chatHandleShort = function(){

@@ -190,7 +190,11 @@ function Intro(session){
 		chatText +=chatLine(player2Start, player2,"lol");
 		chatText += chatLine(player1Start, player1,"Have you made it in, yet?");
 		if(this.playerList.indexOf(player2) != -1){
-			chatText +=chatLine(player2Start, player2,"Yep, I'm exploring the " + player2.land + ".");
+			if(player1.fromThisSession(this.session)){
+				chatText +=chatLine(player2Start, player2,"Yep, I'm exploring the " + player2.land + ".");
+			}else{
+				chatText +=chatLine(player2Start, player2,"Yep, it's weird how similar it is to our session.");
+			}
 			chatText += chatLine(player1Start, player1,"Yay! We're SBURB buddies!");
 		}else{
 			if(player2.aspect != "Time"){
@@ -439,11 +443,12 @@ function Intro(session){
 		}else{
 			chatText += chatLine(player1Start, player1,"Hey, I'm finally in your session.");
 		}
+		return chatText;
 	}
 
 	this.getChat = function(player1, player2){
-		if(this.player.ectoBiologicalSource != null && this.player.ectoBiologicalSource != this.session.session_id){
-			this.alienChat(player1,player2);
+		if(!player1.fromThisSession(this.session)){
+			return this.alienChat(player1,player2);
 		}
 		
 		if(player2.grimDark == true){
@@ -517,7 +522,7 @@ function Intro(session){
 	//i is so you know entry order
 	this.renderContent = function(div,i){
 		var narration = "";
-		if(this.player.ectoBiologicalSource != null && this.player.ectoBiologicalSource != this.session.session_id){
+		if(!this.player.fromThisSession(this.session)){
 			narration += "<br>The " + this.player.htmlTitle() + " has been in contact with the native players of this session for most of their lives. It's weird how time flows differently between universes. Now, after inumerable shenanigans, they will finally be able to meet up face to face." 
 		}else{
 			narration += "<br>The " + this.player.htmlTitle() + " enters the game " + indexToWords(i) + ". ";

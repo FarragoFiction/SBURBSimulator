@@ -52,7 +52,7 @@ window.onload = function() {
 	debug("special intro for a player with no land, who's ectobiologicalSource is not the current session. they don't enter the medium immidately. but arrive before final battle")
 	debug("small chance of, if doomed because no ectobiology, but sick frog, won't end at reckoning, and instead will be created in next session")
 	debug("log how often total party wipe happens")
-		debug("test combo session: 115411")
+		debug("test combo session: 212740")
 
 	debug("heart/spade close scenes just like clubs/diamonds")
 	debug("This is a list of sessions, where each session is a child of the previous session (even if it never got to make them)")

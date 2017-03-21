@@ -39,11 +39,11 @@ function SolvePuzzles(session){
 		this.player2 = null;
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			this.checkPlayer(this.session.availablePlayers[i]);
-			if(this.player1 != null){
+			if(this.player1 != null && this.player1.land != null){
 				return true;
 			}
 		}
-		if(this.player1 == null || this.session.availablePlayers.length == 0){
+		if(this.player1 == null || this.session.availablePlayers.length == 0 || this.player1.land == null){
 			return false;
 		}
 		return true;
