@@ -36,7 +36,7 @@ var timesComboSession = 0;
 var totalFrogLevel = 0;
 
 var numSimulationsDone = 0;
-var numSimulationsToDo = 52;
+var numSimulationsToDo = 2;
 
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.
@@ -46,11 +46,9 @@ var numSimulationsToDo = 52;
 window.onload = function() {
 	//these bitches are SHAREABLE.
 	debug("current bug: some combo sessions have both univereses have same id or something??? should not happen witch of breath should have 84953 , but instead has child id of 232465");
-	debug ("if sick frog and less than 6 living players, combine sessions")
-	debug("Okay, so, like....frog status is decided in the aftermath.  Session combine (cascade?) would have to be done in session. reset a bunch of params, put current living players on back burner, generate new players, etc.  but TICKING is happening outside of a session. It's a thing that the UI is in charge of, basically. SHOULD that be the case? Should a session tick itself?")
-	debug("If  a session DOESN'T tick itself...what happens?  I...guess...the UI would be looking for a cascade vvariable, same as looking for reckoning variables. i don't think i'll need to refactor that much, honestly. ")
-	debug("special intro for a player with no land, who's ectobiologicalSource is not the current session. they don't enter the medium immidately. but arrive before final battle")
-	debug("small chance of, if doomed because no ectobiology, but sick frog, won't end at reckoning, and instead will be created in next session")
+	
+	debug("Problem: generating wrong session to be child session for combo session. Should be 206577 (and is in index2.html) but is 2022. wrong wrong wrong.");
+	
 	debug("log how often total party wipe happens")
 	debug("test combo session: 212740")
 
@@ -204,8 +202,8 @@ function reckoningTick(){
 		s.renderContent(curSessionGlobalVar.newScene());
 		
 		
-		summarizeSession();
-		/*//for some reason whether or not a combo session is available isn't working?
+		//summarizeSession();
+		//for some reason whether or not a combo session is available isn't working? or combo isn't working right in this mode?
 		if(curSessionGlobalVar.makeCombinedSession == true){
 			setTimeout(function(){
 				processCombinedSession();  //make sure everything is done rendering first
@@ -213,7 +211,7 @@ function reckoningTick(){
 		}else{
 			summarizeSession();
 		}
-		*/
+		
 		
 	}
 

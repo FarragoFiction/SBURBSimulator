@@ -39,7 +39,7 @@ function Session(session_id){
 		newSession.randomizeEntryOrder();
 		newSession.makeGuardians();
 		if(living.length + newSession.players.length > 12){
-			console.log("New session cannot support living players. Already has " + newSession.players.length + " and would need to add: " + living.length)
+			console.log("New session " + newSession.session_id +" cannot support living players. Already has " + newSession.players.length + " and would need to add: " + living.length)
 			return;  //their child session is not able to support them
 		}
 		console.log("TODO add a method for a session to simulate itself. if this session EVER can support the new players, insert them there");
