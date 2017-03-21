@@ -40,7 +40,8 @@ function Reckoning(session){
 			this.session.doomedTimeline = true;
 			intro += "<br><br>";
 			$("#story").append(intro);
-			renderScratchButton();
+			renderScratchButton(this.session);
+			this.session.scratchAvailable = true;
 			return intro;
 		}
 		var living = findLivingPlayers(this.session.players);

@@ -122,13 +122,13 @@ function getSessionType(){
 	return "Mixed"
 }
 
-function renderScratchButton(){
+function renderScratchButton(session){
 	//alert("scratch [possible]");
 	//can't scratch if it was a a total party wipe. just a regular doomed timeline.
-	var living = findLivingPlayers(curSessionGlobalVar.players);
-	if(living.length > 0 && (curSessionGlobalVar.makeCombinedSession == false && curSessionGlobalVar.hadCombinedSession == false)){
-		var timePlayer = findAspectPlayer(curSessionGlobalVar.players, "Time");
-		if(!curSessionGlobalVar.scratched){
+	var living = findLivingPlayers(session.players);
+	if(living.length > 0 && (session.makeCombinedSession == false && session.hadCombinedSession == false)){
+		var timePlayer = findAspectPlayer(session.players, "Time");
+		if(!session.scratched){
 			//this is apparently spoilery.
 			//alert(living.length  + " living players and the " + timePlayer.land + " makes a scratch available!");
 			var html = '<img src="images/Scratch.png" onclick="scratchConfirm()"><br>Click To Scratch Session?';
@@ -230,9 +230,7 @@ function reckoningTick(){
 		s.trigger(curSessionGlobalVar.players)
 		s.renderContent(curSessionGlobalVar.newScene());
 		if(curSessionGlobalVar.makeCombinedSession == true){
-			setTimeout(function(){
-				processCombinedSession();  //make sure everything is done rendering first
-			},repeatTime*2);
+			processCombinedSession();  //make sure everything is done rendering first
 		}
 	}
 

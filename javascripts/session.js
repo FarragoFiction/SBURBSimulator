@@ -15,6 +15,7 @@ function Session(session_id){
 	this.doomedTimeline = false;
 	this.makeCombinedSession = false; //happens if sick frog and few living players
 	this.scratched = false;
+	this.scratchAvailable = false;
 	this.timeTillReckoning = getRandomInt(10,30);
 	this.sessionType = Math.seededRandom();
 	this.scenesTriggered = []; //this.scenesTriggered
@@ -24,7 +25,7 @@ function Session(session_id){
 	this.reckoningScenes = [];
 	this.deathScenes = [];
 	this.available_scenes = [];
-	this.hadCombinedSession = false;
+	this.parentSession = null;
 	this.availablePlayers = [];  //which players are available for scenes or whatever.
 
 
@@ -67,7 +68,7 @@ function Session(session_id){
 			}
 		}
 		newSession.players= newSession.players.concat(living);
-		newSession.hadCombinedSession = true;
+		newSession.parentSession = this.session_id;
 		createScenesForSession(newSession);
 		console.log("Session: " + this.session_id + " has made child universe: " + newSession.session_id)
 		return newSession;
@@ -192,15 +193,15 @@ function Session(session_id){
 		return $("#scene"+this.currentSceneNum);
 	}
 
-	this.summarize = function(scratchAvailable){
+	this.summarize = function(){
 		var strongest = findStrongestPlayer(this.players)
 		var str = "<Br><hr><a href = 'index2.html?seed="+ this.session_id +"'>Session: " + this.session_id + "</a> scenes: " + this.scenesTriggered.length + " Leader:  " + getLeader(this.players).title() + " MVP: " + strongest.htmlTitle()+ " with a power of: " + strongest.power;;
-		if(scratchAvailable){
-			str += "<b>&nbsp&nbsp&nbsp&nbspScratch Available</b>"
+		if(this.scratchAvailable == true){
+			str += "<br><b>&nbsp&nbsp&nbsp&nbspScratch Available</b>"
 		}
 		
-		if(this.hadCombinedSession){
-			str += "<b>&nbsp&nbsp&nbsp&nbspCombined Session</b>"
+		if(this.parentSession != null){
+			str += "<br><b>&nbsp&nbsp&nbsp&nbspCombined Session From: " + this.parentSession + "</b>"
 			//timesComboSession ++;
 		}
 		var tmp = "";

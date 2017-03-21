@@ -108,7 +108,8 @@ function Aftermath(session){
 						this.session.makeCombinedSession = true; //triggers opportunity for mixed session
 					}
 					//I am hella tempted to implement mixed sessions here, like the troll/human session in canon.
-					renderScratchButton();
+					renderScratchButton(this.session);
+					this.session.scratchAvailable = true;
 				}else{
 					end += this.democracyBonus();
 					end += " <Br><br> The door to the new universe is revealed. Everyone files in. <Br><Br> Thanks for Playing. ";
@@ -120,7 +121,8 @@ function Aftermath(session){
 				end += " No universe frog, no new universe to live in. Thems the breaks. ";
 				end += " If it's any consolation, it really does suck to fight so hard only to fail at the last minute. <Br><Br>Game Over.";
 				end += " Or is it? "
-				renderScratchButton();
+				renderScratchButton(this.session);
+				this.session.scratchAvailable = true;
 			}
 	}else{
 		div.append(end);

@@ -47,7 +47,7 @@ window.onload = function() {
 	//these bitches are SHAREABLE.
 	
 	debug("Problem: generating wrong session to be child session for combo session. Session 2022 should make a child of 206577 (and is in index2.html) but is 163241. wrong wrong wrong.");
-	
+	debug("Ah, timeout was the problem. for some reason?")
 	debug("log how often total party wipe happens")
 	debug("test combo session: 212740")
 
@@ -101,9 +101,8 @@ function shareableURL(){
 
 
 
-function renderScratchButton(){
+function renderScratchButton(session){
 	timesScratchesAvailable ++;
-	summarizeSession(true);
 }
 
 function scratchConfirm(){
@@ -201,14 +200,12 @@ function reckoningTick(){
 		s.renderContent(curSessionGlobalVar.newScene());
 		
 		
-		//summarizeSession();
+		//summarizeSession(curSessionGlobalVar);
 		//for some reason whether or not a combo session is available isn't working? or combo isn't working right in this mode?
 		if(curSessionGlobalVar.makeCombinedSession == true){
-			setTimeout(function(){
-				processCombinedSession();  //make sure everything is done rendering first
-			},repeatTime*2);
+			processCombinedSession();  //make sure everything is done rendering first
 		}else{
-			summarizeSession();
+			summarizeSession(curSessionGlobalVar);
 		}
 		
 		
@@ -220,28 +217,29 @@ function processCombinedSession(){
 	initial_seed = Math.seed;
 	var newcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
 	if(newcurSessionGlobalVar){
+		console.log("combosession")
 		timesComboSession ++;
 		curSessionGlobalVar = newcurSessionGlobalVar;
 		console.log(curSessionGlobalVar.players)
 		$("#story").append("<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session " + curSessionGlobalVar.session_id + ". ");
 		intro();
 	}else{
-		summarizeSession();
+		summarizeSession(curSessionGlobalVar);
 	}
 
 }
 
 
 
-function summarizeSession(scratchAvailable){
+function summarizeSession(session){
 	//don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
-	if(sessionsSimulated.indexOf(curSessionGlobalVar.session_id) != -1){
+	if(sessionsSimulated.indexOf(session.session_id) != -1){
 		//console.log("skipping a repeat session: " + curSessionGlobalVar.session_id)
 		return;
 	}
 	sessionsSimulated.push(curSessionGlobalVar.session_id);
 	$("#story").html("");
-	var str = curSessionGlobalVar.summarize(scratchAvailable);
+	var str = curSessionGlobalVar.summarize();
 	checkDoomedTimelines();
 	debug(str);
 
