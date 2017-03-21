@@ -102,17 +102,7 @@ function shareableURL(){
 	$("#seedText").html(str);
 }
 
-function checkSGRUB(){
-	for(var i = 0; i<players.length; i++){
-		if(players[i].isTroll == false){
-			return;
-		}
-	}
-	//can only get here if all are trolls.
-	$(document).attr("title", "SGRUB Story Generator 2.0 by jadedResearcher");
-	$("#heading").html("SGRUB Story Generator 2.0 by jadedResearcher (art assistance by karmicRetribution) ");
 
-}
 
 function renderScratchButton(){
 	timesScratchesAvailable ++;
@@ -212,11 +202,30 @@ function reckoningTick(){
 		var s = new Aftermath(curSessionGlobalVar);
 		s.trigger(curSessionGlobalVar.players)
 		s.renderContent(curSessionGlobalVar.newScene());
-		summarizeSession();
+		
+		if(curSessionGlobalVar.makeCombinedSession == true){
+			setTimeout(function(){
+				processCombinedSession();  //make sure everything is done rendering first
+			},repeatTime*2);
+		}else{
+			summarizeSession();
+		}
+		
 	}
 
 }
 
+function processCombinedSession(){
+	var newcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
+	if(newcurSessionGlobalVar){
+		curSessionGlobalVar = newcurSessionGlobalVar;
+		$("#story").append("<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session " + curSessionGlobalVar.session_id + ". ");
+		intro();
+	}else{
+		summarizeSession();
+	}
+
+}
 
 
 
