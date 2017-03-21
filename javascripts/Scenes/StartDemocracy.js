@@ -20,8 +20,12 @@ function StartDemocracy(session){
 	//blood or page or thief or rogue. 
 	this.findSympatheticPlayer = function(){
 		this.friend =  findClassPlayer(this.playerList, "Rogue");
-		if(this.friend == null){
+		if(this.friend == null || this.friend.land == null){
 			this.friend =  findAspectPlayer(this.playerList, "Hope");
+		}
+		
+		if(this.friend == null || this.friend.land == null){
+			return null;
 		}
 	}
 	

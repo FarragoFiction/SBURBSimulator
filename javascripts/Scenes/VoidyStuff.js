@@ -40,7 +40,7 @@ function VoidyStuff(session){
 			this.player.increasePower();
 		}
 		
-		if(Math.seededRandom() > .5){
+		if(Math.seededRandom() > .5 && this.player.land != null){
 			this.player.landLevel ++;
 			ret += " Their consorts seem pretty happy, though. " ;
 		}else{
@@ -50,7 +50,7 @@ function VoidyStuff(session){
 			ret += " The Dersites sure seem to be mad at them, though. ";
 		}
 		
-		if(this.player.godDestiny && Math.seededRandom()>0.8){  //just randomly freaking god tier.
+		if(this.player.godDestiny && Math.seededRandom()>0.8 && this.player.land != null){  //just randomly freaking god tier.
 			this.player.godTier = true;
 			this.player.dreamSelf = false;
 			ret += " What was that dark blue light on " + this.player.shortLand() + "? ";
@@ -61,7 +61,7 @@ function VoidyStuff(session){
 			ret += " Wait. Are those BABIES!? What is even going on here?";
 		}
 		
-		if(this.player.landLevel >= 6 && !this.player.denizenFaced && Math.seededRandom() > .5){
+		if(this.player.landLevel >= 6 && this.player.land != null && !this.player.denizenFaced && Math.seededRandom() > .5){
 			this.player.denizenFaced = true;
 			ret += " Why is the denizen, " + this.player.getDenizen() + " bellowing so loudly on " + this.player.shortLand() + "? ";
 			if(Math.seededRandom() >.5){

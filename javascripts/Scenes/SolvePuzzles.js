@@ -67,6 +67,7 @@ function SolvePuzzles(session){
 	}
 	
 	this.content = function(){
+		//console.log("Solving puzzles at: " + this.player1.land)
 		var ret = "";
 		//remove player1 and player2 from available player list.
 		removeFromArray(this.player1, this.session.availablePlayers);

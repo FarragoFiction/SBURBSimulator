@@ -4,15 +4,18 @@ function JackBeginScheming(session){
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.friend = null;
 
-	//blood or page or thief or rogue.
+	//blood or page or thief or rogue.  don't go for non native players
 	this.findSympatheticPlayer = function(){
 		this.friend =  findAspectPlayer(this.session.availablePlayers, "Blood");
-		if(this.friend == null){
+		if(this.friend == null || this.friend.land == null){
 			this.friend =  findClassPlayer(this.session.availablePlayers, "Page");
-		}else if(this.friend == null){
+		}else if(this.friend == null || this.friend.land == null){
 			this.friend =  findClassPlayer(this.session.availablePlayers, "Thief");
-		}else if(this.friend == null){
+		}else if(this.friend == null || this.friend.land == null){
 			this.friend =  findClassPlayer(this.session.availablePlayers, "Rogue");
+		}
+		if(this.friend == null || this.friend.land == null){
+			return null;
 		}
 	}
 

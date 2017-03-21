@@ -18,19 +18,25 @@ function DoLandQuest(session){
 			if(p.power > 2){ //can't be first thing you do in medium.
 				if(p.land != null && p.landLevel < 6 || p.aspect == "Space"){  //space player is the only one who can go over 100 (for better frog). can't do quests if land destroyed
 					var helper = this.lookForHelper(p);
-					var playerPlusHelper = [p,helper];
-					
-					if((p.aspect == "Blood" || p.class_name == "Page") ){// if page or blood player, can't do it on own.
-						if(playerPlusHelper[1] != null){
+					if(p.land == null){//seriously don't do land quests without a land
+						//console.log("not doing land quests because don't have a land")
+					}else{
+						var playerPlusHelper = [p,helper];
+						
+						if((p.aspect == "Blood" || p.class_name == "Page") ){// if page or blood player, can't do it on own.
+							if(playerPlusHelper[1] != null){
+								this.playersPlusHelpers.push(playerPlusHelper);
+								removeFromArray(p, this.session.availablePlayers);
+								removeFromArray(helper, this.session.availablePlayers); //don't let my helper do their own quests.
+							}
+						}else{
 							this.playersPlusHelpers.push(playerPlusHelper);
 							removeFromArray(p, this.session.availablePlayers);
 							removeFromArray(helper, this.session.availablePlayers); //don't let my helper do their own quests.
 						}
-					}else{
-						this.playersPlusHelpers.push(playerPlusHelper);
-						removeFromArray(p, this.session.availablePlayers);
-						removeFromArray(helper, this.session.availablePlayers); //don't let my helper do their own quests.
-					}					
+					}						
+				}else{
+					//console.log("not doing land quests at " + p.land)
 				}
 			}
 		}
@@ -153,6 +159,7 @@ function DoLandQuest(session){
 		var ret = "";
 		for(var i = 0; i<this.playersPlusHelpers.length; i++){
 			var player = this.playersPlusHelpers[i][0];
+			//console.log("doing land quests at: " + player.land)
 			var helper = this.playersPlusHelpers[i][1]; //might be null
 			ret += "The " + player.htmlTitle()  ;
 			player.increasePower();

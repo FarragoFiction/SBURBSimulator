@@ -241,7 +241,7 @@ function reckoningTick(){
 function processCombinedSession(){
 	curSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
 	if(curSessionGlobalVar){
-		$("#story").append("<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there. ");
+		$("#story").append("<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session " + curSessionGlobalVar.session_id + ". ");
 		checkSGRUB();
 		load(curSessionGlobalVar.players, curSessionGlobalVar.guardians); //in loading.js
 	}
