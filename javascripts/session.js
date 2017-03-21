@@ -33,7 +33,7 @@ function Session(session_id){
 	//TODO could possibly be constrained to need a space or time player to navigage. or godtier light/doom??? could further require the player be from derse
 	this.initializeCombinedSession = function(){
 		var living = findLivingPlayers(this.players);
-		//nobody is the leader anymore. 
+		//nobody is the leader anymore.
 		var newSession = new Session(Math.seed);  //this is a real session that could have gone on without these new players.
 		newSession.currentSceneNum = this.currentSceneNum;
 		newSession.makePlayers();
@@ -54,7 +54,7 @@ function Session(session_id){
 			for(var j= 0; j<newSession.players.length; j++){
 				var player = newSession.players[j];
 				player.generateRelationships(living);
-				//survivors have been talking to players for a very long time, because time has no meaning between univereses. 
+				//survivors have been talking to players for a very long time, because time has no meaning between univereses.
 				var r1 = survivor.getRelationshipWith(player);
 				var r2 = player.getRelationshipWith(survivor);
 				r1.moreOfSame();
@@ -73,7 +73,7 @@ function Session(session_id){
 		console.log("Session: " + this.session_id + " has made child universe: " + newSession.session_id)
 		return newSession;
 	}
-	
+
 	this.makePlayers = function(){
 		this.players = [];
 		available_classes = classes.slice(0); //re-initPlayers available classes.
@@ -88,17 +88,17 @@ function Session(session_id){
 
 		for(var j = 0; j<this.players.length; j++){
 			var p = this.players[j];
-		
+
 			p.generateRelationships(this.players);
 			this.decideTroll(p);
-			
+
 			if(p.isTroll){
 				p.quirk = randomTrollSim(p)
 			}else{
 				p.quirk = randomHumanSim(p);
 			}
 		}
-		
+
 		for(var k = 0; k<this.players.length; k++){
 			//can't escape consequences.
 			this.players[k].consequencesForGoodPlayer();
@@ -148,7 +148,7 @@ function Session(session_id){
 			var g = this.guardians[j];
 			g.generateRelationships(this.guardians);
 		}
-		
+
 		for(var k = 0; k<this.guardians.length; k++){
 			//can't escape consequences.
 			this.guardians[k].consequencesForGoodPlayer();
@@ -199,7 +199,7 @@ function Session(session_id){
 		if(this.scratchAvailable == true){
 			str += "<br><b>&nbsp&nbsp&nbsp&nbspScratch Available</b>"
 		}
-		
+
 		if(this.parentSession != null){
 			str += "<br><b>&nbsp&nbsp&nbsp&nbspCombined Session From: " + this.parentSession + "</b>"
 			//timesComboSession ++;
@@ -214,6 +214,7 @@ function Session(session_id){
 		if(findSceneNamed(this.scenesTriggered,"DoEctobiology") != "No"){
 			timesEcto ++;
 		}
+
 		str += tmp;
 
 		tmp =  summarizeScene(this.scenesTriggered, "FaceDenizen")
@@ -328,7 +329,11 @@ function Session(session_id){
 }
 
 function summarizeScene(scenesTriggered, str){
-	return "<br>&nbsp&nbsp&nbsp&nbsp" +str + " : " + findSceneNamed(scenesTriggered,str)
+	var tmp = findSceneNamed(scenesTriggered,str)
+	if(tmp != "No"){
+		tmp = "Yes"
+	}
+	return "<br>&nbsp&nbsp&nbsp&nbsp" +str + " : " + tmp
 }
 
 function findSceneNamed(scenesToCheck, name){

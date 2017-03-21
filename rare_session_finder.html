@@ -61,10 +61,33 @@
 		</title>
 	</head>
 	<body>
-		<h2 id = "heading">AI to find rare sessions. (will also be foundation for moon prophecies later.) </h2>
-<img src = "images/robot_author.png" style="float:left;">
-   <div id = "stats"></div>
-		<div id = "debug"></div>
+
+		<a href = "index2.html">Back to SBURB SIM 2.0</a>
+    <img src = "images/robot_author.png" style="float:left;">
+		<h2 id = "heading">Rare Session Finder </h2>
+		<div id = "spiel">
+				<font color = "red">
+				It seems you have asked about JR's automatic rare session finder. This is an application designed
+				to find sessions that are strange, interesting and otherwise noteworthy without having to
+				read hundreds of thousands of words.  The algorithms are guaranteed to be <b id = "percentBullshit">96%</b>
+				 indistinguishable from the actual, readable sessions, based on some
+				statistical analysis I basically just pulled out of my ass right now.
+				<br><Br>
+					Please be patient as the sessions finish.  Stats will be printed out up top at the end. Links to individual sessions will be below.
+					<Br><Br>
+					# of Sessions to Check:
+					<Br>1 <input id="num_sessions" type="range" min="1" max="50" value="10"> 50
+					<Br>
+					<input type="text" id="num_sessions_text" value="" size="2" disabled>
+					<br><br>
+					<button id = "button" onclick="checkSessions()"disabled="false">Check Sessions</button>
+			</font>
+
+		</div>
+   <div id = "stats" style="float:left;">
+
+	 </div>
+		<div id = "debug" style="float:left;"></div>
 
 
 		<div id = "story"></div>

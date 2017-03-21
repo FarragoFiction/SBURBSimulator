@@ -45,10 +45,11 @@ var numSimulationsToDo = 52;
 //main canvas is either Leader + PesterChumWindow + 1 or more Players (in chat or group chat with leader)
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
+	percentBullshit();
 	//these bitches are SHAREABLE.
-	
+
 	//debug("2022 has a combo session");
-	
+
 	if(getParameterByName("seed")){
 		Math.seed = getParameterByName("seed");
 		initial_seed = getParameterByName("seed");
@@ -57,7 +58,26 @@ window.onload = function() {
 		Math.seed = tmp;
 		initial_seed = tmp;
 	}
+	formInit();
+	//startSession();
+}
+
+function checkSessions(){
+	numSimulationsDone = 0; //but don't reset stats
+	$("#story").html("")
+	$("#debug").html("");
+	//$("#stats").html("");
+	numSimulationsToDo = parseInt($("#num_sessions").val())
+	$("#button").prop('disabled', true)
 	startSession();
+}
+
+function formInit(){
+	$("#button").prop('disabled', false)
+	$("#num_sessions_text").val($("#num_sessions").val());
+	$("#num_sessions").change(function(){
+			$("#num_sessions_text").val($("#num_sessions").val());
+	});
 }
 
 function startSession(){
@@ -197,8 +217,8 @@ function reckoningTick(){
 		var s = new Aftermath(curSessionGlobalVar);
 		s.trigger(curSessionGlobalVar.players)
 		s.renderContent(curSessionGlobalVar.newScene());
-		
-		
+
+
 		//summarizeSession(curSessionGlobalVar);
 		//for some reason whether or not a combo session is available isn't working? or combo isn't working right in this mode?
 		if(curSessionGlobalVar.makeCombinedSession == true){
@@ -206,8 +226,8 @@ function reckoningTick(){
 		}else{
 			summarizeSession(curSessionGlobalVar);
 		}
-		
-		
+
+
 	}
 
 }
@@ -241,9 +261,10 @@ function summarizeSession(session){
 	debug(str);
 
 	numSimulationsDone ++;
+	printStats();
 	if(numSimulationsDone >= numSimulationsToDo){
-		printStats();
-		alert("should be done")
+		$("#button").prop('disabled', false)
+		alert("Notice: should be ready to check more sessions.")
 		return;
 	}else{
 		setTimeout(function(){
@@ -256,22 +277,16 @@ function summarizeSession(session){
 	}
 }
 
+//don't use a seed here
+function percentBullshit(){
+	var pr = 90+Math.random()*10;
+	$("#percentBullshit").html(pr+"%")
+}
 
-/*var timesEcto = 0;
-var timesDenizen = 0;
-var timesExileJack = 0;
-var timesExileQueen = 0;
-var timesJackWeapon = 0;
-var timesJackScheme = 0;
-var timesJackRampage = 0;
-var timesJackPromotion = 0;
-var timesKingPowerful = 0;
-var timesQueenRejectRing = 0;
-var timesSavedDoomedTimeLine = 0;
-var timesInterestingSaveDoomedTimeLine = 0;
-var timesDemocracyStart = 0;*/
 function printStats(){
-	var str = "<br>Number Sessions: " + sessionsSimulated.length;
+
+	var str = " <h2> Stats for all Checked Sessions</h2>"
+	str += "<br>Number Sessions: " + sessionsSimulated.length;
 	//timesScratchesAvailable
 	str += "<br> Average Frog Level: " + totalFrogLevel/sessionsSimulated.length;
 	str+= "<Br>Times Frogs Full: " + timesFullFrog+ " (" + Math.round((timesFullFrog/sessionsSimulated.length)*100) + "%)";;
@@ -279,7 +294,7 @@ function printStats(){
 	str += "<br>Times No Frog: " + timesNoFrog+ " (" + Math.round((timesNoFrog/sessionsSimulated.length)*100) + "%)";;
 	str += "<Br>Times Scratches Available: " + timesScratchesAvailable + " (" + Math.round((timesScratchesAvailable/sessionsSimulated.length)*100) + "%)";
 	str += "<Br>Times Combo Session Possible: " + timesComboSession + " (" + Math.round((timesComboSession/sessionsSimulated.length)*100) + "%)";
-		
+
 	str +="<Br>Times Total Party Wipe: " + timesTotalPartyWipe + " (" + Math.round((timesTotalPartyWipe/sessionsSimulated.length)*100) + "%)";
 	str += "<Br>Times Ectobiology: " + timesEcto + " (" + Math.round((timesEcto/sessionsSimulated.length)*100) + "%)";
 
@@ -302,7 +317,7 @@ function printStats(){
 	str += "<Br>Times Doomed Timelines: " + timesSavedDoomedTimeLine+ " (" + Math.round((timesSavedDoomedTimeLine/sessionsSimulated.length)*100) + "%)";;
 	str += "<Br>Times Interesting Doomed Timelines: " + timesInterestingSaveDoomedTimeLine+ " (" + Math.round((timesInterestingSaveDoomedTimeLine/sessionsSimulated.length)*100) + "%)";;
 	str += "<Br>Times Democracy Side Quest Activated: " + timesDemocracyStart+ " (" + Math.round((timesDemocracyStart/sessionsSimulated.length)*100) + "%)";;
-	$("#stats").append(str);
+	$("#stats").html(str);
 }
 
 

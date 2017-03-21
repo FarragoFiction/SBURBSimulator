@@ -1188,6 +1188,7 @@ function aspectPalletSwap(canvas, player){
   //not all browsers do png gama info correctly. Chrome does, firefox does not, mostly.
   //remove it entirely with this command
   //pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB infile.png outfile.png
+  //pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB reg001.png reg001copy.png
 	var oldcolor1 = "#FEFD49";
 	var oldcolor2 = "#FEC910";
 	var oldcolor3 = "#10E0FF";
