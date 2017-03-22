@@ -39,6 +39,10 @@ var totalFrogLevel = 0;
 var numSimulationsDone = 0;
 var numSimulationsToDo = 52;
 
+if(getParameterByName("robot")){
+		robotMode();
+}
+
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.
 //should there be only one canvas?  Can have player sprites be written to a virtual canvas first, then copied to main one.

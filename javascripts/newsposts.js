@@ -3,7 +3,7 @@
 //make her all arrogant and bragging about how many sessions she's parsing.
 //why are AIs so awesome?
 //i'm on left, she's on right.
-
+var session_data = null;
 //TODO add thought bubble about jack to dialogue
 window.onload = function() {
 		writeNewspost("3/22/17", "Okay. So, newspost numero uno.  I figured I needed a better way to communicate to you guys, and the one centralized location is here, on the actual site itself. Any newspost before this is retroactively dated.<br><Br> And I absolutely could not help myself: I love the AuthorBot so much that I gave her a space to make her own newsposts.  But of course, she needs to be able to say her own shit, right? So I gave her a (admittedly pretty shitty) ai.  <br><Br>But her whole thing is finding rare sessions right? If she doens't do that, she's not the SessionFinderAuthorBot, she's just some random newsbot or some shit. So I decided her AI would be able to comment on all the rad sessions she's finding... <br><Br>Okay, long story short, I added the ability for her to say something about each session she finds (on the session finder page), and the version of her here can go to that page and comment on the sessions she finds there. I went to so much trouble to do that using only client side code, no server.  All for a barely noticeable kind of joke on a page most people probably ignore? Yes.")
@@ -47,6 +47,31 @@ function randomRobotQuip(){
 }
 
 function bragAboutSessionFinding(){
+	console.log('will get work?')
+	var str = "As a flawless synthetic brain, I am capable of hella amounts of multitasking.";
+	str += "While you're sitting there reading this, I'm browsing random sessions through my main set of programming back on the Rare Session Finder page. "
+
+/*
+	$.get( "rare_session_finder.html?robot=true", function( data ) {
+	  console.log( data );
+		session_data = data;
+	});*/
+
+	$.ajax({
+
+	    type: "GET", //Personally i prefer using post, you can swap this to get if you want.
+	    url: "rare_session_finder.html?robot=true",
+	    dataType: "html", //Note the dataType has been changed from default here.
+	    error: function() {
+	      //You can do a fallback here
+	    },
+	    success: function(data) { //Note the data variable here. This is your returned data
+	        //I also swapped .attr to .val below
+	       session_data = data;
+	    }
+
+	});
+
 	return "todo"
 }
 
