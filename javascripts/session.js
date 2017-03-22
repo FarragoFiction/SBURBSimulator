@@ -11,6 +11,7 @@ function Session(session_id){
 	this.goodFrogLevel = 28;
 	this.democracyStrength = 0;
 	this.reckoningStarted = false;
+	this.murdersHappened = false;
 	this.ectoBiologyStarted = false;
 	this.doomedTimeline = false;
 	this.makeCombinedSession = false; //happens if sick frog and few living players
@@ -311,6 +312,13 @@ function Session(session_id){
 		tmp =  summarizeScene(this.scenesTriggered, "EngageMurderMode")
 		if(findSceneNamed(this.scenesTriggered,"EngageMurderMode") != "No"){
 			timesMurderMode ++;
+		}
+		str += tmp;
+		//murdersHappened
+
+		tmp =  summarizeScene(this.scenesTriggered, "MurderPlayers")
+		if(findSceneNamed(this.scenesTriggered,"MurderPlayers") != "No"){
+			this.murdersHappened = true;
 		}
 		str += tmp;
 

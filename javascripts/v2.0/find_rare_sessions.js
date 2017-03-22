@@ -315,7 +315,12 @@ function getQuipAboutSession(session){
 		quip += "Shit, you do not even want to KNOW how everybody died." ;
 	}else  if(strongest.power > 3000){
 		quip += "Holy Shit, do you SEE this player!?  How even strong ARE they?" ;
-	}else  if(curSessionGlobalVar.hadCombinedSession == true){
+	}else if(spacePlayer.landLevel < session.minFrogLevel ){
+		quip += "Man, why is it always the frogs? " ;
+		if(curSessionGlobalVar.parentSession){
+			quip += " You'd think what with it being a combo session, they would have gotten the frog figured out. "
+		}
+	}else  if(curSessionGlobalVar.parentSession){
 		quip += "Combo sessions are always so cool." ;
 	}else  if(curSessionGlobalVar.jackStrength > 200){
 		quip += "Jack REALLY gave them trouble." ;
@@ -323,10 +328,10 @@ function getQuipAboutSession(session){
 		quip += "Everything went better than expected." ;
 	}else  if(curSessionGlobalVar.scenesTriggered.length > 200){
 		quip += "God, this session just would not END." ;
+	}else  if(curSessionGlobalVar.murdersHappened == true){
+		quip += "It always sucks when the players start trying to kill each other." ;
 	}else  if(curSessionGlobalVar.scenesTriggered.length < 50){
 		quip += "Holy shit, were they even in the session an entire hour?" ;
-	}else if(spacePlayer.landLevel < session.minFrogLevel ){
-		quip += "Man, why is it always the frogs?" ;
 	}else  if(curSessionGlobalVar.scratchAvailable == true){
 		quip += "Maybe the scratch would fix things? I can't be bothered to check." ;
 	}else{
