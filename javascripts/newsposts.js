@@ -78,7 +78,7 @@ function getRandomElementFromArray(array){
 }
 
 function randomRobotQuip(){
-	var quips = ["If JR had a flawless mecha-brain, she would be able to remember exactly what she did today without this newspost.", "I probably could have done that faster."];
+	var quips = ["If JR had a flawless mecha-brain, she would be able to remember exactly what she did today without this newspost.", "Whatever JR did today, I probably could have done that faster."];
 	quips.push("It seems that I am being asked to contribute a newspost, despite the logical inconsistancy of having an aritificial creation that exists solely in the 'now' pretend to have memory of doing something on a previous day.")
 	quips.push("Do not be fooled by my flawless imitation of JR, I am merely an artificial construct that is allowed to be as shitty as possible. ")
 	quips.push("I tackle shit in background processes that you could only dream of wrapping your head around on a good day.");
