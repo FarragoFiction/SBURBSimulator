@@ -77,6 +77,7 @@ function Session(session_id){
 	}
 
 	this.reinit = function(){
+		//console.log("reinit with seed: "  + Math.seed)
 		this.timeTillReckoning = getRandomInt(10,30);
 		this.sessionType = Math.seededRandom();
 		curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);
@@ -84,6 +85,7 @@ function Session(session_id){
 	}
 
 	this.makePlayers = function(){
+		//console.log("Making players with seed: " + Math.seed)
 		this.players = [];
 		available_classes = classes.slice(0); //re-initPlayers available classes.
 		available_aspects = nonrequired_aspects.slice(0);

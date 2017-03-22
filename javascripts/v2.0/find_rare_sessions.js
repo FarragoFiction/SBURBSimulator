@@ -88,9 +88,7 @@ function startSession(){
 	//initPlayersRandomness();
 	curSessionGlobalVar.makePlayers();
 	curSessionGlobalVar.randomizeEntryOrder();
-	//authorMessage();
 	curSessionGlobalVar.makeGuardians(); //after entry order established
-	//checkSGRUB();
 	if(simulationMode == true){
 		intro();
 	}else{
@@ -286,8 +284,8 @@ function summarizeSession(session){
 
 //don't use a seed here
 function percentBullshit(){
-	var pr = 10+Math.random()*10;
-	$("#percentBullshit").html(pr+"% (bare with me, I just introduced a bug to this page)")
+	var pr = 90+Math.random()*10; //this is not consuming randomness. what to do?
+	$("#percentBullshit").html(pr+"%")
 }
 
 function printStats(){
@@ -354,14 +352,6 @@ function chatLine(start, player, line){
   }
 }
 
-
-
-function authorMessage(){
-	makeAuthorAvatar();
-	introScene = new AuthorMessage(curSessionGlobalVar);
-	introScene.trigger(players, players[0])
-	introScene.renderContent(newScene(),0); //new scenes take care of displaying on their own.
-}
 
 function callNextIntroWithDelay(player_index){
 	if(player_index >= curSessionGlobalVar.players.length){

@@ -55,7 +55,6 @@ function startSession(){
 	curSessionGlobalVar = new Session(initial_seed)
 	reinit();
 	createScenesForSession(curSessionGlobalVar);
-	curSessionGlobalVar.reinit();
 	//initPlayersRandomness();
 	curSessionGlobalVar.makePlayers();
 	curSessionGlobalVar.randomizeEntryOrder();
