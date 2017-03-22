@@ -328,6 +328,9 @@ function getQuipAboutSession(session){
 		quip += "Everything went better than expected." ;
 	}else  if(curSessionGlobalVar.scenesTriggered.length > 200){
 		quip += "God, this session just would not END." ;
+		if(!curSessionGlobalVar.parentSession){
+			quip += " It didn't even have the excuse of being a combo session. "
+		}
 	}else  if(curSessionGlobalVar.murdersHappened == true){
 		quip += "It always sucks when the players start trying to kill each other." ;
 	}else  if(curSessionGlobalVar.scenesTriggered.length < 50){
