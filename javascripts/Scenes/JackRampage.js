@@ -7,7 +7,7 @@ function JackRampage(session){
 	this.canRepeat = true;
 
 	this.trigger = function(playerList){
-		console.log("Jack is: " + this.session.jackStrength  + " and King is: " + this.session.kingStrength)
+		//console.log("Jack is: " + this.session.jackStrength  + " and King is: " + this.session.kingStrength)
 		return this.session.jackStrength > this.session.kingStrength && this.session.jackStrength > 0; //Jack does not stop showing us his stabs.
 	}
 

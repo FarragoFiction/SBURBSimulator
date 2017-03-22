@@ -45,6 +45,10 @@ var numSimulationsToDo = 52;
 //main canvas is either Leader + PesterChumWindow + 1 or more Players (in chat or group chat with leader)
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
+	if(getParameterByName("robot")){
+			robotMode();
+			return;
+	}
 	percentBullshit();
 	//these bitches are SHAREABLE.
 
@@ -60,6 +64,12 @@ window.onload = function() {
 	}
 	formInit();
 	//startSession();
+}
+
+//want the AuthorBot to actually be browsing sessions when bored, like she claims to be.
+function robotMode(){
+	numSimulationsToDo = 1;
+	startSession();
 }
 
 function checkSessions(){
@@ -263,13 +273,20 @@ function summarizeSession(session){
 	$("#story").html("");
 	var str = curSessionGlobalVar.summarize();
 	checkDoomedTimelines();
+	debug("<br><hr><font color = 'red'> " + getQuipAboutSession(curSessionGlobalVar) + "</font><Br>" );
 	debug(str);
 
 	numSimulationsDone ++;
-	printStats();
+	if(getParameterByName("robot")){
+		printStatsRobot();
+	}else{
+		printStats();
+}
 	if(numSimulationsDone >= numSimulationsToDo){
 		$("#button").prop('disabled', false)
-		alert("Notice: should be ready to check more sessions.")
+		if(!getParameterByName("robot")){
+			alert("Notice: should be ready to check more sessions.")
+		}
 		return;
 	}else{
 		setTimeout(function(){
@@ -286,6 +303,35 @@ function summarizeSession(session){
 function percentBullshit(){
 	var pr = 90+Math.random()*10; //this is not consuming randomness. what to do?
 	$("#percentBullshit").html(pr+"%")
+}
+
+function getQuipAboutSession(session){
+	var quip = "";
+	var living = findLivingPlayers(session.players);
+	if(curSessionGlobalVar.jackStrength > 50){
+		quip += "Jack REALLY gave them trouble." ;
+	}else if(living.length == 0){
+		quip += "Shit, you do not even want to KNOW how everybody died." ;
+	}else{
+		quip += "It was slightly less boring than calculating pi." ;
+	}
+	return quip;
+}
+
+//json problem here is getting the json on screen without html bullshit
+//I am going to stupid amounts of efforts just not to have to write a server.
+//ironically, I'm actually pretty good at server code, but all of this has so far been client only
+//and i don't want to have to remember if something is in the server vs the client
+//AND the original point of this was to level up in javascript some more
+//TODO, probably can have author bot just parse out the body on the other end
+function printStatsRobot(){
+	$(document.body).empty();
+	//console.log("Hello?  Oh. Good. I was afraid wiping the page would take me out, too.")
+	//console.log("Now, which session should I entertain myself with today?")
+	var json = "{session_id:" + curSessionGlobalVar.session_id + ", "
+	json += "quip: " + getQuipAboutSession(curSessionGlobalVar);
+	json +=  "}";
+	$(document.body).append(json);
 }
 
 function printStats(){

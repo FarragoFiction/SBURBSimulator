@@ -211,7 +211,7 @@ function Session(session_id){
 
 	this.summarize = function(){
 		var strongest = findStrongestPlayer(this.players)
-		var str = "<Br><hr><a href = 'index2.html?seed="+ this.session_id +"'>Session: " + this.session_id + "</a> scenes: " + this.scenesTriggered.length + " Leader:  " + getLeader(this.players).title() + " MVP: " + strongest.htmlTitle()+ " with a power of: " + strongest.power;;
+		var str = "<a href = 'index2.html?seed="+ this.session_id +"'>Session: " + this.session_id + "</a> scenes: " + this.scenesTriggered.length + " Leader:  " + getLeader(this.players).title() + " MVP: " + strongest.htmlTitle()+ " with a power of: " + strongest.power;;
 		if(this.scratchAvailable == true){
 			str += "<br><b>&nbsp&nbsp&nbsp&nbspScratch Available</b>"
 		}
