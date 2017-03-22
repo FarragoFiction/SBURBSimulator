@@ -82,6 +82,11 @@ function Session(session_id){
 		this.sessionType = Math.seededRandom();
 		curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);
 		curSessionGlobalVar.doomedTimeline = false;
+		this.kingStrength = 100;
+		this.queenStrength = 100;
+		this.jackStrength = 50;
+		this.democracyStrength = 0;
+		this.reckoningStarted = false;
 	}
 
 	this.makePlayers = function(){

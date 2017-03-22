@@ -1,15 +1,16 @@
 
-//if jack is much stronger than a player, insta-kills them. 
+//if jack is much stronger than a player, insta-kills them.
 //can fight 0 or more players at once. (if zero, he just kills nonplayers.)
-//total playerStrength must be at least half of his to survive. 
+//total playerStrength must be at least half of his to survive.
 function JackRampage(session){
 	this.session = session;
-	this.canRepeat = true;	
-	
+	this.canRepeat = true;
+
 	this.trigger = function(playerList){
+		console.log("Jack is: " + this.session.jackStrength  + " and King is: " + this.session.kingStrength)
 		return this.session.jackStrength > this.session.kingStrength && this.session.jackStrength > 0; //Jack does not stop showing us his stabs.
 	}
-	
+
 	this.getStabList = function(){
 		var numStabbings = getRandomInt(0,Math.min(2,this.session.availablePlayers.length));
 		var ret = [];
@@ -21,19 +22,19 @@ function JackRampage(session){
 		}
 		return Array.from(new Set(ret));
 	}
-	
+
 
 	this.renderContent = function(div){
 		div.append("<br>"+this.content());
 	}
-	
+
 	this.killPlayers = function(stabbings){
 		for(var i = 0; i<stabbings.length; i++){
 			stabbings[i].dead = true;
 			stabbings[i].causeOfDeath = "after being shown too many stabs from Jack";
 		}
 	}
-	
+
 	this.levelPlayers = function(stabbings){
 		for(var i = 0; i<stabbings.length; i++){
 			stabbings[i].increasePower();
@@ -43,22 +44,22 @@ function JackRampage(session){
 			stabbings[i].leveledTheHellUp = true;
 		}
 	}
-	
+
 	this.minorLevelPlayers = function(stabbings){
 		for(var i = 0; i<stabbings.length; i++){
 			stabbings[i].increasePower();
 			stabbings[i].increasePower();
 		}
 	}
-	
 
-	
+
+
 	this.setPlayersUnavailable = function(stabbings){
 		for(var i = 0; i<stabbings.length; i++){
 			removeFromArray(stabbings[i], this.session.availablePlayers);
 		}
 	}
-	
+
 	this.content = function(){
 		//jack finds 0 or more players.
 		var stabbings = this.getStabList();
@@ -70,7 +71,7 @@ function JackRampage(session){
 				ret += " Jack listlessly shows his stabs to a few Dersite pawns. "
 			}
 			ret += " Bored of this, he decides to show his stabs to BOTH the Black and White Kings.  The battle is over. The Reckoning will soon start."
-			this.session.timeTillReckoning = 0; 
+			this.session.timeTillReckoning = 0;
 			return ret;
 		}
 		this.setPlayersUnavailable(stabbings);
@@ -80,12 +81,12 @@ function JackRampage(session){
 			this.session.jackStrength =  -9999;
 			this.levelPlayers(stabbings);
 			ret += findDeadPlayers(this.session.players).length + " players are dead in the wake of his rampage. ";
-		}else if(partyPower > this.session.jackStrength){		
+		}else if(partyPower > this.session.jackStrength){
 			ret += " Jack fails to stab " + getPlayersTitles(stabbings);
 			ret += "  He goes away to stab someone else, licking his wounds. ";
 			if(Math.seededRandom()>.9){
 				ret += " Bored of this, he decides to show his stabs to BOTH the Black and White Kings.  The battle is over. The Reckoning will soon start."
-				timeTillReckoning = 0; 
+				timeTillReckoning = 0;
 			}
 			this.minorLevelPlayers(stabbings);
 			this.session.jackStrength += -10;

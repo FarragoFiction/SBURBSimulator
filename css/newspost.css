@@ -1,0 +1,43 @@
+#container {
+    float:left;
+    width:100%;
+}
+#player1 {
+    float:left;
+    width:50%;
+}
+#player2 {
+    float:left;
+    width:50%;
+}
+#player3 {
+
+    width:50%;
+}
+#player3 {
+    float:left;
+    width:50%;
+}
+
+#classList{
+  float:left;
+}
+
+#colorList{
+  float:left;
+}
+#speciesList{
+  float:left;
+}
+
+#aspectList{
+  float:left;
+}
+#horrorterror{
+  font-family: horrorterror;
+}
+
+@font-face {
+    font-family: horrorterror;
+    src: url(MISTERTWIGGY.TTF);
+}
