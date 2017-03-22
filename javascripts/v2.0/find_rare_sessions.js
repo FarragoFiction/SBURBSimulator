@@ -38,10 +38,8 @@ var totalFrogLevel = 0;
 
 var numSimulationsDone = 0;
 var numSimulationsToDo = 52;
+var quipMode = false;
 
-if(getParameterByName("robot")){
-		robotMode();
-}
 
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.
@@ -49,7 +47,7 @@ if(getParameterByName("robot")){
 //main canvas is either Leader + PesterChumWindow + 1 or more Players (in chat or group chat with leader)
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
-	if(getParameterByName("robot")){
+	if(quipMode == true){
 			robotMode();
 			return;
 	}
@@ -321,25 +319,25 @@ function getQuipAboutSession(session){
 		quip += "Holy Shit, do you SEE the " + strongest.titleBasic() + "!?  How even strong ARE they?" ;
 	}else if(spacePlayer.landLevel < session.minFrogLevel ){
 		quip += "Man, why is it always the frogs? " ;
-		if(curSessionGlobalVar.parentSession){
+		if(session.parentSession){
 			quip += " You'd think what with it being a combo session, they would have gotten the frog figured out. "
 		}
-	}else  if(curSessionGlobalVar.parentSession){
+	}else  if(session.parentSession){
 		quip += "Combo sessions are always so cool." ;
-	}else  if(curSessionGlobalVar.jackStrength > 200){
+	}else  if(session.jackStrength > 200){
 		quip += "Jack REALLY gave them trouble." ;
 	}else if(dead.length == 0 && spacePlayer.landLevel > session.goodFrogLevel ){
 		quip += "Everything went better than expected." ;
-	}else  if(curSessionGlobalVar.scenesTriggered.length > 200){
+	}else  if(session.scenesTriggered.length > 200){
 		quip += "God, this session just would not END." ;
-		if(!curSessionGlobalVar.parentSession){
+		if(!session.parentSession){
 			quip += " It didn't even have the excuse of being a combo session. "
 		}
-	}else  if(curSessionGlobalVar.murdersHappened == true){
+	}else  if(session.murdersHappened == true){
 		quip += "It always sucks when the players start trying to kill each other." ;
-	}else  if(curSessionGlobalVar.scenesTriggered.length < 50){
+	}else  if(session.scenesTriggered.length < 50){
 		quip += "Holy shit, were they even in the session an entire hour?" ;
-	}else  if(curSessionGlobalVar.scratchAvailable == true){
+	}else  if(session.scratchAvailable == true){
 		quip += "Maybe the scratch would fix things? I can't be bothered to check." ;
 	}else{
 		quip += "It was slightly less boring than calculating pi." ;
@@ -347,20 +345,17 @@ function getQuipAboutSession(session){
 	return quip;
 }
 
-//json problem here is getting the json on screen without html bullshit
-//I am going to stupid amounts of efforts just not to have to write a server.
-//ironically, I'm actually pretty good at server code, but all of this has so far been client only
-//and i don't want to have to remember if something is in the server vs the client
-//AND the original point of this was to level up in javascript some more
-//TODO, probably can have author bot just parse out the body on the other end
+//this doesn't actually work like i'd hoped.
+//javascript only evaluated in browsr, not http get. should have realized
 function printStatsRobot(){
-	$(document.body).empty();
+	//$(document.body).empty();
 	//console.log("Hello?  Oh. Good. I was afraid wiping the page would take me out, too.")
 	//console.log("Now, which session should I entertain myself with today?")
 	var json = "{session_id:" + curSessionGlobalVar.session_id + ", "
 	json += "quip: " + getQuipAboutSession(curSessionGlobalVar);
 	json +=  "}";
-	$(document.body).append(json);
+	return json;
+	//$(document.body).append(json);
 }
 
 function printStats(){
