@@ -20,7 +20,7 @@ function JackPromotion(session){
 		ret += " You'd think this would be no worse than having the Black Queen around, but Jack is kind of a big deal. ";
 		ret += " He immediately decides to show everybody his stabs. ";
 		var badPrototyping = findBadPrototyping(this.playerList);
-				this.session.queenStrength = 0;
+		this.session.queenStrength = -9999;
 
 		if( badPrototyping == "First Guardian"){
 			ret += " He is now in charge of random teleporation murders. ";
