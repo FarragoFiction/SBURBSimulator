@@ -83,8 +83,8 @@ function formInit(){
 function startSession(){
 	$("#story").html("")
 	curSessionGlobalVar = new Session(initial_seed)
-	createScenesForSession(curSessionGlobalVar);
 	reinit();
+	createScenesForSession(curSessionGlobalVar);
 	//initPlayersRandomness();
 	curSessionGlobalVar.makePlayers();
 	curSessionGlobalVar.randomizeEntryOrder();
@@ -287,7 +287,7 @@ function summarizeSession(session){
 //don't use a seed here
 function percentBullshit(){
 	var pr = 10+Math.random()*10;
-	$("#percentBullshit").html(pr+"%")
+	$("#percentBullshit").html(pr+"% (bare with me, I just introduced a bug to this page)")
 }
 
 function printStats(){

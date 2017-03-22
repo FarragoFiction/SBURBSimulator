@@ -53,8 +53,8 @@ function reinit(){
 
 function startSession(){
 	curSessionGlobalVar = new Session(initial_seed)
-	createScenesForSession(curSessionGlobalVar);
 	reinit();
+	createScenesForSession(curSessionGlobalVar);
 	curSessionGlobalVar.reinit();
 	//initPlayersRandomness();
 	curSessionGlobalVar.makePlayers();
