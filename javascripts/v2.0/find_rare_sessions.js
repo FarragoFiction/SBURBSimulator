@@ -65,7 +65,7 @@ window.onload = function() {
 function checkSessions(){
 	numSimulationsDone = 0; //but don't reset stats
 	$("#story").html("")
-	$("#debug").html("");
+	//$("#debug").html("");
 	//$("#stats").html("");
 	numSimulationsToDo = parseInt($("#num_sessions").val())
 	$("#button").prop('disabled', true)
@@ -81,6 +81,7 @@ function formInit(){
 }
 
 function startSession(){
+	$("#story").html("")
 	curSessionGlobalVar = new Session(initial_seed)
 	createScenesForSession(curSessionGlobalVar);
 	reinit();
@@ -120,7 +121,7 @@ function shareableURL(){
 function renderScratchButton(session){
 	timesScratchesAvailable ++;
 	if(session.ectoBiologyStarted == false){
-		summarizeSession(session);
+		//summarizeSession(session);
 	}
 }
 
@@ -203,6 +204,9 @@ function reckoning(){
 	s.renderContent(curSessionGlobalVar.newScene());
 	if(!curSessionGlobalVar.doomedTimeline){
 		reckoningTick();
+	}else{
+		console.log("doomed timeline prevents reckoning")
+		summarizeSession(curSessionGlobalVar);
 	}
 }
 
@@ -253,8 +257,9 @@ function summarizeSession(session){
 	console.log("summarizing: " + curSessionGlobalVar.session_id)
 	//don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
 	if(sessionsSimulated.indexOf(session.session_id) != -1){
-		//console.log("skipping a repeat session: " + curSessionGlobalVar.session_id)
-		return;
+		console.log("should be skipping a repeat session: " + curSessionGlobalVar.session_id)
+
+		//return;
 	}
 	sessionsSimulated.push(curSessionGlobalVar.session_id);
 	$("#story").html("");
@@ -269,13 +274,13 @@ function summarizeSession(session){
 		alert("Notice: should be ready to check more sessions.")
 		return;
 	}else{
-		//setTimeout(function(){
+		setTimeout(function(){
 			//var tmp = getRandomSeed();
 			//Math.seed = tmp;
 			//doomedTimelineReasons = []
 			initial_seed = Math.seed; //child session
 			startSession();
-		//},repeatTime*2); //since ticks are on time out, one might hit right as this is called, don't want that, cause causes players to be dead or godtier at start of next session
+		},repeatTime*2); //since ticks are on time out, one might hit right as this is called, don't want that, cause causes players to be dead or godtier at start of next session
 	}
 }
 
