@@ -314,7 +314,7 @@ function getQuipAboutSession(session){
 	if(living.length == 0){
 		quip += "Shit, you do not even want to KNOW how everybody died." ;
 	}else  if(strongest.power > 3000){
-		quip += "Holy Shit, do you SEE this player!?  How even strong ARE they?" ;
+		quip += "Holy Shit, do you SEE the " + strongest.titleBasic() + "!?  How even strong ARE they?" ;
 	}else if(spacePlayer.landLevel < session.minFrogLevel ){
 		quip += "Man, why is it always the frogs? " ;
 		if(curSessionGlobalVar.parentSession){
