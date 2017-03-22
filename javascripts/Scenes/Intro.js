@@ -428,7 +428,7 @@ function Intro(session){
 		}
 		return chatText;
 	}
-	
+
 	this.alienChat = function(player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
@@ -443,6 +443,9 @@ function Intro(session){
 		}else{
 			chatText += chatLine(player1Start, player1,"Hey, I'm finally in your session.");
 		}
+		chatText += chatLine(player2Start, player2,"Oh wow! What are you going to do? It's not like you have a land or anything...");
+		chatText += chatLine(player1Start, player1,"Eh, I'll get things ready for you guys' reckoning. Mess with the Black Queen. Plus, I can always help out you guys with your Land Quests.");
+		chatText += chatLine(player2Start, player2,"Oh yeah...");
 		return chatText;
 	}
 
@@ -450,7 +453,7 @@ function Intro(session){
 		if(!player1.fromThisSession(this.session)){
 			return this.alienChat(player1,player2);
 		}
-		
+
 		if(player2.grimDark == true){
 			 return this.grimPlayer2Chat(player1, player2);
 		}
@@ -499,20 +502,20 @@ function Intro(session){
 		//do what homestuck does and put some text in image but rest in pesterlog?
 		//when trolls happen, should they use trollian?
 		var player1 = this.player;
-		
+
 		var player2 = player1.getBestFriendFromList(findLivingPlayers(this.session.players), "intro chat");
 		if(player2 == null){
 			player2 = player1.getWorstEnemyFromList(findLivingPlayers(this.session.players));
 
 		}
 
-		
+
 		if(player2 == null){
 			return div.append(this.content()); //give up, forever alone.
 
 		}
 
-		
+
 
 		var chatText = this.getChat(player1,player2);
 		//don't need timeout here.
@@ -526,7 +529,7 @@ function Intro(session){
 			//console.log("This session is:  " + this.session.session_id + " and the " + this.player.title() + " is from session: " + this.player.ectoBiologicalSource + " and their land is: " + this.player.land);
 		}
 		if(!this.player.fromThisSession(this.session)){
-			narration += "<br>The " + this.player.htmlTitle() + " has been in contact with the native players of this session for most of their lives. It's weird how time flows differently between universes. Now, after inumerable shenanigans, they will finally be able to meet up face to face." 
+			narration += "<br>The " + this.player.htmlTitle() + " has been in contact with the native players of this session for most of their lives. It's weird how time flows differently between universes. Now, after inumerable shenanigans, they will finally be able to meet up face to face."
 		}else{
 			narration += "<br>The " + this.player.htmlTitle() + " enters the game " + indexToWords(i) + ". ";
 
@@ -567,7 +570,7 @@ function Intro(session){
 				}
 
 			}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
-			}		
+			}
 		}
 		div.append(narration);
 		this.chat(div);

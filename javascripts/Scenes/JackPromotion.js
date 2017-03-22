@@ -1,13 +1,13 @@
 function JackPromotion(session){
-	this.canRepeat = false;	
+	this.canRepeat = false;
 	this.session = session;
 	this.playerList = [];  //what players are already in the medium when i trigger?
-	
+
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		return (this.session.jackStrength > this.session.queenStrength*2) && (this.session.jackStrength > 0) && this.session.queenStrength >  -9999;
 	}
-	
+
 	this.content = function(){
 		this.session.jackStrength = this.session.kingStrength * 2;
 		var ret = " In a shocking turn of events, Jack Noir claims the Black Queen's RING OF ORBS " + this.convertPlayerNumberToWords();
@@ -27,33 +27,39 @@ function JackPromotion(session){
 		}
 		return ret;
 	}
-	
+
 	this.renderContent = function(div){
 		div.append("<br>"+this.content());
 	}
-	
+
 	this.convertPlayerNumberToWords = function(){
-		if(this.session.players.length == 2){
+		//alien players don't count
+		var ps = findPlayersFromSessionWithId(this.session.players, this.session.session_id);
+		if(ps.length == 0){
+			ps = this.session.players;
+		}
+		var length = ps.length;
+		if(length == 2){
 			return "TWO";
-		}else if(this.session.players.length == 3){
+		}else if(length == 3){
 			return "THREE";
-		}else if(this.session.players.length == 4){
+		}else if(length == 4){
 			return "FOUR";
-		}else if(this.session.players.length == 5){
+		}else if(length == 5){
 			return "FIVE";
-		}else if(this.session.players.length == 6){
+		}else if(length == 6){
 			return "SIX";
-		}else if(this.session.players.length == 7){
+		}else if(length == 7){
 			return "SEVEN";
-		}else if(this.session.players.length == 8){
+		}else if(length == 8){
 			return "EIGHT";
-		}else if(this.session.players.length == 9){
+		}else if(length == 9){
 			return "NINE";
-		}else if(this.session.players.length == 10){
+		}else if(length == 10){
 			return "TEN";
-		}else if(this.session.players.length == 11){
+		}else if(length == 11){
 			return "ELEVEN";
-		}else if(this.session.players.length == 12){
+		}else if(length == 12){
 			return "TWELVE";
 		}
 	}

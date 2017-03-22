@@ -166,7 +166,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 
 	}
-	
+
 	this.decideHemoCaste  =function (){
 		if(this.aspect != "Blood"){  //sorry karkat
 			this.bloodColor = getRandomElementFromArray(bloodColors);
@@ -294,7 +294,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 				//console.log(this.title() + "Not generating a relationship with: " + friends[i].title());
 			}
 		}
-		
+
 
 	}
 
@@ -506,7 +506,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 		return ret;
 	}
-	
+
 
 }
 
@@ -796,7 +796,8 @@ function findPlayersFromSessionWithId(playerList, source){
 	ret = [];
 	for(var i= 0; i<playerList.length; i++){
 		var p = playerList[i];
-		if(!p.ectoBiologicalSource == source){
+		//if it' snull, you could be from here, but not yet ectoborn
+		if(p.ectoBiologicalSource == source || p.ectoBiologicalSource == null){
 			ret.push(p);
 		}
 	}

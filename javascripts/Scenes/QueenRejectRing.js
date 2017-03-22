@@ -2,17 +2,17 @@ function QueenRejectRing(session){
 	this.canRepeat = false;
 	this.session = session;
 	this.playerList = [];  //what players are already in the medium when i trigger?
-	
+
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		var goodPrototyping = findGoodPrototyping(this.playerList);
 		return goodPrototyping != null && this.session.queenStrength > 0;
 	}
-	
+
 	this.renderContent = function(div){
 		div.append("<br>"+this.content());
 	}
-	
+
 	this.content = function(){
 		this.session.queenStrength = 50;
 		queenUncrowned = true;
@@ -23,7 +23,7 @@ function QueenRejectRing(session){
 		for(var i = 1; i<this.playerList.length-1; i++){
 			ret += ", part " + this.playerList[i].kernel_sprite ;
 		}
-		
+
 		ret += ". ";
 		if(this.playerList.length != this.session.players.length){
 			ret += " She would even stand eventually being prototyped with " ;
@@ -32,11 +32,11 @@ function QueenRejectRing(session){
 		for(var i = this.playerList.length+1; i<this.session.players.length; i++){
 			ret += ", and " + this.session.players[i].kernel_sprite;
 		}
-		
+
 		if(this.playerList.length != this.session.players.length){
 			ret += ". ";
 		}
-		
+
 		ret += " Though a queen is a vain creature, she is also sworn to her duty. ";
 		ret += " She would be braced for the heavy load of augmentation ahead. ";
 		ret += " However, there was one corruption to her figure she could not abide. Her vanity would not allow it. ";
@@ -46,29 +46,35 @@ function QueenRejectRing(session){
 		ret += " no one the wiser of her disadvantage. Or so she thought."
 		return ret;
 	}
-	
+
 	this.convertPlayerNumberToWords = function(){
-		if(this.session.players.length == 2){
+		//alien players don't count
+		var ps = findPlayersFromSessionWithId(this.session.players, this.session.session_id);
+		if(ps.length == 0){
+			ps = this.session.players;
+		}
+		var length = ps.length;
+		if(length == 2){
 			return "TWO";
-		}else if(this.session.players.length == 3){
+		}else if(length == 3){
 			return "THREE";
-		}else if(this.session.players.length == 4){
+		}else if(length == 4){
 			return "FOUR";
-		}else if(this.session.players.length == 5){
+		}else if(length == 5){
 			return "FIVE";
-		}else if(this.session.players.length == 6){
+		}else if(length == 6){
 			return "SIX";
-		}else if(this.session.players.length == 7){
+		}else if(length == 7){
 			return "SEVEN";
-		}else if(this.session.players.length == 8){
+		}else if(length == 8){
 			return "EIGHT";
-		}else if(this.session.players.length == 9){
+		}else if(length == 9){
 			return "NINE";
-		}else if(this.session.players.length == 10){
+		}else if(length == 10){
 			return "TEN";
-		}else if(this.session.players.length == 11){
+		}else if(length == 11){
 			return "ELEVEN";
-		}else if(this.session.players.length == 12){
+		}else if(length == 12){
 			return "TWELVE";
 		}
 	}
