@@ -295,7 +295,7 @@ function printStats(){
 	var str = " <h2> Stats for all Checked Sessions</h2>"
 	str += "<br>Number Sessions: " + sessionsSimulated.length;
 	//timesScratchesAvailable
-	str += "<br> Average Frog Level: " + totalFrogLevel/sessionsSimulated.length;
+	str += "<br> Average Frog Level: " + Math.round(totalFrogLevel/sessionsSimulated.length);
 	str+= "<Br>Times Frogs Full: " + timesFullFrog+ " (" + Math.round((timesFullFrog/sessionsSimulated.length)*100) + "%)";;
 	str += "<Br>Times Frogs Sick: " + timesSickFrog+ " (" + Math.round((timesSickFrog/sessionsSimulated.length)*100) + "%)";;
 	str += "<br>Times No Frog: " + timesNoFrog+ " (" + Math.round((timesNoFrog/sessionsSimulated.length)*100) + "%)";;
