@@ -46,7 +46,7 @@ function reinit(){
 	available_classes = classes.slice(0);
 	available_aspects = nonrequired_aspects.slice(0); //required_aspects
 	available_aspects = available_aspects.concat(required_aspects.slice(0));
-	
+
 	curSessionGlobalVar.reinit();
 }
 
@@ -55,6 +55,7 @@ function startSession(){
 	curSessionGlobalVar = new Session(initial_seed)
 	createScenesForSession(curSessionGlobalVar);
 	reinit();
+	curSessionGlobalVar.reinit();
 	//initPlayersRandomness();
 	curSessionGlobalVar.makePlayers();
 	curSessionGlobalVar.randomizeEntryOrder();
