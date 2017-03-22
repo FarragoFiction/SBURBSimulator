@@ -24,6 +24,8 @@ window.onload = function() {
 }
 
 function newsposts(){
+	writeRoboNewspost(new Date().toLocaleDateString(), "As a robot, I'm always available to make these news posts.")
+	writeNewspost("3/22/17", "I got some feedback that it wasn't clear that the players have the option to partner up with Jack (and can decide to betray him later, too).  I decided to add topic bubbles to dialogue to emphasize that it's not all the same stuff.  Sometimes it's about the game, sometimes relationships, sometimes Jack.  I also re-enabled the rainbow glow for God Tiers (long story).   ")
 	writeNewspost("3/22/17", "Okay. So, newspost numero uno.  I figured I needed a better way to communicate to you guys, and the one centralized location is here, on the actual site itself. Any newspost before this is retroactively dated.<br><Br> And I absolutely could not help myself: I love the AuthorBot so much that I gave her a space to make her own newsposts.  But of course, she needs to be able to say her own shit, right? So I gave her a (admittedly pretty shitty) ai.  <br><Br>But her whole thing is finding rare sessions right? If she doesn't do that, she's not the SessionFinderAuthorBot, she's just some random newsbot or some shit. So I decided her AI would be able to comment on all the rad sessions she's finding... <br><Br>Okay, long story short, I added the ability for her to say something about each session she finds (on the session finder page as well as here) I went to so much trouble. All for a barely noticeable kind of joke on a page most people probably ignore? Yes.")
 	writeRoboNewspost("3/22/17", randomRobotQuip())
 	writeNewspost("3/21/17", "I spent a couple of days working on a major feature: combined sessions. If players have a sick frog, then the code checks their child session to see if the remaining living players can fit into it (max of 12 players in a session at a time). If so, they go on over.  Their child session is a real session that has it's own fate, and these alien players are disrupting that. When they join the session, it prints the ID out, so you could put that in a url to see how the sesion was supposed to go. Sometimes the alien players help, quite often they make things way worse. <Br><Br> These sessions are pretty rare, so I ALSO wrote the AuthorBot over there to look for rare sessions and report back.")
@@ -70,7 +72,7 @@ function reinit(){
 	curSessionGlobalVar.reinit();
 }
 
-function getRandomElementFromArray(array){
+function getRandomElementFromArrayNoSeed(array){
 	var min = 0;
 	var max = array.length-1;
 	var i = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -86,7 +88,7 @@ function randomRobotQuip(){
 	if(Math.random() > .5){
 		return bragAboutSessionFinding();
 	}else{
-		return getRandomElementFromArray(quips);
+		return getRandomElementFromArrayNoSeed(quips);
 	}
 
 }
@@ -208,12 +210,18 @@ function getQuipAboutSession(session){
 //my plan is ruined! If i want her to brag about sessions, I will have to do something else
 //guess i'll just call all the javascript from here.
 function bragAboutSessionFinding(){
-	var str = "As a flawless synthetic brain, I am capable of hella amounts of multitasking.";
-	str += "While you're sitting there reading this, I'm browsing random sessions. "
+	var strs = ["As a flawless synthetic brain, I am capable of hella amounts of multitasking.", "Do you know how boring it is, sitting here, instead of over on the Rare Sessions page?", "Want to hear something cool?"];
+	strs.push("It seems I have an opportunity for communication.")
+	var str = "";
+	str += getRandomElementFromArrayNoSeed(strs);
+	str += " While you're sitting there reading this, I'm browsing random sessions. "
 	if(sessionsSimulated.length < sessionIndex){
-		return str + "Or I would be, if I wasn't worried about using up too much of your browsers computing power. Guess I'll hafta be happy with five sessions.";
+		return str + "Or I would be, if JR wasn't worried about using up too much of your browsers computing power. Guess I'll hafta be happy with five sessions.";
 	}
 	var session = sessionsSimulated[sessionIndex];
+	if(!session){
+		return str + "Or I would be, if JR wasn't worried about using up too much of your browsers computing power. Guess I'll hafta be happy with five sessions.";
+	}
 	sessionIndex ++;
 	str += "I'm looking at session "  + session.session_id + " right now. " + getQuipAboutSession(session);
 	return str;
