@@ -1,12 +1,14 @@
 #container {
-    float:left;
+    margin-left: auto;
+    margin-right: auto;
     width:100%;
 }
 #newsposts{
     float:left;
-    width:50%;
+    width:25%;
 }
 #robo_newsposts{
-    float:left;
-    width:50%;
+    color: red;
+    float:right;
+    width:25%;
 }

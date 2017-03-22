@@ -6,7 +6,7 @@
 
 //TODO add thought bubble about jack to dialogue
 window.onload = function() {
-		writeNewspost("3/22/17", "This is just a test.")
+		writeNewspost("3/22/17", "This is just a test.This is just a test.This is just a test.This is just a test.This is just a test.This is just a test.This is just a test.This is just a test.This is just a test.This is just a test.")
 		writeNewspost("3/22/17", "This is just a test.")
 		writeNewspost("3/22/17", "This is just a test.")
 		writeRoboNewspost("3/22/17", "This is just a robo test.")
