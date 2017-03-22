@@ -1145,28 +1145,28 @@ function dreamPalletSwap(canvas, player){
 	var oldcolor10 = "#E76700";
 	var oldcolor11 = "#CA5B00";
 
-	var new_color1 = "#de00ff";
-	var new_color2 = "#de00ff";
-	var new_color3 = player.bloodColor;
-	var new_color4 = player.bloodColor;
-	var new_color5 = "#a200b7";
-	var new_color6 = "#de00ff";
-	var new_color7 = "#de00ff";
-	var new_color8 = "#de00ff";
-	var new_color9 = "#de00ff";
-	var new_color10 = "#de00ff";
-	var new_color11 = "#de00ff";
+	var new_color1 = "#FFFF00";
+	var new_color2 = "#FFC935";
+	var new_color3 = getShirtColorFromAspect(player.aspect);
+	var new_color4 = getDarkShirtColorFromAspect(player.aspect);
+	var new_color5 = "#FFCC00";
+	var new_color6 = "#FF9B00";
+	var new_color7 = "#C66900";
+	var new_color8 = "#FFD91C";
+	var new_color9 = "#FFE993";
+	var new_color10 = "#FFB71C";
+	var new_color11 = "#C67D00";
 
-	if(player.moon =="Prospit"){
-		new_color1 = "#ffe034"
-		new_color2 = "#ffe034"
-		new_color5 = "#ffff00";
-		new_color6 = "#ffe034";
-		new_color7 = "#ffe034";
-		new_color8 = "#ffe034";
-		new_color9 = "#ffe034";
-		new_color10 = "#ffe034";
-		new_color11 = "#ffe034";
+	if(player.moon =="Derse"){
+		new_color1 = "#F092FF"
+		new_color2 = "#D456EA"
+		new_color5 = "#C87CFF";
+		new_color6 = "#AA00FF";
+		new_color7 = "#6900AF";
+		new_color8 = "#DE00FF";
+		new_color9 = "#E760FF";
+		new_color10 = "#B400CC";
+		new_color11 = "#770E87";
 	}
 
 	swapColors(canvas, oldcolor1, new_color1)
