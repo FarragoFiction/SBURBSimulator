@@ -205,7 +205,7 @@ function reckoning(){
 	if(!curSessionGlobalVar.doomedTimeline){
 		reckoningTick();
 	}else{
-		console.log("doomed timeline prevents reckoning")
+		//console.log("doomed timeline prevents reckoning")
 		summarizeSession(curSessionGlobalVar);
 	}
 }
@@ -228,7 +228,7 @@ function reckoningTick(){
 		if(curSessionGlobalVar.makeCombinedSession == true){
 			processCombinedSession();  //make sure everything is done rendering first
 		}else{
-			console.log("going to summarize: " + curSessionGlobalVar.session_id)
+			//console.log("going to summarize: " + curSessionGlobalVar.session_id)
 			summarizeSession(curSessionGlobalVar);
 		}
 
@@ -254,10 +254,10 @@ function processCombinedSession(){
 
 
 function summarizeSession(session){
-	console.log("summarizing: " + curSessionGlobalVar.session_id)
+	//console.log("summarizing: " + curSessionGlobalVar.session_id)
 	//don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
 	if(sessionsSimulated.indexOf(session.session_id) != -1){
-		console.log("should be skipping a repeat session: " + curSessionGlobalVar.session_id)
+		//console.log("should be skipping a repeat session: " + curSessionGlobalVar.session_id)
 
 		//return;
 	}

@@ -18,7 +18,7 @@ function RelationshipDrama(session){
 		}
 		return this.dramaPlayers.length > 0;
 	}
-	
+
 	//poor eridan?
 	this.confessTooManyFeeling = function(div, player, crush){
 		var relationship = player.getRelationshipWith(crush);
@@ -38,15 +38,15 @@ function RelationshipDrama(session){
 
 		chatText += chatLine(player1Start, player1, "So... hey.");
 		chatText += chatLine(player2Start, player2, "Hey?");
-		
+
 		chatText += chatLine(player1Start, player1, "I feel like an asshole.");
 		chatText += chatLine(player1Start, player1, "I have had so many fucking crushes. ");
 		chatText += chatLine(player1Start, player1, "I'd understand if you didn't take me seriously. But I like you. A lot.");
-		
+
 		player1.number_confessions ++;
 		player2.number_times_confessed_to ++;
-		
-		
+
+
 		var r1 = relationship;
 		var r2 = player2.getRelationshipWith(player1);
 
@@ -76,7 +76,7 @@ function RelationshipDrama(session){
 					if(playerLikesRomantic(player2) || player2.aspect == "Mind" || player2.aspect == "Rage"){
 						chatText += chatLine(player2Start, player2,"Better than keeping it bottled up. ");
 					}
-					player1.triggerLevel += 1; 
+					player1.triggerLevel += 1;
 				}else if(player1.class_name == "Bard" || player2.aspect == "Rage" || playerLikesTerrible(player1)){
 					chatText += chatLine(player1Start, player1,"Fuck. Why don't I ever learn that people suck?");
 					if(player2.class_name == "Seer" || player2.aspect == "Blood" || playerLikesRomantic(player2)){
@@ -95,13 +95,13 @@ function RelationshipDrama(session){
 						chatText += chatLine(player2Start, player2,"I don't know what to tell you. ");
 						chatText += chatLine(player1Start, player1,"Fuck");
 					}
-					
+
 				}else{
 					chatText += chatLine(player1Start, player1,"Oh. Yes. That's what I expected.");
 					player1.triggerLevel ++;
 				}
 			}
-			
+
 			if(player2.number_times_confessed_to > 3){
 				chatText += chatLine(player2Start, player2,"What is it with everybody having a crush on me? ");
 			}
@@ -109,12 +109,12 @@ function RelationshipDrama(session){
 		relationship.drama = false; //it is consumed.
 		relationship.old_type = relationship.saved_type;
 		drawRelationshipChat(canvasDiv, player1, player2, chatText, 1000);
-		
+
 		if(makeHate == true){
 			player1.triggerLevel ++;
 			r1.value = -20;
 		}
-		
+
 	}
 
 
@@ -199,7 +199,7 @@ function RelationshipDrama(session){
 						chatText += chatLine(player2Start, player2,"I don't know what to tell you. ");
 						chatText += chatLine(player1Start, player1,"Fuck");
 					}
-					
+
 				}else{
 					chatText += chatLine(player1Start, player1,"Oh.");
 					player1.triggerLevel += 0.5;
@@ -251,7 +251,8 @@ function RelationshipDrama(session){
 		var r1 = relationship;
 		var r2 = player2.getRelationshipWith(player1);
 		var r2crush = player2.getRelationshipWith(crush);  //sometimes crush is same as best friend...despite all my best efforts.
-
+     //console.log("Crush: " + crush.title()) //these are occasionally the same despite my best efforts
+		 //console.log("Player2: " + player2.title())
 
 		//alert("I am: " + player2.title() + " and my relationship with : " + crush.title() + " is being checked")
 		var chatText = "";
@@ -415,7 +416,7 @@ function RelationshipDrama(session){
 					chatText += chatLine(player2Start, player2,"Geez, sorry...");
 				}else{
 					chatText += chatLine(player2Start, player2,"Why do you hate them so much?");
-					
+
 					chatText += chatLine(player1Start, player1,"They are just so... so... " + trait +"! That's all there is to say on the matter.");
 					if(player2.isTroll == true && player1.isTroll == true){
 						chatText += chatLine(player2Start, player2,"Whatever floats your boat.");
