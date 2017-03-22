@@ -16,8 +16,8 @@ function Session(session_id){
 	this.makeCombinedSession = false; //happens if sick frog and few living players
 	this.scratched = false;
 	this.scratchAvailable = false;
-	this.timeTillReckoning = getRandomInt(10,30);
-	this.sessionType = Math.seededRandom();
+	this.timeTillReckoning = 0;
+	this.sessionType = -999
 	this.scenesTriggered = []; //this.scenesTriggered
 	this.doomedTimelineReasons = [];
 	this.currentSceneNum = 0;
@@ -74,6 +74,13 @@ function Session(session_id){
 		createScenesForSession(newSession);
 		console.log("Session: " + this.session_id + " has made child universe: " + newSession.session_id)
 		return newSession;
+	}
+
+	this.reinit = function(){
+		this.timeTillReckoning = getRandomInt(10,30);
+		this.sessionType = Math.seededRandom();
+		curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);
+		curSessionGlobalVar.doomedTimeline = false;
 	}
 
 	this.makePlayers = function(){

@@ -136,7 +136,7 @@ function reinit(){
 	available_classes = classes.slice(0);
 	available_aspects = nonrequired_aspects.slice(0); //required_aspects
 	available_aspects = available_aspects.concat(required_aspects.slice(0));
-	curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);  //was forgetting to reset this, so scratched players had less to do.
+	curSessionGlobalVar.reinit();
 }
 
 //TODO if i wanted to, I could have mixed sessions like in canon.

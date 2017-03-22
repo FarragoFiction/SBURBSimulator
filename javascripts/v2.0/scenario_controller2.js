@@ -46,8 +46,8 @@ function reinit(){
 	available_classes = classes.slice(0);
 	available_aspects = nonrequired_aspects.slice(0); //required_aspects
 	available_aspects = available_aspects.concat(required_aspects.slice(0));
-	curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);
-	curSessionGlobalVar.doomedTimeline = false;
+	
+	curSessionGlobalVar.reinit();
 }
 
 
