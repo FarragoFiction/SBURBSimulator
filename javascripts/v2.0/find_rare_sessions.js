@@ -286,7 +286,7 @@ function summarizeSession(session){
 
 //don't use a seed here
 function percentBullshit(){
-	var pr = 90+Math.random()*10;
+	var pr = 10+Math.random()*10;
 	$("#percentBullshit").html(pr+"%")
 }
 
