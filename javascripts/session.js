@@ -25,6 +25,7 @@ function Session(session_id){
 	this.reckoningScenes = [];
 	this.deathScenes = [];
 	this.available_scenes = [];
+	this.hadCombinedSession = false;
 	this.parentSession = null;
 	this.availablePlayers = [];  //which players are available for scenes or whatever.
 
@@ -68,6 +69,7 @@ function Session(session_id){
 			}
 		}
 		newSession.players= newSession.players.concat(living);
+		this.hadCombinedSession = true;
 		newSession.parentSession = this.session_id;
 		createScenesForSession(newSession);
 		console.log("Session: " + this.session_id + " has made child universe: " + newSession.session_id)
