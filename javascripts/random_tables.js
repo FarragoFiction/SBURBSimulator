@@ -696,6 +696,10 @@ function getRandomInt(min, max) {
     return Math.floor(Math.seededRandom() * (max - min + 1)) + min;
 }
 
+function getRandomIntNoSeed(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 //
 //using a seed will let me make the simulations predictable. This enables sharing AND bullshit cloud predictions.
 //and stable time loops. and god, i'm getting the vapors here.

@@ -42,9 +42,9 @@ function rainbowSwap(canvas){
 	for(var i = 0; i<img_data.data.length; i += 4){
 		if(img_data.data[i+3] >= 128){
 		  //would some sort of fractal look better here?
-		  img_data.data[i] = (i*canvas.width)%255;
-		  img_data.data[i+1] =(i*canvas.width)/255;
-		  img_data.data[i+2] = (i*canvas.height)%255;
+      img_data.data[i] = getRandomIntNoSeed(0,255);
+    	img_data.data[i+1] =(i/canvas.width+ getRandomIntNoSeed(0,50))%255;
+    	img_data.data[i+2] = (i/canvas.height +getRandomIntNoSeed(0,50))%255;
 		  img_data.data[i+3] = 255;
 		}
 	}
@@ -617,7 +617,7 @@ function checkSimMode(){
 }
 
 //need to parse the text to figure out who is talking to determine color for chat.
-function drawChat(canvas, player1, player2, chat, repeatTime){
+function drawChat(canvas, player1, player2, chat, repeatTime,topicImage){
   if(checkSimMode() == true){
     return;
   }
@@ -650,8 +650,27 @@ function drawChat(canvas, player1, player2, chat, repeatTime){
 	copyTmpCanvasToRealCanvasAtPos(canvas, p2SpriteBuffer,650,0)//where should i put this?
 	copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,230,0)
 	copyTmpCanvasToRealCanvasAtPos(canvas, textSpriteBuffer,244,51)
+
+  if(topicImage){
+    var topicBuffer = getBufferCanvas(document.getElementById("canvas_template"));
+    drawTopic(topicBuffer, topicImage);
+    copyTmpCanvasToRealCanvasAtPos(canvas, topicBuffer,0,0)
+  }
 }
 
+
+function drawTopic(canvas, topicImage){
+  if(checkSimMode() == true){
+    return;
+  }
+  ctx = canvas.getContext('2d');
+  var imageString = topicImage
+  addImageTag(imageString)
+  var img=document.getElementById(imageString);
+  var width = img.width;
+  var height = img.height;
+  ctx.drawImage(img,0,0,width,height);
+}
 
 function drawComboText(canvas,comboNum){
 	//alert(comboNum + "x CORPSESMOOCH COMBO!!!")
@@ -1476,7 +1495,6 @@ function playerToSpriteOld(player){
 }
 
 function getBufferCanvas(canvas){
-
 	var tmp_canvas = document.createElement('canvas');
 	tmp_canvas.height = canvas.height;
 	tmp_canvas.width = canvas.width;

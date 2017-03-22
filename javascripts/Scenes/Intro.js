@@ -519,7 +519,7 @@ function Intro(session){
 
 		var chatText = this.getChat(player1,player2);
 		//don't need timeout here.
-		drawChat(document.getElementById("canvas"+ (div.attr("id"))), player1, player2, chatText, repeatTime);
+		drawChat(document.getElementById("canvas"+ (div.attr("id"))), player1, player2, chatText, repeatTime,"discuss_sburb.png");
 	}
 
 	//i is so you know entry order

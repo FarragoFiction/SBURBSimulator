@@ -247,7 +247,7 @@ function EngageMurderMode(session){
 		}else{
 			chatText += this.normalConvo(div,player1, player2);
 		}
-		drawChat(canvasDiv, player1, player2, chatText, repeatTime);
+		drawChat(canvasDiv, player1, player2, chatText, repeatTime,"discuss_murder.png");
 	}
 
 	this.renderContent = function(div){

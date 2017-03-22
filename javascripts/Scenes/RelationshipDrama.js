@@ -343,7 +343,7 @@ function RelationshipDrama(session){
 				}
 			}
 		}
-		drawChat(canvasDiv, player1, player2, chatText, 1000);
+		drawChat(canvasDiv, player1, player2, chatText, 1000,"discuss_romance.png");
 	}
 
 	//goes different if best friend has crush on player
@@ -426,7 +426,7 @@ function RelationshipDrama(session){
 				}
 			}
 		}
-		drawChat(canvasDiv, player1, player2, chatText, 1000);
+		drawChat(canvasDiv, player1, player2, chatText, 1000,"discuss_hatemance.png");
 
 	}
 
