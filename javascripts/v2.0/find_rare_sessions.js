@@ -224,6 +224,7 @@ function reckoningTick(){
 		if(curSessionGlobalVar.makeCombinedSession == true){
 			processCombinedSession();  //make sure everything is done rendering first
 		}else{
+			console.log("going to summarize: " + curSessionGlobalVar.session_id)
 			summarizeSession(curSessionGlobalVar);
 		}
 
@@ -249,6 +250,7 @@ function processCombinedSession(){
 
 
 function summarizeSession(session){
+	console.log("summarizing: " + curSessionGlobalVar.session_id)
 	//don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
 	if(sessionsSimulated.indexOf(session.session_id) != -1){
 		//console.log("skipping a repeat session: " + curSessionGlobalVar.session_id)
@@ -267,13 +269,13 @@ function summarizeSession(session){
 		alert("Notice: should be ready to check more sessions.")
 		return;
 	}else{
-		setTimeout(function(){
+		//setTimeout(function(){
 			//var tmp = getRandomSeed();
 			//Math.seed = tmp;
 			//doomedTimelineReasons = []
 			initial_seed = Math.seed; //child session
 			startSession();
-		},repeatTime*2); //since ticks are on time out, one might hit right as this is called, don't want that, cause causes players to be dead or godtier at start of next session
+		//},repeatTime*2); //since ticks are on time out, one might hit right as this is called, don't want that, cause causes players to be dead or godtier at start of next session
 	}
 }
 
