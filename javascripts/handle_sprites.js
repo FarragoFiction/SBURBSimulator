@@ -744,33 +744,12 @@ function drawSpriteTurnways(canvas, player){
   if(checkSimMode() == true){
     return;
   }
-	player = makeRenderingSnapshot(player);
+
   ctx = canvas.getContext('2d');
   ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
   ctx.translate(canvas.width, 0);
   ctx.scale(-1, 1);
-
-  if(player.grimDark == true){
-    grimDarkHalo(canvas)
-  }
-
-  if(player.isTroll&& player.godTier){//wings before sprite
-    wings(canvas,player);
-  }
-  playerToSprite(canvas,player);
-  hair(canvas, player);
-  if(player.class_name == "Prince" && player.godTier){
-	  princeTiara(canvas, player);
-  }
-
-  if(player.grimDark == true){
-    grimDarkSkin(canvas, player)
-  }
-
-  if(player.isTroll){
-    trollify(canvas,player);
-  }
-
+  drawSprite(canvas, player, ctx);
 }
 
 function makeRenderingSnapshot(player){
@@ -796,7 +775,7 @@ function makeRenderingSnapshot(player){
 	return ret;
 }
 
-function drawBabySprite(canvas, player, repeatTime, isRepeat){
+function drawBabySprite(canvas, player){
   if(checkSimMode() == true){
     return;
   }
@@ -804,74 +783,79 @@ function drawBabySprite(canvas, player, repeatTime, isRepeat){
     ctx = canvas.getContext('2d');
     ctx.imageSmoothingEnabled = false;
     //don't forget to shrink baby
-    if(!isRepeat){
-      ctx.scale(0.5,0.5);
-    }
-    babySprite(canvas,player);
-    hair(canvas, player);
-    if(player.isTroll){
-      trollify(canvas,player,isRepeat); //it scales horns too
-    }
+    ctx.scale(0.5,0.5);
+
+    drawSprite(canvas, player, ctx, true)
 
 
 }
 
 
-function drawSprite(canvas, player){
+function drawSprite(canvas, player,ctx,baby){
   if(checkSimMode() == true){
     return;
   }
 	player = makeRenderingSnapshot(player);
-  //debug("Drawing sprite for: " + player.title());
-  //console.log("looking for canvas: " + canvas);
- // canvas = $("#"+canvasId)[0]; //don't want jquery object, want contents
-  ctx = canvas.getContext('2d');
+  //could be turnways or baby
+ if(!ctx){
+   ctx = canvas.getContext('2d');
+ }
+
   ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
   if(player.dead){//only rotate once
-	ctx.translate(canvas.width, 0);
-	ctx.rotate(90*Math.PI/180);
+  	ctx.translate(canvas.width, 0);
+  	ctx.rotate(90*Math.PI/180);
   }
-  //sprite = new Image();
-  //sprite.src = 'test.png';
-  //need to get sprite from sprite sheet
-  //then if trolls, do post proccesing.
-  //grey skin, horns, wings in blood color
-	//var width = img.width;
-	//var height = img.height;
-	//ctx.drawImage(sprites,0,0,width,height);
+  /*
+    GrimDark
+    Wings
+    Hair_Back
+    fin2
+    body
+    Aspect
+    hair_front
+    Fin1
+    horns
+  */
   if(player.grimDark == true){
     grimDarkHalo(canvas)
   }
 
-  if(player.isTroll&& player.godTier){//wings before sprite
+  if(!baby && player.isTroll&& player.godTier){//wings before sprite
     wings(canvas,player);
   }
 
   if(player.dead){
 	   bloodPuddle(canvas, player);
   }
-  playerToSprite(canvas,player);
-  bloody_face(canvas, player)//not just for murder mode, because you can kill another player if THEY are murder mode.
-  if(player.murderMode == true){
-	  scratch_face(canvas, player);
+  hairBack(canvas, player);
+  if(player.isTroll){//wings before sprite
+    fin2(canvas,player);
+  }
+  if(!baby){
+    playerToSprite(canvas,player);
+    bloody_face(canvas, player)//not just for murder mode, because you can kill another player if THEY are murder mode.
+    if(player.murderMode == true){
+  	  scratch_face(canvas, player);
+    }
+  }else{
+    babySprite(canvas,player);
   }
 
   hair(canvas, player);
-  if(player.class_name == "Prince" && player.godTier){
+  if(player.isTroll){//wings before sprite
+    fin1(canvas,player);
+  }
+  if(!baby && player.class_name == "Prince" && player.godTier){
 	  princeTiara(canvas, player);
   }
 
-  if(player.grimDark == true){
+  if(!baby && player.grimDark == true){
     grimDarkSkin(canvas, player)
+  }else if(player.isTroll){
+    greySkin(canvas,player);
   }
-  //then troll proccess???
-  //this was for sprite sheet
-  //ctx.drawImage(sprites,position[0],position[1],position[2],position[3],canvas.width/2,canvas.height/2,position[6],position[7]);
-  //ctx.drawImage(img,canvas.width/2,canvas.height/2,width,height);
-  if(player.isTroll){
-    trollify(canvas,player);
-  }
-
+  horns(canvas, player);
 }
 
 
@@ -967,11 +951,10 @@ function drawSpade(canvas){
 	ctx.drawImage(img,0,0,width,height);
 }
 
-//i think laziness is why regular hair isn't drawn centered right
-//regular adult sprite isn't the right size.
-function babyHair(canvas, player){
-	ctx = canvas.getContext('2d');
-	var imageString = "hair"+player.hair+".png"
+function hairBack(canvas,player){
+  ctx = canvas.getContext('2d');
+	var imageString = "Hair/hair_back"+player.hair+".png"
+  //console.log(imageString);
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
 	var width = img.width;
@@ -985,10 +968,9 @@ function babyHair(canvas, player){
 		swapColors(canvas, "#202020", getColorFromAspect(player.aspect));
 	}
 }
-
 function hair(canvas, player){
 	ctx = canvas.getContext('2d');
-	var imageString = "hair"+player.hair+".png"
+	var imageString = "Hair/hair"+player.hair+".png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
 	var width = img.width;

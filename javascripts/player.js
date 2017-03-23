@@ -25,7 +25,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	this.level_index = -1; //will be ++ before i query
 	this.godTier = false;
 	this.victimBlood = null; //used for murdermode players.
-	this.hair = getRandomInt(1,34);
+	this.hair = getRandomInt(1,8);
 	//this.hair = 16;
 	this.hairColor = getRandomElementFromArray(human_hair_colors);
 	this.dreamSelf = true;

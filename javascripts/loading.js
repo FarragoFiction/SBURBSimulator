@@ -107,7 +107,8 @@ function loadPlayer(player){
 	loadImage(player.aspect + ".png");
 
 	loadImage(player.aspect + "Big.png")
-	loadImage("hair"+player.hair+".png")
+	loadImage("Hair/hair"+player.hair+".png")
+  loadImage("Hair/hair_back"+player.hair+".png")
 
 	if(player.isTroll == true){
 		loadImage("Wings/wing"+player.quirk.favoriteNumber + ".png")
