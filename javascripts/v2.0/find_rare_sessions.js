@@ -275,7 +275,7 @@ function summarizeSession(session){
 	$("#story").html("");
 	var str = curSessionGlobalVar.summarize();
 	checkDoomedTimelines();
-	debug("<br><hr><font color = 'red'> " + getQuipAboutSession(curSessionGlobalVar) + "</font><Br>" );
+	debug("<br><hr><font color = 'red'> AB: " + getQuipAboutSession(curSessionGlobalVar) + "</font><Br>" );
 	debug(str);
 
 	numSimulationsDone ++;
