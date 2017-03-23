@@ -802,7 +802,7 @@ function drawSprite(canvas, player,ctx,baby){
  }
 
   ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
-  if(player.dead){//only rotate once
+  if(!baby &&player.dead){//only rotate once
   	ctx.translate(canvas.width, 0);
   	ctx.rotate(90*Math.PI/180);
   }
@@ -817,7 +817,7 @@ function drawSprite(canvas, player,ctx,baby){
     Fin1
     horns
   */
-  if(player.grimDark == true){
+  if(!baby && player.grimDark == true){
     grimDarkHalo(canvas)
   }
 
@@ -825,7 +825,7 @@ function drawSprite(canvas, player,ctx,baby){
     wings(canvas,player);
   }
 
-  if(player.dead){
+  if(!baby && player.dead){
 	   bloodPuddle(canvas, player);
   }
   hairBack(canvas, player);

@@ -220,6 +220,53 @@ function RelationshipDrama(session){
 		}
 	}
 
+	this.corpseVent = function(div, player1, player2, crush){
+		alert("corpse vent")
+		var relationship = player1.getRelationshipWith(crush);
+		var chatText = "";
+
+		var divID = (div.attr("id")) + "_" + player.chatHandle+"advice_crush_"+crush.chatHandle;
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		//different format for canvas code
+		var canvasDiv = document.getElementById("canvas"+ divID);
+		player.triggerLevel += -3;  //talking about it helps.
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var r1 = relationship;
+		var chatText = "";
+		var trait = whatDoPlayersHaveInCommon(player1, crush);
+		chatText += chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2))
+		chatText += chatLine(player1Start, player1,"So... " + crush.chatHandle + ", they are " + this.generateNewOpinion(r1) + ", you know?");
+		chatText += chatLine(player1Start, player1,"Shit...I just want to punch them in their " + trait + " face.");
+		chatText += chatLine(player1Start, player1,"Fuck. I need to just avoid them. This stupid game is dangerous enough without me flying off the handle. ");
+		chatText += chatLine(player1Start, player1,"You're always so good at advice.  Thanks!");
+	}
+
+	this.corpseAdvice = function(div, player1, player2, crush){
+		alert("corpse advice")
+		var relationship = player1.getRelationshipWith(crush);
+		var chatText = "";
+
+		var divID = (div.attr("id")) + "_" + player.chatHandle+"advice_crush_"+crush.chatHandle;
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		//different format for canvas code
+		var canvasDiv = document.getElementById("canvas"+ divID);
+		player.triggerLevel += -3;  //talking about it helps.
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var r1 = relationship;
+		var chatText = "";
+		var trait = whatDoPlayersHaveInCommon(player1, crush);
+		chatText += chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2))
+		chatText += chatLine(player1Start, player1,"So... " + crush.chatHandle + ", they are " + this.generateNewOpinion(r1) + ", you know?");
+	  chatText += chatLine(player1Start, player1,"Like, maybe I didn't see that at first, but now all I can do is think about how " + trait + " they are.");
+		chatText += chatLine(player1Start, player1,"Shit...maybe I should just tell them? God, why is so hard being in love. It's hard and nobody understands.");
+		chatText += chatLine(player1Start, player1,"You're right. I'm going to tell them. Soon. When the time is right. ");
+		chatText += chatLine(player1Start, player1,"You're always so good at advice.  Thanks!");
+	}
+
 	//goes different if best friend has crush on player
 	//or on crushee.
 	this.relationshipAdvice = function(div,player,crush){
@@ -228,7 +275,8 @@ function RelationshipDrama(session){
 
 		var chatText = "";
 		var player1 = player;
-		var player2 = this.getLivingBestFriendBesidesCrush(player, crush); //this is currently returnin the crush in question. why?
+		var player2 = this.getBestFriendBesidesCrush(player, crush); //this is currently returnin the crush in question. why?
+
 		if(!player2 || player2 == crush){
 			var narration = "<br>The " + player.htmlTitle() + " used to think that the " + crush.htmlTitle() + " was ";
 			narration += this.generateOldOpinion(relationship) + ", but now they can't help but think they are " + this.generateNewOpinion(relationship) + ".";
@@ -238,6 +286,10 @@ function RelationshipDrama(session){
 			narration += "It's a shame the " + player.htmlTitle() + " has nobody to talk to about this. ";
 			div.append(narration);
 			return;
+		}
+
+		if(player2.dead == true){
+			return this.corpseAdvice;
 		}
 
 		var divID = (div.attr("id")) + "_" + player.chatHandle+"advice_crush_"+crush.chatHandle;
@@ -358,7 +410,7 @@ function RelationshipDrama(session){
 
 		var chatText = "";
 		var player1 = player;
-		var player2 = this.getLivingBestFriendBesidesCrush(player, jerk);
+		var player2 = this.getBestFriendBesidesCrush(player, jerk); //allowing them to be dead is funny
 
 		if(player2 == null){
 			var narration = "<br>The " + player.htmlTitle() + " used to think that the " + relationship.target.htmlTitle() + " was ";
@@ -370,6 +422,11 @@ function RelationshipDrama(session){
 			div.append(narration);
 			return;
 		}
+
+		if(player2.dead == true){
+			return this.corpseVent;
+		}
+
 		var divID = (div.attr("id")) + "_" + player.chatHandle+"vent_jerk_"+jerk.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
@@ -496,6 +553,21 @@ function RelationshipDrama(session){
 			}
 		}
 		drawRelationshipChat(canvasDiv, player1, player2, chatText, 1000);
+	}
+
+	//funnier if they text a corpse
+	this.getBestFriendBesidesCrush  = function(player, crush){
+		var living = findLivingPlayers(this.session.players)
+		var dead = findDeadPlayers(this.session.players);
+		var players = living;
+		players.concat(dead);
+		//alert("removing crush: " + crush.title() + " from array: " + living.length)
+		removeFromArray(crush, players)
+		//alert("removed crush: " + crush.title() + " from array: " + living.length)
+		if(players.length>0){
+			return player.getBestFriendFromList(players,"getLivingBestFriendBesidesCrush"+players);
+		}
+		return null;
 	}
 
 	this.getLivingBestFriendBesidesCrush = function(player,crush){

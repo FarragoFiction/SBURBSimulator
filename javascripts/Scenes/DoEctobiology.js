@@ -9,7 +9,7 @@ function DoEctobiology(session){
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		this.leader = getLeader(this.session.availablePlayers);  //dead men do no ectobiology
-		if(this.leader){
+		if(this.leader && this.leader.dead == false && this.session.ectoBiologyStarted == false){
 			return this.leader.power > (Math.seededRandom()*100); //can't do it right out of the bat. might never do it
 		}
 		return false;
