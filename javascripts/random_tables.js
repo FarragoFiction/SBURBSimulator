@@ -10,6 +10,14 @@ function getRandomElementFromArray(array){
 	return array[i];
 }
 
+//using this won't effect the sanctity of the shareable url
+function getRandomElementFromArrayNoSeed(array){
+	var min = 0;
+	var max = array.length-1;
+	var i = Math.floor(Math.random() * (max - min + 1)) + min;
+	return array[i];
+}
+
 function getRandomElementFromArrayThatStartsWith(array,letter){
 	var array = makeFilteredCopyForLetters(array, letter);
 	var min = 0;
