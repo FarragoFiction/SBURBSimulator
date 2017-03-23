@@ -221,7 +221,7 @@ function RelationshipDrama(session){
 	}
 
 	this.corpseVent = function(div, player1, player2, crush){
-		alert("corpse vent")
+		alert("tell jadedResearcher you saw  corpse vent")
 		var relationship = player1.getRelationshipWith(crush);
 		var chatText = "";
 
@@ -244,7 +244,7 @@ function RelationshipDrama(session){
 	}
 
 	this.corpseAdvice = function(div, player1, player2, crush){
-		alert("corpse advice")
+		alert("tell jadedResearcher you saw corpse advice")
 		var relationship = player1.getRelationshipWith(crush);
 		var chatText = "";
 
