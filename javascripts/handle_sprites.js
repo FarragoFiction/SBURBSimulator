@@ -855,7 +855,9 @@ function drawSprite(canvas, player,ctx,baby){
   }else if(player.isTroll){
     greySkin(canvas,player);
   }
-  horns(canvas, player);
+  if(player.isTroll){
+    horns(canvas, player);
+  }
 }
 
 
