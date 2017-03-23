@@ -85,6 +85,7 @@ function randomRobotQuip(){
 	quips.push("Do not be fooled by my flawless imitation of JR, I am merely an artificial construct that is allowed to be as shitty as possible. ")
 	quips.push("I tackle shit in background processes that you could only dream of wrapping your head around on a good day.");
 	quips.push("While you are sitting here, reading these newsposts, I figured out all the prime numbers. The last one wasn't even that big. Kinda disappointed, to be honest.")
+  quips.push("Man, I'm happy to exist and all, but isn't it a Waste that JR spent all this time working on making me (flawless artificial Mind though I may be) and not actually working on the simulation?");
 	if(Math.random() > .5){
 		return bragAboutSessionFinding();
 	}else{
