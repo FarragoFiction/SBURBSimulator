@@ -1,21 +1,6 @@
 var asyncNumSprites = 0;
 //~~~~~~~~~~~IMPORTANT~~~~~~~~~~LET NOTHING HERE BE RANDOM
 //OR PREDICTIONS AND TIME LOOPS AND AI SEARCHES WILL BE WRONG
-function trollify(canvas,player){
-   //red_array = red_context.getImageData(0, 0, red_canvas.width, red_canvas.height).data;
-   //alert("I should trollify");
-  //wings first, replace black and red with blood color with two opacities
-  // wings(canvas,player);
-   greySkin(canvas,player);
-   //fins(canvas, player);
-   //TODO eventually call fins with hair, not troll stuff
-   fin1(canvas, player);
-   fin2(canvas, player);
-   horns(canvas,player);
-}
-
-
-
 
 //mod from http://stackoverflow.com/questions/21646738/convert-hex-to-rgba
 function hexToRgbA(hex){
