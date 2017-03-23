@@ -37,6 +37,7 @@ function CorpseSmooch(session){
 	}
 
 	this.makeAlive = function(d){
+		//foundRareSession(div, "A player was corpse smooched alive.")
 		d.dead = false;
 		d.dreamSelf = false;
 		d.isDreamSelf = true;
@@ -66,11 +67,10 @@ function CorpseSmooch(session){
 
 		var moonBuffer = getBufferCanvas(document.getElementById("canvas_template"));
 		drawMoon(moonBuffer, dead_player);
-		dead_player.dead = false;
-		dead_player.isDreamSelf = true;
+		this.makeAlive(dead_player);
 		drawSprite(moonBuffer,dead_player)
 		copyTmpCanvasToRealCanvasAtPos(canvas, moonBuffer,600,0)
-		this.makeAlive(dead_player); //make SURE the player is alive after smooches.
+		//this.makeAlive(dead_player); //make SURE the player is alive after smooches.
 
 	}
 
