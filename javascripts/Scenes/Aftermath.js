@@ -71,10 +71,10 @@ function Aftermath(session){
 		var canvasDiv = document.getElementById("canvas"+ divID);
 
 		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-		drawSprite(pSpriteBuffer,friend,1000)
+		drawSprite(pSpriteBuffer,friend)
 
 		var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-		drawSprite(dSpriteBuffer,dead_player,1000)
+		drawSprite(dSpriteBuffer,dead_player)
 
 		copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
 		copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)

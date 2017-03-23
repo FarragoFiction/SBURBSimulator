@@ -60,10 +60,10 @@ function MurderPlayers(session){
 		var canvas = document.getElementById("canvas"+ divID);
 
 		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-		drawSprite(pSpriteBuffer,murderer,1000)
+		drawSprite(pSpriteBuffer,murderer)
 
 		var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-		drawSprite(dSpriteBuffer,victim,1000)
+		drawSprite(dSpriteBuffer,victim)
 
 		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
 		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,100,0)
@@ -78,16 +78,16 @@ function MurderPlayers(session){
 		var canvas = document.getElementById("canvas"+ divID);
 
 		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-		drawSprite(pSpriteBuffer,murderer,1000)
+		drawSprite(pSpriteBuffer,murderer)
 
 
 		var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-		drawSpriteTurnways(dSpriteBuffer,diamond,1000)
+		drawSpriteTurnways(dSpriteBuffer,diamond)
 
 		var x = 100;
 		if(murderer.isTroll == true || diamond.isTroll == true){  //humans have regular romance, but if even one is a troll, this is romance.
 			var diSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-			drawDiamond(diSpriteBuffer,1000)
+			drawDiamond(diSpriteBuffer)
 			x = 50; //stand closer cause romance
 			copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,75,0)
 		}
@@ -106,13 +106,13 @@ function MurderPlayers(session){
 		var canvas = document.getElementById("canvas"+ divID);
 
 		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-		drawSprite(pSpriteBuffer,murderer,1000)
+		drawSprite(pSpriteBuffer,murderer)
 
 		var vSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-		drawSprite(vSpriteBuffer,victim,1000)
+		drawSprite(vSpriteBuffer,victim)
 
 		var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-		drawSpriteTurnways(dSpriteBuffer,club,1000)  //facing non-middle leafs
+		drawSpriteTurnways(dSpriteBuffer,club)  //facing non-middle leafs
 
 
 		if(murderer.isTroll == true || club.isTroll == true || club.isTroll == true){  //humans have regular romance, but if even one is a troll, this is romance.
@@ -214,9 +214,9 @@ function MurderPlayers(session){
 					this.renderMurder(div,worstEnemy, m);
 				}
 			}else{
-				
+
 				m.triggerLevel += -3;
-				if(m.triggerLevel<1){ 
+				if(m.triggerLevel<1){
 					//alert("shit settled")
 					ret += " The " + m.htmlTitle() + " has officially settled their shit. ";
 					m.murderMode = false;

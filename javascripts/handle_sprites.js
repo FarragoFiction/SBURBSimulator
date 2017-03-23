@@ -263,7 +263,7 @@ function poseBabiesAsATeam(canvas, leader, players, guardians, repeatTime){
   var playerBuffers = [];
   var guardianBuffers = [];
   var leaderBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-  drawSprite(leaderBuffer, leader, repeatTime);
+  drawSprite(leaderBuffer, leader);
   for(var i = 0; i<players.length; i++){
 		playerBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
 		drawBabySprite(playerBuffers[i],players[i],repeatTime);
@@ -307,7 +307,7 @@ function poseAsATeam(canvas,players, repeatTime){
 	var spriteBuffers = [];
 	for(var i = 0; i<players.length; i++){
 		spriteBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
-		drawSprite(spriteBuffers[i],players[i],repeatTime)
+		drawSprite(spriteBuffers[i],players[i])
 	}
 		var x = -275;
 		var y = -50;
@@ -333,13 +333,13 @@ function drawGodRevival(canvas, live_players, dead_players, repeatTime){
 	var dead_spriteBuffers = [];
 	for(var i = 0; i<live_players.length; i++){
 		live_spriteBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
-		drawSprite(live_spriteBuffers[i],live_players[i],repeatTime)
+		drawSprite(live_spriteBuffers[i],live_players[i])
 	}
 
 	for(var i = 0; i<dead_players.length; i++){
 		dead_spriteBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
 		//drawBG(dead_spriteBuffers[i], "#00ff00", "#ff0000")
-		drawSprite(dead_spriteBuffers[i],dead_players[i],repeatTime)
+		drawSprite(dead_spriteBuffers[i],dead_players[i])
 	}
 
 		var x = -275;
@@ -386,7 +386,7 @@ function drawGetTiger(canvas, players, repeatTime){
 	var spriteBuffers = [];
 	for(var i = 0; i<players.length; i++){
 		spriteBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
-		drawSprite(spriteBuffers[i],players[i],repeatTime)
+		drawSprite(spriteBuffers[i],players[i])
 	}
 
 		var x = -275;
@@ -443,9 +443,9 @@ function drawLevelUp(canvas, player,repeatTime){
 
   var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
   	if(player.dead){
-		drawSprite(pSpriteBuffer,player,repeatTime)
+		drawSprite(pSpriteBuffer,player)
 	}else{
-		drawSprite(pSpriteBuffer,player,repeatTime)
+		drawSprite(pSpriteBuffer,player)
 	}
 
   var levelsBuffer = getBufferCanvas(document.getElementById("echeladder_template"));
@@ -477,9 +477,9 @@ function drawLevelUpGodTier(canvas, player,repeatTime){
 
 	var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 	if(player.dead){
-		drawSprite(pSpriteBuffer,player,repeatTime)
+		drawSprite(pSpriteBuffer,player)
 	}else{
-		drawSprite(pSpriteBuffer,player,repeatTime)
+		drawSprite(pSpriteBuffer,player)
 	}
 
 	var levelBuffer = getBufferCanvas(document.getElementById("godtierlevelup_template"));
@@ -564,10 +564,10 @@ function drawRelationshipChat(canvas, player1, player2, chat, repeatTime){
 	ctx.drawImage(img,0,0,width,height);
 
 	var p1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-	drawSprite(p1SpriteBuffer,player1,repeatTime)
+	drawSprite(p1SpriteBuffer,player1)
 
 	var p2SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-	drawSpriteTurnways(p2SpriteBuffer,player2,repeatTime)
+	drawSpriteTurnways(p2SpriteBuffer,player2)
 
 	//don't need buffer for text?
 	var textSpriteBuffer = getBufferCanvas(document.getElementById("chat_text_template"));
@@ -634,10 +634,10 @@ function drawChat(canvas, player1, player2, chat, repeatTime,topicImage){
 	ctx.drawImage(img,0,0,width,height);
 
 	var p1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-	drawSprite(p1SpriteBuffer,player1,repeatTime)
+	drawSprite(p1SpriteBuffer,player1)
 
 	var p2SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-	drawSpriteTurnways(p2SpriteBuffer,player2,repeatTime)
+	drawSpriteTurnways(p2SpriteBuffer,player2)
 
 	//don't need buffer for text?
 	var textSpriteBuffer = getBufferCanvas(document.getElementById("chat_text_template"));
