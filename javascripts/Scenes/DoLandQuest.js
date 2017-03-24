@@ -52,7 +52,7 @@ function DoLandQuest(session){
 		var helper = null;
 		
 		//space player can ONLY be helped by knight, and knight prioritizes this
-		if(player.aspect == "Space"){
+		if(player.aspect == "Space"){//this shit is so illegal
 			helper = findClassPlayer(this.session.availablePlayers, "Knight");
 			if(helper != player){ //a knight of space can't help themselves.
 				return helper;
