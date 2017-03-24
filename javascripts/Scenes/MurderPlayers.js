@@ -18,6 +18,15 @@ function MurderPlayers(session){
 		return this.murderers.length > null;
 	}
 
+	this.addImportantEvent = function(player){
+		//console.log( "A player is dead. Dream Self: " + player.isDreamSelf + " God Destiny: " + player.godDestiny + " GodTier: " + player.godTier);
+
+		if(player.isDreamSelf == true && player.godDestiny == false && player.godTier == false){
+			var current_mvp =  findStrongestPlayer(this.session.players)
+			this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
+		}
+	}
+
 	this.renderContent = function(div){
 		div.append("<br>"+this.contentForRender(div));
 	}
@@ -174,6 +183,7 @@ function MurderPlayers(session){
 					var r = m.getRelationshipWith(worstEnemy);
 					r.value = 1;
 				}else if(ausp != null && r.type() == r.badBig){  //they hate you back....
+					this.addImportantEvent(m);
 					///auspitism, but who is middle leaf?
 					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
 					ret += "(who hates them back just as much), but instead is interupted by the " + ausp.htmlTitle() + ", who convinces everyone to settle their shit down. ";
@@ -190,11 +200,13 @@ function MurderPlayers(session){
 					r2.value = 1;
 
 				}else if(worstEnemy.power < m.power*2){  //more likely to kill enemy than be killed. element of surprise
+					this.addImportantEvent(worstEnemy);
 					m.increasePower();
 
 					worstEnemy.causeOfDeath = "fighting the " + m.htmlTitle();
 					ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". ";
 					if(m.dead == true){ //they could have been killed by another murder player in this same tick
+						this.addImportantEvent(m);
 						ret += " Every one is very impressed that they managed to do it while dying."
 					}
 					ret += this.friendsOfVictimHateYou(worstEnemy, m, livePlayers);
@@ -204,6 +216,7 @@ function MurderPlayers(session){
 					m.victimBlood = worstEnemy.bloodColor;
 					this.renderMurder(div, m, worstEnemy)
 				}else{
+					this.addImportantEvent(worstEnemy)
 					worstEnemy.increasePower();
 
 					m.causeOfDeath = "being put down like a rabid dog by " + worstEnemy.htmlTitle()

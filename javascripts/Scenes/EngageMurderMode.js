@@ -250,8 +250,14 @@ function EngageMurderMode(session){
 		drawChat(canvasDiv, player1, player2, chatText, repeatTime,"discuss_murder.png");
 	}
 
+	this.addImportantEvent = function(){
+		var current_mvp =  findStrongestPlayer(this.session.players)
+		this.session.addImportantEvent(new PlayerWentMurderMode(this.session, current_mvp.power,this.player) );
+	}
+
 	this.renderContent = function(div){
-		//reset capitilization quirk, why isn't this working?
+		var alternate_timeline = this.addImportantEvent();
+		//reset capitilization quirk
 		this.player.quirk.capitalization = getRandomInt(0,5);
 		div.append("<br>"+this.content());
 		this.chat(div);

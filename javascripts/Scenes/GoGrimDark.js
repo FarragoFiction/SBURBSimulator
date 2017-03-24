@@ -28,7 +28,13 @@ function GoGrimDark(session){
 		return false;
 	}
 
+	this.addImportantEvent = function(){
+		var current_mvp =  findStrongestPlayer(this.session.players)
+		this.session.addImportantEvent(new PlayerWentGrimDark(this.session, current_mvp.power,this.player) );
+	}
+
 	this.renderContent = function(div){
+		this.addImportantEvent();
 		div.append("<br>"+this.content());
 	}
 

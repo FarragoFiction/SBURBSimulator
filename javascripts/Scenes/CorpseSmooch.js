@@ -14,7 +14,7 @@ function CorpseSmooch(session){
 		for(var i = 0; i<deadPlayers.length; i++){
 			var p = deadPlayers[i];
 			//only get one shot at this. if you're a jerk, no luck.
-			if(p.dreamSelf && p.getFriends().length > 0){
+			if(p.dreamSelf){
 				this.dreamersToRevive.push(p);
 			}
 		}
@@ -156,6 +156,7 @@ function CorpseSmooch(session){
 				//this.makeAlive(d);
 				this.combo ++;
 			}else{
+				this.addImportantEvent(d);
 				ret += d.htmlTitle() + "'s corpse waits patiently for the kiss of life. But nobody came. ";
 				ret += " Their dream self dies as well. ";
 				this.makeDead(d);
@@ -166,6 +167,13 @@ function CorpseSmooch(session){
 		}
 		//x times corpse smooch combo
 		return ret;
+	}
+
+	this.addImportantEvent = function(player){
+		if(player.godDestiny == false){//could god tier, but fate wn't let them
+			var current_mvp =  findStrongestPlayer(this.session.players)
+			this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
+		}
 	}
 
 	//prefer to be smooched by prince who doesn't hate you, or person who likes you best.

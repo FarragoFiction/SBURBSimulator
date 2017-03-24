@@ -4,15 +4,15 @@
 
 //can get help from another player, different bonuses based on claspect if so.
 function DoLandQuest(session){
-	this.canRepeat = true;	
+	this.canRepeat = true;
 	this.session = session;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.playersPlusHelpers = []; //who is doing a land quest this turn?
-	
+
 	this.trigger = function(playerList){
 		//console.log("do land quest trigger?")
 		this.playersPlusHelpers = [];
-		
+
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var p = this.session.availablePlayers[i]
 			if(p.power > 2){ //can't be first thing you do in medium.
@@ -22,7 +22,7 @@ function DoLandQuest(session){
 						//console.log("not doing land quests because don't have a land")
 					}else{
 						var playerPlusHelper = [p,helper];
-						
+
 						if((p.aspect == "Blood" || p.class_name == "Page") ){// if page or blood player, can't do it on own.
 							if(playerPlusHelper[1] != null){
 								this.playersPlusHelpers.push(playerPlusHelper);
@@ -34,7 +34,7 @@ function DoLandQuest(session){
 							removeFromArray(p, this.session.availablePlayers);
 							removeFromArray(helper, this.session.availablePlayers); //don't let my helper do their own quests.
 						}
-					}						
+					}
 				}else{
 					//console.log("not doing land quests at " + p.land)
 				}
@@ -43,53 +43,59 @@ function DoLandQuest(session){
 		//console.log(this.playersPlusHelpers.length + " players are available for quests.");
 		return this.playersPlusHelpers.length > 0;
 	}
-	
+
 	this.renderContent = function(div){
 		div.append("<br>"+this.content());
 	}
-	
+
+	this.addImportantEvent = function(){
+			var current_mvp =  findStrongestPlayer(this.session.players)
+			this.session.addImportantEvent(new FrogBreedingNeedsHelp(this.session, current_mvp.power) );
+	}
+
 	this.lookForHelper = function(player){
 		var helper = null;
-		
+
 		//space player can ONLY be helped by knight, and knight prioritizes this
 		if(player.aspect == "Space"){//this shit is so illegal
 			helper = findClassPlayer(this.session.availablePlayers, "Knight");
 			if(helper != player){ //a knight of space can't help themselves.
 				return helper;
 			}else{
+				this.addImportantEvent();
 				return null
 			}
 		}
-		
+
 		if(player.aspect == "Time" && Math.seededRandom() > .2){ //time players often partner up with themselves
 			return player;
 		}
-		
+
 		if(player.aspect == "Blood" || player.class_name == "Page"){ //they NEED help.
 			if(this.session.availablePlayers.length > 1){
-				helper = getRandomElementFromArray(this.session.availablePlayers);			
+				helper = getRandomElementFromArray(this.session.availablePlayers);
 			}else{
-				this.player1 = null; 
+				this.player1 = null;
 				return null;
 			}
 		}
 
-		
+
 		//if i'm not blood or page, or space, or maybe time random roll for a friend.
 		if(this.session.availablePlayers.length > 1 && Math.seededRandom() > .5){
 			helper = getRandomElementFromArray(this.session.availablePlayers);
-			if(player == helper ){  
+			if(player == helper ){
 				return null;
 			}
 		}
 		if(helper != player || player.aspect == "Time"){
 			return helper;
 		}
-		
+
 		return null;
-		
+
 	}
-	
+
 	this.calculateClasspectBoost = function(player, helper){
 		var ret = "";
 		if(helper == player){
@@ -100,7 +106,7 @@ function DoLandQuest(session){
 		//okay, now that i know it's not a time clone, look at my relationship with my helper.
 		var r1 = player.getRelationshipWith(helper);
 		var r2 = helper.getRelationshipWith(player);
-		
+
 		if(helper.aspect == "Blood"){
 			player.boostAllRelationships();
 			player.triggerLevel += -1;
@@ -110,9 +116,9 @@ function DoLandQuest(session){
 				ret += ret += " The " + helper.htmlTitle() + " spends a great deal of time lecturing the " + player.htmlTitle() + " about the various ways a player can be triggered into going shithive maggots. " ;
 			}
 		}
-		
+
 		if(helper.aspect == "Time" || helper.aspect == "Light" || helper.aspect == "Hope" || helper.aspect == "Mind" || helper.className == "Page" || helper.className == "Seer"){
-			player.landLevel ++; 
+			player.landLevel ++;
 			helper.increasePower();
 			if(r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " is doing a kickass job of helping the " + player.htmlTitle() + ". " ;
@@ -120,7 +126,7 @@ function DoLandQuest(session){
 				ret += ret += " The " + helper.htmlTitle() + " delights in rubbing how much better they are at the game in the face of the " + player.htmlTitle() + ". " ;
 			}
 		}
-		
+
 		if(helper.aspect == "Rage"){
 			player.damageAllRelationships();
 			player.triggerLevel += 1;
@@ -131,7 +137,7 @@ function DoLandQuest(session){
 				ret += ret += " The " + helper.htmlTitle() + " spends a great deal of time making the " + player.htmlTitle() + " aware of every bad thing the other players have said behind their back. " ;
 			}
 		}
-		
+
 		if(helper.aspect == "Doom"){
 			player.landLevel += 1;
 			helper.landLevel +=-1;
@@ -141,7 +147,7 @@ function DoLandQuest(session){
 				ret += " The " + helper.htmlTitle() + " condescendingly says that since the " + player.htmlTitle() + "  is so bad at the game, they'll donate some of their quest items to them. ";
 			}
 		}
-		
+
 		if(helper.className == "Thief"){
 			player.landLevel += -1;
 			helper.landLevel ++;
@@ -151,10 +157,10 @@ function DoLandQuest(session){
 				ret += ret += " The " + helper.htmlTitle() + " blatantly steals resources from the" + player.htmlTitle() + ", saying that THEIR quests are just so much more important. " ;
 			}
 		}
-		return ret;		
-		
+		return ret;
+
 	}
-	
+
 	this.content = function(){
 		var ret = "";
 		for(var i = 0; i<this.playersPlusHelpers.length; i++){
@@ -171,7 +177,7 @@ function DoLandQuest(session){
 			}else{
 				ret += " does";
 			}
-			
+
 			if(Math.seededRandom() >0.8){
 				ret += " quests at " + player.shortLand();
 			}else{
@@ -188,9 +194,9 @@ function DoLandQuest(session){
 				r2.moreOfSame();
 				ret += getRelationshipFlavorText(r1,r2, player, helper);
 		}
-			
+
 		}
 		return ret;
 	}
-	
+
 }

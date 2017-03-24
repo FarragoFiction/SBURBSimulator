@@ -17,7 +17,7 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player){
 	this.importanceRating = 9;
 	this.mvp_value = mvp_value;
 	this.player = player;
-	
+
 	this.humanLabel = function(){
 		var ret  = "";
 		ret += "Have the " + this.player.htmlTitleBasic() + " go God Tier instead of dying forever." ;
@@ -31,7 +31,7 @@ function PlayerDiedForever(session, mvp_value, player){
 	this.mvp_value = mvp_value;
 	this.importanceRating = 5;
 	this.player = player;
-	
+
 	this.humanLabel = function(){
 		var ret  = "Make the " + this.player.htmlTitleBasic() + " not permanently dead.";
 		return ret;
@@ -43,18 +43,19 @@ function PlayerWentGrimDark(session, mvp_value,player){
 	this.mvp_value = mvp_value;
 	this.importanceRating = 7;
 	this.player = player;
-	
+
 	this.humanLabel = function(){
-		var ret  = "Prevent the " + this.player.htmlTitleBasic() + " from going grimdark."
+		var ret  = "Prevent the " + this.player.htmlTitleBasic() + " from going Grimdark."
 		return ret;
 	}
 }
 
-function PlayerWentMurderMode(session, mvp_value){
+function PlayerWentMurderMode(session, mvp_value, player){
 	this.session = session;
 	this.mvp_value = mvp_value;
 	this.importanceRating = 7;
-	
+	this.player = player;
+
 	this.humanLabel = function(){
 		var ret  = "Prevent the " + this.player.htmlTitleBasic() + " from going into Murder Mode.";
 		return ret;
@@ -66,14 +67,14 @@ function JackPromoted(session, mvp_value){
 	this.session = session;
 	this.mvp_value = mvp_value;
 	this.importanceRating = 10;
-	
+
 	this.humanLabel = function(){
 		var ret  = "Prevent Jack from obtaining the Black Queen's RING OF ORBS " +this.session.convertPlayerNumberToWords() + "FOLD.";
 		return ret;
 	}
 }
 
-//only if Knight of Time.
+//if knight, directly help, if not but knight alive, force them to help. else, indirect help
 function FrogBreedingNeedsHelp(session, mvp_value){
 	this.session = session;
 	this.mvp_value = mvp_value;
@@ -83,4 +84,21 @@ function FrogBreedingNeedsHelp(session, mvp_value){
 		var ret  = "Help the " + spacePlayer.htmlTitleBasic() + " complete frog breeding duties.";
 		return ret;
 	}
+
+}
+
+function sortEventsByImportance(events){
+	return events.sort(comparePriority)
+}
+
+function comparePriority(a,b) {
+  return b.importanceRating - a.importanceRating;
+}
+
+function listEvents(events){
+	var ret = "";
+	for(var i = 0; i<events.length; i++){
+		ret += "\n" +events[i].humanLabel();
+	}
+	return ret;
 }

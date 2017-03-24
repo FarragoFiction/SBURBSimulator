@@ -107,6 +107,17 @@ function JackRampage(session){
 		}
 	}
 
+	this.addImportantEvent = function(players){
+		var current_mvp =  findStrongestPlayer(this.session.players)
+		for(var i = 0; i<players.length; i++){
+			var player = players[i];
+			if(player.isDreamSelf == true && player.godDestiny == false && player.godTier == false){
+				this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
+			}
+		}
+
+	}
+
 	this.content = function(){
 		//jack finds 0 or more players.
 		var stabbings = this.getStabList();
@@ -142,6 +153,7 @@ function JackRampage(session){
 			ret += " he retreats, for now, but with new commitment to stabbings. ";
 			this.session.jackStrength += 10;
 		}else{
+			this.addImportantEvents(stabbings);
 			ret += " Jack shows his stabs to " + getPlayersTitles(stabbings) + " until they die.  DEAD.";
 			this.killPlayers(stabbings);
 		}
