@@ -426,6 +426,7 @@ function printStats(){
 
 
 function checkDoomedTimelines(){
+	//console.log("check")
 	for(var i= 0; i<curSessionGlobalVar.doomedTimelineReasons.length; i ++){
 		timesSavedDoomedTimeLine ++;
 		if(curSessionGlobalVar.doomedTimelineReasons[i] != "Shenanigans"){

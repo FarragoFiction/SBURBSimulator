@@ -369,7 +369,7 @@ function Session(session_id){
 		}
 		str += "<br>&nbsp&nbsp&nbsp&nbspClubs: " + club;
 
-		checkDoomedTimelines();
+		//checkDoomedTimelines();
 		return(str)
 
 	}
