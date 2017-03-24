@@ -17,7 +17,7 @@ function QueenRejectRing(session){
 		this.session.queenStrength = 50;
 		queenUncrowned = true;
 		var goodPrototyping = findGoodPrototyping(this.playerList);
-		var ret = "The Queen, with her RING OF ORBS " + this.convertPlayerNumberToWords();
+		var ret = "The Queen, with her RING OF ORBS " + this.session.convertPlayerNumberToWords();
 		ret += "FOLD would take on the attributes of each prototyping. ";
 		ret += " She would become part " + this.playerList[0].kernel_sprite;
 		for(var i = 1; i<this.playerList.length-1; i++){
@@ -47,35 +47,5 @@ function QueenRejectRing(session){
 		return ret;
 	}
 
-	this.convertPlayerNumberToWords = function(){
-		//alien players don't count
-		var ps = findPlayersFromSessionWithId(this.session.players, this.session.session_id);
-		if(ps.length == 0){
-			ps = this.session.players;
-		}
-		var length = ps.length;
-		if(length == 2){
-			return "TWO";
-		}else if(length == 3){
-			return "THREE";
-		}else if(length == 4){
-			return "FOUR";
-		}else if(length == 5){
-			return "FIVE";
-		}else if(length == 6){
-			return "SIX";
-		}else if(length == 7){
-			return "SEVEN";
-		}else if(length == 8){
-			return "EIGHT";
-		}else if(length == 9){
-			return "NINE";
-		}else if(length == 10){
-			return "TEN";
-		}else if(length == 11){
-			return "ELEVEN";
-		}else if(length == 12){
-			return "TWELVE";
-		}
-	}
+
 }
