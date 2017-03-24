@@ -1,19 +1,6 @@
 var asyncNumSprites = 0;
 //~~~~~~~~~~~IMPORTANT~~~~~~~~~~LET NOTHING HERE BE RANDOM
 //OR PREDICTIONS AND TIME LOOPS AND AI SEARCHES WILL BE WRONG
-function trollify(canvas,player){
-   //red_array = red_context.getImageData(0, 0, red_canvas.width, red_canvas.height).data;
-   //alert("I should trollify");
-  //wings first, replace black and red with blood color with two opacities
-  // wings(canvas,player);
-   greySkin(canvas,player);
-   //fins(canvas, player);
-   //TODO eventually call fins with hair, not troll stuff
-   fin1(canvas, player);
-   fin2(canvas, player);
-   horns(canvas,player);
-}
-
 
 //mod from http://stackoverflow.com/questions/21646738/convert-hex-to-rgba
 function hexToRgbA(hex){
@@ -263,7 +250,7 @@ function poseBabiesAsATeam(canvas, leader, players, guardians, repeatTime){
   var playerBuffers = [];
   var guardianBuffers = [];
   var leaderBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-  drawSprite(leaderBuffer, leader, repeatTime);
+  drawSprite(leaderBuffer, leader);
   for(var i = 0; i<players.length; i++){
 		playerBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
 		drawBabySprite(playerBuffers[i],players[i],repeatTime);
@@ -307,7 +294,7 @@ function poseAsATeam(canvas,players, repeatTime){
 	var spriteBuffers = [];
 	for(var i = 0; i<players.length; i++){
 		spriteBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
-		drawSprite(spriteBuffers[i],players[i],repeatTime)
+		drawSprite(spriteBuffers[i],players[i])
 	}
 		var x = -275;
 		var y = -50;
@@ -333,13 +320,13 @@ function drawGodRevival(canvas, live_players, dead_players, repeatTime){
 	var dead_spriteBuffers = [];
 	for(var i = 0; i<live_players.length; i++){
 		live_spriteBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
-		drawSprite(live_spriteBuffers[i],live_players[i],repeatTime)
+		drawSprite(live_spriteBuffers[i],live_players[i])
 	}
 
 	for(var i = 0; i<dead_players.length; i++){
 		dead_spriteBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
 		//drawBG(dead_spriteBuffers[i], "#00ff00", "#ff0000")
-		drawSprite(dead_spriteBuffers[i],dead_players[i],repeatTime)
+		drawSprite(dead_spriteBuffers[i],dead_players[i])
 	}
 
 		var x = -275;
@@ -386,7 +373,7 @@ function drawGetTiger(canvas, players, repeatTime){
 	var spriteBuffers = [];
 	for(var i = 0; i<players.length; i++){
 		spriteBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
-		drawSprite(spriteBuffers[i],players[i],repeatTime)
+		drawSprite(spriteBuffers[i],players[i])
 	}
 
 		var x = -275;
@@ -443,9 +430,9 @@ function drawLevelUp(canvas, player,repeatTime){
 
   var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
   	if(player.dead){
-		drawSprite(pSpriteBuffer,player,repeatTime)
+		drawSprite(pSpriteBuffer,player)
 	}else{
-		drawSprite(pSpriteBuffer,player,repeatTime)
+		drawSprite(pSpriteBuffer,player)
 	}
 
   var levelsBuffer = getBufferCanvas(document.getElementById("echeladder_template"));
@@ -477,9 +464,9 @@ function drawLevelUpGodTier(canvas, player,repeatTime){
 
 	var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 	if(player.dead){
-		drawSprite(pSpriteBuffer,player,repeatTime)
+		drawSprite(pSpriteBuffer,player)
 	}else{
-		drawSprite(pSpriteBuffer,player,repeatTime)
+		drawSprite(pSpriteBuffer,player)
 	}
 
 	var levelBuffer = getBufferCanvas(document.getElementById("godtierlevelup_template"));
@@ -564,10 +551,10 @@ function drawRelationshipChat(canvas, player1, player2, chat, repeatTime){
 	ctx.drawImage(img,0,0,width,height);
 
 	var p1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-	drawSprite(p1SpriteBuffer,player1,repeatTime)
+	drawSprite(p1SpriteBuffer,player1)
 
 	var p2SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-	drawSpriteTurnways(p2SpriteBuffer,player2,repeatTime)
+	drawSpriteTurnways(p2SpriteBuffer,player2)
 
 	//don't need buffer for text?
 	var textSpriteBuffer = getBufferCanvas(document.getElementById("chat_text_template"));
@@ -616,6 +603,47 @@ function checkSimMode(){
   return false
 }
 
+//she is the best <3
+function  drawChatABJR(canvas, chat){
+  if(checkSimMode() == true){
+    return;
+  }
+
+  var canvasSpriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
+	ctx = canvasSpriteBuffer.getContext('2d');
+	var imageString = "pesterchum.png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,0,0,width,height);
+
+	var p2SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+	drawJRChat(p2SpriteBuffer)
+
+	var p1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+  drawAbChat(p1SpriteBuffer)
+	//don't need buffer for text?
+	var textSpriteBuffer = getBufferCanvas(document.getElementById("chat_text_template"));
+	var introText = "-- authorBot [AB] began pestering ";
+	introText += "jadedResearcher" + " [JR] --";
+	drawChatTextAB(textSpriteBuffer, introText, chat)
+	//drawBG(textSpriteBuffer, "#ff9999", "#ff00ff") //test that it's actually being rendered.
+	//p1 on left, chat in middle, p2 on right and flipped turnways.
+	copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,0,0)
+	copyTmpCanvasToRealCanvasAtPos(canvas, p2SpriteBuffer,730,0)//where should i put this?
+	copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,230,0)
+	copyTmpCanvasToRealCanvasAtPos(canvas, textSpriteBuffer,244,51)
+}
+
+//hella simple, mostly gonna be used for corpses.
+function drawSinglePlayer(canvas, player){
+  var p1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+	drawSprite(p1SpriteBuffer,player)
+  //drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff")
+  copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,-100,0)
+}
+
 //need to parse the text to figure out who is talking to determine color for chat.
 function drawChat(canvas, player1, player2, chat, repeatTime,topicImage){
   if(checkSimMode() == true){
@@ -634,10 +662,10 @@ function drawChat(canvas, player1, player2, chat, repeatTime,topicImage){
 	ctx.drawImage(img,0,0,width,height);
 
 	var p1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-	drawSprite(p1SpriteBuffer,player1,repeatTime)
+	drawSprite(p1SpriteBuffer,player1)
 
 	var p2SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-	drawSpriteTurnways(p2SpriteBuffer,player2,repeatTime)
+	drawSpriteTurnways(p2SpriteBuffer,player2)
 
 	//don't need buffer for text?
 	var textSpriteBuffer = getBufferCanvas(document.getElementById("chat_text_template"));
@@ -656,6 +684,32 @@ function drawChat(canvas, player1, player2, chat, repeatTime,topicImage){
     drawTopic(topicBuffer, topicImage);
     copyTmpCanvasToRealCanvasAtPos(canvas, topicBuffer,0,0)
   }
+}
+
+function drawAbChat(canvas){
+  if(checkSimMode() == true){
+    return;
+  }
+  ctx = canvas.getContext('2d');
+  var imageString = "ab_chat.png"
+  addImageTag(imageString)
+  var img=document.getElementById(imageString);
+  var width = img.width;
+  var height = img.height;
+  ctx.drawImage(img,0,0,width,height);
+}
+
+function drawJRChat(canvas){
+  if(checkSimMode() == true){
+    return;
+  }
+  ctx = canvas.getContext('2d');
+  var imageString = "jr_chat_turn.png"
+  addImageTag(imageString)
+  var img=document.getElementById(imageString);
+  var width = img.width;
+  var height = img.height;
+  ctx.drawImage(img,0,0,width,height);
 }
 
 
@@ -686,6 +740,21 @@ function drawComboText(canvas,comboNum){
 		excite += "!"
 	}
 	ctx.fillText(comboNum + "x CORPSESMOOCH COMBO"+excite,20,20);
+
+}
+
+function drawChatTextAB(canvas, introText, chat){
+  var space_between_lines = 25;
+	var left_margin = 8;
+	var line_height = 18;
+	var start = 18;
+	var current = 18;
+	var ctx = canvas.getContext("2d");
+	ctx.font = "12px Times New Roman"
+	ctx.fillStyle = "#000000";
+	ctx.fillText(introText,left_margin*2,current);
+	//need custom multi line method that allows for differnet color lines
+	fillChatTextMultiLineAB(canvas, chat, left_margin, current+line_height*2);
 
 }
 
@@ -744,33 +813,12 @@ function drawSpriteTurnways(canvas, player){
   if(checkSimMode() == true){
     return;
   }
-	player = makeRenderingSnapshot(player);
+
   ctx = canvas.getContext('2d');
   ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
   ctx.translate(canvas.width, 0);
   ctx.scale(-1, 1);
-
-  if(player.grimDark == true){
-    grimDarkHalo(canvas)
-  }
-
-  if(player.isTroll&& player.godTier){//wings before sprite
-    wings(canvas,player);
-  }
-  playerToSprite(canvas,player);
-  hair(canvas, player);
-  if(player.class_name == "Prince" && player.godTier){
-	  princeTiara(canvas, player);
-  }
-
-  if(player.grimDark == true){
-    grimDarkSkin(canvas, player)
-  }
-
-  if(player.isTroll){
-    trollify(canvas,player);
-  }
-
+  drawSprite(canvas, player, ctx);
 }
 
 function makeRenderingSnapshot(player){
@@ -778,6 +826,7 @@ function makeRenderingSnapshot(player){
 	ret.grimDark = player.grimDark;
 	ret.victimBlood = player.victimBlood;
 	ret.murderMode = player.murderMode;
+  ret.leftMurderMode = player.leftMurderMode; //scars
 	ret.dead = player.dead;
 	ret.isTroll = player.isTroll
 	ret.godTier = player.godTier;
@@ -796,7 +845,7 @@ function makeRenderingSnapshot(player){
 	return ret;
 }
 
-function drawBabySprite(canvas, player, repeatTime, isRepeat){
+function drawBabySprite(canvas, player){
   if(checkSimMode() == true){
     return;
   }
@@ -804,74 +853,84 @@ function drawBabySprite(canvas, player, repeatTime, isRepeat){
     ctx = canvas.getContext('2d');
     ctx.imageSmoothingEnabled = false;
     //don't forget to shrink baby
-    if(!isRepeat){
-      ctx.scale(0.5,0.5);
-    }
-    babySprite(canvas,player);
-    hair(canvas, player);
-    if(player.isTroll){
-      trollify(canvas,player,isRepeat); //it scales horns too
-    }
+    ctx.scale(0.5,0.5);
+
+    drawSprite(canvas, player, ctx, true)
 
 
 }
 
 
-function drawSprite(canvas, player){
+function drawSprite(canvas, player,ctx,baby){
   if(checkSimMode() == true){
     return;
   }
 	player = makeRenderingSnapshot(player);
-  //debug("Drawing sprite for: " + player.title());
-  //console.log("looking for canvas: " + canvas);
- // canvas = $("#"+canvasId)[0]; //don't want jquery object, want contents
-  ctx = canvas.getContext('2d');
+  //could be turnways or baby
+ if(!ctx){
+   ctx = canvas.getContext('2d');
+ }
+
   ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
-  if(player.dead){//only rotate once
-	ctx.translate(canvas.width, 0);
-	ctx.rotate(90*Math.PI/180);
+  if(!baby &&player.dead){//only rotate once
+  	ctx.translate(canvas.width, 0);
+  	ctx.rotate(90*Math.PI/180);
   }
-  //sprite = new Image();
-  //sprite.src = 'test.png';
-  //need to get sprite from sprite sheet
-  //then if trolls, do post proccesing.
-  //grey skin, horns, wings in blood color
-	//var width = img.width;
-	//var height = img.height;
-	//ctx.drawImage(sprites,0,0,width,height);
-  if(player.grimDark == true){
+  /*
+    GrimDark
+    Wings
+    Hair_Back
+    fin2
+    body
+    Aspect
+    hair_front
+    Fin1
+    horns
+  */
+  if(!baby && player.grimDark == true){
     grimDarkHalo(canvas)
   }
 
-  if(player.isTroll&& player.godTier){//wings before sprite
+  if(!baby && player.isTroll&& player.godTier){//wings before sprite
     wings(canvas,player);
   }
 
-  if(player.dead){
+  if(!baby && player.dead){
 	   bloodPuddle(canvas, player);
   }
-  playerToSprite(canvas,player);
-  bloody_face(canvas, player)//not just for murder mode, because you can kill another player if THEY are murder mode.
-  if(player.murderMode == true){
-	  scratch_face(canvas, player);
+  hairBack(canvas, player);
+  if(player.isTroll){//wings before sprite
+    fin2(canvas,player);
+  }
+  if(!baby){
+    playerToSprite(canvas,player);
+    bloody_face(canvas, player)//not just for murder mode, because you can kill another player if THEY are murder mode.
+    if(player.murderMode == true){
+  	  scratch_face(canvas, player);
+    }
+    if(player.leftMurderMode == true){
+  	  scar_face(canvas, player);
+    }
+  }else{
+    babySprite(canvas,player);
   }
 
   hair(canvas, player);
-  if(player.class_name == "Prince" && player.godTier){
+  if(player.isTroll){//wings before sprite
+    fin1(canvas,player);
+  }
+  if(!baby && player.class_name == "Prince" && player.godTier){
 	  princeTiara(canvas, player);
   }
 
-  if(player.grimDark == true){
+  if(!baby && player.grimDark == true){
     grimDarkSkin(canvas, player)
+  }else if(player.isTroll){
+    greySkin(canvas,player);
   }
-  //then troll proccess???
-  //this was for sprite sheet
-  //ctx.drawImage(sprites,position[0],position[1],position[2],position[3],canvas.width/2,canvas.height/2,position[6],position[7]);
-  //ctx.drawImage(img,canvas.width/2,canvas.height/2,width,height);
   if(player.isTroll){
-    trollify(canvas,player);
+    horns(canvas, player);
   }
-
 }
 
 
@@ -889,6 +948,17 @@ function playerToSprite(canvas, player){
 	//TODO check for murder mode or grim darkness.
 }
 
+
+function scar_face(canvas, player){
+	ctx = canvas.getContext('2d');
+	var imageString = "scratch_face.png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,width/6,height/4,width,height);
+	swapColors(canvas, "#440a7f", "#f4f4f4"); //it's a scar
+}
 
 function scratch_face(canvas, player){
 	ctx = canvas.getContext('2d');
@@ -967,11 +1037,10 @@ function drawSpade(canvas){
 	ctx.drawImage(img,0,0,width,height);
 }
 
-//i think laziness is why regular hair isn't drawn centered right
-//regular adult sprite isn't the right size.
-function babyHair(canvas, player){
-	ctx = canvas.getContext('2d');
-	var imageString = "hair"+player.hair+".png"
+function hairBack(canvas,player){
+  ctx = canvas.getContext('2d');
+	var imageString = "Hair/hair_back"+player.hair+".png"
+  //console.log(imageString);
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
 	var width = img.width;
@@ -985,10 +1054,9 @@ function babyHair(canvas, player){
 		swapColors(canvas, "#202020", getColorFromAspect(player.aspect));
 	}
 }
-
 function hair(canvas, player){
 	ctx = canvas.getContext('2d');
-	var imageString = "hair"+player.hair+".png"
+	var imageString = "Hair/hair"+player.hair+".png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
 	var width = img.width;
@@ -1525,6 +1593,33 @@ function fillTextMultiLine(canvas, text1, text2, color2, x, y) {
 	ctx.fillStyle = color2
  	wrap_text(ctx, text2, x, y, lineHeight, 3*canvas.width/4, "left");
 	ctx.fillStyle = "#000000"
+}
+
+function fillChatTextMultiLineAB(canvas, chat, x, y){
+  var ctx = canvas.getContext("2d");
+	var lineHeight = ctx.measureText("M").width * 1.2;
+  var lines = chat.split("\n");
+	var player1Start = "AB:";
+	var player2Start = "JR:"
+ 	for (var i = 0; i < lines.length; ++i) {
+		//does the text begin with player 1's chat handle short? if so: getChatFontColor
+		var ct = lines[i].trim();
+		//check player 2 first 'cause they'll be more specific if they have same initials
+		if(ct.startsWith(player2Start)){
+			ctx.fillStyle = "#3da35a";
+      ctx.font = "12px Times New Roman"
+		}else if(ct.startsWith(player1Start)){
+			ctx.fillStyle = "#ff0000"
+      ctx.font = "12px Times New Roman"
+		}else{
+			ctx.fillStyle = "#000000"
+		}
+		var lines_wrapped = wrap_text(ctx, ct, x, y, lineHeight, canvas.width-50, "left")
+  	y += lineHeight * lines_wrapped;
+  	}
+	//word wrap these
+	ctx.fillStyle = "#000000"
+
 }
 
 //matches line color to player font color

@@ -247,6 +247,28 @@ function processCombinedSession(){
 }
 
 
+function foundRareSession(div, debugMessage){
+	console.log(debugMessage)
+	var canvasHTML = "<br><canvas id='canvasJRAB" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+	div.append(canvasHTML);
+
+	var canvasDiv = document.getElementById("canvasJRAB"+  (div.attr("id")));
+	var chat = "";
+  chat += "AB: Just thought I'd let you know: " + debugMessage +"\n";
+	chat += "JR: *gasp* You found it! Thanks! You are the best!!!\n";
+	var quips1 = ["It's why you made me.", "It's not like I have a better use for my flawless mecha-brain.", "Just doing as programmed."];
+	chat += "AB: " + getRandomElementFromArrayNoSeed(quips1)+"\n" ;
+	chat += "JR: And THAT is why you are the best.\n "
+	var quips2 = ["Seriously, isn't it a little narcissistic for you to like me so much?", "I don't get it, you know more than anyone how very little 'I' is in my A.I.", "Why did you go to all the effort to make debugging look like this?"];
+	chat += "AB: " + getRandomElementFromArrayNoSeed(quips2)+"\n";
+	chat += "JR: Dude, A.I.s are just awesome. Even simple ones. And yeah...being proud of you is a weird roundabout way of being proud of my own achievements.\n";
+  var quips3 = ["Won't this be confusing to people who aren't you?", "What if you forget to disable these before deploying to the server?", "Doesn't this risk being visible to people who aren't you?"];
+  chat += "AB: " + getRandomElementFromArrayNoSeed(quips3)+"\n";
+	chat += "JR: Heh, I'll do my best to turn these debug messages off before deploying, but if I forget, I figure it counts as a highly indulgent author-self insert x2 combo. \n"
+  chat += "JR: Oh! And I'm really careful to make sure these little chats don't actually influence the session in any way.\n"
+	chat += "JR: Like maybe one day you or I can have a 'yellow yard' type interference scheme. But today is not that day."
+	drawChatABJR(canvasDiv, chat);
+}
 
 
 //scenes call this

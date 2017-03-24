@@ -4,11 +4,21 @@
     width:100%;
 }
 #newsposts{
-    float:left;
-    width:25%;
+  float:left;
+  width:25%;
 }
 #robo_newsposts{
     color: red;
     float:right;
     width:25%;
+}
+
+#artist_newsposts{
+  color:#FCF9BD;
+  float:left;
+  width:50%;
+}
+
+#artist_h1{
+  color:#FCF9BD;
 }

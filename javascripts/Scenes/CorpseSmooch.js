@@ -37,12 +37,14 @@ function CorpseSmooch(session){
 	}
 
 	this.makeAlive = function(d){
+		//foundRareSession(div, "A player was corpse smooched alive.")
 		d.dead = false;
 		d.dreamSelf = false;
 		d.isDreamSelf = true;
 		d.murderMode = false;
 		d.grimDark = false;
 		d.triggerLevel = 1;
+		d.leftMurderMode = false; //no scars
 		d.victimBlood = null; //clean face
 	}
 
@@ -54,23 +56,22 @@ function CorpseSmooch(session){
 	//smoocher on left, corpse on right, them waking up on prospit/derse on far right
 	this.drawCorpseSmooch = function(canvas, dead_player, royalty, repeatTime){
 		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-		drawSprite(pSpriteBuffer,royalty,repeatTime)
+		drawSprite(pSpriteBuffer,royalty)
 
 		dead_player.dead = true;
 		dead_player.isDreamSelf = false;  //temporarily show non dream version
 		var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-		drawSprite(dSpriteBuffer,dead_player,repeatTime)
+		drawSprite(dSpriteBuffer,dead_player)
 
 		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
 		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,100,0)
 
 		var moonBuffer = getBufferCanvas(document.getElementById("canvas_template"));
 		drawMoon(moonBuffer, dead_player);
-		dead_player.dead = false;
-		dead_player.isDreamSelf = true;
-		drawSprite(moonBuffer,dead_player,repeatTime)
+		this.makeAlive(dead_player);
+		drawSprite(moonBuffer,dead_player)
 		copyTmpCanvasToRealCanvasAtPos(canvas, moonBuffer,600,0)
-		this.makeAlive(dead_player); //make SURE the player is alive after smooches.
+		//this.makeAlive(dead_player); //make SURE the player is alive after smooches.
 
 	}
 

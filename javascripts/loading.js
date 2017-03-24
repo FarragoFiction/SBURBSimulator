@@ -66,6 +66,10 @@ function loadImage(img){
 
 //load pesterchum, blood, big aspect symbols, echeladders, god tier level up, romance symbols, babies, grubs
 function loadOther(){
+  loadImage("jr_chat_turn.png");
+  loadImage("ab_chat.png")
+  loadImage("ab_chat2.png");
+  loadImage("jr_chat.png")
 	loadImage("grimdark.png");
 	loadImage("fin1.png");
 	loadImage("fin2.png");
@@ -107,7 +111,8 @@ function loadPlayer(player){
 	loadImage(player.aspect + ".png");
 
 	loadImage(player.aspect + "Big.png")
-	loadImage("hair"+player.hair+".png")
+	loadImage("Hair/hair"+player.hair+".png")
+  loadImage("Hair/hair_back"+player.hair+".png")
 
 	if(player.isTroll == true){
 		loadImage("Wings/wing"+player.quirk.favoriteNumber + ".png")

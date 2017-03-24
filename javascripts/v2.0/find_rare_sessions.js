@@ -13,6 +13,8 @@ var sessionObjects = []
 var curSessionGlobalVar;
 var sessionsSimulated = []
 var timesEcto = 0;
+var timesDiamonds = 0;
+var timesClubs = 0;
 var timesDenizen = 0;
 var timesExileJack = 0;
 var timesPlanExileJack = 0;
@@ -22,6 +24,7 @@ var timesJackScheme = 0;
 var timesJackRampage = 0;
 var timesJackPromotion = 0;
 var timesKingPowerful = 0;
+var timesTotalPartyLive = 0;
 var timesQueenRejectRing = 0;
 var timesSavedDoomedTimeLine = 0;
 var timesInterestingSaveDoomedTimeLine = 0;
@@ -275,7 +278,7 @@ function summarizeSession(session){
 	$("#story").html("");
 	var str = curSessionGlobalVar.summarize();
 	checkDoomedTimelines();
-	debug("<br><hr><font color = 'red'> " + getQuipAboutSession(curSessionGlobalVar) + "</font><Br>" );
+	debug("<br><hr><font color = 'red'> AB: " + getQuipAboutSession(curSessionGlobalVar) + "</font><Br>" );
 	debug(str);
 
 	numSimulationsDone ++;
@@ -358,6 +361,29 @@ function printStatsRobot(){
 	//$(document.body).append(json);
 }
 
+function foundRareSession(div, debugMessage){
+	console.log(debugMessage)
+	var canvasHTML = "<br><canvas id='canvasJRAB" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+	div.append(canvasHTML);
+
+	var canvasDiv = document.getElementById("canvasJRAB"+  (div.attr("id")));
+	var chat = "";
+  chat += "AB: Just thought I'd let you know: " + debugMessage +"\n";
+	chat += "JR: *gasp* You found it! Thanks! You are the best!!!\n";
+	var quips1 = ["It's why you made me.", "It's not like I have a better use for my flawless mecha-brain.", "Just doing as programmed."];
+	chat += "AB: " + getRandomElementFromArrayNoSeed(quips1)+"\n" ;
+	chat += "JR: And THAT is why you are the best.\n "
+	var quips2 = ["Seriously, isn't it a little narcissistic for you to like me so much?", "I don't get it, you know more than anyone how very little 'I' is in my A.I.", "Why did you go to all the effort to make debugging look like this?"];
+	chat += "AB: " + getRandomElementFromArrayNoSeed(quips2)+"\n";
+	chat += "JR: Dude, A.I.s are just awesome. Even simple ones. And yeah...being proud of you is a weird roundabout way of being proud of my own achievements.\n";
+  var quips3 = ["Won't this be confusing to people who aren't you?", "What if you forget to disable these before deploying to the server?", "Doesn't this risk being visible to people who aren't you?"];
+  chat += "AB: " + getRandomElementFromArrayNoSeed(quips3)+"\n";
+	chat += "JR: Heh, I'll do my best to turn these debug messages off before deploying, but if I forget, I figure it counts as a highly indulgent author-self insert x2 combo. \n"
+  chat += "JR: Oh! And I'm really careful to make sure these little chats don't actually influence the session in any way.\n"
+	chat += "JR: Like maybe one day you or I can have a 'yellow yard' type interference scheme. But today is not that day."
+	drawChatABJR(canvasDiv, chat);
+}
+
 function printStats(){
 
 	var str = " <h2> Stats for all Checked Sessions</h2>"
@@ -376,6 +402,8 @@ function printStats(){
 	str += "<Br>Times GrimDark (at least one player): " + timesGrimDark + " (" + Math.round((timesGrimDark/sessionsSimulated.length)*100) + "%)";
 
 	str += "<Br>Times MurderMode (at least one player): " + timesMurderMode + " (" + Math.round((timesMurderMode/sessionsSimulated.length)*100) + "%)";
+	str += "<Br>Times Diamonds (at least one player): " + timesDiamonds + " (" + Math.round((timesDiamonds/sessionsSimulated.length)*100) + "%)";
+	str += "<Br>Times Clubs (at least one player): " + timesClubs + " (" + Math.round((timesClubs/sessionsSimulated.length)*100) + "%)";
 
 	str += "<Br>Times Fought Denizen (at least once): " + timesDenizen + " (" + Math.round((timesDenizen/sessionsSimulated.length)*100) + "%)";
 
@@ -398,6 +426,7 @@ function printStats(){
 
 
 function checkDoomedTimelines(){
+	//console.log("check")
 	for(var i= 0; i<curSessionGlobalVar.doomedTimelineReasons.length; i ++){
 		timesSavedDoomedTimeLine ++;
 		if(curSessionGlobalVar.doomedTimelineReasons[i] != "Shenanigans"){

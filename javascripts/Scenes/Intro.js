@@ -524,6 +524,7 @@ function Intro(session){
 
 	//i is so you know entry order
 	this.renderContent = function(div,i){
+		//foundRareSession(div, "This is just a test.")
 		var narration = "";
 		if(this.player.land == null){
 			//console.log("This session is:  " + this.session.session_id + " and the " + this.player.title() + " is from session: " + this.player.ectoBiologicalSource + " and their land is: " + this.player.land);
