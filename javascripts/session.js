@@ -32,13 +32,13 @@ function Session(session_id){
 	this.parentSession = null;
 	this.availablePlayers = [];  //which players are available for scenes or whatever.
 	this.importantEvents = [];
-	
-	
+
+
 	//IMPORTANT do not add important events directly, or can't check for alternate timelines.
 	//oh god, just typing that gives me chills. time shenanigans are so great.
 	this.addImportantEvent = function(important_event){
 		this.importantEvents.push(important_event);
-		console.log("TODO: return if important event matches YellowYard event")
+		//console.log("TODO: return if important event matches YellowYard event")
 	}
 
 
@@ -134,7 +134,7 @@ function Session(session_id){
 			this.players[k].consequencesForTerriblePlayer();
 		}
 	}
-	
+
 	this.convertPlayerNumberToWords = function(){
 		//alien players don't count
 		var ps = findPlayersFromSessionWithId(this.players, this.session_id);
