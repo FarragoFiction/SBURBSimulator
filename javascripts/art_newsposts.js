@@ -1,6 +1,19 @@
 
 //TODO add thought bubble about jack to dialogue
 window.onload = function() {
+	//http://stackoverflow.com/questions/8748426/scroll-background-image-untill-the-end-not-further
+	$( window ).scroll( function(){
+	  var ypos = $( window ).scrollTop(); //pixels the site is scrolled down
+	  var visible = $( window ).height(); //visible pixels
+	  const img_height = 1500; //replace with height of your image
+	  var max_scroll = img_height - visible; //number of pixels of the image not visible at bottom
+	//change position of background-image as long as there is something not visible at the bottom  
+	if ( max_scroll > ypos) {
+		 $('body').css('background-position', "center -" + ypos + "px");
+	  } else {
+		$('body').css('background-position', "center -" + max_scroll + "px");
+	  }
+});
 		newsposts();
 }
 
