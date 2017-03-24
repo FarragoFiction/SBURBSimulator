@@ -1,3 +1,2 @@
 #!/bin/sh
-
-rsync -acv --exclude .git --exclude '*~' ./ jenny@purplefrog.com:public_html/SburbStoryExperimental/
+rsync -rcv --exclude .git --exclude '*~' ./ jenny@purplefrog.com:public_html/SburbStoryExperimental/ #
