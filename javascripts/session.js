@@ -36,8 +36,9 @@ function Session(session_id){
 	
 	//IMPORTANT do not add important events directly, or can't check for alternate timelines.
 	//oh god, just typing that gives me chills. time shenanigans are so great.
-	this.addImportantEvent = function(){
-		
+	this.addImportantEvent = function(important_event){
+		this.importantEvents.push(important_event);
+		console.log("TODO: return if important event matches YellowYard event")
 	}
 
 
