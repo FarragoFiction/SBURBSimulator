@@ -36,8 +36,8 @@ function ForeshadowYellowYard(session){
 			var canvasDiv2 = document.getElementById("canvasJRAB2"+  (div.attr("id")));
 			console.log("time player is dead.")
 			chat += "JR: Though...I admit that without a time player my plan becomes a lot more impossible. \n "
-			chat += "AB: Nah, I'll take care of that. See? There's the " + this.timePlayer.titleBasic()+" over there, now. Time shenanigans.  I wouldn't have brought you to a completely hopeless session.  \n "
-			chat += "JR: Oh! Cool. I guess that if we don't interfere they will boggle vacantly at how badly things went and then try to change things on their own. Like, in the regular session. And become a doomed tmie clone. Or, I guess if they try not to change things, they'll be in a stable time loop they know ends like this. Man. Being a time player sucks. \n "
+			chat += "AB: Nah, I took care of that. See? There's the " + this.timePlayer.titleBasic()+" over there, now. Time shenanigans.  I wouldn't have brought you to a completely hopeless session.  \n "
+			chat += "JR: Oh! Cool. I guess that if we don't interfere they will boggle vacantly at how badly things went and then try to change things on their own. Like, in the regular session. And become a doomed time clone. Or, I guess if they try not to change things, they'll be in a stable time loop they know ends like this. Man. Being a time player sucks. \n "
 			chat += "AB: Word. \n "
 			drawChatABJR(canvasDiv2, chat);
 		}else{
