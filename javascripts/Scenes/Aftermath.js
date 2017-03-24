@@ -29,6 +29,25 @@ function Aftermath(session){
 		}
 		return ret;
 	}
+	
+	//oh goodness, what is this?
+	this.yellowLawnRing = function(div){
+		var living = findLivingPlayers(this.session.players);
+		var dead = findDeadPlayers(this.session.players);
+		//time players doesn't HAVE to be alive, but it makes it way more likely.
+		var singleUseOfSeed = Math.seededRandom();
+		var timePlayer = findAspectPlayer(living, "Time")
+		if(!timePlayer && singleUseOfSeed > .5){
+			timePlayer = findAspectPlayer(this.session.players, "Time")
+		}
+		if(dead.length >= living.length && timePlayer){
+			console.log("Time Player: " + timePlayer);
+			var s = new ForeshadowYellowYard(this.session);
+			s.timePlayer = timePlayer;
+			s.trigger();
+			s.renderContent(div);
+		}
+	}
 
 	this.mournDead = function(div){
 		var dead = findDeadPlayers(this.session.players);
@@ -82,6 +101,7 @@ function Aftermath(session){
 
 
 	this.renderContent = function(div){
+		var yellowYard = false;
 		var living = findLivingPlayers(this.session.players);
 		var end = "<Br>";
 		if(living.length == this.session.players.length){
@@ -122,6 +142,7 @@ function Aftermath(session){
 				end += " If it's any consolation, it really does suck to fight so hard only to fail at the last minute. <Br><Br>Game Over.";
 				end += " Or is it? "
 				renderScratchButton(this.session);
+				yellowYard = true;
 				this.session.scratchAvailable = true;
 			}
 	}else{
@@ -146,7 +167,9 @@ function Aftermath(session){
 	div.append(canvasHTML);
 	var canvasDiv = document.getElementById("canvas"+ divID);
 	poseAsATeam(canvasDiv, this.session.players, 2000); //everybody, even corpses, pose as a team.
-
+	if(yellowYard == true){
+		this.yellowLawnRing(div);  //can still scratch, even if yellow lawn ring is available
+	}
 	}
 
 	this.content = function(div, i){

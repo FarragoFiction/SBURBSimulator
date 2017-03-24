@@ -152,3 +152,181 @@ compare both versions.
 
 
 
+
+
+
+
+
+
+
+And now for something entirely different. This is the best place to put a ramble, but it's not even at the debug phase yet.
+
+Problem: I wish to change exactly one thing in a session, at a specific point in time.
+
+Related information.
+
+I have a several ways to identify a point in time in session, but none of them are currently accessible in a meaninful way.
+
+*  Tick:  There are both regular and reckoning ticks. this information is indirectly available in the sesion's "timeTillReckoning" variable. it's negative after a reckoning.
+* Scene Index:  I have a list of "scenesTriggered" in the sesion, which is how I summarize a session, partly. This list is not guaranteed to be useful. I'm pretty sure it just adds the scene in the scene list. The same scene can appear multiple times, and will in fact be changed over time (for example, corpse smooch will have different players attached to it.)
+
+
+Sub problems:  
+* Identify an important event.
+* add an event before the important event.  
+
+
+
+"add an event before the important event." appears to be the easier subproblem. I will tackle it first.
+Given that I have a way of identifying an event, I need to have a scene that triggers right before that event. If it's based on tick, then trigger will happen when this.session.timeTileReckoning=x. if it's based on scenesTriggered index, then it will happen when this.session.scenesTriggered.length = x; That SHOULD be all I need.  scene should not repeat, and should have absolutely highest priority...or...hrrm.
+
+SHOULD it have highest priority? It just needs to happen before the important event, right. But "timeTillReckoning" can have many scenes called. So if i give it highest priority, it might happen several scenes before it should.
+
+CONSTRAINT FOUND:  Scenes need to be identified by scenesTriggered index, not timeTillReckoning. This makes sense in retrospect.
+
+
+PROBLEM FOUND: scenesTriggered index will not be consistent between timelines. 
+
+I need them to be.  The whole point is that the Observer (that's you, btw) gets to make a decision after a virgin doomed timeline happens. 
+So,they insert a scene that wasn't there before. Which by definition alters the index of the previous thingy.
+
+
+
+Alright, think about this in more detail.
+
+Sequence of Events:
+
+Session procedes on the regular and ends in tear-jerking tragedy.
+
+At the very end, AB and I show up.
+
+I offer the Observer and time player a yard's worth of Decisions.
+
+Session reloads, then procedes on the regular until the time player warps in to make a change.
+
+Session is altered. Either ends in  tear-jerking  tragedy, or in less tragedy, or success.
+
+If tear-jerking tragedy, At the very end, AB and I show up.
+
+I offer the Observer and time player a yard's worth of Decisions, including the decision to undo their previous decision.
+
+
+Session reloads, then procedes on the regular until the time player warps in to make a change.  Both THIS decision will be implemented AND the previous decision (unless you decided to undo this.)
+
+
+Repeat until either Observer gives up or there is no more tear-jerking tragedy.
+
+
+
+
+
+So, once more: 
+
+
+
+PROBLEM: scenesTriggered index will not be consistent between timelines. 
+
+Brainstorm Solutions:
+
+add array to SaveDoomedTimeLines.  List of scene indexes to alter.  No, make new object that has index/result function pairings?
+
+no...if being that different, make new scene.  YellowYardResult or some shit.
+
+If I am careful to play the new scene juuust before the old one, then....wait. okay. no.
+I was going to say "resave the old scene index +1", but that won't be true every time. or even consistently. if a new scene has been added before me, add 1, else it's the same. hrrrrm...
+
+so, YellowYardResult will also have a boolean if a new scene has been added yet. (only one new scene can be added a runthrough.) if yes, increment your scene_trigger_id. if no, do nothing.
+
+
+
+
+
+
+Okay, I"m sure that's not enough to work just yet, but it's enough to start. BUT, there is still another subproblem I have not yet addressed:
+
+
+
+* Identify an important event.
+
+How do humans do this?
+
+Types of important events:
+	* a player dying
+	* a player engaging murder mode
+	* a player going grim dark
+	* jack being promoted.
+	* frog breeding
+
+	
+So, how do I decide which events to include in my Yellow Yard? Through the session summary code, I know I can find if MurderPlayer has happened. But that scene can result in a murder or result in clubs/diamonds.
+
+Okay, well, when I say "player dying", do I mean a permanent death, or any death?
+
+Should I have scenes be capable of creating a "ImportantEvent" object to give to their session?
+
+That might solve both sub problems. If a scene creates the important event BEFORE RENDERING, it can trigger the session to go to it's YellowYardResult object or whatever and decide whether or not the event should be altered.
+
+I am tentatively optimistic. 
+
+
+So, obviously if i was in a sane language, I'd have different types of Important Events subclass out from the main one, but javascript does not give a fuck. 
+Should Important Events be like scenes (i.e. a different class for each event), or should it be a big stupid jumble. Problem with different classes/files is it gets cumbersome including it in html documents and also is spoilers.
+
+big stupid jumble it is. but like, a hybrid jumble, with the different objects in a single file.
+
+An Important Event has a human readable label, and a function that is how to prevent that Event. (both the text/image to display and the results.  like player.dead = false. or whatever.)
+It should also have an importanceRating, because if I have more than a Yard's worth, I have to trim the list SOMEHOW.
+
+when a session is done and qualifies for a YellowYard, I display the list of important events that happened this session. One is selected and saved in the YellowYardResult object or whatever.
+ 
+ Then, the session is redone. Just like before, each time an ImportantEvent happens, the session asks the YellowYardResult if it's allowed to happen.  This time, for one of them, YellowYardResult says "no".
+ It says "no" because the ImportantEvent perfectly matches the saved event.
+ 
+ Example of match.:
+ 
+ ImportantEvent.subtype = "Player dies with a living dream self without God Tiering."
+ ImportantEvent.player = "Heir of Life"
+ 
+
+Note: this means that this Important Event can be matched even if it is under very different circumstances. For example, the timeline can vastly change, but so long as the Hier of Life still dies without godtiering, this event would be altered. Do I want this?
+
+For the authorBot, a good way to check if a session has changed before now is the check the value of the MVP. If things are mostly the same besides cosmetic stuff, this value will also be the same. 
+
+Alright, 
+
+ ImportantEvent.subtype = "Player dies with a living dream self without God Tiering."  (automatically decides importanceRating)
+ ImportantEvent.player = "Heir of Life"
+ ImportantEvent.mvp_value = 342
+ 
+ BAM, now altered events are mostly stable.
+
+ Okay, where was I?  
+ 
+ Okay, so the YellowYardResult has found a match. it tells the session, which returns to the scene that calls it. The scene does not render itself, and instead render the ImportantEvent.alternateTimeLine(); I need to make sure this function changes all relevant variables. Or...
+ 
+ Hrrm...  Let's say the ImportantEvent was the GrimDark MurderMode Heir of Life dying.   The scene kills them, (which clears our their status modifiers), and then asks if it can render the result. It is told no, and ImportantEvent.alternateTimeline brings them back to life.  But it doesn't know they were GrimDark MurderMode and doesn't restore that.
+ 
+ That clearly is unacceptable.
+ 
+ So, the scene should create an ImportantEvent BEFORE modifying anything. Not just before rendering.  But the problem is that many scenes modify things over time. Hrrrm.  Well, the important event can be PART of a scene.   Example, jack starts to show his stabs to the Heir of Life and the Maid of Mind, but the Bard of Time warps in and carts the Heir of Life's corpse to their sacrificial slab/quest bed. 
+ 
+ Okay, at this point I'm just waffling to avoid coding because once I start this will be real and WHAT IF IT'S STILL IMPOSSIBLE!?  Time to code.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

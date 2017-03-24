@@ -31,10 +31,20 @@ function Session(session_id){
 	this.hadCombinedSession = false;
 	this.parentSession = null;
 	this.availablePlayers = [];  //which players are available for scenes or whatever.
+	this.importantEvents = [];
+	
+	
+	//IMPORTANT do not add important events directly, or can't check for alternate timelines.
+	//oh god, just typing that gives me chills. time shenanigans are so great.
+	this.addImportantEvent = function(important_event){
+		this.importantEvents.push(important_event);
+		console.log("TODO: return if important event matches YellowYard event")
+	}
 
 
 	//child sessions are basically any session with an ID that matches the seed you stop on
 	//TODO could possibly be constrained to need a space or time player to navigage. or godtier light/doom??? could further require the player be from derse
+	//but this already 2-4% of all sessions, do i really want it to  be even rarer?
 	this.initializeCombinedSession = function(){
 		var living = findLivingPlayers(this.players);
 		//nobody is the leader anymore.
@@ -122,6 +132,38 @@ function Session(session_id){
 			//can't escape consequences.
 			this.players[k].consequencesForGoodPlayer();
 			this.players[k].consequencesForTerriblePlayer();
+		}
+	}
+	
+	this.convertPlayerNumberToWords = function(){
+		//alien players don't count
+		var ps = findPlayersFromSessionWithId(this.players, this.session_id);
+		if(ps.length == 0){
+			ps = this.players;
+		}
+		var length = ps.length;
+		if(length == 2){
+			return "TWO";
+		}else if(length == 3){
+			return "THREE";
+		}else if(length == 4){
+			return "FOUR";
+		}else if(length == 5){
+			return "FIVE";
+		}else if(length == 6){
+			return "SIX";
+		}else if(length == 7){
+			return "SEVEN";
+		}else if(length == 8){
+			return "EIGHT";
+		}else if(length == 9){
+			return "NINE";
+		}else if(length == 10){
+			return "TEN";
+		}else if(length == 11){
+			return "ELEVEN";
+		}else if(length == 12){
+			return "TWELVE";
 		}
 	}
 

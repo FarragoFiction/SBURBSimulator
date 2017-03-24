@@ -619,10 +619,10 @@ function  drawChatABJR(canvas, chat){
 	ctx.drawImage(img,0,0,width,height);
 
 	var p2SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-	drawJRChat(p2SpriteBuffer)
+	drawJRTurnways(p2SpriteBuffer)
 
 	var p1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-  drawAbChat(p1SpriteBuffer)
+	drawAb(p1SpriteBuffer)
 	//don't need buffer for text?
 	var textSpriteBuffer = getBufferCanvas(document.getElementById("chat_text_template"));
 	var introText = "-- authorBot [AB] began pestering ";
@@ -631,7 +631,7 @@ function  drawChatABJR(canvas, chat){
 	//drawBG(textSpriteBuffer, "#ff9999", "#ff00ff") //test that it's actually being rendered.
 	//p1 on left, chat in middle, p2 on right and flipped turnways.
 	copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,0,0)
-	copyTmpCanvasToRealCanvasAtPos(canvas, p2SpriteBuffer,730,0)//where should i put this?
+	copyTmpCanvasToRealCanvasAtPos(canvas, p2SpriteBuffer,530,0)//where should i put this?
 	copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,230,0)
 	copyTmpCanvasToRealCanvasAtPos(canvas, textSpriteBuffer,244,51)
 }
@@ -686,12 +686,12 @@ function drawChat(canvas, player1, player2, chat, repeatTime,topicImage){
   }
 }
 
-function drawAbChat(canvas){
+function drawAb(canvas){
   if(checkSimMode() == true){
     return;
   }
   ctx = canvas.getContext('2d');
-  var imageString = "ab_chat.png"
+  var imageString = "ab.png"
   addImageTag(imageString)
   var img=document.getElementById(imageString);
   var width = img.width;
@@ -699,18 +699,32 @@ function drawAbChat(canvas){
   ctx.drawImage(img,0,0,width,height);
 }
 
-function drawJRChat(canvas){
+function drawJR(canvas,ctx){
   if(checkSimMode() == true){
     return;
   }
-  ctx = canvas.getContext('2d');
-  var imageString = "jr_chat_turn.png"
+  if(!ctx){
+	ctx = canvas.getContext('2d');
+  }
+  var imageString = "jr.png"
   addImageTag(imageString)
   var img=document.getElementById(imageString);
   var width = img.width;
   var height = img.height;
   ctx.drawImage(img,0,0,width,height);
 }
+
+function drawJRTurnways(canvas){
+  if(checkSimMode() == true){
+    return;
+  }
+  ctx = canvas.getContext('2d');
+  ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
+  ctx.translate(canvas.width, 0);
+  ctx.scale(-1, 1);
+  drawJR(canvas, ctx);
+}
+
 
 
 function drawTopic(canvas, topicImage){
