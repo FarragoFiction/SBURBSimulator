@@ -25,7 +25,54 @@ function JackRampage(session){
 
 
 	this.renderContent = function(div){
-		div.append("<br>"+this.content());
+		//div.append("<br>"+this.content());
+
+		//jack finds 0 or more players.
+		var stabbings = this.getStabList();
+		var ret = "";
+		if(stabbings.length == 0){
+			if(Math.seededRandom() > .5){
+				ret += " Jack listlessly shows his stabs to a few Prospitian pawns. "
+			}else{
+				ret += " Jack listlessly shows his stabs to a few Dersite pawns. "
+			}
+			ret += " Bored of this, he decides to show his stabs to BOTH the Black and White Kings.  The battle is over. The Reckoning will soon start."
+			this.session.timeTillReckoning = 0;
+			return ret;
+		}
+		this.setPlayersUnavailable(stabbings);
+		var partyPower = getPartyPower(stabbings);
+		if(partyPower > this.session.jackStrength*5){
+			ret += getPlayersTitles(stabbings) + " suprise Jack with stabbings of their own. He is DEAD. ";
+			this.session.jackStrength =  -9999;
+			this.levelPlayers(stabbings);
+			ret += findDeadPlayers(this.session.players).length + " players are dead in the wake of his rampage. ";
+		}else if(partyPower > this.session.jackStrength){
+			ret += " Jack fails to stab " + getPlayersTitles(stabbings);
+			ret += "  He goes away to stab someone else, licking his wounds. ";
+			if(Math.seededRandom()>.9){
+				ret += " Bored of this, he decides to show his stabs to BOTH the Black and White Kings.  The battle is over. The Reckoning will soon start."
+				timeTillReckoning = 0;
+			}
+			this.minorLevelPlayers(stabbings);
+			this.session.jackStrength += -10;
+		}else if(partyPower == this.session.jackStrength){
+			ret += " Jack is invigorated by the worthy battle with " + getPlayersTitles(stabbings);
+			ret += " he retreats, for now, but with new commitment to stabbings. ";
+			this.session.jackStrength += 10;
+		}else{
+			ret += " Jack shows his stabs to " + getPlayersTitles(stabbings) + " until they die.  DEAD.";
+			div.append("<br>"+ret);
+			this.killPlayers(stabbings);
+			var divID = (div.attr("id"))
+			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+			div.append(canvasHTML);
+			var canvas = document.getElementById("canvas"+ divID);
+			poseAsATeam(canvas, stabbings);
+			//foundRareSession(div, "Jack murders. " + this.session.session_id);
+			return;//make sure text is over image
+		}
+		div.append("<br>"+ret);
 	}
 
 	this.killPlayers = function(stabbings){

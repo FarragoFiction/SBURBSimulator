@@ -44,6 +44,7 @@ function CorpseSmooch(session){
 		d.murderMode = false;
 		d.grimDark = false;
 		d.triggerLevel = 1;
+		d.leftMurderMode = false; //no scars
 		d.victimBlood = null; //clean face
 	}
 

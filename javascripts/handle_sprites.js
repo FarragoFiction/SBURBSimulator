@@ -636,6 +636,14 @@ function  drawChatABJR(canvas, chat){
 	copyTmpCanvasToRealCanvasAtPos(canvas, textSpriteBuffer,244,51)
 }
 
+//hella simple, mostly gonna be used for corpses.
+function drawSinglePlayer(canvas, player){
+  var p1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+	drawSprite(p1SpriteBuffer,player)
+  //drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff")
+  copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,-100,0)
+}
+
 //need to parse the text to figure out who is talking to determine color for chat.
 function drawChat(canvas, player1, player2, chat, repeatTime,topicImage){
   if(checkSimMode() == true){
@@ -818,6 +826,7 @@ function makeRenderingSnapshot(player){
 	ret.grimDark = player.grimDark;
 	ret.victimBlood = player.victimBlood;
 	ret.murderMode = player.murderMode;
+  ret.leftMurderMode = player.leftMurderMode; //scars
 	ret.dead = player.dead;
 	ret.isTroll = player.isTroll
 	ret.godTier = player.godTier;
@@ -899,6 +908,9 @@ function drawSprite(canvas, player,ctx,baby){
     if(player.murderMode == true){
   	  scratch_face(canvas, player);
     }
+    if(player.leftMurderMode == true){
+  	  scar_face(canvas, player);
+    }
   }else{
     babySprite(canvas,player);
   }
@@ -936,6 +948,17 @@ function playerToSprite(canvas, player){
 	//TODO check for murder mode or grim darkness.
 }
 
+
+function scar_face(canvas, player){
+	ctx = canvas.getContext('2d');
+	var imageString = "scratch_face.png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,width/6,height/4,width,height);
+	swapColors(canvas, "#440a7f", "#f4f4f4"); //it's a scar
+}
 
 function scratch_face(canvas, player){
 	ctx = canvas.getContext('2d');

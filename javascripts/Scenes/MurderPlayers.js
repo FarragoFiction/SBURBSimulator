@@ -72,6 +72,7 @@ function MurderPlayers(session){
 
 	//diamond faces murderer, calms them the hell down and hug bumps are shared.
 	this.renderDiamonds = function(div, murderer, diamond){
+		this.session.hasDiamonds = true;
 		var divID = (div.attr("id")) + "_" + diamond.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
@@ -99,6 +100,7 @@ function MurderPlayers(session){
 
 	//random Auspistice settles their shit down.  this will probably be pretty rare.
 	this.renderClubs = function(div, murderer, victim, club){
+		this.session.hasClubs = true;
 		//alert("clubs)")
 		var divID = (div.attr("id")) + "_" + club.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
@@ -148,6 +150,7 @@ function MurderPlayers(session){
 					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
 					ret += ", but instead the Bloody Thing happens and the " + m.htmlTitle() + " is calmed down, and hug bumps are shared. ";
 					m.murderMode = false;
+					m.leftMurderMode = true;
 					worstEnemy.checkBloodBoost(livePlayers);
 					m.triggerLevel = 1;
 					this.renderDiamonds(div, m, worstEnemy);
@@ -165,6 +168,7 @@ function MurderPlayers(session){
 						ret += " The task is made especially easy (yet tragic) by the " + m.htmlTitle() + " being in the middle of dying. "
 					}
 					m.murderMode = false;
+					m.leftMurderMode = true;
 					m.triggerLevel = 1;
 					this.renderDiamonds(div, m, worstEnemy);
 					var r = m.getRelationshipWith(worstEnemy);
@@ -177,6 +181,7 @@ function MurderPlayers(session){
 						ret += " The task is made especially easy by the " + m.htmlTitle() + " dying partway through. "
 					}
 					m.murderMode = false;
+					m.leftMurderMode = true;
 					m.triggerLevel = 1;
 					this.renderClubs(div, m, worstEnemy,ausp);
 					var r = m.getRelationshipWith(ausp); //neutral to middle leaf, but unchanged about each other.
@@ -220,6 +225,7 @@ function MurderPlayers(session){
 					//alert("shit settled")
 					ret += " The " + m.htmlTitle() + " has officially settled their shit. ";
 					m.murderMode = false;
+					m.leftMurderMode = true;
 				}else{
 					ret += " The " + m.htmlTitle() + " can't find anybody they hate enough to murder. They calm down a little. ";
 				}
@@ -245,6 +251,7 @@ function MurderPlayers(session){
 					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
 					ret += ", but instead the Bloody Thing happens and the " + m.htmlTitle() + " is calmed down, and hug bumps are shared. ";
 					m.murderMode = false;
+					m.leftMurderMode = true;
 					worstEnemy.checkBloodBoost(livePlayers);
 					m.triggerLevel = 1;
 					return ret; //don't try to murder. (and also blood powers stop any other potential murders);
@@ -256,6 +263,7 @@ function MurderPlayers(session){
 					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
 					ret += ", but instead gets talked down hardcore. Shit is downright tender.";
 					m.murderMode = false;
+					m.leftMurderMode = true;
 					m.triggerLevel = 1;
 					this.renderDiamonds(div, m, worstEnemy);
 				}else if(worstEnemy.power < m.power*2){  //more likely to kill enemy than be killed. element of surprise

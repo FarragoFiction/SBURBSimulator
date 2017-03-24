@@ -1,13 +1,13 @@
 function GodTierRevival(session){
 	this.canRepeat = true;
-	this.session = session;	
+	this.session = session;
 	this.playerList = [];  //what players are already in the medium when i trigger?
-	this.godsToRevive = []; 
-	
+	this.godsToRevive = [];
+
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		this.godsToRevive = [];
-		//all dead players who aren't god tier and are destined to be god tier god tier now. 
+		//all dead players who aren't god tier and are destined to be god tier god tier now.
 		var deadPlayers = findDeadPlayers(playerList);
 		for(var i = 0; i<deadPlayers.length; i++){
 			var p = deadPlayers[i];
@@ -17,9 +17,9 @@ function GodTierRevival(session){
 			}
 		}
 		return this.godsToRevive.length > 0;
-		
+
 	}
-	
+
 	this.renderContent = function(div){
 		div.append("<br>"+this.content());
 		var repeatTime = 1000;
@@ -47,10 +47,10 @@ function GodTierRevival(session){
 			drawGodRevival(canvasDiv, live_players, dead_players,repeatTime)
 		}, repeatTime/2);  //images aren't always loaded by the time i try to draw them the first time.
 	}
-	
+
 	this.content = function(){
 		var ret = " The game abstraction of the Judgement Clock is ruling on the death of the " + getPlayersTitles(this.godsToRevive ) + ". ";
-		
+
 		for(var i = 0; i< this.godsToRevive.length; i++){
 			var p = this.godsToRevive[i];
 			ret += " The " + p.htmlTitle() + "'s death is judged to be ";
@@ -64,13 +64,14 @@ function GodTierRevival(session){
 				ret += " neither HEROIC nor JUST.  They revive in a rainbow glow, stronger than ever. ";
 				p.dead = false;
 				p.canGodTierRevive = true;
-				p.increasePower();	
+				p.increasePower();
 				p.murderMode = false;
 				p.grimDark = false;
+				p.leftMurderMode = false;
 				p.triggerLevel = 1;
-				
+
 			}
-			
+
 		}
 		return ret;
 	}

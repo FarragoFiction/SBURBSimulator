@@ -47,7 +47,8 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	//players can be triggered for various things. higher their triggerLevle, greater chance of going murdermode or GrimDark.
 	this.triggerLevel = -2; //make up for moon bonus
 	this.murderMode = false;  //kill all players you don't like. odds of a just death skyrockets.
-  	this.grimDark = false;  //all relationships set to 0. power up a lot. odds of  a just death skyrockets.
+	this.leftMurderMode = false; //have scars, unless left via death.
+  this.grimDark = false;  //all relationships set to 0. power up a lot. odds of  a just death skyrockets.
 	this.leader = false;
 	this.landLevel = 0; //at 10, you can challenge denizen.  only space player can go over 100 (breed better universe.)
 	this.denizenFaced = false; //when faced, you double in power (including future power increases.)

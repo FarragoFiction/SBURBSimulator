@@ -76,6 +76,7 @@ function GetTiger(session){
 			p.dreamSelf = false;
 			p.murderMode = false;
 			p.grimDark = false;
+			p.leftMurderMode = false; //no scars
 			p.triggerLevel = 1;
 			p.dead = false;
 			p.power += 200;

@@ -13,6 +13,8 @@ var sessionObjects = []
 var curSessionGlobalVar;
 var sessionsSimulated = []
 var timesEcto = 0;
+var timesDiamonds = 0;
+var timesClubs = 0;
 var timesDenizen = 0;
 var timesExileJack = 0;
 var timesPlanExileJack = 0;
@@ -22,6 +24,7 @@ var timesJackScheme = 0;
 var timesJackRampage = 0;
 var timesJackPromotion = 0;
 var timesKingPowerful = 0;
+var timesTotalPartyLive = 0;
 var timesQueenRejectRing = 0;
 var timesSavedDoomedTimeLine = 0;
 var timesInterestingSaveDoomedTimeLine = 0;
@@ -399,6 +402,8 @@ function printStats(){
 	str += "<Br>Times GrimDark (at least one player): " + timesGrimDark + " (" + Math.round((timesGrimDark/sessionsSimulated.length)*100) + "%)";
 
 	str += "<Br>Times MurderMode (at least one player): " + timesMurderMode + " (" + Math.round((timesMurderMode/sessionsSimulated.length)*100) + "%)";
+	str += "<Br>Times Diamonds (at least one player): " + timesDiamonds + " (" + Math.round((timesDiamonds/sessionsSimulated.length)*100) + "%)";
+	str += "<Br>Times Clubs (at least one player): " + timesClubs + " (" + Math.round((timesClubs/sessionsSimulated.length)*100) + "%)";
 
 	str += "<Br>Times Fought Denizen (at least once): " + timesDenizen + " (" + Math.round((timesDenizen/sessionsSimulated.length)*100) + "%)";
 

@@ -263,7 +263,7 @@ function RelationshipDrama(session){
 		chatText += chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2))
 		chatText += chatLine(player1Start, player1,"So... " + crush.chatHandle + ", they are " + this.generateNewOpinion(r1) + ", you know?");
 	  chatText += chatLine(player1Start, player1,"Like, maybe I didn't see that at first, but now all I can do is think about how " + trait + " they are.");
-		chatText += chatLine(player1Start, player1,"Shit...maybe I should just tell them? God, why is so hard being in love. It's hard and nobody understands.");
+		chatText += chatLine(player1Start, player1,"Shit... maybe I should just tell them? God, why is it so hard being in love. It's hard and nobody understands.");
 		chatText += chatLine(player1Start, player1,"You're right. I'm going to tell them. Soon. When the time is right. ");
 		chatText += chatLine(player1Start, player1,"You're always so good at advice.  Thanks!");
 		drawChat(canvasDiv, player1, player2, chatText, 1000,"discuss_romance.png");
@@ -416,9 +416,9 @@ function RelationshipDrama(session){
 			var narration = "<br>The " + player.htmlTitle() + " used to think that the " + relationship.target.htmlTitle() + " was ";
 			narration += this.generateOldOpinion(relationship) + ", but now they can't help but think they are " + this.generateNewOpinion(relationship) + ".";
 			if(jerk.dead == true){
-				narration += "It's hard for the : " + player.htmlTitle() + " to care that they died.";
+				narration += " It's hard for the " + player.htmlTitle() + " to care that they died.";
 			}
-			narration += "It's a shame the " + player.htmlTitle() + " has nobody to talk to about this. ";
+			narration += " It's a shame the " + player.htmlTitle() + " has nobody to talk to about this. ";
 			div.append(narration);
 			return;
 		}

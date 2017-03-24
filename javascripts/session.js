@@ -2,6 +2,8 @@
 function Session(session_id){
 	this.session_id = session_id; //initial seed
 	this.players = [];
+	this.hasClubs = false;
+	this.hasDiamonds = false;
 	this.guardians = [];
 	this.kingStrength = 100;
 	this.queenStrength = 100;
@@ -226,6 +228,13 @@ function Session(session_id){
 		if(living.length == 0){
 			timesTotalPartyWipe ++;
 		}
+
+		var dead = findDeadPlayers(this.players);
+		str += "<br><b>&nbsp&nbsp&nbsp&nbspDead Players: " + dead.length+ "</b>"
+		if(living.length == 0){
+			timesTotalPartyLive ++;
+		}
+
 		var tmp = "";
 		tmp =  summarizeScene(this.scenesTriggered, "DoEctobiology")
 		if(findSceneNamed(this.scenesTriggered,"DoEctobiology") != "No"){
@@ -346,6 +355,20 @@ function Session(session_id){
 		totalFrogLevel += spacePlayer.landLevel;
 		str += "<br>&nbsp&nbsp&nbsp&nbspFrog Breeding: " + result +  " (" + spacePlayer.landLevel +")"
 
+		var diamond = "No"
+		if(this.hasDiamonds == true){
+			diamond = "Yes";
+			timesDiamonds ++;
+		}
+		str += "<br>&nbsp&nbsp&nbsp&nbspDiamonds: " + diamond;
+
+		var club = "No"
+		if(this.hasClubs == true){
+			club = "Yes";
+			timesClubs ++;
+		}
+		str += "<br>&nbsp&nbsp&nbsp&nbspClubs: " + club;
+
 		checkDoomedTimelines();
 		return(str)
 
@@ -357,7 +380,7 @@ function summarizeScene(scenesTriggered, str){
 	if(tmp != "No"){
 		tmp = "Yes"
 	}
-	return "<br>&nbsp&nbsp&nbsp&nbsp" +str + " : " + tmp
+	return "<br>&nbsp&nbsp&nbsp&nbsp" +str + ": " + tmp
 }
 
 function findSceneNamed(scenesToCheck, name){
