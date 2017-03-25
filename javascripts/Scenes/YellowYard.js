@@ -10,6 +10,11 @@ function YellowYard(session){
 		return true;
 	}
 
+	this.yellowYardTime = function(div){
+		var html = "<img src = 'images/yellow_yard.png'>";
+		div.append(html);
+	}
+
 //22577 is short
 	this.renderContent = function(div){
 		//div.append("<br>"+this.content());
@@ -33,7 +38,7 @@ function YellowYard(session){
 
 		}else{
 			console.log("time player is alive.")
-			chat += "JR: I guess I should get with it, then. \n "
+			chat += "JR: I guess I should get on with it, then. \n "
 			chat += "AB: Word. \n "
 		}
 
@@ -66,9 +71,7 @@ function YellowYard(session){
 			drawChatJRPlayer(canvasDiv3, chat, player);
 		}
 
-
-
-
+		this.yellowYardTime(div);
 	}
 
 	this.timeChat = function(){
@@ -85,16 +88,13 @@ function YellowYard(session){
 			chat += "JR: That way if you have to do this again, you won't necessarily just repeat the same decision.\n"
 
 		}else{
-			chat += chat += chatLine(playerStart, this.timePlayer,"Who the fuck are you!? ")
+			chat +=  chatLine(playerStart, this.timePlayer,"Who the fuck are you!? ")
 			chat += "JR: I'm the Waste of Mind, and I can help you prevent this doomed timeline. \n"
-			chat += chat += chatLine(playerStart, this.timePlayer,"Fuck. Where were you before, when we were all dying!? ")
+			chat +=  chatLine(playerStart, this.timePlayer,"Fuck. Where were you before, when we were all dying!? ")
 			chat += "JR: I can prevent this from happening retroactively. Not in the first place. Not without nullifying the basic ability of intelligent beings in all real and hypothetical planes of existance to give a shit. \n"
 			chat += "JR: And as sad as your session went, it's not as sad as me endangering ALL sessions by doing that. \n"
-			chat += "JR: Look. Just. Try to pull it together. I know this sucked. But that's why we're gonna fix it. If you do this on your own, your decisions get locked in by fate. You only get one shot. But I can give you a bunch of shots. \n"
-			chat += chatLine(playerStart, this.timePlayer,"Fuck. Okay. ")
-			chat += "JR:  I'll give you a list of things you can go back in time and change, and you pick whichever you want. Flip a coin for all I care. I'll take care of making sure the decisions are outside of fate. \n"
 		}
-		return chat;
+			return chat;
 	}
 
 	this.timeChat2 = function(){
@@ -104,6 +104,9 @@ function YellowYard(session){
 
 
 		}else{
+			chat += "JR: Look. Just. Try to pull it together. I know this sucked. But that's why we're gonna fix it. If you do this on your own, your decisions get locked in by fate. Alone, you only get one shot. But I can give you a bunch of shots. \n"
+			chat += chatLine(playerStart, this.timePlayer,"Fuck. Okay. ")
+			chat += "JR:  I'll give you a list of things you can go back in time and change, and you pick whichever you want. Flip a coin for all I care. I'll take care of making sure the decisions are outside of fate. \n"
 
 		}
 		return chat;
@@ -122,6 +125,7 @@ function YellowYard(session){
 				chat += "JR: Eh, hand wavey Waste of Mind shenanigans. Don't worry about it. \n"
 				chat += chatLine(playerStart, player,"Given that this plan will cost my life, I think it is perfectly reasonable to worry about it. ")
 				chat += "JR: Bluh. All you need to know is that I'll give you a list of things you can go back in time and change. Decide on one however you want, and I'll make sure your decision isn't locked in by fate. That will let us figure out which decisions are the right ones. Retroactively. But also simultaneously. Time shenanigans. \n"
+				chat += chatLine(playerStart, player,"Yes. I'm starting to get tired of time shenanigans. ")
 			}else{
 				chat += chatLine(playerStart, player,"...  What the actual fuck is going on here? Who are you? Why is everybody dead?  Why am *I* dead!? ")
 				chat += "JR: Shit. Having to explain makes things complicated. \n"
