@@ -19,7 +19,7 @@ function YellowYard(session){
 		events = padEventsTo12WithKilling(events, this.session);
 		var events = sortEventsByImportance(events);
 
-		html += "<form id = 'decisions' style='position: relative; top: 137px; left: 280px; font-size: 22px;'>"
+		html += "<form id = 'decisions' style='position: relative; top: 133px; left: 280px; font-size: 22px;'>"
 		for(var i = 0; i<12; i++){
 			if(i < events.length){
 			html += " <input type='radio' name='decision' value='" + i + "'>"+events[i].humanLabel() + "<br>";
