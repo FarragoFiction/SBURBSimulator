@@ -26,6 +26,14 @@ function PlayerSnapshot(){
 		return this.chatHandle.match(/\b(\w)|[A-Z]/g).join('').toUpperCase();
 	}
 
+	this.getChatFontColor = function(){
+		if(this.isTroll){
+			return this.bloodColor;
+		}else{
+			return getColorFromAspect(this.aspect);
+		}
+	}
+
 	this.chatHandleShortCheckDup = function(otherHandle){
 		var tmp= this.chatHandle.match(/\b(\w)|[A-Z]/g).join('').toUpperCase();
 		if(tmp == otherHandle){

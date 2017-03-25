@@ -29,7 +29,7 @@ function Aftermath(session){
 		}
 		return ret;
 	}
-	
+
 	//oh goodness, what is this?
 	this.yellowLawnRing = function(div){
 		var living = findLivingPlayers(this.session.players);
@@ -42,7 +42,7 @@ function Aftermath(session){
 		}
 		if(dead.length >= living.length && timePlayer){
 			console.log("Time Player: " + timePlayer);
-			var s = new ForeshadowYellowYard(this.session);
+			var s = new YellowYard(this.session);
 			s.timePlayer = timePlayer;
 			s.trigger();
 			s.renderContent(div);

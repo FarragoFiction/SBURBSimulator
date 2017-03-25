@@ -170,9 +170,11 @@ function CorpseSmooch(session){
 	}
 
 	this.addImportantEvent = function(player){
+		var current_mvp =  findStrongestPlayer(this.session.players)
 		if(player.godDestiny == false){//could god tier, but fate wn't let them
-			var current_mvp =  findStrongestPlayer(this.session.players)
 			this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
+		}else{
+			this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
 		}
 	}
 

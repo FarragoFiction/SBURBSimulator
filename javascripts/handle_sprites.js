@@ -603,6 +603,38 @@ function checkSimMode(){
   return false
 }
 
+function drawChatJRPlayer(canvas, chat, player){
+  if(checkSimMode() == true){
+    return;
+  }
+
+  var canvasSpriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
+	ctx = canvasSpriteBuffer.getContext('2d');
+	var imageString = "pesterchum.png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,0,0,width,height);
+
+	var jrSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+	drawJR(jrSpriteBuffer)
+
+  var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+	drawSpriteTurnways(pSpriteBuffer,player)
+
+  var textSpriteBuffer = getBufferCanvas(document.getElementById("chat_text_template"));
+	var introText = "-- jadedResearcher [AB] began pestering ";
+	introText += player.chatHandle + " [" + player.chatHandleShort()+ "] --";
+	drawChatTextJRPlayer(textSpriteBuffer, introText, chat,player)
+
+
+  copyTmpCanvasToRealCanvasAtPos(canvas, jrSpriteBuffer,0,0)
+	copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,650,0)//where should i put this?
+	copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,230,0)
+	copyTmpCanvasToRealCanvasAtPos(canvas, textSpriteBuffer,244,51)
+}
+
 //she is the best <3
 function  drawChatABJR(canvas, chat){
   if(checkSimMode() == true){
@@ -755,6 +787,20 @@ function drawComboText(canvas,comboNum){
 	}
 	ctx.fillText(comboNum + "x CORPSESMOOCH COMBO"+excite,20,20);
 
+}
+
+function drawChatTextJRPlayer(canvas, introText, chat, player){
+  var space_between_lines = 25;
+	var left_margin = 8;
+	var line_height = 18;
+	var start = 18;
+	var current = 18;
+	var ctx = canvas.getContext("2d");
+	ctx.font = "12px Times New Roman"
+	ctx.fillStyle = "#000000";
+	ctx.fillText(introText,left_margin*2,current);
+	//need custom multi line method that allows for differnet color lines
+	fillChatTextMultiLineJRPlayer(canvas, chat, player, left_margin, current+line_height*2);
 }
 
 function drawChatTextAB(canvas, introText, chat){
@@ -1606,6 +1652,37 @@ function fillTextMultiLine(canvas, text1, text2, color2, x, y) {
 	//word wrap these
 	ctx.fillStyle = color2
  	wrap_text(ctx, text2, x, y, lineHeight, 3*canvas.width/4, "left");
+	ctx.fillStyle = "#000000"
+}
+
+function fillChatTextMultiLineJRPlayer(canvas, chat, player, x, y){
+  var ctx = canvas.getContext("2d");
+	var lineHeight = ctx.measureText("M").width * 1.2;
+    var lines = chat.split("\n");
+	var playerStart = player.chatHandleShort()
+	var jrStart = "JR: "
+ 	for (var i = 0; i < lines.length; ++i) {
+		//does the text begin with player 1's chat handle short? if so: getChatFontColor
+		var ct = lines[i].trim();
+
+		//check player 2 first 'cause they'll be more specific if they have same initials
+		if(ct.startsWith(playerStart)){
+			ctx.fillStyle = player.getChatFontColor();
+      if(player.grimDark == true) {
+        	ctx.font = "12px horrorterror"
+      }else{
+        	ctx.font = "12px Times New Roman"
+      }
+		}else if(ct.startsWith(jrStart)){
+      ctx.fillStyle = "#3da35a";
+      ctx.font = "12px Times New Roman"
+		}else{
+			ctx.fillStyle = "#000000"
+		}
+		var lines_wrapped = wrap_text(ctx, ct, x, y, lineHeight, canvas.width-50, "left")
+  		y += lineHeight * lines_wrapped;
+  	}
+	//word wrap these
 	ctx.fillStyle = "#000000"
 }
 
