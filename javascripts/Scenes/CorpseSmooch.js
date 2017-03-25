@@ -174,8 +174,11 @@ function CorpseSmooch(session){
 		if(player.godDestiny == false){//could god tier, but fate wn't let them
 			this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
 			this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
-		}else{
+		}else if(this.session.reckoningStarted == true) { //if the reckoning started, they couldn't god tier.
 			this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
+			this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
+		}else{
+				this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
 		}
 	}
 
