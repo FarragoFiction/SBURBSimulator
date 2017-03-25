@@ -24,6 +24,7 @@ function MurderPlayers(session){
 		if(player.isDreamSelf == true && player.godDestiny == false && player.godTier == false){
 			var current_mvp =  findStrongestPlayer(this.session.players)
 			this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
+			this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
 		}
 	}
 

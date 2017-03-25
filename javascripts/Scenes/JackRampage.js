@@ -113,6 +113,7 @@ function JackRampage(session){
 			var player = players[i];
 			if(player.isDreamSelf == true && player.godDestiny == false && player.godTier == false){
 				this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
+				this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
 			}
 		}
 

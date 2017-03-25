@@ -10,8 +10,26 @@ function YellowYard(session){
 		return true;
 	}
 
+
+
 	this.yellowYardTime = function(div){
-		var html = "<img src = 'images/yellow_yard.png'>";
+		//var html = "<img src = 'images/yellow_yard.png'>";
+		var html = "<div id = 'yellow_yard' style='background:url(images/yellow_yard.png); width:1000px; height: 521px'>";
+		var events = this.session.importantEvents;
+		events = padEventsTo12WithKilling(events, this.session);
+		var events = sortEventsByImportance(events);
+
+		html += "<form id = 'decisions' style='position: relative; top: 137px; left: 280px; font-size: 22px;'>"
+		for(var i = 0; i<12; i++){
+			if(i < events.length){
+			html += " <input type='radio' name='decision' value='" + i + "'>"+events[i].humanLabel() + "<br>";
+		}else{//no more important events to undo
+			html += " <Br>";
+			}
+		}
+
+		html += "<button onclick='decision()'>Decide</button></form>"
+		html+= "</div>"
 		div.append(html);
 	}
 

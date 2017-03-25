@@ -80,7 +80,7 @@ function FrogBreedingNeedsHelp(session, mvp_value){
 	console.log("frog breeding needs help " + session.session_id)
 	this.session = session;
 	this.mvp_value = mvp_value;
-	this.importanceRating = 1;  //really, this is probably the least useful thing you could do. If this is the ONLY thing that went wrong, your session is going great.
+	this.importanceRating = 2;  //really, this is probably the least useful thing you could do. If this is the ONLY thing that went wrong, your session is going great.
 	var spacePlayer = findAspectPlayer(this.session.players, "Space");
 	this.humanLabel = function(){
 		var ret  = "Help the " + spacePlayer.htmlTitleBasic() + " complete frog breeding duties.";
@@ -89,6 +89,25 @@ function FrogBreedingNeedsHelp(session, mvp_value){
 
 }
 
+//not an important event that gets recorded, but something a time player can go back in time to do.
+function KillPlayer(session, player){
+	this.session = session;
+	this.player = player;
+	this.importanceRating = 1;  //really, this is probably the least useful thing you could do. If this is the ONLY thing that went wrong, your session is going great.
+	this.humanLabel = function(){
+		var ret  = "Kill the " + player.htmlTitleBasic() + ".";
+		return ret;
+	}
+}
+
+function padEventsTo12WithKilling(events,session){
+	var num = 12 - events.length;
+	num = Math.min(num, session.players.length);
+	for(var i = 0; i<num; i++){
+			events.push(new KillPlayer(session, session.players[i]))
+	}
+	return events;
+}
 function sortEventsByImportance(events){
 	return events.sort(comparePriority)
 }
