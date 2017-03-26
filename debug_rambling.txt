@@ -320,16 +320,7 @@ Alright,
 
  why is page of time god tier twice listed? is it just first?  in subsequent loops its life that gets repeated
 
- Make doomedTimeClones an array of snapshots, not a number. have doomed time clones generated at creation, not at fightking/fight queen time.
-
- show doomed time clones when they first show up.  will match the clone that shows up later at final fight.
-
- no extra doomed time clones.
-
- add gear symbols to doomed time clones initial warp in.
-
  add alternate scenes for all important events
+  make player not die is NOT just an alternate to god tiering. god tiering deals with corpses, but not dying needs to be the scene that MAKES the corpse
 
  add scene for undoing your own undoing. basically generate list from scenesToUndo.  add before killing players list.
-
- figure out how i can warn the Observer that they aren't guaranteed a second shot here.
