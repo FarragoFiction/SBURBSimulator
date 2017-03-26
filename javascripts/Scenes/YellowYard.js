@@ -50,6 +50,9 @@ function YellowYard(session){
 		chat += "AB: " +getRandomElementFromArrayNoSeed(quips1) + "\n";
 		chat += "JR: Shit...you really aren't kidding. \n";
 		var player = this.timePlayer;
+		if(this.timePlayer.dead==true){
+			player = this.getDoomedTimeClone();
+		}
 		if(this.session.yellowYardController.eventsToUndo.length > 0){
 			chat += "JR: This. This isn't the first time we've done this here, is it?\n";
 			chat += "AB: No. Counting this session, we have done this " + (this.session.yellowYardController.eventsToUndo.length+1) + " times now.\n";
@@ -63,9 +66,8 @@ function YellowYard(session){
 				chat += "AB: I would give you my gratitude if it wouldn't be a weird and sort of incestuous way of you thanking yourself. \n"
 
 			}
-			chat += "JR: Okay. Enough chitchat. I better start this cycle up again.";
+			chat += "JR: Okay. Enough chitchat. I better start this cycle up again. To the Observer: be warned that just because you have been given a second chance here doesn't mean you always will.  If you manage to keep this from being quite so tragic, I won't show up, even if they ultimately fail.  Thems the breaks.";
 		}else if (this.timePlayer.dead){
-			player = this.getDoomedTimeClone();
 			chat += "JR: Though...I admit that without a time player my plan becomes a lot more impossible. \n "
 			chat += "AB: Nah, I took care of that. See? There's the " + this.timePlayer.titleBasic()+" over there, now. Time shenanigans.  I wouldn't have brought you to a completely hopeless session. Roughly 50% of all sessions this bad with a dead time player have that player travel to this point in time before they die. \n "
 			chat += "JR: Oh! Cool. I guess I should pester them. \n "
@@ -79,7 +81,6 @@ function YellowYard(session){
 		}
 
 		drawChatABJR(canvasDiv, chat);
-		//make handle sprit emethod for jr pester player
 
 		var canvasHTML2 = "<br><canvas id='canvasJRAB2" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML2);
@@ -143,7 +144,6 @@ function YellowYard(session){
 			chat += "JR: Look. Just. Try to pull it together. I know this sucked. But that's why we're gonna fix it. If you do this on your own, your decisions get locked in by fate. Alone, you only get one shot. But I can give you a bunch of shots. \n"
 			chat += chatLine(playerStart, this.timePlayer,"Fuck. Okay. ")
 			chat += "JR:  I'll give you a list of things you can go back in time and change, and you pick whichever you want. Flip a coin for all I care. I'll take care of making sure the decisions are outside of fate. \n"
-
 		}
 		return chat;
 	}

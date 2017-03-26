@@ -37,7 +37,7 @@ so whether or not there is more in rendering is different for different sessions
 
 what if only intro, no tick
 659
-800 
+800
 
 vs
 
@@ -50,7 +50,7 @@ real page	ai finder simulation = false
 977		659
 2870		2870
 
-I wonder why rendering has the console statements print 
+I wonder why rendering has the console statements print
 out in 2 parts, and not consistently in 2 parts?
 Like...both things have 2870 as the second part.
 But the first part is different. Why?
@@ -67,7 +67,7 @@ Nope. only called once.
 
 Okay. What do I know?
 
-There is a problem even in the intro stuff. 
+There is a problem even in the intro stuff.
 That greatly shortens the stuff I have to look into.
 
 Simulation = false is identical to the real stuff,
@@ -77,7 +77,7 @@ Question: What happens in the intro (when sim=false).
 
 Where/when does it differ from sim-true?
 
-Both intros are identical.  But...use different amount of seeds?  Okay, 
+Both intros are identical.  But...use different amount of seeds?  Okay,
 maybe directly measureing seeds isn't the best way? with regular ticks on,
  where do they start to differ?
 
@@ -85,8 +85,8 @@ maybe directly measureing seeds isn't the best way? with regular ticks on,
 
 
 !!!!!!!!!!!!!!!!!!!!!!!!!
-The very last thing that is the same is 
-The Maid of Void makes a general nuisance of themselves to the Black Queen. 
+The very last thing that is the same is
+The Maid of Void makes a general nuisance of themselves to the Black Queen.
 
 Then,sim-false the Heir of Rage black flirts with Knight of Space,
  and gets rejected. Then ectobiology happens.
@@ -144,7 +144,7 @@ Also, now I need to go make sure anywhere i'm using type() is saved_type unless 
 Fuck. Fuck. It's still happening though, even though i found an obvious use of random seeds.
 
 Oh god, I just realized that before when i was rendering empty buffers, I thought it was right that it was still pirouetting.
-that's wrong. damng. 
+that's wrong. damng.
 
 Wait. no, that's actually right. the rendered version is wrong. acrobatic piroutte is right because it's when less seeds.
 
@@ -171,9 +171,9 @@ I have a several ways to identify a point in time in session, but none of them a
 * Scene Index:  I have a list of "scenesTriggered" in the sesion, which is how I summarize a session, partly. This list is not guaranteed to be useful. I'm pretty sure it just adds the scene in the scene list. The same scene can appear multiple times, and will in fact be changed over time (for example, corpse smooch will have different players attached to it.)
 
 
-Sub problems:  
+Sub problems:
 * Identify an important event.
-* add an event before the important event.  
+* add an event before the important event.
 
 
 
@@ -185,9 +185,9 @@ SHOULD it have highest priority? It just needs to happen before the important ev
 CONSTRAINT FOUND:  Scenes need to be identified by scenesTriggered index, not timeTillReckoning. This makes sense in retrospect.
 
 
-PROBLEM FOUND: scenesTriggered index will not be consistent between timelines. 
+PROBLEM FOUND: scenesTriggered index will not be consistent between timelines.
 
-I need them to be.  The whole point is that the Observer (that's you, btw) gets to make a decision after a virgin doomed timeline happens. 
+I need them to be.  The whole point is that the Observer (that's you, btw) gets to make a decision after a virgin doomed timeline happens.
 So,they insert a scene that wasn't there before. Which by definition alters the index of the previous thingy.
 
 
@@ -220,11 +220,11 @@ Repeat until either Observer gives up or there is no more tear-jerking tragedy.
 
 
 
-So, once more: 
+So, once more:
 
 
 
-PROBLEM: scenesTriggered index will not be consistent between timelines. 
+PROBLEM: scenesTriggered index will not be consistent between timelines.
 
 Brainstorm Solutions:
 
@@ -257,7 +257,7 @@ Types of important events:
 	* jack being promoted.
 	* frog breeding
 
-	
+
 So, how do I decide which events to include in my Yellow Yard? Through the session summary code, I know I can find if MurderPlayer has happened. But that scene can result in a murder or result in clubs/diamonds.
 
 Okay, well, when I say "player dying", do I mean a permanent death, or any death?
@@ -266,10 +266,10 @@ Should I have scenes be capable of creating a "ImportantEvent" object to give to
 
 That might solve both sub problems. If a scene creates the important event BEFORE RENDERING, it can trigger the session to go to it's YellowYardResult object or whatever and decide whether or not the event should be altered.
 
-I am tentatively optimistic. 
+I am tentatively optimistic.
 
 
-So, obviously if i was in a sane language, I'd have different types of Important Events subclass out from the main one, but javascript does not give a fuck. 
+So, obviously if i was in a sane language, I'd have different types of Important Events subclass out from the main one, but javascript does not give a fuck.
 Should Important Events be like scenes (i.e. a different class for each event), or should it be a big stupid jumble. Problem with different classes/files is it gets cumbersome including it in html documents and also is spoilers.
 
 big stupid jumble it is. but like, a hybrid jumble, with the different objects in a single file.
@@ -278,55 +278,58 @@ An Important Event has a human readable label, and a function that is how to pre
 It should also have an importanceRating, because if I have more than a Yard's worth, I have to trim the list SOMEHOW.
 
 when a session is done and qualifies for a YellowYard, I display the list of important events that happened this session. One is selected and saved in the YellowYardResult object or whatever.
- 
+
  Then, the session is redone. Just like before, each time an ImportantEvent happens, the session asks the YellowYardResult if it's allowed to happen.  This time, for one of them, YellowYardResult says "no".
  It says "no" because the ImportantEvent perfectly matches the saved event.
- 
+
  Example of match.:
- 
+
  ImportantEvent.subtype = "Player dies with a living dream self without God Tiering."
  ImportantEvent.player = "Heir of Life"
- 
+
 
 Note: this means that this Important Event can be matched even if it is under very different circumstances. For example, the timeline can vastly change, but so long as the Hier of Life still dies without godtiering, this event would be altered. Do I want this?
 
-For the authorBot, a good way to check if a session has changed before now is the check the value of the MVP. If things are mostly the same besides cosmetic stuff, this value will also be the same. 
+For the authorBot, a good way to check if a session has changed before now is the check the value of the MVP. If things are mostly the same besides cosmetic stuff, this value will also be the same.
 
-Alright, 
+Alright,
 
  ImportantEvent.subtype = "Player dies with a living dream self without God Tiering."  (automatically decides importanceRating)
  ImportantEvent.player = "Heir of Life"
  ImportantEvent.mvp_value = 342
- 
+
  BAM, now altered events are mostly stable.
 
- Okay, where was I?  
- 
+ Okay, where was I?
+
  Okay, so the YellowYardResult has found a match. it tells the session, which returns to the scene that calls it. The scene does not render itself, and instead render the ImportantEvent.alternateTimeLine(); I need to make sure this function changes all relevant variables. Or...
- 
+
  Hrrm...  Let's say the ImportantEvent was the GrimDark MurderMode Heir of Life dying.   The scene kills them, (which clears our their status modifiers), and then asks if it can render the result. It is told no, and ImportantEvent.alternateTimeline brings them back to life.  But it doesn't know they were GrimDark MurderMode and doesn't restore that.
- 
+
  That clearly is unacceptable.
- 
- So, the scene should create an ImportantEvent BEFORE modifying anything. Not just before rendering.  But the problem is that many scenes modify things over time. Hrrrm.  Well, the important event can be PART of a scene.   Example, jack starts to show his stabs to the Heir of Life and the Maid of Mind, but the Bard of Time warps in and carts the Heir of Life's corpse to their sacrificial slab/quest bed. 
- 
+
+ So, the scene should create an ImportantEvent BEFORE modifying anything. Not just before rendering.  But the problem is that many scenes modify things over time. Hrrrm.  Well, the important event can be PART of a scene.   Example, jack starts to show his stabs to the Heir of Life and the Maid of Mind, but the Bard of Time warps in and carts the Heir of Life's corpse to their sacrificial slab/quest bed.
+
  Okay, at this point I'm just waffling to avoid coding because once I start this will be real and WHAT IF IT'S STILL IMPOSSIBLE!?  Time to code.
 
 
 
 
 
+ TODO:   22577
 
+ why is page of time god tier twice listed? is it just first?  in subsequent loops its life that gets repeated
 
+ Make doomedTimeClones an array of snapshots, not a number. have doomed time clones generated at creation, not at fightking/fight queen time.
 
+ show doomed time clones when they first show up.  will match the clone that shows up later at final fight.
 
+ no extra doomed time clones.
 
+ add gear symbols to doomed time clones initial warp in.
 
+ add alternate scenes for all important events
 
+ add scene for undoing your own undoing. basically generate list from scenesToUndo.  add before killing players list.
 
-
-
-
-
-
-
+ figure out how i can warn the Observer that they aren't guaranteed a second shot here.

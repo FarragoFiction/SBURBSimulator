@@ -50,7 +50,7 @@ function CorpseSmooch(session){
 	}
 
 	this.makeDead = function(d){
-		console.log("make dead")
+		//console.log("make dead")
 		d.dreamSelf = false;
 		d.dead = true;
 	}
