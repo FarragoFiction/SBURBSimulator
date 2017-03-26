@@ -55,7 +55,7 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player, doomedTimeClone){
 
 			var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 			drawSprite(dSpriteBuffer,this.player)
-
+			drawTimeGears(canvasDiv, this.doomedTimeClone);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
 
@@ -112,6 +112,10 @@ function PlayerWentGrimDark(session, mvp_value,player, doomedTimeClone){
 		return ret;
 	}
 
+	//just realized, this isn't just a replacement for god tiering. god tiering uses a corpse.
+	//this needs to be called not at a failed revival, but at the creation of the coprse.
+	//jack rampage, murder mode, fight king/queen?
+	//163251  22577  59610
 	this.alternateScene = function(div){
 			console.log("TODO: implement alternate scene. grim dark")
 	}

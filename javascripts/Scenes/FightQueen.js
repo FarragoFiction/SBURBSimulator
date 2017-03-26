@@ -78,11 +78,18 @@ function FightQueen(session){
 
 	this.getDeadList = function(living){
 		var numStabbings = getRandomInt(0,living.length);
+		var timePlayer = findAspectPlayer(this.session.players, "Time");
 		var ret = [];
+		//doomed time clones absorb some of the hits.
+		for(var i = 0; i<timePlayer.doomedTimeClones.length; i++){
+				ret.push(timePlayer.doomedTimeClones[i]);
+				removeFromArray(timePlayer.doomedTimeClones[i], timePlayer.doomedTimeClones)
+		}
+
 		if(living.length == 0){
 			return ret;
 		}
-		for(var i = 0; i<=numStabbings; i++){
+		for(var i = ret.length; i<=numStabbings; i++){
 			ret.push(getRandomElementFromArray(living));
 		}
 		return Array.from(new Set(ret));
@@ -102,10 +109,10 @@ function FightQueen(session){
 		this.setPlayersUnavailable(living);
 		var partyPower = getPartyPower(living);
 		var timePlayer = findAspectPlayer(this.session.players, "Time"); //doesn't matter if THEY are alive or dead, they still have doomed time clones.
-		if(timePlayer.doomedTimeClones > 0){
+		if(timePlayer.doomedTimeClones.length > 0){
 			//throw an extra one at them from nowhere just to make sure it's plural. whatever. who's counting here?
-			ret += (timePlayer.doomedTimeClones) + " doomed time clones of the " + timePlayer.htmlTitleBasic() + " show up from various points in the time line to help out. ";
-			partyPower += 100 * (timePlayer.doomedTimeClones);
+			ret += (timePlayer.doomedTimeClones.lemgth) + " doomed time clones of the " + timePlayer.htmlTitleBasic() + " show up from various points in the time line to help out. ";
+			partyPower += 100 * (timePlayer.doomedTimeClones.length);
 		}
 		if(partyPower > this.session.queenStrength*5){
 			ret += "The Players easily defeat the Queen, no sweat. It was easy. She is DEAD. ";

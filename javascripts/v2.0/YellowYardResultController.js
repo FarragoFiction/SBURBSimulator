@@ -67,6 +67,7 @@ function doEventsMatch(newEvent, storedEvent){
   //trigger the new sessions timePlayer.  time shenanigans wear on sanaity.
   var alphaTimePlayer = findAspectPlayer(newEvent.session.players, "Time");
   alphaTimePlayer.triggerLevel += 0.2; //how many re-dos does this give me before they snap?
+  alphaTimePlayer.doomedTimeClones.push(storedEvent.doomedTimeClone);
 
   return true;
 }

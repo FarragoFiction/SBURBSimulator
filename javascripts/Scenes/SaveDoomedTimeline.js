@@ -25,26 +25,18 @@ function SaveDoomedTimeLine(session){
 		timeClone.dead = false;
 		//from a different timeline, things went differently.
 		var rand = Math.seededRandom();
-		if(rand>.2){
+		console.log(rand);
+		if(rand>.8){
 			timeClone.godTier = !timeClone.godTier;
-		}else if(rand>.4){
-			timeClone.isDreamSelf = !timeClone.isDreamSelf;
 		}else if(rand>.6){
+			console.log("dream self time clone: " + this.session.session_id);
+			timeClone.isDreamSelf = !timeClone.isDreamSelf;
+		}else if(rand>.4){
 			timeClone.grimDark = !timeClone.grimDark;
-		}else if(rand>.8){
+		}else if(rand>.2){
 			timeClone.murderMode = !timeClone.murderMode;
 		}
 
-		var rand = Math.seededRandom(); //reroll for second set of traits. like grim dark dream self.
-		if(rand>.2){
-			timeClone.godTier = !timeClone.godTier;
-		}else if(rand>.4){
-			timeClone.isDreamSelf = !timeClone.isDreamSelf;
-		}else if(rand>.6){
-			timeClone.grimDark = !timeClone.grimDark;
-		}else if(rand>.8){
-			timeClone.murderMode = !timeClone.murderMode;
-		}
 		this.doomedTimeClone = timeClone;
 	}
 
