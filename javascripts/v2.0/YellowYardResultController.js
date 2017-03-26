@@ -35,30 +35,34 @@ function YellowYardResultController(){
 
 }
 
-function doEventsMatch(event1, event2){
-  if(event1.session.session_id != event2.session.session_id){
+function doEventsMatch(newEvent, storedEvent){
+  if(newEvent.session.session_id != storedEvent.session.session_id){
       console.log("session id did not match.")
       return false;
   }
   //are they the same kind of event
-  if(event1.constructor.name != event2.constructor.name){
+  if(newEvent.constructor.name != storedEvent.constructor.name){
     console.log("constructor did not match.")
     return false;
   }
-  if(event1.mvp_value != event2.mvp_value){
+  if(newEvent.mvp_value != storedEvent.mvp_value){
       console.log("mvp did not match")
       return false;
   }
   //should work even if player is supposed to be null
-  if(event1.player.class_name != event2.player.class_name){
+  if(newEvent.player.class_name != storedEvent.player.class_name){
       console.log("player class did not match")
       return false;
   }
 
-  if(event1.player.aspect != event2.player.aspect){
+  if(newEvent.player.aspect != storedEvent.player.aspect){
       console.log("player aspect did not match")
       return false;
   }
+
+  //since i know the events match, make sure my player is up to date with the current session.
+  //had a stupidly tragic bug where I was bringing players back in the DEAD SESSION instead of this new version of it.
+  storedEvent.player = newEvent.player;
 
   return true;
 }

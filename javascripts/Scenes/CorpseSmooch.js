@@ -24,6 +24,7 @@ function CorpseSmooch(session){
 	}
 
 	this.renderContent = function(div){
+		this.dreamersToRevive;
 		this.combo = 0;
 		div.append("<br>"+this.contentForRender(div));
 
@@ -49,6 +50,7 @@ function CorpseSmooch(session){
 	}
 
 	this.makeDead = function(d){
+		console.log("make dead")
 		d.dreamSelf = false;
 		d.dead = true;
 	}
@@ -158,6 +160,7 @@ function CorpseSmooch(session){
 			}else{
 				var alt = this.addImportantEvent(d);
 				if(alt){
+					console.log("calling alternate scene for" + d.title());
 					alt.alternateScene(div);
 				}else{
 					ret += d.htmlTitle() + "'s corpse waits patiently for the kiss of life. But nobody came. ";
@@ -174,6 +177,7 @@ function CorpseSmooch(session){
 	}
 
 	this.addImportantEvent = function(player){
+		console.log("adding important event from corpse smooch")
 		var current_mvp =  findStrongestPlayer(this.session.players)
 		//only one alternate event can happen at a time. if one gets replaced, return
 		if(player.godDestiny == false){//could god tier, but fate wn't let them

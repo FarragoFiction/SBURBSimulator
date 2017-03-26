@@ -20,6 +20,7 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player, doomedTimeClone){
 	this.mvp_value = mvp_value;
 	this.player = player;
 	this.doomedTimeClone = doomedTimeClone;
+	this.timesCalled = 0;
 
 	this.humanLabel = function(){
 		var ret  = "";
@@ -28,8 +29,10 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player, doomedTimeClone){
 	}
 
 	this.alternateScene = function(div){
+			this.timesCalled ++;
+			console.log("times called: " + this.timesCalled)
 			console.log("TODO: implement alternate scene. godtier player.")
-			var narration = "A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
+			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
 			narration +=  " They come with a dire warning of a doomed timeline. ";
 			narration += " Something seems...off...about them. But they are adamant that the " + this.player.htmlTitleBasic() + " needs to go GodTier now. "
 			narration += " No matter what 'fate' says. "
