@@ -227,6 +227,11 @@ function getQuipAboutSession(session){
 	return quip;
 }
 
+function restartSession(){
+	$("#story").html("");
+	window.scrollTo(0, 0);
+	intro();
+}
 
 //oh no!!! it hadn't occured to me that the javascript is only evaluated in a browser, not a generic http get.
 //my plan is ruined! If i want her to brag about sessions, I will have to do something else

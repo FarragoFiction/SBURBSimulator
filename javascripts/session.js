@@ -32,13 +32,38 @@ function Session(session_id){
 	this.parentSession = null;
 	this.availablePlayers = [];  //which players are available for scenes or whatever.
 	this.importantEvents = [];
+	this.yellowYardController = new YellowYardResultController();//don't expect doomed time clones to follow them to any new sessions
 
 
 	//IMPORTANT do not add important events directly, or can't check for alternate timelines.
 	//oh god, just typing that gives me chills. time shenanigans are so great.
 	this.addImportantEvent = function(important_event){
-		this.importantEvents.push(important_event);
-		//console.log("TODO: return if important event matches YellowYard event")
+		var alternate = this.yellowYardController.doesEventNeedToBeUndone(important_event);
+		if(alternate){
+			alert("TODO: implement alternate scene " +alternate.humanLabel());
+			return alternate; //scene will use the alternate to go a different way
+		}else{
+			this.importantEvents.push(important_event);
+			return null;
+		}
+	}
+
+	//make Math.seed  = to my session id, reinit all my variables (similar to a scratch.)
+	//make sure the controller starts ticking again. very similar to scrach
+	this.addEventToUndoAndReset = function(e){
+		console.log("current bug: slightly different random seeds. mvp of 312 vs 322. !!! ectobiology wasn't being reset! ");
+		this.yellowYardController.eventsToUndo.push(e);
+		//reinit the seed and restart the session
+
+		this.reinit();
+		createScenesForSession(curSessionGlobalVar);
+		//players need to be reinit as well.
+		curSessionGlobalVar.makePlayers();
+		curSessionGlobalVar.randomizeEntryOrder();
+		//authorMessage();
+		curSessionGlobalVar.makeGuardians(); //after entry order established
+		restartSession();//in controller
+		//killing a player events are different. need to figure out how
 	}
 
 
@@ -89,8 +114,10 @@ function Session(session_id){
 		return newSession;
 	}
 
+	//if htis is used for scratch, manually save ectobiology cause it's getting reset here
 	this.reinit = function(){
-		//console.log("reinit with seed: "  + Math.seed)
+		Math.seed = this.session_id; //if session is reset,
+		console.log("reinit with seed: "  + Math.seed)
 		this.timeTillReckoning = getRandomInt(10,30);
 		this.sessionType = Math.seededRandom();
 		curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);
@@ -100,6 +127,11 @@ function Session(session_id){
 		this.jackStrength = 50;
 		this.democracyStrength = 0;
 		this.reckoningStarted = false;
+		this.importantEvents = [];
+		this.scenesTriggered = []; //this.scenesTriggered
+		this.doomedTimelineReasons = [];
+		this.ectoBiologyStarted = false;
+
 	}
 
 	this.makePlayers = function(){

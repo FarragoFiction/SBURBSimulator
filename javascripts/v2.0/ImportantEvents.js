@@ -20,7 +20,7 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player){
 
 	this.humanLabel = function(){
 		var ret  = "";
-		ret += "Have the " + this.player.htmlTitleBasic() + " go God Tier instead of dying forever." ;
+		ret += "Have the " + this.player.htmlTitleBasic() + " go God Tier instead of dying forever. " + this.mvp_value ;
 		return ret;
 	}
 }
@@ -77,7 +77,6 @@ function JackPromoted(session, mvp_value){
 //if knight, directly help, if not but knight alive, force them to help. else, indirect help
 //if knight of space (most common reason this is called, indirect help)
 function FrogBreedingNeedsHelp(session, mvp_value){
-	console.log("frog breeding needs help " + session.session_id)
 	this.session = session;
 	this.mvp_value = mvp_value;
 	this.importanceRating = 2;  //really, this is probably the least useful thing you could do. If this is the ONLY thing that went wrong, your session is going great.

@@ -15,7 +15,49 @@
 	hrmm...if time playered triggered, maybe can add evil actions, like Damara was doing.
 	dirupt ectobiology. kill players, etc. could trigger some godtiers
 */
+var yyrEventsGlobalVar = [];
 
 function YellowYardResultController(){
+    this.eventsToUndo = [];
 
+    this.doesEventNeedToBeUndone = function(e){
+        for(var i = 0; i<this.eventsToUndo.length; i++){
+          var e2 = this.eventsToUndo[i];
+          if(doEventsMatch(e,e2)){
+              return e2;
+          }
+        }
+        return null;
+    }
+
+
+
+
+}
+
+function doEventsMatch(event1, event2){
+  if(event1.session.session_id != event2.session.session_id){
+      return false;
+  }
+  //are they the same kind of event
+  if(event1.constructor.name != event2.constructor.name){
+    return false;
+  }
+  if(event1.mvp_value != event2.mvp_value){
+      return false;
+  }
+  //should work even if player is supposed to be null
+  if(event1.player != event2.player){
+      return false;
+  }
+
+  return true;
+}
+
+
+function decision(){
+  var a =$("input[name='decision']:checked").val()
+  var eventDecided = yyrEventsGlobalVar[parseInt(a)];
+  alert(eventDecided.humanLabel());
+  curSessionGlobalVar.addEventToUndoAndReset(eventDecided);
 }

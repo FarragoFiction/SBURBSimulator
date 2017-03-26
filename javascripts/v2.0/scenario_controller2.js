@@ -146,6 +146,12 @@ function scratchConfirm(){
 	}
 }
 
+function restartSession(){
+	$("#story").html("");
+	window.scrollTo(0, 0);
+	intro();
+}
+
 //TODO if i wanted to, I could have mixed sessions like in canon.
 //not erasing the players, after all.
 //or could have an afterlife where they meet guardian players???

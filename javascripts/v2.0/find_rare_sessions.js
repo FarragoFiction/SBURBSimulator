@@ -111,6 +111,12 @@ function startSession(){
 	}
 }
 
+function restartSession(){
+	$("#story").html("");
+	window.scrollTo(0, 0);
+	intro();
+}
+
 
 function getParameterByName(name, url) {
     if (!url) {
@@ -156,7 +162,9 @@ function reinit(){
 //not erasing the players, after all.
 //or could have an afterlife where they meet guardian players???
 function scratch(){
+	var savedEB = curSessionGlobalVar.ectoBiologyStarted;
 	reinit();
+	curSessionGlobalVar.ectoBiologyStarted = savedEB;  //if didn't do ecto in previous session, do here. else, don't
 	curSessionGlobalVar.scratched = true;
 	var scratch = "The session has been scratched. The " + getPlayersTitlesBasic(curSessionGlobalVar.players) + " will now be the beloved guardians.";
 	scratch += " Their former guardians, the " + getPlayersTitlesBasic(curSessionGlobalVar.guardians) + " will now be the players.";
