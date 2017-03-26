@@ -67,6 +67,7 @@ function loadImage(img){
 //load pesterchum, blood, big aspect symbols, echeladders, god tier level up, romance symbols, babies, grubs
 function loadOther(){
 	loadImage("jr.png");
+  loadImage("gears.png");
   loadImage("mind_forehead.png")
 	loadImage("ab.png")
 	loadImage("grimdark.png");

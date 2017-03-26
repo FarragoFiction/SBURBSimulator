@@ -5,6 +5,7 @@ function SaveDoomedTimeLine(session){
 	this.timePlayer = null;
 	this.leaderPlayer = null;
 	this.reason = "";
+	this.doomedTimeClone = null;
 	this.trigger = function(playerList){
 		this.timePlayer = findAspectPlayer(session.players, "Time"); //they don't have to be in the medium, though
 		this.leaderPlayer = getLeader(session.players);
@@ -19,8 +20,43 @@ function SaveDoomedTimeLine(session){
 		return (this.ectoDoom() || this.playerDoom() || this.randomDoom());
 	}
 
+	this.makeDoomedSnapshot = function(){
+		var timeClone = makeRenderingSnapshot(this.timePlayer);
+		timeClone.dead = false;
+		//from a different timeline, things went differently.
+		var rand = Math.seededRandom();
+		if(rand>.2){
+			timeClone.godTier = !timeClone.godTier;
+		}else if(rand>.4){
+			timeClone.isDreamSelf = !timeClone.isDreamSelf;
+		}else if(rand>.6){
+			timeClone.grimDark = !timeClone.grimDark;
+		}else if(rand>.8){
+			timeClone.murderMode = !timeClone.murderMode;
+		}
+
+		var rand = Math.seededRandom(); //reroll for second set of traits. like grim dark dream self.
+		if(rand>.2){
+			timeClone.godTier = !timeClone.godTier;
+		}else if(rand>.4){
+			timeClone.isDreamSelf = !timeClone.isDreamSelf;
+		}else if(rand>.6){
+			timeClone.grimDark = !timeClone.grimDark;
+		}else if(rand>.8){
+			timeClone.murderMode = !timeClone.murderMode;
+		}
+		this.doomedTimeClone = timeClone;
+	}
+
 	this.renderContent = function(div){
 		div.append("<br>"+this.content());
+		var divID = (div.attr("id"))
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		var canvas = document.getElementById("canvas"+ divID);
+		drawTimeGears(canvas, this.doomedTimeClone);
+		drawSinglePlayer(canvas, this.doomedTimeClone);
+
 	}
 
 	this.leaderIsFucked = function(){
@@ -87,7 +123,8 @@ function SaveDoomedTimeLine(session){
 		ret += " YOUR session's " + this.timePlayer.htmlTitle() + " is fine, don't worry about it...but THIS one is now doomed. ";
 		ret += " Least they can do after saving everyone is to time travel to where they can do the most good. ";
 		ret += " After doing something inscrutable, they vanish in a cloud of clocks and gears. ";
-		this.timePlayer.doomedTimeClones ++;
+		this.makeDoomedSnapshot();
+		this.timePlayer.doomedTimeClones.push(this.doomedTimeClone);
 		return ret;
 	}
 }

@@ -63,6 +63,10 @@ function doEventsMatch(newEvent, storedEvent){
   //since i know the events match, make sure my player is up to date with the current session.
   //had a stupidly tragic bug where I was bringing players back in the DEAD SESSION instead of this new version of it.
   storedEvent.player = newEvent.player;
+  storedEvent.session = newEvent.session; //cant get space players otherwise
+  //trigger the new sessions timePlayer.  time shenanigans wear on sanaity.
+  var alphaTimePlayer = findAspectPlayer(newEvent.session.players, "Time");
+  alphaTimePlayer.triggerLevel += 0.2; //how many re-dos does this give me before they snap?
 
   return true;
 }

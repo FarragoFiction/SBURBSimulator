@@ -1138,6 +1138,22 @@ function hair(canvas, player){
 
 //if the Waste of Mind/Observer sends a time player back
 //the influence is visible.
+function drawTimeGears(canvas){
+  var p1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+  //drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff")
+  ctx = p1SpriteBuffer.getContext('2d');
+  var imageString = "gears.png"
+  addImageTag(imageString)
+  var img=document.getElementById(imageString);
+  var width = img.width;
+  var height = img.height;
+  ctx.drawImage(img,0,0,width,height);
+  copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,-100,0)
+
+}
+
+//if the Waste of Mind/Observer sends a time player back
+//the influence is visible.
 function wasteOfMindSymbol(canvas, player){
   ctx = canvas.getContext('2d');
   var imageString = "mind_forehead.png"

@@ -32,31 +32,8 @@ this.getGoodGuys = function(){
 		var living = findLivingPlayers(this.session.players);
 		var timePlayer = findAspectPlayer(this.session.players, "Time");
 
-		for(var i = 0; i<timePlayer.doomedTimeClones; i++){
-			var timeClone = makeRenderingSnapshot(timePlayer);
-			timeClone.dead = false;
-			//from a different timeline, things went differently.
-			var rand = Math.seededRandom();
-			if(rand>.2){
-				timeClone.godTier = !timeClone.godTier;
-			}else if(rand>.4){
-				timeClone.isDreamSelf = !timeClone.isDreamSelf;
-			}else if(rand>.6){
-				timeClone.grimDark = !timeClone.grimDark;
-			}else if(rand>.8){
-				timeClone.murderMode = !timeClone.murderMode;
-			}
-
-			var rand = Math.seededRandom(); //reroll for second set of traits. like grim dark dream self.
-			if(rand>.2){
-				timeClone.godTier = !timeClone.godTier;
-			}else if(rand>.4){
-				timeClone.isDreamSelf = !timeClone.isDreamSelf;
-			}else if(rand>.6){
-				timeClone.grimDark = !timeClone.grimDark;
-			}else if(rand>.8){
-				timeClone.murderMode = !timeClone.murderMode;
-			}
+		for(var i = 0; i<timePlayer.doomedTimeClones.length; i++){
+			var timeClone = timePlayer.doomedTimeClones[i];
 			living.push(timeClone);
 		}
 		return living;

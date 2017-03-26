@@ -72,7 +72,7 @@ function BeTriggered(session){
 			}
 		}
 
-		if(player.doomedTimeClones > 0 && Math.seededRandom() > .9){
+		if(player.doomedTimeClones.length > 0 && Math.seededRandom() > .9){
 			return " their own doomed Time Clones ";
 		}
 
