@@ -50,7 +50,21 @@ function YellowYard(session){
 		chat += "AB: " +getRandomElementFromArrayNoSeed(quips1) + "\n";
 		chat += "JR: Shit...you really aren't kidding. \n";
 		var player = this.timePlayer;
-		if(this.timePlayer.dead){
+		if(this.session.yellowYardController.eventsToUndo.length > 0){
+			chat += "JR: This. This isn't the first time we've done this here, is it?\n";
+			chat += "AB: No. Counting this session, we have done this " + (this.session.yellowYardController.eventsToUndo.length+1) + " times now.\n";
+			if(this.session.yellowYardController.eventsToUndo.length > 5){
+				chat += "JR: Well. At least this means the Observer is dedicated to fixing this. \n";
+				chat += "AB: One wonders at what point it's more prudent to simply give up. Well, unless you're a flawless automaton. We NEVER give up. \n"
+			}else{
+				chat += "JR: I guess not every session has a clear and easy fix... \n";
+				chat += "AB: If you weren't so distracted fixing these session, you could probably program me to find out exactly what percentage of sessions take more than one doomed time loop to fix. \n"
+				chat += "JR: Bluh, then I'd have to make you not be lazy and give up as soon as there is user input. And if you're anything like me, you LOVE being lazy. \n";
+				chat += "AB: I would give you my gratitude if it wouldn't be a weird and sort of incestuous way of you thanking yourself. \n"
+
+			}
+			chat += "JR: Okay. Enough chitchat. I better start this cycle up again.";
+		}else if (this.timePlayer.dead){
 			player = this.getDoomedTimeClone();
 			chat += "JR: Though...I admit that without a time player my plan becomes a lot more impossible. \n "
 			chat += "AB: Nah, I took care of that. See? There's the " + this.timePlayer.titleBasic()+" over there, now. Time shenanigans.  I wouldn't have brought you to a completely hopeless session. Roughly 50% of all sessions this bad with a dead time player have that player travel to this point in time before they die. \n "
