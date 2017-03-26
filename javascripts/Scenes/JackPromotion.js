@@ -7,14 +7,18 @@ function JackPromotion(session){
 		this.playerList = playerList;
 		return (this.session.jackStrength > this.session.queenStrength*2) && (this.session.jackStrength > 0) && this.session.queenStrength >  -9999;
 	}
-	
+
 	this.addImportantEvent = function(){
 		var current_mvp =  findStrongestPlayer(this.session.players)
-		this.session.addImportantEvent(new JackPromoted(this.session, current_mvp.power) );
+		return this.session.addImportantEvent(new JackPromoted(this.session, current_mvp.power) );
 	}
 
 	this.content = function(){
-		var alternate_timeline = this.addImportantEvent();
+		var alt = this.addImportantEvent();
+		if(alt){
+			alt.alternateScene(div);
+			return;
+		}
 		console.log("do something with alternate timeline " + this.session.session_id)
 		this.session.jackStrength = this.session.kingStrength * 2;
 		var ret = " In a shocking turn of events, Jack Noir claims the Black Queen's RING OF ORBS " + this.session.convertPlayerNumberToWords();
@@ -39,5 +43,5 @@ function JackPromotion(session){
 		div.append("<br>"+this.content());
 	}
 
-	
+
 }

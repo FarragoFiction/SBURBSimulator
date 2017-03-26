@@ -48,9 +48,9 @@ function GodTierRevival(session){
 		}, repeatTime/2);  //images aren't always loaded by the time i try to draw them the first time.
 	}
 
+	//in retrospect this doesn't make sense. they are already dead here and can not be revived.
 	this.addImportantEvent = function(player){
-			var current_mvp =  findStrongestPlayer(this.session.players)
-			this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
+			return null;
 	}
 
 	this.content = function(){
@@ -60,11 +60,9 @@ function GodTierRevival(session){
 			var p = this.godsToRevive[i];
 			ret += " The " + p.htmlTitle() + "'s death is judged to be ";
 			if(p.justDeath()){
-				this.addImportantEvent(p);
 				ret += " JUST.  They do not revive. ";
 				p.canGodTierRevive = false;
 			}else if (p.heroicDeath()){
-				this.addImportantEvent(p);
 				ret += " HEROIC. They do not revive. ";
 				p.canGodTierRevive = false;
 			}else{

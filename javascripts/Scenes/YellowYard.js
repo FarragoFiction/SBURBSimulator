@@ -12,15 +12,21 @@ function YellowYard(session){
 
 
 	this.yellowYardTime = function(div){
+		this.timePlayer.wasteInfluenced = true; //can't go back now.
+		var time = this.timePlayer;
+		if(this.timePlayer.dead == true){
+			time = this.getDoomedTimeClone();
+		}
 		//var html = "<img src = 'images/yellow_yard.png'>";
 		var html = "<div id = 'yellow_yard' style='background:url(images/yellow_yard.png); width:1000px; height: 521px'>";
 		yyrEventsGlobalVar = this.session.importantEvents;
-		yyrEventsGlobalVar = padEventsTo12WithKilling(yyrEventsGlobalVar, this.session);
+		yyrEventsGlobalVar = padEventsTo12WithKilling(yyrEventsGlobalVar, this.session, time);
 	  yyrEventsGlobalVar = sortEventsByImportance(yyrEventsGlobalVar);
 		html+="<div id = 'decisions' style='position: relative; top: 133px; left: 280px; font-size: 22px;'> "
 		for(var i = 0; i<12; i++){
 			if(i < yyrEventsGlobalVar.length){
-			html += " <input type='radio' name='decision' value='" + i + "'>"+yyrEventsGlobalVar[i].humanLabel() + "<br>";
+				yyrEventsGlobalVar[i].doomedTimeClone = time;
+				html += " <input type='radio' name='decision' value='" + i + "'>"+yyrEventsGlobalVar[i].humanLabel() + "<br>";
 		}else{//no more important events to undo
 			html += " <Br>";
 			}

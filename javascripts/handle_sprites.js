@@ -883,6 +883,7 @@ function drawSpriteTurnways(canvas, player){
 
 function makeRenderingSnapshot(player){
 	var ret = new PlayerSnapshot();
+  ret.wasteInfluenced = player.wasteInfluenced;
 	ret.grimDark = player.grimDark;
 	ret.victimBlood = player.victimBlood;
 	ret.murderMode = player.murderMode;
@@ -990,6 +991,10 @@ function drawSprite(canvas, player,ctx,baby){
   }
   if(player.isTroll){
     horns(canvas, player);
+  }
+
+  if(player.wasteInfluenced == true){
+    wasteOfMindSymbol(canvas, player);
   }
 }
 
@@ -1129,6 +1134,18 @@ function hair(canvas, player){
 		swapColors(canvas, "#313131", player.hairColor);
 		swapColors(canvas, "#202020", getColorFromAspect(player.aspect));
 	}
+}
+
+//if the Waste of Mind/Observer sends a time player back
+//the influence is visible.
+function wasteOfMindSymbol(canvas, player){
+  ctx = canvas.getContext('2d');
+  var imageString = "mind_forehead.png"
+  addImageTag(imageString)
+  var img=document.getElementById(imageString);
+  var width = img.width;
+  var height = img.height;
+  ctx.drawImage(img,0,0,width,height);
 }
 
 function princeTiara(canvas, player){

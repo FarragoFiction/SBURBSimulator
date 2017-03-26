@@ -11,6 +11,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	this.class_name = class_name;
 	this.number_confessions = 0;
 	this.number_times_confessed_to = 0;
+	this.wasteInfluenced = false; //doomed time clones might be sent back by Waste of Mind and Observer.
 	this.aspect = aspect;
 	this.land = land;
 	this.interest1 = getRandomElementFromArray(interests);

@@ -21,7 +21,6 @@ function YellowYardResultController(){
     this.eventsToUndo = [];
 
     this.doesEventNeedToBeUndone = function(e){
-       console.log(e);
         for(var i = 0; i<this.eventsToUndo.length; i++){
           var e2 = this.eventsToUndo[i];
           if(doEventsMatch(e,e2)){

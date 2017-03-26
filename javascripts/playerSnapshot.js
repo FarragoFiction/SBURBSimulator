@@ -21,9 +21,21 @@ function PlayerSnapshot(){
 	this.quirk = null;
 	this.victimBlood = null;
 	this.baby = null;
+	this.wasteInfluenced = null;
 
 	this.chatHandleShort = function(){
 		return this.chatHandle.match(/\b(\w)|[A-Z]/g).join('').toUpperCase();
+	}
+
+	this.titleBasic = function(){
+		var ret = "";
+
+		ret+= this.class_name + " of " + this.aspect;
+		return ret;
+	}
+
+	this.htmlTitleBasic = function(){
+			return getFontColorFromAspect(this.aspect) + this.titleBasic() + "</font>"
 	}
 
 	this.getChatFontColor = function(){

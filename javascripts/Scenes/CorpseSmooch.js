@@ -156,10 +156,14 @@ function CorpseSmooch(session){
 				//this.makeAlive(d);
 				this.combo ++;
 			}else{
-				this.addImportantEvent(d);
-				ret += d.htmlTitle() + "'s corpse waits patiently for the kiss of life. But nobody came. ";
-				ret += " Their dream self dies as well. ";
-				this.makeDead(d);
+				var alt = this.addImportantEvent(d);
+				if(alt){
+					alt.alternateScene(div);
+				}else{
+					ret += d.htmlTitle() + "'s corpse waits patiently for the kiss of life. But nobody came. ";
+					ret += " Their dream self dies as well. ";
+					this.makeDead(d);
+				}
 			}
 		}
 		if(this.combo > 1){
@@ -171,14 +175,22 @@ function CorpseSmooch(session){
 
 	this.addImportantEvent = function(player){
 		var current_mvp =  findStrongestPlayer(this.session.players)
+		//only one alternate event can happen at a time. if one gets replaced, return
 		if(player.godDestiny == false){//could god tier, but fate wn't let them
-			this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
-			this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
+			var ret = this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
+			if(ret){
+				return ret;
+			}
+			return this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
 		}else if(this.session.reckoningStarted == true) { //if the reckoning started, they couldn't god tier.
-			this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
-			this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
+			var ret = this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
+			var ret = this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
+			if(ret){
+				return ret;
+			}
+			return this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
 		}else{
-				this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
+				return this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
 		}
 	}
 

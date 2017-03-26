@@ -112,8 +112,11 @@ function JackRampage(session){
 		for(var i = 0; i<players.length; i++){
 			var player = players[i];
 			if(player.isDreamSelf == true && player.godDestiny == false && player.godTier == false){
-				this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
-				this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
+				var ret = this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
+				if(ret){
+					return ret;
+				}
+				return this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
 			}
 		}
 
@@ -143,6 +146,7 @@ function JackRampage(session){
 		}else if(partyPower > this.session.jackStrength){
 			ret += " Jack fails to stab " + getPlayersTitles(stabbings);
 			ret += "  He goes away to stab someone else, licking his wounds. ";
+			//TODO if one of them was a god tier, make their be a chance of him destroying one of the moons. kills all non active dream selves.
 			if(Math.seededRandom()>.9){
 				ret += " Bored of this, he decides to show his stabs to BOTH the Black and White Kings.  The battle is over. The Reckoning will soon start."
 				timeTillReckoning = 0;
@@ -154,9 +158,14 @@ function JackRampage(session){
 			ret += " he retreats, for now, but with new commitment to stabbings. ";
 			this.session.jackStrength += 10;
 		}else{
-			this.addImportantEvents(stabbings);
-			ret += " Jack shows his stabs to " + getPlayersTitles(stabbings) + " until they die.  DEAD.";
-			this.killPlayers(stabbings);
+			var alt = this.addImportantEvents(stabbings);
+			if(alt){
+				alt.alternateScene(div);
+				return;
+			}else{
+				ret += " Jack shows his stabs to " + getPlayersTitles(stabbings) + " until they die.  DEAD.";
+				this.killPlayers(stabbings);
+		}
 		}
 		return ret;
 	}

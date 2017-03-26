@@ -40,8 +40,7 @@ function Session(session_id){
 	this.addImportantEvent = function(important_event){
 		var alternate = this.yellowYardController.doesEventNeedToBeUndone(important_event);
 		if(alternate){
-			alert("TODO: implement alternate scene " +alternate.humanLabel());
-			return alternate; //scene will use the alternate to go a different way
+			return alternate; //scene will use the alternate to go a different way. important event no longer happens.
 		}else{
 			this.importantEvents.push(important_event);
 			return null;

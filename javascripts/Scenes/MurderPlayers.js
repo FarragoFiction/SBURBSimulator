@@ -23,8 +23,11 @@ function MurderPlayers(session){
 
 		if(player.isDreamSelf == true && player.godDestiny == false && player.godTier == false){
 			var current_mvp =  findStrongestPlayer(this.session.players)
-			this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
-			this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
+			var ret = this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
+			if(ret){
+				return ret;
+			}
+			return this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
 		}
 	}
 
@@ -184,7 +187,6 @@ function MurderPlayers(session){
 					var r = m.getRelationshipWith(worstEnemy);
 					r.value = 1;
 				}else if(ausp != null && r.type() == r.badBig){  //they hate you back....
-					this.addImportantEvent(m);
 					///auspitism, but who is middle leaf?
 					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
 					ret += "(who hates them back just as much), but instead is interupted by the " + ausp.htmlTitle() + ", who convinces everyone to settle their shit down. ";
@@ -201,36 +203,43 @@ function MurderPlayers(session){
 					r2.value = 1;
 
 				}else if(worstEnemy.power < m.power*2){  //more likely to kill enemy than be killed. element of surprise
-					this.addImportantEvent(worstEnemy);
-					m.increasePower();
+					var alt = this.addImportantEvent(worstEnemy);
+					if(alt){
+						alt.alternateScene(div);
+					}else{
+						m.increasePower();
 
-					worstEnemy.causeOfDeath = "fighting the " + m.htmlTitle();
-					ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". ";
-					if(m.dead == true){ //they could have been killed by another murder player in this same tick
-						this.addImportantEvent(m);
-						ret += " Every one is very impressed that they managed to do it while dying."
+						worstEnemy.causeOfDeath = "fighting the " + m.htmlTitle();
+						ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". ";
+						if(m.dead == true){ //they could have been killed by another murder player in this same tick
+							ret += " Every one is very impressed that they managed to do it while dying."
+						}
+						ret += this.friendsOfVictimHateYou(worstEnemy, m, livePlayers);
+						worstEnemy.dead = true;
+						var r = worstEnemy.getRelationshipWith(m);
+						r.value = -10; //you are not happy with murderer
+						m.victimBlood = worstEnemy.bloodColor;
+						this.renderMurder(div, m, worstEnemy)
 					}
-					ret += this.friendsOfVictimHateYou(worstEnemy, m, livePlayers);
-					worstEnemy.dead = true;
-					var r = worstEnemy.getRelationshipWith(m);
-					r.value = -10; //you are not happy with murderer
-					m.victimBlood = worstEnemy.bloodColor;
-					this.renderMurder(div, m, worstEnemy)
 				}else{
-					this.addImportantEvent(worstEnemy)
-					worstEnemy.increasePower();
+					var alt = this.addImportantEvent(worstEnemy)
+					if(alt){
+						alt.alternateScene(div);
+					}else{
+						worstEnemy.increasePower();
 
-					m.causeOfDeath = "being put down like a rabid dog by " + worstEnemy.htmlTitle()
-					ret += " The " + m.htmlTitle() + " attempts to brutally murders that asshole, the " + worstEnemy.htmlTitle();
-					ret += ",but instead gets murdered first, in self-defense. ";
-					if(m.dead == true){ //they could have been killed by another murder player in this same tick
-						ret += " The task is made especially easy by the " + m.htmlTitle() + " being already in the proccess of dying. "
+						m.causeOfDeath = "being put down like a rabid dog by " + worstEnemy.htmlTitle()
+						ret += " The " + m.htmlTitle() + " attempts to brutally murders that asshole, the " + worstEnemy.htmlTitle();
+						ret += ",but instead gets murdered first, in self-defense. ";
+						if(m.dead == true){ //they could have been killed by another murder player in this same tick
+							ret += " The task is made especially easy by the " + m.htmlTitle() + " being already in the proccess of dying. "
+						}
+						m.dead = true;
+						var r = worstEnemy.getRelationshipWith(m);
+						r.value = -10; //you are not happy with murderer
+						worstEnemy.victimBlood = m.bloodColor;
+						this.renderMurder(div,worstEnemy, m);
 					}
-					m.dead = true;
-					var r = worstEnemy.getRelationshipWith(m);
-					r.value = -10; //you are not happy with murderer
-					worstEnemy.victimBlood = m.bloodColor;
-					this.renderMurder(div,worstEnemy, m);
 				}
 			}else{
 

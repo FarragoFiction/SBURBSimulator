@@ -16,6 +16,26 @@ function FaceDenizen(session){
 		return this.denizenFighters.length > 0;
 	}
 
+	this.addImportantEvent = function(player){
+		var current_mvp =  findStrongestPlayer(this.session.players)
+		//need to grab this cause if they are dream self corpse smooch won't trigger an important event
+		if(player.godDestiny == false && player.isDreamSelf == true){//could god tier, but fate wn't let them
+			var ret = this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
+			if(ret){
+				return ret;
+			}
+			this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
+		}else if(this.session.reckoningStarted == true && player.isDreamSelf == true) { //if the reckoning started, they couldn't god tier.
+			var ret  = this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
+			if(ret){
+				return ret;
+			}
+			this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
+		}else if(player.isDreamSelf == true){
+				return this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
+		}
+	}
+
 	this.renderContent = function(div){
 
 		for(var i = 0; i<this.denizenFighters.length; i++){
