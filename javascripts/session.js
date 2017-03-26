@@ -51,7 +51,7 @@ function Session(session_id){
 	//make Math.seed  = to my session id, reinit all my variables (similar to a scratch.)
 	//make sure the controller starts ticking again. very similar to scrach
 	this.addEventToUndoAndReset = function(e){
-		console.log("current bug: slightly different random seeds. mvp of 312 vs 322. !!! ectobiology wasn't being reset! ");
+		console.log("current bug: event to change isn't being found. alternate ==null? ");
 		this.yellowYardController.eventsToUndo.push(e);
 		//reinit the seed and restart the session
 
