@@ -1,2 +1,2 @@
 #!/bin/sh
-rsync -rcv --exclude .git --exclude '*~' ./ jenny@purplefrog.com:public_html/SburbStoryExperimental/ #
+rsync -rcv --exclude .git --exclude '*~' --chmod=Dugo+x,ugo+r ./ jenny@purplefrog.com:public_html/SburbStoryExperimental/ #

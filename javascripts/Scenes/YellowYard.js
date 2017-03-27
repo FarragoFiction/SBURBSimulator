@@ -24,6 +24,7 @@ function YellowYard(session){
 		//yyrEventsGlobalVar = padEventsToNumWithKilling(yyrEventsGlobalVar, this.session, time,num);
 		//yyrEventsGlobalVar = sortEventsByImportance(yyrEventsGlobalVar);  this edges out diversity. end up with all "make so and so god tier" and nothing else
 		yyrEventsGlobalVar = removeRepeatEvents(yyrEventsGlobalVar);
+		yyrEventsGlobalVar = removeFrogSpam(yyrEventsGlobalVar);
 		html+="<div id = 'decisions' style='position: relative; top: 133px; left: 280px; font-size: 12px;'> "
 		for(var i = 0; i<num; i++){
 			if(i < yyrEventsGlobalVar.length){

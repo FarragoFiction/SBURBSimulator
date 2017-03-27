@@ -319,6 +319,24 @@ function KillPlayer(session, player, doomedTimeClone){
 	}
 }
 
+//you really shouldn't need to help with frog breeding more than twice.
+function removeFrogSpam(events){
+	var eventsToRemove = []; //don't mod an array as you loop over it. 
+	var frogsSoFar = 0;
+	 for(var i = 0; i<events.length; i++){
+		 if(events[i].constructor.name == "FrogBreedingNeedsHelp"){
+			 frogsSoFar ++;
+			 if(frogsSoFar > 2){
+				 eventsToRemove.push(events[i])
+			 }
+		 }
+	 }
+	 
+	  for(var k = 0; k<eventsToRemove.length; k++){
+		 removeFromArray(eventsToRemove[k], events)
+	 }
+	 return events;
+}
 //YellowYardcontroller knows what makes two events functionally equivalent
 function removeRepeatEvents(events){
 	var eventsToRemove = []; //don't mod an array as you loop over it. 
