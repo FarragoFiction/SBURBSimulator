@@ -23,7 +23,7 @@ function YellowYardResultController(){
     this.doesEventNeedToBeUndone = function(e){
         for(var i = 0; i<this.eventsToUndo.length; i++){
           var e2 = this.eventsToUndo[i];
-		  console.log("checking if needs to be undone")
+		 // console.log("checking if needs to be undone")
           if(doEventsMatch(e,e2)){
               return e2;
           }
@@ -41,28 +41,28 @@ function YellowYardResultController(){
 	it is not unreasonable to imagien 2 timelines that are extremely similar where the Observer made the same choice. 
 */
 function doEventsMatch(newEvent, storedEvent){
-	console.log("comparing: '" + newEvent.humanLabel() + "' to '" + storedEvent.humanLabel() + "'")
+	//console.log("comparing: '" + newEvent.humanLabel() + "' to '" + storedEvent.humanLabel() + "'")
   if(newEvent.session.session_id != storedEvent.session.session_id){
-      console.log("session id did not match.")
+      //console.log("session id did not match.")
       return false;
   }
   //are they the same kind of event
   if(newEvent.constructor.name != storedEvent.constructor.name){
-    console.log("constructor did not match.")
+    //console.log("constructor did not match.")
     return false;
   }
   if(newEvent.mvp_value != storedEvent.mvp_value){
-      console.log("mvp did not match")
+      //console.log("mvp did not match")
       return false;
   }
   //should work even if player is supposed to be null
   if(newEvent.player.class_name != storedEvent.player.class_name){
-     console.log("player class did not match")
+     //console.log("player class did not match")
       return false;
   }
 
   if(newEvent.player.aspect != storedEvent.player.aspect){
-      console.log("player aspect did not match")
+      //console.log("player aspect did not match")
       return false;
   }
 

@@ -257,8 +257,6 @@ function EngageMurderMode(session){
 
 	this.renderContent = function(div){
 		var alt = this.addImportantEvent();
-		console.log("alt is: (why isn't the alternate scene triggering!? " + this.player.title())
-		console.log(alt);
 		if(alt){
 			alt.alternateScene(div);
 			return;
