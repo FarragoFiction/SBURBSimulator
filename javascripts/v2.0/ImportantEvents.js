@@ -218,10 +218,11 @@ function removeRepeatEvents(events){
 	var eventsToRemove = []; //don't mod an array as you loop over it. 
 	 for(var i = 0; i<events.length; i++){
         var e1 = events[i];
-		for(var j = 0; j<events.length; j++){
+		for(var j = i; j<events.length-i; j++){
 		  var e2 = events[j];
 		  //don't be literally teh same object, but do you match?
 		   if(e1 != e2 && doEventsMatch(e1,e2)){
+			 // console.log(e1.humanLabel() + " matches " + e2.humanLabel())
               eventsToRemove.push(e2);
 			}
 		}  

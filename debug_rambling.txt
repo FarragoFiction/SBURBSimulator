@@ -324,3 +324,24 @@ Alright,
   make player not die is NOT just an alternate to god tiering. god tiering deals with corpses, but not dying needs to be the scene that MAKES the corpse
 
  add scene for undoing your own undoing. basically generate list from scenesToUndo.  add before killing players list.
+ 
+ 
+ 
+ 
+ Problem. Trying to remove functional duplicates from importantEvents. Objects aren't literally the same, but values are.
+ 
+ Current way is looping through an inner loop and an outter loop. problem is that let's say my array is:
+ 
+ [1,2,3,4,1,2,3,4,1]
+ 
+ In the outter loop I look for "1".  I find it two additional times, and mark the extras for removal. I succesfully don't mark 'myself'.
+ 
+ But...then, the fourth element, the second 1, when i loop on THAT, I find the first 1. And mark it for removal. And thus ALL 1s are marked for removal.
+ 
+ How to fix?
+ 
+ Well, I could probably extend javascripts native filter thing. But i don't want to . I'm feeling intellectually lazy.
+ 
+ hrrrrm.
+ 
+ Well, the inner loop doesn't HAVE to start from zero. It can start from the outter loop index. that should do it.
