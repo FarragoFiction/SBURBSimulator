@@ -59,7 +59,7 @@ function YellowYard(session){
 		}
 		if(this.session.yellowYardController.eventsToUndo.length > 0){
 			chat += "JR: This. This isn't the first time we've done this here, is it?\n";
-			chat += "AB: No. Counting this session, we have done this " + (this.session.yellowYardController.eventsToUndo.length+1) + " times now.\n";
+			chat += "AB: No. Counting this timeline, we have done this " + (this.session.yellowYardController.eventsToUndo.length+1) + " times now.\n";
 			if(this.session.yellowYardController.eventsToUndo.length > 5){
 				chat += "JR: Well. At least this means the Observer is dedicated to fixing this. \n";
 				chat += "AB: One wonders at what point it's more prudent to simply give up. Well, unless you're a flawless automaton. We NEVER give up. \n"
