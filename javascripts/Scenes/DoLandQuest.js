@@ -45,15 +45,15 @@ function DoLandQuest(session){
 	}
 
 	this.renderContent = function(div){
-		div.append("<br>"+this.content());
+		div.append("<br>"+this.content(div));
 	}
 
 	this.addImportantEvent = function(){
 			var current_mvp =  findStrongestPlayer(this.session.players)
-			this.session.addImportantEvent(new FrogBreedingNeedsHelp(this.session, current_mvp.power) );
+			return this.session.addImportantEvent(new FrogBreedingNeedsHelp(this.session, current_mvp.power) );
 	}
 
-	this.lookForHelper = function(player){
+	this.lookForHelper = function(player,div){
 		var helper = null;
 
 		//space player can ONLY be helped by knight, and knight prioritizes this
@@ -62,8 +62,7 @@ function DoLandQuest(session){
 			if(helper != player){ //a knight of space can't help themselves.
 				return helper;
 			}else{
-				this.addImportantEvent();
-				return null
+
 			}
 		}
 
@@ -160,41 +159,59 @@ function DoLandQuest(session){
 		return ret;
 
 	}
+	
+	this.contentForPlayer = function(player, helper){
+		var ret = "";
+		ret += "The " + player.htmlTitle()  ;
+		player.increasePower();
+		player.landLevel ++;
+		if(helper){
+			ret += " and the " + helper.htmlTitle() + " do " ;
+			helper.increasePower();
+			player.landLevel ++;
+		}else{
+			ret += " does";
+		}
 
-	this.content = function(){
+		if(Math.seededRandom() >0.8){
+			ret += " quests at " + player.shortLand();
+		}else{
+			ret += " quests in the " + player.land;
+		}
+		ret += ", " + player.getRandomQuest() + ". ";
+		if(helper){
+			ret += this.calculateClasspectBoost(player, helper);
+		}
+		if(helper != null && player  != helper ){
+			r1 = player.getRelationshipWith(helper);
+			r1.moreOfSame();
+			r2 = helper.getRelationshipWith(player);
+			r2.moreOfSame();
+			ret += getRelationshipFlavorText(r1,r2, player, helper);
+		}
+		return ret;
+					
+
+	}
+
+	this.content = function(div){
 		var ret = "";
 		for(var i = 0; i<this.playersPlusHelpers.length; i++){
 			var player = this.playersPlusHelpers[i][0];
+			
 			//console.log("doing land quests at: " + player.land)
 			var helper = this.playersPlusHelpers[i][1]; //might be null
-			ret += "The " + player.htmlTitle()  ;
-			player.increasePower();
-			player.landLevel ++;
-			if(helper){
-				ret += " and the " + helper.htmlTitle() + " do " ;
-				helper.increasePower();
-				player.landLevel ++;
+			if(player.aspect == "Space" && !helper){
+				
+				var alt = this.addImportantEvent();
+				if(alt){
+					alt.alternateScene(div);		
+				}else{
+					ret += this.contentForPlayer(player, helper);
+				}
 			}else{
-				ret += " does";
+				ret += this.contentForPlayer(player, helper);
 			}
-
-			if(Math.seededRandom() >0.8){
-				ret += " quests at " + player.shortLand();
-			}else{
-				ret += " quests in the " + player.land;
-			}
-			ret += ", " + player.getRandomQuest() + ". ";
-			if(helper){
-				ret += this.calculateClasspectBoost(player, helper);
-			}
-			if(helper != null && player  != helper ){
-				r1 = player.getRelationshipWith(helper);
-				r1.moreOfSame();
-				r2 = helper.getRelationshipWith(player);
-				r2.moreOfSame();
-				ret += getRelationshipFlavorText(r1,r2, player, helper);
-		}
-
 		}
 		return ret;
 	}

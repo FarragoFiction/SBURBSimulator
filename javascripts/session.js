@@ -116,7 +116,7 @@ function Session(session_id){
 	this.reinit = function(){
 		groundHog = false;
 		Math.seed = this.session_id; //if session is reset,
-		console.log("reinit with seed: "  + Math.seed)
+		//console.log("reinit with seed: "  + Math.seed)
 		this.timeTillReckoning = getRandomInt(10,30);
 		this.sessionType = Math.seededRandom();
 		curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);

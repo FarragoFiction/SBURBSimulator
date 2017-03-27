@@ -21,7 +21,7 @@ function YellowYard(session){
 		var html = "<div id = 'yellow_yard' style='background:url(images/yellow_yard.png); width:1000px; height: 521px'>";
 		yyrEventsGlobalVar = this.session.importantEvents;
 		var num = 14
-		yyrEventsGlobalVar = padEventsToNumWithKilling(yyrEventsGlobalVar, this.session, time,num);
+		//yyrEventsGlobalVar = padEventsToNumWithKilling(yyrEventsGlobalVar, this.session, time,num);
 		//yyrEventsGlobalVar = sortEventsByImportance(yyrEventsGlobalVar);  this edges out diversity. end up with all "make so and so god tier" and nothing else
 		yyrEventsGlobalVar = removeRepeatEvents(yyrEventsGlobalVar);
 		html+="<div id = 'decisions' style='position: relative; top: 133px; left: 280px; font-size: 12px;'> "

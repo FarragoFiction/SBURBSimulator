@@ -261,13 +261,44 @@ function FrogBreedingNeedsHelp(session, mvp_value, doomedTimeClone){
 	this.timesCalled = 0;
 	this.doomedTimeClone = doomedTimeClone;
 	this.importanceRating = 2;  //really, this is probably the least useful thing you could do. If this is the ONLY thing that went wrong, your session is going great.
-	var spacePlayer = findAspectPlayer(this.session.players, "Space");
+	
+	console.log("help breed frogs: " + this.session.session_id)
 	this.humanLabel = function(){
+		var spacePlayer = findAspectPlayer(this.session.players, "Space");
 		var ret  = "Help the " + spacePlayer.htmlTitleBasic() + " complete frog breeding duties.";
 		return ret;
 	}
 	this.alternateScene = function(div){
-			console.log("TODO: implement alternate scene. breed frogs.")
+			var spacePlayer = findAspectPlayer(this.session.players, "Space");
+			this.timesCalled ++;
+			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
+			narration +=  " They come with a dire warning of a doomed timeline. ";
+			narration += " Something seems...off...about them. But they are adamant that the " + spacePlayer.htmlTitleBasic() + " needs to be helped with their Frog Breeding duties. "
+			narration += " No matter what anybody says about time travel frog breeding being an overly elaborate and dangerous undertaking.  Desperate times, Desperate measures. "
+			if(this.doomedTimeClone.class_name == "Knight"){
+				narration += " Luckily they were SUPPOSED to be helping breed the frog in the first place, so it's just a matter of making enough stable time loops to make a huge dent in the process. "
+				spacePlayer.landLevel += 10;
+			}else{
+				narration += " Unfortunately they are not a Knight, and thus are banned from helping breed frogs directly.  But with a little creativity and a LOT of stable time loops they manage to indirectly help a huge amount. "
+				spacePlayer.landLevel += 8;
+			}
+			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
+			div.append(narration);			
+
+			var divID = (div.attr("id")) + "_alt_" + spacePlayer.chatHandle;
+			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+			div.append(canvasHTML);
+			var canvasDiv = document.getElementById("canvas"+ divID);
+
+			var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+			drawSprite(pSpriteBuffer,this.doomedTimeClone)
+
+			var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+			drawSpriteTurnways(dSpriteBuffer,spacePlayer)
+			
+			drawTimeGears(canvasDiv, this.doomedTimeClone);
+			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
+			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
 	}
 
 }
