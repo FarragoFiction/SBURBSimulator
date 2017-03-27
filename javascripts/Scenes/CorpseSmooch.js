@@ -14,9 +14,9 @@ function CorpseSmooch(session){
 		for(var i = 0; i<deadPlayers.length; i++){
 			var p = deadPlayers[i];
 			//only get one shot at this. if you're a jerk, no luck.
-			if(p.dreamSelf){
-				this.dreamersToRevive.push(p);
-			}
+			//if(p.dreamSelf){ //no longer only dream self cause this generates important events for ANY death that is left unfixed.
+			this.dreamersToRevive.push(p);
+			//}
 		}
 		//corspses can't smooch themselves.
 		return this.dreamersToRevive.length > 0 && this.dreamersToRevive.length < playerList.length;
@@ -148,25 +148,34 @@ function CorpseSmooch(session){
 		for(var i = 0; i<this.dreamersToRevive.length; i++){
 			var d = this.dreamersToRevive[i];
 			//have best friend mac on you.
-			var royalty = this.getRoyalty(d);
-
-			if(royalty){
-				royalty.triggerLevel ++;
-				ret += " The " + royalty.htmlTitle() + ", as a member of the royalty of " + royalty.moon + ", administers the universal remedy for the unawakened ";
-				ret += " to the " + d.htmlTitle() + ". Their dream self takes over on " + d.moon + ". ";
-				this.renderForPlayer(div, this.dreamersToRevive[i]);
-				//this.makeAlive(d);
-				this.combo ++;
-			}else{
-				var alt = this.addImportantEvent(d);
-				if(alt){
-					console.log("calling alternate scene for" + d.title());
-					alt.alternateScene(div);
+			if(d.dreamSelf == true){
+				var royalty = this.getRoyalty(d);
+				if(royalty){
+					royalty.triggerLevel ++;
+					ret += " The " + royalty.htmlTitle() + ", as a member of the royalty of " + royalty.moon + ", administers the universal remedy for the unawakened ";
+					ret += " to the " + d.htmlTitle() + ". Their dream self takes over on " + d.moon + ". ";
+					this.renderForPlayer(div, this.dreamersToRevive[i]);
+					//this.makeAlive(d);
+					this.combo ++;
 				}else{
-					ret += d.htmlTitle() + "'s corpse waits patiently for the kiss of life. But nobody came. ";
-					ret += " Their dream self dies as well. ";
-					this.makeDead(d);
+					var alt = this.addImportantEvent(d);
+					if(alt){
+						console.log("calling alternate scene for" + d.title());
+						alt.alternateScene(div);
+					}else{
+						ret += d.htmlTitle() + "'s corpse waits patiently for the kiss of life. But nobody came. ";
+						ret += " Their dream self dies as well. ";
+						this.makeDead(d);
+					}
 				}
+			}else if(d.isDreamSelf == true && d.godDestiny == false && d.godTier == false){
+				var alt = this.addImportantEvent(d);
+					if(alt){
+						console.log("calling alternate scene for" + d.title());
+						alt.alternateScene(div);
+					}else{
+						//don't even mention corpse smooching for dream selves. but them perma-dying is an event.
+					}
 			}
 		}
 		if(this.combo > 1){
@@ -177,24 +186,17 @@ function CorpseSmooch(session){
 	}
 
 	this.addImportantEvent = function(player){
-		console.log("adding important event from corpse smooch")
+		//console.log("adding important event from corpse smooch")
 		var current_mvp =  findStrongestPlayer(this.session.players)
 		//only one alternate event can happen at a time. if one gets replaced, return
 		if(player.godDestiny == false){//could god tier, but fate wn't let them
-			var ret = this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
-			if(ret){
-				return ret;
-			}
-			return this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
+			return this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
 		}else if(this.session.reckoningStarted == true) { //if the reckoning started, they couldn't god tier.
-			var ret = this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
 			var ret = this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
 			if(ret){
 				return ret;
 			}
 			return this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
-		}else{
-				return this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
 		}
 	}
 

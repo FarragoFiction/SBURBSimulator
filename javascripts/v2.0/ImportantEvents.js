@@ -30,8 +30,6 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player, doomedTimeClone){
 
 	this.alternateScene = function(div){
 			this.timesCalled ++;
-			console.log("times called: " + this.timesCalled)
-			console.log("TODO: implement alternate scene. godtier player.")
 			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
 			narration +=  " They come with a dire warning of a doomed timeline. ";
 			narration += " Something seems...off...about them. But they are adamant that the " + this.player.htmlTitleBasic() + " needs to go GodTier now. "
@@ -43,6 +41,7 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player, doomedTimeClone){
 				narration += " quest bed. The corpse glows and rises Skaiaward. ";
 				narration +="On " + this.player.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
 			}
+			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
 			div.append(narration);
 
 			var divID = (div.attr("id")) + "_alt_" + this.player.chatHandle;
@@ -77,8 +76,6 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player, doomedTimeClone){
 			var players = [];
 			players.push(this.player)
 			drawGetTiger(canvasDiv2, players,repeatTime)
-			alert("alt scene, TODO add doomed time clone to special list of set time clones to add to final fight. or make normal list array of snapshots. whatever.  Current Bug; why is this happening multuiple times. why is my clone ALSO have mind symbol over them?");
-
 	}
 }
 
@@ -89,6 +86,7 @@ function PlayerDiedForever(session, mvp_value, player, doomedTimeClone){
 	this.importanceRating = 5;
 	this.player = player;
 	this.doomedTimeClone = doomedTimeClone;
+	console.log("prevent death: " + this.session.session_id)
 
 	this.humanLabel = function(){
 		var ret  = "Make the " + this.player.htmlTitleBasic() + " not permanently dead.";
@@ -96,7 +94,35 @@ function PlayerDiedForever(session, mvp_value, player, doomedTimeClone){
 	}
 
 	this.alternateScene = function(div){
-			console.log("TODO: implement alternate scene. dead player.")
+			this.timesCalled ++;
+			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
+			narration +=  " They come with a dire warning of a doomed timeline. ";
+			narration += " Something seems...off...about them. But they are adamant that the " + this.player.htmlTitleBasic() + " needs to be protected. "
+			narration += " No matter what 'fate' says. "
+			narration += " They sacrifice their life for the " + this.player.htmlTitleBasic() + ". ";
+			
+			div.append(narration);
+			this.player.triggerLevel += 0.5;
+			this.player.dead = false;
+			
+			this.doomedTimeClone.dead = true;
+
+			var divID = (div.attr("id")) + "_alt_" + this.player.chatHandle;
+			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+			div.append(canvasHTML);
+			var canvasDiv = document.getElementById("canvas"+ divID);
+
+			var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+			drawSprite(pSpriteBuffer,this.doomedTimeClone)
+
+			var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+			drawSpriteTurnways(dSpriteBuffer,this.player)
+			drawTimeGears(canvasDiv, this.doomedTimeClone);
+			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
+			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
+
+			var alphaTimePlayer = findAspectPlayer(this.session.players, "Time");		
+			removeFromArray(this.doomedTimeClone, alphaTimePlayer.doomedTimeClones);   //DEAD
 	}
 }
 
@@ -187,8 +213,27 @@ function KillPlayer(session, player, doomedTimeClone){
 	}
 }
 
-function padEventsTo12WithKilling(events,session, doomedTimeClone){
-	var num = 12 - events.length;
+//YellowYardcontroller knows what makes two events functionally equivalent
+function removeRepeatEvents(events){
+	var eventsToRemove = []; //don't mod an array as you loop over it. 
+	 for(var i = 0; i<events.length; i++){
+        var e1 = events[i];
+		for(var j = 0; j<events.length; j++){
+		  var e2 = events[j];
+		  //don't be literally teh same object, but do you match?
+		   if(e1 != e2 && doEventsMatch(e1,e2)){
+              eventsToRemove.push(e2);
+			}
+		}  
+     }
+	 
+	 for(var k = 0; k<eventsToRemove.length; k++){
+		 removeFromArray(eventsToRemove[k], events)
+	 }
+	 return events;
+}
+function padEventsToNumWithKilling(events,session, doomedTimeClone,num){
+	var num = num - events.length;
 	num = Math.min(num, session.players.length);
 	for(var i = 0; i<num; i++){
 			events.push(new KillPlayer(session, session.players[i]))

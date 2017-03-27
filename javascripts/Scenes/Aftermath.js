@@ -41,7 +41,7 @@ function Aftermath(session){
 			timePlayer = findAspectPlayer(this.session.players, "Time")
 		}
 		if(dead.length >= living.length && timePlayer){
-			console.log("Time Player: " + timePlayer);
+			//console.log("Time Player: " + timePlayer);
 			var s = new YellowYard(this.session);
 			s.timePlayer = timePlayer;
 			s.trigger();

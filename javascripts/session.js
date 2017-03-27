@@ -34,7 +34,6 @@ function Session(session_id){
 	this.importantEvents = [];
 	this.yellowYardController = new YellowYardResultController();//don't expect doomed time clones to follow them to any new sessions
 
-
 	//IMPORTANT do not add important events directly, or can't check for alternate timelines.
 	//oh god, just typing that gives me chills. time shenanigans are so great.
 	this.addImportantEvent = function(important_event){
@@ -115,6 +114,7 @@ function Session(session_id){
 
 	//if htis is used for scratch, manually save ectobiology cause it's getting reset here
 	this.reinit = function(){
+		groundHog = false;
 		Math.seed = this.session_id; //if session is reset,
 		console.log("reinit with seed: "  + Math.seed)
 		this.timeTillReckoning = getRandomInt(10,30);
@@ -296,6 +296,14 @@ function Session(session_id){
 			str += "<br><b>&nbsp&nbsp&nbsp&nbspCombined Session From: " + this.parentSession + "</b>"
 			//timesComboSession ++;
 		}
+		
+		var tmp = "";
+		tmp =  summarizeScene(this.scenesTriggered, "YellowYard")
+		if(findSceneNamed(this.scenesTriggered,"YellowYard") != "No"){
+			timesGroundHog ++;
+		}
+		str += tmp;
+		
 		var living = findLivingPlayers(this.players);
 		str += "<br><b>&nbsp&nbsp&nbsp&nbspLiving Players: " + living.length+ "</b>"
 		if(living.length == 0){

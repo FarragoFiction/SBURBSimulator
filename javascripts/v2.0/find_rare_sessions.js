@@ -1,6 +1,6 @@
 //looking for rare sessions  not rendering.
 //I just realized that AuthorBot was technically born in a lab!!!
-//Okay, like, not in a MEANINGFUL way, but they were replacing the carpet n the regular area so i had to work out of the lab instead.
+//Okay, like, not in a MEANINGFUL way, but they were replacing the carpet in the regular area so i had to work out of the lab instead.
 //and before you worry, YES I work on this at my day job. But, like, I'm explicitly allowed to do "mad science" learning projects
 //during downtime (as long as i don't make money off it), it helps keep my skillz (yes with a 'z') sharp.  90% of the tech i work with 
 //proffesionally was first learned this way. go me.
@@ -53,6 +53,7 @@ var timesMurderMode = 0;
 var timesComboSession = 0;
 var timesTotalPartyWipe = 0;
 var totalFrogLevel = 0;
+var timesGroundHog = 0;
 
 var numSimulationsDone = 0;
 var numSimulationsToDo = 52;
@@ -418,7 +419,8 @@ function printStats(){
 	str += "<br>Times No Frog: " + timesNoFrog+ " (" + Math.round((timesNoFrog/sessionsSimulated.length)*100) + "%)";;
 	str += "<Br>Times Scratches Available: " + timesScratchesAvailable + " (" + Math.round((timesScratchesAvailable/sessionsSimulated.length)*100) + "%)";
 	str += "<Br>Times Combo Session Possible: " + timesComboSession + " (" + Math.round((timesComboSession/sessionsSimulated.length)*100) + "%)";
-
+	//timesGroundHog
+	str +=  "<Br>Times Yellow Yard Available: " + timesGroundHog + " (" + Math.round((timesGroundHog/sessionsSimulated.length)*100) + "%)";
 	str +="<Br>Times Total Party Wipe: " + timesTotalPartyWipe + " (" + Math.round((timesTotalPartyWipe/sessionsSimulated.length)*100) + "%)";
 	str += "<Br>Times Ectobiology: " + timesEcto + " (" + Math.round((timesEcto/sessionsSimulated.length)*100) + "%)";
 

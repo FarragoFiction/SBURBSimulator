@@ -20,10 +20,12 @@ function YellowYard(session){
 		//var html = "<img src = 'images/yellow_yard.png'>";
 		var html = "<div id = 'yellow_yard' style='background:url(images/yellow_yard.png); width:1000px; height: 521px'>";
 		yyrEventsGlobalVar = this.session.importantEvents;
-		yyrEventsGlobalVar = padEventsTo12WithKilling(yyrEventsGlobalVar, this.session, time);
-	  yyrEventsGlobalVar = sortEventsByImportance(yyrEventsGlobalVar);
-		html+="<div id = 'decisions' style='position: relative; top: 133px; left: 280px; font-size: 22px;'> "
-		for(var i = 0; i<12; i++){
+		var num = 14
+		yyrEventsGlobalVar = padEventsToNumWithKilling(yyrEventsGlobalVar, this.session, time,num);
+		//yyrEventsGlobalVar = sortEventsByImportance(yyrEventsGlobalVar);  this edges out diversity. end up with all "make so and so god tier" and nothing else
+		yyrEventsGlobalVar = removeRepeatEvents(yyrEventsGlobalVar);
+		html+="<div id = 'decisions' style='position: relative; top: 133px; left: 280px; font-size: 12px;'> "
+		for(var i = 0; i<num; i++){
 			if(i < yyrEventsGlobalVar.length){
 				yyrEventsGlobalVar[i].doomedTimeClone = time;
 				html += " <input type='radio' name='decision' value='" + i + "'>"+yyrEventsGlobalVar[i].humanLabel() + "<br>";
@@ -39,6 +41,7 @@ function YellowYard(session){
 
 //22577 is short
 	this.renderContent = function(div){
+		this.session.scenesTriggered.push(this);
 		//div.append("<br>"+this.content());
 		console.log("Yellow yard is happening. " + this.session.session_id)
 		var canvasHTML = "<br><canvas id='canvasJRAB1" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
