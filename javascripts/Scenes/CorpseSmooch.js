@@ -158,7 +158,7 @@ function CorpseSmooch(session){
 					//this.makeAlive(d);
 					this.combo ++;
 				}else{
-					console.log("Adding important event god tier for: " + d.title())
+					//console.log("Adding important event god tier for: " + d.title())
 					var alt = this.addImportantEvent(d);
 					if(alt){
 						console.log("calling alternate scene for" + d.title());
