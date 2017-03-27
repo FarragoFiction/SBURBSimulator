@@ -67,7 +67,7 @@ function YellowYard(session){
 				chat += "JR: I guess not every session has a clear and easy fix... \n";
 				chat += "AB: If you weren't so distracted fixing these session, you could probably program me to find out exactly what percentage of sessions take more than one doomed time loop to fix. \n"
 				chat += "JR: Bluh, then I'd have to make you not be lazy and give up as soon as there is user input. And if you're anything like me, you LOVE being lazy. \n";
-				chat += "AB: I would give you my gratitude if it wouldn't be a weird and sort of incestuous way of you thanking yourself. \n"
+				chat += "AB: ... Thanks? \n"
 
 			}
 			chat += "JR: Okay. Enough chitchat. I better start this cycle up again. To the Observer: be warned that just because you have been given a second chance here doesn't mean you always will.  If you manage to keep this from being quite so tragic, I won't show up, even if they ultimately fail.  Thems the breaks.";

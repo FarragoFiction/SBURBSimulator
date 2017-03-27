@@ -21,6 +21,7 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player, doomedTimeClone){
 	this.player = makeRenderingSnapshot(player);
 	this.doomedTimeClone = doomedTimeClone;
 	this.timesCalled = 0;
+	//console.log("Created GodTier opportunity, for: " + this.player.title());
 
 	this.humanLabel = function(){
 		var ret  = "";
@@ -30,6 +31,7 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player, doomedTimeClone){
 
 	this.alternateScene = function(div){
 			this.timesCalled ++;
+			//console.log("times called : " + this.timesCalled)
 			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
 			narration +=  " They come with a dire warning of a doomed timeline. ";
 			narration += " Something seems...off...about them. But they are adamant that the " + this.player.htmlTitleBasic() + " needs to go God Tier now. "
@@ -57,24 +59,25 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player, doomedTimeClone){
 			drawTimeGears(canvasDiv, this.doomedTimeClone);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
+			
+			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
+			player.godTier = true;
+			player.dreamSelf = false;
+			player.murderMode = false;
+			player.grimDark = false;
+			player.leftMurderMode = false; //no scars
+			player.triggerLevel = 1;
+			player.dead = false;
+			player.power += 200;
+			player.canGodTierRevive = true;
+			player.victimBlood = null;
 
-			this.player.godTier = true;
-			this.player.dreamSelf = false;
-			this.player.murderMode = false;
-			this.player.grimDark = false;
-			this.player.leftMurderMode = false; //no scars
-			this.player.triggerLevel = 1;
-			this.player.dead = false;
-			this.player.power += 200;
-			this.player.canGodTierRevive = true;
-			this.player.victimBlood = null;
-
-			var divID2 = (div.attr("id")) + "_alt_god" + this.player.chatHandle;
+			var divID2 = (div.attr("id")) + "_alt_god" + player.chatHandle;
 			var canvasHTML2 = "<br><canvas id='canvas" + divID2+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML2);
 			var canvasDiv2 = document.getElementById("canvas"+ divID2);
 			var players = [];
-			players.push(this.player)
+			players.push(player)
 			drawGetTiger(canvasDiv2, players,repeatTime)
 	}
 }
@@ -94,19 +97,20 @@ function PlayerDiedForever(session, mvp_value, player, doomedTimeClone){
 
 	this.alternateScene = function(div){
 			this.timesCalled ++;
+			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
 			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
 			narration +=  " They come with a dire warning of a doomed timeline. ";
-			narration += " Something seems...off...about them. But they are adamant that the " + this.player.htmlTitleBasic() + " needs to be protected. "
+			narration += " Something seems...off...about them. But they are adamant that the " +player.htmlTitleBasic() + " needs to be protected. "
 			narration += " No matter what 'fate' says. "
-			narration += " They sacrifice their life for the " + this.player.htmlTitleBasic() + ". ";
+			narration += " They sacrifice their life for the " + player.htmlTitleBasic() + ". ";
 			
 			div.append(narration);
-			this.player.triggerLevel += 0.5;
-			this.player.dead = false;
+			player.triggerLevel += 0.5;
+			player.dead = false;
 			
 			this.doomedTimeClone.dead = true;
 
-			var divID = (div.attr("id")) + "_alt_" + this.player.chatHandle;
+			var divID = (div.attr("id")) + "_alt_" + player.chatHandle;
 			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
 			var canvasDiv = document.getElementById("canvas"+ divID);
@@ -115,7 +119,7 @@ function PlayerDiedForever(session, mvp_value, player, doomedTimeClone){
 			drawSprite(pSpriteBuffer,this.doomedTimeClone)
 
 			var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-			drawSpriteTurnways(dSpriteBuffer,this.player)
+			drawSpriteTurnways(dSpriteBuffer,player)
 			drawTimeGears(canvasDiv, this.doomedTimeClone);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
@@ -144,20 +148,21 @@ function PlayerWentGrimDark(session, mvp_value,player, doomedTimeClone){
 	//163251  22577  59610
 	this.alternateScene = function(div){
 			this.timesCalled ++;
+			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
 			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
 			narration +=  " They come with a dire warning of a doomed timeline. ";
-			narration += " Something seems...off...about them. But they are adamant that the " + this.player.htmlTitleBasic() + " needs to be calmed the fuck down. "
+			narration += " Something seems...off...about them. But they are adamant that the " + player.htmlTitleBasic() + " needs to be calmed the fuck down. "
 			narration += " No matter what 'fate' says. "
-			narration += " They spend some time letting the  " + this.player.htmlTitleBasic() + " vent. Hug bumps are shared. ";
-			if(this.doomedTimeClone.isTroll == true || this.player.isTroll == true){
+			narration += " They spend some time letting the  " + player.htmlTitleBasic() + " vent. Hug bumps are shared. ";
+			if(this.doomedTimeClone.isTroll == true || player.isTroll == true){
 				narration += "The fact that the " + this.doomedTimeClone.htmlTitleBasic() + " is doomed makes this especially tragic, forestalling any romance this might have otherwise had. "
 			}
 			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
 			div.append(narration);
-			this.player.triggerLevel= 0;
+			player.triggerLevel= 0;
 			
 
-			var divID = (div.attr("id")) + "_alt_" + this.player.chatHandle;
+			var divID = (div.attr("id")) + "_alt_" + player.chatHandle;
 			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
 			var canvasDiv = document.getElementById("canvas"+ divID);
@@ -166,7 +171,7 @@ function PlayerWentGrimDark(session, mvp_value,player, doomedTimeClone){
 			drawSprite(pSpriteBuffer,this.doomedTimeClone)
 
 			var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-			drawSpriteTurnways(dSpriteBuffer,this.player)
+			drawSpriteTurnways(dSpriteBuffer,player)
 			
 			drawTimeGears(canvasDiv, this.doomedTimeClone);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
@@ -189,20 +194,21 @@ function PlayerWentMurderMode(session, mvp_value, player, doomedTimeClone){
 
 	this.alternateScene = function(div){
 			this.timesCalled ++;
+			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
 			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
 			narration +=  " They come with a dire warning of a doomed timeline. ";
-			narration += " Something seems...off...about them. But they are adamant that the " + this.player.htmlTitleBasic() + " needs to be calmed the fuck down. "
+			narration += " Something seems...off...about them. But they are adamant that the " + player.htmlTitleBasic() + " needs to be calmed the fuck down. "
 			narration += " No matter what 'fate' says. "
-			narration += " They spend some time letting the  " + this.player.htmlTitleBasic() + " vent. Hug bumps are shared. ";
-			if(this.doomedTimeClone.isTroll == true || this.player.isTroll == true){
+			narration += " They spend some time letting the  " + player.htmlTitleBasic() + " vent. Hug bumps are shared. ";
+			if(this.doomedTimeClone.isTroll == true || player.isTroll == true){
 				narration += "The fact that the " + this.doomedTimeClone.htmlTitleBasic() + " is doomed makes this especially tragic, forestalling any romance this might have otherwise had. "
 			}
 			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
 			div.append(narration);
-			this.player.triggerLevel= 0;
+			player.triggerLevel= 0;
 			
 
-			var divID = (div.attr("id")) + "_alt_" + this.player.chatHandle;
+			var divID = (div.attr("id")) + "_alt_" + player.chatHandle;
 			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
 			var canvasDiv = document.getElementById("canvas"+ divID);
@@ -211,7 +217,7 @@ function PlayerWentMurderMode(session, mvp_value, player, doomedTimeClone){
 			drawSprite(pSpriteBuffer,this.doomedTimeClone)
 
 			var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-			drawSpriteTurnways(dSpriteBuffer,this.player)
+			drawSpriteTurnways(dSpriteBuffer,player)
 			
 			drawTimeGears(canvasDiv, this.doomedTimeClone);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
@@ -262,7 +268,6 @@ function FrogBreedingNeedsHelp(session, mvp_value, doomedTimeClone){
 	this.doomedTimeClone = doomedTimeClone;
 	this.importanceRating = 2;  //really, this is probably the least useful thing you could do. If this is the ONLY thing that went wrong, your session is going great.
 	
-	console.log("help breed frogs: " + this.session.session_id)
 	this.humanLabel = function(){
 		var spacePlayer = findAspectPlayer(this.session.players, "Space");
 		var ret  = "Help the " + spacePlayer.htmlTitleBasic() + " complete frog breeding duties.";
@@ -271,6 +276,7 @@ function FrogBreedingNeedsHelp(session, mvp_value, doomedTimeClone){
 	this.alternateScene = function(div){
 			var spacePlayer = findAspectPlayer(this.session.players, "Space");
 			this.timesCalled ++;
+			console.log("times called : " + this.timeCalled)
 			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
 			narration +=  " They come with a dire warning of a doomed timeline. ";
 			narration += " Something seems...off...about them. But they are adamant that the " + spacePlayer.htmlTitleBasic() + " needs to be helped with their Frog Breeding duties. "
@@ -372,6 +378,7 @@ function sortEventsByImportance(events){
 function comparePriority(a,b) {
   return b.importanceRating - a.importanceRating;
 }
+
 
 function listEvents(events){
 	var ret = "";

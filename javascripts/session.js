@@ -41,6 +41,7 @@ function Session(session_id){
 		if(alternate){
 			return alternate; //scene will use the alternate to go a different way. important event no longer happens.
 		}else{
+			
 			this.importantEvents.push(important_event);
 			return null;
 		}
@@ -112,6 +113,18 @@ function Session(session_id){
 		console.log("Session: " + this.session_id + " has made child universe: " + newSession.session_id + " child has this long till reckoning: " + newSession.timeTillReckoning)
 		return newSession;
 	}
+	
+	this.getVersionOfPlayerFromThisSession = function(player){
+		//can double up on classes or aspects if it's a combo session. god. why are their combo sessions?
+		for(var i = 0; i< this.players.length; i++){
+			var p = this.players[i];
+			if(p.class_name == player.class_name && p.aspect == player.aspect){
+				return p; //yeah, technically there COULD be two players with the same claspect in a combo session, but i have ceased caring.
+			}
+		}
+		console.log("Error finding session's: " + player.title());
+	}
+
 
 	//if htis is used for scratch, manually save ectobiology cause it's getting reset here
 	this.reinit = function(){

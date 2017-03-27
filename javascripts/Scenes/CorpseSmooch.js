@@ -50,7 +50,7 @@ function CorpseSmooch(session){
 	}
 
 	this.makeDead = function(d){
-		//console.log("make dead")
+		//console.log("make dead " + d.title())
 		d.dreamSelf = false;
 		d.dead = true;
 	}
@@ -158,6 +158,7 @@ function CorpseSmooch(session){
 					//this.makeAlive(d);
 					this.combo ++;
 				}else{
+					console.log("Adding important event god tier for: " + d.title())
 					var alt = this.addImportantEvent(d);
 					if(alt){
 						console.log("calling alternate scene for" + d.title());
@@ -168,10 +169,9 @@ function CorpseSmooch(session){
 						this.makeDead(d);
 					}
 				}
-			}else if(d.isDreamSelf == true && d.godDestiny == false && d.godTier == false){
+			}else if(d.isDreamSelf == true && d.godDestiny == false && d.godTier == false && d.dead == true){
 				var alt = this.addImportantEvent(d);
 					if(alt){
-						console.log("calling alternate scene for" + d.title());
 						alt.alternateScene(div);
 					}else{
 						//don't even mention corpse smooching for dream selves. but them perma-dying is an event.
