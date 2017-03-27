@@ -1,4 +1,19 @@
-//looking for rare sessions or doing moon prophecies. not rendering.
+//looking for rare sessions  not rendering.
+//I just realized that AuthorBot was technically born in a lab!!!
+//Okay, like, not in a MEANINGFUL way, but they were replacing the carpet n the regular area so i had to work out of the lab instead.
+//and before you worry, YES I work on this at my day job. But, like, I'm explicitly allowed to do "mad science" learning projects
+//during downtime (as long as i don't make money off it), it helps keep my skillz (yes with a 'z') sharp.  90% of the tech i work with 
+//proffesionally was first learned this way. go me.
+//this whole bucket of spiders was intended to be a way for me to solidify my understanding of javascript arrays and debugging.
+//and let me tell you for free: I am the goddamn master of javascript debugging at this point. at least compared to past me.
+//have you seen some of the other things I've done? Nothing as complicated as this (or as Homestuck as this.)
+//http://purplefrog.com/~jenny/
+//that's a list of all the javascript projects i've done over the years. i've done plenty of non javascript shit, too, but, well, not as easily shareable.
+//I think: http://purplefrog.com/~jenny/PheremoneMaze/Worlds/story_pheremone.html
+//is particularly related to SBURB SIM.  AI simulation tied into a story engine.
+//but the "I" in AI was stronger over there. It was a dead simple genetic algorithm of creatures living in a world filled with plants and predators.
+//their 'DNA' was literally just the directions they would move over their life. but they would evolve, and it was neat to watch.
+//the 'voice' of the narratator is shamelessly inspired by the game Bastion, so that tells you how old that sim is. 20-goddamned-11.  That's 6 years old now. damn.
 var simulationMode = true;
 var debugMode = false;
 var spriteWidth = 400;

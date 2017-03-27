@@ -53,5 +53,32 @@ function PlayerSnapshot(){
 		}
 		return tmp;
 	}
+	
+	this.htmlTitle = function(){
+		return getFontColorFromAspect(this.aspect) + this.title() + "</font>"
+	}
+	
+		this.title = function(){
+		var ret = "";
+
+		if(this.murderMode){
+			ret += "Murder Mode ";
+		}
+
+		if(this.grimDark){
+			ret += "Grim Dark ";
+		}
+
+		if(this.godTier){
+			ret+= "God Tier "
+		}else if(this.isDreamSelf){
+			ret+= "Dream ";
+		}
+		ret+= this.class_name + " of " + this.aspect;
+		if(this.dead){
+			ret += "'s Corpse"
+		}
+		return ret;
+	}
 
 }
