@@ -857,6 +857,16 @@ function drawBGRadialWithWidth(canvas, width, color1, color2){
 	ctx.fillRect(0, 0, width, canvas.height);
 }
 
+function stabs(canvas,player){
+	ctx = canvas.getContext('2d');
+	var imageString = "stab.png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,0,0,width,height);
+	swapColors(canvas, "#fffc00", player.bloodColor);
+}
 
 function bloodPuddle(canvas,player){
     ctx = canvas.getContext('2d');
@@ -903,6 +913,7 @@ function makeRenderingSnapshot(player){
 	ret.rightHorn = player.rightHorn;
 	ret.quirk = player.quirk;
 	ret.baby = player.baby;
+	ret.causeOfDeath = player.causeOfDeath;
 	return ret;
 }
 
@@ -957,7 +968,7 @@ function drawSprite(canvas, player,ctx,baby){
   }
 
   if(!baby && player.dead){
-	   bloodPuddle(canvas, player);
+	   bloodPuddle(canvas, player); 
   }
   hairBack(canvas, player);
   if(player.isTroll){//wings before sprite
@@ -991,6 +1002,10 @@ function drawSprite(canvas, player,ctx,baby){
   }
   if(player.isTroll){
     horns(canvas, player);
+  }
+  
+  if(!baby && player.dead && player.causeOfDeath == "after being shown too many stabs from Jack"){
+	 stabs(canvas,player)
   }
 
   if(player.wasteInfluenced == true){
@@ -1369,6 +1384,7 @@ function aspectPalletSwap(canvas, player){
   //remove it entirely with this command
   //pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB infile.png outfile.png
   //pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB reg001.png reg001copy.png
+  //./pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB stab.png stab_copy.png
 	var oldcolor1 = "#FEFD49";
 	var oldcolor2 = "#FEC910";
 	var oldcolor3 = "#10E0FF";

@@ -67,8 +67,9 @@ function loadImage(img){
 //load pesterchum, blood, big aspect symbols, echeladders, god tier level up, romance symbols, babies, grubs
 function loadOther(){
 	loadImage("jr.png");
-  loadImage("gears.png");
-  loadImage("mind_forehead.png")
+	loadImage("stab.png");
+	loadImage("gears.png");
+	loadImage("mind_forehead.png")
 	loadImage("ab.png")
 	loadImage("grimdark.png");
 	loadImage("fin1.png");
@@ -88,11 +89,11 @@ function loadOther(){
 	loadImage("Auspisticism.png")
 	loadImage("Kismesis.png")
 	loadImage("prince_hat.png")
-  loadImage("discuss_romance.png")
-  loadImage("discuss_hatemance.png")
-  loadImage("discuss_sburb.png")
-  loadImage("discuss_jack.png")
-  loadImage("discuss_murder.png")
+	loadImage("discuss_romance.png")
+	loadImage("discuss_hatemance.png")
+	loadImage("discuss_sburb.png")
+	loadImage("discuss_jack.png")
+	loadImage("discuss_murder.png")
 	for(var i = 1; i<4; i++){
 		loadImage("Bodies/baby"+i + ".png")
 	}

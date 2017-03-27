@@ -25,11 +25,9 @@ function SaveDoomedTimeLine(session){
 		timeClone.dead = false;
 		//from a different timeline, things went differently.
 		var rand = Math.seededRandom();
-		console.log(rand);
 		if(rand>.8){
 			timeClone.godTier = !timeClone.godTier;
 		}else if(rand>.6){
-			console.log("dream self time clone: " + this.session.session_id);
 			timeClone.isDreamSelf = !timeClone.isDreamSelf;
 		}else if(rand>.4){
 			timeClone.grimDark = !timeClone.grimDark;

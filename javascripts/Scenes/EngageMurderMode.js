@@ -252,11 +252,17 @@ function EngageMurderMode(session){
 
 	this.addImportantEvent = function(){
 		var current_mvp =  findStrongestPlayer(this.session.players)
-		this.session.addImportantEvent(new PlayerWentMurderMode(this.session, current_mvp.power,this.player) );
+		return this.session.addImportantEvent(new PlayerWentMurderMode(this.session, current_mvp.power,this.player) );
 	}
 
 	this.renderContent = function(div){
-		var alternate_timeline = this.addImportantEvent();
+		var alt = this.addImportantEvent();
+		console.log("alt is: (why isn't the alternate scene triggering!? " + this.player.title())
+		console.log(alt);
+		if(alt){
+			alt.alternateScene(div);
+			return;
+		}
 		//reset capitilization quirk
 		this.player.quirk.capitalization = getRandomInt(0,5);
 		div.append("<br>"+this.content());

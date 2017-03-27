@@ -18,13 +18,13 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player, doomedTimeClone){
 	this.session = session;
 	this.importanceRating = 9;
 	this.mvp_value = mvp_value;
-	this.player = player;
+	this.player = makeRenderingSnapshot(player);
 	this.doomedTimeClone = doomedTimeClone;
 	this.timesCalled = 0;
 
 	this.humanLabel = function(){
 		var ret  = "";
-		ret += "Have the " + this.player.htmlTitleBasic() + " go God Tier instead of dying forever. " + this.mvp_value ;
+		ret += "Have the " + this.player.htmlTitle() + " go God Tier instead of dying forever. " + this.mvp_value ;
 		return ret;
 	}
 
@@ -84,12 +84,11 @@ function PlayerDiedForever(session, mvp_value, player, doomedTimeClone){
 	this.session = session;
 	this.mvp_value = mvp_value;
 	this.importanceRating = 5;
-	this.player = player;
+	this.player =  makeRenderingSnapshot(player);
 	this.doomedTimeClone = doomedTimeClone;
-	console.log("prevent death: " + this.session.session_id)
-
+	this.timesCalled = 0;
 	this.humanLabel = function(){
-		var ret  = "Make the " + this.player.htmlTitleBasic() + " not permanently dead.";
+		var ret  = "Make the " + this.player.htmlTitle() + " not permanently dead.";
 		return ret;
 	}
 
@@ -130,11 +129,12 @@ function PlayerWentGrimDark(session, mvp_value,player, doomedTimeClone){
 	this.session = session;
 	this.mvp_value = mvp_value;
 	this.importanceRating = 7;
-	this.player = player;
+	this.player =  makeRenderingSnapshot(player);
+	this.timesCalled = 0;
 	this.doomedTimeClone = doomedTimeClone;
 
 	this.humanLabel = function(){
-		var ret  = "Prevent the " + this.player.htmlTitleBasic() + " from going Grimdark."
+		var ret  = "Prevent the " + this.player.htmlTitle() + " from going Grimdark."
 		return ret;
 	}
 
@@ -143,7 +143,34 @@ function PlayerWentGrimDark(session, mvp_value,player, doomedTimeClone){
 	//jack rampage, murder mode, fight king/queen?
 	//163251  22577  59610
 	this.alternateScene = function(div){
-			console.log("TODO: implement alternate scene. grim dark")
+			this.timesCalled ++;
+			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
+			narration +=  " They come with a dire warning of a doomed timeline. ";
+			narration += " Something seems...off...about them. But they are adamant that the " + this.player.htmlTitleBasic() + " needs to be calmed the fuck down. "
+			narration += " No matter what 'fate' says. "
+			narration += " They spend some time letting the  " + this.player.htmlTitleBasic() + "vent. Hug bumps are shared. ";
+			if(this.doomedTimeClone.isTroll == true || this.player.isTroll == true){
+				narration += "The fact that the " + this.doomedTimeClone.htmlTitleBasic() + "is doomed makes this especially tragic, forestalling any romance this might have otherwise had. "
+			}
+			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
+			div.append(narration);
+			this.player.triggerLevel= 0;
+			
+
+			var divID = (div.attr("id")) + "_alt_" + this.player.chatHandle;
+			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+			div.append(canvasHTML);
+			var canvasDiv = document.getElementById("canvas"+ divID);
+
+			var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+			drawSprite(pSpriteBuffer,this.doomedTimeClone)
+
+			var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+			drawSpriteTurnways(dSpriteBuffer,this.player)
+			
+			drawTimeGears(canvasDiv, this.doomedTimeClone);
+			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
+			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
 	}
 }
 
@@ -151,16 +178,44 @@ function PlayerWentMurderMode(session, mvp_value, player, doomedTimeClone){
 	this.session = session;
 	this.mvp_value = mvp_value;
 	this.importanceRating = 7;
-	this.player = player;
+	this.player = makeRenderingSnapshot(player);
+	this.timesCalled = 0;
 	this.doomedTimeClone = doomedTimeClone;
 
 	this.humanLabel = function(){
-		var ret  = "Prevent the " + this.player.htmlTitleBasic() + " from going into Murder Mode.";
+		var ret  = "Prevent the " + this.player.htmlTitle() + " from going into Murder Mode.";
 		return ret;
 	}
 
 	this.alternateScene = function(div){
-			console.log("TODO: implement alternate scene. prevent murder mode")
+			this.timesCalled ++;
+			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
+			narration +=  " They come with a dire warning of a doomed timeline. ";
+			narration += " Something seems...off...about them. But they are adamant that the " + this.player.htmlTitleBasic() + " needs to be calmed the fuck down. "
+			narration += " No matter what 'fate' says. "
+			narration += " They spend some time letting the  " + this.player.htmlTitleBasic() + "vent. Hug bumps are shared. ";
+			if(this.doomedTimeClone.isTroll == true || this.player.isTroll == true){
+				narration += "The fact that the " + this.doomedTimeClone.htmlTitleBasic() + "is doomed makes this especially tragic, forestalling any romance this might have otherwise had. "
+			}
+			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
+			div.append(narration);
+			this.player.triggerLevel= 0;
+			
+
+			var divID = (div.attr("id")) + "_alt_" + this.player.chatHandle;
+			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+			div.append(canvasHTML);
+			var canvasDiv = document.getElementById("canvas"+ divID);
+
+			var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+			drawSprite(pSpriteBuffer,this.doomedTimeClone)
+
+			var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+			drawSpriteTurnways(dSpriteBuffer,this.player)
+			
+			drawTimeGears(canvasDiv, this.doomedTimeClone);
+			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
+			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
 	}
 }
 
@@ -169,6 +224,7 @@ function JackPromoted(session, mvp_value, doomedTimeClone){
 	this.session = session;
 	this.mvp_value = mvp_value;
 	this.importanceRating = 10;
+	this.timesCalled = 0;
 	this.doomedTimeClone = doomedTimeClone;
 
 	this.humanLabel = function(){
@@ -185,6 +241,7 @@ function JackPromoted(session, mvp_value, doomedTimeClone){
 function FrogBreedingNeedsHelp(session, mvp_value, doomedTimeClone){
 	this.session = session;
 	this.mvp_value = mvp_value;
+	this.timesCalled = 0;
 	this.doomedTimeClone = doomedTimeClone;
 	this.importanceRating = 2;  //really, this is probably the least useful thing you could do. If this is the ONLY thing that went wrong, your session is going great.
 	var spacePlayer = findAspectPlayer(this.session.players, "Space");
@@ -201,11 +258,12 @@ function FrogBreedingNeedsHelp(session, mvp_value, doomedTimeClone){
 //not an important event that gets recorded, but something a time player can go back in time to do.
 function KillPlayer(session, player, doomedTimeClone){
 	this.session = session;
-	this.player = player;
+	this.player =  makeRenderingSnapshot(player);
+	this.timesCalled = 0;
 	this.doomedTimeClone = doomedTimeClone;
 	this.importanceRating = 1;  //really, this is probably the least useful thing you could do. If this is the ONLY thing that went wrong, your session is going great.
 	this.humanLabel = function(){
-		var ret  = "Kill the " + player.htmlTitleBasic() + ".";
+		var ret  = "Kill the " + player.htmlTitle() + ".";
 		return ret;
 	}
 	this.alternateScene = function(div){

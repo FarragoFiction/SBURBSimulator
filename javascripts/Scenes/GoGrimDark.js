@@ -30,11 +30,15 @@ function GoGrimDark(session){
 
 	this.addImportantEvent = function(){
 		var current_mvp =  findStrongestPlayer(this.session.players)
-		this.session.addImportantEvent(new PlayerWentGrimDark(this.session, current_mvp.power,this.player) );
+		return this.session.addImportantEvent(new PlayerWentGrimDark(this.session, current_mvp.power,this.player) );
 	}
 
 	this.renderContent = function(div){
-		this.addImportantEvent();
+		var alt = this.addImportantEvent();
+		if(alt){
+			alt.alternateScene(div);
+			return;
+		}
 		div.append("<br>"+this.content());
 	}
 

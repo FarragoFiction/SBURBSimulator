@@ -22,6 +22,7 @@ function PlayerSnapshot(){
 	this.victimBlood = null;
 	this.baby = null;
 	this.wasteInfluenced = null;
+	this.causeOfDeath = null;
 
 	this.chatHandleShort = function(){
 		return this.chatHandle.match(/\b(\w)|[A-Z]/g).join('').toUpperCase();
