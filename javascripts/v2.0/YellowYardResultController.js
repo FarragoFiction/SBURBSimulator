@@ -55,16 +55,20 @@ function doEventsMatch(newEvent, storedEvent){
       //console.log("mvp did not match")
       return false;
   }
-  //should work even if player is supposed to be null
-  if(newEvent.player.class_name != storedEvent.player.class_name){
-     //console.log("player class did not match")
-      return false;
+  if(newEvent.player && storedEvent.player){
+	  //should work even if player is supposed to be null
+	  if(newEvent.player.class_name != storedEvent.player.class_name){
+		 //console.log("player class did not match")
+		  return false;
+	  }
+	  
+	    if(newEvent.player.aspect != storedEvent.player.aspect){
+      //console.log("player aspect did not match")
+		return false;
+		}
   }
 
-  if(newEvent.player.aspect != storedEvent.player.aspect){
-      //console.log("player aspect did not match")
-      return false;
-  }
+
 
   //since i know the events match, make sure my player is up to date with the current session.
   //had a stupidly tragic bug where I was bringing players back in the DEAD SESSION instead of this new version of it.

@@ -14,12 +14,6 @@ function JackPromotion(session){
 	}
 
 	this.content = function(){
-		var alt = this.addImportantEvent();
-		if(alt){
-			alt.alternateScene(div);
-			return;
-		}
-		console.log("do something with alternate timeline " + this.session.session_id)
 		this.session.jackStrength = this.session.kingStrength * 2;
 		var ret = " In a shocking turn of events, Jack Noir claims the Black Queen's RING OF ORBS " + this.session.convertPlayerNumberToWords();
 		ret += "FOLD. "
@@ -40,6 +34,11 @@ function JackPromotion(session){
 	}
 
 	this.renderContent = function(div){
+		var alt = this.addImportantEvent();
+		if(alt){
+			alt.alternateScene(div);
+			return;
+		}
 		div.append("<br>"+this.content());
 	}
 

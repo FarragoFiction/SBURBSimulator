@@ -231,8 +231,25 @@ function JackPromoted(session, mvp_value, doomedTimeClone){
 		var ret  = "Prevent Jack from obtaining the Black Queen's RING OF ORBS " +this.session.convertPlayerNumberToWords() + "FOLD.";
 		return ret;
 	}
-	this.alternateScene = function(div){
-			console.log("TODO: implement alternate scene. jack promoted.")
+	this.alternateScene = function(div){		
+			this.timesCalled ++;
+			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
+			narration +=  " They come with a dire warning of a doomed timeline. ";
+			narration += " Something seems...off...about them. But they are adamant that the Black Queen's RING OF ORBS " +this.session.convertPlayerNumberToWords() + "FOLD needs to be destroyed. Immediately.";
+			narration += " No matter what 'fate' says. Jack Noir immediately begins flipping out, but the RING is stolen before he can do anything. "
+			narration +=  "The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes with the RING in a cloud of gears to join the final battle.";
+			div.append(narration);	
+			this.session.queenStrength = -9999;
+
+			var divID = (div.attr("id")) + "_alt_jack_promotion" 
+			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+			div.append(canvasHTML);
+			var canvasDiv = document.getElementById("canvas"+ divID);
+
+			var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+			drawSprite(pSpriteBuffer,this.doomedTimeClone)
+			drawTimeGears(canvasDiv, this.doomedTimeClone);
+			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
 	}
 }
 
