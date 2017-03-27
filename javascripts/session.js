@@ -73,6 +73,7 @@ function Session(session_id){
 		//nobody is the leader anymore.
 		var newSession = new Session(Math.seed);  //this is a real session that could have gone on without these new players.
 		newSession.currentSceneNum = this.currentSceneNum;
+		newSession.reinit();
 		newSession.makePlayers();
 		newSession.randomizeEntryOrder();
 		newSession.makeGuardians();
@@ -108,7 +109,7 @@ function Session(session_id){
 		this.hadCombinedSession = true;
 		newSession.parentSession = this.session_id;
 		createScenesForSession(newSession);
-		console.log("Session: " + this.session_id + " has made child universe: " + newSession.session_id)
+		console.log("Session: " + this.session_id + " has made child universe: " + newSession.session_id + " child has this long till reckoning: " + newSession.timeTillReckoning)
 		return newSession;
 	}
 
