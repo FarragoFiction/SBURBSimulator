@@ -32,7 +32,7 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player, doomedTimeClone){
 			this.timesCalled ++;
 			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
 			narration +=  " They come with a dire warning of a doomed timeline. ";
-			narration += " Something seems...off...about them. But they are adamant that the " + this.player.htmlTitleBasic() + " needs to go GodTier now. "
+			narration += " Something seems...off...about them. But they are adamant that the " + this.player.htmlTitleBasic() + " needs to go God Tier now. "
 			narration += " No matter what 'fate' says. "
 			narration += " They scoop the corpse up and vanish with it in a cloud of gears, depositing it instantly on the " + this.player.htmlTitleBasic() + "'s ";
 			if(this.player.isDreamSelf == true){
