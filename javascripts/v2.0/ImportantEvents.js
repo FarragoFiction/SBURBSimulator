@@ -195,7 +195,7 @@ function PlayerWentMurderMode(session, mvp_value, player, doomedTimeClone){
 			narration += " No matter what 'fate' says. "
 			narration += " They spend some time letting the  " + this.player.htmlTitleBasic() + " vent. Hug bumps are shared. ";
 			if(this.doomedTimeClone.isTroll == true || this.player.isTroll == true){
-				narration += "The fact that the " + this.doomedTimeClone.htmlTitleBasic() + "is doomed makes this especially tragic, forestalling any romance this might have otherwise had. "
+				narration += "The fact that the " + this.doomedTimeClone.htmlTitleBasic() + " is doomed makes this especially tragic, forestalling any romance this might have otherwise had. "
 			}
 			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
 			div.append(narration);
