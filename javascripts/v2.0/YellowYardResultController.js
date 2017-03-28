@@ -86,6 +86,6 @@ function doEventsMatch(newEvent, storedEvent){
 function decision(){
   var a =$("input[name='decision']:checked").val()
   var eventDecided = yyrEventsGlobalVar[parseInt(a)];
-  alert(eventDecided.humanLabel());
+  //alert(eventDecided.humanLabel());
   curSessionGlobalVar.addEventToUndoAndReset(eventDecided);
 }

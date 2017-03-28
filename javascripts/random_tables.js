@@ -1173,3 +1173,17 @@ var justice_handles2 = ["Detective","Defender","Laywer","Loyalist","Liason","Vig
 
 
 var human_hair_colors = ["#68410a","#000000","#000000","#000000","#f3f28d","#cf6338","#feffd7","#fff3bd","#724107","#382207","#ff5a00","#3f1904","#ffd46d","#473200","#91683c"];
+
+
+
+
+function helloWorld(){
+	$.ajax({
+	  url: "hello_world.txt",
+	  success:(function(data){
+		  console.log(data)
+	  }),
+	  dataType: "text"
+});
+	
+}
