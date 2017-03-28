@@ -33,6 +33,7 @@ function SessionSummary(){
 	
 	//generate own html, complete with div.  just return it, dn't add it to anything
 	this.generateHTML = function(){
+		console.log("add combo session stat")
 		var html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id +"'>";
 		for(var propertyName in this) {
 				if(propertyName == "players"){
