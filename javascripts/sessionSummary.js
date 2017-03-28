@@ -4,7 +4,7 @@
 function SessionSummary(){
 	this.session_id = null;
 	this.num_scenes = null;
-	this.player = null;  //can ask for sessions with a blood player and a murder mode, for example
+	this.players = null;  //can ask for sessions with a blood player and a murder mode, for example
 	this.mvp = null;
 	this.scratchAvailable = null;
 	this.parentSession = null;
@@ -34,19 +34,31 @@ function SessionSummary(){
 	//generate own html, complete with div.  just return it, dn't add it to anything
 	this.generateHTML = function(){
 		var html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id +"'>";
-		html += "<br>TODO TODO TODO<br>"
+		for(var propertyName in this) {
+				if(propertyName == "players"){
+					html += "<Br><b>" + propertyName + "</b>: " + getPlayersTitlesBasic(this.players);
+				}else if(propertyName == "mvp"){
+					html += "<Br><b>" + propertyName + "</b>: " + this.mvp.htmlTitleBasic() + " With a Power of: " + this.mvp.power;
+				}else if(propertyName == "session_id"){
+					html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "'>" +this.session_id + "</a>" 
+				}else if(propertyName != "generateHTML"){
+					html += "<Br><b>" + propertyName + "</b>: " + this[propertyName] ;
+				}
+		}
 		
-		html += "</div>"
+		html += "</div><br>"
+		return html;
 	}
 	
 }
 
 
 function MultiSessionSummary(){
+	this.total = 0;
 	this.scratchAvailable = 0;
 	this.yellowYard = 0;
-	this.numAllLiving = 0;
-	this.numAllDead = 0;
+	this.timesAllLived = 0;
+	this.timesAllDied = 0;
 	this.ectobiologyStarted = 0;
 	this.denizenFought = 0;
 	this.plannedToExileJack = 0;
@@ -65,6 +77,23 @@ function MultiSessionSummary(){
 	this.hasSpades = 0;
 	this.hasClubs = 0;
 	this.hasHearts = 0;
+	
+	this.generateHTML = function(){
+		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
+		var header = "<h2>Stats for All Displayed Sessions:</h2>"
+		html += header;
+		//http://stackoverflow.com/questions/85992/how-do-i-enumerate-the-properties-of-a-javascript-object
+		for(var propertyName in this) {
+				if(propertyName != "generateHTML"){
+					html += "<Br><b>" + propertyName + "</b>: " + this[propertyName] ;
+					html += " (" + Math.round(100* (this[propertyName]/this.total)) + "%)";
+				}
+		}
+		
+		html += "</div><Br>"
+		return html;
+	}
+
 }
 
 
@@ -72,10 +101,11 @@ function collateMultipleSessionSummaries(sessionSummaries){
 	var mss = new MultiSessionSummary();
 	for(var i = 0; i<sessionSummaries.length; i++){
 		var ss = sessionSummaries[i];
+		mss.total ++;
 		if(ss.scratchAvailable) mss.scratchAvailable ++;
 		if(ss.yellowYard) mss.yellowYard ++;
-		if(ss.numLiving == 0) mss.numAllDead ++;
-		if(ss.numDead == 0) mss.numAllLiving ++;
+		if(ss.numLiving == 0) mss.timesAllDied ++;
+		if(ss.numDead == 0) mss.timesAllLived ++;
 		if(ss.ectobiologyStarted) mss.ectobiologyStarted ++;
 		if(ss.denizenFought) mss.denizenFought ++;
 		if(ss.plannedToExileJack) mss.plannedToExileJack ++;

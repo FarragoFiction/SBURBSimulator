@@ -23,6 +23,10 @@
   float:left;
 }
 
+.sessionSummary{
+	width: 500px;
+}
+
 #colorList{
   float:left;
 }

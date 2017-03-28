@@ -744,7 +744,7 @@ function getPlayersTitlesBasic(playerList){
 	if(playerList.length == 0){
 		return "";
 	}
-		var ret = playerList[0].htmlTitle();
+		var ret = playerList[0].htmlTitleBasic();
 		for(var i = 1; i<playerList.length; i++){
 			ret += " and " + playerList[i].htmlTitleBasic();
 		}

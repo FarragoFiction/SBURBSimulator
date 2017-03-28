@@ -305,27 +305,27 @@ function Session(session_id){
 		var summary = new SessionSummary();
 		summary.session_id = this.session_id;
 		summary.num_scenes = this.scenesTriggered.length;
-		summary.player = this.players;
+		summary.players = this.players;
 		summary.mvp = findStrongestPlayer(this.players);
 		summary.parentSession = this.parentSession;
 		summary.scratchAvailable = this.scratchAvailable;
 		summary.yellowYard = findSceneNamed(this.scenesTriggered,"YellowYard") != "No"
-		summary.numLiving =  findLivingPlayers(this.players);
-		summary.numDead =  findDeadPlayers(this.players);
-		summary.ectoBiologyStarted = session.ectoBiologyStarted;
-		summary.denizenFought = findSceneNamed(this.scenesTriggered,"FaceDenizen") != "No")
+		summary.numLiving =  findLivingPlayers(this.players).length;
+		summary.numDead =  findDeadPlayers(this.players).length;
+		summary.ectoBiologyStarted = this.ectoBiologyStarted;
+		summary.denizenFought = findSceneNamed(this.scenesTriggered,"FaceDenizen") != "No";
 		summary.plannedToExileJack = findSceneNamed(this.scenesTriggered,"PlanToExileJack") != "No";
-		summary.exileJack = findSceneNamed(this.scenesTriggered,"ExileJack") != "No")
-		summary.exileQueen = findSceneNamed(this.scenesTriggered,"ExileQueen") != "No")
-		summary.jackPromoted = findSceneNamed(this.scenesTriggered,"JackPromotion") != "No")
-		summary.jackGotWeapon = findSceneNamed(this.scenesTriggered,"GiveJackBullshitWeapon") != "No")
-		summary.jackRampage = findSceneNamed(this.scenesTriggered,"JackRampage") != "No")
-		summary.jackScheme = findSceneNamed(this.scenesTriggered,"JackBeginScheming") != "No")
-		summary.kingPowerful =findSceneNamed(this.scenesTriggered,"KingPowerful") != "No")
-		summary.queenRejectRing =findSceneNamed(this.scenesTriggered,"QueenRejectRing") != "No")
-		summary.democracyStarted =findSceneNamed(this.scenesTriggered,"StartDemocracy") != "No")
-		summary.murderMode = findSceneNamed(this.scenesTriggered,"EngageMurderMode") != "No")
-		summary.grimDark = findSceneNamed(this.scenesTriggered,"GoGrimDark") != "No")
+		summary.exileJack = findSceneNamed(this.scenesTriggered,"ExileJack") != "No"
+		summary.exileQueen = findSceneNamed(this.scenesTriggered,"ExileQueen") != "No"
+		summary.jackPromoted = findSceneNamed(this.scenesTriggered,"JackPromotion") != "No"
+		summary.jackGotWeapon = findSceneNamed(this.scenesTriggered,"GiveJackBullshitWeapon") != "No"
+		summary.jackRampage = findSceneNamed(this.scenesTriggered,"JackRampage") != "No"
+		summary.jackScheme = findSceneNamed(this.scenesTriggered,"JackBeginScheming") != "No"
+		summary.kingPowerful =findSceneNamed(this.scenesTriggered,"KingPowerful") != "No"
+		summary.queenRejectRing =findSceneNamed(this.scenesTriggered,"QueenRejectRing") != "No"
+		summary.democracyStarted =findSceneNamed(this.scenesTriggered,"StartDemocracy") != "No"
+		summary.murderMode = findSceneNamed(this.scenesTriggered,"EngageMurderMode") != "No"
+		summary.grimDark = findSceneNamed(this.scenesTriggered,"GoGrimDark") != "No"
 		var spacePlayer = findAspectPlayer(this.players, "Space");
 		summary.frogLevel =spacePlayer.landLevel
 		summary.hasDiamonds =this.hasDiamonds;

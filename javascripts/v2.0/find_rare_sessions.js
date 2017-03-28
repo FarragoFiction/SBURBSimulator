@@ -122,7 +122,6 @@ function shareableURL(){
 
 
 function renderScratchButton(session){
-	timesScratchesAvailable ++;
 	if(session.ectoBiologyStarted == false){
 		//summarizeSession(session);
 	}
@@ -246,7 +245,6 @@ function processCombinedSession(){
 	initial_seed = Math.seed;
 	var newcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
 	if(newcurSessionGlobalVar){
-		timesComboSession ++;
 		curSessionGlobalVar = newcurSessionGlobalVar;
 		$("#story").append("<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session " + curSessionGlobalVar.session_id + ". ");
 		intro();
@@ -268,17 +266,15 @@ function summarizeSession(session){
 	}
 	sessionsSimulated.push(curSessionGlobalVar.session_id);
 	$("#story").html("");
-	var str = curSessionGlobalVar.summarize();
+	var sum = curSessionGlobalVar.generateSummary();
+	sessionSummariesDisplayed.push(sum);
+	var str = sum.generateHTML();
 	checkDoomedTimelines();
 	debug("<br><hr><font color = 'red'> AB: " + getQuipAboutSession(curSessionGlobalVar) + "</font><Br>" );
 	debug(str);
 
 	numSimulationsDone ++;
-	if(getParameterByName("robot")){
-		printStatsRobot();
-	}else{
-		printStats();
-}
+	printStats();
 	if(numSimulationsDone >= numSimulationsToDo){
 		$("#button").prop('disabled', false)
 		if(!getParameterByName("robot")){
@@ -377,6 +373,11 @@ function foundRareSession(div, debugMessage){
 }
 
 function printStats(){
+	var mms = collateMultipleSessionSummaries(sessionSummariesDisplayed);
+	$("#stats").html(mms.generateHTML());
+}
+
+function printStatsOld(){
 
 	var str = " <h2> Stats for all Checked Sessions</h2>"
 	str += "<br>Number Sessions: " + sessionsSimulated.length;
@@ -421,15 +422,12 @@ function printStats(){
 function checkDoomedTimelines(){
 	//console.log("check")
 	for(var i= 0; i<curSessionGlobalVar.doomedTimelineReasons.length; i ++){
-		timesSavedDoomedTimeLine ++;
 		if(curSessionGlobalVar.doomedTimelineReasons[i] != "Shenanigans"){
 			//alert("found an interesting doomed timeline" + doomedTimelineReasons[i])
-			timesInterestingSaveDoomedTimeLine ++;
 			return;
 		}
 	}
 	if(curSessionGlobalVar.doomedTimelineReasons.length > 1){
-		timesSavedDoomedTimeLine ++;
 	}
 }
 
