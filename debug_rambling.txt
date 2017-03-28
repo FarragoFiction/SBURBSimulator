@@ -345,3 +345,103 @@ Alright,
  hrrrrm.
  
  Well, the inner loop doesn't HAVE to start from zero. It can start from the outter loop index. that should do it.
+ 
+                                                                                                                                                      
+                          ```````   `                 `  ``   `                        ```````                           `                            
+                      ```` `   `   ````           `````   `   `````               ````  `   `` ````                ````  `   ``` `                    
+                   ```               ````        ```             ````           ```                ```          ```             ````                  
+                  ``                   ```      ``                 ```         ```                  ```        ```                ``                  
+           `````..``.`..`````````.``.``-``.``..`..``.```.``..``.``.``.``.``.``-`.-``.``.`..``.``.``..`..``.``.``.```..``.``..`..````..````            
+           `.-............-..-...-.....-........................................................................-.......................-.`           
+           `.-..........................................................................................................................-.`           
+           `......:-....-::::::::::----:++++++++++++++oo+++::::::::::::::...::::::::::::::---------::::::::::::::::::::::::::-....-:......`           
+           `.-..../.                 -ohddddddddddddddddddhh+`           `.`                                                      ./....-.`           
+           `......+.              .+yhddddddddddddddddmmmmmddy.          `.`                            `     `                   .+......`           
+       `````.-....+.           `:shddddddddddddddddmNNNNNNNNmdy.         `.``.+o+.`  `.oo/.           .sh   .sh                   .+....-.` ```       
+     ```   `......+.         -ohdddddddddddddddmmNNNNNNNNNNNNmdy`        `.`  +d+      sd:             yd    yd                   .+......`   ```     
+     ```   `.:....+.         .yddddddddddddmmddNNNNmshNNNNmmNNmdo        `.`  +d+      sd-    ---:.    yd    yd    `---:.         .+....:.`    ```    
+    ```    `......+-          `+hdddddddddms:-hNdyo.``:shmN+omNdh-       `.`  +do------yd-  -s.``-ho   yd    yd   /o```-ss`       -+......`    ```    
+    ```    `.-....+:            .ohddddddy-``.:-.````````.-:`-NNdo       `.`  +d+``````yd-  yy:::://`  yd    yd  -h:    -do       :+....-.`    ```    
+     ```   `......+-              .+hdddds```````````````````.NNmh.      `.`  +d+      sd-  yh.    .`  yd    yd  :do    `d+       -+......`    ```    
+     ```   `.-..../.                .sddddy-`````````````````+Nmdo`      `.`  odo      yd:  -yho//+:   yd    yd   +h/` `/o`  /o.  ./....-.`    ``     
+       `````....../.                 -yddddh/```````````````/dyo-        `.``.:::.`  `.::-`  `-//:.   .::.  .::.   .::-..    -/`  ./......` ````      
+        ````......+.                /hddddddds:``````````.-/:.`          `.`                                                      .+......````        
+           `......+.               -ddmddddddddo-..-//+ohms              `.`                                                      .+......`           
+           `.-....+.              -hdNmddddddddddhhdddddyNh              `.`                                                      .+....-.`           
+           `-.....+.           .-ohddmdddddddddddhhdddddso:              `.`                                                      .+.....-`           
+          ``......+.          .ohdddddddddddddddhs/ddddddh:              `.`                                                      .+......`           
+        ````......+.         ```:hdddddddddddddh+--/hdddddh-             `.`                                                      .+......`````       
+      ```  `......+-      ``````.hddddddddddddho....+dddddy`             `.`                                                      -+......`  ```      
+     ````  `.:...-+:   ``````` `odddddddddddddo/-..-+sdds/.``            `.`                                                      :+-...:.`   ```     
+     ```   `....../-`````````   :sssssssyyyyyys+o++o+syyo `````          `.`               ````````````````                       -/......`    ``     
+     ```   `........````````````--------:::::::::::::::::.````````````````.````````````````````````````````````````````````````````.......`    ``     
+     ```   `....../```````      -+syyyhhhhhhhhhddddddhyo/.    ```        `.`                                                      `+......`   ```     
+      ``   `.....-+`   `````       ``.shdddddddddddddo         ```       `.`                                                      `+-.....`   ```     
+       ``` `.....-+`      `````   ````-/hddddddddddddh-         ```      `.`                                                      `+-.....`  ``       
+         ```.-...-+`          ````````..:oddddddddddddh.         ```     `.`                                                      `+-...-.```         
+           `.....-+.                 :shyddddddddddddddy.         ```    `.`                                                      .+-.....`           
+           `.-...-+.                 sddddddddddddddddddy.        ```    `.`                                                      .+-...-.`           
+           `......+`                 ydddddddddddddddddddh.        ```   `.`                                                      `+......`           
+        ````......+`                -hydddddddddddddddddddy`        ``   `.`                                                      `+......`````       
+      ```  `......+`                +hsdddddddddddddddddddds`        ``  `.`                                                      `+......`  ````     
+     ```   `.....-+`                +y+hddddddddddddddddddddo         `` `.`                                                      `+-.....`   ```     
+     ```   `.-...-+`                ys+yddddddddddddddddddddd/         ` `.`                                                      `+-...-.`    ```    
+     ```   `.....-+`               -d++sdddddddddddddddddddddh-        ```.`                                                      `+-.....`    ```    
+     ```   `:....-+`               -s++ohhhhhddhdddddddhhhhyso+        ` `..`                                                     `+-....:`   ```     
+      ``   `.....-+`                .++++++oooo-::::/oooo++++++.         `..`                                                     `+-.....`   ```     
+       ````..-...:+`                -+++++++++/      :+++++++++/         `.`                                                      `+:...-.` ````      
+        ```......-+.                -+++++++++/       /+++++++++.        `.`                                                      .+-......```        
+           `.-...:+.                -+++++++++/       `+++++++++/        `.`                                                      .+:...-.`           
+           `.-...-+-                -+++++++++/        :+++++++++`       `.`                                                      -+-...-.`           
+           ......./:...--:::::::::--://///////:......--://///////::::::::...::::::::::::::--------:::::::::::::::::::::::::::--...:/.......           
+           ..-..........................................................................................................................-..           
+           ..-........-...-..-..................................................................................-..............-........-..           
+           `````-``.``.```.`````..`..`..``-``-``-``..``.```-``.```.``.`..``.`..`..`..`..`.``..`..``-``.``.``..``.```-```.``-```.``.``-`````     
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+Okay, now that THAT's out of the way....
+
+time to update the Rare Session Finder.
+
+my original thought was to have a new page entirely, where you can pick what you want to look for from a drop down menu, and then AuthorBot prints a list of sessions out that match your criteria.  But karmicRetribution has an intriguing idea: On the 'stats' section, have them be clickable to filter sessions out.
+
+So: Design time.
+
+~~~~Sequence of Events:
+
+Page is loaded.  Can pick number of sessions to check, and click "check sessions."
+
+Stats for All Sessions updated with each session, and stats for A session print below.
+
+Click on a total stat line, and it filters sessions to only be ones where that value is 'true'.   Total stats now only reflect filtered list?  Button added to delete all filters. 
+~~~~~~~~~~~~~~~~~~~~~
+
+So, I will have to refactor some stuff.
+
+Right now the way total session stats are calculated is each session adds to a global variable when they are asked to summarize themselves. if i were to call that multiple times, it would inflate the value. and there is no way to get it for only a subset of sessions.
+
+bluh. bob warned me about global variables. he told me, dog.
+
+
+So, instead of having global variables, have each session contain a summary object (much like a player snapshot).  When I ask for a session's summary, it generates this object.  Move the "summary HTML" code outside of the object itself. just make it a global function. Then, I get combo stats by asking all sessions in an array to give me their stats. 
+
+have sessions array, and filteredSessions array.  Sessions array is never modified. filteredSessions array is always a object by object copy (even if there is nothing to filter by). 
+
+what happens if they check a session while it's filtered?  
+
+
+
+
+
+
+
+

@@ -14,6 +14,8 @@
 //but the "I" in AI was stronger over there. It was a dead simple genetic algorithm of creatures living in a world filled with plants and predators.
 //their 'DNA' was literally just the directions they would move over their life. but they would evolve, and it was neat to watch.
 //the 'voice' of the narratator is shamelessly inspired by the game Bastion, so that tells you how old that sim is. 20-goddamned-11.  That's 6 years old now. damn.
+
+//bob warned me about global variables. he told me, dog.
 var simulationMode = true;
 var debugMode = false;
 var spriteWidth = 400;
@@ -27,53 +29,19 @@ var version2 = true; //even though idon't want  to render content, 2.0 is differ
 var sessionObjects = []
 var curSessionGlobalVar;
 var sessionsSimulated = []
-var timesEcto = 0;
-var timesDiamonds = 0;
-var timesClubs = 0;
-var timesDenizen = 0;
-var timesExileJack = 0;
-var timesPlanExileJack = 0;
-var timesExileQueen = 0;
-var timesJackWeapon = 0;
-var timesJackScheme = 0;
-var timesJackRampage = 0;
-var timesJackPromotion = 0;
-var timesKingPowerful = 0;
-var timesTotalPartyLive = 0;
-var timesQueenRejectRing = 0;
-var timesSavedDoomedTimeLine = 0;
-var timesInterestingSaveDoomedTimeLine = 0;
-var timesDemocracyStart = 0;
-var timesScratchesAvailable =0;
-var timesSickFrog = 0;
-var timesNoFrog  = 0;
-var timesFullFrog = 0;
-var timesGrimDark = 0;
-var timesMurderMode = 0;
-var timesComboSession = 0;
-var timesTotalPartyWipe = 0;
-var totalFrogLevel = 0;
-var timesGroundHog = 0;
+var sessionSummariesDisplayed = [];
 
 var numSimulationsDone = 0;
 var numSimulationsToDo = 52;
 var quipMode = false;
 
 
-//have EVERYTHING be a scene, don't put any story in v2.0's controller
-//every scene can update the narration, or the canvas.
-//should there be only one canvas?  Can have player sprites be written to a virtual canvas first, then copied to main one.
-//main canvas is either Leader + PesterChumWindow + 1 or more Players (in chat or group chat with leader)
-//or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
 	if(quipMode == true){
 			robotMode();
 			return;
 	}
 	percentBullshit();
-	//these bitches are SHAREABLE.
-
-	//debug("2022 has a combo session");
 
 	if(getParameterByName("seed")){
 		Math.seed = getParameterByName("seed");

@@ -56,6 +56,7 @@ function RelationshipDrama(session){
 			chatText += chatLine(player1Start, player1,"Holy shit! Even though I've been hitting on everybody?");
 			chatText += chatLine(player2Start, player2,"Honestly, I was kind of insulted you hit on everybody BUT ME.");
 			chatText += chatLine(player1Start, player1,"Holy shit.");
+			this.session.hasHearts = true;
 		}else if(r2.saved_type ==r2.badBig){
 			chatText += chatLine(player2Start, player2, "lol");
 			chatText += chatLine(player2Start, player2, "You really think I'm dumb enough to fall for that?");
@@ -161,6 +162,7 @@ function RelationshipDrama(session){
 			chatText += chatLine(player2Start, player2,"!");
 			chatText += chatLine(player2Start, player2,"Wow... I ... I feel the same way!");
 			chatText += chatLine(player1Start, player1,"Holy shit!");
+			this.session.hasHearts = true;
 		}else if(r2.saved_type ==r2.badBig){
 			chatText += chatLine(player2Start, player2, "lol");
 			chatText += chatLine(player2Start, player2, "Well, I think YOU are " + this.generateNewOpinion(r2) + "!");
@@ -528,6 +530,7 @@ function RelationshipDrama(session){
 			var trait2 = whatDontPlayersHaveInCommon(player2, player1);
 			chatText += chatLine(player1Start, player1,"God, why are you so " + trait + "?");
 			chatText += chatLine(player2Start, player2,"Fuck you, at least I'm not " + trait2 + "!");
+			this.session.hasSpades = true;
 
 		}else if(r2.type == r2.goodBig){
 			chatText += chatLine(player2Start, player2,"Wow. Yes. Way to be an asshole. ");

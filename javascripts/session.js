@@ -4,6 +4,8 @@ function Session(session_id){
 	this.players = [];
 	this.hasClubs = false;
 	this.hasDiamonds = false;
+	this.hasHearts = false;
+	this.hasSpades = false;
 	this.guardians = [];
 	this.kingStrength = 100;
 	this.queenStrength = 100;
@@ -298,177 +300,40 @@ function Session(session_id){
 		$("#story").append(div);
 		return $("#scene"+this.currentSceneNum);
 	}
-
-	this.summarize = function(){
-		var strongest = findStrongestPlayer(this.players)
-		var str = "<a href = 'index2.html?seed="+ this.session_id +"'>Session: " + this.session_id + "</a> scenes: " + this.scenesTriggered.length + " Leader:  " + getLeader(this.players).title() + " MVP: " + strongest.htmlTitle()+ " with a power of: " + strongest.power;;
-		if(this.scratchAvailable == true){
-			str += "<br><b>&nbsp&nbsp&nbsp&nbspScratch Available</b>"
-		}
-
-		if(this.parentSession != null){
-			str += "<br><b>&nbsp&nbsp&nbsp&nbspCombined Session From: " + this.parentSession + "</b>"
-			//timesComboSession ++;
-		}
-		
-		var tmp = "";
-		tmp =  summarizeScene(this.scenesTriggered, "YellowYard")
-		if(findSceneNamed(this.scenesTriggered,"YellowYard") != "No"){
-			timesGroundHog ++;
-		}
-		str += tmp;
-		
-		var living = findLivingPlayers(this.players);
-		str += "<br><b>&nbsp&nbsp&nbsp&nbspLiving Players: " + living.length+ "</b>"
-		if(living.length == 0){
-			timesTotalPartyWipe ++;
-		}
-
-		var dead = findDeadPlayers(this.players);
-		str += "<br><b>&nbsp&nbsp&nbsp&nbspDead Players: " + dead.length+ "</b>"
-		if(living.length == 0){
-			timesTotalPartyLive ++;
-		}
-
-		var tmp = "";
-		tmp =  summarizeScene(this.scenesTriggered, "DoEctobiology")
-		if(findSceneNamed(this.scenesTriggered,"DoEctobiology") != "No"){
-			timesEcto ++;
-		}
-
-		str += tmp;
-
-		tmp =  summarizeScene(this.scenesTriggered, "FaceDenizen")
-		if(findSceneNamed(this.scenesTriggered,"FaceDenizen") != "No"){
-			timesDenizen ++;
-		}
-		str += tmp;
-
-
-		tmp =  summarizeScene(this.scenesTriggered, "PlanToExileJack")
-		if(findSceneNamed(this.scenesTriggered,"PlanToExileJack") != "No"){
-			timesPlanExileJack ++;
-		}
-		str += tmp;
-
-		tmp =  summarizeScene(this.scenesTriggered, "ExileJack")
-		if(findSceneNamed(this.scenesTriggered,"ExileJack") != "No"){
-			timesExileJack ++;
-		}
-		str += tmp;
-
-
-		tmp =  summarizeScene(this.scenesTriggered, "ExileQueen")
-		if(findSceneNamed(this.scenesTriggered,"ExileQueen") != "No"){
-			timesExileQueen ++;
-		}
-		str += tmp;
-
-
-		tmp =  summarizeScene(this.scenesTriggered, "GiveJackBullshitWeapon")
-		if(findSceneNamed(this.scenesTriggered,"GiveJackBullshitWeapon") != "No"){
-			timesJackWeapon ++;
-		}
-		str += tmp;
-
-		tmp =  summarizeScene(this.scenesTriggered, "JackBeginScheming")
-		if(findSceneNamed(this.scenesTriggered,"JackBeginScheming") != "No"){
-			timesJackScheme ++;
-		}
-		str += tmp;
-
-
-		tmp =  summarizeScene(this.scenesTriggered, "JackPromotion")
-		if(findSceneNamed(this.scenesTriggered,"JackPromotion") != "No"){
-			timesJackPromotion ++;
-		}
-		str += tmp;
-
-		tmp =  summarizeScene(this.scenesTriggered, "JackRampage")
-		if(findSceneNamed(this.scenesTriggered,"JackRampage") != "No"){
-			timesJackRampage ++;
-		}
-		str += tmp;
-
-
-		tmp =  summarizeScene(this.scenesTriggered, "KingPowerful")
-		if(findSceneNamed(this.scenesTriggered,"KingPowerful") != "No"){
-			timesKingPowerful ++;
-		}
-		str += tmp;
-
-		tmp =  summarizeScene(this.scenesTriggered, "QueenRejectRing")
-		if(findSceneNamed(this.scenesTriggered,"QueenRejectRing") != "No"){
-			timesQueenRejectRing ++;
-		}
-		str += tmp;
-
-
-	  //stats for this will happen in checkDoomedTimeLines
-		str += summarizeScene(this.scenesTriggered, "SaveDoomedTimeLine") + this.doomedTimelineReasons;
-
-		tmp =  summarizeScene(this.scenesTriggered, "StartDemocracy")
-		if(findSceneNamed(this.scenesTriggered,"StartDemocracy") != "No"){
-			timesDemocracyStart ++;
-		}
-		str += tmp;
-
-		tmp =  summarizeScene(this.scenesTriggered, "EngageMurderMode")
-		if(findSceneNamed(this.scenesTriggered,"EngageMurderMode") != "No"){
-			timesMurderMode ++;
-		}
-		str += tmp;
-		//murdersHappened
-
-		tmp =  summarizeScene(this.scenesTriggered, "MurderPlayers")
-		if(findSceneNamed(this.scenesTriggered,"MurderPlayers") != "No"){
-			this.murdersHappened = true;
-		}
-		str += tmp;
-
-		tmp =  summarizeScene(this.scenesTriggered, "GoGrimDark")
-		if(findSceneNamed(this.scenesTriggered,"GoGrimDark") != "No"){
-			timesGrimDark ++;
-		}
-		str += tmp;
-
+	
+	this.generateSummary = function(){
+		var summary = new SessionSummary();
+		summary.session_id = this.session_id;
+		summary.player = this.players;
+		summary.mvp = findStrongestPlayer(this.players);
+		summary.parentSession = this.parentSession;
+		summary.scratchAvailable = this.scratchAvailable;
+		summary.yellowYard = findSceneNamed(this.scenesTriggered,"YellowYard") != "No"
+		summary.numLiving =  findLivingPlayers(this.players);
+		summary.numDead =  findDeadPlayers(this.players);
+		summary.ectoBiologyStarted = session.ectoBiologyStarted;
+		summary.denizenFought = findSceneNamed(this.scenesTriggered,"FaceDenizen") != "No")
+		summary.plannedToExileJack = findSceneNamed(this.scenesTriggered,"PlanToExileJack") != "No";
+		summary.exileJack = findSceneNamed(this.scenesTriggered,"ExileJack") != "No")
+		summary.exileQueen = findSceneNamed(this.scenesTriggered,"ExileQueen") != "No")
+		summary.jackPromoted = findSceneNamed(this.scenesTriggered,"JackPromotion") != "No")
+		summary.jackGotWeapon = findSceneNamed(this.scenesTriggered,"GiveJackBullshitWeapon") != "No")
+		summary.jackRampage = findSceneNamed(this.scenesTriggered,"JackRampage") != "No")
+		summary.jackScheme = findSceneNamed(this.scenesTriggered,"JackBeginScheming") != "No")
+		summary.kingPowerful =findSceneNamed(this.scenesTriggered,"KingPowerful") != "No")
+		summary.queenRejectRing =findSceneNamed(this.scenesTriggered,"QueenRejectRing") != "No")
+		summary.democracyStarted =findSceneNamed(this.scenesTriggered,"StartDemocracy") != "No")
+		summary.murderMode = findSceneNamed(this.scenesTriggered,"EngageMurderMode") != "No")
+		summary.grimDark = findSceneNamed(this.scenesTriggered,"GoGrimDark") != "No")
 		var spacePlayer = findAspectPlayer(this.players, "Space");
-		var result = "No Frog"
-
-		if(spacePlayer.landLevel >= this.minFrogLevel){
-			if(spacePlayer.landLevel < this.goodFrogLevel){
-				timesSickFrog ++;
-				result = "Sick Frog"
-
-			}else{
-				timesFullFrog ++;
-				result = "Full Frog"
-			}
-		}else{
-			timesNoFrog ++;
-		}
-		totalFrogLevel += spacePlayer.landLevel;
-		str += "<br>&nbsp&nbsp&nbsp&nbspFrog Breeding: " + result +  " (" + spacePlayer.landLevel +")"
-
-		var diamond = "No"
-		if(this.hasDiamonds == true){
-			diamond = "Yes";
-			timesDiamonds ++;
-		}
-		str += "<br>&nbsp&nbsp&nbsp&nbspDiamonds: " + diamond;
-
-		var club = "No"
-		if(this.hasClubs == true){
-			club = "Yes";
-			timesClubs ++;
-		}
-		str += "<br>&nbsp&nbsp&nbsp&nbspClubs: " + club;
-
-		//checkDoomedTimelines();
-		return(str)
-
+		summary.frogLevel =spacePlayer.landLevel
+		summary.hasDiamonds =this.hasDiamonds;
+		summary.hasSpades = this.hasSpades;
+		summary.hasClubs = this.hasClubs;
+		summary.hasHearts =  this.hasHearts;
 	}
 }
+
 
 function summarizeScene(scenesTriggered, str){
 	var tmp = findSceneNamed(scenesTriggered,str)
