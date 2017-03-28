@@ -20,7 +20,7 @@ function SessionSummary(){
 	this.jackPromoted = null;
 	this.jackRampage = null;
 	this.jackScheme = null;
-	this.kingPowerful = null;
+	this.kingTooPowerful = null;
 	this.queenRejectRing = null;
 	this.democracyStarted = null;
 	this.murderMode = null;
@@ -68,7 +68,7 @@ function MultiSessionSummary(){
 	this.jackPromoted = 0;
 	this.jackRampage = 0;
 	this.jackScheme = 0;
-	this.kingPowerful = 0;
+	this.kingTooPowerful = 0;
 	this.queenRejectRing = 0;
 	this.democracyStarted = 0;
 	this.murderMode = 0;
@@ -115,7 +115,7 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		if(ss.jackPromoted) mss.jackPromoted ++;
 		if(ss.jackRampage) mss.jackRampage ++;
 		if(ss.jackScheme) mss.jackScheme ++;
-		if(ss.kingPowerful) mss.kingPowerful ++;
+		if(ss.kingTooPowerful) mss.kingTooPowerful ++;
 		if(ss.queenRejectRing) mss.queenRejectRing ++;
 		if(ss.democracyStarted) mss.democracyStarted ++;
 		if(ss.murderMode) mss.murderMode ++;

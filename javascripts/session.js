@@ -321,7 +321,7 @@ function Session(session_id){
 		summary.jackGotWeapon = findSceneNamed(this.scenesTriggered,"GiveJackBullshitWeapon") != "No"
 		summary.jackRampage = findSceneNamed(this.scenesTriggered,"JackRampage") != "No"
 		summary.jackScheme = findSceneNamed(this.scenesTriggered,"JackBeginScheming") != "No"
-		summary.kingPowerful =findSceneNamed(this.scenesTriggered,"KingPowerful") != "No"
+		summary.kingTooPowerful =findSceneNamed(this.scenesTriggered,"KingPowerful") != "No"
 		summary.queenRejectRing =findSceneNamed(this.scenesTriggered,"QueenRejectRing") != "No"
 		summary.democracyStarted =findSceneNamed(this.scenesTriggered,"StartDemocracy") != "No"
 		summary.murderMode = findSceneNamed(this.scenesTriggered,"EngageMurderMode") != "No"
