@@ -26,6 +26,7 @@ function YellowYard(session){
 		var session = this.session;
 		div2.append(html);
 		$("#4thwall").click(function(){
+			helloWorld();
 			var html = "<div id = 'yellow_yard.png' style='background:url(images/yellow_yard.png); width:1000px; height: 521px'>";
 			yyrEventsGlobalVar = session.importantEvents;
 			var num = 14
