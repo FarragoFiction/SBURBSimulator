@@ -41,7 +41,7 @@ function StartDemocracy(session){
 		}
 		this.findSympatheticPlayer();
 		
-		return (this.session.democracyStrength <= 0 ) && (this.friend != null);
+		return (this.session.democracyStrength <= 0 ) && this.session.kingStrength >  this.session.hardStrength && (this.friend != null);
 	}
 	
 	this.content = function(){

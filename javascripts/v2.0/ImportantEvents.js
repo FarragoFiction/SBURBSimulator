@@ -332,7 +332,7 @@ function removeFrogSpam(events){
 	 for(var i = 0; i<events.length; i++){
 		 if(events[i].constructor.name == "FrogBreedingNeedsHelp"){
 			 frogsSoFar ++;
-			 if(frogsSoFar > 2){
+			 if(frogsSoFar > 1){
 				 eventsToRemove.push(events[i])
 			 }
 		 }
