@@ -22,6 +22,10 @@
 #classList{
   float:left;
 }
+.multiSessionSummary{
+  width: 500px;
+  float:left;
+}
 
 .sessionSummary{
 	width: 500px;

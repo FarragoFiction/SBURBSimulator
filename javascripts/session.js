@@ -43,7 +43,7 @@ function Session(session_id){
 		if(alternate){
 			return alternate; //scene will use the alternate to go a different way. important event no longer happens.
 		}else{
-			
+
 			this.importantEvents.push(important_event);
 			return null;
 		}
@@ -81,7 +81,7 @@ function Session(session_id){
 		newSession.randomizeEntryOrder();
 		newSession.makeGuardians();
 		if(living.length + newSession.players.length > 12){
-			console.log("New session " + newSession.session_id +" cannot support living players. Already has " + newSession.players.length + " and would need to add: " + living.length)
+			//console.log("New session " + newSession.session_id +" cannot support living players. Already has " + newSession.players.length + " and would need to add: " + living.length)
 			return;  //their child session is not able to support them
 		}
 		//console.log("TODO add a method for a session to simulate itself. if this session EVER can support the new players, insert them there");
@@ -110,12 +110,12 @@ function Session(session_id){
 		}
 		newSession.players= newSession.players.concat(living);
 		this.hadCombinedSession = true;
-		newSession.parentSession = this.session_id;
+		newSession.parentSession = this;
 		createScenesForSession(newSession);
 		console.log("Session: " + this.session_id + " has made child universe: " + newSession.session_id + " child has this long till reckoning: " + newSession.timeTillReckoning)
 		return newSession;
 	}
-	
+
 	this.getVersionOfPlayerFromThisSession = function(player){
 		//can double up on classes or aspects if it's a combo session. god. why are their combo sessions?
 		for(var i = 0; i< this.players.length; i++){
@@ -300,7 +300,16 @@ function Session(session_id){
 		$("#story").append(div);
 		return $("#scene"+this.currentSceneNum);
 	}
-	
+
+	//holy shit, grand sessions are a thing? how far does this crazy train go?
+	//i haven't dusted off RECURSION in forever.
+	this.getLineage = function(){
+			if(this.parentSession){
+					return this.parentSession.getLineage().concat([this]);
+			}
+			return [this];
+	}
+
 	this.generateSummary = function(){
 		var summary = new SessionSummary();
 		summary.session_id = this.session_id;
@@ -315,8 +324,8 @@ function Session(session_id){
 		summary.ectoBiologyStarted = this.ectoBiologyStarted;
 		summary.denizenFought = findSceneNamed(this.scenesTriggered,"FaceDenizen") != "No";
 		summary.plannedToExileJack = findSceneNamed(this.scenesTriggered,"PlanToExileJack") != "No";
-		summary.exileJack = findSceneNamed(this.scenesTriggered,"ExileJack") != "No"
-		summary.exileQueen = findSceneNamed(this.scenesTriggered,"ExileQueen") != "No"
+		summary.exiledJack = findSceneNamed(this.scenesTriggered,"ExileJack") != "No"
+		summary.exiledQueen = findSceneNamed(this.scenesTriggered,"ExileQueen") != "No"
 		summary.jackPromoted = findSceneNamed(this.scenesTriggered,"JackPromotion") != "No"
 		summary.jackGotWeapon = findSceneNamed(this.scenesTriggered,"GiveJackBullshitWeapon") != "No"
 		summary.jackRampage = findSceneNamed(this.scenesTriggered,"JackRampage") != "No"

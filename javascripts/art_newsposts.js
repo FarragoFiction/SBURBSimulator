@@ -7,7 +7,7 @@ window.onload = function() {
 	  var visible = $( window ).height(); //visible pixels
 	  const img_height = 1500; //replace with height of your image
 	  var max_scroll = img_height - visible; //number of pixels of the image not visible at bottom
-	//change position of background-image as long as there is something not visible at the bottom  
+	//change position of background-image as long as there is something not visible at the bottom
 	if ( max_scroll > ypos) {
 		 $("body").css("background-position", "center -" + ypos + "px");
 	  } else {
@@ -18,6 +18,7 @@ window.onload = function() {
 }
 
 function newsposts(){
+	writeNewspost("3/28/17", "Finished fixing up another handful of the worst hairstyles! jR figured out how to get the corrections working in the main branch as well, so you should all be able to see them.")
 	writeNewspost("3/27/17", "Death by stabs now includes a knife in the corpse, courtesy of the <a href='http://www.mspaintadventures.com/?s=6&p=002228'>Midnight Crew</a>.");
 	writeNewspost("3/23/17", 'There are currently 35 hairstyles. For stupid reasons related to my perfectionism, fixing up the hair sprites takes longer than any other sprite part, even the clothes. The few that are finished to my satisfaction are loaded into the <a href="http://purplefrog.com/~jenny/SburbStoryExperimental/newsposts.html">Experimental</a> branch. Making the images for this page has nothing to do with the delay on those, shut up."')
 	writeNewspost("3/23/17", "Why did I spend several hours drawing blank-faced babies in MS Paint?<p><img src='images/Bodies/baby.png'><p>BECAUSE BABY LEGS DON'T WORK THAT WAY, HUSSIE.<p>ahem.<p>Anyway, I want to show off my baby sprites at full size, so you can marvel at their little toes and stupid fingers.<p><img src='images/Bodies/baby1.png'><br><img src='images/Bodies/baby2.png'><br><img src='images/Bodies/baby3.png'>")

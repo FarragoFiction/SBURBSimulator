@@ -11,7 +11,7 @@ function SessionSummary(){
 	this.yellowYard = null;
 	this.numLiving = null;
 	this.numDead = null;
-	this.ectobiologyStarted = null;
+	this.ectoBiologyStarted = null;
 	this.denizenFought = null;
 	this.plannedToExileJack = null;
 	this.exiledJack = null;
@@ -30,28 +30,66 @@ function SessionSummary(){
 	this.hasSpades = null;
 	this.hasClubs = null;
 	this.hasHearts = null;
-	
+	//set when generatingHTML
+	this.threeTimesSessionCombo = false;
+	this.fourTimesSessionCombo = false;
+	this.fiveTimesSessionCombo = false;
+	this.holyShitMmmmmonsterCombo = false;
+
+
+	this.decodeLineageGenerateHTML = function(){
+			var html = "";
+			var lineage = this.parentSession.getLineage(); //i am not a session so remember to tack myself on at the end.
+			html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + lineage[0].session_id + "'>" +lineage[0].session_id + "</a> "
+			for(var i = 1; i< lineage.length; i++){
+				html += " combined with: " + "<a href = 'index2.html?seed=" + lineage[i].session_id + "'>" +lineage[i].session_id + "</a> "
+			}
+			html += " combined with: " + "<a href = 'index2.html?seed=" + this.session_id + "'>" +this.session_id + "</a> "
+			if((lineage.length +1) == 3){
+				this.threeTimesSessionCombo = true;
+				html += " 3x SESSIONS COMBO!!!"
+			}
+			if((lineage.length +1) == 4){
+				this.fourTimesSessionCombo = true;
+				html += " 4x SESSIONS COMBO!!!!"
+			}
+			if((lineage.length +1 ) ==5){
+				this.fiveTimesSessionCombo = true;
+				html += " 5x SESSIONS COMBO!!!!!"
+			}
+			if((lineage.length +1) > 5){
+				this.holyShitMmmmmonsterCombo = true;
+				html += " The session pile doesn't stop from getting taller. "
+			}
+			return html;
+
+	}
+
 	//generate own html, complete with div.  just return it, dn't add it to anything
 	this.generateHTML = function(){
-		console.log("add combo session stat")
-		console.log("the linked session doesn't seem to perfectly match this session. why?")
 		var html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id +"'>";
 		for(var propertyName in this) {
 				if(propertyName == "players"){
 					html += "<Br><b>" + propertyName + "</b>: " + getPlayersTitlesBasic(this.players);
 				}else if(propertyName == "mvp"){
-					html += "<Br><b>" + propertyName + "</b>: " + this.mvp.htmlTitleBasic() + " With a Power of: " + this.mvp.power;
+					html += "<Br><b>" + propertyName + "</b>: " + this.mvp.htmlTitle() + " With a Power of: " + this.mvp.power;
 				}else if(propertyName == "session_id"){
-					html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "'>" +this.session_id + "</a>" 
+					if(this.parentSession){
+						html += this.decodeLineageGenerateHTML();
+					}else{
+						html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "'>" +this.session_id + "</a>"
+					}
+				}else if(propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo"  ){
+					//do nothing. properties used elsewhere.
 				}else if(propertyName != "generateHTML"){
 					html += "<Br><b>" + propertyName + "</b>: " + this[propertyName] ;
 				}
 		}
-		
+
 		html += "</div><br>"
 		return html;
 	}
-	
+
 }
 
 
@@ -61,7 +99,7 @@ function MultiSessionSummary(){
 	this.yellowYard = 0;
 	this.timesAllLived = 0;
 	this.timesAllDied = 0;
-	this.ectobiologyStarted = 0;
+	this.ectoBiologyStarted = 0;
 	this.denizenFought = 0;
 	this.plannedToExileJack = 0;
 	this.exiledJack = 0;
@@ -79,7 +117,12 @@ function MultiSessionSummary(){
 	this.hasSpades = 0;
 	this.hasClubs = 0;
 	this.hasHearts = 0;
-	
+	this.comboSessions = 0;
+	this.number3SessionCombos = 0;
+	this.number4SessionCombos= 0;
+	this.number5SessionCombos = 0;
+	this.numberOMGSessionCombos = 0;
+
 	this.generateHTML = function(){
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
 		var header = "<h2>Stats for All Displayed Sessions:</h2>"
@@ -91,7 +134,7 @@ function MultiSessionSummary(){
 					html += " (" + Math.round(100* (this[propertyName]/this.total)) + "%)";
 				}
 		}
-		
+
 		html += "</div><Br>"
 		return html;
 	}
@@ -108,7 +151,7 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		if(ss.yellowYard) mss.yellowYard ++;
 		if(ss.numLiving == 0) mss.timesAllDied ++;
 		if(ss.numDead == 0) mss.timesAllLived ++;
-		if(ss.ectobiologyStarted) mss.ectobiologyStarted ++;
+		if(ss.ectoBiologyStarted) mss.ectoBiologyStarted ++;
 		if(ss.denizenFought) mss.denizenFought ++;
 		if(ss.plannedToExileJack) mss.plannedToExileJack ++;
 		if(ss.exiledJack) mss.exiledJack ++;
@@ -126,6 +169,11 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		if(ss.hasSpades) mss.hasSpades ++;
 		if(ss.hasClubs) mss.hasClubs ++;
 		if(ss.hasHearts) mss.hasHearts ++;
+		if(ss.parentSession) mss.comboSessions ++;
+		if(ss.threeTimesSessionCombo) mss.number3SessionCombos ++;
+		if(ss.fourTimesSessionCombo) mss.number4SessionCombos ++;
+		if(ss.fiveTimesSessionCombo) mss.number5SessionCombos ++;
+		if(ss.holyShitMmmmmonsterCombo) mss.numberOMGSessionCombos ++;
 	}
 	return mss;
 }
