@@ -304,6 +304,7 @@ function Session(session_id){
 	this.generateSummary = function(){
 		var summary = new SessionSummary();
 		summary.session_id = this.session_id;
+		summary.num_scenes = this.scenesTriggered.length;
 		summary.player = this.players;
 		summary.mvp = findStrongestPlayer(this.players);
 		summary.parentSession = this.parentSession;
@@ -331,6 +332,7 @@ function Session(session_id){
 		summary.hasSpades = this.hasSpades;
 		summary.hasClubs = this.hasClubs;
 		summary.hasHearts =  this.hasHearts;
+		return summary;
 	}
 }
 
