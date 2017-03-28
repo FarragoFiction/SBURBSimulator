@@ -79,7 +79,7 @@ function SessionSummary(){
 					}else{
 						html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "'>" +this.session_id + "</a>"
 					}
-				}else if(propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo"  ){
+				}else if(propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo"  ){
 					//do nothing. properties used elsewhere.
 				}else if(propertyName != "generateHTML"){
 					html += "<Br><b>" + propertyName + "</b>: " + this[propertyName] ;
