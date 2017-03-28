@@ -12,32 +12,44 @@ function YellowYard(session){
 
 
 	this.yellowYardTime = function(div){
+		var div2 = null;
+		var tmp = "<div id = 'yyholder'></div><bR>"
+		div.append(tmp);
+		div2 = $("#yyholder")
 		this.timePlayer.wasteInfluenced = true; //can't go back now.
 		var time = this.timePlayer;
 		if(this.timePlayer.dead == true){
 			time = this.getDoomedTimeClone();
 		}
 		//var html = "<img src = 'images/yellow_yard.png'>";
-		var html = "<div id = 'yellow_yard' style='background:url(images/yellow_yard.png); width:1000px; height: 521px'>";
-		yyrEventsGlobalVar = this.session.importantEvents;
-		var num = 14
-		//yyrEventsGlobalVar = padEventsToNumWithKilling(yyrEventsGlobalVar, this.session, time,num);
-		//yyrEventsGlobalVar = sortEventsByImportance(yyrEventsGlobalVar);  this edges out diversity. end up with all "make so and so god tier" and nothing else
-		yyrEventsGlobalVar = removeRepeatEvents(yyrEventsGlobalVar);
-		yyrEventsGlobalVar = removeFrogSpam(yyrEventsGlobalVar);
-		html+="<div id = 'decisions' style='position: relative; top: 133px; left: 280px; font-size: 12px;'> "
-		for(var i = 0; i<num; i++){
-			if(i < yyrEventsGlobalVar.length){
-				yyrEventsGlobalVar[i].doomedTimeClone = time;
-				html += " <input type='radio' name='decision' value='" + i + "'>"+yyrEventsGlobalVar[i].humanLabel() + "<br>";
-		}else{//no more important events to undo
-			html += " <Br>";
+		var html = "<div id = '4thwall' style='background:url(images/4thwall.png); width:1000px; height: 521px'>";
+		var session = this.session;
+		div2.append(html);
+		$("#4thwall").click(function(){
+			var html = "<div id = 'yellow_yard.png' style='background:url(images/yellow_yard.png); width:1000px; height: 521px'>";
+			yyrEventsGlobalVar = session.importantEvents;
+			var num = 14
+			//yyrEventsGlobalVar = padEventsToNumWithKilling(yyrEventsGlobalVar, this.session, time,num);
+			//yyrEventsGlobalVar = sortEventsByImportance(yyrEventsGlobalVar);  this edges out diversity. end up with all "make so and so god tier" and nothing else
+			yyrEventsGlobalVar = removeRepeatEvents(yyrEventsGlobalVar);
+			yyrEventsGlobalVar = removeFrogSpam(yyrEventsGlobalVar);
+			html+="<div id = 'decisions' style='position: relative; top: 133px; left: 280px; font-size: 12px;'> "
+			for(var i = 0; i<num; i++){
+				if(i < yyrEventsGlobalVar.length){
+					yyrEventsGlobalVar[i].doomedTimeClone = time;
+					html += " <input type='radio' name='decision' value='" + i + "'>"+yyrEventsGlobalVar[i].humanLabel() + "<br>";
+			}else{//no more important events to undo
+				html += " <Br>";
+				}
 			}
-		}
 
-		html += "<button onclick='decision()'>Decide</button></div>"
-		html+= "</div>"
-		div.append(html);
+			html += "<button onclick='decision()'>Decide</button></div>"
+			html+= "</div><br>"
+			div2.html(html);
+			
+		});
+		
+		
 	}
 
 //22577 is short
