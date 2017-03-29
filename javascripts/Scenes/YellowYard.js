@@ -29,7 +29,7 @@ function YellowYard(session){
 			helloWorld();
 			var html = "<div id = 'yellow_yard.png' style='background:url(images/yellow_yard.png); width:1000px; height: 521px'>";
 			yyrEventsGlobalVar = session.importantEvents;
-			var num = 18
+			var num = 14
 			//yyrEventsGlobalVar = padEventsToNumWithKilling(yyrEventsGlobalVar, this.session, time,num);
 			//yyrEventsGlobalVar = sortEventsByImportance(yyrEventsGlobalVar);  this edges out diversity. end up with all "make so and so god tier" and nothing else
 			yyrEventsGlobalVar = removeRepeatEvents(yyrEventsGlobalVar);
@@ -42,7 +42,7 @@ function YellowYard(session){
 					//http://www.tutorialrepublic.com/faq/how-to-create-custom-radio-buttons-using-css-and-jquery.php
 					html += " <span class='custom-radio'><input type='radio' name='decision' value='" + i + "'></span>"+yyrEventsGlobalVar[i].humanLabel() + "<br>";
 			}else{//no more important events to undo
-				html += " <Br>";
+				//html += "<br>";
 				}
 			}
 
