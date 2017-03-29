@@ -38,6 +38,36 @@
   float:left;
 }
 
+.custom-radio{
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    top: 3px;
+    background: url("../images/mind_radio.png") no-repeat;
+}
+.custom-radio:hover{
+    background: url("../images/mind_radio_hover.png") no-repeat;
+}
+.custom-radio.selected{
+    background: url("../images/mind_radio_checked.png") no-repeat;
+}
+.custom-radio input[type="radio"]{
+    margin: 1px;
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+    outline: none;
+    opacity: 0;
+    /* CSS hacks for older browsers */
+    _noFocusLine: expression(this.hideFocus=true);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    -khtml-opacity: 0;
+    -moz-opacity: 0;
+}
+
 #aspectList{
   float:left;
 }

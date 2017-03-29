@@ -29,7 +29,7 @@ function YellowYard(session){
 			helloWorld();
 			var html = "<div id = 'yellow_yard.png' style='background:url(images/yellow_yard.png); width:1000px; height: 521px'>";
 			yyrEventsGlobalVar = session.importantEvents;
-			var num = 14
+			var num = 18
 			//yyrEventsGlobalVar = padEventsToNumWithKilling(yyrEventsGlobalVar, this.session, time,num);
 			//yyrEventsGlobalVar = sortEventsByImportance(yyrEventsGlobalVar);  this edges out diversity. end up with all "make so and so god tier" and nothing else
 			yyrEventsGlobalVar = removeRepeatEvents(yyrEventsGlobalVar);
@@ -38,7 +38,9 @@ function YellowYard(session){
 			for(var i = 0; i<num; i++){
 				if(i < yyrEventsGlobalVar.length){
 					yyrEventsGlobalVar[i].doomedTimeClone = time;
-					html += " <input type='radio' name='decision' value='" + i + "'>"+yyrEventsGlobalVar[i].humanLabel() + "<br>";
+					//var customRadio = "<img src = 'images/mind_radio.png' id = 'decision"+i+  "'>";
+					//http://www.tutorialrepublic.com/faq/how-to-create-custom-radio-buttons-using-css-and-jquery.php
+					html += " <span class='custom-radio'><input type='radio' name='decision' value='" + i + "'></span>"+yyrEventsGlobalVar[i].humanLabel() + "<br>";
 			}else{//no more important events to undo
 				html += " <Br>";
 				}
@@ -47,10 +49,21 @@ function YellowYard(session){
 			html += "<button onclick='decision()'>Decide</button></div>"
 			html+= "</div><br>"
 			div2.html(html);
-			
+			//wire up custom radio buttons after they are rendered
+			var radioButton = $('input[name="decision"]');
+			$(radioButton).click(function(){
+            if($(this).is(':checked')){
+                $(this).parent().addClass("selected");
+            }
+            $(radioButton).not(this).each(function(){
+                $(this).parent().removeClass("selected");
+            });
+        });
+
+
 		});
-		
-		
+
+
 	}
 
 //22577 is short
