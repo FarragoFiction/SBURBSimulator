@@ -55,7 +55,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	this.denizenDefeated = false;
 	this.causeOfDeath = ""; //fill in every time you die. only matters if you're dead at end
 	this.doomedTimeClones =  []; //help fight the final boss(es).
-	
+
 
 	this.fromThisSession = function(session){
 		return (this.ectoBiologicalSource == null || this.ectoBiologicalSource == session.session_id)

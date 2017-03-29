@@ -92,22 +92,29 @@ function Session(session_id){
 			survivor.godDestiny = false;
 			survivor.leader = false;
 			survivor.generateRelationships(newSession.players); //don't need to regenerate relationship with your old friends
-			for(var j= 0; j<newSession.players.length; j++){
-				var player = newSession.players[j];
-				player.generateRelationships(living);
-				//survivors have been talking to players for a very long time, because time has no meaning between univereses.
-				var r1 = survivor.getRelationshipWith(player);
-				var r2 = player.getRelationshipWith(survivor);
-				r1.moreOfSame();
-				r1.moreOfSame();
-				//been longer from player perspective
-				r2.moreOfSame();
-				r2.moreOfSame();
-				r2.moreOfSame();
-				r2.moreOfSame();
+		}
+		for(var j= 0; j<newSession.players.length; j++){
+			var player = newSession.players[j];
+			player.generateRelationships(living);
+		}
 
+		for(var i = 0; i<living.length; i++){
+			for(var j= 0; j<newSession.players.length; j++){
+					var player = newSession.players[j];
+					var survivor = living[i];
+					//survivors have been talking to players for a very long time, because time has no meaning between univereses.
+					var r1 = survivor.getRelationshipWith(player);
+					var r2 = player.getRelationshipWith(survivor);
+					r1.moreOfSame();
+					r1.moreOfSame();
+					//been longer from player perspective
+					r2.moreOfSame();
+					r2.moreOfSame();
+					r2.moreOfSame();
+					r2.moreOfSame();
 			}
 		}
+
 		newSession.players= newSession.players.concat(living);
 		this.hadCombinedSession = true;
 		newSession.parentSession = this;
