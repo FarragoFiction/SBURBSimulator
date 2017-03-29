@@ -323,7 +323,7 @@ function RelationshipDrama(session){
 			chatText += chatLine(player1Start, player1,"Thanks. Fuck. This game sucks.");
 			chatText += chatLine(player2Start, player2,"It really, really does.");
 		}else{
-			if(r2crush.saved_type == r2crush.goodBig){ //best friend has a crush on them, too.
+			if(r2crush && r2crush.saved_type == r2crush.goodBig){ //best friend has a crush on them, too.
 				//try to put aside feelings
 				if(player2.class_name == "Page" || player2.class_name == "Maid" || player2.class_name == "Sylph" || player2.aspect == "Blood"){
 					chatText += chatLine(player2Start, player2,"Wow! You should definitely, definitely tell them that! Right away!");
@@ -340,7 +340,7 @@ function RelationshipDrama(session){
 					chatText += chatLine(player1Start, player1,"They are amazing...");
 					r2.decrease();
 				}
-			}else if(r2crush.saved_type == r2crush.badBig){ //friend thinks they are an asshole.
+			}else if(r2crush && r2crush.saved_type == r2crush.badBig){ //friend thinks they are an asshole.
 				if(player2.class_name == "Page" || player2.class_name == "Maid" || player2.class_name == "Sylph" || player2.aspect == "Blood"){
 					chatText += chatLine(player2Start, player2,"Wow! Huh. You should follow your heart.");
 					chatText += chatLine(player1Start, player1,"You think so?");
@@ -357,7 +357,7 @@ function RelationshipDrama(session){
 					chatText += chatLine(player1Start, player1,"Thank you!");
 				}
 			}else{  //friend has no particular opinion about the crush.
-				if(r2.saved_type == r2crush.goodBig){  //but has a crush on the player (du-DUH!)
+				if(r2crush && r2.saved_type == r2crush.goodBig){  //but has a crush on the player (du-DUH!)
 					//try to put aside feelings
 					if(player2.class_name == "Page" || player2.class_name == "Maid" || player2.class_name == "Sylph" || player2.aspect == "Blood"){
 						chatText += chatLine(player2Start, player2,"Wow! You should definitely, definitely tell them that! Right away!");
@@ -440,6 +440,9 @@ function RelationshipDrama(session){
 		var r1 = relationship;
 		var r2 = player2.getRelationshipWith(player1);
 		var r2jerk = player2.getRelationshipWith(jerk);
+		if(!r2jerk){
+			console.log("I am : " + player2.title() + " and jerk is: " + jerk.title() + " and apparently I don't know them. ")
+		}
 		var chatText = "";
 		var trait = whatDontPlayersHaveInCommon(player1, jerk);
 		chatText += chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2))
@@ -447,18 +450,18 @@ function RelationshipDrama(session){
 		chatText += chatLine(player1Start, player1,"Oh my god, I can't STAND " + jerk.chatHandle + ", they are " + this.generateNewOpinion(r1) + ", you know?");
 		if(jerk.dead == true){
 			chatText += chatLine(player2Start, player2,"Do you really want to speak ill of the dead?");
-			if(r2jerk.value < 0){
+			if( r2jerk && r2jerk.value < 0){
 				chatText += chatLine(player2Start, player2,"But yeah, they were an asshole.");
 				chatText += chatLine(player1Start, player1,"I know, right?");
 			}else{
 				chatText += chatLine(player1Start, player1,"Yeah, I kind of feel like an asshole, now");
 			}
 		}else{
-			if(r2jerk.saved_type == r2jerk.badBig){
+			if(r2jerk && r2jerk.saved_type == r2jerk.badBig){
 				chatText += chatLine(player2Start, player2,"Oh my god, I know, right?");
 				chatText += chatLine(player2Start, player2,"I can't freaking stand them.");
 				chatText += chatLine(player1Start, player1,"Represent.");
-			}else if(r2jerk.saved_type == r2jerk.goodBig){
+			}else if(r2jerk && r2jerk.saved_type == r2jerk.goodBig){
 				chatText += chatLine(player2Start, player2,"!");
 				chatText += chatLine(player2Start, player2,"Really?");
 				chatText += chatLine(player2Start, player2,"I like them okay...");
