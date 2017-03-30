@@ -16,11 +16,10 @@ function YellowYard(session){
 		var tmp = "<div id = 'yyholder'></div><bR>"
 		div.append(tmp);
 		div2 = $("#yyholder")
-		this.timePlayer.wasteInfluenced = true; //can't go back now.
-		var time = this.timePlayer;
-		if(this.timePlayer.dead == true){
-			time = this.getDoomedTimeClone();
-		}
+		//this.timePlayer.wasteInfluenced = true; //can't go back now. shit, yes you can scratch
+		var time = this.getDoomedTimeClone();
+
+		time.wasteInfluenced = true;
 		//var html = "<img src = 'images/yellow_yard.png'>";
 		var html = "<div id = '4thwall' style='background:url(images/4thwall.png); width:1000px; height: 521px'>";
 		var session = this.session;
@@ -224,6 +223,8 @@ function YellowYard(session){
 		timeClone.dead = false;
 		return timeClone;
 	}
+
+
 
 	this.content = function(){
 		return "This ( yellow yard) should never be run in 1.0 mode."
