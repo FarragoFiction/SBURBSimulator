@@ -80,9 +80,9 @@ function loadOther(){
 	loadImage("blood_puddle.png")
 	loadImage("scratch_face.png")
 	loadImage( "Prospit.png")
-	loadImage("Prospit_symbol.png");
+	//loadImage("Prospit_symbol.png");
 	loadImage("Derse.png")
-	loadImage("Derse_symbol.png");
+	//loadImage("Derse_symbol.png");
 	loadImage("bloody_face.png")
 	loadImage("Moirail.png")
 	loadImage("Matesprit.png")
@@ -108,6 +108,7 @@ function loadPlayer(player){
 	//var imageString = "Horns/right"+player.rightHorn + ".png";
   //addImageTag(imageString)
 	loadImage(playerToRegularBody(player));
+  loadImage(playerToDreamBody(player));
 	loadImage(playerToGodBody(player));
 	loadImage(player.aspect + ".png");
 

@@ -968,7 +968,7 @@ function drawSprite(canvas, player,ctx,baby){
   }
 
   if(!baby && player.dead){
-	   bloodPuddle(canvas, player); 
+	   bloodPuddle(canvas, player);
   }
   hairBack(canvas, player);
   if(player.isTroll){//wings before sprite
@@ -1003,7 +1003,7 @@ function drawSprite(canvas, player,ctx,baby){
   if(player.isTroll){
     horns(canvas, player);
   }
-  
+
   if(!baby && player.dead && player.causeOfDeath == "after being shown too many stabs from Jack"){
 	 stabs(canvas,player)
   }
@@ -1222,6 +1222,38 @@ function playerToRegularBody(player){
   return imageString;
 }
 
+function playerToDreamBody(player){
+  var imageString = "Bodies/";
+  var tmp = "dream"
+  if(player.class_name == "Page"){
+    imageString += tmp +"001.png"
+  }else if(player.class_name == "Knight" ){
+    imageString += tmp +"002.png"
+  }else if(player.class_name == "Witch" ){
+    imageString += tmp +"003.png"
+  }else if(player.class_name == "Sylph" ){
+    imageString += tmp +"004.png"
+  }else if(player.class_name == "Thief" ){
+    imageString += tmp +"005.png"
+  }else if(player.class_name == "Rogue" ){
+    imageString += tmp +"006.png"
+  }else if(player.class_name == "Seer" ){
+    imageString += tmp +"007.png"
+  }else if(player.class_name == "Mage" ){
+    imageString += tmp +"008.png"
+  }else if(player.class_name == "Heir" ){
+    imageString += tmp +"009.png"
+  }else if(player.class_name == "Maid" ){
+    imageString += tmp +"010.png"
+  }else if(player.class_name == "Prince" ){
+    imageString += tmp +"011.png"
+  }else if(player.class_name == "Bard" ){
+    imageString += tmp +"012.png"
+  }
+  return imageString;
+}
+
+
 function regularSprite(canvas, player){
 	var imageString = playerToRegularBody(player);
   addImageTag(imageString)
@@ -1234,7 +1266,7 @@ function regularSprite(canvas, player){
 }
 
 function dreamSprite(canvas, player){
-  var imageString = playerToRegularBody(player);
+  var imageString = playerToDreamBody(player);
   addImageTag(imageString)
   var img=document.getElementById(imageString);
   var width = img.width;
@@ -1375,7 +1407,7 @@ function dreamPalletSwap(canvas, player){
 	swapColors(canvas, oldcolor9, new_color9)
 	swapColors(canvas, oldcolor10, new_color10)
 	swapColors(canvas, oldcolor11, new_color11)
-	dreamSymbol(canvas, player);
+	//dreamSymbol(canvas, player);
 
 }
 
