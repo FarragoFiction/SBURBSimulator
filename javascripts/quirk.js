@@ -365,12 +365,20 @@ function randomTrollSim(player){
 			ret.suffix  = multiplyCharacter(ret.suffix, ret.suffix[0], ret.favoriteNumber);
 		}
 	}
+	//have at least 3 fish puns.
+	if(player.bloodColor == "#99004d" || player.bloodColor == "#610061"){
+		for(var i = 0; i< 3; i++){
+			ret.lettersToReplaceIgnoreCase.push(getOneRandomFishArray());
+		}
+	}
 	var roomLeft = 0;
 	//most people spell things, fine, other people have random problems
 	if(Math.seededRandom() > 0.50){
 		var roomLeft = getRandomInt(0,10);
 	}
 	if(roomLeft < 0) roomLeft = 0;
+	
+	
 	for(var i = 0; i< roomLeft; i++){
 		ret.lettersToReplaceIgnoreCase.push(getOneRandomReplaceArray());
 		if(player.bloodColor == "#99004d" || player.bloodColor == "#610061"){
