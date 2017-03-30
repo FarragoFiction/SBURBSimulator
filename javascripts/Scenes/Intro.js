@@ -440,7 +440,7 @@ function Intro(session){
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var chatText = "";
 
-		if(player1.ectoBiologicalSource != player2.ectoBiologicalSource){
+		if(player2.ectoBiologicalSource == this.session.session_id){
 			if(r1.type() == r1.goodBig){
 				chatText += chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm finally in your session.");
 			}else{
@@ -458,14 +458,12 @@ function Intro(session){
 					chatText += chatLine(player1Start, player1, "...");
 					chatText += chatLine(player1Start, player1, "Goodbye.");
 				}else{
-					if(r1.type() == r1.goodBig){
-						chatText += chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm finally in the new session.");
-					}else{
+
 						chatText += chatLine(player1Start, player1,"Hey, I'm finally in the new session.");
 						chatText += chatLine(player2Start, player2,"Ugh. I am just ready to be DONE playing this game.");
 						chatText += chatLine(player1Start, player1,"I know right? At least this time we don't have to worry about all those bullshit sidequests.");
 						chatText += chatLine(player2Start, player2,"Yes, we can just focus on getting ready for the end game.");
-					}
+				
 				}
 
 		}
