@@ -429,7 +429,8 @@ function Intro(session){
 		return chatText;
 	}
 
-	this.alienChat = function(player1, player2){
+	this.alienChat = function(player1){
+		var player2 = player1.getBestFriend(); //even if they are dead. even if they are from another session.
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = player1.getRelationshipWith(player2);
@@ -438,20 +439,42 @@ function Intro(session){
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var chatText = "";
-		if(r1.type() == r1.goodBig){
-			chatText += chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm finally in your session.");
+
+		if(player1.ectoBiologicalSource != player2.ectoBiologicalSource){
+			if(r1.type() == r1.goodBig){
+				chatText += chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm finally in your session.");
+			}else{
+				chatText += chatLine(player1Start, player1,"Hey, I'm finally in your session.");
+			}
+			chatText += chatLine(player2Start, player2,"Oh wow! What are you going to do? It's not like you have a land or anything...");
+			chatText += chatLine(player1Start, player1,"Eh, I'll get things ready for you guys' reckoning. Mess with the Black Queen. Plus, I can always help out you guys with your Land Quests.");
+			chatText += chatLine(player2Start, player2,"Oh yeah...");
+
 		}else{
-			chatText += chatLine(player1Start, player1,"Hey, I'm finally in your session.");
+				if(player2.dead){
+					chatText += chatLine(player1Start, player1, "So. Uh. Hey, I'm finally in the new session I was telling you about.");
+					chatText += chatLine(player1Start, player1, "You would have loved it.");
+					chatText += chatLine(player1Start, player1, "Don't worry. I'll make sure it will all have been worth it. A whole new universe, a second chance.");
+					chatText += chatLine(player1Start, player1, "...");
+					chatText += chatLine(player1Start, player1, "Goodbye.");
+				}else{
+					if(r1.type() == r1.goodBig){
+						chatText += chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm finally in the new session.");
+					}else{
+						chatText += chatLine(player1Start, player1,"Hey, I'm finally in the new session.");
+						chatText += chatLine(player2Start, player2,"Ugh. I am just ready to be DONE playing this game.");
+						chatText += chatLine(player1Start, player1,"I know right? At least this time we don't have to worry about all those bullshit sidequests.");
+						chatText += chatLine(player2Start, player2,"Yes, we can just focus on getting ready for the end game.");
+					}
+				}
+
 		}
-		chatText += chatLine(player2Start, player2,"Oh wow! What are you going to do? It's not like you have a land or anything...");
-		chatText += chatLine(player1Start, player1,"Eh, I'll get things ready for you guys' reckoning. Mess with the Black Queen. Plus, I can always help out you guys with your Land Quests.");
-		chatText += chatLine(player2Start, player2,"Oh yeah...");
 		return chatText;
 	}
 
 	this.getChat = function(player1, player2){
 		if(!player1.fromThisSession(this.session)){
-			return this.alienChat(player1,player2);
+			return this.alienChat(player1);
 		}
 
 		if(player2.grimDark == true){

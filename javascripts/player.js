@@ -452,6 +452,18 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		return ret;
 	}
 
+
+	this.getBestFriend = function(){
+		var bestRelationshipSoFar = this.relationships[0];
+		for(var i = 1; i<this.relationships.length; i++){
+			var r = this.relationships[i];
+			if(r.value > bestRelationshipSoFar.value){
+				bestRelationshipSoFar = r;
+			}
+		}
+		return bestRelationshipSoFar.target;
+	}
+
 	this.getBestFriendFromList = function(potentialFriends, debugCallBack){
 		var bestRelationshipSoFar = this.relationships[0];
 		for(var i = 0; i<potentialFriends.length; i++){
