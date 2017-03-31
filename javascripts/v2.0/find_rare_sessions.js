@@ -70,32 +70,20 @@ function filterSessionSummaries(){
 			sessionSummariesDisplayed.push(allSessionsSummaries[i]);
 	}
 	$("input[name='filter']:checked").each(function(){
-		var filter = $(this).val();
-		filters.push(filter);
-		console.log("Filtering session summaries by: " + filter)
+		filters.push($(this).val());
+	});
 		for(var i = 0; i<sessionSummariesDisplayed.length; i++){
 			var ss = sessionSummariesDisplayed[i];
-
-			if(filter == "No Frog" && ss.frogStatus == filter){
-				tmp.push(ss);
-			}else if(filter == "Sick Frog" && ss.frogStatus == filter){
-				tmp.push(ss);
-			}else if(filter == "Full Frog" && ss.frogStatus == filter){
-				tmp.push(ss);
-			}else if(filter == "timesAllDied" && ss.numLiving == 0){
-				tmp.push(ss);
-			}else if(filter == "timesAllLived" && ss.numDead == 0){
-				tmp.push(ss);
-			}else if(ss[filter]){
-				console.log("adding filter" + ss[filter])
+			if(ss.satifies_filter_array(filters)){
 				tmp.push(ss);
 			}
+			
 	}
-	});
+	
 	console.log(tmp);
 	sessionSummariesDisplayed = tmp;
 	printSummaries();
-	printStats(filters);
+	printStats(filters);  
 }
 //filter is proprety name, some are special, most just pass through
 function filterSessionSummariesBy(filter){
@@ -446,7 +434,6 @@ function printStats(filters){
 	var mms = collateMultipleSessionSummaries(sessionSummariesDisplayed);
 	$("#stats").html(mms.generateHTML());
 	if(filters){
-		alert("if checkbox value matches any filter, check it.")
 		$("input[name='filter']").each(function(){
 			$(this).prop('disabled', false);
 			if(filters.indexOf($(this).val()) != -1){

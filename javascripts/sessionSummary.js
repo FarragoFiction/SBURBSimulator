@@ -37,6 +37,29 @@ function SessionSummary(){
 	this.holyShitMmmmmonsterCombo = false;
 	this.frogStatus = null;
 
+	//thanks to bob for helping me puzzle out the logic to make filters AND not OR.
+	//why was that so hard???
+	this.satifies_filter_array = function(filter_array){
+		for(var i = 0; i< filter_array.length; i++){
+			var filter = filter_array[i];
+			
+			if(filter == "No Frog" && this.frogStatus != filter){
+				return false;
+			}else if(filter == "Sick Frog" && this.frogStatus != filter){
+				return false;
+			}else if(filter == "Full Frog" && this.frogStatus != filter){
+				return false;
+			}else if(filter == "timesAllDied" && this.numLiving != 0){
+				return false;
+			}else if(filter == "timesAllLived" && this.numDead != 0){
+				return false;
+			}else if(!this[filter]){
+				console.log("adding filter" + this[filter])
+				return false;
+			}
+		}
+		return true;
+	}
 
 	this.decodeLineageGenerateHTML = function(){
 			var html = "";
@@ -82,7 +105,7 @@ function SessionSummary(){
 					}else{
 						html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "'>" +this.session_id + "</a>"
 					}
-				}else if(propertyName == "frogStatus" || propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo"  ){
+				}else if(propertyName == "satifies_filter_array" || propertyName == "frogStatus" || propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo"  ){
 					//do nothing. properties used elsewhere.
 				}else if(propertyName != "generateHTML"){
 					html += "<Br><b>" + propertyName + "</b>: " + this[propertyName] ;
