@@ -948,17 +948,7 @@ function drawSprite(canvas, player,ctx,baby){
   	ctx.translate(canvas.width, 0);
   	ctx.rotate(90*Math.PI/180);
   }
-  /*
-    GrimDark
-    Wings
-    Hair_Back
-    fin2
-    body
-    Aspect
-    hair_front
-    Fin1
-    horns
-  */
+
   if(!baby && player.grimDark == true){
     grimDarkHalo(canvas)
   }
@@ -984,7 +974,7 @@ function drawSprite(canvas, player,ctx,baby){
   	  scar_face(canvas, player);
     }
   }else{
-    babySprite(canvas,player);
+     babySprite(canvas,player);
   }
 
   hair(canvas, player);
