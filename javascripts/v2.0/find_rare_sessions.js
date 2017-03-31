@@ -88,6 +88,7 @@ function filterSessionSummaries(){
 //filter is proprety name, some are special, most just pass through
 function filterSessionSummariesBy(filter){
 	console.log("Filtering session summaries by: " + filter)
+	sessionSummariesDisplayed = []
 	if(!filter){
 		for(var i = 0; i<allSessionsSummaries.length; i++){
 			sessionSummariesDisplayed.push(allSessionsSummaries[i]);
@@ -124,6 +125,7 @@ function filterSessionSummariesBy(filter){
 
 function checkSessions(){
 	numSimulationsDone = 0; //but don't reset stats
+	sessionSummariesDisplayed = []
 	for(var i = 0; i<allSessionsSummaries.length; i++){
 			sessionSummariesDisplayed.push(allSessionsSummaries[i]);
 	}

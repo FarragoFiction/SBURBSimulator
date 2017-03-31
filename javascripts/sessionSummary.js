@@ -70,6 +70,12 @@ function SessionSummary(){
 					return false;
 				}
 				
+			}else if(filter == "comboSessions"){
+				if(!this.parentSession){  //if this were an and on the outer if, it would let it fall down to the else if(!this[filter) and i don't want that.
+					//console.log("not combo session")
+					return false;
+				}
+				
 			}else if(!this[filter]){
 				//console.log("property not true: " + filter)
 				return false;
