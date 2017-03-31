@@ -64,7 +64,7 @@ function Session(session_id){
 	//make Math.seed  = to my session id, reinit all my variables (similar to a scratch.)
 	//make sure the controller starts ticking again. very similar to scrach
 	this.addEventToUndoAndReset = function(e){
-		console.log("todo: implement altenate events. be careful if event added in for loop (don't return). also, have jrab convo change if there are events stored in the yellowyard controller. that means this happened multiple times ");
+		console.log("todo: make sure this works in scratched and combo sessions ");
 		this.yellowYardController.eventsToUndo.push(e);
 		//reinit the seed and restart the session
 

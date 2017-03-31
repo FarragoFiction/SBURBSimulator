@@ -40,24 +40,42 @@ function SessionSummary(){
 	//thanks to bob for helping me puzzle out the logic to make filters AND not OR.
 	//why was that so hard???
 	this.satifies_filter_array = function(filter_array){
+		//console.log(filter_array)
 		for(var i = 0; i< filter_array.length; i++){
 			var filter = filter_array[i];
 			
-			if(filter == "No Frog" && this.frogStatus != filter){
-				return false;
-			}else if(filter == "Sick Frog" && this.frogStatus != filter){
-				return false;
-			}else if(filter == "Full Frog" && this.frogStatus != filter){
-				return false;
-			}else if(filter == "timesAllDied" && this.numLiving != 0){
-				return false;
-			}else if(filter == "timesAllLived" && this.numDead != 0){
-				return false;
+			if(filter == "numberNoFrog"){
+				if(this.frogStatus  != "No Frog"){ 
+				//	console.log("not no frog")
+					return false;
+				}
+			}else if(filter == "numberSickFrog"){
+				if(this.frogStatus  != "Sick Frog"){ 
+					//console.log("not sick frog")
+					return false;
+				}
+			}else if(filter == "numberFullFrog"){
+				if(this.frogStatus  != "Full Frog"){ 
+					//console.log("not full frog")
+					return false;
+				}
+			}else if(filter == "timesAllDied"){
+				if(this.numLiving != 0){ 
+					//console.log("not all dead")
+					return false;
+				}
+			}else if(filter == "timesAllLived"){
+				if(this.numDead != 0){  //if this were an and on the outer if, it would let it fall down to the else if(!this[filter) and i don't want that.
+					//console.log("not all alive")
+					return false;
+				}
+				
 			}else if(!this[filter]){
-				console.log("adding filter" + this[filter])
+				//console.log("property not true: " + filter)
 				return false;
 			}
 		}
+		//console.log("i pass all filters")
 		return true;
 	}
 
