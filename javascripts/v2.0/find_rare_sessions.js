@@ -65,24 +65,35 @@ function robotMode(){
 //filter is proprety name, some are special, most just pass through
 function filterSessionSummariesBy(filter){
 	console.log("Filtering session summaries by: " + filter)
-	sessionSummariesDisplayed = []
-	for(var i = 0; i<allSessionsSummaries.length; i++){
-		var ss = allSessionsSummaries[i];
-		if(filter == "No Frog" && ss.frogStatus == filter){
-			sessionSummariesDisplayed.push(ss);
+	if(!filter){
+		for(var i = 0; i<allSessionsSummaries.length; i++){
+			sessionSummariesDisplayed.push(allSessionsSummaries[i]);
+		}
+		printSummaries();
+		printStats();
+		return;
+	}
+	var tmp = [] //can filter already filtered arrays.
+	for(var i = 0; i<sessionSummariesDisplayed.length; i++){
+		var ss = sessionSummariesDisplayed[i];
+		if(!filter){
+			tmp.push(ss);  //add all, but deep copy
+		}else if(filter == "No Frog" && ss.frogStatus == filter){
+			tmp.push(ss);
 		}else if(filter == "Sick Frog" && ss.frogStatus == filter){
-			sessionSummariesDisplayed.push(ss);
+			tmp.push(ss);
 		}else if(filter == "Full Frog" && ss.frogStatus == filter){
-			sessionSummariesDisplayed.push(ss);
+			tmp.push(ss);
 		}else if(filter == "timesAllDied" && ss.numLiving == 0){
-			sessionSummariesDisplayed.push(ss);
+			tmp.push(ss);
 		}else if(filter == "timesAllLived" && ss.numDead == 0){
-			sessionSummariesDisplayed.push(ss);
+			tmp.push(ss);
 		}else if(ss[filter]){
 			console.log("adding filter")
-			sessionSummariesDisplayed.push(ss);
+			tmp.push(ss);
 		}
 	}
+	sessionSummariesDisplayed = tmp;
 	printSummaries();
 	printStats();
 }
