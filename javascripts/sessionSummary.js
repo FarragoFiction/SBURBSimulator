@@ -136,7 +136,8 @@ function MultiSessionSummary(){
 		//http://stackoverflow.com/questions/85992/how-do-i-enumerate-the-properties-of-a-javascript-object
 		for(var propertyName in this) {
 				if(propertyName != "generateHTML"){
-					html += "<Br><b>" + propertyName + "</b>: " + this[propertyName] ;
+					html += "<Br><b> <input type='checkbox' name='filter' value='"+propertyName +"' id='" + propertyName + "' onchange='filterSessionSummaries()'>";
+					html +=  propertyName + "</b>: " + this[propertyName] ;
 					html += " (" + Math.round(100* (this[propertyName]/this.total)) + "%)";
 				}
 		}

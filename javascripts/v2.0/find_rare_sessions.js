@@ -61,7 +61,10 @@ function robotMode(){
 	numSimulationsToDo = 1;
 	startSession();
 }
-
+//filters by all checkboxes.
+function filterSessionSummaries(){
+	alert("hello world")
+}
 //filter is proprety name, some are special, most just pass through
 function filterSessionSummariesBy(filter){
 	console.log("Filtering session summaries by: " + filter)
