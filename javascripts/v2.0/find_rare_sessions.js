@@ -80,7 +80,7 @@ function filterSessionSummaries(){
 			
 	}
 	
-	console.log(tmp);
+	//console.log(tmp);
 	sessionSummariesDisplayed = tmp;
 	printSummaries();
 	printStats(filters);  
@@ -124,6 +124,13 @@ function filterSessionSummariesBy(filter){
 
 function checkSessions(){
 	numSimulationsDone = 0; //but don't reset stats
+	for(var i = 0; i<allSessionsSummaries.length; i++){
+			sessionSummariesDisplayed.push(allSessionsSummaries[i]);
+	}
+	//don't filter by anything.
+	$("input[name='filter']").each(function(){
+			$(this).prop('checked', false);
+	});
 	$("#story").html("")
 	//$("#debug").html("");
 	//$("#stats").html("");
@@ -330,7 +337,10 @@ function summarizeSession(session){
 	var sum = curSessionGlobalVar.generateSummary();
 	allSessionsSummaries.push(sum);
 	sessionSummariesDisplayed.push(sum);
-	printSummaries();
+	//printSummaries();  //this slows things down too much. don't erase and reprint every time.
+	var str = sum.generateHTML();
+	debug("<br><hr><font color = 'red'> AB: " + getQuipAboutSession(sum) + "</font><Br>" );
+	debug(str);
 	printStats();
 	numSimulationsDone ++;
 	if(numSimulationsDone >= numSimulationsToDo){
