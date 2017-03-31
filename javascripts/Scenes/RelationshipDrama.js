@@ -347,7 +347,7 @@ function RelationshipDrama(session){
 					chatText += chatLine(player2Start, player2,"Absolutely.");
 				}else if(player2.class_name == "Knight" || player2.class_name == "Seer" || player2.class_name == "Heir" || player2.aspect == "Mind"){ //fight player1
 					chatText += chatLine(player2Start, player2,"Gonna be honest, I think they are " + this.generateNewOpinion(r2crush)  + ".");
-					chatText += chatLine(player1Start, player1,"Sure you can't do better?");
+					chatText += chatLine(player2Start, player2,"Sure you can't do better?");
 					chatText += chatLine(player1Start, player1,"Screw you, you're just jealous.");
 					r1.decrease();
 				}else{  //try to ignore feelings
