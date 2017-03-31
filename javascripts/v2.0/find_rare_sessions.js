@@ -63,7 +63,39 @@ function robotMode(){
 }
 //filters by all checkboxes.
 function filterSessionSummaries(){
-	alert("hello world")
+	var tmp = []
+	var filters = [];
+	sessionSummariesDisplayed = [] //can filter already filtered arrays.
+	for(var i = 0; i<allSessionsSummaries.length; i++){
+			sessionSummariesDisplayed.push(allSessionsSummaries[i]);
+	}
+	$("input[name='filter']:checked").each(function(){
+		var filter = $(this).val();
+		filters.push(filter);
+		console.log("Filtering session summaries by: " + filter)
+		for(var i = 0; i<sessionSummariesDisplayed.length; i++){
+			var ss = sessionSummariesDisplayed[i];
+
+			if(filter == "No Frog" && ss.frogStatus == filter){
+				tmp.push(ss);
+			}else if(filter == "Sick Frog" && ss.frogStatus == filter){
+				tmp.push(ss);
+			}else if(filter == "Full Frog" && ss.frogStatus == filter){
+				tmp.push(ss);
+			}else if(filter == "timesAllDied" && ss.numLiving == 0){
+				tmp.push(ss);
+			}else if(filter == "timesAllLived" && ss.numDead == 0){
+				tmp.push(ss);
+			}else if(ss[filter]){
+				console.log("adding filter" + ss[filter])
+				tmp.push(ss);
+			}
+	}
+	});
+	console.log(tmp);
+	sessionSummariesDisplayed = tmp;
+	printSummaries();
+	printStats(filters);
 }
 //filter is proprety name, some are special, most just pass through
 function filterSessionSummariesBy(filter){
@@ -317,6 +349,10 @@ function summarizeSession(session){
 		$("#button").prop('disabled', false)
 		if(!getParameterByName("robot")){
 			alert("Notice: should be ready to check more sessions.")
+			$("input[name='filter']").each(function(){
+					$(this).prop('disabled', false);
+			});
+
 		}
 		return;
 	}else{
@@ -406,9 +442,21 @@ function foundRareSession(div, debugMessage){
 	drawChatABJR(canvasDiv, chat);
 }
 
-function printStats(){
+function printStats(filters){
 	var mms = collateMultipleSessionSummaries(sessionSummariesDisplayed);
 	$("#stats").html(mms.generateHTML());
+	if(filters){
+		alert("if checkbox value matches any filter, check it.")
+		$("input[name='filter']").each(function(){
+			$(this).prop('disabled', false);
+			if(filters.indexOf($(this).val()) != -1){
+				$(this).prop('checked',true);
+			}else{
+				$(this).prop('checked',false);
+			}
+		});
+
+	}
 }
 
 function printSummaries(){

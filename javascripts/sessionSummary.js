@@ -131,12 +131,12 @@ function MultiSessionSummary(){
 
 	this.generateHTML = function(){
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
-		var header = "<h2>Stats for All Displayed Sessions:</h2>"
+		var header = "<h2>Stats for All Displayed Sessions: </h2>(When done finding, can filter)"
 		html += header;
 		//http://stackoverflow.com/questions/85992/how-do-i-enumerate-the-properties-of-a-javascript-object
 		for(var propertyName in this) {
 				if(propertyName != "generateHTML"){
-					html += "<Br><b> <input type='checkbox' name='filter' value='"+propertyName +"' id='" + propertyName + "' onchange='filterSessionSummaries()'>";
+					html += "<Br><b> <input disabled='true' type='checkbox' name='filter' value='"+propertyName +"' id='" + propertyName + "' onchange='filterSessionSummaries()'>";
 					html +=  propertyName + "</b>: " + this[propertyName] ;
 					html += " (" + Math.round(100* (this[propertyName]/this.total)) + "%)";
 				}
