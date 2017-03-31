@@ -1031,13 +1031,12 @@ function playerToSprite(canvas, player){
 
 function scar_face(canvas, player){
 	ctx = canvas.getContext('2d');
-	var imageString = "scratch_face.png"
+	var imageString = "calm_scratch_face.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
 	var width = img.width;
 	var height = img.height;
 	ctx.drawImage(img,0,0,width,height);
-	swapColors(canvas, "#fffc00", "#f4f4f4"); //it's a scar
 }
 
 function scratch_face(canvas, player){

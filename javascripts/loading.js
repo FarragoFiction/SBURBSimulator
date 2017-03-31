@@ -79,6 +79,7 @@ function loadOther(){
 	loadImage("pesterchum.png");
 	loadImage("blood_puddle.png")
 	loadImage("scratch_face.png")
+	loadImage("calm_scratch_face.png")
 	loadImage( "Prospit.png")
 	//loadImage("Prospit_symbol.png");
 	loadImage("Derse.png")
