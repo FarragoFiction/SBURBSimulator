@@ -875,7 +875,7 @@ function bloodPuddle(canvas,player){
 	var img=document.getElementById(imageString);
 	var width = img.width;
 	var height = img.height;
-	ctx.drawImage(img,width/6,height/4,width,height);
+	ctx.drawImage(img,0,0,width,height);
 	swapColors(canvas, "#fffc00", player.bloodColor);
 }
 
@@ -1036,8 +1036,8 @@ function scar_face(canvas, player){
 	var img=document.getElementById(imageString);
 	var width = img.width;
 	var height = img.height;
-	ctx.drawImage(img,width/6,height/4,width,height);
-	swapColors(canvas, "#440a7f", "#f4f4f4"); //it's a scar
+	ctx.drawImage(img,0,0,width,height);
+	swapColors(canvas, "#fffc00", "#f4f4f4"); //it's a scar
 }
 
 function scratch_face(canvas, player){
@@ -1047,8 +1047,8 @@ function scratch_face(canvas, player){
 	var img=document.getElementById(imageString);
 	var width = img.width;
 	var height = img.height;
-	ctx.drawImage(img,width/6,height/4,width,height);
-	swapColors(canvas, "#440a7f", player.bloodColor); //it's their own blood
+	ctx.drawImage(img,0,0,width,height);
+	swapColors(canvas, "#fffc00", player.bloodColor); //it's their own blood
 }
 
 //not just murder mode, you could have killed a murder mode player.
@@ -1060,7 +1060,7 @@ function bloody_face(canvas, player){
 		var img=document.getElementById(imageString);
 		var width = img.width;
 		var height = img.height;
-		ctx.drawImage(img,width/6,height/4,width,height);
+		ctx.drawImage(img,0,0,width,height);
 		swapColors(canvas, "#440a7f", player.victimBlood); //it's not their own blood
 	}
 }
@@ -1187,7 +1187,7 @@ function princeTiara(canvas, player){
 	var height = img.height;
 	var c2 = getBufferCanvas(canvas); //don't want to do color replacement on the existing image.
 	ctx2 = c2.getContext('2d');
-	ctx2.drawImage(img,width/6,height/4,width,height);
+	ctx2.drawImage(img,0,0,width,height);
 	aspectPalletSwap(c2, player);
 	copyTmpCanvasToRealCanvas(canvas, c2)
 }
