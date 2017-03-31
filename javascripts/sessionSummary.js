@@ -145,6 +145,7 @@ function SessionSummary(){
 
 function MultiSessionSummary(){
 	this.total = 0;
+	this.totalDeadPlayers = 0;
 	this.scratchAvailable = 0;
 	this.yellowYard = 0;
 	this.timesAllLived = 0;
@@ -154,6 +155,8 @@ function MultiSessionSummary(){
 	this.plannedToExileJack = 0;
 	this.exiledJack = 0;
 	this.exiledQueen = 0;
+	this.totalLivingPlayers = 0;
+	this.survivalRate = 0;
 	this.jackGotWeapon = 0;
 	this.jackPromoted = 0;
 	this.jackRampage = 0;
@@ -186,6 +189,10 @@ function MultiSessionSummary(){
 				html += "<Br><b> ";
 				html +=  propertyName + "</b>: " + this[propertyName] ;
 				html += " (" + Math.round(100* (this[propertyName]/this.total)) + "%)";
+			}else if(propertyName == "totalDeadPlayers"){
+				html += "<Br><b>totalDeadPlayers: </b> " + this.totalDeadPlayers + " ("+this.survivalRate + " % survival rate)";
+			}else if(propertyName == "totalLivingPlayers" || propertyName == "survivalRate" ){
+				//do nothing
 			}else if(propertyName != "generateHTML"){
 				html += "<Br><b> <input disabled='true' type='checkbox' name='filter' value='"+propertyName +"' id='" + propertyName + "' onchange='filterSessionSummaries()'>";
 				html +=  propertyName + "</b>: " + this[propertyName] ;
@@ -238,6 +245,9 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		if(ss.frogStatus == "No Frog") mss.numberNoFrog ++;
 		if(ss.frogStatus == "Sick Frog") mss.numberSickFrog ++;
 		if(ss.frogStatus == "Full Frog") mss.numberFullFrog ++;
+		mss.totalDeadPlayers += ss.numDead;
+		mss.totalLivingPlayers += ss.numLiving;
 	}
+	mss.survivalRate = Math.round(100 * (mss.totalLivingPlayers/(mss.totalLivingPlayers + mss.totalDeadPlayers)));
 	return mss;
 }
