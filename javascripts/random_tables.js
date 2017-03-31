@@ -1112,7 +1112,7 @@ var smiley_quirks = [[":)", ":)"],[":)", ":0)"],[":)", ":]"],[":)", ":B"],[":)",
 //TODO redo handle system to be interest based. array of first word and second word options for every interest.
 //get something that matches your class/aspect title on your own.
 var maid_handles = ["meandering","motley","musing","mischievous","macabre", "maiden"];
-var page_handles = ["passionate","patient","peaceful","perfect","perceptive"];
+var page_handles = ["passionate","patient","peaceful","perfect","perceptive", "practical"];
 var mage_handles = ["magnificent","managerial","major","majestic","mannerly"];
 var knight_handles = ["keen","knightly","kooky","kindred"];
 var rogue_handles = ["rouge","radical","retrobate","roguish","retroactive"];
