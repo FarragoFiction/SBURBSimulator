@@ -35,6 +35,7 @@ function SessionSummary(){
 	this.fourTimesSessionCombo = false;
 	this.fiveTimesSessionCombo = false;
 	this.holyShitMmmmmonsterCombo = false;
+	this.frogStatus = null;
 
 
 	this.decodeLineageGenerateHTML = function(){
@@ -73,13 +74,15 @@ function SessionSummary(){
 					html += "<Br><b>" + propertyName + "</b>: " + getPlayersTitlesBasic(this.players);
 				}else if(propertyName == "mvp"){
 					html += "<Br><b>" + propertyName + "</b>: " + this.mvp.htmlTitle() + " With a Power of: " + this.mvp.power;
+				}else if(propertyName == "frogLevel"){
+					html += "<Br><b>" + propertyName + "</b>: " + this.frogLevel + " (" + this.frogStatus +")";
 				}else if(propertyName == "session_id"){
 					if(this.parentSession){
 						html += this.decodeLineageGenerateHTML();
 					}else{
 						html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "'>" +this.session_id + "</a>"
 					}
-				}else if(propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo"  ){
+				}else if(propertyName == "frogStatus" || propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo"  ){
 					//do nothing. properties used elsewhere.
 				}else if(propertyName != "generateHTML"){
 					html += "<Br><b>" + propertyName + "</b>: " + this[propertyName] ;
@@ -118,10 +121,13 @@ function MultiSessionSummary(){
 	this.hasClubs = 0;
 	this.hasHearts = 0;
 	this.comboSessions = 0;
-	this.number3SessionCombos = 0;
-	this.number4SessionCombos= 0;
-	this.number5SessionCombos = 0;
-	this.numberOMGSessionCombos = 0;
+	this.threeTimesSessionCombo = 0;
+	this.fourTimesSessionCombo= 0;
+	this.fiveTimesSessionCombo = 0;
+	this.holyShitMmmmmonsterCombo = 0;
+	this.numberFullFrog = 0;
+	this.numberSickFrog = 0;
+	this.numberNoFrog = 0;
 
 	this.generateHTML = function(){
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
@@ -141,6 +147,9 @@ function MultiSessionSummary(){
 
 }
 
+function summaryHasProperty(summary, property){
+	return summary[propertyName]
+}
 
 function collateMultipleSessionSummaries(sessionSummaries){
 	var mss = new MultiSessionSummary();
@@ -170,10 +179,13 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		if(ss.hasClubs) mss.hasClubs ++;
 		if(ss.hasHearts) mss.hasHearts ++;
 		if(ss.parentSession) mss.comboSessions ++;
-		if(ss.threeTimesSessionCombo) mss.number3SessionCombos ++;
-		if(ss.fourTimesSessionCombo) mss.number4SessionCombos ++;
-		if(ss.fiveTimesSessionCombo) mss.number5SessionCombos ++;
-		if(ss.holyShitMmmmmonsterCombo) mss.numberOMGSessionCombos ++;
+		if(ss.threeTimesSessionCombo) mss.threeTimesSessionCombo ++;
+		if(ss.fourTimesSessionCombo) mss.fourTimesSessionCombo ++;
+		if(ss.fiveTimesSessionCombo) mss.fiveTimesSessionCombo ++;
+		if(ss.holyShitMmmmmonsterCombo) mss.holyShitMmmmmonsterCombo ++;
+		if(ss.frogStatus == "No Frog") mss.numberNoFrog ++;
+		if(ss.frogStatus == "Sick Frog") mss.numberSickFrog ++;
+		if(ss.frogStatus == "Full Frog") mss.numberFullFrog ++;
 	}
 	return mss;
 }

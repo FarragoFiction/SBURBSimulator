@@ -29,6 +29,7 @@ var version2 = true; //even though idon't want  to render content, 2.0 is differ
 var sessionObjects = []
 var curSessionGlobalVar;
 var sessionsSimulated = []
+var allSessionsSummaries = [];
 var sessionSummariesDisplayed = [];
 
 var numSimulationsDone = 0;
@@ -60,6 +61,32 @@ function robotMode(){
 	numSimulationsToDo = 1;
 	startSession();
 }
+
+//filter is proprety name, some are special, most just pass through
+function filterSessionSummariesBy(filter){
+	console.log("Filtering session summaries by: " + filter)
+	sessionSummariesDisplayed = []
+	for(var i = 0; i<allSessionsSummaries.length; i++){
+		var ss = allSessionsSummaries[i];
+		if(filter == "No Frog" && ss.frogStatus == filter){
+			sessionSummariesDisplayed.push(ss);
+		}else if(filter == "Sick Frog" && ss.frogStatus == filter){
+			sessionSummariesDisplayed.push(ss);
+		}else if(filter == "Full Frog" && ss.frogStatus == filter){
+			sessionSummariesDisplayed.push(ss);
+		}else if(filter == "timesAllDied" && ss.numLiving == 0){
+			sessionSummariesDisplayed.push(ss);
+		}else if(filter == "timesAllLived" && ss.numDead == 0){
+			sessionSummariesDisplayed.push(ss);
+		}else if(ss[filter]){
+			console.log("adding filter")
+			sessionSummariesDisplayed.push(ss);
+		}
+	}
+	printSummaries();
+	printStats();
+}
+
 
 function checkSessions(){
 	numSimulationsDone = 0; //but don't reset stats
@@ -267,14 +294,11 @@ function summarizeSession(session){
 	sessionsSimulated.push(curSessionGlobalVar.session_id);
 	$("#story").html("");
 	var sum = curSessionGlobalVar.generateSummary();
+	allSessionsSummaries.push(sum);
 	sessionSummariesDisplayed.push(sum);
-	var str = sum.generateHTML();
-	checkDoomedTimelines();
-	debug("<br><hr><font color = 'red'> AB: " + getQuipAboutSession(curSessionGlobalVar) + "</font><Br>" );
-	debug(str);
-
-	numSimulationsDone ++;
+	printSummaries();
 	printStats();
+	numSimulationsDone ++;
 	if(numSimulationsDone >= numSimulationsToDo){
 		$("#button").prop('disabled', false)
 		if(!getParameterByName("robot")){
@@ -298,55 +322,51 @@ function percentBullshit(){
 	$("#percentBullshit").html(pr+"%")
 }
 
-function getQuipAboutSession(session){
+function getQuipAboutSession(sessionSummary){
 	var quip = "";
-	var living = findLivingPlayers(session.players);
-	var dead = findDeadPlayers(session.players)
-	var strongest = findStrongestPlayer(session.players)
-	var spacePlayer = findAspectPlayer(session.players, "Space");
+	var living = sessionSummary.numLiving
+	var dead = sessionSummary.numDead
+	var strongest = sessionSummary.mvp
+	
 	if(living.length == 0){
 		quip += "Shit, you do not even want to KNOW how everybody died." ;
 	}else  if(strongest.power > 3000){
 		quip += "Holy Shit, do you SEE the " + strongest.titleBasic() + "!?  How even strong ARE they?" ;
-	}else if(spacePlayer.landLevel < session.minFrogLevel ){
+	}else if(sessionSummary.frogStatus == "No Frog" ){
 		quip += "Man, why is it always the frogs? " ;
-		if(session.parentSession){
+		if(sessionSummary.parentSession){
 			quip += " You'd think what with it being a combo session, they would have gotten the frog figured out. "
 		}
-	}else  if(session.parentSession){
-		quip += "Combo sessions are always so cool." ;
-	}else  if(session.jackStrength > 200){
+	}else  if(sessionSummary.parentSession){
+		quip += "Combo sessions are always so cool. " ;
+		if(sessionSummary.threeTimesSessionCombo){
+			quip+= " Holy shit, 3x SessionCombo!!!"
+		}else if(sessionSummary.fourTimesSessionCombo){
+			quip+= " Holy shit, 4x SessionCombo!!!!"
+		}else if(sessionSummary.fiveTimesSessionCombo){
+			quip+= " Holy shit, 5x SessionCombo!!!!!"
+		}else if(sessionSummary.holyShitMmmmmonsterCombo){
+			quip+= " Holy fuck, what is even HAPPENING here!?"
+		}
+	}else  if(sessionSummary.jackRampage){
 		quip += "Jack REALLY gave them trouble." ;
-	}else if(dead.length == 0 && spacePlayer.landLevel > session.goodFrogLevel ){
+	}else if(dead.length == 0 && sessionSummary.frogStatus == "Full Frog" ){
 		quip += "Everything went better than expected." ;
-	}else  if(session.scenesTriggered.length > 200){
+	}else  if(sessionSummary.num_scenes.length > 200){
 		quip += "God, this session just would not END." ;
-		if(!session.parentSession){
+		if(!sessionSummary.parentSession){
 			quip += " It didn't even have the excuse of being a combo session. "
 		}
-	}else  if(session.murdersHappened == true){
+	}else  if(sessionSummary.murderMode == true){
 		quip += "It always sucks when the players start trying to kill each other." ;
-	}else  if(session.scenesTriggered.length < 50){
+	}else  if(sessionSummary.num_scenes.length < 50){
 		quip += "Holy shit, were they even in the session an entire hour?" ;
-	}else  if(session.scratchAvailable == true){
+	}else  if(sessionSummary.scratchAvailable == true){
 		quip += "Maybe the scratch would fix things? I can't be bothered to check." ;
 	}else{
 		quip += "It was slightly less boring than calculating pi." ;
 	}
 	return quip;
-}
-
-//this doesn't actually work like i'd hoped.
-//javascript only evaluated in browsr, not http get. should have realized
-function printStatsRobot(){
-	//$(document.body).empty();
-	//console.log("Hello?  Oh. Good. I was afraid wiping the page would take me out, too.")
-	//console.log("Now, which session should I entertain myself with today?")
-	var json = "{session_id:" + curSessionGlobalVar.session_id + ", "
-	json += "quip: " + getQuipAboutSession(curSessionGlobalVar);
-	json +=  "}";
-	return json;
-	//$(document.body).append(json);
 }
 
 function foundRareSession(div, debugMessage){
@@ -377,45 +397,16 @@ function printStats(){
 	$("#stats").html(mms.generateHTML());
 }
 
-function printStatsOld(){
-
-	var str = " <h2> Stats for all Checked Sessions</h2>"
-	str += "<br>Number Sessions: " + sessionsSimulated.length;
-	//timesScratchesAvailable
-	str += "<br> Average Frog Level: " + Math.round(totalFrogLevel/sessionsSimulated.length);
-	str+= "<Br>Times Frogs Full: " + timesFullFrog+ " (" + Math.round((timesFullFrog/sessionsSimulated.length)*100) + "%)";;
-	str += "<Br>Times Frogs Sick: " + timesSickFrog+ " (" + Math.round((timesSickFrog/sessionsSimulated.length)*100) + "%)";;
-	str += "<br>Times No Frog: " + timesNoFrog+ " (" + Math.round((timesNoFrog/sessionsSimulated.length)*100) + "%)";;
-	str += "<Br>Times Scratches Available: " + timesScratchesAvailable + " (" + Math.round((timesScratchesAvailable/sessionsSimulated.length)*100) + "%)";
-	str += "<Br>Times Combo Session Possible: " + timesComboSession + " (" + Math.round((timesComboSession/sessionsSimulated.length)*100) + "%)";
-	//timesGroundHog
-	str +=  "<Br>Times Yellow Yard Available: " + timesGroundHog + " (" + Math.round((timesGroundHog/sessionsSimulated.length)*100) + "%)";
-	str +="<Br>Times Total Party Wipe: " + timesTotalPartyWipe + " (" + Math.round((timesTotalPartyWipe/sessionsSimulated.length)*100) + "%)";
-	str += "<Br>Times Ectobiology: " + timesEcto + " (" + Math.round((timesEcto/sessionsSimulated.length)*100) + "%)";
-
-	str += "<Br>Times GrimDark (at least one player): " + timesGrimDark + " (" + Math.round((timesGrimDark/sessionsSimulated.length)*100) + "%)";
-
-	str += "<Br>Times MurderMode (at least one player): " + timesMurderMode + " (" + Math.round((timesMurderMode/sessionsSimulated.length)*100) + "%)";
-	str += "<Br>Times Diamonds (at least one player): " + timesDiamonds + " (" + Math.round((timesDiamonds/sessionsSimulated.length)*100) + "%)";
-	str += "<Br>Times Clubs (at least one player): " + timesClubs + " (" + Math.round((timesClubs/sessionsSimulated.length)*100) + "%)";
-
-	str += "<Br>Times Fought Denizen (at least once): " + timesDenizen + " (" + Math.round((timesDenizen/sessionsSimulated.length)*100) + "%)";
-
-	str += "<Br>Times Exiled Jack: " + timesExileJack + " (" + Math.round((timesExileJack/sessionsSimulated.length)*100) + "%)";;
-	str += "<Br>Times Planned To Exile Jack: " + timesPlanExileJack + " (" + Math.round((timesPlanExileJack/sessionsSimulated.length)*100) + "%)";;
-
-	str += "<Br>Times Exiled Queen: " + timesExileQueen+ " (" + Math.round((timesExileQueen/sessionsSimulated.length)*100) + "%)";;
-	str += "<Br>Times Jack Got a Bullshit Weapon: " + timesJackWeapon+ " (" + Math.round((timesJackWeapon/sessionsSimulated.length)*100) + "%)";;
-	str += "<Br>Times Jack Schemed: " + timesJackScheme+ " (" + Math.round((timesJackScheme/sessionsSimulated.length)*100) + "%)";;
-	str += "<Br>Times Jack Rampaged: " + timesJackRampage+ " (" + Math.round((timesJackRampage/sessionsSimulated.length)*100) + "%)";;
-	str += "<Br>Times Jack Promoted: " + timesJackPromotion+ " (" + Math.round((timesJackPromotion/sessionsSimulated.length)*100) + "%)";;
-	str += "<Br>Times King Powerful: " + timesKingPowerful+ " (" + Math.round((timesKingPowerful/sessionsSimulated.length)*100) + "%)";;
-	str += "<Br>Times Queen Rejected Ring: " + timesQueenRejectRing+ " (" + Math.round((timesQueenRejectRing/sessionsSimulated.length)*100) + "%)";;
-	str += "<Br>Times Doomed Timelines: " + timesSavedDoomedTimeLine+ " (" + Math.round((timesSavedDoomedTimeLine/sessionsSimulated.length)*100) + "%)";;
-	str += "<Br>Times Interesting Doomed Timelines: " + timesInterestingSaveDoomedTimeLine+ " (" + Math.round((timesInterestingSaveDoomedTimeLine/sessionsSimulated.length)*100) + "%)";;
-	str += "<Br>Times Democracy Side Quest Activated: " + timesDemocracyStart+ " (" + Math.round((timesDemocracyStart/sessionsSimulated.length)*100) + "%)";;
-	$("#stats").html(str);
+function printSummaries(){
+	$("#debug").html("");
+	for(var i = 0; i<sessionSummariesDisplayed.length; i++){
+		var ssd = sessionSummariesDisplayed[i];
+		var str = ssd.generateHTML();
+		debug("<br><hr><font color = 'red'> AB: " + getQuipAboutSession(ssd) + "</font><Br>" );
+		debug(str);
+	}
 }
+
 
 
 

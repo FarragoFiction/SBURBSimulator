@@ -440,6 +440,25 @@ what happens if they check a session while it's filtered?
 
 
 
+bluh, okay time to actually try filtering.
+
+I can test to see if a session summary has any arbitrary variable filled. won't help with frog leve, but baby steps.
+
+but...standard array filtering doesn't work that way. it wants you to specify the variable in advance. so maybe will have to have a lot of bullshit methods?
+
+sequence of events:
+
+click on collated stat. calls method, giving the parameter name to the method.  method mostly just filters based on parameter name, with a few being special.
+
+that's what I WANT...but Array.filter only lets me pass an object in, not anything else....right? Confirm this.  yeah....seems like it.  can just write my own, linear time code.
+
+
+
+
+
+
+
+
 
 
 

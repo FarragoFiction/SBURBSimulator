@@ -48,6 +48,18 @@ function Session(session_id){
 			return null;
 		}
 	}
+	
+	this.frogStatus = function(){
+		var spacePlayer = findAspectPlayer(this.players, "Space");
+		if(spacePlayer.landLevel < this.minFrogLevel){
+			return "No Frog"
+		}else if(spacePlayer.landLevel > this.goodFrogLevel){
+			return "Full Frog"
+		}else{
+			return "Sick Frog"
+		}
+		
+	}
 
 	//make Math.seed  = to my session id, reinit all my variables (similar to a scratch.)
 	//make sure the controller starts ticking again. very similar to scrach
@@ -320,6 +332,7 @@ function Session(session_id){
 	this.generateSummary = function(){
 		var summary = new SessionSummary();
 		summary.session_id = this.session_id;
+		summary.frogStatus = this.frogStatus();
 		summary.num_scenes = this.scenesTriggered.length;
 		summary.players = this.players;
 		summary.mvp = findStrongestPlayer(this.players);

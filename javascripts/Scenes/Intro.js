@@ -471,7 +471,7 @@ function Intro(session){
 	}
 
 	this.getChat = function(player1, player2){
-		if(!player1.fromThisSession(this.session)){
+		if(!player1.fromThisSession(this.session) || !player1.land){
 			return this.alienChat(player1);
 		}
 
