@@ -117,6 +117,38 @@ function getRelationshipFlavorText(r1, r2, me, you){
 	return ret;
 }
 
+function cloneRelationship(relationship){
+	var clone = new Relationship();
+	for(var propertyName in relationship) {
+		clone[propertyName] = relationship[propertyName];
+	}
+	return clone;
+}
+
+//when i am cloning players, i need to make sure they don't have a reference to the same relationships the original player does.
+//if i fail to do this step, i accidentally give the players the Capgras delusion.
+//this HAS to happen before transferFeelingsToClones.
+function cloneRelationshipsStopgap(relationships){
+
+		var ret = [];
+		for(var i = 0; i<relationships.length; i++){
+			var r = relationships[i]
+			ret.push(cloneRelationship(r));
+		}
+		return ret;
+}
+
+//when i clone alien players on arival, i need their cloned relationships to be about the other clones
+//not the original players.
+//also, I <3 this method name. i <3 this sim.
+function transferFeelingsToClones(player, clones){
+	for(var i =0; i<player.relationships.length; i++){
+			var r = player.relationships[i];
+			r.target = findClaspectPlayer(clones, r.target.class_name, r.target.aspect);
+
+	}
+}
+
 function randomBlandRelationship(targetPlayer){
 	return new Relationship(1, targetPlayer);
 }

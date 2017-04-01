@@ -468,7 +468,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		for(var i = 0; i<potentialFriends.length; i++){
 			var p =  potentialFriends[i];
 			if(p!=this){
-				var r = this.getRelationshipWith(potentialFriends[i]);
+				var r = this.getRelationshipWith(p);
 				if(r.value > bestRelationshipSoFar.value){
 					bestRelationshipSoFar = r;
 				}
@@ -705,6 +705,17 @@ function getLeader(playerList){
 	}
 }
 
+//in combo sessions, mibht be more than one rage player, for example.
+function findClaspectPlayer(playerList, class_name, aspect){
+	for(var i= 0; i<playerList.length; i++){
+		var p = playerList[i];
+		if(p.class_name == class_name && p.aspect == aspect){
+			//console.log("Found " + class_name + " player");
+			return p;
+		}
+	}
+}
+
 
 function findClassPlayer(playerList, class_name){
 	for(var i= 0; i<playerList.length; i++){
@@ -826,7 +837,6 @@ function findPlayersWithoutEctobiologicalSource(playerList){
 //deeper than a snapshot, for yellowyard aliens
 //have to treat properties that are objects differently. luckily i think those are only player and relationships.
 function clonePlayer(player, session, isGuardian){
-	console.log("oh god, what about relationships? can't just simply clone them here, because not all clones are made yet.")
 	var clone = new Player();
 	for(var propertyName in player) {
 		if(propertyName == "guardian"){
@@ -834,9 +844,11 @@ function clonePlayer(player, session, isGuardian){
 				clone.guardian = clonePlayer(player.guardian, session, true);
 				clone.guardian.guardian = clone;
 		}
+	}else if(propertyName == "relationships"){
+		clone.relationships = cloneRelationshipsStopgap(player.relationships); //won't actually work, but will let me actually clone the relationships later without modifying originals
 	}else{
 				clone[propertyName] = player[propertyName]
-		}
+	}
 	}
 	return clone;
 }

@@ -106,7 +106,6 @@ function Session(session_id){
 			//console.log("New session " + newSession.session_id +" cannot support living players. Already has " + newSession.players.length + " and would need to add: " + living.length)
 			return;  //their child session is not able to support them
 		}
-			console.log("adding fresh aliens");
 			addAliensToSession(newSession, living);
 
 
@@ -385,15 +384,34 @@ function findSceneNamed(scenesToCheck, name){
 
 	//save a copy of the alien (in case of yellow yard)
 	function addAliensToSession (newSession, living, alreadyCloned){
-		console.log("adding this many aliens" +living.length);
 		for(var i = 0; i<living.length; i++){
 			var survivor = living[i];
 			survivor.land = null;
 			survivor.dreamSelf = false;
 			survivor.godDestiny = false;
 			survivor.leader = false;
+		}
+		//save a copy of the alien players in case this session has time shenanigans happen
+		if(!alreadyCloned){
+			for(var i = 0; i<living.length; i++){
+				var survivor = living[i];
+				newSession.aliensClonedOnArrival.push(clonePlayer(survivor, newSession));
+			}
+			//don't want relationships to still be about original players
+			for(var i = 0; i<newSession.aliensClonedOnArrival.length; i++){
+				var clone = newSession.aliensClonedOnArrival[i];
+				transferFeelingsToClones(clone, newSession.aliensClonedOnArrival);
+			}
+		}
+		//generate relationships AFTER saving a backup of hte player.
+		//want clones to only know about other clones. not players.
+		for(var i = 0; i<living.length; i++){
+			var survivor = living[i];
+			//console.log(survivor.title() + " generating relationship with new players ")
 			survivor.generateRelationships(newSession.players); //don't need to regenerate relationship with your old friends
 		}
+
+
 		for(var j= 0; j<newSession.players.length; j++){
 			var player = newSession.players[j];
 			player.generateRelationships(living);
@@ -415,13 +433,6 @@ function findSceneNamed(scenesToCheck, name){
 					r2.moreOfSame();
 			}
 	}
-	if(!alreadyCloned){
-		for(var i = 0; i<living.length; i++){
-			var survivor = living[i];
-			newSession.aliensClonedOnArrival.push(clonePlayer(survivor, newSession));
-		}
-	}else{
-		console.log("TODO: test 58014 also clone relationships when adding alient clones. interpret saved relationships as relationships with other clones. then, have yellow yard comments about scratches and combo sessions. btw, find a post scratch yellow yard to test with. needs to be scratched after yard as well.")
-	}
+
 	newSession.players= newSession.players.concat(living);
 }
