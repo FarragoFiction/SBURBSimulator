@@ -156,30 +156,38 @@ function restartSession(){
 //not erasing the players, after all.
 //or could have an afterlife where they meet guardian players???
 function scratch(){
+	console.log("scratch has been confirmed")
+	var numPlayersPreScratch = curSessionGlobalVar.players.length;
+	var ectoSave = curSessionGlobalVar.ectoBiologyStarted;
 	reinit();
+	curSessionGlobalVar.ectoBiologyStarted = ectoSave; //if i didn't do ecto in first version, do in second
 	curSessionGlobalVar.scratched = true;
-	var scratch = "The session has been scratched. The " + getPlayersTitlesBasic(curSessionGlobalVar.players) + " will now be the beloved guardians.";
-	scratch += " Their former guardians, the " + getPlayersTitlesBasic(curSessionGlobalVar.guardians) + " will now be the players.";
+	curSessionGlobalVar.switchPlayersForScratch();
+	var scratch = "The session has been scratched. The " + getPlayersTitlesBasic(getGuardiansForPlayers(curSessionGlobalVar.players)) + " will now be the beloved guardians.";
+	scratch += " Their former guardians, the " + getPlayersTitlesBasic(curSessionGlobalVar.players) + " will now be the players.";
 	scratch += " The new players will be given stat boosts to give them a better chance than the previous generation."
+	if(curSessionGlobalVar.players.length != numPlayersPreScratch){
+		scratch += " You are quite sure that players not native to this session have never been here at all. Quite frankly, you find the notion absurd. "
+		console.log("forign players erased.")
+	}
 	scratch += " What will happen?"
-	var tmp = curSessionGlobalVar.players;
-	curSessionGlobalVar.players = curSessionGlobalVar.guardians;
-	curSessionGlobalVar.guardians = tmp;
+	console.log("about to switch players")
+
 	$("#story").html(scratch);
 	window.scrollTo(0, 0);
 
-
+  var guardians  = getGuardiansForPlayers(curSessionGlobalVar.players)
 	var guardianDiv = curSessionGlobalVar.newScene();
 	var guardianID = (guardianDiv.attr("id")) + "_guardians" ;
 	var ch = canvasHeight;
-	if(curSessionGlobalVar.guardians.length > 6){
+	if(guardians.length > 6){
 		ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
 	}
 	var canvasHTML = "<br><canvas id='canvas" + guardianID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
 
 	guardianDiv.append(canvasHTML);
 	var canvasDiv = document.getElementById("canvas"+ guardianID);
-	poseAsATeam(canvasDiv, curSessionGlobalVar.guardians, 2000); //everybody, even corpses, pose as a team.
+	poseAsATeam(canvasDiv, guardians, 2000); //everybody, even corpses, pose as a team.
 
 
 	var playerDiv = curSessionGlobalVar.newScene();
@@ -248,7 +256,7 @@ function processCombinedSession(){
 		curSessionGlobalVar = tmpcurSessionGlobalVar
 		$("#story").append("<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Their sick frog may have screwed them over, but the connection it provides to their child universe will equally prove to be their salvation. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session <a href = 'index2.html?seed=" + curSessionGlobalVar.session_id + "'>"+curSessionGlobalVar.session_id +"</a>. ");
 		checkSGRUB();
-		load(curSessionGlobalVar.players, curSessionGlobalVar.guardians); //in loading.js
+		load(curSessionGlobalVar.players); //in loading.js
 	}
 
 }

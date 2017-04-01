@@ -16,7 +16,7 @@ function Reckoning(session){
 		if(this.session.ectoBiologyStarted){
 			intro += " Remember those random baby versions of the players the " + leader.htmlTitleBasic() + " made? " ;
 			if(this.session.scratched){
-				intro += "Wait... DID they make the babies? Or, was it their guardian, the " + getLeader(this.session.guardians).htmlTitleBasic() +"? Scratched sessions are so confusing...";
+				intro += "Wait... DID they make the babies? Or, was it their guardian, the " + getLeader(getGuardiansForPlayers(this.session.players)).htmlTitleBasic() +"? Scratched sessions are so confusing...";
 			}
 			intro += " Yeah, that didn't stop being a thing that was true. ";
 			intro += " It turns out that those babies ended up on the meteors heading straight to Skaia. "

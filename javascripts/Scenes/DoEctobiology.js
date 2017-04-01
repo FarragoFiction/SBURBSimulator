@@ -28,7 +28,7 @@ function DoEctobiology(session){
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = document.getElementById("canvas"+ divID);
-		poseBabiesAsATeam(canvasDiv, this.leader, this.playersMade, this.session.guardians, 4000);
+		poseBabiesAsATeam(canvasDiv, this.leader, this.playersMade, getGuardiansForPlayers(this.playersMade), 4000);
 	}
 
 	this.renderContent = function(div){

@@ -6,7 +6,7 @@ function Session(session_id){
 	this.hasDiamonds = false;
 	this.hasHearts = false;
 	this.hasSpades = false;
-	this.guardians = [];
+	//session no longer keeps track of guardians.
 	this.kingStrength = 100;
 	this.queenStrength = 100;
 	this.jackStrength = 50;
@@ -48,7 +48,7 @@ function Session(session_id){
 			return null;
 		}
 	}
-	
+
 	this.frogStatus = function(){
 		var spacePlayer = findAspectPlayer(this.players, "Space");
 		if(spacePlayer.landLevel < this.minFrogLevel){
@@ -58,7 +58,7 @@ function Session(session_id){
 		}else{
 			return "Sick Frog"
 		}
-		
+
 	}
 
 	//make Math.seed  = to my session id, reinit all my variables (similar to a scratch.)
@@ -234,11 +234,11 @@ function Session(session_id){
 	}
 
 	this.makeGuardians = function(){
-		this.guardians = [];
 		//console.log("Making guardians")
 		available_classes = classes.slice(0);
 		available_aspects = nonrequired_aspects.slice(0); //required_aspects
 		available_aspects = available_aspects.concat(required_aspects.slice(0));
+		var guardians = [];
 		for(var i = 0; i<this.players.length; i++){
 			  var player = this.players[i];
 				//console.log("guardian for " + player.titleBasic());
@@ -268,24 +268,41 @@ function Session(session_id){
 					guardian.interest2 = player.interest2;
 				}
 				guardian.reinit();//redo levels and land based on real aspect
-				this.guardians.push(guardian);
+				//this.guardians.push(guardian); //sessions don't keep track of this anymore
+				player.guardian = guardian;
+				guardian.guardian = player;//goes both ways.
+				guardians.push(guardian)
 		}
 
-		for(var j = 0; j<this.guardians.length; j++){
-			var g = this.guardians[j];
-			g.generateRelationships(this.guardians);
+		for(var j = 0; j<this.players.length; j++){
+			var g = this.players[j].guardian;
+			g.generateRelationships(guardians);
 		}
 
-		for(var k = 0; k<this.guardians.length; k++){
+		for(var k = 0; k<this.players.length; k++){
 			//can't escape consequences.
-			this.guardians[k].consequencesForGoodPlayer();
-			this.guardians[k].consequencesForTerriblePlayer();
+			this.players[k].guardian.consequencesForGoodPlayer();
+			this.players[k].guardian.consequencesForTerriblePlayer();
 		}
 	}
 
 	this.randomizeEntryOrder = function(){
 		this.players = shuffle(this.players);
 		this.players[0].leader = true;
+	}
+
+	/*
+	no longer as simple as just switching players and guardians.
+	need to only switch players who have an ectobiologicalSource of this session.
+	*/
+	this.switchPlayersForScratch = function(){
+		//var tmp = curSessionGlobalVar.players;
+		//curSessionGlobalVar.players = curSessionGlobalVar.guardians;
+		//curSessionGlobalVar.guardians = tmp;
+		var nativePlayers = findPlayersFromSessionWithId(this.players, this.session_id);
+		console.log(nativePlayers)
+		var guardians = getGuardiansForPlayers(nativePlayers);
+		this.players = guardians;
 	}
 
 	this.decideTroll = function decideTroll(player){

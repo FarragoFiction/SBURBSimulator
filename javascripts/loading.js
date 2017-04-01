@@ -2,7 +2,8 @@ var imagesWaiting = 0;
 var imagesLoaded = 0;
 
 //load everything while showing a progress bar. delete loadingCanvas when done.
-function load(players, guardians){
+function load(players){
+  var guardians = getGuardiansForPlayers(players)
   var canvas = document.getElementById("loading");
   var ctx = canvas.getContext('2d');
   var imageString = "loading.png";

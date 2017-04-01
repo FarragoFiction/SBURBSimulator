@@ -9,6 +9,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	this.baby = getRandomInt(1,3)//more than 1 baby sprite
 	this.ectoBiologicalSource = null; //might not be created in their own session now.
 	this.class_name = class_name;
+	this.guardian = null; //no longer the sessions job to keep track.
 	this.number_confessions = 0;
 	this.number_times_confessed_to = 0;
 	this.wasteInfluenced = false; //doomed time clones might be sent back by Waste of Mind and Observer.
@@ -794,6 +795,7 @@ function setEctobiologicalSource(playerList,source){
 	}
 }
 
+
 function findPlayersWithoutEctobiologicalSource(playerList){
 	ret = [];
 	for(var i= 0; i<playerList.length; i++){
@@ -833,4 +835,13 @@ function findGoodPrototyping(playerList){
 			return p;
 		}
 	}
+}
+
+function getGuardiansForPlayers(playerList){
+	var tmp = [];
+	for(var i= 0; i<playerList.length; i++){
+		var g = playerList[i].guardian;
+		tmp.push(g);
+	}
+	return tmp;
 }
