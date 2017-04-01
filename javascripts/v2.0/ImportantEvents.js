@@ -59,7 +59,7 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player, doomedTimeClone){
 			drawTimeGears(canvasDiv, this.doomedTimeClone);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
-			
+
 			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
 			player.godTier = true;
 			player.dreamSelf = false;
@@ -103,11 +103,11 @@ function PlayerDiedForever(session, mvp_value, player, doomedTimeClone){
 			narration += " Something seems...off...about them. But they are adamant that the " +player.htmlTitleBasic() + " needs to be protected. "
 			narration += " No matter what 'fate' says. "
 			narration += " They sacrifice their life for the " + player.htmlTitleBasic() + ". ";
-			
+
 			div.append(narration);
 			player.triggerLevel += 0.5;
 			player.dead = false;
-			
+
 			this.doomedTimeClone.dead = true;
 
 			var divID = (div.attr("id")) + "_alt_" + player.chatHandle;
@@ -124,7 +124,7 @@ function PlayerDiedForever(session, mvp_value, player, doomedTimeClone){
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
 
-			var alphaTimePlayer = findAspectPlayer(this.session.players, "Time");		
+			var alphaTimePlayer = findAspectPlayer(this.session.players, "Time");
 			removeFromArray(this.doomedTimeClone, alphaTimePlayer.doomedTimeClones);   //DEAD
 	}
 }
@@ -160,7 +160,7 @@ function PlayerWentGrimDark(session, mvp_value,player, doomedTimeClone){
 			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
 			div.append(narration);
 			player.triggerLevel= 0;
-			
+
 
 			var divID = (div.attr("id")) + "_alt_" + player.chatHandle;
 			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
@@ -172,7 +172,7 @@ function PlayerWentGrimDark(session, mvp_value,player, doomedTimeClone){
 
 			var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 			drawSpriteTurnways(dSpriteBuffer,player)
-			
+
 			drawTimeGears(canvasDiv, this.doomedTimeClone);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
@@ -206,7 +206,7 @@ function PlayerWentMurderMode(session, mvp_value, player, doomedTimeClone){
 			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
 			div.append(narration);
 			player.triggerLevel= 0;
-			
+
 
 			var divID = (div.attr("id")) + "_alt_" + player.chatHandle;
 			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
@@ -218,7 +218,7 @@ function PlayerWentMurderMode(session, mvp_value, player, doomedTimeClone){
 
 			var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 			drawSpriteTurnways(dSpriteBuffer,player)
-			
+
 			drawTimeGears(canvasDiv, this.doomedTimeClone);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
@@ -237,17 +237,17 @@ function JackPromoted(session, mvp_value, doomedTimeClone){
 		var ret  = "Prevent Jack from obtaining the Black Queen's RING OF ORBS " +this.session.convertPlayerNumberToWords() + "FOLD.";
 		return ret;
 	}
-	this.alternateScene = function(div){		
+	this.alternateScene = function(div){
 			this.timesCalled ++;
 			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
 			narration +=  " They come with a dire warning of a doomed timeline. ";
 			narration += " Something seems...off...about them. But they are adamant that the Black Queen's RING OF ORBS " +this.session.convertPlayerNumberToWords() + "FOLD needs to be destroyed. Immediately.";
 			narration += " No matter what 'fate' says. Jack Noir immediately begins flipping out, but the RING is stolen before he can do anything. "
 			narration +=  "The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes with the RING in a cloud of gears to join the final battle.";
-			div.append(narration);	
+			div.append(narration);
 			this.session.queenStrength = -9999;
 
-			var divID = (div.attr("id")) + "_alt_jack_promotion" 
+			var divID = (div.attr("id")) + "_alt_jack_promotion"
 			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
 			var canvasDiv = document.getElementById("canvas"+ divID);
@@ -267,7 +267,8 @@ function FrogBreedingNeedsHelp(session, mvp_value, doomedTimeClone){
 	this.timesCalled = 0;
 	this.doomedTimeClone = doomedTimeClone;
 	this.importanceRating = 2;  //really, this is probably the least useful thing you could do. If this is the ONLY thing that went wrong, your session is going great.
-	
+	this.timesCalled = 0;
+
 	this.humanLabel = function(){
 		var spacePlayer = findAspectPlayer(this.session.players, "Space");
 		var ret  = "Help the " + spacePlayer.htmlTitleBasic() + " complete frog breeding duties.";
@@ -276,7 +277,7 @@ function FrogBreedingNeedsHelp(session, mvp_value, doomedTimeClone){
 	this.alternateScene = function(div){
 			var spacePlayer = findAspectPlayer(this.session.players, "Space");
 			this.timesCalled ++;
-			console.log("times called : " + this.timeCalled)
+		//	console.log("times called : " + this.timesCalled)
 			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
 			narration +=  " They come with a dire warning of a doomed timeline. ";
 			narration += " Something seems...off...about them. But they are adamant that the " + spacePlayer.htmlTitleBasic() + " needs to be helped with their Frog Breeding duties. "
@@ -289,7 +290,7 @@ function FrogBreedingNeedsHelp(session, mvp_value, doomedTimeClone){
 				spacePlayer.landLevel += 8;
 			}
 			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
-			div.append(narration);			
+			div.append(narration);
 
 			var divID = (div.attr("id")) + "_alt_" + spacePlayer.chatHandle;
 			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
@@ -301,7 +302,7 @@ function FrogBreedingNeedsHelp(session, mvp_value, doomedTimeClone){
 
 			var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 			drawSpriteTurnways(dSpriteBuffer,spacePlayer)
-			
+
 			drawTimeGears(canvasDiv, this.doomedTimeClone);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
@@ -327,7 +328,7 @@ function KillPlayer(session, player, doomedTimeClone){
 
 //you really shouldn't need to help with frog breeding more than twice.
 function removeFrogSpam(events){
-	var eventsToRemove = []; //don't mod an array as you loop over it. 
+	var eventsToRemove = []; //don't mod an array as you loop over it.
 	var frogsSoFar = 0;
 	 for(var i = 0; i<events.length; i++){
 		 if(events[i].constructor.name == "FrogBreedingNeedsHelp"){
@@ -337,7 +338,7 @@ function removeFrogSpam(events){
 			 }
 		 }
 	 }
-	 
+
 	  for(var k = 0; k<eventsToRemove.length; k++){
 		 removeFromArray(eventsToRemove[k], events)
 	 }
@@ -345,7 +346,7 @@ function removeFrogSpam(events){
 }
 //YellowYardcontroller knows what makes two events functionally equivalent
 function removeRepeatEvents(events){
-	var eventsToRemove = []; //don't mod an array as you loop over it. 
+	var eventsToRemove = []; //don't mod an array as you loop over it.
 	 for(var i = 0; i<events.length; i++){
         var e1 = events[i];
 		for(var j = i; j<events.length-i; j++){
@@ -355,9 +356,9 @@ function removeRepeatEvents(events){
 			 // console.log(e1.humanLabel() + " matches " + e2.humanLabel())
               eventsToRemove.push(e2);
 			}
-		}  
+		}
      }
-	 
+
 	 for(var k = 0; k<eventsToRemove.length; k++){
 		 removeFromArray(eventsToRemove[k], events)
 	 }

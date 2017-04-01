@@ -144,7 +144,12 @@ function cloneRelationshipsStopgap(relationships){
 function transferFeelingsToClones(player, clones){
 	for(var i =0; i<player.relationships.length; i++){
 			var r = player.relationships[i];
-			r.target = findClaspectPlayer(clones, r.target.class_name, r.target.aspect);
+			var clone = findClaspectPlayer(clones, r.target.class_name, r.target.aspect);
+			//if i can't find a clone, it's probably a dead player that didn't come to the new session.
+			//may as well keep the original relationship
+			if(clone){
+				r.target = clone;
+			}
 
 	}
 }

@@ -770,6 +770,7 @@ function getPartyPower(party){
 }
 
 function getPlayersTitles(playerList){
+	//console.log(playerList)
 	if(playerList.length == 0){
 		return "";
 	}
