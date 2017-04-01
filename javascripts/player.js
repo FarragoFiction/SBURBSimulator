@@ -2,11 +2,12 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 
   //call if I overrode claspect or interest or anything
 	this.reinit = function(){
+		//console.log("player reinit");
 		this.chatHandle = getRandomChatHandle(this.class_name,this.aspect,this.interest1, this.interest2);
 		this.mylevels = getLevelArray(this);//make them ahead of time for echeladder graphic
 		this.land = getRandomLandFromAspect(this.aspect);
 	}
-	this.baby = getRandomInt(1,3)//more than 1 baby sprite
+	this.baby = null;
 	this.ectoBiologicalSource = null; //might not be created in their own session now.
 	this.class_name = class_name;
 	this.guardian = null; //no longer the sessions job to keep track.
@@ -15,29 +16,26 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	this.wasteInfluenced = false; //doomed time clones might be sent back by Waste of Mind and Observer.
 	this.aspect = aspect;
 	this.land = land;
-	this.interest1 = getRandomElementFromArray(interests);
-	this.interest2 = getRandomElementFromArray(interests);
-	this.chatHandle = getRandomChatHandle(this.class_name,this.aspect,this.interest1, this.interest2);
+	this.interest1 =null;
+	this.interest2 = null;
+	this.chatHandle = null;
 	this.kernel_sprite = kernel_sprite;
 	this.relationships = [];
 	this.moon = moon;
 	this.power = 1;
 	this.leveledTheHellUp = false; //triggers level up scene.
-	this.mylevels = getLevelArray(this);//make them ahead of time for echeladder graphic
+	this.mylevels = null
 	this.level_index = -1; //will be ++ before i query
 	this.godTier = false;
 	this.victimBlood = null; //used for murdermode players.
-	this.hair = getRandomInt(1,35);
+	this.hair = null
 	//this.hair = 16;
-	this.hairColor = getRandomElementFromArray(human_hair_colors);
+	this.hairColor = null
 	this.dreamSelf = true;
 	this.isTroll = false; //later
 	this.bloodColor = "#ff0000" //human red.
-	this.leftHorn =  getRandomInt(1,46);
-	this.rightHorn = this.leftHorn;
-	if(Math.seededRandom() > .7 ){ //preference for symmetry
-		this.rightHorn = getRandomInt(1,46);
-	}
+	this.leftHorn = null;
+	this.rightHorn = null;
 	this.lusus = "Adult Human"
 	this.quirk = null;
 	this.dead = false;
@@ -618,7 +616,10 @@ function getFontColorFromAspect(aspect){
 	return "<font color= '" + getColorFromAspect(aspect) + "'> ";
 }
 
+
+
 function randomPlayerWithClaspect(session, c,a){
+	//console.log("random player");
 	var l = getRandomLandFromAspect(a);
 	var k = getRandomElementFromArray(prototypings);
 	if(c == "Witch" || Math.seededRandom() > .99){
@@ -632,7 +633,22 @@ function randomPlayerWithClaspect(session, c,a){
 		gd =true;
 	}
 	var m = getRandomElementFromArray(moons);
-	return new Player(session,c,a,l,k,m,gd);
+	var p =  new Player(session,c,a,l,k,m,gd);
+	//no longer any randomness directly in player class. don't want to eat seeds if i don't have to.
+	p.baby = getRandomInt(1,3)
+	p.interest1 = getRandomElementFromArray(interests);
+	p.interest2 = getRandomElementFromArray(interests);
+	p.chatHandle = getRandomChatHandle(p.class_name,p.aspect,p.interest1, p.interest2);
+	p.mylevels = getLevelArray(p);//make them ahead of time for echeladder graphic
+	p.hair = getRandomInt(1,35);
+	p.hairColor = getRandomElementFromArray(human_hair_colors);
+	p.leftHorn =  getRandomInt(1,46);
+	p.rightHorn = p.leftHorn;
+	if(Math.seededRandom() > .7 ){ //preference for symmetry
+			p.rightHorn = getRandomInt(1,46);
+	}
+	return p;
+
 }
 function randomPlayer(session){
 	//remove class AND aspect from available
@@ -805,6 +821,24 @@ function findPlayersWithoutEctobiologicalSource(playerList){
 		}
 	}
 	return ret;
+}
+
+//deeper than a snapshot, for yellowyard aliens
+//have to treat properties that are objects differently. luckily i think those are only player and relationships.
+function clonePlayer(player, session, isGuardian){
+	console.log("oh god, what about relationships? can't just simply clone them here, because not all clones are made yet.")
+	var clone = new Player();
+	for(var propertyName in player) {
+		if(propertyName == "guardian"){
+			if(!isGuardian){ //no infinite recursion, plz
+				clone.guardian = clonePlayer(player.guardian, session, true);
+				clone.guardian.guardian = clone;
+		}
+	}else{
+				clone[propertyName] = player[propertyName]
+		}
+	}
+	return clone;
 }
 
 function findPlayersFromSessionWithId(playerList, source){

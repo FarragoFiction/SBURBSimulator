@@ -15,6 +15,7 @@ function Session(session_id){
 	this.goodFrogLevel = 28;
 	this.democracyStrength = 0;
 	this.reckoningStarted = false;
+	this.aliensClonedOnArrival = []; //if i'm gonna do time shenanigans, i need to know what the aliens were like when they got here.
 	this.murdersHappened = false;
 	this.ectoBiologyStarted = false;
 	this.doomedTimeline = false;
@@ -67,7 +68,7 @@ function Session(session_id){
 		console.log("todo: make sure this works in scratched and combo sessions ");
 		this.yellowYardController.eventsToUndo.push(e);
 		//reinit the seed and restart the session
-
+		var savedPlayers = curSessionGlobalVar.players;
 		this.reinit();
 		createScenesForSession(curSessionGlobalVar);
 		//players need to be reinit as well.
@@ -75,15 +76,24 @@ function Session(session_id){
 		curSessionGlobalVar.randomizeEntryOrder();
 		//authorMessage();
 		curSessionGlobalVar.makeGuardians(); //after entry order established
+		//now that i've done that, (for seed reasons) fucking ignore it and stick the actual players in
+		//after alll, i could be from a combo session.
+		//but don't just hardcore replace. need to...fuck. okay, cloning aliens now.
+		console.log("adding cloned aliens to this many players: " + curSessionGlobalVar.players.length);
+		curSessionGlobalVar.aliensClonedOnArrival = this.aliensClonedOnArrival;
+		addAliensToSession(curSessionGlobalVar, this.aliensClonedOnArrival,true);
+		console.log("after: " + curSessionGlobalVar.players.length);
 		restartSession();//in controller
 		//killing a player events are different. need to figure out how
 	}
+
 
 
 	//child sessions are basically any session with an ID that matches the seed you stop on
 	//TODO could possibly be constrained to need a space or time player to navigage. or godtier light/doom??? could further require the player be from derse
 	//but this already 2-4% of all sessions, do i really want it to  be even rarer?
 	this.initializeCombinedSession = function(){
+		this.aliensClonedOnArrival = []; //PROBABLY want to do this.
 		var living = findLivingPlayers(this.players);
 		//nobody is the leader anymore.
 		var newSession = new Session(Math.seed);  //this is a real session that could have gone on without these new players.
@@ -96,38 +106,10 @@ function Session(session_id){
 			//console.log("New session " + newSession.session_id +" cannot support living players. Already has " + newSession.players.length + " and would need to add: " + living.length)
 			return;  //their child session is not able to support them
 		}
-		//console.log("TODO add a method for a session to simulate itself. if this session EVER can support the new players, insert them there");
-		for(var i = 0; i<living.length; i++){
-			var survivor = living[i];
-			survivor.land = null;
-			survivor.dreamSelf = false;
-			survivor.godDestiny = false;
-			survivor.leader = false;
-			survivor.generateRelationships(newSession.players); //don't need to regenerate relationship with your old friends
-		}
-		for(var j= 0; j<newSession.players.length; j++){
-			var player = newSession.players[j];
-			player.generateRelationships(living);
-		}
+			console.log("adding fresh aliens");
+			addAliensToSession(newSession, living);
 
-		for(var i = 0; i<living.length; i++){
-			for(var j= 0; j<newSession.players.length; j++){
-					var player = newSession.players[j];
-					var survivor = living[i];
-					//survivors have been talking to players for a very long time, because time has no meaning between univereses.
-					var r1 = survivor.getRelationshipWith(player);
-					var r2 = player.getRelationshipWith(survivor);
-					r1.moreOfSame();
-					r1.moreOfSame();
-					//been longer from player perspective
-					r2.moreOfSame();
-					r2.moreOfSame();
-					r2.moreOfSame();
-					r2.moreOfSame();
-			}
-		}
 
-		newSession.players= newSession.players.concat(living);
 		this.hadCombinedSession = true;
 		newSession.parentSession = this;
 		createScenesForSession(newSession);
@@ -398,4 +380,47 @@ function findSceneNamed(scenesToCheck, name){
 		}
 	}
 	return "No"
+}
+
+
+	//save a copy of the alien (in case of yellow yard)
+	function addAliensToSession (newSession, living, alreadyCloned){
+		console.log("adding this many aliens" +living.length);
+		for(var i = 0; i<living.length; i++){
+			var survivor = living[i];
+			survivor.land = null;
+			survivor.dreamSelf = false;
+			survivor.godDestiny = false;
+			survivor.leader = false;
+			survivor.generateRelationships(newSession.players); //don't need to regenerate relationship with your old friends
+		}
+		for(var j= 0; j<newSession.players.length; j++){
+			var player = newSession.players[j];
+			player.generateRelationships(living);
+		}
+
+		for(var i = 0; i<living.length; i++){
+			for(var j= 0; j<newSession.players.length; j++){
+					var player = newSession.players[j];
+					var survivor = living[i];
+					//survivors have been talking to players for a very long time, because time has no meaning between univereses.
+					var r1 = survivor.getRelationshipWith(player);
+					var r2 = player.getRelationshipWith(survivor);
+					r1.moreOfSame();
+					r1.moreOfSame();
+					//been longer from player perspective
+					r2.moreOfSame();
+					r2.moreOfSame();
+					r2.moreOfSame();
+					r2.moreOfSame();
+			}
+	}
+	if(!alreadyCloned){
+		for(var i = 0; i<living.length; i++){
+			var survivor = living[i];
+			newSession.aliensClonedOnArrival.push(clonePlayer(survivor, newSession));
+		}
+		console.log("TODO: also clone relationships when adding alient clones. interpret saved relationships as relationships with other clones.")
+	}
+	newSession.players= newSession.players.concat(living);
 }
