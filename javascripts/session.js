@@ -420,7 +420,8 @@ function findSceneNamed(scenesToCheck, name){
 			var survivor = living[i];
 			newSession.aliensClonedOnArrival.push(clonePlayer(survivor, newSession));
 		}
-		console.log("TODO: also clone relationships when adding alient clones. interpret saved relationships as relationships with other clones.")
+	}else{
+		console.log("TODO: test 58014 also clone relationships when adding alient clones. interpret saved relationships as relationships with other clones. then, have yellow yard comments about scratches and combo sessions. btw, find a post scratch yellow yard to test with. needs to be scratched after yard as well.")
 	}
 	newSession.players= newSession.players.concat(living);
 }
