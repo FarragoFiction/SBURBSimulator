@@ -42,7 +42,7 @@ function LevelTheHellUp(session){
 		var boonies = this.getBoonies(player)
 		var narration = "";
 		var repeatTime = 1000;
-		var divID = (div.attr("id")) + "_" + player.chatHandle+boonies;
+		var divID = (div.attr("id")) + "_" + player.chatHandle+boonies; //even if same chat handle, odds of same boonies is low.
 		var narrationHTML = "<br><div id = 'narration" + divID + "'></div>";
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(narrationHTML);

@@ -65,8 +65,9 @@ function Session(session_id){
 	//make Math.seed  = to my session id, reinit all my variables (similar to a scratch.)
 	//make sure the controller starts ticking again. very similar to scrach
 	this.addEventToUndoAndReset = function(e){
-		console.log("todo: make sure this works in scratched and combo sessions ");
-		this.yellowYardController.eventsToUndo.push(e);
+		if(e){//will be null if undoing an undo
+			this.yellowYardController.eventsToUndo.push(e);
+		}
 		//reinit the seed and restart the session
 		var savedPlayers = curSessionGlobalVar.players;
 		this.reinit();

@@ -45,6 +45,16 @@ function YellowYard(session){
 				}
 			}
 
+			console.log(session.yellowYardController.eventsToUndo.length)
+			console.log("add events to undo to the radio button. on the right side.")
+			html+="<div id = 'decisions' style='position: relative; top: -60px; left: 500px; font-size: 12px; width:200px;'> "
+			for(var i = 0; i<session.yellowYardController.eventsToUndo.length; i++){
+				var decision = session.yellowYardController.eventsToUndo[i]
+				html += " <span class='custom-radio'><input type='radio' name='decision' value='" + (i+yyrEventsGlobalVar.length) + "'></span>Undo ''"+decision.humanLabel() + "''<br>";
+			}
+			html += "</div>"
+
+
 			html += "<button onclick='decision()'>Decide</button></div>"
 			html+= "</div><br>"
 			div2.html(html);

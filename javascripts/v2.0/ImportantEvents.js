@@ -32,6 +32,9 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player, doomedTimeClone){
 
 	this.alternateScene = function(div){
 			this.timesCalled ++;
+			if(this.secondTimeClone){
+				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
+			}
 			//console.log("times called : " + this.timesCalled)
 			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
 			narration +=  " They come with a dire warning of a doomed timeline. ";
@@ -99,6 +102,9 @@ function PlayerDiedForever(session, mvp_value, player, doomedTimeClone){
 
 	this.alternateScene = function(div){
 			this.timesCalled ++;
+			if(this.secondTimeClone){
+				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
+			}
 			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
 			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
 			narration +=  " They come with a dire warning of a doomed timeline. ";
@@ -151,6 +157,9 @@ function PlayerWentGrimDark(session, mvp_value,player, doomedTimeClone){
 	//163251  22577  59610
 	this.alternateScene = function(div){
 			this.timesCalled ++;
+			if(this.secondTimeClone){
+				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
+			}
 			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
 			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
 			narration +=  " They come with a dire warning of a doomed timeline. ";
@@ -198,6 +207,9 @@ function PlayerWentMurderMode(session, mvp_value, player, doomedTimeClone){
 
 	this.alternateScene = function(div){
 			this.timesCalled ++;
+			if(this.secondTimeClone){
+				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
+			}
 			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
 			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
 			narration +=  " They come with a dire warning of a doomed timeline. ";
@@ -244,6 +256,9 @@ function JackPromoted(session, mvp_value, doomedTimeClone){
 	}
 	this.alternateScene = function(div){
 			this.timesCalled ++;
+			if(this.secondTimeClone){
+				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
+			}
 			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
 			narration +=  " They come with a dire warning of a doomed timeline. ";
 			narration += " Something seems...off...about them. But they are adamant that the Black Queen's RING OF ORBS " +this.session.convertPlayerNumberToWords() + "FOLD needs to be destroyed. Immediately.";
@@ -283,6 +298,9 @@ function FrogBreedingNeedsHelp(session, mvp_value, doomedTimeClone){
 	this.alternateScene = function(div){
 			var spacePlayer = findAspectPlayer(this.session.players, "Space");
 			this.timesCalled ++;
+			if(this.secondTimeClone){
+				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
+			}
 		//	console.log("times called : " + this.timesCalled)
 			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
 			narration +=  " They come with a dire warning of a doomed timeline. ";
@@ -329,6 +347,9 @@ function KillPlayer(session, player, doomedTimeClone){
 		return ret;
 	}
 	this.alternateScene = function(div){
+		if(this.secondTimeClone){
+			return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
+		}
 			console.log("TODO: implement alternate scene. kill player.")
 	}
 }
@@ -396,12 +417,11 @@ function listEvents(events){
 	return ret;
 }
 
-function undoTimeUndoScene(div, timeClone1, timeClone2){
-	var spacePlayer = findAspectPlayer(this.session.players, "Space");
+function undoTimeUndoScene(div, session, event, timeClone1, timeClone2){
 	this.timesCalled ++;
 //	console.log("times called : " + this.timesCalled)
 	var narration = "<br>A " + timeClone1.htmlTitleBasic() + " suddenly warps in from the future. ";
-	narration +=  " But before they can do anything, a second  " +timeClone2.htmlTitleBasic()  + "warps in and grabs them.  Both vanish in a cloud of gears and clocks to join the final battle.";
+	narration +=  " But before they can do anything, a second  " +timeClone2.htmlTitleBasic()  + " warps in and grabs them.  Both vanish in a cloud of gears and clocks to join the final battle.";
 
 	div.append(narration);
 
@@ -421,4 +441,6 @@ function undoTimeUndoScene(div, timeClone1, timeClone2){
 
 	copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
 	copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
+
+	removeFromArray(event, session.yellowYardController.eventsToUndo);
 }

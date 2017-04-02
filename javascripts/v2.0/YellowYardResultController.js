@@ -75,6 +75,9 @@ function doEventsMatch(newEvent, storedEvent){
   var alphaTimePlayer = findAspectPlayer(newEvent.session.players, "Time");
   alphaTimePlayer.triggerLevel += 0.2; //how many re-dos does this give me before they snap?
   alphaTimePlayer.doomedTimeClones.push(storedEvent.doomedTimeClone);
+  if(storedEvent.secondTimeClone){
+      alphaTimePlayer.doomedTimeClones.push(storedEvent.secondTimeClone);
+  }
 
   return true;
 }
@@ -82,7 +85,17 @@ function doEventsMatch(newEvent, storedEvent){
 
 function decision(){
   var a =$("input[name='decision']:checked").val()
-  var eventDecided = yyrEventsGlobalVar[parseInt(a)];
-  //alert(eventDecided.humanLabel());
-  curSessionGlobalVar.addEventToUndoAndReset(eventDecided);
+  var index = parseInt(a);
+  if(a<yyrEventsGlobalVar.length){
+    var eventDecided = yyrEventsGlobalVar[parseInt(a)];
+    //alert(eventDecided.humanLabel());
+    curSessionGlobalVar.addEventToUndoAndReset(eventDecided);
+  }else{
+    //undoing undoing an event.
+    index = index - yyrEventsGlobalVar.length
+    var eventToUndo2x = curSessionGlobalVar.yellowYardController.eventsToUndo[index];
+    eventToUndo2x.secondTimeClone = curSessionGlobalVar.importantEvents[0].doomedTimeClone;
+    curSessionGlobalVar.addEventToUndoAndReset(null);
+  }
+
 }
