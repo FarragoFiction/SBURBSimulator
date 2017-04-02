@@ -200,8 +200,8 @@ function MurderPlayers(session){
 
 				}else if(worstEnemy.power < m.power*2){  //more likely to kill enemy than be killed. element of surprise
 					var alt = this.addImportantEvent(worstEnemy);
-					if(alt){
-						alt.alternateScene(div);
+					if(alt && alt.alternateScene(div)){
+						//do nothing, alt scene will handle this.
 					}else{
 						m.increasePower();
 
@@ -219,8 +219,8 @@ function MurderPlayers(session){
 					}
 				}else{
 					var alt = this.addImportantEvent(worstEnemy)
-					if(alt){
-						alt.alternateScene(div);
+					if(alt && alt.alternateScene(div)){
+						//do nothing, alt scene will handle this
 					}else{
 						worstEnemy.increasePower();
 

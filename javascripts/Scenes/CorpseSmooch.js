@@ -160,9 +160,8 @@ function CorpseSmooch(session){
 				}else{
 					//console.log("Adding important event god tier for: " + d.title())
 					var alt = this.addImportantEvent(d);
-					if(alt){
-						console.log("calling alternate scene for" + d.title());
-						alt.alternateScene(div);
+					if(alt && alt.alternateScene(div)){
+						//do nothing here.
 					}else{
 						ret += d.htmlTitle() + "'s corpse waits patiently for the kiss of life. But nobody came. ";
 						ret += " Their dream self dies as well. ";
@@ -171,8 +170,7 @@ function CorpseSmooch(session){
 				}
 			}else if(d.isDreamSelf == true && d.godDestiny == false && d.godTier == false && d.dead == true){
 				var alt = this.addImportantEvent(d);
-					if(alt){
-						alt.alternateScene(div);
+					if(alt && alt.alternateScene(div)){
 					}else{
 						//don't even mention corpse smooching for dream selves. but them perma-dying is an event.
 					}

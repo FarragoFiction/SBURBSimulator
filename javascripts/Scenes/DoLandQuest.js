@@ -159,7 +159,7 @@ function DoLandQuest(session){
 		return ret;
 
 	}
-	
+
 	this.contentForPlayer = function(player, helper){
 		var ret = "";
 		ret += "The " + player.htmlTitle()  ;
@@ -190,7 +190,7 @@ function DoLandQuest(session){
 			ret += getRelationshipFlavorText(r1,r2, player, helper);
 		}
 		return ret;
-					
+
 
 	}
 
@@ -198,14 +198,14 @@ function DoLandQuest(session){
 		var ret = "";
 		for(var i = 0; i<this.playersPlusHelpers.length; i++){
 			var player = this.playersPlusHelpers[i][0];
-			
+
 			//console.log("doing land quests at: " + player.land)
 			var helper = this.playersPlusHelpers[i][1]; //might be null
 			if(player.aspect == "Space" && !helper){
-				
+
 				var alt = this.addImportantEvent();
-				if(alt){
-					alt.alternateScene(div);		
+				if(alt && alt.alternateScene(div)){
+					//do nothing, alternate scene handles it
 				}else{
 					ret += this.contentForPlayer(player, helper);
 				}

@@ -35,8 +35,7 @@ function JackPromotion(session){
 
 	this.renderContent = function(div){
 		var alt = this.addImportantEvent();
-		if(alt){
-			alt.alternateScene(div);
+		if(alt && alt.alternateScene(div)){
 			return;
 		}
 		div.append("<br>"+this.content());

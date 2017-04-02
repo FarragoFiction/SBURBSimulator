@@ -155,8 +155,7 @@ function JackRampage(session){
 			this.session.jackStrength += 10;
 		}else{
 			var alt = this.addImportantEvents(stabbings);
-			if(alt){
-				alt.alternateScene(div);
+			if(alt && alt.alternateScene(div)){
 				return;
 			}else{
 				ret += " Jack shows his stabs to " + getPlayersTitles(stabbings) + " until they die.  DEAD.";

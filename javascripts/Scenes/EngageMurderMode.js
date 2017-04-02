@@ -257,8 +257,7 @@ function EngageMurderMode(session){
 
 	this.renderContent = function(div){
 		var alt = this.addImportantEvent();
-		if(alt){
-			alt.alternateScene(div);
+		if(alt && alt.alternateScene(div)){
 			return;
 		}
 		//reset capitilization quirk

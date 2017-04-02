@@ -429,7 +429,7 @@ function Intro(session){
 		return chatText;
 	}
 
-	this.alienChat = function(player1){
+	this.alienChat = function(player1,div){
 		var player2 = player1.getBestFriend(); //even if they are dead. even if they are from another session.
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
@@ -440,7 +440,7 @@ function Intro(session){
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var chatText = "";
 
-		if(player2.ectoBiologicalSource == this.session.session_id){
+		if(player2.ectoBiologicalSource == this.session.session_id || player2.ectoBiologicalSource == null){
 			if(r1.type() == r1.goodBig){
 				chatText += chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm finally in your session.");
 			}else{
@@ -452,6 +452,8 @@ function Intro(session){
 
 		}else{
 				if(player2.dead){
+					//console.log("player 2 is: " + player2.title())
+					//console.log(player2)
 					chatText += chatLine(player1Start, player1, "So. Uh. Hey, I'm finally in the new session I was telling you about.");
 					chatText += chatLine(player1Start, player1, "You would have loved it.");
 					chatText += chatLine(player1Start, player1, "Don't worry. I'll make sure it will all have been worth it. A whole new universe, a second chance.");
@@ -463,16 +465,18 @@ function Intro(session){
 						chatText += chatLine(player2Start, player2,"Ugh. I am just ready to be DONE playing this game.");
 						chatText += chatLine(player1Start, player1,"I know right? At least this time we don't have to worry about all those bullshit sidequests.");
 						chatText += chatLine(player2Start, player2,"Yes, we can just focus on getting ready for the end game.");
-				
+
 				}
 
 		}
-		return chatText;
+		drawChat(document.getElementById("canvas"+ (div.attr("id"))), player1, player2, chatText, repeatTime,"discuss_sburb.png");
+		return null;
 	}
 
-	this.getChat = function(player1, player2){
+	this.getChat = function(player1, player2,div){
+
 		if(!player1.fromThisSession(this.session) || !player1.land){
-			return this.alienChat(player1);
+			return this.alienChat(player1,div);
 		}
 
 		if(player2.grimDark == true){
@@ -538,8 +542,11 @@ function Intro(session){
 
 
 
-		var chatText = this.getChat(player1,player2);
-		//don't need timeout here.
+		var chatText = this.getChat(player1,player2,div);
+		if(chatText == null){//alien chat
+			return;
+		}
+		//alien chat won't get here, renders itself cause can talk to dead
 		drawChat(document.getElementById("canvas"+ (div.attr("id"))), player1, player2, chatText, repeatTime,"discuss_sburb.png");
 	}
 

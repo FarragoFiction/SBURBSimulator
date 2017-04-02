@@ -83,6 +83,7 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player, doomedTimeClone){
 			var players = [];
 			players.push(player)
 			drawGetTiger(canvasDiv2, players,repeatTime)
+			return true;
 	}
 }
 
@@ -134,6 +135,7 @@ function PlayerDiedForever(session, mvp_value, player, doomedTimeClone){
 
 			var alphaTimePlayer = findAspectPlayer(this.session.players, "Time");
 			removeFromArray(this.doomedTimeClone, alphaTimePlayer.doomedTimeClones);   //DEAD
+			return true;
 	}
 }
 
@@ -188,6 +190,7 @@ function PlayerWentGrimDark(session, mvp_value,player, doomedTimeClone){
 			drawTimeGears(canvasDiv, this.doomedTimeClone);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
+			return true;
 	}
 }
 
@@ -238,6 +241,7 @@ function PlayerWentMurderMode(session, mvp_value, player, doomedTimeClone){
 			drawTimeGears(canvasDiv, this.doomedTimeClone);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
+			return true;
 	}
 }
 
@@ -276,6 +280,7 @@ function JackPromoted(session, mvp_value, doomedTimeClone){
 			drawSprite(pSpriteBuffer,this.doomedTimeClone)
 			drawTimeGears(canvasDiv, this.doomedTimeClone);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
+			return true;
 	}
 }
 
@@ -289,7 +294,7 @@ function FrogBreedingNeedsHelp(session, mvp_value, doomedTimeClone){
 	this.importanceRating = 2;  //really, this is probably the least useful thing you could do. If this is the ONLY thing that went wrong, your session is going great.
 	this.timesCalled = 0;
 	this.secondTimeClone = null;  //second time clone undoes first undo
-
+  //console.log("creating frog needs help event, seed is: " + Math.seed)
 	this.humanLabel = function(){
 		var spacePlayer = findAspectPlayer(this.session.players, "Space");
 		var ret  = "Help the " + spacePlayer.htmlTitleBasic() + " complete frog breeding duties.";
@@ -301,7 +306,6 @@ function FrogBreedingNeedsHelp(session, mvp_value, doomedTimeClone){
 			if(this.secondTimeClone){
 				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
-		//	console.log("times called : " + this.timesCalled)
 			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
 			narration +=  " They come with a dire warning of a doomed timeline. ";
 			narration += " Something seems...off...about them. But they are adamant that the " + spacePlayer.htmlTitleBasic() + " needs to be helped with their Frog Breeding duties. "
@@ -330,6 +334,8 @@ function FrogBreedingNeedsHelp(session, mvp_value, doomedTimeClone){
 			drawTimeGears(canvasDiv, this.doomedTimeClone);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
+			//console.log("done helping frog a scene, seed is at: " + Math.seed)
+			return true;
 	}
 
 }
@@ -351,6 +357,7 @@ function KillPlayer(session, player, doomedTimeClone){
 			return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 		}
 			console.log("TODO: implement alternate scene. kill player.")
+			return true;
 	}
 }
 
@@ -418,10 +425,9 @@ function listEvents(events){
 }
 
 function undoTimeUndoScene(div, session, event, timeClone1, timeClone2){
-	this.timesCalled ++;
 //	console.log("times called : " + this.timesCalled)
-	var narration = "<br>A " + timeClone1.htmlTitleBasic() + " suddenly warps in from the future. ";
-	narration +=  " But before they can do anything, a second  " +timeClone2.htmlTitleBasic()  + " warps in and grabs them.  Both vanish in a cloud of gears and clocks to join the final battle.";
+	var narration = "<br>A doomed " + timeClone1.htmlTitleBasic() + " suddenly warps in from the future. ";
+	narration +=  " But before they can do anything, a second doomed " +timeClone2.htmlTitleBasic()  + " warps in and grabs them.  Both vanish in a cloud of gears and clocks to join the final battle.";
 
 	div.append(narration);
 
@@ -443,4 +449,5 @@ function undoTimeUndoScene(div, session, event, timeClone1, timeClone2){
 	copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
 
 	removeFromArray(event, session.yellowYardController.eventsToUndo);
+	return false;
 }

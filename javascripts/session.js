@@ -82,7 +82,12 @@ function Session(session_id){
 		//but don't just hardcore replace. need to...fuck. okay, cloning aliens now.
 		console.log("adding cloned aliens to this many players: " + curSessionGlobalVar.players.length);
 		curSessionGlobalVar.aliensClonedOnArrival = this.aliensClonedOnArrival;
-		addAliensToSession(curSessionGlobalVar, this.aliensClonedOnArrival,true);
+		var living = []  //if don't make copy of aliensClonedOnArrival, goes into an infinite loop as it loops on it and adds to it inside of addAliens
+		for(var i = 0; i<this.aliensClonedOnArrival.length; i++){
+			living.push(this.aliensClonedOnArrival[i])
+		}
+		this.aliensClonedOnArrival = [];//jettison old clones.
+		addAliensToSession(curSessionGlobalVar, living);
 		console.log("after: " + curSessionGlobalVar.players.length);
 		restartSession();//in controller
 		//killing a player events are different. need to figure out how
@@ -107,7 +112,7 @@ function Session(session_id){
 			//console.log("New session " + newSession.session_id +" cannot support living players. Already has " + newSession.players.length + " and would need to add: " + living.length)
 			return;  //their child session is not able to support them
 		}
-			addAliensToSession(newSession, living);
+		addAliensToSession(newSession, living);
 
 
 		this.hadCombinedSession = true;
@@ -384,7 +389,7 @@ function findSceneNamed(scenesToCheck, name){
 
 
 	//save a copy of the alien (in case of yellow yard)
-	function addAliensToSession (newSession, living, alreadyCloned){
+	function addAliensToSession (newSession, living){
 		for(var i = 0; i<living.length; i++){
 			var survivor = living[i];
 			survivor.land = null;
@@ -393,7 +398,7 @@ function findSceneNamed(scenesToCheck, name){
 			survivor.leader = false;
 		}
 		//save a copy of the alien players in case this session has time shenanigans happen
-		if(!alreadyCloned){
+
 			for(var i = 0; i<living.length; i++){
 				var survivor = living[i];
 				newSession.aliensClonedOnArrival.push(clonePlayer(survivor, newSession));
@@ -403,7 +408,6 @@ function findSceneNamed(scenesToCheck, name){
 				var clone = newSession.aliensClonedOnArrival[i];
 				transferFeelingsToClones(clone, newSession.aliensClonedOnArrival);
 			}
-		}
 		//generate relationships AFTER saving a backup of hte player.
 		//want clones to only know about other clones. not players.
 		for(var i = 0; i<living.length; i++){
