@@ -39,9 +39,10 @@ function LevelTheHellUp(session){
 		if(!levelName){
 			return; //don't make a blank div
 		}
+		var boonies = this.getBoonies(player)
 		var narration = "";
 		var repeatTime = 1000;
-		var divID = (div.attr("id")) + "_" + player.chatHandle;
+		var divID = (div.attr("id")) + "_" + player.chatHandle+boonies;
 		var narrationHTML = "<br><div id = 'narration" + divID + "'></div>";
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(narrationHTML);
@@ -49,8 +50,7 @@ function LevelTheHellUp(session){
 		var narrationDiv = $("#narration"+divID);
 		//different format for canvas code
 		var canvasDiv = document.getElementById("canvas"+ divID);
-		
-		var boonies = this.getBoonies(player)
+
 		if(levelName){
 			narration += " The " + player.htmlTitle();
 
