@@ -51,7 +51,7 @@ function YellowYard(session){
 
 
 			html += "</div><button style = 'position: relative; top: 133px; left: 280px' onclick='decision()'>Decide</button>"
-			html+="<div id = 'undo_decisions' style='position: relative; top: -165px; left: 0px; font-size: 12px; width:190px; height:300px;float:right;'> "
+			html+="<div id = 'undo_decisions' style='position: relative; top: -155px; left: 0px; font-size: 12px; width:190px; height:300px;float:right;'> "
 			for(var i = 0; i<session.yellowYardController.eventsToUndo.length; i++){
 				var decision = session.yellowYardController.eventsToUndo[i]
 				html += " <span class='custom-radio'><input type='radio' name='decision' value='" + (i+yyrEventsGlobalVar.length) + "'></span>Undo ''"+decision.humanLabel() + "''<br>";
