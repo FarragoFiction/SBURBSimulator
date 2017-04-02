@@ -80,7 +80,7 @@ function Session(session_id){
 		//now that i've done that, (for seed reasons) fucking ignore it and stick the actual players in
 		//after alll, i could be from a combo session.
 		//but don't just hardcore replace. need to...fuck. okay, cloning aliens now.
-		console.log("adding cloned aliens to this many players: " + curSessionGlobalVar.players.length);
+		//console.log("adding cloned aliens to this many players: " + curSessionGlobalVar.players.length);
 		curSessionGlobalVar.aliensClonedOnArrival = this.aliensClonedOnArrival;
 		var living = []  //if don't make copy of aliensClonedOnArrival, goes into an infinite loop as it loops on it and adds to it inside of addAliens
 		for(var i = 0; i<this.aliensClonedOnArrival.length; i++){
@@ -88,7 +88,6 @@ function Session(session_id){
 		}
 		this.aliensClonedOnArrival = [];//jettison old clones.
 		addAliensToSession(curSessionGlobalVar, living);
-		console.log("after: " + curSessionGlobalVar.players.length);
 		restartSession();//in controller
 		//killing a player events are different. need to figure out how
 	}

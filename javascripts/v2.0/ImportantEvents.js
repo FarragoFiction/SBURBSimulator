@@ -26,7 +26,7 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player, doomedTimeClone){
 
 	this.humanLabel = function(){
 		var ret  = "";
-		ret += "Have the " + this.player.htmlTitle() + " go God Tier instead of dying forever. " + this.mvp_value ;
+		ret += "Have the " + this.player.htmlTitle() + " go God Tier instead of dying forever. ";
 		return ret;
 	}
 

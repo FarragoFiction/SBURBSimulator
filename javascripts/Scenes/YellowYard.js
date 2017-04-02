@@ -33,7 +33,7 @@ function YellowYard(session){
 			//yyrEventsGlobalVar = sortEventsByImportance(yyrEventsGlobalVar);  this edges out diversity. end up with all "make so and so god tier" and nothing else
 			yyrEventsGlobalVar = removeRepeatEvents(yyrEventsGlobalVar);
 			yyrEventsGlobalVar = removeFrogSpam(yyrEventsGlobalVar);
-			html+="<div id = 'decisions' style='position: relative; top: 133px; left: 280px; font-size: 12px;'> "
+			html+="<div id = 'decisions' style='position: relative; top: 133px; left: 280px; font-size: 12px; width:480px;height:280px;'> "
 			for(var i = 0; i<num; i++){
 				if(i < yyrEventsGlobalVar.length){
 					yyrEventsGlobalVar[i].doomedTimeClone = time;
@@ -47,16 +47,18 @@ function YellowYard(session){
 
 			console.log(session.yellowYardController.eventsToUndo.length)
 			console.log("add events to undo to the radio button. on the right side.")
-			html+="<div id = 'decisions' style='position: relative; top: -60px; left: 500px; font-size: 12px; width:200px;'> "
+
+
+
+			html += "</div><button style = 'position: relative; top: 133px; left: 280px' onclick='decision()'>Decide</button>"
+			html+="<div id = 'undo_decisions' style='position: relative; top: -165px; left: 0px; font-size: 12px; width:190px; height:300px;float:right;'> "
 			for(var i = 0; i<session.yellowYardController.eventsToUndo.length; i++){
 				var decision = session.yellowYardController.eventsToUndo[i]
 				html += " <span class='custom-radio'><input type='radio' name='decision' value='" + (i+yyrEventsGlobalVar.length) + "'></span>Undo ''"+decision.humanLabel() + "''<br>";
 			}
 			html += "</div>"
-
-
-			html += "<button onclick='decision()'>Decide</button></div>"
 			html+= "</div><br>"
+
 			div2.html(html);
 			//wire up custom radio buttons after they are rendered
 			var radioButton = $('input[name="decision"]');
@@ -114,7 +116,6 @@ function YellowYard(session){
 
 
 		}else{
-			console.log("time player is alive.")
 			chat += "JR: I guess I should get on with it, then. \n "
 			chat += "AB: Word. \n "
 		}
