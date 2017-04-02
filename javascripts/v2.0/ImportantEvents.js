@@ -21,6 +21,7 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player, doomedTimeClone){
 	this.player = makeRenderingSnapshot(player);
 	this.doomedTimeClone = doomedTimeClone;
 	this.timesCalled = 0;
+	this.secondTimeClone = null;  //second time clone undoes first undo
 	//console.log("Created GodTier opportunity, for: " + this.player.title());
 
 	this.humanLabel = function(){
@@ -85,6 +86,7 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player, doomedTimeClone){
 
 function PlayerDiedForever(session, mvp_value, player, doomedTimeClone){
 	this.session = session;
+	this.secondTimeClone = null;  //second time clone undoes first undo
 	this.mvp_value = mvp_value;
 	this.importanceRating = 5;
 	this.player =  makeRenderingSnapshot(player);
@@ -136,6 +138,7 @@ function PlayerWentGrimDark(session, mvp_value,player, doomedTimeClone){
 	this.player =  makeRenderingSnapshot(player);
 	this.timesCalled = 0;
 	this.doomedTimeClone = doomedTimeClone;
+	this.secondTimeClone = null;  //second time clone undoes first undo
 
 	this.humanLabel = function(){
 		var ret  = "Prevent the " + this.player.htmlTitle() + " from going Grimdark."
@@ -186,6 +189,7 @@ function PlayerWentMurderMode(session, mvp_value, player, doomedTimeClone){
 	this.player = makeRenderingSnapshot(player);
 	this.timesCalled = 0;
 	this.doomedTimeClone = doomedTimeClone;
+	this.secondTimeClone = null;  //second time clone undoes first undo
 
 	this.humanLabel = function(){
 		var ret  = "Prevent the " + this.player.htmlTitle() + " from going into Murder Mode.";
@@ -232,6 +236,7 @@ function JackPromoted(session, mvp_value, doomedTimeClone){
 	this.importanceRating = 10;
 	this.timesCalled = 0;
 	this.doomedTimeClone = doomedTimeClone;
+	this.secondTimeClone = null;  //second time clone undoes first undo
 
 	this.humanLabel = function(){
 		var ret  = "Prevent Jack from obtaining the Black Queen's RING OF ORBS " +this.session.convertPlayerNumberToWords() + "FOLD.";
@@ -268,6 +273,7 @@ function FrogBreedingNeedsHelp(session, mvp_value, doomedTimeClone){
 	this.doomedTimeClone = doomedTimeClone;
 	this.importanceRating = 2;  //really, this is probably the least useful thing you could do. If this is the ONLY thing that went wrong, your session is going great.
 	this.timesCalled = 0;
+	this.secondTimeClone = null;  //second time clone undoes first undo
 
 	this.humanLabel = function(){
 		var spacePlayer = findAspectPlayer(this.session.players, "Space");
@@ -313,6 +319,7 @@ function FrogBreedingNeedsHelp(session, mvp_value, doomedTimeClone){
 //not an important event that gets recorded, but something a time player can go back in time to do.
 function KillPlayer(session, player, doomedTimeClone){
 	this.session = session;
+	this.secondTimeClone = null;  //second time clone undoes first undo
 	this.player =  makeRenderingSnapshot(player);
 	this.timesCalled = 0;
 	this.doomedTimeClone = doomedTimeClone;
@@ -387,4 +394,31 @@ function listEvents(events){
 		ret += "\n" +events[i].humanLabel();
 	}
 	return ret;
+}
+
+function undoTimeUndoScene(div, timeClone1, timeClone2){
+	var spacePlayer = findAspectPlayer(this.session.players, "Space");
+	this.timesCalled ++;
+//	console.log("times called : " + this.timesCalled)
+	var narration = "<br>A " + timeClone1.htmlTitleBasic() + " suddenly warps in from the future. ";
+	narration +=  " But before they can do anything, a second  " +timeClone2.htmlTitleBasic()  + "warps in and grabs them.  Both vanish in a cloud of gears and clocks to join the final battle.";
+
+	div.append(narration);
+
+	var divID = (div.attr("id")) + "_alt_" + timeClone1.chatHandle;
+	var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+	div.append(canvasHTML);
+	var canvasDiv = document.getElementById("canvas"+ divID);
+
+	var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+	drawTimeGears(pSpriteBuffer);
+	drawSprite(pSpriteBuffer,timeClone1)
+
+	var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+	drawTimeGears(dSpriteBuffer);
+	drawSpriteTurnways(dSpriteBuffer,timeClone2)
+
+
+	copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
+	copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
 }

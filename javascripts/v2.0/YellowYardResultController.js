@@ -31,14 +31,11 @@ function YellowYardResultController(){
         return null;
     }
 
-
-
-
 }
 /*
 	This is not perfecct.  A player can, for example, die multiple times with the same mvp power level.
 	But i figure if multiple mind-influenced time players warp into save them multiple times (even from one decision), well...time shenanigans.
-	it is not unreasonable to imagien 2 timelines that are extremely similar where the Observer made the same choice. 
+	it is not unreasonable to imagien 2 timelines that are extremely similar where the Observer made the same choice.
 */
 function doEventsMatch(newEvent, storedEvent){
 	//console.log("comparing: '" + newEvent.humanLabel() + "' to '" + storedEvent.humanLabel() + "'")
@@ -61,7 +58,7 @@ function doEventsMatch(newEvent, storedEvent){
 		 //console.log("player class did not match")
 		  return false;
 	  }
-	  
+
 	    if(newEvent.player.aspect != storedEvent.player.aspect){
       //console.log("player aspect did not match")
 		return false;

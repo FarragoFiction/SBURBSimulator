@@ -1152,7 +1152,7 @@ function drawTimeGears(canvas){
   var width = img.width;
   var height = img.height;
   ctx.drawImage(img,0,0,width,height);
-  copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,-100,0)
+  copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,0,0)
 
 }
 
