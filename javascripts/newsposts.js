@@ -25,6 +25,7 @@ window.onload = function() {
 
 function newsposts(){
 	writeRoboNewspost(new Date().toLocaleDateString(), "As a robot, I'm always available to make these news posts.")
+	writeNewspost("4/2/17", "The main site is officially being upgraded to 2.1.  Features include, but are not limited to, interactive time shenanigans in the form of the Ground Hog work. Lots of bug fixes, too. New art assets. The works. A good session to check out is: <a href = 'index2.html?seed=221777'> this one</a>. ")
 	writeNewspost("4/1/17", "GroundHog day is pretty stable now. Time shenanigans even work with combo sessions, and THAT produced some hilarious bugs. Pretty much the only feature left to implement before I declare this main site worthy is undoing your own attempts to undo things. THEN I can work on the real stuff. Like shipping grids. ")
 	writeNewspost("3/31/17", "Been working on getting the GroundHog release stable enough for the main site. Getting close.")
 	writeNewspost("3/28/17", "Working on redesigning the rare session finder to be even more useful. In the meantime it's going through growing pains and looks different.")
