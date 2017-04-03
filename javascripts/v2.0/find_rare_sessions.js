@@ -2,7 +2,7 @@
 //I just realized that AuthorBot was technically born in a lab!!!
 //Okay, like, not in a MEANINGFUL way, but they were replacing the carpet in the regular area so i had to work out of the lab instead.
 //and before you worry, YES I work on this at my day job. But, like, I'm explicitly allowed to do "mad science" learning projects
-//during downtime (as long as i don't make money off it), it helps keep my skillz (yes with a 'z') sharp.  90% of the tech i work with 
+//during downtime (as long as i don't make money off it), it helps keep my skillz (yes with a 'z') sharp.  90% of the tech i work with
 //proffesionally was first learned this way. go me.
 //this whole bucket of spiders was intended to be a way for me to solidify my understanding of javascript arrays and debugging.
 //and let me tell you for free: I am the goddamn master of javascript debugging at this point. at least compared to past me.
@@ -77,13 +77,13 @@ function filterSessionSummaries(){
 			if(ss.satifies_filter_array(filters)){
 				tmp.push(ss);
 			}
-			
+
 	}
-	
+
 	//console.log(tmp);
 	sessionSummariesDisplayed = tmp;
 	printSummaries();
-	printStats(filters);  
+	printStats(filters);
 }
 //filter is proprety name, some are special, most just pass through
 function filterSessionSummariesBy(filter){
@@ -377,7 +377,7 @@ function getQuipAboutSession(sessionSummary){
 	var living = sessionSummary.numLiving
 	var dead = sessionSummary.numDead
 	var strongest = sessionSummary.mvp
-	
+
 	if(living.length == 0){
 		quip += "Shit, you do not even want to KNOW how everybody died." ;
 	}else  if(strongest.power > 3000){
@@ -389,15 +389,6 @@ function getQuipAboutSession(sessionSummary){
 		}
 	}else  if(sessionSummary.parentSession){
 		quip += "Combo sessions are always so cool. " ;
-		if(sessionSummary.threeTimesSessionCombo){
-			quip+= " Holy shit, 3x SessionCombo!!!"
-		}else if(sessionSummary.fourTimesSessionCombo){
-			quip+= " Holy shit, 4x SessionCombo!!!!"
-		}else if(sessionSummary.fiveTimesSessionCombo){
-			quip+= " Holy shit, 5x SessionCombo!!!!!"
-		}else if(sessionSummary.holyShitMmmmmonsterCombo){
-			quip+= " Holy fuck, what is even HAPPENING here!?"
-		}
 	}else  if(sessionSummary.jackRampage){
 		quip += "Jack REALLY gave them trouble." ;
 	}else if(dead.length == 0 && sessionSummary.frogStatus == "Full Frog" ){
@@ -415,6 +406,16 @@ function getQuipAboutSession(sessionSummary){
 		quip += "Maybe the scratch would fix things? I can't be bothered to check." ;
 	}else{
 		quip += "It was slightly less boring than calculating pi." ;
+	}
+
+	if(sessionSummary.threeTimesSessionCombo){
+		quip+= " Holy shit, 3x SessionCombo!!!"
+	}else if(sessionSummary.fourTimesSessionCombo){
+		quip+= " Holy shit, 4x SessionCombo!!!!"
+	}else if(sessionSummary.fiveTimesSessionCombo){
+		quip+= " Holy shit, 5x SessionCombo!!!!!"
+	}else if(sessionSummary.holyShitMmmmmonsterCombo){
+		quip+= " Holy fuck, what is even HAPPENING here!?"
 	}
 	return quip;
 }
