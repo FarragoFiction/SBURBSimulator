@@ -159,6 +159,7 @@ function scratch(){
 	console.log("scratch has been confirmed")
 	var numPlayersPreScratch = curSessionGlobalVar.players.length;
 	var ectoSave = curSessionGlobalVar.ectoBiologyStarted;
+	
 	reinit();
 	var raggedPlayers = findPlayersFromSessionWithId(curSessionGlobalVar.players, curSessionGlobalVar.session_id); //but only native
 	//use seeds the same was as original session and also make DAMN sure the players/guardians are fresh.
@@ -166,6 +167,9 @@ function scratch(){
 	curSessionGlobalVar.randomizeEntryOrder();
 	curSessionGlobalVar.makeGuardians(); //after entry order established
 	curSessionGlobalVar.ectoBiologyStarted = ectoSave; //if i didn't do ecto in first version, do in second
+	if(curSessionGlobalVar.ectoBiologyStarted){ //players are reset except for haivng an ectobiological source
+		setEctobiologicalSource(curSessionGlobalVar.players, curSessionGlobalVar.session_id);
+	}
 	curSessionGlobalVar.scratched = true;
 	curSessionGlobalVar.switchPlayersForScratch();
 	var scratch = "The session has been scratched. The " + getPlayersTitlesBasic(getGuardiansForPlayers(curSessionGlobalVar.players)) + " will now be the beloved guardians.";
