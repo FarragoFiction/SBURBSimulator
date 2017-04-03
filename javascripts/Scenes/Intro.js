@@ -8,6 +8,16 @@ function Intro(session){
 		this.player = player;
 		return true; //this should never be in the main array. call manually.
 	}
+	
+	this.addImportantEvent = function(){
+		var current_mvp =  findStrongestPlayer(this.session.players)
+		if(this.player.aspect == "Time" && fortune_prototypings.indexOf(this.player.kernel_sprite) == -1){
+			return this.session.addImportantEvent(new TimePlayerEnteredSessionWihtoutFrog(this.session, current_mvp.power,this.player) );
+		}else{
+			return this.session.addImportantEvent(new PlayerEnteredSession(this.session, current_mvp.power,this.player) );
+		}
+	
+	}
 
 	this.grimPlayer2Chat = function( player1, player2){
 			var r1 = player1.getRelationshipWith(player2);
@@ -555,12 +565,23 @@ function Intro(session){
 	//i is so you know entry order
 	this.renderContent = function(div,i){
 		//foundRareSession(div, "This is just a test. " + this.session.session_id)
+		var alt = this.addImportantEvent();
+		if(alt && alt.alternateScene(div)){
+			return;
+		}
 		var narration = "";
 		if(this.player.land == null){
 			//console.log("This session is:  " + this.session.session_id + " and the " + this.player.title() + " is from session: " + this.player.ectoBiologicalSource + " and their land is: " + this.player.land);
 		}
 		if(!this.player.fromThisSession(this.session) || !this.player.land){
 			narration += "<br>The " + this.player.htmlTitle() + " has been in contact with the native players of this session for most of their lives. It's weird how time flows differently between universes. Now, after inumerable shenanigans, they will finally be able to meet up face to face."
+			if(this.player.dead==true){
+				console.log(session.session_id + " dead player enters, " +this.player.title())
+				narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably. <br>"
+				div.append(narration);
+				this.session.availablePlayers.push(this.player);
+				return;
+			}
 		}else{
 			narration += "<br>The " + this.player.htmlTitle() + " enters the game " + indexToWords(i) + ". ";
 

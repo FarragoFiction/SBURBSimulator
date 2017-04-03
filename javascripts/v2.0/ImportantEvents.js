@@ -340,24 +340,99 @@ function FrogBreedingNeedsHelp(session, mvp_value, doomedTimeClone){
 
 }
 
-//not an important event that gets recorded, but something a time player can go back in time to do.
-function KillPlayer(session, player, doomedTimeClone){
+
+function PlayerEnteredSession(session, mvp_value,player, doomedTimeClone){
 	this.session = session;
-	this.secondTimeClone = null;  //second time clone undoes first undo
-	this.player =  makeRenderingSnapshot(player);
+	this.mvp_value = mvp_value;
 	this.timesCalled = 0;
+	this.player = makeRenderingSnapshot(player);
 	this.doomedTimeClone = doomedTimeClone;
-	this.importanceRating = 1;  //really, this is probably the least useful thing you could do. If this is the ONLY thing that went wrong, your session is going great.
+	this.importanceRating = 5;  
+	this.timesCalled = 0;
+	this.secondTimeClone = null;  //second time clone undoes first undo
+	
 	this.humanLabel = function(){
-		var ret  = "Kill the " + player.htmlTitle() + ".";
+		var ret  = "Kill the " + this.player.htmlTitle() + " before they enter the session.";
 		return ret;
 	}
 	this.alternateScene = function(div){
-		if(this.secondTimeClone){
-			return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
-		}
-			console.log("TODO: implement alternate scene. kill player.")
-			return true;
+		this.timesCalled ++;
+			if(this.secondTimeClone){
+				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
+			}
+			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
+			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
+			narration +=  " They come with a dire warning of a doomed timeline. ";
+			narration += " Something seems...off...about them. But they are adamant that the " + player.htmlTitleBasic() + " needs to die.  You do not even want to know how long it took them to get back to earth, and then time-travel to before the" +  player.htmlTitleBasic() + " entered the session. They are commited to this. "
+			narration += " No matter what 'fate' says. "
+
+			narration +=  "After a brief struggle, the doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
+			div.append(narration);
+			player.dead = true;
+			player.causeOfDeath = "apparantly displeasing the Observer."
+			this.doomedTimeClone.victimBlood = player.bloodColor;
+
+
+			var divID = (div.attr("id")) + "_alt_" + player.chatHandle;
+			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+			div.append(canvasHTML);
+			var canvasDiv = document.getElementById("canvas"+ divID);
+
+			var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+			drawSprite(pSpriteBuffer,this.doomedTimeClone)
+
+			var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+			drawSprite(dSpriteBuffer,player)
+
+			drawTimeGears(canvasDiv, this.doomedTimeClone);
+			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
+			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
+			return false; //let the original scene happen as well.
+	}
+	
+	
+}
+
+function TimePlayerEnteredSessionWihtoutFrog(session, mvp_value,player, doomedTimeClone){
+	this.session = session;
+	this.mvp_value = mvp_value;
+	this.timesCalled = 0;
+	this.player = makeRenderingSnapshot(player);
+	this.doomedTimeClone = doomedTimeClone;
+	this.importanceRating = 10;  
+	this.timesCalled = 0;
+	this.secondTimeClone = null;  //second time clone undoes first undo
+	
+	//this is so illegal.
+	this.humanLabel = function(){
+		var ret  = "Make the " + this.player.htmlTitle() + " prototype a frog before entering the session. ";
+		return ret;
+	}
+	
+	this.alternateScene = function(div){
+			this.timesCalled ++;
+			if(this.secondTimeClone){
+				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
+			}
+			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
+			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
+			narration +=  " They come with a dire warning of a doomed timeline. ";
+			narration += " Something seems...off...about them. But they are adamant that their past-selves kernel sprite needs to be prototyped with this FROG. You do not even want to know how long it took them to get back to earth, and then time-travel to before the" +  player.htmlTitleBasic() + " entered the session. They are commited to this. "
+			narration += " No matter what 'fate' says.  They don't even care how illegal this is. "
+			narration +=  "The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes with in a cloud of gears to join the final battle.";
+			div.append(narration);
+			
+			player.kernel_sprite = "Frog"
+			var divID = (div.attr("id")) + "_alt_jack_promotion"
+			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+			div.append(canvasHTML);
+			var canvasDiv = document.getElementById("canvas"+ divID);
+
+			var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+			drawSprite(pSpriteBuffer,this.doomedTimeClone)
+			drawTimeGears(canvasDiv, this.doomedTimeClone);
+			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0)
+			return false;  //let original scene happen as well.
 	}
 }
 
