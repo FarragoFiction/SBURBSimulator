@@ -469,6 +469,12 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			var p =  potentialFriends[i];
 			if(p!=this){
 				var r = this.getRelationshipWith(p);
+				if(!r){
+					//console.log("Couldn't find relationships between " + this.chatHandle + " and " + p.chatHandle);
+					//console.log(debugCallBack)
+					//console.log(potentialFriends);
+					//console.log(this);
+				}
 				if(r.value > bestRelationshipSoFar.value){
 					bestRelationshipSoFar = r;
 				}

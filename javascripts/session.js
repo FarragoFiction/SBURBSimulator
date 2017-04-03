@@ -67,6 +67,7 @@ function Session(session_id){
 	//make Math.seed  = to my session id, reinit all my variables (similar to a scratch.)
 	//make sure the controller starts ticking again. very similar to scrach
 	this.addEventToUndoAndReset = function(e){
+		//console.log("undoing an event.")
 		if(this.scratched){
 			return this.addEventToUndoAndResetScratch(e); //works different
 		}
@@ -84,8 +85,9 @@ function Session(session_id){
 		//now that i've done that, (for seed reasons) fucking ignore it and stick the actual players in
 		//after alll, i could be from a combo session.
 		//but don't just hardcore replace. need to...fuck. okay, cloning aliens now.
-		//console.log("adding cloned aliens to this many players: " + curSessionGlobalVar.players.length);
 		curSessionGlobalVar.aliensClonedOnArrival = this.aliensClonedOnArrival;
+		//console.log("adding this many clone aliens: " + curSessionGlobalVar.aliensClonedOnArrival.length)
+		//console.log(getPlayersTitles(curSessionGlobalVar.aliensClonedOnArrival));
 		var living = []  //if don't make copy of aliensClonedOnArrival, goes into an infinite loop as it loops on it and adds to it inside of addAliens
 		for(var i = 0; i<this.aliensClonedOnArrival.length; i++){
 			living.push(this.aliensClonedOnArrival[i])
@@ -97,6 +99,7 @@ function Session(session_id){
 	}
 
 	this.addEventToUndoAndResetScratch = function(e){
+		console.log('yellow yard from scratched session')
 		if(e){//will be null if undoing an undo
 			this.yellowYardController.eventsToUndo.push(e);
 		}
@@ -109,6 +112,8 @@ function Session(session_id){
 		this.ectoBiologyStarted = ectoSave;
 		this.scratched = true;
 		this.switchPlayersForScratch();
+		
+		
 
 		restartSession();//in controller
 	}
@@ -130,13 +135,15 @@ function Session(session_id){
 			//console.log("New session " + newSession.session_id +" cannot support living players. Already has " + newSession.players.length + " and would need to add: " + living.length)
 			return;  //their child session is not able to support them
 		}
+	//	console.log("about to add: " + living.length + " aliens to new session.")
+		//console.log(getPlayersTitles(living));
 		addAliensToSession(newSession, living);
 
 
 		this.hadCombinedSession = true;
 		newSession.parentSession = this;
 		createScenesForSession(newSession);
-		console.log("Session: " + this.session_id + " has made child universe: " + newSession.session_id + " child has this long till reckoning: " + newSession.timeTillReckoning)
+		//console.log("Session: " + this.session_id + " has made child universe: " + newSession.session_id + " child has this long till reckoning: " + newSession.timeTillReckoning)
 		return newSession;
 	}
 
@@ -408,6 +415,7 @@ function findSceneNamed(scenesToCheck, name){
 
 	//save a copy of the alien (in case of yellow yard)
 	function addAliensToSession (newSession, living){
+		console.log("in method, adding aliens to session")
 		for(var i = 0; i<living.length; i++){
 			var survivor = living[i];
 			survivor.land = null;
@@ -417,15 +425,16 @@ function findSceneNamed(scenesToCheck, name){
 		}
 		//save a copy of the alien players in case this session has time shenanigans happen
 
-			for(var i = 0; i<living.length; i++){
-				var survivor = living[i];
-				newSession.aliensClonedOnArrival.push(clonePlayer(survivor, newSession));
-			}
-			//don't want relationships to still be about original players
-			for(var i = 0; i<newSession.aliensClonedOnArrival.length; i++){
-				var clone = newSession.aliensClonedOnArrival[i];
-				transferFeelingsToClones(clone, newSession.aliensClonedOnArrival);
-			}
+		for(var i = 0; i<living.length; i++){
+			var survivor = living[i];
+			newSession.aliensClonedOnArrival.push(clonePlayer(survivor, newSession));
+		}
+		//don't want relationships to still be about original players
+		for(var i = 0; i<newSession.aliensClonedOnArrival.length; i++){
+			var clone = newSession.aliensClonedOnArrival[i];
+			transferFeelingsToClones(clone, newSession.aliensClonedOnArrival);
+		}
+			//console.log("generated relationships between clones");
 		//generate relationships AFTER saving a backup of hte player.
 		//want clones to only know about other clones. not players.
 		for(var i = 0; i<living.length; i++){
@@ -433,7 +442,7 @@ function findSceneNamed(scenesToCheck, name){
 			//console.log(survivor.title() + " generating relationship with new players ")
 			survivor.generateRelationships(newSession.players); //don't need to regenerate relationship with your old friends
 		}
-
+		
 
 		for(var j= 0; j<newSession.players.length; j++){
 			var player = newSession.players[j];

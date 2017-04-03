@@ -129,7 +129,7 @@ function cloneRelationship(relationship){
 //if i fail to do this step, i accidentally give the players the Capgras delusion.
 //this HAS to happen before transferFeelingsToClones.
 function cloneRelationshipsStopgap(relationships){
-
+		//console.log("clone relationships stopgap")
 		var ret = [];
 		for(var i = 0; i<relationships.length; i++){
 			var r = relationships[i]
@@ -142,6 +142,7 @@ function cloneRelationshipsStopgap(relationships){
 //not the original players.
 //also, I <3 this method name. i <3 this sim.
 function transferFeelingsToClones(player, clones){
+	//console.log("transfer feelings to clones")
 	for(var i =0; i<player.relationships.length; i++){
 			var r = player.relationships[i];
 			var clone = findClaspectPlayer(clones, r.target.class_name, r.target.aspect);
