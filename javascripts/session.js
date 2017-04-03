@@ -41,10 +41,12 @@ function Session(session_id){
 	//oh god, just typing that gives me chills. time shenanigans are so great.
 	this.addImportantEvent = function(important_event){
 		var alternate = this.yellowYardController.doesEventNeedToBeUndone(important_event);
+	//	console.log("alternate i got from yellowYardController is: " + alternate)
 		if(alternate){
+		//	console.log("returning alternate")
 			return alternate; //scene will use the alternate to go a different way. important event no longer happens.
 		}else{
-
+			//console.log(" pushing important event and returning null")
 			this.importantEvents.push(important_event);
 			return null;
 		}

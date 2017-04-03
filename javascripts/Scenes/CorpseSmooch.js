@@ -160,6 +160,7 @@ function CorpseSmooch(session){
 				}else{
 					//console.log("Adding important event god tier for: " + d.title())
 					var alt = this.addImportantEvent(d);
+					console.log("alt is: " +alt);
 					if(alt && alt.alternateScene(div)){
 						//do nothing here.
 					}else{
@@ -192,6 +193,7 @@ function CorpseSmooch(session){
 		}else if(this.session.reckoningStarted == true && player.godTier == false) { //if the reckoning started, they couldn't god tier.
 			var ret = this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
 		}
+		return ret;
 	}
 
 	//prefer to be smooched by prince who doesn't hate you, or person who likes you best.
