@@ -817,8 +817,10 @@ function findPlayersWithoutDreamSelves(playerList){
 function setEctobiologicalSource(playerList,source){
 	for(var i= 0; i<playerList.length; i++){
 		var p = playerList[i];
+		var g  = p.guardian; //not doing this caused a bug in session 149309 and probably many, many others.
 		if(p.ectoBiologicalSource == null){
 			p.ectoBiologicalSource = source;
+			g.ectoBiologicalSource = source;
 		}
 	}
 }

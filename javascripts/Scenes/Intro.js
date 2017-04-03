@@ -351,7 +351,7 @@ function Intro(session){
 		chatText += chatLine(player1Start, player1,"I even prototyped my kernel with a " + player1.kernel_sprite +".\n");
 		if(player1.isTroll == true){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
-			chatText += chatLine(player1Start, player1,"Yep! Who better to assist me on my epic quest? ");
+			chatText += chatLine(player1Start, player1,"Yes! Who better to assist me on my epic quest? ");
 
 		}
 		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
