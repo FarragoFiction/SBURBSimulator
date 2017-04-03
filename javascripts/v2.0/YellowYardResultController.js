@@ -21,7 +21,7 @@ function YellowYardResultController(){
     this.eventsToUndo = [];
 
     this.doesEventNeedToBeUndone = function(e){
-      console.log("Does: " + e.humanLabel() + " need to be undone?")
+    //  console.log("Does: " + e.humanLabel() + " need to be undone?")
         for(var i = 0; i<this.eventsToUndo.length; i++){
           var e2 = this.eventsToUndo[i];
 		 // console.log("checking if needs to be undone")

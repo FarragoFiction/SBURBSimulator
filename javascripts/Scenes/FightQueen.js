@@ -111,7 +111,7 @@ function FightQueen(session){
 		var timePlayer = findAspectPlayer(this.session.players, "Time"); //doesn't matter if THEY are alive or dead, they still have doomed time clones.
 		if(timePlayer.doomedTimeClones.length > 0){
 			//throw an extra one at them from nowhere just to make sure it's plural. whatever. who's counting here?
-			ret += (timePlayer.doomedTimeClones.lemgth) + " doomed time clones of the " + timePlayer.htmlTitleBasic() + " show up from various points in the time line to help out. ";
+			ret += timePlayer.doomedTimeClones.length + " doomed time clones of the " + timePlayer.htmlTitleBasic() + " show up from various points in the time line to help out. ";
 			partyPower += 100 * (timePlayer.doomedTimeClones.length);
 		}
 		if(partyPower > this.session.queenStrength*5){

@@ -160,7 +160,7 @@ function CorpseSmooch(session){
 				}else{
 					//console.log("Adding important event god tier for: " + d.title())
 					var alt = this.addImportantEvent(d);
-					console.log("alt is: " +alt);
+					//console.log("alt is: " +alt);
 					if(alt && alt.alternateScene(div)){
 						//do nothing here.
 					}else{
