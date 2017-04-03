@@ -11,7 +11,7 @@
 
 <img src = "images/author.png" style="float:left;">
 
-<h1> Bug Reports/Glitch FAQ </h1><h3>:the most entertaining/fucked up things I've done in my quest to make the most stupidly complicated javascript program of all time.</h3><Br>
+<h1> Bug Reports/Glitch FAQ </h1><h3>the most entertaining/fucked up things I've done in my quest to make the most stupidly complicated javascript program of all time.</h3><Br>
 (Links to sessions are for historical use only. If I've done my job, the bug won't be present anymore.)
 <ul>
 
@@ -85,6 +85,12 @@
 			Well, on the one hand, there are those who would argue that the only way to win SBURB is to not play at all...but I can see how a session so bugged it crashes might be a problem for causality. Let's see.... Wait. What the fuck!? So... you are the result of a SGRUB session that got a yellow yard, then scratched, then invaded another session (this time SBURB), then scratched again.  No fucking WONDER you're bugged to hell and back. Shit's complicated. Okay. Don't panic. I've got this.
 			<br><Br>
 			Huh, that's really weird. It looks like the SGRUB session handled their ectobiology before scratching...but then in the SBURB session they were created there as well?  Shit doesn't make sense, but ALSO would explain why doom got EVERYWHERE after that. Oh!  Okay, this is my fault. It turns out I'm setting the ectobiologicalSource for the current players, but NOT THEIR GUARDIANS, and so the game tried to create the troll guardians a second time (which also of course recreated THEIR guardians, which already had an ectobiologicalSource) and everything just sort of spiraled out of control after that.  I'm frankly amazed things didn't break until a second scratch.  The straw that broke the hoofbeasts's back turned out to be the fact that the troll guardians weren't REALLY supposed to be in your scratched session, and so the game just sort of gave up rather than trying to figure them out. (Who the fuck are these douchebags?)
+		<br><Br>
+		
+		<li>  <a href = "index2.html?seed=221777">Session: 221777</a> <b>majorHumorist: oH ShIt oH CrAp wE ArE AlL FuCkEd wE ArE AlL So aBsOlUtElY FuCkEd wE WeRe pLaYiNg tHe gAmE AnD EvErYtHiNg sUcKeD AnD We dIeD AnD ThEn sUdDeNlY We wErE BaCk aT ThE BeGiNiNg eVeRyThInG StArTeD OvEr bUt hAlF Of uS ArE StIlL DeAd aNd tHe oThEr hAlF Is cRaZy aNd oH GoD MaYbE I ShOuLd jUsT KiLl eVeRyBoDy  </b>
+		<br><br>
+			Oh.  Fuck. Well, this is a good example of why the fuck I was cloning the players foreign to a session just in case of time shenanigans.  This is what happens when I DON'T.  Or rather, you are scratched players. Aaaand...when I did a YellowYard on you, you didn't reset, even though your session did. So you entered the session with full memory of how fucking fucked you were, flipping your shit and trying to murder each other and everything.<br><Br>
+			I'm left with a dillema here. Part of the reason why scratched sessions go slightly differently than non-scratched sessions is they don't have to use seeds to re-generate players. So anything relying on randomness will play out slightly differently.   I can either clone the players post-scratch as well (with all the added complexity and Capgras Delusions that risks), or...I can make scratched sessions slightly more...reliable?  I could let the scatched sessions differ ONLY by who is playing in them, which, I mean, that kind of makes sense. Have the random stuff be the 'same' (even then, it probably won't be because differently players will do things differently, which will effect the seeds that way).  Bluh, I'm getting to technical. Don't worry, I got this.
 		<br><Br>
 
 </ul>

@@ -160,6 +160,11 @@ function scratch(){
 	var numPlayersPreScratch = curSessionGlobalVar.players.length;
 	var ectoSave = curSessionGlobalVar.ectoBiologyStarted;
 	reinit();
+	var raggedPlayers = findPlayersFromSessionWithId(curSessionGlobalVar.players, curSessionGlobalVar.session_id); //but only native
+	//use seeds the same was as original session and also make DAMN sure the players/guardians are fresh.
+	curSessionGlobalVar.makePlayers();
+	curSessionGlobalVar.randomizeEntryOrder();
+	curSessionGlobalVar.makeGuardians(); //after entry order established
 	curSessionGlobalVar.ectoBiologyStarted = ectoSave; //if i didn't do ecto in first version, do in second
 	curSessionGlobalVar.scratched = true;
 	curSessionGlobalVar.switchPlayersForScratch();
@@ -176,7 +181,7 @@ function scratch(){
 	$("#story").html(scratch);
 	window.scrollTo(0, 0);
 
-  var guardians  = getGuardiansForPlayers(curSessionGlobalVar.players)
+	var guardians  = raggedPlayers; //if i use guardians, they will be all fresh and squeaky. want the former players.
 	var guardianDiv = curSessionGlobalVar.newScene();
 	var guardianID = (guardianDiv.attr("id")) + "_guardians" ;
 	var ch = canvasHeight;

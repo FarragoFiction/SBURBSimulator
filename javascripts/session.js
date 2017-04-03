@@ -67,6 +67,9 @@ function Session(session_id){
 	//make Math.seed  = to my session id, reinit all my variables (similar to a scratch.)
 	//make sure the controller starts ticking again. very similar to scrach
 	this.addEventToUndoAndReset = function(e){
+		if(this.scratched){
+			return this.addEventToUndoAndResetScratch(e); //works different
+		}
 		if(e){//will be null if undoing an undo
 			this.yellowYardController.eventsToUndo.push(e);
 		}
@@ -77,7 +80,6 @@ function Session(session_id){
 		//players need to be reinit as well.
 		curSessionGlobalVar.makePlayers();
 		curSessionGlobalVar.randomizeEntryOrder();
-		//authorMessage();
 		curSessionGlobalVar.makeGuardians(); //after entry order established
 		//now that i've done that, (for seed reasons) fucking ignore it and stick the actual players in
 		//after alll, i could be from a combo session.
@@ -90,11 +92,26 @@ function Session(session_id){
 		}
 		this.aliensClonedOnArrival = [];//jettison old clones.
 		addAliensToSession(curSessionGlobalVar, living);
+
 		restartSession();//in controller
-		//killing a player events are different. need to figure out how
 	}
 
+	this.addEventToUndoAndResetScratch = function(e){
+		if(e){//will be null if undoing an undo
+			this.yellowYardController.eventsToUndo.push(e);
+		}
+		var ectoSave = this.ectoBiologyStarted;
+		reinit();
+		//use seeds the same was as original session and also make DAMN sure the players/guardians are fresh.
+		curSessionGlobalVar.makePlayers();
+		curSessionGlobalVar.randomizeEntryOrder();
+		curSessionGlobalVar.makeGuardians(); //after entry order established
+		this.ectoBiologyStarted = ectoSave;
+		this.scratched = true;
+		this.switchPlayersForScratch();
 
+		restartSession();//in controller
+	}
 
 	//child sessions are basically any session with an ID that matches the seed you stop on
 	//TODO could possibly be constrained to need a space or time player to navigage. or godtier light/doom??? could further require the player be from derse
@@ -288,7 +305,7 @@ function Session(session_id){
 		//curSessionGlobalVar.players = curSessionGlobalVar.guardians;
 		//curSessionGlobalVar.guardians = tmp;
 		var nativePlayers = findPlayersFromSessionWithId(this.players, this.session_id);
-		console.log(nativePlayers)
+		//console.log(nativePlayers)
 		var guardians = getGuardiansForPlayers(nativePlayers);
 		this.players = guardians;
 	}

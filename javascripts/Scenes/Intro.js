@@ -441,6 +441,7 @@ function Intro(session){
 		var chatText = "";
 
 		if(player2.ectoBiologicalSource == this.session.session_id || player2.ectoBiologicalSource == null){
+			//console.log(player2.ectoBiologicalSource)
 			if(r1.type() == r1.goodBig){
 				chatText += chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm finally in your session.");
 			}else{
