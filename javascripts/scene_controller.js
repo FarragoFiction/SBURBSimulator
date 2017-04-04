@@ -13,7 +13,7 @@
 function createScenesForSession(session){
 	session.scenes = [new StartDemocracy(session), new JackBeginScheming(session), new KingPowerful(session), new QueenRejectRing(session), new JackPromotion(session), new JackRampage(session), new GiveJackBullshitWeapon(session)];
 	//relationship drama has a high priority because it can distract a session from actually making progress. happened to universe a trolls.
-	session.scenes = session.scenes.concat([new RelationshipDrama(session), new BeTriggered(session), new EngageMurderMode(session), new GoGrimDark(session),  new DisengageMurderMode(session),new MurderPlayers(session)]);
+	session.scenes = session.scenes.concat([new RelationshipDrama(session), new UpdateShippingGrid(session), new BeTriggered(session), new EngageMurderMode(session), new GoGrimDark(session),  new DisengageMurderMode(session),new MurderPlayers(session)]);
 	session.scenes = session.scenes.concat([new VoidyStuff(session), new FaceDenizen(session), new DoEctobiology(session), new DoLandQuest(session)]);
 	session.scenes = session.scenes.concat([new SolvePuzzles(session), new ExploreMoon(session)]);
 	session.scenes = session.scenes.concat([new LevelTheHellUp(session)]);

@@ -1,9 +1,27 @@
 function UpdateShippingGrid(session){
 	this.canRepeat = true;
 	this.session = session;
+	this.heartPlayer = null;
+	this.ships = [];
 
+	//is there relationship drama!?
 	this.trigger = function(){
-		return false;
+		if(this.ships.length == 0){
+			this.createShips();
+		}
+		this.heartPlayer = findAspectPlayer(this.session.availablePlayers, "Heart");
+		if(!this.heartPlayer || this.heartPlayer.dead){
+			return false;
+		}
+		var count = 0;
+		//will this be too frequent?
+		for(var i = 0; i< this.session.players.length; i++){
+			var p = this.session.players[i];
+			if(p.hasRelationshipDrama()){
+				count ++;
+			}
+		}
+		return count > 1
 	}
 
 
@@ -12,14 +30,101 @@ function UpdateShippingGrid(session){
 		div.append(this.content());
 	}
 
+	//for all players, look at all relationships. if goodBig or badBig, return.
+	//also grab clubs and diamonds. later.
+	this.createShips = function(){
+		//console.log("creating ships")
+			for(var i = 0; i<this.session.players.length; i++){
 
+				var player = this.session.players[i];
+				//console.log("making ships for: " + player.title())
 
+				for(var j = 0; j<player.relationships.length; j++){
+					var r1 = player.relationships[j];
+					var r2 = r1.target.getRelationshipWith(player);
+					//console.log("made new ship")
+					this.ships.push(new Ship(r1, r2))
+				}
+			}
+				var toRemove = [];
+				//get rid of equal ships
+				for(var i = 0; i<this.ships.length-1; i++){
+					var firstShip = this.ships[i];
+					//second loop starts at i because i know i checked first ship no ships already, and second ship agains 1 ship
+					for(var j= (i+1); j<this.ships.length; j++){
+						var secondShip = this.ships[j];
+							if(firstShip.isEqualToShip(secondShip)){
+								//console.log("pushing to remove")
+								toRemove.push(secondShip);
+							}
+					}
+				}
+				//console.log("this many to remove: " + toRemove.length)
+				for(var i = 0; i<toRemove.length; i++){
+						removeFromArray(toRemove[i], this.ships)
+				}
 
+	}
 
+	this.getGoodShips = function(){
+		var ret = [];
+		for(var i = 0; i<this.ships.length; i++){
+			var ship = this.ships[i];
+			if(ship.isGoodShip()){
+				ret.push(ship);
+			}
+		}
+		return ret;
+	}
+
+	this.printShips = function(ships){
+		return(ships.map(function(e){
+			return e.toString();
+		}).join("\n<br>"));
+	}
+
+	this.printAllShips = function(){
+		return this.printShips(this.ships);
+	}
 
 
 	this.content = function(){
-		return "todo: update shipping grid for heart player.  updating it lowers the trigger level of al involved.";
+		console.log("Updating shipping grid in: " + this.session.session_id);
+		removeFromArray(this.heartPlayer, this.session.availablePlayers);
+		return "The " + this.heartPlayer.titleBasic() + " updates their shipping grid. <Br>" + this.printShips(this.getGoodShips());
+		//return "todo: update shipping grid for heart player.  updating it lowers the trigger level of all involved.  also, save clubs and diamonds to session. extract ships from it. if a player is in more than one diamonds, erase previous one.";
 
 	}
+}
+
+
+//contains both relationship and it's inverse, knows how to render itself. dead players have a hussie style x over their faces.
+//ships can also refuse to render themselves.  return false if that happens.
+// render if: r2.saved_type == r2.goodBig || r2.saved_type == r2.badBig
+function Ship(r1, r2){
+		this.r1 = r1;
+		this.r2 = r2;
+
+		//a relationship doesn't know who owns it, just what hte target is,so printing is funny
+		this.toString = function(){
+			return r2.target.titleBasic() + " " + r1.saved_type + "---" + r2.saved_type + " " + r1.target.titleBasic();
+		}
+		//order doesn't matter.
+		this.isEqualToShip = function(ship){
+			//console.log("comparing: " + this.toString() + " to "  + ship.toString())
+			if(ship.r1 == this.r1 && ship.r2 == this.r2){
+				//console.log("they are the same1")
+				return true;
+			}else if(ship.r2 == this.r1 && ship.r1 == this.r2){
+				//console.log("they are the same2")
+				return true;
+			}
+		//	console.log("they are not the same")
+			return false;
+		}
+
+		this.isGoodShip = function(){
+			return r2.saved_type == r2.goodBig || r2.saved_type == r2.badBig || r1.saved_type == r1.goodBig || r1.saved_type == r1.badBig;
+		}
+
 }
