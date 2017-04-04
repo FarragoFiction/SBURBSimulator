@@ -373,6 +373,7 @@ function RelationshipDrama(session){
 							chatText += chatLine(player1Start, player1,"I... kind of like you, too?");
 							chatText += chatLine(player1Start, player1,"I assumed you wouldn't like me back, God, this is so awkward.");
 							chatText += chatLine(player2Start, player2,"Holy shit.");
+							makeHeart(player1, player2);
 						}else{
 							chatText += chatLine(player1Start, player1,"Fuck. I'm sorry. I just don't feel that way about you. ");
 							chatText += chatLine(player2Start, player2,"Yeah. I kind of figured. But, I wanted to get that off my chest. ");

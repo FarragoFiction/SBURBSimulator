@@ -40,7 +40,19 @@ function MurderPlayers(session){
 				var rm = p.getRelationshipWith(murderer);
 				var rv = p.getRelationshipWith(victim);
 				//more they liked the victim, the more they hate you.
-				if(rv.type() == rv.goodBig){
+				if(rv.saved_type == rv.diamond){
+					rm.value = -100;
+					p.triggerLevel += 10;
+					ret += " The " + p.htmlTitle() + " is enraged that their Moirail was killed. ";
+				}else if(rv.saved_type == rv.heart){
+					rm.value = -100;
+					p.triggerLevel += 10;
+					ret += " The " + p.htmlTitle() + " is enraged that their Matesprit was killed. ";
+				}else if(rv.saved_type == rv.spades){
+					rm.value = -100;
+					p.triggerLevel += 10;
+					ret += " The " + p.htmlTitle() + " is enraged that their Kismesis was killed. ";
+				}else if (rv.type() == rv.goodBig){
 					rm.value = -20;
 					ret += " The " + p.htmlTitle() + " is enraged that their crush was killed. ";
 				}else if(rv.type() == rv.badBig && p.isTroll){

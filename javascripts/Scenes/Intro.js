@@ -440,7 +440,7 @@ function Intro(session){
 	}
 
 	this.alienChat = function(player1,div){
-		console.log("inside alien chat")
+		//console.log("inside alien chat")
 		var player2 = player1.getBestFriend(); //even if they are dead. even if they are from another session.
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.

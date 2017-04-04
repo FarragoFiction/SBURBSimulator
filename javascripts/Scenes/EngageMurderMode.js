@@ -11,11 +11,19 @@ function EngageMurderMode(session){
 		var moon = 0;
 
 		if(this.player){
+			var diamond = this.player.hasDiamond()
 			if(this.player.moon == "Prospit"){
 				moon = 1;
 			}
+			var rand = Math.seededRandom();
 			if(this.player.triggerLevel > 0 &&  !this.player.murderMode && this.player.getEnemies().length > 0){
-				if((Math.seededRandom() * 10) < this.player.triggerLevel+moon){  //easier to go crazy if you SEE all your friends dying already. (in prospit clouds)
+				if(!diamond && (rand * 10) < this.player.triggerLevel+moon){  //easier to go crazy if you SEE all your friends dying already. (in prospit clouds)
+					return true;
+				}
+				//much harder to flip your shit if you have a moirail
+				if(diamond && (1+rand * 20 < this.player.triggerLevel+moon)){
+					console.log("Flipped my shit despite having a moirail: " + this.session.session_id)
+					console.log(this.player.triggerLevel)
 					return true;
 				}
 			}
@@ -273,6 +281,10 @@ function EngageMurderMode(session){
 		var ret = "The " + this.player.htmlTitle() + " has taken an acrobatic fucking pirouette off the handle and into a giant pile of crazy.  ";
 		ret += " They engage Murder Mode while thinking of their enemies " + getPlayersTitles(this.player.getEnemies()) + ". ";
 		ret += " This is completely terrifying. ";
+		var diamond = this.player.hasDiamond()
+		if(diamond){
+			ret += " I guess their Moirail, the " + diamond.htmlTitle() + " is not on the ball. ";
+		}
 		this.player.murderMode = true;
 		return ret;
 	}

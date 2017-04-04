@@ -87,7 +87,7 @@ function UpdateShippingGrid(session){
 
 
 	this.content = function(){
-		console.log("Updating shipping grid in: " + this.session.session_id);
+		//console.log("Updating shipping grid in: " + this.session.session_id);
 		removeFromArray(this.heartPlayer, this.session.availablePlayers);
 		this.heartPlayer.increasePower();
 		return "The " + this.heartPlayer.titleBasic() + " updates their shipping grid. <Br>" + this.savedShipText;

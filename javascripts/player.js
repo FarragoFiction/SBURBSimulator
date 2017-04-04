@@ -344,6 +344,36 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			}
 		}
 	}
+	
+	//and they need to be alive.
+	this.hasDiamond = function(){
+		for(var i = 0; i<this.relationships.length; i++){
+			if(this.relationships[i].saved_type == this.relationships[i].diamond && !this.relationships[i].target.dead ){
+				return this.relationships[i].target; 
+			}
+		}
+		return null;
+	}
+	
+	this.hasDeadDiamond = function(){
+		for(var i = 0; i<this.relationships.length; i++){
+			if(this.relationships[i].saved_type == this.relationships[i].diamond && this.relationships[i].target.dead ){
+				return this.relationships[i].target; 
+			}
+		}
+		return null;
+	}
+	
+	this.hasDeadHeart = function(){
+		for(var i = 0; i<this.relationships.length; i++){
+			if(this.relationships[i].saved_type == this.relationships[i].heart && this.relationships[i].target.dead ){
+				return this.relationships[i].target; 
+			}
+		}
+		return null;
+	}
+	
+	
 
 	this.getRelationshipWith = function(player){
 		for(var i = 0; i<this.relationships.length; i++){

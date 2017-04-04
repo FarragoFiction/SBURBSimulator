@@ -415,7 +415,7 @@ function findSceneNamed(scenesToCheck, name){
 
 	//save a copy of the alien (in case of yellow yard)
 	function addAliensToSession (newSession, living){
-		console.log("in method, adding aliens to session")
+		//console.log("in method, adding aliens to session")
 		for(var i = 0; i<living.length; i++){
 			var survivor = living[i];
 			survivor.land = null;

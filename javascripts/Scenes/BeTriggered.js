@@ -30,7 +30,23 @@ function BeTriggered(session){
 		var livePlayers = findLivingPlayers(this.session.players);
 		var worstEnemy = player.getWorstEnemyFromList(this.session.players);
 		var bestFriend = player.getBestFriendFromList(this.session.players);
-
+		
+		var deadDiamond = player.hasDeadDiamond()
+		var deadHeart = player.hasDeadHeart();
+		if(deadDiamond && Math.seededRandom() > 0.3){
+			player.triggerLevel += 100;
+			player.damageAllRelationships();
+			player.damageAllRelationships();
+			player.damageAllRelationships();
+			console.log("triggered by dead moirail in session" + this.session.session_id)
+			return " their dead Moirail, the " + deadDiamond.htmlTitleBasic() + " ";
+		}
+		
+		if(deadHeart&& Math.seededRandom() > 0.2){
+			player.triggerLevel += 100;
+			console.log("triggered by dead matesprit in session" + this.session.session_id)
+			return " their dead Matesprit, the " + deadHeart.htmlTitleBasic() + " ";
+		}
 		//small chance
 		if(deadPlayers.length > 0){
 			if(Math.seededRandom() > 0.9){
@@ -42,6 +58,7 @@ function BeTriggered(session){
 				player.triggerLevel ++;
 				player.triggerLevel ++;
 				player.triggerLevel ++;
+				player.getRelationshipWith(worstEnemy).decrease();
 				return deadPlayers.length + " players are dead (and that asshole the " + worstEnemy.htmlTitle() + " MUST be to blame) ";
 			}
 		}
@@ -59,7 +76,8 @@ function BeTriggered(session){
 				player.triggerLevel ++;
 				player.triggerLevel ++;
 				return " their dead crush, the " + bestFriend.htmlTitle() + " ";
-			}
+			}					
+				
 		}
 
 		//huge chance, the dead outnumber the living.
