@@ -26,6 +26,7 @@ function UpdateShippingGrid(session){
 
 
 	this.renderContent = function(div){
+		console.log(" refactor relationships. upon clubs or diamonds, saved_type is <> or c3< or whatever. stays that way until major change? have type() prefer not to override that")
 		div.append("<br>");
 		div.append(this.content());
 	}
