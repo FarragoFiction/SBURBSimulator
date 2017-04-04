@@ -130,7 +130,7 @@ function Ship(r1, r2){
 			return "<font color = 'red'>&#x2665</font>"
 		}
 		
-		if(r.saved_type ==  r.spade){
+		if(r.saved_type ==  r.spades){
 			return "<font color = 'black'>&#x2660</font>"
 		}
 		
@@ -138,7 +138,7 @@ function Ship(r1, r2){
 			return "<font color = 'grey'>&#x2663</font>"
 		}
 		
-		if(r.saved_type ==  r.diamonds){
+		if(r.saved_type ==  r.diamond){
 			return "<font color = 'pink'>&#x2666</font>"
 		}
 		return r.saved_type;
@@ -167,11 +167,11 @@ function Ship(r1, r2){
 				return false;
 			}
 			
-			if(r1.saved_type == r1.goodBig || r1.saved_type == r1.badBig || r1.saved_type == r1.heart || r1.saved_type == r1.diamonds || r1.saved_type == r1.spades || r1.saved_type == r1.clubs){
+			if(r1.saved_type == r1.goodBig || r1.saved_type == r1.badBig || r1.saved_type == r1.heart || r1.saved_type == r1.diamond || r1.saved_type == r1.spades || r1.saved_type == r1.clubs){
 				return true;
 			}
 			
-			if(r2.saved_type == r2.goodBig || r2.saved_type == r1.badBig || r2.saved_type == r1.heart || r2.saved_type == r2.diamonds || r2.saved_type == r2.spades || r2.saved_type == r2.clubs){
+			if(r2.saved_type == r2.goodBig || r2.saved_type == r1.badBig || r2.saved_type == r1.heart || r2.saved_type == r2.diamond || r2.saved_type == r2.spades || r2.saved_type == r2.clubs){
 				return true;
 			}
 			return false;
