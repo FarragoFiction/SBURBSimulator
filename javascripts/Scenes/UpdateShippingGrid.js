@@ -105,6 +105,16 @@ function UpdateShippingGrid(session){
 		if(r.saved_type =  r.diamonds){
 			return "<font color = 'pink'>&#x2666</font>"
 		}
+		
+		if(r.saved_type =  r.goodBig){
+			return "<font color = 'red'>&#x2661</font>"
+		}
+		
+		if(r.saved_type =  r.badBig){
+			return "<font color = 'black'>&#x2664</font>"
+		}	
+		
+		
 		return r.saved_type;
 	}
 	
