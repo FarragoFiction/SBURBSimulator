@@ -412,7 +412,7 @@ function session413IndexToHuman(player,index){
 		player.land = "Land of Heat and Clockwork"
 		player.aspect = "Time"
 		player.hairColor = "#feffd7"
-		player.hair  =22;
+		player.hair  =1;
 		player.chatHandle = "turntechGodhead"
 		player.interest1 = "Rap"
 		player.interest2 = "Irony"
@@ -451,7 +451,7 @@ function session413IndexToHuman(player,index){
 		player.godDestiny = true;
 		player.aspect = "Life"
 		player.land = "Land of Crypts and Helium"
-		player.hair  =5;
+		player.hair  =38;
 		player.hairColor = "#000000"
 		player.chatHandle = "gutsyGumshoe"
 		player.interest1 = "Pranks"
@@ -489,7 +489,7 @@ function session413IndexToHuman(player,index){
 		player.class_name = "Prince"
 		player.land = "Land of Tombs and Krypton"
 		player.aspect = "Heart"
-		player.hair  =17;
+		player.hair  =36;
 		player.hairColor = "#feffd7"
 		player.chatHandle = "timaeusTestified"
 		player.interest1 = "Irony"
@@ -509,7 +509,7 @@ function session413IndexToHuman(player,index){
 		player.class_name = "Page"
 		player.land = "Land of Mounds and Xenon"
 		player.aspect = "Hope"
-		player.hair  =30;
+		player.hair  =37;
 		player.hairColor = "#3f1904"
 		player.chatHandle = "golgothasTerror"
 		player.interest1 = "Physics"
@@ -676,7 +676,7 @@ function session612IndexToTroll(player, index){
 		player.aspect = "Rage"
 		player.land = "Land of Mirth and Tents"
 		player.class_name = "Bard"
-		player.hair = 29;
+		player.hair = 41;
 		player.leftHorn = 29;
 		player.rightHorn = 29;
 		player.bloodColor = "#631db4";
@@ -717,7 +717,7 @@ function session612IndexToTroll(player, index){
 		player.aspect = "Time"
 		player.class_name = "Maid"
 		player.land = "Land of Quartz and Melody"
-		player.hair = 23;
+		player.hair = 40;
 		player.leftHorn = 36;
 		player.rightHorn = 36;
 		player.bloodColor = "#A10000";
@@ -800,7 +800,7 @@ function session612IndexToTroll(player, index){
 		player.land = "Land of Rays and Frogs"
 		player.aspect = "Space"
 		player.class_name = "Sylph"
-		player.hair = 5;
+		player.hair = 39;
 		player.leftHorn = 26;
 		player.rightHorn = 26;
 		player.bloodColor = "#078446";
@@ -921,7 +921,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.land = "Land of Mirth and Tents"
 		player.aspect = "Rage"
 		player.class_name = "Prince"
-		player.hair = 29;
+		player.hair = 41;
 		player.leftHorn = 29;
 		player.rightHorn = 29;
 		player.bloodColor = "#631db4";
@@ -961,7 +961,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.aspect = "Time"
 		player.class_name = "Witch"
 		player.land = "Land of Quartz and Melody"
-		player.hair = 23;
+		player.hair = 40;
 		player.leftHorn = 36;
 		player.rightHorn = 36;
 		player.bloodColor = "#A10000";
@@ -1043,7 +1043,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.moon = "Prospit"
 		player.land = "Land of Frost and Frogs"
 		player.class_name = "Maid"
-		player.hair = 5;
+		player.hair = 39;
 		player.leftHorn = 26;
 		player.rightHorn = 26;
 		player.bloodColor = "#078446";

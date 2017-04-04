@@ -676,7 +676,7 @@ function randomPlayerWithClaspect(session, c,a){
 	p.interest2 = getRandomElementFromArray(interests);
 	p.chatHandle = getRandomChatHandle(p.class_name,p.aspect,p.interest1, p.interest2);
 	p.mylevels = getLevelArray(p);//make them ahead of time for echeladder graphic
-	p.hair = getRandomInt(1,35);
+	p.hair = getRandomInt(1,41);
 	p.hairColor = getRandomElementFromArray(human_hair_colors);
 	p.leftHorn =  getRandomInt(1,46);
 	p.rightHorn = p.leftHorn;
