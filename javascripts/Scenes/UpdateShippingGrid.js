@@ -88,9 +88,9 @@ function UpdateShippingGrid(session){
 	this.printAllShips = function(){
 		return this.printShips(this.ships);
 	}
-	
 
-	
+
+
 
 
 	this.content = function(){
@@ -111,31 +111,39 @@ function UpdateShippingGrid(session){
 function Ship(r1, r2){
 		this.r1 = r1;
 		this.r2 = r2;
-		
+
 		this.relationshipTypeToText = function(r){
 		if(r.saved_type ==  r.heart){
 			return "<font color = 'red'>&#x2665</font>"
 		}
-		
+
 		if(r.saved_type ==  r.spades){
 			return "<font color = 'black'>&#x2660</font>"
 		}
-		
+
 		if(r.saved_type ==  r.clubs){
 			return "<font color = 'grey'>&#x2663</font>"
 		}
-		
+
 		if(r.saved_type ==  r.diamond){
 			return "<font color = 'pink'>&#x2666</font>"
 		}
-		
+
 		if(r.saved_type ==  r.goodBig){
 			return "<font color = 'red'>&#x2661</font>"
 		}
-		
+
 		if(r.saved_type ==  r.badBig){
 			return "<font color = 'black'>&#x2664</font>"
-		}	
+		}
+
+		if(r.saved_type ==  r.goodMild){
+			return "<font color = 'black'>&#x263A</font>"
+		}
+
+		if(r.saved_type ==  r.badMild){
+			return "<font color = 'black'>&#x2639</font>"
+		}
 		return r.saved_type;
 	}
 
@@ -161,11 +169,11 @@ function Ship(r1, r2){
 			if(r2.saved_type == "" || r1.saved_type == "" ){
 				return false;
 			}
-			
+
 			if(r1.saved_type == r1.goodBig || r1.saved_type == r1.badBig || r1.saved_type == r1.heart || r1.saved_type == r1.diamond || r1.saved_type == r1.spades || r1.saved_type == r1.clubs){
 				return true;
 			}
-			
+
 			if(r2.saved_type == r2.goodBig || r2.saved_type == r1.badBig || r2.saved_type == r1.heart || r2.saved_type == r2.diamond || r2.saved_type == r2.spades || r2.saved_type == r2.clubs){
 				return true;
 			}
