@@ -7,10 +7,14 @@ function UpdateShippingGrid(session){
 
 	//is there relationship drama!?
 	this.trigger = function(){
-		if(this.ships.length == 0){
+		//console.log("checking shpping grid trigger.")
+		//if heart player chagnes, it's a combo session or scratch or i don't care, redo the ships.
+		var tmpheartPlayer = findAspectPlayer(this.session.availablePlayers, "Heart");
+		if(this.ships.length == 0 || tmpheartPlayer != this.heartPlayer){
 			this.createShips();
 		}
-		this.heartPlayer = findAspectPlayer(this.session.availablePlayers, "Heart");
+		this.heartPlayer = tmpheartPlayer;
+
 		if(!this.heartPlayer || this.heartPlayer.dead){
 			return false;
 		}
