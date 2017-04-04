@@ -90,7 +90,7 @@ function UpdateShippingGrid(session){
 		//console.log("Updating shipping grid in: " + this.session.session_id);
 		removeFromArray(this.heartPlayer, this.session.availablePlayers);
 		this.heartPlayer.increasePower();
-		return "The " + this.heartPlayer.titleBasic() + " updates their shipping grid. <Br>" + this.savedShipText;
+		return "The " + this.heartPlayer.htmlTitleBasic() + " updates their shipping grid. <Br>" + this.savedShipText;
 		//return "todo: update shipping grid for heart player.  updating it lowers the trigger level of all involved.  also, save clubs and diamonds to session. extract ships from it. if a player is in more than one diamonds, erase previous one.";
 
 	}
@@ -106,7 +106,7 @@ function Ship(r1, r2){
 
 		//a relationship doesn't know who owns it, just what hte target is,so printing is funny
 		this.toString = function(){
-			return r2.target.titleBasic() + " " + r1.saved_type + "---" + r2.saved_type + " " + r1.target.titleBasic();
+			return r2.target.htmlTitleBasic() + " " + r1.saved_type + "---" + r2.saved_type + " " + r1.target.htmlTitleBasic();
 		}
 		//order doesn't matter.
 		this.isEqualToShip = function(ship){
@@ -123,7 +123,18 @@ function Ship(r1, r2){
 		}
 
 		this.isGoodShip = function(){
-			return (r2.saved_type != "" && r1.saved_type != "" && r2.saved_type != r2.goodMild &&  r2.saved_type != r2.badMild &&  r1.saved_type != r1.goodMild &&  r1.saved_type != r1.badMild)
+			if(r2.saved_type == "" || r1.saved_type == "" ){
+				return false;
+			}
+			
+			if(r1.saved_type == r1.goodBig || r1.saved_type == r1.badBig || r1.saved_type == r1.heart || r1.saved_type == r1.diamonds || r1.saved_type == r1.spades || r1.saved_type == r1.clubs){
+				return true;
+			}
+			
+			if(r2.saved_type == r2.goodBig || r2.saved_type == r1.badBig || r2.saved_type == r1.heart || r2.saved_type == r2.diamonds || r2.saved_type == r2.spades || r2.saved_type == r2.clubs){
+				return true;
+			}
+			return false;
 		}
 
 }

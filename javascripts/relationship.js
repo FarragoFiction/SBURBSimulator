@@ -57,6 +57,7 @@ function Relationship(initial_value, target_player){
 		this.old_type = type;
 	}
 	
+	//TODO no, put this in own scene.
 	this.potentialBreakup = function(){
 		var rand = Math.seededRandom();
 		//lets be friends. or worse.
@@ -104,7 +105,7 @@ function Relationship(initial_value, target_player){
 	this.type = function(){
 		//official relationships are different.
 		if(this.saved_type == this.heart || this.saved_type == this.spades || this.saved_type == this.diamond || this.saved_type == this.clubs){
-			return this.potentialBreakup();
+			return this.saved_type; //break up in own scene, not here.
 		}
 		if(this.saved_type == "" ){
 			this.drama = false;
