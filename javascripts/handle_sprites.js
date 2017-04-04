@@ -59,12 +59,6 @@ function swapColors(canvas, color1, color2){
       img_data.data[i+2] = newc[2];
       img_data.data[i+3] = 255;
     }
-    /*  bg to check canvas size
-    img_data.data[i] = 0;
-    img_data.data[i+1] = 0;
-    img_data.data[i+2] = 0;
-    img_data.data[i+3] = 255;
-    */
   }
   ctx.putImageData(img_data, 0, 0);
 
@@ -1143,6 +1137,9 @@ function hair(canvas, player){
 //if the Waste of Mind/Observer sends a time player back
 //the influence is visible.
 function drawTimeGears(canvas){
+	if(checkSimMode() == true){
+    return;
+  }
   var p1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
   //drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff")
   ctx = p1SpriteBuffer.getContext('2d');
