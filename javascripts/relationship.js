@@ -7,10 +7,15 @@ function Relationship(initial_value, target_player){
 	this.saved_type = "";
 	this.drama = false; //drama is set to true if type of relationship changes.
 	this.old_type = "";
+	//wish class variables were a thing.
 	this.goodMild = "Friends";
 	this.goodBig = "Totally In Love";
 	this.badMild = "Rivals";
 	this.badBig = "Enemies";
+	this.heart = "Matesprits"
+	this.diamond = "Moirallegiance"
+	this.clubs = "Auspisticism"
+	this.spades = "Kismesissitude";
 
 	//eventually, when i adapt this to be SGRUB, have 2d relationships.  feel good or bad, feel concupiscient or not.
 	//also trolls are rivals unless value is at least 5 (more likely to be enemies than friends)
@@ -43,9 +48,64 @@ function Relationship(initial_value, target_player){
 	this.decrease = function(){
 		this.value += -1;
 	}
+	
+	//the only way to fill your quadrants.
+	this.setOfficialRomance = function(type){
+		//console.log("official romance of type: " + type )
+		//don't generate any extra drama, the event that led to this was ALREADY drama.
+		this.saved_type = type;
+		this.old_type = type;
+	}
+	
+	this.potentialBreakup = function(){
+		var rand = Math.seededRandom();
+		//lets be friends. or worse.
+		if(this.value < 10 && this.saved_type == this.heart){
+			if(rand > 0.25){
+				this.old_type = this.saved_type
+				this.saved_type = this.changeType();
+				this.drama = true;
+				return this.saved_type;
+			}
+		}
+		//i just don't hate you enough.
+		if(this.value > -10 && this.saved_type == this.spades){
+			if(rand > 0.25){
+				this.old_type = this.saved_type
+				this.saved_type = this.changeType();
+				this.drama = true;
+				return this.saved_type;
+			}
+		}
+		//it IS a hate quardrant. but make it more stable.
+		if(this.value > 0 && this.saved_type == this.clubs){
+			if(rand > 0.75){
+				this.old_type = this.saved_type
+				this.saved_type = this.changeType();
+				this.drama = true;
+				return this.saved_type;
+			}
+		}
+		
+		//more stable.
+		if(this.value < 0 && this.saved_type == this.diamond){
+			if(rand > 0.75){
+				this.old_type = this.saved_type
+				this.saved_type = this.changeType();
+				this.drama = true;
+				return this.saved_type;
+			}
+		}
+		
+		return this.saved_type;
+	}
 
 
 	this.type = function(){
+		//official relationships are different.
+		if(this.saved_type == this.heart || this.saved_type == this.spades || this.saved_type == this.diamond || this.saved_type == this.clubs){
+			return this.potentialBreakup();
+		}
 		if(this.saved_type == "" ){
 			this.drama = false;
 			this.saved_type = this.changeType();
@@ -153,6 +213,60 @@ function transferFeelingsToClones(player, clones){
 			}
 
 	}
+}
+
+function makeHeart(player1, player2){
+	var r1 = player1.getRelationshipWith(player2)
+	r1.setOfficialRomance(r1.heart)
+	var r2 = player2.getRelationshipWith(player1)
+	r2.setOfficialRomance(r2.heart)
+}
+
+function makeSpades(player1, player2){
+	var r1 = player1.getRelationshipWith(player2)
+	r1.setOfficialRomance(r1.spades)
+	var r2 = player2.getRelationshipWith(player1)
+	r2.setOfficialRomance(r2.spades)
+}
+
+function makeDiamonds(player1, player2){
+	var r1 = player1.getRelationshipWith(player2)
+	if(r1.value < 0){
+		r1.value = 1;  //like you at least a little
+	}
+	r1.setOfficialRomance(r1.diamond)
+	var r2 = player2.getRelationshipWith(player1)
+	if(r2.value < 0){
+		r2.value = 1;
+	}
+	r2.setOfficialRomance(r2.diamond)
+}
+
+//clubs, why you so cray cray?
+function makeClubs(middleLeaf, asshole1, asshole2){
+	var rmid1 = middleLeaf.getRelationshipWith(asshole1);
+	var rmid2 = middleLeaf.getRelationshipWith(asshole2);
+	
+	var rass1mid = asshole1.getRelationshipWith(middleLeaf);
+	var rass12 =   asshole1.getRelationshipWith(asshole2);
+	
+	var rass2mid = asshole2.getRelationshipWith(middleLeaf);
+	var rass21 =   asshole2.getRelationshipWith(asshole1);
+	
+	if(rmid1.value > 0){
+		rmid1.value = -1;  //hate you at least a little
+	}
+	
+	if(rmid2.value > 0){
+		rmid2.value = -1;  //hate you at least a little
+	}
+	
+	rmid1.setOfficialRomance(rmid1.clubs)
+	rmid2.setOfficialRomance(rmid1.clubs)
+	rass1mid.setOfficialRomance(rmid1.clubs)
+	rass12.setOfficialRomance(rmid1.clubs)
+	rass2mid.setOfficialRomance(rmid1.clubs)
+	rass21.setOfficialRomance(rmid1.clubs)
 }
 
 function randomBlandRelationship(targetPlayer){

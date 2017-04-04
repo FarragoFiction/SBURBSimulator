@@ -95,12 +95,12 @@ function MurderPlayers(session){
 		drawSpriteTurnways(dSpriteBuffer,diamond)
 
 		var x = 100;
-		if(murderer.isTroll == true || diamond.isTroll == true){  //humans have regular romance, but if even one is a troll, this is romance.
-			var diSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-			drawDiamond(diSpriteBuffer)
-			x = 50; //stand closer cause romance
-			copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,75,0)
-		}
+		//used to check if troll was involved. what the fuck ever. everybody uses the quadrant system. it's just easier.
+		var diSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawDiamond(diSpriteBuffer)
+		x = 50; //stand closer cause romance
+		copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,75,0)
+
 		setTimeout(function(){
 			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
 			copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,x,0)
@@ -125,12 +125,11 @@ function MurderPlayers(session){
 		var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawSpriteTurnways(dSpriteBuffer,club)  //facing non-middle leafs
 
-
-		if(murderer.isTroll == true || club.isTroll == true || club.isTroll == true){  //humans have regular romance, but if even one is a troll, this is romance.
-			var diSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-			drawClub(diSpriteBuffer,1000) //Auspisticism
-			copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,375,50)
-		}
+		//used to check if troll was involved. what the fuck ever. everybody uses the quadrant system. it's just easier.
+		var diSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawClub(diSpriteBuffer,1000) //Auspisticism
+		copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,375,50)
+		
 		setTimeout(function(){
 			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
 			copyTmpCanvasToRealCanvasAtPos(canvas, vSpriteBuffer,100,0)
@@ -161,11 +160,9 @@ function MurderPlayers(session){
 					m.murderMode = false;
 					m.leftMurderMode = true;
 					worstEnemy.checkBloodBoost(livePlayers);
-					m.triggerLevel = 1;
+					makeDiamonds(m, worstEnemy)
 					this.renderDiamonds(div, m, worstEnemy);
-					//don't hate your new diamond buddy
-					var r = m.getRelationshipWith(worstEnemy);
-					r.value = 1;
+
 					return ret; //don't try to murder. (and also blood powers stop any other potential murders);
 				}
 				var r = worstEnemy.getRelationshipWith(m)
@@ -179,9 +176,9 @@ function MurderPlayers(session){
 					m.murderMode = false;
 					m.leftMurderMode = true;
 					m.triggerLevel = 1;
+					makeDiamonds(m, worstEnemy)
 					this.renderDiamonds(div, m, worstEnemy);
-					var r = m.getRelationshipWith(worstEnemy);
-					r.value = 1;
+
 				}else if(ausp != null && r.type() == r.badBig){  //they hate you back....
 					///auspitism, but who is middle leaf?
 					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
@@ -193,10 +190,7 @@ function MurderPlayers(session){
 					m.leftMurderMode = true;
 					m.triggerLevel = 1;
 					this.renderClubs(div, m, worstEnemy,ausp);
-					var r = m.getRelationshipWith(ausp); //neutral to middle leaf, but unchanged about each other.
-					r.value = 1;
-					var r2 = worstEnemy.getRelationshipWith(ausp);
-					r2.value = 1;
+					makeClubs(ausp, m, worstEnemy)
 
 				}else if(worstEnemy.power < m.power*2){  //more likely to kill enemy than be killed. element of surprise
 					var alt = this.addImportantEvent(worstEnemy);

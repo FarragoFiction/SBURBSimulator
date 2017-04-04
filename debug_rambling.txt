@@ -453,6 +453,25 @@ click on collated stat. calls method, giving the parameter name to the method.  
 that's what I WANT...but Array.filter only lets me pass an object in, not anything else....right? Confirm this.  yeah....seems like it.  can just write my own, linear time code.
 
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+okay. time for the main event.
+
+SHIIIIIIIIPPPPING!
+
+can label a relationship as being in a quadrant now. want to carefully refactor things to check on them.
+
+if <> killed, super fucking trigger plus super-hate killer should be insta-murdermode.
+
+as long as you have a relationship of type <>, less likely to engage murder mode.
+
+if you try to kill c3<, middle leaf intervenes if able.
+
+can do break ups, or cheat.
+
 
 
 

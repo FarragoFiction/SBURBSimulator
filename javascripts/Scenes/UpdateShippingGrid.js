@@ -3,6 +3,7 @@ function UpdateShippingGrid(session){
 	this.session = session;
 	this.heartPlayer = null;
 	this.ships = [];
+	this.savedShipText = "";
 
 	//is there relationship drama!?
 	this.trigger = function(){
@@ -13,20 +14,16 @@ function UpdateShippingGrid(session){
 		if(!this.heartPlayer || this.heartPlayer.dead){
 			return false;
 		}
-		var count = 0;
-		//will this be too frequent?
-		for(var i = 0; i< this.session.players.length; i++){
-			var p = this.session.players[i];
-			if(p.hasRelationshipDrama()){
-				count ++;
-			}
+		var newShips = this.printShips(this.getGoodShips())
+		if(newShips != this.savedShipText){
+			this.savedShipText = newShips;
+			return true;
 		}
-		return count > 1
+		return false;
 	}
 
 
 	this.renderContent = function(div){
-		console.log(" refactor relationships. upon clubs or diamonds, saved_type is <> or c3< or whatever. stays that way until major change? have type() prefer not to override that")
 		div.append("<br>");
 		div.append(this.content());
 	}
@@ -92,7 +89,8 @@ function UpdateShippingGrid(session){
 	this.content = function(){
 		console.log("Updating shipping grid in: " + this.session.session_id);
 		removeFromArray(this.heartPlayer, this.session.availablePlayers);
-		return "The " + this.heartPlayer.titleBasic() + " updates their shipping grid. <Br>" + this.printShips(this.getGoodShips());
+		this.heartPlayer.increasePower();
+		return "The " + this.heartPlayer.titleBasic() + " updates their shipping grid. <Br>" + this.savedShipText;
 		//return "todo: update shipping grid for heart player.  updating it lowers the trigger level of all involved.  also, save clubs and diamonds to session. extract ships from it. if a player is in more than one diamonds, erase previous one.";
 
 	}
@@ -125,7 +123,7 @@ function Ship(r1, r2){
 		}
 
 		this.isGoodShip = function(){
-			return r2.saved_type == r2.goodBig || r2.saved_type == r2.badBig || r1.saved_type == r1.goodBig || r1.saved_type == r1.badBig;
+			return (r2.saved_type != "" && r1.saved_type != "" && r2.saved_type != r2.goodMild &&  r2.saved_type != r2.badMild &&  r1.saved_type != r1.goodMild &&  r1.saved_type != r1.badMild)
 		}
 
 }
