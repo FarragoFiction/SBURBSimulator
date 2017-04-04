@@ -347,17 +347,19 @@ function session413(){
 			guardian = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
 			guardian.quirk = randomHumanSim(guardian);
 			player.quirk = randomHumanSim(player);
-			curSessionGlobalVar.guardians.push(guardian);
+			player.guardian = guardian;
+			guardian.guardian = player;
 			curSessionGlobalVar.players.push(player);
 		}
 	}
 
 	for(var i = 0; i<8;i++){
 		player = curSessionGlobalVar.players[i];
-		var guardian = curSessionGlobalVar.guardians[i]
+		var guardian = player.guardian;
 		player.isTroll = false;
 		guardian.isTroll = false;
-		guardian.generateBlandRelationships(curSessionGlobalVar.guardians);
+		player.relationships = [];
+		//guardian.generateBlandRelationships(curSessionGlobalVar.guardians);
 		player.generateBlandRelationships(curSessionGlobalVar.players);
 		session413IndexToHuman(player, i);
 		session413IndexToAncestor(guardian, i);//just call regular with a different index
@@ -558,7 +560,8 @@ function session33(){
 			player.quirk = randomTrollSim(player);
 			guardian.quirk = randomTrollSim(player);
 			players.push(player);
-			guardians.push(guardian);
+			player.guardian = guardian;
+			guardian.guardian = player;
 		}
 		session612IndexToTroll(player, i);
 		player.mylevels = getLevelArray(player);
@@ -567,11 +570,12 @@ function session33(){
 
 	for(var i = 0; i<12;i++){
 		player = curSessionGlobalVar.players[i];
-		guardian = curSessionGlobalVar.guardians[i]
+		guardian = player.guardian;
 		player.isTroll = true;
 		guardian.isTroll = true;
 		player.generateRelationships(curSessionGlobalVar.players);
-		guardian.generateRelationships(curSessionGlobalVar.guardians);
+		//TODO fix this i guess.
+		//guardian.generateRelationships(curSessionGlobalVar.guardians);
 		if(player.aspect != "Time" && player.aspect != "Space"){
 			player.aspect = "Heart"
 			player.class_name = "Rogue"
@@ -605,17 +609,20 @@ function session612(){
 			guardian = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
 			guardian.quirk = randomTrollSim(guardian);
 			player.quirk = randomTrollSim(player);
-			curSessionGlobalVar.guardians.push(guardian);
+			//curSessionGlobalVar.guardians.push(guardian);
 			curSessionGlobalVar.players.push(player);
+			player.guardian = guardian;
+			guardian.guardian = player;
 		}
 	}
 
 	for(var i = 0; i<12;i++){
 		player = curSessionGlobalVar.players[i];
-		var guardian = curSessionGlobalVar.guardians[i]
+		var guardian = player.guardian;
 		player.isTroll = true;
 		guardian.isTroll = true;
-		guardian.generateRelationships(curSessionGlobalVar.guardians);
+		player.relationships = [];
+		//guardian.generateRelationships(curSessionGlobalVar.guardians);
 		player.generateRelationships(curSessionGlobalVar.players);
 		session612IndexToTrollAncestor(player, i);
 		session612IndexToTroll(guardian, i);
@@ -1126,14 +1133,16 @@ function session1025(){
 			guardian = randomPlayerWithClaspect("Page", "Void");
 			guardian.quirk = randomTrollSim(guardian);
 			player.quirk = randomTrollSim(player);
-			curSessionGlobalVar.guardians.push(guardian);
+			//curSessionGlobalVar.guardians.push(guardian);
+			player.guardian = guardian;
+			guardian.guardian = player;
 			curSessionGlobalVar.players.push(player);
 		}
 	}
 
 	for(var i = 0; i<12;i++){
 		player = curSessionGlobalVar.players[i];
-		var guardian = curSessionGlobalVar.guardians[i]
+		var guardian = player.guardian;
 		if(i<8){
 			player.isTroll = false;
 			guardian.isTroll = false;
@@ -1156,7 +1165,8 @@ function session1025(){
 			session612IndexToTroll(guardian, index);
 		}
 
-		guardian.generateRelationships(curSessionGlobalVar.guardians);
+		//guardian.generateRelationships(curSessionGlobalVar.guardians);
+		player.relationships = [];
 		player.generateRelationships(curSessionGlobalVar.players);
 
 		player.mylevels = getLevelArray(player);

@@ -18,15 +18,19 @@ function Breakup(session){
 	
 	//sets this.relationshipToBreakUp and returns true/false
 	this.breakUpBecauseIAmCheating = function(){
-		
+		var hearts = [];
+		var spades = [];
+		var diamonds = [];
 	}
 	//sets this.relationshipToBreakUp and returns true/false
 	this.breakUpBecauseTheyCheating = function(){
-		
+		var hearts = [];
+		var spades = [];
+		var diamonds = [];
 	}
 	//sets this.relationshipToBreakUp and returns true/false
 	this.breakUpBecauseNotFeelingIt = function(){
-		
+		//r.this.potentialBreakup() if saved type and old type differ, make old_type saved type and break up.
 	}
 	
 
