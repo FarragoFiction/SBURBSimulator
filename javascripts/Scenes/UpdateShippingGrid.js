@@ -89,34 +89,7 @@ function UpdateShippingGrid(session){
 		return this.printShips(this.ships);
 	}
 	
-	this.RelationshipTypeToText = function(r){
-		if(r.saved_type =  r.heart){
-			return "<font color = 'red'>&#x2665</font>"
-		}
-		
-		if(r.saved_type =  r.spade){
-			return "<font color = 'black'>&#x2660</font>"
-		}
-		
-		if(r.saved_type =  r.clubs){
-			return "<font color = 'grey'>&#x2663</font>"
-		}
-		
-		if(r.saved_type =  r.diamonds){
-			return "<font color = 'pink'>&#x2666</font>"
-		}
-		
-		if(r.saved_type =  r.goodBig){
-			return "<font color = 'red'>&#x2661</font>"
-		}
-		
-		if(r.saved_type =  r.badBig){
-			return "<font color = 'black'>&#x2664</font>"
-		}	
-		
-		
-		return r.saved_type;
-	}
+
 	
 
 
@@ -155,6 +128,14 @@ function Ship(r1, r2){
 		if(r.saved_type ==  r.diamond){
 			return "<font color = 'pink'>&#x2666</font>"
 		}
+		
+		if(r.saved_type ==  r.goodBig){
+			return "<font color = 'red'>&#x2661</font>"
+		}
+		
+		if(r.saved_type ==  r.badBig){
+			return "<font color = 'black'>&#x2664</font>"
+		}	
 		return r.saved_type;
 	}
 
