@@ -34,7 +34,7 @@ function RelationshipDrama(session){
 		div.append(canvasHTML);
 		var canvasDiv = document.getElementById("canvas"+ divID);
 		var player1Start = player1.chatHandleShort()+ ": "
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 
 		chatText += chatLine(player1Start, player1, "So... hey.");
 		chatText += chatLine(player2Start, player2, "Hey?");
@@ -147,7 +147,7 @@ function RelationshipDrama(session){
 		div.append(canvasHTML);
 		var canvasDiv = document.getElementById("canvas"+ divID);
 		var player1Start = player1.chatHandleShort()+ ": "
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 
 		chatText += chatLine(player1Start, player1, "So... hey.");
 		chatText += chatLine(player2Start, player2, "Hey?");
@@ -236,7 +236,7 @@ function RelationshipDrama(session){
 		var canvasDiv = document.getElementById("canvas"+ divID);
 		player1.triggerLevel += -1;  //talking about it helps.
 		var player1Start = player1.chatHandleShort()+ ": "
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = relationship;
 		var chatText = "";
 		var trait = whatDontPlayersHaveInCommon(player1, crush);
@@ -260,7 +260,7 @@ function RelationshipDrama(session){
 		var canvasDiv = document.getElementById("canvas"+ divID);
 		player1.triggerLevel += -1;  //talking about it helps.
 		var player1Start = player1.chatHandleShort()+ ": "
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = relationship;
 		var chatText = "";
 		var trait = whatDoPlayersHaveInCommon(player1, crush);
@@ -304,7 +304,7 @@ function RelationshipDrama(session){
 		var canvasDiv = document.getElementById("canvas"+ divID);
 		player.triggerLevel += -3;  //talking about it helps.
 		var player1Start = player1.chatHandleShort()+ ": "
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = relationship;
 		var r2 = player2.getRelationshipWith(player1);
 		var r2crush = player2.getRelationshipWith(crush);  //sometimes crush is same as best friend...despite all my best efforts.
@@ -439,7 +439,7 @@ function RelationshipDrama(session){
 		var canvasDiv = document.getElementById("canvas"+ divID);
 		player.triggerLevel += -3;  //talking about it helps.
 		var player1Start = player1.chatHandleShort()+ ": "
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = relationship;
 		var r2 = player2.getRelationshipWith(player1);
 		var r2jerk = player2.getRelationshipWith(jerk);
@@ -520,7 +520,7 @@ function RelationshipDrama(session){
 		var player1 = player;
 		var player2 = jerk;
 		var player1Start = player1.chatHandleShort()+ ": "
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = relationship;
 		var r2 = player2.getRelationshipWith(player1);
 		var chatText = "";
@@ -652,7 +652,7 @@ function RelationshipDrama(session){
 		//different format for canvas code
 		var canvasDiv = document.getElementById("canvas"+ divID);
 		var player1Start = player1.chatHandleShort()+ ": "
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 

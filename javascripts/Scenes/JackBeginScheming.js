@@ -37,7 +37,7 @@ function JackBeginScheming(session){
 	//player2 is grimdark, reacting to jack player
 	this.grimChat2 = function(div, player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var chatText = "";
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
@@ -69,7 +69,7 @@ function JackBeginScheming(session){
 //player1 is grimdark, communicating jack stuff
 	this.grimChat1 = function(div, player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var chatText = "";
 		chatText += chatLine(player1Start, player1,"In order to beat the Queen, we will be working with a Dersite named Jack to exile her. ")
 		if(player2.aspect == "Light" || player2.class_name == "Seer"){
@@ -101,7 +101,7 @@ function JackBeginScheming(session){
 //both players are grimdark. 1 met jack
 	this.grimChatBoth = function(div, player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var chatText = "";
 		chatText += chatLine(player1Start, player1,"In order to beat the Queen, we will be working with a Dersite named Jack to exile her. ")
 		if(player2.aspect == "Light" || player2.class_name == "Seer"){
@@ -131,7 +131,7 @@ function JackBeginScheming(session){
 
 	this.normalConvo = function(div, player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var chatText = "";
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
@@ -185,7 +185,7 @@ function JackBeginScheming(session){
 		//different format for canvas code
 		var canvasDiv = document.getElementById("canvas"+ divID);
 		var player1Start = player1.chatHandleShort()+ ": "
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 

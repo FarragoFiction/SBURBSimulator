@@ -33,7 +33,7 @@ function EngageMurderMode(session){
 
 	this.grimChat2 = function(div, player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 		var chatText = "";
@@ -48,7 +48,7 @@ function EngageMurderMode(session){
 	//a normal convo goes differently based on target players's aspect/class and relationship with murderer
 	this.normalConvo = function(div, player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 		var chatText = "";
@@ -73,7 +73,7 @@ function EngageMurderMode(session){
 
 	this.heirressConvo = function(div, player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 		var chatText = "";
@@ -88,7 +88,7 @@ function EngageMurderMode(session){
 	//panic
 	this.panicConvo = function(div, player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 		var chatText = "";
@@ -113,7 +113,7 @@ function EngageMurderMode(session){
 	//you want to fight, bro?
 	this.blusterConvo = function(div, player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 		var chatText = "";
@@ -136,7 +136,7 @@ function EngageMurderMode(session){
 	this.redirectConvo = function(div, player1, player2){
 		var livePlayers = findLivingPlayers(this.session.players);
 		var player1Start = player1.chatHandleShort()+ ": "
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 		var chatText = "";
@@ -211,7 +211,7 @@ function EngageMurderMode(session){
 	//reduce trigger a bit?
 	this.repairConvo = function(div, player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": "
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ":"; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 		var chatText = "";
