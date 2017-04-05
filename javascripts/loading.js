@@ -73,6 +73,7 @@ function loadOther(){
 	loadImage("mind_forehead.png")
 	loadImage("ab.png")
 	loadImage("grimdark.png");
+  loadImage("squiddles_chaos.png");
 	loadImage("fin1.png");
 	loadImage("fin2.png");
 	loadImage("echeladder.png")

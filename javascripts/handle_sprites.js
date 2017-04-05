@@ -182,9 +182,12 @@ function wings(canvas,player){
 
 }
 
-function grimDarkHalo(canvas){
+function grimDarkHalo(canvas,player){
 	ctx = canvas.getContext('2d');
     var imageString = "grimdark.png";
+    if(player.trickster){
+      imageString = "squiddles_chaos.png"
+    }
     addImageTag(imageString)
     var img=document.getElementById(imageString);
     var width = img.width;
@@ -1010,7 +1013,7 @@ function drawSprite(canvas, player,ctx,baby){
   }
 
   if(!baby && player.grimDark == true){
-    grimDarkHalo(canvas)
+    grimDarkHalo(canvas,player)
   }
 
   if(!baby && player.isTroll&& player.godTier){//wings before sprite
