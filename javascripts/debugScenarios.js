@@ -25,14 +25,15 @@ function tricksterMode(){
 			p.quirk.capitalization = 2;
 			p.quirk.punctuation = 3;
 			p.quirk.favoriteNumber = 11;
+			for(var k = 0; k <p.relationships.length; k++){
+				var r = p.relationships[k];
+				r.value = 111111; //EVERYTHIGN IS BETTER!!!!!!!!!!!
+			}
 		}
 		p.power = 111111;
 		p.landLevel = 111111;
 		p.level_index = 111111;
-		for(var k = 0; k <p.relationships.length; k++){
-			var r = p.relationships[k];
-			r.value = 111111; //EVERYTHIGN IS BETTER!!!!!!!!!!!
-		}
+
 
 	}
 }
