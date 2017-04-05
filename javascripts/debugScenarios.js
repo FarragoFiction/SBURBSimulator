@@ -13,6 +13,8 @@ function debugLevelTheHellUp(){
 
 function tricksterMode(){
 	alert("I FEEL JUST PEEEEEEEEEEEACHY!!!!!!!!!!!")
+	$("#story").append("<img src = 'images/trickster_author.png' style='float:left;'>");
+	$('body').css("background-color", "#ff93e4");
 	for(var j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
 		p.hairColor = getRandomElementFromArray(tricksterColors);
