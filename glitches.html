@@ -79,24 +79,29 @@
 		Huh.  I gotta admit, while I knew it was technically possible for two players to have not only the same claspect, but the same chat handle, I never expected to actually SEE it. And then you both level up at the same time and so try to use the same echeladder? What are the freaking odds? Thanks goes to qwedvj for bringing it to my attention.
 		<br><br> So...like....I don't even know what to do here. Echeladders are labeled by chat handle. With the assumption that chat handles are unique within a session.  I could enforce chat handle uniqueness....but then that's picking a side as to which Prince gets to keep it. I could try to identify the echeladders more uniquely?  Bluh.  I'll fix this. don't worry.  (Also, can I mention how cute it is that the Princes of Time end up in diamonds with each other? Shout out to karmicRetribution for noticing.)
 		<br><Br>
-		
+
 		<li>  <a href = "index2.html?seed=149309">Session: 149309</a> <b>burlyTrainer: uh... i am the bard of time and me and my friends were going to play this really cool game but as soon as i tried to do the kernel thingy the game crashed? what gives? </b>
 		<br><br>
 			Well, on the one hand, there are those who would argue that the only way to win SBURB is to not play at all...but I can see how a session so bugged it crashes might be a problem for causality. Let's see.... Wait. What the fuck!? So... you are the result of a SGRUB session that got a yellow yard, then scratched, then invaded another session (this time SBURB), then scratched again.  No fucking WONDER you're bugged to hell and back. Shit's complicated. Okay. Don't panic. I've got this.
 			<br><Br>
 			Huh, that's really weird. It looks like the SGRUB session handled their ectobiology before scratching...but then in the SBURB session they were created there as well?  Shit doesn't make sense, but ALSO would explain why doom got EVERYWHERE after that. Oh!  Okay, this is my fault. It turns out I'm setting the ectobiologicalSource for the current players, but NOT THEIR GUARDIANS, and so the game tried to create the troll guardians a second time (which also of course recreated THEIR guardians, which already had an ectobiologicalSource) and everything just sort of spiraled out of control after that.  I'm frankly amazed things didn't break until a second scratch.  The straw that broke the hoofbeasts's back turned out to be the fact that the troll guardians weren't REALLY supposed to be in your scratched session, and so the game just sort of gave up rather than trying to figure them out. (Who the fuck are these douchebags?)
 		<br><Br>
-		
+
 		<li>  <a href = "index2.html?seed=221777">Session: 221777</a> <b>majorHumorist: oH ShIt oH CrAp wE ArE AlL FuCkEd wE ArE AlL So aBsOlUtElY FuCkEd wE WeRe pLaYiNg tHe gAmE AnD EvErYtHiNg sUcKeD AnD We dIeD AnD ThEn sUdDeNlY We wErE BaCk aT ThE BeGiNiNg eVeRyThInG StArTeD OvEr bUt hAlF Of uS ArE StIlL DeAd aNd tHe oThEr hAlF Is cRaZy aNd oH GoD MaYbE I ShOuLd jUsT KiLl eVeRyBoDy  </b>
 		<br><br>
 			Oh.  Fuck. Well, this is a good example of why the fuck I was cloning the players foreign to a session just in case of time shenanigans.  This is what happens when I DON'T.  Or rather, you are scratched players. Aaaand...when I did a YellowYard on you, you didn't reset, even though your session did. So you entered the session with full memory of how fucking fucked you were, flipping your shit and trying to murder each other and everything.<br><Br>
 			I'm left with a dillema here. Part of the reason why scratched sessions go slightly differently than non-scratched sessions is they don't have to use seeds to re-generate players. So anything relying on randomness will play out slightly differently.   I can either clone the players post-scratch as well (with all the added complexity and Capgras Delusions that risks), or...I can make scratched sessions slightly more...reliable?  I could let the scatched sessions differ ONLY by who is playing in them, which, I mean, that kind of makes sense. Have the random stuff be the 'same' (even then, it probably won't be because differently players will do things differently, which will effect the seeds that way).  Bluh, I'm getting to technical. Don't worry, I got this.
 		<br><Br>
-		
+
 			<li>  <a href = "index2.html?seed=51158180">Session: 51158180</a> <b>hazyBanshee: uM. hUH. i'M TH3 h3IR OF bLOOD AND W3 D3CID3D TO SCRATCH TH3 GAM3 SINC3 APPAR3NTLY FROGS AR3 A BIGG3R D3AL THAN ANTICIPAT3D? aND TH3 N3XT THING i KNOW i'M BACK AT TH3 B3GINING OF TH3 GAM3 AND i'M STILL gOD tI3R? i THOUGHT THAT W3 W3R3 SUPPOS3D TO B3 LIK3 R3S3T. aND LIK3 NORMALLY THAT WOULD B3 A agreeable thing BUT TH3N 3V3RYTHING W3NT BLACK AND TH3 GAM3 STOPP3D?  </b>
 		<br><br>
-			Huh. 
+			Huh.
 			<Br><br> I thought I fucking fixed this already. Bluh, looks like the ever growing pile of glitches doesn't stop from getting taller.  Oh look, ectobiologicalSource stopped getting set for Guardians. Again. Bam. There you go, fixed. I swear to god, ectobiologicalSource better fucking STAY fixed or I will do an acrobatic pirouette of the handle and upgrade the AuthorBot to help me debug these stupidly convoluted sessions.  And current me is fully aware of how terrible an idea that is because these types of sessions just DO NOT FUCKING END. Current me is practically getting caught in infinite loops trying to debug it. Dear sweet precious, sweet, sweet AuthorBot would be lost forever if she tried to navigate them.
+		<br><Br>
+
+			<li>  <a href = "index2.html?seed=612">Session: 612</a> <b>twinArmageddons: ii'm the heiir of doom, and the maid of 2pace'2 deniizen 2aiid two go two the wiitch of tiime'2 land and fiind the 2cratch con2truct and 2crath iit two 2wiitch liive2 wiith our .guardians and never have exii2ted or played thii2 game iin the fiir2t place, only we never had .guardians, so iit wa2n't even there, and we 2TIIL never exii2ted or played thii2 game iin the fiir2t place, so my que2tiion ii2, WH47 7H3 4C7U4L FUCK84LL5 and al2o H0W 4M 1 3V3N 74LK1NG 1F 1 D0N'7 3X157?  </b>
+			<br><br>
+			Huh.  Oh yeah. I totally refactored how guardians worked and forgot to update my easter egg sessions re-rewriting code. Man. You guys really get the short end of the stick. Not only is your very existance some sort of cruel joke, but you get like double the bugs of any other session. Okay. Well, the good news is that your guardians exist, so that you exist again.  The bad news is that I half-assed fixing it, so for now (at least), scratches are gonna be broken for you. Congrats!
 		<br><Br>
 
 </ul>
