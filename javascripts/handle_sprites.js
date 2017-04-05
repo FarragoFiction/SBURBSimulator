@@ -17,12 +17,63 @@ function hexToRgbA(hex){
     throw new Error('Bad Hex ' + hex);
 }
 
+//sharpens the image so later pixel swapping doesn't work quite right.
+//https://www.html5rocks.com/en/tutorials/canvas/imagefilters/
+function sbahjifier(canvas){
+  var opaque = false;
+  var ctx = canvas.getContext('2d');
+  ctx.rotate(getRandomIntNoSeed(0,10)*Math.PI/180);
+	var pixels =ctx.getImageData(0, 0, canvas.width, canvas.height);
+  var weights = [  0, -1,  0, -1,  5, -1, 0, -1,  0 ];
+  var side = Math.round(Math.sqrt(weights.length));
+  var halfSide = Math.floor(side/2);
+  var src = pixels.data;
+  var sw = pixels.width;
+  var sh = pixels.height;
+  // pad output by the convolution matrix
+  var w = sw;
+  var h = sh;
+  var output = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  var dst = output.data;
+  // go through the destination image pixels
+  var alphaFac = opaque ? 1 : 0;
+  for (var y=0; y<h; y++) {
+    for (var x=0; x<w; x++) {
+      var sy = y;
+      var sx = x;
+      var dstOff = (y*w+x)*4;
+      // calculate the weighed sum of the source image pixels that
+      // fall under the convolution matrix
+      var r=0, g=0, b=0, a=0;
+      for (var cy=0; cy<side; cy++) {
+        for (var cx=0; cx<side; cx++) {
+          var scy = sy + cy - halfSide;
+          var scx = sx + cx - halfSide;
+          if (scy >= 0 && scy < sh && scx >= 0 && scx < sw) {
+            var srcOff = (scy*sw+scx)*4;
+            var wt = weights[cy*side+cx];
+            r += src[srcOff] * wt;
+            g += src[srcOff+1] * wt;
+            b += src[srcOff+2] * wt;
+            a += src[srcOff+3] * wt;
+          }
+        }
+      }
+      dst[dstOff] = r;
+      dst[dstOff+1] = g;
+      dst[dstOff+2] = b;
+      dst[dstOff+3] = a + alphaFac*(255-a);
+    }
+  }
+  ctx.putImageData(output, getRandomIntNoSeed(0,10), getRandomIntNoSeed(0,10));
+}
+
 
 function rainbowSwap(canvas){
   if(checkSimMode() == true){
     return;
   }
-	ctx = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
 	var img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
 	var colorRatio = 1/canvas.width;
 	//4 byte color array
@@ -49,7 +100,7 @@ function swapColors(canvas, color1, color2){
   var oldc = hexToRgbA(color1);
   var newc= hexToRgbA(color2);
   // console.log("replacing: " + oldc  + " with " + newc);
-  ctx = canvas.getContext('2d');
+  var ctx = canvas.getContext('2d');
   var img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
   //4 byte color array
   for(var i = 0; i<img_data.data.length; i += 4){
@@ -72,7 +123,7 @@ function swapColors50(canvas, color1, color2){
   var oldc = hexToRgbA(color1);
   var newc= hexToRgbA(color2);
   // console.log("replacing: " + oldc  + " with " + newc);
-  ctx = canvas.getContext('2d');
+  var ctx = canvas.getContext('2d');
   var img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
   //4 byte color array
   for(var i = 0; i<img_data.data.length; i += 4){
@@ -1125,6 +1176,9 @@ function hairBack(canvas,player){
 	var width = img.width;
 	var height = img.height;
 	ctx.drawImage(img,0,0,width,height);
+  if(player.sbahj){
+    sbahjifier(canvas);
+  }
 	if(player.isTroll){
 		swapColors(canvas, "#313131",  player.hairColor);
 		swapColors(canvas, "#202020", player.bloodColor);
@@ -1141,6 +1195,9 @@ function hair(canvas, player){
 	var width = img.width;
 	var height = img.height;
 	ctx.drawImage(img,0,0,width,height);
+  if(player.sbahj){
+    sbahjifier(canvas);
+  }
 	if(player.isTroll){
 		swapColors(canvas, "#313131",  player.hairColor);
 		swapColors(canvas, "#202020", player.bloodColor);
@@ -1274,6 +1331,9 @@ function regularSprite(canvas, player){
   var width = img.width;
   var height = img.height;
   ctx.drawImage(img,0,0,width,height);
+  if(player.sbahj){
+    sbahjifier(canvas);
+  }
   aspectPalletSwap(canvas, player);
   //aspectSymbol(canvas, player);
 }
@@ -1328,6 +1388,9 @@ function godTierSprite(canvas, player){
   var height = img.height;
   ctx.drawImage(img,0,0,width,height);
   aspectPalletSwap(canvas, player);
+  if(player.sbahj){
+    sbahjifier(canvas);
+  }
   aspectSymbol(canvas, player);
 }
 
@@ -1342,6 +1405,9 @@ function babySprite(canvas,player){
   var width = img.width;
   var height = img.height;
   ctx.drawImage(img,0,0,width,height);
+  if(player.sbahj){
+    sbahjifier(canvas);
+  }
   if(player.isTroll){
     swapColors(canvas, "#585858",player.bloodColor);
   }else{
