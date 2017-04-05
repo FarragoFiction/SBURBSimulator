@@ -845,7 +845,7 @@ function session612IndexToTroll(player, index){
 		player.land = "Land of Dew and Glass"
 		player.aspect = "Life"
 		player.class_name = "Witch"
-		player.hair = 1;
+		player.hair = 19;
 		player.leftHorn = 35;
 		player.rightHorn = 35;
 		player.bloodColor = "#99004d";
@@ -1089,7 +1089,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.aspect = "Life"
 		player.land = "Land of Dew and Glass"
 		player.class_name = "Thief"
-		player.hair = 1;
+		player.hair = 19;
 		player.leftHorn = 35;
 		player.rightHorn = 35;
 		player.bloodColor = "#99004d";
