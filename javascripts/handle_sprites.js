@@ -1007,7 +1007,9 @@ function drawSprite(canvas, player,ctx,baby){
 
 function playerToSprite(canvas, player){
 	ctx = canvas.getContext('2d');
-    if(player.godTier){
+  if(player.trickster){
+    tricksterSprite(canvas, player);
+  }else if(player.godTier){
 		godTierSprite(canvas, player);
 	}else if (player.isDreamSelf)
 	{
@@ -1247,6 +1249,17 @@ function playerToDreamBody(player){
 }
 
 
+function tricksterSprite(canvas, player){
+	var imageString = playerToRegularBody(player);
+  addImageTag(imageString)
+  var img=document.getElementById(imageString);
+  var width = img.width;
+  var height = img.height;
+  ctx.drawImage(img,0,0,width,height);
+  candyPalletSwap(canvas, player);
+  //aspectSymbol(canvas, player);
+}
+
 function regularSprite(canvas, player){
 	var imageString = playerToRegularBody(player);
   addImageTag(imageString)
@@ -1403,6 +1416,201 @@ function dreamPalletSwap(canvas, player){
 	//dreamSymbol(canvas, player);
 
 }
+
+function candyPalletSwap(canvas, player){
+  //not all browsers do png gama info correctly. Chrome does, firefox does not, mostly.
+  //remove it entirely with this command
+  //pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB infile.png outfile.png
+  //pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB reg001.png reg001copy.png
+  //./pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB stab.png stab_copy.png
+	var oldcolor1 = "#FEFD49";
+	var oldcolor2 = "#FEC910";
+	var oldcolor3 = "#10E0FF";
+	var oldcolor4 = "#00A4BB";
+	var oldcolor5 = "#FA4900";
+	var oldcolor6 = "#E94200";
+
+	var oldcolor7 = "#C33700";
+	var oldcolor8 = "#FF8800";
+	var oldcolor9 = "#D66E04";
+	var oldcolor10 = "#E76700";
+	var oldcolor11 = "#CA5B00";
+
+	var new_color1 = "#b4b4b4";
+	var new_color2 = "#b4b4b4";
+	var new_color3 = "#b4b4b4";
+	var new_color4 = "#b4b4b4";
+	var new_color5 = "#b4b4b4";
+	var new_color6 = "#b4b4b4";
+	var new_color7 = "#b4b4b4";
+	var new_color8 = "#b4b4b4";
+	var new_color9 = "#b4b4b4";
+	var new_color10 = "#b4b4b4";
+	var new_color11 = "#b4b4b4";
+
+
+  //I am the GREETEST. Figured out how to make spreadsheet auto gen code: ="new_color"&ROW()&"='#" &B23 &"';"
+  if(player.aspect =="Light"){
+    new_color1= tricksterColors[0];
+    new_color2= tricksterColors[1];
+    new_color3= tricksterColors[2];
+    new_color4=tricksterColors[3];
+    new_color5= tricksterColors[4];
+    new_color6= tricksterColors[5];
+    new_color7= tricksterColors[6];
+    new_color8= tricksterColors[7];
+    new_color9= tricksterColors[8];
+    new_color10= tricksterColors[9];
+    new_color11= tricksterColors[10];
+  }else if(player.aspect =="Breath"){
+    new_color1= tricksterColors[11];
+    new_color2= tricksterColors[12];
+    new_color3= tricksterColors[13];
+    new_color4=tricksterColors[14];
+    new_color5= tricksterColors[15];
+    new_color6= tricksterColors[16];
+    new_color7= tricksterColors[17];
+    new_color8= tricksterColors[18];
+    new_color9= tricksterColors[0];
+    new_color10= tricksterColors[1];
+    new_color11= tricksterColors[2];
+  }else if(player.aspect =="Time"){
+    new_color1= tricksterColors[3];
+    new_color2= tricksterColors[4];
+    new_color3= tricksterColors[5];
+    new_color4=tricksterColors[6];
+    new_color5= tricksterColors[7];
+    new_color6= tricksterColors[8];
+    new_color7= tricksterColors[9];
+    new_color8= tricksterColors[10];
+    new_color9= tricksterColors[11];
+    new_color10= tricksterColors[12];
+    new_color11= tricksterColors[13];
+  }else if(player.aspect =="Space"){
+    new_color1= tricksterColors[14];
+    new_color2= tricksterColors[15];
+    new_color3= tricksterColors[16];
+    new_color4=tricksterColors[17];
+    new_color5= tricksterColors[18];
+    new_color6= tricksterColors[0];
+    new_color7= tricksterColors[1];
+    new_color8= tricksterColors[2];
+    new_color9= tricksterColors[3];
+    new_color10= tricksterColors[4];
+    new_color11= tricksterColors[5];
+  }else if(player.aspect =="Heart"){
+    new_color1= tricksterColors[6];
+    new_color2= tricksterColors[7];
+    new_color3= tricksterColors[8];
+    new_color4=tricksterColors[9];
+    new_color5= tricksterColors[10];
+    new_color6= tricksterColors[11];
+    new_color7= tricksterColors[12];
+    new_color8= tricksterColors[13];
+    new_color9= tricksterColors[14];
+    new_color10= tricksterColors[15];
+    new_color11= tricksterColors[16];
+  }else if(player.aspect =="Mind"){
+    new_color1= tricksterColors[17];
+    new_color2= tricksterColors[18];
+    new_color3= tricksterColors[17];
+    new_color4=tricksterColors[16];
+    new_color5= tricksterColors[15];
+    new_color6= tricksterColors[14];
+    new_color7= tricksterColors[13];
+    new_color8= tricksterColors[12];
+    new_color9= tricksterColors[11];
+    new_color10= tricksterColors[10];
+    new_color11= tricksterColors[9];
+  }else if(player.aspect =="Life"){
+    new_color1= tricksterColors[8];
+    new_color2= tricksterColors[7];
+    new_color3= tricksterColors[6];
+    new_color4=tricksterColors[5];
+    new_color5= tricksterColors[4];
+    new_color6= tricksterColors[3];
+    new_color7= tricksterColors[2];
+    new_color8= tricksterColors[1];
+    new_color9= tricksterColors[0];
+    new_color10= tricksterColors[1];
+    new_color11= tricksterColors[2];
+  }else if(player.aspect =="Void"){
+    new_color1= tricksterColors[3];
+    new_color2= tricksterColors[5];
+    new_color3= tricksterColors[8];
+    new_color4=tricksterColors[0];
+    new_color5= tricksterColors[10];
+    new_color6= tricksterColors[11];
+    new_color7= tricksterColors[3];
+    new_color8= tricksterColors[4];
+    new_color9= tricksterColors[8];
+    new_color10= tricksterColors[7];
+    new_color11= tricksterColors[6];
+  }else if(player.aspect =="Hope"){
+    new_color1= tricksterColors[10];
+    new_color2= tricksterColors[9];
+    new_color3= tricksterColors[8];
+    new_color4=tricksterColors[7];
+    new_color5= tricksterColors[6];
+    new_color6= tricksterColors[5];
+    new_color7= tricksterColors[4];
+    new_color8= tricksterColors[3];
+    new_color9= tricksterColors[2];
+    new_color10= tricksterColors[1];
+    new_color11= tricksterColors[0];
+  }
+  else if(player.aspect =="Doom"){
+    new_color1= tricksterColors[18];
+    new_color2= tricksterColors[17];
+    new_color3= tricksterColors[16];
+    new_color4=tricksterColors[0];
+    new_color5= tricksterColors[15];
+    new_color6= tricksterColors[14];
+    new_color7= tricksterColors[13];
+    new_color8= tricksterColors[12];
+    new_color9= tricksterColors[10];
+    new_color10= tricksterColors[9];
+    new_color11= tricksterColors[10];
+  }else if(player.aspect =="Rage"){
+    new_color1= tricksterColors[4];
+    new_color2= tricksterColors[1];
+    new_color3= tricksterColors[3];
+    new_color4=tricksterColors[6];
+    new_color5= tricksterColors[1];
+    new_color6= tricksterColors[2];
+    new_color7= tricksterColors[1];
+    new_color8= tricksterColors[0];
+    new_color9= tricksterColors[2];
+    new_color10= tricksterColors[5];
+    new_color11= tricksterColors[7];
+  }else if(player.aspect =="Blood"){
+    new_color1= tricksterColors[1];
+    new_color2= tricksterColors[2];
+    new_color3= tricksterColors[3];
+    new_color4=tricksterColors[4];
+    new_color5= tricksterColors[5];
+    new_color6= tricksterColors[10];
+    new_color7= tricksterColors[18];
+    new_color8= tricksterColors[15];
+    new_color9= tricksterColors[14];
+    new_color10= tricksterColors[13];
+    new_color11= tricksterColors[0];
+  }
+
+
+  swapColors(canvas, oldcolor1, new_color1)
+  swapColors(canvas, oldcolor2, new_color2)
+  swapColors(canvas, oldcolor3, new_color3)
+  swapColors(canvas, oldcolor4, new_color4)
+  swapColors(canvas, oldcolor5, new_color5)
+  swapColors(canvas, oldcolor6, new_color6)
+  swapColors(canvas, oldcolor7, new_color7)
+  swapColors(canvas, oldcolor8, new_color8)
+  swapColors(canvas, oldcolor9, new_color9)
+  swapColors(canvas, oldcolor10, new_color10)
+  swapColors(canvas, oldcolor11, new_color11)
+}
+
 
 function aspectPalletSwap(canvas, player){
   //not all browsers do png gama info correctly. Chrome does, firefox does not, mostly.

@@ -1024,7 +1024,7 @@ mayorDistractionTasks.push( " WV is distracted planning the civil infrastructure
 mayorDistractionTasks.push(" WV is distracted fantasizing about how great of a mayor he will be. ");
 mayorDistractionTasks.push(" WV accidentally tried to recruit carapacians already part of his army. Stupid stupid stupid! ");
 
-var tricksterColors = ["#FF0000","#00FF00","#0000FF","#FFFF00","#00FFFF","#FF00FF","#FFFFFF","#5ef89c","#5ed6f8","#f85edd","#ffcaf6","#d0ffca","#cafcff","#fffdca","#ffcaca","#ffb57f","#ff6c00","#fffc00","#f5b4ff"];
+var tricksterColors = ["#FF0000","#00FF00","#0000FF","#FFFF00","#00FFFF","#FF00FF","#FFFFFF","#5ef89c","#5ed6f8","#f85edd","#ffcaf6","#d0ffca","#cafcff","#fffdca","#ffcaca","#a7caff","#ff6c00","#fffc00","#f5b4ff"];
 
 var bloodColors = ["#A10000","#a25203","#a1a100","#658200","#416600","#078446","#008282","#004182","#0021cb","#631db4","#610061","#99004d"];
 
