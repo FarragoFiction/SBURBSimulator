@@ -23,7 +23,7 @@ function sbahjMode(){
 	for(var j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
 		p.sbahj = true;
-		p.quirk.lettersToReplaceIgnoreCase = p.quirk.lettersToReplaceIgnoreCase.concat(sbahj_quirks);
+		p.quirk.lettersToReplaceIgnoreCase =sbahj_quirks
 	}
 }
 

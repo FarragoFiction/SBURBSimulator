@@ -356,7 +356,6 @@ function Session(session_id){
 			for(var i = 0; i<reallyRand; i++){
 				var indexOfTerribleCSS = getRandomIntNoSeed(0,terribleCSSOptions.length-1)
 				var tin = terribleCSSOptions[indexOfTerribleCSS]
-				console.log(tin)
 				if(tin[1] == "????"){
 					tin[1] = getRandomIntNoSeed(1,100) +"%";
 				}

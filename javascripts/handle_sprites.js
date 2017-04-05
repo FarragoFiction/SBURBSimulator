@@ -796,6 +796,9 @@ function drawChatTextJRPlayer(canvas, introText, chat, player){
 	var current = 18;
 	var ctx = canvas.getContext("2d");
 	ctx.font = "12px Times New Roman"
+  if(player.sbahj){
+    ctx.font = "12px Comic Sans MS"
+  }
 	ctx.fillStyle = "#000000";
 	ctx.fillText(introText,left_margin*2,current);
 	//need custom multi line method that allows for differnet color lines
@@ -825,6 +828,9 @@ function drawChatText(canvas, player1, player2, introText, chat){
 	var current = 18;
 	var ctx = canvas.getContext("2d");
 	ctx.font = "12px Times New Roman"
+  if(player1.sbahj){
+    ctx.font = "12px Comic Sans MS"
+  }
 	ctx.fillStyle = "#000000";
 	ctx.fillText(introText,left_margin*2,current);
 	//need custom multi line method that allows for differnet color lines
@@ -1951,7 +1957,9 @@ function fillChatTextMultiLineJRPlayer(canvas, chat, player, x, y){
 		//check player 2 first 'cause they'll be more specific if they have same initials
 		if(ct.startsWith(playerStart)){
 			ctx.fillStyle = player.getChatFontColor();
-      if(player.grimDark == true) {
+      if(player.sbahj){
+         ctx.font = "12px Comic Sans"
+      }if(player.grimDark == true) {
         	ctx.font = "12px horrorterror"
       }else{
         	ctx.font = "12px Times New Roman"
@@ -2010,14 +2018,18 @@ function fillChatTextMultiLine(canvas, chat, player1, player2, x, y) {
 		//check player 2 first 'cause they'll be more specific if they have same initials
 		if(ct.startsWith(player2Start)){
 			ctx.fillStyle = player2.getChatFontColor();
-      if(player2.grimDark == true) {
+      if(player2.sbahj){
+         ctx.font = "12px Comic Sans MS"
+      }else if(player2.grimDark == true) {
         	ctx.font = "12px horrorterror"
       }else{
         	ctx.font = "12px Times New Roman"
       }
 		}else if(ct.startsWith(player1Start)){
 			ctx.fillStyle = player1.getChatFontColor();
-      if(player1.grimDark == true){
+      if(player1.sbahj){
+         ctx.font = "12px Comic Sans MS"
+      }else if(player1.grimDark == true){
         	ctx.font = "12px horrorterror"
       }else{
         	ctx.font = "12px Times New Roman"
