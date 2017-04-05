@@ -97,8 +97,9 @@ function grimDarkSkin(canvas){
   swapColors(canvas, "#ffffff", "#424242")
 }
 
-function peachSkin(canvas){
-  swapColors(canvas, "#ffffff", "#ffceb1")
+function peachSkin(canvas,player){
+  var index = player.hair % tricksterColors.length;
+  swapColors(canvas, "#ffffff", tricksterColors[index])
 }
 
 function greySkin(canvas){

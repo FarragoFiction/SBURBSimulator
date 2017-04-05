@@ -68,6 +68,10 @@ function startSession(){
 	if(getParameterByName("lollipop")  == "true"){
 		tricksterMode();
 	}
+	if(getParameterByName("sbahjifier")  == "true"){
+		alert("what")
+		sbahjMode();
+	}
 	//authorMessage();
 	//i cannot resist
 	if(initial_seed == 413){

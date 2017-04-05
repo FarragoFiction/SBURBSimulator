@@ -11,6 +11,21 @@ function debugLevelTheHellUp(){
 	}
 }
 
+//no. you gots to flip it TURN-WAYS, dunkass.
+//rendering shouldu be different
+//making new scenes to be different
+function sbahjMode(){
+	alert("where MAKING THIS HAPEN")
+	$("#story").append("<img src = 'images/AUTHORSBAHJ.jpg' style='position:absolute; top:111px'>");
+	$('body').css("background-color", "#0000ff");
+	$('story').css("background-color", "#ff00ff");
+	for(var j = 0; j<curSessionGlobalVar.players.length; j++){
+		var p = curSessionGlobalVar.players[j];
+		p.sbahj = true;
+		p.quirk.lettersToReplaceIgnoreCase = p.quirk.lettersToReplaceIgnoreCase.concat(sbahj_quirks);
+	}
+}
+
 function tricksterMode(){
 	alert("I FEEL JUST PEEEEEEEEEEEACHY!!!!!!!!!!!")
 	$("#story").append("<img src = 'images/trickster_author.png' style='float:left;'>");

@@ -377,8 +377,8 @@ function randomTrollSim(player){
 		var roomLeft = getRandomInt(0,10);
 	}
 	if(roomLeft < 0) roomLeft = 0;
-	
-	
+
+
 	for(var i = 0; i< roomLeft; i++){
 		ret.lettersToReplaceIgnoreCase.push(getOneRandomReplaceArray());
 		if(player.bloodColor == "#99004d" || player.bloodColor == "#610061"){
@@ -468,6 +468,8 @@ function getOneRandomReplaceArray(){
 	arr.push(["dog","cat"]);
 	arr.push(["s","th"]);
 	arr.push(["c","s"]);
+	arr.push(["per","purr"]);
+	arr.push(["mu","mew"]);
 
 	if(Math.seededRandom() > .5){
 		return getRandomElementFromArray(arr);
