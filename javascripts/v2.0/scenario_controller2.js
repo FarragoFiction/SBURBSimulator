@@ -637,6 +637,7 @@ function session612(){
 //["#A10000","#a25203","#a1a100","#658200","#416600","#078446","#008282","#004182","#0021cb","#631db4","#610061","#99004d"]
 //karkat, terezi, gamzee, equius, aradia, nepeta, tavros, vriska, kanaya, eridan, feferi, sollux
 function session612IndexToTroll(player, index){
+	player.hairColor = "#000000"
 	if(index == 0){
 		player.aspect = "Blood"
 		player.moon = "Prospit"
@@ -882,6 +883,7 @@ function session612IndexToTroll(player, index){
 }
 
 function session612IndexToTrollAncestor(player, index){
+	player.hairColor = "#000000"
 	if(index == 0){
 		player.moon = "Prospit"
 		player.aspect = "Blood"
