@@ -11,6 +11,30 @@ function debugLevelTheHellUp(){
 	}
 }
 
+function tricksterMode(){
+	alert("I FEEL JUST PEEEEEEEEEEEACHY!!!!!!!!!!!")
+	for(var j = 0; j<curSessionGlobalVar.players.length; j++){
+		var p = curSessionGlobalVar.players[j];
+		p.hairColor = getRandomElementFromArray(tricksterColors);
+		p.bloodColor = getRandomElementFromArray(tricksterColors);
+
+		p.trickster  = true;
+		if(p.aspect != "Heart"){//no personality changes.
+			p.quirk.capitalization = 2;
+			p.quirk.punctuation = 3;
+			p.quirk.favoriteNumber = 11;
+		}
+		p.power = 111111;
+		p.landLevel = 111111;
+		p.level_index = 111111;
+		for(var k = 0; k <p.relationships.length; k++){
+			var r = p.relationships[k];
+			r.value = 111111; //EVERYTHIGN IS BETTER!!!!!!!!!!!
+		}
+
+	}
+}
+
 function debugRoyalRumble(){
 	alert("royal rumble!")
 	for(var j = 0; j<curSessionGlobalVar.players.length; j++){
@@ -23,7 +47,7 @@ function debugRoyalRumble(){
 		p.relationships = [];
 		p.quirk = null;
 		p.generateRelationships(curSessionGlobalVar.players);  //heiresses hate each other
-		p.quirk = randomTrollSim(p)		
+		p.quirk = randomTrollSim(p)
 	}
 
 }
@@ -51,7 +75,7 @@ function debugRelationshipDrama(){
 	var friend = p2.getBestFriendFromList(players);
 	p2.getRelationshipWith(friend).value += -10;  //suddenly hate them.
 	p2.getRelationshipWith(friend).drama = true
-	
+
 }
 
 function debugJackScheme(){

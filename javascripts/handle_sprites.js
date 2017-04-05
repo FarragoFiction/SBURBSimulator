@@ -97,6 +97,10 @@ function grimDarkSkin(canvas){
   swapColors(canvas, "#ffffff", "#424242")
 }
 
+function peachSkin(canvas){
+  swapColors(canvas, "#ffffff", "#ffceb1")
+}
+
 function greySkin(canvas){
   swapColors(canvas, "#ffffff", "#c4c4c4")
 }
@@ -887,6 +891,8 @@ function drawSpriteTurnways(canvas, player){
 
 function makeRenderingSnapshot(player){
 	var ret = new PlayerSnapshot();
+  ret.trickster = player.trickster;
+  ret.sbahj = player.sbahj;
   ret.wasteInfluenced = player.wasteInfluenced;
 	ret.grimDark = player.grimDark;
 	ret.victimBlood = player.victimBlood;
@@ -978,8 +984,9 @@ function drawSprite(canvas, player,ctx,baby){
   if(!baby && player.class_name == "Prince" && player.godTier){
 	  princeTiara(canvas, player);
   }
-
-  if(!baby && player.grimDark == true){
+  if(player.trickster == true){
+      peachSkin(canvas, player);
+  }else if(!baby && player.grimDark == true){
     grimDarkSkin(canvas, player)
   }else if(player.isTroll){
     greySkin(canvas,player);
@@ -1110,7 +1117,7 @@ function hairBack(canvas,player){
 	var height = img.height;
 	ctx.drawImage(img,0,0,width,height);
 	if(player.isTroll){
-		swapColors(canvas, "#313131", "#000000");
+		swapColors(canvas, "#313131",  player.hairColor);
 		swapColors(canvas, "#202020", player.bloodColor);
 	}else{
 		swapColors(canvas, "#313131", player.hairColor);
@@ -1126,7 +1133,7 @@ function hair(canvas, player){
 	var height = img.height;
 	ctx.drawImage(img,0,0,width,height);
 	if(player.isTroll){
-		swapColors(canvas, "#313131", "#000000");
+		swapColors(canvas, "#313131",  player.hairColor);
 		swapColors(canvas, "#202020", player.bloodColor);
 	}else{
 		swapColors(canvas, "#313131", player.hairColor);

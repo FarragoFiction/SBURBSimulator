@@ -197,6 +197,7 @@ function decideTroll(player){
 		player.isTroll = true;
 		decideHemoCaste(player);
 		decideLusus(player);
+		player.hairColor = "#000000"
 		player.quirk = randomTrollQuirk(player);
 	}else if($('[name="species"] option:selected').val() == "Troll"){
 		player.isTroll = true;

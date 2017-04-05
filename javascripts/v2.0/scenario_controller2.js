@@ -64,6 +64,10 @@ function startSession(){
 	if(getParameterByName("royalRumble")  == "true"){
 		debugRoyalRumble();
 	}
+
+	if(getParameterByName("lollipop")  == "true"){
+		tricksterMode();
+	}
 	//authorMessage();
 	//i cannot resist
 	if(initial_seed == 413){
@@ -159,7 +163,7 @@ function scratch(){
 	console.log("scratch has been confirmed")
 	var numPlayersPreScratch = curSessionGlobalVar.players.length;
 	var ectoSave = curSessionGlobalVar.ectoBiologyStarted;
-	
+
 	reinit();
 	var raggedPlayers = findPlayersFromSessionWithId(curSessionGlobalVar.players, curSessionGlobalVar.session_id); //but only native
 	//use seeds the same was as original session and also make DAMN sure the players/guardians are fresh.

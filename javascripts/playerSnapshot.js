@@ -3,6 +3,8 @@
 //even with asynchronous rendering.
 //renderer calls this, not any individual scenes.
 function PlayerSnapshot(){
+	this.trickster = null;
+  this.sbahj = null;
 	this.baby = null;
 	this.ectoBiologicalSource = null;
 	this.class_name = null;null
@@ -34,7 +36,7 @@ function PlayerSnapshot(){
 	this.quirk = null;
 	this.dead = null;
 	this.godDestiny = null;
-	this.canGodTierRevive = null; 
+	this.canGodTierRevive = null;
 	this.isDreamSelf = null;
 	this.triggerLevel = null;
 	this.murderMode = null;

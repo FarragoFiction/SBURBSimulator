@@ -112,8 +112,8 @@ function Session(session_id){
 		this.ectoBiologyStarted = ectoSave;
 		this.scratched = true;
 		this.switchPlayersForScratch();
-		
-		
+
+
 
 		restartSession();//in controller
 	}
@@ -324,6 +324,7 @@ function Session(session_id){
 
 		if(this.getSessionType() == "Troll" || (this.getSessionType() == "Mixed" &&Math.seededRandom() > 0.5) ){
 			player.isTroll = true;
+			player.hairColor = "#000000"
 			player.triggerLevel ++;//trolls are less stable
 			player.decideHemoCaste(player);
 			player.decideLusus(player);
@@ -442,7 +443,7 @@ function findSceneNamed(scenesToCheck, name){
 			//console.log(survivor.title() + " generating relationship with new players ")
 			survivor.generateRelationships(newSession.players); //don't need to regenerate relationship with your old friends
 		}
-		
+
 
 		for(var j= 0; j<newSession.players.length; j++){
 			var player = newSession.players[j];
