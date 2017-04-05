@@ -18,7 +18,8 @@ function sbahjMode(){
 	alert("where MAKING THIS HAPEN")
 	$("#story").append("<img src = 'images/AUTHORSBAHJ.jpg' style='position:absolute; top:111px'>");
 	$('body').css("background-color", "#0000ff");
-	$('story').css("background-color", "#ff00ff");
+	$('#story').css("background-color", "#ff00ff");
+	curSessionGlobalVar.sbahj = true;
 	for(var j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
 		p.sbahj = true;

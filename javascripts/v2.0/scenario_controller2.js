@@ -68,8 +68,7 @@ function startSession(){
 	if(getParameterByName("lollipop")  == "true"){
 		tricksterMode();
 	}
-	if(getParameterByName("sbahjifier")  == "true"){
-		alert("what")
+	if(getParameterByName("sbajifier")  == "true"){
 		sbahjMode();
 	}
 	//authorMessage();

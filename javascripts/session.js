@@ -8,6 +8,7 @@ function Session(session_id){
 	this.hasSpades = false;
 	//session no longer keeps track of guardians.
 	this.kingStrength = 100;
+	this.sbahj = false;
 	this.queenStrength = 100;
 	this.jackStrength = 50;
 	this.hardStrength = 275;
@@ -345,7 +346,26 @@ function Session(session_id){
 
 	this.newScene = function(){
 		this.currentSceneNum ++;
-		var div = "<div id='scene"+this.currentSceneNum+"'></div>";
+		var div;
+		if(this.sbahj){
+			div = "<div id='scene"+this.currentSceneNum+"' style='";
+			div += "background-color: #00ff00;"
+			div += "font-family: Comic Sans MS, cursive, sans-serif;"
+			//$("#scene"+this.currentSceneNum).css("background-color", "#00ff00");
+			var reallyRand = getRandomIntNoSeed(1,10);
+			for(var i = 0; i<reallyRand; i++){
+				var indexOfTerribleCSS = getRandomIntNoSeed(0,terribleCSSOptions.length-1)
+				var tin = terribleCSSOptions[indexOfTerribleCSS]
+				console.log(tin)
+				if(tin[1] == "????"){
+					tin[1] = getRandomIntNoSeed(1,100) +"%";
+				}
+				div += tin[0] + tin[1]+";";
+			}
+			div += "' ></div>";
+		}else{
+			div = "<div id='scene"+this.currentSceneNum+"'></div>";
+		}
 		$("#story").append(div);
 		return $("#scene"+this.currentSceneNum);
 	}
