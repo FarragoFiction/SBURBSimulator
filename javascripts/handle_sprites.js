@@ -24,7 +24,9 @@ function sbahjifier(canvas){
   var ctx = canvas.getContext('2d');
   ctx.rotate(getRandomIntNoSeed(0,10)*Math.PI/180);
 	var pixels =ctx.getImageData(0, 0, canvas.width, canvas.height);
-  var weights = [  0, -1,  0, -1,  5, -1, 0, -1,  0 ];
+  //var weights = [  0, -1,  0, -1,  5, -1, 0, -1,  0 ];
+  var weights = [  -1, -1,  -1, -1,  9, -1, -1, -1,  -1 ];
+  //var weights = [  1, 1, 1, 1,  5, -1, -1, -1, -1 ];
   var side = Math.round(Math.sqrt(weights.length));
   var halfSide = Math.floor(side/2);
   var src = pixels.data;
