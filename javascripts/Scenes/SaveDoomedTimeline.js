@@ -16,7 +16,7 @@ function SaveDoomedTimeLine(session){
 			//console.log(this.timePlayer);
 			return false;
 		}*/
-		//console.log("time player is not dead,  triggering")
+		//console.log("time player is not dead,  do i trigger?")
 		return (this.ectoDoom() || this.playerDoom() || this.randomDoom());
 	}
 
@@ -51,6 +51,7 @@ function SaveDoomedTimeLine(session){
 
 	this.leaderIsFucked = function(){
 		if(this.leaderPlayer.dead && !this.leaderPlayer.dreamSelf && !this.leaderPlayer.godTier && !this.leaderPlayer.godDestiny){
+			//console.log('leader is fucked')
 			return true;
 		}
 		return false;
@@ -59,6 +60,7 @@ function SaveDoomedTimeLine(session){
 	this.ectoDoom = function(){
 		if(this.leaderIsFucked() && !this.session.ectoBiologyStarted){
 			this.reason = "Leader killed before ectobiology."
+			//console.log(this.reason)
 			return true; //paradox, the babies never get made.
 		}
 		return false;
@@ -67,6 +69,7 @@ function SaveDoomedTimeLine(session){
 	this.playerDoom = function(){
 		if(this.leaderIsFucked() && this.playerList.length < session.players.length){
 			this.reason = "Leader killed before all session.players in medium.";
+			//console.log(this.reason)
 			return true; //not everybody is in, leader can't be server for final player
 		}
 		return false;

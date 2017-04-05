@@ -347,10 +347,10 @@ function PlayerEnteredSession(session, mvp_value,player, doomedTimeClone){
 	this.timesCalled = 0;
 	this.player = makeRenderingSnapshot(player);
 	this.doomedTimeClone = doomedTimeClone;
-	this.importanceRating = 5;  
+	this.importanceRating = 5;
 	this.timesCalled = 0;
 	this.secondTimeClone = null;  //second time clone undoes first undo
-	
+
 	this.humanLabel = function(){
 		var ret  = "Kill the " + this.player.htmlTitle() + " before they enter the session.";
 		return ret;
@@ -389,8 +389,8 @@ function PlayerEnteredSession(session, mvp_value,player, doomedTimeClone){
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
 			return false; //let the original scene happen as well.
 	}
-	
-	
+
+
 }
 
 function TimePlayerEnteredSessionWihtoutFrog(session, mvp_value,player, doomedTimeClone){
@@ -399,16 +399,16 @@ function TimePlayerEnteredSessionWihtoutFrog(session, mvp_value,player, doomedTi
 	this.timesCalled = 0;
 	this.player = makeRenderingSnapshot(player);
 	this.doomedTimeClone = doomedTimeClone;
-	this.importanceRating = 10;  
+	this.importanceRating = 10;
 	this.timesCalled = 0;
 	this.secondTimeClone = null;  //second time clone undoes first undo
-	
+
 	//this is so illegal.
 	this.humanLabel = function(){
 		var ret  = "Make the " + this.player.htmlTitle() + " prototype a frog before entering the session. ";
 		return ret;
 	}
-	
+
 	this.alternateScene = function(div){
 			this.timesCalled ++;
 			if(this.secondTimeClone){
@@ -421,7 +421,7 @@ function TimePlayerEnteredSessionWihtoutFrog(session, mvp_value,player, doomedTi
 			narration += " No matter what 'fate' says.  They don't even care how illegal this is. "
 			narration +=  "The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes with in a cloud of gears to join the final battle.";
 			div.append(narration);
-			
+
 			player.kernel_sprite = "Frog"
 			var divID = (div.attr("id")) + "_alt_jack_promotion"
 			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";

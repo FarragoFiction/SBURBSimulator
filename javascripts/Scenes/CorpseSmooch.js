@@ -25,6 +25,7 @@ function CorpseSmooch(session){
 
 	this.renderContent = function(div){
 		this.dreamersToRevive;
+		////console.log(this.dreamersToRevive)
 		this.combo = 0;
 		div.append("<br>"+this.contentForRender(div));
 
