@@ -67,6 +67,7 @@ function sbahjifier(canvas){
       dst[dstOff+3] = a + alphaFac*(255-a);
     }
   }
+  //sligtly offset each time
   ctx.putImageData(output, getRandomIntNoSeed(0,10), getRandomIntNoSeed(0,10));
 }
 
@@ -341,7 +342,7 @@ function poseBabiesAsATeam(canvas, leader, players, guardians, repeatTime){
 				copyTmpCanvasToRealCanvasAtPos(canvas, guardianBuffers[i],x,y)
 		}
 		},1000);
-   
+
 }
 
 //might be repeats of players in there, cause of time clones
