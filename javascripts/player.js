@@ -61,6 +61,39 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	this.fromThisSession = function(session){
 		return (this.ectoBiologicalSource == null || this.ectoBiologicalSource == session.session_id)
 	}
+	
+	this.getHearts = function(){
+		var ret = [];
+		for (var i = 0; i<this.relationships.length; i++){
+			var r = this.relationships[i];
+			if(r.saved_type == r.heart){
+				ret.push(r);
+			}
+		}
+		return ret;
+	}
+	
+	this.getSpades = function(){
+		var ret = [];
+		for (var i = 0; i<this.relationships.length; i++){
+			var r = this.relationships[i];
+			if(r.saved_type == r.spades){
+				ret.push(r);
+			}
+		}
+		return ret;
+	}
+	
+	this.getDiamonds = function(){
+		var ret = [];
+		for (var i = 0; i<this.relationships.length; i++){
+			var r = this.relationships[i];
+			if(r.saved_type == r.diamond){
+				ret.push(r);
+			}
+		}
+		return ret;
+	}
 
 
 	this.chatHandleShort = function(){

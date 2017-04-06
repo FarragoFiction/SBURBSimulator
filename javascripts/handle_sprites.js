@@ -316,29 +316,32 @@ function poseBabiesAsATeam(canvas, leader, players, guardians, repeatTime){
 	}
   //leader on far left, babies arranged to right.
 	  copyTmpCanvasToRealCanvasAtPos(canvas, leaderBuffer,-100,0)
-
-    var x = 50;
+	  //max of 24 babies take a LOT of render time. allow just this one thing to be async.
+	setTimeout(function(){
+		var x = 50;
 		var y = 0;
 		var total = 0;
 		for(var i = 0; i<playerBuffers.length; i++){
-			if(i == 6){
-				x = 50; //down a row
-				y = 75;
-			}
-			x = x +100;
-			copyTmpCanvasToRealCanvasAtPos(canvas, playerBuffers[i],x,y)
+				if(i == 6){
+					x = 50; //down a row
+					y = 75;
+				}
+				x = x +100;
+				copyTmpCanvasToRealCanvasAtPos(canvas, playerBuffers[i],x,y)
 		}
-    //guardians down a bit
-    x = 50;
-    y += 100;
-    for(var i = 0; i<guardianBuffers.length; i++){
-			if(i == 6){
-				x = 50; //down a row
-				y += 75;
-			}
-			x = x +100;
-			copyTmpCanvasToRealCanvasAtPos(canvas, guardianBuffers[i],x,y)
+		//guardians down a bit
+		x = 50;
+		y += 100;
+		for(var i = 0; i<guardianBuffers.length; i++){
+				if(i == 6){
+					x = 50; //down a row
+					y += 75;
+				}
+				x = x +100;
+				copyTmpCanvasToRealCanvasAtPos(canvas, guardianBuffers[i],x,y)
 		}
+		},1000);
+   
 }
 
 //might be repeats of players in there, cause of time clones
