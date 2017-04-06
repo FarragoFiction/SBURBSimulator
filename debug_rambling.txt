@@ -472,8 +472,45 @@ if you try to kill c3<, middle leaf intervenes if able.
 
 can do break ups, or cheat.
 
+~~~
+
+Man. I spent all yesterday making easter eggs and hiding links for them. And then giving a bonus to my tumblr followers by violating the easter egg aesthetic and giving them links to them.
+
+I kind of...want to do something with that for 413. No way I'll get my next major feature (character creation) done in time...but I still should do SOMETHING, right?
+
+I'm thinking riddles.  Ask some sufficiently obtuse question, and the answer is expected to be a seed id. if you enter a seed id that fits the riddle (from it's summary), list of various easter egg urls (including maybe a link to THIS whole mess) are revealed.
+
+would that even be fun or cool?
+
+......
+Bluh. For the record, can I just say that the medical tv show "House"  is complete bullshit. Like, I get that it's fiction. But you still figure that there are magical hyper-competant doctors out there that can DIAGNOSE you. Like. In this day and age shit being left undiagnosed is such bullshit.
+Especially when the internet is just there, telling you about all these cutting edge tests for various bullshit diseases that no actual doctor has ever heard of. Or genes that are definitely diagnostic of something that it turns out there are no commercial tests for.  Hope you live near the one lab on the planet that developed those gene tests, buddy.  Although I guess at this point the list of shit I could have is pretty incurable. So. Diagnosis is more solving a puzzle then something actually useful. bluh. /rant.
+.....
 
 
+Okay. Let's focus. Fo-cus. Focus! (Magic Cupcakes by Octopimp on youtube has just corrupted that entire word for me.)  Today's goal is to let people break up from their quadrants, even though that should be hella rare. 
+
+THINGS THAT CAN TRIGGER A BREAKUP:
+* Feelings change
+* Cheating (on either parties part.)
+
+I figure "feelings changing" shouldn't be an automatic breakup session, after all inertia is totally a thing.   And I want to move away from using seeds if I can help it for a variety of reasons.  I dont' have enough claspect specific stuff going on right now.
+
+Some classes will hold onto a relationship for longer, regardless of why a break up might be valid. Maybe different inertial rates depending on the event.
+
+If I am a Knight AND I am cheating on you, I confess and break up with you. Seems chivalrous. (although maybe NOT cheating would be better, but cheating is already rare enough, I'll leave it as is.)
+If I am a PAGE in the same situation, maybe I just sort of let it...keep happening.  Or a Rogue, like Rufio and Damara. 
+
+So, break things up into Active/Passive lines?  Not all the Active/Passive stuff is known...but I can make educated guesses. It's not like it'll be explicit. 
+I can also have a few Interests (like whatever superclass "Romance" is in) influence your odds of calling things off. I figure if you are good ar romance you migth be more likely to be honest and open? and terrible people just...arne't.
+
+Meanwhile, if your partner is cheating on YOU, chance of finding out and breaking up with them.  This tends to result in much worse feelings.  Triggers and hate and what not.  Damara went into murder mode, basically, after she found out about Horrus. 
+
+MurderMode would probably be a MUCH more likely option in the case of diamonds cheating.  
+
+Clubs cheating is totally not a thing. 
+
+Oh! And if there is a heart player, everybody is MUCH MORE LIKELY to be open and honest (thus reducing the murder mode freak outs). Cause hell, if you don't tell them you have a new <3, then the heart player might.
 
 
 
