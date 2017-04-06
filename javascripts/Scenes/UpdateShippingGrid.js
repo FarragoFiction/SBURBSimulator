@@ -35,7 +35,7 @@ function UpdateShippingGrid(session){
 	//for all players, look at all relationships. if goodBig or badBig, return.
 	//also grab clubs and diamonds. later.
 	this.createShips = function(){
-		//console.log("creating ships")
+		console.log("creating ships")
 			for(var i = 0; i<this.session.players.length; i++){
 
 				var player = this.session.players[i];
