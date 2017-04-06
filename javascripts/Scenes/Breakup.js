@@ -33,7 +33,8 @@ function Breakup(session){
 				this.relationshipToBreakUp = getRandomElementFromArray(hearts);
 				this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 				this.relationshipToBreakUp.target.triggerLevel ++;
-				this.relationshipToBreakUp.value = 5;
+				var oppr = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
+				oppr.value = 5;
 				this.reason = "me_cheat"
 
 				console.log("breaking up hearts because i am cheating in session: " +this.session.session_id)
@@ -47,7 +48,8 @@ function Breakup(session){
 				this.relationshipToBreakUp = getRandomElementFromArray(spades);
 				this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 				this.relationshipToBreakUp.target.triggerLevel ++;
-				this.relationshipToBreakUp.value = 5;
+				var oppr = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
+				oppr.value = 5;
 				this.reason = "me_cheat"
 				console.log("breaking up spades because i am cheating in session: " +this.session.session_id)
 				return true;
@@ -60,7 +62,8 @@ function Breakup(session){
 				this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 				//cheating with diamonds sounds like a terrible idea.
 				this.relationshipToBreakUp.target.triggerLevel += 10;
-				this.relationshipToBreakUp.value = -1;
+				var oppr = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
+				oppr.value = -1;
 				this.reason = "me_cheat"
 				console.log("breaking up diamonds because i am cheating in session: " +this.session.session_id)
 				return true;
@@ -248,11 +251,11 @@ function Breakup(session){
 		chatText += chatLine(player1Start, player1,"Don't '" + mocking + "' me. I know what you did. ");
 		chatText += chatLine(player2Start, player2,"I have no idea what you are talking about!");
 		var other = "";
-		if(this.formerQuadrant = this.relationshipToBreakUp.heart){
+		if(this.formerQuadrant == this.relationshipToBreakUp.heart){
 			 other = player2.getHearts()[0].target.chatHandle;
-		}else if(this.formerQuadrant = this.relationshipToBreakUp.diamond){
+		}else if(this.formerQuadrant == this.relationshipToBreakUp.diamond){
 			other = player2.getDiamonds()[0].target.chatHandle;
-		}else if(this.formerQuadrant = this.relationshipToBreakUp.spades){
+		}else if(this.formerQuadrant == this.relationshipToBreakUp.spades){
 			other = player2.getSpades()[0].target.chatHandle;
 		}
 		chatText += chatLine(player1Start, player1,"I know what you've been doing with " + other + ". ");
@@ -274,12 +277,12 @@ function Breakup(session){
 		chatText += chatLine(player1Start, player1,"We need to break up.");
 		chatText += chatLine(player2Start, player2,"What!?");
 		var other = "";
-		if(this.formerQuadrant = this.relationshipToBreakUp.heart){
-			 other = player2.getHearts()[0].target.chatHandle;
-		}else if(this.formerQuadrant = this.relationshipToBreakUp.diamond){
-			other = player2.getDiamonds()[0].target.chatHandle;
-		}else if(this.formerQuadrant = this.relationshipToBreakUp.spades){
-			other = player2.getSpades()[0].target.chatHandle;
+		if(this.formerQuadrant == this.relationshipToBreakUp.heart){
+			 other = player1.getHearts()[0].target.chatHandle;
+		}else if(this.formerQuadrant == this.relationshipToBreakUp.diamond){
+			other = player1.getDiamonds()[0].target.chatHandle;
+		}else if(this.formerQuadrant == this.relationshipToBreakUp.spades){
+			other = player1.getSpades()[0].target.chatHandle;
 		}
 		chatText += chatLine(player1Start, player1,"I didn't mean to hurt you. It just happened. But... I'm with " + other + " now. And I didn't want to keep stringing you along.");
 		chatText += chatLine(player2Start, player2,"How could you!? I thought we were special!");
@@ -324,8 +327,8 @@ function Breakup(session){
 		var oppRelationship = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
 		oppRelationship.saved_type = this.relationshipToBreakUp.changeType();
 		oppRelationship.old_type = this.relationshipToBreakUp.saved_type;
-		var ret = "TODO: Render BREAKUP between " + this.player.title() + " and " + this.relationshipToBreakUp.target.title() + " because " + this.reason ;
-		return ret;
+		//var ret = "TODO: Render BREAKUP between " + this.player.title() + " and " + this.relationshipToBreakUp.target.title() + " because " + this.reason ;
+		return "";
 	}
 
 
