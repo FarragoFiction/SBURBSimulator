@@ -94,6 +94,7 @@ function loadOther(){
 	loadImage("prince_hat.png")
 	loadImage("discuss_romance.png")
 	loadImage("discuss_hatemance.png")
+	loadImage("discuss_breakup.png")
 	loadImage("discuss_sburb.png")
 	loadImage("discuss_jack.png")
 	loadImage("discuss_murder.png")

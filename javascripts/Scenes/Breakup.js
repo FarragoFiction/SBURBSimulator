@@ -203,12 +203,44 @@ function Breakup(session){
 		}
 		return 0.1;
 	}
+	
+	//different chats for different this.reason 
+	this.getChat = function(){
+		
+	}
+	
+	this.breakupChat = function(div){
+		//drawChat(canvasDiv, player1, player2, chatText, 1000,"discuss_hatemance.png");
+		var canvasHTML = "<br><canvas id='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		var player1 = this.player;
+		var player2 = this.relationshipToBreakUp.target;
+		var chatText = this.getChat(player1,player2,div);
+
+		drawChat(document.getElementById("canvas"+ (div.attr("id"))), player1, player2, chatText, repeatTime,"discuss_breakup.png");
+	}
+	
+	this.youCheatChatText(player1, player2){
+		
+	}
+	
+	this.meCheatChatText(player1, player2){
+		
+	}
+	
+	//example of breakup language.
+	//http://www.mspaintadventures.com/?s=6&p=009694
+	//http://www.mspaintadventures.com/?s=6&p=009686
+	this.meBoredChatText(player1, player2){
+		
+	}
 		
 	
 
 
 	this.renderContent = function(div){
 		div.append("<br>"+this.content());
+		//this.breakupChat(div);
 	}
 
 	this.content = function(){
