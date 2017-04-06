@@ -31,7 +31,7 @@ function Breakup(session){
 			if(Math.seededRandom()*3 < breakUpChance){
 				this.relationshipToBreakUp = getRandomElementFromArray(hearts);
 				this.relationshipToBreakUp.target.triggerLevel ++;
-				this.relationshipToBreakUp.value += -1;
+				this.relationshipToBreakUp.value = 5;
 				this.reason = "me_cheat"
 				console.log("breaking up hearts because i am cheating in session: " +this.session.session_id)
 				return true;
@@ -43,7 +43,7 @@ function Breakup(session){
 			if(Math.seededRandom()*3 < breakUpChance){
 				this.relationshipToBreakUp = getRandomElementFromArray(spades);
 				this.relationshipToBreakUp.target.triggerLevel ++;
-				this.relationshipToBreakUp.value += -1;
+				this.relationshipToBreakUp.value = 5;
 				this.reason = "me_cheat"
 				console.log("breaking up spades because i am cheating in session: " +this.session.session_id)
 				return true;
@@ -55,7 +55,7 @@ function Breakup(session){
 				this.relationshipToBreakUp = getRandomElementFromArray(diamonds);
 				//cheating with diamonds sounds like a terrible idea.
 				this.relationshipToBreakUp.target.triggerLevel += 10;
-				this.relationshipToBreakUp.value += -10;
+				this.relationshipToBreakUp.value = -1;
 				this.reason = "me_cheat"
 				console.log("breaking up diamonds because i am cheating in session: " +this.session.session_id)
 				return true;
@@ -80,7 +80,7 @@ function Breakup(session){
 						this.relationshipToBreakUp = r;
 						//not happy with cheating bastards.
 						this.player.triggerLevel += 10;
-						r.value += -5;
+						r.value =-10;
 						this.reason = "you_cheat"
 						console.log("breaking up hearts because they are cheating in session: " +this.session.session_id)
 						return true;
@@ -95,7 +95,7 @@ function Breakup(session){
 						this.relationshipToBreakUp = r;
 						//not happy with cheating bastards.
 						this.player.triggerLevel += 10;
-						r.value += -5;
+						r.value =-10;
 						this.reason = "you_cheat"
 						console.log("breaking up spades because they are cheating in session: " +this.session.session_id)
 						return true;
@@ -110,7 +110,7 @@ function Breakup(session){
 						this.relationshipToBreakUp = r;
 						//dude, cheating on diamonds sounds like a TERRIBLE idea.
 						this.player.triggerLevel += 100;
-						r.value += -50;
+						r.value =-50;
 						this.reason = "you_cheat"
 						console.log("breaking up diamonds because they are cheating in session: " +this.session.session_id)
 						return true;
