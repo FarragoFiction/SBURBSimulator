@@ -212,7 +212,12 @@ function Breakup(session){
 	}
 
 	this.content = function(){
-		var ret = "TODO: BREAKUP between " + this.player.title() + " and " + this.relationshipToBreakUp.target.title() + " because " + this.reason ;
+		this.relationshipToBreakUp.saved_type = this.relationshipToBreakUp.changeType();
+		this.relationshipToBreakUp.old_type = this.relationshipToBreakUp.saved_type;
+		var oppRelationship = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
+		oppRelationship.saved_type = this.relationshipToBreakUp.changeType();
+		oppRelationship.old_type = this.relationshipToBreakUp.saved_type;
+		var ret = "TODO: Render BREAKUP between " + this.player.title() + " and " + this.relationshipToBreakUp.target.title() + " because " + this.reason ;
 		return ret;
 	}
 

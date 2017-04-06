@@ -57,50 +57,6 @@ function Relationship(initial_value, target_player){
 		this.old_type = type;
 	}
 	
-	//TODO no, put this in own scene.
-	this.potentialBreakup = function(){
-		var rand = Math.seededRandom();
-		//lets be friends. or worse.
-		if(this.value < 10 && this.saved_type == this.heart){
-			if(rand > 0.25){
-				this.old_type = this.saved_type
-				this.saved_type = this.changeType();
-				this.drama = true;
-				return this.saved_type;
-			}
-		}
-		//i just don't hate you enough.
-		if(this.value > -10 && this.saved_type == this.spades){
-			if(rand > 0.25){
-				this.old_type = this.saved_type
-				this.saved_type = this.changeType();
-				this.drama = true;
-				return this.saved_type;
-			}
-		}
-		//it IS a hate quardrant. but make it more stable.
-		if(this.value > 0 && this.saved_type == this.clubs){
-			if(rand > 0.75){
-				this.old_type = this.saved_type
-				this.saved_type = this.changeType();
-				this.drama = true;
-				return this.saved_type;
-			}
-		}
-		
-		//more stable.
-		if(this.value < 0 && this.saved_type == this.diamond){
-			if(rand > 0.75){
-				this.old_type = this.saved_type
-				this.saved_type = this.changeType();
-				this.drama = true;
-				return this.saved_type;
-			}
-		}
-		
-		return this.saved_type;
-	}
-
 
 	this.type = function(){
 		//official relationships are different.
