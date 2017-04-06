@@ -263,8 +263,10 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 
 		if(this.aspect == "Blood"){
 			this.boostAllRelationships();
+			this.boostAllRelationshipsWithMe();
 		}else if(this.aspect == "Rage"){
 			this.damageAllRelationships();
+			this.damageAllRelationshipsWithMe();
 		}
 		if(this.class_name == "Page"){  //they don't have many quests, but once they get going they are hard to stop.
 			powerBoost = powerBoost * 5;

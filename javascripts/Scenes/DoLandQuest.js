@@ -108,6 +108,7 @@ function DoLandQuest(session){
 
 		if(helper.aspect == "Blood"){
 			player.boostAllRelationships();
+			player.boostAllRelationshipsWithMe();
 			player.triggerLevel += -1;
 			if(r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " spends a great deal of time helping the " + player.htmlTitle() + " out with their relationship drama. " ;
@@ -128,6 +129,7 @@ function DoLandQuest(session){
 
 		if(helper.aspect == "Rage"){
 			player.damageAllRelationships();
+			player.damageAllRelationshipsWithMe();
 			player.triggerLevel += 1;
 			helper.triggerLevel += 1;
 			if(r2.value > 0){
@@ -190,8 +192,6 @@ function DoLandQuest(session){
 			ret += getRelationshipFlavorText(r1,r2, player, helper);
 		}
 		return ret;
-
-
 	}
 
 	this.content = function(div){
