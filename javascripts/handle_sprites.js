@@ -958,13 +958,14 @@ function drawSpriteTurnways(canvas, player){
 
 function makeRenderingSnapshot(player){
 	var ret = new PlayerSnapshot();
-  ret.trickster = player.trickster;
-  ret.sbahj = player.sbahj;
-  ret.wasteInfluenced = player.wasteInfluenced;
+	ret.trickster = player.trickster;
+	ret.baby_stuck = player.baby_stuck;
+	ret.sbahj = player.sbahj;
+	ret.wasteInfluenced = player.wasteInfluenced;
 	ret.grimDark = player.grimDark;
 	ret.victimBlood = player.victimBlood;
 	ret.murderMode = player.murderMode;
-  ret.leftMurderMode = player.leftMurderMode; //scars
+    ret.leftMurderMode = player.leftMurderMode; //scars
 	ret.dead = player.dead;
 	ret.isTroll = player.isTroll
 	ret.godTier = player.godTier;
@@ -1031,7 +1032,7 @@ function drawSprite(canvas, player,ctx,baby){
   if(player.isTroll){//wings before sprite
     fin2(canvas,player);
   }
-  if(!baby){
+  if(!baby && !player.baby_stuck){
     playerToSprite(canvas,player);
     bloody_face(canvas, player)//not just for murder mode, because you can kill another player if THEY are murder mode.
     if(player.murderMode == true){
