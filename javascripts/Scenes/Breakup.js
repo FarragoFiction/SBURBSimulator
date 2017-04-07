@@ -12,7 +12,10 @@ function Breakup(session){
 		this.relationshipToBreakUp = null;
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			this.player = this.session.availablePlayers[i];
-			return this.breakUpBecauseIAmCheating() || this.breakUpBecauseTheyCheating() || this.breakUpBecauseNotFeelingIt();
+			var breakup= this.breakUpBecauseIAmCheating() || this.breakUpBecauseTheyCheating() || this.breakUpBecauseNotFeelingIt();
+			if(!this.player.dead && breakup==true){
+				return true;
+			}
 		}
 		this.player = null;
 		return false;
@@ -318,7 +321,12 @@ function Breakup(session){
 
 	this.renderContent = function(div){
 		div.append("<br>"+this.content());
-		this.breakupChat(div);
+		if(this.relationshipToBreakUp.target.dead){
+			//do nothing, just text
+		}else{
+			this.breakupChat(div);
+		}
+
 	}
 
 	this.content = function(){
@@ -328,6 +336,9 @@ function Breakup(session){
 		oppRelationship.saved_type = this.relationshipToBreakUp.changeType();
 		oppRelationship.old_type = this.relationshipToBreakUp.saved_type;
 		//var ret = "TODO: Render BREAKUP between " + this.player.title() + " and " + this.relationshipToBreakUp.target.title() + " because " + this.reason ;
+		if(this.relationshipToBreakUp.target.dead){
+			return "The " + this.player.htmlTitleBasic() + " has finally decided it is time to move on. The " + this.relationshipToBreakUp.target.htmlTitleBasic() + " is dead.";
+		}
 		return "";
 	}
 
