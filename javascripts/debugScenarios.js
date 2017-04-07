@@ -33,7 +33,7 @@ function babyStuckMode(){
 	for(var j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
 		p.baby_stuck = true;
-		p.quirk.lettersToReplaceIgnoreCase = [["e", "goo"],["a","gah"],["i","ga"],["o","blooo"],["u","guuuu"]]
+		p.quirk.lettersToReplaceIgnoreCase = p.quirk.lettersToReplaceIgnoreCase.concat([["e", "goo"],["a","gah"],["i","ga"],["o","blooo"],["u","guuuu"]]);
 	}
 }
 function tricksterMode(){
