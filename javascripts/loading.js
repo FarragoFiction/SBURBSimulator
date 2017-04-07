@@ -69,6 +69,7 @@ function loadImage(img){
 function loadOther(){
 	loadImage("jr.png");
 	loadImage("stab.png");
+	loadImage("rainbow.png");
 	loadImage("gears.png");
 	loadImage("mind_forehead.png")
 	loadImage("ab.png")
