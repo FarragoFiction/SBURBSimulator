@@ -457,6 +457,14 @@ function getOneRandomReplaceArray(){
 	arr.push(["W","\\/\\/"]);
 	arr.push(["H",")("]);
 	arr.push(["H","|-|"]);
+	arr.push(["H","#"]);
+	arr.push(["i","!"]);
+	arr.push(["I","!"]);
+	arr.push(["o","*"]);
+	arr.push(["a","@"]);
+	arr.push(["at","@"]);
+	arr.push(["and","&"]);
+	arr.push(["n","^"]);
 	arr.push(["oo","69"]);
 	arr.push(["OO","69"]);
 	arr.push(["o","o+"]);
