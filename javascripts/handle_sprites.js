@@ -1043,6 +1043,15 @@ function drawSprite(canvas, player,ctx,baby){
     }
   }else{
      babySprite(canvas,player);
+	 if(player.baby_stuck && !baby){
+		 bloody_face(canvas, player)//not just for murder mode, because you can kill another player if THEY are murder mode.
+		if(player.murderMode == true){
+		  scratch_face(canvas, player);
+		}
+		if(player.leftMurderMode == true){
+		  scar_face(canvas, player);
+		}
+	 }
   }
 
   hair(canvas, player);
