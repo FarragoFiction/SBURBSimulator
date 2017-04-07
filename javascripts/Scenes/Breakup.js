@@ -337,7 +337,7 @@ function Breakup(session){
 		oppRelationship.old_type = this.relationshipToBreakUp.saved_type;
 		//var ret = "TODO: Render BREAKUP between " + this.player.title() + " and " + this.relationshipToBreakUp.target.title() + " because " + this.reason ;
 		if(this.relationshipToBreakUp.target.dead){
-			return "The " + this.player.htmlTitleBasic() + " has finally decided it is time to move on. The " + this.relationshipToBreakUp.target.htmlTitleBasic() + " is dead.";
+			return "The " + this.player.htmlTitleBasic() + " has finally decided it is time to move on. The " + this.relationshipToBreakUp.target.htmlTitleBasic() + " is dead. They have mourned them long enough. ";
 		}
 		return "";
 	}
