@@ -6,6 +6,7 @@ function PlayerSnapshot(){
 	this.trickster = null;
   this.sbahj = null;
 	this.baby = null;
+	this.baby_stuck = null;
 	this.ectoBiologicalSource = null;
 	this.class_name = null;null
 	this.guardian = null;

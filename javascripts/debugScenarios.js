@@ -27,6 +27,15 @@ function sbahjMode(){
 	}
 }
 
+
+function babyStuckMode(){
+	alert("goo goo GA GAH!")
+	for(var j = 0; j<curSessionGlobalVar.players.length; j++){
+		var p = curSessionGlobalVar.players[j];
+		p.baby_stuck = true;
+		p.quirk.lettersToReplaceIgnoreCase = p.quirk.lettersToReplaceIgnoreCase.concat([["e", "goo"],["a","gah"],["i","ga"],["o","blooo"],["u","guuuu"]]);
+	}
+}
 function tricksterMode(){
 	alert("I FEEL JUST PEEEEEEEEEEEACHY!!!!!!!!!!!")
 	$("#story").append("<img src = 'images/trickster_author.png' style='float:left;'>");

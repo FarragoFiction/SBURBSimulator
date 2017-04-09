@@ -71,6 +71,10 @@ function startSession(){
 	if(getParameterByName("sbajifier")  == "true"){
 		sbahjMode();
 	}
+	
+	if(getParameterByName("babyStuck")  == "true"){
+		babyStuckMode();
+	}
 	//authorMessage();
 	//i cannot resist
 	if(initial_seed == 413){

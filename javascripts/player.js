@@ -15,6 +15,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	this.guardian = null; //no longer the sessions job to keep track.
 	this.number_confessions = 0;
 	this.number_times_confessed_to = 0;
+	this.baby_stuck = false;
 	this.wasteInfluenced = false; //doomed time clones might be sent back by Waste of Mind and Observer.
 	this.aspect = aspect;
 	this.land = land;

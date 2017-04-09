@@ -610,7 +610,10 @@ function Intro(session){
 					narration += "They are " + r.description() + ". ";
 				}
 			}
-
+			if(this.player.trickster){
+				narration += "They immediately heal their land in an explosion of bullshit candy giggle-magic. ";
+			}
+			
 			this.session.kingStrength = this.session.kingStrength + 20;
 			if(this.session.queenStrength > 0){
 				this.session.queenStrength = this.session.queenStrength + 10;

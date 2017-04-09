@@ -71,8 +71,37 @@ function sbahjifier(canvas){
   ctx.putImageData(output, getRandomIntNoSeed(0,10), getRandomIntNoSeed(0,10));
 }
 
-
+//work once again gives me inspiration for this sim. thanks, bob!!!
 function rainbowSwap(canvas){
+	if(checkSimMode() == true){
+		return;
+	}
+	var ctx = canvas.getContext('2d');
+	var img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
+	var imageString = "rainbow.png";
+    var img=document.getElementById(imageString);
+    var width = img.width;
+  	var height = img.height;
+	var print= true;
+	 var rainbow_canvas = getBufferCanvas(document.getElementById("rainbow_template"));
+	var rctx = rainbow_canvas.getContext('2d');
+  	rctx.drawImage(img,0,0,width,height);
+	var img_data_rainbow =rctx.getImageData(0, 0,width, height);
+	//4 *Math.floor(i/(4000)) is because 1/(width*4) get me the row number (*4 'cause there are 4 elements per pixel). then, when i have the row number, *4 again because first row is 0,1,2,3 and second is 4,5,6,7 and third is 8,9,10,11
+	for(var i = 0; i<img_data.data.length; i += 4){
+		if(img_data.data[i+3] >= 128){
+			img_data.data[i] =img_data_rainbow.data[4 *Math.floor(i/(4000))]
+			img_data.data[i+1] = img_data_rainbow.data[4 *Math.floor(i/(4000))+1]
+			img_data.data[i+2] =img_data_rainbow.data[4 *Math.floor(i/(4000))+2]
+			img_data.data[i+3] = getRandomIntNoSeed(100,255); //make it look speckled.
+			
+		}
+	}
+	ctx.putImageData(img_data, 0, 0);
+	//ctx.putImageData(img_data_rainbow, 0, 0);
+}
+
+function rainbowSwapProgram(canvas){
   if(checkSimMode() == true){
     return;
   }
@@ -958,13 +987,14 @@ function drawSpriteTurnways(canvas, player){
 
 function makeRenderingSnapshot(player){
 	var ret = new PlayerSnapshot();
-  ret.trickster = player.trickster;
-  ret.sbahj = player.sbahj;
-  ret.wasteInfluenced = player.wasteInfluenced;
+	ret.trickster = player.trickster;
+	ret.baby_stuck = player.baby_stuck;
+	ret.sbahj = player.sbahj;
+	ret.wasteInfluenced = player.wasteInfluenced;
 	ret.grimDark = player.grimDark;
 	ret.victimBlood = player.victimBlood;
 	ret.murderMode = player.murderMode;
-  ret.leftMurderMode = player.leftMurderMode; //scars
+    ret.leftMurderMode = player.leftMurderMode; //scars
 	ret.dead = player.dead;
 	ret.isTroll = player.isTroll
 	ret.godTier = player.godTier;
@@ -1031,7 +1061,7 @@ function drawSprite(canvas, player,ctx,baby){
   if(player.isTroll){//wings before sprite
     fin2(canvas,player);
   }
-  if(!baby){
+  if(!baby && !player.baby_stuck){
     playerToSprite(canvas,player);
     bloody_face(canvas, player)//not just for murder mode, because you can kill another player if THEY are murder mode.
     if(player.murderMode == true){
@@ -1042,6 +1072,15 @@ function drawSprite(canvas, player,ctx,baby){
     }
   }else{
      babySprite(canvas,player);
+	 if(player.baby_stuck && !baby){
+		 bloody_face(canvas, player)//not just for murder mode, because you can kill another player if THEY are murder mode.
+		if(player.murderMode == true){
+		  scratch_face(canvas, player);
+		}
+		if(player.leftMurderMode == true){
+		  scar_face(canvas, player);
+		}
+	 }
   }
 
   hair(canvas, player);
