@@ -728,7 +728,7 @@ function session612IndexToTroll(player, index){
 		player.bloodColor = "#0021cb";
 		player.quirk.capitalization = 1;
 		player.quirk.punctuation = 2;
-		player.quirk.favoriteNumber = 10;
+		player.quirk.favoriteNumber = 6;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["x","%"],["fuck","fiddlesticks"]];
 		player.quirk.prefix = "D -->"
@@ -974,7 +974,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.bloodColor = "#0021cb";
 		player.quirk.capitalization = 1;
 		player.quirk.punctuation = 2;
-		player.quirk.favoriteNumber = 10;
+		player.quirk.favoriteNumber = 6;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["x","%"],["fuck","fiddlesticks"]];
 		player.quirk.prefix = "8==D"
