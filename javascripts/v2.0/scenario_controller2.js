@@ -170,9 +170,24 @@ function scratch(){
 	reinit();
 	var raggedPlayers = findPlayersFromSessionWithId(curSessionGlobalVar.players, curSessionGlobalVar.session_id); //but only native
 	//use seeds the same was as original session and also make DAMN sure the players/guardians are fresh.
+	//hello to TheLertTheWorldNeeds, I loved your amazing bug report!  I will obviously respond to you in kind, but wanted
+	//to leave a permanent little 'thank you' here as well. (and on the glitch page) I laughed, I cried, I realzied that fixing guardians
+	//for easter egg sessions would be way easier than initially feared. Thanks a bajillion.
+	//it's not as simple as remebering to do easter eggs here, but that's a good start. i also gotta
+	//rework the easter egg guardian code. last time it worked guardians were an array a session had, but now they're owned by individual players.
+	//plus, at the time i first re-enabled the easter egg, session 612 totally didn't have a scratch, so i could exactly test.
 	curSessionGlobalVar.makePlayers();
 	curSessionGlobalVar.randomizeEntryOrder();
 	curSessionGlobalVar.makeGuardians(); //after entry order established
+	if(initial_seed == 413){
+		session413();
+	}else if(initial_seed == 612){
+		session612();
+	}else if(initial_seed == 1025){
+		session1025()
+	}else if(initial_seed == 33){
+		session33();
+	}
 	curSessionGlobalVar.ectoBiologyStarted = ectoSave; //if i didn't do ecto in first version, do in second
 	if(curSessionGlobalVar.ectoBiologyStarted){ //players are reset except for haivng an ectobiological source
 		setEctobiologicalSource(curSessionGlobalVar.players, curSessionGlobalVar.session_id);
@@ -366,7 +381,8 @@ function session413(){
 		player.isTroll = false;
 		guardian.isTroll = false;
 		player.relationships = [];
-		//guardian.generateBlandRelationships(curSessionGlobalVar.guardians);
+		var guardians = getGuardiansForPlayers(curSessionGlobalVar.players)
+		guardian.generateBlandRelationships(guardians);
 		player.generateBlandRelationships(curSessionGlobalVar.players);
 		session413IndexToHuman(player, i);
 		session413IndexToAncestor(guardian, i);//just call regular with a different index
@@ -581,8 +597,9 @@ function session33(){
 		player.isTroll = true;
 		guardian.isTroll = true;
 		player.generateRelationships(curSessionGlobalVar.players);
-		//TODO fix this i guess.
-		//guardian.generateRelationships(curSessionGlobalVar.guardians);
+		//TODO fix this i guess.  Edit: TheLertTheWorldNeeds convinced me to fix it.
+		var guardians = getGuardiansForPlayers(curSessionGlobalVar.players)
+		guardian.generateRelationships(guardians);
 		if(player.aspect != "Time" && player.aspect != "Space"){
 			player.aspect = "Heart"
 			player.class_name = "Rogue"
@@ -629,7 +646,8 @@ function session612(){
 		player.isTroll = true;
 		guardian.isTroll = true;
 		player.relationships = [];
-		//guardian.generateRelationships(curSessionGlobalVar.guardians);
+		var guardians = getGuardiansForPlayers(curSessionGlobalVar.players)
+		guardian.generateRelationships(guardians);
 		player.generateRelationships(curSessionGlobalVar.players);
 		session612IndexToTrollAncestor(player, i);
 		session612IndexToTroll(guardian, i);
@@ -1173,8 +1191,8 @@ function session1025(){
 			session612IndexToTroll(player, index);
 			session612IndexToTroll(guardian, index);
 		}
-
-		//guardian.generateRelationships(curSessionGlobalVar.guardians);
+		var guardians = getGuardiansForPlayers(curSessionGlobalVar.players)
+		guardian.generateRelationships(guardians);
 		player.relationships = [];
 		player.generateRelationships(curSessionGlobalVar.players);
 
