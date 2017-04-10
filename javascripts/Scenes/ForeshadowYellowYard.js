@@ -1,3 +1,4 @@
+//not being used anymore since yellow yard is implemented.
 function ForeshadowYellowYard(session){
 	this.session=session;
 	this.canRepeat = false;
@@ -43,7 +44,7 @@ function ForeshadowYellowYard(session){
 		}else{
 			console.log("time player is alive.")
 		}
-		
+
 	}
 
 	this.content = function(){

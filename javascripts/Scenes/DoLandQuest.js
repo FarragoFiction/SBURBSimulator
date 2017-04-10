@@ -162,6 +162,25 @@ function DoLandQuest(session){
 
 	}
 
+	this.spriteContent = function(player){
+		var ret = " " + player.kernel_sprite + "sprite ";
+		if(helpful_prototypings.indexOf(player.kernel_sprite) != -1){
+			//console.log("good sprite: " + this.session.session_id)
+			ret += " is pretty much as useful as another player. No cagey riddles, just straight answers on how to finish the quests. "
+			player.landLevel += 1;
+		}else if(unhelpful_prototypings.indexOf(player.kernel_sprite) != -1){
+			ret += " is the most unhelpful piece of shit in the world. Oh my god, just once. Please, just shut up."
+			//console.log("bad sprite: " + this.session.session_id)
+			player.landLevel += -0.5;
+			player.triggerLevel += 0.1;
+		}else{
+			ret += "provides the requisite amount of gigglesnort hideytalk to be juuuust barely helpful. "
+			//console.log("normal sprite: " + this.session.session_id)
+			player.landLevel += 0.5;
+		}
+		return ret;
+	}
+
 	this.contentForPlayer = function(player, helper){
 		var ret = "";
 		ret += "The " + player.htmlTitle()  ;
@@ -191,6 +210,7 @@ function DoLandQuest(session){
 			r2.moreOfSame();
 			ret += getRelationshipFlavorText(r1,r2, player, helper);
 		}
+		ret += this.spriteContent(player);
 		return ret;
 	}
 

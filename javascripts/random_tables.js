@@ -843,17 +843,26 @@ free_land_titles = free_land_titles.concat(["Suburbs","Cities","Neighborhoods","
 
 
 var prototypings = ["Cow","Bird","Bug","Grandma","Uncle","Aunt","Cat","Dog","Pigeon","Octopus","Nick Cage","Fish","Kitten"];
-prototypings = prototypings.concat(["Worm","Doll","Pony","Horse","Bear","Goat","Rat","Sheep","Crab","Spider","Raccoon"]);
+prototypings = prototypings.concat(["Worm","Pony","Horse","Bear","Goat","Rat","Sheep","Crab","Spider","Raccoon"]);
 prototypings = prototypings.concat(["Crow","Chicken","Duck","Sparrow","Dove","Goose","Turkey","Kangaroo","Lawyer","Doctor"]);
 prototypings = prototypings.concat(["Ladybug","Butterfly","Fly","Mosquito","Centipede","Praying Mantis","Dragonfly","Ant"]);
 prototypings = prototypings.concat(["Bull","Llama","Ox","Bison","Elephant","Giraffe","Sloth","Engineer","Construction Worker"]);
 prototypings = prototypings.concat(["Mouse","Gerbil","Hamster","Sugar Glider","Rabbit","Guinea Pig","Chinchilla","Pomeranian"]);
 prototypings = prototypings.concat(["Opossum","Penguin","Koala","Walrus","Dachshund","Ocelot","Tiger","Lion", "Cougar"]);
 prototypings = prototypings.concat(["Stoner","Student","Librarian","Teacher","Jockey","Butler","Rapper","Poet", "Astronaut", "Cowboy"]);
+prototypings = prototypings.concat(["Robot","Game Bro","Game Grl","Movie Star","Internet Troll"]);
 
-var disastor_prototypings = ["First Guardian", "Horrorterror", "Dragon", "Alien", "Teacher", "Clown"];
-disastor_prototypings = disastor_prototypings.concat(["Zombie","Demon","Monster","Vampire","Pumpkin","Werewolf","Puppet",]);
-var fortune_prototypings = ["Frog","Lizard", "Salamander", "Iguana", "Crocodile", "Turtle", "Snake"];
+
+var disastor_prototypings = ["First Guardian", "Horrorterror", "Dragon", "Alien", "Teacher", "Clown","Fiduspawn","Doll","Xenomorph"];
+disastor_prototypings = disastor_prototypings.concat(["Zombie","Demon","Monster","Vampire","Pumpkin","Werewolf","Puppet"]);
+var fortune_prototypings = ["Frog","Lizard", "Salamander", "Iguana", "Crocodile", "Turtle", "Snake","Axolotl","Newt"];
+
+//keep copies here, but if a prototyping isn't on one of these lists, consider it 'neutral
+//helpfulness is in regards to landquests. '
+//helpful prototypings are generally non-authority figure humans, besides things like rappers and poets who embrace riddle-fuckery.
+//once i enable self-prototyping, add your name to the helful prototyping array.
+var helpful_prototypings = ["Robot","Game Bro","Horrorterror","Game Grl","Nick Cage","Lawyer","Doctor","Engineer","Construction Worker","Student","Librarian","Jockey","Butler","Astronaut", "Cowboy"];
+var unhelpful_prototypings = ["First Guardian", "Teacher", "Clown","Pomeranian","Pony","Horse","Doll","Internet Troll","Mosquito","Fly"];
 
 
 var space_levels = ["GREENTIKE", "RIBBIT RUSTLER", "FROG-WRANGLER"];

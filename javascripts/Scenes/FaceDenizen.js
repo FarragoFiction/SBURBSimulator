@@ -54,7 +54,7 @@ function FaceDenizen(session){
 					p.leveledTheHellUp = true;
 					p.denizenDefeated = true;
 					this.session.denizenBeat = true;
-					console.log("denizen beat through violence in session: " + this.session.session_id)
+					//console.log("denizen beat through violence in session: " + this.session.session_id)
 					div.append("<br>"+ret);
 				}else{
 					p.denizenFaced = true;
@@ -82,7 +82,7 @@ function FaceDenizen(session){
 					p.leveledTheHellUp = true;
 					div.append("<br>"+ret);
 					this.session.denizenBeat = true;
-					console.log("denizen beat through choice in session: " + this.session.session_id)
+					//console.log("denizen beat through choice in session: " + this.session.session_id)
 				}else{
 					p.denizenFaced = true;
 					p.denizenDefeated = false;
@@ -111,7 +111,7 @@ function FaceDenizen(session){
 					p.leveledTheHellUp = true;
 					p.denizenDefeated = true;
 					this.session.denizenBeat = true;
-					console.log("denizen beat through violence in session: " + this.session.session_id)
+				//	console.log("denizen beat through violence in session: " + this.session.session_id)
 				}else{
 					p.denizenFaced = true;
 					p.denizenDefeated = false;
@@ -128,8 +128,8 @@ function FaceDenizen(session){
 					p.denizenDefeated = true;
 					p.power = p.power*2;  //current and future doubling of power.
 					p.leveledTheHellUp = true;
-					this.session.denizenBeat = true;
-					console.log("denizen beat through choice in session: " + this.session.session_id)
+					//this.session.denizenBeat = true;
+					//console.log("denizen beat through choice in session: " + this.session.session_id)
 				}else{
 					p.denizenFaced = true;
 					p.denizenDefeated = false;
