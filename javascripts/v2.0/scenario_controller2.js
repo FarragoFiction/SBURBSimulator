@@ -75,6 +75,15 @@ function startSession(){
 	if(getParameterByName("babyStuck")  == "true"){
 		babyStuckMode();
 	}
+	checkEasterEgg();
+
+
+	checkSGRUB();
+
+	load(curSessionGlobalVar.players, curSessionGlobalVar.guardians); //in loading.js
+}
+
+function checkEasterEgg(){
 	//authorMessage();
 	//i cannot resist
 	if(initial_seed == 413){
@@ -86,14 +95,7 @@ function startSession(){
 	}else if(initial_seed == 33){
 		session33();
 	}
-
-
-	checkSGRUB();
-
-	load(curSessionGlobalVar.players, curSessionGlobalVar.guardians); //in loading.js
 }
-
-
 
 function getParameterByName(name, url) {
     if (!url) {
@@ -183,15 +185,7 @@ function scratch(){
 	curSessionGlobalVar.makePlayers();
 	curSessionGlobalVar.randomizeEntryOrder();
 	curSessionGlobalVar.makeGuardians(); //after entry order established
-	if(initial_seed == 413){
-		session413();
-	}else if(initial_seed == 612){
-		session612();
-	}else if(initial_seed == 1025){
-		session1025()
-	}else if(initial_seed == 33){
-		session33();
-	}
+	checkEasterEgg();
 	curSessionGlobalVar.ectoBiologyStarted = ectoSave; //if i didn't do ecto in first version, do in second
 	if(curSessionGlobalVar.ectoBiologyStarted){ //players are reset except for haivng an ectobiological source
 		setEctobiologicalSource(curSessionGlobalVar.players, curSessionGlobalVar.session_id);

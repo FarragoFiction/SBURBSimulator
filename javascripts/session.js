@@ -83,6 +83,7 @@ function Session(session_id){
 		curSessionGlobalVar.makePlayers();
 		curSessionGlobalVar.randomizeEntryOrder();
 		curSessionGlobalVar.makeGuardians(); //after entry order established
+		checkEasterEgg(); //in the controller.
 		//now that i've done that, (for seed reasons) fucking ignore it and stick the actual players in
 		//after alll, i could be from a combo session.
 		//but don't just hardcore replace. need to...fuck. okay, cloning aliens now.
