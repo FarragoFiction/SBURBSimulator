@@ -857,12 +857,13 @@ var disastor_prototypings = ["First Guardian", "Horrorterror", "Dragon", "Alien"
 disastor_prototypings = disastor_prototypings.concat(["Zombie","Demon","Monster","Vampire","Pumpkin","Werewolf","Puppet"]);
 var fortune_prototypings = ["Frog","Lizard", "Salamander", "Iguana", "Crocodile", "Turtle", "Snake","Axolotl","Newt"];
 
-//keep copies here, but if a prototyping isn't on one of these lists, consider it 'neutral
+//keep copies here, but if a prototyping isn't on one of these lists, consider it 'neutrasl
 //helpfulness is in regards to landquests. '
 //helpful prototypings are generally non-authority figure humans, besides things like rappers and poets who embrace riddle-fuckery.
 //once i enable self-prototyping, add your name to the helful prototyping array.
 var helpful_prototypings = ["Robot","Game Bro","Horrorterror","Game Grl","Nick Cage","Lawyer","Doctor","Engineer","Construction Worker","Student","Librarian","Jockey","Butler","Astronaut", "Cowboy"];
-var unhelpful_prototypings = ["First Guardian", "Teacher", "Clown","Pomeranian","Pony","Horse","Doll","Internet Troll","Mosquito","Fly"];
+var unhelpful_prototypings = ["First Guardian", "Teacher", "Clown","Pomeranian","Pony","Horse","Doll","Internet Troll","Mosquito","Fly","Gobblefiend"];
+var player_prototypings = []; //empty unless a player prototypes themselves.
 
 
 var space_levels = ["GREENTIKE", "RIBBIT RUSTLER", "FROG-WRANGLER"];

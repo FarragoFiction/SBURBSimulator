@@ -302,6 +302,7 @@ function addNumberQuirk(ret){
 		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["S","5"]);
 		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["s","5"]);
 		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["Z","5"]);
+		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["J","5"]);
 		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["z","5"]);
 	}else if(ret.favoriteNumber == 6){
 		if(Math.seededRandom()>.5) ret.lettersToReplace.push(["G","6"]);

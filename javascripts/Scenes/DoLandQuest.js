@@ -163,7 +163,7 @@ function DoLandQuest(session){
 	}
 
 	this.spriteContent = function(player){
-		var ret = " " + player.kernel_sprite + "sprite ";
+		var ret = " " + player.kernel_sprite.replace(/\s+/g, '') + "sprite ";
 		if(helpful_prototypings.indexOf(player.kernel_sprite) != -1){
 			//console.log("good sprite: " + this.session.session_id)
 			ret += " is pretty much as useful as another player. No cagey riddles, just straight answers on how to finish the quests. "

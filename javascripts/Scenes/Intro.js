@@ -8,7 +8,37 @@ function Intro(session){
 		this.player = player;
 		return true; //this should never be in the main array. call manually.
 	}
-	
+
+//not a yellow yard thing, just random
+	this.changePrototyping = function(div){
+		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1 && Math.seededRandom() > .8){
+			var divID = (div.attr("id"))
+			var canvasHTML = "<br><canvas id='canvaskernel" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+			div.append(canvasHTML);
+			var canvas = document.getElementById("canvaskernel"+ divID);
+			var timePlayer = findAspectPlayer(this.session.players, "Time");
+			drawTimeGears(canvas, timePlayer);
+			drawSinglePlayer(canvas, timePlayer);
+			var ret = "A " + timePlayer.htmlTitleBasic() + " suddenly warps in from the future. ";
+			ret += " They come with a dire warning of a doomed timeline. ";
+			ret += "They dropkick the " + this.player.kernel_sprite + " out of the way and jump into the " + this.player.htmlTitleBasic() + "'s kernel sprite instead. <br> "
+			this.player.kernel_sprite = timePlayer.title();
+			console.log("time player sprite in session: " + this.session.session_id);
+			player_prototypings.push(this.player.kernel_sprite)
+			helpful_prototypings.push(this.player.kernel_sprite)
+
+		}else if((this.player.dead == true || this.player.isDreamSelf == true || this.player.dreamSelf == false) && Math.seededRandom() > .1){
+			var ret = "Through outrageous shenanigans, one of the " + this.player.htmlTitle() + "'s superfluous corpses ends up prototyped into their kernel sprite. <br>";
+			this.player.kernel_sprite =this.player.title();
+			console.log("player sprite in session: " + this.session.session_id);
+			player_prototypings.push(this.player.kernel_sprite)
+			helpful_prototypings.push(this.player.kernel_sprite)
+
+		}
+		div.append(ret);
+		return "";
+	}
+
 	this.addImportantEvent = function(){
 		var current_mvp =  findStrongestPlayer(this.session.players)
 		if(this.player.aspect == "Time" && fortune_prototypings.indexOf(this.player.kernel_sprite) == -1){
@@ -16,7 +46,7 @@ function Intro(session){
 		}else{
 			return this.session.addImportantEvent(new PlayerEnteredSession(this.session, current_mvp.power,this.player) );
 		}
-	
+
 	}
 
 	this.grimPlayer2Chat = function( player1, player2){
@@ -62,9 +92,12 @@ function Intro(session){
 		chatText += chatLine(player1Start, player1,"I guess it has something to do with my title? I am apparently the ' " + player1.title() + "'. ");
 		chatText +=chatLine(player2Start, player2,"Whatever THAT means. ");
 		chatText += chatLine(player1Start, player1,"Yes. Also, I prototyped my kernelsprite with a " + player1.kernel_sprite +".\n");
-		if(player1.isTroll == true){
+		if(player_prototypings.indexOf(player1.kernel_sprite) != -1){
+			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
+			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
+		}else if(player1.isTroll == true){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
-			chatText += chatLine(player1Start, player1,":/  Yeah... I think SBURB hates guardians. ");
+			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
 		}
 		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
@@ -110,7 +143,10 @@ function Intro(session){
 		chatText += chatLine(player1Start, player1,"It is so weird! Where even are we compared to our solar system? There's no sun! How does this work!?");
 		chatText +=chatLine(player2Start, player2,"Through bullshit hand-wavy game magic. ");
 		chatText += chatLine(player1Start, player1,"Oh! I prototyped my kernelsprite with a " + player1.kernel_sprite +".\n");
-		if(player1.isTroll == true){
+		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
+			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
+			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
+		}else if(player1.isTroll == true){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
@@ -153,7 +189,10 @@ function Intro(session){
 		chatText +=chatLine(player2Start, player2,"lol, it IS a video game, or did you forget?");
 		chatText += chatLine(player1Start, player1,"Well, yeah, but... like... SBURB is not a NORMAL video game. You know what I mean.");
 		chatText += chatLine(player1Start, player1,"ANYWAYS... I prototyped my kernel thingy with a " + player1.kernel_sprite +".\n");
-		if(player1.isTroll == true){
+		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
+			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
+			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
+		}else if(player1.isTroll == true){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
@@ -218,7 +257,10 @@ function Intro(session){
 			}
 		}
 		chatText += chatLine(player1Start, player1,"So... I prototyped my kernel thingy with a " + player1.kernel_sprite +".\n");
-		if(player1.isTroll == true){
+		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
+			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
+			chatText += chatLine(player1Start, player1,":/  Yeah... They figured out a way to not die when they time travel! ");
+		}else if(player1.isTroll == true){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,":/  Yeah... It was so sad when they died. But now I'm happy because SBURB brought them back! ");
 			chatText +=chatLine(player2Start, player2,"Oh, man....");
@@ -311,7 +353,10 @@ function Intro(session){
 		chatText += chatLine(player1Start, player1,"It's so cool! Like something out of a story! I always KNEW I'd have an adventure like this one day!");
 		chatText +=chatLine(player2Start, player2,"lol");
 		chatText += chatLine(player1Start, player1,"So... I prototyped my kernelsprite with a " + player1.kernel_sprite +".\n");
-		if(player1.isTroll == true){
+		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
+			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
+			chatText += chatLine(player1Start, player1,":/  Yeah... That's a story all on it's own. ");
+		}else if(player1.isTroll == true){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,":/  Yeah... That probably wouldn't have happened in a story. ");
 
@@ -359,7 +404,10 @@ function Intro(session){
 		}
 		chatText += chatLine(player1Start, player1,"Seriously, I was " + born + " for this.");
 		chatText += chatLine(player1Start, player1,"I even prototyped my kernel with a " + player1.kernel_sprite +".\n");
-		if(player1.isTroll == true){
+		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
+			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
+			chatText += chatLine(player1Start, player1,"Yes! I already have my first minion! ");
+		}else	if(player1.isTroll == true){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,"Yes! Who better to assist me on my epic quest? ");
 
@@ -412,7 +460,10 @@ function Intro(session){
 		chatText += chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+". Honestly, I'm a little disappointed in how literal it is.");
 		chatText +=chatLine(player2Start, player2,"lol");
 		chatText += chatLine(player1Start, player1,"So... I prototyped my kernel with a " + player1.kernel_sprite +".\n");
-		if(player1.isTroll == true){
+		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
+			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
+			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
+		}else if(player1.isTroll == true){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
@@ -570,6 +621,7 @@ function Intro(session){
 			return;
 		}
 		var narration = "";
+
 		if(this.player.land == null){
 			//console.log("This session is:  " + this.session.session_id + " and the " + this.player.title() + " is from session: " + this.player.ectoBiologicalSource + " and their land is: " + this.player.land);
 		}
@@ -583,6 +635,7 @@ function Intro(session){
 				return;
 			}
 		}else{
+			this.changePrototyping(div);
 			narration += "<br>The " + this.player.htmlTitle() + " enters the game " + indexToWords(i) + ". ";
 
 			narration += " They have many INTERESTS, including " +this.player.interest1 + " and " + this.player.interest2 + ". ";
@@ -596,7 +649,7 @@ function Intro(session){
 
 			if(this.player.dead==true){
 				console.log(session.session_id + " dead player enters, " +this.player.title())
-				narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably."
+				narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably. Their kernel somehow gets prototyped with a "+this.player.kernel_sprite;
 				div.append(narration);
 				this.session.availablePlayers.push(this.player);
 				return;
@@ -613,7 +666,7 @@ function Intro(session){
 			if(this.player.trickster){
 				narration += "They immediately heal their land in an explosion of bullshit candy giggle-magic. ";
 			}
-			
+
 			this.session.kingStrength = this.session.kingStrength + 20;
 			if(this.session.queenStrength > 0){
 				this.session.queenStrength = this.session.queenStrength + 10;

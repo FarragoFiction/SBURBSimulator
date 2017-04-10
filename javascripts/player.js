@@ -62,7 +62,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	this.fromThisSession = function(session){
 		return (this.ectoBiologicalSource == null || this.ectoBiologicalSource == session.session_id)
 	}
-	
+
 	this.getHearts = function(){
 		var ret = [];
 		for (var i = 0; i<this.relationships.length; i++){
@@ -73,7 +73,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 		return ret;
 	}
-	
+
 	this.getSpades = function(){
 		var ret = [];
 		for (var i = 0; i<this.relationships.length; i++){
@@ -84,7 +84,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 		return ret;
 	}
-	
+
 	this.getDiamonds = function(){
 		var ret = [];
 		for (var i = 0; i<this.relationships.length; i++){
@@ -700,7 +700,7 @@ function randomPlayerWithClaspect(session, c,a){
 		k = getRandomElementFromArray(disastor_prototypings);
 	}else if(Math.seededRandom() > .9){
 		k = getRandomElementFromArray(fortune_prototypings);
-	}
+	}//don't allow self prototyping here. would eat a seed and make the players in a session different, which i want to avoid if at all possible.
 
 	var gd = false;
 	if(Math.seededRandom() > .5){
