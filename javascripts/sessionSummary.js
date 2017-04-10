@@ -13,6 +13,7 @@ function SessionSummary(){
 	this.numDead = null;
 	this.ectoBiologyStarted = null;
 	this.denizenFought = null;
+	this.denizenBeat = null;
 	this.plannedToExileJack = null;
 	this.exiledJack = null;
 	this.exiledQueen = null;
@@ -43,24 +44,24 @@ function SessionSummary(){
 		//console.log(filter_array)
 		for(var i = 0; i< filter_array.length; i++){
 			var filter = filter_array[i];
-			
+
 			if(filter == "numberNoFrog"){
-				if(this.frogStatus  != "No Frog"){ 
+				if(this.frogStatus  != "No Frog"){
 				//	console.log("not no frog")
 					return false;
 				}
 			}else if(filter == "numberSickFrog"){
-				if(this.frogStatus  != "Sick Frog"){ 
+				if(this.frogStatus  != "Sick Frog"){
 					//console.log("not sick frog")
 					return false;
 				}
 			}else if(filter == "numberFullFrog"){
-				if(this.frogStatus  != "Full Frog"){ 
+				if(this.frogStatus  != "Full Frog"){
 					//console.log("not full frog")
 					return false;
 				}
 			}else if(filter == "timesAllDied"){
-				if(this.numLiving != 0){ 
+				if(this.numLiving != 0){
 					//console.log("not all dead")
 					return false;
 				}
@@ -69,13 +70,13 @@ function SessionSummary(){
 					//console.log("not all alive")
 					return false;
 				}
-				
+
 			}else if(filter == "comboSessions"){
 				if(!this.parentSession){  //if this were an and on the outer if, it would let it fall down to the else if(!this[filter) and i don't want that.
 					//console.log("not combo session")
 					return false;
 				}
-				
+
 			}else if(!this[filter]){
 				//console.log("property not true: " + filter)
 				return false;
@@ -152,6 +153,7 @@ function MultiSessionSummary(){
 	this.timesAllDied = 0;
 	this.ectoBiologyStarted = 0;
 	this.denizenFought = 0;
+	this.denizenBeat = 0;
 	this.plannedToExileJack = 0;
 	this.exiledJack = 0;
 	this.exiledQueen = 0;
@@ -221,6 +223,7 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		if(ss.numDead == 0) mss.timesAllLived ++;
 		if(ss.ectoBiologyStarted) mss.ectoBiologyStarted ++;
 		if(ss.denizenFought) mss.denizenFought ++;
+		if(ss.denizenBeat) mss.denizenBeat ++;
 		if(ss.plannedToExileJack) mss.plannedToExileJack ++;
 		if(ss.exiledJack) mss.exiledJack ++;
 		if(ss.exiledQueen) mss.exiledQueen ++;

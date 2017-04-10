@@ -6,6 +6,7 @@ function Session(session_id){
 	this.hasDiamonds = false;
 	this.hasHearts = false;
 	this.hasSpades = false;
+	this.denizenBeat = false;
 	//session no longer keeps track of guardians.
 	this.kingStrength = 100;
 	this.sbahj = false;
@@ -393,6 +394,7 @@ function Session(session_id){
 		summary.numDead =  findDeadPlayers(this.players).length;
 		summary.ectoBiologyStarted = this.ectoBiologyStarted;
 		summary.denizenFought = findSceneNamed(this.scenesTriggered,"FaceDenizen") != "No";
+		summary.denizenBeat = this.denizenBeat;
 		summary.plannedToExileJack = findSceneNamed(this.scenesTriggered,"PlanToExileJack") != "No";
 		summary.exiledJack = findSceneNamed(this.scenesTriggered,"ExileJack") != "No"
 		summary.exiledQueen = findSceneNamed(this.scenesTriggered,"ExileQueen") != "No"

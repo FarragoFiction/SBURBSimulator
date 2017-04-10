@@ -14,9 +14,9 @@ function Aftermath(session){
 			return ret;
 		}
 		if(this.session.democracyStrength > 10 && findLivingPlayers(this.session.players).length > 0 ){
-			ret += "The adorable Warweary Villein has been duly elected Mayor by the assembeled consorts and Carpacians. "
+			ret += "The adorable Warweary Villein has been duly elected Mayor by the assembeled consorts and Carapacians. "
 			ret += " His acceptance speech consists of promising to be a really great mayor that everyone loves who is totally amazing and heroic and brave. "
-			ret += " He organizes the consort and Carpacians' immigration to the new Universe. ";
+			ret += " He organizes the consort and Carapacians' immigration to the new Universe. ";
 		}else{
 			if(findLivingPlayers(this.session.players).length > 0){
 				ret += " The Warweary Villein feels the sting of defeat. Although he helped the Players win their session, the cost was too great.";
@@ -59,7 +59,7 @@ function Aftermath(session){
 		if(living.length > 0){
 			ret += " Victory is not without it's price. " + dead.length + " players are dead, never to revive. There is time for mourning. <br>";
 		}else{
-			ret += " The consorts and Carpacians both Prospitian and Dersite alike mourn their fallen heroes. ";
+			ret += " The consorts and Carapacians both Prospitian and Dersite alike mourn their fallen heroes. ";
 		}
 
 		for(var i = 0; i< dead.length; i++){
