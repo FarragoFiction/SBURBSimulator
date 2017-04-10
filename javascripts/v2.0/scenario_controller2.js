@@ -71,7 +71,7 @@ function startSession(){
 	if(getParameterByName("sbajifier")  == "true"){
 		sbahjMode();
 	}
-	
+
 	if(getParameterByName("babyStuck")  == "true"){
 		babyStuckMode();
 	}
@@ -576,20 +576,26 @@ function session413IndexToAncestor(player,index){
 
 //12 dead nepetas
 function session33(){
+	//will it be 12 nepetas roleplaying as their friends?
+	//or 12 canon trolls all roleplaying as nepeta?
+	//it's shrodinger's nepeta!!!
+	var actualRandomNumber = Math.random(); //no fucking seed.
+	alert("Nepeta Quest")
+	curSessionGlobalVar.players = [];//no, only nepetas.
 	for(var i = 0; i<12;i++){
 		var player;
 		var guardian;
-		if(i<curSessionGlobalVar.players.length){
-			player = curSessionGlobalVar.players[i];
-		}else{
-			guardian = randomPlayerWithClaspect(curSessionGlobalVar,"Rogue", "Heart");
-			player = randomPlayerWithClaspect(curSessionGlobalVar,"Rogue", "Heart");
-			player.quirk = randomTrollSim(player);
-			guardian.quirk = randomTrollSim(player);
-			players.push(player);
-			player.guardian = guardian;
-			guardian.guardian = player;
+		guardian = randomPlayerWithClaspect(curSessionGlobalVar,"Rogue", "Heart");
+		player = randomPlayerWithClaspect(curSessionGlobalVar,"Rogue", "Heart");
+		if(i == 0){
+			player.leader = true;
 		}
+		player.quirk = randomTrollSim(player);
+		guardian.quirk = randomTrollSim(player);
+		curSessionGlobalVar.players.push(player);
+		player.guardian = guardian;
+		guardian.guardian = player;
+
 		session612IndexToTroll(player, i);
 		player.mylevels = getLevelArray(player);
 		guardian.mylevels = getLevelArray(guardian);
@@ -615,12 +621,15 @@ function session33(){
 		player.hair = 7;
 		player.leftHorn = 22;
 		player.rightHorn = 22;
-		player.bloodColor = "#416600";
+		if(actualRandomNumber > .5){
+			player.bloodColor = "#416600"; //nope, allow for fishtroll nepetas.
+			guardian.bloodColor = "#416600";
+		}
 
 		guardian.hair = 7;
 		guardian.leftHorn = 22;
 		guardian.rightHorn = 22;
-		guardian.bloodColor = "#416600";
+
 	}
 
 }
