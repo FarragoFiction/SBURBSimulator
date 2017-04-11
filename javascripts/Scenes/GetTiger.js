@@ -37,8 +37,10 @@ function GetTiger(session){
 		//different format for canvas code
 		var canvasDiv = document.getElementById("canvas"+ divID);
 		var players = this.deadPlayersToGodTier;
-
-		drawGetTiger(canvasDiv, players,repeatTime)
+		if(!players[0].dead){
+			drawGetTiger(canvasDiv, players,repeatTime) //only draw revivial if it actually happened.
+		}
+		
 
 	}
 
@@ -49,20 +51,25 @@ function GetTiger(session){
 		var withd = findPlayersWithDreamSelves(this.deadPlayersToGodTier);
 		var withoutd = findPlayersWithoutDreamSelves(this.deadPlayersToGodTier);
 
-		if(withd){
+		if(withd && Math.seededRandom() > .8){  //MOST players in canon go god tier via sacrificial slab. 
 			for(var i = 0; i< withd.length; i++){
 				var p = withd[i];
-				console.log("Quest bed: " + this.session.session_id)
+				//console.log("Quest bed: " + this.session.session_id)
 				ret += " Upon being laid to rest on their QUEST BED on the " + p.land + ", the " + p.htmlTitle() + "'s body glows, and rises Skaiaward. "
 				ret +="On " + p.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
+				this.session.questBed = true;
 			}
+		}else if(withd){
+			//console.log("We COULD have been on my quest bed, but random chance said no. "+ this.session.session_id)
+			return;
 		}
 
 		if(withoutd){
 			for(var i = 0; i< withoutd.length; i++){
 				var p = withoutd[i];
-				console.log("sacrificial slab: " + this.session.session_id)
+				//console.log("sacrificial slab: " + this.session.session_id)
 				ret += " Upon a wacky series of events leaving their corpse on their SACRIFICIAL SLAB on " + p.moon + ", the " + p.htmlTitle() + " glows and ascends to the God Tiers with a sweet new outfit."
+				this.session.sacrificialSlab = true;
 			}
 		}
 

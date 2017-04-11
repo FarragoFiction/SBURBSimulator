@@ -7,6 +7,7 @@ function CorpseSmooch(session){
 	this.combo = 0;
 
 	this.trigger = function(playerList){
+		//console.log('checking corpse smooch')
 		this.playerList = playerList;
 		this.dreamersToRevive = [];
 		//all dead players who aren't god tier and are destined to be god tier god tier now.
@@ -19,7 +20,9 @@ function CorpseSmooch(session){
 			//}
 		}
 		//corspses can't smooch themselves.
-		return this.dreamersToRevive.length > 0 && this.dreamersToRevive.length < playerList.length;
+		var living = findLivingPlayers(this.session.players);
+		//console.log(this.dreamersToRevive.length + " vs "  + playerList.length)
+		return this.dreamersToRevive.length > 0 && living.length>0;
 
 	}
 
@@ -126,7 +129,9 @@ function CorpseSmooch(session){
 			}
 		}
 		royalty = this.ignoreEnemies(d, royalty);
-
+		if(!royalty && d.godDestiny){
+			//console.log("I couldn't find royalty and also could god tier. " + this.session.session_id);
+		}
 		return royalty;
 	}
 

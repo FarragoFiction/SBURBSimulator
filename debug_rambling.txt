@@ -515,6 +515,25 @@ Oh! And if there is a heart player, everybody is MUCH MORE LIKELY to be open and
 
 
 
+PROBLEM: 
+
+If CorpseSmooch takes priority over GetTiger, then MOST players will only god tier through sacrificial slabs.  But if GetTiger takes priority over CorpseSmooch, ALL players will god tier the first time they die and not leave any for Sacrificial Slab. That's because CorpseSmooch is a one time thing. If you don't get smooched, your dream self dies and you are no longer eligible for smooching. (Note to self, maybe let usless smooches happen, creepy Gamzee style). But GetTiger happens so long as you have at least a dream self and are destined to god tier.
+
+BLUUUUUUUUUHHHHH.
+
+Okay. Think. 
+
+You SHOULD be able to do multiple scenes in a row. That's what the availablePLayers array is for, right? Is GetTiger ever setting a player as unavailable? If so, just undoing that will acomplish two things:
+1.) If a player fails to GetTiger, they will then hit the corpse smooch, which will leave them ready for the sacrificial slab the next time they die.
+2.) GodTier players get a free extra action. They are Gods, don't worry about it.
+
+Huh, no, I don't seem to be setting available players. So...why...why isn't corpse smooch being called next?
+Okay, adding some console output, and it looks like Corpse smooch thinks there are no dead players. Look into GetTiger. Is it reviving them regardless of what I do?  Yes. Yes it is. Okay then, return when random chance says no quest bed.
+
+Heh. Also, don't render them 'reviving' if they haven't. Duh.
+
+
+
 
 
 

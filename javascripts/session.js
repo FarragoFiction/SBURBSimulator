@@ -25,6 +25,8 @@ function Session(session_id){
 	this.scratched = false;
 	this.scratchAvailable = false;
 	this.timeTillReckoning = 0;
+	this.questBed = false;
+	this.sacrificialSlab = false;
 	this.sessionType = -999
 	this.scenesTriggered = []; //this.scenesTriggered
 	this.doomedTimelineReasons = [];
@@ -384,6 +386,8 @@ function Session(session_id){
 		var summary = new SessionSummary();
 		summary.session_id = this.session_id;
 		summary.frogStatus = this.frogStatus();
+		summary.questBed = this.questBed;
+		summary.sacrificialSlab = this.sacrificialSlab;
 		summary.num_scenes = this.scenesTriggered.length;
 		summary.players = this.players;
 		summary.mvp = findStrongestPlayer(this.players);

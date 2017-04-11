@@ -37,6 +37,8 @@ function SessionSummary(){
 	this.fiveTimesSessionCombo = false;
 	this.holyShitMmmmmonsterCombo = false;
 	this.frogStatus = null;
+	this.questBed = false;
+	this.sacrificialSlab = false;
 
 	//thanks to bob for helping me puzzle out the logic to make filters AND not OR.
 	//why was that so hard???
@@ -180,6 +182,8 @@ function MultiSessionSummary(){
 	this.numberFullFrog = 0;
 	this.numberSickFrog = 0;
 	this.numberNoFrog = 0;
+	this.questBed = 0;
+	this.sacrificialSlab = 0;
 
 	this.generateHTML = function(){
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
@@ -248,6 +252,8 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		if(ss.frogStatus == "No Frog") mss.numberNoFrog ++;
 		if(ss.frogStatus == "Sick Frog") mss.numberSickFrog ++;
 		if(ss.frogStatus == "Full Frog") mss.numberFullFrog ++;
+		if(ss.questBed) mss.questBed ++;
+		if(ss.sacrificialSlab) mss.sacrificialSlab ++;
 		mss.totalDeadPlayers += ss.numDead;
 		mss.totalLivingPlayers += ss.numLiving;
 	}

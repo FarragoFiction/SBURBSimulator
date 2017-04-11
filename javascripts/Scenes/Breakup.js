@@ -40,7 +40,7 @@ function Breakup(session){
 				oppr.value = 5;
 				this.reason = "me_cheat"
 
-				console.log("breaking up hearts because i am cheating in session: " +this.session.session_id)
+				//console.log("breaking up hearts because i am cheating in session: " +this.session.session_id)
 				return true;
 			}
 		}
@@ -54,7 +54,7 @@ function Breakup(session){
 				var oppr = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
 				oppr.value = 5;
 				this.reason = "me_cheat"
-				console.log("breaking up spades because i am cheating in session: " +this.session.session_id)
+				//console.log("breaking up spades because i am cheating in session: " +this.session.session_id)
 				return true;
 			}
 		}
@@ -68,7 +68,7 @@ function Breakup(session){
 				var oppr = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
 				oppr.value = -1;
 				this.reason = "me_cheat"
-				console.log("breaking up diamonds because i am cheating in session: " +this.session.session_id)
+				//console.log("breaking up diamonds because i am cheating in session: " +this.session.session_id)
 				return true;
 			}
 		}
