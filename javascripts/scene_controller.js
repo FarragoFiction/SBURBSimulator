@@ -19,7 +19,7 @@ function createScenesForSession(session){
 	session.scenes = session.scenes.concat([new LevelTheHellUp(session)]);
 
 	//make sure kiss, then godtier, then godtierrevival, then any other form of revival.
-	session.deathScenes = [ new SaveDoomedTimeLine(session), new CorpseSmooch(session), new GetTiger(session), new GodTierRevival(session)];  //are always available.
+	session.deathScenes = [ new SaveDoomedTimeLine(session), new GetTiger(session), new CorpseSmooch(session), new GodTierRevival(session)];  //are always available.
 	session.reckoningScenes = [new FightQueen(session), new FightKing(session)];
 
 	//scenes can add other scenes to available scene list. (for example, spy missions being added if Jack began scheming)

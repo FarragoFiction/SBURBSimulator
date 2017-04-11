@@ -104,7 +104,8 @@ function CorpseSmooch(session){
 			}
 		}
 		royalty = this.ignoreEnemies(d, royalty);
-		if(!royalty){
+		//from here on out, prefer to god tier than to be corpse smooched.
+		if(!royalty ){
 			//okay, anybody free?
 			royalty = getRandomElementFromArray(findLivingPlayers(this.session.availablePlayers));
 			if(royalty && royalty.grimDark == true){
@@ -125,6 +126,7 @@ function CorpseSmooch(session){
 			}
 		}
 		royalty = this.ignoreEnemies(d, royalty);
+
 		return royalty;
 	}
 
