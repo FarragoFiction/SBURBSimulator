@@ -22,8 +22,8 @@ function EngageMurderMode(session){
 				}
 				//much harder to flip your shit if you have a moirail
 				if(diamond && (1+rand * 20 < this.player.triggerLevel+moon)){
-					console.log("Flipped my shit despite having a moirail: " + this.session.session_id)
-					console.log(this.player.triggerLevel)
+					//console.log("Flipped my shit despite having a moirail: " + this.session.session_id)
+					//console.log(this.player.triggerLevel)
 					return true;
 				}
 			}

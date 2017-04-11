@@ -37,6 +37,7 @@ function SessionSummary(){
 	this.fiveTimesSessionCombo = false;
 	this.holyShitMmmmmonsterCombo = false;
 	this.frogStatus = null;
+	this.godTier = false;
 	this.questBed = false;
 	this.sacrificialSlab = false;
 
@@ -182,6 +183,7 @@ function MultiSessionSummary(){
 	this.numberFullFrog = 0;
 	this.numberSickFrog = 0;
 	this.numberNoFrog = 0;
+	this.godTier = 0;
 	this.questBed = 0;
 	this.sacrificialSlab = 0;
 
@@ -252,6 +254,7 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		if(ss.frogStatus == "No Frog") mss.numberNoFrog ++;
 		if(ss.frogStatus == "Sick Frog") mss.numberSickFrog ++;
 		if(ss.frogStatus == "Full Frog") mss.numberFullFrog ++;
+		if(ss.godTier) mss.godTier ++;
 		if(ss.questBed) mss.questBed ++;
 		if(ss.sacrificialSlab) mss.sacrificialSlab ++;
 		mss.totalDeadPlayers += ss.numDead;

@@ -72,7 +72,7 @@ function GetTiger(session){
 				this.session.sacrificialSlab = true;
 			}
 		}
-
+		this.session.godTier = true;
 		ret += " They are now extremely powerful. ";
 
 		if(findClassPlayer(this.deadPlayersToGodTier, "Page") != null){

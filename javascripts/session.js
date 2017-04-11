@@ -25,6 +25,7 @@ function Session(session_id){
 	this.scratched = false;
 	this.scratchAvailable = false;
 	this.timeTillReckoning = 0;
+	this.godTier = false;
 	this.questBed = false;
 	this.sacrificialSlab = false;
 	this.sessionType = -999
@@ -386,6 +387,7 @@ function Session(session_id){
 		var summary = new SessionSummary();
 		summary.session_id = this.session_id;
 		summary.frogStatus = this.frogStatus();
+		summary.godTier = this.godTier;
 		summary.questBed = this.questBed;
 		summary.sacrificialSlab = this.sacrificialSlab;
 		summary.num_scenes = this.scenesTriggered.length;
