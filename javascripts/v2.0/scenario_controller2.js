@@ -94,6 +94,8 @@ function checkEasterEgg(){
 		session1025()
 	}else if(initial_seed == 33){
 		session33();
+	}else if(initial_seed == 111111){
+		session111111();
 	}
 }
 
@@ -384,6 +386,39 @@ function session413(){
 		player.generateBlandRelationships(curSessionGlobalVar.players);
 		session413IndexToHuman(player, i);
 		session413IndexToAncestor(guardian, i);//just call regular with a different index
+		player.mylevels = getLevelArray(player);
+		guardian.mylevels = getLevelArray(guardian);
+	}
+}
+
+function session111111(){
+	for(var i = 0; i<8;i++){
+		var player;
+		var guardian;
+		if(i< curSessionGlobalVar.players.length){
+			player = curSessionGlobalVar.players[i];
+		}else{
+			player = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
+			guardian = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
+			guardian.quirk = randomHumanSim(guardian);
+			player.quirk = randomHumanSim(player);
+			player.guardian = guardian;
+			guardian.guardian = player;
+			curSessionGlobalVar.players.push(player);
+		}
+	}
+
+	for(var i = 0; i<8;i++){
+		player = curSessionGlobalVar.players[i];
+		var guardian = player.guardian;
+		player.isTroll = false;
+		guardian.isTroll = false;
+		player.relationships = [];
+		var guardians = getGuardiansForPlayers(curSessionGlobalVar.players)
+		guardian.generateBlandRelationships(guardians);
+		player.generateBlandRelationships(curSessionGlobalVar.players);
+		session413IndexToAncestor(player, i);
+		session413IndexToHuman(guardian, i);//just call regular with a different index
 		player.mylevels = getLevelArray(player);
 		guardian.mylevels = getLevelArray(guardian);
 	}
