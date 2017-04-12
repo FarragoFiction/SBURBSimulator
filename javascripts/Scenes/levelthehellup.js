@@ -44,12 +44,12 @@ function LevelTheHellUp(session){
 		var repeatTime = 1000;
 		var divID = (div.attr("id")) + "_" + player.chatHandle+boonies; //even if same chat handle, odds of same boonies is low.
 		var narrationHTML = "<br><div id = 'narration" + divID + "'></div>";
-		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+
 		div.append(narrationHTML);
-		div.append(canvasHTML);
+
 		var narrationDiv = $("#narration"+divID);
 		//different format for canvas code
-		var canvasDiv = document.getElementById("canvas"+ divID);
+
 
 		if(levelName){
 			narration += " The " + player.htmlTitle();
@@ -59,8 +59,17 @@ function LevelTheHellUp(session){
 		}
 		narrationDiv.append(narration);
 		//pause between characters, to give time to render.
-		if(levelName){
-				drawLevelUp(canvasDiv, player,repeatTime)
+		if(levelName &&!player.godTier){
+				var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+				div.append(canvasHTML);
+			  var canvasDiv = document.getElementById("canvas"+ divID);
+				drawLevelUp(canvasDiv, player)
+		}else if(levelName && player.godTier){
+			//god tier has to be taller.
+			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +1000 + "' height="+572 + "'>  </canvas>";
+			div.append(canvasHTML);
+			var canvasDiv = document.getElementById("canvas"+ divID);
+			drawLevelUpGodTier(canvasDiv, player)
 		}
 
 	}

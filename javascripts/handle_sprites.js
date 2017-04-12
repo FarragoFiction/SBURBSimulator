@@ -94,7 +94,7 @@ function rainbowSwap(canvas){
 			img_data.data[i+1] = img_data_rainbow.data[4 *Math.floor(i/(4000))+1]
 			img_data.data[i+2] =img_data_rainbow.data[4 *Math.floor(i/(4000))+2]
 			img_data.data[i+3] = getRandomIntNoSeed(100,255); //make it look speckled.
-			
+
 		}
 	}
 	ctx.putImageData(img_data, 0, 0);
@@ -561,10 +561,10 @@ function drawLevelUpGodTier(canvas, player,repeatTime){
 	//drawBG(levelBuffer, "#ff0000", "#00ff00");
 	writeLevelGod(levelBuffer, player);
 
-	copyTmpCanvasToRealCanvasAtPos(canvas, symbolBuffer,150,0)
-	copyTmpCanvasToRealCanvasAtPos(canvas, godBuffer,0,230)
-	copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,100,-50)
-	copyTmpCanvasToRealCanvasAtPos(canvas, levelBuffer,0,235)
+	copyTmpCanvasToRealCanvasAtPos(canvas, symbolBuffer,165,0)
+	copyTmpCanvasToRealCanvasAtPos(canvas, godBuffer,100,0)
+	copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,100,0)
+	copyTmpCanvasToRealCanvasAtPos(canvas, levelBuffer,-200,290) //265 is perfectly lined on rainbow //300 is a little too far down.
 }
 
 function drawGodSymbolBG(canvas, player){
