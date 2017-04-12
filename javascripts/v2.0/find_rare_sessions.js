@@ -334,7 +334,7 @@ function checkPasswordAgainstQuip(summary){
 	if(quip == "Everything went better than expected."){
 		alert("TODO, display easter egg page. make it an actual html page (but codes as txt) that we load via ajax")
 	}else{
-		alert("AB: You have the right idea, but you're not getting it. " + quip)
+		alert("AB: You have the right idea, but you're not getting it. This was: '" + quip + "', not 'better than expected'.")
 	}
 }
 
