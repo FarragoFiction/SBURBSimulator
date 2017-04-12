@@ -20,6 +20,10 @@
 	width: 300px;
 }
 
+#pw_text{
+	 text-align: center
+}
+
 #pw_hint{
 	border: 1px dashed gray;
 	padding: 1px;
