@@ -1202,6 +1202,6 @@ function helloWorld(){
 		  console.log(data)
 	  }),
 	  dataType: "text"
-});
+	});
 
 }

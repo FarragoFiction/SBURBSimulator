@@ -332,10 +332,22 @@ function reckoningTick(){
 function checkPasswordAgainstQuip(summary){
 	var quip =  getQuipAboutSession(summary);
 	if(quip == "Everything went better than expected."){
-		alert("TODO, display easter egg page. make it an actual html page (but codes as txt) that we load via ajax")
+		alert("!!!")
+		loadEasterEggs();
 	}else{
 		alert("AB: You have the right idea, but you're not getting it. This was: '" + quip + "', not 'better than expected'.")
 	}
+}
+
+function loadEasterEggs(){
+	$.ajax({
+	  url: "easter_eggs.txt",
+	  success:(function(data){
+		 $("#easter_eggs").html(data)
+		  $("#pw_container").html("")
+	  }),
+	  dataType: "text"
+	});
 }
 
 function processCombinedSession(){

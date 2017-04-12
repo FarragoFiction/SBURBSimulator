@@ -90,6 +90,8 @@ function checkEasterEgg(){
 		session413();
 	}else if(initial_seed == 612){
 		session612();
+	}else if(initial_seed == 613){
+		session613();
 	}else if(initial_seed == 1025){
 		session1025()
 	}else if(initial_seed == 33){
@@ -664,7 +666,7 @@ function session33(){
 }
 
 //can't control HOW the session will turn out, but can at least give it the right players.
-function session612(){
+function session613(){
 	for(var i = 0; i<12;i++){
 		var player;
 		var guardian;
@@ -693,6 +695,41 @@ function session612(){
 		player.generateRelationships(curSessionGlobalVar.players);
 		session612IndexToTrollAncestor(player, i);
 		session612IndexToTroll(guardian, i);
+		player.mylevels = getLevelArray(player);
+		guardian.mylevels = getLevelArray(guardian);
+	}
+}
+
+//can't control HOW the session will turn out, but can at least give it the right players.
+function session612(){
+	for(var i = 0; i<12;i++){
+		var player;
+		var guardian;
+		if(i<curSessionGlobalVar.players.length){
+			player = curSessionGlobalVar.players[i];
+		}else{
+			player = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
+			guardian = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
+			guardian.quirk = randomTrollSim(guardian);
+			player.quirk = randomTrollSim(player);
+			//curSessionGlobalVar.guardians.push(guardian);
+			curSessionGlobalVar.players.push(player);
+			player.guardian = guardian;
+			guardian.guardian = player;
+		}
+	}
+
+	for(var i = 0; i<12;i++){
+		player = curSessionGlobalVar.players[i];
+		var guardian = player.guardian;
+		player.isTroll = true;
+		guardian.isTroll = true;
+		player.relationships = [];
+		var guardians = getGuardiansForPlayers(curSessionGlobalVar.players)
+		guardian.generateRelationships(guardians);
+		player.generateRelationships(curSessionGlobalVar.players);
+		session612IndexToTroll(player, i);
+		session612IndexToTrollAncestor(guardian, i);
 		player.mylevels = getLevelArray(player);
 		guardian.mylevels = getLevelArray(guardian);
 	}
@@ -799,7 +836,6 @@ function session612IndexToTroll(player, index){
 		player.interest2 = "Death"
 		player.chatHandle = "apocalypseArisen"
 		player.godDestiny = true;
-		player.doomedTimeClones = 5;
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
 	}else if(index == 5){
