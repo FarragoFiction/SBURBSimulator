@@ -42,11 +42,15 @@ function tricksterMode(){
 	$('body').css("background-color", "#ff93e4");
 	for(var j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
-		p.hairColor = getRandomElementFromArray(tricksterColors);
-		p.bloodColor = getRandomElementFromArray(tricksterColors);
+		if(p.aspect != "Doom"){ //kr says it would be funny if doom plalyers completely immune.
+			p.hairColor = getRandomElementFromArray(tricksterColors);
+			p.bloodColor = getRandomElementFromArray(tricksterColors);
+			p.trickster  = true;
+		}else{
+		}
 
-		p.trickster  = true;
-		if(p.aspect != "Heart"){//no personality changes.
+		
+		if(p.aspect != "Heart" && p.aspect != "Doom"){//no personality changes.
 			p.quirk.capitalization = 2;
 			p.quirk.punctuation = 3;
 			p.quirk.favoriteNumber = 11;
@@ -55,9 +59,11 @@ function tricksterMode(){
 				r.value = 111111; //EVERYTHIGN IS BETTER!!!!!!!!!!!
 			}
 		}
-		p.power = 111111;
-		p.landLevel = 111111;
-		p.level_index = 111111;
+		if(p.aspect != "Doom"){
+			p.power = 111111;
+			p.landLevel = 111111;
+			p.level_index = 111111;
+		}
 
 
 	}
