@@ -378,7 +378,8 @@ function getQuipAboutSession(sessionSummary){
 	var dead = sessionSummary.numDead
 	var strongest = sessionSummary.mvp
 
-	if(living.length == 0){
+
+	if(living == 0){
 		quip += "Shit, you do not even want to KNOW how everybody died." ;
 	}else  if(strongest.power > 3000){
 		quip += "Holy Shit, do you SEE the " + strongest.titleBasic() + "!?  How even strong ARE they?" ;
@@ -389,18 +390,18 @@ function getQuipAboutSession(sessionSummary){
 		}
 	}else  if(sessionSummary.parentSession){
 		quip += "Combo sessions are always so cool. " ;
+	}else if(dead == 0 && sessionSummary.frogStatus == "Full Frog" ){
+		quip += "Everything went better than expected." ;
 	}else  if(sessionSummary.jackRampage){
 		quip += "Jack REALLY gave them trouble." ;
-	}else if(dead.length == 0 && sessionSummary.frogStatus == "Full Frog" ){
-		quip += "Everything went better than expected." ;
-	}else  if(sessionSummary.num_scenes.length > 200){
+	}else  if(sessionSummary.num_scenes > 200){
 		quip += "God, this session just would not END." ;
 		if(!sessionSummary.parentSession){
 			quip += " It didn't even have the excuse of being a combo session. "
 		}
 	}else  if(sessionSummary.murderMode == true){
 		quip += "It always sucks when the players start trying to kill each other." ;
-	}else  if(sessionSummary.num_scenes.length < 50){
+	}else  if(sessionSummary.num_scenes < 50){
 		quip += "Holy shit, were they even in the session an entire hour?" ;
 	}else  if(sessionSummary.scratchAvailable == true){
 		quip += "Maybe the scratch would fix things? I can't be bothered to check." ;

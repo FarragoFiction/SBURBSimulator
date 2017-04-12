@@ -215,10 +215,10 @@ function getQuipAboutSession(session){
 		}
 	}else  if(session.parentSession){
 		quip += "Combo sessions are always so cool." ;
-	}else  if(session.jackStrength > 200){
-		quip += "Jack REALLY gave them trouble." ;
 	}else if(dead.length == 0 && spacePlayer.landLevel > session.goodFrogLevel ){
 		quip += "Everything went better than expected." ;
+	}else  if(session.jackStrength > 200){
+		quip += "Jack REALLY gave them trouble." ;
 	}else  if(session.scenesTriggered.length > 200){
 		quip += "God, this session just would not END." ;
 		if(!session.parentSession){
