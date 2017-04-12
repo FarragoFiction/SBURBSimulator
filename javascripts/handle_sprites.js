@@ -2033,7 +2033,7 @@ function getBufferCanvas(canvas){
 }
 
 function copyTmpCanvasToRealCanvasAtPos(canvas, tmp_canvas, x, y){
-  ctx = canvas.getContext('2d');
+	ctx = canvas.getContext('2d');
 	ctx.drawImage(tmp_canvas, x, y);
 }
 

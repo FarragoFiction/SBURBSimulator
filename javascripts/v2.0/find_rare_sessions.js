@@ -17,6 +17,7 @@
 
 //bob warned me about global variables. he told me, dog.
 var simulationMode = true;
+var pwMode = false;
 var debugMode = false;
 var spriteWidth = 400;
 var spriteHeight = 300;
@@ -59,6 +60,19 @@ window.onload = function() {
 //want the AuthorBot to actually be browsing sessions when bored, like she claims to be.
 function robotMode(){
 	numSimulationsToDo = 1;
+	startSession();
+}
+
+
+function checkPassword(){
+	console.log("click")
+	numSimulationsDone = 0; //but don't reset stats
+	sessionSummariesDisplayed = []
+	
+	numSimulationsToDo =1;
+	Math.seed = parseInt($("#pwtext").val())
+	initial_seed = parseInt($("#pwtext").val())
+	pwMode = true;
 	startSession();
 }
 
@@ -315,6 +329,15 @@ function reckoningTick(){
 
 }
 
+function checkPasswordAgainstQuip(summary){
+	var quip =  getQuipAboutSession(summary);
+	if(quip == "Everything went better than expected."){
+		alert("TODO, display easter egg page. make it an actual html page (but codes as txt) that we load via ajax")
+	}else{
+		alert("AB: You have the right idea, but you're not getting it. " + quip)
+	}
+}
+
 function processCombinedSession(){
 	initial_seed = Math.seed;
 	var newcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
@@ -352,7 +375,11 @@ function summarizeSession(session){
 	if(numSimulationsDone >= numSimulationsToDo){
 		$("#button").prop('disabled', false)
 		if(!getParameterByName("robot")){
-			alert("Notice: should be ready to check more sessions.")
+			if(pwMode){
+				checkPasswordAgainstQuip(sum);
+			}else{
+				alert("Notice: should be ready to check more sessions.")
+			}
 			$("input[name='filter']").each(function(){
 					$(this).prop('disabled', false);
 			});
