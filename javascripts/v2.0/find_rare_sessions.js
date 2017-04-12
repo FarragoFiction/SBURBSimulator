@@ -70,10 +70,17 @@ function checkPassword(){
 	sessionSummariesDisplayed = []
 	
 	numSimulationsToDo =1;
-	Math.seed = parseInt($("#pwtext").val())
-	initial_seed = parseInt($("#pwtext").val())
-	pwMode = true;
-	startSession();
+	var tmp = parseInt($("#pwtext").val())
+	if(isNaN(tmp)){
+		alert("Not even close!!!")
+	}else{
+		alert("Hrrrm...let me think about it.")
+		Math.seed = tmp;
+		initial_seed = parseInt($("#pwtext").val())
+		pwMode = true;
+		startSession();
+	}
+	
 }
 
 function showHint(){
