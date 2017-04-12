@@ -61,6 +61,10 @@ function robotMode(){
 	numSimulationsToDo = 1;
 	startSession();
 }
+
+function showHint(){
+	$("#spoiler").toggle();
+}
 //filters by all checkboxes.
 function filterSessionSummaries(){
 	var tmp = []
