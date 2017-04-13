@@ -32,15 +32,16 @@ function GetTiger(session){
 		if(this.deadPlayersToGodTier.length > 6){
 			ch = canvasHeight*2;
 		}
-		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
-		div.append(canvasHTML);
-		//different format for canvas code
-		var canvasDiv = document.getElementById("canvas"+ divID);
 		var players = this.deadPlayersToGodTier;
 		if(!players[0].dead){
+			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
+			div.append(canvasHTML);
+			//different format for canvas code
+			var canvasDiv = document.getElementById("canvas"+ divID);
+
 			drawGetTiger(canvasDiv, players,repeatTime) //only draw revivial if it actually happened.
 		}
-		
+
 
 	}
 
@@ -51,7 +52,7 @@ function GetTiger(session){
 		var withd = findPlayersWithDreamSelves(this.deadPlayersToGodTier);
 		var withoutd = findPlayersWithoutDreamSelves(this.deadPlayersToGodTier);
 
-		if(withd && Math.seededRandom() > .8){  //MOST players in canon go god tier via sacrificial slab. 
+		if(withd && Math.seededRandom() > .8){  //MOST players in canon go god tier via sacrificial slab.
 			for(var i = 0; i< withd.length; i++){
 				var p = withd[i];
 				//console.log("Quest bed: " + this.session.session_id)
