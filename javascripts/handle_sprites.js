@@ -1088,6 +1088,10 @@ function drawSprite(canvas, player,ctx,baby){
 		if(player.leftMurderMode == true){
 		  scar_face(canvas, player);
 		}
+		if(player.robot == true){
+			robo_face(canvas, player);
+		}
+		
 	 }
   }
 

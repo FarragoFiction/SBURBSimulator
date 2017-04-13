@@ -46,11 +46,20 @@ function roboMode(){
 		p.hairColor = getRandomGreyColor();
 		p.bloodColor = getRandomGreyColor();
 		p.robot  = true;
+		p.power += 20; //Robots are superior.
 		p.quirk.capitalization = 2; //OBVIOUSLY robots all speak in all caps. 
 		p.quirk.punctuation = 0; //robots speak in monotone, DUH.
+		p.quirk.lettersToReplaceIgnoreCase.push(["\\bhuh\\b","BEEP"]);
+		p.quirk.lettersToReplaceIgnoreCase.push(["\\ber\\b","BEEP"]);
+		p.quirk.lettersToReplaceIgnoreCase.push(["\\bhrmm\\b","BEEP"]);
+		p.quirk.lettersToReplaceIgnoreCase.push(["\\bum\\b","BEEP"]);
+		p.quirk.lettersToReplaceIgnoreCase.push(["\\buh\\b","BEEP"]);
+		p.quirk.lettersToReplaceIgnoreCase.push(["\\boh\\b","BEEP"]);
+		p.quirk.lettersToReplaceIgnoreCase.push(["fuck","BEEP"]);
+		p.quirk.lettersToReplaceIgnoreCase.push(["ass","BEEP"]);
 		for(var k = 0; k <p.relationships.length; k++){
 				var r = p.relationships[k];
-				r.value = 0; // Clearly they are just tin cans without feelings. Robo, or otherwise.
+				r.value = 0.00001; // Clearly they are just tin cans without feelings. Robo, or otherwise.  if i set it to zero, they never even bother to talk to each other....
 		}
 	}
 }
