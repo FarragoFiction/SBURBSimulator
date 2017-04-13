@@ -1,47 +1,8 @@
-#pw_container {
+#rap {
     margin-left: auto;
     margin-right: auto;
-    width:650px;
+    position: relative;
+    width:400px;
+    top: 100px;
 	color: red;
-}
-
-#question {
-    text-align: center
-}
-
-#symbol{
-	margin-left: auto;
-    margin-right: auto;
-}
-
-#pw{
-	margin-left: auto;
-    margin-right: auto;
-	width: 300px;
-}
-
-#pw_text{
-	 text-align: center
-}
-
-#pw_hint{
-	border: 1px dashed gray;
-	padding: 1px;
-}
-#pw_hint_button_container{
-	width: 125px;
-	margin-left: auto;
-    margin-right: auto;
-}
-
-#pw_hint_button{
-	text-align: center
-	width: 125px;	
-}
-
-#spoiler{
-	margin-left: auto;
-    margin-right: auto;
-	text-align: center;
-	display:none;
 }
