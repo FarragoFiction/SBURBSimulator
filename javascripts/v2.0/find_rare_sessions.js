@@ -335,7 +335,7 @@ function reckoningTick(){
 	}
 
 }
-
+//Hello!!! This is 100% a legit tactic to passing this challenge. Win through programming knowledge, win through whatever. 10 points to you for HAX0Ring knowledge.
 function checkPasswordAgainstQuip(summary){
 	var quip =  getQuipAboutSession(summary);
 	if(quip == "Everything went better than expected."){
