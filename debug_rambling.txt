@@ -324,90 +324,90 @@ Alright,
   make player not die is NOT just an alternate to god tiering. god tiering deals with corpses, but not dying needs to be the scene that MAKES the corpse
 
  add scene for undoing your own undoing. basically generate list from scenesToUndo.  add before killing players list.
- 
- 
- 
- 
+
+
+
+
  Problem. Trying to remove functional duplicates from importantEvents. Objects aren't literally the same, but values are.
- 
+
  Current way is looping through an inner loop and an outter loop. problem is that let's say my array is:
- 
+
  [1,2,3,4,1,2,3,4,1]
- 
+
  In the outter loop I look for "1".  I find it two additional times, and mark the extras for removal. I succesfully don't mark 'myself'.
- 
+
  But...then, the fourth element, the second 1, when i loop on THAT, I find the first 1. And mark it for removal. And thus ALL 1s are marked for removal.
- 
+
  How to fix?
- 
+
  Well, I could probably extend javascripts native filter thing. But i don't want to . I'm feeling intellectually lazy.
- 
+
  hrrrrm.
- 
+
  Well, the inner loop doesn't HAVE to start from zero. It can start from the outter loop index. that should do it.
- 
-                                                                                                                                                      
-                          ```````   `                 `  ``   `                        ```````                           `                            
-                      ```` `   `   ````           `````   `   `````               ````  `   `` ````                ````  `   ``` `                    
-                   ```               ````        ```             ````           ```                ```          ```             ````                  
-                  ``                   ```      ``                 ```         ```                  ```        ```                ``                  
-           `````..``.`..`````````.``.``-``.``..`..``.```.``..``.``.``.``.``.``-`.-``.``.`..``.``.``..`..``.``.``.```..``.``..`..````..````            
-           `.-............-..-...-.....-........................................................................-.......................-.`           
-           `.-..........................................................................................................................-.`           
-           `......:-....-::::::::::----:++++++++++++++oo+++::::::::::::::...::::::::::::::---------::::::::::::::::::::::::::-....-:......`           
-           `.-..../.                 -ohddddddddddddddddddhh+`           `.`                                                      ./....-.`           
-           `......+.              .+yhddddddddddddddddmmmmmddy.          `.`                            `     `                   .+......`           
-       `````.-....+.           `:shddddddddddddddddmNNNNNNNNmdy.         `.``.+o+.`  `.oo/.           .sh   .sh                   .+....-.` ```       
-     ```   `......+.         -ohdddddddddddddddmmNNNNNNNNNNNNmdy`        `.`  +d+      sd:             yd    yd                   .+......`   ```     
-     ```   `.:....+.         .yddddddddddddmmddNNNNmshNNNNmmNNmdo        `.`  +d+      sd-    ---:.    yd    yd    `---:.         .+....:.`    ```    
-    ```    `......+-          `+hdddddddddms:-hNdyo.``:shmN+omNdh-       `.`  +do------yd-  -s.``-ho   yd    yd   /o```-ss`       -+......`    ```    
-    ```    `.-....+:            .ohddddddy-``.:-.````````.-:`-NNdo       `.`  +d+``````yd-  yy:::://`  yd    yd  -h:    -do       :+....-.`    ```    
-     ```   `......+-              .+hdddds```````````````````.NNmh.      `.`  +d+      sd-  yh.    .`  yd    yd  :do    `d+       -+......`    ```    
-     ```   `.-..../.                .sddddy-`````````````````+Nmdo`      `.`  odo      yd:  -yho//+:   yd    yd   +h/` `/o`  /o.  ./....-.`    ``     
-       `````....../.                 -yddddh/```````````````/dyo-        `.``.:::.`  `.::-`  `-//:.   .::.  .::.   .::-..    -/`  ./......` ````      
-        ````......+.                /hddddddds:``````````.-/:.`          `.`                                                      .+......````        
-           `......+.               -ddmddddddddo-..-//+ohms              `.`                                                      .+......`           
-           `.-....+.              -hdNmddddddddddhhdddddyNh              `.`                                                      .+....-.`           
-           `-.....+.           .-ohddmdddddddddddhhdddddso:              `.`                                                      .+.....-`           
-          ``......+.          .ohdddddddddddddddhs/ddddddh:              `.`                                                      .+......`           
-        ````......+.         ```:hdddddddddddddh+--/hdddddh-             `.`                                                      .+......`````       
-      ```  `......+-      ``````.hddddddddddddho....+dddddy`             `.`                                                      -+......`  ```      
-     ````  `.:...-+:   ``````` `odddddddddddddo/-..-+sdds/.``            `.`                                                      :+-...:.`   ```     
-     ```   `....../-`````````   :sssssssyyyyyys+o++o+syyo `````          `.`               ````````````````                       -/......`    ``     
-     ```   `........````````````--------:::::::::::::::::.````````````````.````````````````````````````````````````````````````````.......`    ``     
-     ```   `....../```````      -+syyyhhhhhhhhhddddddhyo/.    ```        `.`                                                      `+......`   ```     
-      ``   `.....-+`   `````       ``.shdddddddddddddo         ```       `.`                                                      `+-.....`   ```     
-       ``` `.....-+`      `````   ````-/hddddddddddddh-         ```      `.`                                                      `+-.....`  ``       
-         ```.-...-+`          ````````..:oddddddddddddh.         ```     `.`                                                      `+-...-.```         
-           `.....-+.                 :shyddddddddddddddy.         ```    `.`                                                      .+-.....`           
-           `.-...-+.                 sddddddddddddddddddy.        ```    `.`                                                      .+-...-.`           
-           `......+`                 ydddddddddddddddddddh.        ```   `.`                                                      `+......`           
-        ````......+`                -hydddddddddddddddddddy`        ``   `.`                                                      `+......`````       
-      ```  `......+`                +hsdddddddddddddddddddds`        ``  `.`                                                      `+......`  ````     
-     ```   `.....-+`                +y+hddddddddddddddddddddo         `` `.`                                                      `+-.....`   ```     
-     ```   `.-...-+`                ys+yddddddddddddddddddddd/         ` `.`                                                      `+-...-.`    ```    
-     ```   `.....-+`               -d++sdddddddddddddddddddddh-        ```.`                                                      `+-.....`    ```    
-     ```   `:....-+`               -s++ohhhhhddhdddddddhhhhyso+        ` `..`                                                     `+-....:`   ```     
-      ``   `.....-+`                .++++++oooo-::::/oooo++++++.         `..`                                                     `+-.....`   ```     
-       ````..-...:+`                -+++++++++/      :+++++++++/         `.`                                                      `+:...-.` ````      
-        ```......-+.                -+++++++++/       /+++++++++.        `.`                                                      .+-......```        
-           `.-...:+.                -+++++++++/       `+++++++++/        `.`                                                      .+:...-.`           
-           `.-...-+-                -+++++++++/        :+++++++++`       `.`                                                      -+-...-.`           
-           ......./:...--:::::::::--://///////:......--://///////::::::::...::::::::::::::--------:::::::::::::::::::::::::::--...:/.......           
-           ..-..........................................................................................................................-..           
-           ..-........-...-..-..................................................................................-..............-........-..           
-           `````-``.``.```.`````..`..`..``-``-``-``..``.```-``.```.``.`..``.`..`..`..`..`.``..`..``-``.``.``..``.```-```.``-```.``.``-`````     
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
+
+
+                          ```````   `                 `  ``   `                        ```````                           `
+                      ```` `   `   ````           `````   `   `````               ````  `   `` ````                ````  `   ``` `
+                   ```               ````        ```             ````           ```                ```          ```             ````
+                  ``                   ```      ``                 ```         ```                  ```        ```                ``
+           `````..``.`..`````````.``.``-``.``..`..``.```.``..``.``.``.``.``.``-`.-``.``.`..``.``.``..`..``.``.``.```..``.``..`..````..````
+           `.-............-..-...-.....-........................................................................-.......................-.`
+           `.-..........................................................................................................................-.`
+           `......:-....-::::::::::----:++++++++++++++oo+++::::::::::::::...::::::::::::::---------::::::::::::::::::::::::::-....-:......`
+           `.-..../.                 -ohddddddddddddddddddhh+`           `.`                                                      ./....-.`
+           `......+.              .+yhddddddddddddddddmmmmmddy.          `.`                            `     `                   .+......`
+       `````.-....+.           `:shddddddddddddddddmNNNNNNNNmdy.         `.``.+o+.`  `.oo/.           .sh   .sh                   .+....-.` ```
+     ```   `......+.         -ohdddddddddddddddmmNNNNNNNNNNNNmdy`        `.`  +d+      sd:             yd    yd                   .+......`   ```
+     ```   `.:....+.         .yddddddddddddmmddNNNNmshNNNNmmNNmdo        `.`  +d+      sd-    ---:.    yd    yd    `---:.         .+....:.`    ```
+    ```    `......+-          `+hdddddddddms:-hNdyo.``:shmN+omNdh-       `.`  +do------yd-  -s.``-ho   yd    yd   /o```-ss`       -+......`    ```
+    ```    `.-....+:            .ohddddddy-``.:-.````````.-:`-NNdo       `.`  +d+``````yd-  yy:::://`  yd    yd  -h:    -do       :+....-.`    ```
+     ```   `......+-              .+hdddds```````````````````.NNmh.      `.`  +d+      sd-  yh.    .`  yd    yd  :do    `d+       -+......`    ```
+     ```   `.-..../.                .sddddy-`````````````````+Nmdo`      `.`  odo      yd:  -yho//+:   yd    yd   +h/` `/o`  /o.  ./....-.`    ``
+       `````....../.                 -yddddh/```````````````/dyo-        `.``.:::.`  `.::-`  `-//:.   .::.  .::.   .::-..    -/`  ./......` ````
+        ````......+.                /hddddddds:``````````.-/:.`          `.`                                                      .+......````
+           `......+.               -ddmddddddddo-..-//+ohms              `.`                                                      .+......`
+           `.-....+.              -hdNmddddddddddhhdddddyNh              `.`                                                      .+....-.`
+           `-.....+.           .-ohddmdddddddddddhhdddddso:              `.`                                                      .+.....-`
+          ``......+.          .ohdddddddddddddddhs/ddddddh:              `.`                                                      .+......`
+        ````......+.         ```:hdddddddddddddh+--/hdddddh-             `.`                                                      .+......`````
+      ```  `......+-      ``````.hddddddddddddho....+dddddy`             `.`                                                      -+......`  ```
+     ````  `.:...-+:   ``````` `odddddddddddddo/-..-+sdds/.``            `.`                                                      :+-...:.`   ```
+     ```   `....../-`````````   :sssssssyyyyyys+o++o+syyo `````          `.`               ````````````````                       -/......`    ``
+     ```   `........````````````--------:::::::::::::::::.````````````````.````````````````````````````````````````````````````````.......`    ``
+     ```   `....../```````      -+syyyhhhhhhhhhddddddhyo/.    ```        `.`                                                      `+......`   ```
+      ``   `.....-+`   `````       ``.shdddddddddddddo         ```       `.`                                                      `+-.....`   ```
+       ``` `.....-+`      `````   ````-/hddddddddddddh-         ```      `.`                                                      `+-.....`  ``
+         ```.-...-+`          ````````..:oddddddddddddh.         ```     `.`                                                      `+-...-.```
+           `.....-+.                 :shyddddddddddddddy.         ```    `.`                                                      .+-.....`
+           `.-...-+.                 sddddddddddddddddddy.        ```    `.`                                                      .+-...-.`
+           `......+`                 ydddddddddddddddddddh.        ```   `.`                                                      `+......`
+        ````......+`                -hydddddddddddddddddddy`        ``   `.`                                                      `+......`````
+      ```  `......+`                +hsdddddddddddddddddddds`        ``  `.`                                                      `+......`  ````
+     ```   `.....-+`                +y+hddddddddddddddddddddo         `` `.`                                                      `+-.....`   ```
+     ```   `.-...-+`                ys+yddddddddddddddddddddd/         ` `.`                                                      `+-...-.`    ```
+     ```   `.....-+`               -d++sdddddddddddddddddddddh-        ```.`                                                      `+-.....`    ```
+     ```   `:....-+`               -s++ohhhhhddhdddddddhhhhyso+        ` `..`                                                     `+-....:`   ```
+      ``   `.....-+`                .++++++oooo-::::/oooo++++++.         `..`                                                     `+-.....`   ```
+       ````..-...:+`                -+++++++++/      :+++++++++/         `.`                                                      `+:...-.` ````
+        ```......-+.                -+++++++++/       /+++++++++.        `.`                                                      .+-......```
+           `.-...:+.                -+++++++++/       `+++++++++/        `.`                                                      .+:...-.`
+           `.-...-+-                -+++++++++/        :+++++++++`       `.`                                                      -+-...-.`
+           ......./:...--:::::::::--://///////:......--://///////::::::::...::::::::::::::--------:::::::::::::::::::::::::::--...:/.......
+           ..-..........................................................................................................................-..
+           ..-........-...-..-..................................................................................-..............-........-..
+           `````-``.``.```.`````..`..`..``-``-``-``..``.```-``.```.``.`..``.`..`..`..`..`.``..`..``-``.``.``..``.```-```.``-```.``.``-`````
+
+
+
+
+
+
+
+
+
+
+
 Okay, now that THAT's out of the way....
 
 time to update the Rare Session Finder.
@@ -422,7 +422,7 @@ Page is loaded.  Can pick number of sessions to check, and click "check sessions
 
 Stats for All Sessions updated with each session, and stats for A session print below.
 
-Click on a total stat line, and it filters sessions to only be ones where that value is 'true'.   Total stats now only reflect filtered list?  Button added to delete all filters. 
+Click on a total stat line, and it filters sessions to only be ones where that value is 'true'.   Total stats now only reflect filtered list?  Button added to delete all filters.
 ~~~~~~~~~~~~~~~~~~~~~
 
 So, I will have to refactor some stuff.
@@ -432,11 +432,11 @@ Right now the way total session stats are calculated is each session adds to a g
 bluh. bob warned me about global variables. he told me, dog.
 
 
-So, instead of having global variables, have each session contain a summary object (much like a player snapshot).  When I ask for a session's summary, it generates this object.  Move the "summary HTML" code outside of the object itself. just make it a global function. Then, I get combo stats by asking all sessions in an array to give me their stats. 
+So, instead of having global variables, have each session contain a summary object (much like a player snapshot).  When I ask for a session's summary, it generates this object.  Move the "summary HTML" code outside of the object itself. just make it a global function. Then, I get combo stats by asking all sessions in an array to give me their stats.
 
-have sessions array, and filteredSessions array.  Sessions array is never modified. filteredSessions array is always a object by object copy (even if there is nothing to filter by). 
+have sessions array, and filteredSessions array.  Sessions array is never modified. filteredSessions array is always a object by object copy (even if there is nothing to filter by).
 
-what happens if they check a session while it's filtered?  
+what happens if they check a session while it's filtered?
 
 
 
@@ -488,7 +488,7 @@ Especially when the internet is just there, telling you about all these cutting 
 .....
 
 
-Okay. Let's focus. Fo-cus. Focus! (Magic Cupcakes by Octopimp on youtube has just corrupted that entire word for me.)  Today's goal is to let people break up from their quadrants, even though that should be hella rare. 
+Okay. Let's focus. Fo-cus. Focus! (Magic Cupcakes by Octopimp on youtube has just corrupted that entire word for me.)  Today's goal is to let people break up from their quadrants, even though that should be hella rare.
 
 THINGS THAT CAN TRIGGER A BREAKUP:
 * Feelings change
@@ -499,29 +499,29 @@ I figure "feelings changing" shouldn't be an automatic breakup session, after al
 Some classes will hold onto a relationship for longer, regardless of why a break up might be valid. Maybe different inertial rates depending on the event.
 
 If I am a Knight AND I am cheating on you, I confess and break up with you. Seems chivalrous. (although maybe NOT cheating would be better, but cheating is already rare enough, I'll leave it as is.)
-If I am a PAGE in the same situation, maybe I just sort of let it...keep happening.  Or a Rogue, like Rufio and Damara. 
+If I am a PAGE in the same situation, maybe I just sort of let it...keep happening.  Or a Rogue, like Rufio and Damara.
 
-So, break things up into Active/Passive lines?  Not all the Active/Passive stuff is known...but I can make educated guesses. It's not like it'll be explicit. 
+So, break things up into Active/Passive lines?  Not all the Active/Passive stuff is known...but I can make educated guesses. It's not like it'll be explicit.
 I can also have a few Interests (like whatever superclass "Romance" is in) influence your odds of calling things off. I figure if you are good ar romance you migth be more likely to be honest and open? and terrible people just...arne't.
 
-Meanwhile, if your partner is cheating on YOU, chance of finding out and breaking up with them.  This tends to result in much worse feelings.  Triggers and hate and what not.  Damara went into murder mode, basically, after she found out about Horrus. 
+Meanwhile, if your partner is cheating on YOU, chance of finding out and breaking up with them.  This tends to result in much worse feelings.  Triggers and hate and what not.  Damara went into murder mode, basically, after she found out about Horrus.
 
-MurderMode would probably be a MUCH more likely option in the case of diamonds cheating.  
+MurderMode would probably be a MUCH more likely option in the case of diamonds cheating.
 
-Clubs cheating is totally not a thing. 
+Clubs cheating is totally not a thing.
 
 Oh! And if there is a heart player, everybody is MUCH MORE LIKELY to be open and honest (thus reducing the murder mode freak outs). Cause hell, if you don't tell them you have a new <3, then the heart player might.
 
 
 
 
-PROBLEM: 
+PROBLEM:
 
 If CorpseSmooch takes priority over GetTiger, then MOST players will only god tier through sacrificial slabs.  But if GetTiger takes priority over CorpseSmooch, ALL players will god tier the first time they die and not leave any for Sacrificial Slab. That's because CorpseSmooch is a one time thing. If you don't get smooched, your dream self dies and you are no longer eligible for smooching. (Note to self, maybe let usless smooches happen, creepy Gamzee style). But GetTiger happens so long as you have at least a dream self and are destined to god tier.
 
 BLUUUUUUUUUHHHHH.
 
-Okay. Think. 
+Okay. Think.
 
 You SHOULD be able to do multiple scenes in a row. That's what the availablePLayers array is for, right? Is GetTiger ever setting a player as unavailable? If so, just undoing that will acomplish two things:
 1.) If a player fails to GetTiger, they will then hit the corpse smooch, which will leave them ready for the sacrificial slab the next time they die.
@@ -533,9 +533,15 @@ Okay, adding some console output, and it looks like Corpse smooch thinks there a
 Heh. Also, don't render them 'reviving' if they haven't. Duh.
 
 
+from DestroyerTerraria sent 11 minutes ago
+"X of X is fucking pissed at X of X. They'll get thrown the fuck down by their lyrical flow, Get their asses kicked with words that cause em woe, Gonna bust every rhyme they could possibly know- X of X started some SICK FIRES, YO!"
 
+Oh god. How much of my life is going to be sacrificed to making the worlds shittiest rap engine?  Focus:
 
-
-
-
-
+Priorities:
+* Claspect Character Creator
+* Some claspect customization
+* Shitty Rap Engine
+* Cosmetic/Interest/KernelSprite Character Creator Upgrade.
+* Refactor battle system for luck/hp, etc.
+* More claspect customization
