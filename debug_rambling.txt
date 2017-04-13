@@ -550,3 +550,16 @@ Priorities:
 TODO: First thing is allow class and aspect to be chosen. Won't be very different from the OC_Generator (does that thing still work?). Basically, step one will be having the Observer input a session ID to replay/hijack/override. Then, load the players from that session and display them. Drop downs over the sprites let you change Class/Aspect for each player. Sprite updates with the new claspect. When it's to your liking, can click "start", and session begins BELOW character creator (don't vanish it cause they might want to see their chars in a pristine state.)
 
 		Challenges: Handling graphics.  For the regular sim, I just preload all the graphics that will be used and call it a day. This is fine, but with a character creator, I don't KNOW what graphics I will use. Should I preload dozens of hair, for example?  MB's been poking me to do asyncronous image loading, but it has it's own challenges, which is why i went away from it in the first place. I will need to stop and THINK about this.
+
+
+
+Who am I kidding, it's Rap Battle time.
+
+So, basic idea outlined by recursiveSlacker is one of finding a word in both arrays.
+
+wordsThatRhymeWithNo = [a,b,c,d]
+nounsAboutPopCulture = [c,d,e,f]
+
+so i might get c and d outta that.
+
+Want to have points though, no how good the rap was and how sick the fires were....is "And it don't stop" still online?

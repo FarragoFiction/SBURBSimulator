@@ -750,7 +750,7 @@ function session612IndexToTroll(player, index){
 		player.bloodColor = "#ff0000"
 		player.land = "Land of Pulse and Haze"
 		player.class_name = "Knight"
-		player.hair = 18;
+		player.hair = 29;
 		player.leftHorn = 21;
 		player.rightHorn = 21;
 		player.quirk.capitalization = 2;
