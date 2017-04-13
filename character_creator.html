@@ -55,17 +55,21 @@
 		<script type="text/javascript" src="javascripts/Scenes/PowerDemocracy.js"></script>
 		<script type="text/javascript" src="javascripts/scene_controller.js"></script>
 		<title>
-			SBURB Story Generator 2.0 by jadedResearcher
+			SBURB Story Generator 3.0 Character Creator by jadedResearcher
 		</title>
 	</head>
 	<body>
-		<h2 id = "heading">SBURB Story Generator 2.0 by jadedResearcher (art assistance by karmicRetribution) </h2>
+		<h2 id = "heading">SBURB Story Generator 3.0 by jadedResearcher (art assistance by karmicRetribution) </h2>
 		<h3 id = "seedText"><a href = "index2.html">Shareable URL </a></h3>
 		<a href = "about.html">About/FAQ</a>
 		<div id = "debug"></div>
 		<button id="start" onclick="startSim()">Start Simulation</button>
 		<canvas id="loading" width="500" height="354">  </canvas>
-
+		
+		TODO: First thing is allow class and aspect to be chosen. Won't be very different from the OC_Generator (does that thing still work?). Basically, step one will be having the Observer input a session ID to replay/hijack/override. Then, load the players from that session and display them. Drop downs over the sprites let you change Class/Aspect for each player. Sprite updates with the new claspect. When it's to your liking, can click "start", and session begins BELOW character creator (don't vanish it cause they might want to see their chars in a pristine state.)
+		<Br>
+		Challenges: Handling graphics.  For the regular sim, I just preload all the graphics that will be used and call it a day. This is fine, but with a character creator, I don't KNOW what graphics I will use. Should I preload dozens of hair, for example?  Bob's been poking me to do asyncronous image loading, but it has it's own challenges, which is why i went away from it in the first place. I will need to stop and THINK about this.
+		 
 		<div id = "story"></div>
 		<canvas id="echeladder_template" width="202" height="300">  </canvas>
 		<canvas id="sprite_template" width="400" height="300">  </canvas>

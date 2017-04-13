@@ -284,7 +284,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 
 		this.power += powerBoost;
 
-		if(this.power % 10 == 0){
+		if(this.power % 10 == 0){ //actually a really bad way to determine level ups at this point. need to refactor later.
 			this.leveledTheHellUp = true;
 		}
 	}
