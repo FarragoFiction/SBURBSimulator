@@ -625,6 +625,7 @@ function session33(){
 		player = randomPlayerWithClaspect(curSessionGlobalVar,"Rogue", "Heart");
 		if(i == 0){
 			player.leader = true;
+			guardian.leader = true;
 		}
 		player.quirk = randomTrollSim(player);
 		guardian.quirk = randomTrollSim(player);
