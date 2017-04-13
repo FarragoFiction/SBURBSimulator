@@ -1214,7 +1214,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.moon = "Derse"
 		player.land = "Land of Brains and Fire"
 		player.class_name = "Heir"
-		player.hair = 45;
+		player.hair = 48;
 		player.leftHorn = 33;
 		player.rightHorn = 33;
 		player.bloodColor = "#a1a100";
