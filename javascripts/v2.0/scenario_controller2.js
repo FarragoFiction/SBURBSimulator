@@ -68,11 +68,11 @@ function startSession(){
 	if(getParameterByName("lollipop")  == "true"){
 		tricksterMode();
 	}
-	
+
 	if(getParameterByName("robot")  == "true"){
 		roboMode();
 	}
-	
+
 	if(getParameterByName("sbajifier")  == "true"){
 		sbahjMode();
 	}
@@ -1072,7 +1072,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.aspect = "Time"
 		player.class_name = "Witch"
 		player.land = "Land of Quartz and Melody"
-		player.hair = 40;
+		player.hair = 50;
 		player.leftHorn = 36;
 		player.rightHorn = 36;
 		player.bloodColor = "#A10000";
@@ -1092,7 +1092,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.moon = "Derse"
 		player.class_name = "Mage"
 		player.land = "Land of Little Cubes and Tea"
-		player.hair = 7;
+		player.hair = 51;
 		player.leftHorn = 22;
 		player.rightHorn = 22;
 		player.bloodColor = "#416600";
@@ -1112,7 +1112,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.moon = "Prospit"
 		player.land = "Land of Sand and Zephyr"
 		player.class_name = "Rogue"
-		player.hair = 43;
+		player.hair = 1025;
 		player.leftHorn = 28;
 		player.rightHorn = 28;
 		player.bloodColor = "#a25203";
@@ -1133,7 +1133,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.moon = "Prospit"
 		player.land = "Land of Maps and Treasure"
 		player.class_name = "Sylph"
-		player.hair = 14;
+		player.hair = 52;
 		player.leftHorn = 27;
 		player.rightHorn = 27;
 		player.bloodColor = "#004182";
