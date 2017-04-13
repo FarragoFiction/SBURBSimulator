@@ -868,7 +868,7 @@ function session612IndexToTroll(player, index){
 		player.aspect = "Breath"
 		player.land = "Land of Sand and Zephyr"
 		player.class_name = "Page"
-		player.hair = 33;
+		player.hair = 42;
 		player.leftHorn = 28;
 		player.rightHorn = 28;
 		player.bloodColor = "#a25203";
@@ -994,7 +994,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.bloodColor = "#ff0000"
 		player.land = "Land of Pulse and Haze"
 		player.class_name = "Seer"
-		player.hair = 18;
+		player.hair = 44;
 		player.leftHorn = 21;
 		player.rightHorn = 21;
 		player.quirk.capitalization = 1;
@@ -1012,7 +1012,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.land = "Land of Thought and Flow"
 		player.aspect = "Mind"
 		player.class_name = "Knight"
-		player.hair = 10;
+		player.hair = 47;
 		player.leftHorn = 46;
 		player.rightHorn = 46;
 		player.bloodColor = "#008282";
@@ -1031,7 +1031,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.land = "Land of Mirth and Tents"
 		player.aspect = "Rage"
 		player.class_name = "Prince"
-		player.hair = 41;
+		player.hair = 45;
 		player.leftHorn = 29;
 		player.rightHorn = 29;
 		player.bloodColor = "#631db4";
@@ -1111,7 +1111,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.moon = "Prospit"
 		player.land = "Land of Sand and Zephyr"
 		player.class_name = "Rogue"
-		player.hair = 33;
+		player.hair = 43;
 		player.leftHorn = 28;
 		player.rightHorn = 28;
 		player.bloodColor = "#a25203";
@@ -1214,7 +1214,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.moon = "Derse"
 		player.land = "Land of Brains and Fire"
 		player.class_name = "Heir"
-		player.hair = 2;
+		player.hair = 45;
 		player.leftHorn = 33;
 		player.rightHorn = 33;
 		player.bloodColor = "#a1a100";
