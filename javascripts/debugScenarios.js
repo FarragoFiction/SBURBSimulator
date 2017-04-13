@@ -36,6 +36,25 @@ function babyStuckMode(){
 		p.quirk.lettersToReplaceIgnoreCase = p.quirk.lettersToReplaceIgnoreCase.concat([["e", "goo"],["a","gah"],["i","ga"],["o","blooo"],["u","guuuu"]]);
 	}
 }
+
+//AB told me this was funny! I SWEAR I am not Robo-Racist! It's IRONIC.
+function roboMode(){
+	alert("BEEP")
+	$("#story").append("<img src = 'images/robot_author.png' style='float:left;'>");
+	for(var j = 0; j<curSessionGlobalVar.players.length; j++){
+		var p = curSessionGlobalVar.players[j];
+		p.hairColor = getRandomGreyColor();
+		p.bloodColor = getRandomGreyColor();
+		p.robot  = true;
+		p.quirk.capitalization = 2; //OBVIOUSLY robots all speak in all caps. 
+		p.quirk.punctuation = 0; //robots speak in monotone, DUH.
+		for(var k = 0; k <p.relationships.length; k++){
+				var r = p.relationships[k];
+				r.value = 0; // Clearly they are just tin cans without feelings. Robo, or otherwise.
+		}
+	}
+}
+
 function tricksterMode(){
 	alert("I FEEL JUST PEEEEEEEEEEEACHY!!!!!!!!!!!")
 	$("#story").append("<img src = 'images/trickster_author.png' style='float:left;'>");

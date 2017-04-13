@@ -68,6 +68,11 @@ function startSession(){
 	if(getParameterByName("lollipop")  == "true"){
 		tricksterMode();
 	}
+	
+	if(getParameterByName("robot")  == "true"){
+		roboMode();
+	}
+	
 	if(getParameterByName("sbajifier")  == "true"){
 		sbahjMode();
 	}

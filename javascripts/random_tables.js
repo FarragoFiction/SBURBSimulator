@@ -1192,7 +1192,24 @@ var justice_handles2 = ["Detective","Defender","Laywer","Loyalist","Liason","Vig
 
 var human_hair_colors = ["#68410a","#000000","#000000","#000000","#f3f28d","#cf6338","#feffd7","#fff3bd","#724107","#382207","#ff5a00","#3f1904","#ffd46d","#473200","#91683c"];
 
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 
+function getRandomGreyColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+	var tmp = "";
+    for (var i = 0; i < 2; i++ ) {
+        tmp += letters[Math.floor(Math.random() * 16)];
+    }
+    return color+tmp+tmp+tmp; //grey is just 3 of the same 2 byte hex repeated.
+}
 
 
 function helloWorld(){

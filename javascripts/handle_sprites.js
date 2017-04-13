@@ -189,6 +189,10 @@ function greySkin(canvas){
   swapColors(canvas, "#ffffff", "#c4c4c4")
 }
 
+function roboSkin(canvas){
+  swapColors(canvas, "#ffffff", "#b6b6b6")
+}
+
 function wings(canvas,player){
   //blood players have no wings, all other players have wings matching
   //favorite color
@@ -987,6 +991,7 @@ function drawSpriteTurnways(canvas, player){
 
 function makeRenderingSnapshot(player){
 	var ret = new PlayerSnapshot();
+	ret.robot = player.robot;
 	ret.trickster = player.trickster;
 	ret.baby_stuck = player.baby_stuck;
 	ret.sbahj = player.sbahj;
@@ -1070,6 +1075,9 @@ function drawSprite(canvas, player,ctx,baby){
     if(player.leftMurderMode == true){
   	  scar_face(canvas, player);
     }
+	if(player.robot == true){
+  	  robo_face(canvas, player);
+    }
   }else{
      babySprite(canvas,player);
 	 if(player.baby_stuck && !baby){
@@ -1090,7 +1098,10 @@ function drawSprite(canvas, player,ctx,baby){
   if(!baby && player.class_name == "Prince" && player.godTier){
 	  princeTiara(canvas, player);
   }
-  if(player.trickster == true){
+  
+  if(player.robot == true){
+	  roboSkin(canvas, player);
+  }else if(player.trickster == true){
       peachSkin(canvas, player);
   }else if(!baby && player.grimDark == true){
     grimDarkSkin(canvas, player)
@@ -1113,9 +1124,11 @@ function drawSprite(canvas, player,ctx,baby){
 
 function playerToSprite(canvas, player){
 	ctx = canvas.getContext('2d');
-  if(player.trickster){
-    tricksterSprite(canvas, player);
-  }else if(player.godTier){
+	if(player.robot == true){
+		robotSprite(canvas, player);
+	}else if(player.trickster){
+		tricksterSprite(canvas, player);
+	}else if(player.godTier){
 		godTierSprite(canvas, player);
 	}else if (player.isDreamSelf)
 	{
@@ -1127,6 +1140,15 @@ function playerToSprite(canvas, player){
 	//TODO check for murder mode or grim darkness.
 }
 
+function robo_face(canvas, player){
+	ctx = canvas.getContext('2d');
+	var imageString = "robo_face.png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,0,0,width,height);
+}
 
 function scar_face(canvas, player){
 	ctx = canvas.getContext('2d');
@@ -1360,15 +1382,34 @@ function playerToDreamBody(player){
   return imageString;
 }
 
-
+function robotSprite(canvas, player){
+	var imageString;
+	if(!player.godTier){
+		imageString = playerToRegularBody(player);
+	}else{
+		imageString = playerToGodBody(player);
+	}
+	  addImageTag(imageString)
+	  var img=document.getElementById(imageString);
+	  var width = img.width;
+	  var height = img.height;
+	  ctx.drawImage(img,0,0,width,height);
+	  robotPalletSwap(canvas, player);
+	  //eeeeeh...could figure out how to color swap symbol, but lazy.
+}
 function tricksterSprite(canvas, player){
-	var imageString = playerToRegularBody(player);
-  addImageTag(imageString)
-  var img=document.getElementById(imageString);
-  var width = img.width;
-  var height = img.height;
-  ctx.drawImage(img,0,0,width,height);
-  candyPalletSwap(canvas, player);
+	var imageString;
+	if(!player.godTier){
+		imageString = playerToRegularBody(player);
+	}else{
+		imageString = playerToGodBody(player);
+	}
+	  addImageTag(imageString)
+	  var img=document.getElementById(imageString);
+	  var width = img.width;
+	  var height = img.height;
+	  ctx.drawImage(img,0,0,width,height);
+	  candyPalletSwap(canvas, player);
   //aspectSymbol(canvas, player);
 }
 
@@ -1482,6 +1523,46 @@ function dreamSymbol(canvas, player){
     var width = img.width;
     var height = img.height;
     ctx.drawImage(img,0,0,width,height);
+}
+
+function robotPalletSwap(canvas, player){
+	var oldcolor1 = "#FEFD49";
+	var oldcolor2 = "#FEC910";
+	var oldcolor3 = "#10E0FF";
+	var oldcolor4 = "#00A4BB";
+	var oldcolor5 = "#FA4900";
+	var oldcolor6 = "#E94200";
+
+	var oldcolor7 = "#C33700";
+	var oldcolor8 = "#FF8800";
+	var oldcolor9 = "#D66E04";
+	var oldcolor10 = "#E76700";
+	var oldcolor11 = "#CA5B00";
+
+	var new_color1 = "#0000FF";
+	var new_color2 = "#0022cf";
+	var new_color3 ="#B6B6B6";
+	var new_color4 = "#A6A6A6";
+	var new_color5 = "#B6B6B6";
+	var new_color6 = "#595959";
+	var new_color7 = "#696969";
+	var new_color8 = "#B6B6B6";
+	var new_color9 = "#797979";
+	var new_color10 = "#494949";
+	var new_color11 = "#393939";
+
+
+	swapColors(canvas, oldcolor1, new_color1)
+	swapColors(canvas, oldcolor2, new_color2)
+	swapColors(canvas, oldcolor3, new_color3)
+	swapColors(canvas, oldcolor4, new_color4)
+	swapColors(canvas, oldcolor5, new_color5)
+	swapColors(canvas, oldcolor6, new_color6)
+	swapColors(canvas, oldcolor7, new_color7)
+	swapColors(canvas, oldcolor8, new_color8)
+	swapColors(canvas, oldcolor9, new_color9)
+	swapColors(canvas, oldcolor10, new_color10)
+	swapColors(canvas, oldcolor11, new_color11)
 }
 
 
