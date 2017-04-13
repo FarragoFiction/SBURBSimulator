@@ -1,6 +1,6 @@
 <img src = "images/author.png" style="float:left;">
 
-<h1> Definitely well-hidden Easter Eggs. </h1>
+<h1> Definitely well-hidden Easter Eggs. (Mini-Update for 4/13/17)</h1>
 <p> Easter eggs can be combined as such: 'index2.html?seed=SEEDID&lollipop=true&sbajifier=true'.  Start with a question mark after index2.html, and then for each new easter egg have an ampersand.  Here there be dragons. These are easter eggs, not main features. Shit can get weird.  I want to stress that each of these easter eggs are 100% modifiers to the real sessions. You can look at a session where everybody died and add a lollipop to it to see if it makes things better. One big exception is the seed easter eggs, like 612 or 413. These easter eggs straight up override the native players (and create some wholesale if there aren't enough players). So there's nothing to compare it to.</p>
 
 <p> Oh! And I'm trying to gauge the difficulty of getting here. <b>If you contact me (see FAQ) with the subject of "Definitely well-hidden Easter Eggs." you can give me 140 characters (plus a chatHandle or similar) and I'll post them on this page</b>, under the easter egg links. It'll be like a high score table. The first people to get here are more prominently displayed. I reserve the right to not post what you want me to if it's offensive or whatever, but I'll reply to give you a chance to pick something else.</p>
