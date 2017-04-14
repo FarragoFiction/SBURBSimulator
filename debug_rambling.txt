@@ -578,3 +578,17 @@ AT: tHEY WON'T STAND FOR AN ATTITUDE,
 AT: aND, cROSSING THEM'S A HABIT YOU'D,
 AT: (nOT REALLY WANT TO GET INTO BECAUSE, uHH),
 AT: tHEY'D GET PRETTY MAD AT YOU, 
+
+
+
+
+switch gears right quick.  AuthorBotJunior has to be a thing.
+
+
+objective: be able to filter by:
+
+# of players in session (2-12)
+claspect  (two drop downs, like oc_generator)
+interests
+
+want to also display other initial stats like interests, initial relationships.

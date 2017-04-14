@@ -149,7 +149,6 @@ function filterSessionSummariesBy(filter){
 
 
 function checkSessionsJunior(){
-	alert(getQuipAboutSessionJunior())
 	numSimulationsDone = 0; //but don't reset stats
 	sessionSummariesDisplayed = []
 	for(var i = 0; i<allSessionsSummaries.length; i++){
@@ -203,7 +202,7 @@ function startSessionJunior(){
 	var sum = curSessionGlobalVar.generateSummary();
 	allSessionsSummaries.push(sum);
 	sessionSummariesDisplayed.push(sum);
-	var str = sum.generateHTMLJunior();
+	var str = sum.getSessionSummaryJunior().generateHTML();
 	debug("<br><hr><font color = 'orange'> ABJR: " + getQuipAboutSessionJunior() + "</font><Br>" );
 	debug(str);
 	printStatsJunior();
@@ -545,8 +544,8 @@ function foundRareSession(div, debugMessage){
 }
 
 function printStatsJunior(){
-	var mms = collateMultipleSessionSummaries(sessionSummariesDisplayed);
-	$("#stats").html(mms.generateHTMLJunior());
+	var mms = collateMultipleSessionSummariesJunior(sessionSummariesDisplayed);
+	$("#stats").html(mms.generateHTML());
 }
 
 function printStats(filters){

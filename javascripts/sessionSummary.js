@@ -117,12 +117,11 @@ function SessionSummary(){
 
 	}
 	
-	this.generateHTMLJunior = function(){
-		var html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id +"'>";
-		html += "<Br><b>Players</b>: " + getPlayersTitlesBasic(this.players);
-		html += "</div><br>"
-		return html;
+	this.getSessionSummaryJunior = function(){
+		return new SessionSummaryJunior(this.players);
 	}
+	
+	
 
 	//generate own html, complete with div.  just return it, dn't add it to anything
 	this.generateHTML = function(){
@@ -140,7 +139,7 @@ function SessionSummary(){
 					}else{
 						html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "'>" +this.session_id + "</a>"
 					}
-				}else if(propertyName == "satifies_filter_array" || propertyName == "frogStatus" || propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo"  ){
+				}else if(propertyName == "satifies_filter_array" || propertyName == "frogStatus" || propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo"  || propertyName != "getSessionSummaryJunior" ){
 					//do nothing. properties used elsewhere.
 				}else if(propertyName != "generateHTML"){
 					html += "<Br><b>" + propertyName + "</b>: " + this[propertyName] ;
@@ -151,6 +150,17 @@ function SessionSummary(){
 		return html;
 	}
 
+}
+
+//junior only cares about players.
+function SessionSummaryJunior(players){
+	this.players = players;
+	this.generateHTML = function(){
+		var html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id +"'>";
+		html += "<Br><b>Players</b>: " + getPlayersTitlesBasic(this.players);
+		html += "</div><br>"
+		return html;
+	}
 }
 
 
@@ -194,14 +204,6 @@ function MultiSessionSummary(){
 	this.questBed = 0;
 	this.sacrificialSlab = 0;
 	
-	this.generateHTMLJunior = function(){
-		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
-		var header = "<h2>Stats for All Displayed Sessions: </h2>(When done finding, can filter)<br>"
-		html += header;
-		html += "Holy shit, what should even go here?"
-		html += "</div><Br>"
-		return html;
-	}
 
 	this.generateHTML = function(){
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
@@ -232,6 +234,11 @@ function MultiSessionSummary(){
 
 function summaryHasProperty(summary, property){
 	return summary[propertyName]
+}
+
+function collateMultipleSessionSummariesJunior(sessionSummaries){
+	var mss = new MultiSessionSummaryJunior();
+	return mss;
 }
 
 function collateMultipleSessionSummaries(sessionSummaries){
@@ -278,4 +285,17 @@ function collateMultipleSessionSummaries(sessionSummaries){
 	}
 	mss.survivalRate = Math.round(100 * (mss.totalLivingPlayers/(mss.totalLivingPlayers + mss.totalDeadPlayers)));
 	return mss;
+}
+
+//only initial stats.
+function MultiSessionSummaryJunior(){
+	
+	this.generateHTML = function(){
+		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
+		var header = "<h2>Stats for All Displayed Sessions: </h2>(When done finding, can filter)<br>"
+		html += header;
+		html += "Holy shit, what should even go here?"
+		html += "</div><Br>"
+		return html;
+	}
 }
