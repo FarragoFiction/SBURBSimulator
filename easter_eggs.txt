@@ -20,7 +20,7 @@
 
 
 
-<div id = "hof413">
+<div class = "hof413">
 <h1>Hall of Fame (4/13 Batch)</h1>
 <p>"I went to Derse and all I got was this stupid knife to the chest."
 <br>
@@ -51,5 +51,10 @@
 </p>
 </div>
 
+<div class = "hof413">
 <h2> Hall of Fame (Post 4/13 Batch)</h2><Br>
-Will it be you???
+<p>"This is what I get for looking for my void player isn't it?"
+<br>
+ - gracefulBlossom
+ </p>
+</div>
