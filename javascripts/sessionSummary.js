@@ -160,8 +160,9 @@ function SessionSummaryJunior(players,session_id){
 		var html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id +"'>";
 		html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "'>" +this.session_id + "</a>"
 		html += "<Br><b>Players</b>: " + getPlayersTitlesBasic(this.players);
+		html += "<Br><b>Sprites</b>: " + this.grabAllSprites().toString();
 		html += "<Br><b>Interests</b>: " + this.grabAllInterest().toString();
-		html += "<Br><b>Initial Ships</b>: " + this.initialShips().toString();
+		html += "<Br><b>Initial Ships</b>:<Br> " + this.initialShips().toString();
 		html += "</div><br>"
 		return html;
 	}
@@ -177,10 +178,19 @@ function SessionSummaryJunior(players,session_id){
 		return ret;
 	}
 	
+	this.grabAllSprites = function(){
+		var ret = [];
+		for(var i = 0; i<this.players.length; i++){
+			var player = this.players[i];
+			ret.push(player.kernel_sprite);
+			
+		}
+		return ret;
+	}
+	
 	this.initialShips = function(){
 		var shipper = new UpdateShippingGrid();
 		shipper.createShips(this.players);
-		console.log(shipper.ships);
 		return  shipper.printShips(shipper.getGoodShips())
 	}
 }

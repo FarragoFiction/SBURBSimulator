@@ -30,8 +30,8 @@ function Relationship(initial_value, target_player){
 			return this.badMild;
 		}
 	}
-
-
+	//can't do this before function is written. so dumb.
+	this.saved_type = this.changeType();
 	//for most interactions, the relationship will grow along it's current trajectory.
 	this.moreOfSame = function(){
 		if(this.value >= 0){

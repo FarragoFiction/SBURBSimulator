@@ -68,6 +68,7 @@ function UpdateShippingGrid(session){
 				}
 
 	}
+	
 
 	this.getGoodShips = function(){
 		var ret = [];
