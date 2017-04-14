@@ -233,6 +233,7 @@ function startSessionJunior(){
 	if(numSimulationsDone >= numSimulationsToDo){
 			$("#button").prop('disabled', false)
 	}else{
+		Math.seed =  getRandomSeed();
 		initial_seed = Math.seed;
 		startSessionJunior();
 	}
