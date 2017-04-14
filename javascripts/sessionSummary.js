@@ -156,6 +156,7 @@ function SessionSummary(){
 function SessionSummaryJunior(players,session_id){
 	this.players = players;
 	this.session_id = session_id;
+	this.ships = null;
 	this.generateHTML = function(){
 		var html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id +"'>";
 		html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "'>" +this.session_id + "</a>"
@@ -190,8 +191,11 @@ function SessionSummaryJunior(players,session_id){
 	
 	this.initialShips = function(){
 		var shipper = new UpdateShippingGrid();
-		shipper.createShips(this.players);
-		return  shipper.printShips(shipper.getGoodShips())
+		if(!this.ships){
+			shipper.createShips(this.players);
+			this.ships = shipper.getGoodShips()
+		}
+		return  shipper.printShips(this.ships)
 	}
 }
 
@@ -268,8 +272,14 @@ function summaryHasProperty(summary, property){
 	return summary[propertyName]
 }
 
-function collateMultipleSessionSummariesJunior(sessionSummaries){
+function collateMultipleSessionSummariesJunior(sessionSummaryJuniors){
 	var mss = new MultiSessionSummaryJunior();
+	mss.numSessions = sessionSummaryJuniors.length;
+	for(var i = 0; i<sessionSummaryJuniors.length; i++){
+		var ssj =sessionSummaryJuniors[i];
+		mss.numPlayers += ssj.players.length;
+		mss.numShips += ssj.ships.length;
+	}
 	return mss;
 }
 
@@ -319,14 +329,22 @@ function collateMultipleSessionSummaries(sessionSummaries){
 	return mss;
 }
 
+function round2Places(num){
+	return Math.round(num*100)/100
+}
 //only initial stats.
 function MultiSessionSummaryJunior(){
-	
+	this.numSessions = 0;
+	this.numPlayers = 0;
+	this.numShips = 0;
 	this.generateHTML = function(){
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
-		var header = "<h2>Stats for All Displayed Sessions: </h2>(When done finding, can filter)<br>"
+		var header = "<h2>Stats for All Displayed Sessions: </h2><br>"
 		html += header;
-		html += "Holy shit, what should even go here?"
+		html += "<Br><b>Number Sessions:</b> " + this.numSessions;
+		html += "<Br><b>Average Players Per Session:</b> " + round2Places(this.numPlayers/this.numSessions);
+		html += "<Br><b>Average Initial Ships Per Session:</b> " + round2Places(this.numShips/this.numSessions);
+		html += "<Br><b>Filter Sessions By Number of Players:</b><Br>2 <input id='num_players' type='range' min='2' max='12' value='10'> 12"
 		html += "</div><Br>"
 		return html;
 	}

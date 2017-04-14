@@ -592,3 +592,32 @@ claspect  (two drop downs, like oc_generator)
 interests
 
 want to also display other initial stats like interests, initial relationships.
+
+Okay, the individual session summaries (junior) is working beautifully.  Players, Sprites, Interests and Ships.
+
+But...filtering is going to be way harder. Don't want a list of 144 check boxes and then some, right?
+
+So....think.
+
+For number of players, could have a range bar like I do for how many sessions to show. Okay. Solid idea.
+Will probably have to redo my "filter" code...dont' even remember how I did it, tho. 
+
+As far as interests and sprites, can filter by category?
+HelpfulSprites
+UnhelpfulSprites
+DisastorSprites
+FortuneSprites
+
+etc.
+
+Ships...don't even bother filtering. Like, seriously. Unless somebody asks.
+
+Claspect will be the hard one. Maybe display a grid of checkboxes, click checkbox to show only sessions with that claspect?
+
+BUT it's not just about filtering, right, also about displaying uberStats...
+
+
+think.
+
+Start with the basics.  I KNOW I want to do this by number of players, because that was the initial request. So. Do that. Everything else is a bonus feature that i don't need to do right now.
+

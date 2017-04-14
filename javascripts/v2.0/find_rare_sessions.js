@@ -200,13 +200,14 @@ function startSessionJunior(){
 	//aaaaand. done.
 	sessionsSimulated.push(curSessionGlobalVar.session_id);
 	var sum = curSessionGlobalVar.generateSummary();
-	allSessionsSummaries.push(sum);
-	sessionSummariesDisplayed.push(sum);
-	var str = sum.getSessionSummaryJunior().generateHTML();
-	debug("<br><hr><font color = 'orange'> ABJR: " + getQuipAboutSessionJunior() + "</font><Br>" );
+	var sumJR = sum.getSessionSummaryJunior()
+	allSessionsSummaries.push(sumJR);
+	sessionSummariesDisplayed.push(sumJR);
+	var str = sumJR.generateHTML();
+	debug("<br><hr><font color = 'orange'> ABJ: " + getQuipAboutSessionJunior() + "</font><Br>" );
 	debug(str);
 	printStatsJunior();
-		numSimulationsDone ++;
+	numSimulationsDone ++;
 	if(numSimulationsDone >= numSimulationsToDo){
 			$("#button").prop('disabled', false)
 	}else{
