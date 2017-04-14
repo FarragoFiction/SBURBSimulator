@@ -389,7 +389,7 @@ function poseAsATeam(canvas,players, repeatTime){
 		drawSprite(spriteBuffers[i],players[i])
 	}
 		var x = -250; //-275 cuts of left most part.
-		var y = -50;
+		var y = 0;
 		var total = 0;
 		for(var i = 0; i<spriteBuffers.length; i++){
 			if(i == 6){
@@ -397,7 +397,7 @@ function poseAsATeam(canvas,players, repeatTime){
 				y = 100;
 			}else if(i==12){//could be more than 12 cause time shenanigans.
 				x = -250; //down a row
-				y = 250;
+				y = 300;
 			}
 			x = x +150;
 			copyTmpCanvasToRealCanvasAtPos(canvas, spriteBuffers[i],x,y)
