@@ -116,6 +116,13 @@ function SessionSummary(){
 			return html;
 
 	}
+	
+	this.generateHTMLJunior = function(){
+		var html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id +"'>";
+		html += "<Br><b>Players</b>: " + getPlayersTitlesBasic(this.players);
+		html += "</div><br>"
+		return html;
+	}
 
 	//generate own html, complete with div.  just return it, dn't add it to anything
 	this.generateHTML = function(){
@@ -186,6 +193,15 @@ function MultiSessionSummary(){
 	this.godTier = 0;
 	this.questBed = 0;
 	this.sacrificialSlab = 0;
+	
+	this.generateHTMLJunior = function(){
+		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
+		var header = "<h2>Stats for All Displayed Sessions: </h2>(When done finding, can filter)<br>"
+		html += header;
+		html += "Holy shit, what should even go here?"
+		html += "</div><Br>"
+		return html;
+	}
 
 	this.generateHTML = function(){
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";

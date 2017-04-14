@@ -148,6 +148,20 @@ function filterSessionSummariesBy(filter){
 }
 
 
+function checkSessionsJunior(){
+	alert(getQuipAboutSessionJunior())
+	numSimulationsDone = 0; //but don't reset stats
+	sessionSummariesDisplayed = []
+	for(var i = 0; i<allSessionsSummaries.length; i++){
+		sessionSummariesDisplayed.push(allSessionsSummaries[i]);
+	}
+	$("#story").html("")
+	numSimulationsToDo = parseInt($("#num_sessions").val())
+	$("#button").prop('disabled', true)
+	startSessionJunior();
+}
+
+
 function checkSessions(){
 	numSimulationsDone = 0; //but don't reset stats
 	sessionSummariesDisplayed = []
@@ -172,6 +186,34 @@ function formInit(){
 	$("#num_sessions").change(function(){
 			$("#num_sessions_text").val($("#num_sessions").val());
 	});
+}
+
+function startSessionJunior(){
+	$("#story").html("")
+	curSessionGlobalVar = new Session(initial_seed)
+	reinit();
+	createScenesForSession(curSessionGlobalVar);
+	//initPlayersRandomness();
+	curSessionGlobalVar.makePlayers();
+	curSessionGlobalVar.randomizeEntryOrder();
+	curSessionGlobalVar.makeGuardians(); //after entry order established
+	
+	//aaaaand. done.
+	sessionsSimulated.push(curSessionGlobalVar.session_id);
+	var sum = curSessionGlobalVar.generateSummary();
+	allSessionsSummaries.push(sum);
+	sessionSummariesDisplayed.push(sum);
+	var str = sum.generateHTMLJunior();
+	debug("<br><hr><font color = 'orange'> ABJR: " + getQuipAboutSessionJunior() + "</font><Br>" );
+	debug(str);
+	printStatsJunior();
+		numSimulationsDone ++;
+	if(numSimulationsDone >= numSimulationsToDo){
+			$("#button").prop('disabled', false)
+	}else{
+		initial_seed = Math.seed;
+		startSessionJunior();
+	}
 }
 
 function startSession(){
@@ -336,6 +378,8 @@ function reckoningTick(){
 
 }
 //Hello!!! This is 100% a legit tactic to passing this challenge. Win through programming knowledge, win through whatever. 10 points to you for HAX0Ring knowledge.
+// ...but...aren't you curious how to pass it for real? (or is it obvious to you know that you've seen this?)
+//want a spoiler? I'll put the answer all the way on the bottom of the page.
 function checkPasswordAgainstQuip(summary){
 	var quip =  getQuipAboutSession(summary);
 	if(quip == "Everything went better than expected."){
@@ -422,6 +466,12 @@ function percentBullshit(){
 	$("#percentBullshit").html(pr+"%")
 }
 
+//oh Dirk/Lil Hal/Lil Hal Junior, why are you so amazing?
+function getQuipAboutSessionJunior(){
+	var quips = ["Hmmm","Yes.","Interesting!!!"];
+	return getRandomElementFromArray(quips);
+}
+
 function getQuipAboutSession(sessionSummary){
 	var quip = "";
 	var living = sessionSummary.numLiving
@@ -492,6 +542,11 @@ function foundRareSession(div, debugMessage){
   chat += "JR: Oh! And I'm really careful to make sure these little chats don't actually influence the session in any way.\n"
 	chat += "JR: Like maybe one day you or I can have a 'yellow yard' type interference scheme. But today is not that day."
 	drawChatABJR(canvasDiv, chat);
+}
+
+function printStatsJunior(){
+	var mms = collateMultipleSessionSummaries(sessionSummariesDisplayed);
+	$("#stats").html(mms.generateHTMLJunior());
 }
 
 function printStats(filters){
@@ -568,3 +623,7 @@ function callNextIntroWithDelay(player_index){
 function intro(){
 	callNextIntroWithDelay(0);
 }
+
+
+//the password is: Any session that AB would describe as "better than expected".  If you're in the code you could probably figure out what that means on your own.
+//just doing a 'find on page' of this file will find it for you, in fact. 

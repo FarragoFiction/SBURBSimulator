@@ -45,3 +45,11 @@
 	text-align: center;
 	display:none;
 }
+
+#hof413{
+	border: 1px dashed gray;
+	padding: 1px;
+	width: 500px;
+	margin-left: auto;
+    margin-right: auto;
+}
