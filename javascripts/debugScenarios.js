@@ -47,7 +47,7 @@ function roboMode(){
 		p.bloodColor = getRandomGreyColor();
 		p.robot  = true;
 		p.power += 20; //Robots are superior.
-		p.quirk.capitalization = 2; //OBVIOUSLY robots all speak in all caps. 
+		p.quirk.capitalization = 2; //OBVIOUSLY robots all speak in all caps.
 		p.quirk.punctuation = 0; //robots speak in monotone, DUH.
 		p.quirk.lettersToReplaceIgnoreCase.push(["\\bhuh\\b","BEEP"]);
 		p.quirk.lettersToReplaceIgnoreCase.push(["\\ber\\b","BEEP"]);
@@ -66,7 +66,7 @@ function roboMode(){
 
 function tricksterMode(){
 	alert("I FEEL JUST PEEEEEEEEEEEACHY!!!!!!!!!!!")
-	$("#story").append("<img src = 'images/trickster_author.png' style='float:left;'>");
+	$("#story").append("<img src = 'images/trickster_author.png' style='float:left;'><img src = 'images/trickster_artist.png' style='float:left;'>");
 	$('body').css("background-color", "#ff93e4");
 	for(var j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
@@ -77,7 +77,7 @@ function tricksterMode(){
 		}else{
 		}
 
-		
+
 		if(p.aspect != "Heart" && p.aspect != "Doom"){//no personality changes.
 			p.quirk.capitalization = 2;
 			p.quirk.punctuation = 3;
