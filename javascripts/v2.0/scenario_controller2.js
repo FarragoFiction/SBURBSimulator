@@ -621,8 +621,16 @@ function session33(){
 	for(var i = 0; i<12;i++){
 		var player;
 		var guardian;
-		guardian = randomPlayerWithClaspect(curSessionGlobalVar,"Rogue", "Heart");
-		player = randomPlayerWithClaspect(curSessionGlobalVar,"Rogue", "Heart");
+		if(i>2){
+			guardian = randomPlayerWithClaspect(curSessionGlobalVar,"Rogue", "Heart");
+			player = randomPlayerWithClaspect(curSessionGlobalVar,"Rogue", "Heart");
+		}else if(i==0){
+			guardian = randomPlayerWithClaspect(curSessionGlobalVar,"Rogue", "Time");
+			player = randomPlayerWithClaspect(curSessionGlobalVar,"Rogue", "Time");
+		}else if(i ==1){
+			guardian = randomPlayerWithClaspect(curSessionGlobalVar,"Rogue", "Space");
+			player = randomPlayerWithClaspect(curSessionGlobalVar,"Rogue", "Space");
+		}
 		if(i == 0){
 			player.leader = true;
 			guardian.leader = true;
@@ -634,10 +642,11 @@ function session33(){
 		guardian.guardian = player;
 
 		session612IndexToTroll(player, i);
+		session612IndexToTrollAncestor(guardian, i);
 		player.mylevels = getLevelArray(player);
 		guardian.mylevels = getLevelArray(guardian);
 	}
-
+	
 	for(var i = 0; i<12;i++){
 		player = curSessionGlobalVar.players[i];
 		guardian = player.guardian;
