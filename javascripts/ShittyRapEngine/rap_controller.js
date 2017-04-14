@@ -27,18 +27,29 @@ function rap(playerNum){
 				player1Rhymes.push(secondWord);
 				rapper1Line(str);
 				rap(1); //keep going till you can't
+				return;
 			}else{
 				rapper1Line(str + " Uh. Wait. Um...")
+				return;
 			}
 		}else{
-			if(player1Rhymes.indexOf(firstWord) == -1 && player1Rhymes.indexOf(secondWord) == -1) {
+			if(player2Rhymes.indexOf(firstWord) == -1 && player2Rhymes.indexOf(secondWord) == -1) {
 				player2Rhymes.push(firstWord);
 				player2Rhymes.push(secondWord);
 				rapper2Line(str);
 				rap(2); //keep going till you can't.
+				return;
 			}else{
-				rapper2Line(str + "Uh. Wait. Um...");
+				rapper2Line(str + " Uh. Wait. Um...");
+				return;
 			}
+		}
+
+	}else{
+		if(playerNum==1){
+				rapper1Line("Um. Shit.");
+		}else{
+			rapper2Line("Um. Shit.");
 		}
 	}
 

@@ -17,6 +17,8 @@ var noun = "noun";
 var verb = "verb";
 var rapTemplates = [new RapTemplate("Yo, you must be some kind of ",noun, " sitting there like you think you can ", verb) ];
 rapTemplates.push(new RapTemplate("Your ass is grass, you ain't got that ",noun, " you have the worst skills that i ever did ", verb) );
+rapTemplates.push(new RapTemplate("I got that  ",noun, " you have no ", noun) );
+rapTemplates.push(new RapTemplate("You think you're a ",noun, " but you can't even ", verb) );
 
 
 
