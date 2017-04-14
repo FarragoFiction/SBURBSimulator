@@ -388,15 +388,15 @@ function poseAsATeam(canvas,players, repeatTime){
 		spriteBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
 		drawSprite(spriteBuffers[i],players[i])
 	}
-		var x = -275;
+		var x = -250; //-275 cuts of left most part.
 		var y = -50;
 		var total = 0;
 		for(var i = 0; i<spriteBuffers.length; i++){
 			if(i == 6){
-				x = -300; //down a row
+				x = -250; //down a row
 				y = 100;
 			}else if(i==12){//could be more than 12 cause time shenanigans.
-				x = -300; //down a row
+				x = -250; //down a row
 				y = 250;
 			}
 			x = x +150;
