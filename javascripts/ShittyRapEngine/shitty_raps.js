@@ -19,6 +19,7 @@ var rapTemplates = [new RapTemplate("Yo, you must be some kind of ",noun, " sitt
 rapTemplates.push(new RapTemplate("Your ass is grass, you ain't got that ",noun, " you have the worst skills that i ever did ", verb) );
 
 
+
 //would be so dope to rap about what's happened in the session.
 //could read session summary?
 //worry about this LATER, and definitely not in this stand alone page.
