@@ -86,6 +86,26 @@ function checkPassword(){
 function showHint(){
 	$("#spoiler").toggle();
 }
+
+function filterSessionsJunior(){
+	var num_players = parseInt($("#num_players").val());
+	var tmp = []
+	sessionSummariesDisplayed = []
+	for(var i = 0; i<allSessionsSummaries.length; i++){
+		sessionSummariesDisplayed.push(allSessionsSummaries[i]);
+	}
+	
+	for(var i = 0; i<sessionSummariesDisplayed.length; i++){
+		var ss = sessionSummariesDisplayed[i];
+		if(ss.players.length == num_players){
+			tmp.push(ss);
+		}
+	}
+	sessionSummariesDisplayed = tmp;
+	printSummariesJunior();
+	printStatsJunior();
+}
+
 //filters by all checkboxes.
 function filterSessionSummaries(){
 	var tmp = []
@@ -94,6 +114,7 @@ function filterSessionSummaries(){
 	for(var i = 0; i<allSessionsSummaries.length; i++){
 			sessionSummariesDisplayed.push(allSessionsSummaries[i]);
 	}
+	
 	$("input[name='filter']:checked").each(function(){
 		filters.push($(this).val());
 	});
@@ -187,9 +208,7 @@ function formInit(){
 	});
 }
 
-function filterSessionsJunior(){
-	
-}
+
 function startSessionJunior(){
 	$("#story").html("")
 	curSessionGlobalVar = new Session(initial_seed)
@@ -567,6 +586,17 @@ function printStats(filters){
 
 	}
 }
+
+function printSummariesJunior(){
+	$("#debug").html("");
+	for(var i = 0; i<sessionSummariesDisplayed.length; i++){
+		var ssd = sessionSummariesDisplayed[i];
+		var str = ssd.generateHTML();
+		debug("<br><hr><font color = 'orange'> AB: " + getQuipAboutSessionJunior() + "</font><Br>" );
+		debug(str);
+	}
+}
+
 
 function printSummaries(){
 	$("#debug").html("");
