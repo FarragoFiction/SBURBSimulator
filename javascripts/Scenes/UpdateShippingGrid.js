@@ -11,7 +11,7 @@ function UpdateShippingGrid(session){
 		//if heart player chagnes, it's a combo session or scratch or i don't care, redo the ships.
 		var tmpheartPlayer = findAspectPlayer(this.session.availablePlayers, "Heart");
 		if(this.ships.length == 0 || tmpheartPlayer != this.heartPlayer){
-			this.createShips();
+			this.createShips(this.session.players);
 		}
 		this.heartPlayer = tmpheartPlayer;
 
@@ -34,12 +34,12 @@ function UpdateShippingGrid(session){
 
 	//for all players, look at all relationships. if goodBig or badBig, return.
 	//also grab clubs and diamonds. later.
-	this.createShips = function(){
+	this.createShips = function(players){
 		//console.log("creating ships")
 		this.ships = [];
-			for(var i = 0; i<this.session.players.length; i++){
+			for(var i = 0; i<players.length; i++){
 
-				var player = this.session.players[i];
+				var player = players[i];
 				//console.log("making ships for: " + player.title())
 
 				for(var j = 0; j<player.relationships.length; j++){

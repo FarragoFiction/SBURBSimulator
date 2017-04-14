@@ -118,7 +118,7 @@ function SessionSummary(){
 	}
 	
 	this.getSessionSummaryJunior = function(){
-		return new SessionSummaryJunior(this.players);
+		return new SessionSummaryJunior(this.players,this.session_id);
 	}
 	
 	
@@ -139,9 +139,9 @@ function SessionSummary(){
 					}else{
 						html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "'>" +this.session_id + "</a>"
 					}
-				}else if(propertyName == "satifies_filter_array" || propertyName == "frogStatus" || propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo"  || propertyName != "getSessionSummaryJunior" ){
+				}else if(propertyName == "satifies_filter_array" || propertyName == "frogStatus" || propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo"  ){
 					//do nothing. properties used elsewhere.
-				}else if(propertyName != "generateHTML"){
+				}else if(propertyName != "generateHTML" && propertyName != "getSessionSummaryJunior"){
 					html += "<Br><b>" + propertyName + "</b>: " + this[propertyName] ;
 				}
 		}
@@ -153,13 +153,35 @@ function SessionSummary(){
 }
 
 //junior only cares about players.
-function SessionSummaryJunior(players){
+function SessionSummaryJunior(players,session_id){
 	this.players = players;
+	this.session_id = session_id;
 	this.generateHTML = function(){
 		var html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id +"'>";
+		html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "'>" +this.session_id + "</a>"
 		html += "<Br><b>Players</b>: " + getPlayersTitlesBasic(this.players);
+		html += "<Br><b>Interests</b>: " + this.grabAllInterest().toString();
+		html += "<Br><b>Initial Ships</b>: " + this.initialShips().toString();
 		html += "</div><br>"
 		return html;
+	}
+	
+	this.grabAllInterest = function(){
+		var ret = [];
+		for(var i = 0; i<this.players.length; i++){
+			var player = this.players[i];
+			ret.push(player.interest1);
+			ret.push(player.interest2);
+			
+		}
+		return ret;
+	}
+	
+	this.initialShips = function(){
+		var shipper = new UpdateShippingGrid();
+		shipper.createShips(this.players);
+		console.log(shipper.ships);
+		return  shipper.printShips(shipper.getGoodShips())
 	}
 }
 
