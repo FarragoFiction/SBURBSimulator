@@ -384,19 +384,21 @@ function poseAsATeam(canvas,players, repeatTime){
     return;
   }
 	var spriteBuffers = [];
+	var startXpt = -235;
 	for(var i = 0; i<players.length; i++){
 		spriteBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
 		drawSprite(spriteBuffers[i],players[i])
 	}
-		var x = -250; //-275 cuts of left most part.
+	
+		var x = startXpt; //-275 cuts of left most part.
 		var y = 0;
 		var total = 0;
 		for(var i = 0; i<spriteBuffers.length; i++){
 			if(i == 6){
-				x = -250; //down a row
+				x = startXpt; //down a row
 				y = 100;
 			}else if(i==12){//could be more than 12 cause time shenanigans.
-				x = -250; //down a row
+				x = startXpt; //down a row
 				y = 300;
 			}
 			x = x +150;
