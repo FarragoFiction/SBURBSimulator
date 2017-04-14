@@ -569,6 +569,9 @@ function foundRareSession(div, debugMessage){
 function printStatsJunior(){
 	var mms = collateMultipleSessionSummariesJunior(sessionSummariesDisplayed);
 	$("#stats").html(mms.generateHTML());
+	$("#num_players").change(function(){
+			$("#num_players_text").val($("#num_players").val());
+	});
 }
 
 function printStats(filters){
