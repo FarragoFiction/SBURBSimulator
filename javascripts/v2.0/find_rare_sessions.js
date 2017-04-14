@@ -187,6 +187,9 @@ function formInit(){
 	});
 }
 
+function filterSessionsJunior(){
+	
+}
 function startSessionJunior(){
 	$("#story").html("")
 	curSessionGlobalVar = new Session(initial_seed)
