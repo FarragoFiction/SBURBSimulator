@@ -341,10 +341,12 @@ function MultiSessionSummaryJunior(){
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
 		var header = "<h2>Stats for All Displayed Sessions: </h2><br>"
 		html += header;
-		html += "<Br><b>Number Sessions:</b> " + this.numSessions;
+		html += "<Br><b>Number of Sessions:</b> " + this.numSessions;
 		html += "<Br><b>Average Players Per Session:</b> " + round2Places(this.numPlayers/this.numSessions);
 		html += "<Br><b>Average Initial Ships Per Session:</b> " + round2Places(this.numShips/this.numSessions);
-		html += "<Br><b>Filter Sessions By Number of Players:</b><Br>2 <input id='num_players' type='range' min='2' max='12' value='10'> 12"
+		html += "<Br><br><b>Filter Sessions By Number of Players:</b><Br>2 <input id='num_players' type='range' min='2' max='12' value='2'> 12"
+		html += "<br><input type='text' id='num_sessions_text' value='2' size='2' disabled>"
+		html += "<br><br><button id = 'button' onclick='filterSessionsJunior()'>Filter Sessions</button>"
 		html += "</div><Br>"
 		return html;
 	}

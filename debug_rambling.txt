@@ -549,8 +549,9 @@ Priorities:
 
 TODO: First thing is allow class and aspect to be chosen. Won't be very different from the OC_Generator (does that thing still work?). Basically, step one will be having the Observer input a session ID to replay/hijack/override. Then, load the players from that session and display them. Drop downs over the sprites let you change Class/Aspect for each player. Sprite updates with the new claspect. When it's to your liking, can click "start", and session begins BELOW character creator (don't vanish it cause they might want to see their chars in a pristine state.)
 
-		Challenges: Handling graphics.  For the regular sim, I just preload all the graphics that will be used and call it a day. This is fine, but with a character creator, I don't KNOW what graphics I will use. Should I preload dozens of hair, for example?  MB's been poking me to do asyncronous image loading, but it has it's own challenges, which is why i went away from it in the first place. I will need to stop and THINK about this.
-
+		Challenges: 
+		* Handling graphics.  For the regular sim, I just preload all the graphics that will be used and call it a day. This is fine, but with a character creator, I don't KNOW what graphics I will use. Should I preload dozens of hair, for example?  MB's been poking me to do asyncronous image loading, but it has it's own challenges, which is why i went away from it in the first place. I will need to stop and THINK about this.
+		* Sharing sessions. Can't just use session IDs anymore. Will need to serialize the player data in some fashion. Write to image, along with pictures of their players? Might be neat.  Top border is random-looking stuff that's actually the encoded session, and underneat it is the human understandable: here's what the players look like. Ah...but...how will they UPLOAD the image so I can recreate their custom players. Do I really want to bother having a server that isn't dead simple?  I guess I could have them upload it on literally any image hosting site and then just give me the URL? But...what if the hosting site warps the image (like, by compressing it). Table this for now.
 
 
 Who am I kidding, it's Rap Battle time.
@@ -621,3 +622,11 @@ think.
 
 Start with the basics.  I KNOW I want to do this by number of players, because that was the initial request. So. Do that. Everything else is a bonus feature that i don't need to do right now.
 
+Okay, the stats look good, and I have the range input for number of players, but it's not wired up.
+
+Without reviewing how I did filtering before, given that right now I ONLY want to filter based on number of players...
+What's the best way.
+
+Take the sessionSummaries, and reject any that have a players.length that doesnt' match the chosen value.
+
+That doesn't seem hard, probably can extend javascripts' filter method.
