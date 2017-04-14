@@ -30,23 +30,24 @@ function RapTemplate(part1, p1Type, part2, p2Type){
 	this.part2Type = p2Type;
 
 	this.findWordBasedOnPart1AndInterest = function(interest){
-		var wordTypeArray = this.matchInterestToWordTypeArray(interest);
+		var wordTypeArray = this.matchInterestToWordTypeArray(interest, this.part1Type);
 		if(wordTypeArray){
 				return getRandomElementFromArray(wordTypeArray);
 		}
 		return null;
 	}
 	//grove is interests, and it don't stop. but also like the shitty gamzeetavros rap, each participant is just rapping about their OWN interests
-	//and part of why it's so shitty is no common theme. 
-	this.matchInterestToWordTypeArray = function(interest){
+	//and part of why it's so shitty is no common theme.
+	this.matchInterestToWordTypeArray = function(interest,type){
 		var ret = null;
-		if(comedy_interests.indexOf(interest) != -1 && this.part1Type == noun){
+		console.log(this.part1Type);
+		if(comedy_interests.indexOf(interest) != -1 && type == noun){
 				ret = comedyInterestNouns;
-		}else if(comedy_interests.indexOf(interest) != -1 && this.part1Type == verb){
+		}else if(comedy_interests.indexOf(interest) != -1 && type == verb){
 			ret = comedyInterestVerbs;
-		}else if(athletic_interests.indexOf(interest) != -1 && this.part1Type == noun){
+		}else if(athletic_interests.indexOf(interest) != -1 && type == noun){
 			ret = athleticInterestNouns;
-		}else if(athletic_interests.indexOf(interest) != -1 && this.part1Type == verb){
+		}else if(athletic_interests.indexOf(interest) != -1 && type == verb){
 			ret = athleticInterestVerbs;
 		}
 		return ret;
@@ -68,10 +69,8 @@ function RapTemplate(part1, p1Type, part2, p2Type){
 	this.findWordBasedOnPart2AndInterestAndPart1Word = function(interest,word){
 		//first, I need to know which set of rhyming words the word falls in.
 		var rhyme_array = this.matchWordWithRhymeArray(word);
-		console.log("Rhyme Array: ")
-		console.log(rhyme_array)
 		//once I know that, see if I can find one of the rhyming words in the interest verb/noun list.
-		var wordTypeArray =  this.matchInterestToWordTypeArray(interest);
+		var wordTypeArray =  this.matchInterestToWordTypeArray(interest, this.part2Type);
 		if(rhyme_array){
 			var results = intersection(rhyme_array, wordTypeArray);
 		}

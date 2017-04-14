@@ -10,8 +10,8 @@ window.onload = function() {
 }
 
 function rap(playerNum){
-	Math.seed =  getRandomSeed(); 
-	var interest =  getRandomElementFromArray(["Pranks","Swimming"]);
+	Math.seed =  getRandomSeed();
+	var interest =  getRandomElementFromArray(["Pranks","Swimming"]); //TODO make work for all interest categories.
 	var chosenRapTemplate = getRandomElementFromArray(rapTemplates);
 	var firstWord = chosenRapTemplate.findWordBasedOnPart1AndInterest(interest)
 	var secondWord = chosenRapTemplate.findWordBasedOnPart2AndInterestAndPart1Word(interest, firstWord)
@@ -22,6 +22,7 @@ function rap(playerNum){
 		rapper2Line(str);
 	}
 	//TODO, KEEP GOING UNTIL HIT MAX LINES OR NO RHYME (HEY, THAT RHYMED)
+	//give up if either word is null or if they match.
 }
 
 //red text
