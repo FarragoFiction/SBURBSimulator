@@ -20,7 +20,7 @@ function rap(playerNum){
 	var secondWord = chosenRapTemplate.findWordBasedOnPart2AndInterestAndPart1Word(interest, firstWord)
 
 	if(firstWord && secondWord && firstWord != secondWord){
-		var str = chosenRapTemplate.part1 + firstWord + chosenRapTemplate.part2 + secondWord
+		var str = chosenRapTemplate.part1 + firstWord + chosenRapTemplate.part2 + secondWord +"."
 		if(playerNum==1){
 			if(player1Rhymes.indexOf(firstWord) == -1 && player1Rhymes.indexOf(secondWord) == -1) {
 				player1Rhymes.push(firstWord);
