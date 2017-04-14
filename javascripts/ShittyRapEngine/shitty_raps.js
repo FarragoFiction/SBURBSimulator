@@ -1,17 +1,18 @@
-
+//http://www.rhymezone.com/r/rhyme.cgi?Word=back&typeofrhyme=perfect&org1=syl&org2=l&org3=y
 //if this seems like it will work, move to random tables. based on recursiveSlacker's idea.
 var comedyInterestNouns = ["joke","clown","fun", "folk", "bloke"];
-var comedyInterestVerbs = ["joke", "frown", "stun", "soak", "choke", "scrunch"];
+var comedyInterestVerbs = ["joke", "frown", "stun", "soak", "choke", "scrunch", "wisecrack"];
 
 var athleticInterestNouns = ["sun","lunch","crown","yolk"];
 var athleticInterestVerbs = ["run","punch", "down", "drown", "soak", "won"];
 //http://www.rhymezone.com/r/rhyme.cgi?Word=sun&typeofrhyme=perfect&org1=syl&org2=l&org3=y
+
+//most common rhyming sounds are things like "ack", "ake", "ame", "ill", "uck", "ock", "unk", "ump", "ice", "unk"
 var wordsRhymeTown = ["town", "down", "frown", "clown", "brown", "crown", "drown","noun"];
 var wordsRhymeJoke = ["bloke","broke","croak","choke","folk","oak","smoke","soak","woke","yolk","yoke","coke", "spoke"];
-
 var wordsRhymeSun = ["bun","fun","gun","son","hun","none","nun","stun","spun","shun","run","won"];
 var wordsRhymePunch = ["brunch","punch","lunch","bunch","crunch","hunch","munch","scrunch"];
-
+//var wordsRhymeJack = ["jack", "black","sack","clack","crack","knack","quack" "snack","smack","yack","attack","backtrack","hijack" "flashback","feedback","payback","soundtrack","wisecrack","throwback" "hunchback","horseback","ransack","asscrack","fallback","carjack"];
 
 var noun = "noun";
 var verb = "verb";
