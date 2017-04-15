@@ -2,11 +2,11 @@
 
 function SolvePuzzles(session){
 	this.session = session;
-	this.canRepeat = true;	
+	this.canRepeat = true;
 	this.player1 = null;
 	this.player2 = null; //optional
-	
-	
+
+
 	this.checkPlayer = function(player){
 		this.player1 = player;
 		this.player2 = null;
@@ -18,13 +18,13 @@ function SolvePuzzles(session){
 					this.player2 = null;
 					return null;
 				}
-				
+
 			}else{
-				this.player1 = null; 
+				this.player1 = null;
 				return null;
 			}
 		}
-		
+
 		//if i'm not blood or page, random roll for a friend.
 		if(this.session.availablePlayers.length > 1 && Math.seededRandom() > .5){
 			this.player2 = getRandomElementFromArray(this.session.availablePlayers);
@@ -32,7 +32,7 @@ function SolvePuzzles(session){
 				this.player2 == null
 			}
 		}
-		
+
 	}
 	this.trigger = function(playerList){
 		this.player1 = null; //reset
@@ -47,25 +47,25 @@ function SolvePuzzles(session){
 			return false;
 		}
 		return true;
-		
-		
+
+
 	}
-	
+
 	this.checkBloodBoost = function(){
 		if(this.player1.aspect == "Blood" && this.player2 != null){
 			this.player2.boostAllRelationships
 		}
-		
+
 		if(this.player2!=null && this.player2.aspect == "Blood"){
 			this.player1.boostAllRelationships();
 		}
 	}
-	
-	
+
+
 	this.renderContent = function(div){
 		div.append("<br>"+this.content());
 	}
-	
+
 	this.content = function(){
 		//console.log("Solving puzzles at: " + this.player1.land)
 		var ret = "";
@@ -80,25 +80,26 @@ function SolvePuzzles(session){
 			r1 = this.player1.getRelationshipWith(this.player2);
 			r1.moreOfSame();
 			r2 = this.player2.getRelationshipWith(this.player1);
+			this.player2.increasePower();
 			r2.moreOfSame();
 		}
-		
+
 		this.checkBloodBoost();
-		
+
 		ret += "The " + this.player1.htmlTitle();
 		if(this.player2 != null && (this.player2.aspect != this.player1.aspect ||this.player2.aspect == "Time")){ //seriously, stop having clones of non time players!!!!
-			ret += " and the " + this.player2.htmlTitle() + " do "; 
+			ret += " and the " + this.player2.htmlTitle() + " do ";
 		}else{
-			ret += " does " 
+			ret += " does "
 		}
 		ret += " random bullshit sidequests at " + this.player1.shortLand();
 		ret += ", solving puzzles and getting coy hints about The Ultimate Riddle. "
-		
+
 		if(this.player2 != null && this.player1  != this.player2 ){
 			ret += getRelationshipFlavorText(r1,r2, this.player1, this.player2);
 		}
 		return ret;
 	}
-	
-	
+
+
 }

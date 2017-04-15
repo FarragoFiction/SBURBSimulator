@@ -1,16 +1,16 @@
 function ExploreMoon(session){
-	this.canRepeat = true;	
+	this.canRepeat = true;
 	this.session = session;
 	this.player1 = null;
 	this.player2 = null; //optional
-	
+
 	this.checkPlayer = function(player){
 		this.player1 = player;
 		if(this.player1.dreamSelf == false){ //can't explore a moon without a dream self.
 			this.player1 = null;
 			return null;
 		}
-		
+
 		if(player.aspect == "Blood" || player.class_name == "Page"){
 			if(this.session.availablePlayers.length > 1){
 				this.player2 = getRandomElementFromArray(this.session.availablePlayers);
@@ -23,13 +23,13 @@ function ExploreMoon(session){
 					this.player2 = null;
 					return null;
 				}
-				
+
 			}else{
-				this.player1 = null; 
+				this.player1 = null;
 				return null;
 			}
 		}
-		
+
 		//if i'm not blood or page, random roll for a friend.
 		if(this.session.availablePlayers.length > 1 && Math.seededRandom() > .5){
 			this.player2 = getRandomElementFromArray(this.session.availablePlayers);
@@ -37,9 +37,9 @@ function ExploreMoon(session){
 				this.player2 = null;
 			}
 		}
-		
+
 	}
-	
+
 	this.renderContent = function(div){
 		div.append("<br>"+this.content());
 	}
@@ -56,25 +56,26 @@ function ExploreMoon(session){
 			return false;
 		}
 		return true;
-		
-		
+
+
 	}
-	
+
 	this.checkBloodBoost = function(){
 		if(this.player1.aspect == "Blood" && this.player2 != null){
 			this.player2.boostAllRelationships
 		}
-		
+
 		if(this.player2!=null && this.player2.aspect == "Blood"){
 			this.player1.boostAllRelationships();
 		}
 	}
-	
+
 	this.content = function(){
 		var ret = "";
 		//remove player1 and player2 from available player list.
 		removeFromArray(this.player1, this.session.availablePlayers);
 		removeFromArray(this.player2, this.session.availablePlayers);
+		//console.log(this.player1.title() + " is doing moon stuff with their land level at: " + this.player1.landLevel)
 		var r1 = null;
 		var r2 = null;
 		this.player1.increasePower();
@@ -85,12 +86,12 @@ function ExploreMoon(session){
 			r2 = this.player2.getRelationshipWith(this.player1);
 			r2.moreOfSame();
 		}
-		
+
 		this.checkBloodBoost();
-		
+
 		ret += "The " + this.player1.htmlTitle();
 		if(this.player2 != null){
-			ret += " and the " + this.player2.htmlTitle() + " do "; 
+			ret += " and the " + this.player2.htmlTitle() + " do ";
 		}else{
 			ret += " does "
 		}
@@ -101,7 +102,7 @@ function ExploreMoon(session){
 			ret += "whimsical moon activities, such as attending dance parties, cheating at poker and keeping tabs on the lifeblood of Derse. ";
 			ret += " The whisperings of the HorrorTerrors provided a nice backdrop. ";
 		}
-		
+
 		if(this.player2 != null){
 			if(r1.type() == " Totally In Love" && r2.type() == "Totally In Love"){
 				ret += " The two flirt a bit. ";
@@ -119,5 +120,5 @@ function ExploreMoon(session){
 		}
 		return ret;
 	}
-	
+
 }

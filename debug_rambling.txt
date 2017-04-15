@@ -635,3 +635,15 @@ QUESTION: why is the Bard of Heart doing bullshit sidequests when their land lev
 Goddammit. how long has this been going on? fucking slackig players.
 
 oh. wait. false alarm. they only need a land level of SIX to be done? Who fucking decided that. Okay. did I do that so they fought their denizens more? fuck it, dial the difficulty up. way too much bullshit sidequests.
+
+
+
+okay, new problem, why does the thief of space, who did NO frog breeding....do bullshit moon parties instead of their JOB??? why are all these players so distractable?
+
+Huh...apparently players who have finished up their lan quest AND players who have done zero land quests can do moon parties. I know I don't let players do plot shit IMMEDIATELY after entering...how do i judge that?
+power needs to be greater than 2. so is this space player just...NEVER leveling up? wth.
+No...they end the game with a power of 9. Not, like...great. but not zero, either. Of course, they may have only gotten that high at the last minute.
+Okay, maybe make moon bullshit and sidequest give them a tiny power boost.
+Ah, no there we go. for bullshit side quests, player1 gets a small powr boost, but player 2 didnt'. fixed.
+
+ I really need to implement that power graph I've been meaning to do.
