@@ -41,7 +41,7 @@ function rap(playerNum, interest){
 	  secondWord = tryToUseRhyme(secondWord, playerNum);
 		if(!secondWord){
 			//second shot for first word
-			secondWord = chosenRapTemplate.findWordBasedOnPart1AndInterest(interest)
+			secondWord = chosenRapTemplate.findWordBasedOnPart2AndInterestAndPart1Word(interest, firstWord)
 			//console.log("second word2 is: " + secondWord);
 		  secondWord = tryToUseRhyme(secondWord, playerNum);
 		}
