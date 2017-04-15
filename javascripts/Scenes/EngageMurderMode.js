@@ -235,12 +235,30 @@ function EngageMurderMode(session){
 
 		return chatText;
 	}
+	//each of us raps about one of our interests at random. don't care if it goes off screen.
+	//extra chat box with results.
+	//if player 1 wins, goes ahead with threatening. cites weak rhymes as reason.
+	//if player2 wins, sick fires bro gif. player1 paraphrases gamzee when he calmed down with dave.
+	this.rapBattle = function(div, player1, player2){
+		var canvasHTML = "<br><canvas id='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+
+		var canvasDiv = document.getElementById("canvas"+  (div.attr("id")));
+	}
 
 	this.chat = function(div){
 		var repeatTime = 1000;
 		var livePlayers = findLivingPlayers(this.session.players);
 		var player1 = this.player;
 		var player2 = player1.getWorstEnemyFromList(livePlayers);
+		if(player2){
+		var r2 = player2.getRelationshipWith(player1);
+		if(r2.value < 2 && r2.value > -8){ //only if i generically dislike you.
+			console.log("could have a rap battle. session: " + this.session.session_id)
+			return this.rapBattle(div,player1, player2);
+		}
+	}
+
 		if(player2 == null || player2.dead == true){
 			return;//nobody i actually want to kill??? why am i in murder mode?
 		}

@@ -1,6 +1,5 @@
 //stay fresh, don't repeat rhymes.
-var player1Rhymes = [];
-var player2Rhymes = [];
+
 var player1Score = 0;
 var player2Score = 0;
 
@@ -10,58 +9,27 @@ var player2Score = 0;
 //for now, rap about your own interests.
 window.onload = function() {
 		//Math.seed = 612;
-		var interest1 =  getRandomElementFromArray(interests);
-		var interest2 =  getRandomElementFromArray(interests);
-		rap(1,interest1);
-		rap(2,interest2);
-		interest1 =  getRandomElementFromArray(interests);
-		interest2 =  getRandomElementFromArray(interests);
-		rap(1,interest1);
-		rap(2,interest2);
+		var player1 = randomPlayerWithClaspect(new Session(83475), "Witch", "Time" )
+		var player2 =  randomPlayerWithClaspect(new Session(83475), "Mage", "Space" )//why was it so hard to not type 'ace of space'???
+		rap(1,player1);
+		rap(2,player2);
+		rap(1,player1);
+		rap(2,player2);
 		$("#score").html("Player1: " + player1Score + " Player2: " + player2Score)
 
 }
 
-function rap(playerNum, interest){
+function rap(playerNum, player){
 	//Math.seed =  getRandomSeed();
 
-	console.log("Rapping about: " + interest)
+	//console.log("Rapping about: " + interest)
 
 	var chosenRapTemplate = getRandomElementFromArray(rapTemplates);
-	var firstWord = chosenRapTemplate.findWordBasedOnPart1AndInterest(interest)
-	var secondWord = null;
-  firstWord = tryToUseRhyme(firstWord, playerNum);
-	if(!firstWord){
-		//second shot for first word
-		firstWord = chosenRapTemplate.findWordBasedOnPart1AndInterest(interest)
-	  firstWord = tryToUseRhyme(firstWord, playerNum);
-	}
-	//console.log("first word final is: " + firstWord);
-	if(firstWord){
-	  secondWord = chosenRapTemplate.findWordBasedOnPart2AndInterestAndPart1Word(interest, firstWord)
-		//console.log("second word is: " + secondWord);
-	  secondWord = tryToUseRhyme(secondWord, playerNum);
-		if(!secondWord){
-			//second shot for first word
-			secondWord = chosenRapTemplate.findWordBasedOnPart2AndInterestAndPart1Word(interest, firstWord)
-			//console.log("second word2 is: " + secondWord);
-		  secondWord = tryToUseRhyme(secondWord, playerNum);
-		}
-}
-	//console.log("second word final is: " + secondWord);
-	var str = rapInterjection() + ", " + chosenRapTemplate.part1;
 
-	if(firstWord){
-			str += firstWord;
-			str += chosenRapTemplate.part2;
-			if(secondWord){
-				str += secondWord + ".";
-			}else{
-				str += rapMistake();
-			}
-	}else{
-		str += rapMistake();
-	}
+	var raps = chosenRapTemplate.getRapLineForPlayer(player);
+	var str = raps[0];
+	var firstWord = raps[1];
+	var secondWord = raps[2];
 	if(playerNum==1){
 			rapper1Line(str);
 	}else{
@@ -71,11 +39,11 @@ function rap(playerNum, interest){
 	if(firstWord && secondWord && firstWord != secondWord){
 		if(playerNum==1){
 				player1Score ++;
-				rap(1,interest); //keep going till you can't
+				rap(1,player); //keep going till you can't
 				return;
 		}else{
 				player2Score ++;
-				rap(2,interest); //keep going till you can't.
+				rap(2,player); //keep going till you can't.
 				return;
 		}
 	}else{
@@ -89,22 +57,7 @@ function rap(playerNum, interest){
 
 
 
-function tryToUseRhyme(rhyme, playerNum){
-		var usedRhymes = player1Rhymes;
-		if(playerNum == 2){
-			usedRhymes = player2Rhymes;
-		}
-		if(usedRhymes.indexOf(rhyme) == -1){
-		//	console.log("didnt find " + rhyme +" in");
-	//		console.log(usedRhymes);
-			usedRhymes.push(rhyme)
-			return rhyme;
-		}
-		//the rhyme is not fresh.
-		//console.log("found " + rhyme +" in");
-		//console.log(usedRhymes);
-		return null;
-}
+
 //red text
 function rapper1Line(line){
 	$("#rap").append("<font color='red'>"+line+"</font><br>")

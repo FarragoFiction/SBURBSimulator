@@ -98,6 +98,45 @@ function RapTemplate(part1, p1Type, part2, p2Type){
 	this.part2 = part2
 	this.part2Type = p2Type;
 
+	this.getRapLineForPlayer = function(player){
+			var interest = getRandomElementFromArray([player.interest1, player.interest2]);
+			var firstWord = this.findWordBasedOnPart1AndInterest(interest)
+			var secondWord = null;
+		  firstWord = tryToUseRhyme(firstWord, player);
+			if(!firstWord){
+				//second shot for first word
+				firstWord = this.findWordBasedOnPart1AndInterest(interest)
+			  firstWord = tryToUseRhyme(firstWord, player);
+			}
+			//console.log("first word final is: " + firstWord);
+			if(firstWord){
+			  secondWord = this.findWordBasedOnPart2AndInterestAndPart1Word(interest, firstWord)
+				//console.log("second word is: " + secondWord);
+			  secondWord = tryToUseRhyme(secondWord, player);
+				if(!secondWord){
+					//second shot for first word
+					secondWord = this.findWordBasedOnPart2AndInterestAndPart1Word(interest, firstWord)
+					//console.log("second word2 is: " + secondWord);
+				  secondWord = tryToUseRhyme(secondWord, player);
+				}
+		}
+			//console.log("second word final is: " + secondWord);
+			var str = "";
+			var str = rapInterjection() + ", " + this.part1;
+			if(firstWord){
+					str += firstWord;
+					str += this.part2;
+					if(secondWord){
+						str += secondWord + ".";
+					}else{
+						str += rapMistake();
+					}
+			}else{
+				str += rapMistake();
+			}
+			return [str, firstWord, secondWord];
+	}
+
 	this.findWordBasedOnPart1AndInterest = function(interest){
 		var wordTypeArray = this.matchInterestToWordTypeArray(interest, this.part1Type);
 		if(wordTypeArray){
@@ -229,6 +268,16 @@ function RapTemplate(part1, p1Type, part2, p2Type){
 
 }
 
+function tryToUseRhyme(rhyme, player){
+		var usedRhymes = player.sickRhymes;
+
+		if(usedRhymes.indexOf(rhyme) == -1){
+			usedRhymes.push(rhyme)
+			return rhyme;
+		}
+		//the rhyme is not fresh.
+		return null;
+}
 
 //http://stackoverflow.com/questions/1885557/simplest-code-for-array-intersection-in-javascript
 //really was a good idea on recursiveSlacker's part.

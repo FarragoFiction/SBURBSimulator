@@ -10,6 +10,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	this.baby = null;
 	this.trickster = false;
 	this.sbahj = false;
+	this.sickRhymes = []; //oh hell yes. Hell. FUCKING. Yes!
 	this.robot = false;
 	this.ectoBiologicalSource = null; //might not be created in their own session now.
 	this.class_name = class_name;
