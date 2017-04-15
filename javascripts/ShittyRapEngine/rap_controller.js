@@ -14,6 +14,8 @@ window.onload = function() {
 		var interest2 =  getRandomElementFromArray(interests);
 		rap(1,interest1);
 		rap(2,interest2);
+		interest1 =  getRandomElementFromArray(interests);
+		interest2 =  getRandomElementFromArray(interests);
 		rap(1,interest1);
 		rap(2,interest2);
 		$("#score").html("Player1: " + player1Score + " Player2: " + player2Score)

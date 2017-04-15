@@ -1,13 +1,13 @@
 //http://www.rhymezone.com/r/rhyme.cgi?Word=back&typeofrhyme=perfect&org1=syl&org2=l&org3=y
 //if this seems like it will work, move to random tables. based on recursiveSlacker's idea.
-var comedyInterestNouns = ["joke","clown","fun", "folk", "bloke","quack","flashback","piece of cake","shell game","skunk","debunk", "grump"];
-var comedyInterestVerbs = ["joke", "frown", "stun", "soak", "choke", "scrunch", "wisecrack","smack","attack","crack","emergency break","flunk","jump"];
+var comedyInterestNouns = ["joke","clown","fun", "folk", "bloke","quack","flashback","piece of cake","shell game","skunk","debunk", "grump", "first-rate","mandate"];
+var comedyInterestVerbs = ["joke", "frown", "stun", "soak", "choke", "scrunch", "wisecrack","smack","attack","crack","emergency break","flunk","jump", "copulate","syncopate"];
 
-var athleticInterestNouns = ["sun","lunch","crown","brown", "clown","yolk","seasick","smalltalk","hella drunk","punk","drunk","yardstick","pregame","postgame"];
-var athleticInterestVerbs = ["run","punch", "down", "drown", "soak", "won","block","sunk","spelunk","aim","maim","tame"];
+var athleticInterestNouns = ["heavyweight","teammate","lightweight","deadweight","sun","lunch","crown","brown", "clown","yolk","seasick","smalltalk","hella drunk","punk","drunk","yardstick","pregame","postgame"];
+var athleticInterestVerbs = ["run","punch", "down", "drown", "soak", "won","block","sunk","spelunk","aim","maim","tame", "castrate", "asphyxiate","suffocate","strangulate","decontaminate","dictate"];
 
-var musicInterestNouns = ["songbook","hook","feedback","flashback","soundtrack","punk","drunk","flashback","megalomaniac","Jack","sack","quack","asscrack","throwback","huge mistake","piece of cake","flake","mistake","game","video game"];
-var musicInterestVerbs = ["hook","fame","attack","backtrack","hijack","clack","funk","wisecrack","throwback","horseback","ransack","take","wake","headache","shake","croak","choke","maim","taim"];
+var musicInterestNouns = ["trait","songbook","wack","hook","feedback","flashback","soundtrack","punk","drunk","flashback","megalomaniac","Jack","sack","quack","asscrack","throwback","huge mistake","piece of cake","flake","mistake","game","video game"];
+var musicInterestVerbs = ["mitigate","hook","fame","attack","backtrack","hijack","clack","funk","wisecrack","throwback","horseback","ransack","take","wake","headache","shake","croak","choke","maim","taim"];
 
 var cultureInterestNouns = ["songbook","hook","feedback","flashback","soundtrack","punk","drunk", "mistake","huge mistake", "headache","ache"];
 var cultureInterestVerbs = ["hook","fame","attack","backtrack","hijack","clack","funk", "wake", "take", "brake"];
@@ -15,27 +15,27 @@ var cultureInterestVerbs = ["hook","fame","attack","backtrack","hijack","clack",
 var writingInterestNouns = ["rook","reference book","textbook","guidebook","book","hook","swill","quill","daffodil","flashback","megalomaniac","Jack","sack","quack","asscrack","throwback","huge mistake","piece of cake","flake","mistake","game","video game"];
 var writingInterestVerbs = ["gobbledygook","shook","look","will","thrill","kill","chill","fire drill","ill","wisecrack","throwback","hoseseback","ransack","take","wake","headache","shake","croak","choke","maim","taim"];
 
-var popCultureInterestNouns = ["flashback","megalomaniac","Jack","sack","quack","asscrack","throwback","huge mistake","piece of cake","flake","mistake","game","video game"];
+var popCultureInterestNouns = ["flashback","wack","megalomaniac","Jack","sack","quack","asscrack","throwback","huge mistake","piece of cake","flake","mistake","game","video game"];
 var popCultureInterestVerbs = ["wisecrack","throwback","hoseseback","ransack","take","wake","headache","shake","croak","choke","maim","taim"];
 
-var technologyInterestNouns = ["hack","jock","gridlock","deadlock","laughingstock", "hot", "bot", "knot", "robot", "thought", "brobot"];
-var technologyInterestVerbs = ["hijack","atack","hack","smack","block", "trot", "shot", "plot", "forgot", "rot"];
+var technologyInterestNouns = ["hack","jock","gridlock","solid-state", "subordinate","inmate", "teammate","deadlock","laughingstock", "hot", "bot", "knot", "robot", "thought", "brobot"];
+var technologyInterestVerbs = ["calculate", "accumulate", "concentrate","regurgitate","simulate", "hijack","atack","terminate","propogate","hack","smack","block", "trot", "shot", "plot", "forgot", "rot"];
 
-var socialInterestNouns = ["punk","drunk","shame","heartbreak","mistake","fake","grump","dump","lump","ocelot","hot"];
-var socialInterestVerbs = ["blame","fame","brandname","quake","shake","fake","jump","rot","caught"];
+var socialInterestNouns = ["teammate", "inmate", "late", "first-rate","punk","drunk","shame","heartbreak","mistake","fake","grump","dump","lump","ocelot","hot", "moderate"];
+var socialInterestVerbs = ["mitigate", "renovate", "accommodate","blame","fame","brandname","quake","shake","fake","jump","rot","caught", "moderate","plait"];
 
 var romanticInterestNouns = ["heartbreak","heartache","fake","snake","flake","crock","punk","drunk","hunk","junk","fun","dick", "hot"];
 var romanticInterestVerbs = ["heartbreak","sweet talk","talk","walk","stun","fun","sick","click","trick","lick", "caught"];
 
 
-var academicInterestNouns = ["reference book","book","guidebook","reference book","lunatic","dipstick","brick","jock","laughingstock","quack","junk","monk", "yaught", "watt", "clot", "thought"];
-var academicInterestVerbs = ["trick","look","took","shook","small talk","squawk","block","backtrack","yack","attack","crack","smack", "debunk", "forgot", "plot", "watt", "swat", "knot"];
+var academicInterestNouns = ["trait","teamamte","reference book","book","guidebook","reference book","lunatic","dipstick","brick","jock","laughingstock","quack","junk","monk", "yaught", "watt", "clot", "thought"];
+var academicInterestVerbs = ["trick", "calculate","look","took","shook","small talk","squawk","block","backtrack","yack","attack","crack","smack", "debunk", "forgot", "plot", "watt", "swat", "knot", "concentrate", "contemplate", "nauseate", "navigate", "overstate", "simulate", "debate","checkmate", "abate", "germinate", "obfuscate", "pontificate","potassium dichromate", "prognosticate"];
 
-var domesticInterestNouns = ["cake","piece of cake","cupcake","snake","mistake","huge mistake","flake","crock","cock","peacock","laughingstock","shell", "brandname"];
-var domesticInterestVerbs = ["bake","shake","wake","heartbreak","small talk","gawk","squawk","block","shellgame","maim","tame","aim"];
+var domesticInterestNouns = ["cake", "teammate", "prognosticate", "lightweight", "deadweight", "piece of cake","cupcake","snake","mistake","huge mistake","flake","crock","cock","peacock","laughingstock","shell", "brandname"];
+var domesticInterestVerbs = ["communicate", "renovate","activate", "ddcorate", "nauseate", "contemplate", "overstate", "germinate", "bake","shake","wake","heartbreak","small talk","gawk","squawk","block","shellgame","maim","tame","aim", "plait"];
 
-var terribleInterestNouns = ["pill","suicide pill","shill","swill","landfill","molehill","standstill","plush rump","hunk rump","rump","chump","snake", "asscrack"];
-var terribleInterestVerbs = ["kill","ill","drill","grill","dick","lick","trick","bump","hump","hug bump","take","wake","payback"];
+var terribleInterestNouns = ["pill","retrobate","suicide pill","shill","swill","landfill","molehill","standstill","plush rump","hunk rump","rump","chump","snake", "asscrack", "inmate", "degenerate","trait","freight","subordinate","deadweight","teammate","shipmate", "rebate"];
+var terribleInterestVerbs = ["kill", "copulate","ill","drill","grill","dick","lick","trick","bump","hump","subjugate","hug bump","take","wake","payback", "assassinate","eviscerate","depopulate","terminate","checkmate","titillate","mutilate", "penetrate", "segregate","desecrate","immolate","mandate","dictate","exacerbate","accumulate"];
 
 var fantasyInterestNouns = ["fake","fakey-fake","lake","game","fame","brandname"];
 var fantasyInterestVerbs = ["ache","make","quake","shake","game","shame","maim","tame"];
@@ -47,12 +47,19 @@ var justiceInterestVerbs = ["took","shook","look","kill","ill","aim","blame","hu
 
 //http://www.rhymezone.com/r/rhyme.cgi?Word=sun&typeofrhyme=perfect&org1=syl&org2=l&org3=y
 //most common rhyming sounds are things like "ack", "ake", "ame", "ill", "uck", "ock", "unk", "ump", "ice", "unk"
+//gotta give the trolls with 8 quirks love.
+var wordsRhymeLate = ["late", "eight", "ate", "wait", "weight", "bait", "date","fate","freight","gate","gait","mate","plate","plait","straight","trait","abate","abate","birthddate","castrate","checkmate","create","dictate","debate","donate","first-rate","flowrate","rate","inmate","mandate","locate","ornate","rebate","shipmate","teammate","activate","actuate","communicate","callibrate"];
+//holy shit,t here's still more????????
+wordsRhymeLate.concat(["bitrate","calculate","retrobate","concentrate","copulate","contemplate","decorate","desecrate","germinate","heavyweight","lightweight","immolate","instigate","liquidate"]);
+wordsRhymeLate.concat(["mitigate","obfuscate,","mitigate","moderate","mutilate","nauseate","navigate","overstate","penetrate","propagate","renovate","segregate","simulate","solid-state","subjugate","strangulate","suffocate","syncopate","terminate","titillate"]);
+wordsRhymeLate.concat(["accommodate","accumulate","assassinate","assimilate","asphyxiate","deadweight","degenerate","depopulate","exacerbate","eviscerate","pontificate","prognosticate","regurgitate","subordinate","resuscitate","decontaminate","potassium dichromate "]);
+
 var wordsRhymehot = ["hot", "bot", "knot", "caught", "robot", "thought", "clot","shot","plot","forgot","yaught","rot","watt","squat","trot","swat","brobot","ocelot"];
 var wordsRhymeTown = ["town", "down", "frown", "clown", "brown", "crown", "drown","noun"];
 var wordsRhymeJoke = ["bloke","broke","croak","choke","folk","oak","smoke","soak","woke","yolk","yoke","coke", "spoke"];
 var wordsRhymeSun = ["bun","fun","gun","son","hun","none","nun","stun","spun","shun","run","won"];
 var wordsRhymePunch = ["brunch","punch","lunch","bunch","crunch","hunch","munch","scrunch"];
-var wordsRhymeJack = ["jack", "hack","Jack", "black","sack","clack","crack","knack","quack" ,"snack","smack","yack","attack","backtrack","hijack" ,"flashback","feedback","payback","soundtrack","wisecrack","throwback" ,"hunchback","horseback","ransack","asscrack","fallback","carjack","megalomaniac"];
+var wordsRhymeJack = ["jack", "hack","Jack", "black","sack","clack","crack","knack","quack" ,"wack","snack","smack","yack","attack","backtrack","hijack" ,"flashback","feedback","payback","soundtrack","wisecrack","throwback" ,"hunchback","horseback","ransack","asscrack","fallback","carjack","megalomaniac"];
 var wordsRhymeFake = ["fake","fakey-fake","ache","bake","brake","break","cake","flake","lake","make","quake","shake","snake","wake","take","awake","cupcake","headache","heartache","heartbreak","mistake","piece of cake","emergency break","huge mistake"];
 var wordsRhymeGame = ["game", "same","name","aim","blame","fame","lame","maim","tame","shellgame","shame","video game","pregame","postgame","brandname"];
 var wordsRhymeKill = ["ill","kill","chill","drill","grill","shill","quill","will","thrill","swill","anthill","foothill","downhill","landfill","molehill","standstill","treadmill","daffodil","fire drill","pill","sleeping pill","suicide pill"];
@@ -192,7 +199,11 @@ function RapTemplate(part1, p1Type, part2, p2Type){
 			return wordsRhymeCrook;
 		}else if(wordsRhymehot.indexOf(word) != -1){
 			return wordsRhymehot;
+		}else if(wordsRhymeLate.indexOf(word) != -1){
+			return wordsRhymeLate;
 		}
+
+
 
 	}
 
