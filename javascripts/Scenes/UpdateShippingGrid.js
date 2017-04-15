@@ -4,6 +4,7 @@ function UpdateShippingGrid(session){
 	this.heartPlayer = null;
 	this.ships = [];
 	this.savedShipText = "";
+	this.powerNeeded = 1;
 
 	//is there relationship drama!?
 	this.trigger = function(){
@@ -19,7 +20,8 @@ function UpdateShippingGrid(session){
 			return false;
 		}
 		var newShips = this.printShips(this.getGoodShips())
-		if(newShips != this.savedShipText){
+		if(newShips != this.savedShipText && this.heartPlayer.power > this.powerNeeded){
+			this.powerNeeded += 5;
 			this.savedShipText = newShips;
 			return true;
 		}
@@ -68,7 +70,7 @@ function UpdateShippingGrid(session){
 				}
 
 	}
-	
+
 
 	this.getGoodShips = function(){
 		var ret = [];

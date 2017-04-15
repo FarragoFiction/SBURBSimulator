@@ -8,6 +8,7 @@ function DoLandQuest(session){
 	this.session = session;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.playersPlusHelpers = []; //who is doing a land quest this turn?
+	this.landLevelNeeded = 12;
 
 	this.trigger = function(playerList){
 		//console.log("do land quest trigger?")
@@ -16,7 +17,7 @@ function DoLandQuest(session){
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var p = this.session.availablePlayers[i]
 			if(p.power > 2){ //can't be first thing you do in medium.
-				if(p.land != null && p.landLevel < 6 || p.aspect == "Space"){  //space player is the only one who can go over 100 (for better frog). can't do quests if land destroyed
+				if(p.land != null && p.landLevel < this.landLevelNeeded || p.aspect == "Space"){  //space player is the only one who can go over 100 (for better frog). can't do quests if land destroyed
 					var helper = this.lookForHelper(p);
 					if(p.land == null){//seriously don't do land quests without a land
 						//console.log("not doing land quests because don't have a land")
@@ -46,6 +47,7 @@ function DoLandQuest(session){
 
 	this.renderContent = function(div){
 		div.append("<br>"+this.content(div));
+
 	}
 
 	this.addImportantEvent = function(){
@@ -232,7 +234,11 @@ function DoLandQuest(session){
 			}else{
 				ret += this.contentForPlayer(player, helper);
 			}
+			if(player.landLevel >= this.landLevelNeeded && player.aspect != "Space"){
+				ret += " They finally finished off all the main quests on " + player.land + ". They should be ready to face their Denizen. ";
+			}
 		}
+
 		return ret;
 	}
 
