@@ -75,7 +75,7 @@ rapTemplates.push(new RapTemplate("you know I got the ",noun, " all up and ", ve
 rapTemplates.push(new RapTemplate("bustin old school ",noun, " like I can't even ", verb) );
 rapTemplates.push(new RapTemplate("all day I'm ",verb, " but you can't even ", verb) );
 rapTemplates.push(new RapTemplate("should i count all the reasons you're ",noun, " fuck, i got better things to ", verb) );
-rapTemplates.push(new RapTemplate("it's too bad my rhymes are so  ",noun, " but I can't even stop", verb) );
+rapTemplates.push(new RapTemplate("it's too bad my rhymes are so  ",noun, " but I can't even stop ", verb) );
 
 
 //would be so dope to rap about what's happened in the session.
@@ -224,6 +224,11 @@ function intersection (a, b) {
   });
 }
 
+function rapMistake(){
+	var mistakes = ["...umm...,", "...fuck", "...fuck, can we start over? ", "...pretend I just finished that, okay?", "er...Shit.", "errr...", "ummm...shit.", "...fucking hell.", "what they hell, I know I had a rhyme for this...", "...okay, should I just...like, give up here?"];
+	return getRandomElementFromArray(mistakes);
+
+}
 
 function rapInterjection(){
 	var interjections = ["Yo", "Trust", "Represent", "Respect", "Word", "Dawg", "Dog", "Bro", "Sup", "Okay", "What", "Yeah", "Aight", "Yeah Dog", "Fo, Shizzle", "Hey", "Boo yeah", "Break it down", "Fuck", "Shit", "Peace", "True that", "Double True", "Word up", "My homey", "Homey", "You knows it"];

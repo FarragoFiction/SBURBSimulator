@@ -7,12 +7,12 @@ var player2Rhymes = [];
 //worry about this LATER, and definitely not in this stand alone page.
 //for now, rap about your own interests.
 window.onload = function() {
-		var interest =  getRandomElementFromArray(interests);
-		$("#topic").html("'Topic': " + interest);
-		rap(1,interest);
-		rap(2,interest);
-		rap(1,interest);
-		rap(2,interest);
+		var interest1 =  getRandomElementFromArray(interests);
+		var interest2 =  getRandomElementFromArray(interests);
+		rap(1,interest1);
+		rap(2,interest2);
+		rap(1,interest1);
+		rap(2,interest2);
 
 }
 
@@ -32,10 +32,10 @@ function rap(playerNum, interest){
 			if(secondWord){
 				str += secondWord + ".";
 			}else{
-				str += "... Um ...shit."
+				str += rapMistake();
 			}
 	}else{
-		str += "... Um ...shit."
+		str += rapMistake();
 	}
 	if(playerNum==1){
 			rapper1Line(str);
