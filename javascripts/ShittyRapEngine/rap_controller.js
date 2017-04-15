@@ -27,26 +27,35 @@ function rap(playerNum, interest){
 	var firstWord = tryToUseRhyme(firstWord, playerNum);
 	var secondWord = chosenRapTemplate.findWordBasedOnPart2AndInterestAndPart1Word(interest, firstWord)
 	var secondWord = tryToUseRhyme(secondWord, playerNum);
+	var str = chosenRapTemplate.part1;
 
+	if(firstWord){
+			str += firstWord;
+			str += chosenRapTemplate.part2;
+			if(secondWord){
+				str += secondWord;
+			}else{
+				str += "... Um ...shit."
+			}
+	}else{
+		str += "... Um ...shit."
+	}
+	if(playerNum==1){
+			rapper1Line(str);
+	}else{
+			rapper2Line(str);
+	}
 
 	if(firstWord && secondWord && firstWord != secondWord){
-		var str = chosenRapTemplate.part1 + firstWord + chosenRapTemplate.part2 + secondWord +"."
 		if(playerNum==1){
-				rapper1Line(str);
 				rap(1,interest); //keep going till you can't
 				return;
 		}else{
-				rapper2Line(str);
 				rap(2,interest); //keep going till you can't.
 				return;
 		}
-
 	}else{
-		if(playerNum==1){
-				rapper1Line("Um. Shit.");
-		}else{
-			rapper2Line("Um. Shit.");
-		}
+		//give up
 	}
 
 
@@ -60,10 +69,14 @@ function tryToUseRhyme(rhyme, playerNum){
 			usedRhymes = player2Rhymes;
 		}
 		if(usedRhymes.indexOf(rhyme) == -1){
+		//	console.log("didnt find " + rhyme +" in");
+	//		console.log(usedRhymes);
 			usedRhymes.push(rhyme)
 			return rhyme;
 		}
 		//the rhyme is not fresh.
+		//console.log("found " + rhyme +" in");
+		//console.log(usedRhymes);
 		return null;
 }
 //red text

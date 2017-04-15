@@ -88,7 +88,6 @@ function RapTemplate(part1, p1Type, part2, p2Type){
 	//and part of why it's so shitty is no common theme.
 	this.matchInterestToWordTypeArray = function(interest,type){
 		var ret = null;
-		console.log(this.part1Type);
 		if(comedy_interests.indexOf(interest) != -1 && type == noun){
 				ret = comedyInterestNouns;
 		}else if(comedy_interests.indexOf(interest) != -1 && type == verb){
