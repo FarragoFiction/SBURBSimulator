@@ -46,7 +46,7 @@ function FaceDenizen(session){
 			//fight denizen
 			if(p.getFriends().length < p.getEnemies().length){
 				ret += " The " + p.htmlTitle() + " sneak attacks their denizen, " + p.getDenizen() + ". ";
-				if(p.power > 7){
+				if(p.power > 17){
 					ret += " They win handly, and obtain untold levels of power and sweet sweet hoarde grist. They gain all the levels. All of them. ";
 					p.denizenFaced = true;
 					p.power = p.power*2;  //current and future doubling of power.
@@ -73,7 +73,7 @@ function FaceDenizen(session){
 				}
 			}else{//do The Choice
 				ret += " The " + p.htmlTitle() + " cautiously approaches their denizen, " + p.getDenizen() + " and are presented with The Choice. ";
-				if(p.power > 10){
+				if(p.power > 27){
 					ret += " The " + p.htmlTitle() + " manages to choose correctly, despite the seeming impossibility of the matter. ";
 					ret += " They gain the power they need to acomplish their objectives. ";
 					p.denizenFaced = true;
