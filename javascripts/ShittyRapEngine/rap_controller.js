@@ -8,19 +8,16 @@ var player2Rhymes = [];
 //for now, rap about your own interests.
 window.onload = function() {
 		var interest =  getRandomElementFromArray(interests);
+		$("#topic").html("'Topic': " + interest);
 		rap(1,interest);
 		rap(2,interest);
 		rap(1,interest);
-		$("#used_words_player1").html("Player1 Rhymes: " + player1Rhymes)
-		$("#used_words_player2").html("Player2 Rhymes: " + player2Rhymes)
+		rap(2,interest);
+
 }
 
 function rap(playerNum, interest){
 	Math.seed =  getRandomSeed();
-
-	$("#topic").html("Topic: " + interest);
-	$("#used_words_player1").html("Player1 Rhymes: " + player1Rhymes)
-	$("#used_words_player2").html("Player2 Rhymes: " + player2Rhymes)
 
 	var chosenRapTemplate = getRandomElementFromArray(rapTemplates);
 	var firstWord = chosenRapTemplate.findWordBasedOnPart1AndInterest(interest)
@@ -33,7 +30,7 @@ function rap(playerNum, interest){
 			str += firstWord;
 			str += chosenRapTemplate.part2;
 			if(secondWord){
-				str += secondWord;
+				str += secondWord + ".";
 			}else{
 				str += "... Um ...shit."
 			}

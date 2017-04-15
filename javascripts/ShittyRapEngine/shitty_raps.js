@@ -9,6 +9,9 @@ var athleticInterestVerbs = ["run","punch", "down", "drown", "soak", "won","bloc
 var musicInterestNouns = ["songbook","hook","feedback","flashback","soundtrack","punk","drunk"];
 var musicInterestVerbs = ["hook","fame","attack","backtrack","hijack","clack","funk"];
 
+var cultureInterestNouns = ["songbook","hook","feedback","flashback","soundtrack","punk","drunk", "mistake","huge mistake", "headache","ache"];
+var cultureInterestVerbs = ["hook","fame","attack","backtrack","hijack","clack","funk", "wake", "take", "brake"];
+
 var writingInterestNouns = ["rook","reference book","textbook","guidebook","book","hook","swill","quill","daffodil"];
 var writingInterestVerbs = ["gobbledygook","shook","look","will","thrill","kill","chill","fire drill","ill"];
 
@@ -62,8 +65,17 @@ var verb = "verb";
 var rapTemplates = [new RapTemplate("you must be some kind of ",noun, " sitting there like you think you can ", verb) ];
 rapTemplates.push(new RapTemplate("your ass is grass, you ain't got that ",noun, " you have the worst skills that i ever did ", verb) );
 rapTemplates.push(new RapTemplate("i got that  ",noun, " you have no ", noun) );
-rapTemplates.push(new RapTemplate("you think you're ",noun, " but you can't even ", verb) );
-
+rapTemplates.push(new RapTemplate("I am da best at ",verb, " you aint even tried to ", verb) );
+rapTemplates.push(new RapTemplate("all day sittin and chillin and ",verb, " like some kind of ", noun) );
+rapTemplates.push(new RapTemplate("bitches think I'm ",noun, " and you all sitting there like you can't ", verb) );
+rapTemplates.push(new RapTemplate("I do an acrobatic pirouette off the ",noun, " while you struggle to even ", verb) );
+rapTemplates.push(new RapTemplate("you're all up in my ",noun, " like you think it's ", noun) );
+rapTemplates.push(new RapTemplate("I'm officially the canidate for having some ",noun, " but you dropped out the race in disgrace for  ", noun) );
+rapTemplates.push(new RapTemplate("you know I got the ",noun, " all up and ", verb) );
+rapTemplates.push(new RapTemplate("bustin old school ",noun, " like I can't even ", verb) );
+rapTemplates.push(new RapTemplate("all day I'm ",verb, " but you can't even ", verb) );
+rapTemplates.push(new RapTemplate("should i count all the reasons you're ",noun, " fuck, i got better things to ", verb) );
+rapTemplates.push(new RapTemplate("it's too bad my rhymes are so  ",noun, " but I can't even stop", verb) );
 
 
 //would be so dope to rap about what's happened in the session.
@@ -140,6 +152,10 @@ function RapTemplate(part1, p1Type, part2, p2Type){
 			ret = justiceInterestNouns;
 		}else if(justice_interests.indexOf(interest) != -1 && type == verb){
 			ret = justiceInterestVerbs;
+		}else if(culture_interests.indexOf(interest) != -1 && type == noun){
+			ret = cultureInterestNouns;
+		}else if(culture_interests.indexOf(interest) != -1 && type == verb){
+			ret = cultureInterestVerbs;
 		}
 		return ret;
 	}
@@ -210,6 +226,6 @@ function intersection (a, b) {
 
 
 function rapInterjection(){
-	var interjections = ["Yo", "Word", "Dawg", "Dog", "Bro", "Sup", "Okay", "What", "Yeah", "Aight", "Yeah Dog", "Fo, Shizzle", "Hey", "Boo yeah", "Break it down", "Fuck", "Shit", "Peace", "True that", "Double True", "Word up", "My homey", "Homey", "You knows it"];
+	var interjections = ["Yo", "Trust", "Represent", "Respect", "Word", "Dawg", "Dog", "Bro", "Sup", "Okay", "What", "Yeah", "Aight", "Yeah Dog", "Fo, Shizzle", "Hey", "Boo yeah", "Break it down", "Fuck", "Shit", "Peace", "True that", "Double True", "Word up", "My homey", "Homey", "You knows it"];
 	return getRandomElementFromArray(interjections);
 }
