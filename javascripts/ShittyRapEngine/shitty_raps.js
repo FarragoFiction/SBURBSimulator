@@ -235,7 +235,7 @@ function intersection (a, b) {
 }
 
 function rapMistake(){
-	var mistakes = ["...umm...,", "...fuck", "...fuck, can we start over? ", "...pretend I just finished that, okay?", "er...Shit.", "errr...", "ummm...shit.", "...fucking hell.", "what they hell, I know I had a rhyme for this...", "...okay, should I just...like, give up here?"];
+	var mistakes = ["...umm...,", "...fuck", "...fuck, can we start over? ", "...pretend I just finished that, okay?", "er...Shit.", "errr...", "ummm...shit.", "...fucking hell.", "what the hell, I know I had a rhyme for this...", "...okay, should I just...like, give up here?"];
 	return getRandomElementFromArray(mistakes);
 
 }
