@@ -57,4 +57,10 @@
 <br>
  - gracefulBlossom
  </p>
+
+ <p>"Grinding + Wide open sandbox + Adventure + Roguelike + Playing the game in real world = This game. Who had this "great" idea?!"
+ <br>
+  - pulsarCycle
+  </p>
+
 </div>
