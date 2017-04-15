@@ -7,14 +7,16 @@ var player2Rhymes = [];
 //worry about this LATER, and definitely not in this stand alone page.
 //for now, rap about your own interests.
 window.onload = function() {
-		rap(1);
-		rap(2);
-		rap(1);
+		var interest =  getRandomElementFromArray(interests);
+		rap(1,interest);
+		rap(2,interest);
+		rap(1,interest);
 }
 
-function rap(playerNum){
+function rap(playerNum, interest){
 	Math.seed =  getRandomSeed();
-	var interest =  getRandomElementFromArray(["Pranks","Swimming"]); //TODO make work for all interest categories.
+
+	$("#topic").html("Topic: " + interest);
 	var chosenRapTemplate = getRandomElementFromArray(rapTemplates);
 	var firstWord = chosenRapTemplate.findWordBasedOnPart1AndInterest(interest)
 	var secondWord = chosenRapTemplate.findWordBasedOnPart2AndInterestAndPart1Word(interest, firstWord)
@@ -26,7 +28,7 @@ function rap(playerNum){
 				player1Rhymes.push(firstWord);
 				player1Rhymes.push(secondWord);
 				rapper1Line(str);
-				rap(1); //keep going till you can't
+				rap(1,interest); //keep going till you can't
 				return;
 			}else{
 				rapper1Line(str + " Uh. Wait. Um...")
@@ -37,7 +39,7 @@ function rap(playerNum){
 				player2Rhymes.push(firstWord);
 				player2Rhymes.push(secondWord);
 				rapper2Line(str);
-				rap(2); //keep going till you can't.
+				rap(2,interest); //keep going till you can't.
 				return;
 			}else{
 				rapper2Line(str + " Uh. Wait. Um...");
