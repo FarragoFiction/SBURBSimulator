@@ -27,7 +27,7 @@ function rap(playerNum, interest){
 	var firstWord = tryToUseRhyme(firstWord, playerNum);
 	var secondWord = chosenRapTemplate.findWordBasedOnPart2AndInterestAndPart1Word(interest, firstWord)
 	var secondWord = tryToUseRhyme(secondWord, playerNum);
-	var str = chosenRapTemplate.part1;
+	var str = rapInterjection() + ", " + chosenRapTemplate.part1;
 
 	if(firstWord){
 			str += firstWord;
@@ -62,6 +62,8 @@ function rap(playerNum, interest){
 	//TODO, KEEP GOING UNTIL HIT MAX LINES OR NO RHYME (HEY, THAT RHYMED)
 	//give up if either word is null or if they match.
 }
+
+
 
 function tryToUseRhyme(rhyme, playerNum){
 		var usedRhymes = player1Rhymes;

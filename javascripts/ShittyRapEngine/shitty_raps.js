@@ -59,10 +59,10 @@ var wordsRhymeCrook = ["crook","nook", "cook", "rook","took","look","shook","hoo
 
 var noun = "noun";
 var verb = "verb";
-var rapTemplates = [new RapTemplate("Yo, you must be some kind of ",noun, " sitting there like you think you can ", verb) ];
-rapTemplates.push(new RapTemplate("Your ass is grass, you ain't got that ",noun, " you have the worst skills that i ever did ", verb) );
-rapTemplates.push(new RapTemplate("I got that  ",noun, " you have no ", noun) );
-rapTemplates.push(new RapTemplate("You think you're ",noun, " but you can't even ", verb) );
+var rapTemplates = [new RapTemplate("you must be some kind of ",noun, " sitting there like you think you can ", verb) ];
+rapTemplates.push(new RapTemplate("your ass is grass, you ain't got that ",noun, " you have the worst skills that i ever did ", verb) );
+rapTemplates.push(new RapTemplate("i got that  ",noun, " you have no ", noun) );
+rapTemplates.push(new RapTemplate("you think you're ",noun, " but you can't even ", verb) );
 
 
 
@@ -206,4 +206,10 @@ function intersection (a, b) {
     delete seen[k];
     return exists;
   });
+}
+
+
+function rapInterjection(){
+	var interjections = ["Yo", "Word", "Dawg", "Dog", "Bro", "Sup", "Okay", "What", "Yeah", "Aight", "Yeah Dog", "Fo, Shizzle", "Hey", "Boo yeah", "Break it down", "Fuck", "Shit", "Peace", "True that", "Double True", "Word up", "My homey", "Homey", "You knows it"];
+	return getRandomElementFromArray(interjections);
 }

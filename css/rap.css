@@ -12,13 +12,3 @@
   margin-right: auto;
   font-size: 32px;
 }
-
-#used_words_player1{
-  position: absolute;
-  top: 90%;
-}
-
-#used_words_player2{
-  position: absolute;
-  top: 95%;
-}
