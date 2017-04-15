@@ -6,37 +6,37 @@ var comedyInterestVerbs = ["joke", "frown", "stun", "soak", "choke", "scrunch", 
 var athleticInterestNouns = ["sun","lunch","crown","yolk"];
 var athleticInterestVerbs = ["run","punch", "down", "drown", "soak", "won"];
 
-var musicInterestNouns = ["","","","","","","","","","","",""];
-var musicInterestVerbs = ["","","","","","","","","","","",""];
+var musicInterestNouns = ["songbook","hook","feedback","flashback","soundtrack","punk","drunk","","","","",""];
+var musicInterestVerbs = ["hook","fame","attack","backtrack","hijack","clack","funk","","","","",""];
 
-var writingInterestNouns = ["","","","","","","","","","","",""];
-var writingInterestVerbs = ["","","","","","","","","","","",""];
+var writingInterestNouns = ["rook","reference book","textbook","guidebook","book","hook","swill","quill","daffodil","","",""];
+var writingInterestVerbs = ["gobbledygook","shook","look","will","thrill","kill","chill","fire drill","ill","","",""];
 
-var popCultureInterestNouns = ["megalomaniac","Jack","sack","quack","asscrack","throwback","huge mistake","piece of cake","flake","mistake","",""];
-var popCultureInterestVerbs = ["wisecrack","throwback","hoseseback","ransack","take","wake","headache","shake","","","",""];
+var popCultureInterestNouns = ["flashback","megalomaniac","Jack","sack","quack","asscrack","throwback","huge mistake","piece of cake","flake","mistake","game","video game"];
+var popCultureInterestVerbs = ["wisecrack","throwback","hoseseback","ransack","take","wake","headache","shake","croak","choke","maim","taim"];
 
-var technologyInterestNouns = ["","","","","","","","","","","",""];
-var technologyInterestVerbs = ["","","","","","","","","","","",""];
+var technologyInterestNouns = ["hack","","","","","","","","","","",""];
+var technologyInterestVerbs = ["hijack","atack","hack","smack","","","","","","","",""];
 
-var socialInterestNouns = ["","","","","","","","","","","",""];
-var socialInterestVerbs = ["","","","","","","","","","","",""];
+var socialInterestNouns = ["punk","drunk","shame","heartbreak","mistake","fake","","","","","",""];
+var socialInterestVerbs = ["blame","fame","brandname","quake","shake","fake","","","","","",""];
 
-var romanticInterestNouns = ["","","","","","","","","","","",""];
-var romanticInterestVerbs = ["","","","","","","","","","","",""];
+var romanticInterestNouns = ["heartbreak","heartache","fake","snake","flake","crock","punk","drunk","hunk","junk","fun","dick"];
+var romanticInterestVerbs = ["heartbreak","sweet talk","talk","walk","stun","fun","sick","click","trick","lick","",""];
 
-var academicInterestNouns = ["","","","","","","","","","","",""];
-var academicInterestVerbs = ["","","","","","","","","","","",""];
+var academicInterestNouns = ["reference book","book","guidebook","reference book","lunatic","dipstick","brick","jock","laughingstock","quack","junk","monk"];
+var academicInterestVerbs = ["trick","look","took","shook","small talk","squawk","block","backtrack","yack","attack","crack","smack", "debunk"];
 
-var domesticInterestNouns = ["","","","","","","","","","","",""];
-var domesticInterestVerbs = ["","","","","","","","","","","",""];
+var domesticInterestNouns = ["cake","piece of cake","cupcake","snake","mistake","huge mistake","flake","crock","cock","peacock","laughingstock","shell", "brandname"];
+var domesticInterestVerbs = ["bake","shake","wake","heartbreak","small talk","gawk","squawk","block","shellgame","maim","tame","aim"];
 
-var terribleInterestNouns = ["","","","","","","","","","","",""];
-var terribleInterestVerbs = ["","","","","","","","","","","",""];
+var terribleInterestNouns = ["pill","suicide pill","shill","swill","landfill","molehill","standstill","plush rump","hunk rump","rump","chump","snake", "asscrack"];
+var terribleInterestVerbs = ["kill","ill","drill","grill","dick","lick","trick","bump","hump","hug bump","take","wake","payback"];
 
 var fantasyInterestNouns = ["fake","fakey-fake","lake","game","fame","brandname","","","","","",""];
 var fantasyInterestVerbs = ["ache","make","quake","shake","game","shame","maim","tame","","","",""];
 
-var justiceInterestNouns = ["crook","hook","same","game","suicide pill","fire drill","bunch","gun","son","","",""];
+var justiceInterestNouns = ["crook","hook","same","game","suicide pill","fire drill","bunch","gun","son","hunch","",""];
 var justiceInterestVerbs = ["took","shook","look","kill","ill","aim","blame","hunch","punch","stun","",""];
 
 
@@ -47,7 +47,7 @@ var wordsRhymeTown = ["town", "down", "frown", "clown", "brown", "crown", "drown
 var wordsRhymeJoke = ["bloke","broke","croak","choke","folk","oak","smoke","soak","woke","yolk","yoke","coke", "spoke"];
 var wordsRhymeSun = ["bun","fun","gun","son","hun","none","nun","stun","spun","shun","run","won"];
 var wordsRhymePunch = ["brunch","punch","lunch","bunch","crunch","hunch","munch","scrunch"];
-var wordsRhymeJack = ["jack", "Jack", "black","sack","clack","crack","knack","quack" "snack","smack","yack","attack","backtrack","hijack" "flashback","feedback","payback","soundtrack","wisecrack","throwback" ,"hunchback","horseback","ransack","asscrack","fallback","carjack","megalomaniac"];
+var wordsRhymeJack = ["jack", "hack","Jack", "black","sack","clack","crack","knack","quack" "snack","smack","yack","attack","backtrack","hijack" "flashback","feedback","payback","soundtrack","wisecrack","throwback" ,"hunchback","horseback","ransack","asscrack","fallback","carjack","megalomaniac"];
 var wordsRhymeFake = ["fake","fakey-fake","ache","bake","brake","break","cake","flake","lake","make","quake","shake","snake","wake","take","awake","cupcake","headache","heartache","heartbreak","mistake","piece of cake","emergency break","huge mistake"];
 var wordsRhymeGame = ["game", "name","aim","blame","fame","lame","maim","tame","shellgame","shame","video game","pregame","postgame","brandname"];
 var wordsRhymeKill = ["ill","kill","chill","drill","grill","shill","quill","will","thrill","swill","anthill","foothill","downhill","landfill","molehill","standstill","treadmill","daffodil","fire drill","pill","sleeping pill","suicide pill"];
