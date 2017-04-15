@@ -97,6 +97,50 @@ function RapTemplate(part1, p1Type, part2, p2Type){
 			ret = athleticInterestNouns;
 		}else if(athletic_interests.indexOf(interest) != -1 && type == verb){
 			ret = athleticInterestVerbs;
+		}else if(music_interests.indexOf(interest) != -1 && type == noun){
+			ret = musicInterestNouns;
+		}else if(music_interests.indexOf(interest) != -1 && type == verb){
+			ret = musicInterestVerbs;
+		}else if(writing_interests.indexOf(interest) != -1 && type == noun){
+			ret = writingInterestNouns;
+		}else if(writing_interests.indexOf(interest) != -1 && type == verb){
+			ret = writingInterestVerbs;
+		}else if(pop_culture_interests.indexOf(interest) != -1 && type == noun){
+			ret = popCultureInterestNouns;
+		}else if(pop_culture_interests.indexOf(interest) != -1 && type == verb){
+			ret = popCultureInterestVerbs;
+		}else if(technology_interests.indexOf(interest) != -1 && type == noun){
+			ret = technologyInterestNouns;
+		}else if(technology_interests.indexOf(interest) != -1 && type == verb){
+			ret = technologyInterestVerbs;
+		}else if(social_interests.indexOf(interest) != -1 && type == noun){
+			ret = socialInterestNouns;
+		}else if(social_interests.indexOf(interest) != -1 && type == verb){
+			ret = socialInterestVerbs;
+		}else if(romantic_interests.indexOf(interest) != -1 && type == noun){
+			ret = romanticInterestNouns;
+		}else if(romantic_interests.indexOf(interest) != -1 && type == verb){
+			ret = romanticInterestVerbs;
+		}else if(academic_interests.indexOf(interest) != -1 && type == noun){
+			ret = academicInterestNouns;
+		}else if(academic_interests.indexOf(interest) != -1 && type == verb){
+			ret = academicInterestVerbs;
+		}else if(domestic_interests.indexOf(interest) != -1 && type == noun){
+			ret = domesticInterestNouns;
+		}else if(domestic_interests.indexOf(interest) != -1 && type == verb){
+			ret = domesticInterestVerbs;
+		}else if(terrible_interests.indexOf(interest) != -1 && type == noun){
+			ret = terribleInterestNouns;
+		}else if(terrible_interests.indexOf(interest) != -1 && type == verb){
+			ret = terribleInterestVerbs;
+		}else if(fantasy_interests.indexOf(interest) != -1 && type == noun){
+			ret = fantasyInterestNouns;
+		}else if(fantasy_interests.indexOf(interest) != -1 && type == verb){
+			ret = fantasyInterestVerbs;
+		}else if(justice_interests.indexOf(interest) != -1 && type == noun){
+			ret = justiceInterestNouns;
+		}else if(justice_interests.indexOf(interest) != -1 && type == verb){
+			ret = justiceInterestVerbs;
 		}
 		return ret;
 	}
