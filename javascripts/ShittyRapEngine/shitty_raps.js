@@ -5,14 +5,57 @@ var comedyInterestVerbs = ["joke", "frown", "stun", "soak", "choke", "scrunch", 
 
 var athleticInterestNouns = ["sun","lunch","crown","yolk"];
 var athleticInterestVerbs = ["run","punch", "down", "drown", "soak", "won"];
-//http://www.rhymezone.com/r/rhyme.cgi?Word=sun&typeofrhyme=perfect&org1=syl&org2=l&org3=y
 
+var musicInterestNouns = ["","","","","","","","","","","",""];
+var musicInterestVerbs = ["","","","","","","","","","","",""];
+
+var writingInterestNouns = ["","","","","","","","","","","",""];
+var writingInterestVerbs = ["","","","","","","","","","","",""];
+
+var popCultureInterestNouns = ["megalomaniac","Jack","sack","quack","asscrack","throwback","huge mistake","piece of cake","flake","mistake","",""];
+var popCultureInterestVerbs = ["wisecrack","throwback","hoseseback","ransack","take","wake","headache","shake","","","",""];
+
+var technologyInterestNouns = ["","","","","","","","","","","",""];
+var technologyInterestVerbs = ["","","","","","","","","","","",""];
+
+var socialInterestNouns = ["","","","","","","","","","","",""];
+var socialInterestVerbs = ["","","","","","","","","","","",""];
+
+var romanticInterestNouns = ["","","","","","","","","","","",""];
+var romanticInterestVerbs = ["","","","","","","","","","","",""];
+
+var academicInterestNouns = ["","","","","","","","","","","",""];
+var academicInterestVerbs = ["","","","","","","","","","","",""];
+
+var domesticInterestNouns = ["","","","","","","","","","","",""];
+var domesticInterestVerbs = ["","","","","","","","","","","",""];
+
+var terribleInterestNouns = ["","","","","","","","","","","",""];
+var terribleInterestVerbs = ["","","","","","","","","","","",""];
+
+var fantasyInterestNouns = ["fake","fakey-fake","lake","game","fame","brandname","","","","","",""];
+var fantasyInterestVerbs = ["ache","make","quake","shake","game","shame","maim","tame","","","",""];
+
+var justiceInterestNouns = ["crook","hook","same","game","suicide pill","fire drill","bunch","gun","son","","",""];
+var justiceInterestVerbs = ["took","shook","look","kill","ill","aim","blame","hunch","punch","stun","",""];
+
+
+
+//http://www.rhymezone.com/r/rhyme.cgi?Word=sun&typeofrhyme=perfect&org1=syl&org2=l&org3=y
 //most common rhyming sounds are things like "ack", "ake", "ame", "ill", "uck", "ock", "unk", "ump", "ice", "unk"
 var wordsRhymeTown = ["town", "down", "frown", "clown", "brown", "crown", "drown","noun"];
 var wordsRhymeJoke = ["bloke","broke","croak","choke","folk","oak","smoke","soak","woke","yolk","yoke","coke", "spoke"];
 var wordsRhymeSun = ["bun","fun","gun","son","hun","none","nun","stun","spun","shun","run","won"];
 var wordsRhymePunch = ["brunch","punch","lunch","bunch","crunch","hunch","munch","scrunch"];
-//var wordsRhymeJack = ["jack", "black","sack","clack","crack","knack","quack" "snack","smack","yack","attack","backtrack","hijack" "flashback","feedback","payback","soundtrack","wisecrack","throwback" ,"hunchback","horseback","ransack","asscrack","fallback","carjack","megalomaniac"];
+var wordsRhymeJack = ["jack", "Jack", "black","sack","clack","crack","knack","quack" "snack","smack","yack","attack","backtrack","hijack" "flashback","feedback","payback","soundtrack","wisecrack","throwback" ,"hunchback","horseback","ransack","asscrack","fallback","carjack","megalomaniac"];
+var wordsRhymeFake = ["fake","fakey-fake","ache","bake","brake","break","cake","flake","lake","make","quake","shake","snake","wake","take","awake","cupcake","headache","heartache","heartbreak","mistake","piece of cake","emergency break","huge mistake"];
+var wordsRhymeGame = ["game", "name","aim","blame","fame","lame","maim","tame","shellgame","shame","video game","pregame","postgame","brandname"];
+var wordsRhymeKill = ["ill","kill","chill","drill","grill","shill","quill","will","thrill","swill","anthill","foothill","downhill","landfill","molehill","standstill","treadmill","daffodil","fire drill","pill","sleeping pill","suicide pill"];
+var wordsRhymeSick = ["sick","slick","Billious Slick","brick","click","dick","lick","quick","thick","trick","homesick","dipstick","picnic","yardstick","seasick","lunatic","","","",""];
+var wordsRhymeBlock = ["block","cock","hawk","gawk","crock","jock","squawk","talk","walk","bedrock","deadlock","gridlock","hemlock","peacock","small talk","sweet talk","laughingstock"];
+var wordsRhymeJunk = ["hunk","junk","flunk","drunk","monk","skunk","sunk","debunk","spelunk","punk","funk","hella drunk"];
+var wordsRhymeRump = ["rump","plush rump","hunk rump","chump","bump","hug bump","grump","hump","jump","slump","dump","lump"];
+var wordsRhymeCrook = ["crook","nook", "cook", "rook","took","look","shook","hook","guidebook","book","songbook","sketchbook", "textbook", "comic book", "gobbledygook", "reference book"]
 
 var noun = "noun";
 var verb = "verb";
@@ -26,6 +69,7 @@ rapTemplates.push(new RapTemplate("You think you're a ",noun, " but you can't ev
 //would be so dope to rap about what's happened in the session.
 //could read session summary?
 //worry about this LATER, and definitely not in this stand alone page.
+//instead of just your interests, can use THEIR interests to diss them.  "Yo, you ain't nothing but a piece of cake, a shake and bake."
 
 function RapTemplate(part1, p1Type, part2, p2Type){
 	this.part1 = part1;
