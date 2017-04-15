@@ -3,32 +3,33 @@
 var comedyInterestNouns = ["joke","clown","fun", "folk", "bloke","quack","flashback","piece of cake","shell game","skunk","debunk", "grump"];
 var comedyInterestVerbs = ["joke", "frown", "stun", "soak", "choke", "scrunch", "wisecrack","smack","attack","crack","emergency break","flunk","jump"];
 
-var athleticInterestNouns = ["sun","lunch","crown","yolk","seasick","smalltalk","hella drunk","punk","drunk","yardstick","pregame","postgame"];
+var athleticInterestNouns = ["sun","lunch","crown","brown", "clown","yolk","seasick","smalltalk","hella drunk","punk","drunk","yardstick","pregame","postgame"];
 var athleticInterestVerbs = ["run","punch", "down", "drown", "soak", "won","block","sunk","spelunk","aim","maim","tame"];
 
-var musicInterestNouns = ["songbook","hook","feedback","flashback","soundtrack","punk","drunk"];
-var musicInterestVerbs = ["hook","fame","attack","backtrack","hijack","clack","funk"];
+var musicInterestNouns = ["songbook","hook","feedback","flashback","soundtrack","punk","drunk","flashback","megalomaniac","Jack","sack","quack","asscrack","throwback","huge mistake","piece of cake","flake","mistake","game","video game"];
+var musicInterestVerbs = ["hook","fame","attack","backtrack","hijack","clack","funk","wisecrack","throwback","horseback","ransack","take","wake","headache","shake","croak","choke","maim","taim"];
 
 var cultureInterestNouns = ["songbook","hook","feedback","flashback","soundtrack","punk","drunk", "mistake","huge mistake", "headache","ache"];
 var cultureInterestVerbs = ["hook","fame","attack","backtrack","hijack","clack","funk", "wake", "take", "brake"];
 
-var writingInterestNouns = ["rook","reference book","textbook","guidebook","book","hook","swill","quill","daffodil"];
-var writingInterestVerbs = ["gobbledygook","shook","look","will","thrill","kill","chill","fire drill","ill"];
+var writingInterestNouns = ["rook","reference book","textbook","guidebook","book","hook","swill","quill","daffodil","flashback","megalomaniac","Jack","sack","quack","asscrack","throwback","huge mistake","piece of cake","flake","mistake","game","video game"];
+var writingInterestVerbs = ["gobbledygook","shook","look","will","thrill","kill","chill","fire drill","ill","wisecrack","throwback","hoseseback","ransack","take","wake","headache","shake","croak","choke","maim","taim"];
 
 var popCultureInterestNouns = ["flashback","megalomaniac","Jack","sack","quack","asscrack","throwback","huge mistake","piece of cake","flake","mistake","game","video game"];
 var popCultureInterestVerbs = ["wisecrack","throwback","hoseseback","ransack","take","wake","headache","shake","croak","choke","maim","taim"];
 
-var technologyInterestNouns = ["hack","jock","gridlock","deadlock","laughingstock"];
-var technologyInterestVerbs = ["hijack","atack","hack","smack","block"];
+var technologyInterestNouns = ["hack","jock","gridlock","deadlock","laughingstock", "hot", "bot", "knot", "robot", "thought", "brobot"];
+var technologyInterestVerbs = ["hijack","atack","hack","smack","block", "trot", "shot", "plot", "forgot", "rot"];
 
-var socialInterestNouns = ["punk","drunk","shame","heartbreak","mistake","fake","grump","dump","lump"];
-var socialInterestVerbs = ["blame","fame","brandname","quake","shake","fake","jump"];
+var socialInterestNouns = ["punk","drunk","shame","heartbreak","mistake","fake","grump","dump","lump","ocelot","hot"];
+var socialInterestVerbs = ["blame","fame","brandname","quake","shake","fake","jump","rot","caught"];
 
-var romanticInterestNouns = ["heartbreak","heartache","fake","snake","flake","crock","punk","drunk","hunk","junk","fun","dick"];
-var romanticInterestVerbs = ["heartbreak","sweet talk","talk","walk","stun","fun","sick","click","trick","lick"];
+var romanticInterestNouns = ["heartbreak","heartache","fake","snake","flake","crock","punk","drunk","hunk","junk","fun","dick", "hot"];
+var romanticInterestVerbs = ["heartbreak","sweet talk","talk","walk","stun","fun","sick","click","trick","lick", "caught"];
 
-var academicInterestNouns = ["reference book","book","guidebook","reference book","lunatic","dipstick","brick","jock","laughingstock","quack","junk","monk"];
-var academicInterestVerbs = ["trick","look","took","shook","small talk","squawk","block","backtrack","yack","attack","crack","smack", "debunk"];
+
+var academicInterestNouns = ["reference book","book","guidebook","reference book","lunatic","dipstick","brick","jock","laughingstock","quack","junk","monk", "yaught", "watt", "clot", "thought"];
+var academicInterestVerbs = ["trick","look","took","shook","small talk","squawk","block","backtrack","yack","attack","crack","smack", "debunk", "forgot", "plot", "watt", "swat", "knot"];
 
 var domesticInterestNouns = ["cake","piece of cake","cupcake","snake","mistake","huge mistake","flake","crock","cock","peacock","laughingstock","shell", "brandname"];
 var domesticInterestVerbs = ["bake","shake","wake","heartbreak","small talk","gawk","squawk","block","shellgame","maim","tame","aim"];
@@ -46,6 +47,7 @@ var justiceInterestVerbs = ["took","shook","look","kill","ill","aim","blame","hu
 
 //http://www.rhymezone.com/r/rhyme.cgi?Word=sun&typeofrhyme=perfect&org1=syl&org2=l&org3=y
 //most common rhyming sounds are things like "ack", "ake", "ame", "ill", "uck", "ock", "unk", "ump", "ice", "unk"
+var wordsRhymehot = ["hot", "bot", "knot", "caught", "robot", "thought", "clot","shot","plot","forgot","yaught","rot","watt","squat","trot","swat","brobot","ocelot"];
 var wordsRhymeTown = ["town", "down", "frown", "clown", "brown", "crown", "drown","noun"];
 var wordsRhymeJoke = ["bloke","broke","croak","choke","folk","oak","smoke","soak","woke","yolk","yoke","coke", "spoke"];
 var wordsRhymeSun = ["bun","fun","gun","son","hun","none","nun","stun","spun","shun","run","won"];
@@ -188,7 +190,10 @@ function RapTemplate(part1, p1Type, part2, p2Type){
 			return wordsRhymeRump;
 		}else if(wordsRhymeCrook.indexOf(word) != -1){
 			return wordsRhymeCrook;
+		}else if(wordsRhymehot.indexOf(word) != -1){
+			return wordsRhymehot;
 		}
+
 	}
 
 	this.findWordBasedOnPart2AndInterestAndPart1Word = function(interest,word){
@@ -199,6 +204,11 @@ function RapTemplate(part1, p1Type, part2, p2Type){
 		if(rhyme_array){
 			var results = intersection(rhyme_array, wordTypeArray);
 		}
+		if(!results){
+			return null;
+		}
+		removeFromArray(word, results); //don't even try to rhyme with yourself.
+		//console.log("trying to rhyme: " + word + " found: " + results)
 		if(results && results.length > 0){
 			return getRandomElementFromArray(results);
 		}

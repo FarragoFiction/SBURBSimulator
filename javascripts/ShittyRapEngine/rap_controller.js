@@ -7,6 +7,7 @@ var player2Rhymes = [];
 //worry about this LATER, and definitely not in this stand alone page.
 //for now, rap about your own interests.
 window.onload = function() {
+		//Math.seed = 612;
 		var interest1 =  getRandomElementFromArray(interests);
 		var interest2 =  getRandomElementFromArray(interests);
 		rap(1,interest1);
@@ -17,13 +18,32 @@ window.onload = function() {
 }
 
 function rap(playerNum, interest){
-	Math.seed =  getRandomSeed();
+	//Math.seed =  getRandomSeed();
+
+	console.log("Rapping about: " + interest)
 
 	var chosenRapTemplate = getRandomElementFromArray(rapTemplates);
 	var firstWord = chosenRapTemplate.findWordBasedOnPart1AndInterest(interest)
-	var firstWord = tryToUseRhyme(firstWord, playerNum);
-	var secondWord = chosenRapTemplate.findWordBasedOnPart2AndInterestAndPart1Word(interest, firstWord)
-	var secondWord = tryToUseRhyme(secondWord, playerNum);
+	var secondWord = null;
+  firstWord = tryToUseRhyme(firstWord, playerNum);
+	if(!firstWord){
+		//second shot for first word
+		firstWord = chosenRapTemplate.findWordBasedOnPart1AndInterest(interest)
+	  firstWord = tryToUseRhyme(firstWord, playerNum);
+	}
+	//console.log("first word final is: " + firstWord);
+	if(firstWord){
+	  secondWord = chosenRapTemplate.findWordBasedOnPart2AndInterestAndPart1Word(interest, firstWord)
+		//console.log("second word is: " + secondWord);
+	  secondWord = tryToUseRhyme(secondWord, playerNum);
+		if(!secondWord){
+			//second shot for first word
+			secondWord = chosenRapTemplate.findWordBasedOnPart1AndInterest(interest)
+			//console.log("second word2 is: " + secondWord);
+		  secondWord = tryToUseRhyme(secondWord, playerNum);
+		}
+}
+	//console.log("second word final is: " + secondWord);
 	var str = rapInterjection() + ", " + chosenRapTemplate.part1;
 
 	if(firstWord){
