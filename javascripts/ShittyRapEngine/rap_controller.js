@@ -1,6 +1,8 @@
 //stay fresh, don't repeat rhymes.
 var player1Rhymes = [];
 var player2Rhymes = [];
+var player1Score = 0;
+var player2Score = 0;
 
 //would be so dope to rap about what's happened in the session.
 //could read session summary?
@@ -14,6 +16,7 @@ window.onload = function() {
 		rap(2,interest2);
 		rap(1,interest1);
 		rap(2,interest2);
+		$("#score").html("Player1: " + player1Score + " Player2: " + player2Score)
 
 }
 
@@ -65,9 +68,11 @@ function rap(playerNum, interest){
 
 	if(firstWord && secondWord && firstWord != secondWord){
 		if(playerNum==1){
+				player1Score ++;
 				rap(1,interest); //keep going till you can't
 				return;
 		}else{
+				player2Score ++;
 				rap(2,interest); //keep going till you can't.
 				return;
 		}
