@@ -69,6 +69,7 @@ function loadImage(img){
 function loadOther(){
 	loadImage("jr.png");
 	loadImage("stab.png");
+  loadImage("denizoned.png");
   loadImage("sceptre.png");
 	loadImage("rainbow.png");
 	loadImage("gears.png");

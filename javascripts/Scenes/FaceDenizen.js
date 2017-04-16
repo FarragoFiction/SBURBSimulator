@@ -68,6 +68,8 @@ function FaceDenizen(session){
 					div.append(canvasHTML);
 					var canvas = document.getElementById("canvas"+ divID);
 					drawSinglePlayer(canvas, p);
+					denizenKill(canvas, p);
+					console.log("denizen kill " + this.session.session_id)
 					//foundRareSession(div, "A denizen made a corpse.");
 
 				}

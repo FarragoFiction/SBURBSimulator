@@ -957,6 +957,23 @@ function drawBGRadialWithWidth(canvas, width, color1, color2){
 	ctx.fillRect(0, 0, width, canvas.height);
 }
 
+function denizenKill(canvas,player){
+  var p1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+  //drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff")
+	ctx = p1SpriteBuffer.getContext('2d');
+//  drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff");
+//  ctx.translate(canvas.width, 0);
+  //ctx.rotate(90*Math.PI/180);
+	var imageString = "denizoned.png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,0,0,width,height); //why can't i use a buffer, it's not showing up..
+  copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,0,0)//why is it so far right???
+
+}
+
 function stabs(canvas,player){
 	ctx = canvas.getContext('2d');
 	var imageString = "stab.png"
