@@ -506,12 +506,20 @@ function Intro(session){
 			//console.log(player2.ectoBiologicalSource)
 			if(r1.type() == r1.goodBig){
 				chatText += chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm finally in your session.");
+				chatText += chatLine(player2Start, player2,"Oh wow! What are you going to do? It's not like you have a land or anything...");
+				chatText += chatLine(player1Start, player1,"Eh, I'll get things ready for you guys' reckoning. Mess with the Black Queen. Plus, I can always help out you guys with your Land Quests.");
+				chatText += chatLine(player2Start, player2,"Oh yeah...");
+			}else if(r1.type() == r1.badBig){
+				chatText += chatLine(player1Start, player1, "So I guess today is finally the day you fuck everything up.")
+				chatText += chatLine(player2Start, player2,"God, you are such an asshole. Just because you fucked your session up doesn't mean we will!");
+				chatText += chatLine(player1Start, player1, "You are just not getting it. This game only has one level: fucking everything up.")
 			}else{
 				chatText += chatLine(player1Start, player1,"Hey, I'm finally in your session.");
+				chatText += chatLine(player2Start, player2,"Oh wow! What are you going to do? It's not like you have a land or anything...");
+				chatText += chatLine(player1Start, player1,"Eh, I'll get things ready for you guys' reckoning. Mess with the Black Queen. Plus, I can always help out you guys with your Land Quests.");
+				chatText += chatLine(player2Start, player2,"Oh yeah...");
 			}
-			chatText += chatLine(player2Start, player2,"Oh wow! What are you going to do? It's not like you have a land or anything...");
-			chatText += chatLine(player1Start, player1,"Eh, I'll get things ready for you guys' reckoning. Mess with the Black Queen. Plus, I can always help out you guys with your Land Quests.");
-			chatText += chatLine(player2Start, player2,"Oh yeah...");
+
 
 		}else{
 				if(player2.dead){

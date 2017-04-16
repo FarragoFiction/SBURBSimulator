@@ -122,7 +122,7 @@ function RapTemplate(part1, p1Type, part2, p2Type){
 		}
 			//console.log("second word final is: " + secondWord);
 			var str = "";
-			var str = rapInterjection() + ", " + this.part1;
+			str += rapInterjection() + ", " + this.part1;
 			if(firstWord){
 					str += firstWord;
 					str += this.part2;
@@ -134,7 +134,7 @@ function RapTemplate(part1, p1Type, part2, p2Type){
 			}else{
 				str += rapMistake();
 			}
-			return [str, firstWord, secondWord];
+			return [player.chatHandleShort()+ ": "+player.quirk.translate(str), firstWord, secondWord];
 	}
 
 	this.findWordBasedOnPart1AndInterest = function(interest){

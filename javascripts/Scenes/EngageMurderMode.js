@@ -240,10 +240,15 @@ function EngageMurderMode(session){
 	//if player 1 wins, goes ahead with threatening. cites weak rhymes as reason.
 	//if player2 wins, sick fires bro gif. player1 paraphrases gamzee when he calmed down with dave.
 	this.rapBattle = function(div, player1, player2){
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var canvasHTML = "<br><canvas id='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
-
 		var canvasDiv = document.getElementById("canvas"+  (div.attr("id")));
+		var chatText = "TODO"
+		drawChat(canvasDiv, player1, player2, chatText, repeatTime,"discuss_raps.png");
+		chatText += chatLine(player1Start, player1,"Bro. Rap Battle. Now. Bring the Fires.")
+		chatText += chatLine(player2Start, player2,"Yes. Fuck yes! Hell FUCKING yes!")
 	}
 
 	this.chat = function(div){
@@ -254,7 +259,7 @@ function EngageMurderMode(session){
 		if(player2){
 		var r2 = player2.getRelationshipWith(player1);
 		if(r2.value < 2 && r2.value > -8){ //only if i generically dislike you.
-			console.log("could have a rap battle. session: " + this.session.session_id)
+			console.log("rap battle. session: " + this.session.session_id)
 			return this.rapBattle(div,player1, player2);
 		}
 	}

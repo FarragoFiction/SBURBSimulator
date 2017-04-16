@@ -10,7 +10,11 @@ var player2Score = 0;
 window.onload = function() {
 		//Math.seed = 612;
 		var player1 = randomPlayerWithClaspect(new Session(83475), "Witch", "Time" )
+		player1.chatHandle = "squareWave"
+		player1.quirk = randomTrollSim(player1);
 		var player2 =  randomPlayerWithClaspect(new Session(83475), "Mage", "Space" )//why was it so hard to not type 'ace of space'???
+		player2.chatHandle = "sawTooth"
+		player2.quirk = randomHumanSim(player2);
 		rap(1,player1);
 		rap(2,player2);
 		rap(1,player1);

@@ -100,6 +100,7 @@ function loadOther(){
 	loadImage("discuss_sburb.png")
 	loadImage("discuss_jack.png")
 	loadImage("discuss_murder.png")
+  loadImage("discuss_raps.png")
 	for(var i = 1; i<4; i++){
 		loadImage("Bodies/baby"+i + ".png")
 	}
