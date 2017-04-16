@@ -81,5 +81,14 @@
 }
 
 .createdCharacter{
-  float:left;
+  width: 400px;
+}
+
+.createdCharacterCanvas{
+  width: 400px;
+}
+
+.stats{
+  float: right;
+  width: 200;
 }
