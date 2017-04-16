@@ -389,7 +389,7 @@ function poseAsATeam(canvas,players, repeatTime){
 		spriteBuffers.push(getBufferCanvas(document.getElementById("sprite_template")));
 		drawSprite(spriteBuffers[i],players[i])
 	}
-	
+
 		var x = startXpt; //-275 cuts of left most part.
 		var y = 0;
 		var total = 0;
@@ -968,6 +968,17 @@ function stabs(canvas,player){
 	swapColors(canvas, "#fffc00", player.bloodColor);
 }
 
+function kingDeath(canvas,player){
+	ctx = canvas.getContext('2d');
+	var imageString = "sceptre.png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,0,0,width,height);
+	swapColors(canvas, "#fffc00", player.bloodColor);
+}
+
 function bloodPuddle(canvas,player){
     ctx = canvas.getContext('2d');
 	var imageString = "blood_puddle.png"
@@ -1093,7 +1104,7 @@ function drawSprite(canvas, player,ctx,baby){
 		if(player.robot == true){
 			robo_face(canvas, player);
 		}
-		
+
 	 }
   }
 
@@ -1104,7 +1115,7 @@ function drawSprite(canvas, player,ctx,baby){
   if(!baby && player.class_name == "Prince" && player.godTier){
 	  princeTiara(canvas, player);
   }
-  
+
   if(player.robot == true){
 	  roboSkin(canvas, player);
   }else if(player.trickster == true){
@@ -1120,7 +1131,10 @@ function drawSprite(canvas, player,ctx,baby){
 
   if(!baby && player.dead && player.causeOfDeath == "after being shown too many stabs from Jack"){
 	 stabs(canvas,player)
-  }
+ }else if(!baby && player.dead && player.causeOfDeath == "fighting the Black King"){
+   kingDeath(canvas,player)
+ }
+
 
   if(player.wasteInfluenced == true){
     wasteOfMindSymbol(canvas, player);
