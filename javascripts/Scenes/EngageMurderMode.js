@@ -270,7 +270,6 @@ function EngageMurderMode(session){
 			player1.increasePower();
 			player2.increasePower();
 			this.session.sickFires = true;
-			console.log("sick fires");
 		}else{
 			var canvasHTML2 = "<br><canvas id='canvas2" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML2);
