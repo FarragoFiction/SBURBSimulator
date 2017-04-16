@@ -15,7 +15,7 @@ var charCreatorHelperGlobalVar;
 //main canvas is either Leader + PesterChumWindow + 1 or more Players (in chat or group chat with leader)
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
-	debug("If you want to have a specific amount of players, use <a href = 'rare_session_finder_junior.html' > ABJ </a> to find a session ID, then add it to the URL with '?seed=SESSIONID'");
+	debug("Extremely fucking alpha, beware. <br><Br>If you want to have a specific amount of players, use <a href = 'rare_session_finder_junior.html' > ABJ </a> to find a session ID, then add it to the URL with '?seed=SESSIONID'");
 	//these bitches are SHAREABLE.
 	if(getParameterByName("seed")){
 		Math.seed = getParameterByName("seed");
@@ -58,7 +58,15 @@ function reinit(){
 
 
 function startSession(){
-	intro();
+	var time = findAspectPlayer(curSessionGlobalVar.players, "Time");
+	var space = findAspectPlayer(curSessionGlobalVar.players, "Space");
+	if(time && space){
+		//load everything i'll need for this session that iw asn't loading before (wings, godtier, etc.)
+		load(curSessionGlobalVar.players, curSessionGlobalVar.guardians,false);
+	}else{
+		alert("Nope. Banned. You need to at least have Space and Time players to continue. ")
+	}
+
 }
 
 function checkEasterEgg(){
