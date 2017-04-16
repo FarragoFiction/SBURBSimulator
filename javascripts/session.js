@@ -9,6 +9,8 @@ function Session(session_id){
 	this.denizenBeat = false;
 	//session no longer keeps track of guardians.
 	this.kingStrength = 100;
+	this.rapBattle = false;
+	this.sickFires = false;
 	this.sbahj = false;
 	this.queenStrength = 100;
 	this.jackStrength = 50;
@@ -386,6 +388,8 @@ function Session(session_id){
 	this.generateSummary = function(){
 		var summary = new SessionSummary();
 		summary.session_id = this.session_id;
+		summary.rapBattle = this.rapBattle;
+		summary.sickFires = this.sickFires;
 		summary.frogStatus = this.frogStatus();
 		summary.godTier = this.godTier;
 		summary.questBed = this.questBed;

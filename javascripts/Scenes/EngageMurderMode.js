@@ -240,6 +240,7 @@ function EngageMurderMode(session){
 	//if player 1 wins, goes ahead with threatening. cites weak rhymes as reason.
 	//if player2 wins, sick fires bro gif. player1 paraphrases gamzee when he calmed down with dave.
 	this.rapBattle = function(div, player1, player2){
+		this.session.rapBattle = true;
 		var narration = "The " + player1.htmlTitle() + " is contemplating murder. Can their rage be soothed by a good old-fashioned rap battle?<Br>";
 		div.append(narration)
 		var player1Start = player1.chatHandleShort()+ ": "
@@ -260,14 +261,16 @@ function EngageMurderMode(session){
 		chatText += raps2[0];
 		p2score = raps1[1];
 		drawChat(canvasDiv, player1, player2, chatText, repeatTime,"discuss_raps.png");
-		if(p1score + p2score > 8){ //it's not winning that calms them down, but sick fires in general.
-			console.log("rap sick fires in session: " + this.session.session_id + " score: " + (p1score + p2score))
+		if(p1score + p2score > 6){ //it's not winning that calms them down, but sick fires in general.
+			//console.log("rap sick fires in session: " + this.session.session_id + " score: " + (p1score + p2score))
 			div.append("<img src = 'images/sick_fires.gif'><br> It seems that the " + player1.htmlTitle() + " has been calmed down, for now.");
 			player1.murderMode = false;
 			player1.leftMurderMode = true;
 			//rap battles are truly the best way to power level.
 			player1.increasePower();
 			player2.increasePower();
+			this.session.sickFires = true;
+			console.log("sick fires");
 		}else{
 			var canvasHTML2 = "<br><canvas id='canvas2" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML2);
@@ -290,8 +293,8 @@ function EngageMurderMode(session){
 		var player2 = player1.getWorstEnemyFromList(livePlayers);
 		if(player2){
 		var r2 = player2.getRelationshipWith(player1);
-		if(r2.value < 2 && r2.value > -8){ //only if i generically dislike you.
-			console.log("rap battle. session: " + this.session.session_id)
+		if(r2.value < -2 && r2.value > -8){ //only if i generically dislike you.
+			//console.log("rap battle. session: " + this.session.session_id)
 			return this.rapBattle(div,player1, player2);
 		}
 	}

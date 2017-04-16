@@ -40,6 +40,8 @@ function SessionSummary(){
 	this.godTier = false;
 	this.questBed = false;
 	this.sacrificialSlab = false;
+	this.rapBattle = null;
+	this.sickFires = null;
 
 	//thanks to bob for helping me puzzle out the logic to make filters AND not OR.
 	//why was that so hard???
@@ -116,12 +118,12 @@ function SessionSummary(){
 			return html;
 
 	}
-	
+
 	this.getSessionSummaryJunior = function(){
 		return new SessionSummaryJunior(this.players,this.session_id);
 	}
-	
-	
+
+
 
 	//generate own html, complete with div.  just return it, dn't add it to anything
 	this.generateHTML = function(){
@@ -167,28 +169,28 @@ function SessionSummaryJunior(players,session_id){
 		html += "</div><br>"
 		return html;
 	}
-	
+
 	this.grabAllInterest = function(){
 		var ret = [];
 		for(var i = 0; i<this.players.length; i++){
 			var player = this.players[i];
 			ret.push(player.interest1);
 			ret.push(player.interest2);
-			
+
 		}
 		return ret;
 	}
-	
+
 	this.grabAllSprites = function(){
 		var ret = [];
 		for(var i = 0; i<this.players.length; i++){
 			var player = this.players[i];
 			ret.push(player.kernel_sprite);
-			
+
 		}
 		return ret;
 	}
-	
+
 	this.initialShips = function(){
 		var shipper = new UpdateShippingGrid();
 		if(!this.ships){
@@ -239,7 +241,8 @@ function MultiSessionSummary(){
 	this.godTier = 0;
 	this.questBed = 0;
 	this.sacrificialSlab = 0;
-	
+	this.rapBattle = 0;
+	this.sickFires = 0;
 
 	this.generateHTML = function(){
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
@@ -322,6 +325,9 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		if(ss.godTier) mss.godTier ++;
 		if(ss.questBed) mss.questBed ++;
 		if(ss.sacrificialSlab) mss.sacrificialSlab ++;
+		if(ss.rapBattle) mss.rapBattle ++;
+		if(ss.sickFires) mss.sickFires ++;
+
 		mss.totalDeadPlayers += ss.numDead;
 		mss.totalLivingPlayers += ss.numLiving;
 	}
