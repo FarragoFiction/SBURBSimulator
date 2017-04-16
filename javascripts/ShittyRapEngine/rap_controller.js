@@ -17,6 +17,10 @@ window.onload = function() {
 		player2.quirk = randomHumanSim(player2);
 		rap(1,player1);
 		rap(2,player2);
+		rap(1,player1);
+		rap(2,player2);
+		rap(1,player1);
+		rap(2,player2);
 		$("#score").html("Player1: " + player1Score + " Player2: " + player2Score)
 
 }
