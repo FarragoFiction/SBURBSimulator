@@ -304,3 +304,23 @@ function rapInterjection(){
 	var interjections = ["Yo", "Trust", "Represent", "Respect", "Word", "Dawg", "Dog", "Bro", "Sup", "Okay", "What", "Yeah", "Aight", "Yeah Dog", "Fo, Shizzle", "Hey", "Boo yeah", "Break it down", "Fuck", "Shit", "Peace", "True that", "Double True", "Word up", "My homey", "Homey", "You knows it"];
 	return getRandomElementFromArray(interjections);
 }
+
+
+function getRapForPlayer(player,returnString, score){
+	var chosenRapTemplate = getRandomElementFromArray(rapTemplates);
+	var raps = chosenRapTemplate.getRapLineForPlayer(player);
+	var str = raps[0];
+	var firstWord = raps[1];
+	var secondWord = raps[2];
+	returnString += str + " \n";
+
+	if(firstWord && secondWord && firstWord != secondWord){
+				score ++;
+				//dont rap forever, like you can on rap.html
+				if(score<5) return this.getRapForPlayer(player, returnString, score); //keep going till you can't
+	}else{
+		//give up
+	}
+	return [returnString, score];
+
+}

@@ -240,16 +240,48 @@ function EngageMurderMode(session){
 	//if player 1 wins, goes ahead with threatening. cites weak rhymes as reason.
 	//if player2 wins, sick fires bro gif. player1 paraphrases gamzee when he calmed down with dave.
 	this.rapBattle = function(div, player1, player2){
+		var narration = "The " + player1.htmlTitle() + " is contemplating murder. Can their rage be soothed by a good old-fashioned rap battle?<Br>";
+		div.append(narration)
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var canvasHTML = "<br><canvas id='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvasDiv = document.getElementById("canvas"+  (div.attr("id")));
-		var chatText = "TODO"
-		drawChat(canvasDiv, player1, player2, chatText, repeatTime,"discuss_raps.png");
+		var chatText = ""
+
 		chatText += chatLine(player1Start, player1,"Bro. Rap Battle. Now. Bring the Fires.")
 		chatText += chatLine(player2Start, player2,"Yes. Fuck yes! Hell FUCKING yes!")
+		var p1score = 0;
+		var p2score = 0;
+		var raps1 = getRapForPlayer(player1,"",0);
+		chatText += raps1[0];
+		p1score = raps1[1];
+		var raps2 = getRapForPlayer(player2,"",0);
+		chatText += raps2[0];
+		p2score = raps1[1];
+		drawChat(canvasDiv, player1, player2, chatText, repeatTime,"discuss_raps.png");
+		if(p1score + p2score > 8){ //it's not winning that calms them down, but sick fires in general.
+			console.log("rap sick fires in session: " + this.session.session_id + " score: " + (p1score + p2score))
+			div.append("<img src = 'images/sick_fires.gif'><br> It seems that the " + player1.htmlTitle() + " has been calmed down, for now.");
+			player1.murderMode = false;
+			player1.leftMurderMode = true;
+			//rap battles are truly the best way to power level.
+			player1.increasePower();
+			player2.increasePower();
+		}else{
+			var canvasHTML2 = "<br><canvas id='canvas2" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+			div.append(canvasHTML2);
+			var canvasDiv2 = document.getElementById("canvas2"+  (div.attr("id")));
+			var chatText2 = ""
+			chatText2 += chatLine(player1Start, player1,"Fuck. That was LAME! It makes me so FUCKING ANGRY!")
+			chatText2 += chatLine(player2Start, player2,"Whoa.")
+			chatText2 += chatLine(player1Start, player1,"All I FUCKING wanted was one tiny rap battle, and you can't even fucking do THAT!?")
+			chatText2 += chatLine(player2Start, player2,"Now wait a second...")
+			chatText2 += chatLine(player1Start, player1,"Fuck it. I'm done trying to hold back. See you soon.")
+			drawChat(canvasDiv2, player1, player2, chatText2, repeatTime,"discuss_murder.png");
+		}
 	}
+
 
 	this.chat = function(div){
 		var repeatTime = 1000;
