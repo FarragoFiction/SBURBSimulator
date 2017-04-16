@@ -1,6 +1,17 @@
 var imagesWaiting = 0;
 var imagesLoaded = 0;
 
+function loadFuckingEverything(skipInit){
+  var canvas = document.getElementById("loading");
+  var ctx = canvas.getContext('2d');
+  var imageString = "loading.png";
+  var img=document.getElementById(imageString);
+  var width = img.width;
+  var height = img.height;
+  ctx.drawImage(img,0,0,width,height);
+	loadAllImages(skipInit);
+}
+
 //load everything while showing a progress bar. delete loadingCanvas when done.
 function load(players, guardians,skipInit){
   var guardians = getGuardiansForPlayers(players)
@@ -11,10 +22,16 @@ function load(players, guardians,skipInit){
   var width = img.width;
   var height = img.height;
   ctx.drawImage(img,0,0,width,height);
-	loadAllImages(players, guardians,skipInit);
+	loadAllImagesForPlayers(players, guardians,skipInit);
 }
 
-function loadAllImages(players, guardians,skipInit){
+function loadAllImages(skipInit){
+	loadOther(skipInit);
+  loadAllPossiblePlayers(skipInit);
+
+}
+
+function loadAllImagesForPlayers(players, guardians,skipInit){
 	var numImages = 0;
 	//same number of players and guardians
 	for(var i = 0; i<players.length; i++){
@@ -42,6 +59,7 @@ function addImageTagLoading(url){
 }
 
 function checkDone(skipInit){
+  $("#loading_stats").html("Images Loaded: " + imagesLoaded);
 	if(imagesLoaded != 0 && imagesWaiting == imagesLoaded){
 		//$("#loading").remove(); //not loading anymore
     if(skipInit){
@@ -114,6 +132,30 @@ function loadOther(skipInit){
 	for(var i = 1; i<4; i++){
 		loadImage("Bodies/grub"+i + ".png",skipInit)
 	}
+}
+
+function loadAllPossiblePlayers(skipInit){
+    var numBodies = 12;  //1 indexed
+    var numHair = 52; //+1025 for rufio.  1 indexed
+    var numHorns = 46; //1 indexed.
+    //var numWings = 12 //0 indexed, not 1.  for now, don't bother with wings. not gonna show godtier, for now.
+    for(var i = 1; i<=numBodies; i++){
+      if(i<10){
+        loadImage("Bodies/reg00"+i+".png",skipInit);  //as long as i i do a 'load' again when it's to to start the simulation, can get away with only loading these bodies.
+      }else{
+        loadImage("Bodies/reg0"+i+".png",skipInit);  //as long as i i do a 'load' again when it's to to start the simulation, can get away with only loading these bodies.
+      }
+    }
+
+    for(var i = 1; i<=numHair; i++){
+        loadImage("Hair/hair_back"+i+".png",skipInit);
+        loadImage("Hair/hair"+i+".png",skipInit);
+    }
+
+    for(var i = 1; i<=numHorns; i++){
+        loadImage("Horns/left"+i+".png",skipInit);
+        loadImage("Horns/right"+i+".png",skipInit);
+    }
 }
 
 //load hair, horns, wings, regular sprite, god sprite, fins, aspect symbol, moon symbol for each player

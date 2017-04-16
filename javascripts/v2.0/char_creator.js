@@ -44,7 +44,8 @@ function initSession(){
 	checkEasterEgg();
 	checkSGRUB();
 	//skip initialization
-	load(curSessionGlobalVar.players, curSessionGlobalVar.guardians,true); //in loading.js
+	//load(curSessionGlobalVar.players, curSessionGlobalVar.guardians,true); //in loading.js
+	 loadFuckingEverything(true);
 }
 
 function reinit(){
@@ -102,8 +103,8 @@ function checkSGRUB(){
 		}
 	}
 	//can only get here if all are trolls.
-	$(document).attr("title", "SGRUB Story Generator 2.0 by jadedResearcher");
-	$("#heading").html("SGRUB Story Generator 2.0 by jadedResearcher (art assistance by karmicRetribution) ");
+	$(document).attr("title", "SGRUB Story Generator Creator by jadedResearcher");
+	$("#heading").html("SGRUB Story Generator Creator by jadedResearcher (art assistance by karmicRetribution) ");
 }
 
 
