@@ -933,6 +933,12 @@ function drawChatText(canvas, player1, player2, introText, chat){
 
 }
 
+function drawSolidBG(canvas, color){
+  var ctx = canvas.getContext("2d");
+	ctx.fillStyle = color;
+	ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
 function drawBG(canvas, color1, color2){
 	//var c = document.getElementById(canvasId);
 	var ctx = canvas.getContext("2d");

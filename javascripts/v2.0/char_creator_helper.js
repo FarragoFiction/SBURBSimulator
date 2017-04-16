@@ -12,7 +12,8 @@ function CharacterCreatorHelper(players){
 	}
 	this.drawSinglePlayer = function(player){
 		var str = "";
-		var divId =  player.title()+player.chatHandle;
+		var divId =  player.chatHandle;
+		divId = divId.replace(/\s+/g, '')
 		str += "<div class='createdCharacter'>"
 		var canvasHTML = "<canvas class = 'createdCharacterCanvas' id='canvas" +divId + "' width='" +400 + "' height="+300 + "'>  </canvas>";
 		str += "<div class = 'stats'>"
@@ -24,14 +25,43 @@ function CharacterCreatorHelper(players){
 		str += (canvasHTML);
 		str += "</div>"
 		this.div.append(str);
+
 		var canvas = document.getElementById("canvas"+ divId);
 		drawSinglePlayer(canvas, player);
+		this.wireUpPlayerDropDowns(player);
 
+	}
+
+	this.redrawSinglePlayer = function(player){
+			var divId = "canvas" + player.chatHandle;
+			divId = divId.replace(/\s+/g, '');
+			var canvas =$("#"+divId)[0]
+			drawSolidBG(canvas, "#ffffff")
+			drawSinglePlayer(canvas, player);
+	}
+
+
+	this.wireUpPlayerDropDowns = function(player){
+			var c2 =  $("#classNameID" +player.chatHandle) ;
+			var a2 =  $("#aspectID" +player.chatHandle) ;
+			var that = this;
+			c2.change(function() {
+					var classDropDown = $('[name="className' +player.chatHandle +'"] option:selected') //need to get what is selected inside the .change, otheriise is always the same
+					player.class_name = classDropDown.val();
+					that.redrawSinglePlayer(player);
+			});
+
+
+			a2.change(function() {
+					var aspectDropDown = $('[name="aspect' +player.chatHandle +'"] option:selected')
+					player.aspect = aspectDropDown.val();
+					that.redrawSinglePlayer(player);
+			});
 	}
 
 	this.drawOneClassDropDown = function(player){
 		available_classes = classes.slice(0); //re-init available classes. make deep copy
-		var html = "<select name='className" +player.chatHandle +"'>";
+		var html = "<select id = 'classNameID" + player.chatHandle + "' name='className" +player.chatHandle +"'>";
 		for(var i = 0; i< available_classes.length; i++){
 			if(available_classes[i] == player.class_name){
 				html += '<option  selected = "selected" value="' + available_classes[i] +'">' + available_classes[i]+'</option>'
@@ -46,7 +76,7 @@ function CharacterCreatorHelper(players){
 	this.drawOneAspectDropDown = function(player){
 		available_aspects = nonrequired_aspects.slice(0); //required_aspects
 	  available_aspects = available_aspects.concat(required_aspects.slice(0));
-		var html = "<select name='aspect" +player.chatHandle +"'>";
+		var html = "<select id = 'aspectID" + player.chatHandle + "'' name='aspect" +player.chatHandle +"'>";
 		for(var i = 0; i< available_aspects.length; i++){
 			if(available_aspects[i] == player.aspect){
 				html += '<option selected = "selected" value="' + available_aspects[i] + '" >' + available_aspects[i]+'</option>'
