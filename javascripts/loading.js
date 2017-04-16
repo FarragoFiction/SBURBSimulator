@@ -2,7 +2,7 @@ var imagesWaiting = 0;
 var imagesLoaded = 0;
 
 //load everything while showing a progress bar. delete loadingCanvas when done.
-function load(players){
+function load(players, guardians,skipInit){
   var guardians = getGuardiansForPlayers(players)
   var canvas = document.getElementById("loading");
   var ctx = canvas.getContext('2d');
@@ -11,21 +11,21 @@ function load(players){
   var width = img.width;
   var height = img.height;
   ctx.drawImage(img,0,0,width,height);
-	loadAllImages(players, guardians);
+	loadAllImages(players, guardians,skipInit);
 }
 
-function loadAllImages(players, guardians){
+function loadAllImages(players, guardians,skipInit){
 	var numImages = 0;
 	//same number of players and guardians
 	for(var i = 0; i<players.length; i++){
-		loadPlayer(players[i]);
+		loadPlayer(players[i],skipInit);
 	}
 	//guardians aren't going to match players if combo session
 	for(var i = 0; i<guardians.length; i++){
-		loadPlayer(guardians[i]);
+		loadPlayer(guardians[i],skipInit);
 	}
 
-	loadOther(players, guardians);
+	loadOther(skipInit);
 
 }
 
@@ -41,21 +41,25 @@ function addImageTagLoading(url){
 
 }
 
-function checkDone(){
+function checkDone(skipInit){
 	if(imagesLoaded != 0 && imagesWaiting == imagesLoaded){
 		//$("#loading").remove(); //not loading anymore
+    if(skipInit){
+      renderPlayersForEditing();
+      return;
+    }
 		intro();
 	}
 }
 
-function loadImage(img){
+function loadImage(img,skipInit){
 	imagesWaiting ++;
 	var imageObj = new Image();
   imageObj.onload = function() {
       //  context.drawImage(imageObj, 69, 50); //i don't want to draw it. i could put it in image staging?
 			addImageTagLoading(img);
 			imagesLoaded ++;
-			checkDone();
+			checkDone(skipInit);
   };
 
   imageObj.onerror = function(){
@@ -66,69 +70,69 @@ function loadImage(img){
 }
 
 //load pesterchum, blood, big aspect symbols, echeladders, god tier level up, romance symbols, babies, grubs
-function loadOther(){
-	loadImage("jr.png");
-	loadImage("stab.png");
-  loadImage("denizoned.png");
-  loadImage("sceptre.png");
-	loadImage("rainbow.png");
-	loadImage("gears.png");
-	loadImage("mind_forehead.png")
-	loadImage("ab.png")
-	loadImage("grimdark.png");
-  loadImage("squiddles_chaos.png");
-	loadImage("fin1.png");
-	loadImage("fin2.png");
-	loadImage("echeladder.png")
-	loadImage("godtierlevelup.png");
-	loadImage("pesterchum.png");
-	loadImage("blood_puddle.png")
-	loadImage("scratch_face.png")
-	loadImage("robo_face.png")
-	loadImage("calm_scratch_face.png")
-	loadImage( "Prospit.png")
+function loadOther(skipInit){
+	loadImage("jr.png",skipInit);
+	loadImage("stab.png",skipInit);
+  loadImage("denizoned.png",skipInit);
+  loadImage("sceptre.png",skipInit);
+	loadImage("rainbow.png",skipInit);
+	loadImage("gears.png",skipInit);
+	loadImage("mind_forehead.png",skipInit)
+	loadImage("ab.png",skipInit)
+	loadImage("grimdark.png",skipInit);
+  loadImage("squiddles_chaos.png",skipInit);
+	loadImage("fin1.png",skipInit);
+	loadImage("fin2.png",skipInit);
+	loadImage("echeladder.png",skipInit)
+	loadImage("godtierlevelup.png",skipInit);
+	loadImage("pesterchum.png",skipInit);
+	loadImage("blood_puddle.png",skipInit)
+	loadImage("scratch_face.png",skipInit)
+	loadImage("robo_face.png",skipInit)
+	loadImage("calm_scratch_face.png",skipInit)
+	loadImage( "Prospit.png",skipInit)
 	//loadImage("Prospit_symbol.png");
-	loadImage("Derse.png")
+	loadImage("Derse.png",skipInit)
 	//loadImage("Derse_symbol.png");
-	loadImage("bloody_face.png")
-	loadImage("Moirail.png")
-	loadImage("Matesprit.png")
-	loadImage("Auspisticism.png")
-	loadImage("Kismesis.png")
-	loadImage("prince_hat.png")
-	loadImage("discuss_romance.png")
-	loadImage("discuss_hatemance.png")
-	loadImage("discuss_breakup.png")
-	loadImage("discuss_sburb.png")
-	loadImage("discuss_jack.png")
-	loadImage("discuss_murder.png")
-  loadImage("discuss_raps.png")
+	loadImage("bloody_face.png",skipInit)
+	loadImage("Moirail.png",skipInit)
+	loadImage("Matesprit.png",skipInit)
+	loadImage("Auspisticism.png",skipInit)
+	loadImage("Kismesis.png",skipInit)
+	loadImage("prince_hat.png",skipInit)
+	loadImage("discuss_romance.png",skipInit)
+	loadImage("discuss_hatemance.png",skipInit)
+	loadImage("discuss_breakup.png",skipInit)
+	loadImage("discuss_sburb.png",skipInit)
+	loadImage("discuss_jack.png",skipInit)
+	loadImage("discuss_murder.png",skipInit)
+  loadImage("discuss_raps.png",skipInit)
 	for(var i = 1; i<4; i++){
-		loadImage("Bodies/baby"+i + ".png")
+		loadImage("Bodies/baby"+i + ".png",skipInit)
 	}
 
 	for(var i = 1; i<4; i++){
-		loadImage("Bodies/grub"+i + ".png")
+		loadImage("Bodies/grub"+i + ".png",skipInit)
 	}
 }
 
 //load hair, horns, wings, regular sprite, god sprite, fins, aspect symbol, moon symbol for each player
-function loadPlayer(player){
+function loadPlayer(player,skipInit){
 	//var imageString = "Horns/right"+player.rightHorn + ".png";
   //addImageTag(imageString)
-	loadImage(playerToRegularBody(player));
-  loadImage(playerToDreamBody(player));
-	loadImage(playerToGodBody(player));
-	loadImage(player.aspect + ".png");
+	loadImage(playerToRegularBody(player),skipInit);
+  loadImage(playerToDreamBody(player),skipInit);
+	loadImage(playerToGodBody(player),skipInit);
+	loadImage(player.aspect + ".png",skipInit);
 
-	loadImage(player.aspect + "Big.png")
-	loadImage("Hair/hair"+player.hair+".png")
-  loadImage("Hair/hair_back"+player.hair+".png")
+	loadImage(player.aspect + "Big.png",skipInit)
+	loadImage("Hair/hair"+player.hair+".png",skipInit)
+  loadImage("Hair/hair_back"+player.hair+".png",skipInit)
 
 	if(player.isTroll == true){
-		loadImage("Wings/wing"+player.quirk.favoriteNumber + ".png")
-		loadImage("Horns/left"+player.leftHorn + ".png");
-		loadImage("Horns/right"+player.rightHorn + ".png");
+		loadImage("Wings/wing"+player.quirk.favoriteNumber + ".png",skipInit)
+		loadImage("Horns/left"+player.leftHorn + ".png",skipInit);
+		loadImage("Horns/right"+player.rightHorn + ".png",skipInit);
 		//loadImage("Bodies/grub"+player.baby + ".png")
 	}else{
 		//loadImage("Bodies/baby"+player.baby + ".png")

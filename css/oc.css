@@ -79,3 +79,7 @@
     font-family: horrorterror;
     src: url(MISTERTWIGGY.TTF);
 }
+
+.createdCharacter{
+  float:left;
+}

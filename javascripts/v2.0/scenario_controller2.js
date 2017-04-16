@@ -646,7 +646,7 @@ function session33(){
 		player.mylevels = getLevelArray(player);
 		guardian.mylevels = getLevelArray(guardian);
 	}
-	
+
 	for(var i = 0; i<12;i++){
 		player = curSessionGlobalVar.players[i];
 		guardian = player.guardian;
