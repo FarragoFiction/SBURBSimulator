@@ -266,7 +266,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 	
 	this.isActive = function(){
-		return (this.class_name == "Thief" || this.class_name == "Knight" || this.class_name == "Heir"|| this.class_name == "Mage"|| this.class_name == "Witch"|| this.class_name == "Prince")
+		return (this.class_name == "Thief" || this.class_name == "Page" || this.class_name == "Heir"|| this.class_name == "Mage"|| this.class_name == "Witch"|| this.class_name == "Prince")
 	}
 	
 	this.hopeIncreasePower = function(powerBoost){
@@ -387,7 +387,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 	
 	//john did flip his shit a lot about not being able to do what WV told him? just spitballing here.
-	this.breathIncreasePower = function(powerBoost){	
+	this.rageIncreasePower = function(powerBoost){	
 		var triggerModifier = powerBoost/10;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			relationshipModifier = -1 *triggerModifier;
@@ -422,7 +422,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 	
 	
-	this.rageIncreasePower = function(powerBoost){
+	this.breathIncreasePower = function(powerBoost){
 		var relationshipModifier = -1 * powerBoost/10;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			relationshipModifier = -1 *relationshipModifier;
@@ -478,7 +478,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 
 		if(this.godTier){
-			powerBoost = powerBoost * 100;  //god tiers are ridiculously strong.
+			powerBoost = powerBoost * 20;  //god tiers are ridiculously strong.
 		}
 
 		if(this.denizenDefeated){

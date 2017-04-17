@@ -48,7 +48,7 @@ function GoGrimDark(session){
 		ret += " It is now painfully obvious to anyone with a brain, they have basically gone completely off the deep end in every way. The "
 		ret += this.player.htmlTitle() + " has officially gone grimdark. ";
 		this.player.grimDark = true;
-		this.player.power = this.player.power +=200; //as much as god tiering, but without the future power boost.
+		this.player.power = this.player.power +=50; //as strong as unprototyped queen
 		this.player.nullAllRelationships();
 		ret += " They abandon ties to their old life in exchange for power. ";
 		return ret;
