@@ -264,17 +264,115 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 		return ret;
 	}
-	
-	this.isActive = function(){
-		return (this.class_name == "Thief" || this.class_name == "Page" || this.class_name == "Heir"|| this.class_name == "Mage"|| this.class_name == "Witch"|| this.class_name == "Prince")
+
+	this.lightInteractionEffect = function(player){
+		var amount = this.power/10;
+		if(this.class_name == "Thief"){ //takes for self
+			this.minLuck += amount
+			this.maxLuck += amount
+			player.minLuck += -1*amount
+			player.maxLuck += -1 * amount;
+		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
+			player.minLuck += -1*amount
+			player.maxLuck += -1 * amount;
+			for(var i = 0; i<this.session.players.length; i++){
+				var player = this.session.players[i];
+				player.minLuck += amount/this.session.players.length;
+				player.maxLuck += amountthis.session.players.length;
+			}
+		}else if(this.class_name == "Sylph"){ //heals others
+			player.minLuck += amount
+			player.maxLuck += amount;
+		}else if(this.class_name == "Bard"){ //destroys in others
+			player.minLuck += -1*amount
+			player.maxLuck += -1 * amount;
+		}
+
 	}
-	
+
+	this.lifeInteractionEffect = function(player){
+		var amount = this.power/10;
+		if(this.class_name == "Thief"){ //takes for self
+			this.landLevel += amount;
+			player.landLevel += -1*amount
+		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
+			player.landLevel += -1*amount
+			for(var i = 0; i<this.session.players.length; i++){
+				var player = this.session.players[i];
+				player.landLevel += amount/this.session.players.length;
+			}
+		}else if(this.class_name == "Sylph"){ //heals others
+			player.landLevel += amount
+		}else if(this.class_name == "Bard"){ //destroys in others
+			player.landLevel += -1*amount
+		}
+	}
+
+	this.rageInterctionEffect = function(player){
+		var amount = this.power/10;
+		if(this.class_name == "Thief"){ //takes for self
+			this.triggerLevel += amount;
+			player.triggerLevel += -1 * amount
+		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
+			player.triggerLevel += -1*amount
+			for(var i = 0; i<this.session.players.length; i++){
+				var player = this.session.players[i];
+				player.triggerLevel += amount/this.session.players.length;
+			}
+		}else if(this.class_name == "Sylph"){ //heals others 'healing' rage would increase it.
+			player.triggerLevel += amount
+		}else if(this.class_name == "Bard"){ //destroys in others
+			player.triggerLevel += -1*amount
+		}
+	}
+
+	this.heartInteractionEffect = function(player){
+
+	}
+
+	this.bloodInteractionEffect = function(player){
+
+	}
+
+	this.doomInteractionEffect = function(player){
+
+	}
+
+
+	this.interactionEffect = function(player){
+		if(this.aspect == "Light"){
+			this.lightInteractionEffect(player);
+		}else if(this.aspect =="Doom"){
+			this.doomInteractionEffect(player);
+		}else if(this.aspect =="Blood"){
+			this.bloodInteractionEffect(player);
+		}else if(this.aspect =="Rage"){
+			this.rageInterctionEffect(player);
+		}else if(this.aspect =="Heart"){
+			this.heartInteractionEffect(player);
+		}else if(this.aspect =="Breath"){
+			this.breathInteractionEffect(player);
+		}else if(this.aspect =="Hope"){
+			this.hopeInteractionEffect(player);
+		}else if(this.aspect =="Mind"){
+			this.mindInteractionEffect(player);
+		}else if(this.aspect =="Life"){
+			this.lifeInteractionEffect(player);
+		}else if(this.aspect =="Void"){
+			this.voidInteractionEffect(player);
+		}
+	}
+
+	this.isActive = function(){
+		return (this.class_name == "Thief" || this.class_name == "Knight" || this.class_name == "Heir"|| this.class_name == "Mage"|| this.class_name == "Witch"|| this.class_name == "Prince")
+	}
+
 	this.hopeIncreasePower = function(powerBoost){
 		var power = powerBoost/10;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			power = -1 *power;
 		}
-		
+
 		if(this.isActive()){ //modify me
 			this.power += power;
 		}else{  //modify others.
@@ -290,7 +388,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			luckModifier = -1 *luckModifier;
 		}
-		
+
 		if(this.isActive()){ //modify me
 			this.maxLuck += luckModifier;
 		}else{  //modify others.
@@ -300,7 +398,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			}
 		}
 	}
-	
+
 	//good thing luck doesn't really matter.
 	//mind knows that sometimes things have to go wrong before they can go right
 	//only looks at worst outcomes.
@@ -309,7 +407,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			luckModifier = -1 *luckModifier;
 		}
-		
+
 		if(this.isActive()){ //modify me
 			this.minLuck += luckModifier;
 		}else{  //modify others.
@@ -319,13 +417,13 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			}
 		}
 	}
-	
+
 	this.doomIncreasePower = function(powerBoost){
 		var power = -1 * powerBoost/10;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			power = -1 *power;
 		}
-		
+
 		if(this.isActive()){ //modify me
 			this.power += powerBoost;
 		}else{  //modify others.
@@ -335,13 +433,13 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			}
 		}
 	}
-	
+
 	this.lifeIncreasePower = function(powerBoost){
 		var landBoost = powerBoost/10;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			landBoost = -1 *landBoost;
 		}
-		
+
 		if(this.isActive()){ //modify me
 			this.landLevel += landBoost;
 		}else{  //modify others.
@@ -351,13 +449,13 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			}
 		}
 	}
-	
+
 	this.voidIncreasePower = function(powerBoost){
 		var landBoost = -1 * powerBoost/10;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			landBoost = -1 *landBoost;
 		}
-		
+
 		if(this.isActive()){ //modify me
 			this.landLevel += landBoost;
 		}else{  //modify others.
@@ -367,15 +465,15 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			}
 		}
 	}
-	
+
 	//wanted this to modify relationships, but figured i'd give that to heart
 	//blood keeps people from killing each other.
-	this.bloodIncreasePower = function(powerBoost){	
+	this.bloodIncreasePower = function(powerBoost){
 		var triggerModifier = -1*powerBoost/10;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			triggerModifier = -1 *triggerModifier;
 		}
-		
+
 		if(this.isActive()){ //modify me
 			this.triggerLevel += triggerModifier;
 		}else{  //modify others.
@@ -385,14 +483,14 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			}
 		}
 	}
-	
+
 	//john did flip his shit a lot about not being able to do what WV told him? just spitballing here.
-	this.rageIncreasePower = function(powerBoost){	
+	this.rageIncreasePower = function(powerBoost){
 		var triggerModifier = powerBoost/10;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			relationshipModifier = -1 *triggerModifier;
 		}
-		
+
 		if(this.isActive()){ //modify me
 			this.triggerLevel += powerBoost;
 		}else{  //modify others.
@@ -402,13 +500,13 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			}
 		}
 	}
-	
-	this.heartIncreasePower = function(powerBoost){	
+
+	this.heartIncreasePower = function(powerBoost){
 		var relationshipModifier = powerBoost/10;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			relationshipModifier = -1 *relationshipModifier;
 		}
-		
+
 		if(this.isActive()){ //modify me
 			this.boostAllRelationshipsWithMeBy(relationshipModifier);
 			this.boostAllRelationshipsBy(relationshipModifier);
@@ -420,14 +518,14 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			}
 		}
 	}
-	
-	
+
+
 	this.breathIncreasePower = function(powerBoost){
 		var relationshipModifier = -1 * powerBoost/10;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			relationshipModifier = -1 *relationshipModifier;
 		}
-		
+
 		if(this.isActive()){ //modify me
 			this.boostAllRelationshipsWithMeBy(relationshipModifier);
 			this.boostAllRelationshipsBy(relationshipModifier);
@@ -439,7 +537,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			}
 		}
 	}
-	
+
 	//everything but space and time, they are exempt because EVER session has them.
 	//you could argue they are baked into things.
 	this.aspectIncreasePower = function(powerBoost){
@@ -472,7 +570,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		if(this.class_name == "Page"){  //they don't have many quests, but once they get going they are hard to stop.
 			powerBoost = powerBoost * 5;
 		}
-		
+
 		if(this.aspect == "Hope"){
 			powerBoost = powerBoost * 2;
 		}
@@ -560,7 +658,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			this.relationships[i].increase();
 		}
 	}
-	
+
 	this.boostAllRelationshipsBy = function(boost){
 		for(var i = 0; i<this.relationships.length; i++){
 			this.relationships[i].value += boost;
@@ -573,7 +671,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			this.relationships[i].decrease();
 		}
 	}
-	
+
 	this.boostAllRelationshipsWithMeBy = function(boost){
 		for(var i = 0; i<session.players.length; i++){
 			var r = this.getRelationshipWith(session.players[i])
@@ -746,7 +844,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 		return ret;
 	}
-	
+
 	this.getLowestRelationshipValue = function(){
 		var worstRelationshipSoFar = this.relationships[0];
 		for(var i = 1; i<this.relationships.length; i++){
@@ -757,7 +855,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 		return worstRelationshipSoFar.value;
 	}
-	
+
 	this.getHighestRelationshipValue = function(){
 		var bestRelationshipSoFar = this.relationships[0];
 		for(var i = 1; i<this.relationships.length; i++){
