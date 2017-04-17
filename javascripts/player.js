@@ -276,9 +276,9 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			player.minLuck += -1*amount
 			player.maxLuck += -1 * amount;
 			for(var i = 0; i<this.session.players.length; i++){
-				var player = this.session.players[i];
-				player.minLuck += amount/this.session.players.length;
-				player.maxLuck += amountthis.session.players.length;
+				var p = this.session.players[i];
+				p.minLuck += amount/this.session.players.length;
+				p.maxLuck += amountthis.session.players.length;
 			}
 		}else if(this.class_name == "Sylph"){ //heals others
 			player.minLuck += amount
@@ -290,6 +290,49 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 
 	}
 
+	this.mindInteractionEffect = function(player){
+		var amount = -1*this.power/10;
+		if(this.class_name == "Thief"){ //takes for self
+			this.minLuck += amount
+			this.maxLuck += amount
+			player.minLuck += -1*amount
+			player.maxLuck += -1 * amount;
+		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
+			player.minLuck += -1*amount
+			player.maxLuck += -1 * amount;
+			for(var i = 0; i<this.session.players.length; i++){
+				var p = this.session.players[i];
+				p.minLuck += amount/this.session.players.length;
+				p.maxLuck += amountthis.session.players.length;
+			}
+		}else if(this.class_name == "Sylph"){ //heals others
+			player.minLuck += amount
+			player.maxLuck += amount;
+		}else if(this.class_name == "Bard"){ //destroys in others
+			player.minLuck += -1*amount
+			player.maxLuck += -1 * amount;
+		}
+
+	}
+
+	this.voidInteractionEffect = function(player){
+		var amount = -1* this.power/10;
+		if(this.class_name == "Thief"){ //takes for self
+			this.landLevel += amount;
+			player.landLevel += -1*amount
+		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
+			player.landLevel += -1*amount
+			for(var i = 0; i<this.session.players.length; i++){
+				var p = this.session.players[i];
+				p.landLevel += amount/this.session.players.length;
+			}
+		}else if(this.class_name == "Sylph"){ //heals others
+			player.landLevel += amount
+		}else if(this.class_name == "Bard"){ //destroys in others
+			player.landLevel += -1*amount
+		}
+	}
+
 	this.lifeInteractionEffect = function(player){
 		var amount = this.power/10;
 		if(this.class_name == "Thief"){ //takes for self
@@ -298,8 +341,8 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
 			player.landLevel += -1*amount
 			for(var i = 0; i<this.session.players.length; i++){
-				var player = this.session.players[i];
-				player.landLevel += amount/this.session.players.length;
+				var p = this.session.players[i];
+				p.landLevel += amount/this.session.players.length;
 			}
 		}else if(this.class_name == "Sylph"){ //heals others
 			player.landLevel += amount
@@ -316,8 +359,8 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
 			player.triggerLevel += -1*amount
 			for(var i = 0; i<this.session.players.length; i++){
-				var player = this.session.players[i];
-				player.triggerLevel += amount/this.session.players.length;
+				var p = this.session.players[i];
+				p.triggerLevel += amount/this.session.players.length;
 			}
 		}else if(this.class_name == "Sylph"){ //heals others 'healing' rage would increase it.
 			player.triggerLevel += amount
@@ -327,15 +370,105 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 
 	this.heartInteractionEffect = function(player){
+		var amount = this.power/10;
+		if(this.class_name == "Thief"){ //takes for self
+			this.boostAllRelationshipsWithMeBy(amount);
+			this.boostAllRelationshipsBy(amount);
+			player.boostAllRelationshipsWithMeBy(-1*amount);
+			player.boostAllRelationshipsBy(-1* amount)
+		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
+			player.boostAllRelationshipsWithMeBy(-1* amount);
+			player.boostAllRelationshipsBy(-1*amount)
+			for(var i = 0; i<this.session.players.length; i++){
+				var p = this.session.players[i];
+				p.boostAllRelationshipsWithMeBy(amount/this.session.players.length);
+				p.boostAllRelationshipsBy(amount/this.session.players.length);
+			}
+		}else if(this.class_name == "Sylph"){ //heals others 'healing' rage would increase it.
+			player.boostAllRelationshipsWithMeBy(amount);
+			player.boostAllRelationshipsBy(amount);
+		}else if(this.class_name == "Bard"){ //destroys in others
+			player.boostAllRelationshipsWithMeBy(-1* amount);
+			player.boostAllRelationshipsBy(-1*amount)
+		}
+	}
 
+	this.breathInteractionEffect = function(player){
+		var amount = -1*this.power/10;
+		if(this.class_name == "Thief"){ //takes for self
+			this.boostAllRelationshipsWithMeBy(amount);
+			this.boostAllRelationshipsBy(amount);
+			player.boostAllRelationshipsWithMeBy(-1*amount);
+			player.boostAllRelationshipsBy(-1* amount)
+		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
+			player.boostAllRelationshipsWithMeBy(-1* amount);
+			player.boostAllRelationshipsBy(-1*amount)
+			for(var i = 0; i<this.session.players.length; i++){
+				var p = this.session.players[i];
+				p.boostAllRelationshipsWithMeBy(amount/this.session.players.length);
+				p.boostAllRelationshipsBy(amount/this.session.players.length);
+			}
+		}else if(this.class_name == "Sylph"){ //heals others 'healing' rage would increase it.
+			player.boostAllRelationshipsWithMeBy(amount);
+			player.boostAllRelationshipsBy(amount);
+		}else if(this.class_name == "Bard"){ //destroys in others
+			player.boostAllRelationshipsWithMeBy(-1* amount);
+			player.boostAllRelationshipsBy(-1*amount)
+		}
 	}
 
 	this.bloodInteractionEffect = function(player){
-
+		var amount = -1* this.power/10;
+		if(this.class_name == "Thief"){ //takes for self
+			this.triggerLevel += amount;
+			player.triggerLevel += -1 * amount
+		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
+			player.triggerLevel += -1*amount
+			for(var i = 0; i<this.session.players.length; i++){
+				var p = this.session.players[i];
+				p.triggerLevel += amount/this.session.players.length;
+			}
+		}else if(this.class_name == "Sylph"){ //heals others 'healing' rage would increase it.
+			player.triggerLevel += amount
+		}else if(this.class_name == "Bard"){ //destroys in others
+			player.triggerLevel += -1*amount
+		}
 	}
 
 	this.doomInteractionEffect = function(player){
+		var amount = -1* this.power/10;
+		if(this.class_name == "Thief"){ //takes for self
+			this.power += amount;
+			player.power += -1*amount
+		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
+			player.power += -1*amount
+			for(var i = 0; i<this.session.players.length; i++){
+				var p = this.session.players[i];
+				p.power += amount/this.session.players.length;
+			}
+		}else if(this.class_name == "Sylph"){ //heals others
+			player.power += amount
+		}else if(this.class_name == "Bard"){ //destroys in others
+			player.power += -1*amount
+		}
+	}
 
+	this.hopeInteractionEffect = function(player){
+		var amount = this.power/10;
+		if(this.class_name == "Thief"){ //takes for self
+			this.power += amount;
+			player.power += -1*amount
+		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
+			player.power += -1*amount
+			for(var i = 0; i<this.session.players.length; i++){
+				var p = this.session.players[i];
+				p.power += amount/this.session.players.length;
+			}
+		}else if(this.class_name == "Sylph"){ //heals others
+			player.power += amount
+		}else if(this.class_name == "Bard"){ //destroys in others
+			player.power += -1*amount
+		}
 	}
 
 

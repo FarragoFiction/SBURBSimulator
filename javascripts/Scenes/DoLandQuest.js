@@ -98,6 +98,8 @@ function DoLandQuest(session){
 	}
 
 	this.calculateClasspectBoost = function(player, helper){
+		player.interactionEffect(helper);
+		helper.interactionEffect(player);
 		var ret = "";
 		if(helper == player){
 			player.landLevel ++;

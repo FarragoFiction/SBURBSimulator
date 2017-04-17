@@ -82,6 +82,8 @@ function SolvePuzzles(session){
 			r2 = this.player2.getRelationshipWith(this.player1);
 			this.player2.increasePower();
 			r2.moreOfSame();
+			this.player1.interactionEffect(this.player2);
+			this.player2.interactionEffect(this.player1);
 		}
 
 		this.checkBloodBoost();

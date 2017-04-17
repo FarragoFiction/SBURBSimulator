@@ -141,7 +141,7 @@ function MurderPlayers(session){
 		var diSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawClub(diSpriteBuffer,1000) //Auspisticism
 		copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,375,50)
-		
+
 		setTimeout(function(){
 			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
 			copyTmpCanvasToRealCanvasAtPos(canvas, vSpriteBuffer,100,0)
@@ -154,6 +154,8 @@ function MurderPlayers(session){
 		for(var i = 0; i<this.murderers.length; i++){
 			var m = this.murderers[i];
 			var worstEnemy = m.getWorstEnemyFromList(this.session.availablePlayers);
+			m.interactionEffect(worstEnemy);
+			worstEnemy.interactionEffect(m);
 			var living = findLivingPlayers(this.session.players)
 			removeFromArray(worstEnemy, living)
 			var ausp = getRandomElementFromArray(living)

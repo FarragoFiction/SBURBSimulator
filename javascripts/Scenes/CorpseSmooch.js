@@ -138,6 +138,8 @@ function CorpseSmooch(session){
 	this.renderForPlayer = function(div, deadPlayer){
 		var royalty = this.getRoyalty(deadPlayer)
 		if(royalty){
+			deadPlayer.interactionEffect(royalty);
+			royalty.interactionEffect(deadPlayer);
 			var divID = (div.attr("id")) + "_" + deadPlayer.chatHandle;
 			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
