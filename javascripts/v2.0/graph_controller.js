@@ -40,7 +40,7 @@ function GraphRenderer(label, graphs, width, height){
 				this.calculateMaxY();
 			}
 			if(this.svg == null){
-				$("#story").append('<svg id="svg' + this.label + '" width="' + width +'" height="' + height + '"><Br>');
+				$("#story").append('<svg id="svg' + this.label + '" width="' + width +'" height="' + height + '"><Br><Br>');
 				this.svg = document.getElementById('svg'+this.label);
 			}else{
 				this.clearSVG();
@@ -63,7 +63,7 @@ function GraphRenderer(label, graphs, width, height){
 			var x2 = bobsMagic(0,this.graphs[0].points.length, this.graphs[0].points.length, 0, this.width)
 			var y1 = bobsMagic(this.minY,this.maxY, 0,this.height, 0)  //y is inverted. bluh.
 			var y2 = bobsMagic(this.minY,this.maxY, 0,this.height, 0)
-			console.log("X1 is made of: num points: " + this.graphs[0].points.length + " and width: " + this.width + ", it's: " + x1)
+			//console.log("X1 is made of: num points: " + this.graphs[0].points.length + " and width: " + this.width + ", it's: " + x1)
 			aLine.setAttribute('x1',x1);
 			aLine.setAttribute('y1',  y1);
 			aLine.setAttribute('x2', x2);
@@ -91,13 +91,13 @@ function GraphRenderer(label, graphs, width, height){
 	}
 	
 	this.drawYAxis=function(){
-		var min = 0;
-		var max = 2;
+		var min = this.minY;
+		var max = this.maxY;
 		var headerthingy = 'http://www.w3.org/2000/svg'
 		var aLine = document.createElementNS(headerthingy, 'line');
 		var x1 = bobsMagic(0,this.graphs[0].points.length, 0,0, this.width)
 		var x2 = bobsMagic(0,this.graphs[0].points.length, 0,0, this.width)
-		var y1 = bobsMagic(this.minY,this.maxY, 0, this.height, 0)
+		var y1 = bobsMagic(this.minY,this.maxY, this.minY, this.height, 0)
 		var y2 = bobsMagic(this.minY,this.maxY, this.maxY, this.height, 0)
 		aLine.setAttribute('x1',x1);
 		aLine.setAttribute('y1',  y1);
@@ -110,7 +110,7 @@ function GraphRenderer(label, graphs, width, height){
 		var font = 18;
 		var newText = document.createElementNS(headerthingy,"text");
 		newText.setAttributeNS(null,"x", x1+font);     
-		newText.setAttributeNS(null,"y", y2+font/2); 
+		newText.setAttributeNS(null,"y", y2+font); 
 		newText.setAttributeNS(null,"font-size",font);
 		var textNode = document.createTextNode(max + " " +label);
 		newText.appendChild(textNode);
@@ -133,8 +133,9 @@ function GraphRenderer(label, graphs, width, height){
 }
 
 //a graph represents a single line. render multiple graphs on top of each other for multiple lines.
-function Graph(label, points,color){
+function Graph(label, owner_title, points,color){
 	this.label = label;
+	this.owner_title = owner_title;
 	this.points = points; //array of y values. x is just array index.
 	this.width = 0;
 	this.height = 0;
@@ -156,19 +157,18 @@ function Graph(label, points,color){
 	}
 		
 	this.render = function(svg){
-		console.log("render graph" + label)
-		console.log(points);
+		
 		var first_point = this.points[0];
 		for(var i = 1; i<this.points.length; i++ ){
 			var second_point = this.points[i];
-			console.log("first point: " + first_point + " second point: " + second_point)
+			//console.log("first point: " + first_point + " second point: " + second_point)
 			var x1 = bobsMagic(0,this.points.length, i-1, 0,this.width)
 			var x2 = bobsMagic(0,this.points.length, i, 0,this.width)
 			var y1 = bobsMagic(this.minY,this.maxY, first_point, this.height, 0)
 			var y2 = bobsMagic(this.minY,this.maxY, second_point, this.height, 0)
 			this.renderLine(svg, x1, y1, x2, y2);
-			this.renderPoint(svg, x1, y1)
-			this.renderPoint(svg, x2, y2)
+			this.renderPoint(svg, x1, y1,first_point)
+			this.renderPoint(svg, x2, y2,second_point)
 			//init for next round
 			first_point = this.points[i];
 		}
@@ -185,13 +185,30 @@ function Graph(label, points,color){
 		svg.appendChild(aLine);
 	}
 	
-	this.renderPoint = function(svg,x,y){
+	this.renderPoint = function(svg,x,y,value){
 		var shape = document.createElementNS('http://www.w3.org/2000/svg', "circle");
 		shape.setAttributeNS(null, "cx", x);
 		shape.setAttributeNS(null, "cy",  y);
-		shape.setAttributeNS(null, "r",  5);
+		shape.setAttributeNS(null, "r",  4);
 		shape.setAttributeNS(null, "fill", "black");
+		var that = this;
+		var mousetext = null;
+		shape.onmouseover = function(e){
+			mousetext = document.createElementNS('http://www.w3.org/2000/svg',"text");
+			mousetext.setAttributeNS(null,"x", x);     
+			mousetext.setAttributeNS(null,"y", y+12); 
+			mousetext.setAttributeNS(null,"font-size",12);
+			var textNode = document.createTextNode(that.owner_title + ": " + value);
+			mousetext.appendChild(textNode);
+			svg.append(mousetext);
+		};
+		
+		shape.onmouseout = function(e){
+			svg.removeChild(mousetext);
+		}
 		svg.appendChild( shape );
+		
+		
 	}
 }
 

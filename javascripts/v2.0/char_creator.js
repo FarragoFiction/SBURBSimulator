@@ -63,9 +63,9 @@ function reinit(){
 function initGraphs(){
 	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
 		var player = curSessionGlobalVar.players[i];
-		var powerGraph = new Graph("power", [], getColorFromAspect(player.aspect));
-		var luckGraph1 = new Graph("minLuck", [], getColorFromAspect(player.aspect));
-		var luckGraph2 = new Graph("maxLuck", [], getColorFromAspect(player.aspect));
+		var powerGraph = new Graph("power", player.title(), [], getColorFromAspect(player.aspect));
+		var luckGraph1 = new Graph("minLuck", player.title(),[], getColorFromAspect(player.aspect));
+		var luckGraph2 = new Graph("maxLuck", player.title(),[], getColorFromAspect(player.aspect));
 		player.graphs.push(powerGraph);
 		player.graphs.push(luckGraph1);
 		player.graphs.push(luckGraph2);
@@ -315,6 +315,8 @@ function processCombinedSession(){
 		$("#story").append("<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Their sick frog may have screwed them over, but the connection it provides to their child universe will equally prove to be their salvation. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session <a href = 'index2.html?seed=" + curSessionGlobalVar.session_id + "'>"+curSessionGlobalVar.session_id +"</a>. ");
 		checkSGRUB();
 		load(curSessionGlobalVar.players); //in loading.js
+	}else{
+		renderGraphs()
 	}
 
 }
