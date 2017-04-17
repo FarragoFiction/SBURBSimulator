@@ -656,12 +656,12 @@ function Intro(session){
 			}
 
 			if(this.player.minLuck + this.player.maxLuck >90){
-				console.log("initially lucky player: " +this.session.session_id)
+				//console.log("initially lucky player: " +this.session.session_id)
 				narration += " They have aaaaaaaall the luck. All of it.";
 			}
 
 			if(this.player.maxLuck < 10){
-				console.log("initially unlucky player: " +this.session.session_id)
+				//console.log("initially unlucky player: " +this.session.session_id)
 				narration += "They have an insurmountable stockpile of TERRIBLE LUCK.";
 			}
 

@@ -15,13 +15,13 @@ function EngageMurderMode(session){
 			if(this.player.moon == "Prospit"){
 				moon = 1;
 			}
-			var rand = Math.seededRandom();
+			var rand = this.player.rollForLuck();
 			if(this.player.triggerLevel > 0 &&  !this.player.murderMode && this.player.getEnemies().length > 0){
-				if(!diamond && (rand * 10) < this.player.triggerLevel+moon){  //easier to go crazy if you SEE all your friends dying already. (in prospit clouds)
+				if(!diamond && rand < (4*this.player.triggerLevel+moon)){  //easier to go crazy if you SEE all your friends dying already. (in prospit clouds)
 					return true;
 				}
 				//much harder to flip your shit if you have a moirail
-				if(diamond && (1+rand * 20 < this.player.triggerLevel+moon)){
+				if(diamond && (2*rand < this.player.triggerLevel+moon)){
 					//console.log("Flipped my shit despite having a moirail: " + this.session.session_id)
 					//console.log(this.player.triggerLevel)
 					return true;

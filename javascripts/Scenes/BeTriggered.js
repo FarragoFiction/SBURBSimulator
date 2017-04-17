@@ -11,7 +11,7 @@ function BeTriggered(session){
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var p = this.session.availablePlayers[i];
 			var trigger = this.IsPlayerTriggered(p)
-			if(trigger != " absolutely nothing " && Math.seededRandom()>.6){ //mostly DON'T flip out
+			if(trigger != " absolutely nothing " && p.rollForLuck()<60){ //mostly DON'T flip out
 				this.triggers.push(trigger);
 				this.triggeredPlayers.push(p);
 			}
@@ -30,7 +30,7 @@ function BeTriggered(session){
 		var livePlayers = findLivingPlayers(this.session.players);
 		var worstEnemy = player.getWorstEnemyFromList(this.session.players);
 		var bestFriend = player.getBestFriendFromList(this.session.players);
-		
+
 		var deadDiamond = player.hasDeadDiamond()
 		var deadHeart = player.hasDeadHeart();
 		if(deadDiamond && Math.seededRandom() > 0.3){
@@ -41,7 +41,7 @@ function BeTriggered(session){
 			console.log("triggered by dead moirail in session" + this.session.session_id)
 			return " their dead Moirail, the " + deadDiamond.htmlTitleBasic() + " ";
 		}
-		
+
 		if(deadHeart&& Math.seededRandom() > 0.2){
 			player.triggerLevel += 100;
 			console.log("triggered by dead matesprit in session" + this.session.session_id)
@@ -76,8 +76,8 @@ function BeTriggered(session){
 				player.triggerLevel ++;
 				player.triggerLevel ++;
 				return " their dead crush, the " + bestFriend.htmlTitle() + " ";
-			}					
-				
+			}
+
 		}
 
 		//huge chance, the dead outnumber the living.

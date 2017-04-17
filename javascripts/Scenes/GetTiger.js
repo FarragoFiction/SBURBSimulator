@@ -52,7 +52,7 @@ function GetTiger(session){
 		var withd = findPlayersWithDreamSelves(this.deadPlayersToGodTier);
 		var withoutd = findPlayersWithoutDreamSelves(this.deadPlayersToGodTier);
 
-		if(withd && Math.seededRandom() > .8){  //MOST players in canon go god tier via sacrificial slab.
+		if(withd && partyRollForLuck(withd) > 50){  //MOST players in canon go god tier via sacrificial slab.
 			for(var i = 0; i< withd.length; i++){
 				var p = withd[i];
 				//console.log("Quest bed: " + this.session.session_id)

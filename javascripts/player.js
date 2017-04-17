@@ -710,21 +710,27 @@ function randomPlayerWithClaspect(session, c,a){
 	//console.log("random player");
 	var l = getRandomLandFromAspect(a);
 	var k = getRandomElementFromArray(prototypings);
-	if(c == "Witch" || Math.seededRandom() > .99){
-		k = getRandomElementFromArray(disastor_prototypings);
-	}else if(Math.seededRandom() > .9){
-		k = getRandomElementFromArray(fortune_prototypings);
-	}//don't allow self prototyping here. would eat a seed and make the players in a session different, which i want to avoid if at all possible.
+
 
 	var gd = false;
-	if(Math.seededRandom() > .5){
-		gd =true;
-	}
+
 	var m = getRandomElementFromArray(moons);
 	var p =  new Player(session,c,a,l,k,m,gd);
 	//players can start with any luck, (remember, Vriska started out super unlucky and only got AAAAAAAALL the luck when she hit godtier)
 	p.minLuck = getRandomInt(0,50)
 	p.maxLuck = p.minLuck + getRandomInt(0,50)
+
+	var luck = p.rollForLuck();
+	if(c == "Witch" || luck < 10){
+		p.kernel_sprite = getRandomElementFromArray(disastor_prototypings);
+		//console.log("disastor")
+	}else if(luck > 65){
+		p.kernel_sprite = getRandomElementFromArray(fortune_prototypings);
+		//console.log("fortune")
+	}
+	if(luck>40){
+		p.godDestiny =true;
+	}
 	//no longer any randomness directly in player class. don't want to eat seeds if i don't have to.
 	p.baby = getRandomInt(1,3)
 	p.interest1 = getRandomElementFromArray(interests);
