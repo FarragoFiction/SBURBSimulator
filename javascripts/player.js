@@ -270,9 +270,9 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 	
 	this.hopeIncreasePower = function(powerBoost){
-		var power = powerBoost;
+		var power = powerBoost/2;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
-			power = -1 *power;
+			power = -1 *powerBoost;
 		}
 		
 		if(this.isActive()){ //modify me
@@ -284,7 +284,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			}
 		}
 	}
-	
+	//only looks at best outcomes
 	this.lightIncreasePower = function(powerBoost){
 		var luckModifier = powerBoost;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
@@ -292,18 +292,18 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 		
 		if(this.isActive()){ //modify me
-			this.minLuck += luckModifier;
 			this.maxLuck += luckModifier;
 		}else{  //modify others.
 			for(var i = 0; i<this.session.players.length; i++){
 				var player = this.session.players[i];
-				player.minLuck += luckModifier;
 				player.maxLuck += luckModifier;
 			}
 		}
 	}
 	
 	//good thing luck doesn't really matter.
+	//mind knows that sometimes things have to go wrong before they can go right
+	//only looks at worst outcomes.
 	this.mindIncreasePower = function(powerBoost){
 		var luckModifier = -1 * powerBoost;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
@@ -312,28 +312,58 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		
 		if(this.isActive()){ //modify me
 			this.minLuck += luckModifier;
-			this.maxLuck += luckModifier;
 		}else{  //modify others.
 			for(var i = 0; i<this.session.players.length; i++){
 				var player = this.session.players[i];
 				player.minLuck += luckModifier;
-				player.maxLuck += luckModifier;
 			}
 		}
 	}
 	
 	this.doomIncreasePower = function(powerBoost){
-		var power = -1 * powerBoost;
+		var power = -1 * powerBoost/2;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			power = -1 *power;
 		}
 		
 		if(this.isActive()){ //modify me
-			this.power += power;
+			this.power += powerBoost;
 		}else{  //modify others.
 			for(var i = 0; i<this.session.players.length; i++){
 				var player = this.session.players[i];
 				player.power += power;
+			}
+		}
+	}
+	
+	this.lifeIncreasePower = function(powerBoost){
+		var landBoost = powerBoost;
+		if(this.class_name == "Prince" || this.class_name == "Bard"){
+			landBoost = -1 *powerBoost;
+		}
+		
+		if(this.isActive()){ //modify me
+			this.landLevel += landBoost;
+		}else{  //modify others.
+			for(var i = 0; i<this.session.players.length; i++){
+				var player = this.session.players[i];
+				player.landLevel += landBoost;
+			}
+		}
+	}
+	
+	this.voidIncreasePower = function(powerBoost){
+		var landBoost = -1 * powerBoost;
+		if(this.class_name == "Prince" || this.class_name == "Bard"){
+			landBoost = -1 *powerBoost;
+		}
+		
+		if(this.isActive()){ //modify me
+			this.landLevel += landBoost;
+		}else{  //modify others.
+			for(var i = 0; i<this.session.players.length; i++){
+				var player = this.session.players[i];
+				player.landLevel += landBoost;
 			}
 		}
 	}
@@ -410,6 +440,8 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 	}
 	
+	//everything but space and time, they are exempt because EVER session has them.
+	//you could argue they are baked into things.
 	this.aspectIncreasePower = function(powerBoost){
 		if(this.aspect == "Light"){
 			this.lightIncreasePower(powerBoost);
@@ -427,8 +459,11 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			this.hopeIncreasePower(powerBoost);
 		}else if(this.aspect =="Mind"){
 			this.mindIncreasePower(powerBoost);
+		}else if(this.aspect =="Life"){
+			this.lifeIncreasePower(powerBoost);
+		}else if(this.aspect =="Void"){
+			this.voidIncreasePower(powerBoost);
 		}
-		
 	}
 
 	this.increasePower = function(){
@@ -711,7 +746,28 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 		return ret;
 	}
-
+	
+	this.getLowestRelationshipValue = function(){
+		var bestRelationshipSoFar = this.relationships[0];
+		for(var i = 1; i<this.relationships.length; i++){
+			var r = this.relationships[i];
+			if(r.value < bestRelationshipSoFar.value){
+				bestRelationshipSoFar = r;
+			}
+		}
+		return bestRelationshipSoFar.value;
+	}
+	
+	this.getHighestRelationshipValue = function(){
+		var bestRelationshipSoFar = this.relationships[0];
+		for(var i = 1; i<this.relationships.length; i++){
+			var r = this.relationships[i];
+			if(r.value > bestRelationshipSoFar.value){
+				bestRelationshipSoFar = r;
+			}
+		}
+		return bestRelationshipSoFar.value;
+	}
 
 
 	this.getBestFriend = function(){

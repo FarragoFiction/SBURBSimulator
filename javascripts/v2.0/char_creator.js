@@ -66,9 +66,17 @@ function initGraphs(){
 		var powerGraph = new Graph("power", player.title(), [], getColorFromAspect(player.aspect));
 		var luckGraph1 = new Graph("minLuck", player.title(),[], getColorFromAspect(player.aspect));
 		var luckGraph2 = new Graph("maxLuck", player.title(),[], getColorFromAspect(player.aspect));
+		var triggerGraph = new Graph("triggerLevel", player.title(),[], getColorFromAspect(player.aspect));
+		var landLevelGraph = new Graph("landLevel", player.title(),[], getColorFromAspect(player.aspect));
+		var friendGraph = new Graph("bestFriendLevel", player.title(),[], getColorFromAspect(player.aspect));
+		var enemyGraph = new Graph("worstEnemyLevel", player.title(),[], getColorFromAspect(player.aspect));
 		player.graphs.push(powerGraph);
 		player.graphs.push(luckGraph1);
 		player.graphs.push(luckGraph2);
+		player.graphs.push(triggerGraph);
+		player.graphs.push(landLevelGraph);
+		player.graphs.push(friendGraph);
+		player.graphs.push(enemyGraph);
 	}
 }
 
@@ -126,6 +134,7 @@ function getSessionType(){
 }
 
 function renderScratchButton(session){
+	renderGraphs();
 	//alert("scratch [possible]");
 	//can't scratch if it was a a total party wipe. just a regular doomed timeline.
 	var living = findLivingPlayers(session.players);
@@ -226,13 +235,22 @@ function scratch(){
 
 }
 
+//can also graph best and worth relationships.
 function renderGraphs(){
 	var powerRenderer = new GraphRenderer("power",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "power"),1000,300);
 	var luckRenderer1 = new GraphRenderer("minLuck",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "minLuck"),1000,300);
 	var luckRenderer2 = new GraphRenderer("maxLuck",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "maxLuck"),1000,300);
+	var triggerRenderer = new GraphRenderer("triggerLevel",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "triggerLevel"),1000,300);
+	var landRenderer = new GraphRenderer("landLevel",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "landLevel"),1000,300);
+	var friendRenderer = new GraphRenderer("bestFriendLevel",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "triggerLevel"),1000,300);
+	var enemyRenderer = new GraphRenderer("worstEnemyLevel",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "landLevel"),1000,300);
 	powerRenderer.render();
 	luckRenderer1.render();
 	luckRenderer2.render();
+	triggerRenderer.render();
+	landRenderer.render();
+	friendRenderer.render();
+	enemyRenderer.render();
 }
 
 function updateGraphs(){
@@ -241,6 +259,11 @@ function updateGraphs(){
 		getGraphWithLabel(player.graphs, "power").points.push(player.power);
 		getGraphWithLabel(player.graphs, "minLuck").points.push(player.minLuck); 
 		getGraphWithLabel(player.graphs, "maxLuck").points.push(player.maxLuck);
+		getGraphWithLabel(player.graphs, "triggerLevel").points.push(player.triggerLevel);
+		getGraphWithLabel(player.graphs, "landLevel").points.push(player.landLevel);
+		//bestFriendLevel
+		getGraphWithLabel(player.graphs, "bestFriendLevel").points.push(player.getHighestRelationshipValue());
+		getGraphWithLabel(player.graphs, "worstEnemyLevel").points.push(player.getLowestRelationshipValue());
 	}
 }
 
