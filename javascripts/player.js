@@ -272,7 +272,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	this.hopeIncreasePower = function(powerBoost){
 		var power = powerBoost/2;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
-			power = -1 *powerBoost;
+			power = -1 *power;
 		}
 		
 		if(this.isActive()){ //modify me
@@ -339,7 +339,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	this.lifeIncreasePower = function(powerBoost){
 		var landBoost = powerBoost;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
-			landBoost = -1 *powerBoost;
+			landBoost = -1 *landBoost;
 		}
 		
 		if(this.isActive()){ //modify me
@@ -355,7 +355,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	this.voidIncreasePower = function(powerBoost){
 		var landBoost = -1 * powerBoost;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
-			landBoost = -1 *powerBoost;
+			landBoost = -1 *landBoost;
 		}
 		
 		if(this.isActive()){ //modify me
@@ -373,15 +373,15 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	this.bloodIncreasePower = function(powerBoost){	
 		var triggerModifier = powerBoost;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
-			relationshipModifier = -1 *relationshipModifier;
+			triggerModifier = -1 *triggerModifier;
 		}
 		
 		if(this.isActive()){ //modify me
-			this.triggerLevel += powerBoost;
+			this.triggerLevel += triggerModifier;
 		}else{  //modify others.
 			for(var i = 0; i<this.session.players.length; i++){
 				var player = this.session.players[i];
-				player.triggerLevel += powerBoost;
+				player.triggerLevel += triggerModifier;
 			}
 		}
 	}
@@ -390,7 +390,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	this.breathIncreasePower = function(powerBoost){	
 		var triggerModifier = -1 * powerBoost;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
-			relationshipModifier = -1 *relationshipModifier;
+			relationshipModifier = -1 *triggerModifier;
 		}
 		
 		if(this.isActive()){ //modify me
@@ -398,44 +398,44 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}else{  //modify others.
 			for(var i = 0; i<this.session.players.length; i++){
 				var player = this.session.players[i];
-				player.triggerLevel += powerBoost;
+				player.triggerLevel += triggerModifier;
 			}
 		}
 	}
 	
 	this.heartIncreasePower = function(powerBoost){	
-		var relationshipModifier = powerBoost;
+		var relationshipModifier = powerBoost/10;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			relationshipModifier = -1 *relationshipModifier;
 		}
 		
 		if(this.isActive()){ //modify me
-			this.boostAllRelationshipsWithMeBy(powerBoost);
-			this.boostAllRelationshipsBy(powerBoost);
+			this.boostAllRelationshipsWithMeBy(relationshipModifier);
+			this.boostAllRelationshipsBy(relationshipModifier);
 		}else{  //modify others.
 			for(var i = 0; i<this.session.players.length; i++){
 				var player = this.session.players[i];
-				player.boostAllRelationshipsWithMeBy(powerBoost);
-				player.boostAllRelationshipsBy(powerBoost);
+				player.boostAllRelationshipsWithMeBy(relationshipModifier);
+				player.boostAllRelationshipsBy(relationshipModifier);
 			}
 		}
 	}
 	
 	
 	this.rageIncreasePower = function(powerBoost){
-		var relationshipModifier = -1 * powerBoost;
+		var relationshipModifier = -1 * powerBoost/10;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			relationshipModifier = -1 *relationshipModifier;
 		}
 		
 		if(this.isActive()){ //modify me
-			this.boostAllRelationshipsWithMeBy(powerBoost);
-			this.boostAllRelationshipsBy(powerBoost);
+			this.boostAllRelationshipsWithMeBy(relationshipModifier);
+			this.boostAllRelationshipsBy(relationshipModifier);
 		}else{  //modify others.
 			for(var i = 0; i<this.session.players.length; i++){
 				var player = this.session.players[i];
-				player.boostAllRelationshipsWithMeBy(powerBoost);
-				player.boostAllRelationshipsBy(powerBoost);
+				player.boostAllRelationshipsWithMeBy(relationshipModifier);
+				player.boostAllRelationshipsBy(relationshipModifier);
 			}
 		}
 	}
