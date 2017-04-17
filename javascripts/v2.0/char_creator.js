@@ -64,9 +64,11 @@ function initGraphs(){
 	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
 		var player = curSessionGlobalVar.players[i];
 		var powerGraph = new Graph("power", [], getColorFromAspect(player.aspect));
-		var luckGraph = new Graph("luck", [], getColorFromAspect(player.aspect));
+		var luckGraph1 = new Graph("minLuck", [], getColorFromAspect(player.aspect));
+		var luckGraph2 = new Graph("maxLuck", [], getColorFromAspect(player.aspect));
 		player.graphs.push(powerGraph);
-		player.graphs.push(luckGraph);
+		player.graphs.push(luckGraph1);
+		player.graphs.push(luckGraph2);
 	}
 }
 
@@ -243,16 +245,19 @@ function scratch(){
 
 function renderGraphs(){
 	var powerRenderer = new GraphRenderer("power",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "power"),1000,300);
-	var luckRenderer = new GraphRenderer("luck",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "luck"),1000,300);
+	var luckRenderer1 = new GraphRenderer("minLuck",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "minLuck"),1000,300);
+	var luckRenderer2 = new GraphRenderer("maxLuck",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "maxLuck"),1000,300);
 	powerRenderer.render();
-	luckRenderer.render();
+	luckRenderer1.render();
+	luckRenderer2.render();
 }
 
 function updateGraphs(){
 	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
 		var player = curSessionGlobalVar.players[i];
 		getGraphWithLabel(player.graphs, "power").points.push(player.power);
-		getGraphWithLabel(player.graphs, "luck").points.push(player.luck); 
+		getGraphWithLabel(player.graphs, "minLuck").points.push(player.minLuck); 
+		getGraphWithLabel(player.graphs, "maxLuck").points.push(player.maxLuck);
 	}
 }
 

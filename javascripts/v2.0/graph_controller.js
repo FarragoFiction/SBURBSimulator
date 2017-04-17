@@ -61,8 +61,8 @@ function GraphRenderer(label, graphs, width, height){
 			var aLine = document.createElementNS(headerthingy, 'line');		
 			var x1 = bobsMagic(0,this.graphs[0].points.length, 0,0, this.width)
 			var x2 = bobsMagic(0,this.graphs[0].points.length, this.graphs[0].points.length, 0, this.width)
-			var y1 = bobsMagic(this.minY,this.maxY, 0,0, this.height)
-			var y2 = bobsMagic(this.minY,this.maxY, 0,0, this.height)
+			var y1 = bobsMagic(this.minY,this.maxY, 0,this.height, 0)  //y is inverted. bluh.
+			var y2 = bobsMagic(this.minY,this.maxY, 0,this.height, 0)
 			console.log("X1 is made of: num points: " + this.graphs[0].points.length + " and width: " + this.width + ", it's: " + x1)
 			aLine.setAttribute('x1',x1);
 			aLine.setAttribute('y1',  y1);
@@ -97,8 +97,8 @@ function GraphRenderer(label, graphs, width, height){
 		var aLine = document.createElementNS(headerthingy, 'line');
 		var x1 = bobsMagic(0,this.graphs[0].points.length, 0,0, this.width)
 		var x2 = bobsMagic(0,this.graphs[0].points.length, 0,0, this.width)
-		var y1 = bobsMagic(this.minY,this.maxY, 0, 0,this.height)
-		var y2 = bobsMagic(this.minY,this.maxY, this.maxY, 0,this.height)
+		var y1 = bobsMagic(this.minY,this.maxY, 0, this.height, 0)
+		var y2 = bobsMagic(this.minY,this.maxY, this.maxY, this.height, 0)
 		aLine.setAttribute('x1',x1);
 		aLine.setAttribute('y1',  y1);
 		aLine.setAttribute('x2', x2);
@@ -109,18 +109,18 @@ function GraphRenderer(label, graphs, width, height){
 		
 		var font = 18;
 		var newText = document.createElementNS(headerthingy,"text");
-		newText.setAttributeNS(null,"x", x1-font);     
+		newText.setAttributeNS(null,"x", x1+font);     
 		newText.setAttributeNS(null,"y", y2+font/2); 
 		newText.setAttributeNS(null,"font-size",font);
-		var textNode = document.createTextNode(max + label);
+		var textNode = document.createTextNode(max + " " +label);
 		newText.appendChild(textNode);
 		this.svg.appendChild(newText);
 		
 		newText = document.createElementNS(headerthingy,"text");
-		newText.setAttributeNS(null,"x", x1-font);     
+		newText.setAttributeNS(null,"x", x1+font);     
 		newText.setAttributeNS(null,"y", y1-font/2); 
 		newText.setAttributeNS(null,"font-size",font);
-		var textNode = document.createTextNode(min + label);
+		var textNode = document.createTextNode(min + " " +label);
 		newText.appendChild(textNode);
 		this.svg.appendChild(newText);
 	}
@@ -156,13 +156,16 @@ function Graph(label, points,color){
 	}
 		
 	this.render = function(svg){
+		console.log("render graph" + label)
+		console.log(points);
 		var first_point = this.points[0];
 		for(var i = 1; i<this.points.length; i++ ){
 			var second_point = this.points[i];
+			console.log("first point: " + first_point + " second point: " + second_point)
 			var x1 = bobsMagic(0,this.points.length, i-1, 0,this.width)
 			var x2 = bobsMagic(0,this.points.length, i, 0,this.width)
-			var y1 = bobsMagic(this.minY,this.maxY, first_point, 0,this.height)
-			var y2 = bobsMagic(this.minY,this.maxY, second_point, 0,this.height)
+			var y1 = bobsMagic(this.minY,this.maxY, first_point, this.height, 0)
+			var y2 = bobsMagic(this.minY,this.maxY, second_point, this.height, 0)
 			this.renderLine(svg, x1, y1, x2, y2);
 			this.renderPoint(svg, x1, y1)
 			this.renderPoint(svg, x2, y2)
@@ -213,11 +216,13 @@ function getAllGraphsForPlayersNamed(players, label){
 //converts from one coordinate space to another
 //I am just unbelivably shitty at coordinates. thanks, bob!
 function bobsMagic(fromMin, fromMax, input, toMin, toMax){
+	/*
 	console.log("From Min: " + fromMin)
 	console.log("From Max: " + fromMax)
 	console.log("input: " + input)
 	console.log("toMin: " + toMin)
 	console.log("To Max: " + toMax)
+	*/
 	var tmp = (input - fromMin)/(fromMax - fromMin)
 	return (toMax - toMin) * tmp + toMin;
 }
