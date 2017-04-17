@@ -655,6 +655,16 @@ function Intro(session){
 				narration += " They appear to be destined for greatness. ";
 			}
 
+			if(this.player.minLuck >45){
+				console.log("initially lucky player: " +this.session.session_id)
+				narration += " They have aaaaaaaall the luck. All of it.";
+			}
+
+			if(this.player.maxLuck < 20){
+				console.log("initially unlucky player: " +this.session.session_id)
+				narration += "They have an insurmountable stockpile of TERRIBLE LUCK.";
+			}
+
 			if(this.player.dead==true){
 				console.log(session.session_id + " dead player enters, " +this.player.title())
 				narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably. Their kernel somehow gets prototyped with a "+this.player.kernel_sprite;

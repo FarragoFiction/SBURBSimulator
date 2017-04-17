@@ -8,6 +8,8 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		this.land = getRandomLandFromAspect(this.aspect);
 	}
 	this.baby = null;
+	this.minLuck = 0;
+	this.maxLuck = 0;
 	this.trickster = false;
 	this.sbahj = false;
 	this.sickRhymes = []; //oh hell yes. Hell. FUCKING. Yes!
@@ -710,6 +712,9 @@ function randomPlayerWithClaspect(session, c,a){
 	}
 	var m = getRandomElementFromArray(moons);
 	var p =  new Player(session,c,a,l,k,m,gd);
+	//players can start with any luck, (remember, Vriska started out super unlucky and only got AAAAAAAALL the luck when she hit godtier)
+	p.minLuck = getRandomInt(0,50)
+	p.maxLuck = p.minLuck + getRandomInt(0,50)
 	//no longer any randomness directly in player class. don't want to eat seeds if i don't have to.
 	p.baby = getRandomInt(1,3)
 	p.interest1 = getRandomElementFromArray(interests);
