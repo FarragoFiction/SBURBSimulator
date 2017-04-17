@@ -40,7 +40,7 @@ function GraphRenderer(label, graphs, width, height){
 				this.calculateMaxY();
 			}
 			if(this.svg == null){
-				$("#story").append('<svg id="svg' + this.label + '" width="' + width +'" height="' + height + '"><Br><Br>');
+				$("#story").append('<svg id="svg' + this.label + '" width="' + width +'" height="' + height + '"></svg><Br><Br>');
 				this.svg = document.getElementById('svg'+this.label);
 			}else{
 				this.clearSVG();

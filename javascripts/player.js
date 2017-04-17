@@ -8,6 +8,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		this.land = getRandomLandFromAspect(this.aspect);
 	}
 	this.baby = null;
+	this.session = session;
 	this.graphs = [];
 	this.minLuck = 0;
 	this.maxLuck = 0;
@@ -263,19 +264,155 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 		return ret;
 	}
+	
+	this.lightIncreasePower = function(powerBoost){
+		if(this.class_name == "Prince" || this.class_name == "Bard"){
+			this.minLuck += -1 * powerBoost;
+			this.maxLuck += -1 * powerBoost;
+		}else{
+			this.minLuck +=  powerBoost;
+			this.maxLuck +=  powerBoost;
+		}
+	}
+	
+	this.isActive = function(){
+		return (this.class_name == "Thief" || this.class_name == "Knight" || this.class_name == "Heir"|| this.class_name == "Mage"|| this.class_name == "Witch"|| this.class_name == "Prince")
+	}
+	
+	this.lightIncreasePower = function(powerBoost){
+		var luckModifier = powerBoost;
+		if(this.class_name == "Prince" || this.class_name == "Bard"){
+			luckModifier = -1 *luckModifier;
+		}
+		
+		if(this.isActive()){ //modify me
+			this.minLuck += luckModifier;
+			this.maxLuck += luckModifier;
+		}else{  //modify others.
+			for(var i = 0; i<this.session.players.length; i++){
+				var player = this.session.players[i];
+				player.minLuck += luckModifier;
+				player.maxLuck += luckModifier;
+			}
+		}
+	}
+	
+	this.doomIncreasePower = function(powerBoost){
+		var luckModifier = -1 * powerBoost;
+		if(this.class_name == "Prince" || this.class_name == "Bard"){
+			luckModifier = -1 *luckModifier;
+		}
+		
+		if(this.isActive()){ //modify me
+			this.minLuck += luckModifier;
+			this.maxLuck += luckModifier;
+		}else{  //modify others.
+			for(var i = 0; i<this.session.players.length; i++){
+				var player = this.session.players[i];
+				player.minLuck += luckModifier;
+				player.maxLuck += luckModifier;
+			}
+		}
+	}
+	
+	//wanted this to modify relationships, but figured i'd give that to heart
+	//blood keeps people from killing each other.
+	this.bloodIncreasePower = function(powerBoost){	
+		var triggerModifier = powerBoost;
+		if(this.class_name == "Prince" || this.class_name == "Bard"){
+			relationshipModifier = -1 *relationshipModifier;
+		}
+		
+		if(this.isActive()){ //modify me
+			this.triggerLevel += powerBoost;
+		}else{  //modify others.
+			for(var i = 0; i<this.session.players.length; i++){
+				var player = this.session.players[i];
+				player.triggerLevel += powerBoost;
+			}
+		}
+	}
+	
+	//john did flip his shit a lot about not being able to do what WV told him? just spitballing here.
+	this.breathIncreasePower = function(powerBoost){	
+		var triggerModifier = -1 * powerBoost;
+		if(this.class_name == "Prince" || this.class_name == "Bard"){
+			relationshipModifier = -1 *relationshipModifier;
+		}
+		
+		if(this.isActive()){ //modify me
+			this.triggerLevel += powerBoost;
+		}else{  //modify others.
+			for(var i = 0; i<this.session.players.length; i++){
+				var player = this.session.players[i];
+				player.triggerLevel += powerBoost;
+			}
+		}
+	}
+	
+	this.heartIncreasePower = function(powerBoost){	
+		var relationshipModifier = powerBoost;
+		if(this.class_name == "Prince" || this.class_name == "Bard"){
+			relationshipModifier = -1 *relationshipModifier;
+		}
+		
+		if(this.isActive()){ //modify me
+			this.boostAllRelationshipsWithMeBy(powerBoost);
+			this.boostAllRelationshipsBy(powerBoost);
+		}else{  //modify others.
+			for(var i = 0; i<this.session.players.length; i++){
+				var player = this.session.players[i];
+				player.boostAllRelationshipsWithMeBy(powerBoost);
+				player.boostAllRelationshipsBy(powerBoost);
+			}
+		}
+	}
+	
+	
+	this.rageIncreasePower = function(powerBoost){
+		var relationshipModifier = -1 * powerBoost;
+		if(this.class_name == "Prince" || this.class_name == "Bard"){
+			relationshipModifier = -1 *relationshipModifier;
+		}
+		
+		if(this.isActive()){ //modify me
+			this.boostAllRelationshipsWithMeBy(powerBoost);
+			this.boostAllRelationshipsBy(powerBoost);
+		}else{  //modify others.
+			for(var i = 0; i<this.session.players.length; i++){
+				var player = this.session.players[i];
+				player.boostAllRelationshipsWithMeBy(powerBoost);
+				player.boostAllRelationshipsBy(powerBoost);
+			}
+		}
+	}
+	
+	this.aspectIncreasePower = function(powerBoost){
+		if(this.aspect == "Light"){
+			this.lightIncreasePower(powerBoost);
+		}else if(this.aspect =="Doom"){
+			this.doomIncreasePower(powerBoost);
+		}else if(this.aspect =="Blood"){
+			this.bloodIncreasePower(powerBoost);
+		}else if(this.aspect =="Rage"){
+			this.rageIncreasePower(powerBoost);
+		}else if(this.aspect =="Heart"){
+			this.heartIncreasePower(powerBoost);
+		}else if(this.aspect =="Breat"){
+			this.breathIncreasePower(powerBoost);
+		}
+		
+	}
 
 	this.increasePower = function(){
 		var powerBoost = 1;
 
-		if(this.aspect == "Blood"){
-			this.boostAllRelationships();
-			this.boostAllRelationshipsWithMe();
-		}else if(this.aspect == "Rage"){
-			this.damageAllRelationships();
-			this.damageAllRelationshipsWithMe();
-		}
 		if(this.class_name == "Page"){  //they don't have many quests, but once they get going they are hard to stop.
 			powerBoost = powerBoost * 5;
+		}
+		
+		if(this.aspect == "Hope"){
+			powerBoost = powerBoost * 2;
 		}
 
 		if(this.godTier){
@@ -287,6 +424,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 
 		this.power += powerBoost;
+		this.aspectIncreasePower(powerBoost);
 
 		if(this.power % 10 == 0){ //actually a really bad way to determine level ups at this point. need to refactor later.
 			this.leveledTheHellUp = true;
@@ -360,6 +498,12 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			this.relationships[i].increase();
 		}
 	}
+	
+	this.boostAllRelationshipsBy = function(boost){
+		for(var i = 0; i<this.relationships.length; i++){
+			this.relationships[i].value += boost;
+		}
+	}
 
 	//you like people less
 	this.damageAllRelationships = function(){
@@ -367,7 +511,15 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			this.relationships[i].decrease();
 		}
 	}
-
+	
+	this.boostAllRelationshipsWithMeBy = function(boost){
+		for(var i = 0; i<session.players.length; i++){
+			var r = this.getRelationshipWith(session.players[i])
+			if(r){
+				r.value += boost;
+			}
+		}
+	}
 	//people like you more
 	this.boostAllRelationshipsWithMe = function(){
 		for(var i = 0; i<session.players.length; i++){
