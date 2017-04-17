@@ -377,6 +377,15 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 	}
 
+	//initial values are between 0 and 100, but the sim will mod those over time.
+	//it's up to the thing that calls this to know what a 'good' roll is.
+	//couldn't really have implemented this without having authorBot have my back.
+	//she'll help me make sure i don't make everything boring implmeenting luck.
+	//luck can absolutely be negative. thems the breaks.
+	this.rollForLuck = function(){
+		return getRandomInt(this.minLuck, this.maxLuck);
+	}
+
 	//people like you less
 	this.damageAllRelationshipsWithMe = function(){
 		for(var i = 0; i<curSessionGlobalVar.players.length; i++){
@@ -522,6 +531,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 		return ret;
 	}
+
 
 
 	this.getBestFriend = function(){
@@ -860,6 +870,14 @@ function getPlayersTitles(playerList){
 			ret += " and " + playerList[i].htmlTitle();
 		}
 		return ret;
+}
+
+function partyRollForLuck(players){
+	var ret = 0;
+	for(var i = 0; i<players.length; i++){
+		ret += players[i].rollForLuck();
+	}
+	return ret/players.length;
 }
 
 function getPlayersTitlesBasic(playerList){
