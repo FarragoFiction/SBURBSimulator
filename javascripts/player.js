@@ -265,18 +265,24 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		return ret;
 	}
 	
-	this.lightIncreasePower = function(powerBoost){
-		if(this.class_name == "Prince" || this.class_name == "Bard"){
-			this.minLuck += -1 * powerBoost;
-			this.maxLuck += -1 * powerBoost;
-		}else{
-			this.minLuck +=  powerBoost;
-			this.maxLuck +=  powerBoost;
-		}
-	}
-	
 	this.isActive = function(){
 		return (this.class_name == "Thief" || this.class_name == "Knight" || this.class_name == "Heir"|| this.class_name == "Mage"|| this.class_name == "Witch"|| this.class_name == "Prince")
+	}
+	
+	this.hopeIncreasePower = function(powerBoost){
+		var power = powerBoost;
+		if(this.class_name == "Prince" || this.class_name == "Bard"){
+			power = -1 *power;
+		}
+		
+		if(this.isActive()){ //modify me
+			this.power += power;
+		}else{  //modify others.
+			for(var i = 0; i<this.session.players.length; i++){
+				var player = this.session.players[i];
+				player.power += power;
+			}
+		}
 	}
 	
 	this.lightIncreasePower = function(powerBoost){
@@ -297,7 +303,8 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 	}
 	
-	this.doomIncreasePower = function(powerBoost){
+	//good thing luck doesn't really matter.
+	this.mindIncreasePower = function(powerBoost){
 		var luckModifier = -1 * powerBoost;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			luckModifier = -1 *luckModifier;
@@ -311,6 +318,22 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 				var player = this.session.players[i];
 				player.minLuck += luckModifier;
 				player.maxLuck += luckModifier;
+			}
+		}
+	}
+	
+	this.doomIncreasePower = function(powerBoost){
+		var power = -1 * powerBoost;
+		if(this.class_name == "Prince" || this.class_name == "Bard"){
+			power = -1 *power;
+		}
+		
+		if(this.isActive()){ //modify me
+			this.power += power;
+		}else{  //modify others.
+			for(var i = 0; i<this.session.players.length; i++){
+				var player = this.session.players[i];
+				player.power += power;
 			}
 		}
 	}
@@ -398,8 +421,12 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			this.rageIncreasePower(powerBoost);
 		}else if(this.aspect =="Heart"){
 			this.heartIncreasePower(powerBoost);
-		}else if(this.aspect =="Breat"){
+		}else if(this.aspect =="Breath"){
 			this.breathIncreasePower(powerBoost);
+		}else if(this.aspect =="Hope"){
+			this.hopeIncreasePower(powerBoost);
+		}else if(this.aspect =="Mind"){
+			this.mindIncreasePower(powerBoost);
 		}
 		
 	}
