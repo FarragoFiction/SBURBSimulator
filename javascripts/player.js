@@ -270,7 +270,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 	
 	this.hopeIncreasePower = function(powerBoost){
-		var power = powerBoost/2;
+		var power = powerBoost/10;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			power = -1 *power;
 		}
@@ -321,7 +321,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 	
 	this.doomIncreasePower = function(powerBoost){
-		var power = -1 * powerBoost/2;
+		var power = -1 * powerBoost/10;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			power = -1 *power;
 		}
@@ -337,7 +337,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 	
 	this.lifeIncreasePower = function(powerBoost){
-		var landBoost = powerBoost;
+		var landBoost = powerBoost/10;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			landBoost = -1 *landBoost;
 		}
@@ -353,7 +353,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 	
 	this.voidIncreasePower = function(powerBoost){
-		var landBoost = -1 * powerBoost;
+		var landBoost = -1 * powerBoost/10;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			landBoost = -1 *landBoost;
 		}
@@ -371,7 +371,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	//wanted this to modify relationships, but figured i'd give that to heart
 	//blood keeps people from killing each other.
 	this.bloodIncreasePower = function(powerBoost){	
-		var triggerModifier = powerBoost;
+		var triggerModifier = -1*powerBoost/10;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			triggerModifier = -1 *triggerModifier;
 		}
@@ -388,7 +388,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	
 	//john did flip his shit a lot about not being able to do what WV told him? just spitballing here.
 	this.breathIncreasePower = function(powerBoost){	
-		var triggerModifier = -1 * powerBoost;
+		var triggerModifier = powerBoost/10;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			relationshipModifier = -1 *triggerModifier;
 		}
