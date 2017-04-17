@@ -15,7 +15,9 @@ var charCreatorHelperGlobalVar;
 //main canvas is either Leader + PesterChumWindow + 1 or more Players (in chat or group chat with leader)
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
-	debug("Extremely fucking alpha, beware. <br><Br>If you want to have a specific amount of players, use <a href = 'rare_session_finder_junior.html' > ABJ </a> to find a session ID, then add it to the URL with '?seed=SESSIONID'");
+	debug("Extremely fucking alpha, beware. Even if you find a bug, odds are the code will be completely different a day later. <Br><br>Current status: can override claspects.");
+	debug("<br>TODO: Text box to input session ID. Choose interests, blood color. Choose cosmetic things like hair, horns, hair color, chatHandlel, favorite number, quirk.  Customize relationships. Customize god tier destiny. Customize luck.")
+	debug("<br>If you want to have a specific amount of players, use <a href = 'rare_session_finder_junior.html' > ABJ </a> to find a session ID, then add it to the URL with '?seed=SESSIONID'<br><Br>")
 	//these bitches are SHAREABLE.
 	if(getParameterByName("seed")){
 		Math.seed = getParameterByName("seed");
