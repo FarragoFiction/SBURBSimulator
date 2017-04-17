@@ -8,6 +8,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		this.land = getRandomLandFromAspect(this.aspect);
 	}
 	this.baby = null;
+	this.graphs = [];
 	this.minLuck = 0;
 	this.maxLuck = 0;
 	this.trickster = false;

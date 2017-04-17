@@ -1,17 +1,148 @@
 //creates a single svg for each graph to render itself to.
 //it will be whatever is ticking's responsibilty to make the graphs and update the data.
-function GraphRenderer(graphs, width, height){
+//also knows what min and max points are, 'cause a single graph can't know that.
+function GraphRenderer(label, graphs, width, height){
+		this.label = label;
 		this.graphs = graphs;
 		this.width = width;
 		this.height = height;
+		this.svg = null;
+		this.minY = 0;
+		this.maxY = 0;
+		//todo, have ticking function create power and light graphs. have graph rendered at stop.
+		
+		this.calculateMinY = function(){
+			for(var i = 0; i<this.graphs.length; i++){
+				this.minY = Math.min(this.minY, this.graphs[i].getMinPointValue());
+			}
+			
+			for(var i = 0; i<this.graphs.length; i++){
+				this.graphs[i].minY = this.minY;
+			}
+		}
+		
+		this.calculateMaxY = function(){
+			for(var i = 0; i<this.graphs.length; i++){
+				this.maxY = Math.max(this.maxY, this.graphs[i].getMaxPointValue());
+			}
+			
+			for(var i = 0; i<this.graphs.length; i++){
+				this.graphs[i].maxY = this.maxY;
+				this.graphs[i].width = this.width;
+				this.graphs[i].height = this.height;
+			}
+		}
+		
+		this.render = function(){
+			if(this.minY == this.maxY){
+				console.log("calculateing min and max y")
+				this.calculateMinY();
+				this.calculateMaxY();
+			}
+			if(this.svg == null){
+				$("#story").append('<svg id="svg' + this.label + '" width="' + width +'" height="' + height + '"><Br>');
+				this.svg = document.getElementById('svg'+this.label);
+			}else{
+				this.clearSVG();
+			}
+			
+			this.drawXAxis();
+			this.drawYAxis();
+			for(var i = 0; i<this.graphs.length; i++){
+				this.graphs[i].render(this.svg);
+			}
+		}
+		
+		
+		this.drawXAxis = function(){
+			var min = -1;
+			var max =1;
+			var headerthingy = 'http://www.w3.org/2000/svg'
+			var aLine = document.createElementNS(headerthingy, 'line');		
+			var x1 = bobsMagic(0,this.graphs[0].points.length, 0,0, this.width)
+			var x2 = bobsMagic(0,this.graphs[0].points.length, this.graphs[0].points.length, 0, this.width)
+			var y1 = bobsMagic(this.minY,this.maxY, 0,0, this.height)
+			var y2 = bobsMagic(this.minY,this.maxY, 0,0, this.height)
+			console.log("X1 is made of: num points: " + this.graphs[0].points.length + " and width: " + this.width + ", it's: " + x1)
+			aLine.setAttribute('x1',x1);
+			aLine.setAttribute('y1',  y1);
+			aLine.setAttribute('x2', x2);
+			aLine.setAttribute('y2', y2);
+			aLine.setAttribute('stroke', '#0000ff');
+			aLine.setAttribute('stroke-width', 2);
+			this.svg.appendChild(aLine);
+			
+			var font = 18;
+			var newText = document.createElementNS(headerthingy,"text");
+			newText.setAttributeNS(null,"x", x2-font*2);     
+			newText.setAttributeNS(null,"y", y2+font); 
+			newText.setAttributeNS(null,"font-size",font);
+			var textNode = document.createTextNode(max + " tick");
+			newText.appendChild(textNode);
+			this.svg.appendChild(newText);
+			
+			newText = document.createElementNS(headerthingy,"text");
+			newText.setAttributeNS(null,"x", x1-font);     
+			newText.setAttributeNS(null,"y", y1+font); 
+			newText.setAttributeNS(null,"font-size",font);
+			var textNode = document.createTextNode(min + " tick");
+			newText.appendChild(textNode);
+			this.svg.appendChild(newText);
+	}
+	
+	this.drawYAxis=function(){
+		var min = 0;
+		var max = 2;
+		var headerthingy = 'http://www.w3.org/2000/svg'
+		var aLine = document.createElementNS(headerthingy, 'line');
+		var x1 = bobsMagic(0,this.graphs[0].points.length, 0,0, this.width)
+		var x2 = bobsMagic(0,this.graphs[0].points.length, 0,0, this.width)
+		var y1 = bobsMagic(this.minY,this.maxY, 0, 0,this.height)
+		var y2 = bobsMagic(this.minY,this.maxY, this.maxY, 0,this.height)
+		aLine.setAttribute('x1',x1);
+		aLine.setAttribute('y1',  y1);
+		aLine.setAttribute('x2', x2);
+		aLine.setAttribute('y2', y2);
+		aLine.setAttribute('stroke', '#ff0000');
+		aLine.setAttribute('stroke-width', 2);
+		this.svg.appendChild(aLine);
+		
+		var font = 18;
+		var newText = document.createElementNS(headerthingy,"text");
+		newText.setAttributeNS(null,"x", x1-font);     
+		newText.setAttributeNS(null,"y", y2+font/2); 
+		newText.setAttributeNS(null,"font-size",font);
+		var textNode = document.createTextNode(max + label);
+		newText.appendChild(textNode);
+		this.svg.appendChild(newText);
+		
+		newText = document.createElementNS(headerthingy,"text");
+		newText.setAttributeNS(null,"x", x1-font);     
+		newText.setAttributeNS(null,"y", y1-font/2); 
+		newText.setAttributeNS(null,"font-size",font);
+		var textNode = document.createTextNode(min + label);
+		newText.appendChild(textNode);
+		this.svg.appendChild(newText);
+	}
+	
+	this.clearSVG = function(){
+	    while (this.svg.children.length>1) {
+	        this.svg.removeChild(svg.children[1])
+	    }
+	}
 }
 
 //a graph represents a single line. render multiple graphs on top of each other for multiple lines.
-function Graph(points,width, height,color){
+function Graph(label, points,color){
+	this.label = label;
 	this.points = points; //array of y values. x is just array index.
-	this.width = width;
-	this.height = height;
+	this.width = 0;
+	this.height = 0;
+	//don't care about MY max min values, but all graphs on this svg.
+	this.minY = 0;
+	this.maxY = 0;
 	this.color = color;
+	
 	this.getMaxPointValue = function(){
 		return this.points.reduce(function(a, b) {
 			return Math.max(a, b);
@@ -23,12 +154,24 @@ function Graph(points,width, height,color){
 			return Math.min(a, b);
 		});
 	}
-	
-	this.render = function(){
 		
+	this.render = function(svg){
+		var first_point = this.points[0];
+		for(var i = 1; i<this.points.length; i++ ){
+			var second_point = this.points[i];
+			var x1 = bobsMagic(0,this.points.length, i-1, 0,this.width)
+			var x2 = bobsMagic(0,this.points.length, i, 0,this.width)
+			var y1 = bobsMagic(this.minY,this.maxY, first_point, 0,this.height)
+			var y2 = bobsMagic(this.minY,this.maxY, second_point, 0,this.height)
+			this.renderLine(svg, x1, y1, x2, y2);
+			this.renderPoint(svg, x1, y1)
+			this.renderPoint(svg, x2, y2)
+			//init for next round
+			first_point = this.points[i];
+		}
 	}
 	
-	this.renderLine = function(x1,y1,x2,y2){
+	this.renderLine = function(svg, x1,y1,x2,y2){
 		var aLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
 		aLine.setAttribute('x1', x1);
 		aLine.setAttribute('y1',  y1);
@@ -39,21 +182,42 @@ function Graph(points,width, height,color){
 		svg.appendChild(aLine);
 	}
 	
-	this.renderPoint = function(x,y){
+	this.renderPoint = function(svg,x,y){
 		var shape = document.createElementNS('http://www.w3.org/2000/svg', "circle");
-		shape.setAttributeNS(null, "cx", bobsMagic(0,this.points.length, 0, this.width));
-		shape.setAttributeNS(null, "cy",  bobsMagic(this.getMinPointValue(), this.getMaxPointValue(), 0, this.height));
+		shape.setAttributeNS(null, "cx", x);
+		shape.setAttributeNS(null, "cy",  y);
 		shape.setAttributeNS(null, "r",  5);
 		shape.setAttributeNS(null, "fill", "black");
 		svg.appendChild( shape );
 	}
 }
 
+function getGraphWithLabel(graphs, label){
+	for(var j= 0; j<graphs.length; j++){
+		var graph = graphs[j];
+		if(graph.label == label){
+			return graph;
+		}
+	}
+	return null;
+}
 
+function getAllGraphsForPlayersNamed(players, label){
+	var ret = [];
+	for(var i = 0; i<players.length; i++){
+		ret.push(getGraphWithLabel(players[i].graphs, label))
+	}
+	return ret;
+}
 
 //converts from one coordinate space to another
 //I am just unbelivably shitty at coordinates. thanks, bob!
 function bobsMagic(fromMin, fromMax, input, toMin, toMax){
+	console.log("From Min: " + fromMin)
+	console.log("From Max: " + fromMax)
+	console.log("input: " + input)
+	console.log("toMin: " + toMin)
+	console.log("To Max: " + toMax)
 	var tmp = (input - fromMin)/(fromMax - fromMin)
 	return (toMax - toMin) * tmp + toMin;
 }

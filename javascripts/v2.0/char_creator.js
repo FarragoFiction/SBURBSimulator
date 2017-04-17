@@ -16,7 +16,7 @@ var charCreatorHelperGlobalVar;
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
 	debug("Extremely fucking alpha, beware. Even if you find a bug, odds are the code will be completely different a day later. <Br><br>Current status: can override claspects.");
-	debug("<br>TODO: Text box to input session ID. Choose interests, blood color. Choose cosmetic things like hair, horns, hair color, chatHandlel, favorite number, quirk.  Customize relationships. Customize god tier destiny. Customize luck.")
+	debug("<br>TODO: Text box to input session ID. Choose interests, blood color, moon. Choose cosmetic things like hair, horns, hair color, chatHandlel, favorite number, quirk.  Customize relationships. Customize god tier destiny. Customize luck.")
 	debug("<br>If you want to have a specific amount of players, use <a href = 'rare_session_finder_junior.html' > ABJ </a> to find a session ID, then add it to the URL with '?seed=SESSIONID'<br><Br>")
 	//these bitches are SHAREABLE.
 	if(getParameterByName("seed")){
@@ -34,6 +34,7 @@ window.onload = function() {
 
 function renderPlayersForEditing(){
 	charCreatorHelperGlobalVar.drawAllPlayers();
+	$("#button").prop('disabled', false)
 }
 
 function initSession(){
@@ -58,11 +59,23 @@ function reinit(){
 	curSessionGlobalVar.reinit();
 }
 
+//only do at last minute 'cause claspect can change.
+function initGraphs(){
+	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+		var player = curSessionGlobalVar.players[i];
+		var powerGraph = new Graph("power", [], getColorFromAspect(player.aspect));
+		var luckGraph = new Graph("luck", [], getColorFromAspect(player.aspect));
+		player.graphs.push(powerGraph);
+		player.graphs.push(luckGraph);
+	}
+}
 
 function startSession(){
+	$("#button").prop('disabled', true)
 	var time = findAspectPlayer(curSessionGlobalVar.players, "Time");
 	var space = findAspectPlayer(curSessionGlobalVar.players, "Space");
 	if(time && space){
+		initGraphs();
 		//load everything i'll need for this session that iw asn't loading before (wings, godtier, etc.)
 		load(curSessionGlobalVar.players, curSessionGlobalVar.guardians,false);
 	}else{
@@ -228,9 +241,25 @@ function scratch(){
 
 }
 
+function renderGraphs(){
+	var powerRenderer = new GraphRenderer("power",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "power"),1000,300);
+	var luckRenderer = new GraphRenderer("luck",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "luck"),1000,300);
+	powerRenderer.render();
+	luckRenderer.render();
+}
+
+function updateGraphs(){
+	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+		var player = curSessionGlobalVar.players[i];
+		getGraphWithLabel(player.graphs, "power").points.push(player.power);
+		getGraphWithLabel(player.graphs, "luck").points.push(player.luck); 
+	}
+}
+
 function tick(){
 	//console.log("Tick: " + curSessionGlobalVar.timeTillReckoning)
 	if(curSessionGlobalVar.timeTillReckoning > 0 && !curSessionGlobalVar.doomedTimeline){
+		updateGraphs();
 		setTimeout(function(){
 			curSessionGlobalVar.timeTillReckoning += -1;
 			processScenes2(curSessionGlobalVar.players,curSessionGlobalVar);
@@ -255,6 +284,7 @@ function reckoning(){
 function reckoningTick(){
 	//console.log("Reckoning Tick: " + curSessionGlobalVar.timeTillReckoning)
 	if(curSessionGlobalVar.timeTillReckoning > -10){
+		updateGraphs();
 		setTimeout(function(){
 			curSessionGlobalVar.timeTillReckoning += -1;
 			processReckoning2(curSessionGlobalVar.players,curSessionGlobalVar)
@@ -266,6 +296,8 @@ function reckoningTick(){
 		s.renderContent(curSessionGlobalVar.newScene());
 		if(curSessionGlobalVar.makeCombinedSession == true){
 			processCombinedSession();  //make sure everything is done rendering first
+		}else{
+			renderGraphs();
 		}
 	}
 
