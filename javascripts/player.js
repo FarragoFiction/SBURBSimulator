@@ -748,14 +748,14 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 	
 	this.getLowestRelationshipValue = function(){
-		var bestRelationshipSoFar = this.relationships[0];
+		var worstRelationshipSoFar = this.relationships[0];
 		for(var i = 1; i<this.relationships.length; i++){
 			var r = this.relationships[i];
-			if(r.value < bestRelationshipSoFar.value){
-				bestRelationshipSoFar = r;
+			if(r.value < worstRelationshipSoFar.value){
+				worstRelationshipSoFar = r;
 			}
 		}
-		return bestRelationshipSoFar.value;
+		return worstRelationshipSoFar.value;
 	}
 	
 	this.getHighestRelationshipValue = function(){

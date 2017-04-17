@@ -242,8 +242,8 @@ function renderGraphs(){
 	var luckRenderer2 = new GraphRenderer("maxLuck",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "maxLuck"),1000,300);
 	var triggerRenderer = new GraphRenderer("triggerLevel",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "triggerLevel"),1000,300);
 	var landRenderer = new GraphRenderer("landLevel",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "landLevel"),1000,300);
-	var friendRenderer = new GraphRenderer("bestFriendLevel",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "triggerLevel"),1000,300);
-	var enemyRenderer = new GraphRenderer("worstEnemyLevel",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "landLevel"),1000,300);
+	var friendRenderer = new GraphRenderer("bestFriendLevel",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "bestFriendLevel"),1000,300);
+	var enemyRenderer = new GraphRenderer("worstEnemyLevel",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "worstEnemyLevel"),1000,300);
 	powerRenderer.render();
 	luckRenderer1.render();
 	luckRenderer2.render();
