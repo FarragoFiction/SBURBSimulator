@@ -136,7 +136,7 @@ function loadOther(skipInit){
 
 function loadAllPossiblePlayers(skipInit){
     var numBodies = 12;  //1 indexed
-    var numHair = 52; //+1025 for rufio.  1 indexed
+    var numHair = 60; //+1025 for rufio.  1 indexed
     var numHorns = 46; //1 indexed.
     //var numWings = 12 //0 indexed, not 1.  for now, don't bother with wings. not gonna show godtier, for now.
     for(var i = 1; i<=numBodies; i++){
@@ -151,6 +151,9 @@ function loadAllPossiblePlayers(skipInit){
         loadImage("Hair/hair_back"+i+".png",skipInit);
         loadImage("Hair/hair"+i+".png",skipInit);
     }
+	
+	loadImage("Hair/hair_back1025.png",skipInit);
+    loadImage("Hair/hair1025.png",skipInit);
 
     for(var i = 1; i<=numHorns; i++){
         loadImage("Horns/left"+i+".png",skipInit);
