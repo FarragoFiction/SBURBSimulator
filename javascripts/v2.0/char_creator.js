@@ -60,26 +60,7 @@ function reinit(){
 	curSessionGlobalVar.reinit();
 }
 
-//only do at last minute 'cause claspect can change.
-function initGraphs(){
-	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
-		var player = curSessionGlobalVar.players[i];
-		var powerGraph = new Graph("power", player.title(), [], getColorFromAspect(player.aspect));
-		var luckGraph1 = new Graph("minLuck", player.title(),[], getColorFromAspect(player.aspect));
-		var luckGraph2 = new Graph("maxLuck", player.title(),[], getColorFromAspect(player.aspect));
-		var triggerGraph = new Graph("triggerLevel", player.title(),[], getColorFromAspect(player.aspect));
-		var landLevelGraph = new Graph("landLevel", player.title(),[], getColorFromAspect(player.aspect));
-		var friendGraph = new Graph("bestFriendLevel", player.title(),[], getColorFromAspect(player.aspect));
-		var enemyGraph = new Graph("worstEnemyLevel", player.title(),[], getColorFromAspect(player.aspect));
-		player.graphs.push(powerGraph);
-		player.graphs.push(luckGraph1);
-		player.graphs.push(luckGraph2);
-		player.graphs.push(triggerGraph);
-		player.graphs.push(landLevelGraph);
-		player.graphs.push(friendGraph);
-		player.graphs.push(enemyGraph);
-	}
-}
+
 
 function startSession(){
 	$("#button").prop('disabled', true)
@@ -239,6 +220,31 @@ function scratch(){
 
 }
 
+//only do at last minute 'cause claspect can change.
+function initGraphs(){
+	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+		var player = curSessionGlobalVar.players[i];
+		var powerGraph = new Graph("power", player.title(), [], getColorFromAspect(player.aspect));
+		var luckGraph1 = new Graph("minLuck", player.title(),[], getColorFromAspect(player.aspect));
+		var luckGraph2 = new Graph("maxLuck", player.title(),[], getColorFromAspect(player.aspect));
+		var triggerGraph = new Graph("triggerLevel", player.title(),[], getColorFromAspect(player.aspect));
+		var landLevelGraph = new Graph("landLevel", player.title(),[], getColorFromAspect(player.aspect));
+		var friendGraph = new Graph("bestFriendLevel", player.title(),[], getColorFromAspect(player.aspect));
+		var enemyGraph = new Graph("worstEnemyLevel", player.title(),[], getColorFromAspect(player.aspect));
+		var freeWill = new Graph("freeWill", player.title(),[], getColorFromAspect(player.aspect));
+		var mobility = new Graph("mobility", player.title(),[], getColorFromAspect(player.aspect));
+		player.graphs.push(powerGraph);
+		player.graphs.push(luckGraph1);
+		player.graphs.push(luckGraph2);
+		player.graphs.push(triggerGraph);
+		player.graphs.push(landLevelGraph);
+		player.graphs.push(enemyGraph);
+		player.graphs.push(friendGraph);
+		player.graphs.push(mobility);
+		player.graphs.push(freeWill);
+	}
+}
+
 //can also graph best and worth relationships.
 function renderGraphs(){
 	var powerRenderer = new GraphRenderer("power",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "power"),1000,300);
@@ -248,6 +254,8 @@ function renderGraphs(){
 	var landRenderer = new GraphRenderer("landLevel",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "landLevel"),1000,300);
 	var friendRenderer = new GraphRenderer("bestFriendLevel",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "bestFriendLevel"),1000,300);
 	var enemyRenderer = new GraphRenderer("worstEnemyLevel",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "worstEnemyLevel"),1000,300);
+	var freeWill = new GraphRenderer("freeWill",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "freeWill"),1000,300);
+	var mobility = new GraphRenderer("mobility",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "mobility"),1000,300);
 	powerRenderer.render();
 	luckRenderer1.render();
 	luckRenderer2.render();
@@ -255,6 +263,8 @@ function renderGraphs(){
 	landRenderer.render();
 	friendRenderer.render();
 	enemyRenderer.render();
+	freeWill.render();
+	mobility.render();
 }
 
 function updateGraphs(){
@@ -265,9 +275,10 @@ function updateGraphs(){
 		getGraphWithLabel(player.graphs, "maxLuck").points.push(player.maxLuck);
 		getGraphWithLabel(player.graphs, "triggerLevel").points.push(player.triggerLevel);
 		getGraphWithLabel(player.graphs, "landLevel").points.push(player.landLevel);
-		//bestFriendLevel
 		getGraphWithLabel(player.graphs, "bestFriendLevel").points.push(player.getHighestRelationshipValue());
 		getGraphWithLabel(player.graphs, "worstEnemyLevel").points.push(player.getLowestRelationshipValue());
+		getGraphWithLabel(player.graphs, "freeWill").points.push(player.freeWill);
+		getGraphWithLabel(player.graphs, "mobility").points.push(player.mobility);
 	}
 }
 
