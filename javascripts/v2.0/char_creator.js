@@ -85,7 +85,7 @@ function startSession(){
 	var time = findAspectPlayer(curSessionGlobalVar.players, "Time");
 	var space = findAspectPlayer(curSessionGlobalVar.players, "Space");
 	if(time && space){
-		initializeStats();
+		initializeStatsForPlayers(curSessionGlobalVar.players);
 		initGraphs();
 		//load everything i'll need for this session that iw asn't loading before (wings, godtier, etc.)
 		load(curSessionGlobalVar.players, curSessionGlobalVar.guardians,false);
@@ -162,6 +162,8 @@ function scratchConfirm(){
 function restartSession(){
 	$("#story").html("");
 	window.scrollTo(0, 0);
+	debug("TODO: make players match created players.  maybe save copy of them. clone like i do for foreign players, keep in this controller?")
+	initializeStatsForPlayers(curSessionGlobalVar.players);
 	intro();
 }
 

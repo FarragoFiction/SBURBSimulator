@@ -102,7 +102,7 @@ function Session(session_id){
 		}
 		this.aliensClonedOnArrival = [];//jettison old clones.
 		addAliensToSession(curSessionGlobalVar, living);
-
+		
 		restartSession();//in controller
 	}
 

@@ -82,7 +82,7 @@ function startSession(){
 	}
 	checkEasterEgg();
 
-	initializeStats();
+	initializeStatsForPlayers(curSessionGlobalVar.players);
 	checkSGRUB();
 
 	load(curSessionGlobalVar.players, curSessionGlobalVar.guardians); //in loading.js
@@ -155,6 +155,7 @@ function scratchConfirm(){
 function restartSession(){
 	$("#story").html("");
 	window.scrollTo(0, 0);
+	initializeStatsForPlayers(curSessionGlobalVar.players);
 	intro();
 }
 

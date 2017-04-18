@@ -1307,6 +1307,12 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 
 }
 
+function initializeStatsForPlayers(players){
+	for(var i = 0; i<players.length; i++){
+		players[i].initializeStats();
+	}
+}
+
 function getColorFromAspect(aspect){
 	var color = "";
 	if(aspect == "Space"){
