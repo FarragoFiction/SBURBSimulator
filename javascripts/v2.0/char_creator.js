@@ -279,6 +279,7 @@ function updateGraphs(){
 		getGraphWithLabel(player.graphs, "worstEnemyLevel").points.push(player.getLowestRelationshipValue());
 		getGraphWithLabel(player.graphs, "freeWill").points.push(player.freeWill);
 		getGraphWithLabel(player.graphs, "mobility").points.push(player.mobility);
+		console.log(player.mobility)
 	}
 }
 

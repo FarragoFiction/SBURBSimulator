@@ -15,7 +15,6 @@ function GraphRenderer(label, graphs, width, height){
 			for(var i = 0; i<this.graphs.length; i++){
 				this.minY = Math.min(this.minY, this.graphs[i].getMinPointValue());
 			}
-			
 			for(var i = 0; i<this.graphs.length; i++){
 				this.graphs[i].minY = this.minY;
 			}
@@ -35,7 +34,7 @@ function GraphRenderer(label, graphs, width, height){
 		
 		this.render = function(){
 			if(this.minY == this.maxY){
-				console.log("calculateing min and max y")
+				console.log("calculateing min and max y for: " + this.label)
 				this.calculateMinY();
 				this.calculateMaxY();
 			}
@@ -55,6 +54,7 @@ function GraphRenderer(label, graphs, width, height){
 		
 		
 		this.drawXAxis = function(){
+			console.log("drawing x axis for: " + this.label + " this.minY is: " + this.minY)
 			var min = -1;
 			var max =1;
 			var headerthingy = 'http://www.w3.org/2000/svg'
