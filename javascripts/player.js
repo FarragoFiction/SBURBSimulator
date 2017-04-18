@@ -392,23 +392,17 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	this.heartInteractionEffect = function(player){
 		var amount = this.power/10;
 		if(this.class_name == "Thief"){ //takes for self
-			this.boostAllRelationshipsWithMeBy(amount);
 			this.boostAllRelationshipsBy(amount);
-			player.boostAllRelationshipsWithMeBy(-1*amount);
 			player.boostAllRelationshipsBy(-1* amount)
 		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
-			player.boostAllRelationshipsWithMeBy(-1* amount);
 			player.boostAllRelationshipsBy(-1*amount)
 			for(var i = 0; i<this.session.players.length; i++){
 				var p = this.session.players[i];
-				p.boostAllRelationshipsWithMeBy(amount/this.session.players.length);
 				p.boostAllRelationshipsBy(amount/this.session.players.length);
 			}
 		}else if(this.class_name == "Sylph"){ //heals others 'healing' rage would increase it.
-			player.boostAllRelationshipsWithMeBy(amount);
 			player.boostAllRelationshipsBy(amount);
 		}else if(this.class_name == "Bard"){ //destroys in others
-			player.boostAllRelationshipsWithMeBy(-1* amount);
 			player.boostAllRelationshipsBy(-1*amount)
 		}
 	}
@@ -437,6 +431,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	suddenly in some way showing "who is truly the master" and then collapsing in on itself. '
 	Yeah, First Guardian Jade had teleport powers, but there was nothing to show that that was a NORMAL space ability.
 	She only glowed green doing that, not when altering sizes.
+	Space is about groundingyou. It's gravity. It's so damn HARD to travel in space, cause it wants you to stay right the hell where you are.
 	*/
 	this.spaceInteractionEffect = function(player){
 		var amount = -1* this.power/10;
@@ -461,16 +456,22 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		if(this.class_name == "Thief"){ //takes for self
 			this.triggerLevel += amount;
 			player.triggerLevel += -1 * amount
+			this.boostAllRelationshipsWithMeBy(-1*amount);
+			player.boostAllRelationshipsWithMeBy(amount);
 		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
 			player.triggerLevel += -1*amount
+			player.boostAllRelationshipsWithMeBy(amount);
 			for(var i = 0; i<this.session.players.length; i++){
 				var p = this.session.players[i];
 				p.triggerLevel += amount/this.session.players.length;
+				p.boostAllRelationshipsWithMeBy(-1*amount);
 			}
 		}else if(this.class_name == "Sylph"){ //heals others 'healing' rage would increase it.
 			player.triggerLevel += amount
+			player.boostAllRelationshipsWithMeBy(-1*amount);
 		}else if(this.class_name == "Bard"){ //destroys in others
 			player.triggerLevel += -1*amount
+			player.boostAllRelationshipsWithMeBy(amount);
 		}
 	}
 	
@@ -538,6 +539,10 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}else if(this.aspect =="Life"){
 			this.lifeInteractionEffect(player);
 		}else if(this.aspect =="Void"){
+			this.voidInteractionEffect(player);
+		}else if(this.aspect =="Space"){
+			this.voidInteractionEffect(player);
+		}else if(this.aspect =="Time"){
 			this.voidInteractionEffect(player);
 		}
 	}
@@ -671,10 +676,12 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 
 		if(this.isActive()){ //modify me
 			this.triggerLevel += triggerModifier;
+			this.boostAllRelationshipsWithMeBy(-1*triggerModifier);
 		}else{  //modify others.
 			for(var i = 0; i<this.session.players.length; i++){
 				var player = this.session.players[i];
 				player.triggerLevel += triggerModifier;
+				player.boostAllRelationshipsWithMeBy(-1*triggerModifier);
 			}
 		}
 	}
@@ -707,12 +714,10 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 
 		if(this.isActive()){ //modify me
-			this.boostAllRelationshipsWithMeBy(relationshipModifier);
 			this.boostAllRelationshipsBy(relationshipModifier);
 		}else{  //modify others.
 			for(var i = 0; i<this.session.players.length; i++){
 				var player = this.session.players[i];
-				player.boostAllRelationshipsWithMeBy(relationshipModifier);
 				player.boostAllRelationshipsBy(relationshipModifier);
 			}
 		}
@@ -773,6 +778,10 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}else if(this.aspect =="Life"){
 			this.lifeIncreasePower(powerBoost);
 		}else if(this.aspect =="Void"){
+			this.voidIncreasePower(powerBoost);
+		}else if(this.aspect =="Time"){
+			this.lifeIncreasePower(powerBoost);
+		}else if(this.aspect =="Space"){
 			this.voidIncreasePower(powerBoost);
 		}
 	}
