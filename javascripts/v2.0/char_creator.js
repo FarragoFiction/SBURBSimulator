@@ -85,6 +85,7 @@ function startSession(){
 	var time = findAspectPlayer(curSessionGlobalVar.players, "Time");
 	var space = findAspectPlayer(curSessionGlobalVar.players, "Space");
 	if(time && space){
+		initializeStats();
 		initGraphs();
 		//load everything i'll need for this session that iw asn't loading before (wings, godtier, etc.)
 		load(curSessionGlobalVar.players, curSessionGlobalVar.guardians,false);
@@ -376,6 +377,7 @@ function callNextIntroWithDelay(player_index){
 		return;
 	}
 	setTimeout(function(){
+		updateGraphs();
 		var s = new Intro(curSessionGlobalVar);
 		var p = curSessionGlobalVar.players[player_index];
 		var playersInMedium = curSessionGlobalVar.players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.

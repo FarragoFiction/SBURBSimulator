@@ -82,7 +82,7 @@ function startSession(){
 	}
 	checkEasterEgg();
 
-
+	initializeStats();
 	checkSGRUB();
 
 	load(curSessionGlobalVar.players, curSessionGlobalVar.guardians); //in loading.js
