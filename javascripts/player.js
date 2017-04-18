@@ -303,7 +303,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			for(var i = 0; i<this.session.players.length; i++){
 				var p = this.session.players[i];
 				p.minLuck += amount/this.session.players.length;
-				p.maxLuck += amountthis.session.players.length;
+				p.maxLuck += amount/this.session.players.length;
 			}
 		}else if(this.class_name == "Sylph"){ //heals others
 			player.minLuck += amount
