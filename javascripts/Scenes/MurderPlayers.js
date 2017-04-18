@@ -154,8 +154,7 @@ function MurderPlayers(session){
 		for(var i = 0; i<this.murderers.length; i++){
 			var m = this.murderers[i];
 			var worstEnemy = m.getWorstEnemyFromList(this.session.availablePlayers);
-			m.interactionEffect(worstEnemy);
-			worstEnemy.interactionEffect(m);
+			if(worstEnemy) m.interactionEffect(worstEnemy);
 			var living = findLivingPlayers(this.session.players)
 			removeFromArray(worstEnemy, living)
 			var ausp = getRandomElementFromArray(living)
