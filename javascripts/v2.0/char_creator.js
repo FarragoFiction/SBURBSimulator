@@ -18,7 +18,7 @@ window.onload = function() {
 	debug("Extremely fucking alpha, beware. Even if you find a bug, odds are the code will be completely different a day later. <Br><br>Current status: can override claspects.");
 	debug("<br>TODO: Text box to input session ID. Choose interests, blood color, moon. Choose cosmetic things like hair, horns, hair color, chatHandlel, favorite number, quirk.  Customize relationships. Customize god tier destiny. Customize luck.")
 	debug("<br>If you want to have a specific amount of players, use <a href = 'rare_session_finder_junior.html' > ABJ </a> to find a session ID, then add it to the URL with '?seed=SESSIONID'<br><Br>")
-	debug("confirm: 612 session. Land level modified ONLY by void and life and land quests. only void player should have it decrease. graph freeWill and mobility. actually use all stats, finish refactoring Jack/Queen/King fights.")
+	debug("graph freeWill and mobility. actually use all stats, finish refactoring Jack/Queen/King fights.")
 	//these bitches are SHAREABLE.
 	if(getParameterByName("seed")){
 		Math.seed = getParameterByName("seed");
