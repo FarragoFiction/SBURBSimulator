@@ -1163,6 +1163,123 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		return ret;
 	}
 	
+	this.highInit = function(){
+		return (this.class_name == "Rogue" || this.class_name == "Knight" || this.class_name == "Maid"|| this.class_name == "Mage"|| this.class_name == "Sylph"|| this.class_name == "Prince")
+	}
+	
+	this.initializeLuck = function(){
+		this.minLuck = getRandomInt(0,35);
+		this.maxLuck = this.minLuck + getRandomInt(0,35); //max of 75
+		if(this.aspect == "Light"){
+			if(this.highInit()){
+				this.maxLuck += 35;
+			}else{
+				this.maxLuck += -35;
+			}
+		}else if(this.aspect == "Doom"){
+			if(this.highInit()){
+				this.minLuck += -35;
+			}else{
+				this.minLuck += 35;
+			}
+		}
+		
+	}
+	
+	this.initializeFreeWill = function(){
+		this.freeWill = getRandomInt(0,75);
+		if(this.aspect == "Mind"){
+			if(this.highInit()){
+				this.freeWill += 35;
+			}else{
+				this.freeWill += -35;
+			}
+		}else if(this.aspect == "Time"){
+			if(this.highInit()){
+				this.freeWill += -35;
+			}else{
+				this.freeWill += 35;
+			}
+		}
+	}
+	
+	this.initializeLandLevel = function(){
+		this.landLevel = 0;
+		if(this.aspect == "Life"){
+			if(this.highInit()){
+				this.landLevel += 3;
+			}else{
+				this.landLevel += -3;
+			}
+		}else if(this.aspect == "Void"){
+			if(this.highInit()){
+				this.landLevel += -3;
+			}else{
+				this.landLevel += 3;
+			}
+		}
+	}
+	
+	this.initializeMobility = function(){
+		this.mobility = getRandomInt(0,75);
+		if(this.aspect == "Breath"){
+			if(this.highInit()){
+				this.mobility += 35;
+			}else{
+				this.mobility += -35;
+			}
+		}else if(this.aspect == "Space"){
+			if(this.highInit()){
+				this.mobility += -35;
+			}else{
+				this.mobility += 35;
+			}
+		}
+	}
+	
+	//don't recalculate values, but can boost postivily or negatively by an amount. sure.
+	this.initializeRelationships = function(){
+		var amount = 5;
+		if(this.aspect == "Heart"){
+			if(this.highInit()){
+				this.boostAllRelationshipsBy(amount)
+			}else{
+				this.boostAllRelationshipsBy(-1 * amount)
+			}
+		}else if(this.aspect == "Rage"){
+			if(this.highInit()){
+				this.boostAllRelationshipsWithMeBy(-1* amount);
+				this.boostAllRelationshipsBy(-1*amount)
+			}else{
+				this.boostAllRelationshipsWithMeBy(amount);
+				this.boostAllRelationshipsBy(amount)
+			}
+		}else if(this.aspect == "Blood"){
+			if(this.highInit()){
+				this.boostAllRelationshipsWithMeBy(amount);
+			}else{
+				this.boostAllRelationshipsWithMeBy(-1 * amount);
+			}
+		}
+	}
+	
+	this.initializePower = function(){
+		this.power = 0;
+		if(this.aspect == "Hope"){
+			if(this.highInit()){
+				this.power += 15;
+			}else{
+				this.power += -15;
+			}
+		}else if(this.aspect == "Doom"){
+			if(this.highInit()){
+				this.power += -15;
+			}else{
+				this.power += 15;
+			}
+		}
+	}
+	
 	//players can start with any luck, (remember, Vriska started out super unlucky and only got AAAAAAAALL the luck when she hit godtier)
 	//make sure session calls this before first tick, cause otherwise won't be initialized by right claspect after easter egg or character creation.
 	this.initializeStats = function(){
