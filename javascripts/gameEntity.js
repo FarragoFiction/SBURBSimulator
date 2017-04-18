@@ -3,6 +3,7 @@
 //maybe time clones are this? sprites?
 //definitely jack/queen/jing, tho
 //the mayor?
+//don't want to just add luck to jack/queen/keen fights. refactoring everything. back to multi-round fights and all.
 function GameEntity(session, name){
 		this.session = session;
 		this.name = name;
