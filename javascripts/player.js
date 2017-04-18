@@ -541,9 +541,9 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}else if(this.aspect =="Void"){
 			this.voidInteractionEffect(player);
 		}else if(this.aspect =="Space"){
-			this.voidInteractionEffect(player);
+			this.spaceInteractionEffect(player);
 		}else if(this.aspect =="Time"){
-			this.voidInteractionEffect(player);
+			this.timeInteractionEffect(player);
 		}
 	}
 
@@ -780,9 +780,9 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}else if(this.aspect =="Void"){
 			this.voidIncreasePower(powerBoost);
 		}else if(this.aspect =="Time"){
-			this.lifeIncreasePower(powerBoost);
+			this.timeIncreasePower(powerBoost);
 		}else if(this.aspect =="Space"){
-			this.voidIncreasePower(powerBoost);
+			this.spaceIncreasePower(powerBoost);
 		}
 	}
 
