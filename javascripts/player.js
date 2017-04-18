@@ -12,6 +12,8 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	this.graphs = [];
 	this.minLuck = 0;
 	this.maxLuck = 0;
+	this.freeWill = 0;
+	this.mobility = 0;
 	this.trickster = false;
 	this.sbahj = false;
 	this.sickRhymes = []; //oh hell yes. Hell. FUCKING. Yes!
@@ -265,54 +267,60 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		return ret;
 	}
 
+	//luck is about sprinting towards good events, not avoiding bad ones. only modifies max luck.
 	this.lightInteractionEffect = function(player){
 		var amount = this.power/10;
 		if(this.class_name == "Thief"){ //takes for self
-			this.minLuck += amount
 			this.maxLuck += amount
-			player.minLuck += -1*amount
 			player.maxLuck += -1 * amount;
 		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
-			player.minLuck += -1*amount
 			player.maxLuck += -1 * amount;
 			for(var i = 0; i<this.session.players.length; i++){
 				var p = this.session.players[i];
-				p.minLuck += amount/this.session.players.length;
 				p.maxLuck += amount/this.session.players.length;
 			}
 		}else if(this.class_name == "Sylph"){ //heals others
-			player.minLuck += amount
 			player.maxLuck += amount;
 		}else if(this.class_name == "Bard"){ //destroys in others
-			player.minLuck += -1*amount
 			player.maxLuck += -1 * amount;
 		}
 
 	}
 
 	this.mindInteractionEffect = function(player){
-		var amount = -1*this.power/10;
+		var amount = this.power/10;
 		if(this.class_name == "Thief"){ //takes for self
-			this.minLuck += amount
-			this.maxLuck += amount
-			player.minLuck += -1*amount
-			player.maxLuck += -1 * amount;
+			this.freeWill += amount
+			player.freeWill += -1*amount
 		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
-			player.minLuck += -1*amount
-			player.maxLuck += -1 * amount;
+			player.freeWill += -1*amount
 			for(var i = 0; i<this.session.players.length; i++){
 				var p = this.session.players[i];
-				p.minLuck += amount/this.session.players.length;
-				p.maxLuck += amount/this.session.players.length;
+				p.freeWill += amount/this.session.players.length;
 			}
 		}else if(this.class_name == "Sylph"){ //heals others
-			player.minLuck += amount
-			player.maxLuck += amount;
+			player.freeWill += amount
 		}else if(this.class_name == "Bard"){ //destroys in others
-			player.minLuck += -1*amount
-			player.maxLuck += -1 * amount;
+			player.freeWill += -1*amount
 		}
-
+	}
+	
+	this.timeInteractionEffect = function(player){
+		var amount = -1 * this.power/10;
+		if(this.class_name == "Thief"){ //takes for self
+			this.freeWill += amount
+			player.freeWill += -1*amount
+		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
+			player.freeWill += -1*amount
+			for(var i = 0; i<this.session.players.length; i++){
+				var p = this.session.players[i];
+				p.freeWill += amount/this.session.players.length;
+			}
+		}else if(this.class_name == "Sylph"){ //heals others
+			player.freeWill += amount
+		}else if(this.class_name == "Bard"){ //destroys in others
+			player.freeWill += -1*amount
+		}
 	}
 
 	this.voidInteractionEffect = function(player){
@@ -356,16 +364,28 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		if(this.class_name == "Thief"){ //takes for self
 			this.triggerLevel += amount;
 			player.triggerLevel += -1 * amount
+			this.boostAllRelationshipsWithMeBy(amount);
+			this.boostAllRelationshipsBy(amount)
+			player.boostAllRelationshipsWithMeBy(-1*amount);
+			player.boostAllRelationshipsBy(-1* amount)
 		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
 			player.triggerLevel += -1*amount
+			player.boostAllRelationshipsWithMeBy(-1*amount);
+			player.boostAllRelationshipsBy(-1* amount)
 			for(var i = 0; i<this.session.players.length; i++){
 				var p = this.session.players[i];
 				p.triggerLevel += amount/this.session.players.length;
+				p.boostAllRelationshipsWithMeBy(amount);
+				p.boostAllRelationshipsBy(amount)
 			}
 		}else if(this.class_name == "Sylph"){ //heals others 'healing' rage would increase it.
 			player.triggerLevel += amount
+			player.boostAllRelationshipsWithMeBy(amount);
+			player.boostAllRelationshipsBy(amount)
 		}else if(this.class_name == "Bard"){ //destroys in others
 			player.triggerLevel += -1*amount
+			player.boostAllRelationshipsWithMeBy(-1*amount);
+			player.boostAllRelationshipsBy(-1* amount)
 		}
 	}
 
@@ -394,26 +414,45 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 
 	this.breathInteractionEffect = function(player){
-		var amount = -1*this.power/10;
+		var amount = this.power/10;
 		if(this.class_name == "Thief"){ //takes for self
-			this.boostAllRelationshipsWithMeBy(amount);
-			this.boostAllRelationshipsBy(amount);
-			player.boostAllRelationshipsWithMeBy(-1*amount);
-			player.boostAllRelationshipsBy(-1* amount)
+			this.mobility += amount
+			player.mobility += -1*amount
 		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
-			player.boostAllRelationshipsWithMeBy(-1* amount);
-			player.boostAllRelationshipsBy(-1*amount)
+			player.mobility += -1*amount
 			for(var i = 0; i<this.session.players.length; i++){
 				var p = this.session.players[i];
-				p.boostAllRelationshipsWithMeBy(amount/this.session.players.length);
-				p.boostAllRelationshipsBy(amount/this.session.players.length);
+				p.mobility += amount/this.session.players.length;
 			}
-		}else if(this.class_name == "Sylph"){ //heals others 'healing' rage would increase it.
-			player.boostAllRelationshipsWithMeBy(amount);
-			player.boostAllRelationshipsBy(amount);
+		}else if(this.class_name == "Sylph"){ //heals others
+			player.mobility += amount
 		}else if(this.class_name == "Bard"){ //destroys in others
-			player.boostAllRelationshipsWithMeBy(-1* amount);
-			player.boostAllRelationshipsBy(-1*amount)
+			player.mobility += -1*amount
+		}
+	}
+	
+	//space is sticky. stuck on your planet breeding frogs, stuck in brooding caverns.
+	/*'Calliope has also stated that Space is a typically passive aspect with great power, 
+	falling back and hosting the stage before 
+	suddenly in some way showing "who is truly the master" and then collapsing in on itself. '
+	Yeah, First Guardian Jade had teleport powers, but there was nothing to show that that was a NORMAL space ability.
+	She only glowed green doing that, not when altering sizes.
+	*/
+	this.spaceInteractionEffect = function(player){
+		var amount = -1* this.power/10;
+		if(this.class_name == "Thief"){ //takes for self
+			this.mobility += amount
+			player.mobility += -1*amount
+		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
+			player.mobility += -1*amount
+			for(var i = 0; i<this.session.players.length; i++){
+				var p = this.session.players[i];
+				p.mobility += amount/this.session.players.length;
+			}
+		}else if(this.class_name == "Sylph"){ //heals others
+			player.mobility += amount
+		}else if(this.class_name == "Bard"){ //destroys in others
+			player.mobility += -1*amount
 		}
 	}
 
@@ -434,22 +473,29 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			player.triggerLevel += -1*amount
 		}
 	}
-
+	
+	//doom is about bad ends. only modifies min luck. alkso modifies power directly
 	this.doomInteractionEffect = function(player){
-		var amount = -1* this.power/10;
+		var amount = -1* this.power/20; //20 cause amount over 2 stats.
 		if(this.class_name == "Thief"){ //takes for self
 			this.power += amount;
+			this.minLuck += amount
 			player.power += -1*amount
+			player.minLuck += -1*amount
 		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
 			player.power += -1*amount
+			player.minLuck += -1*amount
 			for(var i = 0; i<this.session.players.length; i++){
 				var p = this.session.players[i];
 				p.power += amount/this.session.players.length;
+				p.minLuck += amount/this.session.players.length;
 			}
 		}else if(this.class_name == "Sylph"){ //heals others
 			player.power += amount
+			player.minLuck += amount
 		}else if(this.class_name == "Bard"){ //destroys in others
 			player.power += -1*amount
+			player.minLuck += -1*amount
 		}
 	}
 
@@ -532,37 +578,53 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 	}
 
-	//good thing luck doesn't really matter.
-	//mind knows that sometimes things have to go wrong before they can go right
-	//only looks at worst outcomes.
 	this.mindIncreasePower = function(powerBoost){
-		var luckModifier = -1 * powerBoost;
+		var modifier = powerBoost;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
-			luckModifier = -1 *luckModifier;
+			modifier = -1 *modifier;
 		}
 
 		if(this.isActive()){ //modify me
-			this.minLuck += luckModifier;
+			this.freeWill += modifier;
 		}else{  //modify others.
 			for(var i = 0; i<this.session.players.length; i++){
 				var player = this.session.players[i];
-				player.minLuck += luckModifier;
+				player.freeWill += modifier;
+			}
+		}
+	}
+	
+	//time is about fate and inevitability, not decisions and free will.
+	this.timeIncreasePower = function(powerBoost){
+		var modifier = -1 * powerBoost;
+		if(this.class_name == "Prince" || this.class_name == "Bard"){
+			modifier = -1 *modifier;
+		}
+
+		if(this.isActive()){ //modify me
+			this.freeWill += modifier;
+		}else{  //modify others.
+			for(var i = 0; i<this.session.players.length; i++){
+				var player = this.session.players[i];
+				player.freeWill += modifier;
 			}
 		}
 	}
 
 	this.doomIncreasePower = function(powerBoost){
-		var power = -1 * powerBoost/10;
+		var power = -1 * powerBoost/20; //over 2 stats.
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			power = -1 *power;
 		}
 
 		if(this.isActive()){ //modify me
 			this.power += powerBoost;
+			this.minLuck += powerBoost;
 		}else{  //modify others.
 			for(var i = 0; i<this.session.players.length; i++){
 				var player = this.session.players[i];
 				player.power += power;
+				this.minLuck += powerBoost;
 			}
 		}
 	}
@@ -617,19 +679,23 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 	}
 
-	//john did flip his shit a lot about not being able to do what WV told him? just spitballing here.
 	this.rageIncreasePower = function(powerBoost){
 		var triggerModifier = powerBoost/10;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
-			relationshipModifier = -1 *triggerModifier;
+			triggerModifier = -1 *triggerModifier;
 		}
 
 		if(this.isActive()){ //modify me
 			this.triggerLevel += powerBoost;
+			this.boostAllRelationshipsWithMeBy(-1*triggerModifier);
+			this.boostAllRelationshipsBy(-1*triggerModifier);
+			
 		}else{  //modify others.
 			for(var i = 0; i<this.session.players.length; i++){
 				var player = this.session.players[i];
 				player.triggerLevel += triggerModifier;
+				player.boostAllRelationshipsWithMeBy(-1*triggerModifier);
+				player.boostAllRelationshipsBy(-1*triggerModifier);
 			}
 		}
 	}
@@ -654,19 +720,33 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 
 
 	this.breathIncreasePower = function(powerBoost){
-		var relationshipModifier = -1 * powerBoost/10;
+		var mobilityModifier = powerBoost/10;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
-			relationshipModifier = -1 *relationshipModifier;
+			mobilityModifier = -1 *mobilityModifier;
 		}
 
 		if(this.isActive()){ //modify me
-			this.boostAllRelationshipsWithMeBy(relationshipModifier);
-			this.boostAllRelationshipsBy(relationshipModifier);
+			this.mobility += mobilityModifier;
 		}else{  //modify others.
 			for(var i = 0; i<this.session.players.length; i++){
 				var player = this.session.players[i];
-				player.boostAllRelationshipsWithMeBy(relationshipModifier);
-				player.boostAllRelationshipsBy(relationshipModifier);
+				player.mobility += mobilityModifier;
+			}
+		}
+	}
+	
+	this.spaceIncreasePower = function(powerBoost){
+		var mobilityModifier = -1 * powerBoost/10;
+		if(this.class_name == "Prince" || this.class_name == "Bard"){
+			mobilityModifier = -1 *mobilityModifier;
+		}
+
+		if(this.isActive()){ //modify me
+			this.mobility += mobilityModifier;
+		}else{  //modify others.
+			for(var i = 0; i<this.session.players.length; i++){
+				var player = this.session.players[i];
+				player.mobility += mobilityModifier;
 			}
 		}
 	}
@@ -1073,6 +1153,30 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 		return ret;
 	}
+	
+	//players can start with any luck, (remember, Vriska started out super unlucky and only got AAAAAAAALL the luck when she hit godtier)
+	//make sure session calls this before first tick, cause otherwise won't be initialized by right claspect after easter egg or character creation.
+	this.initializeStats = function(){
+		
+		this.initializeLuck();
+		this.initializeFreeWill();
+		this.initializeLandLevel();
+		this.initializeMobility();
+		this.initializeRelationships();
+		this.initializePower();
+		//reroll goddestiny and sprite as well. luck might have changed.
+		var luck = this.rollForLuck();
+		if(c == "Witch" || luck < 10){
+			this.kernel_sprite = getRandomElementFromArray(disastor_prototypings);
+			//console.log("disastor")
+		}else if(luck > 65){
+			this.kernel_sprite = getRandomElementFromArray(fortune_prototypings);
+			//console.log("fortune")
+		}
+		if(luck>40){
+			this.godDestiny =true;
+		}
+	}
 
 
 }
@@ -1183,21 +1287,8 @@ function randomPlayerWithClaspect(session, c,a){
 
 	var m = getRandomElementFromArray(moons);
 	var p =  new Player(session,c,a,l,k,m,gd);
-	//players can start with any luck, (remember, Vriska started out super unlucky and only got AAAAAAAALL the luck when she hit godtier)
-	p.minLuck = getRandomInt(0,50)
-	p.maxLuck = p.minLuck + getRandomInt(0,50)
-
-	var luck = p.rollForLuck();
-	if(c == "Witch" || luck < 10){
-		p.kernel_sprite = getRandomElementFromArray(disastor_prototypings);
-		//console.log("disastor")
-	}else if(luck > 65){
-		p.kernel_sprite = getRandomElementFromArray(fortune_prototypings);
-		//console.log("fortune")
-	}
-	if(luck>40){
-		p.godDestiny =true;
-	}
+	
+	p.initializeStats();
 	//no longer any randomness directly in player class. don't want to eat seeds if i don't have to.
 	p.baby = getRandomInt(1,3)
 	p.interest1 = getRandomElementFromArray(interests);
