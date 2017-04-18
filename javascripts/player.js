@@ -1292,7 +1292,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		this.initializePower();
 		//reroll goddestiny and sprite as well. luck might have changed.
 		var luck = this.rollForLuck();
-		if(c == "Witch" || luck < 10){
+		if(this.class_name == "Witch" || luck < 10){
 			this.kernel_sprite = getRandomElementFromArray(disastor_prototypings);
 			//console.log("disastor")
 		}else if(luck > 65){
