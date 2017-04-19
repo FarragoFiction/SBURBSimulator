@@ -9,6 +9,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 	this.baby = null;
 	this.session = session;
+	this.hp = 0; //mostly used for boss battles;
 	this.graphs = [];
 	this.minLuck = 0;
 	this.maxLuck = 0;
@@ -323,39 +324,22 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 	}
 
-	this.voidInteractionEffect = function(player){
-		var amount = -1* this.power/10;
-		if(this.class_name == "Thief"){ //takes for self
-			this.landLevel += amount;
-			player.landLevel += -1*amount
-		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
-			player.landLevel += -1*amount
-			for(var i = 0; i<this.session.players.length; i++){
-				var p = this.session.players[i];
-				p.landLevel += amount/this.session.players.length;
-			}
-		}else if(this.class_name == "Sylph"){ //heals others
-			player.landLevel += amount
-		}else if(this.class_name == "Bard"){ //destroys in others
-			player.landLevel += -1*amount
-		}
-	}
 
 	this.lifeInteractionEffect = function(player){
 		var amount = this.power/10;
 		if(this.class_name == "Thief"){ //takes for self
-			this.landLevel += amount;
-			player.landLevel += -1*amount
+			this.hp += amount;
+			player.hp += -1*amount
 		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
-			player.landLevel += -1*amount
+			player.hp += -1*amount
 			for(var i = 0; i<this.session.players.length; i++){
 				var p = this.session.players[i];
-				p.landLevel += amount/this.session.players.length;
+				p.hp += amount/this.session.players.length;
 			}
 		}else if(this.class_name == "Sylph"){ //heals others
-			player.landLevel += amount
+			player.hp += amount
 		}else if(this.class_name == "Bard"){ //destroys in others
-			player.landLevel += -1*amount
+			player.hp += -1*amount
 		}
 	}
 
@@ -479,23 +463,23 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	this.doomInteractionEffect = function(player){
 		var amount = -1* this.power/20; //20 cause amount over 2 stats.
 		if(this.class_name == "Thief"){ //takes for self
-			this.power += amount;
+			this.hp += amount;
 			this.minLuck += amount
-			player.power += -1*amount
+			player.hp += -1*amount
 			player.minLuck += -1*amount
 		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
 			player.power += -1*amount
 			player.minLuck += -1*amount
 			for(var i = 0; i<this.session.players.length; i++){
 				var p = this.session.players[i];
-				p.power += amount/this.session.players.length;
+				p.hp += amount/this.session.players.length;
 				p.minLuck += amount/this.session.players.length;
 			}
 		}else if(this.class_name == "Sylph"){ //heals others
-			player.power += amount
+			player.hp += amount
 			player.minLuck += amount
 		}else if(this.class_name == "Bard"){ //destroys in others
-			player.power += -1*amount
+			player.hp += -1*amount
 			player.minLuck += -1*amount
 		}
 	}
@@ -516,6 +500,12 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}else if(this.class_name == "Bard"){ //destroys in others
 			player.power += -1*amount
 		}
+	}
+	
+	this.voidInteractionEffect = function(player){
+		//void does nothing innately, modifies things at random.
+		var statInteractions = [this.lightInteractionEffect.bind(this,player),this.mindInteractionEffect.bind(this,player),this.timeInteractionEffect.bind(this,player),this.lifeInteractionEffect.bind(this,player),this.rageInterctionEffect.bind(this,player),this.heartInteractionEffect.bind(this,player),this.breathInteractionEffect.bind(this,player),this.spaceInteractionEffect.bind(this,player),this.bloodInteractionEffect.bind(this,player),this.doomInteractionEffect.bind(this,player),this.hopeInteractionEffect.bind(this,player)];
+		getRandomElementFromArray(statInteractions)();
 	}
 
 
@@ -623,12 +613,12 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 
 		if(this.isActive()){ //modify me
-			this.power += power;
+			this.hp += power;
 			this.minLuck += power;
 		}else{  //modify others.
 			for(var i = 0; i<this.session.players.length; i++){
 				var player = this.session.players[i];
-				player.power += power;
+				player.hp += power;
 				this.minLuck += power;
 			}
 		}
@@ -641,30 +631,15 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 
 		if(this.isActive()){ //modify me
-			this.landLevel += landBoost;
+			this.hp += landBoost;
 		}else{  //modify others.
 			for(var i = 0; i<this.session.players.length; i++){
 				var player = this.session.players[i];
-				player.landLevel += landBoost;
+				player.hp += landBoost;
 			}
 		}
 	}
 
-	this.voidIncreasePower = function(powerBoost){
-		var landBoost = -1 * powerBoost/100;
-		if(this.class_name == "Prince" || this.class_name == "Bard"){
-			landBoost = -1 *landBoost;
-		}
-
-		if(this.isActive()){ //modify me
-			this.landLevel += landBoost;
-		}else{  //modify others.
-			for(var i = 0; i<this.session.players.length; i++){
-				var player = this.session.players[i];
-				player.landLevel += landBoost;
-			}
-		}
-	}
 
 	//wanted this to modify relationships, but figured i'd give that to heart
 	//blood keeps people from killing each other.
@@ -754,6 +729,13 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 				player.mobility += mobilityModifier;
 			}
 		}
+	}
+	
+	//need to bind funtions so they know what 'this' is.
+	this.voidIncreasePower = function(powerBoost){
+		//void does nothing innately. random stat modifications.
+		var statIncreases = [this.bloodIncreasePower.bind(this,powerBoost),this.rageIncreasePower.bind(this,powerBoost),this.heartIncreasePower.bind(this,powerBoost),this.breathIncreasePower.bind(this,powerBoost),this.spaceIncreasePower.bind(this,powerBoost),this.lifeIncreasePower.bind(this,powerBoost),this.doomIncreasePower.bind(this,powerBoost),this.timeIncreasePower.bind(this,powerBoost),this.mindIncreasePower.bind(this,powerBoost),this.lightIncreasePower.bind(this,powerBoost),this.hopeIncreasePower.bind(this,powerBoost)];
+		getRandomElementFromArray(statIncreases)();
 	}
 
 	//everything but space and time, they are exempt because EVER session has them.
@@ -1203,19 +1185,19 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 	}
 
-	this.initializeLandLevel = function(){
-		this.landLevel = 0;
+	this.initializeHP= function(){
+		this.hp = getRandomInt(50,100);
 		if(this.aspect == "Life"){
 			if(this.highInit()){
-				this.landLevel += 3;
+				this.landLevel += 50;
 			}else{
-				this.landLevel += -3;
+				this.hp += -50;
 			}
-		}else if(this.aspect == "Void"){
+		}else if(this.aspect == "Doom"){
 			if(this.highInit()){
-				this.landLevel += -3;
+				this.hp += -50;
 			}else{
-				this.landLevel += 3;
+				this.hp += 50;
 			}
 		}
 	}
@@ -1233,6 +1215,23 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 				this.mobility += -35;
 			}else{
 				this.mobility += 35;
+			}
+		}
+	}
+	
+	this.initializeTriggerLevel = function(){
+		this.triggerLevel = getRandomInt(0,2);
+		if(this.aspect == "Rage"){
+			if(this.highInit()){
+				this.triggerLevel += 2;
+			}else{
+				this.triggerLevel += -2;
+			}
+		}else if(this.aspect == "Blood"){
+			if(this.highInit()){
+				this.triggerLevel += -2;
+			}else{
+				this.triggerLevel += 2;
 			}
 		}
 	}
@@ -1267,16 +1266,65 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		this.power = 0;
 		if(this.aspect == "Hope"){
 			if(this.highInit()){
-				this.power += 15;
+				this.power += 15
 			}else{
 				this.power += -15;
-			}
-		}else if(this.aspect == "Doom"){
+			}			
+		}
+	}
+	
+	
+	
+	//void is associated with nothing, and thus can do/be anything.
+	this.initializeVoid = function(){
+		if(this.aspect == "Void"){
+			
+			var amount = 0;
 			if(this.highInit()){
-				this.power += -15;
+				amount += getRandomInt(1,35);
 			}else{
-				this.power += 15;
+				amount += -1 *getRandomInt(1,35);
 			}
+			var rand =getRandomInt(0,18); //one more than possibilities, can always start with NO boost.
+			if(rand == 0){
+				this.minLuck += amount;
+			}else if(rand == 1){
+				this.maxLuck += amount;
+			}else if(rand == 2){
+				this.freeWill += amount;
+			}else if(rand == 3){
+				this.hp += amount;
+			}else if(rand == 4){
+				this.mobility += amount;
+			}else if(rand == 5){
+				this.power += amount;
+			}else if(rand == 6){
+				this.boostAllRelationshipsWithMeBy(amount);
+			}else if(rand == 7){
+				this.boostAllRelationshipsBy(amount)
+			}else if(rand == 8){
+				this.triggerLevel += amount;
+			}else if(rand == 9){
+				this.minLuck += -1 * amount;
+			}else if(rand == 10){
+				this.maxLuck += -1 * amount;
+			}else if(rand == 11){
+				this.freeWill += -1 * amount;
+			}else if(rand == 12){
+				this.hp += -1 * amount;
+			}else if(rand == 13){
+				this.mobility += -1 * amount;
+			}else if(rand == 14){
+				this.power += -1 * amount;
+			}else if(rand == 15){
+				this.boostAllRelationshipsWithMeBy(-1 * amount);
+			}else if(rand == 16){
+				this.boostAllRelationshipsBy(-1 * amount)
+			}else if(rand == 17){
+				this.triggerLevel += -1 * amount;
+			}
+		}else{
+			
 		}
 	}
 
@@ -1286,10 +1334,12 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 
 		this.initializeLuck();
 		this.initializeFreeWill();
-		this.initializeLandLevel();
+		this.initializeHP();
 		this.initializeMobility();
 		this.initializeRelationships();
 		this.initializePower();
+		this.initializeVoid();
+		this.initializeTriggerLevel();
 		//reroll goddestiny and sprite as well. luck might have changed.
 		var luck = this.rollForLuck();
 		if(this.class_name == "Witch" || luck < 10){

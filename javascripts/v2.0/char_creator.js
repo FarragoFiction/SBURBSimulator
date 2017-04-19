@@ -233,6 +233,7 @@ function initGraphs(){
 		var enemyGraph = new Graph("worstEnemyLevel", player.title(),[], getColorFromAspect(player.aspect));
 		var freeWill = new Graph("freeWill", player.title(),[], getColorFromAspect(player.aspect));
 		var mobility = new Graph("mobility", player.title(),[], getColorFromAspect(player.aspect));
+		var hp = new Graph("hp", player.title(),[], getColorFromAspect(player.aspect));
 		player.graphs.push(powerGraph);
 		player.graphs.push(luckGraph1);
 		player.graphs.push(luckGraph2);
@@ -242,6 +243,7 @@ function initGraphs(){
 		player.graphs.push(friendGraph);
 		player.graphs.push(mobility);
 		player.graphs.push(freeWill);
+		player.graphs.push(hp);
 	}
 }
 
@@ -256,6 +258,7 @@ function renderGraphs(){
 	var enemyRenderer = new GraphRenderer("worstEnemyLevel",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "worstEnemyLevel"),1000,300);
 	var freeWill = new GraphRenderer("freeWill",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "freeWill"),1000,300);
 	var mobility = new GraphRenderer("mobility",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "mobility"),1000,300);
+	var hp = new GraphRenderer("hp",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "hp"),1000,300);
 	powerRenderer.render();
 	luckRenderer1.render();
 	luckRenderer2.render();
@@ -265,6 +268,7 @@ function renderGraphs(){
 	enemyRenderer.render();
 	freeWill.render();
 	mobility.render();
+	hp.render();
 }
 
 function updateGraphs(){
@@ -279,6 +283,7 @@ function updateGraphs(){
 		getGraphWithLabel(player.graphs, "worstEnemyLevel").points.push(player.getLowestRelationshipValue());
 		getGraphWithLabel(player.graphs, "freeWill").points.push(player.freeWill);
 		getGraphWithLabel(player.graphs, "mobility").points.push(player.mobility);
+		getGraphWithLabel(player.graphs, "hp").points.push(player.hp);
 		//console.log(player.mobility)
 	}
 }
