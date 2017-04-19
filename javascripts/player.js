@@ -1672,6 +1672,17 @@ function findBadPrototyping(playerList){
 	}
 }
 
+function findHighestMobilityPlayer(playerList){
+	var ret = playerList[0];
+	for(var i= 0; i<playerList.length; i++){
+		var p = playerList[i]
+		if(p.mobility < ret.mobility){
+			ret = p;
+		}
+	}
+	return ret;
+}
+
 function findGoodPrototyping(playerList){
 	for(var i= 0; i<playerList.length; i++){
 		var p = playerList[i].kernel_sprite;

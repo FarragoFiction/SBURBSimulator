@@ -20,9 +20,7 @@ function DoLandQuest(session){
 				if(p.land != null && p.landLevel < this.landLevelNeeded || p.aspect == "Space"){  //space player is the only one who can go over 100 (for better frog). can't do quests if land destroyed
 					var chance = Math.seededRandom();
 					var helper = this.lookForHelper(p);
-					if(helper && helper.mobility < chance * 100){ //need high mobility to move around
-						helper = null;
-					}
+
 					if(p.land == null){//seriously don't do land quests without a land
 						//console.log("not doing land quests because don't have a land")
 					}else{
@@ -58,7 +56,7 @@ function DoLandQuest(session){
 			var current_mvp =  findStrongestPlayer(this.session.players)
 			return this.session.addImportantEvent(new FrogBreedingNeedsHelp(this.session, current_mvp.power) );
 	}
-
+	//high mobility players chosen first as helpers. both a blessing and a curse.
 	this.lookForHelper = function(player,div){
 		var helper = null;
 
@@ -78,7 +76,7 @@ function DoLandQuest(session){
 
 		if(player.aspect == "Blood" || player.class_name == "Page"){ //they NEED help.
 			if(this.session.availablePlayers.length > 1){
-				helper = getRandomElementFromArray(this.session.availablePlayers);
+				helper = findHighestMobilityPlayer(this.session.availablePlayers);
 			}else{
 				this.player1 = null;
 				return null;
@@ -88,7 +86,7 @@ function DoLandQuest(session){
 
 		//if i'm not blood or page, or space, or maybe time random roll for a friend.
 		if(this.session.availablePlayers.length > 1 && Math.seededRandom() > .5){
-			helper = getRandomElementFromArray(this.session.availablePlayers);
+			helper = findHighestMobilityPlayer(this.session.availablePlayers);
 			if(player == helper ){
 				return null;
 			}

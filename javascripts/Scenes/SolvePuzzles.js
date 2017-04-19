@@ -13,7 +13,7 @@ function SolvePuzzles(session){
 		if(player.aspect == "Blood" || player.class_name == "Page"){
 			if(this.session.availablePlayers.length > 1){
 				this.player2 = getRandomElementFromArray(this.session.availablePlayers);
-				if(this.player2 && this.player2 == this.player1 && this.player2.aspect != "Time"){
+				if(this.player2 == this.player1 && this.player2.aspect != "Time"){
 					this.player1 = null;
 					this.player2 = null;
 					return null;
@@ -26,10 +26,9 @@ function SolvePuzzles(session){
 		}
 
 		//if i'm not blood or page, random roll for a friend.
-		var chance =  Math.seededRandom();
-		if(this.session.availablePlayers.length > 1 && chance > .5){
-			this.player2 = getRandomElementFromArray(this.session.availablePlayers);
-			if(this.player2 == this.player1 && this.player1.aspect != "Time" || this.player2.mobility < chance * 50){  //only time player can help themselves out.
+		if(this.session.availablePlayers.length > 1 && Math.seededRandom() > .5){
+			this.player2 = findHighestMobilityPlayer(this.session.availablePlayers);
+			if(this.player2 == this.player1 && this.player1.aspect != "Time"){  //only time player can help themselves out.
 				this.player2 == null
 			}
 		}
