@@ -656,3 +656,44 @@ TODO: (in order)
 * have a button that says "start session". when you press it, characters vanish, session starts.
 * have the ability to change class/aspect (through drop downs) for each player. confirm can still start session.
 * alert error if no space/time player on start. don't let it even start.
+
+
+
+What are some things that freeWill can do versus luck?
+
+Free Will:
+	* decide to get out of/ into murder mode.  (but not grimdark. if you're grimdark you don't CARE that things won't end well)
+	* god tier suicide.
+	* Call off the "exile jack" plan.
+	* Insist ectobiologist does his goddamend job. (raise their power to min requirement)
+	*insist space player does their god damned job. . (raise their power to min requirement)
+	
+Good Luck:  (different events have different odds. can have different flavor text, too.)
+	*die to trash mobs, but right next to your quest bed (only if god tier destiny)
+	*trip over a treasure chest full of sweet sweet grist (boost to land level)
+	* find a rare enemy that gives you a BUNCH of exp when you kill it.
+	* find out something that makes someone like you a lot more.
+	
+Bad Luck:  (different events have different odds. can have different flavor text, too.)
+	* die to trash mobs.
+	* get grist stolen from you by an enemy (lower land level)
+	* spend WAY too much time fighting an enemy, only to discover it doesn't drop any loot and you don't level up from beating it. 
+	* Accidentally say the wrong thing and someone likes you a lot less.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
