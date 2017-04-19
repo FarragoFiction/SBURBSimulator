@@ -941,7 +941,7 @@ light_quests.push("explaining how to play a mini game to particularly stupid con
 var void_quests = ["destroying and/or censoring embarassing consort records"];
 void_quests.push("definitely doing quests, just...not where we can see them");
 void_quests.push("playing a hilariously fun boxing minigame");
-var rage_quests = ["fighting hoards upon hoards of enemies in increasingly unfair odds until defeating them all in a beserk rage"];
+var rage_quests = ["fighting hoards upon hoards of enemies in increasingly unfair odds until defeating them all in a beserk rage"]; //You can't believe how easy it is. You just have to go... a little crazy. And then, suddenly, it all makes sense, and everything you do turns to gold.
 rage_quests.push("figuring out increasingly illogical puzzles until lateral thinking becomes second nature");
 rage_quests.push("dealing with the most annoying dungeon challenges ever, each more irritating and aneurysm inducing than the last");
 var hope_quests = ["performing bullshit acts of faith, like walking across invisible bridges"];

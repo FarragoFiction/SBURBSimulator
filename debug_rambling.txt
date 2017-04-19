@@ -671,12 +671,14 @@ Free Will:
 Good Luck:  (different events have different odds. can have different flavor text, too.)
 	*die to trash mobs, but right next to your quest bed (only if god tier destiny)
 	*trip over a treasure chest full of sweet sweet grist (boost to land level)
+	* accidentally solve a group of consorts problem before you were even aware of it. (boost to land level)
 	* find a rare enemy that gives you a BUNCH of exp when you kill it.
 	* find out something that makes someone like you a lot more.
 	
 Bad Luck:  (different events have different odds. can have different flavor text, too.)
 	* die to trash mobs.
 	* get grist stolen from you by an enemy (lower land level)
+	*accidentally ruin a quest line entirely (lose land level)
 	* spend WAY too much time fighting an enemy, only to discover it doesn't drop any loot and you don't level up from beating it. 
 	* Accidentally say the wrong thing and someone likes you a lot less.
 
