@@ -853,7 +853,7 @@ prototypings = prototypings.concat(["Stoner","Student","Librarian","Teacher","Jo
 prototypings = prototypings.concat(["Robot","Game Bro","Game Grl","Movie Star","Internet Troll"]);
 
 
-var disastor_prototypings = ["First Guardian", "Horrorterror", "Dragon", "Alien", "Teacher", "Clown","Fiduspawn","Doll","Xenomorph"];
+var disastor_prototypings = ["First Guardian", "Horrorterror", "Dragon", "Alien", "Teacher", "Clown","Fiduspawn","Doll","Xenomorph","Deadpool"];
 disastor_prototypings = disastor_prototypings.concat(["Zombie","Demon","Monster","Vampire","Pumpkin","Werewolf","Puppet"]);
 var fortune_prototypings = ["Frog","Lizard", "Salamander", "Iguana", "Crocodile", "Turtle", "Snake","Axolotl","Newt"];
 
@@ -861,7 +861,7 @@ var fortune_prototypings = ["Frog","Lizard", "Salamander", "Iguana", "Crocodile"
 //helpfulness is in regards to landquests. '
 //helpful prototypings are generally non-authority figure humans, besides things like rappers and poets who embrace riddle-fuckery.
 //once i enable self-prototyping, add your name to the helful prototyping array.
-var helpful_prototypings = ["Robot","Game Bro","Horrorterror","Game Grl","Nick Cage","Lawyer","Doctor","Engineer","Construction Worker","Student","Librarian","Jockey","Butler","Astronaut", "Cowboy"];
+var helpful_prototypings = ["Robot",,"Deadpool","Game Bro","Horrorterror","Game Grl","Nick Cage","Lawyer","Doctor","Engineer","Construction Worker","Student","Librarian","Jockey","Butler","Astronaut", "Cowboy"];
 var unhelpful_prototypings = ["First Guardian", "Teacher", "Clown","Pomeranian","Pony","Horse","Doll","Internet Troll","Mosquito","Fly","Gobblefiend"];
 var player_prototypings = []; //empty unless a player prototypes themselves.
 
