@@ -6,6 +6,7 @@ function LuckStuff(session){
 	//luck can be good or it can be bad.
 	this.minLowValue = 40;
 	this.minHighValue = 60;
+	this.landLevelNeeded = 12;
 
 	this.trigger = function(playerList){
 		this.rolls = [];//reset
@@ -24,18 +25,24 @@ function LuckStuff(session){
 	}
 	
 	this.roll60 = function(roll){
+		console.log("roll60 in " + this.session.session_id)
+		if(roll.player.aspect != "Space" && roll.player.landLevel >= this.landLevelNeeded){  //not lucky to get land level when you don't need it.
+			return this.roll65(roll);
+		}
 		var ret = "The " + roll.player.htmlTitleBasic() + " was just wandering around on " + roll.player.shortLand()+ " when they suddenly tripped over a huge treasure chest! When opened, it revealed a modest hoarde of grist. It will be easier to complete their land quests now.";
 		roll.player.landLevel ++;
 		return ret;
 	}
 	
 	this.roll65 = function(roll){
+		console.log("roll65 in " + this.session.session_id)
 		var ret = "The " + roll.player.htmlTitleBasic() + " was just wandering around on " + roll.player.shortLand() + " when they suddenly tripped over a huge treasure chest! When opened, it revealed a modest cache of boonbucks. They will finally be able to afford that framotiff they have had their eye on!";
 		roll.player.increasePower();
 		return ret;
 	}
 	
 	this.roll70 = function(roll){
+		console.log("roll70 in " + this.session.session_id)
 		var friend = randomElementFromArray(roll.player.getFriendsFromList());
 		if(!friend){
 			return this.roll65(roll); //backup result.
@@ -46,6 +53,10 @@ function LuckStuff(session){
 	}
 	
 	this.roll80 = function(roll){
+		console.log("roll80 in " + this.session.session_id)
+		if(roll.player.aspect != "Space" && roll.player.landLevel >= this.landLevelNeeded){  //not lucky to get land level when you don't need it.
+			return this.roll85(roll);
+		}
 		var ret = "The " + roll.player.htmlTitleBasic() + " tripped right through a glitched section of wall, only to find a single imp. 'Shh.' the imp says, handing over a frankly obscene bucket of grist, 'It's a secret to everybody.' The " + roll.player.htmlTitleBasic() + " agrees that it would be ideal if it was a secret even to themselves, and prays for amnesia.  Like hell are they gonna leave behind the grist, though. Land quests don't solve themselves. " ;
 		roll.player.landLevel ++;
 		roll.player.landLevel ++;
@@ -53,21 +64,31 @@ function LuckStuff(session){
 	}
 	
 	this.roll85 = function(roll){
-		var ret = "The " + roll.player.htmlTitleBasic() + " was just wandering around on " + roll.player.shortLand() + " when they suddenly tripped over a huge treasure chest! When opened, it revealed a HUGE cache of boonbucks. They will finally be able to afford that epic framotiff they have had their eye on!";
+		console.log("roll85 in " + this.session.session_id)
+		var ret = "The " + roll.player.htmlTitleBasic() + " was just wandering around on " + roll.player.shortLand() + " they see a GOLD IMP. Those things are worth a ton of experience points, if you can manage to even damage them. Holy shit, did the " + roll.player.htmlTtielBasic() + " just ONE SHOT them!? ";
 		roll.player.increasePower();
 		roll.player.increasePower();
+		this.leader.leveledTheHellUp = true;
+		this.leader.level_index +=2;
 		return ret;
 	}
 	
 	this.roll90 = function(roll){
-		var ret = "Holy shit, the " + roll.player.htmlTitleBasic() + " just found a METAL IMP. Those things are worth a LOT of experience points! And they totally one-shot killed it! Score! Talk about luuuuuuuucky!" ;
+		console.log("roll90 in " + this.session.session_id)
+		var ret = "Holy shit, the " + roll.player.htmlTitleBasic() + " just found a METAL PUMPKIN. Those things are worth a LOT of experience points! And they totally managed to explode it before it never existed in the first place! Score! Talk about luuuuuuuucky!" ;
 		roll.player.increasePower();
 		roll.player.increasePower();
 		roll.player.increasePower();
+		this.leader.leveledTheHellUp = true;
+		this.leader.level_index +=3;
 		return ret;
 	}
 	
 	this.roll95 = function(roll){
+		console.log("roll95 in " + this.session.session_id)
+		if(roll.player.aspect != "Space" && roll.player.landLevel >= this.landLevelNeeded){  //not lucky to get land level when you don't need it.
+			return this.roll90(roll);
+		}
 		var ret = "Through a frankly preposterous level of Scooby-Doo shenanigans, the  " + roll.player.htmlTitleBasic() + " trips into a wall, which depresses a panel, which launches a catapult, which throws impudent fruit at a nearby Ogre, which wakes him up, which makes him wander away, which frees the local consorts from his tyranny, who then celebrate an end to their famine by eating the fruit.  All of which causes, like, a third of the main quest of "  + roll.player.shortLand() + " to be completed. ";
 		if(roll.player.aspect == "Space"){
 			ret += "Wait. What the HELL!? Is that last Frog!? Just sitting there? Right in front of the " + roll.player.htmlTitleBasic() + "No time shenanigans or prophecies or god damned Choices!? It's just...there. Well. Damn. That'll make the frog breeding WAY easier.";
@@ -75,7 +96,25 @@ function LuckStuff(session){
 		roll.player.landLevel ++;
 		roll.player.landLevel ++;
 		roll.player.landLevel ++;
+		
 		return ret;
+	}
+	
+	this.roll100 = function(roll){
+		console.log("roll100 in " + this.session.session_id);
+		if(roll.player.godDestiny && !roll.player.godTier){
+			var ret = "What the HELL!? The " + roll.player.htmlTitleBasic() + " managed to somehow lose to REGULAR FUCKING ENEMIES!? Is that even POSSIBLE!? This is BULLSHIT. Wait. What's going on? How did they end up on their " ;
+			if(roll.player.dreamSelf){
+				ret += "QUEST BED!? Their body glows, and rises Skaiaward. "+"On " + p.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
+			}else{
+				ret += "SACRIFICIAL SLAB!? They glow and ascend to the God Tiers with a sweet new outfit."
+			}		
+			
+			return ret;
+		}else{
+			return this.roll90(roll);
+		}
+		
 	}
 	
 	
@@ -84,13 +123,13 @@ function LuckStuff(session){
 		if(roll.value >= 60 && roll.value < 65){
 			return this.roll60(roll);
 		}else if(roll.value >= 65 && roll.value < 70){
-			return this.roll60(roll);
+			return this.roll65(roll);
 		}else if(roll.value >= 70 && roll.value < 80){
-			return this.roll60(roll);
+			return this.roll70(roll);
 		}else if(roll.value >= 80 && roll.value < 85){
-			return this.roll60(roll);
+			return this.roll80(roll);
 		}else if(roll.value >= 85 && roll.value < 90){
-			return this.roll60(roll);
+			return this.roll85(roll);
 		}
 
 
