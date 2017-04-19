@@ -5,7 +5,7 @@ function GiveJackBullshitWeapon(session){
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return (this.session.jackStrength < this.session.queenStrength*2) && (this.session.jackStrength > 0 && partyRollForLuck(this.session.players) < 25 );
+		return (this.session.jackStrength < this.session.queenStrength*2) && (this.session.jackStrength > 0 && partyRollForLuck(this.session.players) < 15 );
 	}
 
 	this.content = function(){
