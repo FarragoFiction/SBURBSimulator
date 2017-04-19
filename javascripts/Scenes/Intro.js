@@ -20,6 +20,9 @@ function Intro(session){
 			drawTimeGears(canvas, timePlayer);
 			drawSinglePlayer(canvas, timePlayer);
 			var ret = "A " + timePlayer.htmlTitleBasic() + " suddenly warps in from the future. ";
+			if(timePlayer.dead){
+				ret += "It's a little alarming how much they are bleeding. "
+			}
 			ret += " They come with a dire warning of a doomed timeline. ";
 			ret += "They dropkick the " + this.player.kernel_sprite + " out of the way and jump into the " + this.player.htmlTitleBasic() + "'s kernel sprite instead. <br> "
 			this.player.kernel_sprite = timePlayer.title();
