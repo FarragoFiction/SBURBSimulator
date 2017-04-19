@@ -10,7 +10,7 @@ function GraphRenderer(label, graphs, width, height){
 		this.minY = 0;
 		this.maxY = 0;
 		//todo, have ticking function create power and light graphs. have graph rendered at stop.
-		
+
 		this.calculateMinY = function(){
 			for(var i = 0; i<this.graphs.length; i++){
 				this.minY = Math.min(this.minY, this.graphs[i].getMinPointValue());
@@ -19,19 +19,19 @@ function GraphRenderer(label, graphs, width, height){
 				this.graphs[i].minY = this.minY;
 			}
 		}
-		
+
 		this.calculateMaxY = function(){
 			for(var i = 0; i<this.graphs.length; i++){
 				this.maxY = Math.max(this.maxY, this.graphs[i].getMaxPointValue());
 			}
-			
+
 			for(var i = 0; i<this.graphs.length; i++){
 				this.graphs[i].maxY = this.maxY;
 				this.graphs[i].width = this.width;
 				this.graphs[i].height = this.height;
 			}
 		}
-		
+
 		this.render = function(){
 			if(this.minY == this.maxY){
 				console.log("calculateing min and max y for: " + this.label)
@@ -44,21 +44,21 @@ function GraphRenderer(label, graphs, width, height){
 			}else{
 				this.clearSVG();
 			}
-			
+
 			this.drawXAxis();
 			this.drawYAxis();
 			for(var i = 0; i<this.graphs.length; i++){
 				this.graphs[i].render(this.svg);
 			}
 		}
-		
-		
+
+
 		this.drawXAxis = function(){
-			console.log("drawing x axis for: " + this.label + " this.minY is: " + this.minY)
+			//console.log("drawing x axis for: " + this.label + " this.minY is: " + this.minY)
 			var min = -1;
 			var max =1;
 			var headerthingy = 'http://www.w3.org/2000/svg'
-			var aLine = document.createElementNS(headerthingy, 'line');		
+			var aLine = document.createElementNS(headerthingy, 'line');
 			var x1 = bobsMagic(0,this.graphs[0].points.length, 0,0, this.width)
 			var x2 = bobsMagic(0,this.graphs[0].points.length, this.graphs[0].points.length, 0, this.width)
 			var y1 = bobsMagic(this.minY,this.maxY, 0,this.height, 0)  //y is inverted. bluh.
@@ -71,25 +71,25 @@ function GraphRenderer(label, graphs, width, height){
 			aLine.setAttribute('stroke', '#0000ff');
 			aLine.setAttribute('stroke-width', 2);
 			this.svg.appendChild(aLine);
-			
+
 			var font = 18;
 			var newText = document.createElementNS(headerthingy,"text");
-			newText.setAttributeNS(null,"x", x2-font*2);     
-			newText.setAttributeNS(null,"y", y2+font); 
+			newText.setAttributeNS(null,"x", x2-font*2);
+			newText.setAttributeNS(null,"y", y2+font);
 			newText.setAttributeNS(null,"font-size",font);
 			var textNode = document.createTextNode(max + " tick");
 			newText.appendChild(textNode);
 			this.svg.appendChild(newText);
-			
+
 			newText = document.createElementNS(headerthingy,"text");
-			newText.setAttributeNS(null,"x", x1-font);     
-			newText.setAttributeNS(null,"y", y1+font); 
+			newText.setAttributeNS(null,"x", x1-font);
+			newText.setAttributeNS(null,"y", y1+font);
 			newText.setAttributeNS(null,"font-size",font);
 			var textNode = document.createTextNode(min + " tick");
 			newText.appendChild(textNode);
 			this.svg.appendChild(newText);
 	}
-	
+
 	this.drawYAxis=function(){
 		var min = this.minY;
 		var max = this.maxY;
@@ -106,25 +106,25 @@ function GraphRenderer(label, graphs, width, height){
 		aLine.setAttribute('stroke', '#ff0000');
 		aLine.setAttribute('stroke-width', 2);
 		this.svg.appendChild(aLine);
-		
+
 		var font = 18;
 		var newText = document.createElementNS(headerthingy,"text");
-		newText.setAttributeNS(null,"x", x1+font);     
-		newText.setAttributeNS(null,"y", y2+font); 
+		newText.setAttributeNS(null,"x", x1+font);
+		newText.setAttributeNS(null,"y", y2+font);
 		newText.setAttributeNS(null,"font-size",font);
 		var textNode = document.createTextNode(max + " " +label);
 		newText.appendChild(textNode);
 		this.svg.appendChild(newText);
-		
+
 		newText = document.createElementNS(headerthingy,"text");
-		newText.setAttributeNS(null,"x", x1+font);     
-		newText.setAttributeNS(null,"y", y1-font/2); 
+		newText.setAttributeNS(null,"x", x1+font);
+		newText.setAttributeNS(null,"y", y1-font/2);
 		newText.setAttributeNS(null,"font-size",font);
 		var textNode = document.createTextNode(min + " " +label);
 		newText.appendChild(textNode);
 		this.svg.appendChild(newText);
 	}
-	
+
 	this.clearSVG = function(){
 	    while (this.svg.children.length>1) {
 	        this.svg.removeChild(svg.children[1])
@@ -143,21 +143,21 @@ function Graph(label, owner_title, points,color){
 	this.minY = 0;
 	this.maxY = 0;
 	this.color = color;
-	
+
 	this.getMaxPointValue = function(){
 		return this.points.reduce(function(a, b) {
 			return Math.max(a, b);
 		});
 	}
-	
+
 	this.getMinPointValue = function(){
 		return this.points.reduce(function(a, b) {
 			return Math.min(a, b);
 		});
 	}
-		
+
 	this.render = function(svg){
-		
+
 		var first_point = this.points[0];
 		for(var i = 1; i<this.points.length; i++ ){
 			var second_point = this.points[i];
@@ -173,7 +173,7 @@ function Graph(label, owner_title, points,color){
 			first_point = this.points[i];
 		}
 	}
-	
+
 	this.renderLine = function(svg, x1,y1,x2,y2){
 		var aLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
 		aLine.setAttribute('x1', x1);
@@ -184,7 +184,7 @@ function Graph(label, owner_title, points,color){
 		aLine.setAttribute('stroke-width', 2);
 		svg.appendChild(aLine);
 	}
-	
+
 	this.renderPoint = function(svg,x,y,value){
 		var shape = document.createElementNS('http://www.w3.org/2000/svg', "circle");
 		shape.setAttributeNS(null, "cx", x);
@@ -195,20 +195,20 @@ function Graph(label, owner_title, points,color){
 		var mousetext = null;
 		shape.onmouseover = function(e){
 			mousetext = document.createElementNS('http://www.w3.org/2000/svg',"text");
-			mousetext.setAttributeNS(null,"x", x);     
-			mousetext.setAttributeNS(null,"y", y+12); 
+			mousetext.setAttributeNS(null,"x", x);
+			mousetext.setAttributeNS(null,"y", y+12);
 			mousetext.setAttributeNS(null,"font-size",12);
 			var textNode = document.createTextNode(that.owner_title + ": " + value);
 			mousetext.appendChild(textNode);
 			svg.append(mousetext);
 		};
-		
+
 		shape.onmouseout = function(e){
 			svg.removeChild(mousetext);
 		}
 		svg.appendChild( shape );
-		
-		
+
+
 	}
 }
 

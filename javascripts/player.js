@@ -304,7 +304,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			player.freeWill += -1*amount
 		}
 	}
-	
+
 	this.timeInteractionEffect = function(player){
 		var amount = -1 * this.power/10;
 		if(this.class_name == "Thief"){ //takes for self
@@ -424,10 +424,10 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			player.mobility += -1*amount
 		}
 	}
-	
+
 	//space is sticky. stuck on your planet breeding frogs, stuck in brooding caverns.
-	/*'Calliope has also stated that Space is a typically passive aspect with great power, 
-	falling back and hosting the stage before 
+	/*'Calliope has also stated that Space is a typically passive aspect with great power,
+	falling back and hosting the stage before
 	suddenly in some way showing "who is truly the master" and then collapsing in on itself. '
 	Yeah, First Guardian Jade had teleport powers, but there was nothing to show that that was a NORMAL space ability.
 	She only glowed green doing that, not when altering sizes.
@@ -474,7 +474,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			player.boostAllRelationshipsWithMeBy(amount);
 		}
 	}
-	
+
 	//doom is about bad ends. only modifies min luck. alkso modifies power directly
 	this.doomInteractionEffect = function(player){
 		var amount = -1* this.power/20; //20 cause amount over 2 stats.
@@ -598,7 +598,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			}
 		}
 	}
-	
+
 	//time is about fate and inevitability, not decisions and free will.
 	this.timeIncreasePower = function(powerBoost){
 		var modifier = -1 * powerBoost;
@@ -623,19 +623,19 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 
 		if(this.isActive()){ //modify me
-			this.power += powerBoost;
-			this.minLuck += powerBoost;
+			this.power += power;
+			this.minLuck += power;
 		}else{  //modify others.
 			for(var i = 0; i<this.session.players.length; i++){
 				var player = this.session.players[i];
 				player.power += power;
-				this.minLuck += powerBoost;
+				this.minLuck += power;
 			}
 		}
 	}
 
 	this.lifeIncreasePower = function(powerBoost){
-		var landBoost = powerBoost/10;
+		var landBoost = powerBoost/100;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			landBoost = -1 *landBoost;
 		}
@@ -651,7 +651,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 
 	this.voidIncreasePower = function(powerBoost){
-		var landBoost = -1 * powerBoost/10;
+		var landBoost = -1 * powerBoost/100;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			landBoost = -1 *landBoost;
 		}
@@ -696,7 +696,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			this.triggerLevel += powerBoost;
 			this.boostAllRelationshipsWithMeBy(-1*triggerModifier);
 			this.boostAllRelationshipsBy(-1*triggerModifier);
-			
+
 		}else{  //modify others.
 			for(var i = 0; i<this.session.players.length; i++){
 				var player = this.session.players[i];
@@ -725,7 +725,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 
 
 	this.breathIncreasePower = function(powerBoost){
-		var mobilityModifier = powerBoost/10;
+		var mobilityModifier = powerBoost;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			mobilityModifier = -1 *mobilityModifier;
 		}
@@ -739,9 +739,9 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			}
 		}
 	}
-	
+
 	this.spaceIncreasePower = function(powerBoost){
-		var mobilityModifier = -1 * powerBoost/10;
+		var mobilityModifier = -1 * powerBoost;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			mobilityModifier = -1 *mobilityModifier;
 		}
@@ -1162,11 +1162,11 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		}
 		return ret;
 	}
-	
+
 	this.highInit = function(){
 		return (this.class_name == "Rogue" || this.class_name == "Knight" || this.class_name == "Maid"|| this.class_name == "Mage"|| this.class_name == "Sylph"|| this.class_name == "Prince")
 	}
-	
+
 	this.initializeLuck = function(){
 		this.minLuck = getRandomInt(0,35);
 		this.maxLuck = this.minLuck + getRandomInt(0,35); //max of 75
@@ -1183,9 +1183,9 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 				this.minLuck += 35;
 			}
 		}
-		
+
 	}
-	
+
 	this.initializeFreeWill = function(){
 		this.freeWill = getRandomInt(0,75);
 		if(this.aspect == "Mind"){
@@ -1202,7 +1202,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			}
 		}
 	}
-	
+
 	this.initializeLandLevel = function(){
 		this.landLevel = 0;
 		if(this.aspect == "Life"){
@@ -1219,7 +1219,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			}
 		}
 	}
-	
+
 	this.initializeMobility = function(){
 		this.mobility = getRandomInt(0,75);
 		if(this.aspect == "Breath"){
@@ -1236,7 +1236,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			}
 		}
 	}
-	
+
 	//don't recalculate values, but can boost postivily or negatively by an amount. sure.
 	this.initializeRelationships = function(){
 		var amount = 5;
@@ -1262,7 +1262,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			}
 		}
 	}
-	
+
 	this.initializePower = function(){
 		this.power = 0;
 		if(this.aspect == "Hope"){
@@ -1279,11 +1279,11 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			}
 		}
 	}
-	
+
 	//players can start with any luck, (remember, Vriska started out super unlucky and only got AAAAAAAALL the luck when she hit godtier)
 	//make sure session calls this before first tick, cause otherwise won't be initialized by right claspect after easter egg or character creation.
 	this.initializeStats = function(){
-		
+
 		this.initializeLuck();
 		this.initializeFreeWill();
 		this.initializeLandLevel();
@@ -1419,7 +1419,7 @@ function randomPlayerWithClaspect(session, c,a){
 
 	var m = getRandomElementFromArray(moons);
 	var p =  new Player(session,c,a,l,k,m,gd);
-	
+
 	p.initializeStats();
 	//no longer any randomness directly in player class. don't want to eat seeds if i don't have to.
 	p.baby = getRandomInt(1,3)

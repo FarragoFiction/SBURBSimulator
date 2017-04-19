@@ -271,7 +271,7 @@ function updateGraphs(){
 	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
 		var player = curSessionGlobalVar.players[i];
 		getGraphWithLabel(player.graphs, "power").points.push(player.power);
-		getGraphWithLabel(player.graphs, "minLuck").points.push(player.minLuck); 
+		getGraphWithLabel(player.graphs, "minLuck").points.push(player.minLuck);
 		getGraphWithLabel(player.graphs, "maxLuck").points.push(player.maxLuck);
 		getGraphWithLabel(player.graphs, "triggerLevel").points.push(player.triggerLevel);
 		getGraphWithLabel(player.graphs, "landLevel").points.push(player.landLevel);
@@ -279,7 +279,7 @@ function updateGraphs(){
 		getGraphWithLabel(player.graphs, "worstEnemyLevel").points.push(player.getLowestRelationshipValue());
 		getGraphWithLabel(player.graphs, "freeWill").points.push(player.freeWill);
 		getGraphWithLabel(player.graphs, "mobility").points.push(player.mobility);
-		console.log(player.mobility)
+		//console.log(player.mobility)
 	}
 }
 
