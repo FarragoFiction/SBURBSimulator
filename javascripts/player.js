@@ -700,7 +700,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 
 
 	this.breathIncreasePower = function(powerBoost){
-		var mobilityModifier = powerBoost;
+		var mobilityModifier = powerBoost*3;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			mobilityModifier = -1 *mobilityModifier;
 		}
@@ -716,7 +716,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 
 	this.spaceIncreasePower = function(powerBoost){
-		var mobilityModifier = -1 * powerBoost;
+		var mobilityModifier = -1 * powerBoost*3;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			mobilityModifier = -1 *mobilityModifier;
 		}
