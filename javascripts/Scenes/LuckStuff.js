@@ -60,7 +60,7 @@ function LuckStuff(session){
 		return ret;
 	}
 	
-	this.roll30(){
+	this.roll30 = function(roll){
 		console.log("roll30 in " + this.session.session_id)
 		var friend = randomElementFromArray(roll.player.getFriendsFromList());
 		if(!friend){
@@ -157,13 +157,14 @@ function LuckStuff(session){
 	this.roll0 = function(roll){
 		console.log("roll0 in " + this.session.session_id);
 		var ret = "What the HELL!? The " + roll.player.htmlTitleBasic() + " managed to somehow lose to REGULAR FUCKING ENEMIES!? Is that even POSSIBLE!? This is BULLSHIT. How unlucky do you even need to BE!?"
-		return ret;
 		player.dead = true;
+		return ret;
+		
 	}
 	
 	
 	
-	this.processRoll(roll){
+	this.processRoll = function(roll){
 		if(roll.value >= 60 && roll.value < 65){
 			return this.roll60(roll);
 		}else if(roll.value >= 65 && roll.value < 70){
