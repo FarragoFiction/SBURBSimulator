@@ -21,6 +21,8 @@ function Session(session_id){
 	this.reckoningStarted = false;
 	this.aliensClonedOnArrival = []; //if i'm gonna do time shenanigans, i need to know what the aliens were like when they got here.
 	this.murdersHappened = false;
+	this.goodLuckEvent = false;
+	this.badLuckEvent = false;
 	this.ectoBiologyStarted = false;
 	this.doomedTimeline = false;
 	this.makeCombinedSession = false; //happens if sick frog and few living players

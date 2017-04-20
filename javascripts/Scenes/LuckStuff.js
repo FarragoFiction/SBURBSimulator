@@ -32,6 +32,7 @@ function LuckStuff(session){
 		}
 		var ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + roll.player.shortLand()+ " when they suddenly tripped over a huge treasure chest! When opened, it revealed a modest hoarde of grist. It will be easier to complete their land quests now.";
 		roll.player.landLevel ++;
+		this.session.goodLuckEvent = true;
 		return ret;
 	}
 	
@@ -39,6 +40,7 @@ function LuckStuff(session){
 		console.log("roll65 in " + this.session.session_id)
 		var ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + roll.player.shortLand() + " when they suddenly tripped over a huge treasure chest! When opened, it revealed a modest cache of boonbucks. They will finally be able to afford that framotiff they have had their eye on!";
 		roll.player.increasePower();
+		this.session.goodLuckEvent = true;
 		return ret;
 	}
 	//decreasing power is not a thing. so only land level?
@@ -46,6 +48,7 @@ function LuckStuff(session){
 		console.log("roll40 in " + this.session.session_id)
 		var ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + roll.player.shortLand()+ " when they suddenly tripped over a huge bee hive. The angry bees immediately ravage the country side, pestering local consorts.";
 		roll.player.landLevel += -1
+		this.session.badLuckEvent = true;
 		return ret;
 	}
 	
@@ -60,6 +63,7 @@ function LuckStuff(session){
 		friend.getRelationshipWith(roll.player).increase();
 		friend.getRelationshipWith(roll.player).increase();
 		friend.getRelationshipWith(roll.player).increase();
+		this.session.goodLuckEvent = true;
 		return ret;
 	}
 	
@@ -73,6 +77,7 @@ function LuckStuff(session){
 		friend.getRelationshipWith(roll.player).decrease();
 		friend.getRelationshipWith(roll.player).decrease();
 		friend.getRelationshipWith(roll.player).decrease();
+		this.session.badLuckEvent = true;
 		return ret;
 	}
 	
@@ -84,6 +89,7 @@ function LuckStuff(session){
 		var ret = "The " + roll.player.htmlTitle() + " tripped right through a glitched section of wall, only to find a single imp. 'Shh.' the imp says, handing over a frankly obscene bucket of grist, 'It's a secret to everybody.' The " + roll.player.htmlTitle() + " agrees that it would be ideal if it was a secret even to themselves, and prays for amnesia.  Like hell are they gonna leave behind the grist, though. Land quests don't solve themselves. " ;
 		roll.player.landLevel ++;
 		roll.player.landLevel ++;
+		this.session.goodLuckEvent = true;
 		return ret;
 	}
 	
@@ -94,6 +100,7 @@ function LuckStuff(session){
 		roll.player.increasePower();
 		roll.player.leveledTheHellUp = true;
 		roll.player.level_index +=2;
+		this.session.goodLuckEvent = true;
 		return ret;
 	}
 	
@@ -102,6 +109,7 @@ function LuckStuff(session){
 
 		var ret = "The " + roll.player.htmlTitle() + " tripped right through a glitched section of wall, only to find a single consort. 'Shh.' the imp says, handing over a frankly obscene bucket of...something, 'It's a secret to everybody.' The " + roll.player.htmlTitleBasic() + " agrees that it would be ideal if it was a secret even to themselves, and prays for amnesia.  They can't quite bring themselves to go near their consorts for a little while aftewards. " ;
 		roll.player.landLevel += -2
+		this.session.badLuckEvent = true;
 		return ret;
 	}
 	
@@ -113,6 +121,7 @@ function LuckStuff(session){
 		roll.player.increasePower();
 		roll.player.leveledTheHellUp = true;
 		roll.player.level_index +=3;
+		this.session.goodLuckEvent = true;
 		return ret;
 	}
 	
@@ -128,6 +137,7 @@ function LuckStuff(session){
 		roll.player.landLevel ++;
 		roll.player.landLevel ++;
 		roll.player.landLevel ++;
+		this.session.goodLuckEvent = true;
 		
 		return ret;
 	}
@@ -135,7 +145,8 @@ function LuckStuff(session){
 	this.roll10 = function(roll){
 		console.log("roll10 in " + this.session.session_id)
 		var ret = "Through a frankly preposterous level of Scooby-Doo shenanigans, the  " + roll.player.htmlTitle() + " trips into a wall, which depresses a panel, which launches a flaming rock via catapult, which crashes into a local consort village. Which immediately catches on fire, which makes them be refugees, which makes them immegrate to a new area, which disrupts the stability of the entire goddamned planet.  All of which causes, like, a third of the main quest of "  + roll.player.shortLand() + " to be fucked up. ";
-		roll.player.landLevel += -4;		
+		roll.player.landLevel += -4;
+		this.session.badLuckEvent = true;
 		return ret;
 	}
 	
@@ -155,6 +166,7 @@ function LuckStuff(session){
 		}else{
 			return this.roll90(roll);
 		}
+		this.session.goodLuckEvent = true;
 		
 	}
 	
@@ -162,6 +174,8 @@ function LuckStuff(session){
 		console.log("roll0 in " + this.session.session_id + " roll is: " + roll.value + " player min luck was: " + roll.player.minLuck + " and max luck was: " + roll.player.maxLuck);
 		var ret = "What the HELL!? The " + roll.player.htmlTitle() + " managed to somehow lose to REGULAR FUCKING ENEMIES!? Is that even POSSIBLE!? This is BULLSHIT. How unlucky do you even need to BE!? They are DEAD." 
 		roll.player.dead = true;
+		roll.player.causeOfDeath = "from a Bad Break."
+		this.session.badLuckEvent = true;
 		return ret;
 		
 	}
