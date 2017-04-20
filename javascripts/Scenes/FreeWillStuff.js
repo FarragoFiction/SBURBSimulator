@@ -11,11 +11,13 @@ function FreeWillStuff(session){
 		//what the hell roue of doom's corpse. corpses aren't part of the player list!
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var player = this.session.availablePlayers[i];
-			var decision = this.getPlayerDecision(player);
-			if(decision){
-				var d = new WillPower(player, decision)
-				if(!this.decision || d.player.freeWill > this.decision.player.freeWill){  //whoever has the most will makes the decision.
-					this.decision = d;
+			if(player.freeWill > 0){  //don't even get to consider a decision if you don't have free will.
+				var decision = this.getPlayerDecision(player);
+				if(decision){
+					var d = new WillPower(player, decision)
+					if(!this.decision || d.player.freeWill > this.decision.player.freeWill){  //whoever has the most will makes the decision.
+						this.decision = d;
+					}
 				}
 			}
 		}
@@ -27,11 +29,13 @@ function FreeWillStuff(session){
 	}
 	
 	//in murder mode, plus random. reduce trigger, too. only for self (whether active or passive)
+	//more likely if who you hate is ectobiologist or space
 	this.considerDisEngagingMurderMode = function(player){
 		return null;
 	}
 	
 	//hate someone, not in murder mode, self if active, other if passive. plus random, increase trigger, too. if you engage murder mode in someone else, random chance to succesfully manipulate them to hate who you hate.
+	//less likely if who you hate is ectobiologist or space
 	this.considerEngagingMurderMode = function(player){
 		
 		return null;
@@ -43,11 +47,13 @@ function FreeWillStuff(session){
 	}
 	
 	//needs to be a murder mode player. more likely if you like them.  if active and you like them a lot, do it yourself. if passive, see if you can get somebody else to do it for you (mastermind)
+	//more likely if murderMode player is ectobiologist or space
 	this.considerCalmMurderModePlayer = function(player){
 		
 	}
 	
 	//needs to be a murdermode player,  more likely if you dislike them. if active, do it yourself, if passive, see if you can get somebody else to do it for you. need to be stronger than them. 
+	//less likely if murderMode player is ectobiologist or space
 	this.considerKillMurderModePlayer = function(player){
 		
 	}
@@ -63,8 +69,14 @@ function FreeWillStuff(session){
 	}
 	
 	this.getPlayerDecision = function(player){
-		var ret = this.considerEngagingMurderMode(player);
+		//reorder things to change prevelance.
+		var ret = this.considerCalmMurderModePlayer(player);
+		if(ret == null) ret = this.considerKillMurderModePlayer(player);
 		if(ret == null) ret = this.considerDisEngagingMurderMode(player);
+		if(ret == null) ret = this.considerEngagingMurderMode(player);
+		if(ret == null) ret = this.considerMakingEctobiologistDoJob(player);
+		if(ret == null) ret = this.considerMakingSpacePlayerDoJob(player);
+		if(ret == null) ret = this.considerForceGodTier(player);
 		return ret;
 	}
 	
@@ -76,6 +88,7 @@ function FreeWillStuff(session){
 	}
 	
 	this.content = function(){
+		console.log("Decision event: " + this.session.session_id)
 		var ret = "Decision Event: ";
 		removeFromArray(this.player, this.session.availablePlayers);
 		for(var i = 0; i<this.wills.length; i++){
