@@ -4,8 +4,8 @@ function LuckStuff(session){
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.rolls = [];
 	//luck can be good or it can be bad.
-	this.minLowValue = 40;
-	this.minHighValue = 60;
+	this.minLowValue = 20;
+	this.minHighValue = 80;
 	this.landLevelNeeded = 12;
 
 	this.trigger = function(playerList){
@@ -165,27 +165,35 @@ function LuckStuff(session){
 	}
 	
 	
-	
+	//5 good things that can happen, 5 bad things can happen
 	this.processRoll = function(roll){
-		if(roll.value >= 60 && roll.value < 65){
+		var numThings = 5;
+		var amount = this.minLowValue/5
+		if(roll.value >= this.minHighValue && roll.value < this.minHighValue + amount){
 			return this.roll60(roll);
-		}else if(roll.value >= 65 && roll.value < 70){
+		}else if(roll.value >= this.minHighValue + amount && roll.value < this.minHighValue + (amount*2)){
 			return this.roll65(roll);
-		}else if(roll.value >= 70 && roll.value < 80){
+		}else if(roll.value >= this.minHighValue + (amount*2) && roll.value < this.minHighValue + (amount*3){
 			return this.roll70(roll);
-		}else if(roll.value >= 80 && roll.value < 85){
+		}else if(roll.value >= this.minHighValue + (amount*3) && roll.value < this.minHighValue + (amount*4)){
 			return this.roll80(roll);
-		}else if(roll.value >= 85 && roll.value < 90){
+		}else if(roll.value >= this.minHighValue + (amount*4) && roll.value < this.minHighValue + (amount*2)){
 			return this.roll85(roll);
-		}else if(roll.value > 30 && roll.value <= 40){
+		}else if(roll.value >= this.minHighValue + (amount*4) && roll.value < this.minHighValue + (amount*2)){
+			return this.roll90(roll);
+		}else if(roll.value >= this.minHighValue + (amount*4) && roll.value < this.minHighValue + (amount*2)){
+			return this.roll95(roll);
+		}else if(roll.value >= this.minHighValue + (amount*4) && roll.value < this.minHighValue + (amount*2)){
+			return this.roll100(roll);
+		}else if(roll.value > this.minLowValue - amount && roll.value <= this.minLowValue){
 			return this.roll40(roll);
-		}else if(roll.value > 20 && roll.value <= 30){
+		}else if(roll.value > this.minLowValue - (amount*2) && roll.value <= this.minLowValue - amount){
 			return this.roll30(roll);
-		}else if(roll.value > 10 && roll.value <= 20){
+		}else if(roll.value > this.minLowValue - (amount*3) && roll.value <= this.minLowValue - (amount*2)){
 			return this.roll20(roll);
-		}else if(roll.value > 0 && roll.value <= 10){
+		}else if(roll.value > this.minLowValue - (amount*4) && roll.value <= this.minLowValue - (amount*3)){
 			return this.roll10(roll);
-		}else if(roll.value > 10 && roll.value <= 0){
+		}else if(roll.value > this.minLowValue - (amount*5) && roll.value <= this.minLowValue - (amount*4)){
 			return this.roll0(roll);
 		}
 
