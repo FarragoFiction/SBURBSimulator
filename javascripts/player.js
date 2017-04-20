@@ -1150,8 +1150,8 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 
 	this.initializeLuck = function(){
-		this.minLuck = getRandomInt(40,60); //middle of the road.
-		this.maxLuck = this.minLuck + getRandomInt(0,35); 
+		this.minLuck = getRandomInt(20,40); //middle of the road.
+		this.maxLuck = this.minLuck + getRandomInt(1,20);   //max needs to be more than min.
 		if(this.aspect == "Light"){
 			if(this.highInit()){
 				this.maxLuck += 35;
