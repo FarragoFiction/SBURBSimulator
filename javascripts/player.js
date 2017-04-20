@@ -270,7 +270,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 
 	//luck is about sprinting towards good events, not avoiding bad ones. only modifies max luck.
 	this.lightInteractionEffect = function(player){
-		var amount = this.power/10;
+		var amount = this.power/3;
 		if(this.class_name == "Thief"){ //takes for self
 			this.maxLuck += amount
 			player.maxLuck += -1 * amount;
@@ -289,7 +289,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 
 	this.mindInteractionEffect = function(player){
-		var amount = this.power/10;
+		var amount = this.power/3;
 		if(this.class_name == "Thief"){ //takes for self
 			this.freeWill += amount
 			player.freeWill += -1*amount
@@ -307,7 +307,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 
 	this.timeInteractionEffect = function(player){
-		var amount = -1 * this.power/10;
+		var amount = -1 * this.power/3;
 		if(this.class_name == "Thief"){ //takes for self
 			this.freeWill += amount
 			player.freeWill += -1*amount
@@ -326,7 +326,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 
 
 	this.lifeInteractionEffect = function(player){
-		var amount = this.power/10;
+		var amount = this.power/3;
 		if(this.class_name == "Thief"){ //takes for self
 			this.hp += amount;
 			player.hp += -1*amount
@@ -392,7 +392,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 
 	this.breathInteractionEffect = function(player){
-		var amount = this.power/10;
+		var amount = this.power/3;
 		if(this.class_name == "Thief"){ //takes for self
 			this.mobility += amount
 			player.mobility += -1*amount
@@ -418,7 +418,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	Space is about groundingyou. It's gravity. It's so damn HARD to travel in space, cause it wants you to stay right the hell where you are.
 	*/
 	this.spaceInteractionEffect = function(player){
-		var amount = -1* this.power/10;
+		var amount = -1* this.power/3;
 		if(this.class_name == "Thief"){ //takes for self
 			this.mobility += amount
 			player.mobility += -1*amount
@@ -461,7 +461,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 
 	//doom is about bad ends. only modifies min luck. alkso modifies power directly
 	this.doomInteractionEffect = function(player){
-		var amount = -1* this.power/20; //20 cause amount over 2 stats.
+		var amount = -1* this.power/3; //
 		if(this.class_name == "Thief"){ //takes for self
 			this.hp += amount;
 			this.minLuck += amount
@@ -485,7 +485,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 
 	this.hopeInteractionEffect = function(player){
-		var amount = this.power/10;
+		var amount = this.power/3;
 		if(this.class_name == "Thief"){ //takes for self
 			this.power += amount;
 			player.power += -1*amount
@@ -558,7 +558,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 	//only looks at best outcomes
 	this.lightIncreasePower = function(powerBoost){
-		var luckModifier = powerBoost;
+		var luckModifier = powerBoost*3;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			luckModifier = -1 *luckModifier;
 		}
@@ -574,7 +574,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 
 	this.mindIncreasePower = function(powerBoost){
-		var modifier = powerBoost;
+		var modifier = powerBoost*3;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			modifier = -1 *modifier;
 		}
@@ -591,7 +591,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 
 	//time is about fate and inevitability, not decisions and free will.
 	this.timeIncreasePower = function(powerBoost){
-		var modifier = -1 * powerBoost;
+		var modifier = -1 * powerBoost*3;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			modifier = -1 *modifier;
 		}
@@ -607,7 +607,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 
 	this.doomIncreasePower = function(powerBoost){
-		var power = -1 * powerBoost/20; //over 2 stats.
+		var power = -1 * powerBoost; //over 2 stats.
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			power = -1 *power;
 		}
@@ -1189,7 +1189,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 		this.hp = getRandomInt(50,100);
 		if(this.aspect == "Life"){
 			if(this.highInit()){
-				this.landLevel += 50;
+				this.hp += 50;
 			}else{
 				this.hp += -50;
 			}
