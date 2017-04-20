@@ -195,6 +195,12 @@ function LuckStuff(session){
 	
 	this.roll0 = function(roll){
 		//console.log("roll0 in " + this.session.session_id + " roll is: " + roll.value + " player min luck was: " + roll.player.minLuck + " and max luck was: " + roll.player.maxLuck);
+		if(roll.player.godDestiny && !roll.player.godTier && roll.player.dreamSelf){
+			roll.player.godDestiny = false;
+			var ret = "Huh, the " + roll.player.htmlTitle() + " suddenly feels a creeping sense of doom, as if they are no longer destined for greatness. ";
+			console.log("no longer destined for greatness from reroll of luck in " + this.session.session_id + " roll is: " + roll.value);
+			return ret;
+		}
 		var ret = "What the HELL!? The " + roll.player.htmlTitle() + " managed to somehow lose to REGULAR FUCKING ENEMIES!? Is that even POSSIBLE!? This is BULLSHIT. How unlucky do you even need to BE!? They are DEAD." 
 		roll.player.dead = true;
 		roll.player.causeOfDeath = "from a Bad Break."
