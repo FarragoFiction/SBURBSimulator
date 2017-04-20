@@ -213,6 +213,8 @@ function Session(session_id){
 				p.quirk = randomHumanSim(p);
 			}
 		}
+		
+		decideInitialQuadrants(this.players);
 
 		for(var k = 0; k<this.players.length; k++){
 			//can't escape consequences.
@@ -298,6 +300,7 @@ function Session(session_id){
 			var g = this.players[j].guardian;
 			g.generateRelationships(guardians);
 		}
+		decideInitialQuadrants(guardians);
 
 		for(var k = 0; k<this.players.length; k++){
 			//can't escape consequences.

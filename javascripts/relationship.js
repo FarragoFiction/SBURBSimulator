@@ -51,7 +51,6 @@ function Relationship(initial_value, target_player){
 	
 	//the only way to fill your quadrants.
 	this.setOfficialRomance = function(type){
-		//console.log("official romance of type: " + type )
 		//don't generate any extra drama, the event that led to this was ALREADY drama.
 		this.saved_type = type;
 		this.old_type = type;
@@ -90,7 +89,7 @@ function Relationship(initial_value, target_player){
 	}
 
 	this.description = function(){
-		return this.type() + " with the " + this.target.htmlTitle();
+		return this.saved_type + " with the " + this.target.htmlTitle();
 	}
 
 }
@@ -231,7 +230,46 @@ function randomBlandRelationship(targetPlayer){
 }
 
 function randomRelationship(targetPlayer){
-	return new Relationship(getRandomInt(-21,21), targetPlayer);
+	var r = new Relationship(getRandomInt(-21,21), targetPlayer);
+	
+	return r;
+}
+
+//go through every pair of relationships. if both have same type AND they are lucky, be in quadrant.   (clover was VERY 'lucky' in love.)
+//high is flushed or pale (if one player much more triggered than other). low is spades. no clubs for now.
+//yes, claspect boosts might alter relationships from 'initial' value, but that just means they characters are likelyt o break up. realism.
+function decideInitialQuadrants(players){
+	for(var i =0; i<players.length; i++){
+		var player = players[i];
+		var relationships = player.relationships;
+		for(var j = 0; j<relationships.length; j++){
+			var r = relationships[j];
+			var roll = player.rollForLuck();
+			if(roll > 50){
+				if(r.type() == r.goodBig){
+					var difference = Math.abs(player.triggerLevel - r.target.triggerLevel)
+					if(difference > 2){ //pale
+						console.log("initial diamonds: " + player.session.session_id) //remember, this could be guardians, too.
+						makeDiamonds(player, r.target);
+					}else{
+						console.log("initial hearts: " + player.session.session_id)
+						makeHeart(player, r.target);
+					}
+				}else if(r.type() == r.badBig){
+					if(player.triggerLevel > 2 || r.target.triggerLevel > 2){ //likely to murder each other
+						var ausp = getRandomElementFromArray(players);
+						if(ausp && ausp != player && ausp != r.target){
+							console.log("initial clubs: " + player.session.session_id)
+							makeClubs(ausp, player, r.target);
+						}
+					}else{
+						console.log("initial spades: " + player.session.session_id)
+						makeSpades(player, r.target);
+					}
+				}
+			}
+		}
+	}
 }
 
 function getRandomInt(min, max) {
