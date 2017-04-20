@@ -181,7 +181,13 @@ function LuckStuff(session){
 			roll.player.isDreamSelf = false;
 			return ret;
 		}else{
-			return this.roll90(roll);
+			if(!roll.player.godDestiny && roll.player.dreamSelf && !roll.player.godTier ){
+				console.log("destined for greatness from reroll of luck in " + this.session.session_id + " roll is: " + roll.value);
+				roll.player.godDestiny = true;
+				return "Huh, the " + roll.player.htmlTitle() + " suddenly feels as if they are destined for greatness. ";
+			}else{
+				return this.roll90(roll);
+			}
 		}
 		this.session.goodLuckEvent = true;
 		

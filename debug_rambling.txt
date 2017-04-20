@@ -664,6 +664,7 @@ What are some things that freeWill can do versus luck?
 Free Will:
 	* decide to get out of/ into murder mode.  (but not grimdark. if you're grimdark you don't CARE that things won't end well)
 	* god tier suicide.
+	* kill a murdermode player.
 	* Call off the "exile jack" plan.
 	* Insist ectobiologist does his goddamend job. (raise their power to min requirement)
 	*insist space player does their god damned job. . (raise their power to min requirement)
@@ -684,7 +685,21 @@ Bad Luck:  (different events have different odds. can have different flavor text
 
 
 
+Okay, so, like random lucky/unluck events are easy. You roll a metaphorical dice, and do what it says.
 
+But mind is all about DECISIONS, not luck.
+
+How should I do this? I can't just freeWill lock certain events, because then you'll have a single player doing it every single damn turn.
+It needs to be logical...think think think.
+
+ignoring code, how would it actually work? how DID it work for terezi? She was aware of the consequences for NOT killing Vriska, and so choose to kill her when she otherwise wouldn't.
+
+Problems:
+	* I am not currently pre-simulating things.
+	* It is extremely hard to actually know WHY a given outcome happens. That's the whole point of the YellowYard...it's hard even for humans.
+	* not all players care about avoiding doom. some WANT shit to go bad, like Damara. 
+	
+Now, I can still allow there to be non-luck based randomness. It could account for "this is a complex decision and I'm not going to get into details". 
 
 
 
