@@ -9,12 +9,14 @@ function LuckStuff(session){
 	this.landLevelNeeded = 12;
 
 	this.trigger = function(playerList){
+		this.playerList = playerList;
 		this.rolls = [];//reset
-		for(var i = 0; i<this.playerList; i++){
+
+		for(var i = 0; i<this.playerList.length; i++){
 			var player = this.playerList[i];
-			var rollValue = rollForLuck();
+			var rollValue = player.rollForLuck();
 			if(rollValue >= this.minHighValue || rollValue <= this.minLowValue){
-				this.rolls.push(new Roll(player, value));
+				this.rolls.push(new Roll(player, rollValue));
 			}
 		}
 		return this.rolls.length > 0
@@ -51,23 +53,23 @@ function LuckStuff(session){
 
 	this.roll70 = function(roll){
 		console.log("roll70 in " + this.session.session_id)
-		var friend = randomElementFromArray(roll.player.getFriendsFromList());
+		var friend = getRandomElementFromArray(roll.player.getFriendsFromList(findLivingPlayers(this.session.players)));
 		if(!friend){
 			return this.roll65(roll); //backup result.
 		}
 		var ret = "The " + roll.player.htmlTitleBasic() + " was fucking around on the internet and accidentally sent the " + friend.htmlTitleBasic() + " a message meant for someone else. Luckily, they seem flattered instead of offended. ";
-		player.getRelationshipWith(friend).increase();
+		roll.player.getRelationshipWith(friend).increase();
 		return ret;
 	}
 	
 	this.roll30 = function(roll){
 		console.log("roll30 in " + this.session.session_id)
-		var friend = randomElementFromArray(roll.player.getFriendsFromList());
+		var friend = getRandomElementFromArray(roll.player.getFriendsFromList(findLivingPlayers(this.session.players)));
 		if(!friend){
 			return this.roll65(roll); //backup result.
 		}
 		var ret = "The " + roll.player.htmlTitleBasic() + " was fucking around on the internet and accidentally sent the " + friend.htmlTitleBasic() + " a message meant for someone else. They will never live this down. The " + friend.htmlTitleBasic() + " seems pretty offended, too.";
-		player.getRelationshipWith(friend).decrease();
+		roll.player.getRelationshipWith(friend).decrease();
 		return ret;
 	}
 	
@@ -204,7 +206,7 @@ function LuckStuff(session){
 	}
 }
 
-function Rolls(player, rollValue){
+function Roll(player, rollValue){
 	this.player = player;
-	this.value = value;
+	this.value = rollValue;
 }
