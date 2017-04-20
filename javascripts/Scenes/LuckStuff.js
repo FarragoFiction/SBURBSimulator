@@ -182,7 +182,7 @@ function LuckStuff(session){
 			return ret;
 		}else{
 			if(!roll.player.godDestiny && roll.player.dreamSelf && !roll.player.godTier ){
-				console.log("destined for greatness from reroll of luck in " + this.session.session_id + " roll is: " + roll.value);
+				//console.log("destined for greatness from reroll of luck in " + this.session.session_id + " roll is: " + roll.value);
 				roll.player.godDestiny = true;
 				return "Huh, the " + roll.player.htmlTitle() + " suddenly feels as if they are destined for greatness. ";
 			}else{
@@ -198,7 +198,7 @@ function LuckStuff(session){
 		if(roll.player.godDestiny && !roll.player.godTier && roll.player.dreamSelf){
 			roll.player.godDestiny = false;
 			var ret = "Huh, the " + roll.player.htmlTitle() + " suddenly feels a creeping sense of doom, as if they are no longer destined for greatness. ";
-			console.log("no longer destined for greatness from reroll of luck in " + this.session.session_id + " roll is: " + roll.value);
+			//console.log("no longer destined for greatness from reroll of luck in " + this.session.session_id + " roll is: " + roll.value);
 			return ret;
 		}
 		var ret = "What the HELL!? The " + roll.player.htmlTitle() + " managed to somehow lose to REGULAR FUCKING ENEMIES!? Is that even POSSIBLE!? This is BULLSHIT. How unlucky do you even need to BE!? They are DEAD." 
