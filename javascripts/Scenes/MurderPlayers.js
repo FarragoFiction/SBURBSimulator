@@ -164,7 +164,7 @@ function MurderPlayers(session){
 			//var notEnemy = m.getWorstEnemyFromList(this.session.availablePlayers);
 			removeFromArray(m, this.session.availablePlayers);
 			var ret = "";
-			if(worstEnemy && worstEnemy.dead == false){
+			if(worstEnemy && worstEnemy.dead == false && m.mobility > worstEnemy.mobility){
 				removeFromArray(worstEnemy, this.session.availablePlayers);
 				//if blood player is at all competant, can talk down murder mode player.
 				if(worstEnemy.aspect == "Blood" && worstEnemy.power > 2){
@@ -253,7 +253,13 @@ function MurderPlayers(session){
 					m.murderMode = false;
 					m.leftMurderMode = true;
 				}else{
-					ret += " The " + m.htmlTitle() + " can't find anybody they hate enough to murder. They calm down a little. ";
+					if(worstEnemy && worstEnemy.mobility > m.mobility){
+						console.log("murder thwarted by mobility: " + this.session.session_id)
+						ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! Do they just never stay in one spot for more than five seconds? Flighty bastard. It's hard to stay enraged while wandering around lost."
+						m.triggerLevel += -3;
+					}else{
+						ret += " The " + m.htmlTitle() + " can't find anybody they hate enough to murder. They calm down a little. ";
+					}
 				}
 			}
 		}
@@ -271,6 +277,7 @@ function MurderPlayers(session){
 			removeFromArray(m, this.session.availablePlayers);
 			var ret = "";
 			if(worstEnemy && worstEnemy.dead == false && m.mobility > worstEnemy.mobility){ //gotta fucking catch them.
+				console.log("Murderer mobility:  " + m.mobility + " victim mobility: " + worstEnemy.mobility);
 				removeFromArray(worstEnemy, this.session.availablePlayers);
 				//if blood player is at all competant, can talk down murder mode player.
 				if(worstEnemy.aspect == "Blood" && worstEnemy.power > 2){
@@ -312,6 +319,7 @@ function MurderPlayers(session){
 			}else{
 				
 				if(worstEnemy && worstEnemy.mobility > m.mobility){
+					console.log("murder thwarted by mobility: " + this.session.session_id)
 					ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! Do they just never stay in one spot for more than five seconds? Flighty bastard. It's hard to stay enraged while wandering around lost."
 					m.triggerLevel += -3;
 				}else{
