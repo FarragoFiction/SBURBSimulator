@@ -231,7 +231,7 @@ function randomBlandRelationship(targetPlayer){
 }
 
 function randomRelationship(targetPlayer){
-	return new Relationship(getRandomInt(-11,11), targetPlayer);
+	return new Relationship(getRandomInt(-21,21), targetPlayer);
 }
 
 function getRandomInt(min, max) {
