@@ -23,10 +23,20 @@ function FreeWillStuff(session){
 		div.append("<br>"+this.content());
 	}
 	
+	this.considerDisEngagingMurderMode = function(player){
+		return null;
+	}
 	
-	this.getPlayerDecision = function(player){
+	this.considerEngagingMurderMode = function(player){
 		
 		return null;
+	}
+	
+	
+	this.getPlayerDecision = function(player){
+		var ret = this.considerEngagingMurderMode(player);
+		if(ret == null) ret = this.considerDisEngagingMurderMode(player);
+		return ret;
 	}
 	
 	
