@@ -2,33 +2,36 @@ function FreeWillStuff(session){
 	this.session = session;
 	this.canRepeat = true;	
 	this.playerList = [];  //what players are already in the medium when i trigger?
-	this.wills = [];
+	this.decision = null
 	//luck can be good or it can be bad.
 	this.minHighValue = 110;
 
 	this.trigger = function(playerList){
-		this.rolls = [];//reset
+		this.decision = null;//reset
 		//what the hell roue of doom's corpse. corpses aren't part of the player list!
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var player = this.session.availablePlayers[i];
 			var decision = this.getPlayerDecision(player);
 			if(decision){
-				this.wills.push(new WillPower(player, decision));
+				var d = new WillPower(player, decision)
+				if(!this.decision || d.player.freeWill > this.decision.player.freeWill){  //whoever has the most will makes the decision.
+					this.decision = d;
+				}
 			}
 		}
-		return this.wills.length > 0
+		return this.decision != null;
 	}
 	
 	this.renderContent = function(div){
 		div.append("<br>"+this.content());
 	}
 	
-	//in murder mode, plus random. reduce trigger, too.
+	//in murder mode, plus random. reduce trigger, too. only for self (whether active or passive)
 	this.considerDisEngagingMurderMode = function(player){
 		return null;
 	}
 	
-	//hate someone, not in murder mode, plus random, increase trigger, too.
+	//hate someone, not in murder mode, self if active, other if passive. plus random, increase trigger, too. if you engage murder mode in someone else, random chance to succesfully manipulate them to hate who you hate.
 	this.considerEngagingMurderMode = function(player){
 		
 		return null;
@@ -49,6 +52,15 @@ function FreeWillStuff(session){
 		
 	}
 	
+	//if self, just fucking do it. otherwise, pester them. raise power to min requirement, if it's not already there. 
+	this.considerMakingEctobiologistDoJob = function(player){
+		
+	}
+	
+	//if self, just fucking do it. raise land level. otherwise, pester them. raise power to min requirement, if it's not already there. 
+	this.considerMakingSpacePlayerDoJob = function(player){
+		
+	}
 	
 	this.getPlayerDecision = function(player){
 		var ret = this.considerEngagingMurderMode(player);
