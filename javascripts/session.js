@@ -393,6 +393,8 @@ function Session(session_id){
 	this.generateSummary = function(){
 		var summary = new SessionSummary();
 		summary.session_id = this.session_id;
+		summary.hasLuckyEvents = this.goodLuckEvent;
+		summary.hasUnluckyEvents = this.badLuckEvent;
 		summary.rapBattle = this.rapBattle;
 		summary.sickFires = this.sickFires;
 		summary.frogStatus = this.frogStatus();

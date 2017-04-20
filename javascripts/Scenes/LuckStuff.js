@@ -218,7 +218,6 @@ function LuckStuff(session){
 	}
 	
 	this.content = function(){
-		console.log("luck event in " + this.session.session_id)
 		var ret = "Luck Event: ";
 		removeFromArray(this.player, this.session.availablePlayers);
 		for(var i = 0; i<this.rolls.length; i++){
