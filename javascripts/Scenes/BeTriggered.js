@@ -107,12 +107,23 @@ function BeTriggered(session){
 		var ret = "";
 		for(var i = 0; i<this.triggeredPlayers.length; i++){
 			var p = this.triggeredPlayers[i];
-			removeFromArray(p, this.session.availablePlayers);
-			ret += " The " +p.htmlTitle() + " is currently too busy flipping the fuck out about "
-			ret += this.triggers[i] + " to be anything but a useless piece of gargbage. ";
-			p.triggerLevel ++;
-			if(p.triggerLevel > 5){
-				ret += " Their freakout level is getting dangerously high. ";
+			var hope = findAspectPlayer(findLivingPlayers(this.session.players), "Hope");
+			if(hope && hope.power > 100){
+				console.log("Hope Survives: " + this.session.session_id)
+				console.log("Hope: " + hope.power)
+				ret += " The " +p.htmlTitle() + " should probably be flipping the fuck out about  " + this.triggers[i]; 
+				ret += " and being completely useless, but somehow the thought that the " + hope.htmlTitle() + " is still alive fills them with determination, instead.";  //hope survives.
+				hope.increasePower();
+				p.increasePower();
+				
+			}else{
+				removeFromArray(p, this.session.availablePlayers);
+				ret += " The " +p.htmlTitle() + " is currently too busy flipping the fuck out about "
+				ret += this.triggers[i] + " to be anything but a useless piece of gargbage. ";
+				p.triggerLevel ++;
+				if(p.triggerLevel > 5){
+					ret += " Their freakout level is getting dangerously high. ";
+				}
 			}
 		}
 		return ret;

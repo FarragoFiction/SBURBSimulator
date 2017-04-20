@@ -218,7 +218,7 @@ function startSessionJunior(){
 	curSessionGlobalVar.makePlayers();
 	curSessionGlobalVar.randomizeEntryOrder();
 	curSessionGlobalVar.makeGuardians(); //after entry order established
-	
+	initializeStatsForPlayers(curSessionGlobalVar.players);  //need to redo it here because all other versions are in case customizations
 	//aaaaand. done.
 	sessionsSimulated.push(curSessionGlobalVar.session_id);
 	var sum = curSessionGlobalVar.generateSummary();
@@ -248,6 +248,7 @@ function startSession(){
 	curSessionGlobalVar.makePlayers();
 	curSessionGlobalVar.randomizeEntryOrder();
 	curSessionGlobalVar.makeGuardians(); //after entry order established
+	initializeStatsForPlayers(curSessionGlobalVar.players); //need to redo it here because all other versions are in case customizations
 	if(simulationMode == true){
 		intro();
 	}else{
