@@ -58,14 +58,21 @@
  - gracefulBlossom
  </p>
 
- <p>"Grinding + Wide open sandbox + Adventure + Roguelike + Playing the game in real world = This game. Who had this "great" idea?!"
- <br>
-  - pulsarCycle
-  </p>
+<p>"Grinding + Wide open sandbox + Adventure + Roguelike + Playing the game in real world = This game. Who had this "great" idea?!"
+<br>
+- pulsarCycle
+</p>
 
-  <p>"barD of blooD? seriously? noboDy else in the session was DestineD to be this much of a joke"
-  <br>
-   - Drykka (lonelyDivulger)
-   </p>
+<p>"barD of blooD? seriously? noboDy else in the session was DestineD to be this much of a joke"
+<br>
+- Drykka (lonelyDivulger)
+</p>
+
+<p>"The difference done by fixing a bug could be measured in thousands of players."
+
+<br>
+- aspiringWatcher
+</p>
+
 
 </div>
