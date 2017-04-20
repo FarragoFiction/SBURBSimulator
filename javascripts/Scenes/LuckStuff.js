@@ -4,8 +4,8 @@ function LuckStuff(session){
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.rolls = [];
 	//luck can be good or it can be bad.
-	this.minLowValue = 20;
-	this.minHighValue = 80;
+	this.minLowValue = -10;
+	this.minHighValue = 110;
 	this.landLevelNeeded = 12;
 
 	this.trigger = function(playerList){
@@ -58,7 +58,9 @@ function LuckStuff(session){
 			return this.roll65(roll); //backup result.
 		}
 		var ret = "The " + roll.player.htmlTitleBasic() + " was fucking around on the internet and accidentally sent the " + friend.htmlTitleBasic() + " a message meant for someone else. Luckily, they seem flattered instead of offended. ";
-		roll.player.getRelationshipWith(friend).increase();
+		friend.getRelationshipWith(roll.player).increase();
+		friend.getRelationshipWith(roll.player).increase();
+		friend.getRelationshipWith(roll.player).increase();
 		return ret;
 	}
 	
@@ -69,7 +71,9 @@ function LuckStuff(session){
 			return this.roll65(roll); //backup result.
 		}
 		var ret = "The " + roll.player.htmlTitleBasic() + " was fucking around on the internet and accidentally sent the " + friend.htmlTitleBasic() + " a message meant for someone else. They will never live this down. The " + friend.htmlTitleBasic() + " seems pretty offended, too.";
-		roll.player.getRelationshipWith(friend).decrease();
+		friend.getRelationshipWith(roll.player).decrease();
+		friend.getRelationshipWith(roll.player).decrease();
+		friend.getRelationshipWith(roll.player).decrease();
 		return ret;
 	}
 	
@@ -86,11 +90,11 @@ function LuckStuff(session){
 	
 	this.roll85 = function(roll){
 		console.log("roll85 in " + this.session.session_id)
-		var ret = "The " + roll.player.htmlTitleBasic() + " was just wandering around on " + roll.player.shortLand() + " they see a GOLD IMP. Those things are worth a ton of experience points, if you can manage to even damage them. Holy shit, did the " + roll.player.htmlTtielBasic() + " just ONE SHOT them!? ";
+		var ret = "The " + roll.player.htmlTitleBasic() + " was just wandering around on " + roll.player.shortLand() + " they see a GOLD IMP. Those things are worth a ton of experience points, if you can manage to even damage them. Holy shit, did the " + roll.player.htmlTitleBasic() + " just ONE SHOT them!? ";
 		roll.player.increasePower();
 		roll.player.increasePower();
-		this.leader.leveledTheHellUp = true;
-		this.leader.level_index +=2;
+		roll.player.leveledTheHellUp = true;
+		roll.player.level_index +=2;
 		return ret;
 	}
 	
@@ -108,8 +112,8 @@ function LuckStuff(session){
 		roll.player.increasePower();
 		roll.player.increasePower();
 		roll.player.increasePower();
-		this.leader.leveledTheHellUp = true;
-		this.leader.level_index +=3;
+		roll.player.leveledTheHellUp = true;
+		roll.player.level_index +=3;
 		return ret;
 	}
 	
@@ -140,15 +144,17 @@ function LuckStuff(session){
 	}
 	
 	this.roll100 = function(roll){
-		console.log("roll100 in " + this.session.session_id);
+		console.log("roll100 in " + this.session.session_id + " roll is: " + roll.value);
 		if(roll.player.godDestiny && !roll.player.godTier){
 			var ret = "What the HELL!? The " + roll.player.htmlTitleBasic() + " managed to somehow lose to REGULAR FUCKING ENEMIES!? Is that even POSSIBLE!? This is BULLSHIT. Wait. What's going on? How did they end up on their " ;
-			if(roll.player.dreamSelf){
+			if(roll.player.isDreamSelf){
 				ret += "QUEST BED!? Their body glows, and rises Skaiaward. "+"On " + p.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
 			}else{
 				ret += "SACRIFICIAL SLAB!? They glow and ascend to the God Tiers with a sweet new outfit."
 			}		
-			
+			roll.player.godTier = true;
+			roll.player.dreamSelf = false;
+			roll.player.isDreamSelf = false;
 			return ret;
 		}else{
 			return this.roll90(roll);
@@ -157,9 +163,9 @@ function LuckStuff(session){
 	}
 	
 	this.roll0 = function(roll){
-		console.log("roll0 in " + this.session.session_id);
-		var ret = "What the HELL!? The " + roll.player.htmlTitleBasic() + " managed to somehow lose to REGULAR FUCKING ENEMIES!? Is that even POSSIBLE!? This is BULLSHIT. How unlucky do you even need to BE!?"
-		player.dead = true;
+		console.log("roll0 in " + this.session.session_id + " roll is: " + roll.value + " player min luck was: " + roll.player.minLuck + " and max luck was: " + roll.player.maxLuck);
+		var ret = "What the HELL!? The " + roll.player.htmlTitleBasic() + " managed to somehow lose to REGULAR FUCKING ENEMIES!? Is that even POSSIBLE!? This is BULLSHIT. How unlucky do you even need to BE!? They are DEAD." 
+		roll.player.dead = true;
 		return ret;
 		
 	}
@@ -167,13 +173,12 @@ function LuckStuff(session){
 	
 	//5 good things that can happen, 5 bad things can happen
 	this.processRoll = function(roll){
-		var numThings = 5;
-		var amount = this.minLowValue/5
+		var amount = 5;
 		if(roll.value >= this.minHighValue && roll.value < this.minHighValue + amount){
 			return this.roll60(roll);
 		}else if(roll.value >= this.minHighValue + amount && roll.value < this.minHighValue + (amount*2)){
 			return this.roll65(roll);
-		}else if(roll.value >= this.minHighValue + (amount*2) && roll.value < this.minHighValue + (amount*3){
+		}else if(roll.value >= this.minHighValue + (amount*2) && roll.value < this.minHighValue + (amount*3)){
 			return this.roll70(roll);
 		}else if(roll.value >= this.minHighValue + (amount*3) && roll.value < this.minHighValue + (amount*4)){
 			return this.roll80(roll);
@@ -202,6 +207,7 @@ function LuckStuff(session){
 	}
 	
 	this.content = function(){
+		console.log("luck event in " + this.session.session_id)
 		var ret = "";
 		removeFromArray(this.player, this.session.availablePlayers);
 		for(var i = 0; i<this.rolls.length; i++){
