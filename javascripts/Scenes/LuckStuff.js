@@ -26,7 +26,7 @@ function LuckStuff(session){
 	}
 	
 	this.roll60 = function(roll){
-		console.log("roll60 in " + this.session.session_id)
+		//console.log("roll60 in " + this.session.session_id)
 		if(roll.player.aspect != "Space" && roll.player.landLevel >= this.landLevelNeeded){  //not lucky to get land level when you don't need it.
 			return this.roll65(roll);
 		}
@@ -37,7 +37,7 @@ function LuckStuff(session){
 	}
 	
 	this.roll65 = function(roll){
-		console.log("roll65 in " + this.session.session_id)
+		//console.log("roll65 in " + this.session.session_id)
 		var ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + roll.player.shortLand() + " when they suddenly tripped over a huge treasure chest! When opened, it revealed a modest cache of boonbucks. They will finally be able to afford that framotiff they have had their eye on!";
 		roll.player.increasePower();
 		this.session.goodLuckEvent = true;
@@ -45,7 +45,7 @@ function LuckStuff(session){
 	}
 	//decreasing power is not a thing. so only land level?
 	this.roll40 = function(roll){
-		console.log("roll40 in " + this.session.session_id)
+		//console.log("roll40 in " + this.session.session_id)
 		var ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + roll.player.shortLand()+ " when they suddenly tripped over a huge bee hive. The angry bees immediately ravage the country side, pestering local consorts.";
 		roll.player.landLevel += -1
 		this.session.badLuckEvent = true;
@@ -54,7 +54,7 @@ function LuckStuff(session){
 	
 
 	this.roll70 = function(roll){
-		console.log("roll70 in " + this.session.session_id)
+		//console.log("roll70 in " + this.session.session_id)
 		var friend = getRandomElementFromArray(roll.player.getFriendsFromList(findLivingPlayers(this.session.players)));
 		if(!friend){
 			return this.roll65(roll); //backup result.
@@ -68,7 +68,7 @@ function LuckStuff(session){
 	}
 	
 	this.roll30 = function(roll){
-		console.log("roll30 in " + this.session.session_id)
+		//console.log("roll30 in " + this.session.session_id)
 		var friend = getRandomElementFromArray(roll.player.getFriendsFromList(findLivingPlayers(this.session.players)));
 		if(!friend){
 			return this.roll65(roll); //backup result.
@@ -82,7 +82,7 @@ function LuckStuff(session){
 	}
 	
 	this.roll80 = function(roll){
-		console.log("roll80 in " + this.session.session_id)
+		//console.log("roll80 in " + this.session.session_id)
 		if(roll.player.aspect != "Space" && roll.player.landLevel >= this.landLevelNeeded){  //not lucky to get land level when you don't need it.
 			return this.roll85(roll);
 		}
@@ -94,7 +94,7 @@ function LuckStuff(session){
 	}
 	
 	this.roll85 = function(roll){
-		console.log("roll85 in " + this.session.session_id)
+		//console.log("roll85 in " + this.session.session_id)
 		var ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + roll.player.shortLand() + " they see a GOLD IMP. Those things are worth a ton of experience points, if you can manage to even damage them. Holy shit, did the " + roll.player.htmlTitle() + " just ONE SHOT them!? ";
 		roll.player.increasePower();
 		roll.player.increasePower();
@@ -105,7 +105,7 @@ function LuckStuff(session){
 	}
 	
 	this.roll20 = function(roll){
-		console.log("roll20 in " + this.session.session_id)
+		//console.log("roll20 in " + this.session.session_id)
 
 		var ret = "The " + roll.player.htmlTitle() + " tripped right through a glitched section of wall, only to find a single consort. 'Shh.' the imp says, handing over a frankly obscene bucket of...something, 'It's a secret to everybody.' The " + roll.player.htmlTitleBasic() + " agrees that it would be ideal if it was a secret even to themselves, and prays for amnesia.  They can't quite bring themselves to go near their consorts for a little while aftewards. " ;
 		roll.player.landLevel += -2
@@ -114,7 +114,7 @@ function LuckStuff(session){
 	}
 	
 	this.roll90 = function(roll){
-		console.log("roll90 in " + this.session.session_id)
+		//console.log("roll90 in " + this.session.session_id)
 		var ret = "Holy shit, the " + roll.player.htmlTitle() + " just found a METAL PUMPKIN. Those things are worth a LOT of experience points! And they totally managed to explode it before it never existed in the first place! Score! Talk about luuuuuuuucky!" ;
 		roll.player.increasePower();
 		roll.player.increasePower();
@@ -126,7 +126,7 @@ function LuckStuff(session){
 	}
 	
 	this.roll95 = function(roll){
-		console.log("roll95 in " + this.session.session_id)
+		//console.log("roll95 in " + this.session.session_id)
 		if(roll.player.aspect != "Space" && roll.player.landLevel >= this.landLevelNeeded){  //not lucky to get land level when you don't need it.
 			return this.roll90(roll);
 		}
@@ -143,7 +143,7 @@ function LuckStuff(session){
 	}
 	
 	this.roll10 = function(roll){
-		console.log("roll10 in " + this.session.session_id)
+		//console.log("roll10 in " + this.session.session_id)
 		var ret = "Through a frankly preposterous level of Scooby-Doo shenanigans, the  " + roll.player.htmlTitle() + " trips into a wall, which depresses a panel, which launches a flaming rock via catapult, which crashes into a local consort village. Which immediately catches on fire, which makes them be refugees, which makes them immegrate to a new area, which disrupts the stability of the entire goddamned planet.  All of which causes, like, a third of the main quest of "  + roll.player.shortLand() + " to be fucked up. ";
 		roll.player.landLevel += -4;
 		this.session.badLuckEvent = true;
@@ -151,7 +151,7 @@ function LuckStuff(session){
 	}
 	
 	this.roll100 = function(roll){
-		console.log("roll100 in " + this.session.session_id + " roll is: " + roll.value);
+		//console.log("roll100 in " + this.session.session_id + " roll is: " + roll.value);
 		if(roll.player.godDestiny && !roll.player.godTier){
 			var ret = "What the HELL!? The " + roll.player.htmlTitle() + " managed to somehow lose to REGULAR FUCKING ENEMIES!? Is that even POSSIBLE!? This is BULLSHIT. Wait. What's going on? How did they end up on their " ;
 			if(!roll.player.isDreamSelf){
@@ -171,7 +171,7 @@ function LuckStuff(session){
 	}
 	
 	this.roll0 = function(roll){
-		console.log("roll0 in " + this.session.session_id + " roll is: " + roll.value + " player min luck was: " + roll.player.minLuck + " and max luck was: " + roll.player.maxLuck);
+		//console.log("roll0 in " + this.session.session_id + " roll is: " + roll.value + " player min luck was: " + roll.player.minLuck + " and max luck was: " + roll.player.maxLuck);
 		var ret = "What the HELL!? The " + roll.player.htmlTitle() + " managed to somehow lose to REGULAR FUCKING ENEMIES!? Is that even POSSIBLE!? This is BULLSHIT. How unlucky do you even need to BE!? They are DEAD." 
 		roll.player.dead = true;
 		roll.player.causeOfDeath = "from a Bad Break."
