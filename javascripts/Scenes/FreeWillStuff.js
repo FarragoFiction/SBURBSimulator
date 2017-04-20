@@ -11,9 +11,9 @@ function FreeWillStuff(session){
 		//what the hell roue of doom's corpse. corpses aren't part of the player list!
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var player = this.session.availablePlayers[i];
-			var willValue = player.willPower;
-			if(willValue >= this.minHighValue){
-				this.wills.push(new WillPower(player, willValue));
+			var decision = this.getPlayerDecision(player);
+			if(decision){
+				this.wills.push(new WillPower(player, decision));
 			}
 		}
 		return this.wills.length > 0
@@ -24,8 +24,13 @@ function FreeWillStuff(session){
 	}
 	
 	
+	this.getPlayerDecision = function(player){
+		
+		return null;
+	}
 	
-	this.processWill = function(){
+	
+	this.processDecision = function(){
 		
 	}
 	
@@ -35,14 +40,14 @@ function FreeWillStuff(session){
 		for(var i = 0; i<this.wills.length; i++){
 			var will = this.wills[i];
 			removeFromArray(will.player, this.session.availablePlayers);
-			ret += this.processWill(will);
+			ret += this.processDecision(will);
 		}
 		
 		return ret;
 	}
 }
 
-function WillPower(player, value){
+function WillPower(player, decision){
 	this.player = player;
-	this.value = value;
+	this.decision = decision;
 }

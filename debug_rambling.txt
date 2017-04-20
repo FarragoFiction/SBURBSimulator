@@ -701,6 +701,11 @@ Problems:
 	
 Now, I can still allow there to be non-luck based randomness. It could account for "this is a complex decision and I'm not going to get into details". 
 
+So, as an example...why would a player DECIDE to engage murder mode. Well, for one, they need to hate someone. That's non-negotiable. I guess they also need to not be spades with the person they want to kill.
+
+So, unlike LuckStuff, I can't decide that I'm "lucky or unlucky" at trigger time and then later decide what that actually means. I need to be consistent.  I might be tripping free will, but not have anything I actually want to do.
+So, decide what you're going to do at trigger time and store that till render time.
+
 
 
 
