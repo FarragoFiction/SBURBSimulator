@@ -270,7 +270,7 @@ function MurderPlayers(session){
 			var worstEnemy = m.getWorstEnemyFromList(livePlayers);
 			removeFromArray(m, this.session.availablePlayers);
 			var ret = "";
-			if(worstEnemy && worstEnemy.dead == false){
+			if(worstEnemy && worstEnemy.dead == false && m.mobility > worstEnemy.mobility){ //gotta fucking catch them.
 				removeFromArray(worstEnemy, this.session.availablePlayers);
 				//if blood player is at all competant, can talk down murder mode player.
 				if(worstEnemy.aspect == "Blood" && worstEnemy.power > 2){
@@ -310,7 +310,13 @@ function MurderPlayers(session){
 					worstEnemy.victimBlood = m.bloodColor;
 				}
 			}else{
-				ret += " The " + m.htmlTitle() + " can't find anybody they hate enough to murder. They calm down a little. ";
+				
+				if(worstEnemy && worstEnemy.mobility > m.mobility){
+					ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! Do they just never stay in one spot for more than five seconds? Flighty bastard. It's hard to stay enraged while wandering around lost."
+					m.triggerLevel += -3;
+				}else{
+					ret += " The " + m.htmlTitle() + " can't find anybody they hate enough to murder. They calm down a little. ";
+				}
 				m.triggerLevel += -1;
 			}
 		}
