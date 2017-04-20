@@ -68,7 +68,7 @@
 - Drykka (lonelyDivulger)
 </p>
 
-<p>"The difference done by fixing a bug could be measured in thousands of players."
+<p>"The difference made by fixing a bug could be measured in thousands of players."
 
 <br>
 - aspiringWatcher
