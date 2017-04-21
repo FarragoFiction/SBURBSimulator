@@ -16,7 +16,7 @@ function debugLevelTheHellUp(){
 //making new scenes to be different
 function sbahjMode(){
 	alert("where MAKING THIS HAPEN")
-	$("#story").append("<img src = 'images/AUTHORSBAHJ.jpg' style='position:absolute; top:111px'>");
+	$("#story").append("<ixmg src = 'images/AUTHORSBAHJ.jpg' style='position:absolute; top:111px'>");
 	$('body').css("background-color", "#0000ff");
 	$('#story').css("background-color", "#ff00ff");
 	curSessionGlobalVar.sbahj = true;
@@ -1006,7 +1006,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.quirk.capitalization = 1;
 		player.quirk.punctuation = 2;
 		player.quirk.lettersToReplace = [];
-		player.quirk.lettersToReplaceIgnoreCase = [["oo","69"], ["b","6"],["o","9"]];
+		player.quirk.lettersToReplaceIgnoreCase = [["oo","69"], ["b","6"],["o","9"], ["fuck", "problematic"]];
 		player.kernel_sprite = "Crab"
 		player.interest1 = "Social Justice"
 		player.interest2 = "Leadership"
@@ -1025,7 +1025,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.quirk.capitalization = 1;
 		player.quirk.punctuation = 2;
 		player.quirk.favoriteNumber = 4;
-		player.quirk.lettersToReplace = [["E","3"],["I","1"],["A","4"]];
+		player.quirk.lettersToReplace = [["E","3"],["I","1"],["A","4"],["s\\b", "z"],["S\\b", "Z"]];
 		player.kernel_sprite = "Dragon"
 		player.interest1 = "Justice"
 		player.interest2 = "Video Games"
