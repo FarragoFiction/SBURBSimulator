@@ -106,16 +106,14 @@ function MurderPlayers(session){
 		var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawSpriteTurnways(dSpriteBuffer,diamond)
 
-		var x = 100;
 		//used to check if troll was involved. what the fuck ever. everybody uses the quadrant system. it's just easier.
 		var diSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawDiamond(diSpriteBuffer)
-		x = 50; //stand closer cause romance
-		copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,75,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,175,0)
 
 		setTimeout(function(){
-			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
-			copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,x,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,150,0)
 		},1000);
 	}
 
@@ -140,12 +138,12 @@ function MurderPlayers(session){
 		//used to check if troll was involved. what the fuck ever. everybody uses the quadrant system. it's just easier.
 		var diSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawClub(diSpriteBuffer,1000) //Auspisticism
-		copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,375,50)
+		copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,475,50)
 
 		setTimeout(function(){
-			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
-			copyTmpCanvasToRealCanvasAtPos(canvas, vSpriteBuffer,100,0)
-			copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,400,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, vSpriteBuffer,200,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,500,0)
 		},1000);
 	}
 
@@ -317,7 +315,7 @@ function MurderPlayers(session){
 					worstEnemy.victimBlood = m.bloodColor;
 				}
 			}else{
-				
+
 				if(worstEnemy && worstEnemy.mobility > m.mobility){
 					console.log("murder thwarted by mobility: " + this.session.session_id)
 					ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! Do they just never stay in one spot for more than five seconds? Flighty bastard. It's hard to stay enraged while wandering around lost."
