@@ -5,20 +5,40 @@
 	<link rel="stylesheet" href="css/newspost.css">
 	<title>Newsposts by karmicRetribution</title>
 	<script type="text/javascript" src="javascripts/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript" src="javascripts/art_newsposts.js"></script>
+	<script type="text/javascript" src="javascripts/navbar.js"></script>
+	<script type="text/javascript" src="javascripts/newsposts.js"></script>
 	<script type="text/javascript" src="javascripts/random_tables.js"></script>
+	<script>
+	window.onload = function() {
+		loadNavbar();
+		artNewsposts();
+		//http://stackoverflow.com/questions/8748426/scroll-background-image-untill-the-end-not-further
+		$( window ).scroll( function(){
+			var ypos = $( window ).scrollTop(); //pixels the site is scrolled down
+			var visible = $( window ).height(); //visible pixels
+			const img_height = 1500; //replace with height of your image
+			var max_scroll = img_height - visible; //number of pixels of the image not visible at bottom
+		//change position of background-image as long as there is something not visible at the bottom
+		if ( max_scroll > ypos) {
+			 $("body").css("background-position", "center -" + ypos + "px");
+			} else {
+			$("body").css("background-position", "center -" + max_scroll + "px");
+			}
+	});
+
+	}
+	</script>
 	</head>
 <body style = "background: url(images/Derse_Prospit.png), url(images/krbg.jpg)bottom center; background-attachment:fixed;   background-repeat: repeat-x,repeat;">
 
-<a href = "index2.html">Back to SBURB SIM 2.0</a> &nbsp &nbsp &nbsp &nbsp 		<a href = "newsposts.html">Newsposts</a>  &nbsp &nbsp &nbsp &nbsp<a href = "about.html">About/FAQ</a> &nbsp &nbsp &nbsp &nbsp <a href = "rare_session_finder.html">Rare Sessions</a>&nbsp &nbsp &nbsp &nbsp <a href = "todo.html">My Todo list.</a>
-
+<div id = "navbar"></div>
 <img src = "images/Smith_of_Dreams.png" style="float:left;">
 <h1 id = "artist_h1"> News Posts </h1>
 
 
 <div id = "container">
 	<div id = "artist_newsposts">
-	
+
 So have you ever gotten interested in a friend's project, and then thought "Oh look, there's a small thing I can help them with! It should only take a few minutes, even!" And a few weeks later you found yourself using all of your spare time to work on the project?
 <p>
 Yeah.

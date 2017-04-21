@@ -668,19 +668,19 @@ Free Will:
 	* Call off the "exile jack" plan.
 	* Insist ectobiologist does his goddamend job. (raise their power to min requirement)
 	*insist space player does their god damned job. . (raise their power to min requirement)
-	
+
 Good Luck:  (different events have different odds. can have different flavor text, too.)
 	*die to trash mobs, but right next to your quest bed (only if god tier destiny)
 	*trip over a treasure chest full of sweet sweet grist (boost to land level)
 	* accidentally solve a group of consorts problem before you were even aware of it. (boost to land level)
 	* find a rare enemy that gives you a BUNCH of exp when you kill it.
 	* find out something that makes someone like you a lot more.
-	
+
 Bad Luck:  (different events have different odds. can have different flavor text, too.)
 	* die to trash mobs.
 	* get grist stolen from you by an enemy (lower land level)
 	*accidentally ruin a quest line entirely (lose land level)
-	* spend WAY too much time fighting an enemy, only to discover it doesn't drop any loot and you don't level up from beating it. 
+	* spend WAY too much time fighting an enemy, only to discover it doesn't drop any loot and you don't level up from beating it.
 	* Accidentally say the wrong thing and someone likes you a lot less.
 
 
@@ -697,9 +697,9 @@ ignoring code, how would it actually work? how DID it work for terezi? She was a
 Problems:
 	* I am not currently pre-simulating things.
 	* It is extremely hard to actually know WHY a given outcome happens. That's the whole point of the YellowYard...it's hard even for humans.
-	* not all players care about avoiding doom. some WANT shit to go bad, like Damara. 
-	
-Now, I can still allow there to be non-luck based randomness. It could account for "this is a complex decision and I'm not going to get into details". 
+	* not all players care about avoiding doom. some WANT shit to go bad, like Damara.
+
+Now, I can still allow there to be non-luck based randomness. It could account for "this is a complex decision and I'm not going to get into details".
 
 So, as an example...why would a player DECIDE to engage murder mode. Well, for one, they need to hate someone. That's non-negotiable. I guess they also need to not be spades with the person they want to kill.
 
@@ -709,13 +709,13 @@ So, decide what you're going to do at trigger time and store that till render ti
 
 
 
+http://purplefrog.com/~jenny/SburbStory/index2.html?seed=47189
+bug fix: 47189  trying to break up a relationship that no longer exists after a 3x combo session + yellow yard.
+
+Initial thoughts: wth, that shouldn’t happen. i am CLONING the foreign players especially SO they will show up after a yard.
 
 
+at first yellow yard, 4 players. Maid of Time, Witch of Space, Witch of Void and Seer of Time. 2 players cloned on arrival. Witch of Void and  Seer of Time.
+post yellow yard: 4 players. 2 aliens cloned on arrival. names all seem right.  is it doppelgangers again?
 
-
-
-
-
-
-
-
+BLUUUUHHHH.

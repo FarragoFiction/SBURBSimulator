@@ -509,7 +509,7 @@ function RelationshipDrama(session){
 		if(jerk.dead == true){
 			var narration = "<br>The " + player.htmlTitle() + " used to think that the " + relationship.target.htmlTitle() + " was ";
 			narration += this.generateOldOpinion(relationship) + ", but now they can't help but think they are " + this.generateNewOpinion(relationship) + ".";
-			narration += "It's hard for the : " + player.htmlTitle() + " to care that they died.";
+			narration += "It's hard for the " + player.htmlTitle() + " to care that they died.";
 			div.append(narration);
 			return;
 		}

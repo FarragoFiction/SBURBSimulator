@@ -969,7 +969,7 @@ rogue_quests.push("stealing a priceless artifact in order to fund consort orphan
 rogue_quests.push("planning an elaborate heist to steal priceless grist from a boss ogre in order to alchemize shoes for orphans");
 var sylph_quests = ["restoring a consort city to its former glory"];
 sylph_quests.push("preserving the legacy of a doomed people");
-sylph_quests.push("providing psychological counsling to homeless consorts");
+sylph_quests.push("providing psychological counseling to homeless consorts");
 var thief_quests = ["robbing various enemy imps and ogres to obtain vast riches"];
 thief_quests.push("planning an elaborate heist that relies on several hard-to-predict factors going absolutely perfectly");
 thief_quests.push("torrenting vast amounts of grist from the other players");

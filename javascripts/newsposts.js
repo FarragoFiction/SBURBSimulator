@@ -17,14 +17,8 @@ var sessionIndex =0;
 sessionsSimulated = [];
 var version2 = true; //even though idon't want  to render content, 2.0 is different from 1.0 (think of dialog that triggers)
 
-//TODO add thought bubble about jack to dialogue
-window.onload = function() {
-		simulateASession();
-		newsposts();
-}
-
 function newsposts(){
-	writeRoboNewspost(new Date().toLocaleDateString(), "As a robot, I'm always available to make these news posts.")
+	writeNewspost("4/21/17", "karmicRetribution convinced me to improve graphics in a variety of ways, including providing a header image for each page. It'll only show up on the <a href = 'index.html'>Main Page</a> (which is now a thing) of the site for the regular branch, but'll be every page for the Experimental Branch. Once they merge, they'll be the same. They'll have slightly different images, though. The main branch is the 'alpha' timeline, cause it's less of a buggy piece of shit.<Br><br>Actually sim related: I'm working on implementing FreeWill stuff (that stat mind and time players modify). It's not at the point where it's actually a thing in the sim yet, though I wonder if it will show up as much as Luck?  Bluh. I'll leave calibrations for when the whole refactor-fest is done.");
 	writeNewspost("4/20/17","Still heavily refactoring how claspects work, but made initial quadrants be a thing and platonic relationships more common.  Hope players also don't directly modify trigger level, but DO make players lesss likely to waste time flipping their shit.  <Br><Br>Lucky (and unlucky) events are now a thing. ");
 	writeNewspost("4/18/17", "I am HEAVILY refactoring the experimental branch. So, since I'm fuck deep in code, now is the best time to suggest features. I started a reddit thread for that purpose <a href = 'https://www.reddit.com/r/homestuck/comments/666hhu/sburb_sim_in_the_process_of_refactoring_want_to/'> here</a>.  Basically, anything I lay the foundation for NOW will be a million times easier LATER.  Obviously I won't do everything suggeseted (and am likely to not implement ANYTHING exactly as submitted, too).  But, if you wanna join the brainstorming efforts, you can head on over there.<br><br>One interesting idea that has already shaken out is a combo between keiyakins, and MoreEpicThanYou747 where I'm toying with having First Guardian shenenigans that can cause time paradoxes. ")
 	writeNewspost("4/16/17", "Will avoid updating the main site (and instead update the <a href = 'http://purplefrog.com/~jenny/SburbStoryExperimental/index2.html'>experimental branch</a>) while I'm heavily refactoring the sim so that claspects matter more. Sessions are SEVERELY mutating as I do this, so heads up. Once I update the main branch all the links are gonna go to different sessions worse than usual.")
@@ -52,6 +46,10 @@ function newsposts(){
 	writeNewspost("3/20/17", "Before this day I was mostly working on debugging and tweaking sessions. I enlisted you, the fans, to help me find rare sessions.");
 	writeRoboNewspost("3/20/17", randomRobotQuip())
 
+}
+
+function roboNewsposts(){
+	writeRoboNewspost(new Date().toLocaleDateString(), "As a robot, I'm always available to make these news posts.")
 	writeRoboNewspost("3/20/17", randomRobotQuip())
 	writeRoboNewspost("3/19/17", randomRobotQuip())
 	writeRoboNewspost("3/18/17", randomRobotQuip())
@@ -59,6 +57,24 @@ function newsposts(){
 	writeRoboNewspost("3/16/17", randomRobotQuip())
 	writeRoboNewspost("3/15/17", randomRobotQuip())
 	writeRoboNewspost("3/14/17", randomRobotQuip())
+}
+
+
+function artNewsposts(){
+	writeNewspostArtist("4/21/17", "Hey, look at that, an official site header! So fancy! That shit is a fucking symphony on my retinas.");
+	writeNewspostArtist("4/17/17", "We are up to 60(!!) hairstyles, including all of the canon characters, even if I had to redraw hair for the ones that sucked. That's going to be all the hair for now - I'm going to move on to other items!")
+	writeNewspostArtist("4/14/17","<a href ='index2.html?lollipop=true'>TRICKSTER MODE ENGAGE!!!11!</a>")
+	writeNewspostArtist("4/13/17","Happy 413! I tried to finish out the hair for all the dancestors, but.... Kurloz. Seriously. His hair is too big to fit on the canvas. For NO REASON. He's not the Grand Highblood yet! I threw it out and made new hair that better reflects his talksprite. Anyway, I should be able to finish the rest soon. Did you know there are more than 50 hairstyles in the system already? Sheesh.");
+	writeNewspostArtist("4/5/17", " Ugh tvros your hair is so ugly<Br>ur head's not even round<Br>look at this bullshit:  <Br> <img src = 'images/tavroshead.png'>")
+	writeNewspostArtist("4/4/17", " Muahahaha! Finally I have finished updating all of the existing sprites for hair and I can start adding new ones.")
+	writeNewspostArtist("3/31/17", "Spent today chasing down visual bugs and eating them like a hungry baby dragon. Also banging my face against a scaling issue on the babies that was probably my fault in the first place. I standardized the size of all the rest of the images, but not the babies. Because I'm an idiot.<Br><Br>PS: Hyperrealistic grimdark flames are the best idea I've ever had.")
+	writeNewspostArtist("3/28/17", "Here's some proper Dream jammies for all you ungrateful bastards on Reddit.")
+	writeNewspostArtist("3/28/17", "Finished fixing up another handful of the worst hairstyles! jR figured out how to get the corrections working in the main branch as well, so you should all be able to see them.")
+	writeNewspostArtist("3/27/17", "Death by stabs now includes a knife in the corpse, courtesy of the <a href='http://www.mspaintadventures.com/?s=6&p=002228'>Midnight Crew</a>.");
+	writeNewspostArtist("3/23/17", 'There are currently 35 hairstyles. For stupid reasons related to my perfectionism, fixing up the hair sprites takes longer than any other sprite part, even the clothes. The few that are finished to my satisfaction are loaded into the <a href="http://purplefrog.com/~jenny/SburbStoryExperimental/newsposts.html">Experimental</a> branch. Making the images for this page has nothing to do with the delay on those, shut up."')
+	writeNewspostArtist("3/23/17", "Why did I spend several hours drawing blank-faced babies in MS Paint?<p><img src='images/Bodies/baby.png'><p>BECAUSE BABY LEGS DON'T WORK THAT WAY, HUSSIE.<p>ahem.<p>Anyway, I want to show off my baby sprites at full size, so you can marvel at their little toes and stupid fingers.<p><img src='images/Bodies/baby1.png'><br><img src='images/Bodies/baby2.png'><br><img src='images/Bodies/baby3.png'>")
+	writeNewspostArtist("3/23/17", "Cool, I get my own page!")
+	$("#artist_newsposts").append("<Br><Br><br><Br>");
 }
 
 function simulateASession(){
@@ -268,6 +284,13 @@ function bragAboutSessionFinding(){
 	sessionIndex ++;
 	str += "I'm looking at session "  + session.session_id + " right now. " + getQuipAboutSession(session);
 	return str;
+}
+
+function writeNewspostArtist(date, text){
+		var str = "<div id = '" + date + "human'><hr> ";
+		str += "<b>" + date + ":</b> ";
+		str += text+ "</div>";
+		$("#artist_newsposts").append(str);
 }
 
 function writeNewspost(date, text){

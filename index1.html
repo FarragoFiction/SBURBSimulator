@@ -1,37 +1,22 @@
 <html>
 	<head>
 	<meta charset="utf-8">
-	<style>
-		@font-face {
-				font-family: horrorterror;
-				src: url(MISTERTWIGGY.TTF);
-		}
-	</style>
-		<link rel="stylesheet" href="css/oc.css">
-		<script type="text/javascript" src="javascripts/sessionSummary.js"></script>
-		<script type="text/javascript" src="javascripts/navbar.js"></script>
 		<script type="text/javascript" src="javascripts/jquery-1.7.1.min.js"></script>
-		<script type="text/javascript" src="javascripts/ShittyRapEngine/shitty_raps.js"></script>
-		<script type="text/javascript" src="javascripts/random_tables.js"></script>
-		<script type="text/javascript" src="javascripts/Scenes/UpdateShippingGrid.js"></script>
-		<script type="text/javascript" src="javascripts/loading.js"></script>
-		<script type="text/javascript" src="javascripts/session.js"></script>
 		<script type="text/javascript" src="javascripts/player.js"></script>
-		<script type="text/javascript" src="javascripts/playerSnapshot.js"></script>
-		<script type="text/javascript" src="javascripts/quirk.js"></script>
 		<script type="text/javascript" src="javascripts/debugScenarios.js"></script>
+		<script type="text/javascript" src="javascripts/ShittyRapEngine/shitty_raps.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/UpdateShippingGrid.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/LuckStuff.js"></script>
+		<script type="text/javascript" src="javascripts/session.js"></script>
+		<script type="text/javascript" src="javascripts/quirk.js"></script>
+		<script type="text/javascript" src="javascripts/relationship.js"></script>
+		<script type="text/javascript" src="javascripts/scenario_controller.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/Breakup.js"></script>
+		<script type="text/javascript" src="javascripts/random_tables.js"></script>
+		<script type="text/javascript" src="javascripts/handle_sprites.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/YellowYard.js"></script>
 		<script type="text/javascript" src="javascripts/v2.0/YellowYardResultController.js"></script>
 		<script type="text/javascript" src="javascripts/v2.0/ImportantEvents.js"></script>
-		<script type="text/javascript" src="javascripts/Scenes/Breakup.js"></script>
-		<script type="text/javascript" src="javascripts/relationship.js"></script>
-		<script type="text/javascript" src="javascripts/v2.0/find_rare_sessions.js"></script>
-		<script type="text/javascript" src="javascripts/handle_sprites.js"></script>
-		<script type="text/javascript" src="javascripts/Scenes/LuckStuff.js"></script>
-		<script type="text/javascript" src="javascripts/v2.0/Scenes/AuthorMessage.js"></script>
-		<script type="text/javascript" src="javascripts/Scenes/YellowYard.js"></script>
-		<script type="text/javascript" src="javascripts/Scenes/Intro.js"></script>
-		<script type="text/javascript" src="javascripts/Scenes/Reckoning.js"></script>
-		<script type="text/javascript" src="javascripts/Scenes/Aftermath.js"></script>
 		<script type="text/javascript" src="javascripts/Scenes/KingPowerful.js"></script>
 		<script type="text/javascript" src="javascripts/Scenes/QueenRejectRing.js"></script>
 		<script type="text/javascript" src="javascripts/Scenes/PrepareToExileQueen.js"></script>
@@ -50,6 +35,7 @@
 		<script type="text/javascript" src="javascripts/Scenes/GodTierRevival.js"></script>
 		<script type="text/javascript" src="javascripts/Scenes/CorpseSmooch.js"></script>
 		<script type="text/javascript" src="javascripts/Scenes/GoGrimDark.js"></script>
+		<script type="text/javascript" src="javascripts/playerSnapshot.js"></script>
 		<script type="text/javascript" src="javascripts/Scenes/EngageMurderMode.js"></script>
 		<script type="text/javascript" src="javascripts/Scenes/BeTriggered.js"></script>
 		<script type="text/javascript" src="javascripts/Scenes/DisengageMurderMode.js"></script>
@@ -65,54 +51,13 @@
 		<script type="text/javascript" src="javascripts/Scenes/StartDemocracy.js"></script>
 		<script type="text/javascript" src="javascripts/Scenes/PowerDemocracy.js"></script>
 		<script type="text/javascript" src="javascripts/scene_controller.js"></script>
-		<script type = "text/javascript">
-
-		</script>
 		<title>
-			AuthorBot
+			SBURB Story Generator by jadedResearcher
 		</title>
 	</head>
 	<body>
-
-<div id = "navbar"></div>
-    <img src = "images/robot_author.png" style="float:left;">
-		<h2 id = "heading">Rare Session Finder AuthorBot </h2><a href = "rare_session_finder_junior.html">AuthorBotJunior</a><br><br>
-		<div id = "spiel">
-				<font color = "red">
-				It seems you have asked about JR's automatic rare session finder. This is an application designed
-				to find sessions that are strange, interesting and otherwise noteworthy without having to
-				read hundreds of thousands of words.  The algorithms are guaranteed to be <b id = "percentBullshit">96%</b>
-				 indistinguishable from the actual, readable sessions, based on some
-				statistical analysis I basically just pulled out of my ass right now.
-				<br><Br>
-					Please be patient as the sessions finish.  Stats will be printed out up top at the end. Links to individual sessions will be below.
-					<Br><Br>
-					# of Sessions to Check:
-					<Br>1 <input id="num_sessions" type="range" min="1" max="50" value="10"> 50
-					<Br>
-					<input type="text" id="num_sessions_text" value="" size="2" disabled>
-					<br><br>
-					<button id = "button" onclick="checkSessions()"disabled="false">Check Sessions</button>
-			</font>
-
-		</div>
-   <div id = "stats" style="float:left;">
-
-	 </div>
-		<div id = "debug" style="float:left;"></div>
-
-
-		<div id = "story"></div>
-		<canvas id="echeladder_template" width="202" height="300">  </canvas>
-		<canvas id="sprite_template" width="400" height="300">  </canvas>
-		<canvas id="canvas_template" width="1000" height="300">  </canvas>
-		<canvas id="chat_text_template" width="472" height="239">  </canvas>
-		<canvas id="godtierlevelup_template" width="650" height="151">  </canvas>
-		<img id="loading.png" src = "images/loading.png" style="display:none">
-		<div id = "image_staging">  </div>
-		<div id = "loading_image_staging">  </div>
-		<canvas id="loading" width="500" height="354">  </canvas>
-		<a href = "index2.html?robot=true">BEEP</a>
-
+		<h2>SBURB Story Generator 1.0 by jadedResearcher </h2><a href = "index2.html">SBURB SIM 2.0 (Graphics, dialogue, timeshenanigans)</a>
+		<div id = "debug"></div>
+		<div id = "story"/>
 	</body>
 </html>

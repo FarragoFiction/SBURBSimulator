@@ -39,6 +39,7 @@ var quipMode = false;
 
 
 window.onload = function() {
+	loadNavbar();
 	if(quipMode == true){
 			robotMode();
 			return;
@@ -68,7 +69,7 @@ function checkPassword(){
 	console.log("click")
 	numSimulationsDone = 0; //but don't reset stats
 	sessionSummariesDisplayed = []
-	
+
 	numSimulationsToDo =1;
 	var tmp = parseInt($("#pwtext").val())
 	if(isNaN(tmp)){
@@ -80,7 +81,7 @@ function checkPassword(){
 		pwMode = true;
 		startSession();
 	}
-	
+
 }
 
 function showHint(){
@@ -94,7 +95,7 @@ function filterSessionsJunior(){
 	for(var i = 0; i<allSessionsSummaries.length; i++){
 		sessionSummariesDisplayed.push(allSessionsSummaries[i]);
 	}
-	
+
 	for(var i = 0; i<sessionSummariesDisplayed.length; i++){
 		var ss = sessionSummariesDisplayed[i];
 		if(ss.players.length == num_players){
@@ -114,7 +115,7 @@ function filterSessionSummaries(){
 	for(var i = 0; i<allSessionsSummaries.length; i++){
 			sessionSummariesDisplayed.push(allSessionsSummaries[i]);
 	}
-	
+
 	$("input[name='filter']:checked").each(function(){
 		filters.push($(this).val());
 	});
@@ -664,4 +665,4 @@ function intro(){
 
 
 //the password is: Any session that AB would describe as "better than expected".  If you're in the code you could probably figure out what that means on your own.
-//just doing a 'find on page' of this file will find it for you, in fact. 
+//just doing a 'find on page' of this file will find it for you, in fact.
