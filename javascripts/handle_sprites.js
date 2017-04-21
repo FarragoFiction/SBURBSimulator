@@ -767,7 +767,7 @@ function drawSinglePlayer(canvas, player){
   var p1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 	drawSprite(p1SpriteBuffer,player)
   //drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff")
-  copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,-100,0)
+  copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,0,0)
 }
 
 //need to parse the text to figure out who is talking to determine color for chat.
