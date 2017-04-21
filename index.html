@@ -61,8 +61,9 @@
 	<script>
 	window.onload = function() {
 			loadNavbar();
-			newsposts();
-			artNewsposts();
+			//pass true so that it formats them differently.
+			newsposts("Main");
+			artNewsposts("Main");
 	}
 	</script>
 
@@ -77,8 +78,8 @@
 <img src = "images/author.png" style="float:left;">
 <img src = "images/Smith_of_Dreams.png" style="float:right;">
 <div id = "container">
-	<div id = "newsposts"> </div>
-	<div id = "artist_newsposts"> </div>
+	<div id = "newspostsMain"> </div>
+	<div id = "artist_newspostsMain"> </div>
 </div>
 
 

@@ -7,6 +7,11 @@
   float:left;
   width:25%;
 }
+
+#newspostsMain{
+  float:left;
+  width:50%;
+}
 #robo_newsposts{
     color: red;
     float:right;
@@ -16,6 +21,12 @@
 #artist_newsposts{
   color:#FCF9BD;
   float:left;
+  width:50%;
+}
+
+#artist_newspostsMain{
+  color:#000000;
+  float:right;
   width:50%;
 }
 
