@@ -501,7 +501,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			player.power += -1*amount
 		}
 	}
-	
+
 	this.voidInteractionEffect = function(player){
 		//void does nothing innately, modifies things at random.
 		var statInteractions = [this.lightInteractionEffect.bind(this,player),this.mindInteractionEffect.bind(this,player),this.timeInteractionEffect.bind(this,player),this.lifeInteractionEffect.bind(this,player),this.rageInterctionEffect.bind(this,player),this.heartInteractionEffect.bind(this,player),this.breathInteractionEffect.bind(this,player),this.spaceInteractionEffect.bind(this,player),this.bloodInteractionEffect.bind(this,player),this.doomInteractionEffect.bind(this,player),this.hopeInteractionEffect.bind(this,player)];
@@ -730,7 +730,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			}
 		}
 	}
-	
+
 	//need to bind funtions so they know what 'this' is.
 	this.voidIncreasePower = function(powerBoost){
 		//void does nothing innately. random stat modifications.
@@ -1169,7 +1169,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	}
 
 	this.initializeFreeWill = function(){
-		this.freeWill = getRandomInt(0,75);
+		this.freeWill = getRandomInt(-25,25);
 		if(this.aspect == "Mind"){
 			if(this.highInit()){
 				this.freeWill += 35;
@@ -1218,7 +1218,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			}
 		}
 	}
-	
+
 	this.initializeTriggerLevel = function(){
 		this.triggerLevel = getRandomInt(0,2);
 		if(this.aspect == "Rage"){
@@ -1269,16 +1269,16 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 				this.power += 15
 			}else{
 				this.power += -15;
-			}			
+			}
 		}
 	}
-	
-	
-	
+
+
+
 	//void is associated with nothing, and thus can do/be anything.
 	this.initializeVoid = function(){
 		if(this.aspect == "Void"){
-			
+
 			var amount = 0;
 			if(this.highInit()){
 				amount += getRandomInt(1,35);
@@ -1324,7 +1324,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 				this.triggerLevel += -1 * amount;
 			}
 		}else{
-			
+
 		}
 	}
 

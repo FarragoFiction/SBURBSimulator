@@ -1163,7 +1163,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.leftHorn = 26;
 		player.rightHorn = 26;
 		player.bloodColor = "#078446";
-		player.quirk.capitalization = 3;
+		player.quirk.capitalization = 1;
 		player.quirk.favoriteNumber = 5;
 		player.quirk.punctuation = 2;
 		player.quirk.lettersToReplace = [];
