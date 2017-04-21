@@ -1025,7 +1025,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.quirk.capitalization = 1;
 		player.quirk.punctuation = 2;
 		player.quirk.favoriteNumber = 4;
-		player.quirk.lettersToReplace = [["E","3"],["I","1"],["A","4"],["s\\b", "z"],["S\\b", "Z"]];
+		player.quirk.lettersToReplace = [["e","3"],["i","1"],["a","4"],["E","3"],["I","1"],["A","4"],["s\\b", "z"],["S\\b", "Z"]];
 		player.kernel_sprite = "Dragon"
 		player.interest1 = "Justice"
 		player.interest2 = "Video Games"
