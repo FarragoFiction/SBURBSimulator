@@ -86,8 +86,8 @@ function MurderPlayers(session){
 		var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawSprite(dSpriteBuffer,victim)
 
-		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,100,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,200,0)
 
 	}
 

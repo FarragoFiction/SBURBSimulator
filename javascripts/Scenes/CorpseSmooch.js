@@ -69,8 +69,8 @@ function CorpseSmooch(session){
 		var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawSprite(dSpriteBuffer,dead_player)
 
-		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,100,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,200,0)
 
 		var moonBuffer = getBufferCanvas(document.getElementById("canvas_template"));
 		drawMoon(moonBuffer, dead_player);
