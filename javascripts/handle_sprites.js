@@ -532,9 +532,9 @@ function drawLevelUp(canvas, player,repeatTime){
   var levelsBuffer = getBufferCanvas(document.getElementById("echeladder_template"));
   writeLevels(levelsBuffer,player) //level_bg_colors,level_font_colors
 
-	copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-100,0)
-	copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,250,0)
-	copyTmpCanvasToRealCanvasAtPos(canvas, levelsBuffer,250,0)
+	copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0)
+	copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,350,0)
+	copyTmpCanvasToRealCanvasAtPos(canvas, levelsBuffer,350,0)
 
 }
 
