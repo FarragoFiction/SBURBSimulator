@@ -536,6 +536,11 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 			this.timeInteractionEffect(player);
 		}
 	}
+	
+	//SBURB is not a mystery to these classes/aspects.
+	this.knowsAboutSburb = function(){
+		return this.class_name == "Seer" || this.aspect == "Light" || this.aspect == "Mind" || this.aspect == "Doom")
+	}
 
 	this.isActive = function(){
 		return (this.class_name == "Thief" || this.class_name == "Knight" || this.class_name == "Heir"|| this.class_name == "Mage"|| this.class_name == "Witch"|| this.class_name == "Prince")

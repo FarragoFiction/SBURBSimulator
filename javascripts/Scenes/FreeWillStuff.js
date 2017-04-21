@@ -28,6 +28,7 @@ function FreeWillStuff(session){
 		div.append("<br>"+this.content());
 	}
 
+
 	//in murder mode, plus random. reduce trigger, too. only for self (whether active or passive)
 	//more likely if who you hate is ectobiologist or space
 	this.considerDisEngagingMurderMode = function(player){
@@ -36,7 +37,8 @@ function FreeWillStuff(session){
 				var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
 				var spacePlayerEnemy = findAspectPlayer(enemies, "Space");
 				var ectobiologistEnemy = getLeader(enemies);
-				if(!this.session.ectoBiologyStarted && ectobiologistEnemy){
+				//not everybody knows about ectobiology.
+				if(!this.session.ectoBiologyStarted && ectobiologistEnemy && player.knowsAboutSburb()){
 					console.log("Free will stop from killing ectobiologist: " + this.session.session_id);
 					ret += "With a conscious act of will, the " + player.htmlTitle() + "settles their shit. If this keeps up, they are going to end up killing the " + ectobiologistEnemy.htmlTitle();
 					ret += " and then they will NEVER do ectobiology.  No matter HOW much of an asshole they are, it's not worth dooming the timeline. ";
@@ -45,8 +47,8 @@ function FreeWillStuff(session){
 					player.triggerLevel = 0; //
 					return ret;
 				}
-
-				if(spacePlayerEnemy && spacePlayerEnemy.landLevel < this.session.goodFrogLevel){
+				//not everybody knows why frog breeding is important.
+				if(spacePlayerEnemy && spacePlayerEnemy.landLevel < this.session.goodFrogLevel  && player.knowsAboutSburb()){
 					console.log("Free will stop from killing space player: " + this.session.session_id);
 					ret += "With a conscious act of will, the " + player.htmlTitle() + "settles their shit. If this keeps up, they are going to end up killing the " + spacePlayerEnemy.htmlTitle();
 					ret += " and then they will NEVER have frog breeding done. They can always kill them AFTER they've escaped to the new Universe, right? ";
@@ -72,11 +74,19 @@ function FreeWillStuff(session){
 	//less likely if who you hate is ectobiologist or space
 	this.considerEngagingMurderMode = function(player){
 		var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
-		var spacePlayerEnemy = findAspectPlayer(enemies, "Space");
-		var ectobiologistEnemy = getLeader(enemies);
-		if(!spacePlayerEnemy && !ectobiologistEnemy){
-			var ret = "";
+		if(player.isActive() && enemies.length > 0){
+			return becomeMurderMode(player);
+		}else if(enemies.length > 0){
+			return forceSomeOneElseMurderMode(player);
 		}
+		return null;
+	}
+
+	this.becomeMurderMode = function(player){
+		return null;
+	}
+
+	this.forceSomeOneElseMurderMode = function(player){
 		return null;
 	}
 
