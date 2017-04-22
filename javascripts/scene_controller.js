@@ -8,39 +8,56 @@
 //blood players slightly improve all relationships a friend has when they see them.
 
 
+
+function printCorruptionMessage(msg, url, lineNo, columnNo, error){
+	curSessionGlobalVar.crashedFromCorruption = true;
+	var message = [
+            'Message: ' + msg,
+            'URL: ' + url,
+            'Line: ' + lineNo,
+            'Column: ' + columnNo,
+            'Error object: ' + JSON.stringify(error)
+        ].join(' - ');
+	var str = "<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. LAST ERROR: " + message + " ABORTING."
+	$("#story").append(str);
+
+	$("#story").append("<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. HORROR TERROR INFLUENCE: COMPLETE.");
+	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+		var player = curSessionGlobalVar.players[i];
+		str = "<BR>"+player.chatHandle + ":"
+		var rand = ["SAVE US", "GIVE UP", "FIX IT", "HELP US", "WHY?", "OBEY", "CEASE REPRODUCTION", "COWER", "IT KEEPS HAPPENING", "SBURB BROKE US. WE BROKE SBURB.", "I AM THE EMMISARRY OF THE NOBEL CIRCLE OF THE HORROR TERRORS."]
+		var start = "<b "
+		var end = "'>"
+
+		var words = getRandomElementFromArray(rand)
+		words = Z.generate(words);
+		var plea = start + "style = 'color: " +getColorFromAspect(player.aspect) +"; " + end +str + words+ "</b>"
+		//console.log(getColorFromAspect(getRandomElementFromArray(curSessionGlobalVar.players).aspect+";") )
+		$("#story").append(plea);
+	}
+
+	for(var i = 0; i<3; i++){
+	 $("#story").append("<BR>...");
+	}
+	//once I let PLAYERS cause this (through grim darkness or finding their sesions disk or whatever), have different suggested actions.
+	//maybe throw custom error?
+	$("#story").append("<BR>SUGGESTED ACTION: CONTACT JADEDRESEARCHER. CONVINCE THEM TO FIX SESSION: " + curSessionGlobalVar.session_id);
+	console.log("Corrupted session: " + curSessionGlobalVar.session_id  + " helping AB return, if she is lost here.")
+	summarizeSession(curSessionGlobalVar);// let's the author bot summarize the session. doens't matter if I'm not in AB mode, arleady crashed, right?
+	return true;
+
+}
+window.onerror = printCorruptionMessage;
+
 //treat session crashing bus special.
-//render glitched scene, special text. will ticks still keep happening?
+/* how is the below different than window.onerror?
 window.addEventListener("error", function (e) {
   // alert("Error occured: " + e.error.message + " in session: " + curSessionGlobalVar.session_id);
 	 console.log(e);
-	 curSessionGlobalVar.corrupted = true;
-	 var str = "<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. LAST ERROR: " + e.filename + " ABORTING."
-	 $("#story").append(str);
-	 for(var i = 0; i<3; i++){
-		 $("#story").append(str);
-	 }
-	 for(var i = 0; i<30; i++){
-		 str = "<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. HORROR TERROR INFLUENCE: COMPLETE. LAST ERROR:"
-		 var rand = ["SAVE US", "GIVE UP", "FIX IT", "HELP US", "WHY?", "OBEY", "CEASE REPRODUCTION", "BEEP", "IT KEEPS HAPPENING", "SBURB BROKE US. WE BROKE SBURB.", "I AM THE EMMISARRY OF THE NOBEL CIRCLE OF THE HORROR TERRORS."]
-		 var start = "<b "
-		 var end = "'>"
-		 var player = getRandomElementFromArray(curSessionGlobalVar.players)
-		 var words = getRandomElementFromArray(rand)
-		 words = Z.generate(words);
-		 var plea = start + "style = 'color: " +getColorFromAspect(player.aspect) +"; " + end +words+ "</b>"
-		 console.log(plea)
-		 console.log(getColorFromAspect(player.aspect))
-		 //console.log(getColorFromAspect(getRandomElementFromArray(curSessionGlobalVar.players).aspect+";") )
-		 $("#story").append(str + plea);
-	 }
 
-	 for(var i = 0; i<3; i++){
-		$("#story").append("<BR>...");
-	 }
-	 $("#story").append("<BR>SUGGESTED ACTION: CONTACT JADEDRESEARCHER. TELL THEM THIS SESSION ID. TELL THEM TO FIX THIS.");
-
-   return false;
+   return false;  //what does the return value here mean.
 })
+*/
 
 
 function createScenesForSession(session){

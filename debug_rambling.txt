@@ -719,3 +719,10 @@ at first yellow yard, 4 players. Maid of Time, Witch of Space, Witch of Void and
 post yellow yard: 4 players. 2 aliens cloned on arrival. names all seem right.  is it doppelgangers again?
 
 BLUUUUHHHH.
+
+
+
+
+Goal: Have AB not get caught in glitchy, corrupted sessions. She never returns.  The first step was being able to catch session crashing, which I can now do (and print out bullshit about horrorterrors)
+
+problem, session stops ticking after error. this is fine. my error handling code can grab mark a session as corrupt. how can i trigger AB to continue on with the next session?
