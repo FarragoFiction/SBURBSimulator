@@ -13,7 +13,7 @@ function PlayerSnapshot(){
 	this.guardian = null;
 	this.number_confessions = null;
 	this.number_times_confessed_to = null;
-	this.wasteInfluenced = null;
+	this.influenceSymbol = null;
 	this.aspect = null;
 	this.land = null;
 	this.interest1 = null
@@ -109,4 +109,26 @@ function PlayerSnapshot(){
 		return ret;
 	}
 
+
+
+}
+
+
+//so players can be restored after being mind/whatever controled.
+function MiniSnapShot(player){
+	this.relationships = player.relationships;
+	this.murderMode = player.murderMode;
+	this.grimDark = player.grimDark;
+	this.isTroll = player.isTroll;
+	this.class_name = player.class_name;
+	this.aspect = player.aspect;
+
+	this.restoreState = function(player){
+		player.relationships = this.relationships;
+		player.murderMode = this.murderMode;
+		player.grimDark = this.grimDark;
+		player.isTroll = this.isTroll;
+		player.class_name = this.class_name
+		player.aspect = this.aspect;
+	}
 }

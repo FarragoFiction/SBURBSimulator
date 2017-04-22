@@ -171,6 +171,13 @@ function FreeWillStuff(session){
 
 	}
 
+	this.getInfluenceSymbol = function(player){
+		if(player.aspect == "Mind") return "mind_forehead.png"
+		if(player.aspect == "Rage") return "rage_forehead.png"
+		if(player.aspect == "Blood") return "blood_forehead.png"
+		if(player.aspect == "Heart") return "heart_forehead.png"
+	}
+
 	//it's not a terrible idea to kill my enemies, and I can find someone not already in murder mode.
 	//random chance of making my enemies their enemies. boosted if prince/thief of mind or blood. or witch/mage or rage? special dialogue if so.
 	//have method to look for best patsy. (best one is someone who isn't already your enemy who hates the most amount of your enemies.)
@@ -190,12 +197,14 @@ function FreeWillStuff(session){
 					console.log("mind controling someone to go into murdermode and altering their enemies with game powers." +this.session.session_id);
 					patsy.murderMode = true;
 					patsy.triggerLevel = 10;
+					patsy.influenceSymbol = this.getInfluenceSymbol(player);
 					var rage = this.alterEnemies(patsy, enemies,player);
 					return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use game powers to manipulate the very will of the " + patsy.htmlTitleBasic() + " and use them as a weapon. This is completely terrifying.  " + rage;
 				}else if(canInfluenceEnemies(player) && patsy.freeWill * 2 < player.freeWill){
 					console.log("rage controling into murdermode and altering their enemies with game powers." +this.session.session_id);
 					patsy.murderMode = true;
 					patsy.triggerLevel = 10;
+					patsy.influenceSymbol = this.getInfluenceSymbol(player);
 					var rage = this.alterEnemies(patsy, enemies,player);
 					var modifiedTrait = "relationships"
 					if(player.aspect == "Heart") modifiedTrait = "identity"
@@ -208,14 +217,6 @@ function FreeWillStuff(session){
 
 	//my enemies are your enemies.
 	this.alterEnemies = function(patsy, enemies,player){
-			for(var i = 0; i< enemies.length; i++){
-				var enemy = enemies[i];
-				if(enemy != patsy){//maybe i SHOULD reneable self-relationships. maybe you hate yourself? try to kill yourself?
-					var r1 = player.getRelationshipWith(enemies[i]);
-					var r2 = patsy.getRelationshipWith(enemies[i]);
-					r2.value = r1.value;
-				}
-			}
 			//hate you for doing this to me.
 			var r = patsy.getRelationshipWith(player)
 			var rage = 0;
@@ -225,6 +226,16 @@ function FreeWillStuff(session){
 			var ret = ""
 			if(rage < -3) ret = "The " + patsy.htmlTitle() + " seems to be upset about this, underneath the control.";
 			if(rage < -9) ret = "The " + patsy.htmlTitle() + " is barely under control. They seem furious. ";
+			//make snapshot of state so they can maybe break free later.
+			patsy.stateBackup = new MiniSnapShot(patsy);
+			for(var i = 0; i< enemies.length; i++){
+				var enemy = enemies[i];
+				if(enemy != patsy){//maybe i SHOULD reneable self-relationships. maybe you hate yourself? try to kill yourself?
+					var r1 = player.getRelationshipWith(enemies[i]);
+					var r2 = patsy.getRelationshipWith(enemies[i]);
+					r2.value = r1.value;
+				}
+			}
 			return ret;
 	}
 
@@ -252,13 +263,18 @@ function FreeWillStuff(session){
 	}
 
 	//if self, just fucking do it. raise land level. otherwise, pester them. raise power to min requirement, if it's not already there.
+	//or if knight, drag their ass to the planet and do some.
 	this.considerMakingSpacePlayerDoJob = function(player){
 
 	}
 
+	//TODO make snapshot like object of players relationships and murdermode/grim dark state before mind controller
+	//if they break it, restore state.
 	this.getPlayerDecision = function(player){
 		//reorder things to change prevelance.
-		var ret = this.considerCalmMurderModePlayer(player);
+		var ret = this.considerBreakFreeControl(player);  //TODO if you are under influence, here is how you can break free, if you free will is strong enough. mini snapshot has code that can help
+		if(ret == null) ret = this.considerHelpBreakFreeControl(player);  //if a player is not under your control, you can try to free them.
+		if(ret == null) ret = this.considerKillMurderModePlayer(player);
 		if(ret == null) ret = this.considerKillMurderModePlayer(player);
 		if(ret == null) ret = this.considerDisEngagingMurderMode(player); //done
 		if(ret == null) ret = this.considerMakingEctobiologistDoJob(player);

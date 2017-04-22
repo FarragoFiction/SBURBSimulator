@@ -1031,7 +1031,7 @@ function makeRenderingSnapshot(player){
 	ret.trickster = player.trickster;
 	ret.baby_stuck = player.baby_stuck;
 	ret.sbahj = player.sbahj;
-	ret.wasteInfluenced = player.wasteInfluenced;
+	ret.influenceSymbol = player.influenceSymbol;
 	ret.grimDark = player.grimDark;
 	ret.victimBlood = player.victimBlood;
 	ret.murderMode = player.murderMode;
@@ -1159,8 +1159,9 @@ function drawSprite(canvas, player,ctx,baby){
  }
 
 
-  if(player.wasteInfluenced == true){
-    wasteOfMindSymbol(canvas, player);
+  if(player.influenceSymbol){
+    //wasteOfMindSymbol(canvas, player);
+    influenceSymbol(canvas, player.influenceSymbol);
   }
 }
 
@@ -1337,6 +1338,17 @@ function drawTimeGears(canvas){
   ctx.drawImage(img,0,0,width,height);
   copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,0,0)
 
+}
+
+//more than just yellow yard can do this.
+function influenceSymbol(canvas, symbol){
+  ctx = canvas.getContext('2d');
+  var imageString = symbol;
+  addImageTag(imageString)
+  var img=document.getElementById(imageString);
+  var width = img.width;
+  var height = img.height;
+  ctx.drawImage(img,0,0,width,height);
 }
 
 //if the Waste of Mind/Observer sends a time player back
