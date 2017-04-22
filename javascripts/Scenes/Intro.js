@@ -9,6 +9,34 @@ function Intro(session){
 		return true; //this should never be in the main array. call manually.
 	}
 
+	this.changeBoggle = function(){
+			if(this.player.aspect == "Blood"){
+				return " They boggle vacantly at the " + this.player.land + ". ";
+			}else if(this.player.aspect == "Mind"){
+				return " They smile knowingly at the " + this.player.land + ". ";
+			}else if(this.player.aspect == "Rage"){
+				return " They glare with bafflement at the " + this.player.land + ". ";
+			}else if(this.player.aspect == "Time"){
+				return " They are very confused by the " + this.player.land + ". ";
+			}else if(this.player.aspect == "Void"){
+				return " They stare blnakly at the " + this.player.land + ". ";
+			}else if(this.player.aspect == "Heart"){
+				return " They run around excitedly in the " + this.player.land + ". ";
+			}else if(this.player.aspect == "Breath"){
+				return " They grin excitedly at the " + this.player.land + ". ";
+			}else if(this.player.aspect == "Light"){
+				return " They stare at the " + this.player.land + " with unrestrained curiosity. ";
+			}else if(this.player.aspect == "Space"){
+				return " They do not even understand the " + this.player.land + ". ";
+			}else if(this.player.aspect == "Hope"){
+				return " They are enthused about the " + this.player.land + ". ";
+			}else if(this.player.aspect == "Life"){
+				return " They are obviously pleased with " + this.player.land + ". ";
+			}else if(this.player.aspect == "Doom"){
+				return " They stare with trepidation at the " + this.player.land + ". ";
+			}
+	}
+
 //not a yellow yard thing, just random
 	this.changePrototyping = function(div){
 		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1 && Math.seededRandom() > .8){
@@ -676,7 +704,7 @@ function Intro(session){
 				return;
 			}
 
-			narration += " They boggle vacantly at the " + this.player.land + ". ";
+			narration += this.changeBoggle();
 
 			for(var j = 0; j<this.player.relationships.length; j++){
 				var r = this.player.relationships[j];
