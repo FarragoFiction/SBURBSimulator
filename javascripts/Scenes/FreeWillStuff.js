@@ -242,38 +242,42 @@ function FreeWillStuff(session){
 	// do it to self if active, do it to someone else if not.  need to have it not be destiny. bonus if there are dead players (want to avenge them/stop more corpses).
 	//sedoku reference???
 	this.considerForceGodTier = function(player){
-
+			return null;
 	}
 
 	//needs to be a murder mode player. more likely if you like them.  if active and you like them a lot, do it yourself. if passive, see if you can get somebody else to do it for you (mastermind)
 	//more likely if murderMode player is ectobiologist or space
+	//can be mind control.
 	this.considerCalmMurderModePlayer = function(player){
-
+			return null;
 	}
 
 	//needs to be a murdermode player,  more likely if you dislike them. if active, do it yourself, if passive, see if you can get somebody else to do it for you. need to be stronger than them.
 	//less likely if murderMode player is ectobiologist or space
 	this.considerKillMurderModePlayer = function(player){
-
+		return null;
 	}
 
 	//if self, just fucking do it. otherwise, pester them. raise power to min requirement, if it's not already there.
 	this.considerMakingEctobiologistDoJob = function(player){
-
+		return null;
 	}
 
 	//if self, just fucking do it. raise land level. otherwise, pester them. raise power to min requirement, if it's not already there.
 	//or if knight, drag their ass to the planet and do some.
 	this.considerMakingSpacePlayerDoJob = function(player){
-
+		return null;
 	}
 
-	//TODO make snapshot like object of players relationships and murdermode/grim dark state before mind controller
-	//if they break it, restore state.
+	//if  SELF is mind controlled, can break free if free will high enough.
+	//if someone ELSE is mind controlled (and not by you), can help them break free.
+	this.considerBreakFreeControl(player){
+		return null;
+	}
+
 	this.getPlayerDecision = function(player){
 		//reorder things to change prevelance.
 		var ret = this.considerBreakFreeControl(player);  //TODO if you are under influence, here is how you can break free, if you free will is strong enough. mini snapshot has code that can help
-		if(ret == null) ret = this.considerHelpBreakFreeControl(player);  //if a player is not under your control, you can try to free them.
 		if(ret == null) ret = this.considerKillMurderModePlayer(player);
 		if(ret == null) ret = this.considerKillMurderModePlayer(player);
 		if(ret == null) ret = this.considerDisEngagingMurderMode(player); //done
