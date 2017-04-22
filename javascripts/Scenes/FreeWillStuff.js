@@ -110,9 +110,36 @@ function FreeWillStuff(session){
 		return null;
 	}
 
-	//find someone not in the list of enemies. choose whoever is enemies with the most amount of given enemies but not the player.
-	this.findBestPatsy = function(player, enemies){
+	this.howManyEnemiesInCommon = function(enemies, patsy){
+		var myEnemies = patsy.getEnemiesFromList(findLivingPlayers(this.session.players));
+		var num = 0;
+		for(var i = 0; i<enemies.length; i++){
+			var e = enemies[i];
+			if(myEnemies.indexOf(e) != -1) num ++;
+		}
+		return num;
+	}
 
+	//find someone not in the list of enemies. choose whoever is enemies with the most amount of given enemies
+	//free will isn't about randomness. decisions. choices. alternatives.
+	//they can be enemeis with the player. makes for ironic betryal.
+	this.findBestPatsy = function(player, enemies){
+			var bestPatsy = null; //array with [patsy, numEnemiesInCommon]
+			var living = findLivingPlayers(this.session.players);
+			for(var i = 0; i<living.length; i++){
+				var p = living[i];
+				if(p != player){ //can't be own patsy
+					if(bestPatsy == null){
+						bestPatsy = [p,this.howManyEnemiesInCommon(enemies, p)];
+					}else{
+							var numEnemiesInCommon = this.howManyEnemiesInCommon(enemies, p);
+							if(numEnemiesInCommon > bestPatsy[1]){
+								bestPatsy = [p,tnumEnemiesInCommon];
+							}
+					}
+				}
+			}
+			return bestPatsy
 	}
 
 	//thief/bard/maage/witch of mind.
@@ -233,36 +260,21 @@ function FreeWillStuff(session){
 		//reorder things to change prevelance.
 		var ret = this.considerCalmMurderModePlayer(player);
 		if(ret == null) ret = this.considerKillMurderModePlayer(player);
-		if(ret == null) ret = this.considerDisEngagingMurderMode(player);
-		if(ret == null) ret = this.considerEngagingMurderMode(player);
+		if(ret == null) ret = this.considerDisEngagingMurderMode(player); //done
 		if(ret == null) ret = this.considerMakingEctobiologistDoJob(player);
 		if(ret == null) ret = this.considerMakingSpacePlayerDoJob(player);
 		if(ret == null) ret = this.considerForceGodTier(player);
+		if(ret == null) ret = this.considerEngagingMurderMode(player);  //done
+
 		return ret;
-	}
-
-
-
-
-	this.processDecision = function(){
-
 	}
 
 	this.content = function(){
 		console.log("Decision event: " + this.session.session_id)
 		var ret = "Decision Event: ";
 		removeFromArray(this.player, this.session.availablePlayers);
-		for(var i = 0; i<this.wills.length; i++){
-			var will = this.wills[i];
-			removeFromArray(will.player, this.session.availablePlayers);
-			ret += this.processDecision(will);
-		}
+		ret += this.decision;  //it already happened, it's a string. ineligible for being an important event influencable by yellow yard. (john's retcon time powers can confound a decision like this tho)
 
 		return ret;
 	}
-}
-
-function WillPower(player, decision){
-	this.player = player;
-	this.decision = decision;
 }
