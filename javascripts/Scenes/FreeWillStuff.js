@@ -115,13 +115,32 @@ function FreeWillStuff(session){
 
 	}
 
-	//thief/prince/maage/witch of mind.
-	this.canStealWills = function(){
+	//thief/bard/maage/witch of mind.
+	this.canStealWills = function(player){
+		if(player.aspect == "Mind"){
+			if(player.class_name == "Thief" || player.class_name == "Mage" || player.class_name == "Bard" || player.class_name == "Witch"){
+				return true;
+			}
+		}
+		return false;
 
 	}
 
-	//thief/prince of blood. thief/prince of heart. mage/witch of rage.
-	this.canInfluenceEnemies = function(){
+	//thief/prince/mage/witch of blood. thief/prince/mage/witch of heart. /mage/witch of rage.
+	this.canInfluenceEnemies = function(player){
+		if(player.aspect == "Blood"){
+			if(player.class_name == "Thief" || player.class_name == "Mage" || player.class_name == "Bard" || player.class_name == "Witch"){
+				return true;
+			}
+		}
+
+		if(player.aspect == "Rage"){
+			if( player.class_name == "Mage" || player.class_name == "Witch"){
+				return true;
+			}
+
+		}
+		return false;
 
 	}
 
@@ -144,23 +163,46 @@ function FreeWillStuff(session){
 					console.log("mind controling someone to go into murdermode and altering their enemies with game powers." +this.session.session_id);
 					patsy.murderMode = true;
 					patsy.triggerLevel = 10;
-					this.alterEnemies(patsy, enemies,player);
-					return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use game powers to manipulate the very will of the " + patsy.htmlTitleBasic() + " and use them as a weapon. This is completely terrifying.  ";
+					var rage = this.alterEnemies(patsy, enemies,player);
+					return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use game powers to manipulate the very will of the " + patsy.htmlTitleBasic() + " and use them as a weapon. This is completely terrifying.  " + rage;
 				}else if(canInfluenceEnemies(player) && patsy.freeWill * 2 < player.freeWill){
 					console.log("rage controling into murdermode and altering their enemies with game powers." +this.session.session_id);
 					patsy.murderMode = true;
 					patsy.triggerLevel = 10;
-					this.alterEnemies(patsy, enemies,player);
+					var rage = this.alterEnemies(patsy, enemies,player);
 					var modifiedTrait = "relationships"
 					if(player.aspect == "Heart") modifiedTrait = "identity"
 					if(player.aspect == "Rage") modifiedTrait = "sanity"
-					return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use game powers to manipulate the " + patsy.htmlTitleBasic() + "'s " + modifiedTrait + " until they are willing to carry out their plan. This is completely terrifying. ";
+					return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use game powers to manipulate the " + patsy.htmlTitleBasic() + "'s " + modifiedTrait + " until they are willing to carry out their plan. This is completely terrifying. " + rage;
 				}
 		}
 		return null;
 	}
 
+	//my enemies are your enemies.
+	this.alterEnemies = function(patsy, enemies,player){
+			for(var i = 0; i< enemies.length; i++){
+				var enemy = enemies[i];
+				if(enemy != patsy){//maybe i SHOULD reneable self-relationships. maybe you hate yourself? try to kill yourself?
+					var r1 = player.getRelationshipWith(enemies[i]);
+					var r2 = patsy.getRelationshipWith(enemies[i]);
+					r2.value = r1.value;
+				}
+			}
+			//hate you for doing this to me.
+			var r = patsy.getRelationshipWith(player)
+			var rage = 0;
+			if (patsy.freeWill > 0) rage = -3;
+			if (patsy.freeWill > 50) rage = -9;
+			r.value += rage;
+			var ret = ""
+			if(rage < -3) ret = "The " + patsy.htmlTitle() + " seems to be upset about this, underneath the control.";
+			if(rage < -9) ret = "The " + patsy.htmlTitle() + " is barely under control. They seem furious. ";
+			return ret;
+	}
+
 	// do it to self if active, do it to someone else if not.  need to have it not be destiny. bonus if there are dead players (want to avenge them/stop more corpses).
+	//sedoku reference???
 	this.considerForceGodTier = function(player){
 
 	}
