@@ -10,6 +10,7 @@ function Session(session_id){
 	//session no longer keeps track of guardians.
 	this.kingStrength = 100;
 	this.rapBattle = false;
+	this.corrupted = false; //gets corrupted if an unrecoverable error gets caught.
 	this.sickFires = false;
 	this.sbahj = false;
 	this.queenStrength = 100;
@@ -104,7 +105,7 @@ function Session(session_id){
 		}
 		this.aliensClonedOnArrival = [];//jettison old clones.
 		addAliensToSession(curSessionGlobalVar, living);
-		
+
 		restartSession();//in controller
 	}
 
@@ -215,7 +216,7 @@ function Session(session_id){
 				p.quirk = randomHumanSim(p);
 			}
 		}
-		
+
 		decideInitialQuadrants(this.players);
 
 		for(var k = 0; k<this.players.length; k++){

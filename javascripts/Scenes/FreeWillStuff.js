@@ -7,6 +7,7 @@ function FreeWillStuff(session){
 	//should something special happen if you have a lot of negative free will? like...
 	//maybe exile shenanigans?
 	this.trigger = function(playerList){
+		player.spriteList //will error out
 		this.decision = null;//reset
 		//what the hell roue of doom's corpse. corpses aren't part of the player list!
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
