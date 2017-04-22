@@ -14,9 +14,8 @@ function FreeWillStuff(session){
 			if(player.freeWill > 25){  //don't even get to consider a decision if you don't have  more than default free will.
 				var decision = this.getPlayerDecision(player);
 				if(decision){
-					var d = new WillPower(player, decision)
 					if(!this.decision || d.player.freeWill > this.decision.player.freeWill){  //whoever has the most will makes the decision.
-						this.decision = d;
+						this.decision = decision;
 					}
 				}
 			}
@@ -71,7 +70,7 @@ function FreeWillStuff(session){
 	}
 
   //if you know better, you won't doom the session.
-	this.isValidTargets(enemies){
+	this.isValidTargets = function(enemies,player){
 		var spacePlayerEnemy = findAspectPlayer(enemies, "Space");
 		var ectobiologistEnemy = getLeader(enemies);
 		if(spacePlayerEnemy && spacePlayerEnemy.landLevel < this.session.goodFrogLevel  && player.knowsAboutSburb()){
@@ -89,9 +88,9 @@ function FreeWillStuff(session){
 	this.considerEngagingMurderMode = function(player){
 		var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
 		if(player.isActive() && enemies.length > 0 && player.triggerLevel > 3){
-			return becomeMurderMode(player);
+			return this.becomeMurderMode(player);
 		}else if(enemies.length > 0 && player.triggerLevel > 3){
-			return forceSomeOneElseMurderMode(player);
+			return this.forceSomeOneElseMurderMode(player);
 		}
 		return null;
 	}
@@ -99,7 +98,7 @@ function FreeWillStuff(session){
 	this.becomeMurderMode = function(player){
 		if(!player.murderMode){
 			var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
-			if(this.isValidTargets(enemies)){
+			if(this.isValidTargets(enemies,player)){
 					console.log("chosing to go into murdermode " +this.session.session_id);
 					player.murderMode = true;  //no font change. not crazy. obviously. why would you think they were?
 					player.triggerLevel = 10;
@@ -184,10 +183,10 @@ function FreeWillStuff(session){
 	//only do mind control if whoever you pick hates less than half of who you hate.
 	this.forceSomeOneElseMurderMode = function(player){
 		var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
-		var patsyArr = findBestPatsy(player, enemies);
+		var patsyArr = this.findBestPatsy(player, enemies);
 		var patsy = patsyArr[0];
 		var patsyVal = patsyArr[1];
-		if(this.isValidTargets(enemies) && patsy){
+		if(this.isValidTargets(enemies,player) && patsy){
 				if(patsyVal > enemies.length/2 && patasy.triggerLevel > 1){
 						console.log("manipulating someone to go into murdermode " +this.session.session_id);
 						patsy.murderMode = true;
@@ -271,7 +270,7 @@ function FreeWillStuff(session){
 
 	//if  SELF is mind controlled, can break free if free will high enough.
 	//if someone ELSE is mind controlled (and not by you), can help them break free.
-	this.considerBreakFreeControl(player){
+	this.considerBreakFreeControl = function(player){
 		return null;
 	}
 

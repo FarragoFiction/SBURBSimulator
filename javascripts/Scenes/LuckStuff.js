@@ -11,7 +11,10 @@ function LuckStuff(session){
 
 	this.trigger = function(playerList){
 		this.rolls = [];//reset
-		if(this.numberTriggers > 10) return false;
+		if(this.numberTriggers > 10){
+			console.log("too much luck events in " + this.session.session_id)
+			return false;
+		}
 		//what the hell roue of doom's corpse. corpses aren't part of the player list!
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var player = this.session.availablePlayers[i];
