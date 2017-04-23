@@ -12,7 +12,7 @@
 function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 	var recomendedAction = "";
 	if(curSessionGlobalVar.crashedFromPlayerActions){
-		recomendedAction = "OMFG JUST STOP CRASHING MY DAMN SESSIONS. FUCKING GRIMDARK PLAYERS. ";
+		recomendedAction = "OMFG JUST STOP CRASHING MY DAMN SESSIONS. FUCKING GRIMDARK PLAYERS. BREAKING SBURB DOES NOT HELP ANYBODY! ";
 	}else{
 		curSessionGlobalVar.crashedFromCorruption = true;
 		recomendedAction = "CONTACT JADEDRESEARCHER. CONVINCE THEM TO FIX SESSION: " + curSessionGlobalVar.session_id;
