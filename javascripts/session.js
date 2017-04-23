@@ -3,6 +3,7 @@ function Session(session_id){
 	this.session_id = session_id; //initial seed
 	this.players = [];
 	this.hasClubs = false;
+	this.sessionHealth = 100; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
 	this.hasDiamonds = false;
 	this.hasHearts = false;
 	this.hasSpades = false;
@@ -11,6 +12,7 @@ function Session(session_id){
 	this.kingStrength = 100;
 	this.rapBattle = false;
 	this.crashedFromCorruption = false; //gets corrupted if an unrecoverable error gets caught.
+	this.crashedFromPlayerActions = false;
 	this.sickFires = false;
 	this.sbahj = false;
 	this.queenStrength = 100;
@@ -394,6 +396,7 @@ function Session(session_id){
 	this.generateSummary = function(){
 		var summary = new SessionSummary();
 		summary.crashedFromCorruption = this.crashedFromCorruption;
+		summary.crashedFromPlayerActions = this.crashedFromPlayerActions;
 		summary.session_id = this.session_id;
 		summary.hasLuckyEvents = this.goodLuckEvent;
 		summary.hasUnluckyEvents = this.badLuckEvent;

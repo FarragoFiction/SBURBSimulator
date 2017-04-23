@@ -4,6 +4,7 @@
 function SessionSummary(){
 	this.session_id = null;
 	this.crashedFromCorruption = null;
+	this.crashedFromPlayerActions = null;
 	this.num_scenes = null;
 	this.players = null;  //can ask for sessions with a blood player and a murder mode, for example
 	this.mvp = null;
@@ -208,6 +209,7 @@ function SessionSummaryJunior(players,session_id){
 function MultiSessionSummary(){
 	this.total = 0;
 	this.crashedFromCorruption = 0;
+	this.crashedFromPlayerActions = 0;
 	this.totalDeadPlayers = 0;
 	this.scratchAvailable = 0;
 	this.yellowYard = 0;
@@ -298,6 +300,7 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		var ss = sessionSummaries[i];
 		mss.total ++;
 		if(ss.crashedFromCorruption) mss.crashedFromCorruption ++;
+		if(ss.crashedFromPlayerActions) mss.crashedFromPlayerActions ++;
 		if(ss.scratchAvailable) mss.scratchAvailable ++;
 		if(ss.yellowYard) mss.yellowYard ++;
 		if(ss.numLiving == 0) mss.timesAllDied ++;

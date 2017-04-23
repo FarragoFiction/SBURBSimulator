@@ -26,7 +26,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	this.number_times_confessed_to = 0;
 	this.baby_stuck = false;
 	this.influenceSymbol = null; //multiple aspects can influence/mind control.
-	this.stateBackup = null; //if you get influenced by something, here's where your true self is stored until you break free. 
+	this.stateBackup = null; //if you get influenced by something, here's where your true self is stored until you break free.
 	this.aspect = aspect;
 	this.land = land;
 	this.interest1 =null;
@@ -1610,6 +1610,18 @@ function getPartyPower(party){
 		ret += party[i].power;
 	}
 	return ret;
+}
+
+function getPlayersTitlesNoHTML(playerList){
+	//console.log(playerList)
+	if(playerList.length == 0){
+		return "";
+	}
+		var ret = playerList[0].title();
+		for(var i = 1; i<playerList.length; i++){
+			ret += " and " + playerList[i].title();
+		}
+		return ret;
 }
 
 function getPlayersTitles(playerList){

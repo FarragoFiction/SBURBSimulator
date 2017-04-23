@@ -10,7 +10,13 @@
 
 
 function printCorruptionMessage(msg, url, lineNo, columnNo, error){
-	curSessionGlobalVar.crashedFromCorruption = true;
+	var recomendedAction = "";
+	if(curSessionGlobalVar.crashedFromPlayerActions){
+		recomendedAction = "OMFG JUST STOP CRASHING MY DAMN SESSIONS. FUCKING GRIMDARK PLAYERS. ";
+	}else{
+		curSessionGlobalVar.crashedFromCorruption = true;
+		recomendedAction = "CONTACT JADEDRESEARCHER. CONVINCE THEM TO FIX SESSION: " + curSessionGlobalVar.session_id;
+	}
 	var message = [
             'Message: ' + msg,
             'URL: ' + url,
@@ -42,7 +48,7 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 	}
 	//once I let PLAYERS cause this (through grim darkness or finding their sesions disk or whatever), have different suggested actions.
 	//maybe throw custom error?
-	$("#story").append("<BR>SUGGESTED ACTION: CONTACT JADEDRESEARCHER. CONVINCE THEM TO FIX SESSION: " + curSessionGlobalVar.session_id);
+	$("#story").append("<BR>SUGGESTED ACTION: " + recomendedAction);
 	console.log("Corrupted session: " + curSessionGlobalVar.session_id  + " helping AB return, if she is lost here.")
 	summarizeSession(curSessionGlobalVar);// let's the author bot summarize the session. doens't matter if I'm not in AB mode, arleady crashed, right?
 	return false; //if i return true here, the real error doesn't show up
@@ -64,7 +70,7 @@ window.addEventListener("error", function (e) {
 function createScenesForSession(session){
 	session.scenes = [new StartDemocracy(session), new JackBeginScheming(session), new KingPowerful(session), new QueenRejectRing(session), new JackPromotion(session), new JackRampage(session), new GiveJackBullshitWeapon(session)];
 	//relationship drama has a high priority because it can distract a session from actually making progress. happened to universe a trolls.
-	session.scenes = session.scenes.concat([new Breakup(session), new RelationshipDrama(session), new UpdateShippingGrid(session),  new EngageMurderMode(session), new GoGrimDark(session),  new DisengageMurderMode(session),new MurderPlayers(session),new BeTriggered(session),]);
+	session.scenes = session.scenes.concat([new GrimDarkQuests(session),new Breakup(session), new RelationshipDrama(session), new UpdateShippingGrid(session),  new EngageMurderMode(session), new GoGrimDark(session),  new DisengageMurderMode(session),new MurderPlayers(session),new BeTriggered(session),]);
 	session.scenes = session.scenes.concat([new VoidyStuff(session), new FaceDenizen(session), new DoEctobiology(session), new FreeWillStuff(session), new LuckStuff(session), new DoLandQuest(session)]);
 	session.scenes = session.scenes.concat([new SolvePuzzles(session), new ExploreMoon(session)]);
 	session.scenes = session.scenes.concat([new LevelTheHellUp(session)]);

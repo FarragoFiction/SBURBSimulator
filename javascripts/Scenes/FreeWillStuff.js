@@ -18,6 +18,7 @@ function FreeWillStuff(session){
 				if(decision){
 					if(!this.decision || player.freeWill > this.player.freeWill){  //whoever has the most will makes the decision.
 						this.decision = decision;
+						this.player = player;
 					}
 				}
 			}
@@ -281,6 +282,7 @@ function FreeWillStuff(session){
 		var ret = this.considerBreakFreeControl(player);  //TODO if you are under influence, here is how you can break free, if you free will is strong enough. mini snapshot has code that can help
 		if(ret == null) ret = this.considerKillMurderModePlayer(player);
 		if(ret == null) ret = this.considerKillMurderModePlayer(player);
+		//let them decide to enter or leave grim dark, and kill or calm grim dark player
 		if(ret == null) ret = this.considerDisEngagingMurderMode(player); //done
 		if(ret == null) ret = this.considerMakingEctobiologistDoJob(player);
 		if(ret == null) ret = this.considerMakingSpacePlayerDoJob(player);
