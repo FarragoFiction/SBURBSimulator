@@ -31,7 +31,8 @@ function MurderPlayers(session){
 		div.append("<br>"+this.contentForRender(div));
 	}
 
-	this.friendsOfVictimHateYou = function(victim, murderer, livePlayers){
+	this.friendsOfVictimHateYou = function(victim, murderer){
+		var livePlayers = findLivingPlayers(this.session.players); //reroll it 'cause people might have died during this set of murders.'
 		//just, fuck that guy.
 		var ret = "";
 		for(var i = 0; i<livePlayers.length; i++){
@@ -215,7 +216,7 @@ function MurderPlayers(session){
 						if(m.dead == true){ //they could have been killed by another murder player in this same tick
 							ret += " Every one is very impressed that they managed to do it while dying."
 						}
-						ret += this.friendsOfVictimHateYou(worstEnemy, m, livePlayers);
+						ret += this.friendsOfVictimHateYou(worstEnemy, m);
 						worstEnemy.dead = true;
 						var r = worstEnemy.getRelationshipWith(m);
 						r.value = -10; //you are not happy with murderer
@@ -302,7 +303,7 @@ function MurderPlayers(session){
 
 					worstEnemy.causeOfDeath = "fighting the " + m.htmlTitle();
 					ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". ";
-					ret += this.friendsOfVictimHateYou(worstEnemy, m, livePlayers);
+					ret += this.friendsOfVictimHateYou(worstEnemy, m);
 					worstEnemy.dead = true;
 					m.victimBlood = worstEnemy.bloodColor;
 				}else{

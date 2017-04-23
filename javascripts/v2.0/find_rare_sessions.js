@@ -518,7 +518,7 @@ function getQuipAboutSession(sessionSummary){
 		}
 	}else  if(sessionSummary.parentSession){
 		quip += "Combo sessions are always so cool. " ;
-	}else if(dead == 0 && sessionSummary.frogStatus == "Full Frog" && sessionSummary.ectoBiologyStarted){
+	}else if(dead == 0 && sessionSummary.frogStatus == "Full Frog" && sessionSummary.ectoBiologyStarted && !sessionSummary.crashedFromCorruption && !sessionSummary.crashedFromPlayerActions){
 		quip += "Everything went better than expected." ;
 	}else  if(sessionSummary.jackRampage){
 		quip += "Jack REALLY gave them trouble." ;
