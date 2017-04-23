@@ -3,18 +3,20 @@ function FreeWillStuff(session){
 	this.canRepeat = true;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.decision = null
+	this.player
 	//luck can be good or it can be bad.
 	//should something special happen if you have a lot of negative free will? like...
 	//maybe exile shenanigans?
 	this.trigger = function(playerList){
 		this.decision = null;//reset
+		this.player = null;
 		//what the hell roue of doom's corpse. corpses aren't part of the player list!
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var player = this.session.availablePlayers[i];
 			if(player.freeWill > 25){  //don't even get to consider a decision if you don't have  more than default free will.
 				var decision = this.getPlayerDecision(player);
 				if(decision){
-					if(!this.decision || d.player.freeWill > this.decision.player.freeWill){  //whoever has the most will makes the decision.
+					if(!this.decision || player.freeWill > this.player.freeWill){  //whoever has the most will makes the decision.
 						this.decision = decision;
 					}
 				}
@@ -133,7 +135,7 @@ function FreeWillStuff(session){
 					}else{
 							var numEnemiesInCommon = this.howManyEnemiesInCommon(enemies, p);
 							if(numEnemiesInCommon > bestPatsy[1]){
-								bestPatsy = [p,tnumEnemiesInCommon];
+								bestPatsy = [p,numEnemiesInCommon];
 							}
 					}
 				}
@@ -187,7 +189,7 @@ function FreeWillStuff(session){
 		var patsy = patsyArr[0];
 		var patsyVal = patsyArr[1];
 		if(this.isValidTargets(enemies,player) && patsy){
-				if(patsyVal > enemies.length/2 && patasy.triggerLevel > 1){
+				if(patsyVal > enemies.length/2 && patsy.triggerLevel > 1){
 						console.log("manipulating someone to go into murdermode " +this.session.session_id);
 						patsy.murderMode = true;
 						return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use clever words to convince the " + patsy.htmlTitleBasic() + " of the righteousness of their plan. They agree to carry out the bloody work. ";

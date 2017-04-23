@@ -18,6 +18,7 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
             'Column: ' + columnNo,
             'Error object: ' + JSON.stringify(error)
         ].join(' - ');
+	console.log(message);
 	var str = "<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. LAST ERROR: " + message + " ABORTING."
 	$("#story").append(str);
 
@@ -44,7 +45,7 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 	$("#story").append("<BR>SUGGESTED ACTION: CONTACT JADEDRESEARCHER. CONVINCE THEM TO FIX SESSION: " + curSessionGlobalVar.session_id);
 	console.log("Corrupted session: " + curSessionGlobalVar.session_id  + " helping AB return, if she is lost here.")
 	summarizeSession(curSessionGlobalVar);// let's the author bot summarize the session. doens't matter if I'm not in AB mode, arleady crashed, right?
-	return true;
+	return false; //if i return true here, the real error doesn't show up
 
 }
 window.onerror = printCorruptionMessage;
