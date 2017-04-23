@@ -23,11 +23,10 @@ function GrimDarkQuests(session){
 		var bestFriend = player.getBestFriend();
 		if(bestFriend){
 			var r = player.getRelationshipWith(bestFriend);
-			if(r.value > 5){
+			if(r.value > 10){
 				var ret =  "The " + player.htmlTitle() + " suddenly snaps out of it.  Their friendship with the " + bestFriend.htmlTitleBasic() + " has managed to free them of the Horrorterror's influence. ";
 				if(bestFriend.grimDark) ret += " The irony of this does not escape anyone. "
-				player.grimDark = false;
-				player.triggerLevel = 1;
+				player.grimDark = 1;
 				return ret;
 			}
 		}
@@ -36,7 +35,7 @@ function GrimDarkQuests(session){
 	}
 
 	this.workToCrashSession = function(player){
-			var tasks = ["explode a gate using dark magicks. ", "destroy a temple meant to help them with their Quests.","search for the game disk for SBURB itself.","seek the counsel of the nobel circle of the Horrorterrors.","begin asking the local consorts VERY uncomfortable questsions.","meet with the Black Queen to discuss Frog destroying options.","attempt to use their powers to access the Game's source code.","exploit glitches to access areas of the game meant never to be seen by players.","seek forbidden knowledge hidden deep within the glitchiest parts of the Furthest Ring."];
+			var tasks = ["try to explode a gate using dark magicks. ", "try to destroy a temple meant to help them with their Quests.","search for the game disk for SBURB itself.","seek the counsel of the nobel circle of the Horrorterrors.","begin asking the local consorts VERY uncomfortable questsions.","meet with the Black Queen to discuss game destroying options.","attempt to use their powers to access the Game's source code.","exploit glitches to access areas of the game meant never to be seen by players.","seek forbidden knowledge hidden deep within the glitchiest parts of the Furthest Ring."];
 			var quip = "";
 			this.session.sessionHealth += -1* player.power; //more powerful the player, the more damage they do. get rid of grimDark bonus
 			player.landLevel += -1; //if they manage to snap out of this, they are gonna still have a bad time. why did they think this was a good idea?

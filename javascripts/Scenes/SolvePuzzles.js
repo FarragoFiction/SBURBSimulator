@@ -85,7 +85,7 @@ function SolvePuzzles(session){
 		}
 
 		if(ret){
-			console.log("Spreading corruptin in: " + this.session.session_id)
+		//	console.log("Spreading corruptin in: " + this.session.session_id)
 			return "The corruption is spreading."
 		}
 		return "";
