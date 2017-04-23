@@ -119,7 +119,7 @@ function DoLandQuest(session){
 			if(r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " spends a great deal of time helping the " + player.htmlTitle() + " out with their relationship drama. " ;
 			}else{
-				ret += ret += " The " + helper.htmlTitle() + " spends a great deal of time lecturing the " + player.htmlTitle() + " about the various ways a player can be triggered into going shithive maggots. " ;
+				ret += " The " + helper.htmlTitle() + " spends a great deal of time lecturing the " + player.htmlTitle() + " about the various ways a player can be triggered into going shithive maggots. " ;
 			}
 		}
 
@@ -129,7 +129,7 @@ function DoLandQuest(session){
 			if(r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " is doing a kickass job of helping the " + player.htmlTitle() + ". " ;
 			}else{
-				ret += ret += " The " + helper.htmlTitle() + " delights in rubbing how much better they are at the game in the face of the " + player.htmlTitle() + ". " ;
+				ret += " The " + helper.htmlTitle() + " delights in rubbing how much better they are at the game in the face of the " + player.htmlTitle() + ". " ;
 			}
 		}
 
@@ -141,7 +141,7 @@ function DoLandQuest(session){
 			if(r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " spends a great deal of time shit talking about the other players. ";
 			}else{
-				ret += ret += " The " + helper.htmlTitle() + " spends a great deal of time making the " + player.htmlTitle() + " aware of every bad thing the other players have said behind their back. " ;
+				ret += " The " + helper.htmlTitle() + " spends a great deal of time making the " + player.htmlTitle() + " aware of every bad thing the other players have said behind their back. " ;
 			}
 		}
 
@@ -161,8 +161,20 @@ function DoLandQuest(session){
 			if(r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " covertly spends at least half of their time diverting resources to complete their own quests. ";
 			}else{
-				ret += ret += " The " + helper.htmlTitle() + " blatantly steals resources from the" + player.htmlTitle() + ", saying that THEIR quests are just so much more important. " ;
+				ret += " The " + helper.htmlTitle() + " blatantly steals resources from the" + player.htmlTitle() + ", saying that THEIR quests are just so much more important. " ;
 			}
+		}
+
+		if(helper && helper.grimDark>0){
+			player.corruptionLevelOther += 25;
+			console.log("spreading corruption in: "  + this.session.session_id)
+			ret += " The corruption is spreading. "
+		}
+
+		if(helper && player.grimDark>0){
+			helper.corruptionLevelOther += 25;
+			console.log("spreading corruption in: "  + this.session.session_id)
+			ret += " The corruption is spreading. "
 		}
 		return ret;
 

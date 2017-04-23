@@ -100,6 +100,18 @@ function SolvePuzzles(session){
 		if(this.player2 != null && this.player1  != this.player2 ){
 			ret += getRelationshipFlavorText(r1,r2, this.player1, this.player2);
 		}
+
+		if(this.player2 && this.player2.grimDark>0){
+			this.player1.corruptionLevelOther += 25;
+			console.log("spreading corruption in solve puzzles : "  + this.session.session_id)
+			ret += " The corruption is spreading. "
+		}
+
+		if(this.player2 && this.player1.grimDark>0){
+			this.player2.corruptionLevelOther += 25;
+			console.log("spreading corruption in: "  + this.session.session_id)
+			ret += " The corruption is spreading. "
+		}
 		return ret;
 	}
 

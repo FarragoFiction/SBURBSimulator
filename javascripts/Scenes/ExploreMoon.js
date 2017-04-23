@@ -101,6 +101,8 @@ function ExploreMoon(session){
 		}else{
 			ret += "whimsical moon activities, such as attending dance parties, cheating at poker and keeping tabs on the lifeblood of Derse. ";
 			ret += " The whisperings of the HorrorTerrors provided a nice backdrop. ";
+			this.player1.corruptionLevelOther += 10;
+			if(this.player2) this.player2.corruptionLevelOther += 10;
 		}
 
 		if(this.player2 != null){
@@ -117,6 +119,18 @@ function ExploreMoon(session){
 			}else if(r1.type() == "Rivals"){
 				ret += " The" + this.player1.htmlTitle() + " is irritable around " + this.player2.htmlTitle();
 			}
+		}
+
+		if(this.player2 && this.player2.grimDark>0){
+			this.player1.corruptionLevelOther += 25;
+			console.log("spreading corruption in solve puzzles : "  + this.session.session_id)
+			ret += " The corruption is spreading. "
+		}
+
+		if(this.player2 && this.player1.grimDark>0){
+			this.player2.corruptionLevelOther += 25;
+			console.log("spreading corruption in: "  + this.session.session_id)
+			ret += " The corruption is spreading. "
 		}
 		return ret;
 	}
