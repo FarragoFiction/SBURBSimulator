@@ -14,6 +14,22 @@ function GrimDarkQuests(session){
 		return this.players.length>0;
 	}
 
+	//power of friendship defeats corruptions.
+	this.checkSnapOutOfIt = function(player){
+		var bestFriend = player.getBestFriend();
+		if(bestFriend){
+			var r = player.getRelationshipWith(bestFriend);
+			if(r.value > 7){
+				var ret =  "The " + player.htmlTitle() + " suddenly snaps out of it.  Their friendship with the " + bestFriend.htmlTitleBasic() + " has managed to free them of the Horrorterror's influence. ";
+				player.grimDark = false;
+				player.triggerLevel = 1;
+				return ret;
+			}
+		}
+		return null;
+
+	}
+
 	this.workToCrashSession = function(player){
 			var tasks = ["explode a gate using dark magicks. ", "destroy a temple meant to help them with their Quests.","search for the game disk for SBURB itself.","seek the counsel of the nobel circle of the Horrorterrors.","begin asking the local consorts VERY uncomfortable questsions.","meet with the Black Queen to discuss Frog destroying options.","attempt to use their powers to access the Game's source code.","exploit glitches to access areas of the game meant never to be seen by players.","seek forbidden knowledge hidden deep within the glitchiest parts of the Furthest Ring."];
 			var quip = "";
@@ -50,7 +66,13 @@ function GrimDarkQuests(session){
 			for(var i = 0; i<this.players.length; i++){
 				if(this.session.sessionHealth <= 0) return ret;
 				var player = this.players[i];
-				ret += this.workToCrashSession(player)
+				var snop = this.checkSnapOutOfIt(player);
+				if(snop){
+					console.log("Grim dark player snapped out of it through the power of friendship in session " + this.session.session_id)
+					ret += snop;
+				}else{
+					ret += this.workToCrashSession(player)
+				}
 			}
 			return ret;
 	}
