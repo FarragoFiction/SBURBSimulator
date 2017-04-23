@@ -19,7 +19,7 @@ function GrimDarkQuests(session){
 		var bestFriend = player.getBestFriend();
 		if(bestFriend){
 			var r = player.getRelationshipWith(bestFriend);
-			if(r.value > 7){
+			if(r.value > 2){
 				var ret =  "The " + player.htmlTitle() + " suddenly snaps out of it.  Their friendship with the " + bestFriend.htmlTitleBasic() + " has managed to free them of the Horrorterror's influence. ";
 				player.grimDark = false;
 				player.triggerLevel = 1;
@@ -68,7 +68,7 @@ function GrimDarkQuests(session){
 				var player = this.players[i];
 				var snop = this.checkSnapOutOfIt(player);
 				if(snop){
-					console.log("Grim dark player snapped out of it through the power of friendship in session " + this.session.session_id)
+					//console.log("Grim dark player snapped out of it through the power of friendship in session " + this.session.session_id)
 					ret += snop;
 				}else{
 					ret += this.workToCrashSession(player)
