@@ -726,3 +726,12 @@ BLUUUUHHHH.
 Goal: Have AB not get caught in glitchy, corrupted sessions. She never returns.  The first step was being able to catch session crashing, which I can now do (and print out bullshit about horrorterrors)
 
 problem, session stops ticking after error. this is fine. my error handling code can grab mark a session as corrupt. how can i trigger AB to continue on with the next session?
+
+
+
+GrimDark Refactoring TODO:
+have stat that is CorruptionLevelOther. have various things raise it. (corrupted land, corrupted sprite, etc.) every 100 points, raise grimDark level tier and go back to zero.
+make grimDark 4 level tier, not boolean. 0 is none.  1 = Zero out Relationships. Break game some. 2 = Break game more, small power boost. 3 = grim dark font, grim dark halo, do nothing but break game.
+
+
+Add grim light corruption as well. think about what this means (do they counter each other?)

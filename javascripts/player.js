@@ -1,16 +1,21 @@
-function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestiny){
+function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
 
   //call if I overrode claspect or interest or anything
 	this.reinit = function(){
 		//console.log("player reinit");
 		this.chatHandle = getRandomChatHandle(this.class_name,this.aspect,this.interest1, this.interest2);
 		this.mylevels = getLevelArray(this);//make them ahead of time for echeladder graphic
-		this.land = getRandomLandFromAspect(this.aspect);
+		var tmp = getRandomLandFromPlayer(this);
+		this.land1 = tmp[0]
+		this.land2 = tmp[1];
+		this.land = "Land of " + tmp[0] + " and " + tmp[1];
 	}
 	this.baby = null;
 	this.session = session;
 	this.hp = 0; //mostly used for boss battles;
 	this.graphs = [];
+	this.land1 = null; //words my land is made of.
+	this.land2 = null;
 	this.minLuck = 0;
 	this.maxLuck = 0;
 	this.freeWill = 0;
@@ -28,7 +33,7 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	this.influenceSymbol = null; //multiple aspects can influence/mind control.
 	this.stateBackup = null; //if you get influenced by something, here's where your true self is stored until you break free.
 	this.aspect = aspect;
-	this.land = land;
+	this.land = null;
 	this.interest1 =null;
 	this.interest2 = null;
 	this.chatHandle = null;
@@ -60,7 +65,8 @@ function Player(session,class_name, aspect, land, kernel_sprite, moon, godDestin
 	this.triggerLevel = -2; //make up for moon bonus
 	this.murderMode = false;  //kill all players you don't like. odds of a just death skyrockets.
 	this.leftMurderMode = false; //have scars, unless left via death.
-  this.grimDark = false;  //all relationships set to 0. power up a lot. odds of  a just death skyrockets.
+	this.corruptionLevelOther = 0; //every 100 points, sends you to next grimDarkLevel.
+  this.grimDark = false;  //  0 = none, 1 = some, 2 = some more 3 = full grim dark with aura and font and everything.
 	this.leader = false;
 	this.landLevel = 0; //at 10, you can challenge denizen.  only space player can go over 100 (breed better universe.)
 	this.denizenFaced = false; //when faced, you double in power (including future power increases.)
@@ -1467,16 +1473,20 @@ function getFontColorFromAspect(aspect){
 
 function randomPlayerWithClaspect(session, c,a){
 	//console.log("random player");
-	var l = getRandomLandFromAspect(a);
+
 	var k = getRandomElementFromArray(prototypings);
 
 
 	var gd = false;
 
 	var m = getRandomElementFromArray(moons);
-	var p =  new Player(session,c,a,l,k,m,gd);
+	var p =  new Player(session,c,a,k,m,gd);
 
 	p.initializeStats();
+	var tmp =getRandomLandFromPlayer(p);
+	p.land1 = tmp[0]
+	p.land2 = tmp[1];
+	p.land = "Land of " + tmp[0] + " and " + tmp[1];
 	//no longer any randomness directly in player class. don't want to eat seeds if i don't have to.
 	p.baby = getRandomInt(1,3)
 	p.interest1 = getRandomElementFromArray(interests);

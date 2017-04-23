@@ -9,6 +9,24 @@ function Intro(session){
 		return true; //this should never be in the main array. call manually.
 	}
 
+	this.corruptedLand = function(){
+		if(corruptedOtherLandTitles.indexOf(this.player.land1) != -1 || corruptedOtherLandTitles.indexOf(this.player.land1) != -1 ){
+			this.player.corruptionLevelOther = 100;
+			console.log("TODO when grim dark done refactoring, grimdark ++")
+			console.log("corrupted land" + this.session.session_id)
+			return "There is ...something very very wrong about the " + this.player.land +". ";
+		}
+		return "";
+	}
+
+	this.corruptedSprite = function(){
+		if(corruptedOtherLandTitles.indexOf(this.player.kernel_sprite) != -1 ){
+
+			return "There is ...something very very wrong about the " + this.player.kernel_sprite + ". ";
+		}
+		return "";
+	}
+
 	this.changeBoggle = function(){
 			if(this.player.aspect == "Blood"){
 				return " They boggle vacantly at the " + this.player.land + ". ";
@@ -705,6 +723,7 @@ function Intro(session){
 			}
 
 			narration += this.changeBoggle();
+			narration += this.corruptedLand();
 
 			for(var j = 0; j<this.player.relationships.length; j++){
 				var r = this.player.relationships[j];
