@@ -23,7 +23,7 @@ function GrimDarkQuests(session){
 		var bestFriend = player.getBestFriend();
 		if(bestFriend){
 			var r = player.getRelationshipWith(bestFriend);
-			if(r.value > 2){
+			if(r.value > 5){
 				var ret =  "The " + player.htmlTitle() + " suddenly snaps out of it.  Their friendship with the " + bestFriend.htmlTitleBasic() + " has managed to free them of the Horrorterror's influence. ";
 				if(bestFriend.grimDark) ret += " The irony of this does not escape anyone. "
 				player.grimDark = false;

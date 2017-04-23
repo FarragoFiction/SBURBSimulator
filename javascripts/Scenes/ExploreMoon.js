@@ -123,7 +123,6 @@ function ExploreMoon(session){
 
 		if(this.player2 && this.player2.grimDark>0){
 			this.player1.corruptionLevelOther += 25;
-			console.log("spreading corruption in solve puzzles : "  + this.session.session_id)
 			ret += " The corruption is spreading. "
 		}
 

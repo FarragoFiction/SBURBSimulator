@@ -66,6 +66,32 @@ function SolvePuzzles(session){
 		div.append("<br>"+this.content());
 	}
 
+	this.spreadCoruption = function(player1, player2){
+		var ret = false;
+		if(player2 && player2.grimDark>0){
+			player1.corruptionLevelOther += 25;
+			ret = true;
+		}
+
+		if(player2 && player1.grimDark>0){
+			player2.corruptionLevelOther += 25;
+			ret = true;
+		}
+
+		if(corruptedOtherLandTitles.indexOf(player1.land1) != -1 || corruptedOtherLandTitles.indexOf(player1.land1) != -1 ){
+			player1.corruptionLevelOther += 25;
+			if(player2) player2.corruptionLevelOther += 25;
+			ret = true;
+		}
+
+		if(ret){
+			console.log("Spreading corruptin in: " + this.session.session_id)
+			return "The corruption is spreading."
+		}
+		return "";
+
+	}
+
 	this.content = function(){
 		//console.log("Solving puzzles at: " + this.player1.land)
 		var ret = "";
@@ -97,21 +123,7 @@ function SolvePuzzles(session){
 		ret += " random bullshit sidequests at " + this.player1.shortLand();
 		ret += ", solving puzzles and getting coy hints about The Ultimate Riddle. "
 
-		if(this.player2 != null && this.player1  != this.player2 ){
-			ret += getRelationshipFlavorText(r1,r2, this.player1, this.player2);
-		}
-
-		if(this.player2 && this.player2.grimDark>0){
-			this.player1.corruptionLevelOther += 25;
-			console.log("spreading corruption in solve puzzles : "  + this.session.session_id)
-			ret += " The corruption is spreading. "
-		}
-
-		if(this.player2 && this.player1.grimDark>0){
-			this.player2.corruptionLevelOther += 25;
-			console.log("spreading corruption in: "  + this.session.session_id)
-			ret += " The corruption is spreading. "
-		}
+		ret += this.spreadCoruption(this.player1, this.player2);
 		return ret;
 	}
 

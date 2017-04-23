@@ -10,7 +10,7 @@ function GoGrimDark(session){
 		//select a random player. if they've been triggered, random chance of going grim dark (based on how triggered.)
 		for(var i = 0; i< this.playerList.length; i++){
 			var p = this.playerList[i]
-			if(p.corruptionLevelOther >= 100){
+			if(p.corruptionLevelOther >= 50){
 				this.player = p;
 				return true;
 			}
@@ -34,7 +34,7 @@ function GoGrimDark(session){
 	//modify land quests and etc. physical contact with a grim dark player raises your corruption levels.
 	this.raiseGrimDarkLevel = function(){
 			this.player.grimDark ++;
-			this.corruptionLevelOther = 0; //reset corruption level
+			this.player.corruptionLevelOther = 0; //reset corruption level
 			var ret = "";
 			if(this.player.grimDark == 1){
 				ret += " The " + this.player.htmlTitle() + " is starting to seem a little strange. They sure do like talking about Horrorterrors!"

@@ -165,24 +165,50 @@ function DoLandQuest(session){
 			}
 		}
 
-		if(helper && helper.grimDark>0){
-			player.corruptionLevelOther += 25;
-			console.log("spreading corruption in: "  + this.session.session_id)
-			ret += " The corruption is spreading. "
+
+		return ret;
+
+	}
+
+	this.spreadCoruption = function(player1, player2){
+		var ret = false;
+		if(player2 && player2.grimDark>0){
+			player1.corruptionLevelOther += 25;
+			ret = true;
 		}
 
-		if(helper && player.grimDark>0){
-			helper.corruptionLevelOther += 25;
-			console.log("spreading corruption in: "  + this.session.session_id)
-			ret += " The corruption is spreading. "
+		if(player2 && player1.grimDark>0){
+			player2.corruptionLevelOther += 25;
+			ret = true;
 		}
-		return ret;
+
+		if(corruptedOtherLandTitles.indexOf(player1.land1) != -1 || corruptedOtherLandTitles.indexOf(player1.land1) != -1 ){
+			player1.corruptionLevelOther += 25;
+			ret = true;
+			if(player2) player2.corruptionLevelOther += 25;
+		}
+
+		if(corruptedOtherPrototypings.indexOf(player1.kernel_sprite) != -1  ){
+			console.log("corrupt sprite: " + this.session.session_id)
+			player1.corruptionLevelOther += 25;
+			ret = true;
+			if(player2) player2.corruptionLevelOther += 25;
+		}
+
+		if(ret){
+			console.log("Spreading corruptin in: " + this.session.session_id)
+			return "The corruption is spreading."
+		}
+		return "";
 
 	}
 
 	this.spriteContent = function(player){
 		var ret = " " + player.kernel_sprite.replace(/\s+/g, '') + "sprite ";
-		if(helpful_prototypings.indexOf(player.kernel_sprite) != -1){
+		if(corruptedOtherPrototypings.indexOf(player.kernel_sprite) != -1){
+			player.landLevel += -0.75;
+			ret = " Oh god. What is going on. Why does just listening to " + player.kernel_sprite.replace(/\s+/g, '') + "sprite make your ears bleed!? "
+		}else if(helpful_prototypings.indexOf(player.kernel_sprite) != -1){
 			//console.log("good sprite: " + this.session.session_id)
 			ret += " is pretty much as useful as another player. No cagey riddles, just straight answers on how to finish the quests. "
 			player.landLevel += 1;
@@ -229,6 +255,7 @@ function DoLandQuest(session){
 			ret += getRelationshipFlavorText(r1,r2, player, helper);
 		}
 		ret += this.spriteContent(player);
+		ret += this.spreadCoruption(player, helper);
 		return ret;
 	}
 
