@@ -1004,11 +1004,12 @@ prototypings = prototypings.concat(["Stoner","Student","Librarian","Teacher","Jo
 prototypings = prototypings.concat(["Robot","Game Bro","Game Grl","Movie Star","Internet Troll"]);
 
 
-var disastor_prototypings = ["First Guardian", "Horrorterror", "Dragon", "Alien", "Teacher", "Clown","Fiduspawn","Doll","Xenomorph","Deadpool"];
-disastor_prototypings = disastor_prototypings.concat(["Zombie","Demon","Monster","Vampire","Pumpkin","Werewolf","Puppet"]);
+var disastor_prototypings = ["First Guardian", "Dragon", "Alien", "Teacher", "Clown","Fiduspawn","Doll","Xenomorph","Deadpool"];
+disastor_prototypings = disastor_prototypings.concat(["Zombie","Demon","Monster","Vampire","Pumpkin","Werewolf"]);
 var fortune_prototypings = ["Frog","Lizard", "Salamander", "Iguana", "Crocodile", "Turtle", "Snake","Axolotl","Newt"];
 
-var corruptedOtherPrototypings = ["Horrorterror","Puppet","","","",""];
+var corruptedOtherPrototypings = [Zalgo.generate("Horrorterror"),Zalgo.generate("Puppet"),Zalgo.generate("Speaker of the Furthest Ring"),Zalgo.generate("Cultist")];
+disastor_prototypings = disastor_prototypings.concat(corruptedOtherPrototypings);
 
 //keep copies here, but if a prototyping isn't on one of these lists, consider it 'neutrasl
 //helpfulness is in regards to landquests. '

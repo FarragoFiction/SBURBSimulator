@@ -13,16 +13,17 @@ function Intro(session){
 		if(corruptedOtherLandTitles.indexOf(this.player.land1) != -1 || corruptedOtherLandTitles.indexOf(this.player.land1) != -1 ){
 			this.player.corruptionLevelOther = 100;
 			console.log("TODO when grim dark done refactoring, grimdark ++")
-			console.log("corrupted land" + this.session.session_id)
+			//console.log("corrupted land" + this.session.session_id)
 			return "There is ...something very very wrong about the " + this.player.land +". ";
 		}
 		return "";
 	}
 
 	this.corruptedSprite = function(){
-		if(corruptedOtherLandTitles.indexOf(this.player.kernel_sprite) != -1 ){
-
-			return "There is ...something very very wrong about the " + this.player.kernel_sprite + ". ";
+		if(corruptedOtherPrototypings.indexOf(this.player.kernel_sprite) != -1 ){
+			console.log("TODO when grim dark done refactoring, grimdark ++")
+			console.log("corrupted sprite" + this.session.session_id)
+			return "There is ...something very very wrong about the " + this.player.kernel_sprite + "sprite. ";
 		}
 		return "";
 	}
@@ -694,6 +695,8 @@ function Intro(session){
 		}else{
 			this.changePrototyping(div);
 			narration += "<br>The " + this.player.htmlTitle() + " enters the game " + indexToWords(i) + ". ";
+			narration += " They manage to prototype their kernel sprite with a " + this.player.kernel_sprite + " pre-entry. "
+			narration += this.corruptedSprite();
 
 			narration += " They have many INTERESTS, including " +this.player.interest1 + " and " + this.player.interest2 + ". ";
 			narration += " Their chat handle is " + this.player.chatHandle + ". "
