@@ -37,10 +37,10 @@ function GrimDarkQuests(session){
 
 
 	this.renderContent = function(div){
-		console.log("trying to crash session like an idiot: " + this.session.session_id)
+		//console.log("trying to crash session like an idiot: " + this.session.session_id)
 		div.append("<br>"+this.content(div));
 		if(this.session.sessionHealth <= 0){
-			div.append("<br>YOU MANIACS! YOU BLEW IT UP! AH, DAMN YOU! GOD DAMN YOU ALL TO HELL! <br><br>Just joking. Well, I mean. Not about them blowing it up. Sessions fucked. But. I mean, come on. What did you THINK would happen? Stupid, lousy goddamned GrimDark players crashing my fucking sessions.");
+			div.append("<br><br>YOU MANIACS! YOU BLEW IT UP! AH, DAMN YOU! GOD DAMN YOU ALL TO HELL! <br><br>Just joking. Well, I mean. Not about them blowing it up. Sessions fucked. But. I mean, come on. What did you THINK would happen? Stupid, lousy goddamned GrimDark players crashing my fucking sessions.");
 			this.crashSession();
 		}
 	}

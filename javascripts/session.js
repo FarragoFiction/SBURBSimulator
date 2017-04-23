@@ -3,7 +3,7 @@ function Session(session_id){
 	this.session_id = session_id; //initial seed
 	this.players = [];
 	this.hasClubs = false;
-	this.sessionHealth = 100; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
+	this.sessionHealth = 1000; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
 	this.hasDiamonds = false;
 	this.hasHearts = false;
 	this.hasSpades = false;

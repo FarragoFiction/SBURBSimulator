@@ -38,13 +38,13 @@ function BeTriggered(session){
 			player.damageAllRelationships();
 			player.damageAllRelationships();
 			player.damageAllRelationships();
-			console.log("triggered by dead moirail in session" + this.session.session_id)
+			//console.log("triggered by dead moirail in session" + this.session.session_id)
 			return " their dead Moirail, the " + deadDiamond.htmlTitleBasic() + " ";
 		}
 
 		if(deadHeart&& Math.seededRandom() > 0.2){
 			player.triggerLevel += 100;
-			console.log("triggered by dead matesprit in session" + this.session.session_id)
+			//console.log("triggered by dead matesprit in session" + this.session.session_id)
 			return " their dead Matesprit, the " + deadHeart.htmlTitleBasic() + " ";
 		}
 		//small chance
@@ -109,12 +109,12 @@ function BeTriggered(session){
 			var p = this.triggeredPlayers[i];
 			var hope = findAspectPlayer(findLivingPlayers(this.session.players), "Hope");
 			if(hope && hope.power > 100){
-				console.log("Hope Survives: " + this.session.session_id)
-				ret += " The " +p.htmlTitle() + " should probably be flipping the fuck out about  " + this.triggers[i]; 
+				//console.log("Hope Survives: " + this.session.session_id)
+				ret += " The " +p.htmlTitle() + " should probably be flipping the fuck out about  " + this.triggers[i];
 				ret += " and being completely useless, but somehow the thought that the " + hope.htmlTitle() + " is still alive fills them with determination, instead.";  //hope survives.
 				hope.increasePower();
 				p.increasePower();
-				
+
 			}else{
 				removeFromArray(p, this.session.availablePlayers);
 				ret += " The " +p.htmlTitle() + " is currently too busy flipping the fuck out about "
