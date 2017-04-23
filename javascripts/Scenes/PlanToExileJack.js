@@ -136,11 +136,11 @@ function PlanToExileJack(session){
 
 
 		var chatText = "";
-		if(player1.grimDark == true && player2.grimDark == true){
+		if(player1.grimDark  > 1 && player2.grimDark  > 1){
 			chatText += this.grimChatBoth(div,player1, player2);
-		}else if(player1.grimDark == true){
+		}else if(player1.grimDark  > 1){
 			chatText += this.grimChat1(div,player1, player2);
-		}else if(player2.grimDark == true){
+		}else if(player2.grimDark  > 1){
 			chatText += this.grimChat2(div,player1, player2);
 		}else{
 			chatText += this.normalConvo(div,player1, player2);

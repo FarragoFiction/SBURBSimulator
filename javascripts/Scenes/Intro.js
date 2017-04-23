@@ -12,18 +12,15 @@ function Intro(session){
 	this.corruptedLand = function(){
 		if(corruptedOtherLandTitles.indexOf(this.player.land1) != -1 || corruptedOtherLandTitles.indexOf(this.player.land1) != -1 ){
 			this.player.corruptionLevelOther = 100;
-			console.log("TODO when grim dark done refactoring, grimdark ++")
 			//console.log("corrupted land" + this.session.session_id)
-			return "There is ...something very very wrong about the " + this.player.land +". ";
+			return "There is ...something very, very wrong about the " + this.player.land +". ";
 		}
 		return "";
 	}
 
 	this.corruptedSprite = function(){
 		if(corruptedOtherPrototypings.indexOf(this.player.kernel_sprite) != -1 ){
-			console.log("TODO when grim dark done refactoring, grimdark ++")
-			console.log("corrupted sprite" + this.session.session_id)
-			return "There is ...something very very wrong about the " + this.player.kernel_sprite + "sprite. ";
+			return "There is ...something very, very wrong about the " + this.player.kernel_sprite + "sprite. ";
 		}
 		return "";
 	}
@@ -600,7 +597,7 @@ function Intro(session){
 			return this.alienChat(player1,div);
 		}
 
-		if(player2.grimDark == true){
+		if(player2.grimDark > 1){
 			 return this.grimPlayer2Chat(player1, player2);
 		}
 

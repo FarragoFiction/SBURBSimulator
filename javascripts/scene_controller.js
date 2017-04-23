@@ -153,6 +153,18 @@ function processScenes2(playerList,session){
 	return ret;
 }
 
+//scenes call this
+function chatLine(start, player, line){
+  if(player.grimDark  > 2){
+		line = Zalgo.generate(line);
+    return start + line.trim()+"\n"; //no whimsy for grim dark players
+  }else if(player.grimDark  > 1){
+			return start + line.trim()+"\n"; //no whimsy for grim dark players
+	}else{
+    return start + player.quirk.translate(line).trim()+"\n";
+  }
+}
+
 //playerlist is everybody in the medium
 //might not be all players in the begining.
 function processReckoning2(playerList,session){

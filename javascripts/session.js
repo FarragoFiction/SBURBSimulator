@@ -428,7 +428,7 @@ function Session(session_id){
 		summary.queenRejectRing =findSceneNamed(this.scenesTriggered,"QueenRejectRing") != "No"
 		summary.democracyStarted =findSceneNamed(this.scenesTriggered,"StartDemocracy") != "No"
 		summary.murderMode = findSceneNamed(this.scenesTriggered,"EngageMurderMode") != "No"
-		summary.grimDark = findSceneNamed(this.scenesTriggered,"GoGrimDark") != "No"
+		summary.grimDark = findSceneNamed(this.scenesTriggered,"GrimDarkQuests") != "No"
 		var spacePlayer = findAspectPlayer(this.players, "Space");
 		summary.frogLevel =spacePlayer.landLevel
 		summary.hasDiamonds =this.hasDiamonds;

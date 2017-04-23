@@ -66,7 +66,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
 	this.murderMode = false;  //kill all players you don't like. odds of a just death skyrockets.
 	this.leftMurderMode = false; //have scars, unless left via death.
 	this.corruptionLevelOther = 0; //every 100 points, sends you to next grimDarkLevel.
-  this.grimDark = false;  //  0 = none, 1 = some, 2 = some more 3 = full grim dark with aura and font and everything.
+  this.grimDark = 0;  //  0 = none, 1 = some, 2 = some more 3 = full grim dark with aura and font and everything.
 	this.leader = false;
 	this.landLevel = 0; //at 10, you can challenge denizen.  only space player can go over 100 (breed better universe.)
 	this.denizenFaced = false; //when faced, you double in power (including future power increases.)
@@ -167,8 +167,10 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
 			ret += "Murder Mode ";
 		}
 
-		if(this.grimDark){
-			ret += "Grim Dark ";
+		if(this.grimDark>2){
+			ret += "Severely Grim Dark ";
+		}else if(this.grimDark > 1){
+			ret += "Mildly Grim Dark ";
 		}
 
 		if(this.godTier){

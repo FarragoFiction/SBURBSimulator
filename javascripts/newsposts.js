@@ -332,14 +332,6 @@ function roboIntro(){
 }
 
 
-//scenes call this
-function chatLine(start, player, line){
-  if(player.grimDark == true){
-    return start + line.trim()+"\n"; //no whimsy for grim dark players
-  }else{
-    return start + player.quirk.translate(line).trim()+"\n";
-  }
-}
 
 
 function callNextIntroWithDelay(player_index){

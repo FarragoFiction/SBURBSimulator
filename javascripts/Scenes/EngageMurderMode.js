@@ -307,7 +307,7 @@ function EngageMurderMode(session){
 		var canvasDiv = document.getElementById("canvas"+  (div.attr("id")));
 
 		var chatText = "";
-		if(player2.grimDark == true){
+		if(player2.grimDark > 1){
 			chatText += this.grimChat2(div,player1, player2);
 		}else{
 			chatText += this.normalConvo(div,player1, player2);

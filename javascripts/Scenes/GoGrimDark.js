@@ -6,23 +6,13 @@ function GoGrimDark(session){
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
+		this.player = null;
 		//select a random player. if they've been triggered, random chance of going grim dark (based on how triggered.)
-		this.player = getRandomElementFromArray(this.session.availablePlayers);
-
-		if(this.player){
-
-			var moon = 0;
-			if(this.player.moon == "Derse"){
-				moon = 1;
-			}
-			if(this.player.triggerLevel + moon > 0 && !this.player.grimDark){  //easier to grimdark if you have access to horror terrors.
-				if((this.player.rollForLuck()) < (3*this.player.triggerLevel +moon-1)){
-					if(this.player.murderMode && this.player.rollForLuck() < 50) { //slightly less chance of being both
-						return false;
-					}
-					//console.log("Going Grim dark with trigger of: " + this.player.triggerLevel)
-					return true;
-				}
+		for(var i = 0; i< this.playerList.length; i++){
+			var p = this.playerList[i]
+			if(p.corruptionLevelOther >= 100){
+				this.player = p;
+				return true;
 			}
 		}
 		return false;
@@ -41,16 +31,34 @@ function GoGrimDark(session){
 		div.append("<br>"+this.content());
 	}
 
+	//modify land quests and etc. physical contact with a grim dark player raises your corruption levels.
+	this.raiseGrimDarkLevel = function(){
+			this.player.grimDark ++;
+			this.corruptionLevelOther = 0; //reset corruption level
+			var ret = "";
+			if(this.player.grimDark == 1){
+				ret += " The " + this.player.htmlTitle() + " is starting to seem a little strange. They sure do like talking about Horrorterrors!"
+			}else if(this.player.grimDark == 1){
+				this.player.nullAllRelationships();
+				ret += " The " + this.player.htmlTitle() + " isn't responding to chat messages much anymore. "
+			}else if(this.player.grimDark == 2){
+				this.player.power += 100;
+				this.player.increasePower();
+				ret += " The " + this.player.htmlTitle() + " will tell anyone who will listen that the game needs to be broken. "
+			}else if(this.player.grimDark == 3){
+				this.player.power += 100;
+				this.player.increasePower();
+				ret +=  "The " + this.player.htmlTitle() + " slips into the fabled blackdeath trance of the woegothics, quaking all the while in the bloodeldritch throes of the broodfester tongues.";
+				ret += " It is now painfully obvious to anyone with a brain, they have basically gone completely off the deep end in every way. The "
+				ret += this.player.htmlTitle() + " has officially gone grimdark. ";
+			}
+			return ret;
+	}
+
 	this.content = function(){
 		this.player.increasePower();
 		removeFromArray(this.player, this.session.availablePlayers);
-		var ret = "The " + this.player.htmlTitle() + " slips into the fabled blackdeath trance of the woegothics, quaking all the while in the bloodeldritch throes of the broodfester tongues.";
-		ret += " It is now painfully obvious to anyone with a brain, they have basically gone completely off the deep end in every way. The "
-		ret += this.player.htmlTitle() + " has officially gone grimdark. ";
-		this.player.grimDark = true;
-		this.player.power = this.player.power +=200;
-		this.player.nullAllRelationships();
-		ret += " They abandon ties to their old life in exchange for power. ";
+		var ret = this.raiseGrimDarkLevel();
 		return ret;
 	}
 }

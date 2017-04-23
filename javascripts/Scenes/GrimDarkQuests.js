@@ -8,7 +8,11 @@ function GrimDarkQuests(session){
 		var living = findLivingPlayers(playerList);
 		for (var i = 0; i<living.length; i++){
 			var player = living[i];
-			if(player.grimDark) this.players.push(player)
+			if(player.grimDark>2){
+				 this.players.push(player)
+			}else if(player.grimDark>1 && Math.seededRandom() > .5){
+				this.players.push(player)
+			}
 		}
 
 		return this.players.length>0;

@@ -1087,7 +1087,7 @@ function drawSprite(canvas, player,ctx,baby){
   	ctx.rotate(90*Math.PI/180);
   }
 
-  if(!baby && player.grimDark == true){
+  if(!baby && player.grimDark > 2){
     grimDarkHalo(canvas,player)
   }
 
@@ -1143,7 +1143,7 @@ function drawSprite(canvas, player,ctx,baby){
 	  roboSkin(canvas, player);
   }else if(player.trickster == true){
       peachSkin(canvas, player);
-  }else if(!baby && player.grimDark == true){
+  }else if(!baby && player.grimDark  > 2){
     grimDarkSkin(canvas, player)
   }else if(player.isTroll){
     greySkin(canvas,player);
@@ -2209,7 +2209,7 @@ function fillChatTextMultiLineJRPlayer(canvas, chat, player, x, y){
 			ctx.fillStyle = player.getChatFontColor();
       if(player.sbahj){
          ctx.font = "12px Comic Sans"
-      }if(player.grimDark == true) {
+      }if(player.grimDark > 2) {
         	ctx.font = "12px horrorterror"
       }else{
         	ctx.font = "12px Times New Roman"
@@ -2270,7 +2270,7 @@ function fillChatTextMultiLine(canvas, chat, player1, player2, x, y) {
 			ctx.fillStyle = player2.getChatFontColor();
       if(player2.sbahj){
          ctx.font = "12px Comic Sans MS"
-      }else if(player2.grimDark == true) {
+      }else if(player2.grimDark  > 2) {
         	ctx.font = "12px horrorterror"
       }else{
         	ctx.font = "12px Times New Roman"
@@ -2279,7 +2279,7 @@ function fillChatTextMultiLine(canvas, chat, player1, player2, x, y) {
 			ctx.fillStyle = player1.getChatFontColor();
       if(player1.sbahj){
          ctx.font = "12px Comic Sans MS"
-      }else if(player1.grimDark == true){
+      }else if(player1.grimDark  > 2){
         	ctx.font = "12px horrorterror"
       }else{
         	ctx.font = "12px Times New Roman"
