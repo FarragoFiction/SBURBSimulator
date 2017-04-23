@@ -194,14 +194,14 @@ function FreeWillStuff(session){
 						patsy.murderMode = true;
 						return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use clever words to convince the " + patsy.htmlTitleBasic() + " of the righteousness of their plan. They agree to carry out the bloody work. ";
 
-				}else if(canStealWills(player) && patsy.freeWill * 2 < player.freeWill){  //can't steal your will if you have enough of it.
+				}else if(this.canStealWills(player) && patsy.freeWill * 2 < player.freeWill){  //can't steal your will if you have enough of it.
 					console.log("mind controling someone to go into murdermode and altering their enemies with game powers." +this.session.session_id);
 					patsy.murderMode = true;
 					patsy.triggerLevel = 10;
 					patsy.influenceSymbol = this.getInfluenceSymbol(player);
 					var rage = this.alterEnemies(patsy, enemies,player);
 					return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use game powers to manipulate the very will of the " + patsy.htmlTitleBasic() + " and use them as a weapon. This is completely terrifying.  " + rage;
-				}else if(canInfluenceEnemies(player) && patsy.freeWill * 2 < player.freeWill){
+				}else if(this.canInfluenceEnemies(player) && patsy.freeWill * 2 < player.freeWill){
 					console.log("rage controling into murdermode and altering their enemies with game powers." +this.session.session_id);
 					patsy.murderMode = true;
 					patsy.triggerLevel = 10;
