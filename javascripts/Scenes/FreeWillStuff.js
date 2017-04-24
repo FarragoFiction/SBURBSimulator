@@ -161,7 +161,7 @@ function FreeWillStuff(session){
 	//thief/bard/maage/witch of mind.
 	this.canStealWills = function(player){
 		if(player.aspect == "Mind"){
-			if(player.class_name == "Thief" || player.class_name == "Mage" || player.class_name == "Bard" || player.class_name == "Witch"){
+			if(player.class_name == "Thief" || player.class_name == "Seer" || player.class_name == "Bard" || player.class_name == "Witch"){
 				return true;
 			}
 		}
@@ -171,14 +171,14 @@ function FreeWillStuff(session){
 
 	//thief/prince/mage/witch of blood. thief/prince/mage/witch of heart. /mage/witch of rage.
 	this.canInfluenceEnemies = function(player){
-		if(player.aspect == "Blood"){
-			if(player.class_name == "Thief" || player.class_name == "Mage" || player.class_name == "Bard" || player.class_name == "Witch"){
+		if(player.aspect == "Blood" || player.aspect == "Heart"){
+			if(player.class_name == "Thief" || player.class_name == "Seer" || player.class_name == "Bard" || player.class_name == "Witch"){
 				return true;
 			}
 		}
 
 		if(player.aspect == "Rage"){
-			if( player.class_name == "Mage" || player.class_name == "Witch"){
+			if( player.class_name == "Seer" || player.class_name == "Witch"){
 				return true;
 			}
 
@@ -204,7 +204,7 @@ function FreeWillStuff(session){
 		var patsy = patsyArr[0];
 		var patsyVal = patsyArr[1];
 		if(this.isValidTargets(enemies,player) && patsy){
-				if(patsyVal > 3*enemies.length/4 && patsy.triggerLevel > 1){
+				if(patsyVal > enemies.length/2 && patsy.triggerLevel > 1){
 						console.log("manipulating someone to go into murdermode " +this.session.session_id + " patsyVal = " + patsyVal);
 						patsy.murderMode = true;
 						patsy.triggerLevel = 10;
@@ -230,7 +230,7 @@ function FreeWillStuff(session){
 						if(player.aspect == "Rage") modifiedTrait = "sanity"
 						return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use game powers to manipulate the " + patsy.htmlTitleBasic() + "'s " + modifiedTrait + " until they are willing to carry out their plan. This is completely terrifying. " + rage;
 					}else{
-						console.log("can't manipulate someone into murdermode and can't use game powers."+this.session.session_id)
+						console.log("can't manipulate someone into murdermode and can't use game powers. I am: " + player.title() + " " +this.session.session_id)
 					}
 				}
 		}
