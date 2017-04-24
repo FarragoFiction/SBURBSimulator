@@ -168,6 +168,7 @@ function SessionSummaryJunior(players,session_id){
 		html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "'>" +this.session_id + "</a>"
 		html += "<Br><b>Players</b>: " + getPlayersTitlesBasic(this.players);
 		html += "<Br><b>Sprites</b>: " + this.grabAllSprites().toString();
+		html += "<Br><b>Lands</b>: " + this.grabAllLands().toString();
 		html += "<Br><b>Interests</b>: " + this.grabAllInterest().toString();
 		html += "<Br><b>Initial Ships</b>:<Br> " + this.initialShips().toString();
 		html += "</div><br>"
@@ -190,6 +191,16 @@ function SessionSummaryJunior(players,session_id){
 		for(var i = 0; i<this.players.length; i++){
 			var player = this.players[i];
 			ret.push(player.kernel_sprite);
+
+		}
+		return ret;
+	}
+	
+	this.grabAllLands = function(){
+		var ret = [];
+		for(var i = 0; i<this.players.length; i++){
+			var player = this.players[i];
+			ret.push(player.land);
 
 		}
 		return ret;
