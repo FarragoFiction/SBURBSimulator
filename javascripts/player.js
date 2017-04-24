@@ -549,7 +549,8 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
 
 	//SBURB is not a mystery to these classes/aspects.
 	this.knowsAboutSburb = function(){
-		return this.class_name == "Seer" || this.aspect == "Light" || this.aspect == "Mind" || this.aspect == "Doom"
+		var rightClass = this.class_name == "Seer" || this.aspect == "Light" || this.aspect == "Mind" || this.aspect == "Doom"
+		return rightClass && this.power > 20; //need to be far enough in my claspect
 	}
 	
 	this.performEctobiology = function(session){
