@@ -1019,7 +1019,7 @@ var disastor_prototypings = ["First Guardian", "Dragon", "Alien", "Teacher", "Cl
 disastor_prototypings = disastor_prototypings.concat(["Zombie","Demon","Monster","Vampire","Pumpkin","Werewolf"]);
 var fortune_prototypings = ["Frog","Lizard", "Salamander", "Iguana", "Crocodile", "Turtle", "Snake","Axolotl","Newt"];
 
-var corruptedOtherPrototypings = [Zalgo.generate("Horrorterror"),Zalgo.generate("Speaker of the Furthest Ring"),Zalgo.generate("Cultist")];
+var corruptedOtherPrototypings = [Zalgo.generate("Horrorterror"),Zalgo.generate("Speaker of the Furthest Ring"),Zalgo.generate("Buggy As Fuck Retro Game")];
 disastor_prototypings = disastor_prototypings.concat(corruptedOtherPrototypings);
 
 //keep copies here, but if a prototyping isn't on one of these lists, consider it 'neutrasl
