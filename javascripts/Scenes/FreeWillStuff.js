@@ -48,7 +48,7 @@ function FreeWillStuff(session){
 				//not everybody knows about ectobiology.
 				if(!this.session.ectoBiologyStarted && ectobiologistEnemy && player.knowsAboutSburb()){
 					console.log("Free will stop from killing ectobiologist: " + this.session.session_id);
-					ret += "With a conscious act of will, the " + player.htmlTitle() + "settles their shit. If this keeps up, they are going to end up killing the " + ectobiologistEnemy.htmlTitle();
+					ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. If this keeps up, they are going to end up killing the " + ectobiologistEnemy.htmlTitle();
 					ret += " and then they will NEVER do ectobiology.  No matter HOW much of an asshole they are, it's not worth dooming the timeline. ";
 					player.murderMode = false;
 					player.leftMurderMode = true;
@@ -58,7 +58,7 @@ function FreeWillStuff(session){
 				//not everybody knows why frog breeding is important.
 				if(spacePlayerEnemy && spacePlayerEnemy.landLevel < this.session.goodFrogLevel  && player.knowsAboutSburb()){
 					console.log("Free will stop from killing space player: " + this.session.session_id);
-					ret += "With a conscious act of will, the " + player.htmlTitle() + "settles their shit. If this keeps up, they are going to end up killing the " + spacePlayerEnemy.htmlTitle();
+					ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. If this keeps up, they are going to end up killing the " + spacePlayerEnemy.htmlTitle();
 					ret += " and then they will NEVER have frog breeding done. They can always kill them AFTER they've escaped to the new Universe, right? ";
 					player.murderMode = false;
 					player.leftMurderMode = true;
@@ -68,7 +68,7 @@ function FreeWillStuff(session){
 				//NOT luck. just obfuscated reasons.
 				if(Math.seededRandom() > 0.5){
 					console.log("Free will stop from killing everybody: " + this.session.session_id);
-					ret += "With a conscious act of will, the " + player.htmlTitle() + "settles their shit. No matter HOW much of an asshole people are, SBURB is the true enemy, and they are not going to let themselves forget that. ";
+					ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. No matter HOW much of an asshole people are, SBURB is the true enemy, and they are not going to let themselves forget that. ";
 					player.murderMode = false;
 					player.leftMurderMode = true;
 					player.triggerLevel = 0; //
@@ -163,20 +163,10 @@ function FreeWillStuff(session){
 			return bestPatsy
 	}
 
-	//thief/bard/maage/witch of mind.
-	this.canStealWills = function(player){
-		if(player.aspect == "Mind"){
-			if(player.class_name == "Thief" || player.class_name == "Seer" || player.class_name == "Bard" || player.class_name == "Witch"){
-				return true;
-			}
-		}
-		return false;
-
-	}
 
 	//thief/prince/mage/witch of blood. thief/prince/mage/witch of heart. /mage/witch of rage.
 	this.canInfluenceEnemies = function(player){
-		if(player.aspect == "Blood" || player.aspect == "Heart"){
+		if(player.aspect == "Blood" || player.aspect == "Heart" ||player.aspect == "Mind" ){
 			if(player.class_name == "Thief" || player.class_name == "Seer" || player.class_name == "Bard" || player.class_name == "Witch"){
 				return true;
 			}
@@ -217,16 +207,8 @@ function FreeWillStuff(session){
 
 				}else{
 					patsy = getRandomElementFromArray(enemies);//no longer care about "best"
-					if(this.canStealWills(player) && patsy.freeWill  < player.freeWill){  //can't steal your will if you have enough of it.
-						console.log("mind controling someone to go into murdermode and altering their enemies with game powers." +this.session.session_id);
-						patsy.murderMode = true;
-						patsy.triggerLevel = 10;
-						patsy.influenceSymbol = this.getInfluenceSymbol(player);
-						patsy.influencePlayer = player;
-						var rage = this.alterEnemies(patsy, enemies,player);
-						return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use game powers to manipulate the very will of the " + patsy.htmlTitleBasic() + " and use them as a weapon. This is completely terrifying.  " + rage;
-					}else if(this.canInfluenceEnemies(player) && patsy.freeWill  < player.freeWill){
-						console.log("rage/blood controling into murdermode and altering their enemies with game powers." +this.session.session_id);
+					if(this.canInfluenceEnemies(player) && patsy.freeWill  < player.freeWill){
+						console.log(player.htmlTitle() +" controling into murdermode and altering their enemies with game powers." +this.session.session_id);
 						patsy.murderMode = true;
 						patsy.triggerLevel = 10;
 						patsy.influenceSymbol = this.getInfluenceSymbol(player);
@@ -234,6 +216,7 @@ function FreeWillStuff(session){
 						var rage = this.alterEnemies(patsy, enemies,player);
 						var modifiedTrait = "relationships"
 						if(player.aspect == "Heart") modifiedTrait = "identity"
+						if(player.aspect == "Mind") modifiedTrait = "mind"
 						if(player.aspect == "Rage") modifiedTrait = "sanity"
 						return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use game powers to manipulate the " + patsy.htmlTitleBasic() + "'s " + modifiedTrait + " until they are willing to carry out their plan. This is completely terrifying. " + rage;
 					}else{
@@ -302,6 +285,7 @@ function FreeWillStuff(session){
 	this.considerBreakFreeControl = function(player){
 		var ip = player.influencePlayer;
 		if(ip){
+			//console.log("I definitely am mind controlled. " + player.title() + " by " + ip.title() + " " + this.session.session_id);
 			if(ip.dead){
 				player.influencePlayer = null;
 				player.influenceSymbol = null;
@@ -320,15 +304,18 @@ function FreeWillStuff(session){
 				player.stateBackup.restoreState(player);
 				console.log("freed from control with player will" +this.session.session_id);
 				return "The " + player.htmlTitle() + " manages to wrench themselves free of the " + ip.htmlTitle() + "'s control.";
+			}else{
+				//console.log("The " + player.title() + "cannot break free of the " + ip.title() + "'s control. IP Dead: " + ip.dead + " ME Dead: " + player.dead + " My FW: " + player.freeWill + " IPFW:" + ip.freeWill)
+				return null;
 			}
 		}
+		console.log("returning null")
 		return null;
 	}
 
 	this.getPlayerDecision = function(player){
 		//reorder things to change prevelance.
 		var ret = null;  //breaking free of mind control doesn't happen here.
-		if(ret == null) ret = this.considerKillMurderModePlayer(player);
 		if(ret == null) ret = this.considerKillMurderModePlayer(player);
 		//let them decide to enter or leave grim dark, and kill or calm grim dark player
 		if(ret == null) ret = this.considerDisEngagingMurderMode(player); //done

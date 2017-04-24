@@ -238,6 +238,7 @@ function RelationshipDrama(session){
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = relationship;
+		var r2 = player2.getRelationshipWith(player1)
 		var chatText = "";
 		var trait = whatDontPlayersHaveInCommon(player1, crush);
 		chatText += chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2))
