@@ -14,7 +14,7 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 	if(curSessionGlobalVar.crashedFromPlayerActions){
 		recomendedAction = "OMFG JUST STOP CRASHING MY DAMN SESSIONS. FUCKING GRIMDARK PLAYERS. BREAKING SBURB DOES NOT HELP ANYBODY! ";
 	}else{
-		curSessionGlobalVar.crashedFromCorruption = true;
+		curSessionGlobalVar.crashedFromSessionBug = true;
 		recomendedAction = "CONTACT JADEDRESEARCHER. CONVINCE THEM TO FIX SESSION: " + curSessionGlobalVar.session_id;
 	}
 	var message = [

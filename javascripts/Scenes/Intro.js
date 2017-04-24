@@ -12,7 +12,7 @@ function Intro(session){
 	this.corruptedLand = function(){
 		if(corruptedOtherLandTitles.indexOf(this.player.land1) != -1 || corruptedOtherLandTitles.indexOf(this.player.land1) != -1 ){
 			this.player.corruptionLevelOther = 100;
-			//console.log("corrupted land" + this.session.session_id)
+			console.log("corrupted land" + this.session.session_id)
 			return "There is ...something very, very wrong about the " + this.player.land +". ";
 		}
 		return "";

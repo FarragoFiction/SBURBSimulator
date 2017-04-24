@@ -987,8 +987,15 @@ var free_land_titles = ["Heat","Sand","Brains","Haze","Tea","Flow","Maps","Caves
 free_land_titles = free_land_titles.concat(["Shade","Frost","Rain","Fog","Trees","Flowers","Books","Technology","Ice","Water","Rocks"]);
 free_land_titles = free_land_titles.concat(["Forests","Grass","Tundra","Thunder","Storms","Peace","Food","Shoes","Weasels","Deserts","Dessert"]);
 free_land_titles = free_land_titles.concat(["Suburbs","Cities","Neighborhoods","Isolation","Schools","Farms","Annoyance","Hunger","Cake","Lies","Ruse"]);
+free_land_titles = free_land_titles.concat(["Nails","Smoke","Jungles","Flood","Mud","Weeds","Vines","Courts","Clay","Halls","Choirs"]);
+free_land_titles = free_land_titles.concat(["Slums","Baloons","Rumbling","Warfare","Cliffs","Needles","Mountains","Shadows","Circuitry","Fences","Webs"]);
+free_land_titles = free_land_titles.concat(["Bone","Arenas","Wonder","Fluff","Cotton","Domes","Gold","Silver","Bronze","Ruby","Ribbon"]);
+free_land_titles = free_land_titles.concat(["Hair","Teeth","Mouths","Paint","Pain","Wood","Screams","Fossils","Roses","Mummies","Zombies"]);
+free_land_titles = free_land_titles.concat(["Mysteries","Splendor","Luxury","Cash","Coins","Cards","Tarot","Wagons","Puzzles","Mayhem","Redundancy"]);
+free_land_titles = free_land_titles.concat(["Obsolescence","Deceit","Ruse","Distraction","Libraries","Blocks","Video Games","Vermin","Butchers","Meat","Clouds"]);
 
-var corruptedOtherLandTitles = [Zalgo.generate("Horrorterrors"), Zalgo.generate("Bugs"),Zalgo.generate("Glitches"),Zalgo.generate("Grimoires"),Zalgo.generate("Oglog"),Zalgo.generate("Fluthlu"),Zalgo.generate("Garnghut Blistershod"),Zalgo.generate("Morthol"),Zalgo.generate("The Zoologically Dubious")];
+
+var corruptedOtherLandTitles = [Zalgo.generate("Horrorterrors"),Zalgo.generate("Glitches"),Zalgo.generate("Grimoires"),Zalgo.generate("Oglog"),Zalgo.generate("Fluthlu"),Zalgo.generate("Garnghut"),Zalgo.generate("Morthol"),Zalgo.generate("The Zoologically Dubious")];
 free_land_titles = free_land_titles.concat(corruptedOtherLandTitles);
 
 
@@ -1002,21 +1009,25 @@ prototypings = prototypings.concat(["Mouse","Gerbil","Hamster","Sugar Glider","R
 prototypings = prototypings.concat(["Opossum","Penguin","Koala","Walrus","Dachshund","Ocelot","Tiger","Lion", "Cougar"]);
 prototypings = prototypings.concat(["Stoner","Student","Librarian","Teacher","Jockey","Butler","Rapper","Poet", "Astronaut", "Cowboy"]);
 prototypings = prototypings.concat(["Robot","Game Bro","Game Grl","Movie Star","Internet Troll"]);
+prototypings = prototypings.concat(["Pug","Husky","Beagle","German Shepherd","Rottweiler","Bulldog","Poodle","Pit Bull","Shih Tzu","Doberman","Chihuahua","Terrier","Great Dane","Dachshund","St. Bernard","Greyhound","Spaniel","Shiba Inu"]);
+prototypings = prototypings.concat(["Maine Coon","Bobcat","Panther","Bear","Tiger","Lion","Sabertooth","Koala","Zebra","Horse","Rooster","Duck","Swan","Pigeon","Dove","Sparrow","Rat","Mole"]);
+prototypings = prototypings.concat(["Donkey","Mule","Goat","Sheep","Pig","Gopher","Golfer","Mummy","Alpaca","Llama","Fairy","Sphynx","Gnome","Model","Sasquatch","Yeti","Gorilla","Monkey"]);
 
 
-var disastor_prototypings = ["First Guardian", "Dragon", "Alien", "Teacher", "Clown","Fiduspawn","Doll","Xenomorph","Deadpool"];
+
+var disastor_prototypings = ["First Guardian", "Dragon", "Alien", "Teacher", "Clown","Fiduspawn","Doll","Xenomorph","Deadpool", "Puppet"];
 disastor_prototypings = disastor_prototypings.concat(["Zombie","Demon","Monster","Vampire","Pumpkin","Werewolf"]);
 var fortune_prototypings = ["Frog","Lizard", "Salamander", "Iguana", "Crocodile", "Turtle", "Snake","Axolotl","Newt"];
 
-var corruptedOtherPrototypings = [Zalgo.generate("Horrorterror"),Zalgo.generate("Puppet"),Zalgo.generate("Speaker of the Furthest Ring"),Zalgo.generate("Cultist")];
+var corruptedOtherPrototypings = [Zalgo.generate("Horrorterror"),Zalgo.generate("Speaker of the Furthest Ring"),Zalgo.generate("Cultist")];
 disastor_prototypings = disastor_prototypings.concat(corruptedOtherPrototypings);
 
 //keep copies here, but if a prototyping isn't on one of these lists, consider it 'neutrasl
 //helpfulness is in regards to landquests. '
 //helpful prototypings are generally non-authority figure humans, besides things like rappers and poets who embrace riddle-fuckery.
 //once i enable self-prototyping, add your name to the helful prototyping array.
-var helpful_prototypings = ["Robot",,"Deadpool","Game Bro","Horrorterror","Game Grl","Nick Cage","Lawyer","Doctor","Engineer","Construction Worker","Student","Librarian","Jockey","Butler","Astronaut", "Cowboy"];
-var unhelpful_prototypings = ["First Guardian", "Teacher", "Clown","Pomeranian","Pony","Horse","Doll","Internet Troll","Mosquito","Fly","Gobblefiend"];
+var helpful_prototypings = ["Robot","Golfer","Deadpool","Game Bro","Horrorterror","Game Grl","Nick Cage","Lawyer","Doctor","Engineer","Construction Worker","Student","Librarian","Jockey","Butler","Astronaut", "Cowboy"];
+var unhelpful_prototypings = ["First Guardian", "Teacher", "Clown", "Monkey","Pomeranian","Chihuahua","Pony","Horse","Doll","Internet Troll","Mosquito","Fly","Gobblefiend"];
 var player_prototypings = []; //empty unless a player prototypes themselves.
 
 

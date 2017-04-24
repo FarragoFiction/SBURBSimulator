@@ -177,6 +177,7 @@ function scratch(){
 	}
 	curSessionGlobalVar.scratched = true;
 	curSessionGlobalVar.switchPlayersForScratch();
+	initGraphs();
 	var scratch = "The session has been scratched. The " + getPlayersTitlesBasic(getGuardiansForPlayers(curSessionGlobalVar.players)) + " will now be the beloved guardians.";
 	scratch += " Their former guardians, the " + getPlayersTitlesBasic(curSessionGlobalVar.players) + " will now be the players.";
 	scratch += " The new players will be given stat boosts to give them a better chance than the previous generation."
@@ -340,6 +341,7 @@ function processCombinedSession(){
 	var tmpcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
 	if(tmpcurSessionGlobalVar){
 		curSessionGlobalVar = tmpcurSessionGlobalVar
+		initGraphs();
 		$("#story").append("<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Their sick frog may have screwed them over, but the connection it provides to their child universe will equally prove to be their salvation. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session <a href = 'index2.html?seed=" + curSessionGlobalVar.session_id + "'>"+curSessionGlobalVar.session_id +"</a>. ");
 		checkSGRUB();
 		load(curSessionGlobalVar.players); //in loading.js
