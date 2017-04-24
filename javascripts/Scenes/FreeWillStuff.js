@@ -46,7 +46,7 @@ function FreeWillStuff(session){
 				var spacePlayerEnemy = findAspectPlayer(enemies, "Space");
 				var ectobiologistEnemy = getLeader(enemies);
 				//not everybody knows about ectobiology.
-				if(!this.session.ectoBiologyStarted && ectobiologistEnemy && player.knowsAboutSburb()){
+				if(!this.session.ectoBiologyStarted && ectobiologistEnemy && (player.knowsAboutSburb() && player.grimDark < 2)){
 					console.log("Free will stop from killing ectobiologist: " + this.session.session_id);
 					ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. If this keeps up, they are going to end up killing the " + ectobiologistEnemy.htmlTitle();
 					ret += " and then they will NEVER do ectobiology.  No matter HOW much of an asshole they are, it's not worth dooming the timeline. ";
@@ -56,7 +56,7 @@ function FreeWillStuff(session){
 					return ret;
 				}
 				//not everybody knows why frog breeding is important.
-				if(spacePlayerEnemy && spacePlayerEnemy.landLevel < this.session.goodFrogLevel  && player.knowsAboutSburb()){
+				if(spacePlayerEnemy && spacePlayerEnemy.landLevel < this.session.goodFrogLevel  && (player.knowsAboutSburb() && player.grimDark < 2)){
 					console.log("Free will stop from killing space player: " + this.session.session_id);
 					ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. If this keeps up, they are going to end up killing the " + spacePlayerEnemy.htmlTitle();
 					ret += " and then they will NEVER have frog breeding done. They can always kill them AFTER they've escaped to the new Universe, right? ";
@@ -82,10 +82,10 @@ function FreeWillStuff(session){
 	this.isValidTargets = function(enemies,player){
 		var spacePlayerEnemy = findAspectPlayer(enemies, "Space");
 		var ectobiologistEnemy = getLeader(enemies);
-		if(spacePlayerEnemy && spacePlayerEnemy.landLevel < this.session.goodFrogLevel  && player.knowsAboutSburb()){
+		if(spacePlayerEnemy && spacePlayerEnemy.landLevel < this.session.goodFrogLevel  && (player.knowsAboutSburb() && player.grimDark < 2)){ //grim dark players don't care if it dooms things.
 			return false;
 		}
-		if(!this.session.ectoBiologyStarted && ectobiologistEnemy && player.knowsAboutSburb()){
+		if(!this.session.ectoBiologyStarted && ectobiologistEnemy && (player.knowsAboutSburb() && player.grimDark < 2)){
 				return false;
 		}
 
@@ -231,7 +231,7 @@ function FreeWillStuff(session){
 						patsy.influenceSymbol = this.getInfluenceSymbol(player);
 						patsy.influencePlayer = player;
 						var rage = this.alterEnemies(patsy, enemies,player);
-						var modifiedTrait = getManipulatableTrait(player);
+						var modifiedTrait = this.getManipulatableTrait(player);
 						return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use game powers to manipulate the " + patsy.htmlTitleBasic() + "'s " + modifiedTrait + " until they are willing to carry out their plan. This is completely terrifying. " + rage;
 					}else{
 						console.log("can't manipulate someone into murdermode and can't use game powers. I am: " + player.title() + " " +this.session.session_id)
@@ -286,7 +286,7 @@ function FreeWillStuff(session){
 
 	//if self, just fucking do it. otherwise, pester them. raise power to min requirement, if it's not already there.
 	this.considerMakingEctobiologistDoJob = function(player){
-		if(!this.session.ectoBiologyStarted && player.knowsAboutSburb() ){
+		if(!this.session.ectoBiologyStarted && player.knowsAboutSburb() && player.grimDark < 2 ){
 			if(player.leader){
 				console.log(player.title() +" did their damn job. " +this.session.session_id);
 				player.performEctobiology(this.session);
@@ -302,8 +302,8 @@ function FreeWillStuff(session){
 					}else if(player.power > 50){
 						console.log(player.title() +" mind controlled ectobiologist to do their damn job. " +this.session.session_id);
 						player.performEctobiology(this.session);
-						var trait = getManipulatableTrait(player)
-						return "The " + player.htmlTitle() + " is not going to play by SBURB's rules.  When bugging and fussing and meddling doesn't work, they decide to rely on game powers. They straight up manipulate the recalcitrant " + leader.htmlTitle() + "'s" + trait + " until they just FUCKING DO ectobiology.  Baby versions of everybody are created. The " + player.htmlTitle() + " immediatley drops the effect. It's like it never happened. Other than one major source of failure being removed from the game. " ;
+						var trait = this.getManipulatableTrait(player)
+						return "The " + player.htmlTitle() + " is not going to play by SBURB's rules.  When bugging and fussing and meddling doesn't work, they decide to rely on game powers. They straight up manipulate the recalcitrant " + leader.htmlTitle() + "'s " + trait + " until they just FUCKING DO ectobiology.  Baby versions of everybody are created. The " + player.htmlTitle() + " immediatley drops the effect. It's like it never happened. Other than one major source of failure being removed from the game. " ;
 					}
 				}
 			}
@@ -315,7 +315,7 @@ function FreeWillStuff(session){
 	//or if knight, drag their ass to the planet and do some.
 	this.considerMakingSpacePlayerDoJob = function(player){
 		var space = findAspectPlayer(this.session.availablePlayers, "Space");
-		if(space && space.landLevel < this.session.goodFrogLevel && player.knowsAboutSburb() ){
+		if(space && space.landLevel < this.session.goodFrogLevel && player.knowsAboutSburb() && player.grimDark < 2 ){ //grim dark players don't care about sburb
 			if(player == space){
 				console.log(player.title() +" did their damn job breeding frogs. " +this.session.session_id);
 				space.landLevel += 10;
@@ -330,8 +330,8 @@ function FreeWillStuff(session){
 					}else if(player.power > 50){
 						console.log(player.title() +" mind controlled space player to do their damn job. " +this.session.session_id);
 						space.landLevel += 10;
-						var trait = getManipulatableTrait(player)
-						return "The " + player.htmlTitle() + " is not going to to fall into SBURB's trap. When bugging and fussing and meddling doesn't work, they decide to rely on game powers. They straight up manipulate the recalcitrant " + space.htmlTitle() + "'s" + trait + " until they just FUCKING DO frog breeding for awhile. The " + player.htmlTitle() + " drops the effect before it can change something permanent. " ;
+						var trait = this.getManipulatableTrait(player)
+						return "The " + player.htmlTitle() + " is not going to to fall into SBURB's trap. When bugging and fussing and meddling doesn't work, they decide to rely on game powers. They straight up manipulate the recalcitrant " + space.htmlTitle() + "'s " + trait + " until they just FUCKING DO frog breeding for awhile. The " + player.htmlTitle() + " drops the effect before it can change something permanent. " ;
 					}
 				}
 			}
