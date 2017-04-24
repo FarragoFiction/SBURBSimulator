@@ -217,7 +217,7 @@ function FreeWillStuff(session){
 					var rage = this.alterEnemies(patsy, enemies,player);
 					return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use game powers to manipulate the very will of the " + patsy.htmlTitleBasic() + " and use them as a weapon. This is completely terrifying.  " + rage;
 				}else if(this.canInfluenceEnemies(player) && patsy.freeWill  < player.freeWill){
-					console.log("rage controling into murdermode and altering their enemies with game powers." +this.session.session_id);
+					console.log("rage/blood controling into murdermode and altering their enemies with game powers." +this.session.session_id);
 					patsy.murderMode = true;
 					patsy.triggerLevel = 10;
 					patsy.influenceSymbol = this.getInfluenceSymbol(player);
