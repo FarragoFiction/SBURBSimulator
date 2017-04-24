@@ -40,7 +40,7 @@ function DoEctobiology(session){
 		//console.log("doing ectobiology for session " + this.session.session_id)
 		this.session.ectoBiologyStarted = true;
 		this.playersMade = findPlayersWithoutEctobiologicalSource(this.session.players);
-		setEctobiologicalSource(this.session.players, session.session_id)
+		setEctobiologicalSource(this.playersMade, session.session_id)
 		var ret = " Through a series of wacky, yet inevitable in hindsight, coincidences, the " + this.leader.htmlTitle();
 		ret += " finds themselves in the veil of meteors surrounding the Medium. ";
 		ret +=  " A button is pushed, and suddenly there are little tiny baby version of " + getPlayersTitlesBasic(this.playersMade);

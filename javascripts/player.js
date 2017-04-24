@@ -551,6 +551,12 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
 	this.knowsAboutSburb = function(){
 		return this.class_name == "Seer" || this.aspect == "Light" || this.aspect == "Mind" || this.aspect == "Doom"
 	}
+	
+	this.performEctobiology = function(session){
+		session.ectoBiologyStarted = true;
+		playersMade = findPlayersWithoutEctobiologicalSource(session.players);
+		setEctobiologicalSource(playersMade, session.session_id)
+	}
 
 	this.isActive = function(){
 		return (this.class_name == "Thief" || this.class_name == "Knight" || this.class_name == "Heir"|| this.class_name == "Mage"|| this.class_name == "Witch"|| this.class_name == "Prince")
@@ -1689,6 +1695,8 @@ function findPlayersWithoutDreamSelves(playerList){
 	}
 	return ret;
 }
+
+
 //don't override existing source
 function setEctobiologicalSource(playerList,source){
 	for(var i= 0; i<playerList.length; i++){

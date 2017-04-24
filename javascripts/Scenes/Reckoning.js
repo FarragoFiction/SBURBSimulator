@@ -23,7 +23,7 @@ function Reckoning(session){
 			intro += " And to defend itself, Skaia totally teleported those babies back in time, and to Earth. "
 			intro += "We are all blown away by this stunning revelation.  Wow, those babies were the players? Really?  Like, a paradox?  Huh. "
 		}else if(!this.session.ectoBiologyStarted && leader.aspect == "Time" &&!leader.dead){
-			this.session.ectoBiologyStarted = true;
+			player.performEctobiology(this.session);
 			intro += " Okay. Don't panic. But it turns out that the " + leader.htmlTitle() + " completly forgot to close one of their time loops. ";
 			intro += " They were totally supposed to take care of the ectobiology. It's cool though, they'll just go back in time and take care of it now. ";
 			intro += " They warp back to the present in a cloud of clocks and gears before you even realize they were gone. See, nothing to worry about. ";

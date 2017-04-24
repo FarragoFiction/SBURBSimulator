@@ -224,6 +224,20 @@ function RelationshipDrama(session){
 		}
 	}
 
+	/* DestroyerTerraria suggests:
+	"XX is SUCH a goddamn asshole!"
+
+"They're the worst!"
+
+"Are you even listening, dude?"
+
+"Dude c'mon, they suck. (You agree with me, I know that/ I know you're on the fence about them, but that's no reason for the silent treatment/ I know you like them, but don't they aggravate you at least a little?)"
+
+"...dude?"
+
+"... oh shit you're dead aren't you."
+
+	*/
 	this.corpseVent = function(div, player1, player2, crush){
 		//alert("tell jadedResearcher you saw  corpse vent in session: " + this.session.session_id)
 		var relationship = player1.getRelationshipWith(crush);

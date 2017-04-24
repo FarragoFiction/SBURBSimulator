@@ -181,6 +181,23 @@ function FreeWillStuff(session){
 		return false;
 
 	}
+	
+	this.getManipulatableTrait = function(player){
+		var ret =  ""
+		if(player.aspect == "Heart") ret = "identity"
+		if(player.aspect == "Blood") ret = "relationships"
+		if(player.aspect == "Mind") ret = "mind"
+		if(player.aspect == "Rage") ret = "sanity"
+		if(player.aspect == "Hope") ret = "beliefs"
+		if(player.aspect == "Doom") ret = "fear"
+		if(player.aspect == "Breath") ret = "motivation"
+		if(player.aspect == "Space") ret = "commitment"
+		if(player.aspect == "Time") ret = "fate"
+		if(player.aspect == "Light") ret = "luck"
+		if(player.aspect == "Void") ret = "nothing"
+		if(player.aspect == "Life") ret = "purpose"
+		return ret;
+	}
 
 	this.getInfluenceSymbol = function(player){
 		if(player.aspect == "Mind") return "mind_forehead.png"
@@ -208,16 +225,13 @@ function FreeWillStuff(session){
 				}else{
 					patsy = getRandomElementFromArray(enemies);//no longer care about "best"
 					if(this.canInfluenceEnemies(player) && patsy.freeWill  < player.freeWill){
-						console.log(player.htmlTitle() +" controling into murdermode and altering their enemies with game powers." +this.session.session_id);
+						console.log(player.title() +" controling into murdermode and altering their enemies with game powers." +this.session.session_id);
 						patsy.murderMode = true;
 						patsy.triggerLevel = 10;
 						patsy.influenceSymbol = this.getInfluenceSymbol(player);
 						patsy.influencePlayer = player;
 						var rage = this.alterEnemies(patsy, enemies,player);
-						var modifiedTrait = "relationships"
-						if(player.aspect == "Heart") modifiedTrait = "identity"
-						if(player.aspect == "Mind") modifiedTrait = "mind"
-						if(player.aspect == "Rage") modifiedTrait = "sanity"
+						var modifiedTrait = getManipulatableTrait(player);
 						return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use game powers to manipulate the " + patsy.htmlTitleBasic() + "'s " + modifiedTrait + " until they are willing to carry out their plan. This is completely terrifying. " + rage;
 					}else{
 						console.log("can't manipulate someone into murdermode and can't use game powers. I am: " + player.title() + " " +this.session.session_id)
@@ -272,12 +286,56 @@ function FreeWillStuff(session){
 
 	//if self, just fucking do it. otherwise, pester them. raise power to min requirement, if it's not already there.
 	this.considerMakingEctobiologistDoJob = function(player){
+		if(!this.session.ectoBiologyStarted && player.knowsAboutSburb() ){
+			if(player.leader){
+				console.log(player.title() +" did their damn job. " +this.session.session_id);
+				player.performEctobiology(this.session);
+				return "The " + player.htmlTitle() + " is not going to play by SBURB's rules. Yes, they could wait to do Ectobiology until they are 'supposed' to. But. Just. Fuck that shit. That's how doomed timelines get made. They create baby versions of everybody. Don't worry about it.";
+			}else{
+				var leader = getLeader(this.session.availablePlayers);
+				if(leader && !leader.dead){
+					if(leader.freeWill < player.freeWill){
+						console.log(player.title() +" convinced ectobiologist to do their damn job. " +this.session.session_id);
+						player.performEctobiology(this.session);
+						return "The " + player.htmlTitle() + " is not going to play by SBURB's rules. They pester the " + leader.htmlTitle() + " to do Ectobiology. That's why they're the leader. They bug and fuss and meddle and finally the " + leader.htmlTitle() + " agrees to ...just FUCKING DO IT.  Baby versions of everybody are created. Don't worry about it.";
+
+					}else if(player.power > 50){
+						console.log(player.title() +" mind controlled ectobiologist to do their damn job. " +this.session.session_id);
+						player.performEctobiology(this.session);
+						var trait = getManipulatableTrait(player)
+						return "The " + player.htmlTitle() + " is not going to play by SBURB's rules.  When bugging and fussing and meddling doesn't work, they decide to rely on game powers. They straight up manipulate the recalcitrant " + leader.htmlTitle() + "'s" + trait + " until they just FUCKING DO ectobiology.  Baby versions of everybody are created. The " + player.htmlTitle() + " immediatley drops the effect. It's like it never happened. Other than one major source of failure being removed from the game. " ;
+					}
+				}
+			}
+		}
 		return null;
 	}
 
 	//if self, just fucking do it. raise land level. otherwise, pester them. raise power to min requirement, if it's not already there.
 	//or if knight, drag their ass to the planet and do some.
 	this.considerMakingSpacePlayerDoJob = function(player){
+		var space = findAspectPlayer(this.session.availablePlayers, "Space");
+		if(space && space.landLevel < this.session.goodFrogLevel && player.knowsAboutSburb() ){
+			if(player == space){
+				console.log(player.title() +" did their damn job breeding frogs. " +this.session.session_id);
+				space.landLevel += 10;
+				return "The " + player.htmlTitle() + " is not going to fall into SBURB's trap. They know why frog breeding is important, and they are going to fucking DO it. ";
+			}else{
+				if(!space.dead){
+					if(space.freeWill < player.freeWill){
+						console.log(player.title() +" convinced space player to do their damn job. " +this.session.session_id);
+						space.landLevel += 10;
+						return "The " + player.htmlTitle() + " is not going to to fall into SBURB's trap. They pester the " + space.htmlTitle() + " to do frog breeding, even if it seems useless. They bug and fuss and meddle and finally the " + space.htmlTitle() + " agrees to ...just FUCKING DO IT.";
+
+					}else if(player.power > 50){
+						console.log(player.title() +" mind controlled space player to do their damn job. " +this.session.session_id);
+						space.landLevel += 10;
+						var trait = getManipulatableTrait(player)
+						return "The " + player.htmlTitle() + " is not going to to fall into SBURB's trap. When bugging and fussing and meddling doesn't work, they decide to rely on game powers. They straight up manipulate the recalcitrant " + space.htmlTitle() + "'s" + trait + " until they just FUCKING DO frog breeding for awhile. The " + player.htmlTitle() + " drops the effect before it can change something permanent. " ;
+					}
+				}
+			}
+		}
 		return null;
 	}
 
@@ -309,7 +367,7 @@ function FreeWillStuff(session){
 				return null;
 			}
 		}
-		console.log("returning null")
+		//console.log("returning null")
 		return null;
 	}
 
