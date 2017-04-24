@@ -31,6 +31,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
 	this.number_times_confessed_to = 0;
 	this.baby_stuck = false;
 	this.influenceSymbol = null; //multiple aspects can influence/mind control.
+	this.influencePlayer = null; //who is controlling me? (so i can break free if i have more free will or they die)
 	this.stateBackup = null; //if you get influenced by something, here's where your true self is stored until you break free.
 	this.aspect = aspect;
 	this.land = null;
@@ -66,7 +67,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
 	this.murderMode = false;  //kill all players you don't like. odds of a just death skyrockets.
 	this.leftMurderMode = false; //have scars, unless left via death.
 	this.corruptionLevelOther = 0; //every 100 points, sends you to next grimDarkLevel.
-  this.grimDark = 0;  //  0 = none, 1 = some, 2 = some more 3 = full grim dark with aura and font and everything.
+	this.grimDark = 0;  //  0 = none, 1 = some, 2 = some more 3 = full grim dark with aura and font and everything.
 	this.leader = false;
 	this.landLevel = 0; //at 10, you can challenge denizen.  only space player can go over 100 (breed better universe.)
 	this.denizenFaced = false; //when faced, you double in power (including future power increases.)

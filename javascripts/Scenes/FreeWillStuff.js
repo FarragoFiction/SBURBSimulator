@@ -13,7 +13,12 @@ function FreeWillStuff(session){
 		//what the hell roue of doom's corpse. corpses aren't part of the player list!
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var player = this.session.availablePlayers[i];
-			if(player.freeWill > 25){  //don't even get to consider a decision if you don't have  more than default free will.
+			if(player.freeWill > 0){  //don't even get to consider a decision if you don't have  more than default free will.
+				var breakFree = this.considerBreakFreeControl(player);
+				if(breakFree){  //somebody breaking free of mind control ALWAYS has priority (otherwise, likely will never happen since they have so little free will to begin with.)
+					this.decision = breakFree;
+					return true;
+				}
 				var decision = this.getPlayerDecision(player);
 				if(decision){
 					if(!this.decision || player.freeWill > this.player.freeWill){  //whoever has the most will makes the decision.
@@ -217,6 +222,7 @@ function FreeWillStuff(session){
 						patsy.murderMode = true;
 						patsy.triggerLevel = 10;
 						patsy.influenceSymbol = this.getInfluenceSymbol(player);
+						patsy.influencePlayer = player;
 						var rage = this.alterEnemies(patsy, enemies,player);
 						return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use game powers to manipulate the very will of the " + patsy.htmlTitleBasic() + " and use them as a weapon. This is completely terrifying.  " + rage;
 					}else if(this.canInfluenceEnemies(player) && patsy.freeWill  < player.freeWill){
@@ -224,6 +230,7 @@ function FreeWillStuff(session){
 						patsy.murderMode = true;
 						patsy.triggerLevel = 10;
 						patsy.influenceSymbol = this.getInfluenceSymbol(player);
+						patsy.influencePlayer = player;
 						var rage = this.alterEnemies(patsy, enemies,player);
 						var modifiedTrait = "relationships"
 						if(player.aspect == "Heart") modifiedTrait = "identity"
@@ -293,13 +300,36 @@ function FreeWillStuff(session){
 
 	//if  SELF is mind controlled, can break free if free will high enough.
 	//if someone ELSE is mind controlled (and not by you), can help them break free.
+	//still need positive free will for this tho. if you have negative, you are still controled even after the influences/your death.
 	this.considerBreakFreeControl = function(player){
+		var ip = player.influencePlayer;
+		if(ip){
+			if(ip.dead){
+				player.influencePlayer = null;
+				player.influenceSymbol = null;
+				player.stateBackup.restoreState(player);
+				console.log("freed from control  with influencer death" +this.session.session_id);
+				return "With the death of the " + ip.htmlTitleBasic() + " the " + player.htmlTitle() + " is finally free of their control. ";
+			}else if(player.dead){
+				player.influencePlayer = null;
+				player.influenceSymbol = null;
+				player.stateBackup.restoreState(player);
+				console.log("death freed player from control" +this.session.session_id);
+				return "In death, the " + player.htmlTitle() + " is finally free of the " + ip.htmlTitle() + "'s control.";
+			}else if(player.freeWill > ip.freeWill){
+				player.influencePlayer = null;
+				player.influenceSymbol = null;
+				player.stateBackup.restoreState(player);
+				console.log("freed from control with player will" +this.session.session_id);
+				return "The " + player.htmlTitle() + " manages to wrench themselves free of the " + ip.htmlTitle() + "'s control.";
+			}
+		}
 		return null;
 	}
 
 	this.getPlayerDecision = function(player){
 		//reorder things to change prevelance.
-		var ret = this.considerBreakFreeControl(player);  //TODO if you are under influence, here is how you can break free, if you free will is strong enough. mini snapshot has code that can help
+		var ret = null;  //breaking free of mind control doesn't happen here.
 		if(ret == null) ret = this.considerKillMurderModePlayer(player);
 		if(ret == null) ret = this.considerKillMurderModePlayer(player);
 		//let them decide to enter or leave grim dark, and kill or calm grim dark player

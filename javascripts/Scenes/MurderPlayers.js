@@ -148,6 +148,7 @@ function MurderPlayers(session){
 
 	this.contentForRender = function(div){
 		var livePlayers = this.playerList; //just because they are alive doesn't mean they are in the medium
+		var ret = "";
 		for(var i = 0; i<this.murderers.length; i++){
 			var m = this.murderers[i];
 			var worstEnemy = m.getWorstEnemyFromList(this.session.availablePlayers);
@@ -160,7 +161,7 @@ function MurderPlayers(session){
 			}
 			//var notEnemy = m.getWorstEnemyFromList(this.session.availablePlayers);
 			removeFromArray(m, this.session.availablePlayers);
-			var ret = "";
+			
 			if(worstEnemy && worstEnemy.dead == false && m.mobility > worstEnemy.mobility){
 				removeFromArray(worstEnemy, this.session.availablePlayers);
 				//if blood player is at all competant, can talk down murder mode player.
