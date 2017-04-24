@@ -100,7 +100,7 @@ function SaveDoomedTimeLine(session){
 			this.session.doomedTimelineReasons.push(this.reason)
 		}else{
 			if(this.timePlayer.leader && !this.session.ectoBiologyStarted ){
-					player.performEctobiology(this.session);
+					this.timePlayer.performEctobiology(this.session);
 					this.reason = "Time player didn't do ectobiology."
 					session.doomedTimelineReasons.push(this.reason)
 					ret += " They need to do the ectobiology right freaking now, or none of the players will ever even be born.";
