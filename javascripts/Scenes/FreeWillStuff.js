@@ -13,12 +13,12 @@ function FreeWillStuff(session){
 		//what the hell roue of doom's corpse. corpses aren't part of the player list!
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var player = this.session.availablePlayers[i];
+			var breakFree = this.considerBreakFreeControl(player);
+			if(breakFree){  //somebody breaking free of mind control ALWAYS has priority (otherwise, likely will never happen since they have so little free will to begin with.)
+				this.decision = breakFree;
+				return true;
+			}
 			if(player.freeWill > 0){  //don't even get to consider a decision if you don't have  more than default free will.
-				var breakFree = this.considerBreakFreeControl(player);
-				if(breakFree){  //somebody breaking free of mind control ALWAYS has priority (otherwise, likely will never happen since they have so little free will to begin with.)
-					this.decision = breakFree;
-					return true;
-				}
 				var decision = this.getPlayerDecision(player);
 				if(decision){
 					if(!this.decision || player.freeWill > this.player.freeWill){  //whoever has the most will makes the decision.
@@ -298,9 +298,7 @@ function FreeWillStuff(session){
 		return null;
 	}
 
-	//if  SELF is mind controlled, can break free if free will high enough.
-	//if someone ELSE is mind controlled (and not by you), can help them break free.
-	//still need positive free will for this tho. if you have negative, you are still controled even after the influences/your death.
+	
 	this.considerBreakFreeControl = function(player){
 		var ip = player.influencePlayer;
 		if(ip){
@@ -309,7 +307,7 @@ function FreeWillStuff(session){
 				player.influenceSymbol = null;
 				player.stateBackup.restoreState(player);
 				console.log("freed from control  with influencer death" +this.session.session_id);
-				return "With the death of the " + ip.htmlTitleBasic() + " the " + player.htmlTitle() + " is finally free of their control. ";
+				return "With the death of the " + ip.htmlTitleBasic() + ", the " + player.htmlTitle() + " is finally free of their control. ";
 			}else if(player.dead){
 				player.influencePlayer = null;
 				player.influenceSymbol = null;
