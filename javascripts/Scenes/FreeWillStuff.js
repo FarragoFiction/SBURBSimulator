@@ -145,7 +145,7 @@ function FreeWillStuff(session){
 				if(p != player){ //can't be own patsy
 					if(bestPatsy == null){
 						bestPatsy = [p,this.howManyEnemiesInCommon(enemies, p)];
-					}else{
+					}else if(!p.murderMode){ //not already in murder mode
 							var numEnemiesInCommon = this.howManyEnemiesInCommon(enemies, p);
 							var patsyHatesMyFriend = this.howManyFriendsYouHate(friends, p)  //you aren't a good patsy if you are going to kill the people i care about along with my enemies.
 							var val = numEnemiesInCommon - patsyHatesMyFriend;
@@ -207,27 +207,31 @@ function FreeWillStuff(session){
 				if(patsyVal > 3*enemies.length/4 && patsy.triggerLevel > 1){
 						console.log("manipulating someone to go into murdermode " +this.session.session_id + " patsyVal = " + patsyVal);
 						patsy.murderMode = true;
+						patsy.triggerLevel = 10;
 						return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use clever words to convince the " + patsy.htmlTitleBasic() + " of the righteousness of their plan. They agree to carry out the bloody work. ";
 
-				}else if(this.canStealWills(player) && patsy.freeWill  < player.freeWill){  //can't steal your will if you have enough of it.
-					console.log("mind controling someone to go into murdermode and altering their enemies with game powers." +this.session.session_id);
-					patsy.murderMode = true;
-					patsy.triggerLevel = 10;
-					patsy.influenceSymbol = this.getInfluenceSymbol(player);
-					var rage = this.alterEnemies(patsy, enemies,player);
-					return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use game powers to manipulate the very will of the " + patsy.htmlTitleBasic() + " and use them as a weapon. This is completely terrifying.  " + rage;
-				}else if(this.canInfluenceEnemies(player) && patsy.freeWill  < player.freeWill){
-					console.log("rage/blood controling into murdermode and altering their enemies with game powers." +this.session.session_id);
-					patsy.murderMode = true;
-					patsy.triggerLevel = 10;
-					patsy.influenceSymbol = this.getInfluenceSymbol(player);
-					var rage = this.alterEnemies(patsy, enemies,player);
-					var modifiedTrait = "relationships"
-					if(player.aspect == "Heart") modifiedTrait = "identity"
-					if(player.aspect == "Rage") modifiedTrait = "sanity"
-					return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use game powers to manipulate the " + patsy.htmlTitleBasic() + "'s " + modifiedTrait + " until they are willing to carry out their plan. This is completely terrifying. " + rage;
 				}else{
-					console.log("can't manipulate someone into murdermode and can't use game powers."+this.session.session_id)
+					patsy = getRandomElementFromArray(enemies);//no longer care about "best"
+					if(this.canStealWills(player) && patsy.freeWill  < player.freeWill){  //can't steal your will if you have enough of it.
+						console.log("mind controling someone to go into murdermode and altering their enemies with game powers." +this.session.session_id);
+						patsy.murderMode = true;
+						patsy.triggerLevel = 10;
+						patsy.influenceSymbol = this.getInfluenceSymbol(player);
+						var rage = this.alterEnemies(patsy, enemies,player);
+						return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use game powers to manipulate the very will of the " + patsy.htmlTitleBasic() + " and use them as a weapon. This is completely terrifying.  " + rage;
+					}else if(this.canInfluenceEnemies(player) && patsy.freeWill  < player.freeWill){
+						console.log("rage/blood controling into murdermode and altering their enemies with game powers." +this.session.session_id);
+						patsy.murderMode = true;
+						patsy.triggerLevel = 10;
+						patsy.influenceSymbol = this.getInfluenceSymbol(player);
+						var rage = this.alterEnemies(patsy, enemies,player);
+						var modifiedTrait = "relationships"
+						if(player.aspect == "Heart") modifiedTrait = "identity"
+						if(player.aspect == "Rage") modifiedTrait = "sanity"
+						return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use game powers to manipulate the " + patsy.htmlTitleBasic() + "'s " + modifiedTrait + " until they are willing to carry out their plan. This is completely terrifying. " + rage;
+					}else{
+						console.log("can't manipulate someone into murdermode and can't use game powers."+this.session.session_id)
+					}
 				}
 		}
 		return null;

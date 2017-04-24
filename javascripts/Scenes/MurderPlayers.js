@@ -7,8 +7,6 @@ function MurderPlayers(session){
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		this.murderers = [];
-		//select a random player. if they've been triggered, random chance of going murderMode if enemies (based on how triggered.)
-		this.player = getRandomElementFromArray(this.session.availablePlayers);
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			if(this.session.availablePlayers[i].murderMode){
 				this.murderers.push(this.session.availablePlayers[i]);
