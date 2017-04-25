@@ -46,6 +46,14 @@ function SessionSummary(){
 	this.sickFires = null;
 	this.hasLuckyEvents = null;
 	this.hasUnluckyEvents = null;
+	this.averageMinLuck = null;
+	this.averageMaxLuck = null;
+	this.averagePower = null;
+	this.averageMobility = null;
+	this.averageFreeWill = null;
+	this.averageHP = null;
+	this.averageRelationshipValue = null;
+	this.averageTriggerLevel = null;
 
 	//thanks to bob for helping me puzzle out the logic to make filters AND not OR.
 	//why was that so hard???
@@ -163,6 +171,14 @@ function SessionSummaryJunior(players,session_id){
 	this.players = players;
 	this.session_id = session_id;
 	this.ships = null;
+	this.averageMinLuck = null;
+	this.averageMaxLuck = null;
+	this.averagePower = null;
+	this.averageMobility = null;
+	this.averageFreeWill = null;
+	this.averageHP = null;
+	this.averageRelationshipValue = null;
+	this.averageTriggerLevel = null;
 	this.generateHTML = function(){
 		var html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id +"'>";
 		html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "'>" +this.session_id + "</a>"
@@ -219,6 +235,14 @@ function SessionSummaryJunior(players,session_id){
 
 function MultiSessionSummary(){
 	this.total = 0;
+	this.averageMinLuck = null;
+	this.averageMaxLuck = null;
+	this.averagePower = null;
+	this.averageMobility = null;
+	this.averageFreeWill = null;
+	this.averageHP = null;
+	this.averageRelationshipValue = null;
+	this.averageTriggerLevel = null;
 	this.crashedFromSessionBug = 0;
 	this.crashedFromPlayerActions = 0;
 	this.totalDeadPlayers = 0;
@@ -262,6 +286,7 @@ function MultiSessionSummary(){
 	this.sickFires = 0;
 	this.hasLuckyEvents = 0;
 	this.hasUnluckyEvents = 0;
+	
 
 	this.generateHTML = function(){
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
@@ -277,6 +302,8 @@ function MultiSessionSummary(){
 				html += "<Br><b>totalDeadPlayers: </b> " + this.totalDeadPlayers + " ("+this.survivalRate + " % survival rate)";
 			}else if(propertyName == "totalLivingPlayers" || propertyName == "survivalRate" ){
 				//do nothing
+			}else if(propertyName == "averageTriggerLevel" || propertyName == "averageRelationshipValue"  || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck"){
+				html += "<br><b>" + propertyName + "</b>: " + this[propertyName];
 			}else if(propertyName != "generateHTML"){
 				html += "<Br><b> <input disabled='true' type='checkbox' name='filter' value='"+propertyName +"' id='" + propertyName + "' onchange='filterSessionSummaries()'>";
 				html +=  propertyName + "</b>: " + this[propertyName] ;
@@ -350,10 +377,28 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		if(ss.sickFires) mss.sickFires ++;
 		if(ss.hasLuckyEvents) mss.hasLuckyEvents ++;
 		if(ss.hasUnluckyEvents) mss.hasUnluckyEvents ++;
+		
+		mss.averageMinLuck += ss.averageMinLuck
+		mss.averageMaxLuck += ss.averageMaxLuck
+		mss.averagePower += ss.averagePower
+		mss.averageMobility += ss.averageMobility
+		mss.averageFreeWill += ss.averageFreeWill
+		mss.averageHP += ss.averageHP
+		mss.averageTriggerLevel += ss.averageTriggerLevel
+		mss.averageRelationshipValue += ss.averageRelationshipValue
+		
 
 		mss.totalDeadPlayers += ss.numDead;
 		mss.totalLivingPlayers += ss.numLiving;
 	}
+	mss.averageMinLuck = Math.round(mss.averageMinLuck/sessionSummaries.length)
+	mss.averageMaxLuck = Math.round(mss.averageMaxLuck/sessionSummaries.length)
+	mss.averagePower = Math.round(mss.averagePower/sessionSummaries.length)
+	mss.averageMobility = Math.round(ss.averageMobility/sessionSummaries.length)
+	mss.averageFreeWill = Math.round(ss.averageFreeWill/sessionSummaries.length)
+	mss.averageHP = Math.round(ss.averageHP/sessionSummaries.length)
+	mss.averageTriggerLevel = Math.round(ss.averageTriggerLevel/sessionSummaries.length)
+	mss.averageRelationshipValue = Math.round(ss.averageRelationshipValue/sessionSummaries.length)
 	mss.survivalRate = Math.round(100 * (mss.totalLivingPlayers/(mss.totalLivingPlayers + mss.totalDeadPlayers)));
 	return mss;
 }
@@ -366,6 +411,14 @@ function MultiSessionSummaryJunior(){
 	this.numSessions = 0;
 	this.numPlayers = 0;
 	this.numShips = 0;
+	this.averageMinLuck = null;
+	this.averageMaxLuck = null;
+	this.averagePower = null;
+	this.averageMobility = null;
+	this.averageFreeWill = null;
+	this.averageHP = null;
+	this.averageRelationshipValue = null;
+	this.averageTriggerLevel = null;
 	this.generateHTML = function(){
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
 		var header = "<h2>Stats for All Displayed Sessions: </h2><br>"

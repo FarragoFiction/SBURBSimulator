@@ -1,9 +1,10 @@
-//not a player, but more than just a session stat.
-//Game entities have HP, luck, even relationship options (though only pale and ashen.)
-//maybe time clones are this? sprites?
-//definitely jack/queen/jing, tho
-//the mayor?
-//don't want to just add luck to jack/queen/keen fights. refactoring everything. back to multi-round fights and all.
+//jack/queen/king/denizen.
+//multiround, but only takes 1 tick.
+//when call fight method, pass in array of players. only those players are involved in fight.
+//whoever calls fight is reponsible for high mobility players to be more likely in a fight.
+//should use ALL stats. luck, mobility, freeWill, raw power, relationships, etc. Hope powered up by how screwed things are, for example. (number of corpses, lack of Ecto lack of frog, etc. ).
+//denizens have a particular stat that won't matter. Can't beat Cetus in a Luck-Off, she is simply the best there is, for example.
+//before I decide boss stats, need to have AB compile me a list of average player stats. She's getting kinda...busy though. maybe a secret extra area? same page, but on bottom?
 function GameEntity(session, name){
 		this.session = session;
 		this.name = name;

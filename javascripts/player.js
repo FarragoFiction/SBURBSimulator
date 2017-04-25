@@ -938,6 +938,15 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
 			}
 		}
 	}
+	
+	this.getAverageRelationshipValue = function(){
+		if(this.relationships.length == 0) return 0;
+		var ret = 0;
+		for(var i = 0; i< this.relationships.length; i++){
+			ret += this.relationships[i].value;
+		}
+		return ret/this.relationships.length;
+	}
 
 	//and they need to be alive.
 	this.hasDiamond = function(){
@@ -1801,4 +1810,76 @@ function sortPlayersByFreeWill(players){
 
 function compareFreeWill(a,b) {
   return b.freeWill - a.freeWill;
+}
+
+function getAverageMinLuck(players){
+	if(players.length == 0) return 0;
+	var ret = 0;
+	for(var i = 0; i< players.length; i++){
+		ret += players[i].minLuck;
+	}
+	return  Math.round(ret/players.length);
+}
+
+function getAverageMaxLuck(players){
+	if(players.length == 0) return 0;
+	var ret = 0;
+	for(var i = 0; i< players.length; i++){
+		ret += players[i].maxLuck;
+	}
+	return  Math.round(ret/players.length);
+}
+
+function getAverageTriggerLevel(players){
+	if(players.length == 0) return 0;
+	var ret = 0;
+	for(var i = 0; i< players.length; i++){
+		ret += players[i].triggerLevel;
+	}
+	return  Math.round(ret/players.length);
+}
+
+function getAverageHP(players){
+	if(players.length == 0) return 0;
+	var ret = 0;
+	for(var i = 0; i< players.length; i++){
+		ret += players[i].hp;
+	}
+	return  Math.round(ret/players.length);
+}
+
+function getAverageMobility(players){
+	if(players.length == 0) return 0;
+	var ret = 0;
+	for(var i = 0; i< players.length; i++){
+		ret += players[i].mobility;
+	}
+	return  Math.round(ret/players.length);
+}
+
+function getAverageRelationshipValue(players){
+	if(players.length == 0) return 0;
+	var ret = 0;
+	for(var i = 0; i< players.length; i++){
+		ret += players[i].getAverageRelationshipValue();
+	}
+	return Math.round(ret/players.length);
+}
+
+function getAveragePower(players){
+	if(players.length == 0) return 0;
+	var ret = 0;
+	for(var i = 0; i< players.length; i++){
+		ret += players[i].power;
+	}
+	return  Math.round(ret/players.length);
+}
+
+function getAverageFreeWill(players){
+	if(players.length == 0) return 0;
+	var ret = 0;
+	for(var i = 0; i< players.length; i++){
+		ret += players[i].freeWill;
+	}
+	return  Math.round(ret/players.length);
 }

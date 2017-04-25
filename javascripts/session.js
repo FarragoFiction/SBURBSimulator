@@ -397,6 +397,14 @@ function Session(session_id){
 		var summary = new SessionSummary();
 		summary.crashedFromSessionBug = this.crashedFromSessionBug;
 		summary.crashedFromPlayerActions = this.crashedFromPlayerActions;
+		summary.averageMinLuck = getAverageMinLuck(this.players);
+		summary.averageMaxLuck = getAverageMaxLuck(this.players);
+		summary.averagePower = getAveragePower(this.players);
+		summary.averageMobility = getAverageMobility(this.players);
+		summary.averageFreeWill = getAverageFreeWill(this.players);
+		summary.averageHP = getAverageHP(this.players);
+		summary.averageRelationshipValue = getAverageRelationshipValue(this.players);
+		summary.averageTriggerLevel = getAverageTriggerLevel(this.players);
 		summary.session_id = this.session_id;
 		summary.hasLuckyEvents = this.goodLuckEvent;
 		summary.hasUnluckyEvents = this.badLuckEvent;
