@@ -147,7 +147,7 @@ function MurderPlayers(session){
 	}
 
 	this.contentForRender = function(div){
-		var livePlayers = this.playerList; //just because they are alive doesn't mean they are in the medium
+		var livePlayers = this.session.availablePlayers; //just because they are alive doesn't mean they are in the medium
 		var ret = "";
 		for(var i = 0; i<this.murderers.length; i++){
 			var m = this.murderers[i];
@@ -317,7 +317,7 @@ function MurderPlayers(session){
 				}
 			}else{
 
-				if(worstEnemy && worstEnemy.mobility > m.mobility){
+				if(worstEnemy && !worstEnemy.dead && worstEnemy.mobility > m.mobility){
 					console.log("murder thwarted by mobility: " + this.session.session_id)
 					ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! Do they just never stay in one spot for more than five seconds? Flighty bastard. It's hard to stay enraged while wandering around lost."
 					m.triggerLevel += -3;
