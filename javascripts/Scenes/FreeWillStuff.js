@@ -429,9 +429,9 @@ function FreeWillStuff(session){
 			murderer.triggerLevel = 0;
 			murderer.influenceSymbol = this.getInfluenceSymbol(player);
 			murderer.influencePlayer = player;
-			murderer.getRelationshipWith(player).value += (player.freeWill - murderer.freeWill);  //might love or hate you during this.
+			murderer.getRelationshipWith(player).value += (player.freeWill - murderer.freeWill*2);  //might love or hate you during this.
 			var trait = this.getManipulatableTrait(player);
-			return "The " + player.htmlTitle() + " has had enough of the " + murderer.htmlTitle() + "'s murderous ways.  They manipulate their " + trait+ " until they are basically little more than an empty shell. They are such as asshole before they are finally controlled. Oh, wow. No. They are never going to be allowed to be free again. Neer, never, never again. Never. Wow.  ";
+			return "The " + player.htmlTitle() + " has had enough of the " + murderer.htmlTitle() + "'s murderous ways.  They manipulate their " + trait+ " until they are basically little more than an empty shell. They are such as asshole before they are finally controlled. Oh, wow. No. They are never going to be allowed to be free again. Never, never, never again. Never. Wow.  ";
 		}
 		return null;
 	}
@@ -491,7 +491,7 @@ function FreeWillStuff(session){
 			patsy.triggerLevel = 100;
 			patsy.influenceSymbol = this.getInfluenceSymbol(player);
 			patsy.influencePlayer = player;
-			patsy.getRelationshipWith(player).value += (player.freeWill - patsy.freeWill);  //might love or hate you during this.
+			patsy.getRelationshipWith(player).value += (player.freeWill - patsy.freeWill*2);  //might love or hate you during this.
 			var trait = this.getManipulatableTrait(player);
 			return "The " + murderer.htmlTitle() + " needs to die. They are a threat to everyone. The " +player.htmlTitleBasic() + " manipulates the " + patsy.htmlTitleBasic() + "'s " + trait + " until they focus only on their hate for the " + murderer.htmlTitle() + " and how they need to die.";
 		}
