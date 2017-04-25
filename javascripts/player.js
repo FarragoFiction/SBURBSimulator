@@ -168,10 +168,12 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
 			ret += "Murder Mode ";
 		}
 
-		if(this.grimDark>2){
+		if(this.grimDark>3){
 			ret += "Severely Grim Dark ";
 		}else if(this.grimDark > 1){
 			ret += "Mildly Grim Dark ";
+		}else if(this.grimDark >2){
+			ret += "Grim Dark ";
 		}
 
 		if(this.godTier){

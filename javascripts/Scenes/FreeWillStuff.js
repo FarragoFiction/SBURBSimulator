@@ -433,7 +433,7 @@ function FreeWillStuff(session){
 	//less likely if murderMode player is ectobiologist or space
 	this.considerKillMurderModePlayer = function(player){
 		var murderer = this.findMurderModePlayerBesides(player);
-		if(murderer && !player.isActive() && !murderer.dead &&this.isValidTargets([murderer], player) && player.power > 50){
+		if(murderer && !player.isActive() && !murderer.dead &&this.isValidTargets([murderer], player) && player.power > 25 && this.canInfluenceEnemies(player)){
 			return this.sendPatsyAfterMurderer(player, murderer);
 		}else if(murderer && !murderer.dead){  //don't HAVE to be active to do this. but if passive and CAN be a manipulatie bastard, will.
 			return this.killMurderer(player, murderer);
@@ -464,7 +464,7 @@ function FreeWillStuff(session){
 	//ONLY mind control. Set all relationships to neutral except murderer, put into murder mode. 
 	this.sendPatsyAfterMurderer = function(player, murderer){
 		var patsy = player.getWorstEnemyFromList(this.session.availablePlayers);
-		if(patsy && patsy != murderer && patsy.influencePlayer != player && patsy.freeWill  < player.freeWill && this.canInfluenceEnemies(player)){  //they exist and I don't already control them.
+		if(patsy && patsy != murderer && patsy.influencePlayer != player && patsy.freeWill  < player.freeWill ){  //they exist and I don't already control them.
 			if(!patsy.stateBackup) patsy.stateBackup = new MiniSnapShot(patsy); 
 			console.log(player.title() + " controlling player to kill murderer. " + this.session.session_id)
 			patsy.nullAllRelationships();
