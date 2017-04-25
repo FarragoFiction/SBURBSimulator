@@ -537,7 +537,7 @@ function FreeWillStuff(session){
 	//ONLY mind control. Set all relationships to neutral except murderer, put into murder mode. 
 	this.sendPatsyAfterMurderer = function(player, murderer){
 		var patsy = player.getWorstEnemyFromList(this.session.availablePlayers);
-		if(patsy && patsy != murderer && patsy.freeWill  < player.freeWill ){  //they exist and I don't already control them.
+		if(patsy && !patsy.dead && patsy != murderer && patsy.freeWill  < player.freeWill ){  //they exist and I don't already control them.
 			if(!patsy.stateBackup) patsy.stateBackup = new MiniSnapShot(patsy); 
 			//console.log(player.title() + " controlling player to kill murderer. " + this.session.session_id)
 			patsy.nullAllRelationships();
