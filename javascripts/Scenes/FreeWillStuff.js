@@ -20,7 +20,7 @@ function FreeWillStuff(session){
 				this.decision = breakFree;
 				return true;
 			}
-			if(player.freeWill > 0){  //don't even get to consider a decision if you don't have  more than default free will.
+			if(player.freeWill > 25){  //don't even get to consider a decision if you don't have  more than default free will.
 				var decision = this.getPlayerDecision(player);
 				if(decision){
 					this.decision = decision;
@@ -41,14 +41,14 @@ function FreeWillStuff(session){
 	//more likely if who you hate is ectobiologist or space
 	this.considerDisEngagingMurderMode = function(player){
 		if(player.murderMode){
-			console.log("disengage murde mode")
+			//console.log("disengage murde mode")
 				var ret = "";
 				var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
 				var spacePlayerEnemy = findAspectPlayer(enemies, "Space");
 				var ectobiologistEnemy = getLeader(enemies);
 				//not everybody knows about ectobiology.
 				if(!this.session.ectoBiologyStarted && ectobiologistEnemy && (player.knowsAboutSburb() && player.grimDark < 2)){
-					console.log("Free will stop from killing ectobiologist: " + this.session.session_id);
+					//console.log("Free will stop from killing ectobiologist: " + this.session.session_id);
 					ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. If this keeps up, they are going to end up killing the " + ectobiologistEnemy.htmlTitle();
 					ret += " and then they will NEVER do ectobiology.  No matter HOW much of an asshole they are, it's not worth dooming the timeline. ";
 					player.murderMode = false;
@@ -59,7 +59,7 @@ function FreeWillStuff(session){
 				}
 				//not everybody knows why frog breeding is important.
 				if(spacePlayerEnemy && spacePlayerEnemy.landLevel < this.session.goodFrogLevel  && (player.knowsAboutSburb() && player.grimDark < 2)){
-					console.log("Free will stop from killing space player: " + this.session.session_id);
+					//console.log("Free will stop from killing space player: " + this.session.session_id);
 					ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. If this keeps up, they are going to end up killing the " + spacePlayerEnemy.htmlTitle();
 					ret += " and then they will NEVER have frog breeding done. They can always kill them AFTER they've escaped to the new Universe, right? ";
 					player.murderMode = false;
@@ -70,7 +70,7 @@ function FreeWillStuff(session){
 				}
 				//NOT luck. just obfuscated reasons.
 				if(Math.seededRandom() > 0.5){
-					console.log("Free will stop from killing everybody: " + this.session.session_id);
+					//console.log("Free will stop from killing everybody: " + this.session.session_id);
 					ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. No matter HOW much of an asshole people are, SBURB is the true enemy, and they are not going to let themselves forget that. ";
 					player.murderMode = false;
 					player.leftMurderMode = true;
@@ -112,7 +112,7 @@ function FreeWillStuff(session){
 		if(!player.murderMode){
 			var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
 			if(this.isValidTargets(enemies,player)){
-					console.log("chosing to go into murdermode " +this.session.session_id);
+					//console.log("chosing to go into murdermode " +this.session.session_id);
 					player.murderMode = true;  //no font change. not crazy. obviously. why would you think they were?
 					player.triggerLevel = 10;
 					removeFromArray(player, this.session.availablePlayers);
@@ -267,7 +267,7 @@ function FreeWillStuff(session){
 		var patsyVal = patsyArr[1];
 		if(this.isValidTargets(enemies,player) && patsy){
 				if(patsyVal > enemies.length/2 && patsy.triggerLevel > 1){
-						console.log("manipulating someone to go into murdermode " +this.session.session_id + " patsyVal = " + patsyVal);
+						//console.log("manipulating someone to go into murdermode " +this.session.session_id + " patsyVal = " + patsyVal);
 						patsy.murderMode = true;
 						patsy.triggerLevel = 10;
 						removeFromArray(player, this.session.availablePlayers);
@@ -277,7 +277,7 @@ function FreeWillStuff(session){
 				}else{
 					patsy = getRandomElementFromArray(enemies);//no longer care about "best"
 					if(this.canInfluenceEnemies(player) && patsy.freeWill  < player.freeWill){
-						console.log(player.title() +" controling into murdermode and altering their enemies with game powers." +this.session.session_id);
+						//console.log(player.title() +" controling into murdermode and altering their enemies with game powers." +this.session.session_id);
 						patsy.murderMode = true;
 						patsy.triggerLevel = 10;
 						patsy.influenceSymbol = this.getInfluenceSymbol(player);
@@ -288,7 +288,7 @@ function FreeWillStuff(session){
 						removeFromArray(patsy, this.session.availablePlayers);
 						return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use game powers to manipulate the " + patsy.htmlTitleBasic() + "'s " + modifiedTrait + " until they are willing to carry out their plan. This is completely terrifying. " + rage;
 					}else{
-						//console.log("can't manipulate someone into murdermode and can't use game powers. I am: " + player.title() + " " +this.session.session_id)
+						////console.log("can't manipulate someone into murdermode and can't use game powers. I am: " + player.title() + " " +this.session.session_id)
 					}
 				}
 		}
@@ -347,10 +347,10 @@ function FreeWillStuff(session){
 					var ret =  this.godTierHappens(sacrifice);
 					removeFromArray(player, this.session.availablePlayers);
 					removeFromArray(sacrifice, this.session.availablePlayers);
-					console.log(player.title() + " commits murder and someone else gets tiger " + this.session.session_id);
+					//console.log(player.title() + " commits murder and someone else gets tiger " + this.session.session_id);
 					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". " + ret + " It is not a very big deal at all. ";  //caliborn
 				}else if(sacrifice.rollForLuck() + player.rollForLuck() > 200){  //BOTH have to be lucky.
-					console.log(player.title() + " commits murder and someone else gets tiger and it is all very lucky. " + this.session.session_id);
+					//console.log(player.title() + " commits murder and someone else gets tiger and it is all very lucky. " + this.session.session_id);
 					var ret =  this.godTierHappens(sacrifice);
 					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". " + ret + " It is a stupidly huge deal, since the " + sacrifice.htmlTitleBasic() + " was never destined to God Tier at all. But I guess the luck of both players was enough to make things work out, in the end.";  
 				}else{
@@ -359,7 +359,7 @@ function FreeWillStuff(session){
 					removeFromArray(sacrifice, this.session.availablePlayers);
 					sacrifice.causeOfDeath = "trying to go God Tier.";
 					player.triggerLevel += 100;
-					console.log(player.title() + " commits murder for god tier but doesn't get tiger " + this.session.session_id);
+					//console.log(player.title() + " commits murder for god tier but doesn't get tiger " + this.session.session_id);
 					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". A frankly ridiculous series of events causes the " + sacrifice.htmlTitleBasic() + "'s dying body to fall off their " + bed + ". They were never destined to GodTier, and SBURB neurotically enforces such things. The " + player.htmlTitleBasic() + " tries desparately to get them to their " + bed + " in time, but in vain. They are massively triggered by their own astonishing amount of hubris. ";  
 				}
 			}else if(player.power > 200 && this.canAlterNegativeFate(player) ){  //straight up ignores godDestiny. no chance of failure.
@@ -367,7 +367,7 @@ function FreeWillStuff(session){
 				removeFromArray(player, this.session.availablePlayers);
 				removeFromArray(sacrifice, this.session.availablePlayers);
 				var trait = this.getManipulatableTrait(player)
-				console.log(player.title() + " controls someone into getting tiger " + this.session.session_id);
+				//console.log(player.title() + " controls someone into getting tiger " + this.session.session_id);
 				return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They don't leave anything to chance and use their game powers to influence the  " + sacrifice.htmlTitleBasic() + "'s " + trait + " until they are killed on their " + bed + ". " + ret ;  
 
 			}
@@ -381,19 +381,19 @@ function FreeWillStuff(session){
 			if(player.godDestiny){
 				var ret =  this.godTierHappens(player);
 				removeFromArray(player, this.session.availablePlayers);
-				console.log(player.title() + " commits suicide and gets tiger " + this.session.session_id);
+				//console.log(player.title() + " commits suicide and gets tiger " + this.session.session_id);
 				return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They steel their will and prepare to commit a trivial act of self suicide. " + ret + " It is not a very big deal at all. ";  //caliborn
 			}else{
 				if(player.rollForLuck() > 100){
 					removeFromArray(player, this.session.availablePlayers);
-					console.log(player.title() + " commits suicide and is lucky enough to get tiger " + this.session.session_id);
+					//console.log(player.title() + " commits suicide and is lucky enough to get tiger " + this.session.session_id);
 					var ret =  this.godTierHappens(player);
 					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They steel their will and prepare to commit a trivial act of self suicide. " + ret + " It is probably for the best that they don't know how huge a deal this is. If they hadn't caught a LUCKY BREAK, they would have died here forever. They were never destined to go God Tier, even if they commited suicide.  "; 
 				}else{
 					player.dead = true;
 					removeFromArray(player, this.session.availablePlayers);
 					player.causeOfDeath = "trying to go God Tier.";
-					console.log(player.title() + " commits suicide but doesn't get tiger " + this.session.session_id);
+					//console.log(player.title() + " commits suicide but doesn't get tiger " + this.session.session_id);
 					var bed = "bed"
 					if(player.isDreamSelf) bed = "slab"
 					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They steel their will and prepare to commit a trivial act of self suicide. A frankly ridiculous series of events causes their dying body to fall off the " + bed + ". They may have known enough to exploit the God Tiering mechanic, but apparently hadn't taken into account how neurotically SBURB enforces destiny.  They are DEAD.";
@@ -410,6 +410,7 @@ function FreeWillStuff(session){
 			ret += "The " + player.htmlTitleBasic() + " glows and ascends to the God Tiers with a sweet new outfit."
 		}
 		player.godTier = true;
+		this.session.godTier = true;
 		player.dreamSelf = false;
 		player.isDreamSelf = false;
 		return ret;
@@ -420,7 +421,7 @@ function FreeWillStuff(session){
 	this.considerCalmMurderModePlayer = function(player){
 		var murderer = this.findMurderModePlayerBesides(player);
 		if(murderer && !murderer.dead && this.canInfluenceEnemies(player) && player.power > 25 && player.getFriends().length > player.getEnemies().length){  //if I am not a violent person, and I CAN force you to calm down. I will.
-		    console.log(player.title() + " controlling murderer to make them placid " + this.session.session_id)
+		    //console.log(player.title() + " controlling murderer to make them placid " + this.session.session_id)
 			removeFromArray(player, this.session.availablePlayers);
 			removeFromArray(murderer, this.session.availablePlayers);
 			if(!murderer.stateBackup) murderer.stateBackup = new MiniSnapShot(murderer); 
@@ -457,15 +458,17 @@ function FreeWillStuff(session){
 	this.killMurderer = function(player, murderer){
 		if(player.mobility > murderer.mobility){
 			if(player.power > murderer.power){  //power is generic. generally scales with any aplicable stats. lets me compare two different aspect players.
-				console.log(player.title() + " choosing to kill murderer. " + this.session.session_id)
+				//console.log(player.title() + " choosing to kill murderer. " + this.session.session_id)
 				murderer.dead = true;
+				player.victimBlood = murderer.bloodColor;
 				removeFromArray(player, this.session.availablePlayers);
 				removeFromArray(murderer, this.session.availablePlayers);
 				murderer.causeOfDeath = "being put down like a rabid dog by the " + player.htmlTitleBasic();
 				return "The " + player.htmlTitleBasic() + " cannot let this continue any further. The " + murderer.htmlTitleBasic() + " is a threat to everyone. They corner them, and have a brief, bloody duel that ends in the death of the " + murderer.htmlTitleBasic() + ".  Everyone is a little bit safer.";
 			}else{
-				console.log(player.title() + " choosing to kill murderer but instead killed. " + this.session.session_id)
+				//console.log(player.title() + " choosing to kill murderer but instead killed. " + this.session.session_id)
 				player.dead = true;
+				murderer.victimBlood = player.bloodColor;
 				removeFromArray(murderer, this.session.availablePlayers);
 				removeFromArray(player, this.session.availablePlayers);
 				player.causeOfDeath = "fighting the " + player.htmlTitleBasic();
@@ -479,7 +482,7 @@ function FreeWillStuff(session){
 		var patsy = player.getWorstEnemyFromList(this.session.availablePlayers);
 		if(patsy && patsy != murderer && patsy.freeWill  < player.freeWill ){  //they exist and I don't already control them.
 			if(!patsy.stateBackup) patsy.stateBackup = new MiniSnapShot(patsy); 
-			console.log(player.title() + " controlling player to kill murderer. " + this.session.session_id)
+			//console.log(player.title() + " controlling player to kill murderer. " + this.session.session_id)
 			patsy.nullAllRelationships();
 			var r = patsy.getRelationshipWith(murderer);
 			r.value = -100;;
@@ -501,7 +504,7 @@ function FreeWillStuff(session){
 	this.considerMakingEctobiologistDoJob = function(player){
 		if(!this.session.ectoBiologyStarted && player.knowsAboutSburb() && player.grimDark < 2 ){
 			if(player.leader){
-				console.log(player.title() +" did their damn job. " +this.session.session_id);
+				//console.log(player.title() +" did their damn job. " +this.session.session_id);
 				removeFromArray(player, this.session.availablePlayers);
 				player.performEctobiology(this.session);
 				return "The " + player.htmlTitle() + " is not going to play by SBURB's rules. Yes, they could wait to do Ectobiology until they are 'supposed' to. But. Just. Fuck that shit. That's how doomed timelines get made. They create baby versions of everybody. Don't worry about it.";
@@ -511,12 +514,12 @@ function FreeWillStuff(session){
 					if(leader.freeWill < player.freeWill){
 						removeFromArray(player, this.session.availablePlayers);
 						removeFromArray(leader, this.session.availablePlayers);
-						console.log(player.title() +" convinced ectobiologist to do their damn job. " +this.session.session_id);
+						//console.log(player.title() +" convinced ectobiologist to do their damn job. " +this.session.session_id);
 						player.performEctobiology(this.session);
 						return "The " + player.htmlTitle() + " is not going to play by SBURB's rules. They pester the " + leader.htmlTitle() + " to do Ectobiology. That's why they're the leader. They bug and fuss and meddle and finally the " + leader.htmlTitle() + " agrees to ...just FUCKING DO IT.  Baby versions of everybody are created. Don't worry about it.";
 
 					}else if(player.power > 50){
-						console.log(player.title() +" mind controlled ectobiologist to do their damn job. " +this.session.session_id);
+						//console.log(player.title() +" mind controlled ectobiologist to do their damn job. " +this.session.session_id);
 						player.performEctobiology(this.session);
 						removeFromArray(player, this.session.availablePlayers);
 						removeFromArray(leader, this.session.availablePlayers);
@@ -535,7 +538,7 @@ function FreeWillStuff(session){
 		var space = findAspectPlayer(this.session.availablePlayers, "Space");
 		if(space && space.landLevel < this.session.goodFrogLevel && player.knowsAboutSburb() && player.grimDark < 2 ){ //grim dark players don't care about sburb
 			if(player == space){
-				console.log(player.title() +" did their damn job breeding frogs. " +this.session.session_id);
+				//console.log(player.title() +" did their damn job breeding frogs. " +this.session.session_id);
 				space.landLevel += 10;
 				removeFromArray(player, this.session.availablePlayers);
 				return "The " + player.htmlTitle() + " is not going to fall into SBURB's trap. They know why frog breeding is important, and they are going to fucking DO it. ";
@@ -544,12 +547,12 @@ function FreeWillStuff(session){
 					if(space.freeWill < player.freeWill){
 						removeFromArray(player, this.session.availablePlayers);
 						removeFromArray(player, this.session.availablePlayers);
-						console.log(player.title() +" convinced space player to do their damn job. " +this.session.session_id);
+						//console.log(player.title() +" convinced space player to do their damn job. " +this.session.session_id);
 						space.landLevel += 10;
 						return "The " + player.htmlTitle() + " is not going to to fall into SBURB's trap. They pester the " + space.htmlTitle() + " to do frog breeding, even if it seems useless. They bug and fuss and meddle and finally the " + space.htmlTitle() + " agrees to ...just FUCKING DO IT.";
 
 					}else if(player.power > 50){
-						console.log(player.title() +" mind controlled space player to do their damn job. " +this.session.session_id);
+						//console.log(player.title() +" mind controlled space player to do their damn job. " +this.session.session_id);
 						space.landLevel += 10;
 						removeFromArray(player, this.session.availablePlayers);
 						removeFromArray(space, this.session.availablePlayers);
@@ -566,34 +569,34 @@ function FreeWillStuff(session){
 	this.considerBreakFreeControl = function(player){
 		var ip = player.influencePlayer;
 		if(ip){
-			//console.log("I definitely am mind controlled. " + player.title() + " by " + ip.title() + " " + this.session.session_id);
+			////console.log("I definitely am mind controlled. " + player.title() + " by " + ip.title() + " " + this.session.session_id);
 			if(ip.dead){
 				removeFromArray(player, this.session.availablePlayers);
 				player.influencePlayer = null;
 				player.influenceSymbol = null;
 				player.stateBackup.restoreState(player);
-				console.log("freed from control  with influencer death" +this.session.session_id);
+				//console.log("freed from control  with influencer death" +this.session.session_id);
 				return "With the death of the " + ip.htmlTitleBasic() + ", the " + player.htmlTitle() + " is finally free of their control. ";
 			}else if(player.dead){
 				removeFromArray(player, this.session.availablePlayers);
 				player.influencePlayer = null;
 				player.influenceSymbol = null;
 				player.stateBackup.restoreState(player);
-				console.log("death freed player from control" +this.session.session_id);
+				//console.log("death freed player from control" +this.session.session_id);
 				return "In death, the " + player.htmlTitle() + " is finally free of the " + ip.htmlTitle() + "'s control.";
 			}else if(player.freeWill > ip.freeWill){
 				removeFromArray(player, this.session.availablePlayers);
 				player.influencePlayer = null;
 				player.influenceSymbol = null;
 				player.stateBackup.restoreState(player);
-				console.log("freed from control with player will" +this.session.session_id);
+				//console.log("freed from control with player will" +this.session.session_id);
 				return "The " + player.htmlTitle() + " manages to wrench themselves free of the " + ip.htmlTitle() + "'s control.";
 			}else{
-				//console.log("The " + player.title() + "cannot break free of the " + ip.title() + "'s control. IP Dead: " + ip.dead + " ME Dead: " + player.dead + " My FW: " + player.freeWill + " IPFW:" + ip.freeWill)
+				////console.log("The " + player.title() + "cannot break free of the " + ip.title() + "'s control. IP Dead: " + ip.dead + " ME Dead: " + player.dead + " My FW: " + player.freeWill + " IPFW:" + ip.freeWill)
 				return null;
 			}
 		}
-		//console.log("returning null")
+		////console.log("returning null")
 		return null;
 	}
 
@@ -615,8 +618,8 @@ function FreeWillStuff(session){
 	}
 
 	this.content = function(){
-		console.log("Decision event: " + this.session.session_id)
-		var ret = "Decision Event: ";
+		this.session.hasFreeWillEvents = true;
+		var ret = "<img src = 'images/free_will_event.png'/><Br>"; //get rid of prefix soon.
 		removeFromArray(this.player, this.session.availablePlayers);
 		ret += this.decision;  //it already happened, it's a string. ineligible for being an important event influencable by yellow yard. (john's retcon time powers can confound a decision like this tho)
 

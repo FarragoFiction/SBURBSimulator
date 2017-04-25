@@ -46,6 +46,7 @@ function SessionSummary(){
 	this.sickFires = null;
 	this.hasLuckyEvents = null;
 	this.hasUnluckyEvents = null;
+	this.hasFreeWillEvents = null;
 	this.averageMinLuck = null;
 	this.averageMaxLuck = null;
 	this.averagePower = null;
@@ -179,16 +180,51 @@ function SessionSummaryJunior(players,session_id){
 	this.averageHP = null;
 	this.averageRelationshipValue = null;
 	this.averageTriggerLevel = null;
+	
 	this.generateHTML = function(){
+		this.getAverages();
 		var html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id +"'>";
 		html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "'>" +this.session_id + "</a>"
 		html += "<Br><b>Players</b>: " + getPlayersTitlesBasic(this.players);
+		html += "<Br><b>Potential God Tiers</b>: " + getPlayersTitlesBasic(this.grabPotentialGodTiers(this.players));
+	
+		
+		html += "<Br><b>Initial Average Min Luck</b>: " + this.averageMinLuck;
+		html += "<Br><b>Initial Average Max Luck</b>: " + this.averageMaxLuck
+		html += "<Br><b>Initial Average Power</b>: " + this.averagePower
+		html += "<Br><b>Initial Average Mobility</b>: " + this.averageMobility
+		html += "<Br><b>Initial Average Free Will</b>: " +this.averageFreeWill
+		html += "<Br><b>Initial Average HP</b>: " + this.averageHP
+		html += "<Br><b>Initial Relationship Value</b>: " + this.averageRelationshipValue
+		html += "<Br><b>Initial Trigger Level</b>: " +this.averageRelationshipValue
+		
 		html += "<Br><b>Sprites</b>: " + this.grabAllSprites().toString();
 		html += "<Br><b>Lands</b>: " + this.grabAllLands().toString();
 		html += "<Br><b>Interests</b>: " + this.grabAllInterest().toString();
 		html += "<Br><b>Initial Ships</b>:<Br> " + this.initialShips().toString();
 		html += "</div><br>"
 		return html;
+	}
+	
+	this.getAverages = function(){
+		this.averageMinLuck = getAverageMinLuck(this.players);;
+		this.averageMaxLuck = getAverageMaxLuck(this.players);;
+		this.averagePower = getAveragePower(this.players);;
+		this.averageMobility = getAverageMobility(this.players);;
+		this.averageFreeWill = getAverageFreeWill(this.players);;
+		this.averageHP = getAverageHP(this.players);;
+		this.averageRelationshipValue = getAverageRelationshipValue(this.players);;
+		this.averageRelationshipValue =  getAverageTriggerLevel(this.players);;
+	}
+	
+	
+	this.grabPotentialGodTiers = function(){
+		var ret = [];
+		for(var i = 0; i<this.players.length; i++){
+			var player = this.players[i];
+			if(player.godDestiny) ret.push(player);
+		}
+		return ret;
 	}
 
 	this.grabAllInterest = function(){
@@ -286,6 +322,7 @@ function MultiSessionSummary(){
 	this.sickFires = 0;
 	this.hasLuckyEvents = 0;
 	this.hasUnluckyEvents = 0;
+	this.hasFreeWillEvents = 0;
 	
 
 	this.generateHTML = function(){
@@ -328,7 +365,24 @@ function collateMultipleSessionSummariesJunior(sessionSummaryJuniors){
 		var ssj =sessionSummaryJuniors[i];
 		mss.numPlayers += ssj.players.length;
 		mss.numShips += ssj.ships.length;
+		mss.averageMinLuck += ssj.averageMinLuck
+		mss.averageMaxLuck += ssj.averageMaxLuck
+		mss.averagePower += ssj.averagePower
+		mss.averageMobility += ssj.averageMobility
+		mss.averageFreeWill += ssj.averageFreeWill
+		mss.averageHP += ssj.averageHP
+		mss.averageTriggerLevel += ssj.averageTriggerLevel
+		mss.averageRelationshipValue += ssj.averageRelationshipValue
 	}
+	
+	mss.averageMinLuck = Math.round(mss.averageMinLuck/sessionSummaryJuniors.length)
+	mss.averageMaxLuck = Math.round(mss.averageMaxLuck/sessionSummaryJuniors.length)
+	mss.averagePower = Math.round(mss.averagePower/sessionSummaryJuniors.length)
+	mss.averageMobility = Math.round(mss.averageMobility/sessionSummaryJuniors.length)
+	mss.averageFreeWill = Math.round(mss.averageFreeWill/sessionSummaryJuniors.length)
+	mss.averageHP = Math.round(mss.averageHP/sessionSummaryJuniors.length)
+	mss.averageTriggerLevel = Math.round(mss.averageTriggerLevel/sessionSummaryJuniors.length)
+	mss.averageRelationshipValue = Math.round(mss.averageRelationshipValue/sessionSummaryJuniors.length)
 	return mss;
 }
 
@@ -377,6 +431,7 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		if(ss.sickFires) mss.sickFires ++;
 		if(ss.hasLuckyEvents) mss.hasLuckyEvents ++;
 		if(ss.hasUnluckyEvents) mss.hasUnluckyEvents ++;
+		if(ss.hasFreeWillEvents) mss.hasFreeWillEvents ++;
 		
 		mss.averageMinLuck += ss.averageMinLuck
 		mss.averageMaxLuck += ss.averageMaxLuck
@@ -394,11 +449,11 @@ function collateMultipleSessionSummaries(sessionSummaries){
 	mss.averageMinLuck = Math.round(mss.averageMinLuck/sessionSummaries.length)
 	mss.averageMaxLuck = Math.round(mss.averageMaxLuck/sessionSummaries.length)
 	mss.averagePower = Math.round(mss.averagePower/sessionSummaries.length)
-	mss.averageMobility = Math.round(ss.averageMobility/sessionSummaries.length)
-	mss.averageFreeWill = Math.round(ss.averageFreeWill/sessionSummaries.length)
-	mss.averageHP = Math.round(ss.averageHP/sessionSummaries.length)
-	mss.averageTriggerLevel = Math.round(ss.averageTriggerLevel/sessionSummaries.length)
-	mss.averageRelationshipValue = Math.round(ss.averageRelationshipValue/sessionSummaries.length)
+	mss.averageMobility = Math.round(mss.averageMobility/sessionSummaries.length)
+	mss.averageFreeWill = Math.round(mss.averageFreeWill/sessionSummaries.length)
+	mss.averageHP = Math.round(mss.averageHP/sessionSummaries.length)
+	mss.averageTriggerLevel = Math.round(mss.averageTriggerLevel/sessionSummaries.length)
+	mss.averageRelationshipValue = Math.round(mss.averageRelationshipValue/sessionSummaries.length)
 	mss.survivalRate = Math.round(100 * (mss.totalLivingPlayers/(mss.totalLivingPlayers + mss.totalDeadPlayers)));
 	return mss;
 }
@@ -419,12 +474,23 @@ function MultiSessionSummaryJunior(){
 	this.averageHP = null;
 	this.averageRelationshipValue = null;
 	this.averageTriggerLevel = null;
+
 	this.generateHTML = function(){
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
 		var header = "<h2>Stats for All Displayed Sessions: </h2><br>"
 		html += header;
 		html += "<Br><b>Number of Sessions:</b> " + this.numSessions;
 		html += "<Br><b>Average Players Per Session:</b> " + round2Places(this.numPlayers/this.numSessions);
+		
+		html += "<Br><b>averageMinLuck:</b> " + this.averageMinLuck;
+		html += "<Br><b>averageMaxLuck:</b> " + this.averageMaxLuck;
+		html += "<Br><b>averagePower:</b> " + this.averagePower;
+		html += "<Br><b>averageMobility:</b> " + this.averageMobility;
+		html += "<Br><b>averageFreeWill:</b> " + this.averageFreeWill;
+		html += "<Br><b>averageHP:</b> " + this.averageHP;
+		html += "<Br><b>averageRelationshipValue:</b> " + this.averageRelationshipValue;
+		html += "<Br><b>averageTriggerLevel:</b> " + this.averageTriggerLevel;
+		
 		html += "<Br><b>Average Initial Ships Per Session:</b> " + round2Places(this.numShips/this.numSessions);
 		html += "<Br><br><b>Filter Sessions By Number of Players:</b><Br>2 <input id='num_players' type='range' min='2' max='12' value='2'> 12"
 		html += "<br><input type='text' id='num_players_text' value='2' size='2' disabled>"

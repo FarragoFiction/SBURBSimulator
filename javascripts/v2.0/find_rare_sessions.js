@@ -25,7 +25,7 @@ var canvasWidth = 1000;
 var canvasHeight = 300;
 var repeatTime = 5;
 var version2 = true; //even though idon't want  to render content, 2.0 is different from 1.0 (think of dialog that triggers)
-
+var junior = false;
 
 var sessionObjects = []
 var curSessionGlobalVar;
@@ -171,6 +171,7 @@ function filterSessionSummariesBy(filter){
 
 
 function checkSessionsJunior(){
+	junior = true;
 	numSimulationsDone = 0; //but don't reset stats
 	sessionSummariesDisplayed = []
 	for(var i = 0; i<allSessionsSummaries.length; i++){

@@ -26,6 +26,7 @@ function Session(session_id){
 	this.murdersHappened = false;
 	this.goodLuckEvent = false;
 	this.badLuckEvent = false;
+	this.hasFreeWillEvents = false;
 	this.ectoBiologyStarted = false;
 	this.doomedTimeline = false;
 	this.makeCombinedSession = false; //happens if sick frog and few living players
@@ -397,6 +398,7 @@ function Session(session_id){
 		var summary = new SessionSummary();
 		summary.crashedFromSessionBug = this.crashedFromSessionBug;
 		summary.crashedFromPlayerActions = this.crashedFromPlayerActions;
+		summary.hasFreeWillEvents = this.hasFreeWillEvents;
 		summary.averageMinLuck = getAverageMinLuck(this.players);
 		summary.averageMaxLuck = getAverageMaxLuck(this.players);
 		summary.averagePower = getAveragePower(this.players);

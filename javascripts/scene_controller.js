@@ -50,7 +50,11 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 	//maybe throw custom error?
 	$("#story").append("<BR>SUGGESTED ACTION: " + recomendedAction);
 	console.log("Corrupted session: " + curSessionGlobalVar.session_id  + " helping AB return, if she is lost here.")
-	summarizeSession(curSessionGlobalVar);// let's the author bot summarize the session. doens't matter if I'm not in AB mode, arleady crashed, right?
+	if(junior == true){
+		$("#button").prop('disabled', false)
+	}else{
+		summarizeSession(curSessionGlobalVar);// let's the author bot summarize the session. doens't matter if I'm not in AB mode, arleady crashed, right?
+	}
 	return false; //if i return true here, the real error doesn't show up
 
 }
