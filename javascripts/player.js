@@ -41,7 +41,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
 	this.kernel_sprite = kernel_sprite;
 	this.relationships = [];
 	this.moon = moon;
-	this.power = 1;
+	this.power = 1;   //power is generic. generally scales with any aplicable stats. lets me compare two different aspect players.
 	this.leveledTheHellUp = false; //triggers level up scene.
 	this.mylevels = null
 	this.level_index = -1; //will be ++ before i query

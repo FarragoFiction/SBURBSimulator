@@ -130,5 +130,6 @@ function MiniSnapShot(player){
 		player.isTroll = this.isTroll;
 		player.class_name = this.class_name
 		player.aspect = this.aspect;
+		player.stateBackup = null; //no longer need to keep track of old state.
 	}
 }

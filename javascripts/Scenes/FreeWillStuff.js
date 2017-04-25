@@ -139,6 +139,18 @@ function FreeWillStuff(session){
 		return num;
 	}
 	
+	//who is the most crazy murderer out there?
+	this.findMurderModePlayerBesides = function(player){
+		var ret = null;
+		for(var i = 0; i<this.session.availablePlayers.length; i++){
+			var m = this.session.availablePlayers[i];
+			if(!ret || (m.triggerLevel > ret.triggerLevel && !m.dead && m.murderMode)){
+				ret = m;
+			}
+		}
+		if(!ret.murderMode) ret = null;
+		return ret;
+	}
 	
 	//as little randomness in free will as possible. choices. decisions. 
 	this.findNonGodTierBesidesMe = function(player){
@@ -287,7 +299,7 @@ function FreeWillStuff(session){
 			if(rage < -3) ret = "The " + patsy.htmlTitle() + " seems to be upset about this, underneath the control.";
 			if(rage < -9) ret = "The " + patsy.htmlTitle() + " is barely under control. They seem furious. ";
 			//make snapshot of state so they can maybe break free later.
-			patsy.stateBackup = new MiniSnapShot(patsy);
+			if(!patsy.stateBackup) patsy.stateBackup = new MiniSnapShot(patsy);  //but don't save state if ALREADY controlled.
 			for(var i = 0; i< enemies.length; i++){
 				var enemy = enemies[i];
 				if(enemy != patsy){//maybe i SHOULD reneable self-relationships. maybe you hate yourself? try to kill yourself?
@@ -394,13 +406,54 @@ function FreeWillStuff(session){
 	
 	//either make someone love ME, or make two people get together who otherwise wouldn't. can be sweet, or creepy.
 	this.considerMakeSomeoneLove = function(player){
-			return null;
+		
+		return null;
 	}
 
-	//needs to be a murdermode player,  more likely if you dislike them. if active, do it yourself, if passive, see if you can get somebody else to do it for you. need to be stronger than them.
+	//needs to be a murdermode player,  more likely if you dislike them. if active, do it yourself, if passive, see if you can get somebody else to do it for you. need to be stronger and faster than them.
 	//less likely if murderMode player is ectobiologist or space
 	this.considerKillMurderModePlayer = function(player){
+		var murderer = this.findMurderModePlayerBesides(player);
+		if(murderer && !player.isActive() && !murderer.dead &&this.isValidTargets([murderer], player) && player.power > 50){
+			return this.sendPatsyAfterMurderer(player, murderer);
+		}else if(murderer && !murderer.dead){  //don't HAVE to be active to do this. but if passive and CAN be a manipulatie bastard, will.
+			this.killMurderer(player, murderer);
+		}
 		return null;
+	}
+	
+	this.killMurderer = function(player, murderer){
+		if(player.mobility > murderer.mobility){
+			if(player.power > murderer.power){  //power is generic. generally scales with any aplicable stats. lets me compare two different aspect players.
+				console.log(player.title() + " choosing to kill murderer. " + this.session.session_id)
+				murderer.dead = true;
+				murderer.causeOfDeath = "being put down like a rabid dog by the " + player.htmlTitleBasic();
+				return "The " + player.htmlTitleBasic() + " cannot let this continue any further. The " + murderer.htmlTitleBasic() + " is a threat to everyone. They corner them, and have a brief, bloody duel that ends in the death of the " + murderer.htmlTitleBasic() + ".  Everyone is a little bit safer.";
+			}else{
+				console.log(player.title() + " choosing to kill murderer but instead killed. " + this.session.session_id)
+				player.dead = true;
+				player.causeOfDeath = "fighting the " + player.htmlTitleBasic();
+				return "The " + player.htmlTitleBasic() + " cannot let this continue any further. The " + murderer.htmlTitleBasic() + " is a threat to everyone. They corner them, and have a brief, bloody duel that ends in the death of the " + player.htmlTitleBasic() + ".  Everyone is a little bit less safe.";
+			}
+		}
+	}
+	
+	//ONLY mind control. Set all relationships to neutral except murderer, put into murder mode. 
+	this.sendPatsyAfterMurderer = function(player, murderer){
+		var patsy = player.getWorstEnemyFromList(this.session.availablePlayers);
+		if(patsy && patsy != murderer && patsy.influencePlayer != player && patsy.freeWill  < player.freeWill && this.canInfluenceEnemies(player)){  //they exist and I don't already control them.
+			if(!patsy.stateBackup) patsy.stateBackup = new MiniSnapShot(patsy); 
+			console.log(player.title() + " controlling player to kill murderer. " + this.session.session_id)
+			patsy.nullAllRelationships();
+			patsy.getRelationshipWith(murderer).value = -100;
+			patsy.murderMode = true;
+			patsy.triggerLevel = 100;
+			patsy.influenceSymbol = this.getInfluenceSymbol(player);
+			patsy.influencePlayer = player;
+			patsy.getRelationshipWith(player).value += (player.freeWill - patsy.freeWill);  //might love or hate you during this.
+			var trait = this.getManipulatableTrait(player);
+			return "The " + murderer.htmlTitle() + " needs to die. They are a threat to everyone. The " +player.htmlTitleBasic() + " manipulates the " + patsy.htmlTitleBasic() + "'s " + trait + " until they focus only on their hate for the " + murderer.htmlTitle() + " and how they need to die.";
+		}
 	}
 
 	//if self, just fucking do it. otherwise, pester them. raise power to min requirement, if it's not already there.

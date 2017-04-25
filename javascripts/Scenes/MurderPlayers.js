@@ -229,7 +229,7 @@ function MurderPlayers(session){
 					}else{
 						worstEnemy.increasePower();
 
-						m.causeOfDeath = "being put down like a rabid dog by " + worstEnemy.htmlTitle()
+						m.causeOfDeath = "being put down like a rabid dog by the " + worstEnemy.htmlTitle()
 						ret += " The " + m.htmlTitle() + " attempts to brutally murders that asshole, the " + worstEnemy.htmlTitle();
 						ret += ",but instead gets murdered first, in self-defense. ";
 						if(m.dead == true){ //they could have been killed by another murder player in this same tick
