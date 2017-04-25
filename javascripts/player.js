@@ -252,7 +252,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
 				ret = true;
 			}
 			//way more likely to be a just death if you're being an asshole.
-			if((this.murderMode || this.grimDark) && Math.seededRandom()>.2){
+			if((this.murderMode || this.grimDark > 2) && Math.seededRandom()>.2){
 				ret = true;
 			}
 		}
