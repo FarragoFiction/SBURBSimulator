@@ -500,7 +500,7 @@ function FreeWillStuff(session){
 		if(ret == null) ret = this.considerDisEngagingMurderMode(player); //done
 		if(ret == null) ret = this.considerMakingEctobiologistDoJob(player); //done
 		if(ret == null) ret = this.considerMakingSpacePlayerDoJob(player);  //done
-		if(ret == null) ret = this.considerForceGodTier(player);
+		if(ret == null) ret = this.considerForceGodTier(player); //done
 		if(ret == null) ret = this.considerMakeSomeoneLove(player);
 		if(ret == null) ret = this.considerEngagingMurderMode(player);  //done
 

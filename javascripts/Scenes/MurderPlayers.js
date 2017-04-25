@@ -251,11 +251,11 @@ function MurderPlayers(session){
 					m.murderMode = false;
 					m.leftMurderMode = true;
 				}else{
-					if(worstEnemy && worstEnemy.mobility > m.mobility){
+					if(!m.dead && worstEnemy && worstEnemy.mobility > m.mobility){
 						console.log("murder thwarted by mobility: " + this.session.session_id)
 						ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! Do they just never stay in one spot for more than five seconds? Flighty bastard. It's hard to stay enraged while wandering around lost."
 						m.triggerLevel += -3;
-					}else{
+					}else if(!m.dead){
 						ret += " The " + m.htmlTitle() + " can't find anybody they hate enough to murder. They calm down a little. ";
 					}
 				}
