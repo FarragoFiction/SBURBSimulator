@@ -201,7 +201,7 @@ function FreeWillStuff(session){
 	
 	//bard,  rogue can alter Negative fate
 	//sylph, seer, maid, and page of light/life/heart/mind can as well. 
-	this.canAlterNegativeFate - function(player){
+	this.canAlterNegativeFate = function(player){
 		if(player.aspect == "Light" || player.aspect == "Life" || player.aspect == "Heart" || player.aspect == "Mind"){
 			if(player.class_name == "Maid" || player.class_name == "Seer"){
 				return true;
@@ -318,9 +318,9 @@ function FreeWillStuff(session){
 	this.forceSomeOneElseBecomeGod = function(player){
 		var sacrifice = this.findNonGodTierBesidesMe(player);
 		if(sacrifice && !sacrifice.dead && !sacrifice.godTier){
+			var bed = "bed"
+			if(sacrifice.isDreamSelf) bed = "slab"
 			if(sacrifice.freeWill < player.freeWill && player.power < 200){ //can just talk them into this terrible idea.   not a good chance of working. 
-				var bed = "bed"
-				if(sacrifice.isDreamSelf) bed = "slab"
 				if(sacrifice.godDestiny){
 					var ret =  this.godTierHappens(sacrifice);
 					console.log(player.title() + " commits murder and someone else gets tiger " + this.session.session_id);
@@ -340,7 +340,7 @@ function FreeWillStuff(session){
 				var ret =  this.godTierHappens(sacrifice);
 				var trait = this.getManipulatableTrait(player)
 				console.log(player.title() + " controls someone into getting tiger " + this.session.session_id);
-				return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They don't leave anything to chance and use their game powers to influence the  " + sacrifice.htmlTitleBasic() + "'s " + trait + " until they are killed on their " + bed + ". " + ret + " Their influence is torn away with the " + sactifice.htmlTitleBasic() +"'s death. ";  
+				return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They don't leave anything to chance and use their game powers to influence the  " + sacrifice.htmlTitleBasic() + "'s " + trait + " until they are killed on their " + bed + ". " + ret ;  
 
 			}
 		}
