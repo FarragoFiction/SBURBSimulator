@@ -313,6 +313,8 @@ function FreeWillStuff(session){
 				if(enemy != patsy){//maybe i SHOULD reneable self-relationships. maybe you hate yourself? try to kill yourself?
 					var r1 = player.getRelationshipWith(enemies[i]);
 					var r2 = patsy.getRelationshipWith(enemies[i]);
+					r2.saved_type = r2.badBig;
+					r2.old_type = r2.saved_type; //no drama on my end.
 					r2.value = r1.value;
 				}
 			}
@@ -466,7 +468,10 @@ function FreeWillStuff(session){
 			if(!patsy.stateBackup) patsy.stateBackup = new MiniSnapShot(patsy); 
 			console.log(player.title() + " controlling player to kill murderer. " + this.session.session_id)
 			patsy.nullAllRelationships();
-			patsy.getRelationshipWith(murderer).value = -100;
+			var r = patsy.getRelationshipWith(murderer);
+			r.value = -100;;
+			r.saved_type = r.badBig;
+			r.old_type = r.saved_type; //no drama on my end.
 			patsy.murderMode = true;
 			removeFromArray(player, this.session.availablePlayers);
 			removeFromArray(patsy, this.session.availablePlayers);
@@ -526,7 +531,7 @@ function FreeWillStuff(session){
 					if(space.freeWill < player.freeWill){
 						removeFromArray(player, this.session.availablePlayers);
 						removeFromArray(player, this.session.availablePlayers);
-						console.log(player.space() +" convinced space player to do their damn job. " +this.session.session_id);
+						console.log(player.title() +" convinced space player to do their damn job. " +this.session.session_id);
 						space.landLevel += 10;
 						return "The " + player.htmlTitle() + " is not going to to fall into SBURB's trap. They pester the " + space.htmlTitle() + " to do frog breeding, even if it seems useless. They bug and fuss and meddle and finally the " + space.htmlTitle() + " agrees to ...just FUCKING DO IT.";
 

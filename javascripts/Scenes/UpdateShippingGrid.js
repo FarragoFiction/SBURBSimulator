@@ -132,6 +132,10 @@ function Ship(r1, r2){
 		if(r.saved_type ==  r.diamond){
 			return "<font color = 'pink'>&#x2666</font>"
 		}
+		
+		if(r.saved_type ==  r.neutral){
+			return "<font color = 'black'>0_0</font>"
+		}
 
 		if(r.saved_type ==  r.goodBig){
 			return "<font color = 'red'>&#x2661</font>"

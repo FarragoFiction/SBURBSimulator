@@ -8,6 +8,7 @@ function Relationship(initial_value, target_player){
 	this.drama = false; //drama is set to true if type of relationship changes.
 	this.old_type = "";
 	//wish class variables were a thing.
+	this.neutral = "Ambivalent"
 	this.goodMild = "Friends";
 	this.goodBig = "Totally In Love";
 	this.badMild = "Rivals";
@@ -26,6 +27,8 @@ function Relationship(initial_value, target_player){
 			return this.badBig;
 		}else if(this.value > 0){
 			return this.goodMild;
+		}else if (this.value == 0){
+			return this.neutral;
 		}else{
 			return this.badMild;
 		}

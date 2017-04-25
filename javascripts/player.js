@@ -877,6 +877,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
 	this.nullAllRelationships = function(){
 		for(var i = 0; i<this.relationships.length; i++){
 			this.relationships[i].value = 0;
+			this.relationships[i].saved_type = this.relationships[i].neutral;
 		}
 	}
 	//you like people more
