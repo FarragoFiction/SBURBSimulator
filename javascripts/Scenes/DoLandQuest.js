@@ -16,10 +16,11 @@ function DoLandQuest(session){
 
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var p = this.session.availablePlayers[i]
-			if(p.power > 2){ //can't be first thing you do in medium.
+			if(p.power > 2 && p.grimDark < 3){ //can't be first thing you do in medium.
 				if(p.land != null && p.landLevel < this.landLevelNeeded || p.aspect == "Space"){  //space player is the only one who can go over 100 (for better frog). can't do quests if land destroyed
 					var chance = Math.seededRandom();
 					var helper = this.lookForHelper(p);
+					if(helper && helper.grimDark >= 3) helper = null;  //grim dark players aren't going to do quests.
 
 					if(p.land == null){//seriously don't do land quests without a land
 						//console.log("not doing land quests because don't have a land")

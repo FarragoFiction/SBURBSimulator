@@ -2211,8 +2211,6 @@ function fillChatTextMultiLineJRPlayer(canvas, chat, player, x, y){
 			ctx.fillStyle = player.getChatFontColor();
       if(player.sbahj){
          ctx.font = "12px Comic Sans"
-      }if(player.grimDark > 2) {
-        	ctx.font = "12px horrorterror"
       }else{
         	ctx.font = "12px Times New Roman"
       }
@@ -2272,8 +2270,6 @@ function fillChatTextMultiLine(canvas, chat, player1, player2, x, y) {
 			ctx.fillStyle = player2.getChatFontColor();
       if(player2.sbahj){
          ctx.font = "12px Comic Sans MS"
-      }else if(player2.grimDark  > 2) {
-        	ctx.font = "12px horrorterror"
       }else{
         	ctx.font = "12px Times New Roman"
       }
@@ -2281,8 +2277,6 @@ function fillChatTextMultiLine(canvas, chat, player1, player2, x, y) {
 			ctx.fillStyle = player1.getChatFontColor();
       if(player1.sbahj){
          ctx.font = "12px Comic Sans MS"
-      }else if(player1.grimDark  > 2){
-        	ctx.font = "12px horrorterror"
       }else{
         	ctx.font = "12px Times New Roman"
       }

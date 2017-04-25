@@ -63,6 +63,15 @@ function LuckStuff(session){
 		this.session.badLuckEvent = true;
 		return ret;
 	}
+	
+	this.roll35 = function(roll){
+		console.log("unlucky trigger event: " + this.session.session_id)
+		var items = ["soper slime", "candy", "apple juice", "alcohol", "weed","chocolate", "orange soda", "blanket","hat","lucky coin", "magic 8 ball"];
+		var ret = "The " + roll.player.htmlTitle() + " has lost their " + getRandomElementFromArray(items) + ". Sure, it seems stupid to you or me but... it was one of the few things left holding their sanity together. They are enraged."
+		roll.player.triggerLevel += 100;
+		this.session.badLuckEvent = true;
+		return ret;
+	}
 
 
 	this.roll70 = function(roll){
@@ -89,6 +98,15 @@ function LuckStuff(session){
 		friend.getRelationshipWith(roll.player).decrease();
 		friend.getRelationshipWith(roll.player).decrease();
 		friend.getRelationshipWith(roll.player).decrease();
+		this.session.badLuckEvent = true;
+		return ret;
+	}
+	
+	this.roll25 = function(roll){
+		console.log("unluck grim dark: " + this.session.session_id)
+		var items = ["magic cue ball", "grimoire", "original VHS tape of Mac and Me", "fluthlu doll", "dream catcher","squiddles plush", "Dr Seus Book", "commemorative Plaque from a World Event That Never Happened","SCP-093"];
+		var ret = "The " + roll.player.htmlTitle() + " has had a momentary lapse of judgement and alchemized a weapon with the " + getRandomElementFromArray(items) + " they just found. Any sane adventurer would cast these instruments of the occult into the FURTHEST RING and forget they ever existed. Instead, the " + roll.player.htmlTitleBasic() + " equips them. This is a phenomenally bad idea. "
+		roll.player.corruptionLevelOther += 666; //will only increase corruption by one level, but in style
 		this.session.badLuckEvent = true;
 		return ret;
 	}
@@ -238,11 +256,15 @@ function LuckStuff(session){
 			return this.roll40(roll);
 		}else if(roll.value > this.minLowValue - (amount*2) && roll.value <= this.minLowValue - amount){
 			return this.roll30(roll);
-		}else if(roll.value > this.minLowValue - (amount*3) && roll.value <= this.minLowValue - (amount*2)){
+		}else if(roll.value > this.minLowValue - (amount*3) && roll.value <= this.minLowValue - amount*2){
+			return this.roll35(roll);
+		}else if(roll.value > this.minLowValue - (amount*4) && roll.value <= this.minLowValue - amount*3){
+			return this.roll25(roll);
+		}else if(roll.value > this.minLowValue - (amount*5) && roll.value <= this.minLowValue - (amount*4)){
 			return this.roll20(roll);
-		}else if(roll.value > this.minLowValue - (amount*4) && roll.value <= this.minLowValue - (amount*3)){
+		}else if(roll.value > this.minLowValue - (amount*6) && roll.value <= this.minLowValue - (amount*5)){
 			return this.roll10(roll);
-		}else if(roll.value <= this.minLowValue - (amount*4)){
+		}else if(roll.value <= this.minLowValue - (amount*6)){
 			return this.roll0(roll);
 		}
 		else return "What the hell, mate? roll was: " + roll.value + " and needed to be not between  " + this.minLowValue + " and " + this.minHighValue;

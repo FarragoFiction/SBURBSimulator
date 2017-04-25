@@ -155,7 +155,7 @@ function processScenes2(playerList,session){
 
 //scenes call this
 function chatLine(start, player, line){
-  if(player.grimDark  > 2){
+  if(player.grimDark  > 3){
 		line = Zalgo.generate(line);
     return start + line.trim()+"\n"; //no whimsy for grim dark players
   }else if(player.grimDark  > 1){

@@ -137,8 +137,24 @@ function FreeWillStuff(session){
 		}
 		return num;
 	}
+	
+	
+	//as little randomness in free will as possible. choices. decisions. 
+	this.findNonGodTierBesidesMe = function(player){
+		var ret = null;
+		var ret_abs_value = 0;
+		//ideally somebody i wouldn't miss too much if they were gone, and wouldn't fear too much if they had phenomenal cosmic power. so. lowest abs value.
+		for(var i = 0; i<player.relationships.length; i++){
+			var r = player.relationships[i];
+			var v = Math.abs(r.value)
+			if(!ret || (v < ret_abs_value && !r.target.dead && !r.target.godTier)){
+				ret = r;
+				ret_abs_value = v;
+			}
+		}
+		return ret.target;
+	}
 
-	//find someone not in the list of enemies. choose whoever is enemies with the most amount of given enemies
 	//free will isn't about randomness. decisions. choices. alternatives.
 	//they can be enemeis with the player. makes for ironic betryal.
 	this.findBestPatsy = function(player, enemies){
@@ -167,19 +183,36 @@ function FreeWillStuff(session){
 	//thief/prince/mage/witch of blood. thief/prince/mage/witch of heart. /mage/witch of rage.
 	this.canInfluenceEnemies = function(player){
 		if(player.aspect == "Blood" || player.aspect == "Heart" ||player.aspect == "Mind" ){
-			if(player.class_name == "Thief" || player.class_name == "Seer" || player.class_name == "Bard" || player.class_name == "Witch"){
+			if(player.class_name == "Maid" || player.class_name == "Seer" || player.class_name == "Bard" || player.class_name == "Rogue"){
 				return true;
 			}
 		}
 
 		if(player.aspect == "Rage"){
-			if( player.class_name == "Seer" || player.class_name == "Witch"){
+			if( player.class_name == "Seer" || player.class_name == "Maid"){
 				return true;
 			}
 
 		}
 		return false;
 
+	}
+	
+	//bard,  rogue can alter Negative fate
+	//sylph, seer, maid, and page of light/life/heart/mind can as well. 
+	this.canAlterNegativeFate - function(player){
+		if(player.aspect == "Light" || player.aspect == "Life" || player.aspect == "Heart" || player.aspect == "Mind"){
+			if(player.class_name == "Maid" || player.class_name == "Seer"){
+				return true;
+			}
+		}
+		
+		if(player.aspect == "Doom"){
+			if(player.class_name == "Bard" || player.class_name == "Rogue" || player.class_name == "Maid" || player.class_name == "Seer"){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	this.getManipulatableTrait = function(player){
@@ -234,7 +267,7 @@ function FreeWillStuff(session){
 						var modifiedTrait = this.getManipulatableTrait(player);
 						return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use game powers to manipulate the " + patsy.htmlTitleBasic() + "'s " + modifiedTrait + " until they are willing to carry out their plan. This is completely terrifying. " + rage;
 					}else{
-						console.log("can't manipulate someone into murdermode and can't use game powers. I am: " + player.title() + " " +this.session.session_id)
+						//console.log("can't manipulate someone into murdermode and can't use game powers. I am: " + player.title() + " " +this.session.session_id)
 					}
 				}
 		}
@@ -268,13 +301,96 @@ function FreeWillStuff(session){
 	// do it to self if active, do it to someone else if not.  need to have it not be destiny. bonus if there are dead players (want to avenge them/stop more corpses).
 	//sedoku reference???
 	this.considerForceGodTier = function(player){
-			return null;
+		if(!player.knowsAboutSburb()) return null; //regular players will never do this
+		if(player.freeWill < 50) return null; //requires great will power to commit suicide or murder for the greater good.
+		if(player.isActive()){
+			return this.becomeGod(player);
+		}else if(player.triggerLevel < 10 || player.murderMode) {  //don't risk killing a friend unless you're already crazy or the idea of failure hasn't even occured to you.
+			return this.forceSomeOneElseBecomeGod(player);
+		}
+		return null;
 	}
+	
+	
+	
+	//if I fail at this, the sacrifice is dead adn I am horrifically triggered at my failure.
+	this.forceSomeOneElseBecomeGod = function(player){
+		var sacrifice = this.findNonGodTierBesidesMe(player);
+		if(sacrifice && !sacrifice.dead){
+			if(sacrifice.freeWill < player.freeWill && player.power < 200){ //can just talk them into this terrible idea.   not a good chance of working. 
+				var bed = "bed"
+				if(sacrifice.isDreamSelf) bed = "slab"
+				if(sacrifice.godDestiny){
+					var ret =  this.godTierHappens(sacrifice);
+					console.log(player.title() + " commits murder and someone else gets tiger " + this.session.session_id);
+					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". " + ret + " It is not a very big deal at all. ";  //caliborn
+				}else if(sacrifice.rollForLuck() + player.rollForLuck() > 200){  //BOTH have to be lucky.
+					console.log(player.title() + " commits murder and someone else gets tiger and it is all very lucky. " + this.session.session_id);
+					var ret =  this.godTierHappens(sacrifice);
+					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". " + ret + " It is a stupidly huge deal, since the " + sacrifice.htmlTitleBasic() + " was never destined to God Tier at all. But I guess the luck of both players was enough to make things work out, in the end.";  
+				}else{
+					sacrifice.dead = true;
+					player.triggerLevel += 100;
+					console.log(player.title() + " commits murder for god tier but doesn't get tiger " + this.session.session_id);
+					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". A frankly ridiculous series of events causes the " + sacrifice.htmlTitleBasic() + "'s dying body to fall off their " + bed + ". They were never destined to GodTier, and SBURB neurotically enforces such things. The " + player.htmlTitleBasic() + " tries desparately to get them to their " + bed + " in time, but in vain. They are massively triggered by their own astonishing amount of hubris. ";  
+				}
+			}else if(player.power > 200 && this.canAlterNegativeFate(player) ){  //straight up ignores godDestiny. no chance of failure.
+				var ret =  this.godTierHappens(sacrifice);
+				var trait = this.getManipulatableTrait(player)
+				console.log(player.title() + " controls someone into getting tiger " + this.session.session_id);
+				return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They don't leave anything to chance and use their game powers to influence the  " + sacrifice.htmlTitleBasic() + "'s " + trait + " until they are killed on their " + bed + ". " + ret + " Their influence is torn away with the " + sactifice.htmlTitleBasic() +"'s death. ";  
+
+			}
+		}
+	}
+	
+	//if I know about SBURB and have a lot of willPower then I can do this. If I don't, will never work up the nerve.
+	//me am play god.
+	this.becomeGod = function(player){
+		if(!player.godTier){
+			if(player.godDestiny){
+				var ret =  this.godTierHappens(player);
+				console.log(player.title() + " commits suicide and gets tiger " + this.session.session_id);
+				return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They steel their will and prepare to commit a trivial act of self suicide. " + ret + " It is not a very big deal at all. ";  //caliborn
+			}else{
+				if(player.rollForLuck() > 100){
+					console.log(player.title() + " commits suicide and is lucky enough to get tiger " + this.session.session_id);
+					var ret =  this.godTierHappens(player);
+					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They steel their will and prepare to commit a trivial act of self suicide. " + ret + " It is probably for the best that they don't know how huge a deal this is. If they hadn't caught a LUCKY BREAK, they would have died here forever. They were never destined to go God Tier, even if they commited suicide.  "; 
+				}else{
+					player.dead = true;
+					console.log(player.title() + " commits suicide but doesn't get tiger " + this.session.session_id);
+					var bed = "bed"
+					if(player.isDreamSelf) bed = "slab"
+					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They steel their will and prepare to commit a trivial act of self suicide. A frankly ridiculous series of events causes their dying body to fall off the " + bed + ". They may have known enough to exploit the God Tiering mechanic, but apparently hadn't taken into account how neurotically SBURB enforces destiny.  They are DEAD.";
+				}
+			}
+		}
+	}
+	
+	this.godTierHappens = function(player){
+		var ret = "";
+		if(!player.isDreamSelf){
+				ret += "The " + player.htmlTitleBasic() + "'s body glows, and rises Skaiaward. "+"On " + player.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
+		}else{
+			ret += "The " + player.htmlTitleBasic() + " glows and ascends to the God Tiers with a sweet new outfit."
+		}
+		player.godTier = true;
+		player.dreamSelf = false;
+		player.isDreamSelf = false;
+		return ret;
+	}
+	
 
 	//needs to be a murder mode player. more likely if you like them.  if active and you like them a lot, do it yourself. if passive, see if you can get somebody else to do it for you (mastermind)
 	//more likely if murderMode player is ectobiologist or space
 	//can be mind control.
 	this.considerCalmMurderModePlayer = function(player){
+			return null;
+	}
+	
+	//either make someone love ME, or make two people get together who otherwise wouldn't. can be sweet, or creepy.
+	this.considerMakeSomeoneLove = function(player){
 			return null;
 	}
 
@@ -374,12 +490,15 @@ function FreeWillStuff(session){
 	this.getPlayerDecision = function(player){
 		//reorder things to change prevelance.
 		var ret = null;  //breaking free of mind control doesn't happen here.
+		//consider trying to force someone to love you.either through wordss (like horrus/rufioh (not that horrus knew that's what was happening) or through creepy game powers.
+		if(ret == null) ret = this.considerCalmMurderModePlayer(player);
 		if(ret == null) ret = this.considerKillMurderModePlayer(player);
 		//let them decide to enter or leave grim dark, and kill or calm grim dark player
 		if(ret == null) ret = this.considerDisEngagingMurderMode(player); //done
-		if(ret == null) ret = this.considerMakingEctobiologistDoJob(player);
-		if(ret == null) ret = this.considerMakingSpacePlayerDoJob(player);
+		if(ret == null) ret = this.considerMakingEctobiologistDoJob(player); //done
+		if(ret == null) ret = this.considerMakingSpacePlayerDoJob(player);  //done
 		if(ret == null) ret = this.considerForceGodTier(player);
+		if(ret == null) ret = this.considerMakeSomeoneLove(player);
 		if(ret == null) ret = this.considerEngagingMurderMode(player);  //done
 
 		return ret;

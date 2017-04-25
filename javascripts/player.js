@@ -272,6 +272,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
 				ret = true;
 			}
 		}
+		
 		if(ret){
 			//console.log("heroic death");
 		}

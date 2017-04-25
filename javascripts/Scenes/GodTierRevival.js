@@ -59,13 +59,14 @@ function GodTierRevival(session){
 		for(var i = 0; i< this.godsToRevive.length; i++){
 			var p = this.godsToRevive[i];
 			ret += " The " + p.htmlTitle() + "'s death is judged to be ";
-			if(p.justDeath()){
+			var roll = p.rollForLuck();
+			if(p.justDeath() && roll < 100){
 				ret += " JUST.  They do not revive. ";
 				p.canGodTierRevive = false;
-			}else if (p.heroicDeath()){
+			}else if (p.heroicDeath() && roll < 100){
 				ret += " HEROIC. They do not revive. ";
 				p.canGodTierRevive = false;
-			}else{
+			}else if( roll < 100 && roll > 0){
 				ret += " neither HEROIC nor JUST.  They revive in a rainbow glow, stronger than ever. ";
 				p.dead = false;
 				p.canGodTierRevive = true;
@@ -75,6 +76,20 @@ function GodTierRevival(session){
 				p.leftMurderMode = false;
 				p.triggerLevel = 1;
 
+			}else if(roll > 100){
+				console.log("lucky break for god tier revival in: " + this.session.session_id);
+				ret += " ... a LUCKY BREAK!!!!!!!! The Judgement Clock narrowly avoids ruling in either direction. ";
+				p.dead = false;
+				p.canGodTierRevive = true;
+				p.increasePower();
+				p.murderMode = false;
+				p.grimDark = false;
+				p.leftMurderMode = false;
+				p.triggerLevel = 1;
+			}else{
+				console.log("unlucky break for god tier revival in: " + this.session.session_id);
+				ret += " ... Huh. Should the clock be DOING that? It's on both HEROIC and JUST at the same time, somehow? Talk about a BAD BREAK. They do not revive.  ";
+				p.canGodTierRevive = false;
 			}
 
 		}
