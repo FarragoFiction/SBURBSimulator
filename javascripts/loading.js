@@ -96,6 +96,9 @@ function loadOther(skipInit){
 	loadImage("rainbow.png",skipInit);
 	loadImage("gears.png",skipInit);
 	loadImage("mind_forehead.png",skipInit)
+	loadImage("blood_forehead.png",skipInit)
+	loadImage("rage_forehead.png",skipInit)
+	loadImage("heart_forehead.png",skipInit)
 	loadImage("ab.png",skipInit)
 	loadImage("grimdark.png",skipInit);
   loadImage("squiddles_chaos.png",skipInit);

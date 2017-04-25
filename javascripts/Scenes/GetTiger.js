@@ -82,6 +82,9 @@ function GetTiger(session){
 
 		for(var  i = 0; i<this.deadPlayersToGodTier.length; i++){
 			var p = this.deadPlayersToGodTier[i];
+			if(p.stateBackup) p.stateBackup.restoreState(p);
+			p.influencePlayer = null;
+			p.influenceSymbol = null;
 			p.godTier = true;
 			p.dreamSelf = false;
 			p.murderMode = false;

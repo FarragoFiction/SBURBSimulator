@@ -43,6 +43,9 @@ function CorpseSmooch(session){
 
 	this.makeAlive = function(d){
 		//foundRareSession(div, "A player was corpse smooched alive.")
+		if(d.stateBackup) d.stateBackup.restoreState(d);
+		d.influencePlayer = null;
+		d.influenceSymbol = null;
 		d.dead = false;
 		d.dreamSelf = false;
 		d.isDreamSelf = true;
