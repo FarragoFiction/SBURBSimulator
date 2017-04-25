@@ -23,7 +23,7 @@ function FreeWillStuff(session){
 			if(player.freeWill > 0){  //don't even get to consider a decision if you don't have  more than default free will.
 				var decision = this.getPlayerDecision(player);
 				if(decision){
-					this.decision = breakFree;
+					this.decision = decision;
 					return true;
 				}
 			}
@@ -317,7 +317,7 @@ function FreeWillStuff(session){
 	//if I fail at this, the sacrifice is dead adn I am horrifically triggered at my failure.
 	this.forceSomeOneElseBecomeGod = function(player){
 		var sacrifice = this.findNonGodTierBesidesMe(player);
-		if(sacrifice && !sacrifice.dead){
+		if(sacrifice && !sacrifice.dead && !sacrifice.godTier){
 			if(sacrifice.freeWill < player.freeWill && player.power < 200){ //can just talk them into this terrible idea.   not a good chance of working. 
 				var bed = "bed"
 				if(sacrifice.isDreamSelf) bed = "slab"

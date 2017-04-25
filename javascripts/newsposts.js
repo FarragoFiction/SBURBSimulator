@@ -229,7 +229,7 @@ function getQuipAboutSession(sessionSummary){
 	var dead = sessionSummary.numDead
 	var strongest = sessionSummary.mvp
 
-	if(sessionSummary.crashedFromCorruption){
+	if(sessionSummary.crashedFromSessionBug){
 		quip += "Fuck. Shit crashed hardcore. It's a good thing I'm a flawless robot, or I'd have nightmares from that. Just. Fuck session crashes.";
 	}else if(living == 0){
 		quip += "Shit, you do not even want to KNOW how everybody died." ;
