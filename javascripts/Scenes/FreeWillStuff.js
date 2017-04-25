@@ -406,8 +406,10 @@ function FreeWillStuff(session){
 		var ret = "";
 		if(!player.isDreamSelf){
 				ret += "The " + player.htmlTitleBasic() + "'s body glows, and rises Skaiaward. "+"On " + player.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
+				this.session.questBed = true;
 		}else{
 			ret += "The " + player.htmlTitleBasic() + " glows and ascends to the God Tiers with a sweet new outfit."
+			this.session.sacrificialSlab = true;
 		}
 		player.godTier = true;
 		this.session.godTier = true;

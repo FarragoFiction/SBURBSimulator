@@ -196,8 +196,10 @@ function LuckStuff(session){
 			var ret = "What the HELL!? The " + roll.player.htmlTitle() + " managed to somehow lose to REGULAR FUCKING ENEMIES!? Is that even POSSIBLE!? This is BULLSHIT. Wait. What's going on? How did they end up on their " ;
 			if(!roll.player.isDreamSelf){
 				ret += "QUEST BED!? Their body glows, and rises Skaiaward. "+"On " + roll.player.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
+				this.session.questBed = true;
 			}else{
 				ret += "SACRIFICIAL SLAB!? They glow and ascend to the God Tiers with a sweet new outfit."
+				this.session.sacrificialSlab = true;
 			}
 			roll.player.godTier = true;
 			roll.player.dreamSelf = false;
