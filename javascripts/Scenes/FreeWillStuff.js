@@ -416,11 +416,24 @@ function FreeWillStuff(session){
 	}
 	
 
-	//needs to be a murder mode player. more likely if you like them.  if active and you like them a lot, do it yourself. if passive, see if you can get somebody else to do it for you (mastermind)
-	//more likely if murderMode player is ectobiologist or space
-	//can be mind control.
+	//exclusively mind control
 	this.considerCalmMurderModePlayer = function(player){
-			return null;
+		var murderer = this.findMurderModePlayerBesides(player);
+		if(murderer && !murderer.dead && this.canInfluenceEnemies(player) && player.power > 25 && player.getFriends().length > player.getEnemies().length){  //if I am not a violent person, and I CAN force you to calm down. I will.
+		    console.log(player.title() + " controlling murderer to make them placid " + this.session.session_id)
+			removeFromArray(player, this.session.availablePlayers);
+			removeFromArray(murderer, this.session.availablePlayers);
+			if(!murderer.stateBackup) murderer.stateBackup = new MiniSnapShot(murderer); 
+			murderer.nullAllRelationships();
+			murderer.murderMode = false;
+			murderer.triggerLevel = 0;
+			murderer.influenceSymbol = this.getInfluenceSymbol(player);
+			murderer.influencePlayer = player;
+			murderer.getRelationshipWith(player).value += (player.freeWill - murderer.freeWill);  //might love or hate you during this.
+			var trait = this.getManipulatableTrait(player);
+			return "The " + player.htmlTitle() + " has had enough of the " + murderer.htmlTitle() + "'s murderous ways.  They manipulate their " + trait+ " until they are basically little more than an empty shell. They are such as asshole before they are finally controlled. Oh, wow. No. They are never going to be allowed to be free again. Neer, never, never again. Never. Wow.  ";
+		}
+		return null;
 	}
 	
 	//either make someone love ME, or make two people get together who otherwise wouldn't. can be sweet, or creepy.
@@ -433,7 +446,7 @@ function FreeWillStuff(session){
 	//less likely if murderMode player is ectobiologist or space
 	this.considerKillMurderModePlayer = function(player){
 		var murderer = this.findMurderModePlayerBesides(player);
-		if(murderer && !player.isActive() && !murderer.dead &&this.isValidTargets([murderer], player) && player.power > 25 && this.canInfluenceEnemies(player)){
+		if(murderer && !player.isActive() && !murderer.dead && this.isValidTargets([murderer], player) && player.power > 25 && this.canInfluenceEnemies(player)){
 			return this.sendPatsyAfterMurderer(player, murderer);
 		}else if(murderer && !murderer.dead){  //don't HAVE to be active to do this. but if passive and CAN be a manipulatie bastard, will.
 			return this.killMurderer(player, murderer);
@@ -464,7 +477,7 @@ function FreeWillStuff(session){
 	//ONLY mind control. Set all relationships to neutral except murderer, put into murder mode. 
 	this.sendPatsyAfterMurderer = function(player, murderer){
 		var patsy = player.getWorstEnemyFromList(this.session.availablePlayers);
-		if(patsy && patsy != murderer && patsy.influencePlayer != player && patsy.freeWill  < player.freeWill ){  //they exist and I don't already control them.
+		if(patsy && patsy != murderer && patsy.freeWill  < player.freeWill ){  //they exist and I don't already control them.
 			if(!patsy.stateBackup) patsy.stateBackup = new MiniSnapShot(patsy); 
 			console.log(player.title() + " controlling player to kill murderer. " + this.session.session_id)
 			patsy.nullAllRelationships();
