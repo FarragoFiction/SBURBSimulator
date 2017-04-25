@@ -10,9 +10,11 @@ function FreeWillStuff(session){
 	this.trigger = function(playerList){
 		this.decision = null;//reset
 		this.player = null;
-		//what the hell roue of doom's corpse. corpses aren't part of the player list!
-		for(var i = 0; i<this.session.availablePlayers.length; i++){
-			var player = this.session.availablePlayers[i];
+		//sort players by free will. highest goes first. as soon as someone makes a decision, return. decision happens during trigger, not content. (might be a mistake)
+		//way i was doing it before means that MULTIPLE decisions happen, but only one of them render.
+		var players = sortPlayersByFreeWill(this.session.availablePlayers);
+		for(var i = 0; i<players.length; i++){
+			var player = players[i];
 			var breakFree = this.considerBreakFreeControl(player);
 			if(breakFree){  //somebody breaking free of mind control ALWAYS has priority (otherwise, likely will never happen since they have so little free will to begin with.)
 				this.decision = breakFree;
@@ -21,13 +23,12 @@ function FreeWillStuff(session){
 			if(player.freeWill > 0){  //don't even get to consider a decision if you don't have  more than default free will.
 				var decision = this.getPlayerDecision(player);
 				if(decision){
-					if(!this.decision || player.freeWill > this.player.freeWill){  //whoever has the most will makes the decision.
-						this.decision = decision;
-						this.player = player;
-					}
+					this.decision = breakFree;
+					return true;
 				}
 			}
 		}
+		
 		return this.decision != null;
 	}
 
@@ -330,6 +331,7 @@ function FreeWillStuff(session){
 					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". " + ret + " It is a stupidly huge deal, since the " + sacrifice.htmlTitleBasic() + " was never destined to God Tier at all. But I guess the luck of both players was enough to make things work out, in the end.";  
 				}else{
 					sacrifice.dead = true;
+					sacrifice.causeOfDeath = "trying to go God Tier.";
 					player.triggerLevel += 100;
 					console.log(player.title() + " commits murder for god tier but doesn't get tiger " + this.session.session_id);
 					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". A frankly ridiculous series of events causes the " + sacrifice.htmlTitleBasic() + "'s dying body to fall off their " + bed + ". They were never destined to GodTier, and SBURB neurotically enforces such things. The " + player.htmlTitleBasic() + " tries desparately to get them to their " + bed + " in time, but in vain. They are massively triggered by their own astonishing amount of hubris. ";  
@@ -359,6 +361,7 @@ function FreeWillStuff(session){
 					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They steel their will and prepare to commit a trivial act of self suicide. " + ret + " It is probably for the best that they don't know how huge a deal this is. If they hadn't caught a LUCKY BREAK, they would have died here forever. They were never destined to go God Tier, even if they commited suicide.  "; 
 				}else{
 					player.dead = true;
+					player.causeOfDeath = "trying to go God Tier.";
 					console.log(player.title() + " commits suicide but doesn't get tiger " + this.session.session_id);
 					var bed = "bed"
 					if(player.isDreamSelf) bed = "slab"

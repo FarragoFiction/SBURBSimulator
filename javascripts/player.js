@@ -1791,3 +1791,11 @@ function getGuardiansForPlayers(playerList){
 	}
 	return tmp;
 }
+
+function sortPlayersByFreeWill(players){
+	return players.sort(compareFreeWill)
+}
+
+function compareFreeWill(a,b) {
+  return b.freeWill - a.freeWill;
+}
