@@ -24,7 +24,7 @@ function GrimDarkQuests(session){
 		if(bestFriend){
 			var r = player.getRelationshipWith(bestFriend);
 			if(r.value > 10){
-				var ret =  "The " + player.htmlTitle() + " suddenly snaps out of it.  Their friendship with the " + bestFriend.htmlTitleBasic() + " has managed to free them of the Horrorterror's influence. ";
+				var ret =  "The " + player.htmlTitle() + " suddenly snaps out of it.  Their friendship with the " + bestFriend.htmlTitle() + " has managed to free them of the Horrorterror's influence. ";
 				if(bestFriend.grimDark > 1) ret += " The irony of this does not escape anyone. "
 				player.grimDark = 1;
 				return ret;
