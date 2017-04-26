@@ -255,6 +255,11 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
 			if((this.murderMode || this.grimDark > 2) && Math.seededRandom()>.2){
 				ret = true;
 			}
+		}else{  //you are a good person. just corrupt.
+			//way more likely to be a just death if you're being an asshole.
+			if((this.murderMode || this.grimDark > 2) && Math.seededRandom()>.5){
+				ret = true;
+			}
 		}
 
 		//return true; //for testing
@@ -273,8 +278,16 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
 			if(curSessionGlobalVar.kingStrength <=0 && Math.seededRandom()>.2){
 				ret = true;
 			}
+		}else{ //unlikely hero
+			if(Math.seededRandom() > .8){
+				ret = true;
+			}
+			//extra likely if you just killed the king/queen, you hero you.
+			if(curSessionGlobalVar.kingStrength <=0 && Math.seededRandom()>.4){
+				ret = true;
+			}
 		}
-		
+
 		if(ret){
 			//console.log("heroic death");
 		}
@@ -555,7 +568,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
 		var rightClass = this.class_name == "Seer" || this.aspect == "Light" || this.aspect == "Mind" || this.aspect == "Doom"
 		return rightClass && this.power > 20; //need to be far enough in my claspect
 	}
-	
+
 	this.performEctobiology = function(session){
 		session.ectoBiologyStarted = true;
 		playersMade = findPlayersWithoutEctobiologicalSource(session.players);
@@ -938,7 +951,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
 			}
 		}
 	}
-	
+
 	this.getAverageRelationshipValue = function(){
 		if(this.relationships.length == 0) return 0;
 		var ret = 0;

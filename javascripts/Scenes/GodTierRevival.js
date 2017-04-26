@@ -55,41 +55,57 @@ function GodTierRevival(session){
 
 	this.content = function(){
 		var ret = " The game abstraction of the Judgement Clock is ruling on the death of the " + getPlayersTitles(this.godsToRevive ) + ". ";
-
+		var breakNeeded = 150;
 		for(var i = 0; i< this.godsToRevive.length; i++){
 			var p = this.godsToRevive[i];
 			ret += " The " + p.htmlTitle() + "'s death is judged to be ";
 			var roll = p.rollForLuck();
-			if(p.justDeath() && roll < 500){
-				ret += " JUST.  They do not revive. ";
-				p.canGodTierRevive = false;
-			}else if (p.heroicDeath() && roll < 100){
-				ret += " HEROIC. They do not revive. ";
-				p.canGodTierRevive = false;
-			}else if( roll < 500 && roll > -500){
-				ret += " neither HEROIC nor JUST.  They revive in a rainbow glow, stronger than ever. ";
-				p.dead = false;
-				p.canGodTierRevive = true;
-				p.increasePower();
-				p.murderMode = false;
-				p.grimDark = false;
-				p.leftMurderMode = false;
-				p.triggerLevel = 1;
+			if(p.justDeath() && roll < breakNeeded){
+				if(roll > breakNeeded){
+					console.log(roll + " lucky break for god tier revival in: " + this.session.session_id );
+					ret += " ... a LUCKY BREAK!!!!!!!! The Judgement Clock narrowly avoids ruling in either direction. ";
+					p.dead = false;
+					p.canGodTierRevive = true;
+					p.increasePower();
+					p.murderMode = false;
+					p.grimDark = false;
+					p.leftMurderMode = false;
+					p.triggerLevel = 1;
+				}else{
+					ret += " JUST.  They do not revive. ";
+					p.canGodTierRevive = false;
+				}
 
-			}else if(roll > 500){
-				console.log(roll + " lucky break for god tier revival in: " + this.session.session_id );
-				ret += " ... a LUCKY BREAK!!!!!!!! The Judgement Clock narrowly avoids ruling in either direction. ";
-				p.dead = false;
-				p.canGodTierRevive = true;
-				p.increasePower();
-				p.murderMode = false;
-				p.grimDark = false;
-				p.leftMurderMode = false;
-				p.triggerLevel = 1;
+			}else if (p.heroicDeath() && roll < breakNeeded){
+				if(roll > breakNeeded){
+					console.log(roll + " lucky break for god tier revival in: " + this.session.session_id );
+					ret += " ... a LUCKY BREAK!!!!!!!! The Judgement Clock narrowly avoids ruling in either direction. ";
+					p.dead = false;
+					p.canGodTierRevive = true;
+					p.increasePower();
+					p.murderMode = false;
+					p.grimDark = false;
+					p.leftMurderMode = false;
+					p.triggerLevel = 1;
+				}else{
+					ret += " HEROIC. They do not revive. ";
+					p.canGodTierRevive = false;
+				}
 			}else{
-				console.log("unlucky break for god tier revival in: " + this.session.session_id);
-				ret += " ... Huh. Should the clock be DOING that? It's on both HEROIC and JUST at the same time, somehow? Talk about a BAD BREAK. They do not revive.  ";
-				p.canGodTierRevive = false;
+				if(roll < -1 * breakNeeded){
+					console.log("unlucky break for god tier revival in: " + this.session.session_id);
+					ret += " ... Huh. Should the clock be DOING that? It's on both HEROIC and JUST at the same time, somehow? Talk about a BAD BREAK. They do not revive.  ";
+					p.canGodTierRevive = false;
+				}else{
+					ret += " neither HEROIC nor JUST.  They revive in a rainbow glow, stronger than ever. ";
+					p.dead = false;
+					p.canGodTierRevive = true;
+					p.increasePower();
+					p.murderMode = false;
+					p.grimDark = false;
+					p.leftMurderMode = false;
+					p.triggerLevel = 1;
+				}
 			}
 
 		}
