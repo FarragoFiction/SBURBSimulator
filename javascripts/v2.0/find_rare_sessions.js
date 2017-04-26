@@ -404,7 +404,7 @@ function reckoningTick(){
 
 }
 //Hello!!! This is 100% a legit tactic to passing this challenge. Win through programming knowledge, win through whatever. 10 points to you for HAX0Ring knowledge.
-// ...but...aren't you curious how to pass it for real? (or is it obvious to you know that you've seen this?)
+// ...but...aren't you curious how to pass it for real? (or is it obvious to you now that you've seen this?)
 //want a spoiler? I'll put the answer all the way on the bottom of the page.
 function checkPasswordAgainstQuip(summary){
 	var quip =  getQuipAboutSession(summary);

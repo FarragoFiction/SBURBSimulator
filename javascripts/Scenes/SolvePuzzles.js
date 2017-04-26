@@ -100,6 +100,17 @@ function SolvePuzzles(session){
 		removeFromArray(this.player2, this.session.availablePlayers);
 		var r1 = null;
 		var r2 = null;
+		var living = findLivingPlayers(this.session.players);
+		var dead = findDeadPlayers(this.session.players)
+		if(living.length == 1 && dead.length > 2){  //less of a reference if it's just one dead dude.
+			console.log("SWEET BIKE STUNTS, BRO: " + this.session.session_id)
+			var realSelf = "";
+			if(!this.player1.isDreamSelf && !this.player1.godTier){
+				console.log("Real self stunting in: " + this.session.session_id)
+				realSelf =  "You are duly impressed that they are not a poser who does dreamself stunting.  Realself stunting 5ever, bro."
+			}
+			return "The " +  this.player1.htmlTitle()  + " is "+ getRandomElementFromArray(bike_quests) + "." + realSelf;
+		}
 		this.player1.increasePower();
 		if(this.player2 != null &&  this.player1  != this.player2){  //could be a time double, don't have a relationship with a time double (it never works out)
 			this.player1.increasePower();

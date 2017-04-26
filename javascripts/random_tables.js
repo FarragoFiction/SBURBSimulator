@@ -1155,6 +1155,11 @@ witch_quests.push("deciding which way to go in a series of way-too-long mazes");
 witch_quests.push("solving puzzles in ways that completely defy expectations");
 
 
+//if bike quests are too common, lock them to real selves only, no dream selves.
+var bike_quests = ["performing the SWEETEST bike stunts in all of SBURB", "doing bike stunts so sick they are illegal be Dersite standards", "doing bike stunts with air so unreal time just stops and everybody wishes to be them", "performing an endless grind on prospit's moon chain"];
+bike_quests.push("getting air so unreal that they jump from one planet to another on their sick nasty bike");
+bike_quests.push("writing dope as fuck Bike Stunt FAQs to keep their sanity");
+
 
 var space_denizen = "Echidna";
 var time_denizen = "Hephaestus";

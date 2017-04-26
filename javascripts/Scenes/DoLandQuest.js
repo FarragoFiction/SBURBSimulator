@@ -265,6 +265,18 @@ function DoLandQuest(session){
 		for(var i = 0; i<this.playersPlusHelpers.length; i++){
 			var player = this.playersPlusHelpers[i][0];
 
+			var living = findLivingPlayers(this.session.players);
+			var dead = findDeadPlayers(this.session.players)
+			if(living.length == 1 && dead.length > 2){
+				console.log("SWEET BIKE STUNTS, BRO: " + this.session.session_id)
+				var realSelf = "";
+				if(!player.isDreamSelf && !player.godTier){
+					console.log("Real self stunting in: " + this.session.session_id)
+					realSelf =  "You are duly impressed that they are not a poser who does dreamself stunting.  Realself stunting 5ever, bro."
+				}
+				return "The " + player.htmlTitle()  + " is " + getRandomElementFromArray(bike_quests) + ". " + realSelf;
+			}
+
 			//console.log("doing land quests at: " + player.land)
 			var helper = this.playersPlusHelpers[i][1]; //might be null
 			if(player.aspect == "Space" && !helper){
