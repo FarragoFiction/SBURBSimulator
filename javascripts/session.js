@@ -15,6 +15,8 @@ function Session(session_id){
 	this.crashedFromPlayerActions = false;
 	this.sickFires = false;
 	this.sbahj = false;
+	this.heroicDeath = null;
+	this.justDeath = null;
 	this.queenStrength = 100;
 	this.jackStrength = 50;
 	this.hardStrength = 275;
@@ -396,6 +398,8 @@ function Session(session_id){
 
 	this.generateSummary = function(){
 		var summary = new SessionSummary();
+		summary.heroicDeath = this.heroicDeath;
+		summary.justDeath = this.justDeath;
 		summary.crashedFromSessionBug = this.crashedFromSessionBug;
 		summary.crashedFromPlayerActions = this.crashedFromPlayerActions;
 		summary.hasFreeWillEvents = this.hasFreeWillEvents;

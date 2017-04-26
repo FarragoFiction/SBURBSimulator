@@ -74,6 +74,7 @@ function GodTierRevival(session){
 				}else{
 					console.log(roll + " just death for god tier in: " + this.session.session_id );
 					ret += " JUST.  They do not revive. ";
+					this.session.justDeath = true;
 					p.canGodTierRevive = false;
 				}
 
@@ -89,6 +90,7 @@ function GodTierRevival(session){
 					p.leftMurderMode = false;
 					p.triggerLevel = 1;
 				}else{
+					this.session.heroicDeath = true;
 					console.log(roll + " heroic death for god tier in: " + this.session.session_id );
 					ret += " HEROIC. They do not revive. ";
 					p.canGodTierRevive = false;

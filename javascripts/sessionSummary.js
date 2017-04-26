@@ -42,6 +42,8 @@ function SessionSummary(){
 	this.godTier = false;
 	this.questBed = false;
 	this.sacrificialSlab = false;
+	this.heroicDeath = null;
+	this.justDeath = null;
 	this.rapBattle = null;
 	this.sickFires = null;
 	this.hasLuckyEvents = null;
@@ -154,7 +156,7 @@ function SessionSummary(){
 					}else{
 						html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "'>" +this.session_id + "</a>"
 					}
-				}else if(propertyName == "satifies_filter_array" || propertyName == "frogStatus" || propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo"  ){
+				}else if(propertyName == "satifies_filter_array" || propertyName == "frogStatus" || propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo" || propertyName == "parentSession"  ){
 					//do nothing. properties used elsewhere.
 				}else if(propertyName != "generateHTML" && propertyName != "getSessionSummaryJunior"){
 					html += "<Br><b>" + propertyName + "</b>: " + this[propertyName] ;
@@ -180,15 +182,15 @@ function SessionSummaryJunior(players,session_id){
 	this.averageHP = null;
 	this.averageRelationshipValue = null;
 	this.averageTriggerLevel = null;
-	
+
 	this.generateHTML = function(){
 		this.getAverages();
 		var html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id +"'>";
 		html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "'>" +this.session_id + "</a>"
 		html += "<Br><b>Players</b>: " + getPlayersTitlesBasic(this.players);
 		html += "<Br><b>Potential God Tiers</b>: " + getPlayersTitlesBasic(this.grabPotentialGodTiers(this.players));
-	
-		
+
+
 		html += "<Br><b>Initial Average Min Luck</b>: " + this.averageMinLuck;
 		html += "<Br><b>Initial Average Max Luck</b>: " + this.averageMaxLuck
 		html += "<Br><b>Initial Average Power</b>: " + this.averagePower
@@ -197,7 +199,7 @@ function SessionSummaryJunior(players,session_id){
 		html += "<Br><b>Initial Average HP</b>: " + this.averageHP
 		html += "<Br><b>Initial Relationship Value</b>: " + this.averageRelationshipValue
 		html += "<Br><b>Initial Trigger Level</b>: " +this.averageRelationshipValue
-		
+
 		html += "<Br><b>Sprites</b>: " + this.grabAllSprites().toString();
 		html += "<Br><b>Lands</b>: " + this.grabAllLands().toString();
 		html += "<Br><b>Interests</b>: " + this.grabAllInterest().toString();
@@ -205,7 +207,7 @@ function SessionSummaryJunior(players,session_id){
 		html += "</div><br>"
 		return html;
 	}
-	
+
 	this.getAverages = function(){
 		this.averageMinLuck = getAverageMinLuck(this.players);;
 		this.averageMaxLuck = getAverageMaxLuck(this.players);;
@@ -216,8 +218,8 @@ function SessionSummaryJunior(players,session_id){
 		this.averageRelationshipValue = getAverageRelationshipValue(this.players);;
 		this.averageRelationshipValue =  getAverageTriggerLevel(this.players);;
 	}
-	
-	
+
+
 	this.grabPotentialGodTiers = function(){
 		var ret = [];
 		for(var i = 0; i<this.players.length; i++){
@@ -247,7 +249,7 @@ function SessionSummaryJunior(players,session_id){
 		}
 		return ret;
 	}
-	
+
 	this.grabAllLands = function(){
 		var ret = [];
 		for(var i = 0; i<this.players.length; i++){
@@ -318,12 +320,14 @@ function MultiSessionSummary(){
 	this.godTier = 0;
 	this.questBed = 0;
 	this.sacrificialSlab = 0;
+	this.heroicDeath = 0;
+	this.justDeath = 0;
 	this.rapBattle = 0;
 	this.sickFires = 0;
 	this.hasLuckyEvents = 0;
 	this.hasUnluckyEvents = 0;
 	this.hasFreeWillEvents = 0;
-	
+
 
 	this.generateHTML = function(){
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
@@ -374,7 +378,7 @@ function collateMultipleSessionSummariesJunior(sessionSummaryJuniors){
 		mss.averageTriggerLevel += ssj.averageTriggerLevel
 		mss.averageRelationshipValue += ssj.averageRelationshipValue
 	}
-	
+
 	mss.averageMinLuck = Math.round(mss.averageMinLuck/sessionSummaryJuniors.length)
 	mss.averageMaxLuck = Math.round(mss.averageMaxLuck/sessionSummaryJuniors.length)
 	mss.averagePower = Math.round(mss.averagePower/sessionSummaryJuniors.length)
@@ -427,12 +431,14 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		if(ss.godTier) mss.godTier ++;
 		if(ss.questBed) mss.questBed ++;
 		if(ss.sacrificialSlab) mss.sacrificialSlab ++;
+		if(ss.justDeath) mss.justDeath ++;
+		if(ss.heroicDeath) mss.heroicDeath ++;
 		if(ss.rapBattle) mss.rapBattle ++;
 		if(ss.sickFires) mss.sickFires ++;
 		if(ss.hasLuckyEvents) mss.hasLuckyEvents ++;
 		if(ss.hasUnluckyEvents) mss.hasUnluckyEvents ++;
 		if(ss.hasFreeWillEvents) mss.hasFreeWillEvents ++;
-		
+
 		mss.averageMinLuck += ss.averageMinLuck
 		mss.averageMaxLuck += ss.averageMaxLuck
 		mss.averagePower += ss.averagePower
@@ -441,7 +447,7 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		mss.averageHP += ss.averageHP
 		mss.averageTriggerLevel += ss.averageTriggerLevel
 		mss.averageRelationshipValue += ss.averageRelationshipValue
-		
+
 
 		mss.totalDeadPlayers += ss.numDead;
 		mss.totalLivingPlayers += ss.numLiving;
@@ -481,7 +487,7 @@ function MultiSessionSummaryJunior(){
 		html += header;
 		html += "<Br><b>Number of Sessions:</b> " + this.numSessions;
 		html += "<Br><b>Average Players Per Session:</b> " + round2Places(this.numPlayers/this.numSessions);
-		
+
 		html += "<Br><b>averageMinLuck:</b> " + this.averageMinLuck;
 		html += "<Br><b>averageMaxLuck:</b> " + this.averageMaxLuck;
 		html += "<Br><b>averagePower:</b> " + this.averagePower;
@@ -490,7 +496,7 @@ function MultiSessionSummaryJunior(){
 		html += "<Br><b>averageHP:</b> " + this.averageHP;
 		html += "<Br><b>averageRelationshipValue:</b> " + this.averageRelationshipValue;
 		html += "<Br><b>averageTriggerLevel:</b> " + this.averageTriggerLevel;
-		
+
 		html += "<Br><b>Average Initial Ships Per Session:</b> " + round2Places(this.numShips/this.numSessions);
 		html += "<Br><br><b>Filter Sessions By Number of Players:</b><Br>2 <input id='num_players' type='range' min='2' max='12' value='2'> 12"
 		html += "<br><input type='text' id='num_players_text' value='2' size='2' disabled>"
