@@ -142,7 +142,7 @@ function Intro(session){
 		if(player_prototypings.indexOf(player1.kernel_sprite) != -1){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
-		}else if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite)){
+		}else if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite)!= -1){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
@@ -193,7 +193,7 @@ function Intro(session){
 		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
-		}else if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite)){
+		}else if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite) != -1){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
@@ -239,7 +239,7 @@ function Intro(session){
 		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
-		}else if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite)){
+		}else if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite)!= -1){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
@@ -307,7 +307,7 @@ function Intro(session){
 		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += chatLine(player1Start, player1,":/  Yeah... They figured out a way to not die when they time travel! ");
-		}else if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite)){
+		}else if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite) != -1){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,":/  Yeah... It was so sad when they died. But now I'm happy because SBURB brought them back! ");
 			chatText +=chatLine(player2Start, player2,"Oh, man....");
@@ -354,7 +354,7 @@ function Intro(session){
 		chatText += chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+".");
 		chatText +=chatLine(player2Start, player2,"lol");
 		chatText += chatLine(player1Start, player1,"So... I prototyped my kernel whatever with a " + player1.kernel_sprite +".\n");
-		if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite)){
+		if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite) != -1){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
@@ -403,7 +403,7 @@ function Intro(session){
 		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += chatLine(player1Start, player1,":/  Yeah... That's a story all on it's own. ");
-		}else if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite)){
+		}else if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite) != -1){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,":/  Yeah... That probably wouldn't have happened in a story. ");
 
@@ -454,7 +454,7 @@ function Intro(session){
 		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += chatLine(player1Start, player1,"Yes! I already have my first minion! ");
-		}else	if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite)){
+		}else	if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite) != -1){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,"Yes! Who better to assist me on my epic quest? ");
 
@@ -510,7 +510,7 @@ function Intro(session){
 		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
-		}else if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite)){
+		}else if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite) != -1){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
