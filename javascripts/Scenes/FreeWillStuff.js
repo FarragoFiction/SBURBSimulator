@@ -34,13 +34,13 @@ function FreeWillStuff(session){
 				}
 			}
 		}
-		
+
 		return this.decision != null;
 	}
-	
+
 	this.renderPlayers = function(div){
 		console.log("rendering free will player(s): " + this.session.session_id)
-		
+
 		var divID = (div.attr("id")) + "_freeWillBulshit" + this.renderPlayer1.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
@@ -57,7 +57,7 @@ function FreeWillStuff(session){
 		}
 
 	}
-	
+
 	this.renderGodTier = function(div){
 		console.log("rendering free will god tier: " + this.session.session_id)
 		var divID = (div.attr("id")) + "_freeWillBulshit" + this.playerGodTiered.chatHandle;
@@ -173,7 +173,7 @@ function FreeWillStuff(session){
 		}
 		return num;
 	}
-	
+
 	this.howManyFriendsYouHate = function(friends, patsy){
 		var myEnemies = patsy.getEnemiesFromList(findLivingPlayers(this.session.players));
 		var num = 0;
@@ -183,7 +183,7 @@ function FreeWillStuff(session){
 		}
 		return num;
 	}
-	
+
 	//who is the most crazy murderer out there?
 	this.findMurderModePlayerBesides = function(player){
 		var ret = null;
@@ -196,8 +196,8 @@ function FreeWillStuff(session){
 		if(!ret.murderMode) ret = null;
 		return ret;
 	}
-	
-	//as little randomness in free will as possible. choices. decisions. 
+
+	//as little randomness in free will as possible. choices. decisions.
 	this.findNonGodTierBesidesMe = function(player){
 		var ret = null;
 		var ret_abs_value = 0;
@@ -255,16 +255,16 @@ function FreeWillStuff(session){
 		return false;
 
 	}
-	
+
 	//bard,  rogue can alter Negative fate
-	//sylph, seer, maid, and page of light/life/heart/mind can as well. 
+	//sylph, seer, maid, and page of light/life/heart/mind can as well.
 	this.canAlterNegativeFate = function(player){
 		if(player.aspect == "Light" || player.aspect == "Life" || player.aspect == "Heart" || player.aspect == "Mind"){
 			if(player.class_name == "Maid" || player.class_name == "Seer"){
 				return true;
 			}
 		}
-		
+
 		if(player.aspect == "Doom"){
 			if(player.class_name == "Bard" || player.class_name == "Rogue" || player.class_name == "Maid" || player.class_name == "Seer"){
 				return true;
@@ -272,7 +272,7 @@ function FreeWillStuff(session){
 		}
 		return false;
 	}
-	
+
 	this.getManipulatableTrait = function(player){
 		var ret =  ""
 		if(player.aspect == "Heart") ret = "identity"
@@ -378,16 +378,16 @@ function FreeWillStuff(session){
 		}
 		return null;
 	}
-	
-	
-	
+
+
+
 	//if I fail at this, the sacrifice is dead adn I am horrifically triggered at my failure.
 	this.forceSomeOneElseBecomeGod = function(player){
 		var sacrifice = this.findNonGodTierBesidesMe(player);
 		if(sacrifice && !sacrifice.dead && !sacrifice.godTier){
 			var bed = "bed"
 			if(sacrifice.isDreamSelf) bed = "slab"
-			if(sacrifice.freeWill < player.freeWill && player.power < 200){ //can just talk them into this terrible idea.   not a good chance of working. 
+			if(sacrifice.freeWill < player.freeWill && player.power < 200){ //can just talk them into this terrible idea.   not a good chance of working.
 				if(sacrifice.godDestiny){
 					var ret =  this.godTierHappens(sacrifice);
 					removeFromArray(player, this.session.availablePlayers);
@@ -397,7 +397,7 @@ function FreeWillStuff(session){
 				}else if(sacrifice.rollForLuck() + player.rollForLuck() > 200){  //BOTH have to be lucky.
 					//console.log(player.title() + " commits murder and someone else gets tiger and it is all very lucky. " + this.session.session_id);
 					var ret =  this.godTierHappens(sacrifice);
-					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". " + ret + " It is a stupidly huge deal, since the " + sacrifice.htmlTitleBasic() + " was never destined to God Tier at all. But I guess the luck of both players was enough to make things work out, in the end.";  
+					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". " + ret + " It is a stupidly huge deal, since the " + sacrifice.htmlTitleBasic() + " was never destined to God Tier at all. But I guess the luck of both players was enough to make things work out, in the end.";
 				}else{
 					sacrifice.dead = true;
 					removeFromArray(player, this.session.availablePlayers);
@@ -407,7 +407,7 @@ function FreeWillStuff(session){
 					this.renderPlayer1 = player;
 					this.renderPlayer2 = sacrifice;
 					//console.log(player.title() + " commits murder for god tier but doesn't get tiger " + this.session.session_id);
-					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". A frankly ridiculous series of events causes the " + sacrifice.htmlTitleBasic() + "'s dying body to fall off their " + bed + ". They were never destined to GodTier, and SBURB neurotically enforces such things. The " + player.htmlTitleBasic() + " tries desparately to get them to their " + bed + " in time, but in vain. They are massively triggered by their own astonishing amount of hubris. ";  
+					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". A frankly ridiculous series of events causes the " + sacrifice.htmlTitleBasic() + "'s dying body to fall off their " + bed + ". They were never destined to GodTier, and SBURB neurotically enforces such things. The " + player.htmlTitleBasic() + " tries desparately to get them to their " + bed + " in time, but in vain. They are massively triggered by their own astonishing amount of hubris. ";
 				}
 			}else if(player.power > 200 && this.canAlterNegativeFate(player) ){  //straight up ignores godDestiny. no chance of failure.
 				var ret =  this.godTierHappens(sacrifice);
@@ -415,12 +415,12 @@ function FreeWillStuff(session){
 				removeFromArray(sacrifice, this.session.availablePlayers);
 				var trait = this.getManipulatableTrait(player)
 				//console.log(player.title() + " controls someone into getting tiger " + this.session.session_id);
-				return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They don't leave anything to chance and use their game powers to influence the  " + sacrifice.htmlTitleBasic() + "'s " + trait + " until they are killed on their " + bed + ". " + ret ;  
+				return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They don't leave anything to chance and use their game powers to influence the  " + sacrifice.htmlTitleBasic() + "'s " + trait + " until they are killed on their " + bed + ". " + ret ;
 
 			}
 		}
 	}
-	
+
 	//if I know about SBURB and have a lot of willPower then I can do this. If I don't, will never work up the nerve.
 	//me am play god.
 	this.becomeGod = function(player){
@@ -435,7 +435,7 @@ function FreeWillStuff(session){
 					removeFromArray(player, this.session.availablePlayers);
 					//console.log(player.title() + " commits suicide and is lucky enough to get tiger " + this.session.session_id);
 					var ret =  this.godTierHappens(player);
-					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They steel their will and prepare to commit a trivial act of self suicide. " + ret + " It is probably for the best that they don't know how huge a deal this is. If they hadn't caught a LUCKY BREAK, they would have died here forever. They were never destined to go God Tier, even if they commited suicide.  "; 
+					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They steel their will and prepare to commit a trivial act of self suicide. " + ret + " It is probably for the best that they don't know how huge a deal this is. If they hadn't caught a LUCKY BREAK, they would have died here forever. They were never destined to go God Tier, even if they commited suicide.  ";
 				}else{
 					player.dead = true;
 					removeFromArray(player, this.session.availablePlayers);
@@ -449,7 +449,7 @@ function FreeWillStuff(session){
 			}
 		}
 	}
-	
+
 	this.godTierHappens = function(player){
 		var ret = "";
 		if(!player.isDreamSelf){
@@ -466,7 +466,7 @@ function FreeWillStuff(session){
 		this.playerGodTiered = player;
 		return ret;
 	}
-	
+
 
 	//exclusively mind control
 	this.considerCalmMurderModePlayer = function(player){
@@ -475,7 +475,7 @@ function FreeWillStuff(session){
 		    console.log(player.title() + " controlling murderer to make them placid " + this.session.session_id)
 			removeFromArray(player, this.session.availablePlayers);
 			removeFromArray(murderer, this.session.availablePlayers);
-			if(!murderer.stateBackup) murderer.stateBackup = new MiniSnapShot(murderer); 
+			if(!murderer.stateBackup) murderer.stateBackup = new MiniSnapShot(murderer);
 			murderer.nullAllRelationships();
 			murderer.murderMode = false;
 			murderer.triggerLevel = 0;
@@ -489,10 +489,10 @@ function FreeWillStuff(session){
 		}
 		return null;
 	}
-	
+
 	//either make someone love ME, or make two people get together who otherwise wouldn't. can be sweet, or creepy.
 	this.considerMakeSomeoneLove = function(player){
-		
+
 		return null;
 	}
 
@@ -507,7 +507,7 @@ function FreeWillStuff(session){
 		}
 		return null;
 	}
-	
+
 	this.killMurderer = function(player, murderer){
 		if(player.mobility > murderer.mobility){
 			if(player.power > murderer.power){  //power is generic. generally scales with any aplicable stats. lets me compare two different aspect players.
@@ -533,12 +533,12 @@ function FreeWillStuff(session){
 			}
 		}
 	}
-	
-	//ONLY mind control. Set all relationships to neutral except murderer, put into murder mode. 
+
+	//ONLY mind control. Set all relationships to neutral except murderer, put into murder mode.
 	this.sendPatsyAfterMurderer = function(player, murderer){
 		var patsy = player.getWorstEnemyFromList(this.session.availablePlayers);
 		if(patsy && !patsy.dead && patsy != murderer && patsy.freeWill  < player.freeWill ){  //they exist and I don't already control them.
-			if(!patsy.stateBackup) patsy.stateBackup = new MiniSnapShot(patsy); 
+			if(!patsy.stateBackup) patsy.stateBackup = new MiniSnapShot(patsy);
 			//console.log(player.title() + " controlling player to kill murderer. " + this.session.session_id)
 			patsy.nullAllRelationships();
 			var r = patsy.getRelationshipWith(murderer);
@@ -569,7 +569,7 @@ function FreeWillStuff(session){
 				return "The " + player.htmlTitle() + " is not going to play by SBURB's rules. Yes, they could wait to do Ectobiology until they are 'supposed' to. But. Just. Fuck that shit. That's how doomed timelines get made. They create baby versions of everybody. Don't worry about it.";
 			}else{
 				var leader = getLeader(this.session.availablePlayers);
-				if(leader && !leader.dead){
+				if(leader && !leader.dead && leader.grimDark < 2){ //you are NOT gonna be able to convince a grim dark player to do their SBURB duties.
 					if(leader.freeWill < player.freeWill){
 						removeFromArray(player, this.session.availablePlayers);
 						removeFromArray(leader, this.session.availablePlayers);
@@ -603,7 +603,7 @@ function FreeWillStuff(session){
 				return "The " + player.htmlTitle() + " is not going to fall into SBURB's trap. They know why frog breeding is important, and they are going to fucking DO it. ";
 			}else{
 				if(!space.dead){
-					if(space.freeWill < player.freeWill){
+					if(space.freeWill < player.freeWill && space.grimDark < 2){  //grim dark players just don't do their SBURB duties unless forced.
 						removeFromArray(player, this.session.availablePlayers);
 						removeFromArray(player, this.session.availablePlayers);
 						//console.log(player.title() +" convinced space player to do their damn job. " +this.session.session_id);
@@ -624,7 +624,7 @@ function FreeWillStuff(session){
 		return null;
 	}
 
-	
+
 	this.considerBreakFreeControl = function(player){
 		var ip = player.influencePlayer;
 		if(ip){
