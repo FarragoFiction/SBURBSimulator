@@ -923,8 +923,9 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
 	}
 
 	this.boostAllRelationshipsWithMeBy = function(boost){
-		for(var i = 0; i<session.players.length; i++){
-			var r = this.getRelationshipWith(session.players[i])
+		for(var i = 0; i<this.relationships.length; i++){
+			var player = this.relationships[i].target
+			var r = this.getRelationshipWith(player)
 			if(r){
 				r.value += boost;
 			}
@@ -932,8 +933,9 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
 	}
 	//people like you more
 	this.boostAllRelationshipsWithMe = function(){
-		for(var i = 0; i<session.players.length; i++){
-			var r = this.getRelationshipWith(session.players[i])
+		for(var i = 0; i<this.relationships.length; i++){
+			var player = this.relationships[i].target
+			var r = this.getRelationshipWith(player)
 			if(r){
 				r.increase();
 			}

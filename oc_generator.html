@@ -7,6 +7,7 @@
 		<script type="text/javascript" src="javascripts/handle_sprites.js"></script>
 		<script type="text/javascript" src="javascripts/oc_generator.js"></script>
 		<script type="text/javascript" src="javascripts/random_tables.js"></script>
+		<script type="text/javascript" src="javascripts/loading.js"></script>
 		<script type="text/javascript" src="javascripts/quirk.js"></script>
 		<title>
 			SBURB OC Generator by jadedResearcher (wings by karmicRetribution)
@@ -37,8 +38,10 @@
 		</div>
 
 		<div id = "debug"></div>
+		<div id = "loading_stats"></div>
 		<br>
 		<div id = "image_staging">  </div>
+		<div id = "loading_image_staging">  </div>
 		<img id = "godtiers" src = "images/god_tiers_clear.png" style="display:none">
 		<img src = "images/horns.png" style="display:none">
 		<img id="test" src = "images/test.png" style="display:none">
@@ -56,5 +59,7 @@
 		<img id="wing10.png" src = "images/wing10.png" style="display:none">
 		<img id="wing11.png" src = "images/wing11.png" style="display:none">
 		<img id="wing12.png" src = "images/wing12.png" style="display:none">
+		<canvas id="loading" width="1000" height="354">  </canvas>
+		<img id="loading.png" src = "images/loading.png" style="display:none">
 	</body>
 </html>

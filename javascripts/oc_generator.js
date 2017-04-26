@@ -2,6 +2,7 @@ var players = [];
 var simulationMode = false;
 var dataURLs = {};
 window.onload = function() {
+	loadFuckingEverything("oc")
 	makeAspectDropDown();
 	makeClassDropDown();
 	makeSpeciesDropDown();
@@ -14,9 +15,10 @@ window.onload = function() {
 		 }
 		 drawSpriteAll();
 	 });
-  reroll();
+//  reroll();
 }
 function reroll(){
+	console.log("rerolling")
 	makePlayers();
 	//describe();
  	drawSpriteAll();

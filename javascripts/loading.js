@@ -12,6 +12,8 @@ function loadFuckingEverything(skipInit){
 	loadAllImages(skipInit);
 }
 
+
+
 //load everything while showing a progress bar. delete loadingCanvas when done.
 function load(players, guardians,skipInit){
   var guardians = getGuardiansForPlayers(players)
@@ -24,6 +26,7 @@ function load(players, guardians,skipInit){
   ctx.drawImage(img,0,0,width,height);
 	loadAllImagesForPlayers(players, guardians,skipInit);
 }
+
 
 function loadAllImages(skipInit){
 	loadOther(skipInit);
@@ -63,6 +66,11 @@ function checkDone(skipInit){
 	if(imagesLoaded != 0 && imagesWaiting == imagesLoaded){
 		//$("#loading").remove(); //not loading anymore
     if(skipInit){
+      if(skipInit == "oc"){
+        console.log("images loaded: " + imagesLoaded)
+        reroll();
+        return;
+      }
       renderPlayersForEditing();
       return;
     }
@@ -145,8 +153,14 @@ function loadAllPossiblePlayers(skipInit){
     for(var i = 1; i<=numBodies; i++){
       if(i<10){
         loadImage("Bodies/reg00"+i+".png",skipInit);  //as long as i i do a 'load' again when it's to to start the simulation, can get away with only loading these bodies.
+        if(skipInit == "oc"){
+          loadImage("Bodies/00"+i+".png",skipInit);
+        }
       }else{
         loadImage("Bodies/reg0"+i+".png",skipInit);  //as long as i i do a 'load' again when it's to to start the simulation, can get away with only loading these bodies.
+        if(skipInit == "oc"){
+          loadImage("Bodies/0"+i+".png",skipInit);
+        }
       }
     }
 
@@ -154,7 +168,15 @@ function loadAllPossiblePlayers(skipInit){
         loadImage("Hair/hair_back"+i+".png",skipInit);
         loadImage("Hair/hair"+i+".png",skipInit);
     }
-	
+
+    if(skipInit == "oc"){
+
+      for(var i = 0; i<13; i++){
+        loadImage("Wings/wing"+i+".png",skipInit);
+      }
+    }
+
+
 	loadImage("Hair/hair_back1025.png",skipInit);
     loadImage("Hair/hair1025.png",skipInit);
 
