@@ -15,6 +15,7 @@ var curSessionGlobalVar;
 //or Leader + 1 or more Players  (leader doing bullshit side quests with someone)
 window.onload = function() {
 	//these bitches are SHAREABLE.
+	$(this).scrollTop(0);
 	loadNavbar();
 	if(getParameterByName("seed")){
 		Math.seed = getParameterByName("seed");

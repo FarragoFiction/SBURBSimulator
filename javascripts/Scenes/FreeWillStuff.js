@@ -39,7 +39,7 @@ function FreeWillStuff(session){
 	}
 
 	this.renderPlayers = function(div){
-		console.log("rendering free will player(s): " + this.session.session_id)
+		//console.log("rendering free will player(s): " + this.session.session_id)
 
 		var divID = (div.attr("id")) + "_freeWillBulshit" + this.renderPlayer1.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
@@ -59,7 +59,7 @@ function FreeWillStuff(session){
 	}
 
 	this.renderGodTier = function(div){
-		console.log("rendering free will god tier: " + this.session.session_id)
+		//console.log("rendering free will god tier: " + this.session.session_id)
 		var divID = (div.attr("id")) + "_freeWillBulshit" + this.playerGodTiered.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
@@ -194,6 +194,7 @@ function FreeWillStuff(session){
 			}
 		}
 		if(!ret.murderMode) ret = null;
+		if(ret == player) ret = null;
 		return ret;
 	}
 
@@ -210,6 +211,7 @@ function FreeWillStuff(session){
 				ret_abs_value = v;
 			}
 		}
+		if(ret.target == player) ret = null;
 		return ret.target;
 	}
 

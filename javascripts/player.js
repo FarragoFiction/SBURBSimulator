@@ -252,8 +252,15 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
 				ret = true;
 			}
 			//way more likely to be a just death if you're being an asshole.
-			if((this.murderMode || this.grimDark > 2) && Math.seededRandom()>.2){
-				ret = true;
+
+
+			if((this.murderMode || this.grimDark > 2)){
+				var rand = Math.seededRandom()
+				//console.log("rand is: " + rand)
+				if(rand > .2){
+					//console.log(" just death for: " + this.title() + "rand is: " + rand)
+					ret = true;
+				}
 			}
 		}else{  //you are a good person. just corrupt.
 			//way more likely to be a just death if you're being an asshole.
@@ -261,7 +268,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
 				ret = true;
 			}
 		}
-
+		//console.log(ret);
 		//return true; //for testing
 		return ret;
 	}
