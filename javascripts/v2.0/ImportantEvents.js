@@ -112,6 +112,7 @@ function PlayerDiedForever(session, mvp_value, player, doomedTimeClone){
 			narration += " Something seems...off...about them. But they are adamant that the " +player.htmlTitleBasic() + " needs to be protected. "
 			narration += " No matter what 'fate' says. "
 			narration += " They sacrifice their life for the " + player.htmlTitleBasic() + ". ";
+			
 
 			div.append(narration);
 			player.triggerLevel += 0.5;
@@ -135,6 +136,7 @@ function PlayerDiedForever(session, mvp_value, player, doomedTimeClone){
 
 			var alphaTimePlayer = findAspectPlayer(this.session.players, "Time");
 			removeFromArray(this.doomedTimeClone, alphaTimePlayer.doomedTimeClones);   //DEAD
+			this.session.afterLife.addGhost(this.doomedTimeClone);
 			return true;
 	}
 }
@@ -369,7 +371,7 @@ function PlayerEnteredSession(session, mvp_value,player, doomedTimeClone){
 			narration +=  "After a brief struggle, the doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
 			div.append(narration);
 			player.dead = true;
-			player.causeOfDeath = "apparantly displeasing the Observer."
+			player.makeDead("apparantly displeasing the Observer.");
 			this.doomedTimeClone.victimBlood = player.bloodColor;
 
 

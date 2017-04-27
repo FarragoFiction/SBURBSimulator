@@ -10,8 +10,7 @@ function FightQueen(session){
 
 	this.killPlayers = function(stabbings){
 		for(var i = 0; i<stabbings.length; i++){
-			stabbings[i].dead = true;
-			stabbings[i].causeOfDeath = "fighting the Black Queen";
+			stabbings[i].makeDead("fighting the Black Queen");
 		}
 	}
 

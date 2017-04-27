@@ -43,8 +43,7 @@ function VoidyStuff(session){
 				this.player.murderMode = true;
 				ret += " You get a bad feeling about this. ";
 			}else if (Math.seededRandom() > .95){
-				this.player.dead = true;
-				this.causeOfDeath = "doing voidy shenanigans, probably"
+				this.makeDead( "doing voidy shenanigans, probably")
 				ret += " You get a bad feeling about this. ";
 			}
 		}else{
@@ -64,7 +63,7 @@ function VoidyStuff(session){
 		if(this.player.godDestiny && Math.seededRandom()>0.8 && this.player.land != null){  //just randomly freaking god tier.
 			this.player.godTier = true;
 			this.player.dreamSelf = false;
-			ret += " What was that dark blue light on " + this.player.shortLand() + "? ";
+			ret += " What was that light on " + this.player.shortLand() + "? ";
 		}
 		if(this.player.leader && !this.session.ectoBiologyStarted && Math.seededRandom() > .8){
 			this.player.performEctobiology(this.session);
@@ -84,7 +83,7 @@ function VoidyStuff(session){
 					this.player.denizenDefeated = false;
 					ret += " That didn't sound good... ";
 					this.player.dead = true;
-					this.player.causeOfDeath = "fighting their Denizen way too early";
+					this.player.makeDead("fighting their Denizen way too early");
 				}else{
 					this.player.denizenDefeated = false;
 				}

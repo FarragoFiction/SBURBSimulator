@@ -228,8 +228,7 @@ function LuckStuff(session){
 			return ret;
 		}
 		var ret = "What the HELL!? The " + roll.player.htmlTitle() + " managed to somehow lose to REGULAR FUCKING ENEMIES!? Is that even POSSIBLE!? This is BULLSHIT. How unlucky do you even need to BE!? They are DEAD."
-		roll.player.dead = true;
-		roll.player.causeOfDeath = "from a Bad Break."
+		roll.player.makeDead("from a Bad Break.");
 		this.session.badLuckEvent = true;
 		return ret;
 

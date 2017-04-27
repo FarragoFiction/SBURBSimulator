@@ -60,8 +60,7 @@ function FaceDenizen(session){
 					p.denizenFaced = true;
 					p.denizenDefeated = false;
 					ret += " Huh.  They were NOT ready for that.  They are easily crushed by their Denizen. DEAD.";
-					p.dead = true;
-					p.causeOfDeath = "fighting their Denizen way too early";
+					p.makeDead("fighting their Denizen way too early");
 					div.append("<br>"+ret);
 					var divID = (div.attr("id"))
 					var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
@@ -119,7 +118,7 @@ function FaceDenizen(session){
 					p.denizenDefeated = false;
 					ret += " Huh.  They were NOT ready for that.  They are easily crushed by their Denizen. DEAD.";
 					p.dead = true;
-					p.causeOfDeath = "fighting their Denizen way too early";
+					p.makeDead("fighting their Denizen way too early");
 				}
 			}else{//do The Choice
 				ret += " The " + p.htmlTitle() + " cautiously approaches their denizen, " + p.getDenizen() + " and are presented with The Choice. ";

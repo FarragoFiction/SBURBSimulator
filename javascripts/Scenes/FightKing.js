@@ -11,10 +11,7 @@ function FightKing(session){
 
 	this.killPlayers = function(stabbings){
 		for(var i = 0; i<stabbings.length; i++){
-			stabbings[i].dead = true;
-			//console.log("king death: "+this.session.session_id)
-
-			stabbings[i].causeOfDeath = "fighting the Black King";
+			stabbings[i].makeDead("fighting the Black King");
 		}
 	}
 

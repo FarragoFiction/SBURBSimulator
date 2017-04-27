@@ -401,10 +401,9 @@ function FreeWillStuff(session){
 					var ret =  this.godTierHappens(sacrifice);
 					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". " + ret + " It is a stupidly huge deal, since the " + sacrifice.htmlTitleBasic() + " was never destined to God Tier at all. But I guess the luck of both players was enough to make things work out, in the end.";
 				}else{
-					sacrifice.dead = true;
 					removeFromArray(player, this.session.availablePlayers);
 					removeFromArray(sacrifice, this.session.availablePlayers);
-					sacrifice.causeOfDeath = "trying to go God Tier.";
+					sacrifice.makeDead("trying to go God Tier.");
 					player.triggerLevel += 100;
 					this.renderPlayer1 = player;
 					this.renderPlayer2 = sacrifice;
@@ -441,7 +440,7 @@ function FreeWillStuff(session){
 				}else{
 					player.dead = true;
 					removeFromArray(player, this.session.availablePlayers);
-					player.causeOfDeath = "trying to go God Tier.";
+					player.makeDead( "trying to go God Tier.");
 					this.renderPlayer1 = player;
 					//console.log(player.title() + " commits suicide but doesn't get tiger " + this.session.session_id);
 					var bed = "bed"
@@ -514,21 +513,19 @@ function FreeWillStuff(session){
 		if(player.mobility > murderer.mobility){
 			if(player.power > murderer.power){  //power is generic. generally scales with any aplicable stats. lets me compare two different aspect players.
 				//console.log(player.title() + " choosing to kill murderer. " + this.session.session_id)
-				murderer.dead = true;
 				player.victimBlood = murderer.bloodColor;
 				removeFromArray(player, this.session.availablePlayers);
 				removeFromArray(murderer, this.session.availablePlayers);
 				this.renderPlayer1 = player;
 				this.renderPlayer2 = murderer;
-				murderer.causeOfDeath = "being put down like a rabid dog by the " + player.htmlTitleBasic();
+				murderer.makeDead("being put down like a rabid dog by the " + player.htmlTitleBasic());
 				return "The " + player.htmlTitleBasic() + " cannot let this continue any further. The " + murderer.htmlTitleBasic() + " is a threat to everyone. They corner them, and have a brief, bloody duel that ends in the death of the " + murderer.htmlTitleBasic() + ".  Everyone is a little bit safer.";
 			}else{
 				//console.log(player.title() + " choosing to kill murderer but instead killed. " + this.session.session_id)
-				player.dead = true;
 				murderer.victimBlood = player.bloodColor;
 				removeFromArray(murderer, this.session.availablePlayers);
 				removeFromArray(player, this.session.availablePlayers);
-				player.causeOfDeath = "fighting the " + player.htmlTitleBasic();
+				player.makeDead("fighting the " + player.htmlTitleBasic());
 				this.renderPlayer1 = player;
 				this.renderPlayer2 = murderer;
 				return "The " + player.htmlTitleBasic() + " cannot let this continue any further. The " + murderer.htmlTitleBasic() + " is a threat to everyone. They corner them, and have a brief, bloody duel that ends in the death of the " + player.htmlTitleBasic() + ".  Everyone is a little bit less safe.";

@@ -211,13 +211,12 @@ function MurderPlayers(session){
 					}else{
 						m.increasePower();
 
-						worstEnemy.causeOfDeath = "fighting the " + m.htmlTitle();
 						ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". ";
 						if(m.dead == true){ //they could have been killed by another murder player in this same tick
 							ret += " Every one is very impressed that they managed to do it while dying."
 						}
 						ret += this.friendsOfVictimHateYou(worstEnemy, m);
-						worstEnemy.dead = true;
+						worstEnemy.makeDead("fighting the " + m.htmlTitle());
 						var r = worstEnemy.getRelationshipWith(m);
 						r.value = -10; //you are not happy with murderer
 						m.victimBlood = worstEnemy.bloodColor;
@@ -230,13 +229,12 @@ function MurderPlayers(session){
 					}else{
 						worstEnemy.increasePower();
 
-						m.causeOfDeath = "being put down like a rabid dog by the " + worstEnemy.htmlTitle()
 						ret += " The " + m.htmlTitle() + " attempts to brutally murders that asshole, the " + worstEnemy.htmlTitle();
 						ret += ",but instead gets murdered first, in self-defense. ";
 						if(m.dead == true){ //they could have been killed by another murder player in this same tick
 							ret += " The task is made especially easy by the " + m.htmlTitle() + " being already in the proccess of dying. "
 						}
-						m.dead = true;
+						m.makeDead("being put down like a rabid dog by the " + worstEnemy.htmlTitle());
 						var r = worstEnemy.getRelationshipWith(m);
 						r.value = -10; //you are not happy with murderer
 						worstEnemy.victimBlood = m.bloodColor;
@@ -301,18 +299,15 @@ function MurderPlayers(session){
 				}else if(worstEnemy.power < m.power*2){  //more likely to kill enemy than be killed. element of surprise
 					m.increasePower();
 
-					worstEnemy.causeOfDeath = "fighting the " + m.htmlTitle();
 					ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". ";
 					ret += this.friendsOfVictimHateYou(worstEnemy, m);
-					worstEnemy.dead = true;
+					worstEnemy.makeDead("fighting the " + m.htmlTitle())
 					m.victimBlood = worstEnemy.bloodColor;
 				}else{
 					worstEnemy.increasePower();
-
-					m.causeOfDeath = "being put down like a rabid dog by " + worstEnemy.htmlTitle()
 					ret += " The " + m.htmlTitle() + " attempts to brutally murders that asshole, the " + worstEnemy.htmlTitle();
 					ret += ",but instead gets murdered first, in self-defense. ";
-					m.dead = true;
+					m.makeDead("being put down like a rabid dog by " + worstEnemy.htmlTitle())
 					worstEnemy.victimBlood = m.bloodColor;
 				}
 			}else{

@@ -1030,6 +1030,7 @@ function drawSpriteTurnways(canvas, player){
 function makeRenderingSnapshot(player){
 	var ret = new PlayerSnapshot();
 	ret.robot = player.robot;
+	ret.id = player.id;
 	ret.trickster = player.trickster;
 	ret.baby_stuck = player.baby_stuck;
 	ret.sbahj = player.sbahj;
@@ -1054,6 +1055,11 @@ function makeRenderingSnapshot(player){
 	ret.quirk = player.quirk;
 	ret.baby = player.baby;
 	ret.causeOfDeath = player.causeOfDeath;
+	ret.hp = player.hp;
+	ret.minLuck = player.minLuck;
+	ret.maxLuck = player.maxLuck;
+	ret.freeWill = player.freeWill;
+	ret.mobility = player.mobility;
 	return ret;
 }
 

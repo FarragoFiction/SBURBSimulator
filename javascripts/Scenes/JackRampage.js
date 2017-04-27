@@ -77,8 +77,7 @@ function JackRampage(session){
 
 	this.killPlayers = function(stabbings){
 		for(var i = 0; i<stabbings.length; i++){
-			stabbings[i].dead = true;
-			stabbings[i].causeOfDeath = "after being shown too many stabs from Jack";
+			stabbings[i].makeDead("after being shown too many stabs from Jack");
 		}
 	}
 

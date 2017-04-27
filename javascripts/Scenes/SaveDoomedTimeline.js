@@ -34,7 +34,6 @@ function SaveDoomedTimeLine(session){
 		}else if(rand>.2){
 			timeClone.murderMode = !timeClone.murderMode;
 		}
-
 		this.doomedTimeClone = timeClone;
 	}
 

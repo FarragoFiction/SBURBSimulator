@@ -1,4 +1,4 @@
-function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
+function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 
   //call if I overrode claspect or interest or anything
 	this.reinit = function(){
@@ -14,6 +14,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
 	this.session = session;
 	this.hp = 0; //mostly used for boss battles;
 	this.graphs = [];
+	this.id = id;
 	this.land1 = null; //words my land is made of.
 	this.land2 = null;
 	this.minLuck = 0;
@@ -89,6 +90,12 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny){
 			}
 		}
 		return ret;
+	}
+	
+	this.makeDead = function(causeOfDeath){
+		this.dead = true;
+		this.causeOfDeath = causeOfDeath;
+		this.session.afterLife.addGhost(makeRenderingSnapshot(this));
 	}
 
 	this.getSpades = function(){
@@ -1525,7 +1532,8 @@ function randomPlayerWithClaspect(session, c,a){
 	var gd = false;
 
 	var m = getRandomElementFromArray(moons);
-	var p =  new Player(session,c,a,k,m,gd);
+	var id = Math.seed;
+	var p =  new Player(session,c,a,k,m,gd,id);
 
 	p.initializeStats();
 	var tmp =getRandomLandFromPlayer(p);

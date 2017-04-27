@@ -4,9 +4,15 @@
 //renderer calls this, not any individual scenes.
 function PlayerSnapshot(){
 	this.trickster = null;
-  this.sbahj = null;
+	this.sbahj = null;
 	this.baby = null;
 	this.robot = null;
+	this.hp = 0;
+	this.minLuck = 0;
+	this.maxLuck = 0;
+	this.freeWill = 0;
+	this.mobility = 0;
+	this.id = null;
 	this.baby_stuck = null;
 	this.ectoBiologicalSource = null;
 	this.class_name = null;null
@@ -15,6 +21,7 @@ function PlayerSnapshot(){
 	this.number_times_confessed_to = null;
 	this.influenceSymbol = null;
 	this.aspect = null;
+	this.ghost = false; //only afer life sets this.
 	this.land = null;
 	this.interest1 = null
 	this.interest2 = null
@@ -43,7 +50,7 @@ function PlayerSnapshot(){
 	this.triggerLevel = null;
 	this.murderMode = null;
 	this.leftMurderMode = null;
-  this.grimDark = null;
+	this.grimDark = null;
 	this.leader = null;
 	this.landLevel = null;
 	this.denizenFaced = null;

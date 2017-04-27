@@ -5,6 +5,7 @@ function Session(session_id){
 	this.hasClubs = false;
 	this.sessionHealth = 5000; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
 	this.hasDiamonds = false;
+	this.afterLife = new AfterLife();
 	this.hasHearts = false;
 	this.hasSpades = false;
 	this.denizenBeat = false;
@@ -143,6 +144,7 @@ function Session(session_id){
 		//nobody is the leader anymore.
 		var newSession = new Session(Math.seed);  //this is a real session that could have gone on without these new players.
 		newSession.currentSceneNum = this.currentSceneNum;
+		newSession.afterLife = this.afterLife; //afterlife carries over.
 		newSession.reinit();
 		newSession.makePlayers();
 		newSession.randomizeEntryOrder();
@@ -176,6 +178,7 @@ function Session(session_id){
 
 
 	//if htis is used for scratch, manually save ectobiology cause it's getting reset here
+	//DEFINITELY don't erase the afterlife. that's the whole point.
 	this.reinit = function(){
 		groundHog = false;
 		Math.seed = this.session_id; //if session is reset,
@@ -193,7 +196,6 @@ function Session(session_id){
 		this.scenesTriggered = []; //this.scenesTriggered
 		this.doomedTimelineReasons = [];
 		this.ectoBiologyStarted = false;
-
 	}
 
 	this.makePlayers = function(){

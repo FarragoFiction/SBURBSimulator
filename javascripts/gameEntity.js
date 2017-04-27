@@ -23,4 +23,6 @@ function GameEntity(session, name){
 		this.boostAllRelationshipsBy = function(amount){
 
 		};
+		
+		//~~~~~~~~~~~~~~~~~~~~~~~~TODO!!!!!!!!!!!!!!!!!!!!!!!  allow doomed time clones to be treated as "players". if they die, add them to graveyard.
 }
