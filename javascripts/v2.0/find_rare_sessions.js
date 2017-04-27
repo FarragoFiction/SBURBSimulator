@@ -291,6 +291,7 @@ function renderScratchButton(session){
 	if(!session.scratched){
 		console.log("scartch")
 		session.scratchAvailable = true;
+		session.pleaseIgnoreThisSessionAB = true;
 		summarizeSessionNoTimeout(session);	
 		scratch(); //not user input, just straight up do it.
 	}else{
@@ -316,6 +317,7 @@ function reinit(){
 
 
 function tick(){
+	console.log("tick " + curSessionGlobalVar.timeTillReckoning + curSessionGlobalVar.doomedTimeline)
 	if(curSessionGlobalVar.timeTillReckoning > 0 && !curSessionGlobalVar.doomedTimeline){
 		setTimeout(function(){
 			curSessionGlobalVar.timeTillReckoning += -1;
@@ -354,12 +356,17 @@ function reckoningTick(){
 		},repeatTime);
 	}else{
 		var s = new Aftermath(curSessionGlobalVar);
+		console.log("about to trigger aftermath")
 		s.trigger(curSessionGlobalVar.players)
-		s.renderContent(curSessionGlobalVar.newScene());
-
+		s.renderContent(curSessionGlobalVar.newScene());  //in the middle of this, the scratch button could be rendered. causes sessions to split.
+		if(curSessionGlobalVar.timeTillReckoning > 0) return null;  //obviously this session has scratched stop doing shit.
+		console.log("aftermath rendered")
+		//after math can call a scratch.
+		if(curSessionGlobalVar.pleaseIgnoreThisSessionAB) return null;
 
 		//summarizeSession(curSessionGlobalVar);
 		//for some reason whether or not a combo session is available isn't working? or combo isn't working right in this mode?
+		console.log("checking if i should do summaries")
 		if(curSessionGlobalVar.makeCombinedSession == true){
 			processCombinedSession();  //make sure everything is done rendering first
 		}else{
@@ -418,7 +425,7 @@ function processCombinedSession(){
 
 
 function summarizeSession(session){
-	console.log("summarizing: " + curSessionGlobalVar.session_id + " doomed: " +curSessionGlobalVar.doomedTimeline)
+	console.log("summarizing: " + curSessionGlobalVar.session_id + " please ignore: " +curSessionGlobalVar.pleaseIgnoreThisSessionAB)
 	//don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
 	if(sessionsSimulated.indexOf(session.session_id) != -1){
 		//console.log("should be skipping a repeat session: " + curSessionGlobalVar.session_id)
@@ -653,6 +660,7 @@ function callNextIntroWithDelay(player_index){
 
 function intro(){
 	console.log("intro")
+	curSessionGlobalVar.pleaseIgnoreThisSessionAB = false;
 	callNextIntroWithDelay(0);
 }
 

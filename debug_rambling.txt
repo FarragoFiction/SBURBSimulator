@@ -840,5 +840,62 @@ so...it looks like it tries to...tick itself again?
 Hypothesis: summarize setsTimeout without updating the session (somehow). tries to tick a mostly done session, which forwards to reckoning tick. cause no more time till reckoning.
 no, it really looks like setTimeout for new session never called. but something there feels right. go tak ea walk. get a snack clear head.
 
+Alright focus up, five minutes on the clock, only problems, no solutions.
+
+* it APPEARS that a session is being run twice at the same time.
+* three sessions are being rendered, and I only expect 2.
+* i know there are multiple ways for a session to be "done". as such, my "time to render a session code" is hard to read.
+* two sessions render before a popup, one renders after then genreates it's own popups
+* a popup happens when a session is summarized adn there are no more sessions to summarize.
+* i make sure to not count a prescratch sessions as towrds the session quota.
+* neither post scratch session is "real".
+* at least one post scratch session appears to be the initial conditions of the session. no confirmation though.
+*a session can be done mid tick, before the reckoning or during it or in the aftermath.
+* the repeated session summary claims to be rendering after the aftermath.
+* a "scratched" session is the SAME session, just reinited.
+* multiple parts of a ticking session can render the scratch button. i dodn't remember evern seeing more than one scratch button, though. do they replace each other???
+
+five minutes are up.
+if...if...I render teh scratch button and THEN do the aftermath...wouldn't i get the behavior i'm seeing? it's still the "first session" summarizing itself, but it appears to be the post scratch one 'cause it's already processed.
+
+not perfect. but...i'm getting closer. i see that ticks are interupted by reckoning ticks midway through the first post scratch session. it must 'rescratch' then or something. okay. try....
+
+intro  find_rare_sessions.js:661:2
+victory or utter defeat  find_rare_sessions.js:373:5
+summarizing: 20729783 doomed: false  find_rare_sessions.js:427:2
+tick 28false
+
+So, current observed behavior is intro, immediate AFTERMATH and then summary, and then I start ticking.  This is bass fucking ackwards. 
+I have a variable called "pleaseIgnoreThisSEssionAB" and it's doing nothing. so. it must be set to true....
+
+progress. aftermath can call a scratch. the next thing the rRECKONING TICK does is check for combo for victory and render summary. see if this fixes it.
+how to distinguish between a freshly scratched session a post scratch session. oh. my plz ignore variable.
+so frustrated still seeing it.  I have wasted HOURS on this.  
+problem, can't have new session's pleaseIgnore be false on intro. intro somehow called BFORE i finishe processing after math.fucking asyncronous code.
 
 
+about to trigger aftermath  find_rare_sessions.js:359:3
+scartch  find_rare_sessions.js:292:3
+no timeout summarizing: 143713195  find_rare_sessions.js:474:2
+reinit  find_rare_sessions.js:311:2
+intro  find_rare_sessions.js:661:2
+aftermath rendered  find_rare_sessions.js:362:3
+checking if i should do summaries  find_rare_sessions.js:368:3
+victory or utter defeat  find_rare_sessions.js:374:5
+summarizing: 143713195 please ignore: false  find_rare_sessions.js:427:2
+tick 13false
+
+
+k.
+just triggering the aftermath is enough to cause a scratch.  even before it renders.  and intro for scratched session called before...before....Fuck.
+Okay. this suddenly makes sense. 
+
+Sequence of events.  Aftermath triggered. Aftermath begins to render, midway through renders the scratch button which CAUSES a scratch which CAUSES an intro.  async bullshit. then the scratch returns, which lets the aftermath finish rendinger.
+
+How to fix?
+
+How to distinguish between a fresh session and a old one. number of ticks!
+
+fucking FINALLY. AB can do one scratched session correctly. okay. lets see if she can do more than that.
+
+yay. new problem. i think AB is scratching too early or something. maybe need to let the aftermath finish rendering. i don't know. the scratched sessions' she's finding are all wrong.

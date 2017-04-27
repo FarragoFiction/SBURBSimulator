@@ -40,6 +40,7 @@ function Reckoning(session){
 			this.session.doomedTimeline = true;
 			intro += "<br><br>";
 			$("#story").append(intro);
+			console.log("reckoning scratch button")
 			renderScratchButton(this.session);
 			this.session.scratchAvailable = true;
 			return intro;
