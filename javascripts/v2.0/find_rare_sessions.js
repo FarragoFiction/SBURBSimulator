@@ -67,7 +67,7 @@ function robotMode(){
 
 
 function checkPassword(){
-	console.log("click")
+	//console.log("click")
 	numSimulationsDone = 0; //but don't reset stats
 	sessionSummariesDisplayed = []
 
@@ -128,14 +128,14 @@ function filterSessionSummaries(){
 
 	}
 
-	//console.log(tmp);
+	////console.log(tmp);
 	sessionSummariesDisplayed = tmp;
 	printSummaries();
 	printStats(filters);
 }
 //filter is proprety name, some are special, most just pass through
 function filterSessionSummariesBy(filter){
-	console.log("Filtering session summaries by: " + filter)
+	//console.log("Filtering session summaries by: " + filter)
 	sessionSummariesDisplayed = []
 	if(!filter){
 		for(var i = 0; i<allSessionsSummaries.length; i++){
@@ -161,7 +161,7 @@ function filterSessionSummariesBy(filter){
 		}else if(filter == "timesAllLived" && ss.numDead == 0){
 			tmp.push(ss);
 		}else if(ss[filter]){
-			console.log("adding filter")
+			//console.log("adding filter")
 			tmp.push(ss);
 		}
 	}
@@ -243,7 +243,7 @@ function startSessionJunior(){
 }
 
 function startSession(){
-	console.log("start session")
+	//console.log("start session")
 	$("#story").html("")
 	curSessionGlobalVar = new Session(initial_seed)
 	reinit();
@@ -261,7 +261,7 @@ function startSession(){
 }
 
 function restartSession(){
-	console.log("restart session")
+	//console.log("restart session")
 	$("#story").html("");
 	//window.scrollTo(0, 0);  jarring for AB to go up and down over and over
 	intro();
@@ -288,23 +288,23 @@ function shareableURL(){
 
 
 function renderScratchButton(session){
-	console.log("rendering scratch button, i.e. setting need to scratch to true.")
+	//console.log("rendering scratch button, i.e. setting need to scratch to true.")
 	needToScratch = true;
 	
 }
 
 function scratchAB(session){
-	console.log("rendering scratch button, i.e. setting need to scratch to false.")
+	//console.log("rendering scratch button, i.e. setting need to scratch to false.")
 	needToScratch = false;
 	//treat myself as a different session that scratched one?
 	if(!session.scratched){
-		console.log("scartch")
+		//console.log("scartch")
 		session.scratchAvailable = true;
 		session.pleaseIgnoreThisSessionAB = true;
 		summarizeSessionNoTimeout(session);	
 		scratch(); //not user input, just straight up do it.
 	}else{
-		console.log("no scratch")
+		//console.log("no scratch")
 		session.scratchAvailable = false;
 		summarizeSession(session);
 	}
@@ -318,7 +318,7 @@ function scratchConfirm(){
 }
 
 function reinit(){
-	console.log("reinit");
+	//console.log("reinit");
 	available_classes = classes.slice(0);
 	available_aspects = nonrequired_aspects.slice(0); //required_aspects
 	available_aspects = available_aspects.concat(required_aspects.slice(0));
@@ -327,7 +327,7 @@ function reinit(){
 
 
 function tick(){
-	console.log("tick " + curSessionGlobalVar.timeTillReckoning + curSessionGlobalVar.doomedTimeline)
+	//console.log("tick " + curSessionGlobalVar.timeTillReckoning + curSessionGlobalVar.doomedTimeline)
 	if(curSessionGlobalVar.timeTillReckoning > 0 && !curSessionGlobalVar.doomedTimeline){
 		setTimeout(function(){
 			curSessionGlobalVar.timeTillReckoning += -1;
@@ -352,17 +352,17 @@ function reckoning(){
 			scratchAB(curSessionGlobalVar);  
 			return null;
 		} 
-		//console.log("doomed timeline prevents reckoning")
+		////console.log("doomed timeline prevents reckoning")
 		var living = findLivingPlayers(curSessionGlobalVar.players)
 		if(curSessionGlobalVar.scratched || living.length == 0){ //can't scrach so only way to keep going.
-			console.log("doomed scratched timeline")
+			//console.log("doomed scratched timeline")
 			summarizeSession(curSessionGlobalVar);
 		}
 	}
 }
 
 function reckoningTick(){
-	console.log("reckoning tick " + curSessionGlobalVar.timeTillReckoning + curSessionGlobalVar.doomedTimeline)
+	//console.log("reckoning tick " + curSessionGlobalVar.timeTillReckoning + curSessionGlobalVar.doomedTimeline)
 	if(curSessionGlobalVar.timeTillReckoning > -10){
 		setTimeout(function(){
 			curSessionGlobalVar.timeTillReckoning += -1;
@@ -371,10 +371,10 @@ function reckoningTick(){
 		},repeatTime);
 	}else{
 		var s = new Aftermath(curSessionGlobalVar);
-		console.log("about to trigger aftermath")
+		//console.log("about to trigger aftermath")
 		s.trigger(curSessionGlobalVar.players)
 		s.renderContent(curSessionGlobalVar.newScene());  
-		console.log("aftermath rendered")
+		//console.log("aftermath rendered")
 		//after math can call a scratch.
 
 		if(needToScratch){
@@ -383,13 +383,13 @@ function reckoningTick(){
 		} 
 		//summarizeSession(curSessionGlobalVar);
 		//for some reason whether or not a combo session is available isn't working? or combo isn't working right in this mode?
-		console.log("checking if i should do summaries")
+		//console.log("checking if i should do summaries")
 		if(curSessionGlobalVar.makeCombinedSession == true){
 			processCombinedSession();  //make sure everything is done rendering first
 		}else{
 			var living = findLivingPlayers(curSessionGlobalVar.players);
 			if(curSessionGlobalVar.won || living.length == 0 || curSessionGlobalVar.scratched){
-				console.log("victory or utter defeat")
+				//console.log("victory or utter defeat")
 				summarizeSession(curSessionGlobalVar);
 			}
 		}
@@ -432,7 +432,7 @@ function processCombinedSession(){
 	}else{
 		var living = findLivingPlayers(curSessionGlobalVar.players)
 		if(curSessionGlobalVar.scratched || living.length == 0){
-			console.log("not a combo session")
+			//console.log("not a combo session")
 			summarizeSession(curSessionGlobalVar);
 		}
 	}
@@ -442,10 +442,10 @@ function processCombinedSession(){
 
 
 function summarizeSession(session){
-	console.log("summarizing: " + curSessionGlobalVar.session_id + " please ignore: " +curSessionGlobalVar.pleaseIgnoreThisSessionAB)
+	//console.log("summarizing: " + curSessionGlobalVar.session_id + " please ignore: " +curSessionGlobalVar.pleaseIgnoreThisSessionAB)
 	//don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
 	if(sessionsSimulated.indexOf(session.session_id) != -1){
-		//console.log("should be skipping a repeat session: " + curSessionGlobalVar.session_id)
+		////console.log("should be skipping a repeat session: " + curSessionGlobalVar.session_id)
 
 		//return;
 	}
@@ -477,7 +477,7 @@ function summarizeSession(session){
 		return;
 	}else{
 		setTimeout(function(){
-			console.log("setting timeout for new seed")
+			//console.log("setting timeout for new seed")
 			//var tmp = getRandomSeed();
 			//Math.seed = tmp;
 			//doomedTimelineReasons = []
@@ -489,10 +489,10 @@ function summarizeSession(session){
 
 
 function summarizeSessionNoTimeout(session){
-	console.log("no timeout summarizing: " + curSessionGlobalVar.session_id)
+	//console.log("no timeout summarizing: " + curSessionGlobalVar.session_id)
 	//don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
 	if(sessionsSimulated.indexOf(session.session_id) != -1){
-		//console.log("should be skipping a repeat session: " + curSessionGlobalVar.session_id)
+		////console.log("should be skipping a repeat session: " + curSessionGlobalVar.session_id)
 
 		//return;
 	}
@@ -575,7 +575,7 @@ function getQuipAboutSession(sessionSummary){
 }
 
 function foundRareSession(div, debugMessage){
-	console.log(debugMessage)
+	//console.log(debugMessage)
 	var canvasHTML = "<br><canvas id='canvasJRAB" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 	div.append(canvasHTML);
 
@@ -646,7 +646,7 @@ function printSummaries(){
 
 
 function checkDoomedTimelines(){
-	//console.log("check")
+	////console.log("check")
 	for(var i= 0; i<curSessionGlobalVar.doomedTimelineReasons.length; i ++){
 		if(curSessionGlobalVar.doomedTimelineReasons[i] != "Shenanigans"){
 			//alert("found an interesting doomed timeline" + doomedTimelineReasons[i])
@@ -676,7 +676,7 @@ function callNextIntroWithDelay(player_index){
 
 
 function intro(){
-	console.log("intro")
+	//console.log("intro")
 	curSessionGlobalVar.pleaseIgnoreThisSessionAB = false;
 	callNextIntroWithDelay(0);
 }
