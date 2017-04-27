@@ -1161,7 +1161,7 @@ function drawSprite(canvas, player,ctx,baby){
  }
 
 
-  if(player.influenceSymbol){
+  if(!baby && player.influenceSymbol){
     //wasteOfMindSymbol(canvas, player);
     influenceSymbol(canvas, player.influenceSymbol);
   }

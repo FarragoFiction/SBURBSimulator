@@ -3,9 +3,20 @@ function VoidyStuff(session){
 	this.canRepeat = true;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.player = null;
+	this.voidPlayer = 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		this.player = findAspectPlayer(this.session.availablePlayers, "Void");
+		this.player = null;
+		this.voidPlayer = findAspectPlayer(this.session.availablePlayers, "Void");
+		if(this.voidPlayer){
+			if(this.voidPlayer.isActive()){
+				this.player = this.voidPlayer;
+			}else{  //somebody else can be voided.
+				this.player = getRandomElementFromArray(this.session.availablePlayers);
+				if(this.player.aspect == "Light" && this.player.class_name != "Prince") this.player = null; //light players can't be voided according to calliope
+				console.log("passive void player shenanigans in: " + this.session.session_id)
+			}
+		}
 		return this.player != null;
 	}
 
@@ -16,6 +27,7 @@ function VoidyStuff(session){
 	this.content = function(){
 		removeFromArray(this.player, this.session.availablePlayers);
 		var ret = "The " + this.player.htmlTitle() + " is doing...something. It's kind of hard to see.";
+		if(this.player != this.voidPlayer) ret+= " You are definitely blaming the " + this.voidPlayer.htmlTitle() + ", somehow. "
 		var rand = Math.seededRandom();
 
 		if(rand > .3){
@@ -27,7 +39,7 @@ function VoidyStuff(session){
 				this.player.corruptionLevelOther += getRandomInt(1,100);
 				ret += " You get a bad feeling about this. ";
 			}else if(Math.seededRandom() > .9){
-				this.player.triggerLevel = 3;
+				this.player.triggerLevel += 3;
 				this.player.murderMode = true;
 				ret += " You get a bad feeling about this. ";
 			}else if (Math.seededRandom() > .95){
@@ -61,7 +73,7 @@ function VoidyStuff(session){
 
 		if(this.player.landLevel >= 6 && this.player.land != null && !this.player.denizenFaced && Math.seededRandom() > .5){
 			this.player.denizenFaced = true;
-			ret += " Why is the denizen, " + this.player.getDenizen() + " bellowing so loudly on " + this.player.shortLand() + "? ";
+			ret += " Why is the denizen " + this.player.getDenizen() + " bellowing so loudly on " + this.player.shortLand() + "? ";
 			if(Math.seededRandom() >.5){
 				this.player.power = this.player.power*2;  //current and future doubling of power.
 				this.player.leveledTheHellUp = true;
