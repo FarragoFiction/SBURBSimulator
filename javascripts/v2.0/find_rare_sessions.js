@@ -288,11 +288,13 @@ function shareableURL(){
 
 
 function renderScratchButton(session){
+	console.log("rendering scratch button, i.e. setting need to scratch to true.")
 	needToScratch = true;
 	
 }
 
 function scratchAB(session){
+	console.log("rendering scratch button, i.e. setting need to scratch to false.")
 	needToScratch = false;
 	//treat myself as a different session that scratched one?
 	if(!session.scratched){
@@ -345,7 +347,10 @@ function reckoning(){
 	if(!curSessionGlobalVar.doomedTimeline){
 		reckoningTick();
 	}else{
-		if(needToScratch) scratchAB(curSessionGlobalVar);  
+		if(needToScratch){
+			scratchAB(curSessionGlobalVar);  
+			return null;
+		} 
 		//console.log("doomed timeline prevents reckoning")
 		var living = findLivingPlayers(curSessionGlobalVar.players)
 		if(curSessionGlobalVar.scratched || living.length == 0){ //can't scrach so only way to keep going.
@@ -371,7 +376,10 @@ function reckoningTick(){
 		console.log("aftermath rendered")
 		//after math can call a scratch.
 
-		if(needToScratch) scratchAB(curSessionGlobalVar);  
+		if(needToScratch){
+			scratchAB(curSessionGlobalVar);  
+			return null;
+		} 
 		//summarizeSession(curSessionGlobalVar);
 		//for some reason whether or not a combo session is available isn't working? or combo isn't working right in this mode?
 		console.log("checking if i should do summaries")
@@ -382,8 +390,6 @@ function reckoningTick(){
 			if(curSessionGlobalVar.won || living.length == 0 || curSessionGlobalVar.scratched){
 				console.log("victory or utter defeat")
 				summarizeSession(curSessionGlobalVar);
-			}else if(living.length == 0){
-				if(needToScratch) scratchAB(curSessionGlobalVar);  
 			}
 		}
 
