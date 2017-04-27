@@ -56,6 +56,7 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 		summarizeSession(curSessionGlobalVar);// let's the author bot summarize the session. doens't matter if I'm not in AB mode, arleady crashed, right?
 		newsposts(""); //don't care what is happening.
 		corruptRoboNewsposts("");
+		renderAfterlifeURL();
 	}
 	return false; //if i return true here, the real error doesn't show up
 
@@ -324,17 +325,29 @@ function scratch(){
 
 }
 
+function renderAfterlifeURL(){
+	if(curSessionGlobalVar.afterLife.ghosts.length > 0){
+
+		var html = "<Br><br><a href = 'rip.html?players=" + generateURLParamsForPlayers(curSessionGlobalVar.afterLife.ghosts) + "'>View Afterlife?</a>";
+		console.log("gonna append: " + html)
+		$("#story").append(html);
+	}else{
+		console.log("no ghosts")
+	}
+}
+
 //pair with seed for shareable url for character creator, or pair with nothing for afterlife viewer.
 function generateURLParamsForPlayers(players){
 	var ret = ""//up to caller to make players = ret
 	var json = JSON.stringify(players, function(key,value){
-		console.log(key);
-		if(key == "session" || key == "guardian" || key == "relationships"){  //TODO relationships are special case. figure it out. later.
+		//console.log(key);
+		if(key == "session" || key == "guardian" || key == "relationships" || key == "quirks"){  //TODO relationships are special case. figure it out. later.
 			return null; //tutorial showed undefined here. how important is that?
 		}else{
 			return value;
 		}
 	});
+	console.log(json)
 	return encodeURI(ret+json, "UTF-8");
  }
 

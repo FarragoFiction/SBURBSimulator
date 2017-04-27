@@ -91,6 +91,8 @@ function startSession(){
 }
 
 
+
+
 function getParameterByName(name, url) {
     if (!url) {
       url = window.location.href;
@@ -144,6 +146,7 @@ function renderScratchButton(session){
 			$("#story").append("<br>This session is already scratched. No further scratches available.");
 		}
 	}
+	renderAfterlifeURL();
 }
 
 function scratchConfirm(){
@@ -184,6 +187,8 @@ function reckoning(){
 	s.renderContent(curSessionGlobalVar.newScene());
 	if(!curSessionGlobalVar.doomedTimeline){
 		reckoningTick();
+	}else{
+		renderAfterlifeURL();
 	}
 }
 
@@ -201,6 +206,8 @@ function reckoningTick(){
 		s.renderContent(curSessionGlobalVar.newScene());
 		if(curSessionGlobalVar.makeCombinedSession == true){
 			processCombinedSession();  //make sure everything is done rendering first
+		}else{
+			renderAfterlifeURL();
 		}
 	}
 
@@ -213,6 +220,8 @@ function processCombinedSession(){
 		$("#story").append("<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Their sick frog may have screwed them over, but the connection it provides to their child universe will equally prove to be their salvation. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session <a href = 'index2.html?seed=" + curSessionGlobalVar.session_id + "'>"+curSessionGlobalVar.session_id +"</a>. ");
 		checkSGRUB();
 		load(curSessionGlobalVar.players); //in loading.js
+	}else{
+		renderAfterlifeURL();
 	}
 
 }
