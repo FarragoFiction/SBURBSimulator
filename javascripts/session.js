@@ -15,6 +15,7 @@ function Session(session_id){
 	this.crashedFromSessionBug = false; //gets corrupted if an unrecoverable error gets caught.
 	this.crashedFromPlayerActions = false;
 	this.sickFires = false;
+	this.dreamBubbleAfterlife = false;
 	this.sbahj = false;
 	this.heroicDeath = null;
 	this.justDeath = null;

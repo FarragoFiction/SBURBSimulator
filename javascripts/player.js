@@ -1602,6 +1602,19 @@ function findAspectPlayer(playerList, aspect){
 	}
 }
 
+function findAllAspectPlayers(playerList, aspect){
+	var ret = [];
+	for(var i= 0; i<playerList.length; i++){
+		var p = playerList[i];
+		if(p.aspect == aspect){
+			//console.log("Found " + aspect + " player");
+			ret.push(p)
+		}
+	}
+	return ret;
+}
+
+
 function getLeader(playerList){
 	for(var i= 0; i<playerList.length; i++){
 		var p = playerList[i];
