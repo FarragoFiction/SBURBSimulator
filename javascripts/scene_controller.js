@@ -269,15 +269,15 @@ function scratch(){
 	scratch += " The new players will be given stat boosts to give them a better chance than the previous generation."
 	
 	var suddenDeath = findAspectPlayer(raggedPlayers, "Life");
-	if( suddenDeath = null) suddenDeath = findAspectPlayer(raggedPlayers, "Doom");
+	if( suddenDeath == null) suddenDeath = findAspectPlayer(raggedPlayers, "Doom");
 	
 	//NOT over time. literally sudden death. thanks meenah!
 	if(suddenDeath && !suddenDeath.dead){
 		console.log("sudden death in: " + curSessionGlobalVar.session_id)
 		for(var i = 0; i<raggedPlayers.length; i++){
-			raggedPlayer.makeDead("sudden death right as the scratch happened")
+			raggedPlayers[i].makeDead("sudden death right as the scratch happened")
 		}
-		scratch += "It...appears that the " + suddenDeath.htmlTitleBasic() + " managed to figure out that killing everyone at the last minute would allow them to live on in the afterlife between sessions. They may be available as guides for the players. ";
+		scratch += " It...appears that the " + suddenDeath.htmlTitleBasic() + " managed to figure out that killing everyone at the last minute would allow them to live on in the afterlife between sessions. They may be available as guides for the players. ";
 	}
 	if(curSessionGlobalVar.players.length != numPlayersPreScratch){
 		scratch += " You are quite sure that players not native to this session have never been here at all. Quite frankly, you find the notion absurd. "

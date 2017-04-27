@@ -285,10 +285,13 @@ function shareableURL(){
 
 
 function renderScratchButton(session){
-	console.log("scartch")
 	//treat myself as a different session that scratched one?
-	summarizeSessionNoTimeout(session);
-	scratch(); //not user input, just straight up do it.
+	if(!session.scratched){
+		console.log("scartch")
+		session.scratchAvailable = true;
+		summarizeSessionNoTimeout(session);	
+		scratch(); //not user input, just straight up do it.
+	}
 }
 
 function scratchConfirm(){
@@ -327,9 +330,10 @@ function reckoning(){
 		reckoningTick();
 	}else{
 		//console.log("doomed timeline prevents reckoning")
-		if(curSessionGlobalVar.scratched){ //can't scrach so only way to keep going.
+		var living = findLivingPlayers(curSessionGlobalVar.players)
+		if(curSessionGlobalVar.scratched || living.length == 0){ //can't scrach so only way to keep going.
 			console.log("doomed scratched timeline")
-			//summarizeSession(curSessionGlobalVar);
+			summarizeSession(curSessionGlobalVar);
 		}
 	}
 }
@@ -352,9 +356,9 @@ function reckoningTick(){
 		if(curSessionGlobalVar.makeCombinedSession == true){
 			processCombinedSession();  //make sure everything is done rendering first
 		}else{
-
-			if(curSessionGlobalVar.won){
-				console.log("victory")
+			var living = findLivingPlayers(curSessionGlobalVar.players);
+			if(curSessionGlobalVar.won || living.length == 0 || curSessionGlobalVar.scratched){
+				console.log("victory or utter defeat")
 				summarizeSession(curSessionGlobalVar);
 			}
 		}
@@ -395,7 +399,8 @@ function processCombinedSession(){
 		$("#story").append("<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session " + curSessionGlobalVar.session_id + ". ");
 		intro();
 	}else{
-		if(curSessionGlobalVar.scratched){
+		var living = findLivingPlayers(curSessionGlobalVar.players)
+		if(curSessionGlobalVar.scratched || living.length == 0){
 			console.log("not a combo session")
 			//summarizeSession(curSessionGlobalVar);
 		}

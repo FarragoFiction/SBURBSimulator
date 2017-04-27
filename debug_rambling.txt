@@ -735,3 +735,17 @@ make grimDark 4 level tier, not boolean. 0 is none.  1 = Zero out Relationships.
 
 
 Add grim light corruption as well. think about what this means (do they counter each other?)
+
+
+
+okay. let's think this through.
+
+Problem:  AB is returning from a single session EIGHT GODDAMNED TIMES.
+
+Context: I'm upgrading AB to be able to handle scratched sessions. I carefully locked out the various ways she can 'return' from a session to either be through scratching, or through winning, OR through losing a scratched session. At least...I think so.
+
+Okay. turns out I need to check to see if a session was already scratched beofre auto scartching. duh.
+
+but things are weird still. no session scratched, but two extra sessions show up.  session with combo and without are treated separate? and combo is twice. BLUH.
+
+okay. so. what's going on there.
