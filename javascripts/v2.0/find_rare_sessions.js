@@ -242,6 +242,7 @@ function startSessionJunior(){
 }
 
 function startSession(){
+	console.log("start session")
 	$("#story").html("")
 	curSessionGlobalVar = new Session(initial_seed)
 	reinit();
@@ -259,6 +260,7 @@ function startSession(){
 }
 
 function restartSession(){
+	console.log("restart session")
 	$("#story").html("");
 	//window.scrollTo(0, 0);  jarring for AB to go up and down over and over
 	intro();
@@ -291,6 +293,9 @@ function renderScratchButton(session){
 		session.scratchAvailable = true;
 		summarizeSessionNoTimeout(session);	
 		scratch(); //not user input, just straight up do it.
+	}else{
+		console.log("no scratch")
+		session.scratchAvailable = false;
 	}
 }
 
@@ -302,6 +307,7 @@ function scratchConfirm(){
 }
 
 function reinit(){
+	console.log("reinit");
 	available_classes = classes.slice(0);
 	available_aspects = nonrequired_aspects.slice(0); //required_aspects
 	available_aspects = available_aspects.concat(required_aspects.slice(0));
@@ -339,6 +345,7 @@ function reckoning(){
 }
 
 function reckoningTick(){
+	console.log("reckoning tick " + curSessionGlobalVar.timeTillReckoning + curSessionGlobalVar.doomedTimeline)
 	if(curSessionGlobalVar.timeTillReckoning > -10){
 		setTimeout(function(){
 			curSessionGlobalVar.timeTillReckoning += -1;
@@ -402,7 +409,7 @@ function processCombinedSession(){
 		var living = findLivingPlayers(curSessionGlobalVar.players)
 		if(curSessionGlobalVar.scratched || living.length == 0){
 			console.log("not a combo session")
-			//summarizeSession(curSessionGlobalVar);
+			summarizeSession(curSessionGlobalVar);
 		}
 	}
 
@@ -411,7 +418,7 @@ function processCombinedSession(){
 
 
 function summarizeSession(session){
-	//console.log("summarizing: " + curSessionGlobalVar.session_id)
+	console.log("summarizing: " + curSessionGlobalVar.session_id + " doomed: " +curSessionGlobalVar.doomedTimeline)
 	//don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
 	if(sessionsSimulated.indexOf(session.session_id) != -1){
 		//console.log("should be skipping a repeat session: " + curSessionGlobalVar.session_id)
@@ -429,6 +436,7 @@ function summarizeSession(session){
 	debug(str);
 	printStats();
 	numSimulationsDone ++;
+	initial_seed = Math.seed; //child session
 	if(numSimulationsDone >= numSimulationsToDo){
 		$("#button").prop('disabled', false)
 		if(!getParameterByName("robot")){
@@ -445,10 +453,11 @@ function summarizeSession(session){
 		return;
 	}else{
 		setTimeout(function(){
+			console.log("setting timeout for new seed")
 			//var tmp = getRandomSeed();
 			//Math.seed = tmp;
 			//doomedTimelineReasons = []
-			initial_seed = Math.seed; //child session
+			
 			startSession();
 		},repeatTime*2); //since ticks are on time out, one might hit right as this is called, don't want that, cause causes players to be dead or godtier at start of next session
 	}
@@ -456,7 +465,7 @@ function summarizeSession(session){
 
 
 function summarizeSessionNoTimeout(session){
-	//console.log("summarizing: " + curSessionGlobalVar.session_id)
+	console.log("no timeout summarizing: " + curSessionGlobalVar.session_id)
 	//don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
 	if(sessionsSimulated.indexOf(session.session_id) != -1){
 		//console.log("should be skipping a repeat session: " + curSessionGlobalVar.session_id)
@@ -643,6 +652,7 @@ function callNextIntroWithDelay(player_index){
 
 
 function intro(){
+	console.log("intro")
 	callNextIntroWithDelay(0);
 }
 

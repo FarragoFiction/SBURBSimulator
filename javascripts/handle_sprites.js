@@ -1172,6 +1172,11 @@ function drawSprite(canvas, player,ctx,baby){
     //wasteOfMindSymbol(canvas, player);
     influenceSymbol(canvas, player.influenceSymbol);
   }
+  
+  if(!baby && player.ghost){
+    //wasteOfMindSymbol(canvas, player);
+    halo(canvas, player.influenceSymbol);
+  }
 }
 
 
@@ -1359,6 +1364,18 @@ function influenceSymbol(canvas, symbol){
   var height = img.height;
   ctx.drawImage(img,0,0,width,height);
 }
+
+function halo(canvas, symbol){
+  ctx = canvas.getContext('2d');
+  var imageString = "halo.png";
+  addImageTag(imageString)
+  var img=document.getElementById(imageString);
+  var width = img.width;
+  var height = img.height;
+  ctx.drawImage(img,0,0,width,height);
+}
+
+
 
 //if the Waste of Mind/Observer sends a time player back
 //the influence is visible.

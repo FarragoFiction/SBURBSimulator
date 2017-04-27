@@ -102,6 +102,7 @@ function loadOther(skipInit){
   loadImage("denizoned.png",skipInit);
   loadImage("sceptre.png",skipInit);
 	loadImage("rainbow.png",skipInit);
+	loadImage("halo.png",skipInit);
 	loadImage("gears.png",skipInit);
 	loadImage("mind_forehead.png",skipInit)
 	loadImage("blood_forehead.png",skipInit)

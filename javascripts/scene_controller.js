@@ -247,6 +247,8 @@ function scratch(){
 
 	reinit();
 	curSessionGlobalVar.scratched = true;
+	curSessionGlobalVar.scratchAvailable = false;
+	curSessionGlobalVar.doomedTimeline = false;
 	var raggedPlayers = findPlayersFromSessionWithId(curSessionGlobalVar.players, curSessionGlobalVar.session_id); //but only native
 	//use seeds the same was as original session and also make DAMN sure the players/guardians are fresh.
 	//hello to TheLertTheWorldNeeds, I loved your amazing bug report!  I will obviously respond to you in kind, but wanted
@@ -287,7 +289,7 @@ function scratch(){
 	console.log("about to switch players")
 
 	$("#story").html(scratch);
-	window.scrollTo(0, 0);
+	if(!simulationMode) window.scrollTo(0, 0);
 
 	var guardians  = raggedPlayers; //if i use guardians, they will be all fresh and squeaky. want the former players.
 	var guardianDiv = curSessionGlobalVar.newScene();

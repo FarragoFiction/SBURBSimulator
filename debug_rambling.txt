@@ -738,6 +738,13 @@ Add grim light corruption as well. think about what this means (do they counter 
 
 
 
+
+
+
+
+
+
+
 okay. let's think this through.
 
 Problem:  AB is returning from a single session EIGHT GODDAMNED TIMES.
@@ -749,3 +756,89 @@ Okay. turns out I need to check to see if a session was already scratched beofre
 but things are weird still. no session scratched, but two extra sessions show up.  session with combo and without are treated separate? and combo is twice. BLUH.
 
 okay. so. what's going on there.
+
+Current Behavior: Look for 1 sesssion. If scratched, renders 3 session summaries. 1 pre scratch, 2 post scratch. What the hell.
+
+
+if(!session.scratched){
+		console.log("scartch")
+		session.scratchAvailable = true;
+		summarizeSessionNoTimeout(session);	
+		scratch(); //not user input, just straight up do it.
+}
+
+i can confirm the above only gets called once. so...what is happening.  is summarizeSessionNoTimeout calling intro or anything like that?
+
+intro 
+scartch  
+intro  *2 
+victory   *2
+
+So. I am calling "intro" twice for the same session. How?
+
+or...maybe not? not happening here:
+start session  find_rare_sessions.js:245:2
+intro  find_rare_sessions.js:648:2
+scartch  find_rare_sessions.js:292:3
+intro  find_rare_sessions.js:648:2
+victory or utter defeat * 2  
+
+GLAR. Okay. So...is the same session returning multiple ways? look for mvp on print out. !!! That's IT!  MVP is DIFFERENT between the two sessions.
+
+
+Fuck. What does this mean.
+
+
+Okay, new tactic. Now for some reason session ID never changes even if hit button multiple times. Why? How? not a scratch.  huh. that might be a regular bug. or a preexisting one. looks like i only set new seed if there is more to do. if only doing one, don't.  is it related?
+
+nope. scratch bug still there even after fixed. bluh.
+
+okay. so. like. sometimes two intros are called.  and sometimes they aren't.  sometimes summary is called twice. sometimes it's not. and it doens't matter if intro was twice. 
+why might a summary be called BEFORE a session is done. seems to be my "victor or utter defeat" section.
+
+curSessionGlobalVar.won || living.length == 0 || curSessionGlobalVar.scratched
+oh damn, THERE it is.  maybe. hold on need to look around.
+see, like, that code should only be called during aftermath, which should only be called once. that can't be the problem even though .scratched is a pretty generic thing.
+
+
+sessions simulated has 3 sessions in it, all with same ID. should only be two.  Pre scratch and post scratch. ....
+
+
+
+
+okay, new tactic. there are two places in the aftermath where the scratch button is rendered.  one if no frog. one if sick frog.  If sick frog, does combo check AND renders scratch button. what does that mean. do i...hide the button if it's a combo instead?
+probably a distraction. i see the bug hits even when full frog.
+
+change tactic again. the problem is multiple sessions are going at the same time. Or is it? How to confirm. print when tick?
+okay, progress.  It looks like everything goes according to keikaku...but then...when the reckoning tick STARTS the session splits in two. one summarizes immediatly, the other goes into the reckoning. I know scratches can be called prereckoning. what else?
+
+is....is doomedTimeline true? if it were, that might be weird.
+
+
+oh shit oh shit oh shit. new theory. I'm seeing multiple "should be done" popups. Iv'e been ignoring them as a separate poblem, but very clearly they aren't. think.  
+before i click the first popup, i see two sessions in the print out.  it's only AFTER clicking it to I see the third session and IT's popup. Which session is wrong. Number 2 or Number 3?
+Only one way to find out. actually physically visit the session and see what post scratch looks like.
+
+Oh fuck. NEITHER of them are true. Okay. that's important, too. It would make sense if there were two simultaneous sessions going on they'd be stealing each others random seeds. 
+
+only see two sets of reckoning ticks. it's like the second one "finishes" before the reckoning and then starts up the second one?  mvp of second session appears to be the initial values of the session. so...it summarizes itself really early on?
+
+made sure doom gets set right for scratched sessions.
+victory or utter defeat  find_rare_sessions.js:368:5
+summarizing: 135789202 doomed: false  find_rare_sessions.js:421:2
+reckoning tick -11false  find_rare_sessions.js:348:2
+no scratch  find_rare_sessions.js:297:3
+victory or utter defeat  find_rare_sessions.js:368:5
+summarizing: 135789202 doomed: false
+
+
+so...it looks like it tries to...tick itself again?
+
+
+...
+...
+Hypothesis: summarize setsTimeout without updating the session (somehow). tries to tick a mostly done session, which forwards to reckoning tick. cause no more time till reckoning.
+no, it really looks like setTimeout for new session never called. but something there feels right. go tak ea walk. get a snack clear head.
+
+
+
