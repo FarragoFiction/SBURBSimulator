@@ -7,6 +7,7 @@ function AfterLife(){
 		this.ghosts.push(ghost);
 	}
 	
+	//mostly life players recycling them.
 	this.doubleDie = function(ghost){
 		ghost.dead = true;
 	}
@@ -25,6 +26,10 @@ function AfterLife(){
 	
 	this.findAnyAlternateSelf = function(player){
 		return getRandomElementInArray(this.findAllAlternateSelves(player));
+	}
+	
+	this.findAnyGhost = function(player){
+		return getRandomElementInArray(this.ghosts);
 	}
 	
 	

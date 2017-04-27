@@ -400,6 +400,7 @@ function Session(session_id){
 
 	this.generateSummary = function(){
 		var summary = new SessionSummary();
+		summary.sizeOfAfterLife = this.afterLife.ghosts.length;
 		summary.heroicDeath = this.heroicDeath;
 		summary.justDeath = this.justDeath;
 		summary.crashedFromSessionBug = this.crashedFromSessionBug;

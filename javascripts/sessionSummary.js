@@ -57,6 +57,7 @@ function SessionSummary(){
 	this.averageHP = null;
 	this.averageRelationshipValue = null;
 	this.averageTriggerLevel = null;
+	this.sizeOfAfterLife = null;
 
 	//thanks to bob for helping me puzzle out the logic to make filters AND not OR.
 	//why was that so hard???
@@ -273,14 +274,15 @@ function SessionSummaryJunior(players,session_id){
 
 function MultiSessionSummary(){
 	this.total = 0;
-	this.averageMinLuck = null;
-	this.averageMaxLuck = null;
-	this.averagePower = null;
-	this.averageMobility = null;
-	this.averageFreeWill = null;
-	this.averageHP = null;
-	this.averageRelationshipValue = null;
-	this.averageTriggerLevel = null;
+	this.averageMinLuck = 0;
+	this.averageMaxLuck = 0;
+	this.averagePower = 0;
+	this.averageMobility = 0;
+	this.averageFreeWill = 0;
+	this.averageHP = 0;
+	this.averageRelationshipValue = 0;
+	this.averageTriggerLevel = 0;
+	this.sizeOfAfterLife = 0;
 	this.crashedFromSessionBug = 0;
 	this.crashedFromPlayerActions = 0;
 	this.totalDeadPlayers = 0;
@@ -327,6 +329,7 @@ function MultiSessionSummary(){
 	this.hasLuckyEvents = 0;
 	this.hasUnluckyEvents = 0;
 	this.hasFreeWillEvents = 0;
+	
 
 
 	this.generateHTML = function(){
@@ -343,7 +346,7 @@ function MultiSessionSummary(){
 				html += "<Br><b>totalDeadPlayers: </b> " + this.totalDeadPlayers + " ("+this.survivalRate + " % survival rate)";
 			}else if(propertyName == "totalLivingPlayers" || propertyName == "survivalRate" ){
 				//do nothing
-			}else if(propertyName == "averageTriggerLevel" || propertyName == "averageRelationshipValue"  || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck"){
+			}else if(propertyName == "sizeOfAfterLife" || propertyName == "averageTriggerLevel" || propertyName == "averageRelationshipValue"  || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck"){
 				html += "<br><b>" + propertyName + "</b>: " + this[propertyName];
 			}else if(propertyName != "generateHTML"){
 				html += "<Br><b> <input disabled='true' type='checkbox' name='filter' value='"+propertyName +"' id='" + propertyName + "' onchange='filterSessionSummaries()'>";
@@ -438,7 +441,8 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		if(ss.hasLuckyEvents) mss.hasLuckyEvents ++;
 		if(ss.hasUnluckyEvents) mss.hasUnluckyEvents ++;
 		if(ss.hasFreeWillEvents) mss.hasFreeWillEvents ++;
-
+		
+		mss.sizeOfAfterLife += ss.sizeOfAfterLife;
 		mss.averageMinLuck += ss.averageMinLuck
 		mss.averageMaxLuck += ss.averageMaxLuck
 		mss.averagePower += ss.averagePower

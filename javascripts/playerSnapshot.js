@@ -3,6 +3,7 @@
 //even with asynchronous rendering.
 //renderer calls this, not any individual scenes.
 function PlayerSnapshot(){
+	this.session = null;
 	this.trickster = null;
 	this.sbahj = null;
 	this.baby = null;
@@ -79,6 +80,13 @@ function PlayerSnapshot(){
 		}else{
 			return getColorFromAspect(this.aspect);
 		}
+	}
+	
+	//doomed time clones aren't ghosts yet.
+	this.makeDead = function(causeOfDeath){
+		this.dead = true;
+		this.causeOfDeath = causeOfDeath;
+		this.session.afterLife.addGhost(makeRenderingSnapshot(this));
 	}
 
 	this.chatHandleShortCheckDup = function(otherHandle){
