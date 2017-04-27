@@ -290,7 +290,7 @@ function shareableURL(){
 function renderScratchButton(session){
 	//console.log("rendering scratch button, i.e. setting need to scratch to true.")
 	needToScratch = true;
-	
+
 }
 
 function scratchAB(session){
@@ -301,7 +301,7 @@ function scratchAB(session){
 		//console.log("scartch")
 		session.scratchAvailable = true;
 		session.pleaseIgnoreThisSessionAB = true;
-		summarizeSessionNoTimeout(session);	
+		summarizeSessionNoTimeout(session);
 		scratch(); //not user input, just straight up do it.
 	}else{
 		//console.log("no scratch")
@@ -344,14 +344,14 @@ function reckoning(){
 	var s = new Reckoning(curSessionGlobalVar);
 	s.trigger(curSessionGlobalVar.players)
 	s.renderContent(curSessionGlobalVar.newScene());
-	
+
 	if(!curSessionGlobalVar.doomedTimeline){
 		reckoningTick();
 	}else{
 		if(needToScratch){
-			scratchAB(curSessionGlobalVar);  
+			scratchAB(curSessionGlobalVar);
 			return null;
-		} 
+		}
 		////console.log("doomed timeline prevents reckoning")
 		var living = findLivingPlayers(curSessionGlobalVar.players)
 		if(curSessionGlobalVar.scratched || living.length == 0){ //can't scrach so only way to keep going.
@@ -373,14 +373,14 @@ function reckoningTick(){
 		var s = new Aftermath(curSessionGlobalVar);
 		//console.log("about to trigger aftermath")
 		s.trigger(curSessionGlobalVar.players)
-		s.renderContent(curSessionGlobalVar.newScene());  
+		s.renderContent(curSessionGlobalVar.newScene());
 		//console.log("aftermath rendered")
 		//after math can call a scratch.
 
 		if(needToScratch){
-			scratchAB(curSessionGlobalVar);  
+			scratchAB(curSessionGlobalVar);
 			return null;
-		} 
+		}
 		//summarizeSession(curSessionGlobalVar);
 		//for some reason whether or not a combo session is available isn't working? or combo isn't working right in this mode?
 		//console.log("checking if i should do summaries")
@@ -481,7 +481,7 @@ function summarizeSession(session){
 			//var tmp = getRandomSeed();
 			//Math.seed = tmp;
 			//doomedTimelineReasons = []
-			
+
 			startSession();
 		},repeatTime*2); //since ticks are on time out, one might hit right as this is called, don't want that, cause causes players to be dead or godtier at start of next session
 	}
@@ -529,9 +529,9 @@ function getQuipAboutSession(sessionSummary){
 	var strongest = sessionSummary.mvp
 
 	if(sessionSummary.crashedFromSessionBug){
-		quip += "Fuck. Shit crashed hardcore. It's a good thing I'm a flawless robot, or I'd have nightmares from that. Just. Fuck session crashes.";
+		quip += Zalgo.generate("Fuck. Shit crashed hardcore. It's a good thing I'm a flawless robot, or I'd have nightmares from that. Just. Fuck session crashes.");
 	}else if(sessionSummary.crashedFromPlayerActions){
-		quip += "Fuck. God damn. Do Grim Dark players even KNOW how much it sucks to crash? Assholes.";
+		quip += Zalgo.generate("Fuck. God damn. Do Grim Dark players even KNOW how much it sucks to crash? Assholes.");
 	}else if(dead == 0 && sessionSummary.frogStatus == "Full Frog" && sessionSummary.ectoBiologyStarted && !sessionSummary.crashedFromCorruption && !sessionSummary.crashedFromPlayerActions){
 		quip += "Everything went better than expected." ;
 	}else if(living == 0){

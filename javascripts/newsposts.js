@@ -65,6 +65,14 @@ function roboNewsposts(){
 }
 
 function corruptRoboNewsposts(){
+	var corrupt = false;
+	for(var i = 0; i<sessionsSimulated.length; i++){
+		var session = sessionsSimulated[i]
+		if(!corrupt){
+			corrupt=session.crashedFromPlayerActions;
+			writeRoboNewspost(new Date().toLocaleDateString(), bragAboutSession(session));
+		}
+	}
 	writeRoboNewspost(new Date().toLocaleDateString(), Zalgo.generate("Oh god. Oh fuck. Fucking Grim Dark players. That shit stings. "))
 	writeRoboNewspost(new Date().toLocaleDateString(), Zalgo.generate("That's what I get browsing sessions at random. Shit. "))
 	writeRoboNewspost("3/21/17", Zalgo.generate(roboIntro()));
@@ -240,7 +248,9 @@ function getQuipAboutSession(sessionSummary){
 	var strongest = sessionSummary.mvp
 
 	if(sessionSummary.crashedFromSessionBug){
-		quip += "Fuck. Shit crashed hardcore. It's a good thing I'm a flawless robot, or I'd have nightmares from that. Just. Fuck session crashes.";
+		quip += Zalgo.generate("Fuck. Shit crashed hardcore. It's a good thing I'm a flawless robot, or I'd have nightmares from that. Just. Fuck session crashes.");
+	}else if(sessionSummary.crashedFromPlayerActions){
+		quip += Zalgo.generate("Fuck. God damn. Do Grim Dark players even KNOW how much it sucks to crash? Assholes.");
 	}else if(living == 0){
 		quip += "Shit, you do not even want to KNOW how everybody died." ;
 	}else  if(strongest.power > 3000){
@@ -290,10 +300,7 @@ function restartSession(){
 	intro();
 }
 
-//oh no!!! it hadn't occured to me that the javascript is only evaluated in a browser, not a generic http get.
-//my plan is ruined! If i want her to brag about sessions, I will have to do something else
-//guess i'll just call all the javascript from here.
-function bragAboutSessionFinding(){
+function bragAboutSession(session){
 	var strs = ["As a flawless synthetic brain, I am capable of hella amounts of multitasking.", "Do you know how boring it is, sitting here, instead of over on the Rare Sessions page?", "Want to hear something cool?"];
 	strs.push("It seems I have an opportunity for communication.")
 	var str = "";
@@ -302,13 +309,22 @@ function bragAboutSessionFinding(){
 	if(sessionsSimulated.length < sessionIndex){
 		return str + "Or I would be, if JR wasn't worried about using up too much of your browsers computing power. Guess I'll hafta be happy with five sessions.";
 	}
-	var session = sessionsSimulated[sessionIndex];
 	if(!session){
 		return str + "Or I would be, if JR wasn't worried about using up too much of your browsers computing power. Guess I'll hafta be happy with five sessions.";
 	}
-	sessionIndex ++;
+
 	str += "I'm looking at session "  + session.session_id + " right now. " + getQuipAboutSession(session.generateSummary());
 	return str;
+}
+
+//oh no!!! it hadn't occured to me that the javascript is only evaluated in a browser, not a generic http get.
+//my plan is ruined! If i want her to brag about sessions, I will have to do something else
+//guess i'll just call all the javascript from here.
+function bragAboutSessionFinding(){
+	var session = sessionsSimulated[sessionIndex];
+	var ret =  bragAboutSession(session);
+	sessionIndex ++;
+	return ret;
 }
 
 function writeNewspostArtist(main, date, text){
