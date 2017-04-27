@@ -39,6 +39,7 @@ function LifeStuff(session){
 			if(player.dead){
 				if(player.class_name == "Heir" ||  player.class_name == "Thief"){
 					destroyDeadForReviveSelf(div, player);
+				}
 			}else{
 				if(player.class_name == "Mage" ||  player.class_name == "Knight"){
 					communeDead(div, player);
@@ -58,6 +59,7 @@ function LifeStuff(session){
 			}
 		}
 	}
+	
 	
 	//first try to find dead quadrants.
 	//then try to find dead selves.

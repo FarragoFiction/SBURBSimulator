@@ -238,3 +238,10 @@ function processScenes(playerList,session){
 
 	return ret;
 }
+
+
+//pair with seed for shareable url for character creator, or pair with nothing for afterlife viewer. 
+function generateURLParamsForPlayers(players){
+	var ret = "players="//up to caller to know if ? or &
+	//JSON.stringify(players) causes "cyclic object value" possibly because of guradians relationships? but happens even with snapshot. look at snapshot.
+ }
