@@ -283,6 +283,7 @@ function MultiSessionSummary(){
 	this.averageRelationshipValue = 0;
 	this.averageTriggerLevel = 0;
 	this.sizeOfAfterLife = 0;
+	this.averageAfterLifeSize = 0;
 	this.crashedFromSessionBug = 0;
 	this.crashedFromPlayerActions = 0;
 	this.totalDeadPlayers = 0;
@@ -346,7 +347,7 @@ function MultiSessionSummary(){
 				html += "<Br><b>totalDeadPlayers: </b> " + this.totalDeadPlayers + " ("+this.survivalRate + " % survival rate)";
 			}else if(propertyName == "totalLivingPlayers" || propertyName == "survivalRate" ){
 				//do nothing
-			}else if(propertyName == "sizeOfAfterLife" || propertyName == "averageTriggerLevel" || propertyName == "averageRelationshipValue"  || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck"){
+			}else if(propertyName == "sizeOfAfterLife" || propertyName == "averageAfterLifeSize" ||propertyName == "averageTriggerLevel" || propertyName == "averageRelationshipValue"  || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck"){
 				html += "<br><b>" + propertyName + "</b>: " + this[propertyName];
 			}else if(propertyName != "generateHTML"){
 				html += "<Br><b> <input disabled='true' type='checkbox' name='filter' value='"+propertyName +"' id='" + propertyName + "' onchange='filterSessionSummaries()'>";
@@ -456,6 +457,7 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		mss.totalDeadPlayers += ss.numDead;
 		mss.totalLivingPlayers += ss.numLiving;
 	}
+	mss.averageAfterLifeSize = Math.round(mss.sizeOfAfterLife/sessionSummaries.length)
 	mss.averageMinLuck = Math.round(mss.averageMinLuck/sessionSummaries.length)
 	mss.averageMaxLuck = Math.round(mss.averageMaxLuck/sessionSummaries.length)
 	mss.averagePower = Math.round(mss.averagePower/sessionSummaries.length)
