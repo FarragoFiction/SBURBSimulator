@@ -36,6 +36,7 @@ var sessionSummariesDisplayed = [];
 var numSimulationsDone = 0;
 var numSimulationsToDo = 52;
 var quipMode = false;
+var needToScratch = false;
 
 
 window.onload = function() {
@@ -287,6 +288,12 @@ function shareableURL(){
 
 
 function renderScratchButton(session){
+	needToScratch = true;
+	
+}
+
+function scratchAB(session){
+	needToScratch = false;
 	//treat myself as a different session that scratched one?
 	if(!session.scratched){
 		console.log("scartch")
@@ -334,9 +341,11 @@ function reckoning(){
 	var s = new Reckoning(curSessionGlobalVar);
 	s.trigger(curSessionGlobalVar.players)
 	s.renderContent(curSessionGlobalVar.newScene());
+	
 	if(!curSessionGlobalVar.doomedTimeline){
 		reckoningTick();
 	}else{
+		if(needToScratch) scratchAB(curSessionGlobalVar);  
 		//console.log("doomed timeline prevents reckoning")
 		var living = findLivingPlayers(curSessionGlobalVar.players)
 		if(curSessionGlobalVar.scratched || living.length == 0){ //can't scrach so only way to keep going.
@@ -358,12 +367,11 @@ function reckoningTick(){
 		var s = new Aftermath(curSessionGlobalVar);
 		console.log("about to trigger aftermath")
 		s.trigger(curSessionGlobalVar.players)
-		s.renderContent(curSessionGlobalVar.newScene());  //in the middle of this, the scratch button could be rendered. causes sessions to split.
-		if(curSessionGlobalVar.timeTillReckoning > 0) return null;  //obviously this session has scratched stop doing shit.
+		s.renderContent(curSessionGlobalVar.newScene());  
 		console.log("aftermath rendered")
 		//after math can call a scratch.
-		if(curSessionGlobalVar.pleaseIgnoreThisSessionAB) return null;
 
+		if(needToScratch) scratchAB(curSessionGlobalVar);  
 		//summarizeSession(curSessionGlobalVar);
 		//for some reason whether or not a combo session is available isn't working? or combo isn't working right in this mode?
 		console.log("checking if i should do summaries")
@@ -374,6 +382,8 @@ function reckoningTick(){
 			if(curSessionGlobalVar.won || living.length == 0 || curSessionGlobalVar.scratched){
 				console.log("victory or utter defeat")
 				summarizeSession(curSessionGlobalVar);
+			}else if(living.length == 0){
+				if(needToScratch) scratchAB(curSessionGlobalVar);  
 			}
 		}
 
