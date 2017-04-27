@@ -243,13 +243,10 @@ function processScenes(playerList,session){
 //pair with seed for shareable url for character creator, or pair with nothing for afterlife viewer. 
 function generateURLParamsForPlayers(players){
 	var ret = ""//up to caller to make players = ret
-	//JSON.stringify(players) causes "cyclic object value" possibly because of guradians relationships? but happens even with snapshot. look at snapshot.  yeah, even snapshot has guardian. what to do.
-	//so...what to do here.  you can't pick your family, right? So, can I DEFINITELY never expect to customize guardians?
-	//assume 'yes' for now. now. how to skip guardians for serialization.  looks like "replacer"?
 	var json = JSON.stringify(players, function(key,value){
 		console.log(key);
-		if(key == "session" || key == "guardian"){  //if key == guardian
-			return undefined;
+		if(key == "session" || key == "guardian" || key == "relationships"){  //TODO relationships are special case. figure it out. later.
+			return null; //tutorial showed undefined here. how important is that?
 		}else{
 			return value;
 		}
@@ -257,7 +254,7 @@ function generateURLParamsForPlayers(players){
 	return encodeURI(ret+json, "UTF-8");
  }
  
- 
+ //TODO make this COMPLETELY WORK. probably enough to render the afterlife, but relationships are not brought over yet.
  function objToPlayer(obj){
 	 var ret = new Player();
 	 for (var prop in obj) ret[prop] = obj[prop];
