@@ -5,10 +5,12 @@ function SessionSummary(){
 	this.session_id = null;
 	this.crashedFromSessionBug = null;
 	this.crashedFromPlayerActions = null;
+	this.won = null;
 	this.num_scenes = null;
 	this.players = null;  //can ask for sessions with a blood player and a murder mode, for example
 	this.mvp = null;
 	this.scratchAvailable = null;
+	this.scratched = null;
 	this.parentSession = null;
 	this.yellowYard = null;
 	this.numLiving = null;
@@ -155,9 +157,11 @@ function SessionSummary(){
 					if(this.parentSession){
 						html += this.decodeLineageGenerateHTML();
 					}else{
-						html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "'>" +this.session_id + "</a>"
+						var scratch = "";
+						if(this.scratched) scratch = "(scratched)"
+						html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "'>" +this.session_id + scratch +  "</a>"
 					}
-				}else if(propertyName == "satifies_filter_array" || propertyName == "frogStatus" || propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo" || propertyName == "parentSession"  ){
+				}else if(propertyName == "scratched" || propertyName == "satifies_filter_array" || propertyName == "frogStatus" || propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo" || propertyName == "parentSession"  ){
 					//do nothing. properties used elsewhere.
 				}else if(propertyName != "generateHTML" && propertyName != "getSessionSummaryJunior"){
 					html += "<Br><b>" + propertyName + "</b>: " + this[propertyName] ;
@@ -286,6 +290,8 @@ function MultiSessionSummary(){
 	this.averageAfterLifeSize = 0;
 	this.crashedFromSessionBug = 0;
 	this.crashedFromPlayerActions = 0;
+	this.won = 0;
+	this.scratched = 0;
 	this.totalDeadPlayers = 0;
 	this.scratchAvailable = 0;
 	this.yellowYard = 0;
@@ -442,6 +448,8 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		if(ss.hasLuckyEvents) mss.hasLuckyEvents ++;
 		if(ss.hasUnluckyEvents) mss.hasUnluckyEvents ++;
 		if(ss.hasFreeWillEvents) mss.hasFreeWillEvents ++;
+		if(ss.scratched) mss.scratched ++;
+		if(ss.won) mss.won ++;
 		
 		mss.sizeOfAfterLife += ss.sizeOfAfterLife;
 		mss.averageMinLuck += ss.averageMinLuck

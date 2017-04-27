@@ -260,7 +260,7 @@ function startSession(){
 
 function restartSession(){
 	$("#story").html("");
-	window.scrollTo(0, 0);
+	//window.scrollTo(0, 0);  jarring for AB to go up and down over and over
 	intro();
 }
 
@@ -285,9 +285,10 @@ function shareableURL(){
 
 
 function renderScratchButton(session){
-	if(session.ectoBiologyStarted == false){
-		//summarizeSession(session);
-	}
+	console.log("scartch")
+	//treat myself as a different session that scratched one?
+	summarizeSessionNoTimeout(session);
+	scratch(); //not user input, just straight up do it.
 }
 
 function scratchConfirm(){
@@ -304,53 +305,6 @@ function reinit(){
 	curSessionGlobalVar.reinit();
 }
 
-//TODO if i wanted to, I could have mixed sessions like in canon.
-//not erasing the players, after all.
-//or could have an afterlife where they meet guardian players???
-function scratch(){
-	var savedEB = curSessionGlobalVar.ectoBiologyStarted;
-	reinit();
-	curSessionGlobalVar.ectoBiologyStarted = savedEB;  //if didn't do ecto in previous session, do here. else, don't
-	curSessionGlobalVar.scratched = true;
-	var scratch = "The session has been scratched. The " + getPlayersTitlesBasic(curSessionGlobalVar.players) + " will now be the beloved guardians.";
-	scratch += " Their former guardians, the " + getPlayersTitlesBasic(curSessionGlobalVar.guardians) + " will now be the players.";
-	scratch += " The new players will be given stat boosts to give them a better chance than the previous generation."
-	scratch += " What will happen?"
-	var tmp = curSessionGlobalVar.players;
-	curSessionGlobalVar.players = guardians;
-	curSessionGlobalVar.guardians = tmp;
-	$("#story").html(scratch);
-	window.scrollTo(0, 0);
-
-
-	var guardianDiv = newScene();
-	var guardianID = (guardianDiv.attr("id")) + "_guardians" ;
-	var ch = canvasHeight;
-	if(guardians.length > 6){
-		ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
-	}
-	var canvasHTML = "<br><canvas id='canvas" + guardianID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
-
-	guardianDiv.append(canvasHTML);
-	var canvasDiv = document.getElementById("canvas"+ guardianID);
-	poseAsATeam(canvasDiv, curSessionGlobalVar.guardians, 2000); //everybody, even corpses, pose as a team.
-
-
-	var playerDiv = newScene();
-	var playerID = (playerDiv.attr("id")) + "_players" ;
-	var ch = canvasHeight;
-	if(players.length > 6){
-		ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
-	}
-	var canvasHTML = "<br><canvas id='canvas" + playerID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
-
-	playerDiv.append(canvasHTML);
-	var canvasDiv = document.getElementById("canvas"+ playerID);
-	poseAsATeam(canvasDiv, curSessionGlobalVar.players, 2000); //everybody, even corpses, pose as a team.
-
-	intro();
-
-}
 
 function tick(){
 	if(curSessionGlobalVar.timeTillReckoning > 0 && !curSessionGlobalVar.doomedTimeline){
@@ -373,7 +327,10 @@ function reckoning(){
 		reckoningTick();
 	}else{
 		//console.log("doomed timeline prevents reckoning")
-		summarizeSession(curSessionGlobalVar);
+		if(curSessionGlobalVar.scratched){ //can't scrach so only way to keep going.
+			console.log("doomed scratched timeline")
+			//summarizeSession(curSessionGlobalVar);
+		}
 	}
 }
 
@@ -395,8 +352,11 @@ function reckoningTick(){
 		if(curSessionGlobalVar.makeCombinedSession == true){
 			processCombinedSession();  //make sure everything is done rendering first
 		}else{
-			//console.log("going to summarize: " + curSessionGlobalVar.session_id)
-			summarizeSession(curSessionGlobalVar);
+
+			if(curSessionGlobalVar.won){
+				console.log("victory")
+				summarizeSession(curSessionGlobalVar);
+			}
 		}
 
 
@@ -435,7 +395,10 @@ function processCombinedSession(){
 		$("#story").append("<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session " + curSessionGlobalVar.session_id + ". ");
 		intro();
 	}else{
-		summarizeSession(curSessionGlobalVar);
+		if(curSessionGlobalVar.scratched){
+			console.log("not a combo session")
+			//summarizeSession(curSessionGlobalVar);
+		}
 	}
 
 }
@@ -485,6 +448,29 @@ function summarizeSession(session){
 		},repeatTime*2); //since ticks are on time out, one might hit right as this is called, don't want that, cause causes players to be dead or godtier at start of next session
 	}
 }
+
+
+function summarizeSessionNoTimeout(session){
+	//console.log("summarizing: " + curSessionGlobalVar.session_id)
+	//don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
+	if(sessionsSimulated.indexOf(session.session_id) != -1){
+		//console.log("should be skipping a repeat session: " + curSessionGlobalVar.session_id)
+
+		//return;
+	}
+	sessionsSimulated.push(curSessionGlobalVar.session_id);
+	$("#story").html("");
+	var sum = curSessionGlobalVar.generateSummary();
+	allSessionsSummaries.push(sum);
+	sessionSummariesDisplayed.push(sum);
+	//printSummaries();  //this slows things down too much. don't erase and reprint every time.
+	var str = sum.generateHTML();
+	debug("<br><hr><font color = 'red'> AB: " + getQuipAboutSession(sum) + "</font><Br>" );
+	debug(str);
+	printStats();
+}
+
+
 
 //don't use a seed here
 function percentBullshit(){

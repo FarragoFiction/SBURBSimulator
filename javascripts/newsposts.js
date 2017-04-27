@@ -181,7 +181,7 @@ function reckoningTick(){
 		if(curSessionGlobalVar.makeCombinedSession == true){
 			processCombinedSession();  //make sure everything is done rendering first
 		}else{
-			//console.log("going to summarize: " + curSessionGlobalVar.session_id)
+			//console.log("reckoning over, not combo")
 			summarizeSession(curSessionGlobalVar);
 		}
 

@@ -240,6 +240,86 @@ function processScenes(playerList,session){
 }
 
 
+function scratch(){
+	console.log("scratch has been confirmed")
+	var numPlayersPreScratch = curSessionGlobalVar.players.length;
+	var ectoSave = curSessionGlobalVar.ectoBiologyStarted;
+
+	reinit();
+	curSessionGlobalVar.scratched = true;
+	var raggedPlayers = findPlayersFromSessionWithId(curSessionGlobalVar.players, curSessionGlobalVar.session_id); //but only native
+	//use seeds the same was as original session and also make DAMN sure the players/guardians are fresh.
+	//hello to TheLertTheWorldNeeds, I loved your amazing bug report!  I will obviously respond to you in kind, but wanted
+	//to leave a permanent little 'thank you' here as well. (and on the glitch page) I laughed, I cried, I realzied that fixing guardians
+	//for easter egg sessions would be way easier than initially feared. Thanks a bajillion.
+	//it's not as simple as remebering to do easter eggs here, but that's a good start. i also gotta
+	//rework the easter egg guardian code. last time it worked guardians were an array a session had, but now they're owned by individual players.
+	//plus, at the time i first re-enabled the easter egg, session 612 totally didn't have a scratch, so i could exactly test.
+	curSessionGlobalVar.makePlayers();
+	curSessionGlobalVar.randomizeEntryOrder();
+	curSessionGlobalVar.makeGuardians(); //after entry order established
+	checkEasterEgg();
+	curSessionGlobalVar.ectoBiologyStarted = ectoSave; //if i didn't do ecto in first version, do in second
+	if(curSessionGlobalVar.ectoBiologyStarted){ //players are reset except for haivng an ectobiological source
+		setEctobiologicalSource(curSessionGlobalVar.players, curSessionGlobalVar.session_id);
+	}
+	curSessionGlobalVar.switchPlayersForScratch();
+	var scratch = "The session has been scratched. The " + getPlayersTitlesBasic(getGuardiansForPlayers(curSessionGlobalVar.players)) + " will now be the beloved guardians.";
+	scratch += " Their former guardians, the " + getPlayersTitlesBasic(curSessionGlobalVar.players) + " will now be the players.";
+	scratch += " The new players will be given stat boosts to give them a better chance than the previous generation."
+	
+	var suddenDeath = findAspectPlayer(raggedPlayers, "Life");
+	if( suddenDeath = null) suddenDeath = findAspectPlayer(raggedPlayers, "Doom");
+	
+	//NOT over time. literally sudden death. thanks meenah!
+	if(suddenDeath && !suddenDeath.dead){
+		console.log("sudden death in: " + curSessionGlobalVar.session_id)
+		for(var i = 0; i<raggedPlayers.length; i++){
+			raggedPlayer.makeDead("sudden death right as the scratch happened")
+		}
+		scratch += "It...appears that the " + suddenDeath.htmlTitleBasic() + " managed to figure out that killing everyone at the last minute would allow them to live on in the afterlife between sessions. They may be available as guides for the players. ";
+	}
+	if(curSessionGlobalVar.players.length != numPlayersPreScratch){
+		scratch += " You are quite sure that players not native to this session have never been here at all. Quite frankly, you find the notion absurd. "
+		console.log("forign players erased.")
+	}
+	scratch += " What will happen?"
+	console.log("about to switch players")
+
+	$("#story").html(scratch);
+	window.scrollTo(0, 0);
+
+	var guardians  = raggedPlayers; //if i use guardians, they will be all fresh and squeaky. want the former players.
+	var guardianDiv = curSessionGlobalVar.newScene();
+	var guardianID = (guardianDiv.attr("id")) + "_guardians" ;
+	var ch = canvasHeight;
+	if(guardians.length > 6){
+		ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
+	}
+	var canvasHTML = "<br><canvas id='canvas" + guardianID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
+
+	guardianDiv.append(canvasHTML);
+	var canvasDiv = document.getElementById("canvas"+ guardianID);
+	poseAsATeam(canvasDiv, guardians, 2000); //everybody, even corpses, pose as a team.
+
+
+	var playerDiv = curSessionGlobalVar.newScene();
+	var playerID = (playerDiv.attr("id")) + "_players" ;
+	var ch = canvasHeight;
+	if(curSessionGlobalVar.players.length > 6){
+		ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
+	}
+	var canvasHTML = "<br><canvas id='canvas" + playerID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
+
+	playerDiv.append(canvasHTML);
+	var canvasDiv = document.getElementById("canvas"+ playerID);
+	poseAsATeam(canvasDiv, curSessionGlobalVar.players, 2000); //everybody, even corpses, pose as a team.
+
+	intro();
+
+
+}
+
 //pair with seed for shareable url for character creator, or pair with nothing for afterlife viewer. 
 function generateURLParamsForPlayers(players){
 	var ret = ""//up to caller to make players = ret

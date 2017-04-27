@@ -18,6 +18,7 @@ function Session(session_id){
 	this.dreamBubbleAfterlife = false;
 	this.sbahj = false;
 	this.heroicDeath = null;
+	this.won = false;
 	this.justDeath = null;
 	this.queenStrength = 100;
 	this.jackStrength = 50;
@@ -401,6 +402,8 @@ function Session(session_id){
 
 	this.generateSummary = function(){
 		var summary = new SessionSummary();
+		summary.scratched = this.scratched;
+		summary.won = this.won;
 		summary.sizeOfAfterLife = this.afterLife.ghosts.length;
 		summary.heroicDeath = this.heroicDeath;
 		summary.justDeath = this.justDeath;

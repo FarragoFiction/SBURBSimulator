@@ -25,6 +25,7 @@ function LifeStuff(session){
 				}
 			}
 		}
+		console.log("modify scratch code so that a life player of sufficient power will kill everyone at the last minute so they can be in the bubbles instead of non existant.") //recusriveSlacker idea
 		
 		return false;
 

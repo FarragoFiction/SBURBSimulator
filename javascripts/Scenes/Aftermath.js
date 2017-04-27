@@ -14,7 +14,7 @@ function Aftermath(session){
 			return ret;
 		}
 		if(this.session.democracyStrength > 10 && findLivingPlayers(this.session.players).length > 0 ){
-			ret += "The adorable Warweary Villein has been duly elected Mayor by the assembeled consorts and Carapacians. "
+			ret += "The adorable Warweary Villein has been duly elected Mayor by the assembled consorts and Carapacians. "
 			ret += " His acceptance speech consists of promising to be a really great mayor that everyone loves who is totally amazing and heroic and brave. "
 			ret += " He organizes the consort and Carapacians' immigration to the new Universe. ";
 		}else{
@@ -133,6 +133,7 @@ function Aftermath(session){
 				}else{
 					end += this.democracyBonus();
 					end += " <Br><br> The door to the new universe is revealed. Everyone files in. <Br><Br> Thanks for Playing. ";
+					this.session.won = true;
 				}
 			}else{
 				end += "<br>Unfortunately, the " + spacePlayer.htmlTitle() + " was unable to complete frog breeding duties. ";
