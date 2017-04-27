@@ -174,6 +174,20 @@ function loadAllPossiblePlayers(skipInit){
       for(var i = 0; i<13; i++){
         loadImage("Wings/wing"+i+".png",skipInit);
       }
+
+      loadImage("Blood.png",skipInit);
+      loadImage("Mind.png",skipInit);
+      loadImage("Rage.png",skipInit);
+      loadImage("Time.png",skipInit);
+      loadImage("Void.png",skipInit);
+      loadImage("Heart.png",skipInit);
+      loadImage("Breath.png",skipInit);
+      loadImage("Light.png",skipInit);
+      loadImage("Space.png",skipInit);
+      loadImage("Hope.png",skipInit);
+      loadImage("Life.png",skipInit);
+      loadImage("Doom.png",skipInit);
+
     }
 
 

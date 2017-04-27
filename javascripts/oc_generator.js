@@ -2,6 +2,7 @@ var players = [];
 var simulationMode = false;
 var dataURLs = {};
 window.onload = function() {
+	loadNavbar();
 	loadFuckingEverything("oc")
 	makeAspectDropDown();
 	makeClassDropDown();
