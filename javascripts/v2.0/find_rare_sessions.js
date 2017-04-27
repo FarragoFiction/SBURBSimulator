@@ -306,6 +306,7 @@ function scratchAB(session){
 	}else{
 		console.log("no scratch")
 		session.scratchAvailable = false;
+		summarizeSession(session);
 	}
 }
 
