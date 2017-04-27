@@ -288,11 +288,12 @@ function MultiSessionSummary(){
 	this.averageTriggerLevel = 0;
 	this.sizeOfAfterLife = 0;
 	this.averageAfterLifeSize = 0;
+	this.totalDeadPlayers = 0;
 	this.crashedFromSessionBug = 0;
 	this.crashedFromPlayerActions = 0;
 	this.won = 0;
 	this.scratched = 0;
-	this.totalDeadPlayers = 0;
+
 	this.scratchAvailable = 0;
 	this.yellowYard = 0;
 	this.timesAllLived = 0;
@@ -336,7 +337,7 @@ function MultiSessionSummary(){
 	this.hasLuckyEvents = 0;
 	this.hasUnluckyEvents = 0;
 	this.hasFreeWillEvents = 0;
-	
+
 
 
 	this.generateHTML = function(){
@@ -450,7 +451,7 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		if(ss.hasFreeWillEvents) mss.hasFreeWillEvents ++;
 		if(ss.scratched) mss.scratched ++;
 		if(ss.won) mss.won ++;
-		
+
 		mss.sizeOfAfterLife += ss.sizeOfAfterLife;
 		mss.averageMinLuck += ss.averageMinLuck
 		mss.averageMaxLuck += ss.averageMaxLuck

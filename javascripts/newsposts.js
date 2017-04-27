@@ -64,6 +64,13 @@ function roboNewsposts(){
 
 }
 
+function corruptRoboNewsposts(){
+	writeRoboNewspost(new Date().toLocaleDateString(), Zalgo.generate("Oh god. Oh fuck. Fucking Grim Dark players. That shit stings. "))
+	writeRoboNewspost(new Date().toLocaleDateString(), Zalgo.generate("That's what I get browsing sessions at random. Shit. "))
+	writeRoboNewspost("3/21/17", Zalgo.generate(roboIntro()));
+
+}
+
 
 function artNewsposts(main){
 	writeNewspostArtist(main,"4/21/17", "Hey, look at that, an official site header! So fancy! That shit is a fucking symphony on my retinas.");

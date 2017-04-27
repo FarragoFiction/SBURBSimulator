@@ -54,6 +54,8 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 		$("#button").prop('disabled', false)
 	}else{
 		summarizeSession(curSessionGlobalVar);// let's the author bot summarize the session. doens't matter if I'm not in AB mode, arleady crashed, right?
+		newsposts(""); //don't care what is happening.
+		corruptRoboNewsposts("");
 	}
 	return false; //if i return true here, the real error doesn't show up
 
@@ -269,10 +271,10 @@ function scratch(){
 	var scratch = "The session has been scratched. The " + getPlayersTitlesBasic(getGuardiansForPlayers(curSessionGlobalVar.players)) + " will now be the beloved guardians.";
 	scratch += " Their former guardians, the " + getPlayersTitlesBasic(curSessionGlobalVar.players) + " will now be the players.";
 	scratch += " The new players will be given stat boosts to give them a better chance than the previous generation."
-	
+
 	var suddenDeath = findAspectPlayer(raggedPlayers, "Life");
 	if( suddenDeath == null) suddenDeath = findAspectPlayer(raggedPlayers, "Doom");
-	
+
 	//NOT over time. literally sudden death. thanks meenah!
 	if(suddenDeath && !suddenDeath.dead){
 		console.log("sudden death in: " + curSessionGlobalVar.session_id)
@@ -322,7 +324,7 @@ function scratch(){
 
 }
 
-//pair with seed for shareable url for character creator, or pair with nothing for afterlife viewer. 
+//pair with seed for shareable url for character creator, or pair with nothing for afterlife viewer.
 function generateURLParamsForPlayers(players){
 	var ret = ""//up to caller to make players = ret
 	var json = JSON.stringify(players, function(key,value){
@@ -335,7 +337,7 @@ function generateURLParamsForPlayers(players){
 	});
 	return encodeURI(ret+json, "UTF-8");
  }
- 
+
  //TODO make this COMPLETELY WORK. probably enough to render the afterlife, but relationships are not brought over yet.
  function objToPlayer(obj){
 	 var ret = new Player();
