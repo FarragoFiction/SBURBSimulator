@@ -7,8 +7,8 @@ function AfterLife(){
 		this.ghosts.push(ghost);
 	}
 	
-	//mostly life players recycling them.
-	this.doubleDie = function(ghost){
+	//mostly life players recycling them. not a double death.
+	this.unspawn = function(ghost){
 		ghost.dead = true;
 	}
 	

@@ -7,80 +7,114 @@ function LifeStuff(session){
 	//arrays of [life/Doom player, other player] pairs. other player can be a corpse. other player can be null;
 	this.enablingPlayerPairs = [];
 
-	//if I am a thief or heir, can be called even if I am dead. (my revival mechanism)
-	//otherwise, if dreamBubbleAfterlife, any player can call this at any time
-	//otherwise, go through all doom/life players.  triggers are different based on class. some won't trigger unless they or someone else is dead, for example.
-	//
+	//it's weird. even though this class treats Life and Doom players as the same, in practice they behave entirely differently.
+	//life players keep people from dying in the first place with high HP, while doom players make them die a LOT and become empowered by the afterlife.
+	
+	//what kind of priority should this have. players shouldn't fuck around in ream bubbles instead of land quests. but they also shouldn't avoid reviving players.
+	//maybe revive stuff always happens, but anything else has a random chance of not happening?
 	this.trigger = function(playerList){
 		//not just available players. if class that could revive SELF this way, can be called on dead. otherwise requires a living life/doom player.
+		if(this.session.afterLife.ghosts.length == 0) return false; //can't exploit the afterlife if there isn't one.
+		//first, check the dead.
+		var dead = findDeadPlayers(this.session.players)
+		for(var i = 0; i<dead.length; i++){
+			var d = dead[i];
+			if(d.aspect == "Life" || d.aspect == "Doom"){
+				if(d.class_name == "Thief" || d.class_name == "Heir"){
+					this.enablingPlayerPairs.push([d, null]); //gonna revive myself.
+				}
+			}
+		}
+		
 		return false;
 
 	}
 
-	//mage, seer, knight, page, prince, bard, thief, rogue, heir, maid, 
+	//IMPORTANT, ONLY SET AVAILABLE STATUS IF YOU ACTUALLY DO YOUR THING. DON'T SET IT HERE. MIGHT TRIGGER WITH A PRINCE WHO DOESN'T HAVE ANY DEAD SELVES TO DESTROY.
 	this.renderContent = function(div){
-		div.append("<br>"+this.content());
+		//div.append("<br>"+this.content());
+		for(var i = 0; i<this.enablingPlayerPairs.length; i++){
+			var player = this.enablingPlayerPairs[i][0];
+			var other_player = this.enablingPlayerPairs[i][0]; //could be null or a corpse.
+			if(player.dead){
+				if(player.class_name == "Heir" ||  player.class_name == "Thief"){
+					destroyDeadForReviveSelf(div, player);
+			}else{
+				if(player.class_name == "Mage" ||  player.class_name == "Knight"){
+					communeDead(div, player);
+				}else if((player.class_name == "Seer" ||  player.class_name == "Page") && other_player && !other_player.dead){
+					helpPlayerCommuneDead(div, player, other_player);
+				}else if(player.class_name == "Prince"){
+					destroyDeadForPower(div, player);
+				}else if(player.class_name == "Bard" && other_player && !other_player.dead){
+					helpPlayerDestroyDeadForPower(div, player, other_player);
+				}else if(player.class_name == "Rogue" ||  player.class_name == "Maid") && other_player && other_player.dead){
+					helpDestroyDeadForReviveSelf(div, player, other_player);
+				}else if(player.class_name == "Witch" ||  player.class_name == "Sylph") && !this.session.dreamBubbleAfterlife ){
+					enableDreamBubbles(div, player);
+				}else if(this.session.dreamBubbleAfterlife){
+					dreamBubbleAfterlifeAction(div, player);
+				}
+			}
+		}
 	}
 	
 	//first try to find dead quadrants.
 	//then try to find dead selves.
 	//then, whatever.
-	this.findGhostToCommuneWith = function(player){
+	this.findGhostToCommuneWith = function(div, player){
 		
 	}
 	
-	//mages call this directly.
-	this.communeDeadForKnowledge = function(player){
+	//only when dream bubble afterlife is true. 1-4 players returned?
+	this.findGhostsToCommuneWith = function(div, player){
 		
 	}
 	
-	//seers call this which calls communeDeadForKnowledge. seer gets boost at same time.
-	this.helpPlayerCommuneDeadForKnowledge = function(player1, player2){
+	//different flavor of afterlife based on derse or prospit?  derse has horror terror everywhere. prospit after life is filled with visions of the alpha timeline, taunting you.
+	//so...if derse bubbles are Tumblr, then prospit are facebook (full of envy)
+	//hang out with some random ghosts, get power boost. player on left, pile of ghosts on right.
+	this.dreamBubbleAfterlifeAction = function(div, player){
 		
 	}
 	
-	//Knights call this directly. more dead, more power.
-	this.communeDeadForPower = function(player){
+	//mages/knights call this directly.    flavor text of knowledge or power.
+	this.communeDead = function(div, player){
 		
 	}
 	
-	//page helps another player gain power from communing with dead. page gets boost at same time.
-	this.helpPlayerCommuneDeadForPower = function(player1, player2){
+	//seers/pages call this which calls communeDeadForKnowledge. seer/page gets boost at same time.
+	this.helpPlayerCommuneDead = function(div, player1, player2){
 		
 	}
 	
-	//prince kills their own ghosts and takes their power.
-	this.destroyDeadForPower = function(player){
+
+	
+	//prince kills their own ghosts and takes their power.  if not prince, can be anybody you kill. mention 'it will be a while before the ghost of X respawns' don't bother actually respawning them , but makes it different than double death
+	this.destroyDeadForPower = function(div, player){
 		
 	}
 	
 	//bards call this to power up somebody else with the dead. they gain power at same time.
-	this.helpPlayerDestroyDeadForPower = function(player1, player2){
+	this.helpPlayerDestroyDeadForPower = function(div, player1, player2){
 		
 	}
 	
-	//thief of life/doom
-	this.destroyDeadForReviveSelf = function(player){
+	//thief/heir of life/doom //flavor text of absorbing or stealing.  mention 'it will be a while before the ghost of X respawns' don't bother actually respawning them , but makes it different than double death
+	this.destroyDeadForReviveSelf = function(div, player){
 		
 	}
 	
-	//rogue of life/doom
-	this.helpDestroyDeadForReviveSelf = function(player1, player2){
+	//rogue/maid of life/doom
+	this.helpDestroyDeadForReviveSelf = function(div, player1, player2){
 		
 	}
 	
-	//heirs do this to themselves
-	this.useGhostAsBackupLife = function(player){
-		
-	}
-	
-	//maids call this for any dead player. calls useGhostAsBackupLife
-	this.helpUseGhostAsBackupLife = function(player1, player2){
-		
-	}
+
 	
 	//witches and sylphs do this.  not gonna go with a passive/active whatever here. i just want more odds of dream bubble afterlifes. 
-	this.enableDreamBubbles = function(player){
+	//different flavor of afterlife based on derse or prospit?  derse has horror terror everywhere. prospit after life is filled with visions of the alpha timeline, taunting you.
+	this.enableDreamBubbles = function(div, player){
 		this.session.dreamBubbleAfterlife = true;
 	}
 
@@ -104,9 +138,9 @@ function LifeStuff(session){
 
 
 
-
+	//1.0 mode is so not a thing anymore. just assume this isn't a thing.
 	this.content = function(){
-		var ret = "TODO: LIfe revive.";
+		var ret = "TODO: LIfe stuff. for 1.0";
 		
 		return ret;
 
