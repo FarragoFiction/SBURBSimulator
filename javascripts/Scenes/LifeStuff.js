@@ -30,6 +30,11 @@ function LifeStuff(session){
 		return false;
 
 	}
+	
+	//out of available players.
+	this.findGuides = function(){
+		
+	}
 
 	//IMPORTANT, ONLY SET AVAILABLE STATUS IF YOU ACTUALLY DO YOUR THING. DON'T SET IT HERE. MIGHT TRIGGER WITH A PRINCE WHO DOESN'T HAVE ANY DEAD SELVES TO DESTROY.
 	this.renderContent = function(div){
@@ -43,7 +48,7 @@ function LifeStuff(session){
 				}
 			}else{
 				if(player.class_name == "Mage" ||  player.class_name == "Knight"){
-					communeDead(div, player, player.class_name);
+					communeDead(div, "", player, player.class_name);
 				}else if((player.class_name == "Seer" ||  player.class_name == "Page") && other_player && !other_player.dead){
 					helpPlayerCommuneDead(div, player, other_player);
 				}else if(player.class_name == "Prince"){
@@ -86,39 +91,40 @@ function LifeStuff(session){
 	//have an array of "ghost warriors" or some shit. during boss fights, explicitly use them, rendered and everything. knights/pages cause this
 	//mages/knights call this directly.    flavor text of knowledge or power.  huge bonus if it's your guardian.
 	//renders itself and returns if it rendered anything.
-	this.communeDead = function(div, player, playerClass){  //takes in player class because if there is a helper, what happens is based on who THEY are not who the player is.
-		//leave room on left for possible 'guide' player.
+	//str is empty if I'm calling this myself, and has a line about so and so helping you do this if helper.
+	this.communeDead = function(div, str, player, playerClass){  //takes in player class because if there is a helper, what happens is based on who THEY are not who the player is.
 		var ghost = this.session.afterLife.findGuardianSpirit(player);
-		var text = "";
+		var ghostName = "";
 		if(ghost){
 			//talk about getting wisdom/ forging a pact with your dead guardian. different if i am mage or knight (because i am alone)
+			ghostName = "teen ghost version of their ancestor"
+			
 		}
 		if(ghost == null) ghost = this.session.afterLife.findLovedOneSpirit(player);
 		
 		if(ghost){
-			//talk about getting wisdom/ forging a pact with your dead loved one.
+			ghostName = "ghost of a loved one"
 		}
 		
 		if(ghost == null) ghost = this.session.afterLife.findAnyAlternateSelf(player);
 		if(ghost){
-			//talk about getting wisdom/ forging a pact with your dead alt selves.
+			ghostName = "less fortunate alternate self"
 		}
 		
 		if(ghost == null) ghost = this.session.afterLife.findAnyAlternateSelf(player);
 		if(ghost){
-			//talk about getting wisdom/ forging a pact with some rando
+			ghostName = "dead player"
 		}
 		
 		if(ghost){
-			div.append(text);
+			div.append(str + this.communeDeadResult(playerClass, player, ghost, ghostName));
 			this.drawCommuneDead(div, player, ghost);
-			this.communeDeadResult(playerClass, player, ghost);
 			return true;
 		}else{
 			return false;
 		}
-
 	}
+	
 	
 	
 	this.drawCommuneDead = function(div, player, ghost){
@@ -129,15 +135,19 @@ function LifeStuff(session){
 		drawSprite(pSpriteBuffer,player)
 		var gSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawSpriteTurnways(pSpriteBuffer,ghost)
+		//leave room on left for possible 'guide' player.
 		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,400,0)
 		copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,800,0)
 	}
 	
-	this.communeDeadResult = function(playerClass, player, ghost){
+	this.communeDeadResult = function(playerClass, player, ghost, ghostName){
 		if(playerClass == "Knight" || playerClass == "Page"){
 			player.ghostPacts.push(ghost);  //help with a later fight.
+			return " The " +player.htmlTitleBasic() + " gains a promise of aid from the " + ghostName + ". ";
 		}else if(playerClass == "Seer" || playerClass == "Mage"){
 			player.power += ghost.power/2;  //direct knowledge (and as we all know, knowledge is power)
+			player.aspectIncreasePower(ghost.power/2); //want to increase aspect stats, too.
+			return " The " +player.htmlTitleBasic() + " gains valuable wisdom from the " + ghostName + ". Their power grows.";
 		}
 	}
 
@@ -146,16 +156,16 @@ function LifeStuff(session){
 			var divID = (div.attr("id")) + "_communeDeadWithGuide"+player1.chatHandle ;
 			div.append("<div id ="+divID + "></div>")
 			var childDiv = $("#"+divID)
-			var ghostCommunedWith = this.communeDead(childDiv, player2, player1.class_name);
+			var text = "";
+			if(player1.class_name == "Seer"){
+				text += "The " + player1.htmlTitleBasic() + " guides the " + player2.htmlTitleBasic() + " to seek knowledge from the dead. "
+			}else if(player1.class_name == "Page"){
+				text += "The " + player1.htmlTitleBasic() + " guides the " + player2.htmlTitleBasic() + " to seek aid from the dead. "
+			}
+			var ghostCommunedWith = this.communeDead(childDiv, text, player2, player1.class_name);
 			if(ghostCommunedWith){
 				console.log("Help communing with the dead: " + this.session.session_id);
-				var text = "";
-				if(player1.class_name == "Seer"){
-					text += "The " + player1.htmlTitleBasic() + " guides the " + player2.htmlTitleBasic() + " to seek knowledge from the dead. "
-				}else if(player1.class_name == "Page"){
-					text += "The " + player1.htmlTitleBasic() + " guides the " + player2.htmlTitleBasic() + " to seek aid from the dead. "
-				}
-				childDiv.prepend(text);
+				
 				var canvas = document.getElementById(this.getCanvasIdForPlayer(player2));
 				var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 				drawSprite(pSpriteBuffer,player1)
