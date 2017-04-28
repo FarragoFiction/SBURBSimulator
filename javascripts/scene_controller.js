@@ -329,7 +329,7 @@ function renderAfterlifeURL(){
 	if(curSessionGlobalVar.afterLife.ghosts.length > 0){
 
 		var html = "<Br><br><a href = 'rip.html?players=" + generateURLParamsForPlayers(curSessionGlobalVar.afterLife.ghosts) + "'>View Afterlife?</a>";
-		console.log("gonna append: " + html)
+		//console.log("gonna append: " + html)
 		$("#story").append(html);
 	}else{
 		console.log("no ghosts")

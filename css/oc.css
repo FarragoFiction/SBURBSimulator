@@ -75,6 +75,11 @@
   font-family: horrorterror;
 }
 
+.eulogy{
+  float:left;
+  padding: 10px;
+}
+
 @font-face {
     font-family: horrorterror;
     src: url(MISTERTWIGGY.TTF);

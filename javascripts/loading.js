@@ -70,8 +70,11 @@ function checkDone(skipInit){
         console.log("images loaded: " + imagesLoaded)
         reroll();
         return;
+      }else if(skipInit == "ghosts"){
+        renderGhosts();
+      }else{
+        renderPlayersForEditing();
       }
-      renderPlayersForEditing();
       return;
     }
 		intro();
@@ -203,6 +206,7 @@ function loadAllPossiblePlayers(skipInit){
 
 //load hair, horns, wings, regular sprite, god sprite, fins, aspect symbol, moon symbol for each player
 function loadPlayer(player,skipInit){
+  if(!player) return null;
 	//var imageString = "Horns/right"+player.rightHorn + ".png";
   //addImageTag(imageString)
 	loadImage(playerToRegularBody(player),skipInit);

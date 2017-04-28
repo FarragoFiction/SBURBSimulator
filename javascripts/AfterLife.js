@@ -1,18 +1,19 @@
 //the afterlife is essentially just a list of player snapshots. when a snapshot is added, make them not "dead". ghosts can double die.
 function AfterLife(){
 	this.ghosts = [];
-	
+
 	this.addGhost = function(ghost){
 		ghost.ghost = true;
+		ghost.dead = false;
 		this.ghosts.push(ghost);
 	}
-	
+
 	//mostly life players recycling them. not a double death.
 	this.unspawn = function(ghost){
 		ghost.dead = true;
 	}
-	
-	
+
+
 	this.findAllAlternateSelves = function(player){
 		var selves = [];
 		for(var i = 0; i<ithis.ghosts.length; i++){
@@ -23,14 +24,14 @@ function AfterLife(){
 		}
 		return selves
 	}
-	
+
 	this.findAnyAlternateSelf = function(player){
 		return getRandomElementInArray(this.findAllAlternateSelves(player));
 	}
-	
+
 	this.findAnyGhost = function(player){
 		return getRandomElementInArray(this.ghosts);
 	}
-	
-	
+
+
 }
