@@ -197,11 +197,11 @@ function LuckStuff(session){
 			if(!roll.player.isDreamSelf){
 				ret += "QUEST BED!? Their body glows, and rises Skaiaward. "+"On " + roll.player.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
 				this.session.questBed = true;
-				roll.player.makeDead("luckily dying on their Quest Bed.")
+				roll.player.makeDead("luckily on their Quest Bed.")
 			}else{
 				ret += "SACRIFICIAL SLAB!? They glow and ascend to the God Tiers with a sweet new outfit."
 				this.session.sacrificialSlab = true;
-				roll.player.makeDead("luckily dying on their Sacrificial Slab")
+				roll.player.makeDead("luckily on their Sacrificial Slab")
 			}
 			roll.player.dead = false;
 			roll.player.godTier = true;
