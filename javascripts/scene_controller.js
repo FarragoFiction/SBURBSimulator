@@ -277,10 +277,11 @@ function scratch(){
 	if( suddenDeath == null) suddenDeath = findAspectPlayer(raggedPlayers, "Doom");
 
 	//NOT over time. literally sudden death. thanks meenah!
+	var livingRagged = findLivingPlayers(raggedPlayers)
 	if(suddenDeath && !suddenDeath.dead){
 		console.log("sudden death in: " + curSessionGlobalVar.session_id)
-		for(var i = 0; i<raggedPlayers.length; i++){
-			raggedPlayers[i].makeDead("sudden death right as the scratch happened")
+		for(var i = 0; i<livingRagged.length; i++){
+			livingRagged[i].makeDead("right as the scratch happened")
 		}
 		scratch += " It...appears that the " + suddenDeath.htmlTitleBasic() + " managed to figure out that killing everyone at the last minute would allow them to live on in the afterlife between sessions. They may be available as guides for the players. ";
 	}
