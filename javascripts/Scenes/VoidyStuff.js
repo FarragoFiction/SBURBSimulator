@@ -3,7 +3,7 @@ function VoidyStuff(session){
 	this.canRepeat = true;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.player = null;
-	this.voidPlayer = 
+	this.voidPlayer =
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		this.player = null;
@@ -14,7 +14,7 @@ function VoidyStuff(session){
 			}else{  //somebody else can be voided.
 				this.player = getRandomElementFromArray(this.session.availablePlayers);
 				if(this.player.aspect == "Light" && this.player.class_name != "Prince") this.player = null; //light players can't be voided according to calliope
-				console.log("passive void player shenanigans in: " + this.session.session_id)
+				//console.log("passive void player shenanigans in: " + this.session.session_id)
 			}
 		}
 		return this.player != null;

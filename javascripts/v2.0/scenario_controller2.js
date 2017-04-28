@@ -132,21 +132,29 @@ function getSessionType(){
 }
 
 function renderScratchButton(session){
+	console.log("scratch possible, button");
 	//alert("scratch [possible]");
 	//can't scratch if it was a a total party wipe. just a regular doomed timeline.
 	var living = findLivingPlayers(session.players);
 	if(living.length > 0 && (session.makeCombinedSession == false && session.hadCombinedSession == false)){
+		console.log("gonna render scratch")
 		var timePlayer = findAspectPlayer(session.players, "Time");
 		if(!session.scratched){
 			//this is apparently spoilery.
 			//alert(living.length  + " living players and the " + timePlayer.land + " makes a scratch available!");
 			var html = '<img src="images/Scratch.png" onclick="scratchConfirm()"><br>Click To Scratch Session?';
 			$("#story").append(html);
+			console.log("um where is the scratch button?")
+			renderAfterlifeURL();
 		}else{
+			console.log("no more scratches")
 			$("#story").append("<br>This session is already scratched. No further scratches available.");
+			renderAfterlifeURL();
 		}
+	}else{
+		console.log("what went wrong? is makecomo?" +session.makeCombinedSession + "is all dead: " + living.length + " is had combo? " +session.hadCombinedSession )
 	}
-	renderAfterlifeURL();
+
 }
 
 function scratchConfirm(){
@@ -221,7 +229,9 @@ function processCombinedSession(){
 		checkSGRUB();
 		load(curSessionGlobalVar.players); //in loading.js
 	}else{
-		renderAfterlifeURL();
+		//scratch fuckers.
+		curSessionGlobalVar.makeCombinedSession = false;  //can't make a combo session, so scratch
+		renderScratchButton(curSessionGlobalVar);
 	}
 
 }
