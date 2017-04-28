@@ -111,6 +111,28 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 		}
 		return ret;
 	}
+	
+	this.getCrushes = function(){
+		var ret = [];
+		for (var i = 0; i<this.relationships.length; i++){
+			var r = this.relationships[i];
+			if(r.saved_type == r.goodBig){
+				ret.push(r);
+			}
+		}
+		return ret;
+	}
+	
+	this.getBlackCrushes = function(){
+		var ret = [];
+		for (var i = 0; i<this.relationships.length; i++){
+			var r = this.relationships[i];
+			if(r.saved_type == r.badBig){
+				ret.push(r);
+			}
+		}
+		return ret;
+	}
 
 	this.getDiamonds = function(){
 		var ret = [];

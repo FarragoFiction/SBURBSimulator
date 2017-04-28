@@ -145,25 +145,34 @@ function LifeStuff(session){
 		var ghost = this.session.afterLife.findGuardianSpirit(player);
 		var ghostName = "";
 		if(ghost){
+			console.log("ghost of guardian: "+ player.titleBasic() + this.session.session_id);
 			//talk about getting wisdom/ forging a pact with your dead guardian. different if i am mage or knight (because i am alone)
 			ghostName = "teen ghost version of their ancestor"
 			
 		}
-		if(ghost == null) ghost = this.session.afterLife.findLovedOneSpirit(player);
-		
-		if(ghost){
+		if(ghost == null){ 
+			ghost = this.session.afterLife.findLovedOneSpirit(player);
+			console.log("ghost of loved one: "+ player.titleBasic() + this.session.session_id);
 			ghostName = "ghost of a loved one"
 		}
-		
-		if(ghost == null) ghost = this.session.afterLife.findAnyAlternateSelf(player);
-		if(ghost){
+
+		if(ghost == null){
+			ghost = this.session.afterLife.findAnyAlternateSelf(player);
+			console.log("ghost of self: "+ player.titleBasic() + this.session.session_id);
 			ghostName = "less fortunate alternate self"
 		}
 		
-		if(ghost == null) ghost = this.session.afterLife.findAnyGhost(player);
-		if(ghost){
-			ghostName = "dead player"
+		if(ghost == null){
+			ghost = this.session.afterLife.findFriendlySpirit(player);
+			console.log("ghost of friend: "+ player.titleBasic() + this.session.session_id);
+			ghostName = "dead friend"
 		}
+		
+		if(ghost == null){
+			ghost = this.session.afterLife.findAnyGhost(player);
+			ghostName = "dead player"
+		} 
+
 		
 		if(ghost){
 			div.append("<br><br>" +str + this.communeDeadResult(playerClass, player, ghost, ghostName));
