@@ -528,7 +528,7 @@ function FreeWillStuff(session){
 				murderer.victimBlood = player.bloodColor;
 				removeFromArray(murderer, this.session.availablePlayers);
 				removeFromArray(player, this.session.availablePlayers);
-				player.makeDead("fighting the " + player.htmlTitleBasic());
+				player.makeDead("fighting the " + murderer.htmlTitleBasic());
 				this.renderPlayer1 = player;
 				this.renderPlayer2 = murderer;
 				return "The " + player.htmlTitleBasic() + " cannot let this continue any further. The " + murderer.htmlTitleBasic() + " is a threat to everyone. They corner them, and have a brief, bloody duel that ends in the death of the " + player.htmlTitleBasic() + ".  Everyone is a little bit less safe.";
