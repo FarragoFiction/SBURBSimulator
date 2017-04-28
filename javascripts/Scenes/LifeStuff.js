@@ -13,6 +13,7 @@ function LifeStuff(session){
 	//what kind of priority should this have. players shouldn't fuck around in ream bubbles instead of land quests. but they also shouldn't avoid reviving players.
 	//maybe revive stuff always happens, but anything else has a random chance of not happening?
 	this.trigger = function(playerList){
+		this.enablingPlayerPairs = [];
 		//not just available players. if class that could revive SELF this way, can be called on dead. otherwise requires a living life/doom player.
 		if(this.session.afterLife.ghosts.length == 0) return false; //can't exploit the afterlife if there isn't one.
 		//first, check the dead.
@@ -25,19 +26,65 @@ function LifeStuff(session){
 				}
 			}
 		}
-		console.log("modify scratch code so that a life player of sufficient power will kill everyone at the last minute so they can be in the bubbles instead of non existant.") //recusriveSlacker idea
-
-		return false;
+		var guidesAndNon = this.findGuides();
+		var guides = guidesAndNon[0];
+		var nonGuides = guidesAndNon[1];
+		//for each nonGuide, see if you can do something on your own.
+		for(var i = 0; i<nonGuides.length; i++){
+			var player = nonGuides[i];
+			if(aspect == "Life" || aspect == "Doom"){
+				if(player.className != "Witch" && player.className != "Sylph"){
+					this.enablingPlayerPairs.push([player, null]); 
+					removeFromArray(player, nonGuides);
+				}else if(!this.session.dreamBubbleAfterlife){
+					this.enablingPlayerPairs.push([player, null]); //witches and sylphs turn on the dream bubble afterlife if it's not already on.
+					removeFromArray(player, nonGuides);
+				}
+			}
+		}
+		
+		//for each guide, see if there are any non guides left to guide.
+		for(var i = 0; i<guides.length; i++){
+			if(nonGuides.length > 0){
+				var guide = guides[i];
+				var nonGuide = getRandomElementFromArray(nonGuides);
+				removeFromArray(nonGuide, nonGuides);
+				this.enablingPlayerPairs.push([guide, nonGuide]); 
+			}
+			
+		}
+		
+		return enablingPlayerPairs.length > 0;
 
 	}
 	
 	//out of available players.
-	this.findGuides = function(){
+	this.findGuidesAndNonGuides = function(){
+		var ret = [[],[]];
+		for(var i = 0; i<this.sesssion.availablePlayers,length; i++){
+			var possibleGuide = this.session.availablePlayers[i];
+			if(player.aspect == "Doom" || player.aspect == "Life"){
+				if(player.class_name == "Seer" ||  player.class_name == "Page" || player.class_name == "Bard" || player.class_name == "Rogue" ||  player.class_name == "Maid")){
+						ret[0].push(possibleGuide);
+				}
+			}
+		}
 		
+		//either an active life/doom player, or any non life/doom player.
+		for(var i = 0; i<this.sesssion.availablePlayers,length; i++){
+			var possibleGuide = this.session.availablePlayers[i];
+			if(player.class_name == "Heir" ||  player.class_name == "Thief" || player.class_name == "Prince" || player.class_name == "Witch" ||  player.class_name == "Sylph" || player.class_name == "Knight" ||  player.class_name == "Mage")){
+				ret[1].push(possibleGuide);
+			}else if(player.aspect != "Doom" && player.aspect != "Life"){
+				ret[1].push(possibleGuide);
+			}
+		}
+		return ret;
 	}
 
 	//IMPORTANT, ONLY SET AVAILABLE STATUS IF YOU ACTUALLY DO YOUR THING. DON'T SET IT HERE. MIGHT TRIGGER WITH A PRINCE WHO DOESN'T HAVE ANY DEAD SELVES TO DESTROY.
 	this.renderContent = function(div){
+		console.log("rendering content for life stuff (won't necessarily be on screen): " + this.session.session_id)
 		//div.append("<br>"+this.content());
 		for(var i = 0; i<this.enablingPlayerPairs.length; i++){
 			var player = this.enablingPlayerPairs[i][0];
@@ -119,6 +166,7 @@ function LifeStuff(session){
 		if(ghost){
 			div.append(str + this.communeDeadResult(playerClass, player, ghost, ghostName));
 			this.drawCommuneDead(div, player, ghost);
+			removeFromArray(player, this.session.availablePlayers);
 			return true;
 		}else{
 			return false;
@@ -164,6 +212,7 @@ function LifeStuff(session){
 			}
 			var ghostCommunedWith = this.communeDead(childDiv, text, player2, player1.class_name);
 			if(ghostCommunedWith){
+				removeFromArray(player1, this.session.availablePlayers);
 				console.log("Help communing with the dead: " + this.session.session_id);
 				
 				var canvas = document.getElementById(this.getCanvasIdForPlayer(player2));

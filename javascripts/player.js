@@ -15,7 +15,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 	this.hp = 0; //mostly used for boss battles;
 	this.graphs = [];
 	this.id = id;
-	this.ghostPacts = []; //some classes can form pacts with ghosts for use in boss battles. or help others do so.
+	this.ghostPacts = []; //some classes can form pacts with ghosts for use in boss battles. or help others do so.  if i actually use a ghost i have a pact with, it's drained. (so anybody else with a pact with it can't use it.)
 	this.land1 = null; //words my land is made of.
 	this.land2 = null;
 	this.minLuck = 0;
