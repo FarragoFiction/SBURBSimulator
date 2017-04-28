@@ -13,6 +13,7 @@ function PlayerSnapshot(){
 	this.maxLuck = 0;
 	this.freeWill = 0;
 	this.mobility = 0;
+	this.causeOfDrain = null; //ghosts can't double die without LE, but can be drained by certain things. drained ghosts aren't going to help you again during your session.
 	this.id = null;
 	this.baby_stuck = null;
 	this.ectoBiologicalSource = null;

@@ -12,7 +12,20 @@ function AfterLife(){
 	this.unspawn = function(ghost){
 		ghost.dead = true;
 	}
-
+	
+	this.findGuardianSpirit = function(player){
+		
+	}
+	
+	this.findLovedOneSpirit = function(player){
+		
+	};
+	
+	//find the ghost I liked least.  get my list of enemies, compare ids.
+	this.findAssholeSpirit = function(player){
+		
+	}
+	
 
 	this.findAllAlternateSelves = function(player){
 		var selves = [];

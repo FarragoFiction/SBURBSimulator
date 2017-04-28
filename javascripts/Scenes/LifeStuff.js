@@ -43,7 +43,7 @@ function LifeStuff(session){
 				}
 			}else{
 				if(player.class_name == "Mage" ||  player.class_name == "Knight"){
-					communeDead(div, player);
+					communeDead(div, player, player.class_name);
 				}else if((player.class_name == "Seer" ||  player.class_name == "Page") && other_player && !other_player.dead){
 					helpPlayerCommuneDead(div, player, other_player);
 				}else if(player.class_name == "Prince"){
@@ -60,17 +60,14 @@ function LifeStuff(session){
 			}
 		}
 	}
+	
+	
+	
 
-
-	//first try to find dead guardian. then quadrants.
-	//then try to find dead selves.
-	//then, whatever.
-	this.findGhostToCommuneWith = function(div, player){
-
-	}
 
 	//only when dream bubble afterlife is true. 1-4 players returned?
 	this.findGhostsToCommuneWith = function(div, player){
+		
 
 	}
 
@@ -80,20 +77,95 @@ function LifeStuff(session){
 	this.dreamBubbleAfterlifeAction = function(div, player){
 
 	}
-
+	
+	//need to be consistent or I won't be able to do active/passive split the way I want.
+	this.getCanvasIdForPlayer = function(player){
+		
+	}
+	
+	//have an array of "ghost warriors" or some shit. during boss fights, explicitly use them, rendered and everything. knights/pages cause this
 	//mages/knights call this directly.    flavor text of knowledge or power.  huge bonus if it's your guardian.
-	this.communeDead = function(div, player){
+	//renders itself and returns if it rendered anything.
+	this.communeDead = function(div, player, playerClass){  //takes in player class because if there is a helper, what happens is based on who THEY are not who the player is.
+		//leave room on left for possible 'guide' player.
+		var ghost = this.session.afterLife.findGuardianSpirit(player);
+		var text = "";
+		if(ghost){
+			//talk about getting wisdom/ forging a pact with your dead guardian. different if i am mage or knight (because i am alone)
+		}
+		if(ghost == null) ghost = this.session.afterLife.findLovedOneSpirit(player);
+		
+		if(ghost){
+			//talk about getting wisdom/ forging a pact with your dead loved one.
+		}
+		
+		if(ghost == null) ghost = this.session.afterLife.findAnyAlternateSelf(player);
+		if(ghost){
+			//talk about getting wisdom/ forging a pact with your dead alt selves.
+		}
+		
+		if(ghost == null) ghost = this.session.afterLife.findAnyAlternateSelf(player);
+		if(ghost){
+			//talk about getting wisdom/ forging a pact with some rando
+		}
+		
+		if(ghost){
+			div.append(text);
+			this.drawCommuneDead(div, player, ghost);
+			this.communeDeadResult(playerClass, player, ghost);
+			return true;
+		}else{
+			return false;
+		}
 
+	}
+	
+	
+	this.drawCommuneDead = function(div, player, ghost){
+		var canvasHTML = "<br><canvas id='" + this.getCanvasIdForPlayer(player) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		var canvas = document.getElementById(this.getCanvasIdForPlayer(player));
+		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawSprite(pSpriteBuffer,player)
+		var gSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawSpriteTurnways(pSpriteBuffer,ghost)
+		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,400,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,800,0)
+	}
+	
+	this.communeDeadResult = function(playerClass, player, ghost){
+		if(playerClass == "Knight" || playerClass == "Page"){
+			player.ghostPacts.push(ghost);  //help with a later fight.
+		}else if(playerClass == "Seer" || playerClass == "Mage"){
+			player.power += ghost.power/2;  //direct knowledge (and as we all know, knowledge is power)
+		}
 	}
 
 	//seers/pages call this which calls communeDeadForKnowledge. seer/page gets boost at same time.
 	this.helpPlayerCommuneDead = function(div, player1, player2){
-
+			var divID = (div.attr("id")) + "_communeDeadWithGuide"+player1.chatHandle ;
+			div.append("<div id ="+divID + "></div>")
+			var childDiv = $("#"+divID)
+			var ghostCommunedWith = this.communeDead(childDiv, player2, player1.class_name);
+			if(ghostCommunedWith){
+				console.log("Help communing with the dead: " + this.session.session_id);
+				var text = "";
+				if(player1.class_name == "Seer"){
+					text += "The " + player1.htmlTitleBasic() + " guides the " + player2.htmlTitleBasic() + " to seek knowledge from the dead. "
+				}else if(player1.class_name == "Page"){
+					text += "The " + player1.htmlTitleBasic() + " guides the " + player2.htmlTitleBasic() + " to seek aid from the dead. "
+				}
+				childDiv.prepend(text);
+				var canvas = document.getElementById(this.getCanvasIdForPlayer(player2));
+				var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+				drawSprite(pSpriteBuffer,player1)
+				copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0)
+			}
 	}
 
 
 
-	//prince kills their own ghosts and takes their power.  if not prince, can be anybody you kill. mention 'it will be a while before the ghost of X respawns' don't bother actually respawning them , but makes it different than double death
+	//prince drains their own ghosts and takes their power.  if not prince, can be anybody you drain. mention 'it will be a while before the ghost of X respawns' don't bother actually respawning them , but makes it different than double death
 	this.destroyDeadForPower = function(div, player){
 
 	}
