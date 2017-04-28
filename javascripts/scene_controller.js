@@ -1,11 +1,24 @@
-//knows about all scene classes.
 
-//gets called by the scenario_controller with a list of players in the medium.
-//generates a list of scenes to happen 'now' with these players.
-//not all players have to get a scene, and no player can have more than one scene.
 
-//blood and page players most likely to get scenes with other people.
-//blood players slightly improve all relationships a friend has when they see them.
+function createScenesForSession(session){
+	session.scenes = [new StartDemocracy(session), new JackBeginScheming(session), new KingPowerful(session), new QueenRejectRing(session), new JackPromotion(session), new JackRampage(session), new GiveJackBullshitWeapon(session)];
+	//relationship drama has a high priority because it can distract a session from actually making progress. happened to universe a trolls.
+	session.scenes = session.scenes.concat([new FreeWillStuff(session),new GrimDarkQuests(session),new Breakup(session), new RelationshipDrama(session), new UpdateShippingGrid(session),  new EngageMurderMode(session), new GoGrimDark(session),  new DisengageMurderMode(session),new MurderPlayers(session),new BeTriggered(session),]);
+	session.scenes = session.scenes.concat([new VoidyStuff(session), new FaceDenizen(session), new DoEctobiology(session), new LuckStuff(session), new DoLandQuest(session), new LifeStuff(session)]);
+	session.scenes = session.scenes.concat([new SolvePuzzles(session), new ExploreMoon(session)]);
+	session.scenes = session.scenes.concat([new LevelTheHellUp(session)]);
+
+	//make sure kiss, then godtier, then godtierrevival, then any other form of revival.
+	session.deathScenes = [ new SaveDoomedTimeLine(session), new GetTiger(session), new CorpseSmooch(session), new GodTierRevival(session)];  //are always available.
+	session.reckoningScenes = [new FightQueen(session), new FightKing(session)];
+
+	//scenes can add other scenes to available scene list. (for example, spy missions being added if Jack began scheming)
+	session.available_scenes = []; //remove scenes from this if they get used up.
+	//make non shallow copy.
+	for(var i = 0; i<session.scenes.length; i++){
+		session.available_scenes.push(session.scenes[i]);
+	}
+}
 
 
 
@@ -74,25 +87,7 @@ window.addEventListener("error", function (e) {
 */
 
 
-function createScenesForSession(session){
-	session.scenes = [new StartDemocracy(session), new JackBeginScheming(session), new KingPowerful(session), new QueenRejectRing(session), new JackPromotion(session), new JackRampage(session), new GiveJackBullshitWeapon(session)];
-	//relationship drama has a high priority because it can distract a session from actually making progress. happened to universe a trolls.
-	session.scenes = session.scenes.concat([new FreeWillStuff(session),new GrimDarkQuests(session),new Breakup(session), new RelationshipDrama(session), new UpdateShippingGrid(session),  new EngageMurderMode(session), new GoGrimDark(session),  new DisengageMurderMode(session),new MurderPlayers(session),new BeTriggered(session),]);
-	session.scenes = session.scenes.concat([new VoidyStuff(session), new FaceDenizen(session), new DoEctobiology(session), new LuckStuff(session), new DoLandQuest(session)]);
-	session.scenes = session.scenes.concat([new SolvePuzzles(session), new ExploreMoon(session)]);
-	session.scenes = session.scenes.concat([new LevelTheHellUp(session)]);
 
-	//make sure kiss, then godtier, then godtierrevival, then any other form of revival.
-	session.deathScenes = [ new SaveDoomedTimeLine(session), new GetTiger(session), new CorpseSmooch(session), new GodTierRevival(session)];  //are always available.
-	session.reckoningScenes = [new FightQueen(session), new FightKing(session)];
-
-	//scenes can add other scenes to available scene list. (for example, spy missions being added if Jack began scheming)
-	session.available_scenes = []; //remove scenes from this if they get used up.
-	//make non shallow copy.
-	for(var i = 0; i<session.scenes.length; i++){
-		session.available_scenes.push(session.scenes[i]);
-	}
-}
 
 //makes copy of player list (no shallow copies!!!!)
 function setAvailablePlayers(playerList,session){
@@ -350,7 +345,7 @@ function generateURLParamsForPlayers(players){
 	});
 	console.log(json)
 	//otherwise won't escape single quotes, like in <font color = ''> stuff
-	return encodeURI(ret+json, "UTF-8").replace(/'/g, "%27");
+	return encodeURI(ret+json, "UTF-8").replace(/'/g, "%27").replace(/&/g,"%26"); //& can be in quirks.
  }
 
  //TODO make this COMPLETELY WORK. probably enough to render the afterlife, but relationships are not brought over yet.

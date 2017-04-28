@@ -252,21 +252,17 @@ function decideInitialQuadrants(players){
 				if(r.type() == r.goodBig){
 					var difference = Math.abs(player.triggerLevel - r.target.triggerLevel)
 					if(difference > 2){ //pale
-						console.log("initial diamonds: " + player.session.session_id) //remember, this could be guardians, too.
 						makeDiamonds(player, r.target);
 					}else{
-						console.log("initial hearts: " + player.session.session_id)
 						makeHeart(player, r.target);
 					}
 				}else if(r.type() == r.badBig){
 					if(player.triggerLevel > 2 || r.target.triggerLevel > 2){ //likely to murder each other
 						var ausp = getRandomElementFromArray(players);
 						if(ausp && ausp != player && ausp != r.target){
-							console.log("initial clubs: " + player.session.session_id)
 							makeClubs(ausp, player, r.target);
 						}
 					}else{
-						console.log("initial spades: " + player.session.session_id)
 						makeSpades(player, r.target);
 					}
 				}

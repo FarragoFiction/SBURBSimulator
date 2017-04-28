@@ -39,11 +39,11 @@ function AfterLife(){
 	}
 
 	this.findAnyAlternateSelf = function(player){
-		return getRandomElementInArray(this.findAllAlternateSelves(player));
+		return getRandomElementFromArray(this.findAllAlternateSelves(player));
 	}
 
 	this.findAnyGhost = function(player){
-		return getRandomElementInArray(this.ghosts);
+		return getRandomElementFromArray(this.ghosts);
 	}
 
 

@@ -17,7 +17,7 @@ function LifeStuff(session){
 		//not just available players. if class that could revive SELF this way, can be called on dead. otherwise requires a living life/doom player.
 		if(this.session.afterLife.ghosts.length == 0) return false; //can't exploit the afterlife if there isn't one.
 		//first, check the dead.
-		var dead = findDeadPlayers(this.session.players)
+		var dead = findDeadPlayers(this.session.players) //don't care about availability.
 		for(var i = 0; i<dead.length; i++){
 			var d = dead[i];
 			if(d.aspect == "Life" || d.aspect == "Doom"){
@@ -26,15 +26,16 @@ function LifeStuff(session){
 				}
 			}
 		}
-		var guidesAndNon = this.findGuides();
+		var guidesAndNon = this.findGuidesAndNonGuides(); //IS about availability.
 		var guides = guidesAndNon[0];
 		var nonGuides = guidesAndNon[1];
+		//IMPORTANT if the below triggers to frequently can either changes it's priority in the scenes OR make there be a random chance of it not adding an enablingPlayer.
 		//for each nonGuide, see if you can do something on your own.
 		for(var i = 0; i<nonGuides.length; i++){
 			var player = nonGuides[i];
-			if(aspect == "Life" || aspect == "Doom"){
+			if(player.aspect == "Life" || player.aspect == "Doom"){
 				if(player.className != "Witch" && player.className != "Sylph"){
-					this.enablingPlayerPairs.push([player, null]); 
+					this.enablingPlayerPairs.push([player, null]);   
 					removeFromArray(player, nonGuides);
 				}else if(!this.session.dreamBubbleAfterlife){
 					this.enablingPlayerPairs.push([player, null]); //witches and sylphs turn on the dream bubble afterlife if it's not already on.
@@ -54,28 +55,28 @@ function LifeStuff(session){
 			
 		}
 		
-		return enablingPlayerPairs.length > 0;
+		return this.enablingPlayerPairs.length > 0;
 
 	}
 	
 	//out of available players.
 	this.findGuidesAndNonGuides = function(){
 		var ret = [[],[]];
-		for(var i = 0; i<this.sesssion.availablePlayers,length; i++){
+		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var possibleGuide = this.session.availablePlayers[i];
-			if(player.aspect == "Doom" || player.aspect == "Life"){
-				if(player.class_name == "Seer" ||  player.class_name == "Page" || player.class_name == "Bard" || player.class_name == "Rogue" ||  player.class_name == "Maid")){
+			if(possibleGuide.aspect == "Doom" || possibleGuide.aspect == "Life"){
+				if(possibleGuide.class_name == "Seer" ||  possibleGuide.class_name == "Page" || possibleGuide.class_name == "Bard" || possibleGuide.class_name == "Rogue" ||  possibleGuide.class_name == "Maid"){
 						ret[0].push(possibleGuide);
 				}
 			}
 		}
 		
 		//either an active life/doom player, or any non life/doom player.
-		for(var i = 0; i<this.sesssion.availablePlayers,length; i++){
+		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var possibleGuide = this.session.availablePlayers[i];
-			if(player.class_name == "Heir" ||  player.class_name == "Thief" || player.class_name == "Prince" || player.class_name == "Witch" ||  player.class_name == "Sylph" || player.class_name == "Knight" ||  player.class_name == "Mage")){
+			if(possibleGuide.class_name == "Heir" ||  possibleGuide.class_name == "Thief" || possibleGuide.class_name == "Prince" || possibleGuide.class_name == "Witch" ||  possibleGuide.class_name == "Sylph" || possibleGuide.class_name == "Knight" ||  possibleGuide.class_name == "Mage"){
 				ret[1].push(possibleGuide);
-			}else if(player.aspect != "Doom" && player.aspect != "Life"){
+			}else if(possibleGuide.aspect != "Doom" && possibleGuide.aspect != "Life"){
 				ret[1].push(possibleGuide);
 			}
 		}
@@ -84,30 +85,31 @@ function LifeStuff(session){
 
 	//IMPORTANT, ONLY SET AVAILABLE STATUS IF YOU ACTUALLY DO YOUR THING. DON'T SET IT HERE. MIGHT TRIGGER WITH A PRINCE WHO DOESN'T HAVE ANY DEAD SELVES TO DESTROY.
 	this.renderContent = function(div){
-		console.log("rendering content for life stuff (won't necessarily be on screen): " + this.session.session_id)
+		console.log("rendering content for life stuff (won't necessarily be on screen): " + this.enablingPlayerPairs.length + " " + this.session.session_id)
 		//div.append("<br>"+this.content());
 		for(var i = 0; i<this.enablingPlayerPairs.length; i++){
 			var player = this.enablingPlayerPairs[i][0];
 			var other_player = this.enablingPlayerPairs[i][0]; //could be null or a corpse.
 			if(player.dead){
 				if(player.class_name == "Heir" ||  player.class_name == "Thief"){
-					destroyDeadForReviveSelf(div, player);
+					this.destroyDeadForReviveSelf(div, player);
 				}
 			}else{
+				console.log("player is not dead")
 				if(player.class_name == "Mage" ||  player.class_name == "Knight"){
-					communeDead(div, "", player, player.class_name);
+					this.communeDead(div, "", player, player.class_name);
 				}else if((player.class_name == "Seer" ||  player.class_name == "Page") && other_player && !other_player.dead){
-					helpPlayerCommuneDead(div, player, other_player);
+					this.helpPlayerCommuneDead(div, player, other_player);
 				}else if(player.class_name == "Prince"){
-					destroyDeadForPower(div, player);
+					this.destroyDeadForPower(div, player);
 				}else if(player.class_name == "Bard" && other_player && !other_player.dead){
-					helpPlayerDestroyDeadForPower(div, player, other_player);
-				}else if(player.class_name == "Rogue" ||  player.class_name == "Maid") && other_player && other_player.dead){
-					helpDestroyDeadForReviveSelf(div, player, other_player);
-				}else if(player.class_name == "Witch" ||  player.class_name == "Sylph") && !this.session.dreamBubbleAfterlife ){
-					enableDreamBubbles(div, player);
+					this.helpPlayerDestroyDeadForPower(div, player, other_player);
+				}else if((player.class_name == "Rogue" ||  player.class_name == "Maid") && other_player && other_player.dead){
+					this.helpDestroyDeadForReviveSelf(div, player, other_player);
+				}else if((player.class_name == "Witch" ||  player.class_name == "Sylph") && !this.session.dreamBubbleAfterlife ){
+					this.enableDreamBubbles(div, player);
 				}else if(this.session.dreamBubbleAfterlife){
-					dreamBubbleAfterlifeAction(div, player);
+					this.dreamBubbleAfterlifeAction(div, player);
 				}
 			}
 		}
@@ -127,7 +129,7 @@ function LifeStuff(session){
 	//so...if derse bubbles are Tumblr, then prospit are facebook (full of envy)
 	//hang out with some random ghosts, get power boost. player on left, pile of ghosts on right.
 	this.dreamBubbleAfterlifeAction = function(div, player){
-
+		console.log("TODO dream bubble stuff: " + player.titleBasic() +  this.session.session_id);
 	}
 	
 	//need to be consistent or I won't be able to do active/passive split the way I want.
@@ -140,6 +142,7 @@ function LifeStuff(session){
 	//renders itself and returns if it rendered anything.
 	//str is empty if I'm calling this myself, and has a line about so and so helping you do this if helper.
 	this.communeDead = function(div, str, player, playerClass){  //takes in player class because if there is a helper, what happens is based on who THEY are not who the player is.
+		console.log("TODO  commune dead for: "+ player.titleBasic() + this.session.session_id);
 		var ghost = this.session.afterLife.findGuardianSpirit(player);
 		var ghostName = "";
 		if(ghost){
@@ -169,6 +172,7 @@ function LifeStuff(session){
 			removeFromArray(player, this.session.availablePlayers);
 			return true;
 		}else{
+			console.log("no ghosts to commune dead for: "+ player.titleBasic() + this.session.session_id);
 			return false;
 		}
 	}
@@ -189,6 +193,7 @@ function LifeStuff(session){
 	}
 	
 	this.communeDeadResult = function(playerClass, player, ghost, ghostName){
+		
 		if(playerClass == "Knight" || playerClass == "Page"){
 			player.ghostPacts.push(ghost);  //help with a later fight.
 			return " The " +player.htmlTitleBasic() + " gains a promise of aid from the " + ghostName + ". ";
@@ -201,6 +206,7 @@ function LifeStuff(session){
 
 	//seers/pages call this which calls communeDeadForKnowledge. seer/page gets boost at same time.
 	this.helpPlayerCommuneDead = function(div, player1, player2){
+			console.log("TODO  help commune dead for: "+ player1.titleBasic() + this.session.session_id);
 			var divID = (div.attr("id")) + "_communeDeadWithGuide"+player1.chatHandle ;
 			div.append("<div id ="+divID + "></div>")
 			var childDiv = $("#"+divID)
@@ -226,22 +232,22 @@ function LifeStuff(session){
 
 	//prince drains their own ghosts and takes their power.  if not prince, can be anybody you drain. mention 'it will be a while before the ghost of X respawns' don't bother actually respawning them , but makes it different than double death
 	this.destroyDeadForPower = function(div, player){
-
+		console.log("TODO drain dead for power: "+ player.titleBasic()  + this.session.session_id);
 	}
 
 	//bards call this to power up somebody else with the dead. they gain power at same time.
 	this.helpPlayerDestroyDeadForPower = function(div, player1, player2){
-
+		console.log("TODO help drain dead for power: "+ player.titleBasic() + this.session.session_id);
 	}
 
 	//thief/heir of life/doom //flavor text of absorbing or stealing.  mention 'it will be a while before the ghost of X respawns' don't bother actually respawning them , but makes it different than double death
 	this.destroyDeadForReviveSelf = function(div, player){
-
+		console.log("TODO drain dead for revive: "+ player.titleBasic() + this.session.session_id);
 	}
 
 	//rogue/maid of life/doom
 	this.helpDestroyDeadForReviveSelf = function(div, player1, player2){
-
+		console.log("TODO  help drain dead for revive: "+ player.titleBasic() + this.session.session_id);
 	}
 
 
