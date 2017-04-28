@@ -95,7 +95,9 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 	this.makeDead = function(causeOfDeath){
 		this.dead = true;
 		this.causeOfDeath = causeOfDeath;
-		this.session.afterLife.addGhost(makeRenderingSnapshot(this));
+		if(!this.godTier){ //god tiers only make ghosts in GodTierRevivial
+			this.session.afterLife.addGhost(makeRenderingSnapshot(this));
+		}
 	}
 
 	this.getSpades = function(){

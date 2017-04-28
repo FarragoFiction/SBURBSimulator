@@ -76,6 +76,8 @@ function GodTierRevival(session){
 					ret += " JUST.  They do not revive. ";
 					this.session.justDeath = true;
 					p.canGodTierRevive = false;
+					p.causeOfDeath += " It was a JUST judgement."
+					this.session.afterLife.addGhost(makeRenderingSnapshot(p));
 				}
 
 			}else if (p.heroicDeath()){
@@ -94,12 +96,16 @@ function GodTierRevival(session){
 					console.log(roll + " heroic death for god tier in: " + this.session.session_id );
 					ret += " HEROIC. They do not revive. ";
 					p.canGodTierRevive = false;
+					p.causeOfDeath += " It was HEROIC judgement."
+					this.session.afterLife.addGhost(makeRenderingSnapshot(p));
 				}
 			}else{
 				if(roll < -1 * breakNeeded){
 					console.log("unlucky break for god tier revival in: " + this.session.session_id);
 					ret += " ... Huh. Should the clock be DOING that? It's on both HEROIC and JUST at the same time, somehow? Not neither of them. Talk about a BAD BREAK. They do not revive.  ";
 					p.canGodTierRevive = false;
+					p.causeOfDeath += " It was an unlucky judgement."
+					this.session.afterLife.addGhost(makeRenderingSnapshot(p));
 				}else{
 					console.log("god tier revival in: " + this.session.session_id);
 					ret += " neither HEROIC nor JUST.  They revive in a rainbow glow, stronger than ever. ";
