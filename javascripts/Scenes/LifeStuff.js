@@ -150,31 +150,31 @@ function LifeStuff(session){
 			ghostName = "teen ghost version of their ancestor"
 			
 		}
-		if(ghost == null){ 
+		if(ghost == null  || player.ghostPacts.indexOf(ghost) != -1 || player.ghostWisdom.indexOf(ghost) != -1){ 
 			ghost = this.session.afterLife.findLovedOneSpirit(player);
 			console.log("ghost of loved one: "+ player.titleBasic() + this.session.session_id);
 			ghostName = "ghost of a loved one"
 		}
 
-		if(ghost == null){
+		if(ghost == null  || player.ghostPacts.indexOf(ghost) != -1 || player.ghostWisdom.indexOf(ghost) != -1){
 			ghost = this.session.afterLife.findAnyAlternateSelf(player);
 			console.log("ghost of self: "+ player.titleBasic() + this.session.session_id);
 			ghostName = "less fortunate alternate self"
 		}
 		
-		if(ghost == null){
+		if(ghost == null  || player.ghostPacts.indexOf(ghost) != -1 || player.ghostWisdom.indexOf(ghost) != -1){
 			ghost = this.session.afterLife.findFriendlySpirit(player);
 			console.log("ghost of friend: "+ player.titleBasic() + this.session.session_id);
 			ghostName = "dead friend"
 		}
 		
-		if(ghost == null){
+		if(ghost == null  || player.ghostPacts.indexOf(ghost) != -1 || player.ghostWisdom.indexOf(ghost) != -1){
 			ghost = this.session.afterLife.findAnyGhost(player);
 			ghostName = "dead player"
 		} 
 
 		
-		if(ghost){
+		if(ghost  || player.ghostPacts.indexOf(ghost) != -1 || player.ghostWisdom.indexOf(ghost) != -1){
 			div.append("<br><br>" +str + this.communeDeadResult(playerClass, player, ghost, ghostName));
 			var canvas = this.drawCommuneDead(div, player, ghost);
 			removeFromArray(player, this.session.availablePlayers);
@@ -206,8 +206,10 @@ function LifeStuff(session){
 		
 		if(playerClass == "Knight" || playerClass == "Page"){
 			player.ghostPacts.push(ghost);  //help with a later fight.
+			console.log("Knight or Page promise of dead: " + this.session.session_id);
 			return " The " +player.htmlTitleBasic() + " gains a promise of aid from the " + ghostName + ". ";
 		}else if(playerClass == "Seer" || playerClass == "Mage"){
+			player.ghostWisdom.push(ghost); //don't do anything, but keeps repeats from happening.
 			player.power += ghost.power/2;  //direct knowledge (and as we all know, knowledge is power)
 			player.aspectIncreasePower(ghost.power/2); //want to increase aspect stats, too.
 			return " The " +player.htmlTitleBasic() + " gains valuable wisdom from the " + ghostName + ". Their power grows.";
@@ -239,7 +241,7 @@ function LifeStuff(session){
 	}
 
 
-
+	//what graphical effect should be conveyed by "draining"???
 	//prince drains their own ghosts and takes their power.  if not prince, can be anybody you drain. mention 'it will be a while before the ghost of X respawns' don't bother actually respawning them , but makes it different than double death
 	this.destroyDeadForPower = function(div, player){
 		console.log("TODO drain dead for power: "+ player.titleBasic()  + this.session.session_id);
