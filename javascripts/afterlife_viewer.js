@@ -19,7 +19,7 @@ function renderSingleGhost(ghost,i){
 	console.log("rendering ghost")
 	var div = $("#story")
 	var html = "<div class = 'eulogy'>The " + ghost.htmlTitle() + " died " + ghost.causeOfDeath + ".";
-	var divID = (div.attr("id")) + "_Eulogy" + i;
+	var divID = "Eulogy" + i;
 	html += "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas></div>";
 	div.append(html);
 	var canvas = document.getElementById("canvas"+ divID);
@@ -43,7 +43,6 @@ function loadPlayers(p){
 	for(var i = 0; i<json.length; i++){
 		playersGlobalVar.push(objToPlayer(json[i]));
 	}
-	debug(playersGlobalVar[0].title())
 }
 
 //original version was regexping out #, but i need that for colors. dunkass.  thanks BR for pointing that out. Regexp is...still greek to me.
