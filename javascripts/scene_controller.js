@@ -329,7 +329,7 @@ function scratch(){
 function renderAfterlifeURL(){
 	if(curSessionGlobalVar.afterLife.ghosts.length > 0){
 
-		var html = "<Br><br><a href = 'rip.html?players=" + generateURLParamsForPlayers(curSessionGlobalVar.afterLife.ghosts) + "' target='_blank'>View Afterlife?</a>";
+		var html = "<Br><br><a href = 'rip.html?players=" + generateURLParamsForPlayers(curSessionGlobalVar.afterLife.ghosts) + "' target='_blank'>View Afterlife In New Tab?</a>";
 		//console.log("gonna append: " + html)
 		$("#story").append(html);
 	}else{
