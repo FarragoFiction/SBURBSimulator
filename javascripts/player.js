@@ -582,7 +582,10 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 		}
 		//no longer do this seperate. if close enough to modify with powers, close enough to be...closer.
 		r1 = this.getRelationshipWith(player);
-		r1.moreOfSame();
+		if(r1){
+			r1.moreOfSame();
+		}
+		
 	}
 
 	//SBURB is not a mystery to these classes/aspects.

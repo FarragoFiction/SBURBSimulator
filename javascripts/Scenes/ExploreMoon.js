@@ -104,6 +104,8 @@ function ExploreMoon(session){
 		}
 
 		if(this.player2 != null){
+			var r1 = this.player1.getRelationshipWith(this.player2);
+			var r2 = this.player2.getRelationshipWith(this.player1);
 			if(r1.type() == " Totally In Love" && r2.type() == "Totally In Love"){
 				ret += " The two flirt a bit. ";
 			}else if(r2.type() == "Totally In Love"){

@@ -61,12 +61,14 @@ function LifeStuff(session){
 	
 	//out of available players.
 	this.findGuidesAndNonGuides = function(){
-		var ret = [[],[]];
+		var ret = [];
+		var chosenGuides = [];
+		var chosenSuplicants = [];
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var possibleGuide = this.session.availablePlayers[i];
 			if(possibleGuide.aspect == "Doom" || possibleGuide.aspect == "Life"){
 				if(possibleGuide.class_name == "Seer" ||  possibleGuide.class_name == "Page" || possibleGuide.class_name == "Bard" || possibleGuide.class_name == "Rogue" ||  possibleGuide.class_name == "Maid"){
-						ret[0].push(possibleGuide);
+						chosenGuides.push(possibleGuide);
 				}
 			}
 		}
@@ -75,14 +77,15 @@ function LifeStuff(session){
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var possibleGuide = this.session.availablePlayers[i];
 			if(possibleGuide.class_name == "Heir" ||  possibleGuide.class_name == "Thief" || possibleGuide.class_name == "Prince" || possibleGuide.class_name == "Witch" ||  possibleGuide.class_name == "Sylph" || possibleGuide.class_name == "Knight" ||  possibleGuide.class_name == "Mage"){
-				ret[1].push(possibleGuide);
+				chosenSuplicants.push(possibleGuide);
 			}else if(possibleGuide.aspect != "Doom" && possibleGuide.aspect != "Life"){
-				if(ret[0].indexOf(possibleGuide)  == -1){ //can't be both guide and non guide.
-					ret[1].push(possibleGuide);
+				if(chosenGuides.indexOf(possibleGuide)  == -1){ //can't be both guide and non guide.
+					console.log("supplicant is: " + possibleGuide.title());
+					chosenSuplicants.push(possibleGuide);
 				}
 			}
 		}
-		return ret;
+		return [chosenGuides, chosenSuplicants];
 	}
 
 	//IMPORTANT, ONLY SET AVAILABLE STATUS IF YOU ACTUALLY DO YOUR THING. DON'T SET IT HERE. MIGHT TRIGGER WITH A PRINCE WHO DOESN'T HAVE ANY DEAD SELVES TO DESTROY.
@@ -91,13 +94,12 @@ function LifeStuff(session){
 		//div.append("<br>"+this.content());
 		for(var i = 0; i<this.enablingPlayerPairs.length; i++){
 			var player = this.enablingPlayerPairs[i][0];
-			var other_player = this.enablingPlayerPairs[i][0]; //could be null or a corpse.
+			var other_player = this.enablingPlayerPairs[i][1]; //could be null or a corpse.
 			if(player.dead){
 				if(player.class_name == "Heir" ||  player.class_name == "Thief"){
 					this.destroyDeadForReviveSelf(div, player);
 				}
 			}else{
-				console.log("player is not dead")
 				if(player.class_name == "Mage" ||  player.class_name == "Knight"){
 					this.communeDead(div, "", player, player.class_name);
 				}else if((player.class_name == "Seer" ||  player.class_name == "Page") && other_player && !other_player.dead){
@@ -158,19 +160,19 @@ function LifeStuff(session){
 			ghostName = "less fortunate alternate self"
 		}
 		
-		if(ghost == null) ghost = this.session.afterLife.findAnyAlternateSelf(player);
+		if(ghost == null) ghost = this.session.afterLife.findAnyGhost(player);
 		if(ghost){
 			ghostName = "dead player"
 		}
 		
 		if(ghost){
 			div.append("<br><br>" +str + this.communeDeadResult(playerClass, player, ghost, ghostName));
-			this.drawCommuneDead(div, player, ghost);
+			var canvas = this.drawCommuneDead(div, player, ghost);
 			removeFromArray(player, this.session.availablePlayers);
-			return true;
+			return canvas;
 		}else{
 			console.log("no ghosts to commune dead for: "+ player.titleBasic() + this.session.session_id);
-			return false;
+			return null;
 		}
 	}
 	
@@ -188,6 +190,7 @@ function LifeStuff(session){
 		//leave room on left for possible 'guide' player.
 		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,300,0)
 		copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,600,0)
+		return canvas;
 	}
 	
 	this.communeDeadResult = function(playerClass, player, ghost, ghostName){
@@ -204,7 +207,7 @@ function LifeStuff(session){
 
 	//seers/pages call this which calls communeDeadForKnowledge. seer/page gets boost at same time.
 	this.helpPlayerCommuneDead = function(div, player1, player2){
-			console.log(" help commune dead for: "+ player1.titleBasic() + this.session.session_id);
+			console.log(" help commune dead for: "+ player1.titleBasic() + " and " + player2.titleBasic() + this.session.session_id);
 			var divID = (div.attr("id")) + "_communeDeadWithGuide"+player1.chatHandle ;
 			div.append("<div id ="+divID + "></div>")
 			var childDiv = $("#"+divID)
@@ -221,8 +224,8 @@ function LifeStuff(session){
 				var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 				drawSprite(pSpriteBuffer,player1)
 				copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0)
-				player1.interactionEffect(this.player2);
-				player2.interactionEffect(this.player1);
+				player1.interactionEffect(player2);
+				player2.interactionEffect(player1);
 			}
 	}
 
@@ -235,7 +238,7 @@ function LifeStuff(session){
 
 	//bards call this to power up somebody else with the dead. they gain power at same time.
 	this.helpPlayerDestroyDeadForPower = function(div, player1, player2){
-		console.log("TODO help drain dead for power: "+ player.titleBasic() + this.session.session_id);
+		console.log("TODO help drain dead for power: "+ player1.titleBasic() + this.session.session_id);
 	}
 
 	//thief/heir of life/doom //flavor text of absorbing or stealing.  mention 'it will be a while before the ghost of X respawns' don't bother actually respawning them , but makes it different than double death
@@ -245,7 +248,7 @@ function LifeStuff(session){
 
 	//rogue/maid of life/doom
 	this.helpDestroyDeadForReviveSelf = function(div, player1, player2){
-		console.log("TODO  help drain dead for revive: "+ player.titleBasic() + this.session.session_id);
+		console.log("TODO  help drain dead for revive: "+ player1.titleBasic() + this.session.session_id);
 	}
 
 
