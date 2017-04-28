@@ -91,7 +91,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 		}
 		return ret;
 	}
-	
+
 	this.makeDead = function(causeOfDeath){
 		this.dead = true;
 		this.causeOfDeath = causeOfDeath;
@@ -191,6 +191,8 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 		ret+= this.class_name + " of " + this.aspect;
 		if(this.dead){
 			ret += "'s Corpse"
+		}else if(this.ghost){
+			ret += "'s Ghost"
 		}
 		return ret;
 	}

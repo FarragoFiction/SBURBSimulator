@@ -1030,6 +1030,7 @@ function drawSpriteTurnways(canvas, player){
 function makeRenderingSnapshot(player){
 	var ret = new PlayerSnapshot();
 	ret.robot = player.robot;
+  ret.ghost = player.ghost;
 	ret.session = player.session;
 	ret.id = player.id;
 	ret.trickster = player.trickster;
@@ -1172,7 +1173,7 @@ function drawSprite(canvas, player,ctx,baby){
     //wasteOfMindSymbol(canvas, player);
     influenceSymbol(canvas, player.influenceSymbol);
   }
-  
+
   if(!baby && player.ghost){
     //wasteOfMindSymbol(canvas, player);
     halo(canvas, player.influenceSymbol);
