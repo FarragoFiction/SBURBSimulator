@@ -250,9 +250,7 @@ function DoLandQuest(session){
 		}
 		if(helper != null && player  != helper ){
 			r1 = player.getRelationshipWith(helper);
-			r1.moreOfSame();
 			r2 = helper.getRelationshipWith(player);
-			r2.moreOfSame();
 			ret += getRelationshipFlavorText(r1,r2, player, helper);
 		}
 		ret += this.spriteContent(player);

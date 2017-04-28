@@ -113,12 +113,8 @@ function SolvePuzzles(session){
 		}
 		this.player1.increasePower();
 		if(this.player2 != null &&  this.player1  != this.player2){  //could be a time double, don't have a relationship with a time double (it never works out)
-			this.player1.increasePower();
-			r1 = this.player1.getRelationshipWith(this.player2);
-			r1.moreOfSame();
-			r2 = this.player2.getRelationshipWith(this.player1);
+			this.player1.increasePower();			
 			this.player2.increasePower();
-			r2.moreOfSame();
 			this.player1.interactionEffect(this.player2);
 			this.player2.interactionEffect(this.player1);
 		}

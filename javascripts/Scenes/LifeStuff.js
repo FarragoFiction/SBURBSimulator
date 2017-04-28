@@ -77,7 +77,9 @@ function LifeStuff(session){
 			if(possibleGuide.class_name == "Heir" ||  possibleGuide.class_name == "Thief" || possibleGuide.class_name == "Prince" || possibleGuide.class_name == "Witch" ||  possibleGuide.class_name == "Sylph" || possibleGuide.class_name == "Knight" ||  possibleGuide.class_name == "Mage"){
 				ret[1].push(possibleGuide);
 			}else if(possibleGuide.aspect != "Doom" && possibleGuide.aspect != "Life"){
-				ret[1].push(possibleGuide);
+				if(ret[0].indexOf(possibleGuide)  == -1){ //can't be both guide and non guide.
+					ret[1].push(possibleGuide);
+				}
 			}
 		}
 		return ret;
@@ -131,18 +133,13 @@ function LifeStuff(session){
 	this.dreamBubbleAfterlifeAction = function(div, player){
 		console.log("TODO dream bubble stuff: " + player.titleBasic() +  this.session.session_id);
 	}
-	
-	//need to be consistent or I won't be able to do active/passive split the way I want.
-	this.getCanvasIdForPlayer = function(player){
-		
-	}
-	
+
 	//have an array of "ghost warriors" or some shit. during boss fights, explicitly use them, rendered and everything. knights/pages cause this
 	//mages/knights call this directly.    flavor text of knowledge or power.  huge bonus if it's your guardian.
 	//renders itself and returns if it rendered anything.
 	//str is empty if I'm calling this myself, and has a line about so and so helping you do this if helper.
 	this.communeDead = function(div, str, player, playerClass){  //takes in player class because if there is a helper, what happens is based on who THEY are not who the player is.
-		console.log("TODO  commune dead for: "+ player.titleBasic() + this.session.session_id);
+		console.log("commune dead for: "+ player.titleBasic() + this.session.session_id);
 		var ghost = this.session.afterLife.findGuardianSpirit(player);
 		var ghostName = "";
 		if(ghost){
@@ -167,7 +164,7 @@ function LifeStuff(session){
 		}
 		
 		if(ghost){
-			div.append(str + this.communeDeadResult(playerClass, player, ghost, ghostName));
+			div.append("<br><br>" +str + this.communeDeadResult(playerClass, player, ghost, ghostName));
 			this.drawCommuneDead(div, player, ghost);
 			removeFromArray(player, this.session.availablePlayers);
 			return true;
@@ -180,9 +177,10 @@ function LifeStuff(session){
 	
 	
 	this.drawCommuneDead = function(div, player, ghost){
-		var canvasHTML = "<br><canvas id='" + this.getCanvasIdForPlayer(player) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		var canvasId = div.attr("id") + "commune_" +player.chatHandle
+		var canvasHTML = "<br><canvas id='" + canvasId +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
-		var canvas = document.getElementById(this.getCanvasIdForPlayer(player));
+		var canvas = document.getElementById(canvasId);
 		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawSprite(pSpriteBuffer,player)
 		var gSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
@@ -206,7 +204,7 @@ function LifeStuff(session){
 
 	//seers/pages call this which calls communeDeadForKnowledge. seer/page gets boost at same time.
 	this.helpPlayerCommuneDead = function(div, player1, player2){
-			console.log("TODO  help commune dead for: "+ player1.titleBasic() + this.session.session_id);
+			console.log(" help commune dead for: "+ player1.titleBasic() + this.session.session_id);
 			var divID = (div.attr("id")) + "_communeDeadWithGuide"+player1.chatHandle ;
 			div.append("<div id ="+divID + "></div>")
 			var childDiv = $("#"+divID)
@@ -216,15 +214,15 @@ function LifeStuff(session){
 			}else if(player1.class_name == "Page"){
 				text += "The " + player1.htmlTitleBasic() + " guides the " + player2.htmlTitleBasic() + " to seek aid from the dead. "
 			}
-			var ghostCommunedWith = this.communeDead(childDiv, text, player2, player1.class_name);
-			if(ghostCommunedWith){
+			var canvas = this.communeDead(childDiv, text, player2, player1.class_name);
+			if(canvas){
 				removeFromArray(player1, this.session.availablePlayers);
-				console.log("Help communing with the dead: " + this.session.session_id);
-				
-				var canvas = document.getElementById(this.getCanvasIdForPlayer(player2));
+				console.log("Help communing with the dead: " + this.session.session_id);				
 				var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 				drawSprite(pSpriteBuffer,player1)
 				copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0)
+				player1.interactionEffect(this.player2);
+				player2.interactionEffect(this.player1);
 			}
 	}
 
