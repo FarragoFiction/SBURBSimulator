@@ -29,7 +29,7 @@ function AfterLife(){
 
 	this.findAllAlternateSelves = function(player){
 		var selves = [];
-		for(var i = 0; i<ithis.ghosts.length; i++){
+		for(var i = 0; i<this.ghosts.length; i++){
 			var ghost = this.ghosts[i];
 			if(ghost.id == player.id && ghost.class_name == player.class_name && ghost.aspect == player.aspect && player.hair == ghost.hair ){  //if they STILL match, well fuck it. they are the same person just alternate universe versions of each other.
 				selves.push(ghost);

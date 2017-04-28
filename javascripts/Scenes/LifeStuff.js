@@ -186,10 +186,10 @@ function LifeStuff(session){
 		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawSprite(pSpriteBuffer,player)
 		var gSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-		drawSpriteTurnways(pSpriteBuffer,ghost)
+		drawSpriteTurnways(gSpriteBuffer,ghost)
 		//leave room on left for possible 'guide' player.
-		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,400,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,800,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,300,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,600,0)
 	}
 	
 	this.communeDeadResult = function(playerClass, player, ghost, ghostName){

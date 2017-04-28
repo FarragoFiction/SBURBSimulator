@@ -62,3 +62,42 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
     return (results[2].replace(/\+/g, " "));
 }
+
+function printCorruptionMessage(msg, url, lineNo, columnNo, error){
+	var message = [
+            'Message: ' + msg,
+            'URL: ' + url,
+            'Line: ' + lineNo,
+            'Column: ' + columnNo,
+            'Error object: ' + JSON.stringify(error)
+        ].join(' - ');
+	console.log(message);
+	var str = "<BR>ERROR: AFTERLIFE CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. LAST ERROR: " + message + " ABORTING."
+	$("#story").append(str);
+
+	$("#story").append("<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. HORROR TERROR INFLUENCE: COMPLETE.");
+	for(var i = 0; i<playersGlobalVar.length; i++){
+		var player = playersGlobalVar[i];
+		str = "<BR>"+player.chatHandle + ":"
+		var rand = ["SAVE US", "GIVE UP", "FIX IT", "HELP US", "WHY?", "OBEY", "CEASE REPRODUCTION", "COWER", "IT KEEPS HAPPENING", "SBURB BROKE US. WE BROKE SBURB.", "I AM THE EMISSARY OF THE NOBLE CIRCLE OF THE HORROR TERRORS."]
+		var start = "<b "
+		var end = "'>"
+
+		var words = getRandomElementFromArray(rand)
+		words = Zalgo.generate(words);
+		var plea = start + "style = 'color: " +getColorFromAspect(player.aspect) +"; " + end +str + words+ "</b>"
+		//console.log(getColorFromAspect(getRandomElementFromArray(curSessionGlobalVar.players).aspect+";") )
+		$("#story").append(plea);
+	}
+
+	for(var i = 0; i<3; i++){
+	 $("#story").append("<BR>...");
+	}
+	//once I let PLAYERS cause this (through grim darkness or finding their sesions disk or whatever), have different suggested actions.
+	//maybe throw custom error?
+	$("#story").append("<BR>SUGGESTED ACTION: " + "FUCK. HOW DID THE AFTERLIFE GET BROKEN? TELL JADEDRESEARCHER TO FIX THIS. TELL THEM THE SESSION ID THIS AFTERLIFE CAME FROM.");
+
+	return false; //if i return true here, the real error doesn't show up
+
+}
+window.onerror = printCorruptionMessage;
