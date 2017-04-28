@@ -2006,7 +2006,7 @@ function aspectPalletSwap(canvas, player){
     new_color1='#76C34E';
 	new_color2='#4F8234';
 	new_color3='#00164F';
-	new_color4='#000766';
+	new_color4='#00071A';
 	new_color5='#605542';
 	new_color6='#494132';
 	new_color7='#2D271E';
