@@ -78,6 +78,7 @@
 .eulogy{
   float:left;
   padding: 10px;
+  width:400px;
 }
 
 @font-face {
