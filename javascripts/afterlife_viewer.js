@@ -39,6 +39,7 @@ function renderGhosts(){
 
 function loadPlayers(p){
 	var decodedPlayers = decodeURI(p);
+	console.log(decodedPlayers)
  	var json = JSON.parse(decodedPlayers);
 	for(var i = 0; i<json.length; i++){
 		playersGlobalVar.push(objToPlayer(json[i]));
@@ -46,6 +47,7 @@ function loadPlayers(p){
 }
 
 //original version was regexping out #, but i need that for colors. dunkass.  thanks BR for pointing that out. Regexp is...still greek to me.
+//oh shit. if 'cause of death' has quotes in it (like, cod = 'fighting the <font color = "">GRIM DARK HEIR OF BREATH</font>' or whatever....)
 function getParameterByName(name, url) {
     if (!url) {
       url = window.location.href;
