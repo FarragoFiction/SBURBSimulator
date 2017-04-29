@@ -586,6 +586,20 @@ function drawGodSymbolBG(canvas, player){
 
 }
 
+function drawDreamBubble(canvas){
+  if(checkSimMode() == true){
+    return;
+  }
+	ctx = canvas.getContext('2d');
+	var imageString ="dreambubbles.png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,0,0,width,height);
+
+}
+
 function drawHorrorterror(canvas){
   if(checkSimMode() == true){
     return;
@@ -1076,6 +1090,8 @@ function makeRenderingSnapshot(player){
 	ret.minLuck = player.minLuck;
 	ret.maxLuck = player.maxLuck;
 	ret.freeWill = player.freeWill;
+  ret.interest1 = player.interest1;
+  ret.interest2 = player.interest2;
 	ret.mobility = player.mobility;
 	return ret;
 }

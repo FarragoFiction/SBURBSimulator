@@ -146,20 +146,47 @@ function LifeStuff(session){
 
 
 
-
-
-	//only when dream bubble afterlife is true. 1-4 players returned?
-	this.findGhostsToCommuneWith = function(div, player){
-
-
-	}
-
 	//different flavor of afterlife based on derse or prospit?  derse has horror terror everywhere. prospit after life is filled with visions of the alpha timeline, taunting you.
 	//so...if derse bubbles are Tumblr, then prospit are facebook (full of envy)
 	//hang out with some random ghosts, get power boost. player on left, pile of ghosts on right.
 	this.dreamBubbleAfterlifeAction = function(div, player){
-		console.log("TODO dream bubble stuff: render player and 1-4 ghosts, along with dream bubble bg" + player.titleBasic() +  this.session.session_id);
-		//if you meet guardian in dream bubble, bond over shared interests. small power boost. 
+		//if you meet guardian in dream bubble, bond over shared interests. small power boost.
+		var ghost = this.session.afterLife.findGuardianSpirit(player);
+		var ghostName = "";
+		if(ghost && player.ghostPacts.indexOf(ghost) == -1 && player.ghostWisdom.indexOf(ghost) == -1 && !ghost.causeOfDrain){
+			console.log("ghost of guardian: "+ player.titleBasic() + this.session.session_id);
+			//talk about getting wisdom/ forging a pact with your dead guardian. different if i am mage or knight (because i am alone)
+			ghostName = "teen ghost version of their ancestor"
+
+		}
+
+		if(ghost == null  || player.ghostPacts.indexOf(ghost) != -1 || player.ghostWisdom.indexOf(ghost) != -1 || ghost.causeOfDrain){
+			ghost = this.session.afterLife.findAnyGhost(player);
+			ghostName = "dead player"
+		}
+
+		if(ghost  && player.ghostPacts.indexOf(ghost) == -1 && player.ghostWisdom.indexOf(ghost) == -1 && !ghost.causeOfDrain){
+			console.log("dream bubble onion" +this.session.session_id);
+			var str = "The " + player.htmlTitle() + " wanders a shifting and confusing landscape until they see the " + ghostName+". They must be dreaming.";
+			var trait = whatDoPlayersHaveInCommon(player, ghost);
+			if(trait != 'nice' && ghost.id != player.id){
+				str += " They bond over how " + trait + " they both are. The " + player.htmlTitle() + " feels their determination to beat the game grow. "
+				player.power += ghost.power/2; //not as good as communing, but pretty damn good.
+			}else{
+				str += " It's a little awkward. "
+				player.power += ghost.power/10;
+			}
+			div.append("<br><br>" + str);
+			var canvas = this.drawDreamBubble(div, player, ghost);
+			removeFromArray(player, this.session.availablePlayers);
+			return canvas;
+		}else{
+			console.log("no ghosts in dream bubble: "+ player.titleBasic() + this.session.session_id);
+			div.append("<br><br>" + "The " + player.htmlTitle() + " wanders a shifting and confusing landscape. They must be dreaming. They never meet anyone before they wake up, though. ");
+			var canvas = this.drawDreamBubble(div, player, null);
+		}
+
+
 	}
 
 	//have an array of "ghost warriors" or some shit. during boss fights, explicitly use them, rendered and everything. knights/pages cause this
@@ -169,7 +196,7 @@ function LifeStuff(session){
 	this.communeDead = function(div, str, player, playerClass){  //takes in player class because if there is a helper, what happens is based on who THEY are not who the player is.
 		var ghost = this.session.afterLife.findGuardianSpirit(player);
 		var ghostName = "";
-		if(ghost){
+		if(ghost && player.ghostPacts.indexOf(ghost) == -1 && player.ghostWisdom.indexOf(ghost) == -1 && !ghost.causeOfDrain){
 			console.log("ghost of guardian: "+ player.titleBasic() + this.session.session_id);
 			//talk about getting wisdom/ forging a pact with your dead guardian. different if i am mage or knight (because i am alone)
 			ghostName = "teen ghost version of their ancestor"
@@ -208,6 +235,30 @@ function LifeStuff(session){
 			console.log("no ghosts to commune dead for: "+ player.titleBasic() + this.session.session_id);
 			return null;
 		}
+	}
+
+	//might not be a ghost.
+	this.drawDreamBubble = function(div, player, ghost){
+		var canvasId = div.attr("id") + "commune_" +player.chatHandle
+		var canvasHTML = "<br><canvas id='" + canvasId +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		var canvas = document.getElementById(canvasId);
+		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawSprite(pSpriteBuffer,player)
+		var bubbleSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawDreamBubble(bubbleSpriteBuffer)
+
+		//leave room on left for possible 'guide' player.
+		copyTmpCanvasToRealCanvasAtPos(canvas, bubbleSpriteBuffer,0,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0)
+		if(ghost){
+			var gSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+			drawSpriteTurnways(gSpriteBuffer,ghost)
+			copyTmpCanvasToRealCanvasAtPos(canvas, bubbleSpriteBuffer,400,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,400,0)
+		}
+
+		return canvas;
 	}
 
 
