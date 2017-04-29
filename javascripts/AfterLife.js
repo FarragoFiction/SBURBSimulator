@@ -94,7 +94,7 @@ function AfterLife(){
 
 	//if I am being revived (god tiering on a slab, life player reviving me) I need to find my ghost in the afterlife and remove it entirely.
 	this.findClosesToRealSelf = function(player){
-		var selves = findAllAlternateSelves(player);
+		var selves = this.findAllAlternateSelves(player);
 		var bestCanidateValue = 9999999;
 		var bestCanidate = selves[0];
 		//can't just check directly for mvp because i let corpses level up. the revived player could be stronger than the original.

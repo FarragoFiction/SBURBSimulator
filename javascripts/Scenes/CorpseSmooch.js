@@ -149,6 +149,9 @@ function CorpseSmooch(session){
 			var canvasDiv = document.getElementById("canvas"+ divID);
 			this.drawCorpseSmooch(canvasDiv, deadPlayer, royalty, 1000)
 		}else{
+			console.log("dream self dies from no corpse smooch: " + this.session.session_id)
+			deadPlayer.isDreamSelf = true;
+			deadPlayer.causeOfDeath = "sympathetic wounds after real self died unsmooched"
 			this.makeDead(deadPlayer); //dream self dies, too
 		}
 

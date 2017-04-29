@@ -97,7 +97,7 @@ function LifeStuff(session){
 			var other_player = this.enablingPlayerPairs[i][1]; //could be null or a corpse.
 			if(player.dead){
 				if(player.class_name == "Heir" ||  player.class_name == "Thief"){
-					this.drainDeadForReviveSelf(div, player, player.class_name);
+					this.drainDeadForReviveSelf(div, "",player, player.class_name);
 				}
 			}else{
 				if(player.class_name == "Mage" ||  player.class_name == "Knight"){
@@ -303,11 +303,14 @@ function LifeStuff(session){
 	}
 
 	//thief/heir of life/doom //flavor text of absorbing or stealing.  mention 'it will be a while before the ghost of X respawns' don't bother actually respawning them , but makes it different than double death
-	this.drainDeadForReviveSelf = function(div, player, className){
+	this.drainDeadForReviveSelf = function(div, str, player, className){
 			ghost = this.session.afterLife.findAnyGhost(player); //not picky in a crisis.
 			ghostName = "dead player"
-
-			if(ghost  && !ghost.causeOfDrain){
+			//need to find my own ghost and remove it from the afterlife.
+			var myGhost = this.session.afterLife.findClosesToRealSelf(player)
+			//you can not use your own fresh ghost as fuel to revive. doens't work like that. even if it's kinda thematically appropriate for some clapsects.
+			//if i let them do that, can INFINITELY respawn, because will ALWAYS have a non drained ghost to use.
+			if(ghost  && !ghost.causeOfDrain && myGhost != ghost){
 				console.log("ghost drain dead for revive: "+ player.titleBasic()  + this.session.session_id);
 				if(className == "Thief" || className == "Rogue"){
 					str += " The " + player.htmlTitleBasic() + " steals the essence of the " + ghostName + " in order to revive, it will be a while before the ghost recovers.";
@@ -317,11 +320,12 @@ function LifeStuff(session){
 
 
 				div.append("<br><br>" +str);
+				ghost.causeOfDrain = player.htmlTitle();
 				var canvas = this.drawCommuneDead(div, player, ghost);
 				player.dead = false;
-				ghost.causeOfDrain = player.htmlTitle();
-				//need to find my own ghost and remove it from the afterlife.
-				removeFromArray(this.session.afterLife.findClosesToRealSelf(player), this.session.afterLife.ghosts);
+
+
+				removeFromArray(myGhost, this.session.afterLife.ghosts);
 				removeFromArray(player, this.session.availablePlayers);
 				return canvas;
 			}else{
