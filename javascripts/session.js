@@ -147,6 +147,7 @@ function Session(session_id){
 		var newSession = new Session(Math.seed);  //this is a real session that could have gone on without these new players.
 		newSession.currentSceneNum = this.currentSceneNum;
 		newSession.afterLife = this.afterLife; //afterlife carries over.
+		newSession.dreamBubbleAfterlife = this.dreamBubbleAfterlife; //this, too
 		newSession.reinit();
 		newSession.makePlayers();
 		newSession.randomizeEntryOrder();
