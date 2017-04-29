@@ -44,6 +44,8 @@ function LifeStuff(session){
 			}
 		}
 
+		var dead = findDeadPlayers(this.session.players) //dead players can always be revived
+		nonGuides = nonGuides.concat(dead);
 		//for each guide, see if there are any non guides left to guide.
 		for(var i = 0; i<guides.length; i++){
 			if(nonGuides.length > 0){
@@ -54,6 +56,7 @@ function LifeStuff(session){
 			}
 
 		}
+
 
 		return this.enablingPlayerPairs.length > 0;
 
@@ -313,16 +316,16 @@ function LifeStuff(session){
 			if(ghost  && !ghost.causeOfDrain && myGhost != ghost){
 				console.log("ghost drain dead for revive: "+ player.titleBasic()  + this.session.session_id);
 				if(className == "Thief" || className == "Rogue"){
-					str += " The " + player.htmlTitleBasic() + " steals the essence of the " + ghostName + " in order to revive, it will be a while before the ghost recovers.";
+					str += " The " + player.htmlTitleBasic() + " steals the essence of the " + ghostName + " in order to revive. It will be a while before the ghost recovers.";
 				}else if(className == "Heir" || className == "Maid"){
-					str += " The " + player.htmlTitleBasic() + " inherits the essence and duties of the " + ghostName + " in order to revive and continue their work, it will be a while before the ghost recovers.";
+					str += " The " + player.htmlTitleBasic() + " inherits the essence and duties of the " + ghostName + " in order to revive and continue their work. It will be a while before the ghost recovers.";
 				}
 
 
 				div.append("<br><br>" +str);
 				ghost.causeOfDrain = player.htmlTitle();
 				var canvas = this.drawCommuneDead(div, player, ghost);
-				player.dead = false;
+				this.makeAlive(player);
 
 
 				removeFromArray(myGhost, this.session.afterLife.ghosts);
@@ -339,7 +342,7 @@ function LifeStuff(session){
 		var divID = (div.attr("id")) + "_communeDeadWithGuide"+player1.chatHandle ;
 		div.append("<div id ="+divID + "></div>")
 		var childDiv = $("#"+divID)
-		var text = "The " + player1.htmlTitleBasic() + " assists the " + player2.htmlTitleBasic() + " in order to revive. ";
+		var text = "The " + player1.htmlTitleBasic() + " assists the " + player2.htmlTitleBasic() + ". ";
 
 		var canvas = this.drainDeadForReviveSelf(childDiv, text, player2, player1.class_name);
 		if(canvas){

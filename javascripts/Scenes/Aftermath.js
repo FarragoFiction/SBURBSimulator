@@ -101,6 +101,7 @@ function Aftermath(session){
 
 
 	this.renderContent = function(div){
+		console.log("TODO: players with ghost power left over revive. healing lifeplayers can convert ghosts to living players ");
 		var yellowYard = false;
 		var living = findLivingPlayers(this.session.players);
 		var end = "<Br>";
@@ -130,7 +131,7 @@ function Aftermath(session){
 					//I am hella tempted to implement mixed sessions here, like the troll/human session in canon.
 					this.session.scratchAvailable = true;
 					renderScratchButton(this.session);
-					
+
 				}else{
 					end += this.democracyBonus();
 					end += " <Br><br> The door to the new universe is revealed. Everyone files in. <Br><Br> Thanks for Playing. ";
@@ -146,7 +147,7 @@ function Aftermath(session){
 				this.session.scratchAvailable = true;
 				renderScratchButton(this.session);
 				yellowYard = true;
-				
+
 			}
 	}else{
 		div.append(end);
