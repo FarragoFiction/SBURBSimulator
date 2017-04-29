@@ -61,6 +61,8 @@ function VoidyStuff(session){
 		}
 
 		if(this.player.godDestiny && Math.seededRandom()>0.8 && this.player.land != null){  //just randomly freaking god tier.
+			roll.player.makeDead("hidden in void on their way to godhood")
+			this.player.dead = false;
 			this.player.godTier = true;
 			this.player.dreamSelf = false;
 			ret += " What was that light on " + this.player.shortLand() + "? ";

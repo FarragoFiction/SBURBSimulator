@@ -20,7 +20,7 @@ function renderSingleGhost(ghost,i){
 	var div = $("#story")
 	var html = "<div class = 'eulogy'>The " + ghost.htmlTitle() + " died " + ghost.causeOfDeath + ".";
 	if(ghost.causeOfDrain){
-		html += " They were drained to the point of uselessness by: " + ghost.causeOfDrain + ".  They will recover eventually. "
+		html += " They were drained to the point of uselessness by the" + ghost.causeOfDrain + ".  They will recover eventually. "
 	}
 	var divID = "Eulogy" + i;
 	html += "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas></div>";

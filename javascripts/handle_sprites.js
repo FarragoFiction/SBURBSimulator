@@ -1093,9 +1093,15 @@ function drawSprite(canvas, player,ctx,baby){
  }
 
   ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
-  if(!baby &&player.dead){//only rotate once
+  if(!baby &&(player.dead)){//only rotate once
   	ctx.translate(canvas.width, 0);
   	ctx.rotate(90*Math.PI/180);
+  }
+
+  //they are not dead, only sleeping
+  if(!baby &&(player.causeOfDrain)){//only rotate once
+  	ctx.translate(0, 6*canvas.height/5);
+  	ctx.rotate(270*Math.PI/180);
   }
 
   if(!baby && player.grimDark > 2){
@@ -1175,10 +1181,13 @@ function drawSprite(canvas, player,ctx,baby){
     influenceSymbol(canvas, player.influenceSymbol);
   }
 
+
   if(!baby && player.ghost){
     //wasteOfMindSymbol(canvas, player);
     halo(canvas, player.influenceSymbol);
   }
+
+
 }
 
 
@@ -2199,6 +2208,13 @@ function getBufferCanvas(canvas){
 function copyTmpCanvasToRealCanvasAtPos(canvas, tmp_canvas, x, y){
   ctx = canvas.getContext('2d');
 	ctx.drawImage(tmp_canvas, x, y);
+}
+
+//does not work how i hoped. does not render a canvas with alpha
+function copyTmpCanvasToRealCanvas50(canvas, tmp_canvas){
+	ctx = canvas.getContext('2d');
+  ctx.globalAlpha = 0.5;
+	ctx.drawImage(tmp_canvas, 0, 0);
 }
 
 

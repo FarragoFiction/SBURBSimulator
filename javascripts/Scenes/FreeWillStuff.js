@@ -456,11 +456,11 @@ function FreeWillStuff(session){
 		if(!player.isDreamSelf){
 				ret += "The " + player.htmlTitleBasic() + "'s body glows, and rises Skaiaward. "+"On " + player.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
 				this.session.questBed = true;
-				player.makeDead("dying on their quest bed")
+				player.makeDead("on their quest bed")
 		}else{
 			ret += "The " + player.htmlTitleBasic() + " glows and ascends to the God Tiers with a sweet new outfit."
 			this.session.sacrificialSlab = true;
-			player.makeDead("dying on their sacrificialSlab")
+			player.makeDead("on their sacrificialSlab")
 		}
 		player.dead = false;
 		player.godTier = true;
