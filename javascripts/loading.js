@@ -130,6 +130,8 @@ function loadOther(skipInit){
 	loadImage("bloody_face.png",skipInit)
 	loadImage("Moirail.png",skipInit)
 	loadImage("Matesprit.png",skipInit)
+  loadImage("horrorterror.png", skipInit);
+  loadImage("dreambubbles.png", skipInit);
 	loadImage("Auspisticism.png",skipInit)
 	loadImage("Kismesis.png",skipInit)
 	loadImage("prince_hat.png",skipInit)

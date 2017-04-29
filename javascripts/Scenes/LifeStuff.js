@@ -13,7 +13,7 @@ function LifeStuff(session){
 	//what kind of priority should this have. players shouldn't fuck around in ream bubbles instead of land quests. but they also shouldn't avoid reviving players.
 	//maybe revive stuff always happens, but anything else has a random chance of not happening?
 	this.trigger = function(playerList){
-		this.enablingPlayerPairs = [];
+		this.enablingPlayerPairs = []; //player1, player2, dreamShenanigns
 		//not just available players. if class that could revive SELF this way, can be called on dead. otherwise requires a living life/doom player.
 		if(this.session.afterLife.ghosts.length == 0) return false; //can't exploit the afterlife if there isn't one.
 		//first, check the dead.
@@ -22,39 +22,60 @@ function LifeStuff(session){
 			var d = dead[i];
 			if(d.aspect == "Life" || d.aspect == "Doom"){
 				if(d.class_name == "Thief" || d.class_name == "Heir"){
-					this.enablingPlayerPairs.push([d, null]); //gonna revive myself.
+					this.enablingPlayerPairs.push([d, null, false]); //gonna revive myself.
 				}
 			}
 		}
 		var guidesAndNon = this.findGuidesAndNonGuides(); //IS about availability.
 		var guides = guidesAndNon[0];
 		var nonGuides = guidesAndNon[1];
+		var removeNonGuides = []; //don't remove elements in teh array you are in.
 		//IMPORTANT if the below triggers to frequently can either changes it's priority in the scenes OR make there be a random chance of it not adding an enablingPlayer.
 		//for each nonGuide, see if you can do something on your own.
 		for(var i = 0; i<nonGuides.length; i++){
 			var player = nonGuides[i];
 			if(player.aspect == "Life" || player.aspect == "Doom"){
 				if(player.className != "Witch" && player.className != "Sylph"){
-					this.enablingPlayerPairs.push([player, null]);
-					removeFromArray(player, nonGuides);
+					this.enablingPlayerPairs.push([player, null, false]);
+					removeNonGuides.push(nonGuide)
 				}else if(!this.session.dreamBubbleAfterlife){
-					this.enablingPlayerPairs.push([player, null]); //witches and sylphs turn on the dream bubble afterlife if it's not already on.
-					removeFromArray(player, nonGuides);
+					this.enablingPlayerPairs.push([player, null], false); //witches and sylphs turn on the dream bubble afterlife if it's not already on.
+					removeNonGuides.push(nonGuide)
 				}
 			}
 		}
 
+		for(var i = 0; i<removeNonGuides.length; i++){
+			removeFromArray(removeNonGuides[i], nonGuides);
+		}
+
 		var dead = findDeadPlayers(this.session.players) //dead players can always be revived
 		nonGuides = nonGuides.concat(dead);
+		var removeGuides = []; //don't remove elements in teh array you are in.
 		//for each guide, see if there are any non guides left to guide.
 		for(var i = 0; i<guides.length; i++){
 			if(nonGuides.length > 0){
 				var guide = guides[i];
 				var nonGuide = getRandomElementFromArray(nonGuides);
 				removeFromArray(nonGuide, nonGuides);
-				this.enablingPlayerPairs.push([guide, nonGuide]);
+				removeGuides.push(guide);
+				this.enablingPlayerPairs.push([guide, nonGuide, false]);
 			}
+		}
 
+		for(var i = 0; i<removeGuides.length; i++){
+			removeFromArray(removeGuides[i], guides);
+		}
+		//if you don't have an official role, join the pool of dreamers.
+		nonGuides = nonGuides.concat(guides);
+		if(this.session.dreamBubbleAfterlife){
+			for(var i = 0; i<nonGuides.length; i++){
+					var rand = Math.seededRandom() //only spend half your time dreaming right.
+					var player = nonGuides[i];
+					if(!player.dreamSelf && rand > .5){
+						this.enablingPlayerPairs.push([player, null, true])
+					}
+			}
 		}
 
 
@@ -98,11 +119,12 @@ function LifeStuff(session){
 		for(var i = 0; i<this.enablingPlayerPairs.length; i++){
 			var player = this.enablingPlayerPairs[i][0];
 			var other_player = this.enablingPlayerPairs[i][1]; //could be null or a corpse.
+			var dreaming = this.enablingPlayerPairs[i][2];
 			if(player.dead){
 				if(player.class_name == "Heir" ||  player.class_name == "Thief"){
 					this.drainDeadForReviveSelf(div, "",player, player.class_name);
 				}
-			}else{
+			}else if(!dreaming){
 				if(player.class_name == "Mage" ||  player.class_name == "Knight"){
 					this.communeDead(div, "", player, player.class_name);
 				}else if((player.class_name == "Seer" ||  player.class_name == "Page") && other_player && !other_player.dead){
@@ -115,9 +137,9 @@ function LifeStuff(session){
 					this.helpDrainDeadForReviveSelf(div, player, other_player);
 				}else if((player.class_name == "Witch" ||  player.class_name == "Sylph") && !this.session.dreamBubbleAfterlife ){
 					this.enableDreamBubbles(div, player);
-				}else if(this.session.dreamBubbleAfterlife){
-					this.dreamBubbleAfterlifeAction(div, player);
 				}
+			}else if(this.session.dreamBubbleAfterlife){
+					this.dreamBubbleAfterlifeAction(div, player);
 			}
 		}
 	}
@@ -136,7 +158,8 @@ function LifeStuff(session){
 	//so...if derse bubbles are Tumblr, then prospit are facebook (full of envy)
 	//hang out with some random ghosts, get power boost. player on left, pile of ghosts on right.
 	this.dreamBubbleAfterlifeAction = function(div, player){
-		console.log("TODO dream bubble stuff: " + player.titleBasic() +  this.session.session_id);
+		console.log("TODO dream bubble stuff: render player and 1-4 ghosts, along with dream bubble bg" + player.titleBasic() +  this.session.session_id);
+		//if you meet guardian in dream bubble, bond over shared interests. small power boost. 
 	}
 
 	//have an array of "ghost warriors" or some shit. during boss fights, explicitly use them, rendered and everything. knights/pages cause this
@@ -361,7 +384,21 @@ function LifeStuff(session){
 	//witches and sylphs do this.  not gonna go with a passive/active whatever here. i just want more odds of dream bubble afterlifes.
 	//different flavor of afterlife based on derse or prospit?  derse has horror terror everywhere. prospit after life is filled with visions of the alpha timeline, taunting you.
 	this.enableDreamBubbles = function(div, player){
+		console.log("Turning on dream bubble afterlife: " + this.session.session_id)
 		this.session.dreamBubbleAfterlife = true;
+		var canvasId = div.attr("id") + "horror_terrors_" +player.chatHandle
+		var canvasHTML = "<br><canvas id='" + canvasId +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		var canvas = document.getElementById(canvasId);
+		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawSprite(pSpriteBuffer,player)
+		var horrorSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawHorrorterror(canvas);
+		//leave room on left for possible 'guide' player.
+		copyTmpCanvasToRealCanvasAtPos(canvas, horrorSpriteBuffer,0,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0)
+		var str = "What is the " + player.htmlTitleBasic() + " doing out near the furthest ring? Oh GOD, what are they DOING!?  Oh, wait, never mind. False alarm. Looks like they're just negotiating with the horrorterrors to give players without dreamselves access to the afterlife in Dream Bubbles. Carry on.";
+		div.append("" +str);
 	}
 
 	//for claspects that can recycyle afterlife.

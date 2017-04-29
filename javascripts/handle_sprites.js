@@ -586,6 +586,20 @@ function drawGodSymbolBG(canvas, player){
 
 }
 
+function drawHorrorterror(canvas){
+  if(checkSimMode() == true){
+    return;
+  }
+	ctx = canvas.getContext('2d');
+	var imageString ="horrorterror.png"
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,0,0,width,height);
+
+}
+
 function drawMoon(canvas, player){
   if(checkSimMode() == true){
     return;
