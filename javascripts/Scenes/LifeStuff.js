@@ -97,7 +97,7 @@ function LifeStuff(session){
 			var other_player = this.enablingPlayerPairs[i][1]; //could be null or a corpse.
 			if(player.dead){
 				if(player.class_name == "Heir" ||  player.class_name == "Thief"){
-					this.drainDeadForReviveSelf(div, player);
+					this.drainDeadForReviveSelf(div, player, player.class_name);
 				}
 			}else{
 				if(player.class_name == "Mage" ||  player.class_name == "Knight"){
@@ -304,8 +304,7 @@ function LifeStuff(session){
 
 	//thief/heir of life/doom //flavor text of absorbing or stealing.  mention 'it will be a while before the ghost of X respawns' don't bother actually respawning them , but makes it different than double death
 	this.drainDeadForReviveSelf = function(div, player, className){
-			console.log("TODO drain dead for revive: "+ player.titleBasic() + this.session.session_id);
-			ghost = this.session.afterLife.findAnyGhost(player);
+			ghost = this.session.afterLife.findAnyGhost(player); //not picky in a crisis.
 			ghostName = "dead player"
 
 			if(ghost  && !ghost.causeOfDrain){
@@ -313,7 +312,7 @@ function LifeStuff(session){
 				if(className == "Thief" || className == "Rogue"){
 					str += " The " + player.htmlTitleBasic() + " steals the essence of the " + ghostName + " in order to revive, it will be a while before the ghost recovers.";
 				}else if(className == "Heir" || className == "Maid"){
-					str += " The " + player.htmlTitleBasic() + " destroys the essence of the " + ghostName + " for greater destructive power, it will be a while before the ghost recovers.";
+					str += " The " + player.htmlTitleBasic() + " inherits the essence and duties of the " + ghostName + " in order to revive and continue their work, it will be a while before the ghost recovers.";
 				}
 
 
@@ -326,14 +325,28 @@ function LifeStuff(session){
 				removeFromArray(player, this.session.availablePlayers);
 				return canvas;
 			}else{
-				console.log("no ghosts to commune dead for: "+ player.titleBasic() + this.session.session_id);
+				console.log("no ghosts to revive dead for: "+ player.titleBasic() + this.session.session_id);
 				return null;
 			}
 	}
 
 	//rogue/maid of life/doom
 	this.helpDrainDeadForReviveSelf = function(div, player1, player2){
-		console.log("TODO  help drain dead for revive: "+ player1.titleBasic() + this.session.session_id);
+		var divID = (div.attr("id")) + "_communeDeadWithGuide"+player1.chatHandle ;
+		div.append("<div id ="+divID + "></div>")
+		var childDiv = $("#"+divID)
+		var text = "The " + player1.htmlTitleBasic() + " assists the " + player2.htmlTitleBasic() + " in order to revive. ";
+
+		var canvas = this.drainDeadForReviveSelf(childDiv, text, player2, player1.class_name);
+		if(canvas){
+			removeFromArray(player1, this.session.availablePlayers);
+			console.log("Help revive with the dead: " + this.session.session_id);
+			var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+			drawSprite(pSpriteBuffer,player1)
+			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0)
+			player1.interactionEffect(player2);
+			player2.interactionEffect(player1);
+		}
 	}
 
 
