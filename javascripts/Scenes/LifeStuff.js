@@ -72,7 +72,7 @@ function LifeStuff(session){
 			for(var i = 0; i<nonGuides.length; i++){
 					var rand = Math.seededRandom() //only spend half your time dreaming right.
 					var player = nonGuides[i];
-					if(!player.dreamSelf && rand > .5){
+					if(!player.dreamSelf && !player.dead && rand > .5){
 						this.enablingPlayerPairs.push([player, null, true])
 					}
 			}
@@ -120,7 +120,7 @@ function LifeStuff(session){
 			var player = this.enablingPlayerPairs[i][0];
 			var other_player = this.enablingPlayerPairs[i][1]; //could be null or a corpse.
 			var dreaming = this.enablingPlayerPairs[i][2];
-			if(player.dead){
+			if(player.dead && !dreaming){ //if you'e dreaming, you're not a dead life/doom heir/thief
 				if(player.class_name == "Heir" ||  player.class_name == "Thief"){
 					this.drainDeadForReviveSelf(div, "",player, player.class_name);
 				}
