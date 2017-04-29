@@ -80,7 +80,7 @@ function LifeStuff(session){
 				chosenSuplicants.push(possibleGuide);
 			}else if(possibleGuide.aspect != "Doom" && possibleGuide.aspect != "Life"){
 				if(chosenGuides.indexOf(possibleGuide)  == -1){ //can't be both guide and non guide.
-					console.log("supplicant is: " + possibleGuide.title());
+					//console.log("supplicant is: " + possibleGuide.title());
 					chosenSuplicants.push(possibleGuide);
 				}
 			}
@@ -141,7 +141,6 @@ function LifeStuff(session){
 	//renders itself and returns if it rendered anything.
 	//str is empty if I'm calling this myself, and has a line about so and so helping you do this if helper.
 	this.communeDead = function(div, str, player, playerClass){  //takes in player class because if there is a helper, what happens is based on who THEY are not who the player is.
-		console.log("commune dead for: "+ player.titleBasic() + this.session.session_id);
 		var ghost = this.session.afterLife.findGuardianSpirit(player);
 		var ghostName = "";
 		if(ghost){
@@ -150,31 +149,31 @@ function LifeStuff(session){
 			ghostName = "teen ghost version of their ancestor"
 
 		}
-		if(ghost == null  || player.ghostPacts.indexOf(ghost) != -1 || player.ghostWisdom.indexOf(ghost) != -1){
+		if(ghost == null  || player.ghostPacts.indexOf(ghost) != -1 || player.ghostWisdom.indexOf(ghost) != -1 || ghost.causeOfDrain){
 			ghost = this.session.afterLife.findLovedOneSpirit(player);
 			console.log("ghost of loved one: "+ player.titleBasic() + this.session.session_id);
 			ghostName = "ghost of a loved one"
 		}
 
-		if(ghost == null  || player.ghostPacts.indexOf(ghost) != -1 || player.ghostWisdom.indexOf(ghost) != -1){
+		if(ghost == null  || player.ghostPacts.indexOf(ghost) != -1 || player.ghostWisdom.indexOf(ghost) != -1 || ghost.causeOfDrain){
 			ghost = this.session.afterLife.findAnyAlternateSelf(player);
 			console.log("ghost of self: "+ player.titleBasic() + this.session.session_id);
 			ghostName = "less fortunate alternate self"
 		}
 
-		if(ghost == null  || player.ghostPacts.indexOf(ghost) != -1 || player.ghostWisdom.indexOf(ghost) != -1){
+		if(ghost == null  || player.ghostPacts.indexOf(ghost) != -1 || player.ghostWisdom.indexOf(ghost) != -1 || ghost.causeOfDrain){
 			ghost = this.session.afterLife.findFriendlySpirit(player);
 			console.log("ghost of friend: "+ player.titleBasic() + this.session.session_id);
 			ghostName = "dead friend"
 		}
 
-		if(ghost == null  || player.ghostPacts.indexOf(ghost) != -1 || player.ghostWisdom.indexOf(ghost) != -1){
+		if(ghost == null  || player.ghostPacts.indexOf(ghost) != -1 || player.ghostWisdom.indexOf(ghost) != -1 || ghost.causeOfDrain){
 			ghost = this.session.afterLife.findAnyGhost(player);
 			ghostName = "dead player"
 		}
 
-
-		if(ghost  || player.ghostPacts.indexOf(ghost) != -1 || player.ghostWisdom.indexOf(ghost) != -1){
+		if(ghost  && player.ghostPacts.indexOf(ghost) == -1 && player.ghostWisdom.indexOf(ghost) == -1 && !ghost.causeOfDrain){
+			console.log("commune potato" +this.session.session_id);
 			div.append("<br><br>" +str + this.communeDeadResult(playerClass, player, ghost, ghostName));
 			var canvas = this.drawCommuneDead(div, player, ghost);
 			removeFromArray(player, this.session.availablePlayers);
@@ -218,7 +217,6 @@ function LifeStuff(session){
 
 	//seers/pages call this which calls communeDeadForKnowledge. seer/page gets boost at same time.
 	this.helpPlayerCommuneDead = function(div, player1, player2){
-			console.log(" help commune dead for: "+ player1.titleBasic() + " and " + player2.titleBasic() + this.session.session_id);
 			var divID = (div.attr("id")) + "_communeDeadWithGuide"+player1.chatHandle ;
 			div.append("<div id ="+divID + "></div>")
 			var childDiv = $("#"+divID)
