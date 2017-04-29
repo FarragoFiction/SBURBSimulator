@@ -268,7 +268,7 @@ function LifeStuff(session){
 			ghostName = "dead player"
 		}
 
-		if(ghost  || !ghost.causeOfDrain){
+		if(ghost  && !ghost.causeOfDrain){
 			console.log("ghost drain dead for power: "+ player.titleBasic()  + this.session.session_id);
 			str += " The " + player.htmlTitleBasic() + " destroys the essence of the " + ghostName + " for greater destructive power, it will be a while before the ghost recovers.";
 			ghost.causeOfDrain = player.htmlTitle();
