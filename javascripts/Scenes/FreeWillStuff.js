@@ -439,12 +439,13 @@ function FreeWillStuff(session){
 					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They steel their will and prepare to commit a trivial act of self suicide. " + ret + " It is probably for the best that they don't know how huge a deal this is. If they hadn't caught a LUCKY BREAK, they would have died here forever. They were never destined to go God Tier, even if they commited suicide.  ";
 				}else{
 					player.dead = true;
-					removeFromArray(player, this.session.availablePlayers);
-					player.makeDead( "trying to go God Tier.");
-					this.renderPlayer1 = player;
-					//console.log(player.title() + " commits suicide but doesn't get tiger " + this.session.session_id);
 					var bed = "bed"
 					if(player.isDreamSelf) bed = "slab"
+					removeFromArray(player, this.session.availablePlayers);
+					player.makeDead( "trying to go God Tier."); //if slab, no corpse produced.
+					this.renderPlayer1 = player;
+					//console.log(player.title() + " commits suicide but doesn't get tiger " + this.session.session_id);
+
 					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They steel their will and prepare to commit a trivial act of self suicide. A frankly ridiculous series of events causes their dying body to fall off the " + bed + ". They may have known enough to exploit the God Tiering mechanic, but apparently hadn't taken into account how neurotically SBURB enforces destiny.  They are DEAD.";
 				}
 			}
@@ -460,7 +461,7 @@ function FreeWillStuff(session){
 		}else{
 			ret += "The " + player.htmlTitleBasic() + " glows and ascends to the God Tiers with a sweet new outfit."
 			this.session.sacrificialSlab = true;
-			player.makeDead("on their sacrificialSlab")
+			//player.makeDead("on their sacrificialSlab") //no corpse with slab, instead corpse BECOMES god tier.
 		}
 		player.dead = false;
 		player.godTier = true;

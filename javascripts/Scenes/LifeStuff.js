@@ -280,7 +280,6 @@ function LifeStuff(session){
 			return null;
 		}
 
-
 	}
 
 	//bards call this to power up somebody else with the dead. they gain power at same time.
@@ -304,8 +303,32 @@ function LifeStuff(session){
 	}
 
 	//thief/heir of life/doom //flavor text of absorbing or stealing.  mention 'it will be a while before the ghost of X respawns' don't bother actually respawning them , but makes it different than double death
-	this.drainDeadForReviveSelf = function(div, player){
-		console.log("TODO drain dead for revive: "+ player.titleBasic() + this.session.session_id);
+	this.drainDeadForReviveSelf = function(div, player, className){
+			console.log("TODO drain dead for revive: "+ player.titleBasic() + this.session.session_id);
+			ghost = this.session.afterLife.findAnyGhost(player);
+			ghostName = "dead player"
+
+			if(ghost  && !ghost.causeOfDrain){
+				console.log("ghost drain dead for revive: "+ player.titleBasic()  + this.session.session_id);
+				if(className == "Thief" || className == "Rogue"){
+					str += " The " + player.htmlTitleBasic() + " steals the essence of the " + ghostName + " in order to revive, it will be a while before the ghost recovers.";
+				}else if(className == "Heir" || className == "Maid"){
+					str += " The " + player.htmlTitleBasic() + " destroys the essence of the " + ghostName + " for greater destructive power, it will be a while before the ghost recovers.";
+				}
+
+
+				div.append("<br><br>" +str);
+				var canvas = this.drawCommuneDead(div, player, ghost);
+				player.dead = false;
+				ghost.causeOfDrain = player.htmlTitle();
+				//need to find my own ghost and remove it from the afterlife.
+				removeFromArray(this.session.afterLife.findClosesToRealSelf(player), this.session.afterLife.ghosts);
+				removeFromArray(player, this.session.availablePlayers);
+				return canvas;
+			}else{
+				console.log("no ghosts to commune dead for: "+ player.titleBasic() + this.session.session_id);
+				return null;
+			}
 	}
 
 	//rogue/maid of life/doom

@@ -63,7 +63,7 @@ function LuckStuff(session){
 		this.session.badLuckEvent = true;
 		return ret;
 	}
-	
+
 	this.roll35 = function(roll){
 		console.log("unlucky trigger event: " + this.session.session_id)
 		var items = ["soper slime", "candy", "apple juice", "alcohol", "weed","chocolate", "orange soda", "blanket","hat","lucky coin", "magic 8 ball"];
@@ -101,7 +101,7 @@ function LuckStuff(session){
 		this.session.badLuckEvent = true;
 		return ret;
 	}
-	
+
 	this.roll25 = function(roll){
 		console.log("unluck grim dark: " + this.session.session_id)
 		var items = ["magic cue ball", "grimoire", "original VHS tape of Mac and Me", "fluthlu doll", "dream catcher","squiddles plush", "Dr Seus Book", "commemorative Plaque from a World Event That Never Happened","SCP-093"];
@@ -201,7 +201,7 @@ function LuckStuff(session){
 			}else{
 				ret += "SACRIFICIAL SLAB!? They glow and ascend to the God Tiers with a sweet new outfit."
 				this.session.sacrificialSlab = true;
-				roll.player.makeDead("luckily on their Sacrificial Slab")
+				//roll.player.makeDead("luckily on their Sacrificial Slab") doesn't make a ghost 'cause the corpse itself revives'
 			}
 			roll.player.dead = false;
 			roll.player.godTier = true;
