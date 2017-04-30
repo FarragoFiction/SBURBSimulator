@@ -13,6 +13,7 @@ function GameEntity(session, name){
 		this.hp = 0;  //what does infinite hp mean? you need to defeat them some other way. alternate win conditions? or can you only do The Choice?
 		this.mobility = 0;
 		this.maxLuck = 0;
+		this.triggerLevel; //both players and enemy can be too freaked out or beserk to fight right
 		this.freeWill = 0; //jack has extremely high free will. why he is such a wild card
 		this.relationships = [];
 		this.power = 0;
