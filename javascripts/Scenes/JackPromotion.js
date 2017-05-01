@@ -5,7 +5,7 @@ function JackPromotion(session){
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return (this.session.jackStrength > this.session.queenStrength*2) && (this.session.jackStrength > 0) && this.session.queenStrength >  -9999;
+		return (this.session.queen.crowned == null) && (this.session.jack.getHP > 0);
 	}
 
 	this.addImportantEvent = function(){
@@ -14,10 +14,11 @@ function JackPromotion(session){
 	}
 
 	this.content = function(){
-		this.session.jackStrength = this.session.kingStrength * 2;
+		this.session.jack.crowned = this.session.queensRing;
+		this.session.queen.crowned = null;
 		var ret = " In a shocking turn of events, Jack Noir claims the Black Queen's RING OF ORBS " + this.session.convertPlayerNumberToWords();
 		ret += "FOLD. "
-		if(this.session.queenStrength > 0){
+		if(this.session.queen.getHP() > 0){
 			ret += "He easily defeats the weakened queen and uses her ring to obtain her power. ";
 		}else{
 			ret += " He pries the ring off her still twitching finger. ";
@@ -25,7 +26,7 @@ function JackPromotion(session){
 		ret += " You'd think this would be no worse than having the Black Queen around, but Jack is kind of a big deal. ";
 		ret += " He immediately decides to show everybody his stabs. ";
 		var badPrototyping = findBadPrototyping(this.playerList);
-		this.session.queenStrength = -9999;
+	
 
 		if( badPrototyping == "First Guardian"){
 			ret += " He is now in charge of random teleporation murders. ";

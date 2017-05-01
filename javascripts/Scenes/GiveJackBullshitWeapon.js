@@ -5,16 +5,16 @@ function GiveJackBullshitWeapon(session){
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return (this.session.jackStrength < this.session.queenStrength*2) && (this.session.jackStrength > 0 && partyRollForLuck(this.session.players) < 15 );
+		return (this.session.jack.getPower() < this.session.queen.getPower()*2) && (this.session.jack.getHP() > 0 && partyRollForLuck(this.session.players) < this.session.jack.rollForLuck() );
 	}
 
 	this.content = function(){
 
-		this.session.jackStrength = this.session.queenStrength + 5;
+
 		var ret = " Jack Noir is tired of putting up with the STUPID LOUSY WISE AND JUST LEADER, what a royal pain in the ass. ";
 		ret += " It's bad enough she makes him handle every single piece of paperwork in all of Derse, does she really need to rub salt in his wounds and make him dress up in frivolous outfits as well?";
 		ret += " So, it's no surprise that Jack murders the Black Queen the second he finds a Legendary weapon amongst the confiscated packages of Prospit. ";
-		this.session.queenStrength = 0;
+		this.session.queen.hp = 0;
 		return ret;
 	}
 

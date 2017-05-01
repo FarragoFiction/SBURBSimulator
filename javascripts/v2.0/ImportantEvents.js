@@ -271,7 +271,7 @@ function JackPromoted(session, mvp_value, doomedTimeClone){
 			narration += " No matter what 'fate' says. Jack Noir immediately begins flipping out, but the RING is stolen before he can do anything. "
 			narration +=  "The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes with the RING in a cloud of gears to join the final battle.";
 			div.append(narration);
-			this.session.queenStrength = -9999;
+			this.session.queensRing = null;
 
 			var divID = (div.attr("id")) + "_alt_jack_promotion"
 			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";

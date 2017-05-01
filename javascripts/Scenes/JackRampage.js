@@ -8,7 +8,7 @@ function JackRampage(session){
 
 	this.trigger = function(playerList){
 		//console.log("Jack is: " + this.session.jackStrength  + " and King is: " + this.session.kingStrength)
-		return this.session.jackStrength > this.session.kingStrength && this.session.jackStrength > 0; //Jack does not stop showing us his stabs.
+		return this.session.jack.getPower() > this.session.king.getPower() && this.session.jack.getHP() > 0; //Jack does not stop showing us his stabs.
 	}
 
 	this.getStabList = function(){

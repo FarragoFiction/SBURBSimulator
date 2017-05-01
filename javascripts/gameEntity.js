@@ -13,8 +13,8 @@ function GameEntity(session, name, crowned){
 		//if any stat is -1025, it's considered to be infinitie. denizens use. you can't outluck Cetus, she is simply the best there is.
 		this.minLuck = 0;
 		this.hp = 0;  //what does infinite hp mean? you need to defeat them some other way. alternate win conditions? or can you only do The Choice?
-		this.mobility = 0;
-		this.maxLuck = 0;
+		this.mobility = 0;  //first guardian
+		this.maxLuck = 0; //rabbit
 		this.triggerLevel = 0; //both players and enemy can be too freaked out or beserk to fight right
 		this.freeWill = 0; //jack has extremely high free will. why he is such a wild card
 		this.relationships = [];
@@ -23,7 +23,7 @@ function GameEntity(session, name, crowned){
 		this.crowned = crowned;
 		this.abscondable = true; //nice abscond
 		this.canAbscond = true; //can't abscond bro
-		this.fraymotifsUsed = [];
+		this.fraymotifsUsed = [];  //horrorTerror
 		
 		this.getMobility = function(){
 			if(this.crowned){

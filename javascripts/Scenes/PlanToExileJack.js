@@ -3,6 +3,17 @@ function PlanToExileJack(session){
 	this.session = session;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.planner = null;
+	
+	
+	
+	//a player has to be not busy to be your friend right now.
+	this.trigger = function(playerList){
+		this.playerList = playerList;
+		this.findSympatheticPlayer();
+		return this.planner != null && 	this.session.jack.getHP() > 0 && 	this.session.queensCrown != null;
+	}
+
+	
 	//blood or page or thief or rogue.
 	this.findSympatheticPlayer = function(){
 		this.planner =  findAspectPlayer(this.session.availablePlayers, "Mind");
@@ -179,13 +190,6 @@ function PlanToExileJack(session){
 			//we get a narration
 			div.append(this.content);
 		}
-	}
-
-	//a player has to be not busy to be your friend right now.
-	this.trigger = function(playerList){
-		this.playerList = playerList;
-		this.findSympatheticPlayer();
-		return this.planner != null && 	this.session.jackStrength != 0 && 	this.session.queenStrength != 0;
 	}
 
 	this.content = function(){

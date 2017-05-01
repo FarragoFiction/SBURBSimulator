@@ -369,6 +369,7 @@ function Session(session_id){
 	
 	
 	this.setUpBosses = function(){
+		console.log("Test jack and queen can be exiled, queen rejects ring, king is powerful, boss fights, jack gets bullshit weapon, jack rampage, jack promotion.")
 		this.queensRing = new GameEntity(this, "!!!RING!!! OMG YOU SHOULD NEVER SEE THIS!",false)
 		this.queensRing.setStats(0,0,0,0,0,0,0,false, false, [],false); 
 		this.kingsScepter = new GameEntity(this, "!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!",false)
