@@ -8,9 +8,10 @@ function JackRampage(session){
 
 	this.trigger = function(playerList){
 		//console.log("Jack is: " + this.session.jackStrength  + " and King is: " + this.session.kingStrength)
-		return this.session.jack.getPower() > this.session.king.getPower() && this.session.jack.getHP() > 0; //Jack does not stop showing us his stabs.
+		return this.session.jack.crowned != null && this.session.jack.getHP() > 0; //Jack does not stop showing us his stabs.
 	}
 
+	//TODO get lowest mobility player and 2-3 of their friends. (random but based on mobility)
 	this.getStabList = function(){
 		var numStabbings = getRandomInt(0,Math.min(2,this.session.availablePlayers.length));
 		var ret = [];
@@ -24,6 +25,21 @@ function JackRampage(session){
 	}
 
 
+		this.renderPrestabs = function(div, stabbings){
+			var repeatTime = 1000;
+			var divID = (div.attr("id")) + "_final_boss";
+			var ch = canvasHeight;
+
+			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
+			div.append(canvasHTML);
+			//different format for canvas code
+			var canvasDiv = document.getElementById("canvas"+ divID);
+			poseAsATeam(canvasDiv, stabbings, 2000);
+		}
+
+
+	//TODO copy how queen fight works. get Stabs is maing thing that needs to change.
+	//if nobody to stab, instead of boss fight, stabs.
 	this.renderContent = function(div){
 		//div.append("<br>"+this.content());
 
@@ -40,63 +56,16 @@ function JackRampage(session){
 			this.session.timeTillReckoning = 0;
 			return ret;
 		}
-		this.setPlayersUnavailable(stabbings);
-		var partyPower = getPartyPower(stabbings);
-		if(partyPower > this.session.jackStrength*5){
-			ret += getPlayersTitles(stabbings) + " suprise Jack with stabbings of their own. He is DEAD. ";
-			this.session.jackStrength =  -9999;
-			this.levelPlayers(stabbings);
-			ret += findDeadPlayers(this.session.players).length + " players are dead in the wake of his rampage. ";
-		}else if(partyPower > this.session.jackStrength){
-			ret += " Jack fails to stab " + getPlayersTitles(stabbings);
-			ret += "  He goes away to stab someone else, licking his wounds. ";
-			if(Math.seededRandom()>.9){
-				ret += " Bored of this, he decides to show his stabs to BOTH the Black and White Kings.  The battle is over. The Reckoning will soon start."
-				timeTillReckoning = 0;
-			}
-			this.minorLevelPlayers(stabbings);
-			this.session.jackStrength += -10;
-		}else if(partyPower == this.session.jackStrength){
-			ret += " Jack is invigorated by the worthy battle with " + getPlayersTitles(stabbings);
-			ret += " he retreats, for now, but with new commitment to stabbings. ";
-			this.session.jackStrength += 10;
-		}else{
-			ret += " Jack shows his stabs to " + getPlayersTitles(stabbings) + " until they die.  DEAD.";
+
+			this.setPlayersUnavailable(stabbings);
+			ret = "Jack has caught the " + getPlayersTitlesBasic(stabbings) + ".  Will he show them his stabs? Strife!";
 			div.append("<br>"+ret);
-			this.killPlayers(stabbings);
-			var divID = (div.attr("id"))
-			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
-			div.append(canvasHTML);
-			var canvas = document.getElementById("canvas"+ divID);
-			poseAsATeam(canvas, stabbings);
-			//foundRareSession(div, "Jack murders. " + this.session.session_id);
+			this.renderPrestabs(div, stabbings); //pose as a team BEFORE getting your ass handed to you.
+			this.session.jack.strife(div, stabbings,0)
 			return;//make sure text is over image
-		}
-		div.append("<br>"+ret);
+
 	}
 
-	this.killPlayers = function(stabbings){
-		for(var i = 0; i<stabbings.length; i++){
-			stabbings[i].makeDead("after being shown too many stabs from Jack");
-		}
-	}
-
-	this.levelPlayers = function(stabbings){
-		for(var i = 0; i<stabbings.length; i++){
-			stabbings[i].increasePower();
-			stabbings[i].increasePower();
-			stabbings[i].increasePower();
-			stabbings.level_index +=2;
-			stabbings[i].leveledTheHellUp = true;
-		}
-	}
-
-	this.minorLevelPlayers = function(stabbings){
-		for(var i = 0; i<stabbings.length; i++){
-			stabbings[i].increasePower();
-			stabbings[i].increasePower();
-		}
-	}
 
 
 

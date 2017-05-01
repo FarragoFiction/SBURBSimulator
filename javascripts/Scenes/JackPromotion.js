@@ -13,6 +13,7 @@ function JackPromotion(session){
 		return this.session.addImportantEvent(new JackPromoted(this.session, current_mvp.power) );
 	}
 
+
 	this.content = function(){
 		this.session.jack.crowned = this.session.queensRing;
 		this.session.queen.crowned = null;

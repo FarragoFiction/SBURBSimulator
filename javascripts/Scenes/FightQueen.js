@@ -96,7 +96,7 @@ function FightQueen(session){
 		}
 
 		this.setPlayersUnavailable(living);
-		
+
 		return ret;
 
 	}
