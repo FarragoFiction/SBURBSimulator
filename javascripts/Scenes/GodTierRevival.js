@@ -65,7 +65,7 @@ function GodTierRevival(session){
 					console.log(roll + " lucky break for god tier revival in: " + this.session.session_id );
 					ret += " ... a LUCKY BREAK!!!!!!!! The Judgement Clock narrowly avoids ruling a JUST death. ";
 					p.dead = false;
-					p.hp =Math.max(d.hp+50,50)
+					p.hp =Math.max(p.hp+50,50)
 					p.canGodTierRevive = true;
 					p.increasePower();
 					p.murderMode = false;
@@ -87,7 +87,7 @@ function GodTierRevival(session){
 					ret += " ... a LUCKY BREAK!!!!!!!! The Judgement Clock narrowly avoids ruling a HEROIC death. ";
 					p.dead = false;
 					p.canGodTierRevive = true;
-					p.hp =Math.max(d.hp+50,50)
+					p.hp =Math.max(p.hp+50,50)
 					p.increasePower();
 					p.murderMode = false;
 					p.grimDark = false;
@@ -112,7 +112,7 @@ function GodTierRevival(session){
 					console.log("god tier revival in: " + this.session.session_id);
 					ret += " neither HEROIC nor JUST.  They revive in a rainbow glow, stronger than ever. ";
 					p.dead = false;
-					p.hp =Math.max(d.hp+50,50)
+					p.hp =Math.max(p.hp+50,50)
 					p.canGodTierRevive = true;
 					p.increasePower();
 					p.murderMode = false;

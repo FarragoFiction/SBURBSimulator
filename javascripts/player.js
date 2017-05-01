@@ -899,6 +899,10 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 	this.htmlTitleBasic = function(){
 		return getFontColorFromAspect(this.aspect) + this.titleBasic() + "</font>"
 	}
+	
+	this.htmlTitleBasicHP = function(){
+		return getFontColorFromAspect(this.aspect) + this.titleBasic() + " (" + this.hp + " hp)</font>"
+	}
 
 	this.generateBlandRelationships = function(friends){
 		for(var i = 0; i<friends.length; i++){

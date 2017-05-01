@@ -72,6 +72,10 @@ function PlayerSnapshot(){
 		ret+= this.class_name + " of " + this.aspect;
 		return ret;
 	}
+	
+	this.htmlTitleBasicHP = function(){
+		return getFontColorFromAspect(this.aspect) + this.titleBasic() + " (" + this.hp + " hp)</font>"
+	}
 
 	this.htmlTitleBasic = function(){
 			return getFontColorFromAspect(this.aspect) + this.titleBasic() + "</font>"

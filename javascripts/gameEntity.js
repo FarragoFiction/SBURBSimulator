@@ -86,10 +86,10 @@ function GameEntity(session, name, crowned){
 			this.canAbscond = canAbscond;
 		}
 		
-		this.htmlTitleBasic = function(){
+		this.htmlTitleBasicHP = function(){
 			var ret = "";
 			if(this.crowned != null) ret+="Crowned "
-			return ret + name; //TODO denizens are aspect colored.
+			return ret + name +" ( " + this.getHP() + ")"; //TODO denizens are aspect colored.
 		}
 
 		//only the crown itself has this called. king and queen just use the crown. 
@@ -136,7 +136,7 @@ function GameEntity(session, name, crowned){
 		*/
 		this.strife = function(div, players, numTurns){
 			numTurns += 1;
-			console.log("strife " + numTurns + " " + this.session.session_id);
+			console.log(this.name + ": strife! " + numTurns + " " + this.session.session_id);
 			div.append("<br><Br>")
 			//as players die or mobility stat changes, might go players, me, me, players or something. double turns.
 			if(getAverageMobility(players) > this.getMobility()){ //players turn
@@ -231,14 +231,15 @@ function GameEntity(session, name, crowned){
 		//hopefully either player or gameEntity can call this.
 		this.aggrieve=function(div, offense, defense){
 			//mobility, luck hp, and power are used here.
-			div.append(" The " + offense.htmlTitleBasic() + " targets the " +defense.htmlTitleBasic() + ". ");
+			div.append(" The " + offense.htmlTitleBasicHP() + " targets the " +defense.htmlTitleBasicHP() + ". ");
 			//luck dodge
 			var offenseRoll = offense.rollForLuck();
 			var defenseRoll = defense.rollForLuck();
 			if(defenseRoll > offenseRoll*10){
 				console.log("Luck counter: " + this.session.session_id);
-				div.append("The attack backfires and causes unlucky damage. The " + defense.htmlTitleBasic() + " sure is lucky!!!!!!!!" );
+				div.append("The attack backfires and causes unlucky damage. The " + defense.htmlTitleBasicHP() + " sure is lucky!!!!!!!!" );
 				offense.hp += -1* offense.power; //damaged by your own power.
+				this.checkForAPulse(offense, defense)
 				return;	
 			}else if(defenseRoll > offenseRoll*5){
 				console.log("Luck dodge: " + this.session.session_id);
@@ -246,14 +247,16 @@ function GameEntity(session, name, crowned){
 				return;	
 			}
 			//mobility dodge
-			if(defense.getMobility() > offense.getMobility()*10){
+			var rand = getRandomInt(1,5) //don't dodge EVERY time.
+			if(defense.getMobility() > offense.getMobility()*rand * 2){
 				console.log("Mobility counter: " + this.session.session_id);
-				div.append("The " + offense.htmlTitleBasic() + " practically appears to be standing still as they clumsily lunge towards the " + defense.htmlTitleBasic() + " They miss so hard the " + defense.htmlTitleBasic() + " has plenty of time to get a counterattack in." );
+				div.append("The " + offense.htmlTitleBasicHP() + " practically appears to be standing still as they clumsily lunge towards the " + defense.htmlTitleBasicHP() + " They miss so hard the " + defense.htmlTitleBasicHP() + " has plenty of time to get a counterattack in." );
 				offense.hp += -1* defense.power;
+				this.checkForAPulse(offense, defense)
 				return;	
-			}else if(defense.getMobility() > offense.getMobility()*5){
+			}else if(defense.getMobility() > offense.getMobility()*rand){
 				console.log("Mobility dodge: " + this.session.session_id);
-				div.append(" The " + defense.htmlTitle() + "dodges the attack completely. ");
+				div.append(" The " + defense.htmlTitleBasicHP() + "dodges the attack completely. ");
 				return;	
 			}
 			//base damage
@@ -277,10 +280,10 @@ function GameEntity(session, name, crowned){
 			
 			if(!this.checkForAPulse(defense, offense)){
 			
-				div.append("The " + defense.htmlTitleBasic() + " is dead. ");
+				div.append("The " + defense.htmlTitleBasicHP() + " is dead. ");
 			}
 			if(!this.checkForAPulse(offense, defense)){
-				div.append("The " + offense.htmlTitleBasic() + " is dead. ");
+				div.append("The " + offense.htmlTitleBasicHP() + " is dead. ");
 			}
 			offense.interactionEffect(defense); //only players have this. doomed time clones or bosses will do nothing.
 		}
@@ -288,7 +291,7 @@ function GameEntity(session, name, crowned){
 		this.checkForAPulse =function(player, attacker){
 			if(player.getHP() <= 0){
 				player.dead = true; //hp only means dead in a fight. you can be at negative a billion hp,b ut if you never get hit....
-				player.causeOfDeath = "fighting the " + attacker.htmlTitleBasic();
+				player.causeOfDeath = "fighting the " + attacker.htmlTitleBasicHP();
 				return false;
 			}
 			return true;
