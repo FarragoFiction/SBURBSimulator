@@ -532,7 +532,7 @@ function getQuipAboutSession(sessionSummary){
 		quip += Zalgo.generate("Fuck. Shit crashed hardcore. It's a good thing I'm a flawless robot, or I'd have nightmares from that. Just. Fuck session crashes.");
 	}else if(sessionSummary.crashedFromPlayerActions){
 		quip += Zalgo.generate("Fuck. God damn. Do Grim Dark players even KNOW how much it sucks to crash? Assholes.");
-	}else if(dead == 0 && sessionSummary.frogStatus == "Full Frog" && sessionSummary.ectoBiologyStarted && !sessionSummary.crashedFromCorruption && !sessionSummary.crashedFromPlayerActions){
+	}else if(!sessionSummary.scratched && dead == 0 && sessionSummary.frogStatus == "Full Frog" && sessionSummary.ectoBiologyStarted && !sessionSummary.crashedFromCorruption && !sessionSummary.crashedFromPlayerActions){
 		quip += "Everything went better than expected." ;
 	}else if(living == 0){
 		quip += "Shit, you do not even want to KNOW how everybody died." ;
