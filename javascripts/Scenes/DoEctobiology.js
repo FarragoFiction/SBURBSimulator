@@ -46,7 +46,7 @@ function DoEctobiology(session){
 		ret +=  " A button is pushed, and suddenly there are little tiny baby version of " + getPlayersTitlesBasic(this.playersMade);
 		if(session.scratched){
 			ret += " Plus baby versions of all the players from the pre-scratch session?"
-			ret += " No wonder that session went so poorly: It was always destined to be scatched or nobody would be born in the first place."
+			ret += " No wonder that session went so poorly: It was always destined to be scratched or nobody would be born in the first place."
 		}else{
 			ret += ". Plus a bunch of superfluous extra babies. ";
 			ret += " What is even going on here? ";
