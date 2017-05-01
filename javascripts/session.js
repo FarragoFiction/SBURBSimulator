@@ -6,11 +6,14 @@ function Session(session_id){
 	this.sessionHealth = 5000; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
 	this.hasDiamonds = false;
 	this.afterLife = new AfterLife();
+	this.queensRing = null;
+	this.kingsScepter = null;
 	this.hasHearts = false;
 	this.hasSpades = false;
 	this.denizenBeat = false;
 	//session no longer keeps track of guardians.
-	this.kingStrength = 100;
+	this.king = null;
+	this.queen = null;
 	this.rapBattle = false;
 	this.crashedFromSessionBug = false; //gets corrupted if an unrecoverable error gets caught.
 	this.crashedFromPlayerActions = false;
@@ -20,8 +23,7 @@ function Session(session_id){
 	this.heroicDeath = null;
 	this.won = false;
 	this.justDeath = null;
-	this.queenStrength = 100;
-	this.jackStrength = 50;
+	this.jackStrength = 50; //TODO
 	this.hardStrength = 275;
 	this.minFrogLevel = 18;
 	this.goodFrogLevel = 28;
@@ -191,9 +193,6 @@ function Session(session_id){
 		curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);
 		curSessionGlobalVar.doomedTimeline = false;
 		this.setUpBosses();
-		this.kingStrength = 100;
-		this.queenStrength = 100;
-		this.jackStrength = 50;
 		this.democracyStrength = 0;
 		this.reckoningStarted = false;
 		this.importantEvents = [];
@@ -369,9 +368,18 @@ function Session(session_id){
 	
 	
 	this.setUpBosses = function(){
-		this.king = new GameEntity(this, "Black King");
-		king.setStats(25,75,500,0,-100,25,100,false, false, []);
-		//TODO queen, jack, denizens, denizen minions		
+		this.queensRing = new GameEntity(this, "!!!RING!!! OMG YOU SHOULD NEVER SEE THIS!",false)
+		this.kingsScepter = new GameEntity(this, "!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!",false)
+		this.king.setStats(0,0,0,0,0,0,0,false, false, [],false); 
+		this.king = new GameEntity(this, "Black King", this.kingsScepter);
+		//minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs
+		this.king.setStats(25,75,500,0,0,25,100,false, false, []);  //anything prototype gives you. horrorterrors vastGlub.
+		//TODO  jack, denizens, denizen minions		
+		this.queen = new GameEntity(this, "Black Queen",this.queensRing);
+		this.queen.setStats(25,75,500,100,0,100,100,false, false, [],); //red miles
+		
+		this.jack = new GameEntity(this, "Jack",null);
+		this.jack.setStats(25,75,250,100,50,1000,50,true, true, []); 
 	}
 
 	this.newScene = function(){

@@ -24,6 +24,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 	this.maxLuck = 0;
 	this.freeWill = 0;
 	this.mobility = 0;
+	this.crowned = false; //players can't be crowned.
 	this.trickster = false;
 	this.sbahj = false;
 	this.sickRhymes = []; //oh hell yes. Hell. FUCKING. Yes!
@@ -1163,6 +1164,36 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 		}
 		return worstRelationshipSoFar.value;
 	}
+	
+	
+	//bulshit stubs that game entities will have be different if crowned. players can't be crowned tho (or can they??? no. they can't.)
+	this.getMobility = function(){
+		return this.mobility;
+	}
+	
+	this.getMaxLuck = function(){
+		return this.maxLuck;
+	}
+	
+	this.getMinLuck = function(){
+		return this.minLuck;
+	}
+	this.getFreeWill = function(){
+		return this.freeWill;
+	}
+	
+	this.getHP= function(){
+		return this.hp;
+	}
+	this.getPower = function(){
+		return this.power;
+	}
+	
+	this.triggerLevel = function(){
+		return this.triggerLevel;
+	}
+		
+	
 
 	this.getHighestRelationshipValue = function(){
 		var bestRelationshipSoFar = this.relationships[0];

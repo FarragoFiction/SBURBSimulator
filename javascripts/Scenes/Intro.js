@@ -735,18 +735,8 @@ function Intro(session){
 				narration += "They immediately heal their land in an explosion of bullshit candy giggle-magic. ";
 			}
 
-			this.session.kingStrength = this.session.kingStrength + 20;
-			if(this.session.queenStrength > 0){
-				this.session.queenStrength = this.session.queenStrength + 10;
-			}
-			if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
-				this.session.kingStrength = this.session.kingStrength + 200;
-				if(this.session.queenStrength > 0){
-					this.session.queenStrength = this.session.queenStrength + 100;
-				}
-
-			}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
-			}
+			this.session.kingsScepter.addPrototyping(this.player.kernel_sprite); //assume king can't lose crown for now.
+			this.session.queensRing.addPrototyping(this.player.kernel_sprite); //assume king can't lose crown for now.
 		}
 		div.append(narration);
 		this.chat(div);

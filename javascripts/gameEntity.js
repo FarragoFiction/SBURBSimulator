@@ -7,7 +7,7 @@
 //mini boss = denizen minion
 //before I decide boss stats, need to have AB compile me a list of average player stats. She's getting kinda...busy though. maybe a secret extra area? same page, but on bottom?
 //maybe eventually refactor murder mode to use this engine. both players get converted to game entitites for the fight?
-function GameEntity(session, name){
+function GameEntity(session, name, crowned){
 		this.session = session;
 		this.name = name;
 		//if any stat is -1025, it's considered to be infinitie. denizens use. you can't outluck Cetus, she is simply the best there is.
@@ -20,9 +20,58 @@ function GameEntity(session, name){
 		this.relationships = [];
 		this.power = 0;
 		this.dead = false;
+		this.crowned = crowned;
 		this.abscondable = true; //nice abscond
 		this.canAbscond = true; //can't abscond bro
 		this.fraymotifsUsed = [];
+		
+		this.getMobility = function(){
+			if(this.crowned){
+				return this.mobility + this.crowned.mobility;
+			}
+			return this.mobility;
+		}
+		
+		this.getMaxLuck = function(){
+			if(this.crowned){
+				return this.maxLuck + this.crowned.maxLuck;
+			}
+			return this.maxLuck;
+		}
+		
+		this.getMinLuck = function(){
+			if(this.crowned){
+				return this.minLuck + this.crowned.minLuck;
+			}
+			return this.minLuck;
+		}
+		this.getFreeWill = function(){
+			if(this.crowned){
+				return this.freeWill + this.crowned.freeWill;
+			}
+			return this.freeWill;
+		}
+		
+		this.getHP= function(){
+			if(this.crowned){
+				return this.hp + this.crowned.hp;  //my hp can be negative. only thing that matters is total is poistive.
+			}
+			return this.hp;
+		}
+		this.getPower = function(){
+			if(this.crowned){
+				return this.power + this.crowned.power;
+			}
+			return this.power;
+		}
+		
+		this.triggerLevel = function(){
+			if(this.crowned){
+				return this.triggerLevel + this.crowned.triggerLevel;
+			}
+			return this.triggerLevel;
+		}
+		
 		
 		this.setStats = function(minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs){
 			this.minLuck = minLuck;
@@ -37,14 +86,21 @@ function GameEntity(session, name){
 		}
 		
 		this.htmlTitleBasic = function(){
-			return name; //TODO denizens are aspect colored.
+			var ret = "";
+			if(this.crowned != null) ret+="Crowned "
+			return ret + name; //TODO denizens are aspect colored.
 		}
 
-		//each prototype increases base power. some prototypes also modify other stats. have arrays just like fortune/disastor prototypings.
-		//if it's a player...copy all player stats?
-		//also copy fraymotifs.
+		//only the crown itself has this called. king and queen just use the crown. 
 		this.addPrototype = function(object){
+			this.power += 20;
 
+			if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
+				this.power += 200;
+
+			}
+			
+			console.log("todo: prototypings can be associated with plus or minus stats and even fraymotifs (vast glub, anyone)???" )
 		}
 
 		//if jack gets the queen rings, her stats are added onto his.
@@ -83,17 +139,17 @@ function GameEntity(session, name){
 		this.strife = function(div, players){
 			div.append("<br><Br>")
 			//as players die or mobility stat changes, might go players, me, me, players or something. double turns.
-			if(getAverageMobility(players) > this.mobility){ //players turn
+			if(getAverageMobility(players) > this.getMobility()){ //players turn
 				this.playersTurn(div, players);
 				this.myTurn(div, players);
 			}else{ //my turn
 				this.myTurn(div, players);
 				this.playersTurn(div, players);
 			}
-			if(this.fightOver(div, players){
+			if(this.fightOver(div, players)){
 				return;
 			}else{
-				return this.strive(div, players);
+				return this.strife(div, players);
 			}
 		}
 		
@@ -107,7 +163,7 @@ function GameEntity(session, name){
 				div.append("The fight is over. The players are dead. ");
 				this.ending(div, players)
 				return true;
-			}else if(this.hp <= 0){
+			}else if(this.getHP() <= 0){
 				div.append("The fight is over. " + this.name + " is dead. ");
 				this.ending(div, players)
 				return true;
@@ -167,18 +223,18 @@ function GameEntity(session, name){
 				return;	
 			}
 			//mobility dodge
-			if(defense.mobility > offense.mobility*10){
+			if(defense.getMobility() > offense.getMobility()*10){
 				console.log("Mobility counter: " + this.session.session_id);
-				div.append("The " + this.offense.htmlTitleBasic() + " practically appears to be standing still as they clumsily lunge towards the " + defense.htmlTitleBasic() + " They miss so hard the " + defense.htmlTitleBasic() + " has plenty of time to get a counterattack in". ;
+				div.append("The " + offense.htmlTitleBasic() + " practically appears to be standing still as they clumsily lunge towards the " + defense.htmlTitleBasic() + " They miss so hard the " + defense.htmlTitleBasic() + " has plenty of time to get a counterattack in." );
 				offense.hp += -1* defense.power;
 				return;	
-			}else if(defense.mobility > offense.mobility*2){
+			}else if(defense.getMobility() > offense.getMobility()*2){
 				console.log("Mobility dodge: " + this.session.session_id);
 				div.append(" The " + defense.htmlTitle() + "dodges the attack completely. ");
 				return;	
 			}
 			//base damage
-			var hit = offense.power;
+			var hit = offense.getPower();
 			offenseRoll = offense.rollForLuck();
 			defenseRoll = defense.rollForLuck();
 			//critical/glancing hit odds. 
@@ -199,7 +255,7 @@ function GameEntity(session, name){
 
 
 		this.rollForLuck = function(){
-			return getRandomInt(this.minLuck, this.maxLuck);
+			return getRandomInt(this.getMinLuck(), this.getMaxLuck());
 		}
 
 		//place holders for now. being in diamonds with jack is NOT a core feature.
