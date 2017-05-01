@@ -19,6 +19,7 @@ function Session(session_id){
 	this.crashedFromPlayerActions = false;
 	this.sickFires = false;
 	this.dreamBubbleAfterlife = false;
+	this.democraticArmy = null;
 	this.sbahj = false;
 	this.heroicDeath = null;
 	this.won = false;
@@ -381,6 +382,9 @@ function Session(session_id){
 		
 		this.jack = new GameEntity(this, "Jack",null);
 		this.jack.setStats(25,75,250,100,50,1000,50,true, true, []); 
+		
+		this.democraticArmy = new GameEntity(this, "Democratic Army",null); //doesn't actually exist till WV does his thing.
+		this.democraticArmy.setStats(0,0,0,0,0,0,0,false, false, [],false); 
 	}
 
 	this.newScene = function(){

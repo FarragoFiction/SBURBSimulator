@@ -139,6 +139,7 @@ function GameEntity(session, name, crowned){
 		prototyping. vast glub for horror terror is example.
 		*/
 		this.strife = function(div, players){
+			console.log("strife");
 			div.append("<br><Br>")
 			//as players die or mobility stat changes, might go players, me, me, players or something. double turns.
 			if(getAverageMobility(players) > this.getMobility()){ //players turn

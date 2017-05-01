@@ -39,7 +39,7 @@ this.getGoodGuys = function(){
 	}
 
 	//render each living player, each time clone, and some dersites/prospitan rabble (maybe)
-	this.renderGoodguys = function(div){
+	this.renderGoodguys = function(div,living){
 		var repeatTime = 1000;
 		var divID = (div.attr("id")) + "_final_boss";
 		var ch = canvasHeight;
@@ -55,9 +55,15 @@ this.getGoodGuys = function(){
 	}
 
 	this.renderContent = function(div){
-		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
+		console.log("rendering fight king);")
 		div.append("<br>");
 		div.append(this.content());
+
+		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
+		if(this.session.democraticArmy.hp > 0 ) living.push(this.session.democraticArmy);
+		var fighting = this.getGoodGuys()
+		if(this.session.democraticArmy.getHp() > 0) fighting.push(this.session.democraticArmy)
+		this.king.strife(div, fighting)
 
 	}
 
@@ -97,55 +103,15 @@ this.getGoodGuys = function(){
 
 
 	this.content = function(){
-		var badPrototyping = findBadPrototyping(this.playerList);
-		var living = findLivingPlayers(this.session.players);
+		var nativePlayersInSession = findPlayersFromSessionWithId(this.playerList);
+		var badPrototyping = findBadPrototyping(nativePlayersInSession);
+
 		var ret = " It is time for the final opponent, the Black King. ";
 		if(badPrototyping){
 			ret += " He is made especially terrifying with the addition of the " + badPrototyping + ". ";
 		}
 
-		this.setPlayersUnavailable(living);
-		//this.session.king.aggrieve(living); TODO  uncomment out when ready.  need to have the king be a real thing, and prototypings modded on it.
-		var partyPower = getPartyPower(living);
-		var timePlayer = findAspectPlayer(this.session.players, "Time"); //doesn't matter if THEY are alive or dead, they still have doomed time clones.
-		if(timePlayer.doomedTimeClones.length > 0){
-			//throw an extra one at them from nowhere just to make sure it's plural. whatever. who's counting here?
-			ret += (timePlayer.doomedTimeClones.length) + " doomed time clones of the " + timePlayer.htmlTitleBasic() + " show up from various points in the timeline to help out. ";
-			partyPower += 100 * (timePlayer.doomedTimeClones.length);
-		}
-
-		if(this.session.democracyStrength > 1){
-			ret += " The Warweary Villein has assembled an army to help the Players. ";
-			partyPower += this.session.democracyStrength;
-			this.session.democracyStrength += -1 * getRandomInt(0,this.session.democracyStrength-1); //how badly is democracy hurt?
-		}
-
-		if(partyPower > this.session.kingStrength*5){
-			ret += "The Players easily defeat the King, no sweat. It was easy. He is DEAD. ";
-			this.session.kingStrength = 0;
-			this.levelPlayers(living);
-		}else{
-			var deadPlayers = this.getDeadList(living);
-			if(deadPlayers.length > 0){
-				ret += " The king brutally destroys the " + getPlayersTitles(deadPlayers) + ".  DEAD.";
-			}
-			if(this.session.democracyStrength < 10){
-				ret += " The King decimates the democractically assembled Army. ";
-			}
-			this.killPlayers(deadPlayers);
-			living = findLivingPlayers(this.session.players);
-			if(living.length > 0 ){
-				ret += " After the smoke clears, the king is defeated. DEAD.";
-				this.session.kingStrength = 0;
-				this.levelPlayers(living);
-			}else{
-				ret += " The party is defeated. ";
-			}
-		}
-
-		if(this.session.kingStrength > 10){
-			this.session.kingStrength += -10;
-		}
+		
 		return ret;
 
 	}
