@@ -45,6 +45,7 @@ function GameEntity(session, name, crowned){
 			}
 			return this.minLuck;
 		}
+		
 		this.getFreeWill = function(){
 			if(this.crowned){
 				return this.freeWill + this.crowned.freeWill;
@@ -92,10 +93,11 @@ function GameEntity(session, name, crowned){
 		}
 
 		//only the crown itself has this called. king and queen just use the crown. 
-		this.addPrototype = function(object){
+		this.addPrototyping = function(object){
 			this.power += 20;
 
-			if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
+			if(disastor_prototypings.indexOf(object) != -1) {
+				console.log("disastor prototyping " + this.session.session_id)
 				this.power += 200;
 
 			}

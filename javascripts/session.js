@@ -369,8 +369,9 @@ function Session(session_id){
 	
 	this.setUpBosses = function(){
 		this.queensRing = new GameEntity(this, "!!!RING!!! OMG YOU SHOULD NEVER SEE THIS!",false)
+		this.queensRing.setStats(0,0,0,0,0,0,0,false, false, [],false); 
 		this.kingsScepter = new GameEntity(this, "!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!",false)
-		this.king.setStats(0,0,0,0,0,0,0,false, false, [],false); 
+		this.kingsScepter.setStats(0,0,0,0,0,0,0,false, false, [],false); 
 		this.king = new GameEntity(this, "Black King", this.kingsScepter);
 		//minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs
 		this.king.setStats(25,75,500,0,0,25,100,false, false, []);  //anything prototype gives you. horrorterrors vastGlub.

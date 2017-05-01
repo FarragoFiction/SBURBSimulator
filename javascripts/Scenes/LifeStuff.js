@@ -104,7 +104,7 @@ function LifeStuff(session){
 				chosenSuplicants.push(possibleGuide);
 			}else if(possibleGuide.aspect != "Doom" && possibleGuide.aspect != "Life"){
 				if(chosenGuides.indexOf(possibleGuide)  == -1){ //can't be both guide and non guide.
-					//console.log("supplicant is: " + possibleGuide.title());
+					////console.log("supplicant is: " + possibleGuide.title());
 					chosenSuplicants.push(possibleGuide);
 				}
 			}
@@ -114,7 +114,7 @@ function LifeStuff(session){
 
 	//IMPORTANT, ONLY SET AVAILABLE STATUS IF YOU ACTUALLY DO YOUR THING. DON'T SET IT HERE. MIGHT TRIGGER WITH A PRINCE WHO DOESN'T HAVE ANY DEAD SELVES TO DESTROY.
 	this.renderContent = function(div){
-		console.log("rendering content for life stuff (won't necessarily be on screen): " + this.enablingPlayerPairs.length + " " + this.session.session_id)
+		//console.log("rendering content for life stuff (won't necessarily be on screen): " + this.enablingPlayerPairs.length + " " + this.session.session_id)
 		//div.append("<br>"+this.content());
 		for(var i = 0; i<this.enablingPlayerPairs.length; i++){
 			var player = this.enablingPlayerPairs[i][0];
@@ -154,7 +154,7 @@ function LifeStuff(session){
 		var ghost = this.session.afterLife.findGuardianSpirit(player);
 		var ghostName = "";
 		if(ghost && player.ghostPacts.indexOf(ghost) == -1 && player.ghostWisdom.indexOf(ghost) == -1 && !ghost.causeOfDrain){
-			console.log("ghost of guardian: "+ player.titleBasic() + this.session.session_id);
+			//console.log("ghost of guardian: "+ player.titleBasic() + this.session.session_id);
 			//talk about getting wisdom/ forging a pact with your dead guardian. different if i am mage or knight (because i am alone)
 			ghostName = "teen ghost version of their ancestor"
 
@@ -166,7 +166,7 @@ function LifeStuff(session){
 		}
 
 		if(ghost  && player.ghostPacts.indexOf(ghost) == -1 && player.ghostWisdom.indexOf(ghost) == -1 && !ghost.causeOfDrain){
-			console.log("dream bubble onion" +this.session.session_id);
+			//console.log("dream bubble onion" +this.session.session_id);
 			var str = "The " + player.htmlTitle() + " wanders a shifting and confusing landscape until they see the " + ghostName+". They must be dreaming.";
 			var trait = whatDoPlayersHaveInCommon(player, ghost);
 			if(trait != 'nice' && ghost.id != player.id){
@@ -183,7 +183,7 @@ function LifeStuff(session){
 			removeFromArray(player, this.session.availablePlayers);
 			return canvas;
 		}else{
-			console.log("no ghosts in dream bubble: "+ player.titleBasic() + this.session.session_id);
+			//console.log("no ghosts in dream bubble: "+ player.titleBasic() + this.session.session_id);
 			div.append("<br><br>" + "The " + player.htmlTitle() + " wanders a shifting and confusing landscape. They must be dreaming. They never meet anyone before they wake up, though. ");
 			var canvas = this.drawDreamBubble(div, player, null);
 		}
@@ -199,26 +199,26 @@ function LifeStuff(session){
 		var ghost = this.session.afterLife.findGuardianSpirit(player);
 		var ghostName = "";
 		if(ghost && player.ghostPacts.indexOf(ghost) == -1 && player.ghostWisdom.indexOf(ghost) == -1 && !ghost.causeOfDrain){
-			console.log("ghost of guardian: "+ player.titleBasic() + this.session.session_id);
+			//console.log("ghost of guardian: "+ player.titleBasic() + this.session.session_id);
 			//talk about getting wisdom/ forging a pact with your dead guardian. different if i am mage or knight (because i am alone)
 			ghostName = "teen ghost version of their ancestor"
 
 		}
 		if(ghost == null  || player.ghostPacts.indexOf(ghost) != -1 || player.ghostWisdom.indexOf(ghost) != -1 || ghost.causeOfDrain){
 			ghost = this.session.afterLife.findLovedOneSpirit(player);
-			console.log("ghost of loved one: "+ player.titleBasic() + this.session.session_id);
+			//console.log("ghost of loved one: "+ player.titleBasic() + this.session.session_id);
 			ghostName = "ghost of a loved one"
 		}
 
 		if(ghost == null  || player.ghostPacts.indexOf(ghost) != -1 || player.ghostWisdom.indexOf(ghost) != -1 || ghost.causeOfDrain){
 			ghost = this.session.afterLife.findAnyAlternateSelf(player);
-			console.log("ghost of self: "+ player.titleBasic() + this.session.session_id);
+			//console.log("ghost of self: "+ player.titleBasic() + this.session.session_id);
 			ghostName = "less fortunate alternate self"
 		}
 
 		if(ghost == null  || player.ghostPacts.indexOf(ghost) != -1 || player.ghostWisdom.indexOf(ghost) != -1 || ghost.causeOfDrain){
 			ghost = this.session.afterLife.findFriendlySpirit(player);
-			console.log("ghost of friend: "+ player.titleBasic() + this.session.session_id);
+			//console.log("ghost of friend: "+ player.titleBasic() + this.session.session_id);
 			ghostName = "dead friend"
 		}
 
@@ -228,13 +228,13 @@ function LifeStuff(session){
 		}
 
 		if(ghost  && player.ghostPacts.indexOf(ghost) == -1 && player.ghostWisdom.indexOf(ghost) == -1 && !ghost.causeOfDrain){
-			console.log("commune potato" +this.session.session_id);
+			//console.log("commune potato" +this.session.session_id);
 			div.append("<br><br>" +str + this.communeDeadResult(playerClass, player, ghost, ghostName));
 			var canvas = this.drawCommuneDead(div, player, ghost);
 			removeFromArray(player, this.session.availablePlayers);
 			return canvas;
 		}else{
-			console.log("no ghosts to commune dead for: "+ player.titleBasic() + this.session.session_id);
+			//console.log("no ghosts to commune dead for: "+ player.titleBasic() + this.session.session_id);
 			return null;
 		}
 	}
@@ -284,7 +284,7 @@ function LifeStuff(session){
 
 		if(playerClass == "Knight" || playerClass == "Page"){
 			player.ghostPacts.push(ghost);  //help with a later fight.
-			console.log("Knight or Page promise of dead: " + this.session.session_id);
+			//console.log("Knight or Page promise of dead: " + this.session.session_id);
 			return " The " +player.htmlTitleBasic() + " gains a promise of aid from the " + ghostName + ". ";
 		}else if(playerClass == "Seer" || playerClass == "Mage"){
 			player.ghostWisdom.push(ghost); //don't do anything, but keeps repeats from happening.
@@ -310,7 +310,7 @@ function LifeStuff(session){
 			var canvas = this.communeDead(childDiv, text, player2, player1.class_name);
 			if(canvas){
 				removeFromArray(player1, this.session.availablePlayers);
-				console.log("Help communing with the dead: " + this.session.session_id);
+				//console.log("Help communing with the dead: " + this.session.session_id);
 				var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 				drawSprite(pSpriteBuffer,player1)
 				copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0)
@@ -325,20 +325,20 @@ function LifeStuff(session){
 		var ghost = this.session.afterLife.findHatedOneSpirit(player);
 		var ghostName = "";
 		if(ghost){
-			console.log("ghost of enemy: "+ player.titleBasic() + this.session.session_id);
+			//console.log("ghost of enemy: "+ player.titleBasic() + this.session.session_id);
 			//talk about getting wisdom/ forging a pact with your dead guardian. different if i am mage or knight (because i am alone)
 			ghostName = "ghost of a hated enemy"
 
 		}
 		if(ghost == null  || !ghost.causeOfDrain){
 			ghost = this.session.afterLife.findAssholeSpirit(player);
-			console.log("ghost of an asshole: "+ player.titleBasic() + this.session.session_id);
+			//console.log("ghost of an asshole: "+ player.titleBasic() + this.session.session_id);
 			ghostName = "ghost of an asshole"
 		}
 
 		if(ghost == null  || !ghost.causeOfDrain){
 			ghost = this.session.afterLife.findAnyAlternateSelf(player);
-			console.log("ghost of self: "+ player.titleBasic() + this.session.session_id);
+			//console.log("ghost of self: "+ player.titleBasic() + this.session.session_id);
 			ghostName = "less fortunate alternate self"
 		}
 
@@ -348,7 +348,7 @@ function LifeStuff(session){
 		}
 
 		if(ghost  && !ghost.causeOfDrain){
-			console.log("ghost drain dead for power: "+ player.titleBasic()  + this.session.session_id);
+			//console.log("ghost drain dead for power: "+ player.titleBasic()  + this.session.session_id);
 			str += " The " + player.htmlTitleBasic() + " destroys the essence of the " + ghostName + " for greater destructive power, it will be a while before the ghost recovers.";
 			ghost.causeOfDrain = player.htmlTitle();
 			player.power += ghost.power;
@@ -360,7 +360,7 @@ function LifeStuff(session){
 			removeFromArray(player, this.session.availablePlayers);
 			return canvas;
 		}else{
-			console.log("no ghosts to commune dead for: "+ player.titleBasic() + this.session.session_id);
+			//console.log("no ghosts to commune dead for: "+ player.titleBasic() + this.session.session_id);
 			return null;
 		}
 
@@ -368,7 +368,7 @@ function LifeStuff(session){
 
 	//bards call this to power up somebody else with the dead. they gain power at same time.
 	this.helpPlayerDrainDeadForPower = function(div, player1, player2){
-		console.log("help drain dead for power: "+ player1.titleBasic() + this.session.session_id);
+		//console.log("help drain dead for power: "+ player1.titleBasic() + this.session.session_id);
 		var divID = (div.attr("id")) + "_communeDeadWithGuide"+player1.chatHandle ;
 		div.append("<div id ="+divID + "></div>")
 		var childDiv = $("#"+divID)
@@ -377,7 +377,7 @@ function LifeStuff(session){
 		var canvas = this.drainDeadForPower(childDiv, text, player2, player1.class_name);
 		if(canvas){
 			removeFromArray(player1, this.session.availablePlayers);
-			console.log("Help draining power with the dead: " + this.session.session_id);
+			//console.log("Help draining power with the dead: " + this.session.session_id);
 			var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 			drawSprite(pSpriteBuffer,player1)
 			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0)
@@ -395,7 +395,7 @@ function LifeStuff(session){
 			//you can not use your own fresh ghost as fuel to revive. doens't work like that. even if it's kinda thematically appropriate for some clapsects.
 			//if i let them do that, can INFINITELY respawn, because will ALWAYS have a non drained ghost to use.
 			if(ghost  && !ghost.causeOfDrain && myGhost != ghost){
-				console.log("ghost drain dead for revive: "+ player.titleBasic()  + this.session.session_id);
+				//console.log("ghost drain dead for revive: "+ player.titleBasic()  + this.session.session_id);
 				if(className == "Thief" || className == "Rogue"){
 					str += " The " + player.htmlTitleBasic() + " steals the essence of the " + ghostName + " in order to revive. It will be a while before the ghost recovers.";
 				}else if(className == "Heir" || className == "Maid"){
@@ -413,7 +413,7 @@ function LifeStuff(session){
 				removeFromArray(player, this.session.availablePlayers);
 				return canvas;
 			}else{
-				console.log("no ghosts to revive dead for: "+ player.titleBasic() + this.session.session_id);
+				//console.log("no ghosts to revive dead for: "+ player.titleBasic() + this.session.session_id);
 				return null;
 			}
 	}
@@ -428,7 +428,7 @@ function LifeStuff(session){
 		var canvas = this.drainDeadForReviveSelf(childDiv, text, player2, player1.class_name);
 		if(canvas){
 			removeFromArray(player1, this.session.availablePlayers);
-			console.log("Help revive with the dead: " + this.session.session_id);
+			//console.log("Help revive with the dead: " + this.session.session_id);
 			var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 			drawSprite(pSpriteBuffer,player1)
 			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0)
@@ -442,7 +442,7 @@ function LifeStuff(session){
 	//witches and sylphs do this.  not gonna go with a passive/active whatever here. i just want more odds of dream bubble afterlifes.
 	//different flavor of afterlife based on derse or prospit?  derse has horror terror everywhere. prospit after life is filled with visions of the alpha timeline, taunting you.
 	this.enableDreamBubbles = function(div, player){
-		console.log("Turning on dream bubble afterlife: " + this.session.session_id)
+		//console.log("Turning on dream bubble afterlife: " + this.session.session_id)
 		this.session.dreamBubbleAfterlife = true;
 		var canvasId = div.attr("id") + "horror_terrors_" +player.chatHandle
 		var canvasHTML = "<br><canvas id='" + canvasId +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
@@ -473,7 +473,7 @@ function LifeStuff(session){
 	}
 
 	this.makeDead = function(d){
-		//console.log("make dead " + d.title())
+		////console.log("make dead " + d.title())
 		d.dead = true;
 	}
 

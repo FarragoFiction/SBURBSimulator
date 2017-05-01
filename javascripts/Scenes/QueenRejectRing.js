@@ -8,7 +8,7 @@ function QueenRejectRing(session){
 		var nativePlayersInSession = findPlayersFromSessionWithId(playerList);
 		var goodPrototyping = findGoodPrototyping(playerList); 
 		//console.log("holy fucking shit, don't reject the ring if an alien player comes in.")
-		return goodPrototyping != null && this.session.queenStrength > 0;
+		return goodPrototyping != null && this.session.queen.crowned;
 	}
 
 	this.renderContent = function(div){
@@ -16,7 +16,7 @@ function QueenRejectRing(session){
 	}
 
 	this.content = function(){
-		this.session.queen.crowned = false;
+		this.session.queen.crowned = null; //queen no longer has ring, but session still does.
 		var goodPrototyping = findGoodPrototyping(this.playerList);
 		var ret = "The Queen, with her RING OF ORBS " + this.session.convertPlayerNumberToWords();
 		ret += "FOLD would take on the attributes of each prototyping. ";

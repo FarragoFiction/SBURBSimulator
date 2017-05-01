@@ -5,7 +5,7 @@ function KingPowerful(session){
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return this.session.kingStrength > this.session.hardStrength;
+		return this.session.king.getPower() > this.session.hardStrength;
 	}
 
 	this.renderContent = function(div){
@@ -13,7 +13,8 @@ function KingPowerful(session){
 	}
 
 	this.content = function(){
-		var badPrototyping = findBadPrototyping(this.playerList);
+		var nativePlayersInSession = findPlayersFromSessionWithId(this.playerList);
+		var badPrototyping = findBadPrototyping(nativePlayersInSession);
 		if(!badPrototyping){
 			badPrototyping = "glitchy piece of shit that is SBURB itself"
 		}
