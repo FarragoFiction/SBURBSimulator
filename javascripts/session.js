@@ -190,6 +190,7 @@ function Session(session_id){
 		this.sessionType = Math.seededRandom();
 		curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);
 		curSessionGlobalVar.doomedTimeline = false;
+		this.setUpBosses();
 		this.kingStrength = 100;
 		this.queenStrength = 100;
 		this.jackStrength = 50;
@@ -365,7 +366,13 @@ function Session(session_id){
 		}
 		return "Mixed"
 	}
-
+	
+	
+	this.setUpBosses = function(){
+		this.king = new GameEntity(this, "Black King");
+		king.setStats(25,75,500,0,-100,25,100,false, false, []);
+		//TODO queen, jack, denizens, denizen minions		
+	}
 
 	this.newScene = function(){
 		this.currentSceneNum ++;

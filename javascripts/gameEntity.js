@@ -15,7 +15,7 @@ function GameEntity(session, name){
 		this.hp = 0;  //what does infinite hp mean? you need to defeat them some other way. alternate win conditions? or can you only do The Choice?
 		this.mobility = 0;
 		this.maxLuck = 0;
-		this.triggerLevel; //both players and enemy can be too freaked out or beserk to fight right
+		this.triggerLevel = 0; //both players and enemy can be too freaked out or beserk to fight right
 		this.freeWill = 0; //jack has extremely high free will. why he is such a wild card
 		this.relationships = [];
 		this.power = 0;
@@ -23,6 +23,18 @@ function GameEntity(session, name){
 		this.abscondable = true; //nice abscond
 		this.canAbscond = true; //can't abscond bro
 		this.fraymotifsUsed = [];
+		
+		this.setStats = function(minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs){
+			this.minLuck = minLuck;
+			this.hp = hp; 
+			this.mobility = mobility;
+			this.maxLuck = maxLuck;
+			this.triggerLevel = triggerLevel;
+			this.freeWill = freeWill; 
+			this.power = power;
+			this.abscondable = abscondable; 
+			this.canAbscond = canAbscond;
+		}
 		
 		this.htmlTitleBasic = function(){
 			return name; //TODO denizens are aspect colored.
