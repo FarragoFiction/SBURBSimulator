@@ -17,7 +17,8 @@ function PlayerSnapshot(){
 	this.id = null;
 	this.baby_stuck = null;
 	this.ectoBiologicalSource = null;
-	this.class_name = null;null
+	this.class_name = null;
+	this.doomed = null;
 	this.guardian = null;
 	this.number_confessions = null;
 	this.number_times_confessed_to = null;

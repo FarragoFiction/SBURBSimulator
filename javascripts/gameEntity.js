@@ -6,6 +6,7 @@
 //denizens have a particular stat that won't matter. Can't beat Cetus in a Luck-Off, she is simply the best there is, for example.
 //mini boss = denizen minion
 //before I decide boss stats, need to have AB compile me a list of average player stats. She's getting kinda...busy though. maybe a secret extra area? same page, but on bottom?
+//maybe eventually refactor murder mode to use this engine. both players get converted to game entitites for the fight?
 function GameEntity(session, name){
 		this.session = session;
 		this.name = name;
@@ -21,9 +22,15 @@ function GameEntity(session, name){
 		this.dead = false;
 		this.abscondable = true; //nice abscond
 		this.canAbscond = true; //can't abscond bro
+		this.fraymotifsUsed = [];
+		
+		this.htmlTitleBasic = function(){
+			return name; //TODO denizens are aspect colored.
+		}
 
 		//each prototype increases base power. some prototypes also modify other stats. have arrays just like fortune/disastor prototypings.
 		//if it's a player...copy all player stats?
+		//also copy fraymotifs.
 		this.addPrototype = function(object){
 
 		}
@@ -61,23 +68,127 @@ function GameEntity(session, name){
 		enemies can fight, flee (if available) or special.  special varies based on enemy.  denizens can do shit like "echolocataclysm", anything prototyped depends on its
 		prototyping. vast glub for horror terror is example.
 		*/
-		this.aggrieve = function(div, players){
-				//a fight is involved. mutiple things happen before this finally returns. keep going until one side is all dead, or fled.
+		this.strife = function(div, players){
+			div.append("<br><Br>")
+			//as players die or mobility stat changes, might go players, me, me, players or something. double turns.
 			if(getAverageMobility(players) > this.mobility){ //players turn
-				
+				this.playersTurn(div, players);
+				this.myTurn(div, players);
 			}else{ //my turn
-				
+				this.myTurn(div, players);
+				this.playersTurn(div, players);
 			}
+			if(this.fightOver(div, players){
+				return;
+			}else{
+				return this.strive(div, players);
+			}
+		}
+		
+		this.ending = function(div, players){
+			this.fraymotifsUsed = []; //not used yet
+		}
+		
+		this.fightOver = function(div, players){
+			var living = findLivingPlayers(players);
+			if(living.length == 0){
+				div.append("The fight is over. The players are dead. ");
+				this.ending(div, players)
+				return true;
+			}else if(this.hp <= 0){
+				div.append("The fight is over. " + this.name + " is dead. ");
+				this.ending(div, players)
+				return true;
+			}//TODO have alternate win conditions for denizens???
+			return false;
+		}
+		
+		
+		this.playersTurn = function(div, players){
+			var living = findLivingPlayers(players);
+			for(var i = 0; i<living.length; i++){
+				this.playerdecideWhatToDo(div, living[i]);
+			}
+		}
+		
+		this.playerdecideWhatToDo = function(div, player){
+			//for now, only one choice    //free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
+			this.aggrieve(div, this.chooseTarget(players), this );
+		}
+		
+		//doomed players are just easier to target.
+		this.chooseTarget=function(players){
+			var doomed = findDoomedPlayers;
+			var ret = getRandomElementFromArray(doomed);
+			if(ret){
+				return ret;
+			}
+			return findLowestMobilityPlayer(players);
+		}
+		
+		//higher the free will, smarter the ai. more likely to do special things.
+		this.myTurn = function(div, players){
+			//free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
+			//special and fraymotif can attack multiple enemies, but aggrieve is one on one.
+			
+			//for now, only one choice
+			this.aggrieve(div, this, this.chooseTarget(players));
+			
 			
 		}
-
-
-		//some denizens have infinitei HP. what does this mean? how are you supposed to beat them?
-		this.winConditionMet = function(){
-
+		
+		//hopefully either player or gameEntity can call this.
+		this.aggrieve=function(div, offense, defense){
+			//mobility, luck hp, and power are used here.
+			div.append(offense.htmltTitleBasic() + " targets the " +defense.htmltTitleBasic());
+			//luck dodge
+			var offenseRoll = offense.rollForLuck();
+			var defenseRoll = defense.rollForLuck();
+			if(defenseRoll > offenseRoll*10){
+				console.log("Luck counter: " + this.session.session_id);
+				div.append("The attack backfires and causes unlucky damage. The " + defense.htmlTitleBasic() + " sure is lucky!!!!!!!!" );
+				offense.hp += -1* offense.power; //damaged by your own power.
+				return;	
+			}else if(defenseRoll > offenseRoll){
+				console.log("Luck dodge: " + this.session.session_id);
+				div.append("The attack misses completely after an unlucky distraction.");
+				return;	
+			}
+			//mobility dodge
+			if(defense.mobility > offense.mobility*10){
+				console.log("Mobility counter: " + this.session.session_id);
+				div.append("The " + this.offense.htmlTitleBasic() + " practically appears to be standing still as they clumsily lunge towards the " + defense.htmlTitleBasic() + " They miss so hard the " + defense.htmlTitleBasic() + " has plenty of time to get a counterattack in". ;
+				offense.hp += -1* defense.power;
+				return;	
+			}else if(defense.mobility > offense.mobility*2){
+				console.log("Mobility dodge: " + this.session.session_id);
+				div.append(" The " + defense.htmlTitle() + "dodges the attack completely. ");
+				return;	
+			}
+			//base damage
+			var hit = offense.power;
+			offenseRoll = offense.rollForLuck();
+			defenseRoll = defense.rollForLuck();
+			//critical/glancing hit odds. 
+			if(defenseRoll > offenseRoll*5){ //glancing blow.
+				console.log("Glancing Hit: " + this.session.session_id);
+				hit = hit/2;
+				div.append(" The attack manages to not hit anything too vital. ");
+			}else if(offenseRoll > defenseRollRoll*5){
+				console.log("Critical Hit: " + this.session.session_id);
+				hit = hit*2;
+				div.append(" Ouch. That's gonna leave a mark. ");
+			}else{
+				div.append(" A hit! ");
+			}
+			
+			defense.hp += -1* hit;
 		}
 
 
+		this.rollForLuck = function(){
+			return getRandomInt(this.minLuck, this.maxLuck);
+		}
 
 		//place holders for now. being in diamonds with jack is NOT a core feature.
 		this.boostAllRelationshipsWithMeBy = function(amount){

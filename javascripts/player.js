@@ -78,6 +78,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 	this.denizenDefeated = false;
 	this.causeOfDeath = ""; //fill in every time you die. only matters if you're dead at end
 	this.doomedTimeClones =  []; //help fight the final boss(es).
+	this.doomed = false; //stat that doomed time clones have.
 
 
 	this.fromThisSession = function(session){
@@ -197,6 +198,10 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 
 	this.title = function(){
 		var ret = "";
+		
+		if(this.doomed){
+			ret += "Doomed "
+		}
 
 		if(this.murderMode){
 			ret += "Murder Mode ";
@@ -1704,6 +1709,17 @@ function findDeadPlayers(playerList){
 	return ret;
 }
 
+function findDoomedPlayers(playerList){
+	ret = [];
+	for(var i= 0; i<playerList.length; i++){
+		var p = playerList[i];
+		if(p.doomed){
+			ret.push(p);
+		}
+	}
+	return ret;
+}
+
 function findLivingPlayers(playerList){
 	ret = [];
 	for(var i= 0; i<playerList.length; i++){
@@ -1854,6 +1870,17 @@ function findBadPrototyping(playerList){
 }
 
 function findHighestMobilityPlayer(playerList){
+	var ret = playerList[0];
+	for(var i= 0; i<playerList.length; i++){
+		var p = playerList[i]
+		if(p.mobility > ret.mobility){
+			ret = p;
+		}
+	}
+	return ret;
+}
+
+function findLowestMobilityPlayer(playerList){
 	var ret = playerList[0];
 	for(var i= 0; i<playerList.length; i++){
 		var p = playerList[i]
