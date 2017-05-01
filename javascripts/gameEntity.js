@@ -4,6 +4,7 @@
 //whoever calls fight is reponsible for high mobility players to be more likely in a fight.
 //should use ALL stats. luck, mobility, freeWill, raw power, relationships, etc. Hope powered up by how screwed things are, for example. (number of corpses, lack of Ecto lack of frog, etc. ).
 //denizens have a particular stat that won't matter. Can't beat Cetus in a Luck-Off, she is simply the best there is, for example.
+//mini boss = denizen minion
 //before I decide boss stats, need to have AB compile me a list of average player stats. She's getting kinda...busy though. maybe a secret extra area? same page, but on bottom?
 function GameEntity(session, name){
 		this.session = session;
