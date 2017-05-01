@@ -5,3 +5,4 @@ at first, gamefaqs articles will be content locked. can't display ectobiology FA
 can't display frog FAQ until tier2 space quests are started, etc. etc.
 
 Eventually, if I have enough of these, classes have preferences for which article they "write".
+knights or whatever focus on combat. princes focus on the end game.

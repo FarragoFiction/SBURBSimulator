@@ -105,6 +105,7 @@ this.getGoodGuys = function(){
 		}
 
 		this.setPlayersUnavailable(living);
+		//this.session.king.aggrieve(living); TODO  uncomment out when ready.  need to have the king be a real thing, and prototypings modded on it.
 		var partyPower = getPartyPower(living);
 		var timePlayer = findAspectPlayer(this.session.players, "Time"); //doesn't matter if THEY are alive or dead, they still have doomed time clones.
 		if(timePlayer.doomedTimeClones.length > 0){

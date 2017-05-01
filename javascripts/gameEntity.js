@@ -19,8 +19,8 @@ function GameEntity(session, name){
 		this.relationships = [];
 		this.power = 0;
 		this.dead = false;
-		this.escapeable = true;
-		this.canFlee = true;
+		this.abscondable = true; //nice abscond
+		this.canAbscond = true; //can't abscond bro
 
 		//each prototype increases base power. some prototypes also modify other stats. have arrays just like fortune/disastor prototypings.
 		//if it's a player...copy all player stats?
@@ -38,13 +38,13 @@ function GameEntity(session, name){
 		//if all players are fled, fight is over.
 		//some fights you can't run from. king/queen as example.
 		//mobility needs to be high enough. mention if you try to flee and get cut off.
-		this.willPlayerFlee = function(player){
+		this.willPlayerAbscond = function(player){
 
 		}
 
 		//denizen and king/queen will never flee. but jack and planned mini bosses can.
 		//flee if you are losing. mobility needs to be high enough. mention if you try to flee and get cut off.
-		this.willIFlee= function(){
+		this.willIAbscond= function(){
 
 		}
 
@@ -61,8 +61,14 @@ function GameEntity(session, name){
 		enemies can fight, flee (if available) or special.  special varies based on enemy.  denizens can do shit like "echolocataclysm", anything prototyped depends on its
 		prototyping. vast glub for horror terror is example.
 		*/
-		this.fight = function(div, players){
+		this.aggrieve = function(div, players){
 				//a fight is involved. mutiple things happen before this finally returns. keep going until one side is all dead, or fled.
+			if(getAverageMobility(players) > this.mobility){ //players turn
+				
+			}else{ //my turn
+				
+			}
+			
 		}
 
 
