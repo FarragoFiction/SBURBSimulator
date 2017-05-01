@@ -20,6 +20,7 @@ function ExileQueen(session){
 		}
 
 		this.session.queensRing = null; //no longer exists.
+		this.session.queen.hp = 0; //effectively dead.
 		return ret;
 	}
 

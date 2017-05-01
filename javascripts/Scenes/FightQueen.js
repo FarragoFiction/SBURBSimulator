@@ -8,11 +8,6 @@ function FightQueen(session){
 		return (this.session.queenStrength > 0) &&  (findLivingPlayers(this.session.players).length != 0) ;
 	}
 
-	this.killPlayers = function(stabbings){
-		for(var i = 0; i<stabbings.length; i++){
-			stabbings[i].makeDead("fighting the Black Queen");
-		}
-	}
 
 //includes time clones
 	this.getGoodGuys = function(){
@@ -44,20 +39,16 @@ function FightQueen(session){
 
 
 
-	this.levelPlayers = function(stabbings){
-		for(var i = 0; i<stabbings.length; i++){
-			stabbings[i].increasePower();
-			stabbings[i].increasePower();
-			stabbings[i].increasePower();
-			stabbings[i].leveledTheHellUp = true;
-			stabbings.level_index +=2;
-		}
-	}
-
 	this.renderContent = function(div){
-		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
+		console.log("rendering fight queen);")
 		div.append("<br>");
 		div.append(this.content());
+
+		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
+		if(this.session.democraticArmy.hp > 0 ) living.push(this.session.democraticArmy);
+		var fighting = this.getGoodGuys()
+		if(this.session.democraticArmy.getHp() > 0) fighting.push(this.session.democraticArmy)
+		this.queen.strife(div, fighting)
 
 	}
 
@@ -106,35 +97,7 @@ function FightQueen(session){
 		}
 
 		this.setPlayersUnavailable(living);
-		var partyPower = getPartyPower(living);
-		var timePlayer = findAspectPlayer(this.session.players, "Time"); //doesn't matter if THEY are alive or dead, they still have doomed time clones.
-		if(timePlayer.doomedTimeClones.length > 0){
-			//throw an extra one at them from nowhere just to make sure it's plural. whatever. who's counting here?
-			ret += timePlayer.doomedTimeClones.length + " doomed time clones of the " + timePlayer.htmlTitleBasic() + " show up from various points in the time line to help out. ";
-			partyPower += 100 * (timePlayer.doomedTimeClones.length);
-		}
-		if(partyPower > this.session.queenStrength*5){
-			ret += "The Players easily defeat the Queen, no sweat. It was easy. She is DEAD. ";
-			this.session.queenStrength = 0;
-			this.levelPlayers(living);
-		}else{
-			var deadPlayers = this.getDeadList(living);
-			if(deadPlayers.length > 0){
-				ret += " The queen efficiently destroys the " + getPlayersTitles(deadPlayers) + ".  DEAD.";
-			}
-			this.killPlayers(deadPlayers);
-			living = findLivingPlayers(this.session.players);
-			if(living.length > 0 ){
-				ret += " After all is said and done, the queen is defeated. DEAD.";
-				this.session.queenStrength = 0;
-				this.levelPlayers(living);
-			}else{
-				ret += " The party is defeated. ";
-			}
-		}
-		if(this.session.queenStrength > 10){
-			this.session.queenStrength += -10;
-		}
+		
 		return ret;
 
 	}

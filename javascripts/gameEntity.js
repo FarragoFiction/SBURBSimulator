@@ -160,14 +160,35 @@ function GameEntity(session, name, crowned){
 			this.fraymotifsUsed = []; //not used yet
 		}
 		
+		this.levelPlayers = function(stabbings){
+			for(var i = 0; i<stabbings.length; i++){
+				stabbings[i].increasePower();
+				stabbings[i].increasePower();
+				stabbings[i].increasePower();
+				stabbings[i].leveledTheHellUp = true;
+				stabbings.level_index +=2;
+			}
+		}
+		
+		
+	this.minorLevelPlayers = function(stabbings){
+		for(var i = 0; i<stabbings.length; i++){
+			stabbings[i].increasePower();
+		}
+	}
+		
 		this.fightOver = function(div, players){
 			var living = findLivingPlayers(players);
 			if(living.length == 0){
 				div.append("The fight is over. The players are dead. ");
+				this.minorLevelPlayers(players)
+				this.ending();
 				this.ending(div, players)
 				return true;
 			}else if(this.getHP() <= 0){
 				div.append("The fight is over. " + this.name + " is dead. ");
+				this.levelPlayers(players) //even corpses
+				this.ending();
 				this.ending(div, players)
 				return true;
 			}//TODO have alternate win conditions for denizens???

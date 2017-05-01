@@ -9,22 +9,6 @@ function FightKing(session){
 		return (this.session.king.getHP() >= 0) &&  (this.session.queen.getHP() <= 0) && (findLivingPlayers(this.session.players).length != 0) ;
 	}
 
-	this.killPlayers = function(stabbings){
-		for(var i = 0; i<stabbings.length; i++){
-			stabbings[i].makeDead("fighting the Black King");
-		}
-	}
-
-	this.levelPlayers = function(stabbings){
-		for(var i = 0; i<stabbings.length; i++){
-			stabbings[i].increasePower();
-			stabbings[i].increasePower();
-			stabbings[i].increasePower();
-			stabbings[i].leveledTheHellUp = true;
-			stabbings.level_index +=2;
-		}
-	}
-
 
 
 this.getGoodGuys = function(){
@@ -67,11 +51,6 @@ this.getGoodGuys = function(){
 
 	}
 
-	this.minorLevelPlayers = function(stabbings){
-		for(var i = 0; i<stabbings.length; i++){
-			stabbings[i].increasePower();
-		}
-	}
 
 
 
@@ -79,25 +58,6 @@ this.getGoodGuys = function(){
 		for(var i = 0; i<stabbings.length; i++){
 			removeFromArray(stabbings[i], this.session.availablePlayers);
 		}
-	}
-
-	this.getDeadList = function(living){
-		var numStabbings = getRandomInt(0,living.length);
-		var timePlayer = findAspectPlayer(this.session.players, "Time");
-		var ret = [];
-		//doomed time clones absorb some of the hits.
-		for(var i = 0; i<timePlayer.doomedTimeClones.length; i++){
-				ret.push(timePlayer.doomedTimeClones[i]);
-				removeFromArray(timePlayer.doomedTimeClones[i], timePlayer.doomedTimeClones)
-		}
-
-		if(living.length == 0){
-			return ret;
-		}
-		for(var i = ret.length; i<=numStabbings; i++){
-			ret.push(getRandomElementFromArray(living));
-		}
-		return Array.from(new Set(ret));
 	}
 
 

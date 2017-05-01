@@ -5,7 +5,7 @@ function ExileJack(session){
 	
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return (this.session.jackStrength < 10) && (this.session.jackStrength >  -9999);
+		return (this.session.jack.getPower() < 10) && (this.session.jack.getHP() >  0);
 	}
 	
 	this.renderContent = function(div){
@@ -13,7 +13,7 @@ function ExileJack(session){
 	}
 	
 	this.content = function(){
-		this.session.jackStrength =  -9999;
+		this.session.jack.hp = 0; //effectively dead.
 		var ret = " The plan has been performed flawlessly.  Jack has been exiled to the post-Apocalyptic version of Earth before he can cause too much damage.";
 		return ret;
 	}
