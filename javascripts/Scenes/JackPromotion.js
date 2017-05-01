@@ -5,7 +5,7 @@ function JackPromotion(session){
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return (this.session.queen.crowned == null) && (this.session.jack.getHP > 0);
+		return (this.session.queen.crowned == null) && (this.session.jack.getHP() > 0);
 	}
 
 	this.addImportantEvent = function(){
@@ -26,7 +26,7 @@ function JackPromotion(session){
 		ret += " You'd think this would be no worse than having the Black Queen around, but Jack is kind of a big deal. ";
 		ret += " He immediately decides to show everybody his stabs. ";
 		var badPrototyping = findBadPrototyping(this.playerList);
-	
+
 
 		if( badPrototyping == "First Guardian"){
 			ret += " He is now in charge of random teleporation murders. ";
