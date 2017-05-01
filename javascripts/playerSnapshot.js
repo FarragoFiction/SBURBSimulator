@@ -131,6 +131,10 @@ function PlayerSnapshot(){
 		return getRandomInt(this.minLuck, this.maxLuck);
 	}
 	
+	this.interactionEffect = function(player){
+			//none
+	}
+	
 		
 	//bulshit stubs that game entities will have be different if crowned. players can't be crowned tho (or can they??? no. they can't.)
 	this.getMobility = function(){

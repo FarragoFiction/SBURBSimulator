@@ -466,6 +466,7 @@ function LifeStuff(session){
 		d.influenceSymbol = null;
 		d.dead = false;
 		d.murderMode = false;
+		d.hp =Math.max(d.hp+50,50)
 		d.grimDark = false;
 		d.triggerLevel = 1;
 		d.leftMurderMode = false; //no scars

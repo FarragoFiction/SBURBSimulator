@@ -47,7 +47,7 @@ function FightQueen(session){
 		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
 		var fighting = this.getGoodGuys()
 		if(this.session.democraticArmy.getHP() > 0) fighting.push(this.session.democraticArmy)
-		this.session.queen.strife(div, fighting)
+		this.session.queen.strife(div, fighting,0)
 
 	}
 

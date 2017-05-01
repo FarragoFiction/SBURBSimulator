@@ -105,11 +105,6 @@ function GameEntity(session, name, crowned){
 			console.log("todo: prototypings can be associated with plus or minus stats and even fraymotifs (vast glub, anyone)???" )
 		}
 
-		//if jack gets the queen rings, her stats are added onto his.
-		this.addStatsFromObject = function(object){
-
-		}
-
 		//a player will try to flee this fight if they are losing.
 		//but if any of their good friends are still around, they will stay.
 		//if all players are fled, fight is over.
@@ -124,6 +119,7 @@ function GameEntity(session, name, crowned){
 		this.willIAbscond= function(){
 
 		}
+		
 
 
 		//before a fight is called, decide who is in it. denizens are one on one, jack catches slower player and friends
@@ -138,21 +134,22 @@ function GameEntity(session, name, crowned){
 		enemies can fight, flee (if available) or special.  special varies based on enemy.  denizens can do shit like "echolocataclysm", anything prototyped depends on its
 		prototyping. vast glub for horror terror is example.
 		*/
-		this.strife = function(div, players){
-			console.log("strife");
+		this.strife = function(div, players, numTurns){
+			numTurns += 1;
+			console.log("strife " + numTurns + " " + this.session.session_id);
 			div.append("<br><Br>")
 			//as players die or mobility stat changes, might go players, me, me, players or something. double turns.
 			if(getAverageMobility(players) > this.getMobility()){ //players turn
 				this.playersTurn(div, players);
-				this.myTurn(div, players);
+				if(this.getHP() > 0) this.myTurn(div, players);
 			}else{ //my turn
-				this.myTurn(div, players);
+				if(this.getHP() > 0)  this.myTurn(div, players);
 				this.playersTurn(div, players);
 			}
 			if(this.fightOver(div, players)){
 				return;
 			}else{
-				return this.strife(div, players);
+				return this.strife(div, players,numTurns);
 			}
 		}
 		
@@ -171,11 +168,11 @@ function GameEntity(session, name, crowned){
 		}
 		
 		
-	this.minorLevelPlayers = function(stabbings){
-		for(var i = 0; i<stabbings.length; i++){
-			stabbings[i].increasePower();
+		this.minorLevelPlayers = function(stabbings){
+			for(var i = 0; i<stabbings.length; i++){
+				stabbings[i].increasePower();
+			}
 		}
-	}
 		
 		this.fightOver = function(div, players){
 			var living = findLivingPlayers(players);
@@ -186,7 +183,7 @@ function GameEntity(session, name, crowned){
 				this.ending(div, players)
 				return true;
 			}else if(this.getHP() <= 0){
-				div.append(" The fight is over. " + this.name + " is dead. ");
+				div.append(" <Br><br> The fight is over. " + this.name + " is dead. ");
 				this.levelPlayers(players) //even corpses
 				this.ending();
 				this.ending(div, players)
@@ -199,7 +196,7 @@ function GameEntity(session, name, crowned){
 		this.playersTurn = function(div, players){
 			var living = findLivingPlayers(players);
 			for(var i = 0; i<living.length; i++){
-				this.playerdecideWhatToDo(div, living[i]);
+				if(!living[i].dead && this.getHP()>0) this.playerdecideWhatToDo(div, living[i]); //player could have died from a counter attack, boss could have died from previous player
 			}
 		}
 		
@@ -215,7 +212,8 @@ function GameEntity(session, name, crowned){
 			if(ret){
 				return ret;
 			}
-			return findLowestMobilityPlayer(players);
+			var living = findLivingPlayers(players);
+			return findLowestMobilityPlayer(living);
 		}
 		
 		//higher the free will, smarter the ai. more likely to do special things.
@@ -233,7 +231,7 @@ function GameEntity(session, name, crowned){
 		//hopefully either player or gameEntity can call this.
 		this.aggrieve=function(div, offense, defense){
 			//mobility, luck hp, and power are used here.
-			div.append(" " + offense.htmlTitleBasic() + " targets the " +defense.htmlTitleBasic());
+			div.append(" The " + offense.htmlTitleBasic() + " targets the " +defense.htmlTitleBasic() + ". ");
 			//luck dodge
 			var offenseRoll = offense.rollForLuck();
 			var defenseRoll = defense.rollForLuck();
@@ -242,7 +240,7 @@ function GameEntity(session, name, crowned){
 				div.append("The attack backfires and causes unlucky damage. The " + defense.htmlTitleBasic() + " sure is lucky!!!!!!!!" );
 				offense.hp += -1* offense.power; //damaged by your own power.
 				return;	
-			}else if(defenseRoll > offenseRoll){
+			}else if(defenseRoll > offenseRoll*5){
 				console.log("Luck dodge: " + this.session.session_id);
 				div.append("The attack misses completely after an unlucky distraction.");
 				return;	
@@ -253,7 +251,7 @@ function GameEntity(session, name, crowned){
 				div.append("The " + offense.htmlTitleBasic() + " practically appears to be standing still as they clumsily lunge towards the " + defense.htmlTitleBasic() + " They miss so hard the " + defense.htmlTitleBasic() + " has plenty of time to get a counterattack in." );
 				offense.hp += -1* defense.power;
 				return;	
-			}else if(defense.getMobility() > offense.getMobility()*2){
+			}else if(defense.getMobility() > offense.getMobility()*5){
 				console.log("Mobility dodge: " + this.session.session_id);
 				div.append(" The " + defense.htmlTitle() + "dodges the attack completely. ");
 				return;	
@@ -263,11 +261,11 @@ function GameEntity(session, name, crowned){
 			offenseRoll = offense.rollForLuck();
 			defenseRoll = defense.rollForLuck();
 			//critical/glancing hit odds. 
-			if(defenseRoll > offenseRoll*5){ //glancing blow.
+			if(defenseRoll > offenseRoll*2){ //glancing blow.
 				console.log("Glancing Hit: " + this.session.session_id);
 				hit = hit/2;
 				div.append(" The attack manages to not hit anything too vital. ");
-			}else if(offenseRoll > defenseRoll*5){
+			}else if(offenseRoll > defenseRoll*2){
 				console.log("Critical Hit: " + this.session.session_id);
 				hit = hit*2;
 				div.append(" Ouch. That's gonna leave a mark. ");
@@ -276,6 +274,28 @@ function GameEntity(session, name, crowned){
 			}
 			
 			defense.hp += -1* hit;
+			
+			if(!this.checkForAPulse(defense, offense)){
+			
+				div.append("The " + defense.htmlTitleBasic() + " is dead. ");
+			}
+			if(!this.checkForAPulse(offense, defense)){
+				div.append("The " + offense.htmlTitleBasic() + " is dead. ");
+			}
+			offense.interactionEffect(defense); //only players have this. doomed time clones or bosses will do nothing.
+		}
+		
+		this.checkForAPulse =function(player, attacker){
+			if(player.getHP() <= 0){
+				player.dead = true; //hp only means dead in a fight. you can be at negative a billion hp,b ut if you never get hit....
+				player.causeOfDeath = "fighting the " + attacker.htmlTitleBasic();
+				return false;
+			}
+			return true;
+		}
+		
+		this.interactionEffect = function(player){
+			//none
 		}
 
 
