@@ -12,6 +12,7 @@ function JackRampage(session){
 	}
 
 	//TODO get lowest mobility player and 2-3 of their friends. (random but based on mobility)
+	//TODO jack never ever ever tries to hurt the witch. whatever the witch prototyped is her familiar and is loyal to her.
 	this.getStabList = function(){
 		var numStabbings = getRandomInt(0,Math.min(2,this.session.availablePlayers.length));
 		var ret = [];
