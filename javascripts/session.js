@@ -6,7 +6,7 @@ function Session(session_id){
 	this.sessionHealth = 5000; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
 	this.hasDiamonds = false;
 	this.afterLife = new AfterLife();
-	this.queensRing = null;
+	this.queensRing = null; //eventually have white and black ones.
 	this.kingsScepter = null;
 	this.hasHearts = false;
 	this.hasSpades = false;

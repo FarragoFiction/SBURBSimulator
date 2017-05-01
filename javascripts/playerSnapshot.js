@@ -2,6 +2,7 @@
 //allows player to go ahead and change while their snapshot remains the same
 //even with asynchronous rendering.
 //renderer calls this, not any individual scenes.
+//consider not using this anymore for doomed time clones, instead use gameentity?
 function PlayerSnapshot(){
 	this.session = null;
 	this.trickster = null;
@@ -125,6 +126,43 @@ function PlayerSnapshot(){
 		}
 		return ret;
 	}
+	
+	this.rollForLuck = function(){
+		return getRandomInt(this.minLuck, this.maxLuck);
+	}
+	
+		
+	//bulshit stubs that game entities will have be different if crowned. players can't be crowned tho (or can they??? no. they can't.)
+	this.getMobility = function(){
+		return this.mobility;
+	}
+	
+	this.getMaxLuck = function(){
+		return this.maxLuck;
+	}
+	
+	this.getMinLuck = function(){
+		return this.minLuck;
+	}
+	this.getFreeWill = function(){
+		return this.freeWill;
+	}
+	
+	this.getHP= function(){
+		return this.hp;
+	}
+	this.getPower = function(){
+		return this.power;
+	}
+	
+	this.triggerLevel = function(){
+		return this.triggerLevel;
+	}
+	
+	this.increasePower = function(){
+		//stub for boss fights for doomed time clones. they can't level up. they are doomed.
+	}
+		
 
 
 

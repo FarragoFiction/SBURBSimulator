@@ -180,13 +180,13 @@ function GameEntity(session, name, crowned){
 		this.fightOver = function(div, players){
 			var living = findLivingPlayers(players);
 			if(living.length == 0){
-				div.append("The fight is over. The players are dead. ");
+				div.append(" The fight is over. The players are dead. ");
 				this.minorLevelPlayers(players)
 				this.ending();
 				this.ending(div, players)
 				return true;
 			}else if(this.getHP() <= 0){
-				div.append("The fight is over. " + this.name + " is dead. ");
+				div.append(" The fight is over. " + this.name + " is dead. ");
 				this.levelPlayers(players) //even corpses
 				this.ending();
 				this.ending(div, players)
@@ -205,7 +205,7 @@ function GameEntity(session, name, crowned){
 		
 		this.playerdecideWhatToDo = function(div, player){
 			//for now, only one choice    //free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
-			this.aggrieve(div, this.chooseTarget(players), this );
+			this.aggrieve(div, player, this );
 		}
 		
 		//doomed players are just easier to target.
@@ -225,6 +225,7 @@ function GameEntity(session, name, crowned){
 			
 			//for now, only one choice
 			this.aggrieve(div, this, this.chooseTarget(players));
+			console.log("have special attacks (like using ghost army, or reviving.). have fraymotifs. have prototypes that change stats of ring/scepter and even add fraymotifs.")
 			
 			
 		}
@@ -232,7 +233,7 @@ function GameEntity(session, name, crowned){
 		//hopefully either player or gameEntity can call this.
 		this.aggrieve=function(div, offense, defense){
 			//mobility, luck hp, and power are used here.
-			div.append(offense.htmltTitleBasic() + " targets the " +defense.htmltTitleBasic());
+			div.append(" " + offense.htmlTitleBasic() + " targets the " +defense.htmlTitleBasic());
 			//luck dodge
 			var offenseRoll = offense.rollForLuck();
 			var defenseRoll = defense.rollForLuck();
@@ -266,7 +267,7 @@ function GameEntity(session, name, crowned){
 				console.log("Glancing Hit: " + this.session.session_id);
 				hit = hit/2;
 				div.append(" The attack manages to not hit anything too vital. ");
-			}else if(offenseRoll > defenseRollRoll*5){
+			}else if(offenseRoll > defenseRoll*5){
 				console.log("Critical Hit: " + this.session.session_id);
 				hit = hit*2;
 				div.append(" Ouch. That's gonna leave a mark. ");
