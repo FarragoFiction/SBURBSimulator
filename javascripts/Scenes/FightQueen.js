@@ -40,7 +40,7 @@ function FightQueen(session){
 
 
 	this.renderContent = function(div){
-		console.log("rendering fight queen);")
+		//console.log("rendering fight queen);")
 		div.append("<br>");
 		div.append(this.content());
 

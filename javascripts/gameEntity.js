@@ -267,7 +267,7 @@ function GameEntity(session, name, crowned){
 				return;
 			}else if(defense.getMobility() > offense.getMobility()*5 && rand > 25){
 				//console.log("Mobility dodge: " + this.session.session_id);
-				div.append(" The " + defense.htmlTitleHP() + "dodges the attack completely. ");
+				div.append(" The " + defense.htmlTitleHP() + " dodges the attack completely. ");
 				return;
 			}
 			//base damage

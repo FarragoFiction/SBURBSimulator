@@ -39,7 +39,7 @@ this.getGoodGuys = function(){
 	}
 
 	this.renderContent = function(div){
-		console.log("rendering fight king);")
+		//console.log("rendering fight king);")
 		div.append("<br>");
 		div.append(this.content());
 
@@ -70,7 +70,7 @@ this.getGoodGuys = function(){
 			ret += " He is made especially terrifying with the addition of the " + badPrototyping + ". ";
 		}
 
-		
+
 		return ret;
 
 	}
