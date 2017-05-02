@@ -10,6 +10,19 @@ function AfterLife(){
 		this.ghosts.push(ghost);
 	}
 
+	//until the timeline splits, ghosts from first timeline can't interact, because they DIDN't interact.
+	this.allowTransTimeLineInteraction = function(){
+		this.ghosts = this.ghosts.concat(this.afterLife.ghostsBannedFromInteracting);
+		this.ghostsBannedFromInteracting = [];
+		this.timeLineSplitsWhen = null;
+	}
+
+	this.complyWithLifeTimeShenanigans = function(importantEvent){
+		this.ghostsBannedFromInteracting = this.ghostsBannedFromInteracting.concat(this.afterLife.ghosts);
+		this.ghosts = [];
+		this.timeLineSplitsWhen = e; //e can be null if undoing an undo
+	}
+
 	//mostly life players recycling them. not a double death.
 	this.unspawn = function(ghost){
 		ghost.dead = true;

@@ -64,6 +64,7 @@ function Session(session_id){
 	//	console.log("alternate i got from yellowYardController is: " + alternate)
 		if(alternate){
 		//	console.log("returning alternate")
+		  this.session.afterLife.allowTransTimeLineInteraction();
 			return alternate; //scene will use the alternate to go a different way. important event no longer happens.
 		}else{
 			//console.log(" pushing important event and returning null")
@@ -88,9 +89,7 @@ function Session(session_id){
 	//make sure the controller starts ticking again. very similar to scrach
 	this.addEventToUndoAndReset = function(e){
 		//when I reset, need things to go the same. that includes having no ghosts interact with the session. figure out how to renable them once my event happens again.
-		this.afterLife.ghostsBannedFromInteracting = this.afterLife.ghostsBannedFromInteracting.concat(this.afterLife.ghosts);
-		this.afterLife.ghosts = [];
-		this.afterLife.timeLineSplitsWhen = e; //e can be null if undoing an undo
+		this.afterLife.complyWithLifeTimeShenanigans(e);
 		//console.log("undoing an event.")
 		if(this.scratched){
 			return this.addEventToUndoAndResetScratch(e); //works different
