@@ -37,6 +37,7 @@ function JackPromotion(session){
 
 	this.renderContent = function(div){
 		var alt = this.addImportantEvent();
+		console.log("Alt for jack promotion is: " + alt);
 		if(alt && alt.alternateScene(div)){
 			return;
 		}
