@@ -215,12 +215,14 @@ function GameEntity(session, name, crowned){
 
 		//doomed players are just easier to target.
 		this.chooseTarget=function(players){
-			var doomed = findDoomedPlayers(players);
+			var living = findLivingPlayers(players);
+			var doomed = findDoomedPlayers(living);
 			var ret = getRandomElementFromArray(doomed);
 			if(ret){
+				console.log("targeting a doomed player.")
 				return ret;
 			}
-			var living = findLivingPlayers(players);
+			console.log("targeting slowest player out of: " + living.length)
 			return findLowestMobilityPlayer(living);
 		}
 
@@ -230,7 +232,8 @@ function GameEntity(session, name, crowned){
 			//special and fraymotif can attack multiple enemies, but aggrieve is one on one.
 
 			//for now, only one choice
-			this.aggrieve(div, this, this.chooseTarget(players));
+			var target = this.chooseTarget(players)
+			if(target) this.aggrieve(div, this, target );
 			//console.log("have special attacks (like using ghost army, or reviving.). have fraymotifs. have prototypes that change stats of ring/scepter and even add fraymotifs.")
 
 
