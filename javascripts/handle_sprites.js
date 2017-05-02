@@ -1149,6 +1149,7 @@ function makeRenderingSnapshot(player){
 	ret.minLuck = player.minLuck;
 	ret.maxLuck = player.maxLuck;
 	ret.freeWill = player.freeWill;
+  ret.power = player.power;
   ret.interest1 = player.interest1;
   ret.interest2 = player.interest2;
 	ret.mobility = player.mobility;

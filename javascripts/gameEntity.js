@@ -214,7 +214,7 @@ function GameEntity(session, name, crowned){
 
 		//doomed players are just easier to target.
 		this.chooseTarget=function(players){
-			var doomed = findDoomedPlayers;
+			var doomed = findDoomedPlayers(players);
 			var ret = getRandomElementFromArray(doomed);
 			if(ret){
 				return ret;
@@ -283,6 +283,7 @@ function GameEntity(session, name, crowned){
 				div.append(" A hit! ");
 			}
 
+
 			defense.currentHP += -1* hit;
 
 			if(!this.checkForAPulse(defense, offense)){
@@ -295,16 +296,19 @@ function GameEntity(session, name, crowned){
 			offense.interactionEffect(defense); //only players have this. doomed time clones or bosses will do nothing.
 		}
 
+		this.makeDead = function(causeOfDeath){
+			//does nothing. game entities are assumed to be dead if zero hp
+		}
+
 		this.checkForAPulse =function(player, attacker){
 			if(player.getHP() <= 0){
-				player.dead = true; //hp only means dead in a fight. you can be at negative a billion hp,b ut if you never get hit....
+				var cod = "fighting the " + attacker.htmlTitleHP();
 				if(this.name == "Jack"){
-					player.causeOfDeath = "after being shown too many stabs from Jack";
+					cod =  "after being shown too many stabs from Jack";
 				}else if(this.name == "Black King"){
-					player.causeOfDeath = "fighting the Black King";
-				}else{
-					player.causeOfDeath = "fighting the " + attacker.htmlTitleHP();
+					cod = "fighting the Black King";
 				}
+				player.makeDead(cod);
 
 				return false;
 			}

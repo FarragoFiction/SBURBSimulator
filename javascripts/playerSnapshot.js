@@ -75,7 +75,7 @@ function PlayerSnapshot(){
 	}
 
 	this.htmlTitleHP = function(){
-		return getFontColorFromAspect(this.aspect) + this.title() + " (" + Math.round(this.hp) + " hp)</font>"
+		return getFontColorFromAspect(this.aspect) + this.title() + " (" + Math.round(this.currentHP) + " hp, " + this.power + " power)</font>"
 	}
 
 	this.htmlTitleBasic = function(){
