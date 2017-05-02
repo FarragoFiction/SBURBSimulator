@@ -735,8 +735,8 @@ function Intro(session){
 				narration += "They immediately heal their land in an explosion of bullshit candy giggle-magic. ";
 			}
 
-			this.session.kingsScepter.addPrototyping(this.player.kernel_sprite); //assume king can't lose crown for now.
-			this.session.queensRing.addPrototyping(this.player.kernel_sprite); //assume king can't lose crown for now.
+			if(this.session.kingsScepter) this.session.kingsScepter.addPrototyping(this.player.kernel_sprite); //assume king can't lose crown for now.
+			if(this.session.queensRing) this.session.queensRing.addPrototyping(this.player.kernel_sprite); //assume king can't lose crown for now.
 		}
 		div.append(narration);
 		this.chat(div);

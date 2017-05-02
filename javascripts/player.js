@@ -582,6 +582,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 		}else if(this.class_name == "Bard"){ //destroys in others
 			player.power += -1*amount
 		}
+		player.power = Math.max(player.power, 1);
 	}
 
 	this.voidInteractionEffect = function(player){
@@ -655,6 +656,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 				player.power += power;
 			}
 		}
+		this.power = Math.max(this.power, 1); //don't heal the enemy you goof.
 	}
 	//only looks at best outcomes
 	this.lightIncreasePower = function(powerBoost){
