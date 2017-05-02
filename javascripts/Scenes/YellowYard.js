@@ -94,6 +94,7 @@ function YellowYard(session){
 		if(this.timePlayer.dead==true){
 			player = this.getDoomedTimeClone();
 		}
+		player.doomed = true;
 		if(this.session.yellowYardController.eventsToUndo.length > 0){
 			chat += "JR: This. This isn't the first time we've done this here, is it?\n";
 			chat += "AB: No. Counting this timeline, we have done this " + (this.session.yellowYardController.eventsToUndo.length+1) + " times now.\n";

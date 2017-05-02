@@ -23,6 +23,7 @@ function SaveDoomedTimeLine(session){
 	this.makeDoomedSnapshot = function(){
 		var timeClone = makeRenderingSnapshot(this.timePlayer);
 		timeClone.dead = false;
+		timeClone.doomed = true;
 		//from a different timeline, things went differently.
 		var rand = Math.seededRandom();
 		if(rand>.8){

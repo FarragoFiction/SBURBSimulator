@@ -88,7 +88,7 @@ function GameEntity(session, name, crowned){
 			this.canAbscond = canAbscond;
 		}
 
-		this.htmlTitleBasicHP = function(){
+		this.htmlTitleHP = function(){
 			var ret = "";
 			if(this.crowned != null) ret+="Crowned "
 			return ret + name +" ( " + Math.round(this.getHP()) + ")"; //TODO denizens are aspect colored.
@@ -180,7 +180,7 @@ function GameEntity(session, name, crowned){
 			var living = findLivingPlayers(players);
 			if(living.length == 0){
 				if(players.length == 1){
-					div.append(" The fight is over. The " + players[0].htmlTitleBasic() + " is dead. ");
+					div.append(" The fight is over. The " + players[0].htmlTitle() + " is dead. ");
 				}else{
 					div.append(" The fight is over. The players are dead. ");
 				}
@@ -238,13 +238,13 @@ function GameEntity(session, name, crowned){
 		//hopefully either player or gameEntity can call this.
 		this.aggrieve=function(div, offense, defense){
 			//mobility, luck hp, and power are used here.
-			div.append(" The " + offense.htmlTitleBasicHP() + " targets the " +defense.htmlTitleBasicHP() + ". ");
+			div.append(" The " + offense.htmlTitleHP() + " targets the " +defense.htmlTitleHP() + ". ");
 			//luck dodge
 			var offenseRoll = offense.rollForLuck();
 			var defenseRoll = defense.rollForLuck();
 			if(defenseRoll > offenseRoll*10){
 				console.log("Luck counter: " + this.session.session_id);
-				div.append("The attack backfires and causes unlucky damage. The " + defense.htmlTitleBasicHP() + " sure is lucky!!!!!!!!" );
+				div.append("The attack backfires and causes unlucky damage. The " + defense.htmlTitleHP() + " sure is lucky!!!!!!!!" );
 				offense.currentHP += -1* offense.power; //damaged by your own power.
 				this.checkForAPulse(offense, defense)
 				return;
@@ -257,13 +257,13 @@ function GameEntity(session, name, crowned){
 			var rand = getRandomInt(1,5) //don't dodge EVERY time.
 			if(defense.getMobility() > offense.getMobility()*rand * 2){
 				console.log("Mobility counter: " + this.session.session_id);
-				div.append("The " + offense.htmlTitleBasicHP() + " practically appears to be standing still as they clumsily lunge towards the " + defense.htmlTitleBasicHP() + " They miss so hard the " + defense.htmlTitleBasicHP() + " has plenty of time to get a counterattack in." );
+				div.append("The " + offense.htmlTitleHP() + " practically appears to be standing still as they clumsily lunge towards the " + defense.htmlTitleHP() + " They miss so hard the " + defense.htmlTitleHP() + " has plenty of time to get a counterattack in." );
 				offense.currentHP += -1* defense.power;
 				this.checkForAPulse(offense, defense)
 				return;
 			}else if(defense.getMobility() > offense.getMobility()*rand){
 				console.log("Mobility dodge: " + this.session.session_id);
-				div.append(" The " + defense.htmlTitleBasicHP() + "dodges the attack completely. ");
+				div.append(" The " + defense.htmlTitleHP() + "dodges the attack completely. ");
 				return;
 			}
 			//base damage
@@ -287,10 +287,10 @@ function GameEntity(session, name, crowned){
 
 			if(!this.checkForAPulse(defense, offense)){
 
-				div.append("The " + defense.htmlTitleBasicHP() + " is dead. ");
+				div.append("The " + defense.htmlTitleHP() + " is dead. ");
 			}
 			if(!this.checkForAPulse(offense, defense)){
-				div.append("The " + offense.htmlTitleBasicHP() + " is dead. ");
+				div.append("The " + offense.htmlTitleHP() + " is dead. ");
 			}
 			offense.interactionEffect(defense); //only players have this. doomed time clones or bosses will do nothing.
 		}
@@ -303,7 +303,7 @@ function GameEntity(session, name, crowned){
 				}else if(this.name == "Black King"){
 					player.causeOfDeath = "fighting the Black King";
 				}else{
-					player.causeOfDeath = "fighting the " + attacker.htmlTitleBasicHP();
+					player.causeOfDeath = "fighting the " + attacker.htmlTitleHP();
 				}
 
 				return false;

@@ -74,8 +74,8 @@ function PlayerSnapshot(){
 		return ret;
 	}
 
-	this.htmlTitleBasicHP = function(){
-		return getFontColorFromAspect(this.aspect) + this.titleBasic() + " (" + Math.round(this.hp) + " hp)</font>"
+	this.htmlTitleHP = function(){
+		return getFontColorFromAspect(this.aspect) + this.title() + " (" + Math.round(this.hp) + " hp)</font>"
 	}
 
 	this.htmlTitleBasic = function(){
@@ -111,6 +111,10 @@ function PlayerSnapshot(){
 
 		this.title = function(){
 		var ret = "";
+		if(this.doomed){
+			ret += "Doomed "
+		}
+
 
 		if(this.murderMode){
 			ret += "Murder Mode ";
@@ -158,7 +162,7 @@ function PlayerSnapshot(){
 	}
 
 	this.getHP= function(){
-		return this.hp;
+		return this.currentHP;
 	}
 	this.getPower = function(){
 		return this.power;
