@@ -215,6 +215,7 @@ function GameEntity(session, name, crowned){
 
 		//doomed players are just easier to target.
 		this.chooseTarget=function(players){
+			//TODO more likely to get light, less likely to get void
 			var living = findLivingPlayers(players);
 			var doomed = findDoomedPlayers(living);
 			var ret = getRandomElementFromArray(doomed);
