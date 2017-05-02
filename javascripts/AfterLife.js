@@ -12,15 +12,17 @@ function AfterLife(){
 
 	//until the timeline splits, ghosts from first timeline can't interact, because they DIDN't interact.
 	this.allowTransTimeLineInteraction = function(){
-		this.ghosts = this.ghosts.concat(this.afterLife.ghostsBannedFromInteracting);
+		console.log("timelines divurged, allowing transTimeline interaction");
+		this.ghosts = this.ghosts.concat(this.ghostsBannedFromInteracting);
 		this.ghostsBannedFromInteracting = [];
 		this.timeLineSplitsWhen = null;
 	}
 
 	this.complyWithLifeTimeShenanigans = function(importantEvent){
-		this.ghostsBannedFromInteracting = this.ghostsBannedFromInteracting.concat(this.afterLife.ghosts);
+		console.log("ghosts cant interact with a yellow yyard until timelines divurge");
+		this.ghostsBannedFromInteracting = this.ghostsBannedFromInteracting.concat(this.ghosts);
 		this.ghosts = [];
-		this.timeLineSplitsWhen = e; //e can be null if undoing an undo
+		this.timeLineSplitsWhen = importantEvent; //e can be null if undoing an undo
 	}
 
 	//mostly life players recycling them. not a double death.

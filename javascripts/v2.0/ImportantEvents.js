@@ -112,7 +112,7 @@ function PlayerDiedForever(session, mvp_value, player, doomedTimeClone){
 			narration += " Something seems...off...about them. But they are adamant that the " +player.htmlTitleBasic() + " needs to be protected. "
 			narration += " No matter what 'fate' says. "
 			narration += " They sacrifice their life for the " + player.htmlTitleBasic() + ". ";
-			
+
 
 			div.append(narration);
 			player.triggerLevel += 0.5;
