@@ -291,11 +291,12 @@ function EngageMurderMode(session){
 		var player1 = this.player;
 		var player2 = player1.getWorstEnemyFromList(livePlayers);
 		if(player2){
-		var r2 = player2.getRelationshipWith(player1);
-		if(r2.value < -2 && r2.value > -8){ //only if i generically dislike you.
-			//console.log("rap battle. session: " + this.session.session_id)
-			return this.rapBattle(div,player1, player2);
-		}
+			if(player2.dead) console.log( "Trying to threaten a corpse. Or maybe rap with them? " + this.session.session_id);
+			var r2 = player2.getRelationshipWith(player1);
+			if(r2.value < -2 && r2.value > -8){ //only if i generically dislike you.
+				//console.log("rap battle. session: " + this.session.session_id)
+				return this.rapBattle(div,player1, player2);
+			}
 	}
 
 		if(player2 == null || player2.dead == true){

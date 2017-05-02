@@ -58,7 +58,7 @@ function GameEntity(session, name, crowned){
 			if(this.crowned){
 				return this.currentHP + this.crowned.hp;  //my hp can be negative. only thing that matters is total is poistive.
 			}
-			return this.hp;
+			return this.currentHP;
 		}
 		this.getPower = function(){
 			if(this.crowned){
