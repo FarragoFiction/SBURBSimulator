@@ -11,16 +11,28 @@ function JackRampage(session){
 		return this.session.jack.crowned != null && this.session.jack.getHP() > 0; //Jack does not stop showing us his stabs.
 	}
 
-	//TODO get lowest mobility player and 2-3 of their friends. (random but based on mobility)
-	//TODO jack never ever ever tries to hurt the witch. whatever the witch prototyped is her familiar and is loyal to her.
+	//target slowest player. their friends will try to help them. jack never hurts witch.
 	this.getStabList = function(){
-		var numStabbings = getRandomInt(0,Math.min(2,this.session.availablePlayers.length));
+		var potentialPlayers = [];
+		for(var i = 0; i<this.session.availablePlayers.length; i++){
+			var p = this.session.availablePlayers[i];
+			if(p.class_name != "Witch"){
+				potentialPlayers.push(p); //don't make a big deal out of it, but jack doesn't want to hurt the witch. familiar loyalty, yo.
+			}
+		}
+		var numStabbings = getRandomInt(0,Math.min(2,potentialPlayers.length));
 		var ret = [];
-		if(this.session.availablePlayers.length == 0){
+		if(potentialPlayers.length == 0){
 			return ret;
 		}
-		for(var i = 0; i<=numStabbings; i++){
-			ret.push(getRandomElementFromArray(this.session.availablePlayers));
+		ret.push(getRandomElementFromArray(potentialPlayers)); //used to get slowest player, but too many perma deaths happened.
+		var friends = ret[0].getFriendsFromList(potentialPlayers)
+		if(friends.length == 0) return ret;
+		//console.log("friends: " + friends.length);
+		for(var i = 0; i<=numStabbings.length; i++){
+			var f = getRandomElementFromArray(friends)
+			//console.log(f);
+			ret.push(f);
 		}
 		return Array.from(new Set(ret));
 	}
@@ -50,13 +62,16 @@ function JackRampage(session){
 		if(stabbings.length == 0){
 			if(Math.seededRandom() > .5){
 				ret += " Jack listlessly shows his stabs to a few Prospitian pawns. "
+				div.append("<br>"+ret);
 			}else{
 				ret += " Jack listlessly shows his stabs to a few Dersite pawns. "
+				div.append("<br>"+ret);
 			}
 			ret += " Bored of this, he decides to show his stabs to BOTH the Black and White Kings.  The battle is over. The Reckoning will soon start."
 			this.session.timeTillReckoning = 0;
+			div.append("<br>"+ret);
 			return ret;
-		}
+		}else{
 
 			this.setPlayersUnavailable(stabbings);
 			ret = "Jack has caught the " + getPlayersTitlesBasic(stabbings) + ".  Will he show them his stabs? Strife!";
@@ -64,6 +79,7 @@ function JackRampage(session){
 			this.renderPrestabs(div, stabbings); //pose as a team BEFORE getting your ass handed to you.
 			this.session.jack.strife(div, stabbings,0)
 			return;//make sure text is over image
+		}
 
 	}
 

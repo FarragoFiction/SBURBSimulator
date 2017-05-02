@@ -204,6 +204,7 @@ function LuckStuff(session){
 				//roll.player.makeDead("luckily on their Sacrificial Slab") doesn't make a ghost 'cause the corpse itself revives'
 			}
 			roll.player.dead = false;
+			roll.player.currentHP = roll.player.hp;
 			roll.player.godTier = true;
 			roll.player.dreamSelf = false;
 			this.session.godTier = true;

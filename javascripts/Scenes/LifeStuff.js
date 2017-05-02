@@ -167,7 +167,7 @@ function LifeStuff(session){
 
 		if(ghost  && player.ghostPacts.indexOf(ghost) == -1 && player.ghostWisdom.indexOf(ghost) == -1 && !ghost.causeOfDrain){
 			//console.log("dream bubble onion" +this.session.session_id);
-			var str = "The " + player.htmlTitle() + " wanders a shifting and confusing landscape until they see the " + ghostName+". They must be dreaming.";
+			var str = "The " + player.htmlTitle() + " wanders a shifting and confusing landscape. They think they see a dead " + ghostName+"? They must be dreaming.";
 			var trait = whatDoPlayersHaveInCommon(player, ghost);
 			if(trait != 'nice' && ghost.id != player.id){
 				str += " They bond over how " + trait + " they both are. The " + player.htmlTitle() + " feels their determination to beat the game grow. "
@@ -466,7 +466,7 @@ function LifeStuff(session){
 		d.influenceSymbol = null;
 		d.dead = false;
 		d.murderMode = false;
-		d.hp =Math.max(d.hp+50,50)
+		d.currentHP = d.hp;
 		d.grimDark = false;
 		d.triggerLevel = 1;
 		d.leftMurderMode = false; //no scars

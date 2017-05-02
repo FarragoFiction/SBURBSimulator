@@ -464,6 +464,7 @@ function FreeWillStuff(session){
 			//player.makeDead("on their sacrificialSlab") //no corpse with slab, instead corpse BECOMES god tier.
 		}
 		player.dead = false;
+		player.currentHP = player.hp;
 		player.godTier = true;
 		this.session.godTier = true;
 		player.dreamSelf = false;

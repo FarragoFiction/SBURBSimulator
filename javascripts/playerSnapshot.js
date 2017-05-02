@@ -9,7 +9,7 @@ function PlayerSnapshot(){
 	this.sbahj = null;
 	this.baby = null;
 	this.robot = null;
-	this.hp = 0;
+	this.hp = 0; //no current hp. doomed is doomed, no healing.
 	this.minLuck = 0;
 	this.maxLuck = 0;
 	this.freeWill = 0;
@@ -72,9 +72,9 @@ function PlayerSnapshot(){
 		ret+= this.class_name + " of " + this.aspect;
 		return ret;
 	}
-	
+
 	this.htmlTitleBasicHP = function(){
-		return getFontColorFromAspect(this.aspect) + this.titleBasic() + " (" + this.hp + " hp)</font>"
+		return getFontColorFromAspect(this.aspect) + this.titleBasic() + " (" + Math.round(this.hp) + " hp)</font>"
 	}
 
 	this.htmlTitleBasic = function(){
@@ -88,7 +88,7 @@ function PlayerSnapshot(){
 			return getColorFromAspect(this.aspect);
 		}
 	}
-	
+
 	//doomed time clones aren't ghosts yet.
 	this.makeDead = function(causeOfDeath){
 		this.dead = true;
@@ -130,47 +130,47 @@ function PlayerSnapshot(){
 		}
 		return ret;
 	}
-	
+
 	this.rollForLuck = function(){
 		return getRandomInt(this.minLuck, this.maxLuck);
 	}
-	
+
 	this.interactionEffect = function(player){
 			//none
 	}
-	
-		
+
+
 	//bulshit stubs that game entities will have be different if crowned. players can't be crowned tho (or can they??? no. they can't.)
 	this.getMobility = function(){
 		return this.mobility;
 	}
-	
+
 	this.getMaxLuck = function(){
 		return this.maxLuck;
 	}
-	
+
 	this.getMinLuck = function(){
 		return this.minLuck;
 	}
 	this.getFreeWill = function(){
 		return this.freeWill;
 	}
-	
+
 	this.getHP= function(){
 		return this.hp;
 	}
 	this.getPower = function(){
 		return this.power;
 	}
-	
+
 	this.triggerLevel = function(){
 		return this.triggerLevel;
 	}
-	
+
 	this.increasePower = function(){
 		//stub for boss fights for doomed time clones. they can't level up. they are doomed.
 	}
-		
+
 
 
 

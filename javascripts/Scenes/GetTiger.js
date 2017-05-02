@@ -55,6 +55,7 @@ function GetTiger(session){
 		if(withd && partyRollForLuck(withd) > 50){  //MOST players in canon go god tier via sacrificial slab.
 			for(var i = 0; i< withd.length; i++){
 				var p = withd[i];
+				p.currentHP = p.hp;
 				//console.log("Quest bed: " + this.session.session_id)
 				ret += " Upon being laid to rest on their QUEST BED on the " + p.land + ", the " + p.htmlTitle() + "'s body glows, and rises Skaiaward. "
 				ret +="On " + p.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
@@ -68,6 +69,7 @@ function GetTiger(session){
 		if(withoutd){
 			for(var i = 0; i< withoutd.length; i++){
 				var p = withoutd[i];
+				p.currentHP = p.hp;
 				removeFromArray(this.session.afterLife.findClosesToRealSelf(p), this.session.afterLife.ghosts);
 				//console.log("sacrificial slab: " + this.session.session_id)
 				ret += " Upon a wacky series of events leaving their corpse on their SACRIFICIAL SLAB on " + p.moon + ", the " + p.htmlTitle() + " glows and ascends to the God Tiers with a sweet new outfit."

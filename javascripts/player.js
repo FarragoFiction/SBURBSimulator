@@ -12,6 +12,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 	}
 	this.baby = null;
 	this.session = session;
+	this.currentHP = 0;
 	this.hp = 0; //mostly used for boss battles;
 	this.graphs = [];
 	this.id = id;
@@ -199,7 +200,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 
 	this.title = function(){
 		var ret = "";
-		
+
 		if(this.doomed){
 			ret += "Doomed "
 		}
@@ -404,17 +405,23 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 		var amount = this.power/3;
 		if(this.class_name == "Thief"){ //takes for self
 			this.hp += amount;
+			this.currentHP += amount;
 			player.hp += -1*amount
 		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
 			player.hp += -1*amount
+			player.currentHP += -1*amount
 			for(var i = 0; i<this.session.players.length; i++){
 				var p = this.session.players[i];
 				p.hp += amount/this.session.players.length;
+				p.currentHP += amount/this.session.players.length;
+
 			}
 		}else if(this.class_name == "Sylph"){ //heals others
 			player.hp += amount
+			player.currentHP += amount
 		}else if(this.class_name == "Bard"){ //destroys in others
 			player.hp += -1*amount
+			player.currentHP += -1*amount
 		}
 	}
 
@@ -725,10 +732,12 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 
 		if(this.isActive()){ //modify me
 			this.hp += landBoost;
+			this.currentHP += landBoost; //only life effects currentHP. if i let doom do it, can have negative hp. no thank you, SIR.
 		}else{  //modify others.
 			for(var i = 0; i<this.session.players.length; i++){
 				var player = this.session.players[i];
 				player.hp += landBoost;
+				player.currentHP += landBoost;
 			}
 		}
 	}
@@ -899,9 +908,9 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 	this.htmlTitleBasic = function(){
 		return getFontColorFromAspect(this.aspect) + this.titleBasic() + "</font>"
 	}
-	
+
 	this.htmlTitleBasicHP = function(){
-		return getFontColorFromAspect(this.aspect) + this.titleBasic() + " (" + this.hp + " hp)</font>"
+		return getFontColorFromAspect(this.aspect) + this.titleBasic() + " (" + Math.round(this.currentHP) + " hp)</font>"
 	}
 
 	this.generateBlandRelationships = function(friends){
@@ -1168,36 +1177,36 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 		}
 		return worstRelationshipSoFar.value;
 	}
-	
-	
+
+
 	//bulshit stubs that game entities will have be different if crowned. players can't be crowned tho (or can they??? no. they can't.)
 	this.getMobility = function(){
 		return this.mobility;
 	}
-	
+
 	this.getMaxLuck = function(){
 		return this.maxLuck;
 	}
-	
+
 	this.getMinLuck = function(){
 		return this.minLuck;
 	}
 	this.getFreeWill = function(){
 		return this.freeWill;
 	}
-	
+
 	this.getHP= function(){
-		return this.hp;
+		return this.currentHP;
 	}
 	this.getPower = function(){
 		return this.power;
 	}
-	
+
 	this.triggerLevel = function(){
 		return this.triggerLevel;
 	}
-		
-	
+
+
 
 	this.getHighestRelationshipValue = function(){
 		var bestRelationshipSoFar = this.relationships[0];
@@ -1339,6 +1348,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 				this.hp += 50;
 			}
 		}
+		this.currentHP = this.hp;
 	}
 
 	this.initializeMobility = function(){
@@ -1433,6 +1443,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 				this.freeWill += amount;
 			}else if(rand == 3){
 				this.hp += amount;
+				this.currentHP += amount;
 			}else if(rand == 4){
 				this.mobility += amount;
 			}else if(rand == 5){
@@ -1451,6 +1462,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 				this.freeWill += -1 * amount;
 			}else if(rand == 12){
 				this.hp += -1 * amount;
+				this.currentHP += -1*amount;
 			}else if(rand == 13){
 				this.mobility += -1 * amount;
 			}else if(rand == 14){

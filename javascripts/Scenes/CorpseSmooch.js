@@ -54,7 +54,7 @@ function CorpseSmooch(session){
 		d.triggerLevel = 1;
 		d.leftMurderMode = false; //no scars
 		d.victimBlood = null; //clean face
-		d.hp =Math.max(d.hp+50,50)
+		d.currentHP = d.hp;
 	}
 
 	this.makeDead = function(d){

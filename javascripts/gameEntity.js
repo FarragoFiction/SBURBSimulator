@@ -24,35 +24,35 @@ function GameEntity(session, name, crowned){
 		this.abscondable = true; //nice abscond
 		this.canAbscond = true; //can't abscond bro
 		this.fraymotifsUsed = [];  //horrorTerror
-		
+
 		this.getMobility = function(){
 			if(this.crowned){
 				return this.mobility + this.crowned.mobility;
 			}
 			return this.mobility;
 		}
-		
+
 		this.getMaxLuck = function(){
 			if(this.crowned){
 				return this.maxLuck + this.crowned.maxLuck;
 			}
 			return this.maxLuck;
 		}
-		
+
 		this.getMinLuck = function(){
 			if(this.crowned){
 				return this.minLuck + this.crowned.minLuck;
 			}
 			return this.minLuck;
 		}
-		
+
 		this.getFreeWill = function(){
 			if(this.crowned){
 				return this.freeWill + this.crowned.freeWill;
 			}
 			return this.freeWill;
 		}
-		
+
 		this.getHP= function(){
 			if(this.crowned){
 				return this.hp + this.crowned.hp;  //my hp can be negative. only thing that matters is total is poistive.
@@ -65,34 +65,34 @@ function GameEntity(session, name, crowned){
 			}
 			return this.power;
 		}
-		
+
 		this.triggerLevel = function(){
 			if(this.crowned){
 				return this.triggerLevel + this.crowned.triggerLevel;
 			}
 			return this.triggerLevel;
 		}
-		
-		
+
+
 		this.setStats = function(minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs){
 			this.minLuck = minLuck;
-			this.hp = hp; 
+			this.hp = hp;
 			this.mobility = mobility;
 			this.maxLuck = maxLuck;
 			this.triggerLevel = triggerLevel;
-			this.freeWill = freeWill; 
+			this.freeWill = freeWill;
 			this.power = power;
-			this.abscondable = abscondable; 
+			this.abscondable = abscondable;
 			this.canAbscond = canAbscond;
 		}
-		
+
 		this.htmlTitleBasicHP = function(){
 			var ret = "";
 			if(this.crowned != null) ret+="Crowned "
-			return ret + name +" ( " + this.getHP() + ")"; //TODO denizens are aspect colored.
+			return ret + name +" ( " + Math.round(this.getHP()) + ")"; //TODO denizens are aspect colored.
 		}
 
-		//only the crown itself has this called. king and queen just use the crown. 
+		//only the crown itself has this called. king and queen just use the crown.
 		this.addPrototyping = function(object){
 			this.power += 20;
 
@@ -101,7 +101,7 @@ function GameEntity(session, name, crowned){
 				this.power += 200;
 
 			}
-			
+
 			console.log("todo: prototypings can be associated with plus or minus stats and even fraymotifs (vast glub, anyone)???" )
 		}
 
@@ -119,7 +119,7 @@ function GameEntity(session, name, crowned){
 		this.willIAbscond= function(){
 
 		}
-		
+
 
 
 		//before a fight is called, decide who is in it. denizens are one on one, jack catches slower player and friends
@@ -152,11 +152,11 @@ function GameEntity(session, name, crowned){
 				return this.strife(div, players,numTurns);
 			}
 		}
-		
+
 		this.ending = function(div, players){
 			this.fraymotifsUsed = []; //not used yet
 		}
-		
+
 		this.levelPlayers = function(stabbings){
 			for(var i = 0; i<stabbings.length; i++){
 				stabbings[i].increasePower();
@@ -166,18 +166,24 @@ function GameEntity(session, name, crowned){
 				stabbings.level_index +=2;
 			}
 		}
-		
-		
+
+
 		this.minorLevelPlayers = function(stabbings){
 			for(var i = 0; i<stabbings.length; i++){
 				stabbings[i].increasePower();
 			}
 		}
-		
+
 		this.fightOver = function(div, players){
 			var living = findLivingPlayers(players);
 			if(living.length == 0){
-				div.append(" The fight is over. The players are dead. ");
+				if(players.length == 0){
+					div.append(" The fight is over. The " + players[0].htmlTitleBasic() + " is dead. ");
+				}else{
+					console.log(players)
+					div.append(" The fight is over. The players are dead. ");
+				}
+
 				this.minorLevelPlayers(players)
 				this.ending();
 				this.ending(div, players)
@@ -191,20 +197,20 @@ function GameEntity(session, name, crowned){
 			}//TODO have alternate win conditions for denizens???
 			return false;
 		}
-		
-		
+
+
 		this.playersTurn = function(div, players){
 			var living = findLivingPlayers(players);
 			for(var i = 0; i<living.length; i++){
 				if(!living[i].dead && this.getHP()>0) this.playerdecideWhatToDo(div, living[i]); //player could have died from a counter attack, boss could have died from previous player
 			}
 		}
-		
+
 		this.playerdecideWhatToDo = function(div, player){
 			//for now, only one choice    //free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
 			this.aggrieve(div, player, this );
 		}
-		
+
 		//doomed players are just easier to target.
 		this.chooseTarget=function(players){
 			var doomed = findDoomedPlayers;
@@ -215,19 +221,19 @@ function GameEntity(session, name, crowned){
 			var living = findLivingPlayers(players);
 			return findLowestMobilityPlayer(living);
 		}
-		
+
 		//higher the free will, smarter the ai. more likely to do special things.
 		this.myTurn = function(div, players){
 			//free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
 			//special and fraymotif can attack multiple enemies, but aggrieve is one on one.
-			
+
 			//for now, only one choice
 			this.aggrieve(div, this, this.chooseTarget(players));
 			console.log("have special attacks (like using ghost army, or reviving.). have fraymotifs. have prototypes that change stats of ring/scepter and even add fraymotifs.")
-			
-			
+
+
 		}
-		
+
 		//hopefully either player or gameEntity can call this.
 		this.aggrieve=function(div, offense, defense){
 			//mobility, luck hp, and power are used here.
@@ -240,11 +246,11 @@ function GameEntity(session, name, crowned){
 				div.append("The attack backfires and causes unlucky damage. The " + defense.htmlTitleBasicHP() + " sure is lucky!!!!!!!!" );
 				offense.hp += -1* offense.power; //damaged by your own power.
 				this.checkForAPulse(offense, defense)
-				return;	
+				return;
 			}else if(defenseRoll > offenseRoll*5){
 				console.log("Luck dodge: " + this.session.session_id);
 				div.append("The attack misses completely after an unlucky distraction.");
-				return;	
+				return;
 			}
 			//mobility dodge
 			var rand = getRandomInt(1,5) //don't dodge EVERY time.
@@ -253,17 +259,17 @@ function GameEntity(session, name, crowned){
 				div.append("The " + offense.htmlTitleBasicHP() + " practically appears to be standing still as they clumsily lunge towards the " + defense.htmlTitleBasicHP() + " They miss so hard the " + defense.htmlTitleBasicHP() + " has plenty of time to get a counterattack in." );
 				offense.hp += -1* defense.power;
 				this.checkForAPulse(offense, defense)
-				return;	
+				return;
 			}else if(defense.getMobility() > offense.getMobility()*rand){
 				console.log("Mobility dodge: " + this.session.session_id);
 				div.append(" The " + defense.htmlTitleBasicHP() + "dodges the attack completely. ");
-				return;	
+				return;
 			}
 			//base damage
 			var hit = offense.getPower();
 			offenseRoll = offense.rollForLuck();
 			defenseRoll = defense.rollForLuck();
-			//critical/glancing hit odds. 
+			//critical/glancing hit odds.
 			if(defenseRoll > offenseRoll*2){ //glancing blow.
 				console.log("Glancing Hit: " + this.session.session_id);
 				hit = hit/2;
@@ -275,11 +281,11 @@ function GameEntity(session, name, crowned){
 			}else{
 				div.append(" A hit! ");
 			}
-			
+
 			defense.hp += -1* hit;
-			
+
 			if(!this.checkForAPulse(defense, offense)){
-			
+
 				div.append("The " + defense.htmlTitleBasicHP() + " is dead. ");
 			}
 			if(!this.checkForAPulse(offense, defense)){
@@ -287,7 +293,7 @@ function GameEntity(session, name, crowned){
 			}
 			offense.interactionEffect(defense); //only players have this. doomed time clones or bosses will do nothing.
 		}
-		
+
 		this.checkForAPulse =function(player, attacker){
 			if(player.getHP() <= 0){
 				player.dead = true; //hp only means dead in a fight. you can be at negative a billion hp,b ut if you never get hit....
@@ -296,7 +302,7 @@ function GameEntity(session, name, crowned){
 			}
 			return true;
 		}
-		
+
 		this.interactionEffect = function(player){
 			//none
 		}
