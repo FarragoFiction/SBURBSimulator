@@ -6,7 +6,7 @@ function ExileQueen(session){
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		//trying to make queen's corpse stop being exiled.
-		return (this.session.queen.getPower()<10);
+		return (this.session.queen.getPower()<10 && this.session.queen.crowned != null);
 	}
 
 	this.content = function(){

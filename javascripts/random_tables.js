@@ -1027,7 +1027,7 @@ disastor_prototypings = disastor_prototypings.concat(corruptedOtherPrototypings)
 //helpful prototypings are generally non-authority figure humans, besides things like rappers and poets who embrace riddle-fuckery.
 //once i enable self-prototyping, add your name to the helful prototyping array.
 var helpful_prototypings = ["Robot","Golfer","Deadpool","Game Bro","Horrorterror","Game Grl","Nick Cage","Lawyer","Doctor","Engineer","Construction Worker","Student","Librarian","Jockey","Butler","Astronaut", "Cowboy"];
-var unhelpful_prototypings = ["First Guardian", "Teacher", "Clown", "Monkey","Pomeranian","Chihuahua","Pony","Horse","Doll","Internet Troll","Mosquito","Fly","Gobblefiend"];
+var unhelpful_prototypings = ["Puppet","First Guardian", "Teacher", "Clown", "Monkey","Pomeranian","Chihuahua","Pony","Horse","Doll","Internet Troll","Mosquito","Fly","Gobblefiend"];
 var player_prototypings = []; //empty unless a player prototypes themselves.
 
 
