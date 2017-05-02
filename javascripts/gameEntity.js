@@ -99,12 +99,12 @@ function GameEntity(session, name, crowned){
 			this.power += 20;
 
 			if(disastor_prototypings.indexOf(object) != -1) {
-				console.log("disastor prototyping " + this.session.session_id)
+				//console.log("disastor prototyping " + this.session.session_id)
 				this.power += 200;
 
 			}
 
-			console.log("todo: prototypings can be associated with plus or minus stats and even fraymotifs (vast glub, anyone)???" )
+			//console.log("todo: prototypings can be associated with plus or minus stats and even fraymotifs (vast glub, anyone)???" )
 		}
 
 		//a player will try to flee this fight if they are losing.
@@ -230,7 +230,7 @@ function GameEntity(session, name, crowned){
 
 			//for now, only one choice
 			this.aggrieve(div, this, this.chooseTarget(players));
-			console.log("have special attacks (like using ghost army, or reviving.). have fraymotifs. have prototypes that change stats of ring/scepter and even add fraymotifs.")
+			//console.log("have special attacks (like using ghost army, or reviving.). have fraymotifs. have prototypes that change stats of ring/scepter and even add fraymotifs.")
 
 
 		}
@@ -243,26 +243,26 @@ function GameEntity(session, name, crowned){
 			var offenseRoll = offense.rollForLuck();
 			var defenseRoll = defense.rollForLuck();
 			if(defenseRoll > offenseRoll*10){
-				console.log("Luck counter: " + this.session.session_id);
+				//console.log("Luck counter: " + this.session.session_id);
 				div.append("The attack backfires and causes unlucky damage. The " + defense.htmlTitleHP() + " sure is lucky!!!!!!!!" );
 				offense.currentHP += -1* offense.power; //damaged by your own power.
 				this.checkForAPulse(offense, defense)
 				return;
 			}else if(defenseRoll > offenseRoll*5){
-				console.log("Luck dodge: " + this.session.session_id);
+				//console.log("Luck dodge: " + this.session.session_id);
 				div.append("The attack misses completely after an unlucky distraction.");
 				return;
 			}
 			//mobility dodge
 			var rand = getRandomInt(1,5) //don't dodge EVERY time.
 			if(defense.getMobility() > offense.getMobility()*rand * 2){
-				console.log("Mobility counter: " + this.session.session_id);
+				//console.log("Mobility counter: " + this.session.session_id);
 				div.append("The " + offense.htmlTitleHP() + " practically appears to be standing still as they clumsily lunge towards the " + defense.htmlTitleHP() + " They miss so hard the " + defense.htmlTitleHP() + " has plenty of time to get a counterattack in." );
 				offense.currentHP += -1* defense.power;
 				this.checkForAPulse(offense, defense)
 				return;
 			}else if(defense.getMobility() > offense.getMobility()*rand){
-				console.log("Mobility dodge: " + this.session.session_id);
+				//console.log("Mobility dodge: " + this.session.session_id);
 				div.append(" The " + defense.htmlTitleHP() + "dodges the attack completely. ");
 				return;
 			}
@@ -272,11 +272,11 @@ function GameEntity(session, name, crowned){
 			defenseRoll = defense.rollForLuck();
 			//critical/glancing hit odds.
 			if(defenseRoll > offenseRoll*2){ //glancing blow.
-				console.log("Glancing Hit: " + this.session.session_id);
+				//console.log("Glancing Hit: " + this.session.session_id);
 				hit = hit/2;
 				div.append(" The attack manages to not hit anything too vital. ");
 			}else if(offenseRoll > defenseRoll*2){
-				console.log("Critical Hit: " + this.session.session_id);
+				//console.log("Critical Hit: " + this.session.session_id);
 				hit = hit*2;
 				div.append(" Ouch. That's gonna leave a mark. ");
 			}else{
