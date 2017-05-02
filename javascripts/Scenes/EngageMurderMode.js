@@ -290,8 +290,7 @@ function EngageMurderMode(session){
 		var livePlayers = findLivingPlayers(this.session.players);
 		var player1 = this.player;
 		var player2 = player1.getWorstEnemyFromList(livePlayers);
-		if(player2){
-			if(player2.dead) console.log( "Trying to threaten a corpse. Or maybe rap with them? " + this.session.session_id);
+		if(player2 && !player2.dead){
 			var r2 = player2.getRelationshipWith(player1);
 			if(r2.value < -2 && r2.value > -8){ //only if i generically dislike you.
 				//console.log("rap battle. session: " + this.session.session_id)
