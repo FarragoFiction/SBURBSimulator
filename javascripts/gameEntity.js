@@ -208,6 +208,7 @@ function GameEntity(session, name, crowned){
 		}
 
 		this.playerdecideWhatToDo = function(div, player){
+			player.power = Math.max(1, player.power); //negative power is not allowed in an actual fight.
 			//for now, only one choice    //free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
 			this.aggrieve(div, player, this );
 		}
@@ -254,14 +255,14 @@ function GameEntity(session, name, crowned){
 				return;
 			}
 			//mobility dodge
-			var rand = getRandomInt(1,5) //don't dodge EVERY time.
-			if(defense.getMobility() > offense.getMobility()*rand * 2){
+			var rand = getRandomInt(1,100) //don't dodge EVERY time. oh god, infinite boss fights. on average, fumble a dodge every 4 turns.
+			if(defense.getMobility() > offense.getMobility() * 10 && rand > 25){
 				//console.log("Mobility counter: " + this.session.session_id);
 				div.append("The " + offense.htmlTitleHP() + " practically appears to be standing still as they clumsily lunge towards the " + defense.htmlTitleHP() + " They miss so hard the " + defense.htmlTitleHP() + " has plenty of time to get a counterattack in." );
 				offense.currentHP += -1* defense.power;
 				this.checkForAPulse(offense, defense)
 				return;
-			}else if(defense.getMobility() > offense.getMobility()*rand){
+			}else if(defense.getMobility() > offense.getMobility()*5 && rand > 25){
 				//console.log("Mobility dodge: " + this.session.session_id);
 				div.append(" The " + defense.htmlTitleHP() + "dodges the attack completely. ");
 				return;
