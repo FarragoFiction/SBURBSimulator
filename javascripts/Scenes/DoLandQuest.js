@@ -183,7 +183,7 @@ function DoLandQuest(session){
 			ret = true;
 		}
 
-		if(corruptedOtherLandTitles.indexOf(player1.land1) != -1 || corruptedOtherLandTitles.indexOf(player1.land1) != -1 ){
+		if(corruptedOtherLandTitles.indexOf(player1.land1) != -1 || corruptedOtherLandTitles.indexOf(player1.land2) != -1 ){
 			player1.corruptionLevelOther += 25;
 			ret = true;
 			if(player2) player2.corruptionLevelOther += 25;

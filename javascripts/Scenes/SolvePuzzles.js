@@ -78,7 +78,7 @@ function SolvePuzzles(session){
 			ret = true;
 		}
 
-		if(corruptedOtherLandTitles.indexOf(player1.land1) != -1 || corruptedOtherLandTitles.indexOf(player1.land1) != -1 ){
+		if(corruptedOtherLandTitles.indexOf(player1.land1) != -1 || corruptedOtherLandTitles.indexOf(player1.land2) != -1 ){
 			player1.corruptionLevelOther += 25;
 			if(player2) player2.corruptionLevelOther += 25;
 			ret = true;
@@ -113,7 +113,7 @@ function SolvePuzzles(session){
 		}
 		this.player1.increasePower();
 		if(this.player2 != null &&  this.player1  != this.player2){  //could be a time double, don't have a relationship with a time double (it never works out)
-			this.player1.increasePower();			
+			this.player1.increasePower();
 			this.player2.increasePower();
 			this.player1.interactionEffect(this.player2);
 			this.player2.interactionEffect(this.player1);
