@@ -381,7 +381,7 @@ function Session(session_id){
 		this.king.setStats(25,75,500,0,0,25,100,false, false, []);  //anything prototype gives you. horrorterrors vastGlub.
 		//TODO  jack, denizens, denizen minions
 		this.queen = new GameEntity(this, "Black Queen",this.queensRing);
-		this.queen.setStats(25,75,500,100,0,100,50,false, false, [],); //red miles
+		this.queen.setStats(25,75,500,100,0,100,50,false, false, []); //red miles
 
 		this.jack = new GameEntity(this, "Jack",null);
 		this.jack.setStats(0,25,50,100,50,1000,30,true, true, []); //jack is kind of a big deal. luck determines his odds of finding bullshit weapon
