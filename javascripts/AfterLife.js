@@ -1,6 +1,8 @@
 //the afterlife is essentially just a list of player snapshots. when a snapshot is added, make them not "dead". ghosts can double die.
 function AfterLife(){
 	this.ghosts = [];
+	this.ghostsBannedFromInteracting = []; //for time reasons, if ghosts didn't interact with session the first time, they can't until the timeline divurges.
+	this.timeLineSplitsWhen = null; //what is the event i'm waitin for to allow ghosts back in?
 
 	this.addGhost = function(ghost){
 		ghost.ghost = true;

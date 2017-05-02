@@ -87,6 +87,10 @@ function Session(session_id){
 	//make Math.seed  = to my session id, reinit all my variables (similar to a scratch.)
 	//make sure the controller starts ticking again. very similar to scrach
 	this.addEventToUndoAndReset = function(e){
+		//when I reset, need things to go the same. that includes having no ghosts interact with the session. figure out how to renable them once my event happens again.
+		this.afterLife.ghostsBannedFromInteracting = this.afterLife.ghostsBannedFromInteracting.concat(this.afterLife.ghosts);
+		this.afterLife.ghosts = [];
+		this.afterLife.timeLineSplitsWhen = e; //e can be null if undoing an undo
 		//console.log("undoing an event.")
 		if(this.scratched){
 			return this.addEventToUndoAndResetScratch(e); //works different
