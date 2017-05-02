@@ -25,7 +25,7 @@ function YellowYardResultController(){
         for(var i = 0; i<this.eventsToUndo.length; i++){
           var e2 = this.eventsToUndo[i];
 		 // console.log("checking if needs to be undone")
-          if(doEventsMatch(e,e2)){
+          if(doEventsMatch(e,e2,true)){
           //  console.log("retunning event that will provide alternate scene, " + e2.humanLabel())
               return e2;
           }
@@ -39,7 +39,7 @@ function YellowYardResultController(){
 	But i figure if multiple mind-influenced time players warp into save them multiple times (even from one decision), well...time shenanigans.
 	it is not unreasonable to imagien 2 timelines that are extremely similar where the Observer made the same choice.
 */
-function doEventsMatch(newEvent, storedEvent){
+function doEventsMatch(newEvent, storedEvent,spawn){
 	//console.log("comparing: '" + newEvent.humanLabel() + "' to '" + storedEvent.humanLabel() + "'")
   if(newEvent.session.session_id != storedEvent.session.session_id){
     //  console.log("session id did not match.")
@@ -65,27 +65,31 @@ function doEventsMatch(newEvent, storedEvent){
     //  console.log("player aspect did not match")
 		return false;
 		}
-  //  console.log("yes, there is a match.");
+    console.log("yes, there is a match.");
     return true;
   }
-
-
-
-  //since i know the events match, make sure my player is up to date with the current session.
-  //had a stupidly tragic bug where I was bringing players back in the DEAD SESSION instead of this new version of it.
-  storedEvent.player = newEvent.player;
-  storedEvent.session = newEvent.session; //cant get space players otherwise
-  //trigger the new sessions timePlayer.  time shenanigans wear on sanaity.
-  var alphaTimePlayer = findAspectPlayer(newEvent.session.players, "Time");
-  alphaTimePlayer.triggerLevel += 0.2; //how many re-dos does this give me before they snap?
-  console.log("pushing a doomed time clone, before size: " + alphaTimePlayer.doomedTimeClones.length )
-  alphaTimePlayer.doomedTimeClones.push(storedEvent.doomedTimeClone);
-  if(storedEvent.secondTimeClone){
-      console.log("think there is a second time clone")
-      alphaTimePlayer.doomedTimeClones.push(storedEvent.secondTimeClone);
+  if(spawn){ //don't spawn a time cloen if i'm checking for afterlife stuff.
+    spawnDoomedTimeClone(newEvent, storedEvent);
   }
-  console.log("done a doomed time clone, after size: " + alphaTimePlayer.doomedTimeClones.length )
   return true;
+}
+
+function spawnDoomedTimeClone(newEvent,storedEvent){
+
+    //since i know the events match, make sure my player is up to date with the current session.
+    //had a stupidly tragic bug where I was bringing players back in the DEAD SESSION instead of this new version of it.
+    storedEvent.player = newEvent.player;
+    storedEvent.session = newEvent.session; //cant get space players otherwise
+    //trigger the new sessions timePlayer.  time shenanigans wear on sanaity.
+    var alphaTimePlayer = findAspectPlayer(newEvent.session.players, "Time");
+    alphaTimePlayer.triggerLevel += 0.2; //how many re-dos does this give me before they snap?
+    console.log("pushing a doomed time clone, before size: " + alphaTimePlayer.doomedTimeClones.length )
+    alphaTimePlayer.doomedTimeClones.push(storedEvent.doomedTimeClone);
+    if(storedEvent.secondTimeClone){
+        console.log("think there is a second time clone")
+        alphaTimePlayer.doomedTimeClones.push(storedEvent.secondTimeClone);
+    }
+    console.log("done a doomed time clone, after size: " + alphaTimePlayer.doomedTimeClones.length )
 }
 
 
