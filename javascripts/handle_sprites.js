@@ -147,7 +147,7 @@ function ghostSwap(canvas){
 	//4 *Math.floor(i/(4000)) is because 1/(width*4) get me the row number (*4 'cause there are 4 elements per pixel). then, when i have the row number, *4 again because first row is 0,1,2,3 and second is 4,5,6,7 and third is 8,9,10,11
 	for(var i = 0; i<img_data.data.length; i += 4){
 		if(img_data.data[i+3] >= 128){
-			img_data.data[i+3] = img_data_rainbow.data[4 *Math.floor(i/(4000))+3] //only mimic transparency.
+			img_data.data[i+3] = img_data_rainbow.data[4 *Math.floor(i/(4000))+3]*2 //only mimic transparency.
 
 		}
 	}
