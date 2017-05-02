@@ -304,9 +304,9 @@ function RelationshipDrama(session){
 			var narration = "<br>The " + player.htmlTitle() + " used to think that the " + crush.htmlTitle() + " was ";
 			narration += this.generateOldOpinion(relationship) + ", but now they can't help but think they are " + this.generateNewOpinion(relationship) + ".";
 			if(crush.dead == true){
-				narration += "It's especially tragic that they didn't realize this until the " + crush.htmlTitle() + " died.";
+				narration += " It's especially tragic that they didn't realize this until the " + crush.htmlTitle() + " died.";
 			}
-			narration += "It's a shame the " + player.htmlTitle() + " has nobody to talk to about this. ";
+			narration += " It's a shame the " + player.htmlTitle() + " has nobody to talk to about this. ";
 			div.append(narration);
 			return;
 		}
@@ -715,6 +715,8 @@ function RelationshipDrama(session){
 		if(type == relationship.goodMild){;
 			return getRandomElementFromArray(goodMildDesc);
 		}
+
+		return "okay"
 	}
 
 	this.generateOldOpinion = function(relationship){
