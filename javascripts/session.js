@@ -381,7 +381,7 @@ function Session(session_id){
 		this.queen.setStats(25,75,500,100,0,100,50,false, false, [],); //red miles
 
 		this.jack = new GameEntity(this, "Jack",null);
-		this.jack.setStats(25,75,250,100,50,1000,50,true, true, []); //jack is kind of a big deal
+		this.jack.setStats(25,75,50,100,50,1000,10,true, true, []); //jack is kind of a big deal
 
 		this.democraticArmy = new GameEntity(this, "Democratic Army",null); //doesn't actually exist till WV does his thing.
 		this.democraticArmy.setStats(0,0,0,0,0,0,0,false, false, [],false);

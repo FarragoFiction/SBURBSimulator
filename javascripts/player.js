@@ -910,7 +910,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 	}
 
 	this.htmlTitleBasicHP = function(){
-		return getFontColorFromAspect(this.aspect) + this.titleBasic() + " (" + Math.round(this.currentHP) + " hp)</font>"
+		return getFontColorFromAspect(this.aspect) + this.titleBasic() + " (" + Math.round(this.currentHP) + " hp, " + this.power + " power)</font>"
 	}
 
 	this.generateBlandRelationships = function(friends){
@@ -1334,7 +1334,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 	}
 
 	this.initializeHP= function(){
-		this.hp = getRandomInt(50,100);
+		this.hp = getRandomInt(50,300);
 		if(this.aspect == "Life"){
 			if(this.highInit()){
 				this.hp += 50;

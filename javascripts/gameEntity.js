@@ -12,6 +12,7 @@ function GameEntity(session, name, crowned){
 		this.name = name;
 		//if any stat is -1025, it's considered to be infinitie. denizens use. you can't outluck Cetus, she is simply the best there is.
 		this.minLuck = 0;
+		this.currentHP = 0;
 		this.hp = 0;  //what does infinite hp mean? you need to defeat them some other way. alternate win conditions? or can you only do The Choice?
 		this.mobility = 0;  //first guardian
 		this.maxLuck = 0; //rabbit
@@ -55,7 +56,7 @@ function GameEntity(session, name, crowned){
 
 		this.getHP= function(){
 			if(this.crowned){
-				return this.hp + this.crowned.hp;  //my hp can be negative. only thing that matters is total is poistive.
+				return this.currentHP + this.crowned.hp;  //my hp can be negative. only thing that matters is total is poistive.
 			}
 			return this.hp;
 		}
@@ -77,6 +78,7 @@ function GameEntity(session, name, crowned){
 		this.setStats = function(minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs){
 			this.minLuck = minLuck;
 			this.hp = hp;
+			this.currentHP = this.hp;
 			this.mobility = mobility;
 			this.maxLuck = maxLuck;
 			this.triggerLevel = triggerLevel;
@@ -177,10 +179,9 @@ function GameEntity(session, name, crowned){
 		this.fightOver = function(div, players){
 			var living = findLivingPlayers(players);
 			if(living.length == 0){
-				if(players.length == 0){
+				if(players.length == 1){
 					div.append(" The fight is over. The " + players[0].htmlTitleBasic() + " is dead. ");
 				}else{
-					console.log(players)
 					div.append(" The fight is over. The players are dead. ");
 				}
 
@@ -244,7 +245,7 @@ function GameEntity(session, name, crowned){
 			if(defenseRoll > offenseRoll*10){
 				console.log("Luck counter: " + this.session.session_id);
 				div.append("The attack backfires and causes unlucky damage. The " + defense.htmlTitleBasicHP() + " sure is lucky!!!!!!!!" );
-				offense.hp += -1* offense.power; //damaged by your own power.
+				offense.currentHP += -1* offense.power; //damaged by your own power.
 				this.checkForAPulse(offense, defense)
 				return;
 			}else if(defenseRoll > offenseRoll*5){
@@ -257,7 +258,7 @@ function GameEntity(session, name, crowned){
 			if(defense.getMobility() > offense.getMobility()*rand * 2){
 				console.log("Mobility counter: " + this.session.session_id);
 				div.append("The " + offense.htmlTitleBasicHP() + " practically appears to be standing still as they clumsily lunge towards the " + defense.htmlTitleBasicHP() + " They miss so hard the " + defense.htmlTitleBasicHP() + " has plenty of time to get a counterattack in." );
-				offense.hp += -1* defense.power;
+				offense.currentHP += -1* defense.power;
 				this.checkForAPulse(offense, defense)
 				return;
 			}else if(defense.getMobility() > offense.getMobility()*rand){
@@ -282,7 +283,7 @@ function GameEntity(session, name, crowned){
 				div.append(" A hit! ");
 			}
 
-			defense.hp += -1* hit;
+			defense.currentHP += -1* hit;
 
 			if(!this.checkForAPulse(defense, offense)){
 
@@ -297,7 +298,14 @@ function GameEntity(session, name, crowned){
 		this.checkForAPulse =function(player, attacker){
 			if(player.getHP() <= 0){
 				player.dead = true; //hp only means dead in a fight. you can be at negative a billion hp,b ut if you never get hit....
-				player.causeOfDeath = "fighting the " + attacker.htmlTitleBasicHP();
+				if(this.name == "Jack"){
+					player.causeOfDeath = "after being shown too many stabs from Jack";
+				}else if(this.name == "Black King"){
+					player.causeOfDeath = "fighting the Black King";
+				}else{
+					player.causeOfDeath = "fighting the " + attacker.htmlTitleBasicHP();
+				}
+
 				return false;
 			}
 			return true;

@@ -9,7 +9,8 @@ function PlayerSnapshot(){
 	this.sbahj = null;
 	this.baby = null;
 	this.robot = null;
-	this.hp = 0; //no current hp. doomed is doomed, no healing.
+	this.hp = 0;
+	this.currentHP = 0;
 	this.minLuck = 0;
 	this.maxLuck = 0;
 	this.freeWill = 0;
