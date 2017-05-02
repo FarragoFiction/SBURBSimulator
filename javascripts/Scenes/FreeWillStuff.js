@@ -466,6 +466,7 @@ function FreeWillStuff(session){
 		player.dead = false;
 		player.currentHP = player.hp;
 		player.godTier = true;
+		player.grimDark = 0;
 		this.session.godTier = true;
 		player.dreamSelf = false;
 		player.isDreamSelf = false;

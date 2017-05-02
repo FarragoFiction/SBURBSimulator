@@ -207,6 +207,7 @@ function LuckStuff(session){
 			roll.player.currentHP = roll.player.hp;
 			roll.player.godTier = true;
 			roll.player.dreamSelf = false;
+			roll.player.grimDark = 0;
 			this.session.godTier = true;
 			roll.player.isDreamSelf = false;
 			return ret;
