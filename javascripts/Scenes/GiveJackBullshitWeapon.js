@@ -5,7 +5,10 @@ function GiveJackBullshitWeapon(session){
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return (this.session.jack.crowned == null) && (this.session.jack.getHP() > 0 && partyRollForLuck(this.session.players) < this.session.jack.rollForLuck() );
+		var partyRoll = partyRollForLuck(this.session.players)
+		var jackRoll = this.session.jack.rollForLuck()
+		if(partyRoll< jackRoll) console.log("We rolled: " + partyRoll + " jack rolled: " + jackRoll);
+		return (this.session.jack.crowned == null) && (this.session.jack.getHP() > 0 && partyRoll < jackRoll );
 	}
 
 	this.content = function(){
