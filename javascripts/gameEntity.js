@@ -7,6 +7,8 @@
 //mini boss = denizen minion
 //before I decide boss stats, need to have AB compile me a list of average player stats. She's getting kinda...busy though. maybe a secret extra area? same page, but on bottom?
 //maybe eventually refactor murder mode to use this engine. both players get converted to game entitites for the fight?
+//are sprites a game entity attached to player? have same stats as their prototyping would cause. help player fight. can be killed. leave the player entirely after
+//denizen minion fight.
 function GameEntity(session, name, crowned){
 		this.session = session;
 		this.name = name;
