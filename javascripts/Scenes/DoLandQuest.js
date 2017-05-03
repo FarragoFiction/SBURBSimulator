@@ -77,7 +77,7 @@ function DoLandQuest(session){
 
 		if(player.aspect == "Blood" || player.class_name == "Page"){ //they NEED help.
 			if(this.session.availablePlayers.length > 1){
-				helper = findHighestMobilityPlayer(this.session.availablePlayers);
+				helper = findHighestMobilityPlayer(this.session.availablePlayers); //mobility might be useful in a fight, but it curses you to not get your shit done on your own planet.
 			}else{
 				this.player1 = null;
 				return null;
