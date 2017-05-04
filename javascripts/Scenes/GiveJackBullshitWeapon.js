@@ -8,7 +8,7 @@ function GiveJackBullshitWeapon(session){
 		var partyRoll = partyRollForLuck(this.session.players)
 		var jackRoll = this.session.jack.rollForLuck()
 		if(partyRoll< jackRoll) console.log("We rolled: " + partyRoll + " jack rolled: " + jackRoll);
-		return (this.session.jack.crowned == null) && (this.session.jack.getHP() > 0 && partyRoll < jackRoll );
+		return (!this.session.queen.exiled && !this.session.jack.exiled && this.session.jack.crowned == null) && (this.session.jack.getHP() > 0 && partyRoll < jackRoll );
 	}
 
 	this.content = function(){

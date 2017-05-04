@@ -24,7 +24,7 @@ function PrepareToExileQueen(session){
 		this.player = null;
 		this.playerList = playerList;
 		this.findSufficientPlayer(this.session.availablePlayers);
-		return (this.player != null) && (this.session.queen.getHP() > 0);
+		return (this.player != null) && (this.session.queen.getHP() > 0 && !this.session.queen.exiled);
 	}
 
 	this.spyContent = function(){

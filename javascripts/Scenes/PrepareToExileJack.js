@@ -30,7 +30,7 @@ function prepareToExileJack(session){
 		this.player = null;
 		this.playerList = playerList;
 		this.findSufficientPlayer(this.session.availablePlayers);
-		return (this.player != null) && (	this.session.jackStrength > 0 && 	this.session.jackStrength < 300); //if he's too strong, he'll just show you his stabs. give up
+		return (this.player != null) && (	!this.session.jack.exiled && this.session.jackStrength > 0 && 	this.session.jackStrength < 300); //if he's too strong, he'll just show you his stabs. give up
 	}
 
 	this.spyContent = function(){

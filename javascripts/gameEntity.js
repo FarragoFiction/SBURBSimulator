@@ -29,6 +29,7 @@ function GameEntity(session, name, crowned){
 		this.fraymotifsUsed = [];  //horrorTerror
 		this.playersAbsconded = [];
 		this.iAbscond = false;
+		this.exiled = false;
 
 		this.getMobility = function(){
 			if(this.crowned){

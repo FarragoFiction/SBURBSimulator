@@ -5,7 +5,7 @@ function ExileQueen(session){
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return (this.session.queen.getPower()<10 );
+		return (this.session.queen.getPower()<10 && !this.session.queen.exiled );
 	}
 
 	this.content = function(){
@@ -25,9 +25,9 @@ function ExileQueen(session){
 			ret += "There were some hitches in the plan, and the Black Queen is now a corpse rather than an exile. She doesn't even have her RING OF ORBS " + this.session.convertPlayerNumberToWords() + "FOLD to destroy. Whatever. You exile her corpse anyways. NEVER turn your back on the body. ";
 		}
 
-		this.session.queen.power = 11; //don't trigger this again. her corpse can be a little strong, whatever.
 		this.session.queen.hp = -999990; //effectively dead.
 		this.session.queen.currentHP = -999990; //effectively dead.
+		this.session.queen.exiled = true;
 		return ret;
 	}
 
