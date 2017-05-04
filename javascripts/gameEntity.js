@@ -27,6 +27,8 @@ function GameEntity(session, name, crowned){
 		this.abscondable = true; //nice abscond
 		this.canAbscond = true; //can't abscond bro
 		this.fraymotifsUsed = [];  //horrorTerror
+		this.playersAbsconded = [];
+		this.iAbscond = false;
 
 		this.getMobility = function(){
 			if(this.crowned){
@@ -114,17 +116,83 @@ function GameEntity(session, name, crowned){
 		//if all players are fled, fight is over.
 		//some fights you can't run from. king/queen as example.
 		//mobility needs to be high enough. mention if you try to flee and get cut off.
-		this.willPlayerAbscond = function(player){
+		//if player chooses to abscond, and there are no players left, playersAbscond = true.
+		this.willPlayerAbscond = function(div,player,players){
+			var reasonsToLeave = 0;
+			var reasonsToStay = 0;
+			reasonsToStay += this.getFriendsFromList(players);
+			var hearts = this.getHearts();
+			var diamonds = this.getDiamonds();
+			for(var i = 0; i<hearts.length; i++){
+				if(players.indexOf(hearts[i] != -1)) reasonsToStay ++;  //extra reason to stay if they are your quadrant.
+			}
+			for(var i = 0; i<diamonds.length; i++){
+				if(players.indexOf(diamonds[i] != -1)) reasonsToStay ++;  //extra reason to stay if they are your quadrant.
+			}
 
+			reasonsToLeave += 2 * this.power/player.currentHP;  //if you could kill me in two hits, that's one reason to leave. if you could kill me in one, that's two reasons.
+
+			if(reasonsToLeave > reasonsToStay * 2){
+				if(player.mobility > this.mobility){
+					div.append(" The " + player.htmlTitleHP() + " absconds right the fuck out of this fight. ")
+					this.remainingPlayersHateYou(div, player, players);
+					return true;
+				}else{
+					div.append(" The " + player.htmlTitleHP() + " tries to absconds right the fuck out of this fight, but the " + this.htmlTitleHP() + " blocks them. Can't abscond, bro. ")
+					return false;
+				}
+			}else if(reasonsToLeave > reasonsToStay){
+				if(player.mobility > this.mobility){
+					div.append(" Shit. The " + player.htmlTitleHP() + " doesn't know what to do. They don't want to die... They abscond. ")
+					this.remainingPlayersHateYou(div, player, players);
+					return true;
+				}else{
+					div.append(" Shit. The " + player.htmlTitleHP() + " doesn't know what to do. THey don't want to die... Before they can decide whether or not to abscond " + this.htmlTitleHP() + " blocks their escape route. Can't abscond, bro. ")
+					return false;
+				}
+			}
+			return false;
+		}
+
+		this.remainingPlayersHateYou = function(div, player, players){
+				if(players.length == 1){
+					return null;
+				}
+				div.append(" The remaining players are not exactly happy to be abandoned. ")
+				for(var i = 0; i<living.length; i++){
+					var p = living[i];
+					if(p != player){
+						var r = p.getRelationshipWith(player);
+						r.value += -5;
+					}
+				}
 		}
 
 		//denizen and king/queen will never flee. but jack and planned mini bosses can.
 		//flee if you are losing. mobility needs to be high enough. mention if you try to flee and get cut off.
-		this.willIAbscond= function(){
-
+		this.willIAbscond= function(div,players){
+				var playerPower = players.reduce(function(a,b){
+						return a.power + b.power
+				})
+				if(playerPower > this.getHP()){
+						this.iAbscond = true;
+						return true;
+				}
+				return false;
 		}
 
+		this.processAbscond = function(div,players){
+			if(this.iAbscond){
+				console.log("game entity abscond: " + this.session.session_id);
+				div.append("The " + this.htmlTitle() + " has had enough of this bullshit. They just fucking leave. ");
+				return;
+			}else(){
+				console.log("players abscond: " + this.session.session_id);
+				div.append(" The fight is over due to a lack of player presence. ");
+				return;
+			}
 
+		}
 
 		//before a fight is called, decide who is in it. denizens are one on one, jack catches slower player and friends
 		//king/queen are whole party. if you want to comment on who's in it, do it before here.
@@ -145,20 +213,43 @@ function GameEntity(session, name, crowned){
 			//as players die or mobility stat changes, might go players, me, me, players or something. double turns.
 			if(getAverageMobility(players) > this.getMobility()){ //players turn
 				this.playersTurn(div, players);
-				if(this.getHP() > 0) this.myTurn(div, players);
+				if(this.getHP() > 0 && !fightOverAbscond(div, players)) this.myTurn(div, players);
 			}else{ //my turn
-				if(this.getHP() > 0)  this.myTurn(div, players);
+				if(this.getHP() > 0 && !fightOverAbscond(div,players))  this.myTurn(div, players);
 				this.playersTurn(div, players);
 			}
-			if(this.fightOver(div, players)){
+			if(fightOverAbscond(div,players)){
+				this.ending();
+				return this.processAbscond(div,players);
+			}
+			if(this.fightOver(div, players) ){
+				this.ending();
 				return;
 			}else{
 				return this.strife(div, players,numTurns);
 			}
 		}
 
+		//if i abscond fight is over
+		//if all living players abscond, fight is over
+		this.fightOverAbscond = function(div, players){
+			if(this.iAbscond){
+				return true;
+			}
+
+			var living = findLivingPlayers(players);
+			for (var i = 0; i<living.length; i++){
+				if(living[i].indexOf(this.playersAbsconded) == -1){
+					return false; //found living player that hasn't yet absconded.
+				}
+			}
+			return true;
+
+		}
+
 		this.ending = function(div, players){
 			this.fraymotifsUsed = []; //not used yet
+			this.playersAbsconded = [];
 		}
 
 		this.levelPlayers = function(stabbings){
@@ -205,14 +296,18 @@ function GameEntity(session, name, crowned){
 		this.playersTurn = function(div, players){
 			var living = findLivingPlayers(players);
 			for(var i = 0; i<living.length; i++){
-				if(!living[i].dead && this.getHP()>0) this.playerdecideWhatToDo(div, living[i]); //player could have died from a counter attack, boss could have died from previous player
+				if(!living[i].dead && this.getHP()>0) this.playerdecideWhatToDo(div, living[i],living); //player could have died from a counter attack, boss could have died from previous player
 			}
 		}
 
-		this.playerdecideWhatToDo = function(div, player){
+		this.playerdecideWhatToDo = function(div, player,players){
 			player.power = Math.max(1, player.power); //negative power is not allowed in an actual fight.
 			//for now, only one choice    //free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
-			this.aggrieve(div, player, this );
+			if(!this.willPlayerAbscond(div,player,players)){
+				this.aggrieve(div, player, this );
+			}
+
+
 		}
 
 		//doomed players are just easier to target.
@@ -233,10 +328,10 @@ function GameEntity(session, name, crowned){
 		this.myTurn = function(div, players){
 			//free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
 			//special and fraymotif can attack multiple enemies, but aggrieve is one on one.
-
-			//for now, only one choice
-			var target = this.chooseTarget(players)
-			if(target) this.aggrieve(div, this, target );
+			if(!willIAbscond(div,players)){
+				var target = this.chooseTarget(players)
+				if(target) this.aggrieve(div, this, target );
+			}
 			//console.log("have special attacks (like using ghost army, or reviving.). have fraymotifs. have prototypes that change stats of ring/scepter and even add fraymotifs.")
 
 
