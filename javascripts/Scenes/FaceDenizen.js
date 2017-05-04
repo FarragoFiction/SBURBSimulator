@@ -38,6 +38,8 @@ function FaceDenizen(session){
 		}
 	}
 
+	//TODO have the choice still be a thing. make it a harder thing. if you chose wrong, fight. only get choice if you havne't yet faced denizen.
+	//have to keep fighting until you defeat denizen. 
 	this.renderContent = function(div){
 
 		for(var i = 0; i<this.denizenFighters.length; i++){
