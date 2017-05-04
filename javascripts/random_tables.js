@@ -870,14 +870,28 @@ function getRandomSeed() {
  //I am in love:  http://indiegamr.com/generate-repeatable-random-numbers-in-js/
 // in order to work 'Math.seed' must NOT be undefined,
 // so in any case, you HAVE to provide a Math.seed
-//https://en.wikipedia.org/wiki/Linear_congruential_generator#Parameters_in_common_use if i want to have more possible sessions, use 2^32 or 2^64. see wiki
-Math.seededRandom = function(max, min) {
+//this only gave be 200k random numbers. upgarding.
+Math.seededRandomOld = function(max, min) {
 	//console.log("getting seeded random");
     max = max || 1;
     min = min || 0;
-
+	
     Math.seed = (Math.seed * 9301 + 49297) % 233280;
     var rnd = Math.seed / 233280;
+
+    return min + rnd * (max - min);
+}
+////https://en.wikipedia.org/wiki/Linear_congruential_generator#Parameters_in_common_use if i want to have more possible sessions, use 2^32 or 2^64. see wiki
+//have modulus be 2^32 (4294967296), a = 1664525, c = 1013904223
+Math.seededRandom = function(max, min){
+	/*random_number = (lcg.previous * a + c) % modulus
+    lcg.previous = random_number
+    return random_number
+	*/
+	max = max || 1;
+    min = min || 0;
+	Math.seed = (Math.seed * 1664525 + 1013904223) % 4294967296;
+    var rnd = Math.seed / 4294967296;
 
     return min + rnd * (max - min);
 }
