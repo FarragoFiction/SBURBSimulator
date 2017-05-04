@@ -176,6 +176,17 @@ function PlayerSnapshot(){
 		//stub for boss fights for doomed time clones. they can't level up. they are doomed.
 	}
 
+	this.getFriendsFromList = function(){
+		return [];
+	}
+
+	this.getHearts = function(){
+		return [];
+	}
+	this.getDiamonds = function(){
+		return [];
+	}
+
 
 
 
