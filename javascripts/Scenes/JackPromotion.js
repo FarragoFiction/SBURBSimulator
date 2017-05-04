@@ -5,7 +5,7 @@ function JackPromotion(session){
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return (this.session.queen.crowned == null) && (this.session.jack.getHP() > 0);
+		return (this.session.queen.crowned == null) && (this.session.jack.getHP() > 0) && (this.session.jack.getPower() > this.session.queen.getPower());
 	}
 
 	this.addImportantEvent = function(){
