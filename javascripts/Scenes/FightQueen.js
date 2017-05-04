@@ -40,7 +40,7 @@ function FightQueen(session){
 
 
 	this.renderContent = function(div){
-		//console.log("rendering fight queen);")
+		if(this.session.queen.getPower() < 0) console.log("rendering fight queen with negative power " +this.session.session_id)
 		div.append("<br>");
 		div.append(this.content());
 
