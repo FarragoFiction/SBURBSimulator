@@ -1266,7 +1266,7 @@ var denizen_hope_quests = ["realizing that the consorts real problem is their la
 denizen_hope_quests.push("inspiring impressionable consorts who then go on to inspire others ");
 denizen_hope_quests.push("defeating the underling that was causing the local consorts to not believe in themselves");
 
-var denizen_life_quests = ["defeating and endless array of locust underlings"];
+var denizen_life_quests = ["defeating an endless array of locust underlings"];
 denizen_life_quests.push("realizing that Hemera is somehow spawning the endless hoard of locust underlings ");
 denizen_life_quests.push("preventing the next generation of locust underlings, thus ending the consort famine");
 
