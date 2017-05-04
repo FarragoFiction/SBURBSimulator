@@ -20,7 +20,8 @@ function JackRampage(session){
 				potentialPlayers.push(p); //don't make a big deal out of it, but jack doesn't want to hurt the witch. familiar loyalty, yo.
 			}
 		}
-		var numStabbings = getRandomInt(0,Math.min(2,potentialPlayers.length));
+		var numStabbings = getRandomInt(1,Math.min(4,potentialPlayers.length));
+		console.log("Number stabbings is: " + numStabbings)
 		var ret = [];
 		if(potentialPlayers.length == 0){
 			return ret;
@@ -29,7 +30,7 @@ function JackRampage(session){
 		var friends = ret[0].getFriendsFromList(potentialPlayers)
 		if(friends.length == 0) return ret;
 		//console.log("friends: " + friends.length);
-		for(var i = 0; i<=numStabbings.length; i++){
+		for(var i = 0; i<=numStabbings; i++){
 			var f = getRandomElementFromArray(friends)
 			//console.log(f);
 			ret.push(f);
@@ -58,6 +59,7 @@ function JackRampage(session){
 
 		//jack finds 0 or more players.
 		var stabbings = this.getStabList();
+		if(stabbings.length > 1) console.log("Jack fighting more than one player: " + this.session.session_id)
 		var ret = "";
 		if(stabbings.length == 0){
 			if(Math.seededRandom() > .5){

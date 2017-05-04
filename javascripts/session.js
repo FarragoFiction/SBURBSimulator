@@ -371,7 +371,6 @@ function Session(session_id){
 
 
 	this.setUpBosses = function(){
-		console.log("Test jack and queen can be exiled, queen rejects ring, king is powerful, boss fights, jack gets bullshit weapon, jack rampage, jack promotion.")
 		this.queensRing = new GameEntity(this, "!!!RING!!! OMG YOU SHOULD NEVER SEE THIS!",false)
 		this.queensRing.setStats(0,0,0,0,0,0,0,false, false, [],false);
 		this.kingsScepter = new GameEntity(this, "!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!",false)
@@ -381,10 +380,10 @@ function Session(session_id){
 		this.king.setStats(25,75,500,0,0,25,100,false, false, []);  //anything prototype gives you. horrorterrors vastGlub.
 		//TODO  jack, denizens, denizen minions
 		this.queen = new GameEntity(this, "Black Queen",this.queensRing);
-		this.queen.setStats(25,75,500,100,0,100,50,false, false, []); //red miles
+		this.queen.setStats(25,75,500,60,0,100,50,false, false, []); //red miles
 
 		this.jack = new GameEntity(this, "Jack",null);
-		this.jack.setStats(0,25,50,100,50,1000,30,true, true, []); //jack is kind of a big deal. luck determines his odds of finding bullshit weapon
+		this.jack.setStats(0,25,50,60,50,1000,30,true, true, []); //jack is kind of a big deal. luck determines his odds of finding bullshit weapon
 
 		this.democraticArmy = new GameEntity(this, "Democratic Army",null); //doesn't actually exist till WV does his thing.
 		this.democraticArmy.setStats(0,0,0,0,0,0,0,false, false, [],false);

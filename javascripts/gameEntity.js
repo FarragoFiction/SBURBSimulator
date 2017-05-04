@@ -118,7 +118,7 @@ function GameEntity(session, name, crowned){
 		//mobility needs to be high enough. mention if you try to flee and get cut off.
 		//if player chooses to abscond, and there are no players left, playersAbscond = true.
 		this.willPlayerAbscond = function(div,player,players){
-			if(!this.canAbscond) return false;
+			if(!this.abscondable) return false;
 			if(player.doomed) return false; //doomed players accept their fate.
 			var reasonsToLeave = 0;
 			var reasonsToStay = 0;
@@ -134,8 +134,10 @@ function GameEntity(session, name, crowned){
 
 			reasonsToLeave += 2 * this.power/player.currentHP;  //if you could kill me in two hits, that's one reason to leave. if you could kill me in one, that's two reasons.
 
+			console.log("reasons to stay: " + reasonsToStay + " reasons to leave: " + reasonsToLeave)
 			if(reasonsToLeave > reasonsToStay * 2){
 				if(player.mobility > this.mobility){
+					console.log(" player actually absconds: " + this.session.session_id)
 					div.append(" The " + player.htmlTitleHP() + " absconds right the fuck out of this fight. ")
 					this.remainingPlayersHateYou(div, player, players);
 					return true;
@@ -145,6 +147,7 @@ function GameEntity(session, name, crowned){
 				}
 			}else if(reasonsToLeave > reasonsToStay){
 				if(player.mobility > this.mobility){
+					console.log(" player actually absconds: " + this.session.session_id)
 					div.append(" Shit. The " + player.htmlTitleHP() + " doesn't know what to do. They don't want to die... They abscond. ")
 					this.remainingPlayersHateYou(div, player, players);
 					return true;
@@ -161,8 +164,8 @@ function GameEntity(session, name, crowned){
 					return null;
 				}
 				div.append(" The remaining players are not exactly happy to be abandoned. ")
-				for(var i = 0; i<living.length; i++){
-					var p = living[i];
+				for(var i = 0; i<players.length; i++){
+					var p = players[i];
 					if(p != player){
 						var r = p.getRelationshipWith(player);
 						r.value += -5;
@@ -172,14 +175,16 @@ function GameEntity(session, name, crowned){
 
 		//denizen and king/queen will never flee. but jack and planned mini bosses can.
 		//flee if you are losing. mobility needs to be high enough. mention if you try to flee and get cut off.
-		this.willIAbscond= function(div,players){
-				if(!this.canIAbscond) return false; //can't even abscond.
-				var playerPower = players.reduce(function(a,b){
-						return a.power + b.power
-				})
+		this.willIAbscond= function(div,players,numTurns){
+				if(!this.canAbscond || numTurns < 2) return false; //can't even abscond. also, don't run away after starting the fight, asshole.
+				var playerPower = 0;
+				for(var i = 0; i<players.length; i++){
+					playerPower += players[i].power;
+				}
 				console.log("playerPower is: " + playerPower)
-				if(playerPower > this.getHP()){
+				if(playerPower > this.getHP()*2){
 						this.iAbscond = true;
+						console.log("absconding when turn number is: " +numTurns);
 						return true;
 				}
 				return false;
@@ -188,7 +193,7 @@ function GameEntity(session, name, crowned){
 		this.processAbscond = function(div,players){
 			if(this.iAbscond){
 				console.log("game entity abscond: " + this.session.session_id);
-				div.append("The " + this.htmlTitle() + " has had enough of this bullshit. They just fucking leave. ");
+				div.append("The " + this.htmlTitleHP() + " has had enough of this bullshit. They just fucking leave. ");
 				return;
 			}else{
 				console.log("players abscond: " + this.session.session_id);
@@ -216,11 +221,11 @@ function GameEntity(session, name, crowned){
 			div.append("<br><Br>")
 			//as players die or mobility stat changes, might go players, me, me, players or something. double turns.
 			if(getAverageMobility(players) > this.getMobility()){ //players turn
-				this.playersTurn(div, players);
-				if(this.getHP() > 0 && !this.fightOverAbscond(div, players)) this.myTurn(div, players);
+				if(!this.fightOverAbscond(div, players) )this.playersTurn(div, players,numTurns);
+				if(this.getHP() > 0 && !this.fightOverAbscond(div, players)) this.myTurn(div, players,numTurns);
 			}else{ //my turn
-				if(this.getHP() > 0 && !this.fightOverAbscond(div,players))  this.myTurn(div, players);
-				this.playersTurn(div, players);
+				if(this.getHP() > 0 && !this.fightOverAbscond(div,players))  this.myTurn(div, players,numTurns);
+				if(!this.fightOverAbscond(div, players) )this.playersTurn(div, players,numTurns);
 			}
 			if(this.fightOverAbscond(div,players)){
 				this.ending();
@@ -255,6 +260,7 @@ function GameEntity(session, name, crowned){
 		this.ending = function(div, players){
 			this.fraymotifsUsed = []; //not used yet
 			this.playersAbsconded = [];
+			this.iAbscond = false;
 		}
 
 		this.levelPlayers = function(stabbings){
@@ -330,10 +336,11 @@ function GameEntity(session, name, crowned){
 		}
 
 		//higher the free will, smarter the ai. more likely to do special things.
-		this.myTurn = function(div, players){
+		this.myTurn = function(div, players,numTurns){
+			console.log("Hp during my turn is: " + this.getHP())
 			//free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
 			//special and fraymotif can attack multiple enemies, but aggrieve is one on one.
-			if(!this.willIAbscond(div,players)){
+			if(!this.willIAbscond(div,players,numTurns)){
 				var target = this.chooseTarget(players)
 				if(target) this.aggrieve(div, this, target );
 			}
