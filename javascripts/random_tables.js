@@ -811,9 +811,10 @@ function getLevelFromClass(i,class_name){
 	return first_arr[i];
 }
 
-function getRandomDenizenQuestFromAspect(aspect){
+function getRandomDenizenQuestFromAspect(player){
 	//console.log("looking for level from aspect");
 	var first_arr = [];
+	var aspect = player.aspect;
 	if(aspect == "Space"){
 		first_arr = denizen_space_quests;
 	}else if(aspect == "Time"){
@@ -839,7 +840,12 @@ function getRandomDenizenQuestFromAspect(aspect){
 	}else if(aspect == "Life"){
 		first_arr = denizen_life_quests;
 	}
-	return getRandomElementFromArray(first_arr);
+	if(player.denizen_index > first_arr.length -1 ){
+		console.log("denizen index too high: " + this.session.session_id)
+	}
+	var ret =  first_arr[player.denizen_index]
+	player.denizen_index ++;
+	return ret;
 }
 
 
@@ -1131,7 +1137,6 @@ space_quests.push("listening to the ridiculously similar croaks of cloned frogs 
 var time_quests = ["manipulating the local stock exchange through a series of cunningly disguised time doubles"];
 time_quests.push("stopping a variety of disasters from happening before even the first player enters the medium");
 time_quests.push("cheating at obstacle course time trials to get a finishing value of exactly 0.0 seconds");
-time_quests.push("restoring a legendary piece of shit weapon to its pre-destroyed state");
 var breath_quests = ["putting out fires in consort villages through serendepitious gales of wind"];
 breath_quests.push("delivering mail through a complicated series of pneumatic tubes");
 breath_quests.push("paragliding through increasingly elaborate obstacle courses to become the champion (it is you)");
@@ -1209,7 +1214,61 @@ bike_quests.push("writing dope as fuck Bike Stunt FAQs to keep their sanity");
 bike_quests.push("singing a song, you know, from that shitty kids cartoon? 'wake up in the morning there's a brand new day ahead the sun is bright and the clouds smile down and all your friends are dead '");
 
 
-var random_quests = ["TODO, have low level random quests."];
+var denizen_space_quests = ["trying to figure out why the Forge is unlit"];
+denizen_space_quests.push("clearing various bullshit obstacles to lighting the Forge");
+denizen_space_quests.push("lighting the Forge");  //TODO requires a magic ring.
+
+var denizen_time_quests = ["searching through time for an unbroken legendary piece of shit weapon"];
+denizen_time_quests.push("realizing that the legendary piece of shit weapon was broken WAY before they got here");
+denizen_time_quests.push("alchemizing an unbroken version of the legendary piece of shit weapon to pawn off as the real thing to Hephaestus");
+
+var denizen_breath_quests = ["realizing that Typheus has thoroughly clogged up the pneumatic system"];
+denizen_breath_quests.push("trying to manually unclog the pneumatic system");
+denizen_breath_quests.push("using Breath powers to unclog the pneumatic system");
+
+var denizen_doom_quests = ["listening to consorts relate a doomsday prophecy that will take place soon"];
+denizen_doom_quests.push("realizing technicallities in the doomsday prophecy that would allow it to take place but NOT doom everyone");
+denizen_doom_quests.push("narrowly averting the doomsday prophecy through technicalities, seeming coincidence, and a plan so convoluted that at the end of it no one can be sure the plan actually DID anything");
+
+var denizen_blood_quests = ["convincing the local consorts to rise up against the denizen, Hestia"];
+denizen_blood_quests.push(" give unending speeches about the power of friendship and how they are all fighting for loved ones back home to confused and impressionable consorts");
+denizen_blood_quests.push("completely overthrowing the Denizen's underlings in a massive battle");
+
+var denizen_heart_quests = ["starting an underground rebel group to free the consorts from the oppressive underling government"];
+denizen_heart_quests.push("having a huge public protest against the underling government, displaying several banned fashion items");
+denizen_heart_quests.push("convincing the local consorts that the only thing that can stifle their identity is their own fear");
+
+var denizen_mind_quests = ["learning of the systemic corruption in the local consort's justice system"];
+denizen_mind_quests.push("rooting out corrupt consort officials, and exposing their underling backers");
+denizen_mind_quests.push("setting up a self-sufficient consort justice system");
+
+
+var denizen_light_quests = ["realizing the the entire point of SBURB has been a lie"];
+denizen_light_quests.push("learning the true purpose of SBURB");
+denizen_light_quests.push("realizing just how important frogs and grist and the Ultimate Alchemy truly are");
+
+
+var denizen_void_quests = ["???"];
+denizen_void_quests.push("[redacted]");
+denizen_void_quests.push("[void players, am I right?]");
+
+//http://rumkin.com/tools/cipher/atbash.php (thinking of lOSS here)
+//var denizen_rage_quests = ["~~~You can't believe how easy it is. You just have to go... a little crazy. And then, suddenly, it all makes sense, and everything you do turns to gold.~~~"]; //
+//denizen_rage_quests.push("~~~ The denizen, Bacchus, thinks that grammar is important. That rules are important. That so much is important. You'll show him. ~~~");
+//denizen_rage_quests.push("~~~ Nothing makes sense here anymore. Just the way you like it. The consorts are whipped into a frothing fury. Bacchus is awake.  ~~~");
+
+var denizen_rage_quests = ["~~~You can't believe how vzhb it is. You just have to go... a little xizab. Zmw gsvm, suddenly, rg all makes sense, zmw everything blf wl gfimh gl gold. ~~~"]; //
+denizen_rage_quests.push("~~~ Gsv denizen, Bacchus, gsrmph gszg grammar rh important. Gszg rules ziv important. Gszg hl nfxs rh rnkligzmg. You'll show him.  ~~~");
+denizen_rage_quests.push("~~~ Mlgsrmt nzpvh hvmhv sviv zmbnliv. Qfhg gsv dzb blf orpv rg. Gsv xlmhligh ziv dsrkkvw rmgl z uilgsrmt ufib. Yzxxsfh rh zdzpv.   ~~~");
+
+
+var denizen_hope_quests = ["realizing that the consorts real problem is their lack of morale"];
+denizen_hope_quests.push("inspiring impressionable consorts who then go on to inspire others ");
+denizen_hope_quests.push("defeating the underling that was causing the local consorts to not believe in themselves");
+
+var denizen_life_quests = ["coaxing the fallow farms of the local consorts into becoming fertile"];
+denizen_life_quests.push("healing a seemingly endless parade of stricken consorts");
+denizen_life_quests.push("finding and rescuing consort children trapped in a burning building");
 
 
 var space_denizen = "Echidna";

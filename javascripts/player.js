@@ -13,9 +13,11 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 	this.baby = null;
 	this.session = session;
 	this.currentHP = 0;
+	this.grist = 0; //total party grist needs to be at a certain level for the ultimate alchemy. luck events can raise it, boss fights, etc.
 	this.hp = 0; //mostly used for boss battles;
 	this.graphs = [];
 	this.id = id;
+	this.denizen_index = 0; //denizen quests are in order.
 	this.causeOfDrain = null; //just ghost things
 	this.ghostWisdom = []; //keeps you from spamming the same ghost over and over for wisdom.
 	this.ghostPacts = []; //some classes can form pacts with ghosts for use in boss battles (attack or revive) (ghosts don't leave bubbles, just lend power). or help others do so.  if i actually use a ghost i have a pact with, it's drained. (so anybody else with a pact with it can't use it.)
@@ -259,10 +261,10 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 	}
 
 	this.getRandomQuest = function(){
-		if(this.landLevel >= 6 && this.denizenDefeated == false){
-				return getRandomDenizenQuestFromAspect(this.aspect);
-		}else if(this.landLevel < 6 && this.denizenDefeated == false){
-			if(Math.seededRandom() > .5 || this.aspect == "Space"){ //space players pretty much only get FrogBreeding duty.
+		if(this.landLevel >= 9 && this.denizenDefeated == false){ //three quests before denizen
+				return getRandomDenizenQuestFromAspect(this.aspect); //denizen quests are aspect only, no class.
+		}else if(this.landLevel < 9 && this.denizenDefeated == false){
+			if(Math.seededRandom() > .5){
 				return getRandomQuestFromAspect(this.aspect);
 			}else{
 				return getRandomQuestFromClass(this.class_name);
