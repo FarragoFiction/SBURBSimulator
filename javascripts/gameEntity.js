@@ -298,6 +298,7 @@ function GameEntity(session, name, crowned){
 			for(var i = 0; i<this.playersAbsconded.length; i++){
 				removeFromArray(this.playersAbsconded[i], living);
 			}
+			return living
 		}
 
 		this.fightOver = function(div, players){
