@@ -12,6 +12,7 @@
 function GameEntity(session, name, crowned){
 		this.session = session;
 		this.name = name;
+		this.grist = 0;
 		//if any stat is -1025, it's considered to be infinitie. denizens use. you can't outluck Cetus, she is simply the best there is.
 		this.minLuck = 0;
 		this.currentHP = 0;
@@ -80,7 +81,7 @@ function GameEntity(session, name, crowned){
 		}
 
 
-		this.setStats = function(minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs){
+		this.setStats = function(minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs, grist){
 			this.minLuck = minLuck;
 			this.hp = hp;
 			this.currentHP = this.hp;
@@ -91,6 +92,7 @@ function GameEntity(session, name, crowned){
 			this.power = power;
 			this.abscondable = abscondable;
 			this.canAbscond = canAbscond;
+			this.grist = grist;
 		}
 
 		this.htmlTitleHP = function(){
@@ -318,11 +320,18 @@ function GameEntity(session, name, crowned){
 			}else if(this.getHP() <= 0){
 				div.append(" <Br><br> The fight is over. " + this.name + " is dead. ");
 				this.levelPlayers(players) //even corpses
+				this.givePlayersGrist(players);
 				this.ending();
 				this.ending(div, players)
 				return true;
 			}//TODO have alternate win conditions for denizens???
 			return false;
+		}
+
+		this.givePlayersGrist = function(players){
+			for(var i = 0; i<players.length; i++{
+				players.grist += this.girst/players.length;
+			}
 		}
 
 

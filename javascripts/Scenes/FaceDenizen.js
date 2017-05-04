@@ -9,8 +9,10 @@ function FaceDenizen(session){
 		this.playerList = playerList;
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var p = this.session.availablePlayers[i]
-			if(p.landLevel >= 12 && !p.denizenFaced && p.land != null){
+			if(p.landLevel >= 12 && !p.denizenDefeated && p.land != null){
 				this.denizenFighters.push(p);
+			}else if(p.landLevel >= 6 && !p.denizenMinionDefeated && p.land != null){
+					this.denizenFighters.push(p);
 			}
 		}
 		return this.denizenFighters.length > 0;
