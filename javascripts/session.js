@@ -5,6 +5,8 @@ function Session(session_id){
 	this.hasClubs = false;
 	this.sessionHealth = 5000; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
 	this.hasDiamonds = false;
+	this.denizens = [];
+	this.denizen_minions = [];
 	this.afterLife = new AfterLife();
 	this.queensRing = null; //eventually have white and black ones.
 	this.kingsScepter = null;
@@ -387,7 +389,134 @@ function Session(session_id){
 
 		this.democraticArmy = new GameEntity(this, "Democratic Army",null); //doesn't actually exist till WV does his thing.
 		this.democraticArmy.setStats(0,0,0,0,0,0,0,false, false, [],false);
+
+		this.makeDenizens();
+		this.makeDenizenMinions();
 	}
+
+
+	this.makeDenizens = function(){
+		//minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs
+		var space_denizen =  new GameEntity(this, "Echidna", null);
+		space_denizen.setStats(30,50,100,-9999,0,0,100,true, false, []);
+		var time_denizen = new GameEntity(this, "Hephaestus", null);
+		time_denizen.setStats(30,50,100,20,0,-9999,100,true, false, []);
+		var breath_denizen = new GameEntity(this, "Typheus", null);
+		breath_denizen.setStats(30,50,100,9999,0,0,100,true, false, []);
+		var doom_denizen = new GameEntity(this, "Cassandra", null);
+		doom_denizen.setStats(-9999,50,100,20,0,0,100,true, false, []);
+		var blood_denizen = new GameEntity(this, "Hestia", null);
+		blood_denizen.setStats(30,50,100,20,-9999,0,100,true, false, []);
+		var heart_denizen = new GameEntity(this, "Aphrodite", null);
+		heart_denizen.setStats(30,50,100,20,0,0,150,true, false, []);
+		var mind_denizen = 	new GameEntity(this, "Janus", null);
+		mind_denizen.setStats(30,50,100,20,0,9999,100,true, false, []);
+		var light_denizen = new GameEntity(this, "Cetus", null);
+		light_denizen.setStats(30,9999,100,20,0,0,100,true, false, []);
+		var void_denizen = new GameEntity(this, "Nix", null); //stats dont matter, fights off screen????
+		var hope_denizen = new GameEntity(this, "Abraxus", null);
+		hope_denizen.setStats(30,50,100,20,0,0,9999,true, false, []);
+		var life_denizen = new GameEntity(this, "Hemera", null);
+		life_denizen.setStats(30,50,9999,20,0,0,100,true, false, []);
+		var rage_denizen = new GameEntity(this, "Bacchus", null);
+		rage_denizen.setStats(30,50,100,20,9999,0,100,true, false, []);
+
+		this.denizens = this.denizens.concat([space_denizen, time_denizen, breath_denizen, doom_denizen, blood_denizen, heart_denizen, mind_denizen, light_denizen, void_denizen, hope_denizen, life_denizen, rage_denizen]);
+	}
+
+	this.makeDenizenMinions = function(){
+		//minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs
+		var space_denizen =  new GameEntity(this, "Echidna Minion", null);
+		space_denizen.setStats(30,50,50,-100,0,0,50,true, false, []);
+		var time_denizen = new GameEntity(this, "Hephaestus  Minion", null);
+		time_denizen.setStats(30,50,50,20,0,-100,50,true, false, []);
+		var breath_denizen = new GameEntity(this, "Typheus  Minion", null);
+		breath_denizen.setStats(30,50,50,100,0,0,50,true, false, []);
+		var doom_denizen = new GameEntity(this, "Cassandra  Minion", null);
+		doom_denizen.setStats(-100,50,25,20,0,0,50,true, false, []);
+		var blood_denizen = new GameEntity(this, "Hestia  Minion", null);
+		blood_denizen.setStats(30,50,50,20,-100,0,50,true, false, []);
+		var heart_denizen = new GameEntity(this, "Aphrodite  Minion", null);
+		heart_denizen.setStats(30,50,50,20,0,0,75,true, false, []);
+		var mind_denizen = 	new GameEntity(this, "Janus  Minion", null);
+		mind_denizen.setStats(30,50,50,20,0,100,50,true, false, []);
+		var light_denizen = new GameEntity(this, "Cetus  Minion", null);
+		light_denizen.setStats(30,50,100,20,0,0,50,true, false, []);
+		var void_denizen = new GameEntity(this, "Nix", null); //stats dont matter, fights off screen????
+		var hope_denizen = new GameEntity(this, "Abraxus  Minion", null);
+		hope_denizen.setStats(30,50,50,20,0,0,100,true, false, []);
+		var life_denizen = new GameEntity(this, "Hemera  Minion", null);
+		life_denizen.setStats(30,50,100,20,0,0,50,true, false, []);
+		var rage_denizen = new GameEntity(this, "Bacchus  Minion", null);
+		rage_denizen.setStats(30,50,50,20,100,0,50,true, false, []);
+
+		this.denizens_minions = this.denizens_minions.concat([space_denizen, time_denizen, breath_denizen, doom_denizen, blood_denizen, heart_denizen, mind_denizen, light_denizen, void_denizen, hope_denizen, life_denizen, rage_denizen]);
+
+	}
+
+	this.getDenizenForPlayer = function(){
+		if(aspect == "Space"){
+			return this.denizens[0];
+		}else if(aspect == "Time"){
+			return this.denizens[1];
+		}else if(aspect == "Breath"){
+			return this.denizens[2];
+		}else if(aspect == "Doom"){
+			return this.denizens[3];
+		}else if(aspect == "Blood"){
+			return this.denizens[4];
+		}else if(aspect == "Heart"){
+			return this.denizens[5];
+		}else if(aspect == "Mind"){
+			return this.denizens[6];
+		}else if(aspect == "Light"){
+			return this.denizens[7];
+		}else if(aspect == "Void"){
+			return this.denizens[8];
+		}else if(aspect == "Hope"){
+			return this.denizens[9];
+		}else if(aspect == "Life"){
+			return this.denizens[10];
+		}else if(aspect == "Rage"){
+			returnthis.denizens[11];
+		}
+		return "ERROR 404: Denizen Not Found"//it will be HILARIOUS if this ever prints out.
+
+	}
+
+	this.getDenizenMinionForPlayer = function(){
+		if(aspect == "Space"){
+			return this.denizen_minions[0];
+		}else if(aspect == "Time"){
+			return this.denizen_minions[1];
+		}else if(aspect == "Breath"){
+			return this.denizen_minions[2];
+		}else if(aspect == "Doom"){
+			return this.denizen_minions[3];
+		}else if(aspect == "Blood"){
+			return this.denizen_minions[4];
+		}else if(aspect == "Heart"){
+			return this.denizen_minions[5];
+		}else if(aspect == "Mind"){
+			return this.denizen_minions[6];
+		}else if(aspect == "Light"){
+			return this.denizen_minions[7];
+		}else if(aspect == "Void"){
+			return this.denizen_minions[8];
+		}else if(aspect == "Hope"){
+			return this.denizen_minions[9];
+		}else if(aspect == "Life"){
+			return this.denizen_minions[10];
+		}else if(aspect == "Rage"){
+			returnthis.denizen_minions[11];
+		}
+		return "ERROR 404: Denizen Not Found"//it will be HILARIOUS if this ever prints out.
+
+	}
+
+
+
+
 
 	this.newScene = function(){
 		this.currentSceneNum ++;

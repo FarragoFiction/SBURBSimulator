@@ -913,7 +913,7 @@ Math.seededRandomOld = function(max, min) {
 	//console.log("getting seeded random");
     max = max || 1;
     min = min || 0;
-	
+
     Math.seed = (Math.seed * 9301 + 49297) % 233280;
     var rnd = Math.seed / 233280;
 
@@ -1271,18 +1271,7 @@ denizen_life_quests.push("realizing that Hemera is somehow spawning the endless 
 denizen_life_quests.push("preventing the next generation of locust underlings, thus ending the consort famine");
 
 
-var space_denizen = "Echidna";
-var time_denizen = "Hephaestus";
-var breath_denizen = "Typheus";
-var doom_denizen = "Cassandra";//
-var blood_denizen = "Hestia";//
-var heart_denizen = "Aphrodite";//
-var mind_denizen = "Janus";//
-var light_denizen = "Cetus";
-var void_denizen = "Nix";
-var hope_denizen = "Abraxus";
-var life_denizen = "Hemera";
-var rage_denizen = "Bacchus";//
+
 
 
 /*
