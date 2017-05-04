@@ -870,6 +870,7 @@ function getRandomSeed() {
  //I am in love:  http://indiegamr.com/generate-repeatable-random-numbers-in-js/
 // in order to work 'Math.seed' must NOT be undefined,
 // so in any case, you HAVE to provide a Math.seed
+//https://en.wikipedia.org/wiki/Linear_congruential_generator#Parameters_in_common_use if i want to have more possible sessions, use 2^32 or 2^64. see wiki
 Math.seededRandom = function(max, min) {
 	//console.log("getting seeded random");
     max = max || 1;
