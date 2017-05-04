@@ -811,6 +811,38 @@ function getLevelFromClass(i,class_name){
 	return first_arr[i];
 }
 
+function getRandomDenizenQuestFromAspect(aspect){
+	//console.log("looking for level from aspect");
+	var first_arr = [];
+	if(aspect == "Space"){
+		first_arr = denizen_space_quests;
+	}else if(aspect == "Time"){
+		first_arr = denizen_time_quests;
+	}else if(aspect == "Breath"){
+		first_arr = denizen_breath_quests;
+	}else if(aspect == "Doom"){
+		first_arr = denizen_doom_quests;
+	}else if(aspect == "Blood"){
+		first_arr = denizen_blood_quests;
+	}else if(aspect == "Heart"){
+		first_arr = denizen_heart_quests;
+	}else if(aspect == "Mind"){
+		first_arr = denizen_mind_quests;
+	}else if(aspect == "Light"){
+		first_arr = denizen_light_quests;
+	}else if(aspect == "Void"){
+		first_arr = denizen_void_quests;
+	}else if(aspect == "Rage"){
+		first_arr = denizen_rage_quests;
+	}else if(aspect == "Hope"){
+		first_arr = denizen_hope_quests;
+	}else if(aspect == "Life"){
+		first_arr = denizen_life_quests;
+	}
+	return getRandomElementFromArray(first_arr);
+}
+
+
 function getRandomQuestFromAspect(aspect){
 	//console.log("looking for level from aspect");
 	var first_arr = [];
@@ -1175,6 +1207,9 @@ var bike_quests = ["performing the SWEETEST bike stunts in all of SBURB", "doing
 bike_quests.push("getting air so unreal that they jump from one planet to another on their sick nasty bike");
 bike_quests.push("writing dope as fuck Bike Stunt FAQs to keep their sanity");
 bike_quests.push("singing a song, you know, from that shitty kids cartoon? 'wake up in the morning there's a brand new day ahead the sun is bright and the clouds smile down and all your friends are dead '");
+
+
+var random_quests = ["TODO, have low level random quests."];
 
 
 var space_denizen = "Echidna";

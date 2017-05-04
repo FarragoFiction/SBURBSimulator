@@ -259,10 +259,16 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 	}
 
 	this.getRandomQuest = function(){
-		if(Math.seededRandom() > .5 || this.aspect == "Space"){ //space players pretty much only get FrogBreeding duty.
-			return getRandomQuestFromAspect(this.aspect);
-		}else{
-			return getRandomQuestFromClass(this.class_name);
+		if(this.landLevel >= 6 && this.denizenDefeated == false){
+				return getRandomDenizenQuestFromAspect(this.aspect);
+		}else if(this.landLevel < 6 && this.denizenDefeated == false){
+			if(Math.seededRandom() > .5 || this.aspect == "Space"){ //space players pretty much only get FrogBreeding duty.
+				return getRandomQuestFromAspect(this.aspect);
+			}else{
+				return getRandomQuestFromClass(this.class_name);
+			}
+		}else if(this.denizenDefeated){
+			console.log("TODO: have post denizen quests.")
 		}
 
 	}

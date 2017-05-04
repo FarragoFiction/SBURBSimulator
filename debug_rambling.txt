@@ -899,3 +899,31 @@ How to distinguish between a fresh session and a old one. number of ticks!
 fucking FINALLY. AB can do one scratched session correctly. okay. lets see if she can do more than that.
 
 yay. new problem. i think AB is scratching too early or something. maybe need to let the aftermath finish rendering. i don't know. the scratched sessions' she's finding are all wrong.
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~BLUH~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Bluh. New brainstorming session. The next feature I want to work on is denizens.
+I want denizens to have 'infinite' of their aspects associated stat. will that make them unbalanced? always dodging, for example. always getting a lucky break.  maybe...maybe "infinite" means "1 more than the player has." or something like that? bluh.
+
+in addition to denizens, i want denizen minions (like the typheus minion) to be a mini boss.
+
+if landLevel < 6, then do any of first 6 quests (completely generic). fight minion.  If landLevel < 12, then do any of second 6 quests (3 from class, 3 from aspect).  fight denizen. then, do any of third set of quests. (post denizen). these quests give you fraymotifs. can also get fraymotifs through luck events (isntead of raising power)
+ 
+so......what's stopping me here? there's no real cognitive challenge. is it just inertia? deniznes won't even be that special 'till i do fraymotifs and i won't do those just yet.
+
+Okay. Step one, make a list of "generic quests" that anybody can do.  Make sure DoLandQuest pulls from them first and not their claspect quests.
+
+wait, no backwards. existing quests are pretty generic, make new ones that reference the denizen. glitch faq had some good examples. denizen fucked over your planet in some way, you have to fix it.
+
+
+what should I do?
+
+
+
+
+
+
+
