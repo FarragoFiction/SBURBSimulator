@@ -180,7 +180,7 @@ function GameEntity(session, name, crowned){
 		this.willIAbscond= function(div,players,numTurns){
 				if(!this.canAbscond || numTurns < 2) return false; //can't even abscond. also, don't run away after starting the fight, asshole.
 				var playerPower = 0;
-				var living = findLivingPlayers(players)
+				var living = this.getLivingMinusAbsconded(players)
 				for(var i = 0; i<living.length; i++){
 					playerPower += living[i].power;
 				}
@@ -230,15 +230,16 @@ function GameEntity(session, name, crowned){
 				if(this.getHP() > 0 && !this.fightOverAbscond(div,players))  this.myTurn(div, players,numTurns);
 				if(!this.fightOverAbscond(div, players) )this.playersTurn(div, players,numTurns);
 			}
-			if(this.fightOverAbscond(div,players)){
-				 	this.processAbscond(div,players);
-					this.ending();
-				 	return;
-			}
+
 			if(this.fightOver(div, players) ){
 				this.ending();
 				return;
 			}else{
+				if(this.fightOverAbscond(div,players)){
+					 	this.processAbscond(div,players);
+						this.ending();
+					 	return;
+				}
 				return this.strife(div, players,numTurns);
 			}
 		}
@@ -254,7 +255,7 @@ function GameEntity(session, name, crowned){
 			console.log("checking player abscond")
 			if(this.playersAbsconded.length == 0) return false;
 
-			var living = findLivingPlayers(players);
+			var living = this.getLivingMinusAbsconded(players);
 			if(living.length == 0) return false;  //technically, they havent absconded
 			for (var i = 0; i<living.length; i++){
 				console.log("has: " + living[i].title() + " run away?")
@@ -292,8 +293,15 @@ function GameEntity(session, name, crowned){
 			}
 		}
 
-		this.fightOver = function(div, players){
+		this.getLivingMinusAbsconded = function(players){
 			var living = findLivingPlayers(players);
+			for(var i = 0; i<this.playersAbsconded.length; i++){
+				removeFromArray(this.playersAbsconded[i], living);
+			}
+		}
+
+		this.fightOver = function(div, players){
+			var living = this.getLivingMinusAbsconded(players);
 			if(living.length == 0){
 				if(players.length == 1){
 					div.append(" The fight is over. The " + players[0].htmlTitle() + " is dead. ");
@@ -317,9 +325,9 @@ function GameEntity(session, name, crowned){
 
 
 		this.playersTurn = function(div, players){
-			var living = findLivingPlayers(players);
+			var living = this.getLivingMinusAbsconded(players);
 			for(var i = 0; i<living.length; i++){
-				if(!living[i].dead && this.getHP()>0 && this.playersAbsconded.indexOf(living[i] == -1)) this.playerdecideWhatToDo(div, living[i],living); //player could have died from a counter attack, boss could have died from previous player
+				if(!living[i].dead && this.getHP()>0 && this.playersAbsconded.indexOf(living[i]) == -1) this.playerdecideWhatToDo(div, living[i],living); //player could have died from a counter attack, boss could have died from previous player
 			}
 		}
 
@@ -336,12 +344,9 @@ function GameEntity(session, name, crowned){
 		//doomed players are just easier to target.
 		this.chooseTarget=function(players){
 			//TODO more likely to get light, less likely to get void
-			var living = findLivingPlayers(players);
+			var living = this.getLivingMinusAbsconded(players);
 			var doomed = findDoomedPlayers(living);
-			for(var i = 0; i<this.playersAbsconded.length; i++){ //can't target players that noped right the fuck out
-				removeFromArray(living, this.playersAbsconded[i]);
-				removeFromArray(doomed, this.playersAbsconded[i]);
-			}
+
 			var ret = getRandomElementFromArray(doomed);
 			if(ret){
 				console.log("targeting a doomed player.")
