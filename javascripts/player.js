@@ -262,7 +262,8 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 
 	this.getRandomQuest = function(){
 		if(this.landLevel >= 9 && this.denizenDefeated == false){ //three quests before denizen
-				return getRandomDenizenQuestFromAspect(this.aspect); //denizen quests are aspect only, no class.
+			console.log("denizen quest")
+			return getRandomDenizenQuestFromAspect(this); //denizen quests are aspect only, no class.
 		}else if(this.landLevel < 9 && this.denizenDefeated == false){
 			if(Math.seededRandom() > .5){
 				return getRandomQuestFromAspect(this.aspect);
