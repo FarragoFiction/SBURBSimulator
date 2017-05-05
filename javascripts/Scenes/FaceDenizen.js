@@ -41,6 +41,7 @@ function FaceDenizen(session){
 	this.renderContent = function(div){
 		for(var i = 0; i<this.denizenFighters.length; i++){
 			var p = this.denizenFighters[i]
+			removeFromArray(p, this.session.availablePlayers);
 			if(!p.denizenMinionDefeated){
 				this.faceDenizenMinion(p,div)
 			}else if(!p.denizenDefeated){
