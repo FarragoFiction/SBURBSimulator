@@ -42,15 +42,15 @@ function FaceDenizen(session){
 		for(var i = 0; i<this.denizenFighters.length; i++){
 			var p = this.denizenFighters[i]
 			if(!p.denizenMinionDefeated){
-				this.faceDenizenMinion(p)
+				this.faceDenizenMinion(p,div)
 			}else if(!p.denizenDefeated){
-				this.faceDenizen(p);
+				this.faceDenizen(p,div);
 			}
 			
 		}
 	}
 	
-	this.faceDenizenMinion = function(p){
+	this.faceDenizenMinion = function(p,div){
 		var denizenMinion = this.session.getDenizenMinionForPlayer(p);
 		ret += "The " + p.htmlTitle() + " initiates a strife with the " + denizenMinion.name + ". "
 		div.append(ret);
@@ -60,7 +60,7 @@ function FaceDenizen(session){
 		}
 	}
 	
-	this.faceDenizen = function(p){
+	this.faceDenizen = function(p,div){
 		var ret = " ";
 		var denizen = this.session.getDenizenForPlayer(p);
 		if(!p.denizenFaced && p.getFriends().length > p.getEnemies().length){ //one shot at The Choice
