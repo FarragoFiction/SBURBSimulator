@@ -39,7 +39,7 @@ function GrimDarkQuests(session){
 			var quip = "";
 			this.session.sessionHealth += -1* player.power; //more powerful the player, the more damage they do. get rid of grimDark bonus
 			player.landLevel += -1; //if they manage to snap out of this, they are gonna still have a bad time. why did they think this was a good idea?
-			if(player.power < 210){
+			if(player.power < 250){
 				quip = " Luckily, they kind of suck at this game. "
 			}else if(player.power > 250){
 				quip = " They seem strong enough to do some serious damage. "
