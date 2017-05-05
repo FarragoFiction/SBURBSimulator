@@ -78,7 +78,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 	this.grimDark = 0;  //  0 = none, 1 = some, 2 = some more 3 = full grim dark with aura and font and everything.
 	this.leader = false;
 	this.landLevel = 0; //at 10, you can challenge denizen.  only space player can go over 100 (breed better universe.)
-	this.denizenFaced = false; //when faced, you double in power (including future power increases.)
+	this.denizenFaced = false; 
 	this.denizenMinionFaced = false;
 	this.denizenDefeated = false;
 	this.denizenMinionDefeated = false;

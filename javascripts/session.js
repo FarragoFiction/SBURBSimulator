@@ -454,7 +454,8 @@ function Session(session_id){
 
 	}
 
-	this.getDenizenForPlayer = function(){
+	this.getDenizenForPlayer = function(player){
+		var aspect = player.aspect;
 		if(aspect == "Space"){
 			return this.denizens[0];
 		}else if(aspect == "Time"){
@@ -484,7 +485,8 @@ function Session(session_id){
 
 	}
 
-	this.getDenizenMinionForPlayer = function(){
+	this.getDenizenMinionForPlayer = function(player){
+		var aspect = player.aspect;
 		if(aspect == "Space"){
 			return this.denizen_minions[0];
 		}else if(aspect == "Time"){

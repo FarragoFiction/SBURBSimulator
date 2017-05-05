@@ -37,10 +37,55 @@ function FaceDenizen(session){
 				return this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
 		}
 	}
+	
+	this.renderContent = function(div){
+		for(var i = 0; i<this.denizenFighters.length; i++){
+			var p = this.denizenFighters[i]
+			if(!p.denizenMinionDefeated){
+				this.faceDenizenMinion(p)
+			}else if(!p.denizenDefeated){
+				this.faceDenizen(p);
+			}
+			
+		}
+	}
+	
+	this.faceDenizen = function(p){
+		var ret = " ";
+		var denizen = this.session.getDenizenForPlayer(p);
+		if(!p.denizenFaced && p.getFriends().length > p.getEnemies().length){ //one shot at The Choice
+			ret += "The " + p.htmlTitle() + " cautiously approaches their denizen, " + denizen.name + " and are presented with The Choice. "
+			if(p.power > 27){ //calibrate this l8r
+				ret += " The " + p.htmlTitle() + " manages to choose correctly, despite the seeming impossibility of the matter. ";
+				ret += " They gain the power they need to acomplish their objectives. ";
+				p.denizenDefeated = true;
+				p.power = p.power*2;  //current and future doubling of power.
+				p.leveledTheHellUp = true;
+				p.grist += denizen.grist;
+				div.append("<br>"+ret);
+				this.session.denizenBeat = true;
+				//console.log("denizen beat through choice in session: " + this.session.session_id)
+			}else{
+				p.denizenDefeated = false;
+				ret += " They are unable to bring themselves to make the clearly correct, yet impossible, Choice, and are forced to admit defeat. " + denizen.name + " warns them to prepare for a strife the next time they come back. ";
+				div.append("<br>"+ret);
+			}
+		}else{
+			ret += "The " + p.htmlTitle() + " initiates a strife with their denizen, " + denizen.name + ". "
+			div.append(ret);
+			denizen.strife(div, [p],0);
+			if(denizen.getHP() <= 0 ){
+				p.denizenDefeated = true;
+				p.power = p.power*2;  //current and future doubling of power.
+				this.session.denizenBeat = true;
+			}
+		}
+			p.denizenFaced = true; //may not have defeated them, but no longer have the option of The Choice
+	}
 
 	//TODO have the choice still be a thing. make it a harder thing. if you chose wrong, fight. only get choice if you havne't yet faced denizen.
 	//have to keep fighting until you defeat denizen.
-	this.renderContent = function(div){
+	this.renderContentOld = function(div){
 
 		for(var i = 0; i<this.denizenFighters.length; i++){
 			var ret = "<br>";
