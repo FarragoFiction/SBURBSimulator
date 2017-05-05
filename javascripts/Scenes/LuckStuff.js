@@ -282,7 +282,8 @@ function LuckStuff(session){
 
 	this.content = function(){
 		this.numberTriggers ++;
-		var ret = "<img src = 'images/fortune_event.png'/><Br>";  //maybe display image for this event, like not canvas, just image. Single image for event.
+		//var ret = "<img src = 'images/fortune_event.png'/><Br>";  //maybe display image for this event, like not canvas, just image. Single image for event.
+		var ret = "<br>";
 		removeFromArray(this.player, this.session.availablePlayers);
 		for(var i = 0; i<this.rolls.length; i++){
 			var roll = this.rolls[i];

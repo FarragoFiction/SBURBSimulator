@@ -321,7 +321,7 @@ function FreeWillStuff(session){
 
 				}else{
 					patsy = getRandomElementFromArray(enemies);//no longer care about "best"
-					if(this.canInfluenceEnemies(player) && patsy.freeWill  < player.freeWill){
+					if(this.canInfluenceEnemies(player) && patsy.freeWill  < player.freeWill && patsy.influencePlayer != player){
 						console.log(player.title() +" controling into murdermode and altering their enemies with game powers." +this.session.session_id);
 						patsy.murderMode = true;
 						patsy.triggerLevel = 10;
@@ -686,7 +686,8 @@ function FreeWillStuff(session){
 
 	this.content = function(){
 		this.session.hasFreeWillEvents = true;
-		var ret = "<img src = 'images/free_will_event.png'/><Br>"; //get rid of prefix soon.
+		//var ret = "<img src = 'images/free_will_event.png'/><Br>"; //get rid of prefix soon.
+		var ret = "<br>"
 		removeFromArray(this.player, this.session.availablePlayers);
 		ret += this.decision;  //it already happened, it's a string. ineligible for being an important event influencable by yellow yard. (john's retcon time powers can confound a decision like this tho)
 
