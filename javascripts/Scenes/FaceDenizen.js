@@ -9,7 +9,7 @@ function FaceDenizen(session){
 		this.playerList = playerList;
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var p = this.session.availablePlayers[i]
-			if(p.landLevel >= 12 && !p.denizenDefeated && p.land != null){
+			if(p.denizen_index >= 3 && !p.denizenDefeated && p.land != null){
 				this.denizenFighters.push(p);
 			}else if(p.landLevel >= 6 && !p.denizenMinionDefeated && p.land != null){
 					this.denizenFighters.push(p);
@@ -39,7 +39,7 @@ function FaceDenizen(session){
 	}
 
 	//TODO have the choice still be a thing. make it a harder thing. if you chose wrong, fight. only get choice if you havne't yet faced denizen.
-	//have to keep fighting until you defeat denizen. 
+	//have to keep fighting until you defeat denizen.
 	this.renderContent = function(div){
 
 		for(var i = 0; i<this.denizenFighters.length; i++){
