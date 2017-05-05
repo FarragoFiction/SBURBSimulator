@@ -50,6 +50,16 @@ function FaceDenizen(session){
 		}
 	}
 	
+	this.faceDenizenMinion = function(p){
+		var denizenMinion = this.session.getDenizenMinionForPlayer(p);
+		ret += "The " + p.htmlTitle() + " initiates a strife with the " + denizenMinion.name + ". "
+		div.append(ret);
+		denizenMinion.strife(div, [p],0);
+		if(denizenMinion.getHP() <= 0 ){
+			p.denizenMinionDefeated = true;
+		}
+	}
+	
 	this.faceDenizen = function(p){
 		var ret = " ";
 		var denizen = this.session.getDenizenForPlayer(p);

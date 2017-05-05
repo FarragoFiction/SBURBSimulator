@@ -79,7 +79,6 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 	this.leader = false;
 	this.landLevel = 0; //at 10, you can challenge denizen.  only space player can go over 100 (breed better universe.)
 	this.denizenFaced = false; 
-	this.denizenMinionFaced = false;
 	this.denizenDefeated = false;
 	this.denizenMinionDefeated = false;
 	this.causeOfDeath = ""; //fill in every time you die. only matters if you're dead at end
