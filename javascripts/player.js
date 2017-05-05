@@ -1325,6 +1325,10 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 				this.minLuck += 35;
 			}
 		}
+		if(this.trickster && this.aspect != "Doom"){
+			this.minLuck = 11111111111;
+			this.maxLuck = 11111111111;
+		}
 
 	}
 
@@ -1342,6 +1346,9 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 			}else{
 				this.freeWill += 35;
 			}
+		}
+		if(this.trickster && this.aspect != "Doom"){
+			this.freeWill = 11111111111;
 		}
 	}
 
@@ -1361,6 +1368,10 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 			}
 		}
 		this.currentHP = this.hp;
+		if(this.trickster && this.aspect != "Doom"){
+			this.currentHP = 11111111111;
+			this.hp = 11111111111;
+		}
 	}
 
 	this.initializeMobility = function(){
@@ -1377,6 +1388,9 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 			}else{
 				this.mobility += 35;
 			}
+		}
+		if(this.trickster && this.aspect != "Doom"){
+			this.mobility = 11111111111;
 		}
 	}
 
@@ -1421,6 +1435,12 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 				this.boostAllRelationshipsWithMeBy(-1 * amount);
 			}
 		}
+		
+		if(this.trickster && this.aspect != "Doom" && this.aspect != "Heart")
+		for(var k = 0; k <this.relationships.length; k++){
+				var r = this.relationships[k];
+				r.value = 111111; //EVERYTHIGN IS BETTER!!!!!!!!!!!
+			}
 	}
 
 	this.initializePower = function(){
@@ -1431,6 +1451,9 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 			}else{
 				this.power += -15;
 			}
+		}
+		if(this.trickster && this.aspect != "Doom"){
+			this.power = 11111111111;
 		}
 	}
 
@@ -1485,6 +1508,11 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 				this.boostAllRelationshipsBy(-1 * amount)
 			}else if(rand == 17){
 				this.triggerLevel += -1 * amount;
+			}
+			if(this.trickster){
+				this.power = 11111111111;
+				this.hp = 11111111111;
+				this.currentHP = 11111111111;
 			}
 		}else{
 
