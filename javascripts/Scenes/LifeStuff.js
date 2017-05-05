@@ -247,7 +247,7 @@ function LifeStuff(session){
 		var canvas = document.getElementById(canvasId);
 		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawSprite(pSpriteBuffer,player)
-		var bubbleSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		var bubbleSpriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
 		drawDreamBubble(bubbleSpriteBuffer)
 
 		//leave room on left for possible 'guide' player.
@@ -256,7 +256,7 @@ function LifeStuff(session){
 		if(ghost){
 			var gSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 			drawSpriteTurnways(gSpriteBuffer,ghost)
-			copyTmpCanvasToRealCanvasAtPos(canvas, bubbleSpriteBuffer,400,0)
+			//copyTmpCanvasToRealCanvasAtPos(canvas, bubbleSpriteBuffer,400,0)
 			copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,400,0)
 		}
 
