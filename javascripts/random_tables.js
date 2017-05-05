@@ -185,34 +185,6 @@ function makeFilteredCopyForLetters(array, letter){
 }
 
 
-function getDenizenFromAspect(aspect){
-	if(aspect == "Space"){
-		return space_denizen;
-	}else if(aspect == "Time"){
-		return time_denizen;
-	}else if(aspect == "Breath"){
-		return breath_denizen;
-	}else if(aspect == "Doom"){
-		return doom_denizen;
-	}else if(aspect == "Blood"){
-		return blood_denizen;
-	}else if(aspect == "Heart"){
-		return heart_denizen;
-	}else if(aspect == "Mind"){
-		return mind_denizen;
-	}else if(aspect == "Light"){
-		return light_denizen;
-	}else if(aspect == "Void"){
-		return void_denizen;
-	}else if(aspect == "Rage"){
-		return rage_denizen;
-	}else if(aspect == "Hope"){
-		return hope_denizen;
-	}else if(aspect == "Life"){
-		return life_denizen;
-	}
-	return "ERROR 404: Denizen Not Found"//it will be HILARIOUS if this ever prints out.
-}
 
 //use class,aspect, and interests to generate a 16 element level array.
 //need to happen ahead of time and have more variety to display on

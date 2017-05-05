@@ -293,7 +293,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 
 
 	this.getDenizen = function(){
-		return getDenizenFromAspect(this.aspect);
+		return this.session.getDenizenForPlayer(this).name;
 	}
 
 	//more likely if lots of people hate you
