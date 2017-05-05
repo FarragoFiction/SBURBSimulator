@@ -223,7 +223,7 @@ function GameEntity(session, name, crowned){
 		*/
 		this.strife = function(div, players, numTurns){
 			numTurns += 1;
-			console.log(this.name + ": strife! " + numTurns + " " + this.session.session_id);
+			console.log(this.name + ": strife! " + numTurns + " turns against: " + getPlayersTitlesNoHTML(players) + this.session.session_id);
 			div.append("<br><Br>")
 			//as players die or mobility stat changes, might go players, me, me, players or something. double turns.
 			if(getAverageMobility(players) > this.getMobility()){ //players turn
@@ -250,13 +250,13 @@ function GameEntity(session, name, crowned){
 		//if i abscond fight is over
 		//if all living players abscond, fight is over
 		this.fightOverAbscond = function(div, players){
-			console.log("checking if fight is over beause of abscond")
+			console.log("checking if fight is over beause of abscond " + this.playersAbsconded.length)
 			if(this.iAbscond){
 				return true;
 			}
 			if(this.playersAbsconded.length == 0) return false;
 
-			var living = this.getLivingMinusAbsconded(players);
+			var living = findLivingPlayers(players);
 			if(living.length == 0) return false;  //technically, they havent absconded
 			for (var i = 0; i<living.length; i++){
 				console.log("has: " + living[i].title() + " run away?")
