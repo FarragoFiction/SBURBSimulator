@@ -414,6 +414,7 @@ function Session(session_id){
 		var light_denizen = new GameEntity(this, "Cetus", null);
 		light_denizen.setStats(30,9999,100,20,0,0,100,true, false, [],1000000);
 		var void_denizen = new GameEntity(this, "Nix", null); //stats dont matter, fights off screen????
+		void_denizen.setStats(30,50,100,20,0,0,100,true, false, [],1000000);
 		var hope_denizen = new GameEntity(this, "Abraxus", null);
 		hope_denizen.setStats(30,50,100,20,0,0,9999,true, false, [],1000000);
 		var life_denizen = new GameEntity(this, "Hemera", null);
@@ -441,8 +442,9 @@ function Session(session_id){
 		var mind_denizen = 	new GameEntity(this, "Janus  Minion", null);
 		mind_denizen.setStats(30,50,50,20,0,100,25,true, false, [],1000);
 		var light_denizen = new GameEntity(this, "Cetus  Minion", null);
-		light_denizen.setStats(30,50,100,20,0,0,25,true, false, [],1000);
-		var void_denizen = new GameEntity(this, "Nix", null); //stats dont matter, fights off screen????
+		light_denizen.setStats(30,100,100,20,0,0,25,true, false, [],1000);
+		var void_denizen = new GameEntity(this, "Nix", null); 
+		void_denizen.setStats(30,50,100,20,0,0,25,true, false, [],1000);
 		var hope_denizen = new GameEntity(this, "Abraxus  Minion", null);
 		hope_denizen.setStats(30,50,50,20,0,0,75,true, false, [],1000);
 		var life_denizen = new GameEntity(this, "Hemera  Minion", null);

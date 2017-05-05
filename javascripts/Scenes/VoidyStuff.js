@@ -75,11 +75,13 @@ function VoidyStuff(session){
 
 		if(this.player.landLevel >= 6 && this.player.land != null && !this.player.denizenFaced && Math.seededRandom() > .5){
 			this.player.denizenFaced = true;
-			ret += " Why is the denizen " + this.player.getDenizen() + " bellowing so loudly on " + this.player.shortLand() + "? ";
+			var denizen = this.session.getDenizenForPlayer(this.player);
+			ret += " Why is the denizen " + denizen.name + " bellowing so loudly on " + this.player.shortLand() + "? ";
 			if(Math.seededRandom() >.5){
 				this.player.power = this.player.power*2;  //current and future doubling of power.
 				this.player.leveledTheHellUp = true;
 				this.player.denizenDefeated = true;
+				this.player.grist += denizen.grist;
 			}else{
 				if(this.player.getFriends().length < this.player.getEnemies().length){
 					this.player.denizenFaced = true;
