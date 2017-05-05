@@ -124,7 +124,7 @@ function GameEntity(session, name, crowned){
 			if(!this.abscondable) return false;
 			if(player.doomed) return false; //doomed players accept their fate.
 			var reasonsToLeave = 0;
-			var reasonsToStay = 0;
+			var reasonsToStay = 1; //grist man. 
 			reasonsToStay += this.getFriendsFromList(players);
 			var hearts = this.getHearts();
 			var diamonds = this.getDiamonds();
