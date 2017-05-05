@@ -39,6 +39,7 @@ function FaceDenizen(session){
 	}
 	
 	this.renderContent = function(div){
+		div.append("<br><br>")
 		for(var i = 0; i<this.denizenFighters.length; i++){
 			var p = this.denizenFighters[i]
 			removeFromArray(p, this.session.availablePlayers);

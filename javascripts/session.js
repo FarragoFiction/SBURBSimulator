@@ -427,28 +427,28 @@ function Session(session_id){
 	this.makeDenizenMinions = function(){
 		//minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs
 		var space_denizen =  new GameEntity(this, "Echidna Minion", null);
-		space_denizen.setStats(30,50,50,-100,0,0,50,true, false, [],1000);
+		space_denizen.setStats(30,50,50,-100,0,0,25,true, false, [],1000);
 		var time_denizen = new GameEntity(this, "Hephaestus  Minion", null);
-		time_denizen.setStats(30,50,50,20,0,-100,50,true, false, [],1000);
+		time_denizen.setStats(30,50,50,20,0,-100,25,true, false, [],1000);
 		var breath_denizen = new GameEntity(this, "Typheus  Minion", null);
-		breath_denizen.setStats(30,50,50,100,0,0,50,true, false, [],1000);
+		breath_denizen.setStats(30,50,50,100,0,0,25,true, false, [],1000);
 		var doom_denizen = new GameEntity(this, "Cassandra  Minion", null);
-		doom_denizen.setStats(-100,50,25,20,0,0,50,true, false, [],1000);
+		doom_denizen.setStats(-100,50,25,20,0,0,25,true, false, [],1000);
 		var blood_denizen = new GameEntity(this, "Hestia  Minion", null);
-		blood_denizen.setStats(30,50,50,20,-100,0,50,true, false, [],1000);
+		blood_denizen.setStats(30,50,50,20,-100,0,25,true, false, [],1000);
 		var heart_denizen = new GameEntity(this, "Aphrodite  Minion", null);
-		heart_denizen.setStats(30,50,50,20,0,0,75,true, false, [],1000);
+		heart_denizen.setStats(30,50,50,20,0,0,50,true, false, [],1000);
 		var mind_denizen = 	new GameEntity(this, "Janus  Minion", null);
-		mind_denizen.setStats(30,50,50,20,0,100,50,true, false, [],1000);
+		mind_denizen.setStats(30,50,50,20,0,100,25,true, false, [],1000);
 		var light_denizen = new GameEntity(this, "Cetus  Minion", null);
-		light_denizen.setStats(30,50,100,20,0,0,50,true, false, [],1000);
+		light_denizen.setStats(30,50,100,20,0,0,25,true, false, [],1000);
 		var void_denizen = new GameEntity(this, "Nix", null); //stats dont matter, fights off screen????
 		var hope_denizen = new GameEntity(this, "Abraxus  Minion", null);
-		hope_denizen.setStats(30,50,50,20,0,0,100,true, false, [],1000);
+		hope_denizen.setStats(30,50,50,20,0,0,75,true, false, [],1000);
 		var life_denizen = new GameEntity(this, "Hemera  Minion", null);
-		life_denizen.setStats(30,50,100,20,0,0,50,true, false, [],1000);
+		life_denizen.setStats(30,50,100,20,0,0,25,true, false, [],1000);
 		var rage_denizen = new GameEntity(this, "Bacchus  Minion", null);
-		rage_denizen.setStats(30,50,50,20,100,0,50,true, false, [],1000);
+		rage_denizen.setStats(30,50,50,20,100,0,25,true, false, [],1000);
 
 		this.denizen_minions = this.denizen_minions.concat([space_denizen, time_denizen, breath_denizen, doom_denizen, blood_denizen, heart_denizen, mind_denizen, light_denizen, void_denizen, hope_denizen, life_denizen, rage_denizen]);
 
