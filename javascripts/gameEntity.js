@@ -272,6 +272,7 @@ function GameEntity(session, name, crowned){
 			this.fraymotifsUsed = []; //not used yet
 			this.playersAbsconded = [];
 			this.iAbscond = false;
+			this.healPlayers(players);
 		}
 		
 		
@@ -323,7 +324,6 @@ function GameEntity(session, name, crowned){
 				div.append(" <Br><br> The fight is over. " + this.name + " is dead. ");
 				this.levelPlayers(players) //even corpses
 				this.givePlayersGrist(players);
-				this.healPlayers(div, players);//if i heal players after EVERY fight, infinite loops if they run from denizens
 				this.ending(div, players)
 				return true;
 			}//TODO have alternate win conditions for denizens???
