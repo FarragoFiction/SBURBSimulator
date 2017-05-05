@@ -272,7 +272,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 				return getRandomQuestFromClass(this.class_name);
 			}
 		}else if(this.denizenDefeated){
-			console.log("TODO: have post denizen quests.")
+			return "restoring their land from the ravages of " + this.session.getDenizenForPlayer(this).name;
 		}
 
 	}
