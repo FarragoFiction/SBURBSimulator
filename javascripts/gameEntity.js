@@ -329,7 +329,7 @@ function GameEntity(session, name, crowned){
 		}
 
 		this.givePlayersGrist = function(players){
-			for(var i = 0; i<players.length; i++{
+			for(var i = 0; i<players.length; i++){
 				players.grist += this.girst/players.length;
 			}
 		}

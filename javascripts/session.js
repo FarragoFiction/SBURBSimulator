@@ -388,7 +388,7 @@ function Session(session_id){
 		this.jack.setStats(0,25,50,60,50,1000,30,true, true, [],100000); //jack is kind of a big deal. luck determines his odds of finding bullshit weapon
 
 		this.democraticArmy = new GameEntity(this, "Democratic Army",null); //doesn't actually exist till WV does his thing.
-		this.democraticArmy.setStats(0,0,0,0,0,0,0,false, false, [],,1000);
+		this.democraticArmy.setStats(0,0,0,0,0,0,0,false, false, [],1000);
 
 		this.makeDenizens();
 		this.makeDenizenMinions();
@@ -450,7 +450,7 @@ function Session(session_id){
 		var rage_denizen = new GameEntity(this, "Bacchus  Minion", null);
 		rage_denizen.setStats(30,50,50,20,100,0,50,true, false, [],1000);
 
-		this.denizens_minions = this.denizens_minions.concat([space_denizen, time_denizen, breath_denizen, doom_denizen, blood_denizen, heart_denizen, mind_denizen, light_denizen, void_denizen, hope_denizen, life_denizen, rage_denizen]);
+		this.denizen_minions = this.denizen_minions.concat([space_denizen, time_denizen, breath_denizen, doom_denizen, blood_denizen, heart_denizen, mind_denizen, light_denizen, void_denizen, hope_denizen, life_denizen, rage_denizen]);
 
 	}
 
@@ -478,7 +478,7 @@ function Session(session_id){
 		}else if(aspect == "Life"){
 			return this.denizens[10];
 		}else if(aspect == "Rage"){
-			returnthis.denizens[11];
+			return this.denizens[11];
 		}
 		return "ERROR 404: Denizen Not Found"//it will be HILARIOUS if this ever prints out.
 
