@@ -41,10 +41,10 @@ function GrimDarkQuests(session){
 			player.landLevel += -1; //if they manage to snap out of this, they are gonna still have a bad time. why did they think this was a good idea?
 			if(player.power < 250){
 				quip = " Luckily, they kind of suck at this game. "
-			}else if(player.power > 250){
-				quip = " They seem strong enough to do some serious damage. "
-			}else if(player.power > 300){
+			}else if(player.power > 500){
 				quip = " Oh shit. This looks bad. "
+			}else if(player.power > 300){
+				quip = " They seem strong enough to do some serious damage. "
 			}
 			return "The "+ player.htmlTitle() + " is trying to break SBURB itself. They " + getRandomElementFromArray(tasks) + quip;
 
