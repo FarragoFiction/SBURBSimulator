@@ -164,7 +164,7 @@ function EngageMurderMode(session){
 				chatText += chatLine(player2Start, player2,"Fuck. Worth a shot.")
 			}
 		}else if(r2.type() == r2.goodBig){
-			chatText += chatLine(player2Start, player2,"But...why? I LIKE you! I've been nice to you! Why ME?")
+			chatText += chatLine(player2Start, player2,"But...why? I LIKE you! I've been nice to you! Why ME?") //alt dialogue of them realizing that htey've actually been a dick?
 			var alternative = player2.getWorstEnemyFromList(livePlayers);
 			if(alternative){
 				chatText += chatLine(player2Start, player2,alternative.chatHandle + "is a million times worse than me! ")
