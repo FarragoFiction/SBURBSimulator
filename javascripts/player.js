@@ -922,7 +922,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 	}
 
 	this.htmlTitleHP = function(){
-		return getFontColorFromAspect(this.aspect) + this.title() + " (" + Math.round(this.currentHP) + " hp, " + this.power + " power)</font>"
+		return getFontColorFromAspect(this.aspect) + this.title() + " (" + Math.round(this.currentHP) + " hp, " + Math.round(this.power) + " power)</font>"
 	}
 
 	this.generateBlandRelationships = function(friends){

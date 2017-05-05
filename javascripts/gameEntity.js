@@ -98,7 +98,7 @@ function GameEntity(session, name, crowned){
 		this.htmlTitleHP = function(){
 			var ret = "";
 			if(this.crowned != null) ret+="Crowned "
-			return ret + name +" (" + Math.round(this.getHP()) + " hp, " + this.getPower() + " power)</font>"; //TODO denizens are aspect colored.
+			return ret + name +" (" + Math.round(this.getHP()) + " hp, " + Math.round(this.getPower()) + " power)</font>"; //TODO denizens are aspect colored.
 		}
 
 		//only the crown itself has this called. king and queen just use the crown.
@@ -264,7 +264,6 @@ function GameEntity(session, name, crowned){
 					return false; //found living player that hasn't yet absconded.
 				}
 			}
-			console.log("returning that fight is over due to abscond...why?");
 			return true;
 
 		}
@@ -311,7 +310,7 @@ function GameEntity(session, name, crowned){
 
 		this.fightOver = function(div, players){
 			var living = this.getLivingMinusAbsconded(players);
-			if(living.length == 0){
+			if(living.length == 0 && players.length > this.playersAbsconded.length){
 				if(players.length == 1){
 					div.append(" The fight is over. The " + players[0].htmlTitle() + " is dead. ");
 				}else{
