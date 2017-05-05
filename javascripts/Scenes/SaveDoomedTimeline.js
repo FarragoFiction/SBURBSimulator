@@ -111,10 +111,18 @@ function SaveDoomedTimeLine(session){
 			}
 		}
 
-		ret += " The " + this.timePlayer.htmlTitleBasic() + " has sacrificed themselves to prevent this from happening. ";
-		ret += " YOUR session's " + this.timePlayer.htmlTitle() + " is fine, don't worry about it...but THIS one is now doomed. ";
-		ret += " Least they can do after saving everyone is to time travel to where they can do the most good. ";
-		ret += " After doing something inscrutable, they vanish in a cloud of clocks and gears. ";
+		
+		
+		var living = findLivingPlayers(this.session.players);
+		if(living.length > 0){
+			ret += " The " + this.timePlayer.htmlTitleBasic() + " has sacrificed themselves to prevent this from happening. ";
+			ret += " YOUR session's " + this.timePlayer.htmlTitle() + " is fine, don't worry about it...but THIS one is now doomed. ";
+			ret += " Least they can do after saving everyone is to time travel to where they can do the most good. ";
+			ret += " After doing something inscrutable, they vanish in a cloud of clocks and gears. ";
+		}else{
+			console.log("death's hand maid in: " + this.session.session_id)
+			ret += " Time really is the shittiest aspect. They make sure everybody is dead in this timeline, as per inevitability's requirements, then they sullenly vanish in a cloud of clocks and gears. "
+		}
 		this.makeDoomedSnapshot();
 		this.timePlayer.doomedTimeClones.push(this.doomedTimeClone);
 		return ret;

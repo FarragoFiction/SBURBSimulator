@@ -235,12 +235,12 @@ function GameEntity(session, name, crowned){
 			}
 
 			if(this.fightOver(div, players) ){
-				this.ending();
+				this.ending(div,players);
 				return;
 			}else{
 				if(this.fightOverAbscond(div,players)){
 					 	this.processAbscond(div,players);
-						this.ending();
+						this.ending(div,players);
 					 	return;
 				}
 				return this.strife(div, players,numTurns);
@@ -252,10 +252,8 @@ function GameEntity(session, name, crowned){
 		this.fightOverAbscond = function(div, players){
 			console.log("checking if fight is over beause of abscond")
 			if(this.iAbscond){
-				console.log("jack abscond")
 				return true;
 			}
-			console.log("checking player abscond")
 			if(this.playersAbsconded.length == 0) return false;
 
 			var living = this.getLivingMinusAbsconded(players);
@@ -263,10 +261,8 @@ function GameEntity(session, name, crowned){
 			for (var i = 0; i<living.length; i++){
 				console.log("has: " + living[i].title() + " run away?")
 				if(this.playersAbsconded.indexOf(living[i]) == -1){
-					console.log("no")
 					return false; //found living player that hasn't yet absconded.
 				}
-				console.log("yes")
 			}
 			console.log("returning that fight is over due to abscond...why?");
 			return true;
@@ -277,8 +273,17 @@ function GameEntity(session, name, crowned){
 			this.fraymotifsUsed = []; //not used yet
 			this.playersAbsconded = [];
 			this.iAbscond = false;
+			this.healPlayers(players);  //they are using items or whatever. don't worry about it.
 		}
-
+		
+		
+		this.healPlayers = function(players){
+			for(var i = 0; i<players.length; i++){
+				var player = players[i];
+				if(!player.doomed &&  !player.dead && player.currentHP < player.hp) player.currentHP = player.hp;
+			}
+		}
+		
 		this.levelPlayers = function(stabbings){
 			for(var i = 0; i<stabbings.length; i++){
 				stabbings[i].increasePower();
@@ -314,14 +319,12 @@ function GameEntity(session, name, crowned){
 				}
 
 				this.minorLevelPlayers(players)
-				this.ending();
 				this.ending(div, players)
 				return true;
 			}else if(this.getHP() <= 0){
 				div.append(" <Br><br> The fight is over. " + this.name + " is dead. ");
 				this.levelPlayers(players) //even corpses
 				this.givePlayersGrist(players);
-				this.ending();
 				this.ending(div, players)
 				return true;
 			}//TODO have alternate win conditions for denizens???

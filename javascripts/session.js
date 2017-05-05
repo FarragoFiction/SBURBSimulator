@@ -510,7 +510,7 @@ function Session(session_id){
 		}else if(aspect == "Life"){
 			return this.denizen_minions[10];
 		}else if(aspect == "Rage"){
-			returnthis.denizen_minions[11];
+			return this.denizen_minions[11];
 		}
 		return "ERROR 404: Denizen Not Found"//it will be HILARIOUS if this ever prints out.
 
