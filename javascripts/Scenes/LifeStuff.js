@@ -292,19 +292,20 @@ function LifeStuff(session){
 		drawSpriteTurnways(gSpriteBuffer,ghost)
 
 		var canvasBuffer = getBufferCanvas(document.getElementById("canvas_template"))
+
+
+
+		//leave room on left for possible 'guide' player.
+		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,200,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,500,0)
 		if(enablingAspect == "Life"){
 			drawWhatever(canvas, "life_res.png");
 			drawWhatever(canvas, "afterlife_life.png");
 		}else if(enablingAspect == "Doom"){
+			console.log("doom revive: " + this.session.session_id)
 			drawWhatever(canvas, "doom_res.png");
 			drawWhatever(canvas, "afterlife_doom.png");
 		}
-
-
-		//leave room on left for possible 'guide' player.
-		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,300,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,600,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, canvasBuffer,0,0)
 		return canvas;
 	}
 
