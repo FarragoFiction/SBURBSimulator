@@ -47,6 +47,7 @@ function GetTiger(session){
 
 
 	this.content = function(){
+		console.log("trying to get tiger for: " + getPlayersTitles(this.deadPlayersToGodTier))
 		var ret = getPlayersTitles(this.deadPlayersToGodTier) + " was always destined to take a Legendary Nap, and upon waking, become a God Tier. ";
 
 		var withd = findPlayersWithDreamSelves(this.deadPlayersToGodTier);
@@ -62,7 +63,7 @@ function GetTiger(session){
 				this.session.questBed = true;
 			}
 		}else if(withd){
-			//console.log("We COULD have been on my quest bed, but random chance said no. "+ this.session.session_id)
+			console.log("We COULD have been on my quest bed, but random chance said no. "+ this.session.session_id)
 			return;
 		}
 
@@ -75,6 +76,7 @@ function GetTiger(session){
 				ret += " Upon a wacky series of events leaving their corpse on their SACRIFICIAL SLAB on " + p.moon + ", the " + p.htmlTitle() + " glows and ascends to the God Tiers with a sweet new outfit."
 				this.session.sacrificialSlab = true;
 			}
+			console.log("no dream self so slab")
 		}
 		this.session.godTier = true;
 		ret += " They are now extremely powerful. ";
