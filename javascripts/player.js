@@ -1875,7 +1875,7 @@ function findPlayersWithDreamSelves(playerList){
 	ret = [];
 	for(var i= 0; i<playerList.length; i++){
 		var p = playerList[i];
-		if(p.dreamSelf){
+		if(p.dreamSelf && !p.isDreamSelf){
 			ret.push(p);
 		}
 	}

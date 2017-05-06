@@ -63,7 +63,7 @@ function GetTiger(session){
 				this.session.questBed = true;
 			}
 		}else if(withd){
-			console.log("We COULD have been on my quest bed, but random chance said no. "+ this.session.session_id)
+			console.log("We COULD have been on my quest bed, but random chance said no. " + getPlayersTitles(this.deadPlayersToGodTier))
 			return;
 		}
 
