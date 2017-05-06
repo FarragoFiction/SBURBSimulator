@@ -62,8 +62,8 @@ function GetTiger(session){
 				ret +="On " + p.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
 				this.session.questBed = true;
 			}
-		}else if(withd){
-			console.log("We COULD have been on my quest bed, but random chance said no. " + getPlayersTitles(this.deadPlayersToGodTier))
+		}else if(withd && withd.length > 0){
+			console.log("We COULD have been on my quest bed, but random chance said no. " + getPlayersTitles(withd))
 			return;
 		}
 
