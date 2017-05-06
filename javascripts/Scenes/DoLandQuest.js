@@ -288,7 +288,7 @@ function DoLandQuest(session){
 			}else{
 				ret += this.contentForPlayer(player, helper);
 			}
-			if(player.landLevel >= this.landLevelNeeded && player.aspect != "Space"){
+			if(player.denizen_index == 3 && !player.denizenDefeated ){
 				ret += " They finally finished off all the main quests on " + player.land + ". They should be ready to face their Denizen. ";
 			}
 		}
