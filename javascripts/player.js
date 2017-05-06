@@ -1886,7 +1886,7 @@ function findPlayersWithoutDreamSelves(playerList){
 	ret = [];
 	for(var i= 0; i<playerList.length; i++){
 		var p = playerList[i];
-		if(!p.dreamSelf || player.isDreamSelf){ //if you ARE your dream self, then when you go to sleep....
+		if(!p.dreamSelf || p.isDreamSelf){ //if you ARE your dream self, then when you go to sleep....
 			ret.push(p);
 		}
 	}
