@@ -13,10 +13,10 @@ function EngageMurderMode(session){
 		if(this.player){
 			var diamond = this.player.hasDiamond()
 			if(this.player.moon == "Prospit"){
-				moon = 1;
+				moon = 5;
 			}
 			var rand = this.player.rollForLuck();
-			if(this.player.triggerLevel > 0 &&  !this.player.murderMode && this.player.getEnemies().length > 0){
+			if(this.player.triggerLevel > 5 &&  !this.player.murderMode && this.player.getEnemies().length > 0){
 				if(!diamond && rand < (4*this.player.triggerLevel+moon)){  //easier to go crazy if you SEE all your friends dying already. (in prospit clouds)
 					return true;
 				}
