@@ -917,6 +917,8 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 		return getFontColorFromAspect(this.aspect) + this.title() + "</font>"
 	}
 
+
+
 	this.htmlTitleBasic = function(){
 		return getFontColorFromAspect(this.aspect) + this.titleBasic() + "</font>"
 	}

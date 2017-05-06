@@ -18,10 +18,11 @@ window.onload = function() {
 function renderSingleGhost(ghost,i){
 	console.log("rendering ghost")
 	var div = $("#story")
-	var html = "<div class = 'eulogy'>The " + ghost.htmlTitle() + " died " + ghost.causeOfDeath + ".";
+	var html = "<div class = 'eulogy'><div class = 'eulogy_text'>The " + ghost.htmlTitle() + " died " + ghost.causeOfDeath + ".";
 	if(ghost.causeOfDrain){
 		html += " They were drained to the point of uselessness by the" + ghost.causeOfDrain + ".  They will recover eventually. "
 	}
+	html +="</div>"
 	var divID = "Eulogy" + i;
 	html += "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas></div>";
 	div.append(html);

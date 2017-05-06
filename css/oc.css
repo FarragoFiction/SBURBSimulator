@@ -81,6 +81,10 @@
   width:400px;
 }
 
+.eulogy_text{
+  background-color: white;
+}
+
 @font-face {
     font-family: horrorterror;
     src: url(MISTERTWIGGY.TTF);
