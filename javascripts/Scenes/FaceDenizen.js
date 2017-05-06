@@ -37,7 +37,7 @@ function FaceDenizen(session){
 				return this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
 		}
 	}
-	
+
 	this.renderContent = function(div){
 		div.append("<br><br>")
 		for(var i = 0; i<this.denizenFighters.length; i++){
@@ -48,25 +48,25 @@ function FaceDenizen(session){
 			}else if(!p.denizenDefeated){
 				this.faceDenizen(p,div);
 			}
-			
+
 		}
 	}
-	
+
 	this.faceDenizenMinion = function(p,div){
 		var denizenMinion = this.session.getDenizenMinionForPlayer(p);
-		var ret = "The " + p.htmlTitle() + " initiates a strife with the " + denizenMinion.name + ". "
+		var ret = "<br>The " + p.htmlTitle() + " initiates a strife with the " + denizenMinion.name + ". "
 		div.append(ret);
 		denizenMinion.strife(div, [p],0);
 		if(denizenMinion.getHP() <= 0 ){
 			p.denizenMinionDefeated = true;
 		}
 	}
-	
+
 	this.faceDenizen = function(p,div){
 		var ret = " ";
 		var denizen = this.session.getDenizenForPlayer(p);
 		if(!p.denizenFaced && p.getFriends().length > p.getEnemies().length){ //one shot at The Choice
-			ret += "The " + p.htmlTitle() + " cautiously approaches their denizen, " + denizen.name + " and are presented with The Choice. "
+			ret += "<br>The " + p.htmlTitle() + " cautiously approaches their denizen, " + denizen.name + " and are presented with The Choice. "
 			if(p.power > 27){ //calibrate this l8r
 				ret += " The " + p.htmlTitle() + " manages to choose correctly, despite the seeming impossibility of the matter. ";
 				ret += " They gain the power they need to acomplish their objectives. ";
@@ -83,7 +83,7 @@ function FaceDenizen(session){
 				div.append("<br>"+ret);
 			}
 		}else{
-			ret += "The " + p.htmlTitle() + " initiates a strife with their denizen, " + denizen.name + ". "
+			ret += "<br>The " + p.htmlTitle() + " initiates a strife with their denizen, " + denizen.name + ". "
 			div.append(ret);
 			denizen.strife(div, [p],0);
 			if(denizen.getHP() <= 0 ){
