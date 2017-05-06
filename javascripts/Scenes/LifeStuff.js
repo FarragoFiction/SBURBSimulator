@@ -130,7 +130,7 @@ function LifeStuff(session){
 				}else if((player.class_name == "Seer" ||  player.class_name == "Page") && other_player && !other_player.dead){
 					this.helpPlayerCommuneDead(div, player, other_player);
 				}else if(player.class_name == "Prince"){
-					this.drainDeadForPower(div, "", player);
+					this.drainDeadForPower(div, "", player,false);
 				}else if(player.class_name == "Bard" && other_player && !other_player.dead){
 					this.helpPlayerDrainDeadForPower(div, player, other_player);
 				}else if((player.class_name == "Rogue" ||  player.class_name == "Maid") && other_player && other_player.dead){
@@ -304,11 +304,11 @@ function LifeStuff(session){
 		//leave room on left for possible 'guide' player.
 		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,300,0)
 		copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,600,0)
-		copyTmpCanvasToRealCanvasAtPos(canvasBuffer, canvasBuffer,0,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, canvasBuffer,0,0)
 		return canvas;
 	}
 
-	this.drawDrainDead = function(div, player, ghost){
+	this.drawDrainDead = function(div, player, ghost, long){
 		console.log("drain dead in: " + this.session.session_id);
 		var canvasId = div.attr("id") + "commune_" +player.chatHandle
 		var canvasHTML = "<br><canvas id='" + canvasId +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
@@ -320,12 +320,16 @@ function LifeStuff(session){
 		drawSpriteTurnways(gSpriteBuffer,ghost)
 
 		var canvasBuffer = getBufferCanvas(document.getElementById("canvas_template"))
-		drawWhatever(canvas, "drain_lightning.png");
+		if(long){
+			drawWhatever(canvas,"drain_lightning_long.png")
+		}else{
+			drawWhatever(canvas, "drain_lightning.png");
+		}
 		drawWhatever(canvas, "drain_halo.png");
 		//leave room on left for possible 'guide' player.
 		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,200,0)
 		copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,600,0)
-		copyTmpCanvasToRealCanvasAtPos(canvasBuffer, canvasBuffer,0,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, canvasBuffer,0,0)
 		return canvas;
 	}
 
@@ -370,7 +374,7 @@ function LifeStuff(session){
 
 
 	//what graphical effect should be conveyed by "draining"??? opcacity at 50%?
-	this.drainDeadForPower = function(div, str, player){
+	this.drainDeadForPower = function(div, str, player,long){
 		var ghost = this.session.afterLife.findHatedOneSpirit(player);
 		var ghostName = "";
 		if(ghost){
@@ -405,7 +409,7 @@ function LifeStuff(session){
 			player.leveledTheHellUp = true;
 			player.level_index +=1;
 			div.append("<br><br>" +str);
-			var canvas = this.drawDrainDead(div, player, ghost);
+			var canvas = this.drawDrainDead(div, player, ghost,long);
 			removeFromArray(player, this.session.availablePlayers);
 			return canvas;
 		}else{
@@ -423,16 +427,14 @@ function LifeStuff(session){
 		var childDiv = $("#"+divID)
 		var text = "The " + player1.htmlTitleBasic() + " allows the " + player2.htmlTitleBasic() + " to take power from the dead. ";
 
-		var canvas = this.drainDeadForPower(childDiv, text, player2, player1.class_name);
+		var canvas = this.drainDeadForPower(childDiv, text, player2, true);
 		if(canvas){
 			removeFromArray(player1, this.session.availablePlayers);
 			//console.log("Help draining power with the dead: " + this.session.session_id);
 			var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 			drawSprite(pSpriteBuffer,player1)
-			var cSpriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
-			drawWhatever(pSpriteBuffer,"drain_lightning_long.png")
+
 			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0)
-			copyTmpCanvasToRealCanvasAtPos(canvas, cSpriteBuffer,0,0)
 			player1.interactionEffect(player2);
 			player2.interactionEffect(player1);
 		}
