@@ -319,17 +319,19 @@ function LifeStuff(session){
 		var gSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawSpriteTurnways(gSpriteBuffer,ghost)
 
-		var canvasBuffer = getBufferCanvas(document.getElementById("canvas_template"))
+
+		//leave room on left for possible 'guide' player.
 		if(long){
 			drawWhatever(canvas,"drain_lightning_long.png")
 		}else{
 			drawWhatever(canvas, "drain_lightning.png");
 		}
-		drawWhatever(canvas, "drain_halo.png");
-		//leave room on left for possible 'guide' player.
 		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,200,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,600,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, canvasBuffer,0,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,500,0)
+		var canvasBuffer = getBufferCanvas(document.getElementById("canvas_template"))
+
+		drawWhatever(canvas, "drain_halo.png");
+
 		return canvas;
 	}
 
