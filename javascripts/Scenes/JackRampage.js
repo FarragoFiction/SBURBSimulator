@@ -94,7 +94,8 @@ function JackRampage(session){
 		}
 	}
 
-	this.addImportantEvent = function(players){
+	this.addImportantEvent = function(players){//TODO reimplement this for boss fights
+		/*
 		var current_mvp =  findStrongestPlayer(this.session.players)
 		for(var i = 0; i<players.length; i++){
 			var player = players[i];
@@ -102,6 +103,7 @@ function JackRampage(session){
 				return this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
 			}
 		}
+		*/
 
 	}
 
