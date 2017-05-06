@@ -78,7 +78,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 	this.grimDark = 0;  //  0 = none, 1 = some, 2 = some more 3 = full grim dark with aura and font and everything.
 	this.leader = false;
 	this.landLevel = 0; //at 10, you can challenge denizen.  only space player can go over 100 (breed better universe.)
-	this.denizenFaced = false; 
+	this.denizenFaced = false;
 	this.denizenDefeated = false;
 	this.denizenMinionDefeated = false;
 	this.causeOfDeath = ""; //fill in every time you die. only matters if you're dead at end
@@ -263,7 +263,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 
 	this.getRandomQuest = function(){
 		if(this.landLevel >= 9 && this.denizenDefeated == false){ //three quests before denizen
-			console.log("denizen quest")
+			//console.log("denizen quest")
 			return getRandomDenizenQuestFromAspect(this); //denizen quests are aspect only, no class.
 		}else if(this.landLevel < 9 && this.denizenDefeated == false){
 			if(Math.seededRandom() > .5){
@@ -1435,7 +1435,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 				this.boostAllRelationshipsWithMeBy(-1 * amount);
 			}
 		}
-		
+
 		if(this.trickster && this.aspect != "Doom" && this.aspect != "Heart")
 		for(var k = 0; k <this.relationships.length; k++){
 				var r = this.relationships[k];

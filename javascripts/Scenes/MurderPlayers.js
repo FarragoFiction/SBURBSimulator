@@ -161,7 +161,7 @@ function MurderPlayers(session){
 			}
 			//var notEnemy = m.getWorstEnemyFromList(this.session.availablePlayers);
 			removeFromArray(m, this.session.availablePlayers);
-			
+
 			if(worstEnemy && worstEnemy.dead == false && m.mobility > worstEnemy.mobility){
 				removeFromArray(worstEnemy, this.session.availablePlayers);
 				//if blood player is at all competant, can talk down murder mode player.
@@ -251,7 +251,7 @@ function MurderPlayers(session){
 					m.leftMurderMode = true;
 				}else{
 					if(!m.dead && worstEnemy && worstEnemy.mobility > m.mobility){
-						console.log("murder thwarted by mobility: " + this.session.session_id)
+						//console.log("murder thwarted by mobility: " + this.session.session_id)
 						ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! Do they just never stay in one spot for more than five seconds? Flighty bastard. It's hard to stay enraged while wandering around lost."
 						m.triggerLevel += -3;
 					}else if(!m.dead){

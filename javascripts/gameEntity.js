@@ -106,12 +106,12 @@ function GameEntity(session, name, crowned){
 			this.power += 20;
 
 			if(disastor_prototypings.indexOf(object) != -1) {
-				//console.log("disastor prototyping " + this.session.session_id)
+				////console.log("disastor prototyping " + this.session.session_id)
 				this.power += 200;
 
 			}
 
-			//console.log("todo: prototypings can be associated with plus or minus stats and even fraymotifs (vast glub, anyone)???" )
+			////console.log("todo: prototypings can be associated with plus or minus stats and even fraymotifs (vast glub, anyone)???" )
 		}
 
 		//a player will try to flee this fight if they are losing.
@@ -124,7 +124,7 @@ function GameEntity(session, name, crowned){
 			if(!this.abscondable) return false;
 			if(player.doomed) return false; //doomed players accept their fate.
 			var reasonsToLeave = 0;
-			var reasonsToStay = 1; //grist man. 
+			var reasonsToStay = 1; //grist man.
 			reasonsToStay += this.getFriendsFromList(players);
 			var hearts = this.getHearts();
 			var diamonds = this.getDiamonds();
@@ -137,10 +137,10 @@ function GameEntity(session, name, crowned){
 
 			reasonsToLeave += 2 * this.power/player.currentHP;  //if you could kill me in two hits, that's one reason to leave. if you could kill me in one, that's two reasons.
 
-			console.log("reasons to stay: " + reasonsToStay + " reasons to leave: " + reasonsToLeave)
+			//console.log("reasons to stay: " + reasonsToStay + " reasons to leave: " + reasonsToLeave)
 			if(reasonsToLeave > reasonsToStay * 2){
 				if(player.mobility > this.mobility){
-					console.log(" player actually absconds: " + this.session.session_id)
+					//console.log(" player actually absconds: " + this.session.session_id)
 					div.append(" The " + player.htmlTitleHP() + " absconds right the fuck out of this fight. ")
 					this.playersAbsconded.push(player);
 					this.remainingPlayersHateYou(div, player, players);
@@ -151,7 +151,7 @@ function GameEntity(session, name, crowned){
 				}
 			}else if(reasonsToLeave > reasonsToStay){
 				if(player.mobility > this.mobility){
-					console.log(" player actually absconds: " + this.session.session_id)
+					//console.log(" player actually absconds: " + this.session.session_id)
 					div.append(" Shit. The " + player.htmlTitleHP() + " doesn't know what to do. They don't want to die... They abscond. ")
 					this.playersAbsconded.push(player);
 					this.remainingPlayersHateYou(div, player, players);
@@ -187,10 +187,10 @@ function GameEntity(session, name, crowned){
 				for(var i = 0; i<living.length; i++){
 					playerPower += living[i].power;
 				}
-				console.log("playerPower is: " + playerPower)
+				//console.log("playerPower is: " + playerPower)
 				if(playerPower > this.getHP()*2){
 						this.iAbscond = true;
-						console.log("absconding when turn number is: " +numTurns);
+						//console.log("absconding when turn number is: " +numTurns);
 						return true;
 				}
 				return false;
@@ -198,11 +198,11 @@ function GameEntity(session, name, crowned){
 
 		this.processAbscond = function(div,players){
 			if(this.iAbscond){
-				console.log("game entity abscond: " + this.session.session_id);
+				//console.log("game entity abscond: " + this.session.session_id);
 				div.append("The " + this.htmlTitleHP() + " has had enough of this bullshit. They just fucking leave. ");
 				return;
 			}else{
-				console.log("players abscond: " + this.session.session_id);
+				//console.log("players abscond: " + this.session.session_id);
 				div.append(" The fight is over due to a lack of player presence. ");
 				return;
 			}
@@ -223,7 +223,7 @@ function GameEntity(session, name, crowned){
 		*/
 		this.strife = function(div, players, numTurns){
 			numTurns += 1;
-			console.log(this.name + ": strife! " + numTurns + " turns against: " + getPlayersTitlesNoHTML(players) + this.session.session_id);
+			//console.log(this.name + ": strife! " + numTurns + " turns against: " + getPlayersTitlesNoHTML(players) + this.session.session_id);
 			div.append("<br><Br>")
 			//as players die or mobility stat changes, might go players, me, me, players or something. double turns.
 			if(getAverageMobility(players) > this.getMobility()){ //players turn
@@ -250,7 +250,7 @@ function GameEntity(session, name, crowned){
 		//if i abscond fight is over
 		//if all living players abscond, fight is over
 		this.fightOverAbscond = function(div, players){
-			console.log("checking if fight is over beause of abscond " + this.playersAbsconded.length)
+			//console.log("checking if fight is over beause of abscond " + this.playersAbsconded.length)
 			if(this.iAbscond){
 				return true;
 			}
@@ -259,7 +259,7 @@ function GameEntity(session, name, crowned){
 			var living = findLivingPlayers(players);
 			if(living.length == 0) return false;  //technically, they havent absconded
 			for (var i = 0; i<living.length; i++){
-				console.log("has: " + living[i].title() + " run away?")
+				//console.log("has: " + living[i].title() + " run away?")
 				if(this.playersAbsconded.indexOf(living[i]) == -1){
 					return false; //found living player that hasn't yet absconded.
 				}
@@ -274,15 +274,15 @@ function GameEntity(session, name, crowned){
 			this.iAbscond = false;
 			this.healPlayers(players);
 		}
-		
-		
+
+
 		this.healPlayers = function(players){
 			for(var i = 0; i<players.length; i++){
 				var player = players[i];
 				if(!player.doomed &&  !player.dead && player.currentHP < player.hp) player.currentHP = player.hp;
 			}
 		}
-		
+
 		this.levelPlayers = function(stabbings){
 			for(var i = 0; i<stabbings.length; i++){
 				stabbings[i].increasePower();
@@ -362,23 +362,23 @@ function GameEntity(session, name, crowned){
 
 			var ret = getRandomElementFromArray(doomed);
 			if(ret){
-				console.log("targeting a doomed player.")
+				//console.log("targeting a doomed player.")
 				return ret;
 			}
-			console.log("targeting slowest player out of: " + living.length)
+			//console.log("targeting slowest player out of: " + living.length)
 			return findLowestMobilityPlayer(living);
 		}
 
 		//higher the free will, smarter the ai. more likely to do special things.
 		this.myTurn = function(div, players,numTurns){
-			console.log("Hp during my turn is: " + this.getHP())
+			//console.log("Hp during my turn is: " + this.getHP())
 			//free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
 			//special and fraymotif can attack multiple enemies, but aggrieve is one on one.
 			if(!this.willIAbscond(div,players,numTurns)){
 				var target = this.chooseTarget(players)
 				if(target) this.aggrieve(div, this, target );
 			}
-			//console.log("have special attacks (like using ghost army, or reviving.). have fraymotifs. have prototypes that change stats of ring/scepter and even add fraymotifs.")
+			////console.log("have special attacks (like using ghost army, or reviving.). have fraymotifs. have prototypes that change stats of ring/scepter and even add fraymotifs.")
 
 
 		}
@@ -391,26 +391,26 @@ function GameEntity(session, name, crowned){
 			var offenseRoll = offense.rollForLuck();
 			var defenseRoll = defense.rollForLuck();
 			if(defenseRoll > offenseRoll*10){
-				//console.log("Luck counter: " + this.session.session_id);
+				////console.log("Luck counter: " + this.session.session_id);
 				div.append("The attack backfires and causes unlucky damage. The " + defense.htmlTitleHP() + " sure is lucky!!!!!!!!" );
 				offense.currentHP += -1* offense.power; //damaged by your own power.
 				this.checkForAPulse(offense, defense)
 				return;
 			}else if(defenseRoll > offenseRoll*5){
-				//console.log("Luck dodge: " + this.session.session_id);
+				////console.log("Luck dodge: " + this.session.session_id);
 				div.append("The attack misses completely after an unlucky distraction.");
 				return;
 			}
 			//mobility dodge
 			var rand = getRandomInt(1,100) //don't dodge EVERY time. oh god, infinite boss fights. on average, fumble a dodge every 4 turns.
 			if(defense.getMobility() > offense.getMobility() * 10 && rand > 25){
-				//console.log("Mobility counter: " + this.session.session_id);
+				////console.log("Mobility counter: " + this.session.session_id);
 				div.append("The " + offense.htmlTitleHP() + " practically appears to be standing still as they clumsily lunge towards the " + defense.htmlTitleHP() + " They miss so hard the " + defense.htmlTitleHP() + " has plenty of time to get a counterattack in." );
 				offense.currentHP += -1* defense.power;
 				this.checkForAPulse(offense, defense)
 				return;
 			}else if(defense.getMobility() > offense.getMobility()*5 && rand > 25){
-				//console.log("Mobility dodge: " + this.session.session_id);
+				////console.log("Mobility dodge: " + this.session.session_id);
 				div.append(" The " + defense.htmlTitleHP() + " dodges the attack completely. ");
 				return;
 			}
@@ -420,11 +420,11 @@ function GameEntity(session, name, crowned){
 			defenseRoll = defense.rollForLuck();
 			//critical/glancing hit odds.
 			if(defenseRoll > offenseRoll*2){ //glancing blow.
-				//console.log("Glancing Hit: " + this.session.session_id);
+				////console.log("Glancing Hit: " + this.session.session_id);
 				hit = hit/2;
 				div.append(" The attack manages to not hit anything too vital. ");
 			}else if(offenseRoll > defenseRoll*2){
-				//console.log("Critical Hit: " + this.session.session_id);
+				////console.log("Critical Hit: " + this.session.session_id);
 				hit = hit*2;
 				div.append(" Ouch. That's gonna leave a mark. ");
 			}else{

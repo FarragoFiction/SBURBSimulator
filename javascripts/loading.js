@@ -101,6 +101,13 @@ function loadImage(img,skipInit){
 //load pesterchum, blood, big aspect symbols, echeladders, god tier level up, romance symbols, babies, grubs
 function loadOther(skipInit){
 	loadImage("jr.png",skipInit);
+  loadImage("drain_lightning.png", skipInit);
+  loadImage("drain_lightning_long.png", skipInit);
+  loadImage("drain_halo.png", skipInit);
+  loadImage("afterlife_life.png", skipInit);
+  loadImage("afterlife_doom.png", skipInit);
+  loadImage("doom_res.png", skipInit);
+  loadImage("life_res.png", skipInit);
 	loadImage("stab.png",skipInit);
   loadImage("denizoned.png",skipInit);
   loadImage("sceptre.png",skipInit);

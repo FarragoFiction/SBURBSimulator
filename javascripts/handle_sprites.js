@@ -643,6 +643,19 @@ function drawGodSymbolBG(canvas, player){
 
 }
 
+//have i really been too lazy to make this until now
+function drawWhatever(canvas, imageString){
+  if(checkSimMode() == true){
+    return;
+  }
+	ctx = canvas.getContext('2d');
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,0,0,width,height);
+}
+
 function drawDreamBubble(canvas){
   if(checkSimMode() == true){
     return;

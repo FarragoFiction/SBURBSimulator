@@ -21,7 +21,7 @@ function JackRampage(session){
 			}
 		}
 		var numStabbings = getRandomInt(1,Math.min(4,potentialPlayers.length));
-		console.log("Number stabbings is: " + numStabbings)
+		//console.log("Number stabbings is: " + numStabbings)
 		var ret = [];
 		if(potentialPlayers.length == 0){
 			return ret;
@@ -59,7 +59,7 @@ function JackRampage(session){
 
 		//jack finds 0 or more players.
 		var stabbings = this.getStabList();
-		if(stabbings.length > 1) console.log("Jack fighting more than one player: " + this.session.session_id)
+	//	if(stabbings.length > 1) console.log("Jack fighting more than one player: " + this.session.session_id)
 		var ret = "";
 		if(stabbings.length == 0){
 			if(Math.seededRandom() > .5){

@@ -62,7 +62,7 @@ function GodTierRevival(session){
 			var roll = p.rollForLuck();
 			if(p.justDeath()){
 				if(roll > breakNeeded){
-					console.log(roll + " lucky break for god tier revival in: " + this.session.session_id );
+					//console.log(roll + " lucky break for god tier revival in: " + this.session.session_id );
 					ret += " ... a LUCKY BREAK!!!!!!!! The Judgement Clock narrowly avoids ruling a JUST death. ";
 					p.dead = false;
 					p.currentHP = p.hp;
@@ -73,7 +73,7 @@ function GodTierRevival(session){
 					p.leftMurderMode = false;
 					p.triggerLevel = 1;
 				}else{
-					console.log(roll + " just death for god tier in: " + this.session.session_id );
+					//console.log(roll + " just death for god tier in: " + this.session.session_id );
 					ret += " JUST.  They do not revive. ";
 					this.session.justDeath = true;
 					p.canGodTierRevive = false;
@@ -83,7 +83,7 @@ function GodTierRevival(session){
 
 			}else if (p.heroicDeath()){
 				if(roll > breakNeeded){
-					console.log(roll + " lucky break for god tier revival in: " + this.session.session_id );
+					//console.log(roll + " lucky break for god tier revival in: " + this.session.session_id );
 					ret += " ... a LUCKY BREAK!!!!!!!! The Judgement Clock narrowly avoids ruling a HEROIC death. ";
 					p.dead = false;
 					p.canGodTierRevive = true;
@@ -95,7 +95,7 @@ function GodTierRevival(session){
 					p.triggerLevel = 1;
 				}else{
 					this.session.heroicDeath = true;
-					console.log(roll + " heroic death for god tier in: " + this.session.session_id );
+					//console.log(roll + " heroic death for god tier in: " + this.session.session_id );
 					ret += " HEROIC. They do not revive. ";
 					p.canGodTierRevive = false;
 					p.causeOfDeath += " It was HEROIC judgement"
@@ -103,13 +103,13 @@ function GodTierRevival(session){
 				}
 			}else{
 				if(roll < -1 * breakNeeded){
-					console.log("unlucky break for god tier revival in: " + this.session.session_id);
+					//console.log("unlucky break for god tier revival in: " + this.session.session_id);
 					ret += " ... Huh. Should the clock be DOING that? It's on both HEROIC and JUST at the same time, somehow? Not neither of them. Talk about a BAD BREAK. They do not revive.  ";
 					p.canGodTierRevive = false;
 					p.causeOfDeath += " It was an unlucky judgement"
 					this.session.afterLife.addGhost(makeRenderingSnapshot(p));
 				}else{
-					console.log("god tier revival in: " + this.session.session_id);
+					//console.log("god tier revival in: " + this.session.session_id);
 					ret += " neither HEROIC nor JUST.  They revive in a rainbow glow, stronger than ever. ";
 					p.dead = false;
 					p.currentHP = p.hp;

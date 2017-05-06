@@ -122,7 +122,7 @@ function LifeStuff(session){
 			var dreaming = this.enablingPlayerPairs[i][2];
 			if(player.dead && !dreaming){ //if you'e dreaming, you're not a dead life/doom heir/thief
 				if(player.class_name == "Heir" ||  player.class_name == "Thief"){
-					this.drainDeadForReviveSelf(div, "",player, player.class_name);
+					this.drainDeadForReviveSelf(div, "",player, player.class_name, player.aspect);
 				}
 			}else if(!dreaming){
 				if(player.class_name == "Mage" ||  player.class_name == "Knight"){
@@ -275,8 +275,57 @@ function LifeStuff(session){
 		var gSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 		drawSpriteTurnways(gSpriteBuffer,ghost)
 		//leave room on left for possible 'guide' player.
+		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,200,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,500,0)
+		return canvas;
+	}
+
+	this.drawReviveDead = function(div, player, ghost, enablingAspect){
+		console.log("revive dead in: " + this.session.session_id);
+		var canvasId = div.attr("id") + "commune_" +player.chatHandle
+		var canvasHTML = "<br><canvas id='" + canvasId +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		var canvas = document.getElementById(canvasId);
+		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawSprite(pSpriteBuffer,player)
+		var gSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawSpriteTurnways(gSpriteBuffer,ghost)
+
+		var canvasBuffer = getBufferCanvas(document.getElementById("canvas_template"))
+		if(enablingAspect == "Life"){
+			drawWhatever(canvas, "life_res.png");
+			drawWhatever(canvas, "afterlife_life.png");
+		}else if(enablingAspect == "Doom"){
+			drawWhatever(canvas, "doom_res.png");
+			drawWhatever(canvas, "afterlife_doom.png");
+		}
+
+
+		//leave room on left for possible 'guide' player.
 		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,300,0)
 		copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,600,0)
+		copyTmpCanvasToRealCanvasAtPos(canvasBuffer, canvasBuffer,0,0)
+		return canvas;
+	}
+
+	this.drawDrainDead = function(div, player, ghost){
+		console.log("drain dead in: " + this.session.session_id);
+		var canvasId = div.attr("id") + "commune_" +player.chatHandle
+		var canvasHTML = "<br><canvas id='" + canvasId +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		var canvas = document.getElementById(canvasId);
+		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawSprite(pSpriteBuffer,player)
+		var gSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawSpriteTurnways(gSpriteBuffer,ghost)
+
+		var canvasBuffer = getBufferCanvas(document.getElementById("canvas_template"))
+		drawWhatever(canvas, "drain_lightning.png");
+		drawWhatever(canvas, "drain_halo.png");
+		//leave room on left for possible 'guide' player.
+		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,200,0)
+		copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,600,0)
+		copyTmpCanvasToRealCanvasAtPos(canvasBuffer, canvasBuffer,0,0)
 		return canvas;
 	}
 
@@ -356,7 +405,7 @@ function LifeStuff(session){
 			player.leveledTheHellUp = true;
 			player.level_index +=1;
 			div.append("<br><br>" +str);
-			var canvas = this.drawCommuneDead(div, player, ghost);
+			var canvas = this.drawDrainDead(div, player, ghost);
 			removeFromArray(player, this.session.availablePlayers);
 			return canvas;
 		}else{
@@ -380,14 +429,17 @@ function LifeStuff(session){
 			//console.log("Help draining power with the dead: " + this.session.session_id);
 			var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 			drawSprite(pSpriteBuffer,player1)
+			var cSpriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
+			drawWhatever(pSpriteBuffer,"drain_lightning_long.png")
 			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, cSpriteBuffer,0,0)
 			player1.interactionEffect(player2);
 			player2.interactionEffect(player1);
 		}
 	}
 
 	//thief/heir of life/doom //flavor text of absorbing or stealing.  mention 'it will be a while before the ghost of X respawns' don't bother actually respawning them , but makes it different than double death
-	this.drainDeadForReviveSelf = function(div, str, player, className){
+	this.drainDeadForReviveSelf = function(div, str, player, className, enablingAspect){
 			ghost = this.session.afterLife.findAnyGhost(player); //not picky in a crisis.
 			ghostName = "dead player"
 			//need to find my own ghost and remove it from the afterlife.
@@ -405,7 +457,7 @@ function LifeStuff(session){
 
 				div.append("<br><br>" +str);
 				ghost.causeOfDrain = player.htmlTitle();
-				var canvas = this.drawCommuneDead(div, player, ghost);
+				var canvas = this.drawReviveDead(div, player, ghost, enablingAspect);
 				this.makeAlive(player);
 
 
@@ -425,7 +477,7 @@ function LifeStuff(session){
 		var childDiv = $("#"+divID)
 		var text = "The " + player1.htmlTitleBasic() + " assists the " + player2.htmlTitleBasic() + ". ";
 
-		var canvas = this.drainDeadForReviveSelf(childDiv, text, player2, player1.class_name);
+		var canvas = this.drainDeadForReviveSelf(childDiv, text, player2, player1.class_name, player1.aspect);
 		if(canvas){
 			removeFromArray(player1, this.session.availablePlayers);
 			//console.log("Help revive with the dead: " + this.session.session_id);
