@@ -198,36 +198,36 @@ function LifeStuff(session){
 	this.communeDead = function(div, str, player, playerClass,enablingAspect){  //takes in player class because if there is a helper, what happens is based on who THEY are not who the player is.
 		var ghost = this.session.afterLife.findGuardianSpirit(player);
 		var ghostName = "";
-		if(ghost && player.ghostPacts.indexOf(ghost) == -1 && player.ghostWisdom.indexOf(ghost) == -1 && !ghost.causeOfDrain){
+		if(ghost && player.ghostPacts.getPactWithGhost(ghost) == null && player.ghostWisdom.indexOf(ghost) == -1 && !ghost.causeOfDrain){
 			//console.log("ghost of guardian: "+ player.titleBasic() + this.session.session_id);
 			//talk about getting wisdom/ forging a pact with your dead guardian. different if i am mage or knight (because i am alone)
 			ghostName = "teen ghost version of their ancestor"
 
 		}
-		if(ghost == null  || player.ghostPacts.indexOf(ghost) != -1 || player.ghostWisdom.indexOf(ghost) != -1 || ghost.causeOfDrain){
+		if(ghost == null  || player.getPactWithGhost(ghost) == null || player.ghostWisdom.indexOf(ghost) != -1 || ghost.causeOfDrain){
 			ghost = this.session.afterLife.findLovedOneSpirit(player);
 			//console.log("ghost of loved one: "+ player.titleBasic() + this.session.session_id);
 			ghostName = "ghost of a loved one"
 		}
 
-		if(ghost == null  || player.ghostPacts.indexOf(ghost) != -1 || player.ghostWisdom.indexOf(ghost) != -1 || ghost.causeOfDrain){
+		if(ghost == null  || player.getPactWithGhost(ghost) == null || player.ghostWisdom.indexOf(ghost) != -1 || ghost.causeOfDrain){
 			ghost = this.session.afterLife.findAnyAlternateSelf(player);
 			//console.log("ghost of self: "+ player.titleBasic() + this.session.session_id);
 			ghostName = "less fortunate alternate self"
 		}
 
-		if(ghost == null  || player.ghostPacts.indexOf(ghost) != -1 || player.ghostWisdom.indexOf(ghost) != -1 || ghost.causeOfDrain){
+		if(ghost == null  || player.getPactWithGhost(ghost) == null|| player.ghostWisdom.indexOf(ghost) != -1 || ghost.causeOfDrain){
 			ghost = this.session.afterLife.findFriendlySpirit(player);
 			//console.log("ghost of friend: "+ player.titleBasic() + this.session.session_id);
 			ghostName = "dead friend"
 		}
 
-		if(ghost == null  || player.ghostPacts.indexOf(ghost) != -1 || player.ghostWisdom.indexOf(ghost) != -1 || ghost.causeOfDrain){
+		if(ghost == null  || player.getPactWithGhost(ghost) == null || player.ghostWisdom.indexOf(ghost) != -1 || ghost.causeOfDrain){
 			ghost = this.session.afterLife.findAnyGhost(player);
 			ghostName = "dead player"
 		}
 
-		if(ghost  && player.ghostPacts.indexOf(ghost) == -1 && player.ghostWisdom.indexOf(ghost) == -1 && !ghost.causeOfDrain){
+		if(ghost  && player.getPactWithGhost(ghost) == null && player.ghostWisdom.indexOf(ghost) == -1 && !ghost.causeOfDrain){
 			//console.log("commune potato" +this.session.session_id);
 			div.append("<br><br>" +str + this.communeDeadResult(playerClass, player, ghost, ghostName,enablingAspect));
 			var canvas = this.drawCommuneDead(div, player, ghost);

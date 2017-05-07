@@ -109,6 +109,15 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 		}
 	}
 
+	//needed'cause ghost pacts are a an array of pairs now so i know how i'm reviving.
+	this.getPactWithGhost = function(ghost){
+		for(var i = 0; i<this.ghostPacts.length; i++){
+			var g = this.ghostPacts[i][0]
+			if(g == ghost) return g
+		}
+		return null;
+	}
+
 	this.getSpades = function(){
 		var ret = [];
 		for (var i = 0; i<this.relationships.length; i++){
