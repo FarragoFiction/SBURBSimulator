@@ -337,7 +337,6 @@ function GameEntity(session, name, crowned){
 			}
 		}
 
-		//TODO in decide what to do, allow doom/life maids and rogues to heal players. and anyone with ghost pacts to do ghost attacks.
 		this.playersTurn = function(div, players){
 			var living = this.getLivingMinusAbsconded(players);
 			for(var i = 0; i<living.length; i++){
@@ -363,18 +362,17 @@ function GameEntity(session, name, crowned){
 				removeFromArray(myGhost, this.session.afterLife.ghosts);
 				var canvas = drawReviveDead(div, player, ghost, undrainedPacts[0][1]);
 				deadPlayer.makeAlive();
-				//in battle, even passive healing afterlife players will heal themselves.
-			}else if((deadPlayer.aspect == "Doom" || deadPlayer.aspect == "Life")&& (deadPlayer.class_name == "Heir" || deadPlayer.class_name == "Thief"|| deadPlayer.class_name == "Maid"|| deadPlayer.class_name == "Rogue")){
+			}else if((deadPlayer.aspect == "Doom" || deadPlayer.aspect == "Life")&& (deadPlayer.class_name == "Heir" || deadPlayer.class_name == "Thief")){
 				var ghost = this.session.afterLife.findAnyUndrainedGhost();
 				if(!ghost) return;
 				ghost.causeOfDrain = deadPlayer.htmlTitle();
 				var myGhost = this.session.afterLife.findClosesToRealSelf(deadPlayer)
 				removeFromArray(myGhost, this.session.afterLife.ghosts);
-				if(deadPlayer.class_name  == "Thief" || deadPlayer.class_name  == "Rogue"){
-					console.log("thief/rogue autorevive in session " + this.session.session_id)
+				if(deadPlayer.class_name  == "Thief" ){
+					console.log("thief autorevive in session " + this.session.session_id)
 					div.append(" The " + deadPlayer.htmlTitleBasic() + " steals the essence of the " + ghost.htmlTitle() + " in order to revive and keep fighting. It will be a while before the ghost recovers.");
-				}else if(deadPlayer.class_name  == "Heir" || deadPlayer.class_name  == "Maid"){
-					console.log("heir/maid autorevive in session " + this.session.session_id)
+				}else if(deadPlayer.class_name  == "Heir" ){
+					console.log("heir autorevive in session " + this.session.session_id)
 					div.append(" The " + deadPlayer.htmlTitleBasic() + " inherits the essence and duties of the " + ghost.htmlTitle() + " in order to revive and continue their battle. It will be a while before the ghost recovers.");
 				}
 				var canvas = drawReviveDead(div, deadPlayer, ghost, deadPlayer.aspect);
