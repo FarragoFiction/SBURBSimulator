@@ -351,13 +351,17 @@ function GameEntity(session, name, crowned){
 		}
 
 		this.tryAutoRevive = function(div, deadPlayer){
+
 			//first try using pacts
 			var undrainedPacts = removeDrainedGhostsFromPacts(deadPlayer.ghostPacts);
 			if(undrainedPacts.length > 0){
 				console.log("using a pact to autorevive in session " + this.session.session_id)
 				var source = undrainedPacts[0][0];
 				source.causeOfDrain = deadPlayer.htmlTitle();
-				div.append(" In the afterlife, the " + deadPlayer.htmlTitleBasic() +" reminds the " + source.htmlTitleBasic() + " of their promise of aid. The ghost agrees to donate their life force to return the " + deadPlayer.htmlTitleBasic() + " to life. It will be a while before the ghost recovers.");
+				var ret = " In the afterlife, the " + deadPlayer.htmlTitleBasic() +" reminds the " + source.htmlTitleBasic() + " of their promise of aid. The ghost agrees to donate their life force to return the " + deadPlayer.htmlTitleBasic() + " to life "
+				if(deadPlayer.godTier) ret += ", but not before a lot of grumbling and arguing about how the pact shouldn't even be VALID anymore since the player is fucking GODTIER, they are going to revive fucking ANYWAY. But yeah, MAYBE it'd be judged HEROIC or some shit. Fine, they agree to go into a ghost coma or whatever. "
+				ret += "It will be a while before the ghost recovers."
+				div.append(ret);
 				var myGhost = this.session.afterLife.findClosesToRealSelf(deadPlayer)
 				removeFromArray(myGhost, this.session.afterLife.ghosts);
 				var canvas = drawReviveDead(div, deadPlayer, source, undrainedPacts[0][1]);
