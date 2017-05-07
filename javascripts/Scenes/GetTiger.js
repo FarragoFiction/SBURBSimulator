@@ -16,7 +16,7 @@ function GetTiger(session){
 		var deadPlayers = findDeadPlayers(playerList);
 		for(var i = 0; i<deadPlayers.length; i++){
 			var p = deadPlayers[i];
-			if(!p.godTier && p.godDestiny){
+			if(!p.godTier && p.godDestiny && (p.isDreamSelf || p.dreamSelf)){
 				this.deadPlayersToGodTier.push(p);
 			}
 		}
@@ -70,11 +70,14 @@ function GetTiger(session){
 		if(withoutd){
 			for(var i = 0; i< withoutd.length; i++){
 				var p = withoutd[i];
-				p.currentHP = p.hp;
-				removeFromArray(this.session.afterLife.findClosesToRealSelf(p), this.session.afterLife.ghosts);
-				////console.log("sacrificial slab: " + this.session.session_id)
-				ret += " Upon a wacky series of events leaving their corpse on their SACRIFICIAL SLAB on " + p.moon + ", the " + p.htmlTitle() + " glows and ascends to the God Tiers with a sweet new outfit."
-				this.session.sacrificialSlab = true;
+				if(p.isDreamSelf){
+					p.currentHP = p.hp;
+					removeFromArray(this.session.afterLife.findClosesToRealSelf(p), this.session.afterLife.ghosts);
+					////console.log("sacrificial slab: " + this.session.session_id)
+					ret += " Upon a wacky series of events leaving their corpse on their SACRIFICIAL SLAB on " + p.moon + ", the " + p.htmlTitle() + " glows and ascends to the God Tiers with a sweet new outfit."
+					this.session.sacrificialSlab = true;
+				}
+
 			}
 			//console.log("no dream self so slab")
 		}
