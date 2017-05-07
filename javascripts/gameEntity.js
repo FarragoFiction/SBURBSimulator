@@ -356,7 +356,7 @@ function GameEntity(session, name, crowned){
 			if(undrainedPacts.length > 0){
 				console.log("using a pact to autorevive in session " + this.session.session_id)
 				var source = undrainedPacts[0][0];
-				souce.causeOfDrain = deadPlayer.htmlTitle();
+				source.causeOfDrain = deadPlayer.htmlTitle();
 				div.append(" In the afterlife, the " + deadPlayer.htmlTitleBasic() +" reminds the " + source.htmlTitleBasic() + " of their promise of aid. The ghost agrees to donate their life force to return the " + deadPlayer.htmlTitleBasic() + " to life. It will be a while before the ghost recovers.");
 				var myGhost = this.session.afterLife.findClosesToRealSelf(player)
 				removeFromArray(myGhost, this.session.afterLife.ghosts);
