@@ -422,7 +422,7 @@ function Session(session_id){
 		var rage_denizen = new GameEntity(this, "Bacchus", null);
 		rage_denizen.setStats(30,50,100,20,9999,0,100,true, false, [],1000000);
 
-		this.denizens = this.denizens.concat([space_denizen, time_denizen, breath_denizen, doom_denizen, blood_denizen, heart_denizen, mind_denizen, light_denizen, void_denizen, hope_denizen, life_denizen, rage_denizen]);
+		this.denizens = [space_denizen, time_denizen, breath_denizen, doom_denizen, blood_denizen, heart_denizen, mind_denizen, light_denizen, void_denizen, hope_denizen, life_denizen, rage_denizen];
 	}
 
 	this.makeDenizenMinions = function(){
@@ -443,7 +443,7 @@ function Session(session_id){
 		mind_denizen.setStats(30,50,50,20,0,100,25,true, false, [],1000);
 		var light_denizen = new GameEntity(this, "Cetus  Minion", null);
 		light_denizen.setStats(30,100,100,20,0,0,25,true, false, [],1000);
-		var void_denizen = new GameEntity(this, "Nix", null); 
+		var void_denizen = new GameEntity(this, "Nix", null);
 		void_denizen.setStats(30,50,100,20,0,0,25,true, false, [],1000);
 		var hope_denizen = new GameEntity(this, "Abraxus  Minion", null);
 		hope_denizen.setStats(30,50,50,20,0,0,75,true, false, [],1000);
@@ -451,8 +451,8 @@ function Session(session_id){
 		life_denizen.setStats(30,50,100,20,0,0,25,true, false, [],1000);
 		var rage_denizen = new GameEntity(this, "Bacchus  Minion", null);
 		rage_denizen.setStats(30,50,50,20,100,0,25,true, false, [],1000);
-
-		this.denizen_minions = this.denizen_minions.concat([space_denizen, time_denizen, breath_denizen, doom_denizen, blood_denizen, heart_denizen, mind_denizen, light_denizen, void_denizen, hope_denizen, life_denizen, rage_denizen]);
+		//what the hell past JR, why were you concating them. it caused yellowyards to reinit the minions, ON TOP OF the old dead ones, so it couldn't find the new ones. bluh.
+		this.denizen_minions = [space_denizen, time_denizen, breath_denizen, doom_denizen, blood_denizen, heart_denizen, mind_denizen, light_denizen, void_denizen, hope_denizen, life_denizen, rage_denizen];
 
 	}
 
