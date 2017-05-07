@@ -20,6 +20,7 @@
 <p> <a href = "rap.html">Extended Rap Battles</a>: Okay, so, like the rap battles are just so amazingly shitty, right? And they only get even SHITTIER the longer I let them go on. So, you know, here's a page that's just the rap battles going on for much, much longer. It was the easiest way to test them without waiting for sims to run. </p>
 <p> Not a link, but DID YOU KNOW: Players chatHandles match the intials of their Claspect? So a "Page of Breath" might have the claspect pantsBiologist?  Additionally, chat handles tend to be vaguely about the players interests. So maybe pantsBiologist over there is interested in academic stuff, like BIOLOGY or CHEMISTRY.</p>
 
+<p>IMPORTANT: TO GET BACK HERE: The easiest way to return here is to get AB to help you (she is the best).  Have her simulate a few sessions for you (shouldn't take much) and filter by "full frog" and "all lived" and then do a "find on page" for "better than expected" and you should find a session id that will get you back to this page. You are certainly welcome to reuse the password that got you here this time...but be warned that should I push an update to the server, that session might not go the same way, and it might not work forever.</p>
 <div class = "hof413">
 <h1>Hall of Fame (4/13 Batch)</h1>
 <p>"I went to Derse and all I got was this stupid knife to the chest."
@@ -114,6 +115,11 @@
 <p>"Be careful what you prototype...  "
 <br>
 -kaosDragon
+</p>
+
+<p>"Every0ne is dead and the c0uch is on fire." 
+<br>
+~sadisticCynic
 </p>
 
 </div>
