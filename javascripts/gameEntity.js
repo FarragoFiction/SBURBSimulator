@@ -389,9 +389,9 @@ function GameEntity(session, name, crowned){
 			player.power = Math.max(1, player.power); //negative power is not allowed in an actual fight.
 			//for now, only one choice    //free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
 			if(!this.willPlayerAbscond(div,player,players)){
-				var undrainedPacts = removeDrainedGhostsFromPacts(deadPlayer.ghostPacts);
+				var undrainedPacts = removeDrainedGhostsFromPacts(player.ghostPacts);
 				if(undrainedPacts.length > 0 ){
-					var didGhostAttack = this.ghostAttack(div, player, getRandomElementFromArray(undrainedPacts)); //maybe later denizen can do ghost attac, but not for now
+					var didGhostAttack = this.ghostAttack(div, player, getRandomElementFromArray(undrainedPacts)[0]); //maybe later denizen can do ghost attac, but not for now
 					if(!didGhostAttack){
 						this.aggrieve(div, player, this );
 					}
@@ -403,12 +403,14 @@ function GameEntity(session, name, crowned){
 
 		//only do attack if i don't expect to one shot the enemy
 		//return false if i don't do ghsot attack
-		this.ghostAttack(div, player, ghost){
+		this.ghostAttack = function(div, player, ghost){
+			if(!ghost) return false;
 			if(player.power < this.getHP()){
-					console.log("ghost attack in: " + this.htmlTitle())
+					console.log("ghost attack in: " + this.session.session_id)
+					console.log(ghost);
 					ghost.causeOfDrain = player.htmlTitle();
 					this.currentHP += -1* ghost.power;
-					div.append(" The " + player.htmlTitleBasic() + " cashes in their promise of aid. The ghost of " + ghost.htmlTitleBasic() + " unleashes a ghostly attack channeled through the living player. " ghost.power + " damage is done to " + this.htmlTitleHP() + ". " );
+					div.append(" The " + player.htmlTitleBasic() + " cashes in their promise of aid. The ghost of " + ghost.htmlTitleBasic() + " unleashes a ghostly attack channeled through the living player. " + ghost.power + " damage is done to " + this.htmlTitleHP() + ". The ghost will need to rest after this for awhile. " );
 					if(!this.checkForAPulse(this, player)){
 
 						div.append("The " + this.htmlTitleHP() + " is dead. ");
@@ -420,7 +422,7 @@ function GameEntity(session, name, crowned){
 		}
 
 		//draw ghost on top of player, ghost lightning.
-		this.drawGhostAttack(div, player,ghost){
+		this.drawGhostAttack = function(div, player,ghost){
 			var canvasId = div.attr("id") + "attack" +player.chatHandle+ghost.chatHandle+player.power+ghost.power
 			var canvasHTML = "<br><canvas id='" + canvasId +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
