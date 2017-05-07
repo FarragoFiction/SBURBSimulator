@@ -91,12 +91,14 @@ function SaveDoomedTimeLine(session){
 			ret += " They make it so that never happened. Forget about it. ";
 			this.session.doomedTimelineReasons.push(this.reason)
 			this.leaderPlayer.dead = false;
+			this.leaderPlayer.currentHP = this.leaderPlayer.hp;
 		}else if(this.reason == "Leader killed before all players in medium."){
 			ret += " If the " + this.leaderPlayer.htmlTitleBasic() + " dies right now, ";
 			ret += " the " +this.playerList[this.playerList.length-1].htmlTitleBasic() + " will never even make it into the medium. ";
 			ret += " after all, the " + this.leaderPlayer.htmlTitleBasic() + " is their server player. ";
 			ret += " They make it so that never happened. Forget about it. ";
 			this.leaderPlayer.dead = false;
+			this.leaderPlayer.currentHP = this.leaderPlayer.hp;
 			this.session.doomedTimelineReasons.push(this.reason)
 		}else{
 			if(this.timePlayer.leader && !this.session.ectoBiologyStarted ){
@@ -111,8 +113,8 @@ function SaveDoomedTimeLine(session){
 			}
 		}
 
-		
-		
+
+
 		var living = findLivingPlayers(this.session.players);
 		if(living.length > 0){
 			ret += " The " + this.timePlayer.htmlTitleBasic() + " has sacrificed themselves to prevent this from happening. ";

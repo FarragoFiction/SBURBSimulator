@@ -763,15 +763,15 @@ Current Behavior: Look for 1 sesssion. If scratched, renders 3 session summaries
 if(!session.scratched){
 		console.log("scartch")
 		session.scratchAvailable = true;
-		summarizeSessionNoTimeout(session);	
+		summarizeSessionNoTimeout(session);
 		scratch(); //not user input, just straight up do it.
 }
 
 i can confirm the above only gets called once. so...what is happening.  is summarizeSessionNoTimeout calling intro or anything like that?
 
-intro 
-scartch  
-intro  *2 
+intro
+scartch
+intro  *2
 victory   *2
 
 So. I am calling "intro" twice for the same session. How?
@@ -781,7 +781,7 @@ start session  find_rare_sessions.js:245:2
 intro  find_rare_sessions.js:648:2
 scartch  find_rare_sessions.js:292:3
 intro  find_rare_sessions.js:648:2
-victory or utter defeat * 2  
+victory or utter defeat * 2
 
 GLAR. Okay. So...is the same session returning multiple ways? look for mvp on print out. !!! That's IT!  MVP is DIFFERENT between the two sessions.
 
@@ -793,7 +793,7 @@ Okay, new tactic. Now for some reason session ID never changes even if hit butto
 
 nope. scratch bug still there even after fixed. bluh.
 
-okay. so. like. sometimes two intros are called.  and sometimes they aren't.  sometimes summary is called twice. sometimes it's not. and it doens't matter if intro was twice. 
+okay. so. like. sometimes two intros are called.  and sometimes they aren't.  sometimes summary is called twice. sometimes it's not. and it doens't matter if intro was twice.
 why might a summary be called BEFORE a session is done. seems to be my "victor or utter defeat" section.
 
 curSessionGlobalVar.won || living.length == 0 || curSessionGlobalVar.scratched
@@ -815,11 +815,11 @@ okay, progress.  It looks like everything goes according to keikaku...but then..
 is....is doomedTimeline true? if it were, that might be weird.
 
 
-oh shit oh shit oh shit. new theory. I'm seeing multiple "should be done" popups. Iv'e been ignoring them as a separate poblem, but very clearly they aren't. think.  
+oh shit oh shit oh shit. new theory. I'm seeing multiple "should be done" popups. Iv'e been ignoring them as a separate poblem, but very clearly they aren't. think.
 before i click the first popup, i see two sessions in the print out.  it's only AFTER clicking it to I see the third session and IT's popup. Which session is wrong. Number 2 or Number 3?
 Only one way to find out. actually physically visit the session and see what post scratch looks like.
 
-Oh fuck. NEITHER of them are true. Okay. that's important, too. It would make sense if there were two simultaneous sessions going on they'd be stealing each others random seeds. 
+Oh fuck. NEITHER of them are true. Okay. that's important, too. It would make sense if there were two simultaneous sessions going on they'd be stealing each others random seeds.
 
 only see two sets of reckoning ticks. it's like the second one "finishes" before the reckoning and then starts up the second one?  mvp of second session appears to be the initial values of the session. so...it summarizes itself really early on?
 
@@ -865,12 +865,12 @@ victory or utter defeat  find_rare_sessions.js:373:5
 summarizing: 20729783 doomed: false  find_rare_sessions.js:427:2
 tick 28false
 
-So, current observed behavior is intro, immediate AFTERMATH and then summary, and then I start ticking.  This is bass fucking ackwards. 
+So, current observed behavior is intro, immediate AFTERMATH and then summary, and then I start ticking.  This is bass fucking ackwards.
 I have a variable called "pleaseIgnoreThisSEssionAB" and it's doing nothing. so. it must be set to true....
 
 progress. aftermath can call a scratch. the next thing the rRECKONING TICK does is check for combo for victory and render summary. see if this fixes it.
 how to distinguish between a freshly scratched session a post scratch session. oh. my plz ignore variable.
-so frustrated still seeing it.  I have wasted HOURS on this.  
+so frustrated still seeing it.  I have wasted HOURS on this.
 problem, can't have new session's pleaseIgnore be false on intro. intro somehow called BFORE i finishe processing after math.fucking asyncronous code.
 
 
@@ -888,7 +888,7 @@ tick 13false
 
 k.
 just triggering the aftermath is enough to cause a scratch.  even before it renders.  and intro for scratched session called before...before....Fuck.
-Okay. this suddenly makes sense. 
+Okay. this suddenly makes sense.
 
 Sequence of events.  Aftermath triggered. Aftermath begins to render, midway through renders the scratch button which CAUSES a scratch which CAUSES an intro.  async bullshit. then the scratch returns, which lets the aftermath finish rendinger.
 
@@ -911,7 +911,7 @@ I want denizens to have 'infinite' of their aspects associated stat. will that m
 in addition to denizens, i want denizen minions (like the typheus minion) to be a mini boss.
 
 if landLevel < 6, then do any of first 6 quests (completely generic). fight minion.  If landLevel < 12, then do any of second 6 quests (3 from class, 3 from aspect).  fight denizen. then, do any of third set of quests. (post denizen). these quests give you fraymotifs. can also get fraymotifs through luck events (isntead of raising power)
- 
+
 so......what's stopping me here? there's no real cognitive challenge. is it just inertia? deniznes won't even be that special 'till i do fraymotifs and i won't do those just yet.
 
 Okay. Step one, make a list of "generic quests" that anybody can do.  Make sure DoLandQuest pulls from them first and not their claspect quests.
@@ -928,4 +928,22 @@ damn. grist might have to be a thing for ultimate alchemy.
 
 
 
+Alright, I was in the middle of letting the ghost powers work during battles when it was brought to my attention that yellowYards aren't working as well as I thought they were.
 
+I have confirmed that ghosts are still banned from interacting with the session until the timelines divurge...so....what is different.
+
+First guess would be that the seeds are being eaten differently.  gonna look at the same session side by side, one yarded and one not and see what is different.
+I know at first glance the yarded one has a total party wipe, so my hypoethesis has legs.
+
+Yes. very, VERY obviously seeds are different early on. WV is doing different stuff, quests are going randomly different
+
+
+
+"The Bard of Time initiates a strife with the Hephaestus Minion.
+
+
+
+The fight is over. Hephaestus Minion is dead. "
+Whelp. That's what I get for blaming ghosts.
+
+Whelp. That’s what I get for blaming all my problems on ghosts like a superstitious oldtimey dude. Looks like the problem is that after a yellow yard, the fucking BOSSES ARE SPAWNING DEAD. And OF COURSE when I tested, I apparently chose the least competent sessions in Paradox Space, so they hadn’t managed to really defeat anything so their session were going pretty much the same even after a reset. 
