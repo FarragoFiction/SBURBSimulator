@@ -358,9 +358,9 @@ function GameEntity(session, name, crowned){
 				var source = undrainedPacts[0][0];
 				source.causeOfDrain = deadPlayer.htmlTitle();
 				div.append(" In the afterlife, the " + deadPlayer.htmlTitleBasic() +" reminds the " + source.htmlTitleBasic() + " of their promise of aid. The ghost agrees to donate their life force to return the " + deadPlayer.htmlTitleBasic() + " to life. It will be a while before the ghost recovers.");
-				var myGhost = this.session.afterLife.findClosesToRealSelf(player)
+				var myGhost = this.session.afterLife.findClosesToRealSelf(deadPlayer)
 				removeFromArray(myGhost, this.session.afterLife.ghosts);
-				var canvas = drawReviveDead(div, player, ghost, undrainedPacts[0][1]);
+				var canvas = drawReviveDead(div, deadPlayer, source, undrainedPacts[0][1]);
 				deadPlayer.makeAlive();
 			}else if((deadPlayer.aspect == "Doom" || deadPlayer.aspect == "Life")&& (deadPlayer.class_name == "Heir" || deadPlayer.class_name == "Thief")){
 				var ghost = this.session.afterLife.findAnyUndrainedGhost();

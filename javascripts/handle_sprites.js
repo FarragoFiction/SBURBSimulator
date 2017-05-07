@@ -411,7 +411,6 @@ function drawReviveDead (div, player, ghost, enablingAspect){
     drawWhatever(canvas, "life_res.png");
     drawWhatever(canvas, "afterlife_life.png");
   }else if(enablingAspect == "Doom"){
-    console.log("doom revive: " + this.session.session_id)
     drawWhatever(canvas, "doom_res.png");
     drawWhatever(canvas, "afterlife_doom.png");
   }
