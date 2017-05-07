@@ -312,7 +312,7 @@ function LifeStuff(session){
 
 		if(playerClass == "Knight" || playerClass == "Page"){
 			player.ghostPacts.push([ghost,enablingAspect]);  //help with a later fight.
-			//console.log("Knight or Page promise of dead: " + this.session.session_id);
+			console.log("Knight or Page promise of ghost attack: " + this.session.session_id);
 			return " The " +player.htmlTitleBasic() + " gains a promise of aid from the " + ghostName + ". ";
 		}else if(playerClass == "Seer" || playerClass == "Mage"){
 			player.ghostWisdom.push(ghost); //don't do anything, but keeps repeats from happening.

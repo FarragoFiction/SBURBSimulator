@@ -101,7 +101,6 @@ function Aftermath(session){
 
 
 	this.renderContent = function(div){
-		console.log("TODO: players with ghost power left over revive. healing lifeplayers can convert ghosts to living players ");
 		var yellowYard = false;
 		var living = findLivingPlayers(this.session.players);
 		var end = "<Br>";

@@ -386,6 +386,7 @@ function GameEntity(session, name, crowned){
 		}
 
 		this.playerdecideWhatToDo = function(div, player,players){
+			console.log("dear Future JR: seriously don't forget to let maids/rogue heal players, but gotta debug yellow yards now. -pastjr")
 			player.power = Math.max(1, player.power); //negative power is not allowed in an actual fight.
 			//for now, only one choice    //free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
 			if(!this.willPlayerAbscond(div,player,players)){
