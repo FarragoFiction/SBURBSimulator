@@ -389,11 +389,58 @@ function GameEntity(session, name, crowned){
 			player.power = Math.max(1, player.power); //negative power is not allowed in an actual fight.
 			//for now, only one choice    //free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
 			if(!this.willPlayerAbscond(div,player,players)){
-				this.aggrieve(div, player, this );
+				var undrainedPacts = removeDrainedGhostsFromPacts(deadPlayer.ghostPacts);
+				if(undrainedPacts.length > 0 ){
+					var didGhostAttack = this.ghostAttack(div, player, getRandomElementFromArray(undrainedPacts)); //maybe later denizen can do ghost attac, but not for now
+					if(!didGhostAttack){
+						this.aggrieve(div, player, this );
+					}
+				}else{
+					this.aggrieve(div, player, this );
+				}
 			}
-
-
 		}
+
+		//only do attack if i don't expect to one shot the enemy
+		//return false if i don't do ghsot attack
+		this.ghostAttack(div, player, ghost){
+			if(player.power < this.getHP()){
+					console.log("ghost attack in: " + this.htmlTitle())
+					ghost.causeOfDrain = player.htmlTitle();
+					this.currentHP += -1* ghost.power;
+					div.append(" The " + player.htmlTitleBasic() + " cashes in their promise of aid. The ghost of " + ghost.htmlTitleBasic() + " unleashes a ghostly attack channeled through the living player. " ghost.power + " damage is done to " + this.htmlTitleHP() + ". " );
+					if(!this.checkForAPulse(this, player)){
+
+						div.append("The " + this.htmlTitleHP() + " is dead. ");
+					}
+					this.drawGhostAttack(div, player, ghost);
+					return true;
+			}
+			return false;
+		}
+
+		//draw ghost on top of player, ghost lightning.
+		this.drawGhostAttack(div, player,ghost){
+			var canvasId = div.attr("id") + "attack" +player.chatHandle+ghost.chatHandle+player.power+ghost.power
+			var canvasHTML = "<br><canvas id='" + canvasId +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+			div.append(canvasHTML);
+			var canvas = document.getElementById(canvasId);
+			var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+			drawSprite(pSpriteBuffer,player)
+			var gSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+			drawSpriteTurnways(gSpriteBuffer,ghost)
+
+
+
+			drawWhatever(canvas, "drain_lightning.png");
+
+			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,200,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,200,0)
+			var canvasBuffer = getBufferCanvas(document.getElementById("canvas_template"))
+			return canvas;
+		}
+
+
 
 		//doomed players are just easier to target.
 		this.chooseTarget=function(players){
