@@ -67,9 +67,10 @@ function SaveDoomedTimeLine(session){
 	}
 
 	this.playerDoom = function(){
-		if(this.leaderIsFucked() && this.playerList.length < session.players.length){
-			this.reason = "Leader killed before all session.players in medium.";
-			//console.log(this.reason)
+		//greater time pressure for getting all players in, can't wait for a revive.
+		if(this.leaderPlayer.dead && this.playerList.length < this.session.players.length && this.playerList.length != 1){ //if i die before entering, well, that's yellowYard bullshit
+			this.reason = "Leader killed before all players in medium.";  //goddamn it past jr, there was a TYPO here, no WONDER it never happened.
+			console.log("!!!!!!!!!!!!!!!oh hell YES " + this.session.session_id)
 			return true; //not everybody is in, leader can't be server for final player
 		}
 		return false;
@@ -88,20 +89,49 @@ function SaveDoomedTimeLine(session){
 			//alert("ecto doom")
 			ret += " If the " + this.leaderPlayer.htmlTitleBasic() + " dies right now, ";
 			ret += " none of the Players will even be born in the first place (Long story, just trust them). ";
-			ret += " They make it so that never happened. Forget about it. ";
+
 			this.session.doomedTimelineReasons.push(this.reason)
 			this.leaderPlayer.dead = false;
-			this.leaderPlayer.currentHP = this.leaderPlayer.hp;
+			var r = this.timePlayer.getRelationshipWith(this.leaderPlayer);
+			if(r && r.value != 0){
+					if(r.value > 0){
+						console.log(" fully restoring leader health from time shenanigans: " + this.session.session_id)
+						ret += " They make it so that never happened. Forget about it. ";
+						this.leaderPlayer.currentHP = this.leaderPlayer.hp;
+					}else{
+						console.log(" barely restoring leader health from time shenanigans: " + this.session.session_id)
+						ret += " They take a twisted pleasure out of waiting until the last possible moment to pull the " + this.leaderPlayer.htmlTitleBasic() + "'s ass out of the danger zone. ";
+						this.leaderPlayer.currentHP = this.leaderPlayer.hp/10;
+					}
+			}else{
+				console.log(" half restoring leader health from time shenanigans: " + this.session.session_id)
+				ret += " They interupt things before the " + this.leaderPlayer.htmlTitleBasic() +  " gets hurt too bad. ";
+			}
+
 		}else if(this.reason == "Leader killed before all players in medium."){
 			ret += " If the " + this.leaderPlayer.htmlTitleBasic() + " dies right now, ";
-			ret += " the " +this.playerList[this.playerList.length-1].htmlTitleBasic() + " will never even make it into the medium. ";
+			ret += " the " +this.playerList[this.session.players.length-1].htmlTitleBasic() + " will never even make it into the medium. "; //only point of paradox is for last player
 			ret += " after all, the " + this.leaderPlayer.htmlTitleBasic() + " is their server player. ";
-			ret += " They make it so that never happened. Forget about it. ";
 			this.leaderPlayer.dead = false;
-			this.leaderPlayer.currentHP = this.leaderPlayer.hp;
+			var r = this.timePlayer.getRelationshipWith(this.leaderPlayer);
+			if(r && r.value != 0){
+					if(r.value > 0){
+						console.log(" fully restoring leader health from time shenanigans before all players in session: " + this.session.session_id)
+						ret += " They make it so that never happened. Forget about it. ";
+						this.leaderPlayer.currentHP = this.leaderPlayer.hp;
+					}else{
+						console.log(" barely restoring leader health from time shenanigans before all players in session : " + this.session.session_id)
+						ret += " They take a twisted pleasure out of waiting until the last possible moment to pull the " + this.leaderPlayer.htmlTitleBasic() + "'s ass out of the danger zone. ";
+						this.leaderPlayer.currentHP = this.leaderPlayer.hp/10;
+					}
+			}else{
+				console.log(" half restoring leader health from time shenanigans before all players in session: " + this.session.session_id)
+				ret += " They interupt things before the " + this.leaderPlayer.htmlTitleBasic() +  " gets hurt too bad. ";
+			}
 			this.session.doomedTimelineReasons.push(this.reason)
 		}else{
 			if(this.timePlayer.leader && !this.session.ectoBiologyStarted ){
+					console.log("time player doing time ectobiology: " + this.session.session_id)
 					this.timePlayer.performEctobiology(this.session);
 					this.reason = "Time player didn't do ectobiology."
 					session.doomedTimelineReasons.push(this.reason)
@@ -117,7 +147,7 @@ function SaveDoomedTimeLine(session){
 
 		var living = findLivingPlayers(this.session.players);
 		if(living.length > 0){
-			ret += " The " + this.timePlayer.htmlTitleBasic() + " has sacrificed themselves to prevent this from happening. ";
+			ret += " The " + this.timePlayer.htmlTitleBasic() + " has sacrificed themselves to change the timeline. ";
 			ret += " YOUR session's " + this.timePlayer.htmlTitle() + " is fine, don't worry about it...but THIS one is now doomed. ";
 			ret += " Least they can do after saving everyone is to time travel to where they can do the most good. ";
 			ret += " After doing something inscrutable, they vanish in a cloud of clocks and gears. ";

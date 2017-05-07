@@ -684,7 +684,7 @@ function Intro(session){
 			narration += "<br>The " + this.player.htmlTitle() + " has been in contact with the native players of this session for most of their lives. It's weird how time flows differently between universes. Now, after inumerable shenanigans, they will finally be able to meet up face to face."
 			if(this.player.dead==true){
 				console.log(session.session_id + " dead player enters, " +this.player.title())
-				narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably. <br>"
+				narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably. I...I guess their GHOST or something is making sure their house and corpse makes it into their medium? And their client player, as appropriate. <br>"
 				div.append(narration);
 				this.session.availablePlayers.push(this.player);
 				return;
@@ -716,7 +716,7 @@ function Intro(session){
 
 			if(this.player.dead==true){
 				console.log(session.session_id + " dead player enters, " +this.player.title())
-				narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably. Their kernel somehow gets prototyped with a "+this.player.kernel_sprite;
+				narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably. I...I guess their GHOST or something is making sure their house and corpse makes it into the medium? And their client player, as appropriate. Their kernel somehow gets prototyped with a "+this.player.kernel_sprite;
 				div.append(narration);
 				this.session.availablePlayers.push(this.player);
 				return;
