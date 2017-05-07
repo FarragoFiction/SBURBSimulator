@@ -47,7 +47,7 @@ function CorpseSmooch(session){
 		d.influencePlayer = null;
 		d.influenceSymbol = null;
 		d.dead = false;
-		d.dreamSelf = false;
+		d.dreamSelf = false; //only one self now. 
 		d.isDreamSelf = true;
 		d.murderMode = false;
 		d.grimDark = false;

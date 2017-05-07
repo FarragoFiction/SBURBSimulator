@@ -192,7 +192,7 @@ function LuckStuff(session){
 	this.roll100 = function(roll){
 		//console.log("roll100 in " + this.session.session_id + " roll is: " + roll.value);
 
-		if(roll.player.godDestiny && !roll.player.godTier && roll.player.dreamSelf){
+		if(roll.player.godDestiny && !roll.player.godTier && (roll.player.dreamSelf || roll.player.isDreamSelf)){
 			var ret = "What the HELL!? The " + roll.player.htmlTitle() + " managed to somehow lose to REGULAR FUCKING ENEMIES!? Is that even POSSIBLE!? This is BULLSHIT. Wait. What's going on? How did they end up on their " ;
 			if(!roll.player.isDreamSelf){
 				ret += "QUEST BED!? Their body glows, and rises Skaiaward. "+"On " + roll.player.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
