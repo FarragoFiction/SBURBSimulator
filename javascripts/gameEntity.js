@@ -366,6 +366,7 @@ function GameEntity(session, name, crowned){
 				//in battle, even passive healing afterlife players will heal themselves.
 			}else if((deadPlayer.aspect == "Doom" || deadPlayer.aspect == "Life")&& (deadPlayer.class_name == "Heir" || deadPlayer.class_name == "Thief"|| deadPlayer.class_name == "Maid"|| deadPlayer.class_name == "Rogue")){
 				var ghost = this.session.afterLife.findAnyUndrainedGhost();
+				if(!ghost) return;
 				ghost.causeOfDrain = deadPlayer.htmlTitle();
 				var myGhost = this.session.afterLife.findClosesToRealSelf(deadPlayer)
 				removeFromArray(myGhost, this.session.afterLife.ghosts);
