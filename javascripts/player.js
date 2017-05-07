@@ -1438,11 +1438,22 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 			}
 		}
 
-		if(this.trickster && this.aspect != "Doom" && this.aspect != "Heart")
+		if(this.trickster && this.aspect != "Doom" && this.aspect != "Heart"){
 		for(var k = 0; k <this.relationships.length; k++){
 				var r = this.relationships[k];
 				r.value = 111111; //EVERYTHIGN IS BETTER!!!!!!!!!!!
+				r.saved_type = r.goodBig;
 			}
+		}
+
+		if(this.robot){
+			for(var k = 0; k <this.relationships.length; k++){
+					var r = this.relationships[k];
+					r.value = 0; //robots are tin cans with no feelings
+					r.saved_type = r.neutral;
+					r.old_type = r.neutral;
+				}
+		}
 	}
 
 	this.initializePower = function(){
@@ -1456,6 +1467,10 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 		}
 		if(this.trickster && this.aspect != "Doom"){
 			this.power = 11111111111;
+		}
+
+		if(this.robot){
+			this.power += 100; //robots are superior
 		}
 	}
 

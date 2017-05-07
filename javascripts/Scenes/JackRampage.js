@@ -76,10 +76,21 @@ function JackRampage(session){
 		}else{
 
 			this.setPlayersUnavailable(stabbings);
-			ret = "Jack has caught the " + getPlayersTitlesBasic(stabbings) + ".  Will he show them his stabs? Strife!";
-			div.append("<br>"+ret);
-			this.renderPrestabs(div, stabbings); //pose as a team BEFORE getting your ass handed to you.
-			this.session.jack.strife(div, stabbings,0)
+			if(stabbings.length == 1 && stabbings[0].dreamSelf && !stabbings[0].isDreamSelf){
+				//jack kills the dream self instead of the active self. no strive. just death.
+				//want to test out a dream self dying without active.
+				console.log("jack kills nonactive dream self: " + this.session.session_id)
+				ret = "Jack has found the dream self of the " + stabbings[0].htmlTitleBasic() + ". He shows the sleeping body his stabs. The dream self is no longer available for revival shenanigans. ";
+				div.append("<br>"+ret);
+				stabbings[0].dreamSelf = false;
+				stabbings[0].causeOfDeath = "after being shown too many stabs from Jack"
+				this.session.afterLife.addGhost(makeRenderingSnapshot(stabbings[0]));
+			}else{
+				ret = "Jack has caught the " + getPlayersTitlesBasic(stabbings) + ".  Will he show them his stabs? Strife!";
+				div.append("<br>"+ret);
+				this.renderPrestabs(div, stabbings); //pose as a team BEFORE getting your ass handed to you.
+				this.session.jack.strife(div, stabbings,0)
+		}
 			return;//make sure text is over image
 		}
 
