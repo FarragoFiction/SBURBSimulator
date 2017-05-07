@@ -1237,7 +1237,6 @@ function session612IndexToTrollAncestor(player, index){
 	}
 }
 
-//inversion of 413
 function session1025(){
 	for(var i = 0; i<12;i++){
 		var player;
@@ -1245,8 +1244,8 @@ function session1025(){
 		if(i<curSessionGlobalVar.players.length){
 			player = curSessionGlobalVar.players[i];
 		}else{
-			player = randomPlayerWithClaspect("Page", "Void");
-			guardian = randomPlayerWithClaspect("Page", "Void");
+			player = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
+			guardian = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
 			guardian.quirk = randomTrollSim(guardian);
 			player.quirk = randomTrollSim(player);
 			//curSessionGlobalVar.guardians.push(guardian);
