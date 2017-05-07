@@ -198,7 +198,7 @@ function LifeStuff(session){
 	this.communeDead = function(div, str, player, playerClass,enablingAspect){  //takes in player class because if there is a helper, what happens is based on who THEY are not who the player is.
 		var ghost = this.session.afterLife.findGuardianSpirit(player);
 		var ghostName = "";
-		if(ghost && player.ghostPacts.getPactWithGhost(ghost) == null && player.ghostWisdom.indexOf(ghost) == -1 && !ghost.causeOfDrain){
+		if(ghost && player.getPactWithGhost(ghost) == null && player.ghostWisdom.indexOf(ghost) == -1 && !ghost.causeOfDrain){
 			//console.log("ghost of guardian: "+ player.titleBasic() + this.session.session_id);
 			//talk about getting wisdom/ forging a pact with your dead guardian. different if i am mage or knight (because i am alone)
 			ghostName = "teen ghost version of their ancestor"

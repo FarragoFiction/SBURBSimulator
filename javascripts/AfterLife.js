@@ -161,6 +161,7 @@ function AfterLife(){
 
 function removeDrainedGhostsFromPacts(ghostPacts){
 	var ret = [];
+	if(!ghostPacts) return [];
 	for(var i = 0; i<ghostPacts.length; i++){
 		if(!ghostPacts[i][0].causeOfDrain){
 			ret.push(ghostPacts[i])
