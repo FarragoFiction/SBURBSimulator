@@ -403,16 +403,18 @@ function FreeWillStuff(session){
 				}else{
 					removeFromArray(player, this.session.availablePlayers);
 					removeFromArray(sacrifice, this.session.availablePlayers);
-					sacrifice.makeDead("trying to go God Tier.");
+
 					player.triggerLevel += 100;
 					this.renderPlayer1 = player;
 					this.renderPlayer2 = sacrifice;
 					//console.log(player.title() + " commits murder for god tier but doesn't get tiger " + this.session.session_id);
 					var ret = "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed;
 					if(!sacrifice.godDestiny){
+						sacrifice.makeDead("trying to go God Tier against destiny.");
 						ret +=  ". A frankly ridiculous series of events causes the " + sacrifice.htmlTitleBasic() + "'s dying body to fall off their " + bed + ". They were never destined to GodTier, and SBURB neurotically enforces such things. The " + player.htmlTitleBasic() + " tries desparately to get them to their " + bed + " in time, but in vain. They are massively triggered by their own astonishing amount of hubris. ";
 					}else{
 						console.log(" could not god tier because lack of dream self in session: " + this.session.session_id)
+						sacrifice.makeDead("trying to go God Tier wthout a dream self.");
 						ret += ".  Unfortunately, you need a dream self to go GodTier, and the " + sacrifice.htmlTitleBasic() + " does not have one. They die for no reason. Nothing glows, their body does not float, and the magnitude of the " + player.htmlTitleBasic() + "'s hubris astonishes everyone. ";
 					}
 					return ret;
@@ -437,11 +439,11 @@ function FreeWillStuff(session){
 
 				removeFromArray(player, this.session.availablePlayers);
 				if((player.dreamSelf || player.isDreamSelf)){
-					console.log("player accidentally suicided trying to god tier without a dream self : "  + this.session.session_id)
 					var ret =  this.godTierHappens(player);
 					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They steel their will and prepare to commit a trivial act of self suicide. " + ret + " It is not a very big deal at all. ";  //caliborn
 				}else{
-					player.makeDead( "trying to go God Tier.");
+					console.log(player.title() + " player accidentally suicided trying to god tier without a dream self : "  + this.session.session_id)
+					player.makeDead( "trying to go God Tier without a dream self.");
 					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They steel their will and prepare to commit a trivial act of self suicide. " + ret + " They may have known enough to exploit the God Tiering mechanic, but apparently hadn't taken into account the fact that you need a DREAM SELF to ascend to the GOD TIERS. Whoops. DEAD. ";
 				}
 				//console.log(player.title() + " commits suicide and gets tiger " + this.session.session_id);
@@ -452,8 +454,8 @@ function FreeWillStuff(session){
 						var ret =  this.godTierHappens(player);
 						return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They steel their will and prepare to commit a trivial act of self suicide. " + ret + " It is probably for the best that they don't know how huge a deal this is. If they hadn't caught a LUCKY BREAK, they would have died here forever. They were never destined to go God Tier, even if they commited suicide.  ";
 					}else{
-						console.log("player accidentally suicided trying to god tier without a dream self : "  + this.session.session_id)
-						player.makeDead( "trying to go God Tier.");
+						console.log(player.title() + " player accidentally suicided trying to god tier without a dream self : "  + this.session.session_id)
+						player.makeDead( "trying to go God Tier without a dream self.");
 						return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They steel their will and prepare to commit a trivial act of self suicide. " + ret + " They may have known enough to exploit the God Tiering mechanic, but apparently hadn't taken into account the fact that you need a DREAM SELF to ascend to the GOD TIERS. Whoops. DEAD. ";
 
 					}
@@ -462,7 +464,7 @@ function FreeWillStuff(session){
 					var bed = "bed"
 					if(player.isDreamSelf) bed = "slab"
 					removeFromArray(player, this.session.availablePlayers);
-					player.makeDead( "trying to go God Tier."); //if slab, no corpse produced.
+					player.makeDead( "trying to go God Tier against destiny."); //if slab, no corpse produced.
 					this.renderPlayer1 = player;
 					//console.log(player.title() + " commits suicide but doesn't get tiger " + this.session.session_id);
 
