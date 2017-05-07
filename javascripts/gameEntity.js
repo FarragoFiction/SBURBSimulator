@@ -410,7 +410,7 @@ function GameEntity(session, name, crowned){
 					console.log(ghost);
 					ghost.causeOfDrain = player.htmlTitle();
 					this.currentHP += -1* ghost.power;
-					div.append(" The " + player.htmlTitleBasic() + " cashes in their promise of aid. The ghost of " + ghost.htmlTitleBasic() + " unleashes a ghostly attack channeled through the living player. " + ghost.power + " damage is done to " + this.htmlTitleHP() + ". The ghost will need to rest after this for awhile. " );
+					div.append(" The " + player.htmlTitleBasic() + " cashes in their promise of aid. The ghost of the " + ghost.htmlTitleBasic() + " unleashes an unblockable ghostly attack channeled through the living player. " + ghost.power + " damage is done to " + this.htmlTitleHP() + ". The ghost will need to rest after this for awhile. " );
 					if(!this.checkForAPulse(this, player)){
 
 						div.append("The " + this.htmlTitleHP() + " is dead. ");
