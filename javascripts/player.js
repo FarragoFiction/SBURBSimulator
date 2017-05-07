@@ -142,6 +142,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 		return ret;
 	}
 
+
 	this.getDiamonds = function(){
 		var ret = [];
 		for (var i = 0; i<this.relationships.length; i++){
@@ -165,6 +166,19 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 		}
 		return tmp;
 	}
+
+	this.makeAlive = function(){
+			if(this.stateBackup) this.stateBackup.restoreState(this);
+			this.influencePlayer = null;
+			this.influenceSymbol = null;
+			this.dead = false;
+			this.murderMode = false;
+			this.currentHP = d.hp;
+			this.grimDark = false;
+			this.triggerLevel = 1;
+			//this.leftMurderMode = false; //no scars
+			this.victimBlood = null; //clean face
+		}
 
 		//people like them less and also they are more triggered.
 	this.consequencesForTerriblePlayer  = function(){

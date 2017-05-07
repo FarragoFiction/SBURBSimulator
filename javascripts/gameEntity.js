@@ -209,6 +209,7 @@ function GameEntity(session, name, crowned){
 
 		}
 
+
 		//before a fight is called, decide who is in it. denizens are one on one, jack catches slower player and friends
 		//king/queen are whole party. if you want to comment on who's in it, do it before here.
 		//time clones count as players. have "doomed" in their title. that means players have a "doomed" stat.
@@ -336,11 +337,47 @@ function GameEntity(session, name, crowned){
 			}
 		}
 
-
+		//TODO in decide what to do, allow doom/life maids and rogues to heal players. and anyone with ghost pacts to do ghost attacks.
 		this.playersTurn = function(div, players){
 			var living = this.getLivingMinusAbsconded(players);
 			for(var i = 0; i<living.length; i++){
 				if(!living[i].dead && this.getHP()>0 && this.playersAbsconded.indexOf(living[i]) == -1) this.playerdecideWhatToDo(div, living[i],living); //player could have died from a counter attack, boss could have died from previous player
+			}
+
+			var dead = findDeadPlayers(players);
+			//give dead a chance to autoRevive
+			for(var i = 0; i<dead.length; i++){
+				if(!dead[i].doomed) this.tryAutoRevive(div, dead[i]);
+			}
+		}
+
+		this.tryAutoRevive = function(div, deadPlayer){
+			//first try using pacts
+			var undrainedPacts = removeDrainedGhostsFromPacts(deadPlayer.ghostPacts);
+			if(undrainedPacts.length > 0){
+				console.log("using a pact to autorevive in session " + this.session.session_id)
+				var source = undrainedPacts[0][0];
+				souce.causeOfDrain = deadPlayer.htmlTitle();
+				div.append(" In the afterlife, the " + deadPlayer.htmlTitleBasic() +" reminds the " + source.htmlTitleBasic() + " of their promise of aid. The ghost agrees to donate their life force to return the " + deadPlayer.htmlTitleBasic() + " to life. It will be a while before the ghost recovers.");
+				var myGhost = this.session.afterLife.findClosesToRealSelf(player)
+				removeFromArray(myGhost, this.session.afterLife.ghosts);
+				var canvas = drawReviveDead(div, player, ghost, undrainedPacts[0][1]);
+				deadPlayer.makeAlive();
+				//in battle, even passive healing afterlife players will heal themselves.
+			}else if((deadPlayer.aspect == "Doom" || deadPlayer.aspect == "Life")&& (deadPlayer.class_name == "Heir" || deadPlayer.class_name == "Thief"|| deadPlayer.class_name == "Maid"|| deadPlayer.class_name == "Rogue")){
+				var ghost = this.session.afterLife.findAnyUndrainedGhost();
+				ghost.causeOfDrain = deadPlayer.htmlTitle();
+				var myGhost = this.session.afterLife.findClosesToRealSelf(deadPlayer)
+				removeFromArray(myGhost, this.session.afterLife.ghosts);
+				if(deadPlayer.class_name  == "Thief" || deadPlayer.class_name  == "Rogue"){
+					console.log("thief/rogue autorevive in session " + this.session.session_id)
+					div.append(" The " + deadPlayer.htmlTitleBasic() + " steals the essence of the " + ghost.htmlTitle() + " in order to revive and keep fighting. It will be a while before the ghost recovers.");
+				}else if(deadPlayer.class_name  == "Heir" || deadPlayer.class_name  == "Maid"){
+					console.log("heir/maid autorevive in session " + this.session.session_id)
+					div.append(" The " + deadPlayer.htmlTitleBasic() + " inherits the essence and duties of the " + ghost.htmlTitle() + " in order to revive and continue their battle. It will be a while before the ghost recovers.");
+				}
+				var canvas = drawReviveDead(div, deadPlayer, ghost, deadPlayer.aspect);
+				deadPlayer.makeAlive();
 			}
 		}
 

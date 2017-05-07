@@ -10,6 +10,7 @@ function AfterLife(){
 		this.ghosts.push(ghost);
 	}
 
+
 	//until the timeline splits, ghosts from first timeline can't interact, because they DIDN't interact.
 	this.allowTransTimeLineInteraction = function(){
 		console.log("timelines divurged, allowing transTimeline interaction");
@@ -147,5 +148,23 @@ function AfterLife(){
 		return getRandomElementFromArray(this.ghosts);
 	}
 
+	this.findAnyUndrainedGhost = function(){
+		var ret = [];
+		for(var i=0; i<this.ghosts.length; i++){
+			if(this.ghosts[i].causeOfDrain == null) ret.push(this.ghosts[i])
+		}
+		return getRandomElementFromArray(ret);
+	}
 
+
+}
+
+function removeDrainedGhostsFromPacts(ghostPacts){
+	var ret = [];
+	for(var i = 0; i<ghostPacts.length; i++){
+		if(!ghostPacts[i][0].causeOfDrain){
+			ret.push(ghosts[i])
+		}
+	}
+	return ret;
 }

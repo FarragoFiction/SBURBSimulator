@@ -126,7 +126,7 @@ function LifeStuff(session){
 				}
 			}else if(!dreaming){
 				if(player.class_name == "Mage" ||  player.class_name == "Knight"){
-					this.communeDead(div, "", player, player.class_name);
+					this.communeDead(div, "", player, player.class_name,player.aspect);
 				}else if((player.class_name == "Seer" ||  player.class_name == "Page") && other_player && !other_player.dead){
 					this.helpPlayerCommuneDead(div, player, other_player);
 				}else if(player.class_name == "Prince"){
@@ -195,7 +195,7 @@ function LifeStuff(session){
 	//mages/knights call this directly.    flavor text of knowledge or power.  huge bonus if it's your guardian.
 	//renders itself and returns if it rendered anything.
 	//str is empty if I'm calling this myself, and has a line about so and so helping you do this if helper.
-	this.communeDead = function(div, str, player, playerClass){  //takes in player class because if there is a helper, what happens is based on who THEY are not who the player is.
+	this.communeDead = function(div, str, player, playerClass,enablingAspect){  //takes in player class because if there is a helper, what happens is based on who THEY are not who the player is.
 		var ghost = this.session.afterLife.findGuardianSpirit(player);
 		var ghostName = "";
 		if(ghost && player.ghostPacts.indexOf(ghost) == -1 && player.ghostWisdom.indexOf(ghost) == -1 && !ghost.causeOfDrain){
@@ -229,7 +229,7 @@ function LifeStuff(session){
 
 		if(ghost  && player.ghostPacts.indexOf(ghost) == -1 && player.ghostWisdom.indexOf(ghost) == -1 && !ghost.causeOfDrain){
 			//console.log("commune potato" +this.session.session_id);
-			div.append("<br><br>" +str + this.communeDeadResult(playerClass, player, ghost, ghostName));
+			div.append("<br><br>" +str + this.communeDeadResult(playerClass, player, ghost, ghostName,enablingAspect));
 			var canvas = this.drawCommuneDead(div, player, ghost);
 			removeFromArray(player, this.session.availablePlayers);
 			return canvas;
@@ -280,34 +280,6 @@ function LifeStuff(session){
 		return canvas;
 	}
 
-	this.drawReviveDead = function(div, player, ghost, enablingAspect){
-		console.log("revive dead in: " + this.session.session_id);
-		var canvasId = div.attr("id") + "commune_" +player.chatHandle
-		var canvasHTML = "<br><canvas id='" + canvasId +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
-		div.append(canvasHTML);
-		var canvas = document.getElementById(canvasId);
-		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-		drawSprite(pSpriteBuffer,player)
-		var gSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-		drawSpriteTurnways(gSpriteBuffer,ghost)
-
-		var canvasBuffer = getBufferCanvas(document.getElementById("canvas_template"))
-
-
-
-		//leave room on left for possible 'guide' player.
-		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,200,0)
-		copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,500,0)
-		if(enablingAspect == "Life"){
-			drawWhatever(canvas, "life_res.png");
-			drawWhatever(canvas, "afterlife_life.png");
-		}else if(enablingAspect == "Doom"){
-			console.log("doom revive: " + this.session.session_id)
-			drawWhatever(canvas, "doom_res.png");
-			drawWhatever(canvas, "afterlife_doom.png");
-		}
-		return canvas;
-	}
 
 	this.drawDrainDead = function(div, player, ghost, long){
 		console.log("drain dead in: " + this.session.session_id);
@@ -336,10 +308,10 @@ function LifeStuff(session){
 		return canvas;
 	}
 
-	this.communeDeadResult = function(playerClass, player, ghost, ghostName){
+	this.communeDeadResult = function(playerClass, player, ghost, ghostName,enablingAspect){
 
 		if(playerClass == "Knight" || playerClass == "Page"){
-			player.ghostPacts.push(ghost);  //help with a later fight.
+			player.ghostPacts.push([ghost,enablingAspect]);  //help with a later fight.
 			//console.log("Knight or Page promise of dead: " + this.session.session_id);
 			return " The " +player.htmlTitleBasic() + " gains a promise of aid from the " + ghostName + ". ";
 		}else if(playerClass == "Seer" || playerClass == "Mage"){
@@ -363,7 +335,7 @@ function LifeStuff(session){
 			}else if(player1.class_name == "Page"){
 				text += "The " + player1.htmlTitleBasic() + " guides the " + player2.htmlTitleBasic() + " to seek aid from the dead. "
 			}
-			var canvas = this.communeDead(childDiv, text, player2, player1.class_name);
+			var canvas = this.communeDead(childDiv, text, player2, player1.class_name, player1.aspect);
 			if(canvas){
 				removeFromArray(player1, this.session.availablePlayers);
 				//console.log("Help communing with the dead: " + this.session.session_id);
@@ -445,7 +417,7 @@ function LifeStuff(session){
 
 	//thief/heir of life/doom //flavor text of absorbing or stealing.  mention 'it will be a while before the ghost of X respawns' don't bother actually respawning them , but makes it different than double death
 	this.drainDeadForReviveSelf = function(div, str, player, className, enablingAspect){
-			ghost = this.session.afterLife.findAnyGhost(player); //not picky in a crisis.
+			ghost = this.session.afterLife.findAnyUndrainedGhost(player); //not picky in a crisis.
 			ghostName = "dead player"
 			//need to find my own ghost and remove it from the afterlife.
 			var myGhost = this.session.afterLife.findClosesToRealSelf(player)
@@ -462,8 +434,8 @@ function LifeStuff(session){
 
 				div.append("<br><br>" +str);
 				ghost.causeOfDrain = player.htmlTitle();
-				var canvas = this.drawReviveDead(div, player, ghost, enablingAspect);
-				this.makeAlive(player);
+				var canvas = drawReviveDead(div, player, ghost, enablingAspect);
+				player.makeAlive();
 
 
 				removeFromArray(myGhost, this.session.afterLife.ghosts);
@@ -516,19 +488,7 @@ function LifeStuff(session){
 		div.append("" +str);
 	}
 
-	//for claspects that can recycyle afterlife.
-	this.makeAlive = function(d){
-		if(d.stateBackup) d.stateBackup.restoreState(d);
-		d.influencePlayer = null;
-		d.influenceSymbol = null;
-		d.dead = false;
-		d.murderMode = false;
-		d.currentHP = d.hp;
-		d.grimDark = false;
-		d.triggerLevel = 1;
-		d.leftMurderMode = false; //no scars
-		d.victimBlood = null; //clean face
-	}
+
 
 	this.makeDead = function(d){
 		////console.log("make dead " + d.title())

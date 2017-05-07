@@ -390,6 +390,37 @@ function imgLoaded(imgElement) {
 
 */
 
+function drawReviveDead (div, player, ghost, enablingAspect){
+  console.log("revive dead in: " + this.session.session_id);
+  var canvasId = div.attr("id") + "commune_" +player.chatHandle
+  var canvasHTML = "<br><canvas id='" + canvasId +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+  div.append(canvasHTML);
+  var canvas = document.getElementById(canvasId);
+  var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+  drawSprite(pSpriteBuffer,player)
+  var gSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+  drawSpriteTurnways(gSpriteBuffer,ghost)
+
+  var canvasBuffer = getBufferCanvas(document.getElementById("canvas_template"))
+
+
+
+  //leave room on left for possible 'guide' player.
+  copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,200,0)
+  copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,500,0)
+  if(enablingAspect == "Life"){
+    drawWhatever(canvas, "life_res.png");
+    drawWhatever(canvas, "afterlife_life.png");
+  }else if(enablingAspect == "Doom"){
+    console.log("doom revive: " + this.session.session_id)
+    drawWhatever(canvas, "doom_res.png");
+    drawWhatever(canvas, "afterlife_doom.png");
+  }
+  return canvas; //so enabling player can draw themselves on top
+}
+
+
+
 //leader is an adult, though.
 function poseBabiesAsATeam(canvas, leader, players, guardians, repeatTime){
   if(checkSimMode() == true){
