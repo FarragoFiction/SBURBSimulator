@@ -391,7 +391,6 @@ function imgLoaded(imgElement) {
 */
 
 function drawReviveDead (div, player, ghost, enablingAspect){
-  console.log("revive dead in: " + this.session.session_id);
   var canvasId = div.attr("id") + "commune_" +player.chatHandle
   var canvasHTML = "<br><canvas id='" + canvasId +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
   div.append(canvasHTML);

@@ -173,7 +173,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 			this.influenceSymbol = null;
 			this.dead = false;
 			this.murderMode = false;
-			this.currentHP = d.hp;
+			this.currentHP = this.hp;
 			this.grimDark = false;
 			this.triggerLevel = 1;
 			//this.leftMurderMode = false; //no scars
