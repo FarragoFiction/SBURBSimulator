@@ -110,8 +110,8 @@ function SaveDoomedTimeLine(session){
 
 		}else if(this.reason == "Leader killed before all players in medium."){
 			ret += " If the " + this.leaderPlayer.htmlTitleBasic() + " dies right now, ";
-			ret += " the " +this.playerList[this.session.players.length-1].htmlTitleBasic() + " will never even make it into the medium. "; //only point of paradox is for last player
-			ret += " after all, the " + this.leaderPlayer.htmlTitleBasic() + " is their server player. ";
+			ret += " the " +this.session.players[this.session.players.length-1].htmlTitleBasic() + " will never even make it into the medium. "; //only point of paradox is for last player
+			ret += " After all, the " + this.leaderPlayer.htmlTitleBasic() + " is their server player. ";
 			this.leaderPlayer.dead = false;
 			var r = this.timePlayer.getRelationshipWith(this.leaderPlayer);
 			if(r && r.value != 0){
