@@ -83,10 +83,10 @@ function JackRampage(session){
 				ret = "Jack has found the dream self of the " + stabbings[0].htmlTitleBasic() + ". He shows the sleeping body his stabs. The dream self is no longer available for revival shenanigans. ";
 				div.append("<br>"+ret);
 				stabbings[0].dreamSelf = false;
-				var snop = makeRenderingSnapshot(stabbings[0]
+				var snop = makeRenderingSnapshot(stabbings[0]);
 				snop.causeOfDeath = "after being sleep stabbed by Jack"
 				snop.isDreamSelf = true;
-				this.session.afterLife.addGhost(snop));
+				this.session.afterLife.addGhost(snop);
 			}else{
 				this.setPlayersUnavailable(stabbings);
 				ret = "Jack has caught the " + getPlayersTitlesBasic(stabbings) + ".  Will he show them his stabs? Strife!";

@@ -348,7 +348,7 @@ function LifeStuff(session){
 			player.aspectIncreasePower(ghost.power/2); //want to increase aspect stats, too.
 			player.leveledTheHellUp = true;
 			player.level_index +=1;
-			return " The " +player.htmlTitleBasic() + " gains valuable wisdom from the " + ghostName + ". Their power grows.";
+			return " The " +player.htmlTitleBasic() + " gains valuable wisdom from the " + ghostName + ". Their power grows much more quickly than merely doing quests. ";
 		}
 	}
 
