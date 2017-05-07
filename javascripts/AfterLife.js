@@ -163,7 +163,7 @@ function removeDrainedGhostsFromPacts(ghostPacts){
 	var ret = [];
 	for(var i = 0; i<ghostPacts.length; i++){
 		if(!ghostPacts[i][0].causeOfDrain){
-			ret.push(ghosts[i])
+			ret.push(ghostPacts[i])
 		}
 	}
 	return ret;

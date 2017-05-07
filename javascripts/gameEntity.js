@@ -364,9 +364,10 @@ function GameEntity(session, name, crowned){
 				deadPlayer.makeAlive();
 			}else if((deadPlayer.aspect == "Doom" || deadPlayer.aspect == "Life")&& (deadPlayer.class_name == "Heir" || deadPlayer.class_name == "Thief")){
 				var ghost = this.session.afterLife.findAnyUndrainedGhost();
-				if(!ghost) return;
-				ghost.causeOfDrain = deadPlayer.htmlTitle();
 				var myGhost = this.session.afterLife.findClosesToRealSelf(deadPlayer)
+				if(!ghost || ghost == myGhost) return;
+				ghost.causeOfDrain = deadPlayer.htmlTitle();
+
 				removeFromArray(myGhost, this.session.afterLife.ghosts);
 				if(deadPlayer.class_name  == "Thief" ){
 					console.log("thief autorevive in session " + this.session.session_id)
