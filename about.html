@@ -7,6 +7,59 @@
 	<script>
 	window.onload = function() {
 			loadNavbar();
+			console.log(" If you wanted to see the super secret programmer FAQ, maybe you should check the script tag???")
+
+			/*
+	   Hi!!! You have found the secret developer FAQ. I figure the stuff I wanted to ramble about that might be a bit too "techy" can go here, you know?
+
+		Q:  How the HELL does this pile of glitches even begin to work?
+		A: You're going to want to START looking at "scene_controller.js" . That has a method called: "createScenesForSession".
+				Each scene is in charge of knowing when it triggers, and what happens when it does trigger.
+				A really straight forward scene to look at is "KingPowerful.js".  It triggers if the king is stronger than the hardcoded "hard strength",
+				and displays a simple message about the game being hard.  The older a scene is in relation to the sim itself, the simpler the scene tends to be.
+				I had this vague idea that scenes were gonna be hella simple and there would be a bunch of them. As the simulation matured, scenes got more and more complex
+				(just look at how fucking huge "RelationshipDrama.js" is). This is because I started nesting triggers within scenes as I realized how fucking stupid it was to have,
+				like, a hundred different javascript files in every html page I wanted to use the sim in. Shit is fucking untenable.
+
+				In any case, scenes are where most of the intelligence lives. Players are repositories of stats, mostly. I remember reading that the Sims had most of the AI in the
+				objects the Sims interacted with, and that seemed like a highly modable schema, so I took inspiration from it.  If I want something new to happen, I 'just' throw a new
+				scene in.  And then weep deeply as shit goes buggy.
+
+		Q: Why did you do <insert frankly baffling decision here>?
+		A:  Shenanigans. No, really.  This simulation first started as something I threw together in a goddamned week. And then things just kept getting layered on top of each other.
+				Design choices that made sense in week one would be an albatross around my neck by week 8, but only a few things were worth going to the effort of refactoring.
+
+				Something that might shed light on the situation is that my chatHandle is not just for show. I'm NOT a software developer, I'm a jaded motherfucking Researcher.
+				Everything I program is designed to be a prototype, or help my team learn something. I.E. I make things that are designed to be used by a handful of people and then thrown away.
+				This is the biggest thing I've ever made, with the biggest user base. I'm learning as I go, here.
+
+		Q: How are you rendering the sprites?? It's not just layering pngs, is it?
+		A: Nope, very astute of you hypothetical Observer.  If you dig around in my /images/Bodies/ folder, you will see that all of the bodies are colored as if they are Light players.
+				This is because I am doing dynamic color replacement rather than having literally hundreds of differet sprites. It's WAY better to have 12 god tiers sprites that I just swap the colors out for.
+				The same engine allows me to have troll wings match their blood colors, and hair color match blood/aspect color as well.
+
+				~~~~Okay, time for the super technical shit:~~~~~
+
+				Here's where my actual fucking day job came in handy.  HTML5's canvas allows you to access the actual byte array for any images drawn onto it.
+				So, instead of having it being encoded into an image format, like PNG or JPG or whatever, it's just straight up RGBA values.
+				Imagine you have a png that's 10 wide and 10 tall (it's a very shitty png).  Once you've drawn it onto the HTML5 canvas, you can use
+				the canvas' context's built in function "getImageData" to get an array of bytes out.
+				The array will be 400 long, or 10 wide x 10 tall x 4 bytes per pixel.
+
+				There are 4 bytes per pixel because there is 1 byte per color.  Red is one byte, green is one byte, blue is one byte, and alpha is one byte.
+				When I say "byte", I could also say "0-255" or 0x00- 0xFF.  When you're talking about HTML colors, you might say #ff00ff, which is the same thing as saying
+				[255,0,255,255] as a byte array (regular html font colors always have max alpha, so that last 255 in the array is the assumed max alpha).
+
+				So, if I had a red pixel, and then a green pixel and then a blue pixel, and then a clear pixel, I would expect the array to look like:
+				[255,0,0,255,0,255,0,255,0,0,255,255,0,0,0,0];  Which makes even me go crosseyed and I'm the one who wrote it. But, like, see how there are 4 pixels and 16 things in the array?
+
+				So, check out "swapColors" in  "handle_sprites.js".
+				In human words, what's going on is: "Take in two html hex values, like #00ff00 or #ff0000. Turn those into byte arrays like [0,255,0] or [255,0,0].
+				Get the image data out of the canvas, and loop through it pixel by pixel (which is 4 bytes at a time).
+				For each pixel, chek to see if it's bytes match the bytes I'm looking for (and that the alpha is maxed).
+				If it is, change the bytes to be the bytes I want them to be.  Write the modified image back to the context when youe done."
+
+			*/
 	}
 	</script>
 	<meta charset="utf-8">
@@ -91,6 +144,11 @@
 			Awesome! I have a git repository <a href = "https://github.com/jadedResearcher/SBURBSimulator"> here</a>, but just be warned that I am extremely unlikely to use any non-me-generated code. BUT! This whole thing is under the MIT License and people can use it for whatever as long as they credit me.  Also...you should totally be warned that I made this simulation for speed of development, not ease of modibliity or ease of understanding for non-me-type-people. Good luck!
 	</li>
 	<br><Br>
+
+		<li> <b>I want to understand your code!</b><br><br>
+			Lol. Wait. You're serious?  Shit, son, not even *I* understand this shit half the time. It mostly works through not looking too closely at the bugs, at this point. If you're serious, and have any javascript experience, then I guess you could START by finding the secret developer FAQ associated with this page.  Finding that is your first task.
+		</li>
+		<br><Br>
 	<li><b>What is up with the AuthorBot?</b><br><br>
 			I love her!!!  In addition to making my life so much easier, I am just fucking tickled to have this shitty AI assistant with it's own shitty oc image. It's beautiful.
 			<br><Br>
@@ -126,6 +184,7 @@
 			Though, real talk, I have had actual freaking nightmares about how hard this pile of glitches is to debug. It's hard enough to make it work as intended, much less change something withouth spawning, like, three bugs.
 		</li>
 	<br><Br>
+
 
 <ul>
 
