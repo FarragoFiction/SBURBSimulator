@@ -118,7 +118,7 @@ function checkSGRUB(){
 		}
 	}
 	//can only get here if all are trolls.
-	$(document).attr("title", "SGRUB Story Generatorby jadedResearcher");
+	$(document).attr("title", "SGRUB Story Generator by jadedResearcher");
 	$("#heading").html("SGRUB Story Generator by jadedResearcher (art assistance by karmicRetribution) ");
 }
 
