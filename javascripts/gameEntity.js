@@ -869,38 +869,38 @@ prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
 
 prototyping_objects.push(new GameEntity(null, "Praying Mantis",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].maxLuck = 20;
 
 prototyping_objects.push(new GameEntity(null, "Doctor",null));   //healing fraymotif
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
 
-prototyping_objects.push(new GameEntity(null, "Engineer",null)); 
+prototyping_objects.push(new GameEntity(null, "Gerbil",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
 
-prototyping_objects.push(new GameEntity(null, "Construction Worker",null)); 
+prototyping_objects.push(new GameEntity(null, "Chinchilla",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
 
-prototyping_objects.push(new GameEntity(null, "Student",null)); 
+prototyping_objects.push(new GameEntity(null, "Rabbit",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+prototyping_objects[prototyping_objects.length-1].maxLuck = 100;
 
 prototyping_objects.push(new GameEntity(null, "Librarian",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
 
-prototyping_objects.push(new GameEntity(null, "Jockey",null)); 
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+prototyping_objects.push(new GameEntity(null, "Pit Bull",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 50;
 
 prototyping_objects.push(new GameEntity(null, "Butler",null)); 
-prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].power = 50;  //he will server you like a man on buttler island
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
 
 prototyping_objects.push(new GameEntity(null, "Sloth",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].mobility = -20;
+prototyping_objects[prototyping_objects.length-1].mobility = -50;
 
 prototyping_objects.push(new GameEntity(null, "Cowboy",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
@@ -908,24 +908,27 @@ prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
 
 
 prototyping_objects.push(new GameEntity(null, "Pomeranian",null)); 
-prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].power = 1; //pomeranians aren't actually very good at fights.  (trust me, i know)
 prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
 
 prototyping_objects.push(new GameEntity(null, "Chihuahua",null)); 
-prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].power = 1;  //i'm extrapolating here, but I imagine Chihuahua's aren't very good at fights, either.
 prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
 
 prototyping_objects.push(new GameEntity(null, "Pony",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
+prototyping_objects[prototyping_objects.length-1].triggerLevel = 1000;  //ponyPals taught me that ponys are just flipping their shit, like, 100% of the time.
 
 prototyping_objects.push(new GameEntity(null, "Horse",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
+prototyping_objects[prototyping_objects.length-1].triggerLevel = 100;  //probably flip out less than ponys???
 
-prototyping_objects.push(new GameEntity(null, "Internet Troll",null)); 
+prototyping_objects.push(new GameEntity(null, "Internet Troll",null));   //needs to have a fraymotif called "u mad, bro" and "butt hurt"
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
+prototyping_objects[prototyping_objects.length-1].triggerLevel = 1000;
 
 prototyping_objects.push(new GameEntity(null, "Mosquito",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
@@ -936,10 +939,11 @@ prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
 
 prototyping_objects.push(new GameEntity(null, "Cow",null)); 
-prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].power = 30; //cows kill more people a year than sharks.
 
 prototyping_objects.push(new GameEntity(null, "Bird",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].mobility = 20;
 
 
 prototyping_objects.push(new GameEntity(null, "Bug",null)); 
@@ -955,17 +959,17 @@ prototyping_objects[prototyping_objects.length-1].power = 20;
 
 
 prototyping_objects.push(new GameEntity(null, "Husky",null)); 
-prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].power = 30;
 
 
 prototyping_objects.push(new GameEntity(null, "Cat",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].minLuck = 20;
+prototyping_objects[prototyping_objects.length-1].minLuck = -20;
 prototyping_objects[prototyping_objects.length-1].maxLuck = 20;
 
 
 prototyping_objects.push(new GameEntity(null, "Dog",null)); 
-prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].power = 30;
 
 
 prototyping_objects.push(new GameEntity(null, "Pigeon",null)); 
@@ -974,6 +978,7 @@ prototyping_objects[prototyping_objects.length-1].power = 20;
 
 prototyping_objects.push(new GameEntity(null, "Octopus",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].mobility = 80; //so many legs! more legs is more faster!!!
 
 
 prototyping_objects.push(new GameEntity(null, "Fish",null)); 
@@ -1006,10 +1011,12 @@ prototyping_objects[prototyping_objects.length-1].power = 20;
 
 prototyping_objects.push(new GameEntity(null, "Crow",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].freeWill = 20; //have you ever tried to convince a crow not to do something? not gonna happen.
 
 
 prototyping_objects.push(new GameEntity(null, "Chicken",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].freeWill = -20;  //mike the headless chicken has convinced me that chickens don't really need brains. god that takes me back.
 
 
 prototyping_objects.push(new GameEntity(null, "Duck",null)); 
@@ -1034,15 +1041,16 @@ prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
 
 
 prototyping_objects.push(new GameEntity(null, "Kangaroo",null)); 
-prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].power = 30;
+prototyping_objects[prototyping_objects.length-1].mobility = 30;
 
 prototyping_objects.push(new GameEntity(null, "Stoner",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].minLuck = 20;
+prototyping_objects[prototyping_objects.length-1].minLuck = -20;
 prototyping_objects[prototyping_objects.length-1].maxLuck = 20;
 
 
-//////////////////////lusii
+//////////////////////lusii are a little stronger in general 
 
 lusus_objects.push(new GameEntity(null, "Hoofbeast",null)); 
 lusus_objects[lusus_objects.length-1].power = 30;
