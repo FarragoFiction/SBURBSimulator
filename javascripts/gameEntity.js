@@ -116,12 +116,15 @@ function GameEntity(session, name, crowned){
 			return ret + pname +" (" + Math.round(this.getHP()) + " hp, " + Math.round(this.getPower()) + " power)</font>"; //TODO denizens are aspect colored.
 		}
 
+
+
 		//only the crown itself has this called. king and queen just use the crown.
 		this.addPrototyping = function(object){
 			this.name = object.name + this.name; //sprite becomes puppetsprite.
 			this.corrupted = object.corrupted;
 			this.helpfulness = object.helpfulness; //completely overridden.
 			this.grist += object.grist;
+			this.lusus = object.lusus;
 			this.minLuck += object.minLuck;
 			this.currentHP += object.currentHP;
 			this.hp += object.hp;
@@ -644,6 +647,28 @@ function GameEntity(session, name, crowned){
 
 
 
+}
+
+//maybe it's a player. maybe it's game entity. whatever. copy it.
+//take name explicitly 'cause plaeyrs don't have one
+function copyGameEntity(object,name){
+	var ret = new GameEntity(object.session, name, null)
+	this.corrupted = object.corrupted;
+	this.helpfulness = object.helpfulness; //completely overridden.
+	this.grist = object.grist;
+	this.minLuck = object.minLuck;
+	this.currentHP = object.currentHP;
+	this.hp = object.hp;
+	this.mobility = object.mobility;
+	this.maxLuck = object.maxLuck;
+	this.freeWill = object.freeWill;
+	this.power = object.power;
+	this.illegal = object.illegal;
+	this.minLuck = object.minLuck;
+	this.minLuck = object.minLuck;
+	this.minLuck = object.minLuck;
+	this.player = object.player;
+	this.lusus = object.lusus;
 }
 
 

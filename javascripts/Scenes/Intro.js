@@ -55,7 +55,7 @@ function Intro(session){
 
 //not a yellow yard thing, just random
 	this.changePrototyping = function(div){
-		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1 && Math.seededRandom() > .8){
+		if(this.player.object_to_prototype.power > 200 && Math.seededRandom() > .8){
 			var divID = (div.attr("id"))
 			var canvasHTML = "<br><canvas id='canvaskernel" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
@@ -68,11 +68,11 @@ function Intro(session){
 				ret += "It's a little alarming how much they are bleeding. "
 			}
 			ret += " They come with a dire warning of a doomed timeline. ";
-			ret += "They dropkick the " + this.player.kernel_sprite + " out of the way and jump into the " + this.player.htmlTitleBasic() + "'s kernel sprite instead. <br> "
-			this.player.kernel_sprite = timePlayer.title();
+			ret += "They dropkick the " + this.player.object_to_prototype.htmlTitle() + " out of the way and jump into the " + this.player.htmlTitleBasic() + "'s kernel sprite instead. <br> "
+			this.player.object_to_prototype = copyGameEntity(timePlayer, timePlayer.title())
+			this.player.object_to_prototype.helpfulness = 1;
+			this.player.object_to_prototype.player = true;
 			console.log("time player sprite in session: " + this.session.session_id);
-			player_prototypings.push(this.player.kernel_sprite)
-			helpful_prototypings.push(this.player.kernel_sprite)
 
 		}else if((this.player.dead == true || this.player.isDreamSelf == true || this.player.dreamSelf == false) && Math.seededRandom() > .1){
 			var ret = "Through outrageous shenanigans, one of the " + this.player.htmlTitle() + "'s superfluous corpses ends up prototyped into their kernel sprite. <br>";
@@ -88,7 +88,7 @@ function Intro(session){
 
 	this.addImportantEvent = function(){
 		var current_mvp =  findStrongestPlayer(this.session.players)
-		if(this.player.aspect == "Time" && fortune_prototypings.indexOf(this.player.kernel_sprite) == -1){
+		if(this.player.aspect == "Time" && !player1.object_to_prototype.illegal){
 			return this.session.addImportantEvent(new TimePlayerEnteredSessionWihtoutFrog(this.session, current_mvp.power,this.player) );
 		}else{
 			return this.session.addImportantEvent(new PlayerEnteredSession(this.session, current_mvp.power,this.player) );
@@ -114,7 +114,7 @@ function Intro(session){
 			chatText += chatLine(player2Start, player2,"Fine. Tell me about your Land.");
 			chatText += chatLine(player1Start, player1,"Oh. Um. It's the " + player1.land +".");
 			chatText += chatLine(player2Start, player2,"And your kernel?");
-			chatText += chatLine(player1Start, player1,"A " + player1.kernel_sprite +".\n");
+			chatText += chatLine(player1Start, player1,"A " + player1.object_to_prototype.htmlTitle() +".\n");
 			chatText += chatLine(player2Start, player2,"Social obligation complete. Goodbye.");
 			return chatText;
 	}
@@ -138,16 +138,16 @@ function Intro(session){
 		chatText += chatLine(player1Start, player1,"It appears to be the " + player1.land +".");
 		chatText += chatLine(player1Start, player1,"I guess it has something to do with my title? I am apparently the ' " + player1.title() + "'. ");
 		chatText +=chatLine(player2Start, player2,"Whatever THAT means. ");
-		chatText += chatLine(player1Start, player1,"Yes. Also, I prototyped my kernelsprite with a " + player1.kernel_sprite +".\n");
+		chatText += chatLine(player1Start, player1,"Yes. Also, I prototyped my kernelsprite with a " + player1.object_to_prototype.htmlTitle() +".\n");
 		if(player_prototypings.indexOf(player1.kernel_sprite) != -1){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
-		}else if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite)!= -1){
+		}else if(player1.isTroll == true && player1.object_to_prototype.lusus){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
 		}
-		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
+		if(player1.object_to_prototype.power>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 				chatText += chatLine(player1Start, player1, "I suspect it will prove to have been a very bad idea.");
@@ -155,7 +155,7 @@ function Intro(session){
 				chatText += chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 				chatText += chatLine(player1Start, player1, "Agreed.");
 			}
-		}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
+		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"What did that do?");
 				chatText += chatLine(player1Start, player1, "I suspect it will prove to have been a very good idea.");
@@ -193,18 +193,18 @@ function Intro(session){
 		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
-		}else if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite) != -1){
+		}else if(player1.isTroll == true && player1.object_to_prototype.lusus){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
 		}
-		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
+		if(player1.object_to_prototype.power>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
 				chatText += chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
-		}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
+		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"What did that do?");
 				chatText += chatLine(player1Start, player1, "So far, it made the enemies look like a  "+player1.kernel_sprite + " but I can't wait to find out what else it did!");
@@ -239,18 +239,18 @@ function Intro(session){
 		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
-		}else if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite)!= -1){
+		}else if(player1.isTroll == true && player1.object_to_prototype.lusus){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
 		}
-		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
+		if(player1.object_to_prototype.power>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
 				chatText += chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
-		}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
+		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"What did that do?");
 				chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.kernel_sprite + " like a customization kind of thing? ");
@@ -307,19 +307,19 @@ function Intro(session){
 		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += chatLine(player1Start, player1,":/  Yeah... They figured out a way to not die when they time travel! ");
-		}else if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite) != -1){
+		}else if(player1.isTroll == true && player1.object_to_prototype.lusus){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,":/  Yeah... It was so sad when they died. But now I'm happy because SBURB brought them back! ");
 			chatText +=chatLine(player2Start, player2,"Oh, man....");
 			return chatText; // too depressing to keep going.
 		}
-		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
+		if(player1.object_to_prototype.power>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
 				chatText += chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
-		}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
+		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"What did that do?");
 				chatText += chatLine(player1Start, player1, "It made the enemies look like a "+player1.kernel_sprite);
@@ -354,18 +354,18 @@ function Intro(session){
 		chatText += chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+".");
 		chatText +=chatLine(player2Start, player2,"lol");
 		chatText += chatLine(player1Start, player1,"So... I prototyped my kernel whatever with a " + player1.kernel_sprite +".\n");
-		if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite) != -1){
+		if(player1.isTroll == true && player1.object_to_prototype.lusus){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
 		}
-		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
+		if(player1.object_to_prototype.power>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
 				chatText += chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
-		}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
+		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"What did that do?");
 				chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.kernel_sprite);
@@ -403,18 +403,18 @@ function Intro(session){
 		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += chatLine(player1Start, player1,":/  Yeah... That's a story all on it's own. ");
-		}else if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite) != -1){
+		}else if(player1.isTroll == true && player1.object_to_prototype.lusus){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,":/  Yeah... That probably wouldn't have happened in a story. ");
 
 		}
-		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
+		if(player1.object_to_prototype.power>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
 				chatText += chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
-		}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
+		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"What did that do?");
 				chatText += chatLine(player1Start, player1, "I think it  made the enemies look like a "+player1.kernel_sprite);
@@ -454,12 +454,12 @@ function Intro(session){
 		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += chatLine(player1Start, player1,"Yes! I already have my first minion! ");
-		}else	if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite) != -1){
+		}else	if(player1.isTroll == true && player1.object_to_prototype.lusus){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,"Yes! Who better to assist me on my epic quest? ");
 
 		}
-		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
+		if(player1.object_to_prototype.power>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 				chatText += chatLine(player1Start, player1, "Fuck you. It will obviously give me a huge edge in this game.");
@@ -468,7 +468,7 @@ function Intro(session){
 				chatText += chatLine(player1Start, player1, "Fuck you. It will obviously give me a huge edge in this game.");
 				chatText += chatLine(player2Start, player2,"Eh.");
 			}
-		}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
+		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"What did that do?");
 				chatText += chatLine(player1Start, player1, "Obviously give me an advantage.");
@@ -510,18 +510,18 @@ function Intro(session){
 		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
-		}else if(player1.isTroll == true && landlususTypes.indexOf(player1.kernel_sprite) != -1 ||  seaLususTypes.indexOf(player1.kernel_sprite) != -1){
+		}else if(player1.isTroll == true && player1.object_to_prototype.lusus){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
 		}
-		if(disastor_prototypings.indexOf(this.player.kernel_sprite) != -1) {
+		if(player1.object_to_prototype.power>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
 				chatText += chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
-		}else if(fortune_prototypings.indexOf(this.player.kernel_sprite) != -1){
+		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"What did that do?");
 				chatText += chatLine(player1Start, player1, "I'm not sure. Do you think it was symbolic?");
