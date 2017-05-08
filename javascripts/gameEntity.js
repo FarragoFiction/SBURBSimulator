@@ -783,7 +783,7 @@ disastor_objects[disastor_objects.length-1].hp = 5;
 disastor_objects[disastor_objects.length-1].currentHP = 500;
 disastor_objects[disastor_objects.length-1].power = 5;
 disastor_objects[disastor_objects.length-1].helpfulness = -1;
-disastor_objects[disastor_objects.length-1].maxLuck = 5000;
+disastor_objects[disastor_objects.length-1].maxLuck = -5000;  //fuck monkeys
 disastor_objects[disastor_objects.length-1].min = -5000;
 disastor_objects[disastor_objects.length-1].mobility = 5000;
 
@@ -895,8 +895,9 @@ prototyping_objects.push(new GameEntity(null, "Pit Bull",null));
 prototyping_objects[prototyping_objects.length-1].power = 50;
 
 prototyping_objects.push(new GameEntity(null, "Butler",null)); 
-prototyping_objects[prototyping_objects.length-1].power = 50;  //he will server you like a man on buttler island
+prototyping_objects[prototyping_objects.length-1].power = 50;  //he will serve you like a man on buttler island
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+prototyping_objects[prototyping_objects.length-1].triggerLevel = -50;
 
 prototyping_objects.push(new GameEntity(null, "Sloth",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
@@ -1064,28 +1065,30 @@ lusus_objects[lusus_objects.length-1].maxLuck = 20;
 
 
 lusus_objects.push(new GameEntity(null, "Bark Beast",null)); 
-lusus_objects[lusus_objects.length-1].power = 30;
+lusus_objects[lusus_objects.length-1].power = 40;
 lusus_objects[lusus_objects.length-1].lusus = true;
 
 lusus_objects.push(new GameEntity(null, "Nut Creature",null)); 
 lusus_objects[lusus_objects.length-1].power = 30;
+lusus_objects[lusus_objects.length-1].mobility = 30;
 lusus_objects[lusus_objects.length-1].lusus = true;
 
 lusus_objects.push(new GameEntity(null, "Gobblefiend",null)); 
-lusus_objects[lusus_objects.length-1].power = 30;
+lusus_objects[lusus_objects.length-1].power = 50; //turkeys are honestly terrifying.
 lusus_objects[lusus_objects.length-1].lusus = true;
 lusus_objects[lusus_objects.length-1].helpfulness = -1;
 
-lusus_objects.push(new GameEntity(null, "Bicyclops",null)); 
+lusus_objects.push(new GameEntity(null, "Bicyclops",null));  //laser fraymotif?
 lusus_objects[lusus_objects.length-1].power = 30;
 lusus_objects[lusus_objects.length-1].lusus = true;
 
 lusus_objects.push(new GameEntity(null, "Centaur",null)); 
-lusus_objects[lusus_objects.length-1].power = 30;
+lusus_objects[lusus_objects.length-1].power = 50;
+lusus_objects[lusus_objects.length-1].triggerLevel = -50; //lusii in the butler genus simply are unflappable.
 lusus_objects[lusus_objects.length-1].lusus = true;
 
 lusus_objects.push(new GameEntity(null, "Fairy Bull",null)); 
-lusus_objects[lusus_objects.length-1].power = 30;
+lusus_objects[lusus_objects.length-1].power = 1; //kinda useless. like a small dog or something.
 lusus_objects[lusus_objects.length-1].lusus = true;
 
 lusus_objects.push(new GameEntity(null, "Slither Beast",null)); 
@@ -1105,11 +1108,12 @@ lusus_objects[lusus_objects.length-1].power = 30;
 lusus_objects[lusus_objects.length-1].lusus = true;
 
 lusus_objects.push(new GameEntity(null, "Cholerbear",null)); 
-lusus_objects[lusus_objects.length-1].power = 30;
+lusus_objects[lusus_objects.length-1].power = 50;
 lusus_objects[lusus_objects.length-1].lusus = true;
 
 lusus_objects.push(new GameEntity(null, "Antler Beast",null)); 
 lusus_objects[lusus_objects.length-1].power = 30;
+lusus_objects[lusus_objects.length-1].mobility = 30;
 lusus_objects[lusus_objects.length-1].lusus = true;
 
 lusus_objects.push(new GameEntity(null, "Ram Beast",null)); 
@@ -1142,6 +1146,7 @@ lusus_objects[lusus_objects.length-1].lusus = true;
 
 lusus_objects.push(new GameEntity(null, "Hop Beast",null)); 
 lusus_objects[lusus_objects.length-1].power = 30;
+lusus_objects[lusus_objects.length-1].maxLuck = 30;
 lusus_objects[lusus_objects.length-1].lusus = true;
 
 lusus_objects.push(new GameEntity(null, "Stink Creature",null)); 
@@ -1213,7 +1218,7 @@ sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
 sea_lusus_objects.push(new GameEntity(null, "Sea Meow Beast",null)); 
 sea_lusus_objects[sea_lusus_objects.length-1].power = 30;
 sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
-sea_lusus_objects[sea_lusus_objects.length-1].minLuck = 20;
+sea_lusus_objects[sea_lusus_objects.length-1].minLuck = -20;
 sea_lusus_objects[sea_lusus_objects.length-1].maxLuck = 20;
 
 sea_lusus_objects.push(new GameEntity(null, "Sea Hoofbeast",null)); 
