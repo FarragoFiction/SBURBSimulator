@@ -121,18 +121,19 @@ function GameEntity(session, name, crowned){
 		//mobility needs to be high enough. mention if you try to flee and get cut off.
 		//if player chooses to abscond, and there are no players left, playersAbscond = true.
 		this.willPlayerAbscond = function(div,player,players){
+			var playersInFight = this.getLivingMinusAbsconded(players)
 			if(!this.abscondable) return false;
 			if(player.doomed) return false; //doomed players accept their fate.
 			var reasonsToLeave = 0;
 			var reasonsToStay = 1; //grist man.
-			reasonsToStay += this.getFriendsFromList(players);
+			reasonsToStay += this.getFriendsFromList(playersInFight);
 			var hearts = this.getHearts();
 			var diamonds = this.getDiamonds();
 			for(var i = 0; i<hearts.length; i++){
-				if(players.indexOf(hearts[i] != -1)) reasonsToStay ++;  //extra reason to stay if they are your quadrant.
+				if(playersInFight.indexOf(hearts[i] != -1)) reasonsToStay ++;  //extra reason to stay if they are your quadrant.
 			}
 			for(var i = 0; i<diamonds.length; i++){
-				if(players.indexOf(diamonds[i] != -1)) reasonsToStay ++;  //extra reason to stay if they are your quadrant.
+				if(playersInFight.indexOf(diamonds[i] != -1)) reasonsToStay ++;  //extra reason to stay if they are your quadrant.
 			}
 
 			reasonsToLeave += 2 * this.power/player.currentHP;  //if you could kill me in two hits, that's one reason to leave. if you could kill me in one, that's two reasons.
@@ -143,7 +144,7 @@ function GameEntity(session, name, crowned){
 					//console.log(" player actually absconds: " + this.session.session_id)
 					div.append(" The " + player.htmlTitleHP() + " absconds right the fuck out of this fight. ")
 					this.playersAbsconded.push(player);
-					this.remainingPlayersHateYou(div, player, players);
+					this.remainingPlayersHateYou(div, player, playersInFight);
 					return true;
 				}else{
 					div.append(" The " + player.htmlTitleHP() + " tries to absconds right the fuck out of this fight, but the " + this.htmlTitleHP() + " blocks them. Can't abscond, bro. ")
@@ -154,7 +155,7 @@ function GameEntity(session, name, crowned){
 					//console.log(" player actually absconds: " + this.session.session_id)
 					div.append(" Shit. The " + player.htmlTitleHP() + " doesn't know what to do. They don't want to die... They abscond. ")
 					this.playersAbsconded.push(player);
-					this.remainingPlayersHateYou(div, player, players);
+					this.remainingPlayersHateYou(div, player, playersInFight);
 					return true;
 				}else{
 					div.append(" Shit. The " + player.htmlTitleHP() + " doesn't know what to do. THey don't want to die... Before they can decide whether or not to abscond " + this.htmlTitleHP() + " blocks their escape route. Can't abscond, bro. ")
@@ -340,7 +341,7 @@ function GameEntity(session, name, crowned){
 		this.playersTurn = function(div, players){
 			var living = this.getLivingMinusAbsconded(players);
 			for(var i = 0; i<living.length; i++){
-				if(!living[i].dead && this.getHP()>0 && this.playersAbsconded.indexOf(living[i]) == -1) this.playerdecideWhatToDo(div, living[i],living); //player could have died from a counter attack, boss could have died from previous player
+				if(!living[i].dead && this.getHP()>0 && this.playersAbsconded.indexOf(living[i]) == -1) this.playerdecideWhatToDo(div, living[i],players); //player could have died from a counter attack, boss could have died from previous player
 			}
 
 			var dead = findDeadPlayers(players);
@@ -443,7 +444,6 @@ function GameEntity(session, name, crowned){
 			if(!ghost) return false;
 			if(player.power < this.getHP()){
 					console.log("ghost attack in: " + this.session.session_id)
-					console.log(ghost);
 					ghost.causeOfDrain = player.htmlTitle();
 					this.currentHP += -1* ghost.power;
 					div.append(" The " + player.htmlTitleBasic() + " cashes in their promise of aid. The ghost of the " + ghost.htmlTitleBasic() + " unleashes an unblockable ghostly attack channeled through the living player. " + ghost.power + " damage is done to " + this.htmlTitleHP() + ". The ghost will need to rest after this for awhile. " );
@@ -580,6 +580,11 @@ function GameEntity(session, name, crowned){
 				if(this.name == "Jack"){
 					cod =  "after being shown too many stabs from Jack";
 				}else if(this.name == "Black King"){
+					var life = findAspectPlayer(this.session.players, "Life")
+					var doom = findAspectPlayer(this.session.players, "Doom")
+
+					if(life && !life.dead) console.log("promising player: " + life.title() + " : black king death in session " + this.session.session_id )
+					if(doom && !doom.dead) console.log("promising player: " + doom.title() + " : black king death in session " + this.session.session_id )
 					cod = "fighting the Black King";
 				}
 				player.makeDead(cod);
