@@ -20,7 +20,7 @@ function KingPowerful(session){
 		}
 		var ret = " At this point, the various prototypings from " +this.playerList.length;
 		ret += " players, especially the " + badPrototyping;
-		ret += ", have made the enemies  far too powerful. ";
+		ret += ", have made the enemies  far too powerful. "
 
 		if(this.playerList.length < this.session.players.length){
 			ret += " Further prototypings will only serve to further strengthen the enemies. ";

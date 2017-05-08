@@ -26,7 +26,7 @@ function Session(session_id){
 	this.heroicDeath = null;
 	this.won = false;
 	this.justDeath = null;
-	this.hardStrength = 275;
+	this.hardStrength = 1000;
 	this.minFrogLevel = 18;
 	this.goodFrogLevel = 28;
 	this.democracyStrength = 0;
@@ -239,6 +239,8 @@ function Session(session_id){
 			this.players[k].consequencesForGoodPlayer();
 			this.players[k].consequencesForTerriblePlayer();
 		}
+		
+		this.hardStrength = 1000 + 20 * this.players.length;
 	}
 
 	this.convertPlayerNumberToWords = function(){

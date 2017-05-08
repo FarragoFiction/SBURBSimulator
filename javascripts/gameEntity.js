@@ -657,33 +657,33 @@ var sea_lusus_objects = [];
 //seperate 'cause of witches and bad luck and good luck
 
 disastor_objects.push(new GameEntity(null, "First Guardian",null));  //also a custom fraymotif.
-disastor_objects[disastor_objects.length-1].hp = 10000;
-disastor_objects[disastor_objects.length-1].currentHP = 10000;
-disastor_objects[disastor_objects.length-1].mobility = 10000;
-disastor_objects[disastor_objects.length-1].power = 10000;
+disastor_objects[disastor_objects.length-1].hp = 1000;
+disastor_objects[disastor_objects.length-1].currentHP = 1000;
+disastor_objects[disastor_objects.length-1].mobility = 1000;
+disastor_objects[disastor_objects.length-1].power = 1000;
 
 
 disastor_objects.push(new GameEntity(null, "Horror Terror",null));  //vast glub
-disastor_objects[disastor_objects.length-1].hp = 10000;
-disastor_objects[disastor_objects.length-1].currentHP = 10000;
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
 disastor_objects[disastor_objects.length-1].corrupted = true;  //gives the corrupted status to whoever wears the ring, and the sprite, too. fighting corruption corrupts you.
-disastor_objects[disastor_objects.length-1].power = 10000;
+disastor_objects[disastor_objects.length-1].power = 500;
 disastor_objects[disastor_objects.length-1].lusus = true;
-disastor_objects[disastor_objects.length-1].freeWill = 10000; //wants to mind control you.
+disastor_objects[disastor_objects.length-1].freeWill = 500; //wants to mind control you.
 
 disastor_objects.push(new GameEntity(null, "Speaker of the Furthest Ring",null));  //vast glub
-disastor_objects[disastor_objects.length-1].hp = 10000;
-disastor_objects[disastor_objects.length-1].currentHP = 10000;
-disastor_objects[disastor_objects.length-1].corrupted = true; 
-disastor_objects[disastor_objects.length-1].power = 10000;
-disastor_objects[disastor_objects.length-1].freeWill = 10000; //wants to mind control you.
-
-disastor_objects.push(new GameEntity(null, "Clown",null));  //custom fraymotif: can' keep down the clown (heal).
 disastor_objects[disastor_objects.length-1].hp = 1000;
 disastor_objects[disastor_objects.length-1].currentHP = 1000;
+disastor_objects[disastor_objects.length-1].corrupted = true; 
 disastor_objects[disastor_objects.length-1].power = 1000;
-disastor_objects[disastor_objects.length-1].minLuck = 1000; //unpredictable
-disastor_objects[disastor_objects.length-1].maxLuck = 1000;
+disastor_objects[disastor_objects.length-1].freeWill = 1000; //wants to mind control you.
+
+disastor_objects.push(new GameEntity(null, "Clown",null));  //custom fraymotif: can' keep down the clown (heal).
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
+disastor_objects[disastor_objects.length-1].power = 500;
+disastor_objects[disastor_objects.length-1].minLuck = -500; //unpredictable
+disastor_objects[disastor_objects.length-1].maxLuck = 500;
 disastor_objects[disastor_objects.length-1].helpfulness = -1;
 
 
@@ -695,7 +695,7 @@ disastor_objects[disastor_objects.length-1].power = 500;
 disastor_objects[disastor_objects.length-1].triggerLevel = 500; //unpredictable
 disastor_objects[disastor_objects.length-1].freeWill = 500; //wants to mind control you.
 disastor_objects[disastor_objects.length-1].mobility = 500;
-disastor_objects[disastor_objects.length-1].minLuck = 500;
+disastor_objects[disastor_objects.length-1].minLuck = -500;
 disastor_objects[disastor_objects.length-1].maxLuck = 500;
 
 disastor_objects.push(new GameEntity(null, "Xenomorph",null));  //custom fraymotif: acid blood
@@ -708,7 +708,7 @@ disastor_objects[disastor_objects.length-1].hp = 500;
 disastor_objects[disastor_objects.length-1].power = 500;
 disastor_objects[disastor_objects.length-1].mobility = 500;
 disastor_objects[disastor_objects.length-1].helpfulness = 1;
-disastor_objects[disastor_objects.length-1].minLuck = 500;
+disastor_objects[disastor_objects.length-1].minLuck = -500;
 disastor_objects[disastor_objects.length-1].maxLuck = 500;
 
 disastor_objects.push(new GameEntity(null, "Dragon",null));    //custom fraymotif: mighty breath.
@@ -750,34 +750,41 @@ disastor_objects[disastor_objects.length-1].power = 500;
 disastor_objects.push(new GameEntity(null, "Demon",null));  
 disastor_objects[disastor_objects.length-1].hp = 500;
 disastor_objects[disastor_objects.length-1].currentHP = 500;
-disastor_objects[disastor_objects.length-1].power = 500;
+disastor_objects[disastor_objects.length-1].power = 1000;
+disastor_objects[disastor_objects.length-1].freeWill = 500; //wants to mind control you.
+
 
 disastor_objects.push(new GameEntity(null, "Monster",null));  
 disastor_objects[disastor_objects.length-1].hp = 500;
 disastor_objects[disastor_objects.length-1].currentHP = 500;
-disastor_objects[disastor_objects.length-1].power = 500;
+disastor_objects[disastor_objects.length-1].power = 1000; //generically scary
+disastor_objects[disastor_objects.length-1].triggerLevel = 500;
+
 
 disastor_objects.push(new GameEntity(null, "Vampire",null));  
 disastor_objects[disastor_objects.length-1].hp = 500;
 disastor_objects[disastor_objects.length-1].currentHP = 500;
 disastor_objects[disastor_objects.length-1].power = 500;
+disastor_objects[disastor_objects.length-1].mobility = 500; //vampire fastness
 
 disastor_objects.push(new GameEntity(null, "Pumpkin",null));  
 disastor_objects[disastor_objects.length-1].power = 500;
 disastor_objects[disastor_objects.length-1].maxLuck = 5000;
-disastor_objects[disastor_objects.length-1].mobility = 5000;
+disastor_objects[disastor_objects.length-1].mobility = 5000;  //what pumpkin?
 
 disastor_objects.push(new GameEntity(null, "Werewolf",null));  
 disastor_objects[disastor_objects.length-1].hp = 500;
 disastor_objects[disastor_objects.length-1].currentHP = 500;
 disastor_objects[disastor_objects.length-1].power = 500;
+disastor_objects[disastor_objects.length-1].triggerLevel = 500;
 
-disastor_objects.push(new GameEntity(null, "Monkey",null));  
+disastor_objects.push(new GameEntity(null, "Monkey",null));   //just, fuck monkeys in general.
 disastor_objects[disastor_objects.length-1].hp = 5;
 disastor_objects[disastor_objects.length-1].currentHP = 500;
 disastor_objects[disastor_objects.length-1].power = 5;
 disastor_objects[disastor_objects.length-1].helpfulness = -1;
 disastor_objects[disastor_objects.length-1].maxLuck = 5000;
+disastor_objects[disastor_objects.length-1].min = -5000;
 disastor_objects[disastor_objects.length-1].mobility = 5000;
 
 
@@ -801,29 +808,31 @@ fortune_objects[fortune_objects.length-1].power = 20;
 fortune_objects[fortune_objects.length-1].illegal = true; 
 
 fortune_objects.push(new GameEntity(null, "Crocodile",null)); 
-fortune_objects[fortune_objects.length-1].power = 20; 
+fortune_objects[fortune_objects.length-1].power = 50; 
 fortune_objects[fortune_objects.length-1].illegal = true; 
 
 fortune_objects.push(new GameEntity(null, "Turtle",null)); 
 fortune_objects[fortune_objects.length-1].power = 20; 
 fortune_objects[fortune_objects.length-1].illegal = true; 
+fortune_objects[fortune_objects.length-1].mobility = -100;
 
-fortune_objects.push(new GameEntity(null, "Turtle",null)); 
-fortune_objects[fortune_objects.length-1].power = 20; 
+fortune_objects.push(new GameEntity(null, "Alligator",null)); 
+fortune_objects[fortune_objects.length-1].power = 50; 
 fortune_objects[fortune_objects.length-1].illegal = true; 
 
-fortune_objects.push(new GameEntity(null, "Snake",null)); 
-fortune_objects[fortune_objects.length-1].power = 20; 
+fortune_objects.push(new GameEntity(null, "Snake",null));  //poison fraymotif
+fortune_objects[fortune_objects.length-1].power = 50; 
 fortune_objects[fortune_objects.length-1].illegal = true; 
 
 fortune_objects.push(new GameEntity(null, "Axolotl",null)); 
 fortune_objects[fortune_objects.length-1].power = 20; 
+fortune_objects[fortune_objects.length-1].hp =  50; 
+fortune_objects[fortune_objects.length-1].currentHP = 50; 
 fortune_objects[fortune_objects.length-1].illegal = true; 
 
 fortune_objects.push(new GameEntity(null, "Newt",null)); 
 fortune_objects[fortune_objects.length-1].power = 20; 
 fortune_objects[fortune_objects.length-1].illegal = true; 
-
 
 
 
@@ -1244,5 +1253,5 @@ sea_lusus_objects[sea_lusus_objects.length-1].hp = 50;
 prototyping_objects = prototyping_objects.concat(disastor_objects);
 prototyping_objects = prototyping_objects.concat(fortune_objects);
 prototyping_objects = prototyping_objects.concat(lusus_objects);
-prototyping_objects = prototyping_objects.concat(sea_lusus_objects);
+prototyping_objects = prototyping_objects.concat(sea_lusus_objects); //yes, a human absolutely could prototype some trolls lusus. that is a thing that is true.
 
