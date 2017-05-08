@@ -987,7 +987,7 @@ prototyping_objects[prototyping_objects.length-1].power = 30;
 
 
 prototyping_objects.push(new GameEntity(null, "Pigeon",null)); 
-prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].power = 0.5;  //pigeons are not famous for their combat prowess. I bet even a pomeranian could beat one up. 
 
 
 prototyping_objects.push(new GameEntity(null, "Octopus",null)); 
@@ -1279,5 +1279,5 @@ sea_lusus_objects[sea_lusus_objects.length-1].hp = 50;
 prototyping_objects = prototyping_objects.concat(disastor_objects);
 prototyping_objects = prototyping_objects.concat(fortune_objects);
 prototyping_objects = prototyping_objects.concat(lusus_objects);
-prototyping_objects = prototyping_objects.concat(sea_lusus_objects); //yes, a human absolutely could prototype some trolls lusus. that is a thing that is true.
+prototyping_objects = prototyping_objects.concat(sea_lusus_objects); //yes, a human absolutely could prototype some troll's lusus. that is a thing that is true.
 

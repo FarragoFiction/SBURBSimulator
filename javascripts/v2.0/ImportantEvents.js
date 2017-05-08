@@ -426,7 +426,10 @@ function TimePlayerEnteredSessionWihtoutFrog(session, mvp_value,player, doomedTi
 			narration +=  "The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes with in a cloud of gears to join the final battle.";
 			div.append(narration);
 
-			player.kernel_sprite = "Frog"
+			player.object_to_prototype = new GameEntity(null, "Frog",null)); 
+			player.object_to_prototype.power = 20; 
+			player.object_to_prototype.illegal = true;  
+			player.object_to_prototype.mobility = 100;
 			var divID = (div.attr("id")) + "_alt_jack_promotion"
 			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);

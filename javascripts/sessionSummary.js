@@ -249,7 +249,7 @@ function SessionSummaryJunior(players,session_id){
 		var ret = [];
 		for(var i = 0; i<this.players.length; i++){
 			var player = this.players[i];
-			ret.push(player.kernel_sprite);
+			ret.push(player.object_to_prototype.htmlTitle());
 
 		}
 		return ret;
