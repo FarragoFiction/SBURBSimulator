@@ -396,14 +396,15 @@ function GameEntity(session, name, crowned){
 			var dead = findDeadPlayers(players);
 			if(dead.length == 0) return false;
 			console.log(dead.length + " need be helping!!!")
-			var deadPlayer = dead[0] //just heal oldest corpse
+			var deadPlayer = getRandomElementFromArray(dead) //heal random 'cause oldest could be doomed time clone'
+			if(deadPlayer.doomed) return false; //doomed players can't be healed. sorry.
 			//alright. I'm the right player. there's a dead player in this battle. now for the million boondollar question. is there an undrained ghost?
 			var ghost = this.session.afterLife.findAnyUndrainedGhost(player);
 			var myGhost = this.session.afterLife.findClosesToRealSelf(deadPlayer)
 			if(!ghost || ghost == myGhost) return false;
 			console.log("helping a corpse revive during a battle in session: " + this.session.session_id)
 			ghost.causeOfDrain = deadPlayer.htmlTitleBasic();
-			var text = "The " + player.htmlTitleBasic() + " assists the " + deadPlayer.htmlTitleBasic() + ". ";
+			var text = "<Br><Br>The " + player.htmlTitleBasic() + " assists the " + deadPlayer.htmlTitleBasic() + ". ";
 			if(player.class_name == "Rogue"){
 				text += " The " + deadPlayer.htmlTitleBasic() + " steals the essence of the " + ghost.htmlTitleBasic() + " in order to revive and continue fighting. It will be a while before the ghost recovers.";
 			}else if(player.class_name == "Maid"){
