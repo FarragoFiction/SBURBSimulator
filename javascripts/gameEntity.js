@@ -273,11 +273,11 @@ function GameEntity(session, name, crowned){
 			this.fraymotifsUsed = []; //not used yet
 			this.playersAbsconded = [];
 			this.iAbscond = false;
-			this.healPlayers(players);
+			this.healPlayers(div,players);
 		}
 
 
-		this.healPlayers = function(players){
+		this.healPlayers = function(div,players){
 			for(var i = 0; i<players.length; i++){
 				var player = players[i];
 				if(!player.doomed &&  !player.dead && player.currentHP < player.hp) player.currentHP = player.hp;
@@ -385,13 +385,48 @@ function GameEntity(session, name, crowned){
 			}
 		}
 
+		//returns true if the player can help somebody revive. auto false if they are the wrong claspect.
+		this.playerHelpGhostRevive = function(div,player, players){
+			if(player.aspect != "Life" && player.aspect != "Doom") return false;
+			console.log(player.aspect + " might be helping???")
+			if(player.class_name != "Rogue" && player.class_name != "Maid") return false;
+			console.log(player.class_name + " might be helping!!!")
+			var dead = findDeadPlayers(players);
+			console.log(dead.length + " need be helping???")
+			if(dead.length == 0) return false;
+			console.log(dead.length + " need be helping!!!")
+			var deadPlayer = dead[0] //just heal oldest corpse
+			//alright. I'm the right player. there's a dead player in this battle. now for the million boondollar question. is there an undrained ghost?
+			var ghost = this.session.afterLife.findAnyUndrainedGhost(player);
+			var myGhost = this.session.afterLife.findClosesToRealSelf(deadPlayer)
+			if(!ghost || ghost == myGhost) return false;
+			console.log("helping a corpse revive during a battle in session: " + this.session.session_id)
+			var text = "The " + player1.htmlTitleBasic() + " assists the " + player2.htmlTitleBasic() + ". ";
+			if(player.class_name == "Rogue"){
+				text += " The " + deadPlayer.htmlTitleBasic() + " steals the essence of the " + ghostName + " in order to revive and continue fighting. It will be a while before the ghost recovers.";
+			}else if(player.class_name == "Maid"){
+				text += " The " + deadPlayer.htmlTitleBasic() + " inherits the essence and duties of the " + ghostName + " in order to revive and continue their fight. It will be a while before the ghost recovers.";
+			}
+			div.append(text);
+			var canvas = drawReviveDead(div, deadPlayer, ghost, player.aspect);
+			if(canvas){
+				var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+				drawSprite(pSpriteBuffer,player1)
+				copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0)
+			}
+			deadPlayer.makeAlive();
+
+
+		}
+
 		this.playerdecideWhatToDo = function(div, player,players){
-			console.log("dear Future JR: seriously don't forget to let maids/rogue heal players, but gotta debug yellow yards now. -pastjr")
 			player.power = Math.max(1, player.power); //negative power is not allowed in an actual fight.
 			//for now, only one choice    //free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
 			if(!this.willPlayerAbscond(div,player,players)){
 				var undrainedPacts = removeDrainedGhostsFromPacts(player.ghostPacts);
-				if(undrainedPacts.length > 0 ){
+				if(this.playerHelpGhostRevive(div, player, players)){ //MOST players won't do this
+					//actually, if that method returned true, it wrote to the screen all on it's own. so dumb. why can't i be consistent?
+				}else if(undrainedPacts.length > 0 ){
 					var didGhostAttack = this.ghostAttack(div, player, getRandomElementFromArray(undrainedPacts)[0]); //maybe later denizen can do ghost attac, but not for now
 					if(!didGhostAttack){
 						this.aggrieve(div, player, this );
