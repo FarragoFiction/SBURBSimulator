@@ -82,7 +82,7 @@ function GameEntity(session, name, crowned){
 		}
 
 
-		this.setStats = function(minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs, grist, illegal){
+		this.setStats = function(minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs, grist){
 			this.minLuck = minLuck;
 			this.hp = hp;
 			this.currentHP = this.hp;
@@ -94,7 +94,6 @@ function GameEntity(session, name, crowned){
 			this.abscondable = abscondable;
 			this.canAbscond = canAbscond;
 			this.grist = grist;
-			this.illegal = illegal;
 		}
 
 		this.htmlTitleHP = function(){
@@ -633,5 +632,17 @@ function GameEntity(session, name, crowned){
 
 //make a fuck ton of sprites here. don't need to reinit for sessions because these entitites are never used directly. instead, stuck into a sprite that player has,
 //or into ring/scepter. 
-var disastor_object =[];
+//an objects stats are zero unless otherwise stated. 
+//don't bother allocating memory for objects, just leave in array.
+var disastor_objects =[];
+var prototyping_objects = [];
+
+disastor_objects.push(new GameEntity(null, "First Guardian",false));
+disastor_objects[disastor_objects.length-1].hp = 10000;
+disastor_objects[disastor_objects.length-1].currentHP = 10000;
+disastor_objects[disastor_objects.length-1].mobility = 10000;
+
+
+var prototyping_objects = prototyping_objects.concat(disastor_objects);
+
 
