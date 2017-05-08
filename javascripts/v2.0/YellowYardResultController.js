@@ -41,6 +41,7 @@ function YellowYardResultController(){
 */
 function doEventsMatch(newEvent, storedEvent,spawn){
 	//console.log("comparing: '" + newEvent.humanLabel() + "' to '" + storedEvent.humanLabel() + "'")
+	if(!newEvent || !storedEvent) return false //can't match if one of them doesn't exist.
   if(newEvent.session.session_id != storedEvent.session.session_id){
     //  console.log("session id did not match.")
       return false;
