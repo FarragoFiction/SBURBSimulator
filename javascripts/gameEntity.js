@@ -118,15 +118,22 @@ function GameEntity(session, name, crowned){
 
 		//only the crown itself has this called. king and queen just use the crown.
 		this.addPrototyping = function(object){
-			this.power += 20;
-
-			if(disastor_prototypings.indexOf(object) != -1) {
-				////console.log("disastor prototyping " + this.session.session_id)
-				this.power += 200;
-
-			}
-
-			////console.log("todo: prototypings can be associated with plus or minus stats and even fraymotifs (vast glub, anyone)???" )
+			this.name = object.name + this.name; //sprite becomes puppetsprite.
+			this.corrupted = object.corrupted;
+			this.helpfulness = object.helpfulness; //completely overridden.
+			this.grist += object.grist;
+			this.minLuck += object.minLuck;
+			this.currentHP += object.currentHP;
+			this.hp += object.hp;
+			this.mobility += object.mobility;
+			this.maxLuck += object.maxLuck;
+			this.freeWill += object.freeWill;
+			this.power += object.power;
+			this.illegal = object.illegal;
+			this.minLuck += object.minLuck;
+			this.minLuck += object.minLuck;
+			this.minLuck += object.minLuck;
+			this.player = object.player;
 		}
 
 		//a player will try to flee this fight if they are losing.

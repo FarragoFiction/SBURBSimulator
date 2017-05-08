@@ -19,8 +19,8 @@ function Intro(session){
 	}
 
 	this.corruptedSprite = function(){
-		if(corruptedOtherPrototypings.indexOf(this.player.kernel_sprite) != -1 ){
-			return "There is ...something very, very wrong about the " + this.player.kernel_sprite + "sprite. ";
+		if(this.player.sprite.corrupted ){
+			return "There is ...something very, very wrong about the " + this.player.sprite.htmlTitle();
 		}
 		return "";
 	}
@@ -734,9 +734,9 @@ function Intro(session){
 			if(this.player.trickster){
 				narration += "They immediately heal their land in an explosion of bullshit candy giggle-magic. ";
 			}
-
-			if(this.session.kingsScepter) this.session.kingsScepter.addPrototyping(this.player.kernel_sprite); //assume king can't lose crown for now.
-			if(this.session.queensRing) this.session.queensRing.addPrototyping(this.player.kernel_sprite); //assume king can't lose crown for now.
+			player.sprite.addPrototyping(this.player.object_to_prototype); //hot damn this is coming together.
+			if(this.session.kingsScepter) this.session.kingsScepter.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
+			if(this.session.queensRing) this.session.queensRing.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
 		}
 		div.append(narration);
 		this.chat(div);

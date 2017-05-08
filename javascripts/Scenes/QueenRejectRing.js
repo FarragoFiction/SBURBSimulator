@@ -6,7 +6,7 @@ function QueenRejectRing(session){
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		var nativePlayersInSession = findPlayersFromSessionWithId(playerList);
-		var goodPrototyping = findGoodPrototyping(playerList); 
+		var goodPrototyping = findGoodPrototyping(playerList);
 		//console.log("holy fucking shit, don't reject the ring if an alien player comes in.")
 		return goodPrototyping != null && this.session.queen.crowned;
 	}
@@ -28,10 +28,10 @@ function QueenRejectRing(session){
 		ret += ". ";
 		if(this.playerList.length != this.session.players.length){
 			ret += " She would even stand eventually being prototyped with " ;
-			ret += this.session.players[this.playerList.length].kernel_sprite ;
+			ret += this.session.players[this.playerList.length].object_to_prototype.htmlTitle() ;
 		}
 		for(var i = this.playerList.length+1; i<this.session.players.length; i++){
-			ret += ", and " + this.session.players[i].kernel_sprite;
+			ret += ", and " + this.session.players[i].object_to_prototype.htmlTitle();
 		}
 
 		if(this.playerList.length != this.session.players.length){
