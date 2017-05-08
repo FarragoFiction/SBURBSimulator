@@ -379,8 +379,7 @@ function Session(session_id){
 		this.kingsScepter.setStats(0,0,0,0,0,0,0,false, false, [],1000);
 		this.king = new GameEntity(this, "Black King", this.kingsScepter);
 		//minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs
-		//this.king.setStats(25,75,500,0,0,25,100,false, false, [],1000);  //anything prototype gives you. horrorterrors vastGlub.
-		this.king.setStats(25,75,5000,0,0,25,1000,false, false, [],1000); //tmp testing
+		this.king.setStats(25,75,2000,0,0,25,1000,false, false, [],1000); 
 		//TODO  jack, denizens, denizen minions
 		this.queen = new GameEntity(this, "Black Queen",this.queensRing);
 		this.queen.setStats(25,75,500,60,0,100,50,false, false, [],1000); //red miles

@@ -339,9 +339,12 @@ function GameEntity(session, name, crowned){
 		}
 
 		this.playersTurn = function(div, players){
-			var living = this.getLivingMinusAbsconded(players);
-			for(var i = 0; i<living.length; i++){
-				if(!living[i].dead && this.getHP()>0 && this.playersAbsconded.indexOf(living[i]) == -1) this.playerdecideWhatToDo(div, living[i],players); //player could have died from a counter attack, boss could have died from previous player
+			for(var i = 0; i<players.length; i++){  //check all players, abscond or living status can change.
+				var player = players[i]
+				///console.log("It is the " + player.titleBasic() + "'s turn. '");
+				if(!player.dead && this.getHP()>0 && this.playersAbsconded.indexOf(player) == -1){
+					 this.playerdecideWhatToDo(div, player,players);
+				}
 			}
 
 			var dead = findDeadPlayers(players);
@@ -415,8 +418,6 @@ function GameEntity(session, name, crowned){
 			}
 			removeFromArray(myGhost, this.session.afterLife.ghosts);
 			deadPlayer.makeAlive();
-
-
 		}
 
 		this.playerdecideWhatToDo = function(div, player,players){
