@@ -987,7 +987,8 @@ prototyping_objects[prototyping_objects.length-1].power = 30;
 
 
 prototyping_objects.push(new GameEntity(null, "Pigeon",null)); 
-prototyping_objects[prototyping_objects.length-1].power = 0.5;  //pigeons are not famous for their combat prowess. I bet even a pomeranian could beat one up. 
+prototyping_objects[prototyping_objects.length-1].power = 0.5;  //pigeons are not famous for their combat prowess. I bet even a pomeranian could beat one up.  
+prototyping_objects[prototyping_objects.length-1].freeWill = -40;
 
 
 prototyping_objects.push(new GameEntity(null, "Octopus",null)); 
