@@ -33,6 +33,7 @@ function GameEntity(session, name, crowned){
 		this.exiled = false;
 		this.illegal = false; //used only for sprites. whether or not they are reptile/amphibian.
 		this.corrupted = false; //if corrupted, name is zalgoed.
+		this.helpfulness = 0; //if 0, cagey riddles. if 1, basically another player. if -1, like calsprite. omg, just shut up.  NOT additive for when double prototyping. most recent prototyping overrides. 
 
 		this.getMobility = function(){
 			if(this.crowned){
@@ -637,7 +638,10 @@ function GameEntity(session, name, crowned){
 //an objects stats are zero unless otherwise stated. 
 //don't bother allocating memory for objects, just leave in array.
 var disastor_objects =[];
+var fortune_objects =[];
 var prototyping_objects = [];
+
+//seperate 'cause of witches and bad luck and good luck
 
 disastor_objects.push(new GameEntity(null, "First Guardian",null));  //also a custom fraymotif.
 disastor_objects[disastor_objects.length-1].hp = 10000;
@@ -661,18 +665,29 @@ disastor_objects[disastor_objects.length-1].power = 10000;
 disastor_objects[disastor_objects.length-1].freeWill = 10000; //wants to mind control you.
 
 
-disastor_objects.push(new GameEntity(null, "Buggy As Fuck Retro Game",null));  //vast glub
-disastor_objects[disastor_objects.length-1].corrupted = true;  //no stats, just corrupted. maybe a fraymotif later. 
+
+//fortune
+fortune_objects.push(new GameEntity(null, "Frog",null));  
+fortune_objects[fortune_objects.length-1].illegal = true;  
+prototyping_objects[prototyping_objects.length-1].mobility = 100;
 
 
 
+//regular
+prototyping_objects.push(new GameEntity(null, "Buggy As Fuck Retro Game",null));  //vast glub
+prototyping_objects[prototyping_objects.length-1].corrupted = true;  //no stats, just corrupted. maybe a fraymotif later. 
 
-
+prototyping_objects.push(new GameEntity(null, "Robot",null)); 
+prototyping_objects[prototyping_objects.length-1].hp = 100;
+prototyping_objects[prototyping_objects.length-1].currentHP = 100;
+prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+disastor_objects[disastor_objects.length-1].freeWill = 100; 
+prototyping_objects[prototyping_objects.length-1].power = 100;
 
 
 
 
 
 var prototyping_objects = prototyping_objects.concat(disastor_objects);
-
+var prototyping_objects = prototyping_objects.concat(fortune_objects);
 
