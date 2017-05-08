@@ -695,49 +695,58 @@ disastor_objects[disastor_objects.length-1].maxLuck = 500;
 
 disastor_objects.push(new GameEntity(null, "Dragon",null));    //custom fraymotif: mighty breath.
 disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
 disastor_objects[disastor_objects.length-1].power = 500;
 
 
 disastor_objects.push(new GameEntity(null, "Alien",null));  
 disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
 disastor_objects[disastor_objects.length-1].power = 500;
 
 disastor_objects.push(new GameEntity(null, "Teacher",null));  
 disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
 disastor_objects[disastor_objects.length-1].power = 500;
 
 disastor_objects.push(new GameEntity(null, "Fiduspawn",null));  
 disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
 disastor_objects[disastor_objects.length-1].power = 500;
 
 disastor_objects.push(new GameEntity(null, "Doll",null));  
 disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
 disastor_objects[disastor_objects.length-1].power = 500;
 
 disastor_objects.push(new GameEntity(null, "Zombie",null));  
 disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
 disastor_objects[disastor_objects.length-1].power = 500;
 
 disastor_objects.push(new GameEntity(null, "Demon",null));  
 disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
 disastor_objects[disastor_objects.length-1].power = 500;
 
 disastor_objects.push(new GameEntity(null, "Monster",null));  
 disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
 disastor_objects[disastor_objects.length-1].power = 500;
 
 disastor_objects.push(new GameEntity(null, "Vampire",null));  
 disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
 disastor_objects[disastor_objects.length-1].power = 500;
 
 disastor_objects.push(new GameEntity(null, "Pumpkin",null));  
-disastor_objects[disastor_objects.length-1].hp = 500;
 disastor_objects[disastor_objects.length-1].power = 500;
 disastor_objects[disastor_objects.length-1].maxLuck = 5000;
 disastor_objects[disastor_objects.length-1].mobility = 5000;
 
 disastor_objects.push(new GameEntity(null, "Werewolf",null));  
 disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
 disastor_objects[disastor_objects.length-1].power = 500;
 
 
@@ -745,9 +754,9 @@ disastor_objects[disastor_objects.length-1].power = 500;
 
 //fortune
 fortune_objects.push(new GameEntity(null, "Frog",null)); 
-prototyping_objects[prototyping_objects.length-1].power = 20; 
+fortune_objects[fortune_objects.length-1].power = 20; 
 fortune_objects[fortune_objects.length-1].illegal = true;  
-prototyping_objects[prototyping_objects.length-1].mobility = 100;
+fortune_objects[fortune_objects.length-1].mobility = 100;
 
 
 
