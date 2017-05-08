@@ -837,7 +837,7 @@ fortune_objects.push(new GameEntity(null, "Snake",null));  //poison fraymotif
 fortune_objects[fortune_objects.length-1].power = 50; 
 fortune_objects[fortune_objects.length-1].illegal = true; 
 
-fortune_objects.push(new GameEntity(null, "Axolotl",null)); 
+fortune_objects.push(new GameEntity(null, "Axolotl",null)); //apparently real ones are good at regeneration?
 fortune_objects[fortune_objects.length-1].power = 20; 
 fortune_objects[fortune_objects.length-1].hp =  50; 
 fortune_objects[fortune_objects.length-1].currentHP = 50; 
@@ -908,7 +908,7 @@ prototyping_objects.push(new GameEntity(null, "Pit Bull",null));
 prototyping_objects[prototyping_objects.length-1].power = 50;
 
 prototyping_objects.push(new GameEntity(null, "Butler",null)); 
-prototyping_objects[prototyping_objects.length-1].power = 50;  //he will serve you like a man on buttler island
+prototyping_objects[prototyping_objects.length-1].power = 50;  //he will serve you like a man on butler island
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
 prototyping_objects[prototyping_objects.length-1].triggerLevel = -50;
 
