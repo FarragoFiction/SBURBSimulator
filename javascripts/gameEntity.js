@@ -32,6 +32,7 @@ function GameEntity(session, name, crowned){
 		this.iAbscond = false;
 		this.exiled = false;
 		this.illegal = false; //used only for sprites. whether or not they are reptile/amphibian.
+		this.corrupted = false; //if corrupted, name is zalgoed.
 
 		this.getMobility = function(){
 			if(this.crowned){
@@ -99,7 +100,9 @@ function GameEntity(session, name, crowned){
 		this.htmlTitleHP = function(){
 			var ret = "";
 			if(this.crowned != null) ret+="Crowned "
-			return ret + name +" (" + Math.round(this.getHP()) + " hp, " + Math.round(this.getPower()) + " power)</font>"; //TODO denizens are aspect colored.
+			var pname = this.name;
+			if(this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
+			return ret + pname +" (" + Math.round(this.getHP()) + " hp, " + Math.round(this.getPower()) + " power)</font>"; //TODO denizens are aspect colored.
 		}
 
 		//only the crown itself has this called. king and queen just use the crown.
@@ -637,10 +640,31 @@ function GameEntity(session, name, crowned){
 var disastor_objects =[];
 var prototyping_objects = [];
 
-disastor_objects.push(new GameEntity(null, "First Guardian",false));
+disastor_objects.push(new GameEntity(null, "First Guardian",null));  //also a custom fraymotif.
 disastor_objects[disastor_objects.length-1].hp = 10000;
 disastor_objects[disastor_objects.length-1].currentHP = 10000;
 disastor_objects[disastor_objects.length-1].mobility = 10000;
+disastor_objects[disastor_objects.length-1].power = 10000;
+
+
+disastor_objects.push(new GameEntity(null, "Horror Terror",null));  //vast glub
+disastor_objects[disastor_objects.length-1].hp = 10000;
+disastor_objects[disastor_objects.length-1].currentHP = 10000;
+disastor_objects[disastor_objects.length-1].corrupted = true;
+disastor_objects[disastor_objects.length-1].power = 10000;
+disastor_objects[disastor_objects.length-1].freeWill = 10000; //wants to mind control you.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 var prototyping_objects = prototyping_objects.concat(disastor_objects);
