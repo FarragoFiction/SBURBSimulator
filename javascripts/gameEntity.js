@@ -828,11 +828,14 @@ prototyping_objects[prototyping_objects.length-1].power = 100;
 prototyping_objects.push(new GameEntity(null, "Golfer",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
-
+prototyping_objects[prototyping_objects.length-1].minLuck = 20;
+prototyping_objects[prototyping_objects.length-1].maxLuck = 20;
 
 prototyping_objects.push(new GameEntity(null, "Game Bro",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+
+
 
 prototyping_objects.push(new GameEntity(null, "Game Grl",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
@@ -892,6 +895,9 @@ lusus_objects[lusus_objects.length-1].lusus = true;
 lusus_objects.push(new GameEntity(null, "Meow Beast",null)); 
 lusus_objects[lusus_objects.length-1].power = 20;
 lusus_objects[lusus_objects.length-1].lusus = true;
+lusus_objects[lusus_objects.length-1].minLuck = 20;
+lusus_objects[lusus_objects.length-1].maxLuck = 20;
+
 
 lusus_objects.push(new GameEntity(null, "Bark Beast",null)); 
 lusus_objects[lusus_objects.length-1].power = 20;
@@ -1043,6 +1049,8 @@ sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
 sea_lusus_objects.push(new GameEntity(null, "Sea Meow Beast",null)); 
 sea_lusus_objects[sea_lusus_objects.length-1].power = 20;
 sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
+sea_lusus_objects[sea_lusus_objects.length-1].minLuck = 20;
+sea_lusus_objects[sea_lusus_objects.length-1].maxLuck = 20;
 
 sea_lusus_objects.push(new GameEntity(null, "Sea Hoofbeast",null)); 
 sea_lusus_objects[sea_lusus_objects.length-1].power = 20;
@@ -1059,6 +1067,8 @@ sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
 sea_lusus_objects.push(new GameEntity(null, "Sea Goat",null)); 
 sea_lusus_objects[sea_lusus_objects.length-1].power = 20;
 sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
+sea_lusus_objects[sea_lusus_objects.length-1].minLuck = 20;
+sea_lusus_objects[sea_lusus_objects.length-1].maxLuck = 20;
 
 sea_lusus_objects.push(new GameEntity(null, "Light Beast",null)); 
 sea_lusus_objects[sea_lusus_objects.length-1].power = 20;
