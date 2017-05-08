@@ -664,10 +664,88 @@ disastor_objects[disastor_objects.length-1].corrupted = true;
 disastor_objects[disastor_objects.length-1].power = 10000;
 disastor_objects[disastor_objects.length-1].freeWill = 10000; //wants to mind control you.
 
+disastor_objects.push(new GameEntity(null, "Clown",null));  //custom fraymotif: can' keep down the clown (heal).
+disastor_objects[disastor_objects.length-1].hp = 1000;
+disastor_objects[disastor_objects.length-1].currentHP = 1000;
+disastor_objects[disastor_objects.length-1].power = 1000;
+disastor_objects[disastor_objects.length-1].minLuck = 1000; //unpredictable
+disastor_objects[disastor_objects.length-1].maxLuck = 1000;
+
+disastor_objects.push(new GameEntity(null, "Puppet",null));  
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
+disastor_objects[disastor_objects.length-1].power = 500;
+disastor_objects[disastor_objects.length-1].triggerLevel = 500; //unpredictable
+disastor_objects[disastor_objects.length-1].freeWill = 500; //wants to mind control you.
+disastor_objects[disastor_objects.length-1].mobility = 500;
+disastor_objects[disastor_objects.length-1].minLuck = 500;
+disastor_objects[disastor_objects.length-1].maxLuck = 500;
+
+disastor_objects.push(new GameEntity(null, "Xenomorph",null));  //custom fraymotif: acid blood
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].power = 500;
+disastor_objects[disastor_objects.length-1].mobility = 500;
+
+disastor_objects.push(new GameEntity(null, "Deadpool",null));  //custom fraymotif: healing factor
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].power = 500;
+disastor_objects[disastor_objects.length-1].mobility = 500;
+disastor_objects[disastor_objects.length-1].minLuck = 500;
+disastor_objects[disastor_objects.length-1].maxLuck = 500;
+
+disastor_objects.push(new GameEntity(null, "Dragon",null));    //custom fraymotif: mighty breath.
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].power = 500;
+
+
+disastor_objects.push(new GameEntity(null, "Alien",null));  
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].power = 500;
+
+disastor_objects.push(new GameEntity(null, "Teacher",null));  
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].power = 500;
+
+disastor_objects.push(new GameEntity(null, "Fiduspawn",null));  
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].power = 500;
+
+disastor_objects.push(new GameEntity(null, "Doll",null));  
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].power = 500;
+
+disastor_objects.push(new GameEntity(null, "Zombie",null));  
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].power = 500;
+
+disastor_objects.push(new GameEntity(null, "Demon",null));  
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].power = 500;
+
+disastor_objects.push(new GameEntity(null, "Monster",null));  
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].power = 500;
+
+disastor_objects.push(new GameEntity(null, "Vampire",null));  
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].power = 500;
+
+disastor_objects.push(new GameEntity(null, "Pumpkin",null));  
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].power = 500;
+disastor_objects[disastor_objects.length-1].maxLuck = 5000;
+disastor_objects[disastor_objects.length-1].mobility = 5000;
+
+disastor_objects.push(new GameEntity(null, "Werewolf",null));  
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].power = 500;
+
+
 
 
 //fortune
-fortune_objects.push(new GameEntity(null, "Frog",null));  
+fortune_objects.push(new GameEntity(null, "Frog",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20; 
 fortune_objects[fortune_objects.length-1].illegal = true;  
 prototyping_objects[prototyping_objects.length-1].mobility = 100;
 
@@ -675,6 +753,7 @@ prototyping_objects[prototyping_objects.length-1].mobility = 100;
 
 //regular
 prototyping_objects.push(new GameEntity(null, "Buggy As Fuck Retro Game",null));  //vast glub
+prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].corrupted = true;  //no stats, just corrupted. maybe a fraymotif later. 
 
 prototyping_objects.push(new GameEntity(null, "Robot",null)); 
