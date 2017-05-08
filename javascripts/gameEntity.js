@@ -446,7 +446,7 @@ function GameEntity(session, name, crowned){
 			if(player.power < this.getHP()){
 					console.log("ghost attack in: " + this.session.session_id)
 					ghost.causeOfDrain = player.htmlTitle();
-					this.currentHP += -1* ghost.power;
+					this.currentHP += -1* ghost.power*5; //not just one attack from the ghost
 					div.append(" The " + player.htmlTitleBasic() + " cashes in their promise of aid. The ghost of the " + ghost.htmlTitleBasic() + " unleashes an unblockable ghostly attack channeled through the living player. " + ghost.power + " damage is done to " + this.htmlTitleHP() + ". The ghost will need to rest after this for awhile. " );
 					if(!this.checkForAPulse(this, player)){
 
