@@ -31,6 +31,8 @@ function GameEntity(session, name, crowned){
 		this.playersAbsconded = [];
 		this.iAbscond = false;
 		this.exiled = false;
+		this.lusus = false;
+		this.player = false;  //did a player jump in a sprite?
 		this.illegal = false; //used only for sprites. whether or not they are reptile/amphibian.
 		this.corrupted = false; //if corrupted, name is zalgoed.
 		this.helpfulness = 0; //if 0, cagey riddles. if 1, basically another player. if -1, like calsprite. omg, just shut up.  NOT additive for when double prototyping. most recent prototyping overrides. 
@@ -649,6 +651,8 @@ function GameEntity(session, name, crowned){
 var disastor_objects =[];
 var fortune_objects =[];
 var prototyping_objects = [];
+var lusus_objects = [];
+var sea_lusus_objects = [];
 
 //seperate 'cause of witches and bad luck and good luck
 
@@ -664,6 +668,7 @@ disastor_objects[disastor_objects.length-1].hp = 10000;
 disastor_objects[disastor_objects.length-1].currentHP = 10000;
 disastor_objects[disastor_objects.length-1].corrupted = true;  //gives the corrupted status to whoever wears the ring, and the sprite, too. fighting corruption corrupts you.
 disastor_objects[disastor_objects.length-1].power = 10000;
+disastor_objects[disastor_objects.length-1].lusus = true;
 disastor_objects[disastor_objects.length-1].freeWill = 10000; //wants to mind control you.
 
 disastor_objects.push(new GameEntity(null, "Speaker of the Furthest Ring",null));  //vast glub
@@ -699,11 +704,13 @@ disastor_objects.push(new GameEntity(null, "Deadpool",null));  //custom fraymoti
 disastor_objects[disastor_objects.length-1].hp = 500;
 disastor_objects[disastor_objects.length-1].power = 500;
 disastor_objects[disastor_objects.length-1].mobility = 500;
+disastor_objects[disastor_objects.length-1].helpfulness = 1;
 disastor_objects[disastor_objects.length-1].minLuck = 500;
 disastor_objects[disastor_objects.length-1].maxLuck = 500;
 
 disastor_objects.push(new GameEntity(null, "Dragon",null));    //custom fraymotif: mighty breath.
 disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].lusus = true;
 disastor_objects[disastor_objects.length-1].currentHP = 500;
 disastor_objects[disastor_objects.length-1].power = 500;
 
@@ -767,10 +774,47 @@ fortune_objects[fortune_objects.length-1].power = 20;
 fortune_objects[fortune_objects.length-1].illegal = true;  
 fortune_objects[fortune_objects.length-1].mobility = 100;
 
+fortune_objects.push(new GameEntity(null, "Lizard",null)); 
+fortune_objects[fortune_objects.length-1].power = 20; 
+fortune_objects[fortune_objects.length-1].illegal = true; 
+
+fortune_objects.push(new GameEntity(null, "Salamander",null)); 
+fortune_objects[fortune_objects.length-1].power = 20; 
+fortune_objects[fortune_objects.length-1].illegal = true; 
+
+fortune_objects.push(new GameEntity(null, "Iguana",null)); 
+fortune_objects[fortune_objects.length-1].power = 20; 
+fortune_objects[fortune_objects.length-1].illegal = true; 
+
+fortune_objects.push(new GameEntity(null, "Crocodile",null)); 
+fortune_objects[fortune_objects.length-1].power = 20; 
+fortune_objects[fortune_objects.length-1].illegal = true; 
+
+fortune_objects.push(new GameEntity(null, "Turtle",null)); 
+fortune_objects[fortune_objects.length-1].power = 20; 
+fortune_objects[fortune_objects.length-1].illegal = true; 
+
+fortune_objects.push(new GameEntity(null, "Turtle",null)); 
+fortune_objects[fortune_objects.length-1].power = 20; 
+fortune_objects[fortune_objects.length-1].illegal = true; 
+
+fortune_objects.push(new GameEntity(null, "Snake",null)); 
+fortune_objects[fortune_objects.length-1].power = 20; 
+fortune_objects[fortune_objects.length-1].illegal = true; 
+
+fortune_objects.push(new GameEntity(null, "Axolotl",null)); 
+fortune_objects[fortune_objects.length-1].power = 20; 
+fortune_objects[fortune_objects.length-1].illegal = true; 
+
+fortune_objects.push(new GameEntity(null, "Newt",null)); 
+fortune_objects[fortune_objects.length-1].power = 20; 
+fortune_objects[fortune_objects.length-1].illegal = true; 
+
+
 
 
 //regular
-prototyping_objects.push(new GameEntity(null, "Buggy As Fuck Retro Game",null));  //vast glub
+prototyping_objects.push(new GameEntity(null, "Buggy As Fuck Retro Game",null));  
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].corrupted = true;  //no stats, just corrupted. maybe a fraymotif later. 
 
@@ -781,10 +825,208 @@ prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
 disastor_objects[disastor_objects.length-1].freeWill = 100; 
 prototyping_objects[prototyping_objects.length-1].power = 100;
 
+prototyping_objects.push(new GameEntity(null, "Golfer",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+
+
+prototyping_objects.push(new GameEntity(null, "Game Bro",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+
+prototyping_objects.push(new GameEntity(null, "Game Grl",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+
+prototyping_objects.push(new GameEntity(null, "Nick Cage",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+
+prototyping_objects.push(new GameEntity(null, "Lawyer",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+
+prototyping_objects.push(new GameEntity(null, "Doctor",null));   //healing fraymotif
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+
+prototyping_objects.push(new GameEntity(null, "Engineer",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+
+prototyping_objects.push(new GameEntity(null, "Construction Worker",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+
+prototyping_objects.push(new GameEntity(null, "Student",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+
+prototyping_objects.push(new GameEntity(null, "Librarian",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+
+prototyping_objects.push(new GameEntity(null, "Jockey",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+
+prototyping_objects.push(new GameEntity(null, "Butler",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+
+prototyping_objects.push(new GameEntity(null, "Astronaut",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+
+prototyping_objects.push(new GameEntity(null, "Cowboy",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+
+
+//////////////////////lusii
+
+lusus_objects.push(new GameEntity(null, "Hoofbeast",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Meow Beast",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Bark Beast",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Nut Creature",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Gobblefiend",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+lusus_objects[lusus_objects.length-1].helpfulness = -1;
+
+lusus_objects.push(new GameEntity(null, "Bicyclops",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Centaur",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Fairy Bull",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Slither Beast",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Wiggle Beast",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Honkbird",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Dig Beast",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Cholerbear",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Antler Beast",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Ram Beast",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Crab",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Spider",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Thief Beast",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "March Bug",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Nibble Vermin",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Woolbeast",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Hop Beast",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Stink Creature",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Speed Beast",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].mobility = 50;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Jump Creature",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Fight Beast",null)); 
+lusus_objects[lusus_objects.length-1].power = 50;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Claw Beast",null)); 
+lusus_objects[lusus_objects.length-1].power = 50;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Tooth Beast",null)); 
+lusus_objects[lusus_objects.length-1].power = 50;
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Armor Beast",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].currentHP = 100;
+lusus_objects[lusus_objects.length-1].hp = 100;
+
+lusus_objects[lusus_objects.length-1].lusus = true;
+
+lusus_objects.push(new GameEntity(null, "Trap Beast",null)); 
+lusus_objects[lusus_objects.length-1].power = 20;
+lusus_objects[lusus_objects.length-1].lusus = true;
 
 
 
 
-var prototyping_objects = prototyping_objects.concat(disastor_objects);
-var prototyping_objects = prototyping_objects.concat(fortune_objects);
+
+
+////////////////////////sea lusii
+
+sea_lusus_objects.push(new GameEntity(null, "Zap Beast",null));  //zap fraymotif
+sea_lusus_objects[sea_lusus_objects.length-1].power = 20;
+sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
+
+
+
+
+
+prototyping_objects = prototyping_objects.concat(disastor_objects);
+prototyping_objects = prototyping_objects.concat(fortune_objects);
+prototyping_objects = prototyping_objects.concat(lusus_objects);
+prototyping_objects = prototyping_objects.concat(sea_lusus_objects);
 
