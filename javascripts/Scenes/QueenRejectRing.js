@@ -20,9 +20,9 @@ function QueenRejectRing(session){
 		var goodPrototyping = findGoodPrototyping(this.playerList);
 		var ret = "The Queen, with her RING OF ORBS " + this.session.convertPlayerNumberToWords();
 		ret += "FOLD would take on the attributes of each prototyping. ";
-		ret += " She would become part " + this.playerList[0].kernel_sprite;
+		ret += " She would become part " + this.playerList[0].object_to_prototype.htmlTitle();
 		for(var i = 1; i<this.playerList.length-1; i++){
-			ret += ", part " + this.playerList[i].kernel_sprite ;
+			ret += ", part " + this.playerList[i].object_to_prototype.htmlTitle() ;
 		}
 
 		ret += ". ";

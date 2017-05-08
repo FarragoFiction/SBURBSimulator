@@ -205,15 +205,15 @@ function DoLandQuest(session){
 	}
 
 	this.spriteContent = function(player){
-		var ret = player.object_to_prototype.htmlTitle()
-		if(player.object_to_prototype.corrupted){
+		var ret = player.sprite.htmlTitle()
+		if(player.sprite.corrupted){
 			player.landLevel += -0.75;
-			ret = " Oh god. What is going on. Why does just listening to " + player.object_to_prototype.htmlTitle() + " make your ears bleed!? "
-		}else if(player.object_to_prototype.helpfulness > 1){
+			ret = " Oh god. What is going on. Why does just listening to " + player.sprite.htmlTitle() + " make your ears bleed!? "
+		}else if(player.sprite.helpfulness > 1){
 			//console.log("good sprite: " + this.session.session_id)
 			ret += " is pretty much as useful as another player. No cagey riddles, just straight answers on how to finish the quests. "
 			player.landLevel += 1;
-		}else if(player.object_to_prototype.helpfulness < 1){
+		}else if(player.sprite.helpfulness < 1){
 			ret += " is the most unhelpful piece of shit in the world. Oh my god, just once. Please, just shut up."
 			//console.log("bad sprite: " + this.session.session_id)
 			player.landLevel += -0.5;
