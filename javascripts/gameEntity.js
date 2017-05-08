@@ -389,11 +389,8 @@ function GameEntity(session, name, crowned){
 		//returns true if the player can help somebody revive. auto false if they are the wrong claspect.
 		this.playerHelpGhostRevive = function(div,player, players){
 			if(player.aspect != "Life" && player.aspect != "Doom") return false;
-			console.log(player.aspect + " might be helping???")
 			if(player.class_name != "Rogue" && player.class_name != "Maid") return false;
-			console.log(player.class_name + " might be helping!!!")
 			var dead = findDeadPlayers(players);
-			console.log(dead.length + " need be helping???")
 			if(dead.length == 0) return false;
 			console.log(dead.length + " need be helping!!!")
 			var deadPlayer = dead[0] //just heal oldest corpse
