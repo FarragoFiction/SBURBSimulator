@@ -72,6 +72,7 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player, doomedTimeClone){
 			player.leftMurderMode = false; //no scars
 			player.triggerLevel = 1;
 			player.dead = false;
+			player.currentHP = player.hp;
 			player.power += 200;
 			player.canGodTierRevive = true;
 			player.victimBlood = null;
@@ -117,6 +118,7 @@ function PlayerDiedForever(session, mvp_value, player, doomedTimeClone){
 			div.append(narration);
 			player.triggerLevel += 0.5;
 			player.dead = false;
+			player.currentHP = player.hp;
 
 			this.doomedTimeClone.dead = true;
 
