@@ -92,6 +92,7 @@ function PlayerSnapshot(){
 
 	//doomed time clones aren't ghosts yet.
 	this.makeDead = function(causeOfDeath){
+		console.log("there shouldu be a doomed time clone ghost in the afterlife: " + this.session.session_id)
 		this.dead = true;
 		this.causeOfDeath = causeOfDeath;
 		this.session.afterLife.addGhost(makeRenderingSnapshot(this));

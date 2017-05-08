@@ -624,3 +624,6 @@ function GameEntity(session, name, crowned){
 
 		//~~~~~~~~~~~~~~~~~~~~~~~~TODO!!!!!!!!!!!!!!!!!!!!!!!  allow doomed time clones to be treated as "players". if they die, add them to afterlife.
 }
+
+
+//make a fuck ton of sprites here.

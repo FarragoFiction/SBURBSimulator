@@ -10,7 +10,7 @@
 
 #newspostsMain{
   float:left;
-  width:50%;
+  width:400px;
 }
 #robo_newsposts{
     color: red;
@@ -27,7 +27,7 @@
 #artist_newspostsMain{
   color:#000000;
   float:right;
-  width:50%;
+  width:400px;
 }
 
 #artist_h1{
