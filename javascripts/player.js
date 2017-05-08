@@ -13,6 +13,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 	this.baby = null;
 	this.session = session;
 	this.currentHP = 0;
+	this.sprite = null; //gets set to a blank sprite when character is created. 
 	this.grist = 0; //total party grist needs to be at a certain level for the ultimate alchemy. luck events can raise it, boss fights, etc.
 	this.hp = 0; //mostly used for boss battles;
 	this.graphs = [];
@@ -1704,6 +1705,9 @@ function randomPlayerWithClaspect(session, c,a){
 
 	p.initializeStats();
 	var tmp =getRandomLandFromPlayer(p);
+	p.sprite = new GameEntity(session, "sprite",null); //unprototyped.
+	//minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs, grist
+	p.sprite.setStats(-25,25,25,25,0,0,5,false, false, [],0); //blank
 	p.land1 = tmp[0]
 	p.land2 = tmp[1];
 	p.land = "Land of " + tmp[0] + " and " + tmp[1];
