@@ -640,6 +640,11 @@ function GameEntity(session, name, crowned){
 //																												 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+/*
+sooooo...things that go in sprites are gameEntities. Just like jack/Queen/King. And Denizens. Keep. Keep thinking about this.
+*/
+
 //TODO have each player have a "Sprite" game object that has basic stats. sprite gets one of these objects added pre-entry (or maybe a player);  later, can have other objects added. 
 //when a gameEntitity has an object added to it, adds the stats to itself. eventuall adds fraymotifs as well.
 //sprites participate in fights until denizen fight. right before denizen fight, they leave to go do mysterious shit on the battlefield (set to null.)

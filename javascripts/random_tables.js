@@ -1025,37 +1025,6 @@ free_land_titles = free_land_titles.concat(corruptedOtherLandTitles);
 
 
 
-var prototypings = ["Cow","Bird","Bug","Grandma","Uncle","Aunt","Cat","Dog","Pigeon","Octopus","Nick Cage","Fish","Kitten"];
-prototypings = prototypings.concat(["Worm","Pony","Horse","Bear","Goat","Rat","Sheep","Crab","Spider","Raccoon"]);
-prototypings = prototypings.concat(["Crow","Chicken","Duck","Sparrow","Dove","Goose","Turkey","Kangaroo","Lawyer","Doctor"]);
-prototypings = prototypings.concat(["Ladybug","Butterfly","Fly","Mosquito","Centipede","Praying Mantis","Dragonfly","Ant"]);
-prototypings = prototypings.concat(["Bull","Llama","Ox","Bison","Elephant","Giraffe","Sloth","Engineer","Construction Worker"]);
-prototypings = prototypings.concat(["Mouse","Gerbil","Hamster","Sugar Glider","Rabbit","Guinea Pig","Chinchilla","Pomeranian"]);
-prototypings = prototypings.concat(["Opossum","Penguin","Koala","Walrus","Dachshund","Ocelot","Tiger","Lion", "Cougar"]);
-prototypings = prototypings.concat(["Stoner","Student","Librarian","Teacher","Jockey","Butler","Rapper","Poet", "Astronaut", "Cowboy"]);
-prototypings = prototypings.concat(["Robot","Game Bro","Game Grl","Movie Star","Internet Troll"]);
-prototypings = prototypings.concat(["Pug","Husky","Beagle","German Shepherd","Rottweiler","Bulldog","Poodle","Pit Bull","Shih Tzu","Doberman","Chihuahua","Terrier","Great Dane","Dachshund","St. Bernard","Greyhound","Spaniel","Shiba Inu"]);
-prototypings = prototypings.concat(["Maine Coon","Bobcat","Panther","Bear","Tiger","Lion","Sabertooth","Koala","Zebra","Horse","Rooster","Duck","Swan","Pigeon","Dove","Sparrow","Rat","Mole"]);
-prototypings = prototypings.concat(["Donkey","Mule","Goat","Sheep","Pig","Gopher","Golfer","Mummy","Alpaca","Llama","Fairy","Sphynx","Gnome","Model","Sasquatch","Yeti","Gorilla","Monkey"]);
-
-
-
-var disastor_prototypings = ["First Guardian", "Dragon", "Alien", "Teacher", "Clown","Fiduspawn","Doll","Xenomorph","Deadpool", "Puppet"];
-disastor_prototypings = disastor_prototypings.concat(["Zombie","Demon","Monster","Vampire","Pumpkin","Werewolf"]);
-var fortune_prototypings = ["Frog","Lizard", "Salamander", "Iguana", "Crocodile", "Turtle", "Snake","Axolotl","Newt"];
-
-var corruptedOtherPrototypings = [Zalgo.generate("Horrorterror"),Zalgo.generate("Speaker of the Furthest Ring"),Zalgo.generate("Buggy As Fuck Retro Game")];
-disastor_prototypings = disastor_prototypings.concat(corruptedOtherPrototypings);
-
-//keep copies here, but if a prototyping isn't on one of these lists, consider it 'neutrasl
-//helpfulness is in regards to landquests. '
-//helpful prototypings are generally non-authority figure humans, besides things like rappers and poets who embrace riddle-fuckery.
-//once i enable self-prototyping, add your name to the helful prototyping array.
-var helpful_prototypings = ["Robot","Golfer","Deadpool","Game Bro","Horrorterror","Game Grl","Nick Cage","Lawyer","Doctor","Engineer","Construction Worker","Student","Librarian","Jockey","Butler","Astronaut", "Cowboy"];
-var unhelpful_prototypings = ["Puppet","First Guardian", "Teacher", "Clown", "Monkey","Pomeranian","Chihuahua","Pony","Horse","Doll","Internet Troll","Mosquito","Fly","Gobblefiend"];
-var player_prototypings = []; //empty unless a player prototypes themselves.
-
-
 var space_levels = ["GREENTIKE", "RIBBIT RUSTLER", "FROG-WRANGLER"];
 var time_levels = ["MARQUIS MCFLY", "JUNIOR CLOCK BLOCKER", "DEAD KID COLLECTOR"];
 var breath_levels = ["BOY SKYLARK", "SODAJERK'S CONFIDANTE", "MAN SKYLARK"];
@@ -1279,13 +1248,6 @@ var tricksterColors = ["#FF0000","#00FF00","#0000FF","#FFFF00","#00FFFF","#FF00F
 
 var bloodColors = ["#A10000","#a25203","#a1a100","#658200","#416600","#078446","#008282","#004182","#0021cb","#631db4","#610061","#99004d"];
 
-var landlususTypes = ["Hoofbeast","Meow Beast","Bark Beast","Nut Creature ","Gobblefiend","Bicyclops","Centaur","Fairy Bull"];
-landlususTypes = landlususTypes.concat(["Slither Beast","Wiggle Beast","Honkbird","Dig Beast","Cholerbear","Antler Beast","Dragon","Ram Beast","Crab","Spider","Thief Beast"]);
-landlususTypes = landlususTypes.concat(["March Bug","Nibble Vermin","Woolbeast", "Hop Beast", "Stink Creature", "Speed Beast", "Jump Creature", "Fight Beast", "Claw Beast", "Tooth Beast", "Armor Beast","Trap Beast"]);
-
-
-var seaLususTypes = ["Zap Beast","Slither Beast", "Electric Beast", "Whale", "Sky Horse", "Sea Meow Beast", "Sea Hoofbeast", "Cuttlefish", "Horrorterror", "Swim Beast", "Sea Goat", "Tooth Beast", "Light Beast"]
-seaLususTypes = seaLususTypes.concat(["Dive Beast", "Honkbird", "Sea Bear", "Sea Armorbeast"]);
 
 interests = []
 
