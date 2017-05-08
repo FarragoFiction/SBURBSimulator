@@ -1,4 +1,4 @@
-function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
+function Player(session,class_name, aspect, object_to_prototype, moon, godDestiny,id){
 
   //call if I overrode claspect or interest or anything
 	this.reinit = function(){
@@ -47,7 +47,7 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 	this.interest1 =null;
 	this.interest2 = null;
 	this.chatHandle = null;
-	this.kernel_sprite = kernel_sprite;
+	this.object_to_prototype = object_to_prototype;
 	this.relationships = [];
 	this.moon = moon;
 	this.power = 1;   //power is generic. generally scales with any aplicable stats. lets me compare two different aspect players.
@@ -309,9 +309,9 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 
 	this.decideLusus = function(player){
 		if(this.bloodColor == "#610061" || this.bloodColor == "#99004d" || this.bloodColor == "#631db4" ){
-			this.lusus = getRandomElementFromArray(seaLususTypes);
+			this.lusus = getRandomElementFromArray(sea_lusus_objects);
 		}else{
-			this.lusus = getRandomElementFromArray(landlususTypes);
+			this.lusus = getRandomElementFromArray(lusus_objects);
 		}
 	}
 
@@ -1575,10 +1575,10 @@ function Player(session,class_name, aspect, kernel_sprite, moon, godDestiny,id){
 		//reroll goddestiny and sprite as well. luck might have changed.
 		var luck = this.rollForLuck();
 		if(this.class_name == "Witch" || luck < 10){
-			this.kernel_sprite = getRandomElementFromArray(disastor_prototypings);
+			this.object_to_prototype = getRandomElementFromArray(disastor_objects);
 			//console.log("disastor")
 		}else if(luck > 65){
-			this.kernel_sprite = getRandomElementFromArray(fortune_prototypings);
+			this.object_to_prototype = getRandomElementFromArray(fortune_objects);
 			//console.log("fortune")
 		}
 		if(luck>40){
@@ -1694,7 +1694,7 @@ function getFontColorFromAspect(aspect){
 function randomPlayerWithClaspect(session, c,a){
 	//console.log("random player");
 
-	var k = getRandomElementFromArray(prototypings);
+	var k = getRandomElementFromArray(prototyping_objects);
 
 
 	var gd = false;
@@ -1993,9 +1993,9 @@ function findPlayersFromSessionWithId(playerList, source){
 
 function findBadPrototyping(playerList){
 	for(var i= 0; i<playerList.length; i++){
-		var p = playerList[i].kernel_sprite;
-		if(disastor_prototypings.indexOf(p) != -1){
-			return p;
+		var p = playerList[i].object_to_prototype;
+		if(playerList[i].object_to_prototype.power > = 200){
+			return p.name;
 		}
 	}
 }
@@ -2024,9 +2024,9 @@ function findLowestMobilityPlayer(playerList){
 
 function findGoodPrototyping(playerList){
 	for(var i= 0; i<playerList.length; i++){
-		var p = playerList[i].kernel_sprite;
-		if(fortune_prototypings.indexOf(p) != -1){
-			return p;
+		var p = playerList[i].object_to_prototype;
+		if(playerList[i].object_to_prototype.illegal == true){
+			return p.name;
 		}
 	}
 }

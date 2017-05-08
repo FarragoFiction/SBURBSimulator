@@ -295,7 +295,7 @@ function Session(session_id){
 				guardian.bloodColor = player.bloodColor;
 				guardian.lusus = player.lusus;
 				if(guardian.isTroll == true){ //trolls always use lusus.
-					guardian.kernel_sprite = player.kernel_sprite;
+					guardian.object_to_prototype = player.object_to_prototype;
 				}
 				guardian.hairColor = player.hairColor;
 				guardian.aspect = player.aspect;
@@ -359,7 +359,7 @@ function Session(session_id){
 			player.triggerLevel ++;//trolls are less stable
 			player.decideHemoCaste(player);
 			player.decideLusus(player);
-			player.kernel_sprite = player.lusus;
+			player.object_to_prototype = player.lusus;
 		}
 	}
 

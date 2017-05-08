@@ -786,7 +786,7 @@ disastor_objects[disastor_objects.length-1].triggerLevel = 500;
 disastor_objects.push(new GameEntity(null, "Monkey",null));   //just, fuck monkeys in general.
 disastor_objects[disastor_objects.length-1].hp = 5;
 disastor_objects[disastor_objects.length-1].currentHP = 500;
-disastor_objects[disastor_objects.length-1].power = 5;
+disastor_objects[disastor_objects.length-1].power = 500;
 disastor_objects[disastor_objects.length-1].helpfulness = -1;
 disastor_objects[disastor_objects.length-1].maxLuck = -5000;  //fuck monkeys
 disastor_objects[disastor_objects.length-1].min = -5000;
