@@ -1018,10 +1018,69 @@ lusus_objects[lusus_objects.length-1].lusus = true;
 ////////////////////////sea lusii
 
 sea_lusus_objects.push(new GameEntity(null, "Zap Beast",null));  //zap fraymotif
+sea_lusus_objects[sea_lusus_objects.length-1].power = 50;
+sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
+
+sea_lusus_objects.push(new GameEntity(null, "Sea Slither Beast",null)); 
 sea_lusus_objects[sea_lusus_objects.length-1].power = 20;
 sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
 
+sea_lusus_objects.push(new GameEntity(null, "Electric Beast",null)); //zap fraymotif
+sea_lusus_objects[sea_lusus_objects.length-1].power = 50;
+sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
 
+sea_lusus_objects.push(new GameEntity(null, "Whale",null)); 
+sea_lusus_objects[sea_lusus_objects.length-1].power = 20;
+sea_lusus_objects[sea_lusus_objects.length-1].currentHP = 50;
+sea_lusus_objects[sea_lusus_objects.length-1].hp = 50;
+sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
+
+sea_lusus_objects.push(new GameEntity(null, "Sky Horse",null)); 
+sea_lusus_objects[sea_lusus_objects.length-1].power = 20;
+sea_lusus_objects[sea_lusus_objects.length-1].mobility = 20;
+sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
+
+sea_lusus_objects.push(new GameEntity(null, "Sea Meow Beast",null)); 
+sea_lusus_objects[sea_lusus_objects.length-1].power = 20;
+sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
+
+sea_lusus_objects.push(new GameEntity(null, "Sea Hoofbeast",null)); 
+sea_lusus_objects[sea_lusus_objects.length-1].power = 20;
+sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
+
+sea_lusus_objects.push(new GameEntity(null, "Cuttlefish",null)); 
+sea_lusus_objects[sea_lusus_objects.length-1].power = 20;
+sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
+
+sea_lusus_objects.push(new GameEntity(null, "Swim Beast",null)); 
+sea_lusus_objects[sea_lusus_objects.length-1].power = 20;
+sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
+
+sea_lusus_objects.push(new GameEntity(null, "Sea Goat",null)); 
+sea_lusus_objects[sea_lusus_objects.length-1].power = 20;
+sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
+
+sea_lusus_objects.push(new GameEntity(null, "Light Beast",null)); 
+sea_lusus_objects[sea_lusus_objects.length-1].power = 20;
+sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
+
+sea_lusus_objects.push(new GameEntity(null, "Dive Beast",null)); 
+sea_lusus_objects[sea_lusus_objects.length-1].power = 20;
+sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
+
+sea_lusus_objects.push(new GameEntity(null, "Honkbird",null)); 
+sea_lusus_objects[sea_lusus_objects.length-1].power = 20;
+sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
+
+sea_lusus_objects.push(new GameEntity(null, "Sea Bear",null)); 
+sea_lusus_objects[sea_lusus_objects.length-1].power = 20;
+sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
+
+sea_lusus_objects.push(new GameEntity(null, "Sea Armorbeast",null)); 
+sea_lusus_objects[sea_lusus_objects.length-1].power = 20;
+sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
+sea_lusus_objects[sea_lusus_objects.length-1].currentHP = 50;
+sea_lusus_objects[sea_lusus_objects.length-1].hp = 50;
 
 
 
