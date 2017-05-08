@@ -31,6 +31,7 @@ function GameEntity(session, name, crowned){
 		this.playersAbsconded = [];
 		this.iAbscond = false;
 		this.exiled = false;
+		this.illegal = false; //used only for sprites. whether or not they are reptile/amphibian.
 
 		this.getMobility = function(){
 			if(this.crowned){
@@ -81,7 +82,7 @@ function GameEntity(session, name, crowned){
 		}
 
 
-		this.setStats = function(minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs, grist){
+		this.setStats = function(minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs, grist, illegal){
 			this.minLuck = minLuck;
 			this.hp = hp;
 			this.currentHP = this.hp;
@@ -93,6 +94,7 @@ function GameEntity(session, name, crowned){
 			this.abscondable = abscondable;
 			this.canAbscond = canAbscond;
 			this.grist = grist;
+			this.illegal = illegal;
 		}
 
 		this.htmlTitleHP = function(){
@@ -625,5 +627,10 @@ function GameEntity(session, name, crowned){
 		//~~~~~~~~~~~~~~~~~~~~~~~~TODO!!!!!!!!!!!!!!!!!!!!!!!  allow doomed time clones to be treated as "players". if they die, add them to afterlife.
 }
 
+//TODO have each player have a "Sprite" game object that has all zero stats. sprite gets one of these objects added pre-entry (or maybe a player);
+//when a gameEntitity has an object added to it, adds the stats to itself. eventuall adds fraymotifs as well.
 
-//make a fuck ton of sprites here.
+//make a fuck ton of sprites here. don't need to reinit for sessions because these entitites are never used directly. instead, stuck into a sprite that player has,
+//or into ring/scepter. 
+var disastor_object =[];
+
