@@ -836,7 +836,7 @@ prototyping_objects.push(new GameEntity(null, "Robot",null));
 prototyping_objects[prototyping_objects.length-1].hp = 100;
 prototyping_objects[prototyping_objects.length-1].currentHP = 100;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
-disastor_objects[disastor_objects.length-1].freeWill = 100; 
+prototyping_objects[prototyping_objects.length-1].freeWill = 100; 
 prototyping_objects[prototyping_objects.length-1].power = 100;
 
 prototyping_objects.push(new GameEntity(null, "Golfer",null)); 
@@ -850,7 +850,6 @@ prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
 
 
-
 prototyping_objects.push(new GameEntity(null, "Game Grl",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
@@ -859,9 +858,8 @@ prototyping_objects.push(new GameEntity(null, "Nick Cage",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
 
-prototyping_objects.push(new GameEntity(null, "Lawyer",null)); 
+prototyping_objects.push(new GameEntity(null, "Praying Mantis",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
 
 prototyping_objects.push(new GameEntity(null, "Doctor",null));   //healing fraymotif
 prototyping_objects[prototyping_objects.length-1].power = 20;
@@ -891,9 +889,9 @@ prototyping_objects.push(new GameEntity(null, "Butler",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
 
-prototyping_objects.push(new GameEntity(null, "Astronaut",null)); 
+prototyping_objects.push(new GameEntity(null, "Sloth",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+prototyping_objects[prototyping_objects.length-1].mobility = -20;
 
 prototyping_objects.push(new GameEntity(null, "Cowboy",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
@@ -931,6 +929,108 @@ prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
 prototyping_objects.push(new GameEntity(null, "Cow",null)); 
 prototyping_objects[prototyping_objects.length-1].power = 20;
 
+prototyping_objects.push(new GameEntity(null, "Bird",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+
+
+prototyping_objects.push(new GameEntity(null, "Bug",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+
+
+prototyping_objects.push(new GameEntity(null, "Llama",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+
+
+prototyping_objects.push(new GameEntity(null, "Penguin",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+
+
+prototyping_objects.push(new GameEntity(null, "Husky",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+
+
+prototyping_objects.push(new GameEntity(null, "Cat",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].minLuck = 20;
+prototyping_objects[prototyping_objects.length-1].maxLuck = 20;
+
+
+prototyping_objects.push(new GameEntity(null, "Dog",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+
+
+prototyping_objects.push(new GameEntity(null, "Pigeon",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+
+
+prototyping_objects.push(new GameEntity(null, "Octopus",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+
+
+prototyping_objects.push(new GameEntity(null, "Fish",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+
+
+prototyping_objects.push(new GameEntity(null, "Kitten",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+
+
+prototyping_objects.push(new GameEntity(null, "Worm",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+
+
+prototyping_objects.push(new GameEntity(null, "Bear",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 50;
+
+
+prototyping_objects.push(new GameEntity(null, "Goat",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+
+
+prototyping_objects.push(new GameEntity(null, "Rat",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+
+
+prototyping_objects.push(new GameEntity(null, "Raccoon",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+
+
+prototyping_objects.push(new GameEntity(null, "Crow",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+
+
+prototyping_objects.push(new GameEntity(null, "Chicken",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+
+
+prototyping_objects.push(new GameEntity(null, "Duck",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+
+
+prototyping_objects.push(new GameEntity(null, "Sparrow",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+
+
+prototyping_objects.push(new GameEntity(null, "Tiger",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 50;
+
+
+prototyping_objects.push(new GameEntity(null, "Sugar Glider",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+
+
+prototyping_objects.push(new GameEntity(null, "Rapper",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+
+
+prototyping_objects.push(new GameEntity(null, "Kangaroo",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+
+prototyping_objects.push(new GameEntity(null, "Stoner",null)); 
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].minLuck = 20;
+prototyping_objects[prototyping_objects.length-1].maxLuck = 20;
 
 
 //////////////////////lusii
