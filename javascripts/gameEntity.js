@@ -402,19 +402,21 @@ function GameEntity(session, name, crowned){
 			var myGhost = this.session.afterLife.findClosesToRealSelf(deadPlayer)
 			if(!ghost || ghost == myGhost) return false;
 			console.log("helping a corpse revive during a battle in session: " + this.session.session_id)
-			var text = "The " + player1.htmlTitleBasic() + " assists the " + player2.htmlTitleBasic() + ". ";
+			ghost.causeOfDrain = deadPlayer.htmlTitleBasic();
+			var text = "The " + player.htmlTitleBasic() + " assists the " + deadPlayer.htmlTitleBasic() + ". ";
 			if(player.class_name == "Rogue"){
-				text += " The " + deadPlayer.htmlTitleBasic() + " steals the essence of the " + ghostName + " in order to revive and continue fighting. It will be a while before the ghost recovers.";
+				text += " The " + deadPlayer.htmlTitleBasic() + " steals the essence of the " + ghost.htmlTitleBasic() + " in order to revive and continue fighting. It will be a while before the ghost recovers.";
 			}else if(player.class_name == "Maid"){
-				text += " The " + deadPlayer.htmlTitleBasic() + " inherits the essence and duties of the " + ghostName + " in order to revive and continue their fight. It will be a while before the ghost recovers.";
+				text += " The " + deadPlayer.htmlTitleBasic() + " inherits the essence and duties of the " + ghost.htmlTitleBasic() + " in order to revive and continue their fight. It will be a while before the ghost recovers.";
 			}
 			div.append(text);
 			var canvas = drawReviveDead(div, deadPlayer, ghost, player.aspect);
 			if(canvas){
 				var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-				drawSprite(pSpriteBuffer,player1)
+				drawSprite(pSpriteBuffer,player)
 				copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0)
 			}
+			removeFromArray(myGhost, this.session.afterLife.ghosts);
 			deadPlayer.makeAlive();
 
 
@@ -580,11 +582,7 @@ function GameEntity(session, name, crowned){
 				if(this.name == "Jack"){
 					cod =  "after being shown too many stabs from Jack";
 				}else if(this.name == "Black King"){
-					var life = findAspectPlayer(this.session.players, "Life")
-					var doom = findAspectPlayer(this.session.players, "Doom")
 
-					if(life && !life.dead) console.log("promising player: " + life.title() + " : black king death in session " + this.session.session_id )
-					if(doom && !doom.dead) console.log("promising player: " + doom.title() + " : black king death in session " + this.session.session_id )
 					cod = "fighting the Black King";
 				}
 				player.makeDead(cod);
