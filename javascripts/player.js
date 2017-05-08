@@ -13,7 +13,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.baby = null;
 	this.session = session;
 	this.currentHP = 0;
-	this.sprite = null; //gets set to a blank sprite when character is created. 
+	this.sprite = null; //gets set to a blank sprite when character is created.
 	this.grist = 0; //total party grist needs to be at a certain level for the ultimate alchemy. luck events can raise it, boss fights, etc.
 	this.hp = 0; //mostly used for boss battles;
 	this.graphs = [];
@@ -1994,7 +1994,7 @@ function findPlayersFromSessionWithId(playerList, source){
 function findBadPrototyping(playerList){
 	for(var i= 0; i<playerList.length; i++){
 		var p = playerList[i].object_to_prototype;
-		if(playerList[i].object_to_prototype.power > = 200){
+		if(playerList[i].object_to_prototype.power >= 200){
 			return p.name;
 		}
 	}
