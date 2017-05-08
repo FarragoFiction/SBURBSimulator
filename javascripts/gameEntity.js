@@ -626,10 +626,9 @@ function GameEntity(session, name, crowned){
 
 
 
-		//~~~~~~~~~~~~~~~~~~~~~~~~TODO!!!!!!!!!!!!!!!!!!!!!!!  allow doomed time clones to be treated as "players". if they die, add them to afterlife.
 }
 
-//TODO have each player have a "Sprite" game object that has all zero stats. sprite gets one of these objects added pre-entry (or maybe a player);
+//TODO have each player have a "Sprite" game object that has basic stats. sprite gets one of these objects added pre-entry (or maybe a player);  later, can have other objects added. 
 //when a gameEntitity has an object added to it, adds the stats to itself. eventuall adds fraymotifs as well.
 //sprites participate in fights until denizen fight. right before denizen fight, they leave to go do mysterious shit on the battlefield (set to null.)
 
@@ -650,13 +649,20 @@ disastor_objects[disastor_objects.length-1].power = 10000;
 disastor_objects.push(new GameEntity(null, "Horror Terror",null));  //vast glub
 disastor_objects[disastor_objects.length-1].hp = 10000;
 disastor_objects[disastor_objects.length-1].currentHP = 10000;
-disastor_objects[disastor_objects.length-1].corrupted = true;
+disastor_objects[disastor_objects.length-1].corrupted = true;  //gives the corrupted status to whoever wears the ring, and the sprite, too. fighting corruption corrupts you.
+disastor_objects[disastor_objects.length-1].power = 10000;
+disastor_objects[disastor_objects.length-1].freeWill = 10000; //wants to mind control you.
+
+disastor_objects.push(new GameEntity(null, "Speaker of the Furthest Ring",null));  //vast glub
+disastor_objects[disastor_objects.length-1].hp = 10000;
+disastor_objects[disastor_objects.length-1].currentHP = 10000;
+disastor_objects[disastor_objects.length-1].corrupted = true; 
 disastor_objects[disastor_objects.length-1].power = 10000;
 disastor_objects[disastor_objects.length-1].freeWill = 10000; //wants to mind control you.
 
 
-
-
+disastor_objects.push(new GameEntity(null, "Buggy As Fuck Retro Game",null));  //vast glub
+disastor_objects[disastor_objects.length-1].corrupted = true;  //no stats, just corrupted. maybe a fraymotif later. 
 
 
 
