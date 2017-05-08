@@ -11,6 +11,8 @@ function debugLevelTheHellUp(){
 	}
 }
 
+console.log("TODO make new sprites work for easter eggs.")
+
 //no. you gots to flip it TURN-WAYS, dunkass.
 //rendering shouldu be different
 //making new scenes to be different

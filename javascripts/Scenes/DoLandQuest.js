@@ -189,7 +189,7 @@ function DoLandQuest(session){
 			if(player2) player2.corruptionLevelOther += 25;
 		}
 
-		if(corruptedOtherPrototypings.indexOf(player1.kernel_sprite) != -1  ){
+		if(player1.object_to_prototype.corrupted){
 			console.log("corrupt sprite: " + this.session.session_id)
 			player1.corruptionLevelOther += 25;
 			ret = true;
@@ -205,15 +205,15 @@ function DoLandQuest(session){
 	}
 
 	this.spriteContent = function(player){
-		var ret = " " + player.kernel_sprite.replace(/\s+/g, '') + "sprite ";
-		if(corruptedOtherPrototypings.indexOf(player.kernel_sprite) != -1){
+		var ret = player.object_to_prototype.htmlTitle()
+		if(player.object_to_prototype.corrupted){
 			player.landLevel += -0.75;
-			ret = " Oh god. What is going on. Why does just listening to " + player.kernel_sprite.replace(/\s+/g, '') + "sprite make your ears bleed!? "
-		}else if(helpful_prototypings.indexOf(player.kernel_sprite) != -1){
+			ret = " Oh god. What is going on. Why does just listening to " + player.object_to_prototype.htmlTitle() + " make your ears bleed!? "
+		}else if(player.object_to_prototype.helpfulness > 1){
 			//console.log("good sprite: " + this.session.session_id)
 			ret += " is pretty much as useful as another player. No cagey riddles, just straight answers on how to finish the quests. "
 			player.landLevel += 1;
-		}else if(unhelpful_prototypings.indexOf(player.kernel_sprite) != -1){
+		}else if(player.object_to_prototype.helpfulness < 1){
 			ret += " is the most unhelpful piece of shit in the world. Oh my god, just once. Please, just shut up."
 			//console.log("bad sprite: " + this.session.session_id)
 			player.landLevel += -0.5;
