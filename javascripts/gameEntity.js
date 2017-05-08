@@ -629,6 +629,7 @@ function GameEntity(session, name, crowned){
 
 //TODO have each player have a "Sprite" game object that has all zero stats. sprite gets one of these objects added pre-entry (or maybe a player);
 //when a gameEntitity has an object added to it, adds the stats to itself. eventuall adds fraymotifs as well.
+//sprites participate in fights until denizen fight. right before denizen fight, they leave to go do mysterious shit on the battlefield (set to null.)
 
 //make a fuck ton of sprites here. don't need to reinit for sessions because these entitites are never used directly. instead, stuck into a sprite that player has,
 //or into ring/scepter. 
