@@ -105,7 +105,7 @@ function GameEntity(session, name, crowned){
 			if(this.crowned != null) ret+="Crowned "
 			var pname = this.name;
 			if(this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
-			return ret + pname + "</font>"; //TODO denizens are aspect colored.
+			return ret + pname; //TODO denizens are aspect colored.
 		}
 
 		this.htmlTitleHP = function(){

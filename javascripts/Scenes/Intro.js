@@ -88,7 +88,7 @@ function Intro(session){
 
 	this.addImportantEvent = function(){
 		var current_mvp =  findStrongestPlayer(this.session.players)
-		if(this.player.aspect == "Time" && !player1.object_to_prototype.illegal){
+		if(this.player.aspect == "Time" && !this.player.object_to_prototype.illegal){
 			return this.session.addImportantEvent(new TimePlayerEnteredSessionWihtoutFrog(this.session, current_mvp.power,this.player) );
 		}else{
 			return this.session.addImportantEvent(new PlayerEnteredSession(this.session, current_mvp.power,this.player) );
@@ -734,7 +734,7 @@ function Intro(session){
 			if(this.player.trickster){
 				narration += "They immediately heal their land in an explosion of bullshit candy giggle-magic. ";
 			}
-			player.sprite.addPrototyping(this.player.object_to_prototype); //hot damn this is coming together.
+			this.player.sprite.addPrototyping(this.player.object_to_prototype); //hot damn this is coming together.
 			if(this.session.kingsScepter) this.session.kingsScepter.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
 			if(this.session.queensRing) this.session.queensRing.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
 		}
