@@ -76,10 +76,10 @@ function Intro(session){
 
 		}else if((this.player.dead == true || this.player.isDreamSelf == true || this.player.dreamSelf == false) && Math.seededRandom() > .1){
 			var ret = "Through outrageous shenanigans, one of the " + this.player.htmlTitle() + "'s superfluous corpses ends up prototyped into their kernel sprite. <br>";
-			this.player.kernel_sprite =this.player.title();
+			this.player.object_to_prototype =copyGameEntity(this.player, this.player.title())
 			console.log("player sprite in session: " + this.session.session_id);
-			player_prototypings.push(this.player.kernel_sprite)
-			helpful_prototypings.push(this.player.kernel_sprite)
+			this.player.object_to_prototype.helpfulness = 1;
+			this.player.object_to_prototype.player = true;
 
 		}
 		div.append(ret);
@@ -139,7 +139,7 @@ function Intro(session){
 		chatText += chatLine(player1Start, player1,"I guess it has something to do with my title? I am apparently the ' " + player1.title() + "'. ");
 		chatText +=chatLine(player2Start, player2,"Whatever THAT means. ");
 		chatText += chatLine(player1Start, player1,"Yes. Also, I prototyped my kernelsprite with a " + player1.object_to_prototype.htmlTitle() +".\n");
-		if(player_prototypings.indexOf(player1.kernel_sprite) != -1){
+		if(player1.object_to_prototype.player){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
 		}else if(player1.isTroll == true && player1.object_to_prototype.lusus){
@@ -189,8 +189,8 @@ function Intro(session){
 		chatText += chatLine(player1Start, player1,"Oh, man, it's the " + player1.land +".");
 		chatText += chatLine(player1Start, player1,"It is so weird! Where even are we compared to our solar system? There's no sun! How does this work!?");
 		chatText +=chatLine(player2Start, player2,"Through bullshit hand-wavy game magic. ");
-		chatText += chatLine(player1Start, player1,"Oh! I prototyped my kernelsprite with a " + player1.kernel_sprite +".\n");
-		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
+		chatText += chatLine(player1Start, player1,"Oh! I prototyped my kernelsprite with a " + player1.object_to_prototype.htmlTitle() +".\n");
+		if(player1.object_to_prototype.player){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
 		}else if(player1.isTroll == true && player1.object_to_prototype.lusus){
@@ -207,14 +207,14 @@ function Intro(session){
 		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"What did that do?");
-				chatText += chatLine(player1Start, player1, "So far, it made the enemies look like a  "+player1.kernel_sprite + " but I can't wait to find out what else it did!");
+				chatText += chatLine(player1Start, player1, "So far, it made the enemies look like a  "+player1.object_to_prototype.htmlTitle() + " but I can't wait to find out what else it did!");
 				chatText += chatLine(player2Start, player2,"I don't know, it probably did  nothing.");
 			}else{
 				chatText += chatLine(player2Start, player2,"Huh. That sounds cool.");
 			}
 		}else{
 			chatText += chatLine(player2Start, player2,"What did that do?");
-			chatText += chatLine(player1Start, player1, "So far, it made the enemies look like a  "+player1.kernel_sprite + " but I can't wait to find out what else it did!");
+			chatText += chatLine(player1Start, player1, "So far, it made the enemies look like a  "+player1.object_to_prototype.htmlTitle() + " but I can't wait to find out what else it did!");
 		}
 		return chatText;
 	}
@@ -235,8 +235,8 @@ function Intro(session){
 		chatText += chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+". It's just like something out of a VIDEO GAME!");
 		chatText +=chatLine(player2Start, player2,"lol, it IS a video game, or did you forget?");
 		chatText += chatLine(player1Start, player1,"Well, yeah, but... like... SBURB is not a NORMAL video game. You know what I mean.");
-		chatText += chatLine(player1Start, player1,"ANYWAYS... I prototyped my kernel thingy with a " + player1.kernel_sprite +".\n");
-		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
+		chatText += chatLine(player1Start, player1,"ANYWAYS... I prototyped my kernel thingy with a " + player1.object_to_prototype.htmlTitle() +".\n");
+		if(player1.object_to_prototype.player){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
 		}else if(player1.isTroll == true && player1.object_to_prototype.lusus){
@@ -253,14 +253,14 @@ function Intro(session){
 		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"What did that do?");
-				chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.kernel_sprite + " like a customization kind of thing? ");
+				chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.htmlTitle() + " like a customization kind of thing? ");
 				chatText += chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
 			}else{
 				chatText += chatLine(player2Start, player2,"Huh. That sounds cool.");
 			}
 		}else{
 			chatText += chatLine(player2Start, player2,"What did that do?");
-			chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.kernel_sprite+ " like a customization kind of thing? ");
+			chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.htmlTitle()+ " like a customization kind of thing? ");
 		}
 		return chatText;
 	}
@@ -303,8 +303,8 @@ function Intro(session){
 				chatText += chatLine(player1Start, player1,"!  This game is way more confusing than I thought!");
 			}
 		}
-		chatText += chatLine(player1Start, player1,"So... I prototyped my kernel thingy with a " + player1.kernel_sprite +".\n");
-		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
+		chatText += chatLine(player1Start, player1,"So... I prototyped my kernel thingy with a " + player1.object_to_prototype.htmlTitle() +".\n");
+		if(player1.object_to_prototype.player){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += chatLine(player1Start, player1,":/  Yeah... They figured out a way to not die when they time travel! ");
 		}else if(player1.isTroll == true && player1.object_to_prototype.lusus){
@@ -322,14 +322,14 @@ function Intro(session){
 		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"What did that do?");
-				chatText += chatLine(player1Start, player1, "It made the enemies look like a "+player1.kernel_sprite);
+				chatText += chatLine(player1Start, player1, "It made the enemies look like a "+player1.object_to_prototype.htmlTitle());
 				chatText += chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
 			}else{
 				chatText += chatLine(player2Start, player2,"Huh. That sounds cool.");
 			}
 		}else{
 			chatText += chatLine(player2Start, player2,"What did that do?");
-			chatText += chatLine(player1Start, player1, "It made the enemies look like a "+player1.kernel_sprite);
+			chatText += chatLine(player1Start, player1, "It made the enemies look like a "+player1.object_to_prototype.htmlTitle());
 		}
 		return chatText;
 	}
@@ -353,7 +353,7 @@ function Intro(session){
 		chatText += chatLine(player1Start, player1,"It's the " + player1.land +".");
 		chatText += chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+".");
 		chatText +=chatLine(player2Start, player2,"lol");
-		chatText += chatLine(player1Start, player1,"So... I prototyped my kernel whatever with a " + player1.kernel_sprite +".\n");
+		chatText += chatLine(player1Start, player1,"So... I prototyped my kernel whatever with a " + player1.object_to_prototype.htmlTitle() +".\n");
 		if(player1.isTroll == true && player1.object_to_prototype.lusus){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
@@ -368,14 +368,14 @@ function Intro(session){
 		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"What did that do?");
-				chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.kernel_sprite);
+				chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.htmlTitle());
 				chatText += chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
 			}else{
 				chatText += chatLine(player2Start, player2,"Huh. That sounds cool.");
 			}
 		}else{
 			chatText += chatLine(player2Start, player2,"What did that do?");
-			chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.kernel_sprite);
+			chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.htmlTitle());
 		}
 		return chatText;
 	}
@@ -399,8 +399,8 @@ function Intro(session){
 		chatText += chatLine(player1Start, player1,"It's the " + player1.land +".");
 		chatText += chatLine(player1Start, player1,"It's so cool! Like something out of a story! I always KNEW I'd have an adventure like this one day!");
 		chatText +=chatLine(player2Start, player2,"lol");
-		chatText += chatLine(player1Start, player1,"So... I prototyped my kernelsprite with a " + player1.kernel_sprite +".\n");
-		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
+		chatText += chatLine(player1Start, player1,"So... I prototyped my kernelsprite with a " + player1.object_to_prototype.htmlTitle() +".\n");
+		if(player1.object_to_prototype.player){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += chatLine(player1Start, player1,":/  Yeah... That's a story all on it's own. ");
 		}else if(player1.isTroll == true && player1.object_to_prototype.lusus){
@@ -417,14 +417,14 @@ function Intro(session){
 		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += chatLine(player2Start, player2,"What did that do?");
-				chatText += chatLine(player1Start, player1, "I think it  made the enemies look like a "+player1.kernel_sprite);
+				chatText += chatLine(player1Start, player1, "I think it  made the enemies look like a "+player1.object_to_prototype.htmlTitle());
 				chatText += chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
 			}else{
 				chatText += chatLine(player2Start, player2,"Huh. That sounds cool.");
 			}
 		}else{
 			chatText += chatLine(player2Start, player2,"What did that do?");
-			chatText += chatLine(player1Start, player1, "I think it  made the enemies look like a "+player1.kernel_sprite);
+			chatText += chatLine(player1Start, player1, "I think it  made the enemies look like a "+player1.object_to_prototype.htmlTitle());
 		}
 		return chatText;
 	}
@@ -450,8 +450,8 @@ function Intro(session){
 			born = "hatched"
 		}
 		chatText += chatLine(player1Start, player1,"Seriously, I was " + born + " for this.");
-		chatText += chatLine(player1Start, player1,"I even prototyped my kernel with a " + player1.kernel_sprite +".\n");
-		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
+		chatText += chatLine(player1Start, player1,"I even prototyped my kernel with a " + player1.object_to_prototype.htmlTitle() +".\n");
+		if(player1.object_to_prototype.player){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += chatLine(player1Start, player1,"Yes! I already have my first minion! ");
 		}else	if(player1.isTroll == true && player1.object_to_prototype.lusus){
@@ -506,8 +506,8 @@ function Intro(session){
 		chatText += chatLine(player1Start, player1,"It's the " + player1.land +".");
 		chatText += chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+". Honestly, I'm a little disappointed in how literal it is.");
 		chatText +=chatLine(player2Start, player2,"lol");
-		chatText += chatLine(player1Start, player1,"So... I prototyped my kernel with a " + player1.kernel_sprite +".\n");
-		if(player_prototypings.indexOf(this.player.kernel_sprite) != -1){
+		chatText += chatLine(player1Start, player1,"So... I prototyped my kernel with a " + player1.object_to_prototype.htmlTitle() +".\n");
+		if(player1.object_to_prototype.player){
 			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
 		}else if(player1.isTroll == true && player1.object_to_prototype.lusus){
@@ -692,7 +692,7 @@ function Intro(session){
 		}else{
 			this.changePrototyping(div);
 			narration += "<br>The " + this.player.htmlTitle() + " enters the game " + indexToWords(i) + ". ";
-			narration += " They manage to prototype their kernel sprite with a " + this.player.kernel_sprite + " pre-entry. "
+			narration += " They manage to prototype their kernel sprite with a " + this.player.object_to_prototype.htmlTitle() + " pre-entry. "
 			narration += this.corruptedSprite();
 
 			narration += " They have many INTERESTS, including " +this.player.interest1 + " and " + this.player.interest2 + ". ";
@@ -716,7 +716,7 @@ function Intro(session){
 
 			if(this.player.dead==true){
 				console.log(session.session_id + " dead player enters, " +this.player.title())
-				narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably. I...I guess their GHOST or something is making sure their house and corpse makes it into the medium? And their client player, as appropriate. Their kernel somehow gets prototyped with a "+this.player.kernel_sprite;
+				narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably. I...I guess their GHOST or something is making sure their house and corpse makes it into the medium? And their client player, as appropriate. Their kernel somehow gets prototyped with a "+this.player.object_to_prototype.htmlTitle();
 				div.append(narration);
 				this.session.availablePlayers.push(this.player);
 				return;
