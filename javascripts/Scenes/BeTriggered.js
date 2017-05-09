@@ -9,7 +9,7 @@ function BeTriggered(session){
 		this.triggeredPlayers = [];
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var p = this.session.availablePlayers[i];
-			if(this.IsPlayerTriggered(p)){ 
+			if(this.IsPlayerTriggered(p) && Math.seededRandom() > .75){ //don't all flip out/find out at once. 
 				console.log("found a flip out reason")
 				this.triggeredPlayers.push(p);
 			}
@@ -27,7 +27,7 @@ function BeTriggered(session){
 			return true;
 		}
 		if(player.triggerLevel > Math.seededRandom() * 100 ){
-			player.flipOutReason = "they seem to be going shithive maggots for no goddamned reason"
+			player.flipOutReason = "how they seem to be going shithive maggots for no goddamned reason"
 			return true
 		}
 	}
