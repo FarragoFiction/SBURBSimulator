@@ -10,6 +10,7 @@ function BeTriggered(session){
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var p = this.session.availablePlayers[i];
 			if(this.IsPlayerTriggered(p)){ 
+				console.log("found a flip out reason")
 				this.triggeredPlayers.push(p);
 			}
 		}
@@ -21,7 +22,7 @@ function BeTriggered(session){
 	}
 	
 	//todo reasons include death of a player, being mind controlled, having doomed time clones, yellow yards, learning about ectobiology, having to run from a fight, being cheated on. basically, anything that modifies trigger level. maybe even if a player does it from an ambiant effect???????????
-	this.IsPlayerTriggered(p){
+	this.IsPlayerTriggered = function(player){
 		if(player.flipOutReason){
 			return true;
 		}
