@@ -281,6 +281,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 //new method having to pick 16 levels before entering the medium
 	this.getNextLevel = function(){
 		this.level_index ++;
+		console.log(this.title() + " is getting next level, which is an index of: " + this.level_index);
 		var ret= this.mylevels[this.level_index];
 		return ret;
 	}
@@ -907,6 +908,9 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.increasePower = function(){
+		if(Math.seededRandom() >.9){
+			this.leveledTheHellUp = true; //that multiple of ten thing is bullshit.
+		}
 		var powerBoost = 1;
 
 		if(this.class_name == "Page"){  //they don't have many quests, but once they get going they are hard to stop.
@@ -928,9 +932,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.power += powerBoost;
 		this.aspectIncreasePower(powerBoost);
 
-		if(this.power % 10 == 0){ //actually a really bad way to determine level ups at this point. need to refactor later.
-			this.leveledTheHellUp = true;
-		}
 	}
 
 	this.shortLand = function(){

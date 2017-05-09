@@ -321,7 +321,7 @@ function GameEntity(session, name, crowned){
 				stabbings[i].increasePower();
 				stabbings[i].increasePower();
 				stabbings[i].leveledTheHellUp = true;
-				stabbings.level_index +=3;
+				stabbings[i].level_index +=2;
 			}
 		}
 

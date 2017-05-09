@@ -42,7 +42,7 @@ function LevelTheHellUp(session){
 		var boonies = this.getBoonies(player)
 		var narration = "";
 		var repeatTime = 1000;
-		var divID = (div.attr("id")) + "_" + player.chatHandle+boonies; //even if same chat handle, odds of same boonies is low.
+		var divID = (div.attr("id")) + "_" + player.chatHandle+player.ectoBiologicalSource; 
 		var narrationHTML = "<br><div id = 'narration" + divID + "'></div>";
 
 		div.append(narrationHTML);
@@ -50,15 +50,15 @@ function LevelTheHellUp(session){
 		var narrationDiv = $("#narration"+divID);
 		//different format for canvas code
 
-
 		if(levelName){
 			narration += " The " + player.htmlTitle();
 
 			narration += " skyrockets up the ECHELADDER to a new rung: " + levelName;
 			narration +=	" and earns " + boonies + ". ";
 		}
+		console.log("narration is: " + narration)
+		console.log(narrationDiv)
 		narrationDiv.append(narration);
-		//pause between characters, to give time to render.
 		if(levelName &&!player.godTier){
 				var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 				div.append(canvasHTML);
