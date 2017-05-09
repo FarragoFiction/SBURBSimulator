@@ -510,6 +510,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		var amount = this.power/10;
 		if(this.class_name == "Thief"){ //takes for self
 			this.triggerLevel += amount;
+			if(amount > 1) this.flipOutReason = " the Rage coursing through thier body"
 			player.triggerLevel += -1 * amount
 			this.boostAllRelationshipsWithMeBy(amount);
 			this.boostAllRelationshipsBy(amount)
@@ -531,6 +532,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			player.boostAllRelationshipsBy(amount)
 		}else if(this.class_name == "Bard"){ //destroys in others
 			player.triggerLevel += -1*amount
+			if(amount > 1) player.flipOutReason = " the Rage coursing through thier body"
 			player.boostAllRelationshipsWithMeBy(-1*amount);
 			player.boostAllRelationshipsBy(-1* amount)
 		}
@@ -605,8 +607,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			player.triggerLevel += -1 * amount
 			this.boostAllRelationshipsWithMeBy(-1*amount);
 			player.boostAllRelationshipsWithMeBy(amount);
+			if(amount > 1) player.flipOutReason = " how they are sure no one likes them"
 		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
 			player.triggerLevel += -1*amount
+			if(amount > 1) player.flipOutReason = " how they are sure no one likes them"
 			player.boostAllRelationshipsWithMeBy(amount);
 			for(var i = 0; i<this.session.players.length; i++){
 				var p = this.session.players[i];
@@ -618,6 +622,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			player.boostAllRelationshipsWithMeBy(-1*amount);
 		}else if(this.class_name == "Bard"){ //destroys in others
 			player.triggerLevel += -1*amount
+			if(amount > 1) player.flipOutReason = " how they are sure no one likes them"
 			player.boostAllRelationshipsWithMeBy(amount);
 		}
 	}
@@ -836,11 +841,13 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 		if(this.isActive()){ //modify me
 			this.triggerLevel += triggerModifier;
+			if(triggerModifier > 1) this.flipOutReason = " how they are sure no one likes them"
 			this.boostAllRelationshipsWithMeBy(-1*triggerModifier);
 		}else{  //modify others.
 			for(var i = 0; i<this.session.players.length; i++){
 				var player = this.session.players[i];
 				player.triggerLevel += triggerModifier;
+				if(triggerModifier > 1) player.flipOutReason = " how they are sure no one likes them"
 				player.boostAllRelationshipsWithMeBy(-1*triggerModifier);
 			}
 		}
@@ -848,12 +855,14 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	this.rageIncreasePower = function(powerBoost){
 		var triggerModifier = powerBoost/10;
+		console.log("triggerModifier: " + triggerModifier)
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			triggerModifier = -1 *triggerModifier;
 		}
 
 		if(this.isActive()){ //modify me
-			this.triggerLevel += powerBoost;
+			this.triggerLevel += triggerModifier;
+			if(triggerModifier > 1) this.flipOutReason = " the Rage coursing through their body"
 			this.boostAllRelationshipsWithMeBy(-1*triggerModifier);
 			this.boostAllRelationshipsBy(-1*triggerModifier);
 
@@ -861,6 +870,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			for(var i = 0; i<this.session.players.length; i++){
 				var player = this.session.players[i];
 				player.triggerLevel += triggerModifier;
+				if(triggerModifier > 1) player.flipOutReason = " the Rage coursing through their body"
 				player.boostAllRelationshipsWithMeBy(-1*triggerModifier);
 				player.boostAllRelationshipsBy(-1*triggerModifier);
 			}
@@ -1287,9 +1297,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		return this.power;
 	}
 
-	this.triggerLevel = function(){
-		return this.triggerLevel;
-	}
 
 
 

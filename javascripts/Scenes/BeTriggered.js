@@ -10,7 +10,7 @@ function BeTriggered(session){
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var p = this.session.availablePlayers[i];
 			if(this.IsPlayerTriggered(p) && Math.seededRandom() > .75){ //don't all flip out/find out at once. 
-				console.log("found a flip out reason")
+				console.log("shit flipping: " + p.flipOutReason + " in session " + this.session.session_id)
 				this.triggeredPlayers.push(p);
 			}
 		}
@@ -25,6 +25,7 @@ function BeTriggered(session){
 	this.IsPlayerTriggered = function(player){
 		if(player.flipOutReason){
 			if(player.flippingOutOverDeadPlayer && player.flippingOutOverDeadPlayer.dead){
+				
 				return true;
 			}else{ //they got better.
 				player.flipOutReason = null;;
@@ -127,6 +128,7 @@ function BeTriggered(session){
 			var hope = findAspectPlayer(findLivingPlayers(this.session.players), "Hope");
 			if(hope && hope.power > 100){
 				p.flipOutReason = null;
+				p.flippingOutOverDeadPlayer = null;
 				//console.log("Hope Survives: " + this.session.session_id)
 				ret += " The " +p.htmlTitle() + " should probably be flipping the fuck out about  " + this.triggers[i];
 				ret += " and being completely useless, but somehow the thought that the " + hope.htmlTitle() + " is still alive fills them with determination, instead.";  //hope survives.
@@ -139,6 +141,7 @@ function BeTriggered(session){
 				ret += p.flipOutReason + " to be anything but a useless piece of gargbage. ";
 				p.triggerLevel ++;
 				p.flipOutReason = null;
+				p.flippingOutOverDeadPlayer = null;
 				if(p.triggerLevel > 5){
 					ret += " Their freakout level is getting dangerously high. ";
 				}

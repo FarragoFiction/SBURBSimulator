@@ -170,6 +170,8 @@ function GameEntity(session, name, crowned){
 
 			//console.log("reasons to stay: " + reasonsToStay + " reasons to leave: " + reasonsToLeave)
 			if(reasonsToLeave > reasonsToStay * 2){
+				player.triggerLevel ++;
+				player.flipOutReason = "how terrifying " + this.htmlTitle() + " was";
 				if(player.mobility > this.mobility){
 					//console.log(" player actually absconds: " + this.session.session_id)
 					div.append(" The " + player.htmlTitleHP() + " absconds right the fuck out of this fight. ")
