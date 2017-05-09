@@ -28,7 +28,7 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 		recomendedAction = "OMFG JUST STOP CRASHING MY DAMN SESSIONS. FUCKING GRIMDARK PLAYERS. BREAKING SBURB DOES NOT HELP ANYBODY! ";
 	}else{
 		curSessionGlobalVar.crashedFromSessionBug = true;
-		recomendedAction = "CONTACT JADEDRESEARCHER. CONVINCE THEM TO FIX SESSION: " + curSessionGlobalVar.session_id;
+		recomendedAction = "CONTACT JADEDRESEARCHER. CONVINCE THEM TO FIX SESSION: " + curSessionGlobalVar.getLineage().join( " which joined with ");
 	}
 	var message = [
             'Message: ' + msg,
@@ -62,7 +62,7 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 	//once I let PLAYERS cause this (through grim darkness or finding their sesions disk or whatever), have different suggested actions.
 	//maybe throw custom error?
 	$("#story").append("<BR>SUGGESTED ACTION: " + recomendedAction);
-	console.log("Corrupted session: " + curSessionGlobalVar.session_id  + " helping AB return, if she is lost here.")
+	console.log("Corrupted session: " + curSessionGlobalVar.getLineage().join( " which joined with ")  + " helping AB return, if she is lost here.")
 	if(junior == true){
 		$("#button").prop('disabled', false)
 	}else{

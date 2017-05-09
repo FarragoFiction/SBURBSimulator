@@ -35,7 +35,7 @@ function Intro(session){
 			}else if(this.player.aspect == "Time"){
 				return " They are very confused by the " + this.player.land + ". ";
 			}else if(this.player.aspect == "Void"){
-				return " They stare blnakly at the " + this.player.land + ". ";
+				return " They stare blankly at the " + this.player.land + ". ";
 			}else if(this.player.aspect == "Heart"){
 				return " They run around excitedly in the " + this.player.land + ". ";
 			}else if(this.player.aspect == "Breath"){
