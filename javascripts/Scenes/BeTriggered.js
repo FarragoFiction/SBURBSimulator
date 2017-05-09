@@ -11,7 +11,7 @@ function BeTriggered(session){
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var p = this.session.availablePlayers[i];
 			var trigger = this.IsPlayerTriggered(p)
-			if(trigger != " absolutely nothing " && p.rollForLuck()<60){ //mostly DON'T flip out
+			if(this.IsPlayerTriggered(p)){ 
 				this.triggers.push(trigger);
 				this.triggeredPlayers.push(p);
 			}
@@ -22,8 +22,19 @@ function BeTriggered(session){
 	this.renderContent = function(div){
 		div.append("<br>"+this.content());
 	}
-
-	this.IsPlayerTriggered = function(player){
+	
+	this.IsPlayerTriggered(p){
+		if(player.flipOutReason){
+			return true;
+		}
+		if(player.triggerLevel > Math.seededRandom() * 100 ){
+			player.flipOutReason = "they seem to be going shithive maggots"
+			return true
+		}
+	}
+	
+	//holy shit this gets repetitive. settle your shit.
+	this.IsPlayerTriggeredOld = function(player){
 		//are any of your friends  dead?
 		var deadPlayers = findDeadPlayers(this.session.players);
 		var deadFriends = player.getFriendsFromList(deadPlayers);

@@ -37,6 +37,7 @@ function LevelTheHellUp(session){
 	this.renderForPlayer = function(div,player){
 		var levelName = player.getNextLevel(); //could be undefined
 		if(!levelName){
+			console.log("Scratched is: " + this.session.scratched + " Player has AAAAAAAALL the levels. All of them. " + this.session.session_id)
 			return; //don't make a blank div
 		}
 		var boonies = this.getBoonies(player)
@@ -56,8 +57,6 @@ function LevelTheHellUp(session){
 			narration += " skyrockets up the ECHELADDER to a new rung: " + levelName;
 			narration +=	" and earns " + boonies + ". ";
 		}
-		console.log("narration is: " + narration)
-		console.log(narrationDiv)
 		narrationDiv.append(narration);
 		if(levelName &&!player.godTier){
 				var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";

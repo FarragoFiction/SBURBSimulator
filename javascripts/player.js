@@ -18,6 +18,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.hp = 0; //mostly used for boss battles;
 	this.graphs = [];
 	this.id = id;
+	this.flipOutReason = null; //if it's null, i'm not flipping my shit.
 	this.denizen_index = 0; //denizen quests are in order.
 	this.causeOfDrain = null; //just ghost things
 	this.ghostWisdom = []; //keeps you from spamming the same ghost over and over for wisdom.
@@ -281,7 +282,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 //new method having to pick 16 levels before entering the medium
 	this.getNextLevel = function(){
 		this.level_index ++;
-		console.log(this.title() + " is getting next level, which is an index of: " + this.level_index);
 		var ret= this.mylevels[this.level_index];
 		return ret;
 	}
