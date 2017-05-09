@@ -155,7 +155,7 @@ function GameEntity(session, name, crowned){
 			if(!this.abscondable) return false;
 			if(player.doomed) return false; //doomed players accept their fate.
 			var reasonsToLeave = 0;
-			var reasonsToStay = 1; //grist man.
+			var reasonsToStay = 2; //grist man.
 			reasonsToStay += this.getFriendsFromList(playersInFight);
 			var hearts = this.getHearts();
 			var diamonds = this.getDiamonds();
@@ -165,7 +165,7 @@ function GameEntity(session, name, crowned){
 			for(var i = 0; i<diamonds.length; i++){
 				if(playersInFight.indexOf(diamonds[i] != -1)) reasonsToStay ++;  //extra reason to stay if they are your quadrant.
 			}
-
+			reasonsToStay += player.power/this.getHP(); //if i'm about to finish it off.
 			reasonsToLeave += 2 * this.power/player.currentHP;  //if you could kill me in two hits, that's one reason to leave. if you could kill me in one, that's two reasons.
 
 			//console.log("reasons to stay: " + reasonsToStay + " reasons to leave: " + reasonsToLeave)
