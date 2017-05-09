@@ -103,6 +103,12 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 		return ret;
 	}
+	
+	//flipping out over the dead won't call this but everything else will.
+	this.flipOut = function(reason){
+		this.flippingOutOverDeadPlayer = null;
+		this.flipOutReason = reason;
+	}
 
 	this.makeDead = function(causeOfDeath){
 		this.dead = true;
@@ -510,7 +516,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		var amount = this.power/10;
 		if(this.class_name == "Thief"){ //takes for self
 			this.triggerLevel += amount;
-			if(amount > 1) this.flipOutReason = " the Rage coursing through thier body"
+			if(amount > 1) this.flipOut(" the Rage coursing through their body")
 			player.triggerLevel += -1 * amount
 			this.boostAllRelationshipsWithMeBy(amount);
 			this.boostAllRelationshipsBy(amount)
@@ -532,7 +538,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			player.boostAllRelationshipsBy(amount)
 		}else if(this.class_name == "Bard"){ //destroys in others
 			player.triggerLevel += -1*amount
-			if(amount > 1) player.flipOutReason = " the Rage coursing through thier body"
+			if(amount > 1) player.flipOut(" the Rage coursing through their body")
 			player.boostAllRelationshipsWithMeBy(-1*amount);
 			player.boostAllRelationshipsBy(-1* amount)
 		}
@@ -607,10 +613,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			player.triggerLevel += -1 * amount
 			this.boostAllRelationshipsWithMeBy(-1*amount);
 			player.boostAllRelationshipsWithMeBy(amount);
-			if(amount > 1) player.flipOutReason = " how they are sure no one likes them"
+			if(amount > 1) player.flipOut(" how they are sure no one likes them")
 		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
 			player.triggerLevel += -1*amount
-			if(amount > 1) player.flipOutReason = " how they are sure no one likes them"
+			if(amount > 1) player.flipOut(" how they are sure no one likes them")
 			player.boostAllRelationshipsWithMeBy(amount);
 			for(var i = 0; i<this.session.players.length; i++){
 				var p = this.session.players[i];
@@ -622,7 +628,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			player.boostAllRelationshipsWithMeBy(-1*amount);
 		}else if(this.class_name == "Bard"){ //destroys in others
 			player.triggerLevel += -1*amount
-			if(amount > 1) player.flipOutReason = " how they are sure no one likes them"
+			if(amount > 1) player.flipOut(" how they are sure no one likes them")
 			player.boostAllRelationshipsWithMeBy(amount);
 		}
 	}
@@ -841,13 +847,13 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 		if(this.isActive()){ //modify me
 			this.triggerLevel += triggerModifier;
-			if(triggerModifier > 1) this.flipOutReason = " how they are sure no one likes them"
+			if(triggerModifier > 1) this.flipOut(" how they are sure no one likes them")
 			this.boostAllRelationshipsWithMeBy(-1*triggerModifier);
 		}else{  //modify others.
 			for(var i = 0; i<this.session.players.length; i++){
 				var player = this.session.players[i];
 				player.triggerLevel += triggerModifier;
-				if(triggerModifier > 1) player.flipOutReason = " how they are sure no one likes them"
+				if(triggerModifier > 1) player.flipOut(" how they are sure no one likes them")
 				player.boostAllRelationshipsWithMeBy(-1*triggerModifier);
 			}
 		}
@@ -861,7 +867,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 		if(this.isActive()){ //modify me
 			this.triggerLevel += triggerModifier;
-			if(triggerModifier > 1) this.flipOutReason = " the Rage coursing through their body"
+			if(triggerModifier > 1) this.flipOut(" the Rage coursing through their body")
 			this.boostAllRelationshipsWithMeBy(-1*triggerModifier);
 			this.boostAllRelationshipsBy(-1*triggerModifier);
 
@@ -869,7 +875,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			for(var i = 0; i<this.session.players.length; i++){
 				var player = this.session.players[i];
 				player.triggerLevel += triggerModifier;
-				if(triggerModifier > 1) player.flipOutReason = " the Rage coursing through their body"
+				if(triggerModifier > 1) player.flipOut(" the Rage coursing through their body")
 				player.boostAllRelationshipsWithMeBy(-1*triggerModifier);
 				player.boostAllRelationshipsBy(-1*triggerModifier);
 			}

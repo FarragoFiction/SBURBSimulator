@@ -9,7 +9,7 @@ function BeTriggered(session){
 		this.triggeredPlayers = [];
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var p = this.session.availablePlayers[i];
-			if(this.IsPlayerTriggered(p) && Math.seededRandom() > .9){ //don't all flip out/find out at once. 
+			if(this.IsPlayerTriggered(p) && Math.seededRandom() >0){ //don't all flip out/find out at once. if i find something ELSE to flip out before i can flip out about this, well, oh well. SBURB is a bitch. 75 is what it should be when i'm done testing.
 				console.log("shit flipping: " + p.flipOutReason + " in session " + this.session.session_id)
 				this.triggeredPlayers.push(p);
 			}
@@ -24,14 +24,18 @@ function BeTriggered(session){
 	//todo reasons include death of a player, being mind controlled, having doomed time clones, yellow yards, learning about ectobiology, having to run from a fight, being cheated on. basically, anything that modifies trigger level. maybe even if a player does it from an ambiant effect???????????
 	this.IsPlayerTriggered = function(player){
 		if(player.flipOutReason){
+			console.log("I have a flip out reason: " + player.flipOutReason)
 			if(player.flippingOutOverDeadPlayer && player.flippingOutOverDeadPlayer.dead){
-				
+				console.log("I know about a dead player. ")
 				return true;
 			}else{ //they got better.
+				console.log(" i think i need to know about a dead player to flip my shit.")
 				player.flipOutReason = null;;
 				player.flippingOutOverDeadPlayer = null;
 				return false;
 			}
+			console.log("preparing to flip my shit.")
+			return true; //i am flipping out over not a dead player, thank you very much.
 			
 		}
 		if(player.triggerLevel > Math.seededRandom() * 100 ){
