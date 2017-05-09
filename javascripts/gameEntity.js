@@ -172,7 +172,7 @@ function GameEntity(session, name, crowned){
 				if(playersInFight.indexOf(diamonds[i] != -1)) reasonsToStay ++;  //extra reason to stay if they are your quadrant.
 			}
 			reasonsToStay += player.power/this.getHP(); //if i'm about to finish it off.
-			reasonsToLeave += 2 * this.power/player.currentHP;  //if you could kill me in two hits, that's one reason to leave. if you could kill me in one, that's two reasons.
+			reasonsToLeave += 2 * this.getPower()/player.currentHP;  //if you could kill me in two hits, that's one reason to leave. if you could kill me in one, that's two reasons.
 
 			//console.log("reasons to stay: " + reasonsToStay + " reasons to leave: " + reasonsToLeave)
 			if(reasonsToLeave > reasonsToStay * 2){
@@ -558,7 +558,7 @@ function GameEntity(session, name, crowned){
 			if(defenseRoll > offenseRoll*10){
 				////console.log("Luck counter: " + this.session.session_id);
 				div.append("The attack backfires and causes unlucky damage. The " + defense.htmlTitleHP() + " sure is lucky!!!!!!!!" );
-				offense.currentHP += -1* offense.power; //damaged by your own power.
+				offense.currentHP += -1* offense.getPower(); //damaged by your own power.
 				this.checkForAPulse(offense, defense)
 				return;
 			}else if(defenseRoll > offenseRoll*5){
@@ -571,7 +571,7 @@ function GameEntity(session, name, crowned){
 			if(defense.getMobility() > offense.getMobility() * 10 && rand > 25){
 				////console.log("Mobility counter: " + this.session.session_id);
 				div.append("The " + offense.htmlTitleHP() + " practically appears to be standing still as they clumsily lunge towards the " + defense.htmlTitleHP() + " They miss so hard the " + defense.htmlTitleHP() + " has plenty of time to get a counterattack in." );
-				offense.currentHP += -1* defense.power;
+				offense.currentHP += -1* defense.getPower();
 				this.checkForAPulse(offense, defense)
 				return;
 			}else if(defense.getMobility() > offense.getMobility()*5 && rand > 25){
