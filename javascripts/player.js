@@ -855,7 +855,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	this.rageIncreasePower = function(powerBoost){
 		var triggerModifier = powerBoost/10;
-		console.log("triggerModifier: " + triggerModifier)
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			triggerModifier = -1 *triggerModifier;
 		}

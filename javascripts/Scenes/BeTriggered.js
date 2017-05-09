@@ -127,13 +127,14 @@ function BeTriggered(session){
 			var p = this.triggeredPlayers[i];
 			var hope = findAspectPlayer(findLivingPlayers(this.session.players), "Hope");
 			if(hope && hope.power > 100){
-				p.flipOutReason = null;
-				p.flippingOutOverDeadPlayer = null;
+				
 				//console.log("Hope Survives: " + this.session.session_id)
-				ret += " The " +p.htmlTitle() + " should probably be flipping the fuck out about  " + this.triggers[i];
+				ret += " The " +p.htmlTitle() + " should probably be flipping the fuck out about  " + p.flipOutReason;
 				ret += " and being completely useless, but somehow the thought that the " + hope.htmlTitle() + " is still alive fills them with determination, instead.";  //hope survives.
 				hope.increasePower();
 				p.increasePower();
+				p.flipOutReason = null;
+				p.flippingOutOverDeadPlayer = null;
 
 			}else{
 				removeFromArray(p, this.session.availablePlayers);
