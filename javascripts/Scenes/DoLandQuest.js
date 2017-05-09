@@ -209,17 +209,17 @@ function DoLandQuest(session){
 		if(player.sprite.corrupted){
 			player.landLevel += -0.75;
 			ret = " Oh god. What is going on. Why does just listening to " + player.sprite.htmlTitle() + " make your ears bleed!? "
-		}else if(player.sprite.helpfulness > 1){
+		}else if(player.sprite.helpfulness > 0){
 			//console.log("good sprite: " + this.session.session_id)
 			ret += " is pretty much as useful as another player. No cagey riddles, just straight answers on how to finish the quests. "
 			player.landLevel += 1;
-		}else if(player.sprite.helpfulness < 1){
+		}else if(player.sprite.helpfulness < 0){
 			ret += " is the most unhelpful piece of shit in the world. Oh my god, just once. Please, just shut up."
 			//console.log("bad sprite: " + this.session.session_id)
 			player.landLevel += -0.5;
 			player.triggerLevel += 0.1;
 		}else{
-			ret += "provides the requisite amount of gigglesnort hideytalk to be juuuust barely helpful. "
+			ret += " provides the requisite amount of gigglesnort hideytalk to be juuuust barely helpful. "
 			//console.log("normal sprite: " + this.session.session_id)
 			player.landLevel += 0.5;
 		}

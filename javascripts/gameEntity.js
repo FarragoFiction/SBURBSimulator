@@ -669,6 +669,7 @@ function copyGameEntity(object,name){
 	this.minLuck = object.minLuck;
 	this.player = object.player;
 	this.lusus = object.lusus;
+	return ret;
 }
 
 
@@ -750,6 +751,7 @@ disastor_objects[disastor_objects.length-1].mobility = 500;
 
 disastor_objects.push(new GameEntity(null, "Deadpool",null));  //custom fraymotif: healing factor
 disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
 disastor_objects[disastor_objects.length-1].power = 500;
 disastor_objects[disastor_objects.length-1].mobility = 500;
 disastor_objects[disastor_objects.length-1].helpfulness = 1;

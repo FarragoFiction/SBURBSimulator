@@ -13,7 +13,7 @@ function KingPowerful(session){
 	}
 
 	this.content = function(){
-		var nativePlayersInSession = findPlayersFromSessionWithId(this.playerList);
+		var nativePlayersInSession = findPlayersFromSessionWithId(this.playerList,this.session.session_id);
 		var badPrototyping = findBadPrototyping(nativePlayersInSession);
 		if(!badPrototyping){
 			badPrototyping = "glitchy piece of shit that is SBURB itself"

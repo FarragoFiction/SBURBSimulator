@@ -1992,10 +1992,12 @@ function findPlayersFromSessionWithId(playerList, source){
 }
 
 function findBadPrototyping(playerList){
+	console.log("am i even looking??? " + playerList.length);
 	for(var i= 0; i<playerList.length; i++){
-		var p = playerList[i].object_to_prototype;
+		console.log('looking for bad for: ' + playerList[i])
 		if(playerList[i].object_to_prototype.power >= 200){
-			return p.name;
+			console.log("found bad")
+			return (playerList[i].object_to_prototype.htmlTitle());
 		}
 	}
 }
@@ -2024,9 +2026,9 @@ function findLowestMobilityPlayer(playerList){
 
 function findGoodPrototyping(playerList){
 	for(var i= 0; i<playerList.length; i++){
-		var p = playerList[i].object_to_prototype;
-		if(playerList[i].object_to_prototype.illegal == true){
-			return p.name;
+		if(playerList[i].object_to_prototype.illegal ==true){
+			console.log("found good")
+			return (playerList[i].object_to_prototype.htmlTitle());
 		}
 	}
 }
