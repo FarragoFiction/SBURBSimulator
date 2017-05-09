@@ -23,6 +23,7 @@ function SaveDoomedTimeLine(session){
 	this.makeDoomedSnapshot = function(){
 		var timeClone = makeRenderingSnapshot(this.timePlayer);
 		timeClone.dead = false;
+		timeClone.currentHP = timeClone.maxHP
 		timeClone.doomed = true;
 		//from a different timeline, things went differently.
 		var rand = Math.seededRandom();
@@ -157,7 +158,7 @@ function SaveDoomedTimeLine(session){
 		}
 		this.makeDoomedSnapshot();
 		this.timePlayer.doomedTimeClones.push(this.doomedTimeClone);
-		this.timePlayer.triggerLevel ++; 
+		this.timePlayer.triggerLevel ++;
 		this.timePlayer.flipOut("their own doomed time clones")
 		return ret;
 	}

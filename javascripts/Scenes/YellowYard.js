@@ -245,6 +245,7 @@ function YellowYard(session){
 	this.getDoomedTimeClone = function(){
 		var timeClone = makeRenderingSnapshot(this.timePlayer);
 		timeClone.dead = false;
+		timeClone.currentHP = timeClone.maxHP
 		return timeClone;
 	}
 
