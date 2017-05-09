@@ -9,7 +9,7 @@ function BeTriggered(session){
 		this.triggeredPlayers = [];
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var p = this.session.availablePlayers[i];
-			if(this.IsPlayerTriggered(p) && Math.seededRandom() > .75){ //don't all flip out/find out at once. 
+			if(this.IsPlayerTriggered(p) && Math.seededRandom() > .9){ //don't all flip out/find out at once. 
 				console.log("shit flipping: " + p.flipOutReason + " in session " + this.session.session_id)
 				this.triggeredPlayers.push(p);
 			}

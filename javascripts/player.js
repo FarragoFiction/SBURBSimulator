@@ -141,9 +141,9 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			}
 			else if(r.saved_type == r.diamond){
 				r.target.triggerLevel += 100
-				player.damageAllRelationships();
-				player.damageAllRelationships();
-				player.damageAllRelationships();
+				r.target.damageAllRelationships();
+				r.target.damageAllRelationships();
+				r.target.damageAllRelationships();
 				r.target.flipOutReason = " their dead Moirail, the " + this.htmlTitleBasic() + ", fuck, that can't be good...";
 				r.target.flippingOutOverDeadPlayer = this;
 			}
