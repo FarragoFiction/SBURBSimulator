@@ -37,7 +37,7 @@ function Breakup(session){
 				this.relationshipToBreakUp = getRandomElementFromArray(hearts);
 				this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 				this.relationshipToBreakUp.target.triggerLevel ++;
-				this.relationshipToBreakUp.target.flipOut("getting cheated on by their Kisemesis, the  " + this.relationshipToBreakUp.target.htmlTitle() );
+				this.relationshipToBreakUp.target.flipOut("getting cheated on by their Matesprit, the  " + this.player.target.htmlTitle() );
 				var oppr = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
 				oppr.value = 5;
 				this.reason = "me_cheat"
@@ -53,7 +53,7 @@ function Breakup(session){
 				this.relationshipToBreakUp = getRandomElementFromArray(spades);
 				this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 				this.relationshipToBreakUp.target.triggerLevel ++;
-				this.relationshipToBreakUp.target.flipOut("getting cheated on by their Kisemesis, the  " + this.relationshipToBreakUp.target.htmlTitle() );
+				this.relationshipToBreakUp.target.flipOut("getting cheated on by their Kismesis, the  " + this.player.target.htmlTitle() );
 				var oppr = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
 				oppr.value = 5;
 				this.reason = "me_cheat"
@@ -68,7 +68,7 @@ function Breakup(session){
 				this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 				//cheating with diamonds sounds like a terrible idea.
 				this.relationshipToBreakUp.target.triggerLevel += 10;
-				this.relationshipToBreakUp.target.flipOut("getting cheated on by their Kisemesis, the  " + this.relationshipToBreakUp.target.htmlTitle() );
+				this.relationshipToBreakUp.target.flipOut("getting cheated on by their Moirail, the  " + this.player.htmlTitle() );
 				var oppr = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
 				oppr.value = -1;
 				this.reason = "me_cheat"
@@ -96,7 +96,7 @@ function Breakup(session){
 						this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 						//not happy with cheating bastards.
 						this.player.triggerLevel += 10;
-						this.relationshipToBreakUp.target.flipOut("having to confront their Matesprit, the  " + this.player.htmlTitle() + " about their cheating");
+						this.player.flipOut("having to confront their Matesprit, the  " + this.relationshipToBreakUp.target.htmlTitle() + " about their cheating");
 						r.value =-10;
 						this.reason = "you_cheat"
 						console.log("breaking up hearts because they are cheating in session: " +this.session.session_id)
@@ -113,7 +113,7 @@ function Breakup(session){
 						this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 						//not happy with cheating bastards.
 						this.player.triggerLevel += 10;
-						this.relationshipToBreakUp.target.flipOut("having to confront their Kismesis, the  " + this.player.htmlTitle() + " about their cheating");
+						this.player.flipOut("having to confront their Kismesis, the  " + this.relationshipToBreakUp.target.htmlTitle() + " about their cheating");
 						r.value =-10;
 						this.reason = "you_cheat"
 						console.log("breaking up spades because they are cheating in session: " +this.session.session_id)
@@ -130,7 +130,7 @@ function Breakup(session){
 						this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 						//dude, cheating on diamonds sounds like a TERRIBLE idea.
 						this.player.triggerLevel += 100;
-						this.relationshipToBreakUp.target.flipOut("having to confront their trusted FUCKING Moirail, the  " + this.player.htmlTitle() + " about their cheating");
+						this.relationshipToBreakUp.target.flipOut("having to confront their trusted FUCKING Moirail, the  " + this.relationshipToBreakUp.target.htmlTitle() + " about their cheating");
 						r.value =-50;
 						this.reason = "you_cheat"
 						console.log("breaking up diamonds because they are cheating in session: " +this.session.session_id)
