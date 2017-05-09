@@ -28,8 +28,8 @@ function BeTriggered(session){
 			if(player.flippingOutOverDeadPlayer && player.flippingOutOverDeadPlayer.dead){
 				console.log("I know about a dead player. ")
 				return true;
-			}else{ //they got better.
-				console.log(" i think i need to know about a dead player to flip my shit.")
+			}else if(player.flippingOutOverDeadPlayer){ //they got better.
+				console.log(" i think i need to know about a dead player to flip my shit. " + player.flippingOutOverDeadPlayer.title())
 				player.flipOutReason = null;;
 				player.flippingOutOverDeadPlayer = null;
 				return false;
