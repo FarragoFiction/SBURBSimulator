@@ -38,6 +38,9 @@ function GameEntity(session, name, crowned){
 		this.helpfulness = 0; //if 0, cagey riddles. if 1, basically another player. if -1, like calsprite. omg, just shut up.  NOT additive for when double prototyping. most recent prototyping overrides.
 		this.helpPhrase = "provides the requisite amount of gigglesnort hideytalk to be juuuust barely helpful.";
 
+		this.toString = function(){
+			return this.htmlTitle();
+		}
 		this.getMobility = function(){
 			if(this.crowned){
 				return this.mobility + this.crowned.mobility;
@@ -727,6 +730,8 @@ disastor_objects[disastor_objects.length-1].currentHP = 1000;
 disastor_objects[disastor_objects.length-1].corrupted = true;
 disastor_objects[disastor_objects.length-1].power = 1000;
 disastor_objects[disastor_objects.length-1].freeWill = 1000; //wants to mind control you.
+disastor_objects[disastor_objects.length-1].helpPhrase = " Oh god. What is going on. Why does just listening to " + disastor_objects[disastor_objects.length-1].htmlTitle() + " make your ears bleed!? ";
+
 
 disastor_objects.push(new GameEntity(null, "Clown",null));  //custom fraymotif: can' keep down the clown (heal).
 disastor_objects[disastor_objects.length-1].hp = 500;
@@ -739,6 +744,7 @@ disastor_objects[disastor_objects.length-1].helpfulness = -1;
 
 disastor_objects.push(new GameEntity(null, "Puppet",null));
 disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].helpPhrase =  "is the most unhelpful piece of shit in the world. Oh my god, just once. Please, just shut up.";
 disastor_objects[disastor_objects.length-1].currentHP = 500;
 disastor_objects[disastor_objects.length-1].helpfulness = -1;
 disastor_objects[disastor_objects.length-1].power = 500;
@@ -925,6 +931,8 @@ prototyping_objects[prototyping_objects.length-1].maxLuck = 20;
 prototyping_objects.push(new GameEntity(null, "Doctor",null));   //healing fraymotif
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "is pretty much as useful as another player. No cagey riddles, just straight answers on how to finish the quests. ";
+
 
 prototyping_objects.push(new GameEntity(null, "Gerbil",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
