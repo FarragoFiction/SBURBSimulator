@@ -37,7 +37,7 @@ function Breakup(session){
 				this.relationshipToBreakUp = getRandomElementFromArray(hearts);
 				this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 				this.relationshipToBreakUp.target.triggerLevel ++;
-				this.relationshipToBreakUp.target.flipOut("getting cheated on by their Matesprit, the  " + this.player.target.htmlTitle() );
+				this.relationshipToBreakUp.target.flipOut("getting cheated on by their Matesprit, the  " + this.player.htmlTitle() );
 				var oppr = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
 				oppr.value = 5;
 				this.reason = "me_cheat"
@@ -53,7 +53,7 @@ function Breakup(session){
 				this.relationshipToBreakUp = getRandomElementFromArray(spades);
 				this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 				this.relationshipToBreakUp.target.triggerLevel ++;
-				this.relationshipToBreakUp.target.flipOut("getting cheated on by their Kismesis, the  " + this.player.target.htmlTitle() );
+				this.relationshipToBreakUp.target.flipOut("getting cheated on by their Kismesis, the  " + this.player.htmlTitle() );
 				var oppr = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
 				oppr.value = 5;
 				this.reason = "me_cheat"

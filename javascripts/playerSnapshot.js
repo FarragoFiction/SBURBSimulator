@@ -73,6 +73,11 @@ function PlayerSnapshot(){
 		ret+= this.class_name + " of " + this.aspect;
 		return ret;
 	}
+	
+	this.flipOut = function(reason){
+		this.flippingOutOverDeadPlayer = null;
+		this.flipOutReason = reason;
+	}
 
 	this.htmlTitleHP = function(){
 		return getFontColorFromAspect(this.aspect) + this.title() + " (" + Math.round(this.currentHP) + " hp, " + Math.round(this.power) + " power)</font>"

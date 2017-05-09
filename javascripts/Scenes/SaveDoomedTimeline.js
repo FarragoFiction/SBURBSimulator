@@ -157,6 +157,8 @@ function SaveDoomedTimeLine(session){
 		}
 		this.makeDoomedSnapshot();
 		this.timePlayer.doomedTimeClones.push(this.doomedTimeClone);
+		this.timePlayer.triggerLevel ++; 
+		this.timePlayer.flipOut("their own doomed time clones")
 		return ret;
 	}
 }

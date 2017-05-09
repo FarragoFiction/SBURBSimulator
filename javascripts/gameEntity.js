@@ -119,6 +119,12 @@ function GameEntity(session, name, crowned){
 			if(this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
 			return ret + pname +" (" + Math.round(this.getHP()) + " hp, " + Math.round(this.getPower()) + " power)</font>"; //TODO denizens are aspect colored.
 		}
+		
+		this.flipOut = function(reason){
+			this.flippingOutOverDeadPlayer = null;
+			this.flipOutReason = reason;
+		}
+	
 
 
 
