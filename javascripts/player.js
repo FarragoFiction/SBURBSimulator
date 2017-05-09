@@ -109,6 +109,46 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(!this.godTier){ //god tiers only make ghosts in GodTierRevivial
 			this.session.afterLife.addGhost(makeRenderingSnapshot(this));
 		}
+		
+		this.triggerOtherPlayersWithMyDeath();
+	}
+	
+	//this used to happen in beTriggered. fuck that noise, it was shit. 
+	this.triggerOtherPlayersWithMyDeath = function(){
+		//go through my relationships. if i am the only dead person, trigger everybody (death still has impact)
+		//trigger (possibly ontop of base trigger) friends, and quadrant mates. really fuck up my moirel(s) if i have any
+		//if triggered, also give a flip out reason.
+		var dead = findDeadPlayers(this.session.players);
+		for(var i = 0; i <this.relationships.length; i++){
+			var r = this.relationships[i];
+
+			if(r.saved_type == r.goodBig){
+				r.target.triggerLevel ++;
+				if(r.target.flipOutReason == null) r.target.flipOutReason = " their dead crush, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead crush.
+			}else if(r.value > 0){
+				r.target.triggerLevel ++;
+				if(r.target.flipOutReason == null) r.target.flipOutReason = " their dead friend, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead friend.
+			}else if(r.saved_type == r.spades){
+				r.target.triggerLevel +=10;
+				r.target.flipOutReason = " their dead Kismesis, the " + this.htmlTitleBasic();
+			}else if(r.saved_type == r.heart){
+				r.target.triggerLevel += 10
+				r.target.flipOutReason = " their dead Matesprit, the " + this.htmlTitleBasic();
+			}
+			else if(r.saved_type == r.diamond){
+				r.target.triggerLevel += 100
+				player.damageAllRelationships();
+				player.damageAllRelationships();
+				player.damageAllRelationships();
+				r.target.flipOutReason = " their dead Moirail, the " + this.htmlTitleBasic() + ", fuck, that can't be good...";
+			}
+		}
+		
+		//whether or not i care about them, there's also the novelty factor.
+		if(dead.length == 1){  //if only I am dead, death still has it's impact and even my enemies care.
+			r.target.triggerLevel ++;
+			if(r.target.flipOutReason == null) r.target.flipOutReason = " the dead player, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead player.
+		}
 	}
 
 	//needed'cause ghost pacts are a an array of pairs now so i know how i'm reviving.
