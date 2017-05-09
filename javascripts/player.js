@@ -19,6 +19,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.graphs = [];
 	this.id = id;
 	this.flipOutReason = null; //if it's null, i'm not flipping my shit.
+	this.flippingOutOverDeadPlayer = null; //don't let this go into url. but, don't flip out if the friend is currently alive, you goof.
 	this.denizen_index = 0; //denizen quests are in order.
 	this.causeOfDrain = null; //just ghost things
 	this.ghostWisdom = []; //keeps you from spamming the same ghost over and over for wisdom.
@@ -125,15 +126,18 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			if(r.saved_type == r.goodBig){
 				r.target.triggerLevel ++;
 				if(r.target.flipOutReason == null) r.target.flipOutReason = " their dead crush, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead crush.
+				r.target.flippingOutOverDeadPlayer = this;
 			}else if(r.value > 0){
 				r.target.triggerLevel ++;
 				if(r.target.flipOutReason == null) r.target.flipOutReason = " their dead friend, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead friend.
 			}else if(r.saved_type == r.spades){
 				r.target.triggerLevel +=10;
 				r.target.flipOutReason = " their dead Kismesis, the " + this.htmlTitleBasic();
+				r.target.flippingOutOverDeadPlayer = this;
 			}else if(r.saved_type == r.heart){
 				r.target.triggerLevel += 10
 				r.target.flipOutReason = " their dead Matesprit, the " + this.htmlTitleBasic();
+				r.target.flippingOutOverDeadPlayer = this;
 			}
 			else if(r.saved_type == r.diamond){
 				r.target.triggerLevel += 100
@@ -141,6 +145,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				player.damageAllRelationships();
 				player.damageAllRelationships();
 				r.target.flipOutReason = " their dead Moirail, the " + this.htmlTitleBasic() + ", fuck, that can't be good...";
+				r.target.flippingOutOverDeadPlayer = this;
 			}
 		}
 		
@@ -148,6 +153,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(dead.length == 1){  //if only I am dead, death still has it's impact and even my enemies care.
 			r.target.triggerLevel ++;
 			if(r.target.flipOutReason == null) r.target.flipOutReason = " the dead player, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead player.
+			r.target.flippingOutOverDeadPlayer = this;
 		}
 	}
 

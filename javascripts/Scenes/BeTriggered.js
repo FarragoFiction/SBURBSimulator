@@ -24,7 +24,14 @@ function BeTriggered(session){
 	//todo reasons include death of a player, being mind controlled, having doomed time clones, yellow yards, learning about ectobiology, having to run from a fight, being cheated on. basically, anything that modifies trigger level. maybe even if a player does it from an ambiant effect???????????
 	this.IsPlayerTriggered = function(player){
 		if(player.flipOutReason){
-			return true;
+			if(player.flippingOutOverDeadPlayer && player.flippingOutOverDeadPlayer.dead){
+				return true;
+			}else{ //they got better.
+				player.flipOutReason = null;;
+				player.flippingOutOverDeadPlayer = null;
+				return false;
+			}
+			
 		}
 		if(player.triggerLevel > Math.seededRandom() * 100 ){
 			player.flipOutReason = "how they seem to be going shithive maggots for no goddamned reason"

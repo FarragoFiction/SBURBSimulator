@@ -337,7 +337,7 @@ function generateURLParamsForPlayers(players){
 	var ret = ""//up to caller to make players = ret
 	var json = JSON.stringify(players, function(key,value){
 		//console.log(key);
-		if(key == "session" || key == "guardian" || key == "relationships"){  //TODO relationships are special case. figure it out. later. make sure to bring quirk , troll players need favorite number for wings.
+		if(key == "session" || key == "guardian" || key == "relationships" || key == "flippingOutOverDeadPlayer"){  //TODO relationships are special case. figure it out. later. make sure to bring quirk , troll players need favorite number for wings.
 			return null; //tutorial showed undefined here. how important is that?
 		}else{
 			return value;
