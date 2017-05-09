@@ -325,6 +325,7 @@ function FreeWillStuff(session){
 						console.log(player.title() +" controling into murdermode and altering their enemies with game powers." +this.session.session_id);
 						patsy.murderMode = true;
 						patsy.triggerLevel = 10;
+						patsy.flipOut(" about how they are being forced into MurderMode")
 						patsy.influenceSymbol = this.getInfluenceSymbol(player);
 						patsy.influencePlayer = player;
 						var rage = this.alterEnemies(patsy, enemies,player);
@@ -405,6 +406,7 @@ function FreeWillStuff(session){
 					removeFromArray(sacrifice, this.session.availablePlayers);
 
 					player.triggerLevel += 100;
+					player.flipOut(" how stupid they could have been to force the " + sacrifice.htmlTitleBasic() + " to commit suicide" )
 					this.renderPlayer1 = player;
 					this.renderPlayer2 = sacrifice;
 					//console.log(player.title() + " commits murder for god tier but doesn't get tiger " + this.session.session_id);
@@ -576,6 +578,7 @@ function FreeWillStuff(session){
 			removeFromArray(player, this.session.availablePlayers);
 			removeFromArray(patsy, this.session.availablePlayers);
 			patsy.triggerLevel = 100;
+			patsy.flipOut(" how they are being forced to try to kill the " + murderer.htmlTitleBasic());
 			patsy.influenceSymbol = this.getInfluenceSymbol(player);
 			patsy.influencePlayer = player;
 			patsy.getRelationshipWith(player).value += (player.freeWill - patsy.freeWill*2);  //might love or hate you during this.

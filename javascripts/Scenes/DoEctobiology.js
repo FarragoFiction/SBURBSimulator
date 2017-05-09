@@ -54,6 +54,7 @@ function DoEctobiology(session){
 		this.leader.increasePower();
 		this.leader.leveledTheHellUp = true;
 		this.leader.level_index +=3;
+		this.leader.flipOut(" how the Ultimate Goddamned Riddle means that if they didn't play this bullshit game in the first place they never would have been born at all")
 		return ret;
 	}
 }

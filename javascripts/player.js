@@ -518,12 +518,16 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			this.triggerLevel += amount;
 			if(amount > 1) this.flipOut(" the Rage coursing through their body")
 			player.triggerLevel += -1 * amount
+			player.flipOutReason = null;
+			player.flippingOutOverDeadPlayer = null;
 			this.boostAllRelationshipsWithMeBy(amount);
 			this.boostAllRelationshipsBy(amount)
 			player.boostAllRelationshipsWithMeBy(-1*amount);
 			player.boostAllRelationshipsBy(-1* amount)
 		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
 			player.triggerLevel += -1*amount
+			player.flipOutReason = null;
+			player.flippingOutOverDeadPlayer = null;
 			player.boostAllRelationshipsWithMeBy(-1*amount);
 			player.boostAllRelationshipsBy(-1* amount)
 			for(var i = 0; i<this.session.players.length; i++){
@@ -541,6 +545,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			if(amount > 1) player.flipOut(" the Rage coursing through their body")
 			player.boostAllRelationshipsWithMeBy(-1*amount);
 			player.boostAllRelationshipsBy(-1* amount)
+			player.flipOutReason = null;  //people can't remember why they are angry.
+			player.flippingOutOverDeadPlayer = null;
 		}
 	}
 
@@ -626,6 +632,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}else if(this.class_name == "Sylph"){ //heals others 'healing' rage would increase it.
 			player.triggerLevel += amount
 			player.boostAllRelationshipsWithMeBy(-1*amount);
+			player.flipOutReason = null;
+			player.flippingOutOverDeadPlayer = null;
 		}else if(this.class_name == "Bard"){ //destroys in others
 			player.triggerLevel += -1*amount
 			if(amount > 1) player.flipOut(" how they are sure no one likes them")
@@ -671,6 +679,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			}
 		}else if(this.class_name == "Sylph"){ //heals others
 			player.power += amount
+			player.flipOutReason = null;  //don't focus on why we are screwed.
+			player.flippingOutOverDeadPlayer = null;
 		}else if(this.class_name == "Bard"){ //destroys in others
 			player.power += -1*amount
 		}
