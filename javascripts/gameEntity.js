@@ -730,7 +730,7 @@ disastor_objects[disastor_objects.length-1].currentHP = 1000;
 disastor_objects[disastor_objects.length-1].corrupted = true;
 disastor_objects[disastor_objects.length-1].power = 1000;
 disastor_objects[disastor_objects.length-1].freeWill = 1000; //wants to mind control you.
-disastor_objects[disastor_objects.length-1].helpPhrase = " Oh god. What is going on. Why does just listening to " + disastor_objects[disastor_objects.length-1].htmlTitle() + " make your ears bleed!? ";
+disastor_objects[disastor_objects.length-1].helpPhrase = "... Oh god. What is going on. Why does just listening to it make your ears bleed!? ";
 
 
 disastor_objects.push(new GameEntity(null, "Clown",null));  //custom fraymotif: can' keep down the clown (heal).

@@ -10,9 +10,15 @@ function FaceDenizen(session){
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var p = this.session.availablePlayers[i]
 			if(p.denizen_index >= 3 && !p.denizenDefeated && p.land != null){
-				this.denizenFighters.push(p);
-			}else if(p.landLevel >= 6 && !p.denizenMinionDefeated && p.land != null){
+				var d = this.session.getDenizenForPlayer(p)
+				if(p.power > d.getHP() || Math.seededRandom() > .5){  //you're allowed to do other things between failed boss fights, you know.
 					this.denizenFighters.push(p);
+				}
+			}else if(p.landLevel >= 6 && !p.denizenMinionDefeated && p.land != null){
+				var d = this.session.getDenizenMinionForPlayer(p)
+				if(p.power > d.getHP() || Math.seededRandom() > .5){//you're allowed to do other things between failed boss fights, you know.
+					this.denizenFighters.push(p);
+				}
 			}
 		}
 		return this.denizenFighters.length > 0;

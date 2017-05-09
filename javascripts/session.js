@@ -457,6 +457,10 @@ function Session(session_id){
 		this.denizen_minions = [space_denizen, time_denizen, breath_denizen, doom_denizen, blood_denizen, heart_denizen, mind_denizen, light_denizen, void_denizen, hope_denizen, life_denizen, rage_denizen];
 
 	}
+	
+	this.toString = function() {
+		return this.session_id
+	}
 
 	this.getDenizenForPlayer = function(player){
 		var aspect = player.aspect;
