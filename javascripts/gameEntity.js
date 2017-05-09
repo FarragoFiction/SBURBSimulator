@@ -119,12 +119,12 @@ function GameEntity(session, name, crowned){
 			if(this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
 			return ret + pname +" (" + Math.round(this.getHP()) + " hp, " + Math.round(this.getPower()) + " power)</font>"; //TODO denizens are aspect colored.
 		}
-		
+
 		this.flipOut = function(reason){
 			this.flippingOutOverDeadPlayer = null;
 			this.flipOutReason = reason;
 		}
-	
+
 
 
 
@@ -775,6 +775,8 @@ disastor_objects[disastor_objects.length-1].mobility = 500;
 disastor_objects[disastor_objects.length-1].helpfulness = 1;
 disastor_objects[disastor_objects.length-1].minLuck = -500;
 disastor_objects[disastor_objects.length-1].maxLuck = 500;
+disastor_objects[disastor_objects.length-1].helpPhrase = "demonstrates that when it comes to providing fourth wall breaking advice to getting through quests and killing baddies, he is pretty much the best there is.";
+
 
 disastor_objects.push(new GameEntity(null, "Dragon",null));    //custom fraymotif: mighty breath.
 disastor_objects[disastor_objects.length-1].hp = 500;
@@ -905,6 +907,7 @@ fortune_objects[fortune_objects.length-1].illegal = true;
 prototyping_objects.push(new GameEntity(null, "Buggy As Fuck Retro Game",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].corrupted = true;  //no stats, just corrupted. maybe a fraymotif later.
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "provides painful, painful sound file malfunctions, why is this even a thing?";
 
 prototyping_objects.push(new GameEntity(null, "Robot",null));
 prototyping_objects[prototyping_objects.length-1].hp = 100;
@@ -918,19 +921,26 @@ prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
 prototyping_objects[prototyping_objects.length-1].minLuck = 20;
 prototyping_objects[prototyping_objects.length-1].maxLuck = 20;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "provides surprisingly helpful advice, even if they do insist on calling all enemies ‘bogeys’";
+
 
 prototyping_objects.push(new GameEntity(null, "Game Bro",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "provides rad as fuck tips and tricks for beating SBURB and getting mad snacks, yo. 5 out of 5 hats";
 
 
 prototyping_objects.push(new GameEntity(null, "Game Grl",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "provides rad as fuck tips and tricks for beating SBURB and getting mad snacks, yo, but, like, while also being a GIRL? *record scratch*  5 out of 5 lady hats";
+
 
 prototyping_objects.push(new GameEntity(null, "Nick Cage",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "demonstrates that when it comes to solving bullshit riddles to get National *cough* I mean SBURBian treasure, he is simply the best there is";
+
 
 prototyping_objects.push(new GameEntity(null, "Praying Mantis",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
@@ -978,6 +988,8 @@ prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
 prototyping_objects.push(new GameEntity(null, "Pomeranian",null));
 prototyping_objects[prototyping_objects.length-1].power = 1; //pomeranians aren't actually very good at fights.  (trust me, i know)
 prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "unhelpfully insists that every rock is probably a boss fight (it isn’t)";
+
 
 prototyping_objects.push(new GameEntity(null, "Chihuahua",null));
 prototyping_objects[prototyping_objects.length-1].power = 1;  //i'm extrapolating here, but I imagine Chihuahua's aren't very good at fights, either.
@@ -1028,6 +1040,8 @@ prototyping_objects[prototyping_objects.length-1].power = 20;
 
 prototyping_objects.push(new GameEntity(null, "Husky",null));
 prototyping_objects[prototyping_objects.length-1].power = 30;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "alternates between loud, insistent barks and long, eloquent monologues on the deeper meaning behind each and every fragment of the game";
+
 
 
 prototyping_objects.push(new GameEntity(null, "Cat",null));
@@ -1038,6 +1052,8 @@ prototyping_objects[prototyping_objects.length-1].maxLuck = 20;
 
 prototyping_objects.push(new GameEntity(null, "Dog",null));
 prototyping_objects[prototyping_objects.length-1].power = 30;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "alternates between loud, insistent barks and long, eloquent monologues on the deeper meaning behind each and every fragment of the game";
+
 
 
 prototyping_objects.push(new GameEntity(null, "Pigeon",null));
@@ -1076,6 +1092,10 @@ prototyping_objects[prototyping_objects.length-1].power = 20;
 
 prototyping_objects.push(new GameEntity(null, "Raccoon",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "demonstrates that SBURB basically hides quest items in the same places humans would throw away their garbage";
+
+
 
 
 prototyping_objects.push(new GameEntity(null, "Crow",null));
@@ -1135,6 +1155,8 @@ lusus_objects[lusus_objects.length-1].maxLuck = 20;
 lusus_objects.push(new GameEntity(null, "Bark Beast",null));
 lusus_objects[lusus_objects.length-1].power = 40;
 lusus_objects[lusus_objects.length-1].lusus = true;
+lusus_objects[lusus_objects.length-1].helpPhrase = "Alternates between loud, insistent barks and long, eloquent monologues on the deeper meaning behind each and every fragment of the game";
+
 
 lusus_objects.push(new GameEntity(null, "Nut Creature",null));
 lusus_objects[lusus_objects.length-1].power = 30;
