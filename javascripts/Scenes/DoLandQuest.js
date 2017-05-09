@@ -219,10 +219,10 @@ function DoLandQuest(session){
 			player.landLevel += -0.5;
 			player.triggerLevel += 0.1;
 		}else{
-			ret += " provides the requisite amount of gigglesnort hideytalk to be juuuust barely helpful. "
 			//console.log("normal sprite: " + this.session.session_id)
 			player.landLevel += 0.5;
 		}
+		ret += player.sprite.helpPhrase; //best idea.
 		return ret;
 	}
 

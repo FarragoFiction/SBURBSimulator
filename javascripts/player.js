@@ -1992,11 +1992,8 @@ function findPlayersFromSessionWithId(playerList, source){
 }
 
 function findBadPrototyping(playerList){
-	console.log("am i even looking??? " + playerList.length);
 	for(var i= 0; i<playerList.length; i++){
-		console.log('looking for bad for: ' + playerList[i])
 		if(playerList[i].object_to_prototype.power >= 200){
-			console.log("found bad")
 			return (playerList[i].object_to_prototype.htmlTitle());
 		}
 	}

@@ -36,6 +36,7 @@ function GameEntity(session, name, crowned){
 		this.illegal = false; //used only for sprites. whether or not they are reptile/amphibian.
 		this.corrupted = false; //if corrupted, name is zalgoed.
 		this.helpfulness = 0; //if 0, cagey riddles. if 1, basically another player. if -1, like calsprite. omg, just shut up.  NOT additive for when double prototyping. most recent prototyping overrides.
+		this.helpPhrase = "provides the requisite amount of gigglesnort hideytalk to be juuuust barely helpful.";
 
 		this.getMobility = function(){
 			if(this.crowned){
@@ -123,6 +124,7 @@ function GameEntity(session, name, crowned){
 			this.name = object.name + this.name; //sprite becomes puppetsprite.
 			this.corrupted = object.corrupted;
 			this.helpfulness = object.helpfulness; //completely overridden.
+			this.helpPhrase = object.helpPhrase;
 			this.grist += object.grist;
 			this.lusus = object.lusus;
 			this.minLuck += object.minLuck;
@@ -653,22 +655,24 @@ function GameEntity(session, name, crowned){
 //take name explicitly 'cause plaeyrs don't have one
 function copyGameEntity(object,name){
 	var ret = new GameEntity(object.session, name, null)
-	this.corrupted = object.corrupted;
-	this.helpfulness = object.helpfulness; //completely overridden.
-	this.grist = object.grist;
-	this.minLuck = object.minLuck;
-	this.currentHP = object.currentHP;
-	this.hp = object.hp;
-	this.mobility = object.mobility;
-	this.maxLuck = object.maxLuck;
-	this.freeWill = object.freeWill;
-	this.power = object.power;
-	this.illegal = object.illegal;
-	this.minLuck = object.minLuck;
-	this.minLuck = object.minLuck;
-	this.minLuck = object.minLuck;
-	this.player = object.player;
-	this.lusus = object.lusus;
+	ret.corrupted = object.corrupted;
+	ret.helpPhrase = object.helpPhrase;
+	ret.helpfulness = object.helpfulness; //completely overridden.
+	ret.grist = object.grist;
+	ret.minLuck = object.minLuck;
+	ret.currentHP = object.currentHP;
+	ret.hp = object.hp;
+	ret.mobility = object.mobility;
+	ret.maxLuck = object.maxLuck;
+	ret.freeWill = object.freeWill;
+	ret.power = object.power;
+	ret.illegal = object.illegal;
+	ret.minLuck = object.minLuck;
+	ret.minLuck = object.minLuck;
+	ret.minLuck = object.minLuck;
+	ret.player = object.player;
+	ret.lusus = object.lusus;
+	//idea, custom 'help string'. stretch goal for later. would let me have players help in different ways than a pomeranian would, for example.
 	return ret;
 }
 
