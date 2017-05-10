@@ -36,7 +36,7 @@
 
 <p>IMPORTANT: TO GET BACK HERE: The easiest way to return here is to get AB to help you (she is the best).  Have her simulate a few sessions for you (shouldn't take much) and filter by "full frog" and "all lived" and then do a "find on page" for "better than expected" and you should find a session id that will get you back to this page. You are certainly welcome to reuse the password that got you here this time...but be warned that should I push an update to the server, that session might not go the same way, and it might not work forever.  If you have trouble (maybe none within a hundred sessions or so) finding a "better than expected session", don't hesitate to drop me a line. Half the reason I chose that as the passphrase  was to give me a hard incentive to make sure there still even WERE sessions that went well. I don't want to be a COMPLETE asshole creator over here.</p>
 
-<p> <b>Never mind, there's an easier way to get in here, now.</b><br> (Warning,May Not Actually Be True Yet On The Main Branch (Sorry))<Br>
+<p> <b>Never mind, there's an easier way to get in here, now.</b><br> <Br>
 Oh god, oh god, I can't stop laughing. Normally this is the sort of thing I would post on tumblr, or the newpost page, or the glitch faq or some shit,
 but all this stuff is a 'seeeecret', right???  So, KR wanted me to upgrade AB and ABJ to be able to search through easter egg sessions. And I agreed it would be
 useful to be able to find grim dark tricksters on command (did you know that's a thing?).
@@ -158,6 +158,11 @@ DID YOU KNOW: This now brings the count up to FOUR ways to get here. Via figurin
 <p>"Let me get this straight. You threw in DEADPOOL merchandise in there, and now our fourth wall is entirely in shatters. Genius. Bravo."
 <br>
 -TornSkippito
+</p>
+
+<p>"Who knew that prototyping two HorrorTerrors would result in Prospit blowing up? "
+<br>
+ -subjectiveSenesence
 </p>
 
 
