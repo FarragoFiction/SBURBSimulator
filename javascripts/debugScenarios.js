@@ -86,6 +86,7 @@ function roboMode(){
 
 function tricksterMode(){
 	if(!simulationMode) alert("I FEEL JUST PEEEEEEEEEEEACHY!!!!!!!!!!!")
+	if(simulationMode)$("#avatar").attr("src","images/CandyAuthorBot.png");
 	$("#story").append("<img src = 'images/trickster_author.png' style='float:left;'><img src = 'images/trickster_artist.png' style='float:left;'>");
 	$('body').css("background-color", "#ff93e4");
 	for(var j = 0; j<curSessionGlobalVar.players.length; j++){
