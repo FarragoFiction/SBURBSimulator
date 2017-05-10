@@ -8,7 +8,7 @@
 <p><a href = "index2.html?royalRumble=true">Royal Rumble</a>: Everyone is an Heiress, which means they have a biological imperitive to kill each other. Also, a much higher rate of fish puns.</p>
 <p><a href = "index2.html?lollipop=true">Trickster</a>: Everyone enters the session at a stupidly high level, is in love with everybody else (except the heart player), has super annoying quirks (except the heart player) and instantly completes their land quests. You'd think death would be impossible in this mode, and you'd be right: Except for when the tricksters THEMSELVES go batshit. Holy fucking shit. Oh, and now Doom players are completely immune, not half-assidly immune like Heart players.</p>
 <p><a href = "index2.html?babyStuck=true">BabyStuck</a>: Everyone looks like a Baby/Grub and is practically incomprehensible. Suprisingly cute, until the murders start happening, then surprisingly disturbing.</p>
-<p><a href = "index2.html?sbajifier=true">SBAJIFIER</a>: The graphics fuck up a LOT. Terrible outline artifacts are included (really proud of that), sprite layers are rendered offset, and I allow the page to randomize its own css. But the simulation itself is still working as normal. Oh yeah, besides everybody being given dunkass quirks.</p>
+<p><a href = "index2.html?sbajifier=true">SBAHJIFIER</a>: The graphics fuck up a LOT. Terrible outline artifacts are included (really proud of that), sprite layers are rendered offset, and I allow the page to randomize its own css. But the simulation itself is still working as normal. Oh yeah, besides everybody being given dunkass quirks.</p>
 <p><a href = "index2.html?robot=true">RoboStuck</a>: Everyone looks like robots. Their relationships are initialized to neutral, because as we all know robots are tin cans incapable of feelings. (AB said it was ironically funny, I'm not REALLY Robo-Racist, I swear!). They also get a small power boost because robots are superior. They also TALK IN A LOUD MONOTONE. And...they say 'BEEP' sometimes. (They cannot control the beeps.) </p>
 <p> <a href = "index2.html?seed=413">Homestuck Beta</a>: The 8 human players, John all the way through Jake, play SBURB. Quirks/Character designs are approximate. </p>
 <p> <a href = "index2.html?seed=111111">Homestuck Alpha</a>: The 8 human players, Jane all the way through Jade, play SBURB (i.e. post scratch kids enter first). Quirks/Character designs are approximate. </p>
@@ -16,13 +16,37 @@
 <p> <a href = "index2.html?seed=612">Hivebent Beta</a>: The 12 Beta troll players (Karkat all the way through Sollux) play SGRUB. If they manage to scratch, you'll instead get to see Kankri through Mituna. Quirks/Character designs are approximate.</p>
 <p> <a href = "index2.html?seed=1025">Cascade</a>: The 8 human players, John all the way through Jake, play SBURB along with 4 troll players. Quirks/Character designs are approximate. </p>
 <p> <a href = "index2.html?seed=33">Nepeta Quest</a>: 12 Nepetas play SGRUB.  Has a true random 50% chance of either being Karkat and friends all dressing up like Nepeta, or 12 Nepetas all roleplaying as Karkat and friends. Basically, either everybody is olive blood, or they are their regular blood colors. Either way everyone has the quirks and trollTags of Karkat and friends.</p>
-<p> <a href = "rare_session_finder.html?seed=030303">Guided AuthorBot</a>: Did you know you could pass  a seed to the AuthorBot? It will direct her to the FIRST session she looks at.  The SECOND session will be the natural child of the first (unless there is a combo session, in which case it gets wrapped into the first). In this way you can look at the 'geneology' of the sessions/frogs, and also take a gander at how the easter egg sessions (like 612) were supposed to be without my mad science. </p>
+<p> <a href = "rare_session_finder.html?seed=030303">Guided AuthorBot</a>: Did you know you could pass  a seed to the AuthorBot? It will direct her to the FIRST session she looks at.  The SECOND session will be the natural child of the first (unless there is a combo session, in which case it gets wrapped into the first). In this way you can look at the 'geneology' of the sessions/frogs. </p>
+<p><a href = "rare_session_finder.html?royalRumble=true">AuthorBot Royal Rumble</a>: Ask the AuthorBot to look through a bunch of RoyalRumble Sessions.</p>
+<p><a href = "rare_session_finder.html?lollipop=true">AuthorBot Trickster</a>: Ask the AuthorBot to look through a bunch of Trickster Sessions.</p>
+<p><a href = "rare_session_finder.html?babyStuck=true">AuthorBot BabyStuck</a>: Ask the AuthorBot to look through a bunch of BabyStuck Sessions.</p>
+<p><a href = "rare_session_finder.html?sbajifier=true">AuthorBot SBAHJIFIER</a>:  Ask the AuthorBot to look through a bunch of SBAHJ Sessions. What does this even mean???</p>
+<p><a href = "rare_session_finder.html?robot=true">AuthorBot RoboStuck</a>:Ask the AuthorBot to look through a bunch of Robo Sessions. </p>
+<p><a href = "rare_session_finder_junior.html?royalRumble=true">AuthorBot Royal Rumble</a>: Ask the AuthorBotJunior to look through a bunch of RoyalRumble Sessions.</p>
+<p><a href = "rare_session_finder_junior.html?lollipop=true">AuthorBot Trickster</a>: Ask the AuthorBotJunior to look through a bunch of Trickster Sessions.</p>
+<p><a href = "rare_session_finder_junior.html?babyStuck=true">AuthorBot BabyStuck</a>: Ask the AuthorBotJunior to look through a bunch of BabyStuck Sessions.</p>
+<p><a href = "rare_session_finder_junior.html?sbajifier=true">AuthorBot SBAHJIFIER</a>:  Ask the AuthorBotJunior to look through a bunch of SBAHJ Sessions. What does this even mean???</p>
+<p><a href = "rare_session_finder_junior.html?robot=true">AuthorBot RoboStuck</a>:Ask the AuthorBotJunior to look through a bunch of Robo Sessions. </p>
+
+
 <p> <a href = "rap.html">Extended Rap Battles</a>: Okay, so, like the rap battles are just so amazingly shitty, right? And they only get even SHITTIER the longer I let them go on. So, you know, here's a page that's just the rap battles going on for much, much longer. It was the easiest way to test them without waiting for sims to run. </p>
 <p> DID YOU KNOW: Players chatHandles match the intials of their Claspect? So a "Page of Breath" might have the claspect pantsBiologist?  Additionally, chat handles tend to be vaguely about the players interests. So maybe pantsBiologist over there is interested in academic stuff, like BIOLOGY or CHEMISTRY.</p>
 
-<p>DID YOU KNOW: In addition to sharing hair color/blood color with their guardians, players share at least one interest with them as well.  So a player might like Wizards and Writing while their Guardian might enjoy Wizards and Hacking. 
+<p>DID YOU KNOW: In addition to sharing hair color/blood color with their guardians, players share at least one interest with them as well.  So a player might like Wizards and Writing while their Guardian might enjoy Wizards and Hacking.
 
 <p>IMPORTANT: TO GET BACK HERE: The easiest way to return here is to get AB to help you (she is the best).  Have her simulate a few sessions for you (shouldn't take much) and filter by "full frog" and "all lived" and then do a "find on page" for "better than expected" and you should find a session id that will get you back to this page. You are certainly welcome to reuse the password that got you here this time...but be warned that should I push an update to the server, that session might not go the same way, and it might not work forever.  If you have trouble (maybe none within a hundred sessions or so) finding a "better than expected session", don't hesitate to drop me a line. Half the reason I chose that as the passphrase  was to give me a hard incentive to make sure there still even WERE sessions that went well. I don't want to be a COMPLETE asshole creator over here.</p>
+
+<p> <b>Never mind, there's an easier way to get in here, now.</b><br> (Warning,May Not Actually Be True Yet On The Main Branch (Sorry))<Br>
+Oh god, oh god, I can't stop laughing. Normally this is the sort of thing I would post on tumblr, or the newpost page, or the glitch faq or some shit,
+but all this stuff is a 'seeeecret', right???  So, KR wanted me to upgrade AB and ABJ to be able to search through easter egg sessions. And I agreed it would be
+useful to be able to find grim dark tricksters on command (did you know that's a thing?).
+
+But...see...the AuthorBot is pretty much the Sphinx guarding this password page, right? And I don't mean metaphorically. I mean literally. She checks the riddle answers.  So if you can slip the AuthorBot
+bullshit giggle candy over on the RareSessionFinder, you can slip her the candy here. You know "?lollipop=true". And...something like 80% of sessions go "better than expected"
+in trickster mode.  So, suddenly, the password for getting past the AuthorBot is "bribe her with candy and then lazily guess a few numbers."  Makes the hint phrase suddenly kinda ominous, right?
+Where is everything better than expected? Where AB can be high as a fucking kite. Whatever, have fun getting back here easier: <a href = "index_pw.html?lollipop=true"> Give AB a Lollipop?</a>. Or I guess you can avoid giving her mind altering substances and just get here the old fashioned way. Your choice.
+
+</p>
 <div class = "hof413">
 <h1>Hall of Fame (4/13 Batch)</h1>
 <p>"I went to Derse and all I got was this stupid knife to the chest."
@@ -119,12 +143,12 @@
 -kaosDragon
 </p>
 
-<p>"Every0ne is dead and the c0uch is on fire." 
+<p>"Every0ne is dead and the c0uch is on fire."
 <br>
 ~sadisticCynic
 </p>
 
-<p>"I came. I saw. I got shanked. I got back up. I got shanked again. What was I saying again?" 
+<p>"I came. I saw. I got shanked. I got back up. I got shanked again. What was I saying again?"
 <br>
 -manicInsomniac
 </p>
