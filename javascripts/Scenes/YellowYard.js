@@ -315,6 +315,7 @@ narratively.
 	this.getDoomedTimeClone = function(){
 		var timeClone = makeRenderingSnapshot(this.timePlayer);
 		timeClone.dead = false;
+		timeClone.doomed = true;
 		timeClone.currentHP = timeClone.maxHP
 		return timeClone;
 	}

@@ -40,6 +40,7 @@ function YellowYardResultController(){
 	it is not unreasonable to imagien 2 timelines that are extremely similar where the Observer made the same choice.
 */
 function doEventsMatch(newEvent, storedEvent,spawn){
+  console.log("Should I spawn a doomed time clone (if i find a mtach)???: " + spawn)
 	//console.log("comparing: '" + newEvent.humanLabel() + "' to '" + storedEvent.humanLabel() + "'")
 	if(!newEvent || !storedEvent) return false //can't match if one of them doesn't exist.
   if(newEvent.session.session_id != storedEvent.session.session_id){
