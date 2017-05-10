@@ -103,7 +103,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 		return ret;
 	}
-	
+
 	//flipping out over the dead won't call this but everything else will.
 	this.flipOut = function(reason){
 		this.flippingOutOverDeadPlayer = null;
@@ -116,11 +116,11 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(!this.godTier){ //god tiers only make ghosts in GodTierRevivial
 			this.session.afterLife.addGhost(makeRenderingSnapshot(this));
 		}
-		
+
 		this.triggerOtherPlayersWithMyDeath();
 	}
-	
-	//this used to happen in beTriggered. fuck that noise, it was shit. 
+
+	//this used to happen in beTriggered. fuck that noise, it was shit.
 	this.triggerOtherPlayersWithMyDeath = function(){
 		//go through my relationships. if i am the only dead person, trigger everybody (death still has impact)
 		//trigger (possibly ontop of base trigger) friends, and quadrant mates. really fuck up my moirel(s) if i have any
@@ -154,7 +154,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				r.target.flippingOutOverDeadPlayer = this;
 			}
 		}
-		
+
 		//whether or not i care about them, there's also the novelty factor.
 		if(dead.length == 1){  //if only I am dead, death still has it's impact and even my enemies care.
 			r.target.triggerLevel ++;
@@ -283,6 +283,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 		if(this.doomed){
 			ret += "Doomed "
+		}
+
+		if(this.robot){
+			ret += "Robo"
 		}
 
 		if(this.murderMode){

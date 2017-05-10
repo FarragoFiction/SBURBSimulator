@@ -17,7 +17,7 @@ console.log("TODO make new sprites work for easter eggs.")
 //rendering shouldu be different
 //making new scenes to be different
 function sbahjMode(){
-	alert("where MAKING THIS HAPEN")
+	if(!simulationMode) alert("where MAKING THIS HAPEN")
 	$("#story").append("<ixmg src = 'images/AUTHORSBAHJ.jpg' style='position:absolute; top:111px'>");
 	$('body').css("background-color", "#0000ff");
 	$('#story').css("background-color", "#ff00ff");
@@ -49,7 +49,7 @@ function checkEasterEgg(){
 
 
 function babyStuckMode(){
-	alert("goo goo GA GAH!")
+	if(!simulationMode) alert("goo goo GA GAH!")
 	for(var j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
 		p.baby_stuck = true;
@@ -59,7 +59,7 @@ function babyStuckMode(){
 
 //AB told me this was funny! I SWEAR I am not Robo-Racist! It's IRONIC.
 function roboMode(){
-	alert("BEEP")
+	if(!simulationMode) alert("BEEP")
 	$("#story").append("<img src = 'images/robot_author.png' style='float:left;'>");
 	for(var j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
@@ -85,7 +85,7 @@ function roboMode(){
 }
 
 function tricksterMode(){
-	alert("I FEEL JUST PEEEEEEEEEEEACHY!!!!!!!!!!!")
+	if(!simulationMode) alert("I FEEL JUST PEEEEEEEEEEEACHY!!!!!!!!!!!")
 	$("#story").append("<img src = 'images/trickster_author.png' style='float:left;'><img src = 'images/trickster_artist.png' style='float:left;'>");
 	$('body').css("background-color", "#ff93e4");
 	for(var j = 0; j<curSessionGlobalVar.players.length; j++){
@@ -118,7 +118,7 @@ function tricksterMode(){
 }
 
 function debugRoyalRumble(){
-	alert("royal rumble!")
+	if(!simulationMode) alert("royal rumble!")
 	for(var j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j]
 		p.isTroll = true; //only .evel 2 players up
@@ -614,7 +614,7 @@ function session33(){
 	//or 12 canon trolls all roleplaying as nepeta?
 	//it's shrodinger's nepeta!!!
 	var actualRandomNumber = Math.random(); //no fucking seed.
-	alert("Nepeta Quest")
+	if(!simulationMode) alert("Nepeta Quest")
 	curSessionGlobalVar.players = [];//no, only nepetas.
 	for(var i = 0; i<12;i++){
 		var player;
