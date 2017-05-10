@@ -112,6 +112,7 @@ function SaveDoomedTimeLine(session){
 					}
 			}else{
 				console.log(" half restoring leader health from time shenanigans: " + this.session.session_id)
+				this.leaderPlayer.currentHP = this.leaderPlayer.hp/2;
 				ret += " They interupt things before the " + this.leaderPlayer.htmlTitleBasic() +  " gets hurt too bad. ";
 			}
 
@@ -134,6 +135,7 @@ function SaveDoomedTimeLine(session){
 			}else{
 				console.log(" half restoring leader health from time shenanigans before all players in session: " + this.session.session_id)
 				ret += " They interupt things before the " + this.leaderPlayer.htmlTitleBasic() +  " gets hurt too bad. ";
+				this.leaderPlayer.currentHP = this.leaderPlayer.hp/2;
 			}
 			this.session.doomedTimelineReasons.push(this.reason)
 		}else{
