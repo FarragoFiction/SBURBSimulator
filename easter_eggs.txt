@@ -44,7 +44,7 @@ useful to be able to find grim dark tricksters on command (did you know that's a
 But...see...the AuthorBot is pretty much the Sphinx guarding this password page, right? And I don't mean metaphorically. I mean literally. She checks the riddle answers.  So if you can slip the AuthorBot
 bullshit giggle candy over on the RareSessionFinder, you can slip her the candy here. You know "?lollipop=true". And...something like 80% of sessions go "better than expected"
 in trickster mode.  So, suddenly, the password for getting past the AuthorBot is "bribe her with candy and then lazily guess a few numbers."  Makes the hint phrase suddenly kinda ominous, right?
-Where is everything better than expected? Where AB can be high as a fucking kite. Whatever, have fun getting back here easier: <a href = "index_pw.html?lollipop=true"> Give AB a Lollipop?</a>. Or I guess you can avoid giving her mind altering substances and just get here the old fashioned way. Your choice.
+Where is everything better than expected? Where AB can be high as a fucking kite. Whatever, have fun getting back here easier: <a href = "index_pw.html?lollipop=true"> Give AB a Lollipop? (Enter the session id like normal, the lollipop wil be in the URL)</a>. Or I guess you can avoid giving her mind altering substances and just get here the old fashioned way. Your choice.
 <br><br>
 DID YOU KNOW: This now brings the count up to FOUR ways to get here. Via figuring out what the riddle is actually asking, via lucky guessing, via hax0ring, and via roboBribing.
 
