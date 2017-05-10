@@ -73,7 +73,7 @@ function PlayerSnapshot(){
 		ret+= this.class_name + " of " + this.aspect;
 		return ret;
 	}
-	
+
 	this.flipOut = function(reason){
 		this.flippingOutOverDeadPlayer = null;
 		this.flipOutReason = reason;
@@ -217,4 +217,49 @@ function MiniSnapShot(player){
 		player.aspect = this.aspect;
 		player.stateBackup = null; //no longer need to keep track of old state.
 	}
+}
+
+
+function makeRenderingSnapshot(player){
+	var ret = new PlayerSnapshot();
+	ret.robot = player.robot;
+  ret.currentHP = player.currentHP;
+	ret.doomed = player.doomed;
+	ret.ghost = player.ghost;
+	ret.causeOfDrain = player.causeOfDrain;
+	ret.session = player.session;
+	ret.id = player.id;
+	ret.trickster = player.trickster;
+	ret.baby_stuck = player.baby_stuck;
+	ret.sbahj = player.sbahj;
+	ret.influenceSymbol = player.influenceSymbol;
+	ret.grimDark = player.grimDark;
+	ret.victimBlood = player.victimBlood;
+	ret.murderMode = player.murderMode;
+    ret.leftMurderMode = player.leftMurderMode; //scars
+	ret.dead = player.dead;
+	ret.isTroll = player.isTroll
+	ret.godTier = player.godTier;
+	ret.class_name = player.class_name;
+	ret.aspect = player.aspect;
+	ret.isDreamSelf = player.isDreamSelf;
+	ret.hair = player.hair;
+	ret.bloodColor = player.bloodColor;
+	ret.hairColor = player.hairColor;
+	ret.moon = player.moon;
+	ret.chatHandle = player.chatHandle
+	ret.leftHorn = player.leftHorn;
+	ret.rightHorn = player.rightHorn;
+	ret.quirk = player.quirk;
+	ret.baby = player.baby;
+	ret.causeOfDeath = player.causeOfDeath;
+	ret.hp = player.hp;
+	ret.minLuck = player.minLuck;
+	ret.maxLuck = player.maxLuck;
+	ret.freeWill = player.freeWill;
+  ret.power = player.power;
+  ret.interest1 = player.interest1;
+  ret.interest2 = player.interest2;
+	ret.mobility = player.mobility;
+	return ret;
 }

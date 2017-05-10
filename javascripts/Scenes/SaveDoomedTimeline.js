@@ -23,16 +23,22 @@ function SaveDoomedTimeLine(session){
 	this.makeDoomedSnapshot = function(){
 		var timeClone = makeRenderingSnapshot(this.timePlayer);
 		timeClone.dead = false;
-		timeClone.currentHP = timeClone.maxHP
+		timeClone.currentHP = timeClone.hp
 		timeClone.doomed = true;
 		//from a different timeline, things went differently.
 		var rand = Math.seededRandom();
 		if(rand>.8){
 			timeClone.godTier = !timeClone.godTier;
+			if(timeClone.godTier){
+				 timeClone.power = 200; //act like a god, damn it.
+			 }else{
+				 timeClone.power = 10;
+			 }
 		}else if(rand>.6){
 			timeClone.isDreamSelf = !timeClone.isDreamSelf;
 		}else if(rand>.4){
-			timeClone.grimDark = !timeClone.grimDark;
+			timeClone.grimDark = getRandomInt(0,4);
+			timeClone.power += 50 * timeClone.grimDark;
 		}else if(rand>.2){
 			timeClone.murderMode = !timeClone.murderMode;
 		}
