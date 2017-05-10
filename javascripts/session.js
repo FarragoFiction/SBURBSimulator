@@ -384,7 +384,7 @@ function Session(session_id){
 		this.king.setStats(25,75,1000,0,0,25,1000,false, false, [],1000);
 		//TODO  jack, denizens, denizen minions
 		this.queen = new GameEntity(this, "Black Queen",this.queensRing);
-		this.queen.setStats(25,75,500,60,0,100,50,false, false, [],1000); //red miles
+		this.queen.setStats(25,75,500,60,0,100,50,false, false, [],1000); //red miles, put on ring
 
 		this.jack = new GameEntity(this, "Jack",null);
 		this.jack.setStats(0,25,50,60,50,1000,30,true, true, [],100000); //jack is kind of a big deal. luck determines his odds of finding bullshit weapon
@@ -457,7 +457,7 @@ function Session(session_id){
 		this.denizen_minions = [space_denizen, time_denizen, breath_denizen, doom_denizen, blood_denizen, heart_denizen, mind_denizen, light_denizen, void_denizen, hope_denizen, life_denizen, rage_denizen];
 
 	}
-	
+
 	this.toString = function() {
 		return this.session_id
 	}

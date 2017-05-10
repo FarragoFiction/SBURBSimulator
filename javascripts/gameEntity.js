@@ -722,6 +722,8 @@ disastor_objects[disastor_objects.length-1].hp = 1000;
 disastor_objects[disastor_objects.length-1].currentHP = 1000;
 disastor_objects[disastor_objects.length-1].mobility = 1000;
 disastor_objects[disastor_objects.length-1].power = 1000;
+disastor_objects[disastor_objects.length-1].helpPhrase = "is fairly helpful with the teleporting and all, but when it speaks- Wow. No. That is not ok. ";
+
 
 
 disastor_objects.push(new GameEntity(null, "Horror Terror",null));  //vast glub
@@ -731,6 +733,8 @@ disastor_objects[disastor_objects.length-1].corrupted = true;  //gives the corru
 disastor_objects[disastor_objects.length-1].power = 500;
 disastor_objects[disastor_objects.length-1].lusus = true;
 disastor_objects[disastor_objects.length-1].freeWill = 500; //wants to mind control you.
+disastor_objects[disastor_objects.length-1].helpPhrase = "... Oh god. What is going on. Why does just listening to it make your ears bleed!? ";
+
 
 disastor_objects.push(new GameEntity(null, "Speaker of the Furthest Ring",null));  //vast glub
 disastor_objects[disastor_objects.length-1].hp = 1000;
@@ -738,7 +742,7 @@ disastor_objects[disastor_objects.length-1].currentHP = 1000;
 disastor_objects[disastor_objects.length-1].corrupted = true;
 disastor_objects[disastor_objects.length-1].power = 1000;
 disastor_objects[disastor_objects.length-1].freeWill = 1000; //wants to mind control you.
-disastor_objects[disastor_objects.length-1].helpPhrase = "... Oh god. What is going on. Why does just listening to it make your ears bleed!? ";
+disastor_objects[disastor_objects.length-1].helpPhrase = "whispers madness humankind was not meant to know. Its words are painful, hateful, yet… tempting. It speaks of flames and void, screams and gods. ";
 
 
 disastor_objects.push(new GameEntity(null, "Clown",null));  //custom fraymotif: can' keep down the clown (heal).
@@ -838,6 +842,8 @@ disastor_objects.push(new GameEntity(null, "Pumpkin",null));
 disastor_objects[disastor_objects.length-1].power = 500;
 disastor_objects[disastor_objects.length-1].maxLuck = 5000;
 disastor_objects[disastor_objects.length-1].mobility = 5000;  //what pumpkin?
+disastor_objects[disastor_objects.length-1].power = "was kind of helpful, and then kind of didn’t exist. Please don’t think to hard about it, the simulation is barely handling a pumpkin sprite as is.";
+
 
 disastor_objects.push(new GameEntity(null, "Werewolf",null));
 disastor_objects[disastor_objects.length-1].hp = 500;
@@ -913,6 +919,7 @@ prototyping_objects.push(new GameEntity(null, "Robot",null));
 prototyping_objects[prototyping_objects.length-1].hp = 100;
 prototyping_objects[prototyping_objects.length-1].currentHP = 100;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "is <b>more</b> useful than another player. How could a mere human measure up to the awesome logical capabilities of a machine? ";
 prototyping_objects[prototyping_objects.length-1].freeWill = 100;
 prototyping_objects[prototyping_objects.length-1].power = 100;
 
@@ -974,15 +981,20 @@ prototyping_objects[prototyping_objects.length-1].power = 50;
 prototyping_objects.push(new GameEntity(null, "Butler",null));
 prototyping_objects[prototyping_objects.length-1].power = 50;  //he will serve you like a man on butler island
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "is serving their player like a dude on butlersprite island";
 prototyping_objects[prototyping_objects.length-1].triggerLevel = -50;
 
 prototyping_objects.push(new GameEntity(null, "Sloth",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].mobility = -50;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "provides. Slow. But. Useful. Advice.";
+
 
 prototyping_objects.push(new GameEntity(null, "Cowboy",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "provides useful advice, even if they do insist on calling literally everyone “pardner.” ";
+
 
 
 prototyping_objects.push(new GameEntity(null, "Pomeranian",null));
@@ -1009,14 +1021,20 @@ prototyping_objects.push(new GameEntity(null, "Internet Troll",null));   //needs
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
 prototyping_objects[prototyping_objects.length-1].triggerLevel = 1000;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "actively does its best to hinder their efforts";
+
 
 prototyping_objects.push(new GameEntity(null, "Mosquito",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "is a complete dick, buzzing and fussing and biting. What's its deal? "
+
 
 prototyping_objects.push(new GameEntity(null, "Fly",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "is a complete dick, buzzing and fussing and biting. What's its deal? "
+
 
 prototyping_objects.push(new GameEntity(null, "Cow",null));
 prototyping_objects[prototyping_objects.length-1].power = 30; //cows kill more people a year than sharks.
@@ -1024,6 +1042,8 @@ prototyping_objects[prototyping_objects.length-1].power = 30; //cows kill more p
 prototyping_objects.push(new GameEntity(null, "Bird",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].mobility = 20;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "provides sort of helpful advice when not grabbing random objects to make nests";
+
 
 
 prototyping_objects.push(new GameEntity(null, "Bug",null));
@@ -1048,6 +1068,8 @@ prototyping_objects.push(new GameEntity(null, "Cat",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].minLuck = -20;
 prototyping_objects[prototyping_objects.length-1].maxLuck = 20;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "Is kind of helpful? Maybe? You can't tell if it loves their player or hates them.";
+
 
 
 prototyping_objects.push(new GameEntity(null, "Dog",null));
@@ -1072,6 +1094,8 @@ prototyping_objects[prototyping_objects.length-1].power = 20;
 
 prototyping_objects.push(new GameEntity(null, "Kitten",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "Is kind of helpful? Maybe? You can't tell if it loves their player or hates them.";
+
 
 
 prototyping_objects.push(new GameEntity(null, "Worm",null));
@@ -1101,6 +1125,8 @@ prototyping_objects[prototyping_objects.length-1].helpPhrase = "demonstrates tha
 prototyping_objects.push(new GameEntity(null, "Crow",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].freeWill = 20; //have you ever tried to convince a crow not to do something? not gonna happen.
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "provides sort of helpful advice when not grabbing random objects to make nests";
+
 
 
 prototyping_objects.push(new GameEntity(null, "Chicken",null));
@@ -1150,6 +1176,8 @@ lusus_objects[lusus_objects.length-1].power = 30;
 lusus_objects[lusus_objects.length-1].lusus = true;
 lusus_objects[lusus_objects.length-1].minLuck = 20;
 lusus_objects[lusus_objects.length-1].maxLuck = 20;
+lusus_objects[lusus_objects.length-1].helpPhrase = "is kind of helpful? Maybe? You can't tell if it loves their player or hates them.";
+
 
 
 lusus_objects.push(new GameEntity(null, "Bark Beast",null));
