@@ -803,6 +803,8 @@ disastor_objects[disastor_objects.length-1].hp = 500;
 disastor_objects[disastor_objects.length-1].currentHP = 500;
 disastor_objects[disastor_objects.length-1].power = 500;
 disastor_objects[disastor_objects.length-1].helpfulness = -1;
+disastor_objects[disastor_objects.length-1].helpPhrase = "dials the sprites natural tendency towards witholding information to have you 'figure it out yourself' up to eleven.";
+
 
 
 disastor_objects.push(new GameEntity(null, "Fiduspawn",null));
@@ -848,7 +850,7 @@ disastor_objects.push(new GameEntity(null, "Pumpkin",null));
 disastor_objects[disastor_objects.length-1].power = 500;
 disastor_objects[disastor_objects.length-1].maxLuck = 5000;
 disastor_objects[disastor_objects.length-1].mobility = 5000;  //what pumpkin?
-disastor_objects[disastor_objects.length-1].power = "was kind of helpful, and then kind of didn’t exist. Please don’t think to hard about it, the simulation is barely handling a pumpkin sprite as is.";
+disastor_objects[disastor_objects.length-1].helpPhrase = "was kind of helpful, and then kind of didn’t exist. Please don’t think to hard about it, the simulation is barely handling a pumpkin sprite as is.";
 
 
 disastor_objects.push(new GameEntity(null, "Werewolf",null));
@@ -865,6 +867,8 @@ disastor_objects[disastor_objects.length-1].helpfulness = -1;
 disastor_objects[disastor_objects.length-1].maxLuck = -5000;  //fuck monkeys
 disastor_objects[disastor_objects.length-1].min = -5000;
 disastor_objects[disastor_objects.length-1].mobility = 5000;
+disastor_objects[disastor_objects.length-1].helpPhrase = "actively inteferes with quests. Just. Fuck monkeys.";
+
 
 
 
@@ -1047,11 +1051,15 @@ prototyping_objects.push(new GameEntity(null, "Pony",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
 prototyping_objects[prototyping_objects.length-1].triggerLevel = 1000;  //ponyPals taught me that ponys are just flipping their shit, like, 100% of the time.
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "is constantly flipping their fucking shit instead of being useful in any way shape or form, as ponies are known for";
+
 
 prototyping_objects.push(new GameEntity(null, "Horse",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
 prototyping_objects[prototyping_objects.length-1].triggerLevel = 100;  //probably flip out less than ponys???
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "is constantly flipping their fucking shit instead of being useful in any way shape or form, as horses are known for";
+
 
 prototyping_objects.push(new GameEntity(null, "Internet Troll",null));   //needs to have a fraymotif called "u mad, bro" and "butt hurt"
 prototyping_objects[prototyping_objects.length-1].power = 20;
@@ -1242,6 +1250,8 @@ lusus_objects.push(new GameEntity(null, "Gobblefiend",null));
 lusus_objects[lusus_objects.length-1].power = 50; //turkeys are honestly terrifying.
 lusus_objects[lusus_objects.length-1].lusus = true;
 lusus_objects[lusus_objects.length-1].helpfulness = -1;
+lusus_objects[lusus_objects.length-1].helpPhrase = "is the most unhelpful piece of shit in the world. Oh my god, just once. Please, just shut up.";
+
 
 lusus_objects.push(new GameEntity(null, "Bicyclops",null));  //laser fraymotif?
 lusus_objects[lusus_objects.length-1].power = 30;
