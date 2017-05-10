@@ -20,13 +20,13 @@ function BeTriggered(session){
 	this.renderContent = function(div){
 		div.append("<br>"+this.content());
 	}
-	
+
 	//todo reasons include death of a player, being mind controlled, having doomed time clones, yellow yards, learning about ectobiology, having to run from a fight, being cheated on. basically, anything that modifies trigger level. maybe even if a player does it from an ambiant effect???????????
 	this.IsPlayerTriggered = function(player){
 		if(player.flipOutReason){
-		//	console.log("I have a flip out reason: " + player.flipOutReason)
+			//console.log("I have a flip out reason: " + player.flipOutReason)
 			if(player.flippingOutOverDeadPlayer && player.flippingOutOverDeadPlayer.dead){
-				//console.log("I know about a dead player. so i'm gonna start flipping my shit. ")
+				//console.log("I know about a dead player. so i'm gonna start flipping my shit. " + this.session.session_id)
 				return true;
 			}else if(player.flippingOutOverDeadPlayer){ //they got better.
 			//	console.log(" i think i need to know about a dead player to flip my shit. " + player.flippingOutOverDeadPlayer.title())
@@ -34,16 +34,17 @@ function BeTriggered(session){
 				player.flippingOutOverDeadPlayer = null;
 				return false;
 			}
-			//console.log("preparing to flip my shit.")
+			///okay. player.flippingOutOverDeadPlayer apparently can be null even if i totally and completely am flipping otu over a dead player. why.
+			console.log("preparing to flip my shit. and its about " + player.flipOutReason + " which BETTEr fucking not be about a dead player. " + player.flippingOutOverDeadPlayer)
 			return true; //i am flipping out over not a dead player, thank you very much.
-			
+
 		}
 		if(player.triggerLevel > Math.seededRandom() * 100 ){
 			player.flipOutReason = "how they seem to be going shithive maggots for no goddamned reason"
 			return true
 		}
 	}
-	
+
 	//holy shit this gets repetitive. settle your shit.
 	this.IsPlayerTriggeredOld = function(player){
 		//are any of your friends  dead?
@@ -131,7 +132,7 @@ function BeTriggered(session){
 			var p = this.triggeredPlayers[i];
 			var hope = findAspectPlayer(findLivingPlayers(this.session.players), "Hope");
 			if(hope && hope.power > 100){
-				
+
 				//console.log("Hope Survives: " + this.session.session_id)
 				ret += " The " +p.htmlTitle() + " should probably be flipping the fuck out about  " + p.flipOutReason;
 				ret += " and being completely useless, but somehow the thought that the " + hope.htmlTitle() + " is still alive fills them with determination, instead.";  //hope survives.
