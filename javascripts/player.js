@@ -289,6 +289,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			ret += "Robo"
 		}
 
+		if(this.trickster){
+			ret += "Trickster "
+		}
+
 		if(this.murderMode){
 			ret += "Murder Mode ";
 		}
