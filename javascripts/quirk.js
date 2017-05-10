@@ -552,8 +552,9 @@ So, I'm trying to be more or less consistent with how I type.
 
 * punctuation, mostly good, unless excited, and then 3x punctuation combo.
 * capitalization, mostly correct, unless feeling especially informal.  Often capitalization in the middle of compound words like horrorTerror or grimDark because programming conventions are a bitch to train yourself out of and I may as well roll with it.
-* spelling. Not great. (there are no spell checkers in IDEs (for obvious reasons), and I've long gotten to the point where "eh, if the compiler/human brain knows what I mean, that's good enough for me." Also, if it's a note to msyelf or I'm thinking faster than I'm typing, typos ahoy.
+* spelling. Not great. (there are no real spell checkers in IDEs (for obvious reasons), and I've long since gotten to the point where "eh, if the compiler/human brain knows what I mean, that's good enough for me." Also, if it's a note to msyelf or I'm thinking faster than I'm typing, typos ahoy.
 		* fun fact, if I am CONSISTENTLY misspelling a word, it might be because I totally don't know how to spell it. OR, it might be because of how IDE 'spell checkers' work. It suggests a word based on other words I've typed in the document. So...if I mispelled it the first time, it'll autocomplete it the same way the entire rest of the document in a cycle of stupidity. Now You Know (tm)
 * memes, near constant homestuck references for obvious reasons. (I am the fan, it is me.)
+* cursing, a lot, usually as a way of conveying informality. Or because something is fucking stupid.
 
 */
