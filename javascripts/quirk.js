@@ -543,7 +543,8 @@ function getOneRandomReplaceArray(){
 `````-``.``.```.`````..`..`..``-``-``-``..``.```-``.```.``.`..``.`..`..`..`..`.``..`..``-``.``.``..``.```-```.``-```.``.``-`````
 
 
-Hello (again, if this isn't the first fourth wall in a comment you've found.). I thought I'd talk about my own quirks???
+Hello (again, if this isn't the first fourth wall in a comment you've found. If it is, don't worry about my fourth wall being all warped and wavy. it still works.).
+ I thought I'd talk about my own quirks???
 
 I remember reading one of Hussie's old Formsprings where he drew attention to the fact that not only did his human characters have quirks, but he himself did as well,
 as a way of having an author "character". Even while answering the formsprings shit he mostly tried to stick toward typing (or mistyping) consistently.
