@@ -40,7 +40,6 @@ function YellowYardResultController(){
 	it is not unreasonable to imagien 2 timelines that are extremely similar where the Observer made the same choice.
 */
 function doEventsMatch(newEvent, storedEvent,spawn){
-  console.log("Should I spawn a doomed time clone (if i find a mtach)???: " + spawn)
 	//console.log("comparing: '" + newEvent.humanLabel() + "' to '" + storedEvent.humanLabel() + "'")
 	if(!newEvent || !storedEvent) return false //can't match if one of them doesn't exist.
   if(newEvent.session.session_id != storedEvent.session.session_id){
@@ -68,6 +67,9 @@ function doEventsMatch(newEvent, storedEvent,spawn){
 		return false;
 		}
     console.log("yes, there is a match.");
+    if(spawn){ //don't spawn a time cloen if i'm checking for afterlife stuff.
+      spawnDoomedTimeClone(newEvent, storedEvent);
+    }
     return true;
   }
   if(spawn){ //don't spawn a time cloen if i'm checking for afterlife stuff.
@@ -77,7 +79,7 @@ function doEventsMatch(newEvent, storedEvent,spawn){
 }
 
 function spawnDoomedTimeClone(newEvent,storedEvent){
-
+    console.log("spawning a doomed time clone")
     //since i know the events match, make sure my player is up to date with the current session.
     //had a stupidly tragic bug where I was bringing players back in the DEAD SESSION instead of this new version of it.
     storedEvent.player = newEvent.player;
@@ -87,7 +89,7 @@ function spawnDoomedTimeClone(newEvent,storedEvent){
     alphaTimePlayer.triggerLevel += 1; //how many re-dos does this give me before they snap?
     console.log("pushing a doomed time clone, before size: " + alphaTimePlayer.doomedTimeClones.length )
     alphaTimePlayer.doomedTimeClones.push(storedEvent.doomedTimeClone);
-    this.timePlayer.flipOut("their own doomed time clones that seem to be mind controlled or something")
+    alphaTimePlayer.flipOut("their own doomed time clones that seem to be mind controlled or something")
     if(storedEvent.secondTimeClone){
         console.log("think there is a second time clone")
         alphaTimePlayer.doomedTimeClones.push(storedEvent.secondTimeClone);
