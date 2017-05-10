@@ -220,7 +220,7 @@ function DoLandQuest(session){
 			//console.log("normal sprite: " + this.session.session_id)
 			player.landLevel += 0.5;
 		}
-		ret +=  " " + player.sprite.helpPhrase; //best idea.
+		ret +=  " " + player.sprite.helpPhrase + " "; //best idea.
 		return ret;
 	}
 
