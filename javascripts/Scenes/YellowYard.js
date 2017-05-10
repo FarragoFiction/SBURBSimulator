@@ -77,7 +77,77 @@ function YellowYard(session){
 
 	}
 
-//22577 is short
+	/*
+
+
+
+
+```````   `                 `  ``   `                        ```````                           `
+```` `   `   ````           `````   `   `````               ````  `   `` ````                ````  `   ``` `
+```               ````        ```             ````           ```                ```          ```             ````
+``                   ```      ``                 ```         ```                  ```        ```                ``
+`````..``.`..`````````.``.``-``.``..`..``.```.``..``.``.``.``.``.``-`.-``.``.`..``.``.``..`..``.``.``.```..``.``..`..````..````
+`.-............-..-...-.....-........................................................................-.......................-.`
+`.-..........................................................................................................................-.`
+`......:-....-::::::::::----:++++++++++++++oo+++::::::::::::::...::::::::::::::---------::::::::::::::::::::::::::-....-:......`
+`.-..../.                 -ohddddddddddddddddddhh+`           `.`                                                      ./....-.`
+`......+.              .+yhddddddddddddddddmmmmmddy.          `.`                            `     `                   .+......`
+`````.-....+.           `:shddddddddddddddddmNNNNNNNNmdy.         `.``.+o+.`  `.oo/.           .sh   .sh                   .+....-.` ```
+```   `......+.         -ohdddddddddddddddmmNNNNNNNNNNNNmdy`        `.`  +d+      sd:             yd    yd                   .+......`   ```
+```   `.:....+.         .yddddddddddddmmddNNNNmshNNNNmmNNmdo        `.`  +d+      sd-    ---:.    yd    yd    `---:.         .+....:.`    ```
+```    `......+-          `+hdddddddddms:-hNdyo.``:shmN+omNdh-       `.`  +do------yd-  -s.``-ho   yd    yd   /o```-ss`       -+......`    ```
+```    `.-....+:            .ohddddddy-``.:-.````````.-:`-NNdo       `.`  +d+``````yd-  yy:::://`  yd    yd  -h:    -do       :+....-.`    ```
+```   `......+-              .+hdddds```````````````````.NNmh.      `.`  +d+      sd-  yh.    .`  yd    yd  :do    `d+       -+......`    ```
+```   `.-..../.                .sddddy-`````````````````+Nmdo`      `.`  odo      yd:  -yho//+:   yd    yd   +h/` `/o`  /o.  ./....-.`    ``
+`````....../.                 -yddddh/```````````````/dyo-        `.``.:::.`  `.::-`  `-//:.   .::.  .::.   .::-..    -/`  ./......` ````
+````......+.                /hddddddds:``````````.-/:.`          `.`                                                      .+......````
+`......+.               -ddmddddddddo-..-//+ohms              `.`                                                      .+......`
+`.-....+.              -hdNmddddddddddhhdddddyNh              `.`                                                      .+....-.`
+`-.....+.           .-ohddmdddddddddddhhdddddso:              `.`                                                      .+.....-`
+``......+.          .ohdddddddddddddddhs/ddddddh:              `.`                                                      .+......`
+````......+.         ```:hdddddddddddddh+--/hdddddh-             `.`                                                      .+......`````
+```  `......+-      ``````.hddddddddddddho....+dddddy`             `.`                                                      -+......`  ```
+````  `.:...-+:   ``````` `odddddddddddddo/-..-+sdds/.``            `.`                                                      :+-...:.`   ```
+```   `....../-`````````   :sssssssyyyyyys+o++o+syyo `````          `.`               ````````````````                       -/......`    ``
+```   `........````````````--------:::::::::::::::::.````````````````.````````````````````````````````````````````````````````.......`    ``
+```   `....../```````      -+syyyhhhhhhhhhddddddhyo/.    ```        `.`                                                      `+......`   ```
+``   `.....-+`   `````       ``.shdddddddddddddo         ```       `.`                                                      `+-.....`   ```
+``` `.....-+`      `````   ````-/hddddddddddddh-         ```      `.`                                                      `+-.....`  ``
+```.-...-+`          ````````..:oddddddddddddh.         ```     `.`                                                      `+-...-.```
+`.....-+.                 :shyddddddddddddddy.         ```    `.`                                                      .+-.....`
+`.-...-+.                 sddddddddddddddddddy.        ```    `.`                                                      .+-...-.`
+`......+`                 ydddddddddddddddddddh.        ```   `.`                                                      `+......`
+````......+`                -hydddddddddddddddddddy`        ``   `.`                                                      `+......`````
+```  `......+`                +hsdddddddddddddddddddds`        ``  `.`                                                      `+......`  ````
+```   `.....-+`                +y+hddddddddddddddddddddo         `` `.`                                                      `+-.....`   ```
+```   `.-...-+`                ys+yddddddddddddddddddddd/         ` `.`                                                      `+-...-.`    ```
+```   `.....-+`               -d++sdddddddddddddddddddddh-        ```.`                                                      `+-.....`    ```
+```   `:....-+`               -s++ohhhhhddhdddddddhhhhyso+        ` `..`                                                     `+-....:`   ```
+``   `.....-+`                .++++++oooo-::::/oooo++++++.         `..`                                                     `+-.....`   ```
+````..-...:+`                -+++++++++/      :+++++++++/         `.`                                                      `+:...-.` ````
+```......-+.                -+++++++++/       /+++++++++.        `.`                                                      .+-......```
+`.-...:+.                -+++++++++/       `+++++++++/        `.`                                                      .+:...-.`
+`.-...-+-                -+++++++++/        :+++++++++`       `.`                                                      -+-...-.`
+......./:...--:::::::::--://///////:......--://///////::::::::...::::::::::::::--------:::::::::::::::::::::::::::--...:/.......
+..-..........................................................................................................................-..
+..-........-...-..-..................................................................................-..............-........-..
+`````-``.``.```.`````..`..`..``-``-``-``..``.```-``.```.``.`..``.`..`..`..`..`.``..`..``-``.``.``..``.```-```.``-```.``.``-`````
+Bluh...turns out my FourthWall gets all warped and wavy when you stick it in a javascript comment. Whatever. You can still see through it.
+
+Are you really surprised that I'm doing fourth wall shit within my own YellowYard??? I thought I'd explain what's going on here.
+
+Narratively, if a session is "sufficiently tragic", I'm having the author bot bring it to my attention.  I then contact the time player for that session,
+but that is mostly just a courtesy. My true intention is to give information to the Observer (that's you, btw).  The time player is locked in by fate.
+Anything they decide, they'll decide that exact thing again put in the same situtation. They don't have transtimeline knowledge or agency.
+
+*I* do, but only in my role as an Observer. As a Waste of Mind within SBURB, I'm just as narratively locked down as anybody. 
+There's the me in the RealWorld(tm) typing this shit, and then there's the me in SBURB or whatever this shitty conceit is who is the Waste.
+Anyways, WasteOfMindJR uses HussiePatented fourth wall breaking YellowYard shenanigans paired with Mind decisions/alt timelines/fuck fate stuff
+to cause the decisions to not be made by the time player, or even the Waste of Mind, but by you, the Observer. I'm pretty happy with that,
+narratively.
+
+
+	*/
 	this.renderContent = function(div){
 		this.session.scenesTriggered.push(this);
 		//div.append("<br>"+this.content());
