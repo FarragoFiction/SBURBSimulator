@@ -486,3 +486,74 @@ function getOneRandomReplaceArray(){
 
 	return getOneNormalReplaceArray(); //if i get here, just do a normal one.
 }
+
+
+/*
+
+
+```````   `                 `  ``   `                        ```````                           `
+```` `   `   ````           `````   `   `````               ````  `   `` ````                ````  `   ``` `
+```               ````        ```             ````           ```                ```          ```             ````
+``                   ```      ``                 ```         ```                  ```        ```                ``
+`````..``.`..`````````.``.``-``.``..`..``.```.``..``.``.``.``.``.``-`.-``.``.`..``.``.``..`..``.``.``.```..``.``..`..````..````
+`.-............-..-...-.....-........................................................................-.......................-.`
+`.-..........................................................................................................................-.`
+`......:-....-::::::::::----:++++++++++++++oo+++::::::::::::::...::::::::::::::---------::::::::::::::::::::::::::-....-:......`
+`.-..../.                 -ohddddddddddddddddddhh+`           `.`                                                      ./....-.`
+`......+.              .+yhddddddddddddddddmmmmmddy.          `.`                            `     `                   .+......`
+`````.-....+.           `:shddddddddddddddddmNNNNNNNNmdy.         `.``.+o+.`  `.oo/.           .sh   .sh                   .+....-.` ```
+```   `......+.         -ohdddddddddddddddmmNNNNNNNNNNNNmdy`        `.`  +d+      sd:             yd    yd                   .+......`   ```
+```   `.:....+.         .yddddddddddddmmddNNNNmshNNNNmmNNmdo        `.`  +d+      sd-    ---:.    yd    yd    `---:.         .+....:.`    ```
+```    `......+-          `+hdddddddddms:-hNdyo.``:shmN+omNdh-       `.`  +do------yd-  -s.``-ho   yd    yd   /o```-ss`       -+......`    ```
+```    `.-....+:            .ohddddddy-``.:-.````````.-:`-NNdo       `.`  +d+``````yd-  yy:::://`  yd    yd  -h:    -do       :+....-.`    ```
+```   `......+-              .+hdddds```````````````````.NNmh.      `.`  +d+      sd-  yh.    .`  yd    yd  :do    `d+       -+......`    ```
+```   `.-..../.                .sddddy-`````````````````+Nmdo`      `.`  odo      yd:  -yho//+:   yd    yd   +h/` `/o`  /o.  ./....-.`    ``
+`````....../.                 -yddddh/```````````````/dyo-        `.``.:::.`  `.::-`  `-//:.   .::.  .::.   .::-..    -/`  ./......` ````
+````......+.                /hddddddds:``````````.-/:.`          `.`                                                      .+......````
+`......+.               -ddmddddddddo-..-//+ohms              `.`                                                      .+......`
+`.-....+.              -hdNmddddddddddhhdddddyNh              `.`                                                      .+....-.`
+`-.....+.           .-ohddmdddddddddddhhdddddso:              `.`                                                      .+.....-`
+``......+.          .ohdddddddddddddddhs/ddddddh:              `.`                                                      .+......`
+````......+.         ```:hdddddddddddddh+--/hdddddh-             `.`                                                      .+......`````
+```  `......+-      ``````.hddddddddddddho....+dddddy`             `.`                                                      -+......`  ```
+````  `.:...-+:   ``````` `odddddddddddddo/-..-+sdds/.``            `.`                                                      :+-...:.`   ```
+```   `....../-`````````   :sssssssyyyyyys+o++o+syyo `````          `.`               ````````````````                       -/......`    ``
+```   `........````````````--------:::::::::::::::::.````````````````.````````````````````````````````````````````````````````.......`    ``
+```   `....../```````      -+syyyhhhhhhhhhddddddhyo/.    ```        `.`                                                      `+......`   ```
+``   `.....-+`   `````       ``.shdddddddddddddo         ```       `.`                                                      `+-.....`   ```
+``` `.....-+`      `````   ````-/hddddddddddddh-         ```      `.`                                                      `+-.....`  ``
+```.-...-+`          ````````..:oddddddddddddh.         ```     `.`                                                      `+-...-.```
+`.....-+.                 :shyddddddddddddddy.         ```    `.`                                                      .+-.....`
+`.-...-+.                 sddddddddddddddddddy.        ```    `.`                                                      .+-...-.`
+`......+`                 ydddddddddddddddddddh.        ```   `.`                                                      `+......`
+````......+`                -hydddddddddddddddddddy`        ``   `.`                                                      `+......`````
+```  `......+`                +hsdddddddddddddddddddds`        ``  `.`                                                      `+......`  ````
+```   `.....-+`                +y+hddddddddddddddddddddo         `` `.`                                                      `+-.....`   ```
+```   `.-...-+`                ys+yddddddddddddddddddddd/         ` `.`                                                      `+-...-.`    ```
+```   `.....-+`               -d++sdddddddddddddddddddddh-        ```.`                                                      `+-.....`    ```
+```   `:....-+`               -s++ohhhhhddhdddddddhhhhyso+        ` `..`                                                     `+-....:`   ```
+``   `.....-+`                .++++++oooo-::::/oooo++++++.         `..`                                                     `+-.....`   ```
+````..-...:+`                -+++++++++/      :+++++++++/         `.`                                                      `+:...-.` ````
+```......-+.                -+++++++++/       /+++++++++.        `.`                                                      .+-......```
+`.-...:+.                -+++++++++/       `+++++++++/        `.`                                                      .+:...-.`
+`.-...-+-                -+++++++++/        :+++++++++`       `.`                                                      -+-...-.`
+......./:...--:::::::::--://///////:......--://///////::::::::...::::::::::::::--------:::::::::::::::::::::::::::--...:/.......
+..-..........................................................................................................................-..
+..-........-...-..-..................................................................................-..............-........-..
+`````-``.``.```.`````..`..`..``-``-``-``..``.```-``.```.``.`..``.`..`..`..`..`.``..`..``-``.``.``..``.```-```.``-```.``.``-`````
+
+
+Hello (again, if this isn't the first fourth wall in a comment you've found.). I thought I'd talk about my own quirks???
+
+I remember reading one of Hussie's old Formsprings where he drew attention to the fact that not only did his human characters have quirks, but he himself did as well,
+as a way of having an author "character". Even while answering the formsprings shit he mostly tried to stick toward typing (or mistyping) consistently.
+
+So, I'm trying to be more or less consistent with how I type.
+
+* punctuation, mostly good, unless excited, and then 3x punctuation combo.
+* capitalization, mostly correct, unless feeling especially informal.  Often capitalization in the middle of compound words like horrorTerror or grimDark because programming conventions are a bitch to train yourself out of and I may as well roll with it.
+* spelling. Not great. (there are no spell checkers in IDEs (for obvious reasons), and I've long gotten to the point where "eh, if the compiler/human brain knows what I mean, that's good enough for me." Also, if it's a note to msyelf or I'm thinking faster than I'm typing, typos ahoy.
+		* fun fact, if I am CONSISTENTLY misspelling a word, it might be because I totally don't know how to spell it. OR, it might be because of how IDE 'spell checkers' work. It suggests a word based on other words I've typed in the document. So...if I mispelled it the first time, it'll autocomplete it the same way the entire rest of the document in a cycle of stupidity. Now You Know (tm)
+* memes, near constant homestuck references for obvious reasons. (I am the fan, it is me.)
+
+*/

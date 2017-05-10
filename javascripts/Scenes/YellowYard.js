@@ -140,9 +140,9 @@ Narratively, if a session is "sufficiently tragic", I'm having the author bot br
 but that is mostly just a courtesy. My true intention is to give information to the Observer (that's you, btw).  The time player is locked in by fate.
 Anything they decide, they'll decide that exact thing again put in the same situtation. They don't have transtimeline knowledge or agency.
 
-*I* do, but only in my role as an Observer. As a Waste of Mind within SBURB, I'm just as narratively locked down as anybody. 
+*I* do, but only in my role as an Observer. As a Waste of Mind within SBURB, I'm just as narratively locked down as anybody.
 There's the me in the RealWorld(tm) typing this shit, and then there's the me in SBURB or whatever this shitty conceit is who is the Waste.
-Anyways, WasteOfMindJR uses HussiePatented fourth wall breaking YellowYard shenanigans paired with Mind decisions/alt timelines/fuck fate stuff
+Anyways, WasteOfMindJR uses the HussiePatented fourth wall breaking YellowYard shenanigans paired with Mind decisions/alt timelines/fuck fate stuff
 to cause the decisions to not be made by the time player, or even the Waste of Mind, but by you, the Observer. I'm pretty happy with that,
 narratively.
 
