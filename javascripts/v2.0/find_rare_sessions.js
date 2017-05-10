@@ -457,6 +457,7 @@ function loadEasterEggs(){
 	  success:(function(data){
 		 $("#easter_eggs").html(data)
 		  $("#pw_container").html("")
+			$("#avatar").attr("src","images/CandyAuthorBot.png");
 	  }),
 	  dataType: "text"
 	});
