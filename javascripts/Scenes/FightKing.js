@@ -17,7 +17,7 @@ this.getGoodGuys = function(){
 
 		for(var i = 0; i<timePlayer.doomedTimeClones.length; i++){
 			var timeClone = timePlayer.doomedTimeClones[i];
-			living.push(timeClone);
+			if(!timeClone.dead) living.push(timeClone);
 		}
 		return living;
 	}
