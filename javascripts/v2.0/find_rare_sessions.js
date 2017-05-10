@@ -535,7 +535,7 @@ function getQuipAboutSession(sessionSummary){
 	}else if(!sessionSummary.scratched && dead == 0 && sessionSummary.frogStatus == "Full Frog" && sessionSummary.ectoBiologyStarted && !sessionSummary.crashedFromCorruption && !sessionSummary.crashedFromPlayerActions){
 		quip += "Everything went better than expected." ; //
 	}else if(sessionSummary.yellowYard == true){
-		quip += "Fuck. Beter go grab JR. They'll want to see this. " ;
+		quip += "Fuck. I better go grab JR. They'll want to see this. " ;
 	}else if(living == 0){
 		quip += "Shit, you do not even want to KNOW how everybody died." ;
 	}else  if(strongest.power > 3000){
