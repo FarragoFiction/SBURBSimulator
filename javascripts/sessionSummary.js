@@ -111,12 +111,13 @@ function SessionSummary(){
 
 	this.decodeLineageGenerateHTML = function(){
 			var html = "";
+			var params = window.location.href.substr(window.location.href.indexOf("?")+1)
 			var lineage = this.parentSession.getLineage(); //i am not a session so remember to tack myself on at the end.
-			html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + lineage[0].session_id + "'>" +lineage[0].session_id + "</a> "
+			html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + lineage[0].session_id +"&"+params+ "'>" +lineage[0].session_id + "</a> "
 			for(var i = 1; i< lineage.length; i++){
-				html += " combined with: " + "<a href = 'index2.html?seed=" + lineage[i].session_id + "'>" +lineage[i].session_id + "</a> "
+				html += " combined with: " + "<a href = 'index2.html?seed=" + lineage[i].session_id +"&"+params+ "'>" +lineage[i].session_id + "</a> "
 			}
-			html += " combined with: " + "<a href = 'index2.html?seed=" + this.session_id + "'>" +this.session_id + "</a> "
+			html += " combined with: " + "<a href = 'index2.html?seed=" + this.session_id +"&"+params+ "'>" +this.session_id + "</a> "
 			if((lineage.length +1) == 3){
 				this.threeTimesSessionCombo = true;
 				html += " 3x SESSIONS COMBO!!!"
@@ -145,6 +146,7 @@ function SessionSummary(){
 
 	//generate own html, complete with div.  just return it, dn't add it to anything
 	this.generateHTML = function(){
+		var params = window.location.href.substr(window.location.href.indexOf("?")+1)
 		var html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id +"'>";
 		for(var propertyName in this) {
 				if(propertyName == "players"){
@@ -159,7 +161,8 @@ function SessionSummary(){
 					}else{
 						var scratch = "";
 						if(this.scratched) scratch = "(scratched)"
-						html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "'>" +this.session_id + scratch +  "</a>"
+
+						html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "&"+params+"'>" +this.session_id + scratch +  "</a>"
 					}
 				}else if(propertyName == "scratched" || propertyName == "satifies_filter_array" || propertyName == "frogStatus" || propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo" || propertyName == "parentSession"  ){
 					//do nothing. properties used elsewhere.
@@ -190,8 +193,9 @@ function SessionSummaryJunior(players,session_id){
 
 	this.generateHTML = function(){
 		this.getAverages();
+		var params = window.location.href.substr(window.location.href.indexOf("?")+1)
 		var html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id +"'>";
-		html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "'>" +this.session_id + "</a>"
+		html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "&"+params+"'>" +this.session_id + "</a>"
 		html += "<Br><b>Players</b>: " + getPlayersTitlesBasic(this.players);
 		html += "<Br><b>Potential God Tiers</b>: " + getPlayersTitlesBasic(this.grabPotentialGodTiers(this.players));
 
