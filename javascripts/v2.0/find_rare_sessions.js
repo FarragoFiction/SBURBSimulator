@@ -533,7 +533,9 @@ function getQuipAboutSession(sessionSummary){
 	}else if(sessionSummary.crashedFromPlayerActions){
 		quip += Zalgo.generate("Fuck. God damn. Do Grim Dark players even KNOW how much it sucks to crash? Assholes.");
 	}else if(!sessionSummary.scratched && dead == 0 && sessionSummary.frogStatus == "Full Frog" && sessionSummary.ectoBiologyStarted && !sessionSummary.crashedFromCorruption && !sessionSummary.crashedFromPlayerActions){
-		quip += "Everything went better than expected." ;
+		quip += "Everything went better than expected." ; //
+	}else if(sessionSummary.yellowYard == true){
+		quip += "Fuck. Beter go grab JR. They'll want to see this. " ;
 	}else if(living == 0){
 		quip += "Shit, you do not even want to KNOW how everybody died." ;
 	}else  if(strongest.power > 3000){
