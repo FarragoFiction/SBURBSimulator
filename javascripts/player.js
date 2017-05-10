@@ -106,6 +106,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	//flipping out over the dead won't call this but everything else will.
 	this.flipOut = function(reason){
+		//console.log("flip out method called for: " + reason)
 		this.flippingOutOverDeadPlayer = null;
 		this.flipOutReason = reason;
 	}
@@ -131,11 +132,16 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 			if(r.saved_type == r.goodBig){
 				r.target.triggerLevel ++;
-				if(r.target.flipOutReason == null) r.target.flipOutReason = " their dead crush, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead crush.
-				r.target.flippingOutOverDeadPlayer = this;
+				if(r.target.flipOutReason == null){
+					r.target.flipOutReason = " their dead crush, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead crush.
+					r.target.flippingOutOverDeadPlayer = this;
+				}
 			}else if(r.value > 0){
 				r.target.triggerLevel ++;
-				if(r.target.flipOutReason == null) r.target.flipOutReason = " their dead friend, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead friend.
+				if(r.target.flipOutReason == null){
+					 r.target.flippingOutOverDeadPlayer = this;
+					 r.target.flipOutReason = " their dead friend, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead friend.
+				}
 			}else if(r.saved_type == r.spades){
 				r.target.triggerLevel +=10;
 				r.target.flipOutReason = " their dead Kismesis, the " + this.htmlTitleBasic();
@@ -153,13 +159,16 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				r.target.flipOutReason = " their dead Moirail, the " + this.htmlTitleBasic() + ", fuck, that can't be good...";
 				r.target.flippingOutOverDeadPlayer = this;
 			}
+			//console.log(r.target.title() + " has flipOutReason of: " + r.target.flipOutReason + " and knows about dead player: " + r.target.flippingOutOverDeadPlayer);
 		}
 
 		//whether or not i care about them, there's also the novelty factor.
 		if(dead.length == 1){  //if only I am dead, death still has it's impact and even my enemies care.
 			r.target.triggerLevel ++;
-			if(r.target.flipOutReason == null) r.target.flipOutReason = " the dead player, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead player.
-			r.target.flippingOutOverDeadPlayer = this;
+			if(r.target.flipOutReason == null){
+				r.target.flipOutReason = " the dead player, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead player.
+			 r.target.flippingOutOverDeadPlayer = this;
+			}
 		}
 	}
 
