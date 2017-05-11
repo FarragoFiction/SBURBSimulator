@@ -60,6 +60,7 @@ function SessionSummary(){
 	this.averageRelationshipValue = null;
 	this.averageTriggerLevel = null;
 	this.sizeOfAfterLife = null;
+	this.ghosts = null;
 
 	//thanks to bob for helping me puzzle out the logic to make filters AND not OR.
 	//why was that so hard???
@@ -166,7 +167,7 @@ function SessionSummary(){
 
 						html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "&"+params+"'>" +this.session_id + scratch +  "</a>"
 					}
-				}else if(propertyName == "scratched" || propertyName == "satifies_filter_array" || propertyName == "frogStatus" || propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo" || propertyName == "parentSession"  ){
+				}else if(propertyName == "scratched" || propertyName == "ghosts" || propertyName == "satifies_filter_array" || propertyName == "frogStatus" || propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo" || propertyName == "parentSession"  ){
 					//do nothing. properties used elsewhere.
 				}else if(propertyName != "generateHTML" && propertyName != "getSessionSummaryJunior"){
 					html += "<Br><b>" + propertyName + "</b>: " + this[propertyName] ;
@@ -284,6 +285,7 @@ function SessionSummaryJunior(players,session_id){
 
 
 function MultiSessionSummary(){
+	this.ghosts = [];
 	this.total = 0;
 	this.averageMinLuck = 0;
 	this.averageMaxLuck = 0;
@@ -345,6 +347,13 @@ function MultiSessionSummary(){
 	this.hasUnluckyEvents = 0;
 	this.hasFreeWillEvents = 0;
 
+	
+	//display base cause of death "killed by Heir of Breath" and "killed by "Heir of Time" should both be "killed by Player"
+	//display classes and aspects.  Heirs: 47 (10%) Breath Players: 20 (5%) etc.
+	this.generateCorpsePartyHTML = function(){
+		
+		
+	}
 
 
 	this.generateHTML = function(){
@@ -359,7 +368,7 @@ function MultiSessionSummary(){
 				html += " (" + Math.round(100* (this[propertyName]/this.total)) + "%)";
 			}else if(propertyName == "totalDeadPlayers"){
 				html += "<Br><b>totalDeadPlayers: </b> " + this.totalDeadPlayers + " ("+this.survivalRate + " % survival rate)";
-			}else if(propertyName == "totalLivingPlayers" || propertyName == "survivalRate" ){
+			}else if(propertyName == "totalLivingPlayers" || propertyName == "survivalRate" || propertyName == "ghosts"){
 				//do nothing
 			}else if(propertyName == "sizeOfAfterLife" || propertyName == "averageAfterLifeSize" ||propertyName == "averageTriggerLevel" || propertyName == "averageRelationshipValue"  || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck"){
 				html += "<br><b>" + propertyName + "</b>: " + this[propertyName];
@@ -460,6 +469,7 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		if(ss.won) mss.won ++;
 
 		mss.sizeOfAfterLife += ss.sizeOfAfterLife;
+		mss.ghosts = mss.ghosts.concat(ss.ghosts)
 		mss.averageMinLuck += ss.averageMinLuck
 		mss.averageMaxLuck += ss.averageMaxLuck
 		mss.averagePower += ss.averagePower

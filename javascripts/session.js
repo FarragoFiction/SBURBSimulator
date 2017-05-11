@@ -566,6 +566,7 @@ function Session(session_id){
 		var summary = new SessionSummary();
 		summary.scratched = this.scratched;
 		summary.won = this.won;
+		summary.ghosts = this.afterLife.ghosts;
 		summary.sizeOfAfterLife = this.afterLife.ghosts.length;
 		summary.heroicDeath = this.heroicDeath;
 		summary.justDeath = this.justDeath;

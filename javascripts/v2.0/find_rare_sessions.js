@@ -650,6 +650,7 @@ function printStatsJunior(){
 
 function printStats(filters){
 	var mms = collateMultipleSessionSummaries(sessionSummariesDisplayed);
+	console.log(mms.ghosts)
 	$("#stats").html(mms.generateHTML());
 	if(filters){
 		$("input[name='filter']").each(function(){
