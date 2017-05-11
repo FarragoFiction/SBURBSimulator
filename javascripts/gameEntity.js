@@ -615,7 +615,7 @@ function GameEntity(session, name, crowned){
 
 		this.checkForAPulse =function(player, attacker){
 			if(player.getHP() <= 0){
-				var cod = "fighting the " + attacker.htmlTitleHP();
+				var cod = "fighting the " + attacker.htmlTitle();
 				if(this.name == "Jack"){
 					cod =  "after being shown too many stabs from Jack";
 				}else if(this.name == "Black King"){

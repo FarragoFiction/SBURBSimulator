@@ -216,7 +216,7 @@ function MurderPlayers(session){
 							ret += " Every one is very impressed that they managed to do it while dying."
 						}
 						ret += this.friendsOfVictimHateYou(worstEnemy, m);
-						worstEnemy.makeDead("fighting the " + m.htmlTitle());
+						worstEnemy.makeDead("fighting against the crazy " + m.htmlTitle());
 						var r = worstEnemy.getRelationshipWith(m);
 						r.value = -10; //you are not happy with murderer
 						m.victimBlood = worstEnemy.bloodColor;

@@ -353,6 +353,10 @@ function MultiSessionSummary(){
 	this.generateCorpsePartyHTML = function(){
 		//first task. convert ghost array to map. or hash. or whatever javascript calls it. key is what I want to display on the left.
 		//value is how many times I see something that evaluates to that key.
+		//expected hard part:    "fighting the Hestia Minion (1 hp, 25 power)".  is the same thing as  "fighting the Typheus Minion (5 hp, 25 power)." but are both DIFFERENT from "died fighting the Black King" and "fighting the Typheus"
+		//if Minion, label is "died fighting the first god damned boss."  don't care which one it is. get rid of the hp, power in cause of death otherwise maybe? what about players killing each other.   "died being put down like a rabid dog" and ignore the rest. 
+		//made the other phrase be "fighting against the crazy X" to differentiate it from STRIFE.
+		//okay, everything else should be fine. this'll probably still be pretty big, but can figure out how i wanna compress it later.
 		
 	}
 
@@ -369,7 +373,7 @@ function MultiSessionSummary(){
 				html += " (" + Math.round(100* (this[propertyName]/this.total)) + "%)";
 			}else if(propertyName == "totalDeadPlayers"){
 				html += "<Br><b>totalDeadPlayers: </b> " + this.totalDeadPlayers + " ("+this.survivalRate + " % survival rate)";
-			}else if(propertyName == "totalLivingPlayers" || propertyName == "survivalRate" || propertyName == "ghosts"){
+			}else if(propertyName == "totalLivingPlayers" || propertyName == "survivalRate" || propertyName == "ghosts" || propertyName == "generateCorpsePartyHTML"){
 				//do nothing
 			}else if(propertyName == "sizeOfAfterLife" || propertyName == "averageAfterLifeSize" ||propertyName == "averageTriggerLevel" || propertyName == "averageRelationshipValue"  || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck"){
 				html += "<br><b>" + propertyName + "</b>: " + this[propertyName];
