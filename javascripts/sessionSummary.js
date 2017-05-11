@@ -351,7 +351,8 @@ function MultiSessionSummary(){
 	//display base cause of death "killed by Heir of Breath" and "killed by "Heir of Time" should both be "killed by Player"
 	//display classes and aspects.  Heirs: 47 (10%) Breath Players: 20 (5%) etc.
 	this.generateCorpsePartyHTML = function(){
-		
+		//first task. convert ghost array to map. or hash. or whatever javascript calls it. key is what I want to display on the left.
+		//value is how many times I see something that evaluates to that key.
 		
 	}
 
