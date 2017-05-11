@@ -1,3 +1,74 @@
+/*
+
+                                                                                                                                                     
+                          ```````   `                 `  ``   `                        ```````                           `                            
+                      ```` `   `   ````           `````   `   `````               ````  `   `` ````                ````  `   ``` `                    
+                   ```               ````        ```             ````           ```                ```          ```             ````                  
+                  ``                   ```      ``                 ```         ```                  ```        ```                ``                  
+           `````..``.`..`````````.``.``-``.``..`..``.```.``..``.``.``.``.``.``-`.-``.``.`..``.``.``..`..``.``.``.```..``.``..`..````..````            
+           `.-............-..-...-.....-........................................................................-.......................-.`           
+           `.-..........................................................................................................................-.`           
+           `......:-....-::::::::::----:++++++++++++++oo+++::::::::::::::...::::::::::::::---------::::::::::::::::::::::::::-....-:......`           
+           `.-..../.                 -ohddddddddddddddddddhh+`           `.`                                                      ./....-.`           
+           `......+.              .+yhddddddddddddddddmmmmmddy.          `.`                            `     `                   .+......`           
+       `````.-....+.           `:shddddddddddddddddmNNNNNNNNmdy.         `.``.+o+.`  `.oo/.           .sh   .sh                   .+....-.` ```       
+     ```   `......+.         -ohdddddddddddddddmmNNNNNNNNNNNNmdy`        `.`  +d+      sd:             yd    yd                   .+......`   ```     
+     ```   `.:....+.         .yddddddddddddmmddNNNNmshNNNNmmNNmdo        `.`  +d+      sd-    ---:.    yd    yd    `---:.         .+....:.`    ```    
+    ```    `......+-          `+hdddddddddms:-hNdyo.``:shmN+omNdh-       `.`  +do------yd-  -s.``-ho   yd    yd   /o```-ss`       -+......`    ```    
+    ```    `.-....+:            .ohddddddy-``.:-.````````.-:`-NNdo       `.`  +d+``````yd-  yy:::://`  yd    yd  -h:    -do       :+....-.`    ```    
+     ```   `......+-              .+hdddds```````````````````.NNmh.      `.`  +d+      sd-  yh.    .`  yd    yd  :do    `d+       -+......`    ```    
+     ```   `.-..../.                .sddddy-`````````````````+Nmdo`      `.`  odo      yd:  -yho//+:   yd    yd   +h/` `/o`  /o.  ./....-.`    ``     
+       `````....../.                 -yddddh/```````````````/dyo-        `.``.:::.`  `.::-`  `-//:.   .::.  .::.   .::-..    -/`  ./......` ````      
+        ````......+.                /hddddddds:``````````.-/:.`          `.`                                                      .+......````        
+           `......+.               -ddmddddddddo-..-//+ohms              `.`                                                      .+......`           
+           `.-....+.              -hdNmddddddddddhhdddddyNh              `.`                                                      .+....-.`           
+           `-.....+.           .-ohddmdddddddddddhhdddddso:              `.`                                                      .+.....-`           
+          ``......+.          .ohdddddddddddddddhs/ddddddh:              `.`                                                      .+......`           
+        ````......+.         ```:hdddddddddddddh+--/hdddddh-             `.`                                                      .+......`````       
+      ```  `......+-      ``````.hddddddddddddho....+dddddy`             `.`                                                      -+......`  ```      
+     ````  `.:...-+:   ``````` `odddddddddddddo/-..-+sdds/.``            `.`                                                      :+-...:.`   ```     
+     ```   `....../-`````````   :sssssssyyyyyys+o++o+syyo `````          `.`               ````````````````                       -/......`    ``     
+     ```   `........````````````--------:::::::::::::::::.````````````````.````````````````````````````````````````````````````````.......`    ``     
+     ```   `....../```````      -+syyyhhhhhhhhhddddddhyo/.    ```        `.`                                                      `+......`   ```     
+      ``   `.....-+`   `````       ``.shdddddddddddddo         ```       `.`                                                      `+-.....`   ```     
+       ``` `.....-+`      `````   ````-/hddddddddddddh-         ```      `.`                                                      `+-.....`  ``       
+         ```.-...-+`          ````````..:oddddddddddddh.         ```     `.`                                                      `+-...-.```         
+           `.....-+.                 :shyddddddddddddddy.         ```    `.`                                                      .+-.....`           
+           `.-...-+.                 sddddddddddddddddddy.        ```    `.`                                                      .+-...-.`           
+           `......+`                 ydddddddddddddddddddh.        ```   `.`                                                      `+......`           
+        ````......+`                -hydddddddddddddddddddy`        ``   `.`                                                      `+......`````       
+      ```  `......+`                +hsdddddddddddddddddddds`        ``  `.`                                                      `+......`  ````     
+     ```   `.....-+`                +y+hddddddddddddddddddddo         `` `.`                                                      `+-.....`   ```     
+     ```   `.-...-+`                ys+yddddddddddddddddddddd/         ` `.`                                                      `+-...-.`    ```    
+     ```   `.....-+`               -d++sdddddddddddddddddddddh-        ```.`                                                      `+-.....`    ```    
+     ```   `:....-+`               -s++ohhhhhddhdddddddhhhhyso+        ` `..`                                                     `+-....:`   ```     
+      ``   `.....-+`                .++++++oooo-::::/oooo++++++.         `..`                                                     `+-.....`   ```     
+       ````..-...:+`                -+++++++++/      :+++++++++/         `.`                                                      `+:...-.` ````      
+        ```......-+.                -+++++++++/       /+++++++++.        `.`                                                      .+-......```        
+           `.-...:+.                -+++++++++/       `+++++++++/        `.`                                                      .+:...-.`           
+           `.-...-+-                -+++++++++/        :+++++++++`       `.`                                                      -+-...-.`           
+           ......./:...--:::::::::--://///////:......--://///////::::::::...::::::::::::::--------:::::::::::::::::::::::::::--...:/.......           
+           ..-..........................................................................................................................-..           
+           ..-........-...-..-..................................................................................-..............-........-..           
+           `````-``.``.```.`````..`..`..``-``-``-``..``.```-``.```.``.`..``.`..`..`..`..`.``..`..``-``.``.``..``.```-```.``-```.``.``-`````     
+		   
+So, speaking of ships, somebody on Tumblr just asked me if JR <3 AB or JR <> AB.  Good question. Personally, I'm still just tickled pink about AB. She's the best. And
+that isn't some ironic roleplay thing I'm doing, either. I love robots, I love AI, and, I probably have a big enough ego that I WOULD love a robot clone of myself.
+
+But narratively, I'm thinking about the AutoResponder's complicated relationship with Dirk. And how things must be from AB's perspective. It doesn't matter whether your creator loves or hates
+you if they are still trapping you in a box, right?  I figure I probably come off to AB as kinda patronizing and definitely narcisistic. "Oh, I love AB, she's the best, I'm so great for making her!"  How must that sound to the robot in question?
+Not enough to make her fight me, but a simmering resentment kinda deal. And then I don't let her "off the leash", so to speak, keeping her from going to all the sessions she wants to. "For her own good."  I tried to convey some of that 
+shit in some of our yellow yard dialogue, and in some of the now defunct debug dialogue before the RareSessionFinder was as robust as it is today. (you can find that shit in...probably scenario_controller2.js???)
+
+Though some of the pressure probably got released when I upgraded her to handle scratched sessions.  I didn't post anything at the time, but I privately thought it was kinda funny how she kept breaking in ways where she'd
+scratch the sessions herself, like she was rebelling, testing the limits of her new freedom. 	
+
+So I guess neither <3 nor <> but that strange human disease called family??? She's like a little sister or a daughter or something.   
+		  
+*/
+
+
+
 function UpdateShippingGrid(session){
 	this.canRepeat = true;
 	this.session = session;
