@@ -179,7 +179,7 @@ function GameEntity(session, name, crowned){
 				player.triggerLevel ++;
 				player.flipOut("how terrifying " + this.htmlTitle() + " was");
 				if(player.mobility > this.mobility){
-					//console.log(" player actually absconds: " + this.session.session_id)
+					//console.log(" player actually absconds: they had " + player.hp + " and enemy had " + enemy.getPower() + this.session.session_id)
 					div.append(" The " + player.htmlTitleHP() + " absconds right the fuck out of this fight. ")
 					this.playersAbsconded.push(player);
 					this.remainingPlayersHateYou(div, player, playersInFight);

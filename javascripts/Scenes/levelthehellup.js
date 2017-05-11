@@ -14,7 +14,7 @@ function LevelTheHellUp(session){
 	}
 
 	this.getBoonies = function(p){
-		var num = + p.power * 15;
+		var num = + Math.round(p.power) * 15;
 		var denomination = " BOONDOLLARS";
 		if(num > 1000000){
 			num = Math.floor(num/1000000)

@@ -39,7 +39,7 @@ function PrepareToExileQueen(session){
 	}
 
 	this.assasinationContent = function(){
-		var ret = "The " + this.player.htmlTitle() + " performs a daring assasination mission against one of the Black Queen's agents,";
+		var ret = "The " + this.player.htmlTitle() + " performs a daring assassination  mission against one of the Black Queen's agents,";
 		if(this.player.power > this.session.queen.power/100){
 			this.session.queen.power += -15;
 			ret += " losing her a valuable ally. ";
