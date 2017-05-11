@@ -353,10 +353,9 @@ function MultiSessionSummary(){
 	this.generateCorpsePartyHTML = function(){
 		//first task. convert ghost array to map. or hash. or whatever javascript calls it. key is what I want to display on the left.
 		//value is how many times I see something that evaluates to that key.
-		//expected hard part:    "fighting the Hestia Minion (1 hp, 25 power)".  is the same thing as  "fighting the Typheus Minion (5 hp, 25 power)." but are both DIFFERENT from "died fighting the Black King" and "fighting the Typheus"
-		//if Minion, label is "died fighting the first god damned boss."  don't care which one it is. get rid of the hp, power in cause of death otherwise maybe? what about players killing each other.   "died being put down like a rabid dog" and ignore the rest. 
-		//made the other phrase be "fighting against the crazy X" to differentiate it from STRIFE.
-		//okay, everything else should be fine. this'll probably still be pretty big, but can figure out how i wanna compress it later.
+		// about players killing each other.  look for "died being put down like a rabid dog" and ignore the rest.  or  "fighting against the crazy X" to differentiate it from STRIFE.
+		//okay, everything else should be fine. this'll probably still be pretty big, but can figure out how i wanna compress it later. might make all minion/denizen fights compress down to "first goddamn boss fight" and "denizen fight" respectively, but not for v1. want to see if certain 
+		//aspect have  a rougher go of it.
 		
 	}
 
