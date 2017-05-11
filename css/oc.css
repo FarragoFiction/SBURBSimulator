@@ -21,13 +21,12 @@
 
 
 #spiel{
+	width:1000px;
 	background-color: white;
-	padding-left: 10px;
-	padding-right: 10px;
-	width:1000px;	
 	margin-left: auto;
     margin-right: auto;
-	height: 75%;
+	padding: 10px;
+	height: 1000px;
 }
 
 body{
