@@ -19,6 +19,17 @@
 	padding-right: 10px;	
 }
 
+
+#spiel{
+	background-color: white;
+	padding-left: 10px;
+	padding-right: 10px;
+	width:1000px;	
+	margin-left: auto;
+    margin-right: auto;
+	height: 75%;
+}
+
 body{
 	background-image: url("../images/Skaia_Clouds.png");
 }
