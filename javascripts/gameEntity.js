@@ -877,44 +877,44 @@ fortune_objects.push(new GameEntity(null, "Frog",null));
 fortune_objects[fortune_objects.length-1].power = 20;
 fortune_objects[fortune_objects.length-1].illegal = true;
 fortune_objects[fortune_objects.length-1].mobility = 100;
-fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglestnort hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
+fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
 
 
 fortune_objects.push(new GameEntity(null, "Lizard",null));
 fortune_objects[fortune_objects.length-1].power = 20;
 fortune_objects[fortune_objects.length-1].illegal = true;
-fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglestnort hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
+fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
 
 
 fortune_objects.push(new GameEntity(null, "Salamander",null));
 fortune_objects[fortune_objects.length-1].power = 20;
 fortune_objects[fortune_objects.length-1].illegal = true;
-fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglestnort hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
+fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
 
 
 fortune_objects.push(new GameEntity(null, "Iguana",null));
 fortune_objects[fortune_objects.length-1].power = 20;
 fortune_objects[fortune_objects.length-1].illegal = true;
-fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglestnort hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
+fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
 
 
 fortune_objects.push(new GameEntity(null, "Crocodile",null));
 fortune_objects[fortune_objects.length-1].power = 50;
 fortune_objects[fortune_objects.length-1].illegal = true;
-fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglestnort hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
+fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
 
 
 fortune_objects.push(new GameEntity(null, "Turtle",null));
 fortune_objects[fortune_objects.length-1].power = 20;
 fortune_objects[fortune_objects.length-1].illegal = true;
 fortune_objects[fortune_objects.length-1].mobility = -100;
-fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglestnort hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
+fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
 
 
 fortune_objects.push(new GameEntity(null, "Alligator",null));
 fortune_objects[fortune_objects.length-1].power = 50;
 fortune_objects[fortune_objects.length-1].illegal = true;
-fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglestnort hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
+fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
 
 
 fortune_objects.push(new GameEntity(null, "Snake",null));  //poison fraymotif
@@ -928,13 +928,13 @@ fortune_objects[fortune_objects.length-1].power = 20;
 fortune_objects[fortune_objects.length-1].hp =  50;
 fortune_objects[fortune_objects.length-1].currentHP = 50;
 fortune_objects[fortune_objects.length-1].illegal = true;
-fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglestnort hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
+fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
 
 
 fortune_objects.push(new GameEntity(null, "Newt",null));
 fortune_objects[fortune_objects.length-1].power = 20;
 fortune_objects[fortune_objects.length-1].illegal = true;
-fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglestnort hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
+fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
 
 
 
