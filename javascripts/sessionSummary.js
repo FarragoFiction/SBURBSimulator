@@ -362,8 +362,8 @@ function MultiSessionSummary(){
 				if(this.ghosts[i].causeOfDeath.startsWith("fighting against the crazy")){
 					if (!corpseParty["fighting against a MurderMode player"]) corpseParty["fighting against a MurderMode player"] = 0 //otherwise NaN
 					corpseParty["fighting against a MurderMode player"] ++;
-				}else if(this.ghosts[i].causeOfDeath.startsWith("died being put down like a rabid dog")){
-					if (!corpseParty["died being put down like a rabid dog"]) corpseParty["died being put down like a rabid dog"] = 0 //otherwise NaN
+				}else if(this.ghosts[i].causeOfDeath.startsWith("being put down like a rabid dog")){
+					if (!corpseParty["being put down like a rabid dog"]) corpseParty["being put down like a rabid dog"] = 0 //otherwise NaN
 					corpseParty["died being put down like a rabid dog"] ++;
 				}else{//just use as is
 					if (!corpseParty[this.ghosts[i].causeOfDeath]) corpseParty[this.ghosts[i].causeOfDeath] = 0 //otherwise NaN
