@@ -660,6 +660,26 @@ function printStats(filters){
 	//todo if corpse party mode, display corpse party and replace AB imge with corpse party AB and ABJ.
 	//TODO have different divs of types of stats, most defaulted to hidden, with checkbox toggles for what you want to see.
 	$("#stats").html(mms.generateHTML());
+	
+	if(displayMisc)$('#multiSessionSummaryMisc').show()  //memory. don't always turn off when making new ones.
+	if(!displayMisc)$('#multiSessionSummaryMisc').hide()
+		
+	if(displayRomance)$('#multiSessionSummaryRomance').show()  //memory. don't always turn off when making new ones.
+	if(!displayRomance)$('#multiSessionSummaryRomance').hide()
+		
+	if(displayDrama)$('#multiSessionSummaryDrama').show()  //memory. don't always turn off when making new ones.
+	if(!displayDrama)$('#multiSessionSummaryDrama').hide()
+		
+	if(displayEnding)$('#multiSessionSummaryEnding').show()  //memory. don't always turn off when making new ones.
+	if(!displayEnding)$('#multiSessionSummaryEnding').hide()
+		
+	if(displayAverages)$('#multiSessionSummaryAverage').show()  //memory. don't always turn off when making new ones.
+	if(!displayAverages)$('#multiSessionSummaryAverage').hide()
+		
+	if(displayCorpse)$('#multiSessionSummaryCorpseParty').show()  //memory. don't always turn off when making new ones.
+	if(!displayCorpse)$('#multiSessionSummaryCorpseParty').hide()
+		
+	
 	if(filters){
 		$("input[name='filter']").each(function(){
 			$(this).prop('disabled', false);
