@@ -785,5 +785,5 @@ function toggleEnding(){
 
 function toggleAverage(){
 		$('#multiSessionSummaryAverage').toggle()
-		displayAverage = !displayAverage;
+		displayAverages = !displayAverages;
 }

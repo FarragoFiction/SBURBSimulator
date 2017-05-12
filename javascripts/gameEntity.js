@@ -267,7 +267,7 @@ function GameEntity(session, name, crowned){
 		//I didn't MEAN  for it to be calliborn apparently killing everybody, but my placeholder test phrase ended up being in his voice and one thing lead to another and now yeah. asshole mcgee is totally caliborn.
 		//which ALSO means i'm not gonna bother picking a "winner". that would be work, I'm lazy, and also caliborn wouldn't care about that.
 		this.assHoleMcGee = function(div,players,numTurns){
-			console.log("This is stupid. Summon asshole mcgee in session: " + this.session_id);
+			console.log("!!!!!!!!!!!!!!!!!This is stupid. Summon asshole mcgee in session: " + this.session_id);
 			div.append("<Br><Br>THIS IS STuPID. EVERYBODY INVOLVED. IN THIS STuPID. STuPID FIGHT. IS NOW DEAD. SuCK IT.  tumut")
 			var living = findLivingPlayers(players); //dosn't matter if you absconded.
 			for(var i = 0; i<living.length; i++){

@@ -391,7 +391,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 	
 	this.didDenizenKillYou = function(){
-		if(this.causeOfDeath.includes(this.session.getDenizenForPlayer(this).name){
+		if(this.causeOfDeath.includes(this.session.getDenizenForPlayer(this).name)){
 			return true; //also return true for minions. this is intentional.
 		}
 		return false;
@@ -405,7 +405,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(this.didDenizenKillYou() && !this.grimDark <= 2){
 			return false;
 		}else if(this.grimDark > 2){
-			console.log("just death for a courrpt player from their denizen or denizen mionion in session: " + this.session.session_id)
+			console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!just death for a courrpt player from their denizen or denizen mionion in session: " + this.session.session_id)
 			return true; //always just if the denizen puts down a corrupt player.
 		}
 		
