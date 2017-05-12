@@ -382,20 +382,7 @@ function MultiSessionSummary(){
 	}
 
 	/*
-		Brainstorming categories for toggling on and off. 
-		ALWAYS display number of session bug crashes.
-		Obviously corpse party.
-		Average Stats.
-		Ending Spoilers
-			won
-			crashedFromPlayerActions
-			ectoBiologyStarted
-			timesAllDied
-			timesAllLived
-			yellowYard
-			scratchAvailable
-			frogStatus
-			comboStuff
+
 		Dramatic Scenes
 			exiledJack
 			jackRamapaged
@@ -409,17 +396,6 @@ function MultiSessionSummary(){
 			rapBattles
 			sickFires
 			Events
-		Romance Scenes
-			hasDiamonds
-			hasSpades
-			hasClubs
-			hasHearts
-			hasBreakups (add)
-		Classes
-		Aspects
-		Misc (for some of the weirder stuff)
-		
-		So, categories are: Averages, Classes, Aspects, Ending Spoilers, Dramatic Scenes, Romance Scenes and Misc. Misc might not exist. 
 	*/
 	
 	//this lets me know which div to put it into
@@ -427,16 +403,27 @@ function MultiSessionSummary(){
 		return propertyName == "hasDiamonds" || propertyName == "hasSpades" ||propertyName == "hasClubs" || propertyName == "hasHearts"  || propertyName == "hasBreakups" 
 	}
 	
+	//TODO future upgrade for afterlife bullshit.
 	this.isDramaticProperty = function(propertyName){
-		
+		if(propertyName == "exiledJack" || propertyName == "plannedToExileJack" ||propertyName == "exiledQueen" || propertyName == "jackGotWeapon"  || propertyName == "jackScheme") return true
+		if(propertyName == "kingTooPowerful" || propertyName == "queenRejectRing" ||propertyName == "murderMode" || propertyName == "grimDark"  || propertyName == "denizenFought") return true
+		if(propertyName == "denizenBeat" || propertyName == "godTier" ||propertyName == "questBed" || propertyName == "sacrificialSlab"  || propertyName == "heroicDeath") return true
+		if(propertyName == "justDeath" || propertyName == "rapBattle" ||propertyName == "sickFires" || propertyName == "hasLuckyEvents"  || propertyName == "hasUnluckyEvents") return true
+		if(propertyName == "hasFreeWillEvents") return true; 
+		return false;
 	}
+
 	
 	this.isEndingProperty = function(propertyName){
-		
+		if(propertyName == "yellowYard" || propertyName == "timesAllLived" ||propertyName == "timesAllDied" || propertyName == "scratchAvailable"  || propertyName == "won") return true
+		if(propertyName == "crashedFromPlayerActions" || propertyName == "ectoBiologyStarted" ||propertyName == "comboSessions" || propertyName == "threeTimesSessionCombo")return true
+		if(propertyName == "fourTimesSessionCombo" || propertyName == "fiveTimesSessionCombo" ||propertyName == "holyShitMmmmmonsterCombo" || propertyName == "numberFullFrog") return true;
+		if(propertyName == "numberFullFrog" || propertyName == "numberSickFrog" ||propertyName == "numberNoFrog") return true;
+		return false;
 	}
 	
 	this.isAverageProperty = function(propertyName){
-		
+		return propertyName == "sizeOfAfterLife" || propertyName == "averageAfterLifeSize" ||propertyName == "averageTriggerLevel" || propertyName == "averageRelationshipValue"  || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck"
 	}
 	
 	this.isPropertyToIgnore = function(propertyName){
@@ -466,6 +453,8 @@ function MultiSessionSummary(){
 				html += " (" + Math.round(100* (this[propertyName]/this.total)) + "%)";
 			}else if(propertyName == "totalDeadPlayers"){
 				html += "<Br><b>totalDeadPlayers: </b> " + this.totalDeadPlayers + " ("+this.survivalRate + " % survival rate)"; //don't want to EVER ignore this. 
+			}else if(propertyName == "crashedFromSessionBug"){
+				html += this.generateHTMLForProperty(propertyName) //don't ignore bugs, either.
 			}else if(this.isRomanceProperty(propertyName){
 				romanceProperties.push(propertyName)
 			}else if(this.isDramaticProperty(propertyName)){
