@@ -379,7 +379,44 @@ function MultiSessionSummary(){
 
 	}
 
-
+	/*
+		Brainstorming categories for toggling on and off. 
+		ALWAYS display number of session bug crashes.
+		Obviously corpse party.
+		Average Stats.
+		Ending Spoilers
+			won
+			crashedFromPlayerActions
+			ectoBiologyStarted
+			timesAllDied
+			timesAllLived
+			yellowYard
+			scratchAvailable
+			frogStatus
+			comboStuff
+		Dramatic Scenes
+			exiledJack
+			jackRamapaged
+			exiledQueen
+			jackSchemed
+			queenRejectRing
+			murderMode
+			grimDark
+			godTier
+			deathTypes
+			rapBattles
+			sickFires
+			Events
+		Romance Scenes
+			hasDiamonds
+			hasSpades
+			hasClubs
+			hasHearts
+			hasBreakups (add)
+		Misc (for some of the weirder stuff)
+		
+		So, categories are: Averages, Ending Spoilers, Dramatic Scenes, Romance Scenes and Misc. Misc might not exist. 
+	*/
 	this.generateHTML = function(){
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
 		var header = "<h2>Stats for All Displayed Sessions: </h2>(When done finding, can filter)"
@@ -402,6 +439,8 @@ function MultiSessionSummary(){
 				html += " (" + Math.round(100* (this[propertyName]/this.total)) + "%)";
 			}
 		}
+		
+		html += this.generateCorpsePartyHTML();
 
 		html += "</div><Br>"
 		return html;
