@@ -493,6 +493,16 @@ function MultiSessionSummary(){
 		
 	}
 	
+	this.generateClassFilterHTML() = function(){
+		console.log("TODO: display classes for MSS. Then allow filtering by them. (Somehow)")
+	}
+	
+	this.generateAspectFilterHTML() = function(){
+		console.log("TODO: display aspects for MSS. Then allow filtering by them. (Somehow)")
+	}
+	
+	
+	
 	this.generateHTMLForProperty = function(propertyName){
 		var html = "";
 		if(this.isFilterableProperty(propertyName){
