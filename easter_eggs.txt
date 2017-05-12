@@ -28,10 +28,12 @@
 <p><a href = "rare_session_finder_junior.html?sbajifier=true">AuthorBotJunior SBAHJIFIER</a>:  Ask the AuthorBotJunior to look through a bunch of SBAHJ Sessions. What does this even mean???</p>
 <p><a href = "rare_session_finder_junior.html?robot=true">AuthorBotJunior RoboStuck</a>:Ask the AuthorBotJunior to look through a bunch of Robo Sessions. </p>
 
-
 <p> <a href = "rap.html">Extended Rap Battles</a>: Okay, so, like the rap battles are just so amazingly shitty, right? And they only get even SHITTIER the longer I let them go on. So, you know, here's a page that's just the rap battles going on for much, much longer. It was the easiest way to test them without waiting for sims to run. </p>
 
 <p>DID YOU KNOW: In addition to sharing hair color/blood color with their guardians, players share at least one interest with them as well.  So a player might like Wizards and Writing while their Guardian might enjoy Wizards and Hacking.
+<p><font color = "white"> Things like this won't be hidden if AB is in trickster mode. I find this hilarious. Some of the hints to this page were white font on a white page. There's actually tons of extra easter egg content throughout the site, mostly within the code itself, which understandably isn't a place your average Observer is gonna go rummaging around in.
+I'm actually planning on having things like this for the void players, but hidden much better, with a display:none tag in html. But seeing how obnoxiously it shows up in trickster mode...almost makes me want to make it white font after all. A little extra bonus, void tricksters THINK they are being all sneaky, but aren't. Yes. This is hilarious.
+</font> </p>
 
 <p>IMPORTANT: TO GET BACK HERE: The easiest way to return here is to get AB to help you (she is the best).  Have her simulate a few sessions for you (shouldn't take much) and filter by "full frog" and "all lived" and then do a "find on page" for "better than expected" and you should find a session id that will get you back to this page. You are certainly welcome to reuse the password that got you here this time...but be warned that should I push an update to the server, that session might not go the same way, and it might not work forever.  If you have trouble (maybe none within a hundred sessions or so) finding a "better than expected session", don't hesitate to drop me a line. Half the reason I chose that as the passphrase  was to give me a hard incentive to make sure there still even WERE sessions that went well. I don't want to be a COMPLETE asshole creator over here.</p>
 
@@ -44,7 +46,7 @@ But...see...the AuthorBot is pretty much the Sphinx guarding this password page,
 bullshit giggle candy over on the RareSessionFinder, you can slip her the candy here. You know "?lollipop=true" in the url. And...something like 80% of sessions go "better than expected"
 in trickster mode.  So, suddenly, the password for getting past the AuthorBot is "bribe her with candy and then lazily guess a few numbers." It's 100% in the spirit of trickster mode, who cares about doing things right and growing as a person, let's activate cheat mode and win!!!!!!!!!!!  Makes the hint phrase suddenly kinda ominous, right?
 Where is everything better than expected? Where AB can be high as a fucking kite. Whatever, have fun getting back here easier: <a href = "index_pw.html?lollipop=true"> Give AB a Lollipop? (Enter the session id like normal, the lollipop wil be in the URL)</a>. Or I guess you can avoid giving her mind altering substances and just get here the old fashioned way. Your choice.
-<br>Alternatively, it's kind of like AB installed her own haXOR style back door. Beautiful no matter how you look at it.
+<br>Alternatively, it's kind of like AB installed her own haXOR style back door. Beautiful no matter how you look at it. And useful for all of us. I know I'M using it.
 <br><br>
 DID YOU KNOW: This now brings the count up to FOUR ways to get here. Via figuring out what the riddle is actually asking, via lucky guessing (or misunderstanding the riddle luckily), via hax0ring, and via roboBribing.
 
