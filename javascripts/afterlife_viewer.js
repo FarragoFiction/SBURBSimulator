@@ -17,7 +17,7 @@ window.onload = function() {
 
 function renderSingleGhost(ghost,i){
 	console.log("rendering ghost")
-	var div = $("#story")
+	var div = $("#afterlifeViewer")
 	var html = "<div class = 'eulogy'><div class = 'eulogy_text'>The " + ghost.htmlTitle() + " died " + ghost.causeOfDeath + ".";
 	if(ghost.causeOfDrain){
 		html += " They were drained to the point of uselessness by the" + ghost.causeOfDrain + ".  They will recover eventually. "
@@ -74,9 +74,9 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
         ].join(' - ');
 	console.log(message);
 	var str = "<BR>ERROR: AFTERLIFE CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. LAST ERROR: " + message + " ABORTING."
-	$("#story").append(str);
+	$("#afterlifeViewer").append(str);
 
-	$("#story").append("<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. HORROR TERROR INFLUENCE: COMPLETE.");
+	$("#afterlifeViewer").append("<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. HORROR TERROR INFLUENCE: COMPLETE.");
 	for(var i = 0; i<playersGlobalVar.length; i++){
 		var player = playersGlobalVar[i];
 		str = "<BR>"+player.chatHandle + ":"
@@ -88,15 +88,15 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 		words = Zalgo.generate(words);
 		var plea = start + "style = 'color: " +getColorFromAspect(player.aspect) +"; " + end +str + words+ "</b>"
 		//console.log(getColorFromAspect(getRandomElementFromArray(curSessionGlobalVar.players).aspect+";") )
-		$("#story").append(plea);
+		$("#afterlifeViewer").append(plea);
 	}
 
 	for(var i = 0; i<3; i++){
-	 $("#story").append("<BR>...");
+	 $("#afterlifeViewer").append("<BR>...");
 	}
 	//once I let PLAYERS cause this (through grim darkness or finding their sesions disk or whatever), have different suggested actions.
 	//maybe throw custom error?
-	$("#story").append("<BR>SUGGESTED ACTION: " + "FUCK. HOW DID THE AFTERLIFE GET BROKEN? TELL JADEDRESEARCHER TO FIX THIS. TELL THEM THE SESSION ID THIS AFTERLIFE CAME FROM.");
+	$("#afterlifeViewer").append("<BR>SUGGESTED ACTION: " + "FUCK. HOW DID THE AFTERLIFE GET BROKEN? TELL JADEDRESEARCHER TO FIX THIS. TELL THEM THE SESSION ID THIS AFTERLIFE CAME FROM.");
 
 	return false; //if i return true here, the real error doesn't show up
 

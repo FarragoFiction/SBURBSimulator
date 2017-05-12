@@ -5,6 +5,17 @@
 	margin-right: auto;
 	padding: 10px;
 }
+
+#afterlifeViewer{
+	width:1000px;
+	background-color: white;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+	height: 10000px
+}
+
+
 #navbar{
 	width:1020px;
 	margin-left: auto;
@@ -148,7 +159,6 @@ body{
 }
 
 .eulogy_text{
-  background-color: white;
 }
 
 @font-face {
