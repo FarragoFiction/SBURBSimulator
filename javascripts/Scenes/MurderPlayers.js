@@ -301,7 +301,7 @@ function MurderPlayers(session){
 
 					ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". ";
 					ret += this.friendsOfVictimHateYou(worstEnemy, m);
-					worstEnemy.makeDead("fighting the " + m.htmlTitle())
+					worstEnemy.makeDead("fighting against the crazy " + m.htmlTitle())
 					m.victimBlood = worstEnemy.bloodColor;
 				}else{
 					worstEnemy.increasePower();

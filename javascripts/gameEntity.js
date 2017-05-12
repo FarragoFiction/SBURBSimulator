@@ -37,7 +37,10 @@ function GameEntity(session, name, crowned){
 		this.corrupted = false; //if corrupted, name is zalgoed.
 		this.helpfulness = 0; //if 0, cagey riddles. if 1, basically another player. if -1, like calsprite. omg, just shut up.  NOT additive for when double prototyping. most recent prototyping overrides.
 		this.helpPhrase = "provides the requisite amount of gigglesnort hideytalk to be juuuust barely helpful. ";
-
+		
+		
+		
+		
 		this.toString = function(){
 			return this.htmlTitle();
 		}
@@ -247,6 +250,28 @@ function GameEntity(session, name, crowned){
 			}
 
 		}
+		
+		this.rocksFallEverybodyDies = function(div,players,numTurns){
+			console.log("Rocks fall, everybody dies in session: " + this.session.session_id)
+			div.append("<Br><Br> In case you forgot, freaking METEORS have been falling onto the battlefield this whole time. This battle has been going on for so long that, literally, rocks fall, everybody dies.  ")
+			var living = findLivingPlayers(players); //dosn't matter if you absconded.
+			for(var i = 0; i<living.length; i++){
+				var p = living[i];
+				p.makeDead("meteors to the face");
+			}
+		}
+		
+		//I didn't MEAN  for it to be calliborn apparently killing everybody, but my placeholder test phrase ended up being in his voice and one thing lead to another and now yeah. asshole mcgee is totally caliborn.
+		//which ALSO means i'm not gonna bother picking a "winner". that would be work, I'm lazy, and also caliborn wouldn't care about that.
+		this.assHoleMcGee = function(div,players,numTurns){
+			console.log("This is stupid. Summon asshole mcgee in session: " + this.session_id);
+			div.append("<Br><Br>THIS IS STuPID. EVERYBODY INVOLVED. IN THIS STuPID. STuPID FIGHT. IS NOW DEAD. SuCK IT.  tumut")
+			var living = findLivingPlayers(players); //dosn't matter if you absconded.
+			for(var i = 0; i<living.length; i++){
+				var p = living[i];
+				p.makeDead("BEING INVOLVED. IN A STuPID. STuPID FIGHT. THAT WENT ON. FOR WAY TOO LONG.");
+			}
+		}
 
 
 		//before a fight is called, decide who is in it. denizens are one on one, jack catches slower player and friends
@@ -263,6 +288,15 @@ function GameEntity(session, name, crowned){
 		*/
 		this.strife = function(div, players, numTurns){
 			numTurns += 1;
+			if(this.name == "Black King" || this.name == "Black Queen"){
+				console.log("checking to see if rocks fall.")
+				this.session.timeTillReckoning += -1; //other fights are a a single tick. maybe do this differently later. have fights be multi tick. but it wouldn't tick for everybody. laws of physics man.
+				if(this.session.timeTillReckoning < this.session.reckoningEndsAt){
+					return this.rocksFallEverybodyDies(div, players, numTurns);
+				}else if(numTurns > 50){
+					return this.assHoleMcGee(div, players, numTurns);
+				}
+			}
 			//console.log(this.name + ": strife! " + numTurns + " turns against: " + getPlayersTitlesNoHTML(players) + this.session.session_id);
 			div.append("<br><Br>")
 			//as players die or mobility stat changes, might go players, me, me, players or something. double turns.

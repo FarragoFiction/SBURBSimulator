@@ -362,13 +362,14 @@ function MultiSessionSummary(){
 		var html = "<div class = 'multiSessionSummary'>Corpse Party: (NOT DONE: SOMETIMES CAUSES OF DEATH HAVE WRONG VALUES. LIKE 2 PEOPLE DIE FROM CASSANDRA MINION BUT IT REPORTS 4.) <button onclick='toggleCorpse()'>Toggle View </button>"
 		html += "<div id = 'multiSessionSummaryCorpseParty'>"
 		var corpseParty = {} //now to refresh my memory on how javascript hashmaps work
+		html+= this.generateHTMLForProperty("sizeOfAfterLife")
 		for(var i = 0; i<this.ghosts.length; i++){
 				if(this.ghosts[i].causeOfDeath.startsWith("fighting against the crazy")){
 					if (!corpseParty["fighting against a MurderMode player"]) corpseParty["fighting against a MurderMode player"] = 0 //otherwise NaN
 					corpseParty["fighting against a MurderMode player"] ++;
 				}else if(this.ghosts[i].causeOfDeath.startsWith("being put down like a rabid dog")){
 					if (!corpseParty["being put down like a rabid dog"]) corpseParty["being put down like a rabid dog"] = 0 //otherwise NaN
-					corpseParty["died being put down like a rabid dog"] ++;
+					corpseParty["being put down like a rabid dog"] ++;
 				}else{//just use as is
 					if (!corpseParty[this.ghosts[i].causeOfDeath]) corpseParty[this.ghosts[i].causeOfDeath] = 0 //otherwise NaN
 					corpseParty[this.ghosts[i].causeOfDeath] ++;

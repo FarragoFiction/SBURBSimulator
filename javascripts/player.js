@@ -779,7 +779,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 	//only looks at best outcomes
 	this.lightIncreasePower = function(powerBoost){
-		var luckModifier = powerBoost*3;
+		var luckModifier = powerBoost;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			luckModifier = -1 *luckModifier;
 		}
@@ -795,7 +795,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.mindIncreasePower = function(powerBoost){
-		var modifier = powerBoost*3;
+		var modifier = powerBoost;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			modifier = -1 *modifier;
 		}
@@ -812,7 +812,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	//time is about fate and inevitability, not decisions and free will.
 	this.timeIncreasePower = function(powerBoost){
-		var modifier = -1 * powerBoost*3;
+		var modifier = -1 * powerBoost;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			modifier = -1 *modifier;
 		}
@@ -927,7 +927,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 
 	this.breathIncreasePower = function(powerBoost){
-		var mobilityModifier = powerBoost*3;
+		var mobilityModifier = powerBoost;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			mobilityModifier = -1 *mobilityModifier;
 		}
@@ -943,7 +943,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.spaceIncreasePower = function(powerBoost){
-		var mobilityModifier = -1 * powerBoost*3;
+		var mobilityModifier = -1 * powerBoost;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			mobilityModifier = -1 *mobilityModifier;
 		}

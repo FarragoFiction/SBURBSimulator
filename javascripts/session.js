@@ -43,6 +43,7 @@ function Session(session_id){
 	this.scratched = false;
 	this.scratchAvailable = false;
 	this.timeTillReckoning = 0;
+	this.reckoningEndsAt = -15;
 	this.godTier = false;
 	this.questBed = false;
 	this.sacrificialSlab = false;
