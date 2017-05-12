@@ -551,7 +551,7 @@ function MultiSessionSummary(){
 	}
 	
 	this.generateAverageHTML = function(properties){
-		var html = "<div class = 'multiSessionSummary' >Average <button onclick='toggleAverage()'>Toggle View </button>";
+		var html = "<div class = 'multiSessionSummary' >Averages <button onclick='toggleAverage()'>Toggle View </button>";
 		html += "<div id = 'multiSessionSummaryAverage' >"
 		for(var i = 0; i<properties.length; i++){
 			var propertyName = properties[i];
