@@ -12,7 +12,6 @@
 	margin-left: auto;
 	margin-right: auto;
 	padding: 10px;
-	height: 10000px
 }
 
 
@@ -153,7 +152,7 @@ body{
 }
 
 .eulogy{
-  float:left;
+  display: inline-block;
   padding: 10px;
   width:400px;
 }
