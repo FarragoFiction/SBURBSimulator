@@ -35,6 +35,7 @@ function SessionSummary(){
 	this.hasSpades = null;
 	this.hasClubs = null;
 	this.hasHearts = null;
+	this.hasBreakups = null;
 	//set when generatingHTML
 	this.threeTimesSessionCombo = false;
 	this.fourTimesSessionCombo = false;
@@ -328,6 +329,7 @@ function MultiSessionSummary(){
 	this.hasSpades = 0;
 	this.hasClubs = 0;
 	this.hasHearts = 0;
+	this.hasBreakups = 0;
 	this.comboSessions = 0;
 	this.threeTimesSessionCombo = 0;
 	this.fourTimesSessionCombo= 0;
@@ -422,7 +424,7 @@ function MultiSessionSummary(){
 	
 	//this lets me know which div to put it into
 	this.isRomanceProperty = function(propertyName){
-		
+		return propertyName == "hasDiamonds" || propertyName == "hasSpades" ||propertyName == "hasClubs" || propertyName == "hasHearts"  || propertyName == "hasBreakups" 
 	}
 	
 	this.isDramaticProperty = function(propertyName){
@@ -657,6 +659,7 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		if(ss.hasDiamonds) mss.hasDiamonds ++;
 		if(ss.hasSpades) mss.hasSpades ++;
 		if(ss.hasClubs) mss.hasClubs ++;
+		if(ss.hasBreakups) mss.hasBreakups ++;
 		if(ss.hasHearts) mss.hasHearts ++;
 		if(ss.parentSession) mss.comboSessions ++;
 		if(ss.threeTimesSessionCombo) mss.threeTimesSessionCombo ++;
