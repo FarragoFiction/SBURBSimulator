@@ -650,7 +650,9 @@ function printStatsJunior(){
 
 function printStats(filters){
 	var mms = collateMultipleSessionSummaries(sessionSummariesDisplayed);
-	console.log(mms.ghosts)
+	//todo if corpse party mode, display corpse party and replace AB imge with corpse party AB and ABJ.
+	console.log(mms.generateCorpsePartyHTML()) //todo have hidden div (float right?) that turns on and rendres corpse party or something.
+	$("#corpseParty").html(mms.generateCorpsePartyHTML());
 	$("#stats").html(mms.generateHTML());
 	if(filters){
 		$("input[name='filter']").each(function(){

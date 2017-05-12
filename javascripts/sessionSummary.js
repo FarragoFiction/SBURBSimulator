@@ -359,15 +359,23 @@ function MultiSessionSummary(){
 		var html = "<div id = 'corpseParty'>"
 		var corpseParty = {} //now to refresh my memory on how javascript hashmaps work
 		for(var i = 0; i<this.ghosts.length; i++){
-				if(){
-
-				}else if(){
-
+				if(this.ghosts[i].causeOfDeath.startsWith("fighting against the crazy")){
+					if (!corpseParty["fighting against a MurderMode player"]) corpseParty["fighting against a MurderMode player"] = 0 //otherwise NaN
+					corpseParty["fighting against a MurderMode player"] ++;
+				}else if(this.ghosts[i].causeOfDeath.startsWith("died being put down like a rabid dog")){
+					if (!corpseParty["died being put down like a rabid dog"]) corpseParty["died being put down like a rabid dog"] = 0 //otherwise NaN
+					corpseParty["died being put down like a rabid dog"] ++;
 				}else{//just use as is
-					corpseParty[]
+					if (!corpseParty[this.ghosts[i].causeOfDeath]) corpseParty[this.ghosts[i].causeOfDeath] = 0 //otherwise NaN
+					corpseParty[this.ghosts[i].causeOfDeath] ++;
 				}
 		}
+
+		for(var corpseType in corpseParty){
+			html += corpseType + ": " + corpseParty[corpseType] + "<br>" //todo maybe print out percentages here. we know how many ghosts there are.
+		}
 		html += "</html>"
+		return html
 
 	}
 
