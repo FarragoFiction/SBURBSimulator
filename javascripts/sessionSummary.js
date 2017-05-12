@@ -409,7 +409,7 @@ function MultiSessionSummary(){
 		if(propertyName == "kingTooPowerful" || propertyName == "queenRejectRing" ||propertyName == "murderMode" || propertyName == "grimDark"  || propertyName == "denizenFought") return true
 		if(propertyName == "denizenBeat" || propertyName == "godTier" ||propertyName == "questBed" || propertyName == "sacrificialSlab"  || propertyName == "heroicDeath") return true
 		if(propertyName == "justDeath" || propertyName == "rapBattle" ||propertyName == "sickFires" || propertyName == "hasLuckyEvents"  || propertyName == "hasUnluckyEvents") return true
-		if(propertyName == "hasFreeWillEvents") return true; 
+		if(propertyName == "hasFreeWillEvents" ||propertyName == "jackRampage" || propertyName == "democracyStarted" ) return true; 
 		return false;
 	}
 
@@ -427,7 +427,12 @@ function MultiSessionSummary(){
 	}
 	
 	this.isPropertyToIgnore = function(propertyName){
-		return propertyName == "totalLivingPlayers" || propertyName == "survivalRate" || propertyName == "ghosts" || propertyName == "generateCorpsePartyHTML" || propertyName == "generateHTML"
+		if(propertyName == "totalLivingPlayers" || propertyName == "survivalRate" || propertyName == "ghosts" || propertyName == "generateCorpsePartyHTML" || propertyName == "generateHTML") return true;
+		if(propertyName == "isRomanceProperty" || propertyName == "isDramaticProperty" || propertyName == "isEndingProperty" || propertyName == "isAverageProperty" || propertyName == "isPropertyToIgnore") return true;
+		if(propertyName == "isFilterableProperty" || propertyName == "generateClassFilterHTML" || propertyName == "generateAspectFilterHTML" || propertyName == "generateHTMLForProperty" || propertyName == "generateRomanceHTML") return true;
+		if(propertyName == "generateDramaHTML" || propertyName == "generateMiscHTML" || propertyName == "generateAverageHTML" || propertyName == "generateHTMLOld" || propertyName == "generateEndingHTML") return true;
+		
+		return false;
 	}
 	
 	//lets me know whether to have a checkbox with it or not. (only for actual properties on this object. not corpse party or class/aspect stuff.)
@@ -455,7 +460,7 @@ function MultiSessionSummary(){
 				html += "<Br><b>totalDeadPlayers: </b> " + this.totalDeadPlayers + " ("+this.survivalRate + " % survival rate)"; //don't want to EVER ignore this. 
 			}else if(propertyName == "crashedFromSessionBug"){
 				html += this.generateHTMLForProperty(propertyName) //don't ignore bugs, either.
-			}else if(this.isRomanceProperty(propertyName){
+			}else if(this.isRomanceProperty(propertyName)){
 				romanceProperties.push(propertyName)
 			}else if(this.isDramaticProperty(propertyName)){
 				dramaProperties.push(propertyName)
@@ -463,11 +468,10 @@ function MultiSessionSummary(){
 				endingProperties.push(propertyName)
 			}else if(this.isAverageProperty(propertyName)){
 				averageProperties.push(propertyName)
-			}else if(!isPropertyToIgnore(propertyName){
+			}else if(!this.isPropertyToIgnore(propertyName)){
 				miscProperties.push(propertyName)
 			}
 		}
-		
 		html += this.generateRomanceHTML(romanceProperties);
 		html += this.generateDramaHTML(dramaProperties);
 		html += this.generateEndingHTML(endingProperties);
@@ -484,11 +488,11 @@ function MultiSessionSummary(){
 		
 	}
 	
-	this.generateClassFilterHTML() = function(){
+	this.generateClassFilterHTML = function(){
 		console.log("TODO: display classes for MSS. Then allow filtering by them. (Somehow)")
 	}
 	
-	this.generateAspectFilterHTML() = function(){
+	this.generateAspectFilterHTML = function(){
 		console.log("TODO: display aspects for MSS. Then allow filtering by them. (Somehow)")
 	}
 	
@@ -496,7 +500,7 @@ function MultiSessionSummary(){
 	
 	this.generateHTMLForProperty = function(propertyName){
 		var html = "";
-		if(this.isFilterableProperty(propertyName){
+		if(this.isFilterableProperty(propertyName)){
 			html += "<Br><b> <input disabled='true' type='checkbox' name='filter' value='"+propertyName +"' id='" + propertyName + "' onchange='filterSessionSummaries()'>";
 			html +=  propertyName + "</b>: " + this[propertyName] ;
 			html += " (" + Math.round(100* (this[propertyName]/this.total)) + "%)";
@@ -506,19 +510,22 @@ function MultiSessionSummary(){
 		return html;
 	}
 	
+	//css will handle this be initialized to display:hidden or whatever, and then javascript will handle toggles. 
 	this.generateRomanceHTML = function(properties){
-		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryRomance'>";
-		for(var propertyName in romanceProperties){
-			this.generateHTMLForProperty(propertyName)
+		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryRomance'>Romance:";
+		for(var i = 0; i<properties.length; i++){
+			var propertyName = properties[i];
+			html += this.generateHTMLForProperty(propertyName)
 		}
 		html += "</div>"
 		return html;
 	}
 	
 	this.generateDramaHTML = function(properties){
-		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryDrama'>";
-		for(var propertyName in romanceProperties){
-			this.generateHTMLForProperty(propertyName)
+		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryDrama'>Drama: ";
+		for(var i = 0; i<properties.length; i++){
+			var propertyName = properties[i];
+			html += this.generateHTMLForProperty(propertyName)
 		}
 		html += "</div>"
 		return html;
@@ -526,9 +533,10 @@ function MultiSessionSummary(){
 	
 	
 	this.generateEndingHTML = function(properties){
-		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryEnding'>";
-		for(var propertyName in romanceProperties){
-			this.generateHTMLForProperty(propertyName)
+		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryEnding'>Ending:";
+		for(var i = 0; i<properties.length; i++){
+			var propertyName = properties[i];
+			html += this.generateHTMLForProperty(propertyName)
 		}
 		html += "</div>"
 		return html;
@@ -536,18 +544,20 @@ function MultiSessionSummary(){
 	
 	
 	this.generateMiscHTML = function(properties){
-		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryMisc'>";
-		for(var propertyName in romanceProperties){
-			this.generateHTMLForProperty(propertyName)
+		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryMisc'>Misc";
+		for(var i = 0; i<properties.length; i++){
+			var propertyName = properties[i];
+			html += this.generateHTMLForProperty(propertyName)
 		}
 		html += "</div>"
 		return html;
 	}
 	
 	this.generateAverageHTML = function(properties){
-		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryRomance'>";
-		for(var propertyName in romanceProperties){
-			this.generateHTMLForProperty(propertyName)
+		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryAverage'>Average";
+		for(var i = 0; i<properties.length; i++){
+			var propertyName = properties[i];
+			html += this.generateHTMLForProperty(propertyName)
 		}
 		html += "</div>"
 		return html;
