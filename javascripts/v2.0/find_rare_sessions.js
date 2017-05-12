@@ -37,7 +37,14 @@ var numSimulationsDone = 0;
 var numSimulationsToDo = 52;
 var quipMode = false;
 var needToScratch = false;
-
+var displayRomance = false;
+var displayEnding = false;
+var displayDrama = false;
+var displayCorpse = false;
+var displayMisc = false;
+var displayAverages = false;
+var displayClasses = false;
+var displayAspects = false;
 
 window.onload = function() {
 	loadNavbar();

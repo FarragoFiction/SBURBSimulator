@@ -361,7 +361,7 @@ function MultiSessionSummary(){
 		// about players killing each other.  look for "died being put down like a rabid dog" and ignore the rest.  or  "fighting against the crazy X" to differentiate it from STRIFE.
 		//okay, everything else should be fine. this'll probably still be pretty big, but can figure out how i wanna compress it later. might make all minion/denizen fights compress down to "first goddamn boss fight" and "denizen fight" respectively, but not for v1. want to see if certain
 		//aspect have  a rougher go of it.
-		var html = "<div class = 'multiSessionSummary'>Corpse Party: (NOT DONE: SOMETIMES CAUSES OF DEATH HAVE WRONG VALUES. LIKE 2 PEOPLE DIE FROM CASSANDRA MINION BUT IT REPORTS 4.) <button onclick='toggleCorpse()'>Toggle View </button>"
+		var html = "<div class = 'multiSessionSummary'>Corpse Party: <button onclick='toggleCorpse()'>Toggle View </button>"
 		html += "<div id = 'multiSessionSummaryCorpseParty'>"
 		var corpseParty = {} //now to refresh my memory on how javascript hashmaps work
 		html+= this.generateHTMLForProperty("sizeOfAfterLife")
@@ -755,24 +755,35 @@ function MultiSessionSummaryJunior(){
 
 function toggleCorpse(){
 		$('#multiSessionSummaryCorpseParty').toggle()
+		displayCorpse = !displayCorpse;
+		if(displayCorpse){
+			$("#avatar").attr("src","images/corpse_party_robot_author.png");
+		}else{
+			$("#avatar").attr("src","images/robot_author.png");
+		}
 }
 
 function toggleRomance(){
 		$('#multiSessionSummaryRomance').toggle()
+		displayRomance = !displayRomance;
 }
 
 function toggleDrama(){
 		$('#multiSessionSummaryDrama').toggle()
+		displayDrama = !displayDrama;
 }
 
 function toggleMisc(){
 		$('#multiSessionSummaryMisc').toggle()
+		displayMisc = !displayMisc;
 }
 
 function toggleEnding(){
 		$('#multiSessionSummaryEnding').toggle()
+		displayEnding = !displayEnding;
 }
 
 function toggleAverage(){
 		$('#multiSessionSummaryAverage').toggle()
+		displayAverage = !displayAverage;
 }
