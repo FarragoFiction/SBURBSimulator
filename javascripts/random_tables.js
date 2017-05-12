@@ -1079,7 +1079,7 @@ space_quests.push("listening to the ridiculously similar croaks of cloned frogs 
 var time_quests = ["manipulating the local stock exchange through a series of cunningly disguised time doubles"];
 time_quests.push("stopping a variety of disasters from happening before even the first player enters the medium");
 time_quests.push("cheating at obstacle course time trials to get a finishing value of exactly 0.0 seconds");
-var breath_quests = ["putting out fires in consort villages through serendepitious gales of wind"];
+var breath_quests = ["putting out fires in consort villages through serendipitous gales of wind"];
 breath_quests.push("delivering mail through a complicated series of pneumatic tubes");
 breath_quests.push("paragliding through increasingly elaborate obstacle courses to become the champion (it is you)");
 var doom_quests = ["calculating the exact moment a planet quake will destroy a consort village with enough time remaining to perform evacuation"];
@@ -1097,14 +1097,14 @@ mind_quests.push("pulling pranks as a minigame, with bonus points awarded for pr
 var light_quests = ["winning at increasingly unfair gambling challenges"];
 light_quests.push("researching way too much lore and minutia to win at trivia contests");
 light_quests.push("explaining how to play a mini game to particularly stupid consorts until they finally get it");
-var void_quests = ["destroying and/or censoring embarassing consort records"];
+var void_quests = ["destroying and/or censoring embarrassing consort records"];
 void_quests.push("definitely doing quests, just...not where we can see them");
 void_quests.push("playing a hilariously fun boxing minigame");
-var rage_quests = ["fighting hoards upon hoards of enemies in increasingly unfair odds until defeating them all in a beserk rage"]; //You can't believe how easy it is. You just have to go... a little crazy. And then, suddenly, it all makes sense, and everything you do turns to gold.
+var rage_quests = ["fighting hordes upon hordes of enemies in increasingly unfair odds until defeating them all in a berserk rage"]; //You can't believe how easy it is. You just have to go... a little crazy. And then, suddenly, it all makes sense, and everything you do turns to gold.
 rage_quests.push("figuring out increasingly illogical puzzles until lateral thinking becomes second nature");
 rage_quests.push("dealing with the most annoying dungeon challenges ever, each more irritating and aneurysm inducing than the last");
 var hope_quests = ["performing bullshit acts of faith, like walking across invisible bridges"];
-hope_quests.push("becoming the savior of the local consorts, through fullfillment of various oddly specific prophecies");
+hope_quests.push("becoming the savior of the local consorts, through fulfillment of various oddly specific prophecies");
 hope_quests.push("brainstorming a variety of ways the local consorts can solve their challenges");
 var life_quests = ["coaxing the fallow farms of the local consorts into becoming fertile"];
 life_quests.push("healing a seemingly endless parade of stricken consorts");
@@ -1123,7 +1123,7 @@ mage_quests.push("learning to just let go and let things happen");
 var knight_quests = ["protecting the local consorts from a fearsome foe"];
 knight_quests.push("protecting the session from various ways it can go shithive maggots");
 knight_quests.push("questing to collect the 7 bullshit orbs of supreme bullshit and deliver them to the consort leader");
-var rogue_quests = ["robbing various tombs and imp settlements to give to impovished consorts"];
+var rogue_quests = ["robbing various tombs and imp settlements to give to impoverished consorts"];
 rogue_quests.push("stealing a priceless artifact in order to fund consort orphanages");
 rogue_quests.push("planning an elaborate heist to steal priceless grist from a boss ogre in order to alchemize shoes for orphans");
 var sylph_quests = ["restoring a consort city to its former glory"];
@@ -1134,7 +1134,7 @@ thief_quests.push("planning an elaborate heist that relies on several hard-to-pr
 thief_quests.push("torrenting vast amounts of grist from the other players");
 var heir_quests = ["retrieving a sword from a stone"];
 heir_quests.push("completing increasingly unlikely challenges through serendepitious coincidences");
-heir_quests.push("inheriting and running a succesful, yet complex company");
+heir_quests.push("inheriting and running a successful, yet complex company");
 var bard_quests = ["allowing events to transpire such that various quests complete themselves"];
 bard_quests.push("baiting various enemies into traps for an easy victory");
 bard_quests.push("watching as their manipulations result in consorts rising up to defeat imps");
@@ -1169,7 +1169,7 @@ denizen_breath_quests.push("trying to manually unclog the pneumatic system");
 denizen_breath_quests.push("using Breath powers to unclog the pneumatic system");
 
 var denizen_doom_quests = ["listening to consorts relate a doomsday prophecy that will take place soon"];
-denizen_doom_quests.push("realizing technicallities in the doomsday prophecy that would allow it to take place but NOT doom everyone");
+denizen_doom_quests.push("realizing technicalities in the doomsday prophecy that would allow it to take place but NOT doom everyone");
 denizen_doom_quests.push("narrowly averting the doomsday prophecy through technicalities, seeming coincidence, and a plan so convoluted that at the end of it no one can be sure the plan actually DID anything");
 
 var denizen_blood_quests = ["convincing the local consorts to rise up against the denizen, Hestia"];
