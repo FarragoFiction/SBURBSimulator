@@ -358,7 +358,7 @@ function MultiSessionSummary(){
 		// about players killing each other.  look for "died being put down like a rabid dog" and ignore the rest.  or  "fighting against the crazy X" to differentiate it from STRIFE.
 		//okay, everything else should be fine. this'll probably still be pretty big, but can figure out how i wanna compress it later. might make all minion/denizen fights compress down to "first goddamn boss fight" and "denizen fight" respectively, but not for v1. want to see if certain
 		//aspect have  a rougher go of it.
-		var html = "<div id = 'corpseParty'>"
+		var html = "<div class = 'multiSessionSummary' id = 'corpseParty'>Corpse Party: "
 		var corpseParty = {} //now to refresh my memory on how javascript hashmaps work
 		for(var i = 0; i<this.ghosts.length; i++){
 				if(this.ghosts[i].causeOfDeath.startsWith("fighting against the crazy")){
@@ -376,27 +376,12 @@ function MultiSessionSummary(){
 		for(var corpseType in corpseParty){
 			html += corpseType + ": " + corpseParty[corpseType] + "<br>" //todo maybe print out percentages here. we know how many ghosts there are.
 		}
-		html += "</html>"
+		html += "</div>"
 		return html
 
 	}
 
-	/*
 
-		Dramatic Scenes
-			exiledJack
-			jackRamapaged
-			exiledQueen
-			jackSchemed
-			queenRejectRing
-			murderMode
-			grimDark
-			godTier
-			deathTypes
-			rapBattles
-			sickFires
-			Events
-	*/
 	
 	//this lets me know which div to put it into
 	this.isRomanceProperty = function(propertyName){
@@ -472,6 +457,7 @@ function MultiSessionSummary(){
 				miscProperties.push(propertyName)
 			}
 		}
+		html += "</div>"
 		html += this.generateRomanceHTML(romanceProperties);
 		html += this.generateDramaHTML(dramaProperties);
 		html += this.generateEndingHTML(endingProperties);

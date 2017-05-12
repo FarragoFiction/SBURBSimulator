@@ -2,13 +2,13 @@
 	width:1000px;
 	background-color: white;
 	margin-left: auto;
-  margin-right: auto;
+	margin-right: auto;
 	padding: 10px;
 }
 #navbar{
 	width:1020px;
 	margin-left: auto;
-  margin-right: auto;
+	margin-right: auto;
 	padding-left: 10px;
 	padding-right: 10px;
 }
@@ -22,6 +22,26 @@
 	border: 3px solid black;
 	text-align: center;
 	vertical-align: middle;
+}
+
+#multiSessionSummaryRomance{
+	
+}
+
+#multiSessionSummaryDrama{
+	
+}
+
+#multiSessionSummaryEnding{
+	
+}
+
+#multiSessionSummaryMisc{
+	
+}
+
+#multiSessionSummaryAverage{
+	
 }
 
 
@@ -63,8 +83,11 @@ body{
   float:left;
 }
 .multiSessionSummary{
-  width: 500px;
+  width: 250px;
   float:left;
+  border: 3px solid black;
+	float: left;
+	padding: 10px;
 }
 
 .sessionSummary{
