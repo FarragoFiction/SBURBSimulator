@@ -816,7 +816,7 @@ function getRandomDenizenQuestFromAspect(player){
 		throw(player.title() + " denizen index too high: " + curSessionGlobalVar.session_id)
 	}
 	var ret =  first_arr[player.denizen_index]
-	console.log(ret);
+	//console.log(ret);
 	player.denizen_index ++;
 	return ret;
 }
