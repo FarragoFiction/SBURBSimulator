@@ -137,13 +137,19 @@ function Aftermath(session){
 					this.session.won = true;
 				}
 			}else{
-				end += "<br>Unfortunately, the " + spacePlayer.htmlTitle() + " was unable to complete frog breeding duties. ";
-				end += " They only got " + Math.round(spacePlayer.landLevel/this.session.minFrogLevel*100) + "% of the way through. ";
-				if(spacePlayer.landLevel < 0){
-					end += " Stupid lousy goddamned GrimDark players fucking with the frog breeding. Somehow you ended up with less of a frog than when you got into the medium. ";
+				if(this.session.rocksFell){
+					end += "<br>With Skaia's destruction, there is nowhere to deploy the frog to. It doesn't matter how much frog breeding the Space Player did."
+				}else{
+					end += "<br>Unfortunately, the " + spacePlayer.htmlTitle() + " was unable to complete frog breeding duties. ";
+					end += " They only got " + Math.round(spacePlayer.landLevel/this.session.minFrogLevel*100) + "% of the way through. ";
+					
+					if(spacePlayer.landLevel < 0){
+						end += " Stupid lousy goddamned GrimDark players fucking with the frog breeding. Somehow you ended up with less of a frog than when you got into the medium. ";
+					}
+					end += " Who knew that such a pointless mini-game was actually crucial to the ending? ";
+					end += " No universe frog, no new universe to live in. Thems the breaks. ";
 				}
-				end += " Who knew that such a pointless mini-game was actually crucial to the ending? ";
-				end += " No universe frog, no new universe to live in. Thems the breaks. ";
+				
 				end += " If it's any consolation, it really does suck to fight so hard only to fail at the last minute. <Br><Br>Game Over.";
 				end += " Or is it? "
 				this.session.scratchAvailable = true;

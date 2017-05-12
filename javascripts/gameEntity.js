@@ -255,6 +255,9 @@ function GameEntity(session, name, crowned){
 			console.log("Rocks fall, everybody dies in session: " + this.session.session_id)
 			div.append("<Br><Br> In case you forgot, freaking METEORS have been falling onto the battlefield this whole time. This battle has been going on for so long that, literally, rocks fall, everybody dies.  ")
 			var living = findLivingPlayers(players); //dosn't matter if you absconded.
+			var spacePlayer = findAspectPlayer(this.session.players, "Space")
+			this.rocksFell = true;
+			spacePlayer.landLevel = 0; //can't deploy a frog if skaia was just destroyed. my test session helpfully reminded me of this 'cause one of the players god tier revived adn then used the sick frog to combo session. ...that...shouldn't happen.
 			for(var i = 0; i<living.length; i++){
 				var p = living[i];
 				p.makeDead("meteors to the face");

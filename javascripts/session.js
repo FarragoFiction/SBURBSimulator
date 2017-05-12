@@ -13,6 +13,7 @@ function Session(session_id){
 	this.kingsScepter = null;
 	this.hasHearts = false;
 	this.hasSpades = false;
+	this.rocksFell = true;
 	this.denizenBeat = false;
 	//session no longer keeps track of guardians.
 	this.king = null;
