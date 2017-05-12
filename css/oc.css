@@ -34,27 +34,27 @@
 	vertical-align: middle;
 }
 
-.multiSessionSummaryRomance{
+#multiSessionSummaryRomance{
 	display: none;
 }
 
-.multiSessionSummaryDrama{
+#multiSessionSummaryDrama{
 	display: none;
 }
 
-.multiSessionSummaryEnding{
+#multiSessionSummaryEnding{
 	display: none;
 }
 
-.multiSessionSummaryMisc{
+#multiSessionSummaryMisc{
 	display: none;
 }
 
-.multiSessionSummaryAverage{
+#multiSessionSummaryAverage{
 	display: none;
 }
 
-.multiSessionSummaryCorpseParty{
+#multiSessionSummaryCorpseParty{
 	display: none;
 }
 
