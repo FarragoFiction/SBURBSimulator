@@ -6,6 +6,7 @@ function SessionSummary(){
 	this.crashedFromSessionBug = null;
 	this.crashedFromPlayerActions = null;
 	this.won = null;
+	this.rocksFell = null;
 	this.num_scenes = null;
 	this.players = null;  //can ask for sessions with a blood player and a murder mode, for example
 	this.mvp = null;
@@ -348,6 +349,7 @@ function MultiSessionSummary(){
 	this.hasLuckyEvents = 0;
 	this.hasUnluckyEvents = 0;
 	this.hasFreeWillEvents = 0;
+	this.rocksFell = 0;
 
 	
 
@@ -406,7 +408,7 @@ function MultiSessionSummary(){
 		if(propertyName == "yellowYard" || propertyName == "timesAllLived" ||propertyName == "timesAllDied" || propertyName == "scratchAvailable"  || propertyName == "won") return true
 		if(propertyName == "crashedFromPlayerActions" || propertyName == "ectoBiologyStarted" ||propertyName == "comboSessions" || propertyName == "threeTimesSessionCombo")return true
 		if(propertyName == "fourTimesSessionCombo" || propertyName == "fiveTimesSessionCombo" ||propertyName == "holyShitMmmmmonsterCombo" || propertyName == "numberFullFrog") return true;
-		if(propertyName == "numberFullFrog" || propertyName == "numberSickFrog" ||propertyName == "numberNoFrog") return true;
+		if(propertyName == "numberFullFrog" || propertyName == "numberSickFrog" || propertyName == "numberNoFrog" || propertyName == "rocksFell") return true;
 		return false;
 	}
 	
@@ -478,14 +480,12 @@ function MultiSessionSummary(){
 	}
 	
 	this.generateClassFilterHTML = function(){
-		console.log("TODO: display classes for MSS. Then allow filtering by them. (Somehow)")
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryClasses'>Classes:";
 		html += "COMING SOON</div>"
 		return html;
 	}
 	
 	this.generateAspectFilterHTML = function(){
-		console.log("TODO: display aspects for MSS. Then allow filtering by them. (Somehow)")
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryAspects'>Aspects:";
 		html += "COMING SOON</div>"
 		return html;
@@ -634,6 +634,7 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		var ss = sessionSummaries[i];
 		mss.total ++;
 		if(ss.crashedFromSessionBug) mss.crashedFromSessionBug ++;
+		if(ss.rocksFell) mss.rocksFell ++;
 		if(ss.crashedFromPlayerActions) mss.crashedFromPlayerActions ++;
 		if(ss.scratchAvailable) mss.scratchAvailable ++;
 		if(ss.yellowYard) mss.yellowYard ++;

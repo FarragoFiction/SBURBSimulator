@@ -256,11 +256,11 @@ function GameEntity(session, name, crowned){
 			div.append("<Br><Br> In case you forgot, freaking METEORS have been falling onto the battlefield this whole time. This battle has been going on for so long that, literally, rocks fall, everybody dies.  ")
 			var living = findLivingPlayers(players); //dosn't matter if you absconded.
 			var spacePlayer = findAspectPlayer(this.session.players, "Space")
-			this.rocksFell = true;
+			this.session.rocksFell = true;
 			spacePlayer.landLevel = 0; //can't deploy a frog if skaia was just destroyed. my test session helpfully reminded me of this 'cause one of the players god tier revived adn then used the sick frog to combo session. ...that...shouldn't happen.
 			for(var i = 0; i<living.length; i++){
 				var p = living[i];
-				p.makeDead("meteors to the face");
+				p.makeDead("from terminal meteors to the face");
 			}
 		}
 		
@@ -292,7 +292,7 @@ function GameEntity(session, name, crowned){
 		this.strife = function(div, players, numTurns){
 			numTurns += 1;
 			if(this.name == "Black King" || this.name == "Black Queen"){
-				console.log("checking to see if rocks fall.")
+				//console.log("checking to see if rocks fall.")
 				this.session.timeTillReckoning += -1; //other fights are a a single tick. maybe do this differently later. have fights be multi tick. but it wouldn't tick for everybody. laws of physics man.
 				if(this.session.timeTillReckoning < this.session.reckoningEndsAt){
 					return this.rocksFallEverybodyDies(div, players, numTurns);

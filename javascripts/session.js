@@ -13,7 +13,7 @@ function Session(session_id){
 	this.kingsScepter = null;
 	this.hasHearts = false;
 	this.hasSpades = false;
-	this.rocksFell = true;
+	this.rocksFell = false;
 	this.denizenBeat = false;
 	//session no longer keeps track of guardians.
 	this.king = null;
@@ -568,6 +568,7 @@ function Session(session_id){
 	this.generateSummary = function(){
 		var summary = new SessionSummary();
 		summary.scratched = this.scratched;
+		summary.rocksFell = this.rocksFell;
 		summary.won = this.won;
 		summary.hasBreakups = this.hasBreakups;
 		summary.ghosts = this.afterLife.ghosts;
