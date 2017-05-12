@@ -374,7 +374,7 @@ function MultiSessionSummary(){
 		}
 
 		for(var corpseType in corpseParty){
-			html += corpseType + ": " + corpseParty[corpseType] + "<br>" //todo maybe print out percentages here. we know how many ghosts there are.
+			html += "<Br>" +corpseType + ": " + corpseParty[corpseType] //todo maybe print out percentages here. we know how many ghosts there are.
 		}
 		html += "</div>"
 		return html
@@ -476,10 +476,16 @@ function MultiSessionSummary(){
 	
 	this.generateClassFilterHTML = function(){
 		console.log("TODO: display classes for MSS. Then allow filtering by them. (Somehow)")
+		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryClasses'>Classes:";
+		html += "<Br>COMING SOON</div>"
+		return html;
 	}
 	
 	this.generateAspectFilterHTML = function(){
 		console.log("TODO: display aspects for MSS. Then allow filtering by them. (Somehow)")
+		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryAspects'>Aspects:";
+		html += "<Br>COMING SOON</div>"
+		return html;
 	}
 	
 	
