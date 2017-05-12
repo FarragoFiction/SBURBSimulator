@@ -401,9 +401,12 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.justDeath = function(){
 		var ret = false;
 		
-		//impossible to have a just death from a denizen or denizen minion.
-		if(this.didDenizenKillYou()){
+		//impossible to have a just death from a denizen or denizen minion. unless you are corrupt.
+		if(this.didDenizenKillYou() && !this.grimDark <= 2){
 			return false;
+		}else if(this.grimDark > 2){
+			console.log("just death for a courrpt player from their denizen or denizen mionion in session: " + this.session.session_id)
+			return true; //always just if the denizen puts down a corrupt player.
 		}
 		
 		
@@ -438,8 +441,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.heroicDeath = function(){
 		var ret = false;
 		
-		//it's just if a denizen kills a corrupt player. thems the breaks.
-		if(this.didDenizenKillYou() && !this.grimDark > 0){
+		//it's not heroic derping to death against a minion, or in a solo fight.
+		if(this.didDenizenKillYou() ){
 			return false;
 		}
 		
