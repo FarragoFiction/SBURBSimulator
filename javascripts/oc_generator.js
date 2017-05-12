@@ -177,15 +177,7 @@ function decideHemoCaste(player){
 	}
 }
 
-function decideLusus(player){
-	if(player.bloodColor == "#610061" || player.bloodColor == "#99004d" || players.bloodColor == "#631db4" ){
-		player.lusus = getRandomElementFromArray(seaLususTypes);
-	}else{
-		player.lusus = getRandomElementFromArray(landlususTypes);
-	}
 
-
-}
 
 function randomParagraph(div, player){
 	var url = "http://www.randomtext.me/api/gibberish/";
@@ -199,7 +191,7 @@ function decideTroll(player){
 	if($('[name="species"] option:selected').val() == "Any" && Math.seededRandom() > .5 ){
 		player.isTroll = true;
 		decideHemoCaste(player);
-		decideLusus(player);
+		player.decideLusus();
 		player.hairColor = "#000000"
 		player.quirk = randomTrollQuirk(player);
 	}else if($('[name="species"] option:selected').val() == "Troll"){
