@@ -107,7 +107,7 @@ function getParameterByName(name, url) {
 }
 
 function shareableURL(){
-	var str = '<a href = "index2.html?seed=' +initial_seed +'">Shareable URL </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <a href = "character_creator.html?seed=' +initial_seed +'">Replay Session (Extremely Fucking Alpha) </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp<a href = "index2.html">Random Session URL </a> '
+	var str = '<div class = "links"><a href = "index2.html?seed=' +initial_seed +'">Shareable URL </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <a href = "character_creator.html?seed=' +initial_seed +'">Replay Session (Extremely Fucking Alpha) </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp<a href = "index2.html">Random Session URL </a> </div>'
 	$("#seedText").html(str);
 }
 

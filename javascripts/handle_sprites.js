@@ -629,7 +629,9 @@ function drawLevelUp(canvas, player,repeatTime){
 //player in center, on platform, level name underneath them. aspect symbol behind them.
 //bg color is shirt color
 function drawLevelUpGodTier(canvas, player,repeatTime){
-	drawBGRadialWithWidth(canvas, 650, "#000000",getShirtColorFromAspect(player.aspect))
+	var leftMargin = 150;
+	var levelBuffer = getBufferCanvas(document.getElementById("godtierlevelup_template"));
+	drawBGRadialWithWidth(canvas, leftMargin, 650,650,"#000000",getShirtColorFromAspect(player.aspect))  //650 is iold
 
 
 	var symbolBuffer = getBufferCanvas(document.getElementById("sprite_template"));
@@ -651,14 +653,16 @@ function drawLevelUpGodTier(canvas, player,repeatTime){
 		drawSprite(pSpriteBuffer,player)
 	}
 
-	var levelBuffer = getBufferCanvas(document.getElementById("godtierlevelup_template"));
+	
 	//drawBG(levelBuffer, "#ff0000", "#00ff00");
 	writeLevelGod(levelBuffer, player);
+	
+	
 
-	copyTmpCanvasToRealCanvasAtPos(canvas, symbolBuffer,165,0)
-	copyTmpCanvasToRealCanvasAtPos(canvas, godBuffer,100,0)
-	copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,100,0)
-	copyTmpCanvasToRealCanvasAtPos(canvas, levelBuffer,-200,290) //265 is perfectly lined on rainbow //300 is a little too far down.
+	copyTmpCanvasToRealCanvasAtPos(canvas, symbolBuffer,leftMargin+165,0)
+	copyTmpCanvasToRealCanvasAtPos(canvas, godBuffer,leftMargin+100,0)
+	copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,leftMargin+100,0)
+	copyTmpCanvasToRealCanvasAtPos(canvas, levelBuffer,leftMargin+-200,290) //265 is perfectly lined on rainbow //300 is a little too far down.
 }
 
 function drawGodSymbolBG(canvas, player){
@@ -1080,7 +1084,7 @@ function drawBG(canvas, color1, color2){
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-function drawBGRadialWithWidth(canvas, width, color1, color2){
+function drawBGRadialWithWidth(canvas, startX, endX, width, color1, color2){
 	//var c = document.getElementById(canvasId);
 	var ctx = canvas.getContext("2d");
 
@@ -1089,7 +1093,7 @@ function drawBGRadialWithWidth(canvas, width, color1, color2){
 	grd.addColorStop(1, color2);
 
 	ctx.fillStyle = grd;
-	ctx.fillRect(0, 0, width, canvas.height);
+	ctx.fillRect(startX, 0, endX, canvas.height);
 }
 
 function denizenKill(canvas,player){

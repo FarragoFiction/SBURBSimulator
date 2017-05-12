@@ -16,6 +16,9 @@
 .links{
 	background-color: white;
 	padding: 10px;
+	width:1000px;
+	margin-left: auto;
+	margin-right: auto;
 	border: 3px solid black;
 	text-align: center;
 	vertical-align: middle;
