@@ -884,7 +884,7 @@ disastor_objects.push(new GameEntity(null, "Pumpkin",null));
 disastor_objects[disastor_objects.length-1].power = 500;
 disastor_objects[disastor_objects.length-1].maxLuck = 5000;
 disastor_objects[disastor_objects.length-1].mobility = 5000;  //what pumpkin?
-disastor_objects[disastor_objects.length-1].helpPhrase = "was kind of helpful, and then kind of didn’t exist. Please don’t think to hard about it, the simulation is barely handling a pumpkin sprite as is. ";
+disastor_objects[disastor_objects.length-1].helpPhrase = "was kind of helpful, and then kind of didn’t exist. Please don’t think too hard about it, the simulation is barely handling a pumpkin sprite as is. ";
 
 
 disastor_objects.push(new GameEntity(null, "Werewolf",null));
