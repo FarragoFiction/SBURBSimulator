@@ -413,11 +413,149 @@ function MultiSessionSummary(){
 			hasClubs
 			hasHearts
 			hasBreakups (add)
+		Classes
+		Aspects
 		Misc (for some of the weirder stuff)
 		
-		So, categories are: Averages, Ending Spoilers, Dramatic Scenes, Romance Scenes and Misc. Misc might not exist. 
+		So, categories are: Averages, Classes, Aspects, Ending Spoilers, Dramatic Scenes, Romance Scenes and Misc. Misc might not exist. 
 	*/
+	
+	//this lets me know which div to put it into
+	this.isRomanceProperty = function(propertyName){
+		
+	}
+	
+	this.isDramaticProperty = function(propertyName){
+		
+	}
+	
+	this.isEndingProperty = function(propertyName){
+		
+	}
+	
+	this.isAverageProperty = function(propertyName){
+		
+	}
+	
+	this.isPropertyToIgnore = function(propertyName){
+		
+	}
+	
+	//lets me know whether to have a checkbox with it or not.
+	this.isFilterableProperty = function(propertyName){
+		
+	}
+	
 	this.generateHTML = function(){
+		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
+		var header = "<h2>Stats for All Displayed Sessions: </h2>(When done finding, can filter)"
+		html += header;
+		
+		var romanceProperties = [];
+		var dramaProperties = [];
+		var endingProperties = [];
+		var averageProperties = [];
+		var miscProperties = [];  //catchall if i missed something.
+		
+		for(var propertyName in this) {
+			if(propertyName == "total"){ //it's like a header.
+				html += "<Br><b> ";
+				html +=  propertyName + "</b>: " + this[propertyName] ;
+				html += " (" + Math.round(100* (this[propertyName]/this.total)) + "%)";
+			}else if(propertyName == "totalDeadPlayers"){
+				html += "<Br><b>totalDeadPlayers: </b> " + this.totalDeadPlayers + " ("+this.survivalRate + " % survival rate)"; //don't want to EVER ignore this.
+			}else if(this.isRomanceProperty(propertyName){
+				romanceProperties.push(propertyName)
+			}else if(this.isDramaticProperty(propertyName)){
+				dramaProperties.push(propertyName)
+			}else if(this.isEndingProperty(propertyName)){
+				endingProperties.push(propertyName)
+			}else if(this.isAverageProperty(propertyName)){
+				averageProperties.push(propertyName)
+			}else if(!isPropertyToIgnore(propertyName){
+				miscProperties.push(propertyName)
+			}
+		}
+		
+		html += this.generateRomanceHTML(romanceProperties);
+		html += this.generateDramaHTML(dramaProperties);
+		html += this.generateEndingHTML(endingProperties);
+		html += this.generateAverageHTML(averageProperties);
+		html += this.generateMiscHTML(miscProperties);
+		
+		html += this.generateCorpsePartyHTML();
+		//MSS and SS will need list of classes and aspects. just strings. nothing beefier.
+		//these will have to be filtered in a special way. just render and display stats for now, though. no filtering.
+		html += this.generateClassFilterHTML();
+		html += this.generateAspectFilterHTML();
+		html += "</div><Br>"
+		return html;
+		
+	}
+	
+	this.generateHTMLForProperty = function(propertyName){
+		var html = "";
+		if(this.isFilterableProperty(propertyName){
+			html += "<Br><b> <input disabled='true' type='checkbox' name='filter' value='"+propertyName +"' id='" + propertyName + "' onchange='filterSessionSummaries()'>";
+			html +=  propertyName + "</b>: " + this[propertyName] ;
+			html += " (" + Math.round(100* (this[propertyName]/this.total)) + "%)";
+		}else{
+			html += "<br><b>" + propertyName + "</b>: " + this[propertyName];
+		}
+		return html;
+	}
+	
+	this.generateRomanceHTML = function(properties){
+		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryRomance'>";
+		for(var propertyName in romanceProperties){
+			this.generateHTMLForProperty(propertyName)
+		}
+		html += "</div>"
+		return html;
+	}
+	
+	this.generateDramaHTML = function(properties){
+		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryDrama'>";
+		for(var propertyName in romanceProperties){
+			this.generateHTMLForProperty(propertyName)
+		}
+		html += "</div>"
+		return html;
+	}
+	
+	
+	this.generateEndingHTML = function(properties){
+		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryEnding'>";
+		for(var propertyName in romanceProperties){
+			this.generateHTMLForProperty(propertyName)
+		}
+		html += "</div>"
+		return html;
+	}
+	
+	
+	this.generateMiscHTML = function(properties){
+		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryMisc'>";
+		for(var propertyName in romanceProperties){
+			this.generateHTMLForProperty(propertyName)
+		}
+		html += "</div>"
+		return html;
+	}
+	
+	this.generateAverageHTML = function(properties){
+		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryRomance'>";
+		for(var propertyName in romanceProperties){
+			this.generateHTMLForProperty(propertyName)
+		}
+		html += "</div>"
+		return html;
+	}
+	
+	
+	
+	
+	this.generateHTMLOld = function(){
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
 		var header = "<h2>Stats for All Displayed Sessions: </h2>(When done finding, can filter)"
 		html += header;
