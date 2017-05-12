@@ -462,7 +462,7 @@ function MultiSessionSummary(){
 				miscProperties.push(propertyName)
 			}
 		}
-		html += "</div>"
+		html += "</div><br>"
 		html += this.generateRomanceHTML(romanceProperties);
 		html += this.generateDramaHTML(dramaProperties);
 		html += this.generateEndingHTML(endingProperties);
