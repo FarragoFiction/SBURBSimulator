@@ -64,7 +64,6 @@
 	margin-left: auto;
     margin-right: auto;
 	padding: 10px;
-	height: 10000px;
 }
 
 body{
@@ -97,14 +96,14 @@ body{
 }
 .multiSessionSummary{
   width: 250px;
-  float:left;
   border: 3px solid black;
-	float: left;
-	padding: 10px;
+  padding: 10px;
+  display: inline-block;
 }
 
 .sessionSummary{
 	width: 500px;
+	display: inline-block;
 }
 
 #colorList{
@@ -174,7 +173,6 @@ body{
 }
 
 .stats{
-  width: 200;
 }
 
 
