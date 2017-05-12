@@ -479,14 +479,14 @@ function MultiSessionSummary(){
 	this.generateClassFilterHTML = function(){
 		console.log("TODO: display classes for MSS. Then allow filtering by them. (Somehow)")
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryClasses'>Classes:";
-		html += "<Br>COMING SOON</div>"
+		html += "COMING SOON</div>"
 		return html;
 	}
 	
 	this.generateAspectFilterHTML = function(){
 		console.log("TODO: display aspects for MSS. Then allow filtering by them. (Somehow)")
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryAspects'>Aspects:";
-		html += "<Br>COMING SOON</div>"
+		html += "COMING SOON</div>"
 		return html;
 	}
 	
