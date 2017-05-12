@@ -438,12 +438,12 @@ function MultiSessionSummary(){
 	}
 	
 	this.isPropertyToIgnore = function(propertyName){
-		
+		return propertyName == "totalLivingPlayers" || propertyName == "survivalRate" || propertyName == "ghosts" || propertyName == "generateCorpsePartyHTML" || propertyName == "generateHTML"
 	}
 	
-	//lets me know whether to have a checkbox with it or not.
+	//lets me know whether to have a checkbox with it or not. (only for actual properties on this object. not corpse party or class/aspect stuff.)
 	this.isFilterableProperty = function(propertyName){
-		
+		return !(propertyName == "sizeOfAfterLife" || propertyName == "averageAfterLifeSize" ||propertyName == "averageTriggerLevel" || propertyName == "averageRelationshipValue"  || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck")
 	}
 	
 	this.generateHTML = function(){
@@ -463,7 +463,7 @@ function MultiSessionSummary(){
 				html +=  propertyName + "</b>: " + this[propertyName] ;
 				html += " (" + Math.round(100* (this[propertyName]/this.total)) + "%)";
 			}else if(propertyName == "totalDeadPlayers"){
-				html += "<Br><b>totalDeadPlayers: </b> " + this.totalDeadPlayers + " ("+this.survivalRate + " % survival rate)"; //don't want to EVER ignore this.
+				html += "<Br><b>totalDeadPlayers: </b> " + this.totalDeadPlayers + " ("+this.survivalRate + " % survival rate)"; //don't want to EVER ignore this. 
 			}else if(this.isRomanceProperty(propertyName){
 				romanceProperties.push(propertyName)
 			}else if(this.isDramaticProperty(propertyName)){
@@ -554,7 +554,7 @@ function MultiSessionSummary(){
 	
 	
 	
-	
+	//replaced 5/12/17 part of the CorpseParty upgrade.
 	this.generateHTMLOld = function(){
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
 		var header = "<h2>Stats for All Displayed Sessions: </h2>(When done finding, can filter)"
