@@ -349,6 +349,7 @@ function MultiSessionSummary(){
 	this.hasUnluckyEvents = 0;
 	this.hasFreeWillEvents = 0;
 
+	
 
 	//display base cause of death "killed by Heir of Breath" and "killed by "Heir of Time" should both be "killed by Player"
 	//display classes and aspects.  Heirs: 47 (10%) Breath Players: 20 (5%) etc.
@@ -358,7 +359,8 @@ function MultiSessionSummary(){
 		// about players killing each other.  look for "died being put down like a rabid dog" and ignore the rest.  or  "fighting against the crazy X" to differentiate it from STRIFE.
 		//okay, everything else should be fine. this'll probably still be pretty big, but can figure out how i wanna compress it later. might make all minion/denizen fights compress down to "first goddamn boss fight" and "denizen fight" respectively, but not for v1. want to see if certain
 		//aspect have  a rougher go of it.
-		var html = "<div class = 'multiSessionSummary' id = 'corpseParty'>Corpse Party: "
+		var html = "<div class = 'multiSessionSummary' id = 'corpseParty'>Corpse Party: <button onclick='toggleCorpse()'>Toggle View </button>"
+		html += "<div id = 'multiSessionSummaryCorpseParty'>"
 		var corpseParty = {} //now to refresh my memory on how javascript hashmaps work
 		for(var i = 0; i<this.ghosts.length; i++){
 				if(this.ghosts[i].causeOfDeath.startsWith("fighting against the crazy")){
@@ -376,7 +378,7 @@ function MultiSessionSummary(){
 		for(var corpseType in corpseParty){
 			html += "<Br>" +corpseType + ": " + corpseParty[corpseType] //todo maybe print out percentages here. we know how many ghosts there are.
 		}
-		html += "</div>"
+		html += "</div></div>"
 		return html
 
 	}
@@ -504,7 +506,7 @@ function MultiSessionSummary(){
 	
 	//css will handle this be initialized to display:hidden or whatever, and then javascript will handle toggles. 
 	this.generateRomanceHTML = function(properties){
-		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryRomance'>Romance:";
+		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryRomance'>Romance: <button onclick='toggleRomance()'>Toggle View </button>";
 		for(var i = 0; i<properties.length; i++){
 			var propertyName = properties[i];
 			html += this.generateHTMLForProperty(propertyName)
@@ -514,44 +516,48 @@ function MultiSessionSummary(){
 	}
 	
 	this.generateDramaHTML = function(properties){
-		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryDrama'>Drama: ";
+		var html = "<div class = 'multiSessionSummary' >Drama: <button onclick='toggleDrama()'>Toggle View </button>";
+		html += "<div id = 'multiSessionSummaryDrama' >"
 		for(var i = 0; i<properties.length; i++){
 			var propertyName = properties[i];
 			html += this.generateHTMLForProperty(propertyName)
 		}
-		html += "</div>"
+		html += "</div></div>"
 		return html;
 	}
 	
 	
 	this.generateEndingHTML = function(properties){
-		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryEnding'>Ending:";
+		var html = "<div class = 'multiSessionSummary'>Ending: <button onclick='toggleEnding()'>Toggle View </button>";
+		html += "<div id = 'multiSessionSummaryEnding' >"
 		for(var i = 0; i<properties.length; i++){
 			var propertyName = properties[i];
 			html += this.generateHTMLForProperty(propertyName)
 		}
-		html += "</div>"
+		html += "</div></div>"
 		return html;
 	}
 	
 	
 	this.generateMiscHTML = function(properties){
-		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryMisc'>Misc";
+		var html = "<div class = 'multiSessionSummary' >Misc <button onclick='toggleMisc()'>Toggle View </button>";
+		html += "<div id = 'multiSessionSummaryMisc' >"
 		for(var i = 0; i<properties.length; i++){
 			var propertyName = properties[i];
 			html += this.generateHTMLForProperty(propertyName)
 		}
-		html += "</div>"
+		html += "</div></div>"
 		return html;
 	}
 	
 	this.generateAverageHTML = function(properties){
-		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryAverage'>Average";
+		var html = "<div class = 'multiSessionSummary' >Average <button onclick='toggleAverage()'>Toggle View </button>";
+		html += "<div id = 'multiSessionSummaryAverage' >"
 		for(var i = 0; i<properties.length; i++){
 			var propertyName = properties[i];
 			html += this.generateHTMLForProperty(propertyName)
 		}
-		html += "</div>"
+		html += "</div></div>"
 		return html;
 	}
 	
@@ -741,4 +747,28 @@ function MultiSessionSummaryJunior(){
 		html += "</div><Br>"
 		return html;
 	}
+}
+
+function toggleCorpse(){
+		$('#multiSessionSummaryCorpseParty').toggle()
+}
+
+function toggleRomance(){
+		$('#multiSessionSummaryRomance').toggle()
+}
+
+function toggleDrama(){
+		$('#multiSessionSummaryDrama').toggle()
+}
+
+function toggleMisc(){
+		$('#multiSessionSummaryMisc').toggle()
+}
+
+function toggleEnding(){
+		$('#multiSessionSummaryEnding').toggle()
+}
+
+function toggleAverage(){
+		$('#multiSessionSummaryAverage').toggle()
 }
