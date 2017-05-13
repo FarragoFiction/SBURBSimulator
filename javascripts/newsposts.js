@@ -64,6 +64,12 @@ function newsposts(main){
 
 function roboNewsposts(){
 	writeRoboNewspost(new Date().toLocaleDateString(), "As a robot, I'm always available to make these news posts.")
+	writeRoboNewspost(new Date().toLocaleDateString(), randomRobotQuip())
+	writeRoboNewspost(new Date().toLocaleDateString(), randomRobotQuip())
+	writeRoboNewspost(new Date().toLocaleDateString(), randomRobotQuip())
+	writeRoboNewspost(new Date().toLocaleDateString(), randomRobotQuip())
+	writeRoboNewspost(new Date().toLocaleDateString(), randomRobotQuip())
+	writeRoboNewspost(new Date().toLocaleDateString(), randomRobotQuip())
 	writeRoboNewspost("3/21/17", roboIntro())
 	writeRoboNewspost("3/20/17", randomRobotQuip())
 	writeRoboNewspost("3/19/17", randomRobotQuip())
