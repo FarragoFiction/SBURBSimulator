@@ -321,7 +321,7 @@ function GameEntity(session, name, crowned){
 		//find highest mobility player (hope they don't fucking dodge forever.)
 		//render the player backup.
 		this.summonPlayerBackup = function(div,player,numTurns){
-
+				console.log("TODO, summon player back up, highest mobility living player in session. um. with a sprite, i guess. (means theya re in session.)")
 		}
 
 		//DD does it with finese (highest hp.power wins), HB does it with brutality (highest power wins). CD will either just end the fight with everybody absconded OR blow everybody up.
@@ -332,7 +332,7 @@ function GameEntity(session, name, crowned){
 		//render this.
 		//doomed time clones will help with the fight. then teleport off (if they survive) to the black king fight
 		this.summonDoomedTimeClone = function(div, player, numTurns){
-
+				console.log("TODO: summon a doomed time clone. is code for making one of those only n the scene/???")
 		}
 
 		//I didn't MEAN  for it to be calliborn apparently killing everybody, but my placeholder test phrase ended up being in his voice and one thing lead to another and now yeah. asshole mcgee is totally caliborn.
@@ -367,6 +367,22 @@ function GameEntity(session, name, crowned){
 
 		}
 
+		//longer fight goes on, better chance of back up.
+		//back up not available for denizen fights.
+		//fresh doomed players only show up if numTurns > 3
+		this.summonBackUp = function(div, player, numTurns){
+			if(this.session.getDenizenForPlayer(players[0]).name == this.name){
+				return ;
+			}
+			//if i assume a 3 turn fight is "ideal", then have a 1/10 chance of backup each turn.
+			var rand =Math.seededRandom()>.1
+			if(rand){
+				this.summonPlayerBackup(div, players, numTurns);
+			}else if(rand > .3 && numTurns >3){
+				this.summonDoomedTimeClone(div,players, numTurns);
+			}
+		}
+
 
 		//before a fight is called, decide who is in it. denizens are one on one, jack catches slower player and friends
 		//king/queen are whole party. if you want to comment on who's in it, do it before here.
@@ -396,6 +412,8 @@ function GameEntity(session, name, crowned){
 				 this.ending(div,players, numTurns);
 				 return;
 			}
+
+			this.summonBackUp(div, players, numTurns);//might do nothing;
 			//console.log(this.name + ": strife! " + numTurns + " turns against: " + getPlayersTitlesNoHTML(players) + this.session.session_id);
 			div.append("<br><Br>")
 			//as players die or mobility stat changes, might go players, me, me, players or something. double turns.
