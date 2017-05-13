@@ -244,6 +244,7 @@ function GameEntity(session, name, crowned){
 		//player wont have a sprite once the reckoning happens. (also keeps them from bringing them into combo sessions, for now.)
 		//not possible for denizen fights.
 		//make sure sprite isn't dead and player hasn't absconded. sprite isn't a "player", so they can't do something if their player is dead or absconded.
+		//OR instead have sprites be part of the "players array". let them have full AI and everything. whatever. think about this.
 		this.spriteAttack = function(div, players){
 				console.log("TODO: implement sprite attacks. will drop the rate of minion deaths.")
 		}
