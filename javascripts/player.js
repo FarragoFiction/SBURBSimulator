@@ -360,7 +360,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			//console.log("denizen quest")
 			return getRandomDenizenQuestFromAspect(this); //denizen quests are aspect only, no class.
 		}else if((this.landLevel < 9 || this.denizen_index >=3) && this.denizenDefeated == false){  //can do more land quests if denizen kicked your ass. need to grind.
-			if(Math.seededRandom() > .5){
+			if(Math.seededRandom() > .5 || this.aspect == "Space"){ //back to having space players be locked to frogs. 
 				return getRandomQuestFromAspect(this.aspect);
 			}else{
 				return getRandomQuestFromClass(this.class_name);
