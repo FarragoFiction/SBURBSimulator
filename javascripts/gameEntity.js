@@ -267,12 +267,13 @@ function GameEntity(session, name, crowned){
 		//AB will let JR know that a fight is taking WAY too fucking long. JR will summon rocks. everybody will die. no time for finesse
 		//JR will will be regretful, but nothing is allowed to hurt AB.
 		//AB will have corrupt font.
+		//there is no random chance of this. it is the final line of defense.
 		this.summonAuthor = function(div,player, numTurns){
 
 		}
 
 		//you are clearly not ready for this fight. Go prepare (random chance of leveling you up to pretend you took their advice.)
-		this.denizenIsNotPuttingUpWithYourShitAnyLonger = function(div,player, numTurns){
+		this.denizenIsSoNotPuttingUpWithYourShitAnyLonger = function(div,player, numTurns){
 
 		}
 
@@ -282,7 +283,7 @@ function GameEntity(session, name, crowned){
 
 		}
 
-		//DD does it with finese, HB does it with brutality. CD will either just end the fight OR blow everybody up.
+		//DD does it with finese (highest hp.power wins), HB does it with brutality (highest power wins). CD will either just end the fight with everybody absconded OR blow everybody up.
 		this.summonMidnightCrew = function(div, player, numTurns){
 
 		}
@@ -293,10 +294,9 @@ function GameEntity(session, name, crowned){
 
 		}
 
-		//rarest fix.
 		//I didn't MEAN  for it to be calliborn apparently killing everybody, but my placeholder test phrase ended up being in his voice and one thing lead to another and now yeah. asshole mcgee is totally caliborn.
 		//which ALSO means i'm not gonna bother picking a "winner". that would be work, I'm lazy, and also caliborn wouldn't care about that.
-		this.assHoleMcGee = function(div,players,numTurns){
+		this.summonAssHoleMcGee = function(div,players,numTurns){
 			console.log("!!!!!!!!!!!!!!!!!This is stupid. Summon asshole mcgee in session: " + this.session.session_id);
 			div.append("<Br><Br>THIS IS STuPID. EVERYBODY INVOLVED. IN THIS STuPID. STuPID FIGHT. IS NOW DEAD. SuCK IT.  tumut")
 			var living = this.getLivingMinusAbsconded(players); //dosn't matter if you absconded.
@@ -305,6 +305,16 @@ function GameEntity(session, name, crowned){
 				p.makeDead("BEING INVOLVED. IN A STuPID. STuPID FIGHT. THAT WENT ON. FOR WAY TOO LONG.");
 			}
 			this.ending(div,players,numTurns)
+		}
+
+		//returns true or false.
+		this.fightNeedsToEnd = function(div, players, numTurns){
+			if(numTurns > 3){
+				this.summonAssHoleMcGee(div, players, numTurns);
+				return true;
+			}
+			return false;
+
 		}
 
 
@@ -326,10 +336,15 @@ function GameEntity(session, name, crowned){
 				//console.log("checking to see if rocks fall.")
 				this.session.timeTillReckoning += -1; //other fights are a a single tick. maybe do this differently later. have fights be multi tick. but it wouldn't tick for everybody. laws of physics man.
 				if(this.session.timeTillReckoning < this.session.reckoningEndsAt){
-					return this.rocksFallEverybodyDies(div, players, numTurns);
-				}else if(numTurns > 5){
-					return this.assHoleMcGee(div, players, numTurns);
+				  this.rocksFallEverybodyDies(div, players, numTurns);
+					this.ending(div, players, numTurns);
+					return;
 				}
+			}
+
+			if(this.fightNeedsToEnd()){
+				 this.ending(div,players, numTurns);
+				 return;
 			}
 			//console.log(this.name + ": strife! " + numTurns + " turns against: " + getPlayersTitlesNoHTML(players) + this.session.session_id);
 			div.append("<br><Br>")
@@ -381,12 +396,12 @@ function GameEntity(session, name, crowned){
 
 			this.iAbscond = false;
 			this.healPlayers(div,players);
-			//TODO: pose as a team.
-			//remove absconded plaeyrs.
+			//pose as a team.
+			//but first, remove absconded plaeyrs.
 			for(var i = 0; i<this.playersAbsconded.length; i++){
 				removeFromArray(this.playersAbsconded[i], players);
 			}
-			var divID = (div.attr("id")) + "_ending";
+			var divID = (div.attr("id")) + "_ending"+players.join("");
 			var ch = canvasHeight;
 			if(players.length > 6){
 				ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones

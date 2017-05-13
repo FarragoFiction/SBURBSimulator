@@ -389,7 +389,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.getDenizen = function(){
 		return this.session.getDenizenForPlayer(this).name;
 	}
-	
+
 	this.didDenizenKillYou = function(){
 		if(this.causeOfDeath.includes(this.session.getDenizenForPlayer(this).name)){
 			return true; //also return true for minions. this is intentional.
@@ -400,7 +400,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	//more likely if lots of people hate you
 	this.justDeath = function(){
 		var ret = false;
-		
+
 		//impossible to have a just death from a denizen or denizen minion. unless you are corrupt.
 		if(this.didDenizenKillYou() && !this.grimDark <= 2){
 			return false;
@@ -408,8 +408,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!just death for a courrpt player from their denizen or denizen mionion in session: " + this.session.session_id)
 			return true; //always just if the denizen puts down a corrupt player.
 		}
-		
-		
+
+
 		//if much less friends than enemies.
 		if(this.getFriends().length < this.getEnemies().length){
 			if(Math.seededRandom() > .9){ //just deaths are rarer without things like triggers.
@@ -440,12 +440,12 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	//more likely if lots of people like you
 	this.heroicDeath = function(){
 		var ret = false;
-		
+
 		//it's not heroic derping to death against a minion, or in a solo fight.
 		if(this.didDenizenKillYou() ){
 			return false;
 		}
-		
+
 		//if far more enemies than friends.
 		if(this.getFriends().length > this.getEnemies().length ){
 			if(Math.seededRandom() > .6){
@@ -1605,6 +1605,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(this.robot){
 			this.power += 100; //robots are superior
 		}
+	}
+
+	this.toString = function(){
+		return this.class_name+this.aspect; //no spaces.
 	}
 
 
