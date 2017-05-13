@@ -410,6 +410,12 @@ function GameEntity(session, name, crowned){
 				}
 				return false; //denizen fights can not be interupted and are self limiting
 			}
+
+			if(numTurns > 20 && Math.seededRandom() < .005){
+				this.summonAssHoleMcGee(div, players, numTurns);
+				return true;
+			}
+
 			if(numTurns > 30){
 				this.summonAuthor(div, players, numTurns);
 				return true;

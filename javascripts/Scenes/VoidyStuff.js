@@ -88,7 +88,7 @@ function VoidyStuff(session){
 					this.player.denizenDefeated = false;
 					ret += " That didn't sound good... ";
 					this.player.dead = true;
-					this.player.makeDead("fighting their Denizen way too early");
+					this.player.makeDead("fighting their Denizen way too early, cloaked in Void");
 				}else{
 					this.player.denizenDefeated = false;
 				}

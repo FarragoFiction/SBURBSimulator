@@ -111,7 +111,7 @@ function GodTierRevival(session){
 					//console.log("unlucky break for god tier revival in: " + this.session.session_id);
 					ret += " ... Huh. Should the clock be DOING that? It's on both HEROIC and JUST at the same time, somehow? Not neither of them. Talk about a BAD BREAK. They do not revive.  ";
 					p.canGodTierRevive = false;
-					p.causeOfDeath += " (t was an unlucky judgement) "
+					p.causeOfDeath += " (it was an unlucky judgement) "
 					this.session.afterLife.addGhost(makeRenderingSnapshot(p));
 				}else{
 					//console.log("god tier revival in: " + this.session.session_id);
