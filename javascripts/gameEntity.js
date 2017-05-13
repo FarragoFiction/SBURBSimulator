@@ -283,7 +283,8 @@ function GameEntity(session, name, crowned){
 		//you are clearly not ready for this fight. Go prepare (random chance of leveling you up to pretend you took their advice.)
 		//ONLY possibility for denizen fights, and happens at 3 turn mark.
 		this.denizenIsSoNotPuttingUpWithYourShitAnyLonger = function(div,players, numTurns){
-				div.append("<Br><Br>" + this.session.getDenizenForPlayer(player) + " decides that the " + players[0].htmlTitleBasic() + " is being a little baby who poops hard in their diapers and are in no way ready for this fight. The Denizen recommends that they come back after they mature a little bit. The + " players[0].htmlTitleBasic() + "'s ass is kicked so hard they are ejected from the fight, but are not killed.")
+			console.log("!!!!!!!!!!!!!!!!!denizen not putting up with your shit: " + this.session.session_id);
+				div.append("<Br><Br>" + this.session.getDenizenForPlayer(players[0]) + " decides that the " + players[0].htmlTitleBasic() + " is being a little baby who poops hard in their diapers and are in no way ready for this fight. The Denizen recommends that they come back after they mature a little bit. The " +players[0].htmlTitleBasic() + "'s ass is kicked so hard they are ejected from the fight, but are not killed.")
 				if(Math.seededRandom() > .5){ //players don't HAVE to take the advice after all. assholes.
 					this.levelPlayers(div, players);
 				}
@@ -322,8 +323,9 @@ function GameEntity(session, name, crowned){
 		//returns true or false.
 		this.fightNeedsToEnd = function(div, players, numTurns){
 			//if this IS a denizen fight, i can assume there is only one player in it
-			if(this.session.getDenizenForPlayer(players[0]) == this){
-				if(numTurns>3){
+			if(this.session.getDenizenForPlayer(players[0]).name == this.name){
+				console.log("it's a denizen fight")
+				if(numTurns>5 || player[0].hp < this.getPower()){
 					this.denizenIsSoNotPuttingUpWithYourShitAnyLonger(div, players, numTurns);
 					return true;
 				}
