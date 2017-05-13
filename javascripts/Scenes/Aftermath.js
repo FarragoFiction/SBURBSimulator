@@ -102,17 +102,25 @@ function Aftermath(session){
 
 	this.renderContent = function(div){
 		var yellowYard = false;
-		var living = findLivingPlayers(this.session.players);
 		var end = "<Br>";
-		if(living.length == this.session.players.length){
-			end += " All "
+		var living = findLivingPlayers(this.session.players);
+		var spacePlayer = findAspectPlayer(this.session.players, "Space");
+		if(living.length > 0  && this.session.king.getHP()>0 || (this.session.queen.getHP()>0 && this.session.queen.exiled == false)){
+			end += " While various bullshit means of revival were being processed, the Black Royalty have fled Skaia to try to survive the Meteor storm. There is no more time, if the frog isn't deployed now, it never will be. There is no time for mourning. "
+			this.session.opossumVictory = true; //still laughing about this. it's when the players don't kill the queen/king because they don't have to fight them because they are al lint he process of god tier reviving. so the royalty fucks off. and when the players wake up, there's no bosses, so they just pop the frog in the skia hole.
+			div.append(end);
+			end = "<br><br>"
+		}else if(living.length>0){
+				if(living.length == this.session.players.length){
+					end += " All "
+				}
+				end += living.length + " players are alive.<BR>" ;
+				div.append(end);//write text, render mourning
+				end = "<Br>";
+				this.mournDead(div);
 		}
-		end += living.length + " players are alive.<BR>" ;
+
 		if(living.length > 0){
-			div.append(end);//write text, render mourning
-			end = "<Br>";
-			this.mournDead(div);
-			var spacePlayer = findAspectPlayer(this.session.players, "Space");
 			if(spacePlayer.landLevel >= this.session.minFrogLevel){
 				end += "<br> Luckily, the " + spacePlayer.htmlTitle() + " was diligent in frog breeding duties. ";
 				if(spacePlayer.landLevel < 28){
@@ -134,9 +142,6 @@ function Aftermath(session){
 				}else{
 					end += this.democracyBonus();
 					end += " <Br><br> The door to the new universe is revealed. Everyone files in. <Br><Br> Thanks for Playing. ";
-					if(this.session.king.getHP()>0 || (this.session.queen.getHP()>0 && this.session.queen.exiled == false)){
-						this.session.opossumVictory = true; //still laughing about this. it's when the players don't kill the queen/king because they don't have to fight them because they are al lint he process of god tier reviving. so the royalty fucks off. and when the players wake up, there's no bosses, so they just pop the frog in the skia hole.
-					}
 					this.session.won = true;
 				}
 			}else{
@@ -185,7 +190,7 @@ function Aftermath(session){
 	if(yellowYard == true){
 		this.yellowLawnRing(div);  //can still scratch, even if yellow lawn ring is available
 	}
-	}
+}
 
 	this.content = function(div, i){
 		var ret = " TODO: Figure out what a non 2.0 version of the Intro scene would look like. "
