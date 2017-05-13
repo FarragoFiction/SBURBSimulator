@@ -14,7 +14,7 @@ function Breakup(session){
 			this.player = this.session.availablePlayers[i];
 			var breakup= this.breakUpBecauseIAmCheating() || this.breakUpBecauseTheyCheating() || this.breakUpBecauseNotFeelingIt();
 			if(!this.player.dead && breakup==true){
-				console.log("breakup happening: is it triggering anything??? " + this.reason + " with player: " + this.player.title() + this.session.session_id)
+				//console.log("breakup happening: is it triggering anything??? " + this.reason + " with player: " + this.player.title() + this.session.session_id)
 				return true;
 			}
 		}
@@ -99,7 +99,7 @@ function Breakup(session){
 						this.player.flipOut("having to confront their Matesprit, the  " + this.relationshipToBreakUp.target.htmlTitle() + " about their cheating");
 						r.value =-10;
 						this.reason = "you_cheat"
-						console.log("breaking up hearts because they are cheating in session: " +this.session.session_id)
+						//console.log("breaking up hearts because they are cheating in session: " +this.session.session_id)
 						return true;
 					}
 				}
@@ -116,7 +116,7 @@ function Breakup(session){
 						this.player.flipOut("having to confront their Kismesis, the  " + this.relationshipToBreakUp.target.htmlTitle() + " about their cheating");
 						r.value =-10;
 						this.reason = "you_cheat"
-						console.log("breaking up spades because they are cheating in session: " +this.session.session_id)
+						//console.log("breaking up spades because they are cheating in session: " +this.session.session_id)
 						return true;
 					}
 				}
@@ -133,7 +133,7 @@ function Breakup(session){
 						this.relationshipToBreakUp.target.flipOut("having to confront their trusted FUCKING Moirail, the  " + this.relationshipToBreakUp.target.htmlTitle() + " about their cheating");
 						r.value =-50;
 						this.reason = "you_cheat"
-						console.log("breaking up diamonds because they are cheating in session: " +this.session.session_id)
+						//console.log("breaking up diamonds because they are cheating in session: " +this.session.session_id)
 						return true;
 					}
 				}
@@ -152,7 +152,7 @@ function Breakup(session){
 						this.relationshipToBreakUp = r;
 						this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 						this.reason = "bored"
-						console.log("breaking up heart because they are bored in session: " +this.session.session_id)
+						//console.log("breaking up heart because they are bored in session: " +this.session.session_id)
 						return true;
 				}
 			}
@@ -162,7 +162,7 @@ function Breakup(session){
 						this.relationshipToBreakUp =r;
 						this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 						this.reason = "bored"
-						console.log("breaking up spades because they are bored in session: " +this.session.session_id)
+					//	console.log("breaking up spades because they are bored in session: " +this.session.session_id)
 						return true;
 				}
 			}
@@ -172,7 +172,7 @@ function Breakup(session){
 						this.relationshipToBreakUp = r;
 						this.reason = "bored"
 						this.formerQuadrant = this.relationshipToBreakUp.saved_type;
-						console.log("breaking up diamond because they are bored in session: " +this.session.session_id)
+					//	console.log("breaking up diamond because they are bored in session: " +this.session.session_id)
 						return true;
 				}
 			}

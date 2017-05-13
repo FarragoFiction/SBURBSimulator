@@ -134,6 +134,9 @@ function Aftermath(session){
 				}else{
 					end += this.democracyBonus();
 					end += " <Br><br> The door to the new universe is revealed. Everyone files in. <Br><Br> Thanks for Playing. ";
+					if(this.session.king.getHP()>0 || (this.session.queen.getHP()>0 && this.session.queen.exiled == false)){
+						this.session.opossumVictory = true; //still laughing about this. it's when the players don't kill the queen/king because they don't have to fight them because they are al lint he process of god tier reviving. so the royalty fucks off. and when the players wake up, there's no bosses, so they just pop the frog in the skia hole.
+					}
 					this.session.won = true;
 				}
 			}else{
@@ -142,14 +145,14 @@ function Aftermath(session){
 				}else{
 					end += "<br>Unfortunately, the " + spacePlayer.htmlTitle() + " was unable to complete frog breeding duties. ";
 					end += " They only got " + Math.round(spacePlayer.landLevel/this.session.minFrogLevel*100) + "% of the way through. ";
-					
+
 					if(spacePlayer.landLevel < 0){
 						end += " Stupid lousy goddamned GrimDark players fucking with the frog breeding. Somehow you ended up with less of a frog than when you got into the medium. ";
 					}
 					end += " Who knew that such a pointless mini-game was actually crucial to the ending? ";
 					end += " No universe frog, no new universe to live in. Thems the breaks. ";
 				}
-				
+
 				end += " If it's any consolation, it really does suck to fight so hard only to fail at the last minute. <Br><Br>Game Over.";
 				end += " Or is it? "
 				this.session.scratchAvailable = true;

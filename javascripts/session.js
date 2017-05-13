@@ -5,6 +5,7 @@ function Session(session_id){
 	this.hasClubs = false;
 	this.sessionHealth = 5000; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
 	this.hasDiamonds = false;
+	this.opossumVictory = false;
 	this.hasBreakups = false;
 	this.denizens = [];
 	this.denizen_minions = [];
@@ -568,6 +569,7 @@ function Session(session_id){
 	this.generateSummary = function(){
 		var summary = new SessionSummary();
 		summary.scratched = this.scratched;
+		summary.opossumVictory = this.opossumVictory;
 		summary.rocksFell = this.rocksFell;
 		summary.won = this.won;
 		summary.hasBreakups = this.hasBreakups;

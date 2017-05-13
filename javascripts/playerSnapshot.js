@@ -67,6 +67,10 @@ function PlayerSnapshot(){
 		return this.chatHandle.match(/\b(\w)|[A-Z]/g).join('').toUpperCase();
 	}
 
+	this.toString = function(){
+		return this.class_name+this.aspect; //no spaces.
+	}
+
 	this.titleBasic = function(){
 		var ret = "";
 
@@ -149,6 +153,15 @@ function PlayerSnapshot(){
 	this.interactionEffect = function(player){
 			//none
 	}
+
+	//stub
+	this.boostAllRelationshipsWithMeBy = function(amount){
+
+	};
+
+	this.boostAllRelationshipsBy = function(amount){
+
+	};
 
 
 	//bulshit stubs that game entities will have be different if crowned. players can't be crowned tho (or can they??? no. they can't.)

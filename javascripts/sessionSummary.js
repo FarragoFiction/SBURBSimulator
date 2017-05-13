@@ -6,6 +6,7 @@ function SessionSummary(){
 	this.crashedFromSessionBug = null;
 	this.crashedFromPlayerActions = null;
 	this.won = null;
+	this.opossumVictory = null;
 	this.rocksFell = null;
 	this.num_scenes = null;
 	this.players = null;  //can ask for sessions with a blood player and a murder mode, for example
@@ -350,8 +351,9 @@ function MultiSessionSummary(){
 	this.hasUnluckyEvents = 0;
 	this.hasFreeWillEvents = 0;
 	this.rocksFell = 0;
+	this.opossumVictory = 0;
 
-	
+
 
 	//display base cause of death "killed by Heir of Breath" and "killed by "Heir of Time" should both be "killed by Player"
 	//display classes and aspects.  Heirs: 47 (10%) Breath Players: 20 (5%) etc.
@@ -387,67 +389,67 @@ function MultiSessionSummary(){
 	}
 
 
-	
+
 	//this lets me know which div to put it into
 	this.isRomanceProperty = function(propertyName){
-		return propertyName == "hasDiamonds" || propertyName == "hasSpades" ||propertyName == "hasClubs" || propertyName == "hasHearts"  || propertyName == "hasBreakups" 
+		return propertyName == "hasDiamonds" || propertyName == "hasSpades" ||propertyName == "hasClubs" || propertyName == "hasHearts"  || propertyName == "hasBreakups"
 	}
-	
+
 	//TODO future upgrade for afterlife bullshit.
 	this.isDramaticProperty = function(propertyName){
 		if(propertyName == "exiledJack" || propertyName == "plannedToExileJack" ||propertyName == "exiledQueen" || propertyName == "jackGotWeapon"  || propertyName == "jackScheme") return true
 		if(propertyName == "kingTooPowerful" || propertyName == "queenRejectRing" ||propertyName == "murderMode" || propertyName == "grimDark"  || propertyName == "denizenFought") return true
 		if(propertyName == "denizenBeat" || propertyName == "godTier" ||propertyName == "questBed" || propertyName == "sacrificialSlab"  || propertyName == "heroicDeath") return true
 		if(propertyName == "justDeath" || propertyName == "rapBattle" ||propertyName == "sickFires" || propertyName == "hasLuckyEvents"  || propertyName == "hasUnluckyEvents") return true
-		if(propertyName == "hasFreeWillEvents" ||propertyName == "jackRampage" || propertyName == "democracyStarted" ) return true; 
+		if(propertyName == "hasFreeWillEvents" ||propertyName == "jackRampage" || propertyName == "democracyStarted" ) return true;
 		return false;
 	}
 
-	
+
 	this.isEndingProperty = function(propertyName){
 		if(propertyName == "yellowYard" || propertyName == "timesAllLived" ||propertyName == "timesAllDied" || propertyName == "scratchAvailable"  || propertyName == "won") return true
 		if(propertyName == "crashedFromPlayerActions" || propertyName == "ectoBiologyStarted" ||propertyName == "comboSessions" || propertyName == "threeTimesSessionCombo")return true
 		if(propertyName == "fourTimesSessionCombo" || propertyName == "fiveTimesSessionCombo" ||propertyName == "holyShitMmmmmonsterCombo" || propertyName == "numberFullFrog") return true;
-		if(propertyName == "numberFullFrog" || propertyName == "numberSickFrog" || propertyName == "numberNoFrog" || propertyName == "rocksFell") return true;
+		if(propertyName == "numberFullFrog" || propertyName == "numberSickFrog" || propertyName == "numberNoFrog" || propertyName == "rocksFell" || propertyName == "opossumVictory") return true;
 		return false;
 	}
-	
+
 	this.isAverageProperty = function(propertyName){
 		return propertyName == "sizeOfAfterLife" || propertyName == "averageAfterLifeSize" ||propertyName == "averageTriggerLevel" || propertyName == "averageRelationshipValue"  || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck"
 	}
-	
+
 	this.isPropertyToIgnore = function(propertyName){
 		if(propertyName == "totalLivingPlayers" || propertyName == "survivalRate" || propertyName == "ghosts" || propertyName == "generateCorpsePartyHTML" || propertyName == "generateHTML") return true;
 		if(propertyName == "isRomanceProperty" || propertyName == "isDramaticProperty" || propertyName == "isEndingProperty" || propertyName == "isAverageProperty" || propertyName == "isPropertyToIgnore") return true;
 		if(propertyName == "isFilterableProperty" || propertyName == "generateClassFilterHTML" || propertyName == "generateAspectFilterHTML" || propertyName == "generateHTMLForProperty" || propertyName == "generateRomanceHTML") return true;
 		if(propertyName == "generateDramaHTML" || propertyName == "generateMiscHTML" || propertyName == "generateAverageHTML" || propertyName == "generateHTMLOld" || propertyName == "generateEndingHTML") return true;
-		
+
 		return false;
 	}
-	
+
 	//lets me know whether to have a checkbox with it or not. (only for actual properties on this object. not corpse party or class/aspect stuff.)
 	this.isFilterableProperty = function(propertyName){
 		return !(propertyName == "sizeOfAfterLife" || propertyName == "averageAfterLifeSize" ||propertyName == "averageTriggerLevel" || propertyName == "averageRelationshipValue"  || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck")
 	}
-	
+
 	this.generateHTML = function(){
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
 		var header = "<h2>Stats for All Displayed Sessions: </h2>(When done finding, can filter)"
 		html += header;
-		
+
 		var romanceProperties = [];
 		var dramaProperties = [];
 		var endingProperties = [];
 		var averageProperties = [];
 		var miscProperties = [];  //catchall if i missed something.
-		
+
 		for(var propertyName in this) {
 			if(propertyName == "total"){ //it's like a header.
 				html += "<Br><b> ";
 				html +=  propertyName + "</b>: " + this[propertyName] ;
 				html += " (" + Math.round(100* (this[propertyName]/this.total)) + "%)";
 			}else if(propertyName == "totalDeadPlayers"){
-				html += "<Br><b>totalDeadPlayers: </b> " + this.totalDeadPlayers + " ("+this.survivalRate + " % survival rate)"; //don't want to EVER ignore this. 
+				html += "<Br><b>totalDeadPlayers: </b> " + this.totalDeadPlayers + " ("+this.survivalRate + " % survival rate)"; //don't want to EVER ignore this.
 			}else if(propertyName == "crashedFromSessionBug"){
 				html += this.generateHTMLForProperty(propertyName) //don't ignore bugs, either.
 			}else if(this.isRomanceProperty(propertyName)){
@@ -468,7 +470,7 @@ function MultiSessionSummary(){
 		html += this.generateEndingHTML(endingProperties);
 		html += this.generateAverageHTML(averageProperties);
 		html += this.generateMiscHTML(miscProperties);
-		
+
 		html += this.generateCorpsePartyHTML();
 		//MSS and SS will need list of classes and aspects. just strings. nothing beefier.
 		//these will have to be filtered in a special way. just render and display stats for now, though. no filtering.
@@ -476,24 +478,24 @@ function MultiSessionSummary(){
 		html += this.generateAspectFilterHTML();
 		html += "</div><Br>"
 		return html;
-		
+
 	}
-	
+
 	this.generateClassFilterHTML = function(){
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryClasses'>Classes:";
 		html += "COMING SOON</div>"
 		return html;
 	}
-	
+
 	this.generateAspectFilterHTML = function(){
 		console.log("TODO: display aspects for MSS. Then allow filtering by them. (Somehow)")
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryAspects'>Aspects:";
 		html += "COMING SOON</div>"
 		return html;
 	}
-	
-	
-	
+
+
+
 	this.generateHTMLForProperty = function(propertyName){
 		var html = "";
 		if(this.isFilterableProperty(propertyName)){
@@ -505,8 +507,8 @@ function MultiSessionSummary(){
 		}
 		return html;
 	}
-	
-	//css will handle this be initialized to display:hidden or whatever, and then javascript will handle toggles. 
+
+	//css will handle this be initialized to display:hidden or whatever, and then javascript will handle toggles.
 	this.generateRomanceHTML = function(properties){
 		var html = "<div class = 'multiSessionSummary'>Romance: <button onclick='toggleRomance()'>Toggle View </button>";
 		html += "<div id = 'multiSessionSummaryRomance' >"
@@ -517,7 +519,7 @@ function MultiSessionSummary(){
 		html += "</div></div>"
 		return html;
 	}
-	
+
 	this.generateDramaHTML = function(properties){
 		var html = "<div class = 'multiSessionSummary' >Drama: <button onclick='toggleDrama()'>Toggle View </button>";
 		html += "<div id = 'multiSessionSummaryDrama' >"
@@ -528,8 +530,8 @@ function MultiSessionSummary(){
 		html += "</div></div>"
 		return html;
 	}
-	
-	
+
+
 	this.generateEndingHTML = function(properties){
 		var html = "<div class = 'multiSessionSummary'>Ending: <button onclick='toggleEnding()'>Toggle View </button>";
 		html += "<div id = 'multiSessionSummaryEnding' >"
@@ -540,8 +542,8 @@ function MultiSessionSummary(){
 		html += "</div></div>"
 		return html;
 	}
-	
-	
+
+
 	this.generateMiscHTML = function(properties){
 		var html = "<div class = 'multiSessionSummary' >Misc <button onclick='toggleMisc()'>Toggle View </button>";
 		html += "<div id = 'multiSessionSummaryMisc' >"
@@ -552,7 +554,7 @@ function MultiSessionSummary(){
 		html += "</div></div>"
 		return html;
 	}
-	
+
 	this.generateAverageHTML = function(properties){
 		var html = "<div class = 'multiSessionSummary' >Averages <button onclick='toggleAverage()'>Toggle View </button>";
 		html += "<div id = 'multiSessionSummaryAverage' >"
@@ -563,9 +565,9 @@ function MultiSessionSummary(){
 		html += "</div></div>"
 		return html;
 	}
-	
-	
-	
+
+
+
 	//replaced 5/12/17 part of the CorpseParty upgrade.
 	this.generateHTMLOld = function(){
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
@@ -589,7 +591,7 @@ function MultiSessionSummary(){
 				html += " (" + Math.round(100* (this[propertyName]/this.total)) + "%)";
 			}
 		}
-		
+
 		html += this.generateCorpsePartyHTML();
 
 		html += "</div><Br>"
@@ -636,6 +638,7 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		var ss = sessionSummaries[i];
 		mss.total ++;
 		if(ss.crashedFromSessionBug) mss.crashedFromSessionBug ++;
+		if(ss.opossumVictory) mss.opossumVictory ++;
 		if(ss.rocksFell) mss.rocksFell ++;
 		if(ss.crashedFromPlayerActions) mss.crashedFromPlayerActions ++;
 		if(ss.scratchAvailable) mss.scratchAvailable ++;
