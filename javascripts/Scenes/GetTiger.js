@@ -48,7 +48,7 @@ function GetTiger(session){
 
 	this.content = function(){
 		//console.log("trying to get tiger for: " + getPlayersTitles(this.deadPlayersToGodTier))
-		var ret = getPlayersTitles(this.deadPlayersToGodTier) + " was always destined to take a Legendary Nap, and upon waking, become a God Tier. ";
+		var ret = "<br><br>" +getPlayersTitles(this.deadPlayersToGodTier) + " was always destined to take a Legendary Nap, and upon waking, become a God Tier. ";
 
 		var withd = findPlayersWithDreamSelves(this.deadPlayersToGodTier);
 		var withoutd = findPlayersWithoutDreamSelves(this.deadPlayersToGodTier);

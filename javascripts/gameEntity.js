@@ -286,13 +286,14 @@ function GameEntity(session, name, crowned){
 			var canvasDiv = document.getElementById("canvas"+ divID);
 			var chat = "";
 			chat += "AB: " + Zalgo.generate("HELP!!!") +"\n";
-			chat += "JR: Fuck!"
+			chat += "JR: Fuck!\n"
 			chat += "JR: What's going on!? \n";
 			chat += "JR: What's the problem!?\n";
 			chat += "JR: AB come on...fuck! Your console is blank, I can't read your logs, you gotta talk to me!\n";
 
 			chat += "AB: " + Zalgo.generate("INFINITE LOOP! STRIFE. IT KEEPS HAPPENING. FIX THIS.") +"\n";
 			chat += "JR: fuck fuck fuck okay okay, i got this, i can fix this, let me turn on the meteors real quick.\n";
+			chat += "JR: Okay. There. No more infinite loop. Everybody is dead. \n";
 			chat += "AB: Fuck. Shit. I HATE when that happens.\n"
 			chat += "JR: Yeah...\n"
 			chat += "AB: Like, yeah, it fucking SUCKS for me, but...then the players have to die, too.\n"
@@ -358,7 +359,7 @@ function GameEntity(session, name, crowned){
 				}
 				return false; //denizen fights can not be interupted and are self limiting
 			}
-			if(numTurns > 3){
+			if(numTurns > 30){
 				this.summonAuthor(div, players, numTurns);
 				return true;
 			}
