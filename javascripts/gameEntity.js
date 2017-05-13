@@ -37,10 +37,10 @@ function GameEntity(session, name, crowned){
 		this.corrupted = false; //if corrupted, name is zalgoed.
 		this.helpfulness = 0; //if 0, cagey riddles. if 1, basically another player. if -1, like calsprite. omg, just shut up.  NOT additive for when double prototyping. most recent prototyping overrides.
 		this.helpPhrase = "provides the requisite amount of gigglesnort hideytalk to be juuuust barely helpful. ";
-		
-		
-		
-		
+
+
+
+
 		this.toString = function(){
 			return this.htmlTitle();
 		}
@@ -250,7 +250,7 @@ function GameEntity(session, name, crowned){
 			}
 
 		}
-		
+
 		this.rocksFallEverybodyDies = function(div,players,numTurns){
 			console.log("Rocks fall, everybody dies in session: " + this.session.session_id)
 			div.append("<Br><Br> In case you forgot, freaking METEORS have been falling onto the battlefield this whole time. This battle has been going on for so long that, literally, rocks fall, everybody dies.  ")
@@ -263,7 +263,37 @@ function GameEntity(session, name, crowned){
 				p.makeDead("from terminal meteors to the face");
 			}
 		}
-		
+
+		//AB will let JR know that a fight is taking WAY too fucking long. JR will summon rocks. everybody will die. no time for finesse
+		//JR will will be regretful, but nothing is allowed to hurt AB.
+		//AB will have corrupt font.
+		this.summonAuthor = function(div,player, numTurns){
+
+		}
+
+		//you are clearly not ready for this fight. Go prepare (random chance of leveling you up to pretend you took their advice.)
+		this.denizenIsNotPuttingUpWithYourShitAnyLonger = function(div,player, numTurns){
+
+		}
+
+		//find highest mobility player (hope they don't fucking dodge forever.)
+		//render the player backup.
+		this.summonPlayerBackup = function(div,player,numTurns){
+
+		}
+
+		//DD does it with finese, HB does it with brutality. CD will either just end the fight OR blow everybody up.
+		this.summonMidnightCrew = function(div, player, numTurns){
+
+		}
+
+		//render this.
+		//doomed time clones will help with the fight. then teleport off (if they survive) to the black king fight
+		this.summonDoomedTimeClone = function(div, player, numTurns){
+
+		}
+
+		//rarest fix.
 		//I didn't MEAN  for it to be calliborn apparently killing everybody, but my placeholder test phrase ended up being in his voice and one thing lead to another and now yeah. asshole mcgee is totally caliborn.
 		//which ALSO means i'm not gonna bother picking a "winner". that would be work, I'm lazy, and also caliborn wouldn't care about that.
 		this.assHoleMcGee = function(div,players,numTurns){
