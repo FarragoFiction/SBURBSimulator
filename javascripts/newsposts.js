@@ -142,9 +142,9 @@ function startSession(){
 //if screens are tiny enough, put newposts UNDER avatars instead of next to. but that shouldn't be the default option.
 function reFormatForTinyScreens(){
 		if(screen.width<1000+250){ //guessing here.
-			$("#robo_newsposts").css({top: 600, position:'relative', width:"450px"})
-			$("#newspostsMain").css({top: 600, position:'relative', width:"450px"})
-			$("#artist_newspostsMain").css({top: 600, position:'relative', width:"450px"})
+			$("#robo_newsposts").css({top: 600, position:'relative', width:"400px"})
+			$("#newspostsMain").css({top: 600, position:'relative', width:"400px"})
+			$("#artist_newspostsMain").css({top: 600, position:'relative', width:"400px"})
 		}else{
 			var width = 1000;  //screensize
 			//$("#robo_newsposts").css({width:"450px"})
