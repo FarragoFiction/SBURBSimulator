@@ -1,11 +1,13 @@
 #container {
     margin-left: auto;
     margin-right: auto;
-    width:100%;
+    width:1000px;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 #newsposts{
-  float:left;
-  width:25%;
+  width:325px;
+  display: inline-block;
+  padding: 10px;
 }
 
 #navbar{
@@ -31,8 +33,10 @@
 }
 #robo_newsposts{
     color: red;
-    float:right;
-    width:25%;
+    display: inline-block;
+    width:325px;
+    vertical-align: top;
+    padding: 10px;
 }
 
 #artist_newsposts{
