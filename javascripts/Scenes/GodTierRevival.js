@@ -77,7 +77,12 @@ function GodTierRevival(session){
 					ret += " JUST.  They do not revive. ";
 					this.session.justDeath = true;
 					p.canGodTierRevive = false;
-					p.causeOfDeath += " (it was a JUST judgement)"
+					if(p.didDenizenKillYou()){
+						p.causeOfDeath += " (it was a JUST judgement because they were corrupt)"
+					}else{
+						p.causeOfDeath += " (it was a JUST judgement)"
+					}
+
 					this.session.afterLife.addGhost(makeRenderingSnapshot(p));
 				}
 

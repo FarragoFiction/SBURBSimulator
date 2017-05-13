@@ -273,6 +273,7 @@ function GameEntity(session, name, crowned){
 		}
 
 		//you are clearly not ready for this fight. Go prepare (random chance of leveling you up to pretend you took their advice.)
+		//ONLY possibility for denizen fights, and happens at 3 turn mark.
 		this.denizenIsSoNotPuttingUpWithYourShitAnyLonger = function(div,player, numTurns){
 
 		}
@@ -309,7 +310,9 @@ function GameEntity(session, name, crowned){
 
 		//returns true or false.
 		this.fightNeedsToEnd = function(div, players, numTurns){
-			if(numTurns > 3){
+
+			
+			if(numTurns > 20){
 				this.summonAssHoleMcGee(div, players, numTurns);
 				return true;
 			}
@@ -342,7 +345,7 @@ function GameEntity(session, name, crowned){
 				}
 			}
 
-			if(this.fightNeedsToEnd()){
+			if(this.fightNeedsToEnd(div, players, numTurns)){
 				 this.ending(div,players, numTurns);
 				 return;
 			}
