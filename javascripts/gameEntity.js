@@ -269,7 +269,15 @@ function GameEntity(session, name, crowned){
 		//AB will have corrupt font.
 		//there is no random chance of this. it is the final line of defense.
 		this.summonAuthor = function(div,player, numTurns){
-
+				//ab help!!!
+				//jr  fuck, what's going on, what's the problem? your console is empty, i can't read your logs
+				//ab battle is infinite looping. or something. it keeps happening!
+				//jr fuck fuck fuck. okay okay. i got this.
+				//ab (normal font) fuck. shit. i hate when that happens.
+				//jr yeah.
+				//ab  like, yeah it fucking SUCKS for me, but...then the players have to die, too.
+				//jr that's why we're working so hard to balance the system. we'll get there. eventually scenes like this'll never trigger. fights will end naturally and not just go on forever sometimes.
+				//ab yeah...
 		}
 
 		//you are clearly not ready for this fight. Go prepare (random chance of leveling you up to pretend you took their advice.)
@@ -311,7 +319,12 @@ function GameEntity(session, name, crowned){
 		//returns true or false.
 		this.fightNeedsToEnd = function(div, players, numTurns){
 
-			
+			if(this.session.getDenizenForPlayer(this) == this){
+				if(){
+
+				}
+				return false; //denizen fights can not be interupted and are self limiting
+			}
 			if(numTurns > 20){
 				this.summonAssHoleMcGee(div, players, numTurns);
 				return true;
