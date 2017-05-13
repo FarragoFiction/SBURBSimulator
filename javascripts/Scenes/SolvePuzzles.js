@@ -63,7 +63,7 @@ function SolvePuzzles(session){
 
 
 	this.renderContent = function(div){
-		console.log("Ultimate Riddle for Player with power of: " + this.player1.power + " and land level of: " + this.player1.landLevel + " " + this.player1) 
+		//console.log("Ultimate Riddle for Player with power of: " + this.player1.power + " and land level of: " + this.player1.landLevel + " " + this.player1) 
 		div.append("<br>"+this.content());
 	}
 

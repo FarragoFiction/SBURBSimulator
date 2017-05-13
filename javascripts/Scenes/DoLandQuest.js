@@ -17,7 +17,7 @@ function DoLandQuest(session){
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var p = this.session.availablePlayers[i]
 			if(p.power > 2 && p.grimDark < 3){ //can't be first thing you do in medium.
-				if(p.land != null){  //everyone can go over 100%, because post denizen quests are a thing now.
+				if(p.land != null ){  //everyone can go over 100%, post denizen is thing.
 					var chance = Math.seededRandom();
 					var helper = this.lookForHelper(p);
 					if(helper && helper.grimDark >= 3) helper = null;  //grim dark players aren't going to do quests.
@@ -29,14 +29,19 @@ function DoLandQuest(session){
 
 						if((p.aspect == "Blood" || p.class_name == "Page") ){// if page or blood player, can't do it on own.
 							if(playerPlusHelper[1] != null){
+								if((p.landLevel < this.landLevelNeeded || p.aspect == "Space") || Math.seededRandom() > .5){
+									this.playersPlusHelpers.push(playerPlusHelper);
+									removeFromArray(p, this.session.availablePlayers);
+									removeFromArray(helper, this.session.availablePlayers); //don't let my helper do their own quests.
+								}
+
+							}
+						}else{
+							if((p.landLevel < this.landLevelNeeded || p.aspect == "Space") || Math.seededRandom() > .5){
 								this.playersPlusHelpers.push(playerPlusHelper);
 								removeFromArray(p, this.session.availablePlayers);
 								removeFromArray(helper, this.session.availablePlayers); //don't let my helper do their own quests.
 							}
-						}else{
-							this.playersPlusHelpers.push(playerPlusHelper);
-							removeFromArray(p, this.session.availablePlayers);
-							removeFromArray(helper, this.session.availablePlayers); //don't let my helper do their own quests.
 						}
 					}
 				}else{
