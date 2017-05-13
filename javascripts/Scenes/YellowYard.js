@@ -149,6 +149,10 @@ narratively.
 BTW: please note that Hussie, as the Waste of Space, uses his YellowYard and a Fourth Wall to do something meta with SPACE. (put two walls together to allow travel between sessions)
   I, as a Waste of Mind, am using my YellowYard and a Fourth Wall to do something meta with DECISIONS. (allow the reader to make decisions)  I am proud of this. So, SO proud.
 
+	Additionally, both Wastes acomplish this through the use of robot clones.
+
+	Yes. All according to keikaku.
+
 
 	*/
 	this.renderContent = function(div){
