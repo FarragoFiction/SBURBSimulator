@@ -238,6 +238,16 @@ function GameEntity(session, name, crowned){
 				return false;
 		}
 
+		//f the sprite has a fraymotif attached to them (FUTURE), they do that, otherwise regular attack.
+		//can't miss.
+		//if player doesn't have a sprite. does nothing.
+		//player wont have a sprite once the reckoning happens. (also keeps them from bringing them into combo sessions, for now.)
+		//not possible for denizen fights.
+		//make sure sprite isn't dead and player hasn't absconded. sprite isn't a "player", so they can't do something if their player is dead or absconded.
+		this.spriteAttack = function(div, players){
+				console.log("TODO: implement sprite attacks. will drop the rate of minion deaths.")
+		}
+
 		this.processAbscond = function(div,players){
 			if(this.iAbscond){
 				//console.log("game entity abscond: " + this.session.session_id);
@@ -598,6 +608,8 @@ function GameEntity(session, name, crowned){
 					this.aggrieve(div, player, this );
 				}
 			}
+			this.spriteAttack(div,player, players); //spriteAttack will decide if this can actually happen.
+
 		}
 
 		//only do attack if i don't expect to one shot the enemy
