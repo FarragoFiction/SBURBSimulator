@@ -322,6 +322,7 @@ function GameEntity(session, name, crowned){
 		//render the player backup.
 		this.summonPlayerBackup = function(div,player,numTurns){
 				//console.log("TODO, summon player back up, highest mobility living player in session. um. with a sprite, i guess. (means theya re in session.)")
+				//if it's a time player/ 50/50 it's a future version of them in a stable time loop
 		}
 
 		//DD does it with finese (highest hp.power wins), HB does it with brutality (highest power wins). CD will either just end the fight with everybody absconded OR blow everybody up.
@@ -332,8 +333,21 @@ function GameEntity(session, name, crowned){
 		//render this.
 		//doomed time clones will help with the fight. then teleport off (if they survive) to the black king fight
 		this.summonDoomedTimeClone = function(div, player, numTurns){
-				//console.log("TODO: summon a doomed time clone. is code for making one of those only n the scene/???")
+				console.log("summoning a doomed time clone to this fight. " +this.session.session_id)
 				var doomedTimeClone =  makeDoomedSnapshot(findAspectPlayer(this.session.players, "Time"));
+				this.players.push(doomedTimeClone);
+				div.append("A " + doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline. The " + doomedTimeClone.htmlTitleBasic() + "is fine, don't worry about it...but THIS one is now doomed. Which SHOULD mean they can fight like there is no tomorrow.")
+				var divID = (div.attr("id")) + "authorRocks"+players.join("");
+				var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+				div.append(canvasHTML);
+				//different format for canvas code
+				var canvasDiv = document.getElementById("canvas"+ divID);
+				drawTimeGears(canvas, doomedTimeClone);
+				drawSinglePlayer(canvas, doomedTimeClone);
+				this.timePlayer.doomedTimeClones.push(this.doomedTimeClone);
+				this.timePlayer.triggerLevel ++;
+				this.timePlayer.flipOut("their own doomed time clones")
+
 		}
 
 		//I didn't MEAN  for it to be calliborn apparently killing everybody, but my placeholder test phrase ended up being in his voice and one thing lead to another and now yeah. asshole mcgee is totally caliborn.
