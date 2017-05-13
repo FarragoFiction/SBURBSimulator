@@ -9,7 +9,7 @@ function VoidyStuff(session){
 		this.player = null;
 		this.voidPlayer = findAspectPlayer(this.session.availablePlayers, "Void");
 		if(this.voidPlayer){
-			if(this.voidPlayer.isActive()){
+			if(this.voidPlayer.isActive() || Math.seededRandom() > .5){
 				this.player = this.voidPlayer;
 			}else{  //somebody else can be voided.
 				this.player = getRandomElementFromArray(this.session.availablePlayers);

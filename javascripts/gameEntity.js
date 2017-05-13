@@ -286,7 +286,8 @@ function GameEntity(session, name, crowned){
 			console.log("!!!!!!!!!!!!!!!!!denizen not putting up with your shit: " + this.session.session_id);
 				div.append("<Br><Br>" + this.session.getDenizenForPlayer(players[0]) + " decides that the " + players[0].htmlTitleBasic() + " is being a little baby who poops hard in their diapers and are in no way ready for this fight. The Denizen recommends that they come back after they mature a little bit. The " +players[0].htmlTitleBasic() + "'s ass is kicked so hard they are ejected from the fight, but are not killed.")
 				if(Math.seededRandom() > .5){ //players don't HAVE to take the advice after all. assholes.
-					this.levelPlayers(div, players);
+					this.levelPlayers(players);
+					div.append("They actually seem to be taking " + this.name + "'s advice. ");
 				}
 		}
 
@@ -325,7 +326,7 @@ function GameEntity(session, name, crowned){
 			//if this IS a denizen fight, i can assume there is only one player in it
 			if(this.session.getDenizenForPlayer(players[0]).name == this.name){
 				console.log("it's a denizen fight")
-				if(numTurns>5 || player[0].hp < this.getPower()){
+				if(numTurns>5 || players[0].currentHP < this.getPower()){
 					this.denizenIsSoNotPuttingUpWithYourShitAnyLonger(div, players, numTurns);
 					return true;
 				}
