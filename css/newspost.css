@@ -28,8 +28,8 @@
 
 
 #newspostsMain{
-  float:left;
-  width:400px;
+  display: inline-block;
+  width:325px;
 }
 #robo_newsposts{
     color: red;
@@ -49,8 +49,9 @@
 
 #artist_newspostsMain{
   color:#000000;
-  float:right;
-  width:400px;
+  vertical-align: top;
+  display: inline-block;
+  width:325px;
 }
 
 #artist_h1{

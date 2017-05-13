@@ -67,6 +67,19 @@
 			//pass true so that it formats them differently.
 			newsposts("Main");
 			artNewsposts("Main");
+
+			$( window ).scroll( function(){
+				var ypos = $( window ).scrollTop(); //pixels the site is scrolled down
+				var visible = $( window ).height(); //visible pixels
+				const img_height = 1500; //replace with height of your image
+				var max_scroll = img_height - visible; //number of pixels of the image not visible at bottom
+			//change position of background-image as long as there is something not visible at the bottom
+			if ( max_scroll > ypos) {
+				 $("body").css("background-position", "center -" + ypos + "px");
+				} else {
+				$("body").css("background-position", "center -" + max_scroll + "px");
+				}
+		});
 	}
 	</script>
 
@@ -75,7 +88,7 @@
 	</title>
 </head>
 
-<body>
+<body style = "background: url(images/Derse_Prospit.png), url(images/copypasta_jr.png)bottom center; background-attachment:fixed;   background-repeat: repeat-x,repeat;">
 <div id = "navbar"></div>
 
 <img src = "images/author.png" style="float:left;">
