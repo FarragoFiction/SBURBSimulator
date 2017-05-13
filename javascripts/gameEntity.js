@@ -275,9 +275,7 @@ function GameEntity(session, name, crowned){
 			}
 		}
 
-		//AB will let JR know that a fight is taking WAY too fucking long. JR will summon rocks. everybody will die. no time for finesse
-		//JR will will be regretful, but nothing is allowed to hurt AB.
-		//AB will have corrupt font.
+
 		//there is no random chance of this. it is the final line of defense.
 		this.summonAuthor = function(div,player, numTurns){
 			var divID = (div.attr("id")) + "authorRocks"+players.join("");
@@ -285,15 +283,17 @@ function GameEntity(session, name, crowned){
 			div.append(canvasHTML);
 			//different format for canvas code
 			var canvasDiv = document.getElementById("canvas"+ divID);
-				//ab help!!!
-				//jr  fuck, what's going on, what's the problem? your console is blank, i can't read your logs
-				//ab battle is infinite looping. or something. it keeps happening!
-				//jr fuck fuck fuck. okay okay. i got this.
-				//ab (normal font) fuck. shit. i hate when that happens.
-				//jr yeah.
-				//ab  like, yeah it fucking SUCKS for me, but...then the players have to die, too.
-				//jr that's why we're working so hard to balance the system. we'll get there,  eventually.  Scenes like this'll never trigger. fights will end naturally and not just go on forever sometimes.
-				//ab yeah...because SBURB is just SO easy to balance.
+			var chat = "";
+			chat += "AB: " + Zalgo.generate("HELP!!!");
+			chat += "JR: Fuck! What's going on!? What's the problem!? Your console is blank, I can't read you logs, you gotta talk to me!";
+			chat += "AB: " + Zalgo.generate("INFINITE LOOP! STRIFE. IT KEEPS HAPPENING. FIX THIS.");
+			chat += "JR: fuck fuck fuck okay okay, i got this, let me turn on the meteors real quick.";
+			chat += "AB: Fuck. Shit. I HATE when that happens."
+			chat += "JR: Yeah..."
+			chat += "AB: Like, yeah, it fucking SUCKS for me, but...then the players have to die, too."
+			chat += "JR: That's why we're working so hard to balance the system. We'll get there, eventually. Scenes like this'll never trigger. Fights'll end naturally and not just go on forever if players find exploits. "
+			chat += "AB: Yeah...'cause SBURB is just SO easy to balance. '"
+			drawChatABJR(canvasDiv, chat);
 		}
 
 		//you are clearly not ready for this fight. Go prepare (random chance of leveling you up to pretend you took their advice.)
