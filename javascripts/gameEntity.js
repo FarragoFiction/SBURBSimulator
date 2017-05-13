@@ -321,7 +321,7 @@ function GameEntity(session, name, crowned){
 		//find highest mobility player (hope they don't fucking dodge forever.)
 		//render the player backup.
 		this.summonPlayerBackup = function(div,player,numTurns){
-				console.log("TODO, summon player back up, highest mobility living player in session. um. with a sprite, i guess. (means theya re in session.)")
+				//console.log("TODO, summon player back up, highest mobility living player in session. um. with a sprite, i guess. (means theya re in session.)")
 		}
 
 		//DD does it with finese (highest hp.power wins), HB does it with brutality (highest power wins). CD will either just end the fight with everybody absconded OR blow everybody up.
@@ -332,7 +332,7 @@ function GameEntity(session, name, crowned){
 		//render this.
 		//doomed time clones will help with the fight. then teleport off (if they survive) to the black king fight
 		this.summonDoomedTimeClone = function(div, player, numTurns){
-				console.log("TODO: summon a doomed time clone. is code for making one of those only n the scene/???")
+				//console.log("TODO: summon a doomed time clone. is code for making one of those only n the scene/???")
 				var doomedTimeClone =  makeDoomedSnapshot(findAspectPlayer(this.session.players, "Time"));
 		}
 
@@ -353,7 +353,6 @@ function GameEntity(session, name, crowned){
 		this.fightNeedsToEnd = function(div, players, numTurns){
 			//if this IS a denizen fight, i can assume there is only one player in it
 			if(this.session.getDenizenForPlayer(players[0]).name == this.name){
-				console.log("it's a denizen fight")
 				if(numTurns>5 || players[0].currentHP < this.getPower()){
 					this.denizenIsSoNotPuttingUpWithYourShitAnyLonger(div, players, numTurns);
 					return true;
