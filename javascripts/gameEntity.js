@@ -270,20 +270,23 @@ function GameEntity(session, name, crowned){
 		//there is no random chance of this. it is the final line of defense.
 		this.summonAuthor = function(div,player, numTurns){
 				//ab help!!!
-				//jr  fuck, what's going on, what's the problem? your console is empty, i can't read your logs
+				//jr  fuck, what's going on, what's the problem? your console is blank, i can't read your logs
 				//ab battle is infinite looping. or something. it keeps happening!
 				//jr fuck fuck fuck. okay okay. i got this.
 				//ab (normal font) fuck. shit. i hate when that happens.
 				//jr yeah.
 				//ab  like, yeah it fucking SUCKS for me, but...then the players have to die, too.
-				//jr that's why we're working so hard to balance the system. we'll get there. eventually scenes like this'll never trigger. fights will end naturally and not just go on forever sometimes.
-				//ab yeah...
+				//jr that's why we're working so hard to balance the system. we'll get there,  eventually.  Scenes like this'll never trigger. fights will end naturally and not just go on forever sometimes.
+				//ab yeah...because SBURB is just SO easy to balance.
 		}
 
 		//you are clearly not ready for this fight. Go prepare (random chance of leveling you up to pretend you took their advice.)
 		//ONLY possibility for denizen fights, and happens at 3 turn mark.
-		this.denizenIsSoNotPuttingUpWithYourShitAnyLonger = function(div,player, numTurns){
-
+		this.denizenIsSoNotPuttingUpWithYourShitAnyLonger = function(div,players, numTurns){
+				div.append("<Br><Br>" + this.session.getDenizenForPlayer(player) + " decides that the " + players[0].htmlTitleBasic() + " is being a little baby who poops hard in their diapers and are in no way ready for this fight. The Denizen recommends that they come back after they mature a little bit. The + " players[0].htmlTitleBasic() + "'s ass is kicked so hard they are ejected from the fight, but are not killed.")
+				if(Math.seededRandom() > .5){ //players don't HAVE to take the advice after all. assholes.
+					this.levelPlayers(div, players);
+				}
 		}
 
 		//find highest mobility player (hope they don't fucking dodge forever.)
@@ -318,10 +321,11 @@ function GameEntity(session, name, crowned){
 
 		//returns true or false.
 		this.fightNeedsToEnd = function(div, players, numTurns){
-
-			if(this.session.getDenizenForPlayer(this) == this){
-				if(){
-
+			//if this IS a denizen fight, i can assume there is only one player in it
+			if(this.session.getDenizenForPlayer(players[0]) == this){
+				if(numTurns>3){
+					this.denizenIsSoNotPuttingUpWithYourShitAnyLonger(div, players, numTurns);
+					return true;
 				}
 				return false; //denizen fights can not be interupted and are self limiting
 			}
