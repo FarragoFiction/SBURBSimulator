@@ -273,6 +273,25 @@ function GameEntity(session, name, crowned){
 				var p = living[i];
 				p.makeDead("from terminal meteors to the face");
 			}
+			//pose as a team.
+			//but first, remove absconded plaeyrs.
+			for(var i = 0; i<this.playersAbsconded.length; i++){
+				removeFromArray(this.playersAbsconded[i], players);
+			}
+
+
+			var divID = (div.attr("id")) + "_ending"+players.join("");
+			var ch = canvasHeight;
+			if(players.length > 6){
+				ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
+			}
+			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
+			div.append(canvasHTML);
+			//different format for canvas code
+			var canvasDiv = document.getElementById("canvas"+ divID);
+			var dead = findDeadPlayers(players);
+			poseAsATeam(canvasDiv, dead, 2000); //if i do this after every fight it chugs, so only the dead from now on. only created for meteor deaths, anyways.
+
 		}
 
 		//i got "error: living is not defined" once out of this, which sounds like a really shitty tag line from a b movie about a robot APOCALYPSE
@@ -305,6 +324,17 @@ function GameEntity(session, name, crowned){
 				var p = living[i];
 				p.makeDead("causing dear sweet precious sweet, sweet AuthorBot to go into an infinite loop");
 			}
+			var divID = (div.attr("id")) + "_ending"+players.join("");
+			var ch = canvasHeight;
+			if(players.length > 6){
+				ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
+			}
+			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
+			div.append(canvasHTML);
+			//different format for canvas code
+			var canvasDiv = document.getElementById("canvas"+ divID);
+			var dead = findDeadPlayers(players);
+			poseAsATeam(canvasDiv, dead, 2000); //if i do this after every fight it chugs, so only the dead from now on. only created for meteor deaths, anyways.
 		}
 
 		//you are clearly not ready for this fight. Go prepare (random chance of leveling you up to pretend you took their advice.)
@@ -398,6 +428,17 @@ function GameEntity(session, name, crowned){
 				var p = living[i];
 				p.makeDead("BEING INVOLVED. IN A STuPID. STuPID FIGHT. THAT WENT ON. FOR WAY TOO LONG.");
 			}
+			var divID = (div.attr("id")) + "_ending"+players.join("");
+			var ch = canvasHeight;
+			if(players.length > 6){
+				ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
+			}
+			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
+			div.append(canvasHTML);
+			//different format for canvas code
+			var canvasDiv = document.getElementById("canvas"+ divID);
+			var dead = findDeadPlayers(players);
+			poseAsATeam(canvasDiv, dead, 2000); //if i do this after every fight it chugs, so only the dead from now on. only created for meteor deaths, anyways.
 		}
 
 		//returns true or false.
@@ -542,31 +583,6 @@ function GameEntity(session, name, crowned){
 			this.playersInteract(players);
 			this.healPlayers(div,players);
 
-			//pose as a team.
-			//but first, remove absconded plaeyrs.
-			for(var i = 0; i<this.playersAbsconded.length; i++){
-				removeFromArray(this.playersAbsconded[i], players);
-			}
-
-			/*  no. fuck this. it's slowing the sim down by too much.
-			maybe only pose as a team for special deaths, like rocks fall
-			var divID = (div.attr("id")) + "_ending"+players.join("");
-			var ch = canvasHeight;
-			if(players.length > 6){
-				ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
-			}
-			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
-			div.append(canvasHTML);
-			//different format for canvas code
-			var canvasDiv = document.getElementById("canvas"+ divID);
-			var dead = findDeadPlayers(players);
-			if(dead.length == 1){//cheaper
-				var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-				drawSinglePlayer(pSpriteBuffer, dead[0]);
-				//copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0)
-			}else if (dead.length > 0){
-				//poseAsATeam(canvasDiv, dead, 2000); //if i do this after every fight it chugs, so only the dead from now on. only created for meteor deaths, anyways.
-			}*/
 
 			this.playersAbsconded = [];
 		}
