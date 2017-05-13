@@ -520,6 +520,9 @@ function GameEntity(session, name, crowned){
 		//every pair of players (even they died or ran, they were still here.)
 		//regular interaction and power interaction, just like it was a quest.
 		this.playersInteract = function(players){
+			if(this.name == "Black Queen" || this.name == "Black King"){
+				return; //whatever, when it's ALL the players too much is going on AND this won't effect things for very long. games over, man.
+			}
 
 				for(var i = 0; i<players.length; i++){
 					var player1 = players[i];
@@ -553,12 +556,13 @@ function GameEntity(session, name, crowned){
 			div.append(canvasHTML);
 			//different format for canvas code
 			var canvasDiv = document.getElementById("canvas"+ divID);
-			if(players.length == 1){//cheaper
+			var dead = findDeadPlayers(players);
+			if(dead.length == 1){//cheaper
 				var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-				drawSinglePlayer(pSpriteBuffer, players[0]);
+				drawSinglePlayer(pSpriteBuffer, dead[0]);
 				copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0)
-			}else{
-				poseAsATeam(canvasDiv, players, 2000);
+			}else if (dead.length > 0){
+				poseAsATeam(canvasDiv, dead, 2000); //if i do this after every fight it chugs, so only the dead from now on. only created for meteor deaths, anyways.
 			}
 
 			this.playersAbsconded = [];
