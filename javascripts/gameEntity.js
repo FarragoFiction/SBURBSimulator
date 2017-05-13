@@ -278,6 +278,7 @@ function GameEntity(session, name, crowned){
 
 		//there is no random chance of this. it is the final line of defense.
 		this.summonAuthor = function(div,player, numTurns){
+			console.log("author is saving AB in session: " + this.session.session_id)
 			var divID = (div.attr("id")) + "authorRocks"+players.join("");
 			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
 			div.append(canvasHTML);
@@ -285,7 +286,7 @@ function GameEntity(session, name, crowned){
 			var canvasDiv = document.getElementById("canvas"+ divID);
 			var chat = "";
 			chat += "AB: " + Zalgo.generate("HELP!!!");
-			chat += "JR: Fuck! What's going on!? What's the problem!? Your console is blank, I can't read you logs, you gotta talk to me!";
+			chat += "JR: Fuck! What's going on!? What's the problem!? Your console is blank, I can't read your logs, you gotta talk to me!";
 			chat += "AB: " + Zalgo.generate("INFINITE LOOP! STRIFE. IT KEEPS HAPPENING. FIX THIS.");
 			chat += "JR: fuck fuck fuck okay okay, i got this, let me turn on the meteors real quick.";
 			chat += "AB: Fuck. Shit. I HATE when that happens."
@@ -348,8 +349,8 @@ function GameEntity(session, name, crowned){
 				}
 				return false; //denizen fights can not be interupted and are self limiting
 			}
-			if(numTurns > 20){
-				this.summonAssHoleMcGee(div, players, numTurns);
+			if(numTurns > 10){
+				this.summonAuthor(div, players, numTurns);
 				return true;
 			}
 			return false;
