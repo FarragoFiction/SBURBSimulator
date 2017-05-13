@@ -398,7 +398,6 @@ function GameEntity(session, name, crowned){
 				var p = living[i];
 				p.makeDead("BEING INVOLVED. IN A STuPID. STuPID FIGHT. THAT WENT ON. FOR WAY TOO LONG.");
 			}
-			this.ending(div,players,numTurns)
 		}
 
 		//returns true or false.
@@ -512,11 +511,28 @@ function GameEntity(session, name, crowned){
 
 		}
 
+		//every pair of players (even they died or ran, they were still here.)
+		//regular interaction and power interaction, just like it was a quest.
+		this.playersInteract = function(players){
+
+				for(var i = 0; i<players.length; i++){
+					var player1 = players[i];
+					for(var j = 0; j < players.length; j ++){
+						var player2 = players[j];
+						if(player1 != player2){ //sorry time clones, can't buff your player. cause ALL players hae 'clones' in this double for loop
+							player1.interactionEffect(player2); //opposite will happen eventually in this double loop.
+						}
+					}
+				}
+		}
+
 		this.ending = function(div, players){
 			this.fraymotifsUsed = []; //not used yet
 
 			this.iAbscond = false;
+			this.playersInteract(players);
 			this.healPlayers(div,players);
+
 			//pose as a team.
 			//but first, remove absconded plaeyrs.
 			for(var i = 0; i<this.playersAbsconded.length; i++){
@@ -585,13 +601,11 @@ function GameEntity(session, name, crowned){
 				}
 
 				this.minorLevelPlayers(players)
-				this.ending(div, players)
 				return true;
 			}else if(this.getHP() <= 0){
 				div.append(" <Br><br> The fight is over. " + this.name + " is dead. ");
 				this.levelPlayers(players) //even corpses
 				this.givePlayersGrist(players);
-				this.ending(div, players)
 				return true;
 			}//TODO have alternate win conditions for denizens???
 			return false;
