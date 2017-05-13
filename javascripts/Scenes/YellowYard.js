@@ -146,6 +146,9 @@ Anyways, WasteOfMindJR uses the HussiePatented fourth wall breaking YellowYard s
 to cause the decisions to not be made by the time player, or even the Waste of Mind, but by you, the Observer. I'm pretty happy with that,
 narratively.
 
+BTW: please note that Hussie, as the Waste of Space, uses his YellowYard and a Fourth Wall to do something meta with SPACE. (put two walls together to allow travel between sessions)
+  I, as a Waste of Mind, am using my YellowYard and a Fourth Wall to do something meta with DECISIONS. (allow the reader to make decisions)  I am proud of this. So, SO proud.
+
 
 	*/
 	this.renderContent = function(div){

@@ -280,6 +280,11 @@ function GameEntity(session, name, crowned){
 		//AB will have corrupt font.
 		//there is no random chance of this. it is the final line of defense.
 		this.summonAuthor = function(div,player, numTurns){
+			var divID = (div.attr("id")) + "authorRocks"+players.join("");
+			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
+			div.append(canvasHTML);
+			//different format for canvas code
+			var canvasDiv = document.getElementById("canvas"+ divID);
 				//ab help!!!
 				//jr  fuck, what's going on, what's the problem? your console is blank, i can't read your logs
 				//ab battle is infinite looping. or something. it keeps happening!
