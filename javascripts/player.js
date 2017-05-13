@@ -441,7 +441,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.heroicDeath = function(){
 		var ret = false;
 
-		//it's not heroic derping to death against a minion, or in a solo fight.
+		//it's not heroic derping to death against a minion or whatever, or in a solo fight.
 		if(this.didDenizenKillYou() || this.causeOfDeath == "from a Bad Break."){
 			return false;
 		}
