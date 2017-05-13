@@ -25,7 +25,7 @@ function VoidyStuff(session){
 	}
 
 	//rage players do things ON SCREEN.  void players do it in a hidden div.
-	//steal Jack’s scottie dogs
+	//steal Jack’s scottie dogs You have stolen all of the Archagent’s licorice scottie dogs. ALL OF THEM.
 	this.content = function(){
 		removeFromArray(this.player, this.session.availablePlayers);
 		var ret = "The " + this.player.htmlTitle() + " is doing...something. It's kind of hard to see.";
@@ -76,7 +76,7 @@ function VoidyStuff(session){
 			ret += " Wait. Are those BABIES!? What is even going on here?";
 		}
 
-		if(this.player.landLevel >= 6 && this.player.land != null && !this.player.denizenFaced && Math.seededRandom() > .5){
+		if(this.player.landLevel >= 6 && this.player.land != null && !this.player.denizenDefeated && Math.seededRandom() > .5){
 			this.player.denizenFaced = true;
 			var denizen = this.session.getDenizenForPlayer(this.player);
 			ret += " Why is the denizen " + denizen.name + " bellowing so loudly on " + this.player.shortLand() + "? ";

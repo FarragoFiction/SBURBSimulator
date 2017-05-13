@@ -199,7 +199,7 @@ function GameEntity(session, name, crowned){
 					this.remainingPlayersHateYou(div, player, playersInFight);
 					return true;
 				}else{
-					div.append(" Shit. The " + player.htmlTitleHP() + " doesn't know what to do. THey don't want to die... Before they can decide whether or not to abscond " + this.htmlTitleHP() + " blocks their escape route. Can't abscond, bro. ")
+					div.append(" Shit. The " + player.htmlTitleHP() + " doesn't know what to do. They don't want to die... Before they can decide whether or not to abscond " + this.htmlTitleHP() + " blocks their escape route. Can't abscond, bro. ")
 					return false;
 				}
 			}
