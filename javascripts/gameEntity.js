@@ -246,7 +246,7 @@ function GameEntity(session, name, crowned){
 		//make sure sprite isn't dead and player hasn't absconded. sprite isn't a "player", so they can't do something if their player is dead or absconded.
 		//OR instead have sprites be part of the "players array". let them have full AI and everything. whatever. think about this.
 		this.spriteAttack = function(div, players){
-				console.log("TODO: implement sprite attacks. will drop the rate of minion deaths.")
+				//console.log("TODO: implement sprite attacks. will drop the rate of minion deaths.")
 		}
 
 		this.processAbscond = function(div,players){
@@ -314,7 +314,7 @@ function GameEntity(session, name, crowned){
 				div.append("<Br><Br>" + this.session.getDenizenForPlayer(players[0]) + " decides that the " + players[0].htmlTitleBasic() + " is being a little baby who poops hard in their diapers and are in no way ready for this fight. The Denizen recommends that they come back after they mature a little bit. The " +players[0].htmlTitleBasic() + "'s ass is kicked so hard they are ejected from the fight, but are not killed.")
 				if(Math.seededRandom() > .5){ //players don't HAVE to take the advice after all. assholes.
 					this.levelPlayers(players);
-					div.append("They actually seem to be taking " + this.name + "'s advice. ");
+					div.append(" They actually seem to be taking " + this.name + "'s advice. ");
 				}
 		}
 
@@ -339,15 +339,25 @@ function GameEntity(session, name, crowned){
 				var timePlayer = findAspectPlayer(this.session.players, "Time");
 				var doomedTimeClone =  makeDoomedSnapshot(timePlayer);
 				players.push(doomedTimeClone);
-				div.append("A " + doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline. The " + doomedTimeClone.htmlTitleBasic() + "is fine, don't worry about it...but THIS one is now doomed. Which SHOULD mean they can fight like there is no tomorrow.")
+				if(players.includes(timePlayer)){
+					if(timePlayer.dead){
+						div.append("<br><br>A " + doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline. YOUR " + doomedTimeClone.htmlTitleBasic() + " is well, I mean, obviously NOT fine, their corpse is just over there. But... whatever. THIS one is now doomed, as well. Which SHOULD mean they can fight like there is no tomorrow.")
+					}else{
+						div.append("<br><br>A " + doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline. YOUR " + doomedTimeClone.htmlTitleBasic() + " is fine, I mean, obviously, they are right there...but THIS one is now doomed. Which SHOULD mean they can fight like there is no tomorrow.")
+					}
+				}else{
+					div.append("<br><br>A " + doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline. YOUR " + doomedTimeClone.htmlTitleBasic() + " is fine, but THIS one is now doomed. Which SHOULD mean they can fight like there is no tomorrow.")
+				}
 				var divID = (div.attr("id")) + "doomTimeArrival"+players.join("")+numTurns;
 				var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 				div.append(canvasHTML);
 				//different format for canvas code
 				var canvasDiv = document.getElementById("canvas"+ divID);
-				drawTimeGears(canvasDiv, doomedTimeClone);
-				drawSinglePlayer(canvasDiv, doomedTimeClone);
-				timePlayer.doomedTimeClones.push(this.doomedTimeClone);
+				var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+				drawTimeGears(pSpriteBuffer, doomedTimeClone);
+				drawSinglePlayer(pSpriteBuffer, doomedTimeClone);
+				copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0)
+				timePlayer.doomedTimeClones.push(doomedTimeClone);
 				timePlayer.triggerLevel ++;
 				timePlayer.flipOut("their own doomed time clones")
 				return players
@@ -396,7 +406,7 @@ function GameEntity(session, name, crowned){
 			var rand =Math.seededRandom()
 			if(rand<.1){
 				return this.summonPlayerBackup(div, players, numTurns); //will return modded player list
-			}else if(rand < .7 && numTurns >3){
+			}else if(rand < .15 && numTurns >3){
 				return this.summonDoomedTimeClone(div,players, numTurns);
 			}
 			return players;
