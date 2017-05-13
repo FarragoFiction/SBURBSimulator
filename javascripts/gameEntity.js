@@ -318,12 +318,36 @@ function GameEntity(session, name, crowned){
 				}
 		}
 
-		//find highest mobility player (hope they don't fucking dodge forever.)
 		//render the player backup.
 		//the x of y has joined the strife !!!
 		this.summonPlayerBackup = function(div,players,numTurns){
-				//console.log("TODO, summon player back up, highest mobility living player in session. um. with a sprite, i guess. (means theya re in session.)")
 				//if it's a time player/ 50/50 it's a future version of them in a stable time loop
+				var living = findLivingPlayers(this.session.players); //who isn't ALREADY in this bullshit strife??? and is alive. and has a sprite (and so is in the medium.)
+				var potential = getRandomElementFromArray(living);
+				if(players.indexOf(potential) == -1){ //you aren't already in the fight
+					if((potential.mobility > getAverageMobility(players) || Math.seededRandom() >.5)){ //you're fast enough to get here, or randomness happened.
+
+						players.push(potential);
+						var divID = (div.attr("id")) + "doomTimeArrival"+players.join("")+numTurns;
+						var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+						div.append(canvasHTML);
+						//different format for canvas code
+						var canvasDiv = document.getElementById("canvas"+ divID);
+						var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+						if(potential.aspect == "Time" && Math.seededRandom() > .50){
+							drawTimeGears(pSpriteBuffer, potential);
+							console.log("summoning a stable time loop player to this fight. " +this.session.session_id)
+							div.append("The " + potential.htmlTitleHP() + " has joined the Strife!!! (Don't worry about the time bullshit, they have their stable time loops on LOCK. No doom for them.)");
+						}else{
+							console.log("summoning a player to this fight. " +this.session.session_id)
+							div.append("The " + potential.htmlTitleHP() + " has joined the Strife!!!");
+						}
+
+						drawSinglePlayer(pSpriteBuffer, doomedTimeClone);
+						copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0)
+					}
+				}
+
 				return players
 		}
 
@@ -339,7 +363,7 @@ function GameEntity(session, name, crowned){
 				var timePlayer = findAspectPlayer(this.session.players, "Time");
 				var doomedTimeClone =  makeDoomedSnapshot(timePlayer);
 				players.push(doomedTimeClone);
-				if(players.includes(timePlayer)){
+				if(players.indexOf(timePlayer) !=-1){
 					if(timePlayer.dead){
 						div.append("<br><br>A " + doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline. YOUR " + doomedTimeClone.htmlTitleBasic() + " is well, I mean, obviously NOT fine, their corpse is just over there. But... whatever. THIS one is now doomed, as well. Which SHOULD mean they can fight like there is no tomorrow.")
 					}else{
@@ -404,7 +428,7 @@ function GameEntity(session, name, crowned){
 			}
 			//if i assume a 3 turn fight is "ideal", then have a 1/10 chance of backup each turn.
 			var rand =Math.seededRandom()
-			if(rand<.1){
+			if(rand<.05){
 				return this.summonPlayerBackup(div, players, numTurns); //will return modded player list
 			}else if(rand < .15 && numTurns >3){
 				return this.summonDoomedTimeClone(div,players, numTurns);
@@ -507,7 +531,13 @@ function GameEntity(session, name, crowned){
 			div.append(canvasHTML);
 			//different format for canvas code
 			var canvasDiv = document.getElementById("canvas"+ divID);
-			poseAsATeam(canvasDiv, players, 2000);
+			if(players.length == 1){//cheaper
+				var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+				drawSinglePlayer(pSpriteBuffer, players[0]);
+				copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0)
+			}else{
+				poseAsATeam(canvasDiv, players, 2000);
+			}
 
 			this.playersAbsconded = [];
 		}
