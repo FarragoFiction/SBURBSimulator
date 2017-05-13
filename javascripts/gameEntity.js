@@ -343,7 +343,7 @@ function GameEntity(session, name, crowned){
 							div.append("The " + potential.htmlTitleHP() + " has joined the Strife!!!");
 						}
 
-						drawSinglePlayer(pSpriteBuffer, doomedTimeClone);
+						drawSinglePlayer(pSpriteBuffer, potential);
 						copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0)
 					}
 				}
@@ -365,12 +365,12 @@ function GameEntity(session, name, crowned){
 				players.push(doomedTimeClone);
 				if(players.indexOf(timePlayer) !=-1){
 					if(timePlayer.dead){
-						div.append("<br><br>A " + doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline. YOUR " + doomedTimeClone.htmlTitleBasic() + " is well, I mean, obviously NOT fine, their corpse is just over there. But... whatever. THIS one is now doomed, as well. Which SHOULD mean they can fight like there is no tomorrow.")
+						div.append("<br><br>A " + doomedTimeClone.htmlTitleHP() + " suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline. YOUR " + doomedTimeClone.htmlTitleBasic() + " is well, I mean, obviously NOT fine, their corpse is just over there. But... whatever. THIS one is now doomed, as well. Which SHOULD mean they can fight like there is no tomorrow.")
 					}else{
-						div.append("<br><br>A " + doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline. YOUR " + doomedTimeClone.htmlTitleBasic() + " is fine, I mean, obviously, they are right there...but THIS one is now doomed. Which SHOULD mean they can fight like there is no tomorrow.")
+						div.append("<br><br>A " + doomedTimeClone.htmlTitleHP() + " suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline. YOUR " + doomedTimeClone.htmlTitleBasic() + " is fine, I mean, obviously, they are right there...but THIS one is now doomed. Which SHOULD mean they can fight like there is no tomorrow.")
 					}
 				}else{
-					div.append("<br><br>A " + doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline. YOUR " + doomedTimeClone.htmlTitleBasic() + " is fine, but THIS one is now doomed. Which SHOULD mean they can fight like there is no tomorrow.")
+					div.append("<br><br>A " + doomedTimeClone.htmlTitleHP() + " suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline. YOUR " + doomedTimeClone.htmlTitleBasic() + " is fine, but THIS one is now doomed. Which SHOULD mean they can fight like there is no tomorrow.")
 				}
 				var divID = (div.attr("id")) + "doomTimeArrival"+players.join("")+numTurns;
 				var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
@@ -428,9 +428,9 @@ function GameEntity(session, name, crowned){
 			}
 			//if i assume a 3 turn fight is "ideal", then have a 1/10 chance of backup each turn.
 			var rand =Math.seededRandom()
-			if(rand<.05){
+			if(rand<.05){  //rand isn't great cause might not find  player to summon, or might try summon player already in fight.
 				return this.summonPlayerBackup(div, players, numTurns); //will return modded player list
-			}else if(rand < .15 && numTurns >3){
+			}else if(rand < .15 && numTurns >5){
 				return this.summonDoomedTimeClone(div,players, numTurns);
 			}
 			return players;
