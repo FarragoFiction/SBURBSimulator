@@ -64,6 +64,7 @@ function VoidyStuff(session){
 			this.player.makeDead("hidden in void on their way to godhood")
 			this.player.dead = false;
 			this.player.godTier = true;
+			this.session.godTier = true;
 			this.player.grimDark = 0;
 			this.player.dreamSelf = false;
 			ret += " What was that light on " + this.player.shortLand() + "? ";
