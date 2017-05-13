@@ -146,9 +146,10 @@ function reFormatForTinyScreens(){
 			$("#newspostsMain").css({top: 600, position:'relative', width:"450px"})
 			$("#artist_newspostsMain").css({top: 600, position:'relative', width:"450px"})
 		}else{
-			$("#robo_newsposts").css({width:"450px"})
-			$("#newspostsMain").css({width:"450px"})
-			$("#artist_newspostsMain").css({width:"450px"})
+			var width = 1000;  //screensize
+			//$("#robo_newsposts").css({width:"450px"})
+			//$("#newspostsMain").css({width:"450px"})
+			//$("#artist_newspostsMain").css({width:"450px"})
 		}
 }
 
