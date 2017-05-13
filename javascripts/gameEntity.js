@@ -547,6 +547,9 @@ function GameEntity(session, name, crowned){
 			for(var i = 0; i<this.playersAbsconded.length; i++){
 				removeFromArray(this.playersAbsconded[i], players);
 			}
+
+			/*  no. fuck this. it's slowing the sim down by too much.
+			maybe only pose as a team for special deaths, like rocks fall
 			var divID = (div.attr("id")) + "_ending"+players.join("");
 			var ch = canvasHeight;
 			if(players.length > 6){
@@ -560,10 +563,10 @@ function GameEntity(session, name, crowned){
 			if(dead.length == 1){//cheaper
 				var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 				drawSinglePlayer(pSpriteBuffer, dead[0]);
-				copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0)
+				//copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0)
 			}else if (dead.length > 0){
-				poseAsATeam(canvasDiv, dead, 2000); //if i do this after every fight it chugs, so only the dead from now on. only created for meteor deaths, anyways.
-			}
+				//poseAsATeam(canvasDiv, dead, 2000); //if i do this after every fight it chugs, so only the dead from now on. only created for meteor deaths, anyways.
+			}*/
 
 			this.playersAbsconded = [];
 		}
