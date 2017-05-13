@@ -285,15 +285,15 @@ function GameEntity(session, name, crowned){
 			//different format for canvas code
 			var canvasDiv = document.getElementById("canvas"+ divID);
 			var chat = "";
-			chat += "AB: " + Zalgo.generate("HELP!!!");
-			chat += "JR: Fuck! What's going on!? What's the problem!? Your console is blank, I can't read your logs, you gotta talk to me!";
-			chat += "AB: " + Zalgo.generate("INFINITE LOOP! STRIFE. IT KEEPS HAPPENING. FIX THIS.");
-			chat += "JR: fuck fuck fuck okay okay, i got this, let me turn on the meteors real quick.";
-			chat += "AB: Fuck. Shit. I HATE when that happens."
-			chat += "JR: Yeah..."
-			chat += "AB: Like, yeah, it fucking SUCKS for me, but...then the players have to die, too."
-			chat += "JR: That's why we're working so hard to balance the system. We'll get there, eventually. Scenes like this'll never trigger. Fights'll end naturally and not just go on forever if players find exploits. "
-			chat += "AB: Yeah...'cause SBURB is just SO easy to balance. '"
+			chat += "AB: " + Zalgo.generate("HELP!!!") +"\n";
+			chat += "JR: Fuck! What's going on!? What's the problem!? Your console is blank, I can't read your logs, you gotta talk to me!\n";
+			chat += "AB: " + Zalgo.generate("INFINITE LOOP! STRIFE. IT KEEPS HAPPENING. FIX THIS.") +"\n";
+			chat += "JR: fuck fuck fuck okay okay, i got this, let me turn on the meteors real quick.\n";
+			chat += "AB: Fuck. Shit. I HATE when that happens.\n"
+			chat += "JR: Yeah...\n"
+			chat += "AB: Like, yeah, it fucking SUCKS for me, but...then the players have to die, too.\n"
+			chat += "JR: That's why we're working so hard to balance the system. We'll get there, eventually. Scenes like this'll never trigger. Fights'll end naturally and not just go on forever if players find exploits. \n"
+			chat += "AB: Yeah...'cause SBURB is just SO easy to balance. \n'"
 			drawChatABJR(canvasDiv, chat);
 			var living = this.getLivingMinusAbsconded(players);
 			for(var i = 0; i<living.length; i++){
