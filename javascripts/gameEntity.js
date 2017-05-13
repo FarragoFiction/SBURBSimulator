@@ -277,7 +277,7 @@ function GameEntity(session, name, crowned){
 
 
 		//there is no random chance of this. it is the final line of defense.
-		this.summonAuthor = function(div,player, numTurns){
+		this.summonAuthor = function(div,players, numTurns){
 			console.log("author is saving AB in session: " + this.session.session_id)
 			var divID = (div.attr("id")) + "authorRocks"+players.join("");
 			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
@@ -295,6 +295,10 @@ function GameEntity(session, name, crowned){
 			chat += "JR: That's why we're working so hard to balance the system. We'll get there, eventually. Scenes like this'll never trigger. Fights'll end naturally and not just go on forever if players find exploits. "
 			chat += "AB: Yeah...'cause SBURB is just SO easy to balance. '"
 			drawChatABJR(canvasDiv, chat);
+			for(var i = 0; i<living.length; i++){
+				var p = living[i];
+				p.makeDead("causing dear sweet precious sweet, sweet AuthorBot to go into an infinite loop");
+			}
 		}
 
 		//you are clearly not ready for this fight. Go prepare (random chance of leveling you up to pretend you took their advice.)
@@ -349,7 +353,7 @@ function GameEntity(session, name, crowned){
 				}
 				return false; //denizen fights can not be interupted and are self limiting
 			}
-			if(numTurns > 10){
+			if(numTurns > 3){
 				this.summonAuthor(div, players, numTurns);
 				return true;
 			}
