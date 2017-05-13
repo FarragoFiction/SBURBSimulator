@@ -24,6 +24,8 @@ function VoidyStuff(session){
 		div.append("<br>"+this.content());
 	}
 
+	//rage players do things ON SCREEN.  void players do it in a hidden div.
+	//steal Jack’s scottie dogs
 	this.content = function(){
 		removeFromArray(this.player, this.session.availablePlayers);
 		var ret = "The " + this.player.htmlTitle() + " is doing...something. It's kind of hard to see.";
