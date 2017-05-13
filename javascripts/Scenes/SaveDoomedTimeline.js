@@ -20,30 +20,7 @@ function SaveDoomedTimeLine(session){
 		return (this.ectoDoom() || this.playerDoom() || this.randomDoom());
 	}
 
-	this.makeDoomedSnapshot = function(){
-		var timeClone = makeRenderingSnapshot(this.timePlayer);
-		timeClone.dead = false;
-		timeClone.currentHP = timeClone.hp
-		timeClone.doomed = true;
-		//from a different timeline, things went differently.
-		var rand = Math.seededRandom();
-		if(rand>.8){
-			timeClone.godTier = !timeClone.godTier;
-			if(timeClone.godTier){
-				 timeClone.power = 200; //act like a god, damn it.
-			 }else{
-				 timeClone.power = 10;
-			 }
-		}else if(rand>.6){
-			timeClone.isDreamSelf = !timeClone.isDreamSelf;
-		}else if(rand>.4){
-			timeClone.grimDark = getRandomInt(0,4);
-			timeClone.power += 50 * timeClone.grimDark;
-		}else if(rand>.2){
-			timeClone.murderMode = !timeClone.murderMode;
-		}
-		this.doomedTimeClone = timeClone;
-	}
+
 
 	this.renderContent = function(div){
 		div.append("<br>"+this.content());
@@ -164,7 +141,7 @@ function SaveDoomedTimeLine(session){
 			console.log("death's hand maid in: " + this.session.session_id)
 			ret += " Time really is the shittiest aspect. They make sure everybody is dead in this timeline, as per inevitability's requirements, then they sullenly vanish in a cloud of clocks and gears. "
 		}
-		this.makeDoomedSnapshot();
+		this.doomedTimeClone = makeDoomedSnapshot(this.timePlayer);
 		this.timePlayer.doomedTimeClones.push(this.doomedTimeClone);
 		this.timePlayer.triggerLevel ++;
 		this.timePlayer.flipOut("their own doomed time clones")

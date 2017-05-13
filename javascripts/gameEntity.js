@@ -333,6 +333,7 @@ function GameEntity(session, name, crowned){
 		//doomed time clones will help with the fight. then teleport off (if they survive) to the black king fight
 		this.summonDoomedTimeClone = function(div, player, numTurns){
 				console.log("TODO: summon a doomed time clone. is code for making one of those only n the scene/???")
+				var doomedTimeClone =  makeDoomedSnapshot(findAspectPlayer(this.session.players, "Time"));
 		}
 
 		//I didn't MEAN  for it to be calliborn apparently killing everybody, but my placeholder test phrase ended up being in his voice and one thing lead to another and now yeah. asshole mcgee is totally caliborn.
@@ -370,7 +371,7 @@ function GameEntity(session, name, crowned){
 		//longer fight goes on, better chance of back up.
 		//back up not available for denizen fights.
 		//fresh doomed players only show up if numTurns > 3
-		this.summonBackUp = function(div, player, numTurns){
+		this.summonBackUp = function(div, players, numTurns){
 			if(this.session.getDenizenForPlayer(players[0]).name == this.name){
 				return ;
 			}
