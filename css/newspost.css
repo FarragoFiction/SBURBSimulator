@@ -5,7 +5,7 @@
     background-color: rgba(255, 255, 255, 0.8);
 }
 #newsposts{
-  width:250px;
+  width:300px;
   display: inline-block;
   padding: 10px;
 }
@@ -31,12 +31,13 @@
 
 #newspostsMain{
   display: inline-block;
-  width:250px;
+  width:300px;
+  padding: 10px;
 }
 #robo_newsposts{
     color: red;
     display: inline-block;
-    width:250px;
+    width:300px;
     vertical-align: top;
     padding: 10px;
 }
@@ -53,7 +54,8 @@
   color:#000000;
   vertical-align: top;
   display: inline-block;
-  width:250px;
+  width:300px;
+  padding: 10px;
 }
 
 #artist_h1{
