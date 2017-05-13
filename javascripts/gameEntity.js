@@ -320,9 +320,11 @@ function GameEntity(session, name, crowned){
 
 		//find highest mobility player (hope they don't fucking dodge forever.)
 		//render the player backup.
-		this.summonPlayerBackup = function(div,player,numTurns){
+		//the x of y has joined the strife !!!
+		this.summonPlayerBackup = function(div,players,numTurns){
 				//console.log("TODO, summon player back up, highest mobility living player in session. um. with a sprite, i guess. (means theya re in session.)")
 				//if it's a time player/ 50/50 it's a future version of them in a stable time loop
+				return players
 		}
 
 		//DD does it with finese (highest hp.power wins), HB does it with brutality (highest power wins). CD will either just end the fight with everybody absconded OR blow everybody up.
@@ -332,21 +334,23 @@ function GameEntity(session, name, crowned){
 
 		//render this.
 		//doomed time clones will help with the fight. then teleport off (if they survive) to the black king fight
-		this.summonDoomedTimeClone = function(div, player, numTurns){
+		this.summonDoomedTimeClone = function(div, players, numTurns){
 				console.log("summoning a doomed time clone to this fight. " +this.session.session_id)
-				var doomedTimeClone =  makeDoomedSnapshot(findAspectPlayer(this.session.players, "Time"));
-				this.players.push(doomedTimeClone);
+				var timePlayer = findAspectPlayer(this.session.players, "Time");
+				var doomedTimeClone =  makeDoomedSnapshot(timePlayer);
+				players.push(doomedTimeClone);
 				div.append("A " + doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline. The " + doomedTimeClone.htmlTitleBasic() + "is fine, don't worry about it...but THIS one is now doomed. Which SHOULD mean they can fight like there is no tomorrow.")
-				var divID = (div.attr("id")) + "authorRocks"+players.join("");
+				var divID = (div.attr("id")) + "doomTimeArrival"+players.join("")+numTurns;
 				var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 				div.append(canvasHTML);
 				//different format for canvas code
 				var canvasDiv = document.getElementById("canvas"+ divID);
-				drawTimeGears(canvas, doomedTimeClone);
-				drawSinglePlayer(canvas, doomedTimeClone);
-				this.timePlayer.doomedTimeClones.push(this.doomedTimeClone);
-				this.timePlayer.triggerLevel ++;
-				this.timePlayer.flipOut("their own doomed time clones")
+				drawTimeGears(canvasDiv, doomedTimeClone);
+				drawSinglePlayer(canvasDiv, doomedTimeClone);
+				timePlayer.doomedTimeClones.push(this.doomedTimeClone);
+				timePlayer.triggerLevel ++;
+				timePlayer.flipOut("their own doomed time clones")
+				return players
 
 		}
 
@@ -386,15 +390,16 @@ function GameEntity(session, name, crowned){
 		//fresh doomed players only show up if numTurns > 3
 		this.summonBackUp = function(div, players, numTurns){
 			if(this.session.getDenizenForPlayer(players[0]).name == this.name){
-				return ;
+				return players;
 			}
 			//if i assume a 3 turn fight is "ideal", then have a 1/10 chance of backup each turn.
-			var rand =Math.seededRandom()>.1
-			if(rand){
-				this.summonPlayerBackup(div, players, numTurns);
-			}else if(rand > .3 && numTurns >3){
-				this.summonDoomedTimeClone(div,players, numTurns);
+			var rand =Math.seededRandom()
+			if(rand<.1){
+				return this.summonPlayerBackup(div, players, numTurns); //will return modded player list
+			}else if(rand < .7 && numTurns >3){
+				return this.summonDoomedTimeClone(div,players, numTurns);
 			}
+			return players;
 		}
 
 
@@ -427,7 +432,7 @@ function GameEntity(session, name, crowned){
 				 return;
 			}
 
-			this.summonBackUp(div, players, numTurns);//might do nothing;
+			players = this.summonBackUp(div, players, numTurns);//might do nothing;
 			//console.log(this.name + ": strife! " + numTurns + " turns against: " + getPlayersTitlesNoHTML(players) + this.session.session_id);
 			div.append("<br><Br>")
 			//as players die or mobility stat changes, might go players, me, me, players or something. double turns.
