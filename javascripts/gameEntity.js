@@ -220,7 +220,7 @@ function GameEntity(session, name, crowned){
 					var p = players[i];
 					if(p != player && this.playersAbsconded.indexOf(p) == -1){ //don't be a hypocrite and hate them if you already ran.
 						var r = p.getRelationshipWith(player);
-						if(r) r.value += -5; //could be a sprite, after all. 
+						if(r) r.value += -5; //could be a sprite, after all.
 					}
 				}
 		}
@@ -267,24 +267,6 @@ function GameEntity(session, name, crowned){
 				var p = living[i];
 				p.makeDead("from terminal meteors to the face");
 			}
-			//pose as a team.
-			//but first, remove absconded plaeyrs.
-			for(var i = 0; i<this.playersAbsconded.length; i++){
-				removeFromArray(this.playersAbsconded[i], players);
-			}
-
-
-			var divID = (div.attr("id")) + "_ending"+players.join("");
-			var ch = canvasHeight;
-			if(players.length > 6){
-				ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
-			}
-			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
-			div.append(canvasHTML);
-			//different format for canvas code
-			var canvasDiv = document.getElementById("canvas"+ divID);
-			var dead = findDeadPlayers(players);
-			poseAsATeam(canvasDiv, dead, 2000); //if i do this after every fight it chugs, so only the dead from now on. only created for meteor deaths, anyways.
 
 		}
 
@@ -318,17 +300,7 @@ function GameEntity(session, name, crowned){
 				var p = living[i];
 				p.makeDead("causing dear sweet precious sweet, sweet AuthorBot to go into an infinite loop");
 			}
-			var divID = (div.attr("id")) + "_ending"+players.join("");
-			var ch = canvasHeight;
-			if(players.length > 6){
-				ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
-			}
-			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
-			div.append(canvasHTML);
-			//different format for canvas code
-			var canvasDiv = document.getElementById("canvas"+ divID);
-			var dead = findDeadPlayers(players);
-			poseAsATeam(canvasDiv, dead, 2000); //if i do this after every fight it chugs, so only the dead from now on. only created for meteor deaths, anyways.
+
 		}
 
 		//you are clearly not ready for this fight. Go prepare (random chance of leveling you up to pretend you took their advice.)
@@ -422,17 +394,7 @@ function GameEntity(session, name, crowned){
 				var p = living[i];
 				p.makeDead("BEING INVOLVED. IN A STuPID. STuPID FIGHT. THAT WENT ON. FOR WAY TOO LONG.");
 			}
-			var divID = (div.attr("id")) + "_ending"+players.join("");
-			var ch = canvasHeight;
-			if(players.length > 6){
-				ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
-			}
-			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
-			div.append(canvasHTML);
-			//different format for canvas code
-			var canvasDiv = document.getElementById("canvas"+ divID);
-			var dead = findDeadPlayers(players);
-			poseAsATeam(canvasDiv, dead, 2000); //if i do this after every fight it chugs, so only the dead from now on. only created for meteor deaths, anyways.
+
 		}
 
 		//returns true or false.
