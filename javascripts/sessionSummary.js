@@ -381,7 +381,7 @@ function MultiSessionSummary(){
 		}
 
 		for(var corpseType in corpseParty){
-			html += "<Br>" +corpseType + ": " + corpseParty[corpseType] //todo maybe print out percentages here. we know how many ghosts there are.
+			html += "<Br>" +corpseType + ": " + corpseParty[corpseType] + "(" + Math.round( 100* corpseParty[corpseType]/this.sizeOfAfterLife) + "%)"//todo maybe print out percentages here. we know how many ghosts there are.
 		}
 		html += "</div></div>"
 		return html
