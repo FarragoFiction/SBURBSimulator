@@ -62,6 +62,22 @@ function SolvePuzzles(session){
 	}
 
 
+	/* aspiringWatcher
+By the way, I'd add more bullshit activity, like "does random bullshit sidequests at Land,
+ solving puzzles and trying to get some useful information from Consorts without being drowned
+ in their wacky antics" and "does random bullshit sidequests at Land, solving puzzles and killing underlings"
+ , or "does random bullshit sidequests at Land, solving puzzles, exploring ruins and delving into dungeons"
+	*/
+	//has no effect on the plot, meant to be filler. can be repetitive, if i am doing my job right, shoudn't show up on screen very often.
+	this.getBullshitQuest = function(){
+			var possibilities = ["getting coy hints about The Ultimate Riddle ","killing underlings","delving into dungeons", "exploring ruins", "solving puzzles", "playing minigames", "learning about the lore"];
+			var thing1 = getRandomElementFromArray(possibilities)
+			possibilities.removeFromArray(thing1);
+			var thing2 = getRandomElementFromArray(possibilities);
+			return "random bullshit sidequests at " + this.player1.shortLand() + ", " + thing1 + " and " + thing2 + ".";
+	}
+
+
 	this.renderContent = function(div){
 		//console.log("Ultimate Riddle for Player with power of: " + this.player1.power + " and land level of: " + this.player1.landLevel + " " + this.player1)
 		div.append("<br>"+this.content());
@@ -128,8 +144,7 @@ function SolvePuzzles(session){
 		}else{
 			ret += " does "
 		}
-		ret += " random bullshit sidequests at " + this.player1.shortLand();
-		ret += ", solving puzzles and getting coy hints about The Ultimate Riddle. "
+		ret += getBullshitQuest();
 
 		ret += this.spreadCoruption(this.player1, this.player2);
 		return ret;
