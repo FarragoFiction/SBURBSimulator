@@ -194,7 +194,7 @@ function DoLandQuest(session){
 			if(player2) player2.corruptionLevelOther += 25;
 		}
 
-		if(player1.object_to_prototype.corrupted){
+		if(player1.object_to_prototype.corrupted && !player1.sprite.dead){
 			console.log("corrupt sprite: " + this.session.session_id)
 			player1.corruptionLevelOther += 25;
 			ret = true;
@@ -210,6 +210,7 @@ function DoLandQuest(session){
 	}
 
 	this.spriteContent = function(player){
+		if(player.sprite.dead) return;//nothing to see here.
 		var ret = player.sprite.htmlTitle()
 		if(player.sprite.corrupted){
 			player.landLevel += -0.75;
