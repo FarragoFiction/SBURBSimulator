@@ -874,6 +874,10 @@ function GameEntity(session, name, crowned){
 			offense.interactionEffect(defense); //only players have this. doomed time clones or bosses will do nothing.
 		}
 
+		this.htmlTitleBasic = function(){
+				return this.name;
+		}
+
 		this.makeDead = function(causeOfDeath){
 			//does nothing. game entities are assumed to be dead if zero hp
 			this.dead = true; //mostly ignored, but gameEntity's on the player side use this.

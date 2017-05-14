@@ -18,6 +18,7 @@ function JackRampage(session){
 			var p = this.session.availablePlayers[i];
 			if(p.class_name != "Witch"){
 				potentialPlayers.push(p); //don't make a big deal out of it, but jack doesn't want to hurt the witch. familiar loyalty, yo.
+				//this is actually a bad thing, too, cause it means the witch's OP sprite doesn't get to kick Jack's ass.
 			}
 		}
 		var numStabbings = getRandomInt(1,Math.min(4,potentialPlayers.length));
@@ -35,7 +36,13 @@ function JackRampage(session){
 			//console.log(f);
 			ret.push(f);
 		}
-		return Array.from(new Set(ret));
+		var unique = Array.from(new Set(ret));
+		var ret = []; //add some sprites. this is literally the only other fight they are good for.
+		for(var i = 0; i<unique.length; i++){
+			ret.push(unique[i])
+			ret.push(unique[i].sprite)
+		}
+		return ret;
 	}
 
 
@@ -48,7 +55,7 @@ function JackRampage(session){
 			div.append(canvasHTML);
 			//different format for canvas code
 			var canvasDiv = document.getElementById("canvas"+ divID);
-			poseAsATeam(canvasDiv, stabbings, 2000);
+			//poseAsATeam(canvasDiv, stabbings, 2000); //can't do this anymore, mighit be  a sprite in there.
 		}
 
 
