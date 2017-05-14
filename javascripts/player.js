@@ -360,7 +360,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			//console.log("denizen quest")
 			return getRandomDenizenQuestFromAspect(this); //denizen quests are aspect only, no class.
 		}else if((this.landLevel < 9 || this.denizen_index >=3) && this.denizenDefeated == false){  //can do more land quests if denizen kicked your ass. need to grind.
-			if(Math.seededRandom() > .5 || this.aspect == "Space"){ //back to having space players be locked to frogs. 
+			if(Math.seededRandom() > .5 || this.aspect == "Space"){ //back to having space players be locked to frogs.
 				return getRandomQuestFromAspect(this.aspect);
 			}else{
 				return getRandomQuestFromClass(this.class_name);
@@ -1820,7 +1820,8 @@ function randomPlayerWithClaspect(session, c,a){
 	var tmp =getRandomLandFromPlayer(p);
 	p.sprite = new GameEntity(session, "sprite",null); //unprototyped.
 	//minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs, grist
-	p.sprite.setStats(-25,25,25,25,0,0,5,false, false, [],0); //blank
+	p.sprite.setStats(30,50,50,0,0,0,0,false, false, [],1000);//same as denizen minion, but empty power
+	p.sprite.doomed = true
 	p.land1 = tmp[0]
 	p.land2 = tmp[1];
 	p.land = "Land of " + tmp[0] + " and " + tmp[1];

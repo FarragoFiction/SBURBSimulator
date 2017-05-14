@@ -44,6 +44,11 @@ function GameEntity(session, name, crowned){
 		this.toString = function(){
 			return this.htmlTitle();
 		}
+
+		this.increasePower = function(){
+			//stub for sprites, and maybe later consorts or carapcians
+		}
+
 		this.getMobility = function(){
 			if(this.crowned){
 				return this.mobility + this.crowned.mobility;
