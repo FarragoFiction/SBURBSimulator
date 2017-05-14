@@ -245,7 +245,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			this.influenceSymbol = null;
 			this.dead = false;
 			this.murderMode = false;
-			this.currentHP = this.hp;
+			this.currentHP = Math.max(this.hp,1); //if for some reason your hp is negative, don't do that.
 			this.grimDark = false;
 			this.triggerLevel = 1;
 			//this.leftMurderMode = false; //no scars

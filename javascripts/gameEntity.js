@@ -660,7 +660,7 @@ function GameEntity(session, name, crowned){
 					deadPlayer.hp += 100; //i won't let you die again.
 				}else if(deadPlayer.aspect == "Doom"){
 					deadPlayer.minLuck += 100; //you've fulfilled the prophecy. you are no longer doomed.
-					div.append("The prophecy is fulfilled. ")
+					div.append("The prophecy is fulfilled. " + deadPlayer.currentHP)
 				}
 			}
 		}
