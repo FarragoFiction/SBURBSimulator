@@ -70,11 +70,13 @@ By the way, I'd add more bullshit activity, like "does random bullshit sidequest
 	*/
 	//has no effect on the plot, meant to be filler. can be repetitive, if i am doing my job right, shoudn't show up on screen very often.
 	this.getBullshitQuest = function(){
+		//if i stored this in random tables like my old stuff (this is may 2017, btw), then i couldn't avoid repeats as easily as i am here.
+		//remember kids: design and architecture really do fucking matter.
 			var possibilities = ["getting coy hints about The Ultimate Riddle ","killing underlings","delving into dungeons", "exploring ruins", "solving puzzles", "playing minigames", "learning about the lore"];
 			var thing1 = getRandomElementFromArray(possibilities)
 			possibilities.removeFromArray(thing1);
 			var thing2 = getRandomElementFromArray(possibilities);
-			return "random bullshit sidequests at " + this.player1.shortLand() + ", " + thing1 + " and " + thing2 + ".";
+			return "random bullshit sidequests at " + this.player1.shortLand() + ", " + thing1 + " and " + thing2 + ". ";
 	}
 
 
@@ -144,7 +146,7 @@ By the way, I'd add more bullshit activity, like "does random bullshit sidequest
 		}else{
 			ret += " does "
 		}
-		ret += getBullshitQuest();
+		ret += this.getBullshitQuest();
 
 		ret += this.spreadCoruption(this.player1, this.player2);
 		return ret;

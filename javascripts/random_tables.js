@@ -978,6 +978,13 @@ function shuffle(array) {
 
   return array;
 }
+//finally giving myself a saner remove array method, but without deprecating the old one.
+Array.prototype.removeFromArray = function(item){
+	var index = this.indexOf(item);
+	if (index > -1) {
+		this.splice(index, 1);
+	}
+}
 
 function removeFromArray(item, array){
 	var index = array.indexOf(item);
