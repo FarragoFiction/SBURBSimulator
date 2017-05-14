@@ -645,7 +645,7 @@ function GameEntity(session, name, crowned){
 				var player = players[i]
 				///console.log("It is the " + player.titleBasic() + "'s turn. '");
 				if(!player.dead && this.getHP()>0 && this.playersAbsconded.indexOf(player) == -1){
-					 this.playerdecideWhatToDo(div, player,players);
+					 this.playerdecideWhatToDo(div, player,players);  //
 				}
 			}
 
@@ -876,6 +876,8 @@ function GameEntity(session, name, crowned){
 
 		this.makeDead = function(causeOfDeath){
 			//does nothing. game entities are assumed to be dead if zero hp
+			this.dead = true; //mostly ignored, but gameEntity's on the player side use this.
+			this.causeOfDeath = causeOfDeath;
 		}
 
 		this.checkForAPulse =function(player, attacker){
