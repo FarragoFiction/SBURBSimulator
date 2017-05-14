@@ -250,7 +250,7 @@ function GameEntity(session, name, crowned){
 				return;
 			}else{
 				//console.log("players abscond: " + this.session.session_id);
-				div.append(" The fight is over due to a lack of player presence. ");
+				div.append(" The strife is over due to a lack of player presence. ");
 				return;
 			}
 
@@ -618,15 +618,15 @@ function GameEntity(session, name, crowned){
 			var living = this.getLivingMinusAbsconded(players);
 			if(living.length == 0 && players.length > this.playersAbsconded.length){
 				if(players.length == 1){
-					div.append(" The fight is over. The " + players[0].htmlTitle() + " is dead. ");
+					div.append(" The strife is over. The " + players[0].htmlTitle() + " is dead.<br> ");
 				}else{
-					div.append(" The fight is over. The players are dead. ");
+					div.append(" The strife is over. The players are dead.<br> ");
 				}
 
 				this.minorLevelPlayers(players)
 				return true;
 			}else if(this.getHP() <= 0){
-				div.append(" <Br><br> The fight is over. " + this.name + " is dead. ");
+				div.append(" <Br><br> The fight is over. " + this.name + " is dead. <br>");
 				this.levelPlayers(players) //even corpses
 				this.givePlayersGrist(players);
 				return true;

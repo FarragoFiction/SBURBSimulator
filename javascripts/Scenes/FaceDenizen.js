@@ -63,7 +63,7 @@ function FaceDenizen(session){
 	this.faceDenizenMinion = function(p,div){
 		var denizenMinion = this.session.getDenizenMinionForPlayer(p);
 		var ret = "<br>The " + p.htmlTitleHP() + " initiates a strife with the " + denizenMinion.name + ". "
-		if(p.sprite && p.sprite.getHP() > 0 ) ret += p.sprite.htmlTitleHP() + " joins them! "
+		if(p.sprite && p.sprite.getHP() > 0 ) ret += " " + p.sprite.htmlTitleHP() + " joins them! "
 		div.append(ret);
 		denizenMinion.strife(div, [p,p.sprite],0);
 		if(denizenMinion.getHP() <= 0 ){
