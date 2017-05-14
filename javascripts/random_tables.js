@@ -1240,17 +1240,25 @@ democracyTasks.push(" WV demonstrates tactical knowledge to Dersites, convincing
 democracyTasks.push(" WV gives rousing speeches to Prospitians, emphasizing that they share the same goal. ");
 democracyTasks.push(" WV gives rousing speeches to Dersites, listing every crime the King and Queen have commited against their own people. ");
 democracyTasks.push(" WV debates Dersite beliefs, asking if they REALLY want to die in the Reckoning rather than go live in a new Universe (loathesome though frogs may be). ");
-
+democracyTasks.push(" WV distributes hastily scrawled parking ticket pamphlets decrying the Royals as 'Total Jerks Bluh Bluh’, much to the ire of the Dersite Parking Authority");
+democracyTasks.push(" WV arranges a covert series of blinking signals with the help of a firefly. ");
 
 
 var democracySuperTasks = [" WV flips the fuck out and starts distributing free TAB soda to anyone who joins his army. "];
 democracySuperTasks.push(" WV grabs a random Player and uses them as a prop during a speech, triggering the frothing devotion of the local consorts. ");
-democracySuperTasks.push("");
+democracySuperTasks.push(" WV arranges a military training session with carapacians on both sides of the War, raising their confidence for the upcoming battle. ");
+democracySuperTasks.push(" WV accidentally steals a colossal Derse war machine. Somehow. ");
+democracySuperTasks.push(" WV trains other carapacians in the art of forward attacks. They are the best pawn. It is them. ");
+democracySuperTasks.push(" WV and a random Player go on an alchemy spree, arming the democratic army with all manners of insane weaponry that is off both the hook and also the chain. In fact, they couldn’t manage to alchemize a single flail. Only giant spiky balls. ");
+
 
 var mayorDistractionTasks = [" WV is distracted eating green objects rather than recruiting for his army. "];
 mayorDistractionTasks.push( " WV is distracted planning the civil infrastructure of a city, rather than recruiting for his army.");
 mayorDistractionTasks.push(" WV is distracted fantasizing about how great of a mayor he will be. ");
 mayorDistractionTasks.push(" WV accidentally tried to recruit carapacians already part of his army. Stupid stupid stupid! ");
+mayorDistractionTasks.push(" WV gets distracted freaking out about car safety. ");
+mayorDistractionTasks.push(" WV gets distracted freaking out about how evil bad bad bad bad monarchy is. ");
+mayorDistractionTasks.push(" WV gets distracted writing a constitution for the new democracy. ");
 
 var tricksterColors = ["#FF0000","#00FF00","#0000FF","#FFFF00","#00FFFF","#FF00FF","#efffff","#5ef89c","#5ed6f8","#f85edd","#ffcaf6","#d0ffca","#cafcff","#fffdca","#ffd200","#a7caff","#ff6c00","#fffc00","#f5b4ff","#ffceb1","#ffcaca","#e0efc6","#c5ffed","#c5dcff","#ebdbff","#ffdbec","#ecfff4","#f0ecff","#c0ff00","#f7bfff","#dfffbf"];
 
