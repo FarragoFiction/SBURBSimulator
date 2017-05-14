@@ -323,7 +323,7 @@ BTW: please note that Hussie, as the Waste of Space, uses his YellowYard and a F
 		var timeClone = makeRenderingSnapshot(this.timePlayer);
 		timeClone.dead = false;
 		timeClone.doomed = true;
-		timeClone.currentHP = timeClone.maxHP
+		timeClone.currentHP = timeClone.hp
 		return timeClone;
 	}
 
