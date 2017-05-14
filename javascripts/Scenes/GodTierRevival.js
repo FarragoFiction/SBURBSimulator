@@ -124,6 +124,13 @@ function GodTierRevival(session){
 					p.grimDark = false;
 					p.leftMurderMode = false;
 					p.triggerLevel = 1;
+					if(this.aspect == "Doom"){ //powered by their own doom.
+						console.log("doom is powered by their own death: " + this.session.session_id) //omg, they are sayians.
+						this.power += 500;
+						this.minLuck += 500; //prophecy fulfilled. you are no longer doomed.
+						ret += " They prophesied this death. Now that their Doom is over, they can finally get on with their life. "
+						console.log("godtier doom player using their own death as a source of power. so proud of this. "  + this.session.session_id);
+					}
 				}
 			}
 

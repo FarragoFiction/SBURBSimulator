@@ -251,7 +251,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			//this.leftMurderMode = false; //no scars
 			this.victimBlood = null; //clean face
 			if(this.aspect == "Doom"){ //powered by their own doom.
-				console.log("doom is powered by their own death: " + this.session.session_id)
+				console.log("doom is powered by their own death: " + this.session.session_id) //omg, they are sayians. 
 				this.power += 100;
 				this.minLuck += 100; //prophecy fulfilled. you are no longer doomed.
 			}
