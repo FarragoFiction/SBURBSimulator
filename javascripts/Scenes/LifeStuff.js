@@ -440,6 +440,7 @@ function LifeStuff(session){
 					player.hp += 100; //i won't let you die again.
 				}else if(enablingAspect == "Doom"){
 					player.minLuck += 100; //you've fulfilled the prophecy. you are no longer doomed.
+					str += "The prophecy is fulfilled. "
 				}
 
 

@@ -638,6 +638,7 @@ function GameEntity(session, name, crowned){
 					deadPlayer.hp += 100; //i won't let you die again.
 				}else if(undrainedPacts[0][1] == "Doom"){
 					deadPlayer.minLuck += 100; //you've fulfilled the prophecy. you are no longer doomed.
+					div.append("The prophecy is fulfilled. ")
 				}
 			}else if((deadPlayer.aspect == "Doom" || deadPlayer.aspect == "Life")&& (deadPlayer.class_name == "Heir" || deadPlayer.class_name == "Thief")){
 				var ghost = this.session.afterLife.findAnyUndrainedGhost();
@@ -659,6 +660,7 @@ function GameEntity(session, name, crowned){
 					deadPlayer.hp += 100; //i won't let you die again.
 				}else if(deadPlayer.aspect == "Doom"){
 					deadPlayer.minLuck += 100; //you've fulfilled the prophecy. you are no longer doomed.
+					div.append("The prophecy is fulfilled. ")
 				}
 			}
 		}
@@ -697,6 +699,7 @@ function GameEntity(session, name, crowned){
 				player.hp += 100; //i won't let you die again.
 			}else if(player.aspect == "Doom"){
 				player.minLuck += 100; //you've fulfilled the prophecy. you are no longer doomed.
+				div.append("The prophecy is fulfilled. ")
 			}
 		}
 
