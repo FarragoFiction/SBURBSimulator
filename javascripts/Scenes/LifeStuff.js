@@ -436,6 +436,11 @@ function LifeStuff(session){
 				ghost.causeOfDrain = player.htmlTitle();
 				var canvas = drawReviveDead(div, player, ghost, enablingAspect);
 				player.makeAlive();
+				if(enablingAspect == "Life"){
+					player.hp += 100; //i won't let you die again.
+				}else if(enablingAspect == "Doom"){
+					player.minLuck += 100; //you've fulfilled the prophecy. you are no longer doomed.
+				}
 
 
 				removeFromArray(myGhost, this.session.afterLife.ghosts);

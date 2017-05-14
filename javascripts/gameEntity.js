@@ -634,6 +634,11 @@ function GameEntity(session, name, crowned){
 				removeFromArray(myGhost, this.session.afterLife.ghosts);
 				var canvas = drawReviveDead(div, deadPlayer, source, undrainedPacts[0][1]);
 				deadPlayer.makeAlive();
+				if(undrainedPacts[0][1] == "Life"){
+					deadPlayer.hp += 100; //i won't let you die again.
+				}else if(undrainedPacts[0][1] == "Doom"){
+					deadPlayer.minLuck += 100; //you've fulfilled the prophecy. you are no longer doomed.
+				}
 			}else if((deadPlayer.aspect == "Doom" || deadPlayer.aspect == "Life")&& (deadPlayer.class_name == "Heir" || deadPlayer.class_name == "Thief")){
 				var ghost = this.session.afterLife.findAnyUndrainedGhost();
 				var myGhost = this.session.afterLife.findClosesToRealSelf(deadPlayer)
@@ -650,6 +655,11 @@ function GameEntity(session, name, crowned){
 				}
 				var canvas = drawReviveDead(div, deadPlayer, ghost, deadPlayer.aspect);
 				deadPlayer.makeAlive();
+				if(deadPlayer.aspect == "Life"){
+					deadPlayer.hp += 100; //i won't let you die again.
+				}else if(deadPlayer.aspect == "Doom"){
+					deadPlayer.minLuck += 100; //you've fulfilled the prophecy. you are no longer doomed.
+				}
 			}
 		}
 
@@ -683,6 +693,11 @@ function GameEntity(session, name, crowned){
 			}
 			removeFromArray(myGhost, this.session.afterLife.ghosts);
 			deadPlayer.makeAlive();
+			if(player.aspect == "Life"){
+				player.hp += 100; //i won't let you die again.
+			}else if(player.aspect == "Doom"){
+				player.minLuck += 100; //you've fulfilled the prophecy. you are no longer doomed.
+			}
 		}
 
 		this.playerdecideWhatToDo = function(div, player,players){
