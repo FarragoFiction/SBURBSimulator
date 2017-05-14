@@ -220,7 +220,7 @@ function GameEntity(session, name, crowned){
 					var p = players[i];
 					if(p != player && this.playersAbsconded.indexOf(p) == -1){ //don't be a hypocrite and hate them if you already ran.
 						var r = p.getRelationshipWith(player);
-						r.value += -5;
+						if(r) r.value += -5; //could be a sprite, after all. 
 					}
 				}
 		}
@@ -876,6 +876,10 @@ function GameEntity(session, name, crowned){
 
 		this.htmlTitleBasic = function(){
 				return this.name;
+		}
+
+		this.getRelationshipWith = function(){
+			//stub for boss fights where an asshole absconds.
 		}
 
 		this.makeDead = function(causeOfDeath){
