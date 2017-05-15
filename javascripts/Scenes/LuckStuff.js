@@ -27,7 +27,17 @@ function LuckStuff(session){
 	}
 
 	this.renderContent = function(div){
-		div.append("<br>"+this.content());
+		this.numberTriggers ++;
+		//var ret = "<img src = 'images/fortune_event.png'/><Br>";  //maybe display image for this event, like not canvas, just image. Single image for event.
+		var ret = "<br>";
+		removeFromArray(this.player, this.session.availablePlayers);
+		for(var i = 0; i<this.rolls.length; i++){
+			var roll = this.rolls[i];
+			removeFromArray(roll.player, this.session.availablePlayers);
+			ret += this.processRoll(roll,div);
+		}
+
+		div.append("<br><br>" + ret)
 	}
 
 	this.roll60 = function(roll){
@@ -189,7 +199,7 @@ function LuckStuff(session){
 		return ret;
 	}
 
-	this.roll100 = function(roll){
+	this.roll100 = function(roll,div){
 		//console.log("roll100 in " + this.session.session_id + " roll is: " + roll.value);
 
 		if(roll.player.godDestiny && !roll.player.godTier && (roll.player.dreamSelf || roll.player.isDreamSelf)){
@@ -210,7 +220,13 @@ function LuckStuff(session){
 			roll.player.grimDark = 0;
 			this.session.godTier = true;
 			roll.player.isDreamSelf = false;
-			return ret;
+			var divID = (div.attr("id")) + "_luckGodBS" + roll.player.chatHandle;
+			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+			div.append(ret);
+			div.append(canvasHTML);
+			var canvas = document.getElementById("canvas"+ divID);
+			drawGetTiger(canvas, [roll.player],repeatTime) //only draw revivial if it actually happened.
+			return "";
 		}else{
 			if(!roll.player.godDestiny && roll.player.dreamSelf && !roll.player.godTier ){
 				//console.log("destined for greatness from reroll of luck in " + this.session.session_id + " roll is: " + roll.value);
@@ -241,7 +257,7 @@ function LuckStuff(session){
 
 
 	//5 good things that can happen, 5 bad things can happen
-	this.processRoll = function(roll){
+	this.processRoll = function(roll,div){
 		var amount = 5;
 		if(roll.value >= this.minHighValue && roll.value < this.minHighValue + amount){
 			return this.roll60(roll);
@@ -258,7 +274,7 @@ function LuckStuff(session){
 		}else if(roll.value >= this.minHighValue + (amount*4) && roll.value < this.minHighValue + (amount*2)){
 			return this.roll95(roll);
 		}else if(roll.value >= this.minHighValue + (amount*4)){
-			return this.roll100(roll);
+			return this.roll100(roll,div);
 		}else if(roll.value > this.minLowValue - amount && roll.value <= this.minLowValue){
 			return this.roll40(roll);
 		}else if(roll.value > this.minLowValue - (amount*2) && roll.value <= this.minLowValue - amount){
@@ -280,18 +296,8 @@ function LuckStuff(session){
 
 	}
 
-	this.content = function(){
-		this.numberTriggers ++;
-		//var ret = "<img src = 'images/fortune_event.png'/><Br>";  //maybe display image for this event, like not canvas, just image. Single image for event.
-		var ret = "<br>";
-		removeFromArray(this.player, this.session.availablePlayers);
-		for(var i = 0; i<this.rolls.length; i++){
-			var roll = this.rolls[i];
-			removeFromArray(roll.player, this.session.availablePlayers);
-			ret += this.processRoll(roll);
-		}
-
-		return ret;
+	this.content = function(div){
+		return "1.0 is basically dead now, thems the breaks."
 	}
 }
 
