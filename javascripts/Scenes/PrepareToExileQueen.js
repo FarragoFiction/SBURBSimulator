@@ -51,16 +51,17 @@ function PrepareToExileQueen(session){
 	}
 
 	this.content = function(){
-		this.player.increasePower();
+
 		removeFromArray(this.player, this.session.availablePlayers);
 		//NOT RANDOM ANY MORE. INSTEAD BASED ON PLAYER POWER VS QUEEN POWER
 		//generally will start with light and owrk your way up.
-		if(player.power * 2 < this.queen.getPower()){ //queen is 100 and you are less than 50
+		if(this.player.power * 2 < this.session.queen.getPower()){ //queen is 100 and you are less than 50
 			return this.lightDamage();
-		}else if(player.power < this.queen.getPower()){ //queen is 100 and you are at least 50
+		}else if(this.player.power < this.session.queen.getPower()){ //queen is 100 and you are at least 50
 			return this.moderateDamage();
-		}else if(player.power > this.queen.getPower()){
-			return this.heavyDamage(;)
+		}else if(this.player.power > this.session.queen.getPower()){
+			return this.heavyDamage()
 		}
+		this.player.increasePower();
 	}
 }
