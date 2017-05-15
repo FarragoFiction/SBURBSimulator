@@ -24,8 +24,8 @@ function ExploreMoon(session){
 			var living = findLivingPlayers(this.session.players);
 
 			if(dead.length > 0) vision = "What is that cloud showing? Is that...grub sauce? Please be grub sauce." //the dead won't be rare. replace this if at all possible.
-			if(getAveragePower(living)>this.session.king.getHP()*2) vision = "Wow, everybody sure looks happy in that cloud. Maybe things will turn out after all?";
-			if(this.session.king.getPower()> getAverageHP(living) * 2) vision = "Um...Huh. That's. That's a lot of dead bodies. What's...what's going on in that cloud there?"
+			if(this.session.timeTillReckoning < 3 && getAveragePower(living)>this.session.king.getHP()*2) vision = "Wow, everybody sure looks happy in that cloud. Maybe things will turn out after all?";
+			if(this.session.timeTillReckoning < 3 && this.session.king.getPower()> getAverageHP(living) * 2) vision = "Um...Huh. That's. That's a lot of dead bodies. What's...what's going on in that cloud there?"
 			if(this.player1.grimDark > 2 || (this.player2 && this.player2.grimDark > 0)) vision = "Skaia's clouds are dark. " //final option. no visions for grim dark players.
 
 			return "whimsical Prospit activities, such as " + thing1 + " and " + thing2 + ". " + vision;
@@ -43,7 +43,7 @@ function ExploreMoon(session){
 
 			var whisper = "The whisperings of the HorrorTerrors provided a nice backdrop.";
 			if(dead.length > 0) whisper = "...so, THAT's what is sounds like when a horrorterror laughs. Good to know." //the dead won't be rare. replace this if at all possible.
-			if(this.session.king.getPower()> getAverageHP(living) * 2) whisper = "Oh god, did the Horrorterrors get LOUDER!?"
+			if(this.session.timeTillReckoning < 3 && this.session.king.getPower()> getAverageHP(living) * 2) whisper = "Oh god, did the Horrorterrors get LOUDER!?"
 			if(this.player1.aspect == "Void" || (this.player2 && this.player2.aspect == "Void")) whisper = "The Horrorterrors are strangely quiet, their whisperings strained, like someone trying to speak through a broken speaker.";
 			if(this.player1.grimDark > 0 || (this.player2 && this.player2.grimDark > 0)) whisper = "The Horrorterrors whisperings call to them. "
 
