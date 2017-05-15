@@ -694,6 +694,7 @@ function RelationshipDrama(session){
 		//div.append(this.content());
 		for(var i = 0; i<this.dramaPlayers.length; i++){
 				var p = this.dramaPlayers[i];
+				removeFromArray(p, this.session.availablePlayers); //how did i forget to make this take a turn? that's the whole point, romance distracts you from shit. won't make it distract your partner, tho.
 				this.renderForPlayer(div, p);
 			}
 
