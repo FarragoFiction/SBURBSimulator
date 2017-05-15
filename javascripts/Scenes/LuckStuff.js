@@ -241,7 +241,7 @@ function LuckStuff(session){
 
 	}
 
-	this.roll0 = function(roll){
+	this.roll0 = function(roll,div){
 		//console.log("roll0 in " + this.session.session_id + " roll is: " + roll.value + " player min luck was: " + roll.player.minLuck + " and max luck was: " + roll.player.maxLuck);
 		if(roll.player.godDestiny && !roll.player.godTier && roll.player.dreamSelf){
 			roll.player.godDestiny = false;
@@ -302,7 +302,7 @@ function LuckStuff(session){
 		}else if(roll.value > this.minLowValue - (amount*6) && roll.value <= this.minLowValue - (amount*5)){
 			return this.roll10(roll);
 		}else if(roll.value <= this.minLowValue - (amount*8)){
-			return this.roll0(roll);
+			return this.roll0(roll,div);
 		}
 		else return "What the hell, mate? roll was: " + roll.value + " and needed to be not between  " + this.minLowValue + " and " + this.minHighValue;
 
