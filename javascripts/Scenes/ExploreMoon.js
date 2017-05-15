@@ -32,7 +32,7 @@ function ExploreMoon(session){
 		}
 
 		this.getDerseBullshit = function(){
-			var possibilities = ["attending dance parties", "cheating at poker", "keeping tabs on the lifeblood of Derse", "learning the Derse waltz","understanding the nuances of a stab","lying their asses off to anyone and everyone","attending jazz clubs","setting up black market businesses","dodging the Derse law","smuggling contraband into Derse","delivering finely crafted suits"];
+			var possibilities = ["attending dance parties", "cheating at poker", "keeping tabs on the lifeblood of Derse", "learning the Derse waltz","understanding the nuances of a stab","lying their asses off to anyone and everyone","attending jazz clubs","setting up black market businesses","dodging the Derse law","smuggling contraband","delivering finely crafted suits"];
 			var thing1 = getRandomElementFromArray(possibilities);
 			possibilities.removeFromArray(thing1);
 			var thing2 = getRandomElementFromArray(possibilities);
