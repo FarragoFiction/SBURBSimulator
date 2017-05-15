@@ -301,7 +301,7 @@ function LuckStuff(session){
 			return this.roll20(roll);
 		}else if(roll.value > this.minLowValue - (amount*6) && roll.value <= this.minLowValue - (amount*5)){
 			return this.roll10(roll);
-		}else if(roll.value <= this.minLowValue - (amount*8)){
+		}else if(roll.value <= this.minLowValue - (amount*20)){
 			return this.roll0(roll,div);
 		}
 		else return "What the hell, mate? roll was: " + roll.value + " and needed to be not between  " + this.minLowValue + " and " + this.minHighValue;
