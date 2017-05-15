@@ -54,7 +54,7 @@ function DoLandQuest(session){
 	}
 
 	this.renderContent = function(div){
-		div.append("<br>"+this.content(div));
+		div.append("<br> "+this.content(div));
 
 	}
 
@@ -210,11 +210,10 @@ function DoLandQuest(session){
 	}
 
 	this.spriteContent = function(player){
-		if(player.sprite.dead) return;//nothing to see here.
+		if(player.sprite.dead) return "";//nothing to see here.
 		var ret = player.sprite.htmlTitle()
 		if(player.sprite.corrupted){
 			player.landLevel += -0.75;
-			ret = " Oh god. What is going on. Why does just listening to " + player.sprite.htmlTitle() + " make your ears bleed!? "
 		}else if(player.sprite.helpfulness > 0){
 			//console.log("good sprite: " + this.session.session_id)
 			player.landLevel += 1;
@@ -231,7 +230,7 @@ function DoLandQuest(session){
 	}
 
 	this.contentForPlayer = function(player, helper){
-		var ret = "";
+		var ret = " ";
 		ret += "The " + player.htmlTitle()  ;
 		player.increasePower();
 		player.landLevel ++;
@@ -296,7 +295,6 @@ function DoLandQuest(session){
 				ret += " They finally finished off all the main quests on " + player.land + ". They should be ready to face their Denizen. ";
 			}
 		}
-
 		return ret;
 	}
 
