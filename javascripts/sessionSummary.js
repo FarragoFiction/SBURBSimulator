@@ -7,6 +7,9 @@ function SessionSummary(){
 	this.crashedFromPlayerActions = null;
 	this.won = null;
 	this.opossumVictory = null;
+	this.badBreakDeath = null;
+	this.choseGodTier = null;
+	this.luckyGodTier = null;
 	this.rocksFell = null;
 	this.num_scenes = null;
 	this.players = null;  //can ask for sessions with a blood player and a murder mode, for example
@@ -290,6 +293,9 @@ function SessionSummaryJunior(players,session_id){
 function MultiSessionSummary(){
 	this.ghosts = [];
 	this.total = 0;
+	this.badBreakDeath = 0;
+	this.choseGodTier = 0;
+	this.luckyGodTier = 0;
 	this.averageMinLuck = 0;
 	this.averageMaxLuck = 0;
 	this.averagePower = 0;
@@ -637,6 +643,10 @@ function collateMultipleSessionSummaries(sessionSummaries){
 	for(var i = 0; i<sessionSummaries.length; i++){
 		var ss = sessionSummaries[i];
 		mss.total ++;
+
+		if(ss.badBreakDeath) mss.badBreakDeath ++;
+		if(ss.choseGodTier) mss.choseGodTier ++;
+		if(ss.luckyGodTier) mss.luckyGodTier ++;
 		if(ss.crashedFromSessionBug) mss.crashedFromSessionBug ++;
 		if(ss.opossumVictory) mss.opossumVictory ++;
 		if(ss.rocksFell) mss.rocksFell ++;

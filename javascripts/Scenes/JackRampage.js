@@ -52,7 +52,7 @@ function JackRampage(session){
 			var ch = canvasHeight;
 
 			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
-			div.append(canvasHTML);
+			//div.append(canvasHTML);  //no. not if sprites can be here.
 			//different format for canvas code
 			var canvasDiv = document.getElementById("canvas"+ divID);
 			//poseAsATeam(canvasDiv, stabbings, 2000); //can't do this anymore, mighit be  a sprite in there.

@@ -203,7 +203,7 @@ function LuckStuff(session){
 		//console.log("roll100 in " + this.session.session_id + " roll is: " + roll.value);
 
 		if(roll.player.godDestiny && !roll.player.godTier && (roll.player.dreamSelf || roll.player.isDreamSelf)){
-			var ret = "What the HELL!? The " + roll.player.htmlTitle() + " managed to somehow lose to REGULAR FUCKING ENEMIES!? Is that even POSSIBLE!? This is BULLSHIT. Wait. What's going on? How did they end up on their " ;
+			var ret = " What the HELL!? The " + roll.player.htmlTitle() + " managed to somehow lose to REGULAR FUCKING ENEMIES!? Is that even POSSIBLE!? This is BULLSHIT. Wait. What's going on? How did they end up on their " ;
 			if(!roll.player.isDreamSelf){
 				ret += "QUEST BED!? Their body glows, and rises Skaiaward. "+"On " + roll.player.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
 				this.session.questBed = true;
@@ -218,6 +218,7 @@ function LuckStuff(session){
 			roll.player.godTier = true;
 			roll.player.dreamSelf = false;
 			roll.player.grimDark = 0;
+			this.session.luckyGodTier = true;
 			this.session.godTier = true;
 			roll.player.isDreamSelf = false;
 			var divID = (div.attr("id")) + "_luckGodBS" + roll.player.chatHandle;
@@ -250,8 +251,20 @@ function LuckStuff(session){
 		}
 		var ret = "What the HELL!? The " + roll.player.htmlTitle() + " managed to somehow lose to REGULAR FUCKING ENEMIES!? Is that even POSSIBLE!? This is BULLSHIT. How unlucky do you even need to BE!? They are DEAD."
 		roll.player.makeDead("from a Bad Break.");
+		div.append(ret);
+
+		var divID = (div.attr("id")) + "_badLuckDeath" + roll.player.chatHandle;
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		var canvas = document.getElementById("canvas"+ divID);
+
+		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawSprite(pSpriteBuffer,roll.player)
+
+		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0)
 		this.session.badLuckEvent = true;
-		return ret;
+		this.session.badBreakDeath = true;
+		return "";
 
 	}
 
@@ -273,7 +286,8 @@ function LuckStuff(session){
 			return this.roll90(roll);
 		}else if(roll.value >= this.minHighValue + (amount*4) && roll.value < this.minHighValue + (amount*2)){
 			return this.roll95(roll);
-		}else if(roll.value >= this.minHighValue + (amount*4)){
+		}else if(roll.value >= this.minHighValue + (amount*20)){
+			div.append("Roll was: " + roll.value + " and compared to: " + (this.minHighValue + (amount*20)) + " bool is: " + (roll.value >= this.minHighValue + (amount*20)))
 			return this.roll100(roll,div);
 		}else if(roll.value > this.minLowValue - amount && roll.value <= this.minLowValue){
 			return this.roll40(roll);
@@ -287,7 +301,7 @@ function LuckStuff(session){
 			return this.roll20(roll);
 		}else if(roll.value > this.minLowValue - (amount*6) && roll.value <= this.minLowValue - (amount*5)){
 			return this.roll10(roll);
-		}else if(roll.value <= this.minLowValue - (amount*6)){
+		}else if(roll.value <= this.minLowValue - (amount*8)){
 			return this.roll0(roll);
 		}
 		else return "What the hell, mate? roll was: " + roll.value + " and needed to be not between  " + this.minLowValue + " and " + this.minHighValue;

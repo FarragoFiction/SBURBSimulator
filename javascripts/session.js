@@ -12,6 +12,9 @@ function Session(session_id){
 	this.afterLife = new AfterLife();
 	this.queensRing = null; //eventually have white and black ones.
 	this.kingsScepter = null;
+	this.badBreakDeath = false;
+	this.luckyGodTier = false;
+	this.choseGodTier = false;
 	this.hasHearts = false;
 	this.hasSpades = false;
 	this.rocksFell = false;
@@ -568,6 +571,9 @@ function Session(session_id){
 
 	this.generateSummary = function(){
 		var summary = new SessionSummary();
+		summary.badBreakDeath = this.badBreakDeath;
+		summary.luckyGodTier = this.luckyGodTier;
+		summary.choseGodTier = this.choseGodTier;
 		summary.scratched = this.scratched;
 		summary.opossumVictory = this.opossumVictory;
 		summary.rocksFell = this.rocksFell;

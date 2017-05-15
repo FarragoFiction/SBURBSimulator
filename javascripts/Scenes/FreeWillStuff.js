@@ -492,6 +492,7 @@ function FreeWillStuff(session){
 		player.godTier = true;
 		player.grimDark = 0;
 		this.session.godTier = true;
+		this.session.choseGodTier = true;
 		player.dreamSelf = false;
 		player.isDreamSelf = false;
 		this.playerGodTiered = player;
