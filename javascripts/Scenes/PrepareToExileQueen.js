@@ -28,17 +28,15 @@ function PrepareToExileQueen(session){
 	this.moderateDamage = function(){
 		console.log(this.session.scratched +  this.player + " moderate damage to queen's power in: " + this.session.session_id)
 		var ret = "The " + this.player.htmlTitle() + " "
-		var possibilities = ["performs a daring assassination mission against one of the Black Queen's agents, losing her a valuable ally. " ];
 		this.session.queen.power += -10;
-		return ret + getRandomElementFromArray(possibilities);
+		return ret + getRandomElementFromArray(moderateQueenQuests);
 	}
 
 	this.heavyDamage = function(){
 		console.log(this.session.scratched +  this.player +   " heavy damage to queen's power in: " + this.session.session_id)
 		var ret = "The " + this.player.htmlTitle() + " "
-		var possibilities = ["performs a daring spy mission, gaining valuable intel to use on the Black Queen. "];
 		this.session.queen.power += -15;
-		return ret + getRandomElementFromArray(possibilities);
+		return ret + getRandomElementFromArray(heavyQueenQuests);
 	}
 
 	this.lightDamage = function(){
