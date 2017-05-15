@@ -757,15 +757,15 @@ function GameEntity(session, name, crowned){
 			var canvas = document.getElementById(canvasId);
 			var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 			drawSprite(pSpriteBuffer,player)
-			var gSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-			drawSpriteTurnways(gSpriteBuffer,ghost)
+			//var gSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+			//drawSpriteTurnways(gSpriteBuffer,ghost) //KR says looks bad.
 
 
 
 			drawWhatever(canvas, "drain_lightning.png");
 
 			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,200,0)
-			copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,200,0)
+			//copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,200,0)
 			var canvasBuffer = getBufferCanvas(document.getElementById("canvas_template"))
 			return canvas;
 		}
