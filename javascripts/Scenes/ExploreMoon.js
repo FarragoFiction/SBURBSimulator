@@ -11,6 +11,42 @@ function ExploreMoon(session){
 			return null;
 		}
 
+		this.getProspitBullshit = function(){
+			var possibilities = ["attending dance parties", "fluttering about aimlessly", "chatting up Prospitans"];
+			var thing1 = getRandomElementFromArray(possibilities);
+			possibilities.removeFromArray(thing1);
+			var thing2 = getRandomElementFromArray(possibilities);
+
+
+			var vision = "The visions of the future provided by Skaia were largely ignored.";
+			//have different vision based on predicted results. player power >> king power, predict success. player power << king, predict failure.
+			var dead = this.findDeadPlayers(this.session.players);
+			var living = this.findLivingPlayers(this.session.players);
+
+			if(dead.length > 0) vision = "What is that cloud showing? Is that...grub sauce? Please be grub sauce." //the dead won't be rare. replace this if at all possible.
+			if(getAveragePower(living)>this.session.king.getHP()*2) vision = "Wow, everybody sure looks happy in that cloud. Maybe things will turn out after all?";
+			if(this.session.king.getPower()> getAverageHP(living) * 2) vision = "Um...Huh. That's. That's a lot of dead bodies. What's...what's going on in that cloud there?"
+			if(this.player1.grimDark > 2 || this.player2.grimDark > 2) vision = "Skaia's clouds are dark. " //final option. no visions for grim dark players.
+
+			return "whimsical Prospit activities, such as " + thing + " and " + thing + ". " + vision;
+		}
+
+		this.getDerseBullshit = function(){
+			var possibilities = ["attending dance parties", "cheating at poker", "keeping tabs on the lifeblood of Derse"];
+			var thing1 = getRandomElementFromArray(possibilities);
+			possibilities.removeFromArray(thing1);
+			var thing2 = getRandomElementFromArray(possibilities);
+
+
+			var whisper = "The whisperings of the HorrorTerrors provided a nice backdrop.";
+			if(dead.length > 0) whisper = "...so, THAT's what is sounds like when a horrorterror laughs. Good to know." //the dead won't be rare. replace this if at all possible.
+			if(this.session.king.getPower()> getAverageHP(living) * 2) whisper = "Oh god, did the Horrorterrors get LOUDER!?"
+			if(this.player1.aspect == "Void" || this.player2.aspect == "Void") whisper = "The Horrorterrors are strangely quiet, their whisperings strained, like someone trying to speak through a broken speaker.";
+			if(this.player1.grimDark > 0 || this.player2.grimDark > 0) whisper = "The Horrorterrors whisperings call to them. "
+
+			return "whimsical Derse activities, such as " + thing + " and " + thing + ". " + whisper;
+		}
+
 		if(player.aspect == "Blood" || player.class_name == "Page"){
 			if(this.session.availablePlayers.length > 1){
 				this.player2 = getRandomElementFromArray(this.session.availablePlayers);
@@ -94,11 +130,9 @@ function ExploreMoon(session){
 			ret += " does "
 		}
 		if(this.player1.moon == "Prospit"){
-			ret += "whimsical moon activities, such as attending dance parties, fluttering about aimlessly and chatting up Prospitans. ";
-			ret += " The visions of the future provided by Skaia were largely ignored. ";
+			ret += this.getProspitBullshit();
 		}else{
-			ret += "whimsical moon activities, such as attending dance parties, cheating at poker and keeping tabs on the lifeblood of Derse. ";
-			ret += " The whisperings of the HorrorTerrors provided a nice backdrop. ";
+			ret += this.getDerseBullshit();
 			this.player1.corruptionLevelOther += 10;
 			if(this.player2) this.player2.corruptionLevelOther += 10;
 		}
