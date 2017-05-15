@@ -54,7 +54,7 @@ function CorpseSmooch(session){
 		d.triggerLevel = 1;
 		d.leftMurderMode = false; //no scars
 		d.victimBlood = null; //clean face
-		d.currentHP = d.hp;
+		//d.currentHP = d.hp;
 		this.currentHP = Math.max(this.hp,1); //players influenced by doom or weird shit can have negative max health.
 	}
 

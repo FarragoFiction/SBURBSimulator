@@ -118,6 +118,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(this.aspect == "Doom"){ //powered by their own doom.
 			console.log("doom is powered by their own death: " + this.session.session_id) //omg, they are sayians.
 			this.power += 50;
+			this.hp = 100; //prophecy fulfilled. but hp and luck will probably drain again.
 			this.minLuck = 100; //prophecy fulfilled. you are no longer doomed.
 		}
 		if(!this.godTier){ //god tiers only make ghosts in GodTierRevivial
