@@ -20,8 +20,8 @@ function ExploreMoon(session){
 
 			var vision = "The visions of the future provided by Skaia were largely ignored.";
 			//have different vision based on predicted results. player power >> king power, predict success. player power << king, predict failure.
-			var dead = this.findDeadPlayers(this.session.players);
-			var living = this.findLivingPlayers(this.session.players);
+			var dead = findDeadPlayers(this.session.players);
+			var living = findLivingPlayers(this.session.players);
 
 			if(dead.length > 0) vision = "What is that cloud showing? Is that...grub sauce? Please be grub sauce." //the dead won't be rare. replace this if at all possible.
 			if(getAveragePower(living)>this.session.king.getHP()*2) vision = "Wow, everybody sure looks happy in that cloud. Maybe things will turn out after all?";
@@ -36,6 +36,9 @@ function ExploreMoon(session){
 			var thing1 = getRandomElementFromArray(possibilities);
 			possibilities.removeFromArray(thing1);
 			var thing2 = getRandomElementFromArray(possibilities);
+			
+			var dead = findDeadPlayers(this.session.players);
+			var living = findLivingPlayers(this.session.players);
 
 
 			var whisper = "The whisperings of the HorrorTerrors provided a nice backdrop.";
