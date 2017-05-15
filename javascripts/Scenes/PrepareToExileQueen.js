@@ -26,7 +26,7 @@ function PrepareToExileQueen(session){
 	}
 
 	this.moderateDamage = function(){
-		console.log("moderate damage to queen's power in: " + this.session.session_id)
+		console.log(this.session.scratched +  this.player + " moderate damage to queen's power in: " + this.session.session_id)
 		var ret = "The " + this.player.htmlTitle() + " "
 		var possibilities = ["performs a daring assassination mission against one of the Black Queen's agents, losing her a valuable ally. " ];
 		this.session.queen.power += -10;
@@ -34,7 +34,7 @@ function PrepareToExileQueen(session){
 	}
 
 	this.heavyDamage = function(){
-		console.log("heavy damage to queen's power in: " + this.session.session_id)
+		console.log(this.session.scratched +  this.player +   " heavy damage to queen's power in: " + this.session.session_id)
 		var ret = "The " + this.player.htmlTitle() + " "
 		var possibilities = ["performs a daring spy mission, gaining valuable intel to use on the Black Queen. "];
 		this.session.queen.power += -15;
@@ -42,12 +42,11 @@ function PrepareToExileQueen(session){
 	}
 
 	this.lightDamage = function(){
-		console.log("light damage to queen's power in: " + this.session.session_id)
+		console.log(this.session.scratched +  this.player +  " light damage to queen's power in: " + this.session.session_id)
 		var ret = "The " + this.player.htmlTitle() + " "
-		var possibilities = ["makes a general nuisance of themselves to the Black Queen"];
 		this.session.queen.power += -5; //ATTENTION FUTURE JR:  you will look at this and wonder why we didn't make it proportional to the queens power. after all,  a five decrease is HUGE to an uncrowned queen and nothing to a First Guardian Queen.   Consider Xeno's paradox, however. If we do it that way, the closer we get to exiling the queen, the less power we'll take from her. She'll never reach zero. DO NOT FUCKING DO THIS.
 		//also, maybe it SHOULD be fucking nothing to a first guardian queen. why the fuck does she care about whatever bullshit you doing. she's a GOD.
-		return ret + getRandomElementFromArray(possibilities);
+		return ret + getRandomElementFromArray(lightQueenQuests);
 	}
 
 	this.content = function(){
@@ -55,7 +54,7 @@ function PrepareToExileQueen(session){
 		removeFromArray(this.player, this.session.availablePlayers);
 		//NOT RANDOM ANY MORE. INSTEAD BASED ON PLAYER POWER VS QUEEN POWER
 		//generally will start with light and owrk your way up.
-		if(this.player.power * 2 < this.session.queen.getPower()){ //queen is 100 and you are less than 50
+		if(this.player.power  < this.session.queen.getPower()* .25){ //queen is 100 and you are less than 25
 			return this.lightDamage();
 		}else if(this.player.power < this.session.queen.getPower()){ //queen is 100 and you are at least 50
 			return this.moderateDamage();

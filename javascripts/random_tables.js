@@ -1260,6 +1260,25 @@ mayorDistractionTasks.push(" WV gets distracted freaking out about car safety. "
 mayorDistractionTasks.push(" WV gets distracted freaking out about how evil bad bad bad bad monarchy is. ");
 mayorDistractionTasks.push(" WV gets distracted writing a constitution for the new democracy. ");
 
+//rage and void can do these in VoidySTuff, even if it's not a quest. just for funsies. (even the heavy shit. oh look the rage player is being LOL SO RANDOM what with their decapitated head shenanigans.)
+var lightQueenQuests = ["makes a general nuisance of themselves to the Black Queen.", "spreads disparaging rumours concerning the Black Queen.", "sabotages several official portraits of the Black Queen."];
+lightQueenQuests = lightQueenQuests.concat(["sets up various pranks and traps around Derse","breaks all the lights in the throne room","vandalizes various Dersite public hotspots. Fuck the Authority Regulators!"]);
+lightQueenQuests = lightQueenQuests.concat(["switches the hats of all of the Dersite high ranking officials","steals all the licorice scottie dogs on Derse","convinces the Enquiring Carapacian that the Black Queen is actually three Salamanders in a robe"]);
+
+
+var moderateQueenQuests = ["","",""];
+moderateQueenQuests = moderateQueenQuests.concat(["","",""]);
+moderateQueenQuests = moderateQueenQuests.concat(["","",""]);
+
+
+var heavyQueenQuests = [];
+heavyQueenQuests = heavyQueenQuests.concat(["","",""]);
+heavyQueenQuests = heavyQueenQuests.concat(["","",""]);
+
+
+
+
+
 var tricksterColors = ["#FF0000","#00FF00","#0000FF","#FFFF00","#00FFFF","#FF00FF","#efffff","#5ef89c","#5ed6f8","#f85edd","#ffcaf6","#d0ffca","#cafcff","#fffdca","#ffd200","#a7caff","#ff6c00","#fffc00","#f5b4ff","#ffceb1","#ffcaca","#e0efc6","#c5ffed","#c5dcff","#ebdbff","#ffdbec","#ecfff4","#f0ecff","#c0ff00","#f7bfff","#dfffbf"];
 
 var bloodColors = ["#A10000","#a25203","#a1a100","#658200","#416600","#078446","#008282","#004182","#0021cb","#631db4","#610061","#99004d"];
