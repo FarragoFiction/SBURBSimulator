@@ -114,15 +114,16 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.makeDead = function(causeOfDeath){
 		this.dead = true;
 		this.causeOfDeath = causeOfDeath;
-		if(!this.godTier){ //god tiers only make ghosts in GodTierRevivial
-			this.session.afterLife.addGhost(makeRenderingSnapshot(this));
-		}
 		//was in make alive, but realized that this makes doom ghosts way stronger if it's here. powered by DEATH, but being revived.
 		if(this.aspect == "Doom"){ //powered by their own doom.
 			console.log("doom is powered by their own death: " + this.session.session_id) //omg, they are sayians.
 			this.power += 50;
 			this.minLuck = 100; //prophecy fulfilled. you are no longer doomed.
 		}
+		if(!this.godTier){ //god tiers only make ghosts in GodTierRevivial
+			this.session.afterLife.addGhost(makeRenderingSnapshot(this));
+		}
+
 
 		this.triggerOtherPlayersWithMyDeath();
 	}
