@@ -44,7 +44,7 @@ function ExploreMoon(session){
 			var whisper = "The whisperings of the HorrorTerrors provided a nice backdrop.";
 			if(dead.length > 0) whisper = "...so, THAT's what is sounds like when a horrorterror laughs. Good to know." //the dead won't be rare. replace this if at all possible.
 			if(this.session.king.getPower()> getAverageHP(living) * 2) whisper = "Oh god, did the Horrorterrors get LOUDER!?"
-			if(this.player1.aspect == "Void" || this.player2.aspect == "Void") whisper = "The Horrorterrors are strangely quiet, their whisperings strained, like someone trying to speak through a broken speaker.";
+			if(this.player1.aspect == "Void" || (this.player2 && this.player2.aspect == "Void")) whisper = "The Horrorterrors are strangely quiet, their whisperings strained, like someone trying to speak through a broken speaker.";
 			if(this.player1.grimDark > 0 || (this.player2 && this.player2.grimDark > 0)) whisper = "The Horrorterrors whisperings call to them. "
 
 			return "whimsical Derse activities, such as " + thing1 + " and " + thing2 + ". " + whisper;
