@@ -305,7 +305,7 @@ function LuckStuff(session){
 		}else if(roll.value < this.minLowValue){ //if I got here, i fell in the crack left where the old death value used to be
 			return this.roll10(roll);  //used to be enough for a roll 0, but not anymore.
 		}else if(roll.value > this. minHighValue){//if i got here, i fell in the crack left where the old godtier value used to be.
-			return this.roll(95);
+			return this.roll95(roll);
 		}
 
 		else return "What the hell, mate? roll was: " + roll.value + " and needed to be not between  " + this.minLowValue + " and " + this.minHighValue;
