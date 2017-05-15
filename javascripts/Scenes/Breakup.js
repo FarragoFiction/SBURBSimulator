@@ -328,6 +328,9 @@ function Breakup(session){
 
 	this.renderContent = function(div){
 		div.append("<br>"+this.content());
+		//takes up time from both of them 
+		removeFromArray(this.player, this.session.availablePlayers);
+		removeFromArray(this.relationshipToBreakUp.target, this.session.availablePlayers);
 		if(this.relationshipToBreakUp.target.dead){
 			//do nothing, just text
 		}else{

@@ -130,6 +130,8 @@ function RelationshipDrama(session){
 		var chatText = "";
 		var player1 = player;
 		var player2 = crush;
+		//already set player unavailable
+		removeFromArray(crush, this.session.availablePlayers);
 
 		if(crush.dead == true){
 			var narration = "<br>The " + player.htmlTitle() + " used to think that the " + crush.htmlTitle() + " was ";
@@ -313,6 +315,7 @@ function RelationshipDrama(session){
 		if(player2.dead == true){
 			return this.corpseAdvice(div,player1,player2,crush);
 		}
+		removeFromArray(player2, this.session.availablePlayers);
 
 		var divID = (div.attr("id")) + "_" + player.chatHandle+"advice_crush_"+crush.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
@@ -448,7 +451,7 @@ function RelationshipDrama(session){
 		if(player2.dead == true){
 			return this.corpseVent(div,player1,player2, jerk);
 		}
-
+		removeFromArray(player2, this.session.availablePlayers);
 		var divID = (div.attr("id")) + "_" + player.chatHandle+"vent_jerk_"+jerk.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
@@ -528,6 +531,7 @@ function RelationshipDrama(session){
 			div.append(narration);
 			return;
 		}
+		removeFromArray(jerk, this.session.availablePlayers);
 		var divID = (div.attr("id")) + "_" + player.chatHandle+"antagonize_jerk_"+jerk.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
@@ -694,6 +698,7 @@ function RelationshipDrama(session){
 		//div.append(this.content());
 		for(var i = 0; i<this.dramaPlayers.length; i++){
 				var p = this.dramaPlayers[i];
+				//take up time for other player once i know who they are.
 				removeFromArray(p, this.session.availablePlayers); //how did i forget to make this take a turn? that's the whole point, romance distracts you from shit. won't make it distract your partner, tho.
 				this.renderForPlayer(div, p);
 			}
