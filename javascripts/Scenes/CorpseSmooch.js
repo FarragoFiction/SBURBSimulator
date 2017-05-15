@@ -47,7 +47,7 @@ function CorpseSmooch(session){
 		d.influencePlayer = null;
 		d.influenceSymbol = null;
 		d.dead = false;
-		d.dreamSelf = false; //only one self now. 
+		d.dreamSelf = false; //only one self now.
 		d.isDreamSelf = true;
 		d.murderMode = false;
 		d.grimDark = false;
@@ -55,6 +55,7 @@ function CorpseSmooch(session){
 		d.leftMurderMode = false; //no scars
 		d.victimBlood = null; //clean face
 		d.currentHP = d.hp;
+		this.currentHP = Math.max(this.hp,1); //players influenced by doom or weird shit can have negative max health.
 	}
 
 	this.makeDead = function(d){
