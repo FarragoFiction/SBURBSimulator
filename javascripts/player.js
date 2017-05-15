@@ -560,7 +560,12 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 	}
 
-	this.rageInterctionEffect = function(player){
+	this.rageInterctionEffect = function(player,numTimes){
+		numTimes ++;
+		if(numTimes > 10){
+			console.log("rage/void infinite loop. just fucking stop. " + this.session.session_id)
+			return; //just fucking stop
+		}
 		var amount = this.power/10;
 		if(this.class_name == "Thief"){ //takes for self
 			this.triggerLevel += amount;
@@ -596,6 +601,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			player.flipOutReason = null;  //people can't remember why they are angry.
 			player.flippingOutOverDeadPlayer = null;
 		}
+		this.voidInteractionEffect(player, numTimes);
 	}
 
 	this.heartInteractionEffect = function(player){
@@ -735,9 +741,18 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		player.power = Math.max(player.power, 1);
 	}
 
-	this.voidInteractionEffect = function(player){
+	//rage and void have randomness in common
+	//so they can infinite loop. don't let them. rage can call void. void can call rage.
+	//intentionally allowing rage/void players to randomly get massive stat buffs. 
+	this.voidInteractionEffect = function(player,numTimes){
+		numTimes ++;
+		if(numTimes > 10){
+			//just fucking return;
+			console.log("rage/void infinite loop. just fucking stop. " + this.session.session_id)
+			return;
+		}
 		//void does nothing innately, modifies things at random.
-		var statInteractions = [this.lightInteractionEffect.bind(this,player),this.mindInteractionEffect.bind(this,player),this.timeInteractionEffect.bind(this,player),this.lifeInteractionEffect.bind(this,player),this.rageInterctionEffect.bind(this,player),this.heartInteractionEffect.bind(this,player),this.breathInteractionEffect.bind(this,player),this.spaceInteractionEffect.bind(this,player),this.bloodInteractionEffect.bind(this,player),this.doomInteractionEffect.bind(this,player),this.hopeInteractionEffect.bind(this,player)];
+		var statInteractions = [this.lightInteractionEffect.bind(this,player),this.mindInteractionEffect.bind(this,player),this.timeInteractionEffect.bind(this,player),this.lifeInteractionEffect.bind(this,player),this.rageInterctionEffect.bind(this,player, numTimes),this.heartInteractionEffect.bind(this,player),this.breathInteractionEffect.bind(this,player),this.spaceInteractionEffect.bind(this,player),this.bloodInteractionEffect.bind(this,player),this.doomInteractionEffect.bind(this,player),this.hopeInteractionEffect.bind(this,player)];
 		getRandomElementFromArray(statInteractions)();
 	}
 
@@ -917,7 +932,15 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 	}
 
-	this.rageIncreasePower = function(powerBoost){
+		//num tiems because rage can call void and void always calls rage and they can get into an infinite loop.
+		//both rage and void are so unpredictable
+	this.rageIncreasePower = function(powerBoost, numTimes){
+		numTimes ++;
+
+		if(numTimes > 10){
+			console.log("rage/void infinite loop. just fucking stop. " + this.session.session_id)
+			return; //just fucking stop/
+		}
 		var triggerModifier = powerBoost/10;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			triggerModifier = -1 *triggerModifier;
@@ -938,6 +961,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				player.boostAllRelationshipsBy(-1*triggerModifier);
 			}
 		}
+		this.voidIncreasePower(powerBoost, numTimes);
 	}
 
 	this.heartIncreasePower = function(powerBoost){
@@ -990,9 +1014,16 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	//need to bind funtions so they know what 'this' is.
-	this.voidIncreasePower = function(powerBoost){
+	//num times is because rage can call void...but void can call rage....
+	//can make an infinite loop. need to stop it somehow. the effect is why void/rage players can be insanely strong at random.
+	this.voidIncreasePower = function(powerBoost,numTimes){
 		//void does nothing innately. random stat modifications.
-		var statIncreases = [this.bloodIncreasePower.bind(this,powerBoost),this.rageIncreasePower.bind(this,powerBoost),this.heartIncreasePower.bind(this,powerBoost),this.breathIncreasePower.bind(this,powerBoost),this.spaceIncreasePower.bind(this,powerBoost),this.lifeIncreasePower.bind(this,powerBoost),this.doomIncreasePower.bind(this,powerBoost),this.timeIncreasePower.bind(this,powerBoost),this.mindIncreasePower.bind(this,powerBoost),this.lightIncreasePower.bind(this,powerBoost),this.hopeIncreasePower.bind(this,powerBoost)];
+		numTimes ++;
+		if(numTimes > 10){
+			console.log("rage/void infinite loop. just fucking stop. " + this.session.session_id)
+			return; //do nothing. just fucking stop.
+		}
+		var statIncreases = [this.bloodIncreasePower.bind(this,powerBoost),this.rageIncreasePower.bind(this,powerBoost,numTimes),this.heartIncreasePower.bind(this,powerBoost),this.breathIncreasePower.bind(this,powerBoost),this.spaceIncreasePower.bind(this,powerBoost),this.lifeIncreasePower.bind(this,powerBoost),this.doomIncreasePower.bind(this,powerBoost),this.timeIncreasePower.bind(this,powerBoost),this.mindIncreasePower.bind(this,powerBoost),this.lightIncreasePower.bind(this,powerBoost),this.hopeIncreasePower.bind(this,powerBoost)];
 		getRandomElementFromArray(statIncreases)();
 	}
 
