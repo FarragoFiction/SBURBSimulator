@@ -1271,9 +1271,8 @@ moderateQueenQuests = moderateQueenQuests.concat(["performs a daring spy mission
 moderateQueenQuests = moderateQueenQuests.concat(["absconds with an official looking stamp from a crucial bureaucratic office, grinding the ceaseless machine of Dersite civics to a halt.","demonstrates their aptitude for immersion in local tradition and shows a royal guard their stabs. ","smuggles contraband forbidden by the Black Queen. Like weapons of revolt and regicide swords."]);
 
 
-var heavyQueenQuests = [];
-heavyQueenQuests = heavyQueenQuests.concat(["performs a daring assassination mission against one of the Black Queen's agents, losing her a valuable ally. ","",""]);
-heavyQueenQuests = heavyQueenQuests.concat(["","",""]);
+var heavyQueenQuests = ["turns one the Black Queen’s most valuable allies against her, distracting her with a minor revolution.","convinces Dersites to rise up, leaving the head of a famed public official in front of the palace as a rallying point. "];
+heavyQueenQuests = heavyQueenQuests.concat(["performs a daring assassination mission against one of the Black Queen's agents, losing her a valuable ally. ","sabotages basic services on Derse, fomenting doubt in the Queen’s competence among citizens.","destroys a series of Derse laboratories in the veil, severely damaging the Derse war effort"]);
 
 
 
