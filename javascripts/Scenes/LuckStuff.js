@@ -286,7 +286,7 @@ function LuckStuff(session){
 			return this.roll90(roll);
 		}else if(roll.value >= this.minHighValue + (amount*4) && roll.value < this.minHighValue + (amount*2)){
 			return this.roll95(roll);
-		}else if(roll.value >= this.minHighValue + (amount*20)){
+		}else if(roll.value >= this.minHighValue + (amount*15)){
 			return this.roll100(roll,div);
 		}else if(roll.value > this.minLowValue - amount && roll.value <= this.minLowValue){
 			return this.roll40(roll);
