@@ -64,6 +64,8 @@ Though some of the pressure probably got released when I upgraded her to handle 
 scratch the sessions herself, like she was rebelling, testing the limits of her new freedom. 	
 
 So I guess neither <3 nor <> but that strange human disease called family??? She's like a little sister or a daughter or something.   
+
+(also: why the hell isn't my fourth wall warped here but is everywhere else??? shipping is serious buisness i guess. even javascript knows.)
 		  
 */
 
