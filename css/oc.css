@@ -6,6 +6,15 @@
 	padding: 10px;
 }
 
+.credits{
+	padding: 10px;
+	border: 3px solid black;
+}
+
+.credits_text{
+	display: inline-block;
+}
+
 #afterlifeViewer{
 	width:1000px;
 	background-color: white;
