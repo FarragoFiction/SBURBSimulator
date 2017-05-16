@@ -1016,7 +1016,7 @@ disastor_objects[disastor_objects.length-1].power = 250;
 disastor_objects[disastor_objects.length-1].minLuck = -250; //unpredictable
 disastor_objects[disastor_objects.length-1].maxLuck = 250;
 disastor_objects[disastor_objects.length-1].helpfulness = -1;
-disastor_objects[disastor_objects.length-1].helpPhrase = "goes hehehehehehehehehehehehehehehehehehehehehehehehehehe hehehehehehehehehehehehehehehehehehehehehehehehehe. ";
+disastor_objects[disastor_objects.length-1].helpPhrase = "goes hehehehehehehehehehehehehehehehehehehehehehehehehehe. ";
 
 
 
