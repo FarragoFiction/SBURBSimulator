@@ -321,7 +321,7 @@ function GameEntity(session, name, crowned){
 				var living = findLivingPlayers(this.session.players); //who isn't ALREADY in this bullshit strife??? and is alive. and has a sprite (and so is in the medium.)
 				var potential = getRandomElementFromArray(living);
 				if(!potential) return players;
-				if(players.indexOf(potential) == -1){ //you aren't already in the fight
+				if(players.indexOf(potential) == -1 && potential.sprite.name != "sprite"){ //you aren't already in the fight and aren't still on earth/alternaia/beforus/etc.
 					if((potential.mobility > getAverageMobility(players) || Math.seededRandom() >.5)){ //you're fast enough to get here, or randomness happened.
 
 						players.push(potential);

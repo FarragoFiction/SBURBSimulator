@@ -290,12 +290,11 @@ function makeDoomedSnapshot(timePlayer){
 	timeClone.doomed = true;
 	//from a different timeline, things went differently.
 	var rand = Math.seededRandom();
+	timeClone.power = Math.seededRandom() * 80;
 	if(rand>.8){
 		timeClone.godTier = !timeClone.godTier;
 		if(timeClone.godTier){
 			 timeClone.power = 200; //act like a god, damn it.
-		 }else{
-			 timeClone.power = 10;
 		 }
 	}else if(rand>.6){
 		timeClone.isDreamSelf = !timeClone.isDreamSelf;
