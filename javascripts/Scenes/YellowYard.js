@@ -152,6 +152,12 @@ BTW: please note that Hussie, as the Waste of Space, uses his YellowYard and a F
 	Additionally, both Wastes acomplish this through the use of robot clones.
 
 	Yes. All according to keikaku. (keikaku means plan)
+	
+	KR (Smith of Dreams) and I will be collaborating, narratively, to accomplish the character creator as a 2x YellowYard Combo!! 
+	We will be acomplishing meta shenanigans that allow the Observers to create their dreams. 
+	(come on, we all know you guys are gonna put your self insert OCs into that thing, straight away.  
+	And the ones that DON'T will instead be using it more *MY* style, which is to say, see what different choices and 
+	decisions play out with the same characters)
 
 
 	*/
