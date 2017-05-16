@@ -947,3 +947,37 @@ The fight is over. Hephaestus Minion is dead. "
 Whelp. That's what I get for blaming ghosts.
 
 Whelp. That’s what I get for blaming all my problems on ghosts like a superstitious oldtimey dude. Looks like the problem is that after a yellow yard, the fucking BOSSES ARE SPAWNING DEAD. And OF COURSE when I tested, I apparently chose the least competent sessions in Paradox Space, so they hadn’t managed to really defeat anything so their session were going pretty much the same even after a reset.
+
+
+
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~!!!!!!!!!!!!!!!!!!!!!
+
+
+slowest thing is swap colors.  what if i kept characters in memory and only rerendered when necessary? Or.........what if...what if I
+ rendered each sprite to a dedicated hidden canvas. And then just grabbed that sprite as needed. Each player knows where their sprite lives and knows .....wait.
+
+ wait wait
+
+ Okay.  Base sprite is body, hair, colors, horns, fins, etc. all that shit.
+
+ Render stuff on top of that right? blood, stabs. grim dark aura goes behind.
+
+ So, the only time the BASE sprite changes is:
+
+ *  When you go grim dark (skin color darkens)
+ *  When you go god tier ( body changes )
+ *  When you are a dream self  (body changes  )
+
+
+everything else is layers and rotations and.....
+
+
+
+.....
+
+it might finally be time to upgrade the rendering engine.
