@@ -902,6 +902,7 @@ function GameEntity(session, name, crowned){
 		}
 
 		//place holders for now. being in diamonds with jack is NOT a core feature.
+		//but when it IS "there there you blubbering goddamned pansy"
 		this.boostAllRelationshipsWithMeBy = function(amount){
 
 		};

@@ -8,7 +8,7 @@ function GoGrimDark(session){
 		this.playerList = playerList;
 		this.player = null;
 		//select a random player. if they've been triggered, random chance of going grim dark (based on how triggered.)
-		for(var i = 0; i< this.playerList.length; i++){
+		for(var i = 0; i< this.playerList.length; i++){//never, EVER fix this to be available players.  corpses shouldu ALWAYS be able to go grim dark, this is HILARIOUS
 			var p = this.playerList[i]
 			if(p.corruptionLevelOther >= 50){
 				this.player = p;
