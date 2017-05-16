@@ -11,6 +11,10 @@
 	border: 3px solid black;
 }
 
+.void{
+	display: none;
+}
+
 .credits_text{
 	display: inline-block;
 }
