@@ -8,12 +8,71 @@
 	<script type="text/javascript" src="javascripts/navbar.js"></script>
 	<script>
 	window.onload = function() {
+	/*                                                                                                                                                     
+                          ```````   `                 `  ``   `                        ```````                           `                            
+                      ```` `   `   ````           `````   `   `````               ````  `   `` ````                ````  `   ``` `                    
+                   ```               ````        ```             ````           ```                ```          ```             ````                  
+                  ``                   ```      ``                 ```         ```                  ```        ```                ``                  
+           `````..``.`..`````````.``.``-``.``..`..``.```.``..``.``.``.``.``.``-`.-``.``.`..``.``.``..`..``.``.``.```..``.``..`..````..````            
+           `.-............-..-...-.....-........................................................................-.......................-.`           
+           `.-..........................................................................................................................-.`           
+           `......:-....-::::::::::----:++++++++++++++oo+++::::::::::::::...::::::::::::::---------::::::::::::::::::::::::::-....-:......`           
+           `.-..../.                 -ohddddddddddddddddddhh+`           `.`                                                      ./....-.`           
+           `......+.              .+yhddddddddddddddddmmmmmddy.          `.`                            `     `                   .+......`           
+       `````.-....+.           `:shddddddddddddddddmNNNNNNNNmdy.         `.``.+o+.`  `.oo/.           .sh   .sh                   .+....-.` ```       
+     ```   `......+.         -ohdddddddddddddddmmNNNNNNNNNNNNmdy`        `.`  +d+      sd:             yd    yd                   .+......`   ```     
+     ```   `.:....+.         .yddddddddddddmmddNNNNmshNNNNmmNNmdo        `.`  +d+      sd-    ---:.    yd    yd    `---:.         .+....:.`    ```    
+    ```    `......+-          `+hdddddddddms:-hNdyo.``:shmN+omNdh-       `.`  +do------yd-  -s.``-ho   yd    yd   /o```-ss`       -+......`    ```    
+    ```    `.-....+:            .ohddddddy-``.:-.````````.-:`-NNdo       `.`  +d+``````yd-  yy:::://`  yd    yd  -h:    -do       :+....-.`    ```    
+     ```   `......+-              .+hdddds```````````````````.NNmh.      `.`  +d+      sd-  yh.    .`  yd    yd  :do    `d+       -+......`    ```    
+     ```   `.-..../.                .sddddy-`````````````````+Nmdo`      `.`  odo      yd:  -yho//+:   yd    yd   +h/` `/o`  /o.  ./....-.`    ``     
+       `````....../.                 -yddddh/```````````````/dyo-        `.``.:::.`  `.::-`  `-//:.   .::.  .::.   .::-..    -/`  ./......` ````      
+        ````......+.                /hddddddds:``````````.-/:.`          `.`                                                      .+......````        
+           `......+.               -ddmddddddddo-..-//+ohms              `.`                                                      .+......`           
+           `.-....+.              -hdNmddddddddddhhdddddyNh              `.`                                                      .+....-.`           
+           `-.....+.           .-ohddmdddddddddddhhdddddso:              `.`                                                      .+.....-`           
+          ``......+.          .ohdddddddddddddddhs/ddddddh:              `.`                                                      .+......`           
+        ````......+.         ```:hdddddddddddddh+--/hdddddh-             `.`                                                      .+......`````       
+      ```  `......+-      ``````.hddddddddddddho....+dddddy`             `.`                                                      -+......`  ```      
+     ````  `.:...-+:   ``````` `odddddddddddddo/-..-+sdds/.``            `.`                                                      :+-...:.`   ```     
+     ```   `....../-`````````   :sssssssyyyyyys+o++o+syyo `````          `.`               ````````````````                       -/......`    ``     
+     ```   `........````````````--------:::::::::::::::::.````````````````.````````````````````````````````````````````````````````.......`    ``     
+     ```   `....../```````      -+syyyhhhhhhhhhddddddhyo/.    ```        `.`                                                      `+......`   ```     
+      ``   `.....-+`   `````       ``.shdddddddddddddo         ```       `.`                                                      `+-.....`   ```     
+       ``` `.....-+`      `````   ````-/hddddddddddddh-         ```      `.`                                                      `+-.....`  ``       
+         ```.-...-+`          ````````..:oddddddddddddh.         ```     `.`                                                      `+-...-.```         
+           `.....-+.                 :shyddddddddddddddy.         ```    `.`                                                      .+-.....`           
+           `.-...-+.                 sddddddddddddddddddy.        ```    `.`                                                      .+-...-.`           
+           `......+`                 ydddddddddddddddddddh.        ```   `.`                                                      `+......`           
+        ````......+`                -hydddddddddddddddddddy`        ``   `.`                                                      `+......`````       
+      ```  `......+`                +hsdddddddddddddddddddds`        ``  `.`                                                      `+......`  ````     
+     ```   `.....-+`                +y+hddddddddddddddddddddo         `` `.`                                                      `+-.....`   ```     
+     ```   `.-...-+`                ys+yddddddddddddddddddddd/         ` `.`                                                      `+-...-.`    ```    
+     ```   `.....-+`               -d++sdddddddddddddddddddddh-        ```.`                                                      `+-.....`    ```    
+     ```   `:....-+`               -s++ohhhhhddhdddddddhhhhyso+        ` `..`                                                     `+-....:`   ```     
+      ``   `.....-+`                .++++++oooo-::::/oooo++++++.         `..`                                                     `+-.....`   ```     
+       ````..-...:+`                -+++++++++/      :+++++++++/         `.`                                                      `+:...-.` ````      
+        ```......-+.                -+++++++++/       /+++++++++.        `.`                                                      .+-......```        
+           `.-...:+.                -+++++++++/       `+++++++++/        `.`                                                      .+:...-.`           
+           `.-...-+-                -+++++++++/        :+++++++++`       `.`                                                      -+-...-.`           
+           ......./:...--:::::::::--://///////:......--://///////::::::::...::::::::::::::--------:::::::::::::::::::::::::::--...:/.......           
+           ..-..........................................................................................................................-..           
+           ..-........-...-..-..................................................................................-..............-........-..           
+           `````-``.``.```.`````..`..`..``-``-``-``..``.```-``.```.``.`..``.`..`..`..`..`.``..`..``-``.``.``..``.```-```.``-```.``.``-`````     */
+			//isn't it refreshing to see so few scripts in the header???  Protip, any page that has a metric fuck ton of scripts in it is running the 
+			//entire simulation.  The AuthorBot is, for example.  I...I WONDER what other pages might have the entire simulation inside of it?  
+			//maybe there are some pages that you wouldn't expect that to be the case??? Might this be.....A HINT???
 			loadNavbar();
-			//and also people i know IRL who haven't descended so far into homestuck madness as to have a chatHandle,
-			//but have put up with constant solitiations for feedback and code reviews and smug shitty plot twists that don't make sense
-			//unless you have been fuck deep in all of this. ("NO no no, don't you GET it, ABJ is a MINI ROBOT!!! I am a GENIUS!!!")
-			//you know who you all are.  Thank you.
-			//
+			
+			
+			/************************************************************************************************************************************
+			and also people i know IRL who haven't descended so far into homestuck madness as to have a chatHandle,
+			but have put up with constant solitiations for feedback and code reviews and smug shitty plot twists that don't make sense
+			unless you have been fuck deep in all of this. ("NO no no, don't you GET it, ABJ is a MINI ROBOT!!! I am a GENIUS!!!")
+			or even worse, me vibrating with "Shit I want to show you this cool thing I did but but but you haven't gotten past act 5 yet, how COULD you??? hurry the fuck up!!!"
+			 (can you imagine wandering around SBURB sim knowing enough about Homestuck to think you should know what's going on but then there are corpse smooches and dream selves and holy fuck people are DYING?  Why are people DYING!???)
+			you know who you all are.  Thank you.
+			************************************************************************************************************************************/
 	}
 	</script>
 
