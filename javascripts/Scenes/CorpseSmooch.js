@@ -55,7 +55,7 @@ function CorpseSmooch(session){
 		d.leftMurderMode = false; //no scars
 		d.victimBlood = null; //clean face
 		//d.currentHP = d.hp;
-		this.currentHP = Math.max(this.hp,1); //players influenced by doom or weird shit can have negative max health.
+		d.currentHP = Math.max(d.hp,1); //players influenced by doom or weird shit can have negative max health.
 	}
 
 	this.makeDead = function(d){
