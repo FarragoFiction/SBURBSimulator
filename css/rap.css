@@ -7,6 +7,10 @@
 	color: red;
 }
 
+.void{
+	display: none;
+}
+
 #score{
   margin-left: auto;
   margin-right: auto;

@@ -12,6 +12,10 @@
   vertical-align: top;
 }
 
+.void{
+	display: none;
+}
+
 #navbar{
 	width:1020px;
 	margin-left: auto;
