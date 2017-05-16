@@ -22,6 +22,7 @@ function JackPromotion(session){
 		if(this.session.queen.crowned && !this.session.queen.exiled){
 			if(this.session.queen.getHP() > 0){
 				ret += "He easily defeats the weakened queen and uses her ring to obtain her power. ";
+				this.session.queen.currentHP = -9999;
 			}else{
 				ret += " He pries the ring off her still twitching finger. ";
 			}

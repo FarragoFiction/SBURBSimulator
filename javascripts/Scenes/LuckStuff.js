@@ -139,7 +139,7 @@ function LuckStuff(session){
 		if(roll.player.land){
 			land = roll.player.shortLand();
 		}
-		var ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + land + " they see a GOLD IMP. Those things are worth a ton of experience points, if you can manage to even damage them. Holy shit, did the " + roll.player.htmlTitle() + " just ONE SHOT them!? ";
+		var ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + land + " when they see a GOLD IMP. Those things are worth a ton of experience points, if you can manage to even damage them. Holy shit, did the " + roll.player.htmlTitle() + " just ONE SHOT them!? ";
 		roll.player.increasePower();
 		roll.player.increasePower();
 		roll.player.leveledTheHellUp = true;
