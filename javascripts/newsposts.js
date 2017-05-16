@@ -288,6 +288,10 @@ function getQuipAboutSession(sessionSummary){
 		quip += Zalgo.generate("Fuck. Shit crashed hardcore. It's a good thing I'm a flawless robot, or I'd have nightmares from that. Just. Fuck session crashes.");
 	}else if(sessionSummary.crashedFromPlayerActions){
 		quip += Zalgo.generate("Fuck. God damn. Do Grim Dark players even KNOW how much it sucks to crash? Assholes.");
+	}else if(!sessionSummary.scratched && dead == 0 && sessionSummary.frogStatus == "Full Frog" && sessionSummary.ectoBiologyStarted && !sessionSummary.crashedFromCorruption && !sessionSummary.crashedFromPlayerActions){
+		quip += "Everything went better than expected." ; //
+	}else if(sessionSummary.yellowYard == true){
+		quip += "Fuck. I better go grab JR. They'll want to see this. " ;
 	}else if(living == 0){
 		quip += "Shit, you do not even want to KNOW how everybody died." ;
 	}else  if(strongest.power > 3000){
@@ -299,8 +303,6 @@ function getQuipAboutSession(sessionSummary){
 		}
 	}else  if(sessionSummary.parentSession){
 		quip += "Combo sessions are always so cool. " ;
-	}else if(dead == 0 && sessionSummary.frogStatus == "Full Frog" && sessionSummary.ectoBiologyStarted && !sessionSummary.crashedFromCorruption && !sessionSummary.crashedFromPlayerActions){
-		quip += "Everything went better than expected." ;
 	}else  if(sessionSummary.jackRampage){
 		quip += "Jack REALLY gave them trouble." ;
 	}else  if(sessionSummary.num_scenes > 200){
@@ -313,7 +315,7 @@ function getQuipAboutSession(sessionSummary){
 	}else  if(sessionSummary.num_scenes < 50){
 		quip += "Holy shit, were they even in the session an entire hour?" ;
 	}else  if(sessionSummary.scratchAvailable == true){
-		quip += "Maybe the scratch would fix things? I can't be bothered to check." ;
+		quip += "Maybe the scratch would fix things? Now that JR has upgraded me, I guess I'll go find out." ;
 	}else{
 		quip += "It was slightly less boring than calculating pi." ;
 	}
@@ -329,7 +331,6 @@ function getQuipAboutSession(sessionSummary){
 	}
 	return quip;
 }
-
 
 function restartSession(){
 	$("#story").html("");
