@@ -151,7 +151,7 @@ BTW: please note that Hussie, as the Waste of Space, uses his YellowYard and a F
 
 	Additionally, both Wastes acomplish this through the use of robot clones.
 
-	Yes. All according to keikaku.
+	Yes. All according to keikaku. (keikaku means plan)
 
 
 	*/
