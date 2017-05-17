@@ -64,14 +64,9 @@ function GodTierRevival(session){
 				if(roll > breakNeeded){
 					//console.log(roll + " lucky break for god tier revival in: " + this.session.session_id );
 					ret += " ... a LUCKY BREAK!!!!!!!! The Judgement Clock narrowly avoids ruling a JUST death. ";
-					p.dead = false;
-					p.currentHP = p.hp;
 					p.canGodTierRevive = true;
 					p.increasePower();
-					p.murderMode = false;
-					p.grimDark = false;
-					p.leftMurderMode = false;
-					p.triggerLevel = 1;
+					p.makeAlive();
 				}else{
 					//console.log(roll + " just death for god tier in: " + this.session.session_id );
 					ret += " JUST.  They do not revive. ";
@@ -90,14 +85,9 @@ function GodTierRevival(session){
 				if(roll > breakNeeded){
 					//console.log(roll + " lucky break for god tier revival in: " + this.session.session_id );
 					ret += " ... a LUCKY BREAK!!!!!!!! The Judgement Clock narrowly avoids ruling a HEROIC death. ";
-					p.dead = false;
 					p.canGodTierRevive = true;
-					p.currentHP = p.hp;
 					p.increasePower();
-					p.murderMode = false;
-					p.grimDark = false;
-					p.leftMurderMode = false;
-					p.triggerLevel = 1;
+					p.makeAlive();
 				}else{
 					this.session.heroicDeath = true;
 					//console.log(roll + " heroic death for god tier in: " + this.session.session_id );
@@ -116,14 +106,9 @@ function GodTierRevival(session){
 				}else{
 					//console.log("god tier revival in: " + this.session.session_id);
 					ret += " neither HEROIC nor JUST.  They revive in a rainbow glow, stronger than ever. ";
-					p.dead = false;
-					p.currentHP = p.hp;
 					p.canGodTierRevive = true;
 					p.increasePower();
-					p.murderMode = false;
-					p.grimDark = false;
-					p.leftMurderMode = false;
-					p.triggerLevel = 1;
+					p.makeAlive();
 					if(this.aspect == "Doom"){ //powered by their own doom.
 						console.log("doom is powered by their own death: " + this.session.session_id) //omg, they are sayians.
 						this.power += 500;

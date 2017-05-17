@@ -251,15 +251,15 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	//what happened when you reached god tier was too inconsistent, and also
 	//this lets sprite be updated.
 	this.makeGodTier = function(){
-		player.hp += 500; //they are GODS.
-		player.power += 500;
-		player.increasePower();
-		player.godTier = true;
+		this.hp += 500; //they are GODS.
+		this.power += 500;
+		this.increasePower();
+		this.godTier = true;
 		this.session.godTier = true;
-		player.dreamSelf = false;
-		p.canGodTierRevive = true;
-		p.leftMurderMode = false; //no scars, unlike other revival methods
-		player.isDreamSelf = false;
+		this.dreamSelf = false;
+		this.canGodTierRevive = true;
+		this.leftMurderMode = false; //no scars, unlike other revival methods
+		this.isDreamSelf = false;
 		this.makeAlive();
 	}
 
