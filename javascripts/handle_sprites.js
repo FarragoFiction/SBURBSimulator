@@ -1182,6 +1182,13 @@ function drawSprite(canvas, player, ctx, baby){
     var canvasDiv = document.getElementById(player.spriteCanvasID);
     //also take care of face scratches and mind control symbols.
     copyTmpCanvasToRealCanvasAtPos(canvas, canvasDiv,0,0)
+
+
+
+    if(!baby && player.influenceSymbol){ //dont make sprite for this, always on top, unlike scars
+      //wasteOfMindSymbol(canvas, player);
+      influenceSymbol(canvas, player.influenceSymbol);
+    }
 }
 
 
@@ -1279,11 +1286,6 @@ function drawSpriteFromScratch(canvas, player,ctx,baby){
    kingDeath(canvas,player)
  }
 
-
-  if(!baby && player.influenceSymbol){
-    //wasteOfMindSymbol(canvas, player);
-    influenceSymbol(canvas, player.influenceSymbol);
-  }
 
 
   if(!baby && player.ghost){
