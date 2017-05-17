@@ -126,7 +126,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			this.session.afterLife.addGhost(makeRenderingSnapshot(this));
 		}
 
-
+		this.renderSelf();
 		this.triggerOtherPlayersWithMyDeath();
 	}
 
@@ -248,6 +248,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		return tmp;
 	}
 
+
+
 	this.makeAlive = function(){
 			if(this.stateBackup) this.stateBackup.restoreState(this);
 			this.influencePlayer = null;
@@ -259,6 +261,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			this.triggerLevel = 1;
 			//this.leftMurderMode = false; //no scars
 			this.victimBlood = null; //clean face
+			this.renderSelf();
 		}
 
 		//people like them less and also they are more triggered.
@@ -1552,6 +1555,16 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			this.currentHP = 11111111111;
 			this.hp = 11111111111;
 		}
+	}
+
+	this.renderSelf = function(){
+		var canvasDiv = document.getElementById(this.spriteCanvasID);
+		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+
+		drawSpriteFromScratch(pSpriteBuffer, this);
+		var ctx = canvasDiv.getContext("2d");
+		ctx.clearRect(0, 0, canvasDiv.width, canvasDiv.height)
+		copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0)
 	}
 
 	this.initializeMobility = function(){

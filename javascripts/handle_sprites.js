@@ -1169,7 +1169,7 @@ function drawBabySprite(canvas, player){
     //don't forget to shrink baby
     ctx.scale(0.5,0.5);
 
-    drawSprite(canvas, player, ctx, true)
+    drawSpriteFromScratch(canvas, player, ctx, true)
 
 
 }

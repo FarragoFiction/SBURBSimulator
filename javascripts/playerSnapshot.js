@@ -6,6 +6,7 @@
 function PlayerSnapshot(){
 	this.session = null;
 	this.trickster = null;
+	this.spriteCanvasID = null;
 	this.sbahj = null;
 	this.baby = null;
 	this.robot = null;
@@ -240,6 +241,7 @@ function MiniSnapShot(player){
 function makeRenderingSnapshot(player){
 	var ret = new PlayerSnapshot();
 	ret.robot = player.robot;
+	ret.spriteCanvasID = player.spriteCanvasID; 
   ret.currentHP = player.currentHP;
 	ret.doomed = player.doomed;
 	ret.ghost = player.ghost;

@@ -43,19 +43,9 @@ function CorpseSmooch(session){
 
 	this.makeAlive = function(d){
 		//foundRareSession(div, "A player was corpse smooched alive.")
-		if(d.stateBackup) d.stateBackup.restoreState(d);
-		d.influencePlayer = null;
-		d.influenceSymbol = null;
-		d.dead = false;
 		d.dreamSelf = false; //only one self now.
 		d.isDreamSelf = true;
-		d.murderMode = false;
-		d.grimDark = false;
-		d.triggerLevel = 1;
-		d.leftMurderMode = false; //no scars
-		d.victimBlood = null; //clean face
-		//d.currentHP = d.hp;
-		d.currentHP = Math.max(d.hp,1); //players influenced by doom or weird shit can have negative max health.
+		d.makeAlive();
 	}
 
 	this.makeDead = function(d){
@@ -72,7 +62,7 @@ function CorpseSmooch(session){
 		dead_player.dead = true;
 		dead_player.isDreamSelf = false;  //temporarily show non dream version
 		var dSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-		drawSprite(dSpriteBuffer,dead_player)
+		drawSpriteFromScratch(dSpriteBuffer,dead_player)
 
 		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0)
 		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,200,0)
@@ -82,6 +72,7 @@ function CorpseSmooch(session){
 		this.makeAlive(dead_player);
 		drawSprite(moonBuffer,dead_player)
 		copyTmpCanvasToRealCanvasAtPos(canvas, moonBuffer,600,0)
+		//dead_player.renderSelf();
 		//this.makeAlive(dead_player); //make SURE the player is alive after smooches.
 
 	}

@@ -295,10 +295,7 @@ function callNextIntroWithDelay(player_index){
 function createInitialSprites(){
 	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
 		var player = curSessionGlobalVar.players[i];
-		var canvasDiv = document.getElementById(player.spriteCanvasID);
-		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-		drawSpriteFromScratch(pSpriteBuffer, player);
-		copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0)
+		player.renderSelf();
 	}
 
 }
