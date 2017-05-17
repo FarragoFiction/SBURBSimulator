@@ -11,6 +11,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.land = "Land of " + tmp[0] + " and " + tmp[1];
 	}
 	this.baby = null;
+	this.spriteCanvasID = null;  //part of new rendering engine.
 	this.session = session;
 	this.currentHP = 0;
 	this.sprite = null; //gets set to a blank sprite when character is created.
@@ -743,7 +744,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	//rage and void have randomness in common
 	//so they can infinite loop. don't let them. rage can call void. void can call rage.
-	//intentionally allowing rage/void players to randomly get massive stat buffs. 
+	//intentionally allowing rage/void players to randomly get massive stat buffs.
 	this.voidInteractionEffect = function(player,numTimes){
 		numTimes ++;
 		if(numTimes > 10){
@@ -1882,6 +1883,10 @@ function randomPlayerWithClaspect(session, c,a){
 	if(Math.seededRandom() > .7 ){ //preference for symmetry
 			p.rightHorn = getRandomInt(1,46);
 	}
+
+	p.spriteCanvasID = p.chatHandle+p.id+"spriteCanvas";
+	var canvasHTML = "<br><canvas style='display:none' id='" + p.spriteCanvasID+"' width='" +400 + "' height="+300 + "'>  </canvas>";
+	$("#playerSprites").append(canvasHTML)
 	return p;
 
 }
