@@ -1180,6 +1180,7 @@ function drawSprite(canvas, player, ctx, baby){
       return;
     }
     var canvasDiv = document.getElementById(player.spriteCanvasID);
+    //also take care of face scratches and mind control symbols.
     copyTmpCanvasToRealCanvasAtPos(canvas, canvasDiv,0,0)
 }
 

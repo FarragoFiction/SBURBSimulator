@@ -69,7 +69,7 @@ function PlayerSnapshot(){
 	}
 
 	this.toString = function(){
-		return this.class_name+this.aspect; //no spaces.
+		return (this.class_name+this.aspect).replace(/'/g, '');; //no spaces, no quotes for 's corpse'.
 	}
 
 	this.titleBasic = function(){
@@ -241,7 +241,7 @@ function MiniSnapShot(player){
 function makeRenderingSnapshot(player){
 	var ret = new PlayerSnapshot();
 	ret.robot = player.robot;
-	ret.spriteCanvasID = player.spriteCanvasID; 
+	ret.spriteCanvasID = player.spriteCanvasID;
   ret.currentHP = player.currentHP;
 	ret.doomed = player.doomed;
 	ret.ghost = player.ghost;

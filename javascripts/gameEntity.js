@@ -42,7 +42,7 @@ function GameEntity(session, name, crowned){
 
 
 		this.toString = function(){
-			return this.htmlTitle();
+			return this.htmlTitle().replace(/\s/g, '').replace(/'/g, ''); //no spces probably trying to use this for a div
 		}
 
 		this.increasePower = function(){

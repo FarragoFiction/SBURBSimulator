@@ -1681,7 +1681,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.toString = function(){
-		return this.class_name+this.aspect; //no spaces.
+		return (this.class_name+this.aspect).replace(/'/g, '');; //no spaces.
 	}
 
 
