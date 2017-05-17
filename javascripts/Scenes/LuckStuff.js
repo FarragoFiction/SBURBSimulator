@@ -212,14 +212,10 @@ function LuckStuff(session){
 				this.session.sacrificialSlab = true;
 				//roll.player.makeDead("luckily on their Sacrificial Slab") doesn't make a ghost 'cause the corpse itself revives'
 			}
-			roll.player.dead = false;
-			roll.player.currentHP = roll.player.hp;
-			roll.player.godTier = true;
-			roll.player.dreamSelf = false;
-			roll.player.grimDark = 0;
+			roll.player.makeGodTier();
+			
 			this.session.luckyGodTier = true;
 			this.session.godTier = true;
-			roll.player.isDreamSelf = false;
 			var divID = (div.attr("id")) + "_luckGodBS" + roll.player.chatHandle;
 			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(ret);

@@ -64,11 +64,10 @@ function VoidyStuff(session){
 
 		if(this.player.godDestiny && !this.player.godTier && Math.seededRandom()>0.8 && this.player.land != null){  //just randomly freaking god tier.
 			this.player.makeDead("hidden in void on their way to godhood")
-			this.player.dead = false;
-			this.player.godTier = true;
+			this.player.makeGodTier();
+			t
 			this.session.godTier = true;
-			this.player.grimDark = 0;
-			this.player.dreamSelf = false;
+
 			ret += " What was that light on " + this.player.shortLand() + "? ";
 		}
 		if(this.player.leader && !this.session.ectoBiologyStarted && Math.seededRandom() > .8){

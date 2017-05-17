@@ -90,19 +90,7 @@ function GetTiger(session){
 
 		for(var  i = 0; i<this.deadPlayersToGodTier.length; i++){
 			var p = this.deadPlayersToGodTier[i];
-			if(p.stateBackup) p.stateBackup.restoreState(p);
-			p.influencePlayer = null;
-			p.influenceSymbol = null;
-			p.godTier = true;
-			p.dreamSelf = false;
-			p.murderMode = false;
-			p.grimDark = false;
-			p.leftMurderMode = false; //no scars
-			p.triggerLevel = 1;
-			p.dead = false;
-			p.power += 500;
-			p.canGodTierRevive = true;
-			p.victimBlood = null;
+			p.makeGodTier();
 		}
 		return ret;
 	}
