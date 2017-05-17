@@ -5,7 +5,16 @@ function JackPromotion(session){
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return (this.session.queen.crowned == null) && (this.session.jack.getHP() > 0) && (this.session.jack.getPower() > this.session.queen.getPower());
+		if(this.session.jack.getHP() <= 0) return false;  //jack can't be dead.
+		if(this.session.queensRing == null); return false; //all is moot if no ring
+		if(this.session.jack.crowned != null); return false; //don't steal the ring from yourself, dunkass
+
+		//jack is alive, and stronger than queen. (even if queen is dead, this means her lackeys are undisciplined)
+		if(((this.session.jack.getPower() > this.session.queen.getPower())){
+			return true;
+		}
+
+		return false;
 	}
 
 	this.addImportantEvent = function(){
@@ -21,8 +30,15 @@ function JackPromotion(session){
 		ret += "FOLD. "
 		if(this.session.queen.crowned && !this.session.queen.exiled){
 			if(this.session.queen.getHP() > 0){
-				ret += "He easily defeats the weakened queen and uses her ring to obtain her power. ";
-				this.session.queen.currentHP = -9999; //actually kill her you dunkass.
+				if(Math.seededRandom() > .5){
+					//and now the players still have to fight her.  ringless sure, but....
+					this.session.queen.power = 50; //she gets a morale boost, any weakening she had is reduced.
+					ret += " At this point you would EXPECT him to kill the weakened Queen, but somehow they end up making out??? Dersites, am I right?  He still ends up with the RING, though."
+				}else{
+					ret += "He easily murders the weakened queen and uses her ring to obtain her power. ";
+					this.session.queen.currentHP = -9999; //actually kill her you dunkass. not KISS her.
+				}
+
 			}else{
 				ret += " He pries the ring off her still twitching finger. ";
 			}
