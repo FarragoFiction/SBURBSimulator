@@ -1185,7 +1185,7 @@ function drawSprite(canvas, player, ctx, baby){
 
 
 function drawSpriteFromScratch(canvas, player,ctx,baby){
-  console.log("Drawing sprite from scratch");
+  console.log("Drawing sprite from scratch " + player.isDreamSelf);
   if(checkSimMode() == true){
     return;
   }
@@ -1634,6 +1634,7 @@ function dreamSprite(canvas, player){
   var img=document.getElementById(imageString);
   var width = img.width;
   var height = img.height;
+  var ctx = canvas.getContext("2d");
   ctx.drawImage(img,0,0,width,height);
   dreamPalletSwap(canvas, player);
 }
