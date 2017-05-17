@@ -30,6 +30,7 @@
 
 <p> <a href = "rap.html">Extended Rap Battles</a>: Okay, so, like the rap battles are just so amazingly shitty, right? And they only get even SHITTIER the longer I let them go on. So, you know, here's a page that's just the rap battles going on for much, much longer. It was the easiest way to test them without waiting for sims to run. </p>
 
+<p>$(".void").toggle()  What could this mean??? <div class = 'void'> Do you think it has something to do with this??? A better question: Do you really think this would be an easter egg if this were the only place with a div hidden in void???</div> </p>
 <p>DID YOU KNOW: In addition to sharing hair color/blood color with their guardians, players share at least one interest with them as well.  So a player might like Wizards and Writing while their Guardian might enjoy Wizards and Hacking.
 <p><font color = "white"> Things like this won't be hidden if AB is in trickster mode. I find this hilarious. Some of the hints to this page were white font on a white page. There's actually tons of extra easter egg content throughout the site, mostly within the code itself, which understandably isn't a place your average Observer is gonna go rummaging around in.
 I'm actually planning on having things like this for the void players, but hidden much better, with a display:none tag in html. But seeing how obnoxiously it shows up in trickster mode...almost makes me want to make it white font after all. A little extra bonus, void tricksters THINK they are being all sneaky, but aren't. Yes. This is hilarious.
