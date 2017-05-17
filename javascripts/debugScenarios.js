@@ -18,7 +18,7 @@ console.log("TODO make new sprites work for easter eggs.")
 //making new scenes to be different
 function sbahjMode(){
 	if(!simulationMode) alert("where MAKING THIS HAPEN")
-	$("#story").append("<ixmg src = 'images/AUTHORSBAHJ.jpg' style='position:absolute; top:111px'>");
+	$("#story").append("<img src = 'images/AUTHORSBAHJ.jpg' style='position:absolute; top:111px'><img src = 'images/sbahj_author.jpg' style='position:absolute; top:111px'>");
 	$('body').css("background-color", "#0000ff");
 	$('body').css("background-image", "none");
 	$('#story').css("background-color", "#ff00ff");
