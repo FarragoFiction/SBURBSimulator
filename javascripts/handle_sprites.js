@@ -1672,6 +1672,7 @@ function playerToGodBody(player){
 function godTierSprite(canvas, player){
 	//draw class, then color like aspect, then draw chest icon
   //ctx.drawImage(img,canvas.width/2,canvas.height/2,width,height);
+  var ctx = canvas.getContext("2d")
 	var imageString = playerToGodBody(player);
   addImageTag(imageString)
   var img=document.getElementById(imageString);
