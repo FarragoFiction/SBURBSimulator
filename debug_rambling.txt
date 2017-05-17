@@ -986,3 +986,20 @@ it might finally be time to upgrade the rendering engine.
 
 
 Okay, let's fucking do this. I've long since been hiding canvases. What's 12 more canvases?
+
+Problem: when should the first render occur. If it happens at charcter creation, won't get custom character or easter eggs.  If it happens at intro, what happens
+if char is chatting with char this not yet rendered.  if happens in big stupid pile at sesion start, won't there be slow down???
+
+that last one was a question. so. answre it.
+
+
+Okay: What part of a character is DYNAMIC other than base sprite:
+
+* grim dark aura (but we changed your skin color anyways, so throw that on)
+* wings, but we changed you to god tier body anways, so throw that on.
+* stabs...but you're dead....if you get revived....think about this.
+* MURDER MODE SCRATCHES/SCARS!!! There we go. um.
+
+honestly, probably easier to re-render the sprite at ANY change.  but how to know there was a change? oh wait, that's right
+I render to the sprite in the scene or wherever the change happened. drawSpriteNew only called from scenes and only called TO the secret
+canvas.

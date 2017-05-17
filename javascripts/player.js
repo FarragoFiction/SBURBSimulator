@@ -1885,7 +1885,7 @@ function randomPlayerWithClaspect(session, c,a){
 	}
 
 	p.spriteCanvasID = p.chatHandle+p.id+"spriteCanvas";
-	var canvasHTML = "<br><canvas style='display:none' id='" + p.spriteCanvasID+"' width='" +400 + "' height="+300 + "'>  </canvas>";
+	var canvasHTML = "<br><canvas style='display:true' id='" + p.spriteCanvasID+"' width='" +400 + "' height="+300 + "'>  </canvas>";
 	$("#playerSprites").append(canvasHTML)
 	return p;
 
