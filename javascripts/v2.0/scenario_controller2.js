@@ -293,11 +293,18 @@ function callNextIntroWithDelay(player_index){
 
 //in a big pile. draw all the charactesr as they look as they are entereing
 function createInitialSprites(){
+	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+		var player = curSessionGlobalVar.players[i];
+		var canvasDiv = document.getElementById(player.spriteCanvasID);
+		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawSpriteFromScratch(pSpriteBuffer, player);
+		copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0)
+	}
 
 }
 
 function intro(){
-
+	createInitialSprites();
 	callNextIntroWithDelay(0);
 }
 

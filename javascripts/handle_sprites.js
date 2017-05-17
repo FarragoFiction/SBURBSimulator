@@ -653,11 +653,11 @@ function drawLevelUpGodTier(canvas, player,repeatTime){
 		drawSprite(pSpriteBuffer,player)
 	}
 
-	
+
 	//drawBG(levelBuffer, "#ff0000", "#00ff00");
 	writeLevelGod(levelBuffer, player);
-	
-	
+
+
 
 	copyTmpCanvasToRealCanvasAtPos(canvas, symbolBuffer,leftMargin+165,0)
 	copyTmpCanvasToRealCanvasAtPos(canvas, godBuffer,leftMargin+100,0)
@@ -1151,7 +1151,7 @@ function drawSpriteTurnways(canvas, player){
     return;
   }
 
-  ctx = canvas.getContext('2d');
+  var ctx = canvas.getContext('2d');
   ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
   ctx.translate(canvas.width, 0);
   ctx.scale(-1, 1);
@@ -1164,7 +1164,7 @@ function drawBabySprite(canvas, player){
     return;
   }
     player = makeRenderingSnapshot(player);//probably dont need to, but whatever
-    ctx = canvas.getContext('2d');
+    var ctx = canvas.getContext('2d');
     ctx.imageSmoothingEnabled = false;
     //don't forget to shrink baby
     ctx.scale(0.5,0.5);
@@ -1174,8 +1174,18 @@ function drawBabySprite(canvas, player){
 
 }
 
+//baby and turnways call this. will it work?
+function drawSprite(canvas, player, ctx, baby){
+    if(checkSimMode() == true){
+      return;
+    }
+    var canvasDiv = document.getElementById(player.spriteCanvasID);
+    copyTmpCanvasToRealCanvasAtPos(canvas, canvasDiv,0,0)
+}
 
-function drawSprite(canvas, player,ctx,baby){
+
+function drawSpriteFromScratch(canvas, player,ctx,baby){
+  console.log("Drawing sprite from scratch");
   if(checkSimMode() == true){
     return;
   }
@@ -1290,7 +1300,7 @@ function drawSprite(canvas, player,ctx,baby){
 
 
 function playerToSprite(canvas, player){
-	ctx = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
 	if(player.robot == true){
 		robotSprite(canvas, player);
 	}else if(player.trickster){
@@ -1308,7 +1318,7 @@ function playerToSprite(canvas, player){
 }
 
 function robo_face(canvas, player){
-	ctx = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
 	var imageString = "robo_face.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
@@ -1318,7 +1328,7 @@ function robo_face(canvas, player){
 }
 
 function scar_face(canvas, player){
-	ctx = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
 	var imageString = "calm_scratch_face.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
@@ -1328,7 +1338,7 @@ function scar_face(canvas, player){
 }
 
 function scratch_face(canvas, player){
-	ctx = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
 	var imageString = "scratch_face.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
@@ -1341,7 +1351,7 @@ function scratch_face(canvas, player){
 //not just murder mode, you could have killed a murder mode player.
 function bloody_face(canvas, player){
 	if(player.victimBlood){
-		ctx = canvas.getContext('2d');
+		var ctx = canvas.getContext('2d');
 		var imageString = "bloody_face.png"
 		addImageTag(imageString)
 		var img=document.getElementById(imageString);
@@ -1356,7 +1366,7 @@ function drawDiamond(canvas){
   if(checkSimMode() == true){
     return;
   }
-	ctx = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
 	var imageString = "Moirail.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
@@ -1369,7 +1379,7 @@ function drawHeart(canvas){
   if(checkSimMode() == true){
     return;
   }
-	ctx = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
 	var imageString = "Matesprit.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
@@ -1382,7 +1392,7 @@ function drawClub(canvas){
   if(checkSimMode() == true){
     return;
   }
-	ctx = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
 	var imageString = "Auspisticism.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
@@ -1395,7 +1405,7 @@ function drawSpade(canvas){
   if(checkSimMode() == true){
     return;
   }
-	ctx = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
 	var imageString = "Kismesis.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
@@ -1405,7 +1415,7 @@ function drawSpade(canvas){
 }
 
 function hairBack(canvas,player){
-  ctx = canvas.getContext('2d');
+  var ctx = canvas.getContext('2d');
 	var imageString = "Hair/hair_back"+player.hair+".png"
   //console.log(imageString);
 	addImageTag(imageString)
@@ -1425,7 +1435,7 @@ function hairBack(canvas,player){
 	}
 }
 function hair(canvas, player){
-	ctx = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
 	var imageString = "Hair/hair"+player.hair+".png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
@@ -1452,7 +1462,7 @@ function drawTimeGears(canvas){
   }
   var p1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
   //drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff")
-  ctx = p1SpriteBuffer.getContext('2d');
+  var ctx = p1SpriteBuffer.getContext('2d');
   var imageString = "gears.png"
   addImageTag(imageString)
   var img=document.getElementById(imageString);
@@ -1465,7 +1475,7 @@ function drawTimeGears(canvas){
 
 //more than just yellow yard can do this.
 function influenceSymbol(canvas, symbol){
-  ctx = canvas.getContext('2d');
+  var ctx = canvas.getContext('2d');
   var imageString = symbol;
   addImageTag(imageString)
   var img=document.getElementById(imageString);
@@ -1475,7 +1485,7 @@ function influenceSymbol(canvas, symbol){
 }
 
 function halo(canvas, symbol){
-  ctx = canvas.getContext('2d');
+  var ctx = canvas.getContext('2d');
   var imageString = "halo.png";
   addImageTag(imageString)
   var img=document.getElementById(imageString);
@@ -1489,7 +1499,7 @@ function halo(canvas, symbol){
 //if the Waste of Mind/Observer sends a time player back
 //the influence is visible.
 function wasteOfMindSymbol(canvas, player){
-  ctx = canvas.getContext('2d');
+  var ctx = canvas.getContext('2d');
   var imageString = "mind_forehead.png"
   addImageTag(imageString)
   var img=document.getElementById(imageString);
@@ -1605,6 +1615,7 @@ function tricksterSprite(canvas, player){
 
 function regularSprite(canvas, player){
 	var imageString = playerToRegularBody(player);
+  var ctx = canvas.getContext('2d');
   addImageTag(imageString)
   var img=document.getElementById(imageString);
   var width = img.width;
@@ -1674,7 +1685,7 @@ function godTierSprite(canvas, player){
 }
 
 function babySprite(canvas,player){
-  ctx = canvas.getContext('2d');
+  var ctx = canvas.getContext('2d');
   var imageString = "Bodies/baby"+player.baby + ".png"
   if(player.isTroll){
     imageString = "Bodies/grub"+player.baby + ".png"
@@ -1696,7 +1707,7 @@ function babySprite(canvas,player){
 }
 
 function aspectSymbol(canvas, player){
-    ctx = canvas.getContext('2d');
+    var ctx = canvas.getContext('2d');
     var imageString = player.aspect + ".png"
     addImageTag(imageString)
     var img=document.getElementById(imageString);
@@ -1706,7 +1717,7 @@ function aspectSymbol(canvas, player){
 }
 
 function dreamSymbol(canvas, player){
-    ctx = canvas.getContext('2d');
+    var ctx = canvas.getContext('2d');
     var imageString = player.moon + "_symbol.png"
     addImageTag(imageString)
     var img=document.getElementById(imageString);
@@ -2304,20 +2315,20 @@ function getBufferCanvas(canvas){
 }
 
 function copyTmpCanvasToRealCanvasAtPos(canvas, tmp_canvas, x, y){
-  ctx = canvas.getContext('2d');
+  var ctx = canvas.getContext('2d');
 	ctx.drawImage(tmp_canvas, x, y);
 }
 
 //does not work how i hoped. does not render a canvas with alpha
 function copyTmpCanvasToRealCanvas50(canvas, tmp_canvas){
-	ctx = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
   ctx.globalAlpha = 0.5;
 	ctx.drawImage(tmp_canvas, 0, 0);
 }
 
 
 function copyTmpCanvasToRealCanvas(canvas, tmp_canvas){
-	ctx = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
 	ctx.drawImage(tmp_canvas, 0, 0);
 }
 
