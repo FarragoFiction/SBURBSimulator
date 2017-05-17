@@ -981,3 +981,8 @@ everything else is layers and rotations and.....
 .....
 
 it might finally be time to upgrade the rendering engine.
+
+
+
+
+Okay, let's fucking do this. I've long since been hiding canvases. What's 12 more canvases?

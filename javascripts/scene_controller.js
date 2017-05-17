@@ -1,5 +1,6 @@
 
-
+var startTime = Date.now(); //gets page load.
+var stopTime = 0;
 function createScenesForSession(session){
 	session.scenes = [new StartDemocracy(session), new JackBeginScheming(session), new KingPowerful(session), new QueenRejectRing(session), new JackPromotion(session), new JackRampage(session), new GiveJackBullshitWeapon(session)];
 	//relationship drama has a high priority because it can distract a session from actually making progress. happened to universe a trolls.
@@ -321,10 +322,25 @@ function scratch(){
 
 }
 
+//http://stackoverflow.com/questions/9763441/milliseconds-to-time-in-javascript
+function msToTime(s) {
+  var ms = s % 1000;
+  s = (s - ms) / 1000;
+  var secs = s % 60;
+  s = (s - secs) / 60;
+  var mins = s % 60;
+  var hrs = (s - mins) / 60;
+
+  //return hrs + ':' + mins + ':' + secs + '.' + ms; //oh dear sweet hussie, I HOPE it won't take hours to load.
+	return mins + " minutes and " + secs + " seconds"
+}
+
 function renderAfterlifeURL(){
 	if(curSessionGlobalVar.afterLife.ghosts.length > 0){
+		stopTime = Date.now();
 
 		var html = "<Br><br><a href = 'rip.html?players=" + generateURLParamsForPlayers(curSessionGlobalVar.afterLife.ghosts) + "' target='_blank'>View Afterlife In New Tab?</a>";
+		html += "Simulation took: " + msToTime(stopTime - startTime) + " to render. ";
 		//console.log("gonna append: " + html)
 		$("#story").append(html);
 	}else{
