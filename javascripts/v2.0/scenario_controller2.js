@@ -291,7 +291,13 @@ function callNextIntroWithDelay(player_index){
 }
 
 
+//in a big pile. draw all the charactesr as they look as they are entereing
+function createInitialSprites(){
+
+}
+
 function intro(){
+
 	callNextIntroWithDelay(0);
 }
 
