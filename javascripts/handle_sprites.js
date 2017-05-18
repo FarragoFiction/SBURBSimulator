@@ -1155,11 +1155,7 @@ function drawSpriteTurnways(canvas, player){
   ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
   ctx.translate(canvas.width, 0);
   ctx.scale(-1, 1);
-  if(player.ghost || player.doomed){  //don't expect ghosts or doomed players to render more than a time or two, don't bother caching for now.
-      drawSpriteFromScratch(canvas, player, ctx, false);
-  }else{
-    drawSprite(canvas, player, ctx);
-  }
+  drawSprite(canvas, player, ctx);
 
 }
 
@@ -1184,9 +1180,16 @@ function drawSprite(canvas, player, ctx, baby){
     if(checkSimMode() == true){
       return;
     }
-    var canvasDiv = document.getElementById(player.spriteCanvasID);
-    //also take care of face scratches and mind control symbols.
-    copyTmpCanvasToRealCanvasAtPos(canvas, canvasDiv,0,0)
+
+    if(player.ghost || player.doomed){  //don't expect ghosts or doomed players to render more than a time or two, don't bother caching for now.
+        console.log("drawing ghost or doomed player from scratch: " + player)
+        drawSpriteFromScratch(canvas, player, ctx, false);
+    }else{
+      var canvasDiv = document.getElementById(player.spriteCanvasID);
+      //also take care of face scratches and mind control symbols.
+      copyTmpCanvasToRealCanvasAtPos(canvas, canvasDiv,0,0)
+    }
+
 
 
 
@@ -1198,7 +1201,7 @@ function drawSprite(canvas, player, ctx, baby){
 
 
 function drawSpriteFromScratch(canvas, player,ctx,baby){
-  console.log("Drawing sprite from scratch " + player.isDreamSelf);
+  //console.log("Drawing sprite from scratch " + player.isDreamSelf);
   if(checkSimMode() == true){
     return;
   }
