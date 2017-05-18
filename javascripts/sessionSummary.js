@@ -358,6 +358,7 @@ function MultiSessionSummary(){
 	this.hasFreeWillEvents = 0;
 	this.rocksFell = 0;
 	this.opossumVictory = 0;
+	this.averageNumScenes = 0;
 
 
 
@@ -435,7 +436,7 @@ function MultiSessionSummary(){
 
 	//lets me know whether to have a checkbox with it or not. (only for actual properties on this object. not corpse party or class/aspect stuff.)
 	this.isFilterableProperty = function(propertyName){
-		return !(propertyName == "sizeOfAfterLife" || propertyName == "averageAfterLifeSize" ||propertyName == "averageTriggerLevel" || propertyName == "averageRelationshipValue"  || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck")
+		return !(propertyName == "sizeOfAfterLife" || propertyName == "averageNumScenes" || propertyName == "averageAfterLifeSize" ||propertyName == "averageTriggerLevel" || propertyName == "averageRelationshipValue"  || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck")
 	}
 
 	this.generateHTML = function(){
@@ -488,14 +489,14 @@ function MultiSessionSummary(){
 	}
 
 	this.generateClassFilterHTML = function(){
-		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryClasses'>Classes:";
+		var html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryClasses'>Classes:";
 		html += "COMING SOON</div>"
 		return html;
 	}
 
 	this.generateAspectFilterHTML = function(){
 		console.log("TODO: display aspects for MSS. Then allow filtering by them. (Somehow)")
-		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummaryAspects'>Aspects:";
+		var html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryAspects'>Aspects:";
 		html += "COMING SOON</div>"
 		return html;
 	}
@@ -516,18 +517,19 @@ function MultiSessionSummary(){
 
 	//css will handle this be initialized to display:hidden or whatever, and then javascript will handle toggles.
 	this.generateRomanceHTML = function(properties){
-		var html = "<div class = 'multiSessionSummary'>Romance: <button onclick='toggleRomance()'>Toggle View </button>";
+		var html = "<div  class = 'bottomAligned multiSessionSummary'>Romance: <button onclick='toggleRomance()'>Toggle View </button>";
 		html += "<div id = 'multiSessionSummaryRomance' >"
 		for(var i = 0; i<properties.length; i++){
 			var propertyName = properties[i];
 			html += this.generateHTMLForProperty(propertyName)
 		}
 		html += "</div></div>"
+		console.log(html);
 		return html;
 	}
 
 	this.generateDramaHTML = function(properties){
-		var html = "<div class = 'multiSessionSummary' >Drama: <button onclick='toggleDrama()'>Toggle View </button>";
+		var html = "<div class = 'bottomAligned multiSessionSummary' >Drama: <button onclick='toggleDrama()'>Toggle View </button>";
 		html += "<div id = 'multiSessionSummaryDrama' >"
 		for(var i = 0; i<properties.length; i++){
 			var propertyName = properties[i];
@@ -539,7 +541,7 @@ function MultiSessionSummary(){
 
 
 	this.generateEndingHTML = function(properties){
-		var html = "<div class = 'multiSessionSummary'>Ending: <button onclick='toggleEnding()'>Toggle View </button>";
+		var html = "<div class = 'bottomAligned multiSessionSummary'>Ending: <button onclick='toggleEnding()'>Toggle View </button>";
 		html += "<div id = 'multiSessionSummaryEnding' >"
 		for(var i = 0; i<properties.length; i++){
 			var propertyName = properties[i];
@@ -551,7 +553,7 @@ function MultiSessionSummary(){
 
 
 	this.generateMiscHTML = function(properties){
-		var html = "<div class = 'multiSessionSummary' >Misc <button onclick='toggleMisc()'>Toggle View </button>";
+		var html = "<div class = 'topAligned multiSessionSummary' >Misc <button onclick='toggleMisc()'>Toggle View </button>";
 		html += "<div id = 'multiSessionSummaryMisc' >"
 		for(var i = 0; i<properties.length; i++){
 			var propertyName = properties[i];
@@ -562,7 +564,7 @@ function MultiSessionSummary(){
 	}
 
 	this.generateAverageHTML = function(properties){
-		var html = "<div class = 'multiSessionSummary' >Averages <button onclick='toggleAverage()'>Toggle View </button>";
+		var html = "<div class = 'topAligned multiSessionSummary' >Averages <button onclick='toggleAverage()'>Toggle View </button>";
 		html += "<div id = 'multiSessionSummaryAverage' >"
 		for(var i = 0; i<properties.length; i++){
 			var propertyName = properties[i];
@@ -572,39 +574,9 @@ function MultiSessionSummary(){
 		return html;
 	}
 
-
-
-	//replaced 5/12/17 part of the CorpseParty upgrade.
-	this.generateHTMLOld = function(){
-		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
-		var header = "<h2>Stats for All Displayed Sessions: </h2>(When done finding, can filter)"
-		html += header;
-		//http://stackoverflow.com/questions/85992/how-do-i-enumerate-the-properties-of-a-javascript-object
-		for(var propertyName in this) {
-			if(propertyName == "total"){
-				html += "<Br><b> ";
-				html +=  propertyName + "</b>: " + this[propertyName] ;
-				html += " (" + Math.round(100* (this[propertyName]/this.total)) + "%)";
-			}else if(propertyName == "totalDeadPlayers"){
-				html += "<Br><b>totalDeadPlayers: </b> " + this.totalDeadPlayers + " ("+this.survivalRate + " % survival rate)";
-			}else if(propertyName == "totalLivingPlayers" || propertyName == "survivalRate" || propertyName == "ghosts" || propertyName == "generateCorpsePartyHTML"){
-				//do nothing
-			}else if(propertyName == "sizeOfAfterLife" || propertyName == "averageAfterLifeSize" ||propertyName == "averageTriggerLevel" || propertyName == "averageRelationshipValue"  || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck"){
-				html += "<br><b>" + propertyName + "</b>: " + this[propertyName];
-			}else if(propertyName != "generateHTML"){
-				html += "<Br><b> <input disabled='true' type='checkbox' name='filter' value='"+propertyName +"' id='" + propertyName + "' onchange='filterSessionSummaries()'>";
-				html +=  propertyName + "</b>: " + this[propertyName] ;
-				html += " (" + Math.round(100* (this[propertyName]/this.total)) + "%)";
-			}
-		}
-
-		html += this.generateCorpsePartyHTML();
-
-		html += "</div><Br>"
-		return html;
-	}
-
 }
+
+
 
 function summaryHasProperty(summary, property){
 	return summary[propertyName]
@@ -706,6 +678,7 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		mss.averageHP += ss.averageHP
 		mss.averageTriggerLevel += ss.averageTriggerLevel
 		mss.averageRelationshipValue += ss.averageRelationshipValue
+		mss.averageNumScenes += ss.num_scenes;
 
 
 		mss.totalDeadPlayers += ss.numDead;
@@ -720,6 +693,7 @@ function collateMultipleSessionSummaries(sessionSummaries){
 	mss.averageHP = Math.round(mss.averageHP/sessionSummaries.length)
 	mss.averageTriggerLevel = Math.round(mss.averageTriggerLevel/sessionSummaries.length)
 	mss.averageRelationshipValue = Math.round(mss.averageRelationshipValue/sessionSummaries.length)
+	mss.averageNumScenes = Math.round(mss.averageNumScenes/sessionSummaries.length)
 	mss.survivalRate = Math.round(100 * (mss.totalLivingPlayers/(mss.totalLivingPlayers + mss.totalDeadPlayers)));
 	return mss;
 }

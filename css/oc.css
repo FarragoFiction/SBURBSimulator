@@ -88,6 +88,14 @@ body{
   display: inline-block;
 }
 
+.topAligned{
+	vertical-align: top;
+}
+
+.bottomAligned{
+	vertical-align: bottom;
+}
+
 .sessionSummary{
 	width: 500px;
 	display: inline-block;
