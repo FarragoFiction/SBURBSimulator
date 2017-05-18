@@ -1215,6 +1215,12 @@ function drawSprite(canvas, player, ctx, baby){
       //wasteOfMindSymbol(canvas, player);
       influenceSymbol(canvas, player.influenceSymbol);
     }
+
+    if(cool_kid){
+      drawWhateverTerezi(canvas,"/Bodies/coolk1dlogo.png")
+      drawWhateverTerezi(canvas,"/Bodies/coolk1dsword.png")
+      drawWhateverTerezi(canvas,"/Bodies/coolk1dshades.png")
+    }
 }
 
 
@@ -1324,11 +1330,7 @@ function drawSpriteFromScratch(canvas, player,ctx,baby){
     }
   }
 
-  if(cool_kid){
-    drawWhateverTerezi(canvas,"/Bodies/coolk1dlogo.png")
-    drawWhateverTerezi(canvas,"/Bodies/coolk1dsword.png")
-    drawWhateverTerezi(canvas,"/Bodies/coolk1dshades.png")
-  }
+
 
 
 }
