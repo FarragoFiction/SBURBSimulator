@@ -340,7 +340,7 @@ function renderAfterlifeURL(){
 		stopTime = Date.now();
 
 		var html = "<Br><br><a href = 'rip.html?players=" + generateURLParamsForPlayers(curSessionGlobalVar.afterLife.ghosts) + "' target='_blank'>View Afterlife In New Tab?</a>";
-		html += "Simulation took: " + msToTime(stopTime - startTime) + " to render. ";
+		html += "<Br><Br>Simulation took: " + msToTime(stopTime - startTime) + " to render. ";
 		//console.log("gonna append: " + html)
 		$("#story").append(html);
 	}else{
