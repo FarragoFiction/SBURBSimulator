@@ -330,7 +330,6 @@ function GameEntity(session, name, crowned){
 						div.append(canvasHTML);
 						//different format for canvas code
 						var canvasDiv = document.getElementById("canvas"+ divID);
-						var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 						if(potential.aspect == "Time" && Math.seededRandom() > .50){
 							drawTimeGears(pSpriteBuffer, potential);
 							console.log("summoning a stable time loop player to this fight. " +this.session.session_id)
@@ -340,8 +339,7 @@ function GameEntity(session, name, crowned){
 							div.append("The " + potential.htmlTitleHP() + " has joined the Strife!!!");
 						}
 
-						drawSinglePlayer(pSpriteBuffer, potential);
-						copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0)
+						drawSinglePlayer(canvasDiv, potential);
 					}
 				}
 

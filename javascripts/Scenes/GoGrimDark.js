@@ -29,6 +29,13 @@ function GoGrimDark(session){
 			return;
 		}
 		div.append("<br>"+this.content());
+		if(this.player.grimDark ==4){
+			var divID = div.attr("id") + "grimdark"
+			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+			div.append(canvasHTML);
+			var canvasDiv = document.getElementById("canvas"+ divID);
+			drawSinglePlayer(canvasDiv, this.player);
+		}
 	}
 
 	//modify land quests and etc. physical contact with a grim dark player raises your corruption levels.

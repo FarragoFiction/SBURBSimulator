@@ -6,8 +6,8 @@ function JackPromotion(session){
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		if(this.session.jack.getHP() <= 0) return false;  //jack can't be dead.
-		if(this.session.queensRing == null); return false; //all is moot if no ring
-		if(this.session.jack.crowned != null); return false; //don't steal the ring from yourself, dunkass
+		if(this.session.queensRing == null) return false; //all is moot if no ring
+		if(this.session.jack.crowned != null) return false; //don't steal the ring from yourself, dunkass
 
 		//jack is alive, and stronger than queen. (even if queen is dead, this means her lackeys are undisciplined)
 		if(this.session.jack.getPower() > this.session.queen.getPower()){
