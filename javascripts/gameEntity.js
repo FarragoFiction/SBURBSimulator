@@ -811,7 +811,7 @@ function GameEntity(session, name, crowned){
 			if(defenseRoll > offenseRoll*10){
 				////console.log("Luck counter: " + this.session.session_id);
 				div.append("The attack backfires and causes unlucky damage. The " + defense.htmlTitleHP() + " sure is lucky!!!!!!!!" );
-				offense.currentHP += -1* offense.getPower(); //damaged by your own power.
+				offense.currentHP += -1* offense.getPower()/10; //damaged by your own power.
 				this.checkForAPulse(offense, defense)
 				return;
 			}else if(defenseRoll > offenseRoll*5){
