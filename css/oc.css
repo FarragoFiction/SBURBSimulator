@@ -6,6 +6,31 @@
 	padding: 10px;
 }
 
+.whiteCenterThingy{
+	width:1000px;
+	background-color: white;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+}
+
+#character_creator{
+	width:1000px;
+	background-color: white;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+}
+
+#debug{
+	width:1000px;
+	background-color: white;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+}
+
+
 .credits{
 	padding: 10px;
 	border: 3px solid black;

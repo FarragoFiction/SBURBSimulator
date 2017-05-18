@@ -26,6 +26,12 @@ function CharacterCreatorHelper(players){
 		str += "</div>"
 		this.div.append(str);
 
+		player.spriteCanvasID = player.chatHandle+player.id+"spriteCanvas";
+		var canvasHTML = "<br><canvas style='display:none' id='" + player.spriteCanvasID+"' width='" +400 + "' height="+300 + "'>  </canvas>";
+		$("#playerSprites").append(canvasHTML)
+
+		player.renderSelf();
+
 		var canvas = document.getElementById("canvas"+ divId);
 		drawSinglePlayer(canvas, player);
 		this.wireUpPlayerDropDowns(player);
@@ -33,6 +39,7 @@ function CharacterCreatorHelper(players){
 	}
 
 	this.redrawSinglePlayer = function(player){
+		  player.renderSelf();
 			var divId = "canvas" + player.chatHandle;
 			divId = divId.replace(/\s+/g, '');
 			var canvas =$("#"+divId)[0]
