@@ -1508,7 +1508,7 @@ lusus_objects[lusus_objects.length-1].helpPhrase = "is kind of helpful? Maybe? Y
 lusus_objects.push(new GameEntity(null, "Bark Beast",null));
 lusus_objects[lusus_objects.length-1].power = 40;
 lusus_objects[lusus_objects.length-1].lusus = true;
-lusus_objects[lusus_objects.length-1].helpPhrase = "Alternates between loud, insistent barks and long, eloquent monologues on the deeper meaning behind each and every fragment of the game. ";
+lusus_objects[lusus_objects.length-1].helpPhrase = "alternates between loud, insistent barks and long, eloquent monologues on the deeper meaning behind each and every fragment of the game. ";
 
 
 lusus_objects.push(new GameEntity(null, "Nut Creature",null));

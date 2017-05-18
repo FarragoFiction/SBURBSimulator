@@ -230,7 +230,7 @@ function MurderPlayers(session){
 						worstEnemy.increasePower();
 
 						ret += " The " + m.htmlTitle() + " attempts to brutally murders that asshole, the " + worstEnemy.htmlTitle();
-						ret += ",but instead gets murdered first, in self-defense. ";
+						ret += ", but instead gets murdered first, in self-defense. ";
 						if(m.dead == true){ //they could have been killed by another murder player in this same tick
 							ret += " The task is made especially easy by the " + m.htmlTitle() + " being already in the proccess of dying. "
 						}
