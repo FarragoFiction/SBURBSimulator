@@ -1155,7 +1155,12 @@ function drawSpriteTurnways(canvas, player){
   ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
   ctx.translate(canvas.width, 0);
   ctx.scale(-1, 1);
-  drawSprite(canvas, player, ctx);
+  if(player.ghost || player.doomed){  //don't expect ghosts or doomed players to render more than a time or two, don't bother caching for now.
+      drawSpriteFromScratch(canvas, player, ctx, false);
+  }else{
+    drawSprite(canvas, player, ctx);
+  }
+
 }
 
 
