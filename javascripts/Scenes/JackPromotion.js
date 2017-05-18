@@ -8,7 +8,7 @@ function JackPromotion(session){
 		if(this.session.jack.getHP() <= 0) return false;  //jack can't be dead.
 		if(this.session.queensRing == null) return false; //all is moot if no ring
 		if(this.session.jack.crowned != null) return false; //don't steal the ring from yourself, dunkass
-
+		//console.log("jack is alive, there is a queens ring and jack doesn't have it: " + this.session.session_id)
 		//jack is alive, and stronger than queen. (even if queen is dead, this means her lackeys are undisciplined)
 		if(this.session.jack.getPower() > this.session.queen.getPower()){
 			return true;
@@ -31,10 +31,12 @@ function JackPromotion(session){
 		if(this.session.queen.crowned && !this.session.queen.exiled){
 			if(this.session.queen.getHP() > 0){
 				if(Math.seededRandom() > .5){
+					console.log("Jack making out like a bandit in session: " + this.session.session_id); //get it? 'cause cause he is making otu with BQ but also stealing from her???'
 					//and now the players still have to fight her.  ringless sure, but....
 					this.session.queen.power = 50; //she gets a morale boost, any weakening she had is reduced.
 					ret += " At this point you would EXPECT him to kill the weakened Queen, but somehow they end up making out??? Dersites, am I right?  He still ends up with the RING, though."
 				}else{
+					console.log("jack murdering queen instead of kissing her in sessin: " + this.session.session_id)
 					ret += "He easily murders the weakened queen and uses her ring to obtain her power. ";
 					this.session.queen.currentHP = -9999; //actually kill her you dunkass. not KISS her.
 				}

@@ -331,7 +331,7 @@ function GameEntity(session, name, crowned){
 						//different format for canvas code
 						var canvasDiv = document.getElementById("canvas"+ divID);
 						if(potential.aspect == "Time" && Math.seededRandom() > .50){
-							drawTimeGears(pSpriteBuffer, potential);
+							drawTimeGears(canvasDiv, potential);
 							console.log("summoning a stable time loop player to this fight. " +this.session.session_id)
 							div.append("The " + potential.htmlTitleHP() + " has joined the Strife!!! (Don't worry about the time bullshit, they have their stable time loops on LOCK. No doom for them.)");
 						}else{
