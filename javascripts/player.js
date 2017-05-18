@@ -636,6 +636,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			}
 		}else if(this.class_name == "Sylph"){ //heals others 'healing' rage would increase it.
 			player.boostAllRelationshipsBy(amount);
+			//way too OP an ability, only sylphs of heart have it
+			player.grimDarkness = Math.max(0, player.grimDarkness -1);
 		}else if(this.class_name == "Bard"){ //destroys in others
 			player.boostAllRelationshipsBy(-1*amount)
 		}
@@ -773,6 +775,26 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		//void does nothing innately, modifies things at random.
 		var statInteractions = [this.lightInteractionEffect.bind(this,player),this.mindInteractionEffect.bind(this,player),this.timeInteractionEffect.bind(this,player),this.lifeInteractionEffect.bind(this,player),this.rageInterctionEffect.bind(this,player, numTimes),this.heartInteractionEffect.bind(this,player),this.breathInteractionEffect.bind(this,player),this.spaceInteractionEffect.bind(this,player),this.bloodInteractionEffect.bind(this,player),this.doomInteractionEffect.bind(this,player),this.hopeInteractionEffect.bind(this,player)];
 		getRandomElementFromArray(statInteractions)();
+		var amount = this.power/3;
+		if(this.class_name == "Thief"){ //takes for self
+			this.corruptionLevelOther += amount;
+			player.corruptionLevelOther += -1*amount
+		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
+			player.corruptionLevelOther += -1*amount
+			for(var i = 0; i<this.session.players.length; i++){
+				var p = this.session.players[i];
+				p.corruptionLevelOther += amount/this.session.players.length;
+			}
+		}else if(this.class_name == "Sylph"){ //heals others
+			player.corruptionLevelOther += amount
+			player.flipOutReason = null;  //don't focus on why we are screwed.
+			player.flippingOutOverDeadPlayer = null;
+		}else if(this.class_name == "Bard"){ //destroys in others
+			player.corruptionLevelOther += -1*amount
+		}
+		player.corruptionLevelOther = Math.max(player.power, 1);
+
+
 	}
 
 
@@ -1044,6 +1066,21 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 		var statIncreases = [this.bloodIncreasePower.bind(this,powerBoost),this.rageIncreasePower.bind(this,powerBoost,numTimes),this.heartIncreasePower.bind(this,powerBoost),this.breathIncreasePower.bind(this,powerBoost),this.spaceIncreasePower.bind(this,powerBoost),this.lifeIncreasePower.bind(this,powerBoost),this.doomIncreasePower.bind(this,powerBoost),this.timeIncreasePower.bind(this,powerBoost),this.mindIncreasePower.bind(this,powerBoost),this.lightIncreasePower.bind(this,powerBoost),this.hopeIncreasePower.bind(this,powerBoost)];
 		getRandomElementFromArray(statIncreases)();
+
+		//manicInsomniac has a very good point that in LOSS void players can slow grimDarkness but not heal it.
+		var mobilityModifier = -1 * powerBoost;
+		if(this.class_name == "Prince" || this.class_name == "Bard"){
+			mobilityModifier = -1 *mobilityModifier;
+		}
+
+		if(this.isActive()){ //modify me
+			this.corruptionLevelOther += mobilityModifier;
+		}else{  //modify others.
+			for(var i = 0; i<this.session.players.length; i++){
+				var player = this.session.players[i];
+				player.corruptionLevelOther += mobilityModifier;
+			}
+		}
 	}
 
 	//everything but space and time, they are exempt because EVER session has them.
