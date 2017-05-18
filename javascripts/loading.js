@@ -100,6 +100,11 @@ function loadImage(img,skipInit){
 
 //load pesterchum, blood, big aspect symbols, echeladders, god tier level up, romance symbols, babies, grubs
 function loadOther(skipInit){
+  if(cool_kid){
+    loadImage("/Bodies/coolk1dlogo.png",skipInit);
+    loadImage("/Bodies/coolk1dsword.png",skipInit);
+    loadImage("/Bodies/coolk1dshades.png",skipInit);
+  }
 	loadImage("jr.png",skipInit);
   loadImage("drain_lightning.png", skipInit);
   loadImage("drain_lightning_long.png", skipInit);
