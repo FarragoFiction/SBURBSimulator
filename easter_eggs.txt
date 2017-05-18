@@ -142,7 +142,7 @@ DID YOU KNOW: This now brings the count up to FOUR ways to get here. Via figurin
 </div>
 
 <div class = "hof413">
-<h2> Hall of Fame (Post Tumblr Hint ('cause I am bad at secrets))</h2><Br>
+<h2> Hall of Fame (Post Tumblr Hint ('cause I am bad at secrets))<div class = "void"> It's funny because every freaking part of this giant mess is chock FULL of secrets.  Hell, even less people made it here than I thought. Maybe I'm better at secrets than I think???</div></h2><Br>
 <p>"Be careful what you prototype...  "
 <br>
 -kaosDragon
