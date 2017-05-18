@@ -113,7 +113,7 @@ function LuckStuff(session){
 
 	this.roll25 = function(roll){
 		console.log("unluck grim dark: " + this.session.session_id)
-		var items = ["magic cue ball", "grimoire", "original VHS tape of Mac and Me", "fluthlu doll", "dream catcher","squiddles plush", "Dr Seus Book", "commemorative Plaque from a World Event That Never Happened","SCP-093"];
+		var items = ["magic cue ball", "grimoire", "original VHS tape of Mac and Me", "fluthlu doll", "dream catcher","squiddles plush", "Dr Seuss Book", "commemorative Plaque from a World Event That Never Happened","SCP-093"];
 		var ret = "The " + roll.player.htmlTitle() + " has had a momentary lapse of judgement and alchemized a weapon with the " + getRandomElementFromArray(items) + " they just found. Any sane adventurer would cast these instruments of the occult into the FURTHEST RING and forget they ever existed. Instead, the " + roll.player.htmlTitleBasic() + " equips them. This is a phenomenally bad idea. "
 		roll.player.corruptionLevelOther += 666; //will only increase corruption by one level, but in style
 		roll.player.power += 50;  //it IS a weapon, points out aspiringWatcher
