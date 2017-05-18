@@ -91,8 +91,7 @@ function FreeWillStuff(session){
 					//console.log("Free will stop from killing ectobiologist: " + this.session.session_id);
 					ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. If this keeps up, they are going to end up killing the " + ectobiologistEnemy.htmlTitle();
 					ret += " and then they will NEVER do ectobiology.  No matter HOW much of an asshole they are, it's not worth dooming the timeline. ";
-					player.murderMode = false;
-					player.leftMurderMode = true;
+					player.unmakeMurderMode();
 					player.triggerLevel = 0; //
 					removeFromArray(player, this.session.availablePlayers);
 					return ret;
@@ -102,8 +101,7 @@ function FreeWillStuff(session){
 					//console.log("Free will stop from killing space player: " + this.session.session_id);
 					ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. If this keeps up, they are going to end up killing the " + spacePlayerEnemy.htmlTitle();
 					ret += " and then they will NEVER have frog breeding done. They can always kill them AFTER they've escaped to the new Universe, right? ";
-					player.murderMode = false;
-					player.leftMurderMode = true;
+					player.unmakeMurderMode();
 					player.triggerLevel = 0; //
 					removeFromArray(player, this.session.availablePlayers);
 					return ret;
@@ -112,8 +110,7 @@ function FreeWillStuff(session){
 				if(Math.seededRandom() > 0.5){
 					//console.log("Free will stop from killing everybody: " + this.session.session_id);
 					ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. No matter HOW much of an asshole people are, SBURB is the true enemy, and they are not going to let themselves forget that. ";
-					player.murderMode = false;
-					player.leftMurderMode = true;
+					player.unmakeMurderMode();
 					player.triggerLevel = 0; //
 					removeFromArray(player, this.session.availablePlayers);
 					return ret;
@@ -153,7 +150,7 @@ function FreeWillStuff(session){
 			var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
 			if(this.isValidTargets(enemies,player)){
 					//console.log("chosing to go into murdermode " +this.session.session_id);
-					player.murderMode = true;  //no font change. not crazy. obviously. why would you think they were?
+					player.makeMurderMode();
 					player.triggerLevel = 10;
 					removeFromArray(player, this.session.availablePlayers);
 					this.renderPlayer1 = player;
@@ -311,7 +308,7 @@ function FreeWillStuff(session){
 		if(this.isValidTargets(enemies,player) && patsy){
 				if(patsyVal > enemies.length/2 && patsy.triggerLevel > 1){
 						//console.log("manipulating someone to go into murdermode " +this.session.session_id + " patsyVal = " + patsyVal);
-						patsy.murderMode = true;
+						patsy.makeMurderMode();
 						patsy.triggerLevel = 10;
 						removeFromArray(player, this.session.availablePlayers);
 						removeFromArray(patsy, this.session.availablePlayers);
@@ -323,7 +320,7 @@ function FreeWillStuff(session){
 					patsy = getRandomElementFromArray(enemies);//no longer care about "best"
 					if(this.canInfluenceEnemies(player) && patsy.freeWill  < player.freeWill && patsy.influencePlayer != player){
 						console.log(player.title() +" controling into murdermode and altering their enemies with game powers." +this.session.session_id);
-						patsy.murderMode = true;
+						patsy.makeMurderMode();
 						patsy.triggerLevel = 10;
 						patsy.flipOut(" about how they are being forced into MurderMode")
 						patsy.influenceSymbol = this.getInfluenceSymbol(player);
@@ -503,7 +500,7 @@ function FreeWillStuff(session){
 			removeFromArray(murderer, this.session.availablePlayers);
 			if(!murderer.stateBackup) murderer.stateBackup = new MiniSnapShot(murderer);
 			murderer.nullAllRelationships();
-			murderer.murderMode = false;
+			murderer.unmakeMurderMode();
 			murderer.triggerLevel = 0;
 			murderer.influenceSymbol = this.getInfluenceSymbol(player);
 			murderer.influencePlayer = player;
@@ -569,7 +566,7 @@ function FreeWillStuff(session){
 			r.value = -100;;
 			r.saved_type = r.badBig;
 			r.old_type = r.saved_type; //no drama on my end.
-			patsy.murderMode = true;
+			patsy.makeMurderMode();
 			removeFromArray(player, this.session.availablePlayers);
 			removeFromArray(patsy, this.session.availablePlayers);
 			patsy.triggerLevel = 100;

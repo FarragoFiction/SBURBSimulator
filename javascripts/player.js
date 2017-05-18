@@ -112,6 +112,18 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.flipOutReason = reason;
 	}
 
+	this.makeMurderMode = function(){
+		this.murderMode = true;
+		this.increasePower();
+		this.renderSelf(); //new scars. //can't do scars just on top of sprite 'cause hair might cover.'
+	}
+
+	this.unmakeMurderMode = function(){
+		this.murderMode = false;
+		this.leftMurderMode = true;
+		this.renderSelf();
+	}
+
 	this.makeDead = function(causeOfDeath){
 		this.dead = true;
 		this.causeOfDeath = causeOfDeath;

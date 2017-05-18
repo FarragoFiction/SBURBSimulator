@@ -169,8 +169,7 @@ function MurderPlayers(session){
 					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
 					ret += ", but instead the Bloody Thing happens and the " + m.htmlTitleBasic() + " is calmed down, and hug bumps are shared. ";
 					if(m.dead) ret += " It is especially tragic that the burgeoning palemance is cut short with the " + m.htmlTitleBasic() + "'s untimely death. ";
-					m.murderMode = false;
-					m.leftMurderMode = true;
+					m.unmakeMurderMode();
 					worstEnemy.checkBloodBoost(livePlayers);
 					makeDiamonds(m, worstEnemy)
 					this.renderDiamonds(div, m, worstEnemy);
@@ -185,8 +184,7 @@ function MurderPlayers(session){
 					if(m.dead == true){ //they could have been killed by another murder player in this same tick
 						ret += " The task is made especially easy (yet tragic) by the " + m.htmlTitle() + " being in the middle of dying. "
 					}
-					m.murderMode = false;
-					m.leftMurderMode = true;
+					m.unmakeMurderMode();
 					m.triggerLevel = 1;
 					makeDiamonds(m, worstEnemy)
 					this.renderDiamonds(div, m, worstEnemy);
@@ -198,8 +196,7 @@ function MurderPlayers(session){
 					if(m.dead == true){ //they could have been killed by another murder player in this same tick
 						ret += " The task is made especially easy by the " + m.htmlTitle() + " dying partway through. "
 					}
-					m.murderMode = false;
-					m.leftMurderMode = true;
+					m.unmakeMurderMode();
 					m.triggerLevel = 1;
 					this.renderClubs(div, m, worstEnemy,ausp);
 					makeClubs(ausp, m, worstEnemy)
@@ -247,8 +244,7 @@ function MurderPlayers(session){
 				if(m.triggerLevel<1){
 					//alert("shit settled")
 					ret += " The " + m.htmlTitle() + " has officially settled their shit. ";
-					m.murderMode = false;
-					m.leftMurderMode = true;
+					m.unmakeMurderMode();
 				}else{
 					if(!m.dead && worstEnemy && worstEnemy.mobility > m.mobility || (worstEnemy && worstEnemy.aspect == "Void" && worstEnemy.power > m.power)){
 						//console.log("murder thwarted by mobility: " + this.session.session_id)
@@ -280,8 +276,7 @@ function MurderPlayers(session){
 				if(worstEnemy.aspect == "Blood" && worstEnemy.power > 2){
 					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
 					ret += ", but instead the Bloody Thing happens and the " + m.htmlTitle() + " is calmed down, and hug bumps are shared. ";
-					m.murderMode = false;
-					m.leftMurderMode = true;
+					m.unmakeMurderMode();
 					worstEnemy.checkBloodBoost(livePlayers);
 					m.triggerLevel = 1;
 					return ret; //don't try to murder. (and also blood powers stop any other potential murders);
@@ -292,8 +287,7 @@ function MurderPlayers(session){
 					//moiralligance.
 					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
 					ret += ", but instead gets talked down hardcore. Shit is downright tender.";
-					m.murderMode = false;
-					m.leftMurderMode = true;
+					m.unmakeMurderMode();
 					m.triggerLevel = 1;
 					this.renderDiamonds(div, m, worstEnemy);
 				}else if(worstEnemy.power < m.power*2){  //more likely to kill enemy than be killed. element of surprise

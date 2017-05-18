@@ -264,8 +264,7 @@ function EngageMurderMode(session){
 		if(p1score + p2score > 6){ //it's not winning that calms them down, but sick fires in general.
 			//console.log("rap sick fires in session: " + this.session.session_id + " score: " + (p1score + p2score))
 			div.append("<img src = 'images/sick_fires.gif'><br> It seems that the " + player1.htmlTitle() + " has been calmed down, for now.");
-			player1.murderMode = false;
-			player1.leftMurderMode = true;
+			player1.unmakeMurderMode();
 			//rap battles are truly the best way to power level.
 			player1.increasePower();
 			player2.increasePower();
@@ -342,7 +341,7 @@ function EngageMurderMode(session){
 		if(diamond){
 			ret += " I guess their Moirail, the " + diamond.htmlTitle() + " is not on the ball. ";
 		}
-		this.player.murderMode = true;
+		this.player.makeMurderMode();
 		return ret;
 	}
 }

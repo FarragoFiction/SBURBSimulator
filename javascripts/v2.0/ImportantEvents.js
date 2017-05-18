@@ -65,17 +65,7 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player, doomedTimeClone){
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
 
 			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
-			player.godTier = true;
-			player.dreamSelf = false;
-			player.murderMode = false;
-			player.grimDark = false;
-			player.leftMurderMode = false; //no scars
-			player.triggerLevel = 1;
-			player.dead = false;
-			player.currentHP = player.hp;
-			player.power += 200;
-			player.canGodTierRevive = true;
-			player.victimBlood = null;
+			player.makeGodTier();
 
 			var divID2 = (div.attr("id")) + "_alt_god" + player.chatHandle;
 			var canvasHTML2 = "<br><canvas id='canvas" + divID2+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
@@ -116,11 +106,11 @@ function PlayerDiedForever(session, mvp_value, player, doomedTimeClone){
 
 
 			div.append(narration);
-			player.triggerLevel += 0.5;
-			player.dead = false;
-			player.currentHP = player.hp;
 
-			this.doomedTimeClone.dead = true;
+			player.makeAlive();
+			player.triggerLevel += 0.5;
+
+			this.doomedTimeClone.makeDead("sacrificing themselves through a YellowYard")
 
 			var divID = (div.attr("id")) + "_alt_" + player.chatHandle;
 			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
@@ -426,7 +416,7 @@ function TimePlayerEnteredSessionWihtoutFrog(session, mvp_value,player, doomedTi
 			narration +=  "The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes with in a cloud of gears to join the final battle.";
 			div.append(narration);
 
-			player.object_to_prototype = new GameEntity(null, "Frog",null); 
+			player.object_to_prototype = new GameEntity(null, "Frog",null);
 			player.object_to_prototype.power = 20;
 			player.object_to_prototype.illegal = true;
 			player.object_to_prototype.mobility = 100;
