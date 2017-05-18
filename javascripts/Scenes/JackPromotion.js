@@ -10,7 +10,7 @@ function JackPromotion(session){
 		if(this.session.jack.crowned != null) return false; //don't steal the ring from yourself, dunkass
 		//console.log("jack is alive, there is a queens ring and jack doesn't have it: " + this.session.session_id)
 		//jack is alive, and stronger than queen. (even if queen is dead, this means her lackeys are undisciplined)
-		if(this.session.jack.getPower() > this.session.queen.getPower()){
+		if(this.session.jack.getPower() > this.session.queen.getPower() || this.session.queen.currentHP <= 0){
 			return true;
 		}
 
