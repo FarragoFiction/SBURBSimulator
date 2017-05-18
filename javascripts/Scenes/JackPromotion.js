@@ -24,8 +24,6 @@ function JackPromotion(session){
 
 
 	this.content = function(){
-		this.session.jack.crowned = this.session.queensRing;
-		this.session.queen.crowned = null;
 		var ret = " In a shocking turn of events, Jack Noir claims the Black Queen's RING OF ORBS " + this.session.convertPlayerNumberToWords();
 		ret += "FOLD. "
 		if(this.session.queen.crowned && !this.session.queen.exiled){
@@ -54,7 +52,8 @@ function JackPromotion(session){
 		ret += " You'd think this would be no worse than having the Black Queen around, but Jack is kind of a big deal. ";
 		ret += " He immediately decides to show everybody his stabs. ";
 		var badPrototyping = findBadPrototyping(this.playerList);
-
+		this.session.jack.crowned = this.session.queensRing;
+		this.session.queen.crowned = null;
 
 		if( badPrototyping == "First Guardian"){
 			ret += " He is now in charge of random teleporation murders. ";
