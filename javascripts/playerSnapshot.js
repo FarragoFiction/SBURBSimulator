@@ -147,6 +147,10 @@ function PlayerSnapshot(){
 		return ret;
 	}
 
+	this.changeGrimDark = function(){
+		//stubb
+	}
+
 	this.rollForLuck = function(){
 		return getRandomInt(this.minLuck, this.maxLuck);
 	}

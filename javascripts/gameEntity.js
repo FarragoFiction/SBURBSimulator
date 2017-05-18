@@ -346,6 +346,10 @@ function GameEntity(session, name, crowned){
 				return players
 		}
 
+		this.changeGrimDark = function(){
+			//stubb
+		}
+
 		//DD does it with finese (highest hp.power wins), HB does it with brutality (highest power wins). CD will either just end the fight with everybody absconded OR blow everybody up.
 		this.summonMidnightCrew = function(div, player, numTurns){
 
