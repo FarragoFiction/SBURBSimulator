@@ -26,7 +26,7 @@ function DisengageMurderMode(session){
 		removeFromArray(this.player, this.session.availablePlayers);
 		var ret = "The " + this.player.htmlTitle() + " has finally calmed their ass down enough to leave Murder Mode.  ";
 		ret += " This is whatever the opposite of completely terrifying is. ";
-		this.player.makeMurderMode();
+		this.player.unmakeMurderMode();
 		return ret;
 	}
 }
