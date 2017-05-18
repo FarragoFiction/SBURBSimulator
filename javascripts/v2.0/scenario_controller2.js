@@ -5,6 +5,7 @@ var spriteHeight = 300;
 var canvasWidth = 1000;
 var canvasHeight = 300;
 var junior = false;
+var cool_kid = false;
 var repeatTime = 5;
 var version2 = true; //even though idon't want  to render content, 2.0 is different from 1.0 (think of dialog that triggers)
 var curSessionGlobalVar;
@@ -66,6 +67,11 @@ function startSession(){
 	//easter egg ^_^
 	if(getParameterByName("royalRumble")  == "true"){
 		debugRoyalRumble();
+	}
+
+	if(getParameterByName("COOLK1D")  == "true"){
+		cool_kid = true;
+		coolK1DMode();
 	}
 
 	if(getParameterByName("lollipop")  == "true"){

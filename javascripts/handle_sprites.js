@@ -676,6 +676,24 @@ function drawGodSymbolBG(canvas, player){
 
 }
 
+//true random position
+function drawWhateverTerezi(canvas, imageString){
+  if(checkSimMode() == true){
+    return;
+  }
+	ctx = canvas.getContext('2d');
+	addImageTag(imageString)
+	var img=document.getElementById(imageString);
+	var width = img.width;
+	var height = img.height;
+  //all true random
+  var x = getRandomIntNoSeed(0, 50);
+  var y = getRandomIntNoSeed(0,50);
+  if(Math.random() > .5) x = x * -1;
+  if(Math.random() > .5) y = y * -1;
+	ctx.drawImage(img,x,y,width,height);
+}
+
 //have i really been too lazy to make this until now
 function drawWhatever(canvas, imageString){
   if(checkSimMode() == true){
@@ -1304,6 +1322,12 @@ function drawSpriteFromScratch(canvas, player,ctx,baby){
     }else{
       ghostSwap(canvas);
     }
+  }
+
+  if(cool_kid){
+    drawWhateverTerezi(canvas,"/Bodies/coolk1dlogo.png")
+    drawWhateverTerezi(canvas,"/Bodies/coolk1dsword.png")
+    drawWhateverTerezi(canvas,"/Bodies/coolk1dshades.png")
   }
 
 

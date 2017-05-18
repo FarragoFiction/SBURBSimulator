@@ -13,6 +13,10 @@ function debugLevelTheHellUp(){
 
 console.log("TODO make new sprites work for easter eggs.")
 
+function coolK1DMode(){
+	alert("H3Y TH3R3 COOL K1D 1S TH1S YOU???")
+}
+
 //no. you gots to flip it TURN-WAYS, dunkass.
 //rendering shouldu be different
 //making new scenes to be different
