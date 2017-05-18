@@ -112,6 +112,25 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.flipOutReason = reason;
 	}
 
+	//if change would push me over 3, render 'cause i'm newly grimdark
+	//if it would pull be from over 3, render 'cause i have somewhat recovered.
+	this.changeGrimDark = function(val){
+		//this.grimDark += val;
+		var tmp = this.grimDark + val;
+		var render = false;
+
+		if(this.grimDark <= 3 && tmp > 3){ //newly GrimDark
+			render = true;
+		}else if(this.grimDark >3 && tmp <=3){ //newly recovered.
+			render = true;
+		}
+		this.grimDark += val;
+		if(render){
+			this.renderSelf();
+		}
+
+	}
+
 	this.makeMurderMode = function(){
 		this.murderMode = true;
 		this.increasePower();
@@ -649,7 +668,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}else if(this.class_name == "Sylph"){ //heals others 'healing' rage would increase it.
 			player.boostAllRelationshipsBy(amount);
 			//way too OP an ability, only sylphs of heart have it
-			player.grimDarkness = Math.max(0, player.grimDarkness -1);
+			player.changeGrimDark(-1);
 		}else if(this.class_name == "Bard"){ //destroys in others
 			player.boostAllRelationshipsBy(-1*amount)
 		}

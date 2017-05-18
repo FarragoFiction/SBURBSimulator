@@ -33,7 +33,7 @@ function GoGrimDark(session){
 
 	//modify land quests and etc. physical contact with a grim dark player raises your corruption levels.
 	this.raiseGrimDarkLevel = function(){
-			this.player.grimDark ++;
+			this.player.changeGrimDark(1);  //this SHOULD be the only way to modify grim dark level upwards
 			this.player.corruptionLevelOther = 0; //reset corruption level
 			var ret = "";
 			if(this.player.grimDark == 1){

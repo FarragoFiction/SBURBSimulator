@@ -26,7 +26,7 @@ function GrimDarkQuests(session){
 			if(r.value > 10){
 				var ret =  "The " + player.htmlTitle() + " suddenly snaps out of it.  Their friendship with the " + bestFriend.htmlTitle() + " has managed to free them of the Horrorterror's influence. ";
 				if(bestFriend.grimDark > 1) ret += " The irony of this does not escape anyone. "
-				player.grimDark = 1;
+				player.changeGrimDark(-3) //if you are max grimDark doesn't fully save you...but if you weren't....maybe you get an extra buffer?
 				return ret;
 			}
 		}

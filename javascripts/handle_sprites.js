@@ -1215,7 +1215,7 @@ function drawSpriteFromScratch(canvas, player,ctx,baby){
   	ctx.rotate(270*Math.PI/180);
   }
 
-  if(!baby && player.grimDark > 2){
+  if(!baby && player.grimDark > 3){
     grimDarkHalo(canvas,player)
   }
 
@@ -1271,7 +1271,7 @@ function drawSpriteFromScratch(canvas, player,ctx,baby){
 	  roboSkin(canvas, player);
   }else if(player.trickster == true){
       peachSkin(canvas, player);
-  }else if(!baby && player.grimDark  > 2){
+  }else if(!baby && player.grimDark  > 3){
     grimDarkSkin(canvas, player)
   }else if(player.isTroll){
     greySkin(canvas,player);
