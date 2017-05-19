@@ -104,7 +104,7 @@ function VoidyStuff(session){
 
 	this.rageEndingPhrase = function(newDiv){
 		var ret = " The " + this.player.htmlTitle();
-		var phrases = ["is probably actually under the influence of psychoactive drugs.","might actually be sleep walking.", "is all up and laughing the whole time.","can't seem to stop laughing.", "has a look of utmost concentration.", "doesn't even seem to know what's going on themselves.", "is badly cosplaying as a consort.", "somehow got a hold of 413 helium balloon and has them tied to their neck.", "is wearing a sombrero. How HIGH do you even have to BE?"];
+		var phrases = ["is probably actually under the influence of psychoactive drugs.","might actually be sleep walking.", "is all up and laughing the whole time.","can't seem to stop laughing.", "has a look of utmost concentration.", "doesn't even seem to know what's going on themselves.", "is badly cosplaying as a consort.", "somehow got a hold of 413 helium balloon and has had them tied to their neck this whole time.", "is wearing a sombrero. How HIGH do you even have to BE?"];
 		newDiv.append( ret + " " + getRandomElementFromArray(phrases));
 	}
 
@@ -134,6 +134,7 @@ function VoidyStuff(session){
 	this.dolandQuests = function(div,specialDiv){
 		this.player.landLevel ++;
 		div.append(" Their consorts seem pretty happy, though. ") ;
+		specialDiv.append( "The " + this.player.htmlTitle() + " does " + getRandomQuestFromAspect(this.player.aspect) + ". ");
 		//should i just have land quests print out here, or something special? want it to be random bullshit.
 	}
 
