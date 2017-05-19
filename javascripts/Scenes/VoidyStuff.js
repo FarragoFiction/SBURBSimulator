@@ -81,8 +81,12 @@ function VoidyStuff(session){
 				this.ectoBiologyStarted(normalDiv, newDiv)
 				this.endingPhrase(classDiv, newDiv);
 				return;
+		}else if(this.player.landLevel >= 6 && this.player.land != null && !this.player.denizenDefeated && Math.seededRandom() > .8){
+			this.fightDenizen(normalDiv, newDiv)
+			this.endingPhrase(classDiv, newDiv);
+			return;
 		}else{ //pick from random array.
-				var options = [this.makeEnemies.bind(this,normalDiv,newDiv), this.makeFriends.bind(this,normalDiv, newDiv),this.goMurderMode.bind(this,normalDiv,newDiv),this.dolandQuests.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.fightDenizen.bind(this,normalDiv,newDiv)];
+				var options = [this.makeEnemies.bind(this,normalDiv,newDiv), this.makeFriends.bind(this,normalDiv, newDiv),this.goMurderMode.bind(this,normalDiv,newDiv),this.dolandQuests.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv)];
 				getRandomElementFromArray(options)();
 		}
 
@@ -150,7 +154,38 @@ function VoidyStuff(session){
 
 	//can die from this. not actually a real fight. short and brutal.
 	this.fightDenizen = function(div,specialDiv){
-			alert('fight denizen')
+		this.player.denizenFaced = true;
+		var denizen = this.session.getDenizenForPlayer(this.player);
+		div.append(" Why is the denizen " + denizen.name + " bellowing so loudly on " + this.player.shortLand() + "? ");
+		var ret =  "The " + this.player.htmlTitle() + "is fighting " +denizen.name + ".  It is bloody, brutal and short. ";
+
+		if(Math.seededRandom() >.5){
+			this.player.power = this.player.power*2;  //current and future doubling of power.
+			this.player.leveledTheHellUp = true;
+			this.player.denizenDefeated = true;
+			this.player.grist += denizen.grist;
+			ret += denizen.name + " lies dead on the ground. "
+			specialDiv.append()
+		}else{ //no CHOICE.  either you are berserking, or the denizen doesn't notice you in time to give you one.
+				this.player.denizenFaced = true;
+				this.player.denizenDefeated = false;
+				div.append(" That didn't sound good... ");
+				this.player.dead = true;
+				if(this.enablingPlayer.aspect == "Void") this.player.makeDead("fighting their Denizen way too early, cloaked in Void");
+				if(this.enablingPlayer.aspect == "Rage") this.player.makeDead("fighting their Denizen way too early, lost in Madness");
+				ret += this.player.htmltTitleBasic() + " lies dead on the ground. "
+				specialDiv.append()
+
+				var divID = (specialDiv.attr("id")) + "denizenDeath";
+				var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+				specialDiv.append(canvasHTML);
+				var canvas = document.getElementById("canvas"+ divID);
+
+				var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+				drawSprite(pSpriteBuffer,this.player)
+
+				copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0)
+		}
 	}
 
 	//actually render babies if class would be rage, whimsical overlay???
