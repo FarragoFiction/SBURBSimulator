@@ -3,33 +3,91 @@ function VoidyStuff(session){
 	this.canRepeat = true;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.player = null;
-	this.voidPlayer =
+	this.enablingPlayer = null;
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		this.player = null;
-		this.voidPlayer = findAspectPlayer(this.session.availablePlayers, "Void");
-		if(this.voidPlayer){
-			if(this.voidPlayer.isActive() || Math.seededRandom() > .5){
-				this.player = this.voidPlayer;
+		if(Math.seededRandom() > .5){
+			this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Void");
+			if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Rage"); //if there is no void player
+		}else{
+			this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Rage");
+			if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Void"); //if there is no rage player
+		}
+
+		if(this.enablingPlayer){
+			if(this.enablingPlayer.isActive() || Math.seededRandom() > .5){
+				this.player = this.enablingPlayer;
 			}else{  //somebody else can be voided.
-				this.player = getRandomElementFromArray(this.session.availablePlayers);
-				if(this.player.aspect == "Light" && this.player.class_name != "Prince") this.player = null; //light players can't be voided according to calliope
-				//console.log("passive void player shenanigans in: " + this.session.session_id)
+				this.player = getRandomElementFromArray(this.session.availablePlayers);  //don't forget that light players will never have void display none
 			}
 		}
 		return this.player != null;
 	}
 
 	this.renderContent = function(div){
+		this.player.increasePower();
 		div.append("<br>"+this.content());
 	}
 
+
+	//these methods are called shuffled randomly in an array,
+	//then called in order till one of them returns true.
+	this.makeEnemies = function(){
+
+	}
+
+	this.makeFriends = function(){
+
+	}
+
+	this.goGrimDark = function(){
+
+	}
+
+	this.goMurderMode = function(){
+
+	}
+
+	this.dolandQuests = function(){
+
+	}
+
+	this.die = function(){
+
+	}
+
+	//always returns false. do this AND something
+	this.powerUp = function(){
+
+	}
+
+	this.weakenDesites = function(){
+
+	}
+
+	//can die from this. actually does call fight but in void or rage class??? or leave as weird random thing.
+	this.fightDenizen = function(){
+
+	}
+
+	this.ectoBiologyStarted = function(){
+
+	}
+	//returns false if you can't be a god tier or already are one
+	//make sure to actually render the GetTiger
+	this.godTier = function(){
+
+	}
+
+
+
 	//rage players do things ON SCREEN.  void players do it in a hidden div.
 	//steal Jack’s scottie dogs You have stolen all of the Archagent’s licorice scottie dogs. ALL OF THEM.
-	this.content = function(){
+	this.contentOld = function(){
 		removeFromArray(this.player, this.session.availablePlayers);
 		var ret = "The " + this.player.htmlTitle() + " is doing...something. It's kind of hard to see.";
-		if(this.player != this.voidPlayer) ret+= " You are definitely blaming the " + this.voidPlayer.htmlTitle() + ", somehow. "
+		if(this.player != this.enablingPlayer) ret+= " You are definitely blaming the " + this.enablingPlayer.htmlTitle() + ", somehow. "
 		var rand = Math.seededRandom();
 
 		if(rand > .3){
