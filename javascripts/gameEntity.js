@@ -738,7 +738,7 @@ function GameEntity(session, name, crowned){
 			if(!ghost) return false;
 			if(player.power < this.getHP()){
 					console.log("ghost attack in: " + this.session.session_id)
-					ghost.causeOfDrain = player.htmlTitle();
+
 					this.currentHP += -1* ghost.power*5; //not just one attack from the ghost
 					div.append(" The " + player.htmlTitleBasic() + " cashes in their promise of aid. The ghost of the " + ghost.htmlTitleBasic() + " unleashes an unblockable ghostly attack channeled through the living player. " + ghost.power + " damage is done to " + this.htmlTitleHP() + ". The ghost will need to rest after this for awhile. " );
 					if(!this.checkForAPulse(this, player)){
@@ -746,6 +746,7 @@ function GameEntity(session, name, crowned){
 						div.append("The " + this.htmlTitleHP() + " is dead. ");
 					}
 					this.drawGhostAttack(div, player, ghost);
+					ghost.causeOfDrain = player.htmlTitle();
 					return true;
 			}
 			return false;
@@ -759,7 +760,8 @@ function GameEntity(session, name, crowned){
 			var canvas = document.getElementById(canvasId);
 			var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 			drawSprite(pSpriteBuffer,player)
-			//var gSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+			var gSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+			drawSprite(gSpriteBuffer,ghost)
 			//drawSpriteTurnways(gSpriteBuffer,ghost) //KR says looks bad.
 
 
@@ -767,7 +769,7 @@ function GameEntity(session, name, crowned){
 			drawWhatever(canvas, "drain_lightning.png");
 
 			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,200,0)
-			//copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,200,0)
+			copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,250,0)
 			var canvasBuffer = getBufferCanvas(document.getElementById("canvas_template"))
 			return canvas;
 		}
