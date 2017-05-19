@@ -149,22 +149,22 @@ function VoidyStuff(session){
 	}
 
 	//can die from this. not actually a real fight. short and brutal.
-	this.fightDenizen = function(div){
-
+	this.fightDenizen = function(div,specialDiv){
+			alert('fight denizen')
 	}
 
 	//actually render babies if class would be rage, whimsical overlay???
-	this.ectoBiologyStarted = function(div){
+	this.ectoBiologyStarted = function(div,specialDiv){
 		console.log("Void/Rage ecto babies: " + this.session.session_id);
 		var playersMade = this.player.performEctobiology(this.session);
 		div.append(" Wait. Are those BABIES!? What is even going on here?");
-		var divID = (div.attr("id")) + "_babies";
+		var divID = (specialDiv.attr("id")) + "_babies";
 		var ch = canvasHeight;
 		if(this.session.players.length > 6){
 			ch = canvasHeight*1.5;
 		}
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
-		div.append(canvasHTML);
+		specialDiv.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = document.getElementById("canvas"+ divID);
 		poseBabiesAsATeam(canvasDiv, this.player, playersMade, getGuardiansForPlayers(playersMade), 4000);
