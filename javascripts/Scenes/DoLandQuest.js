@@ -31,8 +31,8 @@ function DoLandQuest(session){
 							if(playerPlusHelper[1] != null){
 								if((p.landLevel < this.landLevelNeeded || p.aspect == "Space") || Math.seededRandom() > .5){
 									this.playersPlusHelpers.push(playerPlusHelper);
-									removeFromArray(p, this.session.availablePlayers);
-									removeFromArray(helper, this.session.availablePlayers); //don't let my helper do their own quests.
+									if(p.aspect != "Time") removeFromArray(p, this.session.availablePlayers);
+									if(p.aspect != "Time") removeFromArray(helper, this.session.availablePlayers); //don't let my helper do their own quests.
 								}
 
 							}

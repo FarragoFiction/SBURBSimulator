@@ -42,7 +42,15 @@ function GrimDarkQuests(session){
 				tasks.push("try to tamper with the Forge")
 			}
 			var quip = "";
-			this.session.sessionHealth += -1* player.power; //more powerful the player, the more damage they do. get rid of grimDark bonus
+			var amount =0;
+			if(player.grimDark < 2){
+				amount = -1* player.power/2; //not trying as hard
+			}else if(player.grimDark <3){
+				amount = -1* player.power;
+			}else if(player.grimDark <4){
+				 amount = -2* player.power; //more powerful the player, the more damage they do. get rid of grimDark bonus
+			}
+			this.session.sessionHealth += amount;
 			player.landLevel += -1; //if they manage to snap out of this, they are gonna still have a bad time. why did they think this was a good idea?
 			if(player.power < 250){
 				quip = " Luckily, they kind of suck at this game. "
