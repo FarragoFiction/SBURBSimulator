@@ -69,7 +69,7 @@
 
 		Q:  How the HELL does this pile of glitches even begin to work?
 		A: You're going to want to START looking at "scene_controller.js" . That has a method called: "createScenesForSession".
-				Each scene is in charge of knowing when it triggers, and what happens when it does trigger.
+				Each scene is in charge of knowing when it triggers, and what happens when it does trigger.  (this.trigger and this.content, respectively)
 				A really straight forward scene to look at is "KingPowerful.js".  It triggers if the king is stronger than the hardcoded "hard strength",
 				and displays a simple message about the game being hard.  The older a scene is in relation to the sim itself, the simpler the scene tends to be.
 				I had this vague idea that scenes were gonna be hella simple and there would be a bunch of them. As the simulation matured, scenes got more and more complex
@@ -114,6 +114,23 @@
 				Get the image data out of the canvas, and loop through it pixel by pixel (which is 4 bytes at a time).
 				For each pixel, check to see if it's bytes match the bytes I'm looking for (and that the alpha is maxed).
 				If it is, change the bytes to be the bytes I want them to be.  Write the modified image back to the context when you're done."
+
+		Q:  How are the PesterChum dialogue things handled?
+
+		A:  Scenes/Intro.js is a good example of how the dialogue works.  First, the scene itself knows whether or not there is dialogue in it. The scene will create an entire dialogue all as a single string, using a helper method called
+		"chatLine" which is kept in scene_controller.js.  Once all the lines are done, it calls "drawChat", in handle_sprites.js.
+
+		drawChat is reponsible for rendering the players, and rendering the text as lines (seperated by 'new lines' or \n characters) colored in the players' font color. It does this by checking for the players chatHandleInitials at the start of a line.
+
+		So, a raw chat might look like:
+
+		AB: Is this REALLY how you want to explain your dialogue system?\nJB:I guess so!!! Can you think of a better way?\nAB:Maybe it's finally time to update the dialogue engine.\nJR:Fuck. After 3.0.\n
+
+		But then the drawChat makes it all nice and multiline and colorful and shit.
+
+		Also: AB DOES have a point (as always), the dialogue engine is hella out of date and has been unchanged since 2.0 went live. I'll probably update it at some point.
+
+
 
 			*/
 	}
