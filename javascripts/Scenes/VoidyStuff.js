@@ -32,7 +32,30 @@ function VoidyStuff(session){
 	}
 
 	this.chooseShenanigans = function(div){
+		removeFromArray(this.player, this.session.availablePlayers);
+		var ret = "";
+		var class = "";
+		if(enablingPlayer.aspect == "Void"){
+			var light = findAspectPlayer(findLivingPlayers(curSessionGlobalVar.players), "Light");
+			class = "void";
+			if(light) class = "light";  //void players can't be hidden in the light.
+		}else if(){
+			class = "rage";
+		}
 
+		if(class == "void"){
+			ret += "The " + this.player.htmlTitle() + " is doing...something. It's kind of hard to see.";
+		}else if(class == "rage"){
+			ret += "The " + this.player.htmlTitle() + " is doing something... motherfucking miraculous. It's kind of hard to look away.";
+		}else if(class == "light"){
+				ret += "The " + this.player.htmlTitle() + " is doing...something. It's kind of hard to-wait. What? Fucking Light players. Keep it down! The void player is trying to sneak!";
+		}
+		if(this.player != this.enablingPlayer) ret+= " You are definitely blaming the " + this.enablingPlayer.htmlTitle() + ", somehow. ";
+
+		//make array of functions. call one at random. if it returns false. call another one randomly. continue until you have called 10 functions or one returns true.
+		//div you pass to fucntion is created here. div class is VOID, nothing or RAGE.
+
+		var newDiv = "<div class =''"+class+"''>  </div> "
 	}
 
 
