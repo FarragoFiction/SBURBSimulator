@@ -102,6 +102,23 @@ function rainbowSwap(canvas){
 	//ctx.putImageData(img_data_rainbow, 0, 0);
 }
 
+//how translucent are we talking, here?  number between 0 and 1
+function voidSwap(canvas,alphaPercent){
+  if(checkSimMode() == true){
+    return;
+  }
+  // console.log("replacing: " + oldc  + " with " + newc);
+  var ctx = canvas.getContext('2d');
+  var img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
+  //4 byte color array
+  for(var i = 0; i<img_data.data.length; i += 4){
+    if(img_data.data[i+3] > 50){
+      img_data.data[i+3] = Math.floor(img_data.data[i+3]*alphaPercent);  //keeps wings at relative transparency
+    }
+  }
+  ctx.putImageData(img_data, 0, 0);
+}
+
 //work once again gives me inspiration for this sim. thanks, bob!!!
 function drainedGhostSwap(canvas){
 	if(checkSimMode() == true){
@@ -1329,6 +1346,10 @@ function drawSpriteFromScratch(canvas, player,ctx,baby){
     }else{
       ghostSwap(canvas);
     }
+  }
+
+  if(!baby && player.aspect == "Void"){
+    voidSwap(canvas, 1-player.power/2000) //a void player at 2000 power is fully invisible.
   }
 
 
