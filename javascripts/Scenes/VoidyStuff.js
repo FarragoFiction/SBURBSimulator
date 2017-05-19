@@ -157,7 +157,7 @@ function VoidyStuff(session){
 		this.player.denizenFaced = true;
 		var denizen = this.session.getDenizenForPlayer(this.player);
 		div.append(" Why is the denizen " + denizen.name + " bellowing so loudly on " + this.player.shortLand() + "? ");
-		var ret =  "The " + this.player.htmlTitle() + "is fighting " +denizen.name + ".  It is bloody, brutal and short. ";
+		var ret =  "The " + this.player.htmlTitle() + " is fighting " +denizen.name + ".  It is bloody, brutal and short. ";
 
 		if(Math.seededRandom() >.5){
 			this.player.power = this.player.power*2;  //current and future doubling of power.
@@ -165,7 +165,7 @@ function VoidyStuff(session){
 			this.player.denizenDefeated = true;
 			this.player.grist += denizen.grist;
 			ret += denizen.name + " lies dead on the ground. "
-			specialDiv.append()
+			specialDiv.append(ret)
 		}else{ //no CHOICE.  either you are berserking, or the denizen doesn't notice you in time to give you one.
 				this.player.denizenFaced = true;
 				this.player.denizenDefeated = false;
@@ -173,8 +173,8 @@ function VoidyStuff(session){
 				this.player.dead = true;
 				if(this.enablingPlayer.aspect == "Void") this.player.makeDead("fighting their Denizen way too early, cloaked in Void");
 				if(this.enablingPlayer.aspect == "Rage") this.player.makeDead("fighting their Denizen way too early, lost in Madness");
-				ret += this.player.htmltTitleBasic() + " lies dead on the ground. "
-				specialDiv.append()
+				ret += " The " +this.player.htmlTitleBasic() + " lies dead on the ground. "
+				specialDiv.append(ret)
 
 				var divID = (specialDiv.attr("id")) + "denizenDeath";
 				var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
@@ -190,7 +190,7 @@ function VoidyStuff(session){
 
 	//actually render babies if class would be rage, whimsical overlay???
 	this.ectoBiologyStarted = function(div,specialDiv){
-		console.log("Void/Rage ecto babies: " + this.session.session_id);
+		//console.log("Void/Rage ecto babies: " + this.session.session_id);
 		var playersMade = this.player.performEctobiology(this.session);
 		div.append(" Wait. Are those BABIES!? What is even going on here?");
 		var divID = (specialDiv.attr("id")) + "_babies";
