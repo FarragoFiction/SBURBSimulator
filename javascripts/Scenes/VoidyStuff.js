@@ -42,10 +42,11 @@ function VoidyStuff(session){
 			classDiv = "void";
 
 			if(light){
-				var relationship = this.enablingPlayer.getRelationshipWith(light);
-				if(Math.abs(relationship.value) >10){  //we spend a lot of time together, whether we love or hate each other.
+				if(light.power>100 ){  //we spend a lot of time together, whether we love or hate each other.
 					console.log("light class void stuff in " + this.session.session_id);
 					classDiv = "light";  //void players can't be hidden in the light.
+				}else{
+					console.log("void class void stuff in " + this.session.session_id);
 				}
 			}
 		}else if(this.enablingPlayer.aspect == "Rage"){
@@ -57,9 +58,9 @@ function VoidyStuff(session){
 		}else if(classDiv == "rage"){
 			ret += "The " + this.player.htmlTitle() + " is doing something... motherfucking miraculous. It's kind of hard to look away.";
 		}else if(classDiv == "light"){
-				ret += "The " + this.player.htmlTitle() + " is doing...something. It's kind of hard to-wait. What? Fucking Light players. Keep it down! The Void player is trying to be sneaky and off screen!";
+				ret += "The " + this.player.htmlTitle() + " is doing...something. It's kind of hard to-wait. What? Fucking Light players. Keep it down! The " + this.player.htmlTitleBasic() + " is trying to be sneaky and off screen!";
 		}
-		if(this.player != this.enablingPlayer) ret+= " You are definitely blaming the " + this.enablingPlayer.htmlTitle() + ", somehow. ";
+		if(classDiv != 'light' && this.player != this.enablingPlayer) ret+= " You are definitely blaming the " + this.enablingPlayer.htmlTitle() + ", somehow. ";
 		div.append(ret);
 		//make array of functions. call one at random.
 		//div you pass to fucntion is created here. div class is VOID, nothing or RAGE.
@@ -91,8 +92,10 @@ function VoidyStuff(session){
 	this.endingPhrase = function(classDiv, newDiv){
 		if(classDiv == "rage"){
 			this.rageEndingPhrase(newDiv);
-		}else if(classDiv == 'void'){
-				this.voidEndingPhrase(newDiv);
+		}else if(classDiv == "void"){
+			this.voidEndingPhrase(newDiv);
+		}else if(classDiv == "light"){
+			this.voidEndingPhrase(newDiv);
 		}
 	}
 
@@ -134,7 +137,7 @@ function VoidyStuff(session){
 	this.dolandQuests = function(div,specialDiv){
 		this.player.landLevel ++;
 		div.append(" Their consorts seem pretty happy, though. ") ;
-		specialDiv.append( "The " + this.player.htmlTitle() + " does " + getRandomQuestFromAspect(this.player.aspect) + ". ");
+		specialDiv.append( "The " + this.player.htmlTitle() + " is " + getRandomQuestFromAspect(this.player.aspect) + ". ");
 	}
 
 	this.weakenDesites = function(div,specialDiv){
