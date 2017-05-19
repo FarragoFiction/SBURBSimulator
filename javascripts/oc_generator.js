@@ -38,7 +38,7 @@ function renderDownloadURLs(){
 function drawSpriteAll(){
 	for(var i = 0; i<players.length; i++){
 	  makeBG(document.getElementById("canvas"+(i+1)));
-      drawSprite(document.getElementById("canvas"+(i+1)), players[i],1000);
+      drawSpriteFromScratch(document.getElementById("canvas"+(i+1)), players[i],1000);
 	  writeToCanvas(document.getElementById("canvas"+(i+1)), players[i]);
 	  //makeWriteDataURL("canvas"+(i+1) )//for writing data.  too early to do it here, might not see full render
 	}
