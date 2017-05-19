@@ -34,27 +34,27 @@ function VoidyStuff(session){
 	this.chooseShenanigans = function(div){
 		removeFromArray(this.player, this.session.availablePlayers);
 		var ret = "";
-		var class = "";
+		var classDiv = "";
 		if(enablingPlayer.aspect == "Void"){
 			var light = findAspectPlayer(findLivingPlayers(curSessionGlobalVar.players), "Light");
-			class = "void";
+			classDiv = "void";
 
 			if(light){
 				var relationship = enablingPlayer.getRelationshipWith(light);
 				if(Math.abs(relationship.value) >10){  //we spend a lot of time together, whether we love or hate each other.
 					console.log("light class void stuff in " + this.session.session_id);
-					class = "light";  //void players can't be hidden in the light.
+					classDiv = "light";  //void players can't be hidden in the light.
 				}
 			}
 		}else if(){
-			class = "rage";
+			classDiv = "rage";
 		}
 
-		if(class == "void"){
+		if(classDiv == "void"){
 			ret += "The " + this.player.htmlTitle() + " is doing...something. It's kind of hard to see.";
-		}else if(class == "rage"){
+		}else if(classDiv == "rage"){
 			ret += "The " + this.player.htmlTitle() + " is doing something... motherfucking miraculous. It's kind of hard to look away.";
-		}else if(class == "light"){
+		}else if(classDiv == "light"){
 				ret += "The " + this.player.htmlTitle() + " is doing...something. It's kind of hard to-wait. What? Fucking Light players. Keep it down! The Void player is trying to be sneaky and off screen!";
 		}
 		if(this.player != this.enablingPlayer) ret+= " You are definitely blaming the " + this.enablingPlayer.htmlTitle() + ", somehow. ";
@@ -62,7 +62,7 @@ function VoidyStuff(session){
 		//make array of functions. call one at random.
 		//div you pass to fucntion is created here. div class is VOID, nothing or RAGE.
 
-		var normalDivHTML = "<div class =''"+class+"' id = '" +div.attr("id")+ "voidyStuffNormal'>  </div> "
+		var normalDivHTML = "<div class =''"+classDiv+"' id = '" +div.attr("id")+ "voidyStuffNormal'>  </div> "
 		div.append(normalDivHTML);
 		var normalDiv = $("#"++div.attr("id")+ "voidyStuffNormal")
 
