@@ -27,56 +27,63 @@ function VoidyStuff(session){
 
 	this.renderContent = function(div){
 		this.player.increasePower();
-		div.append("<br>"+this.content());
+		//div.append("<br>"+this.content());
+		this.chooseShenanigans(div);
+	}
+
+	this.chooseShenanigans = function(div){
+
 	}
 
 
 	//these methods are called shuffled randomly in an array,
 	//then called in order till one of them returns true.
-	this.makeEnemies = function(){
+	this.makeEnemies = function(div){
 
 	}
 
-	this.makeFriends = function(){
+	this.makeFriends = function(div){
 
 	}
 
-	this.goGrimDark = function(){
+	this.goGrimDark = function(div){
 
 	}
 
-	this.goMurderMode = function(){
+	this.goMurderMode = function(div){
 
 	}
 
-	this.dolandQuests = function(){
+	this.dolandQuests = function(div){
 
 	}
 
-	this.die = function(){
+	this.die = function(div){
 
 	}
 
 	//always returns false. do this AND something
-	this.powerUp = function(){
+	this.powerUp = function(div){
+		this.player.increasePower();
+		return false;
+	}
+
+	this.weakenDesites = function(div){
 
 	}
 
-	this.weakenDesites = function(){
+	//can die from this. not actually a real fight. short and brutal.
+	this.fightDenizen = function(div){
 
 	}
 
-	//can die from this. actually does call fight but in void or rage class??? or leave as weird random thing.
-	this.fightDenizen = function(){
-
-	}
-
-	this.ectoBiologyStarted = function(){
+	//actually render babies
+	this.ectoBiologyStarted = function(div){
 
 	}
 	//returns false if you can't be a god tier or already are one
 	//make sure to actually render the GetTiger
-	this.godTier = function(){
+	this.godTier = function(div){
 
 	}
 
