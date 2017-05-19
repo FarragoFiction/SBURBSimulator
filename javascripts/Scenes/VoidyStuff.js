@@ -67,7 +67,7 @@ function VoidyStuff(session){
 		div.append(normalDivHTML);
 		var normalDiv = $("#"+div.attr("id")+ "voidyStuffNormal")
 
-		var newDivHTML = "<div class =''"+classDiv+"' id = '" +div.attr("id")+ "voidyStuffSpecial'>  </div> "
+		var newDivHTML = "<div class ='"+classDiv+"' id = '" +div.attr("id")+ "voidyStuffSpecial'>  </div> "
 		div.append(newDivHTML);
 		var normalDiv = $("#"+div.attr("id")+ "voidyStuffNormal")
 		var newDiv = $("#"+div.attr("id")+ "voidyStuffSpecial")
