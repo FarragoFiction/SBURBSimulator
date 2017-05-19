@@ -27,6 +27,7 @@ function VoidyStuff(session){
 
 	this.renderContent = function(div){
 		this.player.increasePower();
+		this.player.corruptionLevelOther += getRandomInt(1,10); //void isn't a safe place to be.
 		//div.append("<br>"+this.content());
 		div.append("<br>")
 		this.chooseShenanigans(div);
@@ -77,7 +78,7 @@ function VoidyStuff(session){
 		}else if(this.player.leader && !this.session.ectoBiologyStarted && Math.seededRandom() > .8){
 				this.ectoBiologyStarted(normalDiv, newDiv)
 		}else{ //pick from random array.
-				var options = [this.makeEnemies.bind(this,normalDiv,newDiv), this.makeFriends.bind(this,normalDiv, newDiv),this.goGrimDark.bind(this,normalDiv,newDiv),this.goMurderMode.bind(this,normalDiv,newDiv),this.dolandQuests.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.fightDenizen.bind(this,normalDiv,newDiv)];
+				var options = [this.makeEnemies.bind(this,normalDiv,newDiv), this.makeFriends.bind(this,normalDiv, newDiv),this.goMurderMode.bind(this,normalDiv,newDiv),this.dolandQuests.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.fightDenizen.bind(this,normalDiv,newDiv)];
 				getRandomElementFromArray(options)();
 		}
 	}
@@ -86,19 +87,23 @@ function VoidyStuff(session){
 	//these methods are called shuffled randomly in an array,
 	//then called in order till one of them returns true.
 	this.makeEnemies = function(div, specialDiv){
-
+		this.player.damageAllRelationships();
+		div.append(" Everybody seems to be pretty pissed at them, though. ");
+		//brainstorm what they are doing here. rand array.
 	}
 
 	this.makeFriends = function(div){
-
+		this.player.boostAllRelationships();
+		div.append(" Everybody seems to be pretty happy with them, though. ");
+		//brainstorm what they are doing here, rand array.
 	}
 
-	this.goGrimDark = function(div){
-
-	}
 
 	this.goMurderMode = function(div){
-
+		this.player.triggerLevel += 3;
+		this.player.murderMode = true;
+		div.append(" You get a bad feeling about this. ");
+		specialDiv.append("The " + this.player.htmlTitle() + " has taken an acrobatic fucking pirouette off the handle and into a giant pile of crazy.  You almost wish you hadn't seen this. This is completely terrifying.");
 	}
 
 	this.dolandQuests = function(div){
