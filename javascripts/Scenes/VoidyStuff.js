@@ -64,11 +64,11 @@ function VoidyStuff(session){
 		//make array of functions. call one at random.
 		//div you pass to fucntion is created here. div class is VOID, nothing or RAGE.
 
-		var normalDivHTML = "<div id = '" +div.attr("id")+ "voidyStuffNormal'>  </div> "
+		var normalDivHTML = "<span id = '" +div.attr("id")+ "voidyStuffNormal'>  </span> "
 		div.append(normalDivHTML);
 		var normalDiv = $("#"+div.attr("id")+ "voidyStuffNormal")
 
-		var newDivHTML = "<div class ='"+classDiv+"' id = '" +div.attr("id")+ "voidyStuffSpecial'>  </div> "
+		var newDivHTML = "<span class ='"+classDiv+"' id = '" +div.attr("id")+ "voidyStuffSpecial'>  </span> "
 		div.append(newDivHTML);
 		var normalDiv = $("#"+div.attr("id")+ "voidyStuffNormal")
 		var newDiv = $("#"+div.attr("id")+ "voidyStuffSpecial")
@@ -92,31 +92,32 @@ function VoidyStuff(session){
 		//brainstorm what they are doing here. rand array.
 	}
 
-	this.makeFriends = function(div){
+	this.makeFriends = function(div,specialDiv){
 		this.player.boostAllRelationships();
 		div.append(" Everybody seems to be pretty happy with them, though. ");
 		//brainstorm what they are doing here, rand array.
 	}
 
 
-	this.goMurderMode = function(div){
+	this.goMurderMode = function(div,specialDiv){
 		this.player.triggerLevel += 3;
 		this.player.murderMode = true;
 		div.append(" You get a bad feeling about this. ");
 		specialDiv.append("The " + this.player.htmlTitle() + " has taken an acrobatic fucking pirouette off the handle and into a giant pile of crazy.  You almost wish you hadn't seen this. This is completely terrifying.");
 	}
 
-	this.dolandQuests = function(div){
+	this.dolandQuests = function(div,specialDiv){
 		this.player.landLevel ++;
 		div.append(" Their consorts seem pretty happy, though. ") ;
 		//should i just have land quests print out here, or something special? want it to be random bullshit.
 	}
 
-	this.weakenDesites = function(div){
+	this.weakenDesites = function(div,specialDiv){
 		this.session.queen.power += -5;
 		this.session.jack.power += -5;
 		this.session.king.power += -5;
 		div.append( " The Dersites sure seem to be mad at them, though. ");
+		specialDiv.append( "The " + this.player.htmlTitle() + " " + getRandomElementFromArray(lightQueenQuests))
 	}
 
 	//can die from this. not actually a real fight. short and brutal.
