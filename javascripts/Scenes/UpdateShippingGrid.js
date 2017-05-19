@@ -78,6 +78,19 @@ Yeah.  AB <> JR
 
 Who would have thought?  She keeps the world safe from me.
 
+So, my Quadrants look like:
+
+JR <3 Programming
+
+JR <3< programming (we vacillate. I was definitely black for it just now)
+
+JR <> AB
+
+JR c3< KR c3<  Good Design  (KR annoy-idly stops me from hurting Good Design with my shitty, shitty taste).
+
+
+So all I gotta do is find something about SBURBSim I HATE, so that it can vaccilate to flushed whenever I'm mad at programming.
+THEN I will have the perfect shitty quadrant life.
 */
 
 
