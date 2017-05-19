@@ -1,4 +1,5 @@
 var asyncNumSprites = 0;
+var cool_kid = false;
 //~~~~~~~~~~~IMPORTANT~~~~~~~~~~LET NOTHING HERE BE RANDOM
 //OR PREDICTIONS AND TIME LOOPS AND AI SEARCHES WILL BE WRONG
 
