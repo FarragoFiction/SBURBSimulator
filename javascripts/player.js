@@ -873,6 +873,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		session.ectoBiologyStarted = true;
 		playersMade = findPlayersWithoutEctobiologicalSource(session.players);
 		setEctobiologicalSource(playersMade, session.session_id)
+		return playersMade;
 	}
 
 	this.isActive = function(){

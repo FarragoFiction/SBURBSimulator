@@ -135,7 +135,6 @@ function VoidyStuff(session){
 		this.player.landLevel ++;
 		div.append(" Their consorts seem pretty happy, though. ") ;
 		specialDiv.append( "The " + this.player.htmlTitle() + " does " + getRandomQuestFromAspect(this.player.aspect) + ". ");
-		//should i just have land quests print out here, or something special? want it to be random bullshit.
 	}
 
 	this.weakenDesites = function(div,specialDiv){
@@ -153,6 +152,19 @@ function VoidyStuff(session){
 
 	//actually render babies if class would be rage, whimsical overlay???
 	this.ectoBiologyStarted = function(div){
+		console.log("Void/Rage ecto babies: " + this.session.session_id);
+		var playersMade = this.player.performEctobiology(this.session);
+		div.append(" Wait. Are those BABIES!? What is even going on here?");
+		var divID = (div.attr("id")) + "_babies";
+		var ch = canvasHeight;
+		if(this.session.players.length > 6){
+			ch = canvasHeight*1.5;
+		}
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
+		div.append(canvasHTML);
+		//different format for canvas code
+		var canvasDiv = document.getElementById("canvas"+ divID);
+		poseBabiesAsATeam(canvasDiv, this.player, playersMade, getGuardiansForPlayers(this.playersMade), 4000);
 
 	}
 	//returns false if you can't be a god tier or already are one
