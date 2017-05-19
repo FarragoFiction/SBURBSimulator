@@ -28,6 +28,7 @@ function VoidyStuff(session){
 	this.renderContent = function(div){
 		this.player.increasePower();
 		//div.append("<br>"+this.content());
+		div.append("<br>")
 		this.chooseShenanigans(div);
 	}
 
@@ -58,7 +59,7 @@ function VoidyStuff(session){
 				ret += "The " + this.player.htmlTitle() + " is doing...something. It's kind of hard to-wait. What? Fucking Light players. Keep it down! The Void player is trying to be sneaky and off screen!";
 		}
 		if(this.player != this.enablingPlayer) ret+= " You are definitely blaming the " + this.enablingPlayer.htmlTitle() + ", somehow. ";
-
+		div.append(ret);
 		//make array of functions. call one at random.
 		//div you pass to fucntion is created here. div class is VOID, nothing or RAGE.
 
