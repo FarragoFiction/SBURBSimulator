@@ -48,7 +48,7 @@ function VoidyStuff(session){
 		}else if(class == "rage"){
 			ret += "The " + this.player.htmlTitle() + " is doing something... motherfucking miraculous. It's kind of hard to look away.";
 		}else if(class == "light"){
-				ret += "The " + this.player.htmlTitle() + " is doing...something. It's kind of hard to-wait. What? Fucking Light players. Keep it down! The void player is trying to sneak!";
+				ret += "The " + this.player.htmlTitle() + " is doing...something. It's kind of hard to-wait. What? Fucking Light players. Keep it down! The Void player is trying to be sneaky and off screen!";
 		}
 		if(this.player != this.enablingPlayer) ret+= " You are definitely blaming the " + this.enablingPlayer.htmlTitle() + ", somehow. ";
 
