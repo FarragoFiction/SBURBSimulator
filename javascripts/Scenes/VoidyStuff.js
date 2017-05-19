@@ -38,7 +38,14 @@ function VoidyStuff(session){
 		if(enablingPlayer.aspect == "Void"){
 			var light = findAspectPlayer(findLivingPlayers(curSessionGlobalVar.players), "Light");
 			class = "void";
-			if(light) class = "light";  //void players can't be hidden in the light.
+
+			if(light){
+				var relationship = enablingPlayer.getRelationshipWith(light);
+				if(Math.abs(relationship.value) >10){  //we spend a lot of time together, whether we love or hate each other.
+					console.log("light class void stuff in " + this.session.session_id);
+					class = "light";  //void players can't be hidden in the light.
+				}
+			}
 		}else if(){
 			class = "rage";
 		}
@@ -52,16 +59,32 @@ function VoidyStuff(session){
 		}
 		if(this.player != this.enablingPlayer) ret+= " You are definitely blaming the " + this.enablingPlayer.htmlTitle() + ", somehow. ";
 
-		//make array of functions. call one at random. if it returns false. call another one randomly. continue until you have called 10 functions or one returns true.
+		//make array of functions. call one at random.
 		//div you pass to fucntion is created here. div class is VOID, nothing or RAGE.
 
-		var newDiv = "<div class =''"+class+"''>  </div> "
+		var normalDivHTML = "<div class =''"+class+"' id = '" +div.attr("id")+ "voidyStuffNormal'>  </div> "
+		div.append(normalDivHTML);
+		var normalDiv = $("#"++div.attr("id")+ "voidyStuffNormal")
+
+		var newDivHTML = "<div class =''"+class+"' id = '" +div.attr("id")+ "voidyStuffSpecial'>  </div> "
+		div.append(newDivHTML);
+		var normalDiv = $("#"++div.attr("id")+ "voidyStuffNormal")
+		var newDiv = $("#"++div.attr("id")+ "voidyStuffSpecial")
+		if(this.player.godDestiny && !this.player.godTier && Math.seededRandom()>0.8 && this.player.land != null){
+			this.makeGodTier(normalDiv, newDiv);
+			return;
+		}else if(this.player.leader && !this.session.ectoBiologyStarted && Math.seededRandom() > .8){
+				this.ectoBiologyStarted(normalDiv, newDiv)
+		}else{ //pick from random array.
+				var options = [this.makeEnemies.bind(this,normalDiv,newDiv), this.makeFriends.bind(this,normalDiv, newDiv),this.goGrimDark.bind(this,normalDiv,newDiv),this.goMurderMode.bind(this,normalDiv,newDiv),this.dolandQuests.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.fightDenizen.bind(this,normalDiv,newDiv)];
+				getRandomElementFromArray(statIncreases)();
+		}
 	}
 
 
 	//these methods are called shuffled randomly in an array,
 	//then called in order till one of them returns true.
-	this.makeEnemies = function(div){
+	this.makeEnemies = function(div, specialDiv){
 
 	}
 
@@ -81,15 +104,11 @@ function VoidyStuff(session){
 
 	}
 
+	//nah, don't do this naymore, only die from denizen fights
 	this.die = function(div){
 
 	}
 
-	//always returns false. do this AND something
-	this.powerUp = function(div){
-		this.player.increasePower();
-		return false;
-	}
 
 	this.weakenDesites = function(div){
 
