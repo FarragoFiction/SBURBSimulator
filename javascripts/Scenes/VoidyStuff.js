@@ -107,17 +107,16 @@ function VoidyStuff(session){
 	}
 
 	this.dolandQuests = function(div){
-
+		this.player.landLevel ++;
+		div.append(" Their consorts seem pretty happy, though. ") ;
+		//should i just have land quests print out here, or something special? want it to be random bullshit.
 	}
-
-	//nah, don't do this naymore, only die from denizen fights
-	this.die = function(div){
-
-	}
-
 
 	this.weakenDesites = function(div){
-
+		this.session.queen.power += -5;
+		this.session.jack.power += -5;
+		this.session.king.power += -5;
+		div.append( " The Dersites sure seem to be mad at them, though. ");
 	}
 
 	//can die from this. not actually a real fight. short and brutal.
