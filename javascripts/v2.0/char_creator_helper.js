@@ -33,7 +33,11 @@ function CharacterCreatorHelper(players){
 		player.renderSelf();
 
 		var canvas = document.getElementById("canvas"+ divId);
-		drawSinglePlayer(canvas, player);
+		//drawSinglePlayer(canvas, player);
+		var p1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawSpriteFromScratch(p1SpriteBuffer,player)
+		//drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff")
+		copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,0,0)
 		this.wireUpPlayerDropDowns(player);
 
 	}
