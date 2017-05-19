@@ -35,18 +35,18 @@ function VoidyStuff(session){
 		removeFromArray(this.player, this.session.availablePlayers);
 		var ret = "";
 		var classDiv = "";
-		if(enablingPlayer.aspect == "Void"){
+		if(this.enablingPlayer.aspect == "Void"){
 			var light = findAspectPlayer(findLivingPlayers(curSessionGlobalVar.players), "Light");
 			classDiv = "void";
 
 			if(light){
-				var relationship = enablingPlayer.getRelationshipWith(light);
+				var relationship = this.enablingPlayer.getRelationshipWith(light);
 				if(Math.abs(relationship.value) >10){  //we spend a lot of time together, whether we love or hate each other.
 					console.log("light class void stuff in " + this.session.session_id);
 					classDiv = "light";  //void players can't be hidden in the light.
 				}
 			}
-		}else if(){
+		}else if(this.enablingPlayer.aspect == "Rage"){
 			classDiv = "rage";
 		}
 
@@ -62,22 +62,22 @@ function VoidyStuff(session){
 		//make array of functions. call one at random.
 		//div you pass to fucntion is created here. div class is VOID, nothing or RAGE.
 
-		var normalDivHTML = "<div class =''"+classDiv+"' id = '" +div.attr("id")+ "voidyStuffNormal'>  </div> "
+		var normalDivHTML = "<div id = '" +div.attr("id")+ "voidyStuffNormal'>  </div> "
 		div.append(normalDivHTML);
-		var normalDiv = $("#"++div.attr("id")+ "voidyStuffNormal")
+		var normalDiv = $("#"+div.attr("id")+ "voidyStuffNormal")
 
-		var newDivHTML = "<div class =''"+class+"' id = '" +div.attr("id")+ "voidyStuffSpecial'>  </div> "
+		var newDivHTML = "<div class =''"+classDiv+"' id = '" +div.attr("id")+ "voidyStuffSpecial'>  </div> "
 		div.append(newDivHTML);
-		var normalDiv = $("#"++div.attr("id")+ "voidyStuffNormal")
-		var newDiv = $("#"++div.attr("id")+ "voidyStuffSpecial")
+		var normalDiv = $("#"+div.attr("id")+ "voidyStuffNormal")
+		var newDiv = $("#"+div.attr("id")+ "voidyStuffSpecial")
 		if(this.player.godDestiny && !this.player.godTier && Math.seededRandom()>0.8 && this.player.land != null){
-			this.makeGodTier(normalDiv, newDiv);
+			this.godTier(normalDiv, newDiv);
 			return;
 		}else if(this.player.leader && !this.session.ectoBiologyStarted && Math.seededRandom() > .8){
 				this.ectoBiologyStarted(normalDiv, newDiv)
 		}else{ //pick from random array.
 				var options = [this.makeEnemies.bind(this,normalDiv,newDiv), this.makeFriends.bind(this,normalDiv, newDiv),this.goGrimDark.bind(this,normalDiv,newDiv),this.goMurderMode.bind(this,normalDiv,newDiv),this.dolandQuests.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.fightDenizen.bind(this,normalDiv,newDiv)];
-				getRandomElementFromArray(statIncreases)();
+				getRandomElementFromArray(options)();
 		}
 	}
 
