@@ -77,12 +77,13 @@ function VoidyStuff(session){
 
 	}
 
-	//actually render babies
+	//actually render babies if class would be rage, whimsical overlay???
 	this.ectoBiologyStarted = function(div){
 
 	}
 	//returns false if you can't be a god tier or already are one
 	//make sure to actually render the GetTiger
+	//if class would be rage, whimsical overlay?
 	this.godTier = function(div){
 
 	}
