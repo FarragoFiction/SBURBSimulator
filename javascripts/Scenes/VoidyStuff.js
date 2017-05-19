@@ -127,7 +127,22 @@ function VoidyStuff(session){
 	//returns false if you can't be a god tier or already are one
 	//make sure to actually render the GetTiger
 	//if class would be rage, whimsical overlay?
-	this.godTier = function(div){
+	this.godTier = function(div, specialDiv){
+		if(this.enablingPlayer.aspect == "Void"){
+			this.player.makeDead("hidden in void on their way to godhood")
+		} else{
+			this.player.makeDead("with ridiculous bullshit clown shenanigans")
+		}
+		this.player.makeGodTier();
+		this.session.godTier = true;
+
+		div.append(" What was that light on " + this.player.shortLand() + "? ");
+		specialDiv.append("Holy shit. Did the " + this.player.htmlTitleBasic() + " just randomly go GodTier? What the fuck is going on? How did they even die? This is some flagrant bullshit. " );
+		var divID = (specialDiv.attr("id")) + "godBS"
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		specialDiv.append(canvasHTML);
+		var canvas = document.getElementById("canvas"+ divID);
+		drawGetTiger(canvas, [this.player],repeatTime) //only draw revivial if it actually happened.
 
 	}
 
