@@ -74,13 +74,38 @@ function VoidyStuff(session){
 		var newDiv = $("#"+div.attr("id")+ "voidyStuffSpecial")
 		if(this.player.godDestiny && !this.player.godTier && Math.seededRandom()>0.8 && this.player.land != null){
 			this.godTier(normalDiv, newDiv);
+			this.endingPhrase(classDiv, newDiv);
 			return;
 		}else if(this.player.leader && !this.session.ectoBiologyStarted && Math.seededRandom() > .8){
 				this.ectoBiologyStarted(normalDiv, newDiv)
+				this.endingPhrase(classDiv, newDiv);
+				return;
 		}else{ //pick from random array.
 				var options = [this.makeEnemies.bind(this,normalDiv,newDiv), this.makeFriends.bind(this,normalDiv, newDiv),this.goMurderMode.bind(this,normalDiv,newDiv),this.dolandQuests.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.fightDenizen.bind(this,normalDiv,newDiv)];
 				getRandomElementFromArray(options)();
 		}
+
+		this.endingPhrase(classDiv, newDiv);
+	}
+
+	this.endingPhrase = function(classDiv, newDiv){
+		if(classDiv == "rage"){
+			this.rageEndingPhrase(newDiv);
+		}else if(classDiv == 'void'){
+				this.voidEndingPhrase(newDiv);
+		}
+	}
+
+	this.voidEndingPhrase = function(newDiv){
+		var ret = " The " + this.player.htmlTitle();
+		var phrases = ["is sneaking around like a cartoon burglar.", "is holding up a sign saying 'You don't see me!'. ", "is hiding very obviously behind that lamppost.", "is badly disguised as a consort.", "is badly disguised as a carapacian.","is sneaking around underneath the only cardboard box in all of Paradox Space."];
+		newDiv.append( ret + " " + getRandomElementFromArray(phrases));
+	}
+
+	this.rageEndingPhrase = function(newDiv){
+		var ret = " The " + this.player.htmlTitle();
+		var phrases = ["is probably actually under the influence of psychoactive drugs.","might actually be sleep walking.", "is all up and laughing the whole time.","can't seem to stop laughing.", "has a look of utmost concentration.", "doesn't even seem to know what's going on themselves.", "is badly cosplaying as a consort.", "somehow got a hold of 413 helium balloon and has them tied to their neck.", "is wearing a sombrero. How HIGH do you even have to BE?"];
+		newDiv.append( ret + " " + getRandomElementFromArray(phrases));
 	}
 
 
