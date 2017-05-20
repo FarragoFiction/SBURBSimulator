@@ -22,6 +22,7 @@ function CharacterCreatorHelper(players){
 		str+= (this.drawOneAspectDropDown(player));
 		str += "<br>Hair Type:" + this.drawOneHairDropDown(player);
 		str += "Hair Color:" + this.drawOneHairColorDropDown(player);
+		str += "Species: " + this.drawOneSpeciesDropDown(player);
 		str += "</div>"
 
 		str += (canvasHTML);
@@ -112,6 +113,21 @@ function CharacterCreatorHelper(players){
 		}
 		html += '</select>'
 		return html;
+	}
+
+	this.drawOneSpeciesDropDown = function(player){
+		var species = ["Human", "Troll"]
+		var html = "<select id = 'speciesID" + player.chatHandle + "' name='species" +player.chatHandle +"'>";
+		for(var i = 0; i< species.length; i++){
+			if((species[i] == "Troll" && player.isTroll) || (species[i] == "Human" && !player.isTroll)){
+				html += '<option  selected = "species" value="' + species[i] +'">' + species[i]+'</option>'
+			}else{
+				html += '<option value="' + species[i] +'">' + species[i]+'</option>'
+			}
+		}
+		html += '</select>'
+		return html;
+
 	}
 
 	this.drawOneHairColorDropDown = function(player){
