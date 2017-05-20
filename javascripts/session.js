@@ -389,12 +389,11 @@ function Session(session_id){
 		this.king = new GameEntity(this, "Black King", this.kingsScepter);
 		//minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs
 		this.king.setStats(25,75,1000,0,0,25,1000,false, false, [],1000);
-		//TODO  jack, denizens, denizen minions
 		this.queen = new GameEntity(this, "Black Queen",this.queensRing);
 		this.queen.setStats(25,75,500,60,0,100,50,false, false, [],1000); //red miles, put on ring
 
 		this.jack = new GameEntity(this, "Jack",null);
-		this.jack.setStats(0,25,50,60,50,1000,30,true, true, [],100000); //jack is kind of a big deal. luck determines his odds of finding bullshit weapon
+		this.jack.setStats(0,15,50,60,50,1000,30,true, true, [],100000); //jack is kind of a big deal. luck determines his odds of finding bullshit weapon
 
 		this.democraticArmy = new GameEntity(this, "Democratic Army",null); //doesn't actually exist till WV does his thing.
 		this.democraticArmy.setStats(0,0,0,0,0,0,0,false, false, [],1000);
