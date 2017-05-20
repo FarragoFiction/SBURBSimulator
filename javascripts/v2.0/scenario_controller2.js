@@ -78,6 +78,11 @@ function startSession(){
 		tricksterMode();
 	}
 
+	if(getParameterByName("seerOfVoid")  == "true"){
+		alert("Be careful seeing into void...it also sees into you or some shit.")
+		$("#story").append("<button onclick='toggleVoid()'>Peer into Void, Y/N?</a><div class='void'>Well, NOW you've certainly gone and done it. You can expect to see any Void Player shenanignans now. If there are any.");
+	}
+
 	if(getParameterByName("robot")  == "true"){
 		roboMode();
 	}
@@ -97,6 +102,9 @@ function startSession(){
 	load(curSessionGlobalVar.players, curSessionGlobalVar.guardians); //in loading.js
 }
 
+function toggleVoid(){
+	$(".void").toggle();
+}
 
 
 //http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript

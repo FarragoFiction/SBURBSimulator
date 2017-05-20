@@ -1,10 +1,12 @@
 <img id = "avatar" src = "images/author.png" style="float:left;">
+<div id = "story">
 
 <h1> Definitely well-hidden Easter Eggs. (Mini-Update for 4/13/17)</h1>
 <p> Easter eggs can be combined as such: 'index2.html?seed=SEEDID&lollipop=true&sbajifier=true'.  Start with a question mark after index2.html, and then for each new easter egg have an ampersand.  Here there be dragons. These are easter eggs, not main features. Shit can get weird.  I want to stress that each of these easter eggs are 100% modifiers to the real sessions. You can look at a session where everybody died and add a lollipop to it to see if it makes things better. One big exception is the seed easter eggs, like 612 or 413. These easter eggs straight up override the native players (and create some wholesale if there aren't enough players). So there's nothing to compare it to.</p>
 
 <p> Oh! And I'm trying to gauge the difficulty of getting here. <b>If you contact me (see FAQ) with the subject of "Definitely well-hidden Easter Eggs." you can give me 140 characters (plus a chatHandle or similar) and I'll post them on this page</b>, under the easter egg links. It'll be like a high score table. The first people to get here are more prominently displayed. I reserve the right to not post what you want me to if it's offensive or whatever, but I'll reply to give you a chance to pick something else.</p>
 
+<p><a href = "index2.html?seerOfVoid=true">Seer of Void</a>: The Observer gains the ability to peer into the Void. What does this mean???</p>
 <p><a href = "index2.html?royalRumble=true">Royal Rumble</a>: Everyone is an Heiress, which means they have a biological imperitive to kill each other. Also, a much higher rate of fish puns.</p>
 <p><a href = "index2.html?lollipop=true">Trickster</a>: Everyone enters the session at a stupidly high level, is in love with everybody else (except the heart player), has super annoying quirks (except the heart player) and instantly completes their land quests. You'd think death would be impossible in this mode, and you'd be right: Except for when the tricksters THEMSELVES go batshit. Holy fucking shit. Oh, and now Doom players are completely immune, not half-assidly immune like Heart players.</p>
 <p><a href = "index2.html?babyStuck=true">BabyStuck</a>: Everyone looks like a Baby/Grub and is practically incomprehensible. Suprisingly cute, until the murders start happening, then surprisingly disturbing.</p>
@@ -53,6 +55,8 @@ Where is everything better than expected? Where AB can be high as a fucking kite
 DID YOU KNOW: This now brings the count up to FOUR ways to get here. Via figuring out what the riddle is actually asking, via lucky guessing (or misunderstanding the riddle luckily), via hax0ring, and via roboBribing.
 
 </p>
+
+</div>
 <div class = "hof413">
 <h1>Hall of Fame (4/13 Batch)</h1>
 <p>"I went to Derse and all I got was this stupid knife to the chest."
