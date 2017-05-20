@@ -18,7 +18,7 @@ function BeTriggered(session){
 	}
 
 	this.renderContent = function(div){
-		div.append("<br>"+this.content());
+		div.append("<br><img src = 'images/sceneIcons/flipout_icon_animated.gif'>"+this.content());
 	}
 
 	//todo reasons include death of a player, being mind controlled, having doomed time clones, yellow yards, learning about ectobiology, having to run from a fight, being cheated on. basically, anything that modifies trigger level. maybe even if a player does it from an ambiant effect???????????
