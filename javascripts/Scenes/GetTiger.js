@@ -25,7 +25,8 @@ function GetTiger(session){
 	}
 
 	this.renderContent = function(div){
-		div.append("<br><img src = 'images/sceneIcons/rainbow_ascend_animated.gif'> " + this.content());
+		var text = this.content()
+
 		var repeatTime = 1000;
 		var divID = (div.attr("id")) + "_tiger";
 		var ch = canvasHeight;
@@ -34,6 +35,7 @@ function GetTiger(session){
 		}
 		var players = this.deadPlayersToGodTier;
 		if(!players[0].dead){
+			div.append("<br><img src = 'images/sceneIcons/rainbow_ascend_animated.gif'> " + text);
 			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
 			div.append(canvasHTML);
 			//different format for canvas code
