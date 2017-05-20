@@ -8,6 +8,7 @@ function PlayerSnapshot(){
 	this.trickster = null;
 	this.spriteCanvasID = null;
 	this.sbahj = null;
+	this.hair = null;
 	this.baby = null;
 	this.robot = null;
 	this.hp = 0;
@@ -66,6 +67,12 @@ function PlayerSnapshot(){
 
 	this.chatHandleShort = function(){
 		return this.chatHandle.match(/\b(\w)|[A-Z]/g).join('').toUpperCase();
+	}
+
+	//seems to exclusively be called for ghosts.
+	this.toJSON = function(){
+		var json = {aspect: this.aspect, class_name: this.class_name,hair: this.hair, causeOfDrain: this.causeOfDrain, doomed: this.doomed, influenceSymbol: this.influenceSymbol, ghost: this.ghost, godTier: this.godTier, victimBlood: this.victimBlood, hairColor: this.hairColor, isTroll: this.isTroll, bloodColor: this.bloodColor, leftHorn: this.leftHorn, rightHorn: this.rightHorn, quirk: this.quirk, isDreamSelf:this.isDreamSelf, murderMode:this.murderMode, leftMurderMode:this.leftMurderMode,grimDark:this.grimDark, causeOfDeath: this.causeOfDeath };
+		return json;
 	}
 
 	this.toString = function(){

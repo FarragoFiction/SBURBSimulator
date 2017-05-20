@@ -348,20 +348,15 @@ function renderAfterlifeURL(){
 	}
 }
 
+
 //pair with seed for shareable url for character creator, or pair with nothing for afterlife viewer.
 function generateURLParamsForPlayers(players){
 	var ret = ""//up to caller to make players = ret
-	var json = JSON.stringify(players, function(key,value){
-		//console.log(key);
-		if(key == "session" || key == "guardian" || key == "relationships" || key == "flippingOutOverDeadPlayer"){  //TODO relationships are special case. figure it out. later. make sure to bring quirk , troll players need favorite number for wings.
-			return null; //tutorial showed undefined here. how important is that?
-		}else{
-			return value;
-		}
-	});
+	var json = JSON.stringify(players);  //inside of players handles looking for keys
 	console.log(json)
 	//otherwise won't escape single quotes, like in <font color = ''> stuff
-	return encodeURI(ret+json, "UTF-8").replace(/'/g, "%27").replace(/&/g,"%26"); //& can be in quirks.
+	//encode URI doesn't escape # but encodeURIComponent does.
+	return encodeURIComponent(ret+json, "UTF-8").replace(/'/g, "%27").replace(/&/g,"%26"); //& can be in quirks.
  }
 
  //TODO make this COMPLETELY WORK. probably enough to render the afterlife, but relationships are not brought over yet.
