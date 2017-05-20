@@ -46,7 +46,16 @@ function JackPromotion(session){
 			ret += "It's not hard at all to get his Crew to pull off a heist to get the RING OF ORBS "+ this.session.convertPlayerNumberToWords();
 			ret += "FOLD. "
 			if(this.session.queen.getHP() > 0 && !this.session.queen.exiled){
-				ret += "He easily defeats the weakened queen while he's at it. ";
+				if(Math.seededRandom() > .5){
+					console.log("Jack making out like a bandit in session: " + this.session.session_id); //get it? 'cause cause he is making otu with BQ but also stealing from her???'
+					//and now the players still have to fight her.  ringless sure, but....
+					this.session.queen.power = 50; //she gets a morale boost, any weakening she had is reduced.
+					ret += " At this point you would EXPECT him to kill the weakened Queen, but somehow they end up making out??? Dersites, am I right?  He still ends up with the RING, though."
+				}else{
+					console.log("jack murdering queen instead of kissing her in sessin: " + this.session.session_id)
+					ret += "He easily defeats the weakened queen while he's at it. ";
+					this.session.queen.currentHP = -9999; //actually kill her you dunkass. not KISS her.
+				}
 			}
 		}
 		ret += " You'd think this would be no worse than having the Black Queen around, but Jack is kind of a big deal. ";
