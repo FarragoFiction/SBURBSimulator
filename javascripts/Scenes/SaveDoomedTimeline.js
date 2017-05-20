@@ -76,6 +76,7 @@ function SaveDoomedTimeLine(session){
 
 			this.session.doomedTimelineReasons.push(this.reason)
 			this.leaderPlayer.dead = false;
+			this.leaderPlayer.renderSelf();
 			var r = this.timePlayer.getRelationshipWith(this.leaderPlayer);
 			if(r && r.value != 0){
 					if(r.value > 0){
@@ -98,6 +99,7 @@ function SaveDoomedTimeLine(session){
 			ret += " the " +this.session.players[this.session.players.length-1].htmlTitleBasic() + " will never even make it into the medium. "; //only point of paradox is for last player
 			ret += " After all, the " + this.leaderPlayer.htmlTitleBasic() + " is their server player. ";
 			this.leaderPlayer.dead = false;
+			this.leaderPlayer.renderSelf();
 			var r = this.timePlayer.getRelationshipWith(this.leaderPlayer);
 			if(r && r.value != 0){
 					if(r.value > 0){
