@@ -411,29 +411,29 @@ function Session(session_id){
 	this.makeDenizens = function(){
 		//minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs
 		var space_denizen =  new GameEntity(this, "Echidna", null);
-		space_denizen.setStats(30,50,100,-9999,0,0,100,true, false, [],1000000);
+		space_denizen.setStats(30,50,100,-1000,0,0,100,true, false, [],1000000);
 		var time_denizen = new GameEntity(this, "Hephaestus", null);
-		time_denizen.setStats(30,50,100,20,0,-9999,100,true, false, [],1000000);
+		time_denizen.setStats(30,50,100,20,0,-1000,100,true, false, [],1000000);
 		var breath_denizen = new GameEntity(this, "Typheus", null);
-		breath_denizen.setStats(30,50,100,9999,0,0,100,true, false, [],1000000);
+		breath_denizen.setStats(30,50,100,1000,0,0,100,true, false, [],1000000);
 		var doom_denizen = new GameEntity(this, "Cassandra", null);
-		doom_denizen.setStats(-9999,50,100,20,0,0,100,true, false, [],1000000);
+		doom_denizen.setStats(-1000,50,100,20,0,0,100,true, false, [],1000000);
 		var blood_denizen = new GameEntity(this, "Hestia", null);
-		blood_denizen.setStats(30,50,100,20,-9999,0,100,true, false, [],1000000);
+		blood_denizen.setStats(30,50,100,20,-1000,0,100,true, false, [],1000000);
 		var heart_denizen = new GameEntity(this, "Aphrodite", null);
 		heart_denizen.setStats(30,50,100,20,0,0,150,true, false, [],1000000);
 		var mind_denizen = 	new GameEntity(this, "Janus", null);
-		mind_denizen.setStats(30,50,100,20,0,9999,100,true, false, [],1000000);
+		mind_denizen.setStats(30,50,100,20,0,1000,100,true, false, [],1000000);
 		var light_denizen = new GameEntity(this, "Cetus", null);
-		light_denizen.setStats(30,9999,100,20,0,0,100,true, false, [],1000000);
+		light_denizen.setStats(30,1000,100,20,0,0,100,true, false, [],1000000);
 		var void_denizen = new GameEntity(this, "Nix", null); //stats dont matter, fights off screen????
 		void_denizen.setStats(30,50,100,20,0,0,100,true, false, [],1000000);
 		var hope_denizen = new GameEntity(this, "Abraxas", null);
-		hope_denizen.setStats(30,50,100,20,0,0,9999,true, false, [],1000000);
+		hope_denizen.setStats(30,50,100,20,0,0,1000,true, false, [],1000000);
 		var life_denizen = new GameEntity(this, "Hemera", null);
-		life_denizen.setStats(30,50,9999,20,0,0,100,true, false, [],1000000);
+		life_denizen.setStats(30,50,1000,20,0,0,100,true, false, [],1000000);
 		var rage_denizen = new GameEntity(this, "Bacchus", null);
-		rage_denizen.setStats(30,50,100,20,9999,0,100,true, false, [],1000000);
+		rage_denizen.setStats(30,50,100,20,1000,0,100,true, false, [],1000000);
 
 		this.denizens = [space_denizen, time_denizen, breath_denizen, doom_denizen, blood_denizen, heart_denizen, mind_denizen, light_denizen, void_denizen, hope_denizen, life_denizen, rage_denizen];
 	}
