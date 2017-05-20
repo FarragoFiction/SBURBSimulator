@@ -63,6 +63,7 @@ function JackRampage(session){
 	//if nobody to stab, instead of boss fight, stabs.
 	this.renderContent = function(div){
 		//div.append("<br>"+this.content());
+		div.append("<br><img src = 'images/sceneIcons/jack_icon.png'>");
 
 		//jack finds 0 or more players.
 		var stabbings = this.getStabList();
@@ -71,14 +72,14 @@ function JackRampage(session){
 		if(stabbings.length == 0){
 			if(Math.seededRandom() > .5){
 				ret += " Jack listlessly shows his stabs to a few Prospitian pawns. "
-				div.append("<br>"+ret);
+				div.append(""+ret);
 			}else{
 				ret += " Jack listlessly shows his stabs to a few Dersite pawns. "
-				div.append("<br>"+ret);
+				div.append(""+ret);
 			}
 			ret += " Bored of this, he decides to show his stabs to BOTH the Black and White Kings.  The battle is over. The Reckoning will soon start."
 			this.session.timeTillReckoning = 0;
-			div.append("<br>"+ret);
+			div.append(""+ret);
 			return ret;
 		}else{
 
@@ -88,7 +89,7 @@ function JackRampage(session){
 				//want to test out a dream self dying without active.
 				console.log("jack kills nonactive dream self: " + this.session.session_id)
 				ret = "Jack has found the dream self of the " + stabbings[0].htmlTitleBasic() + ". He shows the sleeping body his stabs. The dream self is no longer available for revival shenanigans. ";
-				div.append("<br>"+ret);
+				div.append(""+ret);
 				stabbings[0].dreamSelf = false;
 				var snop = makeRenderingSnapshot(stabbings[0]);
 				snop.causeOfDeath = "after being sleep stabbed by Jack"
@@ -97,7 +98,7 @@ function JackRampage(session){
 			}else{
 				this.setPlayersUnavailable(stabbings);
 				ret = "Jack has caught the " + getPlayersTitlesBasic(stabbings) + ".  Will he show them his stabs? Strife!";
-				div.append("<br>"+ret);
+				div.append(""+ret);
 				this.renderPrestabs(div, stabbings); //pose as a team BEFORE getting your ass handed to you.
 				this.session.jack.strife(div, stabbings,0)
 		}

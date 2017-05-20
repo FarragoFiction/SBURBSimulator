@@ -67,7 +67,7 @@ function JackPromotion(session){
 		if(alt && alt.alternateScene(div)){
 			return;
 		}
-		div.append("<br>"+this.content());
+		div.append("<br> <img src = 'images/sceneIcons/jack_icon.png'>"+this.content());
 	}
 
 
