@@ -9,7 +9,7 @@ function Aftermath(session){
 
 
 	this.democracyBonus = function(){
-		var ret = "<Br><img src = 'images/sceneIcons/wv_icon.png'>";
+		var ret = "<Br><br><img src = 'images/sceneIcons/wv_icon.png'>";
 		if(this.session.democracyStrength == 0){
 			return ret;
 		}
@@ -127,7 +127,7 @@ function Aftermath(session){
 
 		if(living.length > 0){
 			if(spacePlayer.landLevel >= this.session.minFrogLevel){
-				end += "<br> Luckily, the " + spacePlayer.htmlTitle() + " was diligent in frog breeding duties. ";
+				end += "<br><img src = 'images/sceneIcons/frogger_animated.gif'> Luckily, the " + spacePlayer.htmlTitle() + " was diligent in frog breeding duties. ";
 				if(spacePlayer.landLevel < 28){
 					end += " The frog looks... a little sick or something, though... That probably won't matter. You're sure of it. ";
 				}

@@ -13,6 +13,9 @@ function GameEntity(session, name, crowned){
 		this.session = session;
 		this.name = name;
 		this.grist = 0;
+		this.carapacian = false;
+		this.consort = false;
+		this.sprite = false;
 		//if any stat is -1025, it's considered to be infinitie. denizens use. you can't outluck Cetus, she is simply the best there is.
 		this.minLuck = 0;
 		this.currentHP = 0;
@@ -95,6 +98,17 @@ function GameEntity(session, name, crowned){
 				return this.triggerLevel + this.crowned.triggerLevel;
 			}
 			return this.triggerLevel;
+		}
+
+		//don't try to heal sprites or consorts or carapaces, it won't work.
+		//(mostly cause they can't render)
+		this.removeAllNonPlayers = function(players){
+			var ret = [];
+			for(var i = 0; i< players.length; i++){
+				var p = players[i];
+				if(!p.carapacian && !p.sprite && !p.consort) ret.push(p);
+			}
+			return ret;
 		}
 
 
@@ -680,6 +694,7 @@ function GameEntity(session, name, crowned){
 			if(player.aspect != "Life" && player.aspect != "Doom") return false;
 			if(player.class_name != "Rogue" && player.class_name != "Maid") return false;
 			var dead = findDeadPlayers(players);
+			dead = this.removeAllNonPlayers(dead);
 			if(dead.length == 0) return false;
 			console.log(dead.length + " need be helping!!!")
 			var deadPlayer = getRandomElementFromArray(dead) //heal random 'cause oldest could be doomed time clone'

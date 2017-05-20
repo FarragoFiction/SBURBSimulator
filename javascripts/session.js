@@ -392,11 +392,15 @@ function Session(session_id){
 		this.king.setStats(25,75,1000,0,0,25,1000,false, false, [],1000);
 		this.queen = new GameEntity(this, "Black Queen",this.queensRing);
 		this.queen.setStats(25,75,500,60,0,100,50,false, false, [],1000); //red miles, put on ring
+		this.queen.carapacian = true;
+		this.king.carapacian = true;
 
 		this.jack = new GameEntity(this, "Jack",null);
+		this.jack.carapacian = true;
 		this.jack.setStats(0,15,50,60,50,1000,30,true, true, [],100000); //jack is kind of a big deal. luck determines his odds of finding bullshit weapon
 
 		this.democraticArmy = new GameEntity(this, "Democratic Army",null); //doesn't actually exist till WV does his thing.
+		this.democraticArmy.carapacian = true;
 		this.democraticArmy.setStats(0,0,0,0,0,0,0,false, false, [],1000);
 
 		this.makeDenizens();

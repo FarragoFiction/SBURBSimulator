@@ -1970,6 +1970,7 @@ function randomPlayerWithClaspect(session, c,a){
 	//minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs, grist
 	p.sprite.setStats(30,50,50,0,0,0,0,false, false, [],1000);//same as denizen minion, but empty power
 	p.sprite.doomed = true
+	p.sprite.sprite = true;
 	p.land1 = tmp[0]
 	p.land2 = tmp[1];
 	p.land = "Land of " + tmp[0] + " and " + tmp[1];
