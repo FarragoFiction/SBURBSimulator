@@ -56,6 +56,7 @@ function CharacterCreatorHelper(players){
 	this.wireUpPlayerDropDowns = function(player){
 			var c2 =  $("#classNameID" +player.chatHandle) ;
 			var a2 =  $("#aspectID" +player.chatHandle) ;
+			var hairDiv  =  $("#hairTypeID" +player.chatHandle) ;
 			var that = this;
 			c2.change(function() {
 					var classDropDown = $('[name="className' +player.chatHandle +'"] option:selected') //need to get what is selected inside the .change, otheriise is always the same
@@ -69,13 +70,19 @@ function CharacterCreatorHelper(players){
 					player.aspect = aspectDropDown.val();
 					that.redrawSinglePlayer(player);
 			});
+
+			hairDiv.change(function() {
+					var aspectDropDown = $('[name="hair' +player.chatHandle +'"] option:selected')
+					player.hair = aspectDropDown.val();
+					that.redrawSinglePlayer(player);
+			});
 	}
 
 	//(1,60)
 	this.drawOneHairDropDown = function(player){
-		var html = "<select id = 'hairTypeID" + player.chatHandle + "' name='className" +player.chatHandle +"'>";
+		var html = "<select id = 'hairTypeID" + player.chatHandle + "' name='hair" +player.chatHandle +"'>";
 		for(var i = 1; i<= 60; i++){
-			if(available_classes[i] == player.class_name){
+			if(player.hair == i){
 				html += '<option  selected = "selected" value="' + i +'">' + i+'</option>'
 			}else{
 				html += '<option value="' + i +'">' + i+'</option>'
