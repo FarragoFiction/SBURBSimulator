@@ -6,13 +6,17 @@ function JackBeginScheming(session){
 
 	//blood or page or thief or rogue.  don't go for non native players
 	this.findSympatheticPlayer = function(){
-		this.friend =  findAspectPlayer(this.session.availablePlayers, "Blood");
+		//not available, living. jack inerupts whatever they are doingv
+		var living = findLivingPlayers(this.session.players);
+		this.friend =  findAspectPlayer(living, "Blood");
 		if(this.friend == null || this.friend.land == null){
-			this.friend =  findClassPlayer(this.session.availablePlayers, "Page");
+			this.friend =  findClassPlayer(living, "Page");
 		}else if(this.friend == null || this.friend.land == null){
-			this.friend =  findClassPlayer(this.session.availablePlayers, "Thief");
+			this.friend =  findClassPlayer(living, "Thief");
 		}else if(this.friend == null || this.friend.land == null){
-			this.friend =  findClassPlayer(this.session.availablePlayers, "Rogue");
+			this.friend =  findClassPlayer(living, "Rogue");
+		}else if(this.friend == null || this.friend.land == null){
+			this.friend =  findAspectPlayer(living, "Hope");
 		}
 		if(this.friend == null || this.friend.land == null){
 			return null;
