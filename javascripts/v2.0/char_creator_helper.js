@@ -6,6 +6,7 @@ function CharacterCreatorHelper(players){
 	//max of 4 lines?
 
 	this.drawAllPlayers = function(){
+		bloodColors.push("#ff0000") //for humans
 		for(var i = 0; i<this.players.length; i++){
 			this.drawSinglePlayer(this.players[i]);
 		}
@@ -208,8 +209,7 @@ function CharacterCreatorHelper(players){
 	}
 
 	this.drawOneBloodColorDropDown = function(player){
-		var html = "<select id = 'bloodColorID" + player.chatHandle + "' name='bloodColor" +player.chatHandle +"'>";
-		bloodColors.push("#ff0000")
+		var html = "<select id = 'bloodColorID" + player.chatHandle + "' name='bloodColor" +player.chatHandle +"'>"
 		for(var i = 0; i< bloodColors.length; i++){
 			if(bloodColors[i] == player.bloodColor){
 				html += '<option style="background:' + bloodColors[i] + '" selected = "bloodColor" value="' + bloodColors[i] +'">' + bloodColors[i]+'</option>'
