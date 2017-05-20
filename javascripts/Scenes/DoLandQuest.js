@@ -54,7 +54,7 @@ function DoLandQuest(session){
 	}
 
 	this.renderContent = function(div){
-		div.append("<br> "+this.content(div));
+		div.append("<br> <img src = 'images/sceneIcons/quest_icon.png'>"+this.content(div));
 
 	}
 

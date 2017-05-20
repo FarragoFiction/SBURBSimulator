@@ -28,7 +28,7 @@ function GoGrimDark(session){
 		if(alt && alt.alternateScene(div)){
 			return;
 		}
-		div.append("<br>"+this.content());
+		div.append("<br><img src = 'images/sceneIcons/grimdark_black_icon.png'>"+this.content());
 		if(this.player.grimDark ==4){
 			var divID = div.attr("id") + "grimdark"
 			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";

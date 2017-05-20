@@ -25,7 +25,7 @@ function GetTiger(session){
 	}
 
 	this.renderContent = function(div){
-		div.append(this.content());
+		div.append("<br><img src = 'images/sceneIcons/rainbow_ascend_animated.gif'> " + this.content());
 		var repeatTime = 1000;
 		var divID = (div.attr("id")) + "_tiger";
 		var ch = canvasHeight;
@@ -48,7 +48,7 @@ function GetTiger(session){
 
 	this.content = function(){
 		//console.log("trying to get tiger for: " + getPlayersTitles(this.deadPlayersToGodTier))
-		var ret = "<br><br>" +getPlayersTitles(this.deadPlayersToGodTier) + " was always destined to take a Legendary Nap, and upon waking, become a God Tier. ";
+		var ret = "" +getPlayersTitles(this.deadPlayersToGodTier) + " was always destined to take a Legendary Nap, and upon waking, become a God Tier. ";
 
 		var withd = findPlayersWithDreamSelves(this.deadPlayersToGodTier);
 		var withoutd = findPlayersWithoutDreamSelves(this.deadPlayersToGodTier);
