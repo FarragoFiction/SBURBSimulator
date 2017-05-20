@@ -20,6 +20,7 @@ function CharacterCreatorHelper(players){
 		str += (this.drawOneClassDropDown(player));
 		str += ("of");
 		str+= (this.drawOneAspectDropDown(player));
+		str += "Hair Type:" + this.drawOneHairDropDown(player);
 		str += "</div>"
 
 		str += (canvasHTML);
@@ -68,6 +69,20 @@ function CharacterCreatorHelper(players){
 					player.aspect = aspectDropDown.val();
 					that.redrawSinglePlayer(player);
 			});
+	}
+
+	//(1,60)
+	this.drawOneHairDropDown = function(player){
+		var html = "<select id = 'hairTypeID" + player.chatHandle + "' name='className" +player.chatHandle +"'>";
+		for(var i = 1; i<= 60; i++){
+			if(available_classes[i] == player.class_name){
+				html += '<option  selected = "selected" value="' + i +'">' + i+'</option>'
+			}else{
+				html += '<option value="' + i +'">' + i+'</option>'
+			}
+		}
+		html += '</select>'
+		return html;
 	}
 
 	this.drawOneClassDropDown = function(player){
