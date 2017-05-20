@@ -1,20 +1,20 @@
 function PowerDemocracy(session){
-	this.canRepeat = true;	
+	this.canRepeat = true;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.session = session;
 	//a player has to be not busy to be your friend right now.
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 
-		
+
 		return (this.session.democracyStrength > 0);
 	}
-	
+
 	this.renderContent = function(div){
-		div.append("<br>"+this.content());
+		div.append("<br><img src = 'images/sceneIcons/wv_icon.png'>"+this.content());
 	}
 
-	
+
 	this.content = function(){
 		var ret = "";
 		var rand = Math.seededRandom();
