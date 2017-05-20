@@ -20,7 +20,8 @@ function CharacterCreatorHelper(players){
 		str += (this.drawOneClassDropDown(player));
 		str += ("of");
 		str+= (this.drawOneAspectDropDown(player));
-		str += "Hair Type:" + this.drawOneHairDropDown(player);
+		str += "<br>Hair Type:" + this.drawOneHairDropDown(player);
+		str += "Hair Color:" + this.drawOneHairColorDropDown(player);
 		str += "</div>"
 
 		str += (canvasHTML);
@@ -57,6 +58,7 @@ function CharacterCreatorHelper(players){
 			var c2 =  $("#classNameID" +player.chatHandle) ;
 			var a2 =  $("#aspectID" +player.chatHandle) ;
 			var hairDiv  =  $("#hairTypeID" +player.chatHandle) ;
+			var hairColorDiv  =  $("#hairColorID" +player.chatHandle) ;
 			var that = this;
 			c2.change(function() {
 					var classDropDown = $('[name="className' +player.chatHandle +'"] option:selected') //need to get what is selected inside the .change, otheriise is always the same
@@ -74,6 +76,12 @@ function CharacterCreatorHelper(players){
 			hairDiv.change(function() {
 					var aspectDropDown = $('[name="hair' +player.chatHandle +'"] option:selected')
 					player.hair = aspectDropDown.val();
+					that.redrawSinglePlayer(player);
+			});
+
+			hairColorDiv.change(function() {
+					var aspectDropDown = $('[name="hairColor' +player.chatHandle +'"] option:selected')
+					player.hairColor = aspectDropDown.val();
 					that.redrawSinglePlayer(player);
 			});
 	}
@@ -100,6 +108,19 @@ function CharacterCreatorHelper(players){
 				html += '<option  selected = "selected" value="' + available_classes[i] +'">' + available_classes[i]+'</option>'
 			}else{
 				html += '<option value="' + available_classes[i] +'">' + available_classes[i]+'</option>'
+			}
+		}
+		html += '</select>'
+		return html;
+	}
+
+	this.drawOneHairColorDropDown = function(player){
+		var html = "<select id = 'hairColorID" + player.chatHandle + "' name='hairColor" +player.chatHandle +"'>";
+		for(var i = 0; i< human_hair_colors.length; i++){
+			if(human_hair_colors[i] == player.hairColor){
+				html += '<option style="background:' + human_hair_colors[i] + '" selected = "hairColor" value="' + human_hair_colors[i] +'">' + human_hair_colors[i]+'</option>'
+			}else{
+				html += '<option style="background:' + human_hair_colors[i] + '"value="' + human_hair_colors[i] +'">' + human_hair_colors[i]+'</option>'
 			}
 		}
 		html += '</select>'
