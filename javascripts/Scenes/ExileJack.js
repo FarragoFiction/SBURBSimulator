@@ -13,7 +13,7 @@ function ExileJack(session){
 	}
 
 	this.content = function(){
-		this.session.jack.hp = 0; //effectively dead.
+		this.session.jack.currentHP = 0; //effectively dead.
 		this.session.jack.exiled = true;
 		var ret = " The plan has been performed flawlessly.  Jack has been exiled to the post-Apocalyptic version of Earth before he can cause too much damage.";
 		return ret;

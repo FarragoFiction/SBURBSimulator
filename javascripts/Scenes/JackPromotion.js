@@ -5,7 +5,7 @@ function JackPromotion(session){
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		if(this.session.jack.getHP() <= 0) return false;  //jack can't be dead.
+		if(this.session.jack.getHP() <= 0 || this.session.jack.exiled) return false;  //jack can't be dead or exiled.
 		if(this.session.queensRing == null) return false; //all is moot if no ring
 		if(this.session.jack.crowned != null) return false; //don't steal the ring from yourself, dunkass
 		//console.log("jack is alive, there is a queens ring and jack doesn't have it: " + this.session.session_id)
