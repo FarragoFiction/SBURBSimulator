@@ -16,9 +16,10 @@
 #question {
     text-align: center
 }
-
 .void{
 	display: none;
+	background-color: #000066;
+	color: #ffffff;
 }
 
 #symbol{
