@@ -788,6 +788,9 @@ function GameEntity(session, name, crowned){
 				return ret;
 			}
 			//console.log("targeting slowest player out of: " + living.length)
+			//todo more likely to target light, less void.
+			ret = findAspectPlayer(players, "Light");
+			if(ret) return ret;
 			return findLowestMobilityPlayer(living);
 		}
 

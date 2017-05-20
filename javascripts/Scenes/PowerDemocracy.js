@@ -20,13 +20,19 @@ function PowerDemocracy(session){
 		var rand = Math.seededRandom();
 		if(rand < .25){
 			ret += getRandomElementFromArray(democracyTasks);
-			this.session.democracyStrength += 5;
+			this.session.democraticArmy.power += 10;
+			this.session.democraticArmy.mobility += 10;
+			this.session.democraticArmy.currentHP += 10;
 		}else if(rand < .5){
 			ret += getRandomElementFromArray(democracyTasks);
-			this.session.democracyStrength += 10;
+			this.session.democraticArmy.power += 20;
+			this.session.democraticArmy.mobility += 20;
+			this.session.democraticArmy.currentHP += 20;
 		}else if(rand < .75){
 			ret += getRandomElementFromArray(democracySuperTasks);
-			this.session.democracyStrength += 50;
+   		this.session.democraticArmy.power += 50;
+			this.session.democraticArmy.mobility += 50;
+			this.session.democraticArmy.currentHP += 50;
 		}else{
 			//do nothing.
 			ret += getRandomElementFromArray(mayorDistractionTasks);

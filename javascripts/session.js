@@ -32,10 +32,11 @@ function Session(session_id){
 	this.heroicDeath = null;
 	this.won = false;
 	this.justDeath = null;
+	this.mayorEnding = false;
+	this.waywardVagabondEnding = false;
 	this.hardStrength = 1000;
 	this.minFrogLevel = 18;
 	this.goodFrogLevel = 28;
-	this.democracyStrength = 0;
 	this.reckoningStarted = false;
 	this.aliensClonedOnArrival = []; //if i'm gonna do time shenanigans, i need to know what the aliens were like when they got here.
 	this.murdersHappened = false;
@@ -570,6 +571,8 @@ function Session(session_id){
 
 	this.generateSummary = function(){
 		var summary = new SessionSummary();
+		summary.mayorEnding = this.mayorEnding;
+		summary.waywardVagabondEnding = this.waywardVagabondEnding;
 		summary.badBreakDeath = this.badBreakDeath;
 		summary.luckyGodTier = this.luckyGodTier;
 		summary.choseGodTier = this.choseGodTier;

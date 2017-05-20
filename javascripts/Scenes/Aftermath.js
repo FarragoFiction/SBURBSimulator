@@ -13,16 +13,19 @@ function Aftermath(session){
 		if(this.session.democracyStrength == 0){
 			return ret;
 		}
-		if(this.session.democracyStrength > 10 && findLivingPlayers(this.session.players).length > 0 ){
+		if(this.session.democraticArmy.currentHP > 10 && findLivingPlayers(this.session.players).length > 0 ){
+			this.session.mayorEnding = true;
 			ret += "The adorable Warweary Villein has been duly elected Mayor by the assembled consorts and Carapacians. "
 			ret += " His acceptance speech consists of promising to be a really great mayor that everyone loves who is totally amazing and heroic and brave. "
 			ret += " He organizes the consort and Carapacians' immigration to the new Universe. ";
 		}else{
 			if(findLivingPlayers(this.session.players).length > 0){
+				this.session.waywardVagabondEnding = true;
 				ret += " The Warweary Villein feels the sting of defeat. Although he helped the Players win their session, the cost was too great.";
 				ret += " There can be no democracy in a nation with only one citizen left alive. ";
 				ret += " He becomes the Wayward Vagabond, and exiles himself to the remains of the Players old world, rather than follow them to the new one.";
 			}else{
+				this.session.waywardVagabondEnding = true;
 				ret += " The Warweary Villein feels the sting of defeat. He failed to help the Players.";
 				ret += " He becomes the Wayward Vagabond, and exiles himself to the remains of the Players' old world. ";
 			}

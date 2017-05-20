@@ -7,6 +7,8 @@ function SessionSummary(){
 	this.crashedFromPlayerActions = null;
 	this.won = null;
 	this.opossumVictory = null;
+	this.mayorEnding = null;
+	this.waywardVagabondEnding = null;
 	this.badBreakDeath = null;
 	this.choseGodTier = null;
 	this.luckyGodTier = null;
@@ -359,6 +361,8 @@ function MultiSessionSummary(){
 	this.rocksFell = 0;
 	this.opossumVictory = 0;
 	this.averageNumScenes = 0;
+	this.waywardVagabondEnding = 0;
+	this.mayorEnding = 0;
 
 
 
@@ -418,6 +422,7 @@ function MultiSessionSummary(){
 		if(propertyName == "crashedFromPlayerActions" || propertyName == "ectoBiologyStarted" ||propertyName == "comboSessions" || propertyName == "threeTimesSessionCombo")return true
 		if(propertyName == "fourTimesSessionCombo" || propertyName == "fiveTimesSessionCombo" ||propertyName == "holyShitMmmmmonsterCombo" || propertyName == "numberFullFrog") return true;
 		if(propertyName == "numberFullFrog" || propertyName == "numberSickFrog" || propertyName == "numberNoFrog" || propertyName == "rocksFell" || propertyName == "opossumVictory") return true;
+		if(propertyName == "mayorEnding" || propertyName == "waywardVagabondEnding") return true;
 		return false;
 	}
 
@@ -617,6 +622,8 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		mss.total ++;
 
 		if(ss.badBreakDeath) mss.badBreakDeath ++;
+		if(ss.mayorEnding) mss.mayorEnding ++;
+		if(ss.waywardVagabondEnding) mss.waywardVagabondEnding ++;
 		if(ss.choseGodTier) mss.choseGodTier ++;
 		if(ss.luckyGodTier) mss.luckyGodTier ++;
 		if(ss.crashedFromSessionBug) mss.crashedFromSessionBug ++;
