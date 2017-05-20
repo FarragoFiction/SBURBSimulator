@@ -77,11 +77,7 @@ function startSession(){
 	if(getParameterByName("lollipop")  == "true"){
 		tricksterMode();
 	}
-
-	if(getParameterByName("seerOfVoid")  == "true"){
-		alert("Be careful seeing into void...it also sees into you or some shit.")
-		$("#story").append("<button onclick='toggleVoid()'>Peer into Void, Y/N?</a><div class='void'>Well, NOW you've certainly gone and done it. You can expect to see any Void Player shenanignans now. If there are any.");
-	}
+	//void is in navbar code
 
 	if(getParameterByName("robot")  == "true"){
 		roboMode();
@@ -102,23 +98,10 @@ function startSession(){
 	load(curSessionGlobalVar.players, curSessionGlobalVar.guardians); //in loading.js
 }
 
-function toggleVoid(){
-	$(".void").toggle();
-}
 
 
-//http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
-function getParameterByName(name, url) {
-    if (!url) {
-      url = window.location.href;
-    }
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
+
+
 
 function shareableURL(){
 	var str = '<div class = "links"><a href = "index2.html?seed=' +initial_seed +'">Shareable URL </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <a href = "character_creator.html?seed=' +initial_seed +'">Replay Session (Extremely Fucking Alpha) </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp<a href = "index2.html">Random Session URL </a> </div>'
