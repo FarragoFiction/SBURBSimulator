@@ -704,7 +704,7 @@ function FreeWillStuff(session){
 	this.content = function(){
 		this.session.hasFreeWillEvents = true;
 		//var ret = "<img src = 'images/free_will_event.png'/><Br>"; //get rid of prefix soon.
-		var ret = "<br>"
+		var ret = ""
 		removeFromArray(this.player, this.session.availablePlayers);
 		ret += this.decision;  //it already happened, it's a string. ineligible for being an important event influencable by yellow yard. (john's retcon time powers can confound a decision like this tho)
 
