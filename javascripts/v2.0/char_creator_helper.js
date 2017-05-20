@@ -16,13 +16,16 @@ function CharacterCreatorHelper(players){
 		divId = divId.replace(/\s+/g, '')
 		str += "<div class='createdCharacter'>"
 		var canvasHTML = "<canvas class = 'createdCharacterCanvas' id='canvas" +divId + "' width='" +400 + "' height="+300 + "'>  </canvas>";
-		str += "<div class = 'stats'>"
+		str += "<div class = 'charOptions'>"
 		str += (this.drawOneClassDropDown(player));
 		str += ("of");
 		str+= (this.drawOneAspectDropDown(player));
-		str += "<br>Hair Type:" + this.drawOneHairDropDown(player);
+		str += "Hair Type:" + this.drawOneHairDropDown(player);
 		str += "Hair Color:" + this.drawOneHairColorDropDown(player);
 		str += "Species: " + this.drawOneSpeciesDropDown(player);
+		str += "Left Horn: " + this.drawOneLeftHornDropDown(player);
+		str += "Right Horn: " + this.drawOneRightHornDropDown(player);
+		str += "BloodColor: " + this.drawOneBloodColorDropDown(player);
 		str += "</div>"
 
 		str += (canvasHTML);
@@ -60,6 +63,12 @@ function CharacterCreatorHelper(players){
 			var a2 =  $("#aspectID" +player.chatHandle) ;
 			var hairDiv  =  $("#hairTypeID" +player.chatHandle) ;
 			var hairColorDiv  =  $("#hairColorID" +player.chatHandle) ;
+			var speciesDiv  =  $("#speciesID" +player.chatHandle) ;
+			var leftHornDiv  =  $("#leftHornID" +player.chatHandle) ;
+			var rightHornDiv  =  $("#rightHornID" +player.chatHandle) ;
+			var bloodDiv  =  $("#bloodColorID" +player.chatHandle) ;
+
+
 			var that = this;
 			c2.change(function() {
 					var classDropDown = $('[name="className' +player.chatHandle +'"] option:selected') //need to get what is selected inside the .change, otheriise is always the same
@@ -85,6 +94,35 @@ function CharacterCreatorHelper(players){
 					player.hairColor = aspectDropDown.val();
 					that.redrawSinglePlayer(player);
 			});
+
+			leftHornDiv.change(function() {
+					var aspectDropDown = $('[name="leftHorn' +player.chatHandle +'"] option:selected')
+					player.leftHorn = aspectDropDown.val();
+					that.redrawSinglePlayer(player);
+			});
+
+			rightHornDiv.change(function() {
+					var aspectDropDown = $('[name="rightHorn' +player.chatHandle +'"] option:selected')
+					player.rightHorn = aspectDropDown.val();
+					that.redrawSinglePlayer(player);
+			});
+
+			bloodDiv.change(function() {
+					var aspectDropDown = $('[name="bloodColor' +player.chatHandle +'"] option:selected')
+					player.bloodColor = aspectDropDown.val();
+					that.redrawSinglePlayer(player);
+			});
+
+			speciesDiv.change(function() {
+					var aspectDropDown = $('[name="species' +player.chatHandle +'"] option:selected')
+					var str = aspectDropDown.val();
+					if(str == "Troll"){
+						player.isTroll = true;
+					}else{
+						player.isTroll = false;
+					}
+					that.redrawSinglePlayer(player);
+			});
 	}
 
 	//(1,60)
@@ -92,6 +130,32 @@ function CharacterCreatorHelper(players){
 		var html = "<select id = 'hairTypeID" + player.chatHandle + "' name='hair" +player.chatHandle +"'>";
 		for(var i = 1; i<= 60; i++){
 			if(player.hair == i){
+				html += '<option  selected = "selected" value="' + i +'">' + i+'</option>'
+			}else{
+				html += '<option value="' + i +'">' + i+'</option>'
+			}
+		}
+		html += '</select>'
+		return html;
+	}
+
+	this.drawOneLeftHornDropDown = function(player){
+		var html = "<select id = 'leftHornID" + player.chatHandle + "' name='leftHorn" +player.chatHandle +"'>";
+		for(var i = 1; i<= 46; i++){
+			if(player.leftHorn == i){
+				html += '<option  selected = "selected" value="' + i +'">' + i+'</option>'
+			}else{
+				html += '<option value="' + i +'">' + i+'</option>'
+			}
+		}
+		html += '</select>'
+		return html;
+	}
+
+	this.drawOneRightHornDropDown = function(player){
+		var html = "<select id = 'rightHornID" + player.chatHandle + "' name='rightHorn" +player.chatHandle +"'>";
+		for(var i = 1; i<= 46; i++){
+			if(player.leftHorn == i){
 				html += '<option  selected = "selected" value="' + i +'">' + i+'</option>'
 			}else{
 				html += '<option value="' + i +'">' + i+'</option>'
@@ -142,6 +206,24 @@ function CharacterCreatorHelper(players){
 		html += '</select>'
 		return html;
 	}
+
+	this.drawOneBloodColorDropDown = function(player){
+		var html = "<select id = 'bloodColorID" + player.chatHandle + "' name='bloodColor" +player.chatHandle +"'>";
+		bloodColors.push("#ff0000")
+		for(var i = 0; i< bloodColors.length; i++){
+			if(bloodColors[i] == player.bloodColor){
+				html += '<option style="background:' + bloodColors[i] + '" selected = "bloodColor" value="' + bloodColors[i] +'">' + bloodColors[i]+'</option>'
+			}else{
+				html += '<option style="background:' + bloodColors[i] + '"value="' + bloodColors[i] +'">' + bloodColors[i]+'</option>'
+			}
+		}
+		html += '</select>'
+		return html;
+	}
+
+
+
+
 
 	this.drawOneAspectDropDown = function(player){
 		available_aspects = nonrequired_aspects.slice(0); //required_aspects
