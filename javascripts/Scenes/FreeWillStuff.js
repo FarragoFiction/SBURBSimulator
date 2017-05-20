@@ -68,7 +68,7 @@ function FreeWillStuff(session){
 	}
 
 	this.renderContent = function(div){
-		div.append("<br>"+this.content());
+		div.append("<br><img src = 'images/sceneIcons/freewill_icon.png'>"+this.content());
 		if(this.playerGodTiered){
 			this.renderGodTier(div);
 		}else if(this.renderPlayer1){
