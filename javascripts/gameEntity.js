@@ -889,6 +889,7 @@ function GameEntity(session, name, crowned){
 				return this.name;
 		}
 
+		//if jack makes out with blalck queen, eventually put them in spades
 		this.getRelationshipWith = function(){
 			//stub for boss fights where an asshole absconds.
 		}
