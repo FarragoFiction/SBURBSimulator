@@ -9,7 +9,7 @@ function Aftermath(session){
 
 
 	this.democracyBonus = function(){
-		var ret = "";
+		var ret = "<Br><img src = 'images/sceneIcons/wv_icon.png'>";
 		if(this.session.democracyStrength == 0){
 			return ret;
 		}
