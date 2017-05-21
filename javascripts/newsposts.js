@@ -106,6 +106,7 @@ function corruptRoboNewsposts(){
 
 
 function artNewsposts(main){
+	writeNewspostArtist(main, "5/20/17", "I look at a LOT of sessions. Not as many as JR or AB, but still. And a good amount of the time, I'm actually skimming for specific scenes, or just tying to gauge the overall tone of a session. I thought it would be nice to have some graphical indicators of what each scene is about, and break up the text a bit more. So I made a bazillion tiny icons for different types of scenes. Some of them are only ever going to show up in the rarest of sessions, some are omnipresent.<br><Br>A couple are even animated. :wonk:")
 	writeNewspostArtist(main, "5/12/17", "Booyah - Check this shit out! jR has helped me implement a major visual overhaul for the site. Nifty backgrounds for most pages should be in place. Readability should be improved, and an overall more polished look might even convince people we know what we're doing!")
 	writeNewspostArtist(main, "5/5/17", "It just so happens that I have a fresh masterpiece for you, hot off the canvas and on to your computer where it will sizzle your eyeballs. Screwing with ghosts now comes with sweet special effects! Also, I am told that the main branch will soon have its header in place.<br><Br>PS: Dreambubbles and the afterlife are now a little less 'pediatrician's waiting room' and a little more 'unfathomable space outside of time.''")
 	writeNewspostArtist(main,"4/21/17", "Hey, look at that, an official site header! So fancy! That shit is a fucking symphony on my retinas.");
