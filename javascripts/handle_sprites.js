@@ -294,7 +294,7 @@ function wings(canvas,player){
 }
 
 function grimDarkHalo(canvas,player){
-	ctx = canvas.getContext('2d');
+	 var ctx = canvas.getContext('2d');
     var imageString = "grimdark.png";
     if(player.trickster){
       imageString = "squiddles_chaos.png"
@@ -320,7 +320,7 @@ function fin1(canvas, player){
 
 function fin2(canvas, player){
   if(player.bloodColor == "#610061" || player.bloodColor == "#99004d"){
-    ctx = canvas.getContext('2d');
+    var ctx = canvas.getContext('2d');
     var imageString = "fin2.png";
     addImageTag(imageString)
     var img=document.getElementById(imageString);
@@ -344,7 +344,7 @@ function horns(canvas, player){
 //place where the head of every sprite would be.
 //same for wings eventually.
 function leftHorn(canvas, player){
-    ctx = canvas.getContext('2d');
+    var ctx = canvas.getContext('2d');
     var imageString = "Horns/left"+player.leftHorn + ".png";
     addImageTag(imageString)
     var img=document.getElementById(imageString);
@@ -359,7 +359,7 @@ function leftHorn(canvas, player){
 //right horn should be at: 120,40
 function rightHorn(canvas, player){
  // console.log("doing right horn");
-  ctx = canvas.getContext('2d');
+  var ctx = canvas.getContext('2d');
 
   var imageString = "Horns/right"+player.rightHorn + ".png";
   addImageTag(imageString)
@@ -614,7 +614,7 @@ function drawLevelUp(canvas, player,repeatTime){
 	}
   //for echeladder
   var canvasSpriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
-  ctx = canvasSpriteBuffer.getContext('2d');
+  var ctx = canvasSpriteBuffer.getContext('2d');
   var imageString = "echeladder.png"
   addImageTag(imageString)
   var img=document.getElementById(imageString);
@@ -656,7 +656,7 @@ function drawLevelUpGodTier(canvas, player,repeatTime){
 	drawGodSymbolBG(symbolBuffer, player);
 
 	var godBuffer = getBufferCanvas(document.getElementById("godtierlevelup_template"));
-	ctx = godBuffer.getContext('2d');
+	var ctx = godBuffer.getContext('2d');
 	var imageString = "godtierlevelup.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
@@ -684,7 +684,7 @@ function drawLevelUpGodTier(canvas, player,repeatTime){
 }
 
 function drawGodSymbolBG(canvas, player){
-	ctx = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
 	var imageString = player.aspect + "Big.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
@@ -699,7 +699,7 @@ function drawWhateverTerezi(canvas, imageString){
   if(checkSimMode() == true){
     return;
   }
-	ctx = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
 	var width = img.width;
@@ -717,7 +717,7 @@ function drawWhatever(canvas, imageString){
   if(checkSimMode() == true){
     return;
   }
-	ctx = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
 	var width = img.width;
@@ -729,7 +729,7 @@ function drawDreamBubble(canvas){
   if(checkSimMode() == true){
     return;
   }
-	ctx = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
 	var imageString ="dreambubbles.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
@@ -743,7 +743,7 @@ function drawHorrorterror(canvas){
   if(checkSimMode() == true){
     return;
   }
-	ctx = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
 	var imageString ="horrorterror.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
@@ -757,7 +757,7 @@ function drawMoon(canvas, player){
   if(checkSimMode() == true){
     return;
   }
-	ctx = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
 	var imageString =player.moon + ".png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
@@ -805,7 +805,7 @@ function drawRelationshipChat(canvas, player1, player2, chat, repeatTime){
     return;
   }
 	var canvasSpriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
-	ctx = canvasSpriteBuffer.getContext('2d');
+	var ctx = canvasSpriteBuffer.getContext('2d');
 	var imageString = "pesterchum.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
@@ -872,7 +872,7 @@ function drawChatJRPlayer(canvas, chat, player){
   }
 
   var canvasSpriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
-	ctx = canvasSpriteBuffer.getContext('2d');
+	var ctx = canvasSpriteBuffer.getContext('2d');
 	var imageString = "pesterchum.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
@@ -905,7 +905,7 @@ function  drawChatABJR(canvas, chat){
   }
 
   var canvasSpriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
-	ctx = canvasSpriteBuffer.getContext('2d');
+	var ctx = canvasSpriteBuffer.getContext('2d');
 	var imageString = "pesterchum.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
@@ -948,7 +948,7 @@ function drawChat(canvas, player1, player2, chat, repeatTime,topicImage){
 	//draw sprites to buffer (don't want them pallete swapping each other)
 	//then to main canvas
 	var canvasSpriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
-	ctx = canvasSpriteBuffer.getContext('2d');
+	var ctx = canvasSpriteBuffer.getContext('2d');
 	var imageString = "pesterchum.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
@@ -985,7 +985,7 @@ function drawAb(canvas){
   if(checkSimMode() == true){
     return;
   }
-  ctx = canvas.getContext('2d');
+  var ctx = canvas.getContext('2d');
   var imageString = "ab.png"
   addImageTag(imageString)
   var img=document.getElementById(imageString);
@@ -999,7 +999,7 @@ function drawJR(canvas,ctx){
     return;
   }
   if(!ctx){
-	ctx = canvas.getContext('2d');
+	 ctx = canvas.getContext('2d');
   }
   var imageString = "jr.png"
   addImageTag(imageString)
@@ -1013,7 +1013,7 @@ function drawJRTurnways(canvas){
   if(checkSimMode() == true){
     return;
   }
-  ctx = canvas.getContext('2d');
+  var ctx = canvas.getContext('2d');
   ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
   ctx.translate(canvas.width, 0);
   ctx.scale(-1, 1);
@@ -1026,7 +1026,7 @@ function drawTopic(canvas, topicImage){
   if(checkSimMode() == true){
     return;
   }
-  ctx = canvas.getContext('2d');
+  var ctx = canvas.getContext('2d');
   var imageString = topicImage
   addImageTag(imageString)
   var img=document.getElementById(imageString);
@@ -1135,7 +1135,7 @@ function drawBGRadialWithWidth(canvas, startX, endX, width, color1, color2){
 function denizenKill(canvas,player){
   var p1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
   //drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff")
-	ctx = p1SpriteBuffer.getContext('2d');
+	var ctx = p1SpriteBuffer.getContext('2d');
 //  drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff");
 //  ctx.translate(canvas.width, 0);
   //ctx.rotate(90*Math.PI/180);
@@ -1150,7 +1150,7 @@ function denizenKill(canvas,player){
 }
 
 function stabs(canvas,player){
-	ctx = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
 	var imageString = "stab.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
@@ -1161,7 +1161,7 @@ function stabs(canvas,player){
 }
 
 function kingDeath(canvas,player){
-	ctx = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
 	var imageString = "sceptre.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
@@ -1172,7 +1172,7 @@ function kingDeath(canvas,player){
 }
 
 function bloodPuddle(canvas,player){
-    ctx = canvas.getContext('2d');
+    var ctx = canvas.getContext('2d');
 	var imageString = "blood_puddle.png"
 	addImageTag(imageString)
 	var img=document.getElementById(imageString);
@@ -1642,6 +1642,7 @@ function playerToDreamBody(player){
 }
 
 function robotSprite(canvas, player){
+  var ctx = canvas.getContext('2d');
 	var imageString;
 	if(!player.godTier){
 		imageString = playerToRegularBody(player);
@@ -1657,6 +1658,7 @@ function robotSprite(canvas, player){
 	  //eeeeeh...could figure out how to color swap symbol, but lazy.
 }
 function tricksterSprite(canvas, player){
+  var ctx = canvas.getContext('2d');
 	var imageString;
 	if(!player.godTier){
 		imageString = playerToRegularBody(player);
