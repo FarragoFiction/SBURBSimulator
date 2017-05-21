@@ -344,7 +344,8 @@ function scratchAB(session){
 	//console.log("rendering scratch button, i.e. setting need to scratch to false.")
 	needToScratch = false;
 	//treat myself as a different session that scratched one?
-	if(!session.scratched){
+	var living = findLivingPlayers(session.players)
+	if(!session.scratched && living.length > 0){
 		//console.log("scartch")
 		session.scratchAvailable = true;
 		session.pleaseIgnoreThisSessionAB = true;
