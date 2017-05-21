@@ -88,9 +88,9 @@ function GameEntity(session, name, crowned){
 		}
 		this.getPower = function(){
 			if(this.crowned){
-				return this.power + this.crowned.power;
+				return Math.max(this.power + this.crowned.power,1);
 			}
-			return this.power;
+			return Math.max(this.power,1);
 		}
 
 		this.triggerLevel = function(){
@@ -1480,6 +1480,10 @@ prototyping_objects[prototyping_objects.length-1].power = 20;
 
 
 prototyping_objects.push(new GameEntity(null, "Sparrow",null));
+prototyping_objects[prototyping_objects.length-1].power = 20;
+
+
+prototyping_objects.push(new GameEntity(null, "Fancy Santa",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 
 
