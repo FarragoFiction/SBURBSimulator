@@ -292,6 +292,7 @@ function scratch(){
 	if(!simulationMode) window.scrollTo(0, 0);
 
 	var guardians  = raggedPlayers; //if i use guardians, they will be all fresh and squeaky. want the former players.
+
 	var guardianDiv = curSessionGlobalVar.newScene();
 	var guardianID = (guardianDiv.attr("id")) + "_guardians" ;
 	var ch = canvasHeight;
@@ -315,6 +316,11 @@ function scratch(){
 
 	playerDiv.append(canvasHTML);
 	var canvasDiv = document.getElementById("canvas"+ playerID);
+
+	//need to render self for caching to work for this
+	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+		curSessionGlobalVar.players[i].renderSelf();
+	}
 	poseAsATeam(canvasDiv, curSessionGlobalVar.players, 2000); //everybody, even corpses, pose as a team.
 
 	intro();
