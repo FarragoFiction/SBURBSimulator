@@ -86,7 +86,7 @@ function VoidyStuff(session){
 			this.endingPhrase(classDiv, newDiv);
 			return;
 		}else{ //pick from random array.
-				var options = [this.makeEnemies.bind(this,normalDiv,newDiv), this.makeFriends.bind(this,normalDiv, newDiv),this.goMurderMode.bind(this,normalDiv,newDiv),this.dolandQuests.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv)];
+				var options = [this.makeEnemies.bind(this,normalDiv,newDiv), this.makeFriends.bind(this,normalDiv, newDiv),this.goMurderMode.bind(this,normalDiv,newDiv),this.dolandQuests.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv)];
 				getRandomElementFromArray(options)();
 		}
 
