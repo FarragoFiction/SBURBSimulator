@@ -202,7 +202,7 @@ function GameEntity(session, name, crowned){
 				player.flipOut("how terrifying " + this.htmlTitle() + " was");
 				if(player.mobility > this.mobility){
 					//console.log(" player actually absconds: they had " + player.hp + " and enemy had " + enemy.getPower() + this.session.session_id)
-					div.append(" The " + player.htmlTitleHP() + " absconds right the fuck out of this fight. ")
+					div.append("<img src = 'images/sceneIcons/abscond_icon.png'> The " + player.htmlTitleHP() + " absconds right the fuck out of this fight. ")
 					this.playersAbsconded.push(player);
 					this.remainingPlayersHateYou(div, player, playersInFight);
 					return true;
@@ -260,11 +260,11 @@ function GameEntity(session, name, crowned){
 		this.processAbscond = function(div,players){
 			if(this.iAbscond){
 				//console.log("game entity abscond: " + this.session.session_id);
-				div.append("The " + this.htmlTitleHP() + " has had enough of this bullshit. They just fucking leave. ");
+				div.append("<img src = 'images/sceneIcons/abscond_icon.png'> The " + this.htmlTitleHP() + " has had enough of this bullshit. They just fucking leave. ");
 				return;
 			}else{
 				//console.log("players abscond: " + this.session.session_id);
-				div.append(" The strife is over due to a lack of player presence. ");
+				div.append("<img src = 'images/sceneIcons/abscond_icon.png'> The strife is over due to a lack of player presence. ");
 				return;
 			}
 
@@ -476,6 +476,7 @@ function GameEntity(session, name, crowned){
 		prototyping. vast glub for horror terror is example.
 		*/
 		this.strife = function(div, players, numTurns){
+			if(numTurns == 0) div.append("<img src = 'images/sceneIcons/strife_icon.png'><br>");
 			numTurns += 1;
 			if(this.name == "Black King" || this.name == "Black Queen"){
 				//console.log("checking to see if rocks fall.")
@@ -604,9 +605,9 @@ function GameEntity(session, name, crowned){
 			var living = this.getLivingMinusAbsconded(players);
 			if(living.length == 0 && players.length > this.playersAbsconded.length){
 				if(players.length == 1){
-					div.append(" The strife is over. The " + players[0].htmlTitle() + " is dead.<br> ");
+					div.append("<img src = 'images/sceneIcons/victory_icon.png'> The strife is over. The " + players[0].htmlTitle() + " is dead.<br> ");
 				}else{
-					div.append(" The strife is over. The players are dead.<br> ");
+					div.append("<img src = 'images/sceneIcons/defeat_icon.png'> The strife is over. The players are dead.<br> ");
 				}
 
 				this.minorLevelPlayers(players)
