@@ -123,11 +123,17 @@ function SessionSummary(){
 			var params = window.location.href.substr(window.location.href.indexOf("?")+1)
 			if (params == window.location.href) params = ""
 			var lineage = this.parentSession.getLineage(); //i am not a session so remember to tack myself on at the end.
-			html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + lineage[0].session_id +"&"+params+ "'>" +lineage[0].session_id + "</a> "
+			var scratched = "";
+			if(lineage[0].scratched) scratched = "(scratched)"
+			html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + lineage[0].session_id +"&"+params+ "'>" +lineage[0].session_id + scratched"</a> "
 			for(var i = 1; i< lineage.length; i++){
-				html += " combined with: " + "<a href = 'index2.html?seed=" + lineage[i].session_id +"&"+params+ "'>" +lineage[i].session_id + "</a> "
+				var scratched = "";
+				if(lineage[i].scratched) scratched = "(scratched)"
+				html += " combined with: " + "<a href = 'index2.html?seed=" + lineage[i].session_id +"&"+params+ "'>" +lineage[i].session_id + scratched"</a> "
 			}
-			html += " combined with: " + "<a href = 'index2.html?seed=" + this.session_id +"&"+params+ "'>" +this.session_id + "</a> "
+			var scratched = "";
+			if(this.scratched) scratched = "(scratched)"
+			html += " combined with: " + "<a href = 'index2.html?seed=" + this.session_id +"&"+params+ "'>" +this.session_id + scratched "</a> "
 			if((lineage.length +1) == 3){
 				this.threeTimesSessionCombo = true;
 				html += " 3x SESSIONS COMBO!!!"
