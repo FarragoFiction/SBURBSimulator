@@ -622,9 +622,13 @@ function drawLevelUp(canvas, player,repeatTime){
   var height = img.height;
   ctx.drawImage(img,0,0,width,height);
   swapColors(canvasSpriteBuffer, "#4a92f7", getColorFromAspect(player.aspect));
+  //set fill before you start, don't set it in the for loop, expensive
+  ctx.fillStyle="#000000";
   for(var i = 0; i<level_bg_colors.length; i++){
 	  if(player.level_index < i){
-		swapColors(canvasSpriteBuffer, level_bg_colors[i], "#000000" ); //black out levels i don't yet have
+		//swapColors(canvasSpriteBuffer, level_bg_colors[i], "#000000" ); //black out levels i don't yet have
+    //x,y,width,height
+    ctx.fillRect(5,300-(19+(18)*i),192,16); //2 pixels between boxes (which are 16 big), starts at 17, y 0 is bottom.
 	  }
   }
 
