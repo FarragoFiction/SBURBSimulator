@@ -628,7 +628,7 @@ function drawLevelUp(canvas, player,repeatTime){
 	  if(player.level_index < i){
 		//swapColors(canvasSpriteBuffer, level_bg_colors[i], "#000000" ); //black out levels i don't yet have
     //x,y,width,height
-    ctx.fillRect(5,300-(19+(18)*i),192,16); //2 pixels between boxes (which are 16 big), starts at 17, y 0 is bottom.
+    ctx.fillRect(5,300-(21+(17)*i),192,15); //2 pixels between boxes (which are 16 big), starts at 17, y 0 is bottom.
 	  }
   }
 
@@ -784,8 +784,8 @@ function writeLevelGod(canvas, player){
 //no image, so no repeat needed.
 function writeLevels(canvas, player){
 	var left_margin = 101; //center
-	var line_height = 17.3;
-	var start = 295; //start at bottom, go up
+	var line_height = 17.0;
+	var start = 289; //start at bottom, go up
 	var current = start;
 	var ctx = canvas.getContext("2d");
 	ctx.textAlign="center";
