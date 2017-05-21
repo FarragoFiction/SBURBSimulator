@@ -14,6 +14,7 @@ function GrimDarkQuests(session){
 				this.players.push(player)
 			}
 		}
+		if(this.players.length > 0 && this.players[0].trickster && Math.random() >.01) return false; //tricksters are too op and distractable, don't often actually try to break sim
 
 		return this.players.length>0;
 	}
