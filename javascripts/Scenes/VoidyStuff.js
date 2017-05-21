@@ -144,9 +144,9 @@ function VoidyStuff(session){
 		if(Math.seededRandom() > .95){ //small chance of serious.
 			specialDiv.append( "The " + this.player.htmlTitle() + " is " + getRandomQuestFromAspect(this.player.aspect) + ". ");
 		}else{
-			var specialStuff = ["teaching the local consorts all the illest of beats.","explaining the finer points of the human game 'hopscotch' to local consorts.","passing out banned orange fruits that may or may not exist to hungry local consorts.","throwing a birthday party for the local consorts."];
-			specialStuff = specialStuff.concat(["reenacting tear jerking scenes from classic cinema with local consorts.","adopting a local consort as their beloved daughter.","explaining that all conflict will be resolved through the medium of rap, going forwards.","passing out rumpled headgear like cheap cigars."]);
-			specialStuff = specialStuff.concat(["completely destabilizing the local consort economy by just handing out fat stacks of boonbucks.","showing the local consorts how to draw graffiti all over the Denizen temples.","explaining that each local consort is probably the hero of legend or some shit.","encouraging local consorts to form secret societies around household items."]);
+			var specialStuff = ["teaching the local consorts all the illest of beats","explaining the finer points of the human game 'hopscotch' to local consorts","passing out banned orange fruits that may or may not exist to hungry local consorts","throwing a birthday party for the local consorts"];
+			specialStuff = specialStuff.concat(["reenacting tear jerking scenes from classic cinema with local consorts","adopting a local consort as their beloved daughter","explaining that all conflict will be resolved through the medium of rap, going forwards","passing out rumpled headgear like cheap cigars"]);
+			specialStuff = specialStuff.concat(["completely destabilizing the local consort economy by just handing out fat stacks of boonbucks","showing the local consorts how to draw graffiti all over the Denizen temples","explaining that each local consort is probably the hero of legend or some shit","encouraging local consorts to form secret societies around household items"]);
 
 			specialDiv.append( "The " + this.player.htmlTitle() + " is " + getRandomElementFromArray(specialStuff) + ". ");
 		}
