@@ -10,8 +10,8 @@ function Aftermath(session){
 
 	this.democracyBonus = function(){
 		var ret = "<Br><br><img src = 'images/sceneIcons/wv_icon.png'>";
-		if(this.session.democracyStrength == 0){
-			return ret;
+		if(this.session.democraticArmy.power == 0){
+			return "";
 		}
 		if(this.session.democraticArmy.currentHP > 10 && findLivingPlayers(this.session.players).length > 0 ){
 			this.session.mayorEnding = true;
