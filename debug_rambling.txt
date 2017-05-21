@@ -1003,3 +1003,19 @@ Okay: What part of a character is DYNAMIC other than base sprite:
 honestly, probably easier to re-render the sprite at ANY change.  but how to know there was a change? oh wait, that's right
 I render to the sprite in the scene or wherever the change happened. drawSpriteNew only called from scenes and only called TO the secret
 canvas.
+
+
+
+
+
+
+AB has gone a little crazy, specifically with combo sessions. :(
+
+seed=670898551
+
+When viewed by me, does a combo session.
+
+but when viewed by AB, she scratches it before the combo happens, and then reports that the scratched session is a combo session.
+
+
+To me, this means she needs to not scratch if it's going to keep going.
