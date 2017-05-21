@@ -2,13 +2,7 @@ var imagesWaiting = 0;
 var imagesLoaded = 0;
 
 function loadFuckingEverything(skipInit){
-  var canvas = document.getElementById("loading");
-  var ctx = canvas.getContext('2d');
-  var imageString = "loading.png";
-  var img=document.getElementById(imageString);
-  var width = img.width;
-  var height = img.height;
-  ctx.drawImage(img,0,0,width,height);
+  
 	loadAllImages(skipInit);
 }
 
@@ -17,13 +11,6 @@ function loadFuckingEverything(skipInit){
 //load everything while showing a progress bar. delete loadingCanvas when done.
 function load(players, guardians,skipInit){
   var guardians = getGuardiansForPlayers(players)
-  var canvas = document.getElementById("loading");
-  var ctx = canvas.getContext('2d');
-  var imageString = "loading.png";
-  var img=document.getElementById(imageString);
-  var width = img.width;
-  var height = img.height;
-  ctx.drawImage(img,0,0,width,height);
 	loadAllImagesForPlayers(players, guardians,skipInit);
 }
 
