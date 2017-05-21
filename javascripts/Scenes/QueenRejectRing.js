@@ -16,6 +16,7 @@ function QueenRejectRing(session){
 	}
 
 	this.content = function(){
+		this.session.queenRejectRing = true;
 		this.session.queen.crowned = null; //queen no longer has ring, but session still does.
 		var goodPrototyping = findGoodPrototyping(this.playerList);
 		var ret = "The Queen, with her RING OF ORBS " + this.session.convertPlayerNumberToWords();

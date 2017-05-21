@@ -12,6 +12,7 @@ function GiveJackBullshitWeapon(session){
 	}
 
 	this.content = function(){
+		this.session.jackGotWeapon = true;
 
 
 		var ret = " Jack Noir is tired of putting up with the STUPID LOUSY WISE AND JUST LEADER, what a royal pain in the ass. ";

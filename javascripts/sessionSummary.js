@@ -23,13 +23,11 @@ function SessionSummary(){
 	this.numLiving = null;
 	this.numDead = null;
 	this.ectoBiologyStarted = null;
-	this.denizenFought = null;
 	this.denizenBeat = null;
 	this.plannedToExileJack = null;
 	this.exiledJack = null;
 	this.exiledQueen = null;
 	this.jackGotWeapon = null;
-	this.jackPromoted = null;
 	this.jackRampage = null;
 	this.jackScheme = null;
 	this.kingTooPowerful = null;
@@ -325,7 +323,6 @@ function MultiSessionSummary(){
 	this.timesAllLived = 0;
 	this.timesAllDied = 0;
 	this.ectoBiologyStarted = 0;
-	this.denizenFought = 0;
 	this.denizenBeat = 0;
 	this.plannedToExileJack = 0;
 	this.exiledJack = 0;
@@ -333,7 +330,6 @@ function MultiSessionSummary(){
 	this.totalLivingPlayers = 0;
 	this.survivalRate = 0;
 	this.jackGotWeapon = 0;
-	this.jackPromoted = 0;
 	this.jackRampage = 0;
 	this.jackScheme = 0;
 	this.kingTooPowerful = 0;
@@ -641,13 +637,11 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		if(ss.numLiving == 0) mss.timesAllDied ++;
 		if(ss.numDead == 0) mss.timesAllLived ++;
 		if(ss.ectoBiologyStarted) mss.ectoBiologyStarted ++;
-		if(ss.denizenFought) mss.denizenFought ++;
 		if(ss.denizenBeat) mss.denizenBeat ++;
 		if(ss.plannedToExileJack) mss.plannedToExileJack ++;
 		if(ss.exiledJack) mss.exiledJack ++;
 		if(ss.exiledQueen) mss.exiledQueen ++;
 		if(ss.jackGotWeapon) mss.jackGotWeapon ++;
-		if(ss.jackPromoted) mss.jackPromoted ++;
 		if(ss.jackRampage) mss.jackRampage ++;
 		if(ss.jackScheme) mss.jackScheme ++;
 		if(ss.kingTooPowerful) mss.kingTooPowerful ++;

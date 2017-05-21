@@ -214,6 +214,7 @@ function MurderPlayers(session){
 						}
 						ret += this.friendsOfVictimHateYou(worstEnemy, m);
 						worstEnemy.makeDead("fighting against the crazy " + m.htmlTitle());
+						this.session.murdersHappened = true;
 						var r = worstEnemy.getRelationshipWith(m);
 						r.value = -10; //you are not happy with murderer
 						m.victimBlood = worstEnemy.bloodColor;
@@ -232,6 +233,7 @@ function MurderPlayers(session){
 							ret += " The task is made especially easy by the " + m.htmlTitle() + " being already in the proccess of dying. "
 						}
 						m.makeDead("being put down like a rabid dog by the " + worstEnemy.htmlTitle());
+						this.session.murdersHappened = true;
 						var r = worstEnemy.getRelationshipWith(m);
 						r.value = -10; //you are not happy with murderer
 						worstEnemy.victimBlood = m.bloodColor;
@@ -296,12 +298,14 @@ function MurderPlayers(session){
 					ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". ";
 					ret += this.friendsOfVictimHateYou(worstEnemy, m);
 					worstEnemy.makeDead("fighting against the crazy " + m.htmlTitle())
+					this.session.murdersHappened = true;
 					m.victimBlood = worstEnemy.bloodColor;
 				}else{
 					worstEnemy.increasePower();
 					ret += " The " + m.htmlTitle() + " attempts to brutally murders that asshole, the " + worstEnemy.htmlTitle();
 					ret += ",but instead gets murdered first, in self-defense. ";
 					m.makeDead("being put down like a rabid dog by " + worstEnemy.htmlTitle())
+					this.session.murdersHappened = true;
 					worstEnemy.victimBlood = m.bloodColor;
 				}
 			}else{

@@ -64,6 +64,7 @@ function GoGrimDark(session){
 	}
 
 	this.content = function(){
+		this.session.grimDarkPlayers = true;
 		this.player.increasePower();
 		removeFromArray(this.player, this.session.availablePlayers);
 		var ret = this.raiseGrimDarkLevel();

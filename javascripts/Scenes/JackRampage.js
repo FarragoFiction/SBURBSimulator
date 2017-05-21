@@ -62,6 +62,7 @@ function JackRampage(session){
 	//TODO copy how queen fight works. get Stabs is maing thing that needs to change.
 	//if nobody to stab, instead of boss fight, stabs.
 	this.renderContent = function(div){
+		this.jackRampage = true;
 		//div.append("<br>"+this.content());
 		div.append("<br><img src = 'images/sceneIcons/jack_icon.png'>");
 

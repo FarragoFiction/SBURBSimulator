@@ -109,7 +109,8 @@ function processReckoning(playerList,session){
 	for(var i = 0; i<session.reckoningScenes.length; i++){
 		var s = session.reckoningScenes[i];
 		if(s.trigger(playerList)){
-			session.scenesTriggered.push(s);
+		//	session.scenesTriggered.push(s);
+		session.numScenes ++;
 			//console.log(s);
 			//console.log("was triggered");
 			ret += s.content() + " <br><br> ";
@@ -119,7 +120,8 @@ function processReckoning(playerList,session){
 	for(var i = 0; i<session.deathScenes.length; i++){
 		var s = session.deathScenes[i];
 		if(s.trigger(playerList)){
-			session.scenesTriggered.push(s);
+		//	session.scenesTriggered.push(s);
+				session.numScenes ++;
 			ret += s.content() + " <br><br> ";
 		}
 	}
@@ -136,7 +138,8 @@ function processScenes2(playerList,session){
 		var s = session.available_scenes[i];
 		//var debugQueen = queenStrength;
 		if(s.trigger(playerList)){
-			session.scenesTriggered.push(s);
+			//session.scenesTriggered.push(s);
+			session.numScenes ++;
 			s.renderContent(session.newScene());
 			if(!s.canRepeat){
 				removeFromArray(s,session.available_scenes);
@@ -147,7 +150,8 @@ function processScenes2(playerList,session){
 	for(var i = 0; i<session.deathScenes.length; i++){
 		var s = session.deathScenes[i];
 		if(s.trigger(playerList)){
-			session.scenesTriggered.push(s);
+		//	session.scenesTriggered.push(s);
+		session.numScenes ++;
 			s.renderContent(session.newScene());
 		}
 	}
@@ -175,7 +179,8 @@ function processReckoning2(playerList,session){
 	for(var i = 0; i<session.reckoningScenes.length; i++){
 		var s = session.reckoningScenes[i];
 		if(s.trigger(playerList)){
-			session.scenesTriggered.push(s);
+			//session.scenesTriggered.push(s);
+			session.numScenes ++;
 			s.renderContent(session.newScene());
 		}
 	}
@@ -183,7 +188,8 @@ function processReckoning2(playerList,session){
 	for(var i = 0; i<session.deathScenes.length; i++){
 		var s = session.deathScenes[i];
 		if(s.trigger(playerList)){
-			session.scenesTriggered.push(s);
+		//	session.scenesTriggered.push(s);
+		session.numScenes ++;
 			s.renderContent(session.newScene());
 		}
 	}
@@ -206,7 +212,8 @@ function processScenes(playerList,session){
 		var s = session.available_scenes[i];
 		//var debugQueen = queenStrength;
 		if(s.trigger(playerList)){
-			session.scenesTriggered.push(s);
+			//session.scenesTriggered.push(s);
+			session.numScenes ++;
 			//console.log("was triggered");
 			var content = s.content()
 			if(content != ""){
@@ -228,7 +235,8 @@ function processScenes(playerList,session){
 		if(s.trigger(playerList)){
 			//console.log(s);
 			//console.log("was triggered");
-			session.scenesTriggered.push(s);
+			//session.scenesTriggered.push(s);
+			session.numScenes ++;
 			ret += s.content() + " <br><br> ";
 		}
 	}

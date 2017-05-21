@@ -175,7 +175,7 @@ BTW: please note that Hussie, as the Waste of Space, uses his YellowYard and a F
 
 	*/
 	this.renderContent = function(div){
-		this.session.scenesTriggered.push(this);
+		this.session.yellowYard = true;
 		//div.append("<br>"+this.content());
 		//console.log("Yellow yard is happening. " + this.session.session_id)
 		var canvasHTML = "<br><canvas id='canvasJRAB1" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";

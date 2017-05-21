@@ -13,8 +13,12 @@ function Session(session_id){
 	this.queensRing = null; //eventually have white and black ones.
 	this.kingsScepter = null;
 	this.badBreakDeath = false;
+	this.jackGotWeapon = false;
+	this.jackRampage = false;
+	this.jackScheme = false;
 	this.luckyGodTier = false;
 	this.choseGodTier = false;
+	this.plannedToExileJack = false;
 	this.hasHearts = false;
 	this.hasSpades = false;
 	this.rocksFell = false;
@@ -22,6 +26,7 @@ function Session(session_id){
 	//session no longer keeps track of guardians.
 	this.king = null;
 	this.queen = null;
+	this.numScenes = 0;
 	this.rapBattle = false;
 	this.crashedFromSessionBug = false; //gets corrupted if an unrecoverable error gets caught.
 	this.crashedFromPlayerActions = false;
@@ -40,6 +45,7 @@ function Session(session_id){
 	this.reckoningStarted = false;
 	this.aliensClonedOnArrival = []; //if i'm gonna do time shenanigans, i need to know what the aliens were like when they got here.
 	this.murdersHappened = false;
+	this.queenRejectRing = false;
 	this.goodLuckEvent = false;
 	this.badLuckEvent = false;
 	this.hasFreeWillEvents = false;
@@ -51,10 +57,10 @@ function Session(session_id){
 	this.timeTillReckoning = 0;
 	this.reckoningEndsAt = -15;
 	this.godTier = false;
+	this.grimDarkPlayers = false;
 	this.questBed = false;
 	this.sacrificialSlab = false;
 	this.sessionType = -999
-	this.scenesTriggered = []; //this.scenesTriggered
 	this.doomedTimelineReasons = [];
 	this.currentSceneNum = 0;
 	this.scenes = []; //scene controller initializes all this.
@@ -65,6 +71,7 @@ function Session(session_id){
 	this.parentSession = null;
 	this.availablePlayers = [];  //which players are available for scenes or whatever.
 	this.importantEvents = [];
+	this.yellowYard = false;
 	this.yellowYardController = new YellowYardResultController();//don't expect doomed time clones to follow them to any new sessions
 
 	//IMPORTANT do not add important events directly, or can't check for alternate timelines.
@@ -209,7 +216,6 @@ function Session(session_id){
 		this.democracyStrength = 0;
 		this.reckoningStarted = false;
 		this.importantEvents = [];
-		this.scenesTriggered = []; //this.scenesTriggered
 		this.doomedTimelineReasons = [];
 		this.ectoBiologyStarted = false;
 	}
@@ -609,29 +615,27 @@ function Session(session_id){
 		summary.godTier = this.godTier;
 		summary.questBed = this.questBed;
 		summary.sacrificialSlab = this.sacrificialSlab;
-		summary.num_scenes = this.scenesTriggered.length;
+		summary.num_scenes = this.numScenes;
 		summary.players = this.players;
 		summary.mvp = findStrongestPlayer(this.players);
 		summary.parentSession = this.parentSession;
 		summary.scratchAvailable = this.scratchAvailable;
-		summary.yellowYard = findSceneNamed(this.scenesTriggered,"YellowYard") != "No"
+		summary.yellowYard = this.yellowYard
 		summary.numLiving =  findLivingPlayers(this.players).length;
 		summary.numDead =  findDeadPlayers(this.players).length;
 		summary.ectoBiologyStarted = this.ectoBiologyStarted;
-		summary.denizenFought = findSceneNamed(this.scenesTriggered,"FaceDenizen") != "No";
 		summary.denizenBeat = this.denizenBeat;
-		summary.plannedToExileJack = findSceneNamed(this.scenesTriggered,"PlanToExileJack") != "No";
-		summary.exiledJack = findSceneNamed(this.scenesTriggered,"ExileJack") != "No"
-		summary.exiledQueen = findSceneNamed(this.scenesTriggered,"ExileQueen") != "No"
-		summary.jackPromoted = findSceneNamed(this.scenesTriggered,"JackPromotion") != "No"
-		summary.jackGotWeapon = findSceneNamed(this.scenesTriggered,"GiveJackBullshitWeapon") != "No"
-		summary.jackRampage = findSceneNamed(this.scenesTriggered,"JackRampage") != "No"
-		summary.jackScheme = findSceneNamed(this.scenesTriggered,"JackBeginScheming") != "No"
-		summary.kingTooPowerful =findSceneNamed(this.scenesTriggered,"KingPowerful") != "No"
-		summary.queenRejectRing =findSceneNamed(this.scenesTriggered,"QueenRejectRing") != "No"
-		summary.democracyStarted =findSceneNamed(this.scenesTriggered,"StartDemocracy") != "No"
-		summary.murderMode = findSceneNamed(this.scenesTriggered,"EngageMurderMode") != "No"
-		summary.grimDark = findSceneNamed(this.scenesTriggered,"GrimDarkQuests") != "No"
+		summary.plannedToExileJack = this.plannedToExileJack;
+		summary.exiledJack = this.jack.exiled;
+		summary.exiledQueen = this.queen.exiled;
+		summary.jackGotWeapon = this.jackGotWeapon;
+		summary.jackRampage = this.jackRampage;
+		summary.jackScheme = this.jackScheme;
+		summary.kingTooPowerful =  this.king.getPower()> this.hardStrength;
+		summary.queenRejectRing = this.queenRejectRing;
+		summary.democracyStarted =  this.democraticArmy.power > 0;
+		summary.murderMode = this.murdersHappened;
+		summary.grimDark = this.grimDarkPlayers;
 		var spacePlayer = findAspectPlayer(this.players, "Space");
 		summary.frogLevel =spacePlayer.landLevel
 		summary.hasDiamonds =this.hasDiamonds;
