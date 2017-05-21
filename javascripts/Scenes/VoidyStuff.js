@@ -27,6 +27,7 @@ function VoidyStuff(session){
 
 	this.renderContent = function(div){
 		this.player.increasePower();
+		this.player.increasePower();
 		this.player.corruptionLevelOther += getRandomInt(1,10); //void isn't a safe place to be.
 		//div.append("<br>"+this.content());
 		div.append("<br><img src = 'images/sceneIcons/shenanigans_icon.png'>")
@@ -139,7 +140,7 @@ function VoidyStuff(session){
 	}
 
 	this.dolandQuests = function(div,specialDiv){
-		this.player.landLevel ++;
+		this.player.landLevel +=2;
 		div.append(" Their consorts seem pretty happy, though. ") ;
 		if(Math.seededRandom() > .95){ //small chance of serious.
 			specialDiv.append( "The " + this.player.htmlTitle() + " is " + getRandomQuestFromAspect(this.player.aspect) + ". ");
