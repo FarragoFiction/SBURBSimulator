@@ -424,16 +424,17 @@ function reckoningTick(){
 		//console.log("aftermath rendered")
 		//after math can call a scratch.
 
-		if(needToScratch){
-			scratchAB(curSessionGlobalVar);
-			return null;
-		}
+
 		//summarizeSession(curSessionGlobalVar);
 		//for some reason whether or not a combo session is available isn't working? or combo isn't working right in this mode?
 		//console.log("checking if i should do summaries")
 		if(curSessionGlobalVar.makeCombinedSession == true){
 			processCombinedSession();  //make sure everything is done rendering first
 		}else{
+			if(needToScratch){
+				scratchAB(curSessionGlobalVar);
+				return null;
+			}
 			var living = findLivingPlayers(curSessionGlobalVar.players);
 			if(curSessionGlobalVar.won || living.length == 0 || curSessionGlobalVar.scratched){
 				//console.log("victory or utter defeat")
@@ -544,6 +545,7 @@ function processCombinedSession(){
 		var living = findLivingPlayers(curSessionGlobalVar.players)
 		if(curSessionGlobalVar.scratched || living.length == 0){
 			//console.log("not a combo session")
+			curSessionGlobalVar.makeCombinedSession == false
 			summarizeSession(curSessionGlobalVar);
 		}
 	}

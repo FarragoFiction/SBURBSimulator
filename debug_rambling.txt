@@ -1019,3 +1019,15 @@ but when viewed by AB, she scratches it before the combo happens, and then repor
 
 
 To me, this means she needs to not scratch if it's going to keep going.
+
+
+let's find otu how to make this a thing.
+
+Alright. Let's refresh my memory on exactly how AB scratches sessions.
+
+
+
+if it's a combo session, i don't even render the scratch button. Right?  So AB is somehow getting the option to scratch sessions that should be combo.
+regular sessions only have scratches be an option AFTER process combined session.
+
+I remember in this very text i was upgraded AB to handle scratches.  So...why did I choose to do things different.  let's review.
