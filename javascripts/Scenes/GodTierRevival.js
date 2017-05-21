@@ -54,7 +54,7 @@ function GodTierRevival(session){
 	}
 
 	this.content = function(){
-		var ret = " The game abstraction of the Judgement Clock is ruling on the death of the " + getPlayersTitles(this.godsToRevive ) + ". ";
+		var ret = " <img src = 'images/sceneIcons/judgement_icon.png'>The game abstraction of the Judgement Clock is ruling on the death of the " + getPlayersTitles(this.godsToRevive ) + ". ";
 		var breakNeeded = 200;
 		for(var i = 0; i< this.godsToRevive.length; i++){
 			var p = this.godsToRevive[i];
