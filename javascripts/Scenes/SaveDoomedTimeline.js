@@ -23,7 +23,7 @@ function SaveDoomedTimeLine(session){
 
 
 	this.renderContent = function(div){
-		div.append("<br>"+this.content());
+		div.append("<br><img src = 'images/sceneIcons/time_icon.png'>"+this.content());
 		var divID = (div.attr("id"))
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);

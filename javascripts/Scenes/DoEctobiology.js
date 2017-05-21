@@ -32,7 +32,7 @@ function DoEctobiology(session){
 	}
 
 	this.renderContent = function(div){
-		div.append("<br>"+this.content());
+		div.append("<br><img src = 'images/sceneIcons/ectobiology_icon.png'>"+this.content());
 		this.drawLeaderPlusBabies(div);
 	}
 
