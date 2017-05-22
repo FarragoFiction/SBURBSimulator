@@ -1474,6 +1474,8 @@ var postdenizen_rogue_quests =  ["scouring the land for targets, and then freaki
 postdenizen_rogue_quests.push("stealing from enemies on other players planets, acquiring enough boonbucks to lift every consort on the planet out of poverty");
 postdenizen_rogue_quests.push("doing a little dance on their pile soon-to-be distributed wealth");
 postdenizen_rogue_quests.push("literally stealing another player's planet. They put it back, but still. A planet. Wow");
+postdenizen_rogue_quests.push("loaning money to needy consorts, then surprising them by waiving every last cent of debt they owe");
+
 
 var postdenizen_sylph_quests = ["beginning to heal the vast psychological damage their consorts have endured from the denizen’s ravages"];
 postdenizen_sylph_quests.push("setting up counseling booths around their land and staffing them with well trained consort professionals");
@@ -1516,6 +1518,7 @@ postdenizen_space_quests.push("cloning ribbiting assholes till you’re up to yo
 postdenizen_space_quests.push("cleaning up volcanic debris from the Forge. Man that magma is hot");
 postdenizen_space_quests.push("alchemizing geothermal power infrastructure for the consort villagers. The local consorts babble excitedly at indoor lightning ");
 postdenizen_space_quests.push("restoring the land from the ravages of Echidna");
+postdenizen_space_quests.push("making sure they don't accidentally clone a toad instead of a frog by mistake");
 
 var postdenizen_time_quests = ["securing the alpha timeline and keeping the corpse pile from getting any taller"];
 postdenizen_time_quests.push("high fiving themself an hour from now for the amazing job they're going to have done/do with the Hephaestus situation. Time is the best aspect");
