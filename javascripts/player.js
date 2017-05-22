@@ -154,7 +154,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			this.minLuck = 100; //prophecy fulfilled. you are no longer doomed.
 		}
 		if(!this.godTier){ //god tiers only make ghosts in GodTierRevivial
-			this.session.afterLife.addGhost(makeRenderingSnapshot(this));
+			this.session9.afterLife.addGhost(makeRenderingSnapshot(this));
 		}
 
 		this.renderSelf();
