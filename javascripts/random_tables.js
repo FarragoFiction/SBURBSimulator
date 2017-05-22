@@ -1517,7 +1517,7 @@ postdenizen_space_quests.push("cleaning up volcanic debris from the Forge. Man t
 postdenizen_space_quests.push("alchemizing geothermal power infrastructure for the consort villagers. The local consorts babble excitedly at indoor lightning ");
 postdenizen_space_quests.push("restoring the land from the ravages of Echidna");
 
-var postdenizen_time_quests = ["securing the alpha timeline and keeping the corpse pile from getting higher"];
+var postdenizen_time_quests = ["securing the alpha timeline and keeping the corpse pile from getting any taller"];
 postdenizen_time_quests.push("high fiving themself an hour from now for the amazing job they're going to have done/do with the Hephaestus situation. Time is the best aspect");
 postdenizen_time_quests.push("restoring the consort’s destroyed villages through time shenanigans. The consorts boggle at their newly restored houses");
 postdenizen_time_quests.push("building awesome things way in the past for themselves to find later");
