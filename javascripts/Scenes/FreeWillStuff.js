@@ -137,9 +137,9 @@ function FreeWillStuff(session){
 	//less likely if who you hate is ectobiologist or space
 	this.considerEngagingMurderMode = function(player){
 		var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
-		if(player.isActive() && enemies.length > 2 && player.triggerLevel > 10 && !player.murderMode){
+		if(player.isActive() && enemies.length > 2 && player.triggerLevel > 1 && !player.murderMode){
 			return this.becomeMurderMode(player);
-		}else if(enemies.length > 0 && player.triggerLevel > 10){
+		}else if(enemies.length > 0 && player.triggerLevel > 1){
 			return this.forceSomeOneElseMurderMode(player);
 		}
 		return null;
@@ -149,7 +149,7 @@ function FreeWillStuff(session){
 		if(!player.murderMode){
 			var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
 			if(this.isValidTargets(enemies,player)){
-					//console.log("chosing to go into murdermode " +this.session.session_id);
+					console.log("chosing to go into murdermode " +this.session.session_id);
 					player.makeMurderMode();
 					player.triggerLevel = 10;
 					removeFromArray(player, this.session.availablePlayers);
@@ -308,7 +308,7 @@ function FreeWillStuff(session){
 		var patsyVal = patsyArr[1];
 		if(this.isValidTargets(enemies,player) && patsy){
 				if(patsyVal > enemies.length/2 && patsy.triggerLevel > 1){
-						//console.log("manipulating someone to go into murdermode " +this.session.session_id + " patsyVal = " + patsyVal);
+						console.log("manipulating someone to go into murdermode " +this.session.session_id + " patsyVal = " + patsyVal);
 						patsy.makeMurderMode();
 						patsy.triggerLevel = 10;
 						removeFromArray(player, this.session.availablePlayers);
