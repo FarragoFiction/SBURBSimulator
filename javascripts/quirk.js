@@ -27,6 +27,10 @@ function Quirk(){
 		ret = this.handleSuffix(ret);
 		return ret;
 	}
+	
+	this.toJSON = function(){
+		return {favoriteNumber: this.favoriteNumber}
+	}
 
 	this.rawStringExplanation = function(){
 		var ret = "\n * Capitalization: ";
