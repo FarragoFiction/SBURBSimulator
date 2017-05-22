@@ -822,33 +822,45 @@ function getRandomDenizenQuestFromAspect(player){
 }
 
 
-function getRandomQuestFromAspect(aspect){
+function getRandomQuestFromAspect(aspect,postDenizen){
 	//console.log("looking for level from aspect");
 	var first_arr = [];
 	if(aspect == "Space"){
-		first_arr = space_quests;
+		if(!postDenizen) first_arr = space_quests;
+		if(postDenizen) first_arr = postdenizen_space_quests;
 	}else if(aspect == "Time"){
-		first_arr = time_quests;
+		if(!postDenizen) first_arr = time_quests;
+		if(postDenizen) first_arr = postdenizen_time_quests;
 	}else if(aspect == "Breath"){
-		first_arr = breath_quests;
+		if(!postDenizen) first_arr = breath_quests;
+		if(postDenizen) first_arr = postdenizen_breath_quests;
 	}else if(aspect == "Doom"){
-		first_arr = doom_quests;
+		if(!postDenizen) first_arr = doom_quests;
+		if(postDenizen) first_arr = postdenizen_doom_quests;
 	}else if(aspect == "Blood"){
-		first_arr = blood_quests;
+		if(!postDenizen) first_arr = blood_quests;
+		if(postDenizen) first_arr = postdenizen_blood_quests;
 	}else if(aspect == "Heart"){
-		first_arr = heart_quests;
+		if(!postDenizen) first_arr = heart_quests;
+		if(postDenizen) first_arr = postdenizen_heart_quests;
 	}else if(aspect == "Mind"){
-		first_arr = mind_quests;
+		if(!postDenizen) first_arr = mind_quests;
+		if(postDenizen) first_arr = postdenizen_mind_quests;
 	}else if(aspect == "Light"){
-		first_arr = light_quests;
+		if(!postDenizen) first_arr = light_quests;
+		if(postDenizen) first_arr = postdenizen_light_quests;
 	}else if(aspect == "Void"){
-		first_arr = void_quests;
+		if(!postDenizen) first_arr = void_quests;
+		if(postDenizen) first_arr = postdenizen_void_quests;
 	}else if(aspect == "Rage"){
-		first_arr = rage_quests;
+		if(!postDenizen) first_arr = rage_quests;
+		if(postDenizen) first_arr = postdenizen_rage_quests;
 	}else if(aspect == "Hope"){
-		first_arr = hope_quests;
+		if(!postDenizen) first_arr = hope_quests;
+		if(postDenizen) first_arr = postdenizen_hope_quests;
 	}else if(aspect == "Life"){
-		first_arr = life_quests;
+		if(!postDenizen) first_arr = life_quests;
+		if(postDenizen) first_arr = postdenizen_life_quests;
 	}
 	return getRandomElementFromArray(first_arr);
 }
@@ -907,33 +919,45 @@ Math.seededRandom = function(max, min){
     return min + rnd * (max - min);
 }
 
-function getRandomQuestFromClass(class_name){
+function getRandomQuestFromClass(class_name,postDenizen){
 	//console.log("looking for level from class");
 	var first_arr = [];
 	if(class_name == "Maid"){
-		first_arr = maid_quests;
+		if(!postDenizen) first_arr = maid_quests;
+		if(postDenizen) first_arr = postdenizen_maid_quests;
 	}else if(class_name == "Page"){
-		first_arr = page_quests;
+		if(!postDenizen) first_arr = page_quests;
+		if(postDenizen) first_arr = postdenizen_page_quests;
 	}else if(class_name == "Mage"){
-		first_arr = mage_quests;
+		if(!postDenizen) first_arr = mage_quests;
+		if(postDenizen) first_arr = postdenizen_mage_quests;
 	}else if(class_name == "Knight"){
-		first_arr = knight_quests;
+		if(!postDenizen) first_arr = knight_quests;
+		if(postDenizen) first_arr = postdenizen_knight_quests;
 	}else if(class_name == "Rogue"){
-		first_arr = rogue_quests;
+		if(!postDenizen) first_arr = rogue_quests;
+		if(postDenizen) first_arr = postdenizen_rogue_quests;
 	}else if(class_name == "Sylph"){
-		first_arr = sylph_quests;
+		if(!postDenizen) first_arr = sylph_quests;
+		if(postDenizen) first_arr = postdenizen_sylph_quests;
 	}else if(class_name == "Seer"){
-		first_arr = seer_quests;
+		if(!postDenizen) first_arr = seer_quests;
+		if(postDenizen) first_arr = postdenizen_seer_quests;
 	}else if(class_name == "Thief"){
-		first_arr = thief_quests;
+		if(!postDenizen) first_arr = thief_quests;
+		if(postDenizen) first_arr = postdenizen_thief_quests;
 	}else if(class_name == "Heir"){
-		first_arr = heir_quests;
+		if(!postDenizen) first_arr = heir_quests;
+		if(postDenizen) first_arr = postdenizen_heir_quests;
 	}else if(class_name == "Bard"){
-		first_arr = bard_quests;
+		if(!postDenizen) first_arr = bard_quests;
+		if(postDenizen) first_arr = postdenizen_bard_quests;
 	}else if(class_name == "Prince"){
-		first_arr = prince_quests;
+		if(!postDenizen) first_arr = prince_quests;
+		if(postDenizen) first_arr = postdenizen_prince_quests;
 	}else if(class_name == "Witch"){
-		first_arr = witch_quests;
+		if(postDenizen) first_arr = witch_quests;
+		if(postDenizen) first_arr = postdenizen_witch_quests;
 	}
 	return getRandomElementFromArray(first_arr);
 }

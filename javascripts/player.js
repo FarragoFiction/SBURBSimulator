@@ -425,7 +425,12 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			}
 		}else if(this.denizenDefeated){
 			console.log("post denizen quests " +this.session.session_id);
-			return "restoring their land from the ravages of " + this.session.getDenizenForPlayer(this).name;
+			//return "restoring their land from the ravages of " + this.session.getDenizenForPlayer(this).name;
+			if(Math.seededRandom() > .5 || this.aspect == "Space"){ //back to having space players be locked to frogs.
+				return getRandomQuestFromAspect(this.aspect,true);
+			}else{
+				return getRandomQuestFromClass(this.class_name,true);
+			}
 		}
 
 	}
