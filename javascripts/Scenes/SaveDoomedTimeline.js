@@ -23,6 +23,7 @@ function SaveDoomedTimeLine(session){
 
 
 	this.renderContent = function(div){
+		console.log("time clone " + this.session.session_id);
 		div.append("<br><img src = 'images/sceneIcons/time_icon.png'>"+this.content());
 		var divID = (div.attr("id"))
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
@@ -66,7 +67,7 @@ function SaveDoomedTimeLine(session){
 	}
 
 	this.content = function(){
-		var ret = "A " + this.timePlayer.htmlTitleBasic() + " suddenly warps in from the future. ";
+		var ret = "Minutes ago, but not many, in a slightly different timeline, a " + this.timePlayer.htmlTitleBasic() + " suddenly warps in from the future. ";
 		ret += " They come with a dire warning of a doomed timeline. ";
 
 		if(this.reason == "Leader killed before ectobiology."){
