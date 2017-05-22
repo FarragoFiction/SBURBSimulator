@@ -941,7 +941,7 @@ function  drawChatNonPlayer(canvas, chat, introText, player1PNG, player2PNG, pla
 	drawWhateverTurnways(p2SpriteBuffer, player2PNG)
 
 	var p1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-	drawWhatever(player1PNG)
+	drawWhatever(p1SpriteBuffer,player1PNG)
 	//don't need buffer for text?
 	var textSpriteBuffer = getBufferCanvas(document.getElementById("chat_text_template"));
 	drawChatTextNonPlayer(textSpriteBuffer, introText, chat,player1Start, player2Start, player1Color, player2Color)
@@ -1103,13 +1103,10 @@ function drawChatTextNonPlayer(canvas, introText, chat, player1Start, player2Sta
 	var current = 18;
 	var ctx = canvas.getContext("2d");
 	ctx.font = "12px Times New Roman"
-  if(player1.sbahj){
-    ctx.font = "12px Comic Sans MS"
-  }
 	ctx.fillStyle = "#000000";
 	ctx.fillText(introText,left_margin*2,current);
 	//need custom multi line method that allows for differnet color lines  fillChatTextMultiLineNonPlayer(canvas, chat, x,y,player1Start, player2Start, player1Color, player2Color)
-	fillChatTextMultiLineNonPlayer(canvas, chat, player1, player2, left_margin, current+line_height*2,player1Start, player2Start, player1Color, player2Color);
+	fillChatTextMultiLineNonPlayer(canvas, chat, left_margin, current+line_height*2,player1Start, player2Start, player1Color, player2Color);
 
 }
 
@@ -2479,10 +2476,10 @@ function fillChatTextMultiLineNonPlayer(canvas, chat, x,y,player1Start, player2S
 		var ct = lines[i].trim();
 		//check player 2 first 'cause they'll be more specific if they have same initials
 		if(ct.startsWith(player2Start)){
-			ctx.fillStyle = player1Color;
+			ctx.fillStyle = player2Color;
       ctx.font = "12px Times New Roman"
 		}else if(ct.startsWith(player1Start)){
-			ctx.fillStyle = player2Color
+			ctx.fillStyle = player1Color
       ctx.font = "12px Times New Roman"
 		}else{
 			ctx.fillStyle = "#000000"
