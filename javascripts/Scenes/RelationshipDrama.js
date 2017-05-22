@@ -67,7 +67,7 @@ function RelationshipDrama(session){
 			//don't set hate here. Even though player is confessing flushed, shows them with a spade 'cause now they hate their crush.
 			//this is not going to go well.
 		}else{
-			if(player2.grimDark > 2){
+			if(player2.grimDark > 3){
 				chatText += chatLine(player2Start, player2,"Your feelings are irrelevant. Your promiscuity is irrelevant.");
 				chatText += chatLine(player1Start, player1,"Fuck. You're grimdark, aren't you. Fuck. I've made a huge mistake.");
 				player1.triggerLevel ++;
@@ -175,7 +175,7 @@ function RelationshipDrama(session){
 			//don't set hate here. Even though player is confessing flushed, shows them with a spade 'cause now they hate their crush.
 			//this is not going to go well.
 		}else{
-			if(player2.grimDark  > 2){
+			if(player2.grimDark  > 3){
 				chatText += chatLine(player2Start, player2,"Your feelings are irrelevant. ");
 				chatText += chatLine(player1Start, player1,"Fuck. You're grimdark, aren't you. Fuck.");
 				player1.triggerLevel ++;
