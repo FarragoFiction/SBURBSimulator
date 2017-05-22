@@ -137,9 +137,9 @@ function FreeWillStuff(session){
 	//less likely if who you hate is ectobiologist or space
 	this.considerEngagingMurderMode = function(player){
 		var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
-		if(player.isActive() && enemies.length > 2 && player.triggerLevel > 3){
+		if(player.isActive() && enemies.length > 2 && player.triggerLevel > 10){
 			return this.becomeMurderMode(player);
-		}else if(enemies.length > 0 && player.triggerLevel > 3){
+		}else if(enemies.length > 0 && player.triggerLevel > 10){
 			return this.forceSomeOneElseMurderMode(player);
 		}
 		return null;

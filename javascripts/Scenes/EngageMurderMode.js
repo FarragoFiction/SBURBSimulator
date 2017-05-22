@@ -11,24 +11,22 @@ function EngageMurderMode(session){
 		var moon = 0;
 
 		if(this.player){
-			var diamond = this.player.hasDiamond()
-			if(this.player.moon == "Prospit"){
-				moon = 5;
-			}
-			var rand = this.player.rollForLuck();
-			if(this.player.triggerLevel > 5 &&  !this.player.murderMode && this.player.getEnemies().length > 0){
-				if(!diamond && rand < (4*this.player.triggerLevel+moon)){  //easier to go crazy if you SEE all your friends dying already. (in prospit clouds)
-					return true;
-				}
-				//much harder to flip your shit if you have a moirail
-				if(diamond && (2*rand < this.player.triggerLevel+moon)){
-					//console.log("Flipped my shit despite having a moirail: " + this.session.session_id)
-					//console.log(this.player.triggerLevel)
-					return true;
-				}
-			}
+			return this.player.getEnemies().length > 0 && this.flipsShit();
+			
 		}
 		return false;
+	}
+	
+	this.flipsShit = function(){
+		var diamond = this.player.hasDiamond()
+		var triggerMinimum = 40;
+		
+		if(diamond) triggerMinimum += 10*this.player.getRelationshipWith(diamond).value;  //hope you don't hate your moirail
+		if(this.player.moon == "Prospit") triggerMinimum += -10; //easier to flip shit when you see murders in the clouds.
+		var ret = (Math.seededRandom() * this.player.triggerLevel > triggerMinimum);
+		if(ret && diamond) console.log("flipping shit even with moirail"  + this.session.session_id)
+		if(ret) console.log("flipping shit naturally " + this.session.session_id)
+		return ret;
 	}
 
 	this.grimChat2 = function(div, player1, player2){
