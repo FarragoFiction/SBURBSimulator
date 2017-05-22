@@ -1425,6 +1425,130 @@ var fantasy_handles2 = ["Believer","Dragon","Magician","Sandman","Shinigami","Te
 var justice_handles2 = ["Detective","Defender","Laywer","Loyalist","Liason","Vigilante","Tracker","Moralist","Retribution","Watchman","Searcher","Perception","Rebel"];
 
 
+//thanks manicInsomniac and ersatzGlottologist
+var postdenizen_maid_quests = ["using their powers to help clean up the debris left from their Denizen actions. Who knew the term maid would be so literal"];
+postdenizen_maid_quests.push("watching over the consorts as they begin to rebuild");
+postdenizen_maid_quests.push("following their consorts to ever larger pieces of debris");
+postdenizen_maid_quests.push("empowering an army of consorts to clean out the last of the debris from their Denizen");
+
+var postdenizen_page_quests = ["learning to control their newfound prowess, accidentally wiping out a consort village or two"];
+postdenizen_page_quests.push("getting all mopey about their new powers, because apparently actually being competent is too much for them");
+postdenizen_page_quests.push("finishing the ‘legendary’ tests of valor with a never before seen aplomb");
+postdenizen_page_quests.push("accepting the role Sburb has placed upon them. They are themselves, and that is all that needs be said on the matter");
+
+var postdenizen_mage_quests = ["finding yet another series of convoluted puzzles, buried deep in their land. These puzzles pour poison into the land, and will continue to do so until solved"];
+postdenizen_mage_quests.push("realizing the voices are gone. Not just quiet, but… gone. Without them, they can finally get down to work on their land puzzles");
+postdenizen_mage_quests.push("solving the more of the puzzles of their land. Not that that's the end of the horseshit, but hey! Less horseshit always helps");
+postdenizen_mage_quests.push("getting sick to death of puzzles and just utterly annihilating one with their game powers");
+
+var postdenizen_knight_quests = ["setting up a series of knight-beacons so the consorts can call them whenever they are needed"];
+postdenizen_knight_quests.push("spending way too much time hustling from village to village, saving the consorts from the denizens last few minions");
+postdenizen_knight_quests.push("breaking a siege on a consort village, saving its population and slaughtering thousands of underlings");
+postdenizen_knight_quests.push("finishing the ‘legendary’ tests of valor dispensed by an elder consort");
+
+var postdenizen_rogue_quests =  ["scouring the land for targets, and then freaking out when they realize there's no bad guys left to steal from"];
+postdenizen_rogue_quests.push("stealing from enemies on other players planets, acquiring enough boonbucks to lift every consort on the planet out of poverty");
+postdenizen_rogue_quests.push("doing a little dance on their pile soon-to-be distributed wealth");
+postdenizen_rogue_quests.push("literally stealing another player's planet. They put it back, but still. A planet. Wow");
+
+var postdenizen_sylph_quests = ["beginning to heal the vast psychological damage their consorts have endured from the denizen’s ravages"];
+postdenizen_sylph_quests.push("setting up counseling booths around their land and staffing them with well trained consort professionals");
+postdenizen_sylph_quests.push("bugging and fussing and meddling with the consorts, but now using their NEW FOUND POWERS");
+postdenizen_sylph_quests.push("realizing that maybe their bugging and fussing and meddling isn’t always the best way to deal with things");
+
+var postdenizen_thief_quests = ["literally stealing another player’s planet. Well, the deed to another player's planet, but still. A planet. Wow"];
+postdenizen_thief_quests.push("stealing every last piece of grist in every last dungeon. Hell fucking yes");
+postdenizen_thief_quests.push("crashing the consort economy when they spend their hellaciously devious wealth");
+postdenizen_thief_quests.push("doing a dance on their pile of ill earned goods and wealth");
+
+
+var postdenizen_heir_quests = ["recruiting denizen villages, spreading a modest nation under their (Democratic!) control"];
+postdenizen_heir_quests.push("assuming control of yet more denizen villages. Turns out a mind bogglingly large number of consorts have the Heir named in their will");
+postdenizen_heir_quests.push("chillaxing with their aspect and while talking to it as if it were a real person.");
+postdenizen_heir_quests.push("wiping a dungeon off the map with their awe inspiring powers");
+
+var postdenizen_bard_quests = ["musing on the nature of death as they wander from desolate consort graveyard to desolate consort graveyard"]; 
+postdenizen_bard_quests.push("staring vacantly into the middle distance as every challenge that rises before them falls away before it even has a chance to do anything"); 
+postdenizen_bard_quests.push("putting on a performance for a huge crowd of awestruck consorts and underlings"); 
+postdenizen_bard_quests.push("playing pranks and generally messing around with the most powerful enemies left in the game"); 
+
+var postdenizen_prince_quests =  ["thinking on endings. The end of their planet. The end of their denizen problems. The end of that very, very stupid imp that just tried to jump them"];
+postdenizen_prince_quests.push("defeating every single mini boss, including a few on other players planets");
+postdenizen_prince_quests.push("burning down libraries of horror terror grimoires, shedding a few tears for the valuable knowledge lost along side the accursed texts");
+postdenizen_prince_quests.push("hunting down and killing the last of a particularly annoying underling class");
+
+var postdenizen_seer_quests = ["casting their sight around the land to find the causes of their land’s devastation"];
+postdenizen_seer_quests.push("taking a consort under their wing and teaching it the craft of magic");
+postdenizen_seer_quests.push("predicting hundreds of thousands of variant future possibilities, only to realize that the future is too chaotic to exactly systemize");
+postdenizen_seer_quests.push("alchemizing more and more complex seer aids, such as crystal balls or space-specs");
+
+var postdenizen_witch_quests = ["alchemizing a mind crushingly huge number of computers in various forms"] 
+postdenizen_witch_quests.push("whizzing around their land like it's fucking christmas") 
+postdenizen_witch_quests.push("defeating a completely out of nowhere mini boss") 
+postdenizen_witch_quests.push("wondering if their sprite prototyping choice was the right one after all") 
+
+var postdenizen_space_quests = ["stoking the forge and preparing to create a new universe"];
+postdenizen_space_quests.push("cloning ribbiting assholes till you’re up to your eyeballs in frogs");
+postdenizen_space_quests.push("cleaning up volcanic debris from the Forge. Man that magma is hot");
+postdenizen_space_quests.push("alchemizing geothermal power infrastructure for the consort villagers. The local consorts babble excitedly at indoor lightning ");
+postdenizen_space_quests.push("restoring the land from the ravages of Echidna");
+
+var postdenizen_time_quests = ["securing the alpha timeline and keeping the corpse pile from getting higher"];
+postdenizen_time_quests.push("high fiving yourself an hour from now for the amazing job you’re going to have done/do with the Hephaestus situation. Time is the best aspect");
+postdenizen_time_quests.push("restoring the consort’s destroyed villages through time shenanigans. The consorts boggle at their newly restored houses");
+
+var postdenizen_breath_quests = ["riding the wind through the pneumatic system, delivering packages to the local consorts"];
+postdenizen_breath_quests.push("doing the windy thing to clean up all of the pneumatic system’s leavings. Wow, that’s a lot of junk");
+postdenizen_breath_quests.push("soothing the local consorts with a cool summer breeze");
+postdenizen_breath_quests.push("whipping up a flurry of wind, the debris of Typhus’ rampage are blown far into the Outer Rim");
+
+var postdenizen_doom_quests = ["assuring the local consorts that with Cassandra’s defeat, the prophecy has been avoided"];
+postdenizen_doom_quests.push("establishing an increasingly esoteric rubric of potential post-Denizen problems and relating them in detail to the consorts. Doom players sure are cheery");
+postdenizen_doom_quests.push("inferring the new possibilities of defeat should the local consorts lack vigilance");
+postdenizen_doom_quests.push("finding a worryingly complete list of their own future deaths, both potential and definite");
+
+var postdenizen_blood_quests = ["undoing the last remnants of Hestia-inflicted emotional damage in the consorts"];
+postdenizen_blood_quests.push("putting together a crack team of emotionally bonded consorts to help the recovery of their land");
+postdenizen_blood_quests.push("weeping tears of joy as their consorts manage to help each other instead of running to a player anytime the smallest thing goes wrong");
+postdenizen_blood_quests.push("preaching a resounding message of ‘don't be a total dick all the time’ to a clamoring crowd of consorts");
+
+var postdenizen_heart_quests = ["rescuing a copy of themselves from extreme peril"];
+postdenizen_heart_quests.push("creating clones of themselves to complete a variety of bullshit puzzles and fights");
+postdenizen_heart_quests.push("swapping around the souls of underlings, causing mass mayhem");
+postdenizen_heart_quests.push("removing the urge to kill from the identity of underlings, rendering them harmless pacifists");
+
+var postdenizen_mind_quests = ["forcing mini bosses to choose between two equally horrible options "];
+postdenizen_mind_quests.push("binding the minds of ogres and using them as battle mounts");
+postdenizen_mind_quests.push("manipulating underlings into madness and infighting");
+postdenizen_mind_quests.push("navigating the countless possible outcomes of whatever bullhit colour the local consorts want to repaint this temple. Great use of their time!");
+
+var postdenizen_light_quests = ["distracting underlings by with over the top displays of their game powers"];
+postdenizen_light_quests.push("teaching the local consorts how to count cards without eating them.");
+postdenizen_light_quests.push("educating themselves on the consequences of betting against the house. As it happens, there are no consequences. ");
+postdenizen_light_quests.push("collecting the complete history and mythos of their land into an easy to navigate 1,000 volume encyclopedia.");
+
+var postdenizen_void_quests = ["Wait, yes! The Void player is… nope. They’re gone."];
+postdenizen_void_quests.push("doing something about their land, but it’s difficult to make out.");
+postdenizen_void_quests.push("fixing temples from the ravages of… something? It’s a best guess. Those temples were totally ravaged a minute ago though.");
+postdenizen_void_quests.push("somehow just doing normal quests with no void interference whatsoever. Huh");
+
+var postdenizen_rage_quests = ["ripping underlings apart with loud, violent screams"];
+postdenizen_rage_quests.push("throwing the mother of all temper tantrums");
+postdenizen_rage_quests.push("fighting through millions of enemies in search of the fabled ‘chill-pill’");
+postdenizen_rage_quests.push("ripping a mini boss a literal new one. Ouch");
+
+var postdenizen_hope_quests = ["leading a huge army of zealous consorts into battle"];
+postdenizen_hope_quests.push("learning ancient chants and forgotten mythos of their lands strange almost-religion");
+postdenizen_hope_quests.push("willing enemies out of existence with but a thought");
+postdenizen_hope_quests.push("winning an argument with gravity");
+
+var postdenizen_life_quests = ["using Hermera’s lair to breed thousands of pollinating insects"];
+postdenizen_life_quests.push("breeding a strain of plant that spreads across the planet in seconds");
+postdenizen_life_quests.push("terraforming their land to be more suited to their desires");
+postdenizen_life_quests.push("resurrecting an ancient civilization of consorts, complete with buildings and culture");
+
+
+
 
 
 
