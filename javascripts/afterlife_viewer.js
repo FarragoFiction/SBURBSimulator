@@ -6,7 +6,7 @@ var canvasWidth = 400;
 var canvasHeight = 300;
 var simulationMode = false;
 window.onload = function() {
-	var p = getParameterByName("players")
+	var p = getRawParameterByName("players")
 	if(p){
 		loadPlayers(p);
 		load(playersGlobalVar, [], "ghosts");//images
@@ -42,9 +42,16 @@ function renderGhosts(){
 }
 
 function loadPlayers(p){
-	var decodedPlayers = decodeURI(p);
-	console.log(decodedPlayers)
- 	var json = JSON.parse(decodedPlayers);
+	alert("loading players")
+	
+	//var decodedPlayers = decodeURI(p);
+	//console.log(decodedPlayers)
+	//p = p.replace(/%/g, " ")
+	console.log("compressed players is: " + p);
+	var uncompressedPlayers = LZString.decompressFromEncodedURIComponent(p);
+	
+	console.log(uncompressedPlayers);
+ 	var json = JSON.parse(uncompressedPlayers);
 	for(var i = 0; i<json.length; i++){
 		playersGlobalVar.push(objToPlayer(json[i]));
 	}

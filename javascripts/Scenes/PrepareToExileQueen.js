@@ -26,21 +26,21 @@ function PrepareToExileQueen(session){
 	}
 
 	this.moderateDamage = function(){
-		console.log(this.session.scratched +  this.player + " moderate damage to queen's power in: " + this.session.session_id)
+	//	console.log(this.session.scratched +  this.player + " moderate damage to queen's power in: " + this.session.session_id)
 		var ret = "The " + this.player.htmlTitle() + " "
 		this.session.queen.power += -10;
 		return ret + getRandomElementFromArray(moderateQueenQuests);
 	}
 
 	this.heavyDamage = function(){
-		console.log(this.session.scratched +  this.player +   " heavy damage to queen's power in: " + this.session.session_id)
+		//console.log(this.session.scratched +  this.player +   " heavy damage to queen's power in: " + this.session.session_id)
 		var ret = "The " + this.player.htmlTitle() + " "
 		this.session.queen.power += -15;
 		return ret + getRandomElementFromArray(heavyQueenQuests);
 	}
 
 	this.lightDamage = function(){
-		console.log(this.session.scratched +  this.player +  " light damage to queen's power in: " + this.session.session_id)
+		//console.log(this.session.scratched +  this.player +  " light damage to queen's power in: " + this.session.session_id)
 		var ret = "The " + this.player.htmlTitle() + " "
 		this.session.queen.power += -5; //ATTENTION FUTURE JR:  you will look at this and wonder why we didn't make it proportional to the queens power. after all,  a five decrease is HUGE to an uncrowned queen and nothing to a First Guardian Queen.   Consider Xeno's paradox, however. If we do it that way, the closer we get to exiling the queen, the less power we'll take from her. She'll never reach zero. DO NOT FUCKING DO THIS.
 		//also, maybe it SHOULD be fucking nothing to a first guardian queen. why the fuck does she care about whatever bullshit you doing. she's a GOD.
