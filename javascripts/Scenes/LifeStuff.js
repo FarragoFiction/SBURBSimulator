@@ -160,9 +160,15 @@ function LifeStuff(session){
 
 		}
 
+
+
 		if(ghost == null  || player.ghostPacts.indexOf(ghost) != -1 || player.ghostWisdom.indexOf(ghost) != -1 || ghost.causeOfDrain){
 			ghost = this.session.afterLife.findAnyGhost(player);
 			ghostName = "dead player"
+		}
+
+		if(ghost && player.id == ghost.id){
+			ghostName = "less fortunate alternate self"
 		}
 
 		if(ghost  && player.ghostPacts.indexOf(ghost) == -1 && player.ghostWisdom.indexOf(ghost) == -1 && !ghost.causeOfDrain){
@@ -173,6 +179,11 @@ function LifeStuff(session){
 				str += " They bond over how " + trait + " they both are. The " + player.htmlTitle() + " feels their determination to beat the game grow. "
 				player.power += ghost.power/2; //not as good as communing, but pretty damn good.
 				player.aspectIncreasePower(ghost.power/2)
+			}else if(ghost.id == player.id){
+				console.log("dead alt selves freakouts " + this.session.session_id)
+				str += " It's kind of freaking the " + player.htmlTitleBasic() + " out a little. "
+				player.triggerLevel ++;
+				player.flipOutReason = "being haunted by their own ghost"
 			}else{
 				str += " It's a little awkward. "
 				player.power += ghost.power/10;
