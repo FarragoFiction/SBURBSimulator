@@ -42,8 +42,6 @@ function renderGhosts(){
 }
 
 function loadPlayers(p){
-	alert("loading players")
-	
 	//var decodedPlayers = decodeURI(p);
 	//console.log(decodedPlayers)
 	//p = p.replace(/%/g, " ")
