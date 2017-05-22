@@ -716,6 +716,17 @@ function drawWhateverTerezi(canvas, imageString){
 	ctx.drawImage(img,x,y,width,height);
 }
 
+function drawWhateverTurnways(canvas, imageString){
+  if(checkSimMode() == true){
+    return;
+  }
+  var ctx = canvas.getContext('2d');
+  ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
+  ctx.translate(canvas.width, 0);
+  ctx.scale(-1, 1);
+  drawWhatever(canvas, imageString);
+}
+
 //have i really been too lazy to make this until now
 function drawWhatever(canvas, imageString){
   if(checkSimMode() == true){
@@ -907,7 +918,16 @@ function  drawChatABJR(canvas, chat){
   if(checkSimMode() == true){
     return;
   }
+  drawChatNonPlayer(canvas, chat, "-- authorBot [AB] began pestering jadedResearcher" + " [JR] --", "ab.png", "jr.png", "AB:", "JR:", "#ff0000", "#3da35a"  )
+}
 
+
+//drawChatTextNonPlayer canvas, introText, chat, player1Start, player2Start, player1Color, player2Color
+//could be spadeslick talking to one of his crew,  could be an easter egg recursiveSlacker
+function  drawChatNonPlayer(canvas, chat, introText, player1PNG, player2PNG, player1Start, player2Start, player1Color, player2Color ){
+  if(checkSimMode() == true){
+    return;
+  }
   var canvasSpriteBuffer = getBufferCanvas(document.getElementById("canvas_template"));
 	var ctx = canvasSpriteBuffer.getContext('2d');
 	var imageString = "pesterchum.png"
@@ -918,22 +938,24 @@ function  drawChatABJR(canvas, chat){
 	ctx.drawImage(img,0,0,width,height);
 
 	var p2SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-	drawJRTurnways(p2SpriteBuffer)
+	drawWhateverTurnways(p2SpriteBuffer, player2PNG)
 
 	var p1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
-	drawAb(p1SpriteBuffer)
+	drawWhatever(player1PNG)
 	//don't need buffer for text?
 	var textSpriteBuffer = getBufferCanvas(document.getElementById("chat_text_template"));
-	var introText = "-- authorBot [AB] began pestering ";
-	introText += "jadedResearcher" + " [JR] --";
-	drawChatTextAB(textSpriteBuffer, introText, chat)
+	drawChatTextNonPlayer(textSpriteBuffer, introText, chat,player1Start, player2Start, player1Color, player2Color)
 	//drawBG(textSpriteBuffer, "#ff9999", "#ff00ff") //test that it's actually being rendered.
 	//p1 on left, chat in middle, p2 on right and flipped turnways.
 	copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,0,0)
 	copyTmpCanvasToRealCanvasAtPos(canvas, p2SpriteBuffer,530,0)//where should i put this?
 	copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,230,0)
 	copyTmpCanvasToRealCanvasAtPos(canvas, textSpriteBuffer,244,51)
+
+
 }
+
+
 
 //hella simple, mostly gonna be used for corpses.
 function drawSinglePlayer(canvas, player){
@@ -1073,7 +1095,7 @@ function drawChatTextJRPlayer(canvas, introText, chat, player){
 	fillChatTextMultiLineJRPlayer(canvas, chat, player, left_margin, current+line_height*2);
 }
 
-function drawChatTextAB(canvas, introText, chat){
+function drawChatTextNonPlayer(canvas, introText, chat, player1Start, player2Start, player1Color, player2Color){
   var space_between_lines = 25;
 	var left_margin = 8;
 	var line_height = 18;
@@ -1081,10 +1103,13 @@ function drawChatTextAB(canvas, introText, chat){
 	var current = 18;
 	var ctx = canvas.getContext("2d");
 	ctx.font = "12px Times New Roman"
+  if(player1.sbahj){
+    ctx.font = "12px Comic Sans MS"
+  }
 	ctx.fillStyle = "#000000";
 	ctx.fillText(introText,left_margin*2,current);
-	//need custom multi line method that allows for differnet color lines
-	fillChatTextMultiLineAB(canvas, chat, left_margin, current+line_height*2);
+	//need custom multi line method that allows for differnet color lines  fillChatTextMultiLineNonPlayer(canvas, chat, x,y,player1Start, player2Start, player1Color, player2Color)
+	fillChatTextMultiLineNonPlayer(canvas, chat, player1, player2, left_margin, current+line_height*2,player1Start, player2Start, player1Color, player2Color);
 
 }
 
@@ -2445,21 +2470,19 @@ function fillChatTextMultiLineJRPlayer(canvas, chat, player, x, y){
 	ctx.fillStyle = "#000000"
 }
 
-function fillChatTextMultiLineAB(canvas, chat, x, y){
+function fillChatTextMultiLineNonPlayer(canvas, chat, x,y,player1Start, player2Start, player1Color, player2Color){
   var ctx = canvas.getContext("2d");
 	var lineHeight = ctx.measureText("M").width * 1.2;
   var lines = chat.split("\n");
-	var player1Start = "AB:";
-	var player2Start = "JR:"
  	for (var i = 0; i < lines.length; ++i) {
 		//does the text begin with player 1's chat handle short? if so: getChatFontColor
 		var ct = lines[i].trim();
 		//check player 2 first 'cause they'll be more specific if they have same initials
 		if(ct.startsWith(player2Start)){
-			ctx.fillStyle = "#3da35a";
+			ctx.fillStyle = player1Color;
       ctx.font = "12px Times New Roman"
 		}else if(ct.startsWith(player1Start)){
-			ctx.fillStyle = "#ff0000"
+			ctx.fillStyle = player2Color
       ctx.font = "12px Times New Roman"
 		}else{
 			ctx.fillStyle = "#000000"
@@ -2469,8 +2492,9 @@ function fillChatTextMultiLineAB(canvas, chat, x, y){
   	}
 	//word wrap these
 	ctx.fillStyle = "#000000"
-
 }
+
+
 
 //matches line color to player font color
 function fillChatTextMultiLine(canvas, chat, player1, player2, x, y) {
