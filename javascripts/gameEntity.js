@@ -1486,8 +1486,8 @@ prototyping_objects[prototyping_objects.length-1].power = 20;
 
 prototyping_objects.push(new GameEntity(null, "Fancy Santa",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
-disastor_objects[disastor_objects.length-1].helpfulness = -1;
-disastor_objects[disastor_objects.length-1].helpPhrase = "goes hohohohohohohohoho. ";
+prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "goes hohohohohohohohoho. ";
 
 
 prototyping_objects.push(new GameEntity(null, "Tiger",null));
