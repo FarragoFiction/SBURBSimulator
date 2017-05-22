@@ -167,7 +167,7 @@ function PlanToExileJack(session){
 	}
 
 	this.renderContent = function(div){
-		this.plannedToExileJack = true;
+		this.session.plannedToExileJack = true;
 		if(!this.planner){
 			return;
 		}

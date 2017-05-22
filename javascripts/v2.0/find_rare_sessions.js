@@ -548,6 +548,11 @@ function processCombinedSession(){
 			//console.log("not a combo session")
 			curSessionGlobalVar.makeCombinedSession == false
 			summarizeSession(curSessionGlobalVar);
+		}else{
+			if(needToScratch){
+				scratchAB(curSessionGlobalVar);
+				return null;
+			}
 		}
 	}
 

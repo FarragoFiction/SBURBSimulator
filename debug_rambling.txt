@@ -1031,3 +1031,15 @@ if it's a combo session, i don't even render the scratch button. Right?  So AB i
 regular sessions only have scratches be an option AFTER process combined session.
 
 I remember in this very text i was upgraded AB to handle scratches.  So...why did I choose to do things different.  let's review.
+
+
+
+
+
+
+
+~~~~~~~~~OK, AB is acting up.
+
+If there is a sick frog that is NOT a combo session, shes' not scratching.
+
+Need to find out why.   (She is totally sulking about how I told her she can't scratch mid-combo session)

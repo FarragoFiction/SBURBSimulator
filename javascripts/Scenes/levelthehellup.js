@@ -37,13 +37,13 @@ function LevelTheHellUp(session){
 	this.renderForPlayer = function(div,player){
 		var levelName = player.getNextLevel(); //could be undefined
 		if(!levelName){
-			console.log("Scratched is: " + this.session.scratched + " Player has AAAAAAAALL the levels. All of them. " + this.session.session_id)
+			//console.log("Scratched is: " + this.session.scratched + " Player has AAAAAAAALL the levels. All of them. " + this.session.session_id)
 			return; //don't make a blank div
 		}
 		var boonies = this.getBoonies(player)
 		var narration = "";
 		var repeatTime = 1000;
-		var divID = (div.attr("id")) + "_" + player.chatHandle+player.ectoBiologicalSource; 
+		var divID = (div.attr("id")) + "_" + player.chatHandle+player.ectoBiologicalSource;
 		var narrationHTML = "<br><div id = 'narration" + divID + "'></div>";
 
 		div.append(narrationHTML);
