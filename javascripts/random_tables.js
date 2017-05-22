@@ -956,7 +956,7 @@ function getRandomQuestFromClass(class_name,postDenizen){
 		if(!postDenizen) first_arr = prince_quests;
 		if(postDenizen) first_arr = postdenizen_prince_quests;
 	}else if(class_name == "Witch"){
-		if(postDenizen) first_arr = witch_quests;
+		if(!postDenizen) first_arr = witch_quests;
 		if(postDenizen) first_arr = postdenizen_witch_quests;
 	}
 	return getRandomElementFromArray(first_arr);
