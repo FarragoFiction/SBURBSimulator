@@ -1106,7 +1106,7 @@ disastor_objects[disastor_objects.length-1].hp = 250;
 disastor_objects[disastor_objects.length-1].currentHP = 250;
 disastor_objects[disastor_objects.length-1].power = 250;
 disastor_objects[disastor_objects.length-1].helpfulness = -1;
-disastor_objects[disastor_objects.length-1].helpPhrase = "stares creepily. It never moves when your watching it. It's basically the worst, and that's all there is to say on that topic. ";
+disastor_objects[disastor_objects.length-1].helpPhrase = "stares creepily. It never moves when you're watching it. It's basically the worst, and that's all there is to say on that topic. ";
 
 
 
