@@ -1004,28 +1004,29 @@ var available_aspects = ["Breath","Doom","Blood","Heart","Mind","Light","Void","
 
 //TODO eventually implent null land titles, like Mounds and Xenon.
 var space_land_titles = ["Frogs"];
-var time_land_titles = ["Quartz", "Clockwork", "Gears", "Melody"];
-var breath_land_titles = ["Wind", "Breeze", "Zephyr"];
-var doom_land_titles = ["Fire", "Death", "Prophecy"];
-var blood_land_titles = ["Pulse","Bonds", "Clots"];
-var heart_land_titles = ["Little Cubes", "Dolls","Selfies"];
-var mind_land_titles = ["Thought", "Rationality", "Decisions"];
-var light_land_titles = ["Treasure","Light","Knowledge"];
-var void_land_titles = ["Silence","Nothing","Void"];
-var rage_land_titles = ["Mirth","Whimsy","Madness"];
-var hope_land_titles = ["Angels","Hope","Belief"];
-var life_land_titles = ["Dew","Spring","Beginnings"];
+var time_land_titles = ["Quartz", "Clockwork", "Gears", "Melody","Cesium", "Clocks", "Ticking", "Beats", "Mixtapes","Songs", "Music", "Vuvuzelas", "Drums", "Pendulums"];
+var breath_land_titles = ["Wind","Breeze","Zephyr","Gales","Storms","Planes","Twisters", "Hurricanes","Gusts", "Windmills", "Pipes", "Whistles"];
+var doom_land_titles = ["Fire", "Death", "Prophecy", "Blight", "Rules", "Prophets", "Poison", "Funerals", "Graveyards", "Ash", "Disaster", "Fate", "Destiny", "Bones"];
+var blood_land_titles = ["Pulse", "Bonds", "Clots", "Bloodlines", "Ichor", "Veins", "Chambers", "Arteries", "Unions"];
+var heart_land_titles = ["Little Cubes","Dolls","Selfies","Mirrors", "Spirits", "Souls", "Jazz", "Shards", "Splinters"];
+var mind_land_titles = ["Thought", "Rationality", "Decisions","Consequences", "Choices", "Paths", "Trails", "Trials"];
+var light_land_titles = ["Treasure", "Light","Knowledge","Radiance", "Gambling", "Casinos", "Fortune", "Sun", "Glow", "Chance"];
+var void_land_titles = ["Silence", "Nothing","Void","Emptiness", "Tears", "Dust", "Night", "[REDACTED]", "???", "Blindness"];
+var rage_land_titles = ["Mirth","Whimsy","Madness","Impossibility", "Chaos", "Hate", "Violence", "Joy", "Murder", "Noise", "Screams","Denial"];
+var hope_land_titles = ["Angels","Hope","Belief","Faith","Determination", "Possibility", "Hymns", "Heroes", "Chapels", "Lies", "Bullshit"];
+var life_land_titles = ["Dew","Spring","Beginnings","Vitality", "Jungles", "Swamps", "Gardens", "Summer", "Chlorophyll", "Moss", "Rot", "Mold"];
 
-var free_land_titles = ["Heat","Sand","Brains","Haze","Tea","Flow","Maps","Caves","Tents","Wrath","Rays","Glass"];
-free_land_titles = free_land_titles.concat(["Shade","Frost","Rain","Fog","Trees","Flowers","Books","Technology","Ice","Water","Rocks"]);
-free_land_titles = free_land_titles.concat(["Forests","Grass","Tundra","Thunder","Storms","Peace","Food","Shoes","Weasels","Deserts","Dessert"]);
-free_land_titles = free_land_titles.concat(["Suburbs","Cities","Neighborhoods","Isolation","Schools","Farms","Annoyance","Hunger","Cake","Lies","Ruse"]);
-free_land_titles = free_land_titles.concat(["Nails","Smoke","Jungles","Flood","Mud","Weeds","Vines","Courts","Clay","Halls","Choirs"]);
+
+var free_land_titles = ["Heat","Sand","Brains","Haze","Tea","Flow","Maps","Caves","Tents","Wrath","Rays","Glass","Lava","Magma"];
+free_land_titles = free_land_titles.concat(["Shade","Frost","Rain","Fog","Trees","Flowers","Books","Technology","Ice","Water", "Waterfalls","Rocks"]);
+free_land_titles = free_land_titles.concat(["Forests","Grass","Tundra","Thunder","Winter","Peace","Food","Shoes","Weasels","Deserts","Dessert","Lightning"]);
+free_land_titles = free_land_titles.concat(["Suburbs","Cities","Neighborhoods","Isolation","Schools","Farms","Annoyance","Hunger","Cake","Tricks","Ruins","Temples", "Towers"]);
+free_land_titles = free_land_titles.concat(["Nails","Smoke","Curses","Flood","Ooze","Mud","Weeds","Vines","Courts","Clay","Halls","Choirs","Mushrooms", "Locks"]);
 free_land_titles = free_land_titles.concat(["Slums","Balloons","Rumbling","Warfare","Cliffs","Needles","Mountains","Shadows","Circuitry","Fences","Webs"]);
 free_land_titles = free_land_titles.concat(["Bone","Arenas","Wonder","Fluff","Cotton","Domes","Gold","Silver","Bronze","Ruby","Ribbon"]);
-free_land_titles = free_land_titles.concat(["Hair","Teeth","Mouths","Paint","Pain","Wood","Screams","Fossils","Roses","Mummies","Zombies"]);
-free_land_titles = free_land_titles.concat(["Mysteries","Splendor","Luxury","Cash","Coins","Cards","Tarot","Wagons","Puzzles","Mayhem","Redundancy"]);
-free_land_titles = free_land_titles.concat(["Obsolescence","Deceit","Ruse","Distraction","Libraries","Blocks","Video Games","Vermin","Butchers","Meat","Clouds"]);
+free_land_titles = free_land_titles.concat(["Hair","Teeth","Tendrils","Mouths","Paint","Pain","Wood","Colors","Echoes","Fossils","Roses","Tulips","Mummies", "Zombies", "Corpses"]);
+free_land_titles = free_land_titles.concat(["Mysteries","Splendor","Luxury","Cash","Coins","Crystals","Gemstones","Cards","Tarot","Wagons","Puzzles","Mayhem","Redundancy","Redundancy"]);
+free_land_titles = free_land_titles.concat(["Obsolescence","Deceit","Ruse","Distraction","Libraries","Blocks","Video Games","Vermin","Butchers","Meat","Clouds", "Horses"]);
 
 
 var corruptedOtherLandTitles = [Zalgo.generate("Horrorterrors"),Zalgo.generate("Glitches"),Zalgo.generate("Grimoires"),Zalgo.generate("Oglog"),Zalgo.generate("Fluthlu"),Zalgo.generate("Garnghut"),Zalgo.generate("Morthol"),Zalgo.generate("The Zoologically Dubious")];
