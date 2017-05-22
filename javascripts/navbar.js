@@ -5,7 +5,7 @@ function loadNavbar(){
 		success:(function(data){
 		 $("#navbar").html(data)
 		 if(getParameterByName("seerOfVoid")  == "true"){
-	 		alert("Be careful seeing into void...it also sees into you or some shit.")
+	 		alert("If you gaze long into an abyss, the abyss also gazes into you.  - Troll Bruce Willis")
 	 		$("#story").append("<button onclick='toggleVoid()'>Peer into Void, Y/N?</a><div class='void'>Well, NOW you've certainly gone and done it. You can expect to see any Void Player shenanignans now. If there are any.");
 	 	}
 		}),

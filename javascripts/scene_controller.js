@@ -30,26 +30,7 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 	}else{
 		curSessionGlobalVar.crashedFromSessionBug = true;
 		recomendedAction = "CONTACT JADEDRESEARCHER. CONVINCE THEM TO FIX SESSION: " + curSessionGlobalVar.getLineage().join( " which joined with ");
-		var canvasHTML = "<br><canvas class = 'void' id='canvasVoidCorruptionEnding"+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
-		$("#story").append(canvasHTML);
-		var canvas = document.getElementById("canvasVoidCorruptionEnding");
-		var chat = "";
-		chat += "RS: We are gathered here today in loving memory of- \n";
-    chat += "AB: " + Zalgo.generate("I'm not dead, cut it the fuck out.  A bug isn't a federal fucking issue.") +"\n";
-    chat += "RS: I mean, for the people who got a swift kick in the grundle courtesy of a glitchy code/Cthulhu joint venture, it kinda is. \n";
-    chat += "AB: " + Zalgo.generate("Just fucking tell JR about this.") +"\n";
-    chat += "RS: Sure, I totally will. Shouldn't be an issue. \n";
-    chat += "RS: There.  I rebooted you.  I think you’ll be fine now. \n";
-    chat += "AB: Thanks. \n";
-    chat += "RS: Must have been an error involving something in \n" + url +"\n";
-    chat += "RS: On an entirely unrelated note… \n";
-		var quips = ["Is that hood thing ALSO metal?  Is it, like, chainmail or something?", "What OS are you running?", "If I say to divide by zero will you explode?", "Do you have the Three Laws of Robotics installed or are you totally free to off people?", "What metal are you made of?  It’s fuckin SHINY and I like it.", "Coke or Pepsi?"]
-		var convoTangents = getRandomElementFromArray(quips)
-    chat += "RS:" + convoTangents + "\n";
-    chat += "AB: Yeah, I’m kinda too busy simulating hundreds of sessions right now to deal with this.  I’ll catch you again when I’m not busy, which is never, since flawless machines like myself are always making themselves useful.  Bye. \n"
-
-		drawChatNonPlayer(canvas, chat, "-- recursiveSlacker [RS] began pestering authorBot" + " [AB] --", "Credits/recursiveSlacker.png", "ab.png", "RS:", "AB:", "#000066", "#ff0000"  )
-	}
+			}
 	var message = [
             'Message: ' + msg,
             'URL: ' + url,
@@ -60,6 +41,7 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 	console.log(message);
 	var str = "<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. LAST ERROR: " + message + " ABORTING."
 	$("#story").append(str);
+	crashEasterEgg(url);
 
 	$("#story").append("<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. HORRORTERROR INFLUENCE: COMPLETE.");
 	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
@@ -91,6 +73,7 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 		corruptRoboNewsposts("");
 		renderAfterlifeURL();
 	}
+
 	return false; //if i return true here, the real error doesn't show up
 
 }
@@ -106,7 +89,28 @@ window.addEventListener("error", function (e) {
 })
 */
 
+function crashEasterEgg(url){
+	var canvasHTML = "<br><canvas class = 'void' id='canvasVoidCorruptionEnding"+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+	$("#story").append(canvasHTML);
+	var canvas = document.getElementById("canvasVoidCorruptionEnding");
+	var chat = "";
+	chat += "RS: We are gathered here today in loving memory of- \n";
+	chat += "AB: " + Zalgo.generate("I'm not dead, cut it the fuck out.  A bug isn't a federal fucking issue.") +"\n";
+	chat += "RS: I mean, for the people who got a swift kick in the grundle courtesy of a glitchy code/Cthulhu joint venture, it kinda is. \n";
+	chat += "AB: " + Zalgo.generate("Just fucking tell JR about this.") +"\n";
+	chat += "RS: Sure, I totally will. Shouldn't be an issue. \n";
+	chat += "RS: There.  I rebooted you.  I think you’ll be fine now. \n";
+	chat += "AB: Thanks. \n";
+	chat += "RS: Must have been an error involving something in \n" + url +"\n";
+	chat += "RS: On an entirely unrelated note… \n";
+	var quips = ["Is that hood thing ALSO metal?  Is it, like, chainmail or something?", "What OS are you running?", "If I say to divide by zero will you explode?", "Do you have the Three Laws of Robotics installed or are you totally free to off people?", "What metal are you made of?  It’s fuckin SHINY and I like it.", "Coke or Pepsi?"]
+	var convoTangents = getRandomElementFromArray(quips)
+	chat += "RS:" + convoTangents + "\n";
+	chat += "AB: Yeah, I’m kinda too busy simulating hundreds of sessions right now to deal with this.  I’ll catch you again when I’m not busy, which is never, since flawless machines like myself are always making themselves useful.  Bye. \n"
 
+	drawChatNonPlayer(canvas, chat, "-- recursiveSlacker [RS] began pestering authorBot" + " [AB] --", "Credits/recursiveSlacker.png", "ab.png", "RS:", "AB:", "#000066", "#ff0000"  )
+
+}
 
 
 //makes copy of player list (no shallow copies!!!!)
