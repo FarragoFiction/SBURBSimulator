@@ -1449,7 +1449,7 @@ var fantasy_handles2 = ["Believer","Dragon","Magician","Sandman","Shinigami","Te
 var justice_handles2 = ["Detective","Defender","Laywer","Loyalist","Liason","Vigilante","Tracker","Moralist","Retribution","Watchman","Searcher","Perception","Rebel"];
 
 
-//thanks manicInsomniac and ersatzGlottologist
+//thanks manicInsomniac and ersatzGlottologist and recursiveSlacker!!!
 var postdenizen_maid_quests = ["using their powers to help clean up the debris left from their Denizen actions. Who knew the term maid would be so literal"];
 postdenizen_maid_quests.push("watching over the consorts as they begin to rebuild");
 postdenizen_maid_quests.push("following their consorts to ever larger pieces of debris");
@@ -1518,8 +1518,11 @@ postdenizen_space_quests.push("alchemizing geothermal power infrastructure for t
 postdenizen_space_quests.push("restoring the land from the ravages of Echidna");
 
 var postdenizen_time_quests = ["securing the alpha timeline and keeping the corpse pile from getting higher"];
-postdenizen_time_quests.push("high fiving yourself an hour from now for the amazing job you’re going to have done/do with the Hephaestus situation. Time is the best aspect");
+postdenizen_time_quests.push("high fiving themself an hour from now for the amazing job they're going to have done/do with the Hephaestus situation. Time is the best aspect");
 postdenizen_time_quests.push("restoring the consort’s destroyed villages through time shenanigans. The consorts boggle at their newly restored houses");
+postdenizen_time_quests.push("building awesome things way in the past for themselves to find later");
+
+
 
 var postdenizen_breath_quests = ["riding the wind through the pneumatic system, delivering packages to the local consorts"];
 postdenizen_breath_quests.push("doing the windy thing to clean up all of the pneumatic system’s leavings. Wow, that’s a lot of junk");
