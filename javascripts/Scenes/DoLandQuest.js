@@ -13,45 +13,35 @@ function DoLandQuest(session){
 	this.trigger = function(playerList){
 		//console.log("do land quest trigger?")
 		this.playersPlusHelpers = [];
-
-		for(var i = 0; i<this.session.availablePlayers.length; i++){
-			var p = this.session.availablePlayers[i]
-			if(p.power > 2 && p.grimDark < 3){ //can't be first thing you do in medium.
-				if(p.land != null ){  //everyone can go over 100%, post denizen is thing.
-					var chance = Math.seededRandom();
-					var helper = this.lookForHelper(p);
-					if(helper && helper.grimDark >= 3) helper = null;  //grim dark players aren't going to do quests.
-
-					if(p.land == null){//seriously don't do land quests without a land
-						//console.log("not doing land quests because don't have a land")
-					}else{
-						var playerPlusHelper = [p,helper];
-
-						if((p.aspect == "Blood" || p.class_name == "Page") ){// if page or blood player, can't do it on own.
-							if(playerPlusHelper[1] != null){
-								if((p.landLevel < this.landLevelNeeded || p.aspect == "Space") || Math.seededRandom() > .5){
-									this.playersPlusHelpers.push(playerPlusHelper);
-									if(p.aspect != "Time") removeFromArray(p, this.session.availablePlayers);
-									if(p.aspect != "Time") removeFromArray(helper, this.session.availablePlayers); //don't let my helper do their own quests.
-								}
-
-							}
-						}else{
-							if((p.landLevel < this.landLevelNeeded || p.aspect == "Space") || Math.seededRandom() > .5){
-								this.playersPlusHelpers.push(playerPlusHelper);
-								if(p.aspect != "Time") removeFromArray(p, this.session.availablePlayers);
-								if(p.aspect != "Time") removeFromArray(helper, this.session.availablePlayers); //don't let my helper do their own quests.
-							}
-						}
-					}
-				}else{
-					//console.log("not doing land quests at " + p.land)
-				}
-			}
+		for(var j = 0; j<this.session.availablePlayers.length; j++){
+			var p = this.session.availablePlayers[j]
+			var ph = this.getPlayerPlusHelper(p);
+			if(ph) this.playersPlusHelpers.push(ph);
 		}
 		//console.log(this.playersPlusHelpers.length + " players are available for quests.");
 		return this.playersPlusHelpers.length > 0;
 	}
+	
+	this.getPlayerPlusHelper = function(p){
+		if(!p.land || p.power < 2 || p.grimDark > 3) return false;  //can't do quests at all.
+		var helper = this.lookForHelper(p);
+		if(helper && helper.grimDark >= 3) helper = null;  //grim dark players aren't going to do quests.
+		var playerPlusHelper = [p,helper];
+		
+		if((p.aspect == "Blood" || p.class_name == "Page") ){// if page or blood player, can't do it on own.
+			if(playerPlusHelper[1] != null){
+				if((p.landLevel < this.landLevelNeeded || p.aspect == "Space") || Math.seededRandom() > .5){
+					this.playersPlusHelpers.push(playerPlusHelper);
+				}
+
+			}
+		}else{
+			if((p.landLevel < this.landLevelNeeded || p.aspect == "Space") || Math.seededRandom() > .5){
+				this.playersPlusHelpers.push(playerPlusHelper);
+			}
+		}
+	}
+
 
 	this.renderContent = function(div){
 		div.append("<br> <img src = 'images/sceneIcons/quest_icon.png'>"+this.content(div));
@@ -232,9 +222,12 @@ function DoLandQuest(session){
 	this.contentForPlayer = function(player, helper){
 		var ret = " ";
 		ret += "The " + player.htmlTitle()  ;
+		if(player.aspect != "Time") removeFromArray(player, this.session.availablePlayers);
+								
 		player.increasePower();
 		player.landLevel ++;
 		if(helper){
+			if(helper.aspect != "Time") removeFromArray(helper, this.session.availablePlayers); //don't let my helper do their own quests.
 			ret += " and the " + helper.htmlTitle() + " do " ;
 			helper.increasePower();
 			player.landLevel ++;
