@@ -19,9 +19,9 @@ function EngageMurderMode(session){
 	
 	this.flipsShit = function(){
 		var diamond = this.player.hasDiamond()
-		var triggerMinimum = 40;
+		var triggerMinimum = 20;
 		
-		if(diamond) triggerMinimum += 10*this.player.getRelationshipWith(diamond).value;  //hope you don't hate your moirail
+		if(diamond) triggerMinimum += this.player.getRelationshipWith(diamond).value;  //hope you don't hate your moirail
 		if(this.player.moon == "Prospit") triggerMinimum += -10; //easier to flip shit when you see murders in the clouds.
 		var ret = (Math.seededRandom() * this.player.triggerLevel > triggerMinimum);
 		if(ret && diamond) console.log("flipping shit even with moirail"  + this.session.session_id)

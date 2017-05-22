@@ -86,8 +86,12 @@ function VoidyStuff(session){
 			this.fightDenizen(normalDiv, newDiv)
 			this.endingPhrase(classDiv, newDiv);
 			return;
+		}else if(this.player.triggerLevel > 5 && !this.player.murderMode){
+			this.goMurderMode(normalDiv, newDiv)
+			this.endingPhrase(classDiv, newDiv);
+			return;
 		}else{ //pick from random array.
-				var options = [this.makeEnemies.bind(this,normalDiv,newDiv), this.makeFriends.bind(this,normalDiv, newDiv),this.goMurderMode.bind(this,normalDiv,newDiv),this.dolandQuests.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv)];
+				var options = [this.makeEnemies.bind(this,normalDiv,newDiv), this.makeFriends.bind(this,normalDiv, newDiv),this.dolandQuests.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv)];
 				getRandomElementFromArray(options)();
 		}
 
