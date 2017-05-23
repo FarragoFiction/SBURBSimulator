@@ -17,11 +17,6 @@ var charCreatorHelperGlobalVar;
 window.onload = function() {
 	$(this).scrollTop(0);
 	loadNavbar();
-	debug("<h1>Extremely fucking alpha</h1>, beware, scratches, combo session and YellowYards have no guarantee of working.  <span class = 'void'><Br><br>Current status: can override claspects.  Can change cosmetic details. </span> ");
-	debug("<span class = 'void'><Goals: Redo this page entirely. No longer do sessions in same page. This page is ONLY for customization. Instead, use afterlife URL code to transfer customized player data to index2.html. Make sure to load customized data before easter eggs and during yellow yard/scratch bullshit. Have regular shareable URL and custom character shareable URL (shareable URL will be a goddamned paragraph till i figure out a decent compression scheme). Clicking 'replay' from a session that already has custom characters has to transfer those back to this page.</span>")
-	debug("<span class = 'void'><<br>TODO: Choose interests, moon. Choose cosmetic things like, chatHandlel, favorite number, quirk.  Customize relationships. Customize god tier destiny. Customize luck. maybe write in prototypeing, along with specifying which subset they are in? same thing with interests?</span>")
-	debug("<br>If you want to have a specific amount of players, use <a href = 'rare_session_finder_junior.html' > ABJ </a> to find a session ID, then add it to the URL with '?seed=SESSIONID'<br><Br>")
-
 	//these bitches are SHAREABLE.
 	if(getParameterByName("seed")){
 		Math.seed = getParameterByName("seed");
@@ -33,7 +28,7 @@ window.onload = function() {
 	}
 	initSession();
 	charCreatorHelperGlobalVar = new CharacterCreatorHelper(curSessionGlobalVar.players);
-	shareableURL();
+	//shareableURL();
 }
 
 function renderPlayersForEditing(){

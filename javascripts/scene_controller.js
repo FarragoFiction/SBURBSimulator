@@ -25,12 +25,20 @@ function createScenesForSession(session){
 
 function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 	var recomendedAction = "";
+	var space = findAspectPlayer(curSessionGlobalVar.players, "Space")
+	var time = findAspectPlayer(curSessionGlobalVar.players, "Time")
 	if(curSessionGlobalVar.crashedFromPlayerActions){
 		recomendedAction = "OMFG JUST STOP CRASHING MY DAMN SESSIONS. FUCKING GRIMDARK PLAYERS. BREAKING SBURB DOES NOT HELP ANYBODY! ";
+	}else if(!space){
+		curSessionGlobalVar.crashedFromCustomShit = true;
+		recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A SPACE PLAYER, DUNKASS. ";
+	}else if(!TIME){
+		curSessionGlobalVar.crashedFromCustomShit = true;
+		recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A TIME PLAYER, DUNKASS. ";
 	}else{
 		curSessionGlobalVar.crashedFromSessionBug = true;
 		recomendedAction = "CONTACT JADEDRESEARCHER. CONVINCE THEM TO FIX SESSION: " + curSessionGlobalVar.getLineage().join( " which joined with ");
-			}
+	}
 	var message = [
             'Message: ' + msg,
             'URL: ' + url,
