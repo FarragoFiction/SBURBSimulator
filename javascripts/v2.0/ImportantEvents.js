@@ -34,10 +34,10 @@ function PlayerDiedButCouldGodTier(session, mvp_value, player, doomedTimeClone){
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
 			this.doomedTimeClone.currentHP = this.doomedTimeClone.hp
-			this.secondTimeClone.dead = false;
-			this.secondTimeClone.currentHP = this.secondTimeClone.hp
 
 			if(this.secondTimeClone){
+				this.secondTimeClone.dead = false;
+				this.secondTimeClone.currentHP = this.secondTimeClone.hp
 				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			//console.log("times called : " + this.timesCalled)
@@ -101,8 +101,8 @@ function PlayerDiedForever(session, mvp_value, player, doomedTimeClone){
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
 			this.doomedTimeClone.currentHP = this.doomedTimeClone.hp
-			this.secondTimeClone.dead = false;
-			this.secondTimeClone.currentHP = this.secondTimeClone.hp
+			if(this.secondTimeClone) this.secondTimeClone.dead = false;
+			if(this.secondTimeClone) this.secondTimeClone.currentHP = this.secondTimeClone.hp
 			if(this.secondTimeClone){
 				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
@@ -164,9 +164,10 @@ function PlayerWentGrimDark(session, mvp_value,player, doomedTimeClone){
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
 			this.doomedTimeClone.currentHP = this.doomedTimeClone.hp
-			this.secondTimeClone.dead = false;
-			this.secondTimeClone.currentHP = this.secondTimeClone.hp
+
 			if(this.secondTimeClone){
+				this.secondTimeClone.dead = false;
+				this.secondTimeClone.currentHP = this.secondTimeClone.hp
 				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
@@ -219,9 +220,10 @@ function PlayerWentMurderMode(session, mvp_value, player, doomedTimeClone){
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
 			this.doomedTimeClone.currentHP = this.doomedTimeClone.hp
-			this.secondTimeClone.dead = false;
-			this.secondTimeClone.currentHP = this.secondTimeClone.hp
+
 			if(this.secondTimeClone){
+				this.secondTimeClone.dead = false;
+				this.secondTimeClone.currentHP = this.secondTimeClone.hp
 				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
@@ -273,9 +275,10 @@ function JackPromoted(session, mvp_value, doomedTimeClone){
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
 			this.doomedTimeClone.currentHP = this.doomedTimeClone.hp
-			this.secondTimeClone.dead = false;
-			this.secondTimeClone.currentHP = this.secondTimeClone.hp
+
 			if(this.secondTimeClone){
+				this.secondTimeClone.dead = false;
+				this.secondTimeClone.currentHP = this.secondTimeClone.hp
 				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
@@ -320,9 +323,10 @@ function FrogBreedingNeedsHelp(session, mvp_value, doomedTimeClone){
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
 			this.doomedTimeClone.currentHP = this.doomedTimeClone.hp
-			this.secondTimeClone.dead = false;
-			this.secondTimeClone.currentHP = this.secondTimeClone.hp
+
 			if(this.secondTimeClone){
+				this.secondTimeClone.dead = false;
+				this.secondTimeClone.currentHP = this.secondTimeClone.hp
 				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			var narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
@@ -378,9 +382,10 @@ function PlayerEnteredSession(session, mvp_value,player, doomedTimeClone){
 		this.timesCalled ++;
 		this.doomedTimeClone.dead = false;
 		this.doomedTimeClone.currentHP = this.doomedTimeClone.hp
-		this.secondTimeClone.dead = false;
-		this.secondTimeClone.currentHP = this.secondTimeClone.hp
+
 			if(this.secondTimeClone){
+				this.secondTimeClone.dead = false;
+				this.secondTimeClone.currentHP = this.secondTimeClone.hp
 				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
@@ -436,9 +441,10 @@ function TimePlayerEnteredSessionWihtoutFrog(session, mvp_value,player, doomedTi
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
 			this.doomedTimeClone.currentHP = this.doomedTimeClone.hp
-			this.secondTimeClone.dead = false;
-			this.secondTimeClone.currentHP = this.secondTimeClone.hp
+
 			if(this.secondTimeClone){
+				this.secondTimeClone.dead = false;
+				this.secondTimeClone.currentHP = this.secondTimeClone.hp
 				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			var player = this.session.getVersionOfPlayerFromThisSession(this.player);

@@ -112,6 +112,7 @@ function decision(){
 		doom.dead = false;
 		doom.doomed = true;
 		doom.currentHP = doom.hp
+    doom.influenceSymbol = "mind_forehead.png";
     eventToUndo2x.secondTimeClone = doom;
     curSessionGlobalVar.addEventToUndoAndReset(null);
   }
