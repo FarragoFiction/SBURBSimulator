@@ -109,9 +109,9 @@ function decision(){
     var eventToUndo2x = curSessionGlobalVar.yellowYardController.eventsToUndo[index];
     var timePlayer = findAspectPlayer(curSessionGlobalVar.players, "Time")
     var doom = makeRenderingSnapshot(timePlayer);
-		timeClone.dead = false;
-		timeClone.doomed = true;
-		timeClone.currentHP = timeClone.hp
+		doom.dead = false;
+		doom.doomed = true;
+		doom.currentHP = doom.hp
     eventToUndo2x.secondTimeClone = doom;
     curSessionGlobalVar.addEventToUndoAndReset(null);
   }
