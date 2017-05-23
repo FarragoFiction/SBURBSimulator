@@ -552,6 +552,8 @@ function processCombinedSession(){
 			if(needToScratch){
 				//scratchAB(curSessionGlobalVar);
 				needToScratch = false; //can't scratch if skaiai is a frog
+				curSessionGlobalVar.makeCombinedSession == false
+				summarizeSession(curSessionGlobalVar);
 				return null;
 			}
 		}
