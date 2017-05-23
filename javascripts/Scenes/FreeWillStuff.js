@@ -208,6 +208,7 @@ function FreeWillStuff(session){
 				ret_abs_value = v;
 			}
 		}
+		if(ret == null && player.aspect == "Time" && !player.godTier) return player;
 		if(ret.target == player && player.aspect != "Time") ret = null;
 		return ret.target;
 	}
@@ -393,12 +394,12 @@ function FreeWillStuff(session){
 		if(sacrifice && !sacrifice.dead && !sacrifice.godTier){
 			var bed = "bed"
 			var loop = ""
-			if(player == patsy){
+			if(player == sacrifice){
 				loop = "You get dizzy trying to follow the time logic that must have caused this to happen. Did they try to god tier because they tried to god tier? Or wait, is this a doomed time clone...? Fuck. Time is the shittiest aspect."
 				console.log(player.title() +" convincing past/future self to go god tier" + this.session.session_id);
 			} 
 			if(sacrifice.isDreamSelf) bed = "slab"
-			if(sacrifice.freeWill < player.freeWill && player.power < 200){ //can just talk them into this terrible idea.   not a good chance of working.
+			if(sacrifice.freeWill <= player.freeWill && player.power < 200){ //can just talk them into this terrible idea.   not a good chance of working.
 				if(sacrifice.godDestiny && (sacrifice.dreamSelf || sacrifice.isDreamSelf)){ //if my dream self is dead and i am my real self....
 					var ret =  this.godTierHappens(sacrifice);
 					removeFromArray(player, this.session.availablePlayers);
