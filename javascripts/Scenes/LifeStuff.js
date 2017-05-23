@@ -171,7 +171,7 @@ function LifeStuff(session){
 			ghostName = "less fortunate alternate self"
 		}
 
-		if(ghost && ghost.causeOfDeath.indexOf(player.title()) != -1){
+		if(ghost && ghost.causeOfDeath.indexOf(player.titleBasic()) != -1){
 			ghostName = "murder victim"
 			console.log("The " + player.title() + " did cause: " + ghost.causeOfDeath + " " + this.session.session_id)
 		}else{
