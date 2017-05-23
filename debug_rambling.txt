@@ -1069,3 +1069,58 @@ Okay, let's plan this out, sequence of events:
 	* should handle things for yellow yards??????????????????????????????????????????????????????????????????????????????????????????????????????
 
 
+Alright, let's compare this plan to reality.  
+
+scenario_controller2.js has:
+
+curSessionGlobalVar.makePlayers();
+curSessionGlobalVar.randomizeEntryOrder();
+curSessionGlobalVar.makeGuardians(); //after entry order established
+
+So, if I implemented my change in MakePlayers, then the entry order would get randomized from the char creator. And the guardians would resemble the created characters (do I want that?)
+
+But if I make it by a fourth call, run the risk of forgetting to call it sometimes.  Could have a session far be all "init" and it calls all four?
+
+What does a yellowyard or otherwise reinitialized session look like, just in the controller?
+
+function reinit(){
+	available_classes = classes.slice(0);
+	available_aspects = nonrequired_aspects.slice(0); //required_aspects
+	available_aspects = available_aspects.concat(required_aspects.slice(0));
+
+	curSessionGlobalVar.reinit();
+}
+
+
+function restartSession(){
+	$("#story").html('<canvas id="loading" width="1000" height="354"> ');
+	window.scrollTo(0, 0);
+	initializeStatsForPlayers(curSessionGlobalVar.players);
+	intro();
+}
+
+
+function processCombinedSession(){
+	var tmpcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
+	if(tmpcurSessionGlobalVar){
+		curSessionGlobalVar = tmpcurSessionGlobalVar
+		$("#story").append("<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Their sick frog may have screwed them over, but the connection it provides to their child universe will equally prove to be their salvation. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session <a href = 'index2.html?seed=" + curSessionGlobalVar.session_id + "'>"+curSessionGlobalVar.session_id +"</a>. ");
+		checkSGRUB();
+		load(curSessionGlobalVar.players); //in loading.js
+	}else{
+		//scratch fuckers.
+		curSessionGlobalVar.makeCombinedSession = false;  //can't make a combo session, so scratch
+		renderScratchButton(curSessionGlobalVar);
+	}
+
+}
+
+and yellowYard specifically is:
+curSessionGlobalVar.addEventToUndoAndReset(null);
+and  restartSession (in controller)
+	
+	
+Okay. So, it looks like initiazeStatsForPlayers is called on the existing players. But the players themselves aren't remade. So, might not even have to worry about YellowYard?
+
+	
+	
