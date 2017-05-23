@@ -1126,3 +1126,7 @@ EMERGENCY:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~found the source of yellow y
 	this is a good opporunity to have a method to reinit all things, including land and levels so that created players can be called with this.
 	method should have programtic shit, not random shit. don't re-roll hair, do recalc land. 
 	
+Okay. things seem to be working. had to stop testing cause stuff. need to reorganize my thoughts.
+
+I honestly think new char creator is working. Just need to test yellow yard. test by changing player hair colors (trolls are an obvious target). should cause the sim to have 0 changes, but be obvious that it's a custom character.
+	
