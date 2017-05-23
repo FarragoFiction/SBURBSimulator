@@ -1827,6 +1827,32 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 		}
 	}
+	
+	this.initialize = function(){
+		this.initializeStats();
+		this.initializeSprite();
+		this.initializeDerivedStuff();
+	}
+	
+	this.initializeDerivedStuff = function(){
+		var tmp =getRandomLandFromPlayer(this);
+		this.land1 = tmp[0]
+		this.land2 = tmp[1];
+		this.land = "Land of " + tmp[0] + " and " + tmp[1];
+		this.chatHandle = getRandomChatHandle(this.class_name,this.aspect,this.interest1, this.interest2);
+		this.mylevels = getLevelArray(this);//make them ahead of time for echeladder graphic
+		this.spriteCanvasID = this.chatHandle+this.id+"spriteCanvas";
+		var canvasHTML = "<br><canvas style='display:true' id='" + this.spriteCanvasID+"' width='" +400 + "' height="+300 + "'>  </canvas>";
+		$("#playerSprites").append(canvasHTML)
+	}
+	
+	this.initializeSprite = function(){
+		this.sprite = new GameEntity(session, "sprite",null); //unprototyped.
+		//minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs, grist
+		this.sprite.setStats(30,50,50,0,0,0,0,false, false, [],1000);//same as denizen minion, but empty power
+		this.sprite.doomed = true
+		this.sprite.sprite = true;
+	}
 
 	//players can start with any luck, (remember, Vriska started out super unlucky and only got AAAAAAAALL the luck when she hit godtier)
 	//make sure session calls this before first tick, cause otherwise won't be initialized by right claspect after easter egg or character creation.
@@ -1857,9 +1883,9 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 }
 
-function initializeStatsForPlayers(players){
+function initializePlayers(players){
 	for(var i = 0; i<players.length; i++){
-		players[i].initializeStats();
+		players[i].initialize();
 	}
 }
 
@@ -1971,22 +1997,13 @@ function randomPlayerWithClaspect(session, c,a){
 	var id = Math.seed;
 	var p =  new Player(session,c,a,k,m,gd,id);
 
-	p.initializeStats();
-	var tmp =getRandomLandFromPlayer(p);
-	p.sprite = new GameEntity(session, "sprite",null); //unprototyped.
-	//minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs, grist
-	p.sprite.setStats(30,50,50,0,0,0,0,false, false, [],1000);//same as denizen minion, but empty power
-	p.sprite.doomed = true
-	p.sprite.sprite = true;
-	p.land1 = tmp[0]
-	p.land2 = tmp[1];
-	p.land = "Land of " + tmp[0] + " and " + tmp[1];
+	p.initialize();
+	
 	//no longer any randomness directly in player class. don't want to eat seeds if i don't have to.
 	p.baby = getRandomInt(1,3)
 	p.interest1 = getRandomElementFromArray(interests);
 	p.interest2 = getRandomElementFromArray(interests);
-	p.chatHandle = getRandomChatHandle(p.class_name,p.aspect,p.interest1, p.interest2);
-	p.mylevels = getLevelArray(p);//make them ahead of time for echeladder graphic
+	
 	p.hair = getRandomInt(1,60);
 	p.hairColor = getRandomElementFromArray(human_hair_colors);
 	p.leftHorn =  getRandomInt(1,46);
@@ -1995,9 +2012,7 @@ function randomPlayerWithClaspect(session, c,a){
 			p.rightHorn = getRandomInt(1,46);
 	}
 
-	p.spriteCanvasID = p.chatHandle+p.id+"spriteCanvas";
-	var canvasHTML = "<br><canvas style='display:true' id='" + p.spriteCanvasID+"' width='" +400 + "' height="+300 + "'>  </canvas>";
-	$("#playerSprites").append(canvasHTML)
+	
 	return p;
 
 }
