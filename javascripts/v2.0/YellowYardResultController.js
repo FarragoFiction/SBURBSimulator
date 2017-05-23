@@ -1,4 +1,4 @@
-/*
+ /*
 	While the session contains a list of every ImportantEvent that happens inside of it,
 	THIS object contains a list of every ImportantEvent the Observer has decided to change.
 
@@ -107,7 +107,12 @@ function decision(){
     //undoing undoing an event.
     index = index - yyrEventsGlobalVar.length
     var eventToUndo2x = curSessionGlobalVar.yellowYardController.eventsToUndo[index];
-    eventToUndo2x.secondTimeClone = curSessionGlobalVar.importantEvents[0].doomedTimeClone;
+    var timePlayer = findAspectPlayer(curSessionGlobalVar.players, "Time")
+    var doom = makeRenderingSnapshot(timePlayer);
+		timeClone.dead = false;
+		timeClone.doomed = true;
+		timeClone.currentHP = timeClone.hp
+    eventToUndo2x.secondTimeClone = doom;
     curSessionGlobalVar.addEventToUndoAndReset(null);
   }
 
