@@ -1122,5 +1122,7 @@ and  restartSession (in controller)
 	
 Okay. So, it looks like initiazeStatsForPlayers is called on the existing players. But the players themselves aren't remade. So, might not even have to worry about YellowYard?
 
-	
+EMERGENCY:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~found the source of yellow yard shenanigans.  PLAYERS are being reinitialized, but their sprites are NOT!!!!!!!!!!!
+	this is a good opporunity to have a method to reinit all things, including land and levels so that created players can be called with this.
+	method should have programtic shit, not random shit. don't re-roll hair, do recalc land. 
 	
