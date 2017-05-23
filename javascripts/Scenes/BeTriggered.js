@@ -35,6 +35,8 @@ function BeTriggered(session){
 				return false;
 			}
 			if(player.flipOutReason == "being haunted by their own ghost") console.log("flipping otu over own ghost" + this.session.session_id);
+			//"being haunted by the ghost of the Player they killed"
+				if(player.flipOutReason == "being haunted by the ghost of the Player they killed") console.log("flipping otu over victim ghost" + this.session.session_id);
 			///okay. player.flippingOutOverDeadPlayer apparently can be null even if i totally and completely am flipping otu over a dead player. why.
 			//console.log("preparing to flip my shit. and its about " + player.flipOutReason + " which BETTEr fucking not be about a dead player. " + player.flippingOutOverDeadPlayer)
 			return true; //i am flipping out over not a dead player, thank you very much.

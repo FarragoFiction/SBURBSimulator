@@ -171,19 +171,32 @@ function LifeStuff(session){
 			ghostName = "less fortunate alternate self"
 		}
 
+		if(ghost && ghost.causeOfDeath.indexOf(player.title()) != -1){
+			ghostName = "murder victim"
+			console.log("The " + player.title() + " did cause: " + ghost.causeOfDeath + " " + this.session.session_id)
+		}else{
+			console.log("The " + player.title() + " did not cause: " + ghost.causeOfDeath + " " + this.session.session_id)
+		}
+
 		if(ghost  && player.ghostPacts.indexOf(ghost) == -1 && player.ghostWisdom.indexOf(ghost) == -1 && !ghost.causeOfDrain){
-			//console.log("dream bubble onion" +this.session.session_id);
+		console.log("dream bubble onion" +this.session.session_id);
 			var str = "The " + player.htmlTitle() + " wanders a shifting and confusing landscape. They think they see a " + ghostName+"? They must be dreaming.";
 			var trait = whatDoPlayersHaveInCommon(player, ghost);
-			if(trait != 'nice' && ghost.id != player.id){
-				str += " They bond over how " + trait + " they both are. The " + player.htmlTitle() + " feels their determination to beat the game grow. "
-				player.power += ghost.power/2; //not as good as communing, but pretty damn good.
-				player.aspectIncreasePower(ghost.power/2)
-			}else if(ghost.id == player.id){
+			if(ghostName == "murder victim"){  //
+				console.log("dead murder victims freakouts " + this.session.session_id)
+				str += " It's kind of freaking the " + player.htmlTitleBasic() + " out a little. "
+				player.triggerLevel ++;
+				player.flipOutReason = "being haunted by the ghost of the Player they killed"
+
+			}else if(ghostName == "less fortunate alternate self"){
 				console.log("dead alt selves freakouts " + this.session.session_id)
 				str += " It's kind of freaking the " + player.htmlTitleBasic() + " out a little. "
 				player.triggerLevel ++;
 				player.flipOutReason = "being haunted by their own ghost"
+			}else if(trait != 'nice' && ghost.id != player.id){
+				str += " They bond over how " + trait + " they both are. The " + player.htmlTitle() + " feels their determination to beat the game grow. "
+				player.power += ghost.power/2; //not as good as communing, but pretty damn good.
+				player.aspectIncreasePower(ghost.power/2)
 			}else{
 				str += " It's a little awkward. "
 				player.power += ghost.power/10;
