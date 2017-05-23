@@ -1996,13 +1996,13 @@ function randomPlayerWithClaspect(session, c,a){
 	var m = getRandomElementFromArray(moons);
 	var id = Math.seed;
 	var p =  new Player(session,c,a,k,m,gd,id);
-
+	p.interest1 = getRandomElementFromArray(interests);
+	p.interest2 = getRandomElementFromArray(interests);
 	p.initialize();
 	
 	//no longer any randomness directly in player class. don't want to eat seeds if i don't have to.
 	p.baby = getRandomInt(1,3)
-	p.interest1 = getRandomElementFromArray(interests);
-	p.interest2 = getRandomElementFromArray(interests);
+	
 	
 	p.hair = getRandomInt(1,60);
 	p.hairColor = getRandomElementFromArray(human_hair_colors);
