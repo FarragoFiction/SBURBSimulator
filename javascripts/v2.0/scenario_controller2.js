@@ -104,7 +104,9 @@ function startSession(){
 
 
 function shareableURL(){
-	var str = '<div class = "links"><a href = "index2.html?seed=' +initial_seed +'">Shareable URL </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <a href = "character_creator.html?seed=' +initial_seed +' " target="_blank">Replay Session (Mildly Fucking Alpha) </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp<a href = "index2.html">Random Session URL </a> </div>'
+	var params = window.location.href.substr(window.location.href.indexOf("?")+1)
+	if (params == window.location.href) params = ""
+	var str = '<div class = "links"><a href = "index2.html?seed=' +initial_seed +'&' + params + ' ">Shareable URL </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <a href = "character_creator.html?seed=' +initial_seed +'&' + params + ' " target="_blank">Replay Session (Mildly Fucking Alpha) </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp<a href = "index2.html">Random Session URL </a> </div>'
 	$("#seedText").html(str);
 }
 
