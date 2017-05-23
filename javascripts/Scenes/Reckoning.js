@@ -41,6 +41,7 @@ function Reckoning(session){
 			intro += "<br><br>";
 			$("#story").append(intro);
 			console.log("reckoning scratch button")
+			this.session.scratchAvailable = true;
 			renderScratchButton(this.session);
 			this.session.scratchAvailable = true;
 			return intro;

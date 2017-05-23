@@ -140,10 +140,11 @@ function renderScratchButton(session){
 		if(!session.scratched){
 			//this is apparently spoilery.
 			//alert(living.length  + " living players and the " + timePlayer.land + " makes a scratch available!");
-			var html = '<img src="images/Scratch.png" onclick="scratchConfirm()"><br>Click To Scratch Session?';
-			$("#story").append(html);
-			console.log("um where is the scratch button?")
-			renderAfterlifeURL();
+			if(session.scratchAvailable){
+				var html = '<img src="images/Scratch.png" onclick="scratchConfirm()"><br>Click To Scratch Session?';
+				$("#story").append(html);
+				renderAfterlifeURL();
+			}
 		}else{
 			console.log("no more scratches")
 			$("#story").append("<br>This session is already scratched. No further scratches available.");
@@ -228,8 +229,8 @@ function processCombinedSession(){
 		load(curSessionGlobalVar.players); //in loading.js
 	}else{
 		//scratch fuckers.
-		curSessionGlobalVar.makeCombinedSession = false;  //can't make a combo session, so scratch
-		renderScratchButton(curSessionGlobalVar);
+		curSessionGlobalVar.makeCombinedSession = false;  //can't make a combo session, and skiaia is a frog so no scratch.
+		//renderScratchButton(curSessionGlobalVar);
 	}
 
 }

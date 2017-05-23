@@ -140,9 +140,9 @@ function Aftermath(session){
 					if(this.session.ectoBiologyStarted == true){
 						this.session.makeCombinedSession = true; //triggers opportunity for mixed session
 					}
-					//I am hella tempted to implement mixed sessions here, like the troll/human session in canon.
-					this.session.scratchAvailable = true;
-					renderScratchButton(this.session);
+					//if skaia is a frog, it can't take in the scratch command.
+					this.session.scratchAvailable = false;
+					//renderScratchButton(this.session);
 
 				}else{
 					end += this.democracyBonus();
