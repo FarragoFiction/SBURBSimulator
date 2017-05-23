@@ -130,6 +130,8 @@ function getSessionType(){
 }
 
 function renderScratchButton(session){
+	var timePlayer = findAspectPlayer(curSessionGlobalVar.players, "Time")
+	if(!timePlayer) throw "CAN'T SCRATCH WITHOUT A TIME PLAYER, JACKASS"
 	console.log("scratch possible, button");
 	//alert("scratch [possible]");
 	//can't scratch if it was a a total party wipe. just a regular doomed timeline.
