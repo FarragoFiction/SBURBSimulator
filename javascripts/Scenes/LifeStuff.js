@@ -174,8 +174,6 @@ function LifeStuff(session){
 		if(ghost && ghost.causeOfDeath.indexOf(player.titleBasic()) != -1){
 			ghostName = "murder victim"
 			console.log("The " + player.title() + " did cause: " + ghost.causeOfDeath + " " + this.session.session_id)
-		}else{
-			console.log("The " + player.title() + " did not cause: " + ghost.causeOfDeath + " " + this.session.session_id)
 		}
 
 		if(ghost  && player.ghostPacts.indexOf(ghost) == -1 && player.ghostWisdom.indexOf(ghost) == -1 && !ghost.causeOfDrain){
