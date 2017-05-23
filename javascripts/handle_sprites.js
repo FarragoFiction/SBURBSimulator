@@ -512,7 +512,7 @@ function poseAsATeam(canvas,players, repeatTime){
 		}
 }
 
-function drawGodRevival(canvas, live_players, dead_players, repeatTime){
+function drawGodRevival(canvas, live_players, dead_players){
   if(checkSimMode() == true){
     return;
   }

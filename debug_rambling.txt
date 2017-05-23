@@ -1043,3 +1043,15 @@ I remember in this very text i was upgraded AB to handle scratches.  So...why di
 If there is a sick frog that is NOT a combo session, shes' not scratching.
 
 Need to find out why.   (She is totally sulking about how I told her she can't scratch mid-combo session)
+
+~~~~~~~~~~~~~~~~~~~~~
+
+Huh, the light player is being revived with a mind control symbol, but isn't being mind controlled until the next turn. setting a break point on mind control reveals that they are in fact not yet rendering the revival.
+
+Do i have a stray timeout wandering around?  I am definitely making a snapshot of the light player, should i make one before even calling renderSprite?
+
+light player IS rendered as being mad at the breath player befoer the mind control happens, no mark. 
+
+AHAH, yes, stray timeout that ALSO explains why sometimes god tiers would "revive" dead.  that bug is fixed!
+
+

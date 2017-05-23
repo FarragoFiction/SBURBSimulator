@@ -43,9 +43,7 @@ function GodTierRevival(session){
 			}
 		}
 
-		setTimeout(function(){
-			drawGodRevival(canvasDiv, live_players, dead_players,repeatTime)
-		}, repeatTime/2);  //images aren't always loaded by the time i try to draw them the first time.
+		drawGodRevival(canvasDiv, live_players, dead_players,repeatTime)
 	}
 
 	//in retrospect this doesn't make sense. they are already dead here and can not be revived.
