@@ -391,14 +391,9 @@ function generateURLParamsForPlayers(players){
 	var ret = ""//up to caller to make players = ret
 	var json = JSON.stringify(players);  //inside of players handles looking for keys
 	console.log(json)
-	//otherwise won't escape single quotes, like in <font color = ''> stuff
-	//encode URI doesn't escape # but encodeURIComponent does.
 	//if want localStorage , then compressToUTF16  http://pieroxy.net/blog/pages/lz-string/guide.html
 	var compressed = LZString.compressToEncodedURIComponent(json);
 	console.log(compressed)
-	//return encodeURIComponent(ret+json, "UTF-8").replace(/'/g, "%27").replace(/&/g,"%26"); //& can be in quirks.
-	//return encodeURIComponent(ret+compressed, "UTF-8")
-	//console.log( LZString.decompress(compressed))
 	return compressed
 
  }

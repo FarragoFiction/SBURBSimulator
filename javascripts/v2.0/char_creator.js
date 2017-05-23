@@ -55,9 +55,12 @@ function initSession(){
 	 loadFuckingEverything(true);
 }
 
+//IMPORTANT, DON'T RENDER THIS onload
+//instead, when player clicks "STart Session", render this button so they click it. OR, rerender this button any time you reredner players.
 function renderURLToSendPlayersIntoSBURB(){
-	var html = "<Br><br><a href = 'rip.html?players=" + generateURLParamsForPlayers(curSessionGlobalVar.players) + "' target='_blank'>Be Responsible For Sending Players into SBURB?</a>";
-	$("#story").append(html);
+	var seed = getParameterByName("seed");
+	var html = "<Br><br><a href = 'index2.html?seed=" + seed +"&players=" + generateURLParamsForPlayers(curSessionGlobalVar.players) + "' target='_blank'>Be Responsible For Sending Players into SBURB?</a>";
+	$("#character_creator").append(html);
 }
 
 function reinit(){
