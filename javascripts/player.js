@@ -871,7 +871,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	//SBURB is not a mystery to these classes/aspects.
 	this.knowsAboutSburb = function(){
-		var rightClass = this.class_name == "Seer" || this.aspect == "Light" || this.aspect == "Mind" || this.aspect == "Doom"
+		//time might not innately get it, but they have future knowledge
+		var rightClass = this.class_name == "Seer" || this.aspect == "Light" || this.aspect == "Mind" || this.aspect == "Doom" || this.aspect == "Time"
 		return rightClass && this.power > 20; //need to be far enough in my claspect
 	}
 

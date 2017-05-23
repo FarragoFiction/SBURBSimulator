@@ -197,8 +197,10 @@ function FreeWillStuff(session){
 
 	//as little randomness in free will as possible. choices. decisions.
 	this.findNonGodTierBesidesMe = function(player){
+		console.log(player.title() + " is looking for a god tier besides themselves: " + this.session.session_id)
 		var ret = null;
 		var ret_abs_value = 0;
+		if(player.aspect == "Time" && !player.godTier) return player;  //god tier yourself first.
 		//ideally somebody i wouldn't miss too much if they were gone, and wouldn't fear too much if they had phenomenal cosmic power. so. lowest abs value.
 		for(var i = 0; i<player.relationships.length; i++){
 			var r = player.relationships[i];
@@ -208,7 +210,7 @@ function FreeWillStuff(session){
 				ret_abs_value = v;
 			}
 		}
-		if(ret == null && player.aspect == "Time" && !player.godTier) return player;
+		
 		if(ret.target == player && player.aspect != "Time") ret = null;
 		return ret.target;
 	}
