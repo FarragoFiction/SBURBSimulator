@@ -82,7 +82,7 @@ By the way, I'd add more bullshit activity, like "does random bullshit sidequest
 
 	this.renderContent = function(div){
 		//console.log("Ultimate Riddle for Player with power of: " + this.player1.power + " and land level of: " + this.player1.landLevel + " " + this.player1)
-		div.append("<br>"+this.content());
+		div.append("<br> <img src = 'images/sceneIcons/sidequest_icon.png'>"+this.content());
 	}
 
 	this.spreadCoruption = function(player1, player2){

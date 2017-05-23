@@ -40,7 +40,7 @@ this.getGoodGuys = function(){
 
 	this.renderContent = function(div){
 		//console.log("rendering fight king);")
-		div.append("<br>");
+		div.append("<br> <img src = 'images/sceneIcons/bk_icon.png'>");
 		div.append(this.content());
 
 		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.

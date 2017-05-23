@@ -41,7 +41,7 @@ function FightQueen(session){
 
 	this.renderContent = function(div){
 		if(this.session.queen.getPower() < 0) console.log("rendering fight queen with negative power " +this.session.session_id)
-		div.append("<br>");
+		div.append("<br> <img src = 'images/sceneIcons/bq_icon.png'>");
 		div.append(this.content());
 
 		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.

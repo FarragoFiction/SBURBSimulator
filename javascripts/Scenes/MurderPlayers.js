@@ -26,7 +26,7 @@ function MurderPlayers(session){
 	}
 
 	this.renderContent = function(div){
-		div.append("<br>"+this.contentForRender(div));
+		div.append("<br> <img src = 'images/sceneIcons/murder_icon.png'>"+this.contentForRender(div));
 	}
 
 	this.friendsOfVictimHateYou = function(victim, murderer){

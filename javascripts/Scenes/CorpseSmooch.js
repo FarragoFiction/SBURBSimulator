@@ -174,7 +174,7 @@ function CorpseSmooch(session){
 					if(alt && alt.alternateScene(div)){
 						//do nothing here.
 					}else{
-						ret += d.htmlTitle() + "'s corpse waits patiently for the kiss of life. But nobody came. ";
+						ret += "<Br><Br><img src = 'images/sceneIcons/death_icon.png'>" + d.htmlTitle() + "'s corpse waits patiently for the kiss of life. But nobody came. ";
 						ret += " Their dream self dies as well. ";
 						this.makeDead(d);
 					}
