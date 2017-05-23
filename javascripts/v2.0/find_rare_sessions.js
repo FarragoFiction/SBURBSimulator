@@ -539,11 +539,16 @@ function processCombinedSession(){
 	initial_seed = Math.seed;
 	var newcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
 	if(newcurSessionGlobalVar){
+		console.log("doing a combo session")
 		curSessionGlobalVar = newcurSessionGlobalVar;
 		$("#story").append("<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session " + curSessionGlobalVar.session_id + ". ");
 		intro();
 	}else{
-		var living = findLivingPlayers(curSessionGlobalVar.players)
+		console.log("can't combo, can't scratch. just do next session.")
+		needToScratch = false; //can't scratch if skaiai is a frog
+		curSessionGlobalVar.makeCombinedSession == false
+		summarizeSession(curSessionGlobalVar);
+		/*var living = findLivingPlayers(curSessionGlobalVar.players)
 		if(curSessionGlobalVar.scratched || living.length == 0){
 			//console.log("not a combo session")
 			curSessionGlobalVar.makeCombinedSession == false
@@ -556,7 +561,7 @@ function processCombinedSession(){
 				summarizeSession(curSessionGlobalVar);
 				return null;
 			}
-		}
+		}*/
 	}
 
 }

@@ -88,7 +88,7 @@ function JackRampage(session){
 			if(stabbings[0].dreamSelf && !stabbings[0].isDreamSelf && Math.seededRandom() >.5){
 				//jack kills the dream self instead of the active self. no strife. just death.
 				//want to test out a dream self dying without active.
-				console.log("jack kills nonactive dream self: " + this.session.session_id)
+				//console.log("jack kills nonactive dream self: " + this.session.session_id)
 				ret = "Jack has found the dream self of the " + stabbings[0].htmlTitleBasic() + ". He shows the sleeping body his stabs. The dream self is no longer available for revival shenanigans. ";
 				div.append(""+ret);
 				stabbings[0].dreamSelf = false;
