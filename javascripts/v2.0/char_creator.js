@@ -8,7 +8,7 @@ var repeatTime = 5;
 var version2 = true; //even though idon't want  to render content, 2.0 is different from 1.0 (think of dialog that triggers)
 var curSessionGlobalVar;
 var charCreatorHelperGlobalVar;
-
+var numURLS = 0;
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.
 //should there be only one canvas?  Can have player sprites be written to a virtual canvas first, then copied to main one.
@@ -55,7 +55,8 @@ function initSession(){
 //instead, when player clicks "STart Session", render this button so they click it. OR, rerender this button any time you reredner players.
 function renderURLToSendPlayersIntoSBURB(){
 	var seed = getParameterByName("seed");
-	var html = "<Br><br><a href = 'index2.html?seed=" + seed +"&players=" + generateURLParamsForPlayers(curSessionGlobalVar.players) + "' target='_blank'>Be Responsible For Sending Players into SBURB?</a>";
+	numURLS ++;
+	var html = "<Br><br><a href = 'index2.html?seed=" + seed +"&players=" + generateURLParamsForPlayers(curSessionGlobalVar.players) + "' target='_blank'>Be Responsible For Sending Players into SBURB? (Link " + numURLS +")</a>";
 	$("#character_creator").append(html);
 }
 
