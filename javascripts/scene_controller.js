@@ -32,7 +32,7 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 	}else if(!space){
 		curSessionGlobalVar.crashedFromCustomShit = true;
 		recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A SPACE PLAYER, DUNKASS. ";
-	}else if(!TIME){
+	}else if(!time){
 		curSessionGlobalVar.crashedFromCustomShit = true;
 		recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A TIME PLAYER, DUNKASS. ";
 	}else{
