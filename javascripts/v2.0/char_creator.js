@@ -55,6 +55,11 @@ function initSession(){
 	 loadFuckingEverything(true);
 }
 
+function renderURLToSendPlayersIntoSBURB(){
+	var html = "<Br><br><a href = 'rip.html?players=" + generateURLParamsForPlayers(curSessionGlobalVar.players) + "' target='_blank'>Be Responsible For Sending Players into SBURB?</a>";
+	$("#story").append(html);
+}
+
 function reinit(){
 	available_classes = classes.slice(0);
 	available_aspects = nonrequired_aspects.slice(0); //required_aspects
