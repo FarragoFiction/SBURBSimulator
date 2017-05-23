@@ -1055,3 +1055,17 @@ light player IS rendered as being mad at the breath player befoer the mind contr
 AHAH, yes, stray timeout that ALSO explains why sometimes god tiers would "revive" dead.  that bug is fixed!
 
 
+
+~~~~~~~~~~~~~~~~~~~~~
+
+Okay, let's plan this out, sequence of events:
+
+* players edited in character creator
+* link generated to send into SBURB (you monster)
+* index2.html loaded.
+* session.makePlayers called.  makePlayer generates correct number of players, but then replaces them with players from URL.  (IF AND ONLY IFF SESSION.SESSION_ID == PARAM SEED (don't do this for combo sessions you dunkass)
+	*  recalculates all things that were part of initialization.  chatHandle. Land. level names.   dont' recalculate other things, like kernel sprite (even if you're a troll now), or relationships.
+	*  guardians match players that DID exist, not replayed players.
+	* should handle things for yellow yards??????????????????????????????????????????????????????????????????????????????????????????????????????
+
+
