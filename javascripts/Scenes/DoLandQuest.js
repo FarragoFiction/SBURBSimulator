@@ -11,33 +11,38 @@ function DoLandQuest(session){
 	this.landLevelNeeded = 12;
 
 	this.trigger = function(playerList){
-		//console.log("do land quest trigger?")
 		this.playersPlusHelpers = [];
+		var availablePlayers = this.session.availablePlayers.slice(); //don't modify available players while you iterate on it, dummy
 		for(var j = 0; j<this.session.availablePlayers.length; j++){
 			var p = this.session.availablePlayers[j]
-			var ph = this.getPlayerPlusHelper(p);
-			if(ph) this.playersPlusHelpers.push(ph);
+			var ph = this.getPlayerPlusHelper(p, availablePlayers);
+			if(ph){
+				this.playersPlusHelpers.push(ph);
+				if(ph[0].aspect != "Time" && ph[0].aspect != "Breath") availablePlayers.removeFromArray(ph[0]);   //for land qeusts only, breath players can do multiple. time players ALWAYS do multiple of everything.
+				if(ph[1] && ph[0].aspect != "Time" && ph[0].aspect != "Breath" )availablePlayers.removeFromArray(ph[1])
+			} 
 		}
 		//console.log(this.playersPlusHelpers.length + " players are available for quests.");
 		return this.playersPlusHelpers.length > 0;
 	}
 	
-	this.getPlayerPlusHelper = function(p){
+	
+	this.getPlayerPlusHelper = function(p, availablePlayers){
 		if(!p.land || p.power < 2 || p.grimDark > 3) return false;  //can't do quests at all.
-		var helper = this.lookForHelper(p);
+		var helper = this.lookForHelper(p,availablePlayers);
 		if(helper && helper.grimDark >= 3) helper = null;  //grim dark players aren't going to do quests.
 		var playerPlusHelper = [p,helper];
 		
 		if((p.aspect == "Blood" || p.class_name == "Page") ){// if page or blood player, can't do it on own.
 			if(playerPlusHelper[1] != null){
 				if((p.landLevel < this.landLevelNeeded || p.aspect == "Space") || Math.seededRandom() > .5){
-					this.playersPlusHelpers.push(playerPlusHelper);
+					return (playerPlusHelper);
 				}
 
 			}
 		}else{
 			if((p.landLevel < this.landLevelNeeded || p.aspect == "Space") || Math.seededRandom() > .5){
-				this.playersPlusHelpers.push(playerPlusHelper);
+				return (playerPlusHelper);
 			}
 		}
 	}
@@ -53,12 +58,12 @@ function DoLandQuest(session){
 			return this.session.addImportantEvent(new FrogBreedingNeedsHelp(this.session, current_mvp.power) );
 	}
 	//high mobility players chosen first as helpers. both a blessing and a curse.
-	this.lookForHelper = function(player,div){
+	this.lookForHelper = function(player,availablePlayers){
 		var helper = null;
 
 		//space player can ONLY be helped by knight, and knight prioritizes this
 		if(player.aspect == "Space"){//this shit is so illegal
-			helper = findClassPlayer(this.session.availablePlayers, "Knight");
+			helper = findClassPlayer(availablePlayers, "Knight");
 			if(helper != player){ //a knight of space can't help themselves.
 				return helper;
 			}else{
@@ -72,7 +77,7 @@ function DoLandQuest(session){
 
 		if(player.aspect == "Blood" || player.class_name == "Page"){ //they NEED help.
 			if(this.session.availablePlayers.length > 1){
-				helper = findHighestMobilityPlayer(this.session.availablePlayers); //mobility might be useful in a fight, but it curses you to not get your shit done on your own planet.
+				helper = findHighestMobilityPlayer(availablePlayers); //mobility might be useful in a fight, but it curses you to not get your shit done on your own planet.
 			}else{
 				this.player1 = null;
 				return null;
@@ -82,7 +87,7 @@ function DoLandQuest(session){
 
 		//if i'm not blood or page, or space, or maybe time random roll for a friend.
 		if(this.session.availablePlayers.length > 1 && Math.seededRandom() > .5){
-			helper = findHighestMobilityPlayer(this.session.availablePlayers);
+			helper = findHighestMobilityPlayer(availablePlayers);
 			if(player == helper ){
 				return null;
 			}
@@ -107,6 +112,19 @@ function DoLandQuest(session){
 		//okay, now that i know it's not a time clone, look at my relationship with my helper.
 		var r1 = player.getRelationshipWith(helper);
 		var r2 = helper.getRelationshipWith(player);
+		
+		if(helper.aspect == "Breath"){
+			this.session.availablePlayers.push(player); //player isn't even involved, at this point.
+			helper.increasePower();
+			player.landLevel ++;
+			if(r2.value > 0){
+				ret += " The " + helper.htmlTitle() + " tells the " + player.htmlTitle() + " that they are going to run on ahead and do some quests on " + player.shortLand() + " on their own. The " + player.htmlTitle() + " is freed up to do other shit, now. " ;
+				console.log("breath player doing quests for a friend: " + this.session.session_id)
+			}else{
+				ret += " The " + helper.htmlTitle() + " gets annoyed with how slow the " + player.htmlTitle() + " is being and runs ahead to get aaaaaaaall the levels and experience. At least the " + player.htmlTitle() + " has less stuff to do for the their main quests, now. " ;
+				console.log("breath player ignoring enemy to get exp: " + this.session.session_id)
+			}
+		}
 
 		if(helper.aspect == "Blood"){
 			player.boostAllRelationships();
