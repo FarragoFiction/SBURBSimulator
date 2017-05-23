@@ -44,7 +44,8 @@ function initSession(){
 	curSessionGlobalVar.randomizeEntryOrder();
 	curSessionGlobalVar.makeGuardians(); //after entry order established
 	checkEasterEgg();
-	checkSGRUB();
+	initializePlayers(curSessionGlobalVar.players); //will take care of overriding players if need be.
+	//checkSGRUB();
 	//skip initialization
 	//load(curSessionGlobalVar.players, curSessionGlobalVar.guardians,true); //in loading.js
 	 loadFuckingEverything(true);

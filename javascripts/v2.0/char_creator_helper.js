@@ -12,6 +12,7 @@ function CharacterCreatorHelper(players){
 		}
 	}
 	this.drawSinglePlayer = function(player){
+		//console.log("drawing: " + player.title())
 		var str = "";
 		var divId =  player.chatHandle;
 		divId = divId.replace(/\s+/g, '')

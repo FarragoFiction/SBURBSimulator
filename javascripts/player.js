@@ -1827,8 +1827,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 		}
 	}
-	
-	
+
+
 	//if it's part of player json, need to copy it over.
 	this.copyFromPlayer = function(replayPlayer){
 		console.log("Overriding player from a replay Player. ")
@@ -1839,16 +1839,16 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.isTroll = replayPlayer.isTroll;
 		this.bloodColor = replayPlayer.bloodColor;
 		this.leftHorn = replayPlayer.leftHorn;
-		this.rightHorn = replayPlayer.rightHorn;	
+		this.rightHorn = replayPlayer.rightHorn;
 	}
-	
-	
+
+
 	this.initialize = function(){
 		this.initializeStats();
 		this.initializeSprite();
 		this.initializeDerivedStuff();  //TODO handle troll derived stuff. like quirk.
 	}
-	
+
 	this.initializeDerivedStuff = function(){
 		var tmp =getRandomLandFromPlayer(this);
 		this.land1 = tmp[0]
@@ -1856,7 +1856,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.land = "Land of " + tmp[0] + " and " + tmp[1];
 		this.chatHandle = getRandomChatHandle(this.class_name,this.aspect,this.interest1, this.interest2);
 		this.mylevels = getLevelArray(this);//make them ahead of time for echeladder graphic
-		
+
 		if(this.isTroll){
 			this.quirk = randomTrollSim(this)
 			this.triggerLevel ++;//trolls are slightly less stable
@@ -1864,12 +1864,12 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}else{
 			this.quirk = randomHumanSim(this);
 		}
-		
+
 		this.spriteCanvasID = this.chatHandle+this.id+"spriteCanvas";
 		var canvasHTML = "<br><canvas style='display:true' id='" + this.spriteCanvasID+"' width='" +400 + "' height="+300 + "'>  </canvas>";
 		$("#playerSprites").append(canvasHTML)
 	}
-	
+
 	this.initializeSprite = function(){
 		this.sprite = new GameEntity(session, "sprite",null); //unprototyped.
 		//minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs, grist
@@ -2033,11 +2033,11 @@ function randomPlayerWithClaspect(session, c,a){
 	p.interest1 = getRandomElementFromArray(interests);
 	p.interest2 = getRandomElementFromArray(interests);
 	p.initialize();
-	
+
 	//no longer any randomness directly in player class. don't want to eat seeds if i don't have to.
 	p.baby = getRandomInt(1,3)
-	
-	
+
+
 	p.hair = getRandomInt(1,60);
 	p.hairColor = getRandomElementFromArray(human_hair_colors);
 	p.leftHorn =  getRandomInt(1,46);
@@ -2046,7 +2046,7 @@ function randomPlayerWithClaspect(session, c,a){
 			p.rightHorn = getRandomInt(1,46);
 	}
 
-	
+
 	return p;
 
 }
