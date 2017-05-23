@@ -508,10 +508,7 @@ function FreeWillStuff(session){
 		var murderer = this.findMurderModePlayerBesides(player);
 		if(murderer && !murderer.dead && this.canInfluenceEnemies(player) && player.power > 25 && player.getFriends().length > player.getEnemies().length){  //if I am not a violent person, and I CAN force you to calm down. I will.
 			var loop = ""
-			if(player == murderer){
-				loop = "You get dizzy trying to follow the time logic that must have caused this to happen. Did they only go calm down because they calmed down? Who is even controling them at this point? Or wait, is this a doomed time clone...? Fuck. Time is the shittiest aspect."
-				console.log(player.title() +" convincing past/future self to calm down " + this.session.session_id);
-			} 
+
 		    console.log(player.title() + " controlling murderer to make them placid " + this.session.session_id)
 			removeFromArray(player, this.session.availablePlayers);
 			removeFromArray(murderer, this.session.availablePlayers);
@@ -526,7 +523,7 @@ function FreeWillStuff(session){
 			this.renderPlayer1 = player;
 			this.renderPlayer2 = murderer;
 			console.log(trait + " control calming a player: " + this.session.session_id)
-			return "The " + player.htmlTitle() + " has had enough of the " + murderer.htmlTitle() + "'s murderous ways.  They manipulate their " + trait+ " until they are basically little more than an empty shell. They are such as asshole before they are finally controlled. Oh, wow. No. They are never going to be allowed to be free again. Never, never, never again. Never. Wow.  " + loop;
+			return "The " + player.htmlTitle() + " has had enough of the " + murderer.htmlTitle() + "'s murderous ways.  They manipulate their " + trait+ " until they are basically little more than an empty shell. They are such as asshole before they are finally controlled. Oh, wow. No. They are never going to be allowed to be free again. Never, never, never again. Never. Wow.  " ;
 		}
 		return null;
 	}
