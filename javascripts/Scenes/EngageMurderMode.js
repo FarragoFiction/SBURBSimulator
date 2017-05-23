@@ -289,7 +289,7 @@ function EngageMurderMode(session){
 		var player2 = player1.getWorstEnemyFromList(livePlayers);
 		if(player2 && !player2.dead){
 			var r2 = player2.getRelationshipWith(player1);
-			if(r2.value < -2 && r2.value > -8){ //only if i generically dislike you.
+			if((r2.value < -2 && r2.value > -12 ) || playerLikesMusic(player1)){ //only if i generically dislike you. o rlike raps
 				//console.log("rap battle. session: " + this.session.session_id)
 				return this.rapBattle(div,player1, player2);
 			}

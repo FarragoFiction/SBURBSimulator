@@ -1010,6 +1010,8 @@ Array.prototype.removeFromArray = function(item){
 	}
 }
 
+
+
 function removeFromArray(item, array){
 	var index = array.indexOf(item);
 	if (index > -1) {
