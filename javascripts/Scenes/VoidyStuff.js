@@ -138,7 +138,7 @@ function VoidyStuff(session){
 
 	this.goMurderMode = function(div,specialDiv){
 		this.player.triggerLevel += 3;
-		this.player.murderMode = true;
+		this.player.makeMurderMode();
 		div.append(" You get a bad feeling about this. ");
 		specialDiv.append("The " + this.player.htmlTitle() + " has taken an acrobatic fucking pirouette off the handle and into a giant pile of crazy.  You almost wish you hadn't seen this. This is completely terrifying.");
 	}

@@ -191,7 +191,7 @@ function FreeWillStuff(session){
 			}
 		}
 		if(!ret.murderMode) ret = null;
-		if(ret == player) ret = null;
+		if(ret == player && player.aspect != "Time") ret = null;  //you should TOTALLY be able to calm your past selves shit.
 		return ret;
 	}
 
@@ -208,7 +208,7 @@ function FreeWillStuff(session){
 				ret_abs_value = v;
 			}
 		}
-		if(ret.target == player) ret = null;
+		if(ret.target == player && player.aspect != "Time") ret = null;
 		return ret.target;
 	}
 
@@ -220,7 +220,7 @@ function FreeWillStuff(session){
 			var friends = player.getFriendsFromList(living)
 			for(var i = 0; i<living.length; i++){
 				var p = living[i];
-				if(p != player){ //can't be own patsy
+				if(p != player || player.aspect == "Time"){ //can't be own patsy
 					if(bestPatsy == null){
 						bestPatsy = [p,this.howManyEnemiesInCommon(enemies, p)];
 					}else if(!p.murderMode){ //not already in murder mode
@@ -233,7 +233,7 @@ function FreeWillStuff(session){
 					}
 				}
 			}
-			if(bestPatsy.murderMode && Math.seededRandom() > .5) bestPatsy = null; //mostly don't bother already murder mode players.
+			if(bestPatsy.murderMode && Math.seededRandom() > .75) bestPatsy = null; //mostly don't bother already murder mode players.
 			return bestPatsy
 	}
 
@@ -315,7 +315,12 @@ function FreeWillStuff(session){
 						removeFromArray(patsy, this.session.availablePlayers);
 						this.renderPlayer1 = player;
 						this.renderPlayer2 = patsy;
-						return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use clever words to convince the " + patsy.htmlTitleBasic() + " of the righteousness of their plan. They agree to carry out the bloody work. ";
+						var loop = ""
+						if(player == patsy){
+							loop = "You get dizzy trying to follow the time logic that must have caused this to happen. Did they only go crazy because they went crazy? Or wait, is this a doomed time clone...? Fuck. Time is the shittiest aspect."
+							console.log(player.title() +" convincing past/future self to go murder mode " + this.session.session_id);
+						} 
+						return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use clever words to convince the " + patsy.htmlTitleBasic() + " of the righteousness of their plan. They agree to carry out the bloody work. " + loop;
 
 				}else{
 					patsy = getRandomElementFromArray(enemies);//no longer care about "best"
@@ -387,6 +392,11 @@ function FreeWillStuff(session){
 		var sacrifice = this.findNonGodTierBesidesMe(player);
 		if(sacrifice && !sacrifice.dead && !sacrifice.godTier){
 			var bed = "bed"
+			var loop = ""
+			if(player == patsy){
+				loop = "You get dizzy trying to follow the time logic that must have caused this to happen. Did they try to god tier because they tried to god tier? Or wait, is this a doomed time clone...? Fuck. Time is the shittiest aspect."
+				console.log(player.title() +" convincing past/future self to go god tier" + this.session.session_id);
+			} 
 			if(sacrifice.isDreamSelf) bed = "slab"
 			if(sacrifice.freeWill < player.freeWill && player.power < 200){ //can just talk them into this terrible idea.   not a good chance of working.
 				if(sacrifice.godDestiny && (sacrifice.dreamSelf || sacrifice.isDreamSelf)){ //if my dream self is dead and i am my real self....
@@ -417,7 +427,7 @@ function FreeWillStuff(session){
 						sacrifice.makeDead("trying to go God Tier wthout a dream self.");
 						ret += ".  Unfortunately, you need a dream self to go GodTier, and the " + sacrifice.htmlTitleBasic() + " does not have one. They die for no reason. Nothing glows, their body does not float, and the magnitude of the " + player.htmlTitleBasic() + "'s hubris astonishes everyone. ";
 					}
-					return ret;
+					return ret + loop;
 				}
 			}else if(player.power > 200 && this.canAlterNegativeFate(player) && (sacrifice.dreamSelf || sacrifice.isDreamSelf)){  //straight up ignores godDestiny  no chance of failure.
 				var ret =  this.godTierHappens(sacrifice);
@@ -496,6 +506,11 @@ function FreeWillStuff(session){
 	this.considerCalmMurderModePlayer = function(player){
 		var murderer = this.findMurderModePlayerBesides(player);
 		if(murderer && !murderer.dead && this.canInfluenceEnemies(player) && player.power > 25 && player.getFriends().length > player.getEnemies().length){  //if I am not a violent person, and I CAN force you to calm down. I will.
+			var loop = ""
+			if(player == murderer){
+				loop = "You get dizzy trying to follow the time logic that must have caused this to happen. Did they only go calm down because they calmed down? Who is even controling them at this point? Or wait, is this a doomed time clone...? Fuck. Time is the shittiest aspect."
+				console.log(player.title() +" convincing past/future self to calm down " + this.session.session_id);
+			} 
 		    console.log(player.title() + " controlling murderer to make them placid " + this.session.session_id)
 			removeFromArray(player, this.session.availablePlayers);
 			removeFromArray(murderer, this.session.availablePlayers);
@@ -510,7 +525,7 @@ function FreeWillStuff(session){
 			this.renderPlayer1 = player;
 			this.renderPlayer2 = murderer;
 			console.log(trait + " control calming a player: " + this.session.session_id)
-			return "The " + player.htmlTitle() + " has had enough of the " + murderer.htmlTitle() + "'s murderous ways.  They manipulate their " + trait+ " until they are basically little more than an empty shell. They are such as asshole before they are finally controlled. Oh, wow. No. They are never going to be allowed to be free again. Never, never, never again. Never. Wow.  ";
+			return "The " + player.htmlTitle() + " has had enough of the " + murderer.htmlTitle() + "'s murderous ways.  They manipulate their " + trait+ " until they are basically little more than an empty shell. They are such as asshole before they are finally controlled. Oh, wow. No. They are never going to be allowed to be free again. Never, never, never again. Never. Wow.  " + loop;
 		}
 		return null;
 	}
