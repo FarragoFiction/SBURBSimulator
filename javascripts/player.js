@@ -1758,7 +1758,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	//this seems to NEVER be called for ghosts.  instead of things needed to render, can make this about char creator
 	this.toJSON = function(){
-		var json = {aspect: this.aspect, class_name: this.class_name,hair: this.hair,  hairColor: this.hairColor, isTroll: this.isTroll, bloodColor: this.bloodColor, leftHorn: this.leftHorn, rightHorn: this.rightHorn, quirk: this.quirk  };
+		var json = {aspect: this.aspect, class_name: this.class_name,hair: this.hair,  hairColor: this.hairColor, isTroll: this.isTroll, bloodColor: this.bloodColor, leftHorn: this.leftHorn, rightHorn: this.rightHorn  };
 		return json;
 	}
 
@@ -1828,10 +1828,24 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 	}
 	
+	
+	//if it's part of player json, need to copy it over.
+	this.copyFromPlayer = function(replayPlayer){
+		this.aspect = replayPlayer.aspect;
+		this.class_name = replayPlayer.class_name;
+		this.hair = replayPlayer.hair;
+		this.hairColor = replayPlayer.hairColor;
+		this.isTroll = replayPlayer.isTroll;
+		this.bloodColor = replayPlayer.bloodColor;
+		this.leftHorn = replayPlayer.leftHorn;
+		this.rightHorn = replayPlayer.rightHorn;	
+	}
+	
+	
 	this.initialize = function(){
 		this.initializeStats();
 		this.initializeSprite();
-		this.initializeDerivedStuff();
+		this.initializeDerivedStuff();  //TODO handle troll derived stuff. like quirk.
 	}
 	
 	this.initializeDerivedStuff = function(){
@@ -1841,6 +1855,15 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.land = "Land of " + tmp[0] + " and " + tmp[1];
 		this.chatHandle = getRandomChatHandle(this.class_name,this.aspect,this.interest1, this.interest2);
 		this.mylevels = getLevelArray(this);//make them ahead of time for echeladder graphic
+		
+		if(this.isTroll){
+			this.quirk = randomTrollSim(this)
+			this.triggerLevel ++;//trolls are slightly less stable
+
+		}else{
+			this.quirk = randomHumanSim(this);
+		}
+		
 		this.spriteCanvasID = this.chatHandle+this.id+"spriteCanvas";
 		var canvasHTML = "<br><canvas style='display:true' id='" + this.spriteCanvasID+"' width='" +400 + "' height="+300 + "'>  </canvas>";
 		$("#playerSprites").append(canvasHTML)
@@ -1884,7 +1907,17 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 }
 
 function initializePlayers(players){
+	var rawPlayers =  getRawParameterByName("players");
+	var replayPlayers = [];
+	if(rawPlayers){
+		var uncompressedPlayers = LZString.decompressFromEncodedURIComponent(rawPlayers);
+		var json = JSON.parse(uncompressedPlayers);
+		for(var i = 0; i<json.length; i++){
+		replayPlayers.push(objToPlayer(json[i]));
+	}
+	}
 	for(var i = 0; i<players.length; i++){
+		if(replayPlayers[i]) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
 		players[i].initialize();
 	}
 }

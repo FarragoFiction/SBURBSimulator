@@ -92,7 +92,7 @@ function startSession(){
 	}
 	checkEasterEgg();
 
-	initializePlayers(curSessionGlobalVar.players);
+	initializePlayers(curSessionGlobalVar.players); //will take care of overriding players if need be.
 	checkSGRUB();
 
 	load(curSessionGlobalVar.players, curSessionGlobalVar.guardians); //in loading.js

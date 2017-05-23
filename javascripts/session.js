@@ -239,11 +239,7 @@ function Session(session_id){
 			p.generateRelationships(this.players);
 			this.decideTroll(p);
 
-			if(p.isTroll){
-				p.quirk = randomTrollSim(p)
-			}else{
-				p.quirk = randomHumanSim(p);
-			}
+			
 		}
 
 		decideInitialQuadrants(this.players);
@@ -370,7 +366,6 @@ function Session(session_id){
 		if(this.getSessionType() == "Troll" || (this.getSessionType() == "Mixed" &&Math.seededRandom() > 0.5) ){
 			player.isTroll = true;
 			player.hairColor = "#000000"
-			player.triggerLevel ++;//trolls are less stable
 			player.decideHemoCaste(player);
 			player.decideLusus(player);
 			player.object_to_prototype = player.lusus;
