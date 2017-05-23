@@ -1289,7 +1289,7 @@ mayorDistractionTasks.push(" WV gets distracted writing a constitution for the n
 
 //rage and void can do these in VoidySTuff, even if it's not a quest. just for funsies. (even the heavy shit. oh look the rage player is being LOL SO RANDOM what with their decapitated head shenanigans.)
 var lightQueenQuests = ["makes a general nuisance of themselves to the Black Queen.", "spreads disparaging rumours concerning the Black Queen.", "sabotages several official portraits of the Black Queen."];
-lightQueenQuests = lightQueenQuests.concat(["sets up various pranks and traps around Derse","breaks all the lights in the throne room.","vandalizes various Dersite public hotspots. Fuck the Authority Regulators!"]);
+lightQueenQuests = lightQueenQuests.concat(["sets up various pranks and traps around Derse.","breaks all the lights in the throne room.","vandalizes various Dersite public hotspots. Fuck the Authority Regulators!"]);
 lightQueenQuests = lightQueenQuests.concat(["switches the hats of all of the Dersite high ranking officials.","steals all the licorice scottie dogs on Derse. ","convinces the Enquiring Carapacian that the Black Queen is actually three Salamanders in a robe. ", "smuggles contraband forbidden by the Black Queen. Like ice cream. And frogs. The Black Queen’s trade edicts don’t really make much sense. "]);
 
 
@@ -1495,10 +1495,10 @@ postdenizen_heir_quests.push("assuming control of yet more denizen villages. Tur
 postdenizen_heir_quests.push("chillaxing with their aspect and while talking to it as if it were a real person.");
 postdenizen_heir_quests.push("wiping a dungeon off the map with their awe inspiring powers");
 
-var postdenizen_bard_quests = ["musing on the nature of death as they wander from desolate consort graveyard to desolate consort graveyard"]; 
-postdenizen_bard_quests.push("staring vacantly into the middle distance as every challenge that rises before them falls away before it even has a chance to do anything"); 
-postdenizen_bard_quests.push("putting on a performance for a huge crowd of awestruck consorts and underlings"); 
-postdenizen_bard_quests.push("playing pranks and generally messing around with the most powerful enemies left in the game"); 
+var postdenizen_bard_quests = ["musing on the nature of death as they wander from desolate consort graveyard to desolate consort graveyard"];
+postdenizen_bard_quests.push("staring vacantly into the middle distance as every challenge that rises before them falls away before it even has a chance to do anything");
+postdenizen_bard_quests.push("putting on a performance for a huge crowd of awestruck consorts and underlings");
+postdenizen_bard_quests.push("playing pranks and generally messing around with the most powerful enemies left in the game");
 
 var postdenizen_prince_quests =  ["thinking on endings. The end of their planet. The end of their denizen problems. The end of that very, very stupid imp that just tried to jump them"];
 postdenizen_prince_quests.push("defeating every single mini boss, including a few on other players planets");
@@ -1510,10 +1510,10 @@ postdenizen_seer_quests.push("taking a consort under their wing and teaching it 
 postdenizen_seer_quests.push("predicting hundreds of thousands of variant future possibilities, only to realize that the future is too chaotic to exactly systemize");
 postdenizen_seer_quests.push("alchemizing more and more complex seer aids, such as crystal balls or space-specs");
 
-var postdenizen_witch_quests = ["alchemizing a mind crushingly huge number of computers in various forms"] 
-postdenizen_witch_quests.push("whizzing around their land like it's fucking christmas") 
-postdenizen_witch_quests.push("defeating a completely out of nowhere mini boss") 
-postdenizen_witch_quests.push("wondering if their sprite prototyping choice was the right one after all") 
+var postdenizen_witch_quests = ["alchemizing a mind crushingly huge number of computers in various forms"]
+postdenizen_witch_quests.push("whizzing around their land like it's fucking christmas")
+postdenizen_witch_quests.push("defeating a completely out of nowhere mini boss")
+postdenizen_witch_quests.push("wondering if their sprite prototyping choice was the right one after all")
 
 var postdenizen_space_quests = ["stoking the forge and preparing to create a new universe"];
 postdenizen_space_quests.push("cloning ribbiting assholes till you’re up to your eyeballs in frogs");
