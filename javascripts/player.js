@@ -1831,6 +1831,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	
 	//if it's part of player json, need to copy it over.
 	this.copyFromPlayer = function(replayPlayer){
+		console.log("Overriding player from a replay Player. ")
 		this.aspect = replayPlayer.aspect;
 		this.class_name = replayPlayer.class_name;
 		this.hair = replayPlayer.hair;
