@@ -320,7 +320,7 @@ function GameEntity(session, name, crowned){
 		//you are clearly not ready for this fight. Go prepare (random chance of leveling you up to pretend you took their advice.)
 		//ONLY possibility for denizen fights, and happens at 3 turn mark.
 		this.denizenIsSoNotPuttingUpWithYourShitAnyLonger = function(div,players, numTurns){
-			console.log("!!!!!!!!!!!!!!!!!denizen not putting up with your shit: " + this.session.session_id);
+			//console.log("!!!!!!!!!!!!!!!!!denizen not putting up with your shit: " + this.session.session_id);
 				div.append("<Br><Br>" + this.session.getDenizenForPlayer(players[0]) + " decides that the " + players[0].htmlTitleBasic() + " is being a little baby who poops hard in their diapers and are in no way ready for this fight. The Denizen recommends that they come back after they mature a little bit. The " +players[0].htmlTitleBasic() + "'s ass is kicked so hard they are ejected from the fight, but are not killed.")
 				if(Math.seededRandom() > .5){ //players don't HAVE to take the advice after all. assholes.
 					this.levelPlayers(players);
@@ -346,10 +346,10 @@ function GameEntity(session, name, crowned){
 						var canvasDiv = document.getElementById("canvas"+ divID);
 						if(potential.aspect == "Time" && Math.seededRandom() > .50){
 							drawTimeGears(canvasDiv, potential);
-							console.log("summoning a stable time loop player to this fight. " +this.session.session_id)
+							//console.log("summoning a stable time loop player to this fight. " +this.session.session_id)
 							div.append("The " + potential.htmlTitleHP() + " has joined the Strife!!! (Don't worry about the time bullshit, they have their stable time loops on LOCK. No doom for them.)");
 						}else{
-							console.log("summoning a player to this fight. " +this.session.session_id)
+							//console.log("summoning a player to this fight. " +this.session.session_id)
 							div.append("The " + potential.htmlTitleHP() + " has joined the Strife!!!");
 						}
 
@@ -372,7 +372,7 @@ function GameEntity(session, name, crowned){
 		//render this.
 		//doomed time clones will help with the fight. then teleport off (if they survive) to the black king fight
 		this.summonDoomedTimeClone = function(div, players, numTurns){
-				console.log("summoning a doomed time clone to this fight. " +this.session.session_id)
+				//console.log("summoning a doomed time clone to this fight. " +this.session.session_id)
 				var timePlayer = findAspectPlayer(this.session.players, "Time");
 				var doomedTimeClone =  makeDoomedSnapshot(timePlayer);
 				players.push(doomedTimeClone);

@@ -296,7 +296,6 @@ function makeRenderingSnapshot(player){
 
 //taken out of SaveDoomedTimeLine this
 function makeDoomedSnapshot(timePlayer){
-	console.log("doomed time clone: " + timePlayer.session.session_id)
 	var timeClone = makeRenderingSnapshot(timePlayer);
 	timeClone.dead = false;
 	timeClone.currentHP = timeClone.hp

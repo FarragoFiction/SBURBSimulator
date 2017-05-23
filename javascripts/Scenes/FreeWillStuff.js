@@ -59,7 +59,7 @@ function FreeWillStuff(session){
 	}
 
 	this.renderGodTier = function(div){
-		//console.log("rendering free will god tier: " + this.session.session_id)
+		console.log(this.playerGodTiered.title() + " rendering free will god tier: " + this.session.session_id)
 		var divID = (div.attr("id")) + "_freeWillBulshit" + this.playerGodTiered.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
@@ -397,7 +397,7 @@ function FreeWillStuff(session){
 			var bed = "bed"
 			var loop = ""
 			if(player == sacrifice){
-				loop = "You get dizzy trying to follow the time logic that must have caused this to happen. Did they try to god tier because they tried to god tier? Or wait, is this a doomed time clone...? Fuck. Time is the shittiest aspect."
+				loop = "You get dizzy trying to follow the time logic that must have caused this to happen. Did they try to god tier because their future self told them to? But the future self only told them to because THEIR future self told them... Or wait, is this a doomed time clone...? Fuck. Time is the shittiest aspect."
 				console.log(player.title() +" convincing past/future self to go god tier" + this.session.session_id);
 			} 
 			if(sacrifice.isDreamSelf) bed = "slab"
@@ -407,11 +407,11 @@ function FreeWillStuff(session){
 					removeFromArray(player, this.session.availablePlayers);
 					removeFromArray(sacrifice, this.session.availablePlayers);
 					//console.log(player.title() + " commits murder and someone else gets tiger " + this.session.session_id);
-					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". " + ret + " It is not a very big deal at all. ";  //caliborn
+					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". " + ret + " It is not a very big deal at all. " + loop;  //caliborn
 				}else if(sacrifice.rollForLuck() + player.rollForLuck() > 200){  //BOTH have to be lucky.
 					//console.log(player.title() + " commits murder and someone else gets tiger and it is all very lucky. " + this.session.session_id);
 					var ret =  this.godTierHappens(sacrifice);
-					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". " + ret + " It is a stupidly huge deal, since the " + sacrifice.htmlTitleBasic() + " was never destined to God Tier at all. But I guess the luck of both players was enough to make things work out, in the end.";
+					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". " + ret + " It is a stupidly huge deal, since the " + sacrifice.htmlTitleBasic() + " was never destined to God Tier at all. But I guess the luck of both players was enough to make things work out, in the end."  + loop;
 				}else{
 					removeFromArray(player, this.session.availablePlayers);
 					removeFromArray(sacrifice, this.session.availablePlayers);
