@@ -365,13 +365,14 @@ function MultiSessionSummary(){
 	this.averageNumScenes = 0;
 	this.waywardVagabondEnding = 0;
 	this.mayorEnding = 0;
+	this.checkedCorpseBoxes = [];
 
 	//todo, have a ret array, add ghosts to it if they match a filter (don't care if they dont' match other filtere)
 	//pass to generateCorpsePartyHTML
 	//expect to be called by something dumb, so pass it a 'that' since 'this' won't be what it should be.
 	this.filterCorpseParty = function(that){
-		alert("is it working???")
 		var filteredGhosts = [];
+		that.checkedCorpseBoxes = []; //reset
 		//??? it doesn't know what this.ghosts is.
 		console.log("this is: " + that);
 		console.log(that);
@@ -383,7 +384,20 @@ function MultiSessionSummary(){
 			}
 		}
 
-		$("#multiSessionSummaryCorpseParty").html(this.generateCorpsePartyInnerHTML(filteredGhosts));
+		var labels = ["Knight","Seer","Bard","Maid","Heir","Rogue","Page","Thief","Sylph","Prince","Witch","Mage","Blood","Mind","Rage","Time","Void","Heart","Breath","Light","Space","Hope","Life","Doom"];
+		var noneChecked = true;
+		for(var i = 0; i<labels.length; i++){
+			var l = labels[i];
+			if($("#"+l).is(":checked")){
+				that.checkedCorpseBoxes.push(l)
+				nonChecked = false;
+			}
+		}
+
+		if(nonChecked) filteredGhosts = that.ghosts; //none means 'all' basically
+		$("#multiSessionSummaryCorpseParty").html(that.generateCorpsePartyInnerHTML(filteredGhosts));
+		that.wireUpCorpsePartyCheckBoxes();
+
 	}
 
 	this.wireUpCorpsePartyCheckBoxes = function(){
@@ -395,6 +409,11 @@ function MultiSessionSummary(){
 			$("#"+l).change(function(){
 				that.filterCorpseParty(that);
 			});
+		}
+
+		for(var i = 0; i<this.checkedCorpseBoxes.length; i++){
+			var l = this.checkedCorpseBoxes[i];
+			$("#"+l).prop("checked", "true")
 		}
 	}
 
