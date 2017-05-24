@@ -390,11 +390,11 @@ function MultiSessionSummary(){
 			var l = labels[i];
 			if($("#"+l).is(":checked")){
 				that.checkedCorpseBoxes.push(l)
-				nonChecked = false;
+				noneChecked = false;
 			}
 		}
 
-		if(nonChecked) filteredGhosts = that.ghosts; //none means 'all' basically
+		if(noneChecked) filteredGhosts = that.ghosts; //none means 'all' basically
 		$("#multiSessionSummaryCorpseParty").html(that.generateCorpsePartyInnerHTML(filteredGhosts));
 		that.wireUpCorpsePartyCheckBoxes();
 
