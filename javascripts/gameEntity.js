@@ -831,7 +831,10 @@ function GameEntity(session, name, crowned){
 		//hopefully either player or gameEntity can call this.
 		this.aggrieve=function(div, offense, defense){
 			//mobility, luck hp, and power are used here.
-			div.append(" The " + offense.htmlTitleHP() + " targets the " +defense.htmlTitleHP() + ". ");
+			var ret = " The " + offense.htmlTitleHP() + " targets the " +defense.htmlTitleHP() + ". ";
+			if(defense.dead) ret += " Apparently their corpse sure is distracting? How luuuuuuuucky for the remaining players!"
+			div.append(ret);
+
 			//luck dodge
 			var offenseRoll = offense.rollForLuck();
 			var defenseRoll = defense.rollForLuck();
