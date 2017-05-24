@@ -1519,7 +1519,6 @@ var postdenizen_space_quests = ["stoking the forge and preparing to create a new
 postdenizen_space_quests.push("cloning ribbiting assholes till you’re up to your eyeballs in frogs");
 postdenizen_space_quests.push("cleaning up volcanic debris from the Forge. Man that magma is hot");
 postdenizen_space_quests.push("alchemizing geothermal power infrastructure for the consort villagers. The local consorts babble excitedly at indoor lightning ");
-postdenizen_space_quests.push("restoring the land from the ravages of Echidna");
 postdenizen_space_quests.push("making sure they don't accidentally clone a toad instead of a frog by mistake");
 
 var postdenizen_time_quests = ["securing the alpha timeline and keeping the corpse pile from getting any taller"];
