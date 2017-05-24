@@ -339,6 +339,8 @@ function GameEntity(session, name, crowned){
 					if((potential.mobility > getAverageMobility(players) || Math.seededRandom() >.5)){ //you're fast enough to get here, or randomness happened.
 
 						players.push(potential);
+						potential.currentHP = Math.max(1, potential.hp) //have at least 1 hp, dunkass
+						this.session.availablePlayers.removeFromArray(potential); //you aren't available anymore.
 						var divID = (div.attr("id")) + "doomTimeArrival"+players.join("")+numTurns;
 						var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 						div.append(canvasHTML);
