@@ -372,9 +372,19 @@ function MultiSessionSummary(){
 		alert("is it working???")
 	}
 
+	this.wireUpCorpsePartyCheckBoxes = function(){
+		//i know what the labels are, they are just the classes and aspects.
+		var that = this;
+		var labels = ["Knight","Seer","Bard","Maid","Heir","Rogue","Page","Thief","Sylph","Prince","Witch","Mage","Blood","Mind","Rage","Time","Void","Heart","Breath","Light","Space","Hope","Life","Doom"];
+		for(var i = 0; i<labels.length; i++){
+			var l = labels[i];
+			$("#"+l).change(this.filterCorpseParty);
+		}
+	}
+
 this.generateHTMLForClassOrAspectPropertyCorpseParty = function(label, value,total){
 	//		//<input disabled='true' type='checkbox' name='filter' value='"+propertyName +"' id='" + propertyName + "' onchange='filterSessionSummaries()'>"
-	var input = "<input disabled='true' type='checkbox' name='filter' value='"+label +"' id='" + label + "' onchange='this.filterCorpseParty()'>"
+	var input = "<input type='checkbox' name='Corpsefilter' value='"+label +"' id='" + label + "'>"
 	var html = "<Br>" +input + label + ": " + value + "(" + Math.round( 100* value/total) + "%)"
 	return html;
 
@@ -463,7 +473,7 @@ this.generateHTMLForClassOrAspectPropertyCorpseParty = function(label, value,tot
 	this.isPropertyToIgnore = function(propertyName){
 		if(propertyName == "totalLivingPlayers" || propertyName == "survivalRate" || propertyName == "ghosts" || propertyName == "generateCorpsePartyHTML" || propertyName == "generateHTML") return true;
 		if(propertyName == "isRomanceProperty" || propertyName == "isDramaticProperty" || propertyName == "isEndingProperty" || propertyName == "isAverageProperty" || propertyName == "isPropertyToIgnore") return true;
-		if(propertyName == "isFilterableProperty" || propertyName == "generateClassFilterHTML" || propertyName == "generateAspectFilterHTML" || propertyName == "generateHTMLForProperty" || propertyName == "generateRomanceHTML") return true;
+		if(propertyName == "wireUpCorpsePartyCheckBoxes"  || propertyName == "isFilterableProperty" || propertyName == "generateClassFilterHTML" || propertyName == "generateAspectFilterHTML" || propertyName == "generateHTMLForProperty" || propertyName == "generateRomanceHTML") return true;
 		if(propertyName == "filterCorpseParty" || propertyName == "generateHTMLForClassOrAspectPropertyCorpseParty" || propertyName == "generateDramaHTML" || propertyName == "generateMiscHTML" || propertyName == "generateAverageHTML" || propertyName == "generateHTMLOld" || propertyName == "generateEndingHTML") return true;
 
 		return false;

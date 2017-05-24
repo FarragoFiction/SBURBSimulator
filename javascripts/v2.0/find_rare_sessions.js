@@ -739,6 +739,7 @@ function printStats(filters){
 	//todo if corpse party mode, display corpse party and replace AB imge with corpse party AB and ABJ.
 	//TODO have different divs of types of stats, most defaulted to hidden, with checkbox toggles for what you want to see.
 	$("#stats").html(mms.generateHTML());
+	mms.wireUpCorpsePartyCheckBoxes();
 
 	if(displayMisc)$('#multiSessionSummaryMisc').show()  //memory. don't always turn off when making new ones.
 	if(!displayMisc)$('#multiSessionSummaryMisc').hide()
