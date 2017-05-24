@@ -743,7 +743,7 @@ function RelationshipDrama(session){
 	this.badBig = "Enemies";
 	*/
 	this.processDrama = function(player, relationship){
-		var ret = " The " + player.htmlTitle() + " used to think that the " + relationship.target.htmlTitle() + " was ";
+		var ret = "<img src = 'images/sceneIcons/heart_icon.png'> The " + player.htmlTitle() + " used to think that the " + relationship.target.htmlTitle() + " was ";
 		ret += this.generateOldOpinion(relationship) + ", but now they can't help but think they are " + this.generateNewOpinion(relationship) + ".";
 
 		if(relationship.saved_type == relationship.goodBig && relationship.target.dead){

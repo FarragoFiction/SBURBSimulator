@@ -64,7 +64,7 @@ function JackRampage(session){
 	this.renderContent = function(div){
 		this.session.jackRampage = true;
 		//div.append("<br>"+this.content());
-		div.append("<br><img src = 'images/sceneIcons/jack_icon.png'>");
+		div.append("<br><img src = 'images/sceneIcons/jack_icon.png'> ");
 
 		//jack finds 0 or more players.
 		var stabbings = this.getStabList();

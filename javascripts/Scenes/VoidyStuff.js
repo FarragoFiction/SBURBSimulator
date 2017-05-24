@@ -30,7 +30,7 @@ function VoidyStuff(session){
 		this.player.increasePower();
 		if(this.enablingPlayer.aspect == "Void") this.player.corruptionLevelOther += getRandomInt(1,10); //void isn't a safe place to be.
 		//div.append("<br>"+this.content());
-		div.append("<br><img src = 'images/sceneIcons/shenanigans_icon.png'>")
+		div.append("<br><img src = 'images/sceneIcons/shenanigans_icon.png'> ")
 		this.chooseShenanigans(div);
 	}
 

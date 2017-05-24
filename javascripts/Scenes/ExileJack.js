@@ -9,7 +9,7 @@ function ExileJack(session){
 	}
 
 	this.renderContent = function(div){
-		div.append("<br> <img src = 'images/sceneIcons/jack_icon.png'>"+this.content());
+		div.append("<br> <img src = 'images/sceneIcons/jack_icon.png'> "+this.content());
 	}
 
 	this.content = function(){

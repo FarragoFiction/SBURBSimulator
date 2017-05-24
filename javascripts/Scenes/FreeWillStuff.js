@@ -68,7 +68,7 @@ function FreeWillStuff(session){
 	}
 
 	this.renderContent = function(div){
-		div.append("<br><img src = 'images/sceneIcons/freewill_icon.png'>"+this.content());
+		div.append("<br><img src = 'images/sceneIcons/freewill_icon.png'> "+this.content());
 		if(this.playerGodTiered){
 			this.renderGodTier(div);
 		}else if(this.renderPlayer1){
@@ -210,7 +210,7 @@ function FreeWillStuff(session){
 				ret_abs_value = v;
 			}
 		}
-		
+
 		if(ret.target == player && player.aspect != "Time") ret = null;
 		return ret.target;
 	}
@@ -322,7 +322,7 @@ function FreeWillStuff(session){
 						if(player == patsy){
 							loop = "You get dizzy trying to follow the time logic that must have caused this to happen. Did they only go crazy because their future self went crazy because THEIR future self went crazy....? Or wait, is this a doomed time clone...? Fuck. Time is the shittiest aspect."
 							console.log(player.title() +" convincing past/future self to go murder mode " + this.session.session_id);
-						} 
+						}
 						return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use clever words to convince the " + patsy.htmlTitleBasic() + " of the righteousness of their plan. They agree to carry out the bloody work. " + loop;
 
 				}else{
@@ -399,7 +399,7 @@ function FreeWillStuff(session){
 			if(player == sacrifice){
 				loop = "You get dizzy trying to follow the time logic that must have caused this to happen. Did they try to god tier because their future self told them to? But the future self only told them to because THEIR future self told them... Or wait, is this a doomed time clone...? Fuck. Time is the shittiest aspect."
 				console.log(player.title() +" convincing past/future self to go god tier" + this.session.session_id);
-			} 
+			}
 			if(sacrifice.isDreamSelf) bed = "slab"
 			if(sacrifice.freeWill <= player.freeWill && player.power < 200){ //can just talk them into this terrible idea.   not a good chance of working.
 				if(sacrifice.godDestiny && (sacrifice.dreamSelf || sacrifice.isDreamSelf)){ //if my dream self is dead and i am my real self....
