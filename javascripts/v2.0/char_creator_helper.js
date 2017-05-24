@@ -23,7 +23,7 @@ function CharacterCreatorHelper(players){
 		str += ("of");
 		str+= (this.drawOneAspectDropDown(player));
 		str += "Hair Type:" + this.drawOneHairDropDown(player);
-		str += "Hair Color:" + this.drawOneHairColorDropDown(player);
+		str += "Hair Color:" + this.drawOneHairColorPicker(player);
 		str += "Species: " + this.drawOneSpeciesDropDown(player);
 		str += "Left Horn: " + this.drawOneLeftHornDropDown(player);
 		str += "Right Horn: " + this.drawOneRightHornDropDown(player);
@@ -86,14 +86,14 @@ function CharacterCreatorHelper(players){
 			});
 
 			hairDiv.change(function() {
-					var aspectDropDown = $('[name="hair' +player.chatHandle +'"] option:selected')
+				  var aspectDropDown = $('[name="hair' +player.chatHandle +'"] option:selected')
 					player.hair = aspectDropDown.val();
 					that.redrawSinglePlayer(player);
 			});
 
 			hairColorDiv.change(function() {
-					var aspectDropDown = $('[name="hairColor' +player.chatHandle +'"] option:selected')
-					player.hairColor = aspectDropDown.val();
+					//var aspectDropDown = $('[name="hairColor' +player.chatHandle +'"] option:selected')
+					player.hairColor = hairColorDiv.val();
 					that.redrawSinglePlayer(player);
 			});
 
@@ -196,7 +196,12 @@ function CharacterCreatorHelper(players){
 
 	}
 
-	this.drawOneHairColorDropDown = function(player){
+	this.drawOneHairColorPicker = function(player){
+		var id = "hairColorID" + player.chatHandle
+		var html = "<input id = '" + id + "' type='color' name='favcolor' value='" + player.hairColor + "'>"
+		return html;
+	}
+	this.drawOneHairColorDropDownOLD = function(player){
 		var html = "<select id = 'hairColorID" + player.chatHandle + "' name='hairColor" +player.chatHandle +"'>";
 		for(var i = 0; i< human_hair_colors.length; i++){
 			if(human_hair_colors[i] == player.hairColor){
