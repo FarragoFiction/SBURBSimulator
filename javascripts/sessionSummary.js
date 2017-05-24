@@ -368,19 +368,22 @@ function MultiSessionSummary(){
 
 	//todo, have a ret array, add ghosts to it if they match a filter (don't care if they dont' match other filtere)
 	//pass to generateCorpsePartyHTML
-	this.filterCorpseParty = function(){
+	//expect to be called by something dumb, so pass it a 'that' since 'this' won't be what it should be.
+	this.filterCorpseParty = function(that){
 		alert("is it working???")
 		var filteredGhosts = [];
-		//???
-		for(var i = 0; i<this.ghosts.length; i++){
-			var ghost = this.ghosts[i];
+		//??? it doesn't know what this.ghosts is.
+		console.log("this is: " + that);
+		console.log(that);
+		for(var i = 0; i<that.ghosts.length; i++){
+			var ghost = that.ghosts[i];
 			//add self to filtered ghost if my class OR my aspect is checked. How to tell?  .is(":checked")
 			if($("#"+ghost.class_name).is(":checked") || $("#"+ghost.aspect).is(":checked")){
 				filteredGhosts.push(ghost)
 			}
 		}
 
-		$("#multiSessionSummaryCorpseParty").html(this.generateCorpsePartyHTML(filteredGhosts));
+		$("#multiSessionSummaryCorpseParty").html(this.generateCorpsePartyInnerHTML(filteredGhosts));
 	}
 
 	this.wireUpCorpsePartyCheckBoxes = function(){
@@ -389,7 +392,9 @@ function MultiSessionSummary(){
 		var labels = ["Knight","Seer","Bard","Maid","Heir","Rogue","Page","Thief","Sylph","Prince","Witch","Mage","Blood","Mind","Rage","Time","Void","Heart","Breath","Light","Space","Hope","Life","Doom"];
 		for(var i = 0; i<labels.length; i++){
 			var l = labels[i];
-			$("#"+l).change(this.filterCorpseParty);
+			$("#"+l).change(function(){
+				that.filterCorpseParty(that);
+			});
 		}
 	}
 
@@ -401,9 +406,17 @@ this.generateHTMLForClassOrAspectPropertyCorpseParty = function(label, value,tot
 
 }
 
+	this.generateCorpsePartyHTML = function(filteredGhosts){
+		var html = "<div class = 'multiSessionSummary'>Corpse Party: (filtering here will ONLY modify the corpse party, not the other boxes) <button onclick='toggleCorpse()'>Toggle View </button>"
+		html += "<div id = 'multiSessionSummaryCorpseParty'>"
+		html += this.generateCorpsePartyInnerHTML(filteredGhosts);
+		html += "</div></div>"
+		return html;
+	}
+
 	//display base cause of death "killed by Heir of Breath" and "killed by "Heir of Time" should both be "killed by Player"
 	//display classes and aspects.  Heirs: 47 (10%) Breath Players: 20 (5%) etc.
-	this.generateCorpsePartyHTML = function(filteredGhosts){
+	this.generateCorpsePartyInnerHTML = function(filteredGhosts){
 		//first task. convert ghost array to map. or hash. or whatever javascript calls it. key is what I want to display on the left.
 		//value is how many times I see something that evaluates to that key.
 		// about players killing each other.  look for "died being put down like a rabid dog" and ignore the rest.  or  "fighting against the crazy X" to differentiate it from STRIFE.
@@ -414,7 +427,7 @@ this.generateHTMLForClassOrAspectPropertyCorpseParty = function(label, value,tot
 		var corpsePartyClasses = {Knight: 0, Seer:0, Bard: 0, Maid: 0, Heir: 0, Rogue: 0, Page: 0, Thief: 0, Sylph:0, Prince:0, Witch:0, Mage:0};
 		var corpsePartyAspects = {Blood: 0, Mind: 0, Rage: 0, Time: 0, Void: 0, Heart: 0, Breath: 0, Light: 0, Space: 0, Hope: 0, Life: 0, Doom: 0};
 		var corpseParty = {} //now to refresh my memory on how javascript hashmaps work
-		html+= this.generateHTMLForProperty("sizeOfAfterLife")
+		html+="<br><b>  Number of Ghosts: </b>: " + filteredGhosts.length;
 		for(var i = 0; i<filteredGhosts.length; i++){
 				var ghost = filteredGhosts[i];
 				if(ghost.causeOfDeath.startsWith("fighting against the crazy")){
@@ -445,7 +458,6 @@ this.generateHTMLForClassOrAspectPropertyCorpseParty = function(label, value,tot
 		for(var corpseType in corpseParty){
 			html += "<Br>" +corpseType + ": " + corpseParty[corpseType] + "(" + Math.round( 100* corpseParty[corpseType]/filteredGhosts.length) + "%)"//todo maybe print out percentages here. we know how many ghosts there are.
 		}
-		html += "</div></div>"
 		return html
 
 	}
