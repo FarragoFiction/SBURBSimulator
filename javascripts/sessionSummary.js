@@ -370,6 +370,17 @@ function MultiSessionSummary(){
 	//pass to generateCorpsePartyHTML
 	this.filterCorpseParty = function(){
 		alert("is it working???")
+		var filteredGhosts = [];
+		//???
+		for(var i = 0; i<this.ghosts.length; i++){
+			var ghost = this.ghosts[i];
+			//add self to filtered ghost if my class OR my aspect is checked. How to tell?  .is(":checked")
+			if($("#"+ghost.class_name).is(":checked") || $("#"+ghost.aspect).is(":checked")){
+				filteredGhosts.push(ghost)
+			}
+		}
+
+		$("#multiSessionSummaryCorpseParty").html(this.generateCorpsePartyHTML(filteredGhosts));
 	}
 
 	this.wireUpCorpsePartyCheckBoxes = function(){
