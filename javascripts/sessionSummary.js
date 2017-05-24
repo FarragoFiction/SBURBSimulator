@@ -378,6 +378,8 @@ function MultiSessionSummary(){
 		//aspect have  a rougher go of it.
 		var html = "<div class = 'multiSessionSummary'>Corpse Party: <button onclick='toggleCorpse()'>Toggle View </button>"
 		html += "<div id = 'multiSessionSummaryCorpseParty'>"
+		var corpsePartyClasses = {};
+		var corpsePartyAspects = {};
 		var corpseParty = {} //now to refresh my memory on how javascript hashmaps work
 		html+= this.generateHTMLForProperty("sizeOfAfterLife")
 		for(var i = 0; i<this.ghosts.length; i++){
@@ -391,6 +393,19 @@ function MultiSessionSummary(){
 					if (!corpseParty[this.ghosts[i].causeOfDeath]) corpseParty[this.ghosts[i].causeOfDeath] = 0 //otherwise NaN
 					corpseParty[this.ghosts[i].causeOfDeath] ++;
 				}
+
+				if (!corpsePartyClasses[this.ghosts[i].class_name]) corpsePartyClasses[this.ghosts[i].class_name] = 0 //otherwise NaN
+				if (!corpsePartyAspects[this.ghosts[i].aspect]) corpsePartyAspects[this.ghosts[i].aspect] = 0 //otherwise NaN
+				corpsePartyAspects[this.ghosts[i].aspect] ++;
+				corpsePartyClasses[this.ghosts[i].class_name] ++;
+		}
+
+		for(var corpseType in corpsePartyClasses){
+			html += "<Br>" +corpseType + ": " + corpsePartyClasses[corpseType] + "(" + Math.round( 100* corpsePartyClasses[corpseType]/this.sizeOfAfterLife) + "%)"//todo maybe print out percentages here. we know how many ghosts there are.
+		}
+
+		for(var corpseType in corpsePartyAspects){
+			html += "<Br>" +corpseType + ": " + corpsePartyAspects[corpseType] + "(" + Math.round( 100* corpsePartyAspects[corpseType]/this.sizeOfAfterLife) + "%)"//todo maybe print out percentages here. we know how many ghosts there are.
 		}
 
 		for(var corpseType in corpseParty){
