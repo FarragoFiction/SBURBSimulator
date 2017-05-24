@@ -366,50 +366,63 @@ function MultiSessionSummary(){
 	this.waywardVagabondEnding = 0;
 	this.mayorEnding = 0;
 
+	//todo, have a ret array, add ghosts to it if they match a filter (don't care if they dont' match other filtere)
+	//pass to generateCorpsePartyHTML
+	this.filterCorpseParty = function(){
+		alert("is it working???")
+	}
 
+this.generateHTMLForClassOrAspectPropertyCorpseParty = function(label, value,total){
+	//		//<input disabled='true' type='checkbox' name='filter' value='"+propertyName +"' id='" + propertyName + "' onchange='filterSessionSummaries()'>"
+	var input = "<input disabled='true' type='checkbox' name='filter' value='"+label +"' id='" + label + "' onchange='this.filterCorpseParty()'>"
+	var html = "<Br>" +input + label + ": " + value + "(" + Math.round( 100* value/total) + "%)"
+	return html;
+
+}
 
 	//display base cause of death "killed by Heir of Breath" and "killed by "Heir of Time" should both be "killed by Player"
 	//display classes and aspects.  Heirs: 47 (10%) Breath Players: 20 (5%) etc.
-	this.generateCorpsePartyHTML = function(){
+	this.generateCorpsePartyHTML = function(filteredGhosts){
 		//first task. convert ghost array to map. or hash. or whatever javascript calls it. key is what I want to display on the left.
 		//value is how many times I see something that evaluates to that key.
 		// about players killing each other.  look for "died being put down like a rabid dog" and ignore the rest.  or  "fighting against the crazy X" to differentiate it from STRIFE.
 		//okay, everything else should be fine. this'll probably still be pretty big, but can figure out how i wanna compress it later. might make all minion/denizen fights compress down to "first goddamn boss fight" and "denizen fight" respectively, but not for v1. want to see if certain
 		//aspect have  a rougher go of it.
-		var html = "<div class = 'multiSessionSummary'>Corpse Party: <button onclick='toggleCorpse()'>Toggle View </button>"
+		var html = "<div class = 'multiSessionSummary'>Corpse Party: (filtering here will ONLY modify the corpse party, not the other boxes) <button onclick='toggleCorpse()'>Toggle View </button>"
 		html += "<div id = 'multiSessionSummaryCorpseParty'>"
-		var corpsePartyClasses = {};
-		var corpsePartyAspects = {};
+		var corpsePartyClasses = {Knight: 0, Seer:0, Bard: 0, Maid: 0, Heir: 0, Rogue: 0, Page: 0, Thief: 0, Sylph:0, Prince:0, Witch:0, Mage:0};
+		var corpsePartyAspects = {Blood: 0, Mind: 0, Rage: 0, Time: 0, Void: 0, Heart: 0, Breath: 0, Light: 0, Space: 0, Hope: 0, Life: 0, Doom: 0};
 		var corpseParty = {} //now to refresh my memory on how javascript hashmaps work
 		html+= this.generateHTMLForProperty("sizeOfAfterLife")
-		for(var i = 0; i<this.ghosts.length; i++){
-				if(this.ghosts[i].causeOfDeath.startsWith("fighting against the crazy")){
+		for(var i = 0; i<filteredGhosts.length; i++){
+				var ghost = filteredGhosts[i];
+				if(ghost.causeOfDeath.startsWith("fighting against the crazy")){
 					if (!corpseParty["fighting against a MurderMode player"]) corpseParty["fighting against a MurderMode player"] = 0 //otherwise NaN
 					corpseParty["fighting against a MurderMode player"] ++;
-				}else if(this.ghosts[i].causeOfDeath.startsWith("being put down like a rabid dog")){
+				}else if(ghost.causeOfDeath.startsWith("being put down like a rabid dog")){
 					if (!corpseParty["being put down like a rabid dog"]) corpseParty["being put down like a rabid dog"] = 0 //otherwise NaN
 					corpseParty["being put down like a rabid dog"] ++;
 				}else{//just use as is
-					if (!corpseParty[this.ghosts[i].causeOfDeath]) corpseParty[this.ghosts[i].causeOfDeath] = 0 //otherwise NaN
-					corpseParty[this.ghosts[i].causeOfDeath] ++;
+					if (!corpseParty[ghost.causeOfDeath]) corpseParty[ghost.causeOfDeath] = 0 //otherwise NaN
+					corpseParty[ghost.causeOfDeath] ++;
 				}
 
-				if (!corpsePartyClasses[this.ghosts[i].class_name]) corpsePartyClasses[this.ghosts[i].class_name] = 0 //otherwise NaN
-				if (!corpsePartyAspects[this.ghosts[i].aspect]) corpsePartyAspects[this.ghosts[i].aspect] = 0 //otherwise NaN
-				corpsePartyAspects[this.ghosts[i].aspect] ++;
-				corpsePartyClasses[this.ghosts[i].class_name] ++;
+				if (!corpsePartyClasses[ghost.class_name]) corpsePartyClasses[ghost.class_name] = 0 //otherwise NaN
+				if (!corpsePartyAspects[ghost.aspect]) corpsePartyAspects[ghost.aspect] = 0 //otherwise NaN
+				corpsePartyAspects[ghost.aspect] ++;
+				corpsePartyClasses[ghost.class_name] ++;
 		}
 
 		for(var corpseType in corpsePartyClasses){
-			html += "<Br>" +corpseType + ": " + corpsePartyClasses[corpseType] + "(" + Math.round( 100* corpsePartyClasses[corpseType]/this.sizeOfAfterLife) + "%)"//todo maybe print out percentages here. we know how many ghosts there are.
+			html += this.generateHTMLForClassOrAspectPropertyCorpseParty(corpseType, corpsePartyClasses[corpseType], filteredGhosts.length);
 		}
 
 		for(var corpseType in corpsePartyAspects){
-			html += "<Br>" +corpseType + ": " + corpsePartyAspects[corpseType] + "(" + Math.round( 100* corpsePartyAspects[corpseType]/this.sizeOfAfterLife) + "%)"//todo maybe print out percentages here. we know how many ghosts there are.
+			html += this.generateHTMLForClassOrAspectPropertyCorpseParty(corpseType, corpsePartyAspects[corpseType], filteredGhosts.length);
 		}
 
 		for(var corpseType in corpseParty){
-			html += "<Br>" +corpseType + ": " + corpseParty[corpseType] + "(" + Math.round( 100* corpseParty[corpseType]/this.sizeOfAfterLife) + "%)"//todo maybe print out percentages here. we know how many ghosts there are.
+			html += "<Br>" +corpseType + ": " + corpseParty[corpseType] + "(" + Math.round( 100* corpseParty[corpseType]/filteredGhosts.length) + "%)"//todo maybe print out percentages here. we know how many ghosts there are.
 		}
 		html += "</div></div>"
 		return html
@@ -451,7 +464,7 @@ function MultiSessionSummary(){
 		if(propertyName == "totalLivingPlayers" || propertyName == "survivalRate" || propertyName == "ghosts" || propertyName == "generateCorpsePartyHTML" || propertyName == "generateHTML") return true;
 		if(propertyName == "isRomanceProperty" || propertyName == "isDramaticProperty" || propertyName == "isEndingProperty" || propertyName == "isAverageProperty" || propertyName == "isPropertyToIgnore") return true;
 		if(propertyName == "isFilterableProperty" || propertyName == "generateClassFilterHTML" || propertyName == "generateAspectFilterHTML" || propertyName == "generateHTMLForProperty" || propertyName == "generateRomanceHTML") return true;
-		if(propertyName == "generateDramaHTML" || propertyName == "generateMiscHTML" || propertyName == "generateAverageHTML" || propertyName == "generateHTMLOld" || propertyName == "generateEndingHTML") return true;
+		if(propertyName == "filterCorpseParty" || propertyName == "generateHTMLForClassOrAspectPropertyCorpseParty" || propertyName == "generateDramaHTML" || propertyName == "generateMiscHTML" || propertyName == "generateAverageHTML" || propertyName == "generateHTMLOld" || propertyName == "generateEndingHTML") return true;
 
 		return false;
 	}
@@ -500,7 +513,7 @@ function MultiSessionSummary(){
 		html += this.generateAverageHTML(averageProperties);
 		html += this.generateMiscHTML(miscProperties);
 
-		html += this.generateCorpsePartyHTML();
+		html += this.generateCorpsePartyHTML(this.ghosts);
 		//MSS and SS will need list of classes and aspects. just strings. nothing beefier.
 		//these will have to be filtered in a special way. just render and display stats for now, though. no filtering.
 		html += this.generateClassFilterHTML();

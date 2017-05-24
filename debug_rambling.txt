@@ -1050,7 +1050,7 @@ Huh, the light player is being revived with a mind control symbol, but isn't bei
 
 Do i have a stray timeout wandering around?  I am definitely making a snapshot of the light player, should i make one before even calling renderSprite?
 
-light player IS rendered as being mad at the breath player befoer the mind control happens, no mark. 
+light player IS rendered as being mad at the breath player befoer the mind control happens, no mark.
 
 AHAH, yes, stray timeout that ALSO explains why sometimes god tiers would "revive" dead.  that bug is fixed!
 
@@ -1069,7 +1069,7 @@ Okay, let's plan this out, sequence of events:
 	* should handle things for yellow yards??????????????????????????????????????????????????????????????????????????????????????????????????????
 
 
-Alright, let's compare this plan to reality.  
+Alright, let's compare this plan to reality.
 
 scenario_controller2.js has:
 
@@ -1118,15 +1118,59 @@ function processCombinedSession(){
 and yellowYard specifically is:
 curSessionGlobalVar.addEventToUndoAndReset(null);
 and  restartSession (in controller)
-	
-	
+
+
 Okay. So, it looks like initiazeStatsForPlayers is called on the existing players. But the players themselves aren't remade. So, might not even have to worry about YellowYard?
 
 EMERGENCY:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~found the source of yellow yard shenanigans.  PLAYERS are being reinitialized, but their sprites are NOT!!!!!!!!!!!
 	this is a good opporunity to have a method to reinit all things, including land and levels so that created players can be called with this.
-	method should have programtic shit, not random shit. don't re-roll hair, do recalc land. 
-	
+	method should have programtic shit, not random shit. don't re-roll hair, do recalc land.
+
 Okay. things seem to be working. had to stop testing cause stuff. need to reorganize my thoughts.
 
 I honestly think new char creator is working. Just need to test yellow yard. test by changing player hair colors (trolls are an obvious target). should cause the sim to have 0 changes, but be obvious that it's a custom character.
-	
+
+
+
+
+  ~~~~~~~~~~~~~~~~~
+
+  Okay, I finally want to finish AB's corpse party mode. I just made it so she prints out class and aspects like so:
+
+  Witch: 2(17%)
+Thief: 1(8%)
+Maid: 2(17%)
+Seer: 1(8%)
+Bard: 1(8%)
+Prince: 1(8%)
+Rogue: 1(8%)
+Knight: 1(8%)
+Sylph: 1(8%)
+Heir: 1(8%)
+Rage: 2(17%)
+Breath: 1(8%)
+Light: 2(17%)
+Blood: 1(8%)
+Doom: 1(8%)
+Life: 1(8%)
+Space: 1(8%)
+Void: 1(8%)
+Time: 1(8%)
+Heart: 1(8%)
+
+
+My goal is for there to be checkboxes by each of these. Clicking on a check box will filter the AFTERLIFE ONLY to display only those deaths of players that fit the check boxes.
+
+There is a challenge inherit here: existing filters assume you want ALL session data, and are just filtering out whole sessions.
+
+First question: Does a multiSessionSummary know about ALL ghosts within it, or is it just a number?
+
+Sure it does: for(var i = 0; i<this.ghosts.length; i++){
+
+Okay, so. Rather than have a global function like the other filter methods, it would make sense to call a method inside the specific MSS that generated the html.
+
+have generateHTML take in a ghost array rather than use the class one.  when called normally, iti's passed the class ghost array.
+when you filter, it grabs all check boxes (How does it know what "all" means?).  If your class/aspect matches a check box you are in (even if it doesn't match another check box.)
+ghosts that pass teh filter are passed to generate HTML.
+
+EXCEPT: It would erase classes/aspects that aren't part of the filter, you woldn't be able to add them to the filter. So, classes/aspects keys needs to be hardcoded.
