@@ -422,8 +422,7 @@ this.generateHTMLForClassOrAspectPropertyCorpseParty = function(label, value,tot
 		// about players killing each other.  look for "died being put down like a rabid dog" and ignore the rest.  or  "fighting against the crazy X" to differentiate it from STRIFE.
 		//okay, everything else should be fine. this'll probably still be pretty big, but can figure out how i wanna compress it later. might make all minion/denizen fights compress down to "first goddamn boss fight" and "denizen fight" respectively, but not for v1. want to see if certain
 		//aspect have  a rougher go of it.
-		var html = "<div class = 'multiSessionSummary'>Corpse Party: (filtering here will ONLY modify the corpse party, not the other boxes) <button onclick='toggleCorpse()'>Toggle View </button>"
-		html += "<div id = 'multiSessionSummaryCorpseParty'>"
+		var html = ""
 		var corpsePartyClasses = {Knight: 0, Seer:0, Bard: 0, Maid: 0, Heir: 0, Rogue: 0, Page: 0, Thief: 0, Sylph:0, Prince:0, Witch:0, Mage:0};
 		var corpsePartyAspects = {Blood: 0, Mind: 0, Rage: 0, Time: 0, Void: 0, Heart: 0, Breath: 0, Light: 0, Space: 0, Hope: 0, Life: 0, Doom: 0};
 		var corpseParty = {} //now to refresh my memory on how javascript hashmaps work
@@ -495,7 +494,7 @@ this.generateHTMLForClassOrAspectPropertyCorpseParty = function(label, value,tot
 
 	this.isPropertyToIgnore = function(propertyName){
 		if(propertyName == "totalLivingPlayers" || propertyName == "survivalRate" || propertyName == "ghosts" || propertyName == "generateCorpsePartyHTML" || propertyName == "generateHTML") return true;
-		if(propertyName == "isRomanceProperty" || propertyName == "isDramaticProperty" || propertyName == "isEndingProperty" || propertyName == "isAverageProperty" || propertyName == "isPropertyToIgnore") return true;
+		if(propertyName == "generateCorpsePartyInnerHTML"  || propertyName == "isRomanceProperty" || propertyName == "isDramaticProperty" || propertyName == "isEndingProperty" || propertyName == "isAverageProperty" || propertyName == "isPropertyToIgnore") return true;
 		if(propertyName == "wireUpCorpsePartyCheckBoxes"  || propertyName == "isFilterableProperty" || propertyName == "generateClassFilterHTML" || propertyName == "generateAspectFilterHTML" || propertyName == "generateHTMLForProperty" || propertyName == "generateRomanceHTML") return true;
 		if(propertyName == "filterCorpseParty" || propertyName == "generateHTMLForClassOrAspectPropertyCorpseParty" || propertyName == "generateDramaHTML" || propertyName == "generateMiscHTML" || propertyName == "generateAverageHTML" || propertyName == "generateHTMLOld" || propertyName == "generateEndingHTML") return true;
 
