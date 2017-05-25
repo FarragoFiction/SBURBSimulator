@@ -11,6 +11,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.land = "Land of " + tmp[0] + " and " + tmp[1];
 	}
 	this.baby = null;
+	this.interest1Category = null; //used by Replay page for custom interests.
+	this.interest2Category = null; //both should be null once they have been used to add the custom interest to the right place
 	this.spriteCanvasID = null;  //part of new rendering engine.
 	this.session = session;
 	this.currentHP = 0;
