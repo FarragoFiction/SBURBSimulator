@@ -1760,7 +1760,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	//this seems to NEVER be called for ghosts.  instead of things needed to render, can make this about char creator
 	this.toJSON = function(){
-		var json = {aspect: this.aspect, class_name: this.class_name,hair: this.hair,  hairColor: this.hairColor, isTroll: this.isTroll, bloodColor: this.bloodColor, leftHorn: this.leftHorn, rightHorn: this.rightHorn  };
+		var json = {aspect: this.aspect, class_name: this.class_name,hair: this.hair,  hairColor: this.hairColor, isTroll: this.isTroll, bloodColor: this.bloodColor, leftHorn: this.leftHorn, rightHorn: this.rightHorn, interest1Category: this.interest1Category, interest2Category: this.interest2Category, interest1: this.interest1, interest2: this.interest2  };
 		return json;
 	}
 
