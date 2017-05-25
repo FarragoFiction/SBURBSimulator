@@ -544,7 +544,7 @@ function Session(session_id){
 		this.currentSceneNum ++;
 		var div;
 		if(this.sbahj){
-			div = "<div id='scene"+this.currentSceneNum+"' style='";
+			div = "<div class = 'scene' id='scene"+this.currentSceneNum+"' style='";
 			div += "background-color: #00ff00;"
 			div += "font-family: Comic Sans MS, cursive, sans-serif;"
 			//$("#scene"+this.currentSceneNum).css("background-color", "#00ff00");
@@ -559,7 +559,7 @@ function Session(session_id){
 			}
 			div += "' ></div>";
 		}else{
-			div = "<div id='scene"+this.currentSceneNum+"'></div>";
+			div = "<div class = 'scene' id='scene"+this.currentSceneNum+"'></div>";
 		}
 		$("#story").append(div);
 		return $("#scene"+this.currentSceneNum);

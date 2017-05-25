@@ -319,11 +319,14 @@ function FreeWillStuff(session){
 						this.renderPlayer1 = player;
 						this.renderPlayer2 = patsy;
 						var loop = ""
+						var timeIntro = "";
 						if(player == patsy){
 							loop = "You get dizzy trying to follow the time logic that must have caused this to happen. Did they only go crazy because their future self went crazy because THEIR future self went crazy....? Or wait, is this a doomed time clone...? Fuck. Time is the shittiest aspect."
 							console.log(player.title() +" convincing past/future self to go murder mode " + this.session.session_id);
+						}else if(player.aspect == "Time" && Math.random()>.25){ //most manipulative time bastards are from teh future
+							timeIntro = " from the future"
 						}
-						return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use clever words to convince the " + patsy.htmlTitleBasic() + " of the righteousness of their plan. They agree to carry out the bloody work. " + loop;
+						return "The " + player.htmlTitleBasic() + timeIntro + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use clever words to convince the " + patsy.htmlTitleBasic() + " of the righteousness of their plan. They agree to carry out the bloody work. " + loop;
 
 				}else{
 					patsy = getRandomElementFromArray(enemies);//no longer care about "best"
@@ -396,9 +399,12 @@ function FreeWillStuff(session){
 		if(sacrifice && !sacrifice.dead && !sacrifice.godTier){
 			var bed = "bed"
 			var loop = ""
+			var timeIntro = "";
 			if(player == sacrifice){
 				loop = "You get dizzy trying to follow the time logic that must have caused this to happen. Did they try to god tier because their future self told them to? But the future self only told them to because THEIR future self told them... Or wait, is this a doomed time clone...? Fuck. Time is the shittiest aspect."
 				console.log(player.title() +" convincing past/future self to go god tier" + this.session.session_id);
+			}else if(player.aspect == "Time" && Math.random()>.25){
+				timeIntro = " from the future"
 			}
 			if(sacrifice.isDreamSelf) bed = "slab"
 			if(sacrifice.freeWill <= player.freeWill && player.power < 200){ //can just talk them into this terrible idea.   not a good chance of working.
@@ -407,11 +413,11 @@ function FreeWillStuff(session){
 					removeFromArray(player, this.session.availablePlayers);
 					removeFromArray(sacrifice, this.session.availablePlayers);
 					//console.log(player.title() + " commits murder and someone else gets tiger " + this.session.session_id);
-					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". " + ret + " It is not a very big deal at all. " + loop;  //caliborn
+					return "The " + player.htmlTitleBasic() + timeIntro + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". " + ret + " It is not a very big deal at all. " + loop;  //caliborn
 				}else if(sacrifice.rollForLuck() + player.rollForLuck() > 200){  //BOTH have to be lucky.
 					//console.log(player.title() + " commits murder and someone else gets tiger and it is all very lucky. " + this.session.session_id);
 					var ret =  this.godTierHappens(sacrifice);
-					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". " + ret + " It is a stupidly huge deal, since the " + sacrifice.htmlTitleBasic() + " was never destined to God Tier at all. But I guess the luck of both players was enough to make things work out, in the end."  + loop;
+					return "The " + player.htmlTitleBasic() + timeIntro + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". " + ret + " It is a stupidly huge deal, since the " + sacrifice.htmlTitleBasic() + " was never destined to God Tier at all. But I guess the luck of both players was enough to make things work out, in the end."  + loop;
 				}else{
 					removeFromArray(player, this.session.availablePlayers);
 					removeFromArray(sacrifice, this.session.availablePlayers);
@@ -421,14 +427,14 @@ function FreeWillStuff(session){
 					this.renderPlayer1 = player;
 					this.renderPlayer2 = sacrifice;
 					//console.log(player.title() + " commits murder for god tier but doesn't get tiger " + this.session.session_id);
-					var ret = "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed;
+					var ret = "The " + player.htmlTitleBasic() + timeIntro + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed;
 					if(!sacrifice.godDestiny){
 						sacrifice.makeDead("trying to go God Tier against destiny.");
-						ret +=  ". A frankly ridiculous series of events causes the " + sacrifice.htmlTitleBasic() + "'s dying body to fall off their " + bed + ". They were never destined to GodTier, and SBURB neurotically enforces such things. The " + player.htmlTitleBasic() + " tries desparately to get them to their " + bed + " in time, but in vain. They are massively triggered by their own astonishing amount of hubris. ";
+						ret +=  ". A frankly ridiculous series of events causes the " + sacrifice.htmlTitleBasic() + "'s dying body to fall off their " + bed + ". They were never destined to GodTier, and SBURB neurotically enforces such things. The " + player.htmlTitleBasic() + timeIntro + " tries desparately to get them to their " + bed + " in time, but in vain. They are massively triggered by their own astonishing amount of hubris. ";
 					}else{
 						console.log(" could not god tier because lack of dream self in session: " + this.session.session_id)
 						sacrifice.makeDead("trying to go God Tier wthout a dream self.");
-						ret += ".  Unfortunately, you need a dream self to go GodTier, and the " + sacrifice.htmlTitleBasic() + " does not have one. They die for no reason. Nothing glows, their body does not float, and the magnitude of the " + player.htmlTitleBasic() + "'s hubris astonishes everyone. ";
+						ret += ".  Unfortunately, you need a dream self to go GodTier, and the " + sacrifice.htmlTitleBasic() + " does not have one. They die for no reason. Nothing glows, their body does not float, and the magnitude of the " + player.htmlTitleBasic() + timeIntro +"'s hubris astonishes everyone. ";
 					}
 					return ret + loop;
 				}
@@ -438,7 +444,7 @@ function FreeWillStuff(session){
 				removeFromArray(sacrifice, this.session.availablePlayers);
 				var trait = this.getManipulatableTrait(player)
 				//console.log(player.title() + " controls someone into getting tiger " + this.session.session_id);
-				return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They don't leave anything to chance and use their game powers to influence the  " + sacrifice.htmlTitleBasic() + "'s " + trait + " until they are killed on their " + bed + ". " + ret ;
+				return "The " + player.htmlTitleBasic() + timeIntro +" knows how the god tiering mechanic works. They don't leave anything to chance and use their game powers to influence the  " + sacrifice.htmlTitleBasic() + "'s " + trait + " until they are killed on their " + bed + ". " + ret ;
 
 			}
 		}
@@ -603,12 +609,17 @@ function FreeWillStuff(session){
 	//if self, just fucking do it. otherwise, pester them. raise power to min requirement, if it's not already there.
 	this.considerMakingEctobiologistDoJob = function(player){
 		if(!this.session.ectoBiologyStarted && player.knowsAboutSburb() && player.grimDark < 2 ){
+			var timeIntro = "";
+			if(player.aspect == "Time" && Math.random()>.25){
+				timeIntro = " from the future"
+			}
 			if(player.leader){
 				//console.log(player.title() +" did their damn job. " +this.session.session_id);
 				removeFromArray(player, this.session.availablePlayers);
 				player.performEctobiology(this.session);
-				return "The " + player.htmlTitle() + " is not going to play by SBURB's rules. Yes, they could wait to do Ectobiology until they are 'supposed' to. But. Just. Fuck that shit. That's how doomed timelines get made. They create baby versions of everybody. Don't worry about it.";
+				return "The " + player.htmlTitle() + timeIntro + " is not going to play by SBURB's rules. Yes, they could wait to do Ectobiology until they are 'supposed' to. But. Just. Fuck that shit. That's how doomed timelines get made. They create baby versions of everybody. Don't worry about it.";
 			}else{
+				
 				var leader = getLeader(this.session.availablePlayers);
 				if(leader && !leader.dead && leader.grimDark < 2){ //you are NOT gonna be able to convince a grim dark player to do their SBURB duties.
 					if(leader.freeWill < player.freeWill){
@@ -616,7 +627,7 @@ function FreeWillStuff(session){
 						removeFromArray(leader, this.session.availablePlayers);
 						//console.log(player.title() +" convinced ectobiologist to do their damn job. " +this.session.session_id);
 						player.performEctobiology(this.session);
-						return "The " + player.htmlTitle() + " is not going to play by SBURB's rules. They pester the " + leader.htmlTitle() + " to do Ectobiology. That's why they're the leader. They bug and fuss and meddle and finally the " + leader.htmlTitle() + " agrees to ...just FUCKING DO IT.  Baby versions of everybody are created. Don't worry about it.";
+						return "The " + player.htmlTitle() + timeIntro + " is not going to play by SBURB's rules. They pester the " + leader.htmlTitle() + " to do Ectobiology. That's why they're the leader. They bug and fuss and meddle and finally the " + leader.htmlTitle() + " agrees to ...just FUCKING DO IT.  Baby versions of everybody are created. Don't worry about it.";
 
 					}else if(player.power > 50){
 						//console.log(player.title() +" mind controlled ectobiologist to do their damn job. " +this.session.session_id);
@@ -624,7 +635,7 @@ function FreeWillStuff(session){
 						removeFromArray(player, this.session.availablePlayers);
 						removeFromArray(leader, this.session.availablePlayers);
 						var trait = this.getManipulatableTrait(player)
-						return "The " + player.htmlTitle() + " is not going to play by SBURB's rules.  When bugging and fussing and meddling doesn't work, they decide to rely on game powers. They straight up manipulate the recalcitrant " + leader.htmlTitle() + "'s " + trait + " until they just FUCKING DO ectobiology.  Baby versions of everybody are created. The " + player.htmlTitle() + " immediatley drops the effect. It's like it never happened. Other than one major source of failure being removed from the game. " ;
+						return "The " + player.htmlTitle() + timeIntro + " is not going to play by SBURB's rules.  When bugging and fussing and meddling doesn't work, they decide to rely on game powers. They straight up manipulate the recalcitrant " + leader.htmlTitle() + "'s " + trait + " until they just FUCKING DO ectobiology.  Baby versions of everybody are created. The " + player.htmlTitle() + timeIntro + " immediatley drops the effect. It's like it never happened. Other than one major source of failure being removed from the game. " ;
 					}
 				}
 			}
@@ -643,13 +654,17 @@ function FreeWillStuff(session){
 				removeFromArray(player, this.session.availablePlayers);
 				return "The " + player.htmlTitle() + " is not going to fall into SBURB's trap. They know why frog breeding is important, and they are going to fucking DO it. ";
 			}else{
+				var timeIntro = "";
+				if(player.aspect == "Time" && Math.random()>.25){
+					timeIntro = " from the future"
+				}
 				if(!space.dead){
 					if(space.freeWill < player.freeWill && space.grimDark < 2){  //grim dark players just don't do their SBURB duties unless forced.
 						removeFromArray(player, this.session.availablePlayers);
 						removeFromArray(player, this.session.availablePlayers);
 						//console.log(player.title() +" convinced space player to do their damn job. " +this.session.session_id);
 						space.landLevel += 10;
-						return "The " + player.htmlTitle() + " is not going to to fall into SBURB's trap. They pester the " + space.htmlTitle() + " to do frog breeding, even if it seems useless. They bug and fuss and meddle and finally the " + space.htmlTitle() + " agrees to ...just FUCKING DO IT.";
+						return "The " + player.htmlTitle() + timeIntro + " is not going to to fall into SBURB's trap. They pester the " + space.htmlTitle() + " to do frog breeding, even if it seems useless. They bug and fuss and meddle and finally the " + space.htmlTitle() + " agrees to ...just FUCKING DO IT.";
 
 					}else if(player.power > 50){
 						//console.log(player.title() +" mind controlled space player to do their damn job. " +this.session.session_id);
