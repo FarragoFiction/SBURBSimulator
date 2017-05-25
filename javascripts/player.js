@@ -306,7 +306,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			this.murderMode = false;
 			this.currentHP = Math.max(this.hp,1); //if for some reason your hp is negative, don't do that.
 			this.grimDark = false;
-			this.triggerLevel = 1;
+			this.triggerLevel = 11;  //dying is pretty triggering.
+			this.flipOutReason = "they just freaking died"
 			//this.leftMurderMode = false; //no scars
 			this.victimBlood = null; //clean face
 			this.renderSelf();

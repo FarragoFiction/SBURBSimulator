@@ -135,11 +135,12 @@ function FreeWillStuff(session){
 
 	//hate someone, not in murder mode, self if active, other if passive. plus random, increase trigger, too. if you engage murder mode in someone else, random chance to succesfully manipulate them to hate who you hate.
 	//less likely if who you hate is ectobiologist or space
+	//allow some randomness here. 
 	this.considerEngagingMurderMode = function(player){
 		var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
-		if(player.isActive() && enemies.length > 2 && player.triggerLevel > 5 && !player.murderMode){
+		if(player.isActive() && enemies.length > 2 && player.triggerLevel > 5 && !player.murderMode && Math.seededRandom() >0.25){
 			return this.becomeMurderMode(player);
-		}else if(enemies.length > 0 && player.triggerLevel > 5){
+		}else if(enemies.length > 0 && player.triggerLevel > 5 && Math.seededRandom() > 0.25){
 			return this.forceSomeOneElseMurderMode(player);
 		}
 		return null;
@@ -383,7 +384,7 @@ function FreeWillStuff(session){
 	this.considerForceGodTier = function(player){
 		if(!player.knowsAboutSburb()) return null; //regular players will never do this
 		if(player.freeWill < 50) return null; //requires great will power to commit suicide or murder for the greater good.
-		if(player.isActive()){
+		if(player.isActive() && (player.triggerLevel < 10 || player.murderMode)){
 			return this.becomeGod(player);
 		}else if(player.triggerLevel < 10 || player.murderMode) {  //don't risk killing a friend unless you're already crazy or the idea of failure hasn't even occured to you.
 			return this.forceSomeOneElseBecomeGod(player);
@@ -399,6 +400,7 @@ function FreeWillStuff(session){
 		if(sacrifice && !sacrifice.dead && !sacrifice.godTier){
 			var bed = "bed"
 			var loop = ""
+			
 			var timeIntro = "";
 			if(player == sacrifice){
 				loop = "You get dizzy trying to follow the time logic that must have caused this to happen. Did they try to god tier because their future self told them to? But the future self only told them to because THEIR future self told them... Or wait, is this a doomed time clone...? Fuck. Time is the shittiest aspect."
@@ -406,6 +408,11 @@ function FreeWillStuff(session){
 			}else if(player.aspect == "Time" && Math.random()>.25){
 				timeIntro = " from the future"
 			}
+			var intro = "The " + player.htmlTitleBasic() + timeIntro + " knows how the god tiering mechanic works"
+			if(player.murderMode){
+				intro += " and they are too far gone to care about casualties if it fails"
+			}
+			
 			if(sacrifice.isDreamSelf) bed = "slab"
 			if(sacrifice.freeWill <= player.freeWill && player.power < 200){ //can just talk them into this terrible idea.   not a good chance of working.
 				if(sacrifice.godDestiny && (sacrifice.dreamSelf || sacrifice.isDreamSelf)){ //if my dream self is dead and i am my real self....
@@ -413,11 +420,11 @@ function FreeWillStuff(session){
 					removeFromArray(player, this.session.availablePlayers);
 					removeFromArray(sacrifice, this.session.availablePlayers);
 					//console.log(player.title() + " commits murder and someone else gets tiger " + this.session.session_id);
-					return "The " + player.htmlTitleBasic() + timeIntro + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". " + ret + " It is not a very big deal at all. " + loop;  //caliborn
+					return intro +". They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". " + ret + " It is not a very big deal at all. " + loop;  //caliborn
 				}else if(sacrifice.rollForLuck() + player.rollForLuck() > 200){  //BOTH have to be lucky.
 					//console.log(player.title() + " commits murder and someone else gets tiger and it is all very lucky. " + this.session.session_id);
 					var ret =  this.godTierHappens(sacrifice);
-					return "The " + player.htmlTitleBasic() + timeIntro + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". " + ret + " It is a stupidly huge deal, since the " + sacrifice.htmlTitleBasic() + " was never destined to God Tier at all. But I guess the luck of both players was enough to make things work out, in the end."  + loop;
+					return intro + ". They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed + ". " + ret + " It is a stupidly huge deal, since the " + sacrifice.htmlTitleBasic() + " was never destined to God Tier at all. But I guess the luck of both players was enough to make things work out, in the end."  + loop;
 				}else{
 					removeFromArray(player, this.session.availablePlayers);
 					removeFromArray(sacrifice, this.session.availablePlayers);
@@ -427,7 +434,7 @@ function FreeWillStuff(session){
 					this.renderPlayer1 = player;
 					this.renderPlayer2 = sacrifice;
 					//console.log(player.title() + " commits murder for god tier but doesn't get tiger " + this.session.session_id);
-					var ret = "The " + player.htmlTitleBasic() + timeIntro + " knows how the god tiering mechanic works. They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed;
+					var ret = intro + ". They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed;
 					if(!sacrifice.godDestiny){
 						sacrifice.makeDead("trying to go God Tier against destiny.");
 						ret +=  ". A frankly ridiculous series of events causes the " + sacrifice.htmlTitleBasic() + "'s dying body to fall off their " + bed + ". They were never destined to GodTier, and SBURB neurotically enforces such things. The " + player.htmlTitleBasic() + timeIntro + " tries desparately to get them to their " + bed + " in time, but in vain. They are massively triggered by their own astonishing amount of hubris. ";
@@ -454,16 +461,20 @@ function FreeWillStuff(session){
 	//me am play god.
 	this.becomeGod = function(player){
 		if(!player.godTier){
+			var intro = "The " + player.htmlTitleBasic() + timeIntro + " knows how the god tiering mechanic works"
+			if(player.murderMode){
+				intro += " and they are too far gone to care about the consequences of failure"
+			}
 			if(player.godDestiny){
-
+	
 				removeFromArray(player, this.session.availablePlayers);
 				if((player.dreamSelf || player.isDreamSelf)){
 					var ret =  this.godTierHappens(player);
-					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They steel their will and prepare to commit a trivial act of self suicide. " + ret + " It is not a very big deal at all. ";  //caliborn
+					return intro + ". They steel their will and prepare to commit a trivial act of self suicide. " + ret + " It is not a very big deal at all. ";  //caliborn
 				}else{
 					console.log(player.title() + " player accidentally suicided trying to god tier without a dream self : "  + this.session.session_id)
 					player.makeDead( "trying to go God Tier without a dream self.");
-					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They steel their will and prepare to commit a trivial act of self suicide. " + ret + " They may have known enough to exploit the God Tiering mechanic, but apparently hadn't taken into account the fact that you need a DREAM SELF to ascend to the GOD TIERS. Whoops. DEAD. ";
+					return intro + ". They steel their will and prepare to commit a trivial act of self suicide. " + ret + " They may have known enough to exploit the God Tiering mechanic, but apparently hadn't taken into account the fact that you need a DREAM SELF to ascend to the GOD TIERS. Whoops. DEAD. ";
 				}
 				//console.log(player.title() + " commits suicide and gets tiger " + this.session.session_id);
 			}else{
@@ -471,11 +482,11 @@ function FreeWillStuff(session){
 					removeFromArray(player, this.session.availablePlayers);
 					if((player.dreamSelf || player.isDreamSelf)){
 						var ret =  this.godTierHappens(player);
-						return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They steel their will and prepare to commit a trivial act of self suicide. " + ret + " It is probably for the best that they don't know how huge a deal this is. If they hadn't caught a LUCKY BREAK, they would have died here forever. They were never destined to go God Tier, even if they commited suicide.  ";
+						return intro + ". They steel their will and prepare to commit a trivial act of self suicide. " + ret + " It is probably for the best that they don't know how huge a deal this is. If they hadn't caught a LUCKY BREAK, they would have died here forever. They were never destined to go God Tier, even if they commited suicide.  ";
 					}else{
 						console.log(player.title() + " player accidentally suicided trying to god tier without a dream self : "  + this.session.session_id)
 						player.makeDead( "trying to go God Tier without a dream self.");
-						return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They steel their will and prepare to commit a trivial act of self suicide. " + ret + " They may have known enough to exploit the God Tiering mechanic, but apparently hadn't taken into account the fact that you need a DREAM SELF to ascend to the GOD TIERS. Whoops. DEAD. ";
+						return intro + ". They steel their will and prepare to commit a trivial act of self suicide. " + ret + " They may have known enough to exploit the God Tiering mechanic, but apparently hadn't taken into account the fact that you need a DREAM SELF to ascend to the GOD TIERS. Whoops. DEAD. ";
 
 					}
 					}else{
@@ -487,7 +498,7 @@ function FreeWillStuff(session){
 					this.renderPlayer1 = player;
 					//console.log(player.title() + " commits suicide but doesn't get tiger " + this.session.session_id);
 
-					return "The " + player.htmlTitleBasic() + " knows how the god tiering mechanic works. They steel their will and prepare to commit a trivial act of self suicide. A frankly ridiculous series of events causes their dying body to fall off the " + bed + ". They may have known enough to exploit the God Tiering mechanic, but apparently hadn't taken into account how neurotically SBURB enforces destiny.  They are DEAD.";
+					return intro + ". They steel their will and prepare to commit a trivial act of self suicide. A frankly ridiculous series of events causes their dying body to fall off the " + bed + ". They may have known enough to exploit the God Tiering mechanic, but apparently hadn't taken into account how neurotically SBURB enforces destiny.  They are DEAD.";
 				}
 			}
 		}
