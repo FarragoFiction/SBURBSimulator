@@ -18,6 +18,29 @@ function RelationshipDrama(session){
 		}
 		return this.dramaPlayers.length > 0;
 	}
+	
+	//if they hate you back
+	this.celebratoryRapBattle = function(div, player, jerk){
+		this.session.rapBattle = true;
+		var player1Start = player1.chatHandleShort()+ ": "
+		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
+		var canvasHTML = "<br><canvas id='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		var canvasDiv = document.getElementById("canvas"+  (div.attr("id")));
+		var chatText = ""
+
+		chatText += chatLine(player1Start, player1,"Bro. Rap Battle. Now. Bring the Fires.")
+		chatText += chatLine(player2Start, player2,"Yes. Fuck yes! Hell FUCKING yes!")
+		var p1score = 0;
+		var p2score = 0;
+		var raps1 = getRapForPlayer(player1,"",0);
+		chatText += raps1[0];
+		p1score = raps1[1];
+		var raps2 = getRapForPlayer(player2,"",0);
+		chatText += raps2[0];
+		p2score = raps1[1];
+		drawChat(canvasDiv, player1, player2, chatText, repeatTime,"discuss_raps.png");
+	}
 
 	//poor eridan?
 	this.confessTooManyFeeling = function(div, player, crush){
@@ -559,6 +582,7 @@ function RelationshipDrama(session){
 			chatText += chatLine(player2Start, player2,"Fuck you, at least I'm not " + trait2 + "!");
 			makeSpades(player1, player2);
 			this.session.hasSpades = true;
+			this.celebratoryRapBattle(div, player1, player2);
 
 		}else if(r2.type == r2.goodBig){
 			chatText += chatLine(player2Start, player2,"Wow. Yes. Way to be an asshole. ");

@@ -91,7 +91,7 @@ rapTemplates.push(new RapTemplate("you're getting served so hard it's like you'r
 rapTemplates.push(new RapTemplate("why don't you polish my  ",noun, " it's the closest you'll ever get to ", verb) );
 rapTemplates.push(new RapTemplate("I'll beat your ass and then if I'm  ",verb, " I'll even take the time to lock you in a ", noun) );
 rapTemplates.push(new RapTemplate("when you see me you start feeling your ",noun, " but I can't blame you, you just a ", noun) );
-rapTemplates.push(new RapTemplate("you think i'm ",verb, "just because i sit here rapping with a  ", noun) );
+rapTemplates.push(new RapTemplate("you think i'm ",verb, " just because i sit here rapping with a  ", noun) );
 rapTemplates.push(new RapTemplate("my raps are so good you know they ain't  ",noun, " if you don't respect you must be a ", noun) );
 rapTemplates.push(new RapTemplate("I'm the rap king of  ",noun, " and you ain't fit to ", verb) );
 rapTemplates.push(new RapTemplate("my flow is chicken fried ",noun, " and you think you can ", verb) );
