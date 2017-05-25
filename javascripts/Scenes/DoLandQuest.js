@@ -119,10 +119,10 @@ function DoLandQuest(session){
 			player.landLevel ++;
 			if(r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " tells the " + player.htmlTitle() + " that they are going to run on ahead and do some quests on " + player.shortLand() + " on their own. The " + player.htmlTitle() + " is freed up to do other shit, now. " ;
-				console.log("breath player doing quests for a friend: " + this.session.session_id)
+				//console.log("breath player doing quests for a friend: " + this.session.session_id)
 			}else{
 				ret += " The " + helper.htmlTitle() + " gets annoyed with how slow the " + player.htmlTitle() + " is being and runs ahead to get aaaaaaaall the levels and experience. At least the " + player.htmlTitle() + " has less stuff to do for the their main quests, now. " ;
-				console.log("breath player ignoring enemy to get exp: " + this.session.session_id)
+			//	console.log("breath player ignoring enemy to get exp: " + this.session.session_id)
 			}
 		}
 
