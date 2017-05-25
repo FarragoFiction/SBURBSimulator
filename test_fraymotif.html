@@ -16,6 +16,7 @@
 					$('#aspects :selected').each(function(i, selected){
   						aspects.push($(selected).text());
 					});
+					//in real sim, won't be shuffled, first player will be first element
 					var fraymotif = globalFraymotifCreator.makeFraymotif(shuffle(aspects), tier.val());
 					$("#fraymotifs").append("<br>" + fraymotif);
 			}
