@@ -20,7 +20,7 @@ function RelationshipDrama(session){
 	}
 	
 	//if they hate you back
-	this.celebratoryRapBattle = function(div, player, jerk){
+	this.celebratoryRapBattle = function(div, player1, player2){
 		this.session.rapBattle = true;
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
@@ -40,6 +40,17 @@ function RelationshipDrama(session){
 		chatText += raps2[0];
 		p2score = raps1[1];
 		drawChat(canvasDiv, player1, player2, chatText, repeatTime,"discuss_raps.png");
+		if(p1score + p2score > 6){ //it's not winning that calms them down, but sick fires in general.
+			//console.log("rap sick fires in session: " + this.session.session_id + " score: " + (p1score + p2score))
+			div.append("<img class = 'sickFiresCentered' src = 'images/sick_fires.gif'><br> It seems that the " + player1.htmlTitle() + " has been calmed down, for now.");
+			player1.unmakeMurderMode(); //if they WERE in murder mode, well, now they ain't.
+			player2.unmakeMurderMode();
+			//rap battles are truly the best way to power level.
+			player1.increasePower();
+			player2.increasePower();
+			this.session.sickFires = true;
+		}
+		
 	}
 
 	//poor eridan?
