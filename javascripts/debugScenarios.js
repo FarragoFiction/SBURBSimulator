@@ -996,6 +996,7 @@ function session612IndexToTroll(player, index){
 		player.bloodColor = "#a1a100";
 		player.quirk.capitalization = 1;
 		player.quirk.punctuation = 2;
+		player.quirk.favoriteNumber = 2;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["i","ii"],["s","2"]];
 		player.kernel_sprite = "Bicyclops"
@@ -1241,6 +1242,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.bloodColor = "#a1a100";
 		player.quirk.capitalization = 1;
 		player.quirk.punctuation = 2;
+		player.quirk.favoriteNumber = 2;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["i","ii"],["s","2"]];
 		player.kernel_sprite = "Bicyclops"
