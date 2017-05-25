@@ -1868,7 +1868,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 
 		this.spriteCanvasID = this.chatHandle+this.id+"spriteCanvas";
-		var canvasHTML = "<br><canvas style='display:true' id='" + this.spriteCanvasID+"' width='" +400 + "' height="+300 + "'>  </canvas>";
+		var canvasHTML = "<br><canvas style='display:none' id='" + this.spriteCanvasID+"' width='" +400 + "' height="+300 + "'>  </canvas>";
 		$("#playerSprites").append(canvasHTML)
 	}
 
