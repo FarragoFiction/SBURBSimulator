@@ -21,7 +21,7 @@ function FraymotifCreator(session){
       return getRandomElementFromArray(names)
   }
 
-  this.getRandomDoomName = function(){
+  this.getRandomRageName = function(){
       var names = ["Rage", "Madness", "Carnival", "Mirthful", "Screaming", "Berserk", "MoThErFuCkInG", "War", "Haze", "Murder", "Crescendo", "Furioso", "Aggressive", "ATBasher",  "Fortississimo", "Violent", "Unbound", "Purple", "Unholy", "Hateful", "Fearful", "Inconceivable", "Impossible"];
       return getRandomElementFromArray(names)
   }
@@ -78,7 +78,18 @@ function FraymotifCreator(session){
 
   this.getRandomNameForAspect = function(aspect){
     console.log(aspect);
+    if(aspect == "Blood") return this.getRandomBloodName();
+    if(aspect == "Mind") return this.getRandomMindName();
+    if(aspect == "Rage") return this.getRandomRageName();
+    if(aspect == "Time") return this.getRandomTimeName();
+    if(aspect == "Void") return this.getRandomVoidName();
+    if(aspect == "Heart") return this.getRandomHeartName();
     if(aspect == "Breath") return this.getRandomBreathName();
+    if(aspect == "Light") return this.getRandomLightName();
+    if(aspect == "Space") return this.getRandomSpaceName();
+    if(aspect == "Hope") return this.getRandomHopeName();
+    if(aspect == "Life") return this.getRandomLifeName();
+    if(aspect == "Doom") return this.getRandomDoomName();
   }
 
   //a tier1 fraymotif of 1 aspect has exactly 1 name. otherwise, 1 name per aspect.
