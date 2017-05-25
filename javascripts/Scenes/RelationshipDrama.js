@@ -29,7 +29,7 @@ function RelationshipDrama(session){
 		var canvasDiv = document.getElementById("canvas"+  (div.attr("id")));
 		var chatText = ""
 
-		chatText += chatLine(player1Start, player1,"Bro. Rap Battle. Now. Bring the Fires.")
+		chatText += chatLine(player1Start, player1,"Bro. Rap Battle. Now. Bring the Fires. Imma show you why you suck.")
 		chatText += chatLine(player2Start, player2,"Yes. Fuck yes! Hell FUCKING yes!")
 		var p1score = 0;
 		var p2score = 0;
