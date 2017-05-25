@@ -171,7 +171,9 @@ function scratchConfirm(){
 function restartSession(){
 	$("#story").html('<canvas id="loading" width="1000" height="354"> ');
 	window.scrollTo(0, 0);
+	checkEasterEgg();
 	initializePlayers(curSessionGlobalVar.players); //initializePlayers
+	checkEasterEgg();
 	intro();
 }
 
