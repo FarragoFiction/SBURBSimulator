@@ -3,6 +3,7 @@ function Fraymotif(aspects, name,tier){
     this.aspects = aspects; //expect to be an array
     this.name = name;
     this.tier = tier;
+    this.used = false; //when start fight, set to false. set to true when used. once per fight
 
     this.toString  = function(){
       return this.name;
@@ -20,11 +21,64 @@ function FraymotifCreator(session){
       return getRandomElementFromArray(names)
   }
 
+  this.getRandomDoomName = function(){
+      var names = ["Rage", "Madness", "Carnival", "Mirthful", "Screaming", "Berserk", "MoThErFuCkInG", "War", "Haze", "Murder", "Crescendo", "Furioso", "Aggressive", "ATBasher",  "Fortississimo", "Violent", "Unbound", "Purple", "Unholy", "Hateful", "Fearful", "Inconceivable", "Impossible"];
+      return getRandomElementFromArray(names)
+  }
+
+  this.getRandomLifeName = function(){
+      var names = ["Life" , "Relief", "Healing", "Plant", "Vitality", "Growing", "Encore", "Garden", "Multiplying", "Rising", "Survival", "Vivante", "Phoenix", "Respawn", "Mangrit", "Animato", "Gaia", "Increasing", "Overgrowth", "Jungle", "Harvest", "Lazarus"];
+      return getRandomElementFromArray(names)
+  }
+
+  this.getRandomHopeName = function(){
+      var names = ["Hope","Fake", "Belief", "Bullshit", "Determination", "Burn", "Stubborn", "Religion", "Will", "Hero", "Undying", "Dream", "Sepulchritude", "Hymn", "Eroico", "Nobilmente", "Allegretto", "Prophet", "Apocryphal", "Chant"];
+      return getRandomElementFromArray(names)
+  }
+
+  this.getRandomVoidName = function(){
+      var names = ["Void", "Nothing", "Emptiness", "Invisible", "Dark", "Hole", "Solo", "Silent", "Alone", "Night", "Null", "[Censored]", "[???]", "Vacuous", "Abyss", "Mysterioso", "Diminuendo", "Perdendo", "Noir", "Blank", "Tenebrous", "Antithesis", "404"];
+      return getRandomElementFromArray(names)
+  }
+
+  this.getRandomLightName = function(){
+      var names = ["Lucky", "Light", "Knowledge", "Blinding", "Brilliant", "Break", "Blazing", "Glow", "Flare", "Gamble", "Omnifold", "Apollo", "Helios", "Staccato", "Scintillating", "Horseshoe", "Leggiero", "Star", "Kindle", "Gambit", "Blaze"];
+      return getRandomElementFromArray(names)
+  }
+
+  this.getRandomMindName = function(){
+      var names = ["Mind", "Coin", "Judgement", "Mind", "Decision", "Spark", "Path", "Trial", "Variations", "Thunder", "Logical", "Telekinetic", "Brainiac", "Hysteria", "Deciso", "Thesis", "Imagination", "Allegro",  "Psycho", "Control", "Execution", "Bolt"];
+      return getRandomElementFromArray(names)
+  }
+
+  this.getRandomHeartName = function(){
+      var names = ["Heart", "Soul", "Jazz", "Blues", "Spirit", "Splintering", "Clone", "Self", "Havoc", "Noble", "Animus", "Astral", "Shatter", "Breakdown", "Ethereal", "Caloroso", "Beat", "Pulchritude"];
+      return getRandomElementFromArray(names)
+  }
+
+  this.getRandomBloodName = function(){
+      var names = ["Blood", "Friendship", "Trusting", "Clotting", "Union", "Bleeding", "Concerto", "Team", "Transfusion", "Pulse", "Sanguine", "Positive", "Negative", "Cruor", "Vim", "Chorus", "Iron", "Ichorial", "Fever", "Heat"];
+      return getRandomElementFromArray(names)
+  }
+
+  this.getRandomDoomName = function(){
+      var names = ["Dark", "Fate", "Doomed", "Inevitable", "Doom", "End", "Final", "Coda", "Requiem", "Dead", "Ruin", "Rot", "Coffin", "Apocalypse", "Dirge", "Morendo", "Smorzando", "~Ath", "Armistyx", "Grave", "Corpse", "Ashen", "Reaper", "Diseased", "Armageddon", "Cursed"];
+      return getRandomElementFromArray(names)
+  }
+
+  this.getRandomTimeName = function(){
+      var names = ["Time","Paradox", "Temporal", "Shenanigans", "Clock", "Tick-Tock", "Spinning", "Repeat", "Overture", "Rhythm", "Redshift", "Presto", "Largo",  "Epoch", "Accelerando", "Polytempo", "Beatdown", "Slow", "Remix", "Clockwork", "Lock", "Eternal"];
+      return getRandomElementFromArray(names)
+  }
+
+  this.getRandomSpaceName = function(){
+      var names = ["Space","Frogs", "Location", "Spatial", "Universe", "Infinite", "Spiral", "Orchestra", "Physics", "Star", "Galaxy", "Nuclear", "Atomic", "Nucleus", "Horizon", "Event", "Croak", "Spatium", "Squiddle", "Engine", "Meteor", "Gravity", "Crush"];
+      return getRandomElementFromArray(names)
+  }
+
   this.getRandomNameForAspect = function(aspect){
     console.log(aspect);
-    if(aspect == "Breath"){
-      return this.getRandomBreathName();
-    }
+    if(aspect == "Breath") return this.getRandomBreathName();
   }
 
   //a tier1 fraymotif of 1 aspect has exactly 1 name. otherwise, 1 name per aspect.
