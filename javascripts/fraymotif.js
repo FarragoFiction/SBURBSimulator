@@ -72,7 +72,7 @@ function FraymotifCreator(session){
   }
 
   this.getRandomSpaceName = function(){
-      var names = ["Space","Frogs", "Location", "Spatial", "Universe", "Infinite", "Spiral", "Orchestra", "Physics", "Star", "Galaxy", "Nuclear", "Atomic", "Nucleus", "Horizon", "Event", "Croak", "Spatium", "Squiddle", "Engine", "Meteor", "Gravity", "Crush"];
+      var names = ["Space","Frogs", "Location", "Spatial", "Universe", "Infinite", "Spiral", "Orchestra", "Physics", "Star", "Galaxy", "Nuclear", "Atomic", "Nucleus", "Horizon", "Event", "CROAK", "Spatium", "Squiddle", "Engine", "Meteor", "Gravity", "Crush"];
       return getRandomElementFromArray(names)
   }
 
