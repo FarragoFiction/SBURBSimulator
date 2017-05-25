@@ -37,7 +37,7 @@ function FraymotifCreator(session){
   }
 
   this.getRandomVoidName = function(){
-      var randBonus = "<span class = 'void'>" + getRandomElementFromArray(interests) +  "</div>"
+      var randBonus = "<span class = 'void'>" + getRandomElementFromArray(interests) +  "</span>"
       var names = ["Void", "Pumpkin", "Nothing", "Emptiness", "Invisible", "Dark", "Hole", "Solo", "Silent", "Alone", "Night", "Null", "[Censored]", "[???]", "Vacuous", "Abyss", "Mysterioso", "Diminuendo", "Perdendo", "Noir", "Blank", "Tenebrous", "Antithesis", "404"];
       return getRandomElementFromArray(names)+ randBonus;
   }
