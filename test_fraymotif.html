@@ -9,6 +9,36 @@
 	<script type="text/javascript" src="javascripts/fraymotif.js"></script>
 	<script>
 			var globalFraymotifCreator = new FraymotifCreator(null);
+
+			function makeFraymotif(){
+					var tier = $('[name="tier"] option:selected');
+					var aspects = [];
+					$('#aspects :selected').each(function(i, selected){
+  						aspects.push($(selected).text());
+					});
+					var fraymotif = globalFraymotifCreator.makeFraymotif(shuffle(aspects), tier.val());
+					$("#fraymotifs").append("<br>" + fraymotif);
+			}
+
+
+			function shuffle(array) {
+				  var currentIndex = array.length, temporaryValue, randomIndex;
+
+				  // While there remain elements to shuffle...
+				  while (0 !== currentIndex) {
+
+				    // Pick a remaining element...
+				    randomIndex = Math.floor(Math.random() * currentIndex);
+				    currentIndex -= 1;
+
+				    // And swap it with the current element.
+				    temporaryValue = array[currentIndex];
+				    array[currentIndex] = array[randomIndex];
+				    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
 	</script>
 </head>
 <body>
@@ -16,30 +46,32 @@
 
 <div id = "test">
 Tier:
-<select>
+<select name = "tier" id = "tier">
 <option selected>1 </option>
 <option>2 </option>
 <option>3 </option>
 </select>
+
 Aspect1:
-<select>
-<option>Breath </option>
+<select size = "12" name = "aspects" multiple id = "aspects">
+<option selected>Blood</option>
+<option selected>Mind</option>
+<option selected>Rage</option>
+<option selected>Time</option>
+<option selected>Void</option>
+<option selected>Heart</option>
+<option selected>Breath</option>
+<option selected>Light</option>
+<option selected>Space</option>
+<option selected>Hope</option>
+<option selected>Life</option>
+<option selected>Doom</option>
 
 </select>
 
-Aspect2:
-<select>
-<option selected>None</option>
-<option>Breath </option>
-
-
-</select>
-
-Aspect3:
-<select>
-<option selected>None</option>
-<option >Breath</option>
-</select>
+<br><br><Br>
+<button onclick="makeFraymotif()">Make Fraymotif</button>
+<div id = "fraymotifs"></div>
 
 <div id = "playerSprites"></div>
 

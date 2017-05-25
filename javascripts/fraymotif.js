@@ -3,6 +3,10 @@ function Fraymotif(aspects, name,tier){
     this.aspects = aspects; //expect to be an array
     this.name = name;
     this.tier = tier;
+
+    this.toString  = function(){
+      return this.name;
+    }
 }
 
 
@@ -17,6 +21,7 @@ function FraymotifCreator(session){
   }
 
   this.getRandomNameForAspect = function(aspect){
+    console.log(aspect);
     if(aspect == "Breath"){
       return this.getRandomBreathName();
     }
@@ -27,8 +32,14 @@ function FraymotifCreator(session){
   //tier 3 has 3 names, or number of aspects.
   this.makeFraymotif = function(aspects,tier){
     var name = "";
-    for(var i = 0; i<aspects.length; i++){
-      name += this.getRandomNameForAspect(aspects[i]) + " ";
+    if(aspects.length == 1){
+      for(var i = 0; i < tier; i++){
+        name += this.getRandomNameForAspect(aspects[0]) + " ";
+      }
+    }else{
+      for(var i = 0; i<aspects.length; i++){
+        name += this.getRandomNameForAspect(aspects[i]) + " ";
+      }
     }
     return new Fraymotif(aspects, name, tier);
   }
