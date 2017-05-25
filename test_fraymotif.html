@@ -3,13 +3,14 @@
 <head>
 	<title>Fraymotif Tester</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="css/rap.css">
+	<link rel="stylesheet" href="css/oc.css">
 	<script type="text/javascript" src="javascripts/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="javascripts/random_tables.js"></script>
+	<script type="text/javascript" src="javascripts/navbar.js"></script>
 	<script type="text/javascript" src="javascripts/fraymotif.js"></script>
 	<script>
 			var globalFraymotifCreator = new FraymotifCreator(null);
-
+			loadNavbar();
 			function makeFraymotif(){
 					var tier = $('[name="tier"] option:selected');
 					var aspects = [];
@@ -44,7 +45,7 @@
 </head>
 <body>
 
-
+<div id = "story">
 <div id = "test">
 Tier:
 <select name = "tier" id = "tier">
@@ -81,6 +82,6 @@ A procedural Fraymotif will have 1 or more aspects associated with it.  The play
 
 </div>
 
-
+</div>
 </body>
 </html>
