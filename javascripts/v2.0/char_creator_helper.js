@@ -12,6 +12,11 @@ function CharacterCreatorHelper(players){
 		}
 	}
 	this.drawSinglePlayer = function(player){
+		//debug code, remove later
+		player.interest1 = "Custom Interest"
+		player.interest1Category = "Music"
+		player.interest1 = "Rap" //not a custom interest, make sure sim doesn't try to add it twice.
+		player.interest1Category = "Music"
 		//console.log("drawing: " + player.title())
 		var str = "";
 		var divId =  player.chatHandle;
