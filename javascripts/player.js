@@ -1925,6 +1925,25 @@ function initializePlayers(players){
 	for(var i = 0; i<players.length; i++){
 		if(replayPlayers[i]) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
 		players[i].initialize();
+		players[i].guardian.initialize();
+	}
+	
+}
+
+function initializePlayersNoDerived(players){
+	var rawPlayers =  getRawParameterByName("players");
+	var replayPlayers = [];
+	if(rawPlayers){
+		var uncompressedPlayers = LZString.decompressFromEncodedURIComponent(rawPlayers);
+		var json = JSON.parse(uncompressedPlayers);
+		for(var i = 0; i<json.length; i++){
+		replayPlayers.push(objToPlayer(json[i]));
+	}
+	}
+	for(var i = 0; i<players.length; i++){
+		if(replayPlayers[i]) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
+		players[i].initializeStats();
+		players[i].initializeSprite();
 	}
 }
 

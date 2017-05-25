@@ -298,12 +298,18 @@ function scratch(){
 	curSessionGlobalVar.makePlayers();
 	curSessionGlobalVar.randomizeEntryOrder();
 	curSessionGlobalVar.makeGuardians(); //after entry order established
+	
 	checkEasterEgg();
+	initializePlayers(curSessionGlobalVar.players); //will take care of overriding players if need be.
+	checkEasterEgg();
+	
+	
 	curSessionGlobalVar.ectoBiologyStarted = ectoSave; //if i didn't do ecto in first version, do in second
 	if(curSessionGlobalVar.ectoBiologyStarted){ //players are reset except for haivng an ectobiological source
 		setEctobiologicalSource(curSessionGlobalVar.players, curSessionGlobalVar.session_id);
 	}
 	curSessionGlobalVar.switchPlayersForScratch();
+	
 	var scratch = "The session has been scratched. The " + getPlayersTitlesBasic(getGuardiansForPlayers(curSessionGlobalVar.players)) + " will now be the beloved guardians.";
 	scratch += " Their former guardians, the " + getPlayersTitlesBasic(curSessionGlobalVar.players) + " will now be the players.";
 	scratch += " The new players will be given stat boosts to give them a better chance than the previous generation."
