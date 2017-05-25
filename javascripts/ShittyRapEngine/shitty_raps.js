@@ -28,8 +28,8 @@ var romanticInterestNouns = ["heartbreak","heartache","fake","snake","flake","cr
 var romanticInterestVerbs = ["heartbreak","sweet talk","talk","walk","stun","fun","sick","click","trick","lick", "caught"];
 
 
-var academicInterestNouns = ["trait","teamamte","reference book","book","guidebook","reference book","lunatic","dipstick","brick","jock","laughingstock","quack","junk","monk", "yaught", "watt", "clot", "thought"];
-var academicInterestVerbs = ["trick", "calculate","look","took","shook","small talk","squawk","block","backtrack","yack","attack","crack","smack", "debunk", "forgot", "plot", "watt", "swat", "knot", "concentrate", "contemplate", "nauseate", "navigate", "overstate", "simulate", "debate","checkmate", "abate", "germinate", "obfuscate", "pontificate","potassium dichromate", "prognosticate"];
+var academicInterestNouns = ["trait", "same", "brain", "teamamte","reference book","book","guidebook","reference book","lunatic","dipstick","brick","jock","laughingstock","quack","junk","monk", "yaught", "watt", "clot", "thought"];
+var academicInterestVerbs = ["trick", "calculate","look","took","shook","small talk","squawk","block","backtrack","yack","attack","crack","smack", "debunk", "forgot", "plot", "watt", "swat", "knot", "concentrate", "contemplate", "nauseate", "navigate", "overstate", "aim","simulate", "debate","checkmate", "abate", "germinate", "obfuscate", "pontificate","potassium dichromate", "prognosticate"];
 
 var domesticInterestNouns = ["cake", "teammate", "prognosticate", "lightweight", "deadweight", "piece of cake","cupcake","snake","mistake","huge mistake","flake","crock","cock","peacock","laughingstock","shell", "brandname"];
 var domesticInterestVerbs = ["communicate", "renovate","activate", "ddcorate", "nauseate", "contemplate", "overstate", "germinate", "bake","shake","wake","heartbreak","small talk","gawk","squawk","block","shellgame","maim","tame","aim", "plait"];
@@ -61,7 +61,7 @@ var wordsRhymeSun = ["bun","fun","gun","son","hun","none","nun","stun","spun","s
 var wordsRhymePunch = ["brunch","punch","lunch","bunch","crunch","hunch","munch","scrunch"];
 var wordsRhymeJack = ["jack", "hack","Jack", "black","sack","clack","crack","knack","quack" ,"wack","snack","smack","yack","attack","backtrack","hijack" ,"flashback","feedback","payback","soundtrack","wisecrack","throwback" ,"hunchback","horseback","ransack","asscrack","fallback","carjack","megalomaniac"];
 var wordsRhymeFake = ["fake","fakey-fake","ache","bake","brake","break","cake","flake","lake","make","quake","shake","snake","wake","take","awake","cupcake","headache","heartache","heartbreak","mistake","piece of cake","emergency break","huge mistake"];
-var wordsRhymeGame = ["game", "same","name","aim","blame","fame","lame","maim","tame","shellgame","shame","video game","pregame","postgame","brandname"];
+var wordsRhymeGame = ["game", "brain", "same","name","aim","blame","fame","lame","maim","tame","shellgame","shame","video game","pregame","postgame","brandname"];
 var wordsRhymeKill = ["ill","kill","chill","drill","grill","shill","quill","will","thrill","swill","anthill","foothill","downhill","landfill","molehill","standstill","treadmill","daffodil","fire drill","pill","sleeping pill","suicide pill"];
 var wordsRhymeSick = ["sick","slick","Billious Slick","brick","click","dick","lick","quick","thick","trick","homesick","dipstick","picnic","yardstick","seasick","lunatic","","","",""];
 var wordsRhymeBlock = ["block","cock","hawk","gawk","crock","jock","squawk","talk","walk","bedrock","deadlock","gridlock","hemlock","peacock","small talk","sweet talk","laughingstock"];
@@ -84,7 +84,31 @@ rapTemplates.push(new RapTemplate("you know I got the ",noun, " all up and ", ve
 rapTemplates.push(new RapTemplate("bustin old school ",noun, " like I can't even ", verb) );
 rapTemplates.push(new RapTemplate("all day I'm ",verb, " but you can't even ", verb) );
 rapTemplates.push(new RapTemplate("should i count all the reasons you're ",noun, " fuck, i got better things to ", verb) );
-rapTemplates.push(new RapTemplate("it's too bad my rhymes are so  ",noun, " but I can't even stop ", verb) );
+rapTemplates.push(new RapTemplate("it's too bad my rhymes are so  ",noun, " but I can't even stop to ", verb) );
+
+//just read through and it don't stop (mirror: http://anditd0ntstop.tumblr.com) for more template inspiration.
+rapTemplates.push(new RapTemplate("you're getting served so hard it's like you're a ",noun, " and I'm your very own butler making sure to ", verb) );
+rapTemplates.push(new RapTemplate("why don't you polish my  ",noun, " it's the closest you'll ever get to ", verb) );
+rapTemplates.push(new RapTemplate("I'll beat your ass and then if I'm  ",verb, " I'll even take the time to lock you in a ", noun) );
+rapTemplates.push(new RapTemplate("when you see me you start feeling your ",noun, " but I can't blame you, you just a ", noun) );
+rapTemplates.push(new RapTemplate("you think i'm ",verb, "just because i sit here rapping with a  ", noun) );
+rapTemplates.push(new RapTemplate("my raps are so good you know they ain't  ",noun, " if you don't respect you must be a ", noun) );
+rapTemplates.push(new RapTemplate("I'm the rap king of  ",noun, " and you ain't fit to ", verb) );
+rapTemplates.push(new RapTemplate("my flow is chicken fried ",noun, " and you think you can ", verb) );
+rapTemplates.push(new RapTemplate("you're  ",noun, " but you think you're ", noun) );
+rapTemplates.push(new RapTemplate("why you think you belong in that sweetest of ",noun, " when you aint even fit to lick my ", noun) );
+
+rapTemplates.push(new RapTemplate("your heads all  ",verb, " like you got a bad ", noun) );
+rapTemplates.push(new RapTemplate("everybody already thinks you're a ",noun, " gotta say you ain't doing anything to ", verb) );
+rapTemplates.push(new RapTemplate("your rhymes are so  ",noun, " that even my Guardian could do better ", verb) );
+rapTemplates.push(new RapTemplate("as I turn up the heat you turn up the  ",noun, " but how that gonna save you when you can't even ", verb) );
+rapTemplates.push(new RapTemplate("this shit is such a flagrant  ",verb, " you really think you fooling the ", noun) );
+rapTemplates.push(new RapTemplate("you're just a wealth of ",noun, " and I'm fixin to inherit ", noun) );
+rapTemplates.push(new RapTemplate("your tiny little  ",noun, " doesn't even seem to ", verb) );
+rapTemplates.push(new RapTemplate("I got beats and rhymes that never been ",verb, " how you think you can ", verb) );
+rapTemplates.push(new RapTemplate("I think you might actually be a ",noun, " cause how else do you explain why you think you can ", verb) );
+
+
 
 
 //would be so dope to rap about what's happened in the session.
