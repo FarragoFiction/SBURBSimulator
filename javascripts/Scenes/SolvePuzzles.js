@@ -88,18 +88,18 @@ By the way, I'd add more bullshit activity, like "does random bullshit sidequest
 	this.spreadCoruption = function(player1, player2){
 		var ret = false;
 		if(player2 && player2.grimDark>0){
-			player1.corruptionLevelOther += 25;
+			player1.corruptionLevelOther += 15;
 			ret = true;
 		}
 
 		if(player2 && player1.grimDark>0){
-			player2.corruptionLevelOther += 25;
+			player2.corruptionLevelOther += 15;
 			ret = true;
 		}
 
 		if(corruptedOtherLandTitles.indexOf(player1.land1) != -1 || corruptedOtherLandTitles.indexOf(player1.land2) != -1 ){
 			player1.corruptionLevelOther += 25;
-			if(player2) player2.corruptionLevelOther += 25;
+			if(player2) player2.corruptionLevelOther += 15;
 			ret = true;
 		}
 
