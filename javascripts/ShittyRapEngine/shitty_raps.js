@@ -7,16 +7,16 @@ var athleticInterestNouns = ["heavyweight","teammate","lightweight","deadweight"
 var athleticInterestVerbs = ["run","punch", "down", "drown", "soak", "won","block","sunk","spelunk","aim","maim","tame", "castrate", "asphyxiate","suffocate","strangulate","decontaminate","dictate"];
 
 var musicInterestNouns = ["trait","songbook","wack","hook","feedback","flashback","soundtrack","punk","drunk","flashback","megalomaniac","Jack","sack","quack","asscrack","throwback","huge mistake","piece of cake","flake","mistake","game","video game"];
-var musicInterestVerbs = ["mitigate","hook","fame","attack","backtrack","hijack","clack","funk","wisecrack","throwback","horseback","ransack","take","wake","headache","shake","croak","choke","maim","taim"];
+var musicInterestVerbs = ["mitigate","hook","fame","attack","backtrack","hijack","clack","funk","wisecrack","throwback","horseback","ransack","take","wake","headache","shake","croak","choke","maim","tame"];
 
 var cultureInterestNouns = ["songbook","hook","feedback","flashback","soundtrack","punk","drunk", "mistake","huge mistake", "headache","ache"];
 var cultureInterestVerbs = ["hook","fame","attack","backtrack","hijack","clack","funk", "wake", "take", "brake"];
 
 var writingInterestNouns = ["rook","reference book","textbook","guidebook","book","hook","swill","quill","daffodil","flashback","megalomaniac","Jack","sack","quack","asscrack","throwback","huge mistake","piece of cake","flake","mistake","game","video game"];
-var writingInterestVerbs = ["gobbledygook","shook","look","will","thrill","kill","chill","fire drill","ill","wisecrack","throwback","hoseseback","ransack","take","wake","headache","shake","croak","choke","maim","taim"];
+var writingInterestVerbs = ["gobbledygook","shook","look","will","thrill","kill","chill","fire drill","ill","wisecrack","throwback","hoseseback","ransack","take","wake","headache","shake","croak","choke","maim","tame"];
 
 var popCultureInterestNouns = ["flashback","wack","megalomaniac","Jack","sack","quack","asscrack","throwback","huge mistake","piece of cake","flake","mistake","game","video game"];
-var popCultureInterestVerbs = ["wisecrack","throwback","hoseseback","ransack","take","wake","headache","shake","croak","choke","maim","taim"];
+var popCultureInterestVerbs = ["wisecrack","throwback","hoseseback","ransack","take","wake","headache","shake","croak","choke","maim","tame"];
 
 var technologyInterestNouns = ["hack","jock","gridlock","solid-state", "subordinate","inmate", "teammate","deadlock","laughingstock", "hot", "bot", "knot", "robot", "thought", "brobot"];
 var technologyInterestVerbs = ["calculate", "accumulate", "concentrate","regurgitate","simulate", "hijack","atack","terminate","propogate","hack","smack","block", "trot", "shot", "plot", "forgot", "rot"];
