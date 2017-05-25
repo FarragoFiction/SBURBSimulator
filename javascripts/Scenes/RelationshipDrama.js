@@ -593,7 +593,9 @@ function RelationshipDrama(session){
 			chatText += chatLine(player2Start, player2,"Fuck you, at least I'm not " + trait2 + "!");
 			makeSpades(player1, player2);
 			this.session.hasSpades = true;
-			this.celebratoryRapBattle(div, player1, player2);
+			if(Math.seededRandom() > .5){
+				this.celebratoryRapBattle(div, player1, player2);
+			}
 
 		}else if(r2.type == r2.goodBig){
 			chatText += chatLine(player2Start, player2,"Wow. Yes. Way to be an asshole. ");
