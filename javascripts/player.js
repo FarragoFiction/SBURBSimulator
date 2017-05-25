@@ -1851,6 +1851,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.initializeSprite();
 		this.initializeDerivedStuff();  //TODO handle troll derived stuff. like quirk.
 	}
+	
 
 	this.initializeDerivedStuff = function(){
 		var tmp =getRandomLandFromPlayer(this);
@@ -1867,6 +1868,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}else{
 			this.quirk = randomHumanSim(this);
 		}
+		
 
 		this.spriteCanvasID = this.chatHandle+this.id+"spriteCanvas";
 		var canvasHTML = "<br><canvas style='display:none' id='" + this.spriteCanvasID+"' width='" +400 + "' height="+300 + "'>  </canvas>";
@@ -2020,7 +2022,34 @@ function getFontColorFromAspect(aspect){
 	return "<font color= '" + getColorFromAspect(aspect) + "'> ";
 }
 
+function randomPlayerNoDerived(session, c, a){
+	var k = getRandomElementFromArray(prototyping_objects);
 
+
+	var gd = false;
+
+	var m = getRandomElementFromArray(moons);
+	var id = Math.seed;
+	var p =  new Player(session,c,a,k,m,gd,id);
+	p.interest1 = getRandomElementFromArray(interests);
+	p.interest2 = getRandomElementFromArray(interests);
+	p.baby = getRandomInt(1,3)
+
+
+	p.hair = getRandomInt(1,60);
+	p.hairColor = getRandomElementFromArray(human_hair_colors);
+	p.leftHorn =  getRandomInt(1,46);
+	p.rightHorn = p.leftHorn;
+	if(Math.seededRandom() > .7 ){ //preference for symmetry
+			p.rightHorn = getRandomInt(1,46);
+	}
+	p.initializeStats();
+	p.initializeSprite();
+
+
+	return p;
+
+}
 
 function randomPlayerWithClaspect(session, c,a){
 	//console.log("random player");

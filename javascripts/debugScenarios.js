@@ -373,14 +373,17 @@ function murderModeInit(){
 
 
 function session413(){
+	console.log("413")
 	for(var i = 0; i<8;i++){
 		var player;
 		var guardian;
 		if(i< curSessionGlobalVar.players.length){
 			player = curSessionGlobalVar.players[i];
+			console.log("using existing player")
 		}else{
-			player = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
-			guardian = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
+			console.log("making new player")
+			player = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
+			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
 			guardian.quirk = randomHumanSim(guardian);
 			player.quirk = randomHumanSim(player);
 			player.guardian = guardian;
@@ -412,8 +415,8 @@ function session111111(){
 		if(i< curSessionGlobalVar.players.length){
 			player = curSessionGlobalVar.players[i];
 		}else{
-			player = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
-			guardian = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
+			player = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
+			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
 			guardian.quirk = randomHumanSim(guardian);
 			player.quirk = randomHumanSim(player);
 			player.guardian = guardian;
@@ -629,14 +632,14 @@ function session33(){
 		var player;
 		var guardian;
 		if(i>2){
-			guardian = randomPlayerWithClaspect(curSessionGlobalVar,"Rogue", "Heart");
-			player = randomPlayerWithClaspect(curSessionGlobalVar,"Rogue", "Heart");
+			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Rogue", "Heart");
+			player = randomPlayerNoDerived(curSessionGlobalVar,"Rogue", "Heart");
 		}else if(i==0){
-			guardian = randomPlayerWithClaspect(curSessionGlobalVar,"Rogue", "Time");
-			player = randomPlayerWithClaspect(curSessionGlobalVar,"Rogue", "Time");
+			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Rogue", "Time");
+			player = randomPlayerNoDerived(curSessionGlobalVar,"Rogue", "Time");
 		}else if(i ==1){
-			guardian = randomPlayerWithClaspect(curSessionGlobalVar,"Rogue", "Space");
-			player = randomPlayerWithClaspect(curSessionGlobalVar,"Rogue", "Space");
+			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Rogue", "Space");
+			player = randomPlayerNoDerived(curSessionGlobalVar,"Rogue", "Space");
 		}
 		if(i == 0){
 			player.leader = true;
@@ -695,8 +698,8 @@ function session613(){
 		if(i<curSessionGlobalVar.players.length){
 			player = curSessionGlobalVar.players[i];
 		}else{
-			player = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
-			guardian = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
+			player = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
+			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
 			guardian.quirk = randomTrollSim(guardian);
 			player.quirk = randomTrollSim(player);
 			//curSessionGlobalVar.guardians.push(guardian);
@@ -730,8 +733,8 @@ function session612(){
 		if(i<curSessionGlobalVar.players.length){
 			player = curSessionGlobalVar.players[i];
 		}else{
-			player = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
-			guardian = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
+			player = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
+			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
 			guardian.quirk = randomTrollSim(guardian);
 			player.quirk = randomTrollSim(player);
 			//curSessionGlobalVar.guardians.push(guardian);
@@ -1255,8 +1258,8 @@ function session1025(){
 		if(i<curSessionGlobalVar.players.length){
 			player = curSessionGlobalVar.players[i];
 		}else{
-			player = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
-			guardian = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
+			player = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
+			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
 			guardian.quirk = randomTrollSim(guardian);
 			player.quirk = randomTrollSim(player);
 			//curSessionGlobalVar.guardians.push(guardian);

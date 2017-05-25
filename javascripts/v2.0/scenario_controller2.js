@@ -90,9 +90,10 @@ function startSession(){
 	if(getParameterByName("babyStuck")  == "true"){
 		babyStuckMode();
 	}
+	
 	checkEasterEgg();
-
 	initializePlayers(curSessionGlobalVar.players); //will take care of overriding players if need be.
+	checkEasterEgg();
 	checkSGRUB();
 
 	load(curSessionGlobalVar.players, curSessionGlobalVar.guardians); //in loading.js
