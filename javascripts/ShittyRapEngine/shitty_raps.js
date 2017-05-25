@@ -28,7 +28,7 @@ var romanticInterestNouns = ["heartbreak","heartache","fake","snake","flake","cr
 var romanticInterestVerbs = ["heartbreak","sweet talk","talk","walk","stun","fun","sick","click","trick","lick", "caught"];
 
 
-var academicInterestNouns = ["trait", "same", "brain", "teamamte","reference book","book","guidebook","reference book","lunatic","dipstick","brick","jock","laughingstock","quack","junk","monk", "yaught", "watt", "clot", "thought"];
+var academicInterestNouns = ["trait", "same", "brain", "teammate","reference book","book","guidebook","reference book","lunatic","dipstick","brick","jock","laughingstock","quack","junk","monk", "yaught", "watt", "clot", "thought"];
 var academicInterestVerbs = ["trick", "calculate","look","took","shook","small talk","squawk","block","backtrack","yack","attack","crack","smack", "debunk", "forgot", "plot", "watt", "swat", "knot", "concentrate", "contemplate", "nauseate", "navigate", "overstate", "aim","simulate", "debate","checkmate", "abate", "germinate", "obfuscate", "pontificate","potassium dichromate", "prognosticate"];
 
 var domesticInterestNouns = ["cake", "teammate", "prognosticate", "lightweight", "deadweight", "piece of cake","cupcake","snake","mistake","huge mistake","flake","crock","cock","peacock","laughingstock","shell", "brandname"];
