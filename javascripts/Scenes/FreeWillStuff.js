@@ -461,7 +461,7 @@ function FreeWillStuff(session){
 	//me am play god.
 	this.becomeGod = function(player){
 		if(!player.godTier){
-			var intro = "The " + player.htmlTitleBasic() + timeIntro + " knows how the god tiering mechanic works"
+			var intro = "The " + player.htmlTitleBasic()+" knows how the god tiering mechanic works"
 			if(player.murderMode){
 				intro += " and they are too far gone to care about the consequences of failure"
 			}
