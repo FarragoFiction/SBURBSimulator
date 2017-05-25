@@ -795,6 +795,7 @@ function session612IndexToTroll(player, index){
 		player.quirk.punctuation = 2;
 		player.quirk.favoriteNumber = 4;
 		player.quirk.lettersToReplace = [["E","3"],["I","1"],["A","4"]];
+		player.quirk.lettersToReplaceIgnoreCase = [["E","3"],["I","1"],["A","4"]];
 		player.kernel_sprite = "Dragon"
 		player.interest1 = "Justice"
 		player.interest2 = "Live Action Roleplaying"
