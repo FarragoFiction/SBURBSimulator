@@ -28,15 +28,19 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 	var space = findAspectPlayer(curSessionGlobalVar.players, "Space")
 	var time = findAspectPlayer(curSessionGlobalVar.players, "Time")
 	if(curSessionGlobalVar.crashedFromPlayerActions){
+		$("#story").append("<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. HORRORTERROR INFLUENCE: COMPLETE.");
 		recomendedAction = "OMFG JUST STOP CRASHING MY DAMN SESSIONS. FUCKING GRIMDARK PLAYERS. BREAKING SBURB DOES NOT HELP ANYBODY! ";
 	}else if(!space){
+		$("#story").append("<BR>ERROR: SPACE PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED.");
 		curSessionGlobalVar.crashedFromCustomShit = true;
 		recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A SPACE PLAYER, DUNKASS. ";
 	}else if(!time){
 		curSessionGlobalVar.crashedFromCustomShit = true;
+		$("#story").append("<BR>ERROR: TIME PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED");
 		recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A TIME PLAYER, DUNKASS. ";
 	}else{
 		curSessionGlobalVar.crashedFromSessionBug = true;
+		$("#story").append("<BR>ERROR: AN ACTUAL BUG IN SBURB HAS CRASHED THE SESSION. THE HORRORTERRORS ARE PLEASED THEY NEEDED TO DO NO WORK.");
 		recomendedAction = "CONTACT JADEDRESEARCHER. CONVINCE THEM TO FIX SESSION: " + curSessionGlobalVar.getLineage().join( " which joined with ");
 	}
 	var message = [
@@ -51,7 +55,7 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 	$("#story").append(str);
 	crashEasterEgg(url);
 
-	$("#story").append("<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. HORRORTERROR INFLUENCE: COMPLETE.");
+
 	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
 		var player = curSessionGlobalVar.players[i];
 		str = "<BR>"+player.chatHandle + ":"
@@ -298,18 +302,18 @@ function scratch(){
 	curSessionGlobalVar.makePlayers();
 	curSessionGlobalVar.randomizeEntryOrder();
 	curSessionGlobalVar.makeGuardians(); //after entry order established
-	
+
 	checkEasterEgg();
 	initializePlayers(curSessionGlobalVar.players); //will take care of overriding players if need be.
 	checkEasterEgg();
-	
-	
+
+
 	curSessionGlobalVar.ectoBiologyStarted = ectoSave; //if i didn't do ecto in first version, do in second
 	if(curSessionGlobalVar.ectoBiologyStarted){ //players are reset except for haivng an ectobiological source
 		setEctobiologicalSource(curSessionGlobalVar.players, curSessionGlobalVar.session_id);
 	}
 	curSessionGlobalVar.switchPlayersForScratch();
-	
+
 	var scratch = "The session has been scratched. The " + getPlayersTitlesBasic(getGuardiansForPlayers(curSessionGlobalVar.players)) + " will now be the beloved guardians.";
 	scratch += " Their former guardians, the " + getPlayersTitlesBasic(curSessionGlobalVar.players) + " will now be the players.";
 	scratch += " The new players will be given stat boosts to give them a better chance than the previous generation."
