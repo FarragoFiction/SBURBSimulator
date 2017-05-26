@@ -1851,7 +1851,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.initializeSprite();
 		this.initializeDerivedStuff();  //TODO handle troll derived stuff. like quirk.
 	}
-	
+
 
 	this.initializeDerivedStuff = function(){
 		var tmp =getRandomLandFromPlayer(this);
@@ -1868,7 +1868,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}else{
 			this.quirk = randomHumanSim(this);
 		}
-		
+
 
 		this.spriteCanvasID = this.chatHandle+this.id+"spriteCanvas";
 		var canvasHTML = "<br><canvas style='display:none' id='" + this.spriteCanvasID+"' width='" +400 + "' height="+300 + "'>  </canvas>";
@@ -1927,7 +1927,7 @@ function initializePlayers(players){
 		players[i].initialize();
 		players[i].guardian.initialize();
 	}
-	
+
 }
 
 function initializePlayersNoDerived(players){
