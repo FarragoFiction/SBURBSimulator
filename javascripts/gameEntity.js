@@ -759,12 +759,10 @@ function GameEntity(session, name, crowned){
 
 					this.currentHP += Math.round(-1* ghost.power*5); //not just one attack from the ghost
 					div.append(" The " + player.htmlTitleBasic() + " cashes in their promise of aid. The ghost of the " + ghost.htmlTitleBasic() + " unleashes an unblockable ghostly attack channeled through the living player. " + ghost.power + " damage is done to " + this.htmlTitleHP() + ". The ghost will need to rest after this for awhile. " );
-					if(!this.checkForAPulse(this, player)){
 
-						div.append("The " + this.htmlTitleHP() + " is dead. ");
-					}
 					this.drawGhostAttack(div, player, ghost);
 					ghost.causeOfDrain = player.htmlTitle();
+					this.processDeaths(div, player, this)
 					return true;
 			}
 			return false;
@@ -842,7 +840,7 @@ function GameEntity(session, name, crowned){
 				////console.log("Luck counter: " + this.session.session_id);
 				div.append("The attack backfires and causes unlucky damage. The " + defense.htmlTitleHP() + " sure is lucky!!!!!!!!" );
 				offense.currentHP += -1* offense.getPower()/10; //damaged by your own power.
-				this.checkForAPulse(offense, defense)
+				this.processDeaths(div, offense, defense)
 				return;
 			}else if(defenseRoll > offenseRoll*5){
 				////console.log("Luck dodge: " + this.session.session_id);
@@ -861,7 +859,7 @@ function GameEntity(session, name, crowned){
 					ret += ". They miss pretty damn hard. "
 				}
 
-				this.checkForAPulse(offense, defense)
+				this.processDeaths(div, offense, defense)
 				return;
 			}else if(defense.getMobility() > offense.getMobility()*5 && rand > 25){
 				////console.log("Mobility dodge: " + this.session.session_id);
@@ -887,7 +885,11 @@ function GameEntity(session, name, crowned){
 
 
 			defense.currentHP += -1* hit;
+			this.processDeaths(div, offense, defense)
+		}
 
+		this.processDeaths(div, offense,defense){
+			offense.interactionEffect(defense); //only players have this. doomed time clones or bosses will do nothing.
 			if(!this.checkForAPulse(defense, offense)){
 
 				div.append("The " + defense.htmlTitleHP() + " is dead. ");
@@ -895,7 +897,6 @@ function GameEntity(session, name, crowned){
 			if(!this.checkForAPulse(offense, defense)){
 				div.append("The " + offense.htmlTitleHP() + " is dead. ");
 			}
-			offense.interactionEffect(defense); //only players have this. doomed time clones or bosses will do nothing.
 		}
 
 		this.htmlTitleBasic = function(){
