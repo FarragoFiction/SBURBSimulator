@@ -90,6 +90,7 @@ function Intro(session){
 
 	this.addImportantEvent = function(){
 		var current_mvp =  findStrongestPlayer(this.session.players)
+		console.log("Entering session, mvp is: " + current_mvp.power)
 		if(this.player.aspect == "Time" && !this.player.object_to_prototype.illegal){
 			return this.session.addImportantEvent(new TimePlayerEnteredSessionWihtoutFrog(this.session, current_mvp.power,this.player) );
 		}else{
