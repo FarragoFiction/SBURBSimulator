@@ -17,28 +17,28 @@ function FraymotifCreator(session){
 
 
   this.getRandomBreathName = function(){
-      var names = ["Gale", "Hurricane", "Tornado"," Kansas", "Breath", "Breeze", "Twister", "Storm", "Capriccio", "Wild", "Inhale", "Leggiadro", "Windy", "Skylark", "Pneumatic", "Wheeze", "Forward", "Vertical", "Whirlwind", "Jetstream"];
+      var names = ["Gale","Breathless","Battaglia","Jetstream", "Hurricane", "Tornado"," Kansas", "Breath", "Breeze", "Twister", "Storm", "Capriccio", "Wild", "Inhale", "Leggiadro", "Windy", "Skylark", "Pneumatic", "Wheeze", "Forward", "Vertical", "Whirlwind", "Jetstream"];
       return getRandomElementFromArray(names)
   }
 
   this.getRandomRageName = function(){
-      var names = ["Rage", "Madness", "Carnival", "Mirthful", "Screaming", "Berserk", "MoThErFuCkInG", "War", "Haze", "Murder", "Crescendo", "Furioso", "Aggressive", "ATBasher",  "Fortississimo", "Violent", "Unbound", "Purple", "Unholy", "Hateful", "Fearful", "Inconceivable", "Impossible"];
+      var names = ["Rage", "Impossible", "Juggalo","Horrorcore" ,"Madness", "Carnival", "Mirthful", "Screaming", "Berserk", "MoThErFuCkInG", "War", "Haze", "Murder", "Crescendo", "Furioso", "Aggressive", "ATBasher",  "Fortississimo", "Violent", "Unbound", "Purple", "Unholy", "Hateful", "Fearful", "Inconceivable", "Impossible"];
       return getRandomElementFromArray(names)
   }
 
   this.getRandomLifeName = function(){
-      var names = ["Life" , "Relief", "Healing", "Plant", "Vitality", "Growing", "Encore", "Garden", "Multiplying", "Rising", "Survival", "Vivante", "Phoenix", "Respawn", "Mangrit", "Animato", "Gaia", "Increasing", "Overgrowth", "Jungle", "Harvest", "Lazarus"];
+      var names = ["Life" ,"Pastoral", "Green", "Vivace", "Relief", "Healing", "Plant", "Vitality", "Growing", "Encore", "Garden", "Multiplying", "Rising", "Survival", "Vivante", "Phoenix", "Respawn", "Mangrit", "Animato", "Gaia", "Increasing", "Overgrowth", "Jungle", "Harvest", "Lazarus"];
       return getRandomElementFromArray(names)
   }
 
   this.getRandomHopeName = function(){
-      var names = ["Hope","Fake", "Belief", "Bullshit", "Determination", "Burn", "Stubborn", "Religion", "Will", "Hero", "Undying", "Dream", "Sepulchritude", "Hymn", "Eroico", "Nobilmente", "Allegretto", "Prophet", "Apocryphal", "Chant"];
+      var names = ["Hope","Choir","Fake", "Belief", "Bullshit", "Determination", "Burn", "Stubborn", "Religion", "Will", "Hero", "Undying", "Dream", "Sepulchritude", "Hymn", "Eroico", "Nobilmente", "Allegretto", "Prophet", "Apocryphal", "Chant"];
       return getRandomElementFromArray(names)
   }
 
   this.getRandomVoidName = function(){
       var randBonus = "<span class = 'void'>" + getRandomElementFromArray(interests) +  "</span>"
-      var names = ["Void", "Pumpkin", "Nothing", "Emptiness", "Invisible", "Dark", "Hole", "Solo", "Silent", "Alone", "Night", "Null", "[Censored]", "[???]", "Vacuous", "Abyss", "Mysterioso", "Diminuendo", "Perdendo", "Noir", "Blank", "Tenebrous", "Antithesis", "404"];
+      var names = ["Void", "Fugue","Pumpkin", "Nothing", "Emptiness", "Invisible", "Dark", "Hole", "Solo", "Silent", "Alone", "Night", "Null", "[Censored]", "[???]", "Vacuous", "Abyss", "Mysterioso", "Diminuendo", "Perdendo", "Noir", "Blank", "Tenebrous", "Antithesis", "404"];
       return getRandomElementFromArray(names)+ randBonus;
   }
 
@@ -48,22 +48,22 @@ function FraymotifCreator(session){
   }
 
   this.getRandomMindName = function(){
-      var names = ["Mind", "Coin", "Judgement", "Mind", "Decision", "Spark", "Path", "Trial", "Variations", "Thunder", "Logical", "Telekinetic", "Brainiac", "Hysteria", "Deciso", "Thesis", "Imagination", "Allegro",  "Psycho", "Control", "Execution", "Bolt"];
+      var names = ["Mind", "Modulation", "Shock", "Awe", "Coin", "Judgement", "Mind", "Decision", "Spark", "Path", "Trial", "Variations", "Thunder", "Logical", "Telekinetic", "Brainiac", "Hysteria", "Deciso", "Thesis", "Imagination", "Allegro",  "Psycho", "Control", "Execution", "Bolt"];
       return getRandomElementFromArray(names)
   }
 
   this.getRandomHeartName = function(){
-      var names = ["Heart", "Soul", "Jazz", "Blues", "Spirit", "Splintering", "Clone", "Self", "Havoc", "Noble", "Animus", "Astral", "Shatter", "Breakdown", "Ethereal", "Caloroso", "Beat", "Pulchritude"];
+      var names = ["Heart", "Nocturne","Soul", "Jazz", "Blues", "Spirit", "Splintering", "Clone", "Self", "Havoc", "Noble", "Animus", "Astral", "Shatter", "Breakdown", "Ethereal", "Caloroso", "Beat", "Pulchritude"];
       return getRandomElementFromArray(names)
   }
 
   this.getRandomBloodName = function(){
-      var names = ["Blood", "Friendship", "Trusting", "Clotting", "Union", "Bleeding", "Concerto", "Team", "Transfusion", "Pulse", "Sanguine", "Positive", "Negative", "Cruor", "Vim", "Chorus", "Iron", "Ichorial", "Fever", "Heat"];
+      var names = ["Blood", "Cadenza", "Waltz", "Chain", "Flow", "Charge", "Awakening", "Ichorial", "Friendship", "Trusting", "Clotting", "Union", "Bleeding", "Concerto", "Team", "Transfusion", "Pulse", "Sanguine", "Positive", "Negative", "Cruor", "Vim", "Chorus", "Iron", "Ichorial", "Fever", "Heat"];
       return getRandomElementFromArray(names)
   }
 
   this.getRandomDoomName = function(){
-      var names = ["Dark", "Fate", "Doomed", "Inevitable", "Doom", "End", "Final", "Coda", "Requiem", "Dead", "Ruin", "Rot", "Coffin", "Apocalypse", "Dirge", "Morendo", "Smorzando", "~Ath", "Armistyx", "Grave", "Corpse", "Ashen", "Reaper", "Diseased", "Armageddon", "Cursed"];
+      var names = ["Dark", "Diseased","Finale","Fate", "Doomed", "Inevitable", "Doom", "End", "Final", "Coda", "Requiem", "Dead", "Ruin", "Rot", "Coffin", "Apocalypse", "Dirge", "Morendo", "Smorzando", "~Ath", "Armistyx", "Grave", "Corpse", "Ashen", "Reaper", "Diseased", "Armageddon", "Cursed"];
       return getRandomElementFromArray(names)
   }
 
@@ -73,7 +73,7 @@ function FraymotifCreator(session){
   }
 
   this.getRandomSpaceName = function(){
-      var names = ["Space","Frogs", "Location", "Spatial", "Universe", "Infinite", "Spiral", "Orchestra", "Physics", "Star", "Galaxy", "Nuclear", "Atomic", "Nucleus", "Horizon", "Event", "CROAK", "Spatium", "Squiddle", "Engine", "Meteor", "Gravity", "Crush"];
+      var names = ["Eternities", "Reprise","Canon","Space","Frogs", "Location", "Spatial", "Universe", "Infinite", "Spiral", "Orchestra", "Physics", "Star", "Galaxy", "Nuclear", "Atomic", "Nucleus", "Horizon", "Event", "CROAK", "Spatium", "Squiddle", "Engine", "Meteor", "Gravity", "Crush"];
       return getRandomElementFromArray(names)
   }
 
