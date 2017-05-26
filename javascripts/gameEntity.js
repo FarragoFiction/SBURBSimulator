@@ -836,14 +836,15 @@ function GameEntity(session, name, crowned){
 			//luck dodge
 			var offenseRoll = offense.rollForLuck();
 			var defenseRoll = defense.rollForLuck();
+			//console.log("gonna roll for luck.")
 			if(defenseRoll > offenseRoll*10){
-				////console.log("Luck counter: " + this.session.session_id);
+				//console.log("Luck counter: " + this.session.session_id);
 				div.append("The attack backfires and causes unlucky damage. The " + defense.htmlTitleHP() + " sure is lucky!!!!!!!!" );
 				offense.currentHP += -1* offense.getPower()/10; //damaged by your own power.
 				this.processDeaths(div, offense, defense)
 				return;
 			}else if(defenseRoll > offenseRoll*5){
-				////console.log("Luck dodge: " + this.session.session_id);
+				console.log("Luck dodge: " + this.session.session_id);
 				div.append("The attack misses completely after an unlucky distraction.");
 				return;
 			}
@@ -858,11 +859,11 @@ function GameEntity(session, name, crowned){
 				}else{
 					ret += ". They miss pretty damn hard. "
 				}
-
+				div.append(ret + " ");
 				this.processDeaths(div, offense, defense)
+
 				return;
 			}else if(defense.getMobility() > offense.getMobility()*5 && rand > 25){
-				////console.log("Mobility dodge: " + this.session.session_id);
 				div.append(" The " + defense.htmlTitleHP() + " dodges the attack completely. ");
 				return;
 			}
@@ -872,14 +873,16 @@ function GameEntity(session, name, crowned){
 			defenseRoll = defense.rollForLuck();
 			//critical/glancing hit odds.
 			if(defenseRoll > offenseRoll*2){ //glancing blow.
-				////console.log("Glancing Hit: " + this.session.session_id);
+				//console.log("Glancing Hit: " + this.session.session_id);
 				hit = hit/2;
 				div.append(" The attack manages to not hit anything too vital. ");
 			}else if(offenseRoll > defenseRoll*2){
+				//console.log("Critical hit.")
 				////console.log("Critical Hit: " + this.session.session_id);
 				hit = hit*2;
 				div.append(" Ouch. That's gonna leave a mark. ");
 			}else{
+				//console.log("a hit.")
 				div.append(" A hit! ");
 			}
 
@@ -888,13 +891,14 @@ function GameEntity(session, name, crowned){
 			this.processDeaths(div, offense, defense)
 		}
 
-		this.processDeaths(div, offense,defense){
+		this.processDeaths = function(div, offense,defense){
 			offense.interactionEffect(defense); //only players have this. doomed time clones or bosses will do nothing.
 			if(!this.checkForAPulse(defense, offense)){
-
+				//console.log(defense.htmlTitleHP() + " is dead.");
 				div.append("The " + defense.htmlTitleHP() + " is dead. ");
 			}
 			if(!this.checkForAPulse(offense, defense)){
+				//console.log(offense.htmlTitleHP() + " is dead.");
 				div.append("The " + offense.htmlTitleHP() + " is dead. ");
 			}
 		}
