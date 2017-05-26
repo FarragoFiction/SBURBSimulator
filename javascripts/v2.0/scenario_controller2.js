@@ -92,7 +92,7 @@ function startSession(){
 	}
 	
 	checkEasterEgg();
-	initializePlayers(curSessionGlobalVar.players); //will take care of overriding players if need be.
+	initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //will take care of overriding players if need be.
 	checkEasterEgg();
 	checkSGRUB();
 
@@ -168,11 +168,12 @@ function scratchConfirm(){
 	}
 }
 
+//yellow yard calls, at very least.
 function restartSession(){
 	$("#story").html('<canvas id="loading" width="1000" height="354"> ');
 	window.scrollTo(0, 0);
 	checkEasterEgg();
-	initializePlayers(curSessionGlobalVar.players); //initializePlayers
+	initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //initializePlayers
 	checkEasterEgg();
 	intro();
 }

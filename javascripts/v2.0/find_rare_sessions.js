@@ -248,7 +248,7 @@ function startSessionJunior(){
 		babyStuckMode();
 	}
 	checkEasterEgg();
-	initializePlayers(curSessionGlobalVar.players);  //need to redo it here because all other versions are in case customizations
+	initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar);  //need to redo it here because all other versions are in case customizations
 	//aaaaand. done.
 	sessionsSimulated.push(curSessionGlobalVar.session_id);
 	var sum = curSessionGlobalVar.generateSummary();
@@ -299,7 +299,7 @@ function startSession(){
 		babyStuckMode();
 	}
 	checkEasterEgg();
-	initializePlayers(curSessionGlobalVar.players); //need to redo it here because all other versions are in case customizations
+	initializePlayers(curSessionGlobalVar.players,curSessionGlobalVar); //need to redo it here because all other versions are in case customizations
 	if(simulationMode == true){
 		intro();
 	}else{

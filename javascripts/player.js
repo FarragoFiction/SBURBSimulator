@@ -1912,10 +1912,11 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 }
 
-function initializePlayers(players){
+function initializePlayers(players,session){
 	var rawPlayers =  getRawParameterByName("players");
 	var replayPlayers = [];
-	if(rawPlayers){
+	if(rawPlayers && session.session_id == getParameterByName("seed")){ //don't override combo players. they'll be saved as "aliens"
+		console.log("Getting custom players")
 		var uncompressedPlayers = LZString.decompressFromEncodedURIComponent(rawPlayers);
 		var json = JSON.parse(uncompressedPlayers);
 		for(var i = 0; i<json.length; i++){
@@ -1930,10 +1931,10 @@ function initializePlayers(players){
 
 }
 
-function initializePlayersNoDerived(players){
+function initializePlayersNoDerived(players,session){
 	var rawPlayers =  getRawParameterByName("players");
 	var replayPlayers = [];
-	if(rawPlayers){
+	if(rawPlayers && session.session_id == getParameterByName("seed")){
 		var uncompressedPlayers = LZString.decompressFromEncodedURIComponent(rawPlayers);
 		var json = JSON.parse(uncompressedPlayers);
 		for(var i = 0; i<json.length; i++){
