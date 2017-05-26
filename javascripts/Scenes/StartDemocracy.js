@@ -30,7 +30,7 @@ function StartDemocracy(session){
 	}
 	
 	this.renderContent = function(div){
-		div.append("<br>"+this.content());
+		div.append("<br> <img src = 'images/sceneIcons/wv_icon.png'> "+this.content());
 	}
 	
 	//a player has to be not busy to be your friend right now.
