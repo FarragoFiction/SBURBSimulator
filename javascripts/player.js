@@ -1925,8 +1925,10 @@ function initializePlayers(players,session){
 	}
 	for(var i = 0; i<players.length; i++){
 		if(replayPlayers[i]) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
-		players[i].initialize();
-		players[i].guardian.initialize();
+		if(players[i].land){ //don't reinit aliens, their stats stay how they were cloned.
+			players[i].initialize();
+			players[i].guardian.initialize();
+		}
 	}
 
 }
