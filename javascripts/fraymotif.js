@@ -105,10 +105,7 @@ function FraymotifCreator(session){
     }
   }
 
-  //a tier1 fraymotif of 1 aspect has exactly 1 name. otherwise, 1 name per aspect.
-  //tier 2 has 2 names, or number of aspects
-  //tier 3 has 3 names, or number of aspects.
-  this.makeFraymotif = function(aspects,tier){
+  this.getFraymotifName = function(aspects, tier){
     var name = "";
     var indexOfMusic = getRandomInt(0,aspects.length-1);
     if(aspects.length == 1){
@@ -126,6 +123,14 @@ function FraymotifCreator(session){
         name += this.getRandomNameForAspect(aspects[i]) + musicWord +  " ";
       }
     }
+  }
+
+  //classes is between 0 and aspects.length. each aspect is paired with a class.
+  //should there be no class to pair with, random effect based on aspect
+  //otherwise, effect is based on both class and aspect
+  this.makeFraymotif = function(aspects,tier){
+    var name = this.getFraymotifName(aspects, tier,classes);
+
     return new Fraymotif(aspects, name, tier);
   }
 }
