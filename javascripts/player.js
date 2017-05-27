@@ -470,32 +470,44 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.getAttackerModifier = function(){
 		if(this.class_name == "Knight") return 1.0;
 		if(this.class_name == "Seer") return 1.0;
-		if(this.class_name == "Bard") return 1.0;
-		if(this.class_name == "Maid") return 1.0;
-		if(this.class_name == "Heir") return 1.0;
-		if(this.class_name == "Rogue") return 1.0;
-		if(this.class_name == "Page") return 1.0;
-		if(this.class_name == "Thief") return 1.0;
-		if(this.class_name == "Sylph") return 1.0;
-		if(this.class_name == "Prince") return 1.0;
+		if(this.class_name == "Bard") return 2.0;
+		if(this.class_name == "Maid") return 0.33;
+		if(this.class_name == "Heir") return 0.5;
+		if(this.class_name == "Rogue") return 1.25;
+		if(this.class_name == "Page"){
+			if(this.godTier){
+				return 5.0;
+			}else{
+				return 1.0;
+			}
+		}
+		if(this.class_name == "Thief") return 1.5;
+		if(this.class_name == "Sylph") return 2.5;
+		if(this.class_name == "Prince") return 5.0;
 		if(this.class_name == "Witch") return 1.0;
-		if(this.class_name == "Mage") return 1.0;
+		if(this.class_name == "Mage") return 0.67;
 		return 1.0;
 	}
 	//defending yourself from an attack
 	this.getDefenderModifier = function(){
-		if(this.class_name == "Knight") return 1.0;
-		if(this.class_name == "Seer") return 1.0;
-		if(this.class_name == "Bard") return 1.0;
-		if(this.class_name == "Maid") return 1.0;
-		if(this.class_name == "Heir") return 1.0;
-		if(this.class_name == "Rogue") return 1.0;
-		if(this.class_name == "Page") return 1.0;
-		if(this.class_name == "Thief") return 1.0;
+		if(this.class_name == "Knight") return 2.5;
+		if(this.class_name == "Seer") return 0.67;
+		if(this.class_name == "Bard") return 0.5;
+		if(this.class_name == "Maid") return 3.0;
+		if(this.class_name == "Heir") return 2.0;
+		if(this.class_name == "Rogue") return 1.25;
+		if(this.class_name == "Page"){
+			if(this.godTier){
+				return 5.0;
+			}else{
+				return 1.0;
+			}
+		}
+		if(this.class_name == "Thief") return 0.8;
 		if(this.class_name == "Sylph") return 1.0;
-		if(this.class_name == "Prince") return 1.0;
+		if(this.class_name == "Prince") return 0.33;
 		if(this.class_name == "Witch") return 1.0;
-		if(this.class_name == "Mage") return 1.0;
+		if(this.class_name == "Mage") return 0.67;
 		return 1.0;
 	}
 
@@ -503,16 +515,22 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.getMurderousModifier = function(){
 		if(this.class_name == "Knight") return 0.75;
 		if(this.class_name == "Seer") return 1.0;
-		if(this.class_name == "Bard") return 1.0;
-		if(this.class_name == "Maid") return 1.0;
-		if(this.class_name == "Heir") return 1.0;
+		if(this.class_name == "Bard") return 3.0;
+		if(this.class_name == "Maid") return 1.5;
+		if(this.class_name == "Heir") return 1.5;
 		if(this.class_name == "Rogue") return 1.0;
-		if(this.class_name == "Page") return 1.0;
+		if(this.class_name == "Page"){
+			if(this.godTier){
+				return 5.0;
+			}else{
+				return 1.0;
+			}
+		}
 		if(this.class_name == "Thief") return 1.0;
-		if(this.class_name == "Sylph") return 1.0;
-		if(this.class_name == "Prince") return 1.0;
-		if(this.class_name == "Witch") return 1.0;
-		if(this.class_name == "Mage") return 1.0;
+		if(this.class_name == "Sylph") return 1.5;
+		if(this.class_name == "Prince") return 1.5;
+		if(this.class_name == "Witch") return 1.5;
+		if(this.class_name == "Mage") return 1.5;
 		return 1.0;
 	}
 
