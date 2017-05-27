@@ -263,7 +263,7 @@ function MurderPlayers(session){
 	}
 
 
-	this.canCatch(m, worstEnemy){
+	this.canCatch = function(m, worstEnemy){
 		if(worstEnemy.mobility > m.mobility) return false;
 		if(worstEnemy.aspect == "Void" && worstEnemy.isVoidAvailable()) return false;
 		return true;
