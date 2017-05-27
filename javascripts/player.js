@@ -488,6 +488,9 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(this.class_name == "Mage") return 0.67;
 		return 1.0;
 	}
+
+
+
 	//defending yourself from an attack
 	this.getDefenderModifier = function(){
 		if(this.class_name == "Knight") return 2.5;
@@ -2567,6 +2570,14 @@ function getAveragePower(players){
 		ret += players[i].power;
 	}
 	return  Math.round(ret/players.length);
+}
+
+function getPVPQuip(deadPlayer, victor){
+	if(victor.getPVPModifier() > deadPlayer.getPVPModifier()){
+		return "Which is pretty much how you expected things to go down between a " + deadPlayer.class_name + " and a " + victor.class_name + ". ";
+	}else{
+		return "Which is weird because you would expect the " + deadPlayer.class_name + " to have a clear advantage. Guess echeladder rank really does matter?";
+	}
 }
 
 function getAverageFreeWill(players){
