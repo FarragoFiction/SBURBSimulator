@@ -210,7 +210,7 @@ function MurderPlayers(session){
 					}else{
 						m.increasePower();
 
-						ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". " + getPVPQuip(worstEnemy,m);
+						ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". " + getPVPQuip(worstEnemy,m, "Defender", "Murderer");
 						if(m.dead == true){ //they could have been killed by another murder player in this same tick
 							ret += " Every one is very impressed that they managed to do it while dying."
 						}
@@ -230,7 +230,7 @@ function MurderPlayers(session){
 						worstEnemy.increasePower();
 
 						ret += " The " + m.htmlTitle() + " attempts to brutally murders that asshole, the " + worstEnemy.htmlTitle();
-						ret += ", but instead gets murdered first, in self-defense. " + getPVPQuip(m,worstEnemy);
+						ret += ", but instead gets murdered first, in self-defense. " + getPVPQuip(m,worstEnemy, "Murderer", "Defender");
 						if(m.dead == true){ //they could have been killed by another murder player in this same tick
 							ret += " The task is made especially easy by the " + m.htmlTitle() + " being already in the proccess of dying. "
 						}
@@ -301,7 +301,7 @@ function MurderPlayers(session){
 				}else if(worstEnemy.power * worstEnemy.getPVPModifier("Defender") < m.power*m.getPVPModifier("Murderer")){
 					m.increasePower();
 
-					ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". "+ getPVPQuip(worstEnemy,m);
+					ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". "+ getPVPQuip(worstEnemy,m, "Defender", "Murderer");
 					ret += this.friendsOfVictimHateYou(worstEnemy, m);
 					worstEnemy.makeDead("fighting against the crazy " + m.htmlTitle())
 					this.session.murdersHappened = true;
@@ -309,7 +309,7 @@ function MurderPlayers(session){
 				}else{
 					worstEnemy.increasePower();
 					ret += " The " + m.htmlTitle() + " attempts to brutally murders that asshole, the " + worstEnemy.htmlTitle();
-					ret += ",but instead gets murdered first, in self-defense. "+ getPVPQuip(m,worstEnemy);
+					ret += ",but instead gets murdered first, in self-defense. "+ getPVPQuip(m,worstEnemy, "Murderer", "Defender");
 					m.makeDead("being put down like a rabid dog by " + worstEnemy.htmlTitle())
 					this.session.murdersHappened = true;
 					worstEnemy.victimBlood = m.bloodColor;
