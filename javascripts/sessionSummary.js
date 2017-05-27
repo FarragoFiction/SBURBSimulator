@@ -454,6 +454,9 @@ this.generateHTMLForClassOrAspectPropertyCorpseParty = function(label, value,tot
 				}else if(ghost.causeOfDeath.startsWith("being put down like a rabid dog")){
 					if (!corpseParty["being put down like a rabid dog"]) corpseParty["being put down like a rabid dog"] = 0 //otherwise NaN
 					corpseParty["being put down like a rabid dog"] ++;
+				}else if(ghost.causeOfDeath.indexOf("Minion") !=  -1){
+					if (!corpseParty["fighting a Denizen Minion"]) corpseParty["fighting a Denizen Minion"] = 0 //otherwise NaN
+					corpseParty["fighting a Denizen Minion"] ++;
 				}else{//just use as is
 					if (!corpseParty[ghost.causeOfDeath]) corpseParty[ghost.causeOfDeath] = 0 //otherwise NaN
 					corpseParty[ghost.causeOfDeath] ++;
