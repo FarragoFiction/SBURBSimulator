@@ -2574,7 +2574,7 @@ function getAveragePower(players){
 
 function getPVPQuip(deadPlayer, victor, deadRole, victorRole){
 	if(victor.getPVPModifier(victorRole) > deadPlayer.getPVPModifier(deadRole)){
-		return "Which is pretty much how you expected things to go down between a " + deadPlayer.class_name + " and a " + victor.class_name + ". ";
+		return "Which is pretty much how you expected things to go down between a " + deadPlayer.class_name + " and a " + victor.class_name + " in that exact situation. ";
 	}else{
 		return "Which is weird because you would expect the " + deadPlayer.class_name + " to have a clear advantage. Guess echeladder rank really does matter?";
 	}
