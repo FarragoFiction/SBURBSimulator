@@ -458,6 +458,64 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		return true;
 	}
 
+	//classes only, at least for now
+	this.getPVPModifier = function(role){
+		if(role == "Attacker") return this.getAttackerModifier();
+		if(role == "Defender") return this.getDefenderModifier();
+		if(role == "Murderer") return this.getMurderousModifier();
+
+	}
+
+	//basically free will shit. choosing to kill a player despite not being crazy
+	this.getAttackerModifier = function(){
+		if(this.class_name == "Knight") return 1.0;
+		if(this.class_name == "Seer") return 1.0;
+		if(this.class_name == "Bard") return 1.0;
+		if(this.class_name == "Maid") return 1.0;
+		if(this.class_name == "Heir") return 1.0;
+		if(this.class_name == "Rogue") return 1.0;
+		if(this.class_name == "Page") return 1.0;
+		if(this.class_name == "Thief") return 1.0;
+		if(this.class_name == "Sylph") return 1.0;
+		if(this.class_name == "Prince") return 1.0;
+		if(this.class_name == "Witch") return 1.0;
+		if(this.class_name == "Mage") return 1.0;
+		return 1.0;
+	}
+	//defending yourself from an attack
+	this.getDefenderModifier = function(){
+		if(this.class_name == "Knight") return 1.0;
+		if(this.class_name == "Seer") return 1.0;
+		if(this.class_name == "Bard") return 1.0;
+		if(this.class_name == "Maid") return 1.0;
+		if(this.class_name == "Heir") return 1.0;
+		if(this.class_name == "Rogue") return 1.0;
+		if(this.class_name == "Page") return 1.0;
+		if(this.class_name == "Thief") return 1.0;
+		if(this.class_name == "Sylph") return 1.0;
+		if(this.class_name == "Prince") return 1.0;
+		if(this.class_name == "Witch") return 1.0;
+		if(this.class_name == "Mage") return 1.0;
+		return 1.0;
+	}
+
+	//being shit flippingly crazy AND initiating a fight
+	this.getMurderousModifier = function(){
+		if(this.class_name == "Knight") return 0.75;
+		if(this.class_name == "Seer") return 1.0;
+		if(this.class_name == "Bard") return 1.0;
+		if(this.class_name == "Maid") return 1.0;
+		if(this.class_name == "Heir") return 1.0;
+		if(this.class_name == "Rogue") return 1.0;
+		if(this.class_name == "Page") return 1.0;
+		if(this.class_name == "Thief") return 1.0;
+		if(this.class_name == "Sylph") return 1.0;
+		if(this.class_name == "Prince") return 1.0;
+		if(this.class_name == "Witch") return 1.0;
+		if(this.class_name == "Mage") return 1.0;
+		return 1.0;
+	}
+
 
 	this.getDenizen = function(){
 		return this.session.getDenizenForPlayer(this).name;
