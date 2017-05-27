@@ -452,6 +452,12 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 	}
 
+	this.isVoidAvailable = function(){
+		var light = findAspectPlayer(findLivingPlayers(this.session.players), "Light");
+		if(light && light.godTier) return false;
+		return true;
+	}
+
 
 	this.getDenizen = function(){
 		return this.session.getDenizenForPlayer(this).name;
@@ -921,12 +927,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				player.maxLuck += luckModifier;
 			}
 		}
-	}
-
-	this.isVoidAvailable = function(){
-		var light = findAspectPlayer(findLivingPlayers(this.session.players), "Light");
-		if(light && light.godTier) return false;
-		return true;
 	}
 
 	this.mindIncreasePower = function(powerBoost){

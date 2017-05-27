@@ -41,7 +41,7 @@ function VoidyStuff(session){
 		if(this.enablingPlayer.aspect == "Void"){
 			classDiv = "void";
 
-			if(this.player.isVoidAvailable()){
+			if(!this.player.isVoidAvailable()){
 					classDiv = "light";  //void players can't be hidden in the light.
 			}
 		}else if(this.enablingPlayer.aspect == "Rage"){
