@@ -39,16 +39,10 @@ function VoidyStuff(session){
 		var ret = "";
 		var classDiv = "";
 		if(this.enablingPlayer.aspect == "Void"){
-			var light = findAspectPlayer(findLivingPlayers(curSessionGlobalVar.players), "Light");
 			classDiv = "void";
 
-			if(light){
-				if(light.power>100 ){  //we spend a lot of time together, whether we love or hate each other.
-					//console.log("light class void stuff in " + this.session.session_id);
+			if(this.player.isVoidAvailable()){
 					classDiv = "light";  //void players can't be hidden in the light.
-				}else{
-					//console.log("void class void stuff in " + this.session.session_id);
-				}
 			}
 		}else if(this.enablingPlayer.aspect == "Rage"){
 			classDiv = "rage";

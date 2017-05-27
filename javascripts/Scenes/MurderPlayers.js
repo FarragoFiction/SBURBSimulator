@@ -162,7 +162,7 @@ function MurderPlayers(session){
 			//var notEnemy = m.getWorstEnemyFromList(this.session.availablePlayers);
 			removeFromArray(m, this.session.availablePlayers);
 
-			if(worstEnemy && worstEnemy.dead == false && m.mobility > worstEnemy.mobility){
+			if(worstEnemy && worstEnemy.dead == false && this.canCatch(m,worstEnemy)){
 				removeFromArray(worstEnemy, this.session.availablePlayers);
 				//if blood player is at all competant, can talk down murder mode player.
 				if(worstEnemy.aspect == "Blood" && worstEnemy.power > 2){
@@ -248,7 +248,7 @@ function MurderPlayers(session){
 					ret += " The " + m.htmlTitle() + " has officially settled their shit. ";
 					m.unmakeMurderMode();
 				}else{
-					if(!m.dead && worstEnemy && worstEnemy.mobility > m.mobility || (worstEnemy && worstEnemy.aspect == "Void" && worstEnemy.power > m.power)){
+					if(!m.dead && worstEnemy && !this.canCatch(m,worstEnemy)){
 						//console.log("murder thwarted by mobility: " + this.session.session_id)
 						ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! Do they just never stay in one spot for more than five seconds? Flighty bastard. It's hard to stay enraged while wandering around lost."
 						m.triggerLevel += -3;
@@ -263,6 +263,11 @@ function MurderPlayers(session){
 	}
 
 
+	this.canCatch(m, worstEnemy){
+		if(worstEnemy.mobility > m.mobility) return false;
+		if(worstEnemy.aspect == "Void" && worstEnemy.isVoidAvailable()) return false;
+		return true;
+	}
 
 	this.content = function(){
 		var livePlayers = this.playerList; //just because they are alive doesn't mean they are in the medium
@@ -271,8 +276,7 @@ function MurderPlayers(session){
 			var worstEnemy = m.getWorstEnemyFromList(livePlayers);
 			removeFromArray(m, this.session.availablePlayers);
 			var ret = "";
-			if(worstEnemy && worstEnemy.dead == false && m.mobility > worstEnemy.mobility){ //gotta fucking catch them.
-				console.log("Murderer mobility:  " + m.mobility + " victim mobility: " + worstEnemy.mobility);
+			if(worstEnemy && worstEnemy.dead == false && this.canCatch(m,worstEnemy)){ //gotta fucking catch them.
 				removeFromArray(worstEnemy, this.session.availablePlayers);
 				//if blood player is at all competant, can talk down murder mode player.
 				if(worstEnemy.aspect == "Blood" && worstEnemy.power > 2){
@@ -310,8 +314,8 @@ function MurderPlayers(session){
 				}
 			}else{
 
-				if(worstEnemy && !worstEnemy.dead && worstEnemy.mobility > m.mobility){
-					console.log("murder thwarted by mobility: " + this.session.session_id)
+				if(worstEnemy && !worstEnemy.dead && !this.canCatch(m,worstEnemy)){
+					if(worstEnemy.aspect == "Void") console.log("murder thwarted by void: " + this.session.session_id)
 					ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! Do they just never stay in one spot for more than five seconds? Flighty bastard. It's hard to stay enraged while wandering around lost."
 					m.triggerLevel += -3;
 				}else{

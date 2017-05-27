@@ -923,6 +923,12 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 	}
 
+	this.isVoidAvailable = function(){
+		var light = findAspectPlayer(findLivingPlayers(this.session.players), "Light");
+		if(light && light.godTier) return false;
+		return true;
+	}
+
 	this.mindIncreasePower = function(powerBoost){
 		var modifier = powerBoost;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
