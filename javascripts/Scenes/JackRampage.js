@@ -39,7 +39,7 @@ function JackRampage(session){
 		//var unique = Array.from(new Set(ret));  breaks IE because IE is a whiny little bitch.
 		//var unique = [...new Set(ret)]  //IE ALSO bitches about this. Fucking IE.  I think it doesn't implement Sets. What the actual fuck.
 		var unique = uniqueArrayBecauesIEIsAWhinyBitch(ret);
-		
+
 		var ret = []; //add some sprites. this is literally the only other fight they are good for.
 		for(var i = 0; i<unique.length; i++){
 			ret.push(unique[i])
@@ -83,6 +83,8 @@ function JackRampage(session){
 			}
 			ret += " Bored of this, he decides to show his stabs to BOTH the Black and White Kings.  The battle is over. The Reckoning will soon start."
 			this.session.timeTillReckoning = 0;
+			this.session.king.currentHP = -99999999;
+			this.session.king.dead = true;
 			div.append(""+ret);
 			return ret;
 		}else{
