@@ -135,7 +135,7 @@ function FreeWillStuff(session){
 
 	//hate someone, not in murder mode, self if active, other if passive. plus random, increase trigger, too. if you engage murder mode in someone else, random chance to succesfully manipulate them to hate who you hate.
 	//less likely if who you hate is ectobiologist or space
-	//allow some randomness here. 
+	//allow some randomness here.
 	this.considerEngagingMurderMode = function(player){
 		var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
 		if(player.isActive() && enemies.length > 2 && player.triggerLevel > 5 && !player.murderMode && Math.seededRandom() >0.25){
@@ -400,7 +400,7 @@ function FreeWillStuff(session){
 		if(sacrifice && !sacrifice.dead && !sacrifice.godTier){
 			var bed = "bed"
 			var loop = ""
-			
+
 			var timeIntro = "";
 			if(player == sacrifice){
 				loop = "You get dizzy trying to follow the time logic that must have caused this to happen. Did they try to god tier because their future self told them to? But the future self only told them to because THEIR future self told them... Or wait, is this a doomed time clone...? Fuck. Time is the shittiest aspect."
@@ -412,7 +412,7 @@ function FreeWillStuff(session){
 			if(player.murderMode){
 				intro += " and they are too far gone to care about casualties if it fails"
 			}
-			
+
 			if(sacrifice.isDreamSelf) bed = "slab"
 			if(sacrifice.freeWill <= player.freeWill && player.power < 200){ //can just talk them into this terrible idea.   not a good chance of working.
 				if(sacrifice.godDestiny && (sacrifice.dreamSelf || sacrifice.isDreamSelf)){ //if my dream self is dead and i am my real self....
@@ -466,7 +466,7 @@ function FreeWillStuff(session){
 				intro += " and they are too far gone to care about the consequences of failure"
 			}
 			if(player.godDestiny){
-	
+
 				removeFromArray(player, this.session.availablePlayers);
 				if((player.dreamSelf || player.isDreamSelf)){
 					var ret =  this.godTierHappens(player);
@@ -534,7 +534,7 @@ function FreeWillStuff(session){
 			if(!murderer.stateBackup) murderer.stateBackup = new MiniSnapShot(murderer);
 			murderer.nullAllRelationships();
 			murderer.unmakeMurderMode();
-			murderer.triggerLevel = 0;
+			murderer.triggerLevel = -100;
 			murderer.influenceSymbol = this.getInfluenceSymbol(player);
 			murderer.influencePlayer = player;
 			murderer.getRelationshipWith(player).value += (player.freeWill - murderer.freeWill*2);  //might love or hate you during this.
@@ -630,7 +630,7 @@ function FreeWillStuff(session){
 				player.performEctobiology(this.session);
 				return "The " + player.htmlTitle() + timeIntro + " is not going to play by SBURB's rules. Yes, they could wait to do Ectobiology until they are 'supposed' to. But. Just. Fuck that shit. That's how doomed timelines get made. They create baby versions of everybody. Don't worry about it.";
 			}else{
-				
+
 				var leader = getLeader(this.session.availablePlayers);
 				if(leader && !leader.dead && leader.grimDark < 2){ //you are NOT gonna be able to convince a grim dark player to do their SBURB duties.
 					if(leader.freeWill < player.freeWill){
