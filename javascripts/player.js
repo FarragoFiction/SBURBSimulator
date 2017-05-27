@@ -469,7 +469,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	//basically free will shit. choosing to kill a player despite not being crazy
 	this.getAttackerModifier = function(){
 		if(this.class_name == "Knight") return 1.0;
-		if(this.class_name == "Seer") return 1.0;
+		if(this.class_name == "Seer") return 0.67;
 		if(this.class_name == "Bard") return 2.0;
 		if(this.class_name == "Maid") return 0.33;
 		if(this.class_name == "Heir") return 0.5;
@@ -484,7 +484,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(this.class_name == "Thief") return 1.5;
 		if(this.class_name == "Sylph") return 2.5;
 		if(this.class_name == "Prince") return 5.0;
-		if(this.class_name == "Witch") return 1.0;
+		if(this.class_name == "Witch") return 2.0;
 		if(this.class_name == "Mage") return 0.67;
 		return 1.0;
 	}

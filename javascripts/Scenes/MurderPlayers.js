@@ -201,7 +201,7 @@ function MurderPlayers(session){
 					this.renderClubs(div, m, worstEnemy,ausp);
 					makeClubs(ausp, m, worstEnemy)
 
-				}else if(worstEnemy.power < m.power*2){  //more likely to kill enemy than be killed. element of surprise
+				}else if(worstEnemy.power * worstEnemy.getPVPModifier("Defender") < m.power*m.getPVPModifier("Murderer")){
 					var alt = this.addImportantEvent(worstEnemy);
 					if(alt && alt.alternateScene(div)){
 						//do nothing, alt scene will handle this.
@@ -296,7 +296,7 @@ function MurderPlayers(session){
 					m.unmakeMurderMode();
 					m.triggerLevel = 1;
 					this.renderDiamonds(div, m, worstEnemy);
-				}else if(worstEnemy.power < m.power*2){  //more likely to kill enemy than be killed. element of surprise
+				}else if(worstEnemy.power * worstEnemy.getPVPModifier("Defender") < m.power*m.getPVPModifier("Murderer")){
 					m.increasePower();
 
 					ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". ";

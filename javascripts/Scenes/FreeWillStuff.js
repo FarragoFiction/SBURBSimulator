@@ -567,7 +567,7 @@ function FreeWillStuff(session){
 
 	this.killMurderer = function(player, murderer){
 		if(player.mobility > murderer.mobility){
-			if(player.power > murderer.power){  //power is generic. generally scales with any aplicable stats. lets me compare two different aspect players.
+			if(player.power * player.getPVPModifier("Attacker") > murderer.power * murderer.getPVPModifier("Defender")){  //power is generic. generally scales with any aplicable stats. lets me compare two different aspect players.
 				//console.log(player.title() + " choosing to kill murderer. " + this.session.session_id)
 				player.victimBlood = murderer.bloodColor;
 				removeFromArray(player, this.session.availablePlayers);
