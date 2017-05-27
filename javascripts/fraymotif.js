@@ -1,9 +1,26 @@
-
+/*
+stat effects from a fraymotif are temporary. wear off after battle.
+so, players, player snapshots AND gameEntities will have to have an array of applied fraymotifs.
+and their getPower, getHP etc stats must use these.
+at start AND end of battle (can't be too careful), wipe applied fraymotifs
+*/
 function Fraymotif(aspects, name,tier){
     this.aspects = aspects; //expect to be an array
     this.name = name;
     this.tier = tier;
     this.used = false; //when start fight, set to false. set to true when used. once per fight
+    this.damageDone = 0;
+    this.effectAll = false; //either effect self/1 enemy or all party/all enemies
+    this.targetSelf = false; //target self for good shit, target enemy for damage, buffs can go either way. if target enemy, stats * -1;
+    this.currentHP = 0;
+    this.freeWill = 0;
+    this.mobility = 0;
+    this.minLuck = 0;
+    this.maxLuck = 0;
+    this.power = 0;
+    this.triggerLevel = 0;
+    this.revive = false; //special effect
+
 
     this.toString  = function(){
       return this.name;
@@ -123,13 +140,14 @@ function FraymotifCreator(session){
         name += this.getRandomNameForAspect(aspects[i]) + musicWord +  " ";
       }
     }
+    return name;
   }
 
   //classes is between 0 and aspects.length. each aspect is paired with a class.
   //should there be no class to pair with, random effect based on aspect
   //otherwise, effect is based on both class and aspect
-  this.makeFraymotif = function(aspects,tier){
-    var name = this.getFraymotifName(aspects, tier,classes);
+  this.makeFraymotif = function(aspects,tier,classes){
+    var name = this.getFraymotifName(aspects, tier);
 
     return new Fraymotif(aspects, name, tier);
   }
