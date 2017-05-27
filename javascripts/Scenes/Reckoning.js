@@ -11,7 +11,13 @@ function Reckoning(session){
 	//i is so you know entry order
 	this.renderContent = function(div){
 		this.session.reckoningStarted = true;
-		var intro = "<br><br> The reckoning has begun.  The Black King has defeated his Prospitian counterpart, initiating a meteor storm to destroy Skaia. ";
+		var intro = ""
+		if(this.session.king.getHP() < 0){
+			intro += "<br><br> The reckoning has begun, initiating a meteor storm to destroy Skaia. ";
+		}else{
+			intro += "<br><br> The reckoning has begun.  The Black King has defeated his Prospitian counterpart, initiating a meteor storm to destroy Skaia. ";
+		}
+
 		var leader = getLeader(this.session.players);
 		if(this.session.ectoBiologyStarted){
 			intro += " Remember those random baby versions of the players the " + leader.htmlTitleBasic() + " made? " ;
@@ -48,10 +54,15 @@ function Reckoning(session){
 		}
 		var living = findLivingPlayers(this.session.players);
 		if(living.length > 0){
-			intro += " <br><br>Getting back to the King, all the players can do now is try to defeat him on Skaia before they lose their Ultimate Reward. ";
-			intro += " The Ultimate Reward allows the players to create a new Universe frog, and live inside of it. ";
-			intro += " Without it, they'll be trapped in the Medium forever. (Barring shenanigans). ";
-			intro += living.length + " players will fight the Dersite Royalty and try to prove themselves worthy of the Ultimate Reward. ";
+			if(this.session.king.getHP()<0){
+				intro += "<br><br>Normally this is where the Black King would show up to do an epic boss fight. Jack fucked up THAT script, though.  Looks like there's nothing to stop the players from...just...deploying the frog into the Skaia hole???  I mean. If they have a Frog. They do, right?"
+			}else{
+					intro += " <br><br>Getting back to the King, all the players can do now is try to defeat him on Skaia before they lose their Ultimate Reward. ";
+					intro += " The Ultimate Reward allows the players to create a new Universe frog, and live inside of it. ";
+					intro += " Without it, they'll be trapped in the Medium forever. (Barring shenanigans). ";
+					intro += living.length + " players will fight the Dersite Royalty and try to prove themselves worthy of the Ultimate Reward. ";
+			}
+
 		}else{
 			intro += " <br><br>No one is alive. <BR><BR>Game Over. ";
 			var strongest = findStrongestPlayer(this.session.players)

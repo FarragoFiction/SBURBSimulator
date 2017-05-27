@@ -85,6 +85,7 @@ function JackRampage(session){
 			this.session.timeTillReckoning = 0;
 			this.session.king.currentHP = -99999999;
 			this.session.king.dead = true;
+			console.log("jack starts reckoning " + this.session.session_id)
 			div.append(""+ret);
 			return ret;
 		}else{
