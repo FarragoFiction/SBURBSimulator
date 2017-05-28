@@ -1307,3 +1307,8 @@ if(classFiltered && !aspectFiltered){
 
 
 okay, now just need to actually set classFiltered and aspectFiltered.
+
+
+Done, and it's fucking working beautifully. I am a GENIUS!!!!
+
+But...am a genius who should probably sleep now and finish upgrading AB in the morning.

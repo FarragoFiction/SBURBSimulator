@@ -1508,7 +1508,7 @@ prototyping_objects[prototyping_objects.length-1].helpPhrase = "goes hohohohohoh
 prototyping_objects.push(new GameEntity(null, "Politician",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "offers a blueprint for an econmy that works for everyone. That would've been more useful before the earth was destroyed.... ";
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "offers a blueprint for an ECONONY that works for everyone. That would've been more useful before the earth was destroyed.... ";
 
 
 prototyping_objects.push(new GameEntity(null, "Tiger",null));
