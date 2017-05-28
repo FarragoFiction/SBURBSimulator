@@ -430,6 +430,8 @@ function GameEntity(session, name, crowned){
 				if(numTurns>5 || (players[0].currentHP < this.getPower() && !players.godDestiny)){ //denizens are cool with killing players that will godtier.
 					this.denizenIsSoNotPuttingUpWithYourShitAnyLonger(div, players, numTurns);
 					return true;
+				}else if((players[0].currentHP < this.getPower() && players.godDestiny)){
+					console.log("Denizen is fine with killing this player, because they will probably GodTier. " + this.session.session_id)
 				}
 				return false; //denizen fights can not be interupted and are self limiting
 			}
