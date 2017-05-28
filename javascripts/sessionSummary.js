@@ -112,7 +112,7 @@ function SessionSummary(){
 			return this.matchesAspect(aspects);
 		}else if(classes.length > 0 && aspects.length == 0){
 			return this.matchesClass(classes);
-		}else if(aspects.length > 0 && clases.length >0){
+		}else if(aspects.length > 0 && classes.length >0){
 			return this.matchesClass(classes) && this.matchesAspect(aspects);
 		}else{
 			return true; //no filters, all are accepted.
