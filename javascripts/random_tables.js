@@ -1583,7 +1583,7 @@ postdenizen_life_quests.push("resurrecting an ancient civilization of consorts, 
 
 
 
-var human_hair_colors = ["#68410a","#000000","#000000","#000000","#f3f28d","#cf6338","#feffd7","#fff3bd","#724107","#382207","#ff5a00","#3f1904","#ffd46d","#473200","#91683c"];
+var human_hair_colors = ["#68410a","#ffffff", "#000000","#000000","#000000","#f3f28d","#cf6338","#feffd7","#fff3bd","#724107","#382207","#ff5a00","#3f1904","#ffd46d","#473200","#91683c"];
 
 function getRandomColor() {
     var letters = '0123456789ABCDEF';

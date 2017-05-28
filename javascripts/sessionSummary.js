@@ -650,7 +650,6 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 
 	this.generateClassFilterHTML = function(){
 		var html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryClasses'>Classes:";
-		console.log(this.classes)
 		for(var propertyName in this.classes) {
 			var input = "<input type='checkbox' name='filterClass' value='"+propertyName +"' id='" + propertyName + "'>";
 			html += "<Br>" +input + propertyName + ": " + this.classes[propertyName] + "(" + Math.round( 100* this.classes[propertyName]/this.total) + "%)";
