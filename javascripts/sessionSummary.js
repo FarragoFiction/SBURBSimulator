@@ -78,12 +78,11 @@ function SessionSummary(){
 		for(var i = 0; i<players.length; i++){
 			this.classes[players[i].class_name] ++;
 		}
-
 	}
 
 	this.setAspects = function(players){
 		var labels = ["Blood","Mind","Rage","Time","Void","Heart","Breath","Light","Space","Hope","Life","Doom"];
-		for(var i = 0; i<label.length; i++){
+		for(var i = 0; i<labels.length; i++){
 				this.aspects[labels[i]] = 0;
 		}
 		for(var i = 0; i<players.length; i++){
@@ -388,6 +387,34 @@ function MultiSessionSummary(){
 	this.waywardVagabondEnding = 0;
 	this.mayorEnding = 0;
 	this.checkedCorpseBoxes = [];
+	this.classes = {};
+	this.aspects = {};
+
+	this.setClasses = function(){
+		var labels = ["Knight","Seer","Bard","Maid","Heir","Rogue","Page","Thief","Sylph","Prince","Witch","Mage"];
+		for(var i = 0; i<labels.length; i++){
+				this.classes[labels[i]] = 0;
+		}
+	}
+
+	this.integrateClasses = function(ss_classes){
+			for(var propertyName in ss_classes) {
+					this.classes[propertyName] += ss_classes[propertyName]
+			}
+	}
+
+	this.integrateAspects = function(ss_aspects){
+		for(var propertyName in ss_aspects) {
+				this.aspects[propertyName] += ss_aspects[propertyName]
+		}
+	}
+
+	this.setAspects = function(){
+		var labels = ["Blood","Mind","Rage","Time","Void","Heart","Breath","Light","Space","Hope","Life","Doom"];
+		for(var i = 0; i<labels.length; i++){
+				this.aspects[labels[i]] = 0;
+		}
+	}
 
 	//todo, have a ret array, add ghosts to it if they match a filter (don't care if they dont' match other filtere)
 	//pass to generateCorpsePartyHTML
@@ -562,6 +589,7 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 		if(propertyName == "generateCorpsePartyInnerHTML"  || propertyName == "isRomanceProperty" || propertyName == "isDramaticProperty" || propertyName == "isEndingProperty" || propertyName == "isAverageProperty" || propertyName == "isPropertyToIgnore") return true;
 		if(propertyName == "wireUpCorpsePartyCheckBoxes"  || propertyName == "isFilterableProperty" || propertyName == "generateClassFilterHTML" || propertyName == "generateAspectFilterHTML" || propertyName == "generateHTMLForProperty" || propertyName == "generateRomanceHTML") return true;
 		if(propertyName == "filterCorpseParty" || propertyName == "generateHTMLForClassPropertyCorpseParty"|| propertyName == "generateHTMLForAspectPropertyCorpseParty" || propertyName == "generateDramaHTML" || propertyName == "generateMiscHTML" || propertyName == "generateAverageHTML" || propertyName == "generateHTMLOld" || propertyName == "generateEndingHTML") return true;
+		if(propertyName == "setAspects" || propertyName == "setClasses" || propertyName == "integrateAspects" || propertyName == "integrateClasses" || propertyName == "classes" || propertyName == "aspects") return true;
 
 		return false;
 	}
@@ -622,15 +650,23 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 
 	this.generateClassFilterHTML = function(){
 		var html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryClasses'>Classes:";
+		console.log(this.classes)
+		for(var propertyName in this.classes) {
+			var input = "<input type='checkbox' name='filterAspect' value='"+label +"' id='" + label + "'>"
+			var html += "<Br>" +input + propertyName + ": " + this.aspects[propertyName] + "(" + Math.round( 100* this.aspects[propertyName]/this.total) + "%)"
+		}
+		console.log("todo, wire up check boxes from method called in rare_session_finder")
 		return html;
 	}
 
 	this.generateAspectFilterHTML = function(){
-		console.log("TODO: display aspects for MSS. Then allow filtering by them. (Somehow)")
-
+		console.log(this.aspects)
 
 		var html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryAspects'>Aspects:";
-		html += "COMING SOON</div>"
+		for(var propertyName in this.aspects) {
+			var input = "<input type='checkbox' name='filterAspect' value='"+label +"' id='" + label + "'>"
+			var html += "<Br>" +input + propertyName + ": " + this.aspects[propertyName] + "(" + Math.round( 100* this.aspects[propertyName]/this.total) + "%)"
+		}
 		return html;
 	}
 
@@ -745,9 +781,14 @@ function collateMultipleSessionSummariesJunior(sessionSummaryJuniors){
 
 function collateMultipleSessionSummaries(sessionSummaries){
 	var mss = new MultiSessionSummary();
+	mss.setClasses();
+	mss.setAspects();
 	for(var i = 0; i<sessionSummaries.length; i++){
 		var ss = sessionSummaries[i];
 		mss.total ++;
+		mss.integrateAspects(ss.aspects);
+		mss.integrateClasses(ss.classes);
+
 
 		if(ss.badBreakDeath) mss.badBreakDeath ++;
 		if(ss.mayorEnding) mss.mayorEnding ++;
