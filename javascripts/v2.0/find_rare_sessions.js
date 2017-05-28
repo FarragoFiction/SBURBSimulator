@@ -740,8 +740,6 @@ function printStats(filters){
 	//TODO have different divs of types of stats, most defaulted to hidden, with checkbox toggles for what you want to see.
 	$("#stats").html(mms.generateHTML());
 	mms.wireUpCorpsePartyCheckBoxes();
-	mms.wireUpClassCheckBoxes();
-	mms.wireUpAspectCheckBoxes();
 
 	if(displayMisc)$('#multiSessionSummaryMisc').show()  //memory. don't always turn off when making new ones.
 	if(!displayMisc)$('#multiSessionSummaryMisc').hide()

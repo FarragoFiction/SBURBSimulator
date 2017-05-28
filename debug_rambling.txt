@@ -1312,3 +1312,15 @@ okay, now just need to actually set classFiltered and aspectFiltered.
 Done, and it's fucking working beautifully. I am a GENIUS!!!!
 
 But...am a genius who should probably sleep now and finish upgrading AB in the morning.
+
+
+
+
+
+
+~~~~~~~~~~~
+Okay, major barrier compared to corpse party mode and regular mode is that the classpect filters have to ALSO be compatible with the regular filters.
+
+Can choose to see all sessions with a Knight of Time and also MurderModes.
+
+Regular properties call a generic "filter" method kept in the rare session finder itself.  So. Claspect filters should do this as well.
