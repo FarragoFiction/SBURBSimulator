@@ -114,7 +114,7 @@ function SessionSummary(){
 
 	this.matchesBothClassAndAspect = function(classes, aspects){
 		for(var j = 0; j<this.miniPlayers.length; j++){
-			if(this.miniPlayerMatchesAnyClasspect(this.miniPlayers[j])) return true;
+			if(this.miniPlayerMatchesAnyClasspect(this.miniPlayers[j],classes,aspects)) return true;
 		}
 		return false;
 	}
