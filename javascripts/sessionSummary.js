@@ -680,20 +680,6 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 
 	}
 
-	this.filterClaspects = function(){
-		alert("TODO")
-		/*
-		problem: unlike corpse party, this should ALSO work with other filters.
-
-		maybe it shouldn't be a separate method from the other way to filter.
-
-		want to be able to do things like see all sessions with a Knight of Time and Free Will Events
-
-		regular check boxes call a method in find_rare_sessions that chooses which session summaries to pass to Print.
-		*/
-	}
-
-
 
 	this.generateClassFilterHTML = function(){
 		var html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryClasses'>Classes:";
@@ -711,6 +697,7 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 		for(var propertyName in this.aspects) {
 			var input = "<input type='checkbox' name='filterAspect' value='"+propertyName +"' id='aspect" + propertyName +  "' onchange='filterSessionSummaries()'>"
 			html += "<Br>" +input + propertyName + ": " + this.aspects[propertyName] + "(" + Math.round( 100* this.aspects[propertyName]/this.total) + "%)"
+			if(this.aspects[propertyName] > this.total) console.log("Total is: " + this.total + "and " + propertyName + " is "  + this.aspects[propertyName]);
 		}
 		html += "</div>"
 		return html;

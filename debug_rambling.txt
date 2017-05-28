@@ -1450,3 +1450,14 @@ Remember, same alg as corpseParty in that it's one, or the other or BOTH.
 
   *GASP*
   There is a problem.  Why is time and space sometimes showing up in MORE THAN 100% of all sessions? Is it a rounding error???
+
+
+  sessionSummary.js:700:48
+Total is: 63and Time is 68  sessionSummary.js:700:48
+Total is: 63and Space is 66  sessionSummary.js:700:48
+
+So. Despite there being only 63 session, I think there is 68 sessions with time players in them.
+
+What the fuck.
+
+....oh. it's combo sessions. well. shit. that's not a bug, then.
