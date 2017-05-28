@@ -1548,3 +1548,31 @@ which still treats them as separate.
 That's an easy fix though, and the code being so modular makes it obvious to see that.  pastJR from a few hours ago is WAY better at pastJR from a few months ago.
 It took me, like two days to work though pastJR of a few months ago code, and only a few hours to do pastJR from a few hours ago. Although, yes, obstensibly
 I should have clearer memories of the more recent code, but this is clearly not the case. This shit is a safari of discovery.
+
+Holy fuck, it looks like it might be working. Now to have AB run through a bunch of sessions to confirim (which is where i found this bug last time)
+http://www.threepanelsoul.com/comic/on-infinite-loops  <-- true facts
+
+
+:/  Can't tell if bug. But....  Having "Heir, Maid" and "Blood" isn't working like I would think it would.
+Observation:
+
+Total: 138 Sessions, No filtered
+83 sessions with an Heir.  check
+115 with an Heir OR a Maid.  check.
+3 sessions with an Heir Blood OR a Maid of Blood
+
+7 Sessions with Heir of Blood.
+3 Sessions with Maid of Blood.
+
+
+So.
+
+It looks like things aren't right.  It's not an OR for multiple classes.
+
+Okay.
+
+Well, theoretically I didn't look too hard at the corpse party classpect algorithm once I realized it applied to a MSS and not a SS.
+
+Before I spend time reviewing it, confirm corpse party works how I think.
+
+"Heir,Maid", "Blood" should be bigger than EITHER "Heir", "Blood" or "Maid", "Blood"
