@@ -90,12 +90,20 @@ function SessionSummary(){
 		}
 	}
 
+	//do i have ANY of the classes in the list?
 	this.matchesClass = function(classes){
-
+			for(var i = 0; i<classes.length; i++){
+				if(this.classes[classes[i]] > 0) return true;
+			}
+			return false;
 	}
 
+	//do I have ANY of the aspects in teh list?
 	this.matchesAspect = function(aspects){
-
+		for(var i = 0; i<aspects.length; i++){
+			if(this.aspects[aspects[i]] > 0) return true;
+		}
+		return false;
 	}
 
 	//classes and aspects are arrays of strings.
