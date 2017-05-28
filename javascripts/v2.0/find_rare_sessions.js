@@ -759,7 +759,7 @@ function printStats(filters){
 	if(displayCorpse)$('#multiSessionSummaryCorpseParty').show()  //memory. don't always turn off when making new ones.
 	if(!displayCorpse)$('#multiSessionSummaryCorpseParty').hide()
 
-
+	//TODO also do class/aspect filters here. somehow.
 	if(filters){
 		$("input[name='filter']").each(function(){
 			$(this).prop('disabled', false);

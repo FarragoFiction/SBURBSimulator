@@ -1324,3 +1324,94 @@ Okay, major barrier compared to corpse party mode and regular mode is that the c
 Can choose to see all sessions with a Knight of Time and also MurderModes.
 
 Regular properties call a generic "filter" method kept in the rare session finder itself.  So. Claspect filters should do this as well.
+
+Okay. So, classes and aspects aren't wired up seprearte any more, just a simple onChange.
+
+
+so. next step would be to review how existing filters work and see how to add the new functionality.
+don't panic just cause i can't remember how it works. And don't come up with fascinating sounding ways to procrastinate, like fuck around on tumblr or discord.
+
+Okay.
+
+
+function filterSessionSummaries(){
+	var tmp = []
+	var filters = [];
+	sessionSummariesDisplayed = [] //can filter already filtered arrays.
+	for(var i = 0; i<allSessionsSummaries.length; i++){
+			sessionSummariesDisplayed.push(allSessionsSummaries[i]);
+	}
+
+	$("input[name='filter']:checked").each(function(){
+		filters.push($(this).val());
+	});
+		for(var i = 0; i<sessionSummariesDisplayed.length; i++){
+			var ss = sessionSummariesDisplayed[i];
+			if(ss.satifies_filter_array(filters)){
+				tmp.push(ss);
+			}
+
+	}
+
+	////console.log(tmp);
+	sessionSummariesDisplayed = tmp;
+	printSummaries();
+	printStats(filters);
+}
+
+
+
+So, use my words.
+First, I make sure to only grab the summaries that are ALREADY displayed. already match existing filters.
+
+this step might be useless, because I'm still probably gonna look at all filters anyway, not only the one most recent one. But it probably doesn't hurt anything, either.
+
+Okay. What happens next? I look at each checked filter (fucking told you) and.
+
+Wait.
+
+Back that truck up.
+
+Next I Look at each checked box with a name of "filter". This ONLY includes traditional filter shit, not the complicated classpect stuff.
+I have a method called "satisifies filter array".  I remember thoth helped me work the logic out on that one 'cause it kept kicking my ass.
+
+Now, before I look into "satisfies_filter_arary".....what happens next?
+
+I call printSTats on FILTERS, but tmp.  "satisfies_filter_array" is called for tmp, not filters.
+
+Why am I passing filters to print stats?   sessionSummariesDisplayed is a global it looks like, is printStats using it???  Why bother passing filters?
+
+var mms = collateMultipleSessionSummaries(sessionSummariesDisplayed);
+
+Okay. yes, it's using the global variable like an idiot, but whatever. it works.  but what about filters? Is that useless code dragged forward by my own laziness?
+
+AH!  Filters is used to decide which boxes should be checked when the session stats are rerendered. Good job pastJR, for not being a complete fucking idiot.
+
+
+Okay. so. make a note there to also do class/aspect
+
+So.
+
+Backing up, I decide whether or not to add a particular session to the stats by calling satisfies_filter_array.
+
+Would this be a good place to have my new class/aspect algorithm I use for corpse party? Pretty sure that happens on a single session basis?
+No, it doesn't. corpse party is just it's own thing. like an asshole.
+
+Okay.
+
+
+Well, look into satisfies_filter_array.
+
+Options:
+* Modify satifies_filter_array
+* make new method that is called after satisfies_filter_array
+* process classes/aspects in printStats directly. (probably dumb)
+
+
+I think that the cleanest implementation would be to NOT fuck with satisfies_filter_array, and instead a new method.
+
+Maybe it takes the filtered sessions and then REMOVES any that don't fit the class/aspect filter.
+
+So:
+
+Here's all sessions with a god tier in it.  Return only those with a Knight of Time.
