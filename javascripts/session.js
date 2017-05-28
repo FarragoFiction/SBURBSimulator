@@ -576,8 +576,7 @@ function Session(session_id){
 
 	this.generateSummary = function(){
 		var summary = new SessionSummary();
-		summary.setClasses(this.players);
-		summary.setAspects(this.players);
+		summary.setMiniPlayers(this.players);
 		summary.mayorEnding = this.mayorEnding;
 		summary.waywardVagabondEnding = this.waywardVagabondEnding;
 		summary.badBreakDeath = this.badBreakDeath;

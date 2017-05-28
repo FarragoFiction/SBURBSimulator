@@ -1506,3 +1506,14 @@ Break obtained.
 pffft....okay. One thing at a time.
 
 Store mini player objects, NOT a count of "number of heirs in a session" (which was that source of 120% time player bs earlier, anyways)
+
+huh. mss will have to be refactored too.  Not leave class and aspect divourced. Or...fuck.
+
+Think about this.
+
+FILTERING happens on an individual session level.  All the MultiSessionSummary cares about is printing out stats. It can have separate class and aspect arrays, sure, no problem.
+
+But....how will it count?
+
+Oh sweet, i was smart enough to make them seperate methods, integrateAspects and integrateClasses. pastJR from a few hours ago did a good job.
+Fucking nice, that was painless as shit.

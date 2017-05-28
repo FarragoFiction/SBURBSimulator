@@ -67,26 +67,12 @@ function SessionSummary(){
 	this.averageTriggerLevel = null;
 	this.sizeOfAfterLife = null;
 	this.ghosts = null;
-	this.classes = {} //fill in hash programatically. only used for MSS.
-	this.aspects = {}
+	this.miniPlayers = [] //array of mini player objects
 
-	this.setClasses = function(players){
-		var labels = ["Knight","Seer","Bard","Maid","Heir","Rogue","Page","Thief","Sylph","Prince","Witch","Mage"];
-		for(var i = 0; i<labels.length; i++){
-				this.classes[labels[i]] = 0;
-		}
-		for(var i = 0; i<players.length; i++){
-			this.classes[players[i].class_name] ++;
-		}
-	}
+	this.setMiniPlayers = function(players){
 
-	this.setAspects = function(players){
-		var labels = ["Blood","Mind","Rage","Time","Void","Heart","Breath","Light","Space","Hope","Life","Doom"];
-		for(var i = 0; i<labels.length; i++){
-				this.aspects[labels[i]] = 0;
-		}
 		for(var i = 0; i<players.length; i++){
-			this.aspects[players[i].aspect] ++;
+			this.miniPlayers.push({class_name: players[i].class_name, aspect: players[i].aspect});
 		}
 	}
 
@@ -232,7 +218,7 @@ function SessionSummary(){
 
 						html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "&"+params+"'>" +this.session_id + scratch +  "</a>"
 					}
-				}else if(propertyName == "classes" || propertyName == "aspects"  || propertyName == "setAspects" || propertyName == "setClasses" || propertyName == "scratched" || propertyName == "ghosts" || propertyName == "satifies_filter_array" || propertyName == "frogStatus" || propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo" || propertyName == "parentSession"  ){
+				}else if(propertyName == "miniPlayers" || propertyName == "setMiniPlayers" || propertyName == "scratched" || propertyName == "ghosts" || propertyName == "satifies_filter_array" || propertyName == "frogStatus" || propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo" || propertyName == "parentSession"  ){
 					//do nothing. properties used elsewhere.
 				}else if(propertyName != "generateHTML" && propertyName != "getSessionSummaryJunior"){
 					html += "<Br><b>" + propertyName + "</b>: " + this[propertyName] ;
@@ -429,15 +415,16 @@ function MultiSessionSummary(){
 		}
 	}
 
-	this.integrateClasses = function(ss_classes){
-			for(var propertyName in ss_classes) {
-					this.classes[propertyName] += ss_classes[propertyName]
+	this.integrateClasses = function(miniPlayers){
+			for(var i = 0; i<miniPlayers.length; i++){
+				this.classes[miniPlayers[i].class_name] ++;
 			}
+
 	}
 
-	this.integrateAspects = function(ss_aspects){
-		for(var propertyName in ss_aspects) {
-				this.aspects[propertyName] += ss_aspects[propertyName]
+	this.integrateAspects = function(miniPlayers){
+		for(var i = 0; i<miniPlayers.length; i++){
+			this.aspects[miniPlayers[i].aspect] ++;
 		}
 	}
 
@@ -818,8 +805,8 @@ function collateMultipleSessionSummaries(sessionSummaries){
 	for(var i = 0; i<sessionSummaries.length; i++){
 		var ss = sessionSummaries[i];
 		mss.total ++;
-		mss.integrateAspects(ss.aspects);
-		mss.integrateClasses(ss.classes);
+		mss.integrateAspects(ss.miniPlayers);
+		mss.integrateClasses(ss.miniPlayers);
 
 
 		if(ss.badBreakDeath) mss.badBreakDeath ++;
