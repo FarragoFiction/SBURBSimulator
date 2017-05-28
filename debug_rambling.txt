@@ -1517,3 +1517,15 @@ But....how will it count?
 
 Oh sweet, i was smart enough to make them seperate methods, integrateAspects and integrateClasses. pastJR from a few hours ago did a good job.
 Fucking nice, that was painless as shit.
+
+Now i just gotta wire up filtering to work with the new system.
+I LITERALLY just coded it and yet have to review the code anyways because fuck using meat to remember shit, amirite?
+
+Alright, so, the actual "click the chekc box and a thing happens" is still wired up, 'cauase rendering the html didnt' change any. That just means that
+a single session return "true" or "false" as to whether it has the class/aspect/classpect in question needs to be updated.
+And then it might work.
+
+Which would mean, what, less than an hour of extra work 'cause of  my mistake. thats not bad. I might still meet my bullshit self-imposed deadline of "tonight" to finish up AB.
+
+Man, I REALLY have leveled up at coding btw. Like. My old shit is monolithic functions that are hard as FUCK to modify and read, but I've leaned towards
+little single purpose functions that turn out to be WAY easier to mod. SBURBSim is the gift that keeps on giving.

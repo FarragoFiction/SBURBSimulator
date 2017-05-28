@@ -79,7 +79,11 @@ function SessionSummary(){
 	//do i have ANY of the classes in the list?
 	this.matchesClass = function(classes){
 			for(var i = 0; i<classes.length; i++){
-				if(this.classes[classes[i]] > 0) return true;
+				var class_name = classes[i];
+				for(var j = 0; j<this.miniPlayers.length; j++){
+					var miniPlayer = miniPlayers[j];
+					if(miniPlayer.class_name == class_name) return true;
+				}
 			}
 			return false;
 	}
@@ -87,7 +91,11 @@ function SessionSummary(){
 	//do I have ANY of the aspects in teh list?
 	this.matchesAspect = function(aspects){
 		for(var i = 0; i<aspects.length; i++){
-			if(this.aspects[aspects[i]] > 0) return true;
+			var aspect = aspects[i];
+			for(var j = 0; j<this.miniPlayers.length; j++){
+				var miniPlayer = miniPlayers[j];
+				if(miniPlayer.aspect == aspect) return true;
+			}
 		}
 		return false;
 	}
