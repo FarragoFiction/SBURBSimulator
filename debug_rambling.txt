@@ -1415,3 +1415,33 @@ Maybe it takes the filtered sessions and then REMOVES any that don't fit the cla
 So:
 
 Here's all sessions with a god tier in it.  Return only those with a Knight of Time.
+
+Remember, same alg as corpseParty in that it's one, or the other or BOTH.
+
+
+
+
+	this.matchesClasspect = function(classes, aspects){
+		if(aspects.length > 0 && classes.length == 0){
+        /???
+		}else if(classes.length > 0 && aspects.length == 0){
+      /???
+		}else if(aspects.length > 0 && clases.length >0){
+      /???
+		}else{
+			return true; //no filters, all are accepted.
+		}
+
+	}
+
+
+  need to fill out that stub, but first wire it up.
+
+
+
+  nice. i think I've leveld up at jquery, cause the way i was getting filters before was baby shit comapred to how i figured out how to do it for the fraymotif test page.
+
+
+  wait. no false alarm, it's the same.
+
+  

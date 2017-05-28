@@ -115,6 +115,36 @@ function filterSessionsJunior(){
 	printStatsJunior();
 }
 
+function removeNonMatchingClasspects(tmp){
+
+	var classes = [];
+	var aspects = [];
+
+	$("input[name='filterAspect']:checked").each(function(){
+		aspects.push($(this).val());
+	});
+
+	$("input[name='filterClass']:checked").each(function(){
+		classes.push($(this).val());
+	});
+
+
+
+	var toRemove = [];
+	for(var i = 0; i<tmp.length; i++){
+		var ss = tmp[i];
+		if(!ss.matchesClasspect(classes, aspects)){
+			toRemove.push(ss);
+		}
+	}
+
+	for(var i = 0; i<toRemove.length; i++){
+		tmp.removeFromArray(toRemove[i]);
+	}
+
+	return tmp;
+}
+
 //filters by all checkboxes.
 function filterSessionSummaries(){
 	var tmp = []
@@ -132,8 +162,9 @@ function filterSessionSummaries(){
 			if(ss.satifies_filter_array(filters)){
 				tmp.push(ss);
 			}
-
 	}
+	tmp = removeNonMatchingClasspects(tmp);
+
 
 	////console.log(tmp);
 	sessionSummariesDisplayed = tmp;

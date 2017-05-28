@@ -89,7 +89,22 @@ function SessionSummary(){
 			this.aspects[players[i].aspect] ++;
 		}
 	}
-	//thanks to bob for helping me puzzle out the logic to make filters AND not OR.
+
+	//classes and aspects are arrays of strings.
+	this.matchesClasspect = function(classes, aspects){
+		if(aspects.length > 0 && classes.length == 0){
+
+		}else if(classes.length > 0 && aspects.length == 0){
+
+		}else if(aspects.length > 0 && clases.length >0){
+
+		}else{
+			return true; //no filters, all are accepted.
+		}
+
+	}
+
+	//thanks to thoth for helping me puzzle out the logic to make filters AND not OR.
 	//why was that so hard???
 	this.satifies_filter_array = function(filter_array){
 		//console.log(filter_array)
@@ -424,7 +439,6 @@ function MultiSessionSummary(){
 		that.checkedCorpseBoxes = []; //reset
 		var classFiltered = $("input:checkbox[name=CorpsefilterClass]:checked").length > 0;
 		var aspectFiltered = $("input:checkbox[name=CorpsefilterAspect]:checked").length > 0;
-		//TODO: find way to set the above vars
 		for(var i = 0; i<that.ghosts.length; i++){
 			var ghost = that.ghosts[i];
 			//add self to filtered ghost if my class OR my aspect is checked. How to tell?  .is(":checked")
@@ -664,7 +678,7 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 	}
 
 
-	
+
 	this.generateClassFilterHTML = function(){
 		var html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryClasses'>Classes:";
 		for(var propertyName in this.classes) {
