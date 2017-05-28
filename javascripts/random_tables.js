@@ -1310,7 +1310,7 @@ var tricksterColors = ["#FF0000","#00FF00","#0000FF","#FFFF00","#00FFFF","#FF00F
 var bloodColors = ["#A10000","#a25203","#a1a100","#658200","#416600","#078446","#008282","#004182","#0021cb","#631db4","#610061","#99004d"];
 
 
-interests = []
+var interests = []
 
 var music_interests = ["Rap","Music","Song Writing","Musicals","Dance", "Singing","Ballet","Playing Guitar","Playing Piano", "Mixtapes","Turntables"];
 var culture_interests = ["Drawing","Painting","Documentaries","Fan Art" ,"Graffiti","Fashion","Theater","Fine Art", "Literature","Books", "Movie Making"];

@@ -1174,3 +1174,136 @@ when you filter, it grabs all check boxes (How does it know what "all" means?). 
 ghosts that pass teh filter are passed to generate HTML.
 
 EXCEPT: It would erase classes/aspects that aren't part of the filter, you woldn't be able to add them to the filter. So, classes/aspects keys needs to be hardcoded.
+
+
+
+
+~~~~~~~~~
+
+Okay. I've done a bunch of little shit here and there, but I need to work on AB again.
+
+Feature Goal: MultiSessionSummary lists  out classes and aspects.  Clicking on a check box next to a class or aspect filters the session .......
+
+Wait.
+
+Fuck.
+
+No.
+
+That is too specific. Back that truck up.
+
+Feature Goal:  Be able to determine if certain aspects, classes, or classpects are over or under powered. Be better able to balance SBURBSim.
+
+Forseen Problem:  With the corpse party class/aspect update, Clicking on "Heir" and "Mind" gets me all Heir OR Mind players, which is not want I want. But if I make it be
+AND instead of OR, that has additional problems.  For example, clicking on "Mind" and "Time" would get me no players, as it is a logical impossibility.
+
+Before I can move forward on the AB ugprade, I should fix this problem in the corspe party and let it be the basis for the other mode.
+
+So.
+
+Sequence of events:
+
+Click on "Heir".  All "Heir" ghost stats shown.
+
+Click on "Mage".  All "Heir" OR "Mage" ghost stats shown.
+
+Click on "Time".  All Heir AND Time or Mage AND Time ghost stats are shown.
+
+Click on "Space".  All Heir of Time OR Space AND Mage of Time OR Space stats are shown.
+
+
+That reveals a path forwards. It's two levels.   Within just class or just aspect, it's OR but when both it's AND.
+
+ Don't panic about how lost you are. Find a way to move forwrds and do it. So. What does the code look like right now?
+
+ if($("#"+ghost.class_name).is(":checked") || $("#"+ghost.aspect).is(":checked")){
+   filteredGhosts.push(ghost)
+ }
+
+
+ Okay. That makes sense, it's an "OR" just like I thought.
+
+
+ So. that sequence of events was complicated. What would it look like to get to level 3?
+
+ Well....first of all, I am only checking if the ghosts class_name or aspect is checked. I'm not looking at other classes/aspects.
+
+ So, my "sequence of events" is user facing, not code facing. Redo sequence from the code's perspective.
+
+ Sequence of Events:
+
+ looping through array, I find "Heir of Time."
+
+ Is heir clicked?  Yes. Is Time clicked? Yes.
+
+ Fuck. If I restrict myself to ONLY checking boxes for one ghost at a time, I dont' know that there's an AND.
+
+ Think.
+
+ Okay, open things up a bit.
+
+ I'm pretty sure jQuery can give me an ARRAY of selected. Let's pretend I get that.
+
+
+2 classes selected.
+2 aspects selected.
+
+for each ghost:
+  check if ghost class is ANY selected class.
+  if so, check if ghost class is ANY selected aspect.
+
+  isnt that...the same code, tho.
+
+ok. new approach.  check ab.
+
+220 ghosts.
+Click "Heir", get 16.
+Click "Time", get 56.
+
+Want ghosts to be equal to or LESS than 16. Want ONLY heirs of time. Not ALL heirs and ALL time.
+
+
+
+
+If NO aspect is selected....then only class.
+if NO class is selected, then only aspect.
+If both, AND?
+
+
+
+2 classes selected.
+0 aspects selected.
+
+for each ghost:
+  ghost.class.isSelected?
+
+2 classes selected
+1 aspect selected
+
+for each ghost:
+    ghost.class.isSelected? AND ghost.aspect.isSelected?
+
+
+I think...that might be it. I need to know how many of a set of classes or aspects is selected (0 or more than 0).
+
+so, is the html already set up so jquery can get what i need??? No. find where i set names.
+
+
+if(classFiltered && !aspectFiltered){
+  if($("#"+ghost.class_name).is(":checked")){
+    filteredGhosts.push(ghost)
+  }
+}else if(aspectFiltered && !classFiltered){
+  if($("#"+ghost.aspect).is(":checked")){
+    filteredGhosts.push(ghost)
+  }
+}else if(aspectFiltered && classFiltered){
+  if($("#"+ghost.class_name).is(":checked") && $("#"+ghost.aspect).is(":checked")){
+    filteredGhosts.push(ghost)
+  }
+}else{//nothing filtered.
+  filteredGhosts.push(ghost)
+}
+
+
+okay, now just need to actually set classFiltered and aspectFiltered.

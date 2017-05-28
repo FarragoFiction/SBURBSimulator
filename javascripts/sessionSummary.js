@@ -373,15 +373,28 @@ function MultiSessionSummary(){
 	this.filterCorpseParty = function(that){
 		var filteredGhosts = [];
 		that.checkedCorpseBoxes = []; //reset
-		//??? it doesn't know what this.ghosts is.
-		console.log("this is: " + that);
-		console.log(that);
+		var classFiltered = false;
+		var aspectFiltered = false;
+		//TODO: find way to set the above vars
 		for(var i = 0; i<that.ghosts.length; i++){
 			var ghost = that.ghosts[i];
 			//add self to filtered ghost if my class OR my aspect is checked. How to tell?  .is(":checked")
-			if($("#"+ghost.class_name).is(":checked") || $("#"+ghost.aspect).is(":checked")){
+			if(classFiltered && !aspectFiltered){
+				if($("#"+ghost.class_name).is(":checked")){
+					filteredGhosts.push(ghost)
+				}
+			}else if(aspectFiltered && !classFiltered){
+				if($("#"+ghost.aspect).is(":checked")){
+					filteredGhosts.push(ghost)
+				}
+			}else if(aspectFiltered && classFiltered){
+				if($("#"+ghost.class_name).is(":checked") && $("#"+ghost.aspect).is(":checked")){
+					filteredGhosts.push(ghost)
+				}
+			}else{//nothing filtered.
 				filteredGhosts.push(ghost)
 			}
+
 		}
 
 		var labels = ["Knight","Seer","Bard","Maid","Heir","Rogue","Page","Thief","Sylph","Prince","Witch","Mage","Blood","Mind","Rage","Time","Void","Heart","Breath","Light","Space","Hope","Life","Doom"];
@@ -417,9 +430,17 @@ function MultiSessionSummary(){
 		}
 	}
 
-this.generateHTMLForClassOrAspectPropertyCorpseParty = function(label, value,total){
+this.generateHTMLForClassPropertyCorpseParty = function(label, value,total){
 	//		//<input disabled='true' type='checkbox' name='filter' value='"+propertyName +"' id='" + propertyName + "' onchange='filterSessionSummaries()'>"
-	var input = "<input type='checkbox' name='Corpsefilter' value='"+label +"' id='" + label + "'>"
+	var input = "<input type='checkbox' name='CorpsefilterClass' value='"+label +"' id='" + label + "'>"
+	var html = "<Br>" +input + label + ": " + value + "(" + Math.round( 100* value/total) + "%)"
+	return html;
+
+}
+
+this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
+	//		//<input disabled='true' type='checkbox' name='filter' value='"+propertyName +"' id='" + propertyName + "' onchange='filterSessionSummaries()'>"
+	var input = "<input type='checkbox' name='CorpsefilterAspect' value='"+label +"' id='" + label + "'>"
 	var html = "<Br>" +input + label + ": " + value + "(" + Math.round( 100* value/total) + "%)"
 	return html;
 
@@ -469,11 +490,11 @@ this.generateHTMLForClassOrAspectPropertyCorpseParty = function(label, value,tot
 		}
 
 		for(var corpseType in corpsePartyClasses){
-			html += this.generateHTMLForClassOrAspectPropertyCorpseParty(corpseType, corpsePartyClasses[corpseType], filteredGhosts.length);
+			html += this.generateHTMLForClassPropertyCorpseParty(corpseType, corpsePartyClasses[corpseType], filteredGhosts.length);
 		}
 
 		for(var corpseType in corpsePartyAspects){
-			html += this.generateHTMLForClassOrAspectPropertyCorpseParty(corpseType, corpsePartyAspects[corpseType], filteredGhosts.length);
+			html += this.generateHTMLForAspectPropertyCorpseParty(corpseType, corpsePartyAspects[corpseType], filteredGhosts.length);
 		}
 
 		for(var corpseType in corpseParty){
@@ -518,7 +539,7 @@ this.generateHTMLForClassOrAspectPropertyCorpseParty = function(label, value,tot
 		if(propertyName == "totalLivingPlayers" || propertyName == "survivalRate" || propertyName == "ghosts" || propertyName == "generateCorpsePartyHTML" || propertyName == "generateHTML") return true;
 		if(propertyName == "generateCorpsePartyInnerHTML"  || propertyName == "isRomanceProperty" || propertyName == "isDramaticProperty" || propertyName == "isEndingProperty" || propertyName == "isAverageProperty" || propertyName == "isPropertyToIgnore") return true;
 		if(propertyName == "wireUpCorpsePartyCheckBoxes"  || propertyName == "isFilterableProperty" || propertyName == "generateClassFilterHTML" || propertyName == "generateAspectFilterHTML" || propertyName == "generateHTMLForProperty" || propertyName == "generateRomanceHTML") return true;
-		if(propertyName == "filterCorpseParty" || propertyName == "generateHTMLForClassOrAspectPropertyCorpseParty" || propertyName == "generateDramaHTML" || propertyName == "generateMiscHTML" || propertyName == "generateAverageHTML" || propertyName == "generateHTMLOld" || propertyName == "generateEndingHTML") return true;
+		if(propertyName == "filterCorpseParty" || propertyName == "generateHTMLForClassPropertyCorpseParty"|| propertyName == "generateHTMLForAspectPropertyCorpseParty" || propertyName == "generateDramaHTML" || propertyName == "generateMiscHTML" || propertyName == "generateAverageHTML" || propertyName == "generateHTMLOld" || propertyName == "generateEndingHTML") return true;
 
 		return false;
 	}
