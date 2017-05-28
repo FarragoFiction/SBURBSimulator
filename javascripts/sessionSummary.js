@@ -666,15 +666,15 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 		html += "</div><br>"
 		html += this.generateRomanceHTML(romanceProperties);
 		html += this.generateDramaHTML(dramaProperties);
-		html += this.generateEndingHTML(endingProperties);
-		html += this.generateAverageHTML(averageProperties);
 		html += this.generateMiscHTML(miscProperties);
-
+		html += this.generateEndingHTML(endingProperties);
+		html += this.generateClassFilterHTML();
+		html += this.generateAspectFilterHTML();
+		html += this.generateAverageHTML(averageProperties);
 		html += this.generateCorpsePartyHTML(this.ghosts);
 		//MSS and SS will need list of classes and aspects. just strings. nothing beefier.
 		//these will have to be filtered in a special way. just render and display stats for now, though. no filtering.
-		html += this.generateClassFilterHTML();
-		html += this.generateAspectFilterHTML();
+
 		html += "</div><Br>"
 		return html;
 
@@ -756,7 +756,7 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 
 
 	this.generateEndingHTML = function(properties){
-		var html = "<div class = 'bottomAligned multiSessionSummary'>Ending: <button onclick='toggleEnding()'>Toggle View </button>";
+		var html = "<div class = 'topligned multiSessionSummary'>Ending: <button onclick='toggleEnding()'>Toggle View </button>";
 		html += "<div id = 'multiSessionSummaryEnding' >"
 		for(var i = 0; i<properties.length; i++){
 			var propertyName = properties[i];
@@ -768,7 +768,7 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 
 
 	this.generateMiscHTML = function(properties){
-		var html = "<div class = 'topAligned multiSessionSummary' >Misc <button onclick='toggleMisc()'>Toggle View </button>";
+		var html = "<div class = 'bottomAligned multiSessionSummary' >Misc <button onclick='toggleMisc()'>Toggle View </button>";
 		html += "<div id = 'multiSessionSummaryMisc' >"
 		for(var i = 0; i<properties.length; i++){
 			var propertyName = properties[i];
