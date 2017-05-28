@@ -1529,3 +1529,22 @@ Which would mean, what, less than an hour of extra work 'cause of  my mistake. t
 
 Man, I REALLY have leveled up at coding btw. Like. My old shit is monolithic functions that are hard as FUCK to modify and read, but I've leaned towards
 little single purpose functions that turn out to be WAY easier to mod. SBURBSim is the gift that keeps on giving.
+
+;alskdfj
+
+Oh. My. Fucking. God.
+
+How is this STILL Happening??? AB is STILL giving me knights OR Blood players when I ask for Knights of Blood.
+
+Is it the algorithm?  Fuck.  Yes. I am doing:
+
+else if(aspects.length > 0 && classes.length >0){
+  console.log("returning and")
+  return this.matchesClass(classes) && this.matchesAspect(aspects);
+}
+
+which still treats them as separate.
+
+That's an easy fix though, and the code being so modular makes it obvious to see that.  pastJR from a few hours ago is WAY better at pastJR from a few months ago.
+It took me, like two days to work though pastJR of a few months ago code, and only a few hours to do pastJR from a few hours ago. Although, yes, obstensibly
+I should have clearer memories of the more recent code, but this is clearly not the case. This shit is a safari of discovery.

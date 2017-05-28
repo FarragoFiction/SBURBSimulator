@@ -81,7 +81,7 @@ function SessionSummary(){
 			for(var i = 0; i<classes.length; i++){
 				var class_name = classes[i];
 				for(var j = 0; j<this.miniPlayers.length; j++){
-					var miniPlayer = miniPlayers[j];
+					var miniPlayer = this.miniPlayers[j];
 					if(miniPlayer.class_name == class_name) return true;
 				}
 			}
@@ -93,9 +93,28 @@ function SessionSummary(){
 		for(var i = 0; i<aspects.length; i++){
 			var aspect = aspects[i];
 			for(var j = 0; j<this.miniPlayers.length; j++){
-				var miniPlayer = miniPlayers[j];
+				var miniPlayer = this.miniPlayers[j];
 				if(miniPlayer.aspect == aspect) return true;
 			}
+		}
+		return false;
+	}
+
+	//needs to match both of any.
+	this.miniPlayerMatchesAnyClasspect = function(miniPlayer, classes, aspects){
+		for(var i = 0; i<classes.length; i++){
+			var class_name = classes[i];
+			for(var j = 0; j<aspects.length; j++){
+				var aspect = aspects[i];
+				if(miniPlayer.class_name == class_name && miniPlayer.aspect == aspect) return true;
+			}
+		}
+		return false;
+	}
+
+	this.matchesBothClassAndAspect = function(classes, aspects){
+		for(var j = 0; j<this.miniPlayers.length; j++){
+			if(this.miniPlayerMatchesAnyClasspect(this.miniPlayers[j])) return true;
 		}
 		return false;
 	}
@@ -108,7 +127,7 @@ function SessionSummary(){
 			return this.matchesClass(classes);
 		}else if(aspects.length > 0 && classes.length >0){
 			console.log("returning and")
-			return this.matchesClass(classes) && this.matchesAspect(aspects);
+			return this.matchesBothClassAndAspect(classes, aspects);
 		}else{
 			return true; //no filters, all are accepted.
 		}
