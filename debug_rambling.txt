@@ -1461,3 +1461,41 @@ So. Despite there being only 63 session, I think there is 68 sessions with time 
 What the fuck.
 
 ....oh. it's combo sessions. well. shit. that's not a bug, then.
+
+
+Fuck.
+
+Shit.
+
+FUCKING HELL.
+
+Okay.
+
+Don't panic.
+
+But it turns out you designed everything terribly because you suck.
+
+You suck so much.
+
+Fuck.
+
+Define the problem.
+
+Despite my best efforts, clicking "Bard" and "Time" does NOT show only those sessions that contain a Bard of Time.
+
+This appears to be because SessionSummaries keep track of class and aspect separately, in hashes.
+
+So,  a Session with a Rogue of Time and a Bard of Light look the same as a session with a Rogue of Light and a Bard of time.
+
+Just because I am displaying the classes/aspects separately doesn't mean that the data needs to be kept that way.
+
+Fuck. Just look at the corpse party, that was using actual ghosts rather than disembodied ghost stats.
+
+
+Okay. Time for a break.
+
+When you come back, expect to:
+
+* Refactor session summaries to store mini player objects {class: "Heir", aspect: "Time"}, not {"Heir": 0}.
+* Refactor MSS to take this into account.  MSS should still have classes and aspects divoruced.
+* Refactor SS matchesClaspect to take this into account. 
