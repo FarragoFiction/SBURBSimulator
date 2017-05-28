@@ -652,10 +652,11 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 		var html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryClasses'>Classes:";
 		console.log(this.classes)
 		for(var propertyName in this.classes) {
-			var input = "<input type='checkbox' name='filterAspect' value='"+propertyName +"' id='" + label + "'>";
-			html += "<Br>" +input + propertyName + ": " + this.aspects[propertyName] + "(" + Math.round( 100* this.aspects[propertyName]/this.total) + "%)";
+			var input = "<input type='checkbox' name='filterClass' value='"+propertyName +"' id='" + propertyName + "'>";
+			html += "<Br>" +input + propertyName + ": " + this.classes[propertyName] + "(" + Math.round( 100* this.classes[propertyName]/this.total) + "%)";
 		}
 		console.log("todo, wire up check boxes from method called in rare_session_finder")
+		html += "</div>"
 		return html;
 	}
 
@@ -664,9 +665,10 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 
 		var html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryAspects'>Aspects:";
 		for(var propertyName in this.aspects) {
-			var input = "<input type='checkbox' name='filterAspect' value='"+propertyName +"' id='" + label + "'>"
+			var input = "<input type='checkbox' name='filterAspect' value='"+propertyName +"' id='" + propertyName + "'>"
 			html += "<Br>" +input + propertyName + ": " + this.aspects[propertyName] + "(" + Math.round( 100* this.aspects[propertyName]/this.total) + "%)"
 		}
+		html += "</div>"
 		return html;
 	}
 
