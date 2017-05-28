@@ -1423,11 +1423,11 @@ Remember, same alg as corpseParty in that it's one, or the other or BOTH.
 
 	this.matchesClasspect = function(classes, aspects){
 		if(aspects.length > 0 && classes.length == 0){
-        /???
+        //???
 		}else if(classes.length > 0 && aspects.length == 0){
-      /???
+      //???
 		}else if(aspects.length > 0 && clases.length >0){
-      /???
+      //???
 		}else{
 			return true; //no filters, all are accepted.
 		}
@@ -1498,4 +1498,11 @@ When you come back, expect to:
 
 * Refactor session summaries to store mini player objects {class: "Heir", aspect: "Time"}, not {"Heir": 0}.
 * Refactor MSS to take this into account.  MSS should still have classes and aspects divoruced.
-* Refactor SS matchesClaspect to take this into account. 
+* Refactor SS matchesClaspect to take this into account.
+
+
+Break obtained.
+
+pffft....okay. One thing at a time.
+
+Store mini player objects, NOT a count of "number of heirs in a session" (which was that source of 120% time player bs earlier, anyways)
