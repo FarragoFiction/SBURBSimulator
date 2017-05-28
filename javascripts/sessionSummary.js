@@ -113,6 +113,7 @@ function SessionSummary(){
 		}else if(classes.length > 0 && aspects.length == 0){
 			return this.matchesClass(classes);
 		}else if(aspects.length > 0 && classes.length >0){
+			console.log("returning and")
 			return this.matchesClass(classes) && this.matchesAspect(aspects);
 		}else{
 			return true; //no filters, all are accepted.
@@ -687,7 +688,6 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 			var input = "<input type='checkbox' name='filterClass' value='"+propertyName +"' id='class" + propertyName  + "' onchange='filterSessionSummaries()'>"
 			html += "<Br>" +input + propertyName + ": " + this.classes[propertyName] + "(" + Math.round( 100* this.classes[propertyName]/this.total) + "%)";
 		}
-		console.log("todo, wire up check boxes from method called in rare_session_finder")
 		html += "</div>"
 		return html;
 	}
@@ -697,7 +697,6 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 		for(var propertyName in this.aspects) {
 			var input = "<input type='checkbox' name='filterAspect' value='"+propertyName +"' id='aspect" + propertyName +  "' onchange='filterSessionSummaries()'>"
 			html += "<Br>" +input + propertyName + ": " + this.aspects[propertyName] + "(" + Math.round( 100* this.aspects[propertyName]/this.total) + "%)"
-			if(this.aspects[propertyName] > this.total) console.log("Total is: " + this.total + "and " + propertyName + " is "  + this.aspects[propertyName]);
 		}
 		html += "</div>"
 		return html;
