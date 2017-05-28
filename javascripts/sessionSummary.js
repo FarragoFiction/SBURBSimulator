@@ -657,7 +657,7 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 
 		maybe it shouldn't be a separate method from the other way to filter.
 
-		want to be able to do things like see all sessions with a Knight of Time and Free Will Events 
+		want to be able to do things like see all sessions with a Knight of Time and Free Will Events
 		*/
 	}
 
@@ -666,7 +666,6 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 		//i know what the labels are, they are just the classes and aspects.
 		var that = this;
 		for(var propertyName in this.classes){
-			var l = labels[i];
 			$("#class"+propertyName).change(function(){
 				that.filterClaspects(that);
 			});
@@ -681,7 +680,6 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 			//i know what the labels are, they are just the classes and aspects.
 			var that = this;
 			for(var propertyName in this.aspects){
-				var l = labels[i];
 				$("#aspect"+propertyName).change(function(){
 					that.filterClaspects(that);
 				});
