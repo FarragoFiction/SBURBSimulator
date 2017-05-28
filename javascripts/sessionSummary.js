@@ -67,7 +67,29 @@ function SessionSummary(){
 	this.averageTriggerLevel = null;
 	this.sizeOfAfterLife = null;
 	this.ghosts = null;
+	this.classes = {} //fill in hash programatically. only used for MSS.
+	this.aspects = {}
 
+	this.setClasses = function(players){
+		var labels = ["Knight","Seer","Bard","Maid","Heir","Rogue","Page","Thief","Sylph","Prince","Witch","Mage"];
+		for(var i = 0; i<labels.length; i++){
+				this.classes[labels[i]] = 0;
+		}
+		for(var i = 0; i<players.length; i++){
+			this.classes[players[i].class_name] ++;
+		}
+
+	}
+
+	this.setAspects = function(players){
+		var labels = ["Blood","Mind","Rage","Time","Void","Heart","Breath","Light","Space","Hope","Life","Doom"];
+		for(var i = 0; i<label.length; i++){
+				this.aspects[labels[i]] = 0;
+		}
+		for(var i = 0; i<players.length; i++){
+			this.aspects[players[i].aspect] ++;
+		}
+	}
 	//thanks to bob for helping me puzzle out the logic to make filters AND not OR.
 	//why was that so hard???
 	this.satifies_filter_array = function(filter_array){
@@ -179,7 +201,7 @@ function SessionSummary(){
 
 						html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "&"+params+"'>" +this.session_id + scratch +  "</a>"
 					}
-				}else if(propertyName == "scratched" || propertyName == "ghosts" || propertyName == "satifies_filter_array" || propertyName == "frogStatus" || propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo" || propertyName == "parentSession"  ){
+				}else if(propertyName == "classes" || propertyName == "aspects"  || propertyName == "setAspects" || propertyName == "setClasses" || propertyName == "scratched" || propertyName == "ghosts" || propertyName == "satifies_filter_array" || propertyName == "frogStatus" || propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo" || propertyName == "parentSession"  ){
 					//do nothing. properties used elsewhere.
 				}else if(propertyName != "generateHTML" && propertyName != "getSessionSummaryJunior"){
 					html += "<Br><b>" + propertyName + "</b>: " + this[propertyName] ;
@@ -600,12 +622,13 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 
 	this.generateClassFilterHTML = function(){
 		var html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryClasses'>Classes:";
-		html += "COMING SOON</div>"
 		return html;
 	}
 
 	this.generateAspectFilterHTML = function(){
 		console.log("TODO: display aspects for MSS. Then allow filtering by them. (Somehow)")
+
+
 		var html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryAspects'>Aspects:";
 		html += "COMING SOON</div>"
 		return html;
