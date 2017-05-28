@@ -102,13 +102,8 @@ function SessionSummary(){
 
 	//needs to match both of any.
 	this.miniPlayerMatchesAnyClasspect = function(miniPlayer, classes, aspects){
-		for(var i = 0; i<classes.length; i++){
-			var class_name = classes[i];
-			for(var j = 0; j<aspects.length; j++){
-				var aspect = aspects[i];
-				if(miniPlayer.class_name == class_name && miniPlayer.aspect == aspect) return true;
-			}
-		}
+		//is my class in the class array AND my aspect in the aspect array.
+		if(classes.indexOf(miniPlayer.class_name) != -1 && aspects.indexOf(miniPlayer.aspect) != -1) return true;
 		return false;
 	}
 
@@ -245,7 +240,7 @@ function SessionSummary(){
 
 						html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "&"+params+"'>" +this.session_id + scratch +  "</a>"
 					}
-				}else if(propertyName == "miniPlayers" || propertyName == "setMiniPlayers" || propertyName == "scratched" || propertyName == "ghosts" || propertyName == "satifies_filter_array" || propertyName == "frogStatus" || propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo" || propertyName == "parentSession"  ){
+				}else if(propertyName == "matchesClass" || propertyName == "matchesAspect" || propertyName == "miniPlayerMatchesAnyClasspect" || propertyName == "matchesBothClassAndAspect" || propertyName == "matchesClasspect" ||propertyName == "matchesClass" || propertyName == "miniPlayers" || propertyName == "setMiniPlayers" || propertyName == "scratched" || propertyName == "ghosts" || propertyName == "satifies_filter_array" || propertyName == "frogStatus" || propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo" || propertyName == "parentSession"  ){
 					//do nothing. properties used elsewhere.
 				}else if(propertyName != "generateHTML" && propertyName != "getSessionSummaryJunior"){
 					html += "<Br><b>" + propertyName + "</b>: " + this[propertyName] ;

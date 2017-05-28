@@ -1576,3 +1576,59 @@ Well, theoretically I didn't look too hard at the corpse party classpect algorit
 Before I spend time reviewing it, confirm corpse party works how I think.
 
 "Heir,Maid", "Blood" should be bigger than EITHER "Heir", "Blood" or "Maid", "Blood"
+
+Confirmed that corpse party does what I think it should.
+
+Man, I really hope other people's instincts match mine. It would suck to do all this work and other people are all "it doesn't do what i think it should"
+
+Okay.
+
+Review CorpseParty algorithm while trying to acount for the fact that it's acting on a MSS.
+
+
+In words: what is going on. don't panic that it initially looks like what you are already doing:
+
+have a bool for filtering by any classes.
+have a bool for filtering by any aspects.
+
+Loop on all ghosts.
+if filtering by only classes, check to see if the checkbox corresponding to the ghosts's class is checked.
+if filtering by only aspects, check to see if the checkbox coresponding to the ghosts' aspect is checked.
+if filtering by both class and aspect, check to see if checkbox corresponding to BOTH class AND aspect of ghost is checked.
+
+
+So. Right away I see that my current code can be improved. rather than looping on classes/aspects, can only loop on ghost and check for
+existance of class/aspect in array. way more efficient, probably.
+
+But...does it change the algorithm? Think.
+
+Heir of Blood: classes = [Maid, Heir], aspects = "Blood"
+
+CorpseParty algorithm says:
+
+is "Heir" in class array && is "Blood" in aspect array.  YES.
+
+Current Regular Claspect algorithm says:
+is "Heir of Blood" Maid and Blood? NO.
+is "Heir of Blood" Heir and Blood? YES.
+
+should....be same thing.
+
+Think.  But don't think too long, other way is improvement anyways and if it is somehow "right', then bonus. Can implement the code without knowing how the two are different.
+
+God damn it.
+
+fucking typos.
+
+inner loop was getting aspects[i], not aspects[j].  So, what it was REALLY doing was:
+
+is "Heir of Blood" Maid and Blood? NO.
+Is "Heir of Blood" Maid and ...oh, I don't have a second aspect. Done.
+
+fucking hell.
+
+Okay. well. confirm this hypothesis. If it's really the problem, then no reason to refactor code to be slightly more efficient. probably. though bug wouldn't be here if i were smart.
+fuck it, no, refactor. futureJR will thank you.
+
+There, way better. single line instead of confusing nested for loop.
+if(classes.indexOf(miniPlayer.class_name) != -1 && aspects.indexOf(miniPlayer.aspect) != -1) return true;
