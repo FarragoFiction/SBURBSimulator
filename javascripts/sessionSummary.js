@@ -590,6 +590,8 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 		if(propertyName == "wireUpCorpsePartyCheckBoxes"  || propertyName == "isFilterableProperty" || propertyName == "generateClassFilterHTML" || propertyName == "generateAspectFilterHTML" || propertyName == "generateHTMLForProperty" || propertyName == "generateRomanceHTML") return true;
 		if(propertyName == "filterCorpseParty" || propertyName == "generateHTMLForClassPropertyCorpseParty"|| propertyName == "generateHTMLForAspectPropertyCorpseParty" || propertyName == "generateDramaHTML" || propertyName == "generateMiscHTML" || propertyName == "generateAverageHTML" || propertyName == "generateHTMLOld" || propertyName == "generateEndingHTML") return true;
 		if(propertyName == "setAspects" || propertyName == "setClasses" || propertyName == "integrateAspects" || propertyName == "integrateClasses" || propertyName == "classes" || propertyName == "aspects") return true;
+		if(propertyName == "wireUpClassCheckBoxes" || propertyName == "wireUpAspectCheckBoxes" || propertyName == "filterClaspects") return true;
+
 
 		return false;
 	}
@@ -648,10 +650,53 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 
 	}
 
+	this.filterClaspects = function(){
+		alert("TODO")
+		/*
+		problem: unlike corpse party, this should ALSO work with other filters.
+
+		maybe it shouldn't be a separate method from the other way to filter.
+
+		want to be able to do things like see all sessions with a Knight of Time and Free Will Events 
+		*/
+	}
+
+
+	this.wireUpClassCheckBoxes = function(){
+		//i know what the labels are, they are just the classes and aspects.
+		var that = this;
+		for(var propertyName in this.classes){
+			var l = labels[i];
+			$("#class"+propertyName).change(function(){
+				that.filterClaspects(that);
+			});
+		}
+		/*for(var i = 0; i<this.checkedCorpseBoxes.length; i++){
+			var l = this.checkedCorpseBoxes[i];
+			$("#"+l).prop("checked", "true")
+		}*/
+	}
+
+		this.wireUpAspectCheckBoxes = function(){
+			//i know what the labels are, they are just the classes and aspects.
+			var that = this;
+			for(var propertyName in this.aspects){
+				var l = labels[i];
+				$("#aspect"+propertyName).change(function(){
+					that.filterClaspects(that);
+				});
+			}
+
+		/*for(var i = 0; i<this.checkedCorpseBoxes.length; i++){
+			var l = this.checkedCorpseBoxes[i];
+			$("#"+l).prop("checked", "true")
+		}*/
+	}
+
 	this.generateClassFilterHTML = function(){
 		var html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryClasses'>Classes:";
 		for(var propertyName in this.classes) {
-			var input = "<input type='checkbox' name='filterClass' value='"+propertyName +"' id='" + propertyName + "'>";
+			var input = "<input type='checkbox' name='filterClass' value='"+propertyName +"' id='class" + propertyName + "'>";
 			html += "<Br>" +input + propertyName + ": " + this.classes[propertyName] + "(" + Math.round( 100* this.classes[propertyName]/this.total) + "%)";
 		}
 		console.log("todo, wire up check boxes from method called in rare_session_finder")
@@ -660,11 +705,9 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 	}
 
 	this.generateAspectFilterHTML = function(){
-		console.log(this.aspects)
-
 		var html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryAspects'>Aspects:";
 		for(var propertyName in this.aspects) {
-			var input = "<input type='checkbox' name='filterAspect' value='"+propertyName +"' id='" + propertyName + "'>"
+			var input = "<input type='checkbox' name='filterAspect' value='"+propertyName +"' id='aspect" + propertyName + "'>"
 			html += "<Br>" +input + propertyName + ": " + this.aspects[propertyName] + "(" + Math.round( 100* this.aspects[propertyName]/this.total) + "%)"
 		}
 		html += "</div>"
