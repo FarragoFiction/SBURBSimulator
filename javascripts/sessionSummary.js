@@ -373,8 +373,8 @@ function MultiSessionSummary(){
 	this.filterCorpseParty = function(that){
 		var filteredGhosts = [];
 		that.checkedCorpseBoxes = []; //reset
-		var classFiltered = false;
-		var aspectFiltered = false;
+		var classFiltered = $("input:checkbox[name=CorpsefilterClass]:checked").length > 0;
+		var aspectFiltered = $("input:checkbox[name=CorpsefilterAspect]:checked").length > 0;
 		//TODO: find way to set the above vars
 		for(var i = 0; i<that.ghosts.length; i++){
 			var ghost = that.ghosts[i];
