@@ -90,14 +90,22 @@ function SessionSummary(){
 		}
 	}
 
+	this.matchesClass = function(classes){
+
+	}
+
+	this.matchesAspect = function(aspects){
+
+	}
+
 	//classes and aspects are arrays of strings.
 	this.matchesClasspect = function(classes, aspects){
 		if(aspects.length > 0 && classes.length == 0){
-
+			return this.matchesAspect(aspects);
 		}else if(classes.length > 0 && aspects.length == 0){
-
+			return this.matchesClass(classes);
 		}else if(aspects.length > 0 && clases.length >0){
-
+			return this.matchesClass(classes) && this.matchesAspect(aspects);
 		}else{
 			return true; //no filters, all are accepted.
 		}
