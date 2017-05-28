@@ -115,21 +115,7 @@ function filterSessionsJunior(){
 	printStatsJunior();
 }
 
-function removeNonMatchingClasspects(tmp){
-
-	var classes = [];
-	var aspects = [];
-
-	$("input[name='filterAspect']:checked").each(function(){
-		aspects.push($(this).val());
-	});
-
-	$("input[name='filterClass']:checked").each(function(){
-		classes.push($(this).val());
-	});
-
-
-
+function removeNonMatchingClasspects(tmp, classes, aspects){
 	var toRemove = [];
 	for(var i = 0; i<tmp.length; i++){
 		var ss = tmp[i];
@@ -163,13 +149,25 @@ function filterSessionSummaries(){
 				tmp.push(ss);
 			}
 	}
-	tmp = removeNonMatchingClasspects(tmp);
+
+	var classes = [];
+	var aspects = [];
+
+	$("input[name='filterAspect']:checked").each(function(){
+		aspects.push($(this).val());
+	});
+
+	$("input[name='filterClass']:checked").each(function(){
+		classes.push($(this).val());
+	});
+
+	tmp = removeNonMatchingClasspects(tmp,classes,aspects);
 
 
 	////console.log(tmp);
 	sessionSummariesDisplayed = tmp;
 	printSummaries();
-	printStats(filters);
+	printStats(filters,classes, aspects);
 }
 //filter is proprety name, some are special, most just pass through
 function filterSessionSummariesBy(filter){
@@ -765,7 +763,7 @@ function printStatsJunior(){
 	});
 }
 
-function printStats(filters){
+function printStats(filters, classes, aspects){
 	var mms = collateMultipleSessionSummaries(sessionSummariesDisplayed);
 	//todo if corpse party mode, display corpse party and replace AB imge with corpse party AB and ABJ.
 	//TODO have different divs of types of stats, most defaulted to hidden, with checkbox toggles for what you want to see.
@@ -790,11 +788,31 @@ function printStats(filters){
 	if(displayCorpse)$('#multiSessionSummaryCorpseParty').show()  //memory. don't always turn off when making new ones.
 	if(!displayCorpse)$('#multiSessionSummaryCorpseParty').hide()
 
-	//TODO also do class/aspect filters here. somehow.
 	if(filters){
 		$("input[name='filter']").each(function(){
 			$(this).prop('disabled', false);
 			if(filters.indexOf($(this).val()) != -1){
+				$(this).prop('checked',true);
+			}else{
+				$(this).prop('checked',false);
+			}
+		});
+
+	}
+
+	if(classes && aspects){
+		$("input[name='filterClass']").each(function(){
+			$(this).prop('disabled', false);
+			if(classes.indexOf($(this).val()) != -1){
+				$(this).prop('checked',true);
+			}else{
+				$(this).prop('checked',false);
+			}
+		});
+
+		$("input[name='filterAspect']").each(function(){
+			$(this).prop('disabled', false);
+			if(aspects.indexOf($(this).val()) != -1){
 				$(this).prop('checked',true);
 			}else{
 				$(this).prop('checked',false);
