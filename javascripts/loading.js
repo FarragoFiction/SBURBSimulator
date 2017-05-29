@@ -2,7 +2,7 @@ var imagesWaiting = 0;
 var imagesLoaded = 0;
 
 function loadFuckingEverything(skipInit){
-  
+
 	loadAllImages(skipInit);
 }
 
@@ -159,11 +159,16 @@ function loadAllPossiblePlayers(skipInit){
     for(var i = 1; i<=numBodies; i++){
       if(i<10){
         loadImage("Bodies/reg00"+i+".png",skipInit);  //as long as i i do a 'load' again when it's to to start the simulation, can get away with only loading these bodies.
+        loadImage("Bodies/00"+i+".png",skipInit);
+        loadImage("Bodies/dream00"+i+".png",skipInit);
         if(skipInit == "oc"){
           loadImage("Bodies/00"+i+".png",skipInit);
+          loadImage("Bodies/dream00"+i+".png",skipInit);
         }
       }else{
         loadImage("Bodies/reg0"+i+".png",skipInit);  //as long as i i do a 'load' again when it's to to start the simulation, can get away with only loading these bodies.
+        loadImage("Bodies/dream0"+i+".png",skipInit);
+          loadImage("Bodies/0"+i+".png",skipInit); 
         if(skipInit == "oc"){
           loadImage("Bodies/0"+i+".png",skipInit);
         }

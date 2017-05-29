@@ -31,6 +31,42 @@ window.onload = function() {
 	//shareableURL();
 }
 
+function allGods(){
+	alert("all gods (go to heaven)");
+	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+		var player = curSessionGlobalVar.players[i];
+		player.isDreamSelf = false;
+		player.godTier = true;
+	}
+}
+
+function allMortals(){
+	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+		var player = curSessionGlobalVar.players[i];
+		player.isDreamSelf = false;
+		player.godTier = false;
+	}
+}
+
+function allDream(){
+	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+		var player = curSessionGlobalVar.players[i];
+		player.isDreamSelf = true;
+		player.godTier = false;
+	}
+}
+
+function updateRender(){
+
+	var classDropDown = $('[name="renderState"] option:selected')
+	var renderState = classDropDown.val()
+	alert(renderState)
+	if(renderState == "Mortals") allMortals();
+	if(renderState == "Dreams") allDream();
+	if(renderState == "Gods") allGods();
+	charCreatorHelperGlobalVar.drawAllPlayers();
+}
+
 function renderPlayersForEditing(){
 	charCreatorHelperGlobalVar.drawAllPlayers();
 	$("#button").prop('disabled', false)
