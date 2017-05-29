@@ -32,7 +32,7 @@ window.onload = function() {
 }
 
 function allGods(){
-	alert("all gods (go to heaven)");
+	//alert("all gods (go to heaven)");
 	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
 		var player = curSessionGlobalVar.players[i];
 		player.isDreamSelf = false;

@@ -1738,12 +1738,20 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	this.renderSelf = function(){
 		var canvasDiv = document.getElementById(this.spriteCanvasID);
+
+		var ctx = canvasDiv.getContext("2d");
+		this.clearSelf();
 		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
 
 		drawSpriteFromScratch(pSpriteBuffer, this);
-		var ctx = canvasDiv.getContext("2d");
-		ctx.clearRect(0, 0, canvasDiv.width, canvasDiv.height)
 		copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0)
+	}
+
+	this.clearSelf = function(){
+		var canvasDiv = document.getElementById(this.spriteCanvasID);
+		var ctx = canvasDiv.getContext("2d");
+		console.log("clearing: witdh: " + canvasDiv.width + " and height: " + canvasDiv.height)
+		ctx.clearRect(0, 0, canvasDiv.width, canvasDiv.height)
 	}
 
 	this.initializeMobility = function(){
