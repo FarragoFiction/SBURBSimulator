@@ -1750,7 +1750,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.clearSelf = function(){
 		var canvasDiv = document.getElementById(this.spriteCanvasID);
 		var ctx = canvasDiv.getContext("2d");
-		console.log("clearing: witdh: " + canvasDiv.width + " and height: " + canvasDiv.height)
 		ctx.clearRect(0, 0, canvasDiv.width, canvasDiv.height)
 	}
 
