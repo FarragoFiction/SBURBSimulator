@@ -1706,6 +1706,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			this.decideHemoCaste();
 			this.decideLusus();
 			this.object_to_prototype = this.lusus;
+		}else{
+			this.hairColor = getRandomElementFromArray(human_hair_colors);
 		}
 	}
 

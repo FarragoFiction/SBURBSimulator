@@ -177,7 +177,7 @@ function Quirk(){
     }
 
     this.makeTrollQuirk = function(player){
-      console.log("generting troll quirk with favorite number: " + this.favoriteNumber)
+      //console.log("generting troll quirk with favorite number: " + this.favoriteNumber)
       this.capitalization = getRandomInt(0,5);
       this.punctuation = getRandomInt(0,5);
       this.lettersToReplace = [];
