@@ -1935,6 +1935,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.bloodColor = replayPlayer.bloodColor;
 		this.leftHorn = replayPlayer.leftHorn;
 		this.rightHorn = replayPlayer.rightHorn;
+		this.quirk.favoriteNumber = replayPlayer.favoriteNumber;
 	}
 
 

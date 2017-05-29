@@ -158,7 +158,7 @@ function CharacterCreatorHelper(players){
 	this.drawOneFavoriteNumberDropDown = function(player){
 		var html = "<select id = 'favoriteNumberID" + player.chatHandle + "' name='favoriteNumber" +player.chatHandle +"'>";
 		for(var i = 0; i<= 12; i++){
-			if(player.hair == i){
+			if(player.quirk.favoriteNumber == i){
 				html += '<option  selected = "selected" value="' + i +'">' + i+'</option>'
 			}else{
 				html += '<option value="' + i +'">' + i+'</option>'

@@ -72,7 +72,7 @@ By the way, I'd add more bullshit activity, like "does random bullshit sidequest
 	this.getBullshitQuest = function(){
 		//if i stored this in random tables like my old stuff (this is may 2017, btw), then i couldn't avoid repeats as easily as i am here.
 		//remember kids: design and architecture really do fucking matter.
-			var possibilities = ["getting coy hints about The Ultimate Riddle","killing underlings","delving into dungeons", "exploring ruins", "solving puzzles", "playing minigames", "learning about the lore"];
+			var possibilities = ["learning the true meaning of " + this.player.land1,"learning the true meaning of " + this.player.land2, "getting coy hints about The Ultimate Riddle","killing underlings","delving into dungeons", "exploring ruins", "solving puzzles", "playing minigames", "learning about the lore"];
 			var thing1 = getRandomElementFromArray(possibilities)
 			possibilities.removeFromArray(thing1);
 			var thing2 = getRandomElementFromArray(possibilities);
