@@ -2038,7 +2038,14 @@ function initializePlayers(players,session){
 		if(players[i].land){ //don't reinit aliens, their stats stay how they were cloned.
 			players[i].initialize();
 			players[i].guardian.initialize();
-			if(replayPlayers[i]) players[i].quirk.favoriteNumber = replayPlayers[i].quirk.favoriteNumber //has to be after initialization
+			if(replayPlayers[i]){
+				players[i].quirk.favoriteNumber = parseInt(replayPlayers[i].quirk.favoriteNumber) //has to be after initialization
+				if(players[i].isTroll){
+					players[i].quirk = randomTrollSim(this) //redo quirk
+				}else{
+					players[i].quirk = randomHumanSim(this);
+				}
+			}
 		}
 	}
 

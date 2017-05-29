@@ -27,7 +27,7 @@ function Quirk(){
         ret = this.handleSuffix(ret);
         return ret;
     }
-    
+
     this.toJSON = function(){
         return {favoriteNumber: this.favoriteNumber}
     }
@@ -174,6 +174,14 @@ function Quirk(){
             ret = multiplyCharacter(ret,"?", this.favoriteNumber);
         }
         return ret;
+    }
+
+    this.makeTrollQuirk = function(){
+
+    }
+
+    this.makeHumanQuirk = function(){
+      
     }
 
 
@@ -347,6 +355,7 @@ function addNumberQuirk(ret){
 //since I'm not gonna list 'em out, have more quirks, and make sure you have certain CATEGORIES of quirk.
 function randomTrollSim(player){
     var ret = new Quirk();
+    console.log("generting troll quirk with favorite number: " + ret.favoriteNumber)
     ret.capitalization = getRandomInt(0,5);
     ret.punctuation = getRandomInt(0,5);
     if(ret.capitalization == 2 && Math.seededRandom() >.2){ //seriously, less all caps.
