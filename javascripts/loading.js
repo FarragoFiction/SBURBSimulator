@@ -168,7 +168,7 @@ function loadAllPossiblePlayers(skipInit){
       }else{
         loadImage("Bodies/reg0"+i+".png",skipInit);  //as long as i i do a 'load' again when it's to to start the simulation, can get away with only loading these bodies.
         loadImage("Bodies/dream0"+i+".png",skipInit);
-          loadImage("Bodies/0"+i+".png",skipInit); 
+          loadImage("Bodies/0"+i+".png",skipInit);
         if(skipInit == "oc"){
           loadImage("Bodies/0"+i+".png",skipInit);
         }
@@ -180,7 +180,6 @@ function loadAllPossiblePlayers(skipInit){
         loadImage("Hair/hair"+i+".png",skipInit);
     }
 
-    if(skipInit == "oc"){
 
       for(var i = 0; i<13; i++){
         loadImage("Wings/wing"+i+".png",skipInit);
@@ -199,7 +198,7 @@ function loadAllPossiblePlayers(skipInit){
       loadImage("Life.png",skipInit);
       loadImage("Doom.png",skipInit);
 
-    }
+    
 
 
 	loadImage("Hair/hair_back1025.png",skipInit);

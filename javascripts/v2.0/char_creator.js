@@ -60,7 +60,6 @@ function updateRender(){
 
 	var classDropDown = $('[name="renderState"] option:selected')
 	var renderState = classDropDown.val()
-	alert(renderState)
 	if(renderState == "Mortals") allMortals();
 	if(renderState == "Dreams") allDream();
 	if(renderState == "Gods") allGods();
@@ -72,6 +71,7 @@ function updateRender(){
 
 function renderPlayersForEditing(){
 	charCreatorHelperGlobalVar.drawAllPlayers();
+	updateRender();
 	$("#button").prop('disabled', false)
 }
 
