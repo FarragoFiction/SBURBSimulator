@@ -420,5 +420,7 @@ function generateURLParamsForPlayers(players){
  function objToPlayer(obj){
 	 var ret = new Player();
 	 for (var prop in obj) ret[prop] = obj[prop];
+	 ret.quirk = new Quirk();
+	 ret.quirk.favoriteNumber = obj.quirk.favoriteNumber;
 	 return ret;
  }
