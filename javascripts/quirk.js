@@ -449,7 +449,7 @@ function randomTrollQuirk(player){
         }
     }
 
-    ret =addNumberQuirk(ret);
+    ret.addNumberQuirk();
     var roomLeft = getRandomInt(0,6) - ret.lettersToReplace.length;
     if(roomLeft < 0) roomLeft = 0;
     for(var i = 0; i< roomLeft; i++){

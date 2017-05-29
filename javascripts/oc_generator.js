@@ -1,3 +1,4 @@
+var session = new Session();
 var players = [];
 var simulationMode = false;
 var dataURLs = {};
@@ -269,7 +270,7 @@ function makePlayers(){
 	var numPlayers = 4;
 
 	for(var i = 0; i<numPlayers; i++){
-		p = (randomPlayerWithoutRemoving());
+		p = (randomPlayerWithoutRemoving(session));
 		if( $('#godTier').attr('checked')=='checked'){
 			p.godTier = true;
 		}else{
