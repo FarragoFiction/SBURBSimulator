@@ -33,6 +33,7 @@ function CharacterCreatorHelper(players){
 		str += "Left Horn: " + this.drawOneLeftHornDropDown(player);
 		str += "Right Horn: " + this.drawOneRightHornDropDown(player);
 		str += "BloodColor: " + this.drawOneBloodColorDropDown(player);
+		str += "Favorite Number: " + this.drawOneFavoriteNumberDropDown(player);
 		str += "</div>"
 
 		str += (canvasHTML);
@@ -74,12 +75,19 @@ function CharacterCreatorHelper(players){
 			var leftHornDiv  =  $("#leftHornID" +player.chatHandle) ;
 			var rightHornDiv  =  $("#rightHornID" +player.chatHandle) ;
 			var bloodDiv  =  $("#bloodColorID" +player.chatHandle) ;
+			var favoriteNumberDiv  =  $("#favoriteNumberID" +player.chatHandle) ;
 
 
 			var that = this;
 			c2.change(function() {
 					var classDropDown = $('[name="className' +player.chatHandle +'"] option:selected') //need to get what is selected inside the .change, otheriise is always the same
 					player.class_name = classDropDown.val();
+					that.redrawSinglePlayer(player);
+			});
+
+			favoriteNumberDiv.change(function() {
+					var numberDropDown = $('[name="favoriteNumber' +player.chatHandle +'"] option:selected') //need to get what is selected inside the .change, otheriise is always the same
+					player.quirk.favoriteNumber = numberDropDown.val();
 					that.redrawSinglePlayer(player);
 			});
 
@@ -136,6 +144,20 @@ function CharacterCreatorHelper(players){
 	this.drawOneHairDropDown = function(player){
 		var html = "<select id = 'hairTypeID" + player.chatHandle + "' name='hair" +player.chatHandle +"'>";
 		for(var i = 1; i<= 60; i++){
+			if(player.hair == i){
+				html += '<option  selected = "selected" value="' + i +'">' + i+'</option>'
+			}else{
+				html += '<option value="' + i +'">' + i+'</option>'
+			}
+		}
+		html += '</select>'
+		return html;
+	}
+
+	//0,12
+	this.drawOneFavoriteNumberDropDown = function(player){
+		var html = "<select id = 'favoriteNumberID" + player.chatHandle + "' name='favoriteNumber" +player.chatHandle +"'>";
+		for(var i = 0; i<= 12; i++){
 			if(player.hair == i){
 				html += '<option  selected = "selected" value="' + i +'">' + i+'</option>'
 			}else{
