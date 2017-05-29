@@ -64,7 +64,10 @@ function updateRender(){
 	if(renderState == "Mortals") allMortals();
 	if(renderState == "Dreams") allDream();
 	if(renderState == "Gods") allGods();
-	charCreatorHelperGlobalVar.drawAllPlayers();
+	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+		var player = curSessionGlobalVar.players[i];
+		charCreatorHelperGlobalVar.redrawSinglePlayer(player);
+	}
 }
 
 function renderPlayersForEditing(){
