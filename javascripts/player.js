@@ -2041,9 +2041,9 @@ function initializePlayers(players,session){
 			if(replayPlayers[i]){
 				players[i].quirk.favoriteNumber = parseInt(replayPlayers[i].quirk.favoriteNumber) //has to be after initialization
 				if(players[i].isTroll){
-					players[i].quirk = randomTrollSim(this) //redo quirk
+					players[i].quirk.makeTrollQuirk(players[i]); //redo quirk
 				}else{
-					players[i].quirk = randomHumanSim(this);
+					players[i].quirk.makeHumanQuirk(players[i]);
 				}
 			}
 		}
