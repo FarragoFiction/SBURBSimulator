@@ -1694,6 +1694,21 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	}
 
+	this.decideTroll = function decideTroll(player){
+		if(this.session.getSessionType() == "Human"){
+			this.hairColor = getRandomElementFromArray(human_hair_colors);
+			return;
+		}
+
+		if(this.session.getSessionType() == "Troll" || (this.session.getSessionType() == "Mixed" &&Math.seededRandom() > 0.5) ){
+			this.isTroll = true;
+			this.hairColor = "#000000"
+			this.decideHemoCaste();
+			this.decideLusus();
+			this.object_to_prototype = this.lusus;
+		}
+	}
+
 	this.initializeFreeWill = function(){
 		this.freeWill = getRandomInt(-25,25);
 		if(this.aspect == "Mind"){
@@ -1853,7 +1868,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	//this seems to NEVER be called for ghosts.  instead of things needed to render, can make this about char creator
 	this.toJSON = function(){
-		var json = {aspect: this.aspect, class_name: this.class_name,hair: this.hair,  hairColor: this.hairColor, isTroll: this.isTroll, bloodColor: this.bloodColor, leftHorn: this.leftHorn, rightHorn: this.rightHorn, interest1Category: this.interest1Category, interest2Category: this.interest2Category, interest1: this.interest1, interest2: this.interest2  };
+		var json = {aspect: this.aspect, class_name: this.class_name, quirk: this.quirk, hair: this.hair,  hairColor: this.hairColor, isTroll: this.isTroll, bloodColor: this.bloodColor, leftHorn: this.leftHorn, rightHorn: this.rightHorn, interest1Category: this.interest1Category, interest2Category: this.interest2Category, interest1: this.interest1, interest2: this.interest2  };
 		return json;
 	}
 
@@ -1936,7 +1951,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.bloodColor = replayPlayer.bloodColor;
 		this.leftHorn = replayPlayer.leftHorn;
 		this.rightHorn = replayPlayer.rightHorn;
-		this.quirk.favoriteNumber = replayPlayer.quirk.favoriteNumber;
+		//this.quirk.favoriteNumber = replayPlayer.quirk.favoriteNumber; //get overridden, has to be after initialization.
 	}
 
 
@@ -2015,14 +2030,15 @@ function initializePlayers(players,session){
 		var json = JSON.parse(uncompressedPlayers);
 		for(var i = 0; i<json.length; i++){
 			console.log(json[i])
-		replayPlayers.push(objToPlayer(json[i]));
-	}
+			replayPlayers.push(objToPlayer(json[i]));
+		}
 	}
 	for(var i = 0; i<players.length; i++){
 		if(replayPlayers[i]) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
 		if(players[i].land){ //don't reinit aliens, their stats stay how they were cloned.
 			players[i].initialize();
 			players[i].guardian.initialize();
+			if(replayPlayers[i]) players[i].quirk.favoriteNumber = replayPlayers[i].quirk.favoriteNumber //has to be after initialization
 		}
 	}
 
@@ -2148,13 +2164,14 @@ function randomPlayerNoDerived(session, c, a){
 	var m = getRandomElementFromArray(moons);
 	var id = Math.seed;
 	var p =  new Player(session,c,a,k,m,gd,id);
+	p.decideTroll();
 	p.interest1 = getRandomElementFromArray(interests);
 	p.interest2 = getRandomElementFromArray(interests);
 	p.baby = getRandomInt(1,3)
 
 
 	p.hair = getRandomInt(1,60);
-	p.hairColor = getRandomElementFromArray(human_hair_colors);
+	//hair color in decideTroll.
 	p.leftHorn =  getRandomInt(1,46);
 	p.rightHorn = p.leftHorn;
 	if(Math.seededRandom() > .7 ){ //preference for symmetry
@@ -2179,6 +2196,7 @@ function randomPlayerWithClaspect(session, c,a){
 	var m = getRandomElementFromArray(moons);
 	var id = Math.seed;
 	var p =  new Player(session,c,a,k,m,gd,id);
+	p.decideTroll();
 	p.interest1 = getRandomElementFromArray(interests);
 	p.interest2 = getRandomElementFromArray(interests);
 	p.initialize();
@@ -2187,8 +2205,7 @@ function randomPlayerWithClaspect(session, c,a){
 	p.baby = getRandomInt(1,3)
 
 
-	p.hair = getRandomInt(1,60);
-	p.hairColor = getRandomElementFromArray(human_hair_colors);
+	p.hair = getRandomInt(1,60); //hair color in decide troll
 	p.leftHorn =  getRandomInt(1,46);
 	p.rightHorn = p.leftHorn;
 	if(Math.seededRandom() > .7 ){ //preference for symmetry

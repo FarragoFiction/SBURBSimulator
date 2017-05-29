@@ -235,11 +235,7 @@ function Session(session_id){
 
 		for(var j = 0; j<this.players.length; j++){
 			var p = this.players[j];
-
 			p.generateRelationships(this.players);
-			this.decideTroll(p);
-
-
 		}
 
 		decideInitialQuadrants(this.players);
@@ -296,12 +292,13 @@ function Session(session_id){
 				//console.log("guardian for " + player.titleBasic());
 				var guardian = randomPlayer(this);
 				guardian.isTroll = player.isTroll;
+				guardian.quirk.favoriteNumber = player.quirk.favoriteNumber;
 				if(guardian.isTroll){
-					guardian.quirk = randomTrollSim(guardian)
+					guardian.quirk = randomTrollSim(guardian) //not same quirk as guardian
 				}else{
 					guardian.quirk = randomHumanSim(guardian);
 				}
-				guardian.quirk.favoriteNumber = player.quirk.favoriteNumber;
+
 				guardian.bloodColor = player.bloodColor;
 				guardian.lusus = player.lusus;
 				if(guardian.isTroll == true){ //trolls always use lusus.
@@ -358,19 +355,7 @@ function Session(session_id){
 		this.players = guardians;
 	}
 
-	this.decideTroll = function decideTroll(player){
-		if(this.getSessionType() == "Human"){
-			return;
-		}
 
-		if(this.getSessionType() == "Troll" || (this.getSessionType() == "Mixed" &&Math.seededRandom() > 0.5) ){
-			player.isTroll = true;
-			player.hairColor = "#000000"
-			player.decideHemoCaste(player);
-			player.decideLusus(player);
-			player.object_to_prototype = player.lusus;
-		}
-	}
 
 
 	this.getSessionType = function(){
