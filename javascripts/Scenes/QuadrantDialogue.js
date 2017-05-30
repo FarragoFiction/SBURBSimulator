@@ -41,6 +41,7 @@ function QuadrantDialogue(session){
 	}
 	
 	this.chatAboutInterests = function(trait,relationship){
+		return  "\n<insert random 'interest in common' ( " + trait + ") chat here>\n"
 		//calls different methods depending on trait, THOSE methods determine what they randomly talk about (based on relationship value)
 		//trolls talking about pop culture should just list out a huge movie title because i am trash.
 		//maybe randomly generate the movie title because holy fuck does that sound amazing.
@@ -57,6 +58,7 @@ function QuadrantDialogue(session){
 		//either p1 or p2 will try to say something about their interests.
 		//other player will be bored to tears.
 		//other player MUST be able to respond with "hrmm", "yes" and "interesting". and "horrible creatures, I hate the things."
+		return  "\n<insert random 'lack of interest' chat here>\n"
 	}
 	
 	this.chatAboutQuadrant = function(relationship){
@@ -66,18 +68,22 @@ function QuadrantDialogue(session){
 
 	this.clubsChat = function(relationship){
 		console.log("Clubs Chat in: " + this.session.session_id)
+		return  "\n<insert random 'clubs' chat here>\n"
 	}
 	
 	this.spadesChat = function(relationship){
 		console.log("Spades Chat  in: " + this.session.session_id)
+		return  "\n<insert random 'spades' chat here>\n"
 	}
 	
 	this.heartChat = function(relationship){
 		console.log("Heart Chat  in: " + this.session.session_id)
+		return  "\n<insert random 'heart' chat here>\n"
 	}
 	
 	this.diamondsChat = function(relationship){
 		console.log("Diamonds Chat  in: " + this.session.session_id)
+		return  "\n<insert random 'diamond' chat here>\n"
 	}
 	
 	this.feelingsJam = function(relationship){
@@ -112,8 +118,7 @@ function QuadrantDialogue(session){
 	}
 	
 	this.getChat =function(){
-		return  "\n\n<insert random shit here>\n\n"
-		
+				
 		relationship.moreOfSame(); //strengthens bonds in whatever direction.
 		//feelings jams have highest priority.
 		if(relationship.saved_type == relationship.diamond && (this.player1.flipOutReason || this.player2.flipOutReason)){
