@@ -16,14 +16,15 @@ function KingPowerful(session){
 			Stop picking the laziest way to do things, dunkass.
 		*/
 		if(Math.seededRandom() > 0.5){
-			findRandomQuadrantedAvailablePlayer();
+			findSemiRandomQuadrantedAvailablePlayer();
 			findQuardrantMate();
 		}
 		return false;
 	}
 	
-	this.findRandomQuadrantedAvailablePlayer(){
+	this.findSemiRandomQuadrantedAvailablePlayer(){
 		//set this.player1 to be a random quadranted player.
+		//BUT, if there is a player in a moiralligence who is on the verge of flipping their shit, return them.  so not completely random.
 	}
 	
 	this.findQuardrantMate(){
@@ -34,23 +35,40 @@ function KingPowerful(session){
 		//TODO, turn which quadrant player1 and player2 are in into a png to pass.  Create pngs for diamonds and clubs.
 	}
 	
+	this.getQuadrant = function(){
+		var r = this.player1.getRelationshipWith(this.player2);
+		return r;
+	}
+	
+	
+	
+	this.feelingsJam = function(relationship){
+		//figure out which player is flipping out, make them "flippingOut", make other player "shoosher"
+		//have them talk about flipOUtREason.  flippingOut has triggerLevel reduced by a good amount.
+	}
+	
 	this.getChat =function(){
+		var relationship = this.getQuadrant();
+		//feelings jams have highest priority.
+		if(relationship.saved_type == relationship.diamond && (this.player1.flipOutReason || this.player2.flipOutReason)){
+			return this.feelingsJam(relationship);
+		}
 		var trait = whatDoPlayersHaveInCommon(this.player1, this.player2);
 		if(trait != "nice"){
 			if(Math.seededRandom() > 0.5){
-				return this.chatAboutInterests(trait);
+				return this.chatAboutInterests(trait); //more likely to talk about interests.
 			}else{
 				if(Math.seededRandom() > 0.5){
-					return this.chatAboutQuadrant();
+					return this.chatAboutQuadrant(relationship);
 				}else{
-					return this.chatAboutRelationshipValue();
+					return this.chatAboutRelationshipValue(relationship);
 				}
 			}
 		}else{  //no option to chat about interests.
 			if(Math.seededRandom() > 0.5){
-				return this.chatAboutQuadrant();
+				return this.chatAboutQuadrant(relationship);
 			}else{
-				return this.chatAboutRelationshipValue();
+				return this.chatAboutRelationshipValue(relationship);
 			}
 		}
 	}
