@@ -114,11 +114,13 @@ function QuadrantDialogue(session){
 	
 	this.lackOfInterestAndQuadrantChat = function(relationship){
 		var ret = "";
+		for(var i = 0; i<3; i++){
 		if(Math.seededRandom() > 0.5){
 				ret += this.chatAboutLackOfInterests(relationship); //one character tries to talk about something that interests them, other character is bored as fuck.
 			}else{
 				ret += this.chatAboutQuadrant(relationship);
 			}
+		}
 		return ret;
 	}
 	
