@@ -47,6 +47,16 @@ function JackRampage(session){
 		}
 		return ret;
 	}
+	
+		this.canCatch = function(victim){
+		if(this.session.jack.getMobility() < victim.mobility) return false;
+		if(victim.aspect == "Void" && victim.isVoidAvailable() && victim.power >50) return false;
+		if(victim.aspect == "Space" && victim.power > 50){
+			console.log("high level space player avoiding jack" + this.session.session_id)
+			return false;  //god tier calliope managed to hide from a Lord of Time. space players might not move around a lot, but that doesn't mean they are easy to catch.
+		} 
+		return true;
+	}
 
 
 		this.renderPrestabs = function(div, stabbings){

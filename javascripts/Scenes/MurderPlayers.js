@@ -267,7 +267,11 @@ function MurderPlayers(session){
 
 	this.canCatch = function(m, worstEnemy){
 		if(worstEnemy.mobility > m.mobility) return false;
-		if(worstEnemy.aspect == "Void" && worstEnemy.isVoidAvailable()) return false;
+		if(worstEnemy.aspect == "Void" && worstEnemy.isVoidAvailable() && worstEnemy.power >50) return false;
+		if(worstEnemy.aspect == "Space" && worstEnemy.power > 50){
+			console.log("high level space player avoiding a murderer" + this.session.session_id)
+			return false;  //god tier calliope managed to hide from a Lord of Time. space players might not move around a lot, but that doesn't mean they are easy to catch.
+		} 
 		return true;
 	}
 
