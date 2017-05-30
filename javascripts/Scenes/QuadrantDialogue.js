@@ -45,6 +45,8 @@ function KingPowerful(session){
 		//calls different methods depending on trait, THOSE methods determine what they randomly talk about (based on relationship value)
 		//trolls talking about pop culture should just list out a huge movie title because i am trash.
 		//maybe randomly generate the movie title because holy fuck does that sound amazing.
+		//if i do that, i should have an easter egg page that is nothing BUT listing out bullshit movie titles
+		//which means the code to do that should live in NOT this scene. Maybe??????????
 	}
 	
 	this.chatAboutQuadrant = function(relationship){
@@ -118,7 +120,7 @@ function KingPowerful(session){
 	}
 
 	this.content = function(){
-		return "NEVER RUN IN 1.0 YOU DUNKASS."
+		return "NEVER RUN IN 1.0 YOU DUNKASS. Seriously, I don't supprt it anymore."
 	}
 
 
