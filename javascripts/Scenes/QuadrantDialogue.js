@@ -63,6 +63,10 @@ function QuadrantDialogue(session){
 	
 	this.chatAboutQuadrant = function(relationship){
 		//calls different methods based on quadrant.  THOSE methods have different shit in them based on value (foreshadows break up.)
+		if(relationship.saved_type == relationship.diamond)return this.diamondsChat(relationship);
+		if(relationship.saved_type == relationship.heart)return this.heartChat(relationship);
+		if(relationship.saved_type == relationship.clubs)return this.clubsChat(relationship);
+		if(relationship.saved_type == relationship.spades) return this.spadesChat(relationship);
 	}
 	
 
