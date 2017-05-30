@@ -17,6 +17,10 @@
 	<script type="text/javascript" src="javascripts/quirk.js"></script>
 	<script>
 		var curSessionGlobalVar  = null;
+		var spriteWidth = 400;
+		var spriteHeight = 300;
+		var canvasWidth = 1000;
+		var canvasHeight = 300;
 		window.onload = function() {
 			curSessionGlobalVar =  new Session(getRandomSeed())
 			curSessionGlobalVar.reinit();
@@ -27,13 +31,13 @@
 			var p2 = curSessionGlobalVar.players[1];
 			var rand = Math.random()
 			if(rand<0.25 && curSessionGlobalVar.players[2]){
-				makeClubs(player1, player2,curSessionGlobalVar.players[2]);
+				makeClubs(p1, p2,curSessionGlobalVar.players[2]);
 			}else if(rand < 0.5){
-				makeDiamonds(player1, player2);
+				makeDiamonds(p1, p2);
 			}else if(rand < 0.75){
-				makeSpades(player1, player2);
+				makeSpades(p1, p2);
 			}else{
-				makeHeart(player1, player2); //now kiss.
+				makeHeart(p1, p2); //now kiss.
 			} 
 			quadrantDialogue.player1 = p1;
 			quadrantDialogue.player2 = p2;
