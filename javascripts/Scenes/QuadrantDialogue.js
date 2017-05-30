@@ -100,7 +100,7 @@ function QuadrantDialogue(session){
 	}
 	
 
-	this.interestAndQuadrantChat = function(relationship){
+	this.interestAndQuadrantChat = function(trait, relationship){
 		var ret = "";
 		for(var i = 0; i<3; i++){
 			if(Math.seededRandom() > 0.3){ //maybe make them MORE likely to chat about interests?
@@ -133,7 +133,7 @@ function QuadrantDialogue(session){
 		}
 		var trait = whatDoPlayersHaveInCommon(this.player1, this.player2);
 		if(trait != "nice"){
-			return this.interestAndQuadrantChat(relationship);
+			return this.interestAndQuadrantChat(trait, relationship);
 		}else{  //no option to chat about interests.
 			return this.lackOfInterestAndQuadrantChat(relationship);
 		}
