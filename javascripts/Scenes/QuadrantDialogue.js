@@ -162,7 +162,7 @@ function QuadrantDialogue(session){
 		if(this.player1.aspect != "Time") removeFromArray(this.player1, this.session.availablePlayers);
 		if(this.player2.aspect != "Time") removeFromArray(this.player2, this.session.availablePlayers);
 		this.player1Start = this.player1.chatHandleShort()+ ": "
-		this.player2Start = this.player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
+		this.player2Start = this.player2.chatHandleShortCheckDup(this.player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		
 		/*
 				Since this dialogue has no "purpose", no information that HAS to be conveyed, can treat it as more dynamic.
