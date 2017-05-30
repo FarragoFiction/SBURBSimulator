@@ -16,7 +16,7 @@ function KingPowerful(session){
 			First one is probably easiest, but hardest to modify rate of triggering.
 			Stop picking the laziest way to do things, dunkass.
 		*/
-		if(Math.seededRandom() > 0.5){
+		if(Math.seededRandom() > 0.0001){ //fiddle with rate later, for now, i want to see this happen.
 			findSemiRandomQuadrantedAvailablePlayer();
 			findQuardrantMate();
 		}
