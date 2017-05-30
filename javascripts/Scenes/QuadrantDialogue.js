@@ -83,6 +83,8 @@ function QuadrantDialogue(session){
 		console.log("Feelings Jam in: " + this.session.session_id)
 		//figure out which player is flipping out, make them "flippingOut", make other player "shoosher"
 		//have them talk about flipOUtREason.  flippingOut has triggerLevel reduced by a good amount.
+		//maybe even parse out flipOUtReason a bit. if they mention "dead" that's gonna be a different convo than ultimate riddle bullshit, right? same with time clones.
+		//if i can't parse out what it's about, or don't care, then have a generic thing where they generically talk about flipOutReason
 	}
 	
 
@@ -134,6 +136,7 @@ function QuadrantDialogue(session){
 	}
 	
 	this.getFareWell = function(){
+		//fuck yes oblivion, you taught me what a good AI "goodbye" is.
 		var randByes = ["Goodday.","Farewell.","I have nothing more to say to you.","I've heard others say the same.","Bye bye.","Bye.","Yeah, I'm done here.","I'm out.","I'm going to ollie outtie.","I'm through speaking with you."];
 		var ret = "";
 
