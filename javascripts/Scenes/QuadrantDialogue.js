@@ -111,7 +111,7 @@ function QuadrantDialogue(session){
 	}
 	
 	this.getChat =function(){
-		return  "\n\n<insert random shit here>"
+		return  "\n\n<insert random shit here>\n\n"
 		
 		relationship.moreOfSame(); //strengthens bonds in whatever direction.
 		//feelings jams have highest priority.
@@ -154,7 +154,7 @@ function QuadrantDialogue(session){
 		var chatText = this.getGreeting(relationship);
 		chatText += this.getChat(relationship);
 		chatText += this.fareWell(relationship); //<-- REQUIRED for ultimate oblivion shittieness. "I have nothing more to say to you." "good day."
-		drawChat(document.getElementById("canvas"+ (div.attr("id"))), this.player1, this.player2, chatText, repeatTime,this.getDiscussSymbol());
+		drawChat(document.getElementById("canvas"+ (div.attr("id"))), this.player1, this.player2, chatText, 0,this.getDiscussSymbol());
 	}
 	
 	//have test page (link to easter eggs) where it generates some players and shoves them into relationships and 

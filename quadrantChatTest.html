@@ -12,6 +12,7 @@
 	<script type="text/javascript" src="javascripts/Scenes/QuadrantDialogue.js"></script>
 	<script type="text/javascript" src="javascripts/random_tables.js"></script>
 	<script type="text/javascript" src="javascripts/player.js"></script>
+	<script type="text/javascript" src="javascripts/playerSnapshot.js"></script>
 	<script type="text/javascript" src="javascripts/relationship.js"></script>
 	<script type="text/javascript" src="javascripts/session.js"></script>
 	<script type="text/javascript" src="javascripts/v2.0/YellowYardResultController.js"></script>
@@ -22,6 +23,7 @@
 		var spriteHeight = 300;
 		var canvasWidth = 1000;
 		var canvasHeight = 300;
+		var junior = false;
 		var simulationMode = false;
 		window.onload = function() {
 			curSessionGlobalVar =  new Session(getRandomSeed())
