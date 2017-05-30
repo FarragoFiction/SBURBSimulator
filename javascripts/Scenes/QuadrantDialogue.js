@@ -4,6 +4,7 @@ function KingPowerful(session){
 	this.player1 = null;
 	this.player2 = null;
 
+	//this should have a higher priority than land quests, 'cause the point is relationships distract you from playing the damn game.
 	this.trigger = function(){
 		this.player1 = null;
 		this.player2 = null;
@@ -40,9 +41,18 @@ function KingPowerful(session){
 		return r;
 	}
 	
+	this.chatAboutInterests = function(trait,relationship){
+		//calls different methods depending on trait, THOSE methods determine what they randomly talk about (based on relationship value)
+		//trolls talking about pop culture should just list out a huge movie title because i am trash.
+		//maybe randomly generate the movie title because holy fuck does that sound amazing.
+	}
 	
+	this.chatAboutQuadrant = function(relationship){
+		//calls different methods based on quadrant.  THOSE methods have different shit in them based on value (foreshadows break up.)
+	}
 	
 	this.feelingsJam = function(relationship){
+		console.log("Feelings Jam in: " + this.session.session_id)
 		//figure out which player is flipping out, make them "flippingOut", make other player "shoosher"
 		//have them talk about flipOUtREason.  flippingOut has triggerLevel reduced by a good amount.
 	}
@@ -56,20 +66,12 @@ function KingPowerful(session){
 		var trait = whatDoPlayersHaveInCommon(this.player1, this.player2);
 		if(trait != "nice"){
 			if(Math.seededRandom() > 0.5){
-				return this.chatAboutInterests(trait); //more likely to talk about interests.
+				return this.chatAboutInterests(trait,relationship); //more likely to talk about interests.
 			}else{
-				if(Math.seededRandom() > 0.5){
-					return this.chatAboutQuadrant(relationship);
-				}else{
-					return this.chatAboutRelationshipValue(relationship);
-				}
+				return this.chatAboutQuadrant(relationship);
 			}
 		}else{  //no option to chat about interests.
-			if(Math.seededRandom() > 0.5){
-				return this.chatAboutQuadrant(relationship);
-			}else{
-				return this.chatAboutRelationshipValue(relationship);
-			}
+			return this.chatAboutQuadrant(relationship);
 		}
 	}
 	
@@ -106,8 +108,8 @@ function KingPowerful(session){
 				
 				<3<3<3 elder scrolls. They are such ASSHOLES to each other.
 				
-				Chat pairs can be generated from: interests in common, quadrants, and relationship value (quardrant and value being separate allows impending breakups to be foreshadowed.)
-				ALSO, flipOutReason (but only for diamonds. so maybe that's just a quadrant thing.)
+				Chat pairs can be generated from: interests in common, quadrants
+				ALSO, flipOutReason is special case. highest priority.
 				
 				
 		*/
