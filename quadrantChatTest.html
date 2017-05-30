@@ -44,6 +44,12 @@
 			var p2 = curSessionGlobalVar.players[1];
 			p1.renderSelf();
 			p2.renderSelf();
+			if(Math.random()>0.5){
+				p1.flipOutReason = "the dead player";
+			}
+			if(Math.random()>0.5){
+				p2.flipOutReason = "the dead player";
+			}
 			var rand = Math.random()
 				if(rand<0.25 && curSessionGlobalVar.players[2]){
 					makeClubs(p1, p2,curSessionGlobalVar.players[2]);

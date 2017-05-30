@@ -118,7 +118,7 @@ function QuadrantDialogue(session){
 		return ret;
 	}
 	
-	this.getChat =function(){
+	this.getChat =function(relationship){
 				
 		relationship.moreOfSame(); //strengthens bonds in whatever direction.
 		//feelings jams have highest priority.
