@@ -1,6 +1,7 @@
 //best part of this is that if i want some OTHER scene to be able to have romantic dialgoue (say i write a general purpose dialogue scene)
 //it's render function can just call new QuadrantDialogue(this.session).renderContent(div); and be done.
 //resuability, yo
+//http://www.neoseeker.com/forums/26839/t1277308-random-npc-conversations/   (or i guess i could just play oblivion, but I want a LIST dammit, of memes to add.)
 function QuadrantDialogue(session){
 	this.session=session;
 	this.canRepeat = true;
