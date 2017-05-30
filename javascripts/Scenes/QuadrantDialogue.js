@@ -64,7 +64,7 @@ function QuadrantDialogue(session){
 	}
 	
 	this.chatAboutMusic = function(relationship){
-		
+			//if both characters like rap/hiphop, etc, they rap here????
 	}
 	
 	//did you get to the cloud district recently, what am i saying of course you didn't.
