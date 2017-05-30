@@ -47,12 +47,20 @@ function KingPowerful(session){
 		//maybe randomly generate the movie title because holy fuck does that sound amazing.
 		//if i do that, i should have an easter egg page that is nothing BUT listing out bullshit movie titles
 		//which means the code to do that should live in NOT this scene. Maybe??????????
+		
+		//having interests in common keeps the relationship from getting too boring.
+		relationship.moreOfSame();
+		relationship.moreOfSame();
+		relationship.moreOfSame();
 	}
 	
 	this.chatAboutQuadrant = function(relationship){
 		//calls different methods based on quadrant.  THOSE methods have different shit in them based on value (foreshadows break up.)
 	}
 	
+	/*
+		Quadrant chats have to be HELLA random, because if two people have nothing in common, this will be called 3 times in a single conversation.
+	*/
 	this.clubsChat = function(relationship){
 		console.log("Clubs Chat in: " + this.session.session_id)
 	}
@@ -75,23 +83,42 @@ function KingPowerful(session){
 		//have them talk about flipOUtREason.  flippingOut has triggerLevel reduced by a good amount.
 	}
 	
+
+	this.interestAndQuadrantChat = function(relationship){
+		var ret = "";
+		for(var i = 0; i<3; i++){
+			if(Math.seededRandom() > 0.5){
+				ret += this.chatAboutInterests(trait,relationship); //more likely to talk about interests.
+			}else{
+				ret += this.chatAboutQuadrant(relationship);
+			}
+		}
+		return ret;
+	}
+	
+	this.chatAboutQuadrantWholeConvo = function(relationship){
+		var ret = "";
+		for(var i = 0; i<3; i++){
+			ret += this.chatAboutQuadrant(relationship);
+		}
+		return ret;
+	}
+	
 	this.getChat =function(){
 		var relationship = this.getQuadrant();
+		relationship.moreOfSame(); //strengthens bonds in whatever direction.
 		//feelings jams have highest priority.
 		if(relationship.saved_type == relationship.diamond && (this.player1.flipOutReason || this.player2.flipOutReason)){
-			return this.feelingsJam(relationship);
+			return this.feelingsJam(relationship);  //whole convo
 		}
 		var trait = whatDoPlayersHaveInCommon(this.player1, this.player2);
 		if(trait != "nice"){
-			if(Math.seededRandom() > 0.5){
-				return this.chatAboutInterests(trait,relationship); //more likely to talk about interests.
-			}else{
-				return this.chatAboutQuadrant(relationship);
-			}
+			return this.interestAndQuadrantChat(relationship);
 		}else{  //no option to chat about interests.
-			return this.chatAboutQuadrant(relationship);
+			return this.chatAboutQuadrantWholeConvo(relationship);
 		}
 	}
+	
 	
 	
 	this.chat = function(div){
