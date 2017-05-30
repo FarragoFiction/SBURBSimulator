@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="css/rap.css">
 	<script type="text/javascript" src="javascripts/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="javascripts/handle_sprites.js"></script>
+	<script type="text/javascript" src="javascripts/loading.js"></script>
 	<script type="text/javascript" src="javascripts/gameEntity.js"></script>
 	<script type="text/javascript" src="javascripts/scene_controller.js"></script>
 	<script type="text/javascript" src="javascripts/AfterLife.js"></script>
@@ -30,22 +31,32 @@
 			curSessionGlobalVar.reinit();
 			curSessionGlobalVar.makePlayers();
 			curSessionGlobalVar.randomizeEntryOrder();
+			var p1 = curSessionGlobalVar.players[0];
+			var p2 = curSessionGlobalVar.players[1];
+			load([p1,p2], []); //in loading.js
+			
+			
+		}
+		
+		function intro(){
 			var quadrantDialogue = new QuadrantDialogue(curSessionGlobalVar);
 			var p1 = curSessionGlobalVar.players[0];
 			var p2 = curSessionGlobalVar.players[1];
+			p1.renderSelf();
+			p2.renderSelf();
 			var rand = Math.random()
-			if(rand<0.25 && curSessionGlobalVar.players[2]){
-				makeClubs(p1, p2,curSessionGlobalVar.players[2]);
-			}else if(rand < 0.5){
-				makeDiamonds(p1, p2);
-			}else if(rand < 0.75){
-				makeSpades(p1, p2);
-			}else{
-				makeHeart(p1, p2); //now kiss.
-			} 
-			quadrantDialogue.player1 = p1;
-			quadrantDialogue.player2 = p2;
-			quadrantDialogue.renderContent(curSessionGlobalVar.newScene());			
+				if(rand<0.25 && curSessionGlobalVar.players[2]){
+					makeClubs(p1, p2,curSessionGlobalVar.players[2]);
+				}else if(rand < 0.5){
+					makeDiamonds(p1, p2);
+				}else if(rand < 0.75){
+					makeSpades(p1, p2);
+				}else{
+					makeHeart(p1, p2); //now kiss.
+				} 
+				quadrantDialogue.player1 = p1;
+				quadrantDialogue.player2 = p2;
+				quadrantDialogue.renderContent(curSessionGlobalVar.newScene());			
 		}
 	</script>
 </head>
