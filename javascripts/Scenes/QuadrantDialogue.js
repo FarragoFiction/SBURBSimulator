@@ -115,6 +115,14 @@ function QuadrantDialogue(session){
 		if(relationship.saved_type == relationship.spades) return this.spadesChat(relationship);
 	}
 
+	this.getQuadrantASCII = function(relationship){
+		//calls different methods based on quadrant.  THOSE methods have different shit in them based on value (foreshadows break up.)
+		if(relationship.saved_type == relationship.diamond)return "<>"
+		if(relationship.saved_type == relationship.heart)return "<3"
+		if(relationship.saved_type == relationship.clubs)return "c3<"
+		if(relationship.saved_type == relationship.spades) return "<3<"
+	}
+
 
 	this.clubsChat = function(relationship){
 		console.log("Clubs Chat in: " + this.session.session_id)
@@ -185,12 +193,13 @@ function QuadrantDialogue(session){
 		}
 	}
 
+
 	this.getGreeting = function(relationship){
 		var ret = "";
 		var r1 = relationship;
 		var r2 = this.player2.getRelationshipWith(this.player1);
-		ret += chatLine(this.player1Start, this.player1,getRelationshipFlavorGreeting(r1, r2, this.player1, this.player2))
-		ret += chatLine(this.player2Start, this.player2,getRelationshipFlavorGreeting(r2, r1, this.player2, this.player1))
+		ret += chatLine(this.player1Start, this.player1,getRelationshipFlavorGreeting(r1, r2, this.player1, this.player2) + this.getQuadrantASCII(relationship))
+		ret += chatLine(this.player2Start, this.player2,getRelationshipFlavorGreeting(r2, r1, this.player2, this.player1)+ this.getQuadrantASCII(relationship))
 		return ret;
 	}
 
