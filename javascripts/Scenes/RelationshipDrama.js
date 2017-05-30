@@ -18,15 +18,17 @@ function RelationshipDrama(session){
 		}
 		return this.dramaPlayers.length > 0;
 	}
-	
+
 	//if they hate you back
 	this.celebratoryRapBattle = function(div, player1, player2){
+		console.log("celbratory rap battles: " + this.session.session_id)
 		this.session.rapBattle = true;
+		var divId = (div.attr("id")) + player1.chatHandle;
 		var player1Start = player1.chatHandleShort()+ ": "
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
-		var canvasHTML = "<br><canvas id='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		var canvasHTML = "<br><canvas id='canvas" + divId +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
-		var canvasDiv = document.getElementById("canvas"+  (div.attr("id")));
+		var canvasDiv = document.getElementById("canvas"+  divId);
 		var chatText = ""
 
 		chatText += chatLine(player1Start, player1,"Bro. Rap Battle. Now. Bring the Fires. Imma show you why you suck.")
@@ -50,7 +52,7 @@ function RelationshipDrama(session){
 			player2.increasePower();
 			this.session.sickFires = true;
 		}
-		
+
 	}
 
 	//poor eridan?
