@@ -115,12 +115,15 @@ function QuadrantDialogue(session){
 		if(relationship.saved_type == relationship.spades) return this.spadesChat(relationship);
 	}
 
+	//skyrim joke exists about how easy it is to steal from an NPC after putting a bucket on their head (now they can't see you stealing)
+	//how scandalous
+
 	this.getQuadrantASCII = function(relationship){
 		//calls different methods based on quadrant.  THOSE methods have different shit in them based on value (foreshadows break up.)
-		if(relationship.saved_type == relationship.diamond)return "<>"
-		if(relationship.saved_type == relationship.heart)return "<3"
-		if(relationship.saved_type == relationship.clubs)return "c3<"
-		if(relationship.saved_type == relationship.spades) return "<3<"
+		if(relationship.saved_type == relationship.diamond)return " <> "
+		if(relationship.saved_type == relationship.heart)return " <3 "
+		if(relationship.saved_type == relationship.clubs)return " c3< "
+		if(relationship.saved_type == relationship.spades) return " <3< "
 	}
 
 
@@ -211,15 +214,15 @@ function QuadrantDialogue(session){
 
 		var r2 = this.player2.getRelationshipWith(this.player1);
 		if(relationship.value > 0){
-			ret += chatLine(this.player1Start, this.player1, getRandomElementFromArray(goodByes));
+			ret += chatLine(this.player1Start, this.player1, getRandomElementFromArray(goodByes) + this.getQuadrantASCII(relationship));
 		}else{
-			ret += chatLine(this.player1Start, this.player1, getRandomElementFromArray(badByes));
+			ret += chatLine(this.player1Start, this.player1, getRandomElementFromArray(badByes) + this.getQuadrantASCII(relationship));
 		}
 
 		if(r2.value > 0){
-			ret += chatLine(this.player2Start, this.player2, getRandomElementFromArray(badByes));
+			ret += chatLine(this.player2Start, this.player2, getRandomElementFromArray(badByes)+ this.getQuadrantASCII(relationship));
 		}else{
-			ret += chatLine(this.player2Start, this.player2, getRandomElementFromArray(badByes));
+			ret += chatLine(this.player2Start, this.player2, getRandomElementFromArray(badByes)+ this.getQuadrantASCII(relationship));
 		}
 
 		return ret;
