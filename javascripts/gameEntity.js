@@ -38,6 +38,7 @@ function GameEntity(session, name, crowned){
 		this.player = false;  //did a player jump in a sprite?
 		this.illegal = false; //used only for sprites. whether or not they are reptile/amphibian.
 		this.corrupted = false; //if corrupted, name is zalgoed.
+		//when tier2 sprites, helpful sprites override the other sprites helpfulnes and help phrase.  corrupt sprites do, too
 		this.helpfulness = 0; //if 0, cagey riddles. if 1, basically another player. if -1, like calsprite. omg, just shut up.  NOT additive for when double prototyping. most recent prototyping overrides.
 		this.helpPhrase = "provides the requisite amount of gigglesnort hideytalk to be juuuust barely helpful. ";
 
