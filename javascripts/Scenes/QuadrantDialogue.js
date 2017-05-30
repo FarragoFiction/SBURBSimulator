@@ -291,13 +291,8 @@ function QuadrantDialogue(session){
 
 }
 
-
+//can't have engine create these things 'cause needs to be dynamic, not made ahead of time
 function conversationalPair(line1, responseLines){
 	this.line1 = line1;
 	this.responseLines = responseLines;
-}
-
-//responsible for creating and organizing conversationalPairs
-function ConversationalPairEngine(){
-
 }
