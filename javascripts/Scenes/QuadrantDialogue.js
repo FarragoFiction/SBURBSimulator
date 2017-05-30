@@ -52,6 +52,7 @@ function QuadrantDialogue(session){
 	this.chatAboutLackOfInterests = function(relationship){
 		//either p1 or p2 will try to say something about their interests.
 		//other player will be bored to tears.
+		//other player MUST be able to respond with "hrmm", "yes" and "interesting"
 	}
 	
 	this.chatAboutQuadrant = function(relationship){

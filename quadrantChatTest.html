@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Shitty Rap Battles</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/rap.css">
+	<script type="text/javascript" src="javascripts/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="javascripts/gameEntity.js"></script>
+	<script type="text/javascript" src="javascripts/scene_controller.js"></script>
+	<script type="text/javascript" src="javascripts/AfterLife.js"></script>
+	<script type="text/javascript" src="javascripts/Scenes/QuadrantDialogue.js"></script>
+	<script type="text/javascript" src="javascripts/random_tables.js"></script>
+	<script type="text/javascript" src="javascripts/player.js"></script>
+	<script type="text/javascript" src="javascripts/session.js"></script>
+	<script type="text/javascript" src="javascripts/v2.0/YellowYardResultController.js"></script>
+	<script type="text/javascript" src="javascripts/quirk.js"></script>
+	<script>
+		window.onload = function() {
+			var session =  new Session(getRandomSeed())
+			session.reinit();
+			curSessionGlobalVar.makePlayers();
+			curSessionGlobalVar.randomizeEntryOrder();
+			var quadrantDialogue = new QuadrantDialogue();
+			quadrantDialogue.player1 = session.players[0];
+			quadrantDialogue.player2 = session.players[1];
+			quadrantDialogue.renderContent(session.newScene());			
+		}
+	</script>
+</head>
+<body>
+
+
+
+<div id = "story">
+	
+
+</div>
+<div id = "playerSprites"></div>
+
+</body>
+</html>
