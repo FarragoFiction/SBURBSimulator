@@ -1,3 +1,6 @@
+//best part of this is that if i want some OTHER scene to be able to have romantic dialgoue (say i write a general purpose dialogue scene)
+//it's render function can just call new QuadrantDialogue(this.session).renderContent(div); and be done.
+//resuability, yo
 function QuadrantDialogue(session){
 	this.session=session;
 	this.canRepeat = true;
