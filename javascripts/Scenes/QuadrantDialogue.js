@@ -112,7 +112,7 @@ function QuadrantDialogue(session){
 	
 	this.getChat =function(){
 		return  "\n\n<insert random shit here>"
-		var relationship = this.getQuadrant();
+		
 		relationship.moreOfSame(); //strengthens bonds in whatever direction.
 		//feelings jams have highest priority.
 		if(relationship.saved_type == relationship.diamond && (this.player1.flipOutReason || this.player2.flipOutReason)){
@@ -126,16 +126,16 @@ function QuadrantDialogue(session){
 		}
 	}
 	
-	this.getGreeting = function(){
+	this.getGreeting = function(relationship){
 		var ret = "";
 		var r1 = relationship;
 		var r2 = this.player2.getRelationshipWith(this.player1);
-		ret += chatLine(this.player1Start, this.player1,getRelationshipFlavorGreeting(r1, r2, player1, player2))
-		ret += chatLine(this.player2Start, this.player2,getRelationshipFlavorGreeting(r2, r1, player2, player1))
+		ret += chatLine(this.player1Start, this.player1,getRelationshipFlavorGreeting(r1, r2, this.player1, this.player2))
+		ret += chatLine(this.player2Start, this.player2,getRelationshipFlavorGreeting(r2, r1, this.player2, this.player1))
 		return ret;
 	}
 	
-	this.getFareWell = function(){
+	this.fareWell = function(){
 		//fuck yes oblivion, you taught me what a good AI "goodbye" is.
 		var randByes = ["Goodday.","Farewell.","I have nothing more to say to you.","I've heard others say the same.","Bye bye.","Bye.","Yeah, I'm done here.","I'm out.","I'm going to ollie outtie.","I'm through speaking with you."];
 		var ret = "";
@@ -150,9 +150,10 @@ function QuadrantDialogue(session){
 	this.chat = function(div){
 		var canvasHTML = "<br><canvas id='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
-		var chatText = this.getGreeting();
-		chatText += this.getChat();
-		chatText += this.fareWell(); //<-- REQUIRED for ultimate oblivion shittieness. "I have nothing more to say to you." "good day."
+		var relationship = this.getQuadrant();
+		var chatText = this.getGreeting(relationship);
+		chatText += this.getChat(relationship);
+		chatText += this.fareWell(relationship); //<-- REQUIRED for ultimate oblivion shittieness. "I have nothing more to say to you." "good day."
 		drawChat(document.getElementById("canvas"+ (div.attr("id"))), this.player1, this.player2, chatText, repeatTime,this.getDiscussSymbol());
 	}
 	
