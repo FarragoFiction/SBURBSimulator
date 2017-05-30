@@ -54,10 +54,55 @@ function QuadrantDialogue(session){
 		relationship.moreOfSame();
 	}
 	
+	/*
+		The itnerest functions should pick p1 or p2 to start. If starting player isn't interested in subject, they say "umm" or "uh" or whatever.
+		
+		IMPORTANT: two ways these can be called, can be called by sharing a trait. OR by "lackOfInterest";
+	*/
+	this.chatAboutAcademic = function(relationship){
+		
+	}
+	
+	this.chatAboutMusic = function(relationship){
+		
+	}
+	
+	//did you get to the cloud district recently, what am i saying of course you didn't.
+	this.chatAboutCulture = function(relationship){
+		
+	}
+	
+	//oh lord, tell bad jokes here.  especially puns
+	this.chatAboutComedy = function(relationship){
+		
+	}
+	
+	this.chatAboutDomestic = function(relationship){
+		
+	}
+	
+	this.chatAboutAthletic = function(relationship){
+		
+	}
+	
+	this.chatAboutTerrible = function(relationship){
+		
+	}
+	
+	this.chatAboutFantasy = function(relationship){
+		
+	}
+	
+	this.chatAboutJustice = function(relationship){
+		
+	}
+	
 	this.chatAboutLackOfInterests = function(relationship){
 		//either p1 or p2 will try to say something about their interests.
 		//other player will be bored to tears.
 		//other player MUST be able to respond with "hrmm", "yes" and "interesting". and "horrible creatures, I hate the things."
+		//call an interest directly (chatAboutJustice)
+		//it'll handle responses no matter who is interested in what.
 		return  "\n<insert random 'lack of interest' chat here>\n"
 	}
 	
@@ -150,7 +195,7 @@ function QuadrantDialogue(session){
 	
 	this.fareWell = function(relationship){
 		//fuck yes oblivion, you taught me what a good AI "goodbye" is.
-		var goodByes = ["Goodday.","Farewell.","Bye bye.","Bye.", "Talk to you later!", "ttyl", "seeya"];
+		var goodByes = ["Good day.","Farewell.","Bye bye.","Bye.", "Talk to you later!", "ttyl", "seeya"];
 		var badByes = ["I have nothing more to say to you.","I've heard others say the same.","Yeah, I'm done here.","I'm out.","I'm going to ollie outtie.","I'm through speaking with you."];
 		var ret = "";
 		
