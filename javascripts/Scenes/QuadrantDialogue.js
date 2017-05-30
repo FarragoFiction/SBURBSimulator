@@ -54,13 +54,16 @@ function QuadrantDialogue(session){
 		relationship.moreOfSame();
 	}
 	
+	this.chatAboutLackOfInterests = function(relationship){
+		//either p1 or p2 will try to say something about their interests.
+		//other player will be bored to tears.
+	}
+	
 	this.chatAboutQuadrant = function(relationship){
 		//calls different methods based on quadrant.  THOSE methods have different shit in them based on value (foreshadows break up.)
 	}
 	
-	/*
-		Quadrant chats have to be HELLA random, because if two people have nothing in common, this will be called 3 times in a single conversation.
-	*/
+
 	this.clubsChat = function(relationship){
 		console.log("Clubs Chat in: " + this.session.session_id)
 	}
@@ -96,11 +99,13 @@ function QuadrantDialogue(session){
 		return ret;
 	}
 	
-	this.chatAboutQuadrantWholeConvo = function(relationship){
+	this.lackOfInterestAndQuadrantChat = function(relationship){
 		var ret = "";
-		for(var i = 0; i<3; i++){
-			ret += this.chatAboutQuadrant(relationship);
-		}
+		if(Math.seededRandom() > 0.5){
+				ret += this.chatAboutLackOfInterests(relationship); //one character tries to talk about something that interests them, other character is bored as fuck.
+			}else{
+				ret += this.chatAboutQuadrant(relationship);
+			}
 		return ret;
 	}
 	
@@ -115,7 +120,7 @@ function QuadrantDialogue(session){
 		if(trait != "nice"){
 			return this.interestAndQuadrantChat(relationship);
 		}else{  //no option to chat about interests.
-			return this.chatAboutQuadrantWholeConvo(relationship);
+			return this.lackOfInterestAndQuadrantChat(relationship);
 		}
 	}
 	
