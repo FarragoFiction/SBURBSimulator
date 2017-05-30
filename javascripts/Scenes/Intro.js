@@ -71,7 +71,8 @@ function Intro(session){
 			ret += "They dropkick the " + this.player.object_to_prototype.htmlTitle() + " out of the way and jump into the " + this.player.htmlTitleBasic() + "'s kernel sprite instead. <br> "
 			this.player.object_to_prototype = copyGameEntity(timePlayer, timePlayer.title())
 			this.player.object_to_prototype.helpfulness = 1;
-			this.player.object_to_prototype.helpPhrase = " usefully explains how everything worked when THEY played the game.";
+			//shout out to DinceJof for the great sprite phrase 
+			this.player.object_to_prototype.helpPhrase = " used to be a Player like you, until they took a splinter to the timeline, so they know how all this shit works. Super helpful.";
 			this.player.object_to_prototype.player = true;
 			console.log("time player sprite in session: " + this.session.session_id);
 

@@ -1025,6 +1025,7 @@ var lusus_objects = [];
 var sea_lusus_objects = [];
 
 //seperate 'cause of witches and bad luck and good luck
+//DinceJof -  you prototype your kernel sprite with the ashes of your ancestor. They used to be a SBURB player like you, until they took a scratch to the timeline.
 
 disastor_objects.push(new GameEntity(null, "First Guardian",null));  //also a custom fraymotif.
 disastor_objects[disastor_objects.length-1].hp = 500;
