@@ -9,6 +9,7 @@ function QuadrantDialogue(session){
 	this.player2 = null;
 	this.player1Start = null;
 	this.player2Start = null;
+	this.conversationalPairEngine = new ConversationalPairEngine();
 
 	//this should have a higher priority than land quests, 'cause the point is relationships distract you from playing the damn game.
 	this.trigger = function(){
@@ -58,6 +59,9 @@ function QuadrantDialogue(session){
 		The itnerest functions should pick p1 or p2 to start. If starting player isn't interested in subject, they say "umm" or "uh" or whatever.
 
 		IMPORTANT: two ways these can be called, can be called by sharing a trait. OR by "lackOfInterest";
+
+		//nice. double nice
+
 	*/
 	this.chatAboutAcademic = function(relationship){
 
@@ -129,6 +133,7 @@ function QuadrantDialogue(session){
 
 	this.clubsChat = function(relationship){
 		console.log("Clubs Chat in: " + this.session.session_id)
+		conversationalPair
 		return  "\n<insert random 'clubs' chat here>\n"
 	}
 
@@ -283,5 +288,16 @@ function QuadrantDialogue(session){
 		return "NEVER RUN IN 1.0 YOU DUNKASS. Seriously, I don't support it anymore."
 	}
 
+
+}
+
+
+function conversationalPair(line1, responseLines){
+	this.line1 = line1;
+	this.responseLines = responseLines;
+}
+
+//responsible for creating and organizing conversationalPairs
+function ConversationalPairEngine(){
 
 }
