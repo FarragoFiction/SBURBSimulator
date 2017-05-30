@@ -21,16 +21,16 @@ function QuadrantDialogue(session){
 		return false;
 	}
 	
-	this.findSemiRandomQuadrantedAvailablePlayer(){
+	this.findSemiRandomQuadrantedAvailablePlayer =function(){
 		//set this.player1 to be a random quadranted player.
 		//BUT, if there is a player in a moiralligence who is on the verge of flipping their shit, return them.  so not completely random.
 	}
 	
-	this.findQuardrantMate(){
+	this.findQuardrantMate =function(){
 		//set this.player2 to be one of player1's quadrant mates. first diamond, then heart, then spade, then clubs.
 	}
 	
-	this.getDiscussSymbol(){
+	this.getDiscussSymbol =function(){
 		//TODO, turn which quadrant player1 and player2 are in into a png to pass.  Create pngs for diamonds and clubs.
 	}
 	
@@ -55,7 +55,7 @@ function QuadrantDialogue(session){
 	this.chatAboutLackOfInterests = function(relationship){
 		//either p1 or p2 will try to say something about their interests.
 		//other player will be bored to tears.
-		//other player MUST be able to respond with "hrmm", "yes" and "interesting"
+		//other player MUST be able to respond with "hrmm", "yes" and "interesting". and "horrible creatures, I hate the things."
 	}
 	
 	this.chatAboutQuadrant = function(relationship){
@@ -111,7 +111,7 @@ function QuadrantDialogue(session){
 	}
 	
 	this.getChat =function(){
-		return = "\n\n<insert random shit here>"
+		return  "\n\n<insert random shit here>"
 		var relationship = this.getQuadrant();
 		relationship.moreOfSame(); //strengthens bonds in whatever direction.
 		//feelings jams have highest priority.
@@ -140,8 +140,8 @@ function QuadrantDialogue(session){
 		var randByes = ["Goodday.","Farewell.","I have nothing more to say to you.","I've heard others say the same.","Bye bye.","Bye.","Yeah, I'm done here.","I'm out.","I'm going to ollie outtie.","I'm through speaking with you."];
 		var ret = "";
 
-		ret += chatLine(this.player1Start, this.player1, getRandomElementFromArray(randByes);
-		ret += chatLine(this.player2Start, this.player2, getRandomElementFromArray(randByes);
+		ret += chatLine(this.player1Start, this.player1, getRandomElementFromArray(randByes));
+		ret += chatLine(this.player2Start, this.player2, getRandomElementFromArray(randByes));
 		return ret;
 	}
 	

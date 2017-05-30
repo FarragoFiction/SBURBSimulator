@@ -11,19 +11,33 @@
 	<script type="text/javascript" src="javascripts/Scenes/QuadrantDialogue.js"></script>
 	<script type="text/javascript" src="javascripts/random_tables.js"></script>
 	<script type="text/javascript" src="javascripts/player.js"></script>
+	<script type="text/javascript" src="javascripts/relationship.js"></script>
 	<script type="text/javascript" src="javascripts/session.js"></script>
 	<script type="text/javascript" src="javascripts/v2.0/YellowYardResultController.js"></script>
 	<script type="text/javascript" src="javascripts/quirk.js"></script>
 	<script>
+		var curSessionGlobalVar  = null;
 		window.onload = function() {
-			var session =  new Session(getRandomSeed())
-			session.reinit();
+			curSessionGlobalVar =  new Session(getRandomSeed())
+			curSessionGlobalVar.reinit();
 			curSessionGlobalVar.makePlayers();
 			curSessionGlobalVar.randomizeEntryOrder();
-			var quadrantDialogue = new QuadrantDialogue();
-			quadrantDialogue.player1 = session.players[0];
-			quadrantDialogue.player2 = session.players[1];
-			quadrantDialogue.renderContent(session.newScene());			
+			var quadrantDialogue = new QuadrantDialogue(curSessionGlobalVar);
+			var p1 = curSessionGlobalVar.players[0];
+			var p2 = curSessionGlobalVar.players[1];
+			var rand = Math.random()
+			if(rand<0.25 && curSessionGlobalVar.players[2]){
+				makeClubs(player1, player2,curSessionGlobalVar.players[2]);
+			}else if(rand < 0.5){
+				makeDiamonds(player1, player2);
+			}else if(rand < 0.75){
+				makeSpades(player1, player2);
+			}else{
+				makeHeart(player1, player2); //now kiss.
+			} 
+			quadrantDialogue.player1 = p1;
+			quadrantDialogue.player2 = p2;
+			quadrantDialogue.renderContent(curSessionGlobalVar.newScene());			
 		}
 	</script>
 </head>
