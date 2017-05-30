@@ -34,7 +34,8 @@ function JackRampage(session){
 		for(var i = 0; i<=numStabbings; i++){
 			var f = getRandomElementFromArray(friends)
 			//console.log(f);
-			ret.push(f);
+			if(this.canCatch(f)) ret.push(f);
+			
 		}
 		//var unique = Array.from(new Set(ret));  breaks IE because IE is a whiny little bitch.
 		//var unique = [...new Set(ret)]  //IE ALSO bitches about this. Fucking IE.  I think it doesn't implement Sets. What the actual fuck.
@@ -49,12 +50,13 @@ function JackRampage(session){
 	}
 	
 		this.canCatch = function(victim){
-		if(this.session.jack.getMobility() < victim.mobility) return false;
-		if(victim.aspect == "Void" && victim.isVoidAvailable() && victim.power >50) return false;
-		if(victim.aspect == "Space" && victim.power > 50){
-			console.log("high level space player avoiding jack" + this.session.session_id)
-			return false;  //god tier calliope managed to hide from a Lord of Time. space players might not move around a lot, but that doesn't mean they are easy to catch.
-		} 
+			if(this.session.jack.getMobility() < victim.mobility) return false;
+			if(victim.aspect == "Void" && victim.isVoidAvailable() && victim.power >50) return false;
+			if(victim.aspect == "Space" && victim.power > 50){
+				console.log("high level space player avoiding jack" + this.session.session_id)
+				return false;  //god tier calliope managed to hide from a Lord of Time. space players might not move around a lot, but that doesn't mean they are easy to catch.
+			} 
+			console.log("jack found a stab victim" + this.session.session_id);
 		return true;
 	}
 

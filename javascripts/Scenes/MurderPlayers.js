@@ -253,6 +253,7 @@ function MurderPlayers(session){
 					if(!m.dead && worstEnemy && !this.canCatch(m,worstEnemy)){
 						//console.log("murder thwarted by mobility: " + this.session.session_id)
 						if(worstEnemy.aspect == "Void"){
+							console.log("void avoiding murderer: " + this.session.session_id)
 							ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! It's like they're fucking INVISIBLE or something. It's hard to stay enraged while wandering around, lost."
 						}else if (worstEnemy.aspect == "Space"){
 							ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! They probably aren't even running away, but somehow the " + m.htmlTitle() + " keeps getting turned around. It's hard to stay enraged while wandering around, lost."
