@@ -252,7 +252,13 @@ function MurderPlayers(session){
 				}else{
 					if(!m.dead && worstEnemy && !this.canCatch(m,worstEnemy)){
 						//console.log("murder thwarted by mobility: " + this.session.session_id)
-						ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! Do they just never stay in one spot for more than five seconds? Flighty bastard. It's hard to stay enraged while wandering around lost."
+						if(worstEnemy.aspect == "Void"){
+							ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! It's like they're fucking INVISIBLE or something. It's hard to stay enraged while wandering around, lost."
+						}else if (worstEnemy.aspect == "Space"){
+							ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! They probably aren't even running away, but somehow the " + m.htmlTitle() + " keeps getting turned around. It's hard to stay enraged while wandering around, lost."
+						}else{
+							ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! Do they just never stay in one spot for more than five seconds? Flighty bastard. It's hard to stay enraged while wandering around lost."
+						}
 						m.triggerLevel += -3;
 					}else if(!m.dead){
 						ret += " The " + m.htmlTitle() + " can't find anybody they hate enough to murder. They calm down a little. ";
@@ -321,8 +327,14 @@ function MurderPlayers(session){
 			}else{
 
 				if(worstEnemy && !worstEnemy.dead && !this.canCatch(m,worstEnemy)){
-					if(worstEnemy.aspect == "Void") console.log("murder thwarted by void: " + this.session.session_id)
-					ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! Do they just never stay in one spot for more than five seconds? Flighty bastard. It's hard to stay enraged while wandering around lost."
+					if(worstEnemy.aspect == "Void"){
+						ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! It's like they're fucking INVISIBLE or something."
+					}else if (worstEnemy.aspect == "Space"){
+						ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! They probably aren't even running away, but somehow the " + m.htmlTitle() + " keeps getting turned around. "
+					}else{
+						ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! Do they just never stay in one spot for more than five seconds? Flighty bastard. It's hard to stay enraged while wandering around lost."
+					}
+					
 					m.triggerLevel += -3;
 				}else{
 					ret += " The " + m.htmlTitle() + " can't find anybody they hate enough to murder. They calm down a little. ";
