@@ -92,6 +92,7 @@ function QuadrantDialogue(session){
 		//have them talk about flipOUtREason.  flippingOut has triggerLevel reduced by a good amount.
 		//maybe even parse out flipOUtReason a bit. if they mention "dead" that's gonna be a different convo than ultimate riddle bullshit, right? same with time clones.
 		//if i can't parse out what it's about, or don't care, then have a generic thing where they generically talk about flipOutReason
+		return  "\n<insert random 'diamond flipping the fuck out' chat here>\n"
 	}
 	
 
