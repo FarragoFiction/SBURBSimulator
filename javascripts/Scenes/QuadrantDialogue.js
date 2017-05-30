@@ -135,13 +135,26 @@ function QuadrantDialogue(session){
 		return ret;
 	}
 	
-	this.fareWell = function(){
+	this.fareWell = function(relationship){
 		//fuck yes oblivion, you taught me what a good AI "goodbye" is.
 		var randByes = ["Goodday.","Farewell.","I have nothing more to say to you.","I've heard others say the same.","Bye bye.","Bye.","Yeah, I'm done here.","I'm out.","I'm going to ollie outtie.","I'm through speaking with you."];
+		var goodByes = [];
+		var badByes = [];
 		var ret = "";
-
-		ret += chatLine(this.player1Start, this.player1, getRandomElementFromArray(randByes));
-		ret += chatLine(this.player2Start, this.player2, getRandomElementFromArray(randByes));
+		
+		var r2 = this.player2.getRelationshipWith(this.player1);
+		if(relationship.value > 0){
+			ret += chatLine(this.player1Start, this.player1, getRandomElementFromArray(goodByes));
+		}else{
+			ret += chatLine(this.player1Start, this.player1, getRandomElementFromArray(badByes));
+		}
+		
+		if(r1.value > 0){
+			ret += chatLine(this.player2Start, this.player2, getRandomElementFromArray(badByes));
+		}else{
+			ret += chatLine(this.player2Start, this.player2, getRandomElementFromArray(badByes));
+		}
+		
 		return ret;
 	}
 	
