@@ -34,6 +34,33 @@ function KingPowerful(session){
 		if(this.player1.aspect != "Time") removeFromArray(this.player1, this.session.availablePlayers);
 		if(this.player2.aspect != "Time") removeFromArray(this.player2, this.session.availablePlayers);
 		
+		/*
+				Since this dialogue has no "purpose", no information that HAS to be conveyed, can treat it as more dynamic.
+				Go for bullshit elder scrolls pairs. 
+				
+				Greeting (based on quadrant, not generic greetings)
+				Greeting
+				
+				chatPair1, chatPair2, chatPair3
+				
+				where chatPair is a call and response about one of several topics, each of which have multiple random call/response things it can deploy
+				
+				Have you heard about Kvatch?
+				No.
+				
+				I have been to the Imperial City recently.
+				I've heard others say the same.
+				
+				I have nothing more to say to you.
+				Good day.
+				
+				<3<3<3 elder scrolls. They are such ASSHOLES to each other.
+				
+				Chat pairs can be generated from: interests in common, quadrants, and relationship value (quardrant and value being separate allows impending breakups to be foreshadowed.)
+				ALSO, flipOutReason (but only for diamonds. so maybe that's just a quadrant thing.)
+				
+				
+		*/
 		
 	}
 
