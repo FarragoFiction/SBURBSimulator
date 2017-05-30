@@ -53,6 +53,22 @@ function KingPowerful(session){
 		//calls different methods based on quadrant.  THOSE methods have different shit in them based on value (foreshadows break up.)
 	}
 	
+	this.clubsChat = function(relationship){
+		console.log("Clubs Chat in: " + this.session.session_id)
+	}
+	
+	this.spadesChat = function(relationship){
+		console.log("Spades Chat  in: " + this.session.session_id)
+	}
+	
+	this.heartChat = function(relationship){
+		console.log("Heart Chat  in: " + this.session.session_id)
+	}
+	
+	this.diamondsChat = function(relationship){
+		console.log("Diamonds Chat  in: " + this.session.session_id)
+	}
+	
 	this.feelingsJam = function(relationship){
 		console.log("Feelings Jam in: " + this.session.session_id)
 		//figure out which player is flipping out, make them "flippingOut", make other player "shoosher"
@@ -76,6 +92,7 @@ function KingPowerful(session){
 			return this.chatAboutQuadrant(relationship);
 		}
 	}
+	
 	
 	this.chat = function(div){
 		var canvasHTML = "<br><canvas id='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
@@ -120,7 +137,7 @@ function KingPowerful(session){
 	}
 
 	this.content = function(){
-		return "NEVER RUN IN 1.0 YOU DUNKASS. Seriously, I don't supprt it anymore."
+		return "NEVER RUN IN 1.0 YOU DUNKASS. Seriously, I don't support it anymore."
 	}
 
 
