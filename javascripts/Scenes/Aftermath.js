@@ -22,7 +22,7 @@ function Aftermath(session){
 			if(findLivingPlayers(this.session.players).length > 0){
 				this.session.waywardVagabondEnding = true;
 				ret += " The Warweary Villein feels the sting of defeat. Although he helped the Players win their session, the cost was too great.";
-				ret += " There can be no democracy in a nation with only one citizen left alive. ";
+				ret += " There can be no democracy in a nation with only one citizen left alive. He is the only remaining living Carapacian in the Democratic Army. ";
 				ret += " He becomes the Wayward Vagabond, and exiles himself to the remains of the Players old world, rather than follow them to the new one.";
 			}else{
 				this.session.waywardVagabondEnding = true;

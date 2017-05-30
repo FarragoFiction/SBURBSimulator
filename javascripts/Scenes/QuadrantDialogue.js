@@ -127,7 +127,9 @@ function QuadrantDialogue(session){
 		var chatText = this.getChat();
 		drawChat(document.getElementById("canvas"+ (div.attr("id"))), this.player1, this.player2, chatText, repeatTime,this.getDiscussSymbol());
 	}
-
+	
+	//have test page (link to easter eggs) where it generates some players and shoves them into relationships and 
+	//makes thiem this.player1 and 2 and then calls renderContent. 
 	this.renderContent = function(div){
 		if(this.player1.aspect != "Time") removeFromArray(this.player1, this.session.availablePlayers);
 		if(this.player2.aspect != "Time") removeFromArray(this.player2, this.session.availablePlayers);
