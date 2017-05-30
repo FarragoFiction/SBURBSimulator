@@ -29,6 +29,38 @@ function KingPowerful(session){
 	this.findQuardrantMate(){
 		//set this.player2 to be one of player1's quadrant mates. first diamond, then heart, then spade, then clubs.
 	}
+	
+	this.getDiscussSymbol(){
+		//TODO, turn which quadrant player1 and player2 are in into a png to pass.  Create pngs for diamonds and clubs.
+	}
+	
+	this.getChat =function(){
+		var trait = whatDoPlayersHaveInCommon(this.player1, this.player2);
+		if(trait != "nice"){
+			if(Math.seededRandom() > 0.5){
+				return this.chatAboutInterests(trait);
+			}else{
+				if(Math.seededRandom() > 0.5){
+					return this.chatAboutQuadrant();
+				}else{
+					return this.chatAboutRelationshipValue();
+				}
+			}
+		}else{  //no option to chat about interests.
+			if(Math.seededRandom() > 0.5){
+				return this.chatAboutQuadrant();
+			}else{
+				return this.chatAboutRelationshipValue();
+			}
+		}
+	}
+	
+	this.chat = function(div){
+		var canvasHTML = "<br><canvas id='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		var chatText = this.getChat();
+		drawChat(document.getElementById("canvas"+ (div.attr("id"))), this.player1, this.player2, chatText, repeatTime,this.getDiscussSymbol());
+	}
 
 	this.renderContent = function(div){
 		if(this.player1.aspect != "Time") removeFromArray(this.player1, this.session.availablePlayers);
@@ -61,6 +93,7 @@ function KingPowerful(session){
 				
 				
 		*/
+		this.chat(div);
 		
 	}
 
