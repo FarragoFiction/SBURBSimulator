@@ -1,4 +1,4 @@
-function KingPowerful(session){
+function QuadrantDialogue(session){
 	this.session=session;
 	this.canRepeat = true;
 	this.player1 = null;
@@ -87,7 +87,7 @@ function KingPowerful(session){
 	this.interestAndQuadrantChat = function(relationship){
 		var ret = "";
 		for(var i = 0; i<3; i++){
-			if(Math.seededRandom() > 0.5){
+			if(Math.seededRandom() > 0.3){ //maybe make them MORE likely to chat about interests?
 				ret += this.chatAboutInterests(trait,relationship); //more likely to talk about interests.
 			}else{
 				ret += this.chatAboutQuadrant(relationship);
