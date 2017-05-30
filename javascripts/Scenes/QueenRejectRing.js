@@ -12,7 +12,7 @@ function QueenRejectRing(session){
 	}
 
 	this.renderContent = function(div){
-		div.append("<br>"+this.content());
+		div.append("<br> <img src = 'images/sceneIcons/bq_icon.png'> "+this.content());
 	}
 
 	this.content = function(){
