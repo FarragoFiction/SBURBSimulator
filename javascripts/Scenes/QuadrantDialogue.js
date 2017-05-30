@@ -3,19 +3,14 @@ function QuadrantDialogue(session){
 	this.canRepeat = true;
 	this.player1 = null;
 	this.player2 = null;
+	this.player1Start = null;
+	this.player2Start = null;
 
 	//this should have a higher priority than land quests, 'cause the point is relationships distract you from playing the damn game.
 	this.trigger = function(){
 		this.player1 = null;
 		this.player2 = null;
-		/*
-			two ways I can do this:
-			Either I can select a player at random, and if they are in a quadrant, return true.
-			OR, pass a random number test, then  filter players down to only those who are in a quadrant, and return true.
-			
-			First one is probably easiest, but hardest to modify rate of triggering.
-			Stop picking the laziest way to do things, dunkass.
-		*/
+
 		if(Math.seededRandom() > 0.0001){ //fiddle with rate later, for now, i want to see this happen.
 			findSemiRandomQuadrantedAvailablePlayer();
 			findQuardrantMate();
@@ -110,6 +105,7 @@ function QuadrantDialogue(session){
 	}
 	
 	this.getChat =function(){
+		return = "\n\n<insert random shit here>"
 		var relationship = this.getQuadrant();
 		relationship.moreOfSame(); //strengthens bonds in whatever direction.
 		//feelings jams have highest priority.
@@ -124,12 +120,32 @@ function QuadrantDialogue(session){
 		}
 	}
 	
+	this.getGreeting = function(){
+		var ret = "";
+		var r1 = relationship;
+		var r2 = this.player2.getRelationshipWith(this.player1);
+		ret += chatLine(this.player1Start, this.player1,getRelationshipFlavorGreeting(r1, r2, player1, player2))
+		ret += chatLine(this.player2Start, this.player2,getRelationshipFlavorGreeting(r2, r1, player2, player1))
+		return ret;
+	}
+	
+	this.getFareWell = function(){
+		var randByes = ["Goodday.","Farewell.","I have nothing more to say to you.","I've heard others say the same.","Bye bye.","Bye.","Yeah, I'm done here.","I'm out.","I'm going to ollie outtie.","I'm through speaking with you."];
+		var ret = "";
+
+		ret += chatLine(this.player1Start, this.player1, getRandomElementFromArray(randByes);
+		ret += chatLine(this.player2Start, this.player2, getRandomElementFromArray(randByes);
+		return ret;
+	}
+	
 	
 	
 	this.chat = function(div){
 		var canvasHTML = "<br><canvas id='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
-		var chatText = this.getChat();
+		var chatText = this.getGreeting();
+		chatText += this.getChat();
+		chatText += this.fareWell(); //<-- REQUIRED for ultimate oblivion shittieness. "I have nothing more to say to you." "good day."
 		drawChat(document.getElementById("canvas"+ (div.attr("id"))), this.player1, this.player2, chatText, repeatTime,this.getDiscussSymbol());
 	}
 	
@@ -138,6 +154,8 @@ function QuadrantDialogue(session){
 	this.renderContent = function(div){
 		if(this.player1.aspect != "Time") removeFromArray(this.player1, this.session.availablePlayers);
 		if(this.player2.aspect != "Time") removeFromArray(this.player2, this.session.availablePlayers);
+		this.player1Start = this.player1.chatHandleShort()+ ": "
+		this.player2Start = this.player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		
 		/*
 				Since this dialogue has no "purpose", no information that HAS to be conveyed, can treat it as more dynamic.
