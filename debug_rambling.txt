@@ -1632,3 +1632,17 @@ fuck it, no, refactor. futureJR will thank you.
 
 There, way better. single line instead of confusing nested for loop.
 if(classes.indexOf(miniPlayer.class_name) != -1 && aspects.indexOf(miniPlayer.aspect) != -1) return true;
+
+~~~~~~~~~~~~~
+
+Okay, it's been awhile since the sim proper has been updated with more than just a tweak. Been doing AB and char creator all weekend.
+
+One thing that effects the sim in a huge way is adding Quardrant dialogue. Especially if it costs a turn to do romantic bullshit like that.
+
+Don't want to have fully hardcoded dialogue like with the intros, though. Nor do I want to redo the entire dialogue engine.
+So. I know what I need to do. Bust out the ElderScrolls style "call and response" pairs randomly smooshed together.
+ 
+Pairs can be about: interest both player have in common, the quadrant they are in, the value of their relationship (like, literal value, to foreshadow if they are close to breaking up).
+maybe other stuff too, like jack or a dead player. 
+
+You know, it's been awhile since I made a new scene entirely. Not since Luck/FreeWill i think.  It's nostalgic. All full of hope and promise 'cause I haven't actually made it, yet.
