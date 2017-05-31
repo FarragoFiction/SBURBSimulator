@@ -12,7 +12,7 @@ function YellowYard(session){
 
 
 	this.yellowYardTime = function(div){
-		this.sessidon.yellowYard = true;
+		this.session.yellowYard = true;
 		var div2 = null;
 		var tmp = "<div id = 'yyholder'></div><bR>"
 		div.append(tmp);
