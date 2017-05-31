@@ -66,9 +66,13 @@
 				quadrantDialogue.player1 = p1;
 				quadrantDialogue.player2 = p2;
 				//todo change quadrants for each scene
+				makeSpades(p1, p2);
 				quadrantDialogue.renderContent(curSessionGlobalVar.newScene());
+				makeHeart(p1, p2); //now kiss.
 				quadrantDialogue.renderContent(curSessionGlobalVar.newScene());
+				makeDiamonds(p1, p2);
 				quadrantDialogue.renderContent(curSessionGlobalVar.newScene());
+				if(curSessionGlobalVar.players[2])makeClubs(p1, p2,curSessionGlobalVar.players[2]);
 				quadrantDialogue.renderContent(curSessionGlobalVar.newScene());
 		}
 	</script>
