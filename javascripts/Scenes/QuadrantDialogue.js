@@ -170,8 +170,6 @@ function QuadrantDialogue(session){
 		if(athletic_interests.indexOf(interest) != -1 ) return this.chatAboutAthletic(p1, p2, relationship, relationship2);
 		if(terrible_interests.indexOf(interest) != -1 ) return this.chatAboutTerrible(p1, p2, relationship, relationship2);
 		if(justice_interests.indexOf(interest) != -1 ) return this.chatAboutJustice(p1, p2, relationship, relationship2);
-
-		return  "\n<insert random 'lack of interest' chat here>\n"
 	}
 
 	this.chatAboutQuadrant = function(relationship, relationship2){
