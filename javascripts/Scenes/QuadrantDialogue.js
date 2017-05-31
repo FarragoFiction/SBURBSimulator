@@ -145,27 +145,27 @@ function QuadrantDialogue(session){
 		var chosen = getRandomElementFromArray(chats);
 		if(Math.seededRandom() > 0.5){
 			chat +=  chatLine(this.player1Start, this.player1, chosen.line1);
-			chat += this.p2GetResponseBasedOnRelationship(chosen, this.player2, relationship2)
+			chat += this.p2GetResponseBasedOnRelationship(chosen, this.player2, this.player2Start, relationship2)
 		}else{
 			chat +=  chatLine(this.player2Start, this.player2, chosen.line1);
-			chat += this.p2GetResponseBasedOnRelationship(chosen, this.player1, relationship1)
+			chat += this.p2GetResponseBasedOnRelationship(chosen, this.player1, this.player1Start, relationship1)
 		}
 		return chat;
 	}
 
-	this.p2GetResponseBasedOnRelationship = function(chosen, player, relationship){
+	this.p2GetResponseBasedOnRelationship = function(chosen, player, playerStart, relationship){
 		var chat = "";
 		if(relationship.saved_type == relationship.heart || relationship.saved_type == relationship.diamond){
 			if(relationship.value > 0){
-				chat += chatLine(this.player2Start, player, getRandomElementFromArray(chosen.responseLines));
+				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.responseLines));
 			}else{ //i don't love you like i should.
-				chat += chatLine(this.player2Start, player, getRandomElementFromArray(chosen.genericResponses));
+				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.genericResponses));
 			}
 		}else{
 			if(relationship.value < 0){
-				chat += chatLine(this.player2Start, player, getRandomElementFromArray(chosen.responseLines));
+				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.responseLines));
 			}else{  //i don't hate you like i should.
-				chat += chatLine(this.player2Start, player, getRandomElementFromArray(chosen.genericResponses));
+				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.genericResponses));
 			}
 		}
 		return chat;
