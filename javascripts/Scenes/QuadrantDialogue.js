@@ -140,6 +140,38 @@ function QuadrantDialogue(session){
 		return  "\n<insert random 'clubs' chat here>\n"
 	}
 
+	this.processChatPair = function(chats, relationship1, relationship2){
+		var chat = "";
+		var chosen = getRandomElementFromArray(chats);
+		if(Math.seededRandom() > 0.5){
+			chat +=  chatLine(this.player1Start, this.player1, chosen.line1);
+			chat += this.p2GetResponseBasedOnRelationship = function(chosen, player2, relationship2){
+		}else{
+			chat +=  chatLine(this.player2Start, this.player2, chosen.line1);
+			chat += this.p2GetResponseBasedOnRelationship = function(chosen, player1, relationship1){
+		}
+		return chat;
+	}
+
+	this.p2GetResponseBasedOnRelationship = function(chosen, player, relationship){
+		var chat = "";
+		if(relationship.saved_type == relationship.heart || relationship.saved_type == relationship.diamond){
+			if(relationship2.value > 0){
+				chat += chatLine(this.player2Start, this.player2, getRandomElementFromArray(chosen.responseLines));
+			}else{ //i don't love you like i should.
+				chat += chatLine(this.player2Start, this.player2, getRandomElementFromArray(chosen.genericResponses));
+			}
+		}else{
+			if(relationship2.value < 0){
+				chat += chatLine(this.player2Start, this.player2, getRandomElementFromArray(chosen.responseLines));
+			}else{  //i don't hate you like i should.
+				chat += chatLine(this.player2Start, this.player2, getRandomElementFromArray(chosen.genericResponses));
+			}
+		}
+		return chat;
+	}
+
+
 	this.spadesChat = function(relationship1, relationship2){
 		console.log("Spades Chat  in: " + this.session.session_id)
 		var chats = [];
@@ -151,31 +183,7 @@ function QuadrantDialogue(session){
 		chats.push( new ConversationalPair("Could you GET any stupider?",["Yeah, I could turn into you!","You're one to talk!","Fuck you."]));
 		chats.push( new ConversationalPair("Would you stop fucking bothering me!?",["Make me.","I don't know, CAN I?","It's not like you have anything better to do."]));
 		chats.push( new ConversationalPair("Leave me alone!",["Like hell I will, this is the most fun I've had all day.","You're the one who's all up in my grill! My grill is practically your prison!","Aw, come on, you don't mean that, do you asshole?"]));
-
-		var chat = "";
-		//TODO, pull out this code, and have a method handle this for each subchat.
-		//pass in array of chats. method determines if relationship value matches relationship type.
-		//if no, uses generic response.
-		//if yes, uses repspone lines.
-		var chosen = getRandomElementFromArray(chats);
-		if(Math.seededRandom() > 0.5){
-			chat +=  chatLine(this.player1Start, this.player1, chosen.line1);
-			if(relationship2.value < 0){
-				chat += chatLine(this.player2Start, this.player2, getRandomElementFromArray(chosen.responseLines));
-			}else{
-				chat += chatLine(this.player2Start, this.player2, getRandomElementFromArray(chosen.genericResponses));
-			}
-		}else{
-			chat +=  chatLine(this.player2Start, this.player2, chosen.line1);
-			if(relationship2.value < 0){
-				chat += chatLine(this.player1Start, this.player1, getRandomElementFromArray(chosen.responseLines));
-			}else{
-				chat += chatLine(this.player1Start, this.player1, getRandomElementFromArray(chosen.genericResponses));
-			}
-		}
-
-
-		return  chat;
+		return  this.processChatPair(chats, relationship1, relationship2);
 	}
 
 	this.heartChat = function(relationship, relationship2){
