@@ -136,22 +136,36 @@ function QuadrantDialogue(session){
 		return  "\n<insert random 'clubs' chat here>\n"
 	}
 
-	this.spadesChat = function(relationship){
+	this.spadesChat = function(relationship1, relationship2){
 		console.log("Spades Chat  in: " + this.session.session_id)
-		var chats = [];
+		var spadesChats = [];
 
-		chats.push( new ConversationalPair("God, how can anyone be so bad at this game? You suck.",["Fuck you, I killed that imp like a boss.","Like you're any better!","Fuck off!"]));
-		chats.push( new ConversationalPair("Jegus, stop hogging the grist!",["Make me!","Fuck you, I earned it!","Well, YOU stop hogging the echeladder rungs!"]));
-		chats.push( new ConversationalPair("How can anyone smell as bad as you do?",["Don't talk to me about rank smells. You are the fucking big man of smelling bad.","Fuck you, It's not my fault my bathtub was destroyed!","I am not going to dignify that with a response."]));
-		chats.push( new ConversationalPair("Hey. Fuck you.",["What the hell, man!?","Fuck you too.","I don't have to put up with this."]));
-		chats.push( new ConversationalPair("Could you GET any stupider?",["Yeah, I could turn into you!","You're one to talk!","Fuck you."]));
-		chats.push( new ConversationalPair("Would you stop fucking bothering me!?",["Make me.","I don't know, CAN I?","It's not like you have anything better to do."]));
-		chats.push( new ConversationalPair("Leave me alone!",["Like hell I will, this is the most fun I've had all day.","You're the one who's all up in my grill! My grill is practically your prison!","Aw, come on, you don't mean that, do you asshole?"]));
+		spadesChats.push( new ConversationalPair("God, how can anyone be so bad at this game? You suck.",["Fuck you, I killed that imp like a boss.","Like you're any better!","Fuck off!"]));
+		spadesChats.push( new ConversationalPair("Jegus, stop hogging the grist!",["Make me!","Fuck you, I earned it!","Well, YOU stop hogging the echeladder rungs!"]));
+		spadesChats.push( new ConversationalPair("How can anyone smell as bad as you do?",["Don't talk to me about rank smells. You are the fucking big man of smelling bad.","Fuck you, It's not my fault my bathtub was destroyed!","I am not going to dignify that with a response."]));
+		spadesChats.push( new ConversationalPair("Hey. Fuck you.",["What the hell, man!?","Fuck you too.","I don't have to put up with this."]));
+		spadesChats.push( new ConversationalPair("Could you GET any stupider?",["Yeah, I could turn into you!","You're one to talk!","Fuck you."]));
+		spadesChats.push( new ConversationalPair("Would you stop fucking bothering me!?",["Make me.","I don't know, CAN I?","It's not like you have anything better to do."]));
+		spadesChats.push( new ConversationalPair("Leave me alone!",["Like hell I will, this is the most fun I've had all day.","You're the one who's all up in my grill! My grill is practically your prison!","Aw, come on, you don't mean that, do you asshole?"]));
 
 		var chat = "";
 		var chosen = getRandomElementFromArray(chats);
-		chat +=  chatLine(this.player1Start, this.player1, chosen.line1);
-		chat += chatLine(this.player2Start, this.player2, getRandomElementFromArray(chosen.responseLines));
+		if(Math.seededRandom() > 0.5){
+			chat +=  chatLine(this.player1Start, this.player1, chosen.line1);
+			if(relationship2.value < 0){
+				chat += chatLine(this.player2Start, this.player2, getRandomElementFromArray(chosen.responseLines));
+			}else{
+				chat += chatLine(this.player2Start, this.player2, getRandomElementFromArray(chosen.genericResponses));
+			}
+		}else{
+			chat +=  chatLine(this.player2Start, this.player2, chosen.line1);
+			if(relationship2.value < 0){
+				chat += chatLine(this.player1Start, this.player1, getRandomElementFromArray(chosen.responseLines));
+			}else{
+				chat += chatLine(this.player1Start, this.player1, getRandomElementFromArray(chosen.genericResponses));
+			}
+		}
+
 
 		return  chat;
 	}
@@ -320,5 +334,4 @@ function ConversationalPair(line1, responseLines){
 	this.line1 = line1;
 	this.responseLines = responseLines;
 	this.genericResponses = ["Yeah.", "Uh-huh.", "Sure.", "I've heard others say the same.", "...", "Whatever.", "Yes.", "Interesting...", "Hrmmm..."]
-	this.responseLines  = this.responseLines.concat(this.genericResponses)
 }
