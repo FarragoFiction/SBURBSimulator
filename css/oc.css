@@ -5,6 +5,11 @@
 	margin-right: auto;
 	padding: 10px;
 }
+
+.watermark{
+	position: fixed;
+	vertical-align: middle;
+}
 .sickFiresCentered{
 	margin-left: 230px;
 	margin-right: auto;

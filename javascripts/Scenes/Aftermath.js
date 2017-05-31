@@ -63,6 +63,7 @@ function Aftermath(session){
 			ret += " Victory is not without it's price. " + dead.length + " players are dead, never to revive. There is time for mourning. <br>";
 		}else{
 			ret += " The consorts and Carapacians both Prospitian and Dersite alike mourn their fallen heroes. ";
+			ret += "<img src = 'images/abj_watermark.png' class='watermark'>"
 		}
 
 		for(var i = 0; i< dead.length; i++){
