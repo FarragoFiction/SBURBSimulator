@@ -145,10 +145,10 @@ function QuadrantDialogue(session){
 		var chosen = getRandomElementFromArray(chats);
 		if(Math.seededRandom() > 0.5){
 			chat +=  chatLine(this.player1Start, this.player1, chosen.line1);
-			chat += this.p2GetResponseBasedOnRelationship = function(chosen, player2, relationship2){
+			chat += this.p2GetResponseBasedOnRelationship = function(chosen, player2, relationship2)
 		}else{
 			chat +=  chatLine(this.player2Start, this.player2, chosen.line1);
-			chat += this.p2GetResponseBasedOnRelationship = function(chosen, player1, relationship1){
+			chat += this.p2GetResponseBasedOnRelationship = function(chosen, player1, relationship1)
 		}
 		return chat;
 	}
