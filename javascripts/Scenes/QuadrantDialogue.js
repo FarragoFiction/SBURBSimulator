@@ -102,7 +102,9 @@ function QuadrantDialogue(session){
 
 	//stop right there, criminal scum
 	this.chatAboutJustice = function(relationship, relationship2){
-		//look at InterestConversationalPair
+		//look at InterestConversationalPair and don't call
+		//this.processChatPair(chats, relationship1, relationship2);
+		//because it randomizes who said what and that is not okay.
 	}
 
 	this.chatAboutLackOfInterests = function(relationship, relationship2){
@@ -225,8 +227,11 @@ function QuadrantDialogue(session){
 	this.interestAndQuadrantChat = function(trait, relationship, relationship2){
 		var ret = "";
 		for(var i = 0; i<3; i++){
-			if(Math.seededRandom() > 0.3){ //maybe make them MORE likely to chat about interests?
+			var rand = Math.seededRandom()
+			if(rand < 0.3){ //maybe make them MORE likely to chat about interests?
 				ret += this.chatAboutInterests(trait,relationship, relationship2); //more likely to talk about interests.
+			}else if(rand < 0.6){
+					ret += this.chatAboutLackOfInterests(relationship, relationship2); //would get repetitive if they were locked to one topic.
 			}else{
 				ret += this.chatAboutQuadrant(relationship, relationship2);
 			}
