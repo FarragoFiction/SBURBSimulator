@@ -8,7 +8,8 @@
 
 .watermark{
 	position: fixed;
-	vertical-align: middle;
+	bottom: 0px;
+	left:0px;
 }
 .sickFiresCentered{
 	margin-left: 230px;
