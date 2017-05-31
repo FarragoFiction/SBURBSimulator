@@ -134,9 +134,14 @@ function QuadrantDialogue(session){
 	}
 
 
-	this.clubsChat = function(relationship, relationship2){
+	this.clubsChat = function(relationship1, relationship2){
 		console.log("Clubs Chat in: " + this.session.session_id)
-		return  "\n<insert random 'clubs' chat here>\n"
+		chats.push( new ConversationalPair("So. Behaving?",["Fuck you I do what I want.","Yes, MOM.","God, could you just leave me alone?"]));
+		chats.push( new ConversationalPair("You're not getting into any trouble, are you?",["Oh yeah, tons of trouble. I'm literally sitting in a puddle of that assholes blood RIGHT now.","Ugh. No. I'm behaving.","Can't you just stop meddling?"]));
+		chats.push( new ConversationalPair("Have you tried the breathing exercises I recomended?",["They don't fix the fundamental problem of that asshole existing.","All they did was make me hate breathing.","Fuck you."]));
+		chats.push( new ConversationalPair("Have you tried talking to your...enemy?",["Fuck you.","No. Just. Fuck that guy.","You can't make me."]));
+		//chats.push( new ConversationalPair("",["","",""]));
+		return  this.processChatPair(chats, relationship1, relationship2);
 	}
 
 	this.processChatPair = function(chats, relationship1, relationship2){
