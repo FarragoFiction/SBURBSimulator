@@ -136,7 +136,6 @@ function QuadrantDialogue(session){
 
 	this.clubsChat = function(relationship, relationship2){
 		console.log("Clubs Chat in: " + this.session.session_id)
-		conversationalPair
 		return  "\n<insert random 'clubs' chat here>\n"
 	}
 
