@@ -56,55 +56,94 @@ function QuadrantDialogue(session){
 		relationship.moreOfSame();
 		relationship.moreOfSame();
 		relationship.moreOfSame();
+		var p1 = this.player1;
+		var p2 = this.player2;
+		if(Math.seededRandom() > 0.5){ //change who is initiating
+			p1 = this.player2;
+			p2 = this.player1;
+		}
+		if(trait == "smart") return this.chatAboutAcademic(p1, p2, relationship, relationship2);
+		if(trait == "musical") return this.chatAboutMusic(p1, p2, relationship, relationship2);
+		if(trait == "cultured") return this.chatAboutCulture(p1, p2, relationship, relationship2);
+		if(trait == "lettered") return this.chatAboutWriting(p1, p2, relationship, relationship2);
+		if(trait == "geeky") return this.chatAboutPopCulture(p1, p2, relationship, relationship2);
+		if(trait == "techy") return this.chatAboutTechnology(p1, p2, relationship, relationship2);
+		if(trait == "extroverted") return this.chatAboutSocial(p1, p2, relationship, relationship2);
+		if(trait == "romantic") return this.chatAboutRomance(p1, p2, relationship, relationship2);
+		if(trait == "funny") return this.chatAboutComedy(p1, p2, relationship, relationship2);
+		if(trait == "domestic") return this.chatAboutDomestic(p1, p2, relationship, relationship2);
+		if(trait == "athletic") return this.chatAboutAthletic(p1, p2, relationship, relationship2);
+		if(trait == "honest") return this.chatAboutTerrible(p1, p2, relationship, relationship2);
+		if(trait == "imaginative") return this.chatAboutFantasy(p1, p2, relationship, relationship2);
+		if(trait == "fair-minded") return this.chatAboutJustice(p1, p2, relationship, relationship2);
+
+
 	}
 
-	/*
-		The itnerest functions should pick p1 or p2 to start. If starting player isn't interested in subject, they say "umm" or "uh" or whatever.
-
-		IMPORTANT: two ways these can be called, can be called by sharing a trait. OR by "lackOfInterest";
-
-		//nice. double nice
-
-	*/
-	this.chatAboutAcademic = function(relationship, relationship2){
+	this.chatAboutAcademic = function(p1, p2, relationship, relationship2){
+		return  "\n<insert random 'academic' chat here>\n"
 
 	}
 
-	this.chatAboutMusic = function(relationship, relationship2){
+	this.chatAboutRomance = function(p1, p2, relationship, relationship2){
+		return  "\n<insert random 'romance' chat here>\n"
+
+	}
+
+	this.chatAboutSocial = function(p1, p2, relationship, relationship2){
+		return  "\n<insert random 'social' chat here>\n"
+
+	}
+
+	this.chatAboutTechnology = function(p1, p2, relationship, relationship2){
+		return  "\n<insert random 'technology' chat here>\n"
+
+	}
+
+	this.chatAboutPopCulture = function(p1, p2, relationship, relationship2){
+		return  "\n<insert random 'popculture' chat here>\n"
+
+	}
+
+	this.chatAboutMusic = function(p1, p2, relationship, relationship2){
 			//if both characters like rap/hiphop, etc, they rap here????
+			return  "\n<insert random 'music' chat here>\n"
 	}
 
 	//did you get to the cloud district recently, what am i saying of course you didn't.
-	this.chatAboutCulture = function(relationship, relationship2){
-
+	this.chatAboutCulture = function(p1, p2, relationship, relationship2){
+		return  "\n<insert random 'culture' chat here>\n"
 	}
 
 	//oh lord, tell bad jokes here.  especially puns
-	this.chatAboutComedy = function(relationship, relationship2){
+	this.chatAboutComedy = function(p1, p2, relationship, relationship2){
+		return  "\n<insert random 'comedy' chat here>\n"
+	}
+
+	this.chatAboutDomestic = function(p1, p2, relationship, relationship2){
+		return  "\n<insert random 'domestic' chat here>\n"
+	}
+
+	this.chatAboutAthletic = function(p1, p2, relationship, relationship2){
+		return  "\n<insert random 'athletic' chat here>\n"
 
 	}
 
-	this.chatAboutDomestic = function(relationship, relationship2){
-
+	this.chatAboutTerrible = function(p1, p2, relationship, relationship2){
+		return  "\n<insert random 'terrible' chat here>\n"
 	}
 
-	this.chatAboutAthletic = function(relationship, relationship2){
-
-	}
-
-	this.chatAboutTerrible = function(relationship, relationship2){
-
-	}
-
-	this.chatAboutFantasy = function(relationship, relationship2){
+	this.chatAboutFantasy = function(p1, p2, relationship, relationship2){
+		return  "\n<insert random 'fantasy' chat here>\n"
 
 	}
 
 	//stop right there, criminal scum
-	this.chatAboutJustice = function(relationship, relationship2){
+	this.chatAboutJustice = function(p1, p2, relationship, relationship2){
 		//look at InterestConversationalPair and don't call
 		//this.processChatPair(chats, relationship1, relationship2);
 		//because it randomizes who said what and that is not okay.
+		return  "\n<insert random 'justice' chat here>\n"
 	}
 
 	this.chatAboutLackOfInterests = function(relationship, relationship2){
@@ -369,6 +408,6 @@ function InterestConversationalPair(line1, responseLinesSharedInterestPositive, 
 	//what can i say if i hate you and share your interests.
 	this.responseLinesSharedInterestNegative = responseLinesSharedInterestNegative;
 	//below happens if you don't share an interest at all.
-	this.genericResponses = ["Yeah.", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "...", "Whatever.", "Yes.", "Interesting...", "Hrmmm..."]
+	this.genericResponses = ["Yeah.", , "Nice", "Double nice", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "...", "Whatever.", "Yes.", "Interesting...", "Hrmmm..."]
 
 }
