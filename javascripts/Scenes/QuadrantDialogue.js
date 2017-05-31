@@ -102,7 +102,9 @@ function QuadrantDialogue(session){
 
 	//stop right there, criminal scum
 	this.chatAboutJustice = function(relationship, relationship2){
-
+		//things to say if positive value relationship, things to say if negative
+		//don't call return  this.processChatPair(chats, relationship1, relationship2);
+		//instead custom thing that proesses based on if you have the interest AND the relationship.
 	}
 
 	this.chatAboutLackOfInterests = function(relationship, relationship2){
@@ -237,7 +239,7 @@ function QuadrantDialogue(session){
 	this.lackOfInterestAndQuadrantChat = function(relationship, relationship2){
 		var ret = "";
 		for(var i = 0; i<3; i++){
-		if(Math.seededRandom() > 0.5){
+		if(Math.seededRandom() > 0.3){
 				ret += this.chatAboutLackOfInterests(relationship, relationship2); //one character tries to talk about something that interests them, other character is bored as fuck.
 			}else{
 				ret += this.chatAboutQuadrant(relationship, relationship2);
@@ -354,5 +356,13 @@ function QuadrantDialogue(session){
 function ConversationalPair(line1, responseLines){
 	this.line1 = line1;
 	this.responseLines = responseLines;  //responses are just reactions
+	this.genericResponses = ["Yeah.", "Uh-huh.", "Sure.", "I've heard others say the same.", "...", "Whatever.", "Yes.", "Interesting...", "Hrmmm..."]
+}
+
+function InterestConversationalPair(line1, responseLinesSharedInterest, responseLinesUnSharedInterest){
+	this.line1 = line1;
+	this.responseLinesSharedInterest = responseLinesSharedInterest;  //responses are just reactions
+	this.responseLinesUnSharedInterest = responseLinesUnSharedInterest;
+	//below happens if you don't share an interest and ALSO aren't feeling the relatinship.
 	this.genericResponses = ["Yeah.", "Uh-huh.", "Sure.", "I've heard others say the same.", "...", "Whatever.", "Yes.", "Interesting...", "Hrmmm..."]
 }
