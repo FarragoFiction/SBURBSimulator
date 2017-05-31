@@ -107,13 +107,13 @@ function scratchedLineageText(lineage){
 	var scratched = "";
 	var ret = "";
 	var yellowYard = getYellowYardEvents(lineage[0]);
-	if(yellowYard != "") yellowYard = "Which had YellowYardEvents:  " + yellowYard;
+	if(yellowYard != ". ") yellowYard = "Which had YellowYardEvents:  " + yellowYard;
 	if(lineage[0].scratched) scratched = "(scratched)"
 	ret += lineage[0].session_id + scratched + yellowYard;
 	for(var i = 1; i< lineage.length; i++){
 		var scratched = "";
 		yellowYard = getYellowYardEvents(lineage[i]);
-		if(yellowYard != "") yellowYard = "Which had YellowYardEvents:  " + yellowYard;
+		if(yellowYard != ". ") yellowYard = " which had YellowYardEvents:  " + yellowYard;
 
 		if(lineage[i].scratched) scratched = "(scratched)"
 		ret += " which combined with: " +lineage[i].session_id + scratched + yellowYard + " "
