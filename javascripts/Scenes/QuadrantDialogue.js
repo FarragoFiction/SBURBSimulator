@@ -156,13 +156,13 @@ function QuadrantDialogue(session){
 	this.p2GetResponseBasedOnRelationship = function(chosen, player, relationship){
 		var chat = "";
 		if(relationship.saved_type == relationship.heart || relationship.saved_type == relationship.diamond){
-			if(relationship2.value > 0){
+			if(relationship.value > 0){
 				chat += chatLine(this.player2Start, player, getRandomElementFromArray(chosen.responseLines));
 			}else{ //i don't love you like i should.
 				chat += chatLine(this.player2Start, player, getRandomElementFromArray(chosen.genericResponses));
 			}
 		}else{
-			if(relationship2.value < 0){
+			if(relationship.value < 0){
 				chat += chatLine(this.player2Start, player, getRandomElementFromArray(chosen.responseLines));
 			}else{  //i don't hate you like i should.
 				chat += chatLine(this.player2Start, player, getRandomElementFromArray(chosen.genericResponses));
