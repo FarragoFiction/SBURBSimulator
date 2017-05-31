@@ -136,6 +136,7 @@ function QuadrantDialogue(session){
 
 	this.clubsChat = function(relationship1, relationship2){
 		console.log("Clubs Chat in: " + this.session.session_id)
+		var chats = [];
 		chats.push( new ConversationalPair("So. Behaving?",["Fuck you I do what I want.","Yes, MOM.","God, could you just leave me alone?"]));
 		chats.push( new ConversationalPair("You're not getting into any trouble, are you?",["Oh yeah, tons of trouble. I'm literally sitting in a puddle of that assholes blood RIGHT now.","Ugh. No. I'm behaving.","Can't you just stop meddling?"]));
 		chats.push( new ConversationalPair("Have you tried the breathing exercises I recomended?",["They don't fix the fundamental problem of that asshole existing.","All they did was make me hate breathing.","Fuck you."]));
@@ -179,7 +180,6 @@ function QuadrantDialogue(session){
 	this.spadesChat = function(relationship1, relationship2){
 		console.log("Spades Chat  in: " + this.session.session_id)
 		var chats = [];
-
 		chats.push( new ConversationalPair("God, how can anyone be so bad at this game? You suck.",["Fuck you, I killed that imp like a boss.","Like you're any better!","Fuck off!"]));
 		chats.push( new ConversationalPair("Jegus, stop hogging the grist!",["Make me!","Fuck you, I earned it!","Well, YOU stop hogging the echeladder rungs!"]));
 		chats.push( new ConversationalPair("How can anyone smell as bad as you do?",["Don't talk to me about rank smells. You are the fucking big man of smelling bad.","Fuck you, It's not my fault my bathtub was destroyed!","I am not going to dignify that with a response."]));
