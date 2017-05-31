@@ -297,11 +297,11 @@ function QuadrantDialogue(session){
 		if(freakOutWeasel.flippingOutOverDeadPlayer && freakOutWeasel.flippingOutOverDeadPlayer.dead){
 			var deadRelationship = freakOutWeasel.getRelationshipWith(freakOutWeasel.flippingOutOverDeadPlayer);
 			chat +=  chatLine(p1start, freakOutWeasel, "Oh god. Oh god they are dead. Fuck.");
-			chat +=  chatLine(p2start, freakOutWeasel, "Shit. Wait, who is dead?");
+			chat +=  chatLine(p2start, shoosher, "Shit. Wait, who is dead?");
 			chat +=  chatLine(p1start, freakOutWeasel,freakOutWeasel.flippingOutOverDeadPlayer.chatHandle + ". Fuck. They died " + freakOutWeasel.flippingOutOverDeadPlayer.causeOfDeath );
-			chat +=  chatLine(p2start, freakOutWeasel, "Shit. Weren't they your " + deadRelationship.nounDescription() + "? Fuck.");
+			chat +=  chatLine(p2start, shoosher, "Shit. Weren't they your " + deadRelationship.nounDescription() + "? Fuck.");
 			chat +=  chatLine(p1start, freakOutWeasel, "Yeah. Fuck.");
-			chat +=  chatLine(p2start, freakOutWeasel, "Listen. It's okay. Maybe this game has a bullshit way to bring them back?");
+			chat +=  chatLine(p2start, shoosher, "Listen. It's okay. Maybe this game has a bullshit way to bring them back?");
 			chat +=  chatLine(p1start, freakOutWeasel, "I hope so.");
 			freakOutWeasel.flipOutReason = null;
 			freakOutWeasel.flippingOutOverDeadPlayer = null;
@@ -309,10 +309,10 @@ function QuadrantDialogue(session){
 		}else if(freakOutWeasel.flippingOutOverDeadPlayer && !freakOutWeasel.flippingOutOverDeadPlayer.dead){
 			var deadRelationship = freakOutWeasel.getRelationshipWith(freakOutWeasel.flippingOutOverDeadPlayer);
 			chat +=  chatLine(p1start, freakOutWeasel, "Jesus fuck, apparently my " + deadRelationship.nounDescription() + ", " + freakOutWeasel.flippingOutOverDeadPlayer.chatHandle + ",  died.");
-			chat +=  chatLine(p2start, freakOutWeasel, "Oh god. I'm so sorry.");
+			chat +=  chatLine(p2start, shoosher, "Oh god. I'm so sorry.");
 			chat +=  chatLine(p1start, freakOutWeasel, "Apparently they got better? I don't even know how to feel about this.");
-			chat +=  chatLine(p2start, freakOutWeasel, "SBURB fucking sucks.");
-			chat +=  chatLine(p2start, freakOutWeasel, "It really, really does.");
+			chat +=  chatLine(p2start, shoosher, "SBURB fucking sucks.");
+			chat +=  chatLine(p1start, freakOutWeasel, "It really, really does.");
 			freakOutWeasel.flipOutReason = null;
 			freakOutWeasel.flippingOutOverDeadPlayer = null;
 			return chat;
