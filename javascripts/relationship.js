@@ -19,14 +19,14 @@ function Relationship(initial_value, target_player){
 	this.spades = "Kismesissitude";
 
 	this.nounDescription = function(){
-		if(this.saved_type = this.diamond) return "moirail"
-		if(this.saved_type = this.goodBig) return "crush"
-		if(this.saved_type = this.badBig) return "black crush"
-		if(this.saved_type = this.badMild) return "rival"
-		if(this.saved_type = this.goodMild) return "friend"
-		if(this.saved_type = this.clubs) return "auspistice"
-		if(this.saved_type = this.spades) return "kismesis"
-		if(this.saved_type = this.neutral) return "friend"
+		if(this.saved_type == this.diamond) return "moirail"
+		if(this.saved_type == this.goodBig) return "crush"
+		if(this.saved_type == this.badBig) return "black crush"
+		if(this.saved_type == this.badMild) return "rival"
+		if(this.saved_type == this.goodMild) return "friend"
+		if(this.saved_type == this.clubs) return "auspistice"
+		if(this.saved_type == this.spades) return "kismesis"
+		if(this.saved_type == this.neutral) return "friend"
 	}
 
 	//eventually, when i adapt this to be SGRUB, have 2d relationships.  feel good or bad, feel concupiscient or not.
