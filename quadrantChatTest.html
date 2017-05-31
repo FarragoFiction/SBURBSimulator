@@ -34,10 +34,10 @@
 			var p1 = curSessionGlobalVar.players[0];
 			var p2 = curSessionGlobalVar.players[1];
 			load([p1,p2], []); //in loading.js
-			
-			
+
+
 		}
-		
+
 		function intro(){
 			var quadrantDialogue = new QuadrantDialogue(curSessionGlobalVar);
 			var p1 = curSessionGlobalVar.players[0];
@@ -59,13 +59,15 @@
 					makeSpades(p1, p2);
 				}else{
 					makeHeart(p1, p2); //now kiss.
-				} 
+				}
+
+				makeSpades(p1, p2);//test
 				//hilariously, i am in no way changing how they FEEL about each other. just saying "you're dating". so, should be a good test of near-break ups.
 				quadrantDialogue.player1 = p1;
 				quadrantDialogue.player2 = p2;
-				quadrantDialogue.renderContent(curSessionGlobalVar.newScene());		
-				quadrantDialogue.renderContent(curSessionGlobalVar.newScene());		
-				quadrantDialogue.renderContent(curSessionGlobalVar.newScene());						
+				quadrantDialogue.renderContent(curSessionGlobalVar.newScene());
+				quadrantDialogue.renderContent(curSessionGlobalVar.newScene());
+				quadrantDialogue.renderContent(curSessionGlobalVar.newScene());
 		}
 	</script>
 </head>
@@ -74,7 +76,7 @@
 
 
 <div id = "story">
-	
+
 
 </div>
 <div id = "playerSprites"></div>

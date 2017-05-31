@@ -9,7 +9,6 @@ function QuadrantDialogue(session){
 	this.player2 = null;
 	this.player1Start = null;
 	this.player2Start = null;
-	this.conversationalPairEngine = new ConversationalPairEngine();
 
 	//this should have a higher priority than land quests, 'cause the point is relationships distract you from playing the damn game.
 	this.trigger = function(){
@@ -139,16 +138,35 @@ function QuadrantDialogue(session){
 
 	this.spadesChat = function(relationship){
 		console.log("Spades Chat  in: " + this.session.session_id)
-		return  "\n<insert random 'spades' chat here>\n"
+		var chats = [];
+
+		chats.push( new ConversationalPair("God, how can anyone be so bad at this game? You suck.",["Fuck you, I killed that imp like a boss.","Like you're any better!","Fuck off!"]));
+		chats.push( new ConversationalPair("Jegus, stop hogging the grist!",["Make me!","Fuck you, I earned it!","Well, YOU stop hogging the echeladder rungs!"]));
+		var chat = "";
+		var chosen = getRandomElementFromArray(chats);
+		chat +=  chatLine(this.player1Start, this.player1, chosen.line1);
+		chat += chatLine(this.player2Start, this.player2, getRandomElementFromArray(chosen.responseLines));
+
+		return  chat;
 	}
 
 	this.heartChat = function(relationship){
 		console.log("Heart Chat  in: " + this.session.session_id)
+		var chats = [];
+		chats.push( new ConversationalPair("",["","",""]));
+		chats.push( new ConversationalPair("",["","",""]));
+		chats.push( new ConversationalPair("",["","",""]));
+		chats.push( new ConversationalPair("",["","",""]));
 		return  "\n<insert random 'heart' chat here>\n"
 	}
 
 	this.diamondsChat = function(relationship){
 		console.log("Diamonds Chat  in: " + this.session.session_id)
+		var chats = [];
+		chats.push( new ConversationalPair("",["","",""]));
+		chats.push( new ConversationalPair("",["","",""]));
+		chats.push( new ConversationalPair("",["","",""]));
+		chats.push( new ConversationalPair("",["","",""]));
 		return  "\n<insert random 'diamond' chat here>\n"
 	}
 
@@ -292,7 +310,7 @@ function QuadrantDialogue(session){
 }
 
 //can't have engine create these things 'cause needs to be dynamic, not made ahead of time
-function conversationalPair(line1, responseLines){
+function ConversationalPair(line1, responseLines){
 	this.line1 = line1;
 	this.responseLines = responseLines;
 }
