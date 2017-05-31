@@ -268,6 +268,8 @@ function QuadrantDialogue(session){
 	this.diamondsChat = function(relationship1, relationship2){
 		console.log("Diamonds Chat  in: " + this.session.session_id)
 		var chats = [];
+		this.player1.triggerLevel += -1;
+		this.player2.triggerLevel += -1;
 		chats.push( new ConversationalPair("How have you been?",["Okay.","Good.","Alright.","As well as can be expected.","Better than I thought I'd be."]));
 		chats.push( new ConversationalPair("You doing okay?",["Yes.","As well as can be expected.","Better than I thought I'd be."]));
 		chats.push( new ConversationalPair("This game really sucks.",["Yes, you aren't kidding.","I know,right?","Represent"]));
@@ -277,7 +279,44 @@ function QuadrantDialogue(session){
 
 	this.feelingsJam = function(relationship,relationship2){
 		console.log("Feelings Jam in: " + this.session.session_id)
+		this.player1.triggerLevel += -1;
+		this.player2.triggerLevel += -1;
 		//figure out which player is flipping out, make them "flippingOut", make other player "shoosher"
+		var chat = "";
+		var freakOutWeasel = this.player1;
+		var p1start = this.player1Start;
+		var shoosher = this.player2;
+		var p2start = this.player2Start;
+		if(!freakOutWeasel.flipOutReason){
+			freakOutWeasel = this.player2;
+			p1start = this.player2Start;
+			shooser = this.player1;
+			p2start = this.player1Start;
+		}
+		if(!freakOutWeasel.flipOutReason) return "ERROR: NO ONE IS FLIPPING OUT."
+		if(freakOutWeasel.flippingOutOverDeadPlayer && freakOutWeasel.flippingOutOverDeadPlayer.dead){
+			var deadRelationship = freakOutWeasel.getRelationshipWith(freakOutWeasel.flippingOutOverDeadPlayer);
+			chat +=  chatLine(p1start, freakOutWeasel, "Oh god. Oh god they are dead. Fuck.");
+			chat +=  chatLine(p2start, freakOutWeasel, "Shit. Wait, who is dead?");
+			chat +=  chatLine(p1start, freakOutWeasel,freakOutWeasel.flippingOutOverDeadPlayer.chatHandle + ". Fuck. They died " + freakOutWeasel.flippingOutOverDeadPlayer.causeOfDeath );
+			chat +=  chatLine(p2start, freakOutWeasel, "Shit. Weren't they your " + deadRelationship.nounDescription() + "? Fuck.");
+			chat +=  chatLine(p1start, freakOutWeasel, "Yeah. Fuck.");
+			chat +=  chatLine(p2start, freakOutWeasel, "Hey. It's okay. Maybe this game has a bullshit way to bring them back?");
+			chat +=  chatLine(p1start, freakOutWeasel, "I hope so.");
+			freakOutWeasel.flipOutReason = null;
+			freakOutWeasel.flippingOutOverDeadPlayer = null;
+			return chat;
+		}else if(freakOutWeasel.flippingOutOverDeadPlayer && !freakOutWeasel.flippingOutOverDeadPlayer.dead){
+			var deadRelationship = freakOutWeasel.getRelationshipWith(freakOutWeasel.flippingOutOverDeadPlayer);
+			chat +=  chatLine(p1start, freakOutWeasel, "Jesus fuck, apparently my " + deadRelationship.noun + ", " + freakOutWeasel.flippingOutOverDeadPlayer.chatHandle + ",  died.");
+			chat +=  chatLine(p2start, freakOutWeasel, "Oh god. I'm so sorry.");
+			chat +=  chatLine(p1start, freakOutWeasel, "Apparently they got better? I don't even know how to feel about this.");
+			chat +=  chatLine(p2start, freakOutWeasel, "SBURB fucking sucks.");
+			chat +=  chatLine(p2start, freakOutWeasel, "It really, really does.");
+			freakOutWeasel.flipOutReason = null;
+			freakOutWeasel.flippingOutOverDeadPlayer = null;
+			return chat;
+		}
 		//have them talk about flipOUtREason.  flippingOut has triggerLevel reduced by a good amount.
 		//maybe even parse out flipOUtReason a bit. if they mention "dead" that's gonna be a different convo than ultimate riddle bullshit, right? same with time clones.
 		//if i can't parse out what it's about, or don't care, then have a generic thing where they generically talk about flipOutReason

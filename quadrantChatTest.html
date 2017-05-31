@@ -38,14 +38,35 @@
 
 		}
 
+		function giveFlipOutReason(p1,p2){
+			var p3 = curSessionGlobalVar.players[2];
+			if(p3){
+				if(Math.seededRandom() > 0.5){
+					p1.flipOutReason = "dead player";
+					p1.flippingOutOverDeadPlayer = p3;
+				}else{
+					p2.flipOutReason = "dead player";
+					p2.flippingOutOverDeadPlayer = p3;
+				}
+				if(Math.seededRandom() > 0.5){
+					p3.dead = true; //otherwise they have already revived.
+				}
+			}else{
+				if(Math.seededRandom() > 0.5){
+					p1.flipOutReason = "placeholder";
+				}else{
+					p2.flipOutReason = "placeholder";
+				}
+			}
+		}
+
 		function intro(){
 			var quadrantDialogue = new QuadrantDialogue(curSessionGlobalVar);
 			var p1 = curSessionGlobalVar.players[0];
 			var p2 = curSessionGlobalVar.players[1];
 			p1.renderSelf();
 			p2.renderSelf();
-				p1.flipOutReason = "the dead player";
-				p2.flipOutReason = "the dead player";
+			giveFlipOutReason(p1,p2);
 			var rand = Math.random()
 
 				makeSpades(p1, p2);//test
