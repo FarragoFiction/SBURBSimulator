@@ -424,9 +424,13 @@ function msToTime(s) {
 function renderAfterlifeURL(){
 	if(curSessionGlobalVar.afterLife.ghosts.length > 0){
 		stopTime = Date.now();
+		var params = window.location.href.substr(window.location.href.indexOf("?")+1)
+		if (params == window.location.href) params = ""
 
 		var html = "<Br><br><a href = 'rip.html?players=" + generateURLParamsForPlayers(curSessionGlobalVar.afterLife.ghosts) + "' target='_blank'>View Afterlife In New Tab?</a>";
-		html += "<br><br><a href = 'index2.html'>Random New Session?</a><Br><Br>Simulation took: " + msToTime(stopTime - startTime) + " to render. ";
+		html += '<br><br><a href = "character_creator.html?seed=' +initial_seed +'&' + params + ' " target="_blank">Replay Session (Mildly Fucking Alpha) </a> '
+		html += "<br><br><a href = 'index2.html'>Random New Session?</a>"
+		html += "<Br><Br>Simulation took: " + msToTime(stopTime - startTime) + " to render. ";
 		//console.log("gonna append: " + html)
 		$("#story").append(html);
 	}else{
