@@ -188,11 +188,13 @@ function QuadrantDialogue(session){
 	this.heartChat = function(relationship, relationship2){
 		console.log("Heart Chat  in: " + this.session.session_id)
 		var chats = [];
-		chats.push( new ConversationalPair("",["","",""]));
-		chats.push( new ConversationalPair("",["","",""]));
-		chats.push( new ConversationalPair("",["","",""]));
-		chats.push( new ConversationalPair("",["","",""]));
-		return  "\n<insert random 'heart' chat here>\n"
+		chats.push( new ConversationalPair("You're so great at this game!",["No, way, you're tons better than me.","Heh, about time I'm good at something, huh?","Only because I get to play it with you."]));
+		chats.push( new ConversationalPair("Do you need any extra grist?",["Oh, thanks!","No, I'm good, but it's so sweet of you to offer.","Heh, I was going to ask YOU that."]));
+		chats.push( new ConversationalPair("Wow, I feel like I could talk to you forever!",["Same. It's like we finish each others sandwiches.","I know, right! It's so great.","Exactly! Let's meet up later and do quests"]));
+		chats.push( new ConversationalPair("I can't believe we are actually together!",["It's like a dream come true.","I'm still reminding myself it's real.","It's like something out of a movie."]));
+		chats.push( new ConversationalPair("What's your favorite drink?",["AJ.","Orange Soda.","Purple drank.", "Tea.", "Coffee.", "Hot Chocolate.", "Lemonade."]));
+		return  this.processChatPair(chats, relationship1, relationship2);
+		//chats.push( new ConversationalPair("",["","",""]));
 	}
 
 	this.diamondsChat = function(relationship, relationship2){
