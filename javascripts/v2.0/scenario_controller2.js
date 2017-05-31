@@ -90,7 +90,7 @@ function startSession(){
 	if(getParameterByName("babyStuck")  == "true"){
 		babyStuckMode();
 	}
-	
+
 	checkEasterEgg();
 	initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //will take care of overriding players if need be.
 	checkEasterEgg();
@@ -238,6 +238,7 @@ function processCombinedSession(){
 	}else{
 		//scratch fuckers.
 		curSessionGlobalVar.makeCombinedSession = false;  //can't make a combo session, and skiaia is a frog so no scratch.
+		renderAfterlifeURL();
 		//renderScratchButton(curSessionGlobalVar);
 	}
 
