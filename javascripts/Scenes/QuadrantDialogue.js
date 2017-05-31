@@ -102,9 +102,7 @@ function QuadrantDialogue(session){
 
 	//stop right there, criminal scum
 	this.chatAboutJustice = function(relationship, relationship2){
-		//things to say if positive value relationship, things to say if negative
-		//don't call return  this.processChatPair(chats, relationship1, relationship2);
-		//instead custom thing that proesses based on if you have the interest AND the relationship.
+		//look at InterestConversationalPair
 	}
 
 	this.chatAboutLackOfInterests = function(relationship, relationship2){
