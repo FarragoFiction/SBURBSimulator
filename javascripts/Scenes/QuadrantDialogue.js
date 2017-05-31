@@ -45,7 +45,6 @@ function QuadrantDialogue(session){
 	}
 
 	this.chatAboutInterests = function(trait,relationship, relationship2){
-		return  "\n<insert random 'interest in common' ( " + trait + ") chat here>\n"
 		//calls different methods depending on trait, THOSE methods determine what they randomly talk about (based on relationship value)
 		//trolls talking about pop culture should just list out a huge movie title because i am trash.
 		//maybe randomly generate the movie title because holy fuck does that sound amazing.
