@@ -175,6 +175,8 @@ function QuadrantDialogue(session){
 		if(athletic_interests.indexOf(interest) != -1 ) return this.chatAboutAthletic(p1, p2, relationship, relationship2);
 		if(terrible_interests.indexOf(interest) != -1 ) return this.chatAboutTerrible(p1, p2, relationship, relationship2);
 		if(justice_interests.indexOf(interest) != -1 ) return this.chatAboutJustice(p1, p2, relationship, relationship2);
+		if(fantasy_interests.indexOf(interest) != -1 ) return this.chatAboutFantasy(p1, p2, relationship, relationship2);
+		alert("unknown interest: " + interest)
 	}
 
 	this.chatAboutQuadrant = function(relationship, relationship2){
@@ -183,6 +185,7 @@ function QuadrantDialogue(session){
 		if(relationship.saved_type == relationship.heart)return this.heartChat(relationship, relationship2);
 		if(relationship.saved_type == relationship.clubs)return this.clubsChat(relationship, relationship2);
 		if(relationship.saved_type == relationship.spades) return this.spadesChat(relationship, relationship2);
+			alert("what relationship is this??? " + relationship.saved_type)
 	}
 
 	//skyrim joke exists about how easy it is to steal from an NPC after putting a bucket on their head (now they can't see you stealing)
