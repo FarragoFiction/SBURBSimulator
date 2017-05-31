@@ -1054,8 +1054,8 @@ free_land_titles = free_land_titles.concat(["Hair","Teeth","Tendrils","Mouths","
 free_land_titles = free_land_titles.concat(["Mysteries","Splendor","Luxury","Cash","Coins","Crystals","Gemstones","Cards","Tarot","Wagons","Puzzles","Mayhem","Redundancy","Redundancy"]);
 free_land_titles = free_land_titles.concat(["Obsolescence","Deceit","Ruse","Distraction","Libraries","Blocks","Video Games","Vermin","Butchers","Meat","Clouds", "Horses"]);
 
-
-var corruptedOtherLandTitles = [Zalgo.generate("Horrorterrors"),Zalgo.generate("Glitches"),Zalgo.generate("Grimoires"),Zalgo.generate("Oglog"),Zalgo.generate("Fluthlu"),Zalgo.generate("Garnghut"),Zalgo.generate("Morthol"),Zalgo.generate("The Zoologically Dubious")];
+//google is an in joke because apparently google reports that all sessions are crashed and it is beautiful and google is a horrorterror.
+var corruptedOtherLandTitles = [Zalgo.generate("Google"), Zalgo.generate("Horrorterrors"),Zalgo.generate("Glitches"),Zalgo.generate("Grimoires"),Zalgo.generate("Oglog"),Zalgo.generate("Fluthlu"),Zalgo.generate("Garnghut"),Zalgo.generate("Morthol"),Zalgo.generate("The Zoologically Dubious")];
 free_land_titles = free_land_titles.concat(corruptedOtherLandTitles);
 
 

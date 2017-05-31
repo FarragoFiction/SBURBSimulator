@@ -1279,6 +1279,14 @@ prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
 prototyping_objects[prototyping_objects.length-1].helpPhrase = "provides rad as fuck tips and tricks for beating SBURB and getting mad snacks, yo. 5 out of 5 hats. ";
 
 
+//in joke, lol, google always reports that sessions are crashed. google is a horror terror (see tumblr)
+prototyping_objects.push(new GameEntity(null, "Google",null));
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+prototyping_objects[prototyping_objects.length-1].corrupted = true;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "sure knows a lot about everything, but why does it only seem to return results about crashing SBURB?";
+
+
 prototyping_objects.push(new GameEntity(null, "Game Grl",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
