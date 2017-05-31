@@ -91,6 +91,8 @@ JR c3< KR c3<  Good Design  (KR annoy-idly stops me from hurting Good Design wit
 
 So all I gotta do is find something about SBURBSim I HATE, so that it can vaccilate to flushed whenever I'm mad at programming.
 THEN I will have the perfect shitty quadrant life.
+
+(Pssst...don't tell anyone but I am totally cheating on programming with my 4th wall. JR <3 4th Wall)
 */
 
 
