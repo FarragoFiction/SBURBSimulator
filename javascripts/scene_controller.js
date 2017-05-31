@@ -91,7 +91,7 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 }
 
 function causeError(){
-	throw "causedAnErrorToTestErrorCode"
+	cusdhgfd.kjg  //qwhy does this not get caight???
 }
 
 function getYellowYardEvents(session){
