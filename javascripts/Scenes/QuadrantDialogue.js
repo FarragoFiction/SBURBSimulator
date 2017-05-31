@@ -356,13 +356,16 @@ function QuadrantDialogue(session){
 function ConversationalPair(line1, responseLines){
 	this.line1 = line1;
 	this.responseLines = responseLines;  //responses are just reactions
-	this.genericResponses = ["Yeah.", "Uh-huh.", "Sure.", "I've heard others say the same.", "...", "Whatever.", "Yes.", "Interesting...", "Hrmmm..."]
+	this.genericResponses = ["Yeah.", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "...", "Whatever.", "Yes.", "Interesting...", "Hrmmm..."]
 }
 
-function InterestConversationalPair(line1, responseLinesSharedInterest, responseLinesUnSharedInterest){
+function InterestConversationalPair(line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative){
 	this.line1 = line1;
-	this.responseLinesSharedInterest = responseLinesSharedInterest;  //responses are just reactions
-	this.responseLinesUnSharedInterest = responseLinesUnSharedInterest;
-	//below happens if you don't share an interest and ALSO aren't feeling the relatinship.
-	this.genericResponses = ["Yeah.", "Uh-huh.", "Sure.", "I've heard others say the same.", "...", "Whatever.", "Yes.", "Interesting...", "Hrmmm..."]
+	//what can i say if i like you and share your interest
+	this.responseLinesSharedInterestPositive = responseLinesSharedInterestPositive;
+	//what can i say if i hate you and share your interests.
+	this.responseLinesSharedInterestNegative = responseLinesSharedInterestNegative;
+	//below happens if you don't share an interest at all.
+	this.genericResponses = ["Yeah.", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "...", "Whatever.", "Yes.", "Interesting...", "Hrmmm..."]
+
 }
