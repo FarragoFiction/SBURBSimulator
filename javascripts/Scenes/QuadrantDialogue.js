@@ -84,6 +84,11 @@ function QuadrantDialogue(session){
 
 	}
 
+	this.chatAboutWriting = function(p1, p2, relationship, relationship2){
+		return  "\n<insert random 'writing' chat here>\n"
+
+	}
+
 	this.chatAboutRomance = function(p1, p2, relationship, relationship2){
 		return  "\n<insert random 'romance' chat here>\n"
 
