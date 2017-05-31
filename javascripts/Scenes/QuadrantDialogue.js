@@ -157,15 +157,15 @@ function QuadrantDialogue(session){
 		var chat = "";
 		if(relationship.saved_type == relationship.heart || relationship.saved_type == relationship.diamond){
 			if(relationship2.value > 0){
-				chat += chatLine(this.player2Start, this.player2, getRandomElementFromArray(chosen.responseLines));
+				chat += chatLine(this.player2Start, player, getRandomElementFromArray(chosen.responseLines));
 			}else{ //i don't love you like i should.
-				chat += chatLine(this.player2Start, this.player2, getRandomElementFromArray(chosen.genericResponses));
+				chat += chatLine(this.player2Start, player, getRandomElementFromArray(chosen.genericResponses));
 			}
 		}else{
 			if(relationship2.value < 0){
-				chat += chatLine(this.player2Start, this.player2, getRandomElementFromArray(chosen.responseLines));
+				chat += chatLine(this.player2Start, player, getRandomElementFromArray(chosen.responseLines));
 			}else{  //i don't hate you like i should.
-				chat += chatLine(this.player2Start, this.player2, getRandomElementFromArray(chosen.genericResponses));
+				chat += chatLine(this.player2Start, player, getRandomElementFromArray(chosen.genericResponses));
 			}
 		}
 		return chat;
@@ -347,6 +347,6 @@ function QuadrantDialogue(session){
 //can't have engine create these things 'cause needs to be dynamic, not made ahead of time
 function ConversationalPair(line1, responseLines){
 	this.line1 = line1;
-	this.responseLines = responseLines;
+	this.responseLines = responseLines;  //responses are just reactions
 	this.genericResponses = ["Yeah.", "Uh-huh.", "Sure.", "I've heard others say the same.", "...", "Whatever.", "Yes.", "Interesting...", "Hrmmm..."]
 }
