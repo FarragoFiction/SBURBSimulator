@@ -41,7 +41,7 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 	}else{
 		curSessionGlobalVar.crashedFromSessionBug = true;
 		$("#story").append("<BR>ERROR: AN ACTUAL BUG IN SBURB HAS CRASHED THE SESSION. THE HORRORTERRORS ARE PLEASED THEY NEEDED TO DO NO WORK. (IF THIS HAPPENS FOR ALL SESSIONS, IT MIGHT BE A BROWSER BUG)");
-		recomendedAction = "CONTACT JADEDRESEARCHER. CONVINCE THEM TO FIX SESSION: " + curSessionGlobalVar.getLineage().join( " which joined with ");
+		recomendedAction = "CONTACT JADEDRESEARCHER. CONVINCE THEM TO FIX SESSION: " + scratchedLineageText(curSessionGlobalVar.getLineage());
 	}
 	var message = [
             'Message: ' + msg,
@@ -76,7 +76,7 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 	//once I let PLAYERS cause this (through grim darkness or finding their sesions disk or whatever), have different suggested actions.
 	//maybe throw custom error?
 	$("#story").append("<BR>SUGGESTED ACTION: " + recomendedAction);
-	console.log("Corrupted session: " + curSessionGlobalVar.getLineage().join( " which joined with ")  + " helping AB return, if she is lost here.")
+	console.log("Corrupted session: " + scratchedLineageText(curSessionGlobalVar.getLineage()) + " helping AB return, if she is lost here.")
 	if(junior == true){
 		$("#button").prop('disabled', false)
 	}else{
@@ -88,6 +88,37 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 
 	return false; //if i return true here, the real error doesn't show up
 
+}
+
+function causeError(){
+	throw "causedAnErrorToTestErrorCode"
+}
+
+function getYellowYardEvents(session){
+	var ret = "";
+	for(var i = 0; i<session.yellowYardController.eventsToUndo.length; i++){
+		var decision = session.yellowYardController.eventsToUndo[i]
+		ret += decision.humanLabel() + ", ";
+	}
+	return ret + ". ";
+}
+
+function scratchedLineageText(lineage){
+	var scratched = "";
+	var ret = "";
+	var yellowYard = getYellowYardEvents(lineage[0]);
+	if(yellowYard != "") yellowYard = "Which had YellowYardEvents:  " + yellowYard;
+	if(lineage[0].scratched) scratched = "(scratched)"
+	ret += lineage[0].session_id + scratched + yellowYard;
+	for(var i = 1; i< lineage.length; i++){
+		var scratched = "";
+		yellowYard = getYellowYardEvents(lineage[i]);
+		if(yellowYard != "") yellowYard = "Which had YellowYardEvents:  " + yellowYard;
+
+		if(lineage[i].scratched) scratched = "(scratched)"
+		ret += " which combined with: " +lineage[i].session_id + scratched + yellowYard + " "
+	}
+	return ret;
 }
 window.onerror = printCorruptionMessage;
 
