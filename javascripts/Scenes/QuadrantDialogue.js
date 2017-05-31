@@ -185,10 +185,10 @@ function QuadrantDialogue(session){
 		return  this.processChatPair(chats, relationship1, relationship2);
 	}
 
-	this.heartChat = function(relationship, relationship2){
+	this.heartChat = function(relationship1, relationship2){
 		console.log("Heart Chat  in: " + this.session.session_id)
 		var chats = [];
-		chats.push( new ConversationalPair("You're so great at this game!",["No, way, you're tons better than me.","Heh, about time I'm good at something, huh?","Only because I get to play it with you."]));
+		chats.push( new ConversationalPair("You're so good at this game!",["No, way, you're tons better than me.","Heh, about time I'm good at something, huh?","Only because I get to play it with you."]));
 		chats.push( new ConversationalPair("Do you need any extra grist?",["Oh, thanks!","No, I'm good, but it's so sweet of you to offer.","Heh, I was going to ask YOU that."]));
 		chats.push( new ConversationalPair("Wow, I feel like I could talk to you forever!",["Same. It's like we finish each others sandwiches.","I know, right! It's so great.","Exactly! Let's meet up later and do quests"]));
 		chats.push( new ConversationalPair("I can't believe we are actually together!",["It's like a dream come true.","I'm still reminding myself it's real.","It's like something out of a movie."]));
@@ -197,14 +197,14 @@ function QuadrantDialogue(session){
 		//chats.push( new ConversationalPair("",["","",""]));
 	}
 
-	this.diamondsChat = function(relationship, relationship2){
+	this.diamondsChat = function(relationship1, relationship2){
 		console.log("Diamonds Chat  in: " + this.session.session_id)
 		var chats = [];
-		chats.push( new ConversationalPair("",["","",""]));
-		chats.push( new ConversationalPair("",["","",""]));
-		chats.push( new ConversationalPair("",["","",""]));
-		chats.push( new ConversationalPair("",["","",""]));
-		return  "\n<insert random 'diamond' chat here>\n"
+		chats.push( new ConversationalPair("How have you been?",["Okay.","Good.","Alright.","As well as can be expected.","Better than I thought I'd be."]));
+		chats.push( new ConversationalPair("You doing okay?",["Yes.","As well as can be expected.","Better than I thought I'd be."]));
+		chats.push( new ConversationalPair("This game really sucks.",["Yes, you aren't kidding.","I know,right?","Represent"]));
+		//chats.push( new ConversationalPair("",["","",""]));
+		return  this.processChatPair(chats, relationship1, relationship2);
 	}
 
 	this.feelingsJam = function(relationship,relationship2){

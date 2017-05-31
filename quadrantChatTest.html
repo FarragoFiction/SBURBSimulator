@@ -44,22 +44,9 @@
 			var p2 = curSessionGlobalVar.players[1];
 			p1.renderSelf();
 			p2.renderSelf();
-			if(Math.random()>0.5){
 				p1.flipOutReason = "the dead player";
-			}
-			if(Math.random()>0.5){
 				p2.flipOutReason = "the dead player";
-			}
 			var rand = Math.random()
-				if(rand<0.25 && curSessionGlobalVar.players[2]){
-					makeClubs(p1, p2,curSessionGlobalVar.players[2]);
-				}else if(rand < 0.5){
-					makeDiamonds(p1, p2);
-				}else if(rand < 0.75){
-					makeSpades(p1, p2);
-				}else{
-					makeHeart(p1, p2); //now kiss.
-				}
 
 				makeSpades(p1, p2);//test
 				//hilariously, i am in no way changing how they FEEL about each other. just saying "you're dating". so, should be a good test of near-break ups.
@@ -72,8 +59,15 @@
 				quadrantDialogue.renderContent(curSessionGlobalVar.newScene());
 				makeDiamonds(p1, p2);
 				quadrantDialogue.renderContent(curSessionGlobalVar.newScene());
-				if(curSessionGlobalVar.players[2])makeClubs(p1, p2,curSessionGlobalVar.players[2]);
+				if(curSessionGlobalVar.players[2]){
+					makeClubs(p1, p2,curSessionGlobalVar.players[2]);
+					quadrantDialogue.renderContent(curSessionGlobalVar.newScene());
+				}
+				p2.flipOutReason = null;
+				p1.flipOutReason = null;
+				makeDiamonds(p1, p2);
 				quadrantDialogue.renderContent(curSessionGlobalVar.newScene());
+
 		}
 	</script>
 </head>
