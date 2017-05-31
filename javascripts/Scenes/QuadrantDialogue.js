@@ -146,11 +146,31 @@ function QuadrantDialogue(session){
 	}
 
 	this.chatAboutLackOfInterests = function(relationship, relationship2){
-		//either p1 or p2 will try to say something about their interests.
-		//other player will be bored to tears.
-		//other player MUST be able to respond with "hrmm", "yes" and "interesting". and "horrible creatures, I hate the things."
-		//call an interest directly (chatAboutJustice)
-		//it'll handle responses no matter who is interested in what.
+		var p1 = this.player1;
+		var p2 = this.player2;
+		if(Math.seededRandom() > 0.5){ //change who is initiating
+			p1 = this.player2;
+			p2 = this.player1;
+		}
+		var interest = p1.interest1;
+		if(Math.seededRandom() > 0.5){ //change who is initiating
+			interest = p1.interest2;
+		}
+
+		if(academic_interests.indexOf(interest) != -1 ) return this.chatAboutAcademic(p1, p2, relationship, relationship2);
+		if(music_interests.indexOf(interest) != -1 ) return this.chatAboutMusic(p1, p2, relationship, relationship2);
+		if(culture_interests.indexOf(interest) != -1 ) return this.chatAboutCulture(p1, p2, relationship, relationship2);
+		if(writing_interests.indexOf(interest) != -1 ) return this.chatAboutWriting(p1, p2, relationship, relationship2);
+		if(pop_culture_interests.indexOf(interest) != -1 ) return this.chatAboutPopCulture(p1, p2, relationship, relationship2);
+		if(technology_interests.indexOf(interest) != -1 ) return this.chatAboutTechnology(p1, p2, relationship, relationship2);
+		if(social_interests.indexOf(interest) != -1 ) return this.chatAboutSocial(p1, p2, relationship, relationship2);
+		if(romantic_interests.indexOf(interest) != -1 ) return this.chatAboutRomance(p1, p2, relationship, relationship2);
+		if(comedy_interests.indexOf(interest) != -1 ) return this.chatAboutComedy(p1, p2, relationship, relationship2);
+		if(domestic_interests.indexOf(interest) != -1 ) return this.chatAboutDomestic(p1, p2, relationship, relationship2);
+		if(athletic_interests.indexOf(interest) != -1 ) return this.chatAboutAthletic(p1, p2, relationship, relationship2);
+		if(terrible_interests.indexOf(interest) != -1 ) return this.chatAboutTerrible(p1, p2, relationship, relationship2);
+		if(justice_interests.indexOf(interest) != -1 ) return this.chatAboutJustice(p1, p2, relationship, relationship2);
+
 		return  "\n<insert random 'lack of interest' chat here>\n"
 	}
 
