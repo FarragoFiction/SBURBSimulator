@@ -33,6 +33,8 @@
 
 <p> <a href = "rap.html">Extended Rap Battles</a>: Okay, so, like the rap battles are just so amazingly shitty, right? And they only get even SHITTIER the longer I let them go on. So, you know, here's a page that's just the rap battles going on for much, much longer. It was the easiest way to test them without waiting for sims to run. </p>
 <p> <a href = "test_fraymotif.html">Fraymotif Test Page</a>: Gotta test fraymotifs before they are part of the battle engine.</p>
+<p> <a href = "quadrantTestChat.html">Quadrant Chat Test</a>: New quardant based dialogue engine.</p>
+
 
 <p>$(".void").toggle()  What could this mean??? <div class = 'void'> Do you think it has something to do with this??? A better question: Do you really think this would be an easter egg if this were the only place with a div hidden in void???</div> </p>
 <p>DID YOU KNOW: In addition to sharing hair color/blood color with their guardians, players share at least one interest with them as well.  So a player might like Wizards and Writing while their Guardian might enjoy Wizards and Hacking.
