@@ -301,14 +301,14 @@ function QuadrantDialogue(session){
 			chat +=  chatLine(p1start, freakOutWeasel,freakOutWeasel.flippingOutOverDeadPlayer.chatHandle + ". Fuck. They died " + freakOutWeasel.flippingOutOverDeadPlayer.causeOfDeath );
 			chat +=  chatLine(p2start, freakOutWeasel, "Shit. Weren't they your " + deadRelationship.nounDescription() + "? Fuck.");
 			chat +=  chatLine(p1start, freakOutWeasel, "Yeah. Fuck.");
-			chat +=  chatLine(p2start, freakOutWeasel, "Hey. It's okay. Maybe this game has a bullshit way to bring them back?");
+			chat +=  chatLine(p2start, freakOutWeasel, "Listen. It's okay. Maybe this game has a bullshit way to bring them back?");
 			chat +=  chatLine(p1start, freakOutWeasel, "I hope so.");
 			freakOutWeasel.flipOutReason = null;
 			freakOutWeasel.flippingOutOverDeadPlayer = null;
 			return chat;
 		}else if(freakOutWeasel.flippingOutOverDeadPlayer && !freakOutWeasel.flippingOutOverDeadPlayer.dead){
 			var deadRelationship = freakOutWeasel.getRelationshipWith(freakOutWeasel.flippingOutOverDeadPlayer);
-			chat +=  chatLine(p1start, freakOutWeasel, "Jesus fuck, apparently my " + deadRelationship.noun + ", " + freakOutWeasel.flippingOutOverDeadPlayer.chatHandle + ",  died.");
+			chat +=  chatLine(p1start, freakOutWeasel, "Jesus fuck, apparently my " + deadRelationship.nounDescription() + ", " + freakOutWeasel.flippingOutOverDeadPlayer.chatHandle + ",  died.");
 			chat +=  chatLine(p2start, freakOutWeasel, "Oh god. I'm so sorry.");
 			chat +=  chatLine(p1start, freakOutWeasel, "Apparently they got better? I don't even know how to feel about this.");
 			chat +=  chatLine(p2start, freakOutWeasel, "SBURB fucking sucks.");
