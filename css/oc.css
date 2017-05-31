@@ -10,6 +10,7 @@
 	position: fixed;
 	bottom: 0px;
 	left:0px;
+	z-index: -1;
 }
 .sickFiresCentered{
 	margin-left: 230px;
