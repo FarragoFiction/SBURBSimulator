@@ -116,6 +116,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	
 	this.interestedIn = function(interestWord){
 		if(interestWord == "Comedy") return playerLikesComedy(this)
+		console.log("todo implement for all interests...............................................DO IT!!! -signed pastJR")
+		return false;
 	}
 
 	//if change would push me over 3, render 'cause i'm newly grimdark

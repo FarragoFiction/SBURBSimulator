@@ -57,71 +57,75 @@ function QuadrantDialogue(session){
 		relationship.moreOfSame();
 		var p1 = this.player1;
 		var p2 = this.player2;
+		var p1Start = this.player1Start;
+		var p2Start = this.player2Start;
 		if(Math.seededRandom() > 0.5){ //change who is initiating
 			p1 = this.player2;
 			p2 = this.player1;
+			p1Start = this.player2Start;
+			p2Start = this.player1Start;
 		}
-		if(trait == "smart") return this.chatAboutAcademic(p1, p2, relationship, relationship2);
-		if(trait == "musical") return this.chatAboutMusic(p1, p2, relationship, relationship2);
-		if(trait == "cultured") return this.chatAboutCulture(p1, p2, relationship, relationship2);
-		if(trait == "lettered") return this.chatAboutWriting(p1, p2, relationship, relationship2);
-		if(trait == "geeky") return this.chatAboutPopCulture(p1, p2, relationship, relationship2);
-		if(trait == "techy") return this.chatAboutTechnology(p1, p2, relationship, relationship2);
-		if(trait == "extroverted") return this.chatAboutSocial(p1, p2, relationship, relationship2);
-		if(trait == "romantic") return this.chatAboutRomance(p1, p2, relationship, relationship2);
-		if(trait == "funny") return this.chatAboutComedy(p1, p2, relationship, relationship2);
+		if(trait == "smart") return this.chatAboutAcademic(p1, p2,  p1Start, p2Start,relationship, relationship2);
+		if(trait == "musical") return this.chatAboutMusic(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(trait == "cultured") return this.chatAboutCulture(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(trait == "lettered") return this.chatAboutWriting(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(trait == "geeky") return this.chatAboutPopCulture(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(trait == "techy") return this.chatAboutTechnology(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(trait == "extroverted") return this.chatAboutSocial(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(trait == "romantic") return this.chatAboutRomance(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(trait == "funny") return this.chatAboutComedy(p1, p2, p1Start, p2Start, relationship, relationship2);
 		//if(trait == "funny") return this.chatAboutComedy(p1, p2, relationship, relationship2); //why does this have a illegal character???
-		if(trait == "domestic") return this.chatAboutDomestic(p1, p2, relationship, relationship2);
-		if(trait == "athletic") return this.chatAboutAthletic(p1, p2, relationship, relationship2);
-		if(trait == "honest") return this.chatAboutTerrible(p1, p2, relationship, relationship2);
-		if(trait == "imaginative") return this.chatAboutFantasy(p1, p2, relationship, relationship2);
-		if(trait == "fair-minded") return this.chatAboutJustice(p1, p2, relationship, relationship2);
+		if(trait == "domestic") return this.chatAboutDomestic(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(trait == "athletic") return this.chatAboutAthletic(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(trait == "honest") return this.chatAboutTerrible(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(trait == "imaginative") return this.chatAboutFantasy(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(trait == "fair-minded") return this.chatAboutJustice(p1, p2, p1Start, p2Start, relationship, relationship2);
 
 
 	}
 
-	this.chatAboutAcademic = function(p1, p2, relationship, relationship2){
+	this.chatAboutAcademic = function(p1, p2,p1Start, p2Start, relationship, relationship2){
 		return  "\n<insert random 'academic' chat here>\n"
 
 	}
 
-	this.chatAboutWriting = function(p1, p2, relationship, relationship2){
+	this.chatAboutWriting = function(p1, p2,p1Start, p2Start, relationship, relationship2){
 		return  "\n<insert random 'writing' chat here>\n"
 
 	}
 
-	this.chatAboutRomance = function(p1, p2, relationship, relationship2){
+	this.chatAboutRomance = function(p1, p2,p1Start, p2Start, relationship, relationship2){
 		return  "\n<insert random 'romance' chat here>\n"
 
 	}
 
-	this.chatAboutSocial = function(p1, p2, relationship, relationship2){
+	this.chatAboutSocial = function(p1, p2,p1Start, p2Start, relationship, relationship2){
 		return  "\n<insert random 'social' chat here>\n"
 
 	}
 
-	this.chatAboutTechnology = function(p1, p2, relationship, relationship2){
+	this.chatAboutTechnology = function(p1, p2,p1Start, p2Start, relationship, relationship2){
 		return  "\n<insert random 'technology' chat here>\n"
 
 	}
 
-	this.chatAboutPopCulture = function(p1, p2, relationship, relationship2){
+	this.chatAboutPopCulture = function(p1, p2,p1Start, p2Start, relationship, relationship2){
 		return  "\n<insert random 'popculture' chat here>\n"
 
 	}
 
-	this.chatAboutMusic = function(p1, p2, relationship, relationship2){
+	this.chatAboutMusic = function(p1, p2,p1Start, p2Start, relationship, relationship2){
 			//if both characters like rap/hiphop, etc, they rap here????
 			return  "\n<insert random 'music' chat here>\n"
 	}
 
 	//did you get to the cloud district recently, what am i saying of course you didn't.
-	this.chatAboutCulture = function(p1, p2, relationship, relationship2){
+	this.chatAboutCulture = function(p1, p2,p1Start, p2Start, relationship, relationship2){
 		return  "\n<insert random 'culture' chat here>\n"
 	}
 
 	//oh lord, tell bad jokes here.  especially puns
-	this.chatAboutComedy = function(p1, p2, relationship, relationship2){
+	this.chatAboutComedy = function(p1, p2,p1Start, p2Start, relationship, relationship2){
 		return  "\n<insert random 'comedy' chat here>\n"
 		var interest = "Comedy"; //TODO need a standard way to say if p2 "likes comedy";
 		//in a way that InterestConversationalPair can store, and getp2ResponseBasedOnInterests can use to ask if p2 likes/knows about.
@@ -135,71 +139,93 @@ function QuadrantDialogue(session){
 		return this.processChatAboutInterests(chats, interest, p1,p2, relationship1, relationship2)
 	}
 
-	this.chatAboutDomestic = function(p1, p2, relationship, relationship2){
+	this.chatAboutDomestic = function(p1, p2,p1Start, p2Start, relationship, relationship2){
 		return  "\n<insert random 'domestic' chat here>\n"
 	}
 
-	this.chatAboutAthletic = function(p1, p2, relationship, relationship2){
+	this.chatAboutAthletic = function(p1, p2, p1Start, p2Start,relationship, relationship2){
 		return  "\n<insert random 'athletic' chat here>\n"
 
 	}
 
-	this.chatAboutTerrible = function(p1, p2, relationship, relationship2){
+	this.chatAboutTerrible = function(p1, p2,p1Start, p2Start, relationship, relationship2){
 		return  "\n<insert random 'terrible' chat here>\n"
 	}
 
-	this.chatAboutFantasy = function(p1, p2, relationship, relationship2){
+	this.chatAboutFantasy = function(p1, p2, p1Start, p2Start,relationship, relationship2){
 		return  "\n<insert random 'fantasy' chat here>\n"
 
 	}
 	
-	//response depends on whether or not p2 shares that interest.
-	this.processChatAboutInterests = function(chats, interest, p1,p2,relationship1, relationship2){
-		var chosen = getRandomElementFromArray(chats);
-		var chat = "";
-		chat +=  chatLine(this.player1Start, this.player1, chosen.line1);
-		chat += this.p2GetResponseBasedOnRelationship(chosen, this.player2, this.player2Start, relationship2)
-		return chat;
-	}
-	
-	this.getp2ResponseBasedOnInterests = function(chat, interest, p1, p2, relationship1, relationship2){
-		
-	}
 
 	//stop right there, criminal scum
-	this.chatAboutJustice = function(p1, p2, relationship, relationship2){
+	this.chatAboutJustice = function(p1, p2, p1Start, p2Start, relationship, relationship2){
 		//look at InterestConversationalPair and don't call
 		//this.processChatPair(chats, relationship1, relationship2);
 		//because it randomizes who said what and that is not okay.
 		return  "\n<insert random 'justice' chat here>\n"
 	}
+	
+	
+	//response depends on whether or not p2 shares that interest.
+	this.processChatAboutInterests = function(chats, interest, p1,p2, p1Start, p2Start, relationship1, relationship2){
+		var chosen = getRandomElementFromArray(chats);
+		var chat = "";
+		chat +=  chatLine(this.player1Start, this.player1, chosen.line1);
+		chat += this.getp2ResponseBasedOnInterests(chosen, p2, p2Start, relationship2)
+		return chat;
+	}
+	
+	this.getp2ResponseBasedOnInterests = function(chat, interest, player, playerStart, relationship){
+		var chat = "";
+		if(relationship1.value > 0){
+			if(player.interestedIn(interest){
+				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.responseLinesSharedInterestPositive));
+			}else{ 
+				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.genericResponses));
+			}
+		}else{
+			if(player.interestedIn(interest)){
+				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.responseLinesSharedInterestNegative));
+			}else{  
+				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.genericResponses));
+			}
+		}
+		return chat;
+	}
+
+	
 
 	this.chatAboutLackOfInterests = function(relationship, relationship2){
 		var p1 = this.player1;
 		var p2 = this.player2;
+		var p1Start = this.player1Start;
+		var p2Start = this.player2Start;
 		if(Math.seededRandom() > 0.5){ //change who is initiating
 			p1 = this.player2;
 			p2 = this.player1;
+			p1Start = this.player2Start;
+			p2Start = this.player1Start;
 		}
 		var interest = p1.interest1;
 		if(Math.seededRandom() > 0.5){ //change who is initiating
 			interest = p1.interest2;
 		}
 
-		if(academic_interests.indexOf(interest) != -1 ) return this.chatAboutAcademic(p1, p2, relationship, relationship2);
-		if(music_interests.indexOf(interest) != -1 ) return this.chatAboutMusic(p1, p2, relationship, relationship2);
-		if(culture_interests.indexOf(interest) != -1 ) return this.chatAboutCulture(p1, p2, relationship, relationship2);
-		if(writing_interests.indexOf(interest) != -1 ) return this.chatAboutWriting(p1, p2, relationship, relationship2);
-		if(pop_culture_interests.indexOf(interest) != -1 ) return this.chatAboutPopCulture(p1, p2, relationship, relationship2);
-		if(technology_interests.indexOf(interest) != -1 ) return this.chatAboutTechnology(p1, p2, relationship, relationship2);
-		if(social_interests.indexOf(interest) != -1 ) return this.chatAboutSocial(p1, p2, relationship, relationship2);
-		if(romantic_interests.indexOf(interest) != -1 ) return this.chatAboutRomance(p1, p2, relationship, relationship2);
-		if(comedy_interests.indexOf(interest) != -1 ) return this.chatAboutComedy(p1, p2, relationship, relationship2);
-		if(domestic_interests.indexOf(interest) != -1 ) return this.chatAboutDomestic(p1, p2, relationship, relationship2);
-		if(athletic_interests.indexOf(interest) != -1 ) return this.chatAboutAthletic(p1, p2, relationship, relationship2);
-		if(terrible_interests.indexOf(interest) != -1 ) return this.chatAboutTerrible(p1, p2, relationship, relationship2);
-		if(justice_interests.indexOf(interest) != -1 ) return this.chatAboutJustice(p1, p2, relationship, relationship2);
-		if(fantasy_interests.indexOf(interest) != -1 ) return this.chatAboutFantasy(p1, p2, relationship, relationship2);
+		if(academic_interests.indexOf(interest) != -1 ) return this.chatAboutAcademic(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(music_interests.indexOf(interest) != -1 ) return this.chatAboutMusic(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(culture_interests.indexOf(interest) != -1 ) return this.chatAboutCulture(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(writing_interests.indexOf(interest) != -1 ) return this.chatAboutWriting(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(pop_culture_interests.indexOf(interest) != -1 ) return this.chatAboutPopCulture(p1, p2,  p1Start, p2Start,relationship, relationship2);
+		if(technology_interests.indexOf(interest) != -1 ) return this.chatAboutTechnology(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(social_interests.indexOf(interest) != -1 ) return this.chatAboutSocial(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(romantic_interests.indexOf(interest) != -1 ) return this.chatAboutRomance(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(comedy_interests.indexOf(interest) != -1 ) return this.chatAboutComedy(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(domestic_interests.indexOf(interest) != -1 ) return this.chatAboutDomestic(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(athletic_interests.indexOf(interest) != -1 ) return this.chatAboutAthletic(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(terrible_interests.indexOf(interest) != -1 ) return this.chatAboutTerrible(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(justice_interests.indexOf(interest) != -1 ) return this.chatAboutJustice(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(fantasy_interests.indexOf(interest) != -1 ) return this.chatAboutFantasy(p1, p2, p1Start, p2Start, relationship, relationship2);
 	}
 
 	this.chatAboutQuadrant = function(relationship, relationship2){
