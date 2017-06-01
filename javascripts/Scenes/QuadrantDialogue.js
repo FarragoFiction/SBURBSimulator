@@ -63,7 +63,7 @@ function QuadrantDialogue(session){
 			p1 = this.player2;
 			p2 = this.player1;
 			p1Start = this.player2Start;
-			p2Start = this.player1Start;
+			p2Start = this.playerStart;
 		}
 		if(trait == "smart") return this.chatAboutAcademic(p1, p2,  p1Start, p2Start,relationship, relationship2);
 		if(trait == "musical") return this.chatAboutMusic(p1, p2, p1Start, p2Start, relationship, relationship2);
@@ -74,7 +74,7 @@ function QuadrantDialogue(session){
 		if(trait == "extroverted") return this.chatAboutSocial(p1, p2, p1Start, p2Start, relationship, relationship2);
 		if(trait == "romantic") return this.chatAboutRomance(p1, p2, p1Start, p2Start, relationship, relationship2);
 		if(trait == "funny") return this.chatAboutComedy(p1, p2, p1Start, p2Start, relationship, relationship2);
-		//if(trait == "funny") return this.chatAboutComedy(p1, p2, relationship, relationship2); //why does this have a illegal character???
+		//if(trait == "funny") return this.chatAboutComedy(p1, p2, relationship, relationship2); //why does this have a illegal character??? oh. i can see the char on windows, but couldn't on mac. so weird.
 		if(trait == "domestic") return this.chatAboutDomestic(p1, p2, p1Start, p2Start, relationship, relationship2);
 		if(trait == "athletic") return this.chatAboutAthletic(p1, p2, p1Start, p2Start, relationship, relationship2);
 		if(trait == "honest") return this.chatAboutTerrible(p1, p2, p1Start, p2Start, relationship, relationship2);
@@ -136,7 +136,7 @@ function QuadrantDialogue(session){
 		//InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative))
 		var chats = [];
 		chats.push(new InterestConversationalPair(interest, "Why did the ghost cross the road? To get to the other side!", ["lol, that was hilarious!","lol, because the afterlife is also called the other side but that's also where you get when you cross a road!"], ["Holy shit, could you get any worse at jokes?", "That joke is older than my guardian. You suck."]));
-		return this.processChatAboutInterests(chats, interest, p1,p2, relationship1, relationship2)
+		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship1, relationship2)
 	}
 
 	this.chatAboutDomestic = function(p1, p2,p1Start, p2Start, relationship, relationship2){
