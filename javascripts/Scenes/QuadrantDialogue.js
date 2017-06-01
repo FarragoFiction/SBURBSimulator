@@ -176,7 +176,6 @@ function QuadrantDialogue(session){
 		if(terrible_interests.indexOf(interest) != -1 ) return this.chatAboutTerrible(p1, p2, relationship, relationship2);
 		if(justice_interests.indexOf(interest) != -1 ) return this.chatAboutJustice(p1, p2, relationship, relationship2);
 		if(fantasy_interests.indexOf(interest) != -1 ) return this.chatAboutFantasy(p1, p2, relationship, relationship2);
-		alert("unknown interest: " + interest)
 	}
 
 	this.chatAboutQuadrant = function(relationship, relationship2){
@@ -185,7 +184,6 @@ function QuadrantDialogue(session){
 		if(relationship.saved_type == relationship.heart)return this.heartChat(relationship, relationship2);
 		if(relationship.saved_type == relationship.clubs)return this.clubsChat(relationship, relationship2);
 		if(relationship.saved_type == relationship.spades) return this.spadesChat(relationship, relationship2);
-			alert("what relationship is this??? " + relationship.saved_type)
 	}
 
 	//skyrim joke exists about how easy it is to steal from an NPC after putting a bucket on their head (now they can't see you stealing)
@@ -306,9 +304,6 @@ function QuadrantDialogue(session){
 			chat +=  chatLine(p1start, freakOutWeasel, "Yeah. Fuck.");
 			chat +=  chatLine(p2start, shoosher, "Listen. It's okay. Maybe this game has a bullshit way to bring them back?");
 			chat +=  chatLine(p1start, freakOutWeasel, "I hope so.");
-			freakOutWeasel.flipOutReason = null;
-			freakOutWeasel.flippingOutOverDeadPlayer = null;
-			return chat;
 		}else if(freakOutWeasel.flippingOutOverDeadPlayer && !freakOutWeasel.flippingOutOverDeadPlayer.dead){
 			var deadRelationship = freakOutWeasel.getRelationshipWith(freakOutWeasel.flippingOutOverDeadPlayer);
 			chat +=  chatLine(p1start, freakOutWeasel, "Jesus fuck, apparently my " + deadRelationship.nounDescription() + ", " + freakOutWeasel.flippingOutOverDeadPlayer.chatHandle + ",  died.");
@@ -316,14 +311,39 @@ function QuadrantDialogue(session){
 			chat +=  chatLine(p1start, freakOutWeasel, "Apparently they got better? I don't even know how to feel about this.");
 			chat +=  chatLine(p2start, shoosher, "SBURB fucking sucks.");
 			chat +=  chatLine(p1start, freakOutWeasel, "It really, really does.");
-			freakOutWeasel.flipOutReason = null;
-			freakOutWeasel.flippingOutOverDeadPlayer = null;
-			return chat;
+		}else if(freakOutWeasel.flipOutReason.indexOf("doomed time clones") != -1){
+			chat +=  chatLine(p1start, freakOutWeasel, "Oh my god, time really is the shittiest aspect.");
+			chat +=  chatLine(p2start, shoosher, "Everything okay?");
+			chat +=  chatLine(p1start, freakOutWeasel, "Hell no. There are fucking clones of me running around and dying and agreeing to die and fuck...");
+			chat +=  chatLine(p2start, shoosher, "Shoosh, it will be fine. It just proves you are dedicated to beating this game. That's a good thing.");
+			chat +=  chatLine(p1start, freakOutWeasel, "No, it proves THEY are. I haven't done fuck all.");
+			chat +=  chatLine(p2start, shoosher, "Shhhh, there there. They are just you in a slightly different situation. It still reflects well on you.");
+			chat +=  chatLine(p1start, freakOutWeasel, "Yeah. Okay. You're right.");
+		}else if(freakOutWeasel.flipOutReason.indexOf("Ultimate Goddamned Riddle") != -1){
+			chat +=  chatLine(p1start, freakOutWeasel, "lol lol lololololol");
+			chat +=  chatLine(p2start, shoosher, "Everything okay?");
+			chat +=  chatLine(p1start, freakOutWeasel, "Oh god, it's all so FUCKING hilarious!");
+			chat +=  chatLine(p2start, shoosher, "?");
+			chat +=  chatLine(p1start, freakOutWeasel, "Don't you get it? The goddamned fucking ULTIMATE RIDDLE!?");
+			chat +=  chatLine(p1start, freakOutWeasel, "It was right there, all along! We were always meant to play this fucking game.");
+			chat +=  chatLine(p1start, freakOutWeasel, "We didn't fuck up by letting everybody else on the planet die. Oh no, we couldn't have NOT done that.");
+			chat +=  chatLine(p1start, freakOutWeasel, "And here I thought Skaia didn't have a sense of HUMOR!");
+			chat +=  chatLine(p2start, shoosher, "Okay. You need to calm down. Whatever happened isn't ...well, I was going to say 'the end of the world', but I think that would just set you off again.");
+			chat +=  chatLine(p2start, shoosher, "We aren't giving up, okay? YOU aren't giving up. We can still beat this. So calm your tits.");
+			chat +=  chatLine(p1start, freakOutWeasel, "Yes. Yes. You're right. Of course your are. I'll ... try to focus.");
+		}else if(freakOutWeasel.flipOutReason.indexOf("they just freaking died") != -1){
+			chat +=  chatLine(p1start, freakOutWeasel, "Well.");
+			chat +=  chatLine(p2start, shoosher, "Shit, are you okay? Jesus fuck I thought I lost you there.");
+			chat +=  chatLine(p1start, freakOutWeasel, "I mean, you did right? I died. That is a thing that is true.");
+			chat +=  chatLine(p2start, shoosher, "What...was it like?");
+			chat +=  chatLine(p1start, freakOutWeasel, "Dying sucks. I do not recommend you try it out.");
+		}else{
+
 		}
-		//have them talk about flipOUtREason.  flippingOut has triggerLevel reduced by a good amount.
-		//maybe even parse out flipOUtReason a bit. if they mention "dead" that's gonna be a different convo than ultimate riddle bullshit, right? same with time clones.
-		//if i can't parse out what it's about, or don't care, then have a generic thing where they generically talk about flipOutReason
-		return  "\n<insert random 'diamond flipping the fuck out' chat here>\n"
+
+		freakOutWeasel.flipOutReason = null;
+		freakOutWeasel.flippingOutOverDeadPlayer = null;
+		return chat;
 	}
 
 

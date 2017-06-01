@@ -40,7 +40,7 @@
 
 		function giveFlipOutReason(p1,p2){
 			var p3 = curSessionGlobalVar.players[2];
-			if(p3){
+			if(p3 && Math.seededRandom() > 0.5){
 				if(Math.seededRandom() > 0.5){
 					p1.flipOutReason = "dead player";
 					p1.flippingOutOverDeadPlayer = p3;
@@ -53,9 +53,20 @@
 				}
 			}else{
 				if(Math.seededRandom() > 0.5){
-					p1.flipOutReason = "placeholder";
+					if(p1.aspect == "Time"){
+						p1.flipOutReason = "their own doomed time clones";
+					}else if(Math.seededRandom() > 0.5){
+						p1.flipOutReason = "how the Ultimate Goddamned Riddle means that if they didn't play this bullshit game in the first place they never would have been born at all";
+					}else{
+						p1.flipOutReason = "they just freaking died";
+					}
+
 				}else{
-					p2.flipOutReason = "placeholder";
+					if(p2.aspect == "Time"){
+						p2.flipOutReason = "their own doomed time clones";
+					}else{
+						p2.flipOutReason = "they just freaking died"
+					}
 				}
 			}
 		}
