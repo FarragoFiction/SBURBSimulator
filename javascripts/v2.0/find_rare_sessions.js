@@ -83,7 +83,7 @@ function checkPassword(){
 	if(isNaN(tmp)){
 		alert("Not even close!!!")
 	}else if(tmp == 33 || getParameterByName("nepeta")  == ":33"){
-		alert("Fuck you, and fuck that cat troll.")
+		alert("Fuck you, and fuck that cat troll. I refuse to look at sessions with true randomness.")
 	}else{
 		alert("Hrrrm...let me think about it.")
 		Math.seed = tmp;
@@ -687,7 +687,7 @@ function getQuipAboutSession(sessionSummary){
 	var living = sessionSummary.numLiving
 	var dead = sessionSummary.numDead
 	var strongest = sessionSummary.mvp
-	
+
 	if(sessionSummary.session_id == 33 || getParameterByName("nepeta")  == ":33"){
 		quip += "Fuck you. Don't expect any of my reports on those fucking cat trolls to be accurate. They are fucking random as fuck. " ;
 	}
