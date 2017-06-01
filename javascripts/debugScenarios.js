@@ -637,7 +637,7 @@ function nepetaQuest(){
 		guardian = player.guardian;
 		player.isTroll = true;
 		guardian.isTroll = true;
-		if(player.aspect != "Time" && player.aspect != "Space"){
+		if(actualRandomNumber > .5 && player.aspect != "Time" && player.aspect != "Space"){ //just cause they are roleplaying as nepeta doesn't mean their claspect changes.
 			player.aspect = "Heart"
 			player.class_name = "Rogue"
 		}
@@ -660,7 +660,6 @@ function nepetaQuest(){
 		guardian.leftHorn = 22;
 		guardian.rightHorn = 22;
 	}
-
 }
 
 //12 dead nepetas
