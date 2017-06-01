@@ -64,6 +64,9 @@ function QuadrantDialogue(session){
 			p2 = this.player1;
 			p1Start = this.player2Start;
 			p2Start = this.playerStart;
+			var tmp = relationship
+			relationship = relationship2;
+			relationship2 = tmp;
 		}
 		if(trait == "smart") return this.chatAboutAcademic(p1, p2,  p1Start, p2Start,relationship, relationship2);
 		if(trait == "musical") return this.chatAboutMusic(p1, p2, p1Start, p2Start, relationship, relationship2);
@@ -126,7 +129,6 @@ function QuadrantDialogue(session){
 
 	//oh lord, tell bad jokes here.  especially puns
 	this.chatAboutComedy = function(p1, p2,p1Start, p2Start, relationship, relationship2){
-		return  "\n<insert random 'comedy' chat here>\n"
 		var interest = "Comedy"; //TODO need a standard way to say if p2 "likes comedy";
 		//in a way that InterestConversationalPair can store, and getp2ResponseBasedOnInterests can use to ask if p2 likes/knows about.
 		//but i refuse to keep polluting the global namespace, so stick it into player.
@@ -136,7 +138,7 @@ function QuadrantDialogue(session){
 		//InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative))
 		var chats = [];
 		chats.push(new InterestConversationalPair(interest, "Why did the ghost cross the road? To get to the other side!", ["lol, that was hilarious!","lol, because the afterlife is also called the other side but that's also where you get when you cross a road!"], ["Holy shit, could you get any worse at jokes?", "That joke is older than my guardian. You suck."]));
-		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship1, relationship2)
+		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2)
 	}
 
 	this.chatAboutDomestic = function(p1, p2,p1Start, p2Start, relationship, relationship2){
@@ -172,14 +174,14 @@ function QuadrantDialogue(session){
 		var chosen = getRandomElementFromArray(chats);
 		var chat = "";
 		chat +=  chatLine(this.player1Start, this.player1, chosen.line1);
-		chat += this.getp2ResponseBasedOnInterests(chosen, p2, p2Start, relationship2)
+		chat += this.getp2ResponseBasedOnInterests(chosen, interest, p2, p2Start, relationship2)
 		return chat;
 	}
 	
-	this.getp2ResponseBasedOnInterests = function(chat, interest, player, playerStart, relationship){
+	this.getp2ResponseBasedOnInterests = function(chosen, interest, player, playerStart, relationship){
 		var chat = "";
-		if(relationship1.value > 0){
-			if(player.interestedIn(interest){
+		if(relationship.value > 0){
+			if(player.interestedIn(interest)){
 				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.responseLinesSharedInterestPositive));
 			}else{ 
 				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.genericResponses));
@@ -206,6 +208,9 @@ function QuadrantDialogue(session){
 			p2 = this.player1;
 			p1Start = this.player2Start;
 			p2Start = this.player1Start;
+			var tmp = relationship
+			relationship = relationship2;
+			relationship2 = tmp;
 		}
 		var interest = p1.interest1;
 		if(Math.seededRandom() > 0.5){ //change who is initiating
@@ -343,6 +348,9 @@ function QuadrantDialogue(session){
 			p1start = this.player2Start;
 			shooser = this.player1;
 			p2start = this.player1Start;
+			var tmp = relationship
+			relationship = relationship2;
+			relationship2 = tmp;
 		}
 		if(!freakOutWeasel.flipOutReason) return "ERROR: NO ONE IS FLIPPING OUT."
 		if(freakOutWeasel.flippingOutOverDeadPlayer && freakOutWeasel.flippingOutOverDeadPlayer.dead){
