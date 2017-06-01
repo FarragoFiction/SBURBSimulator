@@ -131,10 +131,7 @@ function QuadrantDialogue(session){
 	//oh lord, tell bad jokes here.  especially puns
 	this.chatAboutComedy = function(p1, p2,p1Start, p2Start, relationship, relationship2){
 		var interest = "Comedy"; //TODO need a standard way to say if p2 "likes comedy";
-		//in a way that InterestConversationalPair can store, and getp2ResponseBasedOnInterests can use to ask if p2 likes/knows about.
-		//but i refuse to keep polluting the global namespace, so stick it into player.
-		//player.interestedIn("Comedy"); <-- this looks right.
-		
+		//why is it sometimes a player laughing at their own jokes???
 		
 		//InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative))
 		var chats = [];
