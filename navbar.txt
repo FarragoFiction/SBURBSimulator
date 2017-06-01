@@ -1,6 +1,6 @@
 <a href = "index.html"><img src = "images/sburb_sim_page_header_zalgo.png"/></a>
 <div class = "links">
-<a href = "../SburbStory/index2.html">Main Branch (2.99)</a> 		&nbsp &nbsp &nbsp &nbsp <a href = "../SburbStoryExperimental/index2.html"> Experimental Branch(2.999)</a> &nbsp &nbsp &nbsp &nbsp <a href = "../SburbStoryOld/index2.html"> Last Version (2.5)</a>  &nbsp &nbsp &nbsp &nbsp <a href = "oc_generator.html">Original Character Generator</a> &nbsp &nbsp &nbsp &nbsp <a href = "https://discord.gg/4czh3nB"> Discord Server Invite</a>
+<a href = "../SburbStory/index2.html">Main Branch (2.999)</a> 		&nbsp &nbsp &nbsp &nbsp <a href = "../SburbStoryExperimental/index2.html"> Experimental Branch(2.9999)</a> &nbsp &nbsp &nbsp &nbsp <a href = "../SburbStoryOld/index2.html"> Last Version (2.5)</a>  &nbsp &nbsp &nbsp &nbsp <a href = "oc_generator.html">Original Character Generator</a> &nbsp &nbsp &nbsp &nbsp <a href = "https://discord.gg/4czh3nB"> Discord Server Invite</a>
 </div>
 <br>
 <div class = "links">
