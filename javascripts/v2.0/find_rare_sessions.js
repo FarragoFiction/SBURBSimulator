@@ -82,7 +82,7 @@ function checkPassword(){
 	var tmp = parseInt($("#pwtext").val())
 	if(isNaN(tmp)){
 		alert("Not even close!!!")
-	}else if(tmp = 33 || getParameterByName("nepeta")  == ":33"){
+	}else if(tmp == 33 || getParameterByName("nepeta")  == ":33"){
 		alert("Fuck you, and fuck that cat troll.")
 	}else{
 		alert("Hrrrm...let me think about it.")
