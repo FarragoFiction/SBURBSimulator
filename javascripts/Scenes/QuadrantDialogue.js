@@ -130,8 +130,8 @@ function QuadrantDialogue(session){
 
 	//oh lord, tell bad jokes here.  especially puns
 	this.chatAboutComedy = function(p1, p2,p1Start, p2Start, relationship, relationship2){
-		var interest = "Comedy"; //TODO need a standard way to say if p2 "likes comedy";
-		//why is it sometimes a player laughing at their own jokes???
+		console.log("Chatting about comedy: p1 is: " + p1.chatHandle + " p2 is: " + p2.chatHandle + " player1Start is: " + p1Start + " player2Start is: " + p2Start)
+		var interest = "Comedy";
 		
 		//InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative))
 		var chats = [];
@@ -171,7 +171,7 @@ function QuadrantDialogue(session){
 	this.processChatAboutInterests = function(chats, interest, p1,p2, p1Start, p2Start, relationship1, relationship2){
 		var chosen = getRandomElementFromArray(chats);
 		var chat = "";
-		chat +=  chatLine(this.player1Start, this.player1, chosen.line1);
+		chat +=  chatLine(p1Start, p1, chosen.line1);
 		chat += this.getp2ResponseBasedOnInterests(chosen, interest, p2, p2Start, relationship2)
 		return chat;
 	}
@@ -196,7 +196,7 @@ function QuadrantDialogue(session){
 	}
 
 	
-
+	//for some reason right now method has the player appear to be chatting with theselves.
 	this.chatAboutLackOfInterests = function(relationship, relationship2){
 		var p1 = this.player1;
 		var p2 = this.player2;
