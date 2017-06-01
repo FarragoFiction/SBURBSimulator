@@ -135,7 +135,9 @@ function QuadrantDialogue(session){
 		
 		//InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative))
 		var chats = [];
-		chats.push(new InterestConversationalPair(interest, "Why did the ghost cross the road? To get to the other side!", ["lol, that was hilarious!","lol, because the afterlife is also called the other side but that's also where you get when you cross a road!"], ["Holy shit, could you get any worse at jokes?", "That joke is older than my guardian. You suck."]));
+		chats.push(new InterestConversationalPair(interest, "Why did the ghost cross the road? To get to the other side!", ["Spoopy. Why didn't the ghost go to prom? He had no BODY to go with.","lol, because the afterlife is also called the other side but that's also where you get when you cross a road!"], ["Holy shit, could you get any worse at jokes?", "That ghost isn't the ONLY thing that's dead here. It's also your sense of humor.", "That joke is older than my guardian. You suck.","Your joke is bad and you should feel bad."]));
+		chats.push(new InterestConversationalPair(interest, "Why are cats afraid of trees? Because of their bark!", ["I think I could make a better cat joke, nah, I'm just kitten.","lol, that was hilarious!","lol, dogs bark but not in the same way that trees HAVE bark!"], ["Holy shit, could you get any worse at jokes?", "That joke is older than my guardian. You suck.", "I think I have heard a worse cat joke, nah, I'm just kitten. Because you suck. ","You are ruining the nobel art of the pun.", "People like you are why puns have a bad name."]));
+		chats.push(new InterestConversationalPair(interest, "I wondered why the ball was getting bigger, then it hit me!", ["lol. A man walked into a bar. Ouch!", "lol, that was hilarious!","lol, because it sounds like he realized why the ball was getting bigger, but really it was the ball, not realization, hitting him. Hilarious!"], ["Holy shit, could you get any worse at jokes?", "That joke is older than my guardian. You suck.", "Your joke is bad and you should feel bad."]));
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2)
 	}
 
@@ -327,7 +329,7 @@ function QuadrantDialogue(session){
 		this.player2.triggerLevel += -1;
 		chats.push( new ConversationalPair("How have you been?",["Okay.","Good.","Alright.","As well as can be expected.","Better than I thought I'd be."]));
 		chats.push( new ConversationalPair("You doing okay?",["Yes.","As well as can be expected.","Better than I thought I'd be."]));
-		chats.push( new ConversationalPair("This game really sucks.",["Yes, you aren't kidding.","I know,right?","Represent"]));
+		chats.push( new ConversationalPair("This game really sucks.",["Yes, you aren't kidding.","I know, right?","Represent"]));
 		//chats.push( new ConversationalPair("",["","",""]));
 		return  this.processChatPair(chats, relationship1, relationship2);
 	}
@@ -543,7 +545,7 @@ function QuadrantDialogue(session){
 function ConversationalPair(line1, responseLines){
 	this.line1 = line1;
 	this.responseLines = responseLines;  //responses are just reactions
-	this.genericResponses = ["Yeah.", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "...", "Whatever.", "Yes.", "Interesting...", "Hrmmm..."]
+	this.genericResponses = ["Yeah.", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "...", "Whatever.", "Yes.", "Interesting...", "Hrmmm...", "lol"]
 }
 
 function InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative){
@@ -554,6 +556,6 @@ function InterestConversationalPair(interest, line1, responseLinesSharedInterest
 	//what can i say if i hate you and share your interests.
 	this.responseLinesSharedInterestNegative = responseLinesSharedInterestNegative;
 	//below happens if you don't share an interest at all.
-	this.genericResponses = ["Yeah.", , "Nice", "Double nice", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "...", "Whatever.", "Yes.", "Interesting...", "Hrmmm..."]
+	this.genericResponses = ["Yeah.", , "Nice", "Double nice", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "...", "lol","Whatever.", "Yes.", "Interesting...", "Hrmmm..."]
 
 }
