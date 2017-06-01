@@ -670,31 +670,21 @@ function session33(){
 	//will it be 12 nepetas roleplaying as their friends?
 	//or 12 canon trolls all roleplaying as nepeta?
 	//it's shrodinger's nepeta!!!
-	
-	if(!simulationMode) alert("Nepeta Quest")
-	curSessionGlobalVar.players = [];//no, only nepetas.
 	for(var i = 0; i<12;i++){
 		var player;
 		var guardian;
-		if(i>2){
-			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Rogue", "Heart");
+		if(i<curSessionGlobalVar.players.length){
+			player = curSessionGlobalVar.players[i];
+		}else{
 			player = randomPlayerNoDerived(curSessionGlobalVar,"Rogue", "Heart");
-		}else if(i==0){
-			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Rogue", "Time");
-			player = randomPlayerNoDerived(curSessionGlobalVar,"Rogue", "Time");
-		}else if(i ==1){
-			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Rogue", "Space");
-			player = randomPlayerNoDerived(curSessionGlobalVar,"Rogue", "Space");
+			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Rogue", "Heart");
+			guardian.quirk = randomTrollSim(guardian);
+			player.quirk = randomTrollSim(player);
+			//curSessionGlobalVar.guardians.push(guardian);
+			curSessionGlobalVar.players.push(player);
+			player.guardian = guardian;
+			guardian.guardian = player;
 		}
-		if(i == 0){
-			player.leader = true;
-			guardian.leader = true;
-		}
-		player.quirk = randomTrollSim(player);
-		guardian.quirk = randomTrollSim(player);
-		curSessionGlobalVar.players.push(player);
-		player.guardian = guardian;
-		guardian.guardian = player;
 
 		session612IndexToTroll(player, i);
 		session612IndexToTrollAncestor(guardian, i);
