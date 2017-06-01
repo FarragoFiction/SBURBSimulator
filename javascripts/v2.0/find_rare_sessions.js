@@ -560,7 +560,9 @@ function loadEasterEggs(){
 	  success:(function(data){
 		 $("#easter_eggs").html(data)
 		  $("#pw_container").html("")
+		  if(getParameterByName("lollipop")  == "true"){
 			$("#avatar").attr("src","images/CandyAuthorBot.png");
+		  }
 	  }),
 	  dataType: "text"
 	});

@@ -1,4 +1,4 @@
-<img id = "avatar" src = "images/author.png" style="float:left;">
+<img id = "avatar" src = "images/jrsprite.png" style="float:left;">
 <div id = "story">
 
 <h1> Definitely well-hidden Easter Eggs. (Mini-Update for 4/13/17)</h1>
