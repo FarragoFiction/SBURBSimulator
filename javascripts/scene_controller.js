@@ -335,7 +335,7 @@ function scratch(){
 	curSessionGlobalVar.makeGuardians(); //after entry order established
 
 	checkEasterEgg();
-	initializePlayers(curSessionGlobalVar.players); //will take care of overriding players if need be.
+	initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //will take care of overriding players if need be.
 	checkEasterEgg();
 
 
