@@ -68,6 +68,7 @@ function QuadrantDialogue(session){
 			relationship = relationship2;
 			relationship2 = tmp;
 		}
+		console.log("chatting about shared interests")
 		if(trait == "smart") return this.chatAboutAcademic(p1, p2,  p1Start, p2Start,relationship, relationship2);
 		if(trait == "musical") return this.chatAboutMusic(p1, p2, p1Start, p2Start, relationship, relationship2);
 		if(trait == "cultured") return this.chatAboutCulture(p1, p2, p1Start, p2Start, relationship, relationship2);
@@ -189,6 +190,7 @@ function QuadrantDialogue(session){
 		}else{
 			if(player.interestedIn(interest)){
 				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.responseLinesSharedInterestNegative));
+				console.log("adding negative shared interest response: " + chat)
 			}else{  
 				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.genericResponses));
 			}
@@ -216,7 +218,7 @@ function QuadrantDialogue(session){
 		if(Math.seededRandom() > 0.5){ //change who is initiating
 			interest = p1.interest2;
 		}
-
+		console.log("chatting about lack of interests.")
 		if(academic_interests.indexOf(interest) != -1 ) return this.chatAboutAcademic(p1, p2, p1Start, p2Start, relationship, relationship2);
 		if(music_interests.indexOf(interest) != -1 ) return this.chatAboutMusic(p1, p2, p1Start, p2Start, relationship, relationship2);
 		if(culture_interests.indexOf(interest) != -1 ) return this.chatAboutCulture(p1, p2, p1Start, p2Start, relationship, relationship2);
