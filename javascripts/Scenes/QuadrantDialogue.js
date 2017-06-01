@@ -125,6 +125,8 @@ function QuadrantDialogue(session){
 		return  "\n<insert random 'comedy' chat here>\n"
 		var interest = "Comedy"; //TODO need a standard way to say if p2 "likes comedy";
 		//in a way that InterestConversationalPair can store, and getp2ResponseBasedOnInterests can use to ask if p2 likes/knows about.
+		//but i refuse to keep polluting the global namespace, so stick it into player.
+		//player.interestedIn("Comedy"); <-- this looks right.
 		
 		
 		//InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative))

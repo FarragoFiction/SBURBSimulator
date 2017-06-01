@@ -113,6 +113,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.flippingOutOverDeadPlayer = null;
 		this.flipOutReason = reason;
 	}
+	
+	this.interestedIn = function(interestWord){
+		if(interestWord == "Comedy") return playerLikesComedy(this)
+	}
 
 	//if change would push me over 3, render 'cause i'm newly grimdark
 	//if it would pull be from over 3, render 'cause i have somewhat recovered.
