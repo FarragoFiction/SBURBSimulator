@@ -36,6 +36,7 @@ function sbahjMode(){
 	}
 }
 
+//will get called twice for initialization purposes.
 function checkEasterEgg(){
 	//authorMessage();
 	//i cannot resist
