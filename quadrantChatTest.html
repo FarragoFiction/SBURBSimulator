@@ -64,8 +64,10 @@
 				}else{
 					if(p2.aspect == "Time"){
 						p2.flipOutReason = "their own doomed time clones";
-					}else{
+					}else if(Math.seededRandom() > 0.5){
 						p2.flipOutReason = "they just freaking died"
+					}else{
+						p2.flipOutReason = "not a thing i accounted for"
 					}
 				}
 			}

@@ -69,7 +69,7 @@ function QuadrantDialogue(session){
 		if(trait == "techy") return this.chatAboutTechnology(p1, p2, relationship, relationship2);
 		if(trait == "extroverted") return this.chatAboutSocial(p1, p2, relationship, relationship2);
 		if(trait == "romantic") return this.chatAboutRomance(p1, p2, relationship, relationship2);
-		if(trait == "funny") return this.chatAboutComedy(p1, p2, relationship, relationship2);
+		if(trait == "funny") return this.chatAboutComedy(p1, p2, relationship, relationship2);
 		if(trait == "domestic") return this.chatAboutDomestic(p1, p2, relationship, relationship2);
 		if(trait == "athletic") return this.chatAboutAthletic(p1, p2, relationship, relationship2);
 		if(trait == "honest") return this.chatAboutTerrible(p1, p2, relationship, relationship2);
@@ -280,8 +280,8 @@ function QuadrantDialogue(session){
 
 	this.feelingsJam = function(relationship,relationship2){
 		console.log("Feelings Jam in: " + this.session.session_id)
-		this.player1.triggerLevel += -1;
-		this.player2.triggerLevel += -1;
+		this.player1.triggerLevel += -2;
+		this.player2.triggerLevel += -2;
 		//figure out which player is flipping out, make them "flippingOut", make other player "shoosher"
 		var chat = "";
 		var freakOutWeasel = this.player1;
@@ -337,7 +337,12 @@ function QuadrantDialogue(session){
 			chat +=  chatLine(p2start, shoosher, "What...was it like?");
 			chat +=  chatLine(p1start, freakOutWeasel, "Dying sucks. I do not recommend you try it out.");
 		}else{
-
+			chat +=  chatLine(p1start, freakOutWeasel, "Fuck. I can't take this anymore.");
+			chat +=  chatLine(p2start, shoosher, "Shit, what's up, talk to me...");
+			chat +=  chatLine(p1start, freakOutWeasel, "God, I don't even know what to say. Everything is just so shitty.");
+			chat +=  chatLine(p2start, shoosher, "It really is. But we aren't going to give up, okay?");
+			chat +=  chatLine(p2start, shoosher, "One foot in front of the other, and we keep going.");
+			chat +=  chatLine(p1start, freakOutWeasel, "Yeah. Okay.");
 		}
 
 		freakOutWeasel.flipOutReason = null;
