@@ -326,7 +326,6 @@ function QuadrantDialogue(session){
 			chat +=  chatLine(p2start, shoosher, "?");
 			chat +=  chatLine(p1start, freakOutWeasel, "Don't you get it? The goddamned fucking ULTIMATE RIDDLE!?");
 			chat +=  chatLine(p1start, freakOutWeasel, "It was right there, all along! We were always meant to play this fucking game.");
-			chat +=  chatLine(p1start, freakOutWeasel, "We didn't fuck up by letting everybody else on the planet die. Oh no, we couldn't have NOT done that.");
 			chat +=  chatLine(p1start, freakOutWeasel, "And here I thought Skaia didn't have a sense of HUMOR!");
 			chat +=  chatLine(p2start, shoosher, "Okay. You need to calm down. Whatever happened isn't ...well, I was going to say 'the end of the world', but I think that would just set you off again.");
 			chat +=  chatLine(p2start, shoosher, "We aren't giving up, okay? YOU aren't giving up. We can still beat this. So calm your tits.");
