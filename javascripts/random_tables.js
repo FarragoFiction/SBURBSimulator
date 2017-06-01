@@ -1369,7 +1369,7 @@ sbahj_quirks = sbahj_quirks.concat([["ink","ing"],["ed","id"],["id","ed"],["ar",
 
 var terribleCSSOptions = [["position: ", "absolute"],["position: ", "relative"],["position: ", "static"],["position: ", "fixed"],["float: ", "left"] ,["float: ", "right"],["width: ", "????"],["height: ", "????"],["right: ", "????"] ,["top: ", "????"] ,["bottom: ", "????"] ,["left: ", "????"]   ];
 
-var fish_quirks = [["ass","bass"],["god","glub"],["god","cod"],["fuck","glub"],["really","reely"],["kill","krill"],["thing","fin"],["well","whale"],["purpose","porpoise"],["better","betta"],["help","kelp"],["see","sea"],["friend","frond"],["crazy","craysea"], ["kid","squid"], ["hell","shell"]];
+var fish_quirks = [["calm","clam"],["ass","bass"],["god","glub"],["god","cod"],["fuck","glub"],["really","reely"],["kill","krill"],["thing","fin"],["well","whale"],["purpose","porpoise"],["better","betta"],["help","kelp"],["see","sea"],["friend","frond"],["crazy","craysea"], ["kid","squid"], ["hell","shell"]];
 
 //not as extreme as a troll quirk, buxt...
 var conversational_quirks = [["pro","bro"],["guess","suppose"],["S\\b", "Z"],["oh my god","omg"],["like", "liek"],["ing","in"],["have to","hafta"], ["want to","wanna"],["going to","gonna"], ["i'm","i am"],["you're","you are"],["we're","we are"],["forever","5ever"], ["ever","evah"],["er","ah"],["to","ta"]];
