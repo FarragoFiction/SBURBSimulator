@@ -689,7 +689,7 @@ function getQuipAboutSession(sessionSummary){
 	var strongest = sessionSummary.mvp
 
 	if(sessionSummary.session_id == 33 || getParameterByName("nepeta")  == ":33"){
-		quip += "Don't expect any of my reports on those fucking cat trolls to be accurate. They are random as fuck. " ;
+		quip += "Don't expect any of my reports on those cat trolls to be accurate. They are random as fuck. " ;
 	}
 
 	if(sessionSummary.crashedFromSessionBug){
