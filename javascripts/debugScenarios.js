@@ -51,7 +51,9 @@ function checkEasterEgg(){
 		session33();
 	}else if(initial_seed == 111111){
 		session111111();
-	}else if(getParameterByName("nepeta")  == ":33"){
+	}
+	//not an else if because this OVERIDES other easter egg sessions. but called here and not where other params are 'cause needs to have session initialized first.
+	if(getParameterByName("nepeta")  == ":33"){
 		nepetaQuest(); //ANY session can be all nepetas.
 	}
 }
