@@ -131,6 +131,8 @@ function QuadrantDialogue(session){
 		
 		//InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative))
 		var chats = [];
+		chats.push(new InterestConversationalPair(interest, "Why did the ghost cross the road? To get to the other side!", ["lol, that was hilarious!","lol, because the afterlife is also called the other side but that's also where you get when you cross a road!"], ["Holy shit, could you get any worse at jokes?", "That joke is older than my guardian. You suck."]));
+		return this.processChatAboutInterests(chats, interest, p1,p2, relationship1, relationship2)
 	}
 
 	this.chatAboutDomestic = function(p1, p2, relationship, relationship2){
