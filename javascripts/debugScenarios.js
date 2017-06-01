@@ -631,8 +631,7 @@ function nepetaQuest(){
 	//or 12 canon trolls all roleplaying as nepeta?
 	//it's shrodinger's nepeta!!!
 	var actualRandomNumber = Math.random(); //no fucking seed.
-	if(!simulationMode) alert("Nepeta Quest :33")
-		
+	
 	for(var i = 0; i< curSessionGlobalVar.players.length ;i++){
 		player = curSessionGlobalVar.players[i];
 		guardian = player.guardian;
