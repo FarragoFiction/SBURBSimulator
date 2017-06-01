@@ -69,7 +69,8 @@ function QuadrantDialogue(session){
 		if(trait == "techy") return this.chatAboutTechnology(p1, p2, relationship, relationship2);
 		if(trait == "extroverted") return this.chatAboutSocial(p1, p2, relationship, relationship2);
 		if(trait == "romantic") return this.chatAboutRomance(p1, p2, relationship, relationship2);
-		if(trait == "funny") return this.chatAboutComedy(p1, p2, relationship, relationship2);
+		if(trait == "funny") return this.chatAboutComedy(p1, p2, relationship, relationship2);
+		//if(trait == "funny") return this.chatAboutComedy(p1, p2, relationship, relationship2); //why does this have a illegal character???
 		if(trait == "domestic") return this.chatAboutDomestic(p1, p2, relationship, relationship2);
 		if(trait == "athletic") return this.chatAboutAthletic(p1, p2, relationship, relationship2);
 		if(trait == "honest") return this.chatAboutTerrible(p1, p2, relationship, relationship2);
