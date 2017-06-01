@@ -123,6 +123,12 @@ function QuadrantDialogue(session){
 	//oh lord, tell bad jokes here.  especially puns
 	this.chatAboutComedy = function(p1, p2, relationship, relationship2){
 		return  "\n<insert random 'comedy' chat here>\n"
+		var interest = "Comedy"; //TODO need a standard way to say if p2 "likes comedy";
+		//in a way that InterestConversationalPair can store, and getp2ResponseBasedOnInterests can use to ask if p2 likes/knows about.
+		
+		
+		//InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative))
+		var chats = [];
 	}
 
 	this.chatAboutDomestic = function(p1, p2, relationship, relationship2){
@@ -141,6 +147,19 @@ function QuadrantDialogue(session){
 	this.chatAboutFantasy = function(p1, p2, relationship, relationship2){
 		return  "\n<insert random 'fantasy' chat here>\n"
 
+	}
+	
+	//response depends on whether or not p2 shares that interest.
+	this.processChatAboutInterests = function(chats, interest, p1,p2,relationship1, relationship2){
+		var chosen = getRandomElementFromArray(chats);
+		var chat = "";
+		chat +=  chatLine(this.player1Start, this.player1, chosen.line1);
+		chat += this.p2GetResponseBasedOnRelationship(chosen, this.player2, this.player2Start, relationship2)
+		return chat;
+	}
+	
+	this.getp2ResponseBasedOnInterests = function(chat, interest, p1, p2, relationship1, relationship2){
+		
 	}
 
 	//stop right there, criminal scum
@@ -490,8 +509,9 @@ function ConversationalPair(line1, responseLines){
 	this.genericResponses = ["Yeah.", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "...", "Whatever.", "Yes.", "Interesting...", "Hrmmm..."]
 }
 
-function InterestConversationalPair(line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative){
+function InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative){
 	this.line1 = line1;
+	this.interest = interest; //vague description of what the interest is. like "Comedy"  need this to have a common source of words.like how "shared trait" does.
 	//what can i say if i like you and share your interest
 	this.responseLinesSharedInterestPositive = responseLinesSharedInterestPositive;
 	//what can i say if i hate you and share your interests.
