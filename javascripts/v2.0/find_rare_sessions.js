@@ -683,13 +683,17 @@ function getQuipAboutSession(sessionSummary){
 	var living = sessionSummary.numLiving
 	var dead = sessionSummary.numDead
 	var strongest = sessionSummary.mvp
+	
+	if(sessionSummary.session_id == 33 || getParameterByName("nepeta")  == ":33"){
+		quip += "Fuck you. Don't expect any of my reports on those fucking cat trolls to be accurate. They are fucking random as fuck. " ;
+	}
 
 	if(sessionSummary.crashedFromSessionBug){
 		quip += Zalgo.generate("Fuck. Shit crashed hardcore. It's a good thing I'm a flawless robot, or I'd have nightmares from that. Just. Fuck session crashes.");
 	}else if(sessionSummary.crashedFromPlayerActions){
 		quip += Zalgo.generate("Fuck. God damn. Do Grim Dark players even KNOW how much it sucks to crash? Assholes.");
 	}else if(!sessionSummary.scratched && dead == 0 && sessionSummary.frogStatus == "Full Frog" && sessionSummary.ectoBiologyStarted && !sessionSummary.crashedFromCorruption && !sessionSummary.crashedFromPlayerActions){
-		quip += "Everything went better than expected." ; //
+		quip += "Everything went better than expected." ; //???
 	}else if(sessionSummary.yellowYard == true){
 		quip += "Fuck. I better go grab JR. They'll want to see this. " ;
 	}else if(living == 0){

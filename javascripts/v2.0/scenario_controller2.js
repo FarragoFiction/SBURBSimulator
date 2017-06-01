@@ -123,7 +123,12 @@ function checkSGRUB(){
 	
 	if(getParameterByName("nepeta")  == ":33"){
 		$(document).attr("title", "NepetaQuest by jadedResearcher");
-	$("#heading").html("NepetaQuest by jadedResearcher (art assistance by karmicRetribution) ");
+		$("#heading").html("NepetaQuest by jadedResearcher (art assistance by karmicRetribution) ");
+	}
+	if(curSessionGlobalVar.session_id == 33){
+		$(document).attr("title", "NepetaQuest by jadedResearcher");
+		$("#heading").html("NepetaQuest by jadedResearcher (art assistance by karmicRetribution) ");
+		$("#story").append("<a href = 'index2.html?seed=" + getRandomSeed()+ "&nepeta=:33'>The furryocious huntress makes sure to bat at this link to learn a secret!</a>")
 	}
 }
 

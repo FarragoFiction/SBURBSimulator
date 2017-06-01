@@ -19,7 +19,7 @@
 <p> <a href = "index2.html?seed=612">Hivebent Beta</a>: The 12 Beta troll players (Karkat all the way through Sollux) play SGRUB. If they manage to scratch, you'll instead get to see Kankri through Mituna. Quirks/Character designs are approximate.</p>
 <p> <a href = "index2.html?seed=1025">Cascade</a>: The 8 human players, John all the way through Jake, play SBURB along with 4 troll players. Quirks/Character designs are approximate. </p>
 <p> <a href = "index2.html?seed=33">Nepeta Quest</a>: 12 Nepetas play SGRUB.  Has a true random 50% chance of either being Karkat and friends all dressing up like Nepeta, or 12 Nepetas all roleplaying as Karkat and friends. Basically, either everybody is olive blood, or they are their regular blood colors. Either way everyone has the quirks and trollTags of Karkat and friends.</p>
-<p> <a href = "index2.html?nepeta=:33">Nepeta Quest x2 Combob!!</a>: All player in a session (remember, can pass a specific session ID as well) are either roleplaying as Nepeta or are being roleplayed as BY nepetas. True random. Drives AB crazy.</p>
+<p> <a href = "index2.html?nepeta=:33">Nepeta Quest x2 Combob!!</a>: All players in a session (remember, can pass a specific session ID as well) are either roleplaying as Nepeta or are being roleplayed as BY nepetas. True random. Drives AB crazy.</p>
 
 <p> <a href = "rare_session_finder.html?seed=030303">Guided AuthorBot</a>: Did you know you could pass  a seed to the AuthorBot? It will direct her to the FIRST session she looks at.  The SECOND session will be the natural child of the first (unless there is a combo session, in which case it gets wrapped into the first). In this way you can look at the 'geneology' of the sessions/frogs. </p>
 <p><a href = "rare_session_finder.html?royalRumble=true">AuthorBot Royal Rumble</a>: Ask the AuthorBot to look through a bunch of RoyalRumble Sessions.</p>
@@ -27,11 +27,13 @@
 <p><a href = "rare_session_finder.html?babyStuck=true">AuthorBot BabyStuck</a>: Ask the AuthorBot to look through a bunch of BabyStuck Sessions.</p>
 <p><a href = "rare_session_finder.html?sbajifier=true">AuthorBot SBAHJIFIER</a>:  Ask the AuthorBot to look through a bunch of SBAHJ Sessions. What does this even mean???</p>
 <p><a href = "rare_session_finder.html?robot=true">AuthorBot RoboStuck</a>:Ask the AuthorBot to look through a bunch of Robo Sessions. </p>
+<p><a href = "rare_session_finder.html?nepeta=:33">AuthorBot NepetaQuest</a>:Ask the AuthorBot to look through a bunch of NepetaQuests. (She will fucking hate this) </p>
 <p><a href = "rare_session_finder_junior.html?royalRumble=true">AuthorBotJunior Royal Rumble</a>: Ask the AuthorBotJunior to look through a bunch of RoyalRumble Sessions.</p>
 <p><a href = "rare_session_finder_junior.html?lollipop=true">AuthorBotJunior Trickster</a>: Ask the AuthorBotJunior to look through a bunch of Trickster Sessions.</p>
 <p><a href = "rare_session_finder_junior.html?babyStuck=true">AuthorBotJunior BabyStuck</a>: Ask the AuthorBotJunior to look through a bunch of BabyStuck Sessions.</p>
 <p><a href = "rare_session_finder_junior.html?sbajifier=true">AuthorBotJunior SBAHJIFIER</a>:  Ask the AuthorBotJunior to look through a bunch of SBAHJ Sessions. What does this even mean???</p>
 <p><a href = "rare_session_finder_junior.html?robot=true">AuthorBotJunior RoboStuck</a>:Ask the AuthorBotJunior to look through a bunch of Robo Sessions. </p>
+<p><a href = "rare_session_finder_junior.html?nepeta=:33">AuthorBotJunior NepetaQuest</a>:Ask the AuthorBotJunior to look through a bunch of NepetaQuests. </p>
 
 <p> <a href = "rap.html">Extended Rap Battles</a>: Okay, so, like the rap battles are just so amazingly shitty, right? And they only get even SHITTIER the longer I let them go on. So, you know, here's a page that's just the rap battles going on for much, much longer. It was the easiest way to test them without waiting for sims to run. </p>
 <p> <a href = "test_fraymotif.html">Fraymotif Test Page</a>: Gotta test fraymotifs before they are part of the battle engine.</p>
