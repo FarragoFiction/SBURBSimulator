@@ -51,6 +51,8 @@ function checkEasterEgg(){
 		session33();
 	}else if(initial_seed == 111111){
 		session111111();
+	}else if(getParameterByName("nepeta")  == ":33"){
+		nepetaQuest(); //ANY session can be all nepetas.
 	}
 }
 
@@ -620,12 +622,51 @@ function session413IndexToAncestor(player,index){
 	}
 }
 
+//call this ONLY after initializing normal players.
+function nepetaQuest(){
+	//will it be 12 nepetas roleplaying as their original players?
+	//or 12 canon trolls all roleplaying as nepeta?
+	//it's shrodinger's nepeta!!!
+	var actualRandomNumber = Math.random(); //no fucking seed.
+	if(!simulationMode) alert("Nepeta Quest")
+		
+	for(var i = 0; i< curSessionGlobalVar.players.length ;i++){
+		player = curSessionGlobalVar.players[i];
+		guardian = player.guardian;
+		player.isTroll = true;
+		guardian.isTroll = true;
+		if(player.aspect != "Time" && player.aspect != "Space"){
+			player.aspect = "Heart"
+			player.class_name = "Rogue"
+		}
+		if(guardian.aspect != "Time" && guardian.aspect != "Space"){
+			guardian.aspect = "Heart"
+			guardian.class_name = "Rogue"
+		}
+		player.hair = 7;
+		player.leftHorn = 22;
+		player.rightHorn = 22;
+		if(actualRandomNumber > .5){
+			player.bloodColor = "#416600"; //actually is nepeta.
+			guardian.bloodColor = "#416600";
+		}else{
+			player.quirk.lettersToReplaceIgnoreCase.push(["ee","33"], ["per","purr"]);//trying to reoleplay as nepeta, but badly.
+			player.quirk.lettersToReplaceIgnoreCase.push(["ee","33"], ["per","purr"]);
+		}
+
+		guardian.hair = 7;
+		guardian.leftHorn = 22;
+		guardian.rightHorn = 22;
+	}
+
+}
+
 //12 dead nepetas
 function session33(){
 	//will it be 12 nepetas roleplaying as their friends?
 	//or 12 canon trolls all roleplaying as nepeta?
 	//it's shrodinger's nepeta!!!
-	var actualRandomNumber = Math.random(); //no fucking seed.
+	
 	if(!simulationMode) alert("Nepeta Quest")
 	curSessionGlobalVar.players = [];//no, only nepetas.
 	for(var i = 0; i<12;i++){
@@ -656,37 +697,17 @@ function session33(){
 		player.mylevels = getLevelArray(player);
 		guardian.mylevels = getLevelArray(guardian);
 	}
-
+	
 	for(var i = 0; i<12;i++){
 		player = curSessionGlobalVar.players[i];
-		guardian = player.guardian;
-		player.isTroll = true;
-		guardian.isTroll = true;
-		player.generateRelationships(curSessionGlobalVar.players);
-		//TODO fix this i guess.  Edit: TheLertTheWorldNeeds convinced me to fix it.
+		var guardian = player.guardian;
+		player.relationships = [];
 		var guardians = getGuardiansForPlayers(curSessionGlobalVar.players)
 		guardian.generateRelationships(guardians);
-		if(player.aspect != "Time" && player.aspect != "Space"){
-			player.aspect = "Heart"
-			player.class_name = "Rogue"
-		}
-		if(guardian.aspect != "Time" && guardian.aspect != "Space"){
-			guardian.aspect = "Heart"
-			guardian.class_name = "Rogue"
-		}
-		player.hair = 7;
-		player.leftHorn = 22;
-		player.rightHorn = 22;
-		if(actualRandomNumber > .5){
-			player.bloodColor = "#416600"; //nope, allow for fishtroll nepetas.
-			guardian.bloodColor = "#416600";
-		}
-
-		guardian.hair = 7;
-		guardian.leftHorn = 22;
-		guardian.rightHorn = 22;
-
+		player.generateRelationships(curSessionGlobalVar.players);
 	}
+
+	nepetaQuest();
 
 }
 
@@ -877,7 +898,7 @@ function session612IndexToTroll(player, index){
 		player.quirk.punctuation = 2;
 		player.quirk.favoriteNumber = 3;
 		player.quirk.lettersToReplace = [];
-		player.quirk.lettersToReplaceIgnoreCase = [["ee","33"]];
+		player.quirk.lettersToReplaceIgnoreCase = [["ee","33"], ["per","purr"]];
 		player.kernel_sprite = "Meowbeast"
 		player.interest1 = "Role Playing"
 		player.interest2 = "Romance"
