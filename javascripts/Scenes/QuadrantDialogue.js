@@ -63,7 +63,7 @@ function QuadrantDialogue(session){
 			p1 = this.player2;
 			p2 = this.player1;
 			p1Start = this.player2Start;
-			p2Start = this.playerStart;
+			p2Start = this.player1Start;
 			var tmp = relationship
 			relationship = relationship2;
 			relationship2 = tmp;
