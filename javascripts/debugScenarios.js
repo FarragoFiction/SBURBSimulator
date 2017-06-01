@@ -652,6 +652,8 @@ function nepetaQuest(){
 		if(actualRandomNumber > .5){
 			player.bloodColor = "#416600"; //actually is nepeta.
 			guardian.bloodColor = "#416600";
+			player.quirk.favoriteNumber = 3;
+			guardian.quirk.favoriteNumber = 3;
 		}else{
 			player.quirk.lettersToReplaceIgnoreCase.push(["ee","33"], ["per","purr"]);//trying to reoleplay as nepeta, but badly.
 			player.quirk.lettersToReplaceIgnoreCase.push(["ee","33"], ["per","purr"]);
