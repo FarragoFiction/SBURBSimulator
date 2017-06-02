@@ -128,10 +128,15 @@ function QuadrantDialogue(session){
 				chats.push(new InterestConversationalPair(interest, getRapForPlayer(p1, "", 4)[0], ["Yeah dog you got that mad flow.","Shit, your rhymes are tight.","Hell yes. Hell FUCKING yes.","Your beats are hella ill!"], [getRapForPlayer(p2, "", 4)[0]]))
 				return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 			}
+			//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
+			chats.push(new InterestConversationalPair(interest, "Did you hear the new song by Pumpkin?", ["Pumpkin? never heard of them. I'll have to check them out. ","OMG it is my favorite! So good!","Yeah, but I like their older stuff better."], ["Ugh, Pumpkin is so last decade, you have shit taste in music.", "You mean 'WhatPumpkin', if you're referring to the band after the drummer left. God, you don't know anything.", "Out of all the people who COULD have survived the apocalypse, why did it have to be a Pumpkin fan?"]));
+			chats.push(new InterestConversationalPair(interest, "Remind me to play my new song for you sometime.", ["I can't wait to hear it!","Oh, sounds fancy!","Oh man, we should do that next time we meet up!"], ["lol, why would I do that?", "God no, my ears don't need that shit. Get good.", "I'll pencil you in for one week after I go deaf. If this keeps up I will have to auspisticize you and music."]));
+			chats.push(new InterestConversationalPair(interest, "'whoa-oa-oa, why did you have to take my whoa-oa-oa' Like it? It's a new song I'm writing.", ["You're so talented!","I can't wait to hear you play it!","You're so great, I love it!"], ["Yeah. No.", "Is it called 'Reasons Why Nobody Should Let Me Near a Microphone'?", "Did you seriously just put 'whoa' sounds instead of lyrics. Asshole."]));
+			chats.push(new InterestConversationalPair(interest, "Do you think if I tried hard enough, I could convince the Imps to do a dance number?", ["Oh, that would be so adorable!","You'd have to to stop them from fighting somehow. Maybe mind control?","If anyone could do it, it'd be you!"], ["Oh god, why would you waste time doing that?", "You need to get better taste.", "Ugh, they would probably murder each other rather than participate in your shitty choreography."]));
 			//InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative))
 			var chats = [];
 
-			return  "\n<insert random 'music' chat here>\n"
+			return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 	}
 
 	//did you get to the cloud district recently, what am i saying of course you didn't.
@@ -147,6 +152,7 @@ function QuadrantDialogue(session){
 		chats.push(new InterestConversationalPair(interest, "Why did the ghost cross the road? To get to the other side!", ["Spoopy. Why didn't the ghost go to prom? He had no BODY to go with.","lol, because the afterlife is also called the other side but that's also where you get when you cross a road!"], ["Holy shit, could you get any worse at jokes?", "That ghost isn't the ONLY thing that's dead here. It's also your sense of humor.", "That joke is older than my guardian. You suck.","Your joke is bad and you should feel bad.", "Oh look, a variant of the 'chicken joke'. How novel. Not."]));
 		chats.push(new InterestConversationalPair(interest, "Why are cats afraid of trees? Because of their bark!", ["I think I could make a better cat joke, nah, I'm just kitten.","lol, that was hilarious!","lol, dogs bark but not in the same way that trees HAVE bark!"], ["Holy shit, could you get any worse at jokes?", "That joke is older than my guardian. You suck.", "I think I have heard a worse cat joke, nah, I'm just kitten. Because you suck. ","You are ruining the nobel art of the pun.", "People like you are why puns have a bad name."]));
 		chats.push(new InterestConversationalPair(interest, "I wondered why the ball was getting bigger, then it hit me!", ["lol. A man walked into a bar. Ouch!", "lol, that was hilarious!","lol, because it sounds like he realized why the ball was getting bigger, but really it was the ball, not realization, hitting him. Hilarious!"], ["Holy shit, could you get any worse at jokes?", "That joke is older than my guardian. You suck.", "Your joke is bad and you should feel bad."]));
+		chats.push(new InterestConversationalPair(interest, "How do you organize a space party, you planet!", ["Oh, because 'plan it' is how you would really orgnize a themed party, but it sounds like 'planet' which is a space themed word!","Lol, A start walks into a blackhole, but nothing happens. The blackhole turns to the star and says, 'Sir, I don't think you understand the gravity of the situation'.","lol, planet sounds like 'plan it'"], ["Oh god. Fuck you for that joke. Fuck the entire concept of space. Fuck me for hearing it.", "Are those space pants, because that ass is out of this world. Unlike your jokes.", "Oh god. Fuck you. Fuck space."]));
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2)
 	}
 
@@ -407,7 +413,7 @@ function QuadrantDialogue(session){
 			chat +=  chatLine(p1start, freakOutWeasel, "Well.");
 			chat +=  chatLine(p2start, shoosher, "Shit, are you okay? Jesus fuck I thought I lost you there.");
 			chat +=  chatLine(p1start, freakOutWeasel, "I mean, you did right? I died. That is a thing that is true.");
-			chat +=  chatLine(p2start, shoosher, "What...was it like?");
+			chat +=  chatLine(p2start, shoosher, "What... was it like?");
 			chat +=  chatLine(p1start, freakOutWeasel, "Dying sucks. I do not recommend you try it out.");
 		}else{
 			chat +=  chatLine(p1start, freakOutWeasel, "Fuck. I can't take this anymore.");
