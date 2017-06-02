@@ -94,7 +94,7 @@ function QuadrantDialogue(session){
 	}
 
 	/*
-		Troll words: year, month, refrigerator, shower, bath, ears, heart, brain,rap,room,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
+		//Troll words: year, month, refrigerator, bathtub, ears, heart, brain,rap,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
 	*/
 	this.chatAboutWriting = function(p1, p2,p1Start, p2Start, relationship, relationship2){
 		var interest = "Writing";
@@ -127,7 +127,7 @@ function QuadrantDialogue(session){
 		return  "\n<insert random 'popculture' chat here>\n"
 
 	}
-
+	//Troll words: year, month, refrigerator, bathtub, ears, heart, brain,rap,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
 	this.chatAboutMusic = function(p1, p2,p1Start, p2Start, relationship, relationship2){
 			//if both characters like rap/hiphop, etc, they rap here????
 			var interest = "Music";
@@ -140,12 +140,13 @@ function QuadrantDialogue(session){
 			//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
 			chats.push(new InterestConversationalPair(interest, "Did you hear the new song by Pumpkin?", ["Pumpkin? never heard of them. I'll have to check them out. ","OMG it is my favorite! So good!","Yeah, but I like their older stuff better."], ["Ugh, Pumpkin is so last decade, you have shit taste in music.", "You mean 'WhatPumpkin', if you're referring to the band after the drummer left. God, you don't know anything.", "Out of all the people who COULD have survived the apocalypse, why did it have to be a Pumpkin fan?"]));
 			chats.push(new InterestConversationalPair(interest, "Remind me to play my new song for you sometime.", ["I can't wait to hear it!","Oh, sounds fancy!","Oh man, we should do that next time we meet up!"], ["lol, why would I do that?", "God no, my ears don't need that shit. Get good.", "I'll pencil you in for one week after I go deaf. If this keeps up I will have to auspisticize you and music."]));
-			chats.push(new InterestConversationalPair(interest, "'whoa-oa-oa, why did you have to take my whoa-oa-oa' Like it? It's a new song I'm writing.", ["You're so talented!","I can't wait to hear you play it!","You're so great, I love it!"], ["Yeah. No.", "Is it called 'Reasons Why Nobody Should Let Me Near a Microphone'?", "Did you seriously just put 'whoa' sounds instead of lyrics. Asshole."]));
-			chats.push(new InterestConversationalPair(interest, "Do you think if I tried hard enough, I could convince the Imps to do a dance number?", ["Oh, that would be so adorable!","You'd have to to stop them from fighting somehow. Maybe mind control?","If anyone could do it, it'd be you!"], ["Oh god, why would you waste time doing that?", "You need to get better taste.", "Ugh, they would probably murder each other rather than participate in your shitty choreography."]));
+			chats.push(new InterestConversationalPair(interest, "'whoa-oa-oa, why did you have to take my whoa-oa-oa' Like it? It's a new song I'm writing.", ["You're so talented! Gold star for you!","I can't wait to hear you play it!","You're so great, I love it!"], ["Yeah. No.", "Is it called 'Reasons Why Nobody Should Let Me Near a Microphone'?", "Did you seriously just put 'whoa' sounds instead of lyrics. Asshole."]));
+			chats.push(new InterestConversationalPair(interest, "Do you think if I tried hard enough, I could convince the Imps to do a dance number?", ["Oh, that would be so adorable!","You'd have to to stop them from fighting somehow. Maybe mind control?","If anyone could do it, it'd be you!"], ["Oh god, why would you waste time doing that?", "You need to get better taste. Or a new brain.", "Ugh, they would probably murder each other rather than participate in your shitty choreography."]));
 			//InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative))
 			return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 	}
 
+	//Troll words: year, month, refrigerator, bathtub, ears, heart, brain,rap,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
 	//did you get to the cloud district recently, what am i saying of course you didn't.
 	this.chatAboutCulture = function(p1, p2,p1Start, p2Start, relationship, relationship2){
 		var interest = "Culture";
@@ -160,6 +161,7 @@ function QuadrantDialogue(session){
 	}
 
 	//oh lord, tell bad jokes here.  especially puns
+	//Troll words: year, month, refrigerator, bathtub, ears, heart, brain,rap,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
 	this.chatAboutComedy = function(p1, p2,p1Start, p2Start, relationship, relationship2){
 		var interest = "Comedy";
 		//InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative))

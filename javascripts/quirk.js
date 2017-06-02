@@ -183,9 +183,9 @@ function Quirk(){
 		//which ones you add are random.
 		var words = [["\\byear\\b","sweep"],["\\bmonth\\b","perigee"],["\\brefrigerator\\b","\\bthermal hull\\b"],["\\bbathtub\\b","ablution trap"],["\\bears\\b","hear ducts "],["\\bheart\\b","pump biscuit"],["\\bbrain\\b","sponge"],["\\brap\\b","slam poetry"],["\\bnose\\b","nub"],["\\bmouth\\b","squawk gaper"],["\\bbed\\b", "cocoon"],["\\btea\\b","scalding leaf fluid"],["\\bworm", "dirt noodle"],["\\bbean","fart nibblet"],["\\btree\\b","frond nub"],["\\bleg\\b","frond"],["\\bgold star\\b","glitter biscuit"],["\\bborn\\b","hatched"],["\\btoilet\\b","load gaper"],["\\bfoot\\b","prong"],["\\bspine\\b","posture pole"],["vampire","rainbow drinker"],["\\btits\\b","rumble spheres"],["\\bbaby\\b","wiggler"],["eye","gander bulb"]]
 		
-		var odds = 12 - bloodColors.indexOf(player.bloodColor);   //12 is max odds, 0 is min odds.
+		var odds = 15 - bloodColors.indexOf(player.bloodColor);   //15 is max odds, 0 is min odds.  after all, even meenah used some low blood words, right?
 		for(var i = 0; i<words.length; i++){
-			if(Math.seededRandom()*12 < odds ){
+			if(Math.seededRandom()*15 < odds ){
 				this.lettersToReplaceIgnoreCase.push(words[i]); 
 			}
 		}
