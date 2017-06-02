@@ -190,15 +190,19 @@ function QuadrantDialogue(session){
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2)
 
 	}
-
+	//Troll words: year, month, refrigerator, bathtub, ears, heart, brain,rap,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
 	this.chatAboutTerrible = function(p1, p2,p1Start, p2Start, relationship, relationship2){
 		var interest = "Terrible";
 		var chats = [];
 		//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
-		chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
-		chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
-		chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
-		chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
+		if((p1.isTroll){
+			chats.push(new InterestConversationalPair(interest, "It's like I've been saying, the hemospectrum exists for a reason.", ["Too right, lower trolls rely on those above them for guidance.","I couldn't agree more, cooler trolls are BUILT for ruling in a way hot bloods just are not.","It is such a shame that more trolls don't see it your way."], ["God, it makes me physically ill to agree with you about anything.", "I am disgusted with both of us at this point. ", "Calm your tits, asshole, you're preaching to the choir."]));
+		}
+		chats.push(new InterestConversationalPair(interest, "Hell yes, I've got all the boonies, baby.", ["Bling bling, yes.","Man, you have fat stacks and mad cash.","So rich you could buy Derse if you wanted to."], ["What do you want, a gold star? Money is stupid easy to get in this game.", "And just like that, my desire for money is down the toilet.", "If you even remotely had a heart, you'd stop bragging about shit like that when the entire world just ended."]));
+		chats.push(new InterestConversationalPair(interest, "It amazes me that any of the commoners are capable of anything.", ["Seriously, it's like, why not wait for your betters to instruct you.","People need to figure out where their place is.","You are so right. "], ["Fuck you, it's not like you'e any better than a commoner yourself.", "Knowing you consider yourself 'uncommon' almost makes me want to be common just to not share a class with YOU.", "I have never been more embarassed to be a member of the upper class."]));
+		chats.push(new InterestConversationalPair(interest, "Shut up and give me your grist. I need it.", ["You better be able to invest it better than me.","You're lucky I trust you with my hard earned spoils of war.","Sure thing!"], ["Fuck you, this is MY shit, I earned it.", "Hell no, do you know how hard it was to get all this shit. I'm keeping my grist monopoly.", "No way, bro, that's what you get for being an asshole."]));
+		chats.push(new InterestConversationalPair(interest, "You're all fucking lucky I let you live.", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "I always knew I would rule a planet with an iron fist, but I didn't think it would happen like this.", ["It is so amazing to be able to rule different planets together.","Hell yes, I feel you.", "Great conquerers think alike!"], ["Yeah, well, don't come crying to me in a month when you are up to your nose in insurrections. I have never SEEN a shittier ruler.", "Who the hell WOULD predict all this crazy SBURB shit?", "lol, good luck KEEPING it, asshole, 'cause I am already sowing the seeds of dissent in your consorts."));
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2)
 	}
 
