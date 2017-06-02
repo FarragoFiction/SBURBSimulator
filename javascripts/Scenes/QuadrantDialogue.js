@@ -93,9 +93,19 @@ function QuadrantDialogue(session){
 
 	}
 
+	/*
+		Troll words: year, month, refrigerator, shower, bath, ears, heart, brain,rap,room,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
+	*/
 	this.chatAboutWriting = function(p1, p2,p1Start, p2Start, relationship, relationship2){
-		return  "\n<insert random 'writing' chat here>\n"
-
+		var interest = "Writing";
+		//InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative))
+		var chats = [];
+		//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "Have you seen the fic I wrote about those two super heroes?", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "Hey, when you get a chance can you beta read my new chapter?", ["","",""], ["Holy shit. We are locked in a DEATH GAME and you are taking the time to write? What is WRONG with you?", "Hell no, my eyes can not take even one more chapter of your shitty writing.", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "Oh man, SBURB is giving me all sorts of ideas for a new campaign to DM.", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "When all this is over, I think I'm going to finally write my novel.", ["","",""], ["", "", "","", ""]));
+		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 	}
 
 	this.chatAboutRomance = function(p1, p2,p1Start, p2Start, relationship, relationship2){
@@ -182,9 +192,7 @@ function QuadrantDialogue(session){
 
 	//stop right there, criminal scum
 	this.chatAboutJustice = function(p1, p2, p1Start, p2Start, relationship, relationship2){
-		//look at InterestConversationalPair and don't call
-		//this.processChatPair(chats, relationship1, relationship2);
-		//because it randomizes who said what and that is not okay.
+		
 		return  "\n<insert random 'justice' chat here>\n"
 	}
 

@@ -175,6 +175,11 @@ function Quirk(){
         }
         return ret;
     }
+	
+	//higher up on the hemospectrum you are, less likely you are to use these sorts of words.
+	this.lowBloodVocabulary = function(player){
+		//Troll words: year, month, refrigerator, shower, bath, ears, heart, brain,rap,room,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
+	}
 
     this.makeTrollQuirk = function(player){
       //console.log("generting troll quirk with favorite number: " + this.favoriteNumber)
