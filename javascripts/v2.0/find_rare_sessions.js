@@ -554,14 +554,22 @@ function checkPasswordAgainstQuip(summary){
 	}
 }
 
+function avatarCarousel(){
+	var possibleAvatars = ["images/CandyAuthorBot.png","images/trickster_author_transparent.png","images/ab_guide_sprite.png","images/trickster_artist_transparent.png","images/jr_sprite.png"];
+	$("#avatar").attr("src",getRandomElementFromArray(possibleAvatars));
+	setTimeOut(avatarCarousel,1000);
+}
+
 function loadEasterEggs(){
 	$.ajax({
 	  url: "easter_eggs.txt",
 	  success:(function(data){
 		 $("#easter_eggs").html(data)
 		  $("#pw_container").html("")
+			avatarCarousel();
 		  if(getParameterByName("lollipop")  == "true"){
 			$("#avatar").attr("src","images/CandyAuthorBot.png");
+
 		  }
 	  }),
 	  dataType: "text"
