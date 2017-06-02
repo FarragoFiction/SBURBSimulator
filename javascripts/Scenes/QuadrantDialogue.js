@@ -134,8 +134,6 @@ function QuadrantDialogue(session){
 			chats.push(new InterestConversationalPair(interest, "'whoa-oa-oa, why did you have to take my whoa-oa-oa' Like it? It's a new song I'm writing.", ["You're so talented!","I can't wait to hear you play it!","You're so great, I love it!"], ["Yeah. No.", "Is it called 'Reasons Why Nobody Should Let Me Near a Microphone'?", "Did you seriously just put 'whoa' sounds instead of lyrics. Asshole."]));
 			chats.push(new InterestConversationalPair(interest, "Do you think if I tried hard enough, I could convince the Imps to do a dance number?", ["Oh, that would be so adorable!","You'd have to to stop them from fighting somehow. Maybe mind control?","If anyone could do it, it'd be you!"], ["Oh god, why would you waste time doing that?", "You need to get better taste.", "Ugh, they would probably murder each other rather than participate in your shitty choreography."]));
 			//InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative))
-			var chats = [];
-
 			return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 	}
 
