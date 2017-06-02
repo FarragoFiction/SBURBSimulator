@@ -557,7 +557,7 @@ function checkPasswordAgainstQuip(summary){
 function avatarCarousel(){
 	var possibleAvatars = ["images/CandyAuthorBot.png","images/trickster_author_transparent.png","images/ab_guide_sprite.png","images/trickster_artist_transparent.png","images/jr_sprite.png"];
 	$("#avatar").attr("src",getRandomElementFromArray(possibleAvatars));
-	setTimeOut(avatarCarousel,1000);
+	setTimeout(avatarCarousel,10000);
 }
 
 function loadEasterEggs(){
