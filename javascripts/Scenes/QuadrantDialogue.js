@@ -188,18 +188,23 @@ function QuadrantDialogue(session){
 	}
 
 	this.getp2ResponseBasedOnInterests = function(chosen, interest, player, playerStart, relationship){
+		console.log("interest is: " + interest)
 		var chat = "";
 		if(relationship.value > 0){
 			if(player.interestedIn(interest)){
+				console.log("interested in " + interest)
 				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.responseLinesSharedInterestPositive));
 			}else{
+				console.log("not interested in " + interest)
 				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.genericResponses));
 			}
 		}else{
 			if(player.interestedIn(interest)){
+				console.log("interested in " + interest)
 				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.responseLinesSharedInterestNegative));
 				console.log("adding negative shared interest response: " + chat)
 			}else{
+				console.log("not interested in " + interest)
 				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.genericResponses));
 			}
 		}
