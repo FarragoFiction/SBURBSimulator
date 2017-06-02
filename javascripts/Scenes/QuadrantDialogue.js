@@ -192,7 +192,14 @@ function QuadrantDialogue(session){
 	}
 
 	this.chatAboutTerrible = function(p1, p2,p1Start, p2Start, relationship, relationship2){
-		return  "\n<insert random 'terrible' chat here>\n"
+		var interest = "Terrible";
+		var chats = [];
+		//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
+		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2)
 	}
 
 	this.chatAboutFantasy = function(p1, p2, p1Start, p2Start,relationship, relationship2){
