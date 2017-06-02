@@ -117,6 +117,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.interestedIn = function(interestWord){
 		if(interestWord == "Comedy") return playerLikesComedy(this)
 		if(interestWord == "Music") return playerLikesMusic(this)
+		if(interestWord == "Culture") return playerLikesCulture(this)
 		console.log("todo implement for all interests...............................................DO IT!!! -signed pastJR")
 		return false;
 	}
