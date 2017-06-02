@@ -101,10 +101,10 @@ function QuadrantDialogue(session){
 		//InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative))
 		var chats = [];
 		//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
-		chats.push(new InterestConversationalPair(interest, "Have you seen the fic I wrote about those two super heroes?", ["","",""], ["", "", "","", ""]));
-		chats.push(new InterestConversationalPair(interest, "Hey, when you get a chance can you beta read my new chapter?", ["","",""], ["Holy shit. We are locked in a DEATH GAME and you are taking the time to write? What is WRONG with you?", "Hell no, my eyes can not take even one more chapter of your shitty writing.", "","", ""]));
-		chats.push(new InterestConversationalPair(interest, "Oh man, SBURB is giving me all sorts of ideas for a new campaign to DM.", ["","",""], ["", "", "","", ""]));
-		chats.push(new InterestConversationalPair(interest, "When all this is over, I think I'm going to finally write my novel.", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "Have you seen the fic I wrote about those two super heroes?", ["Yes, it got so sad, though. :( ","It was so cool, I never thought about those characters that way!","I really liked it, but I sure had to look up a lot of words."], ["I have no idea why you had to make the main character a vampire. That shit was unnecessary.", "By the end of it, I could feel my brain leaking out of my ears. Learn what a 'thesaurus' is. ", "They were completley off character, it's like you just stole somebody else's story and shoved super heroes into it."]));
+		chats.push(new InterestConversationalPair(interest, "Hey, when you get a chance can you beta read my new chapter?", ["omg of COURSE!","Oh hell yes! I can't wait to find out what happens next!","Absolutely. Just send it to me whenever."], ["Holy shit. We are locked in a DEATH GAME and you are taking the time to write? What is WRONG with you?", "Hell no, my eyes can not take even one more chapter of your shitty writing.", "Yeah, how about 'no'?", "Why the hell does someone like YOU have so much talent. God. It's wasted on you."]));
+		chats.push(new InterestConversationalPair(interest, "Oh man, SBURB is giving me all sorts of ideas for a new campaign to DM.", ["omg I know right?  Say what you will about the apocalypse, but it's full of drama.","Oh man, I call brawler.","Normally I'd be all for running a campaign with you...but is SBURB really such good source material?"], ["Yeah, it sure does sound like a good idea to make a roleplaying campaign about the game that killed your entire species. Asshole.", "Holy shit is that a bad idea. In fact, I think it might be the worst possible idea. Gold star for you.", "Yeah. Not gonna play that shit if you paid me to."]));
+		chats.push(new InterestConversationalPair(interest, "When all this is over, I think I'm going to finally write my novel.", ["Oh man, you'll be the new universe's first author!","If anyone can do it, it's you!","You were born to be the new universe's first published author."], ["Should you REALLY be making plans for the future in the middle of a death game? ", "How much of a self absorbed asshole ARE you?", "Like anybody would read anything YOU wrote."]));
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 	}
 
@@ -194,7 +194,7 @@ function QuadrantDialogue(session){
 
 	//stop right there, criminal scum
 	this.chatAboutJustice = function(p1, p2, p1Start, p2Start, relationship, relationship2){
-		
+
 		return  "\n<insert random 'justice' chat here>\n"
 	}
 

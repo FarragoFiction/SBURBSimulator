@@ -175,18 +175,18 @@ function Quirk(){
         }
         return ret;
     }
-	
+
 	//higher up on the hemospectrum you are, less likely you are to use these sorts of words.
 	this.lowBloodVocabulary = function(player){
 		//Troll words: year, month, refrigerator, bathtub, ears, heart, brain,rap,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
 		//red blood adds all of these, mid blood adds half, and eridan or above adds none.
 		//which ones you add are random.
-		var words = [["\\byear\\b","sweep"],["\\bmonth\\b","perigee"],["\\brefrigerator\\b","\\bthermal hull\\b"],["\\bbathtub\\b","ablution trap"],["\\bears\\b","hear ducts "],["\\bheart\\b","pump biscuit"],["\\bbrain\\b","sponge"],["\\brap\\b","slam poetry"],["\\bnose\\b","sniffnode"],["\\bmouth\\b","squawk gaper"],["\\bbed\\b", "cocoon"],["\\btea\\b","scalding leaf fluid"],["\\bworm", "dirt noodle"],["\\bbean","fart nibblet"],["\\btree\\b","frond nub"],["\\bleg\\b","frond"],["\\bgold star\\b","glitter biscuit"],["\\bborn\\b","hatched"],["\\btoilet\\b","load gaper"],["\\bfoot\\b","prong"],["\\bspine\\b","posture pole"],["vampire","rainbow drinker"],["\\btits\\b","rumble spheres"],["\\bbaby\\b","wiggler"],["eye","gander bulb"]]
-		
+		var words = [["\\byear\\b","sweep"],["SBURB","SGRUB"],["\\bmonth\\b","perigee"],["\\brefrigerator\\b","\\bthermal hull\\b"],["\\bbathtub\\b","ablution trap"],["\\bears\\b","hear ducts "],["\\bheart\\b","pump biscuit"],["\\bbrain\\b","sponge"],["\\brap\\b","slam poetry"],["\\bnose\\b","sniffnode"],["\\bmouth\\b","squawk gaper"],["\\bbed\\b", "cocoon"],["\\btea\\b","scalding leaf fluid"],["\\bworm", "dirt noodle"],["\\bbean","fart nibblet"],["\\btree\\b","frond nub"],["\\bleg\\b","frond"],["\\bgold star\\b","glitter biscuit"],["\\bborn\\b","hatched"],["\\btoilet\\b","load gaper"],["\\bfoot\\b","prong"],["\\bspine\\b","posture pole"],["vampire","rainbow drinker"],["\\btits\\b","rumble spheres"],["\\bbaby\\b","wiggler"],["eye","gander bulb"]]
+
 		var odds = 15 - bloodColors.indexOf(player.bloodColor);   //15 is max odds, 0 is min odds.  after all, even meenah used some low blood words, right?
 		for(var i = 0; i<words.length; i++){
 			if(Math.seededRandom()*15 < odds ){
-				this.lettersToReplaceIgnoreCase.push(words[i]); 
+				this.lettersToReplaceIgnoreCase.push(words[i]);
 			}
 		}
 	}
