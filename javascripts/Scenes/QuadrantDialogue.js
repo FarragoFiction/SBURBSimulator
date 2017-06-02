@@ -14,6 +14,7 @@ function QuadrantDialogue(session){
 	this.trigger = function(){
 		this.player1 = null;
 		this.player2 = null;
+		//if want to be more frequent, can allo goodBig and badBig to trigger this as well.
 
 		if(Math.seededRandom() > 0.0001){ //fiddle with rate later, for now, i want to see this happen.
 			findSemiRandomQuadrantedAvailablePlayer();
@@ -176,9 +177,17 @@ function QuadrantDialogue(session){
 	this.chatAboutDomestic = function(p1, p2,p1Start, p2Start, relationship, relationship2){
 		return  "\n<insert random 'domestic' chat here>\n"
 	}
+	//Troll words: year, month, refrigerator, bathtub, ears, heart, brain,rap,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
 
 	this.chatAboutAthletic = function(p1, p2, p1Start, p2Start,relationship, relationship2){
-		return  "\n<insert random 'athletic' chat here>\n"
+		var interest = "Athletic";
+		var chats = [];
+		//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "I am very STRONG, wouldn't you agree?", ["So strong. The best.","When it comes to being strong, you are simply the best there is.","You have the heart of a champion."], ["Pfft, I've seen a baby stronger than you.", "You could train for a whole year and I'd still be STRONGER.", "Just because you can pick up a refrigerator doesn't mean you are STRONG. Kids do that shit."]));
+		chats.push(new InterestConversationalPair(interest, "Man, running away from all these imps sure is a good work out.", ["I've never seen anybody so fast!","You were born for running.","You ARE crazy fast. But... is the point of SBURB really to get a good work out?"], ["Grow a spine and fight back, you baby.", "You know what ELSE is a good work out? FIGHTING the imps instead of running away like a little baby.", "Oh god, why am I even here, the insults write themselves."]));
+		chats.push(new InterestConversationalPair(interest, "I would have to say I am simply the best there is at these ball themed mini games.", ["You are the star, it is you.","You should give me some tips in person sometime, I think my stance is too wide.","I know! How far did you even hit that one ball! I think it made a touchdown right up the field goal. Sports."], ["Bluh, I could beat your high score if I had as much time to waste as you seem to.", "Minigames are for little baby players who poop hard in their diapers.", "Like anybody even cares about your ball handling."]));
+		chats.push(new InterestConversationalPair(interest, "It is amazing what new heights of STRENGTH this game enables.", ["Yeah, my MANGRIT has never been higher.","RPG power leveling for the win.","Yeah, my legs are like tree trunks lately."], ["Yes, most of your species dies out completely but it's okay because you can now lift heavier things. Good job.", "Oh yes, completely worth it to wipe out most of your species.", "God, I really do hate you. What is the POINT in giving SBURB credit for anything when it's already taken so much from us?"]));
+		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2)
 
 	}
 
