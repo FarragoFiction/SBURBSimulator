@@ -213,9 +213,18 @@ function QuadrantDialogue(session){
 
 
 	//stop right there, criminal scum
+	//Troll words: year, month, refrigerator, bathtub, ears, heart, brain,rap,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
 	this.chatAboutJustice = function(p1, p2, p1Start, p2Start, relationship, relationship2){
+		var interest = "Justice";
+		var chats = [];
+		//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "These consorts sure do have weird ideas about justice!", ["I know right? 'That imp stole my sweet bun, kill him for me!'. Game logic, man.","Maybe SBURB is trying to say that 'justice' is defined by society and not an intrinsic property of reality?","Well, good thing we are here to teach them how it's done!"], ["Have you ever considered that maybe YOUR conception of justice is a stupid baby thing that nobody would ever agree with?", "If you had half a brain you'd realize that NPCs don't HAVE ideas, much less about justice.", "Like you're any better."]));
+		chats.push(new InterestConversationalPair(interest, "I think that one of my side quests is a MYSTERY!", ["Holy shit, so jealous!","Man, why are all of your sidequests bette than mine?","Oh man, can I solve it with you later?"], ["And maybe when you solve baby's first mystery you will get a gold star! So lame.", "Don't you see that SBURB is partronizing you!?", "God, you give detectives a bad name."]));
+		chats.push(new InterestConversationalPair(interest, "It appears that the consorts had a truly egalitarian society before the Denizens arrived.", ["It is a shame our own planet did not embrace such ideals before it's ultimate demize. It as as I have always said: Not even the end of the world can change a man's heart. ","That sounds like you are opressing Denizens, when all they are doing is merely existing as they were designed to.","Yeah, Denizens are the Man, man."], ["Do you even have eyes!? Do you not see what is so blindingly obvious? Those consorts have a COMPLETELY dysfunctional dystopia.", "If that's what you think a utopia looks like, you deserve it.", "Good thing Captain Obvious is here to save the day!"]));
 
-		return  "\n<insert random 'justice' chat here>\n"
+		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2)
+
+
 	}
 
 
