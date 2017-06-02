@@ -178,7 +178,17 @@ function Quirk(){
 	
 	//higher up on the hemospectrum you are, less likely you are to use these sorts of words.
 	this.lowBloodVocabulary = function(player){
-		//Troll words: year, month, refrigerator, shower, bath, ears, heart, brain,rap,room,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
+		//Troll words: year, month, refrigerator, bathtub, ears, heart, brain,rap,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
+		//red blood adds all of these, mid blood adds half, and eridan or above adds none.
+		//which ones you add are random.
+		var words = [["\\byear\\b","sweep"],["\\bmonth\\b","perigee"],["\\brefrigerator\\b","\\bthermal hull\\b"],["\\bbathtub\\b","ablution trap"],["\\bears\\b","hear ducts "],["\\bheart\\b","pump biscuit"],["\\bbrain\\b","sponge"],["\\brap\\b","slam poetry"],["\\bnose\\b","nub"],["\\bmouth\\b","squawk gaper"],["\\bbed\\b", "cocoon"],["\\btea\\b","scalding leaf fluid"],["\\bworm", "dirt noodle"],["\\bbean","fart nibblet"],["\\btree\\b","frond nub"],["\\bleg\\b","frond"],["\\bgold star\\b","glitter biscuit"],["\\bborn\\b","hatched"],["\\btoilet\\b","load gaper"],["\\bfoot\\b","prong"],["\\bspine\\b","posture pole"],["vampire","rainbow drinker"],["\\btits\\b","rumble spheres"],["\\bbaby\\b","wiggler"],["eye","gander bulb"]]
+		
+		var odds = 12 - bloodColors.indexOf(player.bloodColor);   //12 is max odds, 0 is min odds.
+		for(var i = 0; i<words.length; i++){
+			if(Math.seededRandom()*12 < odds ){
+				this.lettersToReplaceIgnoreCase.push(words[i]); 
+			}
+		}
 	}
 
     this.makeTrollQuirk = function(player){
@@ -244,6 +254,7 @@ function Quirk(){
 
       this.addNumberQuirk(this);
       //$("#debug").append("Human letters to replace: " + this.lettersToReplace.length);
+	  this.lowBloodVocabulary(player);
 
 
     }
