@@ -124,8 +124,8 @@ function QuadrantDialogue(session){
 			var chats = [];
 			if(p1.interest1 == "Rap"||p1.interest2 == "Rap" || p1.interest1 == "Turntables" || p1.interest2 == "Turntables"){
 				//pass a 4 so you only get 1 line.
-				chats.push(new InterestConversationalPair(interest, getRapForPlayer(p1, "", 4), ["Yeah dog you got that mad flow.","Shit, your rhymes are tight.","Hell yes. Hell FUCKING yes.","Your beats are hella ill!"], [getRapForPlayer(p2, "", 4)])
-				return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2)
+				chats.push(new InterestConversationalPair(interest, getRapForPlayer(p1, "", 4), ["Yeah dog you got that mad flow.","Shit, your rhymes are tight.","Hell yes. Hell FUCKING yes.","Your beats are hella ill!"], [getRapForPlayer(p2, "", 4)]))
+				return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 			}
 			//InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative))
 			var chats = [];
