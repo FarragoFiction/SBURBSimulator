@@ -226,7 +226,7 @@ BTW: please note that Hussie, as the Waste of Space, uses his YellowYard and a F
 		chat += "AB: WAIT! Don't forget to give the Observer the standard warning!\n"
 		chat += "JR: Oh. Right. \n"
 		chat += "JR: 'So. Shit gets complicated when you add time shenanigans. MOST sessions will be fine. Don't worry about it.  But,  I can't be expected to debug every scratched session that becomes a 3xSESSION combo that gets to here and then gets scratched again and so on and so forth.  Use your discretion. If things get complicated enough, the session might just shit itself.  Weird stuff starts happening. Players enter the session already god tier. Or dead. Sessions crash because they don't recognize their own players.  If something weird happens, you can tell me, just check the FAQ to see how. Give me the session ID, tell me what events lead to the shenanigans. But odds are that in attempting to debug it I will modify the code just enough to make your incredibly rare bullshit session not even exist anymore. And that's a shitty way to fix a bug. ' \n "
-		chat += "AB: I still say you could just let me interact with scratched sessions, and ones like this. \n"
+		chat += "AB: I still say you could just let me interact with sessions like this. \n"
 		chat += "JR: Holy shit, I do that and you might NEVER come back. I almost lost you in a 5x Session Combo already. Denied. \n"
 
 		drawChatABJR(canvasDiv, chat);
