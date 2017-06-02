@@ -329,6 +329,24 @@ function rapInterjection(){
 	return getRandomElementFromArray(interjections);
 }
 
+function getMiniRapForPlayer(player,returnString, score){
+	var chosenRapTemplate = getRandomElementFromArray(rapTemplates);
+	var raps = chosenRapTemplate.getRapLineForPlayer(player);
+	var str = raps[0];
+	var firstWord = raps[1];
+	var secondWord = raps[2];
+	returnString += str + " \n";
+
+	if(firstWord && secondWord && firstWord != secondWord){
+				score ++;
+				//dont rap forever, like you can on rap.html
+				if(score<2) return this.getRapForPlayer(player, returnString, score); //keep going till you can't
+	}else{
+		//give up
+	}
+	return [returnString, score];
+}
+
 
 function getRapForPlayer(player,returnString, score){
 	var chosenRapTemplate = getRandomElementFromArray(rapTemplates);

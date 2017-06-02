@@ -120,6 +120,16 @@ function QuadrantDialogue(session){
 
 	this.chatAboutMusic = function(p1, p2,p1Start, p2Start, relationship, relationship2){
 			//if both characters like rap/hiphop, etc, they rap here????
+			var interest = "Music";
+			var chats = [];
+			if(p1.interest1 == "Rap"||p1.interest2 == "Rap" || p1.interest1 == "Turntables" || p1.interest2 == "Turntables"){
+				//pass a 4 so you only get 1 line.
+				chats.push(new InterestConversationalPair(interest, getRapForPlayer(p1, "", 4), ["Yeah dog you got that mad flow.","Shit, your rhymes are tight.","Hell yes. Hell FUCKING yes.","Your beats are hella ill!"], [getRapForPlayer(p2, "", 4)])
+				return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2)
+			}
+			//InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative))
+			var chats = [];
+
 			return  "\n<insert random 'music' chat here>\n"
 	}
 
@@ -130,12 +140,10 @@ function QuadrantDialogue(session){
 
 	//oh lord, tell bad jokes here.  especially puns
 	this.chatAboutComedy = function(p1, p2,p1Start, p2Start, relationship, relationship2){
-		console.log("Chatting about comedy: p1 is: " + p1.chatHandle + " p2 is: " + p2.chatHandle + " player1Start is: " + p1Start + " player2Start is: " + p2Start)
 		var interest = "Comedy";
-		
 		//InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative))
 		var chats = [];
-		chats.push(new InterestConversationalPair(interest, "Why did the ghost cross the road? To get to the other side!", ["Spoopy. Why didn't the ghost go to prom? He had no BODY to go with.","lol, because the afterlife is also called the other side but that's also where you get when you cross a road!"], ["Holy shit, could you get any worse at jokes?", "That ghost isn't the ONLY thing that's dead here. It's also your sense of humor.", "That joke is older than my guardian. You suck.","Your joke is bad and you should feel bad."]));
+		chats.push(new InterestConversationalPair(interest, "Why did the ghost cross the road? To get to the other side!", ["Spoopy. Why didn't the ghost go to prom? He had no BODY to go with.","lol, because the afterlife is also called the other side but that's also where you get when you cross a road!"], ["Holy shit, could you get any worse at jokes?", "That ghost isn't the ONLY thing that's dead here. It's also your sense of humor.", "That joke is older than my guardian. You suck.","Your joke is bad and you should feel bad.", "Oh look, a variant of the 'chicken joke'. How novel. Not."]));
 		chats.push(new InterestConversationalPair(interest, "Why are cats afraid of trees? Because of their bark!", ["I think I could make a better cat joke, nah, I'm just kitten.","lol, that was hilarious!","lol, dogs bark but not in the same way that trees HAVE bark!"], ["Holy shit, could you get any worse at jokes?", "That joke is older than my guardian. You suck.", "I think I have heard a worse cat joke, nah, I'm just kitten. Because you suck. ","You are ruining the nobel art of the pun.", "People like you are why puns have a bad name."]));
 		chats.push(new InterestConversationalPair(interest, "I wondered why the ball was getting bigger, then it hit me!", ["lol. A man walked into a bar. Ouch!", "lol, that was hilarious!","lol, because it sounds like he realized why the ball was getting bigger, but really it was the ball, not realization, hitting him. Hilarious!"], ["Holy shit, could you get any worse at jokes?", "That joke is older than my guardian. You suck.", "Your joke is bad and you should feel bad."]));
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2)
@@ -158,7 +166,7 @@ function QuadrantDialogue(session){
 		return  "\n<insert random 'fantasy' chat here>\n"
 
 	}
-	
+
 
 	//stop right there, criminal scum
 	this.chatAboutJustice = function(p1, p2, p1Start, p2Start, relationship, relationship2){
@@ -167,8 +175,8 @@ function QuadrantDialogue(session){
 		//because it randomizes who said what and that is not okay.
 		return  "\n<insert random 'justice' chat here>\n"
 	}
-	
-	
+
+
 	//response depends on whether or not p2 shares that interest.
 	this.processChatAboutInterests = function(chats, interest, p1,p2, p1Start, p2Start, relationship1, relationship2){
 		var chosen = getRandomElementFromArray(chats);
@@ -177,27 +185,27 @@ function QuadrantDialogue(session){
 		chat += this.getp2ResponseBasedOnInterests(chosen, interest, p2, p2Start, relationship2)
 		return chat;
 	}
-	
+
 	this.getp2ResponseBasedOnInterests = function(chosen, interest, player, playerStart, relationship){
 		var chat = "";
 		if(relationship.value > 0){
 			if(player.interestedIn(interest)){
 				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.responseLinesSharedInterestPositive));
-			}else{ 
+			}else{
 				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.genericResponses));
 			}
 		}else{
 			if(player.interestedIn(interest)){
 				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.responseLinesSharedInterestNegative));
 				console.log("adding negative shared interest response: " + chat)
-			}else{  
+			}else{
 				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.genericResponses));
 			}
 		}
 		return chat;
 	}
 
-	
+
 	//for some reason right now method has the player appear to be chatting with theselves.
 	this.chatAboutLackOfInterests = function(relationship, relationship2){
 		var p1 = this.player1;
