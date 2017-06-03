@@ -1313,7 +1313,7 @@ var bloodColors = ["#A10000","#a25203","#a1a100","#658200","#416600","#078446","
 var interests = []
 
 var music_interests = ["Rap","Music","Song Writing","Musicals","Dance", "Singing","Ballet","Playing Guitar","Playing Piano", "Mixtapes","Turntables"];
-var culture_interests = ["Drawing","Painting","Documentaries","Fan Art" ,"Graffiti","Fashion","Theater","Fine Art", "Literature","Books", "Movie Making"];
+var culture_interests = ["Drawing","Painting","Documentaries","Fan Art" ,"Graffiti","Theater","Fine Art", "Literature","Books", "Movie Making"];
 var writing_interests = ["Writing", "Fan Fiction","Script Writing","Character Creation","Dungeon Mastering", "Authoring"];
 var pop_culture_interests = ["Irony","Action Movies", "Superheroes", "Supervillains", "Video Games", "Movies", "Television","Comic Books","TV","Heroes"];
 var technology_interests = ["Programming", "Hacking","Robots","Artificial Intelligence", "Engineering","Manufacturing","Cyborgs", "Androids","A.I.","Automation"];

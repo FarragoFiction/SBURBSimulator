@@ -154,7 +154,6 @@ function QuadrantDialogue(session){
 		var chats = [];
 		//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
 		chats.push(new InterestConversationalPair(interest, "I really should try drawing you sometime.", ["Oh, do you really think I'd be a good model?","Oh man, I bet that would loook so cool!","You flatter me."], ["Fuck you, I wouldn't want to ruin my looks with YOUR talent.", "Hell no. You suck at art.", "Nah, your mediocre talent would only screw with my good looks."]));
-		chats.push(new InterestConversationalPair(interest, "Remind me to alchemize some new clothes for you later.", ["Oh man, I bet they'd look so cool!","Really!? You have such good taste in fashion!","I can't wait!"], ["Ugh, never in a million years. You have shit taste.", "Remind me to take a holy vow against wearing clothes later.", "Not if they were the last pair of pants in existance.","Ugh, just imagining wearing something with your shit taste makes me feel debased."]));
 		chats.push(new InterestConversationalPair(interest, "Have you ever read House of Leaves?", ["Oh god yes, what the hell was even going on with it? So crazy!","No, but I heard it's meta as hell?","Oh man! The footnotes! The hole in the book! The layers! So good!"], ["God, what a pretentious fucking book. Fuck you for reading it.", "Ugh, how can someone as terrible as you have such good taste in books?", "Fuck you for reminding me that it exists.","Yes, and fuck you for most probably restarting my nightmares about that shit.", "Ugh, of course YOU would like it. I refuse to read it."]));
 		chats.push(new InterestConversationalPair(interest, "Your land is beautiful, by the way. I really should paint it sometime.", ["Maybe we can make a day of it!","You're welcome to come over anytime.","I'm glad you think so, but I'm pretty sure my land is creepy as hell."], ["Ugh, nope, no way.", "Go for it, I really want to see how much you screw this up.", "You have a twisted sense of aesthetics, did you know that?"]));
 		chats.push(new InterestConversationalPair(interest, p1.land + " is like something out of a surreal painting.", ["I know, right? I keep expecting to see melting clocks everywhere.","You really have a way with words.","You should paint it!"], ["You clearly lack imagination if you think that.", "I could not disagree more.", "Learn the definition of the word 'surreal', asshole."]));
@@ -175,12 +174,15 @@ function QuadrantDialogue(session){
 	}
 
 	this.chatAboutDomestic = function(p1, p2,p1Start, p2Start, relationship, relationship2){
-		var interest = "Justice";
+		var interest = "Domestic";
 		var chats = [];
 		//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
-		chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
-		chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
-		chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "Remind me to alchemize some new clothes for you later.", ["Oh man, I bet they'd look so cool!","Really!? You have such good taste in fashion!","I can't wait!"], ["Ugh, never in a million years. You have shit taste.", "Remind me to take a holy vow against wearing clothes later.", "Not if they were the last pair of pants in existance.","Ugh, just imagining wearing something with your shit taste makes me feel debased."]));
+		chats.push(new InterestConversationalPair(interest, "Do you think I could get any vegetables to grow on " + p1.shortLand + "?", ["Oh man, it would be so cool if you could!","Maybe with game powers?","Wow, you have seeds in your sylladex?"], ["Do you see a sun anywhere, asshole?", "What would even be the point?", "With your brown thumb, you'd probably just kill them. "]));
+		if(p2.knowsAboutSburb()){
+			chats[chats.length-1].responseLinesSharedInterestPositive.push(" I'd hold onto any seeds you have until we get the Ultimate Reward.")
+		}
+		chats.push(new InterestConversationalPair(interest, "Remind me to make a cake later on, okay?", ["Hell yes!","Yes, I wouldn't miss it for the world.","Yes, we could all use a morale boost."], ["We are in the middle of a SBURB-damned death game and you want to BAKE!?", "You clearly have cake where your brain should be.", "I would not put anything you baked near my mouth in a million years."]));
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2)
 	}
 	//Troll words: year, month, refrigerator, bathtub, ears, heart, brain,rap,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
