@@ -178,7 +178,7 @@ function QuadrantDialogue(session){
 		var chats = [];
 		//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
 		chats.push(new InterestConversationalPair(interest, "Remind me to alchemize some new clothes for you later.", ["Oh man, I bet they'd look so cool!","Really!? You have such good taste in fashion!","I can't wait!"], ["Ugh, never in a million years. You have shit taste.", "Remind me to take a holy vow against wearing clothes later.", "Not if they were the last pair of pants in existance.","Ugh, just imagining wearing something with your shit taste makes me feel debased."]));
-		chats.push(new InterestConversationalPair(interest, "Do you think I could get any vegetables to grow on " + p1.shortLand + "?", ["Oh man, it would be so cool if you could!","Maybe with game powers?","Wow, you have seeds in your sylladex?"], ["Do you see a sun anywhere, asshole?", "What would even be the point?", "With your brown thumb, you'd probably just kill them. "]));
+		chats.push(new InterestConversationalPair(interest, "Do you think I could get any vegetables to grow on " + p1.shortLand() + "?", ["Oh man, it would be so cool if you could!","Maybe with game powers?","Wow, you have seeds in your sylladex?"], ["Do you see a sun anywhere, asshole?", "What would even be the point?", "With your brown thumb, you'd probably just kill them. "]));
 		if(p2.knowsAboutSburb()){
 			chats[chats.length-1].responseLinesSharedInterestPositive.push(" I'd hold onto any seeds you have until we get the Ultimate Reward.")
 		}
