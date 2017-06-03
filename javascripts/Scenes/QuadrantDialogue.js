@@ -109,8 +109,17 @@ function QuadrantDialogue(session){
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 	}
 
+	//Troll words: year, month, refrigerator, bathtub, ears, heart, brain,rap,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
+
 	this.chatAboutRomance = function(p1, p2,p1Start, p2Start, relationship, relationship2){
-		return  "\n<insert random 'romance' chat here>\n"
+		var interest = "Social";
+		var chats = [];
+		//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "Gosh, do you know what everybody being dead means? Our SOUL MATES must be the other players! That makes it WAY more likely to find them!", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "How am I supposed to get any good ships with only " + this.session.players.length + " people left!", ["","",""], ["", "", "","", ""]));
+		///TODO what about x/y (if there are at least two remaining people who aren't p1 or p2)
+		chats.push(new InterestConversationalPair(interest, "Yeah, the end of the world sucked, but at least it brought us together!", ["That is so sweet! You'll always be in my heart.","I feel the same way, we never would have met in person if it wasn't for all of this!","It's like you're reading my mind!"], ["God, hearing you write off billions of deaths in the name of romance only makes me hate you more.", "Is your brain made of worms? People DIED but it's OKAY because some people started dating? What is WRONG with you?", "That may be the dumbest thing I've ever heard. Have a gold star."]));
+		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 
 	}
 
