@@ -125,8 +125,13 @@ function QuadrantDialogue(session){
 	}
 
 	this.chatAboutPopCulture = function(p1, p2,p1Start, p2Start, relationship, relationship2){
-		return  "\n<insert random 'popculture' chat here>\n"
-
+		var interest = "PopCulture";
+		var chats = [];
+		//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "Oh man, these game powers are just like being a super hero!", ["","",""], ["Bluh, in your case proably a super VILLAIN.", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "Holy shit everything has been like the best movie ever!", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "Who would have thought that reality would turn out to be a shitty video game?", ["","",""], ["", "", "","", ""]));
+		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 	}
 	//Troll words: year, month, refrigerator, bathtub, ears, heart, brain,rap,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
 	this.chatAboutMusic = function(p1, p2,p1Start, p2Start, relationship, relationship2){
