@@ -92,6 +92,9 @@ function QuadrantDialogue(session){
 	this.chatAboutAcademic = function(p1, p2,p1Start, p2Start, relationship, relationship2){
 		return  "\n<insert random 'academic' chat here>\n"
 
+
+		//DON'T FORGET TO GO BACK AND ADD MORE RELEIONSHIP CHATS. ESPECIALLY BE INSPIRED BY SOME OF THE MORE 'HATE' RESPONSES FOR INTERESTS.
+
 	}
 
 	/*
@@ -115,7 +118,7 @@ function QuadrantDialogue(session){
 		var interest = "Social";
 		var chats = [];
 		//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
-		chats.push(new InterestConversationalPair(interest, "Gosh, do you know what everybody being dead means? Our SOUL MATES must be the other players! That makes it WAY more likely to find them!", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "Gosh, do you know what everybody being dead means? Our SOUL MATES must be the other players! That makes it WAY more likely to find them!", ["omg i hadn't though of it in that light!","You are so right. Romance for everybody!","But, what if you're wrong and our soulmates died in the apocalypse?"], ["Huh, what's that strange sensation? Oh, it must be my brain dribbling out of my ears. People DIED, asshole.", "God, how stupid can you get, that's not how soul mates work, asshole.", "Even that IS true, it's not worth billions of people dying, asshole."]));
 		chats.push(new InterestConversationalPair(interest, "How am I supposed to get any good ships with only " + this.session.players.length + " people left!", ["Hrrm...guess this will be the shipping challenge of our lives.","If anyone can do it, it's you. I believe in you with all my heart.","I'd argue it makes it easier. You don't have to worry about strangers coming out of nowhere and wrecking your ships!"], ["Oh yes, the world ends but it's not a tragedy until it effects SHIPPING.", "God, I hate you. If hate were a tree mine would be a mighty sequoia, towering over all others like a mighty 'fuck you' to God himself.", "If you were any good at ships then you wouldn't let a minor think like the WORLD FUCKING ENDING stop you."]));
 		///TODO what about x/y (if there are at least two remaining people who aren't p1 or p2)
 		chats.push(new InterestConversationalPair(interest, "Yeah, the end of the world sucked, but at least it brought us together!", ["That is so sweet! You'll always be in my heart.","I feel the same way, we never would have met in person if it wasn't for all of this!","It's like you're reading my mind!"], ["God, hearing you write off billions of deaths in the name of romance only makes me hate you more.", "Is your brain made of worms? People DIED but it's OKAY because some people started dating? What is WRONG with you?", "That may be the dumbest thing I've ever heard. Have a gold star."]));
