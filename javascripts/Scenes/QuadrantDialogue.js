@@ -175,7 +175,13 @@ function QuadrantDialogue(session){
 	}
 
 	this.chatAboutDomestic = function(p1, p2,p1Start, p2Start, relationship, relationship2){
-		return  "\n<insert random 'domestic' chat here>\n"
+		var interest = "Justice";
+		var chats = [];
+		//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
+		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2)
 	}
 	//Troll words: year, month, refrigerator, bathtub, ears, heart, brain,rap,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
 
@@ -484,9 +490,9 @@ function QuadrantDialogue(session){
 		var ret = "";
 		for(var i = 0; i<3; i++){
 			var rand = Math.seededRandom()
-			if(rand < 0.3){ //maybe make them MORE likely to chat about interests?
+			if(rand < 0.25){ //maybe make them MORE likely to chat about interests?
 				ret += this.chatAboutInterests(trait,relationship, relationship2); //more likely to talk about interests.
-			}else if(rand < 0.6){
+			}else if(rand < 0.5){
 					ret += this.chatAboutLackOfInterests(relationship, relationship2); //would get repetitive if they were locked to one topic.
 			}else{
 				ret += this.chatAboutQuadrant(relationship, relationship2);
@@ -498,7 +504,7 @@ function QuadrantDialogue(session){
 	this.lackOfInterestAndQuadrantChat = function(relationship, relationship2){
 		var ret = "";
 		for(var i = 0; i<3; i++){
-		if(Math.seededRandom() > 0.3){
+		if(Math.seededRandom() > 0.5){
 				ret += this.chatAboutLackOfInterests(relationship, relationship2); //one character tries to talk about something that interests them, other character is bored as fuck.
 			}else{
 				ret += this.chatAboutQuadrant(relationship, relationship2);
