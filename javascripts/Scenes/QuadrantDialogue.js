@@ -115,7 +115,7 @@ function QuadrantDialogue(session){
 	//Troll words: year, month, refrigerator, bathtub, ears, heart, brain,rap,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
 
 	this.chatAboutRomance = function(p1, p2,p1Start, p2Start, relationship, relationship2){
-		var interest = "Social";
+		var interest = "Romance";
 		var chats = [];
 		//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
 		chats.push(new InterestConversationalPair(interest, "Gosh, do you know what everybody being dead means? Our SOUL MATES must be the other players! That makes it WAY more likely to find them!", ["omg i hadn't though of it in that light!","You are so right. Romance for everybody!","But, what if you're wrong and our soulmates died in the apocalypse?"], ["Huh, what's that strange sensation? Oh, it must be my brain dribbling out of my ears. People DIED, asshole.", "God, how stupid can you get, that's not how soul mates work, asshole.", "Even that IS true, it's not worth billions of people dying, asshole."]));
