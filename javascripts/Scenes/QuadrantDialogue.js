@@ -205,10 +205,16 @@ function QuadrantDialogue(session){
 		chats.push(new InterestConversationalPair(interest, "I always knew I would rule a planet with an iron fist, but I didn't think it would happen like this.", ["It is so amazing to be able to rule different planets together.","Hell yes, I feel you.", "Great conquerers think alike!"], ["Yeah, well, don't come crying to me in a month when you are up to your nose in insurrections. I have never SEEN a shittier ruler.", "Who the hell WOULD predict all this crazy SBURB shit?", "lol, good luck KEEPING it, asshole, 'cause I am already sowing the seeds of dissent in your consorts."]));
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2)
 	}
+//	//Troll words: year, month, refrigerator, bathtub, ears, heart, brain,rap,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
 
 	this.chatAboutFantasy = function(p1, p2, p1Start, p2Start,relationship, relationship2){
-		return  "\n<insert random 'fantasy' chat here>\n"
-
+		var interest = "Justice";
+		var chats = [];
+		//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "So with all these weird game powers I am starting to suspect magic is a real thing.", ["If you believe it's a real thing, than it probably is.","Man, I hope so! I always wanted to have magic!","Man, if magic turns out to be real, it would almost make all this worth it."], ["Only a stupid baby believes in something as fake as magic.", "If magic were a real thing you sure as fuck wouldn't have any.", "Fuck you very much for reminding me how much it sucks that magic is a fake thing."]));
+		chats.push(new InterestConversationalPair(interest, "So. If we're in a game now, and apparently always have been, does that mean SBURB is like 'The Matrix'?", ["That's an interesting premise. If true, then maybe everybody DIDN'T die, but instead just stopped being simulated....which would mean that we could turn them back 'on'.","Only as long as that means we don't have to suffer through 'The One' and his one facial expression.","omg, you are so right!"], ["Could you get any stupider? For reality to be a simulation like in 'The Matrix' there would have to be a higher level reality that ISN'T, and I'm pretty sure that's not the case.", "Only an asshole would even ask that question.", "God, of course you would be a fan of that shitty movie."]));
+		chats.push(new InterestConversationalPair(interest, "Man, I always hoped the end of the world would have more zombies in it.", ["","",""], ["People died asshole. Not in your fake fucking stories, in real life. ", "Yeah, because all we fucking need is ZOMBIE underlings to fight, you asshole.", "And I here I thought you couldn't become more of an asshole. It's a motherfucking miracle."]));
+		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2)
 	}
 
 
