@@ -118,10 +118,16 @@ function QuadrantDialogue(session){
 		return  "\n<insert random 'social' chat here>\n"
 
 	}
+	//Troll words: year, month, refrigerator, bathtub, ears, heart, brain,rap,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
 
 	this.chatAboutTechnology = function(p1, p2,p1Start, p2Start, relationship, relationship2){
-		return  "\n<insert random 'technology' chat here>\n"
-
+		var interest = "Technology";
+		var chats = [];
+		//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "So, if SBURB is just code, that means we could hack it, right?", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
+		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 	}
 
 	this.chatAboutPopCulture = function(p1, p2,p1Start, p2Start, relationship, relationship2){
@@ -129,7 +135,7 @@ function QuadrantDialogue(session){
 		var chats = [];
 		//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
 		chats.push(new InterestConversationalPair(interest, "Oh man, these game powers are just like being a super hero!", ["Hell yes, we are the super heroes, it is us!","Oh man, I call the Mighty " + p2.aspect + "!","I know, right?"], ["Bluh, in your case proably a super VILLAIN.", "Yeah, you'd be the Lame Baby.", "If you're a super hero, I dub you Toilet Vampire.","Man, how can you get all excited when our super hero arc is clearly one of those gritty 'modern' ones."]));
-		chats.push(new InterestConversationalPair(interest, "Holy shit everything has been like the best movie ever!", ["Yeah, it'd be way better if this were fictional.","Plenty of drama, high stakes, character arcs, yeah,  I can see it.","That sure is one way to keep positive."], ["Oh yeah, sure, no clear plot, deus ex machinas out the ass. You have shit taste in movies, did you know that?", "The majority of people have literally died and you think it's EXCITING! Holy shit are you an asshole.", "How the fuck is a group of friends being forced to play a death game...wait, no,nevermind. I feel like an asshole saying it outloud. Yeah. That'd be a pretty good movie."]));
+		chats.push(new InterestConversationalPair(interest, "Holy shit everything has been like the best movie ever!", ["Yeah, it'd be way better if this were fictional.","Plenty of drama, high stakes, character arcs, yeah,  I can see it.","That sure is one way to keep positive."], ["Oh yeah, sure, no clear plot, deus ex machinas out the ass. You have shit taste in movies, did you know that?", "The majority of people have literally died and you think it's EXCITING! Holy shit are you a asshole.", "How the fuck is a group of friends being forced to play a death game...wait, no,nevermind. I feel like an asshole saying it outloud. Yeah. That'd be a pretty good movie."]));
 		chats.push(new InterestConversationalPair(interest, "Who would have thought that reality would turn out to be a shitty video game?", ["I dunno, it all kind of makes sense in retrospect.","Seriously, who would put out a game with these many bugs in it?","It clearly didn't have a dedicated design team...shit is inconsistent as fuck."], ["I don't know asshole, maybe the whole 'sylladex' thing should have tipped us off.", "I still think that maybe it wasn't always a video game, somehow?", "You asshole, I'm pretty sure video games don't destroy planets. SBURB was only pretending."]));
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 	}
