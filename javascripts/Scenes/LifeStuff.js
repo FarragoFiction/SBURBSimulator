@@ -446,7 +446,7 @@ function LifeStuff(session){
 			//you can not use your own fresh ghost as fuel to revive. doens't work like that. even if it's kinda thematically appropriate for some clapsects.
 			//if i let them do that, can INFINITELY respawn, because will ALWAYS have a non drained ghost to use.
 			if(ghost  && !ghost.causeOfDrain && myGhost != ghost){
-				//console.log("ghost drain dead for revive: "+ player.titleBasic()  + this.session.session_id);
+				console.log("ghost drain dead for revive: "+ player.titleBasic()  + this.session.session_id);
 				if(className == "Thief" || className == "Rogue"){
 					str += " The " + player.htmlTitleBasic() + " steals the essence of the " + ghostName + " in order to revive. It will be a while before the ghost recovers.";
 				}else if(className == "Heir" || className == "Maid"){

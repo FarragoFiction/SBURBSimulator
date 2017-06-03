@@ -423,14 +423,17 @@ function drawReviveDead (div, player, ghost, enablingAspect){
 
 
   //leave room on left for possible 'guide' player.
+  if(enablingAspect == "Life"){
+    drawWhatever(canvas, "afterlife_life.png");
+  }else if(enablingAspect == "Doom"){
+    drawWhatever(canvas, "afterlife_doom.png");
+  }
   copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,200,0)
   copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer,500,0)
   if(enablingAspect == "Life"){
     drawWhatever(canvas, "life_res.png");
-    drawWhatever(canvas, "afterlife_life.png");
   }else if(enablingAspect == "Doom"){
     drawWhatever(canvas, "doom_res.png");
-    drawWhatever(canvas, "afterlife_doom.png");
   }
   return canvas; //so enabling player can draw themselves on top
 }
