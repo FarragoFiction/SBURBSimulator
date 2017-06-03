@@ -118,9 +118,9 @@ function QuadrantDialogue(session){
 		var interest = "Social";
 		var chats = [];
 		//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
-		chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
-		chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
-		chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "The furryocious cat stalks the chat window, pouncing out of nowhere when they see " + p2.chatHandleShort + "!", [p2.chatHandleShort + " is very surprised to be suddenly pounced by " + p1.chatHandleShort + " and almost attacks them because they are so suprised, but then instead they hug.","Hi " + p1.chatHandleShort + "! I am a terrified mouse today! 'squeak!'",p2.chatHandleShort+" is so happy to see " + p1.chatHandleShort + " that they pet them and hug them forever!"], [p2.chatHandleShort + " is unimpressed with the tiny cat and contemplates eating it in one mighty bite!", "Is this really the time to roleplay, asshole?", "As much as I enjoy roleplaying, there is not enough boonbucks in the medium to pay met to do it with you."]));
+		chats.push(new InterestConversationalPair(interest, "Do we really have to kill the underlings? They seem so cute... :(", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "I wonder what it's like to be a consort? What motivates them? Do they experience existential dread knowing for a fact that their memories are false and then only recently began existing?", ["","",""], ["", "", "","", ""]));
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 
 	}
