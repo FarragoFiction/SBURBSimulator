@@ -132,13 +132,13 @@ function getRelationshipFlavorGreeting(r1, r2, me, you){
 
 function getRelationshipFlavorText(r1, r2, me, you){
 	var ret = "";
-	if(r1.type() == r1.goodBig && r2.type() == r2.goodBig){
+	if(r1.type() == r1.goodBig && r2.type() == r2.goodBig || r1.type == r1.heart){
 		ret += " The two flirt a bit. ";
 	}else if(r2.type() == r2.goodBig){
 		ret += " The" + you.htmlTitle() + " is flustered around the " + me.htmlTitle()+ ". ";
 	}else if(r1.type() == r1.goodBig){
 		ret += " The" + me.htmlTitle() + " is flustered around the " + you.htmlTitle()+ ". ";
-	}else if(r1.type() == r1.badBig && r2.type() == r2.badBig){
+	}else if(r1.type() == r1.badBig && r2.type() == r2.badBig || r1.type == r1.spades){
 		ret += " The two are just giant assholes to each other. ";
 	}else if(r2.type() == r2.badBig){
 		ret += you.htmlTitle() + " is irritable around the " + me.htmlTitle() + ". ";
