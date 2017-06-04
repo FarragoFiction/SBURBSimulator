@@ -28,10 +28,10 @@ function QuadrantDialogue(session){
 		var quadrants = [];
 		for(var i = 0; i< this.session.availablePlayers.length; i++){
 			var p = this.session.availablePlayers[i];
-			if(p.isQuadranted()) quadrants.push(p);
+			if(p.isQuadranted() && p.grimDark < 2) quadrants.push(p); //grim dark players don't initiate conversaion.
 		}
 		this.player1 = getRandomElementFromArray(quadrants);
-		this.findQuardrantMate = function();
+		if(this.player1) this.findQuardrantMate();
 	}
 
 	this.findQuardrantMate =function(){
