@@ -134,6 +134,9 @@ function getRelationshipFlavorText(r1, r2, me, you){
 	var ret = "";
 	if(r1.type() == r1.goodBig && r2.type() == r2.goodBig || r1.type == r1.heart){
 		ret += " The two flirt a bit. ";
+	}if(r1.type() == r1.diamonds){
+		console.log("impromptu feelings jam: " + this.session.session_id);
+		ret += " The two have an impromptu feelings jam. ";
 	}else if(r2.type() == r2.goodBig){
 		ret += " The" + you.htmlTitle() + " is flustered around the " + me.htmlTitle()+ ". ";
 	}else if(r1.type() == r1.goodBig){
