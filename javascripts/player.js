@@ -128,6 +128,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(interestWord == "Technology") return playerLikesTechnology(this)
 		if(interestWord == "Social") return playerLikesSocial(this)
 		if(interestWord == "Romance") return playerLikesRomantic(this)
+		if(interestWord == "Academic") return playerLikesAcademic(this)
 		console.log("todo implement for all interests...............................................DO IT!!! -signed pastJR")
 		return false;
 	}
