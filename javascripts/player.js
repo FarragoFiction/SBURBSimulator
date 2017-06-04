@@ -504,6 +504,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	}
 
+	this.renderable = function(){
+		return true; 
+	}
+
 	//basically free will shit. choosing to kill a player despite not being crazy
 	this.getAttackerModifier = function(){
 		if(this.class_name == "Knight") return 1.0;

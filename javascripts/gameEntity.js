@@ -43,7 +43,9 @@ function GameEntity(session, name, crowned){
 		this.helpfulness = 0; //if 0, cagey riddles. if 1, basically another player. if -1, like calsprite. omg, just shut up.  NOT additive for when double prototyping. most recent prototyping overrides.
 		this.helpPhrase = "provides the requisite amount of gigglesnort hideytalk to be juuuust barely helpful. ";
 
-
+		this.renderable = function(){
+			return false; //eventually some game entities can be rendered.
+		}
 
 
 		this.toString = function(){
@@ -564,6 +566,25 @@ function GameEntity(session, name, crowned){
 				}
 		}
 
+		this.poseAsATeam = function(div,players){
+			//don't pose sprites
+			var poseable = [];
+			for(var i = 0; i<players.length; i++){
+				if(players[i].renderable()) poseable.push(players[i]);
+			}
+			var divID = (div.attr("id")) + this.name;
+			var ch = canvasHeight;
+			if(poseable.length > 6){
+				ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
+			}
+			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
+			div.append(canvasHTML);
+			//different format for canvas code
+			var canvasDiv = document.getElementById("canvas"+ divID);
+			poseAsATeam(canvasDiv, poseable, 2000);
+		}
+
+
 		this.ending = function(div, players){
 			this.fraymotifsUsed = []; //not used yet
 
@@ -573,6 +594,7 @@ function GameEntity(session, name, crowned){
 
 
 			this.playersAbsconded = [];
+			this.poseAsATeam(div,players);
 		}
 
 

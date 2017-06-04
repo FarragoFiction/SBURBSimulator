@@ -95,6 +95,10 @@ function PlayerSnapshot(){
 		return getFontColorFromAspect(this.aspect) + this.title() + " (" + Math.round(this.currentHP) + " hp, " + Math.round(this.power) + " power)</font>"
 	}
 
+	this.renderable = function(){
+		return true;
+	}
+
 	this.htmlTitleBasic = function(){
 			return getFontColorFromAspect(this.aspect) + this.titleBasic() + "</font>"
 	}
