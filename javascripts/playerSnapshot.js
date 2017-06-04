@@ -71,7 +71,7 @@ function PlayerSnapshot(){
 
 	//seems to exclusively be called for ghosts.
 	this.toJSON = function(){
-		var json = {aspect: this.aspect, class_name: this.class_name,hair: this.hair, causeOfDrain: this.causeOfDrain, doomed: this.doomed, influenceSymbol: this.influenceSymbol, ghost: this.ghost, godTier: this.godTier, victimBlood: this.victimBlood, hairColor: this.hairColor, isTroll: this.isTroll, bloodColor: this.bloodColor, leftHorn: this.leftHorn, rightHorn: this.rightHorn, quirk: this.quirk, isDreamSelf:this.isDreamSelf, murderMode:this.murderMode, leftMurderMode:this.leftMurderMode,grimDark:this.grimDark, causeOfDeath: this.causeOfDeath };
+		var json = {a: all_aspects.indexOf(this.aspect), b: classes.indexOf(this.class_name),c: this.hair, d: this.causeOfDrain, e: this.doomed ? 1 : 0, f: this.influenceSymbol, g: this.ghost ? 1 : 0, h: this.godTier ? 1 : 0, i: this.victimBlood, j: this.hairColor, k: this.isTroll ? 1 : 0, l: this.bloodColor, m: this.leftHorn, n: this.rightHorn, o: this.quirk, p:this.isDreamSelf ? 1 : 0, q:this.murderMode ? 1 : 0, r:this.leftMurderMode ? 1 : 0,t:this.grimDark, s: this.causeOfDeath };
 		return json;
 	}
 

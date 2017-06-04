@@ -131,7 +131,6 @@ function getRelationshipFlavorGreeting(r1, r2, me, you){
 }
 
 function getRelationshipFlavorText(r1, r2, me, you){
-	console.log("???")
 	var ret = "";
 	if(r1.type() == r1.goodBig && r2.type() == r2.goodBig || r1.type == r1.heart){
 		ret += " The two flirt a bit. ";

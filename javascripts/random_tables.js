@@ -1025,6 +1025,7 @@ var classes = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Hei
 var available_classes = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
 var two_person_classes = ["Lord","Muse"];
 var required_aspects = ["Space", "Time"];
+var all_aspects = ["Space", "Time","Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
 var nonrequired_aspects = ["Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
 var available_aspects = ["Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
 

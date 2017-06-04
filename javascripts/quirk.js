@@ -29,7 +29,7 @@ function Quirk(){
     }
 
     this.toJSON = function(){
-        return {favoriteNumber: this.favoriteNumber}
+        return {z: this.favoriteNumber}
     }
 
     this.rawStringExplanation = function(){
