@@ -27,12 +27,12 @@ function QueenRejectRing(session){
 		}
 
 		ret += ". ";
-		if(this.playerList.length != this.session.players.length){
+		if(this.playerList.length != this.session.players.length && this.session.players[this.playerList.length].land){
 			ret += " She would even stand eventually being prototyped with " ;
 			ret += this.session.players[this.playerList.length].object_to_prototype.htmlTitle() ;
 		}
 		for(var i = this.playerList.length+1; i<this.session.players.length; i++){
-			ret += ", and " + this.session.players[i].object_to_prototype.htmlTitle();
+			if(this.session.players[i].land) ret += ", and " + this.session.players[i].object_to_prototype.htmlTitle();
 		}
 
 		if(this.playerList.length != this.session.players.length){

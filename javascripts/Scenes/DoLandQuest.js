@@ -20,19 +20,19 @@ function DoLandQuest(session){
 				this.playersPlusHelpers.push(ph);
 				if(ph[0].aspect != "Time" && ph[0].aspect != "Breath") availablePlayers.removeFromArray(ph[0]);   //for land qeusts only, breath players can do multiple. time players ALWAYS do multiple of everything.
 				if(ph[1] && ph[0].aspect != "Time" && ph[0].aspect != "Breath" )availablePlayers.removeFromArray(ph[1])
-			} 
+			}
 		}
 		//console.log(this.playersPlusHelpers.length + " players are available for quests.");
 		return this.playersPlusHelpers.length > 0;
 	}
-	
-	
+
+
 	this.getPlayerPlusHelper = function(p, availablePlayers){
 		if(!p.land || p.power < 2 || p.grimDark > 3) return false;  //can't do quests at all.
 		var helper = this.lookForHelper(p,availablePlayers);
 		if(helper && helper.grimDark >= 3) helper = null;  //grim dark players aren't going to do quests.
 		var playerPlusHelper = [p,helper];
-		
+
 		if((p.aspect == "Blood" || p.class_name == "Page") ){// if page or blood player, can't do it on own.
 			if(playerPlusHelper[1] != null){
 				if((p.landLevel < this.landLevelNeeded || p.aspect == "Space") || Math.seededRandom() > .5){
@@ -49,7 +49,9 @@ function DoLandQuest(session){
 
 
 	this.renderContent = function(div){
-		div.append("<br> <img src = 'images/sceneIcons/quest_icon.png'>"+this.content(div));
+		var content = this.content(div);
+		//if(simulationMode) return;  will doing things like this speed AB up. might want to refactor gameEntity so only one div redered at fight end and not consantly.
+		div.append("<br> <img src = 'images/sceneIcons/quest_icon.png'>"+content);
 
 	}
 
@@ -112,7 +114,7 @@ function DoLandQuest(session){
 		//okay, now that i know it's not a time clone, look at my relationship with my helper.
 		var r1 = player.getRelationshipWith(helper);
 		var r2 = helper.getRelationshipWith(player);
-		
+
 		if(helper.aspect == "Breath"){
 			this.session.availablePlayers.push(player); //player isn't even involved, at this point.
 			helper.increasePower();
@@ -241,7 +243,7 @@ function DoLandQuest(session){
 		var ret = " ";
 		ret += "The " + player.htmlTitle()  ;
 		if(player.aspect != "Time") removeFromArray(player, this.session.availablePlayers);
-								
+
 		player.increasePower();
 		player.landLevel ++;
 		if(helper){
