@@ -555,7 +555,7 @@ function checkPasswordAgainstQuip(summary){
 }
 
 function avatarCarousel(){
-	var possibleAvatars = ["images/CandyAuthorBot.png","images/trickster_author_transparent.png","images/ab_guide_sprite.png","images/trickster_artist_transparent.png","images/jr_sprite.png"];
+	var possibleAvatars = ["images/CandyAuthorBot.png","images/ab_doll.jpg","images/trickster_author_transparent.png","images/ab_guide_sprite.png","images/trickster_artist_transparent.png","images/jr_sprite.png"];
 	$("#avatar").attr("src",getRandomElementFromArray(possibleAvatars));
 	setTimeout(avatarCarousel,10000);
 }
