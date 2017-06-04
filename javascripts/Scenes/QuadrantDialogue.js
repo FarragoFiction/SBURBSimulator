@@ -16,7 +16,7 @@ function QuadrantDialogue(session){
 		this.player2 = null;
 		//if want to be more frequent, can allo goodBig and badBig to trigger this as well.
 
-		if(Math.seededRandom() > 0.0001){ //fiddle with rate later, for now, i want to see this happen.
+		if(Math.seededRandom() > 0.5){
 			this.findSemiRandomQuadrantedAvailablePlayer();
 		}
 		return this.player1 != null && this.player2 != null; //technically if one is set both should be but whatever.
@@ -89,7 +89,7 @@ function QuadrantDialogue(session){
 			relationship = relationship2;
 			relationship2 = tmp;
 		}
-		console.log("chatting about shared interests")
+		//console.log("chatting about shared interests")
 		if(trait == "smart") return this.chatAboutAcademic(p1, p2,  p1Start, p2Start,relationship, relationship2);
 		if(trait == "musical") return this.chatAboutMusic(p1, p2, p1Start, p2Start, relationship, relationship2);
 		if(trait == "cultured") return this.chatAboutCulture(p1, p2, p1Start, p2Start, relationship, relationship2);
@@ -208,7 +208,7 @@ function QuadrantDialogue(session){
 		chats.push(new InterestConversationalPair(interest, "I really should try drawing you sometime.", ["Oh, do you really think I'd be a good model?","Oh man, I bet that would loook so cool!","You flatter me."], ["Fuck you, I wouldn't want to ruin my looks with YOUR talent.", "Hell no. You suck at art.", "Nah, your mediocre talent would only screw with my good looks."]));
 		chats.push(new InterestConversationalPair(interest, "Have you ever read House of Leaves?", ["Oh god yes, what the hell was even going on with it? So crazy!","No, but I heard it's meta as hell?","Oh man! The footnotes! The hole in the book! The layers! So good!"], ["God, what a pretentious fucking book. Fuck you for reading it.", "Ugh, how can someone as terrible as you have such good taste in books?", "Fuck you for reminding me that it exists.","Yes, and fuck you for most probably restarting my nightmares about that shit.", "Ugh, of course YOU would like it. I refuse to read it."]));
 		chats.push(new InterestConversationalPair(interest, "Your land is beautiful, by the way. I really should paint it sometime.", ["Maybe we can make a day of it!","You're welcome to come over anytime.","I'm glad you think so, but I'm pretty sure my land is creepy as hell."], ["Ugh, nope, no way.", "Go for it, I really want to see how much you screw this up.", "You have a twisted sense of aesthetics, did you know that?"]));
-		chats.push(new InterestConversationalPair(interest, p1.land + " is like something out of a surreal painting.", ["I know, right? I keep expecting to see melting clocks everywhere.","You really have a way with words.","You should paint it!"], ["You clearly lack imagination if you think that.", "I could not disagree more.", "Learn the definition of the word 'surreal', asshole."]));
+		if(p1.land) chats.push(new InterestConversationalPair(interest, p1.land + " is like something out of a surreal painting.", ["I know, right? I keep expecting to see melting clocks everywhere.","You really have a way with words.","You should paint it!"], ["You clearly lack imagination if you think that.", "I could not disagree more.", "Learn the definition of the word 'surreal', asshole."]));
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2)
 	}
 
@@ -230,7 +230,7 @@ function QuadrantDialogue(session){
 		var chats = [];
 		//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
 		chats.push(new InterestConversationalPair(interest, "Remind me to alchemize some new clothes for you later.", ["Oh man, I bet they'd look so cool!","Really!? You have such good taste in fashion!","I can't wait!"], ["Ugh, never in a million years. You have shit taste.", "Remind me to take a holy vow against wearing clothes later.", "Not if they were the last pair of pants in existance.","Ugh, just imagining wearing something with your shit taste makes me feel debased."]));
-		chats.push(new InterestConversationalPair(interest, "Do you think I could get any vegetables to grow on " + p1.shortLand() + "?", ["Oh man, it would be so cool if you could!","Maybe with game powers?","Wow, you have seeds in your sylladex?"], ["Do you see a sun anywhere, asshole?", "What would even be the point?", "With your brown thumb, you'd probably just kill them. "]));
+		if(p1.land) chats.push(new InterestConversationalPair(interest, "Do you think I could get any vegetables to grow on " + p1.shortLand() + "?", ["Oh man, it would be so cool if you could!","Maybe with game powers?","Wow, you have seeds in your sylladex?"], ["Do you see a sun anywhere, asshole?", "What would even be the point?", "With your brown thumb, you'd probably just kill them. "]));
 		if(p2.knowsAboutSburb()){
 			chats[chats.length-1].responseLinesSharedInterestPositive.push(" I'd hold onto any seeds you have until we get the Ultimate Reward.")
 		}
@@ -304,23 +304,23 @@ function QuadrantDialogue(session){
 	}
 
 	this.getp2ResponseBasedOnInterests = function(chosen, interest, player, playerStart, relationship){
-		console.log("interest is: " + interest)
+		//console.log("interest is: " + interest)
 		var chat = "";
 		if(relationship.value > 0){
 			if(player.interestedIn(interest)){
-				console.log("interested in " + interest)
+				//console.log("interested in " + interest)
 				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.responseLinesSharedInterestPositive));
 			}else{
-				console.log("not interested in " + interest)
+				//console.log("not interested in " + interest)
 				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.genericResponses));
 			}
 		}else{
 			if(player.interestedIn(interest)){
-				console.log("interested in " + interest)
+				//console.log("interested in " + interest)
 				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.responseLinesSharedInterestNegative));
-				console.log("adding negative shared interest response: " + chat)
+				//console.log("adding negative shared interest response: " + chat)
 			}else{
-				console.log("not interested in " + interest)
+				//console.log("not interested in " + interest)
 				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.genericResponses));
 			}
 		}
@@ -347,7 +347,7 @@ function QuadrantDialogue(session){
 		if(Math.seededRandom() > 0.5){ //change who is initiating
 			interest = p1.interest2;
 		}
-		console.log("chatting about lack of interests.")
+		//console.log("chatting about lack of interests.")
 		if(academic_interests.indexOf(interest) != -1 ) return this.chatAboutAcademic(p1, p2, p1Start, p2Start, relationship, relationship2);
 		if(music_interests.indexOf(interest) != -1 ) return this.chatAboutMusic(p1, p2, p1Start, p2Start, relationship, relationship2);
 		if(culture_interests.indexOf(interest) != -1 ) return this.chatAboutCulture(p1, p2, p1Start, p2Start, relationship, relationship2);
@@ -385,7 +385,7 @@ function QuadrantDialogue(session){
 
 
 	this.clubsChat = function(relationship1, relationship2){
-		console.log("Clubs Chat in: " + this.session.session_id)
+		//console.log("Clubs Chat in: " + this.session.session_id)
 		var chats = [];
 		chats.push( new ConversationalPair("So. Behaving?",["Fuck you I do what I want.","Yes, MOM.","God, could you just leave me alone?"]));
 		chats.push( new ConversationalPair("You're not getting into any trouble, are you?",["Oh yeah, tons of trouble. I'm literally sitting in a puddle of that assholes blood RIGHT now.","Ugh. No. I'm behaving.","Can't you just stop meddling?"]));
@@ -429,7 +429,7 @@ function QuadrantDialogue(session){
 
 
 	this.spadesChat = function(relationship1, relationship2){
-		console.log("Spades Chat  in: " + this.session.session_id)
+		//console.log("Spades Chat  in: " + this.session.session_id)
 		var chats = [];
 		chats.push( new ConversationalPair("God, how can anyone be so bad at this game? You suck.",["Fuck you, I killed that imp like a boss.","Like you're any better!","Fuck off!"]));
 		chats.push( new ConversationalPair("Jegus, stop hogging the grist!",["Make me!","Fuck you, I earned it!","Well, YOU stop hogging the echeladder rungs!"]));
@@ -444,7 +444,7 @@ function QuadrantDialogue(session){
 	}
 
 	this.heartChat = function(relationship1, relationship2){
-		console.log("Heart Chat  in: " + this.session.session_id)
+		//console.log("Heart Chat  in: " + this.session.session_id)
 		var chats = [];
 		chats.push( new ConversationalPair("You're so good at this game!",["No, way, you're tons better than me.","Heh, about time I'm good at something, huh?","Only because I get to play it with you."]));
 		chats.push( new ConversationalPair("Do you need any extra grist?",["Oh, thanks!","No, I'm good, but it's so sweet of you to offer.","Heh, I was going to ask YOU that."]));
@@ -456,7 +456,7 @@ function QuadrantDialogue(session){
 	}
 
 	this.diamondsChat = function(relationship1, relationship2){
-		console.log("Diamonds Chat  in: " + this.session.session_id)
+		//console.log("Diamonds Chat  in: " + this.session.session_id)
 		var chats = [];
 		this.player1.triggerLevel += -1;
 		this.player2.triggerLevel += -1;
@@ -468,7 +468,7 @@ function QuadrantDialogue(session){
 	}
 
 	this.feelingsJam = function(relationship,relationship2){
-		console.log("Feelings Jam in: " + this.session.session_id)
+		//console.log("Feelings Jam in: " + this.session.session_id)
 		this.player1.triggerLevel += -2;
 		this.player2.triggerLevel += -2;
 		//figure out which player is flipping out, make them "flippingOut", make other player "shoosher"
@@ -678,7 +678,7 @@ function QuadrantDialogue(session){
 function ConversationalPair(line1, responseLines){
 	this.line1 = line1;
 	this.responseLines = responseLines;  //responses are just reactions
-	this.genericResponses = ["Yeah.", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "...", "Whatever.", "Yes.", "Interesting...", "Hrmmm...", "lol"]
+	this.genericResponses = ["Yeah.", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "... ", "Whatever.", "Yes.", "Interesting...", "Hrmmm...", "lol"]
 }
 
 function InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative){
@@ -689,6 +689,6 @@ function InterestConversationalPair(interest, line1, responseLinesSharedInterest
 	//what can i say if i hate you and share your interests.
 	this.responseLinesSharedInterestNegative = responseLinesSharedInterestNegative;
 	//below happens if you don't share an interest at all.
-	this.genericResponses = ["Yeah.", , "Nice", "Double nice", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "...", "lol","Whatever.", "Yes.", "Interesting...", "Hrmmm..."]
+	this.genericResponses = ["Yeah.", "Nice", "Double nice", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "... ", "lol","Whatever.", "Yes.", "Interesting...", "Hrmmm..."]
 
 }
