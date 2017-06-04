@@ -109,6 +109,7 @@ function shareableURL(){
 	if (params == window.location.href) params = ""
 	var str = '<div class = "links"><a href = "index2.html?seed=' +initial_seed +'&' + params + ' ">Shareable URL </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <a href = "character_creator.html?seed=' +initial_seed +'&' + params + ' " target="_blank">Replay Session (Mildly Fucking Alpha) </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp<a href = "index2.html">Random Session URL </a> </div>'
 	$("#seedText").html(str);
+	$("#story").append("Session: " + initial_seed)
 }
 
 function checkSGRUB(){
@@ -120,7 +121,7 @@ function checkSGRUB(){
 	//can only get here if all are trolls.
 	$(document).attr("title", "SGRUB Story Generator by jadedResearcher");
 	$("#heading").html("SGRUB Story Generator by jadedResearcher (art assistance by karmicRetribution) ");
-	
+
 	if(getParameterByName("nepeta")  == ":33"){
 		$(document).attr("title", "NepetaQuest by jadedResearcher");
 		$("#heading").html("NepetaQuest by jadedResearcher (art assistance by karmicRetribution) ");

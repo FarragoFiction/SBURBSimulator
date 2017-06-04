@@ -44,7 +44,7 @@ function QuadrantDialogue(session){
 		potentials = potentials.concat(this.player1.getHearts())
 		potentials = potentials.concat(this.player1.getClubs())
 		potentials = potentials.concat(this.player1.getSpades())
-		this.player2 = getRandomElementFromArray(potentials);
+		this.player2 = getRandomElementFromArray(potentials).target;
 		return;
 	}
 
