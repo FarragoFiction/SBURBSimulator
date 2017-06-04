@@ -91,7 +91,7 @@ function QuadrantDialogue(session){
 
 	////Troll words: year, month, refrigerator, bathtub, ears, heart, brain,rap,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
 	this.chatAboutAcademic = function(p1, p2,p1Start, p2Start, relationship, relationship2){
-		var interest = "Social";
+		var interest = "Academic";
 		var chats = [];
 		//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
 		chats.push(new InterestConversationalPair(interest, "Do you think our echeladders represent linear power growth, or exponential?", ["It's hard to tell when there is no indicator of the ratio to power to echeladder run.","I'm leaning towards 'complete and utter randomness'. I once leveled up for tripping over a rock.","I'm leaning towards exponential, since it seems like there are small power gains per run at first, but extremely large ones by the end."], ["God, do you even listen to the words coming out of your mouth? Who fucking CARES what math is behind our bullshit rpg leveling conceit?", "If you stopped for a minute to think, you'd realize that the echeladder is random as fuck. If you use boondollars as a vague metric of 'power' at a level, you'd see that it doesn't seem to be mapped to any mathetmatical formula.", "THIS is the conundrum you've decided matters. Not how to survive this death game. Not how the bullshit game powers work. But the leveling system. Great."]));
