@@ -17,19 +17,35 @@ function QuadrantDialogue(session){
 		//if want to be more frequent, can allo goodBig and badBig to trigger this as well.
 
 		if(Math.seededRandom() > 0.0001){ //fiddle with rate later, for now, i want to see this happen.
-			findSemiRandomQuadrantedAvailablePlayer();
-			findQuardrantMate();
+			this.findSemiRandomQuadrantedAvailablePlayer();
 		}
-		return false;
+		return this.player1 != null && this.player2 != null; //technically if one is set both should be but whatever.
 	}
 
 	this.findSemiRandomQuadrantedAvailablePlayer =function(){
 		//set this.player1 to be a random quadranted player.
 		//BUT, if there is a player in a moiralligence who is on the verge of flipping their shit, return them.  so not completely random.
+		var quadrants = [];
+		for(var i = 0; i< this.session.availablePlayers.length; i++){
+			var p = this.session.availablePlayers[i];
+			if(p.isQuadranted()) quadrants.push(p);
+		}
+		this.player1 = getRandomElementFromArray(quadrants);
+		this.findQuardrantMate = function();
 	}
 
 	this.findQuardrantMate =function(){
-		//set this.player2 to be one of player1's quadrant mates. first diamond, then heart, then spade, then clubs.
+		//set this.player2 to be one of player1's quadrant mates. first diamond, then randomly from heart, then spade, then clubs.
+		var potentials = this.player1.getDiamonds();
+		this.player2 = getRandomElementFromArray(potentials);
+		if(this.player2 && Math.seededRandom > 0.5){ //don't completely ignore your other relationships in favor of your moirail.
+			return;
+		}
+		potentials = potentials.concat(this.player1.getHearts())
+		potentials = potentials.concat(this.player1.getClubs())
+		potentials = potentials.concat(this.player1.getSpades())
+		this.player2 = getRandomElementFromArray(potentials);
+		return;
 	}
 
 	this.getDiscussSymbol =function(relationship){

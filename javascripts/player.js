@@ -96,6 +96,25 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		return (this.ectoBiologicalSource == null || this.ectoBiologicalSource == session.session_id)
 	}
 
+	this.isQuadranted = function(){
+		if(this.getHearts().length > 0) return true;
+		if(this.getClubs().length > 0) return true;
+		if(this.getDiamonds().length > 0) return true;
+		if(this.getSpades().length > 0) return true;
+
+	}
+
+	this.getClubs = function(){
+		var ret = [];
+		for (var i = 0; i<this.relationships.length; i++){
+			var r = this.relationships[i];
+			if(r.saved_type == r.clubs){
+				ret.push(r);
+			}
+		}
+		return ret;
+	}
+
 	this.getHearts = function(){
 		var ret = [];
 		for (var i = 0; i<this.relationships.length; i++){
