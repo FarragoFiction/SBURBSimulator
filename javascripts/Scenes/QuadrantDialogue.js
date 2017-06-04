@@ -89,12 +89,15 @@ function QuadrantDialogue(session){
 
 	}
 
+	////Troll words: year, month, refrigerator, bathtub, ears, heart, brain,rap,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
 	this.chatAboutAcademic = function(p1, p2,p1Start, p2Start, relationship, relationship2){
-		return  "\n<insert random 'academic' chat here>\n"
-
-
-		//DON'T FORGET TO GO BACK AND ADD MORE RELEIONSHIP CHATS. ESPECIALLY BE INSPIRED BY SOME OF THE MORE 'HATE' RESPONSES FOR INTERESTS.
-
+		var interest = "Social";
+		var chats = [];
+		//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "Do you think our echeladders represent linear power growth, or exponential?", ["It's hard to tell when there is no indicator of the ratio to power to echeladder run.","I'm leaning towards 'complete and utter randomness'. I once leveled up for tripping over a rock.","I'm leaning towards exponential, since it seems like there are small power gains per run at first, but extremely large ones by the end."], ["God, do you even listen to the words coming out of your mouth? Who fucking CARES what math is behind our bullshit rpg leveling conceit?", "If you stopped for a minute to think, you'd realize that the echeladder is random as fuck. If you use boondollars as a vague metric of 'power' at a level, you'd see that it doesn't seem to be mapped to any mathetmatical formula.", "THIS is the conundrum you've decided matters. Not how to survive this death game. Not how the bullshit game powers work. But the leveling system. Great."]));
+		chats.push(new InterestConversationalPair(interest, "How can the consorts have an oral history, and even ruins, when they only started existing once we entered the medium?", ["","",""], ["", "", "","", ""]));
+		chats.push(new InterestConversationalPair(interest, "These 'lands' just don't make sense on a fundamental level. They are so small, how do they have an atmosphere! Where is the light coming from!", ["I know right, how the hell does physics work in the Medium? What is even keeping the planets in order? They are perfect little spheres and Skaia is nowhere near as big as a sun. ","Oh wow, I hadn't even noticed! You're so smart!","I'm pretty sure that if magic were a real thing, Skaia would be using it egregiously."], ["Really. The PLANETS not making sense is what bothers you, not the time travel, not the paradoxes, and definitely not all the nearly magical powers we apparently all have.", "If you used your brain even once a month, you'd see that CLEARLY the laws of physics do not apply in the Medium.", "Do you even have eyes? Or have they become vestigal in self defense after catching too many glances of your own putrid husk in the mirror. GRAVITY isn't even keeping the planets in correct orbits, the entire 'skaia system' is flawed on a fundamental level if you are assuming standard laws of physics, but YOU only care about the superficial shit like atmospheres."]));
+		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 	}
 
 	/*
@@ -410,11 +413,11 @@ function QuadrantDialogue(session){
 		chats.push( new ConversationalPair("God, how can anyone be so bad at this game? You suck.",["Fuck you, I killed that imp like a boss.","Like you're any better!","Fuck off!"]));
 		chats.push( new ConversationalPair("Jegus, stop hogging the grist!",["Make me!","Fuck you, I earned it!","Well, YOU stop hogging the echeladder rungs!"]));
 		chats.push( new ConversationalPair("How can anyone smell as bad as you do?",["Don't talk to me about rank smells. You are the fucking big man of smelling bad.","Fuck you, It's not my fault my bathtub was destroyed!","I am not going to dignify that with a response."]));
-		chats.push( new ConversationalPair("Hey. Fuck you.",["What the hell, man!?","Fuck you too.","I don't have to put up with this."]));
+		chats.push( new ConversationalPair("Fuck you.",["What the hell, man!?","Fuck you too.","I don't have to put up with this."]));
 		chats.push( new ConversationalPair("Could you GET any stupider?",["Yeah, I could turn into you!","You're one to talk!","Fuck you."]));
 		chats.push( new ConversationalPair("Can you stop fucking bothering me!?",["Make me.","I don't know, CAN I?","It's not like you have anything better to do."]));
 		chats.push( new ConversationalPair("Leave me alone!",["Like hell I will, this is the most fun I've had all day.","You're the one who's all up in my grill! My grill is practically your prison!","Aw, come on, you don't mean that, do you asshole?", "No can do, we are motherfuckin entrenched in this bitch."]));
-		chats.push( new ConversationalPair("My hate for you is so hot and pure it could provide clean energy to our new Universe for years.",[ "You are just such a smug asshole, I can't fucking stand you.", "It's kind of funny when you get all riled up like that.","You can't possibly understand how much I hate you or even why I hate you."]));
+		chats.push( new ConversationalPair("My hate for you is so hot and pure it could provide clean energy to our new Universe for a thousand years.",[ "You are just such a smug asshole, I can't fucking stand you.", "It's kind of funny when you get all riled up like that.","You can't possibly understand how much I hate you or even why I hate you."]));
 
 		return  this.processChatPair(chats, relationship1, relationship2);
 	}
@@ -571,7 +574,7 @@ function QuadrantDialogue(session){
 
 	this.fareWell = function(relationship,relationship2){
 		//fuck yes oblivion, you taught me what a good AI "goodbye" is.
-		var goodByes = ["Good day.","Farewell.","Bye bye.","Bye.", "Talk to you later!", "ttyl", "seeya"];
+		var goodByes = ["Good day.","Farewell.","Bye bye.","Bye.", "Talk to you later!", "ttyl", "seeya","cya"];
 		var badByes = ["I have nothing more to say to you.","I've heard others say the same.","Yeah, I'm done here.","I'm out.","I'm going to ollie outtie.","I'm through speaking with you."];
 		var ret = "";
 
