@@ -414,6 +414,8 @@ function QuadrantDialogue(session){
 		chats.push( new ConversationalPair("Could you GET any stupider?",["Yeah, I could turn into you!","You're one to talk!","Fuck you."]));
 		chats.push( new ConversationalPair("Can you stop fucking bothering me!?",["Make me.","I don't know, CAN I?","It's not like you have anything better to do."]));
 		chats.push( new ConversationalPair("Leave me alone!",["Like hell I will, this is the most fun I've had all day.","You're the one who's all up in my grill! My grill is practically your prison!","Aw, come on, you don't mean that, do you asshole?", "No can do, we are motherfuckin entrenched in this bitch."]));
+		chats.push( new ConversationalPair("My hate for you is so hot and pure it could provide clean energy to our new Universe for years.",[ "You are just such a smug asshole, I can't fucking stand you.", "It's kind of funny when you get all riled up like that.","You can't possibly understand how much I hate you or even why I hate you."]));
+
 		return  this.processChatPair(chats, relationship1, relationship2);
 	}
 
