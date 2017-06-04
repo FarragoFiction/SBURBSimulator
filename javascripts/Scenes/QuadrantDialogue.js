@@ -32,8 +32,12 @@ function QuadrantDialogue(session){
 		//set this.player2 to be one of player1's quadrant mates. first diamond, then heart, then spade, then clubs.
 	}
 
-	this.getDiscussSymbol =function(){
+	this.getDiscussSymbol =function(relationship){
 		//TODO, turn which quadrant player1 and player2 are in into a png to pass.  Create pngs for diamonds and clubs.
+		if(relationship.saved_type == relationship.diamond)return "discuss_palemance.png"
+		if(relationship.saved_type == relationship.heart)return "discuss_romance.png"
+		if(relationship.saved_type == relationship.clubs)return "discuss_ashenmance.png"
+		if(relationship.saved_type == relationship.spades) return "discuss_hatemance.png "
 	}
 
 	this.getQuadrant = function(){
@@ -605,7 +609,7 @@ function QuadrantDialogue(session){
 		var chatText = this.getGreeting(relationship, relationship2);
 		chatText += this.getChat(relationship, relationship2);
 		chatText += this.fareWell(relationship,relationship2); //<-- REQUIRED for ultimate oblivion shittieness. "I have nothing more to say to you." "good day."
-		drawChat(document.getElementById("canvas"+ (div.attr("id"))), this.player1, this.player2, chatText, 0,this.getDiscussSymbol());
+		drawChat(document.getElementById("canvas"+ (div.attr("id"))), this.player1, this.player2, chatText, 0,this.getDiscussSymbol(relationship));
 	}
 
 	//have test page (link to easter eggs) where it generates some players and shoves them into relationships and

@@ -136,6 +136,8 @@ function loadOther(skipInit){
 	loadImage("Kismesis.png",skipInit)
 	loadImage("prince_hat.png",skipInit)
 	loadImage("discuss_romance.png",skipInit)
+	loadImage("discuss_ashenmance.png",skipInit)
+	loadImage("discuss_palemance.png",skipInit)
 	loadImage("discuss_hatemance.png",skipInit)
 	loadImage("discuss_breakup.png",skipInit)
 	loadImage("discuss_sburb.png",skipInit)
@@ -198,7 +200,7 @@ function loadAllPossiblePlayers(skipInit){
       loadImage("Life.png",skipInit);
       loadImage("Doom.png",skipInit);
 
-    
+
 
 
 	loadImage("Hair/hair_back1025.png",skipInit);
