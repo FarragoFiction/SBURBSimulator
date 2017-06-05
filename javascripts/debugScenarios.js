@@ -774,6 +774,17 @@ function session88888888(){
 		}
 	}
 	lucky8rk();
+	for(var i = 0; i<curSessionGlobalVar.length;i++){
+		player = curSessionGlobalVar.players[i];
+		var guardian = player.guardian;
+		player.relationships = [];
+		guardian.relationships = [];
+		var guardians = getGuardiansForPlayers(curSessionGlobalVar.players)
+		guardian.generateRelationships(guardians);
+		player.generateRelationships(curSessionGlobalVar.players);
+		player.mylevels = getLevelArray(player);
+		guardian.mylevels = getLevelArray(guardian);
+	}
 }
 
 function session420(){
@@ -788,6 +799,17 @@ function session420(){
 		}
 	}
 	fridgeQuest();
+	for(var i = 0; i<curSessionGlobalVar.length;i++){
+		player = curSessionGlobalVar.players[i];
+		var guardian = player.guardian;
+		player.relationships = [];
+		guardian.relationships = [];
+		var guardians = getGuardiansForPlayers(curSessionGlobalVar.players)
+		guardian.generateRelationships(guardians);
+		player.generateRelationships(curSessionGlobalVar.players);
+		player.mylevels = getLevelArray(player);
+		guardian.mylevels = getLevelArray(guardian);
+	}
 }
 
 //12 dead nepetas
