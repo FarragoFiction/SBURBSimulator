@@ -91,8 +91,10 @@ function FightQueen(session){
 		var badPrototyping = findBadPrototyping(this.playerList);
 		var living = findLivingPlayers(this.session.players);
 		var ret = " Before the players can reach the Black King, they are intercepted by the Black Queen. ";
-		if(badPrototyping){
+		if(badPrototyping && this.session.queen.crowned){
 			ret += " She is made especially ferocious with the addition of the " + badPrototyping + ". ";
+		}else if(!this.session.queen.crowned){
+			ret += "She may no longer have her RING OF ORBS " +this.session.convertPlayerNumberToWords() + "FOLD, but she is dedicated to her duty and will fight the Players to the bitter end."
 		}
 
 		this.setPlayersUnavailable(living);
