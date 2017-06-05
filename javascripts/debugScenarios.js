@@ -664,19 +664,20 @@ function session413IndexToAncestor(player,index){
 //time player is dave space player is either jade
 //all else is 413 human.
 function homestuck(){
-//copyPlayerFromTemplate(p,template);
-for(var i = 0; i<curSessionGlobalVar.players.length; i++){
-	var p = curSessionGlobalVar.players[i];
-	var g = p.guardian;
-	if(p.aspect == "Time"){
-		session413IndexToHuman(p,1);
-		session413IndexToAncestor(g,1);
-	}else if(p.aspect == "Space"){
-		session413IndexToHuman(p,3);
-		session413IndexToAncestor(g,3);
-	}else{
-		session413IndexToHuman(p,getRandomInt(0,7));
-		session413IndexToAncestor(g,getRandomInt(0,7));
+	//copyPlayerFromTemplate(p,template);
+	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+		var p = curSessionGlobalVar.players[i];
+		var g = p.guardian;
+		if(p.aspect == "Time"){
+			session413IndexToHuman(p,2);
+			session413IndexToAncestor(g,2);
+		}else if(p.aspect == "Space"){
+			session413IndexToHuman(p,3);
+			session413IndexToAncestor(g,3);
+		}else{
+			session413IndexToHuman(p,getRandomInt(0,7));
+			session413IndexToAncestor(g,getRandomInt(0,7));
+		}
 	}
 }
 
