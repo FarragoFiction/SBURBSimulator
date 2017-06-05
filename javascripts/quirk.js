@@ -3,7 +3,6 @@ function Quirk(){
     this.lettersToReplace = []; //array of two element arrays. ["e", "3"], ["two",2] would be two examples. e replaced by 3 and two replaced by 2
     this.lettersToReplaceIgnoreCase = [];
     this.punctuation = 0; //0 = none, 1 = ends of sentences, 2 = perfect punctuation 3= excessive punctuation
-    this.spelling = 0;  //0 = bad typos (think roxy), 1 = some typos, 2 = perfect spelling //not used, replaced with letterstoreplace
     this.prefix = ""; //what do you put at the start of a line?
     this.suffix = ""; //what do you put at the end of a line?
     //if in murdermode, rerandomize capitalization quirk.

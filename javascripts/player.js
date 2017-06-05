@@ -505,7 +505,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.renderable = function(){
-		return true; 
+		return true;
 	}
 
 	//basically free will shit. choosing to kill a player despite not being crazy
@@ -2204,6 +2204,25 @@ function getDarkShirtColorFromAspect(aspect){
 
 function getFontColorFromAspect(aspect){
 	return "<font color= '" + getColorFromAspect(aspect) + "'> ";
+}
+
+function blankPlayerNoDerived(session){
+	var k = prototyping_objects[0];
+	var gd = true;
+	var m = "Prospit";
+	var id = Math.seed;
+	var p =  new Player(session,"Page","Void",k,m,gd,id);
+	p.interest1 = interests[0];
+	p.interest2 = intersts[0]
+	p.baby = 1
+	p.hair = 1
+	p.leftHorn =  1
+	p.rightHorn = 1
+	p.quirk = new Quirk();
+	p.quirk.capitalization = 1;
+	p.quirk.punctuation = 1;
+	p.quir.favoriteNumber = 1;
+	return p;
 }
 
 function randomPlayerNoDerived(session, c, a){

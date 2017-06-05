@@ -630,40 +630,40 @@ function session413IndexToAncestor(player,index){
 //time player is dave or aradia, space player is either jade or kanaya
 //all else is randomly either a alternian troll or a 413 human.
 function homestuck(){
-	
+
 }
 
-//time player is aradia, space player is kanaya, 
+//time player is aradia, space player is kanaya,
 //all else random alternian troll
 function hivebent(){
-	
+
 }
 
 //time player is damara, space player is porrim
 //all else random beforan troll
 function openBound(){
-	
+
 }
 
 //time player is aradia, damara or dave, space is jade, porrim or kanaya
 //all else is randomly alternian or beforan or human.
 function canonChaos(){
-	
+
 }
 
 //like nepeta quest, but with gamzee instead of nepeta.
 function fridgeQuest(){
-	
+
 }
 
 //everyone is both robot and aradia. BEEP.
 function aradiaBotQuest(){
-	
+
 }
 
 //everyone replaced by vriska. thief of space and thief of time.
 function lucky8rk(){
-	
+	var player = new Player();
 }
 
 //call this ONLY after initializing normal players.
@@ -672,7 +672,7 @@ function nepetaQuest(){
 	//or 12 canon trolls all roleplaying as nepeta?
 	//it's shrodinger's nepeta!!!
 	var actualRandomNumber = Math.random(); //no fucking seed.
-	
+
 	for(var i = 0; i< curSessionGlobalVar.players.length ;i++){
 		player = curSessionGlobalVar.players[i];
 		guardian = player.guardian;
