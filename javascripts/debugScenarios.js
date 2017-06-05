@@ -774,7 +774,7 @@ function session88888888(){
 		}
 	}
 	lucky8rk();
-	for(var i = 0; i<curSessionGlobalVar.length;i++){
+	for(var i = 0; i<curSessionGlobalVar.players.length;i++){
 		player = curSessionGlobalVar.players[i];
 		var guardian = player.guardian;
 		player.relationships = [];
@@ -792,14 +792,16 @@ function session420(){
 		var player;
 		var guardian;
 		if(i>curSessionGlobalVar.players.length){
+			console.log("blank player");
 			player = blankPlayerNoDerived(curSessionGlobalVar);
 			guardian = blankPlayerNoDerived(curSessionGlobalVar);
 			player.guardian = guardian;
 			curSessionGlobalVar.players.push(player);
 		}
 	}
+
 	fridgeQuest();
-	for(var i = 0; i<curSessionGlobalVar.length;i++){
+	for(var i = 0; i<curSessionGlobalVar.players.length;i++){
 		player = curSessionGlobalVar.players[i];
 		var guardian = player.guardian;
 		player.relationships = [];
@@ -810,6 +812,8 @@ function session420(){
 		player.mylevels = getLevelArray(player);
 		guardian.mylevels = getLevelArray(guardian);
 	}
+
+
 }
 
 //12 dead nepetas

@@ -1349,6 +1349,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.generateRelationships = function(friends){
+	//	console.log(this.title() + " generating a relationship with: " + friends.length);
 		for(var i = 0; i<friends.length; i++){
 			if(friends[i] != this){  //No, Karkat, you can't be your own Kismesis.
 				//one time in a random sim two heirresses decided to kill each other and this was so amazing and canon compliant
