@@ -2230,6 +2230,7 @@ function blankPlayerNoDerived(session){
 	p.quirk.capitalization = 1;
 	p.quirk.punctuation = 1;
 	p.quirk.favoriteNumber = 1;
+	p.initializeSprite();
 	return p;
 }
 

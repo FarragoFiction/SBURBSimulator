@@ -67,6 +67,10 @@ function checkEasterEgg(){
 	if(getParameterByName("luck")  == "AAAAAAAALL"){
 		lucky8rk();
 	}
+
+	if(getParameterByName("honk")  == ":o)"){
+		fridgeQuest();
+	}
 }
 
 

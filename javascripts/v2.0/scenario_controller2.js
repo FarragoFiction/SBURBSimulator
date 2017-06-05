@@ -130,6 +130,14 @@ function checkSGRUB(){
 		$(document).attr("title", "NepetaQuest by jadedResearcher");
 		$("#heading").html("NepetaQuest by jadedResearcher (art assistance by karmicRetribution) ");
 		$("#story").append("<a href = 'index2.html?seed=" + getRandomSeed()+ "&nepeta=:33'>The furryocious huntress makes sure to bat at this link to learn a secret!</a>")
+	}else if(curSessionGlobalVar.session_id == 420){
+		$(document).attr("title", "FridgeQuest by jadedResearcher");
+		$("#heading").html("FridgeQuest by jadedResearcher (art assistance by karmicRetribution) ");
+		$("#story").append("<a href = 'index2.html?seed=" + getRandomSeed()+ "&honk=:o)'>wHoA. lIkE. wHaT If yOu jUsT...ReAcHeD OuT AnD ToUcHeD ThIs? HoNk!</a>")
+	}else if(curSessionGlobalVar.session_id == 88888888){
+		$(document).attr("title", "SpiderQuuuuuuuuest!!!!!!!! by jadedResearcher");
+		$("#heading").html("SpiderQuuuuuuuuest!!!!!!!!  by jadedResearcher (art assistance by karmicRetribution) ");
+		$("#story").append("<a href = 'index2.html?seed=" + getRandomSeed()+ "&luck=AAAAAAAALL'>Only the BEST Observers click here!!!!!!!!</a>")
 	}
 }
 
