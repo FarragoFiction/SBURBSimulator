@@ -559,7 +559,8 @@ function FreeWillStuff(session){
 		var murderer = this.findMurderModePlayerBesides(player);
 		if(murderer && !player.isActive() && !murderer.dead && this.isValidTargets([murderer], player) && player.power > 25 && this.canInfluenceEnemies(player)){
 			return this.sendPatsyAfterMurderer(player, murderer);
-		}else if(murderer && !murderer.dead){  //don't HAVE to be active to do this. but if passive and CAN be a manipulatie bastard, will.
+		}else if(murderer && !murderer.dead && (player.causeOfDeath.indexOf(murderer.class_name) == -1)){  //you haven't killed me recently.
+			console.log(player.title() + " want to kill murdermode player and my causeOfeath is" + player.causeOfDeath +  " and session is: " + this.session.session_id)
 			return this.killMurderer(player, murderer);
 		}
 		return null;
