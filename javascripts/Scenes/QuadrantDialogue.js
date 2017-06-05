@@ -19,6 +19,7 @@ function QuadrantDialogue(session){
 		if(Math.seededRandom() > 0.5){
 			this.findSemiRandomQuadrantedAvailablePlayer();
 		}
+		if(this.player2 && this.player2.dead) console.log("corpse chat in:  " + this.session.session_id)
 		return this.player1 != null && this.player2 != null; //technically if one is set both should be but whatever.
 	}
 
@@ -38,13 +39,14 @@ function QuadrantDialogue(session){
 		//set this.player2 to be one of player1's quadrant mates. first diamond, then randomly from heart, then spade, then clubs.
 		var potentials = this.player1.getDiamonds();
 		this.player2 = getRandomElementFromArray(potentials);
-		if(this.player2 && Math.seededRandom > 0.5){ //don't completely ignore your other relationships in favor of your moirail.
+		if(this.player2  && !this.player2.dead && Math.seededRandom > 0.5){ //don't completely ignore your other relationships in favor of your moirail.
 			return;
 		}
 		potentials = potentials.concat(this.player1.getHearts())
 		potentials = potentials.concat(this.player1.getClubs())
 		potentials = potentials.concat(this.player1.getSpades())
 		this.player2 = getRandomElementFromArray(potentials).target;
+		if(this.player2.dead) this.player2 = null;
 		return;
 	}
 

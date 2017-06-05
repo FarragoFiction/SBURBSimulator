@@ -1778,7 +1778,7 @@ var buffer = new ArrayBuffer(9 * num_players);
 
 var uint8View = new Uint8Array(buffer);
 
-Wait, but I'm pretty sure my compression library uses ArrayBuffers or SOMETHING...does IT work in older browsers or IE?
+Wait, but I'm pretty sure my compression library uses ArrayBuffers or SOMETHING...does IT work in older browsers or IE?  Yes it does, and has UInt8s. double nice.
 
 
 
