@@ -1646,3 +1646,44 @@ Pairs can be about: interest both player have in common, the quadrant they are i
 maybe other stuff too, like jack or a dead player. 
 
 You know, it's been awhile since I made a new scene entirely. Not since Luck/FreeWill i think.  It's nostalgic. All full of hope and promise 'cause I haven't actually made it, yet.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Okay. Let’s try to roll our own url solution. 
+
+
+If I did not have any dynamic strings, I could shove all my binary variables into a single variable.
+
+
+{aspect: this.aspect, class_name: this.class_name,hair: this.hair, causeOfDrain: this.causeOfDrain, doomed: this.doomed, influenceSymbol: this.influenceSymbol, ghost: this.ghost, godTier: this.godTier, victimBlood: this.victimBlood, hairColor: this.hairColor, isTroll: this.isTroll, bloodColor: this.bloodColor, leftHorn: this.leftHorn, rightHorn: this.rightHorn, quirk: this.quirk, isDreamSelf:this.isDreamSelf, murderMode:this.murderMode, leftMurderMode:this.leftMurderMode,grimDark:this.grimDark, causeOfDeath: this.causeOfDeath };
+
+
+
+Binary:  doomed, isTroll, isDreamSelf, murderMode, leftMurderMode
+Int:  leftHorn (0-46), rightHorn(0-46), hair (0-60) ,grimDark (0-4), favoriteNumber(0-12)
+
+String:  causeOfDrain, influenceSymbol, causeOfDeath
+ 
+String, but can make int:  Class(0-12), Aspect(0-12), victimBlood(3 bytes), hairColor(3 bytes), bloodColor(3 bytes)
+
+ Object:  quirk  (only fav number for now, can bring up and make int)
+ 
+Proposal: params (for ghost) look like: i=1932873124987&s=”nWSZzne4F3RMBBnpMCcX3DcmHEfQwkIAB9Et3BoGIIEIAA6Rxwj0BDdzWO0tkPQhURwZkwDdBg2SuAjuSOP16VSsiHzgSjxWo18QXERilQiF”
+
+Where i stores ints and binaries in defined way (i.e. 1 bit for binary, 4 bits for class and 4 for aspect, etc), and s stores the lz compressed comma separated strings.
+
+ Foreseen Difficulty: That is all well and good for ONE player, but how to do arbitrary amount?
+
+ 
+Can just concatenate?  Ex: First 52 bits are p1, next 52 bits are p2, next 52 are p3, etc. How to do for strings? Well, they are comma separated, so first 3 strings are p1, second 3 strings are p2, etc.
+ Alright.
+ 
+Need to have a method where I pass it a list of players and a list of attributes and it turns it into  i = numbers&s=encoding.  This way can reuse for ghosts or players or pretty much anything.
+ 
+No. How would you decode that? Dumb.
+ 
+Instead, always encode “as player”. Yes, afterlife needs LESS variables than char creator, but less likely to be shared.
+
+ So.  Fuck pastJR, and go grab the attributes I’m using for players, not ghosts before I make my encoding.
+
+
