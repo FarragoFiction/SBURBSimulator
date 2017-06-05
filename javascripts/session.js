@@ -73,6 +73,12 @@ function Session(session_id){
 	this.importantEvents = [];
 	this.yellowYard = false;
 	this.yellowYardController = new YellowYardResultController();//don't expect doomed time clones to follow them to any new sessions
+	
+	this.destroyBlackRing = function(){
+		this.queensRing = null;
+		this.jack.crowned = null;
+		this.queen.crowned = null;
+	}
 
 	//IMPORTANT do not add important events directly, or can't check for alternate timelines.
 	//oh god, just typing that gives me chills. time shenanigans are so great.

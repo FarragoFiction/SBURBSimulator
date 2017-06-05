@@ -14,11 +14,11 @@ function ExileQueen(session){
 		if(this.session.queen.getHP() > 0 && this.session.queen.crowned){
 			ret = " The plan has been performed flawlessly.  The Black Queen has been exiled to the post-Apocalyptic version of Earth, never to be heard from again. ";
 			ret += " Her RING OF ORBS " + this.session.convertPlayerNumberToWords() + "FOLD is destroyed before her exile in a daring mission. ";
-			this.session.queensRing = null; //no longer exists.
+			this.session.destroyBlackRing();
 		}else if(this.session.queen.crowned && this.session.queen.getHP() <= 0){
 			ret += "There were some hitches in the plan, and the Black Queen is now a corpse rather than an exile. "
 			ret += " Her RING OF ORBS " + this.session.convertPlayerNumberToWords() + "FOLD is recovered and destroyed in a daring mission. ";
-			this.session.queensRing = null; //no longer exists.
+			this.session.destroyBlackRing();
 		}else if(this.session.queen.getHP() > 0){
 			ret += " The plan has been performed flawlessly.  The Black Queen has been exiled to the post-Apocalyptic version of Earth, never to be heard from again. Too bad you couldn't get her RING OF ORBS " + this.session.convertPlayerNumberToWords() + "FOLD at the same time, but at least that's one boss fight outta the way. ";;
 		}else{
