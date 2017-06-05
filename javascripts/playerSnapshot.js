@@ -307,7 +307,9 @@ function makeDoomedSnapshot(timePlayer){
 	//from a different timeline, things went differently.
 	var rand = Math.seededRandom();
 	timeClone.power = Math.seededRandom() * 80+10;
-	if(rand>.8){
+	if(rand > 0.9){
+		timeClone.robot = true;
+	}else if(rand>.8){
 		timeClone.godTier = !timeClone.godTier;
 		if(timeClone.godTier){
 			 timeClone.power = 200; //act like a god, damn it.
