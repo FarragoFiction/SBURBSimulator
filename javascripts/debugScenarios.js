@@ -57,6 +57,10 @@ function checkEasterEgg(){
 	if(getParameterByName("nepeta")  == ":33"){
 		nepetaQuest(); //ANY session can be all nepetas.
 	}
+
+	if(getParameterByName("luck")  == "AAAAAAAALL"){
+		lucky8rk();
+	}
 }
 
 
@@ -663,8 +667,10 @@ function aradiaBotQuest(){
 
 //everyone replaced by vriska. thief of space and thief of time.
 function lucky8rk(){
+	alert("Whaaaaaaaat? Do you want AAAAAAAALL the luck????????")
 	var player = blankPlayerNoDerived(curSessionGlobalVar);
-	session612IndexToTroll(player, 8);
+	session612IndexToTroll(player, 7);
+	copyPlayersFromTemplate(player);
 }
 
 //don't use for nepeta quest because true random roleplay
@@ -675,6 +681,7 @@ function copyPlayersFromTemplate(template){
 		if(p.aspect != "Time" && p.aspect != "Space"){
 			p.aspect = template.aspect;
 		}
+		p.isTroll = template.isTroll;
 		p.class_name = template.class_name;
 		p.quirk = template.quirk;
 		p.leftHorn = template.leftHorn;
@@ -691,6 +698,7 @@ function copyPlayersFromTemplate(template){
 		p.levels = template.levels;
 
 		g.class_name = template.class_name;
+		g.isTroll = template.isTroll;
 		g.quirk = template.quirk;
 		g.leftHorn = template.leftHorn;
 		g.rightHorn = template.rightHorn;

@@ -2213,7 +2213,7 @@ function blankPlayerNoDerived(session){
 	var id = Math.seed;
 	var p =  new Player(session,"Page","Void",k,m,gd,id);
 	p.interest1 = interests[0];
-	p.interest2 = intersts[0]
+	p.interest2 = interests[0]
 	p.baby = 1
 	p.hair = 1
 	p.leftHorn =  1
@@ -2221,7 +2221,7 @@ function blankPlayerNoDerived(session){
 	p.quirk = new Quirk();
 	p.quirk.capitalization = 1;
 	p.quirk.punctuation = 1;
-	p.quir.favoriteNumber = 1;
+	p.quirk.favoriteNumber = 1;
 	return p;
 }
 
