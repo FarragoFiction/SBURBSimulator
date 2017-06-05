@@ -648,6 +648,10 @@ function session413IndexToAncestor(player,index){
 //time player is dave or aradia, space player is either jade or kanaya
 //all else is randomly either a alternian troll or a 413 human.
 function homestuck(){
+//copyPlayerFromTemplate(p,template);
+for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+	var p = curSessionGlobalVar.players[i];
+	var g = p.guardian;
 
 }
 
@@ -665,7 +669,7 @@ function openBound(){
 
 //time player is aradia, damara or dave, space is jade, porrim or kanaya
 //all else is randomly alternian or beforan or human.
-function canonChaos(){
+function fruityRumpusAssholeFactory(){
 
 }
 
