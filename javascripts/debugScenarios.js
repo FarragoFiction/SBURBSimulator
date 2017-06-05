@@ -625,6 +625,45 @@ function session413IndexToAncestor(player,index){
 	}
 }
 
+//time player is dave or aradia, space player is either jade or kanaya
+//all else is randomly either a alternian troll or a 413 human.
+function homestuck(){
+	
+}
+
+//time player is aradia, space player is kanaya, 
+//all else random alternian troll
+function hivebent(){
+	
+}
+
+//time player is damara, space player is porrim
+//all else random beforan troll
+function openBound(){
+	
+}
+
+//time player is aradia, damara or dave, space is jade, porrim or kanaya
+//all else is randomly alternian or beforan or human.
+function canonChaos(){
+	
+}
+
+//like nepeta quest, but with gamzee instead of nepeta.
+function fridgeQuest(){
+	
+}
+
+//everyone is both robot and aradia. BEEP.
+function aradiaBotQuest(){
+	
+}
+
+//everyone replaced by vriska. thief of space and thief of time.
+function lucky8rk(){
+	
+}
+
 //call this ONLY after initializing normal players.
 function nepetaQuest(){
 	//will it be 12 nepetas roleplaying as their original players?
@@ -845,6 +884,8 @@ function session612IndexToTroll(player, index){
 		player.kernel_sprite = "Frog"
 		player.interest1 = "Archaeology"
 		player.interest2 = "Death"
+		if(Math.seededRandom() > 0.3) player.robot = true; //not all aradias are robo aradias.
+		if(Math.seededRandom() > 0.3) player.dead = true; //not all aradias are ghost aradias.
 		player.chatHandle = "apocalypseArisen"
 		player.godDestiny = true;
 		player.quirk.suffix = ""
