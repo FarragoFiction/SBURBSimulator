@@ -585,7 +585,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.didDenizenKillYou = function(){
-		if(this.causeOfDeath.includes(this.session.getDenizenForPlayer(this).name)){
+		if(this.causeOfDeath.indexOf(this.session.getDenizenForPlayer(this).name) != -1){
 			return true; //also return true for minions. this is intentional.
 		}
 		return false;
