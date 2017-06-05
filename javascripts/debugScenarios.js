@@ -663,8 +663,50 @@ function aradiaBotQuest(){
 
 //everyone replaced by vriska. thief of space and thief of time.
 function lucky8rk(){
-	var player = new Player();
+	var player = blankPlayerNoDerived(curSessionGlobalVar);
+	session612IndexToTroll(player, 8);
 }
+
+//don't use for nepeta quest because true random roleplay
+function copyPlayersFromTemplate(template){
+	for(var i = 0; i< curSessionGlobalVar.players.length; i++){
+		var p = curSessionGlobalVar.players[i];
+		var g = p.guardian;
+		if(p.aspect != "Time" && p.aspect != "Space"){
+			p.aspect = template.aspect;
+		}
+		p.class_name = template.class_name;
+		p.quirk = template.quirk;
+		p.leftHorn = template.leftHorn;
+		p.rightHorn = template.rightHorn;
+		p.hair = template.hair;
+		p.bloodColor = template.bloodColor;
+		p.hairColor = template.hairColor;
+		p.godDestiny = template.godDestiny;
+		p.robot = template.robot;
+		p.dead = template.dead;
+		p.chatHandle = template.chatHandle;
+		p.interest1 = template.interest1;
+		p.interest2 = template.interest2;
+		p.levels = template.levels;
+
+		g.class_name = template.class_name;
+		g.quirk = template.quirk;
+		g.leftHorn = template.leftHorn;
+		g.rightHorn = template.rightHorn;
+		g.hair = template.hair;
+		g.bloodColor = template.bloodColor;
+		g.hairColor = template.hairColor;
+		g.godDestiny = template.godDestiny;
+		g.robot = template.robot;
+		g.dead = template.dead;
+		g.chatHandle = template.chatHandle;
+		g.interest1 = template.interest1;
+		g.interest2 = template.interest2;
+		g.levels = template.levels;
+	}
+}
+
 
 //call this ONLY after initializing normal players.
 function nepetaQuest(){
