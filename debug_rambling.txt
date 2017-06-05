@@ -1771,7 +1771,14 @@ Now the question is, how good is javaScript at byte sequence generation? I know 
 
 1 byte hair
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!WARNING TO FUTUREJR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+the below stuff probably won't work on older browsers. for older browsers, use old url generation????
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays
+var buffer = new ArrayBuffer(9 * num_players);
+
+var uint8View = new Uint8Array(buffer);
+
+Wait, but I'm pretty sure my compression library uses ArrayBuffers or SOMETHING...does IT work in older browsers or IE?
 
 
 
