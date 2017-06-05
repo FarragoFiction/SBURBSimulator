@@ -1755,6 +1755,23 @@ Okay.
 Now the question is, how good is javaScript at byte sequence generation? I know it can do the << and what not operators, is that good enough? How do I want to code this?
 
 
+2 bytes: hairColor, favoriteNumber
+
+1 byte: class/asspect
+
+1 byte victimBlood, bloodColor
+
+1 byte interest1Category, interest2Category
+
+1 byte griDark,isTroll, isDreamSelf, isGodTier, murderMode, leftMurderMode
+
+1 byte  leftHorn
+
+1byte  rightHorn
+
+1byte hair
+
+
 
 
 
