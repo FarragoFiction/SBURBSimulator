@@ -52,7 +52,11 @@ function checkEasterEgg(){
 		session33();
 	}else if(initial_seed == 111111){
 		session111111();
+	}else if(initial_seed == 88888888){
+		session88888888();
 	}
+
+
 	//not an else if because this OVERIDES other easter egg sessions. but called here and not where other params are 'cause needs to have session initialized first.
 	if(getParameterByName("nepeta")  == ":33"){
 		nepetaQuest(); //ANY session can be all nepetas.
@@ -665,7 +669,6 @@ function aradiaBotQuest(){
 
 //everyone replaced by vriska. thief of space and thief of time.
 function lucky8rk(){
-	alert("Whaaaaaaaat? Do you want AAAAAAAALL the luck????????")
 	var player = blankPlayerNoDerived(curSessionGlobalVar);
 	session612IndexToTroll(player, 7);
 	copyPlayersFromTemplate(player);
@@ -753,6 +756,20 @@ function nepetaQuest(){
 		guardian.leftHorn = 22;
 		guardian.rightHorn = 22;
 	}
+}
+
+function session88888888(){
+	for(var i = 0; i<8;i++){
+		var player;
+		var guardian;
+		if(i>curSessionGlobalVar.players.length){
+			player = blankPlayerNoDerived(curSessionGlobalVar);
+			guardian = blankPlayerNoDerived(curSessionGlobalVar);
+			player.guardian = guardian;
+			curSessionGlobalVar.players.push(player);
+		}
+	}
+	lucky8rk();
 }
 
 //12 dead nepetas
