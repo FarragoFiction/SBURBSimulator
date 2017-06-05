@@ -12,6 +12,7 @@
 function GameEntity(session, name, crowned){
 		this.session = session;
 		this.name = name;
+		this.armless = false;
 		this.grist = 0;
 		this.carapacian = false;
 		this.consort = false;
@@ -1253,6 +1254,7 @@ fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite a
 
 fortune_objects.push(new GameEntity(null, "Snake",null));  //poison fraymotif
 fortune_objects[fortune_objects.length-1].power = 50;
+fortune_objects[fortune_objects.length-1].armless = true;
 fortune_objects[fortune_objects.length-1].illegal = true;
 fortune_objects[fortune_objects.length-1].helpPhrase = "providessss the requisssssite amount of gigglessssssnort hideytalk to be jusssssst barely helpful. AND the underlings seem to go after it first! Bonus! ";
 
@@ -1452,6 +1454,7 @@ prototyping_objects.push(new GameEntity(null, "Penguin",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 
 
+
 prototyping_objects.push(new GameEntity(null, "Husky",null));
 prototyping_objects[prototyping_objects.length-1].power = 30;
 prototyping_objects[prototyping_objects.length-1].helpPhrase = "alternates between loud, insistent barks and long, eloquent monologues on the deeper meaning behind each and every fragment of the game. ";
@@ -1484,6 +1487,7 @@ prototyping_objects[prototyping_objects.length-1].mobility = 80; //so many legs!
 
 prototyping_objects.push(new GameEntity(null, "Fish",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].armless = true;
 
 
 prototyping_objects.push(new GameEntity(null, "Kitten",null));
@@ -1494,6 +1498,7 @@ prototyping_objects[prototyping_objects.length-1].helpPhrase = "is kind of helpf
 
 prototyping_objects.push(new GameEntity(null, "Worm",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].armless = true;
 
 
 prototyping_objects.push(new GameEntity(null, "Bear",null));
@@ -1628,6 +1633,8 @@ lusus_objects[lusus_objects.length-1].lusus = true;
 lusus_objects.push(new GameEntity(null, "Slither Beast",null));
 lusus_objects[lusus_objects.length-1].power = 30;
 lusus_objects[lusus_objects.length-1].lusus = true;
+lusus_objects[lusus_objects.length-1].armless = true;
+
 
 lusus_objects.push(new GameEntity(null, "Wiggle Beast",null));
 lusus_objects[lusus_objects.length-1].power = 30;
@@ -1733,16 +1740,19 @@ sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
 sea_lusus_objects.push(new GameEntity(null, "Sea Slither Beast",null));
 sea_lusus_objects[sea_lusus_objects.length-1].power = 30;
 sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
+sea_lusus_objects[sea_lusus_objects.length-1].armless = true;
 
 sea_lusus_objects.push(new GameEntity(null, "Electric Beast",null)); //zap fraymotif
 sea_lusus_objects[sea_lusus_objects.length-1].power = 50;
 sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
+sea_lusus_objects[sea_lusus_objects.length-1].armless = true;
 
 sea_lusus_objects.push(new GameEntity(null, "Whale",null));
 sea_lusus_objects[sea_lusus_objects.length-1].power = 30;
 sea_lusus_objects[sea_lusus_objects.length-1].currentHP = 50;
 sea_lusus_objects[sea_lusus_objects.length-1].hp = 50;
 sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
+sea_lusus_objects[sea_lusus_objects.length-1].armless = true;
 
 sea_lusus_objects.push(new GameEntity(null, "Sky Horse",null));
 sea_lusus_objects[sea_lusus_objects.length-1].power = 30;
@@ -1772,6 +1782,7 @@ sea_lusus_objects[sea_lusus_objects.length-1].power = 30;
 sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
 sea_lusus_objects[sea_lusus_objects.length-1].minLuck = 30;
 sea_lusus_objects[sea_lusus_objects.length-1].maxLuck = 20;
+
 
 sea_lusus_objects.push(new GameEntity(null, "Light Beast",null));
 sea_lusus_objects[sea_lusus_objects.length-1].power = 30;

@@ -721,11 +721,17 @@ function Intro(session){
 			if(this.player.dead==true){
 				console.log(session.session_id + " dead player enters, " +this.player.title())
 				narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably. I...I guess their GHOST or something is making sure their house and corpse makes it into the medium? And their client player, as appropriate. Their kernel somehow gets prototyped with a "+this.player.object_to_prototype.htmlTitle();
-				div.append(narration);
+				
 				this.session.availablePlayers.push(this.player);
 				this.player.sprite.addPrototyping(this.player.object_to_prototype); //hot damn this is coming together.
 				if(this.session.kingsScepter) this.session.kingsScepter.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
+				if(this.player.object_to_prototype.armless){
+					console.log("armless prototyping in session: " + this.session.session_id)
+					narration += "TODO:!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+					this.session.queensRing = null; //it results in a useless ring, may as well not exist.
+				}
 				if(this.session.queensRing) this.session.queensRing.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
+				div.append(narration);
 				return;
 			}
 
@@ -743,6 +749,11 @@ function Intro(session){
 			}
 			this.player.sprite.addPrototyping(this.player.object_to_prototype); //hot damn this is coming together.
 			if(this.session.kingsScepter) this.session.kingsScepter.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
+			if(this.player.object_to_prototype.armless && Math.seededRandom() > 0.9){
+					console.log("armless prototyping in session: " + this.session.session_id)
+					narration += "TODO:!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+					this.session.queensRing = null; //it results in a useless ring, may as well not exist.
+			}
 			if(this.session.queensRing) this.session.queensRing.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
 		}
 		div.append(narration);
