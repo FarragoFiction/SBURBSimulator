@@ -56,6 +56,8 @@ function checkEasterEgg(){
 		session88888888();
 	}else if(initial_seed == 420){
 		session420();
+	}else if(initial_seed == 0){
+		session0();
 	}
 
 
@@ -70,6 +72,10 @@ function checkEasterEgg(){
 
 	if(getParameterByName("honk")  == ":o)"){
 		fridgeQuest();
+	}
+
+	if(getParameterByName("temporal")  == "shenanigans"){
+		aradiaQuest();
 	}
 }
 
@@ -663,6 +669,14 @@ function canonChaos(){
 
 }
 
+
+//like nepeta quest, but with gamzee instead of nepeta.
+function aradiaQuest(){
+	var player = blankPlayerNoDerived(curSessionGlobalVar);
+	session612IndexToTroll(player, 4);
+	copyPlayersFromTemplate(player);
+}
+
 //like nepeta quest, but with gamzee instead of nepeta.
 function fridgeQuest(){
 	var player = blankPlayerNoDerived(curSessionGlobalVar);
@@ -670,10 +684,6 @@ function fridgeQuest(){
 	copyPlayersFromTemplate(player);
 }
 
-//everyone is both robot and aradia. BEEP.
-function aradiaBotQuest(){
-
-}
 
 //everyone replaced by vriska. thief of space and thief of time.
 function lucky8rk(){
@@ -805,6 +815,36 @@ function session420(){
 	}
 
 	fridgeQuest();
+	for(var i = 0; i<curSessionGlobalVar.players.length;i++){
+		player = curSessionGlobalVar.players[i];
+		var guardian = player.guardian;
+		player.relationships = [];
+		guardian.relationships = [];
+		var guardians = getGuardiansForPlayers(curSessionGlobalVar.players)
+		guardian.generateRelationships(guardians);
+		player.generateRelationships(curSessionGlobalVar.players);
+		player.mylevels = getLevelArray(player);
+		guardian.mylevels = getLevelArray(guardian);
+	}
+
+
+}
+
+
+function session0(){
+	for(var i = 0; i<12;i++){
+		var player;
+		var guardian;
+		if(i>curSessionGlobalVar.players.length){
+			console.log("blank player");
+			player = blankPlayerNoDerived(curSessionGlobalVar);
+			guardian = blankPlayerNoDerived(curSessionGlobalVar);
+			player.guardian = guardian;
+			curSessionGlobalVar.players.push(player);
+		}
+	}
+
+	aradiaQuest();
 	for(var i = 0; i<curSessionGlobalVar.players.length;i++){
 		player = curSessionGlobalVar.players[i];
 		var guardian = player.guardian;
@@ -998,7 +1038,10 @@ function session612IndexToTroll(player, index){
 		player.kernel_sprite = "Frog"
 		player.interest1 = "Archaeology"
 		player.interest2 = "Death"
-		if(Math.seededRandom() > 0.3) player.robot = true; //not all aradias are robo aradias.
+		if(Math.seededRandom() > 0.3){
+			player.robot = true; //not all aradias are robo aradias.
+			player.bloodColor = "#0021cb"; //b100 blood
+		}
 		if(Math.seededRandom() > 0.3) player.dead = true; //not all aradias are ghost aradias.
 		player.chatHandle = "apocalypseArisen"
 		player.godDestiny = true;
