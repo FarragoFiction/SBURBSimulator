@@ -43,7 +43,7 @@ function LevelTheHellUp(session){
 		var boonies = this.getBoonies(player)
 		var narration = "";
 		var repeatTime = 1000;
-		var divID = (div.attr("id")) + "_" + player.chatHandle+player.ectoBiologicalSource;
+		var divID = (div.attr("id")) + "_" + player.chatHandle+player.ectoBiologicalSource+player.id;
 		var narrationHTML = "<br><div id = 'narration" + divID + "'></div>";
 
 		div.append(narrationHTML);

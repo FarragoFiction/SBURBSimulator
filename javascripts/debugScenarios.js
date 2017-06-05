@@ -676,6 +676,8 @@ function copyPlayersFromTemplate(template){
 	for(var i = 0; i< curSessionGlobalVar.players.length; i++){
 		var p = curSessionGlobalVar.players[i];
 		var g = p.guardian;
+		p.id = i;
+		g.id = i + 111111;
 		if(p.aspect != "Time" && p.aspect != "Space"){
 			p.aspect = template.aspect;
 		}
