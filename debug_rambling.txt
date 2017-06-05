@@ -1691,45 +1691,28 @@ But also include ghost attributes, like murderMode and dreamSelf.
 var json = {aspect: this.aspect, class_name: this.class_name, quirk: this.quirk, hair: this.hair,  hairColor: this.hairColor, isTroll: this.isTroll, bloodColor: this.bloodColor, leftHorn: this.leftHorn, rightHorn: this.rightHorn, interest1Category: this.interest1Category, interest2Category: this.interest2Category, interest1: this.interest1, interest2: this.interest2  };
 
  
-
  
-
 Binary:  doomed, isTroll, isDreamSelf, godTier, murderMode, leftMurderMode
 
- 
+ Int:  leftHorn (0-46), rightHorn(0-46), hair (0-60) ,grimDark (0-4), favoriteNumber(0-12)
 
-Int:  leftHorn (0-46), rightHorn(0-46), hair (0-60) ,grimDark (0-4), favoriteNumber(0-12)
+ String:  causeOfDrain, influenceSymbol, causeOfDeath,interest1, interest2
 
- 
-
-String:  causeOfDrain, influenceSymbol, causeOfDeath,interest1, interest2
+ String, but can make int:  Class(0-12), Aspect(0-12), victimBlood(3 bytes), hairColor(3 bytes), bloodColor(3 bytes), interest1Category(0-13), interest2Category (0-13)
 
  
-
-String, but can make int:  Class(0-12), Aspect(0-12), victimBlood(3 bytes), hairColor(3 bytes), bloodColor(3 bytes), interest1Category(0-13), interest2Category (0-13)
-
- 
-
- 
-
 I format:
 
 Doomed, isTroll, isDreamSelf, murderMode, leftMurderMode, leftHorn, rightHorn, hair, grimDark, favoriteNumber, class, aspect, victimBlood, hairColor, bloodColor, interest1Category, interest2Category
 
- 
-
 12 bits, 1 bit, 1 bit, 1 bit, 1 bit, 1 bit, 1 bit, 6 bits, 6 bits, 6 bits, 3 bits, 4 bits, 4 bits, 4 bits, 4 bits, 4 bits, 4 bits, 4 bits
 
  
+So, total of: 67 bits. 9 bytes?  Yes. Do I want zero padding on left or right?  left, I guess.
 
-So, total of: 71 bits.  Almost 10 bytes?  9 bytes?  Yes. Do I want zero padding on left or right?  left, I guess.
-
- 
-
-Example player:
+ Example player:
 
  
-
 Doomed: false, isTroll:false, , isDreamSelf:true, godTier: false, murderMode true, leftMurderMode false , leftHorn 13, rightHorn 13, hair 47, grimDark 2, favoriteNumber 3, class 4, aspect 2, victimBlood,2 , hairColor 0 , bloodColor 12, interest1Category 14, interest2Category 12
 
  
@@ -1757,6 +1740,23 @@ Or
  
 
 275 characters down to 14. That is impressive as shit.
+80% reduction in size for integers.  If keep these savings across the whole url (strings don’t compress much, tho), I can expect a url to be ~650 characters long, which is way better.
+
+ 
+
+Of course, that IS with black hair, which is basically free to compress since I shoved it at the front.
+
+ 
+
+Okay.
+
+ 
+
+Now the question is, how good is javaScript at byte sequence generation? I know it can do the << and what not operators, is that good enough? How do I want to code this?
+
+
+
+
 
 
 
