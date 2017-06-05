@@ -404,8 +404,6 @@ function session413(){
 	for(var i = 0; i<8;i++){
 		player = curSessionGlobalVar.players[i];
 		var guardian = player.guardian;
-		player.isTroll = false;
-		guardian.isTroll = false;
 		player.relationships = [];
 		var guardians = getGuardiansForPlayers(curSessionGlobalVar.players)
 		guardian.generateBlandRelationships(guardians);
@@ -437,8 +435,6 @@ function session111111(){
 	for(var i = 0; i<8;i++){
 		player = curSessionGlobalVar.players[i];
 		var guardian = player.guardian;
-		player.isTroll = false;
-		guardian.isTroll = false;
 		player.relationships = [];
 		var guardians = getGuardiansForPlayers(curSessionGlobalVar.players)
 		guardian.generateBlandRelationships(guardians);
@@ -451,6 +447,7 @@ function session111111(){
 }
 
 function session413IndexToHuman(player,index){
+	player.isTroll = false;
 	if(index == 0){
 		player.bloodColor = "#ff0000"
 		player.class_name = "Heir"
@@ -610,6 +607,7 @@ function session413IndexToHuman(player,index){
 
 //just hange index and return whatever regular does. pretend janes goes in first
 function session413IndexToAncestor(player,index){
+	player.isTroll = false;
 	if(index == 0){
 		session413IndexToHuman(player, 4)
 	}else if(index == 1){
@@ -788,8 +786,6 @@ function session613(){
 	for(var i = 0; i<12;i++){
 		player = curSessionGlobalVar.players[i];
 		var guardian = player.guardian;
-		player.isTroll = true;
-		guardian.isTroll = true;
 		player.relationships = [];
 		var guardians = getGuardiansForPlayers(curSessionGlobalVar.players)
 		guardian.generateRelationships(guardians);
@@ -823,8 +819,6 @@ function session612(){
 	for(var i = 0; i<12;i++){
 		player = curSessionGlobalVar.players[i];
 		var guardian = player.guardian;
-		player.isTroll = true;
-		guardian.isTroll = true;
 		player.relationships = [];
 		var guardians = getGuardiansForPlayers(curSessionGlobalVar.players)
 		guardian.generateRelationships(guardians);
@@ -839,6 +833,7 @@ function session612(){
 //karkat, terezi, gamzee, equius, aradia, nepeta, tavros, vriska, kanaya, eridan, feferi, sollux
 function session612IndexToTroll(player, index){
 	player.hairColor = "#000000"
+	player.isTroll = true;
 	if(index == 0){
 		player.aspect = "Blood"
 		player.moon = "Prospit"
@@ -1088,6 +1083,7 @@ function session612IndexToTroll(player, index){
 
 function session612IndexToTrollAncestor(player, index){
 	player.hairColor = "#000000"
+	player.isTroll = true;
 	if(index == 0){
 		player.moon = "Prospit"
 		player.aspect = "Blood"
@@ -1354,13 +1350,9 @@ function session1025(){
 		player = curSessionGlobalVar.players[i];
 		var guardian = player.guardian;
 		if(i<8){
-			player.isTroll = false;
-			guardian.isTroll = false;
 			session413IndexToHuman(player,i);
 			session413IndexToAncestor(guardian,i);
 		}else{
-			player.isTroll = true;
-			guardian.isTroll = true;
 			var index = 0;
 			if(i == 8){
 				index = 0;
