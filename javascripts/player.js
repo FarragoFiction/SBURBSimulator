@@ -1795,7 +1795,14 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 	}
 
+	this.initSpriteCanvas = function(){
+		this.spriteCanvasID = this.chatHandle+this.id+"spriteCanvas";
+		var canvasHTML = "<br><canvas style='display:none' id='" + this.spriteCanvasID+"' width='" +400 + "' height="+300 + "'>  </canvas>";
+		$("#playerSprites").append(canvasHTML)
+	}
+
 	this.renderSelf = function(){
+		if(!this.spriteCanvasID) this.initSpriteCanvas();
 		var canvasDiv = document.getElementById(this.spriteCanvasID);
 
 		var ctx = canvasDiv.getContext("2d");
