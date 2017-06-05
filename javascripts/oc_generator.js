@@ -202,6 +202,9 @@ function decideTroll(player){
 		player.hairColor = "#000000"
 		player.quirk = randomTrollQuirk(player);
 	}else{
+		player.isTroll = false;
+		player.bloodColor = "#ffffff"
+		player.hairColor = getRandomElementFromArray(human_hair_colors);
 		player.quirk = randomHumanQuirk(player);
 	}
 }
