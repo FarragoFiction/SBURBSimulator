@@ -625,6 +625,8 @@ function session413IndexToAncestor(player,index){
 	}
 }
 
+
+
 //time player is dave or aradia, space player is either jade or kanaya
 //all else is randomly either a alternian troll or a 413 human.
 function homestuck(){
