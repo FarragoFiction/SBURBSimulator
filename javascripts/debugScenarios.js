@@ -54,6 +54,8 @@ function checkEasterEgg(){
 		session111111();
 	}else if(initial_seed == 88888888){
 		session88888888();
+	}else if(initial_seed == 420){
+		session420();
 	}
 
 
@@ -659,7 +661,9 @@ function canonChaos(){
 
 //like nepeta quest, but with gamzee instead of nepeta.
 function fridgeQuest(){
-
+	var player = blankPlayerNoDerived(curSessionGlobalVar);
+	session612IndexToTroll(player, 2);
+	copyPlayersFromTemplate(player);
 }
 
 //everyone is both robot and aradia. BEEP.
@@ -770,6 +774,20 @@ function session88888888(){
 		}
 	}
 	lucky8rk();
+}
+
+function session420(){
+	for(var i = 0; i<12;i++){
+		var player;
+		var guardian;
+		if(i>curSessionGlobalVar.players.length){
+			player = blankPlayerNoDerived(curSessionGlobalVar);
+			guardian = blankPlayerNoDerived(curSessionGlobalVar);
+			player.guardian = guardian;
+			curSessionGlobalVar.players.push(player);
+		}
+	}
+	fridgeQuest();
 }
 
 //12 dead nepetas
