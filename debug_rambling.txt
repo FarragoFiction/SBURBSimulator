@@ -1684,6 +1684,80 @@ No. How would you decode that? Dumb.
  
 Instead, always encode “as player”. Yes, afterlife needs LESS variables than char creator, but less likely to be shared.
 
- So.  Fuck pastJR, and go grab the attributes I’m using for players, not ghosts before I make my encoding.
+ So.  Fuck pastJR, and go grab the attributes I’m using for players, not ghosts before I make my encoding. 
+But also include ghost attributes, like murderMode and dreamSelf.
+
+
+var json = {aspect: this.aspect, class_name: this.class_name, quirk: this.quirk, hair: this.hair,  hairColor: this.hairColor, isTroll: this.isTroll, bloodColor: this.bloodColor, leftHorn: this.leftHorn, rightHorn: this.rightHorn, interest1Category: this.interest1Category, interest2Category: this.interest2Category, interest1: this.interest1, interest2: this.interest2  };
+
+ 
+
+ 
+
+Binary:  doomed, isTroll, isDreamSelf, godTier, murderMode, leftMurderMode
+
+ 
+
+Int:  leftHorn (0-46), rightHorn(0-46), hair (0-60) ,grimDark (0-4), favoriteNumber(0-12)
+
+ 
+
+String:  causeOfDrain, influenceSymbol, causeOfDeath,interest1, interest2
+
+ 
+
+String, but can make int:  Class(0-12), Aspect(0-12), victimBlood(3 bytes), hairColor(3 bytes), bloodColor(3 bytes), interest1Category(0-13), interest2Category (0-13)
+
+ 
+
+ 
+
+I format:
+
+Doomed, isTroll, isDreamSelf, murderMode, leftMurderMode, leftHorn, rightHorn, hair, grimDark, favoriteNumber, class, aspect, victimBlood, hairColor, bloodColor, interest1Category, interest2Category
+
+ 
+
+12 bits, 1 bit, 1 bit, 1 bit, 1 bit, 1 bit, 1 bit, 6 bits, 6 bits, 6 bits, 3 bits, 4 bits, 4 bits, 4 bits, 4 bits, 4 bits, 4 bits, 4 bits
+
+ 
+
+So, total of: 71 bits.  Almost 10 bytes?  9 bytes?  Yes. Do I want zero padding on left or right?  left, I guess.
+
+ 
+
+Example player:
+
+ 
+
+Doomed: false, isTroll:false, , isDreamSelf:true, godTier: false, murderMode true, leftMurderMode false , leftHorn 13, rightHorn 13, hair 47, grimDark 2, favoriteNumber 3, class 4, aspect 2, victimBlood,2 , hairColor 0 , bloodColor 12, interest1Category 14, interest2Category 12
+
+ 
+
+0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000
+
+ 
+
+000000000000000000000000    001010  001101  001101 0011111 010  0011 0100 0010   0010   1100 1110 1100
+
+ 
+
+00000000000000000000000000101000110100110100111110100011010000100010110011101100
+
+Or
+
+11491338063326444 (base 10)
+
+Or
+
+ 
+
+28D34FA3422CEC (base 16)
+
+ 
+
+275 characters down to 14. That is impressive as shit.
+
+
 
 
