@@ -1763,14 +1763,15 @@ Now the question is, how good is javaScript at byte sequence generation? I know 
 
 1 byte interest1Category, interest2Category
 
-1 byte griDark,isTroll, isDreamSelf, isGodTier, murderMode, leftMurderMode
+1 byte grimDark,isTroll, isDreamSelf, isGodTier, murderMode, leftMurderMode
 
 1 byte  leftHorn
 
-1byte  rightHorn
+1 byte  rightHorn
 
-1byte hair
+1 byte hair
 
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays
 
 
 
