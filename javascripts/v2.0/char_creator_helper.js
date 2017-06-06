@@ -34,6 +34,7 @@ function CharacterCreatorHelper(players){
 		str += "Right Horn: " + this.drawOneRightHornDropDown(player);
 		str += "BloodColor: " + this.drawOneBloodColorDropDown(player);
 		str += "Favorite Number: " + this.drawOneFavoriteNumberDropDown(player);
+		str += this.drawInterests(player);
 		str += "</div>"
 
 		str += (canvasHTML);
@@ -155,17 +156,20 @@ function CharacterCreatorHelper(players){
 	}
 	
 	this.drawInterests = function(player){
-		this.drawInterestCategory(1,player);
-		this.drawInterestCategory(2,player);
+		var str = "";
+		str += " CategoryInterest1 " + this.drawInterestCategory(1,player);
+		str += " CategoryInterest2 " +this.drawInterestCategory(2,player);
+		return str;
 	}
 	
 	this.drawInterestCategory(num,player){
 		var html = "<select id = 'interestCategory" + num+ player.chatHandle + "' name='interest1Category" +num+player.chatHandle +"'>";
-		for(var i = 1; i<= 60; i++){
-			if(player.hair == i){
-				html += '<option  selected = "selected" value="' + i +'">' + i+'</option>'
+		for(var i = 1; i<= interestCategories.length; i++){
+			var ic = interestCategories[i];
+			if(player.interestedIn(ic, num)){
+				html += '<option  selected = "selected" value="' + ic +'">' + ic+'</option>'
 			}else{
-				html += '<option value="' + i +'">' + i+'</option>'
+				html += '<option value="' + ic +'">' + ic+'</option>'
 			}
 		}
 		html += '</select>'
