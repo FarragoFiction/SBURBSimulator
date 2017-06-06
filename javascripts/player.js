@@ -33,7 +33,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.maxLuck = 0;
 	this.freeWill = 0;
 	this.mobility = 0;
-	this.crowned = false; //players can't be crowned.
+	this.crowned = null; //players can't be crowned.
 	this.trickster = false;
 	this.sbahj = false;
 	this.sickRhymes = []; //oh hell yes. Hell. FUCKING. Yes!
