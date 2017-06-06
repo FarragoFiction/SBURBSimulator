@@ -209,6 +209,7 @@ function MurderPlayers(session){
 						//do nothing, alt scene will handle this.
 					}else{
 						m.increasePower();
+						m.triggerLevel = m.triggerLevel/2; //killing someone really takes the edge off.
 
 						ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". " + getPVPQuip(worstEnemy,m, "Defender", "Murderer");
 						if(m.dead == true){ //they could have been killed by another murder player in this same tick
@@ -278,7 +279,7 @@ function MurderPlayers(session){
 		if(worstEnemy.aspect == "Space" && worstEnemy.power > 50){
 			console.log("high level space player avoiding a murderer" + this.session.session_id)
 			return false;  //god tier calliope managed to hide from a Lord of Time. space players might not move around a lot, but that doesn't mean they are easy to catch.
-		} 
+		}
 		return true;
 	}
 
@@ -335,7 +336,7 @@ function MurderPlayers(session){
 					}else{
 						ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! Do they just never stay in one spot for more than five seconds? Flighty bastard. It's hard to stay enraged while wandering around lost."
 					}
-					
+
 					m.triggerLevel += -3;
 				}else{
 					ret += " The " + m.htmlTitle() + " can't find anybody they hate enough to murder. They calm down a little. ";

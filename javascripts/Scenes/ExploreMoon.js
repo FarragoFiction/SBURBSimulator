@@ -138,8 +138,8 @@ function ExploreMoon(session){
 			ret += this.getProspitBullshit();
 		}else{
 			ret += this.getDerseBullshit();
-			this.player1.corruptionLevelOther += 10;
-			if(this.player2) this.player2.corruptionLevelOther += 10;
+			this.player1.corruptionLevelOther += 5;
+			if(this.player2) this.player2.corruptionLevelOther += 5;
 		}
 
 		if(this.player2 != null){
