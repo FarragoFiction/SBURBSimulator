@@ -138,9 +138,9 @@ function FreeWillStuff(session){
 	//allow some randomness here.
 	this.considerEngagingMurderMode = function(player){
 		var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
-		if(player.isActive() && enemies.length > 2 && player.triggerLevel > 5 && !player.murderMode && Math.seededRandom() >0.25){
+		if(player.isActive() && enemies.length > 2 && player.triggerLevel > 5 && !player.murderMode && Math.seededRandom() >0.98){
 			return this.becomeMurderMode(player);
-		}else if(enemies.length > 0 && player.triggerLevel > 5 && Math.seededRandom() > 0.25){
+		}else if(enemies.length > 0 && player.triggerLevel > 5 && Math.seededRandom() > 0.98){
 			return this.forceSomeOneElseMurderMode(player);
 		}
 		return null;
@@ -155,6 +155,7 @@ function FreeWillStuff(session){
 					player.triggerLevel = 10;
 					removeFromArray(player, this.session.availablePlayers);
 					this.renderPlayer1 = player;
+					console.log('deciding to be flipping shit')
 					//harry potter and the methods of rationality to the rescue
 					return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. And if they happen to start with the assholes...well, baby steps. It's not every day they extinguish an entire species. ";
 			}
@@ -327,6 +328,7 @@ function FreeWillStuff(session){
 						}else if(player.aspect == "Time" && Math.random()>.25){ //most manipulative time bastards are from teh future
 							timeIntro = " from the future"
 						}
+						console.log("forcing someone else to be flipping shit")
 						return "The " + player.htmlTitleBasic() + timeIntro + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use clever words to convince the " + patsy.htmlTitleBasic() + " of the righteousness of their plan. They agree to carry out the bloody work. " + loop;
 
 				}else{
@@ -344,6 +346,7 @@ function FreeWillStuff(session){
 						removeFromArray(patsy, this.session.availablePlayers);
 						this.renderPlayer1 = player;
 						this.renderPlayer2 = patsy;
+						console.log("forcing someone else to be flipping shit")
 						return "The " + player.htmlTitleBasic() + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use game powers to manipulate the " + patsy.htmlTitleBasic() + "'s " + modifiedTrait + " until they are willing to carry out their plan. This is completely terrifying. " + rage;
 					}else{
 						////console.log("can't manipulate someone into murdermode and can't use game powers. I am: " + player.title() + " " +this.session.session_id)
