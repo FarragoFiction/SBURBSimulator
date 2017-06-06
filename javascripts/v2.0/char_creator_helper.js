@@ -12,12 +12,6 @@ function CharacterCreatorHelper(players){
 		}
 	}
 	this.drawSinglePlayer = function(player){
-		//debug code, remove later
-		/*
-		player.interest1 = "Custom Interest"
-		player.interest1Category = "Music"
-		player.interest2 = "Rap" //not a custom interest, make sure sim doesn't try to add it twice.
-		player.interest2Category = "Music"*/
 		//console.log("drawing: " + player.title())
 		var str = "";
 		var divId =  player.chatHandle;
@@ -149,7 +143,7 @@ function CharacterCreatorHelper(players){
 		var interestCategory2Dom =  $("#interestCategory2" +player.chatHandle);
 		var interest1DropDom =  $("#interestDrop1" +player.chatHandle);
 		var interest2DropDom =  $("#interestDrop2" +player.chatHandle);
-		var interest1TextDom =  $("#interest1" +player.chatHandle);
+		var interest1TextDom =  $("#interest1" +player.chatHandle); //don't wire these up. instead, get value on url creation.
 		var interest2TextDom =  $("#interest2" +player.chatHandle);
 		var that = this;
 		interestCategory1Dom.change(function() {
@@ -172,13 +166,6 @@ function CharacterCreatorHelper(players){
 					interest2TextDom.val(icDropDown.val());
 		});
 		
-		interest1TextDom.change(function() {
-					alert(interest1TextDom.val());
-		});
-		
-		interest2TextDom.change(function() {
-					alert(interest2TextDom.val());
-		});
 	}
 
 	//(1,60)

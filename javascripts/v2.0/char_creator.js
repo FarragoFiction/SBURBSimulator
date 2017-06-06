@@ -106,10 +106,27 @@ function initSession(){
 	 loadFuckingEverything(true);
 }
 
+function grabAllPlayerInterests(){
+	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+		grabPlayerInterests(curSessionGlobalVar.players[i]);
+	}
+}
+
+function grabPlayerInterests(player){
+	var interestCategory1Dom =  $("#interestCategory1" +player.chatHandle);
+	var interestCategory2Dom =  $("#interestCategory2" +player.chatHandle);
+	var interest1TextDom =  $("#interest1" +player.chatHandle); 
+	var interest2TextDom =  $("#interest2" +player.chatHandle);
+	player.interest1 = interest1TextDom.val()
+	player.interest1Category = interestCategory1Dom.val();
+	player.interest2 = interest1TextDom.val();
+	player.interest2Category = interestCategory2Dom.val();
+}
+
 //IMPORTANT, DON'T RENDER THIS onload
 //instead, when player clicks "STart Session", render this button so they click it. OR, rerender this button any time you reredner players.
 function renderURLToSendPlayersIntoSBURB(){
-	alert("todo, make sure inner layer model match forms, especially for interests")
+	grabAllPlayerInterests();
 	var seed = getParameterByName("seed");
 	numURLS ++;
 	var html = "<Br><br><a href = 'index2.html?seed=" + seed +"&players=" + generateURLParamsForPlayers(curSessionGlobalVar.players) + "' target='_blank'>Be Responsible For Sending Players into SBURB? (Link " + numURLS +")</a>";
