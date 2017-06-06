@@ -55,6 +55,7 @@ function CharacterCreatorHelper(players){
 		//drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff")
 		copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,0,0)
 		this.wireUpPlayerDropDowns(player);
+		this.wireUpInterests(player);
 
 	}
 
@@ -140,6 +141,10 @@ function CharacterCreatorHelper(players){
 					}
 					that.redrawSinglePlayer(player);
 			});
+	}
+	
+	this.wireUpInterests(player){
+		//first, choosing interest category should change the contents of interestDrop1 or 2 (but NOT any value in the player or the text box.)
 	}
 
 	//(1,60)
