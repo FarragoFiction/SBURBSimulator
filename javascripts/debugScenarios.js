@@ -664,6 +664,7 @@ function session413IndexToAncestor(player,index){
 //time player is dave space player is either jade
 //all else is 413 human.
 function homestuck(){
+	var savedSeed = Math.seed;
 	//copyPlayerFromTemplate(p,template);
 	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
 		var p = curSessionGlobalVar.players[i];
@@ -679,11 +680,13 @@ function homestuck(){
 			session413IndexToAncestor(g,getRandomInt(0,7));
 		}
 	}
+	Math.seed = savedSeed;
 }
 
 //time player is aradia, space player is kanaya,
 //all else random alternian troll
 function hivebent(){
+	var savedSeed = Math.seed;
 	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
 		var p = curSessionGlobalVar.players[i];
 		var g = p.guardian;
@@ -698,11 +701,13 @@ function hivebent(){
 			session612IndexToTrollAncestor(g,getRandomInt(0,11));
 		}
 	}
+	Math.seed = savedSeed;
 }
 
 //time player is damara, space player is porrim
 //all else random beforan troll
 function openBound(){
+	var savedSeed = Math.seed;
 	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
 		var p = curSessionGlobalVar.players[i];
 		var g = p.guardian;
@@ -717,6 +722,7 @@ function openBound(){
 			session612IndexToTrollAncestor(p,getRandomInt(0,11));
 		}
 	}
+	Math.seed = savedSeed;
 }
 
 //time player is aradia, damara or dave, space is jade, porrim or kanaya
@@ -724,6 +730,7 @@ function openBound(){
 //rumpus = fruity
 //i will have order in this rumpusBlock! Or the opposite !!!
 function fruityRumpusAssholeFactory(){
+	var savedSeed = Math.seed;
 	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
 		var p = curSessionGlobalVar.players[i];
 		var g = p.guardian;
@@ -745,7 +752,7 @@ function fruityRumpusAssholeFactory(){
 				session612IndexToTrollAncestor(p,8);
 			}else if(rand > 0.3){
 				session612IndexToTrollAncestor(p,8);
-				session612IndexToTroll(g,48;
+				session612IndexToTroll(g,8);
 			}else{
 				session413IndexToHuman(p,3);
 				session413IndexToAncestor(g,3);
@@ -763,6 +770,7 @@ function fruityRumpusAssholeFactory(){
 			}
 		}
 	}
+	Math.seed = savedSeed;
 }
 
 
@@ -1123,11 +1131,13 @@ function session612IndexToTroll(player, index){
 		player.kernel_sprite = "Frog"
 		player.interest1 = "Archaeology"
 		player.interest2 = "Death"
+		var savedSeed = Math.seed;
 		if(Math.seededRandom() > 0.3){
 			player.robot = true; //not all aradias are robo aradias.
 			player.bloodColor = "#0021cb"; //b100 blood
 		}
 		if(Math.seededRandom() > 0.3) player.dead = true; //not all aradias are ghost aradias.
+		Math.seed = savedSeed;
 		player.chatHandle = "apocalypseArisen"
 		player.godDestiny = true;
 		player.quirk.suffix = ""
