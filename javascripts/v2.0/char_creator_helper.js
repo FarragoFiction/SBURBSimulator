@@ -168,11 +168,11 @@ function CharacterCreatorHelper(players){
 	this.drawInterestDropDown = function(category, num, player){
 		var html = "<select id = 'interest" + num+ player.chatHandle + "' name='interest" +num+player.chatHandle +"'>";
 		var interestsInCategory = interestCategoryToInterestList(category);
-		var interest = player.interest1;
-		if(num == 2) interest = player.interest2;
-		for(var i = 0; i<= interestsInCategory.length; i++){
+		var interestToCheck = player.interest1;
+		if(num == 2) interestToCheck = player.interest2;
+		for(var i = 0; i< interestsInCategory.length; i++){
 			var pi = interestsInCategory[i];
-			if(interest = pi){
+			if(interestToCheck == pi){
 				html += '<option  selected = "selected" value="' + pi +'">' + pi+'</option>'
 			}else{
 				html += '<option value="' + pi +'">' + pi+'</option>'
@@ -184,7 +184,7 @@ function CharacterCreatorHelper(players){
 	
 	this.drawInterestCategoryDropDown = function(num,player){
 		var html = "<select id = 'interestCategory" + num+ player.chatHandle + "' name='interest1Category" +num+player.chatHandle +"'>";
-		for(var i = 0; i<= interestCategories.length; i++){
+		for(var i = 0; i< interestCategories.length; i++){
 			var ic = interestCategories[i];
 			if(player.interestedIn(ic, num)){
 				if(num ==1){
