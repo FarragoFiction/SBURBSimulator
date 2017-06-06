@@ -25,6 +25,17 @@
 <p> <a href = "index2.html?seed=33">Nepeta Quest</a>: 12 Nepetas play SGRUB.  Has a true random 50% chance of either being Karkat and friends all dressing up like Nepeta, or 12 Nepetas all roleplaying as Karkat and friends. Basically, either everybody is olive blood, or they are their regular blood colors. Either way everyone has the quirks and trollTags of Karkat and friends.</p>
 <p> <a href = "index2.html?nepeta=:33">Nepeta Quest x2 Combob!!</a>: All players in a session (remember, can pass a specific session ID as well) are either roleplaying as Nepeta or are being roleplayed as BY nepetas. True random. Drives AB crazy.</p>
 
+<p> <a href = "index2.html?seed=88888888">SpiderQuuuuuuuuest</a>: 8  Vriskas play SGRUB and start an endless cycle of luck stealing. Probably. </p>
+<p> <a href = "index2.html?luck=AAAAAAAALL">SpiderQuuuuuuuuest x2 Combob!!</a>: Turn any random session into a bunch of Vriskas.</p>
+
+<p> <a href = "index2.html?seed=420">FridgeQuest</a>: 12  Gamzees play SGRUB and there is just a shit ton of shenanigans. </p>
+<p> <a href = "index2.html?honk=:o)">FridgeQuest x2 Combob!!</a>: Turn any random session into a bunch of Gamzees. Why would you do this???</p>
+
+<p> <a href = "index2.html?seed=0">0_0</a>: Some Aradias play SGRUB. They are 0kay with this. </p>
+<p> <a href = "index2.html?shenanigans=temporal">Temporal Shenanigans x2 Combob!!</a>: Turn any random session into a bunch of Aradias.</p>
+
+
+
 <p> <a href = "rare_session_finder.html?seed=030303">Guided AuthorBot</a>: Did you know you could pass  a seed to the AuthorBot? It will direct her to the FIRST session she looks at.  The SECOND session will be the natural child of the first (unless there is a combo session, in which case it gets wrapped into the first). In this way you can look at the 'geneology' of the sessions/frogs. </p>
 <p><a href = "rare_session_finder.html?royalRumble=true">AuthorBot Royal Rumble</a>: Ask the AuthorBot to look through a bunch of RoyalRumble Sessions.</p>
 <p><a href = "rare_session_finder.html?lollipop=true">AuthorBot Trickster</a>: Ask the AuthorBot to look through a bunch of Trickster Sessions.</p>

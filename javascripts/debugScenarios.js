@@ -74,7 +74,7 @@ function checkEasterEgg(){
 		fridgeQuest();
 	}
 
-	if(getParameterByName("temporal")  == "shenanigans"){
+	if(getParameterByName("shenanigans")  == "temporal"){
 		aradiaQuest();
 	}
 
