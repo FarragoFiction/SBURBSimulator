@@ -676,8 +676,9 @@ function homestuck(){
 			session413IndexToHuman(p,3);
 			session413IndexToAncestor(g,3);
 		}else{
-			session413IndexToHuman(p,getRandomInt(0,7));
-			session413IndexToAncestor(g,getRandomInt(0,7));
+			var index = getRandomInt(0,7)
+			session413IndexToHuman(p,index);
+			session413IndexToAncestor(g,index);
 		}
 	}
 	Math.seed = savedSeed;
@@ -697,8 +698,9 @@ function hivebent(){
 			session612IndexToTroll(p,8);
 			session612IndexToTrollAncestor(g,8);
 		}else{
-			session612IndexToTroll(p,getRandomInt(0,11));
-			session612IndexToTrollAncestor(g,getRandomInt(0,11));
+			var index = getRandomInt(0,11)
+			session612IndexToTroll(p,index);
+			session612IndexToTrollAncestor(g,index);
 		}
 	}
 	Math.seed = savedSeed;
@@ -718,8 +720,9 @@ function openBound(){
 			session612IndexToTroll(g,8);
 			session612IndexToTrollAncestor(p,8);
 		}else{
-			session612IndexToTroll(g,getRandomInt(0,11));
-			session612IndexToTrollAncestor(p,getRandomInt(0,11));
+			var index = getRandomInt(0,11)
+			session612IndexToTroll(g,index);
+			session612IndexToTrollAncestor(p,index);
 		}
 	}
 	Math.seed = savedSeed;
@@ -759,14 +762,17 @@ function fruityRumpusAssholeFactory(){
 			}
 		}else{
 			if(rand > 0.6){
-				session612IndexToTroll(g,getRandomInt(0,12));
-				session612IndexToTrollAncestor(p,getRandomInt(0,12));
+				var index = getRandomInt(0,12)
+				session612IndexToTroll(g, index);
+				session612IndexToTrollAncestor(p,index);
 			}else if(rand > 0.3){
-				session612IndexToTrollAncestor(p,getRandomInt(0,12));
-				session612IndexToTroll(g,getRandomInt(0,12));
+				var index = getRandomInt(0,12)
+				session612IndexToTrollAncestor(p,index);
+				session612IndexToTroll(g,index);
 			}else{
-				session413IndexToHuman(p,getRandomInt(0,7));
-				session413IndexToAncestor(g,getRandomInt(0,7));
+				var index = getRandomInt(0,7)
+				session413IndexToHuman(p,index);
+				session413IndexToAncestor(g,index);
 			}
 		}
 	}
