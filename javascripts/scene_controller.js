@@ -452,10 +452,15 @@ function generateURLParamsForPlayers(players){
 
  }
 
- //TODO make this COMPLETELY WORK. probably enough to render the afterlife, but relationships are not brought over yet.
  function objToPlayer(obj){
 	 var ret = new Player();
-	 for (var prop in obj) ret[prop] = obj[prop];
+	 for (var prop in obj){
+		 console.log(prop + " : " + obj[prop])
+		 ret[prop] = obj[prop];
+	 } 
+	 console.log(ret.interestCategory1);
+	 interestCategoryToInterestList(ret.interest1Category ).push(ret.interest1) //maybe don't add if already exists but whatevs for now.
+	 interestCategoryToInterestList(ret.interest2Category ).push(ret.interest2)
 	 ret.quirk = new Quirk();
 	 ret.quirk.favoriteNumber = obj.quirk.favoriteNumber;
 	 return ret;

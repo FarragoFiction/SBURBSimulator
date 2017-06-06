@@ -119,7 +119,7 @@ function grabPlayerInterests(player){
 	var interest2TextDom =  $("#interest2" +player.chatHandle);
 	player.interest1 = interest1TextDom.val()
 	player.interest1Category = interestCategory1Dom.val();
-	player.interest2 = interest1TextDom.val();
+	player.interest2 = interest2TextDom.val();
 	player.interest2Category = interestCategory2Dom.val();
 }
 
