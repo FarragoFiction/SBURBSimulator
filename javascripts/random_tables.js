@@ -499,7 +499,7 @@ function playerLikesJustice(player){
 		}
 }
 
-function interestCategoryToInterestList(interestCategory){
+function interestCategoryToInterestList(interestWord){
 	if(interestWord == "Comedy") return comedy_interests
 	if(interestWord == "Music") return music_interests
 	if(interestWord == "Culture") return culture_interests
