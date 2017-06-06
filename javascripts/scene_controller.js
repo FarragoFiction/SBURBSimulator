@@ -80,6 +80,7 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 	if(junior == true){
 		$("#button").prop('disabled', false)
 	}else{
+		console.log("going to summarize session after crash")
 		summarizeSession(curSessionGlobalVar);// let's the author bot summarize the session. doens't matter if I'm not in AB mode, arleady crashed, right?
 		newsposts(""); //don't care what is happening.
 		corruptRoboNewsposts("");

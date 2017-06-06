@@ -674,7 +674,7 @@ function homestuck(){
 			session413IndexToAncestor(g,2);
 		}else if(p.aspect == "Space"){
 			session413IndexToHuman(p,3);
-			session413IndexToAncestor(g,3);
+			session413IndexToHuman(g,3);
 		}else{
 			var index = getRandomInt(0,7)
 			session413IndexToHuman(p,index);
@@ -747,7 +747,7 @@ function fruityRumpusAssholeFactory(){
 				session612IndexToTroll(g,4);
 			}else{
 				session413IndexToHuman(p,2);
-				session413IndexToAncestor(g,2);
+				session413IndexToHuman(g,2);
 			}
 		}else if(p.aspect == "Space"){
 			if(rand > 0.6){
@@ -758,7 +758,7 @@ function fruityRumpusAssholeFactory(){
 				session612IndexToTroll(g,8);
 			}else{
 				session413IndexToHuman(p,3);
-				session413IndexToAncestor(g,3);
+				session413IndexToHuman(g,3);
 			}
 		}else{
 			if(rand > 0.6){
