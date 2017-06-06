@@ -499,7 +499,22 @@ function playerLikesJustice(player){
 		}
 }
 
-
+function interestCategoryToInterestList(interestCategory){
+	if(interestWord == "Comedy") return comedy_interests.
+	if(interestWord == "Music") return music_interests
+	if(interestWord == "Culture") return culture_interests
+	if(interestWord == "Writing") return writing_interests
+	if(interestWord == "Athletic") return athletic_interests
+	if(interestWord == "Terrible") return terrible_interests
+	if(interestWord == "Justice") return justice_interests
+	if(interestWord == "Fantasy") return fantasy_interests
+	if(interestWord == "Domestic") return domestic_interests
+	if(interestWord == "PopCulture") return pop_culture_interests
+	if(interestWord == "Technology") return technology_interests
+	if(interestWord == "Social") return social_interests
+	if(interestWord == "Romance") return romantic_interests
+	if(interestWord == "Academic") return academic_interests
+}
 
 function getInterestHandle1(class_name,interest){
 	if(music_interests.indexOf(interest) != -1){

@@ -13,10 +13,11 @@ function CharacterCreatorHelper(players){
 	}
 	this.drawSinglePlayer = function(player){
 		//debug code, remove later
+		/*
 		player.interest1 = "Custom Interest"
 		player.interest1Category = "Music"
 		player.interest2 = "Rap" //not a custom interest, make sure sim doesn't try to add it twice.
-		player.interest2Category = "Music"
+		player.interest2Category = "Music"*/
 		//console.log("drawing: " + player.title())
 		var str = "";
 		var divId =  player.chatHandle;
@@ -157,16 +158,40 @@ function CharacterCreatorHelper(players){
 	
 	this.drawInterests = function(player){
 		var str = "";
-		str += " CategoryInterest1 " + this.drawInterestCategory(1,player);
-		str += " CategoryInterest2 " +this.drawInterestCategory(2,player);
+		str += " CategoryInterest1 " + this.drawInterestCategoryDropDown(1,player);
+		str += " Interest1 " +this.drawInterestDropDown(player.interest1Category, 1,player);
+		str += " CategoryInterest2 " +this.drawInterestCategoryDropDown(2,player);
+		str += " Interest2 " +this.drawInterestDropDown(player.interest2Category, 2,player);
 		return str;
 	}
 	
-	this.drawInterestCategory = function(num,player){
+	this.drawInterestDropDown = function(category, num, player){
+		var html = "<select id = 'interest" + num+ player.chatHandle + "' name='interest" +num+player.chatHandle +"'>";
+		var interestsInCategory = interestCategoryToInterestList(category);
+		var interest = player.interest1;
+		if(num == 2) interest = player.interest2;
+		for(var i = 0; i<= interestsInCategory.length; i++){
+			var pi = interestsInCategory[i];
+			if(interest = pi){
+				html += '<option  selected = "selected" value="' + pi +'">' + pi+'</option>'
+			}else{
+				html += '<option value="' + pi +'">' + pi+'</option>'
+			}
+		}
+		html += '</select>'
+		return html;
+	}
+	
+	this.drawInterestCategoryDropDown = function(num,player){
 		var html = "<select id = 'interestCategory" + num+ player.chatHandle + "' name='interest1Category" +num+player.chatHandle +"'>";
-		for(var i = 1; i<= interestCategories.length; i++){
+		for(var i = 0; i<= interestCategories.length; i++){
 			var ic = interestCategories[i];
 			if(player.interestedIn(ic, num)){
+				if(num ==1){
+					player.interest1Category = ic
+				}else if(num == 2){
+					player.interest2Category = ic
+				}
 				html += '<option  selected = "selected" value="' + ic +'">' + ic+'</option>'
 			}else{
 				html += '<option value="' + ic +'">' + ic+'</option>'
