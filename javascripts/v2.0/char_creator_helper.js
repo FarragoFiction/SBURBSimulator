@@ -168,10 +168,9 @@ function CharacterCreatorHelper(players){
 	}
 	
 	this.drawInterestTextBox = function(num,player){
-		var interestsInCategory = interestCategoryToInterestList(category);
 		var interestToCheck = player.interest1;
 		if(num == 2) interestToCheck = player.interest2;
-		html += "<input type='text' id = 'interest" + num+ player.chatHandle + "' name='interest" +num+player.chatHandle +"'>" + interestToCheck +"</input>"
+		var html = "<input type='text' id = 'interest" + num+ player.chatHandle + "' name='interest" +num+player.chatHandle +"'>" + interestToCheck +"</input>"
 		return html;
 	}
 	
