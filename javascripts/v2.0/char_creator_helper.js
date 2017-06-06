@@ -171,6 +171,16 @@ function CharacterCreatorHelper(players){
 					var icDropDown = $('[name="interestDrop2' +player.chatHandle +'"] option:selected')
 					interest2TextDom.val(icDropDown.val());
 		});
+		
+		interest1TextDom.change(function() {
+					var ic = $("interest1"+ player.chatHandle);
+					alert(ic.val()
+		});
+		
+		interest2TextDom.change(function() {
+					var ic = $("interest2"+ player.chatHandle);
+					alert(ic.val()
+		});
 	}
 
 	//(1,60)
