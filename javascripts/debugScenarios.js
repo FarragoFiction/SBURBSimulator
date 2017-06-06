@@ -694,8 +694,8 @@ function hivebent(){
 			session612IndexToTroll(p,8);
 			session612IndexToTrollAncestor(g,8);
 		}else{
-			session612IndexToTroll(p,getRandomInt(0,7));
-			session612IndexToTrollAncestor(g,getRandomInt(0,7));
+			session612IndexToTroll(p,getRandomInt(0,11));
+			session612IndexToTrollAncestor(g,getRandomInt(0,11));
 		}
 	}
 }
@@ -713,8 +713,8 @@ function openBound(){
 			session612IndexToTroll(g,8);
 			session612IndexToTrollAncestor(p,8);
 		}else{
-			session612IndexToTroll(g,getRandomInt(0,7));
-			session612IndexToTrollAncestor(p,getRandomInt(0,7));
+			session612IndexToTroll(g,getRandomInt(0,11));
+			session612IndexToTrollAncestor(p,getRandomInt(0,11));
 		}
 	}
 }
@@ -724,7 +724,45 @@ function openBound(){
 //rumpus = fruity
 //i will have order in this rumpusBlock! Or the opposite !!!
 function fruityRumpusAssholeFactory(){
-
+	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+		var p = curSessionGlobalVar.players[i];
+		var g = p.guardian;
+		var rand = Math.seededRandom();
+		if(p.aspect == "Time"){
+			if(rand > 0.6){
+				session612IndexToTroll(g,4);
+				session612IndexToTrollAncestor(p,4);
+			}else if(rand > 0.3){
+				session612IndexToTrollAncestor(p,4);
+				session612IndexToTroll(g,4);
+			}else{
+				session413IndexToHuman(p,2);
+				session413IndexToAncestor(g,2);
+			}
+		}else if(p.aspect == "Space"){
+			if(rand > 0.6){
+				session612IndexToTroll(g,8);
+				session612IndexToTrollAncestor(p,8);
+			}else if(rand > 0.3){
+				session612IndexToTrollAncestor(p,8);
+				session612IndexToTroll(g,48;
+			}else{
+				session413IndexToHuman(p,3);
+				session413IndexToAncestor(g,3);
+			}
+		}else{
+			if(rand > 0.6){
+				session612IndexToTroll(g,getRandomInt(0,12));
+				session612IndexToTrollAncestor(p,getRandomInt(0,12));
+			}else if(rand > 0.3){
+				session612IndexToTrollAncestor(p,getRandomInt(0,12));
+				session612IndexToTroll(g,getRandomInt(0,12));
+			}else{
+				session413IndexToHuman(p,getRandomInt(0,7));
+				session413IndexToAncestor(g,getRandomInt(0,7));
+			}
+		}
+	}
 }
 
 
