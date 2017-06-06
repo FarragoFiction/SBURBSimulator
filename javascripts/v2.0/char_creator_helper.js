@@ -170,7 +170,7 @@ function CharacterCreatorHelper(players){
 	this.drawInterestTextBox = function(num,player){
 		var interestToCheck = player.interest1;
 		if(num == 2) interestToCheck = player.interest2;
-		var html = "<input type='text' id = 'interest" + num+ player.chatHandle + "' name='interest" +num+player.chatHandle +"'>" + interestToCheck +"</input>"
+		var html = "<input type='text' id = 'interest" + num+ player.chatHandle + "' name='interest" +num+player.chatHandle +"' + value='" + interestToCheck +"'> </input>"
 		return html;
 	}
 	
