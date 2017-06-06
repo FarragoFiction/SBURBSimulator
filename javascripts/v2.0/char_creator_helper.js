@@ -149,23 +149,27 @@ function CharacterCreatorHelper(players){
 		var interestCategory2Dom =  $("#interestCategory2" +player.chatHandle);
 		var interest1DropDom =  $("#interestDrop1" +player.chatHandle);
 		var interest2DropDom =  $("#interestDrop2" +player.chatHandle);
+		var that = this;
 		interestCategory1Dom.change(function() {
 					var icDropDown = $('[name="interestCategory1' +player.chatHandle +'"] option:selected')
-					alert(icDropDown.val())
+					interest1DropDom.html(that.drawInterestDropDown(icDropDown.val(), 1, player))
 		});
 		
 		interestCategory2Dom.change(function() {
 					var icDropDown = $('[name="interestCategory2' +player.chatHandle +'"] option:selected')
+					//TODO redraw interest2DropDom with new category
 					alert(icDropDown.val())
 		});
 		
 		interest1DropDom.change(function() {
 					var icDropDown = $('[name="interestDrop1' +player.chatHandle +'"] option:selected')
+					//TODO repopulate interest1 
 					alert(icDropDown.val())
 		});
 		
 		interest2DropDom.change(function() {
 					var icDropDown = $('[name="interestDrop2' +player.chatHandle +'"] option:selected')
+					//TODO repopulate interest1 
 					alert(icDropDown.val())
 		});
 	}
