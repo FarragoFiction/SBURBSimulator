@@ -1783,6 +1783,25 @@ Wait, but I'm pretty sure my compression library uses ArrayBuffers or SOMETHING.
 
 
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+So tired.....But it's finally time to figure out interests for the replay sessions. At least before I try compressing the url.
+Overarching goal:  Pick Interest1 category out of a list of the 14 interersts. Pick actual interest out of second drop down menu that is list of all InterestCategory interests. Same with second interest (4 drop downs total).
 
+Example:
 
+Pick "Comedy" out of interest categories......
+
+Wait.
+
+Better idea.
+
+TWO DROP DOWNS ONLY. And TWO text boxes.  And TWO buttons.
+
+Drop down 1 = InterestCategories
+Drop down 2 = interests within that category.
+Button1 = set value textBox1 to be value of dropDown2  (Set hidden interestCategory1 to be value of drop down 1)
+Button2 = set value textBox2 to be value of dropDown2.   (Set hidden interestCategory2 to be value of drop down 1)
+And Text boxes can be edited.
+
+That way can use default values AND allow customization.
 
