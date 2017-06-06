@@ -112,15 +112,19 @@ function shareableURL(){
 	$("#story").append("Session: " + initial_seed)
 }
 
+
 function checkSGRUB(){
+	var sgrub = false;
 	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
 		if(curSessionGlobalVar.players[i].isTroll == false){
-			return;
+			sgrub = true;
 		}
 	}
 	//can only get here if all are trolls.
-	$(document).attr("title", "SGRUB Story Generator by jadedResearcher");
-	$("#heading").html("SGRUB Story Generator by jadedResearcher (art assistance by karmicRetribution) ");
+	if(sgrub){
+		$(document).attr("title", "SGRUB Story Generator by jadedResearcher");
+		$("#heading").html("SGRUB Story Generator by jadedResearcher (art assistance by karmicRetribution) ");
+	}
 
 	if(getParameterByName("nepeta")  == ":33"){
 		$(document).attr("title", "NepetaQuest by jadedResearcher");
@@ -142,10 +146,16 @@ function checkSGRUB(){
 		$(document).attr("title", "0_0 by jadedResearcher");
 		$("#heading").html("0_0 by jadedResearcher (art assistance by karmicRetribution) ");
 		$("#story").append(" <a href = 'index2.html?seed=" + getRandomSeed()+ "&temporal=shenanigans'>Y0ur inevitabile clicking here will briefly masquerade as free will, and I'm 0kay with it.</a>")
-	}else if(curSessionGlobalVar.session_id == 413){
+	}else if(curSessionGlobalVar.session_id == 413){//why the hell is this one not triggering?
+		alert("???")
 		$(document).attr("title", "Homestuck Simulator by jadedResearcher");
 		$("#heading").html("Homestuck Simulator by jadedResearcher (art assistance by karmicRetribution) ");
 		$("#story").append(" <a href = 'index2.html?seed=" + getRandomSeed()+ "&home=stuck'>A young man stands next to a link. Though it was 13 years ago he was given life, it is only today he will click it.</a>")
+	}else if(curSessionGlobalVar.session_id == 413){//why the hell is this one not triggering?
+		alert("???")
+		$(document).attr("title", "Homestuck Simulator by jadedResearcher");
+		$("#heading").html("Homestuck Simulator by jadedResearcher (art assistance by karmicRetribution) ");
+		$("#story").append(" <a href = 'index2.html?seed=" + getRandomSeed()+ "&home=stuck'>A young lady stands next to a link. Though it was 16 years ago she was given life, it is only today he will click it.</a>")
 	}else if(curSessionGlobalVar.session_id == 613){
 		$(document).attr("title", "OpenBound Simulator by jadedResearcher");
 		$("#heading").html("OpenBound Simulator by jadedResearcher (art assistance by karmicRetribution) ");
