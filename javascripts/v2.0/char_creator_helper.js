@@ -159,14 +159,24 @@ function CharacterCreatorHelper(players){
 	this.drawInterests = function(player){
 		var str = "";
 		str += " CategoryInterest1 " + this.drawInterestCategoryDropDown(1,player);
-		str += " Interest1 " +this.drawInterestDropDown(player.interest1Category, 1,player);
+		str += " PreDefinedInterest1 " +this.drawInterestDropDown(player.interest1Category, 1,player);
+		str += " Interest1 " + this.drawInterestTextBox(1,player);
 		str += " CategoryInterest2 " +this.drawInterestCategoryDropDown(2,player);
-		str += " Interest2 " +this.drawInterestDropDown(player.interest2Category, 2,player);
+		str += " PreDefinedInterest2 " +this.drawInterestDropDown(player.interest2Category, 2,player);
+		str += " Interest2 " + this.drawInterestTextBox(2,player);
 		return str;
 	}
 	
+	this.drawInterestTextBox = function(num,player){
+		var interestsInCategory = interestCategoryToInterestList(category);
+		var interestToCheck = player.interest1;
+		if(num == 2) interestToCheck = player.interest2;
+		html += "<input type='text' id = 'interest" + num+ player.chatHandle + "' name='interest" +num+player.chatHandle +"'>" + interestToCheck +"</input>"
+		return html;
+	}
+	
 	this.drawInterestDropDown = function(category, num, player){
-		var html = "<select id = 'interest" + num+ player.chatHandle + "' name='interest" +num+player.chatHandle +"'>";
+		var html = "<select id = 'interestDrop" + num+ player.chatHandle + "' name='interestDrop" +num+player.chatHandle +"'>";
 		var interestsInCategory = interestCategoryToInterestList(category);
 		var interestToCheck = player.interest1;
 		if(num == 2) interestToCheck = player.interest2;
