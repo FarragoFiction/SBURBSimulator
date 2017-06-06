@@ -1805,3 +1805,10 @@ And Text boxes can be edited.
 
 That way can use default values AND allow customization.
 
+Wait. Problem.
+
+
+If interestCategory1 and 2 are only set implicitly, what happens if player writes in "rap" for interest category 2.  no button press.
+
+No, need two interest category boxes. and two drop down interests bluh. no buttons though.
+

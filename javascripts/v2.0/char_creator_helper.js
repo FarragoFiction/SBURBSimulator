@@ -153,6 +153,24 @@ function CharacterCreatorHelper(players){
 		html += '</select>'
 		return html;
 	}
+	
+	this.drawInterests = function(player){
+		this.drawInterestCategory(1,player);
+		this.drawInterestCategory(2,player);
+	}
+	
+	this.drawInterestCategory(num,player){
+		var html = "<select id = 'interestCategory" + num+ player.chatHandle + "' name='interest1Category" +num+player.chatHandle +"'>";
+		for(var i = 1; i<= 60; i++){
+			if(player.hair == i){
+				html += '<option  selected = "selected" value="' + i +'">' + i+'</option>'
+			}else{
+				html += '<option value="' + i +'">' + i+'</option>'
+			}
+		}
+		html += '</select>'
+		return html;
+	}
 
 	//0,12
 	this.drawOneFavoriteNumberDropDown = function(player){
