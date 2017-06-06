@@ -782,9 +782,17 @@ function fruityRumpusAssholeFactory(){
 
 //like nepeta quest, but with gamzee instead of nepeta.
 function aradiaQuest(){
-	var player = blankPlayerNoDerived(curSessionGlobalVar);
-	session612IndexToTroll(player, 4);
-	copyPlayersFromTemplate(player);
+
+	for(var i = 0; i< curSessionGlobalVar.players.length; i++){
+		var player = blankPlayerNoDerived(curSessionGlobalVar); //unlike gamzee or vriska, aradias can be different
+		session612IndexToTroll(player, 4);
+		var p = curSessionGlobalVar.players[i];
+		var g = p.guardian;
+		p.id = i;
+		g.id = i + 111111;
+		copyPlayerFromTemplate(p,player);
+		copyPlayerFromTemplate(g,player);
+	}
 }
 
 //like nepeta quest, but with gamzee instead of nepeta.
@@ -1138,11 +1146,12 @@ function session612IndexToTroll(player, index){
 		player.interest1 = "Archaeology"
 		player.interest2 = "Death"
 		var savedSeed = Math.seed;
-		if(Math.seededRandom() > 0.3){
+		if(Math.seededRandom() > 0.6){
 			player.robot = true; //not all aradias are robo aradias.
 			player.bloodColor = "#0021cb"; //b100 blood
+			player.hairColor = "#313131";
 		}
-		if(Math.seededRandom() > 0.3) player.dead = true; //not all aradias are ghost aradias.
+		if(Math.seededRandom() > 0.6) player.dead = true; //not all aradias are ghost aradias.
 		Math.seed = savedSeed;
 		player.chatHandle = "apocalypseArisen"
 		player.godDestiny = true;

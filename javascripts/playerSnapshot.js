@@ -309,7 +309,7 @@ function makeDoomedSnapshot(timePlayer){
 	timeClone.power = Math.seededRandom() * 80+10;
 	if(rand > 0.9){
 		timeClone.robot = true;
-		p.hairColor = getRandomGreyColor();
+		timeClone.hairColor = getRandomGreyColor();
 	}else if(rand>.8){
 		timeClone.godTier = !timeClone.godTier;
 		if(timeClone.godTier){
