@@ -9,6 +9,7 @@ var version2 = true; //even though idon't want  to render content, 2.0 is differ
 var curSessionGlobalVar;
 var charCreatorHelperGlobalVar;
 var numURLS = 0;
+var junior = false;
 //have EVERYTHING be a scene, don't put any story in v2.0's controller
 //every scene can update the narration, or the canvas.
 //should there be only one canvas?  Can have player sprites be written to a virtual canvas first, then copied to main one.

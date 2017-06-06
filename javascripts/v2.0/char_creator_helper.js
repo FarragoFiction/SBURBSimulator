@@ -162,7 +162,7 @@ function CharacterCreatorHelper(players){
 		return str;
 	}
 	
-	this.drawInterestCategory(num,player){
+	this.drawInterestCategory = function(num,player){
 		var html = "<select id = 'interestCategory" + num+ player.chatHandle + "' name='interest1Category" +num+player.chatHandle +"'>";
 		for(var i = 1; i<= interestCategories.length; i++){
 			var ic = interestCategories[i];

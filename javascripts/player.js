@@ -151,35 +151,35 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			if(interestWord == "Academic") return playerLikesAcademic(this)
 			return false;
 		}else if(interestNum == 1){
-			if(interestWord == "Comedy") return comedy_interests.indexOf(player.interest1) != -1
-			if(interestWord == "Music") return music_interests.indexOf(player.interest1) != -1
-			if(interestWord == "Culture") return culture_interests.indexOf(player.interest1) != -1
-			if(interestWord == "Writing") return writing_interests.indexOf(player.interest1) != -1
-			if(interestWord == "Athletic") return athletic_interests.indexOf(player.interest1) != -1
-			if(interestWord == "Terrible") return terrible_interests.indexOf(player.interest1) != -1
-			if(interestWord == "Justice") return justice_interests.indexOf(player.interest1) != -1
-			if(interestWord == "Fantasy") return fantasy_interests.indexOf(player.interest1) != -1
-			if(interestWord == "Domestic") return domestic_interests.indexOf(player.interest1) != -1
-			if(interestWord == "PopCulture") return pop_culture_interests.indexOf(player.interest1) != -1
-			if(interestWord == "Technology") return technology_interests.indexOf(player.interest1) != -1
-			if(interestWord == "Social") return social_interests.indexOf(player.interest1) != -1
-			if(interestWord == "Romance") return romantic_interests.indexOf(player.interest1) != -1
-			if(interestWord == "Academic") return academic_interests.indexOf(player.interest1) != -1
+			if(interestWord == "Comedy") return comedy_interests.indexOf(this.interest1) != -1
+			if(interestWord == "Music") return music_interests.indexOf(this.interest1) != -1
+			if(interestWord == "Culture") return culture_interests.indexOf(this.interest1) != -1
+			if(interestWord == "Writing") return writing_interests.indexOf(this.interest1) != -1
+			if(interestWord == "Athletic") return athletic_interests.indexOf(this.interest1) != -1
+			if(interestWord == "Terrible") return terrible_interests.indexOf(this.interest1) != -1
+			if(interestWord == "Justice") return justice_interests.indexOf(this.interest1) != -1
+			if(interestWord == "Fantasy") return fantasy_interests.indexOf(this.interest1) != -1
+			if(interestWord == "Domestic") return domestic_interests.indexOf(this.interest1) != -1
+			if(interestWord == "PopCulture") return pop_culture_interests.indexOf(this.interest1) != -1
+			if(interestWord == "Technology") return technology_interests.indexOf(this.interest1) != -1
+			if(interestWord == "Social") return social_interests.indexOf(this.interest1) != -1
+			if(interestWord == "Romance") return romantic_interests.indexOf(this.interest1) != -1
+			if(interestWord == "Academic") return academic_interests.indexOf(this.interest1) != -1
 		}else if(interestNum == 2){
-			if(interestWord == "Comedy") return comedy_interests.indexOf(player.interest2) != -1
-			if(interestWord == "Music") return music_interests.indexOf(player.interest2) != -1
-			if(interestWord == "Culture") return culture_interests.indexOf(player.interest2) != -1
-			if(interestWord == "Writing") return writing_interests.indexOf(player.interest2) != -1
-			if(interestWord == "Athletic") return athletic_interests.indexOf(player.interest2) != -1
-			if(interestWord == "Terrible") returnterrible_interests.indexOf(player.interest2) != -1
-			if(interestWord == "Justice") return justice_interests.indexOf(player.interest2) != -1
-			if(interestWord == "Fantasy") return fantasy_interests.indexOf(player.interest2) != -1
-			if(interestWord == "Domestic") return domestic_interests.indexOf(player.interest2) != -1
-			if(interestWord == "PopCulture") return pop_culture_interests.indexOf(player.interest2) != -1
-			if(interestWord == "Technology") return technology_interests.indexOf(player.interest2) != -1
-			if(interestWord == "Social") return social_interests.indexOf(player.interest2) != -1
-			if(interestWord == "Romance") return romantic_interests.indexOf(player.interest2) != -1
-			if(interestWord == "Academic") return academic_interests.indexOf(player.interest2) != -1
+			if(interestWord == "Comedy") return comedy_interests.indexOf(this.interest2) != -1
+			if(interestWord == "Music") return music_interests.indexOf(this.interest2) != -1
+			if(interestWord == "Culture") return culture_interests.indexOf(this.interest2) != -1
+			if(interestWord == "Writing") return writing_interests.indexOf(this.interest2) != -1
+			if(interestWord == "Athletic") return athletic_interests.indexOf(this.interest2) != -1
+			if(interestWord == "Terrible") returnterrible_interests.indexOf(this.interest2) != -1
+			if(interestWord == "Justice") return justice_interests.indexOf(this.interest2) != -1
+			if(interestWord == "Fantasy") return fantasy_interests.indexOf(this.interest2) != -1
+			if(interestWord == "Domestic") return domestic_interests.indexOf(this.interest2) != -1
+			if(interestWord == "PopCulture") return pop_culture_interests.indexOf(this.interest2) != -1
+			if(interestWord == "Technology") return technology_interests.indexOf(this.interest2) != -1
+			if(interestWord == "Social") return social_interests.indexOf(this.interest2) != -1
+			if(interestWord == "Romance") return romantic_interests.indexOf(this.interest2) != -1
+			if(interestWord == "Academic") return academic_interests.indexOf(this.interest2) != -1
 		}
 	}
 
