@@ -457,7 +457,7 @@ function generateURLParamsForPlayers(players){
 	 for (var prop in obj){
 		 console.log(prop + " : " + obj[prop])
 		 ret[prop] = obj[prop];
-	 } 
+	 }
 	 console.log(ret.interestCategory1);
 	 interestCategoryToInterestList(ret.interest1Category ).push(ret.interest1) //maybe don't add if already exists but whatevs for now.
 	 interestCategoryToInterestList(ret.interest2Category ).push(ret.interest2)

@@ -891,6 +891,7 @@ function session88888888(){
 			player = blankPlayerNoDerived(curSessionGlobalVar);
 			guardian = blankPlayerNoDerived(curSessionGlobalVar);
 			player.guardian = guardian;
+			guardian.guardian = player;
 			curSessionGlobalVar.players.push(player);
 		}
 	}
@@ -917,13 +918,14 @@ function session420(){
 			player = blankPlayerNoDerived(curSessionGlobalVar);
 			guardian = blankPlayerNoDerived(curSessionGlobalVar);
 			player.guardian = guardian;
+			guardian.guardian = player;
 			curSessionGlobalVar.players.push(player);
 		}
 	}
 
 	fridgeQuest();
 	for(var i = 0; i<curSessionGlobalVar.players.length;i++){
-		player = curSessionGlobalVar.players[i];
+		var player = curSessionGlobalVar.players[i];
 		var guardian = player.guardian;
 		player.relationships = [];
 		guardian.relationships = [];
@@ -947,6 +949,7 @@ function session0(){
 			player = blankPlayerNoDerived(curSessionGlobalVar);
 			guardian = blankPlayerNoDerived(curSessionGlobalVar);
 			player.guardian = guardian;
+			guardian.guardian = player;
 			curSessionGlobalVar.players.push(player);
 		}
 	}
