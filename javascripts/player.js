@@ -2034,6 +2034,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.bloodColor = replayPlayer.bloodColor;
 		this.leftHorn = replayPlayer.leftHorn;
 		this.rightHorn = replayPlayer.rightHorn;
+		this.interest1 = replayPlayer.interest1;
+		this.interest2 = replayPlayer.interest2;
+		this.interest1Category = replayPlayer.interest1Category;
+		this.interest2Category = replayPlayer.interest2Category;
 		//this.quirk.favoriteNumber = replayPlayer.quirk.favoriteNumber; //get overridden, has to be after initialization.
 	}
 

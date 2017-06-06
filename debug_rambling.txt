@@ -1825,5 +1825,7 @@ objToPlayer isn't getting them
 and
 they are being overridden by some derived bullshit.
 
-Test: ask objToPlayer what attributes it's handling.
+Test: ask objToPlayer what attributes it's handling. Yeah, it's getting it.
+
+Maybe it's not being overridden. This gives me A player, but pretty sure I copy it's attributes over to a different player?
 
