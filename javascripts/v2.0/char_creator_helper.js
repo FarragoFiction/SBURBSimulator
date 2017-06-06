@@ -191,10 +191,10 @@ function CharacterCreatorHelper(players){
 		var str = "";
 		str += " CategoryInterest1 " + this.drawInterestCategoryDropDown(1,player);
 		str += " PreDefinedInterest1 " +this.drawInterestDropDown(player.interest1Category, 1,player);
-		str += " Interest1 " + this.drawInterestTextBox(1,player);
+		str += " WriteableInterest1 " + this.drawInterestTextBox(1,player);
 		str += " CategoryInterest2 " +this.drawInterestCategoryDropDown(2,player);
 		str += " PreDefinedInterest2 " +this.drawInterestDropDown(player.interest2Category, 2,player);
-		str += " Interest2 " + this.drawInterestTextBox(2,player);
+		str += " WriteableInterest2 " + this.drawInterestTextBox(2,player);
 		return str;
 	}
 	
