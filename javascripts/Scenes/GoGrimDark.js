@@ -10,7 +10,7 @@ function GoGrimDark(session){
 		//select a random player. if they've been triggered, random chance of going grim dark (based on how triggered.)
 		for(var i = 0; i< this.playerList.length; i++){//never, EVER fix this to be available players.  corpses shouldu ALWAYS be able to go grim dark, this is HILARIOUS
 			var p = this.playerList[i]
-			if(p.corruptionLevelOther >= 100){
+			if(p.corruptionLevelOther >= 50){
 				this.player = p;
 				return true;
 			}
@@ -30,6 +30,7 @@ function GoGrimDark(session){
 		}
 		div.append("<br><img src = 'images/sceneIcons/grimdark_black_icon.png'>"+this.content());
 		if(this.player.grimDark ==4){
+			console.log("full grim dark in: " + this.session.session_id)
 			var divID = div.attr("id") + "grimdark"
 			var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
