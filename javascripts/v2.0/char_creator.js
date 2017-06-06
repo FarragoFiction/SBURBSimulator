@@ -109,6 +109,7 @@ function initSession(){
 //IMPORTANT, DON'T RENDER THIS onload
 //instead, when player clicks "STart Session", render this button so they click it. OR, rerender this button any time you reredner players.
 function renderURLToSendPlayersIntoSBURB(){
+	alert("todo, make sure inner layer model match forms, especially for interests")
 	var seed = getParameterByName("seed");
 	numURLS ++;
 	var html = "<Br><br><a href = 'index2.html?seed=" + seed +"&players=" + generateURLParamsForPlayers(curSessionGlobalVar.players) + "' target='_blank'>Be Responsible For Sending Players into SBURB? (Link " + numURLS +")</a>";

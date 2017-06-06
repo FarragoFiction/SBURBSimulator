@@ -173,13 +173,11 @@ function CharacterCreatorHelper(players){
 		});
 		
 		interest1TextDom.change(function() {
-					var ic = $("interest1"+ player.chatHandle);
-					alert(ic.val()
+					alert(interest1TextDom.val());
 		});
 		
 		interest2TextDom.change(function() {
-					var ic = $("interest2"+ player.chatHandle);
-					alert(ic.val()
+					alert(interest2TextDom.val());
 		});
 	}
 
