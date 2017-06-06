@@ -157,8 +157,7 @@ function CharacterCreatorHelper(players){
 		
 		interestCategory2Dom.change(function() {
 					var icDropDown = $('[name="interestCategory2' +player.chatHandle +'"] option:selected')
-					//TODO redraw interest2DropDom with new category
-					alert(icDropDown.val())
+					interest2DropDom.html(that.drawInterestDropDown(icDropDown.val(), 2, player))
 		});
 		
 		interest1DropDom.change(function() {
