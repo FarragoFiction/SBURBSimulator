@@ -74,7 +74,8 @@ By the way, I'd add more bullshit activity, like "does random bullshit sidequest
 		//remember kids: design and architecture really do fucking matter.
 			var landChosen = this.player1.land1;
 			if(Math.seededRandom() > 0.5) landChosen = this.player1.land2
-			var possibilities = ["learning the true meaning of " + landChosen,"learning to really hate the entire concept of " + landChosen,"getting really fucking sick of " + landChosen,  "getting coy hints about The Ultimate Riddle","killing underlings","delving into dungeons", "exploring ruins", "solving puzzles", "playing minigames", "learning about the lore"];
+			//shits on adventure game tropes and just uses a cheat code to solve the puzzle (star.eyes from discorse)
+			var possibilities = ["learning the true meaning of " + landChosen,"learning to really hate the entire concept of " + landChosen,"getting really fucking sick of " + landChosen,  "getting coy hints about The Ultimate Riddle","shitting on adventure game tropes and just using a cheat code","killing underlings","delving into dungeons", "exploring ruins", "solving puzzles", "playing minigames", "learning about the lore"];
 			var thing1 = getRandomElementFromArray(possibilities)
 			possibilities.removeFromArray(thing1);
 			var thing2 = getRandomElementFromArray(possibilities);
