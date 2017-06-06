@@ -145,6 +145,17 @@ function CharacterCreatorHelper(players){
 	
 	this.wireUpInterests(player){
 		//first, choosing interest category should change the contents of interestDrop1 or 2 (but NOT any value in the player or the text box.)
+		var interestCategory1Dom =  $("#interestCategory1" +player.chatHandle) ;
+		var interestCategory2Dom =  $("#interestCategory2" +player.chatHandle) ;
+		interestCategory1Dom.change(function() {
+					var icDropDown = $('[name="interestCategory1' +player.chatHandle +'"] option:selected')
+					alert(icDropDown.val()
+		});
+		
+		interestCategory2Dom.change(function() {
+					var icDropDown = $('[name="interestCategory2' +player.chatHandle +'"] option:selected')
+					alert(icDropDown.val()
+		});
 	}
 
 	//(1,60)
@@ -197,7 +208,7 @@ function CharacterCreatorHelper(players){
 	}
 	
 	this.drawInterestCategoryDropDown = function(num,player){
-		var html = "<select id = 'interestCategory" + num+ player.chatHandle + "' name='interest1Category" +num+player.chatHandle +"'>";
+		var html = "<select id = 'interestCategory" + num+ player.chatHandle + "' name='interestCategory" +num+player.chatHandle +"'>";
 		for(var i = 0; i< interestCategories.length; i++){
 			var ic = interestCategories[i];
 			if(player.interestedIn(ic, num)){
