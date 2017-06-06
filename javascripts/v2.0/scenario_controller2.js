@@ -142,6 +142,18 @@ function checkSGRUB(){
 		$(document).attr("title", "0_0 by jadedResearcher");
 		$("#heading").html("0_0 by jadedResearcher (art assistance by karmicRetribution) ");
 		$("#story").append(" <a href = 'index2.html?seed=" + getRandomSeed()+ "&temporal=shenanigans'>Y0ur inevitabile clicking here will briefly masquerade as free will, and I'm 0kay with it.</a>")
+	}else if(curSessionGlobalVar.session_id == 413){
+		$(document).attr("title", "Homestuck Simulator by jadedResearcher");
+		$("#heading").html("Homestuck Simulator by jadedResearcher (art assistance by karmicRetribution) ");
+		$("#story").append(" <a href = 'index2.html?seed=" + getRandomSeed()+ "&home=stuck'>A young man stands next to a link. Though it was 13 years ago he was given life, it is only today he will click it.</a>")
+	}else if(curSessionGlobalVar.session_id == 613){
+		$(document).attr("title", "OpenBound Simulator by jadedResearcher");
+		$("#heading").html("OpenBound Simulator by jadedResearcher (art assistance by karmicRetribution) ");
+		$("#story").append(" <a href = 'index2.html?seed=" + getRandomSeed()+ "&open=bound'>Rebubble this link?.</a>")
+	}else if(curSessionGlobalVar.session_id == 612){
+		$(document).attr("title", "HiveBent Simulator by jadedResearcher");
+		$("#heading").html("HiveBent Simulator by jadedResearcher (art assistance by karmicRetribution) ");
+		$("#story").append(" <a href = 'index2.html?seed=" + getRandomSeed()+ "&hive=bent'>A young troll stands next to a click horizon. Though it was six solar sweeps ago that he was given life, it is only today that he will click it.</a>")
 	}
 }
 

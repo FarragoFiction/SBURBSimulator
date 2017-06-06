@@ -28,7 +28,7 @@ function Quirk(){
     }
 
     this.toJSON = function(){
-        return {z: this.favoriteNumber}
+        return {favoriteNumber: this.favoriteNumber}
     }
 
     this.rawStringExplanation = function(){

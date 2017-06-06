@@ -684,18 +684,45 @@ function homestuck(){
 //time player is aradia, space player is kanaya,
 //all else random alternian troll
 function hivebent(){
-
+	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+		var p = curSessionGlobalVar.players[i];
+		var g = p.guardian;
+		if(p.aspect == "Time"){
+			session612IndexToTroll(p,4);
+			session612IndexToTrollAncestor(g,4);
+		}else if(p.aspect == "Space"){
+			session612IndexToTroll(p,8);
+			session612IndexToTrollAncestor(g,8);
+		}else{
+			session612IndexToTroll(p,getRandomInt(0,7));
+			session612IndexToTrollAncestor(g,getRandomInt(0,7));
+		}
+	}
 }
 
 //time player is damara, space player is porrim
 //all else random beforan troll
 function openBound(){
-
+	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+		var p = curSessionGlobalVar.players[i];
+		var g = p.guardian;
+		if(p.aspect == "Time"){
+			session612IndexToTroll(g,4);
+			session612IndexToTrollAncestor(p,4);
+		}else if(p.aspect == "Space"){
+			session612IndexToTroll(g,8);
+			session612IndexToTrollAncestor(p,8);
+		}else{
+			session612IndexToTroll(g,getRandomInt(0,7));
+			session612IndexToTrollAncestor(p,getRandomInt(0,7));
+		}
+	}
 }
 
 //time player is aradia, damara or dave, space is jade, porrim or kanaya
 //all else is randomly alternian or beforan or human.
 //rumpus = fruity
+//i will have order in this rumpusBlock! Or the opposite !!!
 function fruityRumpusAssholeFactory(){
 
 }
