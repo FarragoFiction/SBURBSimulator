@@ -885,11 +885,28 @@ function nepetaQuest(){
 
 function session88888888(){
 	curSessionGlobalVar.players = []; //rip players, too bad about the 8ad 8rk
-	for(var i = 0; i<7;i++){
+	for(var i = 0; i<8;i++){
 		var player;
 		var guardian;
 		player = blankPlayerNoDerived(curSessionGlobalVar);
 		guardian = blankPlayerNoDerived(curSessionGlobalVar);
+		if(i == 0){
+			player.leader = true;
+			guardian.leader = true;
+			player.aspect = "Space"
+			guardian.aspect = "Space"
+		}else if(i == 1){
+			player.aspect = "Time"
+			guardian.aspect = "Time"
+		}
+		player.guardian = guardian;
+		guardian.guardian = player;
+		curSessionGlobalVar.players.push(player);
+	}
+	lucky8rk();
+	for(var i = 0; i<curSessionGlobalVar.players.length;i++){
+		var player = curSessionGlobalVar.players[i];
+		var guardian = player.guardian;
 		if(i == 0){
 			player.leader = true;
 			guardian.leader = true;
@@ -899,14 +916,6 @@ function session88888888(){
 			player.aspect == "Time"
 			guardian.aspect == "Time"
 		}
-		player.guardian = guardian;
-		guardian.guardian = player;
-		curSessionGlobalVar.players.push(player);
-	}
-	lucky8rk();
-	for(var i = 0; i<curSessionGlobalVar.players.length;i++){
-		player = curSessionGlobalVar.players[i];
-		var guardian = player.guardian;
 		player.relationships = [];
 		guardian.relationships = [];
 		var guardians = getGuardiansForPlayers(curSessionGlobalVar.players)
