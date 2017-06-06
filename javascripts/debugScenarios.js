@@ -884,16 +884,24 @@ function nepetaQuest(){
 }
 
 function session88888888(){
-	for(var i = 0; i<8;i++){
+	curSessionGlobalVar.players = []; //rip players, too bad about the 8ad 8rk
+	for(var i = 0; i<7;i++){
 		var player;
 		var guardian;
-		if(i>curSessionGlobalVar.players.length){
-			player = blankPlayerNoDerived(curSessionGlobalVar);
-			guardian = blankPlayerNoDerived(curSessionGlobalVar);
-			player.guardian = guardian;
-			guardian.guardian = player;
-			curSessionGlobalVar.players.push(player);
+		player = blankPlayerNoDerived(curSessionGlobalVar);
+		guardian = blankPlayerNoDerived(curSessionGlobalVar);
+		if(i == 0){
+			player.leader = true;
+			guardian.leader = true;
+			player.aspect == "Space"
+			guardian.aspect == "Space"
+		}else if(i == 1){
+			player.aspect == "Time"
+			guardian.aspect == "Time"
 		}
+		player.guardian = guardian;
+		guardian.guardian = player;
+		curSessionGlobalVar.players.push(player);
 	}
 	lucky8rk();
 	for(var i = 0; i<curSessionGlobalVar.players.length;i++){
