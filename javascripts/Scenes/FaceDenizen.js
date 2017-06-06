@@ -101,12 +101,6 @@ function FaceDenizen(session){
 				p.power = p.power*2;  //current and future doubling of power.
 				this.session.denizenBeat = true;
 			}else if(p.dead){
-				var divID = (div.attr("id"))
-				var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
-				div.append(canvasHTML);
-				var canvas = document.getElementById("canvas"+ divID);
-				drawSinglePlayer(canvas, p);
-				denizenKill(canvas, p);
 				console.log("denizen kill " + this.session.session_id)
 			}
 		}

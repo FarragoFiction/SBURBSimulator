@@ -583,6 +583,8 @@ function GameEntity(session, name, crowned){
 			//different format for canvas code
 			var canvasDiv = document.getElementById("canvas"+ divID);
 			poseAsATeam(canvasDiv, poseable, 2000);
+			
+			if(this.session.getDenizenForPlayer(players[0]).name == this.name) denizenKill(canvas, players[0]);
 		}
 
 
