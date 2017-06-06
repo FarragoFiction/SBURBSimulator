@@ -147,15 +147,13 @@ function checkSGRUB(){
 		$("#heading").html("0_0 by jadedResearcher (art assistance by karmicRetribution) ");
 		$("#story").append(" <a href = 'index2.html?seed=" + getRandomSeed()+ "&temporal=shenanigans'>Y0ur inevitabile clicking here will briefly masquerade as free will, and I'm 0kay with it.</a>")
 	}else if(curSessionGlobalVar.session_id == 413){//why the hell is this one not triggering?
-		alert("???")
 		$(document).attr("title", "Homestuck Simulator by jadedResearcher");
 		$("#heading").html("Homestuck Simulator by jadedResearcher (art assistance by karmicRetribution) ");
 		$("#story").append(" <a href = 'index2.html?seed=" + getRandomSeed()+ "&home=stuck'>A young man stands next to a link. Though it was 13 years ago he was given life, it is only today he will click it.</a>")
-	}else if(curSessionGlobalVar.session_id == 413){//why the hell is this one not triggering?
-		alert("???")
+	}else if(curSessionGlobalVar.session_id == 111111){//why the hell is this one not triggering?
 		$(document).attr("title", "Homestuck Simulator by jadedResearcher");
 		$("#heading").html("Homestuck Simulator by jadedResearcher (art assistance by karmicRetribution) ");
-		$("#story").append(" <a href = 'index2.html?seed=" + getRandomSeed()+ "&home=stuck'>A young lady stands next to a link. Though it was 16 years ago she was given life, it is only today he will click it.</a>")
+		$("#story").append(" <a href = 'index2.html?seed=" + getRandomSeed()+ "&home=stuck'>A young lady stands next to a link. Though it was 16 years ago she was given life, it is only today she will click it.</a>")
 	}else if(curSessionGlobalVar.session_id == 613){
 		$(document).attr("title", "OpenBound Simulator by jadedResearcher");
 		$("#heading").html("OpenBound Simulator by jadedResearcher (art assistance by karmicRetribution) ");
@@ -164,6 +162,10 @@ function checkSGRUB(){
 		$(document).attr("title", "HiveBent Simulator by jadedResearcher");
 		$("#heading").html("HiveBent Simulator by jadedResearcher (art assistance by karmicRetribution) ");
 		$("#story").append(" <a href = 'index2.html?seed=" + getRandomSeed()+ "&hive=bent'>A young troll stands next to a click horizon. Though it was six solar sweeps ago that he was given life, it is only today that he will click it.</a>")
+	}else if(curSessionGlobalVar.session_id == 1025){
+		$(document).attr("title", "Fruity Rumpus Asshole Simulator by jadedResearcher");
+		$("#heading").html("Fruity Rumpus Asshole Simulator by jadedResearcher (art assistance by karmicRetribution) ");
+		$("#story").append(" <a href = 'index2.html?seed=" + getRandomSeed()+ "&rumpus=fruity'>I will have order in this RumpusBlock!!!</a>")
 	}
 }
 
