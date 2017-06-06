@@ -189,26 +189,26 @@ function DoLandQuest(session){
 	this.spreadCoruption = function(player1, player2){
 		var ret = false;
 		if(player2 && player2.grimDark>0){
-			player1.corruptionLevelOther += 2;
+			player1.corruptionLevelOther += 5;
 			ret = true;
 		}
 
 		if(player2 && player1.grimDark>0){
-			player2.corruptionLevelOther += 2;
+			player2.corruptionLevelOther += 5;
 			ret = true;
 		}
 
 		if(corruptedOtherLandTitles.indexOf(player1.land1) != -1 || corruptedOtherLandTitles.indexOf(player1.land2) != -1 ){
-			player1.corruptionLevelOther += 2;
+			player1.corruptionLevelOther += 5;
 			ret = true;
-			if(player2) player2.corruptionLevelOther += 2;
+			if(player2) player2.corruptionLevelOther += 5;
 		}
 
 		if(player1.object_to_prototype.corrupted && !player1.sprite.dead){
 			console.log("corrupt sprite: " + this.session.session_id)
-			player1.corruptionLevelOther += 2;
+			player1.corruptionLevelOther += 5;
 			ret = true;
-			if(player2) player2.corruptionLevelOther += 2;
+			if(player2) player2.corruptionLevelOther += 5;
 		}
 
 		if(ret){

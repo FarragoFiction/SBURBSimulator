@@ -47,6 +47,7 @@ function GoGrimDark(session){
 			if(this.player.grimDark == 1){
 				ret += " The " + this.player.htmlTitle() + " is starting to seem a little strange. They sure do like talking about Horrorterrors!"
 			}else if(this.player.grimDark == 2){
+				this.session.grimDarkPlayers = true;
 				this.player.nullAllRelationships();
 				ret += " The " + this.player.htmlTitleBasic() + " isn't responding to chat messages much anymore. "
 			}else if(this.player.grimDark == 3){
@@ -65,7 +66,7 @@ function GoGrimDark(session){
 	}
 
 	this.content = function(){
-		this.session.grimDarkPlayers = true;
+
 		this.player.increasePower();
 		removeFromArray(this.player, this.session.availablePlayers);
 		var ret = this.raiseGrimDarkLevel();

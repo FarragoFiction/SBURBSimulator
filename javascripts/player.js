@@ -191,6 +191,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		var render = false;
 
 		if(this.grimDark <= 3 && tmp > 3){ //newly GrimDark
+			console.log("grim dark 3 or more in session: " + this.session.session_id)
 			render = true;
 		}else if(this.grimDark >3 && tmp <=3){ //newly recovered.
 			render = true;
