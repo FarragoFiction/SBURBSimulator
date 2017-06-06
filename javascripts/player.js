@@ -171,7 +171,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			if(interestWord == "Culture") return culture_interests.indexOf(this.interest2) != -1
 			if(interestWord == "Writing") return writing_interests.indexOf(this.interest2) != -1
 			if(interestWord == "Athletic") return athletic_interests.indexOf(this.interest2) != -1
-			if(interestWord == "Terrible") returnterrible_interests.indexOf(this.interest2) != -1
+			if(interestWord == "Terrible") return terrible_interests.indexOf(this.interest2) != -1
 			if(interestWord == "Justice") return justice_interests.indexOf(this.interest2) != -1
 			if(interestWord == "Fantasy") return fantasy_interests.indexOf(this.interest2) != -1
 			if(interestWord == "Domestic") return domestic_interests.indexOf(this.interest2) != -1
