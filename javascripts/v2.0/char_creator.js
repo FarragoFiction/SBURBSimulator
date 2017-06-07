@@ -128,8 +128,8 @@ function grabCustomChatHandleForPlayer(player){
 	player.chatHandle = "";
 }
 
+//among other things, having chat handles in plain text right in the url lets people know what to expect.
 function grabCustomChatHandles(){
-	
 	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
 		grabCustomChatHandleForPlayer(curSessionGlobalVar.players[i]);
 	}
@@ -139,6 +139,7 @@ function grabCustomChatHandles(){
 //instead, when player clicks "STart Session", render this button so they click it. OR, rerender this button any time you reredner players.
 function renderURLToSendPlayersIntoSBURB(){
 	grabAllPlayerInterests();
+	grabCustomChatHandles();
 	var seed = getParameterByName("seed");
 	numURLS ++;
 	var html = "<Br><br><a href = 'index2.html?seed=" + seed +"&" + generateURLParamsForPlayers(curSessionGlobalVar.players,true) + "' target='_blank'>Be Responsible For Sending Players into SBURB? (Link " + numURLS +")</a>";
