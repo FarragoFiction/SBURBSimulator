@@ -1905,3 +1905,5 @@ vs
 %C2%BF%C3%B0%C3%B7s%C3%B8%C2%99%10U%1B%12#%C2%AE%C3%99%C3%86%C2%8B%C3%B0%16%10B%25%25-%C2%99=%C3%8Bh%C3%BF3%00Z%19%19%25%C2%BE%C3%A9%C3%A7P%C3%B2%C3%8D%10W%1E%16%09%C3%AE%C3%AE%C3%AE%C2%B2%C3%B8%7D%10X%0A
 
 oh. and sign.
+
+okay. now i'm getting all 132 bytes. and MOST of the players are parsing right. but hair is NaN and interests are undefined (probably other things too). What is going on?
