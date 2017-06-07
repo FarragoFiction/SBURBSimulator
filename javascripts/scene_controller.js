@@ -467,7 +467,7 @@ function generateURLParamsForPlayers(players,includeChatHandle){
 	return "b="+data+"&s="+strings;
 
  }
- 
+
  function dataBytesAndStringsToPlayers(bytes, strings){
 	//bytes are 11 chars per player
 	//strings are 5 csv per player.
@@ -483,10 +483,10 @@ function generateURLParamsForPlayers(players,includeChatHandle){
 		players.push(dataBytesAndStringsToPlayer(b,s));
 	}
 	return players;
-	 
+
  }
-	
-//see player.js toDataBytes and toDataString to see how I expect them to be formatted. 
+
+//see player.js toDataBytes and toDataString to see how I expect them to be formatted.
 function dataBytesAndStringsToPlayer(charString, str_arr){
 	 var player = new Player();
 	 player.quirk = new Quirk();
@@ -499,8 +499,7 @@ function dataBytesAndStringsToPlayer(charString, str_arr){
 	 //for bytes, how to convert uri encoded string into char string into unit8 buffer?
 	 //holy shit i haven't had this much fun since i did the color replacement engine a million years ago. this is exactlyt he right flavor of challenging.
 	 console.log("charString is: " + charString)
-	 player.hairColor = intToHexColor((charString.charCodeAt(0) << 16) + (charString.charCodeAt(1) << 8) + (charString.charCodeAt(2)) ) 
-	 console.log("hair color is: " + player.hairColor)
+	 player.hairColor = intToHexColor((charString.charCodeAt(0) << 16) + (charString.charCodeAt(1) << 8) + (charString.charCodeAt(2)) )
 	 player.class_name = intToClassName(charString.charCodeAt(3) >> 4)
 	 player.aspect = intToAspect(charString.charCodeAt(3) & 15) //get 4 bits on end
 	 player.victimBlood = intToBloodColor(charString.charCodeAt(4) >> 4);
@@ -509,15 +508,15 @@ function dataBytesAndStringsToPlayer(charString, str_arr){
 	 player.interest2Category = intToInterestCategory(charString.charCodeAt(5) & 15);
 	 player.grimDark = charString.charCodeAt(6) >> 5;
 	 console.log("is troll is: " + ((1<<4) & charString.charCodeAt(6)))
-	 player.isTroll = 1 == ((1<<4) & charString.charCodeAt(6)) //only is 1 if character at 1<<4 is 1 in charString
-	 player.isDreamSelf = 1 == ((1<<3) & charString.charCodeAt(6))
-	 player.godTier = 1 == ((1<<2) & charString.charCodeAt(6))
-	 player.murderMode = 1 == ((1<<1) & charString.charCodeAt(6))
-	 player.leftMurderMode = 1 == ((1) & charString.charCodeAt(6))
-	 player.robot = 1 == ((1<<7) & charString.charCodeAt(7))
-	 player.moon = 1 == ((1<<6) & charString.charCodeAt(7))
-	 player.dead = 1 == ((1<<5) & charString.charCodeAt(7))
-	 player.godDestiny = 1 == ((1<<4) & charString.charCodeAt(7))
+	 player.isTroll = 0 != ((1<<4) & charString.charCodeAt(6)) //only is 1 if character at 1<<4 is 1 in charString
+	 player.isDreamSelf = 0 != ((1<<3) & charString.charCodeAt(6))
+	 player.godTier = 0 != ((1<<2) & charString.charCodeAt(6))
+	 player.murderMode = 0 != ((1<<1) & charString.charCodeAt(6))
+	 player.leftMurderMode = 0 != ((1) & charString.charCodeAt(6))
+	 player.robot = 0 != ((1<<7) & charString.charCodeAt(7))
+	 player.moon = 0 != ((1<<6) & charString.charCodeAt(7))
+	 player.dead = 0 != ((1<<5) & charString.charCodeAt(7))
+	 player.godDestiny = 0 != ((1<<4) & charString.charCodeAt(7))
 	 player.quirk.favoriteNumber = charString.charCodeAt(7) & 15
 	 player.leftHorn = charString.charCodeAt(8)
 	 player.rightHorn = charString.charCodeAt(9)
@@ -525,7 +524,7 @@ function dataBytesAndStringsToPlayer(charString, str_arr){
 	 console.log("TODO: make sure copyPlayer in player.js takes ALL these fields from this blank player")
 	 return player;
 }
- 
+
  function objToPlayer(obj){
 	 var ret = new Player();
 	 for (var prop in obj){
