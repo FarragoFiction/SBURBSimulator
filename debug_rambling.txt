@@ -1917,3 +1917,14 @@ p1 = ,,Movies,Action%20Movies,
 p2 = ,,,Ballet,
 
 huh, yeah, that's not adding up to 5 for a thing, getting extra commas somewhere.
+
+~~~~
+hair color is being ornery. has 6 digits correctly for #000000, but generates: #6780000 instead of #678000, one extra zero. Why?
+
+Huh.
+
+is...that number even a valid hex, am i parsing something wrong?
+
+That's...more than 3 bytes. Why?  Hair color should be exactly 3 bytes big. am i bit shifting wrong?
+
+ah yes, i forgot about order of operations again. gotta put bitshifting in parens before adding
