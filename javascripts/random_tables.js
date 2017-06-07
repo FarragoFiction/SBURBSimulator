@@ -1058,7 +1058,7 @@ function bloodColorToInt(color){
 
 function intToBloodColor(num){
 	if(num == 15) return null;
-	f(num == 14) return "#ff0000"
+	if(num == 14) return "#ff0000";
 	return bloodColors[num];
 }
 
