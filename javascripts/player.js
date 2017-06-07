@@ -1988,7 +1988,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		for(var i = 0; i<uint8View.length; i++){
 			ret += String.fromCharCode(uint8View[i]);
 		}
-		return ret;
+		return encodeURI(ret);
 	}
 	
 	//initial step before binary compression
