@@ -514,7 +514,8 @@ function dataBytesAndStringsToPlayer(charString, str_arr){
 	 player.murderMode = 0 != ((1<<1) & charString.charCodeAt(6))
 	 player.leftMurderMode = 0 != ((1) & charString.charCodeAt(6))
 	 player.robot = 0 != ((1<<7) & charString.charCodeAt(7))
-	 player.moon = 0 != ((1<<6) & charString.charCodeAt(7))
+	 var moon = 0 != ((1<<6) & charString.charCodeAt(7))
+	 player.moon = moon ? "Prospit" : "Derse";
 	 player.dead = 0 != ((1<<5) & charString.charCodeAt(7))
 	 player.godDestiny = 0 != ((1<<4) & charString.charCodeAt(7))
 	 player.quirk.favoriteNumber = charString.charCodeAt(7) & 15

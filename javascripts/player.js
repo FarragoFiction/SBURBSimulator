@@ -2085,7 +2085,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.interest2Category = replayPlayer.interest2Category;
 		this.causeOfDrain = replayPlayer.causeOfDrain;
 		this.causeOfDeath = replayPlayer.causeOfDeath;
-		//this.chatHandle = replayPlayer.chatHandle; reneable this later
+		//this.chatHandle = replayPlayer.chatHandle; reneable this later, or do after initialization like quirk.
 		this.isDreamSelf = replayPlayer.isDreamSelf;
 		this.godTier = replayPlayer.godTier;
 		this.godDestiny = replayPlayer.godDestiny;
