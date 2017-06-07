@@ -2168,7 +2168,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 function getReplayers(){
 	var b = decodeURIComponent(getRawParameterByName("b"));
-	var s = getRawParameterByName("s");
+	var s = decodeURIComponent(getRawParameterByName("s")).replace(/%23/g, '#').replace(/%26/g, '&');
 	if(!b||!s) return [];
 	return dataBytesAndStringsToPlayers(b,s);
 }

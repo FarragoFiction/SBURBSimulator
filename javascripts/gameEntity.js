@@ -583,7 +583,7 @@ function GameEntity(session, name, crowned){
 			//different format for canvas code
 			var canvasDiv = document.getElementById("canvas"+ divID);
 			poseAsATeam(canvasDiv, poseable, 2000);
-			
+
 			if(players[0].dead && this.session.getDenizenForPlayer(players[0]).name == this.name) denizenKill(canvasDiv, players[0]);
 		}
 
@@ -682,7 +682,7 @@ function GameEntity(session, name, crowned){
 			if(undrainedPacts.length > 0){
 				console.log("using a pact to autorevive in session " + this.session.session_id)
 				var source = undrainedPacts[0][0];
-				source.causeOfDrain = deadPlayer.htmlTitle();
+				source.causeOfDrain = deadPlayer.title();
 				var ret = " In the afterlife, the " + deadPlayer.htmlTitleBasic() +" reminds the " + source.htmlTitleBasic() + " of their promise of aid. The ghost agrees to donate their life force to return the " + deadPlayer.htmlTitleBasic() + " to life "
 				if(deadPlayer.godTier) ret += ", but not before a lot of grumbling and arguing about how the pact shouldn't even be VALID anymore since the player is fucking GODTIER, they are going to revive fucking ANYWAY. But yeah, MAYBE it'd be judged HEROIC or some shit. Fine, they agree to go into a ghost coma or whatever. "
 				ret += "It will be a while before the ghost recovers."
@@ -701,7 +701,7 @@ function GameEntity(session, name, crowned){
 				var ghost = this.session.afterLife.findAnyUndrainedGhost();
 				var myGhost = this.session.afterLife.findClosesToRealSelf(deadPlayer)
 				if(!ghost || ghost == myGhost) return;
-				ghost.causeOfDrain = deadPlayer.htmlTitle();
+				ghost.causeOfDrain = deadPlayer.title();
 
 				removeFromArray(myGhost, this.session.afterLife.ghosts);
 				if(deadPlayer.class_name  == "Thief" ){
@@ -737,7 +737,7 @@ function GameEntity(session, name, crowned){
 			var myGhost = this.session.afterLife.findClosesToRealSelf(deadPlayer)
 			if(!ghost || ghost == myGhost) return false;
 			console.log("helping a corpse revive during a battle in session: " + this.session.session_id)
-			ghost.causeOfDrain = deadPlayer.htmlTitleBasic();
+			ghost.causeOfDrain = deadPlayer.titleBasic();
 			var text = "<Br><Br>The " + player.htmlTitleBasic() + " assists the " + deadPlayer.htmlTitleBasic() + ". ";
 			if(player.class_name == "Rogue"){
 				text += " The " + deadPlayer.htmlTitleBasic() + " steals the essence of the " + ghost.htmlTitleBasic() + " in order to revive and continue fighting. It will be a while before the ghost recovers.";
@@ -791,7 +791,7 @@ function GameEntity(session, name, crowned){
 					div.append(" The " + player.htmlTitleBasic() + " cashes in their promise of aid. The ghost of the " + ghost.htmlTitleBasic() + " unleashes an unblockable ghostly attack channeled through the living player. " + ghost.power + " damage is done to " + this.htmlTitleHP() + ". The ghost will need to rest after this for awhile. " );
 
 					this.drawGhostAttack(div, player, ghost);
-					ghost.causeOfDrain = player.htmlTitle();
+					ghost.causeOfDrain = player.title();
 					this.processDeaths(div, player, this)
 					return true;
 			}

@@ -452,7 +452,7 @@ function playersToDataStrings(players, includeChatHandle){
 	for(var i = 0; i<players.length; i++){
 		ret.push(players[i].toDataStrings(includeChatHandle))
 	}
-	return ret.join(",");
+	return encodeURIComponent(ret.join(",")).replace(/#/g, '%23').replace(/&/g, '%26');;
 }
 
 //pair with seed for shareable url for character creator, or pair with nothing for afterlife viewer.

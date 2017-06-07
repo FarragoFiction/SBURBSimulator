@@ -400,7 +400,7 @@ function LifeStuff(session){
 		if(ghost  && !ghost.causeOfDrain){
 			//console.log("ghost drain dead for power: "+ player.titleBasic()  + this.session.session_id);
 			str += " The " + player.htmlTitleBasic() + " destroys the essence of the " + ghostName + " for greater destructive power, it will be a while before the ghost recovers.";
-			ghost.causeOfDrain = player.htmlTitle();
+			ghost.causeOfDrain = player.title();
 			player.power += ghost.power;
 			player.aspectIncreasePower(ghost.power)
 			player.leveledTheHellUp = true;
@@ -455,7 +455,7 @@ function LifeStuff(session){
 
 
 				div.append("<br><br>" +str);
-				ghost.causeOfDrain = player.htmlTitle();
+				ghost.causeOfDrain = player.title();
 				var canvas = drawReviveDead(div, player, ghost, enablingAspect);
 				player.makeAlive();
 				if(enablingAspect == "Life"){
