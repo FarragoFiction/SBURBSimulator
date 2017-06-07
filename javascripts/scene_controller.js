@@ -448,11 +448,11 @@ function playersToDataBytes(players){
 }
 
 function playersToDataStrings(players, includeChatHandle){
-	var ret = ""
+	var ret = [];
 	for(var i = 0; i<players.length; i++){
-		ret += players[i].toDataStrings(includeChatHandle) + ",";
+		ret.push(players[i].toDataStrings(includeChatHandle))
 	}
-	return ret;
+	return ret.join(",");
 }
 
 //pair with seed for shareable url for character creator, or pair with nothing for afterlife viewer.
@@ -474,9 +474,12 @@ function generateURLParamsForPlayers(players,includeChatHandle){
 	strings = strings.split(",");
 	var players = [];
 	console.log(bytes)
-	for(var i = 0; i<bytes.length; i+=11){
-		var b = bytes.substring(i, i+11)
-		var s = strings.slice(i, i +1).join(",");
+	for(var i = 0; i<bytes.length/11; i+=1){
+		var bi = i*11; //i is which player we are on, which is 11 bytes long
+		var si = i*5; //or 5 strings long
+		var b = bytes.substring(bi, bi+11)
+		var s = [];
+		var s = strings.slice(si, si +5)
 		players.push(dataBytesAndStringsToPlayer(b,s));
 	}
 	return players;
@@ -484,14 +487,14 @@ function generateURLParamsForPlayers(players,includeChatHandle){
  }
 	
 //see player.js toDataBytes and toDataString to see how I expect them to be formatted. 
-function dataBytesAndStringsToPlayer(charString, strings){
+function dataBytesAndStringsToPlayer(charString, str_arr){
 	 var player = new Player();
 	 player.quirk = new Quirk();
-	 var str_arr = strings.split(",");
+	 console.log("strings is: " + str_arr)
 	 player.causeOfDrain = str_arr[0];
 	 player.causeOfDeath = str_arr[1];
-	 player.interest1Category = str_arr[2];
-	 player.interest2Category = str_arr[3];
+	 player.interest1 = str_arr[2];
+	 player.interest2 = str_arr[3];
 	 player.chatHandle = str_arr[4];
 	 //for bytes, how to convert uri encoded string into char string into unit8 buffer?
 	 //holy shit i haven't had this much fun since i did the color replacement engine a million years ago. this is exactlyt he right flavor of challenging.

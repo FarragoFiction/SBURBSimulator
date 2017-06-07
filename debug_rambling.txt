@@ -1908,3 +1908,12 @@ oh. and sign.
 
 okay. now i'm getting all 132 bytes. and MOST of the players are parsing right. but hair is NaN and interests are undefined (probably other things too). What is going on?
 given that i already tested charToPlayer, i suspect i'm not passing the right char string.
+
+Okay, the plain text strings should be the easy part, but they are fucking up.
+
+s=,,Movies,Action%20Movies,,,,Ballet,Leadership,,,,Script%20Writing,Character%20Creation,,,,Fate,Knowledge,,,,Vampires,Archaeology,,,,Musicals,Heroes,,,,Animal%20Training,Stand-up%20Comedy,,,,Geography,Justice,,,,Role%20Playing,Sewing,,,,Mixtapes,Mysteries,,,,Movies,Drawing,,,,Astronomy,Drawing,,
+
+p1 = ,,Movies,Action%20Movies,
+p2 = ,,,Ballet,
+
+huh, yeah, that's not adding up to 5 for a thing, getting extra commas somewhere.
