@@ -1873,3 +1873,5 @@ BLUH!!! Why are bytes 8 bits if they are grouped in sets of 4!??? And why can't 
 Okay. So, hair color is 3 bytes WHICH IS 8 * 3 WHICH IS 24 BITS!.  don't shift by 4.
 
 Have 24 bytes, need it to be destributed amont 3 bytes. that's easy baby shit, but it does mean that favorite color has to live somewhere else.  luckily i had exactly 4 bits free in one of the boolean bytes.
+
+huh, apparently "+" has a higher order of operation than "<<". explains my missing data.

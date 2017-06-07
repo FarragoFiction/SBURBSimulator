@@ -1952,7 +1952,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	
 	
 	this.toDataStrings = function(){
-		return ""+this.causeOfDrain + ","+this.causeOfDeath + "," + this.interest1 + "," + this.interst2 + "," + this.chatHandle;
+		return ""+this.causeOfDrain + ","+this.causeOfDeath + "," + this.interest1 + "," + this.interest2 + "," + this.chatHandle;
 	}
 	
 	/*
@@ -1970,8 +1970,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	*/
 	this.toDataBytes = function(){
 		var json = this.toJSON(); //<-- gets me data in pre-compressed format. 
-		console.log(json);
 		var buffer = new ArrayBuffer(11);
+		var ret = ""; //gonna return as a string of chars.
 		var uint8View = new Uint8Array(buffer);
 		uint8View[0] = json.hairColor >> 16 //hair color is 12 bits. chop off 4 on right side, they will be in buffer[1]
 		uint8View[1] = json.hairColor >> 8
@@ -1985,6 +1985,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		uint8View[9] = json.rightHorn
 		uint8View[10] = json.hair
 		console.log(uint8View);
+		for(var i = 0; i<uint8View.length; i++){
+			ret += String.fromCharCode(uint8View[i]);
+		}
+		return ret;
 	}
 	
 	//initial step before binary compression
