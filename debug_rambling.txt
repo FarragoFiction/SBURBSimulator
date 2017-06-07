@@ -1829,3 +1829,47 @@ Test: ask objToPlayer what attributes it's handling. Yeah, it's getting it.
 
 Maybe it's not being overridden. This gives me A player, but pretty sure I copy it's attributes over to a different player?
 
+~~~~~~~~~~~
+And now to debug my byte generation code. i still feel l337 as shit.  i am leveling the HELL UP.  At the end of this I'll probably be up 3 rungs.
+
+Okay, I am expecting:
+1101000010000010000
+But only getting:   0000010000
+
+why am I missing ....
+huh.
+
+oh.
+well.
+fuck.
+that's obvious now. i must be confusing left shifting and right shifting again. 
+
+Okay, I have a 12 bit number. I want only the left most 8 bits.
+
+1111 1111 0000 0000
+
+What I WAS doing is num >> 4. And then being made when it gives me only the ...huh.
+
+Alright, time to review right and left shifting:
+
+My brain says:
+
+Right shifting  1111 1111 0000 0000 by 4 should give me, 1111 1111 0000.   and left shifing by 4 should give me 1111 1111 0000 0000 0000. 
+What does internet say. It agrees.
+
+So. Stop, think about this.
+
+my unint8 value is CORRECTLY only showing 0000010000, which is to say 8 bits.  Expecting  "1101000010000010000" is a dumb fuck thing to do because that is more than 8 bits. (but the non uint8 print statement is correct for saying that.)
+
+What is the hair color really look like, with no bit shifting. 
+
+11010000100000100001010
+
+Okay, how many bits is that? ....23. What the hell? Why? I expected only 12 bits. 
+
+Okay. Think about this. WHY did I think it should be 12 bits?  Because...fuck you pastJR.  Because I know that rgb is 3 bytes long and for some reason my brain thought a byte was 4 bits again like a dumb asshole.
+BLUH!!! Why are bytes 8 bits if they are grouped in sets of 4!??? And why can't my brain remember this basic fucking fact!???
+
+Okay. So, hair color is 3 bytes WHICH IS 8 * 3 WHICH IS 24 BITS!.  don't shift by 4.
+
+Have 24 bytes, need it to be destributed amont 3 bytes. that's easy baby shit, but it does mean that favorite color has to live somewhere else.

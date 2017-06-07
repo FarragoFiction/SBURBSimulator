@@ -1965,12 +1965,27 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		1 byte  leftHorn
 		1byte  rightHorn
 		1byte hair
+		
+		I am the l337est asshole in the world
 	*/
 	this.toDataBytes = function(){
 		var json = this.toJSON(); //<-- gets me data in pre-compressed format. 
+		console.log(json);
 		var buffer = new ArrayBuffer(10);
-		buffer[0] = json.hairColor >> 4 //hair color is 12 bits. chop off 4 on right side, they will be in buffer[1]
-		buffer[1] = (json.hairColor & 15) << 4 + json.favoriteNumber;    //& with 00001111 because i only want 4 bits on end that were chopped off before, then move over 4 and add to favoriteNumber
+		var uint8View = new Uint8Array(buffer);
+		uint8View[0] = (json.hairColor >> 4 //hair color is 12 bits. chop off 4 on right side, they will be in buffer[1]
+		console.log(uint8View[0])
+		console.log(" versus: " + (json.hairColor >> 4))
+		uint8View[1] = (json.hairColor & 15) << 4 + json.favoriteNumber;    //& with 00001111 because i only want 4 bits on end that were chopped off before, then move over 4 and add to favoriteNumber
+		uint8View[2] = json.class_name << 4 + json.aspect
+		uint8View[3] = json.victimBlood << 4 + json.bloodColor
+		uint8View[4] = json.interest1Category <<4 + json.interest2Category
+		uint8View[5] = json.grimDark << 5 + json.isTroll << 4 + json.isDreamSelf << 3 + json.isGodTier << 2 + json.murderMode <<1 + json.leftMurderMode //shit load of single bit variables.
+		uint8View[6] = json.robot << 7 + json.moon << 6 + json.dead << 5 + json.godDestiny //rest is zeroes for now until i find more bools to shove in
+		uint8View[7] = json.leftHorn
+		uint8View[8] = json.rightHorn
+		uint8View[9] = json.hair
+		console.log(uint8View);
 	}
 	
 	//initial step before binary compression
