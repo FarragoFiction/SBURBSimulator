@@ -123,13 +123,25 @@ function grabPlayerInterests(player){
 	player.interest2Category = interestCategory2Dom.val();
 }
 
+function grabCustomChatHandleForPlayer(player){
+	console.log("TODO: if chat handle wasn't modified, make empty string. otherwise, new value. which means don't grab out of string till here.")
+	player.chatHandle = "";
+}
+
+function grabCustomChatHandles(){
+	
+	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+		grabCustomChatHandleForPlayer(curSessionGlobalVar.players[i]);
+	}
+}
+
 //IMPORTANT, DON'T RENDER THIS onload
 //instead, when player clicks "STart Session", render this button so they click it. OR, rerender this button any time you reredner players.
 function renderURLToSendPlayersIntoSBURB(){
 	grabAllPlayerInterests();
 	var seed = getParameterByName("seed");
 	numURLS ++;
-	var html = "<Br><br><a href = 'index2.html?seed=" + seed +"&" + generateURLParamsForPlayers(curSessionGlobalVar.players) + "' target='_blank'>Be Responsible For Sending Players into SBURB? (Link " + numURLS +")</a>";
+	var html = "<Br><br><a href = 'index2.html?seed=" + seed +"&" + generateURLParamsForPlayers(curSessionGlobalVar.players,true) + "' target='_blank'>Be Responsible For Sending Players into SBURB? (Link " + numURLS +")</a>";
 	$("#character_creator").append(html);
 }
 

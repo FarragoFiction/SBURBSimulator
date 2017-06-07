@@ -1951,8 +1951,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 	
 	
-	this.toDataStrings = function(){
-		return ""+this.causeOfDrain + ","+this.causeOfDeath + "," + this.interest1 + "," + this.interest2 + "," + this.chatHandle;
+	this.toDataStrings = function(includeChatHandle){
+		var ch = "";
+		if(includeChatHandle) ch = this.chatHandle;
+		return ""+this.causeOfDrain + ","+this.causeOfDeath + "," + this.interest1 + "," + this.interest2 + "," + ch;
 	}
 	
 	/*
