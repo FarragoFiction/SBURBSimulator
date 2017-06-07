@@ -1051,10 +1051,12 @@ function intToAspect(num){
 }
 
 function bloodColorToInt(color){
+	if(color == "#ff0000") return 1025;
 	return bloodColors.indexOf(color);
 }
 
 function intToBloodColor(num){
+	if(num == 1025) return "#ff0000"
 	return bloodColors[num];
 }
 
