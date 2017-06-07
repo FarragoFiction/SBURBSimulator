@@ -15,8 +15,8 @@ window.onload = function() {
 		var player2 =  randomPlayerWithClaspect(new Session(83475), "Mage", "Space" )//why was it so hard to not type 'ace of space'???
 		player2.chatHandle = "sawTooth"
 		player2.quirk = randomHumanSim(player2);
-		player2.interest1 = "Programming"
-		player2.interest2 = "Writing"
+		//player2.interest1 = "Programming"
+		//player2.interest2 = "Writing"
 		rap(1,player1);
 		rap(2,player2);
 		rap(1,player1);
