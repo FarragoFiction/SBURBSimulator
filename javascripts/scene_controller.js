@@ -475,7 +475,7 @@ function dataBytesAndStringsToPlayer(bytes, strings){
 	 player.grimDark = charString[6] >> 5;
 	 player.isTroll = (1 == (1<<4) & charString[6]) //only is 1 if character at 1<<4 is 1 in charString
 	 player.isDreamSelf = (1 == (1<<3) & charString[6])
-	 player.isGodTier = (1 == (1<<2) & charString[6])
+	 player.godTier = (1 == (1<<2) & charString[6])
 	 player.murderMode = (1 == (1<<1) & charString[6])
 	 player.leftMurderMode = (1 == (1) & charString[6])
 	 player.robot = (1 == (1<<7) & charString[7])

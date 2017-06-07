@@ -24,7 +24,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.flipOutReason = null; //if it's null, i'm not flipping my shit.
 	this.flippingOutOverDeadPlayer = null; //don't let this go into url. but, don't flip out if the friend is currently alive, you goof.
 	this.denizen_index = 0; //denizen quests are in order.
-	this.causeOfDrain = null; //just ghost things
+	this.causeOfDrain = ""; //just ghost things
 	this.ghostWisdom = []; //keeps you from spamming the same ghost over and over for wisdom.
 	this.ghostPacts = []; //some classes can form pacts with ghosts for use in boss battles (attack or revive) (ghosts don't leave bubbles, just lend power). or help others do so.  if i actually use a ghost i have a pact with, it's drained. (so anybody else with a pact with it can't use it.)
 	this.land1 = null; //words my land is made of.
@@ -1979,7 +1979,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		uint8View[3] = (json.class_name << 4) + json.aspect  //when I do fanon classes + aspect, use this same scheme, but have binary for "is fanon", so I know 1 isn't page, but waste (or whatever)
 		uint8View[4] = (json.victimBlood << 4) + json.bloodColor
 		uint8View[5] = (json.interest1Category <<4) + json.interest2Category
-		uint8View[6] = (json.grimDark << 5) + (json.isTroll << 4) + (json.isDreamSelf << 3) + (json.isGodTier << 2) + (json.murderMode <<1) + (json.leftMurderMode) //shit load of single bit variables.
+		uint8View[6] = (json.grimDark << 5) + (json.isTroll << 4) + (json.isDreamSelf << 3) + (json.godTier << 2) + (json.murderMode <<1) + (json.leftMurderMode) //shit load of single bit variables.
 		uint8View[7] = (json.robot << 7) + (json.moon << 6) + (json.dead << 5) + (json.godDestiny <<4) + (json.favoriteNumber)
 		uint8View[8] = json.leftHorn
 		uint8View[9] = json.rightHorn
