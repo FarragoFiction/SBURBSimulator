@@ -1956,7 +1956,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 	
 	/*
-		2 bytes: hairColor, favoriteNumber
+		2 bytes: (12 bits) hairColor, (4 bits) favoriteNumber
 		1 byte: class/asspect
 		1 byte victimBlood, bloodColor
 		1 byte interest1Category, interest2Category
@@ -1967,10 +1967,13 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		1byte hair
 	*/
 	this.toDataBytes = function(){
-		
+		var json = this.toJSON(); //<-- gets me data in pre-compressed format. 
+		var buffer = new ArrayBuffer(10);
+		buffer[0] = json.hairColor >> 4 //hair color is 12 bits. chop off 4 on right side, they will be in buffer[1]
+		buffer[1] = (json.hairColor & 15) << 4 + json.favoriteNumber;    //& with 00001111 because i only want 4 bits on end that were chopped off before, then move over 4 and add to favoriteNumber
 	}
-
-	//this seems to NEVER be called for ghosts.  instead of things needed to render, can make this about char creator
+	
+	//initial step before binary compression
 	this.toJSON = function(){
 		var json = {aspect: aspectToInt(this.aspect), class_name: classNameToInt(this.class_name), favoriteNumber: this.quirk.favoriteNumber, hair: this.hair,  hairColor: hexColorToInt(this.hairColor), isTroll: this.isTroll ? 1 : 0, bloodColor: bloodColorToInt(this.bloodColor), leftHorn: this.leftHorn, rightHorn: this.rightHorn, interest1Category: interestCategoryToInt(this.interest1Category), interest2Category: interestCategoryToInt(this.interest2Category), interest1: this.interest1, interest2: this.interest2, robot: this.robot ? 1 : 0, moon:this.moon ? 1 : 0,causeOfDrain: this.causeOfDrain,victimBlood: bloodColorToInt(this.victimBlood), godTier: this.godTier ? 1 : 0, isDreamSelf:this.isDreamSelf ? 1 : 0, murderMode:this.murderMode ? 1 : 0, leftMurderMode:this.leftMurderMode ? 1 : 0,grimDark:this.grimDark, causeOfDeath: this.causeOfDeath, dead: this.dead ? 1 : 0, godDestiny: this.godDestiny ? 1 : 0 };
 		return json;
