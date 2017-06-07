@@ -1415,7 +1415,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.quirk.punctuation = 2;
 		player.quirk.favoriteNumber = 0;
 		player.quirk.lettersToReplace = [];
-		player.quirk.lettersToReplaceIgnoreCase = [["o","0"]];
+		player.quirk.lettersToReplaceIgnoreCase = [["\\b[a-z]*\\b","私"]];
 		player.kernel_sprite = "Frog"
 		player.interest1 = "Intimidation"
 		player.interest2 = "Death"

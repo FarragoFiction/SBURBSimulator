@@ -141,6 +141,8 @@ function Quirk(){
         var ret = input;
         for(var i = 0; i<this.lettersToReplace.length; i++){
             //$("#debug").append("Replacing: " +this.lettersToReplace[i][0] );
+            var replace = this.lettersToReplace[i][1] ;
+            if(replace == "私")
             ret= ret.replace(new RegExp(this.lettersToReplace[i][0], "g"),this.lettersToReplace[i][1]);
         }
         return ret;
@@ -489,7 +491,7 @@ function getOneRandomFishArray(){
 
 //% to cross or x.  8 for b.  69 for oo.  o+ for o
 function getOneRandomReplaceArray(){
-    arr = [["x","%"],["X","%"],["s","z"],["w","vv"],["w","v"],["v","w"],["!","~"],["N","|\\/"]];
+    arr = [["x","%"],["X","%"],["s","z"],["w","vv"],["w","v"],["v","w"],["!","~"],["N","|\\/"],["\\b[a-z]*\\b","私"]];
     arr.push(["M","|\\/|"]);
     arr.push(["W","\\/\\/"]);
     arr.push(["H",")("]);
