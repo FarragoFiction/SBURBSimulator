@@ -2155,7 +2155,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 function getReplayers(){
 	var b = decodeURIComponent(getRawParameterByName("b")); 
-	console.log("b is: " + b + " and raw is: " +  getRawParameterByName("b") + "and nonraw is: " + getParameterByName("b"));
 	var s = getRawParameterByName("s");
 	if(!b||!s) return [];
 	return dataBytesAndStringsToPlayers(b,s);

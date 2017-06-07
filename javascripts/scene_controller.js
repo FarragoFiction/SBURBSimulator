@@ -473,10 +473,10 @@ function generateURLParamsForPlayers(players,includeChatHandle){
 	//strings are 5 csv per player.
 	strings = strings.split(",");
 	var players = [];
-	console.log("Bytes length is: " + bytes.length)
+	console.log(bytes)
 	for(var i = 0; i<bytes.length; i+=11){
-		var b = bytes.substring(i, i+10)
-		var s = strings.slice(i, i +10).join(",");
+		var b = bytes.substring(i, i+11)
+		var s = strings.slice(i, i +1).join(",");
 		players.push(dataBytesAndStringsToPlayer(b,s));
 	}
 	return players;
@@ -490,8 +490,8 @@ function dataBytesAndStringsToPlayer(charString, strings){
 	 var str_arr = strings.split(",");
 	 player.causeOfDrain = str_arr[0];
 	 player.causeOfDeath = str_arr[1];
-	 player.interest1 = str_arr[2];
-	 player.interest2 = str_arr[3];
+	 player.interest1Category = str_arr[2];
+	 player.interest2Category = str_arr[3];
 	 player.chatHandle = str_arr[4];
 	 //for bytes, how to convert uri encoded string into char string into unit8 buffer?
 	 //holy shit i haven't had this much fun since i did the color replacement engine a million years ago. this is exactlyt he right flavor of challenging.

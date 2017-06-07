@@ -1907,3 +1907,4 @@ vs
 oh. and sign.
 
 okay. now i'm getting all 132 bytes. and MOST of the players are parsing right. but hair is NaN and interests are undefined (probably other things too). What is going on?
+given that i already tested charToPlayer, i suspect i'm not passing the right char string.
