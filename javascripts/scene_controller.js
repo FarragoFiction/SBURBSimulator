@@ -442,14 +442,15 @@ function renderAfterlifeURL(){
 function playersToDataBytes(players){
 	var ret = "";
 	for(var i = 0; i<players.length; i++){
-		ret += players[i]toDataBytes();
+		ret += players[i].toDataBytes();
 	}
+	return ret;
 }
 
 function playersToDataStrings(players){
 	var ret = ""
 	for(var i = 0; i<players.length; i++){
-		ret += players[i]toDataStrings() + ",";
+		ret += players[i].toDataStrings() + ",";
 	}
 	return ret;
 }
