@@ -1883,3 +1883,25 @@ Okay, how about decoding the 4+4 bytes (like class + aspect)
 >> 4 gets me class (1010).
 
 & 15 gets me aspect (1111)
+
+
+~~~~
+Starting to parse urls and getting random bullshit.
+Thinks byte array is 10 bytes long, when it should be 12 x 11.
+Oh, i bet it's cuz i used decodeURI instead of decodeURI component.
+huh. nope. damn.
+
+What is going on?
+
+b is: ¿ð÷søU and raw is: %C2%BF%C3%B0%C3%B7s%C3%B8%C2%99%10U%1B%12and nonraw is: ¿ð÷søU
+
+okay, so the problem is it's getting caught on a pound sign, just stop having raw care about that shit.
+
+Still getting caught on something, now thinks is 53 bytes.
+
+%C2%BF%C3%B0%C3%B7s%C3%B8%C2%99%10U%1B%12#%C2%AE%C3%99%C3%86%C2%8B%C3%B0%16%10B%25%25-%C2%99=%C3%8Bh%C3%BF3%00Z%19%19%25%C2%BE%C3%A9%C3%A7P%C3%B2%C3%8D%10W%1E%16%09%C3%AE%C3%AE%C3%AE%C2%B2%C3%B8%7D%10X%0A&:%C2%96%C2%97%C3%91%C2%91%C3%B0%19%10%5C(%18%1C%C2%80%C2%80%C3%BF6%C3%BF%C2%B0%00W%15%15&%00%C3%BF%00%15%C3%BF%C3%96%00X%06%06%05%C2%80%C3%BF%C3%BFI%C3%B9%C2%B8%10C%08%08%25%C3%BF%00%00*%C3%BF%16%00Z..%01%C3%BF%C2%80%C2%80%C2%A4%C3%BF%C2%92%10J%20%17%20%C2%80%C2%80%00%07%C3%BF%C3%92%00W%16%16%0F&s=,,Movies,Action%20Movies,,,,Ballet,Leadership,,,,Script%20Writing,Character%20Creation,,,,Fate,Knowledge,,,,Vampires,Archaeology,,,,Musicals,Heroes,,,,Animal%20Training,Stand-up%20Comedy,,,,Geography,Justice,,,,Role%20Playing,Sewing,,,,Mixtapes,Mysteries,,,,Movies,Drawing,,,,Astronomy,Drawing,,
+
+vs
+%C2%BF%C3%B0%C3%B7s%C3%B8%C2%99%10U%1B%12#%C2%AE%C3%99%C3%86%C2%8B%C3%B0%16%10B%25%25-%C2%99=%C3%8Bh%C3%BF3%00Z%19%19%25%C2%BE%C3%A9%C3%A7P%C3%B2%C3%8D%10W%1E%16%09%C3%AE%C3%AE%C3%AE%C2%B2%C3%B8%7D%10X%0A
+
+oh. and sign.

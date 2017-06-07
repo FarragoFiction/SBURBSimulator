@@ -473,6 +473,7 @@ function generateURLParamsForPlayers(players,includeChatHandle){
 	//strings are 5 csv per player.
 	strings = strings.split(",");
 	var players = [];
+	console.log("Bytes length is: " + bytes.length)
 	for(var i = 0; i<bytes.length; i+=11){
 		var b = bytes.substring(i, i+10)
 		var s = strings.slice(i, i +10).join(",");
@@ -483,7 +484,7 @@ function generateURLParamsForPlayers(players,includeChatHandle){
  }
 	
 //see player.js toDataBytes and toDataString to see how I expect them to be formatted. 
-function dataBytesAndStringsToPlayer(bytes, strings){
+function dataBytesAndStringsToPlayer(charString, strings){
 	 var player = new Player();
 	 player.quirk = new Quirk();
 	 var str_arr = strings.split(",");
@@ -493,10 +494,10 @@ function dataBytesAndStringsToPlayer(bytes, strings){
 	 player.interest2 = str_arr[3];
 	 player.chatHandle = str_arr[4];
 	 //for bytes, how to convert uri encoded string into char string into unit8 buffer?
-	 var charString = decodeURIComponent(bytes); //i feel so damn l337
 	 //holy shit i haven't had this much fun since i did the color replacement engine a million years ago. this is exactlyt he right flavor of challenging.
 	 console.log("charString is: " + charString)
 	 player.hairColor = charString.charCodeAt(0) << 16 + charString.charCodeAt(1) << 8 + charString.charCodeAt(2)  
+	 console.log("hair color is: " + player.hairColor)
 	 player.class_name = intToClassName(charString.charCodeAt(3) >> 4)
 	 player.aspect = intToAspect(charString.charCodeAt(3) & 15) //get 4 bits on end
 	 player.victimBlood = intToBloodColor(charString.charCodeAt(4) >> 4);

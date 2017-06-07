@@ -1990,7 +1990,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		for(var i = 0; i<uint8View.length; i++){
 			ret += String.fromCharCode(uint8View[i]);
 		}
-		return encodeURI(ret);
+		return encodeURIComponent(ret).replace(/#/g, '%23').replace(/&/g, '%26');
 	}
 	
 	
@@ -2154,8 +2154,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 }
 
 function getReplayers(){
-	var b = decodeURI(getRawParameterByName("b"));  
+	var b = decodeURIComponent(getRawParameterByName("b")); 
+	console.log("b is: " + b + " and raw is: " +  getRawParameterByName("b") + "and nonraw is: " + getParameterByName("b"));
 	var s = getRawParameterByName("s");
+	if(!b||!s) return [];
 	return dataBytesAndStringsToPlayers(b,s);
 }
 
