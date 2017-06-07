@@ -1875,3 +1875,11 @@ Okay. So, hair color is 3 bytes WHICH IS 8 * 3 WHICH IS 24 BITS!.  don't shift b
 Have 24 bytes, need it to be destributed amont 3 bytes. that's easy baby shit, but it does mean that favorite color has to live somewhere else.  luckily i had exactly 4 bits free in one of the boolean bytes.
 
 huh, apparently "+" has a higher order of operation than "<<". explains my missing data.
+
+Okay, how about decoding the 4+4 bytes (like class + aspect)
+
+1010 1111
+
+>> 4 gets me class (1010).
+
+& 15 gets me aspect (1111)

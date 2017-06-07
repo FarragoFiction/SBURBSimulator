@@ -454,7 +454,24 @@ function generateURLParamsForPlayers(players){
 	
 //see player.js toDataBytes and toDataString to see how I expect them to be formatted. 
 function dataBytesAndStringsToPlayer(bytes, strings){
-	 
+	 var ret = new Player();
+	 var str_arr = strings.split(",");
+	 player.causeOfDrain = str_arr[0];
+	 player.causeOfDeath = str_arr[1];
+	 player.interest1 = str_arr[2];
+	 player.interest2 = str_arr[3];
+	 player.chatHandle = str_arr[4];
+	 //for bytes, how to convert uri encoded string into char string into unit8 buffer?
+	 var charString = decodeURIComponent(bytes); //i feel so damn l337
+	 //holy shit i haven't had this much fun since i did the color replacement engine a million years ago. this is exactlyt he right flavor of challenging.
+	 player.hairColor = charString[0] << 16 + charString[1] << 8 + charString[2]  
+	 player.class_name = intToClassName(charString[3] >> 4)
+	 player.aspect = intToAspect(charString[3] & 15) //get 4 bits on end
+	 player.victimBlood = intToBloodColor(charString[4] >> 4);
+	 player.bloodColor = intToBloodColor(charString[4] & 15);
+	 player.interest1Category = intToInterestCategory(charString[5] >> 4)
+	 player.interest2Category = intToInterestCategory(charString[5] & 15);
+	 return ret;
 }
  
  function objToPlayer(obj){
