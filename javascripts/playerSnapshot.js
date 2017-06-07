@@ -68,11 +68,11 @@ function PlayerSnapshot(){
 	this.chatHandleShort = function(){
 		return this.chatHandle.match(/\b(\w)|[A-Z]/g).join('').toUpperCase();
 	}
-	
+
 	this.toDataStrings = function(){
 		return ""+this.causeOfDrain + ","+this.causeOfDeath + "," + this.interest1 + "," + this.interest2 + "," + this.chatHandle;
 	}
-	
+
 	/*
 		3 bytes: (12 bits) hairColor
 		1 byte: class/asspect
@@ -83,11 +83,11 @@ function PlayerSnapshot(){
 		1 byte  leftHorn
 		1byte  rightHorn
 		1byte hair
-		
+
 		I am the l337est asshole in the world
 	*/
 	this.toDataBytes = function(){
-		var json = this.toJSON(); //<-- gets me data in pre-compressed format. 
+		var json = this.toJSON(); //<-- gets me data in pre-compressed format.
 		var buffer = new ArrayBuffer(11);
 		var ret = ""; //gonna return as a string of chars.
 		var uint8View = new Uint8Array(buffer);
@@ -102,14 +102,14 @@ function PlayerSnapshot(){
 		uint8View[8] = json.leftHorn
 		uint8View[9] = json.rightHorn
 		uint8View[10] = json.hair
-		console.log(uint8View);
+		//console.log(uint8View);
 		for(var i = 0; i<uint8View.length; i++){
 			ret += String.fromCharCode(uint8View[i]);
 		}
-		return encodeURI(ret);
+		return encodeURIComponent(ret).replace(/#/g, '%23').replace(/&/g, '%26');
 	}
-	
-	
+
+
 	//initial step before binary compression
 	this.toJSON = function(){
 		var json = {aspect: aspectToInt(this.aspect), class_name: classNameToInt(this.class_name), favoriteNumber: this.quirk.favoriteNumber, hair: this.hair,  hairColor: hexColorToInt(this.hairColor), isTroll: this.isTroll ? 1 : 0, bloodColor: bloodColorToInt(this.bloodColor), leftHorn: this.leftHorn, rightHorn: this.rightHorn, interest1Category: interestCategoryToInt(this.interest1Category), interest2Category: interestCategoryToInt(this.interest2Category), interest1: this.interest1, interest2: this.interest2, robot: this.robot ? 1 : 0, moon:this.moon ? 1 : 0,causeOfDrain: this.causeOfDrain,victimBlood: bloodColorToInt(this.victimBlood), godTier: this.godTier ? 1 : 0, isDreamSelf:this.isDreamSelf ? 1 : 0, murderMode:this.murderMode ? 1 : 0, leftMurderMode:this.leftMurderMode ? 1 : 0,grimDark:this.grimDark, causeOfDeath: this.causeOfDeath, dead: this.dead ? 1 : 0, godDestiny: this.godDestiny ? 1 : 0 };
