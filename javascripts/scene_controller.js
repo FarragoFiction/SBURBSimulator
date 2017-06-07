@@ -499,7 +499,7 @@ function dataBytesAndStringsToPlayer(charString, str_arr){
 	 //for bytes, how to convert uri encoded string into char string into unit8 buffer?
 	 //holy shit i haven't had this much fun since i did the color replacement engine a million years ago. this is exactlyt he right flavor of challenging.
 	 console.log("charString is: " + charString)
-	 player.hairColor = charString.charCodeAt(0) << 16 + charString.charCodeAt(1) << 8 + charString.charCodeAt(2)  
+	 player.hairColor = intToHexColor(charString.charCodeAt(0) << 16 + charString.charCodeAt(1) << 8 + charString.charCodeAt(2) ) 
 	 console.log("hair color is: " + player.hairColor)
 	 player.class_name = intToClassName(charString.charCodeAt(3) >> 4)
 	 player.aspect = intToAspect(charString.charCodeAt(3) & 15) //get 4 bits on end

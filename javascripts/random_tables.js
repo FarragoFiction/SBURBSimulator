@@ -1065,7 +1065,12 @@ function hexColorToInt(color){
 }
 
 function intToHexColor(num){
-	return "#" + num.toString(16);
+	var tmp =  num.toString(16);
+	var padding = 6 - tmp.length;
+	for(var i = 0; i<padding; i++){
+		tmp = "0" + tmp;
+	}
+	return "#" + tmp;
 }
 
 function interestCategoryToInt(cat){

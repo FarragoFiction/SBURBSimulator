@@ -18,6 +18,7 @@ function hexToRgbA(hex){
     throw new Error('Bad Hex ' + hex);
 }
 
+
 //sharpens the image so later pixel swapping doesn't work quite right.
 //https://www.html5rocks.com/en/tutorials/canvas/imagefilters/
 function sbahjifier(canvas){
