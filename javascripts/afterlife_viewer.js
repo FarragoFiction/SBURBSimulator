@@ -6,8 +6,8 @@ var canvasWidth = 400;
 var canvasHeight = 300;
 var simulationMode = false;
 window.onload = function() {
-	var p = getRawParameterByName("players")
-	if(p){
+	playersGlobalVar = loadPlayers();
+	if(playersGlobalVar.length > 0){
 		loadPlayers(p);
 		load(playersGlobalVar, [], "ghosts");//images
 	}else{
@@ -41,18 +41,8 @@ function renderGhosts(){
 	}
 }
 
-function loadPlayers(p){
-	//var decodedPlayers = decodeURI(p);
-	//console.log(decodedPlayers)
-	//p = p.replace(/%/g, " ")
-	console.log("compressed players is: " + p);
-	var uncompressedPlayers = LZString.decompressFromEncodedURIComponent(p);
-	
-	console.log(uncompressedPlayers);
- 	var json = JSON.parse(uncompressedPlayers);
-	for(var i = 0; i<json.length; i++){
-		playersGlobalVar.push(objToPlayer(json[i]));
-	}
+function loadPlayers(){
+	playersGlobalVar = getReplayers();
 }
 
 //original version was regexping out #, but i need that for colors. dunkass.  thanks BR for pointing that out. Regexp is...still greek to me.
