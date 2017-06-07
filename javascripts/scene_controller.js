@@ -467,6 +467,20 @@ function generateURLParamsForPlayers(players,includeChatHandle){
 	return "b="+data+"&s="+strings;
 
  }
+ 
+ function dataBytesAndStringsToPlayers(bytes, strings){
+	//bytes are 11 chars per player
+	//strings are 5 csv per player.
+	strings = strings.split(",");
+	var players = [];
+	for(var i = 0; i<bytes.length; i+=11){
+		var b = bytes.substring(i, i+10)
+		var s = strings.slice(i, i +10).join(",");
+		players.push(dataBytesAndStringsToPlayer(b,s));
+	}
+	return players;
+	 
+ }
 	
 //see player.js toDataBytes and toDataString to see how I expect them to be formatted. 
 function dataBytesAndStringsToPlayer(bytes, strings){

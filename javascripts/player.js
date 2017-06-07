@@ -2154,7 +2154,9 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 }
 
 function getReplayers(){
-	
+	var b = decodeURI(getRawParameterByName("b"));  
+	var s = getRawParameterByName("s");
+	return dataBytesAndStringsToPlayers(b,s);
 }
 
 function initializePlayers(players,session){
