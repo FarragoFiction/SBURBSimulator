@@ -1976,11 +1976,11 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		uint8View[0] = json.hairColor >> 16 //hair color is 12 bits. chop off 4 on right side, they will be in buffer[1]
 		uint8View[1] = json.hairColor >> 8
 		uint8View[2] = json.hairColor >> 0
-		uint8View[3] = json.class_name << 4 + json.aspect
-		uint8View[4] = json.victimBlood << 4 + json.bloodColor
-		uint8View[5] = json.interest1Category <<4 + json.interest2Category
-		uint8View[6] = json.grimDark << 5 + json.isTroll << 4 + json.isDreamSelf << 3 + json.isGodTier << 2 + json.murderMode <<1 + json.leftMurderMode //shit load of single bit variables.
-		uint8View[7] = json.robot << 7 + json.moon << 6 + json.dead << 5 + json.godDestiny <<4 + json.favoriteNumber
+		uint8View[3] = (json.class_name << 4) + json.aspect
+		uint8View[4] = (json.victimBlood << 4) + json.bloodColor
+		uint8View[5] = (json.interest1Category <<4) + json.interest2Category
+		uint8View[6] = (json.grimDark << 5) + (json.isTroll << 4) + (json.isDreamSelf << 3) + (json.isGodTier << 2) + (json.murderMode <<1) + (json.leftMurderMode) //shit load of single bit variables.
+		uint8View[7] = (json.robot << 7) + (json.moon << 6) + (json.dead << 5) + (json.godDestiny <<4) + (json.favoriteNumber)
 		uint8View[8] = json.leftHorn
 		uint8View[9] = json.rightHorn
 		uint8View[10] = json.hair
