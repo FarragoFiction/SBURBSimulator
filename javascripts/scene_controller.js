@@ -451,7 +451,12 @@ function generateURLParamsForPlayers(players){
 	return compressed
 
  }
-
+	
+//see player.js toDataBytes and toDataString to see how I expect them to be formatted. 
+function dataBytesAndStringsToPlayer(bytes, strings){
+	 
+}
+ 
  function objToPlayer(obj){
 	 var ret = new Player();
 	 for (var prop in obj){
