@@ -1034,6 +1034,38 @@ function removeFromArray(item, array){
 	}
 }
 
+function classNameToInt(class_name){
+	return classes.indexOf(class_name);
+}
+
+function intToClassName(num){
+	return classes[num];
+}
+
+function aspectToInt(aspect){
+	return all_aspects.indexOf(aspect);
+}
+
+function intToAspect(num){
+	return all_aspects[num];
+}
+
+function bloodColorToInt(color){
+	return bloodColors.indexOf(color);
+}
+
+function intToBloodColor(num){
+	return bloodColors[num];
+}
+
+function hexColorToInt(color){
+	return parseInt(color.replace("#",""),16);
+}
+
+function intToHexColor(num){
+	return "#" + num.toString(16);
+}
+
 var moons = ["Prospit", "Derse"];
 var classes = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
 //when a class is used, remove from below list.
