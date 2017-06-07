@@ -474,15 +474,15 @@ function dataBytesAndStringsToPlayer(bytes, strings){
 	 player.interest1Category = intToInterestCategory(charString.charCodeAt(5) >> 4)
 	 player.interest2Category = intToInterestCategory(charString.charCodeAt(5) & 15);
 	 player.grimDark = charString.charCodeAt(6) >> 5;
-	 player.isTroll = (1 == (1<<4) & charString.charCodeAt(6)) //only is 1 if character at 1<<4 is 1 in charString
-	 player.isDreamSelf = (1 == (1<<3) & charString.charCodeAt(6))
-	 player.godTier = (1 == (1<<2) & charString.charCodeAt(6))
-	 player.murderMode = (1 == (1<<1) & charString.charCodeAt(6))
-	 player.leftMurderMode = (1 == (1) & charString.charCodeAt(6))
-	 player.robot = (1 == (1<<7) & charString.charCodeAt(7))
-	 player.moon = (1 == (1<<6) & charString.charCodeAt(7))
-	 player.dead = (1 == (1<<5) & charString.charCodeAt(7))
-	 player.godDestiny = (1 == (1<<4) & charString.charCodeAt(7))
+	 player.isTroll = 1 == ((1<<4) & charString.charCodeAt(6)) //only is 1 if character at 1<<4 is 1 in charString
+	 player.isDreamSelf = 1 == ((1<<3) & charString.charCodeAt(6))
+	 player.godTier = 1 == ((1<<2) & charString.charCodeAt(6))
+	 player.murderMode = 1 == ((1<<1) & charString.charCodeAt(6))
+	 player.leftMurderMode = 1 == ((1) & charString.charCodeAt(6))
+	 player.robot = 1 == ((1<<7) & charString.charCodeAt(7))
+	 player.moon = 1 == ((1<<6) & charString.charCodeAt(7))
+	 player.dead = 1 == ((1<<5) & charString.charCodeAt(7))
+	 player.godDestiny = 1 == ((1<<4) & charString.charCodeAt(7))
 	 player.quirk.favoriteNumber = charString.charCodeAt(7) & 15
 	 player.leftHorn = charString.charCodeAt(8)
 	 player.rightHorn = charString.charCodeAt(9)
