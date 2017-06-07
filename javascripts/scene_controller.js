@@ -483,6 +483,9 @@ function dataBytesAndStringsToPlayer(bytes, strings){
 	 player.dead = (1 == (1<<5) & charString[7])
 	 player.godDestiny = (1 == (1<<4) & charString[7])
 	 player.quirk.favoriteNumber = charString[7] & 15
+	 player.leftHorn = charString[8]
+	 player.rightHorn = charString[9]
+	 player.hair = charString[10]
 	 console.log("TODO: make sure copyPlayer in player.js takes ALL these fields from this blank player")
 	 return ret;
 }
