@@ -113,10 +113,10 @@ function grabAllPlayerInterests(){
 }
 
 function grabPlayerInterests(player){
-	var interestCategory1Dom =  $("#interestCategory1" +player.chatHandle);
-	var interestCategory2Dom =  $("#interestCategory2" +player.chatHandle);
-	var interest1TextDom =  $("#interest1" +player.chatHandle); 
-	var interest2TextDom =  $("#interest2" +player.chatHandle);
+	var interestCategory1Dom =  $("#interestCategory1" +player.id);
+	var interestCategory2Dom =  $("#interestCategory2" +player.id);
+	var interest1TextDom =  $("#interest1" +player.id);
+	var interest2TextDom =  $("#interest2" +player.id);
 	player.interest1 = interest1TextDom.val()
 	player.interest1Category = interestCategory1Dom.val();
 	player.interest2 = interest2TextDom.val();
