@@ -1076,6 +1076,8 @@ function intToInterestCategory(num){
 	return interestCategories[num];
 }
 
+
+
 var moons = ["Prospit", "Derse"];
 var classes = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
 //when a class is used, remove from below list.
