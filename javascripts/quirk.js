@@ -137,13 +137,19 @@ function Quirk(){
         return input + " " + this.suffix;
     }
 
+    //amazingly, this will make even LESS sense than damara's usual bullshit
+    this.randomJapaneseBullshit = function(){
+      var japaneseBullshit = "私はあなたの歯の間に私の乳首を感じるようにしたい"
+      return japaneseBullshit[Math.floor(Math.random() * japaneseBullshit.length)]; //true random
+    }
+
     this.handleReplacements = function(input){
         var ret = input;
         for(var i = 0; i<this.lettersToReplace.length; i++){
             //$("#debug").append("Replacing: " +this.lettersToReplace[i][0] );
             var replace = this.lettersToReplace[i][1] ;
-            if(replace == "私")
-            ret= ret.replace(new RegExp(this.lettersToReplace[i][0], "g"),this.lettersToReplace[i][1]);
+            if(replace == "私") replace = this.randomJapaneseBullshit();
+            ret= ret.replace(new RegExp(this.lettersToReplace[i][0], "g"),replace);
         }
         return ret;
     }
@@ -154,7 +160,9 @@ function Quirk(){
             //$("#debug").append("Replacing: " +this.lettersToReplaceIgnoreCase[i][0] );
             //console.log("Replacing: " +this.lettersToReplaceIgnoreCase[i][0] )
             //g makes it replace all, i makes it ignore case
-            ret= ret.replace(new RegExp(this.lettersToReplaceIgnoreCase[i][0], "ig"),this.lettersToReplaceIgnoreCase[i][1]);
+            var replace = this.lettersToReplaceIgnoreCase[i][1] ;
+            if(replace == "私") replace = this.randomJapaneseBullshit();
+            ret= ret.replace(new RegExp(this.lettersToReplaceIgnoreCase[i][0], "ig"),replace);
         }
         return ret;
     }
