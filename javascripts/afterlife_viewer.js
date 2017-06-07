@@ -6,9 +6,8 @@ var canvasWidth = 400;
 var canvasHeight = 300;
 var simulationMode = false;
 window.onload = function() {
-	playersGlobalVar = loadPlayers();
+	loadPlayers();
 	if(playersGlobalVar.length > 0){
-		loadPlayers(p);
 		load(playersGlobalVar, [], "ghosts");//images
 	}else{
 		debug("there are no ghosts in this afterlife, dunkass")
