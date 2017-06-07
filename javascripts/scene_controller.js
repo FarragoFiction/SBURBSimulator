@@ -454,7 +454,7 @@ function generateURLParamsForPlayers(players){
 	
 //see player.js toDataBytes and toDataString to see how I expect them to be formatted. 
 function dataBytesAndStringsToPlayer(bytes, strings){
-	 var ret = new Player();
+	 var player = new Player();
 	 player.quirk = new Quirk();
 	 var str_arr = strings.split(",");
 	 player.causeOfDrain = str_arr[0];
@@ -487,7 +487,7 @@ function dataBytesAndStringsToPlayer(bytes, strings){
 	 player.rightHorn = charString[9]
 	 player.hair = charString[10]
 	 console.log("TODO: make sure copyPlayer in player.js takes ALL these fields from this blank player")
-	 return ret;
+	 return player;
 }
  
  function objToPlayer(obj){
