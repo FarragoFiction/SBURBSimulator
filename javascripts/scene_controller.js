@@ -466,8 +466,10 @@ function dataBytesAndStringsToPlayer(bytes, strings){
 	 var charString = decodeURIComponent(bytes); //i feel so damn l337
 	 //holy shit i haven't had this much fun since i did the color replacement engine a million years ago. this is exactlyt he right flavor of challenging.
 	 player.hairColor = charString[0] << 16 + charString[1] << 8 + charString[2]  
+	 console.log("class + aspect is: " + charString[3]);
 	 player.class_name = intToClassName(charString[3] >> 4)
 	 player.aspect = intToAspect(charString[3] & 15) //get 4 bits on end
+	 console.log("class + aspect: " + player.title());
 	 player.victimBlood = intToBloodColor(charString[4] >> 4);
 	 player.bloodColor = intToBloodColor(charString[4] & 15);
 	 player.interest1Category = intToInterestCategory(charString[5] >> 4)
