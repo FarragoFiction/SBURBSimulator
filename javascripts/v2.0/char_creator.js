@@ -129,7 +129,7 @@ function renderURLToSendPlayersIntoSBURB(){
 	grabAllPlayerInterests();
 	var seed = getParameterByName("seed");
 	numURLS ++;
-	var html = "<Br><br><a href = 'index2.html?seed=" + seed +"&players=" + generateURLParamsForPlayers(curSessionGlobalVar.players) + "' target='_blank'>Be Responsible For Sending Players into SBURB? (Link " + numURLS +")</a>";
+	var html = "<Br><br><a href = 'index2.html?seed=" + seed +"&" + generateURLParamsForPlayers(curSessionGlobalVar.players) + "' target='_blank'>Be Responsible For Sending Players into SBURB? (Link " + numURLS +")</a>";
 	$("#character_creator").append(html);
 }
 

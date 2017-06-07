@@ -428,7 +428,7 @@ function renderAfterlifeURL(){
 		var params = window.location.href.substr(window.location.href.indexOf("?")+1)
 		if (params == window.location.href) params = ""
 
-		var html = "<Br><br><a href = 'rip.html?players=" + generateURLParamsForPlayers(curSessionGlobalVar.afterLife.ghosts) + "' target='_blank'>View Afterlife In New Tab?</a>";
+		var html = "<Br><br><a href = 'rip.html?" + generateURLParamsForPlayers(curSessionGlobalVar.afterLife.ghosts) + "' target='_blank'>View Afterlife In New Tab?</a>";
 		html += '<br><br><a href = "character_creator.html?seed=' +initial_seed +'&' + params + ' " target="_blank">Replay Session (Mildly Fucking Alpha) </a> '
 		html += "<br><br><a href = 'index2.html'>Random New Session?</a>"
 		html += "<Br><Br>Simulation took: " + msToTime(stopTime - startTime) + " to render. ";
@@ -439,16 +439,24 @@ function renderAfterlifeURL(){
 	}
 }
 
+function playersToDataBytes(){
+	
+}
+
+function playersToDataStrings(){
+	
+}
 
 //pair with seed for shareable url for character creator, or pair with nothing for afterlife viewer.
 function generateURLParamsForPlayers(players){
-	var ret = ""//up to caller to make players = ret
-	var json = JSON.stringify(players);  //inside of players handles looking for keys
-	console.log(json)
+	//var json = JSON.stringify(players);  //inside of players handles looking for keys
+	//console.log(json)
 	//if want localStorage , then compressToUTF16  http://pieroxy.net/blog/pages/lz-string/guide.html
-	var compressed = LZString.compressToEncodedURIComponent(json);
-	console.log(compressed)
-	return compressed
+	//var compressed = LZString.compressToEncodedURIComponent(json);
+	//console.log(compressed)
+	var data = playersToDataBytes(players);
+	var strings = playersToDataStrings(players);
+	return "b="+data+"&s="+strings;
 
  }
 	
