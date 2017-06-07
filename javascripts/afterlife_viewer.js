@@ -42,6 +42,9 @@ function renderGhosts(){
 
 function loadPlayers(){
 	playersGlobalVar = getReplayers();
+	for(var i = 0; i<playersGlobalVar.length; i++){
+		playersGlobalVar[i].ghost = true; //not storing that as a bool. 'cause fuck you,thats why'
+	}
 }
 
 //original version was regexping out #, but i need that for colors. dunkass.  thanks BR for pointing that out. Regexp is...still greek to me.

@@ -2083,6 +2083,19 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.interest2 = replayPlayer.interest2.replace(/<(?:.|\n)*?>/gm, '');;
 		this.interest1Category = replayPlayer.interest1Category;
 		this.interest2Category = replayPlayer.interest2Category;
+		this.causeOfDrain = replayPlayer.causeOfDrain;
+		this.causeOfDeath = replayPlayer.causeOfDeath;
+		//this.chatHandle = replayPlayer.chatHandle; reneable this later
+		this.isDreamSelf = replayPlayer.isDreamSelf;
+		this.godTier = replayPlayer.godTier;
+		this.godDestiny = replayPlayer.godDestiny;
+		this.murderMode = replayPlayer.murderMode;
+		this.leftMurderMode = replayPlayer.leftMurderMode;
+		this.grimDark = replayPlayer.grimDark;
+		this.moon = replayPlayer.moon;
+		this.dead = replayPlayer.dead;
+		this.victimBlood = replayPlayer.victimBlood
+		this.robot = replayPlayer.robot;
 		//this.quirk.favoriteNumber = replayPlayer.quirk.favoriteNumber; //get overridden, has to be after initialization.
 	}
 
