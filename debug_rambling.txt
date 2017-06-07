@@ -1928,3 +1928,7 @@ is...that number even a valid hex, am i parsing something wrong?
 That's...more than 3 bytes. Why?  Hair color should be exactly 3 bytes big. am i bit shifting wrong?
 
 ah yes, i forgot about order of operations again. gotta put bitshifting in parens before adding
+
+oh shit, it's rendering! There's all humans instead of having some trolls in there, but holy shit!!!
+
+once i figure out the troll thing, can test subtler shit to see if it renders EXACTLY as the base unreplayed session does if all i do is alter hair color.
