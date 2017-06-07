@@ -5,5 +5,5 @@
 <br>
 <div class = "links">
 
-<a href = "newsposts.html">Newsposts</a> &nbsp &nbsp &nbsp &nbsp <a href = "art_newsposts.html">Art Newsposts</a> &nbsp &nbsp &nbsp &nbsp<a href = "about.html">About/FAQ</a> &nbsp &nbsp &nbsp &nbsp <a href = "rare_session_finder.html">Rare Session Finder: Author Bot</a>&nbsp &nbsp &nbsp &nbsp <a href = "todo.html">Todo Pile</a>&nbsp &nbsp &nbsp &nbsp <a href = "glitches.html"> Bug Reports/Glitch FAQ</a>  &nbsp &nbsp &nbsp &nbsp <a href = "index_pw.html"> [???]</a>
+<a href = "newsposts.html">Newsposts</a> &nbsp &nbsp &nbsp &nbsp <a href = "art_newsposts.html">Art Newsposts</a> &nbsp &nbsp &nbsp &nbsp<a href = "about.html">FAQ</a> &nbsp &nbsp &nbsp &nbsp <a href = "rare_session_finder.html">Author Bot</a>&nbsp &nbsp &nbsp &nbsp <a href = "todo.html">Todo Pile</a>&nbsp &nbsp &nbsp &nbsp <a href = "glitches.html"> Glitch FAQ</a> &nbsp &nbsp &nbsp &nbsp <a href = "credits.html"> Credits</a>  <span class="void">&nbsp &nbsp &nbsp &nbsp <a href = "goesNowhere???"> Patreon Placeholder</a></span>   &nbsp &nbsp &nbsp &nbsp <a href = "index_pw.html"> [???]</a>
 </div>
