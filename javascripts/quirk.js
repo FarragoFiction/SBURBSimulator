@@ -143,12 +143,22 @@ function Quirk(){
       return japaneseBullshit[Math.floor(Math.random() * japaneseBullshit.length)]; //true random
     }
 
+    this.replaceEverythingWithRandomJapanese = function(input){
+      var words = input.split(" ");
+      for(var i = 0; i<words.length; i++){
+        words[i] = this.randomJapaneseBullshit();
+      }
+      return words.join(" ");
+    }
+
     this.handleReplacements = function(input){
         var ret = input;
         for(var i = 0; i<this.lettersToReplace.length; i++){
             //$("#debug").append("Replacing: " +this.lettersToReplace[i][0] );
             var replace = this.lettersToReplace[i][1] ;
-            if(replace == "私") replace = this.randomJapaneseBullshit();
+            if(replace == "私"){
+              ret = this.replaceEverythingWithRandomJapanese(ret);
+            }
             ret= ret.replace(new RegExp(this.lettersToReplace[i][0], "g"),replace);
         }
         return ret;
@@ -161,7 +171,9 @@ function Quirk(){
             //console.log("Replacing: " +this.lettersToReplaceIgnoreCase[i][0] )
             //g makes it replace all, i makes it ignore case
             var replace = this.lettersToReplaceIgnoreCase[i][1] ;
-            if(replace == "私") replace = this.randomJapaneseBullshit();
+            if(replace == "私"){
+              ret = this.replaceEverythingWithRandomJapanese(ret);
+            }
             ret= ret.replace(new RegExp(this.lettersToReplaceIgnoreCase[i][0], "ig"),replace);
         }
         return ret;
