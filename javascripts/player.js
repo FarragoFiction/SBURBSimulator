@@ -1973,9 +1973,9 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		console.log(json);
 		var buffer = new ArrayBuffer(11);
 		var uint8View = new Uint8Array(buffer);
-		uint8View[0] = (json.hairColor >> 16 //hair color is 12 bits. chop off 4 on right side, they will be in buffer[1]
-		uint8View[1] =(json.hairColor >> 8
-		uint8View[2] =(json.hairColor >> 0
+		uint8View[0] = json.hairColor >> 16 //hair color is 12 bits. chop off 4 on right side, they will be in buffer[1]
+		uint8View[1] = json.hairColor >> 8
+		uint8View[2] = json.hairColor >> 0
 		uint8View[3] = json.class_name << 4 + json.aspect
 		uint8View[4] = json.victimBlood << 4 + json.bloodColor
 		uint8View[5] = json.interest1Category <<4 + json.interest2Category

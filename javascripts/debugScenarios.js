@@ -11,7 +11,6 @@ function debugLevelTheHellUp(){
 	}
 }
 
-console.log("TODO make new sprites work for easter eggs.")
 
 function coolK1DMode(){
 	alert("H3Y TH3R3 COOL K1D 1S TH1S YOU???")
