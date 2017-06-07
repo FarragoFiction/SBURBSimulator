@@ -2161,15 +2161,6 @@ function getReplayers(){
 
 function initializePlayers(players,session){
 	var replayPlayers = getReplayers();
-	if(rawPlayers && session.session_id == getParameterByName("seed")){ //don't override combo players. they'll be saved as "aliens"
-		console.log("Getting custom players")
-		var uncompressedPlayers = LZString.decompressFromEncodedURIComponent(rawPlayers);
-		var json = JSON.parse(uncompressedPlayers);
-		for(var i = 0; i<json.length; i++){
-			console.log(json[i])
-			replayPlayers.push(objToPlayer(json[i]));
-		}
-	}
 	for(var i = 0; i<players.length; i++){
 		if(replayPlayers[i]) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
 		if(players[i].land){ //don't reinit aliens, their stats stay how they were cloned.
@@ -2190,13 +2181,6 @@ function initializePlayers(players,session){
 
 function initializePlayersNoDerived(players,session){
 	var replayPlayers = getReplayers();
-	if(rawPlayers && session.session_id == getParameterByName("seed")){
-		var uncompressedPlayers = LZString.decompressFromEncodedURIComponent(rawPlayers);
-		var json = JSON.parse(uncompressedPlayers);
-		for(var i = 0; i<json.length; i++){
-		replayPlayers.push(objToPlayer(json[i]));
-	}
-	}
 	for(var i = 0; i<players.length; i++){
 		if(replayPlayers[i]) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
 		players[i].initializeStats();
