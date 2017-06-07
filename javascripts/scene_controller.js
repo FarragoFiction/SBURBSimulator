@@ -465,29 +465,29 @@ function dataBytesAndStringsToPlayer(bytes, strings){
 	 //for bytes, how to convert uri encoded string into char string into unit8 buffer?
 	 var charString = decodeURIComponent(bytes); //i feel so damn l337
 	 //holy shit i haven't had this much fun since i did the color replacement engine a million years ago. this is exactlyt he right flavor of challenging.
-	 player.hairColor = charString[0] << 16 + charString[1] << 8 + charString[2]  
-	 console.log("class + aspect is: " + charString[3]);
-	 player.class_name = intToClassName(charString[3] >> 4)
-	 player.aspect = intToAspect(charString[3] & 15) //get 4 bits on end
+	 player.hairColor = charString[0].charCodeAt(0) << 16 + charString[1].charCodeAt(0) << 8 + charString[2].charCodeAt(0)  
+	 console.log("class + aspect is: " + charString[3].charCodeAt(0));
+	 player.class_name = intToClassName(charString[3].charCodeAt(0) >> 4)
+	 player.aspect = intToAspect(charString[3].charCodeAt(0) & 15) //get 4 bits on end
 	 console.log("class + aspect: " + player.title());
-	 player.victimBlood = intToBloodColor(charString[4] >> 4);
-	 player.bloodColor = intToBloodColor(charString[4] & 15);
-	 player.interest1Category = intToInterestCategory(charString[5] >> 4)
-	 player.interest2Category = intToInterestCategory(charString[5] & 15);
-	 player.grimDark = charString[6] >> 5;
-	 player.isTroll = (1 == (1<<4) & charString[6]) //only is 1 if character at 1<<4 is 1 in charString
-	 player.isDreamSelf = (1 == (1<<3) & charString[6])
-	 player.godTier = (1 == (1<<2) & charString[6])
-	 player.murderMode = (1 == (1<<1) & charString[6])
-	 player.leftMurderMode = (1 == (1) & charString[6])
-	 player.robot = (1 == (1<<7) & charString[7])
-	 player.moon = (1 == (1<<6) & charString[7])
-	 player.dead = (1 == (1<<5) & charString[7])
-	 player.godDestiny = (1 == (1<<4) & charString[7])
-	 player.quirk.favoriteNumber = charString[7] & 15
-	 player.leftHorn = charString[8]
-	 player.rightHorn = charString[9]
-	 player.hair = charString[10]
+	 player.victimBlood = intToBloodColor(charString[4].charCodeAt(0) >> 4);
+	 player.bloodColor = intToBloodColor(charString[4].charCodeAt(0) & 15);
+	 player.interest1Category = intToInterestCategory(charString[5].charCodeAt(0) >> 4)
+	 player.interest2Category = intToInterestCategory(charString[5].charCodeAt(0) & 15);
+	 player.grimDark = charString[6].charCodeAt(0) >> 5;
+	 player.isTroll = (1 == (1<<4) & charString[6].charCodeAt(0)) //only is 1 if character at 1<<4 is 1 in charString
+	 player.isDreamSelf = (1 == (1<<3) & charString[6].charCodeAt(0))
+	 player.godTier = (1 == (1<<2) & charString[6].charCodeAt(0))
+	 player.murderMode = (1 == (1<<1) & charString[6].charCodeAt(0))
+	 player.leftMurderMode = (1 == (1) & charString[6].charCodeAt(0))
+	 player.robot = (1 == (1<<7) & charString[7].charCodeAt(0))
+	 player.moon = (1 == (1<<6) & charString[7].charCodeAt(0))
+	 player.dead = (1 == (1<<5) & charString[7].charCodeAt(0))
+	 player.godDestiny = (1 == (1<<4) & charString[7].charCodeAt(0))
+	 player.quirk.favoriteNumber = charString[7].charCodeAt(0) & 15
+	 player.leftHorn = charString[8].charCodeAt(0)
+	 player.rightHorn = charString[9].charCodeAt(0)
+	 player.hair = charString[10].charCodeAt(0)
 	 console.log("TODO: make sure copyPlayer in player.js takes ALL these fields from this blank player")
 	 return player;
 }
