@@ -439,12 +439,19 @@ function renderAfterlifeURL(){
 	}
 }
 
-function playersToDataBytes(){
-	
+function playersToDataBytes(players){
+	var ret = "";
+	for(var i = 0; i<players.length; i++){
+		ret += players[i]toDataBytes();
+	}
 }
 
-function playersToDataStrings(){
-	
+function playersToDataStrings(players){
+	var ret = ""
+	for(var i = 0; i<players.length; i++){
+		ret += players[i]toDataStrings() + ",";
+	}
+	return ret;
 }
 
 //pair with seed for shareable url for character creator, or pair with nothing for afterlife viewer.
