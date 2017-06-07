@@ -2166,10 +2166,22 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 }
 
+/*
+oh my fucking god 234908u2alsk;d
+javascript, you shitty shitty langugage
+why the fuck does trying to decode a URI that is null, return the string "null"
+why would ANYONE EVER WANT THAT!?????????
+javascript is "WAT"ing me
+because of COURSE "null" == null is fucking false, so my code is like "oh, i must have some players" and then try to fucking parse!!!!!!!!!!!!!!*/
 function getReplayers(){
 	var b = decodeURIComponent(getRawParameterByName("b"));
-	var s = decodeURIComponent(getRawParameterByName("s")).replace(/%23/g, '#').replace(/%26/g, '&');
+	var s = decodeURIComponent(getRawParameterByName("s"));
 	if(!b||!s) return [];
+	if(b== "null" || s == "null") return []; //why was this necesassry????????????????
+	console.log("b is");
+	console.log(b)
+	console.log("s is ")
+	console.log(s)
 	return dataBytesAndStringsToPlayers(b,s);
 }
 
