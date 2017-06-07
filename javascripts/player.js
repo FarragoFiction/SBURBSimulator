@@ -1949,6 +1949,26 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			this.power += 100; //robots are superior
 		}
 	}
+	
+	
+	this.toDataStrings = function(){
+		return ""+this.causeOfDrain + ","+this.causeOfDeath + "," + this.interest1 + "," + this.interst2 + "," + this.chatHandle;
+	}
+	
+	/*
+		2 bytes: hairColor, favoriteNumber
+		1 byte: class/asspect
+		1 byte victimBlood, bloodColor
+		1 byte interest1Category, interest2Category
+		1 byte griDark,isTroll, isDreamSelf, isGodTier, murderMode, leftMurderMode
+		1 byte extra binaries, like robotMode,moon, dead, godTierDestiny?.
+		1 byte  leftHorn
+		1byte  rightHorn
+		1byte hair
+	*/
+	this.toDataBytes = function(){
+		
+	}
 
 	//this seems to NEVER be called for ghosts.  instead of things needed to render, can make this about char creator
 	this.toJSON = function(){
