@@ -508,6 +508,7 @@ function dataBytesAndStringsToPlayer(charString, str_arr){
 	 player.interest1Category = intToInterestCategory(charString.charCodeAt(5) >> 4)
 	 player.interest2Category = intToInterestCategory(charString.charCodeAt(5) & 15);
 	 player.grimDark = charString.charCodeAt(6) >> 5;
+	 console.log("is troll is: " + ((1<<4) & charString.charCodeAt(6)))
 	 player.isTroll = 1 == ((1<<4) & charString.charCodeAt(6)) //only is 1 if character at 1<<4 is 1 in charString
 	 player.isDreamSelf = 1 == ((1<<3) & charString.charCodeAt(6))
 	 player.godTier = 1 == ((1<<2) & charString.charCodeAt(6))
