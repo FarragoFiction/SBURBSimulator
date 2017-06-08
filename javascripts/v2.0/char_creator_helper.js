@@ -65,7 +65,7 @@ function CharacterCreatorHelper(players){
 		return str;
 	}
 
-	this.drawTabs = function(){
+	this.drawTabs = function(player){
 		var str = "<div id = 'tabs'"+player.id + " class='optionTab'>";
 		str += "DropDowns"
 		str += "CheckBoxes"
