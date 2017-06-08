@@ -66,12 +66,12 @@ function CharacterCreatorHelper(players){
 	}
 
 	this.drawTabs = function(player){
-		var str = "<div id = 'tabs'"+player.id + " class='optionTab'>";
-		str += "DropDowns"
-		str += "CheckBoxes"
-		str += "TextBoxes"
-		str += "CanvasSummary"
-		str += "Data"
+		var str = "<div id = 'tabs'"+player.id + " class='optionTabs'>";
+		str += "<span class='optionTab' DropDowns</span>"
+		str += "<span class='optionTab' CheckBoxes</span>"
+		str += "<span class='optionTab' TextBoxes</span>"
+		str += "<span class='optionTab' CanvasSummary</span>"
+		str += "<span class='optionTab' Data</span>"
 		str += "</div>"
 		return str;
 	}
