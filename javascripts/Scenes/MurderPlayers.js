@@ -155,6 +155,7 @@ function MurderPlayers(session){
 			var m = this.murderers[i];
 			var worstEnemy = m.getWorstEnemyFromList(this.session.availablePlayers);
 			if(worstEnemy) m.interactionEffect(worstEnemy);
+			if(worstEnemy && worstEnemy.sprite.name == "sprite") console.log("trying to kill somebody not in the medium yet: " + worstEnemy.title() + " in session: " + this.session.session_id)
 			var living = findLivingPlayers(this.session.players)
 			removeFromArray(worstEnemy, living)
 			var ausp = getRandomElementFromArray(living)
@@ -253,7 +254,9 @@ function MurderPlayers(session){
 				}else{
 					if(!m.dead && worstEnemy && !this.canCatch(m,worstEnemy)){
 						//console.log("murder thwarted by mobility: " + this.session.session_id)
-						if(worstEnemy.aspect == "Void"){
+						if(worstEnemy.sprite.name == "sprite"){
+							ret += " The " + m.htmlTitle() + " is too enraged to think things through.  The " + worstEnemy.htmlTitle() + " that they want to kill isn't even in the Medium, yet, dunkass!"
+						}else if(worstEnemy.aspect == "Void"){
 							console.log("void avoiding murderer: " + this.session.session_id)
 							ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! It's like they're fucking INVISIBLE or something. It's hard to stay enraged while wandering around, lost."
 						}else if (worstEnemy.aspect == "Space"){
@@ -274,6 +277,7 @@ function MurderPlayers(session){
 
 
 	this.canCatch = function(m, worstEnemy){
+		if(worstEnemy.sprite.name == "sprite") return false; //not in medium, dunkass.
 		if(worstEnemy.mobility > m.mobility) return false;
 		if(worstEnemy.aspect == "Void" && worstEnemy.isVoidAvailable() && worstEnemy.power >50) return false;
 		if(worstEnemy.aspect == "Space" && worstEnemy.power > 50){
