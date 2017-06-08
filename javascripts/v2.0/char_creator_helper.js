@@ -139,7 +139,39 @@ function CharacterCreatorHelper(players){
 ``//each tab on click changes it's class to selected, and all the other tabs to unselected
 	//and similar changes the display value of the form contents.
 	this.wireUpTabs = function(player){
+		var ddTab = $("#ddTab" +player.id );
+		var cbTab =$ ("#cbTab" +player.id );
+		var tbTab =$ ("#tbTab" +player.id );
+		var csTab =$ ("#csTab" +player.id );
+		var dataTab =$ ("#dataTab" +player.id );
+		var that = this;
+		ddTab.click(function(){
+			that.selectTab(ddTab, [cdTab, tbTab, csTab, dataTab]);
+		});
 
+		tbTab.click(function(){
+			tbTab.selectTab(tbTab, [ddTab,cdTab, csTab, dataTab]);
+		});
+
+		csTab.click(function(){
+			that.selectTab(csTab, [ddTab,cdTab, tbTab, dataTab]);
+		});
+
+		cbTab.click(function(){
+			that.selectTab(cbTab, [cdTab, tbTab, csTab, dataTab]);
+		});
+
+		dataTab.click(function(){
+			that.selectTab(dataTab, [ddTab, cdTab, tbTab, csTab]);
+		});
+
+	}
+
+	this.selectTab = function(selected, unselected){
+		selected.addClass("optionTabSelected")
+		for(var i = 0; i<unselected.length; i++){
+			unselected[i].removeClass("optionTabSelected");
+		}
 	}
 
 	this.wireUpPlayerDropDowns = function(player){
