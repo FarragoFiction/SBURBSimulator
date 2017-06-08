@@ -2174,8 +2174,9 @@ why would ANYONE EVER WANT THAT!?????????
 javascript is "WAT"ing me
 because of COURSE "null" == null is fucking false, so my code is like "oh, i must have some players" and then try to fucking parse!!!!!!!!!!!!!!*/
 function getReplayers(){
-	var b = decodeURIComponent(getRawParameterByName("b"));
-	var s = decodeURIComponent(getRawParameterByName("s"));
+//	var b = LZString.decompressFromEncodedURIComponent(getRawParameterByName("b"));
+	var b = decodeURIComponent(LZString.decompressFromEncodedURIComponent(getRawParameterByName("b")));
+	var s = LZString.decompressFromEncodedURIComponent(getRawParameterByName("s"));
 	if(!b||!s) return [];
 	if(b== "null" || s == "null") return []; //why was this necesassry????????????????
 	console.log("b is");
