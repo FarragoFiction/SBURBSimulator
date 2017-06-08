@@ -19,6 +19,7 @@ function CharacterCreatorHelper(players){
 		str += "<div class='createdCharacter'>"
 		str += "<canvas class = 'createdCharacterCanvas' id='canvas" +divId + "' width='" +400 + "' height="+300 + "'>  </canvas>";
 		str += "<div class = 'charOptions'>"
+		str += this.drawTabs(player);
 		str += this.drawDropDowns(player);
 		str += this.drawCheckBoxes(player);
 		str += this.drawTextBoxes(player);
@@ -60,6 +61,17 @@ function CharacterCreatorHelper(players){
 		str += "Right Horn: " + this.drawOneRightHornDropDown(player);
 		str += "BloodColor: " + this.drawOneBloodColorDropDown(player);
 		str += "Favorite Number: " + this.drawOneFavoriteNumberDropDown(player);
+		str += "</div>"
+		return str;
+	}
+
+	this.drawTabs = function(){
+		var str = "<div id = 'tabs'"+player.id + " class='optionTab'>";
+		str += "DropDowns"
+		str += "CheckBoxes"
+		str += "TextBoxes"
+		str += "CanvasSummary"
+		str += "Data"
 		str += "</div>"
 		return str;
 	}
