@@ -53,16 +53,16 @@ function CharacterCreatorHelper(players){
 
 	}
 
-	this.drawDropDowns(player){
+	this.drawDropDowns = function(player){
 
 	}
 
-	this.drawCheckBoxes(player){
+	this.drawCheckBoxes = function(player){
 
 	}
 
 	//includes interest drop downs.
-	this.drawTextBoxes(player){
+	this.drawTextBoxes=function(player){
 
 	}
 
