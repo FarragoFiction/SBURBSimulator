@@ -20,11 +20,13 @@ function CharacterCreatorHelper(players){
 		str += "<canvas class = 'createdCharacterCanvas' id='canvas" +divId + "' width='" +400 + "' height="+300 + "'>  </canvas>";
 		str += "<div class = 'charOptions'>"
 		str += this.drawTabs(player);
+		str += "<div class = 'charOptionsForms'>"
 		str += this.drawDropDowns(player);
 		str += this.drawCheckBoxes(player);
 		str += this.drawTextBoxes(player);
 		str += this.drawCanvasSummary(player);
 		str += this.drawDataBox(player);
+		str += "</div>"
 		str += this.drawDeleteButton(player);
 		str += this.drawHelpText(player);
 		str += "</div>"
@@ -67,11 +69,11 @@ function CharacterCreatorHelper(players){
 
 	this.drawTabs = function(player){
 		var str = "<div id = 'tabs'"+player.id + " class='optionTabs'>";
-		str += "<span class='optionTab' DropDowns</span>"
-		str += "<span class='optionTab' CheckBoxes</span>"
-		str += "<span class='optionTab' TextBoxes</span>"
-		str += "<span class='optionTab' CanvasSummary</span>"
-		str += "<span class='optionTab' Data</span>"
+		str += "<span class='optionTabSelected'> DropDowns</span>"
+		str += "<span class='optionTab'> CheckBoxes</span>"
+		str += "<span class='optionTab'> TextBoxes</span>"
+		str += "<span class='optionTab'> CanvasSummary</span>"
+		str += "<span class='optionTab'> Data</span>"
 		str += "</div>"
 		return str;
 	}
