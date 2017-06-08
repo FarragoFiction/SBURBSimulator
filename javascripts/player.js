@@ -1827,7 +1827,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			this.hp = 11111111111;
 		}
 
-		if(this.isTroll){
+		if(this.isTroll && this.bloodColor != "#ff0000"){
 			this.currentHP += 2* bloodColorToInt(this.bloodColor); //high blood are STRONG
 			this.hp += 2* bloodColorToInt(this.bloodColor); //high blood are STRONG
 		}
@@ -1954,7 +1954,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			this.power += 100; //robots are superior
 		}
 
-		if(this.isTroll){
+		if(this.isTroll && this.bloodColor != "#ff0000"){
 			this.power += 2* bloodColorToInt(this.bloodColor); //high blood are STRONG
 		}
 	}
