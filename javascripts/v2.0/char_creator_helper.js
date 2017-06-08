@@ -46,8 +46,8 @@ function CharacterCreatorHelper(players){
 		drawSpriteFromScratch(p1SpriteBuffer,player)
 		//drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff")
 		copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,0,0)
-		this.wireUpTabs(player);
-		this.wireUpPlayerDropDowns(player);
+		//this.wireUpTabs(player);
+		//this.wireUpPlayerDropDowns(player);
 		this.wireUpInterests(player);
 
 	}
@@ -70,11 +70,11 @@ function CharacterCreatorHelper(players){
 
 	this.drawTabs = function(player){
 		var str = "<div id = 'tabs'"+player.id + " class='optionTabs'>";
-		str += "<span id = 'ddTab" +player.id "'class='optionTabSelected'> DropDowns</span>"
-		str += "<span id = 'cbTab" +player.id "'class='optionTab'> CheckBoxes</span>"
-		str += "<span id = 'tbTab" +player.id "'class='optionTab'> TextBoxes</span>"
-		str += "<span id = 'csTab" +player.id "'class='optionTab'> CanvasSummary</span>"
-		str += "<span id = 'dataTab" +player.id "'class='optionTab'> Data</span>"
+		str += "<span id = 'ddTab" +player.id + "'class='optionTabSelected'> DropDowns</span>"
+		str += "<span id = 'cbTab" +player.id + "'class='optionTab'> CheckBoxes</span>"
+		str += "<span id = 'tbTab" +player.id + "'class='optionTab'> TextBoxes</span>"
+		str += "<span id = 'csTab" +player.id + "'class='optionTab'> CanvasSummary</span>"
+		str += "<span id = 'dataTab" +player.id + "'class='optionTab'> Data</span>"
 		str += "</div>"
 		return str;
 	}
