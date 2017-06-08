@@ -1826,6 +1826,11 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			this.currentHP = 11111111111;
 			this.hp = 11111111111;
 		}
+
+		if(this.isTroll){
+			this.currentHP += 2* bloodColorToInt(this.bloodColor); //high blood are STRONG
+			this.hp += 2* bloodColorToInt(this.bloodColor); //high blood are STRONG
+		}
 	}
 
 	this.initSpriteCanvas = function(){
@@ -1947,6 +1952,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 		if(this.robot){
 			this.power += 100; //robots are superior
+		}
+
+		if(this.isTroll){
+			this.power += 2* bloodColorToInt(this.bloodColor); //high blood are STRONG
 		}
 	}
 
