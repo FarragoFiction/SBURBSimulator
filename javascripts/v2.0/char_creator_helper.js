@@ -46,8 +46,8 @@ function CharacterCreatorHelper(players){
 		drawSpriteFromScratch(p1SpriteBuffer,player)
 		//drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff")
 		copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,0,0)
-		//this.wireUpTabs(player);
-		//this.wireUpPlayerDropDowns(player);
+		this.wireUpTabs(player);
+		this.wireUpPlayerDropDowns(player);
 		this.wireUpInterests(player);
 
 	}
@@ -136,43 +136,7 @@ function CharacterCreatorHelper(players){
 			drawSinglePlayer(canvas, player);
 	}
 
-``//each tab on click changes it's class to selected, and all the other tabs to unselected
-	//and similar changes the display value of the form contents.
-	this.wireUpTabs = function(player){
-		var ddTab = $("#ddTab" +player.id );
-		var cbTab =$ ("#cbTab" +player.id );
-		var tbTab =$ ("#tbTab" +player.id );
-		var csTab =$ ("#csTab" +player.id );
-		var dataTab =$ ("#dataTab" +player.id );
-		var that = this;
-		ddTab.click(function(){
-			that.selectTab(ddTab, [cdTab, tbTab, csTab, dataTab]);
-		});
 
-		tbTab.click(function(){
-			tbTab.selectTab(tbTab, [ddTab,cdTab, csTab, dataTab]);
-		});
-
-		csTab.click(function(){
-			that.selectTab(csTab, [ddTab,cdTab, tbTab, dataTab]);
-		});
-
-		cbTab.click(function(){
-			that.selectTab(cbTab, [cdTab, tbTab, csTab, dataTab]);
-		});
-
-		dataTab.click(function(){
-			that.selectTab(dataTab, [ddTab, cdTab, tbTab, csTab]);
-		});
-
-	}
-
-	this.selectTab = function(selected, unselected){
-		selected.addClass("optionTabSelected")
-		for(var i = 0; i<unselected.length; i++){
-			unselected[i].removeClass("optionTabSelected");
-		}
-	}
 
 	this.wireUpPlayerDropDowns = function(player){
 			var c2 =  $("#classNameID" +player.id) ;
@@ -247,6 +211,46 @@ function CharacterCreatorHelper(players){
 					that.redrawSinglePlayer(player);
 			});
 	}
+
+	//each tab on click changes it's class to selected, and all the other tabs to unselected
+		//and similar changes the display value of the form contents.
+		this.wireUpTabs = function(player){
+			var ddTab = $("#ddTab" +player.id );
+			var cbTab =$ ("#cbTab" +player.id );
+			var tbTab =$ ("#tbTab" +player.id );
+			var csTab =$ ("#csTab" +player.id );
+			var dataTab =$ ("#dataTab" +player.id );
+			var that = this;
+			ddTab.click(function(){
+				that.selectTab(ddTab, [cbTab, tbTab, csTab, dataTab]);
+			});
+
+			tbTab.click(function(){
+				tbTab.selectTab(tbTab, [ddTab,cbTab, csTab, dataTab]);
+			});
+
+			csTab.click(function(){
+				that.selectTab(csTab, [ddTab,cbTab, tbTab, dataTab]);
+			});
+
+			cbTab.click(function(){
+				that.selectTab(cbTab, [cbTab, tbTab, csTab, dataTab]);
+			});
+
+			dataTab.click(function(){
+				that.selectTab(dataTab, [ddTab, cbTab, tbTab, csTab]);
+			});
+
+		}
+
+		this.selectTab = function(selected, unselected){
+			selected.addClass("optionTabSelected")
+			for(var i = 0; i<unselected.length; i++){
+				unselected[i].removeClass("optionTabSelected");
+			}
+		}
+
+
 
 	this.wireUpInterests = function(player){
 		//first, choosing interest category should change the contents of interestDrop1 or 2 (but NOT any value in the player or the text box.)
