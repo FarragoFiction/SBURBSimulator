@@ -49,7 +49,7 @@ function CharacterCreatorHelper(players){
 	}
 
 	this.drawDropDowns = function(player){
-		var str = "";
+		var str = "<div id = 'dropDowns' class='optionBox'>";
 		str += (this.drawOneClassDropDown(player));
 		str += ("of");
 		str+= (this.drawOneAspectDropDown(player));
@@ -60,34 +60,43 @@ function CharacterCreatorHelper(players){
 		str += "Right Horn: " + this.drawOneRightHornDropDown(player);
 		str += "BloodColor: " + this.drawOneBloodColorDropDown(player);
 		str += "Favorite Number: " + this.drawOneFavoriteNumberDropDown(player);
+		str += "</div>"
 		return str;
 	}
 
 	this.drawCheckBoxes = function(player){
-
+		var str = "<div id = 'checkBoxes'"+player.id + " class='optionBox'>";
+		str += "TODO"
+		str += "</div>"
+		return str;
 	}
 
 	//includes interest drop downs.
 	this.drawTextBoxes = function(player){
-		var str = "";
+		var str = "<div id = 'textBox'"+player.id + " class='optionBox'>";
 		str += this.drawInterests(player);
+		str += "</div>"
 		return str;
 	}
 
 	//draws player a second time, along with canvas summary of player (no quirks, no derived stuff like land, but displays it all as an image.)
 	//bonus if i can somehow figure out how to ALSO make it encode the save data, but baby steps.
 	this.drawCanvasSummary = function(player){
-		var str = "";
+		var str = "<div id = 'canvasSummary'"+player.id + " class='optionBox'>";
+		str += "TODO"
+		str += "</div>"
 		return str;
 	}
 
 	//just an empty div where, when you mouse over a form element it'll helpfully explain what that means. even classpect stuff???
+	//not sure how i want to do this. needs to always be visibile. maybe tool tip instead of extra div???
 	this.drawHelpText = function(player){
 		var str = "";
+
 		return str;
 	}
 
-	//you monster.  create player button will be not on the player level.
+	//you monster.  create player button will be not on the player level. upper right corner
 	this.drawDeleteButton = function(player){
 		var str = "";
 		return str;
@@ -97,7 +106,9 @@ function CharacterCreatorHelper(players){
 	//any changes you make to the sprite are written here too, and "copy to clipboard" button.
 	//maybe also a save button (that downloads it as .txt file)
 	this.drawDataBox = function(player){
-		var str = "";
+		var str = "<div id = 'dataBox'"+player.id + " class='optionBox'>";
+		str += "TODO"
+		str += "</div>"
 		return str;
 	}
 
