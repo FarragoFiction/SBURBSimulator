@@ -213,11 +213,16 @@ body{
 
 .createdCharacterCanvas{
   width: 400px;
+	height: 300px;
 	display: inline-block;
 }
 
 .charOptions{
-	width:400px;
+	vertical-align: top;
+	border: 3px solid black;
+	padding: 10px;
+	width:570px;
+	height: 300px;
 	background-color: grey;
 	display: inline-block;
 }
