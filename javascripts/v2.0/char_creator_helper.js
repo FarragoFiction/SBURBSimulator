@@ -62,7 +62,30 @@ function CharacterCreatorHelper(players){
 	}
 
 	//includes interest drop downs.
-	this.drawTextBoxes=function(player){
+	this.drawTextBoxes = function(player){
+
+	}
+
+	//draws player a second time, along with canvas summary of player (no quirks, no derived stuff like land, but displays it all as an image.)
+	//bonus if i can somehow figure out how to ALSO make it encode the save data, but baby steps.
+	this.drawCanvasSummary = function(player){
+
+	}
+
+	//just an empty div where, when you mouse over a form element it'll helpfully explain what that means. even classpect stuff???
+	this.drawHelpText = function(player){
+
+	}
+
+	//you monster.  create player button will be not on the player level.
+	this.drawDeleteButton = function(player){
+
+	}
+
+	//place where you can load data (with load button).
+	//any changes you make to the sprite are written here too, and "copy to clipboard" button.
+	//maybe also a save button (that downloads it as .txt file)
+	this.drawDataBox = function(player){
 
 	}
 
