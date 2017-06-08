@@ -53,6 +53,19 @@ function CharacterCreatorHelper(players){
 
 	}
 
+	this.drawDropDowns(player){
+
+	}
+
+	this.drawCheckBoxes(player){
+
+	}
+
+	//includes interest drop downs.
+	this.drawTextBoxes(player){
+
+	}
+
 	this.redrawSinglePlayer = function(player){
 		  player.renderSelf();
 			var divId = "canvas" + player.id;
@@ -136,7 +149,7 @@ function CharacterCreatorHelper(players){
 					that.redrawSinglePlayer(player);
 			});
 	}
-	
+
 	this.wireUpInterests = function(player){
 		//first, choosing interest category should change the contents of interestDrop1 or 2 (but NOT any value in the player or the text box.)
 		var interestCategory1Dom =  $("#interestCategory1" +player.id);
@@ -150,22 +163,22 @@ function CharacterCreatorHelper(players){
 					var icDropDown = $('[name="interestCategory1' +player.id +'"] option:selected')
 					interest1DropDom.html(that.drawInterestDropDown(icDropDown.val(), 1, player))
 		});
-		
+
 		interestCategory2Dom.change(function() {
 					var icDropDown = $('[name="interestCategory2' +player.id +'"] option:selected')
 					interest2DropDom.html(that.drawInterestDropDown(icDropDown.val(), 2, player))
 		});
-		
+
 		interest1DropDom.change(function() {
 					var icDropDown = $('[name="interestDrop1' +player.id +'"] option:selected')
 					interest1TextDom.val(icDropDown.val());
 		});
-		
+
 		interest2DropDom.change(function() {
 					var icDropDown = $('[name="interestDrop2' +player.id +'"] option:selected')
 					interest2TextDom.val(icDropDown.val());
 		});
-		
+
 	}
 
 	//(1,60)
@@ -181,7 +194,7 @@ function CharacterCreatorHelper(players){
 		html += '</select>'
 		return html;
 	}
-	
+
 	this.drawInterests = function(player){
 		var str = "";
 		str += " CategoryInterest1 " + this.drawInterestCategoryDropDown(1,player);
@@ -192,14 +205,14 @@ function CharacterCreatorHelper(players){
 		str += " WriteableInterest2 " + this.drawInterestTextBox(2,player);
 		return str;
 	}
-	
+
 	this.drawInterestTextBox = function(num,player){
 		var interestToCheck = player.interest1;
 		if(num == 2) interestToCheck = player.interest2;
 		var html = "<input type='text' id = 'interest" + num+ player.id + "' name='interest" +num+player.id +"' + value='" + interestToCheck +"'> </input>"
 		return html;
 	}
-	
+
 	this.drawInterestDropDown = function(category, num, player){
 		var html = "<select id = 'interestDrop" + num+ player.id + "' name='interestDrop" +num+player.id +"'>";
 		var interestsInCategory = interestCategoryToInterestList(category);
@@ -216,7 +229,7 @@ function CharacterCreatorHelper(players){
 		html += '</select>'
 		return html;
 	}
-	
+
 	this.drawInterestCategoryDropDown = function(num,player){
 		var html = "<select id = 'interestCategory" + num+ player.id + "' name='interestCategory" +num+player.id +"'>";
 		for(var i = 0; i< interestCategories.length; i++){
