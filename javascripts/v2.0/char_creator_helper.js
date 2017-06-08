@@ -17,7 +17,7 @@ function CharacterCreatorHelper(players){
 		var divId =  player.id;
 		//divId = divId.replace(/\s+/g, '')
 		str += "<div class='createdCharacter'>"
-		var canvasHTML = "<canvas class = 'createdCharacterCanvas' id='canvas" +divId + "' width='" +400 + "' height="+300 + "'>  </canvas>";
+		str += "<canvas class = 'createdCharacterCanvas' id='canvas" +divId + "' width='" +400 + "' height="+300 + "'>  </canvas>";
 		str += "<div class = 'charOptions'>"
 		str += this.drawDropDowns(player);
 		str += this.drawCheckBoxes(player);
@@ -25,10 +25,9 @@ function CharacterCreatorHelper(players){
 		str += this.drawCanvasSummary(player);
 		str += this.drawDataBox(player);
 		str += this.drawDeleteButton(player);
-		str += "</div>"
 		str += this.drawHelpText(player);
+		str += "</div>"
 
-		str += (canvasHTML);
 		str += "</div>"
 		this.div.append(str);
 

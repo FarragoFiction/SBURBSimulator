@@ -207,15 +207,19 @@ body{
 }
 
 .createdCharacter{
-  width: 400px;
+  width: 1000px;
+
 }
 
 .createdCharacterCanvas{
   width: 400px;
+	display: inline-block;
 }
 
 .charOptions{
-	width:1000px;
+	width:400px;
+	background-color: grey;
+	display: inline-block;
 }
 
 .stats{
