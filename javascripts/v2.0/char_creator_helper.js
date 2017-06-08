@@ -19,17 +19,11 @@ function CharacterCreatorHelper(players){
 		str += "<div class='createdCharacter'>"
 		var canvasHTML = "<canvas class = 'createdCharacterCanvas' id='canvas" +divId + "' width='" +400 + "' height="+300 + "'>  </canvas>";
 		str += "<div class = 'charOptions'>"
-		str += (this.drawOneClassDropDown(player));
-		str += ("of");
-		str+= (this.drawOneAspectDropDown(player));
-		str += "Hair Type:" + this.drawOneHairDropDown(player);
-		str += "Hair Color:" + this.drawOneHairColorPicker(player);
-		str += "Species: " + this.drawOneSpeciesDropDown(player);
-		str += "Left Horn: " + this.drawOneLeftHornDropDown(player);
-		str += "Right Horn: " + this.drawOneRightHornDropDown(player);
-		str += "BloodColor: " + this.drawOneBloodColorDropDown(player);
-		str += "Favorite Number: " + this.drawOneFavoriteNumberDropDown(player);
-		str += this.drawInterests(player);
+		str += this.drawDropDowns(player);
+		str += this.drawCheckBoxes(player);
+		str += this.drawTextBoxes(player);
+		str += this.drawCanvasSummary(player);
+		str += this.drawDataBox(player);
 		str += "</div>"
 
 		str += (canvasHTML);
@@ -54,7 +48,18 @@ function CharacterCreatorHelper(players){
 	}
 
 	this.drawDropDowns = function(player){
-
+		var str = "";
+		str += (this.drawOneClassDropDown(player));
+		str += ("of");
+		str+= (this.drawOneAspectDropDown(player));
+		str += "Hair Type:" + this.drawOneHairDropDown(player);
+		str += "Hair Color:" + this.drawOneHairColorPicker(player);
+		str += "Species: " + this.drawOneSpeciesDropDown(player);
+		str += "Left Horn: " + this.drawOneLeftHornDropDown(player);
+		str += "Right Horn: " + this.drawOneRightHornDropDown(player);
+		str += "BloodColor: " + this.drawOneBloodColorDropDown(player);
+		str += "Favorite Number: " + this.drawOneFavoriteNumberDropDown(player);
+		return str;
 	}
 
 	this.drawCheckBoxes = function(player){
@@ -63,7 +68,9 @@ function CharacterCreatorHelper(players){
 
 	//includes interest drop downs.
 	this.drawTextBoxes = function(player){
-
+		var str = "";
+		str += this.drawInterests(player);
+		return str;
 	}
 
 	//draws player a second time, along with canvas summary of player (no quirks, no derived stuff like land, but displays it all as an image.)
