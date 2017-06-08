@@ -234,6 +234,7 @@ body{
 	background-color: lightgrey;
 	border: 2px solid black;
 	border-bottom: none;
+	border-right: none;
 }
 
 .optionTabs{

@@ -226,7 +226,7 @@ function CharacterCreatorHelper(players){
 			});
 
 			tbTab.click(function(){
-				tbTab.selectTab(tbTab, [ddTab,cbTab, csTab, dataTab]);
+				that.selectTab(tbTab, [ddTab,cbTab, csTab, dataTab]);
 			});
 
 			csTab.click(function(){
@@ -234,7 +234,7 @@ function CharacterCreatorHelper(players){
 			});
 
 			cbTab.click(function(){
-				that.selectTab(cbTab, [cbTab, tbTab, csTab, dataTab]);
+				that.selectTab(cbTab, [ddTab, tbTab, csTab, dataTab]);
 			});
 
 			dataTab.click(function(){
@@ -244,6 +244,7 @@ function CharacterCreatorHelper(players){
 		}
 
 		this.selectTab = function(selected, unselected){
+			console.log(selected)
 			selected.addClass("optionTabSelected")
 			for(var i = 0; i<unselected.length; i++){
 				unselected[i].removeClass("optionTabSelected");
