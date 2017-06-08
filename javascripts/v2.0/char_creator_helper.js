@@ -24,7 +24,9 @@ function CharacterCreatorHelper(players){
 		str += this.drawTextBoxes(player);
 		str += this.drawCanvasSummary(player);
 		str += this.drawDataBox(player);
+		str += this.drawDeleteButton(player);
 		str += "</div>"
+		str += this.drawHelpText(player);
 
 		str += (canvasHTML);
 		str += "</div>"
@@ -76,24 +78,28 @@ function CharacterCreatorHelper(players){
 	//draws player a second time, along with canvas summary of player (no quirks, no derived stuff like land, but displays it all as an image.)
 	//bonus if i can somehow figure out how to ALSO make it encode the save data, but baby steps.
 	this.drawCanvasSummary = function(player){
-
+		var str = "";
+		return str;
 	}
 
 	//just an empty div where, when you mouse over a form element it'll helpfully explain what that means. even classpect stuff???
 	this.drawHelpText = function(player){
-
+		var str = "";
+		return str;
 	}
 
 	//you monster.  create player button will be not on the player level.
 	this.drawDeleteButton = function(player){
-
+		var str = "";
+		return str;
 	}
 
 	//place where you can load data (with load button).
 	//any changes you make to the sprite are written here too, and "copy to clipboard" button.
 	//maybe also a save button (that downloads it as .txt file)
 	this.drawDataBox = function(player){
-
+		var str = "";
+		return str;
 	}
 
 	this.redrawSinglePlayer = function(player){
