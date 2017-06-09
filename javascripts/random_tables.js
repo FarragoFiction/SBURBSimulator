@@ -1051,7 +1051,7 @@ function intToAspect(num){
 }
 
 function bloodColorToBoost(color){
-	 return 3* bloodColorToInt(this.bloodColor); //high blood are STRONG
+	 return 3* bloodColorToInt(color); //high blood are STRONG
 }
 
 function bloodColorToInt(color){
