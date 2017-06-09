@@ -118,7 +118,7 @@ function CharacterCreatorHelper(players){
 	//just an empty div where, when you mouse over a form element it'll helpfully explain what that means. even classpect stuff???
 	//not sure how i want to do this. needs to always be visibile. maybe tool tip instead of extra div???
 	this.drawHelpText = function(player){
-		var str = "<div id = 'helpText" + player.id + "' class ='helpText'>Could this help you???</div>";
+		var str = "<div id = 'helpText" + player.id + "' class ='helpText'>...</div>";
 
 		return str;
 	}
@@ -154,7 +154,7 @@ function CharacterCreatorHelper(players){
 	
 	this.generateClassHelp = function(topic, specific){
 		if(specific == "Maid") return "A Maid distributes their associated aspect to the entire party and starts with a lot of it.";
-		if(specific == "Mage") return "A Mage increases their own associated aspect and starts with a lot of it.";
+		if(specific == "Mage") return "A Mage increases their own associated aspect and starts with a lot of it. They know a lot about SBURB/SGRUB.";
 		if(specific == "Knight") return "A Knight increases their own associated aspect and starts with a lot of it.";
 		if(specific == "Rogue") return "A Rogue increases the parties associated aspect, steals it from someone to give to everyone, and starts with a lot it.";
 		if(specific == "Sylph") return "A Sylph distributes their associated aspect to the entire party and start with a lot of it. They give an extra boost to players they meet in person.";
@@ -261,30 +261,36 @@ function CharacterCreatorHelper(players){
 			var textBoxes = $("#textBoxes" + player.id);
 			var canvasSummary = $("#canvasSummary" + player.id);
 			var dataBox = $("#dataBox" + player.id);
+			var helpText = $("#helpText"+player.id);
 			var that = this;
 			ddTab.click(function(){
 				that.selectTab(ddTab, [cbTab, tbTab, csTab, dataTab]);
 				that.displayDiv(dropDowns, [checkBoxes, textBoxes, canvasSummary, dataBox])
+				helpText.html("...")
 			});
 
 			tbTab.click(function(){
 				that.selectTab(tbTab, [ddTab,cbTab, csTab, dataTab]);
 				that.displayDiv(textBoxes, [checkBoxes, dropDowns, canvasSummary, dataBox])
+				helpText.html("...")
 			});
 
 			csTab.click(function(){
 				that.selectTab(csTab, [ddTab,cbTab, tbTab, dataTab]);
 				that.displayDiv(canvasSummary, [checkBoxes, textBoxes, dropDowns, dataBox])
+				helpText.html("...")
 			});
 
 			cbTab.click(function(){
 				that.selectTab(cbTab, [ddTab, tbTab, csTab, dataTab]);
 				that.displayDiv(checkBoxes, [dropDowns, textBoxes, canvasSummary, dataBox])
+				helpText.html("...")
 			});
 
 			dataTab.click(function(){
 				that.selectTab(dataTab, [ddTab, cbTab, tbTab, csTab]);
 				that.displayDiv(dataBox, [checkBoxes, textBoxes, canvasSummary, dropDowns])
+				helpText.html("...")
 			});
 
 			this.selectTab(ddTab, [cbTab, tbTab, csTab, dataTab])
