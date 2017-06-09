@@ -1089,6 +1089,13 @@ function intToInterestCategory(num){
 	return interestCategories[num];
 }
 
+function moonToColor(moon){
+	if(moon == "Prospit"){
+		return "#ffff00"
+	}else{
+		return "#f092ff"
+	}
+}
 
 
 var moons = ["Prospit", "Derse"];

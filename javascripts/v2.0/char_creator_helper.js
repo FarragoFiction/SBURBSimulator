@@ -69,6 +69,7 @@ function CharacterCreatorHelper(players){
 		str += "</div>"
 		str += "<div class = 'formSection'>"
 		str += "Species: " + this.drawOneSpeciesDropDown(player);
+		str += " Moon: " + this.drawOneMoonDropDown(player);
 		str += "</div>"
 		str += "<div class = 'formSection'>"
 		str += " Left Horn: " + this.drawOneLeftHornDropDown(player);
@@ -94,6 +95,7 @@ function CharacterCreatorHelper(players){
 		return str;
 	}
 
+	//grim dark, godTier, murderMode, leftMurderMode, dreamSelf, dead, moon, robot, godDestiny
 	this.drawCheckBoxes = function(player){
 		var str = "<div id = 'checkBoxes"+player.id + "' class='optionBox'>";
 		str += "TODO"
@@ -155,6 +157,7 @@ function CharacterCreatorHelper(players){
 		if(topic == "Class") return this.generateClassHelp(topic, specific);
 		if(topic == "Aspect") return this.generateAspectHelp(topic, specific);
 		if(topic == "BloodColor") return this.generateBloodColorHelp(topic, specific);
+		if(topic == "Moon") return this.generateMoonHelp(topic, specific);
 		if(topic == "FavoriteNumber") return "Favorite number can affect a Player's quirk, as well as determining a troll's god tier Wings.";
 		if(topic == "Horns") return "Horns are purely cosmetic."
 		if(topic == "Hair") return "Hair is purely cosmetic."
@@ -162,6 +165,12 @@ function CharacterCreatorHelper(players){
 		if(topic == "HairColor") return "Hair color is purely cosmetic. Certain hairstyles will have highlights which are mandated to be the Player's favorite color (which is aspect color for humans and blood color for trolls). "
 		if(topic == "Interests") return "Interests alter how a player speaks (including their skill at finding topics to rap about), some of the rungs on their echeladder, and their derived ChatHandle."
 		return "Help text not found for " + topic + "."
+	}
+	
+	this.generateMoonHelp = function(topic, specific){
+		if(specific == "Prospit") return "Dreamers of Prospit see visions of the inevitable future in the clouds of Skaia. This is not a good thing."
+		if(specific == "Derse") return "Dreamers of Derse are constantly bombarded by the whispers of the Horror Terrors. This is not a good thing."
+		return "Moon help text not found for " + specific + "."
 	}
 	
 	//don't forget red = basically human, and heiress = hates other heiresses and triggered.
@@ -215,6 +224,7 @@ function CharacterCreatorHelper(players){
 			var rightHornDiv  =  $("#rightHornID" +player.id) ;
 			var bloodDiv  =  $("#bloodColorID" +player.id) ;
 			var favoriteNumberDiv  =  $("#favoriteNumberID" +player.id) ;
+			var moonDiv = $("#moonID" +player.id);
 			var helpText = $("#helpText"+player.id);
 
 
@@ -226,9 +236,18 @@ function CharacterCreatorHelper(players){
 					helpText.html(that.generateHelpText("Class",player.class_name));
 					
 			});
+			
+			moonDiv.change(function() {
+					var moonDropDown = $('[name="moon' +player.id +'"] option:selected') 
+					player.moon = moonDropDown.val();
+					that.redrawSinglePlayer(player);
+					moonDiv.css("background-color", moonToColor(player.moon));
+					helpText.html(that.generateHelpText("Moon",player.moon));
+					
+			});
 
 			favoriteNumberDiv.change(function() {
-					var numberDropDown = $('[name="favoriteNumber' +player.id +'"] option:selected') //need to get what is selected inside the .change, otheriise is always the same
+					var numberDropDown = $('[name="favoriteNumber' +player.id +'"] option:selected') 
 					player.quirk.favoriteNumber = numberDropDown.val();
 					that.redrawSinglePlayer(player);
 					helpText.html(that.generateHelpText("FavoriteNumber",player.quirk.favoriteNumber));
@@ -518,6 +537,20 @@ function CharacterCreatorHelper(players){
 		}
 		html += '</select>'
 		return html;
+	}
+	
+	this.drawOneMoonDropDown = function(player){
+		var html = "<select style = 'background: " + moonToColor(player.moon) + "' id = 'moonID" + player.id + "' name='moon" +player.id +"'>";
+		for(var i = 0; i< moons.length; i++){
+			if(moons[i] == player.moon){
+				html += '<option style="background:' + moonToColor(moons[i]) + '" selected = "moon" value="' + moons[i] +'">' + moons[i]+'</option>'
+			}else{
+				html += '<option style="background:' + moonToColor(moons[i]) + '" value="' + moons[i] +'">' + moons[i]+'</option>'
+			}
+		}
+		html += '</select> '
+		return html;
+
 	}
 
 	this.drawOneSpeciesDropDown = function(player){
