@@ -152,6 +152,8 @@ function CharacterCreatorHelper(players){
 		if(topic == "Class") return this.generateClassHelp(topic, specific);
 		if(topic == "Aspect") return this.generateAspectHelp(topic, specific);
 		if(topic == "BloodColor") return this.generateBloodColorHelp(topic, specific);
+		if(topic == "FavoriteNumber") return "Favorite number can effect a Player's quirk, as well as determining a troll's god tier Wings.";
+		if(topic == "Horns") return "Horns are purely cosmetic."
 		return "Help text not found for " + topic + "."
 	}
 	
@@ -222,6 +224,7 @@ function CharacterCreatorHelper(players){
 					var numberDropDown = $('[name="favoriteNumber' +player.id +'"] option:selected') //need to get what is selected inside the .change, otheriise is always the same
 					player.quirk.favoriteNumber = numberDropDown.val();
 					that.redrawSinglePlayer(player);
+					helpText.html(that.generateHelpText("FavoriteNumber",player.quirk.favoriteNumber));
 			});
 
 
@@ -236,24 +239,28 @@ function CharacterCreatorHelper(players){
 				  var aspectDropDown = $('[name="hair' +player.id +'"] option:selected')
 					player.hair = aspectDropDown.val();
 					that.redrawSinglePlayer(player);
+					helpText.html(that.generateHelpText("Hair",player.class_name));
 			});
 
 			hairColorDiv.change(function() {
 					//var aspectDropDown = $('[name="hairColor' +player.id +'"] option:selected')
 					player.hairColor = hairColorDiv.val();
 					that.redrawSinglePlayer(player);
+					helpText.html(that.generateHelpText("HairColor",player.class_name));
 			});
 
 			leftHornDiv.change(function() {
 					var aspectDropDown = $('[name="leftHorn' +player.id +'"] option:selected')
 					player.leftHorn = aspectDropDown.val();
 					that.redrawSinglePlayer(player);
+					helpText.html(that.generateHelpText("Horns",player.class_name));
 			});
 
 			rightHornDiv.change(function() {
 					var aspectDropDown = $('[name="rightHorn' +player.id +'"] option:selected')
 					player.rightHorn = aspectDropDown.val();
 					that.redrawSinglePlayer(player);
+					helpText.html(that.generateHelpText("Horns",player.class_name));
 			});
 
 			bloodDiv.change(function() {
@@ -274,6 +281,7 @@ function CharacterCreatorHelper(players){
 						player.isTroll = false;
 					}
 					that.redrawSinglePlayer(player);
+					helpText.html(that.generateHelpText("Species",player.isTroll));
 			});
 	}
 
