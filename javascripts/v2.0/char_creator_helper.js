@@ -152,7 +152,7 @@ function CharacterCreatorHelper(players){
 		if(topic == "Class") return this.generateClassHelp(topic, specific);
 		if(topic == "Aspect") return this.generateAspectHelp(topic, specific);
 		if(topic == "BloodColor") return this.generateBloodColorHelp(topic, specific);
-		if(topic == "FavoriteNumber") return "Favorite number can effect a Player's quirk, as well as determining a troll's god tier Wings.";
+		if(topic == "FavoriteNumber") return "Favorite number can affect a Player's quirk, as well as determining a troll's god tier Wings.";
 		if(topic == "Horns") return "Horns are purely cosmetic."
 		if(topic == "Hair") return "Hair is purely cosmetic."
 		if(topic == "Species") return "Trolls are ever so slightly less mentally stable than humans and tend towards FAR more annoying quirks."
