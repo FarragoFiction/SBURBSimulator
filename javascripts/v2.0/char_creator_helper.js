@@ -26,10 +26,12 @@ function CharacterCreatorHelper(players){
 		str += this.drawTextBoxes(player);
 		str += this.drawCanvasSummary(player);
 		str += this.drawDataBox(player);
-		str += "</div>"
 		str += this.drawDeleteButton(player);
 		str += this.drawHelpText(player);
 		str += "</div>"
+		
+		str += "</div>"
+		
 
 		str += "</div>"
 		this.div.append(str);
@@ -69,8 +71,6 @@ function CharacterCreatorHelper(players){
 		str += "<div class = 'formSection'>"
 		str += " Left Horn: " + this.drawOneLeftHornDropDown(player);
 		str += " Right Horn: " + this.drawOneRightHornDropDown(player);
-		str += "</div>"
-		str += "<div class = 'formSection'>"
 		str += " BloodColor: " + this.drawOneBloodColorDropDown(player);
 		str += "</div>"
 		str += "<div class = 'formSection'>"
@@ -118,7 +118,7 @@ function CharacterCreatorHelper(players){
 	//just an empty div where, when you mouse over a form element it'll helpfully explain what that means. even classpect stuff???
 	//not sure how i want to do this. needs to always be visibile. maybe tool tip instead of extra div???
 	this.drawHelpText = function(player){
-		var str = "";
+		var str = "<div id = 'helpText" + player.id + "' class ='helpText'>Could this help you???</div>";
 
 		return str;
 	}
@@ -148,7 +148,25 @@ function CharacterCreatorHelper(players){
 			drawSinglePlayer(canvas, player);
 	}
 
-
+	this.generateHelpText = function(topic,specific){
+		if(topic == "Class") return this.generateClassHelp(topic, specific);
+	}
+	
+	this.generateClassHelp = function(topic, specific){
+		if(specific == "Maid") return "A Maid distributes their associated aspect to the entire party and starts with a lot of it.";
+		if(specific == "Mage") return "A Mage increases their own associated aspect and starts with a lot of it.";
+		if(specific == "Knight") return "A Knight increases their own associated aspect and starts with a lot of it.";
+		if(specific == "Rogue") return "A Rogue increases the parties associated aspect, steals it from someone to give to everyone, and starts with a lot it.";
+		if(specific == "Sylph") return "A Sylph distributes their associated aspect to the entire party and start with a lot of it. They give an extra boost to players they meet in person.";
+		if(specific == "Seer") return "A Seer distributes their associated aspect to the entire party. They start with very little of their aspect and must gain more through experience. They know a lot about SBURB/SGRUB. ";
+		if(specific == "Thief") return "A Thief increases their own associated aspect, steals it from others, and starts with very little of it and must steal more.";
+		if(specific == "Heir") return "An Heir increases their own associated aspect. They start with very little of their aspect and must inherit it.";
+		if(specific == "Bard") return "A Bard distributes the opposite of their associated aspect to the entire party and starts with very little of it. They have an increased effect in person.";
+		if(specific == "Prince") return "A Knight increases the opposite of their own associated aspect and starts with a lot of it.";
+		if(specific == "Witch") return "A Witch increases their own associated aspect and starts with a lot of it.";
+		if(specific == "Page") return "A Page distributes their associated aspect to the entire party. They start with very little of their aspect and must earn it. They can not do quests on their own, but gain power very quickly.";
+		return "Class help text not found."
+	}
 
 	this.wireUpPlayerDropDowns = function(player){
 			var c2 =  $("#classNameID" +player.id) ;
@@ -160,6 +178,7 @@ function CharacterCreatorHelper(players){
 			var rightHornDiv  =  $("#rightHornID" +player.id) ;
 			var bloodDiv  =  $("#bloodColorID" +player.id) ;
 			var favoriteNumberDiv  =  $("#favoriteNumberID" +player.id) ;
+			var helpText = $("#helpText"+player.id);
 
 
 			var that = this;
@@ -167,6 +186,8 @@ function CharacterCreatorHelper(players){
 					var classDropDown = $('[name="className' +player.id +'"] option:selected') //need to get what is selected inside the .change, otheriise is always the same
 					player.class_name = classDropDown.val();
 					that.redrawSinglePlayer(player);
+					helpText.html(that.generateHelpText("Class",player.class_name));
+					
 			});
 
 			favoriteNumberDiv.change(function() {

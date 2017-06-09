@@ -249,7 +249,9 @@ body{
     position: relative;
     display: block;
 }
-
+.helpText{
+	
+}
 .charOptions select{       
    -webkit-appearance: none;
     -moz-appearance: none;
@@ -295,8 +297,8 @@ body{
 .charOptionsForms{
 	vertical-align: top;
 	padding: 10px;
-	width:570px;
-	height: 300px;
+	width:550px;
+	height: 270px;
 	display: inline-block;
 }
 
