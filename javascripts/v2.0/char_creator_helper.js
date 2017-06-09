@@ -70,7 +70,7 @@ function CharacterCreatorHelper(players){
 
 	this.drawTabs = function(player){
 		var str = "<div id = 'tabs'"+player.id + " class='optionTabs'>";
-		str += "<span id = 'ddTab" +player.id + "'class='optionTabSelected'> DropDowns</span>"
+		str += "<span id = 'ddTab" +player.id + "'class='optionTab optionTabSelected'> DropDowns</span>"
 		str += "<span id = 'cbTab" +player.id + "'class='optionTab'> CheckBoxes</span>"
 		str += "<span id = 'tbTab" +player.id + "'class='optionTab'> TextBoxes</span>"
 		str += "<span id = 'csTab" +player.id + "'class='optionTab'> CanvasSummary</span>"
@@ -244,7 +244,6 @@ function CharacterCreatorHelper(players){
 		}
 
 		this.selectTab = function(selected, unselected){
-			console.log(selected)
 			selected.addClass("optionTabSelected")
 			for(var i = 0; i<unselected.length; i++){
 				unselected[i].removeClass("optionTabSelected");

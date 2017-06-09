@@ -223,12 +223,14 @@ body{
 	background-color: grey;
 	height: 20px;
 	padding: 2px;
+	padding-top: 0px;
 	border: 2px solid black;
 }
 
 .optionTabSelected{
 	width:100px;
 	padding: 2px;
+	padding-top: 0px;
 	height: 20px;
 	text-align: center;
 	background-color: lightgrey;
