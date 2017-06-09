@@ -154,6 +154,8 @@ function CharacterCreatorHelper(players){
 		if(topic == "BloodColor") return this.generateBloodColorHelp(topic, specific);
 		if(topic == "FavoriteNumber") return "Favorite number can effect a Player's quirk, as well as determining a troll's god tier Wings.";
 		if(topic == "Horns") return "Horns are purely cosmetic."
+		if(topic == "Hair") return "Hair is purely cosmetic."
+		if(topic == "HairColor") return "Hair color is purely cosmetic. Certain hairstyles will have highlights which are mandated to be the Player's favorite color (which is aspect color for humans and blood color for trolls). "
 		return "Help text not found for " + topic + "."
 	}
 	
