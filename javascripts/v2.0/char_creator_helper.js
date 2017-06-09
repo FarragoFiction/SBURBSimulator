@@ -99,14 +99,13 @@ function CharacterCreatorHelper(players){
 	this.drawCheckBoxes = function(player){
 		var str = "<div id = 'checkBoxes"+player.id + "' class='optionBox'>";
 		str += 'GrimDark: <input id="grimDark"+' + player.id + ' type="checkbox">'
+		str += ' DreamSelf: <input id="isDreamSelf"+' + player.id + ' type="checkbox">'
 		str += "<div class = 'formSection'>"
 		str += 'Destined to GodTier: <input id="godDestiny"+' + player.id + ' type="checkbox">'
 		str += ' GodTier: <input id="godTier"+' + player.id + ' type="checkbox">'
 		str += "</div><div class = 'formSection'>"
 		str += 'MurderMode: <input id="murderMode"+' + player.id + ' type="checkbox">'
-		str += ' LeftMurderMode: <input id="leftMurderMode"+' + player.id + ' type="checkbox">'
-		str += "</div><div class = 'formSection'>"
-		str += 'DreamSelf: <input id="isDreamSelf"+' + player.id + ' type="checkbox">'
+		str += ' LeftMurderMode: <input id="leftMurderMode"+' + player.id + ' type="checkbox">'		
 		str += "</div><div class = 'formSection'>"
 		str += 'Dead: <input id="dead"+' + player.id + ' type="checkbox">'
 		str += ' Robot: <input id="robot"+' + player.id + ' type="checkbox">'
@@ -226,6 +225,34 @@ function CharacterCreatorHelper(players){
 		if(specific == "Page") return "A Page distributes their associated aspect to the entire party. They start with very little of their aspect and must earn it. They can not do quests on their own, but gain power very quickly.";
 		return "Class help text not found for " + specific + "."
 	}
+	
+	this.wireUpCheckBoxes = function(player){
+		/*
+		var str = "<div id = 'checkBoxes"+player.id + "' class='optionBox'>";
+		str += 'GrimDark: <input id="grimDark"+' + player.id + ' type="checkbox">'
+		str += ' DreamSelf: <input id="isDreamSelf"+' + player.id + ' type="checkbox">'
+		str += "<div class = 'formSection'>"
+		str += 'Destined to GodTier: <input id="godDestiny"+' + player.id + ' type="checkbox">'
+		str += ' GodTier: <input id="godTier"+' + player.id + ' type="checkbox">'
+		str += "</div><div class = 'formSection'>"
+		str += 'MurderMode: <input id="murderMode"+' + player.id + ' type="checkbox">'
+		str += ' LeftMurderMode: <input id="leftMurderMode"+' + player.id + ' type="checkbox">'		
+		str += "</div><div class = 'formSection'>"
+		str += 'Dead: <input id="dead"+' + player.id + ' type="checkbox">'
+		str += ' Robot: <input id="robot"+' + player.id + ' type="checkbox">'
+		str += "</div>"
+		*/
+		
+		var grimDark = $("#grimDark"+player.id);
+		var isDreamSelf = $("#isDreamSelf"+player.id);
+		var godTier = $("#godTier"+player.id);
+		var godDestiny = $("#godDestiny"+player.id);
+		var murderMode = $("#murderMode"+player.id);
+		var leftMurderMode = $("#leftMurderMode"+player.id);
+		var dead = $("#dead"+player.id);
+		var robot = $("#robot"+player.id);
+
+		}
 
 	this.wireUpPlayerDropDowns = function(player){
 			var c2 =  $("#classNameID" +player.id) ;
