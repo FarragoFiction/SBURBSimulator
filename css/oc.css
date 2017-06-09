@@ -239,6 +239,10 @@ body{
 	background-color: lightgrey;
 }
 
+.optionBox{
+	display: none;
+}
+
 .optionTabs{
 	width:570px;
 	height: 20px;
