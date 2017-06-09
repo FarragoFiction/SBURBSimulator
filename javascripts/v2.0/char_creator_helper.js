@@ -459,12 +459,12 @@ function CharacterCreatorHelper(players){
 	}
 
 	this.drawOneBloodColorDropDown = function(player){
-		var html = "<select id = 'bloodColorID" + player.id + "' name='bloodColor" +player.id +"'>"
+		var html = "<select class = 'blackText'  style='background:" + player.bloodColor + " id = 'bloodColorID" + player.id + "' name='bloodColor" +player.id +"'>"
 		for(var i = 0; i< bloodColors.length; i++){
 			if(bloodColors[i] == player.bloodColor){
-				html += '<option style="background:' + bloodColors[i] + '" selected = "bloodColor" value="' + bloodColors[i] +'">' + bloodColors[i]+'</option>'
+				html += '<option class = "blackText" style="background:' + bloodColors[i] + '" selected = "bloodColor" value="' + bloodColors[i] +'">' + bloodColors[i]+'</option>'
 			}else{
-				html += '<option style="background:' + bloodColors[i] + '"value="' + bloodColors[i] +'">' + bloodColors[i]+'</option>'
+				html += '<option class = "blackText" style="background:' + bloodColors[i] + '"value="' + bloodColors[i] +'">' + bloodColors[i]+'</option>'
 			}
 		}
 		html += '</select>'

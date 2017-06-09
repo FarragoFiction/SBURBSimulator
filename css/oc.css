@@ -248,11 +248,23 @@ body{
 	height: 20px;
 }
 
+.charOptions input, .charOptions option, .charOptions select{
+	border: 1px solid #9630bf;
+	background-color: #cc87e8;
+	color: #9630bf;
+	border-radius: 4px;
+}
+
+.blackText{
+	color:black;
+}
+
 .charOptions{
 	vertical-align: top;
 	border: 3px solid #9630bf;
 	width:570px;
 	height: 300px;
+	color: #9630bf;
 	background-color: #fcf9bd;
 	display: inline-block;
 }
