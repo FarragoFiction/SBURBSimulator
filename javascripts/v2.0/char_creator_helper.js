@@ -80,7 +80,7 @@ function CharacterCreatorHelper(players){
 	}
 
 	this.drawCheckBoxes = function(player){
-		var str = "<div id = 'checkBoxes'"+player.id + " class='optionBox'>";
+		var str = "<div style = 'display:none' id = 'checkBoxes'"+player.id + " class='optionBox'>";
 		str += "TODO"
 		str += "</div>"
 		return str;
@@ -88,7 +88,7 @@ function CharacterCreatorHelper(players){
 
 	//includes interest drop downs.
 	this.drawTextBoxes = function(player){
-		var str = "<div id = 'textBox'"+player.id + " class='optionBox'>";
+		var str = "<div style = 'display:none' id = 'textBox'"+player.id + " class='optionBox'>";
 		str += this.drawInterests(player);
 		str += "</div>"
 		return str;
@@ -97,7 +97,7 @@ function CharacterCreatorHelper(players){
 	//draws player a second time, along with canvas summary of player (no quirks, no derived stuff like land, but displays it all as an image.)
 	//bonus if i can somehow figure out how to ALSO make it encode the save data, but baby steps.
 	this.drawCanvasSummary = function(player){
-		var str = "<div id = 'canvasSummary'"+player.id + " class='optionBox'>";
+		var str = "<div style = 'display:none' id = 'canvasSummary'"+player.id + " class='optionBox'>";
 		str += "TODO"
 		str += "</div>"
 		return str;
@@ -121,7 +121,7 @@ function CharacterCreatorHelper(players){
 	//any changes you make to the sprite are written here too, and "copy to clipboard" button.
 	//maybe also a save button (that downloads it as .txt file)
 	this.drawDataBox = function(player){
-		var str = "<div id = 'dataBox'"+player.id + " class='optionBox'>";
+		var str = "<div style = 'display:none' id = 'dataBox'"+player.id + " class='optionBox'>";
 		str += "TODO"
 		str += "</div>"
 		return str;
@@ -220,27 +220,47 @@ function CharacterCreatorHelper(players){
 			var tbTab =$ ("#tbTab" +player.id );
 			var csTab =$ ("#csTab" +player.id );
 			var dataTab =$ ("#dataTab" +player.id );
+
+			var dropDowns = $("#dropDowns" + player.id);
+			var checkBoxes = $("#checkBoxes" + player.id);
+			var textBoxes = $("#textBoxes" + player.id);
+			var canvasSummary = $("#canvasSummary" + player.id);
+			var dataBox = $("#dataBox" + player.id);
 			var that = this;
 			ddTab.click(function(){
 				that.selectTab(ddTab, [cbTab, tbTab, csTab, dataTab]);
+				that.displayDiv(dropDowns, [checkBoxes, textBoxes, canvasSummary, dataBox])
 			});
 
 			tbTab.click(function(){
 				that.selectTab(tbTab, [ddTab,cbTab, csTab, dataTab]);
+				that.displayDiv(dropDowns, [checkBoxes, textBoxes, canvasSummary, dataBox])
 			});
 
 			csTab.click(function(){
 				that.selectTab(csTab, [ddTab,cbTab, tbTab, dataTab]);
+				that.displayDiv(canvasSummary, [checkBoxes, textBoxes, dropDowns, dataBox])
 			});
 
 			cbTab.click(function(){
 				that.selectTab(cbTab, [ddTab, tbTab, csTab, dataTab]);
+				that.displayDiv(checkBoxes, [dropDowns, textBoxes, canvasSummary, dataBox])
 			});
 
 			dataTab.click(function(){
 				that.selectTab(dataTab, [ddTab, cbTab, tbTab, csTab]);
+				that.displayDiv(dataBox, [checkBoxes, textBoxes, canvasSummary, dropDowns])
 			});
 
+			this.selectTab(ddTab, [cbTab, tbTab, csTab, dataTab])
+			that.displayDiv(dropDowns, [checkBoxes, textBoxes, canvasSummary, dataBox])
+		}
+
+		this.displayDiv = function(displayed, undisplayed){
+			displayed.show();
+			for(var i = 0; i<undisplayed.length; i++){
+				undisplayed[i].hide();
+			}
 		}
 
 		this.selectTab = function(selected, unselected){
