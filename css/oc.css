@@ -239,6 +239,28 @@ body{
 	background-color: #fcf9bd;
 }
 
+.select {
+    border:1px solid #e3e3e3;    
+    border-radius:3px;
+    color:#616263;
+    overflow: hidden; 
+    height: 40px;    
+    width: 240px;
+    position: relative;
+    display: block;
+}
+
+.charOptions select{       
+   -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+	border: 1px solid #9630bf;
+	background-color: #cc87e8;
+	color: #9630bf;
+	border-radius: 4px;
+}
+
+
 .optionBox{
 	display: none;
 }
@@ -248,7 +270,7 @@ body{
 	height: 20px;
 }
 
-.charOptions input, .charOptions option, .charOptions select{
+.charOptions input, .charOptions option{
 	border: 1px solid #9630bf;
 	background-color: #cc87e8;
 	color: #9630bf;
@@ -256,6 +278,7 @@ body{
 }
 
 .charOptions{
+	position: relative;
 	vertical-align: top;
 	border: 3px solid #9630bf;
 	width:570px;

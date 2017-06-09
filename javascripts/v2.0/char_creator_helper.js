@@ -479,8 +479,8 @@ function CharacterCreatorHelper(players){
 
 	this.drawOneAspectDropDown = function(player){
 		available_aspects = nonrequired_aspects.slice(0); //required_aspects
-	  available_aspects = available_aspects.concat(required_aspects.slice(0));
-		var html = "<select id = 'aspectID" + player.id + "'' name='aspect" +player.id +"'>";
+		available_aspects = available_aspects.concat(required_aspects.slice(0));
+		var html = "<select class = 'selectDiv' id = 'aspectID" + player.id + "' name='aspect" +player.id +"'>";
 		for(var i = 0; i< available_aspects.length; i++){
 			if(available_aspects[i] == player.aspect){
 				html += '<option selected = "selected" value="' + available_aspects[i] + '" >' + available_aspects[i]+'</option>'
