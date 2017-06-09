@@ -258,16 +258,6 @@ body{
 	background-color: #fcf9bd;
 }
 
-.select {
-    border:1px solid #e3e3e3;    
-    border-radius:3px;
-    color:#616263;
-    overflow: hidden; 
-    height: 40px;    
-    width: 240px;
-    position: relative;
-    display: block;
-}
 .helpText{
 	
 }
@@ -279,6 +269,10 @@ body{
 	background-color: #cc87e8;
 	color: #9630bf;
 	border-radius: 4px;
+}
+
+.charOptions input[type="text"]{
+	width: 100px;
 }
 
 .folderDealy{

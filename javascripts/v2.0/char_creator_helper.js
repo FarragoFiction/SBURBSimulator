@@ -405,13 +405,13 @@ function CharacterCreatorHelper(players){
 	this.drawInterests = function(player){
 		var str = "";
 		str += "<div class = 'formSection'>"
-		str += " CategoryInterest1 " + this.drawInterestCategoryDropDown(1,player);
-		str += " PreDefinedInterest1 " +this.drawInterestDropDown(player.interest1Category, 1,player);
-		str += " WriteableInterest1 " + this.drawInterestTextBox(1,player);
+		str += " <div class = 'formSection'>Interest1:</div> Category: " + this.drawInterestCategoryDropDown(1,player);
+		str += " Existing: " +this.drawInterestDropDown(player.interest1Category, 1,player);
+		str += " Write In: " + this.drawInterestTextBox(1,player);
 		str += "</div> <div class = 'formSection'>"
-		str += " CategoryInterest2 " +this.drawInterestCategoryDropDown(2,player);
-		str += " PreDefinedInterest2 " +this.drawInterestDropDown(player.interest2Category, 2,player);
-		str += " WriteableInterest2 " + this.drawInterestTextBox(2,player);
+		str += "<div class = 'formSection'>Interest2:</div> Category: " +this.drawInterestCategoryDropDown(2,player);
+		str += " Existing: " +this.drawInterestDropDown(player.interest2Category, 2,player);
+		str += " Write In: " + this.drawInterestTextBox(2,player);
 		str += "</div>"
 		return str;
 	}
