@@ -111,12 +111,12 @@ function grabPlayerInterests(player){
 	var interest2TextDom =  $("#interest2" +player.id);
 	player.interest1 = interest1TextDom.val().replace(/<(?:.|\n)*?>/gm, '');;
 	player.interest1Category = interestCategory1Dom.val();
-	player.interest2 = interest2TextDom.val().replace(/<(?:.|\n)*?>/gm, '');;;
+	player.interest2 = interest2TextDom.val().replace(/<(?:.|,\n)*?>/gm, '');;;
 	player.interest2Category = interestCategory2Dom.val();
 }
 
 function grabCustomChatHandleForPlayer(player){
-	player.chatHandle = $("#chatHandle" +player.id).val().replace(/<(?:.|\n)*?>/gm, '');
+	player.chatHandle = $("#chatHandle" +player.id).val().replace(/<(,?:.|\n)*?>/gm, '');
 }
 
 //among other things, having chat handles in plain text right in the url lets people know what to expect.
