@@ -15,6 +15,7 @@ function CharacterCreatorHelper(players){
 		//console.log("drawing: " + player.title())
 		var str = "";
 		var divId =  player.id;
+		player.chatHandle = "";
 		//divId = divId.replace(/\s+/g, '')
 		str += "<div class='createdCharacter'>"
 		str += "<canvas class = 'createdCharacterCanvas' id='canvas" +divId + "' width='" +400 + "' height="+300 + "'>  </canvas>";

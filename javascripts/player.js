@@ -20,6 +20,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.grist = 0; //total party grist needs to be at a certain level for the ultimate alchemy. luck events can raise it, boss fights, etc.
 	this.hp = 0; //mostly used for boss battles;
 	this.graphs = [];
+	this.deriveChatHandle = true;
 	this.id = id;
 	this.flipOutReason = null; //if it's null, i'm not flipping my shit.
 	this.flippingOutOverDeadPlayer = null; //don't let this go into url. but, don't flip out if the friend is currently alive, you goof.
@@ -2094,7 +2095,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.interest2Category = replayPlayer.interest2Category;
 		this.causeOfDrain = replayPlayer.causeOfDrain;
 		this.causeOfDeath = replayPlayer.causeOfDeath;
-		//this.chatHandle = replayPlayer.chatHandle; reneable this later, or do after initialization like quirk.
+		if(replayPlayer.chatHandle != ""){
+			this.chatHandle = replayPlayer.chatHandle;
+			this.deriveChatHandle = false;
+		} 
 		this.isDreamSelf = replayPlayer.isDreamSelf;
 		this.godTier = replayPlayer.godTier;
 		this.godDestiny = replayPlayer.godDestiny;
@@ -2121,7 +2125,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.land1 = tmp[0]
 		this.land2 = tmp[1];
 		this.land = "Land of " + tmp[0] + " and " + tmp[1];
-		this.chatHandle = getRandomChatHandle(this.class_name,this.aspect,this.interest1, this.interest2);
+		if(this.deriveChatHandle) this.chatHandle = getRandomChatHandle(this.class_name,this.aspect,this.interest1, this.interest2);
 		this.mylevels = getLevelArray(this);//make them ahead of time for echeladder graphic
 
 		if(this.isTroll){

@@ -109,15 +109,14 @@ function grabPlayerInterests(player){
 	var interestCategory2Dom =  $("#interestCategory2" +player.id);
 	var interest1TextDom =  $("#interest1" +player.id);
 	var interest2TextDom =  $("#interest2" +player.id);
-	player.interest1 = interest1TextDom.val()
+	player.interest1 = interest1TextDom.val().replace(/<(?:.|\n)*?>/gm, '');;
 	player.interest1Category = interestCategory1Dom.val();
-	player.interest2 = interest2TextDom.val();
+	player.interest2 = interest2TextDom.val().replace(/<(?:.|\n)*?>/gm, '');;;
 	player.interest2Category = interestCategory2Dom.val();
 }
 
 function grabCustomChatHandleForPlayer(player){
-	console.log("TODO: if chat handle wasn't modified, make empty string. otherwise, new value. which means don't grab out of string till here.")
-	player.chatHandle = "";
+	player.chatHandle = $("#chatHandle" +player.id).val().replace(/<(?:.|\n)*?>/gm, '');
 }
 
 //among other things, having chat handles in plain text right in the url lets people know what to expect.
