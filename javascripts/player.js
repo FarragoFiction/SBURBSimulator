@@ -1828,8 +1828,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 
 		if(this.isTroll && this.bloodColor != "#ff0000"){
-			this.currentHP += 2* bloodColorToInt(this.bloodColor); //high blood are STRONG
-			this.hp += 2* bloodColorToInt(this.bloodColor); //high blood are STRONG
+			this.currentHP += bloodColorToBoost(this.bloodColor);
+			this.hp += bloodColorToBoost(this.bloodColor);
 		}
 	}
 
@@ -1955,7 +1955,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 
 		if(this.isTroll && this.bloodColor != "#ff0000"){
-			this.power += 2* bloodColorToInt(this.bloodColor); //high blood are STRONG
+			this.power += bloodColorToBoost();
 		}
 	}
 

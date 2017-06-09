@@ -1050,6 +1050,10 @@ function intToAspect(num){
 	return all_aspects[num];
 }
 
+function bloodColorToBoost(color){
+	 return 3* bloodColorToInt(this.bloodColor); //high blood are STRONG
+}
+
 function bloodColorToInt(color){
 	if(color == "#ff0000") return 14;
 	if(color == null) return 15;

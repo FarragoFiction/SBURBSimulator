@@ -157,9 +157,11 @@ function CharacterCreatorHelper(players){
 	
 	//don't forget red = basically human, and heiress = hates other heiresses and triggered.
 	this.generateBloodColorHelp = function(topic, specific){
-		var str = "The cooler blooded a troll is, the greater their HP and power on entering the medium. Game powers have a way of equalizing things, though.";
-		str += speicifc + " is associated with a power and hp increase of: " + 2* bloodColorToInt(specific) + ". "
+		if(specific == "#ff0000") return "Candy red blood has no specific boost.";
+		var str = "The cooler blooded a troll is, the greater their HP and power on entering the medium. Game powers have a way of equalizing things, though. ";
+		str += specific + " is associated with a power and hp increase of: " + 2* bloodColorToInt(specific) + ". "
 		if(this.isTroll && specific == "#99004d") str += "Heiress blooded trolls will hate other Heiress bloods, as well as being triggered by their presence."
+		return str;
 	}
 	
 	this.generateAspectHelp = function(topic, specific){
