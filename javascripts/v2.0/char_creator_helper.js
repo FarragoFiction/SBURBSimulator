@@ -157,13 +157,13 @@ function CharacterCreatorHelper(players){
 	this.generateAspectHelp = function(topic, specific){
 		if(specific == "Space") return "Space players are in charge of breeding the frog, and are associated with the low mobility needed to focus exclusively on their own quests. ";
 		if(specific == "Time") return "Time players are in charge of timeline management, creating various doomed time clones and provide the ability to 'scratch' a failed session. They are chained to inevitability and as a result are associated with low free will. They know a lot about SBURB/SGRUB, usually through time shenanigans.";
-		if(specific == "Breath") return "Breath players are associted with high mobility, and tend to help other players out with their quests, even at the detriment to their own. They are hard to catch.";
+		if(specific == "Breath") return "Breath players are associted with high mobility, and tend to help other players out with their quests, even at the detriment to their own. They are stupidly hard to catch.";
 		if(specific == "Doom") return "Doom players are associated with bad luck and low hp. Each Doom player death is according to a vast prophecy and considerably strengthens them, as well as lifting the Doom on their head for a short time.  They are capable of using the dead as a resource. They know a lot about SBURB/SGRUB.";
 		if(specific == "Heart") return "Heart players are associated with how a target relates to other players.  They are also in charge of shipping grids.";
 		if(specific == "Mind") return "Mind players are associated with high free will. They know a lot about SBURB/SGRUB.";
 		if(specific == "Light") return "Light players are associated with good luck, and know a lot about SBURB/SGRUB. They are awfully distracting and flashy in battle.";
 		if(specific == "Void") return "Void players are capable of accessing the Void, which allows them narrative freedom, random stats and being difficult to find.";
-		if(specific == "Rage") return "Rage players are capable of accessing Whimsy and Madness, which allows them narrative freedom, random stats and the destruction of positive relationships and sanity.";
+		if(specific == "Rage") return "Rage players are capable of accessing Madness, which allows them narrative freedom, random stats and the destruction of positive relationships and sanity.";
 		if(specific == "Hope") return "Hope players are associated with raw power. If a strong enough Hope player is alive, players will be less likely to waste time flipping their shit.";
 		if(specific == "Life") return "Life players are associated with high HP. They are capable of using the dead as a resource.";
 		if(specific == "Blood") return "Blood players are associated with how other players relate to a target, in a positive direction as well as sanity. A Blood player is very difficult to murder, being able to insta-calm rampaging players in most cases.";
