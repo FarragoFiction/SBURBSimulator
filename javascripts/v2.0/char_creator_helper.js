@@ -18,8 +18,9 @@ function CharacterCreatorHelper(players){
 		//divId = divId.replace(/\s+/g, '')
 		str += "<div class='createdCharacter'>"
 		str += "<canvas class = 'createdCharacterCanvas' id='canvas" +divId + "' width='" +400 + "' height="+300 + "'>  </canvas>";
-		str += "<div class = 'charOptions'>"
+		str += "<div class = 'folderDealy'>"
 		str += this.drawTabs(player);
+		str += "<div class = 'charOptions'>"
 		str += "<div class = 'charOptionsForms'>"
 		str += this.drawDropDowns(player);
 		str += this.drawCheckBoxes(player);
@@ -28,6 +29,7 @@ function CharacterCreatorHelper(players){
 		str += this.drawDataBox(player);
 		str += this.drawDeleteButton(player);
 		str += this.drawHelpText(player);
+		str += "</div>"
 		str += "</div>"
 		
 		str += "</div>"
@@ -85,9 +87,9 @@ function CharacterCreatorHelper(players){
 		str += "<span id = 'ddTab" +player.id + "'class='optionTab optionTabSelected'> DropDowns</span>"
 		str += "<span id = 'cbTab" +player.id + "'class='optionTab'> CheckBoxes</span>"
 		str += "<span id = 'tbTab" +player.id + "'class='optionTab'> TextBoxes</span>"
-		str += "<span id = 'csTab" +player.id + "'class='optionTab'> CanvasSummary</span>"
+		str += "<span id = 'csTab" +player.id + "'class='optionTab'> Summary</span>"
 		str += "<span id = 'dataTab" +player.id + "'class='optionTab'> Data</span>"
-		str += "<span id = 'emptyTab" +player.id + "'class='emptyTab'> ...</span>"
+		str += "<span id = 'emptyTab" +player.id + "'class='emptyTab'> </span>"
 		str += "</div>"
 		return str;
 	}

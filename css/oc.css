@@ -222,14 +222,16 @@ body{
 	text-align: center;
 	background-color: #bdb968;
 	height: 20px;
+	display: inline-block;
 	padding: 2px;
 	padding-top: 0px;
 	vertical-align: middle;
-	border: 2px solid #9630bf;
+	border: 3px solid #9630bf;
+	border-right: none;
 }
 
 .emptyTab{
-	width:100px;
+	width:30px;
 	text-align: center;
 	background-color: white;
 	display: inline-block;
@@ -239,16 +241,20 @@ body{
 	vertical-align: middle;
 	border: 2px solid #9630bf;
 	border-top: none;
+	border-right: none;
 }
 
 .optionTabSelected{
 	width:100px;
 	padding: 2px;
+	display: inline-block;
 	padding-top: 0px;
 	height: 20px;
 	text-align: center;
 	vertical-align: middle;
-	border: 2px none;
+	border: 3px solid #9630bf;
+	border-bottom: none;
+	border-right: none;
 	background-color: #fcf9bd;
 }
 
@@ -275,6 +281,10 @@ body{
 	border-radius: 4px;
 }
 
+.folderDealy{
+	display: inline-block;
+	vertical-align: top;
+}
 
 .optionBox{
 	display: none;
@@ -286,7 +296,8 @@ body{
 
 .optionTabs{
 	width:570px;
-	height: 20px;
+	height: 26px;
+	display: block;
 }
 
 .charOptions input, .charOptions option{
@@ -300,6 +311,7 @@ body{
 	position: relative;
 	vertical-align: top;
 	border: 3px solid #9630bf;
+	border-top: none;
 	width:570px;
 	height: 300px;
 	color: #9630bf;
