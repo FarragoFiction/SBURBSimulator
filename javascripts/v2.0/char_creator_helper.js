@@ -177,10 +177,11 @@ function CharacterCreatorHelper(players){
 		if(topic == "grimDark") return "Grim Dark players are more powerful and actively work to crash SBURB/SGRUB."
 		if(topic == "murderMode") return "Has done an acrobatic flip into a pile of crazy. Will try to kill other players."
 		if(topic == "leftMurderMode") return "Has recovered from an acrobatic flip into a pile of crazy. Still bears the scars."
-		if(topic == "godDestiny") return "Strong chance of god tiering upon death, with shenanigans getting their corpse where it needs to go."
+		if(topic == "godDestiny") return "Strong chance of god tiering upon death, with shenanigans getting their corpse where it needs to go. Not applicable for deaths that happen on Skaia, as no amount of shenanigans is going to rocket their corpse off planet. "
 		if(topic == "godTier") return "Starts the game already god tier. Somehow. Hey. It's YOUR decision."
 		if(topic == "isDreamSelf") return "Starts the game as a dream self. Somehow. Hey. It's YOUR decision."
-		if(topic == "dead") return "You monster. Whatever. The player died before entering the medium due to suitably dramatic shenanigans. Hopefully someone will be available to corpse smooch them back to life."
+		if(topic == "dead") return "You monster. Whatever. The player died before entering the Medium due to suitably dramatic shenanigans. Hopefully someone will be available to corpse smooch them back to life once they get into the Medium."
+		if(topic == "robot") return "Robots are obviously superior to fleshy players. "
 		if(topic == "Species") return "Trolls are ever so slightly less mentally stable than humans and tend towards FAR more annoying quirks."
 		if(topic == "HairColor") return "Hair color is purely cosmetic. Certain hairstyles will have highlights which are mandated to be the Player's favorite color (which is aspect color for humans and blood color for trolls). "
 		if(topic == "Interests") return "Interests alter how a player speaks (including their skill at finding topics to rap about), some of the rungs on their echeladder, and their derived ChatHandle."
@@ -262,7 +263,7 @@ function CharacterCreatorHelper(players){
 				player.grimDark = 0;
 			}
 			that.redrawSinglePlayer(player);
-			helpText.html(that.generateHelpText("GrimDark",player.class_name));
+			helpText.html(that.generateHelpText("grimDark",player.class_name));
 		});
 		
 		isDreamSelf.change(function() {

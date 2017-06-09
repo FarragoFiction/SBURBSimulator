@@ -71,14 +71,6 @@ function allCosmetic(murderMode, formerMurderMode, grimDark){
 }
 
 function updateRender(){
-
-	var classDropDown = $('[name="renderState"] option:selected')
-	var renderState = classDropDown.val()
-	if(renderState == "Mortals") allMortals();
-	if(renderState == "Dreams") allDream();
-	if(renderState == "Gods") allGods();
-
-	allCosmetic($("#murderMode").is(":checked"), $("#leftMurderMode").is(":checked"), $("#grimDark").is(":checked"));
 	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
 		var player = curSessionGlobalVar.players[i];
 		charCreatorHelperGlobalVar.redrawSinglePlayer(player);
