@@ -162,7 +162,7 @@ function CharacterCreatorHelper(players){
 		if(specific == "Thief") return "A Thief increases their own associated aspect, steals it from others, and starts with very little of it and must steal more.";
 		if(specific == "Heir") return "An Heir increases their own associated aspect. They start with very little of their aspect and must inherit it.";
 		if(specific == "Bard") return "A Bard distributes the opposite of their associated aspect to the entire party and starts with very little of it. They have an increased effect in person.";
-		if(specific == "Prince") return "A Knight increases the opposite of their own associated aspect and starts with a lot of it.";
+		if(specific == "Prince") return "A Prince increases the opposite of their own associated aspect and starts with a lot of it.";
 		if(specific == "Witch") return "A Witch increases their own associated aspect and starts with a lot of it.";
 		if(specific == "Page") return "A Page distributes their associated aspect to the entire party. They start with very little of their aspect and must earn it. They can not do quests on their own, but gain power very quickly.";
 		return "Class help text not found."
