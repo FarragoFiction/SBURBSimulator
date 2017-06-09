@@ -257,6 +257,48 @@ function CharacterCreatorHelper(players){
 			that.redrawSinglePlayer(player);
 			helpText.html(that.generateHelpText("GrimDark",player.class_name));
 		});
+		
+		isDreamSelf.change(function() {
+			player.isDreamSelf = isDreamSelf.prop('checked')
+			that.redrawSinglePlayer(player);
+			helpText.html(that.generateHelpText("isDreamSelf",player.class_name));
+		});
+		
+		godTier.change(function() {
+			player.godTier = godTier.prop('checked')
+			that.redrawSinglePlayer(player);
+			helpText.html(that.generateHelpText("godTier",player.class_name));
+		});
+		
+		godDestiny.change(function() {
+			player.godDestiny = godDestiny.prop('checked')
+			that.redrawSinglePlayer(player);
+			helpText.html(that.generateHelpText("godDestiny",player.class_name));
+		});
+		
+		murderMode.change(function() {
+			player.murderMode = murderMode.prop('checked')
+			that.redrawSinglePlayer(player);
+			helpText.html(that.generateHelpText("murderMode",player.class_name));
+		});
+		
+		leftMurderMode.change(function() {
+			player.leftMurderMode = leftMurderMode.prop('checked')
+			that.redrawSinglePlayer(player);
+			helpText.html(that.generateHelpText("leftMurderMode",player.class_name));
+		});
+		
+		dead.change(function() {
+			player.dead = dead.prop('checked')
+			that.redrawSinglePlayer(player);
+			helpText.html(that.generateHelpText("dead",player.class_name));
+		});
+		
+		robot.change(function() {
+			player.robot = robot.prop('checked')
+			that.redrawSinglePlayer(player);
+			helpText.html(that.generateHelpText("robot",player.class_name));
+		});
 
 	}
 
