@@ -54,22 +54,26 @@ function CharacterCreatorHelper(players){
 
 	this.drawDropDowns = function(player){
 		var str = "<div id = 'dropDowns" + player.id + "' class='optionBox'>";
-		str += "<div class = 'title'>"
+		str += "<div class = 'formSection'>"
 		str += (this.drawOneClassDropDown(player));
-		str += ("of");
+		str += (" of ");
 		str+= (this.drawOneAspectDropDown(player));
+		str += "</div><hr>"
+		str += "<div class = 'formSection'>"
+		str += "Hair Type: " + this.drawOneHairDropDown(player);
+		str += " Hair Color: " + this.drawOneHairColorPicker(player);
 		str += "</div>"
-		str += "<div class = 'hair'>"
-		str += "Hair Type:" + this.drawOneHairDropDown(player);
-		str += "Hair Color:" + this.drawOneHairColorPicker(player);
-		str += "</div>"
-		str += "<div class = 'trollStuff'>"
+		str += "<div class = 'formSection'>"
 		str += "Species: " + this.drawOneSpeciesDropDown(player);
-		str += "Left Horn: " + this.drawOneLeftHornDropDown(player);
-		str += "Right Horn: " + this.drawOneRightHornDropDown(player);
-		str += "BloodColor: " + this.drawOneBloodColorDropDown(player);
 		str += "</div>"
-		str += "<div class = 'quirk'>"
+		str += "<div class = 'formSection'>"
+		str += " Left Horn: " + this.drawOneLeftHornDropDown(player);
+		str += " Right Horn: " + this.drawOneRightHornDropDown(player);
+		str += "</div>"
+		str += "<div class = 'formSection'>"
+		str += " BloodColor: " + this.drawOneBloodColorDropDown(player);
+		str += "</div>"
+		str += "<div class = 'formSection'>"
 		str += "Favorite Number: " + this.drawOneFavoriteNumberDropDown(player);
 		str += "</div>"
 		str += "</div>"

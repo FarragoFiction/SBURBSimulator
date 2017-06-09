@@ -265,6 +265,10 @@ body{
 	display: none;
 }
 
+.formSection{
+	padding: 5px;
+}
+
 .optionTabs{
 	width:570px;
 	height: 20px;
