@@ -548,7 +548,7 @@ function CharacterCreatorHelper(players){
 	}
 	
 	this.drawChatHandleBox = function(player){
-		var html = "<input type='text' id = 'chatHandle" + player.id + "' name='interest" + player.id +"' + value=''> </input>"
+		var html = "Chat Handle: <input type='text' id = 'chatHandle" + player.id + "' name='interest" + player.id +"' + value=''> </input>"
 		return html;
 	}
 
