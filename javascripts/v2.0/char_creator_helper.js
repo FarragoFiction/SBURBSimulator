@@ -404,7 +404,7 @@ function CharacterCreatorHelper(players){
 
 	this.drawInterests = function(player){
 		var str = "";
-		str + = "<div class = 'formSection'>"
+		str += "<div class = 'formSection'>"
 		str += " CategoryInterest1 " + this.drawInterestCategoryDropDown(1,player);
 		str += " PreDefinedInterest1 " +this.drawInterestDropDown(player.interest1Category, 1,player);
 		str += " WriteableInterest1 " + this.drawInterestTextBox(1,player);
