@@ -231,7 +231,8 @@ body{
 .emptyTab{
 	width:100px;
 	text-align: center;
-	background-color: white
+	background-color: white;
+	display: inline-block;
 	height: 20px;
 	padding: 2px;
 	padding-top: 0px;

@@ -87,7 +87,7 @@ function CharacterCreatorHelper(players){
 		str += "<span id = 'tbTab" +player.id + "'class='optionTab'> TextBoxes</span>"
 		str += "<span id = 'csTab" +player.id + "'class='optionTab'> CanvasSummary</span>"
 		str += "<span id = 'dataTab" +player.id + "'class='optionTab'> Data</span>"
-		str += "<span 'class='emptyTab'> ... </span>"
+		str += "<span id = 'emptyTab" +player.id + "'class='emptyTab'> ...</span>"
 		str += "</div>"
 		return str;
 	}
