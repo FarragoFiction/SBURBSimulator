@@ -53,6 +53,7 @@ function CharacterCreatorHelper(players){
 		this.wireUpTabs(player);
 		this.wireUpPlayerDropDowns(player);
 		this.wireUpInterests(player);
+		this.wireUpCheckBoxes(player);
 
 	}
 
@@ -99,7 +100,7 @@ function CharacterCreatorHelper(players){
 	this.drawCheckBoxes = function(player){
 		var str = "<div id = 'checkBoxes"+player.id + "' class='optionBox'>";
 		str += 'GrimDark: <input id="grimDark' + player.id + '" type="checkbox">'
-		str += ' DreamSelf: <input id="isDreamSelf' + player.id + '" type="checkbox">'
+		str += ' IsDreamSelf: <input id="isDreamSelf' + player.id + '" type="checkbox">'
 		str += "<div class = 'formSection'>"
 		str += 'Destined to GodTier: <input id="godDestiny' + player.id + '" type="checkbox">'
 		str += ' GodTier: <input id="godTier' + player.id + '" type="checkbox">'
@@ -107,7 +108,7 @@ function CharacterCreatorHelper(players){
 		str += 'MurderMode: <input id="murderMode' + player.id + '" type="checkbox">'
 		str += ' LeftMurderMode: <input id="leftMurderMode' + player.id + '" type="checkbox">'		
 		str += "</div><div class = 'formSection'>"
-		str += 'Dead: <input id="dead' + player.id + ' type="checkbox">'
+		str += 'Dead: <input id="dead' + player.id + '" type="checkbox">'
 		str += ' Robot: <input id="robot' + player.id + '" type="checkbox">'
 		str += "</div>"
 		
@@ -227,22 +228,6 @@ function CharacterCreatorHelper(players){
 	}
 	
 	this.wireUpCheckBoxes = function(player){
-		/*
-		var str = "<div id = 'checkBoxes"+player.id + "' class='optionBox'>";
-		str += 'GrimDark: <input id="grimDark"+' + player.id + ' type="checkbox">'
-		str += ' DreamSelf: <input id="isDreamSelf"+' + player.id + ' type="checkbox">'
-		str += "<div class = 'formSection'>"
-		str += 'Destined to GodTier: <input id="godDestiny"+' + player.id + ' type="checkbox">'
-		str += ' GodTier: <input id="godTier"+' + player.id + ' type="checkbox">'
-		str += "</div><div class = 'formSection'>"
-		str += 'MurderMode: <input id="murderMode"+' + player.id + ' type="checkbox">'
-		str += ' LeftMurderMode: <input id="leftMurderMode"+' + player.id + ' type="checkbox">'		
-		str += "</div><div class = 'formSection'>"
-		str += 'Dead: <input id="dead"+' + player.id + ' type="checkbox">'
-		str += ' Robot: <input id="robot"+' + player.id + ' type="checkbox">'
-		str += "</div>"
-		*/
-		
 		var grimDark = $("#grimDark"+player.id);
 		var isDreamSelf = $("#isDreamSelf"+player.id);
 		var godTier = $("#godTier"+player.id);
@@ -251,7 +236,7 @@ function CharacterCreatorHelper(players){
 		var leftMurderMode = $("#leftMurderMode"+player.id);
 		var dead = $("#dead"+player.id);
 		var robot = $("#robot"+player.id);
-		grimDark.prop('checked', player.grimDark);
+		grimDark.prop('checked', player.grimDark == 4);
 		godTier.prop('checked', player.godTier);
 		isDreamSelf.prop('checked', player.isDreamSelf);
 		godDestiny.prop('checked', player.godDestiny);
@@ -264,7 +249,11 @@ function CharacterCreatorHelper(players){
 		var that = this;
 		
 		grimDark.change(function() {
-			player.grimDark = this.prop('checked')
+			if(grimDark.prop('checked')){
+				player.grimDark = 4;
+			}else{
+				player.grimDark = 0;
+			}
 			that.redrawSinglePlayer(player);
 			helpText.html(that.generateHelpText("GrimDark",player.class_name));
 		});
