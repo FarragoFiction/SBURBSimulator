@@ -197,6 +197,8 @@ function CharacterCreatorHelper(players){
 			bloodDiv.change(function() {
 					var aspectDropDown = $('[name="bloodColor' +player.id +'"] option:selected')
 					player.bloodColor = aspectDropDown.val();
+					bloodDiv.css("background-color", player.bloodColor);
+					bloodDiv.css("color", "black");
 					that.redrawSinglePlayer(player);
 			});
 
@@ -459,12 +461,12 @@ function CharacterCreatorHelper(players){
 	}
 
 	this.drawOneBloodColorDropDown = function(player){
-		var html = "<select class = 'blackText'  style='background:" + player.bloodColor + " id = 'bloodColorID" + player.id + "' name='bloodColor" +player.id +"'>"
+		var html = "<select style='color: black; background:" + player.bloodColor + "' id = 'bloodColorID" + player.id + "' name='bloodColor" +player.id +"'>"
 		for(var i = 0; i< bloodColors.length; i++){
 			if(bloodColors[i] == player.bloodColor){
-				html += '<option class = "blackText" style="background:' + bloodColors[i] + '" selected = "bloodColor" value="' + bloodColors[i] +'">' + bloodColors[i]+'</option>'
+				html += '<option style="color: black; background:' + bloodColors[i] + '" selected = "bloodColor" value="' + bloodColors[i] +'">' + bloodColors[i]+'</option>'
 			}else{
-				html += '<option class = "blackText" style="background:' + bloodColors[i] + '"value="' + bloodColors[i] +'">' + bloodColors[i]+'</option>'
+				html += '<option style="color: black; background:' + bloodColors[i] + '"value="' + bloodColors[i] +'">' + bloodColors[i]+'</option>'
 			}
 		}
 		html += '</select>'
