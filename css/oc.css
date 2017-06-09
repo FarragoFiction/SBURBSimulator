@@ -224,6 +224,7 @@ body{
 	height: 20px;
 	padding: 2px;
 	padding-top: 0px;
+	vertical-align: middle;
 	border: 2px solid black;
 }
 
@@ -233,10 +234,9 @@ body{
 	padding-top: 0px;
 	height: 20px;
 	text-align: center;
+	vertical-align: middle;
+	border: 2px none;
 	background-color: lightgrey;
-	border: 2px solid black;
-	border-bottom: none;
-	border-right: none;
 }
 
 .optionTabs{
