@@ -53,7 +53,7 @@ function CharacterCreatorHelper(players){
 	}
 
 	this.drawDropDowns = function(player){
-		var str = "<div id = 'dropDowns' class='optionBox'>";
+		var str = "<div id = 'dropDowns" + player.id + "' class='optionBox'>";
 		str += (this.drawOneClassDropDown(player));
 		str += ("of");
 		str+= (this.drawOneAspectDropDown(player));
@@ -234,7 +234,7 @@ function CharacterCreatorHelper(players){
 
 			tbTab.click(function(){
 				that.selectTab(tbTab, [ddTab,cbTab, csTab, dataTab]);
-				that.displayDiv(dropDowns, [checkBoxes, textBoxes, canvasSummary, dataBox])
+				that.displayDiv(textBoxes, [checkBoxes, dropDowns, canvasSummary, dataBox])
 			});
 
 			csTab.click(function(){
@@ -257,7 +257,6 @@ function CharacterCreatorHelper(players){
 		}
 
 		this.displayDiv = function(displayed, undisplayed){
-			alert(displayed)
 			displayed.show();
 			for(var i = 0; i<undisplayed.length; i++){
 				undisplayed[i].hide();
