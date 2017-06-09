@@ -80,7 +80,7 @@ function CharacterCreatorHelper(players){
 	}
 
 	this.drawCheckBoxes = function(player){
-		var str = "<div id = 'checkBoxes'"+player.id + " class='optionBox'>";
+		var str = "<div id = 'checkBoxes"+player.id + "' class='optionBox'>";
 		str += "TODO"
 		str += "</div>"
 		return str;
