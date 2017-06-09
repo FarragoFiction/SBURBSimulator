@@ -160,6 +160,7 @@ function CharacterCreatorHelper(players){
 		if(topic == "Hair") return "Hair is purely cosmetic."
 		if(topic == "Species") return "Trolls are ever so slightly less mentally stable than humans and tend towards FAR more annoying quirks."
 		if(topic == "HairColor") return "Hair color is purely cosmetic. Certain hairstyles will have highlights which are mandated to be the Player's favorite color (which is aspect color for humans and blood color for trolls). "
+		if(topic == "Interests") return "Interests alter how a player speaks (including their skill at finding topics to rap about), some of the rungs on their echeladder, and their derived ChatHandle."
 		return "Help text not found for " + topic + "."
 	}
 	
@@ -366,24 +367,30 @@ function CharacterCreatorHelper(players){
 		var interest1TextDom =  $("#interest1" +player.id); //don't wire these up. instead, get value on url creation.
 		var interest2TextDom =  $("#interest2" +player.id);
 		var that = this;
+		var helpText = $("#helpText"+player.id);
 		interestCategory1Dom.change(function() {
 					var icDropDown = $('[name="interestCategory1' +player.id +'"] option:selected')
 					interest1DropDom.html(that.drawInterestDropDown(icDropDown.val(), 1, player))
+					helpText.html(that.generateHelpText("Interests",player.class_name));
+					
 		});
 
 		interestCategory2Dom.change(function() {
 					var icDropDown = $('[name="interestCategory2' +player.id +'"] option:selected')
 					interest2DropDom.html(that.drawInterestDropDown(icDropDown.val(), 2, player))
+					helpText.html(that.generateHelpText("Interests",player.class_name));
 		});
 
 		interest1DropDom.change(function() {
 					var icDropDown = $('[name="interestDrop1' +player.id +'"] option:selected')
 					interest1TextDom.val(icDropDown.val());
+					helpText.html(that.generateHelpText("Interests",player.class_name));
 		});
 
 		interest2DropDom.change(function() {
 					var icDropDown = $('[name="interestDrop2' +player.id +'"] option:selected')
 					interest2TextDom.val(icDropDown.val());
+					helpText.html(that.generateHelpText("Interests",player.class_name));
 		});
 
 	}
