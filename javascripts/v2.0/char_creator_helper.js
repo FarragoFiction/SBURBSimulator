@@ -88,7 +88,7 @@ function CharacterCreatorHelper(players){
 
 	//includes interest drop downs.
 	this.drawTextBoxes = function(player){
-		var str = "<div id = 'textBox'"+player.id + " class='optionBox'>";
+		var str = "<div id = 'textBoxes'"+player.id + " class='optionBox'>";
 		str += this.drawInterests(player);
 		str += "</div>"
 		return str;
