@@ -52,7 +52,7 @@ function CharacterCreatorHelper(players){
 		copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,0,0)
 		this.wireUpTabs(player);
 		this.wireUpPlayerDropDowns(player);
-		this.wireUpInterests(player);
+		this.wireUpTextBoxes(player);
 		this.wireUpCheckBoxes(player);
 
 	}
@@ -473,7 +473,7 @@ function CharacterCreatorHelper(players){
 
 
 
-	this.wireUpInterests = function(player){
+	this.wireUpTextBoxes = function(player){
 		//first, choosing interest category should change the contents of interestDrop1 or 2 (but NOT any value in the player or the text box.)
 		var interestCategory1Dom =  $("#interestCategory1" +player.id);
 		var interestCategory2Dom =  $("#interestCategory2" +player.id);
