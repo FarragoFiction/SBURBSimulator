@@ -1963,10 +1963,12 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	this.toDataStrings = function(includeChatHandle){
 		var ch = "";
-		if(includeChatHandle) ch = this.chatHandle;
-		return ""+this.causeOfDrain + ","+this.causeOfDeath + "," + this.interest1 + "," + this.interest2 + "," + ch;
+		if(includeChatHandle) ch = sanitizeString(this.chatHandle);
+		var ret = ""+sanitizeString(this.causeOfDrain) + ","+sanitizeString(this.causeOfDeath) + "," + sanitizeString(this.interest1) + "," + sanitizeString(this.interest2) + "," + sanitizeString(ch)
+		return ret;
 	}
-
+	
+	
 	/*
 		3 bytes: (12 bits) hairColor
 		1 byte: class/asspect

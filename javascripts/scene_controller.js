@@ -448,6 +448,11 @@ function playersToDataBytes(players){
 	//return ret;
 }
 
+function sanitizeString(string){
+		return string.replace(/<(,?:.|\n)*?>/g, '').replace(/,/g,'');
+	}
+
+
 function playersToDataStrings(players, includeChatHandle){
 	var ret = [];
 	for(var i = 0; i<players.length; i++){
