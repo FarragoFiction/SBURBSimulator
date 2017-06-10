@@ -135,23 +135,28 @@ function CharacterCreatorHelper(players){
 		var space_between_lines = 25;
 		var left_margin = 350;
 		var line_height = 350;
-		var start = 40;
-		var current = 40;
+		var start = 30;
+		var current = 30;
 		//title
-	    ctx.font = "40px Times New Roman"
+	    ctx.font = "30px Times New Roman"
 		ctx.fillStyle = getColorFromAspect(player.aspect)
 		ctx.fillText(player.titleBasic(),left_margin,current);
 
 		//interests
 		ctx.font = "18px Times New Roman"
 		ctx.fillStyle = "#000000"
-		if(player.chatHandle != "") ctx.fillText("()" + player.chatHandle + ")",left_margin,current + space_between_lines*2);
-		ctx.fillText("Interest1: " + player.interest1,left_margin,current + space_between_lines*3);
-		ctx.fillText("Interest2: " + player.interest2,left_margin,current + space_between_lines*4);
+		var i = 2;
+		if(player.chatHandle != "") ctx.fillText("(" + player.chatHandle + ")",left_margin,current + space_between_lines);
+		ctx.fillText("Interest1: " + player.interest1,left_margin,current + space_between_lines*i++); //i++ returns the value of i before you ++ed
+		ctx.fillText("Interest2: " + player.interest2,left_margin,current + space_between_lines*i++);
+		ctx.fillText("BloodColor: ",left_margin,current + space_between_lines*i++);
+		ctx.fillStyle =  player.bloodColor;
+		ctx.fillRect(left_margin + 100, current+space_between_lines*(i-1) -18, 18,18);
+		ctx.fillStyle = "#000000"
 
 
 
-		ctx.fillText("Moon: " + player.moon,left_margin,current + space_between_lines*5);
+		ctx.fillText("Moon: " + player.moon,left_margin,current + space_between_lines*i++);
 
 		//ctx.fillText("Guardian: " + player.lusus,left_margin,current + space_between_lines*4);
 
