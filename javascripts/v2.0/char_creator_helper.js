@@ -93,7 +93,7 @@ function CharacterCreatorHelper(players){
 		var str = "<div id = 'checkBoxes"+player.id + "' class='optionBox'>";
 		str += '<span class="formElementLeft">GrimDark:</span> <input id="grimDark' + player.id + '" type="checkbox">'
 		str += '<span class="formElementRight">IsDreamSelf:</span> <input id="isDreamSelf' + player.id + '" type="checkbox">'
-		str += '<span class="formElementLeft">Destined to GodTier:</span> <input id="godDestiny' + player.id + '" type="checkbox">'
+		str += '<span class="formElementLeft">GodDestiny:</span> <input id="godDestiny' + player.id + '" type="checkbox">'
 		str += '<span class="formElementRight">GodTier:</span> <input id="godTier' + player.id + '" type="checkbox">'
 		str += '<span class="formElementLeft">MurderMode:</span> <input id="murderMode' + player.id + '" type="checkbox">'
 		str += '<span class="formElementRight">LeftMurderMode:</span> <input id="leftMurderMode' + player.id + '" type="checkbox">'
