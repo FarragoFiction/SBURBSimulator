@@ -61,14 +61,26 @@ function CharacterCreatorHelper(players){
 	}
 
 	this.syncPlayerToFields = function(player){
-
+		this.syncPlayerToDropDowns(player);
+		this.syncPlayerToCheckBoxes(player);
+		this.syncPlayerToTextBoxes(player);
 	}
 
-	this.syncPlayerToDropDowns= function(){
-
+	this.syncPlayerToDropDowns= function(player){
+		//TODO is setting the val enough for a drop down???  what if it doesn't match the thing?
+		$("#classNameID" +player.id).val(player.class_name);
+		$("#aspectID" +player.id).val(player.aspect);
+		$("#hairTypeID" +player.id).val(player.hair);
+		$("#hairColorID" +player.id).val(player.hairColor);
+		$("#speciesID" +player.id).val(player.isTroll);
+		$("#leftHornID" +player.id).val(player.leftHorn);
+		$("#rightHornID" +player.id).val(player.rightHorn);
+		$("#bloodColorID" +player.id).val(player.bloodColor);
+		$("#favoriteNumberID" +player.id).val(player.quirk.favoriteNumber);
+		$("#moonID" +player.id).val(player.moon);;
 	}
 
-	this.syncPlayerToCheckBoxes= function(){
+	this.syncPlayerToCheckBoxes= function(player){
 		$("#grimDark"+player.id).val(player.grimDark);
 	  $("#isDreamSelf"+player.id).val(player.isDreamSelf);
 		$("#godTier"+player.id).val(player.godTier);
@@ -79,8 +91,12 @@ function CharacterCreatorHelper(players){
 		$("#robot"+player.id).val(player.robot);
 	}
 
-	this.syncPlayerToTextBoxes= function(){
-
+	this.syncPlayerToTextBoxes= function(player){
+		$("#interestCategory1" +player.id).val(player.interest1Category);
+		$("#interestCategory2" +player.id).val(player.interest2Category);
+		$("#interest1" +player.id).val(player.interest1);
+		$("#interest2" +player.id).val(player.interest2);
+		$("#chatHandle"+player.id).val(player.chatHandle);
 	}
 
 	this.drawDropDowns = function(player){
@@ -226,6 +242,7 @@ function CharacterCreatorHelper(players){
 			drawSinglePlayer(canvas, player);
 			this.createSummaryOnCanvas(player);
 			this.writePlayerToDataBox(player);
+			this.syncPlayerToFields(player);
 	}
 
 	this.generateHelpText = function(topic,specific){
