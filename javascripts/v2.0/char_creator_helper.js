@@ -107,7 +107,7 @@ function CharacterCreatorHelper(players){
 	//includes interest drop downs.
 	this.drawTextBoxes = function(player){
 		var str = "<div id = 'textBoxes"+player.id + "'' class='optionBox'>";
-		str += this.drawChatHandleBox(player);
+		str += "<div><span class='formElementLeft'>" + this.drawChatHandleBox(player) + "</span></div>";
 		str += this.drawInterests(player);
 		str += "</div>"
 		return str;
@@ -523,14 +523,14 @@ function CharacterCreatorHelper(players){
 
 	this.drawInterests = function(player){
 		var str = "";
-		str += "<div class = 'formSection'>"
-		str += " <div class = 'formSection'>Interest1:</div> Category: " + this.drawInterestCategoryDropDown(1,player);
-		str += " Existing: " +this.drawInterestDropDown(player.interest1Category, 1,player);
-		str += " Write In: " + this.drawInterestTextBox(1,player);
-		str += "</div> <div class = 'formSection'>"
-		str += "<div class = 'formSection'>Interest2:</div> Category: " +this.drawInterestCategoryDropDown(2,player);
-		str += " Existing: " +this.drawInterestDropDown(player.interest2Category, 2,player);
-		str += " Write In: " + this.drawInterestTextBox(2,player);
+		str += " <div class = 'formElementLeft'>Interest1:</div>"
+		str += "<span class='formElementLeft'>Category:</span>" + this.drawInterestCategoryDropDown(1,player);
+		str += "<span class='formElementLeft'>Existing:</span>" +this.drawInterestDropDown(player.interest1Category, 1,player);
+		str += "<span class='formElementRight'>Write In:</span>" + this.drawInterestTextBox(1,player);
+		str += "<div class = 'formElementLeft'>Interest2:</div>"
+		str += "<span class='formElementLeft'>Category:</span>" +this.drawInterestCategoryDropDown(2,player);
+		str += "<span class='formElementLeft'>Existing:</span>" +this.drawInterestDropDown(player.interest2Category, 2,player);
+		str += "<span class='formElementRight'>Write In:</span>" + this.drawInterestTextBox(2,player);
 		str += "</div>"
 		return str;
 	}
