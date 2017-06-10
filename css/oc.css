@@ -263,6 +263,10 @@ body{
 	padding: 10px;
 
 }
+
+.formSection{
+	padding:5px;
+}
 .charOptions select{
    -webkit-appearance: none;
     -moz-appearance: none;
