@@ -153,10 +153,10 @@ function CharacterCreatorHelper(players){
 		ctx.fillStyle =  player.bloodColor;
 		ctx.fillRect(left_margin + 100, current+space_between_lines*(i-1) -18, 18,18);
 		ctx.fillStyle = "#000000"
-
-
-
 		ctx.fillText("Moon: " + player.moon,left_margin,current + space_between_lines*i++);
+		var destiny = "Nothing."
+		if(player.godDestiny) destiny = "God."
+		ctx.fillText("Destiny: " + destiny,left_margin,current + space_between_lines*i++);
 
 		//ctx.fillText("Guardian: " + player.lusus,left_margin,current + space_between_lines*4);
 
@@ -462,30 +462,35 @@ function CharacterCreatorHelper(players){
 				that.selectTab(ddTab, [cbTab, tbTab, csTab, dataTab]);
 				that.displayDiv(dropDowns, [checkBoxes, textBoxes, canvasSummary, dataBox])
 				helpText.html("...")
+				helpText.show();
 			});
 
 			tbTab.click(function(){
 				that.selectTab(tbTab, [ddTab,cbTab, csTab, dataTab]);
 				that.displayDiv(textBoxes, [checkBoxes, dropDowns, canvasSummary, dataBox])
 				helpText.html("...")
+				helpText.show();
 			});
 
 			csTab.click(function(){
 				that.selectTab(csTab, [ddTab,cbTab, tbTab, dataTab]);
 				that.displayDiv(canvasSummary, [checkBoxes, textBoxes, dropDowns, dataBox])
 				helpText.html("...")
+				helpText.hide();
 			});
 
 			cbTab.click(function(){
 				that.selectTab(cbTab, [ddTab, tbTab, csTab, dataTab]);
 				that.displayDiv(checkBoxes, [dropDowns, textBoxes, canvasSummary, dataBox])
 				helpText.html("...")
+				helpText.show();
 			});
 
 			dataTab.click(function(){
 				that.selectTab(dataTab, [ddTab, cbTab, tbTab, csTab]);
 				that.displayDiv(dataBox, [checkBoxes, textBoxes, canvasSummary, dropDowns])
 				helpText.html("...")
+				helpText.show();
 			});
 
 			this.selectTab(ddTab, [cbTab, tbTab, csTab, dataTab])
