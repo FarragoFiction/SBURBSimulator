@@ -279,11 +279,22 @@ function CharacterCreatorHelper(players){
 	this.wireUpDataBox = function(player){
 		this.writePlayerToDataBox(player);
 		var copyButton = $("#copyButton" + player.id)
+		var loadButton = $("#loadButton" + player.id)
+		var that = this;
 		copyButton.click(function() {
-			console.log("copy");
 			var dataBox = document.getElementById("dataBoxDiv"+player.id);
 			dataBox.select();
 			document.execCommand('copy');
+		});
+
+		loadButton.click(function() {
+			var dataBox = $("#dataBoxDiv"+player.id);
+			var bs = dataBox.val();
+			var b = bs.split("=")[1].split("&s")[0]
+			var s = bs.split("=")[2]
+			var players = dataBytesAndStringsToPlayers(b, s) //technically an array of one players.
+			player.copyFromPlayer(players[0]);
+			that.redrawSinglePlayer(player);
 		});
 
 		//and two buttons, load and copy.
