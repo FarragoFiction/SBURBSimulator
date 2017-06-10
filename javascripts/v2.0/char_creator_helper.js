@@ -73,7 +73,7 @@ function CharacterCreatorHelper(players){
 		$("#hairTypeID" +player.id).val(player.hair);
 		$("#hairColorID" +player.id).val(player.hairColor);
 		var troll = "Human"
-		troll = "Troll" if player.isTroll
+		if(player.isTroll) troll = "Troll"
 		$("#speciesID" +player.id).val(troll);
 		$("#leftHornID" +player.id).val(player.leftHorn);
 		$("#rightHornID" +player.id).val(player.rightHorn);
