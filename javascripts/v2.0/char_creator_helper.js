@@ -566,7 +566,7 @@ function CharacterCreatorHelper(players){
 			dataTab.click(function(){
 				that.selectTab(dataTab, [ddTab, cbTab, tbTab, csTab]);
 				that.displayDiv(dataBox, [checkBoxes, textBoxes, canvasSummary, dropDowns])
-				helpText.html("...")
+				helpText.html("You can copy your player's value from this box, or override it by pasting another players value in and clicking 'Load'.")
 				helpText.show();
 			});
 
