@@ -294,6 +294,14 @@ body{
 	vertical-align: top;
 }
 
+.charCreatorButton{
+	background-color: #9630bf;
+	color: #cc87e8;
+	padding: 10px;
+	margin-right: 5px;
+	margin-top: 10px;
+}
+
 .optionBox{
 	display: none;
 }
