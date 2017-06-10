@@ -60,27 +60,18 @@ function CharacterCreatorHelper(players){
 
 	this.drawDropDowns = function(player){
 		var str = "<div id = 'dropDowns" + player.id + "' class='optionBox'>";
-		str += "<div class = 'formSection'>"
-		str += (this.drawOneClassDropDown(player));
+		str += "<div>" + (this.drawOneClassDropDown(player));
 		str += (" of ");
-		str+= (this.drawOneAspectDropDown(player));
-		str += "</div><hr>"
-		str += "<div class = 'formSection'>"
-		str += "Hair Type: " + this.drawOneHairDropDown(player);
-		str += " Hair Color: " + this.drawOneHairColorPicker(player);
-		str += "</div>"
-		str += "<div class = 'formSection'>"
-		str += "Species: " + this.drawOneSpeciesDropDown(player);
-		str += " Moon: " + this.drawOneMoonDropDown(player);
-		str += "</div>"
-		str += "<div class = 'formSection'>"
-		str += " Left Horn: " + this.drawOneLeftHornDropDown(player);
-		str += " Right Horn: " + this.drawOneRightHornDropDown(player);
-		str += " BloodColor: " + this.drawOneBloodColorDropDown(player);
-		str += "</div>"
-		str += "<div class = 'formSection'>"
-		str += "Favorite Number: " + this.drawOneFavoriteNumberDropDown(player);
-		str += "</div>"
+		str+= (this.drawOneAspectDropDown(player)) + "</div>";
+		str += "<hr>"
+		str += "<span class='formElementLeft'>Hair Type:</span>" + this.drawOneHairDropDown(player);
+		str += "<span class='formElementRight'>Hair Color:</span>" + this.drawOneHairColorPicker(player);
+		str += "<span class='formElementLeft'>Species:</span>" + this.drawOneSpeciesDropDown(player);
+		str += "<span class='formElementRight'>Moon:</span>" + this.drawOneMoonDropDown(player);
+		str += "<span class='formElementLeft'>Left Horn:</span>" + this.drawOneLeftHornDropDown(player);
+		str += "<span class='formElementRight'>Right Horn:</span>" + this.drawOneRightHornDropDown(player);
+		str += "<span class='formElementLeft'>BloodColor:</span>" + this.drawOneBloodColorDropDown(player);
+		str += "<span class='formElementRight'>Favorite Number:</span>" + this.drawOneFavoriteNumberDropDown(player);
 		str += "</div>"
 		return str;
 	}

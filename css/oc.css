@@ -285,20 +285,22 @@ body{
 	display: none;
 }
 
-.formSection{
-	padding: 5px;
-}
 
 .formElementLeft{
-	width: 150px;
+	width: 75px;
+	padding-bottom: none;
+	padding-top: 10px;
 	padding-right: 10px;
+	padding-left: 10px;
 	display: inline-block;
 }
 
 .formElementRight{
-	width: 150px;
-	padding-left: 100px;
+	width: 50px;
+	padding-top: 10px;
 	padding-right: 10px;
+	padding-bottom: none;
+	padding-left: 100px;
 	display: inline-block;
 }
 
@@ -312,6 +314,7 @@ body{
 	border: 1px solid #9630bf;
 	background-color: #cc87e8;
 	color: #9630bf;
+	width: 100px;
 	border-radius: 4px;
 }
 
