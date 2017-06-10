@@ -119,7 +119,7 @@ function CharacterCreatorHelper(players){
 	this.drawCanvasSummary = function(player){
 		var str = "<div id = 'canvasSummary"+player.id + "' class='optionBox'>";
 		var height = 300;
-		var width = 500;
+		var width = 600;
 		str += "<canvas id='canvasSummarycanvas" + player.id +"' width='" +width + "' height="+height + "'>  </canvas>"
 		str += "</div>"
 		return str;
@@ -128,8 +128,10 @@ function CharacterCreatorHelper(players){
 	this.createSummaryOnCanvas = function(player){
 		var canvas = document.getElementById("canvasSummarycanvas"+  player.id);
 		var ctx = canvas.getContext("2d");
-		ctx.clearRect(0, 0, 500, 300)
-		drawSpriteFromScratch(canvasId, player);
+		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		ctx.clearRect(0, 0, 600, 300)
+		drawSpriteFromScratch(pSpriteBuffer, player);
+		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-30,0)
 		var space_between_lines = 25;
 		var left_margin = 10;
 		var line_height = 18;
@@ -193,6 +195,7 @@ function CharacterCreatorHelper(players){
 			var canvas =$("#"+divId)[0]
 			drawSolidBG(canvas, "#ffffff")
 			drawSinglePlayer(canvas, player);
+			this.createSummaryOnCanvas(player);
 	}
 
 	this.generateHelpText = function(topic,specific){
