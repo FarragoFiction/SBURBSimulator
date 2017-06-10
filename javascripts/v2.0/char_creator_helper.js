@@ -56,6 +56,7 @@ function CharacterCreatorHelper(players){
 		this.wireUpTextBoxes(player);
 		this.wireUpCheckBoxes(player);
 		this.createSummaryOnCanvas(player);
+		this.wireUpDataBox(player);
 
 	}
 
@@ -271,6 +272,16 @@ function CharacterCreatorHelper(players){
 		if(specific == "Witch") return "A Witch increases their own associated aspect and starts with a lot of it.";
 		if(specific == "Page") return "A Page distributes their associated aspect to the entire party. They start with very little of their aspect and must earn it. They can not do quests on their own, but gain power very quickly.";
 		return "Class help text not found for " + specific + "."
+	}
+
+	//redo text every time I render player, so have that separate
+	this.wireUpDataBox = function(player){
+		this.writePlayerToDataBox(player);
+		//and two buttons, load and copy.
+	}
+
+	this.writePlayerToDataBox = function(player){
+
 	}
 
 	this.wireUpCheckBoxes = function(player){
