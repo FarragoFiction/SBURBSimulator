@@ -144,9 +144,10 @@ function CharacterCreatorHelper(players){
 
 		//interests
 		ctx.font = "18px Times New Roman"
-		ctx.fillStyle = "#000000"
 		var i = 3;
+		ctx.fillStyle = player.getChatFontColor();
 		if(player.chatHandle != "") ctx.fillText("(" + player.chatHandle + ")",left_margin,current + space_between_lines);
+		ctx.fillStyle = "#000000"
 		ctx.fillText("Interest1: " + player.interest1,left_margin,current + space_between_lines*i++); //i++ returns the value of i before you ++ed
 		ctx.fillText("Interest2: " + player.interest2,left_margin,current + space_between_lines*i++);
 		ctx.fillText("BloodColor: ",left_margin,current + space_between_lines*i++);
