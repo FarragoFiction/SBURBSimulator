@@ -133,35 +133,32 @@ function CharacterCreatorHelper(players){
 		drawSpriteFromScratch(pSpriteBuffer, player);
 		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-30,0)
 		var space_between_lines = 25;
-		var left_margin = 10;
-		var line_height = 18;
-		var start = 350;
-		var current = 350;
+		var left_margin = 350;
+		var line_height = 350;
+		var start = 40;
+		var current = 40;
 		//title
 	    ctx.font = "40px Times New Roman"
 		ctx.fillStyle = getColorFromAspect(player.aspect)
-		ctx.fillText(player.titleBasic(),left_margin*2,current);
+		ctx.fillText(player.titleBasic(),left_margin,current);
 
 		//interests
 		ctx.font = "18px Times New Roman"
 		ctx.fillStyle = "#000000"
-		var interests = player.interest1 + " and " + player.interest2;
-		ctx.fillText("Interests: " + interests,left_margin,current + space_between_lines*2);
+		if(player.chatHandle != "") ctx.fillText("()" + player.chatHandle + ")",left_margin,current + space_between_lines*2);
+		ctx.fillText("Interest1: " + player.interest1,left_margin,current + space_between_lines*3);
+		ctx.fillText("Interest2: " + player.interest2,left_margin,current + space_between_lines*4);
 
-		ctx.fillText("Chat Handle: " + player.chatHandle,left_margin,current + space_between_lines*3);
 
-		ctx.fillText("Guardian: " + player.lusus,left_margin,current + space_between_lines*4);
 
-		ctx.fillText("Land: " + player.land,left_margin,current + space_between_lines*5);
+		ctx.fillText("Moon: " + player.moon,left_margin,current + space_between_lines*5);
 
-		ctx.fillText("Moon: " + player.moon,left_margin,current + space_between_lines*6);
+		//ctx.fillText("Guardian: " + player.lusus,left_margin,current + space_between_lines*4);
 
-		//TODO need to handle new line myself.  font is 18 px tall. work with that. each new line adds to the count (which is now 6)
-		//ctx.fillText("Quirk: " + player.quirk.rawStringExplanation(),left_margin,current + space_between_lines*6);
-		var text2 = player.quirk.translate(" The quick brown fox (named Lacy) jumped over the lazy dog (named Barkey) over 1234567890 times for reasons. It sure was exciting! I wonder why he did that? Was he going to be late? I wonder....I guess we'll just have to wait and see.");
-		var color2 = player.getChatFontColor();
+		//ctx.fillText("Land: " + player.land,left_margin,current + space_between_lines*5);
 
-		fillTextMultiLine(canvas, "Quirk: " + player.quirk.rawStringExplanation() + "\n \n Sample: \n", text2, color2, left_margin, current + space_between_lines*7);
+
+
 	}
 
 	//just an empty div where, when you mouse over a form element it'll helpfully explain what that means. even classpect stuff???
