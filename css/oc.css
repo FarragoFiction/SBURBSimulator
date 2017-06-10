@@ -281,6 +281,11 @@ body{
 	width: 100px;
 }
 
+.dataInput{
+	width: 100px;
+	resize: none;
+}
+
 .folderDealy{
 	display: inline-block;
 	vertical-align: top;

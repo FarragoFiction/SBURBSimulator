@@ -186,7 +186,7 @@ function CharacterCreatorHelper(players){
 	//maybe also a save button (that downloads it as .txt file)
 	this.drawDataBox = function(player){
 		var str = "<div id = 'dataBox"+player.id + "' class='optionBox'>";
-		str += "TODO"
+		str += "<textarea class = 'dataInput' id='dataBoxDiv"+player.id + "'> </textarea>";
 		str += "</div>"
 		return str;
 	}
