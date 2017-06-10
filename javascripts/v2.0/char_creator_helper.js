@@ -458,7 +458,7 @@ function CharacterCreatorHelper(players){
 
 			favoriteNumberDiv.change(function() {
 					var numberDropDown = $('[name="favoriteNumber' +player.id +'"] option:selected')
-					player.quirk.favoriteNumber = numberDropDown.val();
+					player.quirk.favoriteNumber = parseInt(numberDropDown.val());
 					that.redrawSinglePlayer(player);
 					helpText.html(that.generateHelpText("FavoriteNumber",player.quirk.favoriteNumber));
 			});

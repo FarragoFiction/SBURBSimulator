@@ -1992,3 +1992,30 @@ with "interests, which were programming and science fiction” results in a url 
 So. what is the important part in all that. what is killing it.
 
 Also, maybe unlrelated, but check boxes arent being loaded right.
+
+
+
+
+Shit. If your favorite number is 8, you die. 0 and 9 turn you to robots.
+
+9 is: 1001 robot
+8 is: 1000  dead
+7 is: 0111  alive
+6 is: 0110 dead
+5 is: 0101 dead
+4 is: 0100 dead
+3 is: 0011 dead
+2 is: 0010 dead
+1 is: 0001 dead
+0 is: 0000 robot
+
+
+Shit.
+
+Wait.
+
+No wonder I'm not seeing a consistent pattern. DIFFERENT THINGS HAPPEN TO DIFFERENT PLAYERS.
+
+Next player down in list turns into a robot if their favorite number is 8. not dead.
+
+So....is the problem changing favorite number? not the raw value?
