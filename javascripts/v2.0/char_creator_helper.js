@@ -57,6 +57,29 @@ function CharacterCreatorHelper(players){
 		this.wireUpCheckBoxes(player);
 		this.createSummaryOnCanvas(player);
 		this.wireUpDataBox(player);
+		this.syncPlayerToFields(player);
+	}
+
+	this.syncPlayerToFields = function(player){
+
+	}
+
+	this.syncPlayerToDropDowns= function(){
+
+	}
+
+	this.syncPlayerToCheckBoxes= function(){
+		$("#grimDark"+player.id).val(player.grimDark);
+	  $("#isDreamSelf"+player.id).val(player.isDreamSelf);
+		$("#godTier"+player.id).val(player.godTier);
+		$("#godDestiny"+player.id).val(player.godDestiny);
+		$("#murderMode"+player.id).val(player.murderMode);
+		$("#leftMurderMode"+player.id).val(player.leftMurderMode);
+		$("#dead"+player.id).val(player.dead);
+		$("#robot"+player.id).val(player.robot);
+	}
+
+	this.syncPlayerToTextBoxes= function(){
 
 	}
 
@@ -294,7 +317,8 @@ function CharacterCreatorHelper(players){
 			var s = bs.split("=")[2]
 			var players = dataBytesAndStringsToPlayers(b, s) //technically an array of one players.
 			player.copyFromPlayer(players[0]);
-			that.redrawSinglePlayer(player);
+			that.redrawSinglePlayer(player);  //TODO not enough to redraw, need to reload every single field like an asshole.
+			//should have had wireUp methods to the fields to begin with. looks like I gotta pay for pastJR's mistakes.
 		});
 
 		//and two buttons, load and copy.
