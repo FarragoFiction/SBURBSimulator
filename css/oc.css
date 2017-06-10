@@ -282,7 +282,8 @@ body{
 }
 
 .dataInput{
-	width: 100px;
+	width: 550px;
+	height: 200px;
 	resize: none;
 }
 
