@@ -541,7 +541,7 @@ function CharacterCreatorHelper(players){
 		});
 
 		chatHandle.change(function(){
-			player.chatHandlechatHandle = chatHandle.val();
+			player.chatHandle = chatHandle.val();
 			that.redrawSinglePlayer(player);
 		})
 
