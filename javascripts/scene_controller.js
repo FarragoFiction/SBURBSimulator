@@ -498,6 +498,7 @@ function dataBytesAndStringsToPlayer(charString, str_arr){
 	 var player = new Player();
 	 player.quirk = new Quirk();
 	 console.log("strings is: " + str_arr)
+	 console.log("chars is: " + charString)
 	 player.causeOfDrain = decodeURI(str_arr[0]);
 	 player.causeOfDeath = decodeURI(str_arr[1]);
 	 player.interest1 = decodeURI(str_arr[2]);
@@ -514,7 +515,6 @@ function dataBytesAndStringsToPlayer(charString, str_arr){
 	 player.interest1Category = intToInterestCategory(charString.charCodeAt(5) >> 4)
 	 player.interest2Category = intToInterestCategory(charString.charCodeAt(5) & 15);
 	 player.grimDark = charString.charCodeAt(6) >> 5;
-	 console.log("is troll is: " + ((1<<4) & charString.charCodeAt(6)))
 	 player.isTroll = 0 != ((1<<4) & charString.charCodeAt(6)) //only is 1 if character at 1<<4 is 1 in charString
 	 player.isDreamSelf = 0 != ((1<<3) & charString.charCodeAt(6))
 	 player.godTier = 0 != ((1<<2) & charString.charCodeAt(6))
@@ -524,6 +524,7 @@ function dataBytesAndStringsToPlayer(charString, str_arr){
 	 var moon = 0 != ((1<<6) & charString.charCodeAt(7))
 	 player.moon = moon ? "Prospit" : "Derse";
 	 player.dead = 0 != ((1<<5) & charString.charCodeAt(7))
+	 console.log("Binary string is: " + charString[7] + " and I think dead is: " + player.dead)
 	 player.godDestiny = 0 != ((1<<4) & charString.charCodeAt(7))
 	 player.quirk.favoriteNumber = charString.charCodeAt(7) & 15
 	 player.leftHorn = charString.charCodeAt(8)
@@ -531,6 +532,25 @@ function dataBytesAndStringsToPlayer(charString, str_arr){
 	 player.hair = charString.charCodeAt(10)
 	 console.log("TODO: make sure copyPlayer in player.js takes ALL these fields from this blank player")
 	 return player;
+}
+
+function testByteEight(){
+	for(var i =0; i<256; i++){
+		var player = {}
+		 player.quirk = {};
+		 player.robot = 0 != ((1<<7) & i)
+		 player.moon = ((1<<6) & i)
+	 	 player.dead = 0 != ((1<<5) & i)
+	 	 player.godDestiny = 0 != ((1<<4) & i)
+	 	 player.quirk.favoriteNumber = i & 15
+		 console.log("player is: ")
+		 console.log(player);
+
+		 var byte = (player.robot << 7) + (player.moon << 6) + (player.dead << 5) + (player.godDestiny <<4) + (player.favoriteNumber)
+		 console.log("i is: " + i + " and byte is: " + byte);
+		 if(byte != i) console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
+	}
 }
 
  function objToPlayer(obj){

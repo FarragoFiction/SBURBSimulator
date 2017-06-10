@@ -1293,7 +1293,7 @@ function session612IndexToTroll(player, index){
 		player.quirk.lettersToReplaceIgnoreCase = [["h",")("],["e","-E"], ["fuck","glub"],  ["god","cod"]];
 		player.kernel_sprite = "Horrorterror"
 		player.interest1 = "Animals"
-		player.interest2 = "Social Jusice"
+		player.interest2 = "Social Justice"
 		player.chatHandle = "cuttlefishCuller"
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""

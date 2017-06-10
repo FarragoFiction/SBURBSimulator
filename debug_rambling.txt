@@ -1641,15 +1641,15 @@ One thing that effects the sim in a huge way is adding Quardrant dialogue. Espec
 
 Don't want to have fully hardcoded dialogue like with the intros, though. Nor do I want to redo the entire dialogue engine.
 So. I know what I need to do. Bust out the ElderScrolls style "call and response" pairs randomly smooshed together.
- 
+
 Pairs can be about: interest both player have in common, the quadrant they are in, the value of their relationship (like, literal value, to foreshadow if they are close to breaking up).
-maybe other stuff too, like jack or a dead player. 
+maybe other stuff too, like jack or a dead player.
 
 You know, it's been awhile since I made a new scene entirely. Not since Luck/FreeWill i think.  It's nostalgic. All full of hope and promise 'cause I haven't actually made it, yet.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Okay. Let’s try to roll our own url solution. 
+Okay. Let’s try to roll our own url solution.
 
 
 If I did not have any dynamic strings, I could shove all my binary variables into a single variable.
@@ -1663,35 +1663,35 @@ Binary:  doomed, isTroll, isDreamSelf, murderMode, leftMurderMode
 Int:  leftHorn (0-46), rightHorn(0-46), hair (0-60) ,grimDark (0-4), favoriteNumber(0-12)
 
 String:  causeOfDrain, influenceSymbol, causeOfDeath
- 
+
 String, but can make int:  Class(0-12), Aspect(0-12), victimBlood(3 bytes), hairColor(3 bytes), bloodColor(3 bytes)
 
  Object:  quirk  (only fav number for now, can bring up and make int)
- 
+
 Proposal: params (for ghost) look like: i=1932873124987&s=”nWSZzne4F3RMBBnpMCcX3DcmHEfQwkIAB9Et3BoGIIEIAA6Rxwj0BDdzWO0tkPQhURwZkwDdBg2SuAjuSOP16VSsiHzgSjxWo18QXERilQiF”
 
 Where i stores ints and binaries in defined way (i.e. 1 bit for binary, 4 bits for class and 4 for aspect, etc), and s stores the lz compressed comma separated strings.
 
  Foreseen Difficulty: That is all well and good for ONE player, but how to do arbitrary amount?
 
- 
+
 Can just concatenate?  Ex: First 52 bits are p1, next 52 bits are p2, next 52 are p3, etc. How to do for strings? Well, they are comma separated, so first 3 strings are p1, second 3 strings are p2, etc.
  Alright.
- 
+
 Need to have a method where I pass it a list of players and a list of attributes and it turns it into  i = numbers&s=encoding.  This way can reuse for ghosts or players or pretty much anything.
- 
+
 No. How would you decode that? Dumb.
- 
+
 Instead, always encode “as player”. Yes, afterlife needs LESS variables than char creator, but less likely to be shared.
 
- So.  Fuck pastJR, and go grab the attributes I’m using for players, not ghosts before I make my encoding. 
+ So.  Fuck pastJR, and go grab the attributes I’m using for players, not ghosts before I make my encoding.
 But also include ghost attributes, like murderMode and dreamSelf.
 
 
 var json = {aspect: this.aspect, class_name: this.class_name, quirk: this.quirk, hair: this.hair,  hairColor: this.hairColor, isTroll: this.isTroll, bloodColor: this.bloodColor, leftHorn: this.leftHorn, rightHorn: this.rightHorn, interest1Category: this.interest1Category, interest2Category: this.interest2Category, interest1: this.interest1, interest2: this.interest2  };
 
- 
- 
+
+
 Binary:  doomed, isTroll, isDreamSelf, godTier, murderMode, leftMurderMode
 
  Int:  leftHorn (0-46), rightHorn(0-46), hair (0-60) ,grimDark (0-4), favoriteNumber(0-12)
@@ -1700,30 +1700,30 @@ Binary:  doomed, isTroll, isDreamSelf, godTier, murderMode, leftMurderMode
 
  String, but can make int:  Class(0-12), Aspect(0-12), victimBlood(3 bytes), hairColor(3 bytes), bloodColor(3 bytes), interest1Category(0-13), interest2Category (0-13)
 
- 
+
 I format:
 
 Doomed, isTroll, isDreamSelf, murderMode, leftMurderMode, leftHorn, rightHorn, hair, grimDark, favoriteNumber, class, aspect, victimBlood, hairColor, bloodColor, interest1Category, interest2Category
 
 12 bits, 1 bit, 1 bit, 1 bit, 1 bit, 1 bit, 1 bit, 6 bits, 6 bits, 6 bits, 3 bits, 4 bits, 4 bits, 4 bits, 4 bits, 4 bits, 4 bits, 4 bits
 
- 
+
 So, total of: 67 bits. 9 bytes?  Yes. Do I want zero padding on left or right?  left, I guess.
 
  Example player:
 
- 
+
 Doomed: false, isTroll:false, , isDreamSelf:true, godTier: false, murderMode true, leftMurderMode false , leftHorn 13, rightHorn 13, hair 47, grimDark 2, favoriteNumber 3, class 4, aspect 2, victimBlood,2 , hairColor 0 , bloodColor 12, interest1Category 14, interest2Category 12
 
- 
+
 
 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000
 
- 
+
 
 000000000000000000000000    001010  001101  001101 0011111 010  0011 0100 0010   0010   1100 1110 1100
 
- 
+
 
 00000000000000000000000000101000110100110100111110100011010000100010110011101100
 
@@ -1733,24 +1733,24 @@ Or
 
 Or
 
- 
+
 
 28D34FA3422CEC (base 16)
 
- 
+
 
 275 characters down to 14. That is impressive as shit.
 80% reduction in size for integers.  If keep these savings across the whole url (strings don’t compress much, tho), I can expect a url to be ~650 characters long, which is way better.
 
- 
+
 
 Of course, that IS with black hair, which is basically free to compress since I shoved it at the front.
 
- 
+
 
 Okay.
 
- 
+
 
 Now the question is, how good is javaScript at byte sequence generation? I know it can do the << and what not operators, is that good enough? How do I want to code this?
 
@@ -1842,7 +1842,7 @@ huh.
 oh.
 well.
 fuck.
-that's obvious now. i must be confusing left shifting and right shifting again. 
+that's obvious now. i must be confusing left shifting and right shifting again.
 
 Okay, I have a 12 bit number. I want only the left most 8 bits.
 
@@ -1854,18 +1854,18 @@ Alright, time to review right and left shifting:
 
 My brain says:
 
-Right shifting  1111 1111 0000 0000 by 4 should give me, 1111 1111 0000.   and left shifing by 4 should give me 1111 1111 0000 0000 0000. 
+Right shifting  1111 1111 0000 0000 by 4 should give me, 1111 1111 0000.   and left shifing by 4 should give me 1111 1111 0000 0000 0000.
 What does internet say. It agrees.
 
 So. Stop, think about this.
 
 my unint8 value is CORRECTLY only showing 0000010000, which is to say 8 bits.  Expecting  "1101000010000010000" is a dumb fuck thing to do because that is more than 8 bits. (but the non uint8 print statement is correct for saying that.)
 
-What is the hair color really look like, with no bit shifting. 
+What is the hair color really look like, with no bit shifting.
 
 11010000100000100001010
 
-Okay, how many bits is that? ....23. What the hell? Why? I expected only 12 bits. 
+Okay, how many bits is that? ....23. What the hell? Why? I expected only 12 bits.
 
 Okay. Think about this. WHY did I think it should be 12 bits?  Because...fuck you pastJR.  Because I know that rgb is 3 bytes long and for some reason my brain thought a byte was 4 bits again like a dumb asshole.
 BLUH!!! Why are bytes 8 bits if they are grouped in sets of 4!??? And why can't my brain remember this basic fucking fact!???
@@ -1936,4 +1936,59 @@ once i figure out the troll thing, can test subtler shit to see if it renders EX
 damn it looks like NONE of the bools are getting sent across. gotta figure out why. always parsing out as zero.
 
 bluh and now interest is undefined???????????????????????????????????????????????????????????????????????????
- i should take a break : ( : ( :( 
+ i should take a break : ( : ( :(
+
+
+
+ ~~~~~~~~~~~~~
+ sometimes custom players are spawning dead. infiniteEdge is helping me debug since it's their poor alt character suffering.
+
+
+
+ dead:
+
+b=D'%04*%C3%BE%C3%86%00g%01%01%1E&s=,,Programming,Science Fiction,
+
+alive:
+
+b=D'%04*%C3%BE%C3%86%00G%01%01%1E&s=,,Programming,Science Fiction,
+
+from him:
+
+b=D'%04*%C3%BE%C3%86%00(%01%01%1E&s=,,Programming,Science Fiction,
+
+b=%C3%BF%C3%BF%C3%BF*%C3%BE%C2%AD%00(%20%20%1E&s=,,Automation,History,
+
+dead is ‘g’   103
+
+alive is ‘G’  71
+
+
+
+from him is ‘(‘ 40
+
+all 3 differ only on character 7.
+
+
+
+What is difference.
+
+
+
+Creation: 	 uint8View[7] = (json.robot << 7) + (json.moon << 6) + (json.dead << 5) + (json.godDestiny <<4) + (json.favoriteNumber)
+
+
+favorite number is 4 bits.
+
+automation? have code that generates all 255 possible values for the 8 bits, and tells me if it ever isn’t the same going as coming.
+
+
+
+
+
+CONFIRMATION.  Doing "Mage of Hope, hair type 30, species human, moon prospit, blood colour #ff0000, favourite number 8, godDestiny ticked in check boxes”
+with "interests, which were programming and science fiction” results in a url being generated that contains a dead player.
+
+So. what is the important part in all that. what is killing it.
+
+Also, maybe unlrelated, but check boxes arent being loaded right.
