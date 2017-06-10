@@ -532,7 +532,7 @@ function CharacterCreatorHelper(players){
 		})
 
 		interest2TextDom.change(function(){
-			player.interest2 = interest1TextDom.val();
+			player.interest2 = interest2TextDom.val();
 			that.redrawSinglePlayer(player);
 		})
 
