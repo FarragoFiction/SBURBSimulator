@@ -260,9 +260,9 @@ body{
 }
 
 .helpText{
-	
+
 }
-.charOptions select{       
+.charOptions select{
    -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -287,6 +287,19 @@ body{
 
 .formSection{
 	padding: 5px;
+}
+
+.formElementLeft{
+	width: 150px;
+	padding-right: 10px;
+	display: inline-block;
+}
+
+.formElementRight{
+	width: 150px;
+	padding-left: 100px;
+	padding-right: 10px;
+	display: inline-block;
 }
 
 .optionTabs{
