@@ -291,7 +291,7 @@ function CharacterCreatorHelper(players){
 
 	this.writePlayerToDataBox = function(player){
 		var dataBox = $("#dataBoxDiv"+player.id);
-		dataBox.val("b=" + player.toDataBytes() + "&s="+player.toDataStrings());
+		dataBox.val("b=" + player.toDataBytes() + "&s="+player.toDataStrings(true));
 
 	}
 
