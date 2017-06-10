@@ -187,7 +187,7 @@ function CharacterCreatorHelper(players){
 	this.drawDataBox = function(player){
 		var str = "<div id = 'dataBox"+player.id + "' class='optionBox'>";
 		str += "<textarea class = 'dataInput' id='dataBoxDiv"+player.id + "'> </textarea>";
-		str += "<div><button id = 'loadButton" + player.id + "'>Load From Text</button> <button id = 'copyButton" + player.id + "'> Copy To ClipBoard</button>  </div>"
+		str += "<div class = 'formSection'><button id = 'loadButton" + player.id + "'>Load From Text</button> <button id = 'copyButton" + player.id + "'> Copy To ClipBoard</button>  </div>"
 		str += "</div>"
 		return str;
 	}

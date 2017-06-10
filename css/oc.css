@@ -285,6 +285,8 @@ body{
 	width: 550px;
 	height: 200px;
 	resize: none;
+	background-color: #cc87e8;
+	color: #9630bf;
 }
 
 .folderDealy{
