@@ -202,6 +202,7 @@ function CharacterCreatorHelper(players){
 			drawSolidBG(canvas, "#ffffff")
 			drawSinglePlayer(canvas, player);
 			this.createSummaryOnCanvas(player);
+			this.writePlayerToDataBox(player);
 	}
 
 	this.generateHelpText = function(topic,specific){
@@ -277,10 +278,20 @@ function CharacterCreatorHelper(players){
 	//redo text every time I render player, so have that separate
 	this.wireUpDataBox = function(player){
 		this.writePlayerToDataBox(player);
+		var copyButton = $("#copyButton" + player.id)
+		copyButton.click(function() {
+			console.log("copy");
+			var dataBox = document.getElementById("dataBoxDiv"+player.id);
+			dataBox.select();
+			document.execCommand('copy');
+		});
+
 		//and two buttons, load and copy.
 	}
 
 	this.writePlayerToDataBox = function(player){
+		var dataBox = $("#dataBoxDiv"+player.id);
+		dataBox.val("b=" + player.toDataBytes() + "&s="+player.toDataStrings());
 
 	}
 
