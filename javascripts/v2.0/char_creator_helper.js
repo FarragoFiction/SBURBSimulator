@@ -526,9 +526,25 @@ function CharacterCreatorHelper(players){
 		var that = this;
 		var helpText = $("#helpText"+player.id);
 
+		interest1TextDom.change(function(){
+			player.interest1 = interest1TextDom.val();
+			that.redrawSinglePlayer(player);
+		})
+
+		interest2TextDom.change(function(){
+			player.interest2 = interest1TextDom.val();
+			that.redrawSinglePlayer(player);
+		})
+
 		chatHandle.click(function() {
 					helpText.html(that.generateHelpText("chatHandle",player.class_name));
 		});
+
+		chatHandle.change(function(){
+			player.chatHandlechatHandle = chatHandle.val();
+			that.redrawSinglePlayer(player);
+		})
+
 
 		interestCategory1Dom.change(function() {
 					var icDropDown = $('[name="interestCategory1' +player.id +'"] option:selected')
@@ -547,12 +563,16 @@ function CharacterCreatorHelper(players){
 					var icDropDown = $('[name="interestDrop1' +player.id +'"] option:selected')
 					interest1TextDom.val(icDropDown.val());
 					helpText.html(that.generateHelpText("Interests",player.class_name));
+					player.interest1 = icDropDown.val()
+					that.redrawSinglePlayer(player);
 		});
 
 		interest2DropDom.change(function() {
 					var icDropDown = $('[name="interestDrop2' +player.id +'"] option:selected')
 					interest2TextDom.val(icDropDown.val());
 					helpText.html(that.generateHelpText("Interests",player.class_name));
+					player.interest2 = icDropDown.val()
+					that.redrawSinglePlayer(player);
 		});
 
 	}
