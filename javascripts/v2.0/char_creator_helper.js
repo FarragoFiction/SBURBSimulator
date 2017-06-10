@@ -68,10 +68,10 @@ function CharacterCreatorHelper(players){
 		str += "<span class='formElementRight'>Hair Color:</span>" + this.drawOneHairColorPicker(player);
 		str += "<span class='formElementLeft'>Species:</span>" + this.drawOneSpeciesDropDown(player);
 		str += "<span class='formElementRight'>Moon:</span>" + this.drawOneMoonDropDown(player);
-		str += "<span class='formElementLeft'>Left Horn:</span>" + this.drawOneLeftHornDropDown(player);
-		str += "<span class='formElementRight'>Right Horn:</span>" + this.drawOneRightHornDropDown(player);
+		str += "<span class='formElementLeft'>L. Horn:</span>" + this.drawOneLeftHornDropDown(player);
+		str += "<span class='formElementRight'>R. Horn:</span>" + this.drawOneRightHornDropDown(player);
 		str += "<span class='formElementLeft'>BloodColor:</span>" + this.drawOneBloodColorDropDown(player);
-		str += "<span class='formElementRight'>Favorite Number:</span>" + this.drawOneFavoriteNumberDropDown(player);
+		str += "<span class='formElementRight'>Fav. Num:</span>" + this.drawOneFavoriteNumberDropDown(player);
 		str += "</div>"
 		return str;
 	}
