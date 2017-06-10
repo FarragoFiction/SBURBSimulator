@@ -222,6 +222,7 @@ function Session(session_id){
 		this.democracyStrength = 0;
 		this.reckoningStarted = false;
 		this.importantEvents = [];
+		this.rocksFell = false;  //sessions where rocks fell screw over their scratched and yarded iterations, dunkass
 		this.doomedTimelineReasons = [];
 		this.ectoBiologyStarted = false;
 	}
