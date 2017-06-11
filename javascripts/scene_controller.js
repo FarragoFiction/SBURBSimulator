@@ -82,6 +82,8 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 	//once I let PLAYERS cause this (through grim darkness or finding their sesions disk or whatever), have different suggested actions.
 	//maybe throw custom error?
 	$("#story").append("<BR>SUGGESTED ACTION: " + recomendedAction);
+	renderAfterlifeURL();
+
 	console.log("Corrupted session: " + scratchedLineageText(curSessionGlobalVar.getLineage()) + " helping AB return, if she is lost here.")
 	if(junior == true){
 		$("#button").prop('disabled', false)
@@ -92,7 +94,6 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 		corruptRoboNewsposts("");
 		renderAfterlifeURL();
 	}
-
 	return false; //if i return true here, the real error doesn't show up
 
 }
