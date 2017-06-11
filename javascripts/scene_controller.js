@@ -30,6 +30,12 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 	if(curSessionGlobalVar.crashedFromPlayerActions){
 		$("#story").append("<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. HORRORTERROR INFLUENCE: COMPLETE.");
 		recomendedAction = "OMFG JUST STOP CRASHING MY DAMN SESSIONS. FUCKING GRIMDARK PLAYERS. BREAKING SBURB DOES NOT HELP ANYBODY! ";
+	}else if(curSessionGlobalVar.players.length < 1){
+		$("#story").append("<BR>ERROR: USELESS SESSION DETECTED.");
+		recomendedAction = ":/ REALLY? WHAT DID YOU THINK WAS GOING TO HAPPEN HERE, THE FREAKING *CONSORTS* WOULD PLAY THE GAME. ACTUALLY, THAT'S NOT HALF BAD AN IDEA. INTO THE PILE.";
+	}else if(curSessionGlobalVar.players.length < 2){
+		$("#story").append("<BR>ERROR: DEAD SESSION DETECTED.");
+		recomendedAction = ":/ YEAH, MAYBE SOME DAY I'LL DO DEAD SESSIONS FOR YOUR SPECIAL SNOWLAKE SINGLE PLAYER FANTASY, BUT TODAY IS NOT THAT DAY.";
 	}else if(!space){
 		$("#story").append("<BR>ERROR: SPACE PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED.");
 		curSessionGlobalVar.crashedFromCustomShit = true;

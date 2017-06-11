@@ -2203,8 +2203,33 @@ function getReplayers(){
 	return dataBytesAndStringsToPlayers(b,s);
 }
 
+function syncReplayNumberToPlayerNumber(replayPlayers){
+	if(curSessionGlobalVar.players.length == replayPlayers.length) return; //nothing to do.
+
+	if(replayPlayers.length < curSessionGlobalVar.players.length ){ //gotta destroy some players (you monster);
+		curSessionGlobalVar.players.splice(-1 * (curSessionGlobalVar.players.length - replayPlayers.length))
+		redoRelationships();
+		return;
+	}else if(replayPlayers.length > curSessionGlobalVar.players.length){
+		for(var i = 0; i< replayPlayers.length - curSessionGlobalVar.players.length; i++){
+			 curSessionGlobalVar.players.push( randomPlayerWithClaspect("Page", "Void"));
+		}
+		redoRelationships();
+		return;
+	}
+}
+
+function redoRelationships(){
+	for(var j = 0; j<curSessionGlobalVar.players.length; j++){
+		var p = curSessionGlobalVar.players[j];
+		p.relationships = [];
+		p.generateRelationships(curSessionGlobalVar.players);
+	}
+}
+
 function initializePlayers(players,session){
 	var replayPlayers = getReplayers();
+	syncReplayNumberToPlayerNumber(replayPlayers);
 	for(var i = 0; i<players.length; i++){
 		if(replayPlayers[i]) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
 		if(players[i].land){ //don't reinit aliens, their stats stay how they were cloned.
