@@ -17,7 +17,7 @@ function CharacterCreatorHelper(players){
 		var divId =  player.id;
 		player.chatHandle = "";
 		//divId = divId.replace(/\s+/g, '')
-		str += "<div class='createdCharacter'>"
+		str += "<div class='createdCharacter' id='createdCharacter"+ player.id + "'>"
 		str += "<canvas class = 'createdCharacterCanvas' id='canvas" +divId + "' width='" +400 + "' height="+300 + "'>  </canvas>";
 		str += "<div class = 'folderDealy'>"
 		str += this.drawTabs(player);
@@ -537,7 +537,8 @@ function CharacterCreatorHelper(players){
 			deleteTab.click(function(){
 				var monster = confirm("Delete player? (You monster)")
 				if(monster){
-					alert("TODO")
+					$("#createdCharacter"+player.id).hide();
+					curSessionGlobalVar.players.removeFromArray(player);
 				}
 
 			})
