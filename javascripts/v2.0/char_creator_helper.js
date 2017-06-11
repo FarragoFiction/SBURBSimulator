@@ -629,13 +629,14 @@ function CharacterCreatorHelper(players){
 					var icDropDown = $('[name="interestCategory1' +player.id +'"] option:selected')
 					interest1DropDom.html(that.drawInterestDropDown(icDropDown.val(), 1, player))
 					helpText.html(that.generateHelpText("Interests",player.class_name));
-
+					player.interest1Category = icDropDown.val();
 		});
 
 		interestCategory2Dom.change(function() {
 					var icDropDown = $('[name="interestCategory2' +player.id +'"] option:selected')
 					interest2DropDom.html(that.drawInterestDropDown(icDropDown.val(), 2, player))
 					helpText.html(that.generateHelpText("Interests",player.class_name));
+					player.interest2Category = icDropDown.val();
 		});
 
 		interest1DropDom.change(function() {
