@@ -131,9 +131,8 @@ function grabCustomChatHandles(){
 function renderURLToSendPlayersIntoSBURB(){
 	grabAllPlayerInterests();
 	grabCustomChatHandles();
-	var seed = getParameterByName("seed");
 	numURLS ++;
-	var html = "<Br><br><a href = 'index2.html?seed=" + seed +"&" + generateURLParamsForPlayers(curSessionGlobalVar.players,true) + "' target='_blank'>Be Responsible For Sending Players into SBURB? (Link " + numURLS +")</a>";
+	var html = "<Br><br><a href = 'index2.html?seed=" + curSessionGlobalVar.session_id +"&" + generateURLParamsForPlayers(curSessionGlobalVar.players,true) + "' target='_blank'>Be Responsible For Sending Players into SBURB? (Link " + numURLS +")</a>";
 	$("#character_creator").append(html);
 }
 
