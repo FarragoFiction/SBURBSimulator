@@ -419,7 +419,10 @@ function callNextIntroWithDelay(player_index){
 }
 
 function newPlayer(){
-	alert("TODO")
+	var p = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
+	curSessionGlobalVar.players.push(p);
+	charCreatorHelperGlobalVar.drawSinglePlayer(p);
+
 }
 
 function intro(){
