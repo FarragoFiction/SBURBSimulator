@@ -2245,29 +2245,26 @@ function syncReplayNumberToPlayerNumber(replayPlayers){
 
 	if(replayPlayers.length < curSessionGlobalVar.players.length ){ //gotta destroy some players (you monster);
 		curSessionGlobalVar.players.splice(-1 * (curSessionGlobalVar.players.length - replayPlayers.length))
-		redoRelationships();
 		return;
 	}else if(replayPlayers.length > curSessionGlobalVar.players.length){
 		for(var i = 0; i< replayPlayers.length - curSessionGlobalVar.players.length; i++){
 			 curSessionGlobalVar.players.push( randomPlayerWithClaspect(curSessionGlobalVar, "Page", "Void"));
 		}
-		redoRelationships();
 		return;
 	}
 }
 
-function redoRelationships(){
+function redoRelationships(players){
 	var guardians = [];
-	for(var j = 0; j<curSessionGlobalVar.players.length; j++){
-		var p = curSessionGlobalVar.players[j];
+	for(var j = 0; j<players.length; j++){
+		var p = players[j];
 		guardians.push(p.guardian)
 		p.relationships = [];
 		p.generateRelationships(curSessionGlobalVar.players);
 	}
 
-	for(var j = 0; j<curSessionGlobalVar.players.length; j++){
-		var p = curSessionGlobalVar.players[j].guardian;
-		guardians.push(p.guardian)
+	for(var j = 0; j<guardians.length; j++){
+		var p = guardians[j]
 		p.relationships = [];
 		p.generateRelationships(guardians);
 	}
@@ -2291,6 +2288,9 @@ function initializePlayers(players,session){
 			}
 		}
 	}
+	if(replayPlayers.length > 0){
+		redoRelationships(players);
+	}
 
 }
 
@@ -2300,6 +2300,11 @@ function initializePlayersNoDerived(players,session){
 		if(replayPlayers[i]) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
 		players[i].initializeStats();
 		players[i].initializeSprite();
+	}
+
+	//might not be needed
+	if(replayPlayers.length > 0){
+		redoRelationships(players);
 	}
 }
 
