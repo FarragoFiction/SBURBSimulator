@@ -296,38 +296,8 @@ function Session(session_id){
 		var guardians = [];
 		for(var i = 0; i<this.players.length; i++){
 			  var player = this.players[i];
-				//console.log("guardian for " + player.titleBasic());
-				var guardian = randomPlayer(this);
-				guardian.isTroll = player.isTroll;
-				guardian.quirk.favoriteNumber = player.quirk.favoriteNumber;
-				if(guardian.isTroll){
-					guardian.quirk = randomTrollSim(guardian) //not same quirk as guardian
-				}else{
-					guardian.quirk = randomHumanSim(guardian);
-				}
-
-				guardian.bloodColor = player.bloodColor;
-				guardian.lusus = player.lusus;
-				if(guardian.isTroll == true){ //trolls always use lusus.
-					guardian.object_to_prototype = player.object_to_prototype;
-				}
-				guardian.hairColor = player.hairColor;
-				guardian.aspect = player.aspect;
-				guardian.leftHorn = player.leftHorn;
-				guardian.rightHorn = player.rightHorn;
-				guardian.level_index = 5; //scratched kids start more leveled up
-				guardian.power = 50;
-				guardian.leader = player.leader;
-				if(Math.seededRandom() >0.5){ //have SOMETHING in common with your ectorelative.
-					guardian.interest1 = player.interest1;
-				}else{
-					guardian.interest2 = player.interest2;
-				}
-				guardian.reinit();//redo levels and land based on real aspect
-				//this.guardians.push(guardian); //sessions don't keep track of this anymore
-				player.guardian = guardian;
-				guardian.guardian = player;//goes both ways.
-				guardians.push(guardian)
+				player.makeGuardian();
+				guardians.push(player.guardian)
 		}
 
 		for(var j = 0; j<this.players.length; j++){
