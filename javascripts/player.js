@@ -1047,7 +1047,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.isActive = function(){
-		return (this.class_name == "Thief" || this.class_name == "Knight" || this.class_name == "Heir"|| this.class_name == "Mage"|| this.class_name == "Witch"|| this.class_name == "Prince")
+		return active_classes.indexOf(this.class_name) != -1;
 	}
 
 	this.hopeIncreasePower = function(powerBoost){
@@ -1260,7 +1260,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.makeGuardian =function(){
 		//console.log("guardian for " + player.titleBasic());
 		var player = this;
-		var guardian = randomPlayer(this.session);
+		var possibilities = active_classes;
+		if(this.isActive()) possibilities = passive_classes;
+		var guardian = randomPlayerWithClaspect(this.session, getRandomElementFromArray(possibilities), this.aspect);
+
 		guardian.isTroll = player.isTroll;
 		guardian.quirk.favoriteNumber = player.quirk.favoriteNumber;
 		if(guardian.isTroll){
@@ -1275,7 +1278,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			guardian.object_to_prototype = player.object_to_prototype;
 		}
 		guardian.hairColor = player.hairColor;
-		guardian.aspect = player.aspect;
+
+		console.log("Guardian className: " + guardian.class_name + " Player was: " + this.class_name);
 		guardian.leftHorn = player.leftHorn;
 		guardian.rightHorn = player.rightHorn;
 		guardian.level_index = 5; //scratched kids start more leveled up

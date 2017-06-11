@@ -1098,7 +1098,11 @@ function moonToColor(moon){
 }
 
 
+
 var moons = ["Prospit", "Derse"];
+
+var active_classes = ["Thief","Knight","Heir","Mage","Witch", "Prince"];
+var passive_classes = ["Rogue","Page","Maid","Seer","Sylph", "Bard"];
 var classes = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
 //when a class is used, remove from below list.
 var available_classes = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
