@@ -448,6 +448,7 @@ function renderAfterlifeURL(){
 function playersToDataBytes(players){
 	var ret = "";
 	for(var i = 0; i<players.length; i++){
+		console.log("player " + i + " to data byte")
 		ret += players[i].toDataBytes();
 	}
 	return LZString.compressToEncodedURIComponent(ret);
@@ -488,6 +489,7 @@ function generateURLParamsForPlayers(players,includeChatHandle){
 	var players = [];
 	console.log(bytes)
 	for(var i = 0; i<bytes.length/11; i+=1){
+		console.log("player i: " + i + " being parsed from url")
 		var bi = i*11; //i is which player we are on, which is 11 bytes long
 		var si = i*5; //or 5 strings long
 		var b = bytes.substring(bi, bi+11)

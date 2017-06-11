@@ -2251,9 +2251,13 @@ function syncReplayNumberToPlayerNumber(replayPlayers){
 		curSessionGlobalVar.players.splice(-1 * (curSessionGlobalVar.players.length - replayPlayers.length))
 		return;
 	}else if(replayPlayers.length > curSessionGlobalVar.players.length){
-		for(var i = 0; i< replayPlayers.length - curSessionGlobalVar.players.length; i++){
+		var numNeeded = replayPlayers.length - curSessionGlobalVar.players.length;
+		console.log("Have: " + curSessionGlobalVar.players.length + " need: " + replayPlayers.length + " think the difference is: " + numNeeded)
+		for(var i = 0; i< numNeeded; i++){
+			 console.log("making new player: " + i)
 			 curSessionGlobalVar.players.push( randomPlayerWithClaspect(curSessionGlobalVar, "Page", "Void"));
 		}
+		console.log("Number of players is now: " + curSessionGlobalVar.players.length)
 		return;
 	}
 }
