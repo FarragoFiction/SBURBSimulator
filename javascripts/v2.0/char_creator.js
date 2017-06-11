@@ -421,6 +421,7 @@ function callNextIntroWithDelay(player_index){
 function newPlayer(){
 	var p = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
 	curSessionGlobalVar.players.push(p);
+	if(curSessionGlobalVar.players.length == 13) alert("Like, go ahead and all, but this is your Official Warning that the sim is optimized for no more than 12 player sessions.")
 	charCreatorHelperGlobalVar.drawSinglePlayer(p);
 
 }
