@@ -285,6 +285,8 @@ function Session(session_id){
 			return "ELEVEN";
 		}else if(length == 12){
 			return "TWELVE";
+		}else{
+			return "???"
 		}
 	}
 

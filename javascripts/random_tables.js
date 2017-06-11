@@ -990,7 +990,8 @@ function randomFromTwoArraysOrdered(arr1, arr2){
 }
 
 function indexToWords(i){
-	var words = ["first","second","third","fourth","fifth","sixth","seventh","eighth","ninth","tenth","eleventh","twelfth",];
+	if(i>11) return "???";
+	var words = ["first","second","third","fourth","fifth","sixth","seventh","eighth","ninth","tenth","eleventh","twelfth"];
 	return words[i];
 }
 
