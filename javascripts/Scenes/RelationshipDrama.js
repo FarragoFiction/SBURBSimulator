@@ -23,14 +23,15 @@ function RelationshipDrama(session){
 	//this is sort of like a fantasy.
 	//if you'e p2, reject your suitor because you are taken
 	this.dontCheatOnQuadrantMate = function(player,potentialMate){
-		var r = player.
+		console.log("TODO")
+		var r = player.getRelationshipWith(potentialMate);
 	}
 
 	//if you're p1, then don't even start this confession, add yourself back to available players.
 	//this is sort of like a fantasy. why isnt your crush single???
 	//if you'e p2, reject your suitor because they are taken and apparently skeezy???
-	this.dontAllowCheatingOnQuadrantMate = function(player, suitor){
-
+	this.dontAllowCheatingOnQuadrantMate = function(player, potentialMate){
+		console.log("TODO")
 	}
 
 	//if they hate you back
