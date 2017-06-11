@@ -2212,7 +2212,7 @@ function syncReplayNumberToPlayerNumber(replayPlayers){
 		return;
 	}else if(replayPlayers.length > curSessionGlobalVar.players.length){
 		for(var i = 0; i< replayPlayers.length - curSessionGlobalVar.players.length; i++){
-			 curSessionGlobalVar.players.push( randomPlayerWithClaspect("Page", "Void"));
+			 curSessionGlobalVar.players.push( randomPlayerWithClaspect(curSessionGlobalVar, "Page", "Void"));
 		}
 		redoRelationships();
 		return;
