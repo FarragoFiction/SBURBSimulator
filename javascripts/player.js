@@ -1279,7 +1279,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 		guardian.hairColor = player.hairColor;
 
-		console.log("Guardian className: " + guardian.class_name + " Player was: " + this.class_name);
+		//console.log("Guardian className: " + guardian.class_name + " Player was: " + this.class_name);
 		guardian.leftHorn = player.leftHorn;
 		guardian.rightHorn = player.rightHorn;
 		guardian.level_index = 5; //scratched kids start more leveled up
@@ -2237,10 +2237,10 @@ function getReplayers(){
 	var s = LZString.decompressFromEncodedURIComponent(getRawParameterByName("s"));
 	if(!b||!s) return [];
 	if(b== "null" || s == "null") return []; //why was this necesassry????????????????
-	console.log("b is");
-	console.log(b)
-	console.log("s is ")
-	console.log(s)
+	//console.log("b is");
+	//console.log(b)
+	//console.log("s is ")
+	//console.log(s)
 	return dataBytesAndStringsToPlayers(b,s);
 }
 
@@ -2252,12 +2252,12 @@ function syncReplayNumberToPlayerNumber(replayPlayers){
 		return;
 	}else if(replayPlayers.length > curSessionGlobalVar.players.length){
 		var numNeeded = replayPlayers.length - curSessionGlobalVar.players.length;
-		console.log("Have: " + curSessionGlobalVar.players.length + " need: " + replayPlayers.length + " think the difference is: " + numNeeded)
+		//console.log("Have: " + curSessionGlobalVar.players.length + " need: " + replayPlayers.length + " think the difference is: " + numNeeded)
 		for(var i = 0; i< numNeeded; i++){
-			 console.log("making new player: " + i)
+			// console.log("making new player: " + i)
 			 curSessionGlobalVar.players.push( randomPlayerWithClaspect(curSessionGlobalVar, "Page", "Void"));
 		}
-		console.log("Number of players is now: " + curSessionGlobalVar.players.length)
+		//console.log("Number of players is now: " + curSessionGlobalVar.players.length)
 		return;
 	}
 }
@@ -2788,7 +2788,7 @@ function findLowestMobilityPlayer(playerList){
 function findGoodPrototyping(playerList){
 	for(var i= 0; i<playerList.length; i++){
 		if(playerList[i].object_to_prototype.illegal ==true){
-			console.log("found good")
+			//console.log("found good")
 			return (playerList[i].object_to_prototype.htmlTitle());
 		}
 	}

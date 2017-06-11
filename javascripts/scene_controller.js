@@ -487,9 +487,9 @@ function generateURLParamsForPlayers(players,includeChatHandle){
 	//strings are 5 csv per player.
 	strings = strings.split(",");
 	var players = [];
-	console.log(bytes)
+	//console.log(bytes)
 	for(var i = 0; i<bytes.length/11; i+=1){
-		console.log("player i: " + i + " being parsed from url")
+		//console.log("player i: " + i + " being parsed from url")
 		var bi = i*11; //i is which player we are on, which is 11 bytes long
 		var si = i*5; //or 5 strings long
 		var b = bytes.substring(bi, bi+11)
@@ -505,8 +505,8 @@ function generateURLParamsForPlayers(players,includeChatHandle){
 function dataBytesAndStringsToPlayer(charString, str_arr){
 	 var player = new Player();
 	 player.quirk = new Quirk();
-	 console.log("strings is: " + str_arr)
-	 console.log("chars is: " + charString)
+	 //console.log("strings is: " + str_arr)
+	 //console.log("chars is: " + charString)
 	 player.causeOfDrain = decodeURI(str_arr[0]);
 	 player.causeOfDeath = decodeURI(str_arr[1]);
 	 player.interest1 = decodeURI(str_arr[2]);
@@ -514,7 +514,7 @@ function dataBytesAndStringsToPlayer(charString, str_arr){
 	 player.chatHandle = decodeURI(str_arr[4]);
 	 //for bytes, how to convert uri encoded string into char string into unit8 buffer?
 	 //holy shit i haven't had this much fun since i did the color replacement engine a million years ago. this is exactlyt he right flavor of challenging.
-	 console.log("charString is: " + charString)
+	 //console.log("charString is: " + charString)
 	 player.hairColor = intToHexColor((charString.charCodeAt(0) << 16) + (charString.charCodeAt(1) << 8) + (charString.charCodeAt(2)) )
 	 player.class_name = intToClassName(charString.charCodeAt(3) >> 4)
 	 player.aspect = intToAspect(charString.charCodeAt(3) & 15) //get 4 bits on end
@@ -530,17 +530,16 @@ function dataBytesAndStringsToPlayer(charString, str_arr){
 	 player.leftMurderMode = 0 != ((1) & charString.charCodeAt(6))
 	 player.robot = 0 != ((1<<7) & charString.charCodeAt(7))
 	 var moon = 0 != ((1<<6) & charString.charCodeAt(7))
-	 console.log("moon binary is: " + moon)
+	 //console.log("moon binary is: " + moon)
 	 player.moon = moon ? "Prospit" : "Derse";
-	 console.log("moon string is: "  + player.moon);
+	 //console.log("moon string is: "  + player.moon);
 	 player.dead = 0 != ((1<<5) & charString.charCodeAt(7))
-	 console.log("Binary string is: " + charString[7])
+	 //console.log("Binary string is: " + charString[7])
 	 player.godDestiny = 0 != ((1<<4) & charString.charCodeAt(7))
 	 player.quirk.favoriteNumber = charString.charCodeAt(7) & 15
 	 player.leftHorn = charString.charCodeAt(8)
 	 player.rightHorn = charString.charCodeAt(9)
 	 player.hair = charString.charCodeAt(10)
-	 console.log("TODO: make sure copyPlayer in player.js takes ALL these fields from this blank player")
 	 return player;
 }
 

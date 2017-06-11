@@ -1072,13 +1072,13 @@ function hexColorToInt(color){
 }
 
 function intToHexColor(num){
-	console.log("int is " + num)
+	//console.log("int is " + num)
 	var tmp =  num.toString(16);
 	var padding = 6 - tmp.length;
 	for(var i = 0; i<padding; i++){
 		tmp = "0" + tmp;
 	}
-	console.log("which i think is: " + tmp + " in hex")
+	//console.log("which i think is: " + tmp + " in hex")
 	return "#" + tmp;
 }
 
