@@ -19,6 +19,20 @@ function RelationshipDrama(session){
 		return this.dramaPlayers.length > 0;
 	}
 
+	//if you're p1, then don't even start this confession, add yourself back to available players.
+	//this is sort of like a fantasy.
+	//if you'e p2, reject your suitor because you are taken
+	this.dontCheatOnQuadrantMate = function(player,potentialMate){
+		var r = player.
+	}
+
+	//if you're p1, then don't even start this confession, add yourself back to available players.
+	//this is sort of like a fantasy. why isnt your crush single???
+	//if you'e p2, reject your suitor because they are taken and apparently skeezy???
+	this.dontAllowCheatingOnQuadrantMate = function(player, suitor){
+
+	}
+
 	//if they hate you back
 	this.celebratoryRapBattle = function(div, player1, player2){
 		console.log("celbratory rap battles: " + this.session.session_id)
