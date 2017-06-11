@@ -2204,7 +2204,7 @@ function getReplayers(){
 }
 
 function syncReplayNumberToPlayerNumber(replayPlayers){
-	if(curSessionGlobalVar.players.length == replayPlayers.length) return; //nothing to do.
+	if(curSessionGlobalVar.players.length == replayPlayers.length || replayPlayers.length == 0) return; //nothing to do.
 
 	if(replayPlayers.length < curSessionGlobalVar.players.length ){ //gotta destroy some players (you monster);
 		curSessionGlobalVar.players.splice(-1 * (curSessionGlobalVar.players.length - replayPlayers.length))
