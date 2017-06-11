@@ -419,6 +419,9 @@ function callNextIntroWithDelay(player_index){
 	},  repeatTime);  //want all players to be done with their setTimeOuts players.length*1000+2000
 }
 
+function newPlayer(){
+	alert("TODO")
+}
 
 function intro(){
 	//in a big pile. draw all the charactesr as they look as they are entereing
