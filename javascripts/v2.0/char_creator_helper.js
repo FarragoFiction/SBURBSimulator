@@ -28,7 +28,6 @@ function CharacterCreatorHelper(players){
 		str += this.drawTextBoxes(player);
 		str += this.drawCanvasSummary(player);
 		str += this.drawDataBox(player);
-		str += this.drawDeleteButton(player);
 		str += this.drawHelpText(player);
 		str += "</div>"
 		str += "</div>"
@@ -126,7 +125,7 @@ function CharacterCreatorHelper(players){
 		str += "<span id = 'tbTab" +player.id + "'class='optionTab'> TextBoxes</span>"
 		str += "<span id = 'csTab" +player.id + "'class='optionTab'> Summary</span>"
 		str += "<span id = 'dataTab" +player.id + "'class='optionTab'> Data</span>"
-		str += "<span id = 'emptyTab" +player.id + "'class='emptyTab'> </span>"
+		str += "<span id = 'deleteTab" +player.id + "'class='deleteTab'> X </span>"
 		str += "</div>"
 		return str;
 	}
@@ -217,11 +216,7 @@ function CharacterCreatorHelper(players){
 		return str;
 	}
 
-	//you monster.  create player button will be not on the player level. upper right corner
-	this.drawDeleteButton = function(player){
-		var str = "";
-		return str;
-	}
+
 
 	//place where you can load data (with load button).
 	//any changes you make to the sprite are written here too, and "copy to clipboard" button.
@@ -529,6 +524,7 @@ function CharacterCreatorHelper(players){
 			var tbTab =$ ("#tbTab" +player.id );
 			var csTab =$ ("#csTab" +player.id );
 			var dataTab =$ ("#dataTab" +player.id );
+			var deleteTab = $("#deleteTab"+player.id);
 
 			var dropDowns = $("#dropDowns" + player.id);
 			var checkBoxes = $("#checkBoxes" + player.id);
@@ -537,6 +533,14 @@ function CharacterCreatorHelper(players){
 			var dataBox = $("#dataBox" + player.id);
 			var helpText = $("#helpText"+player.id);
 			var that = this;
+
+			deleteTab.click(function(){
+				var monster = confirm("Delete player? (You monster)")
+				if(monster){
+					alert("TODO")
+				}
+
+			})
 			ddTab.click(function(){
 				that.selectTab(ddTab, [cbTab, tbTab, csTab, dataTab]);
 				that.displayDiv(dropDowns, [checkBoxes, textBoxes, canvasSummary, dataBox])

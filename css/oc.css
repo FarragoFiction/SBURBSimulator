@@ -231,18 +231,17 @@ body{
 	border-right: none;
 }
 
-.emptyTab{
-	width:30px;
+.deleteTab{
+	width:32px;
 	text-align: center;
 	background-color: white;
+	color: red;
 	display: inline-block;
 	height: 20px;
 	padding: 2px;
 	padding-top: 0px;
 	vertical-align: middle;
 	border: 2px solid #9630bf;
-	border-top: none;
-	border-right: none;
 }
 
 .optionTabSelected{
