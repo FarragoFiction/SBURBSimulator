@@ -522,9 +522,11 @@ function dataBytesAndStringsToPlayer(charString, str_arr){
 	 player.leftMurderMode = 0 != ((1) & charString.charCodeAt(6))
 	 player.robot = 0 != ((1<<7) & charString.charCodeAt(7))
 	 var moon = 0 != ((1<<6) & charString.charCodeAt(7))
+	 console.log("moon binary is: " + moon)
 	 player.moon = moon ? "Prospit" : "Derse";
+	 console.log("moon string is: "  + player.moon);
 	 player.dead = 0 != ((1<<5) & charString.charCodeAt(7))
-	 console.log("Binary string is: " + charString[7] + " and I think dead is: " + player.dead)
+	 console.log("Binary string is: " + charString[7])
 	 player.godDestiny = 0 != ((1<<4) & charString.charCodeAt(7))
 	 player.quirk.favoriteNumber = charString.charCodeAt(7) & 15
 	 player.leftHorn = charString.charCodeAt(8)
@@ -534,24 +536,6 @@ function dataBytesAndStringsToPlayer(charString, str_arr){
 	 return player;
 }
 
-function testByteEight(){
-	for(var i =0; i<256; i++){
-		var player = {}
-		 player.quirk = {};
-		 player.robot = 0 != ((1<<7) & i)
-		 player.moon = ((1<<6) & i)
-	 	 player.dead = 0 != ((1<<5) & i)
-	 	 player.godDestiny = 0 != ((1<<4) & i)
-	 	 player.quirk.favoriteNumber = i & 15
-		 console.log("player is: ")
-		 console.log(player);
-
-		 var byte = (player.robot << 7) + (player.moon << 6) + (player.dead << 5) + (player.godDestiny <<4) + (player.favoriteNumber)
-		 console.log("i is: " + i + " and byte is: " + byte);
-		 if(byte != i) console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-
-	}
-}
 
  function objToPlayer(obj){
 	 var ret = new Player();
