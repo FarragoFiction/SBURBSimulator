@@ -1,6 +1,6 @@
 <a href = "index.html"><img src = "images/sburb_sim_page_header_zalgo.png"/></a>
 <div class = "links">
-<a href = "../SBURBSim/index2.html">Main Branch (2.999)</a> 		&nbsp &nbsp &nbsp &nbsp <a href = "../SBURBSimE/index2.html"> Experimental Branch(2.9999)</a>   &nbsp &nbsp &nbsp &nbsp <a href = "oc_generator.html">OC Generator</a> &nbsp &nbsp &nbsp &nbsp <a href = "https://discord.gg/4czh3nB"> Discord Server Invite</a> <span class="void">&nbsp &nbsp &nbsp &nbsp <a href = "goesNowhere???"> Patreon Placeholder</a></span>
+<a href = "../SBURBSim/index2.html">Main Branch (2.999)</a> 		&nbsp &nbsp &nbsp &nbsp <a href = "../SBURBSimE/index2.html"> Experimental Branch(2.9999)</a>   &nbsp &nbsp &nbsp &nbsp <a href = "oc_generator.html">OC Generator</a> &nbsp &nbsp &nbsp &nbsp <a href = "https://discord.gg/4czh3nB"> Discord Server Invite</a> &nbsp &nbsp &nbsp &nbsp <a href = "https://www.patreon.com/user?u=6476827"> Support us on Patreon!!!</a>
 </div>
 <br>
 <div class = "links">
