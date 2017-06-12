@@ -385,6 +385,13 @@ DID YOU KNOW: This now brings the count up to FOUR ways to get here. Via figurin
 
 
 
+<p>"Everybody died on arrival, except me, somehow. Welp, I have to replay this, so... I wish this next session will go better than expected"
+<br>
+-lastingMemory
+</p>
+
+
+
 
 
 </div>
