@@ -436,7 +436,7 @@ function renderAfterlifeURL(){
 		if (params == window.location.href) params = ""
 
 		var html = "<Br><br><a href = 'rip.html?" + generateURLParamsForPlayers(curSessionGlobalVar.afterLife.ghosts,false) + "' target='_blank'>View Afterlife In New Tab?</a>";
-		html += '<br><br><a href = "character_creator.html?seed=' +initial_seed +'&' + params + ' " target="_blank">Replay Session (Mildly Fucking Alpha) </a> '
+		html += '<br><br><a href = "character_creator.html?seed=' +initial_seed +'&' + params + ' " target="_blank">Replay Session </a> '
 		html += "<br><br><a href = 'index2.html'>Random New Session?</a>"
 		html += "<Br><Br>Simulation took: " + msToTime(stopTime - startTime) + " to render. ";
 		//console.log("gonna append: " + html)
