@@ -988,7 +988,7 @@ function CharacterEasterEggEngine(){
 			var bs = playerDataStringArray[i];
 			var tmpb = decodeURIComponent(bs.split("=")[1].split("&s")[0])
 			var tmps = bs.split("=")[2]
-			s+= tmps;
+			s+= tmps+",";
 			b += tmpb;
 		}
 		//then, 
