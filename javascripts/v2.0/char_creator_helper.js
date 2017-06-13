@@ -910,34 +910,27 @@ AND NOW IT'S TIME FOR CHAR CREATOR EASTER EGGS!!!
 //call this ONLY inside a function.
 function CharacterEasterEggEngine(){
 	//test with reddit first, 'cause it's small
-	this.redditCharacters = ["b=%00%00%008%C3%B8%0A%00%1C%26%16%1E&s=,,Satire,Game Dev,AngsterGangster","b=H%2F*%C2%8A%C3%BE%C2%93%00C((%04&s=,,Video Games,Character Creation,sanguineCynophilist","b=%00%00%00F%C3%B9y%10%0A%0E%0E%04&s=,,Conspiracies,Television,probatioDiabolica","b=%5B1%0B%C2%86%C3%BE%1D%00%08!!%15&s=,,Music,Astronomy,felineCompany","b=%00%00%00J%C3%BE%C2%9C%00X%20'%16&s=,,Heroes,Bara,hystericalInflection"];
+	this.redditCharacters = [];
 	this.tumblrCharacters = [];
 	this.discordCharcters = [];
 	this.creatorCharacters =["b=%2B*-%06%C3%B4%C2%A3%00%C3%90%2C%2C%0D&s=,,Authoring,Robots,authorBot","b=%3C%1E%07%06%C3%B4%C2%A3%00Z%2C%2C%0D&s=,,The AuthorBot,Authoring,jadedResearcher"];
 	this.creditsBuckaroos = [];
 	this.ideasWranglers = [];
 	this.patrons = [];  // :( none yet
-	this.canon = [];  // <-- will be so boring to populate. do this last. when i DO do it, turn off code that erases chat handle. hell, should do that for seed=612,413,1025,11111 anyways.
+	this.canon = [];  //
 	
-	//make sure AB can use this so i can see if reddit or tumblr has best win rate, for example
-	//if passed both reddit and tumblr easter egg, character can come from either source, for example.
-	//so this function should FIRST assemble an array of 2-12 players based on ALL relevant params.
-	//and then convert it into a b=allplayersbytes&s=allplayersstrings  data string.
-	this.processEasterEggsSimulator = function(){
-		var pool = this.getPoolBasedOnEggs();
-		var chosen = [];
-		//then, choose between 2 and 12 characters from that pool randomly (with seed, so AB can judge)
-		//then,
-		var space = getRandomElementFromArray(findAllAspectPlayers(pool, "Space"));
-		var time = getRandomElementFromArray(findAllAspectPlayers(pool, "Time"));
-		if(space) chosen.push(space);
-		if(time) chosen.push(time);
-		var numExtra = getRandomInt(0,10);
-		for(var i = 0; i<=numExtra; i++){
-			chosen.push(getRandomElementFromArray(pool));
-		}
-		return this.playerDataStringArrayToURLFormat(chosen); 
+	//takes in things like this.redditCharacters and "OCs/reddit.txt"
+	//parses the text file as newline seperated and load them into the array.
+	this.loadArrayFromFile(arr, file){
+		
 	}
+	
+	//make sure to call this on windows.load and WAIT for it to return, dunkass.
+	this.loadArraysFromFile(){
+		
+	}
+
+
 	
 	this.getPoolBasedOnEggs = function(){
 		var pool = [];

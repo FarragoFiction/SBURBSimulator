@@ -1,0 +1,5 @@
+b=%00%00%008%C3%B8%0A%00%1C%26%16%1E&s=,,Satire,Game Dev,AngsterGangster
+b=H%2F*%C2%8A%C3%BE%C2%93%00C((%04&s=,,Video Games,Character Creation,sanguineCynophilist
+b=%00%00%00F%C3%B9y%10%0A%0E%0E%04&s=,,Conspiracies,Television,probatioDiabolica
+b=%5B1%0B%C2%86%C3%BE%1D%00%08!!%15&s=,,Music,Astronomy,felineCompany
+b=%00%00%00J%C3%BE%C2%9C%00X%20'%16&s=,,Heroes,Bara,hystericalInflection
