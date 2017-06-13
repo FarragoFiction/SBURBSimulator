@@ -946,32 +946,28 @@ function CharacterEasterEggEngine(){
 			pool = pool.concat(this.redditCharacters)
 		}
 		
-		if(getParameterByName("reddit")  == "true" || getParameterByName("allFans")  == "true" ){
-			pool = pool.concat(this.redditCharacters)
-		}
-		
 		if(getParameterByName("tumblr")  == "true"|| getParameterByName("allFans")  == "true" ){
-			pool = pool.concat(this.redditCharacters)
+			pool = pool.concat(this.tumblrCharacters)
 		}
 		
 		if(getParameterByName("discord")  == "true"|| getParameterByName("allFans")  == "true" ){
-			pool = pool.concat(this.redditCharacters)
+			pool = pool.concat(this.discordCharcters)
 		}
 		
 		if(getParameterByName("creditsBuckaroos")  == "true"|| getParameterByName("allFans")  == "true" ){
-			pool = pool.concat(this.redditCharacters)
+			pool = pool.concat(this.creditsBuckaroos)
 		}
 		
 		if(getParameterByName("ideasWranglers")  == "true"|| getParameterByName("allFans")  == "true" ){
-			pool = pool.concat(this.redditCharacters)
+			pool = pool.concat(this.ideasWranglers)
 		}
 		
 		if(getParameterByName("patrons")  == "true"|| getParameterByName("allFans")  == "true" ){
-			pool = pool.concat(this.redditCharacters)
+			pool = pool.concat(this.patrons)
 		}
 		
 		if(getParameterByName("canon")  == "true"|| getParameterByName("allFans")  == "true" ){
-			pool = pool.concat(this.redditCharacters)
+			pool = pool.concat(this.canon)
 		}
 		return pool;
 

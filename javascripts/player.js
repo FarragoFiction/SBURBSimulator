@@ -1967,6 +1967,18 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				r.saved_type = r.goodBig;
 			}
 		}
+		
+		if(this.isTroll && this.bloodColor == "#99004d"){
+			for(var i = 0; i<this.relationships.length; i++){
+				//needs to be part of this in ADDITION to initialization because what about custom players now.
+				var r = this.relationship[i];
+				if(this.isTroll && this.bloodColor == "#99004d" && r.target.isTroll && r.target.bloodColor == "#99004d"){
+					r.value = -20; //biological imperitive to fight for throne.
+					this.triggerLevel ++;
+					r.target.triggerLevel ++;
+				}
+			}
+		}
 
 		if(this.robot){
 			for(var k = 0; k <this.relationships.length; k++){
