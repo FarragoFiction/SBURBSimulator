@@ -921,30 +921,32 @@ function CharacterEasterEggEngine(){
 	
 	//takes in things like this.redditCharacters and "OCs/reddit.txt"
 	//parses the text file as newline seperated and load them into the array.
-	this.loadArrayFromFile(arr, file){
+	this.loadArrayFromFile = function(arr, file,callBack){
 		var that = this;
+		console.log("before ajax" +arr);
 		$.ajax({
 		  url: file,
 		  success:(function(data){
 			 that.parseFileContentsToArray(arr, data);
+			 if(callBack) callBack();  //whoever calls me is responsible for knowing when all are loaded.
 		  }),
 		  dataType: "text"
 		});
 	}
 	
 	this.parseFileContentsToArray =function(arr, fileContents){
-		arr = arr.split("\n");
+		arr = fileContents.split("\n");
 	}
 	
 	//make sure to call this on windows.load and WAIT for it to return, dunkass.
-	this.loadArraysFromFile(){
+	this.loadArraysFromFile = function(callBack){
 		this.loadArrayFromFile(this.redditCharacters,"OCs/reddit.txt")
-		this.loadArrayFromFile(this.tumblr,"OCs/tumblr.txt")
+		this.loadArrayFromFile(this.tumblrCharacters,"OCs/tumblr.txt")
 		this.loadArrayFromFile(this.discordCharcters,"OCs/discord.txt")
 		this.loadArrayFromFile(this.creditsBuckaroos,"OCs/credits.txt")
 		this.loadArrayFromFile(this.ideasWranglers,"OCs/ideasWranglers.txt")
 		this.loadArrayFromFile(this.patrons,"OCs/patrons.txt")
-		this.loadArrayFromFile(this.canon,"OCs/canon.txt")
+		this.loadArrayFromFile(this.canon,"OCs/canon.txt",callBack) //last one in list has callback so I know to do next thing.
 	}
 
 
