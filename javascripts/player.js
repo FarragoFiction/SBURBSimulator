@@ -1971,7 +1971,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(this.isTroll && this.bloodColor == "#99004d"){
 			for(var i = 0; i<this.relationships.length; i++){
 				//needs to be part of this in ADDITION to initialization because what about custom players now.
-				var r = this.relationship[i];
+				var r = this.relationships[i];
 				if(this.isTroll && this.bloodColor == "#99004d" && r.target.isTroll && r.target.bloodColor == "#99004d"){
 					r.value = -20; //biological imperitive to fight for throne.
 					this.triggerLevel ++;
