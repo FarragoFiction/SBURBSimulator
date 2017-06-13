@@ -1,29 +1,36 @@
 <html>
 	<head>
 	<meta charset="utf-8">
-	<meta name="description" content="Homestuck SBURB Simulator, see how millions of non canon sessions turn out, then bug and fuss and meddle to change things. Similar to a "Zero Player Game", with a focus on story over gameplay, but has limited user interactivity. Runs in most browsers.">
-
+	<style>
+		@font-face {
+				font-family: horrorterror;
+				src: url(MISTERTWIGGY.TTF);
+		}
+	</style>
 		<link rel="stylesheet" href="css/oc.css">
 		<script type="text/javascript" src="javascripts/jquery-1.7.1.min.js"></script>
 		<script type="text/javascript" src="javascripts/lz-string.min.js"></script>
-
-		<script type="text/javascript" src="javascripts/random_tables.js"></script>
+		<script type="text/javascript" src="javascripts/navbar.js"></script>
 		<script type="text/javascript" src="javascripts/Scenes/FreeWillStuff.js"></script>
 		<script type="text/javascript" src="javascripts/Scenes/QuadrantDialogue.js"></script>
 		<script type="text/javascript" src="javascripts/Scenes/GrimDarkQuests.js"></script>
+		<script type="text/javascript" src="javascripts/random_tables.js"></script>
 		<script type="text/javascript" src="javascripts/ShittyRapEngine/shitty_raps.js"></script>
-		<script type="text/javascript" src="javascripts/quirk.js"></script>
 		<script type="text/javascript" src="javascripts/session.js"></script>
 		<script type="text/javascript" src="javascripts/loading.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/LifeStuff.js"></script>
 		<script type="text/javascript" src="javascripts/player.js"></script>
-		<script type="text/javascript" src="javascripts/gameEntity.js"></script>
 		<script type="text/javascript" src="javascripts/AfterLife.js"></script>
+		<script type="text/javascript" src="javascripts/gameEntity.js"></script>
 		<script type="text/javascript" src="javascripts/playerSnapshot.js"></script>
+		<script type="text/javascript" src="javascripts/quirk.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/LuckStuff.js"></script>
 		<script type="text/javascript" src="javascripts/debugScenarios.js"></script>
 		<script type="text/javascript" src="javascripts/relationship.js"></script>
-		<script type="text/javascript" src="javascripts/v2.0/scenario_controller2.js"></script>
+		<script type="text/javascript" src="javascripts/v2.0/graph_controller.js"></script>
+		<script type="text/javascript" src="javascripts/v2.0/char_viewer.js"></script>
+		<script type="text/javascript" src="javascripts/v2.0/char_creator_helper.js"></script>
 		<script type="text/javascript" src="javascripts/handle_sprites.js"></script>
-		<script type="text/javascript" src="javascripts/Scenes/LuckStuff.js"></script>
 		<script type="text/javascript" src="javascripts/v2.0/Scenes/AuthorMessage.js"></script>
 		<script type="text/javascript" src="javascripts/Scenes/Intro.js"></script>
 		<script type="text/javascript" src="javascripts/Scenes/UpdateShippingGrid.js"></script>
@@ -57,7 +64,6 @@
 		<script type="text/javascript" src="javascripts/v2.0/ImportantEvents.js"></script>
 		<script type="text/javascript" src="javascripts/Scenes/FightQueen.js"></script>
 		<script type="text/javascript" src="javascripts/Scenes/FightKing.js"></script>
-		<script type="text/javascript" src="javascripts/Scenes/LifeStuff.js"></script>
 		<script type="text/javascript" src="javascripts/Scenes/VoidyStuff.js"></script>
 		<script type="text/javascript" src="javascripts/Scenes/DoLandQuest.js"></script>
 		<script type="text/javascript" src="javascripts/Scenes/FaceDenizen.js"></script>
@@ -67,25 +73,37 @@
 		<script type="text/javascript" src="javascripts/Scenes/StartDemocracy.js"></script>
 		<script type="text/javascript" src="javascripts/Scenes/PowerDemocracy.js"></script>
 		<script type="text/javascript" src="javascripts/scene_controller.js"></script>
-		<script type="text/javascript" src="javascripts/navbar.js"></script>
 		<title>
-			SBURB Session Simulator by jadedResearcher
+			Character Viewer
 		</title>
 	</head>
 	<body>
-		<div id  = "navbar"></div>
-		<h3 id = "seedText"><a href = "index2.html">Shareable URL </a></h3>
-		<div id = "debug"></div>
+		<div id = "navbar"></div>
+		<h3 id = "seedText"></h3>
+		<br>
+
+		<div id = "debug"><div id = "loading_stats"></div>
+		<Br>
+		</div>
+
+		<div id = "character_creator">
+			Goal: render 12 players at a time, allow pagination. Allow searching for chat handles (gets you to right page), allow you to enter page number.
+		</div>
 
 
-		<div id = "story" ><div id = "loading_stats"></div><img id="loading.png" src = "images/loading.png"></div>
+
+		<div class ='whiteCenterThingy'>
+		<br>
+		<div id = "story" style="width:1000px;"><img id="loading.png" src = "images/loading.png">
+			
+		</div>
 		<canvas id="echeladder_template" width="202" height="300">  </canvas>
 		<canvas id="sprite_template" width="400" height="300">  </canvas>
 		<canvas id="canvas_template" width="1000" height="300">  </canvas>
 		<canvas id="rainbow_template" width="1" height="300">  </canvas>
 		<canvas id="chat_text_template" width="472" height="239">  </canvas>
 		<canvas id="godtierlevelup_template" width="1000" height="572">  </canvas>
-
+		<img id="loading.png" src = "images/loading.png" style="display:none">
 		<div id = "image_staging">  </div>
 		<div id = "loading_image_staging">  </div>
 		<div id = "playerSprites"></div>
