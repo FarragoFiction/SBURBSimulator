@@ -1,4 +1,4 @@
-pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB stab.png stabcopy.png
+pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB stab.png stabcopy.png  <-- in docs in windows
 
 for i in {0..60}; do ./pngcrush_1_8_11_w64.exe -rem gAMA -rem cHRM -rem iCCP -rem sRGB SburbStory/images/Hair/hair_back$i.png SburbStory/images/Hair/copy_hair_back$i.png; done
 
@@ -10,3 +10,7 @@ for i in {0..12}; do ./pngcrush_1_8_11_w64.exe -rem gAMA -rem cHRM -rem iCCP -re
 for i in {0..12}; do mv SburbStory/images/Wings/copy_wing$i.png SburbStory/images/Wings/wing$i.png ; done
 for i in {1..60}; do mv SburbStory/images/Hair/copy_hair$i.png SburbStory/images/Hair/hair_back$i.png ; done
 for i in {1..60}; do mv SburbStory/images/Hair/copy_hair_back$i.png SburbStory/images/Hair/hair$i.png ; done
+
+for i in {1..60}; do mv SburbStory/images/Hair/hair_back$i.png SburbStory/images/Hair/copy_hair$i.png ; done 
+for i in {1..60}; do mv SburbStory/images/Hair/hair$i.png SburbStory/images/Hair/hair_back$i.png ; done 
+for i in {1..60}; do mv SburbStory/images/Hair/copy_hair$i.png SburbStory/images/Hair/hair$i.png ; done 
