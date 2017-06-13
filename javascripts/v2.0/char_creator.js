@@ -454,3 +454,44 @@ function makeAuthorAvatar(){
 	players[0].bloodColor = "#ff0000"
 	players[0].mylevels = ["INSTEAD","a CORPSE JUST RENDERS HERE","STILL CAN LEVEL UP.","OH, AND CORPSES.","SAME LEVELS","BUT STILL HAVE","IMAGE","THEY GET A DIFFERENT","BEFORE MAXING OUT","IF THEY GODTIER","AND GO UP THE LADDER","LEVELS NOW","16 PREDETERMINED","HAVE","PLAYERS","I FINISHED ECHELADDERS."];
 }
+
+
+
+
+
+
+
+
+
+
+/************************************************
+
+AND NOW IT'S TIME FOR CHAR CREATOR EASTER EGGS!!!
+
+************************************************/
+
+//don't pollute global name space more than you already are, dunkass
+//call this ONLY inside a function.
+function characterEasterEggEngine(){
+	this.redditCharacters = [];
+	this.tumblrCharacters = [];
+	this.discordCharcters = [];
+	this.creatorCharacters =[];
+	this.creditsBuckaroos = [];
+	this.ideasWranglers = [];
+	this.tripleSurpriseNoodles = [];
+	this.patrons = [];  // :( none yet
+	this.canon = [];  // <-- will be so boring to populate. do this last.
+	
+	
+	//if passed both reddit and tumblr easter egg, character can come from either source, for example.
+	//so this function should FIRST assemble an array of 2-12 players based on ALL relevant params.
+	//and then convert it into a b=allplayersbytes&s=allplayersstrings  data string.
+	this.processEasterEgg = function(){
+		
+	}
+	
+}
+
+
+
