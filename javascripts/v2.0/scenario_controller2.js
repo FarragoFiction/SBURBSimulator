@@ -103,7 +103,7 @@ function startSession(){
 function convertCanvasToPlaceholderImgTag(){
 	$("canvas").each(function(index, element){
 			var e = $(element);
-			$(element).replaceWith("<img src = '/images/" + index+".png'>");
+			$(element).replaceWith("<img src = '/images/" + (index+1)+".png'>");
 	});
 }
 
