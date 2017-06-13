@@ -21,8 +21,6 @@ function renderPlayersForEditing (){
 //check box for "guarantee space/time".
 //just generates a URL for the session. that you click right on this page. so only this page needs to load the ocs from file. 
 function callBackForLoadOCsFromFile(){
-	alert("CALLBACK!!! Reddit is: " + easterEggEngineGlobalVar.redditCharacters)
-	
 	playersGlobalVar = easterEggEngineGlobalVar.processEasterEggsViewer();
 	charCreatorHelperGlobalVar = new CharacterCreatorHelper(playersGlobalVar);
 	charCreatorHelperGlobalVar.drawAllPlayerSummaries();
