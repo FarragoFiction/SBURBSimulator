@@ -1,6 +1,7 @@
 var charCreatorHelperGlobalVar;
 var playersGlobalVar = [];
 var easterEggEngineGlobalVar;
+var simulationMode  = false;
 window.onload = function() {
 	$(this).scrollTop(0);
 	loadNavbar();

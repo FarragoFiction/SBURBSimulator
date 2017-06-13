@@ -496,7 +496,9 @@ function generateURLParamsForPlayers(players,includeChatHandle){
 		var b = bytes.substring(bi, bi+11)
 		var s = [];
 		var s = strings.slice(si, si +5)
-		players.push(dataBytesAndStringsToPlayer(b,s));
+		var p = (dataBytesAndStringsToPlayer(b,s));
+		p.id = i; //will be overwritten by sim, but viewer needs it
+		players.push(p);
 	}
 	return players;
 

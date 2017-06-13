@@ -6,6 +6,10 @@
 	padding: 10px;
 }
 
+.standAloneSummary{
+	display: inline-block;
+}
+
 .watermark{
 	position: fixed;
 	bottom: 0px;

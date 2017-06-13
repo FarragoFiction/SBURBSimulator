@@ -13,18 +13,21 @@ function CharacterCreatorHelper(players){
 	}
 	
 	this.drawAllPlayerSummaries = function(){
+		console.log("drawing all player summaries: " + this.players)
 		for(var i = 0; i<this.players.length; i++){
 			this.drawSinglePlayerSummary(this.players[i]);
 		}
 	}
 	
 	this.drawSinglePlayerSummary = function(player){
+		console.log("drawing: " + player.title())
 		var str = "<div class='standAloneSummary' id='createdCharacter"+ player.id + "'>";
 		var divId =  player.id;
 		str += this.drawCanvasSummary(player);
 		str += "</div>"
 		this.div.append(str);
 		this.createSummaryOnCanvas(player);
+		$(".optionBox").show(); //unlike char creator, always show
 	}
 	
 	this.drawSinglePlayer = function(player){
