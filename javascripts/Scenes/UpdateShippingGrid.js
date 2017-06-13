@@ -200,7 +200,14 @@ function UpdateShippingGrid(session){
 		//console.log("Updating shipping grid in: " + this.session.session_id);
 		removeFromArray(this.heartPlayer, this.session.availablePlayers);
 		this.heartPlayer.increasePower();
-		return "The " + this.heartPlayer.htmlTitleBasic() + " updates their shipping grid. <Br>" + this.savedShipText;
+		var fuckPile = ""
+		if(this.savedShipText.length > 4000){
+			fuckPile += "How did this session turn into such a scandalous fuckpile?";
+			console.log( this.savedShipText.length + " scandalous fuck pile " + this.session.session_id)
+		}
+		var ret = "The " + this.heartPlayer.htmlTitleBasic() + " updates their shipping grid. " + fuckPile + " <Br>" + this.savedShipText;
+
+		return ret;
 		//return "todo: update shipping grid for heart player.  updating it lowers the trigger level of all involved.  also, save clubs and diamonds to session. extract ships from it. if a player is in more than one diamonds, erase previous one.";
 
 	}
