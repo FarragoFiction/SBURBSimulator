@@ -5,5 +5,5 @@
 <br>
 <div class = "links">
 
-<a href = "character_creator.html">Replay Random Session</a> &nbsp &nbsp &nbsp &nbsp<a href = "newsposts.html">Newsposts</a> &nbsp &nbsp &nbsp &nbsp <a href = "art_newsposts.html">Art Newsposts</a> &nbsp &nbsp &nbsp &nbsp<a href = "about.html">FAQ</a> &nbsp &nbsp &nbsp &nbsp <a href = "rare_session_finder.html">Author Bot</a>&nbsp &nbsp &nbsp &nbsp <a href = "todo.html">Todo Pile</a>&nbsp &nbsp &nbsp &nbsp <a href = "glitches.html"> Glitch FAQ</a> &nbsp &nbsp &nbsp &nbsp <a href = "credits.html"> Credits</a>     &nbsp &nbsp &nbsp &nbsp <a href = "index_pw.html"> [???]</a>
+<a href = "index2.html">Read Random</a> &nbsp &nbsp &nbsp &nbsp<a href = "character_creator.html">Replay Random</a> &nbsp &nbsp &nbsp &nbsp<a href = "newsposts.html">Newsposts</a> &nbsp &nbsp &nbsp &nbsp <a href = "art_newsposts.html">Art Newsposts</a> &nbsp &nbsp &nbsp &nbsp<a href = "about.html">FAQ</a> &nbsp &nbsp &nbsp &nbsp <a href = "rare_session_finder.html">Author Bot</a>&nbsp &nbsp &nbsp &nbsp <a href = "todo.html">Todo Pile</a>&nbsp &nbsp &nbsp &nbsp <a href = "glitches.html"> Glitch FAQ</a> &nbsp &nbsp &nbsp &nbsp <a href = "credits.html"> Credits</a>     &nbsp &nbsp &nbsp &nbsp <a href = "index_pw.html"> [???]</a>
 </div>
