@@ -922,7 +922,18 @@ function CharacterEasterEggEngine(){
 	//takes in things like this.redditCharacters and "OCs/reddit.txt"
 	//parses the text file as newline seperated and load them into the array.
 	this.loadArrayFromFile(arr, file){
-		//TODO
+		var that = this;
+		$.ajax({
+		  url: file,
+		  success:(function(data){
+			 that.parseFileContentsToArray(arr, data);
+		  }),
+		  dataType: "text"
+		});
+	}
+	
+	this.parseFileContentsToArray =function(arr, fileContents){
+		arr = arr.split("\n");
 	}
 	
 	//make sure to call this on windows.load and WAIT for it to return, dunkass.
