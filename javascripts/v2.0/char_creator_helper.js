@@ -910,7 +910,7 @@ function CharacterEasterEggEngine(){
 		//then, choose between 2 and 12 characters from that pool randomly (with seed, so AB can judge)
 		//then,
 		var space = getRandomElementFromArray(findAllAspectPlayers(pool, "Space"));
-		var time = getRandomElementFromArrayfindAllAspectPlayers(pool, "Time"));
+		var time = getRandomElementFromArray(findAllAspectPlayers(pool, "Time"));
 		if(space) chosen.push(space);
 		if(time) chosen.push(time);
 		var numExtra = getRandomInt(0,10);
@@ -924,35 +924,35 @@ function CharacterEasterEggEngine(){
 		var pool = [];
 		//first, parse url params. for each param you find that's right, append the relevant characters into the array.
 		if(getParameterByName("reddit")  == "true"){
-			pool.concat(this.redditCharacters)
+			pool = pool.concat(this.redditCharacters)
 		}
 		
 		if(getParameterByName("reddit")  == "true" || getParameterByName("allFans")  == "true" ){
-			pool.concat(this.redditCharacters)
+			pool = pool.concat(this.redditCharacters)
 		}
 		
-		if(getParameterByName("tumblr")  == "true"|| getParameterByName("allFans")  == "true" )){
-			pool.concat(this.redditCharacters)
+		if(getParameterByName("tumblr")  == "true"|| getParameterByName("allFans")  == "true" ){
+			pool = pool.concat(this.redditCharacters)
 		}
 		
-		if(getParameterByName("discord")  == "true"|| getParameterByName("allFans")  == "true" )){
-			pool.concat(this.redditCharacters)
+		if(getParameterByName("discord")  == "true"|| getParameterByName("allFans")  == "true" ){
+			pool = pool.concat(this.redditCharacters)
 		}
 		
-		if(getParameterByName("creditsBuckaroos")  == "true"|| getParameterByName("allFans")  == "true" )){
-			pool.concat(this.redditCharacters)
+		if(getParameterByName("creditsBuckaroos")  == "true"|| getParameterByName("allFans")  == "true" ){
+			pool = pool.concat(this.redditCharacters)
 		}
 		
-		if(getParameterByName("ideasWranglers")  == "true"|| getParameterByName("allFans")  == "true" )){
-			pool.concat(this.redditCharacters)
+		if(getParameterByName("ideasWranglers")  == "true"|| getParameterByName("allFans")  == "true" ){
+			pool = pool.concat(this.redditCharacters)
 		}
 		
-		if(getParameterByName("patrons")  == "true"|| getParameterByName("allFans")  == "true" )){
-			pool.concat(this.redditCharacters)
+		if(getParameterByName("patrons")  == "true"|| getParameterByName("allFans")  == "true" ){
+			pool = pool.concat(this.redditCharacters)
 		}
 		
-		if(getParameterByName("canon")  == "true"|| getParameterByName("allFans")  == "true" )){
-			pool.concat(this.redditCharacters)
+		if(getParameterByName("canon")  == "true"|| getParameterByName("allFans")  == "true" ){
+			pool = pool.concat(this.redditCharacters)
 		}
 		return pool;
 
