@@ -26,7 +26,7 @@ function FreeWillStuff(session){
 				this.decision = breakFree;
 				return true;
 			}
-			if(player.freeWill > 25){  //don't even get to consider a decision if you don't have  more than default free will.
+			if(player.freeWill > 60){  //don't even get to consider a decision if you don't have  more than default free will.//TODO raise to over 60 'cause that is highest default free will possible. want free will to be rarer.
 				var decision = this.getPlayerDecision(player);
 				if(decision){
 					this.decision = decision;
@@ -412,7 +412,7 @@ function FreeWillStuff(session){
 				timeIntro = " from the future"
 			}
 			var intro = "The " + player.htmlTitleBasic() + timeIntro + " knows how the god tiering mechanic works"
-			if(sacrifice.sprite.name == "sprite"){
+			if(sacrifice.sprite.name == "sprite"){  //isn't gonna happen to yourself, 'cause you have to be 'available'.
 				intro += ", to the point of abusing glitches and technicalities the game itself to exploit it before the " + sacrifice.htmlTitle() + " is even in the Medium"
 				console.log("HAX! I call HAX! " + this.session.session_id)
 			} 
