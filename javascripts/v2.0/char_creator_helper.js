@@ -15,7 +15,7 @@ function CharacterCreatorHelper(players){
 		//console.log("drawing: " + player.title())
 		var str = "";
 		var divId =  player.id;
-		player.chatHandle = "";
+		if(curSessionGlobalVar.session_id != 612 && curSessionGlobalVar.session_id != 613  && curSessionGlobalVar.session_id != 413 && curSessionGlobalVar.session_id != 1025 &&  curSessionGlobalVar.session_id != 111111)player.chatHandle = "";
 		//divId = divId.replace(/\s+/g, '')
 		str += "<div class='createdCharacter' id='createdCharacter"+ player.id + "'>"
 		str += "<canvas class = 'createdCharacterCanvas' id='canvas" +divId + "' width='" +400 + "' height="+300 + "'>  </canvas>";

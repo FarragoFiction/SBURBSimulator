@@ -92,6 +92,7 @@ function initSession(){
 	curSessionGlobalVar.makeGuardians(); //after entry order established
 	checkEasterEgg();
 	initializePlayers(curSessionGlobalVar.players); //will take care of overriding players if need be.
+	checkEasterEgg();
 	//checkSGRUB();
 	//skip initialization
 	//load(curSessionGlobalVar.players, curSessionGlobalVar.guardians,true); //in loading.js
@@ -459,11 +460,6 @@ function makeAuthorAvatar(){
 
 
 
-
-
-
-
-
 /************************************************
 
 AND NOW IT'S TIME FOR CHAR CREATOR EASTER EGGS!!!
@@ -473,21 +469,36 @@ AND NOW IT'S TIME FOR CHAR CREATOR EASTER EGGS!!!
 //don't pollute global name space more than you already are, dunkass
 //call this ONLY inside a function.
 function characterEasterEggEngine(){
-	this.redditCharacters = [];
+	//test with reddit first, 'cause it's small
+	this.redditCharacters = ["b=%00%00%008%C3%B8%0A%00%1C%26%16%1E&s=,,Satire,Game Dev,AngsterGangster","b=H%2F*%C2%8A%C3%BE%C2%93%00C((%04&s=,,Video Games,Character Creation,sanguineCynophilist","b=%00%00%00F%C3%B9y%10%0A%0E%0E%04&s=,,Conspiracies,Television,probatioDiabolica","b=%5B1%0B%C2%86%C3%BE%1D%00%08!!%15&s=,,Music,Astronomy,felineCompany","b=%00%00%00J%C3%BE%C2%9C%00X%20'%16&s=,,Heroes,Bara,hystericalInflection"];
 	this.tumblrCharacters = [];
 	this.discordCharcters = [];
-	this.creatorCharacters =[];
+	this.creatorCharacters =["b=%2B*-%06%C3%B4%C2%A3%00%C3%90%2C%2C%0D&s=,,Authoring,Robots,authorBot","b=%3C%1E%07%06%C3%B4%C2%A3%00Z%2C%2C%0D&s=,,The AuthorBot,Authoring,jadedResearcher"];
 	this.creditsBuckaroos = [];
 	this.ideasWranglers = [];
-	this.tripleSurpriseNoodles = [];
 	this.patrons = [];  // :( none yet
-	this.canon = [];  // <-- will be so boring to populate. do this last.
+	this.canon = [];  // <-- will be so boring to populate. do this last. when i DO do it, turn off code that erases chat handle. hell, should do that for seed=612,413,1025,11111 anyways.
 	
 	
 	//if passed both reddit and tumblr easter egg, character can come from either source, for example.
 	//so this function should FIRST assemble an array of 2-12 players based on ALL relevant params.
 	//and then convert it into a b=allplayersbytes&s=allplayersstrings  data string.
 	this.processEasterEgg = function(){
+		
+	}
+	
+	this.playerDataStringArrayToURLFormat = function(playerDataString){
+		//first, take each element in the array and seperate it out into s and b
+		//then, append all b's and all s's together
+		//then, return dataBytesAndStringsToPlayers
+		
+	}
+	
+	//getting ALL of a cateogry is how I will handle having a gallery of said category.
+	//expect to display 12 players at a time, with paginaton
+	//displaying their "summary" from char helper.
+	//and their data in a text area so it can be copied.
+	this.getAllReddit = function(){
 		
 	}
 	
