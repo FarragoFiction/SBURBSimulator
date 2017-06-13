@@ -5,11 +5,15 @@ var simulationMode  = false;
 window.onload = function() {
 	$(this).scrollTop(0);
 	loadNavbar();
-	//charCreatorHelperGlobalVar = new CharacterCreatorHelper(curSessionGlobalVar.players);
+	loadFuckingEverything(true);
+
+	
+	
+}
+
+function renderPlayersForEditing (){
 	easterEggEngineGlobalVar = new CharacterEasterEggEngine();
 	easterEggEngineGlobalVar.loadArraysFromFile(callBackForLoadOCsFromFile);
-	
-	
 }
 
 //won'te be needed for AB or for simulation because instead of it being like reddit=true, SESSIONS with fan OCS will be generated right here.
@@ -17,7 +21,8 @@ window.onload = function() {
 //check box for "guarantee space/time".
 //just generates a URL for the session. that you click right on this page. so only this page needs to load the ocs from file. 
 function callBackForLoadOCsFromFile(){
-	alert("CALLBACK!!!")
+	alert("CALLBACK!!! Reddit is: " + easterEggEngineGlobalVar.redditCharacters)
+	
 	playersGlobalVar = easterEggEngineGlobalVar.processEasterEggsViewer();
 	charCreatorHelperGlobalVar = new CharacterCreatorHelper(playersGlobalVar);
 	charCreatorHelperGlobalVar.drawAllPlayerSummaries();
