@@ -916,18 +916,24 @@ function CharacterEasterEggEngine(){
 	this.creatorCharacters =["b=%2B*-%06%C3%B4%C2%A3%00%C3%90%2C%2C%0D&s=,,Authoring,Robots,authorBot","b=%3C%1E%07%06%C3%B4%C2%A3%00Z%2C%2C%0D&s=,,The AuthorBot,Authoring,jadedResearcher"];
 	this.creditsBuckaroos = [];
 	this.ideasWranglers = [];
-	this.patrons = [];  // :( none yet
+	this.patrons = [];  
 	this.canon = [];  //
 	
 	//takes in things like this.redditCharacters and "OCs/reddit.txt"
 	//parses the text file as newline seperated and load them into the array.
 	this.loadArrayFromFile(arr, file){
-		
+		//TODO
 	}
 	
 	//make sure to call this on windows.load and WAIT for it to return, dunkass.
 	this.loadArraysFromFile(){
-		
+		this.loadArrayFromFile(this.redditCharacters,"OCs/reddit.txt")
+		this.loadArrayFromFile(this.tumblr,"OCs/tumblr.txt")
+		this.loadArrayFromFile(this.discordCharcters,"OCs/discord.txt")
+		this.loadArrayFromFile(this.creditsBuckaroos,"OCs/credits.txt")
+		this.loadArrayFromFile(this.ideasWranglers,"OCs/ideasWranglers.txt")
+		this.loadArrayFromFile(this.patrons,"OCs/patrons.txt")
+		this.loadArrayFromFile(this.canon,"OCs/canon.txt")
 	}
 
 
