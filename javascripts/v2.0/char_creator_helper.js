@@ -900,17 +900,67 @@ function CharacterEasterEggEngine(){
 	this.patrons = [];  // :( none yet
 	this.canon = [];  // <-- will be so boring to populate. do this last. when i DO do it, turn off code that erases chat handle. hell, should do that for seed=612,413,1025,11111 anyways.
 	
-	
+	//make sure AB can use this so i can see if reddit or tumblr has best win rate, for example
 	//if passed both reddit and tumblr easter egg, character can come from either source, for example.
 	//so this function should FIRST assemble an array of 2-12 players based on ALL relevant params.
 	//and then convert it into a b=allplayersbytes&s=allplayersstrings  data string.
-	this.processEasterEggs = function(){
-		var pool = [];
+	this.processEasterEggsSimulator = function(){
+		var pool = this.getPoolBasedOnEggs();
 		var chosen = [];
-		//first, parse url params. for each param you find that's right, append the relevant characters into the array.
-		//then, choose between 2 and 12 characters from that pool randomly (true random, no seed.)
+		//then, choose between 2 and 12 characters from that pool randomly (with seed, so AB can judge)
 		//then,
+		var space = getRandomElementFromArray(findAllAspectPlayers(pool, "Space"));
+		var time = getRandomElementFromArrayfindAllAspectPlayers(pool, "Time"));
+		if(space) chosen.push(space);
+		if(time) chosen.push(time);
+		var numExtra = getRandomInt(0,10);
+		for(var i = 0; i<=numExtra; i++){
+			chosen.push(getRandomElementFromArray(pool));
+		}
 		return this.playerDataStringArrayToURLFormat(chosen); 
+	}
+	
+	this.getPoolBasedOnEggs = function(){
+		var pool = [];
+		//first, parse url params. for each param you find that's right, append the relevant characters into the array.
+		if(getParameterByName("reddit")  == "true"){
+			pool.concat(this.redditCharacters)
+		}
+		
+		if(getParameterByName("reddit")  == "true" || getParameterByName("allFans")  == "true" ){
+			pool.concat(this.redditCharacters)
+		}
+		
+		if(getParameterByName("tumblr")  == "true"|| getParameterByName("allFans")  == "true" )){
+			pool.concat(this.redditCharacters)
+		}
+		
+		if(getParameterByName("discord")  == "true"|| getParameterByName("allFans")  == "true" )){
+			pool.concat(this.redditCharacters)
+		}
+		
+		if(getParameterByName("creditsBuckaroos")  == "true"|| getParameterByName("allFans")  == "true" )){
+			pool.concat(this.redditCharacters)
+		}
+		
+		if(getParameterByName("ideasWranglers")  == "true"|| getParameterByName("allFans")  == "true" )){
+			pool.concat(this.redditCharacters)
+		}
+		
+		if(getParameterByName("patrons")  == "true"|| getParameterByName("allFans")  == "true" )){
+			pool.concat(this.redditCharacters)
+		}
+		
+		if(getParameterByName("canon")  == "true"|| getParameterByName("allFans")  == "true" )){
+			pool.concat(this.redditCharacters)
+		}
+		return pool;
+
+	}
+	
+	this.processEasterEggsViewer = function(){
+		var pool = this.getPoolBasedOnEggs();
+		return this.playerDataStringArrayToURLFormat(pool); 
 	}
 	
 	this.playerDataStringArrayToURLFormat = function(playerDataStringArray){
