@@ -484,10 +484,15 @@ function characterEasterEggEngine(){
 	//so this function should FIRST assemble an array of 2-12 players based on ALL relevant params.
 	//and then convert it into a b=allplayersbytes&s=allplayersstrings  data string.
 	this.processEasterEgg = function(){
-		
+		var pool = [];
+		var chosen = [];
+		//first, parse url params. for each param you find that's right, append the relevant characters into the array.
+		//then, choose between 2 and 12 characters from that pool randomly (true random, no seed.)
+		//then,
+		return this.playerDataStringArrayToURLFormat(chosen); 
 	}
 	
-	this.playerDataStringArrayToURLFormat = function(playerDataString){
+	this.playerDataStringArrayToURLFormat = function(playerDataStringArray){
 		//first, take each element in the array and seperate it out into s and b
 		//then, append all b's and all s's together
 		//then, return dataBytesAndStringsToPlayers
@@ -499,7 +504,7 @@ function characterEasterEggEngine(){
 	//displaying their "summary" from char helper.
 	//and their data in a text area so it can be copied.
 	this.getAllReddit = function(){
-		
+		return this.playerDataStringArrayToURLFormat(this.redditCharacters);
 	}
 	
 }
