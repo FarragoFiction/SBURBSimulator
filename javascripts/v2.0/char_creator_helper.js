@@ -19,9 +19,10 @@ function CharacterCreatorHelper(players){
 	}
 	
 	this.drawSinglePlayerSummary = function(player){
-		var str = "";
+		var str = "<div class='standAloneSummary' id='createdCharacter"+ player.id + "'>";
 		var divId =  player.id;
 		str += this.drawCanvasSummary(player);
+		str += "</div>"
 		this.div.append(str);
 		this.createSummaryOnCanvas(player);
 	}

@@ -412,6 +412,10 @@ function FreeWillStuff(session){
 				timeIntro = " from the future"
 			}
 			var intro = "The " + player.htmlTitleBasic() + timeIntro + " knows how the god tiering mechanic works"
+			if(sacrifice.sprite.name == "sprite"){
+				intro += ", to the point of abusing glitches and technicalities the game itself to exploit it before the " + sacrifice.htmlTitle() + " is even in the Medium"
+				console.log("HAX! I call HAX! " + this.session.session_id)
+			} 
 			if(player.murderMode){
 				intro += " and they are too far gone to care about casualties if it fails"
 			}
