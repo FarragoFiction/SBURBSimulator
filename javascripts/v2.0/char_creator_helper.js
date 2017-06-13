@@ -11,6 +11,21 @@ function CharacterCreatorHelper(players){
 			this.drawSinglePlayer(this.players[i]);
 		}
 	}
+	
+	this.drawAllPlayerSummaries = function(){
+		for(var i = 0; i<this.players.length; i++){
+			this.drawSinglePlayerSummary(this.players[i]);
+		}
+	}
+	
+	this.drawSinglePlayerSummary = function(player){
+		var str = "";
+		var divId =  player.id;
+		str += this.drawCanvasSummary(player);
+		this.div.append(str);
+		this.createSummaryOnCanvas(player);
+	}
+	
 	this.drawSinglePlayer = function(player){
 		//console.log("drawing: " + player.title())
 		var str = "";
