@@ -99,8 +99,13 @@ function startSession(){
 	load(curSessionGlobalVar.players, curSessionGlobalVar.guardians); //in loading.js
 }
 
-
-
+//used to prepare session for upload to archive of our own.
+function convertCanvasToPlaceholderImgTag(){
+	$("canvas").each(function(index, element){
+			var e = $(element);
+			$(element).replaceWith("<img src = '/images/" + index+".png'>");
+	});
+}
 
 
 
