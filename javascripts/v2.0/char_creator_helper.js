@@ -25,11 +25,11 @@ function CharacterCreatorHelper(players){
 		var divId =  player.id;
 		str += this.drawCanvasSummary(player);
 		//this.drawDataBoxNoButtons(player)
-		str += "<div class = 'standAloneSummary'>" + "WHy won't it put the box where i want it???" + "</div>";
-		str += "</div>"
+		str += "</div><div class = 'standAloneSummary'>" + this.drawDataBoxNoButtons(player) + "</div>";
 		this.div.append(str);
 		this.createSummaryOnCanvas(player);
 		$(".optionBox").show(); //unlike char creator, always show
+		this.wireUpDataBox(player);
 	}
 
 	this.drawSinglePlayer = function(player){
