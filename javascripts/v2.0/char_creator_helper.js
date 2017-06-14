@@ -24,7 +24,8 @@ function CharacterCreatorHelper(players){
 		var str = "<div class='standAloneSummary' id='createdCharacter"+ player.id + "'>";
 		var divId =  player.id;
 		str += this.drawCanvasSummary(player);
-		str += "<div class = 'standAloneSummary'>" + this.drawDataBoxNoButtons(player) + "</div>";
+		//this.drawDataBoxNoButtons(player)
+		str += "<div class = 'standAloneSummary'>" + "WHy won't it put the box where i want it???" + "</div>";
 		str += "</div>"
 		this.div.append(str);
 		this.createSummaryOnCanvas(player);
