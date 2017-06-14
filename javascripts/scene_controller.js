@@ -543,8 +543,8 @@ function dataBytesAndStringsToPlayer(charString, str_arr){
 	 player.leftHorn = charString.charCodeAt(8)
 	 player.rightHorn = charString.charCodeAt(9)
 	 player.hair = charString.charCodeAt(10)
-	 interestCategoryToInterestList(player.interest1Category ).push(player.interest1) //maybe don't add if already exists but whatevs for now.
-	 interestCategoryToInterestList(player.interest2Category ).push(player.interest2)
+	 if(player.interest1Category) interestCategoryToInterestList(player.interest1Category ).push(player.interest1) //maybe don't add if already exists but whatevs for now.
+	 if(player.interest2Category )interestCategoryToInterestList(player.interest2Category ).push(player.interest2)
 	 return player;
 }
 
