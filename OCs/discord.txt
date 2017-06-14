@@ -32,3 +32,5 @@ b=%C3%BF%C3%BF%C3%BFr%C3%BEU%00%10%22%1C6&s=,,Violence,Murder,sydneys=,,Violence
 b=qq%00A%C3%BE%C2%B9%00%04%1A%1A%01&s=,,Social Media,Video Games,sarcasticPoetry
 b=%13t%05x%C3%BE%C3%9C%00%C3%98%08%11%18&s=,,Chemistry,Girls,airedChemist
 b=%00%00%00%C2%91%C3%B3%C2%80%10%C3%8B%0C%0C-&s=,,Peace,Satire,fixedTimer
+b=%00%00%00%18%C3%BEP%16%C2%9C%26%26%0E&s=,,Death,Satire,tieBreaker
+b=F%23%00*%C3%BEy%00X(%1B%0B&s=,,Wizards,Video Games,cappterUndercards
