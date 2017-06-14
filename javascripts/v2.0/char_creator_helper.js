@@ -11,14 +11,14 @@ function CharacterCreatorHelper(players){
 			this.drawSinglePlayer(this.players[i]);
 		}
 	}
-	
+
 	this.drawAllPlayerSummaries = function(){
 		console.log("drawing all player summaries: " + this.players)
 		for(var i = 0; i<this.players.length; i++){
 			this.drawSinglePlayerSummary(this.players[i]);
 		}
 	}
-	
+
 	this.drawSinglePlayerSummary = function(player){
 		console.log("drawing: " + player.title())
 		var str = "<div class='standAloneSummary' id='createdCharacter"+ player.id + "'>";
@@ -29,7 +29,7 @@ function CharacterCreatorHelper(players){
 		this.createSummaryOnCanvas(player);
 		$(".optionBox").show(); //unlike char creator, always show
 	}
-	
+
 	this.drawSinglePlayer = function(player){
 		//console.log("drawing: " + player.title())
 		var str = "";
@@ -913,12 +913,12 @@ function CharacterEasterEggEngine(){
 	this.redditCharacters = [];
 	this.tumblrCharacters = [];
 	this.discordCharcters = [];
-	this.creatorCharacters =["b=%2B*-%06%C3%B4%C2%A3%00%C3%90%2C%2C%0D&s=,,Authoring,Robots,authorBot","b=%3C%1E%07%06%C3%B4%C2%A3%00Z%2C%2C%0D&s=,,The AuthorBot,Authoring,jadedResearcher"];
+	this.creatorCharacters =["b=%2B*-%06%C3%B4%C2%A3%00%C3%90%2C%2C%0D&s=,,Authoring,Robots,authorBot","b=%C3%A8%C3%90%C2%99E%C3%BE)%00%17%1C%1C.&s=,,100 Art Projects At Once,Memes,karmicRetribution","b=%3C%1E%07%06%C3%B4%C2%A3%00Z%2C%2C%0D&s=,,The AuthorBot,Authoring,jadedResearcher"];
 	this.creditsBuckaroos = [];
 	this.ideasWranglers = [];
-	this.patrons = [];  
+	this.patrons = [];
 	this.canon = [];  //
-	
+
 	//takes in things like this.redditCharacters and "OCs/reddit.txt"
 	//parses the text file as newline seperated and load them into the array.
 	this.loadArrayFromFile = function(arr, file,callBack){
@@ -926,18 +926,18 @@ function CharacterEasterEggEngine(){
 		$.ajax({
 		  url: file,
 		  success:(function(data){
-			 that.parseFileContentsToArray(arr, data);
+			 that.parseFileContentsToArray(arr, data.trim());
 			 if(callBack) callBack();  //whoever calls me is responsible for knowing when all are loaded.
 		  }),
 		  dataType: "text"
 		});
 	}
-	
+
 	this.parseFileContentsToArray =function(arr, fileContents){
 		this[arr] = fileContents.split("\n");
 	}
-	
-	
+
+
 	//make sure to call this on windows.load and WAIT for it to return, dunkass.
 	this.loadArraysFromFile = function(callBack){
 		this.loadArrayFromFile("redditCharacters","OCs/reddit.txt")
@@ -950,46 +950,50 @@ function CharacterEasterEggEngine(){
 	}
 
 
-	
+
 	this.getPoolBasedOnEggs = function(){
 		var pool = [];
 		//first, parse url params. for each param you find that's right, append the relevant characters into the array.
 		if(getParameterByName("reddit")  == "true"){
 			pool = pool.concat(this.redditCharacters)
 		}
-		
+
 		if(getParameterByName("tumblr")  == "true"|| getParameterByName("allFans")  == "true" ){
 			pool = pool.concat(this.tumblrCharacters)
 		}
-		
+
 		if(getParameterByName("discord")  == "true"|| getParameterByName("allFans")  == "true" ){
 			pool = pool.concat(this.discordCharcters)
 		}
-		
+
 		if(getParameterByName("creditsBuckaroos")  == "true"|| getParameterByName("allFans")  == "true" ){
 			pool = pool.concat(this.creditsBuckaroos)
 		}
-		
+
 		if(getParameterByName("ideasWranglers")  == "true"|| getParameterByName("allFans")  == "true" ){
 			pool = pool.concat(this.ideasWranglers)
 		}
-		
+
 		if(getParameterByName("patrons")  == "true"|| getParameterByName("allFans")  == "true" ){
 			pool = pool.concat(this.patrons)
 		}
-		
+
 		if(getParameterByName("canon")  == "true"|| getParameterByName("allFans")  == "true" ){
 			pool = pool.concat(this.canon)
+		}
+
+		if(getParameterByName("creators")  == "true"|| getParameterByName("allFans")  == "true" ){
+			pool = pool.concat(this.creatorCharacters)
 		}
 		return pool;
 
 	}
-	
+
 	this.processEasterEggsViewer = function(){
 		var pool = this.getPoolBasedOnEggs();
-		return this.playerDataStringArrayToURLFormat(pool); 
+		return this.playerDataStringArrayToURLFormat(pool);
 	}
-	
+
 	this.playerDataStringArrayToURLFormat = function(playerDataStringArray){
 		console.log("Took in an array of player data of size: " + playerDataStringArray.length)
 		var s = "";
@@ -1003,11 +1007,11 @@ function CharacterEasterEggEngine(){
 			s+= tmps+",";
 			b += tmpb;
 		}
-		//then, 
+		//then,
 		return dataBytesAndStringsToPlayers(b,s);
-		
+
 	}
-	
+
 	//getting ALL of a cateogry is how I will handle having a gallery of said category.
 	//expect to display 12 players at a time, with paginaton
 	//displaying their "summary" from char helper.
@@ -1015,7 +1019,5 @@ function CharacterEasterEggEngine(){
 	this.getAllReddit = function(){
 		return this.playerDataStringArrayToURLFormat(this.redditCharacters);
 	}
-	
+
 }
-
-

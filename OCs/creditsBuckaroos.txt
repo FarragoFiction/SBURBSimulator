@@ -1,1 +1,6 @@
-b=%00%00%00%18%C3%BE%13%00%02%09%091&s=,,Ballet,Fan Fiction,deleteMe
+b=P%3A!%C2%93%C3%BE1%00B%12%12%01&s=,,Data Entry,Song Writing,manicInsomniac
+b=8%22%07h%C3%BE%C3%93%04%1A%1A%1A%3C&s=,,Theorycrafting,Storytelling,recursiveSlacker
+b=%C2%95%5C%11%C2%81%C3%BA%C3%86%00K%0A(4&s=,,Physics,Genocide,quantumlyUnstable
+b=5'%02*%C3%BE%C2%A7%08T%08%08%1E&s=,,Programming,Science Fiction,infiniteEdge
+b=%00%00%00%C2%87%C3%B7%20%00%5B%24%24%0B&s=,,Storytelling,other devious ideas,sadisticCynic
+b=%C3%BF%C3%BE%C3%97%14%C3%BE%C3%91%00P%19%19%07&s=,,Politics,Singing,politicalBass
