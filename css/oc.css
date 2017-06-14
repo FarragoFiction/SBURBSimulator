@@ -6,6 +6,11 @@
 	padding: 10px;
 }
 
+.navbarLink{
+	padding-left: 10px;
+	padding-right:10px;
+}
+
 .standAloneSummary{
 	display: inline-block;
 }
