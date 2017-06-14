@@ -103,7 +103,7 @@ function startSession(){
 function convertCanvasToPlaceholderImgTag(){
 	$("canvas").each(function(index, element){
 			var e = $(element);
-			$(element).replaceWith("<img src = '/images/" + (index+1)+".png'>");
+			$(element).replaceWith("<img src = 'http://farragofiction.com/SBURBSim/images/A03/HiveBent/" + (index+1)+".png'>");
 	});
 }
 
