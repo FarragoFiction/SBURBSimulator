@@ -2019,3 +2019,14 @@ No wonder I'm not seeing a consistent pattern. DIFFERENT THINGS HAPPEN TO DIFFER
 Next player down in list turns into a robot if their favorite number is 8. not dead.
 
 So....is the problem changing favorite number? not the raw value?
+
+~~~~~~~~~~~~~~~~~~~~
+
+Alright. I need to focus. I'm so busy with the Discord I'm not coding right now. I KNOW I can finish teh fan viewer (if not the fan sessions) today.
+
+So.  I need to do:
+
+* pagination
+* text areas next to chars.
+
+2nd is much easier than first. so. start it so you get an easy win which builds momentum. make sure display != none. make sure display: inline-block

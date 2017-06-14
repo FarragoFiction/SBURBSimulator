@@ -1477,7 +1477,6 @@ var no_quirks = [["\\bnope\\b","no"],["\\bnope\\b","absolutely no"],["\\bnope\\b
 
 
 
-//TODO redo handle system to be interest based. array of first word and second word options for every interest.
 //get something that matches your class/aspect title on your own.
 var maid_handles = ["meandering","motley","musing","mischievous","macabre", "maiden"];
 var page_handles = ["passionate","patient","peaceful","perfect","perceptive", "practical"];

@@ -24,6 +24,7 @@ function CharacterCreatorHelper(players){
 		var str = "<div class='standAloneSummary' id='createdCharacter"+ player.id + "'>";
 		var divId =  player.id;
 		str += this.drawCanvasSummary(player);
+		str += "<div class = 'standAloneSummary'>" + this.drawDataBoxNoButtons(player) + "</div>";
 		str += "</div>"
 		this.div.append(str);
 		this.createSummaryOnCanvas(player);
@@ -235,6 +236,13 @@ function CharacterCreatorHelper(players){
 		return str;
 	}
 
+
+	this.drawDataBoxNoButtons = function(player){
+		var str = "<div id = 'dataBox"+player.id + "'>";
+		str += "<textarea class = 'dataInputSmall' id='dataBoxDiv"+player.id + "'> </textarea>";
+		str += "</div>"
+		return str;
+	}
 
 
 	//place where you can load data (with load button).
