@@ -963,7 +963,7 @@ function CharacterEasterEggEngine(){
 		this.loadArrayFromFile("redditCharacters","OCs/reddit.txt")
 		this.loadArrayFromFile("tumblrCharacters","OCs/tumblr.txt")
 		this.loadArrayFromFile("discordCharcters","OCs/discord.txt")
-		this.loadArrayFromFile("creditsBuckaroos","OCs/credits.txt")
+		this.loadArrayFromFile("creditsBuckaroos","OCs/creditsBuckaroos.txt")
 		this.loadArrayFromFile("ideasWranglers","OCs/ideasWranglers.txt")
 		this.loadArrayFromFile("patrons","OCs/patrons.txt")
 		this.loadArrayFromFile("canon","OCs/canon.txt",callBack) //last one in list has callback so I know to do next thing.
