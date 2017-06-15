@@ -1873,6 +1873,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	this.renderSelf = function(){
 		if(!this.spriteCanvasID) this.initSpriteCanvas();
+		console.log(this);
 		var canvasDiv = document.getElementById(this.spriteCanvasID);
 
 		var ctx = canvasDiv.getContext("2d");

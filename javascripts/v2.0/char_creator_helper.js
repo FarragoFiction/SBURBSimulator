@@ -942,7 +942,6 @@ function CharacterEasterEggEngine(){
 	//takes in things like this.redditCharacters and "OCs/reddit.txt"
 	//parses the text file as newline seperated and load them into the array.
 	this.loadArrayFromFile = function(arr, file,processForSim, callBack){
-		console.log("loading file: " + file + " and callback is: " + callBack)
 		var that = this;
 		$.ajax({
 		  url: file,
@@ -973,6 +972,9 @@ function CharacterEasterEggEngine(){
 		if(!space){
 			space = randomSpacePlayer(curSessionGlobalVar);
 			space.chatHandle = "randomSpace"
+			space.quirk = new Quirk();
+			time.quirk.favoriteNumber = 0;
+			space.deriveChatHandle = false;
 		} 
 		var timePlayers = findAllAspectPlayers(potentials, "Time");
 		var time = getRandomElementFromArray(timePlayers);
@@ -980,7 +982,11 @@ function CharacterEasterEggEngine(){
 		if(!time){
 			time = randomTimePlayer(curSessionGlobalVar);
 			time.chatHandle = "randomTime"
+			time.quirk = new Quirk();
+			time.quirk.favoriteNumber = 0;
+			space.deriveChatHandle = false;
 		} 
+		console.log(space);
 		ret.push(space);
 		ret.push(time);
 		var numPlayers = getRandomInt(2,12);
@@ -988,6 +994,12 @@ function CharacterEasterEggEngine(){
 			var p = getRandomElementFromArray(potentials);
 			ret.push(p);
 			potentials.removeFromArray(p);  //no repeats. <-- modify all the removes l8r if i want to have a mode that enables them.
+		}
+		
+		for(var i = 0; i<ret.length; i++){
+			var p = ret[i];
+			console.log("Chat handle: " + p.chatHandle)
+			if(p.chatHandle == "" || !p.chatHandle || p.chatHandle == " ") p.chatHandle = getRandomChatHandle(p.class_name,p.aspect,p.interest1, p.interest2);
 		}
 		curSessionGlobalVar.replayers = ret;
 		callBack();
@@ -997,7 +1009,6 @@ function CharacterEasterEggEngine(){
 
 	//make sure to call this on windows.load and WAIT for it to return, dunkass.
 	this.loadArraysFromFile = function(callBack, processForSim){
-		console.log("callback is: " + callBack + " and processForSim is: " + processForSim)
 		//too confusing trying to only load the assest i'll need. wait for now.
 		this.loadArrayFromFile("redditCharacters","OCs/reddit.txt", processForSim)
 		this.loadArrayFromFile("tumblrCharacters","OCs/tumblr.txt", processForSim)
