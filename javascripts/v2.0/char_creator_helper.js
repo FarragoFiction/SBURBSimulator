@@ -995,13 +995,13 @@ function CharacterEasterEggEngine(){
 		var numPlayers = getRandomInt(2,12);
 		for(var i = 2; i<numPlayers; i++){
 			var p = getRandomElementFromArray(potentials);
-			ret.push(p);
-			potentials.removeFromArray(p);  //no repeats. <-- modify all the removes l8r if i want to have a mode that enables them.
+			if(p) ret.push(p);
+			if(p) potentials.removeFromArray(p);  //no repeats. <-- modify all the removes l8r if i want to have a mode that enables them.
 		}
-		
+		console.log(ret);
 		for(var i = 0; i<ret.length; i++){
 			var p = ret[i];
-			console.log("Chat handle: " + p.chatHandle)
+			console.log(p)
 			if(p.chatHandle.trim() == "") p.chatHandle = getRandomChatHandle(p.class_name,p.aspect,p.interest1, p.interest2);
 		}
 		curSessionGlobalVar.replayers = ret;

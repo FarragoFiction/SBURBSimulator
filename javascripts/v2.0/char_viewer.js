@@ -5,6 +5,9 @@ var simulationMode  = false;
 window.onload = function() {
 	$(this).scrollTop(0);
 	loadNavbar();
+	var params = window.location.href.substr(window.location.href.indexOf("?")+1)
+	if (params == window.location.href) params = ""
+	$("#character_creator").append("<a target='_blank' href = 'index2.html?selfInsertOC=true&" + params + "'>Send Random Fan OCs From This Category Into SBURB?</a><Br>");
 	loadFuckingEverything(true);
 
 
