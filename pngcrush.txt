@@ -11,6 +11,9 @@ for i in {0..12}; do mv SburbStory/images/Wings/copy_wing$i.png SburbStory/image
 for i in {1..60}; do mv SburbStory/images/Hair/copy_hair$i.png SburbStory/images/Hair/hair_back$i.png ; done
 for i in {1..60}; do mv SburbStory/images/Hair/copy_hair_back$i.png SburbStory/images/Hair/hair$i.png ; done
 
-for i in {1..60}; do mv SburbStory/images/Hair/hair_back$i.png SburbStory/images/Hair/copy_hair$i.png ; done 
-for i in {1..60}; do mv SburbStory/images/Hair/hair$i.png SburbStory/images/Hair/hair_back$i.png ; done 
-for i in {1..60}; do mv SburbStory/images/Hair/copy_hair$i.png SburbStory/images/Hair/hair$i.png ; done 
+for i in {1..60}; do mv SburbStory/images/Hair/hair_back$i.png SburbStory/images/Hair/copy_hair$i.png ; done
+for i in {1..60}; do mv SburbStory/images/Hair/hair$i.png SburbStory/images/Hair/hair_back$i.png ; done
+for i in {1..60}; do mv SburbStory/images/Hair/copy_hair$i.png SburbStory/images/Hair/hair$i.png ; done
+
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB hair13tmp.png hair13.png  
