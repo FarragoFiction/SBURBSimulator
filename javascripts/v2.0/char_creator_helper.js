@@ -973,8 +973,9 @@ function CharacterEasterEggEngine(){
 		if(!space){
 			space = randomSpacePlayer(curSessionGlobalVar);
 			space.chatHandle = "randomSpace"
+			console.log("Random space player!")
 			space.quirk = new Quirk();
-			time.quirk.favoriteNumber = 0;
+			space.quirk.favoriteNumber = 0;
 			space.deriveChatHandle = false;
 		} 
 		var timePlayers = findAllAspectPlayers(potentials, "Time");
@@ -985,8 +986,9 @@ function CharacterEasterEggEngine(){
 			time.chatHandle = "randomTime"
 			time.quirk = new Quirk();
 			time.quirk.favoriteNumber = 0;
-			space.deriveChatHandle = false;
+			time.deriveChatHandle = false;
 		} 
+		console.log("space chatHandle " + space.chatHandle)
 		console.log(space);
 		ret.push(space);
 		ret.push(time);
@@ -1000,7 +1002,7 @@ function CharacterEasterEggEngine(){
 		for(var i = 0; i<ret.length; i++){
 			var p = ret[i];
 			console.log("Chat handle: " + p.chatHandle)
-			if(p.chatHandle == "" || !p.chatHandle || p.chatHandle == " ") p.chatHandle = getRandomChatHandle(p.class_name,p.aspect,p.interest1, p.interest2);
+			if(p.chatHandle.trim() == "") p.chatHandle = getRandomChatHandle(p.class_name,p.aspect,p.interest1, p.interest2);
 		}
 		curSessionGlobalVar.replayers = ret;
 		callBack();
