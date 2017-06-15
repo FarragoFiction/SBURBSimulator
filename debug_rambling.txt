@@ -2030,3 +2030,19 @@ So.  I need to do:
 * text areas next to chars.
 
 2nd is much easier than first. so. start it so you get an easy win which builds momentum. make sure display != none. make sure display: inline-block
+
+okay, now for paginations.
+
+i've done pagination before, but how do i want to do it here. 12 players at a time? yes, that's a nice number.
+But, is there really a POINT to hiding the previous players? no rendering cost for showing them. and it's not as if i can keep everything on "one screen", as it were.
+So, instead of pagination, it really should be "render the next 12 players."
+
+Only want one helper.
+
+No input.
+
+
+So...
+
+make a renderNext12Players()
+function, and keep track of current player index.
