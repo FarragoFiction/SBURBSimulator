@@ -2138,4 +2138,7 @@ Need to say "if chatHandle == "", derive, otherwise don't".  How am I doing this
 if(this.deriveChatHandle)  well. THAT's going to be easy. Just set that for the trolls/humans/etc in the playerTo413index or whatver.
 
 HELL YES! It is working! Now just make sure AB only calls it once as well. also for scratches.
-confirm ab agrees with reality and both can scratch.
+confirm ab agrees with reality and both can scratch. ooo, and 612 is a yard, too (equius is only surivor and was black for nepeta).
+ so. test that.  oh shit, and scratched 612 was a combo session where only cronus and mituna made it to the new session. which grim dark crashed.
+ 
+ Shit. wait. quirks are broked. need to fix.
