@@ -278,7 +278,11 @@ function startSessionJunior(){
 	if(getParameterByName("babyStuck")  == "true"){
 		babyStuckMode();
 	}
-	checkEasterEgg();
+	checkEasterEgg(easterEggCallBack);
+
+}
+
+function easterEggCallBack(){
 	initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar);  //need to redo it here because all other versions are in case customizations
 	//aaaaand. done.
 	sessionsSimulated.push(curSessionGlobalVar.session_id);
@@ -297,6 +301,15 @@ function startSessionJunior(){
 		Math.seed =  getRandomSeed();
 		initial_seed = Math.seed;
 		startSessionJunior();
+	}
+}
+
+function easterEggCallBackRestart(){
+	initializePlayers(curSessionGlobalVar.players,curSessionGlobalVar); //need to redo it here because all other versions are in case customizations
+	if(simulationMode == true){
+		intro();
+	}else{
+		load(curSessionGlobalVar.players, curSessionGlobalVar.guardians); //in loading.js
 	}
 }
 
@@ -329,13 +342,8 @@ function startSession(){
 	if(getParameterByName("babyStuck")  == "true"){
 		babyStuckMode();
 	}
-	checkEasterEgg();
-	initializePlayers(curSessionGlobalVar.players,curSessionGlobalVar); //need to redo it here because all other versions are in case customizations
-	if(simulationMode == true){
-		intro();
-	}else{
-		load(curSessionGlobalVar.players, curSessionGlobalVar.guardians); //in loading.js
-	}
+	checkEasterEgg(easterEggCallBackRestart);
+	
 }
 
 function restartSession(){
