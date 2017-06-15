@@ -1866,6 +1866,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.initSpriteCanvas = function(){
+		console.log("Initializing derived stuff.")
 		this.spriteCanvasID = this.chatHandle+this.id+"spriteCanvas";
 		var canvasHTML = "<br><canvas style='display:none' id='" + this.spriteCanvasID+"' width='" +400 + "' height="+300 + "'>  </canvas>";
 		$("#playerSprites").append(canvasHTML)
@@ -1873,7 +1874,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	this.renderSelf = function(){
 		if(!this.spriteCanvasID) this.initSpriteCanvas();
-		console.log(this);
 		var canvasDiv = document.getElementById(this.spriteCanvasID);
 
 		var ctx = canvasDiv.getContext("2d");
@@ -2184,11 +2184,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}else{
 			if(!this.quirk) this.quirk = randomHumanSim(this);
 		}
-
-
-		this.spriteCanvasID = this.chatHandle+this.id+"spriteCanvas";
-		var canvasHTML = "<br><canvas style='display:none' id='" + this.spriteCanvasID+"' width='" +400 + "' height="+300 + "'>  </canvas>";
-		$("#playerSprites").append(canvasHTML)
 	}
 
 	this.initializeSprite = function(){

@@ -2149,3 +2149,28 @@ confirm ab agrees with reality and both can scratch. ooo, and 612 is a yard, too
  
  next Goal:  GOAL: make checkEasterEgg() load random smattering of Fan ocs, if appropriate easter egg is active. o
  nly load those player categories that i need.  if no space/time in all potential use generic one. always choose space/time player using findAllAspect players.  2-12 players chosen.
+ ~~~~~~~~~~~~~~~~~~~~
+ Okay. I have three problems that MIGHT be related.
+ 
+ Characters loaded from Fan OCS are not able to render themselves, can't find their canvas.
+ Blank Space players hae no chat handle.
+ EVERY CHARACTER (hundreds)is in the playerSprite div, not just the ones I want to render.
+ 
+ Try to fix third problem first. clear that div out once i have my pool.
+ Wait. No. will clear out "real" players, which the replayers are going to overwrite.
+ 
+ Okay.
+ 
+ Find out WHY they are rendering. Does loading a player do that?
+ 
+ Oh shit.
+ 
+ Oh fuck.
+ 
+ It's HAPPENING ALL THE TIME. Even if not in easter egg mode. FUCK!
+ 
+ Okay. I see that I have code to create the canvas if i try to render and don't have one, but that I am ALSO creating a canvas every time I intiialize derived stuff. dumb. try not doing that.
+ 
+ Hell yes, way better. now not all cloggy.
+ 
+ 
