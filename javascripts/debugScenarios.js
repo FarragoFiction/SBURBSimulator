@@ -479,6 +479,7 @@ function session111111(){
 
 function session413IndexToHuman(player,index){
 	player.isTroll = false;
+	player.deriveChatHandle = false;
 	if(index == 0){
 		player.bloodColor = "#ff0000"
 		player.class_name = "Heir"
@@ -1067,6 +1068,7 @@ function session612(){
 function session612IndexToTroll(player, index){
 	player.hairColor = "#000000"
 	player.isTroll = true;
+	player.deriveChatHandle = false;
 	if(index == 0){
 		player.aspect = "Blood"
 		player.moon = "Prospit"
@@ -1323,6 +1325,7 @@ function session612IndexToTroll(player, index){
 function session612IndexToTrollAncestor(player, index){
 	player.hairColor = "#000000"
 	player.isTroll = true;
+	player.deriveChatHandle = false;
 	if(index == 0){
 		player.moon = "Prospit"
 		player.aspect = "Blood"

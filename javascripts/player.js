@@ -1,15 +1,6 @@
 function Player(session,class_name, aspect, object_to_prototype, moon, godDestiny,id){
 
-  //call if I overrode claspect or interest or anything
-	this.reinit = function(){
-		//console.log("player reinit");
-		this.chatHandle = getRandomChatHandle(this.class_name,this.aspect,this.interest1, this.interest2);
-		this.mylevels = getLevelArray(this);//make them ahead of time for echeladder graphic
-		var tmp = getRandomLandFromPlayer(this);
-		this.land1 = tmp[0]
-		this.land2 = tmp[1];
-		this.land = "Land of " + tmp[0] + " and " + tmp[1];
-	}
+
 	this.baby = null;
 	this.interest1Category = null; //used by Replay page for custom interests.
 	this.interest2Category = null; //both should be null once they have been used to add the custom interest to the right place
@@ -1290,7 +1281,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}else{
 			guardian.interest2 = player.interest2;
 		}
-		guardian.reinit();//redo levels and land based on real aspect
+		guardian.initializeDerivedStuff();//redo levels and land based on real aspect
 		//this.guardians.push(guardian); //sessions don't keep track of this anymore
 		player.guardian = guardian;
 		guardian.guardian = this;//goes both ways.

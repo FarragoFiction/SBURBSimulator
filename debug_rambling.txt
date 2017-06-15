@@ -2123,4 +2123,19 @@ GOAL: make checkEasterEgg() called only once, before initialization.
 GOAL: make checkEasterEgg() load random smattering of Fan ocs, if appropriate easter egg is active.
 GOAL:	should it replace them in checkEasterEgg and derived functions, or should it somehow convince 'initializePlayers' that it was a replay string in the url (or similar, such as a var set on session). (2nd seems better, don't have to load ocs in 2 separate places).
 GOAL: have everything after checkEasterEgg in call back that is passed to checkEasterEgg(); regular easter eggs call callback at end, Fan OCs call it when players are done loading.
-}
+
+
+
+Working on: GOAL: make checkEasterEgg() called only once, before initialization.
+
+Is player.reinit() ever called, or has it been replaced with initializeDerived???
+Yes. it's called. BLUUUUUH.
+
+BUT, seems to ONLY be called by guardians. Can do better.  Get rid of it and ONLY use initializeDerived. Now there's only one place I care about.
+
+Need to say "if chatHandle == "", derive, otherwise don't".  How am I doing this for session replaying?
+
+if(this.deriveChatHandle)  well. THAT's going to be easy. Just set that for the trolls/humans/etc in the playerTo413index or whatver.
+
+HELL YES! It is working! Now just make sure AB only calls it once as well. also for scratches.
+confirm ab agrees with reality and both can scratch.
