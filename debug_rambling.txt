@@ -2046,3 +2046,81 @@ So...
 
 make a renderNext12Players()
 function, and keep track of current player index.
+
+~~~~~~~~~~~~~~~~~~~~~~~~
+Okay, I am vague on HOW i want to do urls to put fan ocs into sessions. Think about the PROBLEM (not solutions) for 5 minutes on the clock:
+
+PROBLEM:
+
+What do I hope to achieve...
+
+I want there to be an easy way for people to say "this group of people i am looking at? throw them into a death game.".
+I ALSO want it to be easy for the Authorbot to do so as well. Both for tourneys and to use those OCs as a way to test the data string mechanism in general, at least for crashes.
+
+The system MUSt be easy to use, and easy to modify (can pick a session with reddit+canon ocdatastrings init, for example.).
+
+I'd want the system to use the existin architecture of 'load ocs from a text file' because i find that system to be VERY easy to add ocs to, nlike the hall of fame with [???].
+I theoretically could do that OC thing forever, or even automate the process with a small server somewhere. 
+One useful part of those datastrings is that the user editable strings are kept in plain txt, I can easily see if somebody put something in approrpirate or full of attempts to break the sim before doing anything.
+So, before i focus back up, automation IS a perfectly valid thing to pursue in the future.  Just have the system put the strings in tmp files that I have to review with my organic brain before adding to the server.
+
+Okay
+Not focus up.
+
+So, a 'good' solution is easy to use, modifiable and uses the existing architecture. Anything else? Don't think about solutions, think about requirements...
+
+maybe additional ways to modify...like "allow repeats" or session size between 0 and 12? I consider those less important. 
+
+Okay. Times up.
+
+NOW that the problem space is well defined, 5 minutes of thinking of solutions.
+
+Solution:
+
+Okay, most obvious solution is to have the character_viewer generate data_string urls just like the SessionReplayer does. It would pick which players go into it, and NO other page would need to know about the saved text.
+
+Pros:  Don't need to modify other pages at all. 
+Cons: How would I do a tournament arc/give AB random sessions based on these?
+
+That's a PRETTY big con. And the pro is about avoiding work/possible sources of bugs, which...isn't that big a pro.
+
+The next most obvious solution is to have the debug scrpt (which has transformed into an easter egg script) handle the oc data strings.
+
+Just like the viewer, it would load the text files asynchronously, and then ping the scenario_controller2 or the rare_session_finder which would then take the loaded players and do stuff with them.
+
+Pro:  Allows AB to know about data string sessions just like she does about trickster or rumpus=fruity sessions etc.
+
+Con: Would be tricky. How would I prevent the existing scripts from continuing until the easter egg is loaded. Should it ALWAys pause until returned?  would both scripts have the same callback method once it's done (i just answered my own question, use a callback.) 
+	Modifying the sim in order to use an easter egg is a big 'no'. Its a bad idea.  But it's not a very big mod. 
+	
+	
+Okay.That was 5 minutes. I did'nt come up with any new solutions on top of what I already had in my head.  I did manage to put in words why I like solution 2 over solution1, even though it violates
+my principle of "don't fuck with the sim for easter eggs.".
+
+So, IF I were to make a small refactor to scenario_controller2 and rare_session_finder, I would need to have their initial methods STOP with asking about easter eggs, and have a callback to resume.
+ALL easter eggs should call that callback, and the resume method should have everything that used to be after the easter egg check.
+
+Forseen problem: I am pretty sure rumpus=fruity and similar easter eggs are called TWICE, once before initializing and once after (to blow away derived values that don't match the characters.)
+I plan on refactoring it eventually, so 'carcinoGeneticist' isn't re-derived any more than 'jadedResearcher' is.   IS THIS ALREADY HAPPENING?
+
+Current goal: look into code, see where I'd need to convert to call backs, and also see if double calling easter eggs is still necessary.
+
+Sequence of Events:
+startSession
+	checkEasterEgg();
+	initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //will take care of overriding players if need be.
+	checkEasterEgg();
+	checkSGRUB();
+
+	load(curSessionGlobalVar.players, curSessionGlobalVar.guardians); //in loading.js
+	
+	
+	
+Analysis: It seems really easy to just put checkSGRUB() and load() into a callback. initializePlayers, too, if I can confirm it's not overriding custom things.
+
+
+GOAL: make checkEasterEgg() called only once, before initialization.
+GOAL: make checkEasterEgg() load random smattering of Fan ocs, if appropriate easter egg is active.
+GOAL:	should it replace them in checkEasterEgg and derived functions, or should it somehow convince 'initializePlayers' that it was a replay string in the url (or similar, such as a var set on session). (2nd seems better, don't have to load ocs in 2 separate places).
+GOAL: have everything after checkEasterEgg in call back that is passed to checkEasterEgg(); regular easter eggs call callback at end, Fan OCs call it when players are done loading.
+}
