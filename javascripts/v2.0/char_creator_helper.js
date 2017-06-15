@@ -250,6 +250,7 @@ function CharacterCreatorHelper(players){
 
 	this.drawDataBoxNoButtons = function(player){
 		var str = "<div id = 'dataBox"+player.id + "'>";
+		str += "<button class = 'charCreatorButton' id = 'copyButton" + player.id + "'> Copy To ClipBoard</button>  </div>"
 		str += "<textarea class = 'dataInputSmall' id='dataBoxDiv"+player.id + "'> </textarea>";
 		str += "</div>"
 		return str;
