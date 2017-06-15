@@ -942,6 +942,7 @@ function CharacterEasterEggEngine(){
 	//takes in things like this.redditCharacters and "OCs/reddit.txt"
 	//parses the text file as newline seperated and load them into the array.
 	this.loadArrayFromFile = function(arr, file,processForSim, callBack){
+		console.log("loading" + file)
 		var that = this;
 		$.ajax({
 		  url: file,

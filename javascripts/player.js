@@ -2279,7 +2279,7 @@ function redoRelationships(players){
 
 function initializePlayers(players,session){
 	var replayPlayers = getReplayers();
-	if(replayPlayers.length == 0) replayPlayers = session.replayers; //<-- probably blank too, but won't be for fan oc easter eggs.
+	if(replayPlayers.length == 0 && session) replayPlayers = session.replayers; //<-- probably blank too, but won't be for fan oc easter eggs.
 	console.log(replayPlayers)
 	syncReplayNumberToPlayerNumber(replayPlayers);
 	for(var i = 0; i<players.length; i++){
