@@ -704,7 +704,7 @@ function CharacterCreatorHelper(players){
 	//(1,60)
 	this.drawOneHairDropDown = function(player){
 		var html = "<select id = 'hairTypeID" + player.id + "' name='hair" +player.id +"'>";
-		for(var i = 1; i<= 60; i++){
+		for(var i = 1; i<= 61; i++){
 			if(player.hair == i){
 				html += '<option  selected = "selected" value="' + i +'">' + i+'</option>'
 			}else{
@@ -951,7 +951,7 @@ function CharacterEasterEggEngine(){
 			 that.parseFileContentsToArray(arr, data.trim());
 			 if(processForSim && callBack) return that.processForSim(callBack);
 			 if(!processForSim && callBack) callBack();  //whoever calls me is responsible for knowing when all are loaded.
-			 
+
 		  }),
 		  dataType: "text"
 		});
@@ -960,9 +960,9 @@ function CharacterEasterEggEngine(){
 	this.parseFileContentsToArray =function(arr, fileContents){
 		this[arr] = fileContents.split("\n");
 	}
-	
+
 	//pick 2-12 players out of pool (first space/time (and if don't exist, make placeholder)
-	//then set those to CurSEssionGlobalVar.replayers  <-- 
+	//then set those to CurSEssionGlobalVar.replayers  <--
 	//then call callback
 	this.processForSim = function(callBack){
 		var pool = this.getPoolBasedOnEggs();
@@ -978,7 +978,7 @@ function CharacterEasterEggEngine(){
 			space.quirk = new Quirk();
 			space.quirk.favoriteNumber = 0;
 			space.deriveChatHandle = false;
-		} 
+		}
 		var timePlayers = findAllAspectPlayers(potentials, "Time");
 		var time = getRandomElementFromArray(timePlayers);
 		potentials.removeFromArray(time);
@@ -988,7 +988,7 @@ function CharacterEasterEggEngine(){
 			time.quirk = new Quirk();
 			time.quirk.favoriteNumber = 0;
 			time.deriveChatHandle = false;
-		} 
+		}
 		console.log("space chatHandle " + space.chatHandle)
 		console.log(space);
 		ret.push(space);
@@ -1008,7 +1008,7 @@ function CharacterEasterEggEngine(){
 		curSessionGlobalVar.replayers = ret;
 		callBack();
 	}
-	
+
 
 
 	//make sure to call this on windows.load and WAIT for it to return, dunkass.
@@ -1056,7 +1056,7 @@ function CharacterEasterEggEngine(){
 		if(getParameterByName("canon")  == "true"){
 			pool = pool.concat(this.canon)
 		}
-		
+
 		if(getParameterByName("otherFandoms")  == "true"){
 			pool = pool.concat(this.otherFandoms)
 		}
@@ -1065,7 +1065,7 @@ function CharacterEasterEggEngine(){
 		if(getParameterByName("creators")  == "true"){
 			pool = pool.concat(this.creatorCharacters)
 		}
-		
+
 		if(pool.length == 0){
 			pool = pool.concat(this.redditCharacters)
 			pool = pool.concat(this.tumblrCharacters)
