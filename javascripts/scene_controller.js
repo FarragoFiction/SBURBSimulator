@@ -510,11 +510,11 @@ function dataBytesAndStringsToPlayer(charString, str_arr){
 	 player.quirk = new Quirk();
 	 //console.log("strings is: " + str_arr)
 	 //console.log("chars is: " + charString)
-	 player.causeOfDrain = decodeURI(str_arr[0]);
-	 player.causeOfDeath = decodeURI(str_arr[1]);
-	 player.interest1 = decodeURI(str_arr[2]);
-	 player.interest2 = decodeURI(str_arr[3]);
-	 player.chatHandle = decodeURI(str_arr[4]);
+	 player.causeOfDrain = decodeURI(str_arr[0]).trim();
+	 player.causeOfDeath = decodeURI(str_arr[1]).trim();
+	 player.interest1 = decodeURI(str_arr[2]).trim();
+	 player.interest2 = decodeURI(str_arr[3]).trim();
+	 player.chatHandle = decodeURI(str_arr[4]).trim();
 	 //for bytes, how to convert uri encoded string into char string into unit8 buffer?
 	 //holy shit i haven't had this much fun since i did the color replacement engine a million years ago. this is exactlyt he right flavor of challenging.
 	 //console.log("charString is: " + charString)
