@@ -342,9 +342,14 @@ function scratch(){
 	curSessionGlobalVar.randomizeEntryOrder();
 	curSessionGlobalVar.makeGuardians(); //after entry order established
 
-	checkEasterEgg();
+	checkEasterEgg(scratchEasterEggCallBack);
+	
+
+
+}
+
+function scratchEasterEggCallBack(){
 	initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //will take care of overriding players if need be.
-	checkEasterEgg();
 
 
 	curSessionGlobalVar.ectoBiologyStarted = ectoSave; //if i didn't do ecto in first version, do in second
@@ -412,8 +417,6 @@ function scratch(){
 	poseAsATeam(canvasDiv, curSessionGlobalVar.players, 2000); //everybody, even corpses, pose as a team.
 
 	intro();
-
-
 }
 
 //http://stackoverflow.com/questions/9763441/milliseconds-to-time-in-javascript
