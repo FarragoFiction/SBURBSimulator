@@ -118,10 +118,10 @@ function shareableURL(){
 
 
 function checkSGRUB(){
-	var sgrub = false;
+	var sgrub = true;
 	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
 		if(curSessionGlobalVar.players[i].isTroll == false){
-			sgrub = true;
+			sgrub = false;
 		}
 	}
 	//can only get here if all are trolls.
