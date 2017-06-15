@@ -1,7 +1,7 @@
 b=%00%00%00%40%C3%BEE%00%10.%10%20&s=,,Driving,Assassination,johnWick
 b=%02*%C3%942%C3%BEH%00G%23%1C%13&s=,,GOING FAST,CHILI DOGS,Sonic the Hedgehog
-b=%C3%BF%C3%ABU%17%C3%BE%C2%BA%00R%11%11%11&s=,,Being Second Banana,Robots,
-b=%C3%BF%13%001%C3%BE%08%00%01%1E%1E%10&s=,,Chuckles,Sick Ass Rap Beats,
-b=%C3%A6p%C3%B3U%C3%BE%C3%8C%00H%16%16%19&s=,,Sonic,no really just Sonic,
+b=%C3%BF%C3%ABU%17%C3%BE%C2%BA%00R%11%11%11&s=,,Being Second Banana,Robots,tails
+b=%C3%BF%13%001%C3%BE%08%00%01%1E%1E%10&s=,,Chuckles,Sick Ass Rap Beats,knuckles
+b=%C3%A6p%C3%B3U%C3%BE%C3%8C%00H%16%16%19&s=,,Sonic,no really just Sonic, dr.eggman
 b=F0%26%C2%A0%C3%BEZ%00%16%1F%19*&s=,,Taking Over the (Non-Existent) World,Stuffing Small Woodland Creatures into Robots,
 b=%00%00%00%10%C3%BER%08%1C%1B%0C%1E&s=,,Aeiou,Moonbases,johnMadden
