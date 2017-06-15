@@ -2147,4 +2147,5 @@ confirm ab agrees with reality and both can scratch. ooo, and 612 is a yard, too
 
  alright, quirks are ready. 
  
- next Goal:  GOAL: make checkEasterEgg() load random smattering of Fan ocs, if appropriate easter egg is active.
+ next Goal:  GOAL: make checkEasterEgg() load random smattering of Fan ocs, if appropriate easter egg is active. o
+ nly load those player categories that i need.  if no space/time in all potential use generic one. always choose space/time player using findAllAspect players.  2-12 players chosen.
