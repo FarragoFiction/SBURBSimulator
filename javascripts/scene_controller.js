@@ -320,6 +320,7 @@ function processScenes(playerList,session){
 	return ret;
 }
 
+var raggedPlayers = null; //just for scratch
 
 function scratch(){
 	console.log("scratch has been confirmed")
@@ -330,7 +331,7 @@ function scratch(){
 	curSessionGlobalVar.scratched = true;
 	curSessionGlobalVar.scratchAvailable = false;
 	curSessionGlobalVar.doomedTimeline = false;
-	var raggedPlayers = findPlayersFromSessionWithId(curSessionGlobalVar.players, curSessionGlobalVar.session_id); //but only native
+	raggedPlayers = findPlayersFromSessionWithId(curSessionGlobalVar.players, curSessionGlobalVar.session_id); //but only native
 	//use seeds the same was as original session and also make DAMN sure the players/guardians are fresh.
 	//hello to TheLertTheWorldNeeds, I loved your amazing bug report!  I will obviously respond to you in kind, but wanted
 	//to leave a permanent little 'thank you' here as well. (and on the glitch page) I laughed, I cried, I realzied that fixing guardians
@@ -341,6 +342,7 @@ function scratch(){
 	curSessionGlobalVar.makePlayers();
 	curSessionGlobalVar.randomizeEntryOrder();
 	curSessionGlobalVar.makeGuardians(); //after entry order established
+	curSessionGlobalVar.ectoBiologyStarted = ectoSave; //if i didn't do ecto in first version, do in second
 
 	checkEasterEgg(scratchEasterEggCallBack);
 	
@@ -352,7 +354,6 @@ function scratchEasterEggCallBack(){
 	initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //will take care of overriding players if need be.
 
 
-	curSessionGlobalVar.ectoBiologyStarted = ectoSave; //if i didn't do ecto in first version, do in second
 	if(curSessionGlobalVar.ectoBiologyStarted){ //players are reset except for haivng an ectobiological source
 		setEctobiologicalSource(curSessionGlobalVar.players, curSessionGlobalVar.session_id);
 	}
