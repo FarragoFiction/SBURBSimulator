@@ -2,6 +2,7 @@
 function CharacterCreatorHelper(players){
 	this.div = $("#character_creator");
 	this.players = players;
+	this.player_index = 0; //how i draw 12 players at a time.
 	//have css for each sprite template.  sprite template is 400 x 300, fit 3 on a line?
 	//max of 4 lines?
 
@@ -12,10 +13,19 @@ function CharacterCreatorHelper(players){
 		}
 	}
 
-	this.drawAllPlayerSummaries = function(){
-		console.log("drawing all player summaries: " + this.players)
-		for(var i = 0; i<this.players.length; i++){
-			this.drawSinglePlayerSummary(this.players[i]);
+	this.draw12PlayerSummaries = function(){
+		var start = this.player_index
+		var num_at_a_time= 12;
+		for(var i = start; i<start+num_at_a_time; i++){
+
+			if(this.players.length > i){
+				console.log("i is: " + i)
+				this.drawSinglePlayerSummary(this.players[i]);
+				this.player_index ++; //okay to mod this in the loop because only initial i value relies on it.
+			}else{
+				//no more players.
+				$("#draw12Button").hide();
+			}
 		}
 	}
 
