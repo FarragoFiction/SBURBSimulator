@@ -320,11 +320,12 @@ function processScenes(playerList,session){
 	return ret;
 }
 
-var raggedPlayers = null; //just for scratch
+var raggedPlayers = null; //just for scratch'
+var numPlayersPreScratch
 
 function scratch(){
 	console.log("scratch has been confirmed")
-	var numPlayersPreScratch = curSessionGlobalVar.players.length;
+  numPlayersPreScratch = curSessionGlobalVar.players.length;
 	var ectoSave = curSessionGlobalVar.ectoBiologyStarted;
 
 	reinit();
@@ -345,7 +346,7 @@ function scratch(){
 	curSessionGlobalVar.ectoBiologyStarted = ectoSave; //if i didn't do ecto in first version, do in second
 
 	checkEasterEgg(scratchEasterEggCallBack);
-	
+
 
 
 }
