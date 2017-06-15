@@ -2283,6 +2283,8 @@ function redoRelationships(players){
 
 function initializePlayers(players,session){
 	var replayPlayers = getReplayers();
+	if(replayPlayers.length == 0) replayPlayers = session.replayers; //<-- probably blank too, but won't be for fan oc easter eggs.
+	console.log(replayPlayers)
 	syncReplayNumberToPlayerNumber(replayPlayers);
 	for(var i = 0; i<players.length; i++){
 		if(replayPlayers[i]) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.

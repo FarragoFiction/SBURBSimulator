@@ -965,17 +965,18 @@ function CharacterEasterEggEngine(){
 	//then call callback
 	this.processForSim = function(callBack){
 		var pool = this.getPoolBasedOnEggs();
+		var potentials = this.playerDataStringArrayToURLFormat(pool);
 		var ret = [];
-		var spacePlayers = findAllAspectPlayers(pool, "Space");
+		var spacePlayers = findAllAspectPlayers(potentials, "Space");
 		var space = getRandomElementFromArray(spacePlayers);
-		pool.removeFromArray(space);
+		potentials.removeFromArray(space);
 		if(!space){
 			space = randomSpacePlayer(curSessionGlobalVar);
 			space.chatHandle = "randomSpace"
 		} 
-		var timePlayers = findAllAspectPlayers(pool, "Time");
+		var timePlayers = findAllAspectPlayers(potentials, "Time");
 		var time = getRandomElementFromArray(timePlayers);
-		pool.removeFromArray(time);
+		potentials.removeFromArray(time);
 		if(!time){
 			time = randomTimePlayer(curSessionGlobalVar);
 			time.chatHandle = "randomTime"
@@ -984,9 +985,9 @@ function CharacterEasterEggEngine(){
 		ret.push(time);
 		var numPlayers = getRandomInt(2,12);
 		for(var i = 2; i<numPlayers; i++){
-			var p = getRandomElementFromArray(pool);
+			var p = getRandomElementFromArray(potentials);
 			ret.push(p);
-			pool.removeFromArray(p);  //no repeats. <-- modify all the removes l8r if i want to have a mode that enables them.
+			potentials.removeFromArray(p);  //no repeats. <-- modify all the removes l8r if i want to have a mode that enables them.
 		}
 		curSessionGlobalVar.replayers = ret;
 		callBack();
