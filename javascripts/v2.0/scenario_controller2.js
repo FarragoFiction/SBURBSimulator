@@ -91,11 +91,19 @@ function startSession(){
 		babyStuckMode();
 	}
 
-	checkEasterEgg();
+	checkEasterEgg(easterEggCallBack);
+	
+}
+
+function easterEggCallBack(){
 	initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //will take care of overriding players if need be.
 	checkSGRUB();
-
 	load(curSessionGlobalVar.players, curSessionGlobalVar.guardians); //in loading.js
+}
+
+function easterEggCallBackRestart(){
+	initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //initializePlayers
+	intro();  //<-- instead of load, bc don't need to load.
 }
 
 //used to prepare session for upload to archive of our own.
@@ -223,9 +231,7 @@ function scratchConfirm(){
 function restartSession(){
 	$("#story").html('<canvas id="loading" width="1000" height="354"> ');
 	window.scrollTo(0, 0);
-	checkEasterEgg();
-	initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //initializePlayers
-	intro();
+	checkEasterEgg(easterEggCallBackRestart);
 }
 
 

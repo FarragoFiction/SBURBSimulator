@@ -8,6 +8,7 @@ function Session(session_id){
 	this.opossumVictory = false;
 	this.hasBreakups = false;
 	this.denizens = [];
+	this.replayers = []; //used for fan oc easter eggs.
 	this.denizen_minions = [];
 	this.afterLife = new AfterLife();
 	this.queensRing = null; //eventually have white and black ones.

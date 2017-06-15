@@ -36,7 +36,7 @@ function sbahjMode(){
 }
 
 //will get called twice for initialization purposes.
-function checkEasterEgg(){
+function checkEasterEgg(callBack){
 	//authorMessage();
 	//i cannot resist
 	if(initial_seed == 413){
@@ -61,7 +61,8 @@ function checkEasterEgg(){
 	
 	if(getParameterByName("selfInsertOC")  == "true"){
 		// call a method, method will determine what other params exist, like reddit=true and shit.
-		processFanOCs();
+		processFanOCs(callBack);
+		return; //do nothing else. processFanOCs will handle the callback, since it's the reason it exists in the first place, 'cause async
 	}
 
 	//not an else if because this OVERIDES other easter egg sessions. but called here and not where other params are 'cause needs to have session initialized first.
@@ -96,21 +97,15 @@ function checkEasterEgg(){
 	if(getParameterByName("rumpus")  == "fruity"){
 		fruityRumpusAssholeFactory();
 	}
+	callBack();
 }
 
-function processFanOCs(callback){
+function processFanOCs(callBack){
 	//start up an easterEggEngine.
-	
-	//it will check for the easter egg params i care about
-	//and handle loading those ocs from the txt files.  <-- ASYNCHRONOUS, so MUST END HERE. Pass callbackx2 combo for next part.
+	new CharacterEasterEggEngine().loadArraysFromFile(callBack,true); //<-- ASYNCHRONOUS, so MUST END HERE. any future steps should be in the easterEggEngine itself.
 }
 
-function processFanOCsPart2(callback){
-	//now that ocs are loaded, pick 2-12 of them randomly.
-	//give to curSessionGlobalVar
-	//and it will treat them just like any set of replayers.
-	//now, I need to use the callback.
-}
+
 
 
 function babyStuckMode(){

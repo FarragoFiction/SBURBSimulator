@@ -941,13 +941,16 @@ function CharacterEasterEggEngine(){
 
 	//takes in things like this.redditCharacters and "OCs/reddit.txt"
 	//parses the text file as newline seperated and load them into the array.
-	this.loadArrayFromFile = function(arr, file,callBack){
+	this.loadArrayFromFile = function(arr, file,processForSim, callBack){
+		console.log("loading file: " + file + " and callback is: " + callBack)
 		var that = this;
 		$.ajax({
 		  url: file,
 		  success:(function(data){
 			 that.parseFileContentsToArray(arr, data.trim());
-			 if(callBack) callBack();  //whoever calls me is responsible for knowing when all are loaded.
+			 if(processForSim && callBack) return that.processForSim(callBack);
+			 if(!processForSim && callBack) callBack();  //whoever calls me is responsible for knowing when all are loaded.
+			 
 		  }),
 		  dataType: "text"
 		});
@@ -956,17 +959,52 @@ function CharacterEasterEggEngine(){
 	this.parseFileContentsToArray =function(arr, fileContents){
 		this[arr] = fileContents.split("\n");
 	}
+	
+	//pick 2-12 players out of pool (first space/time (and if don't exist, make placeholder)
+	//then set those to CurSEssionGlobalVar.replayers  <-- 
+	//then call callback
+	this.processForSim = function(callBack){
+		var pool = this.getPoolBasedOnEggs();
+		var ret = [];
+		var spacePlayers = findAllAspectPlayers(pool, "Space");
+		var space = getRandomElementFromArray(spacePlayers);
+		pool.removeFromArray(space);
+		if(!space){
+			space = randomSpacePlayer(curSessionGlobalVar);
+			space.chatHandle = "randomSpace"
+		} 
+		var timePlayers = findAllAspectPlayers(pool, "Time");
+		var time = getRandomElementFromArray(timePlayers);
+		pool.removeFromArray(time);
+		if(!time){
+			time = randomTimePlayer(curSessionGlobalVar);
+			time.chatHandle = "randomTime"
+		} 
+		ret.push(space);
+		ret.push(time);
+		var numPlayers = getRandomInt(2,12);
+		for(var i = 2; i<numPlayers; i++){
+			var p = getRandomElementFromArray(pool);
+			ret.push(p);
+			pool.removeFromArray(p);  //no repeats. <-- modify all the removes l8r if i want to have a mode that enables them.
+		}
+		curSessionGlobalVar.replayers = ret;
+		callBack();
+	}
+	
 
 
 	//make sure to call this on windows.load and WAIT for it to return, dunkass.
-	this.loadArraysFromFile = function(callBack){
-		this.loadArrayFromFile("redditCharacters","OCs/reddit.txt")
-		this.loadArrayFromFile("tumblrCharacters","OCs/tumblr.txt")
-		this.loadArrayFromFile("discordCharcters","OCs/discord.txt")
-		this.loadArrayFromFile("creditsBuckaroos","OCs/creditsBuckaroos.txt")
-		this.loadArrayFromFile("ideasWranglers","OCs/ideasWranglers.txt")
-		this.loadArrayFromFile("patrons","OCs/patrons.txt")
-		this.loadArrayFromFile("canon","OCs/canon.txt",callBack) //last one in list has callback so I know to do next thing.
+	this.loadArraysFromFile = function(callBack, processForSim){
+		console.log("callback is: " + callBack + " and processForSim is: " + processForSim)
+		//too confusing trying to only load the assest i'll need. wait for now.
+		this.loadArrayFromFile("redditCharacters","OCs/reddit.txt", processForSim)
+		this.loadArrayFromFile("tumblrCharacters","OCs/tumblr.txt", processForSim)
+		this.loadArrayFromFile("discordCharcters","OCs/discord.txt", processForSim)
+		this.loadArrayFromFile("creditsBuckaroos","OCs/creditsBuckaroos.txt", processForSim)
+		this.loadArrayFromFile("ideasWranglers","OCs/ideasWranglers.txt", processForSim)
+		this.loadArrayFromFile("patrons","OCs/patrons.txt", processForSim)
+		this.loadArrayFromFile("canon","OCs/canon.txt", processForSim,callBack) //last one in list has callback so I know to do next thing.
 	}
 
 
@@ -978,31 +1016,42 @@ function CharacterEasterEggEngine(){
 			pool = pool.concat(this.redditCharacters)
 		}
 
-		if(getParameterByName("tumblr")  == "true"|| getParameterByName("allFans")  == "true" ){
+		if(getParameterByName("tumblr")  == "true"){
 			pool = pool.concat(this.tumblrCharacters)
 		}
 
-		if(getParameterByName("discord")  == "true"|| getParameterByName("allFans")  == "true" ){
+		if(getParameterByName("discord")  == "true"){
 			pool = pool.concat(this.discordCharcters)
 		}
 
-		if(getParameterByName("creditsBuckaroos")  == "true"|| getParameterByName("allFans")  == "true" ){
+		if(getParameterByName("creditsBuckaroos")  == "true"){
 			pool = pool.concat(this.creditsBuckaroos)
 		}
 
-		if(getParameterByName("ideasWranglers")  == "true"|| getParameterByName("allFans")  == "true" ){
+		if(getParameterByName("ideasWranglers")  == "true"){
 			pool = pool.concat(this.ideasWranglers)
 		}
 
-		if(getParameterByName("patrons")  == "true"|| getParameterByName("allFans")  == "true" ){
+		if(getParameterByName("patrons")  == "true"){
 			pool = pool.concat(this.patrons)
 		}
 
-		if(getParameterByName("canon")  == "true"|| getParameterByName("allFans")  == "true" ){
+		if(getParameterByName("canon")  == "true"){
 			pool = pool.concat(this.canon)
 		}
 
-		if(getParameterByName("creators")  == "true"|| getParameterByName("allFans")  == "true" ){
+		if(getParameterByName("creators")  == "true"){
+			pool = pool.concat(this.creatorCharacters)
+		}
+		
+		if(pool.length == 0){
+			pool = pool.concat(this.redditCharacters)
+			pool = pool.concat(this.tumblrCharacters)
+			pool = pool.concat(this.discordCharcters)
+			pool = pool.concat(this.creditsBuckaroos)
+			pool = pool.concat(this.patrons)
+			pool = pool.concat(this.ideasWranglers)
+			pool = pool.concat(this.canon)
 			pool = pool.concat(this.creatorCharacters)
 		}
 		return pool;
