@@ -1556,11 +1556,11 @@ function session612IndexToTrollAncestor(player, index){
 		player.leftHorn = 33;
 		player.rightHorn = 33;
 		player.bloodColor = "#a1a100";
-		player.quirk.capitalization = 1;
+		player.quirk.capitalization = 2;
 		player.quirk.punctuation = 2;
 		player.quirk.favoriteNumber = 2;
 		player.quirk.lettersToReplace = [];
-		player.quirk.lettersToReplaceIgnoreCase = [["i","ii"],["s","2"]];
+		player.quirk.lettersToReplaceIgnoreCase = [["E","3"],["S","5"],["O","0"],["S","2"],["T","7"],["I","1"],["B","8"]]; // E=3, A=4, S=5, O=0, T=7, I=1 and B=8.
 		player.kernel_sprite = "Bicyclops"
 		player.interest1 = "Video Games"
 		player.interest2 = "Programming"
