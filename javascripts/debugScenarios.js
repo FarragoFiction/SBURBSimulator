@@ -58,7 +58,11 @@ function checkEasterEgg(){
 	}else if(initial_seed == 0){
 		session0();
 	}
-
+	
+	if(getParameterByName("selfInsertOC")  == "true"){
+		// call a method, method will determine what other params exist, like reddit=true and shit.
+		processFanOCs();
+	}
 
 	//not an else if because this OVERIDES other easter egg sessions. but called here and not where other params are 'cause needs to have session initialized first.
 	if(getParameterByName("nepeta")  == ":33"){
@@ -92,6 +96,20 @@ function checkEasterEgg(){
 	if(getParameterByName("rumpus")  == "fruity"){
 		fruityRumpusAssholeFactory();
 	}
+}
+
+function processFanOCs(callback){
+	//start up an easterEggEngine.
+	
+	//it will check for the easter egg params i care about
+	//and handle loading those ocs from the txt files.  <-- ASYNCHRONOUS, so MUST END HERE. Pass callbackx2 combo for next part.
+}
+
+function processFanOCsPart2(callback){
+	//now that ocs are loaded, pick 2-12 of them randomly.
+	//give to curSessionGlobalVar
+	//and it will treat them just like any set of replayers.
+	//now, I need to use the callback.
 }
 
 
