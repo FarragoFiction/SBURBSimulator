@@ -2177,11 +2177,11 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.mylevels = getLevelArray(this);//make them ahead of time for echeladder graphic
 
 		if(this.isTroll){
-			this.quirk = randomTrollSim(this)
+			if(!this.quirk) this.quirk = randomTrollSim(this)  //if i already have a quirk it was defined already. don't override it.
 			this.triggerLevel ++;//trolls are slightly less stable
 
 		}else{
-			this.quirk = randomHumanSim(this);
+			if(!this.quirk) this.quirk = randomHumanSim(this);
 		}
 
 
