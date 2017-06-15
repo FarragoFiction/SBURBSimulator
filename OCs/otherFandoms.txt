@@ -5,3 +5,16 @@ b=%C3%BF%13%001%C3%BE%08%00%01%1E%1E%10&s=,,Chuckles,Sick Ass Rap Beats,knuckles
 b=%C3%A6p%C3%B3U%C3%BE%C3%8C%00H%16%16%19&s=,,Sonic,no really just Sonic, dr.eggman
 b=F0%26%C2%A0%C3%BEZ%00%16%1F%19*&s=,,Taking Over the (Non-Existent) World,Stuffing Small Woodland Creatures into Robots,
 b=%00%00%00%10%C3%BER%08%1C%1B%0C%1E&s=,,Aeiou,Moonbases,johnMadden
+b=%C3%BF%C3%BF%00Z%C3%B2%C2%BD%04%04%19%19(&s=,,Religion,Politics,PrincessCelestia
+b=%00%00%C2%A0%C2%A0%C3%B9R%05L%05%05%08&s=,,Fighting,Painting,PrincessLuna
+b=%C2%80%40%40%C2%91%C3%BB%05%05%11%2B%2B%10&s=,,Pranks,Online Trolling,DisCorDantly
+b=%C3%BF%C3%B3%C2%BDU%C3%BE%C3%8C%04D%0C%1F%18&s=,,Love,Relationships,PrincessCadence
+b=%C3%BF%00%00%C2%B4%C3%B4%C2%BD%08Q%06%143&s=,,Religion,Science,SunsetShimmer
+b=%C2%80%00%C3%BF'%C3%BE%C3%9D%00Q''%14&s=,,Science,Politics,TwilightSparkle
+b=%C3%BF%C2%80%40d%C3%B8%C2%88%00%1B%1A%1A%25&s=,,Apples,Apples,AppleJack
+b=%C3%BF%C2%80%C3%80%C2%8B%C3%B5%C2%B8%00%08%0C%0C%0D&s=,,Animals,Sewing,FlutterShy
+b=%C3%BF%00%C3%BF%C2%99%C3%BA%00%00%0A%15%15%19&s=,,Jokes,Pranks,PinkiePie
+b=%40%00%C2%80%00%C3%BB%C2%8C%00V%20%1A7&s=,,Fashion,Romantic Comedies,Rarity
+b=%00%C3%BF%C3%BF2%C3%BE%40%00%1A%17%175&s=,,Sports,Pranks,RainbowDash
+b=%00%C2%80%C3%80%18%C3%BB%C2%97%00P%24%243&s=,,Irony,Wizards,GreatAndPowerful
+b=%00%C2%80%C2%80%06%C3%BEf%01A((4&s=,,Social Justice,Revolution,StarlightGlimmer
