@@ -29,6 +29,5 @@ function callBackForLoadOCsFromFile(){
 
 
 function draw12(){
-	alert("draw 12")
 	charCreatorHelperGlobalVar.draw12PlayerSummaries();
 }
