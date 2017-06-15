@@ -2144,3 +2144,7 @@ confirm ab agrees with reality and both can scratch. ooo, and 612 is a yard, too
  Shit. wait. quirks are broked. need to fix. shit, and yellow yards. hopefully only for easter egg sessions.
  
  wait. no. false alarm. it was robo aradia's fault becaue of true random. dang. oh well.
+
+ alright, quirks are ready. 
+ 
+ next Goal:  GOAL: make checkEasterEgg() load random smattering of Fan ocs, if appropriate easter egg is active.
