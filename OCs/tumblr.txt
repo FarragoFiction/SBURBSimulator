@@ -1,3 +1,7 @@
 b=%00%00%00s%C3%B4%15%00%10%05%053&s=,,cro,nus,subnormalTempestuosa
 b=G2%00%10%C3%BE%C3%99%00G%23%23%01&s=,,History,Video Games,
 b=%00%00%003%C3%B8%3A%10%0B%09%09%3A&s=,,Unexpected Heroes,Giant Robots,gallantAllegiant
+b=_%3F!G%C3%BE2%00V%18%18%16&s=,,Character Creation,Fan Art,floatyPinneped
+b=%00%00%00%C2%A3%C3%B4j%10%00%13%13*&s=,,Revolution,Manufacturing,godwinsTruffle
+b=%00%00%00%C2%B5%C3%B5%C3%95%18%14%12%12%3B&s=,,Empress Victoria,Hoarding,waltzingOphidian
+b=%C3%BF%C3%BF%C3%BF%C2%89%C3%BA%C2%95%00%11%18%12%16&s=,,Heroes,Fighting,heroicVigilante
