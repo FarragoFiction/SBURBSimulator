@@ -938,6 +938,7 @@ function CharacterEasterEggEngine(){
 	this.ideasWranglers = [];
 	this.patrons = [];
 	this.canon = [];  //
+	this.otherFandoms = [];
 
 	//takes in things like this.redditCharacters and "OCs/reddit.txt"
 	//parses the text file as newline seperated and load them into the array.
@@ -1019,7 +1020,8 @@ function CharacterEasterEggEngine(){
 		this.loadArrayFromFile("creditsBuckaroos","OCs/creditsBuckaroos.txt", processForSim)
 		this.loadArrayFromFile("ideasWranglers","OCs/ideasWranglers.txt", processForSim)
 		this.loadArrayFromFile("patrons","OCs/patrons.txt", processForSim)
-		this.loadArrayFromFile("canon","OCs/canon.txt", processForSim,callBack) //last one in list has callback so I know to do next thing.
+		this.loadArrayFromFile("canon","OCs/canon.txt", processForSim)
+		this.loadArrayFromFile("otherFandoms","OCs/otherFandoms.txt", processForSim,callBack) //last one in list has callback so I know to do next thing.
 	}
 
 
@@ -1054,6 +1056,11 @@ function CharacterEasterEggEngine(){
 		if(getParameterByName("canon")  == "true"){
 			pool = pool.concat(this.canon)
 		}
+		
+		if(getParameterByName("otherFandoms")  == "true"){
+			pool = pool.concat(this.otherFandoms)
+		}
+
 
 		if(getParameterByName("creators")  == "true"){
 			pool = pool.concat(this.creatorCharacters)
