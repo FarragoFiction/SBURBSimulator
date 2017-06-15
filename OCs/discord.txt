@@ -36,3 +36,4 @@ b=%00%00%00%18%C3%BEP%16%C2%9C%26%26%0E&s=,,Death,Satire,tieBreaker
 b=F%23%00*%C3%BEy%00X(%1B%0B&s=,,Wizards,Video Games,shitpostExtraordinaire
 b=%00%00%00%14%C3%B8%C2%9D%10%5C%13%17%20&s=,,Video Games,Mathematics,cappterUndercards
 b=%00%00%00%C2%A9%C3%B7B%10%1C%06%06.&s=,,Wrestling,Theater,perfectPankrator
+b=%00%00%00W%C3%BB%C3%91%10%18%18%17%16&s=,,Astronomy,Singing,JuvinescentMaldemar 
