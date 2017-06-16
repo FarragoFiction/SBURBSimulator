@@ -97,7 +97,36 @@ function checkEasterEgg(callBack){
 	if(getParameterByName("rumpus")  == "fruity"){
 		fruityRumpusAssholeFactory();
 	}
+	
+	processXStuck(); //might not do anything.
 	callBack();
+}
+
+//omg, so easy, KnightStuck = true, SylphStuck = true, PageStuck = true.
+//if last word is stuck, look for first word in either all class, or all aspects, mod the approriate thing to be the first word.
+//auto works with new claspects, too. genius
+function processXStuck(){
+	alert("WRITE CODE TO GET ANY PARAM WITH 'STUCK' in the name")
+	var stuck = team.split("Stuck");  
+	if(stuck.length != 2) return;
+	var classOrAspect = stuck[0];
+	if(classes.indexOf(stuck[0]){
+		setAllClassesTo(stuck[0])
+	}else if(all_aspects.indexOf(stuck[0]){
+		setAllAspectsTo(stuck[0]);
+	}
+}
+
+function setAllAspectsTo(aspect){
+	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+		curSessionGlobalVar.players[i].aspect = aspect;
+	}
+}
+
+function setAllClassesTo(class_name){
+	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+		curSessionGlobalVar.players[i].class_name = class_name;
+	}
 }
 
 function processFanOCs(callBack){
