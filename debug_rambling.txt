@@ -2260,3 +2260,5 @@ think.
 Is there a way to pass "this" in a callback?  Off the top of my head I can pass both callback and 'this', and just have everyone else ignore it. I could also keep 'this' in a global var like a chump.
 
 Let's try to first idea first.
+
+Whew, fuck, okay, stop panicking 'cause that worked. look at me knowing how to deal with "this" breaking.
