@@ -58,7 +58,7 @@ function checkEasterEgg(callBack){
 	}else if(initial_seed == 0){
 		session0();
 	}
-	
+
 	if(getParameterByName("selfInsertOC")  == "true"){
 		// call a method, method will determine what other params exist, like reddit=true and shit.
 		processFanOCs(callBack);
@@ -1462,7 +1462,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.moon = "Prospit"
 		player.land = "Land of Sand and Zephyr"
 		player.class_name = "Rogue"
-		player.hair = 1025;
+		player.hair = 254;
 		player.leftHorn = 28;
 		player.rightHorn = 28;
 		player.bloodColor = "#a25203";

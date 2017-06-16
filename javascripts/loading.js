@@ -203,8 +203,8 @@ function loadAllPossiblePlayers(skipInit){
 
 
 
-	loadImage("Hair/hair_back1025.png",skipInit);
-    loadImage("Hair/hair1025.png",skipInit);
+	loadImage("Hair/hair_back254.png",skipInit);
+    loadImage("Hair/hair254.png",skipInit);
 
     for(var i = 1; i<=numHorns; i++){
         loadImage("Horns/left"+i+".png",skipInit);
