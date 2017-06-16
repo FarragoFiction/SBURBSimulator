@@ -945,7 +945,7 @@ function CharacterEasterEggEngine(){
 
 	//takes in things like this.redditCharacters and "OCs/reddit.txt"
 	//parses the text file as newline seperated and load them into the array.
-	this.loadArrayFromFile = function(arr, file,processForSim, callBack){
+	this.loadArrayFromFile = function(arr, file,processForSim, callBack,that){
 		console.log("loading" + file)
 		var that = this;
 		$.ajax({
@@ -953,7 +953,7 @@ function CharacterEasterEggEngine(){
 		  success:(function(data){
 			 that.parseFileContentsToArray(arr, data.trim());
 			 if(processForSim && callBack) return that.processForSim(callBack);
-			 if(!processForSim && callBack) callBack();  //whoever calls me is responsible for knowing when all are loaded.
+			 if(!processForSim && callBack) callBack(that);  //whoever calls me is responsible for knowing when all are loaded.
 
 		  }),
 		  dataType: "text"
@@ -1015,7 +1015,7 @@ function CharacterEasterEggEngine(){
 
 
 	//make sure to call this on windows.load and WAIT for it to return, dunkass.
-	this.loadArraysFromFile = function(callBack, processForSim){
+	this.loadArraysFromFile = function(callBack, processForSim,that){
 		//too confusing trying to only load the assest i'll need. wait for now.
 		this.loadArrayFromFile("redditCharacters","OCs/reddit.txt", processForSim)
 		this.loadArrayFromFile("tumblrCharacters","OCs/tumblr.txt", processForSim)
@@ -1026,7 +1026,7 @@ function CharacterEasterEggEngine(){
 		this.loadArrayFromFile("patrons2","OCs/patrons2.txt", processForSim)
 		this.loadArrayFromFile("patrons3","OCs/patrons3.txt", processForSim)
 		this.loadArrayFromFile("canon","OCs/canon.txt", processForSim)
-		this.loadArrayFromFile("otherFandoms","OCs/otherFandoms.txt", processForSim,callBack) //last one in list has callback so I know to do next thing.
+		this.loadArrayFromFile("otherFandoms","OCs/otherFandoms.txt", processForSim,callBack,that) //last one in list has callback so I know to do next thing.
 	}
 
 

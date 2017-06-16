@@ -2174,3 +2174,89 @@ confirm ab agrees with reality and both can scratch. ooo, and 612 is a yard, too
  Hell yes, way better. now not all cloggy.
  
  
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Fuck fuck fuck fuck fuck.
+Yellow Yards are broken, even on main branch. 
+Fuck.
+Okay.
+I know what hte problem is.
+
+The problem is that I had to refactor the easter eggs to handle callbacks so that the oc fan easter eggs would work.
+
+And the yellow yard can't handle that. 
+
+Look at the code, don't panic, and don't make assumptions:
+
+Code is:
+
+this.addEventToUndoAndReset = function(e){
+		//when I reset, need things to go the same. that includes having no ghosts interact with the session. figure out how to renable them once my event happens again.
+		this.afterLife.complyWithLifeTimeShenanigans(e);
+		//console.log("undoing an event.")
+		if(this.scratched){
+			return this.addEventToUndoAndResetScratch(e); //works different
+		}
+		if(e){//will be null if undoing an undo
+			this.yellowYardController.eventsToUndo.push(e);
+		}
+		//reinit the seed and restart the session
+		var savedPlayers = curSessionGlobalVar.players;
+		this.reinit();
+		createScenesForSession(curSessionGlobalVar);
+		//players need to be reinit as well.
+		curSessionGlobalVar.makePlayers();
+		curSessionGlobalVar.randomizeEntryOrder();
+		curSessionGlobalVar.makeGuardians(); //after entry order established
+		checkEasterEgg(); //in the controller.
+		//now that i've done that, (for seed reasons) fucking ignore it and stick the actual players in
+		//after alll, i could be from a combo session.
+		//but don't just hardcore replace. need to...fuck. okay, cloning aliens now.
+		curSessionGlobalVar.aliensClonedOnArrival = this.aliensClonedOnArrival;
+		//console.log("adding this many clone aliens: " + curSessionGlobalVar.aliensClonedOnArrival.length)
+		//console.log(getPlayersTitles(curSessionGlobalVar.aliensClonedOnArrival));
+		var living = []  //if don't make copy of aliensClonedOnArrival, goes into an infinite loop as it loops on it and adds to it inside of addAliens
+		for(var i = 0; i<this.aliensClonedOnArrival.length; i++){
+			living.push(this.aliensClonedOnArrival[i])
+		}
+		this.aliensClonedOnArrival = [];//jettison old clones.
+		addAliensToSession(curSessionGlobalVar, living);
+
+		restartSession();//in controller
+	}
+	
+	
+	Shit, isn't there a scratch versio of that, too?
+	
+	One thing at a time.
+	
+	So, problem is: 
+	
+	
+	checkEasterEgg(); //in the controller.
+		//now that i've done that, (for seed reasons) fucking ignore it and stick the actual players in
+		//after alll, i could be from a combo session.
+		//but don't just hardcore replace. need to...fuck. okay, cloning aliens now.
+		curSessionGlobalVar.aliensClonedOnArrival = this.aliensClonedOnArrival;
+		//console.log("adding this many clone aliens: " + curSessionGlobalVar.aliensClonedOnArrival.length)
+		//console.log(getPlayersTitles(curSessionGlobalVar.aliensClonedOnArrival));
+		var living = []  //if don't make copy of aliensClonedOnArrival, goes into an infinite loop as it loops on it and adds to it inside of addAliens
+		for(var i = 0; i<this.aliensClonedOnArrival.length; i++){
+			living.push(this.aliensClonedOnArrival[i])
+		}
+		this.aliensClonedOnArrival = [];//jettison old clones.
+		addAliensToSession(curSessionGlobalVar, living);
+
+		restartSession();//in controller
+		
+
+
+everything afer check easter egg HAS to be in a callback because checkEasterEgg is now asyncronus.
+
+BUT, if I try to make one, it fucks with 'this' and i can no longer do things like 'this.aliensClonedOnArrival'.  (I know this because i tried this.)
+
+think.
+
+Is there a way to pass "this" in a callback?  Off the top of my head I can pass both callback and 'this', and just have everyone else ignore it. I could also keep 'this' in a global var like a chump.
+
+Let's try to first idea first.

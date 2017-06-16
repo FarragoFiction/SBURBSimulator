@@ -129,22 +129,29 @@ function Session(session_id){
 		curSessionGlobalVar.makePlayers();
 		curSessionGlobalVar.randomizeEntryOrder();
 		curSessionGlobalVar.makeGuardians(); //after entry order established
-		checkEasterEgg(); //in the controller.
+		checkEasterEgg(this.easterCallBack,this); //in the controller.
+		
+	}
+	
+	//will lose 'this' in the callback process, so take it in as that.
+	this.easterCallBack = function(that){
 		//now that i've done that, (for seed reasons) fucking ignore it and stick the actual players in
 		//after alll, i could be from a combo session.
 		//but don't just hardcore replace. need to...fuck. okay, cloning aliens now.
-		curSessionGlobalVar.aliensClonedOnArrival = this.aliensClonedOnArrival;
+		curSessionGlobalVar.aliensClonedOnArrival = that.aliensClonedOnArrival;
 		//console.log("adding this many clone aliens: " + curSessionGlobalVar.aliensClonedOnArrival.length)
 		//console.log(getPlayersTitles(curSessionGlobalVar.aliensClonedOnArrival));
 		var living = []  //if don't make copy of aliensClonedOnArrival, goes into an infinite loop as it loops on it and adds to it inside of addAliens
-		for(var i = 0; i<this.aliensClonedOnArrival.length; i++){
-			living.push(this.aliensClonedOnArrival[i])
+		for(var i = 0; i<that.aliensClonedOnArrival.length; i++){
+			living.push(that.aliensClonedOnArrival[i])
 		}
-		this.aliensClonedOnArrival = [];//jettison old clones.
+		that.aliensClonedOnArrival = [];//jettison old clones.
 		addAliensToSession(curSessionGlobalVar, living);
 
 		restartSession();//in controller
 	}
+	
+
 
 	this.addEventToUndoAndResetScratch = function(e){
 		console.log('yellow yard from scratched session')

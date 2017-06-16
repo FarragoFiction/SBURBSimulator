@@ -36,7 +36,7 @@ function sbahjMode(){
 }
 
 //will get called twice for initialization purposes.
-function checkEasterEgg(callBack){
+function checkEasterEgg(callBack,that){  //only yellow yard session uses 'that' because it needs to get back to the session context after doing easter egg.
 	//authorMessage();
 	//i cannot resist
 	if(initial_seed == 413){
@@ -61,7 +61,7 @@ function checkEasterEgg(callBack){
 
 	if(getParameterByName("selfInsertOC")  == "true"){
 		// call a method, method will determine what other params exist, like reddit=true and shit.
-		processFanOCs(callBack);
+		processFanOCs(callBack,that);
 		return; //do nothing else. processFanOCs will handle the callback, since it's the reason it exists in the first place, 'cause async
 	}
 
@@ -99,7 +99,7 @@ function checkEasterEgg(callBack){
 	}
 	
 	processXStuck(); //might not do anything.
-	callBack();
+	callBack(that);
 }
 
 //omg, so easy, KnightStuck = true, SylphStuck = true, PageStuck = true.
@@ -137,9 +137,9 @@ function setAllClassesTo(class_name){
 	}
 }
 
-function processFanOCs(callBack){
+function processFanOCs(callBack,that){
 	//start up an easterEggEngine.
-	new CharacterEasterEggEngine().loadArraysFromFile(callBack,true); //<-- ASYNCHRONOUS, so MUST END HERE. any future steps should be in the easterEggEngine itself.
+	new CharacterEasterEggEngine().loadArraysFromFile(callBack,true,that); //<-- ASYNCHRONOUS, so MUST END HERE. any future steps should be in the easterEggEngine itself.
 }
 
 
