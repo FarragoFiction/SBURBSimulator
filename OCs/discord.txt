@@ -41,3 +41,4 @@ b=Y%3A%02%16%C3%BEX%00R%0D%0D%16&s=,,Pokémon,Rhythm Heaven,customDelta
 b=H4%1E%C2%A2%C3%BE%0B%04A%17%17%3C&s=,,Memes,Psychology,capncrunchMemer
 b=%C2%80%40%003%C3%BE%C2%B9%00P%0B%0B%11&s=,,Online Roleplaying,Video Games,Cappter
 b=%00%00%00%12%C3%BE%C2%91%00W%0F%0F%04&s=,,Video Games,Musicals,chandaHulk
+b=u%25%0B%C2%B8%C3%BE%0B%00%1C..%1F&s=,,Wordplay,Tabletop Games,unhandledException
