@@ -109,13 +109,16 @@ function processXStuck(){
 	var params = window.location.search.substr(1);
 	var paramsArray = params.split("&")
 	for(var i = 0; i<paramsArray.length; i++){
-		var stuck = paramsArray[i].split("Stuck");  
-		if(stuck.length != 2) return;
-		var classOrAspect = stuck[0];
-		if(classes.indexOf(stuck[0]) != -1){
-			setAllClassesTo(stuck[0].trim())
-		}else if(all_aspects.indexOf(stuck[0]) != -1){
-			setAllAspectsTo(stuck[0].trim());
+		console.log(i);
+		var stuck = paramsArray[i].split("Stuck");
+		console.log("stuck is: " + stuck)
+		if(stuck.length == 2){
+			var classOrAspect = stuck[0];
+			if(classes.indexOf(stuck[0]) != -1){
+				setAllClassesTo(stuck[0].trim())
+			}else if(all_aspects.indexOf(stuck[0]) != -1){
+				setAllAspectsTo(stuck[0].trim());
+			}
 		}
 	}
 	
@@ -130,7 +133,7 @@ function setAllAspectsTo(aspect){
 }
 
 function setAllClassesTo(class_name){
-	console.log("Setting all classes to: ") + class_name;
+	console.log("Setting all classes to: " + class_name);
 	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
 		curSessionGlobalVar.players[i].class_name = class_name;
 		curSessionGlobalVar.players[i].guardian.class_name = class_name;
