@@ -101,6 +101,7 @@
 }
 
 
+
 #spiel{
 	width:1000px;
 	background-color: white;
@@ -353,6 +354,16 @@ body{
 	color: #9630bf;
 	width: 100px;
 	border-radius: 4px;
+}
+
+#teams{
+	width: 100px;
+}
+
+#teams select{
+	-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .charOptions{

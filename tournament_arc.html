@@ -33,6 +33,7 @@
 		<script type="text/javascript" src="javascripts/Scenes/Breakup.js"></script>
 		<script type="text/javascript" src="javascripts/relationship.js"></script>
 		<script type="text/javascript" src="javascripts/v2.0/find_rare_sessions.js"></script>
+		<script type="text/javascript" src="javascripts/v2.0/tournament_controller.js"></script>
 		<script type="text/javascript" src="javascripts/handle_sprites.js"></script>
 		<script type="text/javascript" src="javascripts/v2.0/Scenes/AuthorMessage.js"></script>
 		<script type="text/javascript" src="javascripts/Scenes/YellowYard.js"></script>
@@ -80,25 +81,14 @@
 			AuthorBotJunior
 		</title>
 	</head>
-	<body style = 'background-image: url("images/copypasta_abj.png");'>
+	<body style = 'background-image: url("images/copypasta_ab.png");'>
 
 <div id = "navbar"></div>
-    <img src = "images/authorbot_jr_scout.png" style="float:left;">
+    
 
 		<div id = "spiel">
-			<h2 id = "heading">Rare Session Finder AuthorBotJunior </h2> <a href = "rare_session_finder.html">Back to AuthorBot</a><Br><Br>
-				<font color = "orange">
-				 Hmmm.  Yes. Interesting!!!  </font><font color = "red"> <Br><Br>(AB: AuthorBotJunior looks only at session initial conditions.) </font>
-				 <font color = "orange">
-					<Br><Br>
-					# of Sessions to Check:
-					<Br>1 <input id="num_sessions" type="range" min="1" max="50" value="50"> 50
-					<Br>
-					<input type="text" id="num_sessions_text" value="" size="2" disabled>
-					<br><br>
-					<button id = "button" onclick="checkSessionsJunior()"disabled="false">Check Sessions</button>
-			</font>
-
+			<h2 id = "heading">Tournament Arc. Tournament Arc! TOURNAMENT ARC!!! </h2> 
+				
 			   <div id = "stats">
 
 	 </div>
@@ -110,7 +100,10 @@
 
 
 
-		<div id = "story"></div>
+		<div id = "story">
+		<div id = 'teams'></div>
+		
+		</div>
 		<canvas id="echeladder_template" width="202" height="300">  </canvas>
 		<canvas id="sprite_template" width="400" height="300">  </canvas>
 		<canvas id="canvas_template" width="1000" height="300">  </canvas>
