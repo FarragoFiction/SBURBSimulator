@@ -448,6 +448,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}else if(this.ghost){
 			ret += "'s Ghost"
 		}
+		ret += " (" + this.chatHandle + ")"
 		return ret;
 	}
 
@@ -1959,7 +1960,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				r.saved_type = r.goodBig;
 			}
 		}
-		
+
 		if(this.isTroll && this.bloodColor == "#99004d"){
 			for(var i = 0; i<this.relationships.length; i++){
 				//needs to be part of this in ADDITION to initialization because what about custom players now.

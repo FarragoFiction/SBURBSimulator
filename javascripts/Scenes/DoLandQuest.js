@@ -240,7 +240,7 @@ function DoLandQuest(session){
 	}
 
 	this.contentForPlayer = function(player, helper){
-		var ret = " ";
+		var ret = "<Br><Br> ";
 		ret += "The " + player.htmlTitle()  ;
 		if(player.aspect != "Time") removeFromArray(player, this.session.availablePlayers);
 
