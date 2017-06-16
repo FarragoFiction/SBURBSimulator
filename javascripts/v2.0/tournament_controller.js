@@ -22,12 +22,21 @@ window.onload = function() {
 //when done, erase all losers, and start again with new teams (teamsGlobalVar should be object[], not string[])
 function startTournament(){
 	$("#teams").hide();
-	$("#tournamentButtonDiv").hide();
 	$("#team1").css('display', 'inline-block');
 	$("#ab").css('display', 'inline-block');
 	$("#team2").css('display', 'inline-block');
 	//render team 1 and team2
+	teamsGlobalVar = shuffle(teamsGlobalVar); //if these were svgs, could be animated???
+	displayTeams();
+	renderTeam(teamsGlobalVar[0], $("#team1"));
+	renderTeam(teamsGlobalVar[1], $("#team2"));
+	$("#tournamentButtonDiv").hide();
 }
+
+function renderTeam(team, div){
+	div.html("TODO: render " + team + ".  Want to list their name, their current score, their mvp, etc.")
+}
+
 
 //all selected tiers will render example chars and a text explanation.handle up to ALL chosen.
 //KnightStuck: randomly generated players that are forced to be Knights only.

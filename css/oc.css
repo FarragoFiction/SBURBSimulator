@@ -374,16 +374,23 @@ body{
 
 #team1{
 	display: none;
+	width: 200px;
+	vertical-align: top;
+	text-align: top;
 }
 
 
 #ab{
 	display: none;
+	width: 200px;
 }
 
 
 #team2{
 	display: none;
+	width: 200px;
+	vertical-align: top;
+	text-align: top;
 }
 
 
