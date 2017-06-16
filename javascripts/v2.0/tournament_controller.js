@@ -38,17 +38,18 @@ function startRound(){
 	lastTeamIndex += 2;
 	var team1 = teamsGlobalVar[lastTeamIndex]
 	var team2 = teamsGlobalVar[lastTeamIndex+1]  //if no team 2, they win???
-	$("#roundTitle").html(team1 + " VS " + team2);
+	$("#roundTitle").html("<h1>" + team1 + " VS " + team2 +"</h1>");
 	renderTeam(team1, $("#team1"));
 	renderTeam(team2, $("#team2"));
+	abLeft();
 }
 
 function abLeft(){
-	
+	$("#avatar").attr("src", "images/guide_bot_turnways.png");
 }
 
 function abRight(){
-	
+	$("#avatar").attr("src", "images/guide_bot.png");
 }
 
 function renderTeam(team, div){

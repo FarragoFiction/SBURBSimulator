@@ -365,12 +365,17 @@ body{
 #roundTitle{
 	width: 700px;
 	display: none;
+	text-align: center;
 }
 
 #descriptions{
 	display: inline-block;
 	vertical-align: top;
 	text-align: top;
+}
+#tournament{
+	width:790px;
+	display: inline-block;
 }
 
 .teamDescription{
@@ -379,7 +384,7 @@ body{
 
 #team1{
 	display: none;
-	width: 200px;
+	width: 250px;
 	vertical-align: top;
 	text-align: top;
 }
@@ -393,7 +398,7 @@ body{
 
 #team2{
 	display: none;
-	width: 200px;
+	width: 250px;
 	vertical-align: top;
 	text-align: top;
 }
