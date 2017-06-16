@@ -3,3 +3,7 @@ b=H%2F*%C2%8A%C3%BE%C2%93%00C((%04&s=,,Video Games,Character Creation,sanguineCy
 b=%00%00%00F%C3%B9y%10%0A%0E%0E%04&s=,,Conspiracies,Television,probatioDiabolica
 b=%5B1%0B%C2%86%C3%BE%1D%00%08!!%15&s=,,Music,Astronomy,felineCompany
 b=%00%00%00J%C3%BE%C2%9C%00X%20'%16&s=,,Heroes,Bara,hystericalInflection
+b=(%00%00%19%C3%BE%C3%90%00%16%12%12%11&s=,,History,Pranks,FuriousBells
+b=%C2%AE%5E%04q%C3%BE%1B%00%00%1E%12%10&s=,,Dance,Pets,RewindedFlare
+b=%00%00%00%3A%C3%BE%C3%90%00V%20%204&s=,,Chemistry,Puns,HopefulDreamer
+b=%C3%BF%C3%BF%C3%BF%C2%A0%C3%BE%C2%B9%00D%26%26%3A&s=,,Social Media,TV,TemperedCreator
