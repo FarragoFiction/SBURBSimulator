@@ -392,6 +392,8 @@ function QuadrantDialogue(session){
 	this.clubsChat = function(relationship1, relationship2){
 		//console.log("Clubs Chat in: " + this.session.session_id)
 		var chats = [];
+		chats.push( new ConversationalPair("I saw a mudcrab the other day.",["Terrible Creatures."])); //make this added only randomly if it's too common. can't believe i almost forgot.
+
 		chats.push( new ConversationalPair("So. Behaving?",["Fuck you I do what I want.","Yes, MOM.","God, could you just leave me alone?", "No thanks to the other asshole, yes. Yes I am."]));
 		chats.push( new ConversationalPair("You're not getting into any trouble, are you?",["Oh yeah, tons of trouble. I'm literally sitting in a puddle of that assholes blood RIGHT now.","Ugh. No. I'm behaving.","Can't you just stop meddling?", "No MOM."]));
 		chats.push( new ConversationalPair("Have you tried the breathing exercises I recomended?",["They don't fix the fundamental problem of that asshole existing.","All they did was make me hate breathing.","Fuck you.", "Yes, I almost passed out, so THANKS."]));
