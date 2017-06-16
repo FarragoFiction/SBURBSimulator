@@ -29,3 +29,8 @@ b=%3FB%C3%9E(%C3%BE%C3%9B%00Y%06%064&s=,,Water,Camp Pining Hearts,Lapis Lazuli
 b=J%C3%93VV%C3%BE%C3%82%00T..%05&s=,,Camp Pining Hearts,Limb Enhancers,Peridot
 b=%00%00%00c%C3%BEQ%01%13--%3D&s=,,Death,Rap,noidedHacker
 b=G2%00%1A%C3%BEH%00%18%02%02%3D&s=,,The Economy,Presidency,BarackObama
+b=%04%02%00%C2%A6%C3%BET%00X%23%23%04&s=,,Breaking knees,Darts,gruesomeCatastrophe 
+b=(%1A%02(%C3%BEX%00%00%08%08%11&s=,,Masochists,Gardening,cognitiveThrill 
+b=%C3%A9%C3%9C%C3%B1%C2%80%C3%BE%19%00Z%18%180&s=,,Drums,Shitposting,gumstatchGiggleburst 
+b=%C3%ABh)%3A%C3%BE%C2%9B%00%05%09%09%1D&s=,,Fighting Games,Friends,constableArgument 
+b=%0C%07%01%11%C3%BE%C3%91%00%1B%1A%1C8&s=,,Mathematics,Ukuleles,tauntingGanymedes
