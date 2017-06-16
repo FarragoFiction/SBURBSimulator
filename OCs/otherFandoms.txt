@@ -28,3 +28,4 @@ b=%C3%BF%C3%BF%C3%BF%C2%83%C3%B0V%00C%0C%23%0C&s=,,Purification,Sacred Mission,P
 b=%3FB%C3%9E(%C3%BE%C3%9B%00Y%06%064&s=,,Water,Camp Pining Hearts,Lapis Lazuli
 b=J%C3%93VV%C3%BE%C3%82%00T..%05&s=,,Camp Pining Hearts,Limb Enhancers,Peridot
 b=%00%00%00c%C3%BEQ%01%13--%3D&s=,,Death,Rap,noidedHacker
+b=G2%00%1A%C3%BEH%00%18%02%02%3D&s=,,The Economy,Presidency,BarackObama
