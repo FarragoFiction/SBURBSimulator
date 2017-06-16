@@ -25,3 +25,5 @@ b=%C3%A2%C3%9D%C2%972%C3%BE%C3%9B%00V%1F%18%12&s=,,Rose,Swords,Pearl
 b=%C3%8E%C2%B1%C3%98I%C3%BE%40%00%19%17%17%0E&s=,,Food,Pranks,Amythest
 b=%2C%14%07%14%C3%BE%C3%90%00%1B**.&s=,,Music,Donuts,Stephen Universe
 b=%C3%BF%C3%BF%C3%BF%C2%83%C3%B0V%00C%0C%23%0C&s=,,Purification,Sacred Mission,PurificatingBatter
+b=%3FB%C3%9E(%C3%BE%C3%9B%00Y%06%064&s=,,Water,Camp Pining Hearts,Lapis Lazuli
+b=J%C3%93VV%C3%BE%C3%82%00T..%05&s=,,Camp Pining Hearts,Limb Enhancers,Peridot
