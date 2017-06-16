@@ -1324,6 +1324,13 @@ prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
 prototyping_objects[prototyping_objects.length-1].helpPhrase = "says: 'It looks like you're trying to play a cosmic game where you breed frogs to create a universe. Would you like me to'-No. 'Would you like me to'-No! 'It looks like you're'-shut up!!! This is not helpful.";
 
 
+prototyping_objects.push(new GameEntity(null, "WebComicCreator",null));
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "refuses to explain anything about SBURB to you, prefering to let you speculate wildly while cackling to himself.";
+
+
+
 
 prototyping_objects.push(new GameEntity(null, "Nick Cage",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
