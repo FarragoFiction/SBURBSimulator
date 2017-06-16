@@ -362,6 +362,11 @@ body{
 	vertical-align: top;
 }
 
+#roundTitle{
+	width: 700px;
+	display: none;
+}
+
 #descriptions{
 	display: inline-block;
 	vertical-align: top;

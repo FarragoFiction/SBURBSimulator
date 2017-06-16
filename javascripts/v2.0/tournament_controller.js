@@ -3,6 +3,7 @@ var playersGlobalVar = [];
 var easterEggEngineGlobalVar;
 var simulationMode  = false;
 var teamsGlobalVar = [];
+var lastTeamIndex = -2; //each round starts at index + 2
 window.onload = function() {
 	$(this).scrollTop(0);
 	loadNavbar();
@@ -22,15 +23,32 @@ window.onload = function() {
 //when done, erase all losers, and start again with new teams (teamsGlobalVar should be object[], not string[])
 function startTournament(){
 	$("#teams").hide();
+	$("#roundTitle").css('display', 'inline-block');
 	$("#team1").css('display', 'inline-block');
 	$("#ab").css('display', 'inline-block');
 	$("#team2").css('display', 'inline-block');
 	//render team 1 and team2
 	teamsGlobalVar = shuffle(teamsGlobalVar); //if these were svgs, could be animated???
 	displayTeams();
-	renderTeam(teamsGlobalVar[0], $("#team1"));
-	renderTeam(teamsGlobalVar[1], $("#team2"));
 	$("#tournamentButtonDiv").hide();
+	startRound();
+}
+
+function startRound(){
+	lastTeamIndex += 2;
+	var team1 = teamsGlobalVar[lastTeamIndex]
+	var team2 = teamsGlobalVar[lastTeamIndex+1]  //if no team 2, they win???
+	$("#roundTitle").html(team1 + " VS " + team2);
+	renderTeam(team1, $("#team1"));
+	renderTeam(team2, $("#team2"));
+}
+
+function abLeft(){
+	
+}
+
+function abRight(){
+	
 }
 
 function renderTeam(team, div){
