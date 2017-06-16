@@ -1329,6 +1329,10 @@ prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
 prototyping_objects[prototyping_objects.length-1].helpPhrase = "refuses to explain anything about SBURB to you, prefering to let you speculate wildly while cackling to himself.";
 
+prototyping_objects.push(new GameEntity(null, "Sleuthsprite",null));
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "suggests the player just input a password to skip all their land's weird puzzle shit. This is not actually a thing you can do.";
 
 
 
