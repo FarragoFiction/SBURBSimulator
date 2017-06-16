@@ -24,8 +24,8 @@ function CharacterCreatorHelper(players){
 				this.player_index ++; //okay to mod this in the loop because only initial i value relies on it.
 			}else{
 				//no more players.
+				$("#draw12Button").html("No More Players");
 				$("#draw12Button").prop('disabled', true)();
-				$("#draw12Button").prop('value', "No More Players")();
 			}
 		}
 	}
