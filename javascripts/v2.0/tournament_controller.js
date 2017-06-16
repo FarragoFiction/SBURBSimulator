@@ -38,22 +38,38 @@ function startRound(){
 	lastTeamIndex += 2;
 	var team1 = teamsGlobalVar[lastTeamIndex]
 	var team2 = teamsGlobalVar[lastTeamIndex+1]  //if no team 2, they win???
-	$("#roundTitle").html("<h1>" + team1 + " VS " + team2 +"</h1>");
+	var team1Title = "<h1 id = 'team1Title'>"+ team1 + "</h1>";
+	var team2Title =  "<h1 id = 'team2Title'>"+ team2 + "</h1>";
+	$("#roundTitle").html(team1Title +" vs " + team2Title);
 	renderTeam(team1, $("#team1"));
 	renderTeam(team2, $("#team2"));
 	abLeft();
+	console.log("TODO, do 10 rounds of team 1.")
+	setTimeout(function(){ abLeft() }, 1000);
+	setTimeout(function(){ abRight() }, 2000);
+	setTimeout(function(){ abLeft() }, 3000);
+	setTimeout(function(){ fight(team1,team2) }, 4000);
+}
+
+function fight(team1, team2){
+	console.log("insert fight here.")
+	//first, display brief "Fight" popup (not an alert, css)
 }
 
 function abLeft(){
 	$("#avatar").attr("src", "images/guide_bot_turnways.png");
+	$("#team1Title").css("color", "red");
+	$("#team2Title").css("color", "black");
 }
 
 function abRight(){
 	$("#avatar").attr("src", "images/guide_bot.png");
+	$("#team2Title").css("color", "red");
+	$("#team1Title").css("color", "black");
 }
 
 function renderTeam(team, div){
-	div.html("TODO: render " + team + ".  Want to list their name, their current score, their mvp, etc.")
+	div.html("TODO: render " + team + ".  Want to list their name, their current score, their mvp, etc. In tidy little box.")
 }
 
 
