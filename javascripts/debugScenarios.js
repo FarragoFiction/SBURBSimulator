@@ -125,7 +125,7 @@ function setAllAspectsTo(aspect){
 	console.log("Setting all aspects to: " + aspect)
 	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
 		if(curSessionGlobalVar.players[i].aspect != "Time" && curSessionGlobalVar.players[i].aspect != "Space" ) curSessionGlobalVar.players[i].aspect = aspect; //You can have no space/time in your own sessions, but AB will never do it on purpose.
-		if(curSessionGlobalVar.players[i].guardian.aspect != "Time" && curSessionGlobalVar.players.guardian[i].aspect != "Space" ) curSessionGlobalVar.players.guardian[i].aspect = aspect;
+		if(curSessionGlobalVar.players[i].guardian.aspect != "Time" && curSessionGlobalVar.players[i].guardian.aspect != "Space" ) curSessionGlobalVar.players[i].guardian.aspect = aspect;
 	}
 }
 
