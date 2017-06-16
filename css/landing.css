@@ -14,6 +14,40 @@
 body{
 	background-image: url("../images/Skaia_Clouds.png");
 }
+.intro{
+	width:885px;
+}
+.landingBox{
+	background-color: white;
+	padding: 10px;
+	width:700px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 3px solid black;
+	text-align: top;
+	vertical-align: top;
+}
+
+.void{
+	display: none;
+	background-color: #000066;
+	color: #ffffff;
+}
+
+.landingColumn{
+	display: inline-block;
+	width: 340px;
+	vertical-align: top;
+	text-align: top;
+}
+
+.landingInner{
+	display: inline-block;
+	width: 320px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 5px;
+}
 
 #navbar{
 	width:1020px;
