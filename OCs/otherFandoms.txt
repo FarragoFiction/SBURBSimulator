@@ -34,3 +34,14 @@ b=(%1A%02(%C3%BEX%00%00%08%08%11&s=,,Masochists,Gardening,cognitiveThrill
 b=%C3%A9%C3%9C%C3%B1%C2%80%C3%BE%19%00Z%18%180&s=,,Drums,Shitposting,gumstatchGiggleburst 
 b=%C3%ABh)%3A%C3%BE%C2%9B%00%05%09%09%1D&s=,,Fighting Games,Friends,constableArgument 
 b=%0C%07%01%11%C3%BE%C3%91%00%1B%1A%1C8&s=,,Mathematics,Ukuleles,tauntingGanymedes
+b=%C2%80%00%00%C2%A9%C3%BEP%007%1F%1F%0F&s=,,Murder,Comedy,CharaDreemur
+b=%C2%80%00%00%C2%89%C3%BE%0C%00Q%26%07%0F&s=,,Jokes,Flirting,Frisk
+b=%C3%AE%C3%AE%C3%AE%C2%AA%C3%B9%C3%88%10%7C''%0C&s=,,Fate,Knitting,AsrielDreemurr
+b=%C3%BF%00%004%C3%BAi%10%19%15%155&s=,,Justice,Anime,UnDyne
+b=%C3%BF%C3%BF%C3%BF%14%C3%BE%C2%80%00E%23%23%3D&s=,,Spaghetti,Pranks,TheGreatPapyrus
+b=%00%00%001%C3%BE%0D%00%0C%1F%1F%3D&s=,,Puns,Science,comicSans
+b=%C3%BF%C3%BF%00h%C3%B6%C2%A9%10%0A%10%10%24&s=,,Engineering,Anime,Alyphys
+b=%40%00%40%C2%B7%C3%BER%00%C3%88%06%06%1A&s=,,Status,Fine Art,MeTtaTon
+b=%C3%BF%C3%BF%00J%C3%B9k%10%06%0B%0B0&s=,,Leadership,Charity,AsgoreDreemurr
+b=%C3%AE%C3%AE%C3%AE%5B%C3%B9%C2%88%10%0C%0F%0F7&s=,,Cooking,Babies,TorielDreemurr
+b=%00%00%00%7B%C3%B8X%10H%10%10%1B&s=,,Money,Baking,msMuffet
