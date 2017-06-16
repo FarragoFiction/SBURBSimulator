@@ -33,8 +33,9 @@ function displayPotentialFighters(){
 	//tiers are EXACTLY the same name as the param, so can generate a "URL" of the right format, for AB to check.
 	var fanTeams = ["reddit","tumblr","discord","creditsBuckaroos","ideasWranglers","patrons","patrons2","patrons3","canon","otherFandoms","creators"];
 	var classTeams = ["KnightStuck", "SeerStuck","BardStuck","HeirStuck","MaidStuck","RogueStuck","PageStuck","ThiefStuck","SylphStuck","PrinceStuck","WitchStuck","MageStuck"];
-	var aspectTeams = ["BloodStuck", "MindStuck","RageStuck","VoidStuck","TimeStuck","HeartStuck","BreathStuck","ThiefStuck","SpaceStuck","HopeStuck","LifeStuck","DoomStuck"];
+	var aspectTeams = ["BloodStuck", "MindStuck","RageStuck","VoidStuck","TimeStuck","HeartStuck","BreathStuck","LightStuck","SpaceStuck","HopeStuck","LifeStuck","DoomStuck"];
 	var teams = fanTeams.concat(classTeams);
+	teams = teams.concat(aspectTeams);
 	var html = "<b>Choose Combatants!</b><Br><select multiple size = '" + teams.length + "' id = 'tiers' name='tier'>";
 	for(var i = 0; i< teams.length; i++){
 			html += '<option value="' + teams[i] +'">' + teams[i]+'</option>'
@@ -73,7 +74,7 @@ function displayTeams(){
 function getTeamDescription(team){
 	console.log("~~~~~~~~~~~~~~~~~~TODO~~~~~~~~~~~~~~~ have icon for each category.");
 	var stuck = team.split("Stuck");
-	if(stuck.length == 2) return "<h1>" +stuck[0] +"Stuck</h1> <hr> A random team of only  " + stuck[0] + "s. (With Time/Space guaranteed)"
+	if(stuck.length == 2) return "<h1>" +stuck[0] +"Stuck</h1> <hr> A random team of only  " + stuck[0] + " Players. (With Time/Space guaranteed)"
 	
 	if(team == "reddit") return "<h1>reddit</h1><hr> Players chosen randomly from the reddit fan OCs."
 	if(team == "tumblr") return "<h1>tumblr</h1><hr> Players chosen randomly from the tumblr fan OCs."
