@@ -50,6 +50,7 @@ function displayTeams(){
 		html += divStart + getTeamDescription(teamsGlobalVar[i]) + divEnd;
 	}
 	$("#descriptions").html(html);
+	$("#tournamentButtonDiv").css('display', 'inline-block');
 }
 
 //when tournament starts up, drop down is set to none, and this is left most thing.

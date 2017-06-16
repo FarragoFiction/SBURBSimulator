@@ -374,12 +374,14 @@ body{
 
 #tournamentButtonDiv{
 	vertical-align: middle;
-	display: inline-block;
-	position: relative;
-	top: 50%
+	display: none;
+	position: absolute;
+	top: 0%;
+	padding: 50px;
 }
 
 #setup{
+	position: relative;
 }
 
 
