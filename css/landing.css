@@ -36,17 +36,18 @@ body{
 
 .landingColumn{
 	display: inline-block;
-	width: 340px;
+	width: 320px;
 	vertical-align: top;
 	text-align: top;
+	padding:10px;
 }
 
 .landingInner{
 	display: inline-block;
 	width: 320px;
-	margin-left: auto;
+	margin-left: 30px;
 	margin-right: auto;
-	padding: 5px;
+	padding-bottom: 5px;
 }
 
 #navbar{
