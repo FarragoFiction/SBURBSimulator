@@ -30,6 +30,7 @@ function displayPotentialFighters(){
 
 function wireUpTeamSelector(){
 	$("#teams").change(function() {
+		teamsGlobalVar = [];
 		$('#teams :selected').each(function(i, selected){
 			teamsGlobalVar.push($(selected).text());
 		});
@@ -39,5 +40,20 @@ function wireUpTeamSelector(){
 }
 
 function displayTeams(){
-	alert("teams!" + teamsGlobalVar)
+	//when teams are displayed, also make sure button to start tournament is displayed. Hides team selector, shows AB in middle, with current fighters on either sidebar
+	//points go up with each won session, AB glitches red with each grim dark crash and a point is lost.
+	//loser is crossed off from team description, and next pair go.
+	var html = "";
+	var divStart = "<div class = 'teamDescription'>";
+	var divEnd = "</div>";
+	for(var i = 0; i < teamsGlobalVar.length; i++){
+		html += divStart + getTeamDescription(teamsGlobalVar[i]) + divEnd;
+	}
+	$("#descriptions").html(html);
+}
+
+//when tournament starts up, drop down is set to none, and this is left most thing.
+function getTeamDescription(team){
+	var stuck = team.split("Stuck");
+	if(stuck.length == 2) return "<h1>" +stuck[0] +"Stuck</h1> <hr> A random team of only  " + stuck[0] + "s."
 }
