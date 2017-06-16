@@ -45,3 +45,5 @@ b=%40%00%40%C2%B7%C3%BER%00%C3%88%06%06%1A&s=,,Status,Fine Art,MeTtaTon
 b=%C3%BF%C3%BF%00J%C3%B9k%10%06%0B%0B0&s=,,Leadership,Charity,AsgoreDreemurr
 b=%C3%AE%C3%AE%C3%AE%5B%C3%B9%C2%88%10%0C%0F%0F7&s=,,Cooking,Babies,TorielDreemurr
 b=%00%00%00%7B%C3%B8X%10H%10%10%1B&s=,,Money,Baking,msMuffet
+b=%5E%2F%004%C3%BE%C2%8B%00F%10%10%0C&s=,,Carpentry,Dogs,Magnus Burnsides 
+b=%C3%80%C3%80%C3%80j%C3%BE%C2%B8%00C))%20&s=,,Pan,Plants,Merle Highchurch
