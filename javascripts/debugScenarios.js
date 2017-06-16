@@ -112,19 +112,19 @@ function processXStuck(){
 		var stuck = paramsArray[i].split("Stuck");  
 		if(stuck.length != 2) return;
 		var classOrAspect = stuck[0];
-		if(classes.indexOf(stuck[0])){
-			setAllClassesTo(stuck[0])
-		}else if(all_aspects.indexOf(stuck[0])){
-			setAllAspectsTo(stuck[0]);
+		if(classes.indexOf(stuck[0]) != -1){
+			setAllClassesTo(stuck[0].trim())
+		}else if(all_aspects.indexOf(stuck[0]) != -1){
+			setAllAspectsTo(stuck[0].trim());
 		}
 	}
 	
 }
 
 function setAllAspectsTo(aspect){
-	console.log("Setting all aspects to: " + aspects)
+	console.log("Setting all aspects to: " + aspect)
 	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
-		if(curSessionGlobalVar.players[i].aspect != "Time" && curSessionGlobalVar.players[i].aspect != "Space" ) curSessionGlobalVar.players[i] = aspect; //You can have no space/time in your own sessions, but AB will never do it on purpose.
+		if(curSessionGlobalVar.players[i].aspect != "Time" && curSessionGlobalVar.players[i].aspect != "Space" ) curSessionGlobalVar.players[i].aspect = aspect; //You can have no space/time in your own sessions, but AB will never do it on purpose.
 	}
 }
 
