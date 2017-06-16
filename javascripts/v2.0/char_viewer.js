@@ -23,6 +23,8 @@ function renderHeader(){
 	if(getParameterByName("creditsBuckaroos")  == "true") header += " creditsBuckaroos"
 	if(getParameterByName("ideasWranglers")  == "true") header += " ideasWranglers"
 	if(getParameterByName("patrons")  == "true") header += " patrons"
+	if(getParameterByName("patrons2")  == "true") header += " patrons2"
+	if(getParameterByName("patrons3")  == "true") header += " patrons3"
 	if(getParameterByName("canon")  == "true") header += " canon"
 	if(getParameterByName("otherFandoms")  == "true") header += " otherFandoms"
 	if(getParameterByName("creators")  == "true") header += " creators"

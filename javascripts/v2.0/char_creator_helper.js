@@ -938,6 +938,8 @@ function CharacterEasterEggEngine(){
 	this.creditsBuckaroos = [];
 	this.ideasWranglers = [];
 	this.patrons = [];
+	this.patrons2 = [];
+	this.patrons3 = [];
 	this.canon = [];  //
 	this.otherFandoms = [];
 
@@ -1021,6 +1023,8 @@ function CharacterEasterEggEngine(){
 		this.loadArrayFromFile("creditsBuckaroos","OCs/creditsBuckaroos.txt", processForSim)
 		this.loadArrayFromFile("ideasWranglers","OCs/ideasWranglers.txt", processForSim)
 		this.loadArrayFromFile("patrons","OCs/patrons.txt", processForSim)
+		this.loadArrayFromFile("patrons2","OCs/patrons2.txt", processForSim)
+		this.loadArrayFromFile("patrons3","OCs/patrons3.txt", processForSim)
 		this.loadArrayFromFile("canon","OCs/canon.txt", processForSim)
 		this.loadArrayFromFile("otherFandoms","OCs/otherFandoms.txt", processForSim,callBack) //last one in list has callback so I know to do next thing.
 	}
@@ -1052,6 +1056,14 @@ function CharacterEasterEggEngine(){
 
 		if(getParameterByName("patrons")  == "true"){
 			pool = pool.concat(this.patrons)
+		}
+		
+		if(getParameterByName("patrons2")  == "true"){
+			pool = pool.concat(this.patrons2)
+		}
+		
+		if(getParameterByName("patrons3")  == "true"){
+			pool = pool.concat(this.patrons3)
 		}
 
 		if(getParameterByName("canon")  == "true"){
