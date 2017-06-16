@@ -119,7 +119,7 @@ function processXStuck(){
 
 function setAllAspectsTo(aspect){
 	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
-		curSessionGlobalVar.players[i].aspect = aspect;
+		if(curSessionGlobalVar.players[i].aspect != "Time" && curSessionGlobalVar.players[i].aspect != "Space" ) curSessionGlobalVar.players[i] = aspect; //You can have no space/time in your own sessions, but AB will never do it on purpose.
 	}
 }
 
