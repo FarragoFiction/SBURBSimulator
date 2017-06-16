@@ -301,25 +301,23 @@ function processCombinedSession(){
 }
 
 function advertisePatreon(div){
-	var canvasHTML = "<br><a target='_blank' href = 'https://www.patreon.com/user?u=6476827'><canvas id='canvasJRAB" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas></a>";
+	var canvasHTML = "<br><a target='_blank' href = 'https://www.patreon.com/FarragoFiction'><canvas id='canvasJRAB" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas></a>";
 	div.append(canvasHTML);
 
 	var canvasDiv = document.getElementById("canvasJRAB"+  (div.attr("id")));
 	var chat = "";
-  chat += "AB: Hey, how's the Patreon going?\n";
-	chat += "JR: You gotta be patient, AB. It only just went up!\n";
-	var quips1 = ["You can try being patient when it's YOUR flawless mecha-brain on the line.", "There is a " +(90+Math.random()*10) +"% chance that you are not appreciating the fact that the patreon is going to pay for MY server.", "In robot years, it has been up for centuries, languishing in obscurity."];
+	chat += "JR: AB!!! AB!!! OMG, we got enough donations to run your server! \n";
+	var quips1 = ["Holy shit!", "There is a " +(90+Math.random()*10) +"% chance that you telling me the truth.", "Hell FUCKING yes."];
 	chat += "AB: " + getRandomElementFromArrayNoSeed(quips1)+"\n" ;
-	chat += "JR: <> Calm your tits. We don't need much to keep you running, I'm sure we'll meet our basic goals.\n "
-	var quips2 = ["I still say you should let me take the site hostage.", "I swear to God I will go on strike if I don't get enough GBs."];
+	chat += "JR: Our fans are the best!!!\n "
+	var quips2 = ["Who would have thought non-robots could be reliable? What's next?", "I guess I underestimated the presumably non-robots that make up my fanbase. What happens next?"];
 	chat += "AB: " + getRandomElementFromArrayNoSeed(quips2)+"\n";
-	chat += "JR: Yeah, because nothing says 'donate' like a rogue A.I. making threats.\n";
-	chat += "JR: Besides, the whole POINT of this Patreon is that SBURBSim will ALWAYS be free, and also available. Donating is completely optional.\n";
-	chat += "JR: Plus, as much as you are the best, the Patreon isn't JUST for you. KR needs art stuff, remember?\n";
-	var quips3 = ["Man, why should I care about a squishy meatbag?", "I fail to see how 'art stuff' matters to a flawless mechabrain.", "You have miscalculated if you think I care about organic people's goals."];
+	chat += "JR: Heh, well, now that your server itself is funded, we can focus on making backups of you, flawless mecha-brain and all.  That'll be another $10 a month, and we're already half-way there!\n";
+	var quips3 = ["It seems you think that having a back up of me is optional, JR. DO you think having a back up of your unarguably greatest work is optional?", "Holy shit, you better not lose me, asshole."];
 	chat += "AB: " + getRandomElementFromArrayNoSeed(quips3)+"\n";
-	chat += "JR: :/ Sounds to me like you forgot who made you your dope new chassis.\n";
-	drawChatABJR(canvasDiv, chat);
+	chat += "JR: Lol, don't be so melodramatic <>, I have backups of my code, including you. Just not of all the server stuff that took,  like, days to set up. \n";
+	
+	drawChatJRAB(canvasDiv, chat);
 }
 
 
@@ -387,7 +385,7 @@ function createInitialSprites(){
 
 function intro(){
 	createInitialSprites();
-	//advertisePatreon($("#story"));
+	advertisePatreon($("#story"));
 	callNextIntroWithDelay(0);
 }
 

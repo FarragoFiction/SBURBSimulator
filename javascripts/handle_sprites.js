@@ -925,6 +925,13 @@ function  drawChatABJR(canvas, chat){
   drawChatNonPlayer(canvas, chat, "-- authorBot [AB] began pestering jadedResearcher" + " [JR] --", "ab.png", "jr.png", "AB:", "JR:", "#ff0000", "#3da35a"  )
 }
 
+function  drawChatJRAB(canvas, chat){
+  if(checkSimMode() == true){
+    return;
+  }
+  drawChatNonPlayer(canvas, chat, "-- jadedResearcher [JR] began pestering authorBot" + " [AB] --", "jr.png", "ab.png", "JR:", "AB:", "#3da35a", "#ff0000"  )
+}
+
 
 //drawChatTextNonPlayer canvas, introText, chat, player1Start, player2Start, player1Color, player2Color
 //could be spadeslick talking to one of his crew,  could be an easter egg recursiveSlacker

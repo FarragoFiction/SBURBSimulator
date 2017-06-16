@@ -1,0 +1,127 @@
+<html>
+	<head>
+	<meta charset="utf-8">
+	<style>
+		@font-face {
+				font-family: horrorterror;
+				src: url(MISTERTWIGGY.TTF);
+		}
+	</style>
+		<link rel="stylesheet" href="css/oc.css">
+		<script type="text/javascript" src="javascripts/sessionSummary.js"></script>
+		<script type="text/javascript" src="javascripts/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="javascripts/lz-string.min.js"></script>
+		<script type="text/javascript" src="javascripts/v2.0/char_creator_helper.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/QuadrantDialogue.js"></script>
+		<script type="text/javascript" src="javascripts/navbar.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/FreeWillStuff.js"></script>
+		<script type="text/javascript" src="javascripts/ShittyRapEngine/shitty_raps.js"></script>
+		<script type="text/javascript" src="javascripts/random_tables.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/UpdateShippingGrid.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/GrimDarkQuests.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/LifeStuff.js"></script>
+		<script type="text/javascript" src="javascripts/loading.js"></script>
+		<script type="text/javascript" src="javascripts/session.js"></script>
+		<script type="text/javascript" src="javascripts/AfterLife.js"></script>
+		<script type="text/javascript" src="javascripts/gameEntity.js"></script>
+		<script type="text/javascript" src="javascripts/player.js"></script>
+		<script type="text/javascript" src="javascripts/playerSnapshot.js"></script>
+		<script type="text/javascript" src="javascripts/quirk.js"></script>
+		<script type="text/javascript" src="javascripts/debugScenarios.js"></script>
+		<script type="text/javascript" src="javascripts/v2.0/YellowYardResultController.js"></script>
+		<script type="text/javascript" src="javascripts/v2.0/ImportantEvents.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/Breakup.js"></script>
+		<script type="text/javascript" src="javascripts/relationship.js"></script>
+		<script type="text/javascript" src="javascripts/v2.0/find_rare_sessions.js"></script>
+		<script type="text/javascript" src="javascripts/handle_sprites.js"></script>
+		<script type="text/javascript" src="javascripts/v2.0/Scenes/AuthorMessage.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/YellowYard.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/Intro.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/LuckStuff.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/Reckoning.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/Aftermath.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/KingPowerful.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/QueenRejectRing.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/PrepareToExileQueen.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/PlanToExileJack.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/GiveJackBullshitWeapon.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/PrepareToExileJack.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/ExileQueen.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/ExileJack.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/JackBeginScheming.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/levelthehellup.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/JackRampage.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/JackPromotion.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/SolvePuzzles.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/ExploreMoon.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/GetTiger.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/GodTierRevival.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/CorpseSmooch.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/GoGrimDark.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/EngageMurderMode.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/BeTriggered.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/DisengageMurderMode.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/MurderPlayers.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/FightQueen.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/FightKing.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/VoidyStuff.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/DoLandQuest.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/FaceDenizen.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/DoEctobiology.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/RelationshipDrama.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/SaveDoomedTimeline.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/StartDemocracy.js"></script>
+		<script type="text/javascript" src="javascripts/Scenes/PowerDemocracy.js"></script>
+		<script type="text/javascript" src="javascripts/scene_controller.js"></script>
+		<script type = "text/javascript">
+
+		</script>
+		<title>
+			AuthorBotJunior
+		</title>
+	</head>
+	<body style = 'background-image: url("images/copypasta_abj.png");'>
+
+<div id = "navbar"></div>
+    <img src = "images/authorbot_jr_scout.png" style="float:left;">
+
+		<div id = "spiel">
+			<h2 id = "heading">Rare Session Finder AuthorBotJunior </h2> <a href = "rare_session_finder.html">Back to AuthorBot</a><Br><Br>
+				<font color = "orange">
+				 Hmmm.  Yes. Interesting!!!  </font><font color = "red"> <Br><Br>(AB: AuthorBotJunior looks only at session initial conditions.) </font>
+				 <font color = "orange">
+					<Br><Br>
+					# of Sessions to Check:
+					<Br>1 <input id="num_sessions" type="range" min="1" max="50" value="50"> 50
+					<Br>
+					<input type="text" id="num_sessions_text" value="" size="2" disabled>
+					<br><br>
+					<button id = "button" onclick="checkSessionsJunior()"disabled="false">Check Sessions</button>
+			</font>
+
+			   <div id = "stats">
+
+	 </div>
+
+	 <div id = "debug"></div>
+
+		</div>
+
+
+
+
+		<div id = "story"></div>
+		<canvas id="echeladder_template" width="202" height="300">  </canvas>
+		<canvas id="sprite_template" width="400" height="300">  </canvas>
+		<canvas id="canvas_template" width="1000" height="300">  </canvas>
+		<canvas id="chat_text_template" width="472" height="239">  </canvas>
+		<canvas id="godtierlevelup_template" width="650" height="151">  </canvas>
+		<img id="loading.png" src = "images/loading.png" style="display:none">
+		<div id = "image_staging">  </div>
+		<div id = "loading_image_staging">  </div>
+		<canvas id="loading" width="500" height="354">  </canvas>
+		<a href = "index2.html?robot=true">BEEP</a>
+		<div id = "playerSprites"></div>
+
+	</body>
+</html>
