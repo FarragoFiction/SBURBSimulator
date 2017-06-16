@@ -2,6 +2,7 @@ var charCreatorHelperGlobalVar;
 var playersGlobalVar = [];
 var easterEggEngineGlobalVar;
 var simulationMode  = false;
+var teamsGlobalVar = [];
 window.onload = function() {
 	$(this).scrollTop(0);
 	loadNavbar();
@@ -18,10 +19,25 @@ function displayPotentialFighters(){
 	var fanTeams = ["reddit","tumblr","discord","creditsBuckaroos","ideasWranglers","patrons","patrons2","patrons3","canon","otherFandoms","creators"];
 	var classTeams = ["KnightStuck", "SeerStuck","BardStuck","HeirStuck","MaidStuck","RogueStuck","PageStuck","ThiefStuck","SylphStuck","PrinceStuck","WitchStuck","MageStuck"];
 	var teams = fanTeams.concat(classTeams);
-	var html = "<select multiple size = '" + teams.length + "' id = 'tiers' name='tier'>";
+	var html = "<b>Choose Combatants!</b><Br><select multiple size = '" + teams.length + "' id = 'tiers' name='tier'>";
 	for(var i = 0; i< teams.length; i++){
 			html += '<option value="' + teams[i] +'">' + teams[i]+'</option>'
 	}
 	html += '</select>'
 	$("#teams").append(html);
+	wireUpTeamSelector();
+}
+
+function wireUpTeamSelector(){
+	$("#teams").change(function() {
+		$('#teams :selected').each(function(i, selected){
+			teamsGlobalVar.push($(selected).text());
+		});
+		displayTeams();
+	});
+	
+}
+
+function displayTeams(){
+	alert("teams!" + teamsGlobalVar)
 }
