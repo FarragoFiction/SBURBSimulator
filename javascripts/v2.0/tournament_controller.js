@@ -9,6 +9,21 @@ window.onload = function() {
 	displayPotentialFighters();
 }
 
+//hide the teams and button. randomize the teams and reDescribe them to show new order. 
+//render AB in center, facing left team.
+//then, render first team on left of AB, and second team on right of AB.
+//then, pass first team to AB (upgrade her to have 'url params' from var as well as actual window location.)
+//number to simulate is 10. 
+//when each session is done, need to call a callback in this file instead of printSTats or whatever (minor AB upgrade)
+//callback should note if win (+1 to displayed score), or if grimDark crash (-1 to displayed score, AB flashes corrupt red.)  should also pass MVP value and title (wanna keep track of.)
+//when done, callback to this page so it knows to start next team. AB faces right. repeat.
+//when both teams done, compare scores, show winner, and strikethrough loser.
+//queue up next 2. 
+//when done, erase all losers, and start again with new teams (teamsGlobalVar should be object[], not string[])
+function startTournament(){
+	alert("!!!")
+}
+
 //all selected tiers will render example chars and a text explanation.handle up to ALL chosen.
 //KnightStuck: randomly generated players that are forced to be Knights only.
 //IF use rare session finder, will have to have params ALSO able to come internally, not just from url 
