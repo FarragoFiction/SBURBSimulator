@@ -21,7 +21,12 @@ window.onload = function() {
 //queue up next 2. 
 //when done, erase all losers, and start again with new teams (teamsGlobalVar should be object[], not string[])
 function startTournament(){
-	alert("!!!")
+	$("#teams").hide();
+	$("#tournamentButtonDiv").hide();
+	$("#team1").css('display', 'inline-block');
+	$("#ab").css('display', 'inline-block');
+	$("#team2").css('display', 'inline-block');
+	//render team 1 and team2
 }
 
 //all selected tiers will render example chars and a text explanation.handle up to ALL chosen.
@@ -76,6 +81,6 @@ function getTeamDescription(team){
 	var stuck = team.split("Stuck");
 	if(stuck.length == 2) return "<h1>" +stuck[0] +"Stuck</h1> <hr> A random team of only  " + stuck[0] + " Players. (With Time/Space guaranteed)"
 	
-	return "<h1>" + team + "</h1><Br>Players chosen randomly from the " + team + " fan OCs"; 
+	return "<h1>" + team + "</h1><hr>Players chosen randomly from the " + team + " fan OCs"; 
 
 }

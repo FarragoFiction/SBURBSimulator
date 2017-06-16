@@ -364,7 +364,28 @@ body{
 
 #descriptions{
 	display: inline-block;
+	vertical-align: top;
+	text-align: top;
 }
+
+.teamDescription{
+	width:200px;
+}
+
+#team1{
+	display: none;
+}
+
+
+#ab{
+	display: none;
+}
+
+
+#team2{
+	display: none;
+}
+
 
 #teams select{
 	-webkit-appearance: none;
