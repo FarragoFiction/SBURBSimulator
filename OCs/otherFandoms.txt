@@ -29,10 +29,10 @@ b=%3FB%C3%9E(%C3%BE%C3%9B%00Y%06%064&s=,,Water,Camp Pining Hearts,Lapis Lazuli
 b=J%C3%93VV%C3%BE%C3%82%00T..%05&s=,,Camp Pining Hearts,Limb Enhancers,Peridot
 b=%00%00%00c%C3%BEQ%01%13--%3D&s=,,Death,Rap,noidedHacker
 b=G2%00%1A%C3%BEH%00%18%02%02%3D&s=,,The Economy,Presidency,BarackObama
-b=%04%02%00%C2%A6%C3%BET%00X%23%23%04&s=,,Breaking knees,Darts,gruesomeCatastrophe 
-b=(%1A%02(%C3%BEX%00%00%08%08%11&s=,,Masochists,Gardening,cognitiveThrill 
-b=%C3%A9%C3%9C%C3%B1%C2%80%C3%BE%19%00Z%18%180&s=,,Drums,Shitposting,gumstatchGiggleburst 
-b=%C3%ABh)%3A%C3%BE%C2%9B%00%05%09%09%1D&s=,,Fighting Games,Friends,constableArgument 
+b=%04%02%00%C2%A6%C3%BET%00X%23%23%04&s=,,Breaking knees,Darts,gruesomeCatastrophe
+b=(%1A%02(%C3%BEX%00%00%08%08%11&s=,,Masochists,Gardening,cognitiveThrill
+b=%C3%A9%C3%9C%C3%B1%C2%80%C3%BE%19%00Z%18%180&s=,,Drums,Shitposting,gumstatchGiggleburst
+b=%C3%ABh)%3A%C3%BE%C2%9B%00%05%09%09%1D&s=,,Fighting Games,Friends,constableArgument
 b=%0C%07%01%11%C3%BE%C3%91%00%1B%1A%1C8&s=,,Mathematics,Ukuleles,tauntingGanymedes
 b=%C2%80%00%00%C2%A9%C3%BEP%007%1F%1F%0F&s=,,Murder,Comedy,CharaDreemur
 b=%C2%80%00%00%C2%89%C3%BE%0C%00Q%26%07%0F&s=,,Jokes,Flirting,Frisk
@@ -45,5 +45,12 @@ b=%40%00%40%C2%B7%C3%BER%00%C3%88%06%06%1A&s=,,Status,Fine Art,MeTtaTon
 b=%C3%BF%C3%BF%00J%C3%B9k%10%06%0B%0B0&s=,,Leadership,Charity,AsgoreDreemurr
 b=%C3%AE%C3%AE%C3%AE%5B%C3%B9%C2%88%10%0C%0F%0F7&s=,,Cooking,Babies,TorielDreemurr
 b=%00%00%00%7B%C3%B8X%10H%10%10%1B&s=,,Money,Baking,msMuffet
-b=%5E%2F%004%C3%BE%C2%8B%00F%10%10%0C&s=,,Carpentry,Dogs,Magnus Burnsides 
+b=%5E%2F%004%C3%BE%C2%8B%00F%10%10%0C&s=,,Carpentry,Dogs,Magnus Burnsides
 b=%C3%80%C3%80%C3%80j%C3%BE%C2%B8%00C))%20&s=,,Pan,Plants,Merle Highchurch
+b=%C2%9C%C3%86%C3%8Ff%C3%BE%C3%8C%00P%26%263&s=,,Girls,Fate,blueSapphire
+b=V%06%0D%C2%89%C3%BE%5C%00%10%26%26%2C&s=,,Intimidation,Girls,rubyRed
+b=C%02%3E%01%C3%BE%C3%86%00%10%26%26%10&s=,,Love,Equality,gayGarnet
+b=%C3%9A%C3%82%C2%B1%C2%92%C3%BEm%00P%26%26%10&s=,,Revolution,Physics,whitePearl
+b=8%22%07%14%C3%BE%16%00W%26%26.&s=,,Song Writing,Leadership,stevenUniverse
+b=%C3%9F%C2%AE%C3%8F%3B%C3%BE%16%00P%26%26%17&s=,,Music,Leadership,roseQuartz
+b=%C2%BC%C2%A4%C3%9F%25%C3%BE%04%00%10%26%26%2F&s=,,Pranks,Boxing,amethystRunt
