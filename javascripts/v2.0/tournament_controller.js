@@ -56,4 +56,16 @@ function displayTeams(){
 function getTeamDescription(team){
 	var stuck = team.split("Stuck");
 	if(stuck.length == 2) return "<h1>" +stuck[0] +"Stuck</h1> <hr> A random team of only  " + stuck[0] + "s."
+	
+	if(team == "reddit") return "<h1>reddit</h1><hr> Players chosen randomly from the reddit fan OCs."
+	if(team == "tumblr") return "<h1>tumblr</h1><hr> Players chosen randomly from the tumblr fan OCs."
+	if(team == "discord") return "<h1>discord</h1><hr> Players chosen randomly from the discord fan OCs."
+	if(team == "creditsBuckaroos") return "<h1>creditsBuckaroos</h1><hr> Players chosen randomly from the creditsBuckaroos fan OCs."
+	if(team == "ideasWranglers") return "<h1>ideasWranglers</h1><hr> Players chosen randomly from the ideasWranglers fan OCs."
+	if(team == "patrons") return "<h1>patrons</h1><hr> Players chosen randomly from the patrons fan OCs."
+	if(team == "patrons2") return "<h1>patrons2</h1><hr> Players chosen randomly from the patrons2 fan OCs."
+	if(team == "patrons3") return "<h1>patrons3</h1><hr> Players chosen randomly from the patrons3 fan OCs."
+	if(team == "canon") return "<h1>canon</h1><hr> Players chosen randomly from the canon fan OCs."
+	if(team == "otherFandoms") return "<h1>otherFandoms</h1><hr> Players chosen randomly from the otherFandoms fan OCs."
+	if(team == "creators") return "<h1>creators</h1><hr> Players chosen randomly from the creators fan OCs."
 }
