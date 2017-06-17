@@ -69,7 +69,11 @@ function abRight(){
 }
 
 function renderTeam(team, div){
-	div.html("TODO: render " + team + ".  Want to list their name, their current score, their mvp, etc. In tidy little box.")
+	var win = "# of Won Sessions: " + team.win
+	var crash = "<br> # of GrimDark Crash Sessions: " + team.crash
+	var score = "<br>Score:  " + team.score
+	var mvp = "<br>MVP:  " + team.mvp_name + " with a power of: " + team.mvp_score;
+	div.html(win + crash + score + mvp)
 }
 
 
@@ -133,6 +137,8 @@ function getTeamDescription(team){
 function Team(name){
 	this.name = name;
 	this.score = 0;
+	this.win = 0;
+	this.crash = 0;
 	this.mvp_name = "";
 	this.mvp_score = 0;
 
