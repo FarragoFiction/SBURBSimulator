@@ -73,3 +73,15 @@ b=%00%00%00%13%C3%BEm%00F%15'1&s=,,Leadership,Learning,kiyotakaIshimaru
  b=%C3%BF%C3%BF%C3%BF%C2%A6%C3%BEf%00%11%15%15%3A&s=,,Murder Mystery Solving,Taking control of a situation,kyokoKirigiri
  b=%C2%A0fI4%C3%BEE%00B%0E%0A*&s=,,Biking,Punching people,mondoOowada
  b=%C2%BCt%12W%C3%BE%C2%AA%00A%09%09%10&s=,,Hacking,Artificial Intelligence,chihiroFujisake
+ b=0'%3C%C2%A6%C3%BEk%00E%09%13%0B&s=,,Revolution,Chess,lelouchLamperouge
+ b=%25%25%25%C2%98%C3%BEh%00%03%18%18%11&s=,,Detectives,Sweets,L
+ b=%00%00%00%C2%82%C3%BEx%00J%2C%2C%04&s=,,Pirates,Eating,monkeyLuffy
+ b=%C3%AB%C3%882%2B%C3%BE%C3%98%00%0C%17%1D5&s=,,Alchemy,Family,edwardElric
+ b=%7DK-%C2%A7%C3%BEm%00%17%1D%1D%16&s=,,Justice,Law,yagamiLight
+ b=%C3%92%C3%B2%C3%BD0%C3%BEX%00J%1F%1F.&s=,,Pachinko,Strawberry Milk,sakataGintoki
+ b=15%40%C2%AA%C3%BEX%00%03%0B%0B%1D&s=,,Breaking Illusions,Living Life Correctly,kamijouTouma
+ b=PPi6%C3%BEI%00%0A%13%13%25&s=,,Swords,Video Games,kirigayaKazuto
+ b=%0C%18%13!%C3%B0%C3%97%00%09%05%05%03&s=,,Science,Conspiracies,okabeRintaro
+ b=%C2%91%1E%14%16%C3%BEe%00K%09%09%16&s=,,Detectives,Small Bombs,ushiromiyaBattler
+ b=%23%19%0Fu%C3%BE%C2%9C%00%17%22%22%1E&s=,,Video Games,2D Girls,katsuragiKeima
+ b=%00%00%00%C2%8B%C3%BE%C2%95%04P%2C%20%3D&s=,,Superheroes,Strong Enemies,baldCape
