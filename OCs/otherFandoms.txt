@@ -70,3 +70,4 @@ b=%C3%BF%C3%A8%C3%BFT%C3%B0%C2%9B%00%5C%26%26%10&s=,,Video Games,Online Roleplay
 b=%C3%AD%C3%98%C3%8F%C2%B9%C3%BEY%02%07%05%05%1B&s=,,Despair ,Fashion,junkoEnoshima
 b=%C3%8Fc8%C2%8A%C3%BEi%00S%0B%0B%16&s=,,Mystery Solving,Hope,makotoNaegi
 b=%00%00%00%13%C3%BEm%00F%15'1&s=,,Leadership,Learning,kiyotakaIshimaru
+ b=%C3%BF%C3%BF%C3%BF%C2%A6%C3%BEf%00%11%15%15%3A&s=,,Murder Mystery Solving,Taking control of a situation,kyokoKirigiri
