@@ -57,9 +57,9 @@ ul.menuPureCSS {
     padding: 0;
     overflow: hidden;
     background-color: #3da35a;
-		border: 3px solid #386426;
+		border: 2px solid #386426;
 		font-family: "Times New Roman", Times, serif;
-		font-size: 25px;
+		font-size: 18px;
 }
 
 li.menuButtonPureCSS {
@@ -72,6 +72,7 @@ li.menuButtonPureCSS a, .dropbtn {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+		border: 2px solid #386426;
 }
 
 li.menuButtonPureCSS a:hover, .dropdown:hover .dropbtn {
