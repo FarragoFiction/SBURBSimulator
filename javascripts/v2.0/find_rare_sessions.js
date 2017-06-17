@@ -208,7 +208,6 @@ function filterSessionSummariesBy(filter){
 	printStats();
 }
 
-
 function checkSessionsJunior(){
 	junior = true;
 	numSimulationsDone = 0; //but don't reset stats
@@ -222,8 +221,8 @@ function checkSessionsJunior(){
 	startSessionJunior();
 }
 
-
-function checkSessions(){
+//tournament will pass a callback here. after each session, callback should be called.
+function checkSessions(callBack){
 	numSimulationsDone = 0; //but don't reset stats
 	sessionSummariesDisplayed = []
 	for(var i = 0; i<allSessionsSummaries.length; i++){
@@ -238,7 +237,7 @@ function checkSessions(){
 	//$("#stats").html("");
 	numSimulationsToDo = parseInt($("#num_sessions").val())
 	$("#button").prop('disabled', true)
-	startSession();
+	startSession(callBack);
 }
 
 function formInit(){
@@ -278,11 +277,11 @@ function startSessionJunior(){
 	if(getParameterByName("babyStuck")  == "true"){
 		babyStuckMode();
 	}
-	checkEasterEgg(easterEggCallBack);
+	checkEasterEgg(easterEggCallBackJR);
 
 }
 
-function easterEggCallBack(){
+function easterEggCallBackJR(){
 	initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar);  //need to redo it here because all other versions are in case customizations
 	//aaaaand. done.
 	sessionsSimulated.push(curSessionGlobalVar.session_id);
@@ -304,7 +303,7 @@ function easterEggCallBack(){
 	}
 }
 
-function easterEggCallBackRestart(){
+function easterEggCallBackAB(){
 	initializePlayers(curSessionGlobalVar.players,curSessionGlobalVar); //need to redo it here because all other versions are in case customizations
 	if(simulationMode == true){
 		intro();
@@ -313,7 +312,8 @@ function easterEggCallBackRestart(){
 	}
 }
 
-function startSession(){
+//callback is optional, only tournament will call
+function startSession(callBack){
 	//console.log("start session")
 	$("#story").html("")
 	curSessionGlobalVar = new Session(initial_seed)
@@ -342,8 +342,8 @@ function startSession(){
 	if(getParameterByName("babyStuck")  == "true"){
 		babyStuckMode();
 	}
-	checkEasterEgg(easterEggCallBackRestart);
-	
+	checkEasterEgg(easterEggCallBackAB);
+
 }
 
 function restartSession(){

@@ -2060,7 +2060,7 @@ I ALSO want it to be easy for the Authorbot to do so as well. Both for tourneys 
 The system MUSt be easy to use, and easy to modify (can pick a session with reddit+canon ocdatastrings init, for example.).
 
 I'd want the system to use the existin architecture of 'load ocs from a text file' because i find that system to be VERY easy to add ocs to, nlike the hall of fame with [???].
-I theoretically could do that OC thing forever, or even automate the process with a small server somewhere. 
+I theoretically could do that OC thing forever, or even automate the process with a small server somewhere.
 One useful part of those datastrings is that the user editable strings are kept in plain txt, I can easily see if somebody put something in approrpirate or full of attempts to break the sim before doing anything.
 So, before i focus back up, automation IS a perfectly valid thing to pursue in the future.  Just have the system put the strings in tmp files that I have to review with my organic brain before adding to the server.
 
@@ -2069,7 +2069,7 @@ Not focus up.
 
 So, a 'good' solution is easy to use, modifiable and uses the existing architecture. Anything else? Don't think about solutions, think about requirements...
 
-maybe additional ways to modify...like "allow repeats" or session size between 0 and 12? I consider those less important. 
+maybe additional ways to modify...like "allow repeats" or session size between 0 and 12? I consider those less important.
 
 Okay. Times up.
 
@@ -2079,7 +2079,7 @@ Solution:
 
 Okay, most obvious solution is to have the character_viewer generate data_string urls just like the SessionReplayer does. It would pick which players go into it, and NO other page would need to know about the saved text.
 
-Pros:  Don't need to modify other pages at all. 
+Pros:  Don't need to modify other pages at all.
 Cons: How would I do a tournament arc/give AB random sessions based on these?
 
 That's a PRETTY big con. And the pro is about avoiding work/possible sources of bugs, which...isn't that big a pro.
@@ -2090,10 +2090,10 @@ Just like the viewer, it would load the text files asynchronously, and then ping
 
 Pro:  Allows AB to know about data string sessions just like she does about trickster or rumpus=fruity sessions etc.
 
-Con: Would be tricky. How would I prevent the existing scripts from continuing until the easter egg is loaded. Should it ALWAys pause until returned?  would both scripts have the same callback method once it's done (i just answered my own question, use a callback.) 
-	Modifying the sim in order to use an easter egg is a big 'no'. Its a bad idea.  But it's not a very big mod. 
-	
-	
+Con: Would be tricky. How would I prevent the existing scripts from continuing until the easter egg is loaded. Should it ALWAys pause until returned?  would both scripts have the same callback method once it's done (i just answered my own question, use a callback.)
+	Modifying the sim in order to use an easter egg is a big 'no'. Its a bad idea.  But it's not a very big mod.
+
+
 Okay.That was 5 minutes. I did'nt come up with any new solutions on top of what I already had in my head.  I did manage to put in words why I like solution 2 over solution1, even though it violates
 my principle of "don't fuck with the sim for easter eggs.".
 
@@ -2113,9 +2113,9 @@ startSession
 	checkSGRUB();
 
 	load(curSessionGlobalVar.players, curSessionGlobalVar.guardians); //in loading.js
-	
-	
-	
+
+
+
 Analysis: It seems really easy to just put checkSGRUB() and load() into a callback. initializePlayers, too, if I can confirm it's not overriding custom things.
 
 
@@ -2140,51 +2140,51 @@ if(this.deriveChatHandle)  well. THAT's going to be easy. Just set that for the 
 HELL YES! It is working! Now just make sure AB only calls it once as well. also for scratches.
 confirm ab agrees with reality and both can scratch. ooo, and 612 is a yard, too (equius is only surivor and was black for nepeta).
  so. test that.  oh shit, and scratched 612 was a combo session where only cronus and mituna made it to the new session. which grim dark crashed.
- 
+
  Shit. wait. quirks are broked. need to fix. shit, and yellow yards. hopefully only for easter egg sessions.
- 
+
  wait. no. false alarm. it was robo aradia's fault becaue of true random. dang. oh well.
 
- alright, quirks are ready. 
- 
+ alright, quirks are ready.
+
  next Goal:  GOAL: make checkEasterEgg() load random smattering of Fan ocs, if appropriate easter egg is active. o
  nly load those player categories that i need.  if no space/time in all potential use generic one. always choose space/time player using findAllAspect players.  2-12 players chosen.
  ~~~~~~~~~~~~~~~~~~~~
  Okay. I have three problems that MIGHT be related.
- 
+
  Characters loaded from Fan OCS are not able to render themselves, can't find their canvas.
  Blank Space players hae no chat handle.
  EVERY CHARACTER (hundreds)is in the playerSprite div, not just the ones I want to render.
- 
+
  Try to fix third problem first. clear that div out once i have my pool.
  Wait. No. will clear out "real" players, which the replayers are going to overwrite.
- 
+
  Okay.
- 
+
  Find out WHY they are rendering. Does loading a player do that?
- 
+
  Oh shit.
- 
+
  Oh fuck.
- 
+
  It's HAPPENING ALL THE TIME. Even if not in easter egg mode. FUCK!
- 
+
  Okay. I see that I have code to create the canvas if i try to render and don't have one, but that I am ALSO creating a canvas every time I intiialize derived stuff. dumb. try not doing that.
- 
+
  Hell yes, way better. now not all cloggy.
- 
- 
+
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Fuck fuck fuck fuck fuck.
-Yellow Yards are broken, even on main branch. 
+Yellow Yards are broken, even on main branch.
 Fuck.
 Okay.
 I know what hte problem is.
 
 The problem is that I had to refactor the easter eggs to handle callbacks so that the oc fan easter eggs would work.
 
-And the yellow yard can't handle that. 
+And the yellow yard can't handle that.
 
 Look at the code, don't panic, and don't make assumptions:
 
@@ -2224,15 +2224,15 @@ this.addEventToUndoAndReset = function(e){
 
 		restartSession();//in controller
 	}
-	
-	
+
+
 	Shit, isn't there a scratch versio of that, too?
-	
+
 	One thing at a time.
-	
-	So, problem is: 
-	
-	
+
+	So, problem is:
+
+
 	checkEasterEgg(); //in the controller.
 		//now that i've done that, (for seed reasons) fucking ignore it and stick the actual players in
 		//after alll, i could be from a combo session.
@@ -2248,7 +2248,7 @@ this.addEventToUndoAndReset = function(e){
 		addAliensToSession(curSessionGlobalVar, living);
 
 		restartSession();//in controller
-		
+
 
 
 everything afer check easter egg HAS to be in a callback because checkEasterEgg is now asyncronus.
@@ -2262,3 +2262,15 @@ Is there a way to pass "this" in a callback?  Off the top of my head I can pass 
 Let's try to first idea first.
 
 Whew, fuck, okay, stop panicking 'cause that worked. look at me knowing how to deal with "this" breaking.
+
+
+
+~~~~~~~~~~
+
+Designing AB upgrades to allow her to do the tournament.
+
+Noticed that ABJUnior uses "callback" and AB uses "callback restart" and don't know why. but...they seem to be working???
+
+check if abj is sane and if abj can handle scratches without lying. Yeah, they are fine.
+
+Okay. So, back to original problem.

@@ -52,8 +52,13 @@ function startRound(){
 }
 
 function fight(team1, team2){
-	console.log("insert fight here.")
-	//first, display brief "Fight" popup (not an alert, css)
+	numSimulationsToDo = 10;
+	checkSessions(callBack);
+}
+
+function aBCallBack(){
+	//what i do here depends on what is calling me back. don't know yet.
+	//if it's after all 10 sessions, then do smoething different than if it's after each session.
 }
 
 function abLeft(){
