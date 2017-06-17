@@ -122,7 +122,7 @@ function displayTeams(){
 //when tournament starts up, drop down is set to none, and this is left most thing.
 function getTeamDescription(team){
 	console.log("~~~~~~~~~~~~~~~~~~TODO~~~~~~~~~~~~~~~ have icon for each category.");
-	var stuck = team.split("Stuck");
+	var stuck = team.name.split("Stuck");
 	if(stuck.length == 2) return "<h1>" +stuck[0] +"Stuck</h1> <hr> A random team of only  " + stuck[0] + " Players. (With Time/Space guaranteed)"
 
 	return "<h1>" + team + "</h1><hr>Players chosen randomly from the " + team + " fan OCs";
