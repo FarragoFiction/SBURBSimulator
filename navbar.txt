@@ -1,7 +1,7 @@
 <a href = "index.html"><img src = "images/sburb_sim_page_header_zalgo.png"/></a>
 
 <ul class = "menuPureCSS">
-
+  <span class = 'centeredMenu'>
   <li class="dropdown menuButtonPureCSS">
     <a href="javascript:void(0)" class="dropbtn">Sessions</a>
     <div class="dropdown-content">
@@ -36,4 +36,5 @@
   <li class = "menuButtonPureCSS"><a href="https://discord.gg/4czh3nB">Discord</a></li>
   <li class = "menuButtonPureCSS"><a href="support.html">Support SBURBSim</a></li>
   <li class = "menuButtonPureCSS"><a href="index_pw.html">[???]</a></li>
+  </span>
 </ul>
