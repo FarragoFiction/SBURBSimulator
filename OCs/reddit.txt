@@ -9,3 +9,4 @@ b=%00%00%00%3A%C3%BE%C3%90%00V%20%204&s=,,Chemistry,Puns,HopefulDreamer
 b=%C3%BF%C3%BF%C3%BF%C2%A0%C3%BE%C2%B9%00D%26%26%3A&s=,,Social Media,TV,TemperedCreator
 b=%00%00%00p%C3%B52%10W%03%02%0E&s=,,Writing,Drawing,
 b=%00%00%00(%C3%B8%3B%10%07%13%13%0B&s=,,Authoring,Role Playing,radiantJournalist
+b=%00%00%00G%C3%BE%C2%BA%00U%05%2B%04&s=,,Online Roleplaying,Automation,ailuroTemplar
