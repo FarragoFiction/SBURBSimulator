@@ -367,7 +367,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			this.dead = false;
 			this.murderMode = false;
 			this.currentHP = Math.max(this.hp,1); //if for some reason your hp is negative, don't do that.
-			this.grimDark = false;
+			this.grimDark = 0;
 			this.triggerLevel = 11;  //dying is pretty triggering.
 			this.flipOutReason = "they just freaking died"
 			//this.leftMurderMode = false; //no scars
@@ -829,6 +829,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}else if(this.class_name == "Sylph"){ //heals others 'healing' rage would increase it.
 			player.boostAllRelationshipsBy(amount);
 			//way too OP an ability, only sylphs of heart have it
+			console.log("healing grim dark")
 			player.changeGrimDark(-1);
 		}else if(this.class_name == "Bard"){ //destroys in others
 			player.boostAllRelationshipsBy(-1*amount)

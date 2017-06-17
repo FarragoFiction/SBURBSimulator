@@ -392,7 +392,7 @@ function intro(){
 
 
 function makeAuthorAvatar(){
-	players[0].grimDark = false;
+	players[0].grimDark = 0;
 	players[0].aspect = "Mind"
 	players[0].class_name = "Maid"
 	players[0].hair = 13;

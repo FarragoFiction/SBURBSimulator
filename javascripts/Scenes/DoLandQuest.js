@@ -103,6 +103,18 @@ function DoLandQuest(session){
 	}
 
 	this.calculateClasspectBoost = function(player, helper){
+
+
+		if(helper.aspect == "Heart" && helper.class_name == "Sylph"){
+			console.log("Will i heal corruption? grim dark is:" + player.grimDark)
+			console.log("sylph of heart corruption helping" + this.session.session_id)
+			if(player.grimDark > 1){
+				return " The " + helper.htmlTitle() + " heals the " + player.htmlTitle() + "'s broken identity', restoring any holds the broodfester tongues of GrimDarkness had on them and increasing their resistance to future infestations. ";
+			}
+			return " The " + helper.htmlTitle() + " innoculates the " + player.htmlTitle() + "'s identity' against future attacks of GrimDarkness. ";
+
+		}
+		console.log("guess not")
 		player.interactionEffect(helper);
 		helper.interactionEffect(player);
 		var ret = "";
@@ -111,6 +123,12 @@ function DoLandQuest(session){
 			player.increasePower();
 			return " Partnering up with your own time clones sure is efficient. ";
 		}
+
+		if(player.grimDark>0 && helper.aspect == "Void"){
+			console.log("void corruption helping" + this.session.session_id)
+			return " The " + helper.htmlTitle() + " seems to commune with the ambiant corruption in the " + player.htmlTitle() + ", preventing it from piling up enough for them to reach the next tier of GrimDarkness.";
+		}
+
 		//okay, now that i know it's not a time clone, look at my relationship with my helper.
 		var r1 = player.getRelationshipWith(helper);
 		var r2 = helper.getRelationshipWith(player);
