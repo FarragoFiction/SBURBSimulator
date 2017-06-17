@@ -73,7 +73,7 @@ function renderTeam(team, div){
 	var crash = "<br> # of GrimDark Crash Sessions: " + team.crash
 	var score = "<br>Score:  " + team.score
 	var mvp = "<br>MVP:  " + team.mvp_name + " with a power of: " + team.mvp_score;
-	div.html(win + crash + score + mvp)
+	div.html("<div class = 'scoreBoard'>" + win + crash + score + mvp + "</div>")
 }
 
 
