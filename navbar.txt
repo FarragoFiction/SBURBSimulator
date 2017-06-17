@@ -8,7 +8,7 @@
 <a href = "index2.html">Read Random</a> &nbsp &nbsp &nbsp &nbsp<a href = "character_creator.html">Replay Random</a> &nbsp &nbsp &nbsp &nbsp<a href = "character_viewer.html">Fan OCs</a> &nbsp &nbsp &nbsp &nbsp<a href = "about.html">FAQ</a> &nbsp &nbsp &nbsp &nbsp <a href = "rare_session_finder.html">Author Bot</a>&nbsp &nbsp &nbsp &nbsp <a href = "todo.html">Todo Pile</a>&nbsp &nbsp &nbsp &nbsp <a href = "glitches.html"> Glitch FAQ</a> &nbsp &nbsp &nbsp &nbsp <a href = "credits.html"> Credits</a>     &nbsp &nbsp &nbsp &nbsp <a href = "index_pw.html"> [???]</a>
 </div>
 
-<div class = "links">
+<div class = "menu">
         <div id = "sessionButton" class = "menuButton">Sessions</div>
         <div id = "sessions" class = "navBarMenu">
             <a href = "index2.html" class = "menuItem">Read Random </a>
@@ -17,28 +17,21 @@
             <a href = "index2.html" class = "menuItem">Read Random</a>
             <a href = "index2.html" class = "menuItem">Read Random</a>
             <a href = "index2.html" class = "menuItem">Read</a>
-
         </div>
-
         <div id = "fansButton" class = "menuButton">Fans</div>
         <div id = "fans" class = "navBarMenu">
           <a href = "index2.html" class = "menuItem">Read</a>
           <a href = "index2.html" class = "menuItem">Read</a>
           <a href = "index2.html" class = "menuItem">Read</a>
         </div>
-
-
         <div id = "infoButton" class = "menuButton">Info</div>
         <div id = "Info" class = "navBarMenu">
             <a href = "index2.html" class = "menuItem">Read</a>
             <a href = "index2.html" class = "menuItem">Read</a>
             <a href = "index2.html" class = "menuItem">Read</a>
         </div>
-
-
         <div id = "???" class = "navBarMenu">New Here?
         </div>
-
         <div id = "???" class = "navBarMenu">[???]
         </div>
 </div>

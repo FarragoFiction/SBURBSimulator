@@ -20,3 +20,27 @@
 	padding-left: 10px;
 	padding-right:10px;
 }
+
+.navBarMenu{
+	display:none;
+}
+
+.menu{
+	background-color: #3da35a;
+	width:1015px;
+	height:30px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 3px solid #386426;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.menuButton{
+	display:inline;
+	border: 3px solid #386426;
+	background-color: #3da35a;
+	font-family: "Times New Roman", Times, serif;
+	font-size: 25px;
+
+}
