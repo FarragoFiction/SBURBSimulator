@@ -71,3 +71,4 @@ b=%C3%AD%C3%98%C3%8F%C2%B9%C3%BEY%02%07%05%05%1B&s=,,Despair ,Fashion,junkoEnosh
 b=%C3%8Fc8%C2%8A%C3%BEi%00S%0B%0B%16&s=,,Mystery Solving,Hope,makotoNaegi
 b=%00%00%00%13%C3%BEm%00F%15'1&s=,,Leadership,Learning,kiyotakaIshimaru
  b=%C3%BF%C3%BF%C3%BF%C2%A6%C3%BEf%00%11%15%15%3A&s=,,Murder Mystery Solving,Taking control of a situation,kyokoKirigiri
+ b=%C2%A0fI4%C3%BEE%00B%0E%0A*&s=,,Biking,Punching people,mondoOowada

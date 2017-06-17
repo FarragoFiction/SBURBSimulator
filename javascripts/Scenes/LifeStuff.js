@@ -177,7 +177,7 @@ function LifeStuff(session){
 		}
 
 		if(ghost  && player.ghostPacts.indexOf(ghost) == -1 && player.ghostWisdom.indexOf(ghost) == -1 && !ghost.causeOfDrain){
-		console.log("dream bubble onion" +this.session.session_id);
+		//console.log("dream bubble onion" +this.session.session_id);
 			var str = "The " + player.htmlTitle() + " wanders a shifting and confusing landscape. They think they see a " + ghostName+"? They must be dreaming.";
 			var trait = whatDoPlayersHaveInCommon(player, ghost);
 			if(ghostName == "murder victim"){  //

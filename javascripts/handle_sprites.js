@@ -1255,7 +1255,7 @@ function drawSprite(canvas, player, ctx, baby){
     }
 	var player = makeRenderingSnapshot(player);
     if(player.ghost || player.doomed){  //don't expect ghosts or doomed players to render more than a time or two, don't bother caching for now.
-        console.log("drawing ghost or doomed player from scratch: " + player)
+        //console.log("drawing ghost or doomed player from scratch: " + player)
         drawSpriteFromScratch(canvas, player, ctx, false);
     }else{
       var canvasDiv = document.getElementById(player.spriteCanvasID);
