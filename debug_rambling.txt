@@ -2274,3 +2274,9 @@ Noticed that ABJUnior uses "callback" and AB uses "callback restart" and don't k
 check if abj is sane and if abj can handle scratches without lying. Yeah, they are fine.
 
 Okay. So, back to original problem.
+
+I need to pass AB a callback so she'll return the results of a simulation to me instead of processing it. But she is ALREADY using callbacks for easter eggs.
+
+Now. I can make the entire easter egg take ANOTHER call back. but that seems...wrong, and brittle.
+
+So, first step is research my options here on the googles.
