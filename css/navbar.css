@@ -38,6 +38,10 @@
 
 .menuButton{
 	display:inline;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
 	border: 3px solid #386426;
 	background-color: #3da35a;
 	font-family: "Times New Roman", Times, serif;
