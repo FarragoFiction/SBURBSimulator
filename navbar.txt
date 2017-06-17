@@ -1,14 +1,4 @@
 <a href = "index.html"><img src = "images/sburb_sim_page_header_zalgo.png"/></a>
-<div class = "links">
-<a href = "../SBURBSim/index2.html">Main Branch (3.0)</a> 		&nbsp &nbsp &nbsp &nbsp <a href = "../SBURBSimE/index2.html"> Experimental Branch(3.1)</a>   &nbsp &nbsp &nbsp &nbsp <a href = "landing.html">About SBURBSim</a> &nbsp &nbsp &nbsp &nbsp <a href = "https://discord.gg/4czh3nB"> Discord Server Invite</a> &nbsp &nbsp &nbsp &nbsp <a href = "support.html"> Learn How To Support SBURBSim!!!</a>
-</div>
-<br>
-<div class = "links">
-
-<a href = "index2.html">Read Random</a> &nbsp &nbsp &nbsp &nbsp<a href = "character_creator.html">Replay Random</a> &nbsp &nbsp &nbsp &nbsp<a href = "character_viewer.html">Fan OCs</a> &nbsp &nbsp &nbsp &nbsp<a href = "about.html">FAQ</a> &nbsp &nbsp &nbsp &nbsp <a href = "rare_session_finder.html">Author Bot</a>&nbsp &nbsp &nbsp &nbsp <a href = "todo.html">Todo Pile</a>&nbsp &nbsp &nbsp &nbsp <a href = "glitches.html"> Glitch FAQ</a> &nbsp &nbsp &nbsp &nbsp <a href = "credits.html"> Credits</a>     &nbsp &nbsp &nbsp &nbsp <a href = "index_pw.html"> [???]</a>
-</div>
-
-
 
 <ul class = "menuPureCSS">
 
@@ -27,7 +17,6 @@
     <a href="javascript:void(0)" class="dropbtn">Fans</a>
     <div class="dropdown-content">
       <a href="character_viewer.html">Fan OCs</a>
-      <a href="#">Tournament(TODO)</a>
       <a href="credits.html">Special Thanks</a>
     </div>
   </li>
