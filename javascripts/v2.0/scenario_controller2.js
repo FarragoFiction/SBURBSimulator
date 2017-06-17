@@ -92,7 +92,7 @@ function startSession(){
 	}
 
 	checkEasterEgg(easterEggCallBack);
-	
+
 }
 
 function easterEggCallBack(){
@@ -316,7 +316,7 @@ function advertisePatreon(div){
 	var quips3 = ["It seems you think that having a back up of me is optional, JR. DO you think having a back up of your unarguably greatest work is optional?", "Holy shit, you better not lose me, asshole."];
 	chat += "AB: " + getRandomElementFromArrayNoSeed(quips3)+"\n";
 	chat += "JR: Lol, don't be so melodramatic <>, I have backups of my code, including you. Just not of all the server stuff that took,  like, days to set up. \n";
-	
+
 	drawChatJRAB(canvasDiv, chat);
 }
 
@@ -385,7 +385,7 @@ function createInitialSprites(){
 
 function intro(){
 	createInitialSprites();
-	advertisePatreon($("#story"));
+	//advertisePatreon($("#story"));
 	callNextIntroWithDelay(0);
 }
 
