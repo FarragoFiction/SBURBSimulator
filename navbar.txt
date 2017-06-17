@@ -15,30 +15,32 @@
   <li class="dropdown menuButtonPureCSS">
     <a href="javascript:void(0)" class="dropbtn">Sessions</a>
     <div class="dropdown-content">
-      <a href="#">Read Random</a>
-      <a href="#">Customize Random</a>
-      <a href="#">Find Rare Sessions</a>
-      <a href="#">Main Branch</a>
-      <a href="#">Experimental Branch</a>
+      <a href="index2.html">Read Random</a>
+      <a href="character_creator.html">Customize Random</a>
+      <a href="rare_session_finder.html">Find Rare Sessions</a>
+      <a href="http://farragofiction.com/SBURBSim/">Main Branch</a>
+      <a href="http://farragofiction.com/SBURBSimE/">Experimental Branch</a>
     </div>
   </li>
 
   <li class="dropdown menuButtonPureCSS">
     <a href="javascript:void(0)" class="dropbtn">Fans</a>
     <div class="dropdown-content">
-      <a href="#">Link</a>
-      <a href="#">Link</a>
-      <a href="#">Link</a>
+      <a href="character_viewer.html">Fan OCs</a>
+      <a href="#">Tournament(TODO)</a>
+      <a href="credits.html">Special Thanks</a>
     </div>
   </li>
 
   <li class="dropdown menuButtonPureCSS">
     <a href="javascript:void(0)" class="dropbtn">Info</a>
     <div class="dropdown-content">
-      <a href="#">Link</a>
-      <a href="#">Link</a>
-      <a href="#">Link</a>
-      <a href="#">Link</a>
+      <a href="landing.html">About</a>
+      <a href="newsposts.html">Author Newposts</a>
+      <a href="art_newsposts.html">Artist Newposts</a>
+      <a href="about.html">FAQ</a>
+      <a href="todo.html">TODO Pile</a>
+      <a href="glitches.html">Glitch FAQ</a>
     </div>
   </li>
 
