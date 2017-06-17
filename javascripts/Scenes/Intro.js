@@ -69,7 +69,7 @@ function Intro(session){
 			}
 			ret += " They come with a dire warning of a doomed timeline. ";
 			ret += "They dropkick the " + this.player.object_to_prototype.htmlTitle() + " out of the way and jump into the " + this.player.htmlTitleBasic() + "'s kernel sprite instead. <br> "
-			this.player.object_to_prototype = copyGameEntity(timePlayer, timePlayer.title())
+			this.player.object_to_prototype = copyGameEntity(timePlayer, timePlayer.chatHandle)
 			this.player.object_to_prototype.helpfulness = 1;
 			//shout out to DinceJof for the great sprite phrase
 			this.player.object_to_prototype.helpPhrase = " used to be a Player like you, until they took a splinter to the timeline, so they know how all this shit works. Super helpful.";
@@ -78,7 +78,7 @@ function Intro(session){
 
 		}else if((this.player.dead == true || this.player.isDreamSelf == true || this.player.dreamSelf == false) && Math.seededRandom() > .1){ //if tier 2 is ever a thing, make this 50% instead and have spries very attracted to extra corpes later on as well if they aren't already players or...what would even HAPPEN if you prototyped yourself twice....???
 			var ret = "Through outrageous shenanigans, one of the " + this.player.htmlTitle() + "'s superfluous corpses ends up prototyped into their kernel sprite. <br>";
-			this.player.object_to_prototype =copyGameEntity(this.player, this.player.titleBasic()) //no, don't say 'corpsesprite'
+			this.player.object_to_prototype =copyGameEntity(this.player, this.player.chatHandle) //no, don't say 'corpsesprite'
 			console.log("player sprite in session: " + this.session.session_id);
 			this.player.object_to_prototype.helpfulness = 1;
 			this.player.object_to_prototype.helpPhrase = " is interested in trying to figure out how to play the game, since but for shenanigans they would be playing it themselves.";
@@ -721,7 +721,7 @@ function Intro(session){
 			if(this.player.dead==true){
 				console.log(session.session_id + " dead player enters, " +this.player.title())
 				narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably. I...I guess their GHOST or something is making sure their house and corpse makes it into the medium? And their client player, as appropriate. Their kernel somehow gets prototyped with a "+this.player.object_to_prototype.htmlTitle() + ". ";
-				
+
 				this.session.availablePlayers.push(this.player);
 				this.player.sprite.addPrototyping(this.player.object_to_prototype); //hot damn this is coming together.
 				if(this.session.kingsScepter) this.session.kingsScepter.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
@@ -733,7 +733,7 @@ function Intro(session){
 				if(this.session.queensRing){
 					this.session.queensRing.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
 					narration += "The Black Queen's RING OF ORBS "+ this.session.convertPlayerNumberToWords() + "FOLD grows stronger from prototyping the " +  this.player.object_to_prototype.name +". ";
-				} 
+				}
 			narration += "The Black King's SCEPTER grows stronger from prototyping the " +  this.player.object_to_prototype.name +". ";
 				div.append(narration);
 				return;
@@ -761,7 +761,7 @@ function Intro(session){
 			if(this.session.queensRing){
 				this.session.queensRing.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
 				narration += "The Black Queen's RING OF ORBS "+ this.session.convertPlayerNumberToWords() + "FOLD grows stronger from prototyping the " +  this.player.object_to_prototype.name +". ";
-			} 
+			}
 			narration += "The Black King's SCEPTER grows stronger from prototyping the " +  this.player.object_to_prototype.name +". ";
 		}
 		div.append(narration);
