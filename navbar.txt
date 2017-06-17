@@ -3,7 +3,7 @@
 <ul class = "menuPureCSS">
   <span class = 'centeredMenu'>
   <li class="dropdown menuButtonPureCSS">
-    <a href="javascript:void(0)" class="dropbtn">Sessions</a>
+    <a href="javascript:void(0)" class="dropbtn">SESSIONS</a>
     <div class="dropdown-content">
       <a href="index2.html">Read Random</a>
       <a href="character_creator.html">Customize Random</a>
@@ -14,7 +14,7 @@
   </li>
 
   <li class="dropdown menuButtonPureCSS">
-    <a href="javascript:void(0)" class="dropbtn">Fans</a>
+    <a href="javascript:void(0)" class="dropbtn">FANS</a>
     <div class="dropdown-content">
       <a href="character_viewer.html">Fan OCs</a>
       <a href="credits.html">Special Thanks</a>
@@ -22,7 +22,7 @@
   </li>
 
   <li class="dropdown menuButtonPureCSS">
-    <a href="javascript:void(0)" class="dropbtn">Info</a>
+    <a href="javascript:void(0)" class="dropbtn">INFO</a>
     <div class="dropdown-content">
       <a href="landing.html">About</a>
       <a href="newsposts.html">Author Newposts</a>
@@ -33,8 +33,8 @@
     </div>
   </li>
 
-  <li class = "menuButtonPureCSS"><a href="https://discord.gg/4czh3nB">Discord</a></li>
-  <li class = "menuButtonPureCSS"><a href="support.html">Support SBURBSim</a></li>
+  <li class = "menuButtonPureCSS"><a href="https://discord.gg/4czh3nB">DISCORD</a></li>
+  <li class = "menuButtonPureCSS"><a href="support.html">SUPPORT SBURBSim</a></li>
   <li class = "menuButtonPureCSS"><a href="index_pw.html">[???]</a></li>
   </span>
 </ul>

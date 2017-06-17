@@ -60,12 +60,12 @@ ul.menuPureCSS {
     overflow: hidden;
     background-color: #3da35a;
 		border: 2px solid #386426;
-		font-family: "Franklin Gothinc Demi", Times, sans;
+		font-family: "Franklin Gothinc Demi", arial, sans;
 		font-size: 18px;
 }
 
 .centeredMenu{
-	width: 600px;
+	width: 800px;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
@@ -74,6 +74,7 @@ ul.menuPureCSS {
 
 li.menuButtonPureCSS {
     float: left;
+		padding-left: 10px;
 }
 
 li.menuButtonPureCSS a, .dropbtn {
