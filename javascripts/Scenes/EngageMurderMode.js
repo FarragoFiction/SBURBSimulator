@@ -11,7 +11,7 @@ function EngageMurderMode(session){
 		var moon = 0;
 
 		if(this.player){
-			return this.player.getEnemies().length > 0 && this.flipsShit();
+			return !this.player.murderMode && this.player.getEnemies().length > 0 && this.flipsShit(); //dude, don't engage murder mode if you're already in it
 
 		}
 		return false;
