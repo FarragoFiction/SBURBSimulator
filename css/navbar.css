@@ -46,6 +46,7 @@
 	background-color: #3da35a;
 	font-family: "Times New Roman", Times, serif;
 	font-size: 25px;
+	color: #06ffc9;
 
 }
 
@@ -55,7 +56,10 @@ ul.menuPureCSS {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #3da35a;
+		border: 3px solid #386426;
+		font-family: "Times New Roman", Times, serif;
+		font-size: 25px;
 }
 
 li.menuButtonPureCSS {
@@ -64,14 +68,14 @@ li.menuButtonPureCSS {
 
 li.menuButtonPureCSS a, .dropbtn {
     display: block;
-    color: white;
+    color:  #06ffc9;;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
 
 li.menuButtonPureCSS a:hover, .dropdown:hover .dropbtn {
-    background-color: red;
+    background-color: #386426;
 }
 
 li.dropdown {
@@ -81,7 +85,7 @@ li.dropdown {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: #3da35a;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
