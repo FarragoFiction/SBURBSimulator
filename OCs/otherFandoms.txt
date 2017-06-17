@@ -55,3 +55,18 @@ b=8%22%07%14%C3%BE%16%00W%26%26.&s=,,Song Writing,Leadership,stevenUniverse
 b=%C3%9F%C2%AE%C3%8F%3B%C3%BE%16%00P%26%26%17&s=,,Music,Leadership,roseQuartz
 b=%C2%BC%C2%A4%C3%9F%25%C3%BE%04%00%10%26%26%2F&s=,,Pranks,Boxing,amethystRunt
 b=%C3%87%C2%A4%C2%80h%C3%BE(%00W%26%26%3B&s=,,Documentaries,Scrapbooking,padSapphire
+b=%C3%BF%C3%BF%C2%80%C2%A2%C3%B0U%00%1A%13%13%02&s=,,Insults,Violence,babyfaceGangster
+b=%C3%B9%C3%B7%C2%B5%C2%B8%C3%B8e%00%16%02%15%1E&s=,,Leadership,Hoarding,ultimateTogami
+b=%00%00%00%C2%93%C3%B0%11%00%16))%0E&s=,,Song Writing,Playing Guitar,ultimateMusician
+b=%C3%A6%C3%A1BI%C3%B0Q%00%12%14%1F%0D&s=,,Insults,Dance,ultimateTradionaldancer
+b=%3F.%3F%1B%C3%B0%C3%9D%00%5C%2C%2C%1A&s=,,Biology,Chemistry,ultimateNurse
+b=%00%00%00%C2%B1%C3%B0%C2%BB%00Z%0F%05&s=,,Animals,Animal Training,ultimateBreeder
+b=(%2B%3E%25%C3%B0D%00%18%02%0E%24&s=,,Fitness,Sports,ultimateTeammanager
+b=%C2%80%40%00p%C3%B0%C2%88%00%13%01%01&s=,,Cooking,Baking,ultimateChef
+b=%C3%BF%C3%BF%C3%BF%C2%87%C3%B0Y%00V**0&s=,,Classism,TV,ultimateLuck
+b=%C2%80%40%00%3A%C3%B0%C2%B6%00Q%14%14%25&s=,,Social Media,Justice,ultimateHope
+b=%C3%B0%0F%0F%06%C3%B0%26%00%5B%0C%10%0F&s=,,Painting,Social Justice,ultimatePhotographer
+b=%C3%BF%C3%A8%C3%BFT%C3%B0%C2%9B%00%5C%26%26%10&s=,,Video Games,Online Roleplaying,ultimateGamer
+b=%C3%AD%C3%98%C3%8F%C2%B9%C3%BEY%02%07%05%05%1B&s=,,Despair ,Fashion,junkoEnoshima
+b=%C3%8Fc8%C2%8A%C3%BEi%00S%0B%0B%16&s=,,Mystery Solving,Hope,makotoNaegi
+b=%00%00%00%13%C3%BEm%00F%15'1&s=,,Leadership,Learning,kiyotakaIshimaru

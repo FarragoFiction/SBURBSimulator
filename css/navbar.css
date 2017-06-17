@@ -53,12 +53,14 @@
 
 ul.menuPureCSS {
     list-style-type: none;
-    margin: 0;
+    margin-right: auto;
+		margin-left: auto;
+		text-align: center;
     padding: 0;
     overflow: hidden;
     background-color: #3da35a;
 		border: 2px solid #386426;
-		font-family: "Times New Roman", Times, serif;
+		font-family: "Franklin Gothinc Demi", Times, sans;
 		font-size: 18px;
 }
 
@@ -72,7 +74,6 @@ li.menuButtonPureCSS a, .dropbtn {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-		border: 2px solid #386426;
 }
 
 li.menuButtonPureCSS a:hover, .dropdown:hover .dropbtn {
