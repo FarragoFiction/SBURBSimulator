@@ -3,6 +3,9 @@ var playersGlobalVar = [];
 var easterEggEngineGlobalVar;
 var simulationMode  = false;
 var teamsGlobalVar = [];
+//for whole tournament
+var mvpName = ""
+var mvpScore = ""
 var lastTeamIndex = -2; //each round starts at index + 2
 window.onload = function() {
 	$(this).scrollTop(0);
@@ -90,6 +93,11 @@ function aBCallBack(sessionSummary){
 	if(sessionSummary.mvp.power > team.mvp_score){
 		team.mvp_name = sessionSummary.mvp.htmlTitle();
 		team.mvp_score = sessionSummary.mvp.power;
+	}
+
+	if(team.mvp_score > mvpScore){
+		mvpScore = team.mvp_score;
+		mvpName = team.mvp_name;
 	}
 	renderTeam(team, $("#team"+teamNum));
 	fight();
