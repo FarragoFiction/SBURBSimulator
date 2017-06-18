@@ -69,17 +69,27 @@ function doneWithRound(){
 	alert(team1.lostRound)
 	alert(team2.lostRound)
 	if(team1.lostRound){
-		console.log("should be crossing out team 1.")
-		$("#"+team1.name).css("text-decoration", "overline;")
-		$("#team1Title").css("text-decoration", "overline;")
+		var listDiv = $("#"+team1.name)
+		var roundDiv = $("#team1")
+		markLoser(listDiv)
+		markLoser(roundDiv)
 	}
 	if(team2.lostRound){
-		console.log("should be crossing out team 2")
-		$("#"+team2.name).css("text-decoration", "overline;")
-		$("#team2Title").css("text-decoration", "overline;")
+		var listDiv = $("#"+team2.name)
+		var roundDiv = $("#team2")
+		markLoser(listDiv)
+		markLoser(roundDiv)
 	}
 	//start up next two players.
 	//if not even one more player, do "doneWithTier"
+}
+
+
+function markLoser(loser){
+	console.log("marking loser")
+	console.log(loser);
+	loser.css('background-color', "red");
+	loser.css("text-decoration", "overline;")
 }
 
 function doneWithTier(){
@@ -121,8 +131,17 @@ function aBCallBack(sessionSummary){
 	if(sessionSummary.crashedFromPlayerActions){
 		 team.crash ++;
 		//grim dark ab turnways if 1
+		if(teamNum == 1){
+			$("#avatar").attr("src", "images/ab_gd_turnways.png");
+		}else{
+			$("#avatar").attr("src", "images/ab_gd.png");
+		}
 	}else{
-		//regular ab, turnways if 1
+		if(teamNum == 1){
+			abLeft();
+		}else{
+			abRight();
+		}
 	}
 	if(sessionSummary.mvp.power > team.mvp_score){
 		team.mvp_name = sessionSummary.mvp.htmlTitle();
