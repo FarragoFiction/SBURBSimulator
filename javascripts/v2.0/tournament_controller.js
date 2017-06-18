@@ -60,6 +60,7 @@ function fight(){
 	//var team2 = teamsGlobalVar[lastTeamIndex+1]  //if no team 2, they win???
 
 	simulatedParamsGlobalVar = ""; //which session are we checking?
+	alert("Hey, future, JR, don't forget to ALSo parse for easter egg fan oc players, not just STUCK players. probably wILL have to mod get url params to shove stuff into it ")
 	startSession(aBCallBack);
 }
 
