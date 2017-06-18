@@ -417,9 +417,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			ret += "Doomed "
 		}
 
-		if(this.robot){
-			ret += "Robo"
-		}
+
 
 		if(this.trickster){
 			ret += "Trickster "
@@ -441,6 +439,9 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			ret+= "God Tier "
 		}else if(this.isDreamSelf){
 			ret+= "Dream ";
+		}
+		if(this.robot){
+			ret += "Robo"
 		}
 		ret+= this.class_name + " of " + this.aspect;
 		if(this.dead){
