@@ -85,3 +85,4 @@ b=%00%00%00%13%C3%BEm%00F%15'1&s=,,Leadership,Learning,kiyotakaIshimaru
  b=%C2%91%1E%14%16%C3%BEe%00K%09%09%16&s=,,Detectives,Small Bombs,ushiromiyaBattler
  b=%23%19%0Fu%C3%BE%C2%9C%00%17%22%22%1E&s=,,Video Games,2D Girls,katsuragiKeima
  b=%00%00%00%C2%8B%C3%BE%C2%95%04P%2C%20%3D&s=,,Superheroes,Strong Enemies,baldCape
+ b=%00%00%00%C2%97%C3%BE%C2%97%00%C2%90%0D%0D%3D&s=,,Artifacts,Magik,somewhatRobotic
