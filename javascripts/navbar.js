@@ -23,7 +23,6 @@ function getParameterByName(name, url) {
       url = window.location.href;
     }
 		url += "&" + simulatedParamsGlobalVar;//lets me use existing framework to parse simulated params for tourney
-		alert(url)
     name = name.replace(/[\[\]]/g, "\\$&");
     var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
         results = regex.exec(url);

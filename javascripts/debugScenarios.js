@@ -63,7 +63,6 @@ function checkEasterEgg(callBack,that){  //only yellow yard session uses 'that' 
 	}else if(initial_seed == 0){
 		session0();
 	}
-	console.log('~~~~~~~~~~~~~~about to check for self insert ocs')
 	if(getParameterByName("selfInsertOC")  == "true"){
 		// call a method, method will determine what other params exist, like reddit=true and shit.
 		processFanOCs(callBack,that);
@@ -154,7 +153,6 @@ function setAllClassesTo(class_name){
 
 function processFanOCs(callBack,that){
 	//start up an easterEggEngine.
-	alert("checking for fan ocs")
 	new CharacterEasterEggEngine().loadArraysFromFile(callBack,true,that); //<-- ASYNCHRONOUS, so MUST END HERE. any future steps should be in the easterEggEngine itself.
 }
 

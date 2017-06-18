@@ -50,7 +50,6 @@ function startRound(){
 	renderTeam(team2, $("#team2"));
 	abLeft();
 	console.log("TODO, do 10 rounds of team 1.")
-	alert("Hey, future, JR, don't forget to ALSo parse for easter egg fan oc players, not just STUCK players. probably wILL have to mod get url params to shove stuff into it ")
 	fight();
 }
 
@@ -86,7 +85,7 @@ function doneWithRound(){
 function markLoser(loser){
 	console.log("marking loser")
 	console.log(loser);
-	loser.css('background-color', "red");
+	loser.css('background-color', "grey");
 	loser.css("text-decoration", "overline;")
 }
 
