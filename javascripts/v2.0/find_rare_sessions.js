@@ -206,7 +206,6 @@ function checkSessionsJunior(){
 
 //tournament will pass a callback here. after each session, callback should be called.
 function checkSessions(){
-	nonRareSessionCallback = callBack;
 	numSimulationsDone = 0; //but don't reset stats
 	sessionSummariesDisplayed = []
 	for(var i = 0; i<allSessionsSummaries.length; i++){
@@ -298,6 +297,7 @@ function easterEggCallBackAB(){
 
 //callback is optional, only tournament will call
 function startSession(callBack){
+	nonRareSessionCallback = callBack;
 	//console.log("start session")
 	$("#story").html("")
 	curSessionGlobalVar = new Session(initial_seed)
