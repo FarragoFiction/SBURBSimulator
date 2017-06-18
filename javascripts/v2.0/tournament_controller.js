@@ -157,7 +157,7 @@ function aBCallBack(sessionSummary){
 
 function abLeft(glitch){
 	if(glitch){
-		$("#avatar").attr("src", "images/guide_bot_turnways_glitch.png");
+		$("#avatar").attr("src", "images/guide_bot_turnways_glitch.gif");
 	}else{
 		$("#avatar").attr("src", "images/guide_bot_turnways.png");
 	}
@@ -168,7 +168,7 @@ function abLeft(glitch){
 
 function abRight(glitch){
 	if(glitch){
-		$("#avatar").attr("src", "images/guide_bot_glitch.png");
+		$("#avatar").attr("src", "images/guide_bot_glitch.gif");
 	}else{
 		$("#avatar").attr("src", "images/guide_bot.png");
 	}
