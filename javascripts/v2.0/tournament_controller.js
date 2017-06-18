@@ -45,24 +45,38 @@ function startRound(){
 	renderTeam(team2, $("#team2"));
 	abLeft();
 	console.log("TODO, do 10 rounds of team 1.")
-	setTimeout(function(){ abLeft() }, 1000);
-	//setTimeout(function(){ abRight() }, 2000);
-	//setTimeout(function(){ abLeft() }, 3000);
-	setTimeout(function(){ fight() }, 1500);
+	fight();
+}
+
+function doneWithRound(){
+	alert("Done with round, now what???")
 }
 
 function fight(){
-	numSimulationsToDo = 10;
-	checkSessions(aBCallBack); //GASP! TODO, make sure AB knows about WHICH session she should be simulating. or. I guess. easter egg checker should know about non param easter eggs. damn.
+	var numSimulationsToDo = 10;
+	var team = teamsGlobalVar[lastTeamIndex]
+	if(team.numberSessions >= numSimulationsToDo) team = teamsGlobalVar[lastTeamIndex+1];
+	if(team.numberSessions >= numSimulationsToDo) return doneWithRound();
+	//var team2 = teamsGlobalVar[lastTeamIndex+1]  //if no team 2, they win???
+
+	simulatedParamsGlobalVar = ""; //which session are we checking?
+	startSession(aBCallBack);
 }
 
 //what will happen if scratch? Will it return here still?
 //need to make sure scratched sessions don't count. (they get stat boost after all)
 function aBCallBack(sessionSummary){
 	alert(sessionSummary)
-	//NEED TO KNOW WHICH TEAM TO APPLY SUMMARY TO.
-	//NEED TO KNOW WHEN TO SWITCH TO NEXT TEAM.
-	//NEED TO CALL FIGHT AGAIN, AND HAVE IT KNOW THE NUMBER IS NEXT.
+	var team = teamsGlobalVar[lastTeamIndex]
+	if(team.numberSessions >= numSimulationsToDo) team = teamsGlobalVar[lastTeamIndex+1];
+	team.numberSessions ++;
+	if(sessionSummary.won) team.win ++;
+	if(sessionSummary.crashedFromPlayerActions) team.crash;
+	if(sessionSummary.mvp.power > team.mvp_score){
+		team.mvp = sessionSummary.mvp.htmlTitle();
+		team.mvp_scpre = sessionSummary.mvp.power;
+	}
+	fight();
 
 }
 
@@ -81,7 +95,7 @@ function abRight(){
 function renderTeam(team, div){
 	var win = "# of Won Sessions: " + team.win
 	var crash = "<br> # of GrimDark Crash Sessions: " + team.crash
-	var score = "<br>Score:  " + team.score
+	var score = "<br>Score:  " + team.score();
 	var mvp = "<br>MVP:  " + team.mvp_name + " with a power of: " + team.mvp_score;
 	div.html("<div class = 'scoreBoard'>" + win + crash + score + mvp + "</div>")
 }
@@ -147,11 +161,14 @@ function getTeamDescription(team){
 function Team(name){
 	this.name = name;
 	this.numberSessions = 0;
-	this.score = 0;
 	this.win = 0;
 	this.crash = 0;
 	this.mvp_name = "";
 	this.mvp_score = 0;
+
+	this.score = function(){
+		return this.win - this.crash;
+	}
 
 	this.toString = function(){
 		return this.name;

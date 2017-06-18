@@ -205,7 +205,7 @@ function checkSessionsJunior(){
 }
 
 //tournament will pass a callback here. after each session, callback should be called.
-function checkSessions(callBack){
+function checkSessions(){
 	nonRareSessionCallback = callBack;
 	numSimulationsDone = 0; //but don't reset stats
 	sessionSummariesDisplayed = []
