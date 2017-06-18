@@ -1,3 +1,5 @@
+var simulatedParamsGlobalVar = ""; //for tournaments.
+
 function debugLevelTheHellUp(){
 	for(var j = 0; j<2; j++){
 		players[j].leveledTheHellUp = true; //only .evel 2 players up
@@ -97,7 +99,7 @@ function checkEasterEgg(callBack,that){  //only yellow yard session uses 'that' 
 	if(getParameterByName("rumpus")  == "fruity"){
 		fruityRumpusAssholeFactory();
 	}
-	
+
 	processXStuck(); //might not do anything.
 	callBack(that);
 }
@@ -106,7 +108,15 @@ function checkEasterEgg(callBack,that){  //only yellow yard session uses 'that' 
 //if last word is stuck, look for first word in either all class, or all aspects, mod the approriate thing to be the first word.
 //auto works with new claspects, too. genius
 function processXStuck(){
-	var params = window.location.search.substr(1);
+	var params1 = window.location.search.substr(1);
+	var params2 = simulatedParamsGlobalVar;
+	var params = "";
+	if(params1){
+		params = params1;
+		if(params2){
+			params += "&" + params2;
+		}
+	}else if(params2) params = params2;
 	var paramsArray = params.split("&")
 	for(var i = 0; i<paramsArray.length; i++){
 		console.log(i);
@@ -121,7 +131,7 @@ function processXStuck(){
 			}
 		}
 	}
-	
+
 }
 
 function setAllAspectsTo(aspect){

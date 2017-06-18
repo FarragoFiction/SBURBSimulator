@@ -2289,3 +2289,8 @@ let's do this shit.  probably only need it from the "stuck" category. but...mayb
 maybe getParams itself will be moded to also check global vars.
 param is the easiest place to put it, though it might be weird to have it git url vars and non url vars. but would work for ALL easter eggs.
 could theretically run trickster tournament that way.
+
+ah wait, the "stuck" stuff doesn't even use getURL vars, that's right.
+
+cool.
+easier.
