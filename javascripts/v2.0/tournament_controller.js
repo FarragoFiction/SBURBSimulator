@@ -73,7 +73,6 @@ function fight(){
 //what will happen if scratch? Will it return here still?
 //need to make sure scratched sessions don't count. (they get stat boost after all)
 function aBCallBack(sessionSummary){
-	alert(sessionSummary)
 	var team = teamsGlobalVar[lastTeamIndex]
 	var teamNum = 1;
 	if(team.numberSessions >= numSimulationsToDo){
@@ -88,7 +87,7 @@ function aBCallBack(sessionSummary){
 	if(sessionSummary.won) team.win ++;
 	if(sessionSummary.crashedFromPlayerActions) team.crash;
 	if(sessionSummary.mvp.power > team.mvp_score){
-		team.mvp = sessionSummary.mvp.htmlTitle();
+		team.mvp_name = sessionSummary.mvp.htmlTitle();
 		team.mvp_score = sessionSummary.mvp.power;
 	}
 	renderTeam(team, $("#team"+teamNum));
