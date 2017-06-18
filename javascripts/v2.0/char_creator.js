@@ -91,7 +91,7 @@ function initSession(){
 	curSessionGlobalVar.randomizeEntryOrder();
 	curSessionGlobalVar.makeGuardians(); //after entry order established
 	checkEasterEgg(easterEggCallBack);
-	
+
 }
 
 function easterEggCallBack(){
@@ -163,17 +163,6 @@ function startSession(){
 }
 
 
-function getParameterByName(name, url) {
-    if (!url) {
-      url = window.location.href;
-    }
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
 
 function shareableURL(){
 	var str = '<a href = "character_creator.html?seed=' +initial_seed +'">Shareable URL </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <a href = "character_creator.html">Random Session URL </a> '
@@ -455,6 +444,3 @@ function makeAuthorAvatar(){
 	players[0].bloodColor = "#ff0000"
 	players[0].mylevels = ["INSTEAD","a CORPSE JUST RENDERS HERE","STILL CAN LEVEL UP.","OH, AND CORPSES.","SAME LEVELS","BUT STILL HAVE","IMAGE","THEY GET A DIFFERENT","BEFORE MAXING OUT","IF THEY GODTIER","AND GO UP THE LADDER","LEVELS NOW","16 PREDETERMINED","HAVE","PLAYERS","I FINISHED ECHELADDERS."];
 }
-
-
-

@@ -106,7 +106,7 @@ function fight(){
 
 	if(team.numberSessions >= numSimulationsToDo) return doneWithRound();
 	//var team2 = teamsGlobalVar[lastTeamIndex+1]  //if no team 2, they win???
-	simulatedParamsGlobalVar = team.name; //which session are we checking?
+	simulatedParamsGlobalVar = team.name + "=true&selfInsertOC=true"; //which session are we checking?
 	startSession(aBCallBack);
 }
 
