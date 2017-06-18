@@ -8,6 +8,7 @@ window.onload = function() {
 	$(this).scrollTop(0);
 	loadNavbar();
 	displayPotentialFighters();
+	numSimulationsToDo = 10;
 }
 
 //hide the teams and button. randomize the teams and reDescribe them to show new order.
@@ -54,14 +55,18 @@ function doneWithRound(){
 }
 
 function fight(){
-	var numSimulationsToDo = 10;
+	initial_seed = getRandomSeed(); //pick a random session
+	Math.seed = initial_seed;
 	var team = teamsGlobalVar[lastTeamIndex]
-	if(team.numberSessions >= numSimulationsToDo) team = teamsGlobalVar[lastTeamIndex+1];
+	if(team.numberSessions >= numSimulationsToDo){
+			team = teamsGlobalVar[lastTeamIndex+1];
+			console.log("switiching teams in fight")
+	}
+	console.log("number of sessions for team: " + team + " is " + team.numberSessions)
+
 	if(team.numberSessions >= numSimulationsToDo) return doneWithRound();
 	//var team2 = teamsGlobalVar[lastTeamIndex+1]  //if no team 2, they win???
-	console.log(team.numberSessions)
-	simulatedParamsGlobalVar = ""; //which session are we checking?
-	console.log("crash code, which includes grim dark, causes stats to print out. damn. also: everything is crashing forever.")
+	simulatedParamsGlobalVar = team.name; //which session are we checking?
 	startSession(aBCallBack);
 }
 
@@ -72,15 +77,19 @@ function aBCallBack(sessionSummary){
 	var team = teamsGlobalVar[lastTeamIndex]
 	var teamNum = 1;
 	if(team.numberSessions >= numSimulationsToDo){
+		console.log("switching to team 2 in callback")
 		teamNum = 2;
 		team = teamsGlobalVar[lastTeamIndex+1];
+		abRight();
+	}else{
+		abLeft();
 	}
 	team.numberSessions ++;
 	if(sessionSummary.won) team.win ++;
 	if(sessionSummary.crashedFromPlayerActions) team.crash;
 	if(sessionSummary.mvp.power > team.mvp_score){
 		team.mvp = sessionSummary.mvp.htmlTitle();
-		team.mvp_scpre = sessionSummary.mvp.power;
+		team.mvp_score = sessionSummary.mvp.power;
 	}
 	renderTeam(team, $("#team"+teamNum));
 	fight();
@@ -100,11 +109,12 @@ function abRight(){
 }
 
 function renderTeam(team, div){
-	var win = "# of Won Sessions: " + team.win
+	var num = "# of Sessions: " + team.numberSessions
+	var win = "<br># of Won Sessions: " + team.win
 	var crash = "<br> # of GrimDark Crash Sessions: " + team.crash
 	var score = "<br>Score:  " + team.score();
 	var mvp = "<br>MVP:  " + team.mvp_name + " with a power of: " + team.mvp_score;
-	div.html("<div class = 'scoreBoard'>" + win + crash + score + mvp + "</div>")
+	div.html("<div class = 'scoreBoard'>" + num + win + crash + score + mvp + "</div>")
 }
 
 

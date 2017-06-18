@@ -122,7 +122,6 @@ function processXStuck(){
 	}else if(params2) params = params2;
 	var paramsArray = params.split("&")
 	for(var i = 0; i<paramsArray.length; i++){
-		console.log(i);
 		var stuck = paramsArray[i].split("Stuck");
 		console.log("stuck is: " + stuck)
 		if(stuck.length == 2){
