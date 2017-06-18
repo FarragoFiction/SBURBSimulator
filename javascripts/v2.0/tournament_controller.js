@@ -55,7 +55,6 @@ function startRound(){
 }
 
 function doneWithRound(){
-	alert("Done with round, now what???")
 	var team1 = teamsGlobalVar[lastTeamIndex]
 	var team2 = teamsGlobalVar[lastTeamIndex+1]
 	if(team1.score() > team2.score()){
@@ -66,8 +65,7 @@ function doneWithRound(){
 		team1.lostRound = false;
 		team2.lostRound = false; //tie.
 	}
-	alert(team1.lostRound)
-	alert(team2.lostRound)
+
 	if(team1.lostRound){
 		var listDiv = $("#"+team1.name)
 		var roundDiv = $("#team1")
@@ -132,9 +130,9 @@ function aBCallBack(sessionSummary){
 		 team.crash ++;
 		//grim dark ab turnways if 1
 		if(teamNum == 1){
-			$("#avatar").attr("src", "images/ab_gd_turnways.png");
+			abLeft(true);
 		}else{
-			$("#avatar").attr("src", "images/ab_gd.png");
+			abRight(true);
 		}
 	}else{
 		if(teamNum == 1){
@@ -157,14 +155,24 @@ function aBCallBack(sessionSummary){
 
 }
 
-function abLeft(){
-	$("#avatar").attr("src", "images/guide_bot_turnways.png");
+function abLeft(glitch){
+	if(glitch){
+		$("#avatar").attr("src", "images/guide_bot_turnways_glitch.png");
+	}else{
+		$("#avatar").attr("src", "images/guide_bot_turnways.png");
+	}
+
 	$("#team1Title").css("color", "red");
 	$("#team2Title").css("color", "black");
 }
 
-function abRight(){
-	$("#avatar").attr("src", "images/guide_bot.png");
+function abRight(glitch){
+	if(glitch){
+		$("#avatar").attr("src", "images/guide_bot_glitch.png");
+	}else{
+		$("#avatar").attr("src", "images/guide_bot.png");
+	}
+
 	$("#team2Title").css("color", "red");
 	$("#team1Title").css("color", "black");
 }
