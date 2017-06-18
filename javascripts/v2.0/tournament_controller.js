@@ -94,6 +94,7 @@ function doneWithTier(){
 }
 
 function fight(){
+	$("#story").html("")
 	initial_seed = getRandomSeed(); //pick a random session
 	Math.seed = initial_seed;
 	var team = teamsGlobalVar[lastTeamIndex]

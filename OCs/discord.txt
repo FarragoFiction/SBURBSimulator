@@ -43,3 +43,4 @@ b=%C2%80%40%003%C3%BE%C2%B9%00P%0B%0B%11&s=,,Online Roleplaying,Video Games,Capp
 b=%00%00%00%12%C3%BE%C2%91%00W%0F%0F%04&s=,,Video Games,Musicals,chandaHulk
 b=u%25%0B%C2%B8%C3%BE%0B%00%1C..%1F&s=,,Wordplay,Tabletop Games,unhandledException
 b=A%17%05%C2%BA%C3%B2%C2%A3%10%17%1F%1F%3B&s=,,History,Roleplay,fanaticalTester
+b=K%C3%AC%13%C2%94%C3%BE%C2%A7%00%16%08%088&s=,,Artificial Intelligence,Science Fiction,notBuddy
