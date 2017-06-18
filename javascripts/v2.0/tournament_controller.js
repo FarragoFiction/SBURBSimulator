@@ -7,6 +7,7 @@ var lastTeamIndex = -2; //each round starts at index + 2
 window.onload = function() {
 	$(this).scrollTop(0);
 	loadNavbar();
+	simulationMode = true; //dont' render graphics.
 	displayPotentialFighters();
 	numSimulationsToDo = 10;
 }
