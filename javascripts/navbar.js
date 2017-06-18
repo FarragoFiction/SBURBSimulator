@@ -1,3 +1,5 @@
+var simulatedParamsGlobalVar = "";
+
 //just loads the navbar.text into the appropriate div.
 function loadNavbar(){
 	$.ajax({

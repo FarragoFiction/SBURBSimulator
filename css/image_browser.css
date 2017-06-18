@@ -1,0 +1,22 @@
+#story{
+	width:1000px;
+	background-color: white;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+}
+
+
+body{
+	background-image: url("../images/Skaia_Clouds.png");
+}
+.intro{
+	width:885px;
+}
+
+
+.void{
+	display: none;
+	background-color: #000066;
+	color: #ffffff;
+}

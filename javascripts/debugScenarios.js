@@ -1,4 +1,3 @@
-var simulatedParamsGlobalVar = ""; //for tournaments.
 
 function debugLevelTheHellUp(){
 	for(var j = 0; j<2; j++){
