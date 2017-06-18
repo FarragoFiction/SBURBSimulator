@@ -660,7 +660,7 @@ function summarizeSessionNoTimeout(session){
 	sessionsSimulated.push(curSessionGlobalVar.session_id);
 	$("#story").html("");
 	var sum = curSessionGlobalVar.generateSummary();
-	if(nonRareSessionCallback) return nonRareSessionCallback(sum); //it will handle calling next session.
+	if(nonRareSessionCallback) return null; //tournament doens't support scratches.
 	allSessionsSummaries.push(sum);
 	sessionSummariesDisplayed.push(sum);
 	//printSummaries();  //this slows things down too much. don't erase and reprint every time.
