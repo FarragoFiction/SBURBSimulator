@@ -61,6 +61,7 @@ function fight(){
 
 	simulatedParamsGlobalVar = ""; //which session are we checking?
 	alert("Hey, future, JR, don't forget to ALSo parse for easter egg fan oc players, not just STUCK players. probably wILL have to mod get url params to shove stuff into it ")
+	console.log("crash code, which includes grim dark, causes stats to print out. damn. also: everything is crashing forever.")
 	startSession(aBCallBack);
 }
 
