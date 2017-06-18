@@ -1,4 +1,4 @@
-
+var nonRareSessionCallback = null; //AB is already storing a callback for easter egg, so broke down and polluted the global namespace once more like an asshole.
 var startTime = Date.now(); //gets page load.
 var stopTime = 0;
 function createScenesForSession(session){
@@ -85,6 +85,7 @@ function printCorruptionMessage(msg, url, lineNo, columnNo, error){
 	renderAfterlifeURL();
 
 	console.log("Corrupted session: " + scratchedLineageText(curSessionGlobalVar.getLineage()) + " helping AB return, if she is lost here.")
+
 	if(junior == true){
 		$("#button").prop('disabled', false)
 	}else{

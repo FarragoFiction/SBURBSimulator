@@ -26,6 +26,9 @@ function sbahjMode(){
 	//when kr has their stuff read, render it after everything else is done , or just, like put it on a 30 second timer. needs comedic timing, needs to be on top
 	//maybe my laughing reaction shot sbahj_author.jpg goes then, too
 	$("#story").append("<img src = 'images/AUTHORSBAHJ.jpg' style='position:absolute; top:111px'><img src = 'images/sbahj_author.jpg' style='position:absolute; left:0px; z-index: 999;'>");
+	setTimeout(function(){
+		$("#story").append("<img src = 'images/sbahj_kR_1.jpeg' style='position:fixed; top:0px;; z-index: 999;'>");
+	}, 10000);
 	$('body').css("background-color", "#0000ff");
 	$('body').css("background-image", "none");
 	$('#story').css("background-color", "#ff00ff");

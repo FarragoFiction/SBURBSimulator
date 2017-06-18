@@ -45,6 +45,7 @@ function startRound(){
 	renderTeam(team2, $("#team2"));
 	abLeft();
 	console.log("TODO, do 10 rounds of team 1.")
+	alert("Hey, future, JR, don't forget to ALSo parse for easter egg fan oc players, not just STUCK players. probably wILL have to mod get url params to shove stuff into it ")
 	fight();
 }
 
@@ -58,9 +59,8 @@ function fight(){
 	if(team.numberSessions >= numSimulationsToDo) team = teamsGlobalVar[lastTeamIndex+1];
 	if(team.numberSessions >= numSimulationsToDo) return doneWithRound();
 	//var team2 = teamsGlobalVar[lastTeamIndex+1]  //if no team 2, they win???
-
+	console.log(team.numberSessions)
 	simulatedParamsGlobalVar = ""; //which session are we checking?
-	alert("Hey, future, JR, don't forget to ALSo parse for easter egg fan oc players, not just STUCK players. probably wILL have to mod get url params to shove stuff into it ")
 	console.log("crash code, which includes grim dark, causes stats to print out. damn. also: everything is crashing forever.")
 	startSession(aBCallBack);
 }
@@ -70,7 +70,11 @@ function fight(){
 function aBCallBack(sessionSummary){
 	alert(sessionSummary)
 	var team = teamsGlobalVar[lastTeamIndex]
-	if(team.numberSessions >= numSimulationsToDo) team = teamsGlobalVar[lastTeamIndex+1];
+	var teamNum = 1;
+	if(team.numberSessions >= numSimulationsToDo){
+		teamNum = 2;
+		team = teamsGlobalVar[lastTeamIndex+1];
+	}
 	team.numberSessions ++;
 	if(sessionSummary.won) team.win ++;
 	if(sessionSummary.crashedFromPlayerActions) team.crash;
@@ -78,6 +82,7 @@ function aBCallBack(sessionSummary){
 		team.mvp = sessionSummary.mvp.htmlTitle();
 		team.mvp_scpre = sessionSummary.mvp.power;
 	}
+	renderTeam(team, $("#team"+teamNum));
 	fight();
 
 }

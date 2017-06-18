@@ -17,7 +17,6 @@
 
 //bob warned me about global variables. he told me, dog.
 var simulationMode = true;
-var nonRareSessionCallback = null; //AB is already storing a callback for easter egg, so broke down and polluted the global namespace once more like an asshole.
 var pwMode = false;
 var debugMode = false;
 var spriteWidth = 400;
