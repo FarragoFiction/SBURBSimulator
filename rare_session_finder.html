@@ -75,7 +75,25 @@
 		<script type="text/javascript" src="javascripts/Scenes/PowerDemocracy.js"></script>
 		<script type="text/javascript" src="javascripts/scene_controller.js"></script>
 		<script type = "text/javascript">
+		window.onload = function() {
+			loadNavbar();
+			if(quipMode == true){
+					robotMode();
+					return;
+			}
+			percentBullshit();
 
+			if(getParameterByName("seed")){
+				Math.seed = getParameterByName("seed");
+				initial_seed = getParameterByName("seed");
+			}else{
+				var tmp = getRandomSeed();
+				Math.seed = tmp;
+				initial_seed = tmp;
+			}
+			formInit();
+			//startSession();
+		}
 		</script>
 		<title>
 			AuthorBot

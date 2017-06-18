@@ -93,6 +93,7 @@ function loadOther(skipInit){
     loadImage("/Bodies/coolk1dshades.png",skipInit);
   }
 	loadImage("jr.png",skipInit);
+	loadImage("kr_chat.png",skipInit);
   loadImage("drain_lightning.png", skipInit);
   loadImage("drain_lightning_long.png", skipInit);
   loadImage("drain_halo.png", skipInit);

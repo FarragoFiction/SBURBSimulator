@@ -2282,3 +2282,10 @@ Now. I can make the entire easter egg take ANOTHER call back. but that seems...w
 I could store my callback in a global variable. (polluting that name space should be a last resort, but WOULD be easy.)
 
 So, first step is research my options here on the googles.
+
+~~~~~~~~~~~
+okay, don't get ahead of yourself. AB is giving you results back. but not hte right results.  I need to be able to process an easter egg EVEN from not a param. so.
+let's do this shit.  probably only need it from the "stuck" category. but...maybe from more than that.
+maybe getParams itself will be moded to also check global vars.
+param is the easiest place to put it, though it might be weird to have it git url vars and non url vars. but would work for ALL easter eggs.
+could theretically run trickster tournament that way.

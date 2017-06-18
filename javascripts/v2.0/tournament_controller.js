@@ -48,17 +48,22 @@ function startRound(){
 	setTimeout(function(){ abLeft() }, 1000);
 	//setTimeout(function(){ abRight() }, 2000);
 	//setTimeout(function(){ abLeft() }, 3000);
-	setTimeout(function(){ fight(team1,team2) }, 4000);
+	setTimeout(function(){ fight() }, 1500);
 }
 
-function fight(team1, team2){
+function fight(){
 	numSimulationsToDo = 10;
-	checkSessions(callBack);
+	checkSessions(aBCallBack); //GASP! TODO, make sure AB knows about WHICH session she should be simulating. or. I guess. easter egg checker should know about non param easter eggs. damn.
 }
 
-function aBCallBack(){
-	//what i do here depends on what is calling me back. don't know yet.
-	//if it's after all 10 sessions, then do smoething different than if it's after each session.
+//what will happen if scratch? Will it return here still?
+//need to make sure scratched sessions don't count. (they get stat boost after all)
+function aBCallBack(sessionSummary){
+	alert(sessionSummary)
+	//NEED TO KNOW WHICH TEAM TO APPLY SUMMARY TO.
+	//NEED TO KNOW WHEN TO SWITCH TO NEXT TEAM.
+	//NEED TO CALL FIGHT AGAIN, AND HAVE IT KNOW THE NUMBER IS NEXT.
+
 }
 
 function abLeft(){
@@ -141,6 +146,7 @@ function getTeamDescription(team){
 
 function Team(name){
 	this.name = name;
+	this.numberSessions = 0;
 	this.score = 0;
 	this.win = 0;
 	this.crash = 0;

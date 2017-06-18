@@ -17,7 +17,7 @@
 
 //bob warned me about global variables. he told me, dog.
 var simulationMode = true;
-var tournamentCallBack = null; //AB is already storing a callback for easter egg, so broke down and polluted the global namespace once more like an asshole.
+var nonRareSessionCallback = null; //AB is already storing a callback for easter egg, so broke down and polluted the global namespace once more like an asshole.
 var pwMode = false;
 var debugMode = false;
 var spriteWidth = 400;
@@ -47,25 +47,7 @@ var displayAverages = true;
 var displayClasses = false;
 var displayAspects = false;
 
-window.onload = function() {
-	loadNavbar();
-	if(quipMode == true){
-			robotMode();
-			return;
-	}
-	percentBullshit();
 
-	if(getParameterByName("seed")){
-		Math.seed = getParameterByName("seed");
-		initial_seed = getParameterByName("seed");
-	}else{
-		var tmp = getRandomSeed();
-		Math.seed = tmp;
-		initial_seed = tmp;
-	}
-	formInit();
-	//startSession();
-}
 
 //want the AuthorBot to actually be browsing sessions when bored, like she claims to be.
 function robotMode(){
@@ -224,7 +206,7 @@ function checkSessionsJunior(){
 
 //tournament will pass a callback here. after each session, callback should be called.
 function checkSessions(callBack){
-	tournamentCallBack = callBack;
+	nonRareSessionCallback = callBack;
 	numSimulationsDone = 0; //but don't reset stats
 	sessionSummariesDisplayed = []
 	for(var i = 0; i<allSessionsSummaries.length; i++){
@@ -628,8 +610,10 @@ function summarizeSession(session){
 		//return;
 	}
 	sessionsSimulated.push(curSessionGlobalVar.session_id);
-	$("#story").html("");
+
 	var sum = curSessionGlobalVar.generateSummary();
+	if(nonRareSessionCallback) return nonRareSessionCallback(sum); //it will handle calling next session.
+	$("#story").html("");
 	allSessionsSummaries.push(sum);
 	sessionSummariesDisplayed.push(sum);
 	//printSummaries();  //this slows things down too much. don't erase and reprint every time.

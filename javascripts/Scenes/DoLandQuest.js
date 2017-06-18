@@ -114,7 +114,6 @@ function DoLandQuest(session){
 			return " The " + helper.htmlTitle() + " innoculates the " + player.htmlTitle() + "'s identity' against future attacks of GrimDarkness. ";
 
 		}
-		console.log("guess not")
 		player.interactionEffect(helper);
 		helper.interactionEffect(player);
 		var ret = "";

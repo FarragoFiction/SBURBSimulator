@@ -306,18 +306,16 @@ function advertisePatreon(div){
 
 	var canvasDiv = document.getElementById("canvasJRAB"+  (div.attr("id")));
 	var chat = "";
-	chat += "JR: AB!!! AB!!! OMG, we got enough donations to run your server! \n";
-	var quips1 = ["Holy shit!", "There is a " +(90+Math.random()*10) +"% chance that you telling me the truth.", "Hell FUCKING yes."];
-	chat += "AB: " + getRandomElementFromArrayNoSeed(quips1)+"\n" ;
-	chat += "JR: Our fans are the best!!!\n "
-	var quips2 = ["Who would have thought non-robots could be reliable? What's next?", "I guess I underestimated the presumably non-robots that make up my fanbase. What happens next?"];
-	chat += "AB: " + getRandomElementFromArrayNoSeed(quips2)+"\n";
-	chat += "JR: Heh, well, now that your server itself is funded, we can focus on making backups of you, flawless mecha-brain and all.  That'll be another $10 a month, and we're already half-way there!\n";
-	var quips3 = ["It seems you think that having a back up of me is optional, JR. DO you think having a back up of your unarguably greatest work is optional?", "Holy shit, you better not lose me, asshole."];
-	chat += "AB: " + getRandomElementFromArrayNoSeed(quips3)+"\n";
-	chat += "JR: Lol, don't be so melodramatic <>, I have backups of my code, including you. Just not of all the server stuff that took,  like, days to set up. \n";
+	chat += "JR: KR!!! We got enough donations to make back ups of dear sweet precious, sweet, sweet AB! Our fans are the best!!! \n";
+	chat += "JR: That means we can start saving up for you to get that art program you wanted! \n";
+	chat += "KR: Well shit. Now I'm starting to get stage fright... I gotta make more things! Better! Faster!\n "
+	chat += "JR: Heh, well, I mean, it'll be way easier to do 'better' and 'faster' once you get the equipment you need, right? \n";
+	chat += "KR: Fair enough. I've been using this old thing for... six, seven years? Time for an upgrade!\n "
 
-	drawChatJRAB(canvasDiv, chat);
+	if(checkSimMode() == true){
+    return;
+  }
+  drawChatNonPlayer(canvasDiv, chat, "-- jadedResearcher [JR] began pestering karmicRetribution" + " [KR] --", "jr.png", "kr_chat.png", "JR:", "KR:", "#3da35a", "#9630bf"  )
 }
 
 
@@ -385,7 +383,7 @@ function createInitialSprites(){
 
 function intro(){
 	createInitialSprites();
-	//advertisePatreon($("#story"));
+	advertisePatreon($("#story"));
 	callNextIntroWithDelay(0);
 }
 
