@@ -2279,4 +2279,6 @@ I need to pass AB a callback so she'll return the results of a simulation to me 
 
 Now. I can make the entire easter egg take ANOTHER call back. but that seems...wrong, and brittle.
 
+I could store my callback in a global variable. (polluting that name space should be a last resort, but WOULD be easy.)
+
 So, first step is research my options here on the googles.

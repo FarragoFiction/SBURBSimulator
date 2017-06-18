@@ -17,6 +17,7 @@
 
 //bob warned me about global variables. he told me, dog.
 var simulationMode = true;
+var tournamentCallBack = null; //AB is already storing a callback for easter egg, so broke down and polluted the global namespace once more like an asshole.
 var pwMode = false;
 var debugMode = false;
 var spriteWidth = 400;
@@ -223,6 +224,7 @@ function checkSessionsJunior(){
 
 //tournament will pass a callback here. after each session, callback should be called.
 function checkSessions(callBack){
+	tournamentCallBack = callBack;
 	numSimulationsDone = 0; //but don't reset stats
 	sessionSummariesDisplayed = []
 	for(var i = 0; i<allSessionsSummaries.length; i++){
@@ -237,7 +239,7 @@ function checkSessions(callBack){
 	//$("#stats").html("");
 	numSimulationsToDo = parseInt($("#num_sessions").val())
 	$("#button").prop('disabled', true)
-	startSession(callBack);
+	startSession();
 }
 
 function formInit(){
