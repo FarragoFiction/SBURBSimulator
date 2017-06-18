@@ -56,6 +56,34 @@ function startRound(){
 
 function doneWithRound(){
 	alert("Done with round, now what???")
+	var team1 = teamsGlobalVar[lastTeamIndex]
+	var team2 = teamsGlobalVar[lastTeamIndex+1]
+	if(team1.score() > team2.score()){
+		team2.lostRound = true;
+	}else if(team1.score() < team2.score()){
+		team1.lostRound = true;
+	}else{
+		team1.lostRound = false;
+		team2.lostRound = false; //tie.
+	}
+	alert(team1.lostRound)
+	alert(team2.lostRound)
+	if(team1.lostRound){
+		console.log("should be crossing out team 1.")
+		$("#"+team1.name).css("text-decoration", "overline;")
+		$("#team1Title").css("text-decoration", "overline;")
+	}
+	if(team2.lostRound){
+		console.log("should be crossing out team 2")
+		$("#"+team2.name).css("text-decoration", "overline;")
+		$("#team2Title").css("text-decoration", "overline;")
+	}
+	//start up next two players.
+	//if not even one more player, do "doneWithTier"
+}
+
+function doneWithTier(){
+	//remove all losers. clear out all "wonRounds" rerender Combatants. start round up with lastTeamIndex of 0.
 }
 
 function fight(){
@@ -77,6 +105,7 @@ function fight(){
 //what will happen if scratch? Will it return here still?
 //need to make sure scratched sessions don't count. (they get stat boost after all)
 function aBCallBack(sessionSummary){
+	console.log(sessionSummary)
 	var team = teamsGlobalVar[lastTeamIndex]
 	var teamNum = 1;
 	if(team.numberSessions >= numSimulationsToDo){
@@ -89,7 +118,12 @@ function aBCallBack(sessionSummary){
 	}
 	team.numberSessions ++;
 	if(sessionSummary.won) team.win ++;
-	if(sessionSummary.crashedFromPlayerActions) team.crash;
+	if(sessionSummary.crashedFromPlayerActions){
+		 team.crash ++;
+		//grim dark ab turnways if 1
+	}else{
+		//regular ab, turnways if 1
+	}
 	if(sessionSummary.mvp.power > team.mvp_score){
 		team.mvp_name = sessionSummary.mvp.htmlTitle();
 		team.mvp_score = sessionSummary.mvp.power;
@@ -122,6 +156,9 @@ function renderTeam(team, div){
 	var crash = "<br> # of GrimDark Crash Sessions: " + team.crash
 	var score = "<br><h1>Score:  " + team.score() + "</h1><hr>";
 	var mvp = "<br>MVP:  " + team.mvp_name + " with a power of: " + team.mvp_score;
+	if(team.lostRound){
+		div.css("text-decoration", "overline;")
+	}
 	div.html("<div class = 'scoreBoard'>" + score + num + win + crash + mvp + "</div>")
 }
 
@@ -163,13 +200,20 @@ function displayTeams(){
 	//points go up with each won session, AB glitches red with each grim dark crash and a point is lost.
 	//loser is crossed off from team description, and next pair go.
 	var html = "";
-	var divStart = "<div class = 'teamDescription'>";
-	var divEnd = "</div>";
+
 	for(var i = 0; i < teamsGlobalVar.length; i++){
-		html += divStart + getTeamDescription(teamsGlobalVar[i]) + divEnd;
+		html +=displayTeamInList(teamsGlobalVar[i]);
 	}
 	$("#descriptions").html(html);
 	$("#tournamentButtonDiv").css('display', 'inline-block');
+}
+
+function displayTeamInList(team){
+	var html = "";
+	var divStart = "<div id = '" +team.name +"' class = 'teamDescription'>";
+	var divEnd = "</div>";
+	html += divStart + getTeamDescription(team) + divEnd;
+	return html;
 }
 
 //when tournament starts up, drop down is set to none, and this is left most thing.
@@ -190,6 +234,7 @@ function Team(name){
 	this.crash = 0;
 	this.mvp_name = "";
 	this.mvp_score = 0;
+	this.lostRound = false; //set to true if they lost.  cause them to render different.
 
 	this.score = function(){
 		return this.win - this.crash;
