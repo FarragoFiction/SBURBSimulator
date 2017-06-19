@@ -139,32 +139,32 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.generateDenizen = function(){
 		var possibilities = this.getDenizenNameArray();
 		var strength = this.getOverallStrength();
-		var maxExpectedStrength = 2322; //from sim values of 50+ sessions.
-		var minExpectedStrength = 90;
-		var strengthPerTier = (maxExpectedStrength - minExpectedStrength)/possibilities.length;
+		var expectedStrength = 300; //from sim values of 50+ sessions.
+		var strengthPerTier = (expectedStrength)/possibilities.length;
 		console.log("Strength at start is, " + strength);//but what if you don't want STRANGTH!???
 		var denizenIndex = Math.round(this.power/strengthPerTier)-1;  //want lowest value to be off the denizen array.
 		
 		var denizenName = "";
 		var denizenStrength = (denizenIndex/(possibilities/2))+1
 		if(denizenIndex < 0){
-			denizenName = this.getBabyDenizenName();
+			denizenName = this.weakDenizenNames();
 			denizenStrength = 0.1;
 		}else if(denizenIndex >= possibilities.length){
-			denizenName = this.getYaldoBooger(); //<-- doesn't have to be literally him. points for various mispellings of his name.
+			denizenName = this.strongDenizenNames(); //<-- doesn't have to be literally him. points for various mispellings of his name.
 		}else{
 			denizenName = possibilities[denizenIndex];
 			denizenStrength = 5;
 		} 
 		
-		makeDenizen(name, denizenStrength); //if you pick the middle enizen it will be at strength of "1", if you pick last denizen, it will be at 2 or more.
+		this.makeDenizenWithStrength(denizenName, denizenStrength); //if you pick the middle enizen it will be at strength of "1", if you pick last denizen, it will be at 2 or more.
 		
 	}
 	
 	//generate denizen gets me name and strength, this just takes care of making it.
-	this.makeDenizenWithStrength(name, strength){
+	this.makeDenizenWithStrength = function(name, strength){
 		//based of existing denizen code.  care about which aspect i am.
 		//also make minion here.
+		alert(name)
 	}
 	
 	this.getDenizenNameArray = function(){
@@ -233,11 +233,13 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 	
 	this.strongDenizenNames = function(){
-		return ['Yaldabaoth', ,'Yaldobob', 'Yolobroth', 'Yodelbooger', 'Yogertboner','Yodelboth', 'Jörmungandr','Apollyon','Siseneg','Borunam','Jadeacher','Karmiution','Authorot','Aspiratcher','Recurscker','Insurorracle','Maniomnia','Kazerad','Shiva','Goliath'];
+		var ret = ['Yaldabaoth', ,'Yaldobob', 'Yolobroth', 'Yodelbooger', 'Yogertboner','Yodelboth', 'Jörmungandr','Apollyon','Siseneg','Borunam','Jadeacher','Karmiution','Authorot','Aspiratcher','Recurscker','Insurorracle','Maniomnia','Kazerad','Shiva','Goliath'];
+		return getRandomElementFromArray(ret);
 	}
 	
 	this.weakDenizenNames = function(){
-		return ['Eriotur','Abraxas','Succra','Watojo','Bluhubit','Swefrat','Helaja','Fischapris'];
+		var ret = ['Eriotur','Abraxas','Succra','Watojo','Bluhubit','Swefrat','Helaja','Fischapris'];
+		return getRandomElementFromArray(ret);
 	}
 	
 
