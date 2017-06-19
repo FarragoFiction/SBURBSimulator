@@ -30,6 +30,7 @@ window.onload = function() {
 //when done, erase all losers, and start again with new teams (teamsGlobalVar should be object[], not string[])
 function startTournament(){
 	tierNumber ++;
+	lastTeamIndex = -2;
 	$("#teams").hide();
 	$("#roundTitle").css('display', 'inline-block');
 	$("#team1").css('display', 'inline-block');
@@ -112,7 +113,23 @@ function markLoser(loser){
 
 function doneWithTier(){
 	//remove all losers. clear out all "wonRounds" rerender Combatants. start round up with lastTeamIndex of 0.
-	alert("what do i do here")
+	alert("ready for round " + (tierNumber+1) + "?")
+	removeLosers();
+	startTournament();
+}
+
+function removeLosers(){
+	var toRemove = [];
+	for(var i = 0; i<teamsGlobalVar.length; i++){
+		var team  = teamsGlobalVar[i];
+		if(team.lostRound){
+			toRemove.push(team);
+		}
+		team.resetStats(); //<--otherwise will think they are done nxt round casue already did 10 sessions.
+	}
+	for(var i = 0; i<toRemove.length; i++){
+		teamsGlobalVar.removeFromArray(toRemove[i]);
+	}
 }
 
 function fight(){
@@ -301,7 +318,17 @@ function Team(name){
 	this.mvp_name = "";
 	this.mvp_score = 0;
 	this.lostRound = false; //set to true if they lost.  cause them to render different.
-
+	
+	this.resetStats = function(){
+		this.numberSessions = 0;
+		this.win = 0;
+		this.numTotalPartyWipe = 0;
+		this.crash = 0;
+		this.mvp_name = ""
+		this.mvp_score = 0;
+		this.lostRound = false;
+	}
+	
 	this.score = function(){
 		return this.win - this.crash;
 	}
