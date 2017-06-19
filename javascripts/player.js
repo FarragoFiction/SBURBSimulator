@@ -166,7 +166,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.makeDenizenWithStrength = function(name, strength){
 		//based off existing denizen code.  care about which aspect i am.
 		//also make minion here.
-		alert(name)
 		var denizen =  new GameEntity(this, name, null);
 		var denizenMinion = new GameEntity(this,name + " Minion", null);
 		var ml = 30;
@@ -177,7 +176,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		var fw = 0;
 		var power = 25 * strength; //first minion.
 		if(this.aspect == "Hope") power = power *4;
-		f(this.aspect == "Life") hp = hp *4;
+		if(this.aspect == "Life") hp = hp *4;
 		if(this.aspect == "Doom"){
 			 hp = hp/2;
 			 ml = ml/2;
@@ -205,9 +204,9 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(this.aspect == "Space") mob = mob /4;
 
 		denizenMinion.setStats(ml,xl,hp,mob,tl,fw,power,true, false, [],1000000);
-		power = 100*strength;
+		power = 50*strength;
 		if(this.aspect == "Hope") power = power *4; //only power and hp need recalced, will be same for all others.
-		hp = 50* strength;
+		hp = 100* strength;
 		if(this.aspect == "Life") hp = hp *4;
 		if(this.aspect == "Doom"){
 			 hp = hp/2;
