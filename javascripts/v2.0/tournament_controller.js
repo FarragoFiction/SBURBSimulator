@@ -177,7 +177,7 @@ function aBCallBack(sessionSummary){
 }
 
 function renderGlobalMVP(){
-	$("globalMVP").html("Overall MVP:  " + mvpName + " with a power of: " + mvpScore +"<br>");
+	$("#globalMVP").html("Overall MVP:  " + mvpName + " with a power of: " + mvpScore +"<br>");
 }
 
 function abLeft(glitch){
