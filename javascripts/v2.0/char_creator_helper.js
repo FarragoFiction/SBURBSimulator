@@ -705,7 +705,7 @@ function CharacterCreatorHelper(players){
 	//(1,60)
 	this.drawOneHairDropDown = function(player){
 		var html = "<select id = 'hairTypeID" + player.id + "' name='hair" +player.id +"'>";
-		for(var i = 1; i<= 61; i++){
+		for(var i = 1; i<= player.maxHairNumber; i++){
 			if(player.hair == i){
 				html += '<option  selected = "selected" value="' + i +'">' + i+'</option>'
 			}else{
@@ -792,7 +792,7 @@ function CharacterCreatorHelper(players){
 
 	this.drawOneLeftHornDropDown = function(player){
 		var html = "<select id = 'leftHornID" + player.id + "' name='leftHorn" +player.id +"'>";
-		for(var i = 1; i<= 53; i++){
+		for(var i = 1; i<= player.maxHornNumber; i++){
 			if(player.leftHorn == i){
 				html += '<option  selected = "selected" value="' + i +'">' + i+'</option>'
 			}else{
@@ -805,7 +805,7 @@ function CharacterCreatorHelper(players){
 
 	this.drawOneRightHornDropDown = function(player){
 		var html = "<select id = 'rightHornID" + player.id + "' name='rightHorn" +player.id +"'>";
-		for(var i = 1; i<= 53; i++){
+		for(var i = 1; i<= player.maxHornNumber; i++){
 			if(player.leftHorn == i){
 				html += '<option  selected = "selected" value="' + i +'">' + i+'</option>'
 			}else{

@@ -155,9 +155,10 @@ function loadOther(skipInit){
 }
 
 function loadAllPossiblePlayers(skipInit){
+		var blankPlayer = new Player(); //need to get num hair and horns.
     var numBodies = 12;  //1 indexed
-    var numHair = 60; //+1025 for rufio.  1 indexed
-    var numHorns = 46; //1 indexed.
+    var numHair = blankPlayer.maxHairNumber; //+1025 for rufio.  1 indexed
+    var numHorns = blankPlayer.maxHornNumber; //1 indexed.
     //var numWings = 12 //0 indexed, not 1.  for now, don't bother with wings. not gonna show godtier, for now.
     for(var i = 1; i<=numBodies; i++){
       if(i<10){

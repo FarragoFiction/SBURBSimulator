@@ -10,7 +10,8 @@ window.onload = function() {
 
 function renderAllHair(){
 	var minHair = 1;
-	var maxHair = 60;
+	var blankPlayer = new Player();
+	var maxHair = blankPlayer.maxHairNumber
 	//don't use canvas, but still layer?  bg, like for KR.
 	for(var i = minHair; i<= maxHair; i++){
 			renderLayeredSprites([new SpritePart("images/Hair/hair_back"+i+".png", "Hair " +i),new SpritePart("images/Hair/hair"+i+".png", "")]);
@@ -19,7 +20,8 @@ function renderAllHair(){
 
 function renderAllHorns(){
 	var minHorn = 1
-	var maxHorn = 53;
+	var blankPlayer = new Player();
+	var maxHorn = blankPlayer.maxHornNumber
 	for(var i = minHorn; i<= maxHorn; i++){
 			renderLayeredSprites([new SpritePart("images/Horns/left"+i+".png","leftHorn "+i),new SpritePart("images/Horns/right"+i+".png", "rightHorn" +i)]);
 	}

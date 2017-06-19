@@ -7,6 +7,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.spriteCanvasID = null;  //part of new rendering engine.
 	this.session = session;
 	this.currentHP = 0;
+	this.maxHornNumber = 53; //don't fuck with this
+	this.maxHairNumber = 61; //same
 	this.sprite = null; //gets set to a blank sprite when character is created.
 	this.grist = 0; //total party grist needs to be at a certain level for the ultimate alchemy. luck events can raise it, boss fights, etc.
 	this.hp = 0; //mostly used for boss battles;
@@ -2448,12 +2450,12 @@ function randomPlayerNoDerived(session, c, a){
 	p.baby = getRandomInt(1,3)
 
 
-	p.hair = getRandomInt(1,60);
+	p.hair = getRandomInt(1,p.maxHairNumber);
 	//hair color in decideTroll.
-	p.leftHorn =  getRandomInt(1,53);
+	p.leftHorn =  getRandomInt(1,p.maxHornNumber);
 	p.rightHorn = p.leftHorn;
 	if(Math.seededRandom() > .7 ){ //preference for symmetry
-			p.rightHorn = getRandomInt(1,53);
+			p.rightHorn = getRandomInt(1,p.maxHornNumber);
 	}
 	p.initializeStats();
 	p.initializeSprite();
@@ -2483,7 +2485,7 @@ function randomPlayerWithClaspect(session, c,a){
 	p.baby = getRandomInt(1,3)
 
 
-	p.hair = getRandomInt(1,60); //hair color in decide troll
+	p.hair = getRandomInt(1,p.maxHairNumber); //hair color in decide troll
 	p.leftHorn =  getRandomInt(1,46);
 	p.rightHorn = p.leftHorn;
 	if(Math.seededRandom() > .7 ){ //preference for symmetry
