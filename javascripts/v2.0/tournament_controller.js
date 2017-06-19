@@ -212,6 +212,7 @@ function renderTeam(team, div){
 		div.css("text-decoration", "overline;")
 	}
 	div.html("<div class = 'scoreBoard'>" + score + num + win + crash + mvp + "</div>")
+	$("#score_" + team.name).html("Score: " + team.score());
 }
 
 
@@ -272,9 +273,9 @@ function displayTeamInList(team){
 function getTeamDescription(team){
 	console.log("~~~~~~~~~~~~~~~~~~TODO~~~~~~~~~~~~~~~ have icon for each category.");
 	var stuck = team.name.split("Stuck");
-	if(stuck.length == 2) return "<h1>" +stuck[0] +"Stuck</h1> <hr> A random team of only  " + stuck[0] + " Players. (With Time/Space guaranteed)"
+	if(stuck.length == 2) return "<h1>" +stuck[0] +"Stuck</h1> <div id = 'score_" + team.name + "'></div><hr> A random team of only  " + stuck[0] + " Players. (With Time/Space guaranteed)"
 
-	return "<h1>" + team + "</h1><hr>Players chosen randomly from the " + team + " fan OCs";
+	return "<h1>" + team + "</h1><div id = 'score_" + team.name + "'></div> <hr>Players chosen randomly from the " + team + " fan OCs";
 
 }
 
@@ -283,6 +284,7 @@ function Team(name){
 	this.name = name;
 	this.numberSessions = 0;
 	this.win = 0;
+	this.numTotalPartyWipe = 0; //only stat ABJ cares about.
 	this.crash = 0;
 	this.mvp_name = "";
 	this.mvp_score = 0;
@@ -290,6 +292,10 @@ function Team(name){
 
 	this.score = function(){
 		return this.win - this.crash;
+	}
+	
+	this.scoreABJ = function(){
+		this.numTotalPartyWipe;
 	}
 
 	this.toString = function(){
