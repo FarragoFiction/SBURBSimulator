@@ -7,6 +7,7 @@ var teamsGlobalVar = [];
 var mvpName = ""
 var mvpScore = ""
 var lastTeamIndex = -2; //each round starts at index + 2
+var tierNumber = 1; //start on tier 1
 window.onload = function() {
 	$(this).scrollTop(0);
 	loadNavbar();
@@ -34,7 +35,9 @@ function startTournament(){
 	$("#team2").css('display', 'inline-block');
 	//render team 1 and team2
 	teamsGlobalVar = shuffle(teamsGlobalVar); //if these were svgs, could be animated???
-	displayTeams();
+	var divHTML = "<div id = 'description"+tierNumber +  "'></div>"
+	$("description").append(divHTML);
+	displayTeams($("#description"+tierNumber));
 	$("#tournamentButtonDiv").hide();
 	startRound();
 }
@@ -212,7 +215,7 @@ function renderTeam(team, div){
 		div.css("text-decoration", "overline;")
 	}
 	div.html("<div class = 'scoreBoard'>" + score + num + win + crash + mvp + "</div>")
-	$("#score_" + team.name).html("Score: " + team.score());
+	$("#score_" + team.name+tierNumber).html("Score: " + team.score());
 }
 
 
@@ -243,12 +246,14 @@ function wireUpTeamSelector(){
 		$('#teams :selected').each(function(i, selected){
 			teamsGlobalVar.push(new Team($(selected).text()));
 		});
-		displayTeams();
+		displayTeams($("#descriptions"));
+		$("#tournamentButtonDiv").css('display', 'inline-block');
 	});
 
 }
 
-function displayTeams(){
+//oncoe tournament starts, div should be unique for that tier
+function displayTeams(div){
 	//when teams are displayed, also make sure button to start tournament is displayed. Hides team selector, shows AB in middle, with current fighters on either sidebar
 	//points go up with each won session, AB glitches red with each grim dark crash and a point is lost.
 	//loser is crossed off from team description, and next pair go.
@@ -257,8 +262,8 @@ function displayTeams(){
 	for(var i = 0; i < teamsGlobalVar.length; i++){
 		html +=displayTeamInList(teamsGlobalVar[i]);
 	}
-	$("#descriptions").html(html);
-	$("#tournamentButtonDiv").css('display', 'inline-block');
+	div.html(html);
+	
 }
 
 function displayTeamInList(team){
@@ -273,9 +278,9 @@ function displayTeamInList(team){
 function getTeamDescription(team){
 	console.log("~~~~~~~~~~~~~~~~~~TODO~~~~~~~~~~~~~~~ have icon for each category.");
 	var stuck = team.name.split("Stuck");
-	if(stuck.length == 2) return "<h1>" +stuck[0] +"Stuck</h1> <div id = 'score_" + team.name + "'></div><hr> A random team of only  " + stuck[0] + " Players. (With Time/Space guaranteed)"
+	if(stuck.length == 2) return "<h1>" +stuck[0] +"Stuck</h1> <div id = 'score_" + team.name + tierNumber +"'></div><hr> A random team of only  " + stuck[0] + " Players. (With Time/Space guaranteed)"
 
-	return "<h1>" + team + "</h1><div id = 'score_" + team.name + "'></div> <hr>Players chosen randomly from the " + team + " fan OCs";
+	return "<h1>" + team + "</h1><div id = 'score_" + team.name + tierNumber+"'></div> <hr>Players chosen randomly from the " + team + " fan OCs";
 
 }
 
