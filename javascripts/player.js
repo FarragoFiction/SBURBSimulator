@@ -153,9 +153,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			denizenStrength = 0.1;
 		}else if(denizenIndex >= possibilities.length){
 			denizenName = this.strongDenizenNames(); //<-- doesn't have to be literally him. points for various mispellings of his name.
+			denizenStrength = 5;
 		}else{
 			denizenName = possibilities[denizenIndex];
-			denizenStrength = 5;
+
 		}
 
 		this.makeDenizenWithStrength(denizenName, denizenStrength); //if you pick the middle enizen it will be at strength of "1", if you pick last denizen, it will be at 2 or more.
@@ -164,10 +165,11 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	//generate denizen gets me name and strength, this just takes care of making it.
 	this.makeDenizenWithStrength = function(name, strength){
+		alert(strength)
 		//based off existing denizen code.  care about which aspect i am.
 		//also make minion here.
-		var denizen =  new GameEntity(this, name, null);
-		var denizenMinion = new GameEntity(this,name + " Minion", null);
+		var denizen =  new GameEntity(this.session, name, null);
+		var denizenMinion = new GameEntity(this.session,name + " Minion", null);
 		var ml = 30;
 		var xl = 50;
 		var hp = 50 * strength;
@@ -283,7 +285,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.strongDenizenNames = function(){
-		var ret = ['Yaldabaoth', ,'Yaldobob', 'Yolobroth', 'Yodelbooger', 'Yogertboner','Yodelboth', 'Jörmungandr','Apollyon','Siseneg','Borunam','Jadeacher','Karmiution','Authorot','Aspiratcher','Recurscker','Insurorracle','Maniomnia','Kazerad','Shiva','Goliath'];
+		var ret = ['Yaldabaoth', 'Jörmungandr','Apollyon','Siseneg','Borunam','Jadeacher','Karmiution','Authorot','Aspiratcher','Recurscker','Insurorracle','Maniomnia','Kazerad','Shiva','Goliath'];
 		return getRandomElementFromArray(ret);
 	}
 

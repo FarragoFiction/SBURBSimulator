@@ -135,6 +135,11 @@ function GameEntity(session, name, crowned){
 			var ret = "";
 			if(this.crowned != null) ret+="Crowned "
 			var pname = this.name;
+			if(pname == "Yaldabaoth"){
+				var misNames  = ['Yaldobob', 'Yolobroth', 'Yodelbooger', "Yaldabruh", 'Yogertboner','Yodelboth'];
+				console.log("Yaldobooger!!! " + this.session.session_d)
+				pname = getRandomElementFromArray(misNames);
+			}
 			if(this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
 			return ret + pname; //TODO denizens are aspect colored.
 		}

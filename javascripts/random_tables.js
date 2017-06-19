@@ -1293,7 +1293,7 @@ var denizen_doom_quests = ["listening to consorts relate a doomsday prophecy tha
 denizen_doom_quests.push("realizing technicalities in the doomsday prophecy that would allow it to take place but NOT doom everyone");
 denizen_doom_quests.push("narrowly averting the doomsday prophecy through technicalities, seeming coincidence, and a plan so convoluted that at the end of it no one can be sure the plan actually DID anything");
 
-var denizen_blood_quests = ["convincing the local consorts to rise up against the denizen, Hestia"];
+var denizen_blood_quests = ["convincing the local consorts to rise up against the Denizen"];
 denizen_blood_quests.push(" give unending speeches about the power of friendship and how they are all fighting for loved ones back home to confused and impressionable consorts");
 denizen_blood_quests.push("completely overthrowing the Denizen's underlings in a massive battle");
 
@@ -1617,14 +1617,14 @@ postdenizen_time_quests.push("building awesome things way in the past for themse
 var postdenizen_breath_quests = ["riding the wind through the pneumatic system, delivering packages to the local consorts"];
 postdenizen_breath_quests.push("doing the windy thing to clean up all of the pneumatic system’s leavings. Wow, that’s a lot of junk");
 postdenizen_breath_quests.push("soothing the local consorts with a cool summer breeze");
-postdenizen_breath_quests.push("whipping up a flurry of wind, the debris of Typhus’ rampage are blown far into the Outer Rim");
+postdenizen_breath_quests.push("whipping up a flurry of wind, the debris of Denizen rampage are blown far into the Outer Rim");
 
-var postdenizen_doom_quests = ["assuring the local consorts that with Cassandra’s defeat, the prophecy has been avoided"];
+var postdenizen_doom_quests = ["assuring the local consorts that with Denizen's defeat, the prophecy has been avoided"];
 postdenizen_doom_quests.push("establishing an increasingly esoteric rubric of potential post-Denizen problems and relating them in detail to the consorts. Doom players sure are cheery");
 postdenizen_doom_quests.push("inferring the new possibilities of defeat should the local consorts lack vigilance");
 postdenizen_doom_quests.push("finding a worryingly complete list of their own future deaths, both potential and definite");
 
-var postdenizen_blood_quests = ["undoing the last remnants of Hestia-inflicted emotional damage in the consorts"];
+var postdenizen_blood_quests = ["undoing the last remnants of Denizen-inflicted emotional damage in the consorts"];
 postdenizen_blood_quests.push("putting together a crack team of emotionally bonded consorts to help the recovery of their land");
 postdenizen_blood_quests.push("weeping tears of joy as their consorts manage to help each other instead of running to a player anytime the smallest thing goes wrong");
 postdenizen_blood_quests.push("preaching a resounding message of ‘don't be a total dick all the time’ to a clamoring crowd of consorts");
@@ -1659,7 +1659,7 @@ postdenizen_hope_quests.push("learning ancient chants and forgotten mythos of th
 postdenizen_hope_quests.push("willing enemies out of existence with but a thought");
 postdenizen_hope_quests.push("winning an argument with gravity");
 
-var postdenizen_life_quests = ["using Hermera’s lair to breed thousands of pollinating insects"];
+var postdenizen_life_quests = ["using the Denizen's lair to breed thousands of pollinating insects"];
 postdenizen_life_quests.push("breeding a strain of plant that spreads across the planet in seconds");
 postdenizen_life_quests.push("terraforming their land to be more suited to their desires");
 postdenizen_life_quests.push("resurrecting an ancient civilization of consorts, complete with buildings and culture");
