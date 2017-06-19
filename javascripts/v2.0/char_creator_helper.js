@@ -792,7 +792,7 @@ function CharacterCreatorHelper(players){
 
 	this.drawOneLeftHornDropDown = function(player){
 		var html = "<select id = 'leftHornID" + player.id + "' name='leftHorn" +player.id +"'>";
-		for(var i = 1; i<= 46; i++){
+		for(var i = 1; i<= 53; i++){
 			if(player.leftHorn == i){
 				html += '<option  selected = "selected" value="' + i +'">' + i+'</option>'
 			}else{
@@ -805,7 +805,7 @@ function CharacterCreatorHelper(players){
 
 	this.drawOneRightHornDropDown = function(player){
 		var html = "<select id = 'rightHornID" + player.id + "' name='rightHorn" +player.id +"'>";
-		for(var i = 1; i<= 46; i++){
+		for(var i = 1; i<= 53; i++){
 			if(player.leftHorn == i){
 				html += '<option  selected = "selected" value="' + i +'">' + i+'</option>'
 			}else{

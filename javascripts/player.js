@@ -2450,10 +2450,10 @@ function randomPlayerNoDerived(session, c, a){
 
 	p.hair = getRandomInt(1,60);
 	//hair color in decideTroll.
-	p.leftHorn =  getRandomInt(1,46);
+	p.leftHorn =  getRandomInt(1,53);
 	p.rightHorn = p.leftHorn;
 	if(Math.seededRandom() > .7 ){ //preference for symmetry
-			p.rightHorn = getRandomInt(1,46);
+			p.rightHorn = getRandomInt(1,53);
 	}
 	p.initializeStats();
 	p.initializeSprite();

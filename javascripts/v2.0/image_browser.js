@@ -19,7 +19,7 @@ function renderAllHair(){
 
 function renderAllHorns(){
 	var minHorn = 1
-	var maxHorn = 46;
+	var maxHorn = 53;
 	for(var i = minHorn; i<= maxHorn; i++){
 			renderLayeredSprites([new SpritePart("images/Horns/left"+i+".png","leftHorn "+i),new SpritePart("images/Horns/right"+i+".png", "rightHorn" +i)]);
 	}
