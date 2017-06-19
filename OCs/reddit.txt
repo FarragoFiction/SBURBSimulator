@@ -10,3 +10,13 @@ b=%C3%BF%C3%BF%C3%BF%C2%A0%C3%BE%C2%B9%00D%26%26%3A&s=,,Social Media,TV,Tempered
 b=%00%00%00p%C3%B52%10W%03%02%0E&s=,,Writing,Drawing,
 b=%00%00%00(%C3%B8%3B%10%07%13%13%0B&s=,,Authoring,Role Playing,radiantJournalist
 b=%00%00%00G%C3%BE%C2%BA%00U%05%2B%04&s=,,Online Roleplaying,Automation,ailuroTemplar
+b=%09%03%00%05%C3%B5%C3%89%10%15%20%20%0E&s=,,Extreme Shipping,Pandering Shows,amenableCherisher 
+b=%03%02%01%3A%C3%B1%C2%9A%10%02%05%05%1A&s=,,Shit Memes,Engineering,concealedAuditor 
+b=%00%00%00%20%C3%B4-%10D%13%13%04&s=,,Writing,History,grantedAuthoress 
+b=%02%02%02%C2%A8%C3%B2%7B%10%03%15%15*&s=,,Ninjas,Live Action Roleplaying,cognitiveTactician 
+b=%00%00%00c%C3%B6X%10%06%09%09%3A&s=,,Discourse,Fashion,tragicAffliction 
+b=%00%00%00%C2%86%C3%B7%C2%B6%10W%1B%1A%2C&s=,,FLARP,Revolution,governorateConfession 
+b=%00%00%00K%C3%B0%C2%8B%10%01%17%17%1C&s=,,Gardening,Animals,conditionalCreator 
+b=%00%00%00%14%C3%BAh%10J%1F%1F%2F&s=,,Leadership,Plushies,culminatingGuide 
+b=%00%00%00y%C3%B9%19%10I%24%24-&s=,,Drumming,Ironic Blogging,temperateCondemned 
+b=%00%00%00%C2%B1%C3%B8U%10%18%16%16%10&s=,,Tarot Readings,Rituals,anticipatedAggravation
