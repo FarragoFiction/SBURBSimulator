@@ -111,18 +111,20 @@ function FraymotifCreator(session){
 
   this.getRandomNameForAspect = function(aspect){
     console.log(aspect);
-    if(aspect == "Blood") return this.getRandomBloodName();
-    if(aspect == "Mind") return this.getRandomMindName();
-    if(aspect == "Rage") return this.getRandomRageName();
-    if(aspect == "Time") return this.getRandomTimeName();
-    if(aspect == "Void") return this.getRandomVoidName();
-    if(aspect == "Heart") return this.getRandomHeartName();
-    if(aspect == "Breath") return this.getRandomBreathName();
-    if(aspect == "Light") return this.getRandomLightName();
-    if(aspect == "Space") return this.getRandomSpaceName();
-    if(aspect == "Hope") return this.getRandomHopeName();
-    if(aspect == "Life") return this.getRandomLifeName();
-    if(aspect == "Doom") return this.getRandomDoomName();
+    var ret = "";
+    if(aspect == "Blood") ret = this.getRandomBloodName();
+    if(aspect == "Mind") ret = this.getRandomMindName();
+    if(aspect == "Rage") ret =  this.getRandomRageName();
+    if(aspect == "Time") ret =  this.getRandomTimeName();
+    if(aspect == "Void") ret =  this.getRandomVoidName();
+    if(aspect == "Heart") ret =  this.getRandomHeartName();
+    if(aspect == "Breath") ret =  this.getRandomBreathName();
+    if(aspect == "Light") ret =  this.getRandomLightName();
+    if(aspect == "Space") ret =  this.getRandomSpaceName();
+    if(aspect == "Hope") ret =  this.getRandomHopeName();
+    if(aspect == "Life") ret =  this.getRandomLifeName();
+    if(aspect == "Doom") ret =  this.getRandomDoomName();
+    return getFontColorFromAspect(aspect) + ret + "</font>"
   }
 
   this.getRandomMusicWord = function(){
