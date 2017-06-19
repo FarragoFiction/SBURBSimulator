@@ -150,7 +150,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		var denizenStrength = (denizenIndex/(possibilities.length/2))+1
 		if(denizenIndex == 0){
 			denizenName = this.weakDenizenNames();
-			denizenStrength = 0.1;
+			denizenStrength = 0.1;//fraymotifs about standing and looking at your pittifully
 			console.log("strength demands a weak denizen " + this.session.session_id)
 		}else if(denizenIndex >= possibilities.length){
 			denizenName = this.strongDenizenNames(); //<-- doesn't have to be literally him. points for various mispellings of his name.
