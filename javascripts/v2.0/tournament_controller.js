@@ -7,13 +7,14 @@ var teamsGlobalVar = [];
 var mvpName = ""
 var mvpScore = ""
 var lastTeamIndex = -2; //each round starts at index + 2
-var tierNumber = 1; //start on tier 1
+var tierNumber = 0; //starts at zero before fight, then at 1.
 window.onload = function() {
 	$(this).scrollTop(0);
 	loadNavbar();
 	simulationMode = true; //dont' render graphics.
 	displayPotentialFighters();
 	numSimulationsToDo = 10;
+	makeDescriptionList();
 }
 
 //hide the teams and button. randomize the teams and reDescribe them to show new order.
@@ -28,6 +29,7 @@ window.onload = function() {
 //queue up next 2.
 //when done, erase all losers, and start again with new teams (teamsGlobalVar should be object[], not string[])
 function startTournament(){
+	tierNumber ++;
 	$("#teams").hide();
 	$("#roundTitle").css('display', 'inline-block');
 	$("#team1").css('display', 'inline-block');
@@ -35,11 +37,16 @@ function startTournament(){
 	$("#team2").css('display', 'inline-block');
 	//render team 1 and team2
 	teamsGlobalVar = shuffle(teamsGlobalVar); //if these were svgs, could be animated???
-	var divHTML = "<div id = 'description"+tierNumber +  "'></div>"
-	$("description").append(divHTML);
+	makeDescriptionList();
 	displayTeams($("#description"+tierNumber));
 	$("#tournamentButtonDiv").hide();
 	startRound();
+}
+
+function makeDescriptionList(){
+	var divHTML = "<div id = 'description"+tierNumber +  "'></div>"
+	$("#descriptions").append(divHTML);
+	$("#description"+(tierNumber-1)).hide(); //only current is shown.
 }
 
 function startRound(){
@@ -74,13 +81,13 @@ function doneWithRound(){
 	}
 
 	if(team1.lostRound){
-		var listDiv = $("#"+team1.name)
+		var listDiv = $("#"+team1.name+tierNumber)
 		var roundDiv = $("#team1")
 		markLoser(listDiv)
 		markLoser(roundDiv)
 	}
 	if(team2.lostRound){
-		var listDiv = $("#"+team2.name)
+		var listDiv = $("#"+team2.name+tierNumber)
 		var roundDiv = $("#team2")
 		markLoser(listDiv)
 		markLoser(roundDiv)
@@ -246,7 +253,7 @@ function wireUpTeamSelector(){
 		$('#teams :selected').each(function(i, selected){
 			teamsGlobalVar.push(new Team($(selected).text()));
 		});
-		displayTeams($("#descriptions"));
+		displayTeams($("#description"+tierNumber));
 		$("#tournamentButtonDiv").css('display', 'inline-block');
 	});
 
@@ -268,7 +275,7 @@ function displayTeams(div){
 
 function displayTeamInList(team){
 	var html = "";
-	var divStart = "<div id = '" +team.name +"' class = 'teamDescription'>";
+	var divStart = "<div id = '" +team.name + tierNumber+"' class = 'teamDescription'>";
 	var divEnd = "</div>";
 	html += divStart + getTeamDescription(team) + divEnd;
 	return html;
