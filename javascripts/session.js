@@ -6,10 +6,8 @@ function Session(session_id){
 	this.sessionHealth = 3000; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
 	this.hasDiamonds = false;
 	this.opossumVictory = false;
-	this.hasBreakups = false;
-	this.denizens = [];
+	this.hasBreakups = false;  //sessions aren't in charge of denizens anymore, they are for players and set when they get in the medium
 	this.replayers = []; //used for fan oc easter eggs.
-	this.denizen_minions = [];
 	this.afterLife = new AfterLife();
 	this.queensRing = null; //eventually have white and black ones.
 	this.kingsScepter = null;
@@ -130,9 +128,9 @@ function Session(session_id){
 		curSessionGlobalVar.randomizeEntryOrder();
 		curSessionGlobalVar.makeGuardians(); //after entry order established
 		checkEasterEgg(this.easterCallBack,this); //in the controller.
-		
+
 	}
-	
+
 	//will lose 'this' in the callback process, so take it in as that.
 	this.easterCallBack = function(that){
 		//now that i've done that, (for seed reasons) fucking ignore it and stick the actual players in
@@ -150,7 +148,7 @@ function Session(session_id){
 
 		restartSession();//in controller
 	}
-	
+
 
 
 	this.addEventToUndoAndResetScratch = function(e){
@@ -376,8 +374,7 @@ function Session(session_id){
 		this.democraticArmy.carapacian = true;
 		this.democraticArmy.setStats(0,0,0,0,0,0,0,false, false, [],1000);
 
-		this.makeDenizens();
-		this.makeDenizenMinions();
+
 	}
 
 

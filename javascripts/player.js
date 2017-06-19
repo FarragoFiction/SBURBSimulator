@@ -121,11 +121,11 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 		return ret;
 	}
-	
+
 	this.getDenzenNameArray = function(){
-		
+
 	}
-	
+
 	//returns a number based on the absolute value of everything except relationships (can't help you with a denizen fight and that's what this is for)
 	this.getOverallStrength  = function(){
 		var ret = 0;
@@ -137,7 +137,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		ret += Math.abs(this.triggerLevel)
 		return ret;
 	}
-	
+
 	this.generateDenizen = function(){
 		var possibilities = this.getDenizenNameArray();
 		var strength = this.getOverallStrength();
@@ -145,7 +145,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		var strengthPerTier = (expectedMaxStrength)/possibilities.length;
 		console.log("Strength at start is, " + strength);//but what if you don't want STRANGTH!???
 		var denizenIndex = Math.round(strength/strengthPerTier)-1;  //want lowest value to be off the denizen array.
-		
+
 		var denizenName = "";
 		var denizenStrength = (denizenIndex/(possibilities/2))+1
 		if(denizenIndex < 0){
@@ -156,12 +156,12 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}else{
 			denizenName = possibilities[denizenIndex];
 			denizenStrength = 5;
-		} 
-		
+		}
+
 		this.makeDenizenWithStrength(denizenName, denizenStrength); //if you pick the middle enizen it will be at strength of "1", if you pick last denizen, it will be at 2 or more.
-		
+
 	}
-	
+
 	//generate denizen gets me name and strength, this just takes care of making it.
 	this.makeDenizenWithStrength = function(name, strength){
 		//based off existing denizen code.  care about which aspect i am.
@@ -188,17 +188,17 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(this.aspect == "Mind"){
 			fw = fw *2;
 			hp = hp * 2;
-		} 
+		}
 		if(this.aspect == "Rage"){
 			tl = tl *2;
 			power = power*2;
-		} 
+		}
 		if(this.aspect == "Void") power = power *4;
 		if(this.aspect == "Time") fw = fw /4;
 		if(this.aspect == "Heart"){
 			pow = pow *2;
 			ml = ml & 2;
-		} 
+		}
 		if(this.aspect == "Breath") mob = mob *4;
 		if(this.aspect == "Light") xl = xl *4;
 		if(this.aspect == "Space") mob = mob /4;
@@ -216,7 +216,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.denizen = denizen;
 		this.denizenMinion = denizenMinion;
 	}
-	
+
 	this.getDenizenNameArray = function(){
 		if(this.aspect == "Blood") return this.bloodDenizenNames();
 		if(this.aspect == "Mind") return this.mindDenizenNames();
@@ -236,62 +236,62 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.bloodDenizenNames = function(){
 		return ['Blood','Hera','Hestia','Bastet','Bes','Vesta','Eleos','Sanguine','Medusa','Frigg','Debella','Juno','Moloch','Baal','Eusebeia','Horkos','Homonia','Harmonia','Philotes'];
 	}
-	
+
 	this.mindDenizenNames = function(){
 		return ['Mind','Athena','Forseti','Janus','Anubis','Maat','Seshat','Thoth','Jyglag','Peryite','Nomos','Lugus','Sithus','Dike','Epimetheus','Metis','Morpheus','Omoikane','Argus','Hermha','Morha','Sespille','Selcric','Tzeench']
 	}
-	
+
 	this.rageDenizenNames = function(){
 		return ['Rage','Ares','Dyonisus','Bacchus','Abbadon','Mammon','Mania','Asmodeus','Belphegor','Set','Apophis','Nemesis','Menoetius','Shogorath','Loki','Alastor','Mol Bal','Deimos','Achos','Pallas','Deimos','Ania','Lupe','Lyssa','Ytilibatsni','Discord'];
 	}
-	
+
 	this.voidDenizenNames = function(){
 		return ['Void','Selene','Erebus','Nix','Artemis','Kuk','Kaos','Hypnos','Tartarus','Hœnir','Skoll','Vermina','Vidar','Asteria','Nocturne','Tsukuyomi','Leviathan','Hecate','Harpocrates','Diova'];
 	}
-	
+
 	this.timeDenizenNames = function(){
 		return ['Time','Ignis','Saturn','Cronos','Aion','Hephaestus','Vulcan','Perses','Prometheus','Geras','Acetosh','Styx','Kairos','Veter','Gegute','Etu','Postverta and Antevorta','Emitus','Moirai'];
 	}
-	
+
 	this.heartDenizenNames = function(){
 		return ['Heart','Aphrodite','Baldur','Eros','Hathor','Philotes','Anubis','Psyche','Mora','Isis','Jupiter','Hecate','Izanagi','Izanami','Ishtar','Anteros','Agape','Peitho','Mahara','Naidraug','Snoitome','Walthidian','Slanesh','Benu'];
 	}
-	
+
 	this.breathDenizenNames = function(){
 		return ['Breath','Ninlil','Ouranos','Typheus','Aether','Amun','Hermes','Shu','Sobek','Aura','Theia','Lelantos','Keenarth','Aeolus','Aurai','Zephyrus','Ventus','Sora','Htaerb','Worlourier','Buddha','Quetzalcoatl'];
 	}
-	
+
 	this.lightDenizenNames = function(){
 		return ['Light','Helios','Ra','Cetus','Iris','Heimdall','Apollo','Coeus','Hyperion','Phoebe','Metis','Eos','Dagr','Asura','Amaterasu','Sol','Tyche','Odin ','Erutuf','Implexel'];
 	}
-	
+
 	this.spaceDenizenNames = function(){
 		return ['Space','Gaea','Nut','Echidna','Wadjet','Qetesh','Ptah','Geb','Fryja','Atlas','Hebe','Lork','Eve','Genesis','Morpheus','Veles ','Arche','Rekinom','Iago','Pilera','Tiamat','Gilgamesh'];
 	}
-	
-	
+
+
 	this.hopeDenizenNames = function(){
 		return ['Hope','Isis','Marduk','Fenrir','Apollo','Sekhmet','Votan','Wadjet','Baldur','Zanthar','Raphael','Metatron','Jerahmeel','Gabriel','Michael','Cassiel','Gavreel','Aariel','Uriel','Barachiel ','Jegudiel','Samael','Taylus','Tzeench'];
 	}
-	
+
 	this.lifeDenizenNames = function(){
-		return ['Life','Demeter','Pan','Nephthys','Ceres','Isis','Hemera','Andhrímnir','Agathodaemon','Eir','Baldur','Prometheus','Adonis','Geb','Panacea','Aborof','Nurgel','Adam'];
+		return ['Life',"Hemera",'Demeter','Pan','Nephthys','Ceres','Isis','Hemera','Andhrímnir','Agathodaemon','Eir','Baldur','Prometheus','Adonis','Geb','Panacea','Aborof','Nurgel','Adam'];
 	}
-	
+
 	this.doomDenizenNames = function(){
 		return ['Doom','Hades','Achlys','Cassandra','Osiris','Ananke','Thanatos','Moros','Iapetus','Themis','Aisa','Oizys','Styx','Keres','Maat','Castor and Pollux','Anubis','Azrael','Ankou','Kapre','Moros','Atropos','Oizys','Korne','Odin'];
 	}
-	
+
 	this.strongDenizenNames = function(){
 		var ret = ['Yaldabaoth', ,'Yaldobob', 'Yolobroth', 'Yodelbooger', 'Yogertboner','Yodelboth', 'Jörmungandr','Apollyon','Siseneg','Borunam','Jadeacher','Karmiution','Authorot','Aspiratcher','Recurscker','Insurorracle','Maniomnia','Kazerad','Shiva','Goliath'];
 		return getRandomElementFromArray(ret);
 	}
-	
+
 	this.weakDenizenNames = function(){
 		var ret = ['Eriotur','Abraxas','Succra','Watojo','Bluhubit','Swefrat','Helaja','Fischapris'];
 		return getRandomElementFromArray(ret);
 	}
-	
+
 
 
 	//flipping out over the dead won't call this but everything else will.
