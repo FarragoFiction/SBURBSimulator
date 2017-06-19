@@ -326,7 +326,7 @@ function GameEntity(session, name, crowned){
 		//ONLY possibility for denizen fights, and happens at 3 turn mark.
 		this.denizenIsSoNotPuttingUpWithYourShitAnyLonger = function(div,players, numTurns){
 			//console.log("!!!!!!!!!!!!!!!!!denizen not putting up with your shit: " + this.session.session_id);
-				div.append("<Br><Br>" + this.session.getDenizenForPlayer(players[0]) + " decides that the " + players[0].htmlTitleBasic() + " is being a little baby who poops hard in their diapers and are in no way ready for this fight. The Denizen recommends that they come back after they mature a little bit. The " +players[0].htmlTitleBasic() + "'s ass is kicked so hard they are ejected from the fight, but are not killed.")
+				div.append("<Br><Br>" + this.name + " decides that the " + players[0].htmlTitleBasic() + " is being a little baby who poops hard in their diapers and are in no way ready for this fight. The Denizen recommends that they come back after they mature a little bit. The " +players[0].htmlTitleBasic() + "'s ass is kicked so hard they are ejected from the fight, but are not killed.")
 				if(Math.seededRandom() > .5){ //players don't HAVE to take the advice after all. assholes.
 					this.levelPlayers(players);
 					div.append(" They actually seem to be taking " + this.name + "'s advice. ");
@@ -431,7 +431,7 @@ function GameEntity(session, name, crowned){
 		//returns true or false.
 		this.fightNeedsToEnd = function(div, players, numTurns){
 			//if this IS a denizen fight, i can assume there is only one player in it
-			if(this.session.getDenizenForPlayer(players[0]).name == this.name){
+			if(players[0].denizen.name == this.name){
 				if(numTurns>5 || (players[0].currentHP < this.getPower() && !players[0].godDestiny)){ //denizens are cool with killing players that will godtier.
 					console.log("Denizen is fucking done after  " + numTurns +" turns " + this.session.session_id)
 					this.denizenIsSoNotPuttingUpWithYourShitAnyLonger(div, players, numTurns);
@@ -459,7 +459,7 @@ function GameEntity(session, name, crowned){
 		//back up not available for denizen fights.
 		//fresh doomed players only show up if numTurns > 3
 		this.summonBackUp = function(div, players, numTurns){
-			if(this.session.getDenizenForPlayer(players[0]).name == this.name){
+			if(players[0].denizen.name == this.name){
 				return players;
 			}
 			//if i assume a 3 turn fight is "ideal", then have a 1/10 chance of backup each turn.
@@ -584,7 +584,7 @@ function GameEntity(session, name, crowned){
 			var canvasDiv = document.getElementById("canvas"+ divID);
 			poseAsATeam(canvasDiv, poseable, 2000);
 
-			if(players[0].dead && this.session.getDenizenForPlayer(players[0]).name == this.name) denizenKill(canvasDiv, players[0]);
+			if(players[0].dead && players[0].denizen.name == this.name) denizenKill(canvasDiv, players[0]);
 		}
 
 

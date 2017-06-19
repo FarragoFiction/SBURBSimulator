@@ -10,12 +10,12 @@ function FaceDenizen(session){
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var p = this.session.availablePlayers[i]
 			if(p.denizen_index >= 3 && !p.denizenDefeated && p.land != null){
-				var d = this.session.getDenizenForPlayer(p)
+				var d = p.denizen;
 				if(p.power > d.getHP() || Math.seededRandom() > .5){  //you're allowed to do other things between failed boss fights, you know.
 					this.denizenFighters.push(p);
 				}
 			}else if(p.landLevel >= 6 && !p.denizenMinionDefeated && p.land != null){
-				var d = this.session.getDenizenMinionForPlayer(p)
+				var d = p.denizenMinion
 				if(p.power > d.getHP() || Math.seededRandom() > .5){//you're allowed to do other things between failed boss fights, you know.
 					this.denizenFighters.push(p);
 				}
@@ -61,7 +61,7 @@ function FaceDenizen(session){
 	}
 
 	this.faceDenizenMinion = function(p,div){
-		var denizenMinion = this.session.getDenizenMinionForPlayer(p);
+		var denizenMinion = p.denizenMinion
 		var ret = "<br>The " + p.htmlTitleHP() + " initiates a strife with the " + denizenMinion.name + ". "
 		if(p.sprite && p.sprite.getHP() > 0 ) ret += " " + p.sprite.htmlTitleHP() + " joins them! "
 		div.append(ret);
@@ -73,7 +73,7 @@ function FaceDenizen(session){
 
 	this.faceDenizen = function(p,div){
 		var ret = " ";
-		var denizen = this.session.getDenizenForPlayer(p);
+		var denizen = p.denizen;
 		if(!p.denizenFaced && p.getFriends().length > p.getEnemies().length){ //one shot at The Choice
 			//console.log("confront icon: " + this.session.session_id)
 			ret += "<br><img src = 'images/sceneIcons/confront_icon.png'> The " + p.htmlTitle() + " cautiously approaches their denizen, " + denizen.name + " and are presented with The Choice. "

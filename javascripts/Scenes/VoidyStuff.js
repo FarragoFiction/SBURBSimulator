@@ -164,7 +164,7 @@ function VoidyStuff(session){
 	//can die from this. not actually a real fight. short and brutal.
 	this.fightDenizen = function(div,specialDiv){
 		this.player.denizenFaced = true;
-		var denizen = this.session.getDenizenForPlayer(this.player);
+		var denizen = this.player.denizen;
 		div.append(" Why is the denizen " + denizen.name + " bellowing so loudly on " + this.player.shortLand() + "? ");
 		var ret =  "The " + this.player.htmlTitle() + " is fighting " +denizen.name + ".  It is bloody, brutal and short. ";
 

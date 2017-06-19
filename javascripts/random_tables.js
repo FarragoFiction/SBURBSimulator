@@ -1285,7 +1285,7 @@ var denizen_time_quests = ["searching through time for an unbroken legendary pie
 denizen_time_quests.push("realizing that the legendary piece of shit weapon was broken WAY before they got here");
 denizen_time_quests.push("alchemizing an unbroken version of the legendary piece of shit weapon to pawn off as the real thing to Hephaestus");
 
-var denizen_breath_quests = ["realizing that Typheus has thoroughly clogged up the pneumatic system"];
+var denizen_breath_quests = ["realizing that the Denizen has thoroughly clogged up the pneumatic system"];
 denizen_breath_quests.push("trying to manually unclog the pneumatic system");
 denizen_breath_quests.push("using Breath powers to unclog the pneumatic system");
 

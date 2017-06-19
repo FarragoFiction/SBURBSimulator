@@ -196,7 +196,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(this.aspect == "Void") power = power *4;
 		if(this.aspect == "Time") fw = fw /4;
 		if(this.aspect == "Heart"){
-			pow = pow *2;
+			power = power *2;
 			ml = ml & 2;
 		}
 		if(this.aspect == "Breath") mob = mob *4;
@@ -787,7 +787,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.didDenizenKillYou = function(){
-		if(this.causeOfDeath.indexOf(this.session.getDenizenForPlayer(this).name) != -1){
+		if(this.causeOfDeath.indexOf(this.denizen.name) != -1){
 			return true; //also return true for minions. this is intentional.
 		}
 		return false;
@@ -2179,11 +2179,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 
 		if(this.isTroll && this.bloodColor != "#ff0000"){
-			console.log("before power boost: " + this.power)
 			this.power += bloodColorToBoost(this.bloodColor);
-			console.log("after power boost: " + this.power)
 		}
-		console.log("intiial power is: " + this.power)
 	}
 
 
