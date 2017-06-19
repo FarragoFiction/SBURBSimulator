@@ -170,6 +170,65 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.getDenizenNameArray = function(){
 		//TODO all this is does is call a different sub function based on my aspect
 	}
+	
+	this.bloodDenizenNames = function(){
+		
+	}
+	
+	this.mindDenizenNames = function(){
+		
+	}
+	
+	this.rageDenizenNames = function(){
+		
+	}
+	
+	this.voidDenizenNames = function(){
+		
+	}
+	
+	this.timeDenizenNames = function(){
+		
+	}
+	
+	this.heartDenizenNames = function(){
+		
+	}
+	
+	this.breathDenizenNames = function(){
+		
+	}
+	
+	this.lightDenizenNames = function(){
+		
+	}
+	
+	this.spaceDenizenNames = function(){
+		
+	}
+	
+	
+	this.hopeDenizenNames = function(){
+		
+	}
+	
+	this.lifeDenizenNames = function(){
+		
+	}
+	
+	this.doomDenizenNames = function(){
+		
+	}
+	
+	this.strongDenizenNames = function(){
+		
+	}
+	
+	this.weakDenizenNames = function(){
+		
+	}
+	
+
 
 	//flipping out over the dead won't call this but everything else will.
 	this.flipOut = function(reason){
