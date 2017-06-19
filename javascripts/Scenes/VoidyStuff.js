@@ -165,7 +165,7 @@ function VoidyStuff(session){
 	this.fightDenizen = function(div,specialDiv){
 		this.player.denizenFaced = true;
 		var denizen = this.player.denizen;
-		div.append(" Why is the denizen " + denizen.name + " bellowing so loudly on " + this.player.shortLand() + "? ");
+		div.append(" Why is the " + denizen.name + " bellowing so loudly on " + this.player.shortLand() + "? ");
 		var ret =  "The " + this.player.htmlTitle() + " is fighting " +denizen.name + ".  It is bloody, brutal and short. ";
 
 		if(Math.seededRandom() >.5){

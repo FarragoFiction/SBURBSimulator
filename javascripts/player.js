@@ -147,13 +147,15 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		var denizenIndex = Math.round(strength/strengthPerTier)-1;  //want lowest value to be off the denizen array.
 
 		var denizenName = "";
-		var denizenStrength = (denizenIndex/(possibilities/2))+1
+		var denizenStrength = (denizenIndex/(possibilities.length/2))+1
 		if(denizenIndex < 0){
 			denizenName = this.weakDenizenNames();
 			denizenStrength = 0.1;
+			console.log("strength demands a weak denizen")
 		}else if(denizenIndex >= possibilities.length){
 			denizenName = this.strongDenizenNames(); //<-- doesn't have to be literally him. points for various mispellings of his name.
 			denizenStrength = 5;
+			console.log("Strength demands strong denizen.")
 		}else{
 			denizenName = possibilities[denizenIndex];
 
@@ -165,18 +167,17 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	//generate denizen gets me name and strength, this just takes care of making it.
 	this.makeDenizenWithStrength = function(name, strength){
-		alert(strength)
 		//based off existing denizen code.  care about which aspect i am.
 		//also make minion here.
-		var denizen =  new GameEntity(this.session, name, null);
+		var denizen =  new GameEntity(this.session, "Denizen " +name, null);
 		var denizenMinion = new GameEntity(this.session,name + " Minion", null);
 		var ml = 30;
 		var xl = 50;
-		var hp = 50 * strength;
+		var hp = 20 * strength;
 		var mob = 20;
 		var tl = 0;
 		var fw = 0;
-		var power = 25 * strength; //first minion.
+		var power = 10 * strength; //first minion.
 		if(this.aspect == "Hope") power = power *4;
 		if(this.aspect == "Life") hp = hp *4;
 		if(this.aspect == "Doom"){
