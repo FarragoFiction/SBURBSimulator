@@ -168,15 +168,27 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 	
 	this.getDenizenNameArray = function(){
-		//TODO all this is does is call a different sub function based on my aspect
+		if(this.aspect == "Blood") return this.bloodDenizenNames();
+		if(this.aspect == "Mind") return this.mindDenizenNames();
+		if(this.aspect == "Rage") return this.rageDenizenNames();
+		if(this.aspect == "Void") return this.voidDenizenNames();
+		if(this.aspect == "Time") return this.timeDenizenNames();
+		if(this.aspect == "Heart") return this.heartDenizenNames();
+		if(this.aspect == "Breath") return this.breathDenizenNames();
+		if(this.aspect == "Light") return this.lightDenizenNames();
+		if(this.aspect == "Space") return this.spaceDenizenNames();
+		if(this.aspect == "Hope") return this.hopeDenizenNames();
+		if(this.aspect == "Life") return this.lifeDenizenNames();
+		if(this.aspect == "Doom") return this.doomDenizenNames();
+		return ["ERROR 404: DENIZEN NOT FOUND"]
 	}
-	
+	//discord generated most of these names.
 	this.bloodDenizenNames = function(){
 		return ['Blood','Hera','Hestia','Bastet','Bes','Vesta','Eleos','Sanguine','Medusa','Frigg','Debella','Juno','Moloch','Baal','Eusebeia','Horkos','Homonia','Harmonia','Philotes'];
 	}
 	
 	this.mindDenizenNames = function(){
-		return ['Mind','Athena','Forseti','Janus','Anubis','Ma'at','Seshat','Thoth','Jyglag','Peryite','Nomos','Lugus','Sithus','Dike','Epimetheus','Metis','Morpheus','Omoikane','Argus','Hermha','Morha','Sespille','Selcric','Tzeench']
+		return ['Mind','Athena','Forseti','Janus','Anubis','Maat','Seshat','Thoth','Jyglag','Peryite','Nomos','Lugus','Sithus','Dike','Epimetheus','Metis','Morpheus','Omoikane','Argus','Hermha','Morha','Sespille','Selcric','Tzeench']
 	}
 	
 	this.rageDenizenNames = function(){
@@ -217,11 +229,11 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 	
 	this.doomDenizenNames = function(){
-		return ['Doom','Hades','Achlys','Cassandra','Osiris','Ananke','Thanatos','Moros','Iapetus','Themis','Aisa','Oizys','Styx','Keres','Ma'at','Castor and Pollux','Anubis','Azrael','Ankou','Kapre','Moros','Atropos','Oizys','Korne','Odin'];
+		return ['Doom','Hades','Achlys','Cassandra','Osiris','Ananke','Thanatos','Moros','Iapetus','Themis','Aisa','Oizys','Styx','Keres','Maat','Castor and Pollux','Anubis','Azrael','Ankou','Kapre','Moros','Atropos','Oizys','Korne','Odin'];
 	}
 	
 	this.strongDenizenNames = function(){
-		return ['Yaldabaoth','Jörmungandr','Apollyon','Siseneg','Borunam','Jadeacher','Karmiution','Authorot','Aspiratcher','Recurscker','Insurorracle','Maniomnia','Kazerad','Shiva','Goliath'];
+		return ['Yaldabaoth', ,'Yaldobob', 'Yolobroth', 'Yodelbooger', 'Yogertboner','Yodelboth', 'Jörmungandr','Apollyon','Siseneg','Borunam','Jadeacher','Karmiution','Authorot','Aspiratcher','Recurscker','Insurorracle','Maniomnia','Kazerad','Shiva','Goliath'];
 	}
 	
 	this.weakDenizenNames = function(){
