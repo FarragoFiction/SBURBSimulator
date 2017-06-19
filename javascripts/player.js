@@ -172,60 +172,60 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 	
 	this.bloodDenizenNames = function(){
-		
+		return ['Blood','Hera','Hestia','Bastet','Bes','Vesta','Eleos','Sanguine','Medusa','Frigg','Debella','Juno','Moloch','Baal','Eusebeia','Horkos','Homonia','Harmonia','Philotes'];
 	}
 	
 	this.mindDenizenNames = function(){
-		
+		return ['Mind','Athena','Forseti','Janus','Anubis','Ma'at','Seshat','Thoth','Jyglag','Peryite','Nomos','Lugus','Sithus','Dike','Epimetheus','Metis','Morpheus','Omoikane','Argus','Hermha','Morha','Sespille','Selcric','Tzeench']
 	}
 	
 	this.rageDenizenNames = function(){
-		
+		return ['Rage','Ares','Dyonisus','Bacchus','Abbadon','Mammon','Mania','Asmodeus','Belphegor','Set','Apophis','Nemesis','Menoetius','Shogorath','Loki','Alastor','Mol Bal','Deimos','Achos','Pallas','Deimos','Ania','Lupe','Lyssa','Ytilibatsni','Discord'];
 	}
 	
 	this.voidDenizenNames = function(){
-		
+		return ['Void','Selene','Erebus','Nix','Artemis','Kuk','Kaos','Hypnos','Tartarus','Hœnir','Skoll','Vermina','Vidar','Asteria','Nocturne','Tsukuyomi','Leviathan','Hecate','Harpocrates','Diova'];
 	}
 	
 	this.timeDenizenNames = function(){
-		
+		return ['Time','Ignis','Saturn','Cronos','Aion','Hephaestus','Vulcan','Perses','Prometheus','Geras','Acetosh','Styx','Kairos','Veter','Gegute','Etu','Postverta and Antevorta','Emitus','Moirai'];
 	}
 	
 	this.heartDenizenNames = function(){
-		
+		return ['Heart','Aphrodite','Baldur','Eros','Hathor','Philotes','Anubis','Psyche','Mora','Isis','Jupiter','Hecate','Izanagi','Izanami','Ishtar','Anteros','Agape','Peitho','Mahara','Naidraug','Snoitome','Walthidian','Slanesh','Benu'];
 	}
 	
 	this.breathDenizenNames = function(){
-		
+		return ['Breath','Ninlil','Ouranos','Typheus','Aether','Amun','Hermes','Shu','Sobek','Aura','Theia','Lelantos','Keenarth','Aeolus','Aurai','Zephyrus','Ventus','Sora','Htaerb','Worlourier','Buddha','Quetzalcoatl'];
 	}
 	
 	this.lightDenizenNames = function(){
-		
+		return ['Light','Helios','Ra','Cetus','Iris','Heimdall','Apollo','Coeus','Hyperion','Phoebe','Metis','Eos','Dagr','Asura','Amaterasu','Sol','Tyche','Odin ','Erutuf','Implexel'];
 	}
 	
 	this.spaceDenizenNames = function(){
-		
+		return ['Space','Gaea','Nut','Echidna','Wadjet','Qetesh','Ptah','Geb','Fryja','Atlas','Hebe','Lork','Eve','Genesis','Morpheus','Veles ','Arche','Rekinom','Iago','Pilera','Tiamat','Gilgamesh'];
 	}
 	
 	
 	this.hopeDenizenNames = function(){
-		
+		return ['Hope','Isis','Marduk','Fenrir','Apollo','Sekhmet','Votan','Wadjet','Baldur','Zanthar','Raphael','Metatron','Jerahmeel','Gabriel','Michael','Cassiel','Gavreel','Aariel','Uriel','Barachiel ','Jegudiel','Samael','Taylus','Tzeench'];
 	}
 	
 	this.lifeDenizenNames = function(){
-		
+		return ['Life','Demeter','Pan','Nephthys','Ceres','Isis','Hemera','Andhrímnir','Agathodaemon','Eir','Baldur','Prometheus','Adonis','Geb','Panacea','Aborof','Nurgel','Adam'];
 	}
 	
 	this.doomDenizenNames = function(){
-		
+		return ['Doom','Hades','Achlys','Cassandra','Osiris','Ananke','Thanatos','Moros','Iapetus','Themis','Aisa','Oizys','Styx','Keres','Ma'at','Castor and Pollux','Anubis','Azrael','Ankou','Kapre','Moros','Atropos','Oizys','Korne','Odin'];
 	}
 	
 	this.strongDenizenNames = function(){
-		
+		return ['Yaldabaoth','Jörmungandr','Apollyon','Siseneg','Borunam','Jadeacher','Karmiution','Authorot','Aspiratcher','Recurscker','Insurorracle','Maniomnia','Kazerad','Shiva','Goliath'];
 	}
 	
 	this.weakDenizenNames = function(){
-		
+		return ['Eriotur','Abraxas','Succra','Watojo','Bluhubit','Swefrat','Helaja','Fischapris'];
 	}
 	
 
