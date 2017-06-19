@@ -30,6 +30,7 @@ window.onload = function() {
 //when done, erase all losers, and start again with new teams (teamsGlobalVar should be object[], not string[])
 function startTournament(){
 	tierNumber ++;
+	$("#currentTier").html("<h2>Current Tier: " + tierNumber + " </h2>")
 	lastTeamIndex = -2;
 	$("#teams").hide();
 	$("#roundTitle").css('display', 'inline-block');
@@ -41,7 +42,13 @@ function startTournament(){
 	makeDescriptionList();
 	displayTeams($("#description"+tierNumber));
 	$("#tournamentButtonDiv").hide();
+	if(teamsGlobalVar.length == 1) return missionComplete();
 	startRound();
+}
+
+function missionComplete(){
+	//have some sort of css pop up with winner, hide tournament, show all team descriptions (hopefully in horizontally scrolling line)
+	$("#tournament").hide();
 }
 
 function makeDescriptionList(){
@@ -51,6 +58,12 @@ function makeDescriptionList(){
 }
 
 function startRound(){
+	setTimeout(function(){
+		startRoundPart2();
+	},1000);
+}
+
+function startRoundPart2(){
 	lastTeamIndex += 2;
 	if(lastTeamIndex >= teamsGlobalVar.length) return doneWithTier();
 	var team1 = teamsGlobalVar[lastTeamIndex]
@@ -189,7 +202,7 @@ function aBCallBack(sessionSummary){
 		}
 	}
 	if(sessionSummary.mvp.power > team.mvp_score){
-		team.mvp_name = sessionSummary.mvp.htmlTitle();
+		team.mvp_name = sessionSummary.mvp.htmlTitle() + "(from team: "+team.name +" ) ";
 		team.mvp_score = sessionSummary.mvp.power;
 	}
 
