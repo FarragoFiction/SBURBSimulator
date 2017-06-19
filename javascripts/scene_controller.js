@@ -462,8 +462,15 @@ function playersToDataBytes(players){
 	//return ret;
 }
 
+function truncateString(str, num) {
+    return str.length > num ?
+        str.slice(0, num > 3 ? num - 3 : num) + "..." :
+        str;
+}
+
+
 function sanitizeString(string){
-		return string.replace(/<(,?:.|\n)*?>/g, '').replace(/,/g,'');
+		return truncateString(string.replace(/<(,?:.|\n)*?>/g, '').replace(/,/g,''), 100);
 	}
 
 
@@ -516,11 +523,11 @@ function dataBytesAndStringsToPlayer(charString, str_arr){
 	 player.quirk = new Quirk();
 	 //console.log("strings is: " + str_arr)
 	 //console.log("chars is: " + charString)
-	 player.causeOfDrain = decodeURI(str_arr[0]).trim();
-	 player.causeOfDeath = decodeURI(str_arr[1]).trim();
-	 player.interest1 = decodeURI(str_arr[2]).trim();
-	 player.interest2 = decodeURI(str_arr[3]).trim();
-	 player.chatHandle = decodeURI(str_arr[4]).trim();
+	 player.causeOfDrain = sanitizeString(decodeURI(str_arr[0]).trim());
+	 player.causeOfDeath = sanitizeString(decodeURI(str_arr[1]).trim());
+	 player.interest1 = sanitizeString(decodeURI(str_arr[2]).trim());
+	 player.interest2 = sanitizeString(decodeURI(str_arr[3]).trim());
+	 player.chatHandle = sanitizeString(decodeURI(str_arr[4]).trim());
 	 //for bytes, how to convert uri encoded string into char string into unit8 buffer?
 	 //holy shit i haven't had this much fun since i did the color replacement engine a million years ago. this is exactlyt he right flavor of challenging.
 	 //console.log("charString is: " + charString)

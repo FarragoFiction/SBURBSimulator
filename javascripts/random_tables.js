@@ -419,6 +419,7 @@ function playerLikesPopculture(player){
 		}
 }
 
+
 function playerLikesTechnology(player){
 		if(technology_interests.indexOf(player.interest1) != -1 || technology_interests.indexOf(player.interest2) != -1 ){
 			return true;

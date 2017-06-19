@@ -47,3 +47,9 @@ b=K%C3%AC%13%C2%94%C3%BE%C2%A7%00%16%08%088&s=,,Artificial Intelligence,Science 
 b=%00%00%00%14%C3%BEx%00Y%02%02%3C&s=,,Mages,Cooking,IntimateCartographer
 b=%00%00%00%C2%A8%C3%BE%1A%01%13%2B%2B8&s=,,Music in general,Programming,rythmicYaoifan
 b=%C3%85%0A%0Ak%C3%BE6%00%10%1F%1F%0D&s=,,FixFics,Healing,amazingHealer
+b=%00%00%000%C3%B0E%10W%0A%09%20&s=,,Boxing,Fighting,ballisticArisen
+b=%00%00%00%06%C3%B9h%10%09EE%3B&s=,,Mysteries,Peace,phantasmicEternity
+b=%00%00%00!%C3%B8%C2%B2%10%1CI%40%15&s=,,Mediating,Literature,monochromaticTree
+b=%00%00%00%C2%8B%C3%B1%C2%A6%10B%26%26%1F&s=,,Robots,Equality,ironWallflower
+b=%00%00%00r%C3%B0)%10K%3E%3E4&s=,,Graffiti,Action Movies,energyTwister
+b=%C3%BE%C3%9F%C2%81%20%C3%B0%C3%91%00%14%0D%0D3&s=,,Astronomy,Music,solarSong
