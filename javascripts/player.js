@@ -783,7 +783,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 
 	this.getDenizen = function(){
-		return this.session.getDenizenForPlayer(this).name;
+		return this.denizen.name; //<--convineint that it wasn't hard to upgrade.
 	}
 
 	this.didDenizenKillYou = function(){
