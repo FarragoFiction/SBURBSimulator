@@ -301,21 +301,24 @@ function processCombinedSession(){
 }
 
 function advertisePatreon(div){
+	var player = curSessionGlobalVar.players[0];
+	var playerStart = player.chatHandleShort()+ ": "
 	var canvasHTML = "<br><a target='_blank' href = 'https://www.patreon.com/FarragoFiction'><canvas id='canvasJRAB" + (div.attr("id")) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas></a>";
 	div.append(canvasHTML);
 
 	var canvasDiv = document.getElementById("canvasJRAB"+  (div.attr("id")));
 	var chat = "";
-	chat += "JR: KR!!! We got enough donations to make back ups of dear sweet precious, sweet, sweet AB! Our fans are the best!!! \n";
-	chat += "JR: That means we can start saving up for you to get that art program you wanted! \n";
-	chat += "KR: Well shit. Now I'm starting to get stage fright... I gotta make more things! Better! Faster!\n "
-	chat += "JR: Heh, well, I mean, it'll be way easier to do 'better' and 'faster' once you get the equipment you need, right? \n";
-	chat += "KR: Fair enough. I've been using this old thing for... six, seven years? Time for an upgrade!\n "
-
+	chat += "JR: Hey!!! Sorry for the confusion, just bare with me, but this is pretty much the only way I have to talk directly to the Observers! \n";
+	chat += chatLine(playerStart, player,"What the actual fuck?")
+	chat += "JR: Don't worry about it. This practically doesn't even concern you.  \n";
+	chat += "JR: So! SBURBSim's Patreon totally reached it's major practically goals!  You guys are the best!!! <3<3<3  \n";
+	chat += "JR: All that's left is to try to get this bonus thingy Patreon offers based on number of Patrons obtained in the first month. Donating even just $1 this month has the potential to be worth way more than that in the long run.\n"
+	chat +="JR: Money donated over the practicality goals will go towards buffer for server stuff, as well as groceries and stuff for me and KR. The more we can work on SBURBSim instead of paying gigs, the better!  \n";
+	chat += chatLine(playerStart, player,"Yeah. I'm blocking you, weirdo.")
 	if(checkSimMode() == true){
     return;
   }
-  drawChatNonPlayer(canvasDiv, chat, "-- jadedResearcher [JR] began pestering karmicRetribution" + " [KR] --", "jr.png", "kr_chat.png", "JR:", "KR:", "#3da35a", "#9630bf"  )
+	drawChatJRPlayer(canvasDiv, chat, player);
 }
 
 
