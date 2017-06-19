@@ -1,7 +1,8 @@
 //simple code that allows you to browser hair/horns or fanart.
 window.onload = function() {
+	loadNavbar();
 	if (getParameterByName("hair")  == "true") renderAllHair();
-	if (getParameterByName("hair")  == "true") renderAllHorns();
+	if (getParameterByName("horns")  == "true") renderAllHorns();
 }
 
 
@@ -26,5 +27,10 @@ function renderAllHorns(){
 
 //first thing on bottom, last thing on top
 function renderLayeredSprites(spriteArray){
-	alert('todo')
+	var html = "<div class = 'spriteParent'>"; //all images should be rendered at same position in sprite parent
+	for(var i = 0; i<spriteArray.length; i++){
+		html += "<img class = 'spriteImg' src = '" + spriteArray[i] + "'></img>";
+	}
+	html += "</div>"
+	$("#images").append(html);
 }

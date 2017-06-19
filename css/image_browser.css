@@ -1,4 +1,4 @@
-#story{
+.whiteCenterThingy{
 	width:1000px;
 	background-color: white;
 	margin-left: auto;
@@ -6,6 +6,19 @@
 	padding: 10px;
 }
 
+.spriteImg{
+
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+.spriteParent{
+	width: 400px;
+	height: 300px;
+	display: inline-block;
+	position: relative;
+}
 
 body{
 	background-image: url("../images/Skaia_Clouds.png");
