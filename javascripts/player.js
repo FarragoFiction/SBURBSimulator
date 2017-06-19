@@ -2589,7 +2589,7 @@ function getDarkShirtColorFromAspect(aspect){
 }
 
 function getFontColorFromAspect(aspect){
-	return "<font color= '" + getColorFromAspect(aspect) + "'> ";
+	return "<font color='" + getColorFromAspect(aspect) + "'> ";
 }
 
 function blankPlayerNoDerived(session){

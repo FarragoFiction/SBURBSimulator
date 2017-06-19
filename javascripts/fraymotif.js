@@ -127,13 +127,13 @@ function FraymotifCreator(session){
     return getFontColorFromAspect(aspect) + ret + "</font>"
   }
 
-  this.getRandomMusicWord = function(){
+  this.getRandomMusicWord = function(aspect){ //takes in an aspect for color
     var names = ["Fortississimo", "Leitmotif", "Liberetto", "Sarabande", "Serenade", "Anthem", "Crescendo", "Vivace", "Encore", "Vivante", "Allegretto", "Fugue", "Choir", "Nobilmente", "Hymn", "Eroico", "Chant", "Mysterioso", "Diminuendo", "Perdendo", "Staccato", "Allegro", "Caloroso", "Nocturne"];
     names = names.concat(["Cadenza", "Cadence", "Waltz", "Concerto", "Finale", "Requiem", "Coda", "Dirge", "Battaglia", "Leggiadro", "Capriccio", "Presto", "Largo", "Accelerando", "Polytempo", "Overture", "Reprise", "Orchestra"])
 
     var ret = getRandomElementFromArray(names);
     if(Math.seededRandom() > 0.5){
-      return ret.toLowerCase();  //tacked onto existin word
+      return "<span style='color:" + getColorFromAspect(aspect) + "'>" + ret.toLowerCase()+"</span>";  //tacked onto existin word
     }else{
       return " " + ret; //extra word
     }
@@ -146,14 +146,14 @@ function FraymotifCreator(session){
       indexOfMusic = getRandomInt(0,tier-1);
       for(var i = 0; i < tier; i++){
         var musicWord = "";
-        if(i == indexOfMusic) musicWord = this.getRandomMusicWord();
+        if(i == indexOfMusic) musicWord = this.getRandomMusicWord(aspects[i]);
         name += this.getRandomNameForAspect(aspects[0]) + musicWord +" ";
       }
     }else{
 
       for(var i = 0; i<aspects.length; i++){
         var musicWord = "";
-        if(i == indexOfMusic) musicWord = this.getRandomMusicWord();
+        if(i == indexOfMusic) musicWord = this.getRandomMusicWord(aspects[i]);
         name += this.getRandomNameForAspect(aspects[i]) + musicWord +  " ";
       }
     }
