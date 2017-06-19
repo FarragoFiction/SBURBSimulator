@@ -470,7 +470,7 @@ function truncateString(str, num) {
 
 
 function sanitizeString(string){
-		return truncateString(string.replace(/<(,?:.|\n)*?>/g, '').replace(/,/g,''), 100);
+		return truncateString(string.replace(/<(,?:.|\n)*?>/g, '').replace(/,/g,''), 144); //good enough for twitter.
 	}
 
 
