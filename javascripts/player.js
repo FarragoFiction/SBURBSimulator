@@ -7,6 +7,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.spriteCanvasID = null;  //part of new rendering engine.
 	this.session = session;
 	this.currentHP = 0;
+	this.denizen = null;
+	this.denizenMinion = null;
 	this.maxHornNumber = 73; //don't fuck with this
 	this.maxHairNumber = 61; //same
 	this.sprite = null; //gets set to a blank sprite when character is created.
@@ -139,10 +141,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.generateDenizen = function(){
 		var possibilities = this.getDenizenNameArray();
 		var strength = this.getOverallStrength();
-		var expectedStrength = 300; //from sim values of 50+ sessions.
-		var strengthPerTier = (expectedStrength)/possibilities.length;
+		var expectedMaxStrength = 400; //from sim values of 50+ sessions.
+		var strengthPerTier = (expectedMaxStrength)/possibilities.length;
 		console.log("Strength at start is, " + strength);//but what if you don't want STRANGTH!???
-		var denizenIndex = Math.round(this.power/strengthPerTier)-1;  //want lowest value to be off the denizen array.
+		var denizenIndex = Math.round(strength/strengthPerTier)-1;  //want lowest value to be off the denizen array.
 		
 		var denizenName = "";
 		var denizenStrength = (denizenIndex/(possibilities/2))+1
@@ -162,9 +164,58 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	
 	//generate denizen gets me name and strength, this just takes care of making it.
 	this.makeDenizenWithStrength = function(name, strength){
-		//based of existing denizen code.  care about which aspect i am.
+		//based off existing denizen code.  care about which aspect i am.
 		//also make minion here.
 		alert(name)
+		var denizen =  new GameEntity(this, name, null);
+		var denizenMinion = new GameEntity(this,name + " Minion", null);
+		var ml = 30;
+		var xl = 50;
+		var hp = 50 * strength;
+		var mob = 20;
+		var tl = 0;
+		var fw = 0;
+		var power = 25 * strength; //first minion.
+		if(this.aspect == "Hope") power = power *4;
+		f(this.aspect == "Life") hp = hp *4;
+		if(this.aspect == "Doom"){
+			 hp = hp/2;
+			 ml = ml/2;
+		}
+		if(this.aspect == "Blood"){
+			hp = hp * 2;
+			tl = tl/2;
+		}
+		if(this.aspect == "Mind"){
+			fw = fw *2;
+			hp = hp * 2;
+		} 
+		if(this.aspect == "Rage"){
+			tl = tl *2;
+			power = power*2;
+		} 
+		if(this.aspect == "Void") power = power *4;
+		if(this.aspect == "Time") fw = fw /4;
+		if(this.aspect == "Heart"){
+			pow = pow *2;
+			ml = ml & 2;
+		} 
+		if(this.aspect == "Breath") mob = mob *4;
+		if(this.aspect == "Light") xl = xl *4;
+		if(this.aspect == "Space") mob = mob /4;
+
+		denizenMinion.setStats(ml,xl,hp,mob,tl,fw,power,true, false, [],1000000);
+		power = 100*strength;
+		if(this.aspect == "Hope") power = power *4; //only power and hp need recalced, will be same for all others.
+		hp = 50* strength;
+		if(this.aspect == "Life") hp = hp *4;
+		if(this.aspect == "Doom"){
+			 hp = hp/2;
+			 ml = ml/2;
+		}
+		denizen.setStats(ml,xl,hp,mob,tl,fw,power,true, false, [],1000000);
+		this.denizen = denizen;
+		this.denizenMinion = denizenMinion;
 	}
 	
 	this.getDenizenNameArray = function(){
