@@ -119,6 +119,57 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 		return ret;
 	}
+	
+	this.getDenzenNameArray = function(){
+		
+	}
+	
+	//returns a number based on the absolute value of everything except relationships (can't help you with a denizen fight and that's what this is for)
+	this.getOverallStrength  = function(){
+		var ret = 0;
+		ret += this.power;
+		ret += Math.abs(this.freeWill)
+		ret += Math.abs(this.mobility)
+		ret += Math.abs(this.hp)
+		ret += Math.abs(this.maxLuck - this.minLuck)
+		ret += Math.abs(this.triggerLevel)
+		return ret;
+	}
+	
+	this.generateDenizen = function(){
+		var possibilities = this.getDenizenNameArray();
+		var strength = this.getOverallStrength();
+		var maxExpectedStrength = 2322; //from sim values of 50+ sessions.
+		var minExpectedStrength = 90;
+		var strengthPerTier = (maxExpectedStrength - minExpectedStrength)/possibilities.length;
+		console.log("Strength at start is, " + strength);//but what if you don't want STRANGTH!???
+		var denizenIndex = Math.round(this.power/strengthPerTier)-1;  //want lowest value to be off the denizen array.
+		
+		var denizenName = "";
+		var denizenStrength = (denizenIndex/(possibilities/2))+1
+		if(denizenIndex < 0){
+			denizenName = this.getBabyDenizenName();
+			denizenStrength = 0.1;
+		}else if(denizenIndex >= possibilities.length){
+			denizenName = this.getYaldoBooger(); //<-- doesn't have to be literally him. points for various mispellings of his name.
+		}else{
+			denizenName = possibilities[denizenIndex];
+			denizenStrength = 5;
+		} 
+		
+		makeDenizen(name, denizenStrength); //if you pick the middle enizen it will be at strength of "1", if you pick last denizen, it will be at 2 or more.
+		
+	}
+	
+	//generate denizen gets me name and strength, this just takes care of making it.
+	this.makeDenizenWithStrength(name, strength){
+		//based of existing denizen code.  care about which aspect i am.
+		//also make minion here.
+	}
+	
+	this.getDenizenNameArray = function(){
+		//TODO all this is does is call a different sub function based on my aspect
+	}
 
 	//flipping out over the dead won't call this but everything else will.
 	this.flipOut = function(reason){
@@ -2005,8 +2056,11 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 
 		if(this.isTroll && this.bloodColor != "#ff0000"){
-			this.power += bloodColorToBoost();
+			console.log("before power boost: " + this.power)
+			this.power += bloodColorToBoost(this.bloodColor);
+			console.log("after power boost: " + this.power)
 		}
+		console.log("intiial power is: " + this.power)
 	}
 
 

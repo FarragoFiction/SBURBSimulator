@@ -675,6 +675,7 @@ function Intro(session){
 	//i is so you know entry order
 	this.renderContent = function(div,i){
 		//foundRareSession(div, "This is just a test. " + this.session.session_id)
+		this.player.generateDenizen();
 		var alt = this.addImportantEvent();
 		if(alt && alt.alternateScene(div)){
 			return;
@@ -736,6 +737,7 @@ function Intro(session){
 				}
 			narration += "The Black King's SCEPTER grows stronger from prototyping the " +  this.player.object_to_prototype.name +". ";
 				div.append(narration);
+				
 				return;
 			}
 

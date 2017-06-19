@@ -1053,7 +1053,7 @@ function intToAspect(num){
 }
 
 function bloodColorToBoost(color){
-	 return 3* bloodColorToInt(color); //high blood are STRONG
+	 return 3* bloodColorToInt(color); //high blood are STRONG why is this always returning 45??? huh, thinks color is numb.
 }
 
 function bloodColorToInt(color){
