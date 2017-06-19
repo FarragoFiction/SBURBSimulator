@@ -41,21 +41,26 @@ function startTournament(){
 
 function startRound(){
 	lastTeamIndex += 2;
+	if(lastTeamIndex >= teamsGlobalVar.length) return doneWithTier();
 	var team1 = teamsGlobalVar[lastTeamIndex]
 	var team2 = teamsGlobalVar[lastTeamIndex+1]  //if no team 2, they win???
+	if(team2 == null) return doneWithRound();
 	var team1Title = "<h1 id = 'team1Title'>"+ team1 + "</h1>";
 	var team2Title =  "<h1 id = 'team2Title'>"+ team2 + "</h1>";
 	$("#roundTitle").html(team1Title +" vs " + team2Title);
 	renderTeam(team1, $("#team1"));
 	renderTeam(team2, $("#team2"));
+	clearTeam($("#team1"))
+	clearTeam($("#team2"))
 	abLeft();
-	console.log("TODO, do 10 rounds of team 1.")
 	fight();
 }
+
 
 function doneWithRound(){
 	var team1 = teamsGlobalVar[lastTeamIndex]
 	var team2 = teamsGlobalVar[lastTeamIndex+1]
+	if(!team2) return doneWithTier();
 	if(team1.score() > team2.score()){
 		team2.lostRound = true;
 	}else if(team1.score() < team2.score()){
@@ -79,8 +84,14 @@ function doneWithRound(){
 	}
 	//start up next two players.
 	//if not even one more player, do "doneWithTier"
+	startRound();
 }
 
+
+function clearTeam(teamDiv){
+	teamDiv.css('background-color', "white");
+	teamDiv.css("text-decoration", "none;")
+}
 
 function markLoser(loser){
 	console.log("marking loser")
@@ -91,6 +102,7 @@ function markLoser(loser){
 
 function doneWithTier(){
 	//remove all losers. clear out all "wonRounds" rerender Combatants. start round up with lastTeamIndex of 0.
+	alert("what do i do here")
 }
 
 function fight(){
@@ -106,8 +118,16 @@ function fight(){
 
 	if(team.numberSessions >= numSimulationsToDo) return doneWithRound();
 	//var team2 = teamsGlobalVar[lastTeamIndex+1]  //if no team 2, they win???
-	simulatedParamsGlobalVar = team.name + "=true&selfInsertOC=true"; //which session are we checking?
+	var selfInsert = "";
+	if(!isClassOrAspectStuck(team)) selfInsert = "&selfInsertOC=true"
+	simulatedParamsGlobalVar = team.name + "=true"+selfInsert; //which session are we checking?
 	startSession(aBCallBack);
+}
+
+//don't add selfInsertOC to claspect stuck
+function isClassOrAspectStuck(team){
+	var stuck = team.name.split("Stuck");
+	return stuck.length == 2;
 }
 
 //what will happen if scratch? Will it return here still?
@@ -151,8 +171,13 @@ function aBCallBack(sessionSummary){
 		mvpName = team.mvp_name;
 	}
 	renderTeam(team, $("#team"+teamNum));
+	renderGlobalMVP();
 	fight();
 
+}
+
+function renderGlobalMVP(){
+	$("globalMVP").html("Overall MVP:  " + mvpName + " with a power of: " + mvpScore +"<br>");
 }
 
 function abLeft(glitch){

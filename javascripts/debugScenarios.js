@@ -111,6 +111,7 @@ function checkEasterEgg(callBack,that){  //only yellow yard session uses 'that' 
 function processXStuck(){
 	var params1 = window.location.search.substr(1);
 	var params2 = simulatedParamsGlobalVar;
+	console.log("~~~~~~~~~~~~~~~~~~params2 is " + params2)
 	var params = "";
 	if(params1){
 		params = params1;
