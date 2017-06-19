@@ -311,7 +311,7 @@ function advertisePatreon(div){
 	chat += "JR: Hey!!! Sorry for the confusion, just bare with me, but this is pretty much the only way I have to talk directly to the Observers! \n";
 	chat += chatLine(playerStart, player,"What the actual fuck?")
 	chat += "JR: Don't worry about it. This practically doesn't even concern you.  \n";
-	chat += "JR: So! SBURBSim's Patreon totally reached it's major practically goals!  You guys are the best!!! <3<3<3  \n";
+	chat += "JR: So! SBURBSim's Patreon totally reached it's major practicality goals!  You guys are the best!!! <3<3<3  \n";
 	chat += "JR: All that's left is to try to get this bonus thingy Patreon offers based on number of Patrons obtained in the first month. Donating even just $1 this month has the potential to be worth way more than that in the long run.\n"
 	chat +="JR: Money donated over the practicality goals will go towards buffer for server stuff, as well as groceries and stuff for me and KR. The more we can work on SBURBSim instead of paying gigs, the better!  \n";
 	chat += chatLine(playerStart, player,"Yeah. I'm blocking you, weirdo.")
