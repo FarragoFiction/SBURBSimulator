@@ -357,6 +357,8 @@ body{
 	display: inline-block;
 	vertical-align: top;
 	text-align: top;
+	overflow-x: scroll;
+	white-space: nowrap;
 }
 
 .descriptionBox{
