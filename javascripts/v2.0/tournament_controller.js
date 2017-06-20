@@ -3,6 +3,7 @@ var playersGlobalVar = [];
 var easterEggEngineGlobalVar;
 var simulationMode  = false;
 var teamsGlobalVar = [];
+var abj = false;
 //for whole tournament
 var mvpName = ""
 var mvpScore = ""
@@ -10,6 +11,7 @@ var lastTeamIndex = -2; //each round starts at index + 2
 var tierNumber = 0; //starts at zero before fight, then at 1.
 window.onload = function() {
 	$(this).scrollTop(0);
+	if(getParameterByName("abj")  == "interesting") abj = true;
 	loadNavbar();
 	simulationMode = true; //dont' render graphics.
 	displayPotentialFighters();
@@ -229,10 +231,18 @@ function renderGlobalMVP(){
 }
 
 function abLeft(glitch){
-	if(glitch){
-		$("#avatar").attr("src", "images/guide_bot_turnways_glitch.gif");
+	if(abj){
+		if(glitch){
+			$("#avatar").attr("src", "images/abj_interesting_turnways.png");
+		}else{
+			$("#avatar").attr("src", "images/authorbot_jr_scout_turnways.png");
+		}
 	}else{
-		$("#avatar").attr("src", "images/guide_bot_turnways.png");
+		if(glitch){
+			$("#avatar").attr("src", "images/guide_bot_turnways_glitch.gif");
+		}else{
+			$("#avatar").attr("src", "images/guide_bot_turnways.png");
+		}
 	}
 
 	$("#team1Title").css("color", "red");
@@ -240,10 +250,20 @@ function abLeft(glitch){
 }
 
 function abRight(glitch){
-	if(glitch){
-		$("#avatar").attr("src", "images/guide_bot_glitch.gif");
+	
+	if(abj){
+		if(glitch){
+			$("#avatar").attr("src", "images/abj_interesting.png");
+		}else{
+			$("#avatar").attr("src", "images/authorbot_jr_scout.png");
+		}
 	}else{
-		$("#avatar").attr("src", "images/guide_bot.png");
+	
+		if(glitch){
+			$("#avatar").attr("src", "images/guide_bot_glitch.gif");
+		}else{
+			$("#avatar").attr("src", "images/guide_bot.png");
+		}
 	}
 
 	$("#team2Title").css("color", "red");
