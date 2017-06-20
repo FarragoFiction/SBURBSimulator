@@ -210,7 +210,7 @@ function aBCallBack(sessionSummary){
 		}
 	}
 	if(sessionSummary.mvp.power > team.mvp_score){
-		team.mvp_name = sessionSummary.mvp.htmlTitle() + " (from team: "+team.name +" ) ";
+		team.mvp_name = sessionSummary.mvp.htmlTitle();
 		team.mvp_score = sessionSummary.mvp.power;
 	}
 

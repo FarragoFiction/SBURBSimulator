@@ -376,8 +376,8 @@ body{
 
 .twoTeams{
 	border: 1px solid grey;
-	padding: 5px;
-	margin: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 .teamDescription{
