@@ -123,15 +123,13 @@ function doneWithRound(){
 
 
 function clearTeam(teamDiv){
-	teamDiv.css('background-color', "white");
-	teamDiv.css("text-decoration", "none;")
+	teamDiv.removeClass("loser");
 }
 
 function markLoser(loser){
 	console.log("marking loser")
 	console.log(loser);
-	loser.css('background-color', "grey");
-	loser.css("text-decoration", "overline;")
+	loser.addClass("loser");
 }
 
 function doneWithTier(){
@@ -212,7 +210,7 @@ function aBCallBack(sessionSummary){
 		}
 	}
 	if(sessionSummary.mvp.power > team.mvp_score){
-		team.mvp_name = sessionSummary.mvp.htmlTitle() + "(from team: "+team.name +" ) ";
+		team.mvp_name = sessionSummary.mvp.htmlTitle() + " (from team: "+team.name +" ) ";
 		team.mvp_score = sessionSummary.mvp.power;
 	}
 
@@ -262,7 +260,8 @@ function renderTeam(team, div){
 		div.css("text-decoration", "overline;")
 	}
 	div.html("<div class = 'scoreBoard'>" + score + num + win + crash + mvp + "</div>")
-	$("#score_" + team.name+tierNumber).html("Score: " + team.score());
+	$("#score_" + team.name+tierNumber).html("<B>Score</b>: " + team.score());
+	$("#mvp_" + team.name+tierNumber).html("<b>MVP:</b>  " + team.mvp_name + " with a power of: " + team.mvp_score);
 }
 
 
@@ -344,9 +343,9 @@ function displayTeamInList(team){
 function getTeamDescription(team){
 	console.log("~~~~~~~~~~~~~~~~~~TODO~~~~~~~~~~~~~~~ have icon for each category.");
 	var stuck = team.name.split("Stuck");
-	if(stuck.length == 2) return "<h1>" +stuck[0] +"Stuck</h1> <div id = 'score_" + team.name + tierNumber +"'></div><hr> A random team of only  " + stuck[0] + " Players. (With Time/Space guaranteed)"
+	if(stuck.length == 2) return "<h2>" +stuck[0] +"Stuck</h2> <div id = 'score_" + team.name + tierNumber +"'></div><div id = 'mvp_" + team.name + tierNumber +"'></div><hr> A random team of only  " + stuck[0] + " Players. (With Time/Space guaranteed)"
 
-	return "<h1>" + team + "</h1><div id = 'score_" + team.name + tierNumber+"'></div> <hr>Players chosen randomly from the " + team + " fan OCs";
+	return "<h2>" + team + "</h2><div id = 'score_" + team.name + tierNumber+"'></div><div id = 'mvp_" + team.name + tierNumber +"'></div> <hr>Players chosen randomly from the " + team + " fan OCs";
 
 }
 

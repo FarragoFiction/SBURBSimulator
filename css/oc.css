@@ -364,6 +364,11 @@ body{
 	vertical-align: top;
 	border: 1px solid lightgrey;
 }
+
+.loser{
+	background-color: grey;
+	text-decoration: line-through;
+}
 #tournament{
 	width:790px;
 	display: inline-block;
@@ -377,7 +382,7 @@ body{
 
 .teamDescription{
 	width:180px;
-	background-color: lightgrey;
+	margin: 2px;
 }
 
 #team1{
