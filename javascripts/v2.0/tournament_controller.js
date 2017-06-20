@@ -49,11 +49,21 @@ function startTournament(){
 function missionComplete(){
 	//have some sort of css pop up with winner, hide tournament, show all team descriptions (hopefully in horizontally scrolling line)
 	$("#tournament").hide();
+	showAllTiers();
+}
+
+function showAllTiers(){
+	for(var i = 1; i<(tierNumber+1); i++){
+		//$("#description"+(i)).css('display', 'inline-block');
+		$("#description"+(i)).prepend("Tier: " + (i)); //label
+		$("#description"+(i)).show();
+	}
 }
 
 function makeDescriptionList(){
-	var divHTML = "<div id = 'description"+tierNumber +  "'></div>"
+	var divHTML = "<div class = 'descriptionBox' id = 'description"+tierNumber +  "'></div>"
 	$("#descriptions").append(divHTML);
+	
 	$("#description"+(tierNumber-1)).hide(); //only current is shown.
 }
 
@@ -126,7 +136,7 @@ function markLoser(loser){
 
 function doneWithTier(){
 	//remove all losers. clear out all "wonRounds" rerender Combatants. start round up with lastTeamIndex of 0.
-	alert("ready for round " + (tierNumber+1) + "?")
+	//alert("ready for round " + (tierNumber+1) + "?")
 	removeLosers();
 	startTournament();
 }

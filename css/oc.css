@@ -358,6 +358,11 @@ body{
 	vertical-align: top;
 	text-align: top;
 }
+
+.descriptionBox{
+	display: inline-block;
+	vertical-align: top;
+}
 #tournament{
 	width:790px;
 	display: inline-block;
