@@ -30,3 +30,13 @@ b=%00%00%00%00%C3%B5%C3%88%10E%1A%1A7&s=,,Love,Fashion,grimAuxiliatrix
 b=%00%00%00%C2%9A%C3%BA%C3%8D%10%07%13%138&s=,,Romance,History,caligulasAquarium
 b=%00%00%00%7B%C3%BB%C2%B5%10%19%23%239&s=,,Animals,Money,cuttlefishCuller
 b=%00%00%00%C2%83%C3%B2%C2%9A%10%12!!0&s=,,Video Games,Programming,twinArmageddons
+b=%C3%BF%C3%BF%C3%BFA%C3%B4%C2%9B%10%03%16%16%01&s=,,Irony,Role Playing,turntechCatnip
+b=%C3%BF%00%00%C2%85%C3%B8Y%10%0A%14%0A%08&s=,,Classism,Irony,timaeusTesticle
+b=%C3%BF%C3%BF%C3%BFg%C3%BE%C2%B7%00%12%01%01%14&s=,,Cats,Horrorterrors,tentacleTherapist
+b=%00%00%C3%BF%12%C3%B1u%10Q%1C%1C*&s=,,Faeries,First Guardians,adiosToreador
+b=%C2%80%00%C2%80%C2%B5%C3%BB%C3%8B%10%03%16%23%13&s=,,Relationships,Animals,cuttlefishCatnip
+b=%00%C3%BF%00%C2%A3%C3%BAZ%10%02!%13%02&s=,,Genocide,Hacking,caligulasArmageddons
+b=%00%00%C3%BFr%C3%B7U%10X%1C%1B*&s=,,Death,Suicide,adiosGrip
+b=%00%C2%80%00%C2%B0%C3%BEX%00T%07%05%09&s=,,First Guardians,Gardening,gardenGnostic
+b=%C3%BF%C2%80%001%C3%BE%C2%9B%00%13%24%24%01&s=,,Irony,Birds,turntechGodhead
+b=%00%C3%BF%C3%BF%0B%C3%BE%08%00P%01%01%26&s=,,Pranks,Baking,gutsyGumshoe
