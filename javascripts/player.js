@@ -1308,7 +1308,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.lifeIncreasePower = function(powerBoost){
-		var landBoost = powerBoost/100;
+		var landBoost = powerBoost/10;
 		if(this.class_name == "Prince" || this.class_name == "Bard"){
 			landBoost = -1 *landBoost;
 		}
