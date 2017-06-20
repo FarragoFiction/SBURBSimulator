@@ -962,6 +962,8 @@ function CharacterEasterEggEngine(){
 
 	this.parseFileContentsToArray =function(arr, fileContents){
 		this[arr] = fileContents.split("\n");
+		//console.log(arr);
+		//console.log(this[arr])
 	}
 
 	//pick 2-12 players out of pool (first space/time (and if don't exist, make placeholder)
@@ -1080,6 +1082,7 @@ function CharacterEasterEggEngine(){
 		}
 
 		if(pool.length == 0){
+			console.log("i think i should be returning all characters.")
 			pool = pool.concat(this.redditCharacters)
 			pool = pool.concat(this.tumblrCharacters)
 			pool = pool.concat(this.discordCharcters)
@@ -1090,6 +1093,7 @@ function CharacterEasterEggEngine(){
 			pool = pool.concat(this.creatorCharacters)
 		}
 
+		//return pool;
 		return shuffle(pool); //boring if the same peeps are always first.
 
 	}

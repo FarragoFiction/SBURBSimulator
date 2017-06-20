@@ -23,6 +23,8 @@ function loadAllImages(skipInit){
 
 function loadAllImagesForPlayers(players, guardians,skipInit){
 	var numImages = 0;
+	//loadFuckingEverything(skipInit); //lol, fuck the world, let's do this shit.
+	
 	//same number of players and guardians
 	for(var i = 0; i<players.length; i++){
 		loadPlayer(players[i],skipInit);
