@@ -171,7 +171,7 @@ function babyStuckMode(){
 //AB told me this was funny! I SWEAR I am not Robo-Racist! It's IRONIC.
 function roboMode(){
 	if(!simulationMode) alert("BEEP")
-	$("#story").append("<img src = 'images/robot_author.png' style='float:left;'>");
+	$("#story").append("<img src = 'images/guide_bot.png' style='float:left;'>");
 	for(var j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
 		p.hairColor = getRandomGreyColor();

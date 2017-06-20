@@ -231,7 +231,7 @@ function MurderPlayers(session){
 					}else{
 						worstEnemy.increasePower();
 
-						ret += " The " + m.htmlTitle() + " attempts to brutally murders that asshole, the " + worstEnemy.htmlTitle();
+						ret += " The " + m.htmlTitle() + " attempts to brutally murder that asshole, the " + worstEnemy.htmlTitle();
 						ret += ", but instead gets murdered first, in self-defense. " + getPVPQuip(m,worstEnemy, "Murderer", "Defender");
 						if(m.dead == true){ //they could have been killed by another murder player in this same tick
 							ret += " The task is made especially easy by the " + m.htmlTitle() + " being already in the proccess of dying. "
@@ -324,7 +324,7 @@ function MurderPlayers(session){
 					m.victimBlood = worstEnemy.bloodColor;
 				}else{
 					worstEnemy.increasePower();
-					ret += " The " + m.htmlTitle() + " attempts to brutally murders that asshole, the " + worstEnemy.htmlTitle();
+					ret += " The " + m.htmlTitle() + " attempts to brutally murder that asshole, the " + worstEnemy.htmlTitle();
 					ret += ",but instead gets murdered first, in self-defense. "+ getPVPQuip(m,worstEnemy, "Murderer", "Defender");
 					m.makeDead("being put down like a rabid dog by " + worstEnemy.title())
 					this.session.murdersHappened = true;
