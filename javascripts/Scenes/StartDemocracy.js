@@ -1,38 +1,38 @@
 /*
   A war weary villan will approach certain types of players.
   Breath, Doom, Mind, Seer, Page, or Rogue
-  
+
   They will ask for help overthrowing all Royalty.
-  
-  Players work to weaken and Exile Queen. 
-  
+
+  Players work to weaken and Exile Queen.
+
   During Reckoning, WarWeary Villain assembles and army to help fight King.
-  
+
   During ending, if democracy = true, mention that.
 */
 
 function StartDemocracy(session){
 	this.session=session;
-	this.canRepeat = false;	
+	this.canRepeat = false;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.friend = null;
-	
-	//blood or page or thief or rogue. 
+
+	//blood or page or thief or rogue.
 	this.findSympatheticPlayer = function(){
-		this.friend =  findClassPlayer(this.playerList, "Rogue");
+		this.friend =  findClassPlayer(this.session.availablePlayers, "Rogue");
 		if(this.friend == null || this.friend.land == null){
-			this.friend =  findAspectPlayer(this.playerList, "Hope");
+			this.friend =  findAspectPlayer(this.session.availablePlayers, "Hope");
 		}
-		
+
 		if(this.friend == null || this.friend.land == null){
 			return null;
 		}
 	}
-	
+
 	this.renderContent = function(div){
 		div.append("<br> <img src = 'images/sceneIcons/wv_icon.png'> "+this.content());
 	}
-	
+
 	//a player has to be not busy to be your friend right now.
 	this.trigger = function(playerList){
 		this.playerList = playerList;
@@ -40,10 +40,10 @@ function StartDemocracy(session){
 			return false;
 		}
 		this.findSympatheticPlayer();
-		
+
 		return (this.session.democracyStrength <= 0 ) && this.session.king.getPower() >  this.session.hardStrength && (this.friend != null);
 	}
-	
+
 	this.content = function(){
 		this.friend.increasePower();
 		removeFromArray(this.friend, this.session.availablePlayers);
