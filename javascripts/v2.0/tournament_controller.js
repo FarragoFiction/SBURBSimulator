@@ -11,7 +11,7 @@ var lastTeamIndex = -2; //each round starts at index + 2
 var tierNumber = 0; //starts at zero before fight, then at 1.
 window.onload = function() {
 	$(this).scrollTop(0);
-	if(getParameterByName("abj")  == "interesting") abj = true;
+	if(getParameterByName("abj")  == "interesting!!!") abj = true;
 	loadNavbar();
 	simulationMode = true; //dont' render graphics.
 	displayPotentialFighters();
@@ -184,6 +184,7 @@ function isClassOrAspectStuck(team){
 //need to make sure scratched sessions don't count. (they get stat boost after all)
 function aBCallBack(sessionSummary){
 	console.log(sessionSummary)
+	if(abj) return abjCallBack;
 	var team = teamsGlobalVar[lastTeamIndex]
 	var teamNum = 1;
 	if(team.numberSessions >= numSimulationsToDo){
@@ -198,6 +199,49 @@ function aBCallBack(sessionSummary){
 	if(sessionSummary.won) team.win ++;
 	if(sessionSummary.crashedFromPlayerActions){
 		 team.crash ++;
+		//grim dark ab turnways if 1
+		if(teamNum == 1){
+			abLeft(true);
+		}else{
+			abRight(true);
+		}
+	}else{
+		if(teamNum == 1){
+			abLeft();
+		}else{
+			abRight();
+		}
+	}
+	if(sessionSummary.mvp.power > team.mvp_score){
+		team.mvp_name = sessionSummary.mvp.htmlTitle();
+		team.mvp_score = sessionSummary.mvp.power;
+	}
+
+	if(team.mvp_score > mvpScore){
+		mvpScore = team.mvp_score;
+		mvpName = team.mvp_name;
+	}
+	renderTeam(team, $("#team"+teamNum));
+	renderGlobalMVP();
+	fight();
+
+}
+
+function aBCallBack(sessionSummary){
+	console.log(sessionSummary)
+	var team = teamsGlobalVar[lastTeamIndex]
+	var teamNum = 1;
+	if(team.numberSessions >= numSimulationsToDo){
+		console.log("switching to team 2 in callback")
+		teamNum = 2;
+		team = teamsGlobalVar[lastTeamIndex+1];
+		abRight();
+	}else{
+		abLeft();
+	}
+	team.numberSessions ++;
+	if(sessionSummary.numLiving == 0) team.numTotalPartyWipe ++;
+	if( sessionSummary.numLiving == 0){
 		//grim dark ab turnways if 1
 		if(teamNum == 1){
 			abLeft(true);
@@ -271,6 +315,7 @@ function abRight(glitch){
 }
 
 function renderTeam(team, div){
+	if(abj) return renderTeamABJ(team, div);
 	var num = "# of Sessions: " + team.numberSessions
 	var win = "<br># of Won Sessions: " + team.win
 	var crash = "<br> # of GrimDark Crash Sessions: " + team.crash
@@ -283,6 +328,20 @@ function renderTeam(team, div){
 	$("#score_" + team.name+tierNumber).html("<B>Score</b>: " + team.score());
 	$("#mvp_" + team.name+tierNumber).html("<b>MVP:</b>  " + team.mvp_name + " with a power of: " + team.mvp_score);
 }
+
+function renderTeamABJ(team, div){
+	var num = "# of Sessions: " + team.numberSessions
+	var win = "<br># of Total Party Wipes: " + team.numTotalPartyWipe
+	var score = "<br><h1>Score:  " + team.score() + "</h1><hr>";
+	var mvp = "<br>MVP:  " + team.mvp_name + " with a power of: " + team.mvp_score;
+	if(team.lostRound){
+		div.css("text-decoration", "overline;")
+	}
+	div.html("<div class = 'scoreBoard'>" + score + num + win  + mvp + "</div>")
+	$("#score_" + team.name+tierNumber).html("<B>Score</b>: " + team.score());
+	$("#mvp_" + team.name+tierNumber).html("<b>MVP:</b>  " + team.mvp_name + " with a power of: " + team.mvp_score);
+}
+
 
 
 //all selected tiers will render example chars and a text explanation.handle up to ALL chosen.
@@ -310,7 +369,7 @@ function wireUpTeamSelector(){
 	$("#teams").change(function() {
 		teamsGlobalVar = [];
 		$('#teams :selected').each(function(i, selected){
-			teamsGlobalVar.push(new Team($(selected).text()));
+			teamsGlobalVar.push(new Team($(selected).text(), abj));
 		});
 		displayTeams($("#description"+tierNumber));
 		$("#tournamentButtonDiv").css('display', 'inline-block');
@@ -370,7 +429,7 @@ function getTeamDescription(team){
 }
 
 
-function Team(name){
+function Team(name,abj){
 	this.name = name;
 	this.numberSessions = 0;
 	this.win = 0;
@@ -378,6 +437,7 @@ function Team(name){
 	this.crash = 0;
 	this.mvp_name = "";
 	this.mvp_score = 0;
+	this.abj = abj;
 	this.lostRound = false; //set to true if they lost.  cause them to render different.
 	
 	this.resetStats = function(){
@@ -391,6 +451,7 @@ function Team(name){
 	}
 	
 	this.score = function(){
+		if(this.abj) return this.numTotalPartyWipe;
 		return this.win - this.crash;
 	}
 	
