@@ -8,8 +8,8 @@
       <a href="index2.html">Read Random</a>
       <a href="character_creator.html">Customize Random</a>
       <a href="rare_session_finder.html">Find Rare</a>
-      <a href="http://farragofiction.com/SBURBSim/">Main Branch</a>
-      <a href="http://farragofiction.com/SBURBSimE/">Experimental Branch</a>
+      <a href="http://farragofiction.com/SBURBSim/mainLanding.html">Main Branch</a>
+      <a href="http://farragofiction.com/SBURBSimE/experimentalLanding.html">Experimental Branch</a>
     </div>
   </li>
 
