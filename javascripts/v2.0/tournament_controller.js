@@ -40,7 +40,7 @@ function startTournament(){
 	//render team 1 and team2
 	teamsGlobalVar = shuffle(teamsGlobalVar); //if these were svgs, could be animated???
 	makeDescriptionList();
-	displayTeams($("#description"+tierNumber));
+	displayTeamsTournament($("#description"+tierNumber));
 	$("#tournamentButtonDiv").hide();
 	if(teamsGlobalVar.length == 1) return missionComplete();
 	startRound();
@@ -309,6 +309,25 @@ function displayTeams(div){
 	for(var i = 0; i < teamsGlobalVar.length; i++){
 		html +=displayTeamInList(teamsGlobalVar[i]);
 	}
+	div.html(html);
+	
+}
+
+//pairs teams up instead of straight line.
+function displayTeamsTournament(div){
+	//when teams are displayed, also make sure button to start tournament is displayed. Hides team selector, shows AB in middle, with current fighters on either sidebar
+	//points go up with each won session, AB glitches red with each grim dark crash and a point is lost.
+	//loser is crossed off from team description, and next pair go.
+	var html = "<div>"; //empty so that can end it for i = 0
+
+	for(var i = 0; i < teamsGlobalVar.length; i++){
+		if(i%2 == 0){
+			html += "</div><div class = 'twoTeams'>"
+		}
+		html +=displayTeamInList(teamsGlobalVar[i]);
+	}
+	if(teamsGlobalVar.length %2 != 0) html += "</div>" //didn't get closed
+
 	div.html(html);
 	
 }

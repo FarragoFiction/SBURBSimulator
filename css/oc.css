@@ -362,14 +362,22 @@ body{
 .descriptionBox{
 	display: inline-block;
 	vertical-align: top;
+	border: 1px solid lightgrey;
 }
 #tournament{
 	width:790px;
 	display: inline-block;
 }
 
+.twoTeams{
+	border: 1px solid grey;
+	padding: 5px;
+	margin: 5px;
+}
+
 .teamDescription{
-	width:200px;
+	width:180px;
+	background-color: lightgrey;
 }
 
 #team1{
