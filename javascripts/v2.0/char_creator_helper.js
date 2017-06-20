@@ -1104,7 +1104,6 @@ function CharacterEasterEggEngine(){
 	}
 
 	this.playerDataStringArrayToURLFormat = function(playerDataStringArray){
-		console.log("Took in an array of player data of size: " + playerDataStringArray.length)
 		var s = "";
 		var b = "";
 		//first, take each element in the array and seperate it out into s and b  (getRawParameterByName(name, url))
@@ -1112,15 +1111,11 @@ function CharacterEasterEggEngine(){
 			//append all b's and all s's together
 			var bs = playerDataStringArray[i];
 			var tmpb = decodeURIComponent(bs.split("=")[1].split("&s")[0])
-			console.log(i);
-			console.log(tmpb)
 			var tmps = bs.split("=")[2]
-			console.log(tmps);
 			s+= tmps+",";
 			b += tmpb;
 		}
 		//then,
-		console.log(b);
 		return dataBytesAndStringsToPlayers(b,s);
 
 	}

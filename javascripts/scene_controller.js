@@ -500,8 +500,8 @@ function generateURLParamsForPlayers(players,includeChatHandle){
 	 console.log("dataBytesAndStringsToPlayers");
 	//bytes are 11 chars per player
 	//strings are 5 csv per player.
-	console.log(bytes);
-	console.log(bytes.length);
+	//console.log(bytes);
+	//console.log(bytes.length);
 	strings = strings.split(",");
 	var players = [];
 	//console.log(bytes)
@@ -512,8 +512,8 @@ function generateURLParamsForPlayers(players,includeChatHandle){
 		var b = bytes.substring(bi, bi+11)
 		var s = [];
 		var s = strings.slice(si, si +5)
-		console.log("passing b to player parser");
-		console.log(b);
+		//console.log("passing b to player parser");
+		//console.log(b);
 		var p = (dataBytesAndStringsToPlayer(b,s));
 		p.id = i; //will be overwritten by sim, but viewer needs it
 		players.push(p);
@@ -524,7 +524,6 @@ function generateURLParamsForPlayers(players,includeChatHandle){
 
 //see player.js toDataBytes and toDataString to see how I expect them to be formatted.
 function dataBytesAndStringsToPlayer(charString, str_arr){
-	console.log(charString);
 	 var player = new Player();
 	 player.quirk = new Quirk();
 	 //console.log("strings is: " + str_arr)
@@ -564,7 +563,6 @@ function dataBytesAndStringsToPlayer(charString, str_arr){
 	 player.hair = charString.charCodeAt(10)
 	 if(player.interest1Category) interestCategoryToInterestList(player.interest1Category ).push(player.interest1) //maybe don't add if already exists but whatevs for now.
 	 if(player.interest2Category )interestCategoryToInterestList(player.interest2Category ).push(player.interest2)
-	 console.log(player.chatHandle);
 	 return player;
 }
 
