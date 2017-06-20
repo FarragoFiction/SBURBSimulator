@@ -1093,8 +1093,8 @@ function CharacterEasterEggEngine(){
 			pool = pool.concat(this.creatorCharacters)
 		}
 
-		return pool;
-		//return shuffle(pool); //boring if the same peeps are always first.
+		//return pool;
+		return shuffle(pool); //boring if the same peeps are always first.
 
 	}
 
