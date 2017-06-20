@@ -2294,3 +2294,24 @@ ah wait, the "stuck" stuff doesn't even use getURL vars, that's right.
 
 cool.
 easier.
+
+
+
+
+~~~~~~~~~~~
+It seems like any character that is stored as an ocCharacter in the text files loses any binary character that is "(" in ascii, casuse of chracter corruption.
+Where is it loosing it? It appears to be correct when i call standard char processing code.
+
+parsing one char, fine, parsing array, some are corruptionnnn....
+
+
+
+
+expect 88 X11 =968 bytes, getting 966.  two bytes are being eaten before  dataBytesAndStringsToPlayers
+
+
+ultimate breeder....appears to have 10 bytes, not 11. see if it ends in the mssing "("
+
+Yes, it does.
+
+So, "(" isn't the problem, Ultimate Breeder is problem, not enough chars. look further.

@@ -140,7 +140,7 @@ function Intro(session){
 
 		chatText += chatLine(player2Start, player2,"Good, what's it like?");
 		chatText += chatLine(player1Start, player1,"It appears to be the " + player1.land +".");
-		chatText += chatLine(player1Start, player1,"I guess it has something to do with my title? I am apparently the ' " + player1.title() + "'. ");
+		chatText += chatLine(player1Start, player1,"I guess it has something to do with my title? I am apparently the ' " + player1.titleBasic() + "'. ");
 		chatText +=chatLine(player2Start, player2,"Whatever THAT means. ");
 		chatText += chatLine(player1Start, player1,"Yes. Also, I prototyped my kernelsprite with a " + player1.object_to_prototype.htmlTitle() +".\n");
 		if(player1.object_to_prototype.player){

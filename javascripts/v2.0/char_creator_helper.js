@@ -994,8 +994,8 @@ function CharacterEasterEggEngine(){
 			time.quirk.favoriteNumber = 0;
 			time.deriveChatHandle = false;
 		}
-		console.log("space chatHandle " + space.chatHandle)
-		console.log(space);
+		//console.log("space chatHandle " + space.chatHandle)
+		//console.log(space);
 		ret.push(space);
 		ret.push(time);
 		var numPlayers = getRandomInt(2,12);
@@ -1093,8 +1093,8 @@ function CharacterEasterEggEngine(){
 			pool = pool.concat(this.creatorCharacters)
 		}
 
-		//return pool;
-		return shuffle(pool); //boring if the same peeps are always first.
+		return pool;
+		//return shuffle(pool); //boring if the same peeps are always first.
 
 	}
 
@@ -1112,11 +1112,15 @@ function CharacterEasterEggEngine(){
 			//append all b's and all s's together
 			var bs = playerDataStringArray[i];
 			var tmpb = decodeURIComponent(bs.split("=")[1].split("&s")[0])
+			console.log(i);
+			console.log(tmpb)
 			var tmps = bs.split("=")[2]
+			console.log(tmps);
 			s+= tmps+",";
 			b += tmpb;
 		}
 		//then,
+		console.log(b);
 		return dataBytesAndStringsToPlayers(b,s);
 
 	}

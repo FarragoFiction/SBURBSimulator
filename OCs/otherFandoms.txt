@@ -60,9 +60,7 @@ b=%C3%B9%C3%B7%C2%B5%C2%B8%C3%B8e%00%16%02%15%1E&s=,,Leadership,Hoarding,ultimat
 b=%00%00%00%C2%93%C3%B0%11%00%16))%0E&s=,,Song Writing,Playing Guitar,ultimateMusician
 b=%C3%A6%C3%A1BI%C3%B0Q%00%12%14%1F%0D&s=,,Insults,Dance,ultimateTradionaldancer
 b=%3F.%3F%1B%C3%B0%C3%9D%00%5C%2C%2C%1A&s=,,Biology,Chemistry,ultimateNurse
-b=%00%00%00%C2%B1%C3%B0%C2%BB%00Z%0F%05&s=,,Animals,Animal Training,ultimateBreeder
 b=(%2B%3E%25%C3%B0D%00%18%02%0E%24&s=,,Fitness,Sports,ultimateTeammanager
-b=%C2%80%40%00p%C3%B0%C2%88%00%13%01%01&s=,,Cooking,Baking,ultimateChef
 b=%C3%BF%C3%BF%C3%BF%C2%87%C3%B0Y%00V**0&s=,,Classism,TV,ultimateLuck
 b=%C2%80%40%00%3A%C3%B0%C2%B6%00Q%14%14%25&s=,,Social Media,Justice,ultimateHope
 b=%C3%B0%0F%0F%06%C3%B0%26%00%5B%0C%10%0F&s=,,Painting,Social Justice,ultimatePhotographer
