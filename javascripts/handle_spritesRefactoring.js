@@ -2,17 +2,23 @@
 function RenderingEngine(dontRender, defaultRendererID){
   this.dontRender = dontRender; //AB for example doesn't want you to render
   this.defaultRendererID = defaultRendererID;
-  this.renderers = [null, new HomestuckRenderer(this), new EggRenderer(this)]; //if they try to render with "null", use defaultRendererID index instead.
+  this.renderers = [null, new HomestuckRenderer(this), new HomestuckTrollRenderer(this), new HomestuckHumanRenderer(this), new EggRenderer(this)]; //if they try to render with "null", use defaultRendererID index instead.
 
+  //for sprite customization. only get sprites needed for used rendering type
+  this.getAllImagesNeeded = function(renderingType){
+    if(renderingType == 0) index = this.defaultRendererID;
+    return this.renderers[index].getAllImagesNeeded();
+  }
 
-  this.getAllImagesNeededForPlayer= function(player){
+  //when passed a "player" should be an oc data string, because each string is interpreted differently by rendering engines
+  this.getAllImagesNeededForPlayer= function(ocDataString, objectData){
     var index = player.renderingType;
     if(player.renderingType == 0) index = this.defaultRendererID;
-    return this.renderers[index].getAllImagesNeededForPlayer(player);
+    return this.renderers[index].getAllImagesNeededForPlayer(ocDataString, objectData);
   }
 
   //actually renders player, not just using cached image.
-  this.renderPlayer = function(canvas, player){
+  this.renderPlayer = function(canvas, ocDataString, objectData){
     var index = player.renderingType;
     if(player.renderingType == 0) index = this.defaultRendererID;
     var renderer = this.renderers[index];
@@ -21,7 +27,7 @@ function RenderingEngine(dontRender, defaultRendererID){
     renderer.drawSpriteFromScratch(canvas, player);
   }
 
-  this.renderPlayerForScene = function(canvas, player){
+  this.renderPlayerForScene = function(canvas, ocDataString, objectData){
     if(player.ghost || player.doomed){  //don't expect ghosts or doomed players to render more than a time or two, don't bother caching for now.
         this.renderPlayer(canvas, player);
     }else{
@@ -351,28 +357,63 @@ function HomestuckRenderer(rh){
   this.humanRenderer = new HomestuckHumanRenderer(this.rendererHelper);
   this.trollRenderer = new HomestuckTrollRenderer(this.rendererHelper);
 
-  this.drawSpriteFromScratch = function(canvas, player){
+  this.drawSpriteFromScratch = function(canvas, ocDataString, objectData){
     if(player.isTroll){
-      this.trollRenderer.drawSpriteFromScratch(canvas, player);
+      this.trollRenderer.drawSpriteFromScratch(canvas, ocDataString, objectData);
     }else{
-      this.humanRenderer.drawSpriteFromScratch(canvas, player);
+      this.humanRenderer.drawSpriteFromScratch(canvas, ocDataString, objectData);
+    }
+  }
+
+  this.getAllImagesNeeded = function(){
+    return this.trollRenderer.getAllImagesNeeded(); //shouldn't be an images that humans have thath trolls don't.
+  }
+
+  this.getAllImagesNeededForPlayer = function(ocDataString, objectData){
+    if(player.isTroll){
+      this.trollRenderer.getAllImagesNeededForPlayer(canvas, ocDataString, objectData);
+    }else{
+      this.humanRenderer.getAllImagesNeededForPlayer(canvas, ocDataString, objectData);
     }
   }
 }
 
 //homestuck has one of 3 sprites
 function HomestuckHumanRenderer(rh){
+  this.baseLocation = "RenderingAssets/Homestuck/";
   this.rendererHelper = rh;
 
-  this.drawSpriteFromScratch = function(canvas, player){
+  this.drawSpriteFromScratch = function(canvas, ocDataString, objectData){
+
+  }
+
+  this.getAllImagesNeededForPlayer = function(ocDataString, objectData){
+
+  }
+
+  //probably will never be called, unless i allow humans to be a rendering category without troll.
+  this.getAllImagesNeeded = function(){
 
   }
 }
 
 function HomestuckTrollRenderer(rh){
   this.rendererHelper = rh;
+  this.baseLocation = "RenderingAssets/Homestuck/";
 
-  this.drawSpriteFromScratch = function(canvas, player){
+  this.drawSpriteFromScratch = function(canvas, ocDataString, objectData){
+    //ocDataString contains all mandatory information, without any assumptions about what that data is encoding.
+    //what is "horns" for a troll might be "eyes" for highschool au, 4 bools might be smooshed together to store an int value, etc.
+    //objectData is the actual object in question in case the data string isn't enough.
+    //it MIGHT not be the type of object i'm expecting, but I can still do things like if(objectData.doomed) and if the var exists and is true, do something different.
+    //and if it doesn't exist, then it's false.
+  }
+
+  this.getAllImagesNeededForPlayer = function(ocDataString, objectData){
+
+  }
+
+  this.getAllImagesNeeded = function(){
 
   }
 }
@@ -380,7 +421,15 @@ function HomestuckTrollRenderer(rh){
 
 function EggRenderer(rh){
   this.rendererHelper = rh;
-  this.drawSpriteFromScratch = function(canvas, player){
+  this.drawSpriteFromScratch = function(canvas, ocDataString, objectData){
+
+  }
+
+  this.getAllImagesNeededForPlayer = function(ocDataString, objectData){
+
+  }
+
+  this.getAllImagesNeeded = function(){
 
   }
 }
