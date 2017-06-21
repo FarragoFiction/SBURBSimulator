@@ -4,6 +4,7 @@ var easterEggEngineGlobalVar;
 var simulationMode  = false;
 var teamsGlobalVar = [];
 var abj = false;
+var tournamentMode = true;
 //for whole tournament
 var mvpName = ""
 var mvpScore = ""

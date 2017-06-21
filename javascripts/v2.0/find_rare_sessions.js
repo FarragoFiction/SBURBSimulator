@@ -45,6 +45,7 @@ var displayMisc = true;
 var displayAverages = true;
 var displayClasses = false;
 var displayAspects = false;
+var tournamentMode = false;
 
 
 
@@ -357,8 +358,9 @@ function scratchAB(session){
 	needToScratch = false;
 	//treat myself as a different session that scratched one?
 	var living = findLivingPlayers(session.players)
-	if(!session.scratched && living.length > 0){
+	if(!session.scratched && living.length > 0 && !tournamentMode){
 		//console.log("scartch")
+		//alert("AB sure loves scratching!")
 		session.scratchAvailable = true;
 		session.pleaseIgnoreThisSessionAB = true;
 		summarizeSessionNoTimeout(session);
