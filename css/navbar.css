@@ -16,6 +16,19 @@
 	vertical-align: middle;
 }
 
+.fanLinks{
+	background-color: #9630bf;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	color: #cc87e8;
+	width:1000px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid black;
+	text-align: center;
+	vertical-align: middle;
+}
+
 .navbarLink{
 	padding-left: 10px;
 	padding-right:10px;
