@@ -5,12 +5,9 @@ function RenderingEngine(dontRender, defaultRendererID){
   this.renderers = [null, new HomestuckRenderer(this) , new EggRenderer(this)]; //if they try to render with "null", use defaultRendererID index instead.
 
 
-  this.ocDataStringToBS = function(ocDataString){
-    var bi = i*11; //i is which player we are on, which is 11 bytes long
-		var si = i*5; //or 5 strings long
-		var b = bytes.substring(bi, bi+11)
-		var s = [];
-		var s = strings.slice(si, si +5)
+  this.ocDataStringToBS = function(bs){
+    var b = decodeURIComponent(bs.split("=")[1].split("&s")[0])
+    var s = bs.split("=")[2]
     return [b,s];
   }
   //for sprite customization. only get sprites needed for used rendering type
@@ -21,8 +18,8 @@ function RenderingEngine(dontRender, defaultRendererID){
 
   //when passed a "player" should be an oc data string, because each string is interpreted differently by rendering engines
   this.getAllImagesNeededForPlayer= function(ocDataString, objectData){
-    var index = player.renderingType;
-    if(player.renderingType == 0) index = this.defaultRendererID;
+    var index = objectData.renderingType;  //later, once renderingType is a thing, parse it out of ocDataString
+    if(objectData.renderingType == 0 || !objectData.renderingType) index = this.defaultRendererID;
     return this.renderers[index].getAllImagesNeededForPlayer(ocDataString, objectData);
   }
 
@@ -471,19 +468,19 @@ function HomestuckRenderer(rh){
     var player = dataBytesAndStringsToPlayer(bs[0], bs[1]);  //only use objectData when I KNOW I need to.
     var ret = [];
 
-    ret.push(this.playerToRegularBody(player),skipInit);
-    ret.push(this.playerToDreamBody(player),skipInit);
-  	ret.push(this.playerToGodBody(player),skipInit);
-  	ret.push(this.baseLocation +"Aspects/"+player.aspect + ".png",skipInit);
+    ret.push(this.playerToRegularBody(player));
+    ret.push(this.playerToDreamBody(player));
+  	ret.push(this.playerToGodBody(player));
+  	ret.push(this.baseLocation +"Aspects/"+player.aspect + ".png");
 
-  	ret.push(this.baseLocation +"Aspects/"+player.aspect + "Big.png",skipInit)
-  	ret.push(this.baseLocation +this.baseLocation +"Aspects/"+"Hair/hair"+player.hair+".png",skipInit)
-    ret.push(this.baseLocation +"Hair/hair_back"+player.hair+".png",skipInit)
+  	ret.push(this.baseLocation +"Aspects/"+player.aspect + "Big.png")
+  	ret.push(this.baseLocation +this.baseLocation +"Aspects/"+"Hair/hair"+player.hair+".png")
+    ret.push(this.baseLocation +"Hair/hair_back"+player.hair+".png")
 
   	if(player.isTroll == true){
-  		ret.push(this.baseLocation +"Wings/wing"+player.quirk.favoriteNumber + ".png",skipInit)
-  		ret.push(this.baseLocation +"Horns/left"+player.leftHorn + ".png",skipInit);
-  		ret.push(this.baseLocation +"Horns/right"+player.rightHorn + ".png",skipInit);
+  		ret.push(this.baseLocation +"Wings/wing"+player.quirk.favoriteNumber + ".png")
+  		ret.push(this.baseLocation +"Horns/left"+player.leftHorn + ".png");
+  		ret.push(this.baseLocation +"Horns/right"+player.rightHorn + ".png");
       ret.push(this.baseLocation +"Bodies/grub"+player.baby + ".png")
   	}else{
       ret.push(this.baseLocation +"Bodies/baby"+player.baby + ".png")

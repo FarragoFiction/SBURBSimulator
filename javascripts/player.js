@@ -2193,7 +2193,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		return ret;
 	}
 	//not compressed
-	this.toOCDataString(){
+	this.toOCDataString = function(){
 		return "b=" + this.toDataBytes() + "&s="+this.toDataStrings(true)
 	}
 
