@@ -5,14 +5,14 @@ function RenderingEngine(dontRender, defaultRendererID){
   this.renderers = [null, new HomestuckRenderer(this), new EggRenderer(this)]; //if they try to render with "null", use defaultRendererID index instead.
 
 
-  this.getAllImagesNeededForPlayer(player){
+  this.getAllImagesNeededForPlayer= function(player){
     var index = player.renderingType;
     if(player.renderingType == 0) index = this.defaultRendererID;
     return this.renderers[index].getAllImagesNeededForPlayer(player);
   }
 
   //actually renders player, not just using cached image.
-  this.renderPlayer(canvas, player){
+  this.renderPlayer = function(canvas, player){
     var index = player.renderingType;
     if(player.renderingType == 0) index = this.defaultRendererID;
     var renderer = this.renderers[index];
@@ -21,7 +21,7 @@ function RenderingEngine(dontRender, defaultRendererID){
     renderer.drawSpriteFromScratch(canvas, player);
   }
 
-  this.renderPlayerForScene(canvas, player){
+  this.renderPlayerForScene = function(canvas, player){
     if(player.ghost || player.doomed){  //don't expect ghosts or doomed players to render more than a time or two, don't bother caching for now.
         this.renderPlayer(canvas, player);
     }else{
