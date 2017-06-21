@@ -19,6 +19,130 @@ function RenderingEngine(dontRender, defaultRendererID){
     throw new Error('Bad Hex ' + hex);
   }
 
+  //takes in url, not just x.png.
+  //THIS IS A BACKUP FOR THE LOADING SCRIPT. IF ANYTHING ACTUALLY GETS ADDED TO IMAGE-STAGING I KNOW I FUCKED UP
+  //this will cause a sprite to not render the first few times, but eventually render in l8r canvases.
+  this.addImageTag = function(url){
+    //console.log(url);
+  	//only do it if image hasn't already been added.
+  	if(document.getElementById(url) == null) {
+  		var tag = '<img id ="' + url + '" src = "' + url + '" style="display:none">';
+  		$("#image_staging").append(tag);
+  	}
+
+  }
+
+  this.drawSolidBG=function(canvas, color){
+    var ctx = canvas.getContext("2d");
+  	ctx.fillStyle = color;
+  	ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
+  this.drawBG = function(canvas, color1, color2){
+  	//var c = document.getElementById(canvasId);
+  	var ctx = canvas.getContext("2d");
+
+  	var grd = ctx.createLinearGradient(0, 0, 170, 0);
+  	grd.addColorStop(0, color1);
+  	grd.addColorStop(1, color2);
+
+  	ctx.fillStyle = grd;
+  	ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
+  this.drawBGRadialWithWidth = function(canvas, startX, endX, width, color1, color2){
+  	//var c = document.getElementById(canvasId);
+  	var ctx = canvas.getContext("2d");
+
+  	var grd = ctx.createRadialGradient(width/2,canvas.height/2,5,width,canvas.height,width);
+  	grd.addColorStop(0, color1);
+  	grd.addColorStop(1, color2);
+
+  	ctx.fillStyle = grd;
+  	ctx.fillRect(startX, 0, endX, canvas.height);
+  }
+
+  this.fillTextMultiLine = function(canvas, text1, text2, color2, x, y) {
+  	var ctx = canvas.getContext("2d");
+  	var lineHeight = ctx.measureText("M").width * 1.2;
+      var lines = text1.split("\n");
+   	for (var i = 0; i < lines.length; ++i) {
+     		ctx.fillText(lines[i], x, y);
+    		y += lineHeight;
+    	}
+  	//word wrap these
+  	ctx.fillStyle = color2
+   	this.wrap_text(ctx, text2, x, y, lineHeight, 3*canvas.width/4, "left");
+  	ctx.fillStyle = "#000000"
+  }
+
+  //http://stackoverflow.com/questions/5026961/html5-canvas-ctx-filltext-wont-do-line-breaks
+  this.wrap_text = function(ctx, text, x, y, lineHeight, maxWidth, textAlign) {
+    if(!textAlign) textAlign = 'center'
+    ctx.textAlign = textAlign
+    var words = text.split(' ')
+    var lines = []
+    var sliceFrom = 0
+    for(var i = 0; i < words.length; i++) {
+      var chunk = words.slice(sliceFrom, i).join(' ')
+      var last = i === words.length - 1
+      var bigger = ctx.measureText(chunk).width > maxWidth
+      if(bigger) {
+        lines.push(words.slice(sliceFrom, i).join(' '))
+        sliceFrom = i
+      }
+      if(last) {
+        lines.push(words.slice(sliceFrom, words.length).join(' '))
+        sliceFrom = i
+      }
+    }
+    var offsetY = 0
+    var offsetX = 0
+    if(textAlign === 'center') offsetX = maxWidth / 2
+    for(var i = 0; i < lines.length; i++) {
+      ctx.fillText(lines[i], x + offsetX, y + offsetY)
+      offsetY = offsetY + lineHeight
+    }
+    //need to return how many lines i created so that whatever called me knows where to put ITS next line.
+    return lines.length;
+  }
+
+  this.getBufferCanvas = function(canvas){
+  	var tmp_canvas = document.createElement('canvas');
+  	tmp_canvas.height = canvas.height;
+  	tmp_canvas.width = canvas.width;
+  	return tmp_canvas;
+  }
+
+  this.copyTmpCanvasToRealCanvasAtPos = function(canvas, tmp_canvas, x, y){
+    var ctx = canvas.getContext('2d');
+  	ctx.drawImage(tmp_canvas, x, y);
+  }
+
+
+  this.drawWhateverTurnways = function(){
+    var ctx = canvas.getContext('2d');
+    if(turnWays){
+      ctx.translate(canvas.width, 0);
+      ctx.scale(-1, 1);
+    }
+    this.drawWhatever(canvas,imageString);
+  }
+
+  //have i really been too lazy to make this until now
+   this.drawWhatever=function(canvas, imageString){
+    if(checkSimMode() == true){
+      return;
+    }
+  	var ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
+  	addImageTag(imageString)
+  	var img=document.getElementById(imageString);
+  	var width = img.width;
+  	var height = img.height;
+  	ctx.drawImage(img,0,0,width,height);
+  }
+
   //if speed becomes an issue, take in array of color pairs to swap out
   //rather than call this method once for each color
   //swaps one hex color with another.
