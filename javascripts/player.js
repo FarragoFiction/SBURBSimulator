@@ -2192,7 +2192,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		var ret = ""+sanitizeString(this.causeOfDrain) + ","+sanitizeString(this.causeOfDeath) + "," + sanitizeString(this.interest1) + "," + sanitizeString(this.interest2) + "," + sanitizeString(ch)
 		return ret;
 	}
-
+	//not compressed
+	this.toOCDataString(){
+		return "b=" + this.toDataBytes() + "&s="+this.toDataStrings(true)
+	}
 
 	/*
 		3 bytes: (12 bits) hairColor
