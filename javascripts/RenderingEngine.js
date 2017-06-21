@@ -372,9 +372,122 @@ function HomestuckTRenderer(rh){
     //and if it doesn't exist, then it's false.
   }
 
+  this.playerToGodBody = function(player){
+    var imageString = this.baseLocation+"Bodies/";
+    if(player.class_name == "Page"){
+      imageString += "001.png"
+    }else if(player.class_name == "Knight" ){
+      imageString += "002.png"
+    }else if(player.class_name == "Witch" ){
+      imageString += "003.png"
+    }else if(player.class_name == "Sylph" ){
+      imageString += "004.png"
+    }else if(player.class_name == "Thief" ){
+      imageString += "005.png"
+    }else if(player.class_name == "Rogue" ){
+      imageString += "006.png"
+    }else if(player.class_name == "Seer" ){
+      imageString += "007.png"
+    }else if(player.class_name == "Mage" ){
+      imageString += "008.png"
+    }else if(player.class_name == "Heir" ){
+      imageString += "009.png"
+    }else if(player.class_name == "Maid" ){
+      imageString += "010.png"
+    }else if(player.class_name == "Prince" ){
+      imageString += "011.png"
+    }else if(player.class_name == "Bard" ){
+      imageString += "012.png"
+    }
+    return imageString;
+  }
+
+
+   this.playerToDreamBody= function(player){
+    var imageString = this.baseLocation+"Bodies/";
+    var tmp = "dream"
+    if(player.class_name == "Page"){
+      imageString += tmp +"001.png"
+    }else if(player.class_name == "Knight" ){
+      imageString += tmp +"002.png"
+    }else if(player.class_name == "Witch" ){
+      imageString += tmp +"003.png"
+    }else if(player.class_name == "Sylph" ){
+      imageString += tmp +"004.png"
+    }else if(player.class_name == "Thief" ){
+      imageString += tmp +"005.png"
+    }else if(player.class_name == "Rogue" ){
+      imageString += tmp +"006.png"
+    }else if(player.class_name == "Seer" ){
+      imageString += tmp +"007.png"
+    }else if(player.class_name == "Mage" ){
+      imageString += tmp +"008.png"
+    }else if(player.class_name == "Heir" ){
+      imageString += tmp +"009.png"
+    }else if(player.class_name == "Maid" ){
+      imageString += tmp +"010.png"
+    }else if(player.class_name == "Prince" ){
+      imageString += tmp +"011.png"
+    }else if(player.class_name == "Bard" ){
+      imageString += tmp +"012.png"
+    }
+    return imageString;
+  }
+
+
+  this.playerToRegularBody=function(player){
+    var imageString = this.baseLocation + "Bodies/";
+    if(player.class_name == "Page"){
+      imageString += "reg001.png"
+    }else if(player.class_name == "Knight" ){
+      imageString += "reg002.png"
+    }else if(player.class_name == "Witch" ){
+      imageString += "reg003.png"
+    }else if(player.class_name == "Sylph" ){
+      imageString += "reg004.png"
+    }else if(player.class_name == "Thief" ){
+      imageString += "reg005.png"
+    }else if(player.class_name == "Rogue" ){
+      imageString += "reg006.png"
+    }else if(player.class_name == "Seer" ){
+      imageString += "reg007.png"
+    }else if(player.class_name == "Mage" ){
+      imageString += "reg008.png"
+    }else if(player.class_name == "Heir" ){
+      imageString += "reg009.png"
+    }else if(player.class_name == "Maid" ){
+      imageString += "reg010.png"
+    }else if(player.class_name == "Prince" ){
+      imageString += "reg011.png"
+    }else if(player.class_name == "Bard" ){
+      imageString += "reg012.png"
+    }
+    return imageString;
+  }
+
+
   this.getAllImagesNeededForPlayer = function(ocDataString, objectData){
     var bs = this.rendererHelper.ocDataStringToBS(ocDataString);
     var player = dataBytesAndStringsToPlayer(bs[0], bs[1]);  //only use objectData when I KNOW I need to.
+    var ret = [];
+
+    ret.push(this.playerToRegularBody(player),skipInit);
+    ret.push(this.playerToDreamBody(player),skipInit);
+  	ret.push(this.playerToGodBody(player),skipInit);
+  	ret.push(this.baseLocation +"Aspects/"+player.aspect + ".png",skipInit);
+
+  	ret.push(this.baseLocation +"Aspects/"+player.aspect + "Big.png",skipInit)
+  	ret.push(this.baseLocation +this.baseLocation +"Aspects/"+"Hair/hair"+player.hair+".png",skipInit)
+    ret.push(this.baseLocation +"Hair/hair_back"+player.hair+".png",skipInit)
+
+  	if(player.isTroll == true){
+  		ret.push(this.baseLocation +"Wings/wing"+player.quirk.favoriteNumber + ".png",skipInit)
+  		ret.push(this.baseLocation +"Horns/left"+player.leftHorn + ".png",skipInit);
+  		ret.push(this.baseLocation +"Horns/right"+player.rightHorn + ".png",skipInit);
+      ret.push(this.baseLocation +"Bodies/grub"+player.baby + ".png")
+  	}else{
+      ret.push(this.baseLocation +"Bodies/baby"+player.baby + ".png")
+    }
   }
 
   //see player.js toDataBytes and toDataString to see how I expect them to be formatted.
