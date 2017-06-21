@@ -6,8 +6,8 @@ function RenderingEngine(dontRender, defaultRendererID){
 
   //for sprite customization. only get sprites needed for used rendering type
   this.getAllImagesNeeded = function(renderingType){
-    if(renderingType == 0) index = this.defaultRendererID;
-    return this.renderers[index].getAllImagesNeeded();
+    if(renderingType == 0) renderingType = this.defaultRendererID;
+    return this.renderers[renderingType].getAllImagesNeeded();
   }
 
   //when passed a "player" should be an oc data string, because each string is interpreted differently by rendering engines
@@ -458,8 +458,8 @@ function HomestuckTrollRenderer(rh){
     }
 
       for(var i = 1; i<=numHair; i++){
-          ret.push(this.baseLocation + this.baseLocation + "Hair/hair_back"+i+".png",skipInit);
-          ret.push(this.baseLocation + "Hair/hair"+i+".png",skipInit);
+          ret.push(this.baseLocation + this.baseLocation + "Hair/hair_back"+i+".png");
+          ret.push(this.baseLocation + "Hair/hair"+i+".png");
       }
 
 
