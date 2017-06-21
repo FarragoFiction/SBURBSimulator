@@ -11,7 +11,7 @@
 <p><a href = "index2.html?lollipop=true">Trickster</a>: Everyone enters the session at a stupidly high level, is in love with everybody else (except the heart player), has super annoying quirks (except the heart player) and instantly completes their land quests. You'd think death would be impossible in this mode, and you'd be right: Except for when the tricksters THEMSELVES go batshit. Holy fucking shit. Oh, and now Doom players are completely immune, not half-assidly immune like Heart players.</p>
 <p><a href = "index2.html?babyStuck=true">BabyStuck</a>: Everyone looks like a Baby/Grub and is practically incomprehensible. Suprisingly cute, until the murders start happening, then surprisingly disturbing.</p>
 <p><a href = "index2.html?sbajifier=true">SBAHJIFIER</a>: The graphics fuck up a LOT. Terrible outline artifacts are included (really proud of that), sprite layers are rendered offset, and I allow the page to randomize its own css. But the simulation itself is still working as normal. Oh yeah, besides everybody being given dunkass quirks.</p>
-<p><a href = "index2.html?COOLK1D=true">COOLK1DSTUCK</a>: Sessions become 413% cooler.  Cosmetic only. </p>
+<p><a href = "http://www.farragofiction.com/SBURBSim/index2.html?seed=131199038&b=KQYQzMAcCioEzAJywKwgeYAhW6kBZgAGI4ARhQCpLyzjST67McBNe8gQXISIDZgYEB0aMw3FrgRZepfKTIKAYuWhA&s=DTBuEsBMFMHtoAQHMCGBbaBnYAXAFogEbhLIrRrAEA21KAUtAGZMjCY4rgBO2T3AVw7cUOcLEqYA7tGg4AQt1ht+0cADtImPOAAOwAJ7RqsKcH7homgOLQlaA0A?sbajifier=true">The most Canon possible SBAHJ session.</a> It is a refrance.
 <p><a href = "index2.html?robot=true">RoboStuck</a>: Everyone looks like robots. Their relationships are initialized to neutral, because as we all know robots are tin cans incapable of feelings. (AB said it was ironically funny, I'm not REALLY Robo-Racist, I swear!). They also get a small power boost because robots are superior. They also TALK IN A LOUD MONOTONE. And...they say 'BEEP' sometimes. (They cannot control the beeps.) </p>
 <p> <a href = "index2.html?seed=413">Homestuck Beta</a>: The 8 human players, John all the way through Jake, play SBURB. Quirks/Character designs are approximate. </p>
 <p> <a href = "index2.html?seed=111111">Homestuck Alpha</a>: The 8 human players, Jane all the way through Jade, play SBURB (i.e. post scratch kids enter first). Quirks/Character designs are approximate. </p>
@@ -369,7 +369,7 @@ DID YOU KNOW: This now brings the count up to FOUR ways to get here. Via figurin
 
 <p>"it's never too late to break everything by accident."<span class="void">Apparently I missed them on Tumblr b4 the deadline. Retcon's ahoy!</span>
 <br>
--ailuroTemplar 
+-ailuroTemplar
 
 </p>
 
