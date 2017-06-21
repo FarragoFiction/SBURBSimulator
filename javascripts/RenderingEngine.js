@@ -360,7 +360,7 @@ All sprites are assumed to be kept ../../AllSprites/<INSERTRENDERINGENGINENAMEHE
 
 
 
-function HomestuckTRenderer(rh){
+function HomestuckRenderer(rh){
   this.rendererHelper = rh;
   this.baseLocation = "RenderingAssets/Homestuck/";
 
