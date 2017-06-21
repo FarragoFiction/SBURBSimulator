@@ -60,8 +60,8 @@ function RelationshipDrama(session){
 		if(p1score + p2score > 6){ //it's not winning that calms them down, but sick fires in general.
 			//console.log("rap sick fires in session: " + this.session.session_id + " score: " + (p1score + p2score))
 			div.append("<img class = 'sickFiresCentered' src = 'images/sick_fires.gif'><br> It seems that the " + player1.htmlTitle() + " has been calmed down, for now.");
-			player1.unmakeMurderMode(); //if they WERE in murder mode, well, now they ain't.
-			player2.unmakeMurderMode();
+			if(player1.murderMode) player1.unmakeMurderMode(); //if they WERE in murder mode, well, now they ain't.
+			if(player2.murderMode) player2.unmakeMurderMode();
 			//rap battles are truly the best way to power level.
 			player1.increasePower();
 			player2.increasePower();
