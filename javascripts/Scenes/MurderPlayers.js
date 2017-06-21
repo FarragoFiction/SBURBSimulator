@@ -92,7 +92,7 @@ function MurderPlayers(session){
 
 	//diamond faces murderer, calms them the hell down and hug bumps are shared.
 	this.renderDiamonds = function(div, murderer, diamond){
-		this.session.hasDiamonds = true;
+
 		var divID = (div.attr("id")) + "_" + diamond.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
@@ -120,7 +120,6 @@ function MurderPlayers(session){
 
 	//random Auspistice settles their shit down.  this will probably be pretty rare.
 	this.renderClubs = function(div, murderer, victim, club){
-		this.session.hasClubs = true;
 		//alert("clubs)")
 		var divID = (div.attr("id")) + "_" + club.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";

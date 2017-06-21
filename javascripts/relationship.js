@@ -192,6 +192,7 @@ function transferFeelingsToClones(player, clones){
 }
 
 function makeHeart(player1, player2){
+	player1.session.hasHearts = true;
 	var r1 = player1.getRelationshipWith(player2)
 	r1.setOfficialRomance(r1.heart)
 	var r2 = player2.getRelationshipWith(player1)
@@ -199,6 +200,7 @@ function makeHeart(player1, player2){
 }
 
 function makeSpades(player1, player2){
+	player1.session.hasSpades = true;
 	var r1 = player1.getRelationshipWith(player2)
 	r1.setOfficialRomance(r1.spades)
 	var r2 = player2.getRelationshipWith(player1)
@@ -206,6 +208,7 @@ function makeSpades(player1, player2){
 }
 
 function makeDiamonds(player1, player2){
+	player1.session.hasDiamonds = true;
 	var r1 = player1.getRelationshipWith(player2)
 	if(r1.value < 0){
 		r1.value = 1;  //like you at least a little
@@ -220,6 +223,7 @@ function makeDiamonds(player1, player2){
 
 //clubs, why you so cray cray?
 function makeClubs(middleLeaf, asshole1, asshole2){
+	asshole1.session.hasClubs = true;
 	var rmid1 = middleLeaf.getRelationshipWith(asshole1);
 	var rmid2 = middleLeaf.getRelationshipWith(asshole2);
 
@@ -259,22 +263,23 @@ function randomRelationship(targetPlayer){
 //high is flushed or pale (if one player much more triggered than other). low is spades. no clubs for now.
 //yes, claspect boosts might alter relationships from 'initial' value, but that just means they characters are likelyt o break up. realism.
 function decideInitialQuadrants(players){
+	var rollNeeded = 50;
 	for(var i =0; i<players.length; i++){
 		var player = players[i];
 		var relationships = player.relationships;
 		for(var j = 0; j<relationships.length; j++){
 			var r = relationships[j];
 			var roll = player.rollForLuck();
-			if(roll > 50){
+			if(roll > rollNeeded){
 				if(r.type() == r.goodBig){
 					var difference = Math.abs(player.triggerLevel - r.target.triggerLevel)
-					if(difference > 2){ //pale
+					if(difference > 2 || roll < rollNeeded + 25){ //pale
 						makeDiamonds(player, r.target);
 					}else{
 						makeHeart(player, r.target);
 					}
 				}else if(r.type() == r.badBig){
-					if(player.triggerLevel > 2 || r.target.triggerLevel > 2){ //likely to murder each other
+					if(player.triggerLevel > 0 || r.target.triggerLevel > 0 || roll < rollNeeded + 10){ //likely to murder each other
 						var ausp = getRandomElementFromArray(players);
 						if(ausp && ausp != player && ausp != r.target){
 							makeClubs(ausp, player, r.target);
