@@ -24,7 +24,7 @@ function loadAllImages(skipInit){
 function loadAllImagesForPlayers(players, guardians,skipInit){
 	var numImages = 0;
 	//loadFuckingEverything(skipInit); //lol, fuck the world, let's do this shit.
-	
+
 	//same number of players and guardians
 	for(var i = 0; i<players.length; i++){
 		loadPlayer(players[i],skipInit);
@@ -116,28 +116,28 @@ function loadOther(skipInit){
 	loadImage("heart_forehead.png",skipInit)
 	loadImage("ab.png",skipInit)
 	loadImage("grimdark.png",skipInit);
-  loadImage("squiddles_chaos.png",skipInit);
-	loadImage("fin1.png",skipInit);
-	loadImage("fin2.png",skipInit);
+  loadImage("squiddles_chaos.png",skipInit); //re load
+	loadImage("fin1.png",skipInit);  //re load
+	loadImage("fin2.png",skipInit);  //re load
 	loadImage("echeladder.png",skipInit)
 	loadImage("godtierlevelup.png",skipInit);
 	loadImage("pesterchum.png",skipInit);
-	loadImage("blood_puddle.png",skipInit)
-	loadImage("scratch_face.png",skipInit)
-	loadImage("robo_face.png",skipInit)
-	loadImage("calm_scratch_face.png",skipInit)
+	loadImage("blood_puddle.png",skipInit)  //re load
+	loadImage("scratch_face.png",skipInit) //re load
+	loadImage("robo_face.png",skipInit)  //re load
+	loadImage("calm_scratch_face.png",skipInit) //rendering engine will load
 	loadImage( "Prospit.png",skipInit)
 	//loadImage("Prospit_symbol.png");
 	loadImage("Derse.png",skipInit)
 	//loadImage("Derse_symbol.png");
-	loadImage("bloody_face.png",skipInit)
+	loadImage("bloody_face.png",skipInit)  ///Rendering engine will load
 	loadImage("Moirail.png",skipInit)
 	loadImage("Matesprit.png",skipInit)
   loadImage("horrorterror.png", skipInit);
   loadImage("dreambubbles.png", skipInit);
 	loadImage("Auspisticism.png",skipInit)
 	loadImage("Kismesis.png",skipInit)
-	loadImage("prince_hat.png",skipInit)
+	loadImage("prince_hat.png",skipInit)   //rendering engine will load
 	loadImage("discuss_romance.png",skipInit)
 	loadImage("discuss_ashenmance.png",skipInit)
 	loadImage("discuss_palemance.png",skipInit)
@@ -148,7 +148,7 @@ function loadOther(skipInit){
 	loadImage("discuss_murder.png",skipInit)
   loadImage("discuss_raps.png",skipInit)
 	for(var i = 1; i<4; i++){
-		loadImage("Bodies/baby"+i + ".png",skipInit)
+		loadImage("Bodies/baby"+i + ".png",skipInit) //rendering engine will laod
 	}
 
 	for(var i = 1; i<4; i++){

@@ -413,8 +413,86 @@ function HomestuckTrollRenderer(rh){
 
   }
 
-  this.getAllImagesNeeded = function(){
+  this.getMiscImages = function(){
+    var ret = [this.baseLocation + "misc/prince_hat.png", this.baseLocation + "misc/bloody_face.png", this.baseLocation + "misc/calm_scratch_face.png", this.baseLocation + "misc/robo_face.png"];
+    ret.push(this.baseLocation + "misc/scratch_face.png")
+    ret.push(this.baseLocation + "misc/blood_puddle.png")
+    ret.push(this.baseLocation + "misc/fin2.png")
+    ret.push(this.baseLocation + "misc/fin1.png")
+    ret.push(this.baseLocation + "misc/squiddles_chaos.png")
+    ret.push(this.baseLocation + "misc/grimdark.png")
+    ret.push(this.baseLocation + "misc/heart_forehead.png")
+    ret.push(this.baseLocation + "misc/rage_forehead.png")
+    ret.push(this.baseLocation + "misc/blood_forehead.png")
+    ret.push(this.baseLocation + "misc/mind_forehead.png")
+    ret.push(this.baseLocation + "misc/ghostGradient.png")
+    ret.push(this.baseLocation + "misc/rainbow.png")
+    ret.push(this.baseLocation + "misc/sceptre.png")
+    ret.push(this.baseLocation + "misc/denizoned.png")
+    ret.push(this.baseLocation + "misc/stab.png")
+    ret.push(this.baseLocation + "misc/")
+    ret.push(this.baseLocation + "misc/")
+    ret.push(this.baseLocation + "misc/")
+    for(var i = 1; i<4; i++){
+      ret.push(this.baseLocation + "Bodies/baby"+i + ".png")
+    }
+    return ret;
+  }
 
+  this.getPlayerImages = function(){
+    var ret = [];
+    numBodies = 12;
+    var numHair = 61; //+1025 for rufio.  1 indexed
+    var numHorns = 73; //1 indexed.
+    //var numWings = 12 //0 indexed, not 1.  for now, don't bother with wings. not gonna show godtier, for now.
+    for(var i = 1; i<=numBodies; i++){
+      if(i<10){
+        ret.push(this.baseLocation + "Bodies/reg00"+i+".png");  //as long as i i do a 'load' again when it's to to start the simulation, can get away with only loading these bodies.
+        ret.push(this.baseLocation + "Bodies/00"+i+".png");
+        ret.push(this.baseLocation + "Bodies/dream00"+i+".png");
+      }else{
+        ret.push(this.baseLocation + "Bodies/reg0"+i+".png");  //as long as i i do a 'load' again when it's to to start the simulation, can get away with only loading these bodies.
+        ret.push(this.baseLocation + "Bodies/dream0"+i+".png");
+        ret.push(this.baseLocation + "Bodies/0"+i+".png");
+      }
+    }
+
+      for(var i = 1; i<=numHair; i++){
+          ret.push(this.baseLocation + this.baseLocation + "Hair/hair_back"+i+".png",skipInit);
+          ret.push(this.baseLocation + "Hair/hair"+i+".png",skipInit);
+      }
+
+
+      for(var i = 0; i<13; i++){
+        ret.push(this.baseLocation + "Wings/wing"+i+".png");
+      }
+
+      ret.push(this.baseLocation + "Blood.png");
+      ret.push(this.baseLocation + "Mind.png");
+      ret.push(this.baseLocation + "Rage.png");
+      ret.push(this.baseLocation + "Time.png");
+      ret.push(this.baseLocation + "Void.png");
+      ret.push(this.baseLocation + "Heart.png");
+      ret.push(this.baseLocation + "Breath.png");
+      ret.push(this.baseLocation + "Light.png");
+      ret.push(this.baseLocation + "Space.png");
+      ret.push(this.baseLocation + "Hope.png");
+      ret.push(this.baseLocation + "Life.png");
+      ret.push(this.baseLocation + "Doom.png");
+
+	    ret.push(this.baseLocation + "Hair/hair_back254.png");
+      ret.push(this.baseLocation + "Hair/hair254.png");
+
+    for(var i = 1; i<=numHorns; i++){
+        ret.push(this.baseLocation + "Horns/left"+i+".png");
+        ret.push(this.baseLocation + "Horns/right"+i+".png");
+    }
+    return ret;
+  }
+
+  this.getAllImagesNeeded = function(){
+      var ret = this.getMiscImages();
+      return ret.concat(this.getPlayerImages());
   }
 }
 
