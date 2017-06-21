@@ -65,7 +65,7 @@ function SaveDoomedTimeLine(session){
 	//if there are multiple time players, multiple shots and doing rnadom shit.
 	this.randomDoom = function(numTries){
 		this.reason = "Shenanigans"
-		for(var i = 0; i< numTries){
+		for(var i = 0; i< numTries; i++){
 			 if(Math.seededRandom() > .99) return true;
 		}
 		return false;
