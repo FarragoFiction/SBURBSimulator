@@ -60,7 +60,8 @@ function Intro(session){
 			var canvasHTML = "<br><canvas id='canvaskernel" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
 			var canvas = document.getElementById("canvaskernel"+ divID);
-			var timePlayer = findAspectPlayer(this.session.players, "Time");
+			var times = findAllAspectPlayers(this.session.players, "Time"); //they don't have to be in the medium, though
+			var timePlayer = getRandomElementFromArray(times); //ironically will probably allow more timeless sessions without crashes.
 			drawTimeGears(canvas, timePlayer);
 			drawSinglePlayer(canvas, timePlayer);
 			var ret = "A " + timePlayer.htmlTitleBasic() + " suddenly warps in from the future. ";
@@ -737,7 +738,7 @@ function Intro(session){
 				}
 			narration += "The Black King's SCEPTER grows stronger from prototyping the " +  this.player.object_to_prototype.name +". ";
 				div.append(narration);
-				
+
 				return;
 			}
 

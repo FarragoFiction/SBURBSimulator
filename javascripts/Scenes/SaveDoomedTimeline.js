@@ -7,7 +7,8 @@ function SaveDoomedTimeLine(session){
 	this.reason = "";
 	this.doomedTimeClone = null;
 	this.trigger = function(playerList){
-		this.timePlayer = findAspectPlayer(session.players, "Time"); //they don't have to be in the medium, though
+		var times = findAllAspectPlayers(this.session.players, "Time"); //they don't have to be in the medium, though
+		this.timePlayer = getRandomElementFromArray(times); //ironically will probably allow more timeless sessions without crashes.
 		this.leaderPlayer = getLeader(session.players);
 		this.playerList = playerList;
 		/*
@@ -17,7 +18,7 @@ function SaveDoomedTimeLine(session){
 			return false;
 		}*/
 		//console.log("time player is not dead,  do i trigger?")
-		return (this.ectoDoom() || this.playerDoom() || this.randomDoom());
+		return (this.ectoDoom() || this.playerDoom() || this.randomDoom(times.length));
 	}
 
 
@@ -61,9 +62,13 @@ function SaveDoomedTimeLine(session){
 		return false;
 	}
 
-	this.randomDoom = function(){
+	//if there are multiple time players, multiple shots and doing rnadom shit.
+	this.randomDoom = function(numTries){
 		this.reason = "Shenanigans"
-		return Math.seededRandom() > .99
+		for(var i = 0; i< numTries){
+			 if(Math.seededRandom() > .99) return true;
+		}
+		return false;
 	}
 
 	this.content = function(){
