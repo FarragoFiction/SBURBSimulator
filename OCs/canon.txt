@@ -40,3 +40,4 @@ b=%00%00%C3%BFr%C3%B7U%10X%1C%1B*&s=,,Death,Suicide,adiosGrip
 b=%00%C2%80%00%C2%B0%C3%BEX%00T%07%05%09&s=,,First Guardians,Gardening,gardenGnostic
 b=%C3%BF%C2%80%001%C3%BE%C2%9B%00%13%24%24%01&s=,,Irony,Birds,turntechGodhead
 b=%00%C3%BF%C3%BF%0B%C3%BE%08%00P%01%01%26&s=,,Pranks,Baking,gutsyGumshoe
+b=%00%00%00%C2%A1%C3%BE%C2%92%03Y%0C%0C%3D&s=,,TV,Acting,charlesDutton
