@@ -3,3 +3,4 @@ b=B1%0F%C2%81%C3%BE%C2%A7%00H%19%193&s=,,Coding,Science Fiction,insipidTestimony
 b=%C2%8Di2'%C3%BE%C2%97%00R%11%11%1E&s=,,Video Games,Werewolves,stoicLoafer
 b=K%C3%AC%13%C2%94%C3%BE%C2%A7%00%16%08%088&s=,,Artificial Intelligence,Science Fiction,notBuddy
 b=%C3%AC%C3%A9Y%C2%97%C3%B9y%00K%1F%1F%1F&s=,,Monsters,MMORPGs,mephiticBrainsplinter
+b=%C3%A6%C3%9C%C2%81J%C3%BE%02%00%5C%0B%0B%1E&s=,,Muppets,Books,secondhandPurveyor
