@@ -184,7 +184,7 @@ function isClassOrAspectStuck(team){
 //what will happen if scratch? Will it return here still?
 //need to make sure scratched sessions don't count. (they get stat boost after all)
 function aBCallBack(sessionSummary){
-	if(abj) return abjCallBack;
+	if(abj) return abjCallBack(sessionSummary);
 	var team = teamsGlobalVar[lastTeamIndex]
 	var teamNum = 1;
 	if(team.numberSessions >= numSimulationsToDo){
