@@ -35,7 +35,8 @@
 			curSessionGlobalVar.makePlayers();
 			curSessionGlobalVar.randomizeEntryOrder();
 			var renderingEngine = new RenderingEngine(true, 1)
-			renderingEngine.getAllImagesNeededForPlayer(curSessionGlobalVar.players[0].toOCDataString(), curSessionGlobalVar.players[0])
+			var test = renderingEngine.getAllImagesNeededForPlayer(curSessionGlobalVar.players[0].toOCDataString(), curSessionGlobalVar.players[0])
+			console.log(test);
 			var p1 = curSessionGlobalVar.players[0];
 			var p2 = curSessionGlobalVar.players[1];
 			load([p1,p2], []); //in loading.js
