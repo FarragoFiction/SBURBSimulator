@@ -4,6 +4,33 @@ function RenderingEngine(dontRender, defaultRendererID){
   this.defaultRendererID = defaultRendererID;
   this.renderers = [null, new HomestuckRenderer(this), new EggRenderer(this)]; //if they try to render with "null", use defaultRendererID index instead.
 
+
+  this.getAllImagesNeededForPlayer(player){
+    var index = player.renderingType;
+    if(player.renderingType == 0) index = this.defaultRendererID;
+    return this.renderers[index].getAllImagesNeededForPlayer(player);
+  }
+
+  //actually renders player, not just using cached image.
+  this.renderPlayer(canvas, player){
+    var index = player.renderingType;
+    if(player.renderingType == 0) index = this.defaultRendererID;
+    var renderer = this.renderers[index];
+    //check to see if there is a cached image.
+    player = makeRenderingSnapshot(player); //we are rendering how the player was RIGHT NOW.
+    renderer.drawSpriteFromScratch(canvas, player);
+  }
+
+  this.renderPlayerForScene(canvas, player){
+    if(player.ghost || player.doomed){  //don't expect ghosts or doomed players to render more than a time or two, don't bother caching for now.
+        this.renderPlayer(canvas, player);
+    }else{
+      var canvasDiv = document.getElementById(player.spriteCanvasID);
+      this.copyTmpCanvasToRealCanvasAtPos(canvas, canvasDiv,0,0)
+    }
+  }
+
+
   //need to be kept as high up as possible so that rest of sim can access these convinience methods
   this.hexToRgbA = function(hex){
     var c;
@@ -309,7 +336,10 @@ function RenderingEngine(dontRender, defaultRendererID){
 
 /*******************************************************************************
 
-          And now we start defining our renderers. If they get too beefy, move to new file.
+And now we start defining our renderers. If they get too beefy, move to new file.
+
+All sprites are assumed to be kept ../../AllSprites/<INSERTRENDERINGENGINENAMEHERE>
+(except homestuck renderer which just refers to HomestuckHumanRenderer and HomestuckTrollRenderer)
 
 ********************************************************************************/
 
@@ -318,18 +348,39 @@ function RenderingEngine(dontRender, defaultRendererID){
 //only SBURBSim will call this function, others will Human or Troll directly, maybe.
 function HomestuckRenderer(rh){
   this.rendererHelper = rh;
+  this.humanRenderer = new HomestuckHumanRenderer(this.rendererHelper);
+  this.trollRenderer = new HomestuckTrollRenderer(this.rendererHelper);
+
+  this.drawSpriteFromScratch = function(canvas, player){
+    if(player.isTroll){
+      this.trollRenderer.drawSpriteFromScratch(canvas, player);
+    }else{
+      this.humanRenderer.drawSpriteFromScratch(canvas, player);
+    }
+  }
 }
 
 //homestuck has one of 3 sprites
 function HomestuckHumanRenderer(rh){
   this.rendererHelper = rh;
+
+  this.drawSpriteFromScratch = function(canvas, player){
+
+  }
 }
 
 function HomestuckTrollRenderer(rh){
   this.rendererHelper = rh;
+
+  this.drawSpriteFromScratch = function(canvas, player){
+
+  }
 }
 
 
 function EggRenderer(rh){
   this.rendererHelper = rh;
+  this.drawSpriteFromScratch = function(canvas, player){
+
+  }
 }
