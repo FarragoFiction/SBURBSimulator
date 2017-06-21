@@ -485,6 +485,7 @@ function HomestuckRenderer(rh){
   	}else{
       ret.push(this.baseLocation +"Bodies/baby"+player.baby + ".png")
     }
+    return ret;
   }
 
   //see player.js toDataBytes and toDataString to see how I expect them to be formatted.
