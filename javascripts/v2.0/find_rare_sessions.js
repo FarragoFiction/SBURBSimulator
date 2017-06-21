@@ -537,7 +537,7 @@ function checkPasswordAgainstQuip(summary){
 
 function avatarCarousel(){
 	var possibleAvatars = ["images/CandyAuthorBot.png","images/ab_doll.jpg","images/trickster_author_transparent.png","images/ab_guide_sprite.png","images/trickster_artist_transparent.png","images/jr_sprite.png"];
-  var possibleAvatars = possibleAvatars.concat(["images/misc/fanArt/ABFanArt/image.jpeg","images/misc/fanArt/ABFanArt/image.jpeg","images/misc/fanArt/ABFanArt/grimdarkMakinAB.png","images/misc/fanArt/ABFanArt/unknown.png","images/misc/fanArt/ABFanArt/VERY_edgy_robot_ruining_sessions_at_incredible_hihg_speed.png"]);
+  var possibleAvatars = possibleAvatars.concat(["images/misc/fanArt/ABFanArt/reDead-ITA.png","images/misc/fanArt/ABFanArt/chaoticConvergence.jpeg","images/misc/fanArt/ABFanArt/image.jpeg","images/misc/fanArt/ABFanArt/artificialArtificer.png","images/misc/fanArt/ABFanArt/Makin.png","images/misc/fanArt/ABFanArt/waltzingOphidan.png"]);
 	$("#avatar").attr("src",getRandomElementFromArray(possibleAvatars));
 	setTimeout(avatarCarousel,10000);
 }
