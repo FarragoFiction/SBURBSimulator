@@ -51,6 +51,7 @@ function startTournament(){
 function missionComplete(){
 	//have some sort of css pop up with winner, hide tournament, show all team descriptions (hopefully in horizontally scrolling line)
 	$("#tournament").hide();
+	$("#winner").html("<h1>Winner: " + teamsGlobalVar[0].name+"</h1>");
 	showAllTiers();
 }
 
@@ -65,7 +66,7 @@ function showAllTiers(){
 function makeDescriptionList(){
 	var divHTML = "<div class = 'descriptionBox' id = 'description"+tierNumber +  "'></div>"
 	$("#descriptions").append(divHTML);
-	
+
 	$("#description"+(tierNumber-1)).hide(); //only current is shown.
 }
 
@@ -183,7 +184,6 @@ function isClassOrAspectStuck(team){
 //what will happen if scratch? Will it return here still?
 //need to make sure scratched sessions don't count. (they get stat boost after all)
 function aBCallBack(sessionSummary){
-	console.log(sessionSummary)
 	if(abj) return abjCallBack;
 	var team = teamsGlobalVar[lastTeamIndex]
 	var teamNum = 1;
@@ -227,7 +227,7 @@ function aBCallBack(sessionSummary){
 
 }
 
-function aBCallBack(sessionSummary){
+function abjCallBack(sessionSummary){
 	console.log(sessionSummary)
 	var team = teamsGlobalVar[lastTeamIndex]
 	var teamNum = 1;
@@ -294,7 +294,7 @@ function abLeft(glitch){
 }
 
 function abRight(glitch){
-	
+
 	if(abj){
 		if(glitch){
 			$("#avatar").attr("src", "images/abj_interesting.png");
@@ -302,7 +302,7 @@ function abRight(glitch){
 			$("#avatar").attr("src", "images/authorbot_jr_scout.png");
 		}
 	}else{
-	
+
 		if(glitch){
 			$("#avatar").attr("src", "images/guide_bot_glitch.gif");
 		}else{
@@ -388,7 +388,7 @@ function displayTeams(div){
 		html +=displayTeamInList(teamsGlobalVar[i]);
 	}
 	div.html(html);
-	
+
 }
 
 //pairs teams up instead of straight line.
@@ -407,7 +407,7 @@ function displayTeamsTournament(div){
 	if(teamsGlobalVar.length %2 != 0) html += "</div>" //didn't get closed
 
 	div.html(html);
-	
+
 }
 
 function displayTeamInList(team){
@@ -439,7 +439,7 @@ function Team(name,abj){
 	this.mvp_score = 0;
 	this.abj = abj;
 	this.lostRound = false; //set to true if they lost.  cause them to render different.
-	
+
 	this.resetStats = function(){
 		this.numberSessions = 0;
 		this.win = 0;
@@ -449,12 +449,12 @@ function Team(name,abj){
 		this.mvp_score = 0;
 		this.lostRound = false;
 	}
-	
+
 	this.score = function(){
 		if(this.abj) return this.numTotalPartyWipe;
 		return this.win - this.crash;
 	}
-	
+
 	this.scoreABJ = function(){
 		this.numTotalPartyWipe;
 	}

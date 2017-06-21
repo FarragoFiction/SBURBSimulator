@@ -69,9 +69,13 @@ function PlayerSnapshot(){
 		return this.chatHandle.match(/\b(\w)|[A-Z]/g).join('').toUpperCase();
 	}
 
-	this.toDataStrings = function(){
-		return ""+this.causeOfDrain + ","+this.causeOfDeath + "," + this.interest1 + "," + this.interest2 + "," + this.chatHandle;
+	this.toDataStrings = function(includeChatHandle){
+		var ch = "";
+		if(includeChatHandle) ch = sanitizeString(this.chatHandle);
+		var ret = ""+sanitizeString(this.causeOfDrain) + ","+sanitizeString(this.causeOfDeath) + "," + sanitizeString(this.interest1) + "," + sanitizeString(this.interest2) + "," + sanitizeString(ch)
+		return ret;
 	}
+
 
 	/*
 		3 bytes: (12 bits) hairColor

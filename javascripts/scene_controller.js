@@ -477,7 +477,7 @@ function sanitizeString(string){
 function playersToDataStrings(players, includeChatHandle){
 	var ret = [];
 	for(var i = 0; i<players.length; i++){
-		ret.push(players[i].toDataStrings(includeChatHandle))
+		ret.push(players[i].toDataStrings(true))
 	}
 	//return encodeURIComponent(ret.join(",")).replace(/#/g, '%23').replace(/&/g, '%26');;
 	return LZString.compressToEncodedURIComponent(ret.join(","))
@@ -491,7 +491,7 @@ function generateURLParamsForPlayers(players,includeChatHandle){
 	//var compressed = LZString.compressToEncodedURIComponent(json);
 	//console.log(compressed)
 	var data = playersToDataBytes(players);
-	var strings = playersToDataStrings(players,includeChatHandle);
+	var strings = playersToDataStrings(players,true);
 	return "b="+data+"&s="+strings;
 
  }
