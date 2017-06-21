@@ -2,8 +2,17 @@
 function RenderingEngine(dontRender, defaultRendererID){
   this.dontRender = dontRender; //AB for example doesn't want you to render
   this.defaultRendererID = defaultRendererID;
-  this.renderers = [null, new HomestuckRenderer(this), new HomestuckTrollRenderer(this), new HomestuckHumanRenderer(this), new EggRenderer(this)]; //if they try to render with "null", use defaultRendererID index instead.
+  this.renderers = [null, new HomestuckRenderer(this) , new EggRenderer(this)]; //if they try to render with "null", use defaultRendererID index instead.
 
+
+  this.ocDataStringToBS = function(ocDataString){
+    var bi = i*11; //i is which player we are on, which is 11 bytes long
+		var si = i*5; //or 5 strings long
+		var b = bytes.substring(bi, bi+11)
+		var s = [];
+		var s = strings.slice(si, si +5)
+    return [b,s];
+  }
   //for sprite customization. only get sprites needed for used rendering type
   this.getAllImagesNeeded = function(renderingType){
     if(renderingType == 0) renderingType = this.defaultRendererID;
@@ -350,54 +359,8 @@ All sprites are assumed to be kept ../../AllSprites/<INSERTRENDERINGENGINENAMEHE
 ********************************************************************************/
 
 
-//calls either HomestuckHumanRenderer or HomestuckTrollRenderer depending on isTroll.
-//only SBURBSim will call this function, others will Human or Troll directly, maybe.
-function HomestuckRenderer(rh){
-  this.rendererHelper = rh;
-  this.humanRenderer = new HomestuckHumanRenderer(this.rendererHelper);
-  this.trollRenderer = new HomestuckTrollRenderer(this.rendererHelper);
 
-  this.drawSpriteFromScratch = function(canvas, ocDataString, objectData){
-    if(player.isTroll){
-      this.trollRenderer.drawSpriteFromScratch(canvas, ocDataString, objectData);
-    }else{
-      this.humanRenderer.drawSpriteFromScratch(canvas, ocDataString, objectData);
-    }
-  }
-
-  this.getAllImagesNeeded = function(){
-    return this.trollRenderer.getAllImagesNeeded(); //shouldn't be an images that humans have thath trolls don't.
-  }
-
-  this.getAllImagesNeededForPlayer = function(ocDataString, objectData){
-    if(player.isTroll){
-      this.trollRenderer.getAllImagesNeededForPlayer(canvas, ocDataString, objectData);
-    }else{
-      this.humanRenderer.getAllImagesNeededForPlayer(canvas, ocDataString, objectData);
-    }
-  }
-}
-
-//homestuck has one of 3 sprites
-function HomestuckHumanRenderer(rh){
-  this.baseLocation = "RenderingAssets/Homestuck/";
-  this.rendererHelper = rh;
-
-  this.drawSpriteFromScratch = function(canvas, ocDataString, objectData){
-
-  }
-
-  this.getAllImagesNeededForPlayer = function(ocDataString, objectData){
-
-  }
-
-  //probably will never be called, unless i allow humans to be a rendering category without troll.
-  this.getAllImagesNeeded = function(){
-
-  }
-}
-
-function HomestuckTrollRenderer(rh){
+function HomestuckTRenderer(rh){
   this.rendererHelper = rh;
   this.baseLocation = "RenderingAssets/Homestuck/";
 
@@ -410,7 +373,52 @@ function HomestuckTrollRenderer(rh){
   }
 
   this.getAllImagesNeededForPlayer = function(ocDataString, objectData){
+    var bs = this.rendererHelper.ocDataStringToBS(ocDataString);
+    var player = dataBytesAndStringsToPlayer(bs[0], bs[1]);  //only use objectData when I KNOW I need to.
+  }
 
+  //see player.js toDataBytes and toDataString to see how I expect them to be formatted.
+    this.dataBytesAndStringsToPlayer = function(charString, str_arr){
+  	 var player = new Player();
+  	 player.quirk = new Quirk();
+  	 //console.log("strings is: " + str_arr)
+  	 //console.log("chars is: " + charString)
+  	 player.causeOfDrain = sanitizeString(decodeURI(str_arr[0]).trim());
+  	 player.causeOfDeath = sanitizeString(decodeURI(str_arr[1]).trim());
+  	 player.interest1 = sanitizeString(decodeURI(str_arr[2]).trim());
+  	 player.interest2 = sanitizeString(decodeURI(str_arr[3]).trim());
+  	 player.chatHandle = sanitizeString(decodeURI(str_arr[4]).trim());
+  	 //for bytes, how to convert uri encoded string into char string into unit8 buffer?
+  	 //holy shit i haven't had this much fun since i did the color replacement engine a million years ago. this is exactlyt he right flavor of challenging.
+  	 //console.log("charString is: " + charString)
+  	 player.hairColor = intToHexColor((charString.charCodeAt(0) << 16) + (charString.charCodeAt(1) << 8) + (charString.charCodeAt(2)) )
+  	 player.class_name = intToClassName(charString.charCodeAt(3) >> 4)
+  	 player.aspect = intToAspect(charString.charCodeAt(3) & 15) //get 4 bits on end
+  	 player.victimBlood = intToBloodColor(charString.charCodeAt(4) >> 4);
+  	 player.bloodColor = intToBloodColor(charString.charCodeAt(4) & 15);
+  	 player.interest1Category = intToInterestCategory(charString.charCodeAt(5) >> 4)
+  	 player.interest2Category = intToInterestCategory(charString.charCodeAt(5) & 15);
+  	 player.grimDark = charString.charCodeAt(6) >> 5;
+  	 player.isTroll = 0 != ((1<<4) & charString.charCodeAt(6)) //only is 1 if character at 1<<4 is 1 in charString
+  	 player.isDreamSelf = 0 != ((1<<3) & charString.charCodeAt(6))
+  	 player.godTier = 0 != ((1<<2) & charString.charCodeAt(6))
+  	 player.murderMode = 0 != ((1<<1) & charString.charCodeAt(6))
+  	 player.leftMurderMode = 0 != ((1) & charString.charCodeAt(6))
+  	 player.robot = 0 != ((1<<7) & charString.charCodeAt(7))
+  	 var moon = 0 != ((1<<6) & charString.charCodeAt(7))
+  	 //console.log("moon binary is: " + moon)
+  	 player.moon = moon ? "Prospit" : "Derse";
+  	 //console.log("moon string is: "  + player.moon);
+  	 player.dead = 0 != ((1<<5) & charString.charCodeAt(7))
+  	 //console.log("Binary string is: " + charString[7])
+  	 player.godDestiny = 0 != ((1<<4) & charString.charCodeAt(7))
+  	 player.quirk.favoriteNumber = charString.charCodeAt(7) & 15
+  	 player.leftHorn = charString.charCodeAt(8)
+  	 player.rightHorn = charString.charCodeAt(9)
+  	 player.hair = charString.charCodeAt(10)
+  	 if(player.interest1Category) interestCategoryToInterestList(player.interest1Category ).push(player.interest1) //maybe don't add if already exists but whatevs for now.
+  	 if(player.interest2Category )interestCategoryToInterestList(player.interest2Category ).push(player.interest2)
+  	 return player;
   }
 
   this.getMiscImages = function(){
