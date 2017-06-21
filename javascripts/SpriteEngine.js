@@ -467,18 +467,18 @@ function HomestuckTrollRenderer(rh){
         ret.push(this.baseLocation + "Wings/wing"+i+".png");
       }
 
-      ret.push(this.baseLocation + "Blood.png");
-      ret.push(this.baseLocation + "Mind.png");
-      ret.push(this.baseLocation + "Rage.png");
-      ret.push(this.baseLocation + "Time.png");
-      ret.push(this.baseLocation + "Void.png");
-      ret.push(this.baseLocation + "Heart.png");
-      ret.push(this.baseLocation + "Breath.png");
-      ret.push(this.baseLocation + "Light.png");
-      ret.push(this.baseLocation + "Space.png");
-      ret.push(this.baseLocation + "Hope.png");
-      ret.push(this.baseLocation + "Life.png");
-      ret.push(this.baseLocation + "Doom.png");
+      ret.push(this.baseLocation + "Aspects/Blood.png");
+      ret.push(this.baseLocation + "Aspects/Mind.png");
+      ret.push(this.baseLocation + "Aspects/Rage.png");
+      ret.push(this.baseLocation + "Aspects/Time.png");
+      ret.push(this.baseLocation + "Aspects/Void.png");
+      ret.push(this.baseLocation + "Aspects/Heart.png");
+      ret.push(this.baseLocation + "Aspects/Breath.png");
+      ret.push(this.baseLocation + "Aspects/Light.png");
+      ret.push(this.baseLocation + "Aspects/Space.png");
+      ret.push(this.baseLocation + "Aspects/Hope.png");
+      ret.push(this.baseLocation + "Aspects/Life.png");
+      ret.push(this.baseLocation + "Aspects/Doom.png");
 
 	    ret.push(this.baseLocation + "Hair/hair_back254.png");
       ret.push(this.baseLocation + "Hair/hair254.png");
