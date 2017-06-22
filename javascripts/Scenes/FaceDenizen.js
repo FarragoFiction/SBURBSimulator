@@ -93,7 +93,7 @@ function FaceDenizen(session){
 				div.append("<br>"+ret);
 			}
 		}else{
-			ret += "<br>The " + p.htmlTitle() + " initiates a strife with their denizen, " + denizen.name + ". "
+			ret += "<br>The " + p.htmlTitle() + " initiates a strife with their " + denizen.name + ". "
 			div.append(ret);
 			denizen.strife(div, [p],0);
 			if(denizen.getHP() <= 0 ){
