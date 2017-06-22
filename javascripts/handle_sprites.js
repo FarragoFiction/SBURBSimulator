@@ -1263,9 +1263,6 @@ function drawSprite(canvas, player, ctx, baby){
       copyTmpCanvasToRealCanvasAtPos(canvas, canvasDiv,0,0)
     }
 
-
-
-
     if(!baby && player.influenceSymbol){ //dont make sprite for this, always on top, unlike scars
       //wasteOfMindSymbol(canvas, player);
       influenceSymbol(canvas, player.influenceSymbol);
