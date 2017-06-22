@@ -1,5 +1,15 @@
 //coding start 6/21
-function RenderingEngine(dontRender, defaultRendererID){
+/*
+	A sprite rendering engine is intended to live ABOVE all simulations, and be used by any of them to render themselves in any fashion.  
+	Put MLP chacters in SBURB, or SBURB characters in some other sim. Whatever.
+	
+	As such, the images used by this engine must be kept at the same level AS this engine.
+	
+	A RenderingEngine should NOT know how to render a scene (such as leveling up.). That is the job
+	of the SceneRenderingEngine (kept at the sim level).  The SceneRenderingEngine will USE a RenderingEngine to 
+	render the sprites for the scene, sure. But they are kept separate.
+*/
+function SpriteRenderingEngine(dontRender, defaultRendererID){
   this.dontRender = dontRender; //AB for example doesn't want you to render
   this.defaultRendererID = defaultRendererID;
   this.renderers = [null, new HomestuckRenderer(this) , new EggRenderer(this)]; //if they try to render with "null", use defaultRendererID index instead.
