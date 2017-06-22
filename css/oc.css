@@ -387,6 +387,10 @@ body{
 	display: inline-block;
 }
 
+.tournamentResults{
+	border 2px solid black;
+}
+
 .twoTeams{
 	border: 1px solid grey;
 	padding-top: 5px;

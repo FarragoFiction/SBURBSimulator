@@ -3,13 +3,16 @@ var playersGlobalVar = [];
 var easterEggEngineGlobalVar;
 var simulationMode  = false;
 var teamsGlobalVar = [];
-var abj = false;
+var abj = false;  //<-- pro tip, ABJ follows the "Andrew Hussie School of StoryTelling", more deaths = more drama
 var tournamentMode = true;
 //for whole tournament
 var mvpName = ""
 var mvpScore = ""
 var lastTeamIndex = -2; //each round starts at index + 2
 var tierNumber = 0; //starts at zero before fight, then at 1.
+//objects representing how things went.
+var tiers = [];
+var currentTier; //tier object that i add rounds to.
 window.onload = function() {
 	$(this).scrollTop(0);
 	if(getParameterByName("abj")  == "interesting!!!") abj = true;
@@ -18,6 +21,25 @@ window.onload = function() {
 	displayPotentialFighters();
 	numSimulationsToDo = 10;
 	makeDescriptionList();
+}
+
+function createEndingTable(){
+	var html = "<table class = 'tournamentResults'>";
+	html += createEndingTableHeader();
+	//for loop on number of rounds.
+	html += "</table>"
+	$("#descriptions").append(html);
+}
+function createEndingTableHeader(){
+	
+}
+function createEndingTableRow(){
+	
+}
+
+//need to keep track of each "round" and each "tier", who fought who, who lost, who won, 
+function fillInEndingTable(){
+	
 }
 
 //hide the teams and button. randomize the teams and reDescribe them to show new order.
@@ -32,6 +54,7 @@ window.onload = function() {
 //queue up next 2.
 //when done, erase all losers, and start again with new teams (teamsGlobalVar should be object[], not string[])
 function startTournament(){
+	currentTier = new Tier(); //add rounds to it as it goes on.
 	tierNumber ++;
 	$("#currentTier").html("Current Tier: " + tierNumber)
 	lastTeamIndex = -2;
@@ -98,6 +121,7 @@ function startRoundPart2(){
 function doneWithRound(){
 	var team1 = teamsGlobalVar[lastTeamIndex]
 	var team2 = teamsGlobalVar[lastTeamIndex+1]
+	currentTier.rounds.push(new Round(team1, team2));
 	if(!team2) return doneWithTier();
 	if(team1.score() > team2.score()){
 		team2.lostRound = true;
@@ -120,8 +144,6 @@ function doneWithRound(){
 		markLoser(listDiv)
 		markLoser(roundDiv)
 	}
-	//start up next two players.
-	//if not even one more player, do "doneWithTier"
 	startRound();
 }
 
@@ -139,22 +161,23 @@ function markLoser(loser){
 function doneWithTier(){
 	//remove all losers. clear out all "wonRounds" rerender Combatants. start round up with lastTeamIndex of 0.
 	//alert("ready for round " + (tierNumber+1) + "?")
+	tiers.push(currentTier);
 	removeLosers();
 	startTournament();
 }
 
 function removeLosers(){
-	var toRemove = [];
+	var toSave = [];
 	for(var i = 0; i<teamsGlobalVar.length; i++){
 		var team  = teamsGlobalVar[i];
 		if(team.lostRound){
-			toRemove.push(team);
+			//do nothing.
+		}else{
+			team = team.resetStats(); //<--otherwise will think they are done nxt round casue already did 10 sessions.
+			toSave.push(team);
 		}
-		team.resetStats(); //<--otherwise will think they are done nxt round casue already did 10 sessions.
 	}
-	for(var i = 0; i<toRemove.length; i++){
-		teamsGlobalVar.removeFromArray(toRemove[i]);
-	}
+	teamsGlobalVar = toSave;
 }
 
 function fight(){
@@ -430,6 +453,17 @@ function getTeamDescription(team){
 
 }
 
+//who fought in this tier
+function Tier(){
+	this.rounds = [];
+}
+
+//who found in this round.
+function Round(team1, team2){
+	this.team1 = team1;
+	this.team2 = team2;
+}
+
 
 function Team(name,abj){
 	this.name = name;
@@ -442,7 +476,8 @@ function Team(name,abj){
 	this.abj = abj;
 	this.lostRound = false; //set to true if they lost.  cause them to render different.
 
-	this.resetStats = function(){
+	//DEPRECATED
+	this.resetStatsDEPRECATED = function(){
 		this.numberSessions = 0;
 		this.win = 0;
 		this.numTotalPartyWipe = 0;
@@ -450,6 +485,11 @@ function Team(name,abj){
 		this.mvp_name = ""
 		this.mvp_score = 0;
 		this.lostRound = false;
+	}
+	
+	//make copy of self so that rounds object doesn't have false data.
+	this.resetStats = function(){
+		return new Team(this.name, this.abj)
 	}
 
 	this.score = function(){
