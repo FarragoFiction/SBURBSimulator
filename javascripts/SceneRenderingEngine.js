@@ -59,6 +59,60 @@ function SceneRenderingEngine(dontRender){
 	  }
 	}
 
+	  this.drawChatText = function(canvas, player1, player2, introText, chat){
+		var space_between_lines = 25;
+		var left_margin = 8;
+		var line_height = 18;
+		var start = 18;
+		var current = 18;
+		var ctx = canvas.getContext("2d");
+		ctx.font = "12px Times New Roman"
+	  if(player1.sbahj){
+	    ctx.font = "12px Comic Sans MS"
+	  }
+		ctx.fillStyle = "#000000";
+		ctx.fillText(introText,left_margin*2,current);
+		//need custom multi line method that allows for differnet color lines
+		this.fillChatTextMultiLine(canvas, chat, player1, player2, left_margin, current+line_height*2);
+
+	}
+
+	//matches line color to player font color
+	 this.fillChatTextMultiLine = function(canvas, chat, player1, player2, x, y) {
+		var ctx = canvas.getContext("2d");
+		var lineHeight = ctx.measureText("M").width * 1.2;
+	  var lines = chat.split("\n");
+		var player1Start = player1.chatHandleShort()
+		var player2Start = player2.chatHandleShortCheckDup(player1Start);
+	 	for (var i = 0; i < lines.length; ++i) {
+			//does the text begin with player 1's chat handle short? if so: getChatFontColor
+			var ct = lines[i].trim();
+			//check player 2 first 'cause they'll be more specific if they have same initials
+			if(ct.startsWith(player2Start)){
+				ctx.fillStyle = player2.getChatFontColor();
+	      if(player2.sbahj){
+	         ctx.font = "12px Comic Sans MS"
+	      }else{
+	        	ctx.font = "12px Times New Roman"
+	      }
+			}else if(ct.startsWith(player1Start)){
+				ctx.fillStyle = player1.getChatFontColor();
+	      if(player1.sbahj){
+	         ctx.font = "12px Comic Sans MS"
+	      }else{
+	        	ctx.font = "12px Times New Roman"
+	      }
+			}else{
+				ctx.fillStyle = "#000000"
+			}
+			var lines_wrapped = this.spriteRenderingEngine.wrap_text(ctx, ct, x, y, lineHeight, canvas.width-50, "left")
+	  		y += lineHeight * lines_wrapped;
+	  	}
+		//word wrap these
+		ctx.fillStyle = "#000000"
+	}
+
+
 
 	this.drawSolidBG=function(canvas, color){
     var ctx = canvas.getContext("2d");
@@ -89,52 +143,6 @@ function SceneRenderingEngine(dontRender){
   	ctx.fillStyle = grd;
   	ctx.fillRect(startX, 0, endX, canvas.height);
   }
-
-  this.fillTextMultiLine = function(canvas, text1, text2, color2, x, y) {
-  	var ctx = canvas.getContext("2d");
-  	var lineHeight = ctx.measureText("M").width * 1.2;
-      var lines = text1.split("\n");
-   	for (var i = 0; i < lines.length; ++i) {
-     		ctx.fillText(lines[i], x, y);
-    		y += lineHeight;
-    	}
-  	//word wrap these
-  	ctx.fillStyle = color2
-   	this.wrap_text(ctx, text2, x, y, lineHeight, 3*canvas.width/4, "left");
-  	ctx.fillStyle = "#000000"
-  }
-
-  //http://stackoverflow.com/questions/5026961/html5-canvas-ctx-filltext-wont-do-line-breaks
-  this.wrap_text = function(ctx, text, x, y, lineHeight, maxWidth, textAlign) {
-    if(!textAlign) textAlign = 'center'
-    ctx.textAlign = textAlign
-    var words = text.split(' ')
-    var lines = []
-    var sliceFrom = 0
-    for(var i = 0; i < words.length; i++) {
-      var chunk = words.slice(sliceFrom, i).join(' ')
-      var last = i === words.length - 1
-      var bigger = ctx.measureText(chunk).width > maxWidth
-      if(bigger) {
-        lines.push(words.slice(sliceFrom, i).join(' '))
-        sliceFrom = i
-      }
-      if(last) {
-        lines.push(words.slice(sliceFrom, words.length).join(' '))
-        sliceFrom = i
-      }
-    }
-    var offsetY = 0
-    var offsetX = 0
-    if(textAlign === 'center') offsetX = maxWidth / 2
-    for(var i = 0; i < lines.length; i++) {
-      ctx.fillText(lines[i], x + offsetX, y + offsetY)
-      offsetY = offsetY + lineHeight
-    }
-    //need to return how many lines i created so that whatever called me knows where to put ITS next line.
-    return lines.length;
-  }
-
 
 
 	this.drawSprite(canvas, player){

@@ -644,6 +644,8 @@ function QuadrantDialogue(session){
 		chatText += this.getChat(relationship, relationship2);
 		chatText += this.fareWell(relationship,relationship2); //<-- REQUIRED for ultimate oblivion shittieness. "I have nothing more to say to you." "good day."
 		drawChat(document.getElementById("canvas"+ (div.attr("id"))), this.player1, this.player2, chatText, 0,this.getDiscussSymbol(relationship));
+		//this.session.sceneRenderingEngine.drawChat(document.getElementById("canvas"+ (div.attr("id"))), this.player1, this.player2, chatText, 0,this.getDiscussSymbol(relationship));
+
 	}
 
 	//have test page (link to easter eggs) where it generates some players and shoves them into relationships and
