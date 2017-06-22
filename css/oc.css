@@ -191,6 +191,9 @@ body{
   font-family: horrorterror;
 }
 
+.tierTitle{
+	font-size: 25px;
+}
 .vsName{
 	font-size: 25px;
 	padding-left: 25px;
@@ -358,7 +361,7 @@ body{
 }
 
 #roundTitle{
-	width: 700px;
+	width: 400px;
 	display: none;
 	text-align: center;
 }

@@ -33,7 +33,7 @@ window.onload = function() {
 //when done, erase all losers, and start again with new teams (teamsGlobalVar should be object[], not string[])
 function startTournament(){
 	tierNumber ++;
-	$("#currentTier").html("<h2>Current Tier: " + tierNumber + " </h2>")
+	$("#currentTier").html("Current Tier: " + tierNumber)
 	lastTeamIndex = -2;
 	$("#teams").hide();
 	$("#roundTitle").css('display', 'inline-block');
