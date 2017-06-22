@@ -389,7 +389,6 @@ body{
 
 
 .tournamentResults{
-	overflow: scroll;
 	width: 950px;
 	height: auto;
 }

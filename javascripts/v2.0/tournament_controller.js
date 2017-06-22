@@ -47,7 +47,7 @@ function createEndingTable(){
 	for(var i = 0; i<startingTeams.length; i++){
 		html += createEndingTableRow(startingTeams[i])
 	}
-	html += "</table></div>"
+	html += "</table></div>" //i tried scrolls to make it look better, but it made it harder to navigate, so, fuck that shit.
 	$("#descriptions").append(html);
 }
 function createEndingTableHeader(){
