@@ -199,7 +199,7 @@ function FreeWillStuff(session){
 
 	//as little randomness in free will as possible. choices. decisions.
 	this.findNonGodTierBesidesMe = function(player){
-		console.log(player.title() + " is looking for a god tier besides themselves: " + this.session.session_id)
+		//console.log(player.title() + " is looking for a god tier besides themselves: " + this.session.session_id)
 		var ret = null;
 		var ret_abs_value = 0;
 		if(player.aspect == "Time" && !player.godTier) return player;  //god tier yourself first.
@@ -324,11 +324,11 @@ function FreeWillStuff(session){
 						var timeIntro = "";
 						if(player == patsy){
 							loop = "You get dizzy trying to follow the time logic that must have caused this to happen. Did they only go crazy because their future self went crazy because THEIR future self went crazy....? Or wait, is this a doomed time clone...? Fuck. Time is the shittiest aspect."
-							console.log(player.title() +" convincing past/future self to go murder mode " + this.session.session_id);
+							//console.log(player.title() +" convincing past/future self to go murder mode " + this.session.session_id);
 						}else if(player.aspect == "Time" && Math.random()>.25){ //most manipulative time bastards are from teh future
 							timeIntro = " from the future"
 						}
-						console.log("forcing someone else to be flipping shit")
+						//console.log("forcing someone else to be flipping shit")
 						return "The " + player.htmlTitleBasic() + timeIntro + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use clever words to convince the " + patsy.htmlTitleBasic() + " of the righteousness of their plan. They agree to carry out the bloody work. " + loop;
 
 				}else{
@@ -567,7 +567,7 @@ function FreeWillStuff(session){
 		if(murderer && !player.isActive() && !murderer.dead && this.isValidTargets([murderer], player) && player.power > 25 && this.canInfluenceEnemies(player)){
 			return this.sendPatsyAfterMurderer(player, murderer);
 		}else if(murderer && !murderer.dead && (player.causeOfDeath.indexOf(murderer.class_name) == -1)){  //you haven't killed me recently.
-			console.log(player.title() + " want to kill murdermode player and my causeOfeath is" + player.causeOfDeath +  " and session is: " + this.session.session_id)
+			//console.log(player.title() + " want to kill murdermode player and my causeOfeath is" + player.causeOfDeath +  " and session is: " + this.session.session_id)
 			return this.killMurderer(player, murderer);
 		}
 		return null;

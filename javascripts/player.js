@@ -142,7 +142,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		var strength = this.getOverallStrength();
 		var expectedMaxStrength = 1200; //from sim values of 50+ sessions. then balancing exercises with AB
 		var strengthPerTier = (expectedMaxStrength)/possibilities.length;
-		console.log("Strength at start is, " + strength);//but what if you don't want STRANGTH!???
+		//console.log("Strength at start is, " + strength);//but what if you don't want STRANGTH!???
 		var denizenIndex = Math.round(strength/strengthPerTier)-1;  //want lowest value to be off the denizen array.
 
 		var denizenName = "";
@@ -2047,7 +2047,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.initSpriteCanvas = function(){
-		console.log("Initializing derived stuff.")
+		//console.log("Initializing derived stuff.")
 		this.spriteCanvasID = this.id+"spriteCanvas";
 		var canvasHTML = "<br><canvas style='display:none' id='" + this.spriteCanvasID+"' width='" +400 + "' height="+300 + "'>  </canvas>";
 		$("#playerSprites").append(canvasHTML)

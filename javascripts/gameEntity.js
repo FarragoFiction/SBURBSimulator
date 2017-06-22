@@ -438,7 +438,7 @@ function GameEntity(session, name, crowned){
 			//if this IS a denizen fight, i can assume there is only one player in it
 			if(players[0].denizen.name == this.name){
 				if(numTurns>5 || (players[0].currentHP < this.getPower() && !players[0].godDestiny)){ //denizens are cool with killing players that will godtier.
-					console.log("Denizen is fucking done after  " + numTurns +" turns " + this.session.session_id)
+				//	console.log("Denizen is fucking done after  " + numTurns +" turns " + this.session.session_id)
 					this.denizenIsSoNotPuttingUpWithYourShitAnyLonger(div, players, numTurns);
 					return true;
 				}else if((players[0].currentHP < this.getPower() && players.godDestiny)){

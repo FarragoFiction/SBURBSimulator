@@ -8,6 +8,7 @@ var tournamentMode = true;
 //for whole tournament
 var mvpName = ""
 var mvpScore = ""
+var startingTeams = [];
 var lastTeamIndex = -2; //each round starts at index + 2
 var tierNumber = 0; //starts at zero before fight, then at 1.
 //objects representing how things went.
@@ -24,21 +25,37 @@ window.onload = function() {
 }
 
 function createEndingTable(){
-	var html = "<table class = 'tournamentResults'>";
+	var html = "<table id = 'endingTable' class = 'tournamentResults'>";
 	html += createEndingTableHeader();
-	//for loop on number of rounds.
+	//for loop on number of tiers.
+	for(var i = 0; i<startingTeams.length; i++){
+		createEndingTableRow(startingTeams[i])
+	}
 	html += "</table>"
 	$("#descriptions").append(html);
+	colorBasedOnRounds();
 }
 function createEndingTableHeader(){
-	
+	var html = "<th>"
+	for(var i = 1; i<=tiers.length; i++){
+		html += "<td>Tier: " +i+ " </td>"
+	}
+	html += "</th>"
+	return html;
 }
-function createEndingTableRow(){
-	
+function createEndingTableRow(team){
+	var html = "<th>"
+	for(var i = 1; i<=tiers.length; i++){
+		html += "<td>"
+		html += team.name + ": <div class = 'score' id = 'score_" + team.name + tierNumber +"'></div>"
+		html += "<b>MVP:</b>  " + team.mvp_name + " with a power of: " + team.mvp_score
+		html += " </td>"
+	}
+	html += "</th>"
+	return html;
 }
 
-//need to keep track of each "round" and each "tier", who fought who, who lost, who won, 
-function fillInEndingTable(){
+function colorBasedOnRounds(){
 	
 }
 
@@ -54,6 +71,7 @@ function fillInEndingTable(){
 //queue up next 2.
 //when done, erase all losers, and start again with new teams (teamsGlobalVar should be object[], not string[])
 function startTournament(){
+	if (startingTeams == []) startingTeams = teamsGlobalVar; //don't THINK i have to make a copy of it, because i just throw away old array when i'm done, i don't modify it.
 	currentTier = new Tier(); //add rounds to it as it goes on.
 	tierNumber ++;
 	$("#currentTier").html("Current Tier: " + tierNumber)
@@ -76,7 +94,17 @@ function missionComplete(){
 	//have some sort of css pop up with winner, hide tournament, show all team descriptions (hopefully in horizontally scrolling line)
 	$("#tournament").hide();
 	$("#winner").html("<h1>Winner: " + teamsGlobalVar[0].name+"</h1>");
-	showAllTiers();
+	//showAllTiers();
+	hideAllTiers();
+	createEndingTable();
+}
+
+function hideAllTiers(){
+	for(var i = 1; i<(tierNumber+1); i++){
+		//$("#description"+(i)).css('display', 'inline-block');
+		$("#description"+(i)).prepend("Tier: " + (i)); //label
+		$("#description"+(i)).hide();
+	}
 }
 
 function showAllTiers(){
@@ -444,7 +472,6 @@ function displayTeamInList(team){
 
 //when tournament starts up, drop down is set to none, and this is left most thing.
 function getTeamDescription(team){
-	console.log("~~~~~~~~~~~~~~~~~~TODO~~~~~~~~~~~~~~~ have icon for each category.");
 	var stuck = team.name.split("Stuck");
 	if(tierNumber > 0) return team.name + ": <div class = 'score' id = 'score_" + team.name + tierNumber +"'></div>"
 	if(stuck.length == 2) return "<h2>" +stuck[0] +"Stuck</h2> <div id = 'score_" + team.name + tierNumber +"'></div><div id = 'mvp_" + team.name + tierNumber +"'></div><hr> A random team of only  " + stuck[0] + " Players. (With Time/Space guaranteed)"

@@ -455,7 +455,7 @@ function renderAfterlifeURL(){
 function playersToDataBytes(players){
 	var ret = "";
 	for(var i = 0; i<players.length; i++){
-		console.log("player " + i + " to data byte")
+		//console.log("player " + i + " to data byte")
 		ret += players[i].toDataBytes();
 	}
 	return LZString.compressToEncodedURIComponent(ret);

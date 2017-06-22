@@ -222,7 +222,7 @@ function DoLandQuest(session){
 		}
 
 		if(player1.object_to_prototype.corrupted && !player1.sprite.dead){
-			console.log("corrupt sprite: " + this.session.session_id)
+		//	console.log("corrupt sprite: " + this.session.session_id)
 			player1.corruptionLevelOther += 5;
 			ret = true;
 			if(player2) player2.corruptionLevelOther += 5;

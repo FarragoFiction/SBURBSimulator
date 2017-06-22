@@ -101,7 +101,7 @@ function FaceDenizen(session){
 				p.power = p.power*2;  //current and future doubling of power.
 				this.session.denizenBeat = true;
 			}else if(p.dead){
-				console.log("denizen kill " + this.session.session_id)
+				//console.log("denizen kill " + this.session.session_id)
 			}
 		}
 			p.denizenFaced = true; //may not have defeated them, but no longer have the option of The Choice

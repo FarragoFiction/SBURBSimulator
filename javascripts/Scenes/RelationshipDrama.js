@@ -36,7 +36,7 @@ function RelationshipDrama(session){
 
 	//if they hate you back
 	this.celebratoryRapBattle = function(div, player1, player2){
-		console.log("celbratory rap battles: " + this.session.session_id)
+		//console.log("celbratory rap battles: " + this.session.session_id)
 		this.session.rapBattle = true;
 		var divId = (div.attr("id")) + player1.chatHandle + player1.id;
 		var player1Start = player1.chatHandleShort()+ ": "
