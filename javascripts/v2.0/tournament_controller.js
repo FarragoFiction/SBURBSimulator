@@ -41,13 +41,13 @@ function setStartingTeams(){
 }
 
 function createEndingTable(){
-	var html = "(matching colors means they faced each other that tier) <table id = 'endingTable' class = 'tournamentResults'>";
+	var html = "(matching colors means they faced each other that tier) <div class = 'tournamentResults'><table id = 'endingTable' >";
 	html += createEndingTableHeader();
 	//for loop on number of tiers.
 	for(var i = 0; i<startingTeams.length; i++){
 		html += createEndingTableRow(startingTeams[i])
 	}
-	html += "</table>"
+	html += "</table></div>"
 	$("#descriptions").append(html);
 }
 function createEndingTableHeader(){
