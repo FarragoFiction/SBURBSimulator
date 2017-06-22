@@ -15,7 +15,7 @@ var tierNumber = 0; //starts at zero before fight, then at 1.
 var tiers = [];
 var currentTier; //tier object that i add rounds to.
 var allColors = ["#ffdf99","#29ded8","#29de69","#e88cff","#ff8cc5","#b58cff","#8cfff0","#8cffaf","#ddff8c","#ffe88c","#ffa28c","#ffefdb","#faffdb","#dbffef","#dbebff","#ffdbf8","#dfffdb","#ffc5c5","#ff99b8","#ff99fe","#d099ff","#99b1ff","#99ffed","#c9ff99"];
-var remainingColors = allColors;
+var remainingColors = [];
 
 window.onload = function() {
 	$(this).scrollTop(0);
@@ -25,6 +25,13 @@ window.onload = function() {
 	displayPotentialFighters();
 	numSimulationsToDo = 10;
 	makeDescriptionList();
+}
+
+function resetColors(){
+	remainingColors = [];
+	for(var i = 0; i<allColors.length; i++){
+		remainingColors.push(allColors[i]);
+	}
 }
 
 function setStartingTeams(){
@@ -58,7 +65,12 @@ function createEndingTableRow(team){
 		var round = tiers[i].findRoundForTeam(team);
 		if(round){
 			var teamInRound = round.getTeam(team.name);
-			html += "<td class = 'tournamentCell' bgcolor='" +round.color + "'>"
+			if(teamInRound.lostRound){
+				html += "<td style = 'text-decoration: line-through;' class = 'tournamentCell' bgcolor='" +round.color + "'>"
+			}else{
+				html += "<td class = 'tournamentCell' bgcolor='" +round.color + "'>"
+			}
+			
 			html += team.name + ": " +teamInRound.score() 
 			html += "<div class = 'mvp'><b>MVP:</b>  " + teamInRound.mvp_name + " with a power of: " + Math.round(teamInRound.mvp_score) + "</div>"
 			html += " </td>"
@@ -86,7 +98,7 @@ function createEndingTableRow(team){
 function startTournament(){
 	if (startingTeams.length == 0) setStartingTeams();; //don't THINK i have to make a copy of it, because i just throw away old array when i'm done, i don't modify it.
 	currentTier = new Tier(); //add rounds to it as it goes on.
-	remainingColors = allColors;
+	resetColors()
 	tierNumber ++;
 	$("#currentTier").html("Current Tier: " + tierNumber)
 	lastTeamIndex = -2;
