@@ -260,7 +260,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.breathDenizenNames = function(){
-		return ['Breath','Ninlil','Ouranos','Typheus','Aether','Amun','Hermes','Shu','Sobek','Aura','Theia','Lelantos','Keenarth','Aeolus','Aurai','Zephyrus','Ventus','Sora','Htaerb','Worlourier','Buddha','Quetzalcoatl'];
+		return ['Breath','Ninlil','Ouranos','Typheus','Aether','Amun','Hermes','Shu','Sobek','Aura','Theia','Lelantos','Keenarth','Aeolus','Aurai','Zephyrus','Ventus','Sora','Htaerb','Worlourier','Quetzalcoatl'];
 	}
 
 	this.lightDenizenNames = function(){
