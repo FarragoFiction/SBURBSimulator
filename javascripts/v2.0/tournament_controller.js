@@ -83,8 +83,8 @@ function startRoundPart2(){
 	var team1 = teamsGlobalVar[lastTeamIndex]
 	var team2 = teamsGlobalVar[lastTeamIndex+1]  //if no team 2, they win???
 	if(team2 == null) return doneWithRound();
-	var team1Title = "<h1 id = 'team1Title'>"+ team1 + "</h1>";
-	var team2Title =  "<h1 id = 'team2Title'>"+ team2 + "</h1>";
+	var team1Title = "<span class = 'vsName' id = 'team1Title'>"+ team1 + "</span>";
+	var team2Title =  "<span class = 'vsName' id = 'team2Title'>"+ team2 + "</span>";
 	$("#roundTitle").html(team1Title +" vs " + team2Title);
 	renderTeam(team1, $("#team1"));
 	renderTeam(team2, $("#team2"));
@@ -423,6 +423,7 @@ function displayTeamInList(team){
 function getTeamDescription(team){
 	console.log("~~~~~~~~~~~~~~~~~~TODO~~~~~~~~~~~~~~~ have icon for each category.");
 	var stuck = team.name.split("Stuck");
+	if(tierNumber > 0) return team.name + ": <div class = 'score' id = 'score_" + team.name + tierNumber +"'></div>"
 	if(stuck.length == 2) return "<h2>" +stuck[0] +"Stuck</h2> <div id = 'score_" + team.name + tierNumber +"'></div><div id = 'mvp_" + team.name + tierNumber +"'></div><hr> A random team of only  " + stuck[0] + " Players. (With Time/Space guaranteed)"
 
 	return "<h2>" + team + "</h2><div id = 'score_" + team.name + tierNumber+"'></div><div id = 'mvp_" + team.name + tierNumber +"'></div> <hr>Players chosen randomly from the " + team + " fan OCs";
