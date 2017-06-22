@@ -14,6 +14,9 @@ var tierNumber = 0; //starts at zero before fight, then at 1.
 //objects representing how things went.
 var tiers = [];
 var currentTier; //tier object that i add rounds to.
+var allColors = ["#ffdf99","#29ded8","#29de69","#e88cff","#ff8cc5","#b58cff","#8cfff0","#8cffaf","#ddff8c","#ffe88c","#ffa28c","#ffefdb","#faffdb","#dbffef","#dbebff","#ffdbf8","#dfffdb","#ffc5c5","#ff99b8","#ff99fe","#d099ff","#99b1ff","#99ffed","#c9ff99"];
+var remainingColors = allColors;
+
 window.onload = function() {
 	$(this).scrollTop(0);
 	if(getParameterByName("abj")  == "interesting!!!") abj = true;
@@ -24,40 +27,50 @@ window.onload = function() {
 	makeDescriptionList();
 }
 
+function setStartingTeams(){
+	for(var i =0; i<teamsGlobalVar.length; i++){
+		startingTeams.push(teamsGlobalVar[i]);
+	}
+}
+
 function createEndingTable(){
-	var html = "<table id = 'endingTable' class = 'tournamentResults'>";
+	var html = "(matching colors means they faced each other that tier) <table id = 'endingTable' class = 'tournamentResults'>";
 	html += createEndingTableHeader();
 	//for loop on number of tiers.
 	for(var i = 0; i<startingTeams.length; i++){
-		createEndingTableRow(startingTeams[i])
+		html += createEndingTableRow(startingTeams[i])
 	}
 	html += "</table>"
 	$("#descriptions").append(html);
-	colorBasedOnRounds();
 }
 function createEndingTableHeader(){
-	var html = "<th>"
+	var html = "<tr>"
 	for(var i = 1; i<=tiers.length; i++){
-		html += "<td>Tier: " +i+ " </td>"
+		html += "<th>Tier: " +i+ " </th>"
 	}
-	html += "</th>"
-	return html;
-}
-function createEndingTableRow(team){
-	var html = "<th>"
-	for(var i = 1; i<=tiers.length; i++){
-		html += "<td>"
-		html += team.name + ": <div class = 'score' id = 'score_" + team.name + tierNumber +"'></div>"
-		html += "<b>MVP:</b>  " + team.mvp_name + " with a power of: " + team.mvp_score
-		html += " </td>"
-	}
-	html += "</th>"
+	html += "</tr>"
 	return html;
 }
 
-function colorBasedOnRounds(){
-	
+function createEndingTableRow(team){
+	var html = "<tr>"
+	for(var i = 0; i<tiers.length; i++){
+		var round = tiers[i].findRoundForTeam(team);
+		if(round){
+			var teamInRound = round.getTeam(team.name);
+			html += "<td class = 'tournamentCell' bgcolor='" +round.color + "'>"
+			html += team.name + ": " +teamInRound.score() 
+			html += "<div class = 'mvp'><b>MVP:</b>  " + teamInRound.mvp_name + " with a power of: " + Math.round(teamInRound.mvp_score) + "</div>"
+			html += " </td>"
+		}else{ //was disqualified
+			html += "<td></td>"			
+		}
+	}
+	html += "</tr>"
+	return html;
 }
+
+
 
 //hide the teams and button. randomize the teams and reDescribe them to show new order.
 //render AB in center, facing left team.
@@ -71,8 +84,9 @@ function colorBasedOnRounds(){
 //queue up next 2.
 //when done, erase all losers, and start again with new teams (teamsGlobalVar should be object[], not string[])
 function startTournament(){
-	if (startingTeams == []) startingTeams = teamsGlobalVar; //don't THINK i have to make a copy of it, because i just throw away old array when i'm done, i don't modify it.
+	if (startingTeams.length == 0) setStartingTeams();; //don't THINK i have to make a copy of it, because i just throw away old array when i'm done, i don't modify it.
 	currentTier = new Tier(); //add rounds to it as it goes on.
+	remainingColors = allColors;
 	tierNumber ++;
 	$("#currentTier").html("Current Tier: " + tierNumber)
 	lastTeamIndex = -2;
@@ -92,6 +106,8 @@ function startTournament(){
 
 function missionComplete(){
 	//have some sort of css pop up with winner, hide tournament, show all team descriptions (hopefully in horizontally scrolling line)
+	currentTier.rounds.push(new Round(teamsGlobalVar[0], null,takeColor()));  //so i can display winner.
+	tiers.push(currentTier);
 	$("#tournament").hide();
 	$("#winner").html("<h1>Winner: " + teamsGlobalVar[0].name+"</h1>");
 	//showAllTiers();
@@ -145,11 +161,17 @@ function startRoundPart2(){
 	fight();
 }
 
+function takeColor(){
+	var color = getRandomElementFromArray(remainingColors);
+	remainingColors.removeFromArray(color);
+	return color;
+}
+
 
 function doneWithRound(){
 	var team1 = teamsGlobalVar[lastTeamIndex]
 	var team2 = teamsGlobalVar[lastTeamIndex+1]
-	currentTier.rounds.push(new Round(team1, team2));
+	currentTier.rounds.push(new Round(team1, team2,takeColor()));
 	if(!team2) return doneWithTier();
 	if(team1.score() > team2.score()){
 		team2.lostRound = true;
@@ -181,8 +203,8 @@ function clearTeam(teamDiv){
 }
 
 function markLoser(loser){
-	console.log("marking loser")
-	console.log(loser);
+	//console.log("marking loser")
+	//console.log(loser);
 	loser.addClass("loser");
 }
 
@@ -215,9 +237,9 @@ function fight(){
 	var team = teamsGlobalVar[lastTeamIndex]
 	if(team.numberSessions >= numSimulationsToDo){
 			team = teamsGlobalVar[lastTeamIndex+1];
-			console.log("switiching teams in fight")
+			//console.log("switiching teams in fight")
 	}
-	console.log("number of sessions for team: " + team + " is " + team.numberSessions)
+	//console.log("number of sessions for team: " + team + " is " + team.numberSessions)
 
 	if(team.numberSessions >= numSimulationsToDo) return doneWithRound();
 	//var team2 = teamsGlobalVar[lastTeamIndex+1]  //if no team 2, they win???
@@ -240,7 +262,7 @@ function aBCallBack(sessionSummary){
 	var team = teamsGlobalVar[lastTeamIndex]
 	var teamNum = 1;
 	if(team.numberSessions >= numSimulationsToDo){
-		console.log("switching to team 2 in callback")
+		//console.log("switching to team 2 in callback")
 		teamNum = 2;
 		team = teamsGlobalVar[lastTeamIndex+1];
 		abRight();
@@ -280,11 +302,11 @@ function aBCallBack(sessionSummary){
 }
 
 function abjCallBack(sessionSummary){
-	console.log(sessionSummary)
+	//console.log(sessionSummary)
 	var team = teamsGlobalVar[lastTeamIndex]
 	var teamNum = 1;
 	if(team.numberSessions >= numSimulationsToDo){
-		console.log("switching to team 2 in callback")
+		//console.log("switching to team 2 in callback")
 		teamNum = 2;
 		team = teamsGlobalVar[lastTeamIndex+1];
 		abRight();
@@ -483,12 +505,31 @@ function getTeamDescription(team){
 //who fought in this tier
 function Tier(){
 	this.rounds = [];
+	this.findRoundForTeam = function(team){
+		for(var i = 0; i<this.rounds.length; i++){
+			if(this.rounds[i].hasTeam(team)) return this.rounds[i];
+		}
+	}
 }
 
 //who found in this round.
-function Round(team1, team2){
+function Round(team1, team2,color){
 	this.team1 = team1;
 	this.team2 = team2;
+	this.color = color;
+
+	this.hasTeam = function(team){
+		if(!team) return false;
+		if(this.team1.name == team.name || (this.team2 && this.team2.name == team.name)) return true;
+		return false;
+	}
+	
+	this.getTeam = function(teamName){
+		if(teamName == this.team1) return this.team1;
+		if(teamName == this.team2) return this.team2;
+		return null;
+			
+	}
 }
 
 

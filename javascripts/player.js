@@ -1008,7 +1008,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}else if(this.class_name == "Sylph"){ //heals others 'healing' rage would increase it.
 			player.boostAllRelationshipsBy(amount);
 			//way too OP an ability, only sylphs of heart have it
-			console.log("healing grim dark")
+			//console.log("healing grim dark")
 			player.changeGrimDark(-1);
 		}else if(this.class_name == "Bard"){ //destroys in others
 			player.boostAllRelationshipsBy(-1*amount)

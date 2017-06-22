@@ -387,9 +387,20 @@ body{
 	display: inline-block;
 }
 
+
 .tournamentResults{
-	border 2px solid black;
+	overflow: scroll;
 }
+
+.tournamentCell{
+	border: 2px solid black;
+}
+
+.mvp{
+	width: 150px;
+}
+
+
 
 .twoTeams{
 	border: 1px solid grey;

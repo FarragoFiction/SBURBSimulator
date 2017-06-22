@@ -203,7 +203,7 @@ function UpdateShippingGrid(session){
 		var fuckPile = ""
 		if(this.savedShipText.length > 4000){
 			fuckPile += "How did this session turn into such a scandalous fuckpile?";
-			console.log( this.savedShipText.length + " scandalous fuck pile " + this.session.session_id)
+		//	console.log( this.savedShipText.length + " scandalous fuck pile " + this.session.session_id)
 		}
 		var ret = "The " + this.heartPlayer.htmlTitleBasic() + " updates their shipping grid. " + fuckPile + " <Br>" + this.savedShipText;
 

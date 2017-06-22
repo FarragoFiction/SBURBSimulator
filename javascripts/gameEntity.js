@@ -447,7 +447,7 @@ function GameEntity(session, name, crowned){
 				return false; //denizen fights can not be interupted and are self limiting
 			}
 
-			if(numTurns > 20 && Math.seededRandom() < .005){
+			if(numTurns > 20 && Math.seededRandom() < .05){
 				this.summonAssHoleMcGee(div, players, numTurns);
 				return true;
 			}
@@ -790,7 +790,7 @@ function GameEntity(session, name, crowned){
 		this.ghostAttack = function(div, player, ghost){
 			if(!ghost) return false;
 			if(player.power < this.getHP()){
-					console.log("ghost attack in: " + this.session.session_id)
+					//console.log("ghost attack in: " + this.session.session_id)
 
 					this.currentHP += Math.round(-1* ghost.power*5); //not just one attack from the ghost
 					div.append(" The " + player.htmlTitleBasic() + " cashes in their promise of aid. The ghost of the " + ghost.htmlTitleBasic() + " unleashes an unblockable ghostly attack channeled through the living player. " + ghost.power + " damage is done to " + this.htmlTitleHP() + ". The ghost will need to rest after this for awhile. " );
@@ -879,7 +879,7 @@ function GameEntity(session, name, crowned){
 				this.processDeaths(div, offense, defense)
 				return;
 			}else if(defenseRoll > offenseRoll*5){
-				console.log("Luck dodge: " + this.session.session_id);
+				//console.log("Luck dodge: " + this.session.session_id);
 				div.append("The attack misses completely after an unlucky distraction.");
 				return;
 			}

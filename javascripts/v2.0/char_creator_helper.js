@@ -19,7 +19,7 @@ function CharacterCreatorHelper(players){
 		for(var i = start; i<start+num_at_a_time; i++){
 
 			if(this.players.length > i){
-				console.log("i is: " + i)
+				//console.log("i is: " + i)
 				this.drawSinglePlayerSummary(this.players[i]);
 				this.player_index ++; //okay to mod this in the loop because only initial i value relies on it.
 			}else{
@@ -31,7 +31,7 @@ function CharacterCreatorHelper(players){
 	}
 
 	this.drawSinglePlayerSummary = function(player){
-		console.log("drawing: " + player.title())
+		//console.log("drawing: " + player.title())
 		var str = "<div class='standAloneSummary' id='createdCharacter"+ player.id + "'>";
 		var divId =  player.id;
 		str += this.drawCanvasSummary(player);
@@ -946,7 +946,7 @@ function CharacterEasterEggEngine(){
 	//takes in things like this.redditCharacters and "OCs/reddit.txt"
 	//parses the text file as newline seperated and load them into the array.
 	this.loadArrayFromFile = function(arr, file,processForSim, callBack,that){
-		console.log("loading" + file)
+		//console.log("loading" + file)
 		var that = this;
 		$.ajax({
 		  url: file,
@@ -979,7 +979,7 @@ function CharacterEasterEggEngine(){
 		if(!space){
 			space = randomSpacePlayer(curSessionGlobalVar);
 			space.chatHandle = "randomSpace"
-			console.log("Random space player!")
+			//console.log("Random space player!")
 			space.quirk = new Quirk();
 			space.quirk.favoriteNumber = 0;
 			space.deriveChatHandle = false;
@@ -1004,10 +1004,10 @@ function CharacterEasterEggEngine(){
 			if(p) ret.push(p);
 			if(p) potentials.removeFromArray(p);  //no repeats. <-- modify all the removes l8r if i want to have a mode that enables them.
 		}
-		console.log(ret);
+		//console.log(ret);
 		for(var i = 0; i<ret.length; i++){
 			var p = ret[i];
-			console.log(p)
+			//console.log(p)
 			if(p.chatHandle.trim() == "") p.chatHandle = getRandomChatHandle(p.class_name,p.aspect,p.interest1, p.interest2);
 		}
 		curSessionGlobalVar.replayers = ret;
@@ -1082,7 +1082,7 @@ function CharacterEasterEggEngine(){
 		}
 
 		if(pool.length == 0){
-			console.log("i think i should be returning all characters.")
+		//	console.log("i think i should be returning all characters.")
 			pool = pool.concat(this.redditCharacters)
 			pool = pool.concat(this.tumblrCharacters)
 			pool = pool.concat(this.discordCharcters)

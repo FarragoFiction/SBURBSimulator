@@ -59,7 +59,7 @@ function FreeWillStuff(session){
 	}
 
 	this.renderGodTier = function(div){
-		console.log(this.playerGodTiered.title() + " rendering free will god tier: " + this.session.session_id)
+		//console.log(this.playerGodTiered.title() + " rendering free will god tier: " + this.session.session_id)
 		var divID = (div.attr("id")) + "_freeWillBulshit" + this.playerGodTiered.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
