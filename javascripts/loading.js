@@ -21,7 +21,15 @@ function loadAllImages(skipInit){
 
 }
 
-function loadAllImagesForPlayers(players, guardians,skipInit){
+function loadAllImagesForPlayers(players, guardians, skipInit){
+	var spriteLocations = curSessionGlobalVar.sceneRenderingEngine.loadAllImagesForPlayers(players);
+	spriteLocations = spriteLocations.concat(curSessionGlobalVar.sceneRenderingEngine.loadAllImagesForPlayers(players));
+	for(var i = 0; i<spriteLocations.length; i++){
+		loadImage(spriteLocations[i],skipInit);
+	}
+}
+
+function loadAllImagesForPlayersOld(players, guardians,skipInit){
 	var numImages = 0;
 	//loadFuckingEverything(skipInit); //lol, fuck the world, let's do this shit.
 
