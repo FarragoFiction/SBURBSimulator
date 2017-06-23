@@ -479,16 +479,16 @@ function HomestuckRenderer(rh){
   	ret.push(this.baseLocation +"Aspects/"+player.aspect + ".png");
 
   	ret.push(this.baseLocation +"Aspects/"+player.aspect + "Big.png")
-  	ret.push(this.baseLocation +this.baseLocation +"Aspects/"+"Hair/hair"+player.hair+".png")
+  	ret.push(this.baseLocation +"Hair/hair"+player.hair+".png")
     ret.push(this.baseLocation +"Hair/hair_back"+player.hair+".png")
 
   	if(player.isTroll == true){
   		ret.push(this.baseLocation +"Wings/wing"+player.quirk.favoriteNumber + ".png")
   		ret.push(this.baseLocation +"Horns/left"+player.leftHorn + ".png");
   		ret.push(this.baseLocation +"Horns/right"+player.rightHorn + ".png");
-      ret.push(this.baseLocation +"Bodies/grub"+player.baby + ".png")
+      ret.push(this.baseLocation +"Bodies/grub"+objectData.baby + ".png")
   	}else{
-      ret.push(this.baseLocation +"Bodies/baby"+player.baby + ".png")
+      ret.push(this.baseLocation +"Bodies/baby"+objectData.baby + ".png")
     }
     return ret;
   }

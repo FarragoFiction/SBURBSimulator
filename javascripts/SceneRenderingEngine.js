@@ -15,6 +15,7 @@ function SceneRenderingEngine(dontRender){
 
 	//take care of loading teh images the SCENES need, then ask your spriteRenderingEngine to load all the players.
 	this.loadAllImagesForPlayers = function(players){
+		console.log(players);
 		var ret = [];
 		if(!players) return ret;
 		for(var i = 0; i<players.length; i++){

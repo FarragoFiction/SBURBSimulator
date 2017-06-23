@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
+
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, height=2000">
+
+<meta http-equiv="Content-Type"
+      content="text/html; charset=utf-8" />
+
+<meta http-equiv="Pragma"
+      content="no-cache" />
+
+<meta name="patreon-enabled-features"
+      content="invite_redesign, posts_page_become_patron_sticky_bar, invite_creator_prompt_hide_dismiss, featured_tags, concierge_show_earnings_visibility_exposed, pause_patron_pledges, manage_rewards_refund_modal, mondo_creator_onboarding_exposed, find_creators_social, bot_detect" />
+
+<meta name="description"
+      content="Become a patron of FarragoFiction today:
+                Read 13 posts by FarragoFiction and get access to exclusive
+                content and experiences on the world’s largest membership
+                platform for artists and creators.">
+
+<meta property="twitter:description"
+      content="Become a patron of FarragoFiction today:
+                Read 13 posts by FarragoFiction and get access to exclusive
+                content and experiences on the world’s largest membership
+                platform for artists and creators.">
+
+<meta name="title"
+      content="FarragoFiction is creating Browser Simulations | Patreon" />
+
+<meta name="twitter:card"
+      value="summary_large_image">
+
+<meta property="twitter:site"
+      content="@Patreon">
+
+<meta content="artists, creators, patron, sponsor, music, videos"
+      name="keywords" />
+
+<!-- Icons generated using https://realfavicongenerator.net -->
+<link rel="apple-touch-icon" sizes="180x180" href="https://c5.patreon.com/external/favicon/apple-touch-icon.png?v=jw6AR4Rg74">
+<link rel="icon" type="image/png" sizes="32x32" href="https://c5.patreon.com/external/favicon/favicon-32x32.png?v=69kMELnXkB">
+<link rel="icon" type="image/png" sizes="16x16" href="https://c5.patreon.com/external/favicon/favicon-16x16.png?v=69kMELnXkB">
+<link rel="manifest" href="https://c5.patreon.com/external/favicon/manifest.json?v=jw6AR4Rg74">
+<link rel="mask-icon" href="https://c5.patreon.com/external/favicon/safari-pinned-tab.svg?v=jw6AR4Rg74" color="#f96854">
+<link rel="shortcut icon" href="https://c5.patreon.com/external/favicon/favicon.ico?v=69kMELnXkB">
+<meta name="apple-mobile-web-app-title" content="Patreon">
+<meta name="application-name" content="Patreon">
+<meta name="msapplication-TileColor" content="#f96854">
+<meta name="msapplication-TileImage" content="https://c5.patreon.com/external/favicon/mstile-144x144.png?v=jw6AR4Rg74">
+<meta name="msapplication-config" content="https://c5.patreon.com/external/favicon/browserconfig.xml?v=jw6AR4Rg74">
+<meta name="theme-color" content="#f96854">
+
+<title>FarragoFiction is creating Browser Simulations | Patreon</title>
+
+
+<meta prefix="og: http://ogp.me/ns#" property="og:title"
+      content="FarragoFiction is creating Browser Simulations | Patreon" />
+
+<meta property="twitter:title"
+      content="FarragoFiction is creating Browser Simulations | Patreon">
+
+    <meta prefix="og: http://ogp.me/ns#" property="og:image"
+          content="https://c3.patreon.com/2/patreon-user/6VsLVL5_1C5FD3cv32ChsN-Rrph4hqbk1UICOXbbyqGTZOYvDDREdHl66J0B1pyn.png?t=2145916800&w=1920&v=FuuLMGhpd-TD7v7NteuFMBZujLNdkljpWD1BHvQOZC8%3D" />
+
+    <meta prefix="og: http://ogp.me/ns#" property="og:image:url"
+          content="https://c3.patreon.com/2/patreon-user/6VsLVL5_1C5FD3cv32ChsN-Rrph4hqbk1UICOXbbyqGTZOYvDDREdHl66J0B1pyn.png?t=2145916800&w=1920&v=FuuLMGhpd-TD7v7NteuFMBZujLNdkljpWD1BHvQOZC8%3D" />
+
+    <link rel="image_src"
+          content="https://c3.patreon.com/2/patreon-user/6VsLVL5_1C5FD3cv32ChsN-Rrph4hqbk1UICOXbbyqGTZOYvDDREdHl66J0B1pyn.png?t=2145916800&w=1920&v=FuuLMGhpd-TD7v7NteuFMBZujLNdkljpWD1BHvQOZC8%3D" />
+
+    <meta property="twitter:image"
+          content="https://c3.patreon.com/2/patreon-user/6VsLVL5_1C5FD3cv32ChsN-Rrph4hqbk1UICOXbbyqGTZOYvDDREdHl66J0B1pyn.png?t=2145916800&w=1920&v=FuuLMGhpd-TD7v7NteuFMBZujLNdkljpWD1BHvQOZC8%3D">
+
+    <link rel="canonical"
+          href="https://www.patreon.com/FarragoFiction">
+
+    <meta name="canonicalURL"
+          content="https://www.patreon.com/FarragoFiction">
+
+    <meta prefix="og: http://ogp.me/ns#" property="og:url"
+          content="https://www.patreon.com/FarragoFiction" />
+
+    <meta property="twitter:url"
+          content="https://www.patreon.com/FarragoFiction">
+
+
+
+<meta prefix="og: http://ogp.me/ns#" property="og:site_name"
+      content="Patreon" />
+
+<meta prefix="og: http://ogp.me/ns#" property="og:description"
+      content="Become a patron of FarragoFiction today:
+                Read 13 posts by FarragoFiction and get access to exclusive
+                content and experiences on the world’s largest membership
+                platform for artists and creators." />
+
+<meta property="fb:admins"
+      content="201564"/>
+
+<meta property="fb:app_id"
+      content="130127590512253"/>
+
+<meta prefix="og: http://ogp.me/ns#" property="og:type"
+      content="article"/>
+
+<meta http-equiv="X-UA-Compatible"
+      content="IE=edge" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='https://c5.patreon.com/external/fonts/gt-america.css' rel='stylesheet' type='text/css'>
+
+
+
+    <link href="//c1.patreon.com/134099acf1eee4679b0d688adf38631e41768315/react-app.css"
+          rel="stylesheet"
+          type="text/css">
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.8/react-with-addons.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.8/react-dom.min.js"></script>
+
+
+      <script type="text/javascript">
+    window.patreon = window.patreon || {}
+    window.patreon.pageLoadEventName = "Creator Page" || null
+    window.patreon.pageLoadEventParams = {
+ "creator_id": 6476827
+} || null
+  </script>
+
+    <script type="text/javascript">
+        (function(e,t){var n=e.amplitude||{_q:[]};var r=t.createElement("script");r.type="text/javascript";
+  r.async=true;r.src="https://d24n15hnbwhuhn.cloudfront.net/libs/amplitude-2.10.0-min.gz.js";
+  r.onload=function(){e.amplitude.runQueuedFunctions()};var i=t.getElementsByTagName("script")[0];
+  i.parentNode.insertBefore(r,i);var s=function(){this._q=[];return this};function o(e){
+  s.prototype[e]=function(){this._q.push([e].concat(Array.prototype.slice.call(arguments,0)));
+  return this} }var a=["add","append","clearAll","prepend","set","setOnce","unset"];for(var c=0;c<a.length;c++){
+  o(a[c])}n.Identify=s;var u=["init","logEvent","logRevenue","setUserId","setUserProperties","setOptOut","setVersionName","setDomain","setDeviceId","setGlobalUserProperties","identify","clearUserProperties"];
+  function p(e){function t(t){e[t]=function(){e._q.push([t].concat(Array.prototype.slice.call(arguments,0)));
+  } }for(var n=0;n<u.length;n++){t(u[n])} }p(n);e.amplitude=n})(window,document);
+
+
+        var amk="30b59f3c268cad0ae71cf4b6aef0899c";
+        var options = {
+          includeUtm: true,
+          includeReferrer: true,
+
+        };
+            var cid = '' + 6476827
+            amplitude.init(amk, cid, options);
+
+        /**
+         * Set user properties here.
+         * Nothing personally identifying though!!
+         * (no: name, email, location etc... we're better than that)
+         */
+        var amplitudeIdentify = new amplitude.Identify()
+        amplitudeIdentify.setOnce('initialLandingPage', window.location.toString())
+        amplitude.identify(amplitudeIdentify)
+</script>
+
+    <!-- Google Analytics -->
+    <script>
+        window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+        var ga_options = {'allowLinker': true};
+            ga_options['userId'] = "6476827";
+        ga('create', 'UA-40726300-1', 'auto', ga_options);
+        ga('require', 'linker');
+        ga('linker:autoLink', ['blog.patreon.com']);
+            ga('set', 'userId', "6476827");
+        ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- /Google Analytics -->
+
+    <!-- Google Structured Data -->
+    <script type="application/ld+json">
+           {
+               "@context": "http://schema.org/",
+               "@type": "Organization",
+               "name": "Patreon",
+               "description": "Patreon is a membership platform that makes it easy for artists and creators to get paid. Join over 50,000 creators earning salaries from over 1,000,000 monthly patrons.",
+               "url": "http://www.patreon.com",
+               "logo": "https://c5.patreon.com/external/logo/downloads_logomark_color_on_white@2x.png",
+               "sameAs": [
+                   "https://www.twitter.com/patreon",
+                   "https://www.facebook.com/patreon",
+                   "https://www.youtube.com/patreon",
+                   "https://www.instagram.com/patreon"
+               ]
+           }
+       </script>
+    <!-- /Google Structured Data -->
+
+    <!-- Sift  -->
+        <script type="text/javascript">
+            var _user_id = "6476827";
+            var _session_id = "c29ac7d491a948c6fe6ff23ee922a40cbf94eea06126125bba8ab82a53e62f03";
+
+            var _sift = window._sift = window._sift || [];
+            _sift.push(['_setAccount', "7848bad5f1"]);
+            _sift.push(['_setUserId', _user_id]);
+            _sift.push(['_setSessionId', _session_id]);
+            _sift.push(['_trackPageview']);
+
+            (function() {
+                function ls() {
+                    var e = document.createElement('script');
+                    e.src = 'https://cdn.siftscience.com/s.js';
+                    document.body.appendChild(e);
+                }
+                if (window.attachEvent) {
+                    window.attachEvent('onload', ls);
+                } else {
+                    window.addEventListener('load', ls, false);
+                }
+            })();
+        </script>
+    <!-- Sift  -->
+
+
+    <!-- Start Visual Website Optimizer Asynchronous Code -->
+    <!-- End Visual Website Optimizer Asynchronous Code -->
+
+
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+        fbq('init', '267568703576098');
+        fbq('track', "PageView");
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=267568703576098&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+
+    <!-- Object.assign ES5 polyfill (for bootstrapping data) | https://github.com/sindresorhus/object-assign -->
+    <script>
+        function toObject(r){if(null===r||void 0===r)throw new TypeError("Object.assign cannot be called with null or undefined");return Object(r)}function shouldUseNative(){try{if(!Object.assign)return!1;var r=new String("abc");if(r[5]="de","5"===Object.getOwnPropertyNames(r)[0])return!1;for(var e={},t=0;10>t;t++)e["_"+String.fromCharCode(t)]=t;var n=Object.getOwnPropertyNames(e).map(function(r){return e[r]});if("0123456789"!==n.join(""))return!1;var o={};return"abcdefghijklmnopqrst".split("").forEach(function(r){o[r]=r}),"abcdefghijklmnopqrst"!==Object.keys(Object.assign({},o)).join("")?!1:!0}catch(a){return!1}}var getOwnPropertySymbols=Object.getOwnPropertySymbols,hasOwnProperty=Object.prototype.hasOwnProperty,propIsEnumerable=Object.prototype.propertyIsEnumerable;Object.assign=shouldUseNative()?Object.assign:function(r){for(var e,t,n=toObject(r),o=1;o<arguments.length;o++){e=Object(arguments[o]);for(var a in e)hasOwnProperty.call(e,a)&&(n[a]=e[a]);if(getOwnPropertySymbols){t=getOwnPropertySymbols(e);for(var s=0;s<t.length;s++)propIsEnumerable.call(e,t[s])&&(n[t[s]]=e[t[s]])}}return n};
+    </script>
+    <!-- End Object.assign ES5 polyfill-->
+
+
+</head>
+<body>
+    <script>
+        window.patreon = window.patreon || {};
+        window.patreon.apiServer = "api.patreon.com";
+        window.patreon.webServer = "www.patreon.com";
+        window.patreon.userId = "6476827";
+
+        window.patreon.theme = 'america';
+
+        window.patreon.bootstrap = window.patreon.bootstrap || {};
+        window.patreon.experiments = window.patreon.experiments || {};
+        window.patreon.featureFlags = window.patreon.featureFlags || {};
+        window.patreon.presets = window.patreon.presets || {};
+
+        Object.assign(window.patreon.bootstrap, {
+ "currentUser": {
+  "data": {
+   "attributes": {
+    "about": null,
+    "created": "2017-06-10T14:25:08+00:00",
+    "discord_id": null,
+    "email": "farragoFiction@gmail.com",
+    "facebook": null,
+    "facebook_id": null,
+    "first_name": "FarragoFiction",
+    "full_name": "FarragoFiction",
+    "gender": 0,
+    "has_password": true,
+    "image_url": "https://c3.patreon.com/2/patreon-user/fgK0-9JMbnNgzElExQmVvIMFi78NY78LkLbrgieXKSaQ2MTgqcc9jVloUX_UzfNj.png?t=2145916800\u0026w=400\u0026v=Mu3h-xUC7qWSlGZLzkDbsDq0B8xM73dtROzRupoazQk%3D",
+    "is_creator": true,
+    "is_deleted": false,
+    "is_email_verified": false,
+    "is_nuked": false,
+    "is_suspended": false,
+    "last_name": "",
+    "social_connections": {
+     "deviantart": null,
+     "discord": null,
+     "facebook": null,
+     "spotify": null,
+     "twitch": null,
+     "twitter": null,
+     "youtube": null
+    },
+    "thumb_url": "https://c3.patreon.com/2/patreon-user/fgK0-9JMbnNgzElExQmVvIMFi78NY78LkLbrgieXKSaQ2MTgqcc9jVloUX_UzfNj.png?h=100\u0026t=2145916800\u0026w=100\u0026v=8bhix2Ekh3YkRz6g5nXI3j9G_RmlwNPOMOhxY-ibUf4%3D",
+    "twitch": null,
+    "twitter": null,
+    "url": "https://www.patreon.com/FarragoFiction",
+    "vanity": "FarragoFiction",
+    "youtube": null
+   },
+   "id": "6476827",
+   "relationships": {
+    "campaign": {
+     "data": {
+      "id": "982892",
+      "type": "campaign"
+     },
+     "links": {
+      "related": "https://api.patreon.com/campaigns/982892"
+     }
+    },
+    "follows": {
+     "data": []
+    },
+    "pledges": {
+     "data": []
+    }
+   },
+   "type": "user"
+  },
+  "included": [
+   {
+    "attributes": {
+     "created_at": "2017-06-10T14:25:24+00:00",
+     "creation_count": 13,
+     "creation_name": "Browser Simulations",
+     "discord_server_id": null,
+     "display_patron_goals": false,
+     "earnings_visibility": null,
+     "image_small_url": "https://c3.patreon.com/2/patreon-user/6VsLVL5_1C5FD3cv32ChsN-Rrph4hqbk1UICOXbbyqGTZOYvDDREdHl66J0B1pyn.png?h=1280\u0026t=2145916800\u0026w=1280\u0026v=ZY2xF95FBz_iZ6C6nVp3EE0TdQDAvdrY3E2prj1G-Hk%3D",
+     "image_url": "https://c3.patreon.com/2/patreon-user/6VsLVL5_1C5FD3cv32ChsN-Rrph4hqbk1UICOXbbyqGTZOYvDDREdHl66J0B1pyn.png?t=2145916800\u0026w=1920\u0026v=FuuLMGhpd-TD7v7NteuFMBZujLNdkljpWD1BHvQOZC8%3D",
+     "is_charged_immediately": false,
+     "is_monthly": true,
+     "is_nsfw": false,
+     "is_plural": false,
+     "main_video_embed": null,
+     "main_video_url": null,
+     "one_liner": null,
+     "outstanding_payment_amount_cents": 0,
+     "patron_count": 10,
+     "pay_per_name": "month",
+     "pledge_sum": 11070,
+     "pledge_url": "/bePatron?c=982892",
+     "published_at": "2017-06-12T03:07:02+00:00",
+     "summary": "\u003cstrong\u003eWhoa...what is this???\u003c/strong\u003e\u003cbr\u003e\u201cFarragoFiction.com\u201d is the overarching concept of making stories and other not-quite-games from simulations, for free, online. \u003cbr\u003e\u003cbr\u003eIt will host the\u00a0\u003ca href=\"http://www.farragofiction.com/SBURBSim/index.html\" target=\"_blank\"\u003eSBURB Simulator\u003c/a\u003e, as well as future, non-Homestuck projects.  It will ALSO host prototypes I made before partnering with KR, the artist,\u00a0 for various types of not-quite-games we can create in the future. Things like a \u003ca href=\"http://farragofiction.com/AutoTowerDefense/tower_defender.html\" target=\"_blank\"\u003etower defender\u003c/a\u003e that plays itself, a \u003ca href=\"http://farragofiction.com/GeneticStory/Worlds/story_world.html\" target=\"_blank\"\u003esimple creature simulation\u003c/a\u003e that tells stories, the \u003ca href=\"http://farragofiction.com/ModernArtClicker/ModernArtClicker.html\" target=\"_blank\"\u003eworld\u0027s worst idle game\u003c/a\u003e,\u00a0 the first \u003ca href=\"http://farragofiction.com/ModernArtClicker/PlantJavascript/homestuck_color.html\"\u003eHomestuck fan-programming\u003c/a\u003e thing I did, a \u0027figure out how to contain supernatural artifacts\u0027 \u003ca href=\"http://farragofiction.com/SCPSim/test_chamber.html\" target=\"_blank\"\u003eSCP Simulator,\u003c/a\u003e and \u003ca href=\"http://farragofiction.com/Plants/bamboo_simulation.html\" target=\"_blank\"\u003evarious\u003c/a\u003e \u003ca href=\"http://farragofiction.com/Plants/flower_simulation.html\" target=\"_blank\"\u003ezen\u003c/a\u003e-\u003ca href=\"http://farragofiction.com/Plants/fall_simulation.html\" target=\"_blank\"\u003eanimations\u003c/a\u003e of \u003ca href=\"http://farragofiction.com/Plants/halloween_simulation.html\" target=\"_blank\"\u003eplants\u003c/a\u003e \u003ca href=\"http://farragofiction.com/Plants/design.html\" target=\"_blank\"\u003egrowing\u003c/a\u003e.\u003cbr\u003e\u003cbr\u003e\u003cstrong\u003eWhy have a Patreon?\u003c/strong\u003e\u003cbr\u003eIt turns out SBURBSim has been hella popular, enough (holy shit, thanks guys!!!)  that we needed to get our own server.  Hopefully this Patreon can help us offset the costs of doing that.  If we\u2019re lucky, it might even let us buy better tools to make even better simulations!\u003cbr\u003e\u003cbr\u003e\u003cimg src=\"http://farragofiction.com/SBURBSim/images/ad1.png\"\u003e\u003cbr\u003e\u003cbr\u003e\u003cstrong\u003eWait, what is SBURBSim?\u003cbr\u003e\u003cbr\u003e\u003ca href=\"http://www.farragofiction.com/SBURBSim/index.html\" target=\"_blank\"\u003e\u003c/a\u003e\u003ca href=\"http://www.farragofiction.com/SBURBSim/index.html\" target=\"_blank\"\u003e\u003cimg src=\"http://farragofiction.com/images/SBURBsim_discord_sm.png\"\u003e\u003c/a\u003e\u003cbr\u003e\u003c/strong\u003e\u003cbr\u003eWow. Where to start?  Okay, so, it\u2019s a simulation of the game SBURB from Homestuck.  SBURB is an incredibly complicated game with high stakes and very codified rule sets that fans speculate endlessly on. It\u2019s pretty much perfect for making a simulation of, for the purpose of generating near infinite stories, along with procedural artwork.\u003cbr\u003e\u003cbr\u003eIf near-infinite stories wasn\u2019t enough, SBURBSim also lets you customize sessions to have \u003cstrong\u003eyour\u003c/strong\u003e custom characters in it, and then generates a story about them. \u003cbr\u003e\u003cbr\u003eGuys, I am having SO MUCH fun making this thing. You don\u2019t even.\u003cbr\u003e\u003cbr\u003e\u003cstrong\u003eOkay, so who are you?\u003cbr\u003e\u003cbr\u003e\u003cimg src=\"http://farragofiction.com/images/jadedResearcher_icon.png\"\u003e\u003cbr\u003e\u003c/strong\u003eI\u2019m jadedResearcher (JR), the Author of all these shenanigans. I \u0026lt;3 programming and shitty AIs and Homestuck.  (Are you shocked by these unexpected developments???). Oh yeah! I also love littering everything I do with easter eggs, secrets and references. \u003cbr\u003e\u003cbr\u003e\u003cimg src=\"http://farragofiction.com/images/Smith_of_Dreams_Icon.png\"\u003e\u003cbr\u003ekarmicRetribution (KR) is the Artist for FarragoFiction.com, and provides raw art assets as well as making sure the look and the feel of everything is up to snuff. : / You should SEE the shit I put out before partnering up with them.  KR saves the world from my bad aesthetic sense.\u003cbr\u003e\u003cbr\u003e\u003cimg src=\"http://farragofiction.com/images/creatorFaces/AB_icon.png\"\u003e\u003cimg src=\"http://farragofiction.com/images/creatorFaces/abj_icon.png\"\u003e\u003cbr\u003eThe AuthorBot (AB) is the robotic personification of the simulations themselves, as well as the suite of tools I put out so that people can find the types of simulations they want. She is the best \u2662.  Whenever I have a mini version of her running around, that\u2019s the \u201cAuthorBotJunior\u201d (ABJ). \u003cbr\u003e\u003cbr\u003e\u003cstrong\u003eWhat else are you going to do?\u003c/strong\u003e\u003cbr\u003eWe\u2019ll post specifics as we nail them down, but think along the lines of parodies of common fan fic tropes, original simulations, fandom simulations, and small not-quite-games written for browsers.  \u003cbr\u003e\u003cbr\u003eWe will basically always be bugging and fussing and meddling with SBURBSim as well.  The \u201cTodo\u201d pile never stops from getting taller on that thing.\u003cbr\u003e\u003cbr\u003e",
+     "thanks_embed": null,
+     "thanks_msg": "!!!\u003cbr\u003e\u003cbr\u003e!!!\u003cbr\u003e\u003cbr\u003e!!!\u003cbr\u003e\u003cbr\u003eOh Em Gee!!! Thank you so much! You are officially the best and should never forget it.\u00a0 \u003cbr\u003e\u003cbr\u003eDon\u0027t forget to send me your OCDataString so you can be part of the appropriate Patron Tier on the site! (And if you don\u0027t know what that means, ask!)\u003cbr\u003e\u003cbr\u003eHrrrm...doesn\u0027t this...seem like the perfect opportunity to provide a hint to [???] ? It DOES doesn\u0027t it?\u00a0 Prepare to shield your eyes if you don\u0027t want spoilers:\u003cbr\u003e\u003cbr\u003e.\u003cbr\u003e.\u003cbr\u003e.\u003cbr\u003e\u003cbr\u003e\"better than expected\" is a phrase that the AuthorBot uses to describe sessions that are won with no permanent player death.\u00a0 So... \"Where is everything better than expected?\" means...???\u003cbr\u003e",
+     "thanks_video_url": null
+    },
+    "id": "982892",
+    "relationships": {
+     "creator": {
+      "data": {
+       "id": "6476827",
+       "type": "user"
+      },
+      "links": {
+       "related": "https://api.patreon.com/user/6476827"
+      }
+     }
+    },
+    "type": "campaign"
+   }
+  ],
+  "links": {
+   "self": "https://api.patreon.com/user/6476827"
+  }
+ }
+});
+        Object.assign(window.patreon.experiments, {
+ "becomeAPatron": null,
+ "limited_rewards_experiment": null,
+ "mondo_creator_onboarding": "mondo",
+ "rewards_card_button_text_experiment": "x_tier"
+});
+        Object.assign(window.patreon.featureFlags, {
+ "patron_hover_cards": false
+});
+        Object.assign(window.patreon.presets, {});
+    </script>
+
+
+    <script>
+    Object.assign(window.patreon.presets, {
+ "navigation": {
+  "concierge_status": {
+   "finished_at": "2017-06-10T14:26:49",
+   "started_at": "2017-06-10T14:25:24"
+  },
+  "is_admin": false,
+  "is_impersonating": false,
+  "logged_in_become_creator_cta": null,
+  "referer_url": "http://www.farragofiction.com/SBURBSim/index2.html?seed=43926249\u0026b=KQBhvNgNnBhAzMAQs4cBMwCCBGYu4uAHAISkC06SyAYtSvZjk1ng6gIoQECcBAUUHAMkMT1z9EKZAEcCIAEoAqZQQCsQA\u0026s=DTCiDsHMEtwUzgJ1pYAlAhgBxCAInBgC4AW62wACogPYBm0AxtHOEQCoaKRxG4Dq0AF5cAJgGdyOIA",
+  "show_referral_program": true,
+  "unread_messages_count": 0,
+  "unread_notifications_count": 0,
+  "utm_params": {}
+ }
+});
+</script>
+<div id="reactNavigationOffset" style="height: 44px;"></div>
+
+
+    
+
+<script data-react-bootstrap>
+    window.patreon = window.patreon || {};
+    window.patreon.bootstrap = window.patreon.bootstrap || {};
+</script>
+
+<script>
+    window.patreon = window.patreon || {};
+    window.patreon.bootstrap = window.patreon.bootstrap || {};
+    window.patreon.bootstrap.hasNoPosts = false;
+    window.patreon.bootstrap.creator = {
+ "data": {
+  "attributes": {
+   "created_at": "2017-06-10T14:25:24+00:00",
+   "creation_name": "Browser Simulations",
+   "display_patron_goals": false,
+   "earnings_visibility": null,
+   "has_rss": false,
+   "image_small_url": "https://c3.patreon.com/2/patreon-user/6VsLVL5_1C5FD3cv32ChsN-Rrph4hqbk1UICOXbbyqGTZOYvDDREdHl66J0B1pyn.png?h=1280\u0026t=2145916800\u0026w=1280\u0026v=ZY2xF95FBz_iZ6C6nVp3EE0TdQDAvdrY3E2prj1G-Hk%3D",
+   "image_url": "https://c3.patreon.com/2/patreon-user/6VsLVL5_1C5FD3cv32ChsN-Rrph4hqbk1UICOXbbyqGTZOYvDDREdHl66J0B1pyn.png?t=2145916800\u0026w=1920\u0026v=FuuLMGhpd-TD7v7NteuFMBZujLNdkljpWD1BHvQOZC8%3D",
+   "is_monthly": true,
+   "is_nsfw": false,
+   "is_paused": false,
+   "is_plural": false,
+   "main_video_embed": null,
+   "main_video_url": null,
+   "one_liner": null,
+   "patron_count": 10,
+   "pay_per_name": "month",
+   "pledge_sum": 11070,
+   "pledge_url": "/bePatron?c=982892",
+   "published_at": "2017-06-12T03:07:02+00:00",
+   "summary": "\u003cstrong\u003eWhoa...what is this???\u003c/strong\u003e\u003cbr\u003e\u201cFarragoFiction.com\u201d is the overarching concept of making stories and other not-quite-games from simulations, for free, online. \u003cbr\u003e\u003cbr\u003eIt will host the\u00a0\u003ca href=\"http://www.farragofiction.com/SBURBSim/index.html\" target=\"_blank\"\u003eSBURB Simulator\u003c/a\u003e, as well as future, non-Homestuck projects.  It will ALSO host prototypes I made before partnering with KR, the artist,\u00a0 for various types of not-quite-games we can create in the future. Things like a \u003ca href=\"http://farragofiction.com/AutoTowerDefense/tower_defender.html\" target=\"_blank\"\u003etower defender\u003c/a\u003e that plays itself, a \u003ca href=\"http://farragofiction.com/GeneticStory/Worlds/story_world.html\" target=\"_blank\"\u003esimple creature simulation\u003c/a\u003e that tells stories, the \u003ca href=\"http://farragofiction.com/ModernArtClicker/ModernArtClicker.html\" target=\"_blank\"\u003eworld\u0027s worst idle game\u003c/a\u003e,\u00a0 the first \u003ca href=\"http://farragofiction.com/ModernArtClicker/PlantJavascript/homestuck_color.html\"\u003eHomestuck fan-programming\u003c/a\u003e thing I did, a \u0027figure out how to contain supernatural artifacts\u0027 \u003ca href=\"http://farragofiction.com/SCPSim/test_chamber.html\" target=\"_blank\"\u003eSCP Simulator,\u003c/a\u003e and \u003ca href=\"http://farragofiction.com/Plants/bamboo_simulation.html\" target=\"_blank\"\u003evarious\u003c/a\u003e \u003ca href=\"http://farragofiction.com/Plants/flower_simulation.html\" target=\"_blank\"\u003ezen\u003c/a\u003e-\u003ca href=\"http://farragofiction.com/Plants/fall_simulation.html\" target=\"_blank\"\u003eanimations\u003c/a\u003e of \u003ca href=\"http://farragofiction.com/Plants/halloween_simulation.html\" target=\"_blank\"\u003eplants\u003c/a\u003e \u003ca href=\"http://farragofiction.com/Plants/design.html\" target=\"_blank\"\u003egrowing\u003c/a\u003e.\u003cbr\u003e\u003cbr\u003e\u003cstrong\u003eWhy have a Patreon?\u003c/strong\u003e\u003cbr\u003eIt turns out SBURBSim has been hella popular, enough (holy shit, thanks guys!!!)  that we needed to get our own server.  Hopefully this Patreon can help us offset the costs of doing that.  If we\u2019re lucky, it might even let us buy better tools to make even better simulations!\u003cbr\u003e\u003cbr\u003e\u003cimg src=\"http://farragofiction.com/SBURBSim/images/ad1.png\"\u003e\u003cbr\u003e\u003cbr\u003e\u003cstrong\u003eWait, what is SBURBSim?\u003cbr\u003e\u003cbr\u003e\u003ca href=\"http://www.farragofiction.com/SBURBSim/index.html\" target=\"_blank\"\u003e\u003c/a\u003e\u003ca href=\"http://www.farragofiction.com/SBURBSim/index.html\" target=\"_blank\"\u003e\u003cimg src=\"http://farragofiction.com/images/SBURBsim_discord_sm.png\"\u003e\u003c/a\u003e\u003cbr\u003e\u003c/strong\u003e\u003cbr\u003eWow. Where to start?  Okay, so, it\u2019s a simulation of the game SBURB from Homestuck.  SBURB is an incredibly complicated game with high stakes and very codified rule sets that fans speculate endlessly on. It\u2019s pretty much perfect for making a simulation of, for the purpose of generating near infinite stories, along with procedural artwork.\u003cbr\u003e\u003cbr\u003eIf near-infinite stories wasn\u2019t enough, SBURBSim also lets you customize sessions to have \u003cstrong\u003eyour\u003c/strong\u003e custom characters in it, and then generates a story about them. \u003cbr\u003e\u003cbr\u003eGuys, I am having SO MUCH fun making this thing. You don\u2019t even.\u003cbr\u003e\u003cbr\u003e\u003cstrong\u003eOkay, so who are you?\u003cbr\u003e\u003cbr\u003e\u003cimg src=\"http://farragofiction.com/images/jadedResearcher_icon.png\"\u003e\u003cbr\u003e\u003c/strong\u003eI\u2019m jadedResearcher (JR), the Author of all these shenanigans. I \u0026lt;3 programming and shitty AIs and Homestuck.  (Are you shocked by these unexpected developments???). Oh yeah! I also love littering everything I do with easter eggs, secrets and references. \u003cbr\u003e\u003cbr\u003e\u003cimg src=\"http://farragofiction.com/images/Smith_of_Dreams_Icon.png\"\u003e\u003cbr\u003ekarmicRetribution (KR) is the Artist for FarragoFiction.com, and provides raw art assets as well as making sure the look and the feel of everything is up to snuff. : / You should SEE the shit I put out before partnering up with them.  KR saves the world from my bad aesthetic sense.\u003cbr\u003e\u003cbr\u003e\u003cimg src=\"http://farragofiction.com/images/creatorFaces/AB_icon.png\"\u003e\u003cimg src=\"http://farragofiction.com/images/creatorFaces/abj_icon.png\"\u003e\u003cbr\u003eThe AuthorBot (AB) is the robotic personification of the simulations themselves, as well as the suite of tools I put out so that people can find the types of simulations they want. She is the best \u2662.  Whenever I have a mini version of her running around, that\u2019s the \u201cAuthorBotJunior\u201d (ABJ). \u003cbr\u003e\u003cbr\u003e\u003cstrong\u003eWhat else are you going to do?\u003c/strong\u003e\u003cbr\u003eWe\u2019ll post specifics as we nail them down, but think along the lines of parodies of common fan fic tropes, original simulations, fandom simulations, and small not-quite-games written for browsers.  \u003cbr\u003e\u003cbr\u003eWe will basically always be bugging and fussing and meddling with SBURBSim as well.  The \u201cTodo\u201d pile never stops from getting taller on that thing.\u003cbr\u003e\u003cbr\u003e",
+   "thanks_embed": null,
+   "thanks_msg": "!!!\u003cbr\u003e\u003cbr\u003e!!!\u003cbr\u003e\u003cbr\u003e!!!\u003cbr\u003e\u003cbr\u003eOh Em Gee!!! Thank you so much! You are officially the best and should never forget it.\u00a0 \u003cbr\u003e\u003cbr\u003eDon\u0027t forget to send me your OCDataString so you can be part of the appropriate Patron Tier on the site! (And if you don\u0027t know what that means, ask!)\u003cbr\u003e\u003cbr\u003eHrrrm...doesn\u0027t this...seem like the perfect opportunity to provide a hint to [???] ? It DOES doesn\u0027t it?\u00a0 Prepare to shield your eyes if you don\u0027t want spoilers:\u003cbr\u003e\u003cbr\u003e.\u003cbr\u003e.\u003cbr\u003e.\u003cbr\u003e\u003cbr\u003e\"better than expected\" is a phrase that the AuthorBot uses to describe sessions that are won with no permanent player death.\u00a0 So... \"Where is everything better than expected?\" means...???\u003cbr\u003e",
+   "thanks_video_url": null
+  },
+  "id": "982892",
+  "relationships": {
+   "creator": {
+    "data": {
+     "id": "6476827",
+     "type": "user"
+    },
+    "links": {
+     "related": "https://api.patreon.com/user/6476827"
+    }
+   },
+   "current_user_pledge": {
+    "data": null
+   },
+   "goals": {
+    "data": [
+     {
+      "id": "863386",
+      "type": "goal"
+     },
+     {
+      "id": "864283",
+      "type": "goal"
+     },
+     {
+      "id": "864744",
+      "type": "goal"
+     },
+     {
+      "id": "864745",
+      "type": "goal"
+     },
+     {
+      "id": "871754",
+      "type": "goal"
+     },
+     {
+      "id": "871755",
+      "type": "goal"
+     },
+     {
+      "id": "871756",
+      "type": "goal"
+     },
+     {
+      "id": "871760",
+      "type": "goal"
+     }
+    ]
+   },
+   "patron_goals": {
+    "data": []
+   },
+   "post_aggregation": {
+    "data": {
+     "id": "post-aggregation-for-6476827-982892",
+     "type": "post_aggregation"
+    },
+    "links": {
+     "related": "https://api.patreon.com/post-aggregations/post-aggregation-for-6476827-982892"
+    }
+   },
+   "rewards": {
+    "data": [
+     {
+      "id": "-1",
+      "type": "reward"
+     },
+     {
+      "id": "0",
+      "type": "reward"
+     },
+     {
+      "id": "1756074",
+      "type": "reward"
+     },
+     {
+      "id": "1758848",
+      "type": "reward"
+     },
+     {
+      "id": "1758849",
+      "type": "reward"
+     }
+    ]
+   },
+   "rss_auth_token": {
+    "data": {
+     "id": "4155363",
+     "type": "rss-auth-token"
+    },
+    "links": {
+     "related": "https://api.patreon.com/rss-auth-tokens/4155363"
+    }
+   }
+  },
+  "type": "campaign"
+ },
+ "included": [
+  {
+   "attributes": {
+    "about": null,
+    "created": "2017-06-10T14:25:08+00:00",
+    "discord_id": null,
+    "email": "farragoFiction@gmail.com",
+    "facebook": null,
+    "facebook_id": null,
+    "first_name": "FarragoFiction",
+    "full_name": "FarragoFiction",
+    "gender": 0,
+    "has_password": true,
+    "image_url": "https://c3.patreon.com/2/patreon-user/fgK0-9JMbnNgzElExQmVvIMFi78NY78LkLbrgieXKSaQ2MTgqcc9jVloUX_UzfNj.png?t=2145916800\u0026w=400\u0026v=Mu3h-xUC7qWSlGZLzkDbsDq0B8xM73dtROzRupoazQk%3D",
+    "is_deleted": false,
+    "is_email_verified": false,
+    "is_nuked": false,
+    "is_suspended": false,
+    "last_name": "",
+    "social_connections": {
+     "deviantart": null,
+     "discord": null,
+     "facebook": null,
+     "spotify": null,
+     "twitch": null,
+     "twitter": null,
+     "youtube": null
+    },
+    "thumb_url": "https://c3.patreon.com/2/patreon-user/fgK0-9JMbnNgzElExQmVvIMFi78NY78LkLbrgieXKSaQ2MTgqcc9jVloUX_UzfNj.png?h=100\u0026t=2145916800\u0026w=100\u0026v=8bhix2Ekh3YkRz6g5nXI3j9G_RmlwNPOMOhxY-ibUf4%3D",
+    "twitch": null,
+    "twitter": null,
+    "url": "https://www.patreon.com/FarragoFiction",
+    "vanity": "FarragoFiction",
+    "youtube": null
+   },
+   "id": "6476827",
+   "relationships": {
+    "campaign": {
+     "data": {
+      "id": "982892",
+      "type": "campaign"
+     },
+     "links": {
+      "related": "https://api.patreon.com/campaigns/982892"
+     }
+    },
+    "pledge_to_current_user": {
+     "data": null
+    }
+   },
+   "type": "user"
+  },
+  {
+   "attributes": {
+    "next_inaccessible_posts_count": 1,
+    "upgrade_url": "/bePatron?c=982892\u0026rid=1756074"
+   },
+   "id": "post-aggregation-for-6476827-982892",
+   "type": "post_aggregation"
+  },
+  {
+   "attributes": {
+    "rss_url": "https://www.patreon.com/rss/FarragoFiction?auth=9WbxtST4W3o01tiNyG_QgiSxBqVK0Tsp",
+    "token": "9WbxtST4W3o01tiNyG_QgiSxBqVK0Tsp"
+   },
+   "id": "4155363",
+   "type": "rss-auth-token"
+  },
+  {
+   "attributes": {
+    "amount": 0,
+    "amount_cents": 0,
+    "created_at": null,
+    "description": "Everyone",
+    "remaining": 0,
+    "requires_shipping": false,
+    "type": "reward",
+    "url": null,
+    "user_limit": null
+   },
+   "id": "-1",
+   "type": "reward"
+  },
+  {
+   "attributes": {
+    "amount": 1,
+    "amount_cents": 1,
+    "created_at": null,
+    "description": "Patrons Only",
+    "remaining": 0,
+    "requires_shipping": false,
+    "type": "reward",
+    "url": null,
+    "user_limit": null
+   },
+   "id": "0",
+   "type": "reward"
+  },
+  {
+   "attributes": {
+    "amount": 100,
+    "amount_cents": 100,
+    "created_at": "2017-06-10T14:57:43.361877+00:00",
+    "deleted_at": null,
+    "description": "\u003cul\u003e\u003cli\u003ePatron-only polls\u003c/li\u003e\u003cli\u003eIncluded in Patreon Tier1 Easter Eggs\u003c/li\u003e\u003cli\u003eBehind the scenes artwork\u003c/li\u003e\u003c/ul\u003e",
+    "discord_role_ids": null,
+    "edited_at": "2017-06-14T12:24:27.557087+00:00",
+    "image_url": null,
+    "patron_count": 4,
+    "post_count": null,
+    "published": true,
+    "published_at": "2017-06-10T14:57:43.361877+00:00",
+    "remaining": null,
+    "requires_shipping": false,
+    "title": "Poll Pilgrim",
+    "unpublished_at": null,
+    "url": "/bePatron?c=982892\u0026rid=1756074",
+    "user_limit": null
+   },
+   "id": "1756074",
+   "relationships": {
+    "items": {
+     "data": []
+    }
+   },
+   "type": "reward"
+  },
+  {
+   "attributes": {
+    "amount": 500,
+    "amount_cents": 500,
+    "created_at": "2017-06-11T20:27:30.934481+00:00",
+    "deleted_at": null,
+    "description": "\u003cul\u003e\u003cli\u003ePatron-only polls\u003c/li\u003e\u003cli\u003eIncluded in Tier2 Easter Eggs\u003c/li\u003e\u003cli\u003eBehind the scenes artwork\u003c/li\u003e\u003c/ul\u003e",
+    "discord_role_ids": null,
+    "edited_at": "2017-06-14T12:24:27.573763+00:00",
+    "image_url": null,
+    "patron_count": 3,
+    "post_count": null,
+    "published": true,
+    "published_at": "2017-06-11T20:27:30.934481+00:00",
+    "remaining": null,
+    "requires_shipping": false,
+    "title": "Patreon Pugilist",
+    "unpublished_at": null,
+    "url": "/bePatron?c=982892\u0026rid=1758848",
+    "user_limit": null
+   },
+   "id": "1758848",
+   "relationships": {
+    "items": {
+     "data": []
+    }
+   },
+   "type": "reward"
+  },
+  {
+   "attributes": {
+    "amount": 1000,
+    "amount_cents": 1000,
+    "created_at": "2017-06-11T20:27:30.946505+00:00",
+    "deleted_at": null,
+    "description": "\u003cul\u003e\u003cli\u003ePatron-only polls\u003c/li\u003e\u003cli\u003eIncluded in Tier3 Easter Eggs\u003c/li\u003e\u003cli\u003eBehind the scenes artwork\u003c/li\u003e\u003c/ul\u003e",
+    "discord_role_ids": null,
+    "edited_at": "2017-06-14T12:24:27.862118+00:00",
+    "image_url": null,
+    "patron_count": 3,
+    "post_count": null,
+    "published": true,
+    "published_at": "2017-06-11T20:27:30.946505+00:00",
+    "remaining": null,
+    "requires_shipping": false,
+    "title": "God Giver",
+    "unpublished_at": null,
+    "url": "/bePatron?c=982892\u0026rid=1758849",
+    "user_limit": null
+   },
+   "id": "1758849",
+   "relationships": {
+    "items": {
+     "data": []
+    }
+   },
+   "type": "reward"
+  },
+  {
+   "attributes": {
+    "amount": 1000,
+    "amount_cents": 1000,
+    "completed_percentage": 100,
+    "created_at": "2017-06-10T14:59:31+00:00",
+    "description": "$10 a month should cover bottom-tier basic server and domain costs.\u003cbr\u003e",
+    "reached_at": "2017-06-16T04:13:38+00:00",
+    "title": ""
+   },
+   "id": "863386",
+   "type": "goal"
+  },
+  {
+   "attributes": {
+    "amount": 2000,
+    "amount_cents": 2000,
+    "completed_percentage": 100,
+    "created_at": "2017-06-11T15:03:22+00:00",
+    "description": "Can make automatic server backups.\u003cbr\u003e",
+    "reached_at": "2017-06-16T23:33:42+00:00",
+    "title": ""
+   },
+   "id": "864283",
+   "type": "goal"
+  },
+  {
+   "attributes": {
+    "amount": 3000,
+    "amount_cents": 3000,
+    "completed_percentage": 100,
+    "created_at": "2017-06-11T23:04:52+00:00",
+    "description": "Can get a managed email server, so KR can actualy respond to emails. \u003cbr\u003e",
+    "reached_at": "2017-06-18T17:46:56+00:00",
+    "title": ""
+   },
+   "id": "864744",
+   "type": "goal"
+  },
+  {
+   "attributes": {
+    "amount": 10000,
+    "amount_cents": 10000,
+    "completed_percentage": 100,
+    "created_at": "2017-06-11T23:04:52+00:00",
+    "description": "KR can get better art software.\u003cbr\u003e",
+    "reached_at": "2017-06-19T02:45:02+00:00",
+    "title": ""
+   },
+   "id": "864745",
+   "type": "goal"
+  },
+  {
+   "attributes": {
+    "amount": 11000,
+    "amount_cents": 11000,
+    "completed_percentage": 100,
+    "created_at": "2017-06-18T03:09:49+00:00",
+    "description": "Can upgrade the server, either by speeding it up or by increasing it\u0027s capacity, depending on need. If not needed when this tier is reached, will use the extra money for JR and KR groceries, etc. \u003cbr\u003e",
+    "reached_at": "2017-06-23T16:15:52+00:00",
+    "title": ""
+   },
+   "id": "871754",
+   "type": "goal"
+  },
+  {
+   "attributes": {
+    "amount": 21000,
+    "amount_cents": 21000,
+    "completed_percentage": 52,
+    "created_at": "2017-06-18T03:09:49+00:00",
+    "description": "Can pay our server host to manage the day-to-day tasks of the server for us, instead of having JR worry about it.\u00a0 If server tasks have not yet become a huge pain (because the site is still small), will instead go towards groceries and etc. for JR and KR.\u003cbr\u003e",
+    "reached_at": null,
+    "title": ""
+   },
+   "id": "871755",
+   "type": "goal"
+  },
+  {
+   "attributes": {
+    "amount": 41300,
+    "amount_cents": 41300,
+    "completed_percentage": 26,
+    "created_at": "2017-06-18T03:09:49+00:00",
+    "description": "Everybody who is a patron when we reach this auspicious goal will be immortalized some way on the FarragoFiction.com website.",
+    "reached_at": null,
+    "title": ""
+   },
+   "id": "871756",
+   "type": "goal"
+  },
+  {
+   "attributes": {
+    "amount": 4300,
+    "amount_cents": 4300,
+    "completed_percentage": 100,
+    "created_at": "2017-06-18T03:22:04+00:00",
+    "description": "Pumpkins will exist again.\u003cbr\u003e",
+    "reached_at": "2017-06-18T20:59:17+00:00",
+    "title": ""
+   },
+   "id": "871760",
+   "type": "goal"
+  }
+ ],
+ "links": {
+  "self": "https://api.patreon.com/campaigns/982892"
+ }
+};
+    window.patreon.bootstrap.postFeedOptions = {
+ "includeExclusivePosts": true,
+ "includePostAggregations": true
+};
+    window.patreon.bootstrap.isPreview = false;
+    window.patreon.bootstrap.hasSeenPatronTour = false; // will get removed once FE pass is made
+    window.patreon.bootstrap.enableFeaturedTags = true;
+    window.patreon.bootstrap.userCanMessageCreator = false;
+    window.patreon.bootstrap.earningsOptions = window.patreon.bootstrap.earningsOptions || {};
+</script>
+<div id="reactTargetCreatorPage"></div>
+
+
+    <div id="reactTarget"></div>
+
+    <script type="text/javascript"
+            src="//c1.patreon.com/134099acf1eee4679b0d688adf38631e41768315/commons.js">
+    </script>
+
+        <script type="text/javascript"
+                src="//c1.patreon.com/134099acf1eee4679b0d688adf38631e41768315/alertCampaignPreview.bundle.js">
+        </script>
+        <script type="text/javascript"
+                src="//c1.patreon.com/134099acf1eee4679b0d688adf38631e41768315/alertTermsUpdated.bundle.js">
+        </script>
+        <script type="text/javascript"
+                src="//c1.patreon.com/134099acf1eee4679b0d688adf38631e41768315/alertLaunchCampaign.bundle.js">
+        </script>
+        <script type="text/javascript"
+                src="//c1.patreon.com/134099acf1eee4679b0d688adf38631e41768315/alertUserPledged.bundle.js">
+        </script>
+        <script type="text/javascript"
+                src="//c1.patreon.com/134099acf1eee4679b0d688adf38631e41768315/messageModal.bundle.js">
+        </script>
+        <script type="text/javascript"
+                src="//c1.patreon.com/134099acf1eee4679b0d688adf38631e41768315/alertFailedPayment.bundle.js">
+        </script>
+        <script type="text/javascript"
+                src="//c1.patreon.com/134099acf1eee4679b0d688adf38631e41768315/alertTaxForms.bundle.js">
+        </script>
+        <script type="text/javascript"
+                src="//c1.patreon.com/134099acf1eee4679b0d688adf38631e41768315/alertUpcomingMaintenance.bundle.js">
+        </script>
+        <script type="text/javascript"
+                src="//c1.patreon.com/134099acf1eee4679b0d688adf38631e41768315/alertPaymentsCycle.bundle.js">
+        </script>
+        <script type="text/javascript"
+                src="//c1.patreon.com/134099acf1eee4679b0d688adf38631e41768315/creatorPageV3.bundle.js">
+        </script>
+        <script type="text/javascript"
+                src="//c1.patreon.com/134099acf1eee4679b0d688adf38631e41768315/blockUser.bundle.js">
+        </script>
+
+</body>
+</html>
