@@ -9,7 +9,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.denizen = null;
 	this.denizenMinion = null;
 	this.maxHornNumber = 73; //don't fuck with this
-	this.maxHairNumber = 61; //same
+	this.maxHairNumber = 68; //same
 	this.sprite = null; //gets set to a blank sprite when character is created.
 	this.grist = 0; //total party grist needs to be at a certain level for the ultimate alchemy. luck events can raise it, boss fights, etc.
 	this.hp = 0; //mostly used for boss battles;
