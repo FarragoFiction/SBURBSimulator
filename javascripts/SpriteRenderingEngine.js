@@ -197,11 +197,11 @@ function SpriteRenderingEngine(dontRender, defaultRendererID){
   //wait no, would be same amount of things. just would have nested for loops instead of
   //multiple calls
   this.swapColors = function(canvas, color1, color2,opacity){ //for wings, opacity = 0.5
-    if(checkSimMode() == true){
+    if(this.dontRender == true){
       return;
     }
-    var oldc = hexToRgbA(color1);
-    var newc= hexToRgbA(color2);
+    var oldc = this.hexToRgbA(color1);
+    var newc= this.hexToRgbA(color2);
     // console.log("replacing: " + oldc  + " with " + newc);
     var ctx = canvas.getContext('2d');
     var img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
