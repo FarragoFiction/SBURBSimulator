@@ -13,6 +13,13 @@ function SceneRenderingEngine(dontRender){
 	this.dontRender = dontRender;
 	this.spriteRenderingEngine = new SpriteRenderingEngine(this.dontRender, 1); //default is homestuck
 
+	this.getBufferCanvas = function(canvas){
+		return this.spriteRenderingEngine.getBufferCanvas(canvas);
+	}
+
+	this.copyTmpCanvasToRealCanvasAtPos = function(canvas, tmp_canvas, x, y){
+		return this.spriteRenderingEngine.copyTmpCanvasToRealCanvasAtPos(canvas, tmp_canvas, x, y);
+	}
 	//take care of loading teh images the SCENES need, then ask your spriteRenderingEngine to load all the players.
 	this.loadAllImagesForPlayers = function(players){
 		console.log(players);
