@@ -71,7 +71,7 @@ function SpriteRenderingEngine(dontRender, defaultRendererID){
 
   //actually renders player, not just using cached image.
   this.renderPlayer = function(canvas, ocDataString, objectData){
-    var index = player.renderingType;
+    var index = objectData.renderingType;
     if(player.renderingType == 0) index = this.defaultRendererID;
     var renderer = this.renderers[index];
     renderer.drawSpriteFromScratch(canvas, player);

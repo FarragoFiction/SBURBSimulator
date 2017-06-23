@@ -86,7 +86,7 @@ function SceneRenderingEngine(dontRender){
 	}
 
 	//converts to data string, calls SpriteRenderingEngine
-	this.drawSpriteFromScratch = function(canavas, player){
+	this.drawSpriteFromScratch = function(canvas, player){
 		this.spriteRenderingEngine.renderPlayer(canvas, player.toOCDataString(), player); //does not attempt to use cache
 	}
 
