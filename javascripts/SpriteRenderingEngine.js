@@ -949,6 +949,7 @@ function HomestuckRenderer(rh){
   	}
   }
 
+  //if you want to draw sprite as a baby, then pass them as a baby. be responsible for making them alive/not murderous
   this.drawSpriteFromScratch = function(canvas, ocDataString, objectData){
     var bs = this.rendererHelper.ocDataStringToBS(ocDataString);
     var player = dataBytesAndStringsToPlayer(bs[0], bs[1]);  //only use objectData when I KNOW I need to.
@@ -957,99 +958,99 @@ function HomestuckRenderer(rh){
     }
     var ctx = canvas.getContext('2d');
     ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
-    if(!baby &&(player.dead)){//only rotate once
+    if((player.dead)){//only rotate once
     	ctx.translate(canvas.width, 0);
     	ctx.rotate(90*Math.PI/180);
     }
 
     //they are not dead, only sleeping
-    if(!baby &&(player.causeOfDrain)){//only rotate once
+    if((player.causeOfDrain)){//only rotate once
     	ctx.translate(0, 6*canvas.height/5);
     	ctx.rotate(270*Math.PI/180);
     }
 
-    if(!baby && player.grimDark > 3){
+    if(player.grimDark > 3){
       this.grimDarkHalo(canvas,player)
     }
 
-    if(!baby && player.isTroll&& player.godTier){//wings before sprite
+    if(player.isTroll&& player.godTier){//wings before sprite
       this.wings(canvas,player);
     }
 
-    if(!baby && player.dead){
+    if(player.dead){
   	   this.rendererHelper.drawWhatever(canvas, "blood_puddle.png");
        this.rendererHelper.swapColors(canvas, "#fffc00", player.bloodColor);
     }
-    hairBack(canvas, player);
+    this.hairBack(canvas, player);
     if(player.isTroll){//wings before sprite
       this.fin2(canvas,player);
     }
-    if(!baby && !player.baby_stuck){
+    if(!player.baby_stuck){
       this.playerToSprite(canvas,player);
-      bloody_face(canvas, player)//not just for murder mode, because you can kill another player if THEY are murder mode.
+      this.bloody_face(canvas, player)//not just for murder mode, because you can kill another player if THEY are murder mode.
       if(player.murderMode == true){
-    	  scratch_face(canvas, player);
+    	  this.scratch_face(canvas, player);
       }
       if(player.leftMurderMode == true){
-    	  scar_face(canvas, player);
+    	  this.scar_face(canvas, player);
       }
   	if(player.robot == true){
-    	  robo_face(canvas, player);
+    	  this.robo_face(canvas, player);
       }
     }else{
-       babySprite(canvas,player);
+       this.babySprite(canvas,player);
   	 if(player.baby_stuck && !baby){
-  		 bloody_face(canvas, player)//not just for murder mode, because you can kill another player if THEY are murder mode.
+  		 this.bloody_face(canvas, player)//not just for murder mode, because you can kill another player if THEY are murder mode.
   		if(player.murderMode == true){
-  		  scratch_face(canvas, player);
+  		  this.scratch_face(canvas, player);
   		}
   		if(player.leftMurderMode == true){
-  		  scar_face(canvas, player);
+  		  this.scar_face(canvas, player);
   		}
   		if(player.robot == true){
-  			robo_face(canvas, player);
+  			this.robo_face(canvas, player);
   		}
 
   	 }
     }
 
-    hair(canvas, player);
+    this.hair(canvas, player);
     if(player.isTroll){//wings before sprite
-      fin1(canvas,player);
+      this.fin1(canvas,player);
     }
     if(!baby && player.class_name == "Prince" && player.godTier){
-  	  princeTiara(canvas, player);
+  	  this.princeTiara(canvas, player);
     }
 
       if(player.robot == true){
-    	  roboSkin(canvas, player);
+    	  this.roboSkin(canvas, player);
       }else if(player.trickster == true){
-          peachSkin(canvas, player);
+          this.peachSkin(canvas, player);
       }else if(!baby && player.grimDark  > 3){
-        grimDarkSkin(canvas, player)
+        this.grimDarkSkin(canvas, player)
       }else if(player.isTroll){
-        greySkin(canvas,player);
+        this.greySkin(canvas,player);
       }
       if(player.isTroll){
-        horns(canvas, player);
+        this.horns(canvas, player);
       }
 
-      if(!baby && player.dead && player.causeOfDeath == "after being shown too many stabs from Jack"){
-    	 stabs(canvas,player)
+      if(player.dead && player.causeOfDeath == "after being shown too many stabs from Jack"){
+    	 this.stabs(canvas,player)
      }else if(!baby && player.dead && player.causeOfDeath == "fighting the Black King"){
-       kingDeath(canvas,player)
+       this.kingDeath(canvas,player)
      }
 
-      if(!baby && player.ghost){
+      if(player.ghost){
         if(player.causeOfDrain){
-          drainedGhostSwap(canvas);
+          this.rendererHelper.drainedGhostSwap(canvas);
         }else{
-          ghostSwap(canvas);
+          this.rendererHelper.ghostSwap(canvas);
         }
       }
 
-      if(!baby && player.aspect == "Void"){
-        voidSwap(canvas, 1-player.power/2000) //a void player at 2000 power is fully invisible.
+      if(player.aspect == "Void"){
+        this.rendererHelper.voidSwap(canvas, 1-player.power/2000) //a void player at 2000 power is fully invisible.
       }
   }
 
