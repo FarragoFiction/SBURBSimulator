@@ -80,6 +80,7 @@ function checkDone(skipInit){
 }
 
 function loadImage(img,skipInit){
+	console.log(img);
 	imagesWaiting ++;
 	var imageObj = new Image();
   imageObj.onload = function() {
