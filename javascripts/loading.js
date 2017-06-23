@@ -27,6 +27,7 @@ function loadAllImagesForPlayers(players, guardians, skipInit){
 	for(var i = 0; i<spriteLocations.length; i++){
 		loadImage(spriteLocations[i],skipInit);
 	}
+	loadOther(skipInit);
 }
 
 function loadAllImagesForPlayersOld(players, guardians,skipInit){
