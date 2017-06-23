@@ -19,7 +19,54 @@ function SceneRenderingEngine(dontRender){
 	}
 
 	this.getAllImagesNeededForScenesBesidesPlayers = function(){
-
+		var ret = [];
+		var imageLocation = "images"
+		ret.push(imageLocation+"/Bodies/coolk1dlogo.png");
+		ret.push(imageLocation+"/Bodies/coolk1dsword.png");
+		ret.push(imageLocation+"/Bodies/coolk1dshades.png");
+		ret.push(imageLocation+"jr.png");
+		ret.push(imageLocation+"kr_chat.png");
+		ret.push(imageLocation+"drain_lightning.png");
+		ret.push(imageLocation+"drain_lightning_long.png");
+		ret.push(imageLocation+"drain_halo.png");
+		ret.push(imageLocation+"afterlife_life.png");
+		ret.push(imageLocation+"afterlife_doom.png");
+		ret.push(imageLocation+"doom_res.png");
+		ret.push(imageLocation+"life_res.png");
+		ret.push(imageLocation+"stab.png");
+		ret.push(imageLocation+"denizoned.png");
+		ret.push(imageLocation+"sceptre.png");
+		ret.push(imageLocation+"rainbow.png");
+		ret.push(imageLocation+"ghostGradient.png");
+		ret.push(imageLocation+"halo.png");
+		ret.push(imageLocation+"gears.png");
+		ret.push(imageLocation+"mind_forehead.png")
+		ret.push(imageLocation+"blood_forehead.png")
+		ret.push(imageLocation+"rage_forehead.png")
+		ret.push(imageLocation+"heart_forehead.png")
+		ret.push(imageLocation+"ab.png")
+		ret.push(imageLocation+"echeladder.png")
+		ret.push(imageLocation+"godtierlevelup.png");
+		ret.push(imageLocation+"pesterchum.png");
+		ret.push(imageLocation+ "Prospit.png")
+		ret.push(imageLocation+"Derse.png")
+		ret.push(imageLocation+"bloody_face.png")  ///Rendering engine will load
+		ret.push(imageLocation+"Moirail.png")
+		ret.push(imageLocation+"Matesprit.png")
+		ret.push(imageLocation+"horrorterror.png");
+		ret.push(imageLocation+"dreambubbles.png");
+		ret.push(imageLocation+"Auspisticism.png")
+		ret.push(imageLocation+"Kismesis.png")
+		ret.push(imageLocation+"discuss_romance.png")
+		ret.push(imageLocation+"discuss_ashenmance.png")
+		ret.push(imageLocation+"discuss_palemance.png")
+		ret.push(imageLocation+"discuss_hatemance.png")
+		ret.push(imageLocation+"discuss_breakup.png")
+		ret.push(imageLocation+"discuss_sburb.png")
+		ret.push(imageLocation+"discuss_jack.png")
+		ret.push(imageLocation+"discuss_murder.png")
+		ret.push(imageLocation+"discuss_raps.png")
+		return ret;
 	}
 
 	//converts to data string, calls SpriteRenderingEngine

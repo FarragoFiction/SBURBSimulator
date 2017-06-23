@@ -52,7 +52,8 @@ function addImageTagLoading(url){
   //console.log(url);
 	//only do it if image hasn't already been added.
 	if(document.getElementById(url) == null) {
-		var tag = '<img id ="' + url + '" src = "images/' + url + '" style="display:none">';
+		//var tag = '<img id ="' + url + '" src = "images/' + url + '" style="display:none">';
+		var tag = '<img id ="' + url + '" src = "' + url + '" style="display:none">';
 		$("#loading_image_staging").append(tag);
 	}
 
@@ -95,8 +96,15 @@ function loadImage(img,skipInit){
       imageObj.src = "images/"+img;
 }
 
-//load pesterchum, blood, big aspect symbols, echeladders, god tier level up, romance symbols, babies, grubs
 function loadOther(skipInit){
+	var spriteLocations = curSessionGlobalVar.sceneRenderingEngine.getAllImagesNeededForScenesBesidesPlayers(players);
+	for(var i = 0; i<spriteLocations.length; i++){
+		loadImage(spriteLocations[i],skipInit);
+	}
+}
+
+//load pesterchum, blood, big aspect symbols, echeladders, god tier level up, romance symbols, babies, grubs
+function loadOtherOld(skipInit){
   if(cool_kid){
     loadImage("/Bodies/coolk1dlogo.png",skipInit);
     loadImage("/Bodies/coolk1dsword.png",skipInit);
