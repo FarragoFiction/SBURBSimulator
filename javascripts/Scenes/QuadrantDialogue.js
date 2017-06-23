@@ -1,4 +1,4 @@
-t//best part of this is that if i want some OTHER scene to be able to have romantic dialgoue (say i write a general purpose dialogue scene)
+//best part of this is that if i want some OTHER scene to be able to have romantic dialgoue (say i write a general purpose dialogue scene)
 //it's render function can just call new QuadrantDialogue(this.session).renderContent(div); and be done.
 //resuability, yo
 //http://www.neoseeker.com/forums/26839/t1277308-random-npc-conversations/   (or i guess i could just play oblivion, but I want a LIST dammit, of memes to add.)
@@ -642,7 +642,6 @@ function QuadrantDialogue(session){
 		var relationship2 = this.getQuadrant2();
 		var chatText = this.getGreeting(relationship, relationship2);
 		chatText += this.getChat(relationship, relationship2);
-		chatText += this.fareWell(relationship,relationship2); //<-- REQUIRED for ultimate oblivion shittieness. "I have nothing more to say to you." "good day."
 		drawChat(document.getElementById("canvas"+ (div.attr("id"))), this.player1, this.player2, chatText, 0,this.getDiscussSymbol(relationship));
 		//this.session.sceneRenderingEngine.drawChat(document.getElementById("canvas"+ (div.attr("id"))), this.player1, this.player2, chatText, 0,this.getDiscussSymbol(relationship));
 

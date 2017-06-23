@@ -2059,10 +2059,12 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 		var ctx = canvasDiv.getContext("2d");
 		this.clearSelf();
-		var pSpriteBuffer = this.session.sceneRenderingEngine.getBufferCanvas(document.getElementById("sprite_template"));
-
-		this.session.sceneRenderingEngine.drawSpriteFromScratch(pSpriteBuffer, this);
-		this.session.sceneRenderingEngine.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0)
+		//var pSpriteBuffer = this.session.sceneRenderingEngine.getBufferCanvas(document.getElementById("sprite_template"));
+		var pSpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
+		drawSpriteFromScratch(pSpriteBuffer, this);
+		copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0)
+		//this.session.sceneRenderingEngine.drawSpriteFromScratch(pSpriteBuffer, this);
+		//this.session.sceneRenderingEngine.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0)
 	}
 
 	this.clearSelf = function(){
