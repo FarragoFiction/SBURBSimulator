@@ -32,8 +32,8 @@ function renderAllImagesInFolder(folder){
 				   var filename = this.href.replace(window.location.host, "").replace("http:///", "");
 				   renderRegularSprite(new SpritePart(filename, filename));
 			   });
-			 } 
-			 
+			 }
+
 		  });
 }
 
@@ -48,7 +48,7 @@ function renderAllHair(){
 	var maxHair = blankPlayer.maxHairNumber
 	//don't use canvas, but still layer?  bg, like for KR.
 	for(var i = minHair; i<= maxHair; i++){
-			renderLayeredSprites([new SpritePart("images/Hair/hair_back"+i+".png", "Hair " +i),new SpritePart("images/Hair/hair"+i+".png", "")]);
+			renderLayeredSprites([new SpritePart("images/Hair/hair_back"+i+".png", "Hair " +i),new SpritePart("images/Hair/head.png", ""), new SpritePart("images/Hair/hair"+i+".png", "")]);
 	}
 }
 
