@@ -58,7 +58,7 @@ function SpriteRenderingEngine(dontRender, defaultRendererID){
 
 	  //have i really been too lazy to make this until now
 	   this.drawWhatever=function(canvas, imageString){
-		if(checkSimMode() == true){
+		if(this.dontRender == true){
 		  return;
 		}
 		var ctx = canvas.getContext('2d');
@@ -178,12 +178,12 @@ function SpriteRenderingEngine(dontRender, defaultRendererID){
 
   //have i really been too lazy to make this until now
    this.drawWhatever=function(canvas, imageString){
-    if(checkSimMode() == true){
+    if(this.dontRender == true){
       return;
     }
   	var ctx = canvas.getContext('2d');
     ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
-  	addImageTag(imageString)
+  	this.addImageTag(imageString)
   	var img=document.getElementById(imageString);
   	var width = img.width;
   	var height = img.height;

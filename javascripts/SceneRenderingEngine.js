@@ -125,8 +125,8 @@ function SceneRenderingEngine(dontRender){
 		this.spriteRenderingEngine.copyTmpCanvasToRealCanvasAtPos(canvas, textSpriteBuffer,244,51)
 
 	  if(topicImage){
-	    var topicBuffer = getBufferCanvas(document.getElementById("canvas_template"));
-	    drawWhatever(topicBuffer, topicImage);
+	    var topicBuffer = this.getBufferCanvas(document.getElementById("canvas_template"));
+	    this.spriteRenderingEngine.drawWhatever(topicBuffer, topicImage);
 	    this.spriteRenderingEngine.copyTmpCanvasToRealCanvasAtPos(canvas, topicBuffer,0,0)
 	  }
 	}
