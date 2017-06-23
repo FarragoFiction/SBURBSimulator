@@ -987,7 +987,7 @@ function HomestuckRenderer(rh){
       this.fin2(canvas,player);
     }
     if(!baby && !player.baby_stuck){
-      playerToSprite(canvas,player);
+      this.playerToSprite(canvas,player);
       bloody_face(canvas, player)//not just for murder mode, because you can kill another player if THEY are murder mode.
       if(player.murderMode == true){
     	  scratch_face(canvas, player);
@@ -1053,6 +1053,20 @@ function HomestuckRenderer(rh){
       if(!baby && player.aspect == "Void"){
         voidSwap(canvas, 1-player.power/2000) //a void player at 2000 power is fully invisible.
       }
+  }
+
+  //not just murder mode, you could have killed a murder mode player.
+  this.bloody_face = function(canvas, player){
+  	if(player.victimBlood){
+  		var ctx = canvas.getContext('2d');
+  		var imageString = this.baseLocation+"bloody_face.png"
+  		this.rendererHelper.addImageTag(imageString)
+  		var img=document.getElementById(imageString);
+  		var width = img.width;
+  		var height = img.height;
+  		ctx.drawImage(img,0,0,width,height);
+  		this.rendererHelper.swapColors(canvas, "#440a7f", player.victimBlood); //it's not their own blood
+  	}
   }
 
   this.playerToGodBody = function(player){
