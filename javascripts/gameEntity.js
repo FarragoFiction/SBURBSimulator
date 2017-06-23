@@ -1594,9 +1594,9 @@ prototyping_objects[prototyping_objects.length-1].power = 30;
 prototyping_objects[prototyping_objects.length-1].mobility = 30;
 
 prototyping_objects.push(new GameEntity(null, "Stoner",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].minLuck = -20;
-prototyping_objects[prototyping_objects.length-1].maxLuck = 20;
+prototyping_objects[prototyping_objects.length-1].power = 42.0; //blaze it
+prototyping_objects[prototyping_objects.length-1].minLuck = -42.0;
+prototyping_objects[prototyping_objects.length-1].maxLuck = 42.0;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
 prototyping_objects[prototyping_objects.length-1].helpPhrase = "is pretty much as useful as another player, assuming that player was higher then a fucking kite. ";
 

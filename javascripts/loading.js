@@ -23,7 +23,7 @@ function loadAllImages(skipInit){
 
 function loadAllImagesForPlayers(players, guardians, skipInit){
 	var spriteLocations = curSessionGlobalVar.sceneRenderingEngine.loadAllImagesForPlayers(players);
-	spriteLocations = spriteLocations.concat(curSessionGlobalVar.sceneRenderingEngine.loadAllImagesForPlayers(players));
+	spriteLocations = spriteLocations.concat(curSessionGlobalVar.sceneRenderingEngine.loadAllImagesForPlayers(guardians));
 	for(var i = 0; i<spriteLocations.length; i++){
 		loadImage(spriteLocations[i],skipInit);
 	}

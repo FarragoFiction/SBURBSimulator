@@ -13,6 +13,15 @@ function SceneRenderingEngine(dontRender){
 	this.dontRender = dontRender;
 	this.spriteRenderingEngine = new SpriteRenderingEngine(this.dontRender, 1); //default is homestuck
 
+	//take care of loading teh images the SCENES need, then ask your spriteRenderingEngine to load all the players.
+	this.loadAllImagesForPlayers(players){
+
+	}
+
+	this.getAllImagesNeededForScenesBesidesPlayers = function(){
+
+	}
+
 	//converts to data string, calls SpriteRenderingEngine
 	this.drawSpriteFromScratch = function(canavas, player){
 		this.spriteRenderingEngine.renderPlayer(canvas, player.toOCDataString(), player); //does not attempt to use cache
