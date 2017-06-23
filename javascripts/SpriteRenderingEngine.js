@@ -17,6 +17,7 @@ function SpriteRenderingEngine(dontRender, defaultRendererID){
 
 
   this.ocDataStringToBS = function(bs){
+    console.log(bs)
     var b = decodeURIComponent(bs.split("=")[1].split("&s")[0])
     var s = bs.split("=")[2]
     return [b,s];
@@ -75,7 +76,7 @@ function SpriteRenderingEngine(dontRender, defaultRendererID){
     var index = objectData.renderingType;
     if(objectData.renderingType == 0) index = this.defaultRendererID;
     var renderer = this.renderers[index];
-    renderer.drawSpriteFromScratch(canvas, objectData);
+    renderer.drawSpriteFromScratch(canvas, objectData.toOCDataString(), objectData);
   }
 
   this.renderPlayerForScene = function(canvas, ocDataString, objectData){
@@ -376,7 +377,7 @@ function HomestuckRenderer(rh){
     }
   }
 
-  this.grimDarkHalo(canvas,player){
+  this.grimDarkHalo = function(canvas,player){
     var imageString = this.baseLocation+"grimdark.png";
     if(player.trickster){
       imageString =  this.baseLocation+"squiddles_chaos.png"
@@ -932,7 +933,7 @@ function HomestuckRenderer(rh){
 
 
 
-  this.playerToSprite(canvas, player){
+  this.playerToSprite=function(canvas, player){
   	var ctx = canvas.getContext('2d');
   	if(player.robot == true){
   		this.robotSprite(canvas, player);
@@ -951,13 +952,10 @@ function HomestuckRenderer(rh){
   this.drawSpriteFromScratch = function(canvas, ocDataString, objectData){
     var bs = this.rendererHelper.ocDataStringToBS(ocDataString);
     var player = dataBytesAndStringsToPlayer(bs[0], bs[1]);  //only use objectData when I KNOW I need to.
-    if(dontRender == true){
+    if(this.dontRender == true){
       return;
     }
-   if(!ctx){
-     ctx = canvas.getContext('2d');
-   }
-
+    var ctx = canvas.getContext('2d');
     ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
     if(!baby &&(player.dead)){//only rotate once
     	ctx.translate(canvas.width, 0);
