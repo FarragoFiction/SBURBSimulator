@@ -17,7 +17,7 @@ function SceneRenderingEngine(dontRender){
 	this.loadAllImagesForPlayers = function(players){
 		var ret = [];
 		for(var i = 0; i<players.length; i++){
-			ret = ret.concat(this.spriteRenderingEngine.getAllImagesNeededForPlayer(player.toOCDataString(), players[i]));
+			ret = ret.concat(this.spriteRenderingEngine.getAllImagesNeededForPlayer(players[i].toOCDataString(), players[i]));
 		}
 		return ret;
 	}
