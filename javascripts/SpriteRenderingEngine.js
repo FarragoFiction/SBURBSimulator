@@ -1054,6 +1054,46 @@ function HomestuckRenderer(rh){
       }
   }
 
+  function hairBack=function(canvas,player){
+    var ctx = canvas.getContext('2d');
+  	var imageString = this.baseLocation+"Hair/hair_back"+player.hair+".png"
+    //console.log(imageString);
+  	this.rendererHelper.addImageTag(imageString)
+  	var img=document.getElementById(imageString);
+  	var width = img.width;
+  	var height = img.height;
+  	ctx.drawImage(img,0,0,width,height);
+    if(player.sbahj){
+      this.rendererHelper.sbahjifier(canvas);
+    }
+  	if(player.isTroll){
+  		this.rendererHelper.swapColors(canvas, "#313131",  player.hairColor);
+  		this.rendererHelper.swapColors(canvas, "#202020", player.bloodColor);
+  	}else{
+  		this.rendererHelper.swapColors(canvas, "#313131", player.hairColor);
+  		this.rendererHelper.swapColors(canvas, "#202020", getColorFromAspect(player.aspect));
+  	}
+  }
+  this.hair(canvas, player){
+  	var ctx = canvas.getContext('2d');
+  	var imageString = this.baseLocation+"Hair/hair"+player.hair+".png"
+  	this.rendererHelper.addImageTag(imageString)
+  	var img=document.getElementById(imageString);
+  	var width = img.width;
+  	var height = img.height;
+  	ctx.drawImage(img,0,0,width,height);
+    if(player.sbahj){
+      this.rendererHelper.sbahjifier(canvas);
+    }
+  	if(player.isTroll){
+  		this.rendererHelper.swapColors(canvas, "#313131",  player.hairColor);
+  		this.rendererHelper.swapColors(canvas, "#202020", player.bloodColor);
+  	}else{
+  		this.rendererHelper.swapColors(canvas, "#313131", player.hairColor);
+  		this.rendererHelper.swapColors(canvas, "#202020", getColorFromAspect(player.aspect));
+  	}
+  }
+
   //not just murder mode, you could have killed a murder mode player.
   this.bloody_face = function(canvas, player){
   	if(player.victimBlood){
