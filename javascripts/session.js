@@ -1,7 +1,7 @@
 //okay, fine, yes, global variables are getting untenable.
 function Session(session_id){
 	this.session_id = session_id; //initial seed
-	this.sceneRenderingEngine = new SceneRenderingEngine(false); //default is homestuck  //comment this line out if need to run sim without it crashing
+	//this.sceneRenderingEngine = new SceneRenderingEngine(false); //default is homestuck  //comment this line out if need to run sim without it crashing
 	this.players = [];
 	this.hasClubs = false;
 	this.sessionHealth = 3000; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.

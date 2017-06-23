@@ -21,7 +21,7 @@ function loadAllImages(skipInit){
 
 }
 
-function loadAllImagesForPlayers(players, guardians, skipInit){
+function loadAllImagesForPlayersNew(players, guardians, skipInit){
 	var spriteLocations = curSessionGlobalVar.sceneRenderingEngine.loadAllImagesForPlayers(players);
 	spriteLocations = spriteLocations.concat(curSessionGlobalVar.sceneRenderingEngine.loadAllImagesForPlayers(guardians));
 	for(var i = 0; i<spriteLocations.length; i++){
@@ -30,7 +30,7 @@ function loadAllImagesForPlayers(players, guardians, skipInit){
 	loadOther(skipInit);
 }
 
-function loadAllImagesForPlayersOld(players, guardians,skipInit){
+function loadAllImagesForPlayers(players, guardians,skipInit){
 	var numImages = 0;
 	//loadFuckingEverything(skipInit); //lol, fuck the world, let's do this shit.
 
@@ -58,9 +58,9 @@ function addImageTagLoading(url){
 	//only do it if image hasn't already been added.
 	if(document.getElementById(url) == null) {
 		//console.log("I couldn't find a document with id of: " + url)
-		//var tag = '<img id ="' + url + '" src = "images/' + url + '" style="display:none">';
-		var urlID = urlToID(url);
-		var tag = '<img id ="' + urlID + '" src = "' + url + '" style="display:none">';
+		var tag = '<img id ="' + url + '" src = "images/' + url + '" style="display:none">';
+		//var urlID = urlToID(url);
+		//var tag = '<img id ="' + urlID + '" src = "' + url + '" style="display:none">';
 		$("#loading_image_staging").append(tag);
 	}else{
 		//console.log("I thought i found a document with id of: " + url)
@@ -86,11 +86,11 @@ function checkDone(skipInit){
       return;
     }
 		intro();
-	}
+	../RenderingAssets/Homestuck/Hair/hair_back2.png}
 }
 
 function loadImage(img,skipInit){
-	console.log(img);
+	//console.log(img);
 	imagesWaiting ++;
 	var imageObj = new Image();
   imageObj.onload = function() {
@@ -105,11 +105,11 @@ function loadImage(img,skipInit){
 		console.log("Error loading image: " + this.src);
     //alert(this.src)
   }
-  //imageObj.src = "images/"+img;
-	imageObj.src = img;
+  imageObj.src = "images/"+img;
+//	imageObj.src = img;
 }
 
-function loadOther(skipInit){
+function loadOtherNew(skipInit){
 	var spriteLocations = curSessionGlobalVar.sceneRenderingEngine.getAllImagesNeededForScenesBesidesPlayers();
 	for(var i = 0; i<spriteLocations.length; i++){
 		loadImage(spriteLocations[i],skipInit);
@@ -117,7 +117,7 @@ function loadOther(skipInit){
 }
 
 //load pesterchum, blood, big aspect symbols, echeladders, god tier level up, romance symbols, babies, grubs
-function loadOtherOld(skipInit){
+function loadOther(skipInit){
   if(cool_kid){
     loadImage("/Bodies/coolk1dlogo.png",skipInit);
     loadImage("/Bodies/coolk1dsword.png",skipInit);
