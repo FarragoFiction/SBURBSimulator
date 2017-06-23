@@ -9,6 +9,7 @@
 	of the SceneRenderingEngine (kept at the sim level).  The SceneRenderingEngine will USE a RenderingEngine to
 	render the sprites for the scene, sure. But they are kept separate.
 */
+var cool_kid = false;
 function SpriteRenderingEngine(dontRender, defaultRendererID){
   this.dontRender = dontRender; //AB for example doesn't want you to render
   this.defaultRendererID = defaultRendererID;
@@ -72,16 +73,16 @@ function SpriteRenderingEngine(dontRender, defaultRendererID){
   //actually renders player, not just using cached image.
   this.renderPlayer = function(canvas, ocDataString, objectData){
     var index = objectData.renderingType;
-    if(player.renderingType == 0) index = this.defaultRendererID;
+    if(objectData.renderingType == 0) index = this.defaultRendererID;
     var renderer = this.renderers[index];
-    renderer.drawSpriteFromScratch(canvas, player);
+    renderer.drawSpriteFromScratch(canvas, objectData);
   }
 
   this.renderPlayerForScene = function(canvas, ocDataString, objectData){
-      var canvasDiv = document.getElementById(player.spriteCanvasID);
+      var canvasDiv = document.getElementById(objectData.spriteCanvasID);
       this.copyTmpCanvasToRealCanvasAtPos(canvas, canvasDiv,0,0)
-      var index = player.renderingType;
-      if(player.renderingType == 0) index = this.defaultRendererID;
+      var index = objectData.renderingType;
+      if(objectData.renderingType == 0) index = this.defaultRendererID;
       var renderer = this.renderers[index];
       renderer.drawExtrasOverCache(canvas, ocDataString, objectData);
   }

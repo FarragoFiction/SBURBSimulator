@@ -100,7 +100,7 @@ function SceneRenderingEngine(dontRender){
 		var canvasSpriteBuffer = this.spriteRenderingEngine.getBufferCanvas(document.getElementById("canvas_template"));
 		var ctx = canvasSpriteBuffer.getContext('2d');
 		var imageString = "pesterchum.png"
-		addImageTag(imageString)
+		this.spriteRenderingEngine.addImageTag(imageString)
 		var img=document.getElementById(imageString);
 		var width = img.width;
 		var height = img.height;
@@ -223,10 +223,8 @@ function SceneRenderingEngine(dontRender){
 
 	this.drawSpriteTurnways = function(canvas,player){
 		var ctx = canvas.getContext('2d');
-		if(turnWays){
-		  ctx.translate(canvas.width, 0);
-		  ctx.scale(-1, 1);
-		}
+	  ctx.translate(canvas.width, 0);
+	  ctx.scale(-1, 1);
 		this.drawSprite(canvas,player);
 	}
 
