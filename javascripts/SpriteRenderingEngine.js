@@ -355,6 +355,15 @@ function HomestuckRenderer(rh){
   	ctx.drawImage(img,x,y,width,height);
   }
 
+  this.wings = function(canvas,player){
+    var num = player.quirk.favoriteNumber;
+    var imageString = "Wings/wing"+num + ".png";
+    this.rendererHelper.drawWhatever(canvas, imageString);
+    this.rendererHelper.swapColors(canvas, "#ff0000",player.bloodColor);
+    this.rendererHelper.swapColors50(canvas, "#00ff2a",player.bloodColor);
+    this.rendererHelper.swapColors50(canvas, "#00ff00",player.bloodColor); //I have NO idea why some browsers render the lime parts of the wing as 00ff00 but whatever.
+  }
+
   this.drawExtrasOverCache = function(canvas, ocDataString, objectData){
     if(!objectData.baby && objectData.influenceSymbol){ //dont make sprite for this, always on top, unlike scars
       this.rendererHelper.drawWhatever(canvas, objectData.influenceSymbol);
@@ -367,12 +376,683 @@ function HomestuckRenderer(rh){
     }
   }
 
+  this.grimDarkHalo(canvas,player){
+    var imageString = this.baseLocation+"grimdark.png";
+    if(player.trickster){
+      imageString =  this.baseLocation+"squiddles_chaos.png"
+    }
+    this.rendererHelper.drawWhatever(canvas, imageString)
+  }
+
+  this.fin2 = function(canvas, player){
+    if(player.bloodColor == "#610061" || player.bloodColor == "#99004d"){
+      this.rendererHelper.drawWhatever(canvas, this.baseLocation + "fin2.png");
+    }
+  }
+
+  this.robotSprite = function(canvas, player){
+    var ctx = canvas.getContext('2d');
+  	var imageString;
+  	if(!player.godTier){
+  		imageString = playerToRegularBody(player);
+  	}else{
+  		imageString = playerToGodBody(player);
+  	}
+  	  this.rendererHelper.addImageTag(imageString)
+  	  var img=document.getElementById(imageString);
+  	  var width = img.width;
+  	  var height = img.height;
+  	  ctx.drawImage(img,0,0,width,height);
+  	  this.robotPalletSwap(canvas, player);
+  }
+
+  this.robotPalletSwap = function(canvas, player){
+  	var oldcolor1 = "#FEFD49";
+  	var oldcolor2 = "#FEC910";
+  	var oldcolor3 = "#10E0FF";
+  	var oldcolor4 = "#00A4BB";
+  	var oldcolor5 = "#FA4900";
+  	var oldcolor6 = "#E94200";
+
+  	var oldcolor7 = "#C33700";
+  	var oldcolor8 = "#FF8800";
+  	var oldcolor9 = "#D66E04";
+  	var oldcolor10 = "#E76700";
+  	var oldcolor11 = "#CA5B00";
+
+  	var new_color1 = "#0000FF";
+  	var new_color2 = "#0022cf";
+  	var new_color3 ="#B6B6B6";
+  	var new_color4 = "#A6A6A6";
+  	var new_color5 = "#B6B6B6";
+  	var new_color6 = "#595959";
+  	var new_color7 = "#696969";
+  	var new_color8 = "#B6B6B6";
+  	var new_color9 = "#797979";
+  	var new_color10 = "#494949";
+  	var new_color11 = "#393939";
+
+
+  	this.rendererHelper.swapColors(canvas, oldcolor1, new_color1)
+  	this.rendererHelper.swapColors(canvas, oldcolor2, new_color2)
+  	this.rendererHelper.swapColors(canvas, oldcolor3, new_color3)
+  	this.rendererHelper.swapColors(canvas, oldcolor4, new_color4)
+  	this.rendererHelper.swapColors(canvas, oldcolor5, new_color5)
+  	this.rendererHelper.swapColors(canvas, oldcolor6, new_color6)
+  	this.rendererHelper.swapColors(canvas, oldcolor7, new_color7)
+  	this.rendererHelper.swapColors(canvas, oldcolor8, new_color8)
+  	this.rendererHelper.swapColors(canvas, oldcolor9, new_color9)
+  	this.rendererHelper.swapColors(canvas, oldcolor10, new_color10)
+  	this.rendererHelper.swapColors(canvas, oldcolor11, new_color11)
+  }
+
+
+  this.dreamPalletSwap =function(canvas, player){
+  	var oldcolor1 = "#FEFD49";
+  	var oldcolor2 = "#FEC910";
+  	var oldcolor3 = "#10E0FF";
+  	var oldcolor4 = "#00A4BB";
+  	var oldcolor5 = "#FA4900";
+  	var oldcolor6 = "#E94200";
+
+  	var oldcolor7 = "#C33700";
+  	var oldcolor8 = "#FF8800";
+  	var oldcolor9 = "#D66E04";
+  	var oldcolor10 = "#E76700";
+  	var oldcolor11 = "#CA5B00";
+
+  	var new_color1 = "#FFFF00";
+  	var new_color2 = "#FFC935";
+  	var new_color3 = getShirtColorFromAspect(player.aspect);
+  	var new_color4 = getDarkShirtColorFromAspect(player.aspect);
+  	var new_color5 = "#FFCC00";
+  	var new_color6 = "#FF9B00";
+  	var new_color7 = "#C66900";
+  	var new_color8 = "#FFD91C";
+  	var new_color9 = "#FFE993";
+  	var new_color10 = "#FFB71C";
+  	var new_color11 = "#C67D00";
+
+  	if(player.moon =="Derse"){
+  		new_color1 = "#F092FF"
+  		new_color2 = "#D456EA"
+  		new_color5 = "#C87CFF";
+  		new_color6 = "#AA00FF";
+  		new_color7 = "#6900AF";
+  		new_color8 = "#DE00FF";
+  		new_color9 = "#E760FF";
+  		new_color10 = "#B400CC";
+  		new_color11 = "#770E87";
+  	}
+
+  	this.rendererHelper.swapColors(canvas, oldcolor1, new_color1)
+  	this.rendererHelper.swapColors(canvas, oldcolor2, new_color2)
+  	this.rendererHelper.swapColors(canvas, oldcolor3, new_color3)
+  	this.rendererHelper.swapColors(canvas, oldcolor4, new_color4)
+  	this.rendererHelper.swapColors(canvas, oldcolor5, new_color5)
+  	this.rendererHelper.swapColors(canvas, oldcolor6, new_color6)
+  	this.rendererHelper.swapColors(canvas, oldcolor7, new_color7)
+  	this.rendererHelper.swapColors(canvas, oldcolor8, new_color8)
+  	this.rendererHelper.swapColors(canvas, oldcolor9, new_color9)
+  	this.rendererHelper.swapColors(canvas, oldcolor10, new_color10)
+  	this.rendererHelper.swapColors(canvas, oldcolor11, new_color11)
+  	//dreamSymbol(canvas, player);
+
+  }
+
+  this.candyPalletSwap =function(canvas, player){
+    //not all browsers do png gama info correctly. Chrome does, firefox does not, mostly.
+    //remove it entirely with this command
+    //pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB infile.png outfile.png
+    //pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB reg001.png reg001copy.png
+    //./pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB stab.png stab_copy.png
+  	var oldcolor1 = "#FEFD49";
+  	var oldcolor2 = "#FEC910";
+  	var oldcolor3 = "#10E0FF";
+  	var oldcolor4 = "#00A4BB";
+  	var oldcolor5 = "#FA4900";
+  	var oldcolor6 = "#E94200";
+
+  	var oldcolor7 = "#C33700";
+  	var oldcolor8 = "#FF8800";
+  	var oldcolor9 = "#D66E04";
+  	var oldcolor10 = "#E76700";
+  	var oldcolor11 = "#CA5B00";
+
+  	var new_color1 = "#b4b4b4";
+  	var new_color2 = "#b4b4b4";
+  	var new_color3 = "#b4b4b4";
+  	var new_color4 = "#b4b4b4";
+  	var new_color5 = "#b4b4b4";
+  	var new_color6 = "#b4b4b4";
+  	var new_color7 = "#b4b4b4";
+  	var new_color8 = "#b4b4b4";
+  	var new_color9 = "#b4b4b4";
+  	var new_color10 = "#b4b4b4";
+  	var new_color11 = "#b4b4b4";
+    //I am the GREETEST. Figured out how to make spreadsheet auto gen code: ="new_color"&ROW()&"='#" &B23 &"';"
+    if(player.aspect =="Light"){
+      new_color1= tricksterColors[0];
+      new_color2= tricksterColors[1];
+      new_color3= tricksterColors[2];
+      new_color4=tricksterColors[3];
+      new_color5= tricksterColors[4];
+      new_color6= tricksterColors[5];
+      new_color7= tricksterColors[6];
+      new_color8= tricksterColors[7];
+      new_color9= tricksterColors[8];
+      new_color10= tricksterColors[9];
+      new_color11= tricksterColors[10];
+    }else if(player.aspect =="Breath"){
+      new_color1= tricksterColors[11];
+      new_color2= tricksterColors[12];
+      new_color3= tricksterColors[13];
+      new_color4=tricksterColors[14];
+      new_color5= tricksterColors[15];
+      new_color6= tricksterColors[16];
+      new_color7= tricksterColors[17];
+      new_color8= tricksterColors[18];
+      new_color9= tricksterColors[0];
+      new_color10= tricksterColors[1];
+      new_color11= tricksterColors[2];
+    }else if(player.aspect =="Time"){
+      new_color1= tricksterColors[3];
+      new_color2= tricksterColors[4];
+      new_color3= tricksterColors[5];
+      new_color4=tricksterColors[6];
+      new_color5= tricksterColors[7];
+      new_color6= tricksterColors[8];
+      new_color7= tricksterColors[9];
+      new_color8= tricksterColors[10];
+      new_color9= tricksterColors[11];
+      new_color10= tricksterColors[12];
+      new_color11= tricksterColors[13];
+    }else if(player.aspect =="Space"){
+      new_color1= tricksterColors[14];
+      new_color2= tricksterColors[15];
+      new_color3= tricksterColors[16];
+      new_color4=tricksterColors[17];
+      new_color5= tricksterColors[18];
+      new_color6= tricksterColors[0];
+      new_color7= tricksterColors[1];
+      new_color8= tricksterColors[2];
+      new_color9= tricksterColors[3];
+      new_color10= tricksterColors[4];
+      new_color11= tricksterColors[5];
+    }else if(player.aspect =="Heart"){
+      new_color1= tricksterColors[6];
+      new_color2= tricksterColors[7];
+      new_color3= tricksterColors[8];
+      new_color4=tricksterColors[9];
+      new_color5= tricksterColors[10];
+      new_color6= tricksterColors[11];
+      new_color7= tricksterColors[12];
+      new_color8= tricksterColors[13];
+      new_color9= tricksterColors[14];
+      new_color10= tricksterColors[15];
+      new_color11= tricksterColors[16];
+    }else if(player.aspect =="Mind"){
+      new_color1= tricksterColors[17];
+      new_color2= tricksterColors[18];
+      new_color3= tricksterColors[17];
+      new_color4=tricksterColors[16];
+      new_color5= tricksterColors[15];
+      new_color6= tricksterColors[14];
+      new_color7= tricksterColors[13];
+      new_color8= tricksterColors[12];
+      new_color9= tricksterColors[11];
+      new_color10= tricksterColors[10];
+      new_color11= tricksterColors[9];
+    }else if(player.aspect =="Life"){
+      new_color1= tricksterColors[8];
+      new_color2= tricksterColors[7];
+      new_color3= tricksterColors[6];
+      new_color4=tricksterColors[5];
+      new_color5= tricksterColors[4];
+      new_color6= tricksterColors[3];
+      new_color7= tricksterColors[2];
+      new_color8= tricksterColors[1];
+      new_color9= tricksterColors[0];
+      new_color10= tricksterColors[1];
+      new_color11= tricksterColors[2];
+    }else if(player.aspect =="Void"){
+      new_color1= tricksterColors[3];
+      new_color2= tricksterColors[5];
+      new_color3= tricksterColors[8];
+      new_color4=tricksterColors[0];
+      new_color5= tricksterColors[10];
+      new_color6= tricksterColors[11];
+      new_color7= tricksterColors[3];
+      new_color8= tricksterColors[4];
+      new_color9= tricksterColors[8];
+      new_color10= tricksterColors[7];
+      new_color11= tricksterColors[6];
+    }else if(player.aspect =="Hope"){
+      new_color1= tricksterColors[10];
+      new_color2= tricksterColors[9];
+      new_color3= tricksterColors[8];
+      new_color4=tricksterColors[7];
+      new_color5= tricksterColors[6];
+      new_color6= tricksterColors[5];
+      new_color7= tricksterColors[4];
+      new_color8= tricksterColors[3];
+      new_color9= tricksterColors[2];
+      new_color10= tricksterColors[1];
+      new_color11= tricksterColors[0];
+    }
+    else if(player.aspect =="Doom"){
+      new_color1= tricksterColors[18];
+      new_color2= tricksterColors[17];
+      new_color3= tricksterColors[16];
+      new_color4=tricksterColors[0];
+      new_color5= tricksterColors[15];
+      new_color6= tricksterColors[14];
+      new_color7= tricksterColors[13];
+      new_color8= tricksterColors[12];
+      new_color9= tricksterColors[10];
+      new_color10= tricksterColors[9];
+      new_color11= tricksterColors[10];
+    }else if(player.aspect =="Rage"){
+      new_color1= tricksterColors[4];
+      new_color2= tricksterColors[1];
+      new_color3= tricksterColors[3];
+      new_color4=tricksterColors[6];
+      new_color5= tricksterColors[1];
+      new_color6= tricksterColors[2];
+      new_color7= tricksterColors[1];
+      new_color8= tricksterColors[0];
+      new_color9= tricksterColors[2];
+      new_color10= tricksterColors[5];
+      new_color11= tricksterColors[7];
+    }else if(player.aspect =="Blood"){
+      new_color1= tricksterColors[1];
+      new_color2= tricksterColors[2];
+      new_color3= tricksterColors[3];
+      new_color4=tricksterColors[4];
+      new_color5= tricksterColors[5];
+      new_color6= tricksterColors[10];
+      new_color7= tricksterColors[18];
+      new_color8= tricksterColors[15];
+      new_color9= tricksterColors[14];
+      new_color10= tricksterColors[13];
+      new_color11= tricksterColors[0];
+    }
+    this.rendererHelper.swapColors(canvas, oldcolor1, new_color1)
+    this.rendererHelper.swapColors(canvas, oldcolor2, new_color2)
+    this.rendererHelper.swapColors(canvas, oldcolor3, new_color3)
+    this.rendererHelper.swapColors(canvas, oldcolor4, new_color4)
+    this.rendererHelper.swapColors(canvas, oldcolor5, new_color5)
+    this.rendererHelper.swapColors(canvas, oldcolor6, new_color6)
+    this.rendererHelper.swapColors(canvas, oldcolor7, new_color7)
+    this.rendererHelper.swapColors(canvas, oldcolor8, new_color8)
+    this.rendererHelper.swapColors(canvas, oldcolor9, new_color9)
+    this.rendererHelper.swapColors(canvas, oldcolor10, new_color10)
+    this.rendererHelper.swapColors(canvas, oldcolor11, new_color11)
+  }
+
+
+  this.aspectPalletSwap = function(canvas, player){
+    //not all browsers do png gama info correctly. Chrome does, firefox does not, mostly.
+    //remove it entirely with this command
+    //pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB infile.png outfile.png
+    //pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB reg001.png reg001copy.png
+    //./pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB stab.png stab_copy.png
+  	var oldcolor1 = "#FEFD49";
+  	var oldcolor2 = "#FEC910";
+  	var oldcolor3 = "#10E0FF";
+  	var oldcolor4 = "#00A4BB";
+  	var oldcolor5 = "#FA4900";
+  	var oldcolor6 = "#E94200";
+
+  	var oldcolor7 = "#C33700";
+  	var oldcolor8 = "#FF8800";
+  	var oldcolor9 = "#D66E04";
+  	var oldcolor10 = "#E76700";
+  	var oldcolor11 = "#CA5B00";
+
+  	var new_color1 = "#b4b4b4";
+  	var new_color2 = "#b4b4b4";
+  	var new_color3 = "#b4b4b4";
+  	var new_color4 = "#b4b4b4";
+  	var new_color5 = "#b4b4b4";
+  	var new_color6 = "#b4b4b4";
+  	var new_color7 = "#b4b4b4";
+  	var new_color8 = "#b4b4b4";
+  	var new_color9 = "#b4b4b4";
+  	var new_color10 = "#b4b4b4";
+  	var new_color11 = "#b4b4b4";
+
+
+    //I am the GREETEST. Figured out how to make spreadsheet auto gen code: ="new_color"&ROW()&"='#" &B23 &"';"
+    if(player.aspect =="Light"){
+      new_color1='#FEFD49';
+  	new_color2='#FEC910';
+  	new_color3='#10E0FF';
+  	new_color4='#00A4BB';
+  	new_color5='#FA4900';
+  	new_color6='#E94200';
+  	new_color7='#C33700';
+  	new_color8='#FF8800';
+  	new_color9='#D66E04';
+  	new_color10='#E76700';
+  	new_color11='#CA5B00';
+    }else if(player.aspect =="Breath"){
+      new_color1='#10E0FF';
+  	new_color2='#00A4BB';
+  	new_color3='#FEFD49';
+  	new_color4='#D6D601';
+  	new_color5='#0052F3';
+  	new_color6='#0046D1';
+  	new_color7='#003396';
+  	new_color8='#0087EB';
+  	new_color9='#0070ED';
+  	new_color10='#006BE1';
+  	new_color11='#0054B0';
+    }else if(player.aspect =="Time"){
+      new_color1='#FF2106';
+  	new_color2='#AD1604';
+  	new_color3='#030303';
+  	new_color4='#242424';
+  	new_color5='#510606';
+  	new_color6='#3C0404';
+  	new_color7='#1F0000';
+  	new_color8='#B70D0E';
+  	new_color9='#970203';
+  	new_color10='#8E1516';
+  	new_color11='#640707';
+    }else if(player.aspect =="Space"){
+      new_color1='#EFEFEF';
+  	new_color2='#DEDEDE';
+  	new_color3='#FF2106';
+  	new_color4='#B01200';
+  	new_color5='#2F2F30';
+  	new_color6='#1D1D1D';
+  	new_color7='#080808';
+  	new_color8='#030303';
+  	new_color9='#242424';
+  	new_color10='#333333';
+  	new_color11='#141414';
+    }else if(player.aspect =="Heart"){
+      new_color1='#BD1864';
+  	new_color2='#780F3F';
+  	new_color3='#1D572E';
+  	new_color4='#11371D';
+  	new_color5='#4C1026';
+  	new_color6='#3C0D1F';
+  	new_color7='#260914';
+  	new_color8='#6B0829';
+  	new_color9='#4A0818';
+  	new_color10='#55142A';
+  	new_color11='#3D0E1E';
+    }else if(player.aspect =="Mind"){
+      new_color1='#06FFC9';
+  	new_color2='#04A885';
+  	new_color3='#6E0E2E';
+  	new_color4='#4A0818';
+  	new_color5='#1D572E';
+  	new_color6='#164524';
+  	new_color7='#11371D';
+  	new_color8='#3DA35A';
+  	new_color9='#2E7A43';
+  	new_color10='#3B7E4F';
+  	new_color11='#265133';
+    }else if(player.aspect =="Life"){
+      new_color1='#76C34E';
+  	new_color2='#4F8234';
+  	new_color3='#00164F';
+  	new_color4='#00071A';
+  	new_color5='#605542';
+  	new_color6='#494132';
+  	new_color7='#2D271E';
+  	new_color8='#CCC4B5';
+  	new_color9='#A89F8D';
+  	new_color10='#A29989';
+  	new_color11='#918673';
+    }else if(player.aspect =="Void"){
+      new_color1='#0B1030';
+  	new_color2='#04091A';
+  	new_color3='#CCC4B5';
+  	new_color4='#A89F8D';
+  	new_color5='#00164F';
+  	new_color6='#00103C';
+  	new_color7='#00071A';
+  	new_color8='#033476';
+  	new_color9='#02285B';
+  	new_color10='#004CB2';
+  	new_color11='#003E91';
+    }else if(player.aspect =="Hope"){
+      new_color1='#FDF9EC';
+  	new_color2='#D6C794';
+  	new_color3='#164524';
+  	new_color4='#06280C';
+  	new_color5='#FFC331';
+  	new_color6='#F7BB2C';
+  	new_color7='#DBA523';
+  	new_color8='#FFE094';
+  	new_color9='#E8C15E';
+  	new_color10='#F6C54A';
+  	new_color11='#EDAF0C';
+    }
+    else if(player.aspect =="Doom"){
+      new_color1='#0F0F0F';
+  	new_color2='#010101';
+  	new_color3='#E8C15E';
+  	new_color4='#C7A140';
+  	new_color5='#1E211E';
+  	new_color6='#141614';
+  	new_color7='#0B0D0B';
+  	new_color8='#204020';
+  	new_color9='#11200F';
+  	new_color10='#192C16';
+  	new_color11='#121F10';
+    }else if(player.aspect =="Rage"){
+      new_color1='#974AA7';
+  	new_color2='#6B347D';
+  	new_color3='#3D190A';
+  	new_color4='#2C1207';
+  	new_color5='#7C3FBA';
+  	new_color6='#6D34A6';
+  	new_color7='#592D86';
+  	new_color8='#381B76';
+  	new_color9='#1E0C47';
+  	new_color10='#281D36';
+  	new_color11='#1D1526';
+    }else if(player.aspect =="Blood"){
+      new_color1='#BA1016';
+  	new_color2='#820B0F';
+  	new_color3='#381B76';
+  	new_color4='#1E0C47';
+  	new_color5='#290704';
+  	new_color6='#230200';
+  	new_color7='#110000';
+  	new_color8='#3D190A';
+  	new_color9='#2C1207';
+  	new_color10='#5C2913';
+  	new_color11='#4C1F0D';
+    }
+
+
+    this.rendererHelper.swapColors(canvas, oldcolor1, new_color1)
+    this.rendererHelper.swapColors(canvas, oldcolor2, new_color2)
+    this.rendererHelper.swapColors(canvas, oldcolor3, new_color3)
+    this.rendererHelper.swapColors(canvas, oldcolor4, new_color4)
+    this.rendererHelper.swapColors(canvas, oldcolor5, new_color5)
+    this.rendererHelper.swapColors(canvas, oldcolor6, new_color6)
+    this.rendererHelper.swapColors(canvas, oldcolor7, new_color7)
+    this.rendererHelper.swapColors(canvas, oldcolor8, new_color8)
+    this.rendererHelper.swapColors(canvas, oldcolor9, new_color9)
+    this.rendererHelper.swapColors(canvas, oldcolor10, new_color10)
+    this.rendererHelper.swapColors(canvas, oldcolor11, new_color11)
+
+  }
+
+
+  this.tricksterSprite = function(canvas, player){
+    var ctx = canvas.getContext('2d');
+  	var imageString;
+  	if(!player.godTier){
+  		imageString = playerToRegularBody(player);
+  	}else{
+  		imageString = playerToGodBody(player);
+  	}
+  	  this.rendererHelper.addImageTag(imageString)
+  	  var img=document.getElementById(imageString);
+  	  var width = img.width;
+  	  var height = img.height;
+  	  ctx.drawImage(img,0,0,width,height);
+  	  this.candyPalletSwap(canvas, player);
+    //aspectSymbol(canvas, player);
+  }
+
+  this.regularSprite = function(canvas, player){
+  	var imageString = playerToRegularBody(player);
+    var ctx = canvas.getContext('2d');
+    this.rendererHelper.addImageTag(imageString)
+    var img=document.getElementById(imageString);
+    var width = img.width;
+    var height = img.height;
+    ctx.drawImage(img,0,0,width,height);
+    if(player.sbahj){
+    this.rendererHelper.sbahjifier(canvas);
+    }
+    this.aspectPalletSwap(canvas, player);
+    //aspectSymbol(canvas, player);
+  }
+
+  this.dreamSprite = function(canvas, player){
+    var imageString = playerToDreamBody(player);
+    this.rendererHelper.addImageTag(imageString)
+    var img=document.getElementById(imageString);
+    var width = img.width;
+    var height = img.height;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img,0,0,width,height);
+    this.dreamPalletSwap(canvas, player);
+  }
+
+
+
+  this.playerToSprite(canvas, player){
+  	var ctx = canvas.getContext('2d');
+  	if(player.robot == true){
+  		this.robotSprite(canvas, player);
+  	}else if(player.trickster){
+  		this.tricksterSprite(canvas, player);
+  	}else if(player.godTier){
+  		this.godTierSprite(canvas, player);
+  	}else if (player.isDreamSelf)
+  	{
+  		this.dreamSprite(canvas, player)
+  	}else{
+  		this.regularSprite(canvas, player);
+  	}
+  }
+
   this.drawSpriteFromScratch = function(canvas, ocDataString, objectData){
-    //ocDataString contains all mandatory information, without any assumptions about what that data is encoding.
-    //what is "horns" for a troll might be "eyes" for highschool au, 4 bools might be smooshed together to store an int value, etc.
-    //objectData is the actual object in question in case the data string isn't enough.
-    //it MIGHT not be the type of object i'm expecting, but I can still do things like if(objectData.doomed) and if the var exists and is true, do something different.
-    //and if it doesn't exist, then it's false.
+    var bs = this.rendererHelper.ocDataStringToBS(ocDataString);
+    var player = dataBytesAndStringsToPlayer(bs[0], bs[1]);  //only use objectData when I KNOW I need to.
+    if(dontRender == true){
+      return;
+    }
+   if(!ctx){
+     ctx = canvas.getContext('2d');
+   }
+
+    ctx.imageSmoothingEnabled = false;  //should get rid of orange halo in certain browsers.
+    if(!baby &&(player.dead)){//only rotate once
+    	ctx.translate(canvas.width, 0);
+    	ctx.rotate(90*Math.PI/180);
+    }
+
+    //they are not dead, only sleeping
+    if(!baby &&(player.causeOfDrain)){//only rotate once
+    	ctx.translate(0, 6*canvas.height/5);
+    	ctx.rotate(270*Math.PI/180);
+    }
+
+    if(!baby && player.grimDark > 3){
+      this.grimDarkHalo(canvas,player)
+    }
+
+    if(!baby && player.isTroll&& player.godTier){//wings before sprite
+      this.wings(canvas,player);
+    }
+
+    if(!baby && player.dead){
+  	   this.rendererHelper.drawWhatever(canvas, "blood_puddle.png");
+       this.rendererHelper.swapColors(canvas, "#fffc00", player.bloodColor);
+    }
+    hairBack(canvas, player);
+    if(player.isTroll){//wings before sprite
+      this.fin2(canvas,player);
+    }
+    if(!baby && !player.baby_stuck){
+      playerToSprite(canvas,player);
+      bloody_face(canvas, player)//not just for murder mode, because you can kill another player if THEY are murder mode.
+      if(player.murderMode == true){
+    	  scratch_face(canvas, player);
+      }
+      if(player.leftMurderMode == true){
+    	  scar_face(canvas, player);
+      }
+  	if(player.robot == true){
+    	  robo_face(canvas, player);
+      }
+    }else{
+       babySprite(canvas,player);
+  	 if(player.baby_stuck && !baby){
+  		 bloody_face(canvas, player)//not just for murder mode, because you can kill another player if THEY are murder mode.
+  		if(player.murderMode == true){
+  		  scratch_face(canvas, player);
+  		}
+  		if(player.leftMurderMode == true){
+  		  scar_face(canvas, player);
+  		}
+  		if(player.robot == true){
+  			robo_face(canvas, player);
+  		}
+
+  	 }
+    }
+
+    hair(canvas, player);
+    if(player.isTroll){//wings before sprite
+      fin1(canvas,player);
+    }
+    if(!baby && player.class_name == "Prince" && player.godTier){
+  	  princeTiara(canvas, player);
+    }
+
+      if(player.robot == true){
+    	  roboSkin(canvas, player);
+      }else if(player.trickster == true){
+          peachSkin(canvas, player);
+      }else if(!baby && player.grimDark  > 3){
+        grimDarkSkin(canvas, player)
+      }else if(player.isTroll){
+        greySkin(canvas,player);
+      }
+      if(player.isTroll){
+        horns(canvas, player);
+      }
+
+      if(!baby && player.dead && player.causeOfDeath == "after being shown too many stabs from Jack"){
+    	 stabs(canvas,player)
+     }else if(!baby && player.dead && player.causeOfDeath == "fighting the Black King"){
+       kingDeath(canvas,player)
+     }
+
+      if(!baby && player.ghost){
+        if(player.causeOfDrain){
+          drainedGhostSwap(canvas);
+        }else{
+          ghostSwap(canvas);
+        }
+      }
+
+      if(!baby && player.aspect == "Void"){
+        voidSwap(canvas, 1-player.power/2000) //a void player at 2000 power is fully invisible.
+      }
   }
 
   this.playerToGodBody = function(player){

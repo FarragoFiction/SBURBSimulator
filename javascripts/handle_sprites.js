@@ -1406,8 +1406,6 @@ function playerToSprite(canvas, player){
 	}else{
 		regularSprite(canvas, player);
 	}
-	//TODO have dream sprites, too.
-	//TODO check for murder mode or grim darkness.
 }
 
 function robo_face(canvas, player){
@@ -1691,6 +1689,7 @@ function robotSprite(canvas, player){
 	  robotPalletSwap(canvas, player);
 	  //eeeeeh...could figure out how to color swap symbol, but lazy.
 }
+
 function tricksterSprite(canvas, player){
   var ctx = canvas.getContext('2d');
 	var imageString;
