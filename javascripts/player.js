@@ -256,7 +256,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.heartDenizenNames = function(){
-		return ['Heart','Aphrodite','Baldur','Eros','Hathor','Philotes','Anubis','Psyche','Mora','Isis','Jupiter','Hecate','Izanagi','Izanami','Ishtar','Anteros','Agape','Peitho','Mahara','Naidraug','Snoitome','Walthidian','Slanesh','Benu'];
+		return ['Heart','Aphrodite','Baldur','Eros','Hathor','Philotes','Anubis','Psyche','Mora','Isis','Jupiter', 'Narcissus','Hecate','Izanagi','Izanami','Ishtar','Anteros','Agape','Peitho','Mahara','Naidraug','Snoitome','Walthidian','Slanesh','Benu'];
 	}
 
 	this.breathDenizenNames = function(){
