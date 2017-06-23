@@ -97,7 +97,7 @@ function loadImage(img,skipInit){
 }
 
 function loadOther(skipInit){
-	var spriteLocations = curSessionGlobalVar.sceneRenderingEngine.getAllImagesNeededForScenesBesidesPlayers(players);
+	var spriteLocations = curSessionGlobalVar.sceneRenderingEngine.getAllImagesNeededForScenesBesidesPlayers();
 	for(var i = 0; i<spriteLocations.length; i++){
 		loadImage(spriteLocations[i],skipInit);
 	}
