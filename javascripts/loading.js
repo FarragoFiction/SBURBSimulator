@@ -54,7 +54,7 @@ function urlToID(url){
 }
 
 function addImageTagLoading(url){
-  console.log(url);
+  //console.log(url);
 	//only do it if image hasn't already been added.
 	if(document.getElementById(url) == null) {
 		//console.log("I couldn't find a document with id of: " + url)
@@ -86,7 +86,7 @@ function checkDone(skipInit){
       return;
     }
 		intro();
-	../RenderingAssets/Homestuck/Hair/hair_back2.png}
+	}
 }
 
 function loadImage(img,skipInit){
