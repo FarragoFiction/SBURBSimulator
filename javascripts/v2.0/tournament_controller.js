@@ -19,7 +19,10 @@ var remainingColors = [];
 
 window.onload = function() {
 	$(this).scrollTop(0);
-	if(getParameterByName("abj")  == "interesting!!!") abj = true;
+	if(getParameterByName("abj")  == "interesting!!!"){
+		abj = true;
+		$("#judge").html("Wait, no, get me out of here, I want the  <a href = "tournament_arc.html">AuthorBot</a> again.")
+	}
 	loadNavbar();
 	simulationMode = true; //dont' render graphics.
 	displayPotentialFighters();
@@ -70,12 +73,12 @@ function createEndingTableRow(team){
 			}else{
 				html += "<td class = 'tournamentCell' bgcolor='" +round.color + "'>"
 			}
-			
-			html += team.name + ": " +teamInRound.score() 
+
+			html += team.name + ": " +teamInRound.score()
 			html += "<div class = 'mvp'><b>MVP:</b>  " + teamInRound.mvp_name + " with a power of: " + Math.round(teamInRound.mvp_score) + "</div>"
 			html += " </td>"
 		}else{ //was disqualified
-			html += "<td></td>"			
+			html += "<td></td>"
 		}
 	}
 	html += "</tr>"
@@ -535,12 +538,12 @@ function Round(team1, team2,color){
 		if(this.team1.name == team.name || (this.team2 && this.team2.name == team.name)) return true;
 		return false;
 	}
-	
+
 	this.getTeam = function(teamName){
 		if(teamName == this.team1) return this.team1;
 		if(teamName == this.team2) return this.team2;
 		return null;
-			
+
 	}
 }
 
@@ -566,7 +569,7 @@ function Team(name,abj){
 		this.mvp_score = 0;
 		this.lostRound = false;
 	}
-	
+
 	//make copy of self so that rounds object doesn't have false data.
 	this.resetStats = function(){
 		return new Team(this.name, this.abj)
