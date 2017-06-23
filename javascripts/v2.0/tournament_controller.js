@@ -21,7 +21,7 @@ window.onload = function() {
 	$(this).scrollTop(0);
 	if(getParameterByName("abj")  == "interesting!!!"){
 		abj = true;
-		$("#judge").html("Wait, no, get me out of here, I want the  <a href = "tournament_arc.html">AuthorBot</a> again.")
+		$("#judge").html("Wait, no, get me out of here, I want the  <a href = 'tournament_arc.html'>AuthorBot</a> again.")
 	}
 	loadNavbar();
 	simulationMode = true; //dont' render graphics.
