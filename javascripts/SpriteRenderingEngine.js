@@ -340,7 +340,7 @@ function HomestuckRenderer(rh){
   this.baseLocation = "RenderingAssets/Homestuck/";
 
   //true random position
-  this.drawWhateverTerezi(canvas, imageString){
+  this.drawWhateverTerezi = function(canvas, imageString){
   	var ctx = canvas.getContext('2d');
   	this.rendererHelper.addImageTag(imageString)
   	var img=document.getElementById(imageString);

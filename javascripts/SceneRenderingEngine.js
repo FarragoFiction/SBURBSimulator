@@ -145,11 +145,11 @@ function SceneRenderingEngine(dontRender){
   }
 
 
-	this.drawSprite(canvas, player){
+	this.drawSprite = function(canvas, player){
 		this.spriteRenderingEngine.renderPlayerForScene(canvas, player.toOCDataString(), player);
 	}
 
-	this.drawSpriteTurnways(canvas,player){
+	this.drawSpriteTurnways = function(canvas,player){
 		var ctx = canvas.getContext('2d');
 		if(turnWays){
 		  ctx.translate(canvas.width, 0);

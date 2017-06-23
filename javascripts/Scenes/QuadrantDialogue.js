@@ -642,8 +642,8 @@ function QuadrantDialogue(session){
 		var relationship2 = this.getQuadrant2();
 		var chatText = this.getGreeting(relationship, relationship2);
 		chatText += this.getChat(relationship, relationship2);
-		drawChat(document.getElementById("canvas"+ (div.attr("id"))), this.player1, this.player2, chatText, 0,this.getDiscussSymbol(relationship));
-		//this.session.sceneRenderingEngine.drawChat(document.getElementById("canvas"+ (div.attr("id"))), this.player1, this.player2, chatText, 0,this.getDiscussSymbol(relationship));
+		//drawChat(document.getElementById("canvas"+ (div.attr("id"))), this.player1, this.player2, chatText, 0,this.getDiscussSymbol(relationship));
+		this.session.sceneRenderingEngine.drawChat(document.getElementById("canvas"+ (div.attr("id"))), this.player1, this.player2, chatText, 0,this.getDiscussSymbol(relationship));
 
 	}
 
