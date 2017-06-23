@@ -1054,7 +1054,7 @@ function HomestuckRenderer(rh){
       }
   }
 
-  function hairBack=function(canvas,player){
+  this.hairBack=function(canvas,player){
     var ctx = canvas.getContext('2d');
   	var imageString = this.baseLocation+"Hair/hair_back"+player.hair+".png"
     //console.log(imageString);
@@ -1074,7 +1074,7 @@ function HomestuckRenderer(rh){
   		this.rendererHelper.swapColors(canvas, "#202020", getColorFromAspect(player.aspect));
   	}
   }
-  this.hair(canvas, player){
+  this.hair = function(canvas, player){
   	var ctx = canvas.getContext('2d');
   	var imageString = this.baseLocation+"Hair/hair"+player.hair+".png"
   	this.rendererHelper.addImageTag(imageString)
