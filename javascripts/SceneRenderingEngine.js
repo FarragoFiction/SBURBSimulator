@@ -36,7 +36,7 @@ function SceneRenderingEngine(dontRender){
 
 	this.getAllImagesNeededForScenesBesidesPlayers = function(){
 		var ret = [];
-		var imageLocation = "images"
+		var imageLocation = "images/"
 		ret.push(imageLocation+"/Bodies/coolk1dlogo.png");
 		ret.push(imageLocation+"/Bodies/coolk1dsword.png");
 		ret.push(imageLocation+"/Bodies/coolk1dshades.png");
