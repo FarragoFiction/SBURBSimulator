@@ -14,8 +14,12 @@ function SceneRenderingEngine(dontRender){
 	this.spriteRenderingEngine = new SpriteRenderingEngine(this.dontRender, 1); //default is homestuck
 
 	//take care of loading teh images the SCENES need, then ask your spriteRenderingEngine to load all the players.
-	this.loadAllImagesForPlayers(players){
-
+	this.loadAllImagesForPlayers = function(players){
+		var ret = [];
+		for(var i = 0; i<players.length; i++){
+			ret = ret.concat(this.spriteRenderingEngine.getAllImagesNeededForPlayer(player.toOCDataString(), player));
+		}
+		return ret;
 	}
 
 	this.getAllImagesNeededForScenesBesidesPlayers = function(){
