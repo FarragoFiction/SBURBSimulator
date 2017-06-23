@@ -49,12 +49,16 @@ function loadAllImagesForPlayersOld(players, guardians,skipInit){
 
 
 function addImageTagLoading(url){
-  //console.log(url);
+  console.log(url);
 	//only do it if image hasn't already been added.
 	if(document.getElementById(url) == null) {
+		console.log("I couldn't find a document with id of: " + url)
 		//var tag = '<img id ="' + url + '" src = "images/' + url + '" style="display:none">';
 		var tag = '<img id ="' + url + '" src = "' + url + '" style="display:none">';
 		$("#loading_image_staging").append(tag);
+	}else{
+		console.log("I thought i found a document with id of: " + url)
+
 	}
 
 }
@@ -94,7 +98,8 @@ function loadImage(img,skipInit){
     debug("Error loading image: " + this.src)
     //alert(this.src)
   }
-      imageObj.src = "images/"+img;
+  //imageObj.src = "images/"+img;
+	imageObj.src = img;
 }
 
 function loadOther(skipInit){
