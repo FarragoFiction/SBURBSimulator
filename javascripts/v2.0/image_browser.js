@@ -13,6 +13,16 @@ window.onload = function() {
 		$("#header").html("GrimDark AB Gallery");
 		renderFanArtGrimAB();
 	}
+
+	if (getParameterByName("stareyes")  == "true"){
+		$("#header").html("star.eyes memes");
+		renderFanArtStarEyes();
+	}
+
+	if (getParameterByName("gifs")  == "true"){
+		$("#header").html("Gif Gallery");
+		renderFanArtGifs();
+	}
 }
 
 //don't hard code fan art, instead, scrape all files of .png or .jpg or .gif or .jpeg out of a given folder and render.
@@ -21,6 +31,21 @@ function renderFanArtGrimAB(){
 	var folder = "http://farragofiction.com/SBURBSimE/images/misc/fanArt/ABFanArt/";
 	renderAllImagesInFolder(folder); //if can't scrape from local computer, make this an absolute reference to server.  haha, no i can't cross session scripting is a bitch. HAVE to test on server l8r.
 }
+
+//don't hard code fan art, instead, scrape all files of .png or .jpg or .gif or .jpeg out of a given folder and render.
+function renderFanArtStarEyes(){
+	//var folder = "images/misc/fanArt/ABFanArt/"
+	var folder = "http://farragofiction.com/SBURBSimE/images/misc/fanArt/star.eyes/";
+	renderAllImagesInFolder(folder); //if can't scrape from local computer, make this an absolute reference to server.  haha, no i can't cross session scripting is a bitch. HAVE to test on server l8r.
+}
+
+//don't hard code fan art, instead, scrape all files of .png or .jpg or .gif or .jpeg out of a given folder and render.
+function renderFanArtGifs{
+	var folder = "http://farragofiction.com/SBURBSimE/images/misc/fanArt/gifs/";
+	renderAllImagesInFolder(folder); //if can't scrape from local computer, make this an absolute reference to server.  haha, no i can't cross session scripting is a bitch. HAVE to test on server l8r.
+}
+
+
 
 //use ajax to get index file, then do yo thang.
 //https://stackoverflow.com/questions/22061073/how-do-i-get-images-file-name-from-a-given-folder
