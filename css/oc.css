@@ -15,6 +15,12 @@
 	display: inline-block;
 }
 
+#header{
+	font-size: 25px;
+	font-weight: bold;
+	padding: 5px;
+}
+
 .score{
 	float:right;
 }

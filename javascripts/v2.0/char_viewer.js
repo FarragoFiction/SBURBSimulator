@@ -16,7 +16,7 @@ window.onload = function() {
 }
 
 function renderHeader(){
-	var header = "<h1>"
+	var header = ""
 	if(getParameterByName("reddit")  == "true") header += " reddit"
 	if(getParameterByName("tumblr")  == "true") header += " tumblr"
 	if(getParameterByName("discord")  == "true") header += " discord"
@@ -28,8 +28,9 @@ function renderHeader(){
 	if(getParameterByName("canon")  == "true") header += " canon"
 	if(getParameterByName("otherFandoms")  == "true") header += " otherFandoms"
 	if(getParameterByName("creators")  == "true") header += " creators"
-	header += "</h1>"
-	$("#character_creator").append(header);
+	header += ""
+	if(header!= "" ) $("#header").html(header);
+
 }
 
 function renderPlayersForEditing (){
