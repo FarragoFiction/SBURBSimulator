@@ -8,7 +8,6 @@ window.onload = function() {
 
 //don't hard code fan art, instead, scrape all files of .png or .jpg or .gif or .jpeg out of a given folder and render.
 function renderFanArtGrimAB(){
-	alert("ab isn't ready yet :/")
 	//var folder = "images/misc/fanArt/ABFanArt/"
 	var folder = "http://farragofiction.com/SBURBSimE/images/misc/fanArt/ABFanArt/";
 	renderAllImagesInFolder(folder); //if can't scrape from local computer, make this an absolute reference to server.  haha, no i can't cross session scripting is a bitch. HAVE to test on server l8r.
@@ -26,11 +25,11 @@ function renderAllImagesInFolder(folder){
 			//This will retrieve the contents of the folder if the folder is configured as 'browsable'
 			url: folder,
 			success: function (data) {
-				alert("???")
-			   $("#fileNames").html('<ul>');
 			   //List all png or jpg or gif file names in the page
 			   $(data).find("a:contains(" + fileExt[0] + "),a:contains(" + fileExt[1] + "),a:contains(" + fileExt[2] + ")").each(function () {
-				   var filename = this.href.replace(window.location.host, "").replace("http:///", "");
+				  // var filename = this.href.replace(window.location.host, "").replace("http:///", "");
+					console.log(this.href);
+					var filename = folder + this.href;
 				   renderRegularSprite(new SpritePart(filename, filename));
 			   });
 			 }
