@@ -339,7 +339,8 @@ All sprites are assumed to be kept ../../AllSprites/<INSERTRENDERINGENGINENAMEHE
 
 function HomestuckRenderer(rh){
   this.rendererHelper = rh;
-  this.baseLocation = "../RenderingAssets/Homestuck/"; //will be from point of view of some SIM
+//  this.baseLocation = "../RenderingAssets/Homestuck/"; //will be from point of view of some SIM
+    this.baseLocation = "http://farragofiction.com/RenderingAssets/Homestuck/"  //made sure CORS was on.
 
   //true random position
   this.drawWhateverTerezi = function(canvas, imageString){
