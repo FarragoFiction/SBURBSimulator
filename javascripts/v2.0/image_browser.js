@@ -23,6 +23,13 @@ window.onload = function() {
 		$("#header").html("Gif Gallery");
 		renderFanArtGifs();
 	}
+
+	if(getParameterByName("fanArt")  == "true"){
+		renderFanArtGrimAB();
+		renderFanArtStarEyes();
+		renderFanArtGifs();
+		$("#header").html("FanArt Gallery");
+	}
 }
 
 //don't hard code fan art, instead, scrape all files of .png or .jpg or .gif or .jpeg out of a given folder and render.
