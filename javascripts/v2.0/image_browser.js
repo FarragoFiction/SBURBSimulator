@@ -55,7 +55,7 @@ function renderAllImagesInFolder(folder){
     fileExt[0]=".png";
     fileExt[1]=".jpg";
     fileExt[2]=".gif";
-	fileExt[2]=".jpeg";
+		fileExt[3]=".jpeg";
 		$.ajax({
 			//This will retrieve the contents of the folder if the folder is configured as 'browsable'
 			url: folder,
