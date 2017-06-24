@@ -13,8 +13,13 @@
 	top: 0px;
 }
 
+#header{
+	font-size: 25px;
+	font-weight: bold;
+}
+
 .spriteImgNoLayers{
-	
+
 }
 
 .spriteParent{
