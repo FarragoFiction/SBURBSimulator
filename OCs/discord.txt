@@ -57,3 +57,5 @@ b=%00%00%00!%C3%BE%C3%91%00%09%1F%1F%3C&s=,,Alternate History,Playing Piano,anci
 b=%1D%00%C3%B5%22%C3%BA%0A%14%0C%1B%1B%06&s=,,Puns and Jokes,Programming,ludicrousQuipster
 b=%00%00%00%11%C3%B2%C2%99%10%5C%26%26%3C&s=,,History,Time Travel,timeTravelist
 b=%C3%BF%C3%BF%C3%BFF%C3%BEb%00%1C))%3D&s=,,Inevitability,Hospitality,Doc Scratch
+b=%00%00%00%20%C3%B8%23%10PGGD&s=,,Drawing,Character Creation,InsufferableOracle
+b=%C2%9C%C2%9C6u%C3%BE%C3%81%00S%06%06%16&s=,,Love,Bass Playing,jegusPersona
