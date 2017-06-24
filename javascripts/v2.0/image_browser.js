@@ -1,9 +1,18 @@
 //simple code that allows you to browser hair/horns or fanart.
 window.onload = function() {
 	loadNavbar();
-	if (getParameterByName("hair")  == "true") renderAllHair();
-	if (getParameterByName("horns")  == "true") renderAllHorns();
-	if (getParameterByName("grimAB")  == "true") renderFanArtGrimAB();
+	if (getParameterByName("hair")  == "true"){
+		$("#header").html("Hair Gallery");
+		renderAllHair();
+	}
+	if (getParameterByName("horns")  == "true"){
+		renderAllHorns();
+		$("#header").html("Horn Gallery");
+	}
+	if (getParameterByName("grimAB")  == "true"){
+		$("#header").html("GrimDark AB Gallery");
+		renderFanArtGrimAB();
+	}
 }
 
 //don't hard code fan art, instead, scrape all files of .png or .jpg or .gif or .jpeg out of a given folder and render.
