@@ -27,9 +27,9 @@ function renderAllImagesInFolder(folder){
 			success: function (data) {
 			   //List all png or jpg or gif file names in the page
 			   $(data).find("a:contains(" + fileExt[0] + "),a:contains(" + fileExt[1] + "),a:contains(" + fileExt[2] + ")").each(function () {
-				  // var filename = this.href.replace(window.location.host, "").replace("http:///", "");
+				  var filename = this.href.replace(window.location.host, "").replace("http:///", "");
 					console.log(this.href);
-					var filename = folder + this.href;
+					//var filename = this.href;
 				   renderRegularSprite(new SpritePart(filename, filename));
 			   });
 			 }
