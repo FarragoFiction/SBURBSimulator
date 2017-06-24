@@ -38,7 +38,7 @@ function renderAllImagesInFolder(folder){
 }
 
 function renderRegularSprite(spritePart){
-	$("#images").append("<img class = 'spriteImg' src = '" + spritePart.location + "'></img><br>"+spritePart.name);
+	$("#images").append("<img class = 'regularImage' src = '" + spritePart.location + "'></img><br>"+spritePart.name);
 }
 
 
