@@ -50,6 +50,7 @@ function renderFanArtGifs(){
 //use ajax to get index file, then do yo thang.
 //https://stackoverflow.com/questions/22061073/how-do-i-get-images-file-name-from-a-given-folder
 function renderAllImagesInFolder(folder){
+	console.log("tring to get folder: " + folder)
 	var fileExt = {};
     fileExt[0]=".png";
     fileExt[1]=".jpg";
@@ -63,6 +64,7 @@ function renderAllImagesInFolder(folder){
 			   $(data).find("a:contains(" + fileExt[0] + "),a:contains(" + fileExt[1] + "),a:contains(" + fileExt[2] + ")").each(function () {
 				  var split = this.href.split("/")
 					var filename =  split[split.length-1];
+					console.log("found: " + filename);
 					//var filename = this.href;
 				   renderRegularSprite(new SpritePart(folder+filename, filename));
 			   });
