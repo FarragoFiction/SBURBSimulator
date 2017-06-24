@@ -21,6 +21,12 @@
 	border: 1px solid black;
 }
 
+.spriteParentNoSize{
+	display: inline-block;
+	position: relative;
+	border: 1px solid black;
+}
+
 body{
 	background-image: url("../images/Skaia_Clouds.png");
 }
