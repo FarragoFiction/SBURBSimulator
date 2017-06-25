@@ -27,7 +27,6 @@ function loadImage(img,i){
 			checkDone();
   };
 	distactions[i] =  imageObj;
-	console.log("i" + distactions[i])
 
   imageObj.onerror = function(){
     debug("Error loading image: " + this.src)
@@ -80,10 +79,15 @@ function makeScreens(number){
 		for(var i = 0; i< number; i++){
 			var canvas = $("#screen"+i);
 			var screen = screens[i];
-			canvas.click(function(){
-				screen.randomizeState();
-			})
+			wireUpScreen(canvas, screen);
 		}
+}
+
+function wireUpScreen(canvas, screen){
+	canvas.click(function(){
+		console.log(screen.upperLeftX)
+		screen.randomizeState();
+	})
 }
 
 function loadImages(lastImage){
