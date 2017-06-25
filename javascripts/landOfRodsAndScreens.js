@@ -29,7 +29,7 @@ function makeScreens(number){
 			var html = "<canvas class = 'screen' id = 'screen" + i + "' width = '45' height = '45'></canvas>";
 			$("#landScreens").append(html);
 			var uX = i%16 * 45;
-			var uY = Math.floor(i/16 * 45);
+			var uY = Math.round(i/16 * 45);
 			screens.push(new Screen(document.getElementById("screen"+i),maxState, uX, uY));
 		}
 }
@@ -94,6 +94,7 @@ function makeDistactionChunk(id, imageDiv, screen){
 		var width = img.width;
 		var height = img.height;
 		ctx.drawImage(img,0,0,width,height);
+		//might be faster to call getImageData once and then write code to chunk it up, rather than calling it 256 times for each image.
 		screen.distactions.push(ctx.getImageData(screen.upperLeftX, screen.upperLeftY, screen.size, screen.size));
 
 }
