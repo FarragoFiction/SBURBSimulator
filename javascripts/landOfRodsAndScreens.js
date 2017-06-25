@@ -7,8 +7,12 @@ var maxState = 38;
 
 window.onload = function() {
 	makeScreens(256);
-	loadImages(maxState);
+
+	//only load images via code while developing. want them hardcoded in the initial
+	//loadImages(maxState);
 	//eventually call makeDistactions AFTER the user clicks "start". because i want to wait for the images to load without bothering with loading code.
+
+	//throw makeDistactions into a timeout so it's asynch, but don't let things 'start' till it's done.
 	makeDistactions(maxState);
 	renderLoop();
 }
