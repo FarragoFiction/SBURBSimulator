@@ -1,5 +1,5 @@
 var screens = [];
-var maxState = 37;
+var maxState = 51;
 var imagesWaiting = 0;
 var imagesLoaded = 0;
 var distactions = new Array(maxState); //all images, screen responsible for displaying it's chunk
@@ -145,8 +145,8 @@ function Screen(canvas,maxState, uX, uY, screenNum){
 		var y = this.height/2;
 		ctx.fillStyle = "#000000";
 		ctx.fillText(this.state,x,y);
-		x += 2;
-		y += 2;
+		x += 1;
+		y += 1;
 		ctx.fillStyle = "#ffffff";
 		ctx.fillText(this.state,x,y);
 	}
