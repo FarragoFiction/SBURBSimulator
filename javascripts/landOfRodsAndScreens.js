@@ -115,8 +115,8 @@ function Screen(canvas,maxState, uX, uY, screenNum){
 	this.width = 45;
 
 	this.randomizeState = function(){
-		//this.state = getRandomInt(0,maxState-1)
-		this.state = 0;
+		this.state = getRandomInt(0,maxState-1)
+		//this.state = 0;
 		this.display();
 	}
 	this.changeState = function(state){
@@ -136,6 +136,7 @@ function Screen(canvas,maxState, uX, uY, screenNum){
 		console.log("display: " + this.state);
 	  var ctx = canvas.getContext('2d');
 		var image = distactions[this.state];
+		console.log(image);
 		ctx.drawImage(image, this.upperLeftX, this.upperLeftY, this.width, this.height, 0, 0, this.width, this.height);
 	}
 }
