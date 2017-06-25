@@ -73,7 +73,8 @@ function Screen(canvas,maxState, uX, uY){
 	//imgData is an array, need to review the math to get a chunk of that array.
 	//want upperLeftx, upperLeftY for this.size pixels.
 	this.getChunk(imgData){
-
+		//a chunk is chunk-height slices of the array, with each slice being chunk-width long.
+		//the START of each slice is the complicated bit.
 	}
 
 	this.changeState = function(state){
