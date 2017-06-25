@@ -1,4 +1,10 @@
 var screens = [];
+
+//figure out a number of turns until the reckoning. make it more than you'd reasonably need to solve it
+//so only if they get distracted does it turn deadly.
+//each image you unlock has jr make a comment on the image, and gives you a hint about how to
+//get to the denizen to have the puzzle just solved for you. (for a price)
+
 window.onload = function() {
 	makeScreens(256);
 	loadImages(38);
@@ -33,7 +39,13 @@ function Screen(canvas){
 
 //raw pixels needed to render this distaction in it's entirety
 //if you pass it a screen ID it will return what pixels that screen can render
-function Distaction(id, image_data){
+function Distaction(id, imageDiv){
 	this.id = id;
-	this.image_data = image_data
+	this.image_data = null;
+
+	this.processImageDiv = function(imageDiv){
+		//draw to secret canvas, then var pixels =ctx.getImageData(0, 0, canvas.width, canvas.height);
+	}
+
+	this.image_data = this.processImageDiv(imageDiv);
 }
