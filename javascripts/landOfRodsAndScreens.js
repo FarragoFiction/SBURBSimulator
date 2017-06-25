@@ -1,7 +1,9 @@
 var screens = [];
-var maxState = 51;
+var maxState = 53;
 var imagesWaiting = 0;
 var imagesLoaded = 0;
+var targetImage = 0; //what could control this???
+
 var distactions = new Array(maxState); //all images, screen responsible for displaying it's chunk
 //figure out a number of turns until the reckoning. make it more than you'd reasonably need to solve it
 //so only if they get distracted does it turn deadly.
@@ -163,6 +165,7 @@ function Screen(canvas,maxState, uX, uY, screenNum, i, k){
 		y += 1;
 		ctx.fillStyle = "#ffffff";
 		console.log(this.k)
+		//ctx.fillText(this.state + "<"+this.i+",x,y);
 		ctx.fillText(this.state + "<"+this.i+"," +this.k+">",x,y);
 	}
 
