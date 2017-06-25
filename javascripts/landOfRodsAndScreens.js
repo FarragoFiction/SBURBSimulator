@@ -15,8 +15,9 @@ function makeScreens(number){
 
 function loadImages(lastImage){
 	var html = "";
-	for(var i = 0; i<= numImages; i++){
-		html += "<img style = 'display:none;' src = '" + i + ".png'>"
+	for(var i = 0; i<= lastImage; i++){
+		console.log(i);
+		html += "<img style = 'display:none;' src = 'images/LORAS/" + i + ".png'>"
 	}
 	$("#loading_image_staging").append(html);
 }
