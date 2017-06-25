@@ -1,5 +1,6 @@
 var screens = [];
 var maxState = 38;
+var distactions = []; //all images, screen responsible for displaying it's chunk
 //figure out a number of turns until the reckoning. make it more than you'd reasonably need to solve it
 //so only if they get distracted does it turn deadly.
 //each image you unlock has jr make a comment on the image, and gives you a hint about how to
@@ -14,7 +15,14 @@ window.onload = function() {
 
 	//throw makeDistactions into a timeout so it's asynch, but don't let things 'start' till it's done.
 	makeDistactions(maxState);
+	getAllImages(maxState)
 	renderLoop();
+}
+
+function getAllImages(maxState){
+	for(var i = 0; i< 2; i++){
+		distactions.push(document.getElementById("distaction"+i))
+	}
 }
 
 function renderLoop(){
@@ -49,8 +57,9 @@ function makeDistactions(lastImage){
 		//makeDistactionChunks(i,"distaction"+i, screens)
 		//while the two methods below do NOT work and make me want to eat a bear. what the hell man.
 		//claims to be rendering, but it's blank. i can SEE that the imageData has shit in it.
-		imgData = makeWholeDistaction(i,"distaction"+i);
-		processImgDataForScreens(imgData.data,screens);
+		//imgData = makeWholeDistaction(i,"distaction"+i);
+		//distactions.push(makeWholeDistaction(i,"distaction"+i))
+		//processImgDataForScreens(imgData.data,screens);
 
 	}
 }
@@ -123,19 +132,31 @@ function Screen(canvas,maxState, uX, uY, screenNum){
 		//a chunk is chunk-height slices of the array, with each slice being chunk-width long.
 		//the START of each slice is the complicated bit.
 		//think about it.
-		var ret = new Uint8ClampedArray(this.width * this.height);
+		var ret = new Uint8ClampedArray(this.width * this.height*4);
 		//one loop for each slice i'll need.
-		for(var i = 0; i<this.height; i++){
-			var start = this.getChunkFirstPixel(imgWidth, imgHeight) * (imgWidth *i);
-			var slice = (imgData.slice(start, start + this.width));
+		for(var i = 0; i<this.height*4; i++){
+			var start = this.getChunkFirstPixel(imgWidth*4, imgHeight*4) * (imgWidth *i) * 4;
+			var slice = (imgData.slice(start, start + this.width*4));
 			for(var j = 0; j<slice.length; j++){
 				ret[j*i] =slice[j]
 			}
 		}
 
 		imgData = ctx.createImageData(this.width,this.height);
-		for(var i = 0; i<this.width*this.height; i++){
-			imgData[i] = ret[i];
+		for(var i = 0; i<this.width*this.height*4; i+=4){
+			if(i < ret.length){
+				imgData.data[i] = ret[i];
+				imgData.data[i+1] = ret[i+1];
+				imgData.data[i+2] = ret[i+2];
+				imgData.data[i+3] = ret[i+3];
+			}else{
+				console.log('blank ' + "i: " + i + "ret:" + ret.length)
+				imgData.data[i]= 0;
+				imgData.data[i+1]= 0;
+				imgData.data[i+2]= 0;
+				imgData.data[i+3]= 0;
+			}
+
 		}
 		//might have to convert ret to Uint8ClampedArray first.
 		console.log("returning" + imgData)
@@ -160,9 +181,14 @@ function Screen(canvas,maxState, uX, uY, screenNum){
 	this.display = function(){
 			console.log("diaply");
 		  var ctx = canvas.getContext('2d');
-			var data = this.distactions[this.state]
+			/*var data = this.distactions[this.state]
 			console.log(canvas)
 			console.log(data)
 		  ctx.putImageData(data, 0, 0);
+			*/
+			//ctx.putImageData(distactions[this.state],this.upperLeftX, this.upperLeftY, this.width, this.height)
+			var image = distactions[this.state];
+
+			ctx.drawImage(image, this.upperLeftX, this.upperLeftY, this.width, this.height, 0, 0, this.width, this.height);
 	}
 }
