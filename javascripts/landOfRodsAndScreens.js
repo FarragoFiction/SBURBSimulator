@@ -1,5 +1,5 @@
 var screens = [];
-var maxState = 53;
+var maxState = 51;
 var imagesWaiting = 0;
 var imagesLoaded = 0;
 var distactions = new Array(maxState); //all images, screen responsible for displaying it's chunk
@@ -84,8 +84,7 @@ function makeScreens(number){
 				iMatrix = i%3;
 				kMatrix = Math.floor(i/3)%3;
 			}
-
-			screens[i]=(new Screen(document.getElementById("screen"+i),maxState, uX, uY, iMatrix, kMatrix));
+			screens[i]=new Screen(document.getElementById("screen"+i),maxState, uX, uY, i, iMatrix, kMatrix);
 		}
 		for(var i = 0; i< number; i++){
 			var canvas = $("#screen"+i);
