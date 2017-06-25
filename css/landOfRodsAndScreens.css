@@ -1,13 +1,24 @@
 .screen{
 	display: inline-block;
-	background-color: pink;
+	background-color: black;
 	padding: 0px;
 	margin: 0px;
 	vertical-align: bottom
+}
+
+#container{
+	width: 1000px;
+}
+
+#buttons{
+	display: inline-block;
+	width: 200px;
+	vertical-align: top;
 }
 
 
 #landScreens{
 	width: 725px;
 	height: 725px;
+	display: inline-block;
 }

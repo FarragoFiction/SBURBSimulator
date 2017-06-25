@@ -16,10 +16,17 @@ window.onload = function() {
 	//throw makeDistactions into a timeout so it's asynch, but don't let things 'start' till it's done.
 	getAllImages(maxState)
 	renderLoop();
+	randomizeScreens();
+}
+
+function justFuckingRandomize(){
+	for(var i = 0; i<screens.length; i++){
+		screens[i].changeState(getRandomInt(0,maxState-1));
+	}
 }
 
 function getAllImages(maxState){
-	for(var i = 0; i< 2; i++){
+	for(var i = 0; i< maxState; i++){
 		distactions.push(document.getElementById("distaction"+i))
 	}
 }
@@ -62,7 +69,7 @@ function getTemporaryCanvas(){
 function Screen(canvas,maxState, uX, uY, screenNum){
 	this.canvas = canvas;
 	this.maxState = maxState;
-	this.state = 0;
+	this.state = 1;
 	this.screenNum = screenNum;
 	this.upperLeftX = uX;
 	this.upperLeftY = uY;
@@ -71,6 +78,7 @@ function Screen(canvas,maxState, uX, uY, screenNum){
 
 
 	this.changeState = function(state){
+		console.log(state);
 		if(state < 0){
 			state = 0;
 		} else if(state > this.maxState){
