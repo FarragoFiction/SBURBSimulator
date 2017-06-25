@@ -39,6 +39,8 @@ function Screen(canvas){
 
 //raw pixels needed to render this distaction in it's entirety
 //if you pass it a screen ID it will return what pixels that screen can render
+//it is is a distaction, you see, because the 'goal' is to get to state 0
+//and all of these will want you to NOT do that.
 function Distaction(id, imageDiv){
 	this.id = id;
 	this.image_data = null;
