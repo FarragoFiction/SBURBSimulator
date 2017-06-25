@@ -6,6 +6,14 @@
 	vertical-align: bottom
 }
 
+#loading_stats{
+	color: white;
+}
+
+#debug{
+	color:white;
+}
+
 body{
 	background-color: black;
 }
