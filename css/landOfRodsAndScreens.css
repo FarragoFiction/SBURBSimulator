@@ -1,0 +1,10 @@
+.screen{
+	display: inline-block;
+	background-color: red;
+	border: 1px solid black;
+}
+
+#landScreens{
+	width: 1050px;
+	height: 1050px;
+}
