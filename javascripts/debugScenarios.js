@@ -26,7 +26,7 @@ function sbahjMode(){
 	//maybe my laughing reaction shot sbahj_author.jpg goes then, too
 	$("#story").append("<img src = 'images/AUTHORSBAHJ.jpg' style='position:absolute; top:111px'><img src = 'images/sbahj_author.jpg' style='position:absolute; left:0px; z-index: 999;'>");
 	setTimeout(function(){
-		$("#story").append("<img src = 'images/sbahj_kR_1.jpeg' style='position:fixed; top:0px;; z-index: 999;'>");
+		$("#story").append("<img src = 'images/kR_falls_DOWN_stairs_forever.gif' style='position:fixed; top:0px;; z-index: 999;'>");
 	}, 10000);
 	$('body').css("background-color", "#0000ff");
 	$('body').css("background-image", "none");

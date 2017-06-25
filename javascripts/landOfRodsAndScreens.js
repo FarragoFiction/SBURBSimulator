@@ -45,7 +45,17 @@ function loadImages(lastImage){
 
 function makeDistactions(lastImage){
 	for(var i = 0; i<= 1; i++){
-		makeDistactionChunks(i,"distaction"+i, screens)
+		//makeDistactionChunks(i,"distaction"+i, screens)
+		imgData = makeWholeDistaction(i,"distaction"+i);
+		processImgDataForScreens(imgData,screens);
+
+	}
+}
+
+//for each screen, chops up the image Data into chunks.
+function processImgDataForScreens(imgData, screens){
+	for(var i = 0; i<screens.length; i++){
+		screens[i].getChunk(imgData)
 	}
 }
 
@@ -59,6 +69,12 @@ function Screen(canvas,maxState, uX, uY){
 	this.upperLeftY = uY;
 	this.size = 45; //<-- don't fucking change this.
 	this.distactions = []; //just an array of image data.
+
+	//imgData is an array, need to review the math to get a chunk of that array.
+	//want upperLeftx, upperLeftY for this.size pixels.
+	this.getChunk(imgData){
+
+	}
 
 	this.changeState = function(state){
 		if(state < 0){
@@ -85,6 +101,17 @@ function makeDistactionChunks(id, imageDiv, screens){
 	}
 }
 
+//is this faster than doing getImageData 256 times for each image?
+function makeWholeDistaction(id, imageDiv){
+	var canvas = getTemporaryCanvas();
+	var ctx = canvas.getContext('2d');
+	var img=document.getElementById(imageDiv);
+	var width = img.width;
+	var height = img.height;
+	ctx.drawImage(img,0,0,width,height);
+	return (ctx.getImageData(0, 0, width, height);
+}
+
 function makeDistactionChunk(id, imageDiv, screen){
 		//console.log("Making a chunk")
 		//draw to secret canvas, then var pixels =ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -95,6 +122,7 @@ function makeDistactionChunk(id, imageDiv, screen){
 		var height = img.height;
 		ctx.drawImage(img,0,0,width,height);
 		//might be faster to call getImageData once and then write code to chunk it up, rather than calling it 256 times for each image.
+		//bluh, my brain hates treating arrays like matrices.
 		screen.distactions.push(ctx.getImageData(screen.upperLeftX, screen.upperLeftY, screen.size, screen.size));
 
 }
