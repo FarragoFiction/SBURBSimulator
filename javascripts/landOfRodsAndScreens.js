@@ -15,6 +15,46 @@ window.onload = function() {
 	loadAllImages();
 }
 
+
+/*
+		Thanks goes to DilletantMathematician for designing the math behind this.
+		There were a lot of ways I could have done this, but this one is mathematically guaranteed
+		to be able to reach every easter egg.  :) :) :)
+*/
+
+//i = 0
+function button1(){
+	/*
+			let's assume this is
+	*/
+}
+
+//i = 0
+function button2(){
+
+}
+
+
+// i = 1
+function button3(){
+
+}
+
+//i = 1
+function button4(){
+
+}
+
+//i = 2
+function button5(){
+
+}
+
+//i = 2
+function button6(){
+
+}
+
 function loadAllImages(){
 	for(var i = 0; i< maxState+1; i++){
 		loadImage('images/LORAS/'+i+".png",i);
