@@ -28,45 +28,63 @@ function initializeX(){
 		Thanks goes to DilletantMathematician for designing the math behind this.
 		There were a lot of ways I could have done this, but this one is mathematically guaranteed
 		to be able to reach every easter egg.  :) :) :)
+
+		and also, probably just as hard to figure out as the damn puzzle
 */
 
 //k = 0
 function button1(){
-	ia(0);
+	compute(0,ia);
 }
 
 //k = 0
 function button2(){
-	fhtagn(0);
+	compute(0,fhtagn);
 }
 
 
 // k = 1
 function button3(){
-	ia(1);
+	compute(1,ia);
 }
 
 //k = 1
 function button4(){
-	fhtagn(1);
+	compute(1,fhtagn);
 }
 
 //k = 2
 function button5(){
-	ia(2);
+	compute(2,ia);
 }
 
 //k = 2
 function button6(){
-	fhtagn(2);
+	compute(2,fhtagn);
 }
 
 function ia(k){
-	
+/*
+N'[k] = n[k]/2
+
+and punish if n[k] was not even.
+*/
 }
 
 function fhtagn(k){
+		/*
+then N'[k] = n[k]*3 +1
+*/
+}
 
+function compute(k, formula){
+	var q = maxState;
+		/*
+		y[k][i] = (x[k][i] - tgt +q) % q
+
+	N[k] = 1 + sum(  y[k][i]*(q**i) for i in range(3))
+	*/
+	formula();
 }
 
 function loadAllImages(){
