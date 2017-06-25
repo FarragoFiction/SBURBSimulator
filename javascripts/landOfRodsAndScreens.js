@@ -51,6 +51,12 @@ function Distaction(id, imageDiv){
 	this.id = id; //which image am i
 	this.image_data = null;
 
+	//TODO or would it be better for the screen to keep the imageData for all possible distactions inside of itself?
+	//that way only have to process chunks once.
+	this.getDistactionChunk = function(chunkID){
+		//each chunk is 45 by 45.  chunk zero is upper left, chunk 1 is 45 to the right of chunk 0, and so on.
+	}
+
 	this.processImageDiv = function(imageDivID){
 		//draw to secret canvas, then var pixels =ctx.getImageData(0, 0, canvas.width, canvas.height);
 		var canvas = this.getTemporaryCanvas();
