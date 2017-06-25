@@ -910,6 +910,7 @@ function copyPlayersFromTemplate(template){
 
 //call this ONLY after initializing normal players.
 function nepetaQuest(){
+	$('body').css("background-image", "url(images/cat_background_tile_nep.png)");
 	//will it be 12 nepetas roleplaying as their original players?
 	//or 12 canon trolls all roleplaying as nepeta?
 	//it's shrodinger's nepeta!!!
