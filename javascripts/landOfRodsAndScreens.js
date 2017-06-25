@@ -1,5 +1,5 @@
 var screens = [];
-
+var distactions = [];
 //figure out a number of turns until the reckoning. make it more than you'd reasonably need to solve it
 //so only if they get distracted does it turn deadly.
 //each image you unlock has jr make a comment on the image, and gives you a hint about how to
@@ -8,6 +8,8 @@ var screens = [];
 window.onload = function() {
 	makeScreens(256);
 	loadImages(38);
+	//eventually call makeDistactions AFTER the user clicks "start". because i want to wait for the images to load without bothering with loading code.
+	makeDistactions(38);
 }
 
 //css will handle putting them into a grid, don't worry about it.
@@ -22,15 +24,19 @@ function makeScreens(number){
 function loadImages(lastImage){
 	var html = "";
 	for(var i = 0; i<= lastImage; i++){
-		console.log(i);
-		html += "<img style = 'display:none;' src = 'images/LORAS/" + i + ".png'>"
+		html += "<img id = 'distaction"+i+"'style = 'display:none;' src = 'images/LORAS/" + i + ".png'>"
 	}
 	$("#loading_image_staging").append(html);
+
 }
 
-function makeDistactions(image){
-	//get the pixels and store them as data.
+function makeDistactions(lastImage){
+	for(var i = 0; i<= lastImage; i++){
+		distactions.push(new Distaction(i,"distaction"+i))
+	}
 }
+
+
 
 function Screen(canvas){
 	this.canvas = canvas;
@@ -42,15 +48,14 @@ function Screen(canvas){
 //it is is a distaction, you see, because the 'goal' is to get to state 0
 //and all of these will want you to NOT do that.
 function Distaction(id, imageDiv){
-	this.id = id;
+	this.id = id; //which image am i
 	this.image_data = null;
 
-	this.processImageDiv = function(imageDiv){
+	this.processImageDiv = function(imageDivID){
 		//draw to secret canvas, then var pixels =ctx.getImageData(0, 0, canvas.width, canvas.height);
 		var canvas = this.getTemporaryCanvas();
 		var ctx = canvas.getContext('2d');
-		addImageTag(imageString)
-		var img=document.getElementById(imageString);
+		var img=document.getElementById(imageDivID);
 		var width = img.width;
 		var height = img.height;
 		ctx.drawImage(img,0,0,width,height);
