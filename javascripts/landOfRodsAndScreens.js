@@ -45,6 +45,21 @@ function Distaction(id, imageDiv){
 
 	this.processImageDiv = function(imageDiv){
 		//draw to secret canvas, then var pixels =ctx.getImageData(0, 0, canvas.width, canvas.height);
+		var canvas = this.getTemporaryCanvas();
+		var ctx = canvas.getContext('2d');
+		addImageTag(imageString)
+		var img=document.getElementById(imageString);
+		var width = img.width;
+		var height = img.height;
+		ctx.drawImage(img,0,0,width,height);
+		return ctx.getImageData(0, 0, canvas.width, canvas.height);
+	}
+
+	this.getTemporaryCanvas = function(){
+		var tmp_canvas = document.createElement('canvas');
+		tmp_canvas.height = 720;
+		tmp_canvas.width = 720;
+		return tmp_canvas;
 	}
 
 	this.image_data = this.processImageDiv(imageDiv);
