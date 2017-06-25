@@ -15,7 +15,7 @@ window.onload = function() {
 
 	//throw makeDistactions into a timeout so it's asynch, but don't let things 'start' till it's done.
 	getAllImages(maxState)
-	renderLoop();
+	//renderLoop();
 	randomizeScreens();
 }
 
