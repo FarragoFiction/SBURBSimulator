@@ -1,8 +1,11 @@
 .screen{
 	display: inline-block;
-	background-color: red;
-	border: 1px solid black;
+	background-color: black;
+	padding: 0px;
+	margin: 0px;
+	vertical-align: bottom
 }
+
 
 #landScreens{
 	width: 1050px;
