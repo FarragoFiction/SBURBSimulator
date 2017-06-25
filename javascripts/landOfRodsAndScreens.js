@@ -77,10 +77,19 @@ then N'[k] = n[k]*3 +1
 */
 }
 
+function calculateN(){
+	//N[k] = 1 + sum(  y[k][i]*(q**i) for i in range(3))
+}
+
 function compute(k, formula){
 	var q = maxState;
+	var yk = new Array(3);
+	for(var i = 0; i<yk.length; i++){
+		yk[i] = (x[k][i] - targetImage + q) % q
+	}
+
+	var n = calculateN(k, yk);
 		/*
-		y[k][i] = (x[k][i] - tgt +q) % q
 
 	N[k] = 1 + sum(  y[k][i]*(q**i) for i in range(3))
 	*/
