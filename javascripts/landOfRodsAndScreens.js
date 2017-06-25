@@ -45,7 +45,10 @@ function loadImages(lastImage){
 
 function makeDistactions(lastImage){
 	for(var i = 0; i<= 1; i++){
+		//the below WORKS but is slow as balls
 		//makeDistactionChunks(i,"distaction"+i, screens)
+		//while the two methods below do NOT work and make me want to eat a bear. what the hell man.
+		//claims to be rendering, but it's blank. i can SEE that the imageData has shit in it.
 		imgData = makeWholeDistaction(i,"distaction"+i);
 		processImgDataForScreens(imgData.data,screens);
 
@@ -55,7 +58,7 @@ function makeDistactions(lastImage){
 //for each screen, chops up the image Data into chunks.
 function processImgDataForScreens(imgData, screens){
 	for(var i = 0; i<screens.length; i++){
-		screens[i].getChunk(imgData,720,720)
+		screens[i].distactions.push(screens[i].getChunk(imgData,720,720))
 	}
 }
 
@@ -90,8 +93,7 @@ function makeDistactionChunk(id, imageDiv, screen){
 		ctx.drawImage(img,0,0,width,height);
 		//might be faster to call getImageData once and then write code to chunk it up, rather than calling it 256 times for each image.
 		//bluh, my brain hates treating arrays like matrices.
-		screen.distactions.push(ctx.getImageData(screen.upperLeftX, screen.upperLeftY, screen.size, screen.size));
-
+		screen.distactions.push(ctx.getImageData(screen.upperLeftX, screen.upperLeftY, screen.width, screen.height));
 }
 
 
@@ -117,6 +119,7 @@ function Screen(canvas,maxState, uX, uY, screenNum){
 	//imgData is an array, need to review the math to get a chunk of that array.
 	//want upperLeftx, upperLeftY for this.size pixels.
 	this.getChunk = function(imgData, imgWidth, imgHeight){
+		 var ctx = canvas.getContext('2d');
 		//a chunk is chunk-height slices of the array, with each slice being chunk-width long.
 		//the START of each slice is the complicated bit.
 		//think about it.
@@ -129,8 +132,14 @@ function Screen(canvas,maxState, uX, uY, screenNum){
 				ret[j*i] =slice[j]
 			}
 		}
+
+		imgData = ctx.createImageData(this.width,this.height);
+		for(var i = 0; i<this.width*this.height; i++){
+			imgData[i] = ret[i];
+		}
 		//might have to convert ret to Uint8ClampedArray first.
-		return new ImageData(ret, this.height, this.width);
+		console.log("returning" + imgData)
+		return imgData;
 	}
 
 	this.getChunkFirstPixel = function(imgWidth, imgHeight){
@@ -145,12 +154,15 @@ function Screen(canvas,maxState, uX, uY, screenNum){
 		}else{
 			this.state = state;
 		}
-		display();
+		this.display();
 	}
 
 	this.display = function(){
 			console.log("diaply");
 		  var ctx = canvas.getContext('2d');
-		  ctx.putImageData(this.distactions[this.state], 0, 0);
+			var data = this.distactions[this.state]
+			console.log(canvas)
+			console.log(data)
+		  ctx.putImageData(data, 0, 0);
 	}
 }
