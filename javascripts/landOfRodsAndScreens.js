@@ -24,7 +24,9 @@ function makeScreens(number){
 		for(var i = 0; i< number; i++){
 			var html = "<canvas class = 'screen' id = 'screen" + i + "' width = '45' height = '45'></canvas>";
 			$("#landScreens").append(html);
-			screens.push(new Screen(document.getElementById("screen"+i),maxState));
+			var uX = i%16 * 45;
+			var uY = Math.floor(i/16 * 45);
+			screens.push(new Screen(document.getElementById("screen"+i),maxState, uX, uY));
 		}
 }
 
@@ -45,12 +47,12 @@ function makeDistactions(lastImage){
 
 
 
-function Screen(canvas,maxState){
+function Screen(canvas,maxState, uX, uY){
 	this.canvas = canvas;
 	this.maxState = maxState;
 	this.state = 0;
-	this.upperLeftX = 0;
-	this.upperLeftY = 0;
+	this.upperLeftX = uX;
+	this.upperLeftY = uY;
 	this.size = 45; //<-- don't fucking change this.
 	this.distactions = []; //just an array of image data.
 
@@ -80,7 +82,7 @@ function makeDistactionChunks(id, imageDiv, screens){
 }
 
 function makeDistactionChunk(id, imageDiv, screen){
-		console.log("Making a chunk")
+		//console.log("Making a chunk")
 		//draw to secret canvas, then var pixels =ctx.getImageData(0, 0, canvas.width, canvas.height);
 		var canvas = getTemporaryCanvas();
 		var ctx = canvas.getContext('2d');
