@@ -55,45 +55,11 @@ function makeDistactions(lastImage){
 //for each screen, chops up the image Data into chunks.
 function processImgDataForScreens(imgData, screens){
 	for(var i = 0; i<screens.length; i++){
-		screens[i].getChunk(imgData)
+		screens[i].getChunk(imgData,720,720)
 	}
 }
 
 
-
-function Screen(canvas,maxState, uX, uY){
-	this.canvas = canvas;
-	this.maxState = maxState;
-	this.state = 0;
-	this.upperLeftX = uX;
-	this.upperLeftY = uY;
-	this.size = 45; //<-- don't fucking change this.
-	this.distactions = []; //just an array of image data.
-
-	//imgData is an array, need to review the math to get a chunk of that array.
-	//want upperLeftx, upperLeftY for this.size pixels.
-	this.getChunk(imgData){
-		//a chunk is chunk-height slices of the array, with each slice being chunk-width long.
-		//the START of each slice is the complicated bit.
-	}
-
-	this.changeState = function(state){
-		if(state < 0){
-			state = 0;
-		} else if(state > this.maxState){
-			state = maxState;
-		}else{
-			this.state = state;
-		}
-		display();
-	}
-
-	this.display = function(){
-			console.log("diaply");
-		  var ctx = canvas.getContext('2d');
-		  ctx.putImageData(this.distactions[this.state], 0, 0);
-	}
-}
 
 
 function makeDistactionChunks(id, imageDiv, screens){
@@ -134,4 +100,49 @@ function getTemporaryCanvas(){
 	tmp_canvas.height = 720;
 	tmp_canvas.width = 720;
 	return tmp_canvas;
+}
+
+
+function Screen(canvas,maxState, uX, uY, screenNum){
+	this.canvas = canvas;
+	this.maxState = maxState;
+	this.state = 0;
+	this.screenNum = screenNum;
+	this.upperLeftX = uX;
+	this.upperLeftY = uY;
+	this.height = 45; //<-- don't fucking change this.
+	this.width = 45;
+	this.distactions = []; f//just an array of image data.
+
+	//imgData is an array, need to review the math to get a chunk of that array.
+	//want upperLeftx, upperLeftY for this.size pixels.
+	this.getChunk(imgData, imgWidth, imgHeight){
+		//a chunk is chunk-height slices of the array, with each slice being chunk-width long.
+		//the START of each slice is the complicated bit.
+		//think about it.
+		var ret = new Uint8ClampedArray();
+		//one loop for each slice i'll need.
+		for(var i = 0; i<this.height; i++){
+			var start = someNumber * (imgWidth *i);
+			ret = ret.concat(imgData.slice(start, start + this.width));
+		}
+		return new ImageData(ret);
+	}
+
+	this.changeState = function(state){
+		if(state < 0){
+			state = 0;
+		} else if(state > this.maxState){
+			state = maxState;
+		}else{
+			this.state = state;
+		}
+		display();
+	}
+
+	this.display = function(){
+			console.log("diaply");
+		  var ctx = canvas.getContext('2d');
+		  ctx.putImageData(this.distactions[this.state], 0, 0);
+	}
 }
