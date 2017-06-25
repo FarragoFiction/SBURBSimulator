@@ -3,6 +3,7 @@ var maxState = 53;
 var imagesWaiting = 0;
 var imagesLoaded = 0;
 var targetImage = 0; //what could control this???
+var x = [];
 
 var distactions = new Array(maxState); //all images, screen responsible for displaying it's chunk
 //figure out a number of turns until the reckoning. make it more than you'd reasonably need to solve it
@@ -11,8 +12,15 @@ var distactions = new Array(maxState); //all images, screen responsible for disp
 //get to the denizen to have the puzzle just solved for you. (for a price)
 
 window.onload = function() {
+	initializeX();
 	makeScreens(256);
 	loadAllImages();
+}
+
+function initializeX(){
+	for(var i = 0; i< 3; i++){
+		x.push([getRandomInt(0, maxState),getRandomInt(0, maxState),getRandomInt(0, maxState) ]);
+	}
 }
 
 
@@ -22,36 +30,42 @@ window.onload = function() {
 		to be able to reach every easter egg.  :) :) :)
 */
 
-//i = 0
+//k = 0
 function button1(){
-	/*
-			let's assume this is
-	*/
+	ia(0);
 }
 
-//i = 0
+//k = 0
 function button2(){
-
+	fhtagn(0);
 }
 
 
-// i = 1
+// k = 1
 function button3(){
-
+	ia(1);
 }
 
-//i = 1
+//k = 1
 function button4(){
-
+	fhtagn(1);
 }
 
-//i = 2
+//k = 2
 function button5(){
-
+	ia(2);
 }
 
-//i = 2
+//k = 2
 function button6(){
+	fhtagn(2);
+}
+
+function ia(k){
+	
+}
+
+function fhtagn(k){
 
 }
 
