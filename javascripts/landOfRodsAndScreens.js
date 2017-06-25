@@ -47,7 +47,7 @@ function makeDistactions(lastImage){
 	for(var i = 0; i<= 1; i++){
 		//makeDistactionChunks(i,"distaction"+i, screens)
 		imgData = makeWholeDistaction(i,"distaction"+i);
-		processImgDataForScreens(imgData,screens);
+		processImgDataForScreens(imgData.data,screens);
 
 	}
 }
@@ -76,7 +76,7 @@ function makeWholeDistaction(id, imageDiv){
 	var width = img.width;
 	var height = img.height;
 	ctx.drawImage(img,0,0,width,height);
-	return (ctx.getImageData(0, 0, width, height);
+	return ctx.getImageData(0, 0, width, height);
 }
 
 function makeDistactionChunk(id, imageDiv, screen){
@@ -112,21 +112,27 @@ function Screen(canvas,maxState, uX, uY, screenNum){
 	this.upperLeftY = uY;
 	this.height = 45; //<-- don't fucking change this.
 	this.width = 45;
-	this.distactions = []; f//just an array of image data.
+	this.distactions = []; //just an array of image data.
 
 	//imgData is an array, need to review the math to get a chunk of that array.
 	//want upperLeftx, upperLeftY for this.size pixels.
-	this.getChunk(imgData, imgWidth, imgHeight){
+	this.getChunk = function(imgData, imgWidth, imgHeight){
 		//a chunk is chunk-height slices of the array, with each slice being chunk-width long.
 		//the START of each slice is the complicated bit.
 		//think about it.
-		var ret = new Uint8ClampedArray();
+		//var ret = new Uint8ClampedArray();
+		var ret = [];
 		//one loop for each slice i'll need.
 		for(var i = 0; i<this.height; i++){
-			var start = someNumber * (imgWidth *i);
+			var start = this.getChunkFirstPixel(imgWidth, imgHeight) * (imgWidth *i);
 			ret = ret.concat(imgData.slice(start, start + this.width));
 		}
-		return new ImageData(ret);
+		//might have to convert ret to Uint8ClampedArray first.
+		return new ImageData(Uint8ClampedArray.from(ret));
+	}
+
+	this.getChunkFirstPixel = function(imgWidth, imgHeight){
+		return 0;  //TODO figure out the math.
 	}
 
 	this.changeState = function(state){
