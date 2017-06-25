@@ -1,5 +1,5 @@
 var screens = [];
-var maxState = 51;
+var maxState = 53;
 var imagesWaiting = 0;
 var imagesLoaded = 0;
 var distactions = new Array(maxState); //all images, screen responsible for displaying it's chunk
