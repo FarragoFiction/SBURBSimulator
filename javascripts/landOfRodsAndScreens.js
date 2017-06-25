@@ -134,13 +134,30 @@ function Screen(canvas,maxState, uX, uY, screenNum){
 		}
 		this.display();
 	}
+	this.clearSelf = function(){
+		var ctx = canvas.getContext('2d');
+		ctx.clearRect(0, 0, this.width, this.height)
+	}
 
+	this.drawState = function(){
+		var ctx = canvas.getContext('2d');
+		var x = this.width/2;
+		var y = this.height/2;
+		ctx.fillStyle = "#000000";
+		ctx.fillText(this.state,x,y);
+		x += 2;
+		y += 2;
+		ctx.fillStyle = "#ffffff";
+		ctx.fillText(this.state,x,y);
+	}
 
 	this.display = function(){
 		console.log("display: " + this.state);
+		this.clearSelf();
 	  var ctx = canvas.getContext('2d');
 		var image = distactions[this.state];
 		console.log(image);
 		ctx.drawImage(image, this.upperLeftX, this.upperLeftY, this.width, this.height, 0, 0, this.width, this.height);
+		this.drawState();
 	}
 }
