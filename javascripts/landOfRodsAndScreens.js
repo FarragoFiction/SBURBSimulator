@@ -74,7 +74,18 @@ function makeScreens(number){
 			$("#landScreens").append(html);
 			var uX = i%16 * 45;
 			var uY = Math.floor(i/16) * 45;
-			screens[i]=(new Screen(document.getElementById("screen"+i),maxState, uX, uY));
+			var iMatrix = 0;
+			var kMatrix = 0;
+			if(i == 1){
+				iMatrix = 1;
+			} else if (i == 2){
+				iMatrix = 2
+			}else{
+				iMatrix = i%3;
+				kMatrix = Math.floor(i/3)%3;
+			}
+
+			screens[i]=(new Screen(document.getElementById("screen"+i),maxState, uX, uY, iMatrix, kMatrix));
 		}
 		for(var i = 0; i< number; i++){
 			var canvas = $("#screen"+i);
@@ -108,7 +119,7 @@ function getTemporaryCanvas(){
 }
 
 
-function Screen(canvas,maxState, uX, uY, screenNum){
+function Screen(canvas,maxState, uX, uY, screenNum, i, k){
 	this.canvas = canvas;
 	this.maxState = maxState;
 	this.state = maxState;
@@ -117,6 +128,9 @@ function Screen(canvas,maxState, uX, uY, screenNum){
 	this.upperLeftY = uY;
 	this.height = 45; //<-- don't fucking change this.
 	this.width = 45;
+	//trying to figure @dillenteMathematicians' math.  math. man.
+	this.i = i;
+	this.k = k;
 
 	this.randomizeState = function(){
 		this.state = getRandomInt(0,maxState-1)
@@ -141,14 +155,16 @@ function Screen(canvas,maxState, uX, uY, screenNum){
 
 	this.drawState = function(){
 		var ctx = canvas.getContext('2d');
-		var x = this.width/2;
+		//var x = this.width/2;
+		var x = 0;
 		var y = this.height/2;
 		ctx.fillStyle = "#000000";
 		ctx.fillText(this.state,x,y);
 		x += 1;
 		y += 1;
 		ctx.fillStyle = "#ffffff";
-		ctx.fillText(this.state,x,y);
+		console.log(this.k)
+		ctx.fillText(this.state + "<"+this.i+"," +this.k+">",x,y);
 	}
 
 	this.display = function(){
