@@ -59,3 +59,4 @@ b=%00%00%00%11%C3%B2%C2%99%10%5C%26%26%3C&s=,,History,Time Travel,timeTravelist
 b=%C3%BF%C3%BF%C3%BFF%C3%BEb%00%1C))%3D&s=,,Inevitability,Hospitality,Doc Scratch
 b=%00%00%00%20%C3%B8%23%10PGGD&s=,,Drawing,Character Creation,InsufferableOracle
 b=%C2%9C%C2%9C6u%C3%BE%C3%81%00S%06%06%16&s=,,Love,Bass Playing,jegusPersona
+b=%00%00%005%C3%BEb%00E%23%23%26&s=,,Equality,Drawing,KnightedSoul 
