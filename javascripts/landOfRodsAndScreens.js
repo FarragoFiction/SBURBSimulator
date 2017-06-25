@@ -120,15 +120,17 @@ function Screen(canvas,maxState, uX, uY, screenNum){
 		//a chunk is chunk-height slices of the array, with each slice being chunk-width long.
 		//the START of each slice is the complicated bit.
 		//think about it.
-		//var ret = new Uint8ClampedArray();
-		var ret = [];
+		var ret = new Uint8ClampedArray(this.width * this.height);
 		//one loop for each slice i'll need.
 		for(var i = 0; i<this.height; i++){
 			var start = this.getChunkFirstPixel(imgWidth, imgHeight) * (imgWidth *i);
-			ret = ret.concat(imgData.slice(start, start + this.width));
+			var slice = (imgData.slice(start, start + this.width));
+			for(var j = 0; j<slice.length; j++){
+				ret[j*i] =slice[j]
+			}
 		}
 		//might have to convert ret to Uint8ClampedArray first.
-		return new ImageData(Uint8ClampedArray.from(ret));
+		return new ImageData(ret, this.height, this.width);
 	}
 
 	this.getChunkFirstPixel = function(imgWidth, imgHeight){
