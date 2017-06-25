@@ -6,6 +6,10 @@
 	vertical-align: bottom
 }
 
+body{
+	background-color: black;
+}
+
 #container{
 	width: 1000px;
 }

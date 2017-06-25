@@ -1,5 +1,5 @@
 var screens = [];
-var maxState = 35;
+var maxState = 37;
 var imagesWaiting = 0;
 var imagesLoaded = 0;
 var distactions = new Array(maxState); //all images, screen responsible for displaying it's chunk
@@ -14,7 +14,7 @@ window.onload = function() {
 }
 
 function loadAllImages(){
-	for(var i = 0; i< maxState; i++){
+	for(var i = 0; i< maxState+1; i++){
 		loadImage('images/LORAS/'+i+".png",i);
 	}
 }
@@ -111,7 +111,7 @@ function getTemporaryCanvas(){
 function Screen(canvas,maxState, uX, uY, screenNum){
 	this.canvas = canvas;
 	this.maxState = maxState;
-	this.state = 0;
+	this.state = maxState;
 	this.screenNum = screenNum;
 	this.upperLeftX = uX;
 	this.upperLeftY = uY;
