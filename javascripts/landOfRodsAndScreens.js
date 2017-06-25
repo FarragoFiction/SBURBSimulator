@@ -1,6 +1,8 @@
 var screens = [];
-var maxState = 38;
-var distactions = []; //all images, screen responsible for displaying it's chunk
+var maxState = 35;
+var imagesWaiting = 0;
+var imagesLoaded = 0;
+var distactions = new Array(maxState); //all images, screen responsible for displaying it's chunk
 //figure out a number of turns until the reckoning. make it more than you'd reasonably need to solve it
 //so only if they get distracted does it turn deadly.
 //each image you unlock has jr make a comment on the image, and gives you a hint about how to
@@ -8,26 +10,55 @@ var distactions = []; //all images, screen responsible for displaying it's chunk
 
 window.onload = function() {
 	makeScreens(256);
-
-	//only load images via code while developing. want them hardcoded in the initial
-	//loadImages(maxState);
-	//eventually call makeDistactions AFTER the user clicks "start". because i want to wait for the images to load without bothering with loading code.
-
-	//throw makeDistactions into a timeout so it's asynch, but don't let things 'start' till it's done.
-	getAllImages(maxState)
-	//renderLoop();
-	randomizeScreens();
+	loadAllImages();
 }
 
-function justFuckingRandomize(){
-	for(var i = 0; i<screens.length; i++){
-		screens[i].changeState(getRandomInt(0,maxState-1));
+function loadAllImages(){
+	for(var i = 0; i< maxState; i++){
+		loadImage('images/LORAS/'+i+".png",i);
 	}
 }
 
-function getAllImages(maxState){
-	for(var i = 0; i< maxState; i++){
-		distactions.push(document.getElementById("distaction"+i))
+function loadImage(img,i){
+	imagesWaiting ++;
+	var imageObj = new Image();
+  imageObj.onload = function() {
+			imagesLoaded ++;
+			checkDone();
+  };
+	distactions[i] =  imageObj;
+	console.log("i" + distactions[i])
+
+  imageObj.onerror = function(){
+    debug("Error loading image: " + this.src)
+		console.log("Error loading image: " + this.src);
+  }
+  imageObj.src = img;
+}
+
+function start(){
+	renderLoop();
+}
+
+function checkDone(skipInit){
+  $("#loading_stats").html("Images Loaded: " + imagesLoaded);
+	if(imagesLoaded != 0 && imagesWaiting == imagesLoaded){
+		start();
+	}
+}
+
+
+
+function justFuckingRandomize(){
+	for(var i = 0; i<screens.length; i++){
+		screens[i].randomizeState();
+	}
+}
+
+
+function changeStateForAllScreens(state){
+	for(var i = 0; i<screens.length; i++){
+		screens[i].state = state;
 	}
 }
 
@@ -44,7 +75,14 @@ function makeScreens(number){
 			$("#landScreens").append(html);
 			var uX = i%16 * 45;
 			var uY = Math.floor(i/16) * 45;
-			screens.push(new Screen(document.getElementById("screen"+i),maxState, uX, uY));
+			screens[i]=(new Screen(document.getElementById("screen"+i),maxState, uX, uY));
+		}
+		for(var i = 0; i< number; i++){
+			var canvas = $("#screen"+i);
+			var screen = screens[i];
+			canvas.click(function(){
+				screen.randomizeState();
+			})
 		}
 }
 
@@ -69,14 +107,18 @@ function getTemporaryCanvas(){
 function Screen(canvas,maxState, uX, uY, screenNum){
 	this.canvas = canvas;
 	this.maxState = maxState;
-	this.state = 1;
+	this.state = 0;
 	this.screenNum = screenNum;
 	this.upperLeftX = uX;
 	this.upperLeftY = uY;
 	this.height = 45; //<-- don't fucking change this.
 	this.width = 45;
 
-
+	this.randomizeState = function(){
+		//this.state = getRandomInt(0,maxState-1)
+		this.state = 0;
+		this.display();
+	}
 	this.changeState = function(state){
 		console.log(state);
 		if(state < 0){
@@ -89,10 +131,11 @@ function Screen(canvas,maxState, uX, uY, screenNum){
 		this.display();
 	}
 
-	this.display = function(){
-		  var ctx = canvas.getContext('2d');
-			var image = distactions[this.state];
 
-			ctx.drawImage(image, this.upperLeftX, this.upperLeftY, this.width, this.height, 0, 0, this.width, this.height);
+	this.display = function(){
+		console.log("display: " + this.state);
+	  var ctx = canvas.getContext('2d');
+		var image = distactions[this.state];
+		ctx.drawImage(image, this.upperLeftX, this.upperLeftY, this.width, this.height, 0, 0, this.width, this.height);
 	}
 }
