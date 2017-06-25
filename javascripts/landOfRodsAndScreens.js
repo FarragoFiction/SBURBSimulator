@@ -1,5 +1,5 @@
 var screens = [];
-var distactions = [];
+var maxState = 38;
 //figure out a number of turns until the reckoning. make it more than you'd reasonably need to solve it
 //so only if they get distracted does it turn deadly.
 //each image you unlock has jr make a comment on the image, and gives you a hint about how to
@@ -7,9 +7,16 @@ var distactions = [];
 
 window.onload = function() {
 	makeScreens(256);
-	loadImages(38);
+	loadImages(maxState);
 	//eventually call makeDistactions AFTER the user clicks "start". because i want to wait for the images to load without bothering with loading code.
-	makeDistactions(38);
+	makeDistactions(maxState);
+	renderLoop();
+}
+
+function renderLoop(){
+	for(var i = 0; i<screens.length; i++){
+		screens[i].display();
+	}
 }
 
 //css will handle putting them into a grid, don't worry about it.
@@ -17,7 +24,7 @@ function makeScreens(number){
 		for(var i = 0; i< number; i++){
 			var html = "<canvas class = 'screen' id = 'screen" + i + "' width = '45' height = '45'></canvas>";
 			$("#landScreens").append(html);
-			screens.push(new Screen(document.getElementById("screen"+i)));
+			screens.push(new Screen(document.getElementById("screen"+i),maxState));
 		}
 }
 
@@ -31,49 +38,64 @@ function loadImages(lastImage){
 }
 
 function makeDistactions(lastImage){
-	for(var i = 0; i<= lastImage; i++){
-		distactions.push(new Distaction(i,"distaction"+i))
+	for(var i = 0; i<= 1; i++){
+		makeDistactionChunks(i,"distaction"+i, screens)
 	}
 }
 
 
 
-function Screen(canvas){
+function Screen(canvas,maxState){
 	this.canvas = canvas;
+	this.maxState = maxState;
 	this.state = 0;
-}
+	this.upperLeftX = 0;
+	this.upperLeftY = 0;
+	this.size = 45; //<-- don't fucking change this.
+	this.distactions = []; //just an array of image data.
 
-//raw pixels needed to render this distaction in it's entirety
-//if you pass it a screen ID it will return what pixels that screen can render
-//it is is a distaction, you see, because the 'goal' is to get to state 0
-//and all of these will want you to NOT do that.
-function Distaction(id, imageDiv){
-	this.id = id; //which image am i
-	this.image_data = null;
-
-	//TODO or would it be better for the screen to keep the imageData for all possible distactions inside of itself?
-	//that way only have to process chunks once.
-	this.getDistactionChunk = function(chunkID){
-		//each chunk is 45 by 45.  chunk zero is upper left, chunk 1 is 45 to the right of chunk 0, and so on.
+	this.changeState = function(state){
+		if(state < 0){
+			state = 0;
+		} else if(state > this.maxState){
+			state = maxState;
+		}else{
+			this.state = state;
+		}
+		display();
 	}
 
-	this.processImageDiv = function(imageDivID){
+	this.display = function(){
+			console.log("diaply");
+		  var ctx = canvas.getContext('2d');
+		  ctx.putImageData(this.distactions[this.state], 0, 0);
+	}
+}
+
+
+function makeDistactionChunks(id, imageDiv, screens){
+	for(var i = 0; i<screens.length; i++){
+		makeDistactionChunk(id, imageDiv, screens[i]);
+	}
+}
+
+function makeDistactionChunk(id, imageDiv, screen){
+		console.log("Making a chunk")
 		//draw to secret canvas, then var pixels =ctx.getImageData(0, 0, canvas.width, canvas.height);
-		var canvas = this.getTemporaryCanvas();
+		var canvas = getTemporaryCanvas();
 		var ctx = canvas.getContext('2d');
-		var img=document.getElementById(imageDivID);
+		var img=document.getElementById(imageDiv);
 		var width = img.width;
 		var height = img.height;
 		ctx.drawImage(img,0,0,width,height);
-		return ctx.getImageData(0, 0, canvas.width, canvas.height);
-	}
+		screen.distactions.push(ctx.getImageData(screen.upperLeftX, screen.upperLeftY, screen.size, screen.size));
 
-	this.getTemporaryCanvas = function(){
-		var tmp_canvas = document.createElement('canvas');
-		tmp_canvas.height = 720;
-		tmp_canvas.width = 720;
-		return tmp_canvas;
-	}
+}
 
-	this.image_data = this.processImageDiv(imageDiv);
+
+function getTemporaryCanvas(){
+	var tmp_canvas = document.createElement('canvas');
+	tmp_canvas.height = 720;
+	tmp_canvas.width = 720;
+	return tmp_canvas;
 }
