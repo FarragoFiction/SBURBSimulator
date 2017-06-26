@@ -26,6 +26,14 @@ body{
 	width: 1200px;
 }
 
+#mindButton{
+	display: none;
+}
+
+#mindPowers{
+	display: none;
+}
+
 #buttons{
 	display: inline-block;
 	width: 400px;

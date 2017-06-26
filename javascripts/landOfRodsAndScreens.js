@@ -7,6 +7,7 @@ var x = [];
 var janusNum = 0;
 var eggsSolution = false;
 var eggs = {};
+var timeTillReckoning = 99999999999999999999;  //take as long as you want...for now.
 
 var distactions = new Array(maxState); //all images, screen responsible for displaying it's chunk
 //figure out a number of turns until the reckoning. make it more than you'd reasonably need to solve it
@@ -19,6 +20,20 @@ window.onload = function() {
 	initializeX();
 	makeScreens(256);
 	loadAllImages();
+	//you have one minute to try to solve it legit style before you get Mind powers.
+	setTimeout(function(){
+		$("#spiel").hide();
+		$("#mindButton").show();
+	}, 3000);
+}
+
+function doTheMindyThing(){
+	timeTillReckoning = 10;
+	$("#mindPowers").show();
+}
+
+function renderMindPowers(){
+	//1 <input id="num_sessions" type="range" min="1" max="50" value="10"> 50
 }
 
 function initializeX(){
@@ -86,7 +101,15 @@ function fhtagn(k,nk){
 	return nk*3 + 1;
 }
 
+function checkReckoning(){
+	if(timeTillReckoning == 0){
+		alert("The Reckoning is over. You have failed to pass your Land Quest in time to help your team mates. But you can always keep obsessing over this Puzzle, for as long as you live. It's not like you can ever leave the Medium without a frog, after all.")
+	}
+}
+
 function calculateN(k,yk){
+	timeTillReckoning += -1;
+	checkReckoning();
 	var q = maxState;
 	var ret = 1;
 	//N[k] = 1 + sum(  y[k][i]*(q**i) for i in range(3))
@@ -229,7 +252,6 @@ function wireUpScreen(canvas, screen){
 //TODO make other 14 eggs.
 function egg1(canvas, screen,num){
 	canvas.click(function(){
-		alert("???")
 		processEgg(num);
 	})
 }
@@ -251,7 +273,7 @@ function talkJanus(){
 }
 
 function janus(){
-	console.log("There is an ominous rumbling from below as a secret passage opens beneathe your feet. You unceremoniously tumble down to the center of LORAS and land in a heap in front of a terrifyingly huge figure.")
+	console.log("There is an ominous rumbling from below as a secret passage opens beneath your feet. You unceremoniously tumble down to the center of LORAS and land in a heap in front of a terrifyingly huge figure.")
 	$.ajax({
 	  url: "janus.txt",
 	  success:(function(data){
