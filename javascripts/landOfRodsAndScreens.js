@@ -464,6 +464,16 @@ function checkScreens(){
 	if(state == targetImage) reachedTarget = true;
 	timeTillReckoning += -1;
 	alert("!!! you unlocked a picture! I need to do something here.")
+	quip(state);
+}
+
+function quip(state){
+	var ret = ""
+	var prize = ":/ Looks like you didn't do it before the Reckoning though. Thems the breaks. Poor Janus died in vain. What were you even gonna DO with all that grist?";
+	if(timeTillReckoning > 0) prize = "And you managed to it BEFORE the time limit! Look at you, being all 'adult' and shit.  When I beat the 'real' version, I got a YellowYard, so...uh...don't fuck this up, okay: <a href = 'index2.html?lawnring=yellow'>UseYellowYardResponsibly</a>"
+	if(state == 0) ret = "Oh! You win! " + prize;
+	if(state == 47) ret = "Oh yeah! That was the image KR made as one of the possible backgrounds for the AB/JR newsposts. Kinda cheruby-huh?"
+	$("#quip").html(ret);
 }
 
 
