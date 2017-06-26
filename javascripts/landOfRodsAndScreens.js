@@ -43,7 +43,7 @@ function doTheMindyThing(){
 
 function initializeX(){
 	for(var i = 0; i< 3; i++){
-		x.push([getRandomInt(0, maxState),getRandomInt(0, maxState),getRandomInt(0, maxState) ]);
+		x.push([maxState, maxState, maxState]);
 	}
 }
 
@@ -155,7 +155,7 @@ function recalcTI(){
 //(the joke is that this is fucking giberish that took me an entire day to understand enough to program)
 //(and I STILL do not understand enough to explain to a human. computers are much easier to explain things to)
 function ia(k,nk){
-	//console.log("ia");
+	console.log("ia"+k);
 	if(nk%2 != 0){
 		//punishment. (maybe show on screen in some way)
 		console.log("WRONG!!!")
@@ -166,7 +166,7 @@ function ia(k,nk){
 
 //this should happen if odd.
 function fhtagn(k,nk){
-	//console.log("fhtagn")
+	console.log("fhtagn"+k)
 	if(nk%2 == 0) console.log("WRONG!!!")
 	return nk*3 + 1;
 }
@@ -199,6 +199,7 @@ function compute(k, formula){
 		yk[i] = (x[k][i] - targetImage + q) % q
 	}
 	var nk = calculateN(k, yk);
+	console.log(["N="+nk, yk, x[k]])
 	var newnk = formula(k,nk);
 	var newyk = []
 	var newxk = [];  //do i replace this in x, or is it temp?
