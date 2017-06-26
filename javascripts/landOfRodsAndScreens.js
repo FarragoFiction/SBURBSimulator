@@ -239,7 +239,7 @@ function talkJanus(){
 	if(janusNum == 0) console.log("Janus1: It's about time you found me. Harumph.  Talk back by typing: 'talkJanus('thing you want to say in quotes')'.  Now, do you want the Solution?");
 	if(janusNum == 1) console.log("Janus1: Of course you do. Kids these days have no respect for artistry. Do you know how HARD it was to come up with that puzzle? Don't answer that. If you want the Solution, then you will have to give me a Solution of your own. I'm sure you noticed how the control panel lit up.  That's what got my attention.  I can't figure out how to get all the control panel symbols lit up.  Do this for me, and I will show you how to beat the puzzle.");
 	if(janusNum > 1 && !eggsSolution) console.log("Janus1: Consarn it! Would you leave me alone if you haven't got my Solution yet?")
-	if(janusNum > 1 && !eggsSolution){
+	if(janusNum > 1 && eggsSolution){
 		console.log("Janus1: Well hot damn! You did it! Gives me hope for the next generation, is what it does. ")
 		console.log("Janus2:  If you had even attempted to think about the puzzle yourself, dear brother, you would have found the solution to be obvious. ")
 		console.log("Janus2:  And now it falls to me to honor the promises you have kept, in your haste to prove your ignorance. ")
@@ -251,7 +251,7 @@ function talkJanus(){
 }
 
 function janus(){
-	console.log("There is an ominous rumbling from below as a secret passage opens beneathe your feet. You unceremoniously tumble down to the center of LORAS and land in a heap in front of a shadowy figure.")
+	console.log("There is an ominous rumbling from below as a secret passage opens beneathe your feet. You unceremoniously tumble down to the center of LORAS and land in a heap in front of a terrifyingly huge figure.")
 	$.ajax({
 	  url: "janus.txt",
 	  success:(function(data){
