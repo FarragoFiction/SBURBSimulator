@@ -383,32 +383,32 @@ function processEgg(num){
 function drawKnobs(){
 	for(var i = 1; i<=15; i++){
 		if(eggs[i] == "found it!"){
-			drawGlowingKnobPart(i);
+			drawKnobPart(i,true);
 		}else{
-			drawDarkKnobPart(i);
+			drawKnobPart(i,false);
 		}
 	}
 	//final knob is ALWAYS glowing (thanks dillenteMathematician!!!)
 	//drawGlowingKnobPart(16);
 }
 
-function drawDarkKnobPart(knobNum){
-	if(knobNum == 1) drawK1();
-	if(knobNum == 2) drawK2();
-	if(knobNum == 3) drawK3();
-	if(knobNum == 4) drawK4();
-	if(knobNum == 5) drawK5();
-	if(knobNum == 6) drawK6();
-	if(knobNum == 7) drawK7();
-	if(knobNum == 8) drawK8();
-	if(knobNum == 9) drawK9();
-	if(knobNum == 10) drawK10();
-	if(knobNum == 11) drawK11();
-	if(knobNum == 12) drawK12();
-	if(knobNum == 13) drawK13();
-	if(knobNum == 14) drawK14();
-	if(knobNum == 15) drawK15();
-	if(knobNum == 16) drawK16();
+function drawKnobPart(knobNum,glowing){
+	if(knobNum == 1) drawK1(glowing);
+	if(knobNum == 2) drawK2(glowing);
+	if(knobNum == 3) drawK3(glowing);
+	if(knobNum == 4) drawK4(glowing);
+	if(knobNum == 5) drawK5(glowing);
+	if(knobNum == 6) drawK6(glowing);
+	if(knobNum == 7) drawK7(glowing);
+	if(knobNum == 8) drawK8(glowing);
+	if(knobNum == 9) drawK9(glowing);
+	if(knobNum == 10) drawK10(glowing);
+	if(knobNum == 11) drawK11(glowing);
+	if(knobNum == 12) drawK12(glowing);
+	if(knobNum == 13) drawK13(glowing);
+	if(knobNum == 14) drawK14(glowing);
+	if(knobNum == 15) drawK15(glowing);
+	if(knobNum == 16) drawK16(glowing);
 }
 
 function drawK1(glow){
