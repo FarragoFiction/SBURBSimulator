@@ -310,8 +310,6 @@ function wireUpScreen(canvas, screen){
 	if(screen.screenNum == 123)		egg1(canvas, screen,13);
 	if(screen.screenNum == 121)		egg1(canvas, screen,14);
 	if(screen.screenNum == 119)		egg1(canvas, screen,15);
-
-
 }
 
 //TODO make other 14 eggs.
@@ -353,6 +351,8 @@ function janus(){
 //on first egg, ALSO unlock jr.
 //rest of eggs cause glow on panel.  get all eggs....secret???
 function processEgg(num){
+	console.log(num)
+	symbolGlow();
 	if(janusNum == 0) janus();
 	eggs[num] = "found it!";
 	console.log("TODO: change src for appropriate image.")
@@ -362,6 +362,25 @@ function processEgg(num){
 	console.log("ANNOUNCMENT: ALL EGGS FOUND!")
 	eggsSolution = true;
 }
+
+function drawKnobs(){
+	for(var i = 1; i<=15; i++){
+		if(eggs[i] == "found it!"){
+			drawGlowingKnobPart(i);
+		}else{
+			drawDarkKnobPart(i);
+		}
+	}
+}
+
+function drawGlowingKnobPart(knobNum){
+	
+}
+
+function drawDarkKnobPart(knobNum){
+	
+}
+
 
 function loadImages(lastImage){
 	var html = "";
