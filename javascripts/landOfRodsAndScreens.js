@@ -363,23 +363,60 @@ function janus(){
 
 //denizen will only let you target state 0. 
 //mind powers will let you target any state.
-function blatantlyCheat(target){
-	//if target is even, good, if target is odd, flip.
-	/*
-	if screen 0 state is nottarget:
-		if even, compute(0, fhtagh);
-		if odd, compute(0,ia)
-		
-	if screen 3 state is nottarget:
-		if even, compute(1, fhtagh);
-		if odd, compute(1,ia)
-		
-	if screen 6 state is nottarget:
-		if even, compute(2, fhtagh);
-		if odd, compute(2,ia)
-		
-	except not compute, instead, button press. (so animation)
-	*/
+function blatantlyCheat(t1,t2,t3,t4){
+	ti1 = t1;
+	ti2 = t2;
+	ti3 = t3;
+	ti4 = t4;
+	recalcTI();
+	var odd = [button1, button3, button5]
+	var even = [button2, button4, button6]
+	if(targetImage %2 == 0){
+		odd =  [button2, button4, button6]
+	}else{
+		even =  [button1, button3, button5]
+	}
+	
+	setTimeout(function(){
+		cheat1(even, odd);
+	},200);
+
+}
+
+function cheat1(even, odd){
+	if(screens[0].state != targetImage){
+		if(screens[0].state %2 == 0){
+			even[0]();
+		}else{
+			odd[0]();
+		}
+	}
+	setTimeout(function(){
+		cheat2(even, odd);
+	},200);
+}
+
+function cheat2(even, odd){
+	if(screens[3].state != targetImage){
+		if(screens[3].state %2 == 0){
+			even[1]();
+		}else{
+			odd[1]();
+		}
+	}
+	setTimeout(function(){
+		cheat3(even, odd);
+	},200);
+}
+
+function cheat3(even, odd){
+	if(screens[6].state != targetImage){
+		if(screens[6].state %2 == 0){
+			even[2]();
+		}else{
+			odd[2]();
+		}
+	}
 }
 
 function checkScreens(){
