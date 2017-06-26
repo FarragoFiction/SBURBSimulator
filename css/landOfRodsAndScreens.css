@@ -14,6 +14,26 @@
 	color:white;
 }
 
+.cpButton{
+	width: 100%;
+}
+
+#controlPanel{
+	padding:0;
+	margin:0;
+	border-collapse: collapse;
+}
+
+#controlPanel td{
+	padding:0;
+	margin:0;
+}
+
+#controlPanel tr{
+	padding:0;
+	margin:0;
+}
+
 #debug{
 	color:white;
 }

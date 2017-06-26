@@ -24,7 +24,7 @@ window.onload = function() {
 	setTimeout(function(){
 		$("#spiel").hide();
 		$("#mindButton").show();
-	}, 3000);
+	}, 50000);
 }
 
 //A TIME LIMIT!? That's BULLSHIT!
