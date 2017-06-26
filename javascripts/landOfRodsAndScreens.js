@@ -1,5 +1,5 @@
 var screens = [];
-var maxState = 65;
+var maxState = 66; //this number MUST be even.
 var imagesWaiting = 0;
 var imagesLoaded = 0;
 var targetImage = 0; //what could control this???
@@ -30,7 +30,7 @@ window.onload = function() {
 	setTimeout(function(){
 		$("#spiel").hide();
 		$("#mindButton").show();
-	}, (5*6000));
+	}, (5*600));
 }
 
 //A TIME LIMIT!? That's BULLSHIT!
