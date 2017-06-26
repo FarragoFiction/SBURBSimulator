@@ -25,7 +25,9 @@ window.onload = function() {
 	initializeX();
 	makeScreens(256);
 	loadAllImages();
-	//you have one minute to try to solve it legit style before you get Mind powers.
+	//you have x time to solve it legit style before activating mind powers
+	//TODO consider whether this should be an unlockable easter egg, too
+	//but unsure how hard "legit style" is for regular people. (pretty much impossible to me before dillenteMathematician told me the secret, even tho i coded it.)
 	setTimeout(function(){
 		$("#spiel").hide();
 		$("#mindButton").show();
