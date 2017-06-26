@@ -477,6 +477,7 @@ function quip(state){
 	if(timeTillReckoning > 0) prize = "And you managed to it BEFORE the time limit! Look at you, being all 'adult' and shit.  When I beat the 'real' version, I got a YellowYard, so...uh...don't fuck this up, okay: <a href = 'index2.html?lawnring=yellow'>UseYellowYardResponsibly</a>"
 	if(state == 0) ret = "Oh! You win! " + prize;
 	if(state == 47) ret = "Oh yeah! That was the image KR made as one of the possible backgrounds for the AB/JR newsposts. Kinda cheruby-huh?"
+	console.log("JR: " + ret)
 	$("#quip").html(ret);
 }
 

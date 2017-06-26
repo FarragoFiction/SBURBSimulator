@@ -10,6 +10,13 @@
 	color: white;
 }
 
+#quip{
+	color: #3da35a;
+	background-color: white;
+	border-radius: 25px;
+	padding: 10px;
+}
+
 #slider{
 	padding: 10px;
 }
