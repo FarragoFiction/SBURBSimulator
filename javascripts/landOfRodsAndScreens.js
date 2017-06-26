@@ -99,7 +99,13 @@ function compute(k, formula){
 		yk[i] = (x[k][i] - targetImage + q) % q
 	}
 	var nk = calculateN(k, yk);
-	formula(k,nk);
+	var newnk = formula(k,nk);
+	var newyk = []
+	var newxk = [];  //do i replace this in x, or is it temp?
+	for(var i = 0; i<yk.length; i++){
+		newyk[i] = Math.floor((newnk-1)/(q**i));
+		newxk[i] = (newyk[i] + targetImage) % q
+	}
 	/*
 	Y'[k][i] = ( floor((n'[k]-1)/(q**i) ) %q
 	X'[k][i] = (y`[k][i]+tgt)%q
