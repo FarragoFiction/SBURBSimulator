@@ -291,6 +291,7 @@ function janus(){
 function processEgg(num){
 	if(janusNum == 0) janus();
 	eggs[num] = "found it!";
+	console.log("TODO: change src for appropriate image.")
 	for(var i = 1; i<=15; i++){
 		if(eggs[i] != "found it!")  return;
 	}
