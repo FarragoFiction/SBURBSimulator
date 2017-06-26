@@ -290,8 +290,8 @@ function Screen(canvas,maxState, uX, uY, screenNum, i, k){
 
 	this.drawState = function(){
 		var ctx = canvas.getContext('2d');
-		//var x = this.width/2;
-		var x = 0;
+		var x = this.width/2;
+		//var x = 0;
 		var y = this.height/2;
 		ctx.fillStyle = "#000000";
 		ctx.fillText(this.state,x,y);
