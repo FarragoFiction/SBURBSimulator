@@ -3,6 +3,10 @@ var maxState = 61;
 var imagesWaiting = 0;
 var imagesLoaded = 0;
 var targetImage = 0; //what could control this???
+var ti1 = 0;
+var ti2 = 0;
+var ti3 = 0;
+var ti4 = 0;
 var x = [];
 var janusNum = 0;
 var eggsSolution = false;
@@ -83,6 +87,34 @@ function button6(){
 	compute(2,fhtagn);
 }
 
+function knob1(){
+	ti1 ++;
+	recalcTI();
+}
+
+function knob2(){
+	ti2 ++;
+	recalcTI();
+}
+
+function knob3(){
+	ti3 ++;
+	recalcTI();
+}
+
+function knob4(){
+	ti4 ++;
+	recalcTI();
+}
+
+function recalcTI(){
+	if(ti1 > maxState/4) ti1 = 0;
+	if(ti2 > maxState/4) ti2 = 0;
+	if(ti3 > maxState/4) ti3 = 0;
+	if(ti4 > maxState/4) ti4 = 0;
+	targetImage = Math.floor(ti1 + ti2 + ti3 + ti4);
+	console.log(targetImage)
+}
 
 //this should happen if even. look at me, being so generous with my hints
 //(the joke is that this is fucking giberish that took me an entire day to understand enough to program)
