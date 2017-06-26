@@ -67,27 +67,48 @@ function button1(){
 
 //k = 0
 function button2(){
+	$("#button2").attr("src", "images/LORAS/ControlPanel/button_1_p021.png");
+	setTimeout(function(){
+		$("#button2").attr("src", "images/LORAS/ControlPanel/button_1_p02.png");
+	},200);
 	compute(0,fhtagn);
+	
 }
 
 
 // k = 1
 function button3(){
+	$("#button3").attr("src", "images/LORAS/ControlPanel/button_1_p021.png");
+	setTimeout(function(){
+		$("#button3").attr("src", "images/LORAS/ControlPanel/button_1_p02.png");
+	},200);
 	compute(1,ia);
 }
 
 //k = 1
 function button4(){
+	$("#button4").attr("src", "images/LORAS/ControlPanel/button_1_p021.png");
+	setTimeout(function(){
+		$("#button4").attr("src", "images/LORAS/ControlPanel/button_1_p02.png");
+	},200);
 	compute(1,fhtagn);
 }
 
 //k = 2
 function button5(){
+	$("#button5").attr("src", "images/LORAS/ControlPanel/button_1_p021.png");
+	setTimeout(function(){
+		$("#button5").attr("src", "images/LORAS/ControlPanel/button_1_p02.png");
+	},200);
 	compute(2,ia);
 }
 
 //k = 2
 function button6(){
+	$("#button6").attr("src", "images/LORAS/ControlPanel/button_1_p021.png");
+	setTimeout(function(){
+		$("#button6").attr("src", "images/LORAS/ControlPanel/button_1_p02.png");
+	},200);
 	compute(2,fhtagn);
 }
 
