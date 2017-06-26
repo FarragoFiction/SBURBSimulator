@@ -371,9 +371,9 @@ function blatantlyCheat(t1,t2,t3,t4){
 	recalcTI();
 	var odd = [button1, button3, button5]
 	var even = [button2, button4, button6]
-	if(targetImage %2 == 0){
+	//inverse for odd targets.
+	if(targetImage %2 != 0){
 		odd =  [button2, button4, button6]
-	}else{
 		even =  [button1, button3, button5]
 	}
 	
@@ -385,7 +385,8 @@ function blatantlyCheat(t1,t2,t3,t4){
 
 function cheat1(even, odd){
 	if(screens[0].state != targetImage){
-		if(screens[0].state %2 == 0){
+		console.log("blatantly cheating for state: "+screens[0].state)
+		if(screens[0].state % 2 == 0){
 			even[0]();
 		}else{
 			odd[0]();
@@ -411,7 +412,7 @@ function cheat2(even, odd){
 
 function cheat3(even, odd){
 	if(screens[6].state != targetImage){
-		if(screens[6].state %2 == 0){
+		if(screens[6].state % 2 == 0){
 			even[2]();
 		}else{
 			odd[2]();
