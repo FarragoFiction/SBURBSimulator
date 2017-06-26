@@ -12,6 +12,7 @@ var distactions = new Array(maxState); //all images, screen responsible for disp
 //get to the denizen to have the puzzle just solved for you. (for a price)
 
 window.onload = function() {
+	Math.seed = 3;
 	initializeX();
 	makeScreens(256);
 	loadAllImages();
