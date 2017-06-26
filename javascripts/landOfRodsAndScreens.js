@@ -88,6 +88,7 @@ function button6(){
 //(the joke is that this is fucking giberish that took me an entire day to understand enough to program)
 //(and I STILL do not understand enough to explain to a human. computers are much easier to explain things to)
 function ia(k,nk){
+	//console.log("ia");
 	if(nk%2 != 1){
 		//punishment. (maybe show on screen in some way)
 		console.log("WRONG!!!")
@@ -98,6 +99,7 @@ function ia(k,nk){
 
 //this should happen if odd.
 function fhtagn(k,nk){
+	//console.log("fhtagn")
 	if(nk%2 == 1) console.log("WRONG!!!")
 	return nk*3 + 1;
 }
