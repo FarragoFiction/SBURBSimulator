@@ -269,9 +269,8 @@ function Screen(canvas,maxState, uX, uY, screenNum, i, k){
 		x += 1;
 		y += 1;
 		ctx.fillStyle = "#ffffff";
-		console.log(this.k)
-		//ctx.fillText(this.state + "<"+this.i+",x,y);
-		ctx.fillText(this.state + "<"+this.i+"," +this.k+">",x,y);
+		ctx.fillText(this.state,x,y);
+		//ctx.fillText(this.state + "<"+this.i+"," +this.k+">",x,y);
 	}
 
 	this.display = function(){
