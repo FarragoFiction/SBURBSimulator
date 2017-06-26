@@ -1,5 +1,5 @@
 var screens = [];
-var maxState = 64;
+var maxState = 65;
 var imagesWaiting = 0;
 var imagesLoaded = 0;
 var targetImage = 0; //what could control this???
@@ -38,7 +38,7 @@ window.onload = function() {
 //and not dick around looking for easter eggs!!!
 function doTheMindyThing(){
 	timeTillReckoning = 1000;
-	$("#slider").html('Look for Image: <span id="imageValue">10</span> <Br> 0 <input id="targetImage" type="range" min="0" max="'+ maxState + '" value="10"> '+ maxState + '<br><button id="concentrate">Concentrate</button>');
+	$("#slider").html('Look for Image: <span id="imageValue">64</span> <Br> 0 <input id="targetImage" type="range" min="0" max="'+ maxState + '" value="64"> '+ maxState + '<br><button id="concentrate">Concentrate</button>');
 	$("#mindPowers").show();
 	$("#targetImage").change(function(){
 		$("#imageValue").html($("#targetImage").val());
