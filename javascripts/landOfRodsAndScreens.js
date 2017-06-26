@@ -1,5 +1,5 @@
 var screens = [];
-var maxState = 60;
+var maxState = 61;
 var imagesWaiting = 0;
 var imagesLoaded = 0;
 var targetImage = 0; //what could control this???
@@ -71,6 +71,7 @@ function button6(){
 function ia(k,nk){
 	if(nk%2 != 1){
 		//punishment. (maybe show on screen in some way)
+		console.log("WRONG!!!")
 		x[k][2] = getRandomInt(0, maxState); //NOW you fucked up!  (i mean, probably, i am still fuzzy on what x even does.)
 	}
 	return nk/2;
@@ -78,6 +79,7 @@ function ia(k,nk){
 
 //this should happen if odd.
 function fhtagn(k,nk){
+	if(nk%2 == 1) console.log("WRONG!!!")
 	return nk*3 + 1;
 }
 
@@ -202,8 +204,30 @@ function makeScreens(number){
 }
 
 function wireUpScreen(canvas, screen){
+	if(screen.screenNum == 193)		egg1(canvas, screen);
+	if(screen.screenNum == 196)		egg1(canvas, screen);
+	if(screen.screenNum == 199)		egg1(canvas, screen);
+	if(screen.screenNum == 202)		egg1(canvas, screen);
+	if(screen.screenNum == 205)		egg1(canvas, screen);
+	if(screen.screenNum == 146)		egg1(canvas, screen);
+	if(screen.screenNum == 149)		egg1(canvas, screen);
+	if(screen.screenNum == 152)		egg1(canvas, screen);
+	if(screen.screenNum == 155)		egg1(canvas, screen);
+	if(screen.screenNum == 158)		egg1(canvas, screen);
+	if(screen.screenNum == 127)		egg1(canvas, screen);
+	if(screen.screenNum == 125)		egg1(canvas, screen);
+	if(screen.screenNum == 123)		egg1(canvas, screen);
+	if(screen.screenNum == 121)		egg1(canvas, screen);
+	if(screen.screenNum == 191)		egg1(canvas, screen);
+
+
+}
+
+//TODO make other 14 eggs.
+function egg1(canvas, screen){
 	canvas.click(function(){
-		console.log(screen.upperLeftX)
+		//when first egg is clicked, unlock JR. 
+		//each egg displays it's glowing gylph on control panel
 		screen.randomizeState();
 	})
 }
@@ -245,7 +269,7 @@ function Screen(canvas,maxState, uX, uY, screenNum, i, k){
 		this.display();
 	}
 	this.changeState = function(state){
-		console.log(state);
+		//console.log(state);
 		if(state < 0){
 			state = 0;
 		} else if(state > this.maxState){
