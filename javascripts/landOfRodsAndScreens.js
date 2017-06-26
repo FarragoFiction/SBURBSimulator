@@ -204,6 +204,7 @@ function compute(k, formula){
 	x[k] = newxk;
 	//then, finally, get all screens who match k, and set their values according to x[k][i] or whatever.
 	updateScreens(k);
+	checkScreens();
 }
 
 function updateScreens(k){
@@ -348,6 +349,18 @@ function janus(){
 
 }
 
+function checkScreens(){
+	console.log("Don't forget to do things for each 'win' state.")
+	var state = screens[0].state;
+	for(var i = 0; i<screens.length; i++){
+		if(screens[i].state != state) return;
+	}
+	
+	alert("!!! you unlocked a picture! I need to do something here.")
+}
+
+
+
 //on first egg, ALSO unlock jr.
 //rest of eggs cause glow on panel.  get all eggs....secret???
 function processEgg(num){
@@ -362,6 +375,7 @@ function processEgg(num){
 	console.log("ANNOUNCMENT: ALL EGGS FOUND!")
 	eggsSolution = true;
 }
+
 
 function drawKnobs(){
 	for(var i = 1; i<=15; i++){
