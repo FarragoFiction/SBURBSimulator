@@ -106,15 +106,16 @@ function compute(k, formula){
 		newyk[i] = Math.floor((newnk-1)/(q**i));
 		newxk[i] = (newyk[i] + targetImage) % q
 	}
-	/*
-	Y'[k][i] = ( floor((n'[k]-1)/(q**i) ) %q
-	X'[k][i] = (y`[k][i]+tgt)%q
-
-	Then update the tiles by looking up which x[k][i] they map to and picking the fragment of that x[k][i] picture they cover.
-
-	*/
+	x[k] = newxk;
 	//then, finally, get all screens who match k, and set their values according to x[k][i] or whatever.
+}
 
+function updateScreens(k){
+	for(var i = 0; i<screens.length; i++){
+		if(screens.k == k){
+			screens[i].state = x[k][screens[i].i];
+		}
+	}
 }
 
 function loadAllImages(){
