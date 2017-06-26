@@ -1,5 +1,5 @@
 var screens = [];
-var maxState = 61;
+var maxState = 64;
 var imagesWaiting = 0;
 var imagesLoaded = 0;
 var targetImage = 0; //what could control this???
@@ -156,7 +156,7 @@ function recalcTI(){
 //(and I STILL do not understand enough to explain to a human. computers are much easier to explain things to)
 function ia(k,nk){
 	//console.log("ia");
-	if(nk%2 != 1){
+	if(nk%2 != 0){
 		//punishment. (maybe show on screen in some way)
 		console.log("WRONG!!!")
 		x[k][2] = getRandomInt(0, maxState); //NOW you fucked up!  (i mean, probably, i am still fuzzy on what x even does.)
@@ -167,7 +167,7 @@ function ia(k,nk){
 //this should happen if odd.
 function fhtagn(k,nk){
 	//console.log("fhtagn")
-	if(nk%2 == 1) console.log("WRONG!!!")
+	if(nk%2 == 0) console.log("WRONG!!!")
 	return nk*3 + 1;
 }
 
