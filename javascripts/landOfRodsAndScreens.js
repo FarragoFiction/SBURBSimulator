@@ -27,14 +27,15 @@ window.onload = function() {
 	}, 3000);
 }
 
+//A TIME LIMIT!? That's BULLSHIT!
+//it's...ALMOST like you're expected to use your phenomenal cosmic powers to BEAT THE GAME
+//and not dick around looking for easter eggs!!!
 function doTheMindyThing(){
-	timeTillReckoning = 10;
+	timeTillReckoning = 100;
+	$("#slider").html('Look for Image: <Br> 0 <input id="targetImage" type="range" min="0" max="'+ maxState + '" value="10"> '+ maxState + '');
 	$("#mindPowers").show();
 }
 
-function renderMindPowers(){
-	//1 <input id="num_sessions" type="range" min="1" max="50" value="10"> 50
-}
 
 function initializeX(){
 	for(var i = 0; i< 3; i++){
