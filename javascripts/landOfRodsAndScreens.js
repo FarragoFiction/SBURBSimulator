@@ -43,7 +43,7 @@ function doTheMindyThing(){
 	$("#targetImage").change(function(){
 		$("#imageValue").html($("#targetImage").val());
 	});
-	
+
 	$("#concentrate").click(function(){
 		concentrate($("#targetImage").val());
 	});
@@ -80,7 +80,7 @@ function button2(){
 		$("#button2").attr("src", "images/LORAS/ControlPanel/button_1_p02.png");
 	},200);
 	compute(0,fhtagn);
-	
+
 }
 
 
@@ -353,7 +353,7 @@ function talkJanus(){
 		console.log("Janus2:  *sigh* I will give you your Solution, Observer, that you may marvel in the mind that TRULY designed this Challenge. ")
 		denizenCheat();
 		//TODO have puzzle auto-solve itself.
-	} 
+	}
 	janusNum ++;
 }
 
@@ -371,7 +371,10 @@ function janus(){
 }
 
 function concentrate(target){
-	if(reachedTarget) return;
+	if(reachedTarget){
+		reachedTarget = false
+		 return;
+	}
 	//inverse targetImage = Math.floor(ti1 + (ti2 <<2) + (ti3<<4) + (ti4<<6)); //uses 16 digits to make a 256 number.
 	ti1 = 3&(target);
 	ti2 = 3&(target >> 2);
@@ -382,12 +385,12 @@ function concentrate(target){
 	setTimeout(function(){
 		concentrate(target);
 	},1000);
-	
+
 }
 
 //Hey, man, this is a Quest designed to spit out 4th wall breaking Wastes
 //Of COURSE cheating is encouraged.
-//denizen will only let you target state 0. 
+//denizen will only let you target state 0.
 //mind powers will let you target any state.
 function blatantlyCheat(t1,t2,t3,t4){
 	console.log("winning via meta shenanigans")
@@ -403,7 +406,7 @@ function blatantlyCheat(t1,t2,t3,t4){
 		odd =  [button2, button4, button6]
 		even =  [button1, button3, button5]
 	}
-	
+
 	setTimeout(function(){
 		cheat1(even, odd);
 	},200);
@@ -477,7 +480,7 @@ function processEgg(num){
 	}
 	console.log("ANNOUNCMENT: ALL EGGS FOUND!")
 	eggsSolution = true;
-	
+
 }
 
 
@@ -744,12 +747,12 @@ function Screen(canvas,maxState, uX, uY, screenNum, i, k){
 		//this.state = 0;
 		this.display();
 	}
-	
+
 	this.toggleGuides = function(){
 		this.drawGuides = !this.drawGuides;
 		this.display();
 	}
-	
+
 	this.changeState = function(state){
 		//console.log(state);
 		if(state < 0){
