@@ -151,11 +151,11 @@ function recalcTI(){
 	if(ti2 > 3) ti2 = 0;
 	if(ti3 > 3) ti3 = 0;
 	if(ti4 > 3) ti4 = 0;
-	console.log("ti1: " + ti1 + " ti2: " + ti2 + " ti3 " + ti3 + " ti4: " + ti4)
+	//console.log("ti1: " + ti1 + " ti2: " + ti2 + " ti3 " + ti3 + " ti4: " + ti4)
 	targetImage = Math.floor(ti1 + (ti2 <<2) + (ti3<<4) + (ti4<<6)); //uses 16 digits to make a 256 number.
-	console.log(targetImage)
+	//console.log(targetImage)
 	if(targetImage > maxState) targetImage = maxState; //cluster up around the black screens.
-	console.log(targetImage)
+	//console.log(targetImage)
 	drawKnobs();
 
 }
@@ -164,7 +164,7 @@ function recalcTI(){
 //(the joke is that this is fucking giberish that took me an entire day to understand enough to program)
 //(and I STILL do not understand enough to explain to a human. computers are much easier to explain things to)
 function ia(k,nk){
-	console.log("ia"+k);
+	//console.log("ia"+k);
 	if(nk%2 != 0){
 		//punishment. (maybe show on screen in some way)
 		console.log("WRONG!!!")
@@ -175,7 +175,7 @@ function ia(k,nk){
 
 //this should happen if odd.
 function fhtagn(k,nk){
-	console.log("fhtagn"+k)
+	//console.log("fhtagn"+k)
 	if(nk%2 == 0) console.log("WRONG!!!")
 	return nk*3 + 1;
 }
@@ -201,14 +201,14 @@ function calculateN(k,yk){
 
 //https://en.wikipedia.org/wiki/Collatz_conjecture
 function compute(k, formula){
-	console.log("computing")
+	//console.log("computing")
 	var q = maxState;
 	var yk = new Array(3);
 	for(var i = 0; i<yk.length; i++){
 		yk[i] = (x[k][i] - targetImage + q) % q
 	}
 	var nk = calculateN(k, yk);
-	console.log(["N="+nk, yk, x[k]])
+	//console.log(["N="+nk, yk, x[k]])
 	var newnk = formula(k,nk);
 	var newyk = []
 	var newxk = [];  //do i replace this in x, or is it temp?
@@ -407,7 +407,7 @@ function blatantlyCheat(t1,t2,t3,t4){
 		odd =  [button2, button4, button6]
 		even =  [button1, button3, button5]
 	}
-	console.log(["cheating", even, odd])
+	//console.log(["cheating", even, odd])
 	setTimeout(function(){
 		cheat1(even, odd);
 	},200);
@@ -458,7 +458,6 @@ function cheat3(even, odd){
 }
 
 function checkScreens(){
-	console.log("Don't forget to do things for each 'win' state.")
 	var state = screens[0].state;
 	for(var i = 0; i<screens.length; i++){
 		if(screens[i].state != state) return;
@@ -468,7 +467,7 @@ function checkScreens(){
 		$("#concentrate").prop('disabled', false)
 	}
 	timeTillReckoning += -1;
-	alert("!!! you unlocked a picture! I need to do something here.")
+	//alert("!!! you unlocked a picture! I need to do something here.")
 	quip(state);
 }
 
@@ -486,7 +485,7 @@ function quip(state){
 //on first egg, ALSO unlock jr.
 //rest of eggs cause glow on panel.  get all eggs....secret???
 function processEgg(num){
-	console.log(num)
+	//console.log(num)
 	if(janusNum == 0) janus();
 	eggs[num] = "found it!";
 	drawKnobs();
