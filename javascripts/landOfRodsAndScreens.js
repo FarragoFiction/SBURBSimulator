@@ -1,5 +1,5 @@
 var screens = [];
-var maxState = 62;
+var maxState = 63;
 var imagesWaiting = 0;
 var imagesLoaded = 0;
 var targetImage = 0; //what could control this???
