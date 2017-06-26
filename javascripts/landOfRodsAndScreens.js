@@ -361,6 +361,8 @@ function janus(){
 
 }
 
+//Hey, man, this is a Quest designed to spit out 4th wall breaking Wastes
+//Of COURSE cheating is encouraged.
 //denizen will only let you target state 0. 
 //mind powers will let you target any state.
 function blatantlyCheat(t1,t2,t3,t4){
@@ -385,7 +387,6 @@ function blatantlyCheat(t1,t2,t3,t4){
 
 function cheat1(even, odd){
 	if(screens[0].state != targetImage){
-		console.log("blatantly cheating for state: "+screens[0].state)
 		if(screens[0].state % 2 == 0){
 			even[0]();
 		}else{
