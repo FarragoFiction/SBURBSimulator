@@ -12,6 +12,7 @@ function Session(session_id){
 	this.afterLife = new AfterLife();
 	this.queensRing = null; //eventually have white and black ones.
 	this.kingsScepter = null;
+	this.janusReward = false;
 	this.badBreakDeath = false;
 	this.jackGotWeapon = false;
 	this.jackRampage = false;

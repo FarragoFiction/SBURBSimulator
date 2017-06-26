@@ -100,9 +100,17 @@ function checkEasterEgg(callBack,that){  //only yellow yard session uses 'that' 
 	if(getParameterByName("rumpus")  == "fruity"){
 		fruityRumpusAssholeFactory();
 	}
+	
+	if(getParameterByName("lawnring")  == "yellow"){
+		janusReward();
+	}
 
 	processXStuck(); //might not do anything.
 	callBack(that);
+}
+
+function janusReward(){
+	curSessionGlobalVar.janusReward = true;
 }
 
 //omg, so easy, KnightStuck = true, SylphStuck = true, PageStuck = true.
