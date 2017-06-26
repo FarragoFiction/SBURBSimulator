@@ -89,25 +89,30 @@ function button6(){
 
 function knob1(){
 	ti1 ++;
+	if(ti1 > maxState/4) ti1 = 0;
 	recalcTI();
 }
 
 function knob2(){
 	ti2 ++;
+	if(ti2 > maxState/4) ti2 = 0;
 	recalcTI();
 }
 
 function knob3(){
 	ti3 ++;
+	if(ti3 > maxState/4) ti3 = 0;
 	recalcTI();
 }
 
 function knob4(){
 	ti4 ++;
+	if(ti4 > maxState/4) ti4 = 0;
 	recalcTI();
 }
 
 function recalcTI(){
+	//make DAMN sure knobs aren't an invalid number.
 	if(ti1 > maxState/4) ti1 = 0;
 	if(ti2 > maxState/4) ti2 = 0;
 	if(ti3 > maxState/4) ti3 = 0;
