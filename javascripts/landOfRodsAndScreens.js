@@ -416,10 +416,12 @@ function drawK1(glow){
 	var imgDiv = $("#egg1");
 	imgDiv = $("#egg1");
 	console.log(ti1)
-	if(ti1 == 0) replacementImage = "images/LORAS/ControlPanel/knob_W0_p0.png";
-	if(ti1 == 1) replacementImage = "images/LORAS/ControlPanel/knob_W0_p1.png";
-	if(ti1 == 2) replacementImage = "images/LORAS/ControlPanel/knob_W0_p2.png";
-	if(ti1 == 3) replacementImage = "images/LORAS/ControlPanel/knob_W0_p3.png";
+	var num = "A0"
+	if(glow) num = "W0"
+	if(ti2 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num "_p0.png";
+	if(ti2 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p1.png";
+	if(ti2 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p2.png";
+	if(ti2 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p3.png";
 	console.log(replacementImage)
 	imgDiv.attr("src", replacementImage);
 }
@@ -428,10 +430,12 @@ function drawK2(glow){
 	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg2");
 	console.log(ti1)
-	if(ti1 == 0) replacementImage = "images/LORAS/ControlPanel/knob_W1_p0.png";
-	if(ti1 == 1) replacementImage = "images/LORAS/ControlPanel/knob_W1_p1.png";
-	if(ti1 == 2) replacementImage = "images/LORAS/ControlPanel/knob_W1_p2.png";
-	if(ti1 == 3) replacementImage = "images/LORAS/ControlPanel/knob_W1_p3.png";
+	var num = "A1"
+	if(glow) num = "W1"
+	if(ti2 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num "_p0.png";
+	if(ti2 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p1.png";
+	if(ti2 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p2.png";
+	if(ti2 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p3.png";
 	console.log(replacementImage)
 	imgDiv.attr("src", replacementImage);
 }
@@ -440,10 +444,12 @@ function drawK3(glow){
 	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg3");
 	console.log(ti1)
-	if(ti1 == 0) replacementImage = "images/LORAS/ControlPanel/knob_W2_p0.png";
-	if(ti1 == 1) replacementImage = "images/LORAS/ControlPanel/knob_W2_p1.png";
-	if(ti1 == 2) replacementImage = "images/LORAS/ControlPanel/knob_W2_p2.png";
-	if(ti1 == 3) replacementImage = "images/LORAS/ControlPanel/knob_W2_p3.png";
+	var num = "A2"
+	if(glow) num = "W2"
+	if(ti2 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num "_p0.png";
+	if(ti2 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p1.png";
+	if(ti2 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p2.png";
+	if(ti2 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p3.png";
 	console.log(replacementImage)
 	imgDiv.attr("src", replacementImage);
 }
@@ -452,10 +458,12 @@ function drawK4(glow){
 	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg4");
 	console.log(ti1)
-	if(ti1 == 0) replacementImage = "images/LORAS/ControlPanel/knob_W3_p0.png";
-	if(ti1 == 1) replacementImage = "images/LORAS/ControlPanel/knob_W3_p1.png";
-	if(ti1 == 2) replacementImage = "images/LORAS/ControlPanel/knob_W3_p2.png";
-	if(ti1 == 3) replacementImage = "images/LORAS/ControlPanel/knob_W3_p3.png";
+	var num = "A3"
+	if(glow) num = "W3"
+	if(ti2 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num "_p0.png";
+	if(ti2 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p1.png";
+	if(ti2 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p2.png";
+	if(ti2 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p3.png";
 	console.log(replacementImage)
 	imgDiv.attr("src", replacementImage);
 }
@@ -464,10 +472,12 @@ function drawK5(glow){
 	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg5");
 	console.log(ti1)
-	if(ti2 == 0) replacementImage = "images/LORAS/ControlPanel/knob_X0_p0.png";
-	if(ti2 == 1) replacementImage = "images/LORAS/ControlPanel/knob_X0_p1.png";
-	if(ti2 == 2) replacementImage = "images/LORAS/ControlPanel/knob_X0_p2.png";
-	if(ti2 == 3) replacementImage = "images/LORAS/ControlPanel/knob_X0_p3.png";
+	var num = "X0"
+	if(glow) num = "B0"
+	if(ti2 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num "_p0.png";
+	if(ti2 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p1.png";
+	if(ti2 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p2.png";
+	if(ti2 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p3.png";
 	console.log(replacementImage)
 	imgDiv.attr("src", replacementImage);
 }
@@ -476,10 +486,12 @@ function drawK6(glow){
 	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg6");
 	console.log(ti1)
-	if(ti2 == 0) replacementImage = "images/LORAS/ControlPanel/knob_X0_p0.png";
-	if(ti2 == 1) replacementImage = "images/LORAS/ControlPanel/knob_X0_p1.png";
-	if(ti2 == 2) replacementImage = "images/LORAS/ControlPanel/knob_X0_p2.png";
-	if(ti2 == 3) replacementImage = "images/LORAS/ControlPanel/knob_X0_p3.png";
+	var num = "X1"
+	if(glow) num = "B1"
+	if(ti2 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num "_p0.png";
+	if(ti2 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p1.png";
+	if(ti2 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p2.png";
+	if(ti2 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p3.png";
 	console.log(replacementImage)
 	imgDiv.attr("src", replacementImage);
 }
@@ -488,10 +500,12 @@ function drawK7(glow){
 	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg7");
 	console.log(ti1)
-	if(ti2 == 0) replacementImage = "images/LORAS/ControlPanel/knob_X0_p0.png";
-	if(ti2 == 1) replacementImage = "images/LORAS/ControlPanel/knob_X0_p1.png";
-	if(ti2 == 2) replacementImage = "images/LORAS/ControlPanel/knob_X0_p2.png";
-	if(ti2 == 3) replacementImage = "images/LORAS/ControlPanel/knob_X0_p3.png";
+	var num = "X2"
+	if(glow) num = "B2"
+	if(ti2 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num "_p0.png";
+	if(ti2 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p1.png";
+	if(ti2 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p2.png";
+	if(ti2 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p3.png";
 	console.log(replacementImage)
 	imgDiv.attr("src", replacementImage);
 }
@@ -500,10 +514,12 @@ function drawK8(glow){
 	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg8");
 	console.log(ti1)
-	if(ti2 == 0) replacementImage = "images/LORAS/ControlPanel/knob_X0_p0.png";
-	if(ti2 == 1) replacementImage = "images/LORAS/ControlPanel/knob_X0_p1.png";
-	if(ti2 == 2) replacementImage = "images/LORAS/ControlPanel/knob_X0_p2.png";
-	if(ti2 == 3) replacementImage = "images/LORAS/ControlPanel/knob_X0_p3.png";
+	var num = "X3"
+	if(glow) num = "B3"
+	if(ti2 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num "_p0.png";
+	if(ti2 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p1.png";
+	if(ti2 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p2.png";
+	if(ti2 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p3.png";
 	console.log(replacementImage)
 	imgDiv.attr("src", replacementImage);
 }
@@ -512,10 +528,12 @@ function drawK9(glow){
 	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg9");
 	console.log(ti1)
-	if(ti3 == 0) replacementImage = "images/LORAS/ControlPanel/knob_Y0_p0.png";
-	if(ti3 == 1) replacementImage = "images/LORAS/ControlPanel/knob_Y0_p1.png";
-	if(ti3 == 2) replacementImage = "images/LORAS/ControlPanel/knob_Y0_p2.png";
-	if(ti3 == 3) replacementImage = "images/LORAS/ControlPanel/knob_Y0_p3.png";
+	var num = "Y0"
+	if(glow) num = "C0"
+	if(ti3 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num "_p0.png";
+	if(ti3 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p1.png";
+	if(ti3 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p2.png";
+	if(ti3 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p3.png";
 	console.log(replacementImage)
 	imgDiv.attr("src", replacementImage);
 }
@@ -524,10 +542,12 @@ function drawK10(glow){
 	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg10");
 	console.log(ti1)
-	if(ti3 == 0) replacementImage = "images/LORAS/ControlPanel/knob_Y0_p0.png";
-	if(ti3 == 1) replacementImage = "images/LORAS/ControlPanel/knob_Y0_p1.png";
-	if(ti3 == 2) replacementImage = "images/LORAS/ControlPanel/knob_Y0_p2.png";
-	if(ti3 == 3) replacementImage = "images/LORAS/ControlPanel/knob_Y0_p3.png";
+	var num = "Y1"
+	if(glow) num = "C1"
+	if(ti3 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num "_p0.png";
+	if(ti3 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p1.png";
+	if(ti3 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p2.png";
+	if(ti3 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p3.png";
 	console.log(replacementImage)
 	imgDiv.attr("src", replacementImage);
 }
@@ -536,10 +556,12 @@ function drawK11(glow){
 	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg11");
 	console.log(ti1)
-	if(ti3 == 0) replacementImage = "images/LORAS/ControlPanel/knob_Y0_p0.png";
-	if(ti3 == 1) replacementImage = "images/LORAS/ControlPanel/knob_Y0_p1.png";
-	if(ti3 == 2) replacementImage = "images/LORAS/ControlPanel/knob_Y0_p2.png";
-	if(ti3 == 3) replacementImage = "images/LORAS/ControlPanel/knob_Y0_p3.png";
+	var num = "Y2"
+	if(glow) num = "C2"
+	if(ti3 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num "_p0.png";
+	if(ti3 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p1.png";
+	if(ti3 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p2.png";
+	if(ti3 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p3.png";
 	console.log(replacementImage)
 	imgDiv.attr("src", replacementImage);
 }
@@ -548,10 +570,12 @@ function drawK12(glow){
 	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg12");
 	console.log(ti1)
-	if(ti3 == 0) replacementImage = "images/LORAS/ControlPanel/knob_Y0_p0.png";
-	if(ti3 == 1) replacementImage = "images/LORAS/ControlPanel/knob_Y0_p1.png";
-	if(ti3 == 2) replacementImage = "images/LORAS/ControlPanel/knob_Y0_p2.png";
-	if(ti3 == 3) replacementImage = "images/LORAS/ControlPanel/knob_Y0_p3.png";
+	var num = "Y3"
+	if(glow) num = "C3"
+	if(ti3 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num "_p0.png";
+	if(ti3 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p1.png";
+	if(ti3 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p2.png";
+	if(ti3 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p3.png";
 	console.log(replacementImage)
 	imgDiv.attr("src", replacementImage);
 }
@@ -560,10 +584,12 @@ function drawK13(glow){
 	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg13");
 	console.log(ti1)
-	if(ti4 == 0) replacementImage = "images/LORAS/ControlPanel/knob_Z0_p0.png";
-	if(ti4 == 1) replacementImage = "images/LORAS/ControlPanel/knob_Z0_p1.png";
-	if(ti4 == 2) replacementImage = "images/LORAS/ControlPanel/knob_Z0_p2.png";
-	if(ti4 == 3) replacementImage = "images/LORAS/ControlPanel/knob_Z0_p3.png";
+	var num = "Z0"
+	if(glow) num = "D0"
+	if(ti4 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num "_p0.png";
+	if(ti4 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p1.png";
+	if(ti4 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p2.png";
+	if(ti4 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p3.png";
 	console.log(replacementImage)
 	imgDiv.attr("src", replacementImage);
 }
@@ -572,10 +598,12 @@ function drawK14(glow){
 	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg14");
 	console.log(ti1)
-	if(ti4 == 0) replacementImage = "images/LORAS/ControlPanel/knob_Z0_p0.png";
-	if(ti4 == 1) replacementImage = "images/LORAS/ControlPanel/knob_Z0_p1.png";
-	if(ti4 == 2) replacementImage = "images/LORAS/ControlPanel/knob_Z0_p2.png";
-	if(ti4 == 3) replacementImage = "images/LORAS/ControlPanel/knob_Z0_p3.png";
+	var num = "Z1"
+	if(glow) num = "D1"
+	if(ti4 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num "_p0.png";
+	if(ti4 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p1.png";
+	if(ti4 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p2.png";
+	if(ti4 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p3.png";
 	console.log(replacementImage)
 	imgDiv.attr("src", replacementImage);
 }
@@ -584,10 +612,12 @@ function drawK15(glow){
 	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg15");
 	console.log(ti1)
-	if(ti4 == 0) replacementImage = "images/LORAS/ControlPanel/knob_Z0_p0.png";
-	if(ti4 == 1) replacementImage = "images/LORAS/ControlPanel/knob_Z0_p1.png";
-	if(ti4 == 2) replacementImage = "images/LORAS/ControlPanel/knob_Z0_p2.png";
-	if(ti4 == 3) replacementImage = "images/LORAS/ControlPanel/knob_Z0_p3.png";
+	var num = "Z2"
+	if(glow) num = "D2"
+	if(ti4 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num "_p0.png";
+	if(ti4 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p1.png";
+	if(ti4 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p2.png";
+	if(ti4 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p3.png";
 	console.log(replacementImage)
 	imgDiv.attr("src", replacementImage);
 }
@@ -597,10 +627,12 @@ function drawK16(){
 	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg16");
 	console.log(ti1)
-	if(ti4 == 0) replacementImage = "images/LORAS/ControlPanel/knob_D0_p0.png";
-	if(ti4 == 1) replacementImage = "images/LORAS/ControlPanel/knob_D0_p1.png";
-	if(ti4 == 2) replacementImage = "images/LORAS/ControlPanel/knob_D0_p2.png";
-	if(ti4 == 3) replacementImage = "images/LORAS/ControlPanel/knob_D0_p3.png";
+	var num = "Z3"
+	if(glow) num = "D3"
+	if(ti4 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num "_p0.png";
+	if(ti4 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p1.png";
+	if(ti4 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p2.png";
+	if(ti4 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num "_p3.png";
 	console.log(replacementImage)
 	imgDiv.attr("src", replacementImage);
 }
