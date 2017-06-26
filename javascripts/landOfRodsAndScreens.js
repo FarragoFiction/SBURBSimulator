@@ -58,7 +58,11 @@ function initializeX(){
 
 //k = 0
 function button1(){
+	$("#button1").attr("src", "images/LORAS/ControlPanel/button_1_p011.png");
 	compute(0,ia);
+	setTimeout(function(){
+		$("#button1").attr("src", "images/LORAS/ControlPanel/button_1_p01.png");
+	},200);
 }
 
 //k = 0
