@@ -63,37 +63,52 @@ function button6(){
 	compute(2,fhtagn);
 }
 
-function ia(k){
-/*
-N'[k] = n[k]/2
 
-and punish if n[k] was not even.
-*/
+//this should happen if even. look at me, being so generous with my hints
+//(the joke is that this is fucking giberish that took me an entire day to understand enough to program)
+//(and I STILL do not understand enough to explain to a human. computers are much easier to explain things to)
+function ia(k,nk){
+	if(nk%2 != 1){
+		//punishment. (maybe show on screen in some way)
+		x[k][2] = getRandomInt(0, maxState); //NOW you fucked up!  (i mean, probably, i am still fuzzy on what x even does.)
+	}
+	return nk/2;
 }
 
-function fhtagn(k){
-		/*
-then N'[k] = n[k]*3 +1
-*/
+//this should happen if odd.
+function fhtagn(k,nk){
+	return nk*3 + 1;
 }
 
-function calculateN(){
+function calculateN(k,yk){
+	var q = maxState;
+	var ret = 1;
 	//N[k] = 1 + sum(  y[k][i]*(q**i) for i in range(3))
+	for(var i = 0; i<yk.length; i++){
+		ret += yk[i]*(q**i)  ///WHY??? DM, you are a crazy, crazy mathematician.
+	}
+	return ret;
 }
 
+
+//https://en.wikipedia.org/wiki/Collatz_conjecture
 function compute(k, formula){
 	var q = maxState;
 	var yk = new Array(3);
 	for(var i = 0; i<yk.length; i++){
 		yk[i] = (x[k][i] - targetImage + q) % q
 	}
+	var nk = calculateN(k, yk);
+	formula(k,nk);
+	/*
+	Y'[k][i] = ( floor((n'[k]-1)/(q**i) ) %q
+	X'[k][i] = (y`[k][i]+tgt)%q
 
-	var n = calculateN(k, yk);
-		/*
+	Then update the tiles by looking up which x[k][i] they map to and picking the fragment of that x[k][i] picture they cover.
 
-	N[k] = 1 + sum(  y[k][i]*(q**i) for i in range(3))
 	*/
-	formula();
+	//then, finally, get all screens who match k, and set their values according to x[k][i] or whatever.
+
 }
 
 function loadAllImages(){
