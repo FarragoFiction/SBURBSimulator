@@ -406,7 +406,7 @@ function blatantlyCheat(t1,t2,t3,t4){
 		odd =  [button2, button4, button6]
 		even =  [button1, button3, button5]
 	}
-
+	console.log(["cheating", even, odd])
 	setTimeout(function(){
 		cheat1(even, odd);
 	},200);
@@ -421,7 +421,7 @@ function denizenCheat(){
 }
 
 function cheat1(even, odd){
-	if(screens[0].state != targetImage){
+	if(screens[0].state != targetImage || screens[1].state != targetImage || screens[2].state != targetImage){
 		if(screens[0].state % 2 == 0){
 			even[0]();
 		}else{
@@ -434,7 +434,7 @@ function cheat1(even, odd){
 }
 
 function cheat2(even, odd){
-	if(screens[3].state != targetImage){
+	if(screens[3].state != targetImage || screens[4].state != targetImage || screens[5].state != targetImage){
 		if(screens[3].state %2 == 0){
 			even[1]();
 		}else{
@@ -447,7 +447,7 @@ function cheat2(even, odd){
 }
 
 function cheat3(even, odd){
-	if(screens[6].state != targetImage){
+	if(screens[6].state != targetImage || screens[7].state != targetImage || screens[8].state != targetImage){
 		if(screens[6].state % 2 == 0){
 			even[2]();
 		}else{
