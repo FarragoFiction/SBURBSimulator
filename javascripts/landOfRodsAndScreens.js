@@ -361,6 +361,27 @@ function janus(){
 
 }
 
+//denizen will only let you target state 0. 
+//mind powers will let you target any state.
+function blatantlyCheat(target){
+	//if target is even, good, if target is odd, flip.
+	/*
+	if screen 0 state is nottarget:
+		if even, compute(0, fhtagh);
+		if odd, compute(0,ia)
+		
+	if screen 3 state is nottarget:
+		if even, compute(1, fhtagh);
+		if odd, compute(1,ia)
+		
+	if screen 6 state is nottarget:
+		if even, compute(2, fhtagh);
+		if odd, compute(2,ia)
+		
+	except not compute, instead, button press. (so animation)
+	*/
+}
+
 function checkScreens(){
 	console.log("Don't forget to do things for each 'win' state.")
 	var state = screens[0].state;
