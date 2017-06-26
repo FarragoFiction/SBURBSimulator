@@ -37,10 +37,16 @@ window.onload = function() {
 //and not dick around looking for easter eggs!!!
 function doTheMindyThing(){
 	timeTillReckoning = 1000;
-	$("#slider").html('Look for Image: <Br> 0 <input id="targetImage" type="range" min="0" max="'+ maxState + '" value="10"> '+ maxState + '');
+	$("#slider").html('Look for Image: <span id="imageValue">10</span> <Br> 0 <input id="targetImage" type="range" min="0" max="'+ maxState + '" value="10"> '+ maxState + '<br><button id="concentrate">Concentrate</button>');
 	$("#mindPowers").show();
+	$("#targetImage").change(function(){
+		$("#imageValue").html($("#targetImage").val());
+	});
+	
+	$("#concentrate").click(function(){
+		concentrate($("#targetImage").val());
+	});
 }
-
 
 function initializeX(){
 	for(var i = 0; i< 3; i++){
@@ -361,6 +367,10 @@ function janus(){
 	  dataType: "text"
 	});
 
+}
+
+function concentrate(target){
+	alert("todo, convert target: " + target+" to t1, t2, t3, and t4, and then procede like denizen.")
 }
 
 //Hey, man, this is a Quest designed to spit out 4th wall breaking Wastes
