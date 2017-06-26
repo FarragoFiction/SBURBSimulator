@@ -1,5 +1,5 @@
 var screens = [];
-var maxState = 53;
+var maxState = 59;
 var imagesWaiting = 0;
 var imagesLoaded = 0;
 var targetImage = 0; //what could control this???
@@ -93,6 +93,7 @@ function calculateN(k,yk){
 
 //https://en.wikipedia.org/wiki/Collatz_conjecture
 function compute(k, formula){
+	console.log("computing")
 	var q = maxState;
 	var yk = new Array(3);
 	for(var i = 0; i<yk.length; i++){
@@ -108,12 +109,13 @@ function compute(k, formula){
 	}
 	x[k] = newxk;
 	//then, finally, get all screens who match k, and set their values according to x[k][i] or whatever.
+	updateScreens(k);
 }
 
 function updateScreens(k){
 	for(var i = 0; i<screens.length; i++){
-		if(screens.k == k){
-			screens[i].state = x[k][screens[i].i];
+		if(screens[i].k == k){
+			screens[i].changeState(x[k][screens[i].i]);
 		}
 	}
 }
@@ -273,11 +275,11 @@ function Screen(canvas,maxState, uX, uY, screenNum, i, k){
 	}
 
 	this.display = function(){
-		console.log("display: " + this.state);
+		//console.log("display: " + this.state);
 		this.clearSelf();
 	  var ctx = canvas.getContext('2d');
 		var image = distactions[this.state];
-		console.log(image);
+		//console.log(image);
 		ctx.drawImage(image, this.upperLeftX, this.upperLeftY, this.width, this.height, 0, 0, this.width, this.height);
 		this.drawState();
 	}
