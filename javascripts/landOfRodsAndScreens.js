@@ -21,6 +21,7 @@ var distactions = new Array(maxState); //all images, screen responsible for disp
 //get to the denizen to have the puzzle just solved for you. (for a price)
 
 window.onload = function() {
+	setTimeout(function() {window.scrollTo(0, 0);},1) //because chrome is a special snowlake (refrance)
 	Math.seed = 3;
 	initializeX();
 	makeScreens(256);
