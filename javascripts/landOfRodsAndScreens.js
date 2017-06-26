@@ -371,6 +371,13 @@ function janus(){
 
 function concentrate(target){
 	alert("todo, convert target: " + target+" to t1, t2, t3, and t4, and then procede like denizen.")
+	//inverse targetImage = Math.floor(ti1 + (ti2 <<2) + (ti3<<4) + (ti4<<6)); //uses 16 digits to make a 256 number.
+	ti1 = 3&(target);
+	ti2 = 3&(target >> 2);
+	ti3 = 3&(target >> 4);
+	ti4 = 3&(target >> 6);
+	recalcTI();
+	
 }
 
 //Hey, man, this is a Quest designed to spit out 4th wall breaking Wastes
