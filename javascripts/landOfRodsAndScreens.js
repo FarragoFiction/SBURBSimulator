@@ -301,21 +301,21 @@ function makeScreens(number){
 }
 
 function wireUpScreen(canvas, screen){
-	if(screen.screenNum == 193)		egg1(canvas, screen,1);
-	if(screen.screenNum == 196)		egg1(canvas, screen,2);
-	if(screen.screenNum == 199)		egg1(canvas, screen,3);
-	if(screen.screenNum == 202)		egg1(canvas, screen,4);
-	if(screen.screenNum == 205)		egg1(canvas, screen,5);
-	if(screen.screenNum == 146)		egg1(canvas, screen,6);
-	if(screen.screenNum == 149)		egg1(canvas, screen,7);
-	if(screen.screenNum == 152)		egg1(canvas, screen,8);
-	if(screen.screenNum == 155)		egg1(canvas, screen,9);
-	if(screen.screenNum == 158)		egg1(canvas, screen,10);
-	if(screen.screenNum == 127)		egg1(canvas, screen,11);
-	if(screen.screenNum == 125)		egg1(canvas, screen,12);
-	if(screen.screenNum == 123)		egg1(canvas, screen,13);
-	if(screen.screenNum == 121)		egg1(canvas, screen,14);
-	if(screen.screenNum == 119)		egg1(canvas, screen,15);
+	if(screen.screenNum == 193)		egg1(canvas, screen,2);
+	if(screen.screenNum == 196)		egg1(canvas, screen,5);
+	if(screen.screenNum == 199)		egg1(canvas, screen,6);
+	if(screen.screenNum == 202)		egg1(canvas, screen,9);
+	if(screen.screenNum == 205)		egg1(canvas, screen,10);
+	if(screen.screenNum == 146)		egg1(canvas, screen,13);
+	if(screen.screenNum == 149)		egg1(canvas, screen,15);
+	if(screen.screenNum == 152)		egg1(canvas, screen,12);
+	if(screen.screenNum == 155)		egg1(canvas, screen,11);
+	if(screen.screenNum == 158)		egg1(canvas, screen,8);
+	if(screen.screenNum == 127)		egg1(canvas, screen,7);
+	if(screen.screenNum == 125)		egg1(canvas, screen,4);
+	if(screen.screenNum == 123)		egg1(canvas, screen,3);
+	if(screen.screenNum == 121)		egg1(canvas, screen,1);
+	if(screen.screenNum == 119)		egg1(canvas, screen,14);
 }
 
 //TODO make other 14 eggs.
@@ -328,12 +328,12 @@ function egg1(canvas, screen,num){
 //janus is a bad listener.
 function talkJanus(){
 	if(janusNum == 0) console.log("Janus1: It's about time you found me. Harumph.  Talk back by typing: 'talkJanus('thing you want to say in quotes')'.  Now, do you want the Solution?");
-	if(janusNum == 1) console.log("Janus1: Of course you do. Kids these days have no respect for artistry. Do you know how HARD it was to come up with that puzzle? Don't answer that. If you want the Solution, then you will have to give me a Solution of your own. I'm sure you noticed how the control panel lit up.  That's what got my attention.  I can't figure out how to get all the control panel symbols lit up.  Do this for me, and I will show you how to beat the puzzle.");
+	if(janusNum == 1) console.log("Janus1: Of course you do. Kids these days have no respect for artistry. Do you know how HARD it was to come up with that puzzle? Don't answer that. If you want the Solution, then you will have to give me a Solution of your own. I'm sure you noticed how the control panel changed.  That's what got my attention.  I can't figure out how to get all the control panel symbols lit up.  Do this for me, and I will show you how to beat the puzzle.");
 	if(janusNum > 1 && !eggsSolution) console.log("Janus1: Consarn it! Would you leave me alone if you haven't got my Solution yet?")
 	if(janusNum > 1 && eggsSolution){
 		console.log("Janus1: Well hot damn! You did it! Gives me hope for the next generation, is what it does. ")
 		console.log("Janus2:  If you had even attempted to think about the puzzle yourself, dear brother, you would have found the solution to be obvious. ")
-		console.log("Janus2:  And now it falls to me to honor the promises you have kept, in your haste to prove your ignorance. ")
+		console.log("Janus2:  And now it falls to me to honor the promises you have made, in your haste to prove your ignorance. ")
 		console.log("Janus1: Well ain't you a breath of fresh air! I haven't heard you talk in a DOG's age!")
 		console.log("Janus2:  *sigh* I will give you your Solution, Observer, that you may marvel in the mind that TRULY designed this Challenge. ")
 		//TODO have puzzle auto-solve itself.
@@ -370,15 +370,15 @@ function checkScreens(){
 //rest of eggs cause glow on panel.  get all eggs....secret???
 function processEgg(num){
 	console.log(num)
-	drawKnobs();
 	if(janusNum == 0) janus();
 	eggs[num] = "found it!";
-	console.log("TODO: change src for appropriate image.")
+	drawKnobs();
 	for(var i = 1; i<=15; i++){
 		if(eggs[i] != "found it!")  return;
 	}
 	console.log("ANNOUNCMENT: ALL EGGS FOUND!")
 	eggsSolution = true;
+	
 }
 
 
