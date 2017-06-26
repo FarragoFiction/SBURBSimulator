@@ -381,9 +381,8 @@ function concentrate(target){
 	recalcTI();
 	blatantlyCheat(ti1,ti2,ti3,ti4);
 	setTimeout(function(){
-		concentrate();
+		concentrate(target);
 	},1000);
-}
 	
 }
 
