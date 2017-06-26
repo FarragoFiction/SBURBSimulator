@@ -28,14 +28,14 @@ window.onload = function() {
 	setTimeout(function(){
 		$("#spiel").hide();
 		$("#mindButton").show();
-	}, 50000);
+	}, 100000);
 }
 
 //A TIME LIMIT!? That's BULLSHIT!
 //it's...ALMOST like you're expected to use your phenomenal cosmic powers to BEAT THE GAME
 //and not dick around looking for easter eggs!!!
 function doTheMindyThing(){
-	timeTillReckoning = 100;
+	timeTillReckoning = 1000;
 	$("#slider").html('Look for Image: <Br> 0 <input id="targetImage" type="range" min="0" max="'+ maxState + '" value="10"> '+ maxState + '');
 	$("#mindPowers").show();
 }
@@ -211,6 +211,12 @@ function compute(k, formula){
 	//then, finally, get all screens who match k, and set their values according to x[k][i] or whatever.
 	updateScreens(k);
 	checkScreens();
+}
+
+function toggleGuides(){
+	for(var i = 0; i<screens.length; i++){
+		screens[i].toggleGuides();
+	}
 }
 
 function updateScreens(k){
@@ -633,6 +639,7 @@ function Screen(canvas,maxState, uX, uY, screenNum, i, k){
 	this.state = maxState;
 	this.screenNum = screenNum;
 	this.upperLeftX = uX;
+	this.drawGuides = true;
 	this.upperLeftY = uY;
 	this.height = 45; //<-- don't fucking change this.
 	this.width = 45;
@@ -645,6 +652,12 @@ function Screen(canvas,maxState, uX, uY, screenNum, i, k){
 		//this.state = 0;
 		this.display();
 	}
+	
+	this.toggleGuides = function(){
+		this.drawGuides = !this.drawGuides;
+		this.display();
+	}
+	
 	this.changeState = function(state){
 		//console.log(state);
 		if(state < 0){
@@ -662,6 +675,7 @@ function Screen(canvas,maxState, uX, uY, screenNum, i, k){
 	}
 
 	this.drawState = function(){
+		if(!this.drawGuides) return;
 		var ctx = canvas.getContext('2d');
 		var x = this.width/2;
 		//var x = 0;
@@ -670,6 +684,7 @@ function Screen(canvas,maxState, uX, uY, screenNum, i, k){
 		ctx.fillText(this.state,x,y);
 		x += 1;
 		y += 1;
+		ctx.font = "24px Times New Roman"
 		ctx.fillStyle = "#ffffff";
 		ctx.fillText(this.state,x,y);
 		//ctx.fillText(this.state + "<"+this.i+"," +this.k+">",x,y);
