@@ -16,6 +16,7 @@
 
 .cpButton{
 	width: 100%;
+	vertical-align: bottom;
 }
 
 #controlPanel{
