@@ -204,32 +204,36 @@ function makeScreens(number){
 }
 
 function wireUpScreen(canvas, screen){
-	if(screen.screenNum == 193)		egg1(canvas, screen);
-	if(screen.screenNum == 196)		egg1(canvas, screen);
-	if(screen.screenNum == 199)		egg1(canvas, screen);
-	if(screen.screenNum == 202)		egg1(canvas, screen);
-	if(screen.screenNum == 205)		egg1(canvas, screen);
-	if(screen.screenNum == 146)		egg1(canvas, screen);
-	if(screen.screenNum == 149)		egg1(canvas, screen);
-	if(screen.screenNum == 152)		egg1(canvas, screen);
-	if(screen.screenNum == 155)		egg1(canvas, screen);
-	if(screen.screenNum == 158)		egg1(canvas, screen);
-	if(screen.screenNum == 127)		egg1(canvas, screen);
-	if(screen.screenNum == 125)		egg1(canvas, screen);
-	if(screen.screenNum == 123)		egg1(canvas, screen);
-	if(screen.screenNum == 121)		egg1(canvas, screen);
-	if(screen.screenNum == 191)		egg1(canvas, screen);
+	if(screen.screenNum == 193)		egg1(canvas, screen,1);
+	if(screen.screenNum == 196)		egg1(canvas, screen,2);
+	if(screen.screenNum == 199)		egg1(canvas, screen,3);
+	if(screen.screenNum == 202)		egg1(canvas, screen,4);
+	if(screen.screenNum == 205)		egg1(canvas, screen,5);
+	if(screen.screenNum == 146)		egg1(canvas, screen,6);
+	if(screen.screenNum == 149)		egg1(canvas, screen,7);
+	if(screen.screenNum == 152)		egg1(canvas, screen,8);
+	if(screen.screenNum == 155)		egg1(canvas, screen,9);
+	if(screen.screenNum == 158)		egg1(canvas, screen,10);
+	if(screen.screenNum == 127)		egg1(canvas, screen,11);
+	if(screen.screenNum == 125)		egg1(canvas, screen,12);
+	if(screen.screenNum == 123)		egg1(canvas, screen,13);
+	if(screen.screenNum == 121)		egg1(canvas, screen,14);
+	if(screen.screenNum == 119)		egg1(canvas, screen,15);
 
 
 }
 
 //TODO make other 14 eggs.
-function egg1(canvas, screen){
+function egg1(canvas, screen,num){
 	canvas.click(function(){
-		//when first egg is clicked, unlock JR. 
-		//each egg displays it's glowing gylph on control panel
-		screen.randomizeState();
+		processEgg(num);
 	})
+}
+
+//on first egg, ALSO unlock jr.
+//rest of eggs cause glow on panel.  get all eggs....secret???
+function processEgg(num){
+	console.log("TODO: Process egg " + num);
 }
 
 function loadImages(lastImage){
