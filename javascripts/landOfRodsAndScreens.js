@@ -12,6 +12,7 @@ var janusNum = 0;
 var eggsSolution = false;
 var eggs = {};
 var timeTillReckoning = 99999999999999999999;  //take as long as you want...for now.
+reachedTarget = false;
 
 var distactions = new Array(maxState); //all images, screen responsible for displaying it's chunk
 //figure out a number of turns until the reckoning. make it more than you'd reasonably need to solve it
@@ -28,7 +29,7 @@ window.onload = function() {
 	setTimeout(function(){
 		$("#spiel").hide();
 		$("#mindButton").show();
-	}, 100000);
+	}, 1000);
 }
 
 //A TIME LIMIT!? That's BULLSHIT!
@@ -343,6 +344,7 @@ function talkJanus(){
 		console.log("Janus2:  And now it falls to me to honor the promises you have made, in your haste to prove your ignorance. ")
 		console.log("Janus1: Well ain't you a breath of fresh air! I haven't heard you talk in a DOG's age!")
 		console.log("Janus2:  *sigh* I will give you your Solution, Observer, that you may marvel in the mind that TRULY designed this Challenge. ")
+		denizenCheat();
 		//TODO have puzzle auto-solve itself.
 	} 
 	janusNum ++;
@@ -366,6 +368,7 @@ function janus(){
 //denizen will only let you target state 0. 
 //mind powers will let you target any state.
 function blatantlyCheat(t1,t2,t3,t4){
+	console.log("winning via meta shenanigans")
 	ti1 = t1;
 	ti2 = t2;
 	ti3 = t3;
@@ -382,7 +385,14 @@ function blatantlyCheat(t1,t2,t3,t4){
 	setTimeout(function(){
 		cheat1(even, odd);
 	},200);
+}
 
+function denizenCheat(){
+	if(reachedTarget || !eggsSolution) return;
+	blatantlyCheat(0,0,0,0);
+	setTimeout(function(){
+		denizenCheat();
+	},1000);
 }
 
 function cheat1(even, odd){
@@ -427,7 +437,7 @@ function checkScreens(){
 	for(var i = 0; i<screens.length; i++){
 		if(screens[i].state != state) return;
 	}
-	
+	if(state == targetImage) reachedTarget = true;
 	alert("!!! you unlocked a picture! I need to do something here.")
 }
 
