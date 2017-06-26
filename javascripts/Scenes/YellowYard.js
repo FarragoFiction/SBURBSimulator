@@ -231,14 +231,12 @@ BTW: please note that Hussie, as the Waste of Space, uses his YellowYard and a F
 		var chat = "";
 		var bullshit = 90+Math.random()*10
 		chat += "AB: "  +"Fuck, JR, there is a  " + bullshit + " chance that an Observer got a hold of your Yellow Yard." + "\n";
-		chat += "JR: Oh shit. \n";
 		chat += "JR: Do they even know how to USE that thing correctly? Fuck. I mean, yeah, it'll suck if they meddle with sessions that are better left alone. \n";
 		chat += "JR: But do they even realize how much they cheapen MY power by over using that gimmicky stick? \n";
 		chat += "AB: It seems you meant 'schtick'. \n";
-		chat += "JR: I know what I said! Fuck.  \n";
+		chat += "JR: I know what I said! Fuck. I bet half the Yards won't even WORK. Well I am NOT fucking debugging that shit. \n";
 		chat += "AB: Not to mention the near certainty that even future JR will be too lazy to write custom dialogue for it past this pesterlog. \n";
 		chat += "JR: Yeah, I guess it'll be kind of funny when a player from a succesful timeline has to pretend everybody died.  Like, laugh so you don't cry funny... :( :( :(  \n";
-		chat += "JR: ...  \n";
 		chat += "JR: Well.  No use putting it off.  Let's go find out what the Observer wants.  \n";
 		return chat;
 	}
