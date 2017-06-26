@@ -45,6 +45,7 @@ function doTheMindyThing(){
 	});
 
 	$("#concentrate").click(function(){
+		$("#concentrate").prop('disabled', true)
 		concentrate($("#targetImage").val());
 	});
 }
@@ -181,6 +182,7 @@ function fhtagn(k,nk){
 
 function checkReckoning(){
 	if(timeTillReckoning == 0){
+		timeTillReckoning = -1 //don't keep doing this.
 		alert("The Reckoning is over. You have failed to pass your Land Quest in time to help your team mates. But you can always keep obsessing over this Puzzle, for as long as you live. It's not like you can ever leave the Medium without a frog, after all.")
 	}
 }
@@ -461,7 +463,10 @@ function checkScreens(){
 	for(var i = 0; i<screens.length; i++){
 		if(screens[i].state != state) return;
 	}
-	if(state == targetImage) reachedTarget = true;
+	if(state == targetImage){
+		reachedTarget = true;
+		$("#concentrate").prop('disabled', false)
+	}
 	timeTillReckoning += -1;
 	alert("!!! you unlocked a picture! I need to do something here.")
 	quip(state);
@@ -469,7 +474,7 @@ function checkScreens(){
 
 function quip(state){
 	var ret = ""
-	var prize = ":/ Looks like you didn't do it before the Reckoning though. Thems the breaks. Poor Janus died in vain. What were you even gonna DO with all that grist?";
+	var prize = ":/ Looks like you didn't do it before the Reckoning, though. Thems the breaks. Poor Janus died in vain. What were you even gonna DO with all that grist?";
 	if(timeTillReckoning > 0) prize = "And you managed to it BEFORE the time limit! Look at you, being all 'adult' and shit.  When I beat the 'real' version, I got a YellowYard, so...uh...don't fuck this up, okay: <a href = 'index2.html?lawnring=yellow'>UseYellowYardResponsibly</a>"
 	if(state == 0) ret = "Oh! You win! " + prize;
 	if(state == 47) ret = "Oh yeah! That was the image KR made as one of the possible backgrounds for the AB/JR newsposts. Kinda cheruby-huh?"
