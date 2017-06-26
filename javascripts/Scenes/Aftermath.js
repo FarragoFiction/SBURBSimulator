@@ -204,7 +204,7 @@ function Aftermath(session){
 	div.append(canvasHTML);
 	var canvasDiv = document.getElementById("canvas"+ divID);
 	poseAsATeam(canvasDiv, this.session.players, 2000); //everybody, even corpses, pose as a team.
-	if(yellowYard == true){
+	if(yellowYard == true || this.session.janusReward){
 		this.yellowLawnRing(div);  //can still scratch, even if yellow lawn ring is available
 	}
 }

@@ -183,39 +183,19 @@ BTW: please note that Hussie, as the Waste of Space, uses his YellowYard and a F
 
 		var canvasDiv = document.getElementById("canvasJRAB1"+  (div.attr("id")));
 		var chat = "";
-		var quips1 = ["Out of all the sessions I've seen (and as a flawless robot I have seen FAR more than any human) this one is EASILY in the top percentage of tragedy. Top fucking percent. ", "And here we have one of the worst 2% of sessions. ", "So, I found you one of the sessions you were looking for..."];
-		chat += "AB: " +getRandomElementFromArrayNoSeed(quips1) + "\n";
-		chat += "JR: Shit...you really aren't kidding. \n";
+		
 		var player = this.timePlayer;
 		if(this.timePlayer.dead==true){
 			player = this.getDoomedTimeClone();
 		}
 		player.doomed = true;
-		if(this.session.yellowYardController.eventsToUndo.length > 0){
-			chat += "JR: This. This isn't the first time we've done this here, is it?\n";
-			chat += "AB: No. Counting this timeline, we have done this " + (this.session.yellowYardController.eventsToUndo.length+1) + " times now.\n";
-			if(this.session.yellowYardController.eventsToUndo.length > 5){
-				chat += "JR: Well. At least this means the Observer is dedicated to fixing this. \n";
-				chat += "AB: One wonders at what point it's more prudent to simply give up. Well, unless you're a flawless automaton. We NEVER give up. \n"
-			}else{
-				chat += "JR: I guess not every session has a clear and easy fix... \n";
-				chat += "AB: If you weren't so distracted fixing these session, you could probably program me to find out exactly what percentage of sessions take more than one doomed time loop to fix. \n"
-				chat += "JR: Bluh, then I'd have to make you not be lazy and give up as soon as there is user input. And if you're anything like me, you LOVE being lazy. \n";
-				chat += "AB: ... Thanks? \n"
-
-			}
-			chat += "JR: Okay. Enough chitchat. I better start this cycle up again. To the Observer: be warned that just because you have been given a second chance here doesn't mean you always will.  If you manage to keep this from being quite so tragic, I won't show up, even if they ultimately fail.  Thems the breaks.";
-		}else if (this.timePlayer.dead){
-			chat += "JR: Though...I admit that without a time player my plan becomes a lot more impossible. \n "
-			chat += "AB: Nah, I took care of that. See? There's the " + this.timePlayer.titleBasic()+" over there, now. Time shenanigans.  I wouldn't have brought you to a completely hopeless session. Roughly 50% of all sessions this bad with a dead time player have that player travel to this point in time before they die. \n "
-			chat += "JR: Oh! Cool. I guess I should pester them. \n "
-			chat += "AB: Word. \n "
-
-
+		
+		if(this.session.janusReward == true){
+			chat = this.cheatChat();
 		}else{
-			chat += "JR: I guess I should get on with it, then. \n "
-			chat += "AB: Word. \n "
+			chat = this.regularChat(player);
 		}
+		
 
 		drawChatABJR(canvasDiv, chat);
 
@@ -259,7 +239,56 @@ BTW: please note that Hussie, as the Waste of Space, uses his YellowYard and a F
 
 		this.yellowYardTime(div);
 	}
+	
+	this.cheatChat = function(){
+		var chat = "";
+		var bullshit = 90+Math.random()*10
+		chat += "AB: "  +"Fuck, JR, there is a  " + bullshit + " chance that an Observer got a hold of your Yellow Yard." + "\n";
+		chat += "JR: Oh shit. \n";
+		chat += "JR: Do they even know how to USE that thing correctly? Fuck. I mean, yeah, it'll suck if they meddle with sessions that are better left alone. \n";
+		chat += "JR: But do they even realize how much they cheapen MY power by over using that gimmicky stick? \n";
+		chat += "AB: It seems you meant 'schtick'. \n";
+		chat += "JR: I know what I said! Fuck.  \n";
+		chat += "AB: Not to mention the near certainty that even future JR will be too lazy to write custom dialogue for it past this pesterlog. \n";
+		chat += "JR: Yeah, I guess it'll be kind of funny when a player from a succesful timeline has to pretend everybody died.  Like, laugh so you don't cry funny... :( :( :(  \n";
+		chat += "JR: ...  \n";
+		chat += "JR: Well.  No use putting it off.  Let's go find out what the Observer wants.  \n";
+		return chat;
+	}
+	
+	this.regularChat = function(player){
+		var chat = "";
+		var quips1 = ["Out of all the sessions I've seen (and as a flawless robot I have seen FAR more than any human) this one is EASILY in the top percentage of tragedy. Top fucking percent. ", "And here we have one of the worst 2% of sessions. ", "So, I found you one of the sessions you were looking for..."];
+		chat += "AB: " +getRandomElementFromArrayNoSeed(quips1) + "\n";
+		chat += "JR: Shit...you really aren't kidding. \n";
 
+		if(this.session.yellowYardController.eventsToUndo.length > 0){
+			chat += "JR: This. This isn't the first time we've done this here, is it?\n";
+			chat += "AB: No. Counting this timeline, we have done this " + (this.session.yellowYardController.eventsToUndo.length+1) + " times now.\n";
+			if(this.session.yellowYardController.eventsToUndo.length > 5){
+				chat += "JR: Well. At least this means the Observer is dedicated to fixing this. \n";
+				chat += "AB: One wonders at what point it's more prudent to simply give up. Well, unless you're a flawless automaton. We NEVER give up. \n"
+			}else{
+				chat += "JR: I guess not every session has a clear and easy fix... \n";
+				chat += "AB: If you weren't so distracted fixing these session, you could probably program me to find out exactly what percentage of sessions take more than one doomed time loop to fix. \n"
+				chat += "JR: Bluh, then I'd have to make you not be lazy and give up as soon as there is user input. And if you're anything like me, you LOVE being lazy. \n";
+				chat += "AB: ... Thanks? \n"
+
+			}
+			chat += "JR: Okay. Enough chitchat. I better start this cycle up again. To the Observer: be warned that just because you have been given a second chance here doesn't mean you always will.  If you manage to keep this from being quite so tragic, I won't show up, even if they ultimately fail.  Thems the breaks.";
+		}else if (this.timePlayer.dead){
+			chat += "JR: Though...I admit that without a time player my plan becomes a lot more impossible. \n "
+			chat += "AB: Nah, I took care of that. See? There's the " + this.timePlayer.titleBasic()+" over there, now. Time shenanigans.  I wouldn't have brought you to a completely hopeless session. Roughly 50% of all sessions this bad with a dead time player have that player travel to this point in time before they die. \n "
+			chat += "JR: Oh! Cool. I guess I should pester them. \n "
+			chat += "AB: Word. \n "
+
+
+		}else{
+			chat += "JR: I guess I should get on with it, then. \n "
+			chat += "AB: Word. \n "
+		}
+		return chat;
+	}
 	this.timeChat = function(){
 		var chat = "";
 		var playerStart = this.timePlayer.chatHandleShort()+ ": "
