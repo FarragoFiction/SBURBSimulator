@@ -160,19 +160,6 @@ BTW: please note that Hussie, as the Waste of Space, uses his YellowYard and a F
 	And the ones that DON'T will instead be using it more *MY* style, which is to say, see what different choices and
 	decisions play out with the same characters)
 
-
-	Huh.  I just realized. If we're going by ReplayValue AU rules, if I'm a Waste of Mind...if AB were a player...
-	she'd be a Grace of Mind, wouldn't they? Passively enabling the same shit the Waste does actively.  AB enables me pretty hard,
-	she's even the one who comes to get me when it's time to do my thing.
-
-	Almost makes me want to write up a shitty backstory.  What if AB isn't a shitty robot of ME, but like a tragic dead twin sister who was a Grace of Mind or some shit.
-	That'd turn my 'Waste of Mind JR inside SBURB's' obsession with her a little...troubling, wouldn't it?   Or maybe AB is a player despite being a robot. Aradia was, after all.
-
-	Hrrm...I'd  have to change ABs outfit if I want to make her a Grace.  But I love the symmetry of our poses on the newsposts.  I'd want to find a Grace in the same pose.
-
-	If you're this deep in my bullshit easter eggs, Observer, you know how to contact me.  Feel free to tell me your AB headcanon.
-
-
 	*/
 	this.renderContent = function(div){
 		this.session.yellowYard = true;
@@ -191,7 +178,7 @@ BTW: please note that Hussie, as the Waste of Space, uses his YellowYard and a F
 		player.doomed = true;
 		
 		if(this.session.janusReward == true){
-			chat = this.cheatChat();
+			chat = this.cheatChat(player);
 		}else{
 			chat = this.regularChat(player);
 		}
@@ -240,7 +227,7 @@ BTW: please note that Hussie, as the Waste of Space, uses his YellowYard and a F
 		this.yellowYardTime(div);
 	}
 	
-	this.cheatChat = function(){
+	this.cheatChat = function(player){
 		var chat = "";
 		var bullshit = 90+Math.random()*10
 		chat += "AB: "  +"Fuck, JR, there is a  " + bullshit + " chance that an Observer got a hold of your Yellow Yard." + "\n";

@@ -45,6 +45,7 @@ function Aftermath(session){
 		}
 		if(dead.length >= living.length && timePlayer || this.session.janusReward){
 			//console.log("Time Player: " + timePlayer);
+			timePlayer = findAspectPlayer(this.session.players, "Time") //NEED to have a time player here.
 			var s = new YellowYard(this.session);
 			s.timePlayer = timePlayer;
 			s.trigger();

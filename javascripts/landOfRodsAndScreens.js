@@ -25,13 +25,12 @@ window.onload = function() {
 	initializeX();
 	makeScreens(256);
 	loadAllImages();
-	//you have x time to solve it legit style before activating mind powers
-	//TODO consider whether this should be an unlockable easter egg, too
-	//but unsure how hard "legit style" is for regular people. (pretty much impossible to me before dillenteMathematician told me the secret, even tho i coded it.)
+	//think for 5 minutes on the clock before activating cheat powers.
+	//(have some easter egg way to activate them immediately for those who are playing it a second time.)
 	setTimeout(function(){
 		$("#spiel").hide();
 		$("#mindButton").show();
-	}, 1000);
+	}, (5*6000));
 }
 
 //A TIME LIMIT!? That's BULLSHIT!
