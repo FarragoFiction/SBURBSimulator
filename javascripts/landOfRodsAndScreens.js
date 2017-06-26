@@ -144,6 +144,8 @@ function recalcTI(){
 	if(ti4 > maxState/4) ti4 = 0;
 	targetImage = Math.floor(ti1 + ti2 + ti3 + ti4);
 	console.log(targetImage)
+	drawKnobs();
+
 }
 
 //this should happen if even. look at me, being so generous with my hints
@@ -365,7 +367,7 @@ function checkScreens(){
 //rest of eggs cause glow on panel.  get all eggs....secret???
 function processEgg(num){
 	console.log(num)
-	symbolGlow();
+	drawKnobs();
 	if(janusNum == 0) janus();
 	eggs[num] = "found it!";
 	console.log("TODO: change src for appropriate image.")
