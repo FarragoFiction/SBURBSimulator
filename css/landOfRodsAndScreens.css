@@ -10,6 +10,10 @@
 	color: white;
 }
 
+#spiel{
+	color:white;
+}
+
 #debug{
 	color:white;
 }
@@ -19,12 +23,12 @@ body{
 }
 
 #container{
-	width: 1000px;
+	width: 1200px;
 }
 
 #buttons{
 	display: inline-block;
-	width: 200px;
+	width: 400px;
 	vertical-align: top;
 }
 
