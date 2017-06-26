@@ -684,7 +684,7 @@ function Screen(canvas,maxState, uX, uY, screenNum, i, k){
 		ctx.fillText(this.state,x,y);
 		x += 1;
 		y += 1;
-		ctx.font = "24px Times New Roman"
+		ctx.font = "20px Times New Roman"
 		ctx.fillStyle = "#ffffff";
 		ctx.fillText(this.state,x,y);
 		//ctx.fillText(this.state + "<"+this.i+"," +this.k+">",x,y);
