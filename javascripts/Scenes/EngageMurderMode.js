@@ -19,11 +19,11 @@ function EngageMurderMode(session){
 
 	this.flipsShit = function(){
 		var diamond = this.player.hasDiamond()
-		var triggerMinimum = 25;
+		var triggerMinimum = -25;
 
-		if(diamond) triggerMinimum += this.player.getRelationshipWith(diamond).value;  //hope you don't hate your moirail
-		if(this.player.moon == "Prospit") triggerMinimum += -10; //easier to flip shit when you see murders in the clouds.
-		var ret = (Math.seededRandom() * this.player.triggerLevel > triggerMinimum);
+		if(diamond) triggerMinimum += -1(this.player.getRelationshipWith(diamond).value);  //hope you don't hate your moirail
+		if(this.player.moon == "Prospit") triggerMinimum += 10; //easier to flip shit when you see murders in the clouds.
+		var ret = (Math.seededRandom() * this.player.sanity < triggerMinimum);
 		if(ret && diamond) console.log("flipping shit even with moirail"  + this.session.session_id)
 		//if(ret) console.log("flipping shit naturally " + this.session.session_id)
 		return ret;
@@ -220,11 +220,11 @@ function EngageMurderMode(session){
 		chatText += chatLine(player2Start, player2,"But you can be better than that.")
 		if(Math.seededRandom() > .7){
 			r1.increase();
-			player1.triggerLevel += -1;
+			player1.sanity += 1;
 			chatText += chatLine(player2Start, player2,"Why don't we meet up in person. We can vent about whatever's bothering you. Nobody has to do anything that can't be undone.")
 			chatText += chatLine(player1Start, player1,"Fuck. Maybe. I... I need to go think about this.")
 		}else{
-			player1.triggerLevel += 1;
+			player1.sanity += -1;
 			r1.decrease();
 			chatText += chatLine(player2Start, player2,"I mean, probably. Everybody has at least some goodness in them, right? Even you?")
 			chatText += chatLine(player1Start, player1,"You asshole. Always pretending to be above it all. To be better than me.")

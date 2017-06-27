@@ -71,9 +71,9 @@ function GameEntity(session, name, crowned){
 			}
 			return this.maxLuck;
 		}
-		
+
 		this.modifyAssociatedStat = function(modValue, stat){
-			//modValue * stat.multiplier. 
+			//modValue * stat.multiplier.
 			if(stat.name == "RELATIONSHIPS"){
 				for(var i = 0; i<this.relationships.length; i++){
 					this.relationships[i].value += modValue * stat.multiplier;
@@ -220,7 +220,7 @@ function GameEntity(session, name, crowned){
 
 			//console.log("reasons to stay: " + reasonsToStay + " reasons to leave: " + reasonsToLeave)
 			if(reasonsToLeave > reasonsToStay * 2){
-				player.triggerLevel ++;
+				player.sanity += -1;
 				player.flipOut("how terrifying " + this.htmlTitle() + " was");
 				if(player.mobility > this.mobility){
 					//console.log(" player actually absconds: they had " + player.hp + " and enemy had " + enemy.getPower() + this.session.session_id)
@@ -426,7 +426,7 @@ function GameEntity(session, name, crowned){
 				drawSinglePlayer(pSpriteBuffer, doomedTimeClone);
 				copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0)
 				timePlayer.doomedTimeClones.push(doomedTimeClone);
-				timePlayer.triggerLevel ++;
+				timePlayer.sanity += -1;
 				timePlayer.flipOut("their own doomed time clones")
 				return players
 
@@ -1116,7 +1116,7 @@ disastor_objects[disastor_objects.length-1].helpPhrase =  "is the most unhelpful
 disastor_objects[disastor_objects.length-1].currentHP = 250;
 disastor_objects[disastor_objects.length-1].helpfulness = -1;
 disastor_objects[disastor_objects.length-1].power = 250;
-disastor_objects[disastor_objects.length-1].triggerLevel = 250; //unpredictable
+disastor_objects[disastor_objects.length-1].sanity = -250; //unpredictable
 disastor_objects[disastor_objects.length-1].freeWill = 250; //wants to mind control you.
 disastor_objects[disastor_objects.length-1].mobility = 250;
 disastor_objects[disastor_objects.length-1].minLuck = -250;
@@ -1191,7 +1191,7 @@ disastor_objects.push(new GameEntity(null, "Monster",null));
 disastor_objects[disastor_objects.length-1].hp = 250;
 disastor_objects[disastor_objects.length-1].currentHP = 250;
 disastor_objects[disastor_objects.length-1].power = 500; //generically scary
-disastor_objects[disastor_objects.length-1].triggerLevel = 250;
+disastor_objects[disastor_objects.length-1].sanity = -250;
 
 
 disastor_objects.push(new GameEntity(null, "Vampire",null));
@@ -1211,7 +1211,7 @@ disastor_objects.push(new GameEntity(null, "Werewolf",null));
 disastor_objects[disastor_objects.length-1].hp = 250;
 disastor_objects[disastor_objects.length-1].currentHP = 250;
 disastor_objects[disastor_objects.length-1].power = 250;
-disastor_objects[disastor_objects.length-1].triggerLevel = 250;
+disastor_objects[disastor_objects.length-1].sanity = -250;
 
 disastor_objects.push(new GameEntity(null, "Monkey",null));   //just, fuck monkeys in general.
 disastor_objects[disastor_objects.length-1].hp = 5;
@@ -1430,21 +1430,21 @@ prototyping_objects[prototyping_objects.length-1].helpPhrase = "unhelpfully insi
 prototyping_objects.push(new GameEntity(null, "Pony",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
-prototyping_objects[prototyping_objects.length-1].triggerLevel = 1000;  //ponyPals taught me that ponys are just flipping their shit, like, 100% of the time.
+prototyping_objects[prototyping_objects.length-1].sanity = -1000;  //ponyPals taught me that ponys are just flipping their shit, like, 100% of the time.
 prototyping_objects[prototyping_objects.length-1].helpPhrase = "is constantly flipping their fucking shit instead of being useful in any way shape or form, as ponies are known for. ";
 
 
 prototyping_objects.push(new GameEntity(null, "Horse",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
-prototyping_objects[prototyping_objects.length-1].triggerLevel = 100;  //probably flip out less than ponys???
+prototyping_objects[prototyping_objects.length-1].sanity = -100;  //probably flip out less than ponys???
 prototyping_objects[prototyping_objects.length-1].helpPhrase = "is constantly flipping their fucking shit instead of being useful in any way shape or form, as horses are known for. ";
 
 
 prototyping_objects.push(new GameEntity(null, "Internet Troll",null));   //needs to have a fraymotif called "u mad, bro" and "butt hurt"
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
-prototyping_objects[prototyping_objects.length-1].triggerLevel = 1000;
+prototyping_objects[prototyping_objects.length-1].sanity = 1000;
 prototyping_objects[prototyping_objects.length-1].helpPhrase = "actively does its best to hinder their efforts. ";
 
 
