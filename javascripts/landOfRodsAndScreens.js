@@ -477,9 +477,61 @@ function checkScreens(){
 function quip(state){
 	var ret = ""
 	var prize = ":/ Looks like you didn't do it before the Reckoning, though. Thems the breaks. Poor Janus died in vain. What were you even gonna DO with all that grist?";
-	if(timeTillReckoning > 0) prize = "And you managed to it BEFORE the time limit! Look at you, being all 'adult' and shit.  When I beat the 'real' version, I got a YellowYard, so...uh...don't fuck this up, okay: <a target = '_blank' href = 'index2.html?lawnring=yellow'>UseYellowYardResponsibly</a>"
-	if(state == 0) ret = "Oh! You win! " + prize;
-	if(state == 47) ret = "Oh yeah! That was the image KR made as one of the possible backgrounds for the AB/JR newsposts. Kinda cheruby-huh?"
+	if(timeTillReckoning > 0) prize = "And you managed to it BEFORE the time limit! Look at you, being all 'adult' and shit.  Holy shit, apparently I got a YellowYard for beating Janus?  Huh...but for some reason I have to give it to you?  So...uh...don't fuck this up, okay: <a target = '_blank' href = 'index2.html?lawnring=yellow'>UseYellowYardResponsibly</a>"
+	if(state == 0){
+	 ret = "Oh! You win! " + prize;
+ 	}else if(state == 47){
+		ret = "Oh yeah! That was the image KR made as one of the possible backgrounds for the AB/JR newsposts. Kinda cheruby-huh?"
+	}
+	else if(state == 3){
+		ret = "Huh? That doesn't look like RS..."
+	}else if(state == 4){
+		ret = "!!! I take back every complaint I ever made, this is truly the greatest possible planet.  Oh god, maybe I can find a way to get the audio going, Rick Roll all these consorts."
+	}else if(state == 6){
+		ret = "Shit, I hope this stupid thing doesn't work the way Prospit's clouds apparently do. Whoever that is is NOT having a good day."
+	}else if(state == 7){
+		ret = "Eeee, why is LORAS making chibi pictures of me and KR? And what's that yellow thing?"
+	}else if(state == 8){
+		ret = "Huh? Who is that random Time player? Is this a clue? A view of the future? Where even *am* I?"
+	}else if(state == 9){
+		ret = "Huh, apparently there are other people playing SBURB? I sure don't recognize those trolls. Jegus, I hope this doesn't mean a THIRD session is gonna crash into the Medium :/"
+	}else if(state == 10 || state == 11 || state == 13 || state == 14 || state == 15 || state == 53 ){
+		ret = "Cat!!!"
+	}else if(state == 16){
+		ret = "...I am ONTO you Squiddles. You can't fool me.  Man. I wish the Observers would stop trying to convince me that they just wanna be friends with all those players."
+	}else if(state == 17 || state == 18 || state == 19 || state == 20 || state == 21){
+		ret = "Oh god....they should have sent a poet. The words won't come. So beautiful."
+	}else if(state == 22 || state == 23){
+		ret = "It keeps hapening."
+	}else if(state == 27){
+		ret = "Damn, that land looks dope as shit."
+	}else if(state == 29){
+		ret = "Hrmmm...that reminds me, I wonder if prominentSpacer figured out the frog breeding yet..."
+	} else if(state == 31 || state == 32 || state == 35 || state == 36 || state == 55){
+		ret = "!!! Oh no! What's going on with dear sweet precious sweet sweet AuthorBot!??? This better not fucking be prophetic, like Prospit's shitty clouds."
+	} else if(state == 39){
+		ret = "Hopy shit, that is a LOT of SBURB players. Is that the afterlife???"
+	} else if(state == 50){
+		ret = "!!! Holy fuck, that better not happen to Prospit. Seriously. Where is LORAS even GETTING these images?"
+	} else if(state == 51){
+		ret = "!!!  I am not believing you, mysterious blood colored text, that dude is DEAD. Why am I even SEEING this?"
+	} else if(state == 52){
+		ret = "!!! So COOL!"
+	} else if(state == 60 || state == 62){
+		ret = "Jegus fuck, ABJ, stop being a creeper. Where did I program you wrong?"
+	} else if(state == 61){
+		ret = "<insert giggle snort here>"
+	} else if(state == 63){
+		ret = "Best troll!"
+	} else if(state == 64){
+		ret = "Don't worry about it, Observer, you have the reins here, it'll be fiiine.  What's ONE more secret?"
+	} else if(state == 67){
+		ret = "lol, i remember when that Observer figured out how to 'hack' SBURB.  So amazing."
+	} else if(state == 3){
+		ret = "Huh? That doesn't look like RS..."
+	}  else{
+		ret = "???"
+	}
 	console.log("JR: " + ret)
 	$("#quip").html(ret);
 }
