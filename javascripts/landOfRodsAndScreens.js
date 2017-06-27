@@ -477,14 +477,18 @@ function checkScreens(){
 	}
 	timeTillReckoning += -1;
 	//alert("!!! you unlocked a picture! I need to do something here.")
-	if(state == 0) doTheMindyThing(); //present for you.
+	if(state == 0){
+		showMindButton(); //want to show avatar to give you prize
+		doTheMindyThing();
+		$("#slider").hide();
+	}
 	quip(state);
 }
 
 function quip(state){
 	var ret = ""
 	var prize = ":/ Looks like you didn't do it before the Reckoning, though. Thems the breaks. Poor Janus died in vain. What were you even gonna DO with all that grist?";
-	if(timeTillReckoning > 0) prize = "And you managed to it BEFORE the Reckoning! Look at you, being all 'adult' and shit.  Holy shit, apparently I got a YellowYard for beating Janus?  Huh...but for some reason I have to give it to you?  So...uh...don't fuck this up, okay: <a target = '_blank' href = 'index2.html?lawnring=yellow'>UseYellowYardResponsibly</a>"
+	if(timeTillReckoning > 0) prize = "And you managed to it BEFORE the Reckoning! Look at you, being all 'adult' and shit. <br><Br> Holy shit, apparently I got a YellowYard for beating Janus?  Huh...but for some reason I have to give it to you?  So...uh...don't fuck this up, okay: <Br><br><a target = '_blank' href = 'index2.html?lawnring=yellow'>UseYellowYardResponsibly</a>"
 	if(state == 0){
 	 ret = "Oh! You win! " + prize;
  	}else if(state == 47){
