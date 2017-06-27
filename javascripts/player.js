@@ -2529,7 +2529,18 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	
 	//care about highInit(), and also interestCategories.
 	this.initializeAssociatedStats(){
-		
+		for(var i = 0; i<this.associatedStats.length; i++){
+			if(this.highInit()){
+				this.modifyAssociatedStat(35, this.associatedStats[i]);
+			}else{
+				this.modifyAssociatedStat(-35, this.associatedStats[i]);
+			}
+		}
+	}
+	
+	//if RELATIONSHIPS, loop on all relationships.
+	this.modifyAssociatedStat(modValue, stat){
+		//modValue * stat.multiplier. 
 	}
 
 	//players can start with any luck, (remember, Vriska started out super unlucky and only got AAAAAAAALL the luck when she hit godtier)
