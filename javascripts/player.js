@@ -872,306 +872,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		return ret;
 	}
 
-	//luck is about sprinting towards good events, not avoiding bad ones. only modifies max luck.
-	this.lightInteractionEffect = function(player){
-		var amount = this.power/3;
-		if(this.class_name == "Thief"){ //takes for self
-			this.maxLuck += amount
-			player.maxLuck += -1 * amount;
-		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
-			player.maxLuck += -1 * amount;
-			for(var i = 0; i<this.session.players.length; i++){
-				var p = this.session.players[i];
-				p.maxLuck += amount/this.session.players.length;
-			}
-		}else if(this.class_name == "Sylph"){ //heals others
-			player.maxLuck += amount;
-		}else if(this.class_name == "Bard"){ //destroys in others
-			player.maxLuck += -1 * amount;
-		}
-
-	}
-
-	this.mindInteractionEffect = function(player){
-		var amount = this.power/3;
-		if(this.class_name == "Thief"){ //takes for self
-			this.freeWill += amount
-			player.freeWill += -1*amount
-		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
-			player.freeWill += -1*amount
-			for(var i = 0; i<this.session.players.length; i++){
-				var p = this.session.players[i];
-				p.freeWill += amount/this.session.players.length;
-			}
-		}else if(this.class_name == "Sylph"){ //heals others
-			player.freeWill += amount
-		}else if(this.class_name == "Bard"){ //destroys in others
-			player.freeWill += -1*amount
-		}
-	}
-
-	this.timeInteractionEffect = function(player){
-		var amount = -1 * this.power/3;
-		if(this.class_name == "Thief"){ //takes for self
-			this.freeWill += amount
-			player.freeWill += -1*amount
-		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
-			player.freeWill += -1*amount
-			for(var i = 0; i<this.session.players.length; i++){
-				var p = this.session.players[i];
-				p.freeWill += amount/this.session.players.length;
-			}
-		}else if(this.class_name == "Sylph"){ //heals others
-			player.freeWill += amount
-		}else if(this.class_name == "Bard"){ //destroys in others
-			player.freeWill += -1*amount
-		}
-	}
 
 
-	this.lifeInteractionEffect = function(player){
-		var amount = this.power/3;
-		if(this.class_name == "Thief"){ //takes for self
-			this.hp += amount;
-			this.currentHP += amount;
-			player.hp += -1*amount
-		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
-			player.hp += -1*amount
-			player.currentHP += -1*amount
-			for(var i = 0; i<this.session.players.length; i++){
-				var p = this.session.players[i];
-				p.hp += amount/this.session.players.length;
-				p.currentHP += amount/this.session.players.length;
-
-			}
-		}else if(this.class_name == "Sylph"){ //heals others
-			player.hp += amount
-			player.currentHP += amount
-		}else if(this.class_name == "Bard"){ //destroys in others
-			player.hp += -1*amount
-			player.currentHP += -1*amount
-		}
-	}
-
-	this.rageInterctionEffect = function(player,numTimes){
-		numTimes ++;
-		if(numTimes > 10){
-			console.log("rage/void infinite loop. just fucking stop. " + this.session.session_id)
-			return; //just fucking stop
-		}
-		var amount = this.power/10;
-		if(this.class_name == "Thief"){ //takes for self
-			this.triggerLevel += amount;
-			if(amount > 1) this.flipOut(" the Rage coursing through their body")
-			player.triggerLevel += -1 * amount
-			player.flipOutReason = null;
-			player.flippingOutOverDeadPlayer = null;
-			this.boostAllRelationshipsWithMeBy(amount);
-			this.boostAllRelationshipsBy(amount)
-			player.boostAllRelationshipsWithMeBy(-1*amount);
-			player.boostAllRelationshipsBy(-1* amount)
-		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
-			player.triggerLevel += -1*amount
-			player.flipOutReason = null;
-			player.flippingOutOverDeadPlayer = null;
-			player.boostAllRelationshipsWithMeBy(-1*amount);
-			player.boostAllRelationshipsBy(-1* amount)
-			for(var i = 0; i<this.session.players.length; i++){
-				var p = this.session.players[i];
-				p.triggerLevel += amount/this.session.players.length;
-				p.boostAllRelationshipsWithMeBy(amount);
-				p.boostAllRelationshipsBy(amount)
-			}
-		}else if(this.class_name == "Sylph"){ //heals others 'healing' rage would increase it.
-			player.triggerLevel += amount
-			player.boostAllRelationshipsWithMeBy(amount);
-			player.boostAllRelationshipsBy(amount)
-		}else if(this.class_name == "Bard"){ //destroys in others
-			player.triggerLevel += -1*amount
-			if(amount > 1) player.flipOut(" the Rage coursing through their body")
-			player.boostAllRelationshipsWithMeBy(-1*amount);
-			player.boostAllRelationshipsBy(-1* amount)
-			player.flipOutReason = null;  //people can't remember why they are angry.
-			player.flippingOutOverDeadPlayer = null;
-		}
-		this.voidInteractionEffect(player, numTimes);
-	}
-
-	this.heartInteractionEffect = function(player){
-		var amount = this.power/10;
-		if(this.class_name == "Thief"){ //takes for self
-			this.boostAllRelationshipsBy(amount);
-			player.boostAllRelationshipsBy(-1* amount)
-		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
-			player.boostAllRelationshipsBy(-1*amount)
-			for(var i = 0; i<this.session.players.length; i++){
-				var p = this.session.players[i];
-				p.boostAllRelationshipsBy(amount/this.session.players.length);
-			}
-		}else if(this.class_name == "Sylph"){ //heals others 'healing' rage would increase it.
-			player.boostAllRelationshipsBy(amount);
-			//way too OP an ability, only sylphs of heart have it
-			//console.log("healing grim dark")
-			player.changeGrimDark(-1);
-		}else if(this.class_name == "Bard"){ //destroys in others
-			player.boostAllRelationshipsBy(-1*amount)
-		}
-	}
-
-	this.breathInteractionEffect = function(player){
-		var amount = this.power/3;
-		if(this.class_name == "Thief"){ //takes for self
-			this.mobility += amount
-			player.mobility += -1*amount
-		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
-			player.mobility += -1*amount
-			for(var i = 0; i<this.session.players.length; i++){
-				var p = this.session.players[i];
-				p.mobility += amount/this.session.players.length;
-			}
-		}else if(this.class_name == "Sylph"){ //heals others
-			player.mobility += amount
-		}else if(this.class_name == "Bard"){ //destroys in others
-			player.mobility += -1*amount
-		}
-	}
-
-	//space is sticky. stuck on your planet breeding frogs, stuck in brooding caverns.
-	/*'Calliope has also stated that Space is a typically passive aspect with great power,
-	falling back and hosting the stage before
-	suddenly in some way showing "who is truly the master" and then collapsing in on itself. '
-	Yeah, First Guardian Jade had teleport powers, but there was nothing to show that that was a NORMAL space ability.
-	She only glowed green doing that, not when altering sizes.
-	Space is about groundingyou. It's gravity. It's so damn HARD to travel in space, cause it wants you to stay right the hell where you are.
-	*/
-	this.spaceInteractionEffect = function(player){
-		var amount = -1* this.power/3;
-		if(this.class_name == "Thief"){ //takes for self
-			this.mobility += amount
-			player.mobility += -1*amount
-		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
-			player.mobility += -1*amount
-			for(var i = 0; i<this.session.players.length; i++){
-				var p = this.session.players[i];
-				p.mobility += amount/this.session.players.length;
-			}
-		}else if(this.class_name == "Sylph"){ //heals others
-			player.mobility += amount
-		}else if(this.class_name == "Bard"){ //destroys in others
-			player.mobility += -1*amount
-		}
-	}
-
-	this.bloodInteractionEffect = function(player){
-		var amount = -1* this.power/10;
-		if(this.class_name == "Thief"){ //takes for self
-			this.triggerLevel += amount;
-			player.triggerLevel += -1 * amount
-			this.boostAllRelationshipsWithMeBy(-1*amount);
-			player.boostAllRelationshipsWithMeBy(amount);
-			if(amount > 1) player.flipOut(" how they are sure no one likes them")
-		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
-			player.triggerLevel += -1*amount
-			if(amount > 1) player.flipOut(" how they are sure no one likes them")
-			player.boostAllRelationshipsWithMeBy(amount);
-			for(var i = 0; i<this.session.players.length; i++){
-				var p = this.session.players[i];
-				p.triggerLevel += amount/this.session.players.length;
-				p.boostAllRelationshipsWithMeBy(-1*amount);
-			}
-		}else if(this.class_name == "Sylph"){ //heals others 'healing' rage would increase it.
-			player.triggerLevel += amount
-			player.boostAllRelationshipsWithMeBy(-1*amount);
-			player.flipOutReason = null;
-			player.flippingOutOverDeadPlayer = null;
-		}else if(this.class_name == "Bard"){ //destroys in others
-			player.triggerLevel += -1*amount
-			if(amount > 1) player.flipOut(" how they are sure no one likes them")
-			player.boostAllRelationshipsWithMeBy(amount);
-		}
-	}
-
-	//doom is about bad ends. only modifies min luck. alkso modifies power directly
-	this.doomInteractionEffect = function(player){
-		var amount = -1* this.power/3; //
-		if(this.class_name == "Thief"){ //takes for self
-			this.hp += amount;
-			this.minLuck += amount
-			player.hp += -1*amount
-			player.minLuck += -1*amount
-		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
-			player.power += -1*amount
-			player.minLuck += -1*amount
-			for(var i = 0; i<this.session.players.length; i++){
-				var p = this.session.players[i];
-				p.hp += amount/this.session.players.length;
-				p.minLuck += amount/this.session.players.length;
-			}
-		}else if(this.class_name == "Sylph"){ //heals others
-			player.hp += amount
-			player.minLuck += amount
-		}else if(this.class_name == "Bard"){ //destroys in others
-			player.hp += -1*amount
-			player.minLuck += -1*amount
-		}
-	}
-
-	this.hopeInteractionEffect = function(player){
-		var amount = this.power/3;
-		if(this.class_name == "Thief"){ //takes for self
-			this.power += amount;
-			player.power += -1*amount
-		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
-			player.power += -1*amount
-			for(var i = 0; i<this.session.players.length; i++){
-				var p = this.session.players[i];
-				p.power += amount/this.session.players.length;
-			}
-		}else if(this.class_name == "Sylph"){ //heals others
-			player.power += amount
-			player.flipOutReason = null;  //don't focus on why we are screwed.
-			player.flippingOutOverDeadPlayer = null;
-		}else if(this.class_name == "Bard"){ //destroys in others
-			player.power += -1*amount
-		}
-		player.power = Math.max(player.power, 1);
-	}
-
-	//rage and void have randomness in common
-	//so they can infinite loop. don't let them. rage can call void. void can call rage.
-	//intentionally allowing rage/void players to randomly get massive stat buffs.
-	this.voidInteractionEffect = function(player,numTimes){
-		numTimes ++;
-		if(numTimes > 10){
-			//just fucking return;
-			console.log("rage/void infinite loop. just fucking stop. " + this.session.session_id)
-			return;
-		}
-		//void does nothing innately, modifies things at random.
-		var statInteractions = [this.lightInteractionEffect.bind(this,player),this.mindInteractionEffect.bind(this,player),this.timeInteractionEffect.bind(this,player),this.lifeInteractionEffect.bind(this,player),this.rageInterctionEffect.bind(this,player, numTimes),this.heartInteractionEffect.bind(this,player),this.breathInteractionEffect.bind(this,player),this.spaceInteractionEffect.bind(this,player),this.bloodInteractionEffect.bind(this,player),this.doomInteractionEffect.bind(this,player),this.hopeInteractionEffect.bind(this,player)];
-		getRandomElementFromArray(statInteractions)();
-		var amount = this.power/3;
-		if(this.class_name == "Thief"){ //takes for self
-			this.corruptionLevelOther += amount;
-			player.corruptionLevelOther += -1*amount
-		}else if(this.class_name == "Rogue"){ //takes an distributes to others.
-			player.corruptionLevelOther += -1*amount
-			for(var i = 0; i<this.session.players.length; i++){
-				var p = this.session.players[i];
-				p.corruptionLevelOther += amount/this.session.players.length;
-			}
-		}else if(this.class_name == "Sylph"){ //heals others
-			player.corruptionLevelOther += amount
-			player.flipOutReason = null;  //don't focus on why we are screwed.
-			player.flippingOutOverDeadPlayer = null;
-		}else if(this.class_name == "Bard"){ //destroys in others
-			player.corruptionLevelOther += -1*amount
-		}
-		player.corruptionLevelOther = Math.max(player.power, 1);
-
-
-	}
-	
 	this.hasInteractionEffect = function(){
 		return this.class_name == "Prince" || this.class_name == "Bard"|| this.class_name == "Witch"|| this.class_name == "Sylph"|| this.class_name == "Rogue"|| this.class_name == "Thief"
 	}
@@ -1185,12 +887,12 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 	
 
-	this.processStatInteractionEffect(player, stat){
+	this.processStatInteractionEffect = function(player, stat){
 		var powerBoost = this.power/20;
 		if(this.class_name == "Witch"|| this.class_name == "Sylph"){
 			powerBoost = powerBoost *  2 //sylph and witch get their primary boost here, so make it a good one.
 		}
-		var powerBoost = modPowerBoostByClass(powerBoost);
+		var powerBoost = modPowerBoostByClass(powerBoost,stat);
 		if(this.class_name == "Rogue"|| this.class_name == "Thief"){
 			player.modifyAssociatedStat((-1 * powerBoost), stat);
 			if(this.isActive()){ //modify me
@@ -1290,7 +992,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 	}
 	
-	this.modPowerBoostByClass = function(powerBoost){
+	this.modPowerBoostByClass = function(powerBoost,stat){
 		switch (this.class_name) {
 			case "Knight":
 				if(stat.multiplier > 0){
@@ -1354,7 +1056,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 	
 	this.processStatPowerIncrease = function(powerBoost, stat){
-		var powerBoost = this.modPowerBoostByClass(powerBoost);
+		var powerBoost = this.modPowerBoostByClass(powerBoost,stat);
 		if(this.isActive()){ //modify me
 			this.modifyAssociatedStat(powerBoost, stat);
 		}else{  //modify others.
