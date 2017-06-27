@@ -1,9 +1,7 @@
 function Player(session,class_name, aspect, object_to_prototype, moon, godDestiny,id){
 	this.baby = null;
 	this.renderingType = 0; //0 means default for this sim.
-	this.doublePlusStat = "";
-	this.plusStat = "";
-	this.minusStat = "";
+	this.associatedStats = [];  //most players will have a 2x, a 1x and a -1x stat. 
 	this.sanity = 0; //eventually replace triggerLevel with this (it's polarity is opposite triggerLevel)
 	this.alchemy = 0; //mostly unused until we get to the Alchemy update.
 	this.interest1Category = null; //used by Replay page for custom interests.
@@ -2393,68 +2391,111 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		var allStats = this.allStats();
 		switch (this.aspect) {
 			case "Blood":
-				this.doublePlusStat = "RELATIONSHIPS" //not a stat, so have to remember that it's different. stupid god damned blood players.
-				this.plusStat = "sanity"
-				this.minusStat = "maxLuck";
+				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", 2));
+				this.associatedStats.push(new AssociatedStat("sanity", 1));
+				this.associatedStats.push(new AssociatedStat("maxLuck", -1));
 				break;
 			case  "Mind":
-				this.doublePlusStat = "freeWill" 
-				this.plusStat = "minLuck"
-				this.minusStat = "RELATIONSHIPS";
+				this.associatedStats.push(new AssociatedStat("freeWill", 2));
+				this.associatedStats.push(new AssociatedStat("minLuck", 1));
+				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", -1));
 				break;
 			case  "Rage":
-				this.doublePlusStat = "power" 
-				this.plusStat = "mobility"
-				this.minusStat = "sanity"; //might need to make this a special stat like RELATIONSHIPS so it's - sanity AND - relationships.
+				this.associatedStats.push(new AssociatedStat("power", 2));
+				this.associatedStats.push(new AssociatedStat("mobility", 1));
+				this.associatedStats.push(new AssociatedStat("sanity", -1));
 				break;
 			case  "Void":
 				this.doublePlusStat = getRandomElementFromArray(allStats); 
-				this.plusStat = "maxLuck"
-				this.minusStat = "minLuck";
+				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), 2));
+				this.associatedStats.push(new AssociatedStat("maxLuck", 1));
+				this.associatedStats.push(new AssociatedStat("minLuck", -1));
 				break;
 			case  "Time":
-				this.doublePlusStat = "minLuck" 
-				this.plusStat = "mobility"
-				this.minusStat = "freeWill";
+				this.associatedStats.push(new AssociatedStat("minLuck", 2));
+				this.associatedStats.push(new AssociatedStat("mobility", 1));
+				this.associatedStats.push(new AssociatedStat("freeWill", -1));
 				break;
 			case  "Heart":
-				this.doublePlusStat = "freeWill" 
-				this.plusStat = "minLuck"
-				this.minusStat = "RELATIONSHIPS";
+				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", 2));
+				this.associatedStats.push(new AssociatedStat(getInterestAssociatedStat(this.interest1), 1));
+				this.associatedStats.push(new AssociatedStat(getInterestAssociatedStat(this.interest2), 1)); //interest decides if it's positive or negative.
 				break;
 			case  "Breath":
 				this.doublePlusStat = "mobility" 
 				this.plusStat = "sanity"
 				this.minusStat = getRandomElementFromArray(allStats); 
+				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", 2));
+				this.associatedStats.push(new AssociatedStat("sanity", 1));
+				this.associatedStats.push(new AssociatedStat("maxLuck", -1));
 				break;	
 			case  "Light":
 				this.doublePlusStat = "maxLuck" 
 				this.plusStat = "freeWill"
 				this.minusStat = "sanity";
+				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", 2));
+				this.associatedStats.push(new AssociatedStat("sanity", 1));
+				this.associatedStats.push(new AssociatedStat("maxLuck", -1));
 				break;
 			case  "Space":
 				this.doublePlusStat = "alchemy" 
 				this.plusStat = "hp"
 				this.minusStat = "mobility";
+				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", 2));
+				this.associatedStats.push(new AssociatedStat("sanity", 1));
+				this.associatedStats.push(new AssociatedStat("maxLuck", -1));
 				break;
 			case  "Hope":
 				this.doublePlusStat = "sanity" 
 				this.plusStat = "maxLuck"
 				this.minusStat = "RELATIONSHIPS";
+				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", 2));
+				this.associatedStats.push(new AssociatedStat("sanity", 1));
+				this.associatedStats.push(new AssociatedStat("maxLuck", -1));
 				break;
 			case  "Life":
 				this.doublePlusStat = "hp" 
 				this.plusStat = "power"
 				this.minusStat = "alchemy";
+				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", 2));
+				this.associatedStats.push(new AssociatedStat("sanity", 1));
+				this.associatedStats.push(new AssociatedStat("maxLuck", -1));
 				break;
 			case  "Doom":
 				this.doublePlusStat = "alchemy" 
 				this.plusStat = "freeWill"
 				this.minusStat = "minLuck";
+				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", 2));
+				this.associatedStats.push(new AssociatedStat("sanity", 1));
+				this.associatedStats.push(new AssociatedStat("maxLuck", -1));
 				break;
 			default:
 				console.log('What the hell kind of aspect is ' + this.aspect + '???');
 		}
+	}
+	
+	
+	this.getInterestAssociatedStat(interest){
+		if(pop_culture_interests.indexOf(interest) != -1) return "mobility" //ADD ftw.
+		if(music_interests.indexOf(interest) != -1) return "mobility"
+		if(culture_interests.indexOf(interest) != -1) return "mobility"
+		if(writing_interests.indexOf(interest) != -1) return "mobility"
+		if(technology_interests.indexOf(interest) != -1) return "mobility"
+		if(social_interests.indexOf(interest) != -1) return "mobility"
+		if(romantic_interests.indexOf(interest) != -1) return "mobility"
+		if(academic_interests.indexOf(interest) != -1) return "mobility"
+		if(comedy_interests.indexOf(interest) != -1) return "mobility"
+		if(domestic_interests.indexOf(interest) != -1) return "mobility"
+		if(athletic_interests.indexOf(interest) != -1) return "mobility"
+		if(terrible_interests.indexOf(interest) != -1) return "mobility"
+		if(fantasy_interests.indexOf(interest) != -1) return "mobility"
+		if(justice_interests.indexOf(interest) != -1) return "freeWill"
+	}
+	
+	
+	//care about highInit(), and also interestCategories.
+	this.initializeAssociatedStats(){
+		
 	}
 
 	//players can start with any luck, (remember, Vriska started out super unlucky and only got AAAAAAAALL the luck when she hit godtier)
@@ -2469,6 +2510,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.initializePower();
 		this.initializeVoid();
 		this.initializeTriggerLevel();
+		
+		this.initializeAssociatedStats();
 		//reroll goddestiny and sprite as well. luck might have changed.
 		var luck = this.rollForLuck();
 		if(this.class_name == "Witch" || luck < 10){
@@ -3152,4 +3195,11 @@ function getAverageFreeWill(players){
 		ret += players[i].freeWill;
 	}
 	return  Math.round(ret/players.length);
+}
+
+
+
+function AssociatedStat(statName, multiplier){
+	this.name = statName
+	this.multiplier = multiplier;
 }
