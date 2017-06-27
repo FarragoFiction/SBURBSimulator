@@ -12,7 +12,9 @@ var janusNum = 0;
 var eggsSolution = false;
 var eggs = {};
 var timeTillReckoning = 99999999999999999999;  //take as long as you want...for now.
-reachedTarget = false;
+var reachedTarget = false;
+var failureEnding = false;
+var reckoningEnding = false;
 
 var distactions = new Array(maxState); //all images, screen responsible for displaying it's chunk
 //figure out a number of turns until the reckoning. make it more than you'd reasonably need to solve it
@@ -192,6 +194,7 @@ function fhtagn(k,nk){
 function checkReckoning(){
 	if(timeTillReckoning == 0){
 		timeTillReckoning = -1 //don't keep doing this.
+		distactions[0] = distactions[1026];
 		alert("The Reckoning is over. You have failed to pass your Land Quest in time to help your team mates. But you can always keep obsessing over this Puzzle, for as long as you live. It's not like you can ever leave the Medium without a frog, after all.")
 	}
 }
@@ -249,6 +252,8 @@ function loadAllImages(){
 	for(var i = 0; i< maxState+1; i++){
 		loadImage('images/LORAS/'+i+".png",i);
 	}
+	loadImage('images/LORAS/0Ultimate.png',1025);
+	loadImage('images/LORAS/0UltimateFail.png',1026);
 }
 
 function loadImage(img,i){
@@ -361,6 +366,7 @@ function talkJanus(){
 		console.log("Janus2:  And now it falls to me to honor the promises you have made, in your haste to prove your ignorance. ")
 		console.log("Janus1: Well ain't you a breath of fresh air! I haven't heard you talk in a DOG's age!")
 		console.log("Janus2:  *sigh* I will give you your Solution, Observer, that you may marvel in the mind that TRULY designed this Challenge. ")
+		distactions[0] = distactions[1025];
 		denizenCheat();
 		//TODO have puzzle auto-solve itself.
 	}
