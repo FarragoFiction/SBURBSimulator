@@ -41,15 +41,15 @@ function MurderPlayers(session){
 				//more they liked the victim, the more they hate you.
 				if(rv.saved_type == rv.diamond){
 					rm.value = -100;
-					p.triggerLevel += 10;
+					p.sanity += -10;
 					ret += " The " + p.htmlTitle() + " is enraged that their Moirail was killed. ";
 				}else if(rv.saved_type == rv.heart){
 					rm.value = -100;
-					p.triggerLevel += 10;
+					p.sanity += -10;
 					ret += " The " + p.htmlTitle() + " is enraged that their Matesprit was killed. ";
 				}else if(rv.saved_type == rv.spades){
 					rm.value = -100;
-					p.triggerLevel += 10;
+					p.sanity += -10;
 					ret += " The " + p.htmlTitle() + " is enraged that their Kismesis was killed. ";
 				}else if (rv.type() == rv.goodBig){
 					rm.value = -20;
@@ -187,7 +187,7 @@ function MurderPlayers(session){
 						ret += " The task is made especially easy (yet tragic) by the " + m.htmlTitle() + " being in the middle of dying. "
 					}
 					m.unmakeMurderMode();
-					m.triggerLevel = 1;
+					m.sanity = 1;
 					makeDiamonds(m, worstEnemy)
 					this.renderDiamonds(div, m, worstEnemy);
 
@@ -199,7 +199,7 @@ function MurderPlayers(session){
 						ret += " The task is made especially easy by the " + m.htmlTitle() + " dying partway through. "
 					}
 					m.unmakeMurderMode();
-					m.triggerLevel = 1;
+					m.sanity = 1;
 					this.renderClubs(div, m, worstEnemy,ausp);
 					makeClubs(ausp, m, worstEnemy)
 
@@ -209,7 +209,7 @@ function MurderPlayers(session){
 						//do nothing, alt scene will handle this.
 					}else{
 						m.increasePower();
-						m.triggerLevel = m.triggerLevel/2; //killing someone really takes the edge off.
+						m.sanity += Math.abs(m.sanity); //killing someone really takes the edge off.
 
 						ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". " + getPVPQuip(worstEnemy,m, "Defender", "Murderer");
 						if(m.dead == true){ //they could have been killed by another murder player in this same tick
@@ -245,8 +245,8 @@ function MurderPlayers(session){
 				}
 			}else{
 
-				m.triggerLevel += -3;
-				if(m.triggerLevel<1){
+				m.sanity += 3;
+				if(m.sanity>0){
 					//alert("shit settled")
 					ret += " The " + m.htmlTitle() + " has officially settled their shit. ";
 					m.unmakeMurderMode();
@@ -263,7 +263,7 @@ function MurderPlayers(session){
 						}else{
 							ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! Do they just never stay in one spot for more than five seconds? Flighty bastard. It's hard to stay enraged while wandering around lost."
 						}
-						m.triggerLevel += -3;
+						m.sanity += 3;
 					}else if(!m.dead){
 						ret += " The " + m.htmlTitle() + " can't find anybody they hate enough to murder. They calm down a little. ";
 					}
@@ -301,7 +301,7 @@ function MurderPlayers(session){
 					ret += ", but instead the Bloody Thing happens and the " + m.htmlTitle() + " is calmed down, and hug bumps are shared. ";
 					m.unmakeMurderMode();
 					worstEnemy.checkBloodBoost(livePlayers);
-					m.triggerLevel = 1;
+					m.sanity = 1;
 					return ret; //don't try to murder. (and also blood powers stop any other potential murders);
 				}
 
@@ -311,7 +311,7 @@ function MurderPlayers(session){
 					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
 					ret += ", but instead gets talked down hardcore. Shit is downright tender.";
 					m.unmakeMurderMode();
-					m.triggerLevel = 1;
+					m.sanity = 1;
 					this.renderDiamonds(div, m, worstEnemy);
 				}else if(worstEnemy.power * worstEnemy.getPVPModifier("Defender") < m.power*m.getPVPModifier("Murderer")){
 					m.increasePower();
@@ -340,11 +340,11 @@ function MurderPlayers(session){
 						ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! Do they just never stay in one spot for more than five seconds? Flighty bastard. It's hard to stay enraged while wandering around lost."
 					}
 
-					m.triggerLevel += -3;
+					m.sanity += 3;
 				}else{
 					ret += " The " + m.htmlTitle() + " can't find anybody they hate enough to murder. They calm down a little. ";
 				}
-				m.triggerLevel += -1;
+				m.sanity += 1;
 			}
 		}
 		removeFromArray(m, this.session.availablePlayers);

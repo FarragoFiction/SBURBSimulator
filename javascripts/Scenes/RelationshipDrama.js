@@ -234,7 +234,7 @@ function RelationshipDrama(session){
 				chatText += chatLine(player2Start, player2,"Fuck. I'm sorry. I just don't feel that way about you. ");
 				if(playerLikesRomantic(player1) || player1.aspect == "Mind"){
 					chatText += chatLine(player1Start, player1,"Fuck. Thanks for being honest. ");
-					player1.triggerLevel += 0.5; //not triggered MUCH, but keeps them from continuing to confess to other people. I mean. Hypothetically.
+					player1.sanity += -0.5; //not triggered MUCH, but keeps them from continuing to confess to other people. I mean. Hypothetically.
 				}else if(player1.class_name == "Bard" || player2.aspect == "Rage" || playerLikesTerrible(player1)){
 					chatText += chatLine(player1Start, player1,"But... but...WHY!? I tried so hard to be nice to you!");
 					if(player2.class_name == "Seer" || player2.aspect == "Blood" || playerLikesRomantic(player2)){

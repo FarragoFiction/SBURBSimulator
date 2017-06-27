@@ -117,7 +117,7 @@ function PlayerDiedForever(session, mvp_value, player, doomedTimeClone){
 			div.append(narration);
 
 			player.makeAlive();
-			player.triggerLevel += 0.5;
+			player.sanity += -0.5;
 
 			this.doomedTimeClone.makeDead("sacrificing themselves through a YellowYard")
 
@@ -181,7 +181,7 @@ function PlayerWentGrimDark(session, mvp_value,player, doomedTimeClone){
 			}
 			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
 			div.append(narration);
-			player.triggerLevel= 0;
+			player.sanity += -1;
 
 
 			var divID = (div.attr("id")) + "_alt_" + player.chatHandle;
@@ -237,7 +237,7 @@ function PlayerWentMurderMode(session, mvp_value, player, doomedTimeClone){
 			}
 			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
 			div.append(narration);
-			player.triggerLevel= 0;
+			player.sanity += -1;
 
 
 			var divID = (div.attr("id")) + "_alt_" + player.chatHandle;

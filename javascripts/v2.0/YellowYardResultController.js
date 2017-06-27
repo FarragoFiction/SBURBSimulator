@@ -86,7 +86,7 @@ function spawnDoomedTimeClone(newEvent,storedEvent){
     storedEvent.session = newEvent.session; //cant get space players otherwise
     //trigger the new sessions timePlayer.  time shenanigans wear on sanaity.
     var alphaTimePlayer = findAspectPlayer(newEvent.session.players, "Time");
-    alphaTimePlayer.triggerLevel += 1; //how many re-dos does this give me before they snap?
+    alphaTimePlayer.sanity += -1; //how many re-dos does this give me before they snap?
     alphaTimePlayer.doomedTimeClones.push(storedEvent.doomedTimeClone);
     alphaTimePlayer.flipOut("their own doomed time clones that seem to be mind controlled or something")
     if(storedEvent.secondTimeClone){

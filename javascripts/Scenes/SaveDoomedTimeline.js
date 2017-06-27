@@ -151,7 +151,7 @@ function SaveDoomedTimeLine(session){
 		}
 		this.doomedTimeClone = makeDoomedSnapshot(this.timePlayer);
 		this.timePlayer.doomedTimeClones.push(this.doomedTimeClone);
-		this.timePlayer.triggerLevel ++;
+		this.timePlayer.sanity += -1;
 		this.timePlayer.flipOut("their own doomed time clones")
 		return ret;
 	}

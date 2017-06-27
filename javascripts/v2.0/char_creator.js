@@ -232,7 +232,7 @@ function initGraphs(){
 		var powerGraph = new Graph("power", player.title(), [], getColorFromAspect(player.aspect));
 		var luckGraph1 = new Graph("minLuck", player.title(),[], getColorFromAspect(player.aspect));
 		var luckGraph2 = new Graph("maxLuck", player.title(),[], getColorFromAspect(player.aspect));
-		var triggerGraph = new Graph("triggerLevel", player.title(),[], getColorFromAspect(player.aspect));
+		var triggerGraph = new Graph("sanity", player.title(),[], getColorFromAspect(player.aspect));
 		var landLevelGraph = new Graph("landLevel", player.title(),[], getColorFromAspect(player.aspect));
 		var friendGraph = new Graph("bestFriendLevel", player.title(),[], getColorFromAspect(player.aspect));
 		var enemyGraph = new Graph("worstEnemyLevel", player.title(),[], getColorFromAspect(player.aspect));
@@ -257,7 +257,7 @@ function renderGraphs(){
 	var powerRenderer = new GraphRenderer("power",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "power"),1000,300);
 	var luckRenderer1 = new GraphRenderer("minLuck",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "minLuck"),1000,300);
 	var luckRenderer2 = new GraphRenderer("maxLuck",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "maxLuck"),1000,300);
-	var triggerRenderer = new GraphRenderer("triggerLevel",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "triggerLevel"),1000,300);
+	var triggerRenderer = new GraphRenderer("sanity",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "sanity"),1000,300);
 	var landRenderer = new GraphRenderer("landLevel",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "landLevel"),1000,300);
 	var friendRenderer = new GraphRenderer("bestFriendLevel",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "bestFriendLevel"),1000,300);
 	var enemyRenderer = new GraphRenderer("worstEnemyLevel",getAllGraphsForPlayersNamed(curSessionGlobalVar.players, "worstEnemyLevel"),1000,300);
@@ -282,7 +282,7 @@ function updateGraphs(){
 		getGraphWithLabel(player.graphs, "power").points.push(player.power);
 		getGraphWithLabel(player.graphs, "minLuck").points.push(player.minLuck);
 		getGraphWithLabel(player.graphs, "maxLuck").points.push(player.maxLuck);
-		getGraphWithLabel(player.graphs, "triggerLevel").points.push(player.triggerLevel);
+		getGraphWithLabel(player.graphs, "sanity").points.push(player.sanity);
 		getGraphWithLabel(player.graphs, "landLevel").points.push(player.landLevel);
 		getGraphWithLabel(player.graphs, "bestFriendLevel").points.push(player.getHighestRelationshipValue());
 		getGraphWithLabel(player.graphs, "worstEnemyLevel").points.push(player.getLowestRelationshipValue());

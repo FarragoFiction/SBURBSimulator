@@ -64,7 +64,7 @@ function SessionSummary(){
 	this.averageFreeWill = null;
 	this.averageHP = null;
 	this.averageRelationshipValue = null;
-	this.averageTriggerLevel = null;
+	this.averageSanity = null;
 	this.sizeOfAfterLife = null;
 	this.ghosts = null;
 	this.miniPlayers = [] //array of mini player objects
@@ -265,7 +265,7 @@ function SessionSummaryJunior(players,session_id){
 	this.averageFreeWill = null;
 	this.averageHP = null;
 	this.averageRelationshipValue = null;
-	this.averageTriggerLevel = null;
+	this.averageSanity = null;
 
 	this.generateHTML = function(){
 		this.getAverages();
@@ -302,7 +302,7 @@ function SessionSummaryJunior(players,session_id){
 		this.averageFreeWill = getAverageFreeWill(this.players);;
 		this.averageHP = getAverageHP(this.players);;
 		this.averageRelationshipValue = getAverageRelationshipValue(this.players);;
-		this.averageRelationshipValue =  getAverageTriggerLevel(this.players);;
+		this.averageRelationshipValue =  getAverageSanity(this.players);;
 	}
 
 
@@ -370,7 +370,7 @@ function MultiSessionSummary(){
 	this.averageFreeWill = 0;
 	this.averageHP = 0;
 	this.averageRelationshipValue = 0;
-	this.averageTriggerLevel = 0;
+	this.averageSanity = 0;
 	this.sizeOfAfterLife = 0;
 	this.averageAfterLifeSize = 0;
 	this.totalDeadPlayers = 0;
@@ -621,7 +621,7 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 	}
 
 	this.isAverageProperty = function(propertyName){
-		return propertyName == "sizeOfAfterLife" || propertyName == "averageAfterLifeSize" ||propertyName == "averageTriggerLevel" || propertyName == "averageRelationshipValue"  || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck"
+		return propertyName == "sizeOfAfterLife" || propertyName == "averageAfterLifeSize" ||propertyName == "averageSanity" || propertyName == "averageRelationshipValue"  || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck"
 	}
 
 	this.isPropertyToIgnore = function(propertyName){
@@ -638,7 +638,7 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 
 	//lets me know whether to have a checkbox with it or not. (only for actual properties on this object. not corpse party or class/aspect stuff.)
 	this.isFilterableProperty = function(propertyName){
-		return !(propertyName == "sizeOfAfterLife" || propertyName == "averageNumScenes" || propertyName == "averageAfterLifeSize" ||propertyName == "averageTriggerLevel" || propertyName == "averageRelationshipValue"  || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck")
+		return !(propertyName == "sizeOfAfterLife" || propertyName == "averageNumScenes" || propertyName == "averageAfterLifeSize" ||propertyName == "averageSanity" || propertyName == "averageRelationshipValue"  || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck")
 	}
 
 	this.generateHTML = function(){
@@ -805,7 +805,7 @@ function collateMultipleSessionSummariesJunior(sessionSummaryJuniors){
 		mss.averageMobility += ssj.averageMobility
 		mss.averageFreeWill += ssj.averageFreeWill
 		mss.averageHP += ssj.averageHP
-		mss.averageTriggerLevel += ssj.averageTriggerLevel
+		mss.averageSanity += ssj.averageSanity
 		mss.averageRelationshipValue += ssj.averageRelationshipValue
 	}
 
@@ -815,7 +815,7 @@ function collateMultipleSessionSummariesJunior(sessionSummaryJuniors){
 	mss.averageMobility = Math.round(mss.averageMobility/sessionSummaryJuniors.length)
 	mss.averageFreeWill = Math.round(mss.averageFreeWill/sessionSummaryJuniors.length)
 	mss.averageHP = Math.round(mss.averageHP/sessionSummaryJuniors.length)
-	mss.averageTriggerLevel = Math.round(mss.averageTriggerLevel/sessionSummaryJuniors.length)
+	mss.averageSanity = Math.round(mss.averageSanity/sessionSummaryJuniors.length)
 	mss.averageRelationshipValue = Math.round(mss.averageRelationshipValue/sessionSummaryJuniors.length)
 	return mss;
 }
@@ -891,7 +891,7 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		mss.averageMobility += ss.averageMobility
 		mss.averageFreeWill += ss.averageFreeWill
 		mss.averageHP += ss.averageHP
-		mss.averageTriggerLevel += ss.averageTriggerLevel
+		mss.averageSanity += ss.averageSanity
 		mss.averageRelationshipValue += ss.averageRelationshipValue
 		mss.averageNumScenes += ss.num_scenes;
 
@@ -906,7 +906,7 @@ function collateMultipleSessionSummaries(sessionSummaries){
 	mss.averageMobility = Math.round(mss.averageMobility/sessionSummaries.length)
 	mss.averageFreeWill = Math.round(mss.averageFreeWill/sessionSummaries.length)
 	mss.averageHP = Math.round(mss.averageHP/sessionSummaries.length)
-	mss.averageTriggerLevel = Math.round(mss.averageTriggerLevel/sessionSummaries.length)
+	mss.averageSanity = Math.round(mss.averageSanity/sessionSummaries.length)
 	mss.averageRelationshipValue = Math.round(mss.averageRelationshipValue/sessionSummaries.length)
 	mss.averageNumScenes = Math.round(mss.averageNumScenes/sessionSummaries.length)
 	mss.survivalRate = Math.round(100 * (mss.totalLivingPlayers/(mss.totalLivingPlayers + mss.totalDeadPlayers)));
@@ -928,7 +928,7 @@ function MultiSessionSummaryJunior(){
 	this.averageFreeWill = null;
 	this.averageHP = null;
 	this.averageRelationshipValue = null;
-	this.averageTriggerLevel = null;
+	this.averageSanity = null;
 
 	this.generateHTML = function(){
 		var html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
@@ -944,7 +944,7 @@ function MultiSessionSummaryJunior(){
 		html += "<Br><b>averageFreeWill:</b> " + this.averageFreeWill;
 		html += "<Br><b>averageHP:</b> " + this.averageHP;
 		html += "<Br><b>averageRelationshipValue:</b> " + this.averageRelationshipValue;
-		html += "<Br><b>averageTriggerLevel:</b> " + this.averageTriggerLevel;
+		html += "<Br><b>averageSanity:</b> " + this.averageSanity;
 
 		html += "<Br><b>Average Initial Ships Per Session:</b> " + round2Places(this.numShips/this.numSessions);
 		html += "<Br><br><b>Filter Sessions By Number of Players:</b><Br>2 <input id='num_players' type='range' min='2' max='12' value='2'> 12"
