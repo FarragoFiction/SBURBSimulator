@@ -1,5 +1,5 @@
 var screens = [];
-var maxState = 66; //this number MUST be even.
+var maxState = 68; //this number MUST be even.
 var imagesWaiting = 0;
 var imagesLoaded = 0;
 var targetImage = 0; //what could control this???
@@ -66,62 +66,6 @@ function initializeX(){
 		and also, probably just as hard to figure out as the damn puzzle
 */
 
-//k = 0
-function button1(){
-	$("#button1").attr("src", "images/LORAS/ControlPanel/button_1_p011.png");
-	compute(0,ia);
-	setTimeout(function(){
-		$("#button1").attr("src", "images/LORAS/ControlPanel/button_1_p01.png");
-	},200);
-}
-
-//k = 0
-function button2(){
-	$("#button2").attr("src", "images/LORAS/ControlPanel/button_1_p021.png");
-	setTimeout(function(){
-		$("#button2").attr("src", "images/LORAS/ControlPanel/button_1_p02.png");
-	},200);
-	compute(0,fhtagn);
-
-}
-
-
-// k = 1
-function button3(){
-	$("#button3").attr("src", "images/LORAS/ControlPanel/button_2_p011.png");
-	setTimeout(function(){
-		$("#button3").attr("src", "images/LORAS/ControlPanel/button_2_p01.png");
-	},200);
-	compute(1,ia);
-}
-
-//k = 1
-function button4(){
-	$("#button4").attr("src", "images/LORAS/ControlPanel/button_2_p021.png");
-	setTimeout(function(){
-		$("#button4").attr("src", "images/LORAS/ControlPanel/button_2_p02.png");
-	},200);
-	compute(1,fhtagn);
-}
-
-//k = 2
-function button5(){
-	$("#button5").attr("src", "images/LORAS/ControlPanel/button_3_p011.png");
-	setTimeout(function(){
-		$("#button5").attr("src", "images/LORAS/ControlPanel/button_3_p01.png");
-	},200);
-	compute(2,ia);
-}
-
-//k = 2
-function button6(){
-	$("#button6").attr("src", "images/LORAS/ControlPanel/button_3_p021.png");
-	setTimeout(function(){
-		$("#button6").attr("src", "images/LORAS/ControlPanel/button_3_p02.png");
-	},200);
-	compute(2,fhtagn);
-}
-
 function knob1(){
 	ti1 ++;
 	if(ti1 > 3) ti1 = 0;
@@ -145,6 +89,64 @@ function knob4(){
 	if(ti4 > 3) ti4 = 0;
 	recalcTI();
 }
+
+
+//k = 0
+function button1(){
+	$("#b1").attr("src", "images/LORAS/ControlPanel/button_1_p011.png");
+	compute(0,ia);
+	setTimeout(function(){
+		$("#b1").attr("src", "images/LORAS/ControlPanel/button_1_p01.png");
+	},200);
+}
+
+//k = 0
+function button2(){
+	$("#b2").attr("src", "images/LORAS/ControlPanel/button_1_p021.png");
+	setTimeout(function(){
+		$("#b2").attr("src", "images/LORAS/ControlPanel/button_1_p02.png");
+	},200);
+	compute(0,fhtagn);
+
+}
+
+
+// k = 1
+function button3(){
+	$("#b3").attr("src", "images/LORAS/ControlPanel/button_2_p011.png");
+	setTimeout(function(){
+		$("#b3").attr("src", "images/LORAS/ControlPanel/button_2_p01.png");
+	},200);
+	compute(1,ia);
+}
+
+//k = 1
+function button4(){
+	$("#b4").attr("src", "images/LORAS/ControlPanel/button_2_p021.png");
+	setTimeout(function(){
+		$("#b4").attr("src", "images/LORAS/ControlPanel/button_2_p02.png");
+	},200);
+	compute(1,fhtagn);
+}
+
+//k = 2
+function button5(){
+	$("#b5").attr("src", "images/LORAS/ControlPanel/button_3_p011.png");
+	setTimeout(function(){
+		$("#b5").attr("src", "images/LORAS/ControlPanel/button_3_p01.png");
+	},200);
+	compute(2,ia);
+}
+
+//k = 2
+function button6(){
+	$("#b6").attr("src", "images/LORAS/ControlPanel/button_3_p021.png");
+	setTimeout(function(){
+		$("#b6").attr("src", "images/LORAS/ControlPanel/button_3_p02.png");
+	},200);
+	compute(2,fhtagn);
+}
+
 
 function recalcTI(){
 	//make DAMN sure knobs aren't an invalid number.
