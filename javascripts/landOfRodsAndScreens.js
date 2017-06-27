@@ -38,6 +38,7 @@ function showMindButton(){
 	$("#mindButton").show();
 }
 
+
 //A TIME LIMIT!? That's BULLSHIT!
 //it's...ALMOST like you're expected to use your phenomenal cosmic powers to BEAT THE GAME
 //and not dick around looking for easter eggs!!!
@@ -476,6 +477,7 @@ function checkScreens(){
 	}
 	timeTillReckoning += -1;
 	//alert("!!! you unlocked a picture! I need to do something here.")
+	if(state == 0) doTheMindyThing(); //present for you.
 	quip(state);
 }
 
