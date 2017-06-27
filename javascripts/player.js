@@ -2466,8 +2466,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	//players can start with any luck, (remember, Vriska started out super unlucky and only got AAAAAAAALL the luck when she hit godtier)
 	//make sure session calls this before first tick, cause otherwise won't be initialized by right claspect after easter egg or character creation.
 	this.initializeStats = function(){
-		this.intializeAssociatedStatReferences();
-		this.intializeAssociatedClassReferences();
+		this.intializeAssociatedAspectStatReferences();
+		this.intializeAssociatedClassStatReferences();
 		this.initializeLuck();
 		this.initializeFreeWill();
 		this.initializeHP();
