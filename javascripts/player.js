@@ -2390,7 +2390,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 	
 	this.intializeAssociatedStatReferences = function(){
-		var allStats = this.allStats();
+		var allStats = this.allStats(); 
 		switch (this.aspect) {
 			case "Blood":
 				this.doublePlusStat = "RELATIONSHIPS" //not a stat, so have to remember that it's different. stupid god damned blood players.
