@@ -92,7 +92,7 @@ function FreeWillStuff(session){
 					ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. If this keeps up, they are going to end up killing the " + ectobiologistEnemy.htmlTitle();
 					ret += " and then they will NEVER do ectobiology.  No matter HOW much of an asshole they are, it's not worth dooming the timeline. ";
 					player.unmakeMurderMode();
-					player.triggerLevel = 0; //
+					player.sanity = 10; //
 					removeFromArray(player, this.session.availablePlayers);
 					return ret;
 				}
@@ -102,7 +102,7 @@ function FreeWillStuff(session){
 					ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. If this keeps up, they are going to end up killing the " + spacePlayerEnemy.htmlTitle();
 					ret += " and then they will NEVER have frog breeding done. They can always kill them AFTER they've escaped to the new Universe, right? ";
 					player.unmakeMurderMode();
-					player.triggerLevel = 0; //
+					player.sanity = 10; //
 					removeFromArray(player, this.session.availablePlayers);
 					return ret;
 				}
@@ -111,7 +111,7 @@ function FreeWillStuff(session){
 					//console.log("Free will stop from killing everybody: " + this.session.session_id);
 					ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. No matter HOW much of an asshole people are, SBURB is the true enemy, and they are not going to let themselves forget that. ";
 					player.unmakeMurderMode();
-					player.triggerLevel = 0; //
+					player.sanity = 10; //
 					removeFromArray(player, this.session.availablePlayers);
 					return ret;
 				}
@@ -138,9 +138,9 @@ function FreeWillStuff(session){
 	//allow some randomness here.
 	this.considerEngagingMurderMode = function(player){
 		var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
-		if(player.isActive() && enemies.length > 2 && player.triggerLevel > 5 && !player.murderMode && Math.seededRandom() >0.98){
+		if(player.isActive() && enemies.length > 2 && player.sanity < 0 && !player.murderMode && Math.seededRandom() >0.98){
 			return this.becomeMurderMode(player);
-		}else if(enemies.length > 0 && player.triggerLevel > 5 && Math.seededRandom() > 0.98){
+		}else if(enemies.length > 0 && player.sanity < 0 && Math.seededRandom() > 0.98){
 			return this.forceSomeOneElseMurderMode(player);
 		}
 		return null;
@@ -152,7 +152,7 @@ function FreeWillStuff(session){
 			if(this.isValidTargets(enemies,player)){
 					console.log("chosing to go into murdermode " +this.session.session_id);
 					player.makeMurderMode();
-					player.triggerLevel = 10;
+					player.sanity = -10;
 					removeFromArray(player, this.session.availablePlayers);
 					this.renderPlayer1 = player;
 					console.log('deciding to be flipping shit')
@@ -188,7 +188,7 @@ function FreeWillStuff(session){
 		var ret = null;
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var m = this.session.availablePlayers[i];
-			if(!ret || (m.triggerLevel > ret.triggerLevel && !m.dead && m.murderMode)){
+			if(!ret || (m.sanity < ret.sanity && !m.dead && m.murderMode)){
 				ret = m;
 			}
 		}
@@ -312,10 +312,10 @@ function FreeWillStuff(session){
 		var patsy = patsyArr[0];
 		var patsyVal = patsyArr[1];
 		if(this.isValidTargets(enemies,player) && patsy){
-				if(patsyVal > enemies.length/2 && patsy.triggerLevel > 1){
+				if(patsyVal > enemies.length/2 && patsy.sanity < 1){
 						console.log("manipulating someone to go into murdermode " +this.session.session_id + " patsyVal = " + patsyVal);
 						patsy.makeMurderMode();
-						patsy.triggerLevel = 10;
+						patsy.sanity = -10;
 						removeFromArray(player, this.session.availablePlayers);
 						removeFromArray(patsy, this.session.availablePlayers);
 						this.renderPlayer1 = player;
@@ -336,7 +336,7 @@ function FreeWillStuff(session){
 					if(this.canInfluenceEnemies(player) && patsy.freeWill  < player.freeWill && patsy.influencePlayer != player){
 						console.log(player.title() +" controling into murdermode and altering their enemies with game powers." +this.session.session_id);
 						patsy.makeMurderMode();
-						patsy.triggerLevel = 10;
+						patsy.sanity = -10;
 						patsy.flipOut(" about how they are being forced into MurderMode")
 						patsy.influenceSymbol = this.getInfluenceSymbol(player);
 						patsy.influencePlayer = player;
@@ -387,9 +387,9 @@ function FreeWillStuff(session){
 	this.considerForceGodTier = function(player){
 		if(!player.knowsAboutSburb()) return null; //regular players will never do this
 		if(player.freeWill < 50) return null; //requires great will power to commit suicide or murder for the greater good.
-		if(player.isActive() && (player.triggerLevel < 10 || player.murderMode)){
+		if(player.isActive() && (player.sanity > 0 || player.murderMode)){
 			return this.becomeGod(player);
-		}else if(player.triggerLevel < 10 || player.murderMode) {  //don't risk killing a friend unless you're already crazy or the idea of failure hasn't even occured to you.
+		}else if(player.sanity > 0 || player.murderMode) {  //don't risk killing a friend unless you're already crazy or the idea of failure hasn't even occured to you.
 			return this.forceSomeOneElseBecomeGod(player);
 		}
 		return null;
@@ -415,7 +415,7 @@ function FreeWillStuff(session){
 			if(sacrifice.sprite.name == "sprite"){  //isn't gonna happen to yourself, 'cause you have to be 'available'.
 				intro += ", to the point of abusing glitches and technicalities the game itself to exploit it before the " + sacrifice.htmlTitle() + " is even in the Medium"
 				console.log("HAX! I call HAX! " + this.session.session_id)
-			} 
+			}
 			if(player.murderMode){
 				intro += " and they are too far gone to care about casualties if it fails"
 			}
@@ -436,7 +436,7 @@ function FreeWillStuff(session){
 					removeFromArray(player, this.session.availablePlayers);
 					removeFromArray(sacrifice, this.session.availablePlayers);
 
-					player.triggerLevel += 100;
+					player.sanity += -100;
 					player.flipOut(" how stupid they could have been to force the " + sacrifice.htmlTitleBasic() + " to commit suicide" )
 					this.renderPlayer1 = player;
 					this.renderPlayer2 = sacrifice;
@@ -541,7 +541,7 @@ function FreeWillStuff(session){
 			if(!murderer.stateBackup) murderer.stateBackup = new MiniSnapShot(murderer);
 			murderer.nullAllRelationships();
 			murderer.unmakeMurderMode();
-			murderer.triggerLevel = -100;
+			murderer.sanity = 100;
 			murderer.influenceSymbol = this.getInfluenceSymbol(player);
 			murderer.influencePlayer = player;
 			murderer.getRelationshipWith(player).value += (player.freeWill - murderer.freeWill*2);  //might love or hate you during this.
@@ -613,7 +613,7 @@ function FreeWillStuff(session){
 			patsy.makeMurderMode();
 			removeFromArray(player, this.session.availablePlayers);
 			removeFromArray(patsy, this.session.availablePlayers);
-			patsy.triggerLevel = 100;
+			patsy.sanity = -100;
 			patsy.flipOut(" how they are being forced to try to kill the " + murderer.htmlTitleBasic());
 			patsy.influenceSymbol = this.getInfluenceSymbol(player);
 			patsy.influencePlayer = player;

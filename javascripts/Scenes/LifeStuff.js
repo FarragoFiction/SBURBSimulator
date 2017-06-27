@@ -183,13 +183,13 @@ function LifeStuff(session){
 			if(ghostName == "murder victim"){  //
 				console.log("dead murder victims freakouts " + this.session.session_id)
 				str += " It's kind of freaking the " + player.htmlTitleBasic() + " out a little. "
-				player.triggerLevel ++;
+				player.sanity +=1;
 				player.flipOutReason = "being haunted by the ghost of the Player they killed"
 
 			}else if(ghostName == "less fortunate alternate self"){
 				console.log("dead alt selves freakouts " + this.session.session_id)
 				str += " It's kind of freaking the " + player.htmlTitleBasic() + " out a little. "
-				player.triggerLevel ++;
+				player.sanity += -1;
 				player.flipOutReason = "being haunted by their own ghost"
 			}else if(trait != 'nice' && ghost.id != player.id){
 				str += " They bond over how " + trait + " they both are. The " + player.htmlTitle() + " feels their determination to beat the game grow. "
