@@ -282,6 +282,7 @@ function CharacterCreatorHelper(players){
 			this.syncPlayerToFields(player);
 	}
 
+	//this game is so esey. i mean, all you do is hit the refresh button. thats it! how is this an RPG anyway? you cant contrail anything but what it says on the screen!
 	this.generateHelpText = function(topic,specific){
 		if(topic == "Class") return "totol lies, in the middle of classpect update. will update l8r. " + this.generateClassHelp(topic, specific);
 		if(topic == "Aspect") return "totol lies, in the middle of classpect update. will update l8r. " + this.generateAspectHelp(topic, specific);
