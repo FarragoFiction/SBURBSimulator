@@ -527,8 +527,8 @@ function quip(state){
 		ret = "Don't worry about it, Observer, you have the reins here, it'll be fiiine.  What's ONE more secret?"
 	} else if(state == 67){
 		ret = "lol, i remember when that Observer figured out how to 'hack' SBURB.  So amazing."
-	} else if(state == 3){
-		ret = "Huh? That doesn't look like RS..."
+	} else if(state == 65){
+		ret = "Oh my FUCKING god, now LORAS is just trolling me."
 	}  else{
 		ret = "???"
 	}
