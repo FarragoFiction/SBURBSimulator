@@ -1965,19 +1965,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.initializeLuck = function(){
 		this.minLuck = getRandomInt(20,40); //middle of the road.
 		this.maxLuck = this.minLuck + getRandomInt(1,20);   //max needs to be more than min.
-		if(this.aspect == "Light"){
-			if(this.highInit()){
-				this.maxLuck += 35;
-			}else{
-				this.maxLuck += -35;
-			}
-		}else if(this.aspect == "Doom"){
-			if(this.highInit()){
-				this.minLuck += -35;
-			}else{
-				this.minLuck += 35;
-			}
-		}
 		if(this.trickster && this.aspect != "Doom"){
 			this.minLuck = 11111111111;
 			this.maxLuck = 11111111111;
@@ -2004,39 +1991,13 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	this.initializeFreeWill = function(){
 		this.freeWill = getRandomInt(-25,25);
-		if(this.aspect == "Mind"){
-			if(this.highInit()){
-				this.freeWill += 35;
-			}else{
-				this.freeWill += -35;
-			}
-		}else if(this.aspect == "Time"){
-			if(this.highInit()){
-				this.freeWill += -35;
-			}else{
-				this.freeWill += 35;
-			}
-		}
 		if(this.trickster && this.aspect != "Doom"){
 			this.freeWill = 11111111111;
 		}
 	}
 
 	this.initializeHP= function(){
-		this.hp = getRandomInt(50,300);
-		if(this.aspect == "Life"){
-			if(this.highInit()){
-				this.hp += 50;
-			}else{
-				this.hp += -50;
-			}
-		}else if(this.aspect == "Doom"){
-			if(this.highInit()){
-				this.hp += -50;
-			}else{
-				this.hp += 50;
-			}
-		}
+		this.hp = getRandomInt(50,100);
 		this.currentHP = this.hp;
 		if(this.trickster && this.aspect != "Doom"){
 			this.currentHP = 11111111111;
@@ -2077,20 +2038,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.initializeMobility = function(){
-		this.mobility = getRandomInt(0,75);
-		if(this.aspect == "Breath"){
-			if(this.highInit()){
-				this.mobility += 35;
-			}else{
-				this.mobility += -35;
-			}
-		}else if(this.aspect == "Space"){
-			if(this.highInit()){
-				this.mobility += -35;
-			}else{
-				this.mobility += 35;
-			}
-		}
+		this.mobility = getRandomInt(0,35);
 		if(this.trickster && this.aspect != "Doom"){
 			this.mobility = 11111111111;
 		}
@@ -2098,46 +2046,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	this.initializeTriggerLevel = function(){
 		this.triggerLevel = getRandomInt(0,2);
-		if(this.aspect == "Rage"){
-			if(this.highInit()){
-				this.triggerLevel += 2;
-			}else{
-				this.triggerLevel += -2;
-			}
-		}else if(this.aspect == "Blood"){
-			if(this.highInit()){
-				this.triggerLevel += -2;
-			}else{
-				this.triggerLevel += 2;
-			}
-		}
 	}
 
 	//don't recalculate values, but can boost postivily or negatively by an amount. sure.
 	this.initializeRelationships = function(){
-		var amount = 5;
-		if(this.aspect == "Heart"){
-			if(this.highInit()){
-				this.boostAllRelationshipsBy(amount)
-			}else{
-				this.boostAllRelationshipsBy(-1 * amount)
-			}
-		}else if(this.aspect == "Rage"){
-			if(this.highInit()){
-				this.boostAllRelationshipsWithMeBy(-1* amount);
-				this.boostAllRelationshipsBy(-1*amount)
-			}else{
-				this.boostAllRelationshipsWithMeBy(amount);
-				this.boostAllRelationshipsBy(amount)
-			}
-		}else if(this.aspect == "Blood"){
-			if(this.highInit()){
-				this.boostAllRelationshipsWithMeBy(amount);
-			}else{
-				this.boostAllRelationshipsWithMeBy(-1 * amount);
-			}
-		}
-
 		if(this.trickster && this.aspect != "Doom" && this.aspect != "Heart"){
 		for(var k = 0; k <this.relationships.length; k++){
 				var r = this.relationships[k];
@@ -2170,13 +2082,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	this.initializePower = function(){
 		this.power = 0;
-		if(this.aspect == "Hope"){
-			if(this.highInit()){
-				this.power += 15
-			}else{
-				this.power += -15;
-			}
-		}
 		if(this.trickster && this.aspect != "Doom"){
 			this.power = 11111111111;
 		}
@@ -2509,7 +2414,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 	
 	//["power","hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
-	this.getInterestAssociatedStats(interest){
+	this.getInterestAssociatedStats = function(interest){
 		if(pop_culture_interests.indexOf(interest) != -1) return [new AssociatedStat("mobility",2)];
 		if(music_interests.indexOf(interest) != -1) return [new AssociatedStat("sanity",1),new AssociatedStat("maxLuck",1)];
 		if(culture_interests.indexOf(interest) != -1) return [new AssociatedStat("sanity",-1),new AssociatedStat("hp",-1)]; //SBURB is NOT high art.
@@ -2528,7 +2433,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	
 	
 	//care about highInit(), and also interestCategories.
-	this.initializeAssociatedStats(){
+	this.initializeAssociatedStats = function(){
 		for(var i = 0; i<this.associatedStats.length; i++){
 			if(this.highInit()){
 				this.modifyAssociatedStat(35, this.associatedStats[i]);
@@ -2541,7 +2446,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	
 	//if RELATIONSHIPS, loop on all relationships.
 	//up to who calls me to pick a sane value. (modified by class as appropriate)
-	this.modifyAssociatedStat(modValue, stat){
+	this.modifyAssociatedStat = function(modValue, stat){
 		//modValue * stat.multiplier. 
 		if(stat.name == "RELATIONSHIPS"){
 			for(var i = 0; i<this.relationships.length; i++){
@@ -2550,6 +2455,12 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}else{
 			this[stat.name] += modValue * stat.multiplier;
 		}
+	}
+	
+	this.initializeInterestStats = function(){
+		//getInterestAssociatedStats
+		this.modifyAssociatedStat(35, this.getInterestAssociatedStats(this.interest1));
+		this.modifyAssociatedStat(35, this.getInterestAssociatedStats(this.interest2));
 	}
 
 	//players can start with any luck, (remember, Vriska started out super unlucky and only got AAAAAAAALL the luck when she hit godtier)
@@ -2567,6 +2478,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.initializeTriggerLevel();
 		
 		this.initializeAssociatedStats();
+		this.initializeInterestStats();  //takes the place of old random intial stats.
 		//reroll goddestiny and sprite as well. luck might have changed.
 		var luck = this.rollForLuck();
 		if(this.class_name == "Witch" || luck < 10){
