@@ -283,8 +283,8 @@ function CharacterCreatorHelper(players){
 	}
 
 	this.generateHelpText = function(topic,specific){
-		if(topic == "Class") return this.generateClassHelp(topic, specific);
-		if(topic == "Aspect") return this.generateAspectHelp(topic, specific);
+		if(topic == "Class") return "totol lies, in the middle of classpect update. will update l8r. " + this.generateClassHelp(topic, specific);
+		if(topic == "Aspect") return "totol lies, in the middle of classpect update. will update l8r. " + this.generateAspectHelp(topic, specific);
 		if(topic == "BloodColor") return this.generateBloodColorHelp(topic, specific);
 		if(topic == "Moon") return this.generateMoonHelp(topic, specific);
 		if(topic == "FavoriteNumber") return "Favorite number can affect a Player's quirk, as well as determining a troll's god tier Wings.";
