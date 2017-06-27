@@ -29,9 +29,13 @@ window.onload = function() {
 	//think for 5 minutes on the clock before activating cheat powers.
 	//(have some easter egg way to activate them immediately for those who are playing it a second time.)
 	setTimeout(function(){
-		$("#spiel").hide();
-		$("#mindButton").show();
-	}, (5*600));
+		showMindButton();
+	}, (5*60000));
+}
+
+function showMindButton(){
+	$("#spiel").hide();
+	$("#mindButton").show();
 }
 
 //A TIME LIMIT!? That's BULLSHIT!
@@ -398,7 +402,7 @@ function concentrate(target){
 //denizen will only let you target state 0.
 //mind powers will let you target any state.
 function blatantlyCheat(t1,t2,t3,t4){
-	console.log("winning via meta shenanigans")
+	//console.log("winning via meta shenanigans")
 	ti1 = t1;
 	ti2 = t2;
 	ti3 = t3;
@@ -478,7 +482,7 @@ function checkScreens(){
 function quip(state){
 	var ret = ""
 	var prize = ":/ Looks like you didn't do it before the Reckoning, though. Thems the breaks. Poor Janus died in vain. What were you even gonna DO with all that grist?";
-	if(timeTillReckoning > 0) prize = "And you managed to it BEFORE the time limit! Look at you, being all 'adult' and shit.  Holy shit, apparently I got a YellowYard for beating Janus?  Huh...but for some reason I have to give it to you?  So...uh...don't fuck this up, okay: <a target = '_blank' href = 'index2.html?lawnring=yellow'>UseYellowYardResponsibly</a>"
+	if(timeTillReckoning > 0) prize = "And you managed to it BEFORE the Reckoning! Look at you, being all 'adult' and shit.  Holy shit, apparently I got a YellowYard for beating Janus?  Huh...but for some reason I have to give it to you?  So...uh...don't fuck this up, okay: <a target = '_blank' href = 'index2.html?lawnring=yellow'>UseYellowYardResponsibly</a>"
 	if(state == 0){
 	 ret = "Oh! You win! " + prize;
  	}else if(state == 47){
@@ -805,7 +809,7 @@ function Screen(canvas,maxState, uX, uY, screenNum, i, k){
 	this.state = maxState;
 	this.screenNum = screenNum;
 	this.upperLeftX = uX;
-	this.drawGuides = true;
+	this.drawGuides = false;
 	this.upperLeftY = uY;
 	this.height = 45; //<-- don't fucking change this.
 	this.width = 45;
