@@ -1,6 +1,11 @@
 function Player(session,class_name, aspect, object_to_prototype, moon, godDestiny,id){
 	this.baby = null;
 	this.renderingType = 0; //0 means default for this sim.
+	this.doublePlusStat = "";
+	this.plusStat = "";
+	this.minusStat = "";
+	this.sanity = 0; //eventually replace triggerLevel with this (it's polarity is opposite triggerLevel)
+	this.alchemy = 0; //mostly unused until we get to the Alchemy update.
 	this.interest1Category = null; //used by Replay page for custom interests.
 	this.interest2Category = null; //both should be null once they have been used to add the custom interest to the right place
 	this.spriteCanvasID = null;  //part of new rendering engine.
@@ -2379,11 +2384,83 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.sprite.doomed = true
 		this.sprite.sprite = true;
 	}
+	
+	this.allStats = function(){
+		return ["power","hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
+	}
+	
+	this.intializeAssociatedStatReferences = function(){
+		var allStats = this.allStats();
+		switch (this.aspect) {
+			case "Blood":
+				this.doublePlusStat = "RELATIONSHIPS" //not a stat, so have to remember that it's different. stupid god damned blood players.
+				this.plusStat = "sanity"
+				this.minusStat = "maxLuck";
+				break;
+			case  "Mind":
+				this.doublePlusStat = "freeWill" 
+				this.plusStat = "minLuck"
+				this.minusStat = "RELATIONSHIPS";
+				break;
+			case  "Rage":
+				this.doublePlusStat = "power" 
+				this.plusStat = "mobility"
+				this.minusStat = "sanity"; //might need to make this a special stat like RELATIONSHIPS so it's - sanity AND - relationships.
+				break;
+			case  "Void":
+				this.doublePlusStat = getRandomElementFromArray(allStats); 
+				this.plusStat = "maxLuck"
+				this.minusStat = "minLuck";
+				break;
+			case  "Time":
+				this.doublePlusStat = "minLuck" 
+				this.plusStat = "mobility"
+				this.minusStat = "freeWill";
+				break;
+			case  "Heart":
+				this.doublePlusStat = "freeWill" 
+				this.plusStat = "minLuck"
+				this.minusStat = "RELATIONSHIPS";
+				break;
+			case  "Breath":
+				this.doublePlusStat = "mobility" 
+				this.plusStat = "sanity"
+				this.minusStat = getRandomElementFromArray(allStats); 
+				break;	
+			case  "Light":
+				this.doublePlusStat = "maxLuck" 
+				this.plusStat = "freeWill"
+				this.minusStat = "sanity";
+				break;
+			case  "Space":
+				this.doublePlusStat = "alchemy" 
+				this.plusStat = "hp"
+				this.minusStat = "mobility";
+				break;
+			case  "Hope":
+				this.doublePlusStat = "sanity" 
+				this.plusStat = "maxLuck"
+				this.minusStat = "RELATIONSHIPS";
+				break;
+			case  "Life":
+				this.doublePlusStat = "hp" 
+				this.plusStat = "power"
+				this.minusStat = "alchemy";
+				break;
+			case  "Doom":
+				this.doublePlusStat = "alchemy" 
+				this.plusStat = "freeWill"
+				this.minusStat = "minLuck";
+				break;
+			default:
+				console.log('What the hell kind of aspect is ' + this.aspect + '???');
+		}
+	}
 
 	//players can start with any luck, (remember, Vriska started out super unlucky and only got AAAAAAAALL the luck when she hit godtier)
 	//make sure session calls this before first tick, cause otherwise won't be initialized by right claspect after easter egg or character creation.
 	this.initializeStats = function(){
-
+		this.intializeAssociatedStatReferences();
 		this.initializeLuck();
 		this.initializeFreeWill();
 		this.initializeHP();

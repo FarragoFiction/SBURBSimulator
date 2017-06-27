@@ -734,7 +734,7 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 			html += this.generateHTMLForProperty(propertyName)
 		}
 		html += "</div></div>"
-		console.log(html);
+		//console.log(html);
 		return html;
 	}
 
