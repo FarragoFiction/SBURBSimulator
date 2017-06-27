@@ -2422,52 +2422,37 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				this.associatedStats.push(new AssociatedStat(getInterestAssociatedStat(this.interest2), 1)); //interest decides if it's positive or negative.
 				break;
 			case  "Breath":
-				this.doublePlusStat = "mobility" 
-				this.plusStat = "sanity"
-				this.minusStat = getRandomElementFromArray(allStats); 
-				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", 2));
+				this.associatedStats.push(new AssociatedStat("mobility", 2));
 				this.associatedStats.push(new AssociatedStat("sanity", 1));
-				this.associatedStats.push(new AssociatedStat("maxLuck", -1));
+				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), -1));
 				break;	
 			case  "Light":
-				this.doublePlusStat = "maxLuck" 
-				this.plusStat = "freeWill"
-				this.minusStat = "sanity";
-				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", 2));
-				this.associatedStats.push(new AssociatedStat("sanity", 1));
-				this.associatedStats.push(new AssociatedStat("maxLuck", -1));
+				this.associatedStats.push(new AssociatedStat("maxLuck", 2));
+				this.associatedStats.push(new AssociatedStat("freeWill", 1));
+				this.associatedStats.push(new AssociatedStat("sanity", -1));
 				break;
 			case  "Space":
-				this.doublePlusStat = "alchemy" 
-				this.plusStat = "hp"
-				this.minusStat = "mobility";
-				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", 2));
-				this.associatedStats.push(new AssociatedStat("sanity", 1));
-				this.associatedStats.push(new AssociatedStat("maxLuck", -1));
+				this.associatedStats.push(new AssociatedStat("alchemy", 2));
+				this.associatedStats.push(new AssociatedStat("hp", 1));
+				this.associatedStats.push(new AssociatedStat("mobility", -1));
 				break;
 			case  "Hope":
-				this.doublePlusStat = "sanity" 
-				this.plusStat = "maxLuck"
-				this.minusStat = "RELATIONSHIPS";
-				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", 2));
-				this.associatedStats.push(new AssociatedStat("sanity", 1));
-				this.associatedStats.push(new AssociatedStat("maxLuck", -1));
+				this.associatedStats.push(new AssociatedStat("sanity", 2));
+				this.associatedStats.push(new AssociatedStat("maxLuck", 1));
+				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", -1));
 				break;
 			case  "Life":
 				this.doublePlusStat = "hp" 
 				this.plusStat = "power"
 				this.minusStat = "alchemy";
-				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", 2));
-				this.associatedStats.push(new AssociatedStat("sanity", 1));
-				this.associatedStats.push(new AssociatedStat("maxLuck", -1));
+				this.associatedStats.push(new AssociatedStat("hp", 2));
+				this.associatedStats.push(new AssociatedStat("power", 1));
+				this.associatedStats.push(new AssociatedStat("alchemy", -1));
 				break;
 			case  "Doom":
-				this.doublePlusStat = "alchemy" 
-				this.plusStat = "freeWill"
-				this.minusStat = "minLuck";
-				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", 2));
-				this.associatedStats.push(new AssociatedStat("sanity", 1));
-				this.associatedStats.push(new AssociatedStat("maxLuck", -1));
+				this.associatedStats.push(new AssociatedStat("alchemy", 2));
+				this.associatedStats.push(new AssociatedStat("freeWill", 1));
+				this.associatedStats.push(new AssociatedStat("minLuck", -1));
 				break;
 			default:
 				console.log('What the hell kind of aspect is ' + this.aspect + '???');
