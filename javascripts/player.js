@@ -2387,7 +2387,61 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		return ["power","hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
 	}
 	
-	this.intializeAssociatedStatReferences = function(){
+	
+	//sum to 2
+	this.intializeAssociatedClassStatReferences = function(){
+		var allStats = this.allStats();
+		switch (this.class_name) {
+			case "Knight":
+				this.associatedStats.push(new AssociatedStat("mobility", 1)); //will run to protect you.
+				this.associatedStats.push(new AssociatedStat("hp", 1));
+				break;
+			case  "Seer":
+				this.associatedStats.push(new AssociatedStat("freeWill", 2));
+				break;
+			case  "Bard":
+				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), 2));
+				break;
+			case  "Heir":
+				this.associatedStats.push(new AssociatedStat("maxLuck", 1));
+				this.associatedStats.push(new AssociatedStat("minLuck", 1));
+				break;
+			case  "Maid":
+				this.associatedStats.push(new AssociatedStat("sanity", 2));
+				break;
+			case  "Rogue":
+				this.associatedStats.push(new AssociatedStat("mobility", 1));
+				this.associatedStats.push(new AssociatedStat("sanity", 1));
+				break;
+			case  "Page":
+				this.associatedStats.push(new AssociatedStat("mobility", 1));
+				this.associatedStats.push(new AssociatedStat("hp", 1));
+				break;	
+			case  "Thief":
+				this.associatedStats.push(new AssociatedStat("maxLuck", 1));
+				this.associatedStats.push(new AssociatedStat("power", 1));
+				break;
+			case  "Sylph":
+				this.associatedStats.push(new AssociatedStat("hp", 1));
+				this.associatedStats.push(new AssociatedStat("sanity", 1));
+				break;
+			case  "Prince":
+				this.associatedStats.push(new AssociatedStat("power", 2));
+				break;
+			case  "Witch":
+				this.associatedStats.push(new AssociatedStat("power", 1));
+				this.associatedStats.push(new AssociatedStat("freeWill", 1));
+				break;
+			case  "Mage":
+				this.associatedStats.push(new AssociatedStat("freeWill", 2));
+				break;
+			default:
+				console.log('What the hell kind of aspect is ' + this.aspect + '???');
+		}
+	}
+	
+	//sum to 2
+	this.intializeAssociatedAspectStatReferences = function(){
 		var allStats = this.allStats();
 		switch (this.aspect) {
 			case "Blood":
@@ -2406,7 +2460,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				this.associatedStats.push(new AssociatedStat("sanity", -1));
 				break;
 			case  "Void":
-				this.doublePlusStat = getRandomElementFromArray(allStats); 
 				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), 2));
 				this.associatedStats.push(new AssociatedStat("maxLuck", 1));
 				this.associatedStats.push(new AssociatedStat("minLuck", -1));
@@ -2441,9 +2494,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", -1));
 				break;
 			case  "Life":
-				this.doublePlusStat = "hp" 
-				this.plusStat = "power"
-				this.minusStat = "alchemy";
 				this.associatedStats.push(new AssociatedStat("hp", 2));
 				this.associatedStats.push(new AssociatedStat("power", 1));
 				this.associatedStats.push(new AssociatedStat("alchemy", -1));
@@ -2486,6 +2536,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	//make sure session calls this before first tick, cause otherwise won't be initialized by right claspect after easter egg or character creation.
 	this.initializeStats = function(){
 		this.intializeAssociatedStatReferences();
+		this.intializeAssociatedClassReferences();
 		this.initializeLuck();
 		this.initializeFreeWill();
 		this.initializeHP();
