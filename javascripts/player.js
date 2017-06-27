@@ -2375,8 +2375,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				this.associatedStats.push(new AssociatedStat("freeWill", -1));
 				break;
 			case  "Heart":
-				this.associatedStats = this.associatedStats.concat(this.getInterestAssociatedStat(this.interest1));
-				this.associatedStats = this.associatedStats.concat(this.getInterestAssociatedStat(this.interest2));
+				this.associatedStats = this.associatedStats.concat(this.getInterestAssociatedStats(this.interest1));
+				this.associatedStats = this.associatedStats.concat(this.getInterestAssociatedStats(this.interest2));
 				break;
 			case  "Breath":
 				this.associatedStats.push(new AssociatedStat("mobility", 2));
