@@ -488,7 +488,7 @@ function checkScreens(){
 function quip(state){
 	var ret = ""
 	var prize = ":/ Looks like you didn't do it before the Reckoning, though. Thems the breaks. Poor Janus died in vain. What were you even gonna DO with all that grist?";
-	if(timeTillReckoning > 0) prize = "And you managed to it BEFORE the Reckoning! Look at you, being all 'adult' and shit. <br><Br> Holy shit, apparently I got a YellowYard for beating Janus?  Huh...but for some reason I have to give it to you?  So...uh...don't fuck this up, okay: <Br><br><a target = '_blank' href = 'index2.html?lawnring=yellow'>UseYellowYardResponsibly</a>"
+	if(timeTillReckoning > 0) prize = "And you managed to it BEFORE the Reckoning! Look at you, being all 'adult' and shit. (I wonder if you missed any secrets, though.) <br><Br> Holy shit, apparently I got a YellowYard for beating Janus?  Huh...but for some reason I have to give it to you?  So...uh...don't fuck this up, okay: <Br><br><a target = '_blank' href = 'index2.html?lawnring=yellow'>UseYellowYardResponsibly</a>"
 	if(state == 0){
 	 ret = "Oh! You win! " + prize;
  	}else if(state == 47){
