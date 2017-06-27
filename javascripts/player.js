@@ -1,7 +1,7 @@
 function Player(session,class_name, aspect, object_to_prototype, moon, godDestiny,id){
 	this.baby = null;
 	this.renderingType = 0; //0 means default for this sim.
-	this.associatedStats = [];  //most players will have a 2x, a 1x and a -1x stat. 
+	this.associatedStats = [];  //most players will have a 2x, a 1x and a -1x stat.
 	this.sanity = 0; //eventually replace triggerLevel with this (it's polarity is opposite triggerLevel)
 	this.alchemy = 0; //mostly unused until we get to the Alchemy update.
 	this.interest1Category = null; //used by Replay page for custom interests.
@@ -877,7 +877,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.hasInteractionEffect = function(){
 		return this.class_name == "Prince" || this.class_name == "Bard"|| this.class_name == "Witch"|| this.class_name == "Sylph"|| this.class_name == "Rogue"|| this.class_name == "Thief"
 	}
-	
+
 	this.associatedStatsInteractionEffect = function(player){
 		if(this.hasInteractionEffect()){ //don't even bother if you don't have an interaction effect.
 			for(var i = 0; i<this.associatedStats.length; i++){
@@ -885,7 +885,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			}
 		}
 	}
-	
+
 
 	this.processStatInteractionEffect = function(player, stat){
 		var powerBoost = this.power/20;
@@ -912,9 +912,9 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.interactionEffect = function(player){
-		
+
 		this.associatedStatsInteractionEffect(player);
-		
+
 		//no longer do this seperate. if close enough to modify with powers, close enough to be...closer.
 		r1 = this.getRelationshipWith(player);
 		if(r1){
@@ -941,7 +941,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		return active_classes.indexOf(this.class_name) != -1;
 	}
 
-	
+
 
 	//each player knows how to generate their own guardian.
 	this.makeGuardian =function(){
@@ -983,15 +983,15 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		guardian.guardian = this;//goes both ways.
 	}
 
-	
-	
+
+
 	this.associatedStatsIncreasePower = function(powerBoost){
 		//modifyAssociatedStat
 		for(var i = 0; i< this.associatedStats.length; i++){
 			this.processStatPowerIncrease(powerBoost, this.associatedStats[i]);
 		}
 	}
-	
+
 	this.modPowerBoostByClass = function(powerBoost,stat){
 		switch (this.class_name) {
 			case "Knight":
@@ -1027,7 +1027,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				}else{
 					powerBoost = powerBoost * 0.5
 				}
-				break;	
+				break;
 			case  "Thief":
 				powerBoost = powerBoost * 0.5;
 				break;
@@ -1051,10 +1051,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			default:
 				console.log('What the hell kind of class is ' + this.class_name + '???');
 		}
-		
+
 		return powerBoost;
 	}
-	
+
 	this.processStatPowerIncrease = function(powerBoost, stat){
 		var powerBoost = this.modPowerBoostByClass(powerBoost,stat);
 		if(this.isActive()){ //modify me
@@ -1065,7 +1065,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			}
 		}
 	}
-	
+
 
 	this.increasePower = function(){
 		if(Math.seededRandom() >.9){
@@ -1824,12 +1824,12 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.sprite.doomed = true
 		this.sprite.sprite = true;
 	}
-	
+
 	this.allStats = function(){
 		return ["power","hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
 	}
-	
-	
+
+
 	//sum to 1
 	this.intializeAssociatedClassStatReferences = function(){
 		var allStats = this.allStats();
@@ -1858,7 +1858,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			case  "Page":
 				this.associatedStats.push(new AssociatedStat("mobility", 0.5));
 				this.associatedStats.push(new AssociatedStat("hp", 0.5));
-				break;	
+				break;
 			case  "Thief":
 				this.associatedStats.push(new AssociatedStat("maxLuck", 0.5));
 				this.associatedStats.push(new AssociatedStat("power", 0.5));
@@ -1881,7 +1881,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				console.log('What the hell kind of class is ' + this.class_name + '???');
 		}
 	}
-	
+
 	//sum to 2
 	this.intializeAssociatedAspectStatReferences = function(){
 		var allStats = this.allStats();
@@ -1919,7 +1919,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				this.associatedStats.push(new AssociatedStat("mobility", 2,true));
 				this.associatedStats.push(new AssociatedStat("sanity", 1,true));
 				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), -1,true));
-				break;	
+				break;
 			case  "Light":
 				this.associatedStats.push(new AssociatedStat("maxLuck", 2,true));
 				this.associatedStats.push(new AssociatedStat("freeWill", 1,true));
@@ -1949,7 +1949,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				console.log('What the hell kind of aspect is ' + this.aspect + '???');
 		}
 	}
-	
+
 	//["power","hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
 	this.getInterestAssociatedStats = function(interest){
 		if(pop_culture_interests.indexOf(interest) != -1) return [new AssociatedStat("mobility",2)];
@@ -1967,8 +1967,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(fantasy_interests.indexOf(interest) != -1) return [new AssociatedStat("maxLuck",1),new AssociatedStat("alchemy",1)];
 		if(justice_interests.indexOf(interest) != -1) return [new AssociatedStat("power",1),new AssociatedStat("hp",1)];
 	}
-	
-	
+
+
 	//care about highInit(), and also interestCategories.
 	this.initializeAssociatedStats = function(){
 		for(var i = 0; i<this.associatedStats.length; i++){
@@ -1979,14 +1979,14 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			}
 		}
 	}
-	
-	
+
+
 	//if RELATIONSHIPS, loop on all relationships.
 	//up to who calls me to pick a sane value. (modified by class as appropriate)
 	//you don't have to own the associated stat for it to modify you. A sylph will call this for each player in the party, for example
 	//and pass their own stat, but it will mod the player's stat. don't worry about it.
 	this.modifyAssociatedStat = function(modValue, stat){
-		//modValue * stat.multiplier. 
+		//modValue * stat.multiplier.
 		if(stat.name == "RELATIONSHIPS"){
 			for(var i = 0; i<this.relationships.length; i++){
 				this.relationships[i].value += modValue * stat.multiplier;
@@ -1995,7 +1995,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			this[stat.name] += modValue * stat.multiplier;
 		}
 	}
-	
+
 	this.initializeInterestStats = function(){
 		//getInterestAssociatedStats
 		this.modifyAssociatedStat(35, this.getInterestAssociatedStats(this.interest1));
@@ -2016,7 +2016,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.initializePower();
 		this.initializeVoid();
 		this.initializeTriggerLevel();
-		
+
 		this.initializeAssociatedStats();
 		this.initializeInterestStats();  //takes the place of old random intial stats.
 		//reroll goddestiny and sprite as well. luck might have changed.
@@ -2704,7 +2704,7 @@ function getAverageFreeWill(players){
 	return  Math.round(ret/players.length);
 }
 
-
+///TODO USE SOMETHING SIMILAR FOR fraymotifS (BUT THROWN AWAY AT END OF STRIFE)
 //need to know if you're from aspect, 'cause only aspect associatedStats will be used for fraymotifs.
 //except for heart, which can use ALL associated stats. (cause none will be from aspect.)
 function AssociatedStat(statName, multiplier, isFromAspect){

@@ -253,7 +253,7 @@ function loadAllImages(){
 		loadImage('images/LORAS/'+i+".png",i);
 	}
 	loadImage('images/LORAS/0Ultimate.png',1025);
-	loadImage('images/LORAS/0UltimateFail.png',1026);
+	loadImage('images/LORAS/0Fail.png',1026);
 }
 
 function loadImage(img,i){
