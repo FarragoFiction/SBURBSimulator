@@ -1225,211 +1225,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		return active_classes.indexOf(this.class_name) != -1;
 	}
 
-	this.hopeIncreasePower = function(powerBoost){
-		var power = powerBoost/10;
-		if(this.class_name == "Prince" || this.class_name == "Bard"){
-			power = -1 *power;
-		}
-
-		if(this.isActive()){ //modify me
-			this.power += power;
-		}else{  //modify others.
-			for(var i = 0; i<this.session.players.length; i++){
-				var player = this.session.players[i];
-				player.power += power;
-			}
-		}
-		this.power = Math.max(this.power, 1); //don't heal the enemy you goof.
-	}
-	//only looks at best outcomes
-	this.lightIncreasePower = function(powerBoost){
-		var luckModifier = powerBoost;
-		if(this.class_name == "Prince" || this.class_name == "Bard"){
-			luckModifier = -1 *luckModifier;
-		}
-
-		if(this.isActive()){ //modify me
-			this.maxLuck += luckModifier;
-		}else{  //modify others.
-			for(var i = 0; i<this.session.players.length; i++){
-				var player = this.session.players[i];
-				player.maxLuck += luckModifier;
-			}
-		}
-	}
-
-	this.mindIncreasePower = function(powerBoost){
-		var modifier = powerBoost;
-		if(this.class_name == "Prince" || this.class_name == "Bard"){
-			modifier = -1 *modifier;
-		}
-
-		if(this.isActive()){ //modify me
-			this.freeWill += modifier;
-		}else{  //modify others.
-			for(var i = 0; i<this.session.players.length; i++){
-				var player = this.session.players[i];
-				player.freeWill += modifier;
-			}
-		}
-	}
-
-	//time is about fate and inevitability, not decisions and free will.
-	this.timeIncreasePower = function(powerBoost){
-		var modifier = -1 * powerBoost;
-		if(this.class_name == "Prince" || this.class_name == "Bard"){
-			modifier = -1 *modifier;
-		}
-
-		if(this.isActive()){ //modify me
-			this.freeWill += modifier;
-		}else{  //modify others.
-			for(var i = 0; i<this.session.players.length; i++){
-				var player = this.session.players[i];
-				player.freeWill += modifier;
-			}
-		}
-	}
-
-	this.doomIncreasePower = function(powerBoost){
-		var power = -1 * powerBoost; //over 2 stats.
-		if(this.class_name == "Prince" || this.class_name == "Bard"){
-			power = -1 *power;
-		}
-
-		if(this.isActive()){ //modify me
-			this.hp += power;
-			this.minLuck += power;
-		}else{  //modify others.
-			for(var i = 0; i<this.session.players.length; i++){
-				var player = this.session.players[i];
-				player.hp += power;
-				this.minLuck += power;
-			}
-		}
-	}
-
-	this.lifeIncreasePower = function(powerBoost){
-		var landBoost = powerBoost/10;
-		if(this.class_name == "Prince" || this.class_name == "Bard"){
-			landBoost = -1 *landBoost;
-		}
-
-		if(this.isActive()){ //modify me
-			this.hp += landBoost;
-			this.currentHP += landBoost; //only life effects currentHP. if i let doom do it, can have negative hp. no thank you, SIR.
-		}else{  //modify others.
-			for(var i = 0; i<this.session.players.length; i++){
-				var player = this.session.players[i];
-				player.hp += landBoost;
-				player.currentHP += landBoost;
-			}
-		}
-	}
-
-
-	//wanted this to modify relationships, but figured i'd give that to heart
-	//blood keeps people from killing each other.
-	this.bloodIncreasePower = function(powerBoost){
-		var triggerModifier = -1*powerBoost/10;
-		if(this.class_name == "Prince" || this.class_name == "Bard"){
-			triggerModifier = -1 *triggerModifier;
-		}
-
-		if(this.isActive()){ //modify me
-			this.triggerLevel += triggerModifier;
-			if(triggerModifier > 1) this.flipOut(" how they are sure no one likes them")
-			this.boostAllRelationshipsWithMeBy(-1*triggerModifier);
-		}else{  //modify others.
-			for(var i = 0; i<this.session.players.length; i++){
-				var player = this.session.players[i];
-				player.triggerLevel += triggerModifier;
-				if(triggerModifier > 1) player.flipOut(" how they are sure no one likes them")
-				player.boostAllRelationshipsWithMeBy(-1*triggerModifier);
-			}
-		}
-	}
-
-		//num tiems because rage can call void and void always calls rage and they can get into an infinite loop.
-		//both rage and void are so unpredictable
-	this.rageIncreasePower = function(powerBoost, numTimes){
-		numTimes ++;
-
-		if(numTimes > 10){
-			console.log("rage/void infinite loop. just fucking stop. " + this.session.session_id)
-			return; //just fucking stop/
-		}
-		var triggerModifier = powerBoost/10;
-		if(this.class_name == "Prince" || this.class_name == "Bard"){
-			triggerModifier = -1 *triggerModifier;
-		}
-
-		if(this.isActive()){ //modify me
-			this.triggerLevel += triggerModifier;
-			if(triggerModifier > 1) this.flipOut(" the Rage coursing through their body")
-			this.boostAllRelationshipsWithMeBy(-1*triggerModifier);
-			this.boostAllRelationshipsBy(-1*triggerModifier);
-
-		}else{  //modify others.
-			for(var i = 0; i<this.session.players.length; i++){
-				var player = this.session.players[i];
-				player.triggerLevel += triggerModifier;
-				if(triggerModifier > 1) player.flipOut(" the Rage coursing through their body")
-				player.boostAllRelationshipsWithMeBy(-1*triggerModifier);
-				player.boostAllRelationshipsBy(-1*triggerModifier);
-			}
-		}
-		this.voidIncreasePower(powerBoost, numTimes);
-	}
-
-	this.heartIncreasePower = function(powerBoost){
-		var relationshipModifier = powerBoost/10;
-		if(this.class_name == "Prince" || this.class_name == "Bard"){
-			relationshipModifier = -1 *relationshipModifier;
-		}
-
-		if(this.isActive()){ //modify me
-			this.boostAllRelationshipsBy(relationshipModifier);
-		}else{  //modify others.
-			for(var i = 0; i<this.session.players.length; i++){
-				var player = this.session.players[i];
-				player.boostAllRelationshipsBy(relationshipModifier);
-			}
-		}
-	}
-
-
-	this.breathIncreasePower = function(powerBoost){
-		var mobilityModifier = powerBoost;
-		if(this.class_name == "Prince" || this.class_name == "Bard"){
-			mobilityModifier = -1 *mobilityModifier;
-		}
-
-		if(this.isActive()){ //modify me
-			this.mobility += mobilityModifier;
-		}else{  //modify others.
-			for(var i = 0; i<this.session.players.length; i++){
-				var player = this.session.players[i];
-				player.mobility += mobilityModifier;
-			}
-		}
-	}
-
-	this.spaceIncreasePower = function(powerBoost){
-		var mobilityModifier = -1 * powerBoost;
-		if(this.class_name == "Prince" || this.class_name == "Bard"){
-			mobilityModifier = -1 *mobilityModifier;
-		}
-
-		if(this.isActive()){ //modify me
-			this.mobility += mobilityModifier;
-		}else{  //modify others.
-			for(var i = 0; i<this.session.players.length; i++){
-				var player = this.session.players[i];
-				player.mobility += mobilityModifier;
-			}
-		}
-	}
+	
 
 	//each player knows how to generate their own guardian.
 	this.makeGuardian =function(){
@@ -1471,64 +1267,85 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		guardian.guardian = this;//goes both ways.
 	}
 
-	//need to bind funtions so they know what 'this' is.
-	//num times is because rage can call void...but void can call rage....
-	//can make an infinite loop. need to stop it somehow. the effect is why void/rage players can be insanely strong at random.
-	this.voidIncreasePower = function(powerBoost,numTimes){
-		//void does nothing innately. random stat modifications.
-		numTimes ++;
-		if(numTimes > 10){
-			console.log("rage/void infinite loop. just fucking stop. " + this.session.session_id)
-			return; //do nothing. just fucking stop.
+	
+	
+	this.associatedStatsIncreasePower = function(powerBoost){
+		//modifyAssociatedStat
+		for(var i = 0; i< this.associatedStats.length; i++){
+			this.processStatPowerIncrease(powerBoost, this.associatedStats[i]);
 		}
-		var statIncreases = [this.bloodIncreasePower.bind(this,powerBoost),this.rageIncreasePower.bind(this,powerBoost,numTimes),this.heartIncreasePower.bind(this,powerBoost),this.breathIncreasePower.bind(this,powerBoost),this.spaceIncreasePower.bind(this,powerBoost),this.lifeIncreasePower.bind(this,powerBoost),this.doomIncreasePower.bind(this,powerBoost),this.timeIncreasePower.bind(this,powerBoost),this.mindIncreasePower.bind(this,powerBoost),this.lightIncreasePower.bind(this,powerBoost),this.hopeIncreasePower.bind(this,powerBoost)];
-		getRandomElementFromArray(statIncreases)();
-
-		//manicInsomniac has a very good point that in LOSS void players can slow grimDarkness but not heal it.
-		var mobilityModifier = -1 * powerBoost;
-		if(this.class_name == "Prince" || this.class_name == "Bard"){
-			mobilityModifier = -1 *mobilityModifier;
-		}
-
+	}
+	
+	this.processStatPowerIncrease = function(powerBoost, stat){
+		switch (this.class_name) {
+			case "Knight":
+				if(stat.multiplier > 0){
+					powerBoost = powerBoost * 2;
+				}else{
+					powerBoost = powerBoost * 0.5
+				}
+				break;
+			case  "Seer":
+				if(stat.multiplier > 0){
+					powerBoost = powerBoost * 1;
+				}else{
+					powerBoost = powerBoost * 0.25
+				}
+				break;
+			case  "Bard":
+				var lolrandoms = [-1, 1,2,-1,0.25,-0.25,0.5,-0.5]
+				powerBoost = powerBoost * getRandomElementFromArray(lolrandoms);
+				break;
+			case  "Heir":
+				powerBoost = powerBoost * 1.5;
+				break;
+			case  "Maid":
+				powerBoost = powerBoost * 1.5;
+				break;
+			case  "Rogue":
+				powerBoost = powerBoost * 0.5;
+				break;
+			case  "Page":
+				if(stat.multiplier > 0){
+					powerBoost = powerBoost * 2;
+				}else{
+					powerBoost = powerBoost * 0.5
+				}
+				break;	
+			case  "Thief":
+				powerBoost = powerBoost * 0.5;
+				break;
+			case  "Sylph":
+				powerBoost = powerBoost * 1;
+				break;
+			case  "Prince":
+				var lolrandoms = [-1, 1,2,-1,0.25,-0.25,0.5,-0.5]
+				powerBoost = powerBoost * getRandomElementFromArray(lolrandoms);
+				break;
+			case  "Witch":
+				powerBoost = powerBoost * 1;
+				break;
+			case  "Mage":
+				if(stat.multiplier > 0){
+					powerBoost = powerBoost * 1;
+				}else{
+					powerBoost = powerBoost * 0.25
+				}
+				break;
+			default:
+				console.log('What the hell kind of class is ' + this.class_name + '???');
+		
+		
+		
 		if(this.isActive()){ //modify me
-			this.corruptionLevelOther += mobilityModifier;
+			this.modifyAssociatedStat(powerBoost, stat);
 		}else{  //modify others.
 			for(var i = 0; i<this.session.players.length; i++){
-				var player = this.session.players[i];
-				player.corruptionLevelOther += mobilityModifier;
+				this.session.players[i].modifyAssociatedStat(powerBoost, stat);
 			}
 		}
 	}
-
-	//everything but space and time, they are exempt because EVER session has them.
-	//you could argue they are baked into things.
-	this.aspectIncreasePower = function(powerBoost){
-		if(this.aspect == "Light"){
-			this.lightIncreasePower(powerBoost);
-		}else if(this.aspect =="Doom"){
-			this.doomIncreasePower(powerBoost);
-		}else if(this.aspect =="Blood"){
-			this.bloodIncreasePower(powerBoost);
-		}else if(this.aspect =="Rage"){
-			this.rageIncreasePower(powerBoost);
-		}else if(this.aspect =="Heart"){
-			this.heartIncreasePower(powerBoost);
-		}else if(this.aspect =="Breath"){
-			this.breathIncreasePower(powerBoost);
-		}else if(this.aspect =="Hope"){
-			this.hopeIncreasePower(powerBoost);
-		}else if(this.aspect =="Mind"){
-			this.mindIncreasePower(powerBoost);
-		}else if(this.aspect =="Life"){
-			this.lifeIncreasePower(powerBoost);
-		}else if(this.aspect =="Void"){
-			this.voidIncreasePower(powerBoost);
-		}else if(this.aspect =="Time"){
-			this.timeIncreasePower(powerBoost);
-		}else if(this.aspect =="Space"){
-			this.spaceIncreasePower(powerBoost);
-		}
-	}
+	
 
 	this.increasePower = function(){
 		if(Math.seededRandom() >.9){
@@ -1553,7 +1370,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 
 		this.power += powerBoost;
-		this.aspectIncreasePower(powerBoost);
+		this.associatedStatsIncreasePower();
 		//gain a bit of hp, otherwise denizen will never let players fight them if their hp isn't high enough.
 		if(this.godTier || Math.seededRandom() >.25){
 			this.hp += 10;
@@ -2293,55 +2110,55 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 	
 	
-	//sum to 2
+	//sum to 1
 	this.intializeAssociatedClassStatReferences = function(){
 		var allStats = this.allStats();
 		switch (this.class_name) {
 			case "Knight":
-				this.associatedStats.push(new AssociatedStat("mobility", 1)); //will run to protect you.
-				this.associatedStats.push(new AssociatedStat("hp", 1));
+				this.associatedStats.push(new AssociatedStat("mobility", 0.5)); //will run to protect you.
+				this.associatedStats.push(new AssociatedStat("hp", 0.5));
 				break;
 			case  "Seer":
-				this.associatedStats.push(new AssociatedStat("freeWill", 2));
-				break;
-			case  "Bard":
-				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), 2));
-				break;
-			case  "Heir":
-				this.associatedStats.push(new AssociatedStat("maxLuck", 1));
-				this.associatedStats.push(new AssociatedStat("minLuck", 1));
-				break;
-			case  "Maid":
-				this.associatedStats.push(new AssociatedStat("sanity", 2));
-				break;
-			case  "Rogue":
-				this.associatedStats.push(new AssociatedStat("mobility", 1));
-				this.associatedStats.push(new AssociatedStat("sanity", 1));
-				break;
-			case  "Page":
-				this.associatedStats.push(new AssociatedStat("mobility", 1));
-				this.associatedStats.push(new AssociatedStat("hp", 1));
-				break;	
-			case  "Thief":
-				this.associatedStats.push(new AssociatedStat("maxLuck", 1));
-				this.associatedStats.push(new AssociatedStat("power", 1));
-				break;
-			case  "Sylph":
-				this.associatedStats.push(new AssociatedStat("hp", 1));
-				this.associatedStats.push(new AssociatedStat("sanity", 1));
-				break;
-			case  "Prince":
-				this.associatedStats.push(new AssociatedStat("power", 2));
-				break;
-			case  "Witch":
-				this.associatedStats.push(new AssociatedStat("power", 1));
 				this.associatedStats.push(new AssociatedStat("freeWill", 1));
 				break;
+			case  "Bard":
+				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), 1));
+				break;
+			case  "Heir":
+				this.associatedStats.push(new AssociatedStat("maxLuck", 0.5));
+				this.associatedStats.push(new AssociatedStat("minLuck", 0.5));
+				break;
+			case  "Maid":
+				this.associatedStats.push(new AssociatedStat("sanity", 1));
+				break;
+			case  "Rogue":
+				this.associatedStats.push(new AssociatedStat("mobility", 0.5));
+				this.associatedStats.push(new AssociatedStat("sanity", 0.5));
+				break;
+			case  "Page":
+				this.associatedStats.push(new AssociatedStat("mobility", 0.5));
+				this.associatedStats.push(new AssociatedStat("hp", 0.5));
+				break;	
+			case  "Thief":
+				this.associatedStats.push(new AssociatedStat("maxLuck", 0.5));
+				this.associatedStats.push(new AssociatedStat("power", 0.5));
+				break;
+			case  "Sylph":
+				this.associatedStats.push(new AssociatedStat("hp", 0.5));
+				this.associatedStats.push(new AssociatedStat("sanity", 0.5));
+				break;
+			case  "Prince":
+				this.associatedStats.push(new AssociatedStat("power", 0.5));
+				break;
+			case  "Witch":
+				this.associatedStats.push(new AssociatedStat("power", 0.5));
+				this.associatedStats.push(new AssociatedStat("freeWill", 0.5));
+				break;
 			case  "Mage":
-				this.associatedStats.push(new AssociatedStat("freeWill", 2));
+				this.associatedStats.push(new AssociatedStat("freeWill", 1));
 				break;
 			default:
-				console.log('What the hell kind of aspect is ' + this.aspect + '???');
+				console.log('What the hell kind of class is ' + this.class_name + '???');
 		}
 	}
 	
@@ -2350,63 +2167,63 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		var allStats = this.allStats();
 		switch (this.aspect) {
 			case "Blood":
-				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", 2));
-				this.associatedStats.push(new AssociatedStat("sanity", 1));
-				this.associatedStats.push(new AssociatedStat("maxLuck", -1));
+				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", 2,true));
+				this.associatedStats.push(new AssociatedStat("sanity", 1,true));
+				this.associatedStats.push(new AssociatedStat("maxLuck", -1,true));
 				break;
 			case  "Mind":
-				this.associatedStats.push(new AssociatedStat("freeWill", 2));
-				this.associatedStats.push(new AssociatedStat("minLuck", 1));
-				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", -1));
+				this.associatedStats.push(new AssociatedStat("freeWill", 2,true));
+				this.associatedStats.push(new AssociatedStat("minLuck", 1,true));
+				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", -1,true));
 				break;
 			case  "Rage":
-				this.associatedStats.push(new AssociatedStat("power", 2));
-				this.associatedStats.push(new AssociatedStat("mobility", 1));
-				this.associatedStats.push(new AssociatedStat("sanity", -1));
+				this.associatedStats.push(new AssociatedStat("power", 2,true));
+				this.associatedStats.push(new AssociatedStat("mobility", 1,true));
+				this.associatedStats.push(new AssociatedStat("sanity", -1,true));
 				break;
 			case  "Void":
-				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), 2));
-				this.associatedStats.push(new AssociatedStat("maxLuck", 1));
-				this.associatedStats.push(new AssociatedStat("minLuck", -1));
+				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), 2,true));
+				this.associatedStats.push(new AssociatedStat("maxLuck", 1,true));
+				this.associatedStats.push(new AssociatedStat("minLuck", -1,true));
 				break;
 			case  "Time":
-				this.associatedStats.push(new AssociatedStat("minLuck", 2));
-				this.associatedStats.push(new AssociatedStat("mobility", 1));
-				this.associatedStats.push(new AssociatedStat("freeWill", -1));
+				this.associatedStats.push(new AssociatedStat("minLuck", 2,true));
+				this.associatedStats.push(new AssociatedStat("mobility", 1,true));
+				this.associatedStats.push(new AssociatedStat("freeWill", -1,true));
 				break;
 			case  "Heart":
 				this.associatedStats = this.associatedStats.concat(this.getInterestAssociatedStats(this.interest1));
 				this.associatedStats = this.associatedStats.concat(this.getInterestAssociatedStats(this.interest2));
 				break;
 			case  "Breath":
-				this.associatedStats.push(new AssociatedStat("mobility", 2));
-				this.associatedStats.push(new AssociatedStat("sanity", 1));
-				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), -1));
+				this.associatedStats.push(new AssociatedStat("mobility", 2,true));
+				this.associatedStats.push(new AssociatedStat("sanity", 1,true));
+				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), -1,true));
 				break;	
 			case  "Light":
-				this.associatedStats.push(new AssociatedStat("maxLuck", 2));
-				this.associatedStats.push(new AssociatedStat("freeWill", 1));
-				this.associatedStats.push(new AssociatedStat("sanity", -1));
+				this.associatedStats.push(new AssociatedStat("maxLuck", 2,true));
+				this.associatedStats.push(new AssociatedStat("freeWill", 1,true));
+				this.associatedStats.push(new AssociatedStat("sanity", -1,true));
 				break;
 			case  "Space":
-				this.associatedStats.push(new AssociatedStat("alchemy", 2));
-				this.associatedStats.push(new AssociatedStat("hp", 1));
-				this.associatedStats.push(new AssociatedStat("mobility", -1));
+				this.associatedStats.push(new AssociatedStat("alchemy", 2,true));
+				this.associatedStats.push(new AssociatedStat("hp", 1,true));
+				this.associatedStats.push(new AssociatedStat("mobility", -1,true));
 				break;
 			case  "Hope":
-				this.associatedStats.push(new AssociatedStat("sanity", 2));
-				this.associatedStats.push(new AssociatedStat("maxLuck", 1));
-				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", -1));
+				this.associatedStats.push(new AssociatedStat("sanity", 2,true));
+				this.associatedStats.push(new AssociatedStat("maxLuck", 1,true));
+				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", -1,true));
 				break;
 			case  "Life":
-				this.associatedStats.push(new AssociatedStat("hp", 2));
-				this.associatedStats.push(new AssociatedStat("power", 1));
-				this.associatedStats.push(new AssociatedStat("alchemy", -1));
+				this.associatedStats.push(new AssociatedStat("hp", 2,true));
+				this.associatedStats.push(new AssociatedStat("power", 1,true));
+				this.associatedStats.push(new AssociatedStat("alchemy", -1,true));
 				break;
 			case  "Doom":
-				this.associatedStats.push(new AssociatedStat("alchemy", 2));
-				this.associatedStats.push(new AssociatedStat("freeWill", 1));
-				this.associatedStats.push(new AssociatedStat("minLuck", -1));
+				this.associatedStats.push(new AssociatedStat("alchemy", 2,true));
+				this.associatedStats.push(new AssociatedStat("freeWill", 1,true));
+				this.associatedStats.push(new AssociatedStat("minLuck", -1,true));
 				break;
 			default:
 				console.log('What the hell kind of aspect is ' + this.aspect + '???');
@@ -2446,6 +2263,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	
 	//if RELATIONSHIPS, loop on all relationships.
 	//up to who calls me to pick a sane value. (modified by class as appropriate)
+	//you don't have to own the associated stat for it to modify you. A sylph will call this for each player in the party, for example
+	//and pass their own stat, but it will mod the player's stat. don't worry about it.
 	this.modifyAssociatedStat = function(modValue, stat){
 		//modValue * stat.multiplier. 
 		if(stat.name == "RELATIONSHIPS"){
@@ -3166,8 +2985,10 @@ function getAverageFreeWill(players){
 }
 
 
-
-function AssociatedStat(statName, multiplier){
+//need to know if you're from aspect, 'cause only aspect associatedStats will be used for fraymotifs.
+//except for heart, which can use ALL associated stats. (cause none will be from aspect.)
+function AssociatedStat(statName, multiplier, isFromAspect){
 	this.name = statName
 	this.multiplier = multiplier;
+	this.isFromAspect = isFromAspect;
 }
