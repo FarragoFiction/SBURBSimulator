@@ -42,7 +42,7 @@ function BeTriggered(session){
 			return true; //i am flipping out over not a dead player, thank you very much.
 
 		}
-		if(player.triggerLevel > Math.seededRandom() * 100 ){
+		if(-1 * player.sanity > Math.seededRandom() * 100 ){
 			player.flipOutReason = "how they seem to be going shithive maggots for no goddamned reason"
 			return true
 		}
@@ -60,7 +60,7 @@ function BeTriggered(session){
 		var deadDiamond = player.hasDeadDiamond()
 		var deadHeart = player.hasDeadHeart();
 		if(deadDiamond && Math.seededRandom() > 0.3){
-			player.triggerLevel += 100;
+			player.sanity += -100;
 			player.damageAllRelationships();
 			player.damageAllRelationships();
 			player.damageAllRelationships();
@@ -69,21 +69,19 @@ function BeTriggered(session){
 		}
 
 		if(deadHeart&& Math.seededRandom() > 0.2){
-			player.triggerLevel += 100;
+			player.sanity += -100;
 			//console.log("triggered by dead matesprit in session" + this.session.session_id)
 			return " their dead Matesprit, the " + deadHeart.htmlTitleBasic() + " ";
 		}
 		//small chance
 		if(deadPlayers.length > 0){
 			if(Math.seededRandom() > 0.9){
-				player.triggerLevel ++;
+				player.sanity += -1;
 				return deadPlayers.length +" dead players ";
 			}
 
 			if(worstEnemy != null && !worstEnemy.dead && player.getRelationshipWith(worstEnemy).type() == player.getRelationshipWith(worstEnemy).badBig){
-				player.triggerLevel ++;
-				player.triggerLevel ++;
-				player.triggerLevel ++;
+				player.sanity += -3;
 				player.getRelationshipWith(worstEnemy).decrease();
 				return deadPlayers.length + " players are dead (and that asshole the " + worstEnemy.htmlTitle() + " MUST be to blame) ";
 			}
@@ -92,15 +90,13 @@ function BeTriggered(session){
 		//bigger chance
 		if(deadFriends.length > 0){
 			if(Math.seededRandom() > 0.5){
-				player.triggerLevel ++;
+				player.sanity += -1;
 				return deadFriends.length + " dead friends";
 			}
 
 			//if someone you have a crush on dies, you're triggered. period. (not necessarily gonna lose your shit, though.)
 			if(bestFriend != null && bestFriend.dead && player.getRelationshipWith(bestFriend).type() == player.getRelationshipWith(bestFriend).bigGood){
-				player.triggerLevel ++;
-				player.triggerLevel ++;
-				player.triggerLevel ++;
+				player.sanity += -3;
 				return " their dead crush, the " + bestFriend.htmlTitle() + " ";
 			}
 
@@ -109,18 +105,18 @@ function BeTriggered(session){
 		//huge chance, the dead outnumber the living.
 		if(deadPlayers.length > livePlayers.length){
 			if(Math.seededRandom() > 0.1){
-				player.triggerLevel ++;
-				player.triggerLevel ++;
-				player.triggerLevel ++;
+				player.sanity += -3;
 				return " how absolutely fucked they are ";
 			}
 		}
 
 		if(player.doomedTimeClones.length > 0 && Math.seededRandom() > .9){
+			player.sanity += -1;
 			return " their own doomed Time Clones ";
 		}
 
 		if(player.denizenFaced && player.denizenDefeated && Math.seededRandom() > .95){
+			player.sanity += -1;
 			return " how terrifying " +player.getDenizen() + " was " ;
 		}
 
@@ -148,10 +144,10 @@ function BeTriggered(session){
 				removeFromArray(p, this.session.availablePlayers);
 				ret += " The " +p.htmlTitle() + " is currently too busy flipping the fuck out about "
 				ret += p.flipOutReason + " to be anything but a useless piece of gargbage. ";
-				p.triggerLevel ++;
+				player.sanity += -1;
 				p.flipOutReason = null;
 				p.flippingOutOverDeadPlayer = null;
-				if(p.triggerLevel > 5){
+				if(p.sanity < -5){
 					ret += " Their freakout level is getting dangerously high. ";
 				}
 			}

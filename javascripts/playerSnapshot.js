@@ -57,7 +57,6 @@ function PlayerSnapshot(){
 	this.godDestiny = null;
 	this.canGodTierRevive = null;
 	this.isDreamSelf = null;
-	this.triggerLevel = null;
 	this.murderMode = null;
 	this.leftMurderMode = null;
 	this.grimDark = null;
@@ -262,8 +261,8 @@ function PlayerSnapshot(){
 		return this.power;
 	}
 
-	this.triggerLevel = function(){
-		return this.triggerLevel;
+	this.getSanity = function(){
+		return this.sanity;
 	}
 
 	this.increasePower = function(){

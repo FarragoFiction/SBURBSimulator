@@ -25,7 +25,6 @@ function GameEntity(session, name, crowned){
 		this.hp = 0;  //what does infinite hp mean? you need to defeat them some other way. alternate win conditions? or can you only do The Choice?
 		this.mobility = 0;  //first guardian
 		this.maxLuck = 0; //rabbit
-		this.triggerLevel = 0; //both players and enemy can be too freaked out or beserk to fight right
 		this.freeWill = 0; //jack has extremely high free will. why he is such a wild card
 		this.relationships = [];
 		this.power = 0;
@@ -111,11 +110,11 @@ function GameEntity(session, name, crowned){
 			return Math.max(this.power,1);
 		}
 
-		this.triggerLevel = function(){
+		this.getSanity = function(){
 			if(this.crowned){
-				return this.triggerLevel + this.crowned.triggerLevel;
+				return this.sanity + this.crowned.sanity;
 			}
-			return this.triggerLevel;
+			return this.sanity;
 		}
 
 		//don't try to heal sprites or consorts or carapaces, it won't work.
@@ -130,13 +129,13 @@ function GameEntity(session, name, crowned){
 		}
 
 
-		this.setStats = function(minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs, grist){
+		this.setStats = function(minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs, grist){
 			this.minLuck = minLuck;
 			this.hp = hp;
 			this.currentHP = this.hp;
 			this.mobility = mobility;
 			this.maxLuck = maxLuck;
-			this.triggerLevel = triggerLevel;
+			this.sanity = sanity;
 			this.freeWill = freeWill;
 			this.power = power;
 			this.abscondable = abscondable;

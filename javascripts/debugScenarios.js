@@ -244,7 +244,7 @@ function debugRoyalRumble(){
 		var p = curSessionGlobalVar.players[j]
 		p.isTroll = true; //only .evel 2 players up
 		p.bloodColor = "#99004d"
-		p.triggerLevel = 10;
+		p.sanity = -10;
 		p.decideLusus(p);
 		p.kernel_sprite = p.lusus;
 		p.relationships = [];
@@ -264,7 +264,7 @@ function debugGrimDark(){
 
 function debugTriggerLevel(){
 	for(var j = 0; j<2; j++){
-		players[j].triggerLevel = 10;
+		players[j].sanity = -10;
 	}
 
 }

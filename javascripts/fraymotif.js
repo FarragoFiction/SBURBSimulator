@@ -18,7 +18,7 @@ function Fraymotif(aspects, name,tier){
     this.minLuck = 0;
     this.maxLuck = 0;
     this.power = 0;
-    this.triggerLevel = 0;
+    this.sanity = 0;
     this.revive = false; //special effect
 
 

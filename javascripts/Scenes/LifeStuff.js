@@ -193,12 +193,10 @@ function LifeStuff(session){
 				player.flipOutReason = "being haunted by their own ghost"
 			}else if(trait != 'nice' && ghost.id != player.id){
 				str += " They bond over how " + trait + " they both are. The " + player.htmlTitle() + " feels their determination to beat the game grow. "
-				player.power += ghost.power/2; //not as good as communing, but pretty damn good.
-				player.aspectIncreasePower(ghost.power/2)
+				player.increasePower(ghost.power/2)
 			}else{
 				str += " It's a little awkward. "
-				player.power += ghost.power/10;
-				player.aspectIncreasePower(ghost.power/10)
+				player.increasePower(ghost.power/10)
 			}
 			div.append("<br><br>" + str);
 			var canvas = this.drawDreamBubble(div, player, ghost);
@@ -338,8 +336,7 @@ function LifeStuff(session){
 			return " The " +player.htmlTitleBasic() + " gains a promise of aid from the " + ghostName + ". ";
 		}else if(playerClass == "Seer" || playerClass == "Mage"){
 			player.ghostWisdom.push(ghost); //don't do anything, but keeps repeats from happening.
-			player.power += ghost.power/2;  //direct knowledge (and as we all know, knowledge is power)
-			player.aspectIncreasePower(ghost.power/2); //want to increase aspect stats, too.
+			player.increasePower(ghost.power/2); //want to increase aspect stats, too.
 			player.leveledTheHellUp = true;
 			player.level_index +=1;
 			return " The " +player.htmlTitleBasic() + " gains valuable wisdom from the " + ghostName + ". Their power grows much more quickly than merely doing quests. ";
@@ -401,8 +398,7 @@ function LifeStuff(session){
 			//console.log("ghost drain dead for power: "+ player.titleBasic()  + this.session.session_id);
 			str += " The " + player.htmlTitleBasic() + " destroys the essence of the " + ghostName + " for greater destructive power, it will be a while before the ghost recovers.";
 			ghost.causeOfDrain = player.title();
-			player.power += ghost.power;
-			player.aspectIncreasePower(ghost.power)
+			player.increasePower(ghost.power)
 			player.leveledTheHellUp = true;
 			player.level_index +=1;
 			div.append("<br><br>" +str);

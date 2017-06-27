@@ -75,7 +75,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.canGodTierRevive = true;  //even if a god tier perma dies, a life or time player or whatever can brings them back.
 	this.isDreamSelf = false;
 	//players can be triggered for various things. higher their triggerLevle, greater chance of going murdermode or GrimDark.
-	this.triggerLevel = -2; //make up for moon bonus
+	this.sanity = 2; //make up for moon bonus
 	this.murderMode = false;  //kill all players you don't like. odds of a just death skyrockets.
 	this.leftMurderMode = false; //have scars, unless left via death.
 	this.corruptionLevelOther = 0; //every 100 points, sends you to next grimDarkLevel.
@@ -136,7 +136,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		ret += Math.abs(this.mobility)
 		ret += Math.abs(this.hp)
 		ret += Math.abs(this.maxLuck - this.minLuck)
-		ret += Math.abs(this.triggerLevel)
+		ret += Math.abs(this.sanity)
 		return ret;
 	}
 
@@ -416,28 +416,28 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			var r = this.relationships[i];
 
 			if(r.saved_type == r.goodBig){
-				r.target.triggerLevel ++;
+				r.target.sanity += -1;
 				if(r.target.flipOutReason == null){
 					r.target.flipOutReason = " their dead crush, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead crush.
 					r.target.flippingOutOverDeadPlayer = this;
 				}
 			}else if(r.value > 0){
-				r.target.triggerLevel ++;
+				r.target.sanity += -1;
 				if(r.target.flipOutReason == null){
 					 r.target.flippingOutOverDeadPlayer = this;
 					 r.target.flipOutReason = " their dead friend, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead friend.
 				}
 			}else if(r.saved_type == r.spades){
-				r.target.triggerLevel +=10;
+				r.target.sanity += -10;
 				r.target.flipOutReason = " their dead Kismesis, the " + this.htmlTitleBasic();
 				r.target.flippingOutOverDeadPlayer = this;
 			}else if(r.saved_type == r.heart){
-				r.target.triggerLevel += 10
+				r.target.sanity += -10
 				r.target.flipOutReason = " their dead Matesprit, the " + this.htmlTitleBasic();
 				r.target.flippingOutOverDeadPlayer = this;
 			}
 			else if(r.saved_type == r.diamond){
-				r.target.triggerLevel += 100
+				r.target.sanity += -100
 				r.target.damageAllRelationships();
 				r.target.damageAllRelationships();
 				r.target.damageAllRelationships();
@@ -449,7 +449,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 		//whether or not i care about them, there's also the novelty factor.
 		if(dead.length == 1){  //if only I am dead, death still has it's impact and even my enemies care.
-			r.target.triggerLevel ++;
+			r.target.sanity += -1;
 			if(r.target.flipOutReason == null){
 				r.target.flipOutReason = " the dead player, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead player.
 			 r.target.flippingOutOverDeadPlayer = this;

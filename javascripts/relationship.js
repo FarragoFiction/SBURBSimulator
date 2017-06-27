@@ -137,8 +137,8 @@ function getRelationshipFlavorText(r1, r2, me, you){
 	}if(r1.type() == r1.diamonds){
 		console.log("impromptu feelings jam: " + this.session.session_id);
 		ret += " The two have an impromptu feelings jam. ";
-		me.triggerLevel += -1;
-		you.triggerLevel += -1;
+		me.sanity += 1;
+		you.sanity += 1;
 	}else if(r2.type() == r2.goodBig){
 		ret += " The" + you.htmlTitle() + " is flustered around the " + me.htmlTitle()+ ". ";
 	}else if(r1.type() == r1.goodBig){
@@ -272,14 +272,14 @@ function decideInitialQuadrants(players){
 			var roll = player.rollForLuck();
 			if(roll > rollNeeded){
 				if(r.type() == r.goodBig){
-					var difference = Math.abs(player.triggerLevel - r.target.triggerLevel)
+					var difference = Math.abs(player.sanity - r.target.sanity)
 					if(difference > 2 || roll < rollNeeded + 25){ //pale
 						makeDiamonds(player, r.target);
 					}else{
 						makeHeart(player, r.target);
 					}
 				}else if(r.type() == r.badBig){
-					if(player.triggerLevel > 0 || r.target.triggerLevel > 0 || roll < rollNeeded + 10){ //likely to murder each other
+					if(player.sanity > 0 || r.target.sanity > 0 || roll < rollNeeded + 10){ //likely to murder each other
 						var ausp = getRandomElementFromArray(players);
 						if(ausp && ausp != player && ausp != r.target){
 							makeClubs(ausp, player, r.target);
