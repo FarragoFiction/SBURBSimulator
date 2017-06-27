@@ -1171,34 +1171,48 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 
 	}
+	
+	this.hasInteractionEffect = function(){
+		return this.class_name == "Prince" || this.class_name == "Bard"|| this.class_name == "Witch"|| this.class_name == "Sylph"|| this.class_name == "Rogue"|| this.class_name == "Thief"
+	}
+	
+	this.associatedStatsInteractionEffect = function(player){
+		if(this.hasInteractionEffect()){ //don't even bother if you don't have an interaction effect.
+			for(var i = 0; i<this.associatedStats.length; i++){
+				this.processStatInteractionEffect(player, this.associatedStats[i]);
+			}
+		}
+	}
+	
 
+	this.processStatInteractionEffect(player, stat){
+		var powerBoost = this.power/20;
+		if(this.class_name == "Witch"|| this.class_name == "Sylph"){
+			powerBoost = powerBoost *  2 //sylph and witch get their primary boost here, so make it a good one.
+		}
+		var powerBoost = modPowerBoostByClass(powerBoost);
+		if(this.class_name == "Rogue"|| this.class_name == "Thief"){
+			player.modifyAssociatedStat((-1 * powerBoost), stat);
+			if(this.isActive()){ //modify me
+				this.modifyAssociatedStat(powerBoost, stat);
+			}else{  //modify others.
+				for(var i = 0; i<this.session.players.length; i++){
+					this.session.players[i].modifyAssociatedStat(powerBoost/this.session.players.length, stat);
+				}
+			}
+		}else{
+			if(this.isActive()){ //modify me
+				this.modifyAssociatedStat(powerBoost, stat);
+			}else{  //modify others.
+				player.modifyAssociatedStat(powerBoost, stat);
+			}
+		}
+	}
 
 	this.interactionEffect = function(player){
-		if(this.aspect == "Light"){
-			this.lightInteractionEffect(player);
-		}else if(this.aspect =="Doom"){
-			this.doomInteractionEffect(player);
-		}else if(this.aspect =="Blood"){
-			this.bloodInteractionEffect(player);
-		}else if(this.aspect =="Rage"){
-			this.rageInterctionEffect(player);
-		}else if(this.aspect =="Heart"){
-			this.heartInteractionEffect(player);
-		}else if(this.aspect =="Breath"){
-			this.breathInteractionEffect(player);
-		}else if(this.aspect =="Hope"){
-			this.hopeInteractionEffect(player);
-		}else if(this.aspect =="Mind"){
-			this.mindInteractionEffect(player);
-		}else if(this.aspect =="Life"){
-			this.lifeInteractionEffect(player);
-		}else if(this.aspect =="Void"){
-			this.voidInteractionEffect(player);
-		}else if(this.aspect =="Space"){
-			this.spaceInteractionEffect(player);
-		}else if(this.aspect =="Time"){
-			this.timeInteractionEffect(player);
-		}
+		
+		this.associatedStatsInteractionEffect(player);
+		
 		//no longer do this seperate. if close enough to modify with powers, close enough to be...closer.
 		r1 = this.getRelationshipWith(player);
 		if(r1){
@@ -1276,7 +1290,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 	}
 	
-	this.processStatPowerIncrease = function(powerBoost, stat){
+	this.modPowerBoostByClass = function(powerBoost){
 		switch (this.class_name) {
 			case "Knight":
 				if(stat.multiplier > 0){
@@ -1334,9 +1348,13 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				break;
 			default:
 				console.log('What the hell kind of class is ' + this.class_name + '???');
+		}
 		
-		
-		
+		return powerBoost;
+	}
+	
+	this.processStatPowerIncrease = function(powerBoost, stat){
+		var powerBoost = this.modPowerBoostByClass(powerBoost);
 		if(this.isActive()){ //modify me
 			this.modifyAssociatedStat(powerBoost, stat);
 		}else{  //modify others.
