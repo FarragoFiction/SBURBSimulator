@@ -11,6 +11,7 @@ function PlayerSnapshot(){
 	this.hair = null;
 	this.baby = null;
 	this.robot = null;
+	
 	this.hp = 0;
 	this.currentHP = 0;
 	this.minLuck = 0;
@@ -34,7 +35,7 @@ function PlayerSnapshot(){
 	this.interest2 = null
 	this.chatHandle = null;
 	this.kernel_sprite = null;
-	this.relationships = null
+	this.relationships = []
 	this.moon = null;
 	this.power =null
 	this.leveledTheHellUp = null;
@@ -51,6 +52,8 @@ function PlayerSnapshot(){
 	this.lusus = null
 	this.quirk = null;
 	this.dead = null;
+	this.sanity = 0; //eventually replace triggerLevel with this (it's polarity is opposite triggerLevel)
+	this.alchemy = 0; //mostly unused until we get to the Alchemy update.
 	this.godDestiny = null;
 	this.canGodTierRevive = null;
 	this.isDreamSelf = null;
@@ -74,6 +77,17 @@ function PlayerSnapshot(){
 		if(includeChatHandle) ch = sanitizeString(this.chatHandle);
 		var ret = ""+sanitizeString(this.causeOfDrain) + ","+sanitizeString(this.causeOfDeath) + "," + sanitizeString(this.interest1) + "," + sanitizeString(this.interest2) + "," + sanitizeString(ch)
 		return ret;
+	}
+
+	this.modifyAssociatedStat = function(modValue, stat){
+		//modValue * stat.multiplier. 
+		if(stat.name == "RELATIONSHIPS"){
+			for(var i = 0; i<this.relationships.length; i++){
+				this.relationships[i].value += modValue * stat.multiplier;
+			}
+		}else{
+			this[stat.name] += modValue * stat.multiplier;
+		}
 	}
 
 

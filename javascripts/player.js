@@ -892,7 +892,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(this.class_name == "Witch"|| this.class_name == "Sylph"){
 			powerBoost = powerBoost *  2 //sylph and witch get their primary boost here, so make it a good one.
 		}
-		var powerBoost = modPowerBoostByClass(powerBoost,stat);
+		var powerBoost = this.modPowerBoostByClass(powerBoost,stat);
 		if(this.class_name == "Rogue"|| this.class_name == "Thief"){
 			player.modifyAssociatedStat((-1 * powerBoost), stat);
 			if(this.isActive()){ //modify me

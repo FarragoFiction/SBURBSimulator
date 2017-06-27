@@ -15,6 +15,8 @@ function GameEntity(session, name, crowned){
 		this.armless = false;
 		this.grist = 0;
 		this.carapacian = false;
+		this.sanity = 0; //eventually replace triggerLevel with this (it's polarity is opposite triggerLevel)
+		this.alchemy = 0; //mostly unused until we get to the Alchemy update.
 		this.consort = false;
 		this.sprite = false;
 		//if any stat is -1025, it's considered to be infinitie. denizens use. you can't outluck Cetus, she is simply the best there is.
@@ -69,6 +71,17 @@ function GameEntity(session, name, crowned){
 				return this.maxLuck + this.crowned.maxLuck;
 			}
 			return this.maxLuck;
+		}
+		
+		this.modifyAssociatedStat = function(modValue, stat){
+			//modValue * stat.multiplier. 
+			if(stat.name == "RELATIONSHIPS"){
+				for(var i = 0; i<this.relationships.length; i++){
+					this.relationships[i].value += modValue * stat.multiplier;
+				}
+			}else{
+				this[stat.name] += modValue * stat.multiplier;
+			}
 		}
 
 		this.getMinLuck = function(){
