@@ -549,46 +549,14 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			this.murderMode = false;
 			this.currentHP = Math.max(this.hp,1); //if for some reason your hp is negative, don't do that.
 			this.grimDark = 0;
-			this.triggerLevel = 11;  //dying is pretty triggering.
+			this.sanity += -11;  //dying is pretty triggering.
 			this.flipOutReason = "they just freaking died"
 			//this.leftMurderMode = false; //no scars
 			this.victimBlood = null; //clean face
 			this.renderSelf();
 		}
 
-		//people like them less and also they are more triggered.
-	this.consequencesForTerriblePlayer  = function(){
-		if((terrible_interests.indexOf(this.interest1) != -1)){
-			this.damageAllRelationshipsWithMe();
-			this.damageAllRelationshipsWithMe();
-			this.damageAllRelationshipsWithMe();
-			this.triggerLevel ++;
-		}
 
-		if((terrible_interests.indexOf(this.interest2) != -1)){
-			this.damageAllRelationshipsWithMe();
-			this.damageAllRelationshipsWithMe();
-			this.damageAllRelationshipsWithMe();
-			this.triggerLevel ++;
-		}
-	}
-
-	//people like them more and also they are less triggered.
-	this.consequencesForGoodPlayer = function(){
-		if((social_interests.indexOf(this.interest1) != -1)){
-			this.boostAllRelationshipsWithMe();
-			this.boostAllRelationshipsWithMe();
-			this.boostAllRelationshipsWithMe();
-			this.triggerLevel +=-1;
-		}
-
-		if((social_interests.indexOf(this.interest2) != -1)){
-			this.boostAllRelationshipsWithMe();
-			this.boostAllRelationshipsWithMe();
-			this.boostAllRelationshipsWithMe();
-			this.triggerLevel +=-1;
-		}
-	}
 
 
 	this.title = function(){
@@ -1125,8 +1093,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				var r = randomBlandRelationship(friends[i])
 				if(this.isTroll && this.bloodColor == "#99004d" && friends[i].isTroll && friends[i].bloodColor == "#99004d"){
 					r.value = -20; //biological imperitive to fight for throne.
-					this.triggerLevel +=10;
-					friends[i].triggerLevel +=10;
+					this.sanity += -10;
+					friends[i].sanity += -10;
 				}
 				this.relationships.push(r);
 			}
@@ -1142,8 +1110,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				var r = randomRelationship(friends[i])
 				if(this.isTroll && this.bloodColor == "#99004d" && friends[i].isTroll && friends[i].bloodColor == "#99004d"){
 					r.value = -20; //biological imperitive to fight for throne.
-					this.triggerLevel ++;
-					friends[i].triggerLevel ++;
+					this.sanity += -1;
+					friends[i].sanity += -1;
 				}
 				this.relationships.push(r);
 			}else{
@@ -1272,9 +1240,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				return this.relationships[i];
 			}
 		}
-		//this should only be happening if this == player. what is going on here!???
-		//ah, was trying to make consequences for interets before making relationships
-		//console.log("I am : " + this.title() + " and I couldn't find a relationship with: " + player.title() + " even though I have this many relationships " + this.relationships.length);
 	}
 
 	this.getWhoLikesMeBestFromList = function(potentialFriends){
@@ -1581,8 +1546,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 	}
 
-	this.initializeTriggerLevel = function(){
-		this.triggerLevel = getRandomInt(0,2);
+	this.initializeSanity = function(){
+		this.sanity = getRandomInt(-2,2);
 	}
 
 	//don't recalculate values, but can boost postivily or negatively by an amount. sure.
@@ -1601,8 +1566,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				var r = this.relationships[i];
 				if(this.isTroll && this.bloodColor == "#99004d" && r.target.isTroll && r.target.bloodColor == "#99004d"){
 					r.value = -20; //biological imperitive to fight for throne.
-					this.triggerLevel ++;
-					r.target.triggerLevel ++;
+					this.sanity += -1;
+					r.target.sanity += -1;
 				}
 			}
 		}
@@ -1695,65 +1660,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 
 
-	//void is associated with nothing, and thus can do/be anything.
-	this.initializeVoid = function(){
-		if(this.aspect == "Void"){
-
-			var amount = 0;
-			if(this.highInit()){
-				amount += getRandomInt(1,35);
-			}else{
-				amount += -1 *getRandomInt(1,35);
-			}
-			var rand =getRandomInt(0,18); //one more than possibilities, can always start with NO boost.
-			if(rand == 0){
-				this.minLuck += amount;
-			}else if(rand == 1){
-				this.maxLuck += amount;
-			}else if(rand == 2){
-				this.freeWill += amount;
-			}else if(rand == 3){
-				this.hp += amount;
-				this.currentHP += amount;
-			}else if(rand == 4){
-				this.mobility += amount;
-			}else if(rand == 5){
-				this.power += amount;
-			}else if(rand == 6){
-				this.boostAllRelationshipsWithMeBy(amount);
-			}else if(rand == 7){
-				this.boostAllRelationshipsBy(amount)
-			}else if(rand == 8){
-				this.triggerLevel += amount;
-			}else if(rand == 9){
-				this.minLuck += -1 * amount;
-			}else if(rand == 10){
-				this.maxLuck += -1 * amount;
-			}else if(rand == 11){
-				this.freeWill += -1 * amount;
-			}else if(rand == 12){
-				this.hp += -1 * amount;
-				this.currentHP += -1*amount;
-			}else if(rand == 13){
-				this.mobility += -1 * amount;
-			}else if(rand == 14){
-				this.power += -1 * amount;
-			}else if(rand == 15){
-				this.boostAllRelationshipsWithMeBy(-1 * amount);
-			}else if(rand == 16){
-				this.boostAllRelationshipsBy(-1 * amount)
-			}else if(rand == 17){
-				this.triggerLevel += -1 * amount;
-			}
-			if(this.trickster){
-				this.power = 11111111111;
-				this.hp = 11111111111;
-				this.currentHP = 11111111111;
-			}
-		}else{
-
-		}
-	}
 
 
 	//if it's part of player json, need to copy it over.
@@ -1810,7 +1716,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 		if(this.isTroll){
 			if(!this.quirk) this.quirk = randomTrollSim(this)  //if i already have a quirk it was defined already. don't override it.
-			this.triggerLevel ++;//trolls are slightly less stable
+			this.sanity += -1;//trolls are slightly less stable
 
 		}else{
 			if(!this.quirk) this.quirk = randomHumanSim(this);
@@ -2015,7 +1921,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.initializeRelationships();
 		this.initializePower();
 		this.initializeVoid();
-		this.initializeTriggerLevel();
+		this.initializeSanity();
 
 		this.initializeAssociatedStats();
 		this.initializeInterestStats();  //takes the place of old random intial stats.
@@ -2642,11 +2548,11 @@ function getAverageMaxLuck(players){
 	return  Math.round(ret/players.length);
 }
 
-function getAverageTriggerLevel(players){
+function getAverageSanity(players){
 	if(players.length == 0) return 0;
 	var ret = 0;
 	for(var i = 0; i< players.length; i++){
-		ret += players[i].triggerLevel;
+		ret += players[i].sanity;
 	}
 	return  Math.round(ret/players.length);
 }

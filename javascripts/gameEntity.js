@@ -1400,7 +1400,7 @@ prototyping_objects.push(new GameEntity(null, "Butler",null));
 prototyping_objects[prototyping_objects.length-1].power = 50;  //he will serve you like a man on butler island
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
 prototyping_objects[prototyping_objects.length-1].helpPhrase = "is serving their player like a dude on butlersprite island. ";
-prototyping_objects[prototyping_objects.length-1].triggerLevel = -50;
+prototyping_objects[prototyping_objects.length-1].sanity = 50;
 
 prototyping_objects.push(new GameEntity(null, "Sloth",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
@@ -1653,7 +1653,7 @@ lusus_objects[lusus_objects.length-1].lusus = true;
 
 lusus_objects.push(new GameEntity(null, "Centaur",null));
 lusus_objects[lusus_objects.length-1].power = 50;
-lusus_objects[lusus_objects.length-1].triggerLevel = -50; //lusii in the butler genus simply are unflappable.
+lusus_objects[lusus_objects.length-1].sanity = 50; //lusii in the butler genus simply are unflappable.
 lusus_objects[lusus_objects.length-1].lusus = true;
 
 lusus_objects.push(new GameEntity(null, "Fairy Bull",null));
