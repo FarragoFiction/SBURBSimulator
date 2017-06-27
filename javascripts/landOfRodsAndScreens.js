@@ -272,7 +272,7 @@ function start(){
 }
 
 function checkDone(skipInit){
-  $("#loading_stats").html("Images Loaded: " + imagesLoaded);
+  $("#loading_stats").html("Images Loaded: " + imagesLoaded + " Thanks goes to dilettanteMathematician for coming up with a way to implement the puzzle such that all images are viewable :) :) :)");
 	if(imagesLoaded != 0 && imagesWaiting == imagesLoaded){
 		start();
 	}
