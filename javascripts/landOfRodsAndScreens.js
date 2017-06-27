@@ -38,6 +38,7 @@ window.onload = function() {
 //it's...ALMOST like you're expected to use your phenomenal cosmic powers to BEAT THE GAME
 //and not dick around looking for easter eggs!!!
 function doTheMindyThing(){
+	$("#mindButton").hide();
 	timeTillReckoning = 5; //you can find 4 pictures, but then you better focus up.
 	$("#slider").html('Look for Image: <span id="imageValue">64</span> <Br> 0 <input id="targetImage" type="range" min="0" max="'+ maxState + '" value="64"> '+ maxState + '<br><button id="concentrate">Concentrate</button>');
 	$("#mindPowers").show();
