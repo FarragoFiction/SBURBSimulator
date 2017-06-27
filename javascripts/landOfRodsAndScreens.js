@@ -46,7 +46,7 @@ function showMindButton(){
 //and not dick around looking for easter eggs!!!
 function doTheMindyThing(){
 	$("#mindButton").hide();
-	timeTillReckoning = 5; //you can find 4 pictures, but then you better focus up.
+	timeTillReckoning = 4; //you can find a few pictures, but then you better focus up.
 	$("#slider").html('Look for Image: <span id="imageValue">64</span> <Br> 0 <input id="targetImage" type="range" min="0" max="'+ (maxState-1) + '" value="64"> '+ (maxState-1) + '<br><button id="concentrate">Concentrate</button>');
 	$("#mindPowers").show();
 	$("#targetImage").change(function(){
