@@ -2538,9 +2538,18 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 	}
 	
+	
 	//if RELATIONSHIPS, loop on all relationships.
+	//up to who calls me to pick a sane value. (modified by class as appropriate)
 	this.modifyAssociatedStat(modValue, stat){
 		//modValue * stat.multiplier. 
+		if(stat.name == "RELATIONSHIPS"){
+			for(var i = 0; i<this.relationships.length; i++){
+				this.relationships[i].value += modValue * stat.multiplier;
+			}
+		}else{
+			this[stat.name] += modValue * stat.multiplier;
+		}
 	}
 
 	//players can start with any luck, (remember, Vriska started out super unlucky and only got AAAAAAAALL the luck when she hit godtier)
