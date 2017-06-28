@@ -12,6 +12,15 @@ function debugLevelTheHellUp(){
 	}
 }
 
+function bardQuestMode(){
+	if(confirm("Behold the Magesty of the CodTier? Y/N")){
+		bardQuest = true;
+	}else{
+		alert("But thou must!")
+		bardQuestMode();
+	}
+
+}
 
 function coolK1DMode(){
 	alert("H3Y TH3R3 COOL K1D 1S TH1S YOU???")
@@ -100,7 +109,7 @@ function checkEasterEgg(callBack,that){  //only yellow yard session uses 'that' 
 	if(getParameterByName("rumpus")  == "fruity"){
 		fruityRumpusAssholeFactory();
 	}
-	
+
 	if(getParameterByName("lawnring")  == "yellow"){
 		janusReward();
 	}

@@ -1,5 +1,6 @@
 var asyncNumSprites = 0;
 var cool_kid = false;
+var bardQuest = false;
 //~~~~~~~~~~~IMPORTANT~~~~~~~~~~LET NOTHING HERE BE RANDOM
 //OR PREDICTIONS AND TIME LOOPS AND AI SEARCHES WILL BE WRONG
 
@@ -1773,6 +1774,9 @@ function godTierSprite(canvas, player){
   var width = img.width;
   var height = img.height;
   ctx.drawImage(img,0,0,width,height);
+  if(bardQuest && player.class_name == "Bard"){
+    drawWhatever(canvas, "/Bodies/cod.png");
+  }
   aspectPalletSwap(canvas, player);
   if(player.sbahj){
     sbahjifier(canvas);

@@ -123,6 +123,10 @@ function loadOther(skipInit){
     loadImage("/Bodies/coolk1dsword.png",skipInit);
     loadImage("/Bodies/coolk1dshades.png",skipInit);
   }
+
+	if(bardQuest){
+		loadImage("/Bodies/cod.png",skipInit);
+	}
 	loadImage("jr.png",skipInit);
 	loadImage("kr_chat.png",skipInit);
   loadImage("drain_lightning.png", skipInit);

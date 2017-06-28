@@ -74,6 +74,10 @@ function startSession(){
 		coolK1DMode();
 	}
 
+	if(getParameterByName("tier")  == "cod"){
+		bardQuestMode();
+	}
+
 	if(getParameterByName("lollipop")  == "true"){
 		tricksterMode();
 	}
