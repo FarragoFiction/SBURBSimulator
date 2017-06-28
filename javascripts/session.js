@@ -255,12 +255,6 @@ function Session(session_id){
 
 		decideInitialQuadrants(this.players);
 
-		for(var k = 0; k<this.players.length; k++){
-			//can't escape consequences.
-			this.players[k].consequencesForGoodPlayer();
-			this.players[k].consequencesForTerriblePlayer();
-		}
-
 		this.hardStrength = 1000 + 50 * this.players.length;
 	}
 
