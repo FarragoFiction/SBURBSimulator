@@ -1182,7 +1182,7 @@ function session612IndexToTroll(player, index){
 		player.quirk.capitalization = 2;
 		player.quirk.punctuation = 2;
 		player.quirk.favoriteNumber = 4;
-		player.quirk.lettersToReplace = [["E","3"],["I","1"],["A","4"]];
+		player.quirk.lettersToReplace = [["E","3"],["I","1"],["A","4"],[":\\)", ">: ]"]];
 		player.quirk.lettersToReplaceIgnoreCase = [["E","3"],["I","1"],["A","4"]];
 		player.kernel_sprite = "Dragon"
 		player.interest1 = "Justice"
@@ -1203,7 +1203,7 @@ function session612IndexToTroll(player, index){
 		player.quirk.punctuation = 2;
 		player.quirk.favoriteNumber = 10;
 		player.quirk.lettersToReplace = [];
-		player.quirk.lettersToReplaceIgnoreCase = [["fuck","motherfuck"]];
+		player.quirk.lettersToReplaceIgnoreCase = [["fuck","motherfuck"],[":\\)", ":o)"]];
 		player.kernel_sprite = "Seagoat"
 		player.interest1 = "Clowns"
 		player.interest2 = "Religion"
@@ -1459,7 +1459,7 @@ function session612IndexToTrollAncestor(player, index){
 		player.quirk.punctuation = 2;
 		player.quirk.favoriteNumber = 10;
 		player.quirk.lettersToReplace = [];
-		player.quirk.lettersToReplaceIgnoreCase = [["fuck","motherfuck"]];
+		player.quirk.lettersToReplaceIgnoreCase = [["fuck","motherfuck"],[":\\)", ":o)"]];
 		player.kernel_sprite = "Seagoat"
 		player.interest1 = "Death"
 		player.interest2 = "Religion"
