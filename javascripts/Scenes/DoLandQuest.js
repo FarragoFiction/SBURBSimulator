@@ -148,7 +148,7 @@ function DoLandQuest(session){
 		if(helper.aspect == "Blood"){
 			player.boostAllRelationships();
 			player.boostAllRelationshipsWithMe();
-			player.triggerLevel += -1;
+			player.sanity += 1;
 			if(r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " spends a great deal of time helping the " + player.htmlTitle() + " out with their relationship drama. " ;
 			}else{
@@ -169,8 +169,8 @@ function DoLandQuest(session){
 		if(helper.aspect == "Rage"){
 			player.damageAllRelationships();
 			player.damageAllRelationshipsWithMe();
-			player.triggerLevel += 1;
-			helper.triggerLevel += 1;
+			player.sanity += -1;
+			helper.sanity += -1;
 			if(r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " spends a great deal of time shit talking about the other players. ";
 			}else{
@@ -247,7 +247,7 @@ function DoLandQuest(session){
 		}else if(player.sprite.helpfulness < 0){
 			//console.log("bad sprite: " + this.session.session_id)
 			player.landLevel += -0.5;
-			player.triggerLevel += 0.1;
+			player.sanity += -0.1;
 		}else{
 			//console.log("normal sprite: " + this.session.session_id)
 			player.landLevel += 0.5;

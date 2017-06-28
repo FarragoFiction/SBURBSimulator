@@ -11,7 +11,7 @@ function PlayerSnapshot(){
 	this.hair = null;
 	this.baby = null;
 	this.robot = null;
-	
+
 	this.hp = 0;
 	this.currentHP = 0;
 	this.minLuck = 0;
@@ -79,7 +79,7 @@ function PlayerSnapshot(){
 	}
 
 	this.modifyAssociatedStat = function(modValue, stat){
-		//modValue * stat.multiplier. 
+		//modValue * stat.multiplier.
 		if(stat.name == "RELATIONSHIPS"){
 			for(var i = 0; i<this.relationships.length; i++){
 				this.relationships[i].value += modValue * stat.multiplier;

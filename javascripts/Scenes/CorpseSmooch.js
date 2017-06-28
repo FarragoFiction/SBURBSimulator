@@ -160,7 +160,7 @@ function CorpseSmooch(session){
 			if(d.dreamSelf == true){
 				var royalty = this.getRoyalty(d);
 				if(royalty){
-					royalty.triggerLevel ++;
+					royalty.sanity += -1;
 					ret += " The " + royalty.htmlTitle() + ", as a member of the royalty of " + royalty.moon + ", administers the universal remedy for the unawakened ";
 					ret += " to the " + d.htmlTitle() + ". Their dream self takes over on " + d.moon + ". ";
 					if(d.aspect == "Doom") ret += "The prophecy is fulfilled. ";
@@ -216,7 +216,7 @@ function CorpseSmooch(session){
 			var royalty = this.getRoyalty(d);
 
 			if(royalty){
-				royalty.triggerLevel ++;
+				royalty.sanity += -1;
 				ret += " The " + royalty.htmlTitle() + ", as a member of the royalty of " + royalty.moon + ", administers the universal remedy for the unawakened ";
 				ret += " to the " + d.htmlTitle() + ". Their dream self takes over on " + d.moon + ". ";
 				this.makeAlive(d);
