@@ -1,5 +1,5 @@
 var screens = [];
-var maxState = 90; //this number MUST be even.
+var maxState = 102; //this number MUST be even.
 var imagesWaiting = 0;
 var imagesLoaded = 0;
 var targetImage = 0; //what could control this???
@@ -569,6 +569,16 @@ function quip(state){
 		ret = "!!! I still haven't done the eggs!"
 	} else if(state == 88){
 		ret = "Lol, that sure does look mysterious!!!"
+	} else if(state == 90){
+		ret = "Man...why is SBURB so obsessed with make outs?"
+	} else if(state == 97){
+		ret = "..."
+	} else if(state == 98){
+		ret = "Oh my god...how have I lived so long without those dope as fuck penguins?"
+	} else if(state == 99){
+		ret = "Best bulbasaur!"
+	} else if(state == 101){
+		ret = "Holy shit, how old IS that picture???"
 	}  else{
 		ret = "???"
 	}
