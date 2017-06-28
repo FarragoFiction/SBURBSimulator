@@ -183,10 +183,10 @@ function Quirk(){
     this.handlePunctuation = function(input){
         var ret = input;
         if(this.punctuation==0){
-            var punctuationless = ret.replace(/[.?,\/#!;:{}=\-_`~()]/g,"");
+            var punctuationless = ret.replace(/[.?,\/#!;{}=\-_`~]/g,"");
             ret = punctuationless.replace(/\s{2,}/g," ");
         }else if(this.punctuation==1){
-            var punctuationless = ret.replace(/[,\/#;:{}=\-_`~()]/g,"");
+            var punctuationless = ret.replace(/[,\/#;{}=\-_`~]/g,"");
             ret = punctuationless.replace(/\s{2,}/g," ");
         }else if(this.punctuation==2){
             ret = input;
@@ -271,7 +271,7 @@ function Quirk(){
       this.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(no_quirks));
 
       //smileys have special characters, do later
-      //this.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(smiley_quirks));
+      this.lettersToReplace.push(getRandomElementFromArray(smiley_quirks));
 
       this.addNumberQuirk(this);
       //$("#debug").append("Human letters to replace: " + this.lettersToReplace.length);
@@ -307,7 +307,7 @@ function Quirk(){
       this.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(no_quirks));
       this.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(asshole_quirks));
       //smileys have special characters, do later
-      //this.lettersToReplaceIgnoreCase.push(getRandomElementFromArray(smiley_quirks));
+      this.lettersToReplace.push(getRandomElementFromArray(smiley_quirks));
 
 
       //$("#debug").append("Human letters to replace: " + this.lettersToReplace.length);
