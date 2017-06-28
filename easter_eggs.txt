@@ -30,6 +30,8 @@
 
 <p> <a href = "index2.html?seed=420">FridgeQuest</a>: 12  Gamzees play SGRUB and there is just a shit ton of shenanigans. </p>
 <p> <a href = "index2.html?honk=:o)">FridgeQuest x2 Combob!!</a>: Turn any random session into a bunch of Gamzees. Why would you do this???</p>
+<p> <a href = "index2.html?tier=cod&BardStuck=true">BardQuest: The Coddening</a>: Something has been...missing from everyone's favorite class. Add it? Y/N</p>
+<p>
 
 <p> <a href = "index2.html?seed=0">0_0</a>: Some Aradias play SGRUB. They are 0kay with this. </p>
 <p> <a href = "index2.html?shenanigans=temporal">Temporal Shenanigans x2 Combob!!</a>: Turn any random session into a bunch of Aradias.</p>
