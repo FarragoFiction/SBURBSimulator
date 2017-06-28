@@ -13,7 +13,7 @@ function debugLevelTheHellUp(){
 }
 
 function bardQuestMode(){
-	if(confirm("Behold the Magesty of the CodTier? Y/N")){
+	if(confirm("Behold the Majesty of the CodTier? Y/N")){
 		bardQuest = true;
 	}else{
 		alert("But thou must!")
