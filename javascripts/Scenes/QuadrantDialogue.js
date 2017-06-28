@@ -180,6 +180,7 @@ function QuadrantDialogue(session){
 		chats.push(new InterestConversationalPair(interest, "Oh man, these game powers are just like being a super hero!", ["Hell yes, we are the super heroes, it is us!","Oh man, I call the Mighty " + p2.aspect + "!","I know, right?"], ["Bluh, in your case proably a super VILLAIN.", "Yeah, you'd be the Lame Baby.", "If you're a super hero, I dub you Toilet Vampire.","Man, how can you get all excited when our super hero arc is clearly one of those gritty 'modern' ones.", "You shall be the Shitty Asshole, lord of all that is shit."]));
 		chats.push(new InterestConversationalPair(interest, "Holy shit everything has been like the best movie ever!", ["Yeah, it'd be way better if this were fictional.","Plenty of drama, high stakes, character arcs, yeah,  I can see it.","That sure is one way to keep positive.", "Lord of the Rings is better fight me."], ["Oh yeah, sure, no clear plot, deus ex machinas out the ass. You have shit taste in movies, did you know that?", "The majority of people have literally died and you think it's EXCITING! Holy shit are you a asshole.", "How the fuck is a group of friends being forced to play a death game...wait, no,nevermind. I feel like an asshole saying it outloud. Yeah. That'd be a pretty good movie.", "Yes, and you can be the character nobody likes."]));
 		chats.push(new InterestConversationalPair(interest, "Who would have thought that reality would turn out to be a shitty video game?", ["I dunno, it all kind of makes sense in retrospect.","Seriously, who would put out a game with these many bugs in it?","It clearly didn't have a dedicated design team...shit is inconsistent as fuck."], ["I don't know asshole, maybe the whole 'sylladex' thing should have tipped us off.", "I still think that maybe it wasn't always a video game, somehow?", "You asshole, I'm pretty sure video games don't destroy planets. SBURB was only pretending.", "Everyone. Everyone could have thought that. We have been using an inventory system to store items for our entire lives."]));
+
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 	}
 	//Troll words: year, month, refrigerator, bathtub, ears, heart, brain,rap,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
@@ -291,7 +292,7 @@ function QuadrantDialogue(session){
 		//chats.push(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
 		chats.push(new InterestConversationalPair(interest, "These consorts sure do have weird ideas about justice!", ["I know right? 'That imp stole my sweet bun, kill him for me!'. Game logic, man.","Maybe SBURB is trying to say that 'justice' is defined by society and not an intrinsic property of reality?","Well, good thing we are here to teach them how it's done!", "Yeah, one tried to arrest me for breathing wrong. I wish I was making that up."], ["Have you ever considered that maybe YOUR conception of justice is a stupid baby thing that nobody would ever agree with?", "If you had half a brain you'd realize that NPCs don't HAVE ideas, much less about justice.", "Like you're any better."]));
 		chats.push(new InterestConversationalPair(interest, "I think that one of my side quests is a MYSTERY!", ["Holy shit, so jealous!","Man, why are all of your sidequests bette than mine?","Oh man, can I solve it with you later?", "GET THE DEERSTALKER HATS!"], ["And maybe when you solve baby's first mystery you will get a gold star! So lame.", "Don't you see that SBURB is partronizing you!?", "God, you give detectives a bad name.", "Don't come crying to me when you can't solve it."]));
-		chats.push(new InterestConversationalPair(interest, "It appears that the consorts had a truly egalitarian society before the Denizens arrived.", ["It is a shame our own planet did not embrace such ideals before it's ultimate demise. It as as I have always said: Not even the end of the world can change a man's heart. ","That sounds like you are oppressing Denizens, when all they are doing is merely existing as they were designed to.","Yeah, Denizens are the Man, man.", "All the more reason for us to go fuck them up, right?"], ["Do you even have eyes!? Do you not see what is so blindingly obvious? Those consorts have a COMPLETELY dysfunctional dystopia.", "If that's what you think a utopia looks like, you deserve it.", "Good thing Captain Obvious is here to save the day!", "Yes, clearly systemic issiues can be based on a single persons actions. A++, you get ALLLL the gold stars for this TOTALLY TRUE revelation."]));
+		chats.push(new InterestConversationalPair(interest, "It appears that the consorts had a truly egalitarian society before the Denizens arrived.", ["It is a shame our own planet did not embrace such ideals before it's ultimate demise. It as as I have always said: Not even the end of the world can change a man's heart. ","That sounds like you are oppressing Denizens, when all they are doing is merely existing as they were designed to.","Yeah, Denizens are the Man, man.", "All the more reason for us to go fuck them up, right?"], ["Do you even have eyes!? Do you not see what is so blindingly obvious? Those consorts have a COMPLETELY dysfunctional dystopia.", "If that's what you think a utopia looks like, you deserve it.", "Good thing Captain Obvious is here to save the day!", "Yes, clearly systemic issues can be based on a single persons actions. A++, you get ALLLL the gold stars for this TOTALLY TRUE revelation."]));
 
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2)
 
@@ -453,6 +454,11 @@ function QuadrantDialogue(session){
 		chats.push( new ConversationalPair("I swear to whatever fucked up god controls this shitty universe, if you keep this up I will fuck you up.",["Hmm, is that a promise?","Come and fucking get it.","Yes, because whatever being keeps fucking with us totally gives a shit about your promises.","Go eat dirt, asshole."]));
 		chats.push( new ConversationalPair("Eat my ass!",["Is that an insult, a threat or a promise?","Truly, your refinement leaves us all in awe.","Eat my fist."]));
 		chats.push( new ConversationalPair("Stop fucking with me!",["I will stop fucking with you when you stop being so fuckable.","But its so funny!","lol no."]));
+		chats.push( new ConversationalPair("I can and will fight you.",["Sure noodle arms. Whatever you say.","I can and will beat you like a drum.","lol no. So much no."]));
+		chats.push( new ConversationalPair("I hope this game rips you apart.",["It can fucking try.","Hate you too asshole.","I will bend this game to my will if it kills me."]));
+		chats.push( new ConversationalPair("I have had bowel movements that smelled nicer then you.",["I've had bowel movements that looked nicer then you.","Glad to know you spend so much time smelling your own bowel movements","You do understand the reason I refuse to go to your land is the smell, right?"]));
+
+
 		return  this.processChatPair(chats, relationship1, relationship2);
 	}
 
@@ -465,6 +471,13 @@ function QuadrantDialogue(session){
 		chats.push( new ConversationalPair("I can't believe we are actually together!",["It's like a dream come true.","I'm still reminding myself it's real.","It's like something out of a movie.", "Yeah... its a pity the world had to end to make it really happen." ]));
 		chats.push( new ConversationalPair("What's your favorite drink?",["AJ.","Orange Soda.","Purple drank.", "Tea.", "Coffee.", "Hot Chocolate.", "Lemonade.", "Faygo.", "Water.", "Milk"]));
 		chats.push( new ConversationalPair("Hey, you want to hang out later?",["Of course!","Oh hell to the yes.","YesyesyeysyesYES."]));
+		chats.push( new ConversationalPair("I wonder what this game is going to throw at us next.",["Probably something very stupid.","Can't be as bad as what we've already seen.","Not spiders, hopefully. Hate them.","With any luck, something good."]));
+		chats.push( new ConversationalPair("Hows quests?",["They'd be better with you here <3.","So-so, just had a really strange one involving a cod piece.","Questy","Grinding all day every day."]));
+		chats.push( new ConversationalPair("Hows that one side quest going?",["Needlessly complicated, like everything in this stupid game.","Well its looking like I'm going to have to go to Derse so yeah. Thats a thing.","Stupidly stupidly.","It would be better with you here.","Finally found the consort the quest wants me to talk to."]));
+		chats.push( new ConversationalPair("Hows the building up going?",["My fucking server player keeps making stairs.","Like a fly through honey","Grist is low, house is high. Bluuuh."]));
+		chats.push( new ConversationalPair("Jesus fuck have you seen the size of some of these underlings?",["Do they get that big over there? Most of mine are waist-high at most.","I KNOW RIGHT?","Yeah, things those size shouldn't be able to exist."]));
+
+
 
 		return  this.processChatPair(chats, relationship1, relationship2);
 		//chats.push( new ConversationalPair("",["","",""]));
@@ -479,7 +492,7 @@ function QuadrantDialogue(session){
 		chats.push( new ConversationalPair("You doing okay?",["Yes.","As well as can be expected.","Better than I thought I'd be.", "I'm fine. I think."]));
 		chats.push( new ConversationalPair("This game really sucks.",["Yes, you aren't kidding.","I know, right?","Represent", "I'm glad I got you to help me through it."]));
 		chats.push( new ConversationalPair("Any big changes?",["I... I think I'm okay.","You have no idea.","This is gonna be a long list."]));
-		chats.push( new ConversationalPair("Quick check in, how are you?",["Okay-ish.","As well as can be expected.","Better than I thought I'd be.", "I'm fine. I think."]));
+		chats.push( new ConversationalPair("Quick check in, how are you?",["Okay-ish.","As well as can be expected.","Better than I thought I'd be.", "I'm fine. I think.","Blaaaaaaaaaah"]));
 
 		//chats.push( new ConversationalPair("",["","",""]));
 		return  this.processChatPair(chats, relationship1, relationship2);
@@ -613,7 +626,7 @@ function QuadrantDialogue(session){
 
 	this.fareWell = function(relationship,relationship2){
 		//fuck yes oblivion, you taught me what a good AI "goodbye" is.
-		var goodByes = ["Good day.","Farewell.","Bye bye.","Bye.", "Talk to you later!", "ttyl", "seeya","cya"];
+		var goodByes = ["Good day.","Farewell.","Bye bye.","Bye.", "Talk to you later!", "ttyl", "seeya","cya", "Catch you later", "Have a good one!", "Later","g2g"];
 		var badByes = ["I have nothing more to say to you.","I've heard others say the same.","Yeah, I'm done here.","I'm out.","I'm going to ollie outtie.","I'm through speaking with you."];
 		var ret = "";
 
@@ -697,7 +710,7 @@ function QuadrantDialogue(session){
 function ConversationalPair(line1, responseLines){
 	this.line1 = line1;
 	this.responseLines = responseLines;  //responses are just reactions
-	this.genericResponses = ["Yeah.", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "... ", "Whatever.", "Yes.", "Interesting...", "Hrmmm...", "lol", "Interesting!!!", "Umm. Okay?", "Really?", "Whatever floats your boat."]
+	this.genericResponses = ["Yeah.", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "... ", "Whatever.", "Yes.", "Interesting...", "Hrmmm...", "lol", "Interesting!!!", "Umm. Okay?", "Really?", "Whatever floats your boat.","Why not", "K."]
 }
 
 function InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative){
@@ -708,6 +721,6 @@ function InterestConversationalPair(interest, line1, responseLinesSharedInterest
 	//what can i say if i hate you and share your interests.
 	this.responseLinesSharedInterestNegative = responseLinesSharedInterestNegative;
 	//below happens if you don't share an interest at all.
-	this.genericResponses = ["Yeah.", "Nice", "Double nice", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "... ", "lol","Whatever.", "Yes.", "Interesting...", "Hrmmm...", "Interesting!!!", "Um."]
+	this.genericResponses = ["Yeah.", "Nice", "Double nice", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "... ", "lol","Whatever.", "Yes.", "Interesting...", "Hrmmm...", "Interesting!!!", "Um.","Why not.","Whatever you say.", "K."]
 
 }
