@@ -1029,7 +1029,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			this.modifyAssociatedStat(powerBoost, stat);
 		}else{  //modify others.
 			for(var i = 0; i<this.session.players.length; i++){
-				this.session.players[i].modifyAssociatedStat(powerBoost, stat);
+				this.session.players[i].modifyAssociatedStat(powerBoost/this.session.players.length, stat);
 			}
 		}
 	}
