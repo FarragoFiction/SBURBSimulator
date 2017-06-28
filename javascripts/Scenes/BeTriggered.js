@@ -144,7 +144,7 @@ function BeTriggered(session){
 				removeFromArray(p, this.session.availablePlayers);
 				ret += " The " +p.htmlTitle() + " is currently too busy flipping the fuck out about "
 				ret += p.flipOutReason + " to be anything but a useless piece of gargbage. ";
-				player.sanity += -1;
+				p.sanity += -1;
 				p.flipOutReason = null;
 				p.flippingOutOverDeadPlayer = null;
 				if(p.sanity < -5){
