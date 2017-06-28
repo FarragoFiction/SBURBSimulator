@@ -1818,7 +1818,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				break;
 			case  "Void":
 				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), 2,true));
-				this.associatedStats.push(new AssociatedStat("maxLuck", 1,true));
+				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), 1,true));
 				this.associatedStats.push(new AssociatedStat("minLuck", -2,true));
 				break;
 			case  "Time":
@@ -1834,7 +1834,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			case  "Breath":
 				this.associatedStats.push(new AssociatedStat("mobility", 2,true));
 				this.associatedStats.push(new AssociatedStat("sanity", 1,true));
-				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), -2,true));
+				this.associatedStats.push(new AssociatedStat( "RELATIONSHIPS", -2,true)); //somebody pointed out breath seems to destroy connections, sure, i'll roll with it.
 				break;
 			case  "Light":
 				this.associatedStats.push(new AssociatedStat("maxLuck", 2,true));
@@ -1849,7 +1849,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			case  "Hope":
 				this.associatedStats.push(new AssociatedStat("sanity", 2,true));
 				this.associatedStats.push(new AssociatedStat("maxLuck", 1,true));
-				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", -2,true));
+				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), 2,true));
 				break;
 			case  "Life":
 				this.associatedStats.push(new AssociatedStat("hp", 2,true));
