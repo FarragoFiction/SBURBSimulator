@@ -26,7 +26,7 @@ function FreeWillStuff(session){
 				this.decision = breakFree;
 				return true;
 			}
-			if(player.freeWill > 60){  //don't even get to consider a decision if you don't have  more than default free will.//TODO raise to over 60 'cause that is highest default free will possible. want free will to be rarer.
+			if(player.freeWill > 200){  //don't even get to consider a decision if you don't have  more than default free will.//TODO raise to over 60 'cause that is highest default free will possible. want free will to be rarer.
 				var decision = this.getPlayerDecision(player);
 				if(decision){
 					this.decision = decision;
@@ -436,7 +436,7 @@ function FreeWillStuff(session){
 					removeFromArray(player, this.session.availablePlayers);
 					removeFromArray(sacrifice, this.session.availablePlayers);
 
-					player.sanity += -100;
+					player.sanity += -1000;
 					player.flipOut(" how stupid they could have been to force the " + sacrifice.htmlTitleBasic() + " to commit suicide" )
 					this.renderPlayer1 = player;
 					this.renderPlayer2 = sacrifice;

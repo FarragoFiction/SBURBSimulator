@@ -36,7 +36,7 @@ function Breakup(session){
 			if(Math.seededRandom()*3 < breakUpChance){
 				this.relationshipToBreakUp = getRandomElementFromArray(hearts);
 				this.formerQuadrant = this.relationshipToBreakUp.saved_type;
-				this.relationshipToBreakUp.target.sanity += -1;
+				this.relationshipToBreakUp.target.sanity += -10;
 				this.relationshipToBreakUp.target.flipOut("getting cheated on by their Matesprit, the  " + this.player.htmlTitle() );
 				var oppr = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
 				oppr.value = 5;
@@ -52,7 +52,7 @@ function Breakup(session){
 			if(Math.seededRandom()*3 < breakUpChance){
 				this.relationshipToBreakUp = getRandomElementFromArray(spades);
 				this.formerQuadrant = this.relationshipToBreakUp.saved_type;
-				this.relationshipToBreakUp.target.sanity += -1;
+				this.relationshipToBreakUp.target.sanity += -10;
 				this.relationshipToBreakUp.target.flipOut("getting cheated on by their Kismesis, the  " + this.player.htmlTitle() );
 				var oppr = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
 				oppr.value = 5;
@@ -67,7 +67,7 @@ function Breakup(session){
 				this.relationshipToBreakUp = getRandomElementFromArray(diamonds);
 				this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 				//cheating with diamonds sounds like a terrible idea.
-				this.relationshipToBreakUp.target.sanity += -10;
+				this.relationshipToBreakUp.target.sanity += -100;
 				this.relationshipToBreakUp.target.flipOut("getting cheated on by their Moirail, the  " + this.player.htmlTitle() );
 				var oppr = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
 				oppr.value = -1;
@@ -95,7 +95,7 @@ function Breakup(session){
 						this.relationshipToBreakUp = r;
 						this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 						//not happy with cheating bastards.
-						this.player.sanity += -10;
+						this.player.sanity += -100;
 						this.player.flipOut("having to confront their Matesprit, the  " + this.relationshipToBreakUp.target.htmlTitle() + " about their cheating");
 						r.value =-10;
 						this.reason = "you_cheat"
@@ -112,7 +112,7 @@ function Breakup(session){
 						this.relationshipToBreakUp = r;
 						this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 						//not happy with cheating bastards.
-						this.player.sanity += -10;
+						this.player.sanity += -100;
 						this.player.flipOut("having to confront their Kismesis, the  " + this.relationshipToBreakUp.target.htmlTitle() + " about their cheating");
 						r.value =-10;
 						this.reason = "you_cheat"
@@ -129,7 +129,7 @@ function Breakup(session){
 						this.relationshipToBreakUp = r;
 						this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 						//dude, cheating on diamonds sounds like a TERRIBLE idea.
-						this.player.sanity += -100;
+						this.player.sanity += -1000;
 						this.relationshipToBreakUp.target.flipOut("having to confront their trusted FUCKING Moirail, the  " + this.relationshipToBreakUp.target.htmlTitle() + " about their cheating");
 						r.value =-50;
 						this.reason = "you_cheat"

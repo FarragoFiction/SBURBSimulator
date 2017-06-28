@@ -224,7 +224,7 @@ function EngageMurderMode(session){
 			chatText += chatLine(player2Start, player2,"Why don't we meet up in person. We can vent about whatever's bothering you. Nobody has to do anything that can't be undone.")
 			chatText += chatLine(player1Start, player1,"Fuck. Maybe. I... I need to go think about this.")
 		}else{
-			player1.sanity += -1;
+			player1.sanity += -10;
 			r1.decrease();
 			chatText += chatLine(player2Start, player2,"I mean, probably. Everybody has at least some goodness in them, right? Even you?")
 			chatText += chatLine(player1Start, player1,"You asshole. Always pretending to be above it all. To be better than me.")

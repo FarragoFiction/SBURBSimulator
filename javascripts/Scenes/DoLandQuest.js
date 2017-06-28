@@ -169,8 +169,8 @@ function DoLandQuest(session){
 		if(helper.aspect == "Rage"){
 			player.damageAllRelationships();
 			player.damageAllRelationshipsWithMe();
-			player.sanity += -1;
-			helper.sanity += -1;
+			player.sanity += -10;
+			helper.sanity += -10;
 			if(r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " spends a great deal of time shit talking about the other players. ";
 			}else{

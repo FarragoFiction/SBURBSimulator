@@ -4,8 +4,8 @@ function LuckStuff(session){
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.rolls = [];
 	//luck can be good or it can be bad.
-	this.minLowValue = -10;
-	this.minHighValue = 110;
+	this.minLowValue = -50;
+	this.minHighValue = 410;
 	this.landLevelNeeded = 12;
 	this.numberTriggers = 0; //can't just spam this.
 
@@ -78,7 +78,7 @@ function LuckStuff(session){
 		console.log("unlucky trigger event: " + this.session.session_id)
 		var items = ["soper slime", "candy", "apple juice", "alcohol", "weed","chocolate", "orange soda", "blanket","hat","lucky coin", "magic 8 ball"];
 		var ret = "The " + roll.player.htmlTitle() + " has lost their " + getRandomElementFromArray(items) + ". Sure, it seems stupid to you or me but... it was one of the few things left holding their sanity together. They are enraged."
-		roll.player.sanity += -100;
+		roll.player.sanity += -1000;
 		this.session.badLuckEvent = true;
 		return ret;
 	}

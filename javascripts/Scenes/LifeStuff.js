@@ -189,7 +189,7 @@ function LifeStuff(session){
 			}else if(ghostName == "less fortunate alternate self"){
 				console.log("dead alt selves freakouts " + this.session.session_id)
 				str += " It's kind of freaking the " + player.htmlTitleBasic() + " out a little. "
-				player.sanity += -1;
+				player.sanity += -10;
 				player.flipOutReason = "being haunted by their own ghost"
 			}else if(trait != 'nice' && ghost.id != player.id){
 				str += " They bond over how " + trait + " they both are. The " + player.htmlTitle() + " feels their determination to beat the game grow. "

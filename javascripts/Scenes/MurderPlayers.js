@@ -41,15 +41,15 @@ function MurderPlayers(session){
 				//more they liked the victim, the more they hate you.
 				if(rv.saved_type == rv.diamond){
 					rm.value = -100;
-					p.sanity += -10;
+					p.sanity += -100;
 					ret += " The " + p.htmlTitle() + " is enraged that their Moirail was killed. ";
 				}else if(rv.saved_type == rv.heart){
 					rm.value = -100;
-					p.sanity += -10;
+					p.sanity += -100;
 					ret += " The " + p.htmlTitle() + " is enraged that their Matesprit was killed. ";
 				}else if(rv.saved_type == rv.spades){
 					rm.value = -100;
-					p.sanity += -10;
+					p.sanity += -100;
 					ret += " The " + p.htmlTitle() + " is enraged that their Kismesis was killed. ";
 				}else if (rv.type() == rv.goodBig){
 					rm.value = -20;

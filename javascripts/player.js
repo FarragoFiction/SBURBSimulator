@@ -416,28 +416,28 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			var r = this.relationships[i];
 
 			if(r.saved_type == r.goodBig){
-				r.target.sanity += -1;
+				r.target.sanity += -10;
 				if(r.target.flipOutReason == null){
 					r.target.flipOutReason = " their dead crush, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead crush.
 					r.target.flippingOutOverDeadPlayer = this;
 				}
 			}else if(r.value > 0){
-				r.target.sanity += -1;
+				r.target.sanity += -10;
 				if(r.target.flipOutReason == null){
 					 r.target.flippingOutOverDeadPlayer = this;
 					 r.target.flipOutReason = " their dead friend, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead friend.
 				}
 			}else if(r.saved_type == r.spades){
-				r.target.sanity += -10;
+				r.target.sanity += -100;
 				r.target.flipOutReason = " their dead Kismesis, the " + this.htmlTitleBasic();
 				r.target.flippingOutOverDeadPlayer = this;
 			}else if(r.saved_type == r.heart){
-				r.target.sanity += -10
+				r.target.sanity += -100
 				r.target.flipOutReason = " their dead Matesprit, the " + this.htmlTitleBasic();
 				r.target.flippingOutOverDeadPlayer = this;
 			}
 			else if(r.saved_type == r.diamond){
-				r.target.sanity += -100
+				r.target.sanity += -1000
 				r.target.damageAllRelationships();
 				r.target.damageAllRelationships();
 				r.target.damageAllRelationships();
@@ -449,7 +449,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 		//whether or not i care about them, there's also the novelty factor.
 		if(dead.length == 1){  //if only I am dead, death still has it's impact and even my enemies care.
-			r.target.sanity += -1;
+			r.target.sanity += -10;
 			if(r.target.flipOutReason == null){
 				r.target.flipOutReason = " the dead player, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead player.
 			 r.target.flippingOutOverDeadPlayer = this;
@@ -549,7 +549,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			this.murderMode = false;
 			this.currentHP = Math.max(this.hp,1); //if for some reason your hp is negative, don't do that.
 			this.grimDark = 0;
-			this.sanity += -11;  //dying is pretty triggering.
+			this.sanity += -101;  //dying is pretty triggering.
 			this.flipOutReason = "they just freaking died"
 			//this.leftMurderMode = false; //no scars
 			this.victimBlood = null; //clean face
@@ -1093,8 +1093,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				var r = randomBlandRelationship(friends[i])
 				if(this.isTroll && this.bloodColor == "#99004d" && friends[i].isTroll && friends[i].bloodColor == "#99004d"){
 					r.value = -20; //biological imperitive to fight for throne.
-					this.sanity += -10;
-					friends[i].sanity += -10;
+					this.sanity += -100;
+					friends[i].sanity += -100;
 				}
 				this.relationships.push(r);
 			}
@@ -1110,8 +1110,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				var r = randomRelationship(friends[i])
 				if(this.isTroll && this.bloodColor == "#99004d" && friends[i].isTroll && friends[i].bloodColor == "#99004d"){
 					r.value = -20; //biological imperitive to fight for throne.
-					this.sanity += -1;
-					friends[i].sanity += -1;
+					this.sanity += -10;
+					friends[i].sanity += -10;
 				}
 				this.relationships.push(r);
 			}else{
@@ -1566,8 +1566,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				var r = this.relationships[i];
 				if(this.isTroll && this.bloodColor == "#99004d" && r.target.isTroll && r.target.bloodColor == "#99004d"){
 					r.value = -20; //biological imperitive to fight for throne.
-					this.sanity += -1;
-					r.target.sanity += -1;
+					this.sanity += -10;
+					r.target.sanity += -10;
 				}
 			}
 		}
@@ -1716,7 +1716,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 		if(this.isTroll){
 			if(!this.quirk) this.quirk = randomTrollSim(this)  //if i already have a quirk it was defined already. don't override it.
-			this.sanity += -1;//trolls are slightly less stable
+			this.sanity += -10;//trolls are slightly less stable
 
 		}else{
 			if(!this.quirk) this.quirk = randomHumanSim(this);
@@ -1760,7 +1760,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				break;
 			case  "Maid":
 				this.associatedStats.push(new AssociatedStat("sanity", 1));
-				this.associatedStats.push(new AssociatedStat("freeWill", -1));
+				this.associatedStats.push(new AssociatedStat("minLuck", -1));
 				break;
 			case  "Rogue":
 				this.associatedStats.push(new AssociatedStat("mobility", 0.5));
@@ -1827,6 +1827,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				this.associatedStats.push(new AssociatedStat("freeWill", -2,true));
 				break;
 			case  "Heart":
+				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", 1,true));
 				this.associatedStats = this.associatedStats.concat(this.getInterestAssociatedStats(this.interest1));
 				this.associatedStats = this.associatedStats.concat(this.getInterestAssociatedStats(this.interest2));
 				break;

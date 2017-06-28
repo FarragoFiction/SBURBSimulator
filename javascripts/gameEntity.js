@@ -220,7 +220,7 @@ function GameEntity(session, name, crowned){
 
 			//console.log("reasons to stay: " + reasonsToStay + " reasons to leave: " + reasonsToLeave)
 			if(reasonsToLeave > reasonsToStay * 2){
-				player.sanity += -1;
+				player.sanity += -10;
 				player.flipOut("how terrifying " + this.htmlTitle() + " was");
 				if(player.mobility > this.mobility){
 					//console.log(" player actually absconds: they had " + player.hp + " and enemy had " + enemy.getPower() + this.session.session_id)
@@ -426,7 +426,7 @@ function GameEntity(session, name, crowned){
 				drawSinglePlayer(pSpriteBuffer, doomedTimeClone);
 				copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0)
 				timePlayer.doomedTimeClones.push(doomedTimeClone);
-				timePlayer.sanity += -1;
+				timePlayer.sanity += -10;
 				timePlayer.flipOut("their own doomed time clones")
 				return players
 

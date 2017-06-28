@@ -121,7 +121,7 @@ function RelationshipDrama(session){
 			if(player2.grimDark > 3){
 				chatText += chatLine(player2Start, player2,"Your feelings are irrelevant. Your promiscuity is irrelevant.");
 				chatText += chatLine(player1Start, player1,"Fuck. You're grimdark, aren't you. Fuck. I've made a huge mistake.");
-				player1.sanity += -1;
+				player1.sanity += -10;
 			}else{
 				chatText += chatLine(player2Start, player2,"Fuck. I'm sorry. I just don't feel that way about you. ");
 				if(playerLikesRomantic(player1) || player1.aspect == "Mind"){
@@ -129,21 +129,21 @@ function RelationshipDrama(session){
 					if(playerLikesRomantic(player2) || player2.aspect == "Mind" || player2.aspect == "Rage"){
 						chatText += chatLine(player2Start, player2,"Better than keeping it bottled up. ");
 					}
-					player1.sanity += -1;
+					player1.sanity += -10;
 				}else if(player1.class_name == "Bard" || player2.aspect == "Rage" || playerLikesTerrible(player1)){
 					chatText += chatLine(player1Start, player1,"Fuck. Why don't I ever learn that people suck?");
 					if(player2.class_name == "Seer" || player2.aspect == "Blood" || playerLikesRomantic(player2)){
 						chatText += chatLine(player2Start, player2,"Holy fucking shit. And you wonder why nobody likes you? ");
 						var makeHate = true;  //easier to hate after so many rejections. poor eridan.
 					}
-					player1.sanity += -1;
+					player1.sanity += -10;
 				}else if(player1.class_name == "Page" || player2.aspect == "Blood" || playerLikesAcademic(player1)){
 					chatText += chatLine(player1Start, player1,"But... I was even brave and told you and everything...");
 					if(player2.class_name == "Knight" || player2.aspect == "Rage" || playerLikesAcademic(player2)){
 						chatText += chatLine(player2Start, player2,"Fuck. But you've been 'brave' enough to hit on EVERYBODY! ");
 						chatText += chatLine(player1Start, player1,"What else am I supposed to do? Ignoring how I feel is cowardice, right?");
 						chatText += chatLine(player2Start, player2,"Man, it's like your emotions are calibrated wrong. I can't just tell you 'fall in love less easily'. Fuck.");
-						player1.sanity += -1;
+						player1.sanity += -10;
 					}else{
 						chatText += chatLine(player2Start, player2,"I don't know what to tell you. ");
 						chatText += chatLine(player1Start, player1,"Fuck");
@@ -151,7 +151,7 @@ function RelationshipDrama(session){
 
 				}else{
 					chatText += chatLine(player1Start, player1,"Oh. Yes. That's what I expected.");
-					player1.sanity += -1;
+					player1.sanity += -10;
 				}
 			}
 
@@ -164,7 +164,7 @@ function RelationshipDrama(session){
 		drawRelationshipChat(canvasDiv, player1, player2, chatText, 1000);
 
 		if(makeHate == true){
-			player1.sanity += -1;
+			player1.sanity += -10;
 			r1.value = -20;
 		}
 
@@ -229,7 +229,7 @@ function RelationshipDrama(session){
 			if(player2.grimDark  > 3){
 				chatText += chatLine(player2Start, player2,"Your feelings are irrelevant. ");
 				chatText += chatLine(player1Start, player1,"Fuck. You're grimdark, aren't you. Fuck.");
-				player1.sanity += -1;
+				player1.sanity += -10;
 			}else{
 				chatText += chatLine(player2Start, player2,"Fuck. I'm sorry. I just don't feel that way about you. ");
 				if(playerLikesRomantic(player1) || player1.aspect == "Mind"){
@@ -272,7 +272,7 @@ function RelationshipDrama(session){
 		relationship.old_type = relationship.saved_type;
 		drawRelationshipChat(canvasDiv, player1, player2, chatText, 1000);
 		if(makeHate == true){
-			player1.sanity += -1;
+			player1.sanity += -10;
 			r1.value = -20;
 		}
 	}
@@ -389,7 +389,7 @@ function RelationshipDrama(session){
 		chatText += chatLine(player2Start, player2,getRelationshipFlavorGreeting(r2, r1, player2, player1))
 		chatText += chatLine(player1Start, player1,"So... " + crush.chatHandle + ", they are " + this.generateNewOpinion(r1) + ", you know?");
 		if(crush.dead == true){
-			player.sanity += -2;  //still hurts that they are dead.
+			player.sanity += -20;  //still hurts that they are dead.
 			chatText += chatLine(player2Start, player2,"Oh my god, you know they are dead, right?");
 			chatText += chatLine(player1Start, player1,"Yeah. Fuck. Why didn't I notice them sooner?");
 			chatText += chatLine(player2Start, player2,"Fuck. That sucks. I'm here for you.");
@@ -801,7 +801,7 @@ function RelationshipDrama(session){
 		ret += this.generateOldOpinion(relationship) + ", but now they can't help but think they are " + this.generateNewOpinion(relationship) + ".";
 
 		if(relationship.saved_type == relationship.goodBig && relationship.target.dead){
-			player.sanity += -1;
+			player.sanity += -10;
 			ret += " They are especially devestated to realize this only after the " + relationship.target.htmlTitle() + " died. ";
 		}
 		relationship.drama = false; //it is consumed.

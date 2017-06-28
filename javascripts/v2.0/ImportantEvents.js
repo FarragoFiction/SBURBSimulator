@@ -181,7 +181,7 @@ function PlayerWentGrimDark(session, mvp_value,player, doomedTimeClone){
 			}
 			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
 			div.append(narration);
-			player.sanity += -1;
+			player.sanity += -10;
 
 
 			var divID = (div.attr("id")) + "_alt_" + player.chatHandle;
@@ -237,7 +237,7 @@ function PlayerWentMurderMode(session, mvp_value, player, doomedTimeClone){
 			}
 			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
 			div.append(narration);
-			player.sanity += -1;
+			player.sanity += -10;
 
 
 			var divID = (div.attr("id")) + "_alt_" + player.chatHandle;
