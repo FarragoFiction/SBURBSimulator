@@ -453,7 +453,7 @@ function QuadrantDialogue(session){
 		chats.push( new ConversationalPair("You are so fucking annoying.",["And you know you love it.","Fuck you too.","I don't have to put up with this.","Have you ever looked in a mirror?."]));
 		chats.push( new ConversationalPair("I swear to whatever fucked up god controls this shitty universe, if you keep this up I will fuck you up.",["Hmm, is that a promise?","Come and fucking get it.","Yes, because whatever being keeps fucking with us totally gives a shit about your promises.","Go eat dirt, asshole."]));
 		chats.push( new ConversationalPair("Eat my ass!",["Is that an insult, a threat or a promise?","Truly, your refinement leaves us all in awe.","Eat my fist."]));
-		chats.push( new ConversationalPair("Stop fucking with me!",["I will stop fucking with you when you stop being so fuckable.","But its so funny!","lol no."]));
+		chats.push( new ConversationalPair("Stop fucking with me!",["I will stop fucking with you when you stop being so fuckable.","But its so funny!","lol no. :)"]));
 		chats.push( new ConversationalPair("I can and will fight you.",["Sure noodle arms. Whatever you say.","I can and will beat you like a drum.","lol no. So much no."]));
 		chats.push( new ConversationalPair("I hope this game rips you apart.",["It can fucking try.","Hate you too asshole.","I will bend this game to my will if it kills me."]));
 		chats.push( new ConversationalPair("I have had bowel movements that smelled nicer then you.",["I've had bowel movements that looked nicer then you.","Glad to know you spend so much time smelling your own bowel movements","You do understand the reason I refuse to go to your land is the smell, right?"]));
@@ -465,10 +465,10 @@ function QuadrantDialogue(session){
 	this.heartChat = function(relationship1, relationship2){
 		//console.log("Heart Chat  in: " + this.session.session_id)
 		var chats = [];
-		chats.push( new ConversationalPair("You're so good at this game!",["No, way, you're tons better than me.","Heh, about time I'm good at something, huh?","Only because I get to play it with you."]));
+		chats.push( new ConversationalPair("You're so good at this game!",["No, way, you're tons better than me.","Heh, about time I'm good at something, huh?","Only because I get to play it with you :)"]));
 		chats.push( new ConversationalPair("Do you need any extra grist?",["Oh, thanks!","No, I'm good, but it's so sweet of you to offer.","Heh, I was going to ask YOU that.", "What would I do without you? Yes, yes of course I do."]));
 		chats.push( new ConversationalPair("Wow, I feel like I could talk to you forever!",["Same. It's like we finish each others sandwiches.","I know, right! It's so great.","Exactly! Let's meet up later and do quests", "Hey, we've got time!"]));
-		chats.push( new ConversationalPair("I can't believe we are actually together!",["It's like a dream come true.","I'm still reminding myself it's real.","It's like something out of a movie.", "Yeah... its a pity the world had to end to make it really happen." ]));
+		chats.push( new ConversationalPair("I can't believe we are actually together!",["It's like a dream come true.","I'm still reminding myself it's real.","It's like something out of a movie :)", "Yeah... its a pity the world had to end to make it really happen." ]));
 		chats.push( new ConversationalPair("What's your favorite drink?",["AJ.","Orange Soda.","Purple drank.", "Tea.", "Coffee.", "Hot Chocolate.", "Lemonade.", "Faygo.", "Water.", "Milk"]));
 		chats.push( new ConversationalPair("Hey, you want to hang out later?",["Of course!","Oh hell to the yes.","YesyesyeysyesYES."]));
 		chats.push( new ConversationalPair("I wonder what this game is going to throw at us next.",["Probably something very stupid.","Can't be as bad as what we've already seen.","Not spiders, hopefully. Hate them.","With any luck, something good."]));
@@ -492,7 +492,7 @@ function QuadrantDialogue(session){
 		chats.push( new ConversationalPair("You doing okay?",["Yes.","As well as can be expected.","Better than I thought I'd be.", "I'm fine. I think."]));
 		chats.push( new ConversationalPair("This game really sucks.",["Yes, you aren't kidding.","I know, right?","Represent", "I'm glad I got you to help me through it."]));
 		chats.push( new ConversationalPair("Any big changes?",["I... I think I'm okay.","You have no idea.","This is gonna be a long list."]));
-		chats.push( new ConversationalPair("Quick check in, how are you?",["Okay-ish.","As well as can be expected.","Better than I thought I'd be.", "I'm fine. I think.","Blaaaaaaaaaah"]));
+		chats.push( new ConversationalPair("Quick check in, how are you?",["Okay-ish.","As well as can be expected.","Better than I thought I'd be :)", "I'm fine. I think.","Bluuuuuuh"]));
 
 		//chats.push( new ConversationalPair("",["","",""]));
 		return  this.processChatPair(chats, relationship1, relationship2);
@@ -710,7 +710,7 @@ function QuadrantDialogue(session){
 function ConversationalPair(line1, responseLines){
 	this.line1 = line1;
 	this.responseLines = responseLines;  //responses are just reactions
-	this.genericResponses = ["Yeah.", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "... ", "Whatever.", "Yes.", "Interesting...", "Hrmmm...", "lol", "Interesting!!!", "Umm. Okay?", "Really?", "Whatever floats your boat.","Why not", "K."]
+	this.genericResponses = ["Yeah.", ":)", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "... ", "Whatever.", "Yes.", "Interesting...", "Hrmmm...", "lol", "Interesting!!!", "Umm. Okay?", "Really?", "Whatever floats your boat.","Why not", "K."]
 }
 
 function InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative){
@@ -721,6 +721,6 @@ function InterestConversationalPair(interest, line1, responseLinesSharedInterest
 	//what can i say if i hate you and share your interests.
 	this.responseLinesSharedInterestNegative = responseLinesSharedInterestNegative;
 	//below happens if you don't share an interest at all.
-	this.genericResponses = ["Yeah.", "Nice", "Double nice", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "... ", "lol","Whatever.", "Yes.", "Interesting...", "Hrmmm...", "Interesting!!!", "Um.","Why not.","Whatever you say.", "K."]
+	this.genericResponses = ["Yeah.", ":)", "Nice", "Double nice", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "... ", "lol","Whatever.", "Yes.", "Interesting...", "Hrmmm...", "Interesting!!!", "Um.","Why not.","Whatever you say.", "K."]
 
 }
