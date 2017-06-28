@@ -961,6 +961,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.modPowerBoostByClass = function(powerBoost,stat){
+		//TODO add back -0.5, -1 and maybe even -2 once fraymotifs are a thing.
+		var lolrandoms = [1,2,0.25,0.5,-0.25]
 		switch (this.class_name) {
 			case "Knight":
 				if(stat.multiplier > 0){
@@ -977,7 +979,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				}
 				break;
 			case  "Bard":
-				var lolrandoms = [1,2,-1,0.25,-0.25,0.5,-0.5]
 				powerBoost = powerBoost * getRandomElementFromArray(lolrandoms);
 				break;
 			case  "Heir":
@@ -1003,7 +1004,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				powerBoost = powerBoost * 1;
 				break;
 			case  "Prince":
-				var lolrandoms = [1,2,-1,0.25,-0.25,0.5,-0.5]
 				powerBoost = powerBoost * getRandomElementFromArray(lolrandoms);
 				break;
 			case  "Witch":
