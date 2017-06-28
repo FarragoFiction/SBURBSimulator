@@ -498,7 +498,7 @@ function quip(state){
 	var prize = ":/ Looks like you didn't do it before the Reckoning, though. Thems the breaks. Poor Janus died in vain. What were you even gonna DO with all that grist?";
 	if(!failureEnding && !denizenEnding)
 	{
-		prize = "And you managed to it BEFORE the Reckoning! Look at you, being all 'adult' and shit. (I wonder if you missed any secrets, though.)  <Br><Br>Well, I guess I can give you a SMALL secret. Here you go: <a target = '_blank' href = 'index2.html?COOLK1D=true&MindStuck=true'>UseYellowYardResponsibly</a> "
+		prize = "And you managed to it BEFORE the Reckoning! Look at you, being all 'adult' and shit. (I wonder if you missed any secrets, though.)  <Br><Br>Well, I guess I can give you a SMALL secret. Here you go: <a target = '_blank' href = 'index2.html?COOLK1D=true&MindStuck=true&SeerStuck=true&hive=bent'>WHO DO3S TH1S R3M1ND YOU OF???</a> "
 	}else if(denizenEnding){
 		prize = "And you found the Ultimate Secret that makes you worthy of a meta class like Waste.  <br><Br> Holy shit, apparently I got a YellowYard for beating Janus?  Huh...but for some reason I have to give it to you?  So...uh...don't fuck this up, okay: <Br><br><a target = '_blank' href = 'index2.html?lawnring=yellow'>UseYellowYardResponsibly</a>  "
 	}
