@@ -498,9 +498,9 @@ function quip(state){
 	var prize = ":/ Looks like you didn't do it before the Reckoning, though. Thems the breaks. Poor Janus died in vain. What were you even gonna DO with all that grist?";
 	if(!failureEnding && !denizenEnding)
 	{
-		prize = "And you managed to it BEFORE the Reckoning! Look at you, being all 'adult' and shit. (I wonder if you missed any secrets, though.) <br><Br> Holy shit, apparently I got a YellowYard for beating Janus?  Huh...but for some reason I have to give it to you?  So...uh...don't fuck this up, okay: <Br><br><a target = '_blank' href = 'index2.html?lawnring=yellow'>UseYellowYardResponsibly</a>"
+		prize = "And you managed to it BEFORE the Reckoning! Look at you, being all 'adult' and shit. (I wonder if you missed any secrets, though.) "
 	}else if(denizenEnding){
-		prize = "And you found the Ultimate Secret that makes you worth of a meta class like Waste. Hrrm...what sort of reward should I give you, since we are dropping the conceit that I don't know I'm in a game or whatever the fuck.  Hrrrrrrrrrrmmmm....I mean, you straight up get my Yellow Yard for beating easy mode. What could be worth this? I know!  Shit, let's be meta.  First few ppl to find this (even if you're cheating because, come on, meta) can suggest an easter egg for this secret.  I won't necessarily do it.  The ideal secret is easy to implement and interesting to see."
+		prize = "And you found the Ultimate Secret that makes you worthy of a meta class like Waste.  <br><Br> Holy shit, apparently I got a YellowYard for beating Janus?  Huh...but for some reason I have to give it to you?  So...uh...don't fuck this up, okay: <Br><br><a target = '_blank' href = 'index2.html?lawnring=yellow'>UseYellowYardResponsibly</a>  "
 	}
 	if(state == 0){
 	 ret = "Oh! You win! " + prize;
