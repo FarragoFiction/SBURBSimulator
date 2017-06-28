@@ -14,7 +14,7 @@ var eggs = {};
 var timeTillReckoning = 99999999999999999999;  //take as long as you want...for now.
 var reachedTarget = false;
 var failureEnding = false;
-var reckoningEnding = false;
+var denizenEnding = false;
 
 var distactions = new Array(maxState); //all images, screen responsible for displaying it's chunk
 //figure out a number of turns until the reckoning. make it more than you'd reasonably need to solve it
@@ -195,6 +195,7 @@ function checkReckoning(){
 	if(timeTillReckoning == 0){
 		timeTillReckoning = -1 //don't keep doing this.
 		distactions[0] = distactions[1026];
+		failureEnding = true;
 		alert("The Reckoning is over. You have failed to pass your Land Quest in time to help your team mates. But you can always keep obsessing over this Puzzle, for as long as you live. It's not like you can ever leave the Medium without a frog, after all.")
 	}
 }
@@ -367,6 +368,7 @@ function talkJanus(){
 		console.log("Janus1: Well ain't you a breath of fresh air! I haven't heard you talk in a DOG's age!")
 		console.log("Janus2:  *sigh* I will give you your Solution, Observer, that you may marvel in the mind that TRULY designed this Challenge. ")
 		distactions[0] = distactions[1025];
+		denizenEnding = true;
 		denizenCheat();
 		//TODO have puzzle auto-solve itself.
 	}
@@ -494,7 +496,12 @@ function checkScreens(){
 function quip(state){
 	var ret = ""
 	var prize = ":/ Looks like you didn't do it before the Reckoning, though. Thems the breaks. Poor Janus died in vain. What were you even gonna DO with all that grist?";
-	if(timeTillReckoning > 0) prize = "And you managed to it BEFORE the Reckoning! Look at you, being all 'adult' and shit. (I wonder if you missed any secrets, though.) <br><Br> Holy shit, apparently I got a YellowYard for beating Janus?  Huh...but for some reason I have to give it to you?  So...uh...don't fuck this up, okay: <Br><br><a target = '_blank' href = 'index2.html?lawnring=yellow'>UseYellowYardResponsibly</a>"
+	if(!failureEnding && !denizenEnding)
+	{
+		prize = "And you managed to it BEFORE the Reckoning! Look at you, being all 'adult' and shit. (I wonder if you missed any secrets, though.) <br><Br> Holy shit, apparently I got a YellowYard for beating Janus?  Huh...but for some reason I have to give it to you?  So...uh...don't fuck this up, okay: <Br><br><a target = '_blank' href = 'index2.html?lawnring=yellow'>UseYellowYardResponsibly</a>"
+	}else if(denizenEnding){
+		prize = "And you found the Ultimate Secret that makes you worth of a meta class like Waste. Hrrm...what sort of reward should I give you, since we are dropping the conceit that I don't know I'm in a game or whatever the fuck.  Hrrrrrrrrrrmmmm....I mean, you straight up get my Yellow Yard for beating easy mode. What could be worth this? I know!  Shit, let's be meta.  First person to find this (even if you're cheating because, come on, meta) can suggest an easter egg for this secret.  I won't necessarily do it.  The ideal secret is easy to implement and interesting to see."
+	}
 	if(state == 0){
 	 ret = "Oh! You win! " + prize;
  	}else if(state == 47){
