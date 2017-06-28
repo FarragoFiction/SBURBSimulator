@@ -309,12 +309,6 @@ function Session(session_id){
 			g.generateRelationships(guardians);
 		}
 		decideInitialQuadrants(guardians);
-
-		for(var k = 0; k<this.players.length; k++){
-			//can't escape consequences.
-			this.players[k].guardian.consequencesForGoodPlayer();
-			this.players[k].guardian.consequencesForTerriblePlayer();
-		}
 	}
 
 	this.randomizeEntryOrder = function(){
