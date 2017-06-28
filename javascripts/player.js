@@ -977,7 +977,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				}
 				break;
 			case  "Bard":
-				var lolrandoms = [-1, 1,2,-1,0.25,-0.25,0.5,-0.5]
+				var lolrandoms = [1,2,-1,0.25,-0.25,0.5,-0.5]
 				powerBoost = powerBoost * getRandomElementFromArray(lolrandoms);
 				break;
 			case  "Heir":
@@ -1003,7 +1003,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				powerBoost = powerBoost * 1;
 				break;
 			case  "Prince":
-				var lolrandoms = [-1, 1,2,-1,0.25,-0.25,0.5,-0.5]
+				var lolrandoms = [1,2,-1,0.25,-0.25,0.5,-0.5]
 				powerBoost = powerBoost * getRandomElementFromArray(lolrandoms);
 				break;
 			case  "Witch":
