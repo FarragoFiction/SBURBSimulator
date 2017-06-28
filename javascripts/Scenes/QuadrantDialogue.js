@@ -473,8 +473,8 @@ function QuadrantDialogue(session){
 	this.diamondsChat = function(relationship1, relationship2){
 		//console.log("Diamonds Chat  in: " + this.session.session_id)
 		var chats = [];
-		this.player1.triggerLevel += -1;
-		this.player2.triggerLevel += -1;
+		this.player1.sanity += 1;
+		this.player2.sanity += 1;
 		chats.push( new ConversationalPair("How have you been?",["Okay.","Good.","Alright.","As well as can be expected.","Better than I thought I'd be.", "Functioning."]));
 		chats.push( new ConversationalPair("You doing okay?",["Yes.","As well as can be expected.","Better than I thought I'd be.", "I'm fine. I think."]));
 		chats.push( new ConversationalPair("This game really sucks.",["Yes, you aren't kidding.","I know, right?","Represent", "I'm glad I got you to help me through it."]));
@@ -487,8 +487,8 @@ function QuadrantDialogue(session){
 
 	this.feelingsJam = function(relationship,relationship2){
 		//console.log("Feelings Jam in: " + this.session.session_id)
-		this.player1.triggerLevel += -2;
-		this.player2.triggerLevel += -2;
+		this.player1.sanity += 2;
+		this.player2.sanity += 2;
 		//figure out which player is flipping out, make them "flippingOut", make other player "shoosher"
 		var chat = "";
 		var freakOutWeasel = this.player1;
