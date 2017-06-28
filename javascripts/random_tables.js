@@ -1193,10 +1193,10 @@ var justice_levels = ["JUSTICE JUICER","BALANCE RUMBLER"];
 var level_bg_colors = ["#8ff74a","#ba1212","#ffffee","#f0ff00","#9c00ff","#2b6ade","#003614","#f8e69f","#0000ff","#eaeaea","#ff9600","#581212","#ffa6ac","#1f7636","#ffe1fc","#fcff00"];
 var level_font_colors = ["#264d0c","#ff00d2","#ff0000","#626800","#da92e0","#022e41","#aaffa6","#000052","#6dffdb","#e5d200","#00911b","#ff0000","#5e005f","#fbff8d","#000000","#"];
 
-var space_quests = ["messing with a variety of frogs that were previously paradox cloned"];
-space_quests.push("paradox cloning a variety of frogs, after making a serious note to mess with them later");
-space_quests.push("combining paradox slime from multiple frogs together to make paradox offspring");
-space_quests.push("listening to the ridiculously similar croaks of cloned frogs to figure out where their flaws are");
+var space_quests = ["seeking out out potential Frog sources"];
+space_quests.push("restoring a half-ruined Frog shrine in the wilds of the Land");
+space_quests.push("interogating consorts as to what the point of Frogs even is");
+space_quests.push("navigating one's way through a deudly dungeon in complete darkness, relying only on one's spatial senses");
 var time_quests = ["manipulating the local stock exchange through a series of cunningly disguised time doubles"];
 time_quests.push("stopping a variety of disasters from happening before even the first player enters the medium");
 time_quests.push("cheating at obstacle course time trials to get a finishing value of exactly 0.0 seconds");
@@ -1606,6 +1606,10 @@ postdenizen_space_quests.push("cloning ribbiting assholes till you’re up to yo
 postdenizen_space_quests.push("cleaning up volcanic debris from the Forge. Man that magma is hot");
 postdenizen_space_quests.push("alchemizing geothermal power infrastructure for the consort villagers. The local consorts babble excitedly at indoor lightning ");
 postdenizen_space_quests.push("making sure they don't accidentally clone a toad instead of a frog by mistake");
+postdenizen_space_quests.push"messing with a variety of frogs that were previously paradox cloned");
+postdenizen_space_quests.push("paradox cloning a variety of frogs, after making a serious note to mess with them later");
+postdenizen_space_quests.push("combining paradox slime from multiple frogs together to make paradox offspring");
+postdenizen_space_quests.push("listening to the ridiculously similar croaks of cloned frogs to figure out where their flaws are");
 
 var postdenizen_time_quests = ["securing the alpha timeline and keeping the corpse pile from getting any taller"];
 postdenizen_time_quests.push("high fiving themself an hour from now for the amazing job they're going to have done/do with the Hephaestus situation. Time is the best aspect");
