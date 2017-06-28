@@ -1606,7 +1606,7 @@ postdenizen_space_quests.push("cloning ribbiting assholes till you’re up to yo
 postdenizen_space_quests.push("cleaning up volcanic debris from the Forge. Man that magma is hot");
 postdenizen_space_quests.push("alchemizing geothermal power infrastructure for the consort villagers. The local consorts babble excitedly at indoor lightning ");
 postdenizen_space_quests.push("making sure they don't accidentally clone a toad instead of a frog by mistake");
-postdenizen_space_quests.push"messing with a variety of frogs that were previously paradox cloned");
+postdenizen_space_quests.push("messing with a variety of frogs that were previously paradox cloned");
 postdenizen_space_quests.push("paradox cloning a variety of frogs, after making a serious note to mess with them later");
 postdenizen_space_quests.push("combining paradox slime from multiple frogs together to make paradox offspring");
 postdenizen_space_quests.push("listening to the ridiculously similar croaks of cloned frogs to figure out where their flaws are");
