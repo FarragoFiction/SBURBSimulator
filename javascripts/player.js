@@ -1058,7 +1058,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 
 		this.power += powerBoost;
-		this.associatedStatsIncreasePower();
+		this.associatedStatsIncreasePower(powerBoost);
 		//gain a bit of hp, otherwise denizen will never let players fight them if their hp isn't high enough.
 		if(this.godTier || Math.seededRandom() >.25){
 			this.hp += 10;
