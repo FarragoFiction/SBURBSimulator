@@ -553,6 +553,22 @@ function quip(state){
 		ret = "lol, i remember when that Observer figured out how to 'hack' SBURB.  So amazing."
 	} else if(state == 65){
 		ret = "Oh my FUCKING god, now LORAS is just trolling me."
+	} else if(state == 67){
+		ret = "True beauty."
+	} else if(state == 70){
+		ret = "Wait wait wait, what the fuck? How would you even SEE that???"
+	} else if(state == 71){
+		ret = "Holy fuck...meet the guest star of my next nightmare."
+	} else if(state == 72){
+		ret = "Wait. Are you telling me there are SECRETS in this shitty puzzle???"
+	} else if(state == 73){
+		ret = "Whoa...that makes me dizzy."
+	} else if(state == 76){
+		ret = "Eggs!!!"
+	} else if(state == 87){
+		ret = "!!! I still haven't done the eggs!"
+	} else if(state == 88){
+		ret = "Lol, that sure does look mysterious!!!"
 	}  else{
 		ret = "???"
 	}
