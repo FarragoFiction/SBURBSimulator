@@ -80,7 +80,7 @@ function VoidyStuff(session){
 			this.fightDenizen(normalDiv, newDiv)
 			this.endingPhrase(classDiv, newDiv);
 			return;
-		}else if(this.player.triggerLevel > 5 && !this.player.murderMode && Math.seededRandom() > 0.9){
+		}else if(this.player.sanity < 5 && !this.player.murderMode && Math.seededRandom() > 0.9){
 			console.log("flipping shit through voidy stuff")
 			this.goMurderMode(normalDiv, newDiv)
 			this.endingPhrase(classDiv, newDiv);

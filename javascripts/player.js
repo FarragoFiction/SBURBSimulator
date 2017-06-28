@@ -1920,7 +1920,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.initializeMobility();
 		this.initializeRelationships();
 		this.initializePower();
-		this.initializeVoid();
 		this.initializeSanity();
 
 		this.initializeAssociatedStats();

@@ -9,7 +9,7 @@ function DisengageMurderMode(session){
 		//select a random player. if they've been triggered, random chance of going murderMode if enemies (based on how triggered.)
 		this.player = getRandomElementFromArray(this.session.availablePlayers);
 		if(this.player){
-			if(this.player.triggerLevel < 1 &&  this.player.murderMode){
+			if(this.player.sanity > 1 &&  this.player.murderMode){
 				return true;
 			}
 		}

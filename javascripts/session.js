@@ -361,7 +361,7 @@ function Session(session_id){
 		this.kingsScepter = new GameEntity(this, "!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!",1000)
 		this.kingsScepter.setStats(0,0,0,0,0,0,0,false, false, [],1000);
 		this.king = new GameEntity(this, "Black King", this.kingsScepter);
-		//minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs
+		//minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs
 		this.king.setStats(25,75,1000,0,0,25,100,false, false, [],1000);
 		this.queen = new GameEntity(this, "Black Queen",this.queensRing);
 		this.queen.setStats(25,75,500,60,0,100,50,false, false, [],1000); //red miles, put on ring
@@ -447,7 +447,7 @@ function Session(session_id){
 		summary.averageFreeWill = getAverageFreeWill(this.players);
 		summary.averageHP = getAverageHP(this.players);
 		summary.averageRelationshipValue = getAverageRelationshipValue(this.players);
-		summary.averageTriggerLevel = getAverageTriggerLevel(this.players);
+		summary.averageSanity = getAverageSanity(this.players);
 		summary.session_id = this.session_id;
 		summary.hasLuckyEvents = this.goodLuckEvent;
 		summary.hasUnluckyEvents = this.badLuckEvent;

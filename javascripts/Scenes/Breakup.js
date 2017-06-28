@@ -95,7 +95,7 @@ function Breakup(session){
 						this.relationshipToBreakUp = r;
 						this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 						//not happy with cheating bastards.
-						this.player.triggerLevel += 10;
+						this.player.sanity += -10;
 						this.player.flipOut("having to confront their Matesprit, the  " + this.relationshipToBreakUp.target.htmlTitle() + " about their cheating");
 						r.value =-10;
 						this.reason = "you_cheat"
