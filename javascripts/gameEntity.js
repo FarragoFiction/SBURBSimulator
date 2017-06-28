@@ -1315,6 +1315,19 @@ prototyping_objects[prototyping_objects.length-1].minLuck = 20;
 prototyping_objects[prototyping_objects.length-1].maxLuck = 20;
 prototyping_objects[prototyping_objects.length-1].helpPhrase = "provides surprisingly helpful advice, even if they do insist on calling all enemies ‘bogeys’. ";
 
+prototyping_objects.push(new GameEntity(null, "Dutton",null));
+prototyping_objects[prototyping_objects.length-1].hp = 10;
+prototyping_objects[prototyping_objects.length-1].currentHP = 10;
+prototyping_objects[prototyping_objects.length-1].power = 10;
+prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "provides transcendent wisdom. ";
+prototyping_objects[prototyping_objects.length-1].freeWill = 100;
+prototyping_objects[prototyping_objects.length-1].mobility = 100;
+prototyping_objects[prototyping_objects.length-1].minLuck = 100;
+prototyping_objects[prototyping_objects.length-1].maxLuck = 100;
+
+
+
 
 prototyping_objects.push(new GameEntity(null, "Game Bro",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
