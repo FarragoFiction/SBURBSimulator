@@ -1,4 +1,5 @@
-
+//var startScratched = false;  <-- as suspected, this does not work. You NEED to finish simulating the first session to get important details for the second. Like ectobiology.
+//maybe eventually i can devote the time needed to AB-Style do teh first session very quickly, then go to the second one.
 function debugLevelTheHellUp(){
 	for(var j = 0; j<2; j++){
 		players[j].leveledTheHellUp = true; //only .evel 2 players up
@@ -71,6 +72,8 @@ function checkEasterEgg(callBack,that){  //only yellow yard session uses 'that' 
 	}else if(initial_seed == 0){
 		session0();
 	}
+	
+
 	if(getParameterByName("selfInsertOC")  == "true"){
 		// call a method, method will determine what other params exist, like reddit=true and shit.
 		processFanOCs(callBack,that);
