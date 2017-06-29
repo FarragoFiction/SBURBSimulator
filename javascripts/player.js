@@ -1465,8 +1465,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.initializeLuck = function(){
-		this.minLuck = getRandomInt(20,40); //middle of the road.
-		this.maxLuck = this.minLuck + getRandomInt(1,20);   //max needs to be more than min.
+		this.minLuck = getRandomInt(0,10); //middle of the road.
+		this.maxLuck = this.minLuck + getRandomInt(-10,0);   //max needs to be more than min.
 		if(this.trickster && this.aspect != "Doom"){
 			this.minLuck = 11111111111;
 			this.maxLuck = 11111111111;
@@ -1492,14 +1492,14 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.initializeFreeWill = function(){
-		this.freeWill = getRandomInt(-25,25);
+		this.freeWill = getRandomInt(-10,10);
 		if(this.trickster && this.aspect != "Doom"){
 			this.freeWill = 11111111111;
 		}
 	}
 
 	this.initializeHP= function(){
-		this.hp = getRandomInt(50,100);
+		this.hp = getRandomInt(40,60);
 		this.currentHP = this.hp;
 		if(this.trickster && this.aspect != "Doom"){
 			this.currentHP = 11111111111;
@@ -1540,14 +1540,14 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.initializeMobility = function(){
-		this.mobility = getRandomInt(0,35);
+		this.mobility = getRandomInt(0,10);
 		if(this.trickster && this.aspect != "Doom"){
 			this.mobility = 11111111111;
 		}
 	}
 
 	this.initializeSanity = function(){
-		this.sanity = getRandomInt(-2,2);
+		this.sanity = getRandomInt(-10,10);
 	}
 
 	//don't recalculate values, but can boost postivily or negatively by an amount. sure.
@@ -2628,4 +2628,9 @@ function AssociatedStat(statName, multiplier, isFromAspect){
 	this.name = statName
 	this.multiplier = multiplier;
 	this.isFromAspect = isFromAspect;
+	this.toString= function(){
+		var tmp = ""
+		if(this.isFromAspect) tmp = " (from Aspect) "
+		return "["+statName + " x " +this.multiplier + tmp+"]";
+	}
 }

@@ -41,7 +41,9 @@ function fraymotifClicked(fs){
 	for(var i = 0; i< fs.players.length; i++){
 		var p = fs.players[i];
 		html += "<div class = 'playerStat'>"
-		html += "<hr>"+p.htmlTitle() + p.bloodColor+"<hr>" + getStatsForPlayer(p);
+		html += "<hr>"+p.htmlTitle() + p.bloodColor+"<hr>"
+		html += "<hr>" + p.associatedStats.join("<br>") +"<hr>"
+ 		html += getStatsForPlayer(p);
 		html += "</div>"
 	}
 	$("#playerStats").html(html);
