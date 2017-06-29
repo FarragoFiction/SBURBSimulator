@@ -64,3 +64,4 @@ b=%00%00%00%25%C3%B4%C2%BA%10QEE%04&s=,,Online Roleplaying,Automation,ailuroTemp
 b=%C3%BF%C2%BE%C2%ADp%C3%BEU%08U%0F!%3B&s=,,Stars,More Stars,mariePoppo
 b=%C3%BE%C3%B8%05%C2%82%C3%BE%01%00%16%07%08%3F&s=,,Awful Puns,Song Writing,frostyMac
 b=%00%00%00h%C3%BE%22%00%14%19%19A&s=,,drawing,improvisation,royalCapitalist
+b=%00%00%00q%C3%B0V%00%10%22%22%25&s=,,Fighting,Justice,tactfulTester
