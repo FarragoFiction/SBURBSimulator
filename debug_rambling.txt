@@ -2315,3 +2315,9 @@ ultimate breeder....appears to have 10 bytes, not 11. see if it ends in the mssi
 Yes, it does.
 
 So, "(" isn't the problem, Ultimate Breeder is problem, not enough chars. look further.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Alright, planning out new classpect stats unit testing plus fraymotif combob.
+

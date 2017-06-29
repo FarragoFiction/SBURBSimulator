@@ -13,8 +13,27 @@ function makeFraymotif(){
 		//in real sim, won't be shuffled, first player will be first element
 		var players = createPlayersFromAspects(aspects);
 		var fraymotif = globalFraymotifCreator.makeFraymotif(shuffle(players), tier.val());
-		$("#fraymotifs").append("<br>" + fraymotif);
-		fraymotifSandBoxes.push(new fraymotifSandBox(fraymotif, players));
+		$("#fraymotifs").append("<br>" + fraymotif +"<button id = 'fm" + fraymotifSandBoxes.length+ "'>Prepare Test</button>");
+		
+		var fmsb = new fraymotifSandBox(fraymotif, players)
+		$("#fm"+fraymotifSandBoxes.length).click(function(){
+			fraymotifClicked(fmsb)
+		});
+		fraymotifSandBoxes.push(fmsb);
+}
+
+function fraymotifClicked(fraymotifSandbox){
+	console.log(fraymotifSandBox)
+	//TODO display list of players and their stats
+	//TODO display Dummy of Dummy game entity and it's stats.
+	var html = "";	
+	for(var i = 0; i< fraymotifSandBox.players.length; i++){
+		var p = fraymotifSandBox.players[i];
+		html += "<div class = 'playerStats'>"
+		html += p.htmlTitle() ;
+		html += "</div>"
+	}
+	$("#playerStats").html(html);
 }
 
 function createPlayersFromAspects(aspects){
