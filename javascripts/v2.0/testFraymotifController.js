@@ -30,7 +30,7 @@ function fraymotifClicked(fs){
 	for(var i = 0; i< fs.players.length; i++){
 		var p = fs.players[i];
 		html += "<div class = 'playerStat'>"
-		html += "<hr>"+p.htmlTitle() + "<hr>" + getStatsForPlayer(p);
+		html += "<hr>"+p.htmlTitle() + p.bloodColor+"<hr>" + getStatsForPlayer(p);
 		html += "</div>"
 	}
 	$("#playerStats").html(html);
@@ -49,6 +49,7 @@ function getStatsForPlayer(player){
 		}else{
 			var tmp = 0;
 			for(var j = 0; j<player.relationships.length; j++){
+				console.log(player.relationships[j])
 				tmp += player.relationships[j].value
 			}
 			ret += tmp;
