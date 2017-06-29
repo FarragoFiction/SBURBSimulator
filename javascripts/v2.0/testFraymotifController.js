@@ -37,7 +37,7 @@ function fraymotifClicked(fs){
 	console.log(fs)
 	//TODO display list of players and their stats
 	//TODO display Dummy of Dummy game entity and it's stats.
-	var html = "";	
+	var html = "TODO: list fraymotif flavor text and actual effects here. Confirm they are based on participants aspect associatedStats<br>";	
 	for(var i = 0; i< fs.players.length; i++){
 		var p = fs.players[i];
 		html += "<div class = 'playerStat'>"
