@@ -1808,8 +1808,9 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			case  "Mind":
 				this.associatedStats.push(new AssociatedStat("freeWill", 2,true));
 				this.associatedStats.push(new AssociatedStat("minLuck", 1,true));
-				this.associatedStats.push(new AssociatedStat("power", -0.5,true));
-				this.associatedStats.push(new AssociatedStat("maxLuck", -1.5,true));
+				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", -2,true));
+				//this.associatedStats.push(new AssociatedStat("power", -0.5,true));
+				//this.associatedStats.push(new AssociatedStat("maxLuck", -1,true)); //LUCK DO3SN'T M4TT3R!!!
 				break;
 			case  "Rage":
 				this.associatedStats.push(new AssociatedStat("power", 2,true));

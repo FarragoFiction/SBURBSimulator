@@ -141,12 +141,12 @@ function Session(session_id){
 		curSessionGlobalVar.aliensClonedOnArrival = that.aliensClonedOnArrival;
 		//console.log("adding this many clone aliens: " + curSessionGlobalVar.aliensClonedOnArrival.length)
 		//console.log(getPlayersTitles(curSessionGlobalVar.aliensClonedOnArrival));
-		var living = []  //if don't make copy of aliensClonedOnArrival, goes into an infinite loop as it loops on it and adds to it inside of addAliens
+		var aliens = []  //if don't make copy of aliensClonedOnArrival, goes into an infinite loop as it loops on it and adds to it inside of addAliens
 		for(var i = 0; i<that.aliensClonedOnArrival.length; i++){
-			living.push(that.aliensClonedOnArrival[i])
+			aliens.push(that.aliensClonedOnArrival[i])
 		}
 		that.aliensClonedOnArrival = [];//jettison old clones.
-		addAliensToSession(curSessionGlobalVar, living);
+		addAliensToSession(curSessionGlobalVar, aliens);
 
 		restartSession();//in controller
 	}
@@ -194,7 +194,7 @@ function Session(session_id){
 		}
 	//	console.log("about to add: " + living.length + " aliens to new session.")
 		//console.log(getPlayersTitles(living));
-		addAliensToSession(newSession, living);
+		addAliensToSession(newSession, this.players); //used to only bring players, but that broke shipping. shipping is clearly paramount to Skaia, because everything fucking crashes if shipping is compromised.
 
 
 		this.hadCombinedSession = true;
@@ -500,10 +500,10 @@ function findSceneNamed(scenesToCheck, name){
 
 
 	//save a copy of the alien (in case of yellow yard)
-	function addAliensToSession (newSession, living){
+	function addAliensToSession (newSession, aliens){
 		//console.log("in method, adding aliens to session")
-		for(var i = 0; i<living.length; i++){
-			var survivor = living[i];
+		for(var i = 0; i<aliens.length; i++){
+			var survivor = aliens[i];
 			survivor.land = null;
 			survivor.dreamSelf = false;
 			survivor.godDestiny = false;
@@ -511,8 +511,8 @@ function findSceneNamed(scenesToCheck, name){
 		}
 		//save a copy of the alien players in case this session has time shenanigans happen
 
-		for(var i = 0; i<living.length; i++){
-			var survivor = living[i];
+		for(var i = 0; i<aliens.length; i++){
+			var survivor = aliens[i];
 			newSession.aliensClonedOnArrival.push(clonePlayer(survivor, newSession));
 		}
 		//don't want relationships to still be about original players
@@ -523,8 +523,8 @@ function findSceneNamed(scenesToCheck, name){
 			//console.log("generated relationships between clones");
 		//generate relationships AFTER saving a backup of hte player.
 		//want clones to only know about other clones. not players.
-		for(var i = 0; i<living.length; i++){
-			var survivor = living[i];
+		for(var i = 0; i<aliens.length; i++){
+			var survivor = aliens[i];
 			//console.log(survivor.title() + " generating relationship with new players ")
 			survivor.generateRelationships(newSession.players); //don't need to regenerate relationship with your old friends
 		}
