@@ -532,13 +532,13 @@ function findSceneNamed(scenesToCheck, name){
 
 		for(var j= 0; j<newSession.players.length; j++){
 			var player = newSession.players[j];
-			player.generateRelationships(living);
+			player.generateRelationships(aliens);
 		}
 
-		for(var i = 0; i<living.length; i++){
+		for(var i = 0; i<aliens.length; i++){
 			for(var j= 0; j<newSession.players.length; j++){
 					var player = newSession.players[j];
-					var survivor = living[i];
+					var survivor = aliens[i];
 					//survivors have been talking to players for a very long time, because time has no meaning between univereses.
 					var r1 = survivor.getRelationshipWith(player);
 					var r2 = player.getRelationshipWith(survivor);
@@ -552,5 +552,5 @@ function findSceneNamed(scenesToCheck, name){
 			}
 	}
 
-	newSession.players= newSession.players.concat(living);
+	newSession.players= newSession.players.concat(aliens);
 }

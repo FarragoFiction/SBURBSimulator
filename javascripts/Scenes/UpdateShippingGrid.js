@@ -136,18 +136,18 @@ function UpdateShippingGrid(session){
 	//for all players, look at all relationships. if goodBig or badBig, return.
 	//also grab clubs and diamonds. later.
 	this.createShips = function(players){
-		console.log("creating ships")
+		//console.log("creating ships")
 		this.ships = [];
 			for(var i = 0; i<players.length; i++){
 
 				var player = players[i];
-				console.log("making ships for: " + player.title())
+				//console.log("making ships for: " + player.title())
 
 				for(var j = 0; j<player.relationships.length; j++){
 					var r1 = player.relationships[j];
 					var r2 = r1.target.getRelationshipWith(player);
-					console.log("made new ship")
-					this.ships.push(new Ship(r1, r2))
+					//console.log("made new ship")
+					//this.ships.push(new Ship(r1, r2))
 				}
 			}
 				var toRemove = [];
