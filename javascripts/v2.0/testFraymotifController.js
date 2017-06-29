@@ -15,20 +15,20 @@ function makeFraymotif(){
 		var fraymotif = globalFraymotifCreator.makeFraymotif(shuffle(players), tier.val());
 		$("#fraymotifs").append("<br>" + fraymotif +"<button id = 'fm" + fraymotifSandBoxes.length+ "'>Prepare Test</button>");
 		
-		var fmsb = new fraymotifSandBox(fraymotif, players)
+		var fmsb = new FraymotifSandBox(fraymotif, players)
 		$("#fm"+fraymotifSandBoxes.length).click(function(){
 			fraymotifClicked(fmsb)
 		});
 		fraymotifSandBoxes.push(fmsb);
 }
 
-function fraymotifClicked(fraymotifSandbox){
-	console.log(fraymotifSandBox)
+function fraymotifClicked(fs){
+	console.log(fs)
 	//TODO display list of players and their stats
 	//TODO display Dummy of Dummy game entity and it's stats.
 	var html = "";	
-	for(var i = 0; i< fraymotifSandBox.players.length; i++){
-		var p = fraymotifSandBox.players[i];
+	for(var i = 0; i< fs.players.length; i++){
+		var p = fs.players[i];
 		html += "<div class = 'playerStats'>"
 		html += p.htmlTitle() ;
 		html += "</div>"
@@ -71,7 +71,7 @@ return array;
 }
 
 
-function fraymotifSandBox(fraymotif, players){
+function FraymotifSandBox(fraymotif, players){
 	this.fraymotif = fraymotif;
 	this.players = players;
 }
