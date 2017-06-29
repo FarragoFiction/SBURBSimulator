@@ -3,47 +3,17 @@
 <head>
 	<title>Fraymotif Tester</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="css/oc.css">
+	<link rel="stylesheet" href="css/fraymotifs.css">
 	<link rel="stylesheet" href="css/navbar.css">
 	<script type="text/javascript" src="javascripts/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="javascripts/random_tables.js"></script>
-		<script type="text/javascript" src="javascripts/player.js"></script>
-	<script type="text/javascript" src="javascripts/navbar.js"></script>
+	<script type="text/javascript" src="javascripts/player.js"></script>
 	<script type="text/javascript" src="javascripts/fraymotif.js"></script>
-	<script>
-			var globalFraymotifCreator = new FraymotifCreator(null);
-			loadNavbar();
-			function makeFraymotif(){
-					var tier = $('[name="tier"] option:selected');
-					var aspects = [];
-					$('#aspects :selected').each(function(i, selected){
-  						aspects.push($(selected).text());
-					});
-					//in real sim, won't be shuffled, first player will be first element
-					var fraymotif = globalFraymotifCreator.makeFraymotif(shuffle(aspects), tier.val());
-					$("#fraymotifs").append("<br>" + fraymotif);
-			}
+	<script type="text/javascript" src="javascripts/v2.0/testFraymotifController.js"></script>
+	<script type="text/javascript" src="javascripts/gameEntity.js"></script>
+	<script type="text/javascript" src="javascripts/navbar.js"></script>
+	
 
-
-			function shuffle(array) {
-				  var currentIndex = array.length, temporaryValue, randomIndex;
-
-				  // While there remain elements to shuffle...
-				  while (0 !== currentIndex) {
-
-				    // Pick a remaining element...
-				    randomIndex = Math.floor(Math.random() * currentIndex);
-				    currentIndex -= 1;
-
-				    // And swap it with the current element.
-				    temporaryValue = array[currentIndex];
-				    array[currentIndex] = array[randomIndex];
-				    array[randomIndex] = temporaryValue;
-  }
-
-  return array;
-}
-	</script>
 </head>
 <body>
 
@@ -80,6 +50,7 @@ A procedural Fraymotif will have 1 or more aspects associated with it.  The play
 	Fraymotif names will HILARIOUSLY be unrelated to their effects.  "Endless Apocalypse" might just buff the players time/doom related stats, for example, instead of being an epic attack.
 	<br><Br>Also, fraymotifs should have pre-written (for sprites and low bloods) or procedural (for claspects) flavor text related to what the actual effects of it are.
 <div id = "fraymotifs"></div>
+<div id = "playerStats"></div>
 
 <div id = "playerSprites"></div>
 
