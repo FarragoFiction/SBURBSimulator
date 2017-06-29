@@ -281,6 +281,8 @@ function Ship(r1, r2){
 
 		//TODO, yellow yards with combo sessions and heart players will fail here. find out why.
 		this.isGoodShip = function(){
+			var r2 = this.r2;
+			var r1 = this.r1;
 			if(r2.saved_type == "" || r1.saved_type == "" ){
 				return false;
 			}

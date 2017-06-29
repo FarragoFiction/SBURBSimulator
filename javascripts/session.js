@@ -224,8 +224,11 @@ function Session(session_id){
 		//console.log("reinit with seed: "  + Math.seed)
 		this.timeTillReckoning = getRandomInt(10,30);
 		this.sessionType = Math.seededRandom();
-		curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);
-		curSessionGlobalVar.doomedTimeline = false;
+		this.available_scenes = [];  //need a fresh slate because UpdateShippingGrid has MEMORY unlike all other scenes.
+		createScenesForSession(this);
+		//curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);
+		//curSessionGlobalVar.doomedTimeline = false;
+		this.doomedTimeline = false;
 		this.setUpBosses();
 		this.democracyStrength = 0;
 		this.reckoningStarted = false;
@@ -233,6 +236,7 @@ function Session(session_id){
 		this.rocksFell = false;  //sessions where rocks fell screw over their scratched and yarded iterations, dunkass
 		this.doomedTimelineReasons = [];
 		this.ectoBiologyStarted = false;
+
 	}
 
 	this.makePlayers = function(){
