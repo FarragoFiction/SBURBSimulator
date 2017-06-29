@@ -2321,3 +2321,22 @@ So, "(" isn't the problem, Ultimate Breeder is problem, not enough chars. look f
 
 Alright, planning out new classpect stats unit testing plus fraymotif combob.
 
+5 minutes on the clock, go:
+
+I want for each fraymotif to be clickable. When you click it, you see the list of the players invovled in the fraymotif, and their stats underneath them.  Clicking a player name increases their power (unit testing for that).
+
+There should also be a button for "use fraymotif".  There should be a "Dummy" game object that has it's own stats displayed, so you can see how they are reduced
+(by the way, should strife title have hp/maxHp listed???)
+
+clicking use fraymotif button should apply the fraymotif to the gameEntity.  Fraymotifs are ONLY USED in teh context of strifes with a game entity.
+
+
+QUESTION: SHOULD I REFACTOR STRIFES TO BE THEIR OWN OBJECT, SEPARATE FROM GAME ENTITIES (that way can have two playes strifing each other).
+
+What else... fraymotifs can raise our stats, lower the enemies stats...  (no longer am i trying to pretend stats can be good or bad and raising/lowering is equal).  fraymotifs can do damage (either a base level, or base plus associated stats)
+
+Which reminds me FRAYMOTIFS SHOULD USE ASSOCIATED STATS, and a new, similar kind of object called "buff". A buff should have a stat name, and a value. 
+
+If I'm a Prince of Breath, and I find a fraymotif, that fraymotif can buff or debuff an enmy for ANY of my ASPECT originated associated stats. My class will determine exactly what happens, though???
+
+Should class give you modifiers to buffs/debuffs and damage/healing?  This makes sense. 

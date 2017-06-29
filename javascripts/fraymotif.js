@@ -141,7 +141,7 @@ function FraymotifCreator(session){
 
   this.getFraymotifName = function(players, tier){
     var name = "";
-    var indexOfMusic = getRandomInt(0,players.length-1);
+    var indexOfMusic = players.length-1;  //used to be random now always at end.
     if(players.length == 1){
       indexOfMusic = getRandomInt(0,tier-1);
       for(var i = 0; i < tier; i++){

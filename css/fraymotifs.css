@@ -35,3 +35,22 @@
 body{
 	background-image: url("../images/Skaia_Clouds.png");
 }
+
+#fraymotifs{
+	display: inline-block;
+	padding: 5px;
+	width: 200px;
+}
+
+.playerStat{
+	width: 200px;
+	display: inline-block;
+	padding: 5px;
+}
+
+#playerStats{
+	display: inline-block;
+	padding: 5px;
+	width: 700px;
+	vertical-align: top;
+}
