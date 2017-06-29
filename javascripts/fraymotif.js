@@ -139,22 +139,22 @@ function FraymotifCreator(session){
     }
   }
 
-  this.getFraymotifName = function(aspects, tier){
+  this.getFraymotifName = function(players, tier){
     var name = "";
-    var indexOfMusic = getRandomInt(0,aspects.length-1);
-    if(aspects.length == 1){
+    var indexOfMusic = getRandomInt(0,players.length-1);
+    if(players.length == 1){
       indexOfMusic = getRandomInt(0,tier-1);
       for(var i = 0; i < tier; i++){
         var musicWord = "";
-        if(i == indexOfMusic) musicWord = this.getRandomMusicWord(aspects[i]);
-        name += this.getRandomNameForAspect(aspects[0]) + musicWord +" ";
+        if(i == indexOfMusic) musicWord = this.getRandomMusicWord(players[i].aspect);
+        name += this.getRandomNameForAspect(players[0].aspect) + musicWord +" ";
       }
     }else{
 
-      for(var i = 0; i<aspects.length; i++){
+      for(var i = 0; i<players.length; i++){
         var musicWord = "";
-        if(i == indexOfMusic) musicWord = this.getRandomMusicWord(aspects[i]);
-        name += this.getRandomNameForAspect(aspects[i]) + musicWord +  " ";
+        if(i == indexOfMusic) musicWord = this.getRandomMusicWord(players[i].aspect);
+        name += this.getRandomNameForAspect(players[i].aspect) + musicWord +  " ";
       }
     }
     return name;
@@ -163,8 +163,8 @@ function FraymotifCreator(session){
   //classes is between 0 and aspects.length. each aspect is paired with a class.
   //should there be no class to pair with, random effect based on aspect
   //otherwise, effect is based on both class and aspect
-  this.makeFraymotif = function(aspects,tier,classes){
-    var name = this.getFraymotifName(aspects, tier);
+  this.makeFraymotif = function(players,tier){
+    var name = this.getFraymotifName(players, tier);
 
     return new Fraymotif(aspects, name, tier);
   }
