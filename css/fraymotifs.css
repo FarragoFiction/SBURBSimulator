@@ -36,6 +36,20 @@ body{
 	background-image: url("../images/Skaia_Clouds.png");
 }
 
+.statValue{
+	text-align: right;
+	display: inline-block;
+}
+
+.statName{
+	display: inline-block;
+	width: 160px;
+}
+
+.statHolder{
+	width: 200px;
+}
+
 #fraymotifs{
 	display: inline-block;
 	padding: 5px;

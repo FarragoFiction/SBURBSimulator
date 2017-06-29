@@ -30,10 +30,32 @@ function fraymotifClicked(fs){
 	for(var i = 0; i< fs.players.length; i++){
 		var p = fs.players[i];
 		html += "<div class = 'playerStat'>"
-		html += p.htmlTitle() ;
+		html += "<hr>"+p.htmlTitle() + "<hr>" + getStatsForPlayer(p);
 		html += "</div>"
 	}
 	$("#playerStats").html(html);
+}
+
+function getStatsForPlayer(player){
+	var ret = "";
+	var allStats = player.allStats();
+	console.log(allStats)
+
+	for(var i = 0; i<allStats.length; i++){
+		var stat = allStats[i];
+		ret += "<div class='statHolder'><div class='statName'>"+stat+ ":</div><div class = 'statValue'>"
+		if(stat != "RELATIONSHIPS"){
+			ret += player[stat];
+		}else{
+			var tmp = 0;
+			for(var j = 0; j<player.relationships.length; j++){
+				tmp += player.relationships[j].value
+			}
+			ret += tmp;
+		}
+		ret += "</div></div>"
+	}
+	return ret 
 }
 
 function createPlayersFromAspects(aspects){
