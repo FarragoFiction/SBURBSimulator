@@ -317,7 +317,7 @@ function CharacterCreatorHelper(players){
 		if(specific == "#ff0000") return "Candy red blood has no specific boost.";
 		var str = "The cooler blooded a troll is, the greater their HP and power on entering the medium. Game powers have a way of equalizing things, though. ";
 		str += specific + " is associated with a power and hp increase of: " +bloodColorToBoost(specific);
-		if(specific == "#99004d") str += ". Heiress blooded trolls will hate other Heiress bloods, as well as losing sanity by their presence. Biological imperatives for murder suck, yo."
+		if(specific == "#99004d") str += ". Heiress blooded trolls will hate other Heiress bloods, as well as losing making them more likely to flip out. Biological imperatives for murder suck, yo."
 		return str;
 	}
 
