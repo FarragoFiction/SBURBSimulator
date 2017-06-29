@@ -12,6 +12,8 @@ function makeFraymotif(){
 		});
 		//in real sim, won't be shuffled, first player will be first element
 		var players = createPlayersFromAspects(aspects);
+		curSessionGlobalVar.players = players;
+		initPlayerRelationships(players);
 		var fraymotif = globalFraymotifCreator.makeFraymotif(shuffle(players), tier.val());
 		$("#fraymotifs").append("<br><Br>" + fraymotif +"<button id = 'fm" + fraymotifSandBoxes.length+ "'>Prepare Test</button>");
 		
@@ -20,6 +22,15 @@ function makeFraymotif(){
 			fraymotifClicked(fmsb)
 		});
 		fraymotifSandBoxes.push(fmsb);
+}
+
+function initPlayerRelationships(players){
+	for(var j = 0; j<players.length; j++){
+			var p = players[j];
+			p.generateRelationships(players);
+	}
+
+	decideInitialQuadrants(players);
 }
 
 function fraymotifClicked(fs){
