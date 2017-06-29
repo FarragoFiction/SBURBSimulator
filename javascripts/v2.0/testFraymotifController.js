@@ -1,6 +1,7 @@
 var globalFraymotifCreator = new FraymotifCreator(null);
 loadNavbar();
 var curSessionGlobalVar;
+var fraymotifSandBoxes = [];
 
 function makeFraymotif(){
 		curSessionGlobalVar = new Session(Math.seed);
@@ -13,6 +14,7 @@ function makeFraymotif(){
 		var players = createPlayersFromAspects(aspects);
 		var fraymotif = globalFraymotifCreator.makeFraymotif(shuffle(players), tier.val());
 		$("#fraymotifs").append("<br>" + fraymotif);
+		fraymotifSandBoxes.push(new fraymotifSandBox(fraymotif, players));
 }
 
 function createPlayersFromAspects(aspects){
@@ -47,4 +49,10 @@ function shuffle(array) {
 	}
 
 return array;
+}
+
+
+function fraymotifSandBox(fraymotif, players){
+	this.fraymotif = fraymotif;
+	this.players = players;
 }
