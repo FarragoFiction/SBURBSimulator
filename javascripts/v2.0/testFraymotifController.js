@@ -34,7 +34,6 @@ function initPlayerRelationships(players){
 }
 
 function fraymotifClicked(fs){
-	console.log(fs)
 	//TODO display list of players and their stats
 	//TODO display Dummy of Dummy game entity and it's stats.
 	var html = "TODO: list fraymotif flavor text and actual effects here. Confirm they are based on participants aspect associatedStats<br>";	
