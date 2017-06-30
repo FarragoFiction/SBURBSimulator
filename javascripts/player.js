@@ -1931,9 +1931,9 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.initializeAssociatedStats = function(){
 		for(var i = 0; i<this.associatedStats.length; i++){
 			if(this.highInit()){
-				this.modifyAssociatedStat(35, this.associatedStats[i]);
+				this.modifyAssociatedStat(10, this.associatedStats[i]);
 			}else{
-				this.modifyAssociatedStat(-35, this.associatedStats[i]);
+				this.modifyAssociatedStat(-10, this.associatedStats[i]);
 			}
 		}
 	}
