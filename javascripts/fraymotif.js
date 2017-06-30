@@ -207,4 +207,30 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 	this.knightEffects = function(){
 		return [new FraymotifEfect("",this.s,true),new FraymotifEfect("",this.e,true),new FraymotifEfect("",this.e2,true),new FraymotifEfect("",this.s,false),new FraymotifEfect("",this.e,false) ];
 	}
+	
+	this.toString = function(){
+		var ret = "";
+		if(this.damageInsteadOfBuff && this.target < 2){
+			 ret += " Heals"
+		}else if (this.damageInsteadOfBuff && this.target >= 2){
+			ret += " Damages"
+		}else if(!this.damageInsteadOfBuff && this.target < 2){
+			ret += " Buffs"
+		}else if(!this.damageInsteadOfBuff && this.target >= 2){
+			ret += " Debuffs"
+		}
+		
+		if(this.target == 0){
+			ret += " Self"
+		}else if(this.target ==1){
+			ret += " Allies"
+		}else if(this.target ==2){
+			ret += " An Enemy"
+		}else if(this.target ==3){
+			ret += " All Enemies"
+		}
+		
+		ret += " Based On " + this.statName
+		return ret;
+	}
 }

@@ -66,7 +66,10 @@ function drawPlayers(fs){
 function drawFraymotif(fs){
 	var html = "<div class = 'playerStat'>"
 	html += "<hr>" +fs.fraymotif.name+ " </hr>"
-	html += "</div><Br>"
+	for(var i = 0; i<fs.fraymotif.effects.length; i++){
+		html += "<br>" + effect;
+	}
+	html += "TODO list effects in string form (preferabbly all pretty and as a sentence</div><Br>"
 	return html;
 }
 
