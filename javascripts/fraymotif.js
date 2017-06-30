@@ -195,11 +195,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 		if(player.class_name == "Knight") effect = getRandomElementFromArray(this.knightEffects());
 		this.target = effect.target;
 		this.damageInsteadOfBuff = effect.damageInsteadOfBuff;
-		if(this.target == 0 || this.target == 1){
-			this.statName = getRandomElementFromArray(player.getOnlyPositiveAspectAssociatedStats()).name;
-		}else{
-			this.statName = getRandomElementFromArray(player.getOnlyNegativeAspectAssociatedStats()).name;
-		}
+		this.statName = getRandomElementFromArray(player.getOnlyPositiveAspectAssociatedStats()).name;
 	}
 	
 	//preliminary design detailed here: https://docs.google.com/spreadsheets/d/1kam2FnKJiek6DidDpQdSnR3Wl9-vk1oZBa0pPpxlJk4/edit#gid=0
