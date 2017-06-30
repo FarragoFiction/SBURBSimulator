@@ -192,7 +192,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 	
 	this.setEffectForPlayer = function(player){
 		var effect = new FraymotifEffect("",this.e, true); //default to just damaging the enemy.
-		if(player.class_name == "Knight") effect = getRandomElementFromArray(this.knightEffects);
+		if(player.class_name == "Knight") effect = getRandomElementFromArray(this.knightEffects());
 		this.target = effect.target;
 		this.damageInsteadOfBuff = effect.damageInsteadOfBuff;
 		if(this.target == 0 || this.target == 1){

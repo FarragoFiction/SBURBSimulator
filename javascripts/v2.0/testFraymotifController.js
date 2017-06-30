@@ -45,6 +45,7 @@ function fraymotifClicked(fs){
 
 function drawPlayers(fs){
 	var html = "";
+	html += drawFraymotif(fs);
 	for(var i = 0; i< fs.players.length; i++){
 		var p = fs.players[i];
 		html += "<div class = 'playerStat'>"
@@ -60,6 +61,15 @@ function drawPlayers(fs){
 		wirePlayer(p,fs);
 	}
 }
+
+
+function drawFraymotif(fs){
+	var html = "<div class = 'playerStat'>"
+	html += "<hr>" +fs.fraymotif.name+ " </hr>"
+	html += "</div><Br>"
+	return html;
+}
+
 
 function wirePlayer(p,fs){
 	$("#player"+p.id).click(function(){
