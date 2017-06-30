@@ -34,6 +34,9 @@ function Fraymotif(aspects, name,tier){
 			
 			for each stat, sum the values of the stat for allies, and subtract the values for the stat for the enemies.
 			if final value < baseDamage, damage = baseDaamge.  if final > base < 2Base, damage = 2base;  if final > 2base, damage = 3base;
+			
+			STATNAME is always used, btw.  Either it is directly the thing being buffed or debuffed, or if damage it is what is used for damage calc.
+			This DOES mean that buffing hp is the same thing as damage/healing. whatever.
 		*/
 	}
 }
@@ -174,13 +177,17 @@ function FraymotifCreator(session){
 
     //effects are frozen at creation, basically.  if this fraymotif is created by a Bard of Breath in a session with a Prince of Time,
     //who then dies, and then a combo session results in an Heir of Time being able to use it with the Bard of Breath, then it'll still have the prince effect.
-function FraymotifEffect(baseDamage){
-	this.statName = "";  //RELATIONSHIP, hp AND LIFE are all treated differently.  (Life can only be cast on allies), hp is applied to currentHp rather than hp. otherwise same stuff as associatedStats.
-	this.target = ""; //self, allies or enemy or enemies, 0, 1, 2, 3
-	this.damageInsteadOfBuff = false; // statName can either be applied towards damaging someone or buffing someone.  (damaging self or allies is "healing", buffing enemies is applied in the negative direction.)
+function FraymotifEffect(statName, target, damageInsteadOfBuff){
+	this.statName = statName;  //RELATIONSHIP, hp AND LIFE are all treated differently.  (Life can only be cast on allies), hp is applied to currentHp rather than hp. otherwise same stuff as associatedStats.
+	this.target = target; //self, allies or enemy or enemies, 0, 1, 2, 3
+	this.damageInsteadOfBuff = damageInsteadOfBuff; // statName can either be applied towards damaging someone or buffing someone.  (damaging self or allies is "healing", buffing enemies is applied in the negative direction.)
+	this.s = 0;  //convineience methods cause i don't think js has enums but am too lazy to confirm.
+	this.a = 1;
+	this.e = 2;
+	this.e2 = 3;
 	
 	this.setEffectForPlayer = function(player){
-		var effect;
+		var effect = new Effect("",this.e, true); //default to just damaging the enemy.
 		if(player.class_name == "Knight") effect = getRandomElementFromArray(this.knightEffects);
 		this.target = effect.target;
 		this.damageInsteadOfBuff = effect.damageInsteadOfBuff;
@@ -191,7 +198,8 @@ function FraymotifEffect(baseDamage){
 		}
 	}
 	
+	//0 = self, 1 = allies, 2 = enemy, 3 = enemies
 	this.knightEffects = function(){
-		
+		return [new FraymotifEfect("",this.s,true),new FraymotifEfect("",this.e,true),new FraymotifEfect("",this.e2,true),new FraymotifEfect("",this.s,false),new FraymotifEfect("",this.e,false) ];
 	}
 }
