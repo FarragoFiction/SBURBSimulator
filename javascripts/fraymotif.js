@@ -33,7 +33,7 @@ function Fraymotif(aspects, name,tier){
 		var living = findLivingPlayers(allies); //dead men use no fraymotifs. (for now)
 		for(var i = 1; i<this.aspects.length; i++){ //skip the first aspect, because that's owner.
 			var a = this.aspects[i];
-			casters.push(getRandomElementFromArray(findAllAspectPlayers(a))); //ANY player that matches my aspect can do this.
+			casters.push(getRandomElementFromArray(findAllAspectPlayers(allies, a))); //ANY player that matches my aspect can do this.
 		}
 		return casters;  //eventually do smarter things, like only allow to cast buff hp if heals are needed or anybody is dead.
 	}
@@ -41,6 +41,7 @@ function Fraymotif(aspects, name,tier){
 	//allies is NOT just who is helping to cast the fraymotif. it is everyone.
 	this.useFraymotif = function(owner, allies, enemies){
 		var casters = this.getCasters(owner, allies);
+		console.log(casters);
 		if(casters.length != aspects.length) return;
 		console.log("Can use fraymotif.")
 
