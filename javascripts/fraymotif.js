@@ -43,9 +43,10 @@ function Fraymotif(aspects, name,tier){
 		var casters = getCasters(owner, allies);
 		if(casters.length != aspects.length) return;
 		console.log("Can use fraymotif.")
+
 		for(var i = 0; i<this.effects.length; i++){
 			//effect knows how to apply itself. pass it baseValue.
-			this.effects[i].applyEffect(allies, casters,  enemies, this.baseValue);
+			this.effects[i].applyEffect(owner, allies, casters,  enemies, this.baseValue);
 		}
 	}
 }
@@ -221,9 +222,53 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 		
 		
 	*/
-	this.applyEffect = function(allies, casters,  enemies, baseValue){
+	this.applyEffect = function(owner,allies, casters,  enemies, baseValue){
 		console.log("TODO: calculate  damage by all statName values for all involved users - all involved enemies ")
-		var value = processEffectValue(casters, enemies);
+		var strifeValue = processEffectValue(casters, enemies);
+		var effectValue = baseValue;
+		if(strifeValue < baseValue) effectValue = baseValue;
+		if(strifeValue > baseValue && strifeValue < (2 * baseValue)) effectValue = 2 *baseValue;
+		if(strifeValue > (2* baseValu)e) effectValue = 3 *baseValue;
+		
+		//now, i need to USE this effect value.  is it doing "damage" or "buffing"?
+		if(this.target == this.e || this.target == this.e2) effectValue = effectValue * -1;  //do negative things to the enemy.
+		var targetArr = this.chooseTargetArr(owner, allies, casters, enemies);
+		if(this.damageInsteadOfBuff){
+			this.applyDamage(targetArr, effectValue);
+		}else{
+			this.applyBuff(targetArr effectValue);
+		}
+	}
+	
+	this.chooseTargetArr = function(owner, allies, casters, enemies){
+		if(this.target = this.s) return owner;
+		if(this.target = this.a) return allies;
+		if(this.target = this.e) return getRandomElementFromArray(enemies); //TODO eventually make this smart.
+		if(this.target = this.e2) return enemies;
+	}
+	
+	//targetArr is always an array, even if only 1 thing inside of it.
+	this.applyDamage = function(targetArr, effectValue){
+		var e = effectValue/targetArr.length;  //more potent when a single target.
+		for(var i = 0; i<targetArr.length; i++){
+			var t = targetArr[i];
+			t.currentHP += e;
+			t.dead = false;
+		}
+	}
+	
+	this.applyBuff = function(targetArr, effectValue){
+		var e = effectValue/targetArr.length; //more potent when a single target.
+		for(var i = 0; i<targetArr.length; i++){
+			var t = targetArr[i];
+			if(this.statName != "RELATIONSHIPS"){
+				t[this.statName] += e;
+			}else{
+				for(var j = 0; i<t.relationships.length; j++){
+					t.relationships[j].value += e;
+				}
+			}
+		}
 	}
 	
 	this.processEffectValue = function(casters, enemies){
@@ -233,8 +278,8 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 			if(this.statName != "RELATIONSHIPS"){
 				ret += tmp[this.statName];
 			}else{
-				for(var i = 0; i<tmp.relationships.length; i++){
-					ret += tmp.relationships[i].value
+				for(var j = 0; i<tmp.relationships.length; j++){
+					ret += tmp.relationships[j].value
 				}
 			}
 			
