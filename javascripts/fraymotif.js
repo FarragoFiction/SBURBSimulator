@@ -9,16 +9,9 @@ function Fraymotif(aspects, name,tier){
     this.name = name;
     this.tier = tier;
     this.used = false; //when start fight, set to false. set to true when used. once per fight
-    this.damageDone = 0;
-    this.effectAll = false; //either effect self/1 enemy or all party/all enemies
-    this.targetSelf = false; //target self for good shit, target enemy for damage, buffs can go either way. if target enemy, stats * -1;
-    this.currentHP = 0;
-    this.freeWill = 0;
-    this.mobility = 0;
-    this.minLuck = 0;
-    this.maxLuck = 0;
-    this.power = 0;
-    this.sanity = 0;
+    this.damage = 0;  //if target == 0 or 1, damage = damage * -1
+    this.target = 0; // 0 = self, 1 = party, 2 = enemies.
+    this.statNames = [] //literal stat names that we want to effect. will also be the stats that damage is based one.
     this.revive = false; //special effect
 
 
