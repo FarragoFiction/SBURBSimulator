@@ -9,10 +9,11 @@ function Fraymotif(aspects, name,tier){
     this.name = name;
     this.tier = tier;
     this.used = false; //when start fight, set to false. set to true when used. once per fight
-    this.baseDamage = 0;  //if target == 0 or 1, damage = damage * -1. base damage is based on Tier, and classpects involved in fraymotif creation (NOT fraymotif use)
     this.target = 0; // 0 = self, 1 = party, 2 = enemies.
     this.statNames = [] //literal stat names that we want to effect. will also be the stats that damage is based one.
     this.revive = false; //special effect
+	this.baseDamage = 50 * this.tier;
+	if(this.tier == 3) this.baseDamage = 1000;
 
 
     this.toString  = function(){
@@ -24,13 +25,22 @@ function Fraymotif(aspects, name,tier){
     //effects are frozen at creation, basically.  if this fraymotif is created by a Bard of Breath in a session with a Prince of Time,
     //who then dies, and then a combo session results in an Heir of Time being able to use it with the Bard of Breath, then it'll still have the prince effect.
     this.addEffectsForPlayer = function(player){
-        
 		//each type of class does different possibilities, with a random Associated STat (from Aspect) from their list.  
 		//determine who the target is FIRST, if it's you or allies, choose a postitive stat, if it's enmy, choose a negative stat.
 		//again, classes determine who target is, whether you do buff or damage (can do both if it's a multi aspect thing, but at this level, it's either or)
 		
 		//IMPORTANT, HOW SHOULD REVIVE BE TREATED???
     }
+	
+	this.calculateDamage = function(users, enemies){
+		console.log("TODO: calculate  damage by all statName values for all involved users - all involved enemies ")
+		/*
+			base damage * 1, 2, or 3 for each stat. 
+			
+			for each stat, sum the values of the stat for allies, and subtract the values for the stat for the enemies.
+			if final value < baseDamage, damage = baseDaamge.  if final > base < 2Base, damage = 2base;  if final > 2base, damage = 3base;
+		*/
+	}
 }
 
 
