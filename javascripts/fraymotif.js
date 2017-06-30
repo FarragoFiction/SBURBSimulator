@@ -10,8 +10,8 @@ function Fraymotif(aspects, name,tier){
     this.tier = tier;
     this.used = false; //when start fight, set to false. set to true when used. once per fight
 	this.effects = [];  //each effect is a target, a revive, a statName
-	this.baseDamage = 50 * this.tier;
-	if(this.tier == 3) this.baseDamage = 1000;
+	this.baseValue = 50 * this.tier;
+	if(this.tier == 3) this.baseValue = 1000;
 
 
     this.toString  = function(){
@@ -26,31 +26,28 @@ function Fraymotif(aspects, name,tier){
 		}
 	}
 	
-	this.conditionsMet = function(allies, enemies){
+	this.getCasters = function(owner, allies){
 		//first check to see if all aspects are included in the allies array.
-		for(var i = 0; i<this.aspects.length; i++){
-			
+		var casters = [owner];
+		var aspects = [];
+		var living = findLivingPlayers(players); //dead men use no fraymotifs. (for now)
+		for(var i = 1; i<this.aspects.length; i++){ //skip the first aspect, because that's owner.
+			var a = this.aspects[i];
+			casters.push(getRandomElementFromArray(findAllAspectPlayers(a))); //ANY player that matches my aspect can do this.
 		}
-		return false;  //eventually do smarter things, like only allow to cast buff hp if heals are needed or anybody is dead.
+		return casters;  //eventually do smarter things, like only allow to cast buff hp if heals are needed or anybody is dead.
 	}
 	
 	//allies is NOT just who is helping to cast the fraymotif. it is everyone.
-	this.useFraymotif = function(allies, enemies){
-		console.log("TODO: calculate  damage by all statName values for all involved users - all involved enemies ")
-		//if only targeting one ally or one enemy, how do you pick? if ally best friend, if enemy, strongest enemy? (if hp boost, instead pick ally with lowest hp (or dead)).
-		/*
-			base damage * 1, 2, or 3 for each stat. 
-			
-			for each stat, sum the values of the stat for allies, and subtract the values for the stat for the enemies.
-			if final value < baseDamage, damage = baseDaamge.  if final > base < 2Base, damage = 2base;  if final > 2base, damage = 3base;
-			
-			STATNAME is always used, btw.  Either it is directly the thing being buffed or debuffed, or if damage it is what is used for damage calc.
-			This DOES mean that buffing hp is the same thing as damage/healing. whatever.
-			
-			
-		*/
-		
-		console.log("TODO: also don't forget that some fraymotifs should have triggers (but think most shouldn't now). don't try to heal or revive if it's not needed, dunkass.")
+	this.useFraymotif = function(owner, allies, enemies){
+		var casters = getCasters(owner, allies);
+		if(casters.length != aspects.length) return;
+		console.log("Can use fraymotif.")
+		allies.unshift(owner); //add owner to front.
+		for(var i = 0; i<this.effects.length; i++){
+			//effect knows how to apply itself. pass it baseValue.
+			this.effects[i].applyEffect(allies, enemies, this.baseValue);
+		}
 	}
 }
 
@@ -211,6 +208,23 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 	//knights protect themselves and hurt the enemy
 	this.knightEffects = function(){
 		return [new FraymotifEffect("",this.s,true),new FraymotifEffect("",this.e,true),new FraymotifEffect("",this.e2,true),new FraymotifEffect("",this.s,false),new FraymotifEffect("",this.e,false) ];
+	}
+
+		//if only targeting one ally or one enemy, how do you pick? if ally best friend, if enemy, strongest enemy? (if hp boost, instead pick ally with lowest hp (or dead)).
+	/*
+		base damage * 1, 2, or 3 for each stat. 
+		
+		for each stat, sum the values of the stat for allies, and subtract the values for the stat for the enemies.
+		if final value < baseDamage, damage = baseDaamge.  if final > base < 2Base, damage = 2base;  if final > 2base, damage = 3base;
+		
+		STATNAME is always used, btw.  Either it is directly the thing being buffed or debuffed, or if damage it is what is used for damage calc.
+		This DOES mean that buffing hp is the same thing as damage/healing. whatever.
+		
+		
+	*/
+	this.applyEffect = function(allies, casters,  enemies, effect){
+		console.log("TODO: calculate  damage by all statName values for all involved users - all involved enemies ")
+
 	}
 	
 	this.toString = function(){
