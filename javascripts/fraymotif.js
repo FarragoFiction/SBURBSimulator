@@ -187,18 +187,18 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 	this.e2 = 3;
 	
 	this.setEffectForPlayer = function(player){
-		var effect = new Effect("",this.e, true); //default to just damaging the enemy.
+		var effect = new FraymotifEffect("",this.e, true); //default to just damaging the enemy.
 		if(player.class_name == "Knight") effect = getRandomElementFromArray(this.knightEffects);
 		this.target = effect.target;
 		this.damageInsteadOfBuff = effect.damageInsteadOfBuff;
 		if(this.target == 0 || this.target == 1){
-			this.statName = getRandomElementFromArray(player.getOnlyPositiveAspectAssociatedStats());
+			this.statName = getRandomElementFromArray(player.getOnlyPositiveAspectAssociatedStats()).name;
 		}else{
-			this.statName = getRandomElementFromArray(player.getOnlyNegativeAspectAssociatedStats());
+			this.statName = getRandomElementFromArray(player.getOnlyNegativeAspectAssociatedStats()).name;
 		}
 	}
 	
-	//0 = self, 1 = allies, 2 = enemy, 3 = enemies
+	//knights protect themselves and hurt the enemy
 	this.knightEffects = function(){
 		return [new FraymotifEfect("",this.s,true),new FraymotifEfect("",this.e,true),new FraymotifEfect("",this.e2,true),new FraymotifEfect("",this.s,false),new FraymotifEfect("",this.e,false) ];
 	}
