@@ -1801,6 +1801,30 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				console.log('What the hell kind of class is ' + this.class_name + '???');
 		}
 	}
+	
+	this.getOnlyAspectAssociatedStats = function(){
+		var ret = [];
+		for(var i = 0; i<this.associatedStats.length; i++){
+			if(this.associatedStats[i].isFromAspect) ret.push(this.associatedStats[i])
+		}
+		return ret;
+	}
+	
+	this.getOnlyPositiveAspectAssociatedStats = function(){
+		var ret = [];
+		for(var i = 0; i<this.associatedStats.length; i++){
+			if(this.associatedStats[i].isFromAspect && this.associatedStats[i].multiplier > 0) ret.push(this.associatedStats[i])
+		}
+		return ret;
+	}
+	
+	this.getOnlyNegativeAspectAssociatedStats = function(){
+		var ret = [];
+		for(var i = 0; i<this.associatedStats.length; i++){
+			if(this.associatedStats[i].isFromAspect && this.associatedStats[i].multiplier < 0) ret.push(this.associatedStats[i])
+		}
+		return ret;
+	}
 
 	//sum to 1
 	this.intializeAssociatedAspectStatReferences = function(){

@@ -174,11 +174,24 @@ function FraymotifCreator(session){
 
     //effects are frozen at creation, basically.  if this fraymotif is created by a Bard of Breath in a session with a Prince of Time,
     //who then dies, and then a combo session results in an Heir of Time being able to use it with the Bard of Breath, then it'll still have the prince effect.
-function FraymotifEffect(){
+function FraymotifEffect(baseDamage){
 	this.statName = "";  //RELATIONSHIP, hp AND LIFE are all treated differently.  (Life can only be cast on allies), hp is applied to currentHp rather than hp. otherwise same stuff as associatedStats.
 	this.target = ""; //self, allies or enemy or enemies, 0, 1, 2, 3
+	this.damageInsteadOfBuff = false; // statName can either be applied towards damaging someone or buffing someone.  (damaging self or allies is "healing", buffing enemies is applied in the negative direction.)
 	
 	this.setEffectForPlayer = function(player){
+		var effect;
+		if(player.class_name == "Knight") effect = getRandomElementFromArray(this.knightEffects);
+		this.target = effect.target;
+		this.damageInsteadOfBuff = effect.damageInsteadOfBuff;
+		if(this.target == 0 || this.target == 1){
+			this.statName = getRandomElementFromArray(player.getOnlyPositiveAspectAssociatedStats());
+		}else{
+			this.statName = getRandomElementFromArray(player.getOnlyNegativeAspectAssociatedStats());
+		}
+	}
+	
+	this.knightEffects = function(){
 		
 	}
 }
