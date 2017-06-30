@@ -38,16 +38,31 @@ function fraymotifClicked(fs){
 	//TODO display list of players and their stats
 	//TODO display Dummy of Dummy game entity and it's stats.
 	var html = "TODO: list fraymotif flavor text and actual effects here. Confirm they are based on participants aspect associatedStats<br>";	
+	$("#playerStats").html(html);
+	drawPlayers(fs);
+
+}
+
+function drawPlayers(fs){
+	var html = "";
 	for(var i = 0; i< fs.players.length; i++){
 		var p = fs.players[i];
 		html += "<div class = 'playerStat'>"
-		html += "<hr>"+p.htmlTitle() + p.bloodColor+"<hr>"
+		html += "<hr>"+p.htmlTitle() + p.bloodColor+"<hr><button id = 'player"+fs.players[i].id+"'>+ PlayerPower</button>"
 		html += "<hr>" + p.associatedStats.join("<br>") +"<hr>"
  		html += getStatsForPlayer(p);
 		html += "</div>"
 	}
 	$("#playerStats").html(html);
+	
+	for(var i = 0; i< fs.players.length; i++){
+		$("#player"+fs.players[i].id).click(function(){
+			fs.players[i].increasePower();
+			drawPlayers(fs);
+		});
+	}
 }
+
 
 function getStatsForPlayer(player){
 	var ret = "";
