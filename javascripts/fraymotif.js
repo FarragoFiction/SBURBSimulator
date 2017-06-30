@@ -242,10 +242,10 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 	}
 	
 	this.chooseTargetArr = function(owner, allies, casters, enemies){
-		if(this.target = this.s) return owner;
-		if(this.target = this.a) return allies;
-		if(this.target = this.e) return getRandomElementFromArray(enemies); //TODO eventually make this smart.
-		if(this.target = this.e2) return enemies;
+		if(this.target == this.s) return owner;
+		if(this.target == this.a) return allies;
+		if(this.target == this.e) return getRandomElementFromArray(enemies); //TODO eventually make this smart.
+		if(this.target == this.e2) return enemies;
 	}
 	
 	//targetArr is always an array, even if only 1 thing inside of it.
@@ -275,13 +275,11 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 	this.processEffectValue = function(casters, enemies){
 		var ret = 0;
 		for(var i = 0; i<casters.length; i++ ){
-			console.log("i:" + i)
 			var tmp = casters[i];
 			if(this.statName != "RELATIONSHIPS"){
 				ret += tmp[this.statName];
 			}else{
 				for(var j = 0; j<tmp.relationships.length; j++){
-					console.log("j:" + j)
 					ret += tmp.relationships[j].value
 				}
 			}
