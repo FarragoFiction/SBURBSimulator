@@ -9,7 +9,7 @@ function Fraymotif(aspects, name,tier){
     this.name = name;
     this.tier = tier;
     this.used = false; //when start fight, set to false. set to true when used. once per fight
-    this.damage = 0;  //if target == 0 or 1, damage = damage * -1
+    this.baseDamage = 0;  //if target == 0 or 1, damage = damage * -1. base damage is based on Tier, and classpects involved in fraymotif creation (NOT fraymotif use)
     this.target = 0; // 0 = self, 1 = party, 2 = enemies.
     this.statNames = [] //literal stat names that we want to effect. will also be the stats that damage is based one.
     this.revive = false; //special effect
