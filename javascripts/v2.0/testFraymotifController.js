@@ -57,11 +57,15 @@ function drawPlayers(fs){
 	
 	for(var i = 0; i< fs.players.length; i++){
 		var p = fs.players[i];
-		$("#player"+p.id).click(function(){
+		wirePlayer(p,fs);
+	}
+}
+
+function wirePlayer(p,fs){
+	$("#player"+p.id).click(function(){
 			p.increasePower();
 			drawPlayers(fs);
-		});
-	}
+	});
 }
 
 
@@ -74,12 +78,12 @@ function getStatsForPlayer(player){
 		var stat = allStats[i];
 		ret += "<div class='statHolder'><div class='statName'>"+stat+ ":</div><div class = 'statValue'>"
 		if(stat != "RELATIONSHIPS"){
-			ret += player[stat];
+			ret += Math.round(player[stat]);
 		}else{
 			var tmp = 0;
 			for(var j = 0; j<player.relationships.length; j++){
 			//	console.log(player.relationships[j])
-				tmp += player.relationships[j].value
+				tmp +=Math.round(player.relationships[j].value)
 			}
 			ret += tmp;
 		}
