@@ -605,15 +605,13 @@ function processEgg(num){
 
 
 function drawKnobs(){
-	for(var i = 1; i<=15; i++){
+	for(var i = 1; i<=16; i++){
 		if(eggs[i] == "found it!"){
 			drawKnobPart(i,true);
 		}else{
 			drawKnobPart(i,false);
 		}
 	}
-	//final knob is ALWAYS glowing (thanks dillenteMathematician!!!)
-	//drawGlowingKnobPart(16);
 }
 
 function drawKnobPart(knobNum,glowing){
@@ -632,7 +630,7 @@ function drawKnobPart(knobNum,glowing){
 	if(knobNum == 13) drawK13(glowing);
 	if(knobNum == 14) drawK14(glowing);
 	if(knobNum == 15) drawK15(glowing);
-	if(knobNum == 16) drawK16(glowing);
+	if(knobNum == 16) drawK16(true);
 }
 
 function drawK1(glow){
