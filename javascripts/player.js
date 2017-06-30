@@ -1989,6 +1989,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(luck>40){
 			this.godDestiny =true;
 		}
+		this.currentHP = this.hp; //could have been altered by associated stats
 	}
 
 
