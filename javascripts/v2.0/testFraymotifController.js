@@ -56,8 +56,9 @@ function drawPlayers(fs){
 	$("#playerStats").html(html);
 	
 	for(var i = 0; i< fs.players.length; i++){
-		$("#player"+fs.players[i].id).click(function(){
-			fs.players[i].increasePower();
+		var p = fs.players[i];
+		$("#player"+p.id).click(function(){
+			p.increasePower();
 			drawPlayers(fs);
 		});
 	}
@@ -67,7 +68,7 @@ function drawPlayers(fs){
 function getStatsForPlayer(player){
 	var ret = "";
 	var allStats = player.allStats();
-	console.log(allStats)
+//	console.log(allStats)
 
 	for(var i = 0; i<allStats.length; i++){
 		var stat = allStats[i];
@@ -77,7 +78,7 @@ function getStatsForPlayer(player){
 		}else{
 			var tmp = 0;
 			for(var j = 0; j<player.relationships.length; j++){
-				console.log(player.relationships[j])
+			//	console.log(player.relationships[j])
 				tmp += player.relationships[j].value
 			}
 			ret += tmp;
