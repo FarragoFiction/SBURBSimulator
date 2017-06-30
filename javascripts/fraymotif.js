@@ -18,7 +18,11 @@ function Fraymotif(aspects, name,tier){
       return this.name;
     }
 
-
+	this.addEffectsForPlayers = function(players){
+		for(var i = 0; i<players.length; i++){
+			this.addEffectsForPlayer(player);
+		}
+	}
 
     //effects are frozen at creation, basically.  if this fraymotif is created by a Bard of Breath in a session with a Prince of Time,
     //who then dies, and then a combo session results in an Heir of Time being able to use it with the Bard of Breath, then it'll still have the prince effect.
@@ -28,6 +32,17 @@ function Fraymotif(aspects, name,tier){
 		//again, classes determine who target is, whether you do buff or damage (can do both if it's a multi aspect thing, but at this level, it's either or)
 		
 		//IMPORTANT, HOW SHOULD REVIVE BE TREATED???  on a per aspect level? time, life, hope all have revive effects?
+		
+		/*
+			Knights can buff self or damage an enemy.
+			Seers can buff all allies or debuff all enemies.
+			Bards can damage all enemies or buff all allies.
+			Heirs can buff self, a LOT.
+			Maids can buff allies or damage all enemies.
+			Rogues can damage an enemy or buff all allies.
+			Pages can buff all allies, a LOT. 
+			Thiefs can damage an enemy and buff self.
+		*/
     }
 	
 	this.calculateDamage = function(users, enemies){
@@ -169,12 +184,13 @@ function FraymotifCreator(session){
 		if(aspects.indexOf(players[i].aspect) == -1) aspects.push(players[i].aspect); //if multiple of the same aspect is included here, just ignore. 
 	}
     var f= new Fraymotif(aspects, name, tier);
+	f.addEffectsForPlayers(players);
 	return f;
   }
 }
 
 
-function FraymotifEffect(){
-	this.statName = "";  //RELATIONSHIP, hp AND LIFE are all treated differently.  (Life can only be cast on allies), hp is applied to currentHp rather than hp.
-	this.target = ""; //self, allies or enemy or enemies
+function FraymotifEffect(statName, target){
+	this.statName = statName;  //RELATIONSHIP, hp AND LIFE are all treated differently.  (Life can only be cast on allies), hp is applied to currentHp rather than hp. otherwise same stuff as associatedStats.
+	this.target = target; //self, allies or enemy or enemies
 }
