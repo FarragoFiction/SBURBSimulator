@@ -38,13 +38,14 @@ function fraymotifClicked(fs){
 	//TODO display Dummy of Dummy game entity and it's stats.
 	var html = "TODO: list fraymotif flavor text and actual effects here. Confirm they are based on participants aspect associatedStats<br>";	
 	$("#playerStats").html(html);
-	drawPlayers(fs);
+	drawStats(fs);
 
 }
 
-function drawPlayers(fs){
+function drawStats(fs){
 	var html = "";
 	html += drawFraymotif(fs);
+	html += "<hr>"+fs.dummy.htmlTitleHP()+ "<hr><br>" +getStatsForPlayer(fs.dummy);
 	for(var i = 0; i< fs.players.length; i++){
 		var p = fs.players[i];
 		html += "<div class = 'playerStat'>"
@@ -143,4 +144,7 @@ return array;
 function FraymotifSandBox(fraymotif, players){
 	this.fraymotif = fraymotif;
 	this.players = players;
+	this.dummy = new GameEntity(null, "Dummy",null)
+	//minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs
+	this.dummy.setStats(0,10,100,10,10,10,100,false, false, [],1000);
 }

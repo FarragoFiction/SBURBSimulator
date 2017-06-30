@@ -104,11 +104,15 @@ function GameEntity(session, name, crowned){
 			return this.currentHP;
 		}
 		
+		this.allStats = function(){
+			return ["power","hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
+		}
+		
 		this.getMaxHP= function(){
 			if(this.crowned){
 				return this.currentHP + this.crowned.hp;  //my hp can be negative. only thing that matters is total is poistive.
 			}
-			return this.hp + this.crowned.hp;
+			return this.hp;
 		}
 		this.getPower = function(){
 			if(this.crowned){
