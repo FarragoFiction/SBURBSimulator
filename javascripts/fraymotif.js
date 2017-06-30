@@ -202,7 +202,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 		if(player.class_name == "Knight") effect = getRandomElementFromArray(this.knightEffects());
 		this.target = effect.target;
 		this.damageInsteadOfBuff = effect.damageInsteadOfBuff;
-		this.statName = getRandomElementFromArray(player.getOnlyPositiveAspectAssociatedStats()).name;
+		this.statName = getRandomElementFromArray(player.getOnlyPositiveAspectAssociatedStats()).name; //TODO if I know it's a debuff, maybe debuff the things that are negative for me?
 	}
 	
 	//preliminary design detailed here: https://docs.google.com/spreadsheets/d/1kam2FnKJiek6DidDpQdSnR3Wl9-vk1oZBa0pPpxlJk4/edit#gid=0
@@ -274,19 +274,21 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 	
 	this.processEffectValue = function(casters, enemies){
 		var ret = 0;
-		for(var i = 0; casters.length; i++ ){
+		for(var i = 0; i<casters.length; i++ ){
+			console.log("i:" + i)
 			var tmp = casters[i];
 			if(this.statName != "RELATIONSHIPS"){
 				ret += tmp[this.statName];
 			}else{
 				for(var j = 0; j<tmp.relationships.length; j++){
+					console.log("j:" + j)
 					ret += tmp.relationships[j].value
 				}
 			}
 			
 		}
 		
-		for(var i = 0; enemies.length; i++ ){
+		for(var i = 0; i< enemies.length; i++ ){
 			var tmp = casters[i];
 			if(this.statName != "RELATIONSHIPS"){
 				ret += -1* tmp[this.statName];
