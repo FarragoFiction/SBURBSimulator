@@ -579,7 +579,7 @@ function quip(state){
 		ret = "Best bulbasaur!"
 	} else if(state == 101){
 		ret = "Holy shit, how old IS that picture???"
-	} else if(state == 101){
+	} else if(state == 110){
 		ret = "Holy shit, classic 'You're Welcome' x2 combo. I added the cod piece as an easter egg AND I am showing you the way to turn on the Mindy Thing without waiting for 5 whole minutes. Truly, my magnanimity is breath taking."
 	}  else{
 		ret = "???"
@@ -892,7 +892,7 @@ function Screen(canvas,maxState, uX, uY, screenNum, i, k){
 	this.drawState = function(){
 		if(!this.drawGuides) return;
 		var ctx = canvas.getContext('2d');
-		var x = this.width/2;
+		var x = this.width/4;
 		//var x = 0;
 		var y = this.height/2;
 		ctx.fillStyle = "#000000";

@@ -80,7 +80,7 @@ function FraymotifCreator(session){
 
   this.getRandomVoidName = function(){
       var randBonus = "<span class = 'void'>" + getRandomElementFromArray(interests) +  "</span>"
-      var names = ["Void","Disappearification","Pumpkin", "Nothing", "Emptiness", "Invisible", "Dark", "Hole", "Solo", "Silent", "Alone", "Night", "Null", "[Censored]", "[???]", "Vacuous", "Abyss", "Noir", "Blank", "Tenebrous", "Antithesis", "404"];
+      var names = ["Undefined", "Void","Disappearification","Pumpkin", "Nothing", "Emptiness", "Invisible", "Dark", "Hole", "Solo", "Silent", "Alone", "Night", "Null", "[Censored]", "[???]", "Vacuous", "Abyss", "Noir", "Blank", "Tenebrous", "Antithesis", "404"];
       return getRandomElementFromArray(names)+ randBonus;
   }
 
@@ -200,6 +200,17 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 	this.setEffectForPlayer = function(player){
 		var effect = new FraymotifEffect("",this.e, true); //default to just damaging the enemy.
 		if(player.class_name == "Knight") effect = getRandomElementFromArray(this.knightEffects());
+    if(player.class_name == "Seer") effect = getRandomElementFromArray(this.seerEffects());
+    if(player.class_name == "Bard") effect = getRandomElementFromArray(this.bardEffects());
+    if(player.class_name == "Heir") effect = getRandomElementFromArray(this.heirEffects());
+    if(player.class_name == "Maid") effect = getRandomElementFromArray(this.maidEffects());
+    if(player.class_name == "Rogue") effect = getRandomElementFromArray(this.rogueEffects());
+    if(player.class_name == "Page") effect = getRandomElementFromArray(this.pageEffects());
+    if(player.class_name == "Thief") effect = getRandomElementFromArray(this.thiefEffects());
+    if(player.class_name == "Sylph") effect = getRandomElementFromArray(this.sylphEffects());
+    if(player.class_name == "Prince") effect = getRandomElementFromArray(this.princeEffects());
+    if(player.class_name == "Witch") effect = getRandomElementFromArray(this.witchEffects());
+    if(player.class_name == "Mage") effect = getRandomElementFromArray(this.mageEffects());
 		this.target = effect.target;
 		this.damageInsteadOfBuff = effect.damageInsteadOfBuff;
 		this.statName = getRandomElementFromArray(player.getOnlyPositiveAspectAssociatedStats()).name; //TODO if I know it's a debuff, maybe debuff the things that are negative for me?
@@ -211,18 +222,19 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 		return [new FraymotifEffect("",this.s,true),new FraymotifEffect("",this.e,true),new FraymotifEffect("",this.e2,true),new FraymotifEffect("",this.s,false),new FraymotifEffect("",this.e,false) ];
 	}
 
-		//if only targeting one ally or one enemy, how do you pick? if ally best friend, if enemy, strongest enemy? (if hp boost, instead pick ally with lowest hp (or dead)).
-	/*
-		base damage * 1, 2, or 3 for each stat.
+  //seers guide everyone to victory
+  this.seerEffects = function(){
+		return [new FraymotifEffect("",this.s,false),new FraymotifEffect("",this.e,false),new FraymotifEffect("",this.e2,false),new FraymotifEffect("",this.a,false) ];
+	}
 
-		for each stat, sum the values of the stat for allies, and subtract the values for the stat for the enemies.
-		if final value < baseDamage, damage = baseDaamge.  if final > base < 2Base, damage = 2base;  if final > 2base, damage = 3base;
+  //bards are lol random.
+  this.bardEffects = function(){
+    var ret = [new FraymotifEffect("",this.s,false),new FraymotifEffect("",this.e,false),new FraymotifEffect("",this.e2,false),new FraymotifEffect("",this.a,false) ];
+    ret = ret.concat(ret = [new FraymotifEffect("",this.s,true),new FraymotifEffect("",this.e,true),new FraymotifEffect("",this.e2,true),new FraymotifEffect("",this.a,true) ]);
+    return ret;
+  }
 
-		STATNAME is always used, btw.  Either it is directly the thing being buffed or debuffed, or if damage it is what is used for damage calc.
-		This DOES mean that buffing hp is the same thing as damage/healing. whatever.
 
-
-	*/
 	this.applyEffect = function(owner,allies, casters,  enemies, baseValue){
 		var strifeValue = this.processEffectValue(casters, enemies);
 		var effectValue = baseValue;
