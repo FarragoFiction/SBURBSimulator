@@ -81,7 +81,7 @@ function drawFraymotif(fs){
 function wirePlayer(p,fs){
 	$("#player"+p.id).click(function(){
 			p.increasePower();
-			drawPlayers(fs);
+			drawStats(fs);
 	});
 }
 
