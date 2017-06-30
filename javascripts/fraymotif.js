@@ -28,6 +28,7 @@ function Fraymotif(aspects, name,tier){
 	
 	
 	this.useFraymotif = function(users, enemies){
+		alert("!!!")
 		console.log("TODO: calculate  damage by all statName values for all involved users - all involved enemies ")
 		/*
 			base damage * 1, 2, or 3 for each stat. 

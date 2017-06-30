@@ -60,12 +60,16 @@ function drawStats(fs){
 		var p = fs.players[i];
 		wirePlayer(p,fs);
 	}
+	
+	$("#testFraymotif").click(function(){
+		fs.fraymotif.useFraymotif(fs.players, fs.dummy);
+	});
 }
 
 
 function drawFraymotif(fs){
 	var html = "<div class = 'playerStat'>"
-	html += "<hr>" +fs.fraymotif.name+ " </hr>"
+	html += "<hr>" +fs.fraymotif.name+ "<Br><button id = 'testFraymotif'>Use Fraymotif</button> </hr>"
 	for(var i = 0; i<fs.fraymotif.effects.length; i++){
 		html += "<br>" + fs.fraymotif.effects[i] + ".";
 	}
