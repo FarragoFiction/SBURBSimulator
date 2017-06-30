@@ -579,6 +579,8 @@ function quip(state){
 		ret = "Best bulbasaur!"
 	} else if(state == 101){
 		ret = "Holy shit, how old IS that picture???"
+	} else if(state == 101){
+		ret = "Holy shit, classic 'You're Welcome' x2 combo. I added the cod piece as an easter egg AND I am showing you the way to turn on the Mindy Thing without waiting for 5 whole minutes. Truly, my magnanimity is breath taking."
 	}  else{
 		ret = "???"
 	}

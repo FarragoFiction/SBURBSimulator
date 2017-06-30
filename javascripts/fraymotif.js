@@ -25,7 +25,7 @@ function Fraymotif(aspects, name,tier){
 			this.effects.push(effect);
 		}
 	}
-	
+
 	this.getCasters = function(owner, allies){
 		//first check to see if all aspects are included in the allies array.
 		var casters = [owner];
@@ -37,7 +37,7 @@ function Fraymotif(aspects, name,tier){
 		}
 		return casters;  //eventually do smarter things, like only allow to cast buff hp if heals are needed or anybody is dead.
 	}
-	
+
 	//allies is NOT just who is helping to cast the fraymotif. it is everyone.
 	this.useFraymotif = function(owner, allies, enemies){
 		var casters = this.getCasters(owner, allies);
@@ -177,7 +177,7 @@ function FraymotifCreator(session){
     var name = this.getFraymotifName(players, tier);
 	var aspects = [];
 	for(var i = 0; i<players.length; i++){
-		if(aspects.indexOf(players[i].aspect) == -1) aspects.push(players[i].aspect); //if multiple of the same aspect is included here, just ignore. 
+		if(aspects.indexOf(players[i].aspect) == -1) aspects.push(players[i].aspect); //if multiple of the same aspect is included here, just ignore.
 	}
     var f= new Fraymotif(aspects, name, tier);
 	f.addEffectsForPlayers(players);
@@ -196,7 +196,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 	this.a = 1;
 	this.e = 2;
 	this.e2 = 3;
-	
+
 	this.setEffectForPlayer = function(player){
 		var effect = new FraymotifEffect("",this.e, true); //default to just damaging the enemy.
 		if(player.class_name == "Knight") effect = getRandomElementFromArray(this.knightEffects());
@@ -204,7 +204,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 		this.damageInsteadOfBuff = effect.damageInsteadOfBuff;
 		this.statName = getRandomElementFromArray(player.getOnlyPositiveAspectAssociatedStats()).name; //TODO if I know it's a debuff, maybe debuff the things that are negative for me?
 	}
-	
+
 	//preliminary design detailed here: https://docs.google.com/spreadsheets/d/1kam2FnKJiek6DidDpQdSnR3Wl9-vk1oZBa0pPpxlJk4/edit#gid=0
 	//knights protect themselves and hurt the enemy
 	this.knightEffects = function(){
@@ -213,52 +213,55 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 
 		//if only targeting one ally or one enemy, how do you pick? if ally best friend, if enemy, strongest enemy? (if hp boost, instead pick ally with lowest hp (or dead)).
 	/*
-		base damage * 1, 2, or 3 for each stat. 
-		
+		base damage * 1, 2, or 3 for each stat.
+
 		for each stat, sum the values of the stat for allies, and subtract the values for the stat for the enemies.
 		if final value < baseDamage, damage = baseDaamge.  if final > base < 2Base, damage = 2base;  if final > 2base, damage = 3base;
-		
+
 		STATNAME is always used, btw.  Either it is directly the thing being buffed or debuffed, or if damage it is what is used for damage calc.
 		This DOES mean that buffing hp is the same thing as damage/healing. whatever.
-		
-		
+
+
 	*/
 	this.applyEffect = function(owner,allies, casters,  enemies, baseValue){
-		console.log("TODO: calculate  damage by all statName values for all involved users - all involved enemies ")
 		var strifeValue = this.processEffectValue(casters, enemies);
 		var effectValue = baseValue;
 		if(strifeValue < baseValue) effectValue = baseValue;
 		if(strifeValue > baseValue && strifeValue < (2 * baseValue)) effectValue = 2 *baseValue;
 		if(strifeValue > (2* baseValue)) effectValue = 3 *baseValue;
-		
+
 		//now, i need to USE this effect value.  is it doing "damage" or "buffing"?
 		if(this.target == this.e || this.target == this.e2) effectValue = effectValue * -1;  //do negative things to the enemy.
 		var targetArr = this.chooseTargetArr(owner, allies, casters, enemies);
+    console.log(["target chosen: ", targetArr])
 		if(this.damageInsteadOfBuff){
+      console.log("applying damage: " + targetArr.length)
 			this.applyDamage(targetArr, effectValue);
 		}else{
+      console.log("applying buff")
 			this.applyBuff(targetArr, effectValue);
 		}
 	}
-	
+
 	this.chooseTargetArr = function(owner, allies, casters, enemies){
 		console.log(["potential targets: ",owner, allies, casters, enemies]);
-		if(this.target == this.s) return owner;
+		if(this.target == this.s) return [owner];
 		if(this.target == this.a) return allies;
-		if(this.target == this.e) return getRandomElementFromArray(enemies); //TODO eventually make this smart.
+		if(this.target == this.e) return [getRandomElementFromArray(enemies)]; //TODO eventually make this smart.
 		if(this.target == this.e2) return enemies;
 	}
-	
+
 	//targetArr is always an array, even if only 1 thing inside of it.
 	this.applyDamage = function(targetArr, effectValue){
 		var e = effectValue/targetArr.length;  //more potent when a single target.
+    console.log(["applying damage", effectValue, targetArr.length, e])
 		for(var i = 0; i<targetArr.length; i++){
 			var t = targetArr[i];
 			t.currentHP += e;
 			t.dead = false;
 		}
 	}
-	
+
 	this.applyBuff = function(targetArr, effectValue){
 		var e = effectValue/targetArr.length; //more potent when a single target.
 		for(var i = 0; i<targetArr.length; i++){
@@ -272,7 +275,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 			}
 		}
 	}
-	
+
 	this.processEffectValue = function(casters, enemies){
 		var ret = 0;
 		for(var i = 0; i<casters.length; i++ ){
@@ -284,9 +287,9 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 					ret += tmp.relationships[j].value
 				}
 			}
-			
+
 		}
-		
+
 		for(var i = 0; i< enemies.length; i++ ){
 			var tmp = casters[i];
 			if(this.statName != "RELATIONSHIPS"){
@@ -296,11 +299,11 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 					ret += -1* tmp.relationships[i].value
 				}
 			}
-			
+
 		}
 		return ret;
 	}
-	
+
 	this.toString = function(){
 		var ret = "";
 		if(this.damageInsteadOfBuff && this.target < 2){
@@ -312,7 +315,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 		}else if(!this.damageInsteadOfBuff && this.target >= 2){
 			ret += " Debuffs"
 		}
-		
+
 		if(this.target == 0){
 			ret += " Self"
 		}else if(this.target ==1){
@@ -322,7 +325,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 		}else if(this.target ==3){
 			ret += " All Enemies"
 		}
-		
+
 		ret += " Based On " + this.statName
 		return ret;
 	}

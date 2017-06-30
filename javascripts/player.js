@@ -1058,7 +1058,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 
 		this.power += powerBoost;
-		
+
 		this.associatedStatsIncreasePower(powerBoost);
 		//gain a bit of hp, otherwise denizen will never let players fight them if their hp isn't high enough.
 		if(this.godTier || Math.seededRandom() >.85){
@@ -1370,7 +1370,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.getHP= function(){
 		return this.currentHP;
 	}
-	
+
 	this.getMaxHP= function(){
 		return this.hp;
 	}
@@ -1801,7 +1801,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				console.log('What the hell kind of class is ' + this.class_name + '???');
 		}
 	}
-	
+
 	this.getOnlyAspectAssociatedStats = function(){
 		var ret = [];
 		for(var i = 0; i<this.associatedStats.length; i++){
@@ -1809,7 +1809,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 		return ret;
 	}
-	
+
 	this.getOnlyPositiveAspectAssociatedStats = function(){
 		var ret = [];
 		for(var i = 0; i<this.associatedStats.length; i++){
@@ -1817,7 +1817,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 		return ret;
 	}
-	
+
 	this.getOnlyNegativeAspectAssociatedStats = function(){
 		var ret = [];
 		for(var i = 0; i<this.associatedStats.length; i++){
@@ -1934,20 +1934,20 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	//["power","hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
 	this.getInterestAssociatedStats = function(interest){
-		if(pop_culture_interests.indexOf(interest) != -1) return [new AssociatedStat("mobility",2)];
-		if(music_interests.indexOf(interest) != -1) return [new AssociatedStat("sanity",1),new AssociatedStat("maxLuck",1)];
-		if(culture_interests.indexOf(interest) != -1) return [new AssociatedStat("sanity",-1),new AssociatedStat("hp",-1)]; //SBURB is NOT high art.
-		if(writing_interests.indexOf(interest) != -1) return [new AssociatedStat("freeWill",2)];  //they know how stories go.
-		if(technology_interests.indexOf(interest) != -1) return [new AssociatedStat("alchemy",2)];
-		if(social_interests.indexOf(interest) != -1) return [new AssociatedStat("sanity",2)];
-		if(romantic_interests.indexOf(interest) != -1)return [new AssociatedStat("RELATIONSHIPS",2)];
-		if(academic_interests.indexOf(interest) != -1) return [new AssociatedStat("freeWill",-2)]; //dont' get so caught up in how the old rules worked
-		if(comedy_interests.indexOf(interest) != -1) return [new AssociatedStat("minLuck",-1),new AssociatedStat("maxLuck",1)]; //hilarious (to SBURB) pratfalls abound.
-		if(domestic_interests.indexOf(interest) != -1) return [new AssociatedStat("sanity",1),new AssociatedStat("RELATIONSHIPS",1)];
-		if(athletic_interests.indexOf(interest) != -1) return [new AssociatedStat("power",2)]; //so STRONG
-		if(terrible_interests.indexOf(interest) != -1) return [new AssociatedStat("RELATIONSHIPS",-1), new AssociatedStat("sanity",-1)];
-		if(fantasy_interests.indexOf(interest) != -1) return [new AssociatedStat("maxLuck",1),new AssociatedStat("alchemy",1)];
-		if(justice_interests.indexOf(interest) != -1) return [new AssociatedStat("power",1),new AssociatedStat("hp",1)];
+		if(pop_culture_interests.indexOf(interest) != -1) return [new AssociatedStat("mobility",2, true)];
+		if(music_interests.indexOf(interest) != -1) return [new AssociatedStat("sanity",1, true),new AssociatedStat("maxLuck",1, true)];
+		if(culture_interests.indexOf(interest) != -1) return [new AssociatedStat("sanity",-1, true),new AssociatedStat("hp",-1, true)]; //SBURB is NOT high art.
+		if(writing_interests.indexOf(interest) != -1) return [new AssociatedStat("freeWill",2, true)];  //they know how stories go.
+		if(technology_interests.indexOf(interest) != -1) return [new AssociatedStat("alchemy",2, true)];
+		if(social_interests.indexOf(interest) != -1) return [new AssociatedStat("sanity",2, true)];
+		if(romantic_interests.indexOf(interest) != -1)return [new AssociatedStat("RELATIONSHIPS",2, true)];
+		if(academic_interests.indexOf(interest) != -1) return [new AssociatedStat("freeWill",-2, true)]; //dont' get so caught up in how the old rules worked
+		if(comedy_interests.indexOf(interest) != -1) return [new AssociatedStat("minLuck",-1, true),new AssociatedStat("maxLuck",1, true)]; //hilarious (to SBURB) pratfalls abound.
+		if(domestic_interests.indexOf(interest) != -1) return [new AssociatedStat("sanity",1, true),new AssociatedStat("RELATIONSHIPS",1, true)];
+		if(athletic_interests.indexOf(interest) != -1) return [new AssociatedStat("power",2, true)]; //so STRONG
+		if(terrible_interests.indexOf(interest) != -1) return [new AssociatedStat("RELATIONSHIPS",-1, true), new AssociatedStat("sanity",-1, true)];
+		if(fantasy_interests.indexOf(interest) != -1) return [new AssociatedStat("maxLuck",1, true),new AssociatedStat("alchemy",1, true)];
+		if(justice_interests.indexOf(interest) != -1) return [new AssociatedStat("power",1, true),new AssociatedStat("hp",1, true)];
 	}
 
 
