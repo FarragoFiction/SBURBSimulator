@@ -242,6 +242,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 	}
 	
 	this.chooseTargetArr = function(owner, allies, casters, enemies){
+		console.log(["potential targets: ",owner, allies, casters, enemies]);
 		if(this.target == this.s) return owner;
 		if(this.target == this.a) return allies;
 		if(this.target == this.e) return getRandomElementFromArray(enemies); //TODO eventually make this smart.
