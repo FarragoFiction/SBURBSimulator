@@ -30,7 +30,7 @@ function Fraymotif(aspects, name,tier){
 		//first check to see if all aspects are included in the allies array.
 		var casters = [owner];
 		var aspects = [];
-		var living = findLivingPlayers(players); //dead men use no fraymotifs. (for now)
+		var living = findLivingPlayers(allies); //dead men use no fraymotifs. (for now)
 		for(var i = 1; i<this.aspects.length; i++){ //skip the first aspect, because that's owner.
 			var a = this.aspects[i];
 			casters.push(getRandomElementFromArray(findAllAspectPlayers(a))); //ANY player that matches my aspect can do this.
@@ -40,7 +40,7 @@ function Fraymotif(aspects, name,tier){
 	
 	//allies is NOT just who is helping to cast the fraymotif. it is everyone.
 	this.useFraymotif = function(owner, allies, enemies){
-		var casters = getCasters(owner, allies);
+		var casters = this.getCasters(owner, allies);
 		if(casters.length != aspects.length) return;
 		console.log("Can use fraymotif.")
 
@@ -224,11 +224,11 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 	*/
 	this.applyEffect = function(owner,allies, casters,  enemies, baseValue){
 		console.log("TODO: calculate  damage by all statName values for all involved users - all involved enemies ")
-		var strifeValue = processEffectValue(casters, enemies);
+		var strifeValue = this.processEffectValue(casters, enemies);
 		var effectValue = baseValue;
 		if(strifeValue < baseValue) effectValue = baseValue;
 		if(strifeValue > baseValue && strifeValue < (2 * baseValue)) effectValue = 2 *baseValue;
-		if(strifeValue > (2* baseValu)e) effectValue = 3 *baseValue;
+		if(strifeValue > (2* baseValue)) effectValue = 3 *baseValue;
 		
 		//now, i need to USE this effect value.  is it doing "damage" or "buffing"?
 		if(this.target == this.e || this.target == this.e2) effectValue = effectValue * -1;  //do negative things to the enemy.
@@ -236,7 +236,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 		if(this.damageInsteadOfBuff){
 			this.applyDamage(targetArr, effectValue);
 		}else{
-			this.applyBuff(targetArr effectValue);
+			this.applyBuff(targetArr, effectValue);
 		}
 	}
 	
@@ -278,7 +278,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 			if(this.statName != "RELATIONSHIPS"){
 				ret += tmp[this.statName];
 			}else{
-				for(var j = 0; i<tmp.relationships.length; j++){
+				for(var j = 0; j<tmp.relationships.length; j++){
 					ret += tmp.relationships[j].value
 				}
 			}
@@ -288,10 +288,10 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 		for(var i = 0; enemies.length; i++ ){
 			var tmp = casters[i];
 			if(this.statName != "RELATIONSHIPS"){
-				ret += tmp[this.statName];
+				ret += -1* tmp[this.statName];
 			}else{
-				for(var i = 0; i<tmp.relationships.length; i++){
-					ret += tmp.relationships[i].value
+				for(varji = 0; j<tmp.relationships.length; j++){
+					ret += -1* tmp.relationships[i].value
 				}
 			}
 			
