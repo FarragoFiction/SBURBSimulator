@@ -224,7 +224,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 
   //seers guide everyone to victory
   this.seerEffects = function(){
-		return [new FraymotifEffect("",this.s,false),new FraymotifEffect("",this.e,false),new FraymotifEffect("",this.e2,false),new FraymotifEffect("",this.a,false) ];
+		return [new FraymotifEffect("",this.a,true),new FraymotifEffect("",this.s,false),new FraymotifEffect("",this.e,false),new FraymotifEffect("",this.e2,false),new FraymotifEffect("",this.a,false) ];
 	}
 
   //bards are lol random.
@@ -234,9 +234,51 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
     return ret;
   }
 
+  //their aspect protects them
   this.heirEffects = function(){
 		return [new FraymotifEffect("",this.s,true),new FraymotifEffect("",this.e2,true),new FraymotifEffect("",this.s,false) ];
 	}
+
+  //maids balance offense and defense???
+  this.maidEffects = function(){
+		return [new FraymotifEffect("",this.e2,true),new FraymotifEffect("",this.e,false),new FraymotifEffect("",this.a,false) ];
+	}
+
+  //debuff enemies, buff party, attack enemy
+  this.rogueEffects = function(){
+		return [new FraymotifEffect("",this.e,true),new FraymotifEffect("",this.a,false),new FraymotifEffect("",this.e,false)];
+	}
+
+  //pure support, heal allies, buff allies
+  this.pageEffects = function(){
+    return [new FraymotifEffect("",this.a,true),new FraymotifEffect("",this.a,false)];
+  }
+
+  //debuff enemy, buff self, damage enemy
+  this.thiefEffects = function(){
+    return [new FraymotifEffect("",this.e,true),new FraymotifEffect("",this.s,false),new FraymotifEffect("",this.e,false)];
+  }
+
+  //heals allies, buffs self and allies
+  this.sylphEffects = function(){
+    return [new FraymotifEffect("",this.e,true),new FraymotifEffect("",this.a,false),new FraymotifEffect("",this.e,false)];
+  }
+
+  //destruction
+  this.princeEffects = function(){
+    return [new FraymotifEffect("",this.e,true),new FraymotifEffect("",this.e2,true),new FraymotifEffect("",this.e2,false)];
+  }
+
+  //heal self, hurt enemy, debuff enemies
+  this.witchEffects = function(){
+    return [new FraymotifEffect("",this.e,true),new FraymotifEffect("",this.s,true),new FraymotifEffect("",this.e2,false)];
+  }
+
+  //debuff enemies heal allies
+  this.mageEffects = function(){
+    return [new FraymotifEffect("",this.a,true),new FraymotifEffect("",this.s,true),new FraymotifEffect("",this.e2,false),new FraymotifEffect("",this.e,false)];
+  }
+
 
 
 	this.applyEffect = function(owner,allies, casters,  enemies, baseValue){
