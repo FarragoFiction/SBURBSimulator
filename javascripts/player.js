@@ -1868,6 +1868,40 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 	}
 
+	this.voidDescription = function(){
+		for(var i = 0; i<this.associatedStats.length; i++){
+			var stat = this.associatedStats[i];
+			if(stat.multiplier >= 3) return "SO " + this.getEmphaticDescriptionForStatNamed(stat.name);
+		}
+		return "SO BLAND";
+	}
+	//["power","hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"]
+
+	this.getEmphaticDescriptionForStatNamed = function(statName){
+		if(this.highInit()){
+			if(statName == "power") return "STRONG"
+			if(statName == "hp") return "HEARTY"
+			if(statName == "RELATIONSHIPS") return "FRIENDLY"
+			if(statName == "mobility") return "FAST"
+			if(statName == "sanity") return "CALM"
+			if(statName == "freeWill") return "WILLFUL"
+			if(statName == "maxLuck") return "LUCKY"
+			if(statName == "minLuck") return "LUCKY"
+			if(statName == "alchemy") return "CREATIVE"
+		}else{
+			if(statName == "power") return "WEAK"
+			if(statName == "hp") return "FRAGILE"
+			if(statName == "RELATIONSHIPS") return "AGGRESSIVE"
+			if(statName == "mobility") return "SLOW"
+			if(statName == "sanity") return "CRAZY"
+			if(statName == "freeWill") return "GULLIBLE"
+			if(statName == "maxLuck") return "UNLUCKY"
+			if(statName == "minLuck") return "UNLUCKY"
+			if(statName == "alchemy") return "BORING"
+		}
+		return "CONFUSING";
+	}
+
 	//["power","hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
 	this.getInterestAssociatedStats = function(interest){
 		if(pop_culture_interests.indexOf(interest) != -1) return [new AssociatedStat("mobility",2)];

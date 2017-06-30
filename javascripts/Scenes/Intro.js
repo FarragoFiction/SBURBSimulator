@@ -698,6 +698,7 @@ function Intro(session){
 		}else{
 			this.changePrototyping(div);
 			narration += "<br>The " + this.player.htmlTitle() + " enters the game " + indexToWords(i) + ". ";
+			if(this.player.aspect == "Void") narration += "They are " + this.player.voidDescription() +". ";
 			narration += " They manage to prototype their kernel sprite with a " + this.player.object_to_prototype.htmlTitle() + " pre-entry. "
 			narration += this.corruptedSprite();
 
