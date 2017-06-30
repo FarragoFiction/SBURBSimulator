@@ -9,9 +9,7 @@ function Fraymotif(aspects, name,tier){
     this.name = name;
     this.tier = tier;
     this.used = false; //when start fight, set to false. set to true when used. once per fight
-    this.target = 0; // 0 = self, 1 = party, 2 = enemies.
-    this.statNames = [] //literal stat names that we want to effect. will also be the stats that damage is based one.
-    this.revive = false; //special effect
+	this.effects = [];  //each effect is a target, a revive, a statName
 	this.baseDamage = 50 * this.tier;
 	if(this.tier == 3) this.baseDamage = 1000;
 
@@ -29,7 +27,7 @@ function Fraymotif(aspects, name,tier){
 		//determine who the target is FIRST, if it's you or allies, choose a postitive stat, if it's enmy, choose a negative stat.
 		//again, classes determine who target is, whether you do buff or damage (can do both if it's a multi aspect thing, but at this level, it's either or)
 		
-		//IMPORTANT, HOW SHOULD REVIVE BE TREATED???
+		//IMPORTANT, HOW SHOULD REVIVE BE TREATED???  on a per aspect level? time, life, hope all have revive effects?
     }
 	
 	this.calculateDamage = function(users, enemies){
@@ -166,7 +164,17 @@ function FraymotifCreator(session){
   //otherwise, effect is based on both class and aspect
   this.makeFraymotif = function(players,tier){
     var name = this.getFraymotifName(players, tier);
-
-    return new Fraymotif(aspects, name, tier);
+	var aspects = [];
+	for(var i = 0; i<players.length; i++){
+		if(aspects.indexOf(players[i].aspect) == -1) aspects.push(players[i].aspect); //if multiple of the same aspect is included here, just ignore. 
+	}
+    var f= new Fraymotif(aspects, name, tier);
+	return f;
   }
+}
+
+
+function FraymotifEffect(){
+	this.statName = "";  //RELATIONSHIP, hp AND LIFE are all treated differently.  (Life can only be cast on allies), hp is applied to currentHp rather than hp.
+	this.target = ""; //self, allies or enemy or enemies
 }
