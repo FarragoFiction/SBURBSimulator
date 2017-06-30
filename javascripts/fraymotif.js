@@ -37,7 +37,11 @@ function Fraymotif(aspects, name,tier){
 			
 			STATNAME is always used, btw.  Either it is directly the thing being buffed or debuffed, or if damage it is what is used for damage calc.
 			This DOES mean that buffing hp is the same thing as damage/healing. whatever.
+			
+			
 		*/
+		
+		console.log("TODO: also don't forget that some fraymotifs should have triggers (but think most shouldn't now). don't try to heal or revive if it's not needed, dunkass.")
 	}
 }
 
@@ -198,6 +202,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 		}
 	}
 	
+	//preliminary design detailed here: https://docs.google.com/spreadsheets/d/1kam2FnKJiek6DidDpQdSnR3Wl9-vk1oZBa0pPpxlJk4/edit#gid=0
 	//knights protect themselves and hurt the enemy
 	this.knightEffects = function(){
 		return [new FraymotifEfect("",this.s,true),new FraymotifEfect("",this.e,true),new FraymotifEfect("",this.e2,true),new FraymotifEfect("",this.s,false),new FraymotifEfect("",this.e,false) ];
