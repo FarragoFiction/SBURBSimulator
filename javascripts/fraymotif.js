@@ -24,14 +24,12 @@ function Fraymotif(aspects, name,tier){
     //effects are frozen at creation, basically.  if this fraymotif is created by a Bard of Breath in a session with a Prince of Time,
     //who then dies, and then a combo session results in an Heir of Time being able to use it with the Bard of Breath, then it'll still have the prince effect.
     this.addEffectsForPlayer = function(player){
-        //class determines damageDone value, and targeteSelf, and effectAll.
-        //class also determines "value"
-        //class can either effect damageDone or value but not both.
-        //and yes, classes can have random effects. Make them weighted.
-        //Prince has 100% chance of damage done, no buffs.
-        //Sylph has 100% chance of buffs. no damage done.
-        //Seers have 30% damage, 70% buffs. etc.
-        //aspect determines where that "value" is put (hp, freewill, etc).
+        
+		//each type of class does different possibilities, with a random Associated STat (from Aspect) from their list.  
+		//determine who the target is FIRST, if it's you or allies, choose a postitive stat, if it's enmy, choose a negative stat.
+		//again, classes determine who target is, whether you do buff or damage (can do both if it's a multi aspect thing, but at this level, it's either or)
+		
+		//IMPORTANT, HOW SHOULD REVIVE BE TREATED???
     }
 }
 
