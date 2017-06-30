@@ -43,10 +43,9 @@ function Fraymotif(aspects, name,tier){
 		var casters = getCasters(owner, allies);
 		if(casters.length != aspects.length) return;
 		console.log("Can use fraymotif.")
-		allies.unshift(owner); //add owner to front.
 		for(var i = 0; i<this.effects.length; i++){
 			//effect knows how to apply itself. pass it baseValue.
-			this.effects[i].applyEffect(allies, enemies, this.baseValue);
+			this.effects[i].applyEffect(allies, casters,  enemies, this.baseValue);
 		}
 	}
 }
@@ -172,7 +171,7 @@ function FraymotifCreator(session){
   //classes is between 0 and aspects.length. each aspect is paired with a class.
   //should there be no class to pair with, random effect based on aspect
   //otherwise, effect is based on both class and aspect
-  this.makeFraymotif = function(players,tier){
+  this.makeFraymotif = function(players,tier){ //asumming first player in that array is the owner of the framotif later on.
     var name = this.getFraymotifName(players, tier);
 	var aspects = [];
 	for(var i = 0; i<players.length; i++){
@@ -222,9 +221,37 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 		
 		
 	*/
-	this.applyEffect = function(allies, casters,  enemies, effect){
+	this.applyEffect = function(allies, casters,  enemies, baseValue){
 		console.log("TODO: calculate  damage by all statName values for all involved users - all involved enemies ")
-
+		var value = processEffectValue(casters, enemies);
+	}
+	
+	this.processEffectValue = function(casters, enemies){
+		var ret = 0;
+		for(var i = 0; casters.length; i++ ){
+			var tmp = casters[i];
+			if(this.statName != "RELATIONSHIPS"){
+				ret += tmp[this.statName];
+			}else{
+				for(var i = 0; i<tmp.relationships.length; i++){
+					ret += tmp.relationships[i].value
+				}
+			}
+			
+		}
+		
+		for(var i = 0; enemies.length; i++ ){
+			var tmp = casters[i];
+			if(this.statName != "RELATIONSHIPS"){
+				ret += tmp[this.statName];
+			}else{
+				for(var i = 0; i<tmp.relationships.length; i++){
+					ret += tmp.relationships[i].value
+				}
+			}
+			
+		}
+		return ret;
 	}
 	
 	this.toString = function(){

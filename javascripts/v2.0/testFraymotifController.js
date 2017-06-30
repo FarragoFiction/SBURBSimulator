@@ -62,7 +62,7 @@ function drawStats(fs){
 	}
 	
 	$("#testFraymotif").click(function(){
-		fs.fraymotif.useFraymotif(fs.players, fs.dummy);
+		fs.fraymotif.useFraymotif(fs.players[0], fs.players, fs.dummy);
 	});
 }
 
