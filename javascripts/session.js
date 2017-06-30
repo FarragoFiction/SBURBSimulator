@@ -363,6 +363,7 @@ function Session(session_id){
 		this.jack = new GameEntity(this, "Jack",null);
 		this.jack.carapacian = true;
 		this.jack.setStats(-500,-10,50,60,50,1000,40,true, true, [],100000); //jack is kind of a big deal. luck determines his odds of finding bullshit weapon
+		//jack uses "Stab to Meet You", it's not very effective (nobody seems to think his stabs are important until he's crowned.)
 
 		this.democraticArmy = new GameEntity(this, "Democratic Army",null); //doesn't actually exist till WV does his thing.
 		this.democraticArmy.carapacian = true;

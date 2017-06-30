@@ -26,10 +26,18 @@ function Fraymotif(aspects, name,tier){
 		}
 	}
 	
+	this.conditionsMet = function(allies, enemies){
+		//first check to see if all aspects are included in the allies array.
+		for(var i = 0; i<this.aspects.length; i++){
+			
+		}
+		return false;  //eventually do smarter things, like only allow to cast buff hp if heals are needed or anybody is dead.
+	}
 	
-	this.useFraymotif = function(users, enemies){
-		alert("!!!")
+	//allies is NOT just who is helping to cast the fraymotif. it is everyone.
+	this.useFraymotif = function(allies, enemies){
 		console.log("TODO: calculate  damage by all statName values for all involved users - all involved enemies ")
+		//if only targeting one ally or one enemy, how do you pick? if ally best friend, if enemy, strongest enemy? (if hp boost, instead pick ally with lowest hp (or dead)).
 		/*
 			base damage * 1, 2, or 3 for each stat. 
 			
@@ -183,7 +191,7 @@ function FraymotifCreator(session){
     //effects are frozen at creation, basically.  if this fraymotif is created by a Bard of Breath in a session with a Prince of Time,
     //who then dies, and then a combo session results in an Heir of Time being able to use it with the Bard of Breath, then it'll still have the prince effect.
 function FraymotifEffect(statName, target, damageInsteadOfBuff){
-	this.statName = statName;  //RELATIONSHIP, hp AND LIFE are all treated differently.  (Life can only be cast on allies), hp is applied to currentHp rather than hp. otherwise same stuff as associatedStats.
+	this.statName = statName;  //hp heals current hp AND revives the player.
 	this.target = target; //self, allies or enemy or enemies, 0, 1, 2, 3
 	this.damageInsteadOfBuff = damageInsteadOfBuff; // statName can either be applied towards damaging someone or buffing someone.  (damaging self or allies is "healing", buffing enemies is applied in the negative direction.)
 	this.s = 0;  //convineience methods cause i don't think js has enums but am too lazy to confirm.
