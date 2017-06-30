@@ -1938,6 +1938,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	//you don't have to own the associated stat for it to modify you. A sylph will call this for each player in the party, for example
 	//and pass their own stat, but it will mod the player's stat. don't worry about it.
 	this.modifyAssociatedStat = function(modValue, stat){
+		if(!stat) return;
 		//modValue * stat.multiplier.
 		if(stat.name == "RELATIONSHIPS"){
 			for(var i = 0; i<this.relationships.length; i++){
