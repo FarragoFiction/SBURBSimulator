@@ -48,7 +48,7 @@ function drawPlayers(fs){
 	for(var i = 0; i< fs.players.length; i++){
 		var p = fs.players[i];
 		html += "<div class = 'playerStat'>"
-		html += "<hr>"+p.htmlTitle() + p.bloodColor+"<hr><button id = 'player"+fs.players[i].id+"'>+ PlayerPower</button>"
+		html += "<hr>"+p.htmlTitleHP() + p.bloodColor+"<hr><button id = 'player"+fs.players[i].id+"'>+ PlayerPower</button>"
 		html += "<hr>" + p.associatedStats.join("<br>") +"<hr>"
  		html += getStatsForPlayer(p);
 		html += "</div>"

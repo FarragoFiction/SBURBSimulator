@@ -103,6 +103,13 @@ function GameEntity(session, name, crowned){
 			}
 			return this.currentHP;
 		}
+		
+		this.getMaxHP= function(){
+			if(this.crowned){
+				return this.currentHP + this.crowned.hp;  //my hp can be negative. only thing that matters is total is poistive.
+			}
+			return this.hp + this.crowned.hp;
+		}
 		this.getPower = function(){
 			if(this.crowned){
 				return Math.max(this.power + this.crowned.power,1);
@@ -161,7 +168,7 @@ function GameEntity(session, name, crowned){
 			if(this.crowned != null) ret+="Crowned "
 			var pname = this.name;
 			if(this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
-			return ret + pname +" (" + Math.round(this.getHP()) + " hp, " + Math.round(this.getPower()) + " power)</font>"; //TODO denizens are aspect colored.
+			return ret + pname +" (" + Math.round(this.getHP()) + "/" + Math.round(this.getMaxHP())+" hp, " + Math.round(this.getPower()) + " power)</font>"; //TODO denizens are aspect colored.
 		}
 
 		this.flipOut = function(reason){
@@ -1039,6 +1046,7 @@ function copyGameEntity(object,name){
 	//idea, custom 'help string'. stretch goal for later. would let me have players help in different ways than a pomeranian would, for example.
 	return ret;
 }
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
