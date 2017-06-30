@@ -67,9 +67,9 @@ function drawFraymotif(fs){
 	var html = "<div class = 'playerStat'>"
 	html += "<hr>" +fs.fraymotif.name+ " </hr>"
 	for(var i = 0; i<fs.fraymotif.effects.length; i++){
-		html += "<br>" + effect;
+		html += "<br>" + fs.fraymotif.effects[i] + ".";
 	}
-	html += "TODO list effects in string form (preferabbly all pretty and as a sentence</div><Br>"
+	html += "</div><Br>"
 	return html;
 }
 

@@ -25,7 +25,7 @@ function Fraymotif(aspects, name,tier){
 			this.effects.push(effect);
 		}
 	}
-
+	
 	
 	this.useFraymotif = function(users, enemies){
 		console.log("TODO: calculate  damage by all statName values for all involved users - all involved enemies ")
@@ -205,7 +205,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 	//preliminary design detailed here: https://docs.google.com/spreadsheets/d/1kam2FnKJiek6DidDpQdSnR3Wl9-vk1oZBa0pPpxlJk4/edit#gid=0
 	//knights protect themselves and hurt the enemy
 	this.knightEffects = function(){
-		return [new FraymotifEfect("",this.s,true),new FraymotifEfect("",this.e,true),new FraymotifEfect("",this.e2,true),new FraymotifEfect("",this.s,false),new FraymotifEfect("",this.e,false) ];
+		return [new FraymotifEffect("",this.s,true),new FraymotifEffect("",this.e,true),new FraymotifEffect("",this.e2,true),new FraymotifEffect("",this.s,false),new FraymotifEffect("",this.e,false) ];
 	}
 	
 	this.toString = function(){
