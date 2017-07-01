@@ -76,7 +76,6 @@ function Fraymotif(aspects, name,tier, flavorText){
         */
         //8 main types of effects, damage/buff and 0-4
         var effectTypes = {};  //hash coded by effectType damage0 vs damage1 vs buff0. first element is template
-        var ret = "";
         for(var i = 0; i<4; i++){
           effectTypes["damage"+i] = []
           effectTypes["buff"+i] = []
@@ -92,23 +91,23 @@ function Fraymotif(aspects, name,tier, flavorText){
           }
         }
         //now i have a hash of all effect types and the stats i'm applying to them.
-
+        var retArray = [];
         for(var i = 0; i<4; i++){
           var stats = [];
-          if(effectType["damage"+i].length > 0){
-            stats = effectType["damage"+i]
+          if(effectTypes["damage"+i].length > 0){
+            stats = effectTypes["damage"+i]
             var template = stats[0];
             stats.removeFromArray(template);
-            ret += template.replace(new RegExp("STAT","g"), [stats.slice(0, -1).join(', '), stats.slice(-1)[0]].join(stats.length < 2 ? '' : ' and '))
+            retArray.push(template.replace(new RegExp("STAT","g"), [stats.slice(0, -1).join(', '), stats.slice(-1)[0]].join(stats.length < 2 ? '' : ' and ')))
           }
-          if(effectType["buff"+i].length > 0){
-            stats = effectType["buff"+i]
+          if(effectTypes["buff"+i].length > 0){
+            stats = effectTypes["buff"+i]
             var template = stats[0];
             stats.removeFromArray(template);
-            ret += template.replace(new RegExp("STAT","g"), [stats.slice(0, -1).join(', '), stats.slice(-1)[0]].join(stats.length < 2 ? '' : ' and '));
+            retArray.push(template.replace(new RegExp("STAT","g"), [stats.slice(0, -1).join(', '), stats.slice(-1)[0]].join(stats.length < 2 ? '' : ' and ')));
           }
         }
-        return ret;
+        return [retArray.slice(0, -1).join(', '), retArray.slice(-1)[0]].join(retArray.length < 2 ? '' : ' and ')
 
   }
 
@@ -452,13 +451,13 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 	this.toString = function(){
 		var ret = "";
 		if(this.damageInsteadOfBuff && this.target < 2){
-			 ret += " Heals"
+			 ret += " heals"
 		}else if (this.damageInsteadOfBuff && this.target >= 2){
-			ret += " Damages"
+			ret += " damages"
 		}else if(!this.damageInsteadOfBuff && this.target < 2){
-			ret += " Buffs"
+			ret += " buffs"
 		}else if(!this.damageInsteadOfBuff && this.target >= 2){
-			ret += " Debuffs"
+			ret += " debuffs"
 		}
 
 		if(this.target == 0){
@@ -466,9 +465,9 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 		}else if(this.target ==1){
 			ret += " allies"
 		}else if(this.target ==2){
-			ret += " an Enemy"
+			ret += " an enemy"
 		}else if(this.target ==3){
-			ret += " all Enemies"
+			ret += " all enemies"
 		}
     var stat = "STAT"
 		ret += " based on how " + stat + " the casters are compared to their enemy"
