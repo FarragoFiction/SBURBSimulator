@@ -1910,7 +1910,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.getEmphaticDescriptionForStatNamed = function(statName){
 		if(this.highInit()){
 			if(statName == "power") return "STRONG"
-			if(statName == "hp") return "HEARTY"
+			if(statName == "hp") return "STURDY"
 			if(statName == "RELATIONSHIPS") return "FRIENDLY"
 			if(statName == "mobility") return "FAST"
 			if(statName == "sanity") return "CALM"

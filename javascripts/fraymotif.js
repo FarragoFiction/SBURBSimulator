@@ -385,7 +385,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 		}
     var stat = "BLAND"
     if(this.statName == "power") stat = "STRONG"
-    if(this.statName == "hp") stat = "HEARTY"
+    if(this.statName == "hp") stat = "STURDY"
     if(this.statName == "RELATIONSHIPS") stat = "FRIENDLY"
     if(this.statName == "mobility") stat = "FAST"
     if(this.statName == "sanity") stat = "CALM"

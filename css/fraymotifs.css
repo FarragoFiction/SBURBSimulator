@@ -62,6 +62,12 @@ body{
 	padding: 5px;
 }
 
+.fraymotifStat{
+	width: 800px;
+	display: inline-block;
+	padding: 5px;
+}
+
 #playerStats{
 	display: inline-block;
 	padding: 5px;

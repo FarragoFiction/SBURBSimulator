@@ -16,7 +16,7 @@ function makeFraymotif(){
 		initPlayerRelationships(players);
 		var fraymotif = globalFraymotifCreator.makeFraymotif(shuffle(players), tier.val());
 		$("#fraymotifs").append("<br><Br>" + fraymotif +"<button id = 'fm" + fraymotifSandBoxes.length+ "'>Prepare Test</button>");
-		
+
 		var fmsb = new FraymotifSandBox(fraymotif, players)
 		$("#fm"+fraymotifSandBoxes.length).click(function(){
 			fraymotifClicked(fmsb)
@@ -36,7 +36,7 @@ function initPlayerRelationships(players){
 function fraymotifClicked(fs){
 	//TODO display list of players and their stats
 	//TODO display Dummy of Dummy game entity and it's stats.
-	var html = "TODO: list fraymotif flavor text and actual effects here. Confirm they are based on participants aspect associatedStats<br>";	
+	var html = "TODO: list fraymotif flavor text and actual effects here. Confirm they are based on participants aspect associatedStats<br>";
 	$("#playerStats").html(html);
 	drawStats(fs);
 
@@ -55,12 +55,12 @@ function drawStats(fs){
 		html += "</div>"
 	}
 	$("#playerStats").html(html);
-	
+
 	for(var i = 0; i< fs.players.length; i++){
 		var p = fs.players[i];
 		wirePlayer(p,fs);
 	}
-	
+
 	$("#testFraymotif").click(function(){
 		fs.fraymotif.useFraymotif(fs.players[0], fs.players, [fs.dummy]);
 		drawStats(fs);
@@ -69,7 +69,7 @@ function drawStats(fs){
 
 
 function drawFraymotif(fs){
-	var html = "<div class = 'playerStat'>"
+	var html = "<div class = 'fraymotifStat'>"
 	html += "<hr>" +fs.fraymotif.name+ "<Br><button id = 'testFraymotif'>Use Fraymotif</button> </hr>"
 	for(var i = 0; i<fs.fraymotif.effects.length; i++){
 		html += "<br>" + fs.fraymotif.effects[i] + ".";
@@ -107,7 +107,7 @@ function getStatsForPlayer(player){
 		}
 		ret += "</div></div>"
 	}
-	return ret 
+	return ret
 }
 
 function createPlayersFromAspects(aspects){
