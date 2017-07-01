@@ -75,20 +75,31 @@ function Fraymotif(aspects, name,tier, flavorText){
   this.superCondenseEffectsText = function(){
     var effectTypes = {};  //hash coded by effectType damage0 vs damage1 vs buff0. first element is template
     for(var i = 0; i<4; i++){
-      effectTypes["effect"+i] = []
+      effectTypes["damage"+i] = []
+      effectTypes["buff"+i] = []
     }
     for(var i = 0; i<this.effects.length; i++){
       var e = this.effects[i];
-        if(effectTypes["effect"+ e.target].length == 0)   effectTypes["effect"+ e.target].push(e.toStringSimple())
+      if(e.damageInsteadOfBuff){
+        if(effectTypes["damage"+ e.target].length == 0)   effectTypes["damage"+ e.target].push(e.toStringSimple())
         //no repeats
-        if( effectTypes["effect"+ e.target].indexOf(e.statName) == -1) effectTypes["effect"+ e.target].push(e.statName)
+        if( effectTypes["damage"+ e.target].indexOf(e.statName) == -1) effectTypes["damage"+ e.target].push(e.statName)
+      }else{
+        if(effectTypes["buff"+ e.target].length == 0)   effectTypes["buff"+ e.target].push(e.toStringSimple())
+        //no repeats
+        if( effectTypes["buff"+ e.target].indexOf(e.statName) == -1) effectTypes["buff"+ e.target].push(e.statName)
+      }
     }
+
+
+
     //now i have a hash of all effect types and the stats i'm applying to them.
     var retArray = [];
     for(var i = 0; i<4; i++){
       var stats = [];
-      if(effectTypes["effect"+i].length > 0){
-        stats = effectTypes["effect"+i]
+
+      if(effectTypes["damage"+i].length > 0){
+        stats = effectTypes["damage"+i]
         var template = stats[0];
         stats.removeFromArray(template);
         for(var j = 0; j<stats.length; j++){
@@ -96,15 +107,25 @@ function Fraymotif(aspects, name,tier, flavorText){
         }
         retArray.push(template.replace(new RegExp("STAT","g"), [stats.slice(0, -1).join(', '), stats.slice(-1)[0]].join(stats.length < 2 ? '' : ' and ')))
       }
+      if(effectTypes["buff"+i].length > 0){
+        stats = effectTypes["buff"+i]
+        var template = stats[0];
+        stats.removeFromArray(template);
+        for(var j = 0; j<stats.length; j++){
+          stats[j] = this.getStatWord(stats[j], i); //i is who the target is, j is the stat.
+        }
+        retArray.push(template.replace(new RegExp("STAT","g"), [stats.slice(0, -1).join(', '), stats.slice(-1)[0]].join(stats.length < 2 ? '' : ' and ')))
+      }
+
     }
     console.log(["retArray is: ",retArray]);
     var almostDone= [retArray.slice(0, -1).join(', '), retArray.slice(-1)[0]].join(retArray.length < 2 ? '' : ' and ')
+    almostDone = almostDone.charAt(0).toUpperCase() + almostDone.slice(1);
     return this.replaceKeyWordsForFlavorTextBase(almostDone);
 
   }
 
   this.getStatWord = function(stat, target){
-    alert("???")
     var bad = true;
     if(target == 0 || target == 1 ) bad = false;
     if(!bad){
@@ -185,8 +206,10 @@ function Fraymotif(aspects, name,tier, flavorText){
   }
 
   this.replaceKeyWordsForFlavorTextBase = function(phrase,){
-    phrase = phrase.replace(new RegExp("damages/debuffs","g"), getRandomElementFromArray(this.getDamageWords()));
-    phrase = phrase.replace(new RegExp("heals/buffs","g"), getRandomElementFromArray(this.getHealingWords()));
+    phrase = phrase.replace(new RegExp("damages","g"), getRandomElementFromArray(this.getDamageWords()));
+    phrase = phrase.replace(new RegExp("debuffs","g"), getRandomElementFromArray(this.getDebuffWords()));
+    phrase = phrase.replace(new RegExp("heals","g"), getRandomElementFromArray(this.getHealingWords()));
+    phrase = phrase.replace(new RegExp("buffs","g"), getRandomElementFromArray(this.getBuffWords()));
     phrase = phrase.replace(new RegExp("SELF","g"), getRandomElementFromArray(this.getSelfWords()));
     phrase = phrase.replace(new RegExp("EBLUH","g"), getRandomElementFromArray(this.getEnemyWords()));
     phrase = phrase.replace(new RegExp("FRIENDSBLUH","g"), getRandomElementFromArray(this.getAlliesWords()));
@@ -226,10 +249,18 @@ function Fraymotif(aspects, name,tier, flavorText){
   }
 
   this.getDamageWords = function(){
-        return ["degrading","acidic","malicious"];
+        return ["painful","acidic","sharp"];
+  }
+
+  this.getDebuffWords = function(){
+        return ["draining","malicious", "poisonous", "degrading"];
   }
 
   this.getHealingWords = function(){
+    return ["healing","restorative","restful"];
+  }
+
+  this.getBuffWords = function(){
     return ["soothing","supportive","friendly"];
   }
 
@@ -563,10 +594,14 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 
   this.toStringSimple = function(){
     var ret = "";
-		if(this.target == this.s || this.target == this.a){
-			 ret += " a heals/buffs"
-		}else{
-			ret += " a damages/debuffs"
+    if(this.damageInsteadOfBuff && this.target < 2){
+			 ret += " a heals"
+		}else if (this.damageInsteadOfBuff && this.target >= 2){
+			ret += " a damages"
+		}else if(!this.damageInsteadOfBuff && this.target < 2){
+			ret += " a buffs"
+		}else if(!this.damageInsteadOfBuff && this.target >= 2){
+			ret += " a debuffs"
 		}
 
 		if(this.target == 0){
