@@ -94,7 +94,7 @@ function Fraymotif(aspects, name,tier, flavorText){
       }
     }
     console.log(["retArray is: ",retArray]);
-    return [retArray.slice(0, -1).join(', '), retArray.slice(-1)[0]].join(retArray.length < 2 ? '' : ' and ')
+    return [retArray.slice(0, -1).join(', TRANSITION '), retArray.slice(-1)[0]].join(retArray.length < 2 ? '' : ' and ')
   }
   //if i have multiple effects that do similar things, condense them.
   this.condenseEffectsText = function(){
@@ -140,7 +140,7 @@ function Fraymotif(aspects, name,tier, flavorText){
 
   }
 
-  this.replaceKeyWords = function(phrase, owner, casters, allies enemy, enemies){
+  this.replaceKeyWords = function(phrase, owner, casters, allies, enemy, enemies){
     //ret= ret.replace(new RegExp(this.lettersToReplace[i][0], "g"),replace);
     phrase = phrase.replace(new RegExp("OWNER","g"), owner.htmlTitleBasic())
     phrase = phrase.replace(new RegExp("CASTERS","g"), getPlayersTitlesBasic(casters))
@@ -148,8 +148,13 @@ function Fraymotif(aspects, name,tier, flavorText){
     phrase = phrase.replace(new RegExp("ENEMY","g"), enemy.htmlTitleBasic())
     phrase = phrase.replace(new RegExp("ENEMIES","g"), getPlayersTitlesBasic(enemies))
     phrase = phrase.replace(new RegExp("FRAYMOTIF","g"), this.name)
+    phrase = phrase.replace(new RegExp("TRANSITION","g"), getRandomElementFromArray(this.transitions))
 
     return phrase
+  }
+
+  this.transitions = function(){
+    return ["while","meanwhile","at the same time"];
   }
 
 	//allies is NOT just who is helping to cast the fraymotif. it is everyone.
@@ -500,7 +505,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 		ret += " of STAT "
 
     if(this.target == 0){
-      ret += " envelopes OWNER"
+      ret += " envelopes the OWNER"
     }else if(this.target ==1){
       ret += " surrounds the ALLIES"
     }else if(this.target ==2){
