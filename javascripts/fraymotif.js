@@ -8,6 +8,10 @@ function Fraymotif(aspects, name,tier, flavorText){
     this.aspects = aspects; //expect to be an array
     this.name = name;
     this.tier = tier;
+    //flavor text acts as a template, with ENEMIES and CASTERS and ALLIES and ENEMY being replaced.
+    //you don't call flavor text directly, instead expecting the use of the fraymotif to return something
+    //based on it.
+    //make sure ENEMY is the same for all effects, dunkass.
     this.flavorText = flavorText;  //will generate it procedurally if not set, otherwise things like sprites will have it hand made.
     this.used = false; //when start fight, set to false. set to true when used. once per fight
   	this.effects = [];  //each effect is a target, a revive, a statName
