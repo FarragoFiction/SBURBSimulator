@@ -55,7 +55,7 @@ function Fraymotif(aspects, name,tier, flavorText){
       /*
         Do regex replacment on CASTERS, ENEMY, FRAYMOTIF
       */
-      var phrase = "The CASTERS do FRAYMOTIF on the ENEMY";//shitty example.
+      var phrase = "The CASTERS do FRAYMOTIF on the ENEMY.";//shitty example.
       return this.replaceKeyWords(phrase, owner, casters, enemy, enemies);
   }
 
@@ -65,6 +65,7 @@ function Fraymotif(aspects, name,tier, flavorText){
     phrase = phrase.replace(new RegExp("CASTERS","g"), getPlayersTitlesBasic(casters))
     phrase = phrase.replace(new RegExp("ENEMY","g"), enemy.htmlTitleBasic())
     phrase = phrase.replace(new RegExp("ENEMIES","g"), getPlayersTitlesBasic(enemies))
+    phrase = phrase.replace(new RegExp("FRAYMOTIF","g"), this.name)
     return phrase
   }
 

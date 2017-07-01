@@ -71,7 +71,7 @@ function drawStats(fs, flavorText){
 function drawFraymotif(fs,flavorText){
 	var html = "<div class = 'fraymotifStat'>"
 	html += "<hr>" +fs.fraymotif.name+ "<Br><button id = 'testFraymotif'>Use Fraymotif</button> </hr>"
-	if(flavorText) html += "<hr>"+flavorText + "</hr>"
+	if(flavorText) html += "<hr>"+flavorText + "</hr><Br><br>"
 	for(var i = 0; i<fs.fraymotif.effects.length; i++){
 		html += "<br>" + fs.fraymotif.effects[i] + ".";
 	}
