@@ -56,7 +56,8 @@ function Fraymotif(aspects, name,tier, flavorText){
         Do regex replacment on CASTERS, ENEMY, FRAYMOTIF
       */
       if(!this.flavorText) this.flavorText = this.proceduralFlavorText();
-      var phrase = "The CASTERS do FRAYMOTIF on the ENEMY.";//shitty example.
+      var phrase = "The CASTERS do FRAYMOTIF on the ENEMY. ";//shitty example.
+      phrase += this.flavorText;
       return this.replaceKeyWords(phrase, owner, casters, enemy, enemies);
   }
 
@@ -65,9 +66,36 @@ function Fraymotif(aspects, name,tier, flavorText){
     //then, do a regexp on the parts.
     //care about stats, not aspects. can mention aspects  as well somehow.
     //a soothing ASPECTWORD descends upon the allies of CASTERS, healing them.
-    var base = this.condenseEffectsText();
+    var base = this.superCondenseEffectsText();
   }
 
+  this.superCondenseEffectsText = function(){
+    var effectTypes = {};  //hash coded by effectType damage0 vs damage1 vs buff0. first element is template
+    for(var i = 0; i<4; i++){
+      effectTypes["effect"+i] = []
+    }
+    for(var i = 0; i<this.effects.length; i++){
+      var e = this.effects[i];
+      if(e.damageInsteadOfBuff){
+        if(effectTypes["effect"+ e.target].length == 0)   effectTypes["effect"+ e.target].push(e.toStringSimple())
+        //no repeats
+        if( effectTypes["effect"+ e.target].indexOf(e.statName) == -1) effectTypes["effect"+ e.target].push(e.statName)
+      }
+    }
+    //now i have a hash of all effect types and the stats i'm applying to them.
+    var retArray = [];
+    for(var i = 0; i<4; i++){
+      var stats = [];
+      if(effectTypes["effect"+i].length > 0){
+        stats = effectTypes["effect"+i]
+        var template = stats[0];
+        stats.removeFromArray(template);
+        retArray.push(template.replace(new RegExp("STAT","g"), [stats.slice(0, -1).join(', '), stats.slice(-1)[0]].join(stats.length < 2 ? '' : ' and ')))
+      }
+    }
+    return [retArray.slice(0, -1).join(', '), retArray.slice(-1)[0]].join(retArray.length < 2 ? '' : ' and ')
+
+  }
   //if i have multiple effects that do similar things, condense them.
   this.condenseEffectsText = function(){
         /*
@@ -448,6 +476,28 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 		}
 		return ret;
 	}
+
+  this.toStringSimple = function(){
+    var ret = "";
+		if(this.damageInsteadOfBuff && this.target < 2){
+			 ret += " heals/buffs"
+		}else if (this.damageInsteadOfBuff && this.target >= 2){
+			ret += " damages/debuffs"
+		}
+
+		if(this.target == 0){
+			ret += " self"
+		}else if(this.target ==1){
+			ret += " allies"
+		}else if(this.target ==2){
+			ret += " an enemy"
+		}else if(this.target ==3){
+			ret += " all enemies"
+		}
+    var stat = "STAT"
+		ret += " based on how " + stat + " the casters are compared to their enemy"
+		return ret;
+  }
 
 	this.toString = function(){
 		var ret = "";
