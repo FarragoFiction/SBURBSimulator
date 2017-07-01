@@ -442,7 +442,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 			if(this.statName != "RELATIONSHIPS"){
 				t[this.statName] += e;
 			}else{
-				for(var j = 0; i<t.relationships.length; j++){
+				for(var j = 0; j<t.relationships.length; j++){
 					t.relationships[j].value += e;
 				}
 			}
