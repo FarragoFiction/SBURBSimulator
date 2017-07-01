@@ -63,8 +63,19 @@ a{
 
 
 #headerSpace{
-	height: 250px;
-	width: 0px;
+	height: 512px;
+	width: 1200px;
+	position: relative;
+	vertical-align: bottom;
+}
+
+#headerSpace a{
+	font-size: 100px;
+	text-decoration: none;
+	position: absolute;
+  bottom: 50%;
+	left: 100px;
+	text-shadow: -1px -1px black, 1px -1px black, -1px 1px black, 1px 1px black, -1px 0px black, 1px 0px black, 0px -1px black, 0px 1px black, 0px 0px 5px black, 0px 0px 8px black;
 }
 
 #container{
