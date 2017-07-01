@@ -67,6 +67,8 @@ function Fraymotif(aspects, name,tier, flavorText){
     //care about stats, not aspects. can mention aspects  as well somehow.
     //a soothing ASPECTWORD descends upon the allies of CASTERS, healing them.
     var base = this.superCondenseEffectsText();
+    console.log("replace base with regexp shit")
+    return base;
   }
 
   this.superCondenseEffectsText = function(){
@@ -76,11 +78,9 @@ function Fraymotif(aspects, name,tier, flavorText){
     }
     for(var i = 0; i<this.effects.length; i++){
       var e = this.effects[i];
-      if(e.damageInsteadOfBuff){
         if(effectTypes["effect"+ e.target].length == 0)   effectTypes["effect"+ e.target].push(e.toStringSimple())
         //no repeats
         if( effectTypes["effect"+ e.target].indexOf(e.statName) == -1) effectTypes["effect"+ e.target].push(e.statName)
-      }
     }
     //now i have a hash of all effect types and the stats i'm applying to them.
     var retArray = [];
@@ -93,8 +93,8 @@ function Fraymotif(aspects, name,tier, flavorText){
         retArray.push(template.replace(new RegExp("STAT","g"), [stats.slice(0, -1).join(', '), stats.slice(-1)[0]].join(stats.length < 2 ? '' : ' and ')))
       }
     }
+    console.log(["retArray is: ",retArray]);
     return [retArray.slice(0, -1).join(', '), retArray.slice(-1)[0]].join(retArray.length < 2 ? '' : ' and ')
-
   }
   //if i have multiple effects that do similar things, condense them.
   this.condenseEffectsText = function(){
@@ -479,9 +479,9 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 
   this.toStringSimple = function(){
     var ret = "";
-		if(this.damageInsteadOfBuff && this.target < 2){
+		if(this.target == this.s || this.target == this.a){
 			 ret += " heals/buffs"
-		}else if (this.damageInsteadOfBuff && this.target >= 2){
+		}else{
 			ret += " damages/debuffs"
 		}
 
