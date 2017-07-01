@@ -43,7 +43,7 @@ function Fraymotif(aspects, name,tier, flavorText){
 		return casters;  //eventually do smarter things, like only allow to cast buff hp if heals are needed or anybody is dead.
 	}
 
-  this.processFlavorText = function(owner, casters, enemy, enemies){
+  this.processFlavorText = function(owner, casters, allies, enemy, enemies){
       //if this.flavorText is null, we need to create it from our effects.
       /*
         when creating procedural flavor text, don't just blindly concat effects.
@@ -58,7 +58,7 @@ function Fraymotif(aspects, name,tier, flavorText){
       if(!this.flavorText) this.flavorText = this.proceduralFlavorText();
       var phrase = "The CASTERS do FRAYMOTIF on the ENEMY. ";//shitty example.
       phrase += this.flavorText;
-      return this.replaceKeyWords(phrase, owner, casters, enemy, enemies);
+      return this.replaceKeyWords(phrase, owner, casters, allies,  enemy, enemies);
   }
 
   this.proceduralFlavorText = function(){
@@ -140,13 +140,15 @@ function Fraymotif(aspects, name,tier, flavorText){
 
   }
 
-  this.replaceKeyWords = function(phrase, owner, casters, enemy, enemies){
+  this.replaceKeyWords = function(phrase, owner, casters, allies enemy, enemies){
     //ret= ret.replace(new RegExp(this.lettersToReplace[i][0], "g"),replace);
     phrase = phrase.replace(new RegExp("OWNER","g"), owner.htmlTitleBasic())
     phrase = phrase.replace(new RegExp("CASTERS","g"), getPlayersTitlesBasic(casters))
+    phrase = phrase.replace(new RegExp("ALLIES","g"), getPlayersTitlesBasic(allies))
     phrase = phrase.replace(new RegExp("ENEMY","g"), enemy.htmlTitleBasic())
     phrase = phrase.replace(new RegExp("ENEMIES","g"), getPlayersTitlesBasic(enemies))
     phrase = phrase.replace(new RegExp("FRAYMOTIF","g"), this.name)
+
     return phrase
   }
 
@@ -162,7 +164,7 @@ function Fraymotif(aspects, name,tier, flavorText){
 			//effect knows how to apply itself. pass it baseValue.
 			this.effects[i].applyEffect(owner, allies, casters,  enemy, enemies, this.baseValue);
 		}
-    return this.processFlavorText(owner, casters, enemy, enemies);
+    return this.processFlavorText(owner, casters,allies, enemy, enemies);
 	}
 }
 
@@ -500,7 +502,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
     if(this.target == 0){
       ret += " envelopes OWNER"
     }else if(this.target ==1){
-      ret += " surrounds the PARTY"
+      ret += " surrounds the ALLIES"
     }else if(this.target ==2){
       ret += " the ENEMY"
     }else if(this.target ==3){
