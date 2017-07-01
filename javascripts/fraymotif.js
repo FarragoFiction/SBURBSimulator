@@ -365,13 +365,13 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 	this.toString = function(){
 		var ret = "";
 		if(this.damageInsteadOfBuff && this.target < 2){
-			 ret += " heals"
+			 ret += " Heals"
 		}else if (this.damageInsteadOfBuff && this.target >= 2){
-			ret += " damages"
+			ret += " Damages"
 		}else if(!this.damageInsteadOfBuff && this.target < 2){
-			ret += " buffs"
+			ret += " Buffs"
 		}else if(!this.damageInsteadOfBuff && this.target >= 2){
-			ret += " debuffs"
+			ret += " Debuffs"
 		}
 
 		if(this.target == 0){
@@ -384,16 +384,16 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff){
 			ret += " all Enemies"
 		}
     var stat = "BLAND"
-    if(statName == "power") return "STRONG"
-    if(statName == "hp") return "HEARTY"
-    if(statName == "RELATIONSHIPS") return "FRIENDLY"
-    if(statName == "mobility") return "FAST"
-    if(statName == "sanity") return "CALM"
-    if(statName == "freeWill") return "WILLFUL"
-    if(statName == "maxLuck") return "LUCKY"
-    if(statName == "minLuck") return "LUCKY"
-    if(statName == "alchemy") return "CREATIVE"
-		ret += " based on how " + stat + " the casters are compared to their enemy."
+    if(this.statName == "power") stat = "STRONG"
+    if(this.statName == "hp") stat = "HEARTY"
+    if(this.statName == "RELATIONSHIPS") stat = "FRIENDLY"
+    if(this.statName == "mobility") stat = "FAST"
+    if(this.statName == "sanity") stat = "CALM"
+    if(this.statName == "freeWill") stat = "WILLFUL"
+    if(this.statName == "maxLuck") stat = "LUCKY"
+    if(this.statName == "minLuck") stat = "LUCKY"
+    if(this.statName == "alchemy") stat = "CREATIVE"
+		ret += " based on how " + stat + " the casters are compared to their enemy"
 		return ret;
 	}
 }
