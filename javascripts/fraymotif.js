@@ -55,7 +55,9 @@ function Fraymotif(aspects, name,tier, flavorText){
       /*
         Do regex replacment on CASTERS, ENEMY, FRAYMOTIF
       */
-      if(!this.flavorText) this.flavorText = this.proceduralFlavorText();
+      if(!this.flavorText){
+         this.flavorText = this.proceduralFlavorText();
+      }
       var phrase = "The CASTERS do FRAYMOTIF on the ENEMY. ";//shitty example.
       phrase += this.flavorText;
       return this.replaceKeyWords(phrase, owner, casters, allies,  enemy, enemies);
@@ -100,9 +102,10 @@ function Fraymotif(aspects, name,tier, flavorText){
   }
 
   this.getStatWord = function(stat, target){
-    var good = true;
-    if(target == 0 || target == 1 ) good = false;
-    if(good){
+    alert("???")
+    var bad = true;
+    if(target == 0 || target == 1 ) bad = false;
+    if(bad){
        return getRandomElementFromArray(this.goodStatWords(stat))
     }else{
        return getRandomElementFromArray(this.badStatWords(stat))
@@ -566,7 +569,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 		}else if(this.target ==2){
 			ret += " EBLUH"
 		}else if(this.target ==3){
-			ret += " EBLUHS"
+			ret += " ESBLUHS"
 		}
 
 		ret += " of STAT "
