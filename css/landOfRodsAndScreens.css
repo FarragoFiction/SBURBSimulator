@@ -6,6 +6,13 @@
 	vertical-align: bottom
 }
 
+body{
+	background: url(../images/LORAS/LORAS-background.gif);
+	background-position: top;
+	background-repeat:no-repeat;
+	background-color: black;
+}
+
 #loading_stats{
 	color: white;
 }
@@ -54,8 +61,10 @@ a{
 	color:white;
 }
 
-body{
-	background-color: black;
+
+#headerSpace{
+	height: 512px;
+	width: 0px;
 }
 
 #container{
