@@ -139,7 +139,7 @@ function Fraymotif(aspects, name,tier, flavorText){
   this.goodStatWords = function(statName){
     if(statName == "power") return ["strength","power","might"]
     if(statName == "hp") return ["plants","health","vines", "gardens", "stones"]
-    if(statName == "RELATIONSHIPS") return ["chains","friendship bracelets","shipping grids", "connections", "hearts", "pulse", "bindings"]
+    if(statName == "RELATIONSHIPS") return ["chains","friendship bracelets","shipping grids", "connections", "hearts", "pulse", "bindings", "rainbows", "care bare stares"]
     if(statName == "mobility") return ["wind","speed","hedgehogs"]
     if(statName == "sanity") return ["calmness","velvet pillows","sanity"]
     if(statName == "freeWill") return ["electricity","will","open doors"]
