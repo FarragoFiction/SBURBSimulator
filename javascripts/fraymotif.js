@@ -94,7 +94,7 @@ function Fraymotif(aspects, name,tier, flavorText){
       }
     }
     console.log(["retArray is: ",retArray]);
-    return [retArray.slice(0, -1).join(', TRANSITION '), retArray.slice(-1)[0]].join(retArray.length < 2 ? '' : ' and ')
+    return [retArray.slice(0, -1).join(', '), retArray.slice(-1)[0]].join(retArray.length < 2 ? '' : ' and ')
   }
   //if i have multiple effects that do similar things, condense them.
   this.condenseEffectsText = function(){
@@ -148,14 +148,21 @@ function Fraymotif(aspects, name,tier, flavorText){
     phrase = phrase.replace(new RegExp("ENEMY","g"), enemy.htmlTitleBasic())
     phrase = phrase.replace(new RegExp("ENEMIES","g"), getPlayersTitlesBasic(enemies))
     phrase = phrase.replace(new RegExp("FRAYMOTIF","g"), this.name)
-    phrase = phrase.replace(new RegExp("TRANSITION","g"), getRandomElementFromArray(this.transitions))
+    //mostly for procedural
+    phrase = phrase.replace(new RegExp("damages/debuffs","g"), getRandomElementFromArray(this.getDamageWords()));
+    phrase = phrase.replace(new RegExp("heals/buffs","g"), getRandomElementFromArray(this.getHealingWords()));
 
     return phrase
   }
 
-  this.transitions = function(){
-    return ["while","meanwhile","at the same time"];
+  this.getDamageWords = function(){
+        return ["degrading","acidic","malicious"];
   }
+
+  this.getHealingWords = function(){
+    return ["soothing","supportive","friendly"];
+  }
+
 
 	//allies is NOT just who is helping to cast the fraymotif. it is everyone.
 	this.useFraymotif = function(owner, allies, enemies){
@@ -489,7 +496,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 		if(this.target == this.s || this.target == this.a){
 			 ret += " a heals/buffs"
 		}else{
-			ret += " damages/debuffs"
+			ret += " a damages/debuffs"
 		}
 
 		if(this.target == 0){
@@ -507,11 +514,11 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
     if(this.target == 0){
       ret += " envelopes the OWNER"
     }else if(this.target ==1){
-      ret += " surrounds the ALLIES"
+      ret += " surrounds the players"
     }else if(this.target ==2){
       ret += " pierces the ENEMY"
     }else if(this.target ==3){
-      ret += " explodes all ENEMIES"
+      ret += " explodes all enemies"
     }
 		return ret;
   }
