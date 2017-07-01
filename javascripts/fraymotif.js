@@ -91,8 +91,6 @@ function Fraymotif(aspects, name,tier, flavorText){
       }
     }
 
-
-
     //now i have a hash of all effect types and the stats i'm applying to them.
     var retArray = [];
     for(var i = 0; i<4; i++){
@@ -120,7 +118,9 @@ function Fraymotif(aspects, name,tier, flavorText){
     }
     console.log(["retArray is: ",retArray]);
     var almostDone= [retArray.slice(0, -1).join(', '), retArray.slice(-1)[0]].join(retArray.length < 2 ? '' : ' and ')
-    almostDone = almostDone.charAt(0).toUpperCase() + almostDone.slice(1);
+    console.log(almostDone);
+    almostDone = almostDone.charAt(0).toUpperCase() + almostDone.slice(1) + "."; //sentence it.
+    console.log(almostDone.charAt(0).toUpperCase());
     return this.replaceKeyWordsForFlavorTextBase(almostDone);
 
   }
@@ -249,11 +249,11 @@ function Fraymotif(aspects, name,tier, flavorText){
   }
 
   this.getDamageWords = function(){
-        return ["painful","acidic","sharp"];
+        return ["painful","acidic","sharp", "harmful"];
   }
 
   this.getDebuffWords = function(){
-        return ["draining","malicious", "poisonous", "degrading"];
+        return ["draining","malicious", "distracting", "degrading"];
   }
 
   this.getHealingWords = function(){
@@ -595,13 +595,13 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
   this.toStringSimple = function(){
     var ret = "";
     if(this.damageInsteadOfBuff && this.target < 2){
-			 ret += " a heals"
+			 ret += "a heals"
 		}else if (this.damageInsteadOfBuff && this.target >= 2){
-			ret += " a damages"
+			ret += "a damages"
 		}else if(!this.damageInsteadOfBuff && this.target < 2){
-			ret += " a buffs"
+			ret += "a buffs"
 		}else if(!this.damageInsteadOfBuff && this.target >= 2){
-			ret += " a debuffs"
+			ret += "a debuffs"
 		}
 
 		if(this.target == 0){
@@ -623,7 +623,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
     }else if(this.target ==2){
       ret += " pierces the ENEMY"
     }else if(this.target ==3){
-      ret += " explodes all enemies"
+      ret += " surrounds all enemies"
     }
 		return ret;
   }
