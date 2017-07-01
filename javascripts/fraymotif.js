@@ -99,7 +99,7 @@ function Fraymotif(aspects, name,tier, flavorText){
     return [retArray.slice(0, -1).join(', '), retArray.slice(-1)[0]].join(retArray.length < 2 ? '' : ' and ')
   }
 
-  this.getStatWord(stat, target){
+  this.getStatWord = function(stat, target){
     var good = true;
     if(target == 0 || target == 1 ) good = false;
     if(good){
@@ -110,8 +110,8 @@ function Fraymotif(aspects, name,tier, flavorText){
   }
 
 
-  this.goodStatWords = function(stat){
-    f(statName == "power") return ["strength","power","might"]
+  this.goodStatWords = function(statName){
+    if(statName == "power") return ["strength","power","might"]
     if(statName == "hp") return ["plants","health","vines", "gardens", "stones"]
     if(statName == "RELATIONSHIPS") return ["chains","friendship bracelets","shipping grids", "connections", "hearts", "pulse", "bindings"]
     if(statName == "mobility") return ["wind","speed","hedgehogs"]
@@ -122,7 +122,7 @@ function Fraymotif(aspects, name,tier, flavorText){
     if(statName == "alchemy") return ["inspiration","creativeness","grist", "perfectly generic objects"]
   }
 
-  this.badStatWords = function(stat){
+  this.badStatWords = function(statName){
     if(statName == "power") return ["weakness","powerlessness","despair"]
     if(statName == "hp") return ["fragility","rotting plants","disease"]
     if(statName == "RELATIONSHIPS") return ["aggression","broken chains","empty friends lists"]
