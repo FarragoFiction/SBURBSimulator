@@ -664,7 +664,7 @@ function drawK3(glow){
 	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg3");
 	var num = "W2"
-	if(glow) num = "a2"
+	if(glow) num = "A2"
 	if(ti1 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num +"_p0.png";
 	if(ti1 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p1.png";
 	if(ti1 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p2.png";
