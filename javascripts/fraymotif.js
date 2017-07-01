@@ -50,11 +50,14 @@ function Fraymotif(aspects, name,tier, flavorText){
 		if(casters.length != aspects.length) return;
 		console.log("Can use fraymotif.")
 
+    //ALL effects that target a single enemy target the SAME enemy.
+    var enemy = getRandomElementFromArray(enemies);
 		for(var i = 0; i<this.effects.length; i++){
 			//effect knows how to apply itself. pass it baseValue.
-			this.effects[i].applyEffect(owner, allies, casters,  enemies, this.baseValue);
+			this.effects[i].applyEffect(owner, allies, casters,  enemy, enemies, this.baseValue);
 		}
 	}
+  return "TODO: use flavor text as template to describe self, use regexp to replace shit."
 }
 
 
@@ -286,7 +289,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 
 
 
-	this.applyEffect = function(owner,allies, casters,  enemies, baseValue){
+	this.applyEffect = function(owner,allies, casters,  enemy, enemies, baseValue){
 		var strifeValue = this.processEffectValue(casters, enemies);
 		var effectValue = baseValue;
 		if(strifeValue < baseValue) effectValue = baseValue;
@@ -295,7 +298,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 
 		//now, i need to USE this effect value.  is it doing "damage" or "buffing"?
 		if(this.target == this.e || this.target == this.e2) effectValue = effectValue * -1;  //do negative things to the enemy.
-		var targetArr = this.chooseTargetArr(owner, allies, casters, enemies);
+		var targetArr = this.chooseTargetArr(owner, allies, casters, enemy, enemies);
     console.log(["target chosen: ", targetArr])
 		if(this.damageInsteadOfBuff){
       console.log("applying damage: " + targetArr.length)
@@ -306,11 +309,11 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 		}
 	}
 
-	this.chooseTargetArr = function(owner, allies, casters, enemies){
+	this.chooseTargetArr = function(owner, allies, casters, enemy, enemies){
 		console.log(["potential targets: ",owner, allies, casters, enemies]);
 		if(this.target == this.s) return [owner];
 		if(this.target == this.a) return allies;
-		if(this.target == this.e) return [getRandomElementFromArray(enemies)]; //TODO eventually make this smart.
+		if(this.target == this.e) return [enemy]; //all effects target same enemy.
 		if(this.target == this.e2) return enemies;
 	}
 
