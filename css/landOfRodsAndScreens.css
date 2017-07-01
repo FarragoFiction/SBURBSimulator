@@ -61,6 +61,10 @@ a{
 	color:white;
 }
 
+@font-face {
+    font-family: land;
+    src: url(../images/LORAS/CARIMA.TTF);
+}
 
 #headerSpace{
 	height: 512px;
@@ -73,6 +77,7 @@ a{
 	font-size: 100px;
 	text-decoration: none;
 	position: absolute;
+	font-family: land;
   bottom: 50%;
 	left: 100px;
 	text-shadow: -1px -1px black, 1px -1px black, -1px 1px black, 1px 1px black, -1px 0px black, 1px 0px black, 0px -1px black, 0px 1px black, 0px 0px 5px black, 0px 0px 8px black;
