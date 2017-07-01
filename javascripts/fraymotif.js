@@ -4,14 +4,15 @@ so, players, player snapshots AND gameEntities will have to have an array of app
 and their getPower, getHP etc stats must use these.
 at start AND end of battle (can't be too careful), wipe applied fraymotifs
 */
-function Fraymotif(aspects, name,tier){
+function Fraymotif(aspects, name,tier, flavorText){
     this.aspects = aspects; //expect to be an array
     this.name = name;
     this.tier = tier;
+    this.flavorText = flavorText;  //will generate it procedurally if not set, otherwise things like sprites will have it hand made.
     this.used = false; //when start fight, set to false. set to true when used. once per fight
-	this.effects = [];  //each effect is a target, a revive, a statName
-	this.baseValue = 50 * this.tier;
-	if(this.tier == 3) this.baseValue = 1000;
+  	this.effects = [];  //each effect is a target, a revive, a statName
+  	this.baseValue = 50 * this.tier;
+	   if(this.tier == 3) this.baseValue = 1000;
 
 
     this.toString  = function(){
@@ -196,7 +197,6 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 	this.a = 1;
 	this.e = 2;
 	this.e2 = 3;
-  this.flavorText = flavorText;  //will generate it procedurally if not set, otherwise things like sprites will have it hand made.
 
 	this.setEffectForPlayer = function(player){
 		var effect = new FraymotifEffect("",this.e, true); //default to just damaging the enemy.
