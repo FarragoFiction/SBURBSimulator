@@ -67,7 +67,6 @@ function Fraymotif(aspects, name,tier, flavorText){
     //care about stats, not aspects. can mention aspects  as well somehow.
     //a soothing ASPECTWORD descends upon the allies of CASTERS, healing them.
     var base = this.superCondenseEffectsText();
-    console.log("replace base with regexp shit")
     return base;
   }
 
@@ -90,12 +89,52 @@ function Fraymotif(aspects, name,tier, flavorText){
         stats = effectTypes["effect"+i]
         var template = stats[0];
         stats.removeFromArray(template);
+        for(var j = 0; j<stats.length; j++){
+          stats[j] = this.getStatWord(stats[j], i); //i is who the target is, j is the stat.
+        }
         retArray.push(template.replace(new RegExp("STAT","g"), [stats.slice(0, -1).join(', '), stats.slice(-1)[0]].join(stats.length < 2 ? '' : ' and ')))
       }
     }
     console.log(["retArray is: ",retArray]);
     return [retArray.slice(0, -1).join(', '), retArray.slice(-1)[0]].join(retArray.length < 2 ? '' : ' and ')
   }
+
+  this.getStatWord(stat, target){
+    var good = true;
+    if(target == 0 || target == 1 ) good = false;
+    if(good){
+       return getRandomElementFromArray(this.goodStatWords(stat))
+    }else{
+       return getRandomElementFromArray(this.badStatWords(stat))
+    }
+  }
+
+
+  this.goodStatWords = function(stat){
+    f(statName == "power") return ["strength","power","might"]
+    if(statName == "hp") return ["plants","health","vines", "gardens", "stones"]
+    if(statName == "RELATIONSHIPS") return ["chains","friendship bracelets","shipping grids", "connections", "hearts", "pulse", "bindings"]
+    if(statName == "mobility") return ["wind","speed","hedgehogs"]
+    if(statName == "sanity") return ["calmness","velvet pillows","sanity"]
+    if(statName == "freeWill") return ["electricity","will","open doors"]
+    if(statName == "maxLuck") return ["dice","luck","light"]
+    if(statName == "minLuck") return ["dice","luck","light"]
+    if(statName == "alchemy") return ["inspiration","creativeness","grist", "perfectly generic objects"]
+  }
+
+  this.badStatWords = function(stat){
+    if(statName == "power") return ["weakness","powerlessness","despair"]
+    if(statName == "hp") return ["fragility","rotting plants","disease"]
+    if(statName == "RELATIONSHIPS") return ["aggression","broken chains","empty friends lists"]
+    if(statName == "mobility") return ["laziness","sloths","pillows"]
+    if(statName == "sanity") return ["harshwimsies","clowns","fractals"]
+    if(statName == "freeWill") return ["acceptance","gullibility","closed doors"]
+    if(statName == "maxLuck") return ["misfortune","blank books","broken mirrors"]
+    if(statName == "minLuck") return ["misfortune","blank books","broken mirrors"]
+    if(statName == "alchemy") return ["failure","writer's blocks","monotony"]
+  }
+
+
   //if i have multiple effects that do similar things, condense them.
   this.condenseEffectsText = function(){
         /*
@@ -153,9 +192,9 @@ function Fraymotif(aspects, name,tier, flavorText){
     phrase = phrase.replace(new RegExp("heals/buffs","g"), getRandomElementFromArray(this.getHealingWords()));
 
     phrase = phrase.replace(new RegExp("SELF","g"), getRandomElementFromArray(this.getSelfWords()));
-    phrase = phrase.replace(new RegExp("ALLIES","g"), getRandomElementFromArray(this.getAlliesWords()));
-    phrase = phrase.replace(new RegExp("ENEMYBLUH","g"), getRandomElementFromArray(this.getEnemyWords()));
-    phrase = phrase.replace(new RegExp("ENEMIESBLUH","g"), getRandomElementFromArray(this.getEnemiesWords()));
+    phrase = phrase.replace(new RegExp("FRIENDSBLUH","g"), getRandomElementFromArray(this.getAlliesWords()));
+    phrase = phrase.replace(new RegExp("EBLUH","g"), getRandomElementFromArray(this.getEnemyWords()));
+    phrase = phrase.replace(new RegExp("ESBLUHS","g"), getRandomElementFromArray(this.getEnemiesWords()));
 
     return phrase
   }
@@ -523,11 +562,11 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 		if(this.target == 0){
 			ret += " SELF"
 		}else if(this.target ==1){
-			ret += " ALLIES"
+			ret += " FRIENDSBLUH"
 		}else if(this.target ==2){
-			ret += " ENEMYBLUH"
+			ret += " EBLUH"
 		}else if(this.target ==3){
-			ret += " ENEMIESBLUH"
+			ret += " EBLUHS"
 		}
 
 		ret += " of STAT "
