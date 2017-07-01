@@ -84,10 +84,11 @@ function Fraymotif(aspects, name,tier, flavorText){
           var e = this.effects[i];
           if(e.damageInsteadOfBuff){
             if(effectTypes["damage"+ e.target].length == 0)   effectTypes["damage"+ e.target].push(e.toString())
-            effectTypes["damage"+ e.target].push(e.statName)
+            //no repeats
+            if( effectTypes["damage"+ e.target].indexOf(e.statName) == -1) effectTypes["damage"+ e.target].push(e.statName)
           }else{
             if(effectTypes["buff"+ e.target].length == 0)   effectTypes["buff"+ e.target].push(e.toString())
-            effectTypes["buff"+ e.target].push(e.statName)
+            if( effectTypes["buff"+ e.target].indexOf(e.statName) == -1) effectTypes["buff"+ e.target].push(e.statName)
           }
         }
         //now i have a hash of all effect types and the stats i'm applying to them.
