@@ -98,14 +98,16 @@ function Fraymotif(aspects, name,tier, flavorText){
       }
     }
     console.log(["retArray is: ",retArray]);
-    return [retArray.slice(0, -1).join(', '), retArray.slice(-1)[0]].join(retArray.length < 2 ? '' : ' and ')
+    var almostDone= [retArray.slice(0, -1).join(', '), retArray.slice(-1)[0]].join(retArray.length < 2 ? '' : ' and ')
+    return this.replaceKeyWordsForFlavorTextBase(almostDone);
+
   }
 
   this.getStatWord = function(stat, target){
     alert("???")
     var bad = true;
     if(target == 0 || target == 1 ) bad = false;
-    if(bad){
+    if(!bad){
        return getRandomElementFromArray(this.goodStatWords(stat))
     }else{
        return getRandomElementFromArray(this.badStatWords(stat))
@@ -182,6 +184,16 @@ function Fraymotif(aspects, name,tier, flavorText){
 
   }
 
+  this.replaceKeyWordsForFlavorTextBase = function(phrase,){
+    phrase = phrase.replace(new RegExp("damages/debuffs","g"), getRandomElementFromArray(this.getDamageWords()));
+    phrase = phrase.replace(new RegExp("heals/buffs","g"), getRandomElementFromArray(this.getHealingWords()));
+    phrase = phrase.replace(new RegExp("SELF","g"), getRandomElementFromArray(this.getSelfWords()));
+    phrase = phrase.replace(new RegExp("EBLUH","g"), getRandomElementFromArray(this.getEnemyWords()));
+    phrase = phrase.replace(new RegExp("FRIENDSBLUH","g"), getRandomElementFromArray(this.getAlliesWords()));
+    phrase = phrase.replace(new RegExp("ESBLUHS","g"), getRandomElementFromArray(this.getEnemiesWords()));
+    return phrase;
+  }
+
   this.replaceKeyWords = function(phrase, owner, casters, allies, enemy, enemies){
     //ret= ret.replace(new RegExp(this.lettersToReplace[i][0], "g"),replace);
     phrase = phrase.replace(new RegExp("OWNER","g"), owner.htmlTitleBasic())
@@ -190,14 +202,9 @@ function Fraymotif(aspects, name,tier, flavorText){
     phrase = phrase.replace(new RegExp("ENEMY","g"), enemy.htmlTitleBasic())
     phrase = phrase.replace(new RegExp("ENEMIES","g"), getPlayersTitlesBasic(enemies))
     phrase = phrase.replace(new RegExp("FRAYMOTIF","g"), this.name)
-    //mostly for procedural
-    phrase = phrase.replace(new RegExp("damages/debuffs","g"), getRandomElementFromArray(this.getDamageWords()));
-    phrase = phrase.replace(new RegExp("heals/buffs","g"), getRandomElementFromArray(this.getHealingWords()));
 
-    phrase = phrase.replace(new RegExp("SELF","g"), getRandomElementFromArray(this.getSelfWords()));
-    phrase = phrase.replace(new RegExp("FRIENDSBLUH","g"), getRandomElementFromArray(this.getAlliesWords()));
-    phrase = phrase.replace(new RegExp("EBLUH","g"), getRandomElementFromArray(this.getEnemyWords()));
-    phrase = phrase.replace(new RegExp("ESBLUHS","g"), getRandomElementFromArray(this.getEnemiesWords()));
+
+
 
     return phrase
   }
