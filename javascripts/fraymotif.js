@@ -43,12 +43,31 @@ function Fraymotif(aspects, name,tier, flavorText){
 		return casters;  //eventually do smarter things, like only allow to cast buff hp if heals are needed or anybody is dead.
 	}
 
+  this.processFlavorText = function(owner, casters, enemy, enemies){
+      //if this.flavorText is null, we need to create it from our effects.
+      /*
+        when creating procedural flavor text, don't just blindly concat effects.
+        need to grab similar effects and combine.“Damages an Enemy based on how WILLFUL, STRONG, CALM, and FAST, the casters are compared to their enemy.”
+        do regexp replacement on the phrases the toString for effects generates.
+      */
+
+      //once i have flavor text, either procedural or hard coded
+      /*
+        Do regex replacment on CASTERS, ENEMY, FRAYMOTIF
+      */
+      var phrase = "The CASTERS do FRAYMOTIF on the ENEMY";//shitty example.
+      return this.replaceKeyWords(phrase, owner, casters, enemy, enemies);
+  }
+
+  this.replaceKeyWords = function(phrase, owner, casters, enemy, enemies){
+    return phrase
+  }
+
 	//allies is NOT just who is helping to cast the fraymotif. it is everyone.
 	this.useFraymotif = function(owner, allies, enemies){
 		var casters = this.getCasters(owner, allies);
 		console.log(casters);
 		if(casters.length != aspects.length) return;
-		console.log("Can use fraymotif.")
 
     //ALL effects that target a single enemy target the SAME enemy.
     var enemy = getRandomElementFromArray(enemies);
@@ -56,9 +75,10 @@ function Fraymotif(aspects, name,tier, flavorText){
 			//effect knows how to apply itself. pass it baseValue.
 			this.effects[i].applyEffect(owner, allies, casters,  enemy, enemies, this.baseValue);
 		}
+    return this.processFlavorText(owner, casters, enemy, enemies);
 	}
-  return "TODO: use flavor text as template to describe self, use regexp to replace shit."
 }
+
 
 
 //no global functions any more. bad pastJR.

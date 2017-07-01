@@ -42,9 +42,9 @@ function fraymotifClicked(fs){
 
 }
 
-function drawStats(fs){
+function drawStats(fs, flavorText){
 	var html = "";
-	html += drawFraymotif(fs);
+	html += drawFraymotif(fs, flavorText);
 	html += "<hr>"+fs.dummy.htmlTitleHP()+ "<hr><br>" +getStatsForPlayer(fs.dummy);
 	for(var i = 0; i< fs.players.length; i++){
 		var p = fs.players[i];
@@ -62,15 +62,16 @@ function drawStats(fs){
 	}
 
 	$("#testFraymotif").click(function(){
-		fs.fraymotif.useFraymotif(fs.players[0], fs.players, [fs.dummy]);
-		drawStats(fs);
+		var flavorText = fs.fraymotif.useFraymotif(fs.players[0], fs.players, [fs.dummy]);
+		drawStats(fs, flavorText);
 	});
 }
 
 
-function drawFraymotif(fs){
+function drawFraymotif(fs,flavorText){
 	var html = "<div class = 'fraymotifStat'>"
 	html += "<hr>" +fs.fraymotif.name+ "<Br><button id = 'testFraymotif'>Use Fraymotif</button> </hr>"
+	if(flavorText) html += "<hr>"+flavorText + "</hr>"
 	for(var i = 0; i<fs.fraymotif.effects.length; i++){
 		html += "<br>" + fs.fraymotif.effects[i] + ".";
 	}
