@@ -152,7 +152,28 @@ function Fraymotif(aspects, name,tier, flavorText){
     phrase = phrase.replace(new RegExp("damages/debuffs","g"), getRandomElementFromArray(this.getDamageWords()));
     phrase = phrase.replace(new RegExp("heals/buffs","g"), getRandomElementFromArray(this.getHealingWords()));
 
+    phrase = phrase.replace(new RegExp("SELF","g"), getRandomElementFromArray(this.getSelfWords()));
+    phrase = phrase.replace(new RegExp("ALLIES","g"), getRandomElementFromArray(this.getAlliesWords()));
+    phrase = phrase.replace(new RegExp("ENEMYBLUH","g"), getRandomElementFromArray(this.getEnemyWords()));
+    phrase = phrase.replace(new RegExp("ENEMIESBLUH","g"), getRandomElementFromArray(this.getEnemiesWords()));
+
     return phrase
+  }
+
+  this.getSelfWords=function(){
+    return ["aura","cloak","shield"]
+  }
+
+  this.getAlliesWords= function(){
+      return ["cloud","mist","fog"]
+  }
+
+  this.getEnemyWords = function(){
+      return ["lance","spike","laser"]
+  }
+
+  this.getEnemiesWords = function(){
+      return ["explosion","blast","miasma"]
   }
 
   this.getDamageWords = function(){
@@ -500,13 +521,13 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 		}
 
 		if(this.target == 0){
-			ret += " self"
+			ret += " SELF"
 		}else if(this.target ==1){
-			ret += " allies"
+			ret += " ALLIES"
 		}else if(this.target ==2){
-			ret += " an enemy"
+			ret += " ENEMYBLUH"
 		}else if(this.target ==3){
-			ret += " all enemies"
+			ret += " ENEMIESBLUH"
 		}
 
 		ret += " of STAT "
