@@ -78,8 +78,8 @@ function Fraymotif(aspects, name,tier, flavorText){
         var effectTypes = {};  //hash coded by effectType damage0 vs damage1 vs buff0. first element is template
         var ret = "";
         for(var i = 0; i<4; i++){
-          effectType["damage"+i] = []
-          effectType["buff"+i] = []
+          effectTypes["damage"+i] = []
+          effectTypes["buff"+i] = []
         }
         for(var i = 0; i<this.effects.length; i++){
           var e = this.effects[i];
