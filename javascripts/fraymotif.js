@@ -55,8 +55,61 @@ function Fraymotif(aspects, name,tier, flavorText){
       /*
         Do regex replacment on CASTERS, ENEMY, FRAYMOTIF
       */
+      if(!this.flavorText) this.flavorText = this.proceduralFlavorText();
       var phrase = "The CASTERS do FRAYMOTIF on the ENEMY.";//shitty example.
       return this.replaceKeyWords(phrase, owner, casters, enemy, enemies);
+  }
+
+  this.proceduralFlavorText = function(){
+    //first, compress the procedural effects text
+    //then, do a regexp on the parts.
+    //care about stats, not aspects. can mention aspects  as well somehow.
+    //a soothing ASPECTWORD descends upon the allies of CASTERS, healing them.
+    var base = this.condenseEffectsText();
+  }
+
+  //if i have multiple effects that do similar things, condense them.
+  this.condenseEffectsText = function(){
+        /*
+          If two effects both DAMAGE an ENEMY, then I want to generate text where it lists the types of damage.
+          “Damages an Enemy based on how WILLFUL, STRONG, CALM, and FAST, the casters are compared to their enemy.”
+        */
+        //8 main types of effects, damage/buff and 0-4
+        var effectTypes = {};  //hash coded by effectType damage0 vs damage1 vs buff0. first element is template
+        var ret = "";
+        for(var i = 0; i<4; i++){
+          effectType["damage"+i] = []
+          effectType["buff"+i] = []
+        }
+        for(var i = 0; i<this.effects.length; i++){
+          var e = this.effects[i];
+          if(e.damageInsteadOfBuff){
+            if(effectTypes["damage"+ e.target].length == 0)   effectTypes["damage"+ e.target].push(e.toString())
+            effectTypes["damage"+ e.target].push(e.statName)
+          }else{
+            if(effectTypes["buff"+ e.target].length == 0)   effectTypes["buff"+ e.target].push(e.toString())
+            effectTypes["buff"+ e.target].push(e.statName)
+          }
+        }
+        //now i have a hash of all effect types and the stats i'm applying to them.
+
+        for(var i = 0; i<4; i++){
+          var stats = [];
+          if(effectType["damage"+i].length > 0){
+            stats = effectType["damage"+i]
+            var template = stats[0];
+            stats.removeFromArray(template);
+            ret += template.replace(new RegExp("STAT","g"), [stats.slice(0, -1).join(', '), stats.slice(-1)[0]].join(stats.length < 2 ? '' : ' and '))
+          }
+          if(effectType["buff"+i].length > 0){
+            stats = effectType["buff"+i]
+            var template = stats[0];
+            stats.removeFromArray(template);
+            ret += template.replace(new RegExp("STAT","g"), [stats.slice(0, -1).join(', '), stats.slice(-1)[0]].join(stats.length < 2 ? '' : ' and '));
+          }
+        }
+        return ret;
+
   }
 
   this.replaceKeyWords = function(phrase, owner, casters, enemy, enemies){
@@ -417,16 +470,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 		}else if(this.target ==3){
 			ret += " all Enemies"
 		}
-    var stat = "BLAND"
-    if(this.statName == "power") stat = "STRONG"
-    if(this.statName == "hp") stat = "STURDY"
-    if(this.statName == "RELATIONSHIPS") stat = "FRIENDLY"
-    if(this.statName == "mobility") stat = "FAST"
-    if(this.statName == "sanity") stat = "CALM"
-    if(this.statName == "freeWill") stat = "WILLFUL"
-    if(this.statName == "maxLuck") stat = "LUCKY"
-    if(this.statName == "minLuck") stat = "LUCKY"
-    if(this.statName == "alchemy") stat = "CREATIVE"
+    var stat = "STAT"
 		ret += " based on how " + stat + " the casters are compared to their enemy"
 		return ret;
 	}

@@ -63,11 +63,12 @@ a{
 
 
 #headerSpace{
-	height: 512px;
+	height: 250px;
 	width: 0px;
 }
 
 #container{
+	background-color: black;
 	width: 1200px;
 }
 
