@@ -480,7 +480,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
   this.toStringSimple = function(){
     var ret = "";
 		if(this.target == this.s || this.target == this.a){
-			 ret += " heals/buffs"
+			 ret += " a heals/buffs"
 		}else{
 			ret += " damages/debuffs"
 		}
@@ -494,8 +494,18 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 		}else if(this.target ==3){
 			ret += " all enemies"
 		}
-    var stat = "STAT"
-		ret += " based on how " + stat + " the casters are compared to their enemy"
+
+		ret += " of STAT "
+
+    if(this.target == 0){
+      ret += " envelopes OWNER"
+    }else if(this.target ==1){
+      ret += " surrounds the PARTY"
+    }else if(this.target ==2){
+      ret += " the ENEMY"
+    }else if(this.target ==3){
+      ret += " all ENEMIES"
+    }
 		return ret;
   }
 
