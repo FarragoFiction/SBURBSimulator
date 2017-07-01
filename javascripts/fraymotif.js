@@ -509,9 +509,9 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
     }else if(this.target ==1){
       ret += " surrounds the ALLIES"
     }else if(this.target ==2){
-      ret += " the ENEMY"
+      ret += " pierces the ENEMY"
     }else if(this.target ==3){
-      ret += " all ENEMIES"
+      ret += " explodes all ENEMIES"
     }
 		return ret;
   }
