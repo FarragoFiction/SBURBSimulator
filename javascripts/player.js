@@ -144,7 +144,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.generateDenizen = function(){
 		var possibilities = this.getDenizenNameArray();
 		var strength = this.getOverallStrength();
-		var expectedMaxStrength = 1200; //from sim values of 50+ sessions. then balancing exercises with AB
+		var expectedMaxStrength = 600; //from sim values of 50+ sessions. then balancing exercises with AB
 		var strengthPerTier = (expectedMaxStrength)/possibilities.length;
 		//console.log("Strength at start is, " + strength);//but what if you don't want STRANGTH!???
 		var denizenIndex = Math.round(strength/strengthPerTier)-1;  //want lowest value to be off the denizen array.
@@ -176,11 +176,11 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		var denizenMinion = new GameEntity(this.session,name + " Minion", null);
 		var ml = 30;
 		var xl = 50;
-		var hp = 20 * strength;
+		var hp = 10 * strength;
 		var mob = 20;
 		var tl = 0;
 		var fw = 0;
-		var power = 10 * strength; //first minion.
+		var power = 5 * strength; //first minion.
 		if(this.aspect == "Hope") power = power *4;
 		if(this.aspect == "Life") hp = hp *4;
 		if(this.aspect == "Doom"){
@@ -210,9 +210,9 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(this.aspect == "Space") mob = mob /4;
 
 		denizenMinion.setStats(ml,xl,hp,mob,tl,fw,power,true, false, [],1000000);
-		power = 50*strength;
+		power = 10*strength;
 		if(this.aspect == "Hope") power = power *4; //only power and hp need recalced, will be same for all others.
-		hp = 100* strength;
+		hp = 20* strength;
 		if(this.aspect == "Life") hp = hp *4;
 		if(this.aspect == "Doom"){
 			 hp = hp/2;
