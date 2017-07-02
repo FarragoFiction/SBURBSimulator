@@ -1351,32 +1351,21 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		return worstRelationshipSoFar.value;
 	}
 
-
-	//bulshit stubs that game entities will have be different if crowned. players can't be crowned tho (or can they??? no. they can't.)
-	this.getMobility = function(){
-		return this.mobility;
-	}
-
-	this.getMaxLuck = function(){
-		return this.maxLuck;
-	}
-
-	this.getMinLuck = function(){
-		return this.minLuck;
-	}
-	this.getFreeWill = function(){
-		return this.freeWill;
-	}
-
-	this.getHP= function(){
-		return this.currentHP;
-	}
-
-	this.getMaxHP= function(){
-		return this.hp;
-	}
-	this.getPower = function(){
-		return this.power;
+	//remember that hp and currentHP are different things.
+	this.getStat = function(statName){
+		var ret =  0;
+		if(statName != "RELATIONSHIPS"){ //relationships, why you so cray cray???
+			ret += this[statName]
+		}else{
+			for(var i = 0; i<this.relationships.length; i++){
+				ret += this.relationships[i].value;s
+			}
+		}
+		for(var i = 0; i<this.buffs.length; i++){
+			var b = this.buffs[i];
+			if(b.name == statName) ret += b.value;
+		}
+		return ret;
 	}
 
 
@@ -1617,7 +1606,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	/*
-		3 bytes: (12 bits) hairColor
+		3 bytes: (24 bits) hairColor
 		1 byte: class/asspect
 		1 byte victimBlood, bloodColor
 		1 byte interest1Category, interest2Category
@@ -2705,5 +2694,5 @@ function AssociatedStat(statName, multiplier, isFromAspect){
 //can eventually have a duration, but for now, assumed to be the whole fight. i don't want fights to last long.
 function BuffStat(statName, buff){
 	this.name = statName;
-	this.buffValue = buff;
+	this.value = buff;
 }

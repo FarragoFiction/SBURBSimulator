@@ -238,37 +238,23 @@ function PlayerSnapshot(){
 	};
 
 
-	//bulshit stubs that game entities will have be different if crowned. players can't be crowned tho (or can they??? no. they can't.)
-	this.getMobility = function(){
-		return this.mobility;
+	//remember that hp and currentHP are different things.
+	this.getStat = function(statName){
+		var ret =  0;
+		if(statName != "RELATIONSHIPS"){ //relationships, why you so cray cray???
+			ret += this[statName]
+		}else{
+			for(var i = 0; i<this.relationships.length; i++){
+				ret += this.relationships[i].value;s
+			}
+		}
+		for(var i = 0; i<this.buffs.length; i++){
+			var b = this.buffs[i];
+			if(b.name == statName) ret += b.value;
+		}
+		return ret;
 	}
 
-	this.getMaxLuck = function(){
-		return this.maxLuck;
-	}
-
-	this.getMinLuck = function(){
-		return this.minLuck;
-	}
-	this.getFreeWill = function(){
-		return this.freeWill;
-	}
-
-	this.getHP= function(){
-		return this.currentHP;
-	}
-	
-	this.getMaxHP= function(){
-		return this.hp;
-	}	
-	
-	this.getPower = function(){
-		return this.power;
-	}
-
-	this.getSanity = function(){
-		return this.sanity;
-	}
 
 	this.increasePower = function(){
 		//stub for boss fights for doomed time clones. they can't level up. they are doomed.

@@ -556,10 +556,12 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 		for(var i = 0; i<targetArr.length; i++){
 			var t = targetArr[i];
 			if(this.statName != "RELATIONSHIPS"){
-				t[this.statName] += e;
+				//t[this.statName] += e;
+        t.buffs.push(new Buff(this.statName, e)) //don't mod directly anymore
 			}else{
 				for(var j = 0; j<t.relationships.length; j++){
-					t.relationships[j].value += e;
+					//t.relationships[j].value += e;
+          t.buffs.push(new Buff(this.statName, e))
 				}
 			}
 		}
