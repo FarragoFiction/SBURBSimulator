@@ -200,7 +200,7 @@ function GameEntity(session, name, crowned){
 				if(playersInFight.indexOf(diamonds[i] != -1)) reasonsToStay ++;  //extra reason to stay if they are your quadrant.
 			}
 			reasonsToStay += player.power/this.getStat("currentHP"); //if i'm about to finish it off.
-			reasonsToLeave += 2 * this.getPower()/player.currentHP;  //if you could kill me in two hits, that's one reason to leave. if you could kill me in one, that's two reasons.
+			reasonsToLeave += 2 * this.getStat("power")/player.getStat("currentHP");  //if you could kill me in two hits, that's one reason to leave. if you could kill me in one, that's two reasons.
 
 			//console.log("reasons to stay: " + reasonsToStay + " reasons to leave: " + reasonsToLeave)
 			if(reasonsToLeave > reasonsToStay * 2){
@@ -255,7 +255,7 @@ function GameEntity(session, name, crowned){
 					playerPower += living[i].power;
 				}
 				//console.log("playerPower is: " + playerPower)
-				if(playerPower > this.getHP()*2){
+				if(playerPower > this.getStat("currentHP")*2){
 						this.iAbscond = true;
 						//console.log("absconding when turn number is: " +numTurns);
 						return true;
@@ -433,11 +433,11 @@ function GameEntity(session, name, crowned){
 		this.fightNeedsToEnd = function(div, players, numTurns){
 			//if this IS a denizen fight, i can assume there is only one player in it
 			if(players[0].denizen.name == this.name){
-				if(numTurns>5 || (players[0].currentHP < this.getPower() && !players[0].godDestiny)){ //denizens are cool with killing players that will godtier.
+				if(numTurns>5 || (players[0].currentHP < this.getStat("power") && !players[0].godDestiny)){ //denizens are cool with killing players that will godtier.
 				//	console.log("Denizen is fucking done after  " + numTurns +" turns " + this.session.session_id)
 					this.denizenIsSoNotPuttingUpWithYourShitAnyLonger(div, players, numTurns);
 					return true;
-				}else if((players[0].currentHP < this.getPower() && players.godDestiny)){
+				}else if((players[0].currentHP < this.getStat("power") && players.godDestiny)){
 					console.log("Denizen is fine with killing this player, because they will probably GodTier. " + this.session.session_id)
 				}
 				return false; //denizen fights can not be interupted and are self limiting
@@ -508,11 +508,11 @@ function GameEntity(session, name, crowned){
 			//console.log(this.name + ": strife! " + numTurns + " turns against: " + getPlayersTitlesNoHTML(players) + this.session.session_id);
 			div.append("<br><Br>")
 			//as players die or mobility stat changes, might go players, me, me, players or something. double turns.
-			if(getAverageMobility(players) > this.getMobility()){ //players turn
+			if(getAverageMobility(players) > this.getStat("mobility")){ //players turn
 				if(!this.fightOverAbscond(div, players) )this.playersTurn(div, players,numTurns);
-				if(this.getHP() > 0 && !this.fightOverAbscond(div, players)) this.myTurn(div, players,numTurns);
+				if(this.getStat("currentHP") > 0 && !this.fightOverAbscond(div, players)) this.myTurn(div, players,numTurns);
 			}else{ //my turn
-				if(this.getHP() > 0 && !this.fightOverAbscond(div,players))  this.myTurn(div, players,numTurns);
+				if(this.getStat("currentHP") > 0 && !this.fightOverAbscond(div,players))  this.myTurn(div, players,numTurns);
 				if(!this.fightOverAbscond(div, players) )this.playersTurn(div, players,numTurns);
 			}
 
@@ -645,7 +645,7 @@ function GameEntity(session, name, crowned){
 
 				this.minorLevelPlayers(players)
 				return true;
-			}else if(this.getHP() <= 0){
+			}else if(this.getStat("currentHP") <= 0){
 				div.append(" <Br><br> <img src = 'images/sceneIcons/victory_icon.png'>The fight is over. " + this.name + " is dead. <br>");
 				this.levelPlayers(players) //even corpses
 				this.givePlayersGrist(players);
@@ -664,7 +664,7 @@ function GameEntity(session, name, crowned){
 			for(var i = 0; i<players.length; i++){  //check all players, abscond or living status can change.
 				var player = players[i]
 				///console.log("It is the " + player.titleBasic() + "'s turn. '");
-				if(!player.dead && this.getHP()>0 && this.playersAbsconded.indexOf(player) == -1){
+				if(!player.dead && this.getStat("currentHP")>0 && this.playersAbsconded.indexOf(player) == -1){
 					 this.playerdecideWhatToDo(div, player,players);  //
 				}
 			}
@@ -785,7 +785,7 @@ function GameEntity(session, name, crowned){
 		//return false if i don't do ghsot attack
 		this.ghostAttack = function(div, player, ghost){
 			if(!ghost) return false;
-			if(player.power < this.getHP()){
+			if(player.power < this.getStat("currentHP")){
 					//console.log("ghost attack in: " + this.session.session_id)
 
 					this.currentHP += Math.round(-1* ghost.power*5); //not just one attack from the ghost
@@ -838,7 +838,7 @@ function GameEntity(session, name, crowned){
 			//todo more likely to target light, less void.
 			ret = findAspectPlayer(players, "Light");
 			//can attack light players corpse up to 5 times, randomly.
-			if(ret && ret.dead && (Math.seededRandom() > 5 || ret.currentHP < -1 * this.getPower()*5)) ret = null;  //only SOMETIMES target light player corpses. after all, that's SUPER lucky for the living.
+			if(ret && ret.dead && (Math.seededRandom() > 5 || ret.currentHP < -1 * this.getStat("power")*5)) ret = null;  //only SOMETIMES target light player corpses. after all, that's SUPER lucky for the living.
 			if(ret) return ret;
 			return findLowestMobilityPlayer(living);
 		}
@@ -871,7 +871,7 @@ function GameEntity(session, name, crowned){
 			if(defenseRoll > offenseRoll*10){
 				//console.log("Luck counter: " + this.session.session_id);
 				div.append("The attack backfires and causes unlucky damage. The " + defense.htmlTitleHP() + " sure is lucky!!!!!!!!" );
-				offense.currentHP += -1* offense.getPower()/10; //damaged by your own power.
+				offense.currentHP += -1* offense.getStat("power")/10; //damaged by your own power.
 				this.processDeaths(div, offense, defense)
 				return;
 			}else if(defenseRoll > offenseRoll*5){
@@ -881,12 +881,12 @@ function GameEntity(session, name, crowned){
 			}
 			//mobility dodge
 			var rand = getRandomInt(1,100) //don't dodge EVERY time. oh god, infinite boss fights. on average, fumble a dodge every 4 turns.
-			if(defense.getMobility() > offense.getMobility() * 10 && rand > 25){
+			if(defense.getStat("mobility") > offense.getStat("mobility") * 10 && rand > 25){
 				////console.log("Mobility counter: " + this.session.session_id);
 				ret = ("The " + offense.htmlTitleHP() + " practically appears to be standing still as they clumsily lunge towards the " + defense.htmlTitleHP()  );
-				if(defense.getHP() > 0 ){
+				if(defense.getStat("currentHP")> 0 ){
 					ret += ". They miss so hard the " + defense.htmlTitleHP() + " has plenty of time to get a counterattack in."
-					offense.currentHP += -1* defense.getPower();
+					offense.currentHP += -1* defense.getStat("power");
 				}else{
 					ret += ". They miss pretty damn hard. "
 				}
@@ -894,12 +894,12 @@ function GameEntity(session, name, crowned){
 				this.processDeaths(div, offense, defense)
 
 				return;
-			}else if(defense.getMobility() > offense.getMobility()*5 && rand > 25){
+			}else if(defense.getStat("mobility") > offense.getStat("mobility")*5 && rand > 25){
 				div.append(" The " + defense.htmlTitleHP() + " dodges the attack completely. ");
 				return;
 			}
 			//base damage
-			var hit = offense.getPower();
+			var hit = offense.getStat("power");
 			offenseRoll = offense.rollForLuck();
 			defenseRoll = defense.rollForLuck();
 			//critical/glancing hit odds.
@@ -950,7 +950,7 @@ function GameEntity(session, name, crowned){
 		}
 
 		this.checkForAPulse =function(player, attacker){
-			if(player.getHP() <= 0){
+			if(player.getStat("currentHP") <= 0){
 				var cod = "fighting the " + attacker.htmlTitle();
 				if(this.name == "Jack"){
 					cod =  "after being shown too many stabs from Jack";
@@ -971,7 +971,7 @@ function GameEntity(session, name, crowned){
 
 
 		this.rollForLuck = function(){
-			return getRandomInt(this.getMinLuck(), this.getMaxLuck());
+			return getRandomInt(getStat("minLuck"), this.getStat("maxLuck"));
 		}
 
 		//place holders for now. being in diamonds with jack is NOT a core feature.
@@ -1325,7 +1325,7 @@ prototyping_objects.push(new GameEntity(null, "Google",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
 prototyping_objects[prototyping_objects.length-1].corrupted = true;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "sure knows a lot about everything, but why does it only seem to return results about crashing SBURB?";
+prototyping_objectobjects[prototyping_objects.length-1].helpPhrase = "sure knows a lot about everything, but why does it only seem to return results about crashing SBURB?";
 
 
 prototyping_objects.push(new GameEntity(null, "Game Grl",null));

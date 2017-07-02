@@ -241,15 +241,15 @@ function Fraymotif(aspects, name,tier, flavorText){
   }
 
   this.getEnemyWords = function(){
-      return ["lance","spike","laser", "hammer"]
+      return ["lance","spike","laser", "hammer", "shard", "ball", "meteor"]
   }
 
   this.getEnemiesWords = function(){
-      return ["explosion","blast","miasma", "matrix", "deluge", "cascade", "wave"]
+      return ["explosion","blast","miasma", "matrix", "deluge", "cascade", "wave", "fleet"]
   }
 
   this.getDamageWords = function(){
-        return ["painful","acidic","sharp", "harmful"];
+        return ["painful","acidic","sharp", "harmful", "beautiful pony", "fist"];
   }
 
   this.getDebuffWords = function(){
