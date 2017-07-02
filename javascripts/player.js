@@ -1,5 +1,6 @@
 function Player(session,class_name, aspect, object_to_prototype, moon, godDestiny,id){
 	this.baby = null;
+	this.buffs = []; //only used in strifes, array of BuffStats (from fraymotifs and eventually weapons)
 	this.renderingType = 0; //0 means default for this sim.
 	this.associatedStats = [];  //most players will have a 2x, a 1x and a -1x stat.
 	this.sanity = 0; //eventually replace triggerLevel with this (it's polarity is opposite triggerLevel)
@@ -2699,4 +2700,10 @@ function AssociatedStat(statName, multiplier, isFromAspect){
 		if(this.isFromAspect) tmp = " (from Aspect) "
 		return "["+statName + " x " +this.multiplier + tmp+"]";
 	}
+}
+
+//can eventually have a duration, but for now, assumed to be the whole fight. i don't want fights to last long.
+function BuffStat(statName, buff){
+	this.name = statName;
+	this.buffValue = buff;
 }
