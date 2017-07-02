@@ -278,7 +278,10 @@ function Fraymotif(aspects, name,tier, flavorText){
 			this.effects[i].applyEffect(owner, allies, casters,  enemy, enemies, this.baseValue);
 		}
     var revives = "";
-    if(dead.length > findDeadPlayers(allies).length) revives = " Also, the " + getPlayersTitlesBasic(dead) + " being dead is no longer a thing. ";
+    if(dead.length > findDeadPlayers(allies).length){
+      alert("make sure you confirm that the " + getPlayersTitlesBasic(dead) + " are alive again.")
+      revives = " Also, the " + getPlayersTitlesBasic(dead) + " being dead is no longer a thing. ";
+    }
     return this.processFlavorText(owner, casters,allies, enemy, enemies);
 	}
 }
