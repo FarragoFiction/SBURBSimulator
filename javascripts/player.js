@@ -175,7 +175,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		var denizen =  new GameEntity(this.session, "Denizen " +name, null);
 		var denizenMinion = new GameEntity(this.session,name + " Minion", null);
 		var ml = -10;
-		var xl = 10;
+		var xl = 0;
 		var hp = 10 * strength;
 		var mob = 10;
 		var tl = 0;
@@ -1085,7 +1085,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.htmlTitleHP = function(){
-		return getFontColorFromAspect(this.aspect) + this.title() + " (" + Math.round(this.getStat("currentHP")) + "/" + Math.round(this.getStat("hp")) + "hp, " + Math.round(this.getStat("power")) + " power)</font>"
+		return getFontColorFromAspect(this.aspect) + this.title() + " (" + Math.round(this.getStat("currentHP")) + "/" + Math.round(this.getStat("minLuck")) + "hp, " + Math.round(this.getStat("power")) + " power)</font>"
 	}
 
 	this.generateBlandRelationships = function(friends){
