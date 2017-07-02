@@ -410,7 +410,22 @@ function FraymotifCreator(session){
     //stronger the relationship (in either direction), the better the odds of being part of the fraymotif.
     //BUT want to have roughly even array of fraymotifs, with 2 and 3 player fraymotifs being most common.
 
-    //think about this.
+    /*
+    Rand = rand * 100;
+    if(rand >90) 1 player   10% chance
+    if(rand >75) 2 player  14 % chance
+    if(rand >61) 3 player  13 % chance
+    if(rand >48) 4 player 12 % chance
+    if(rand >37) 5 player  11 % chance
+    if(rand >27) 6 player  10 % chance
+    if(rand >21) 7 player  6 % chance
+    if(rand >15) 8 player  5 % chance
+    if(rand >10) 9 player  4 % chance
+    if(rand >6) 10 player  3 % chance
+    if(rand >3) 11 player  2 % chance
+    if(rand >1) 12 player  1 % chance
+
+    */
   }
 
   //classes is between 0 and aspects.length. each aspect is paired with a class.
