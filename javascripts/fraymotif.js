@@ -140,7 +140,7 @@ function Fraymotif(aspects, name,tier, flavorText){
     if(statName == "power") return ["strength","power","might"]
     if(statName == "hp") return ["plants","health","vines", "gardens", "stones"]
     if(statName == "RELATIONSHIPS") return ["chains","friendship bracelets","shipping grids", "connections", "hearts", "pulse", "bindings", "rainbows", "care bare stares"]
-    if(statName == "mobility") return ["wind","speed","hedgehogs"]
+    if(statName == "mobility") return ["wind","speed","hedgehogs", "whirlwinds", "gales", "hurricanes"]
     if(statName == "sanity") return ["calmness","velvet pillows","sanity", "ripples", "glass", "fuzz"]
     if(statName == "freeWill") return ["electricity","will","open doors"]
     if(statName == "maxLuck") return ["dice","luck","light"]
@@ -150,11 +150,11 @@ function Fraymotif(aspects, name,tier, flavorText){
 
   this.badStatWords = function(statName){
     if(statName == "power") return ["weakness","powerlessness","despair"]
-    if(statName == "hp") return ["fragility","rotting plants","disease"]
+    if(statName == "hp") return ["fragility","rotting plants","disease", "bones", "skulls", "tombstones", "ash", "toxin"]
     if(statName == "RELATIONSHIPS") return ["aggression","broken chains","empty friends lists"]
-    if(statName == "mobility") return ["laziness","sloths","pillows"]
+    if(statName == "mobility") return ["laziness","sloths","pillows", "locks", "weights"]
     if(statName == "sanity") return ["harshwimsies","clowns","fractals", "madness", "tentacles", "rain"]
-    if(statName == "freeWill") return ["acceptance","gullibility","closed doors"]
+    if(statName == "freeWill") return ["acceptance","gullibility","closed doors", "gears", "clocks", "prophecy", "static"]
     if(statName == "maxLuck") return ["misfortune","blank books","broken mirrors"]
     if(statName == "minLuck") return ["misfortune","blank books","broken mirrors"]
     if(statName == "alchemy") return ["failure","writer's blocks","monotony"]
@@ -233,7 +233,7 @@ function Fraymotif(aspects, name,tier, flavorText){
   }
 
   this.getSelfWords=function(){
-    return ["aura","cloak","shield"]
+    return ["aura","cloak","shield", "armor", "robe"]
   }
 
   this.getAlliesWords= function(){
@@ -261,7 +261,7 @@ function Fraymotif(aspects, name,tier, flavorText){
   }
 
   this.getBuffWords = function(){
-    return ["soothing","supportive","friendly"];
+    return ["soothing","supportive","friendly", "fortifying", "protecting", "warding", "defensive"];
   }
 
 
