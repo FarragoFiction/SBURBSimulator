@@ -155,7 +155,7 @@ function PlayerSnapshot(){
 	}
 
 	this.htmlTitleHP = function(){
-		return getFontColorFromAspect(this.aspect) + this.title() + " (" + Math.round(this.getStat("currentHP")) + "/" + Math.round(this.getStat("hp")) + "hp, " + Math.round(this.getPower()) + " power)</font>"
+		return getFontColorFromAspect(this.aspect) + this.title() + " (" + Math.round(this.getStat("currentHP")) + "/" + Math.round(this.getStat("hp")) + "hp, " + Math.round(this.getStat("power")) + " power)</font>"
 	}
 
 	this.renderable = function(){

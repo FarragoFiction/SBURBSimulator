@@ -96,13 +96,16 @@ function getStatsForPlayer(player){
 		ret += "<div class='statHolder'><div class='statName'>"+stat+ ":</div><div class = 'statValue'>"
 		if(stat != "RELATIONSHIPS"){
 			ret += Math.round(player[stat]);
+			if(player[stat] != player.getStat(stat)) ret += "(" + player.getStat(stat) + " with buffs/debuffs)"
 		}else{
 			var tmp = 0;
 			for(var j = 0; j<player.relationships.length; j++){
 			//	console.log(player.relationships[j])
 				tmp +=Math.round(player.relationships[j].value)
+
 			}
 			ret += tmp;
+			if(tmp != player.getStat(stat)) ret += "(" + player.getStat(stat) + " with buffs/debuffs)"
 		}
 		ret += "</div></div>"
 	}

@@ -1085,7 +1085,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.htmlTitleHP = function(){
-		return getFontColorFromAspect(this.aspect) + this.title() + " (" + Math.round(this.getStat("currentHP")) + "/" + Math.round(this.getStat("hp")) + "hp, " + Math.round(this.getPower()) + " power)</font>"
+		return getFontColorFromAspect(this.aspect) + this.title() + " (" + Math.round(this.getStat("currentHP")) + "/" + Math.round(this.getStat("hp")) + "hp, " + Math.round(this.getStat("power")) + " power)</font>"
 	}
 
 	this.generateBlandRelationships = function(friends){
@@ -2692,7 +2692,7 @@ function AssociatedStat(statName, multiplier, isFromAspect){
 }
 
 //can eventually have a duration, but for now, assumed to be the whole fight. i don't want fights to last long.
-function BuffStat(statName, buff){
+function Buff(statName, buff){
 	this.name = statName;
 	this.value = buff;
 }
