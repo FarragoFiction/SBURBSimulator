@@ -72,6 +72,10 @@ function PlayerSnapshot(){
 		return this.chatHandle.match(/\b(\w)|[A-Z]/g).join('').toUpperCase();
 	}
 
+	this.allStats = function(){
+		return ["power","hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
+	}
+
 	this.toDataStrings = function(includeChatHandle){
 		var ch = "";
 		if(includeChatHandle) ch = sanitizeString(this.chatHandle);
@@ -151,7 +155,7 @@ function PlayerSnapshot(){
 	}
 
 	this.htmlTitleHP = function(){
-		return getFontColorFromAspect(this.aspect) + this.title() + " (" + Math.round(this.getHP()) + "/" + Math.round(this.getMaxHP()) + "hp, " + Math.round(this.getPower()) + " power)</font>"
+		return getFontColorFromAspect(this.aspect) + this.title() + " (" + Math.round(this.getStat("currentHP")) + "/" + Math.round(this.getStat("hp")) + "hp, " + Math.round(this.getPower()) + " power)</font>"
 	}
 
 	this.renderable = function(){

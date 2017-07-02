@@ -179,6 +179,10 @@ function GameEntity(session, name, crowned){
 			this.player = object.player;
 		}
 
+		this.allStats = function(){
+			return ["power","hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
+		}
+
 		//a player will try to flee this fight if they are losing.
 		//but if any of their good friends are still around, they will stay.
 		//if all players are fled, fight is over.

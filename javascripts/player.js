@@ -1085,7 +1085,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.htmlTitleHP = function(){
-		return getFontColorFromAspect(this.aspect) + this.title() + " (" + Math.round(this.getHP()) + "/" + Math.round(this.getMaxHP()) + "hp, " + Math.round(this.getPower()) + " power)</font>"
+		return getFontColorFromAspect(this.aspect) + this.title() + " (" + Math.round(this.getStat("currentHP")) + "/" + Math.round(this.getStat("hp")) + "hp, " + Math.round(this.getPower()) + " power)</font>"
 	}
 
 	this.generateBlandRelationships = function(friends){
