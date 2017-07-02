@@ -83,49 +83,22 @@ function GameEntity(session, name, crowned){
 			}
 		}
 
-		this.getMinLuck = function(){
-			if(this.crowned){
-				return this.minLuck + this.crowned.minLuck;
+		//remember that hp and currentHP are different things.
+		this.getStat = function(statName){
+			var ret =  0;
+			if(statName != "RELATIONSHIPS"){ //relationships, why you so cray cray???
+				ret += this[statName]
+			}else{
+				for(var i = 0; i<this.relationships.length; i++){
+					ret += this.relationships[i].value;s
+				}
 			}
-			return this.minLuck;
-		}
-
-		this.getFreeWill = function(){
-			if(this.crowned){
-				return this.freeWill + this.crowned.freeWill;
+			for(var i = 0; i<this.buffs.length; i++){
+				var b = this.buffs[i];
+				if(b.name == statName) ret += b.value;
 			}
-			return this.freeWill;
-		}
-
-		this.getHP= function(){
-			if(this.crowned){
-				return this.currentHP + this.crowned.hp;  //my hp can be negative. only thing that matters is total is poistive.
-			}
-			return this.currentHP;
-		}
-		
-		this.allStats = function(){
-			return ["power","hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
-		}
-		
-		this.getMaxHP= function(){
-			if(this.crowned){
-				return this.currentHP + this.crowned.hp;  //my hp can be negative. only thing that matters is total is poistive.
-			}
-			return this.hp;
-		}
-		this.getPower = function(){
-			if(this.crowned){
-				return Math.max(this.power + this.crowned.power,1);
-			}
-			return Math.max(this.power,1);
-		}
-
-		this.getSanity = function(){
-			if(this.crowned){
-				return this.sanity + this.crowned.sanity;
-			}
-			return this.sanity;
+			if(this.crowned) ret += this.crowned.getStat(statName); //so meta.
+			return ret;
 		}
 
 		//don't try to heal sprites or consorts or carapaces, it won't work.
