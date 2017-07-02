@@ -245,7 +245,7 @@ function Fraymotif(aspects, name,tier, flavorText){
   }
 
   this.getEnemiesWords = function(){
-      return ["explosion","blast","miasma"]
+      return ["explosion","blast","miasma", "matrix", "deluge", "cascade", "wave"]
   }
 
   this.getDamageWords = function(){
