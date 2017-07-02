@@ -66,3 +66,4 @@ b=%C3%BE%C3%B8%05%C2%82%C3%BE%01%00%16%07%08%3F&s=,,Awful Puns,Song Writing,fros
 b=%00%00%00h%C3%BE%22%00%14%19%19A&s=,,drawing,improvisation,royalCapitalist
 b=%00%00%00q%C3%B0V%00%10%22%22%25&s=,,Fighting,Justice,tactfulTester
 b=%00%00%C3%BF*%C3%BE%C2%B9%00A%0B%0B%0B&s=,,Psychology,Video Games,Capptersprite
+b=%09%09%17%C2%88%C3%BE%2C%00%17-%0DA&s=,,Drawing,Girls,iridescentRibcage
