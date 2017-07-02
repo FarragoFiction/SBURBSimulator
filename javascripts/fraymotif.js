@@ -268,15 +268,17 @@ function Fraymotif(aspects, name,tier, flavorText){
 	//allies is NOT just who is helping to cast the fraymotif. it is everyone.
 	this.useFraymotif = function(owner, allies, enemies){
 		var casters = this.getCasters(owner, allies);
+    var dead = findDeadPlayers(allies);
 		console.log(casters);
 		if(casters.length != aspects.length) return;
-
     //ALL effects that target a single enemy target the SAME enemy.
     var enemy = getRandomElementFromArray(enemies);
 		for(var i = 0; i<this.effects.length; i++){
 			//effect knows how to apply itself. pass it baseValue.
 			this.effects[i].applyEffect(owner, allies, casters,  enemy, enemies, this.baseValue);
 		}
+    var revives = "";
+    if(dead.length > findDeadPlayers(allies).length) revives = " Also, the " + getPlayersTitlesBasic(dead) + " being dead is no longer a thing. ";
     return this.processFlavorText(owner, casters,allies, enemy, enemies);
 	}
 }

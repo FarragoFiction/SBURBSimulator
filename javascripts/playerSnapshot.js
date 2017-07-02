@@ -9,6 +9,7 @@ function PlayerSnapshot(){
 	this.spriteCanvasID = null;
 	this.sbahj = null;
 	this.hair = null;
+	this.buffs = []; //only used in strifes, array of BuffStats (from fraymotifs and eventually weapons)
 	this.baby = null;
 	this.robot = null;
 

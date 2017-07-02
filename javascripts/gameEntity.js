@@ -14,6 +14,7 @@ function GameEntity(session, name, crowned){
 		this.name = name;
 		this.armless = false;
 		this.grist = 0;
+		this.buffs = []; //only used in strifes, array of BuffStats (from fraymotifs and eventually weapons)
 		this.carapacian = false;
 		this.sanity = 0; //eventually replace triggerLevel with this (it's polarity is opposite triggerLevel)
 		this.alchemy = 0; //mostly unused until we get to the Alchemy update.
@@ -1325,7 +1326,7 @@ prototyping_objects.push(new GameEntity(null, "Google",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
 prototyping_objects[prototyping_objects.length-1].corrupted = true;
-prototyping_objectobjects[prototyping_objects.length-1].helpPhrase = "sure knows a lot about everything, but why does it only seem to return results about crashing SBURB?";
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "sure knows a lot about everything, but why does it only seem to return results about crashing SBURB?";
 
 
 prototyping_objects.push(new GameEntity(null, "Game Grl",null));
