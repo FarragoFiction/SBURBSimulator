@@ -174,10 +174,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		//also make minion here.
 		var denizen =  new GameEntity(this.session, "Denizen " +name, null);
 		var denizenMinion = new GameEntity(this.session,name + " Minion", null);
-		var ml = 30;
-		var xl = 50;
+		var ml = -10;
+		var xl = 10;
 		var hp = 10 * strength;
-		var mob = 20;
+		var mob = 10;
 		var tl = 0;
 		var fw = 0;
 		var power = 5 * strength; //first minion.
