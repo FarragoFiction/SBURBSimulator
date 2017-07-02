@@ -6,7 +6,7 @@ function FightKing(session){
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		//console.log('fight kin trigger?')
-		return (this.session.king.getHP() > 0) &&  (this.session.queen.getHP() <= 0) && (findLivingPlayers(this.session.players).length != 0) ;
+		return (this.session.king.getStat("currentHP") > 0) &&  (this.session.queen.getStat("currentHP") <= 0) && (findLivingPlayers(this.session.players).length != 0) ;
 	}
 
 
@@ -44,7 +44,7 @@ this.getGoodGuys = function(){
 
 		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
 		var fighting = this.getGoodGuys()
-		if(this.session.democraticArmy.getHP() > 0) fighting.push(this.session.democraticArmy)
+		if(this.session.democraticArmy.getStat("currentHP") > 0) fighting.push(this.session.democraticArmy)
 		this.session.king.strife(div, fighting,0)
 
 	}

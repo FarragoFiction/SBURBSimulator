@@ -212,7 +212,7 @@ function GameEntity(session, name, crowned){
 				player.sanity += -10;
 				player.flipOut("how terrifying " + this.htmlTitle() + " was");
 				if(player.mobility > this.mobility){
-					//console.log(" player actually absconds: they had " + player.hp + " and enemy had " + enemy.getPower() + this.session.session_id)
+					//console.log(" player actually absconds: they had " + player.hp + " and enemy had " + enemy.getStat("power") + this.session.session_id)
 					div.append("<br><img src = 'images/sceneIcons/abscond_icon.png'> The " + player.htmlTitleHP() + " absconds right the fuck out of this fight. ")
 					this.playersAbsconded.push(player);
 					this.remainingPlayersHateYou(div, player, playersInFight);
@@ -850,7 +850,7 @@ function GameEntity(session, name, crowned){
 
 		//higher the free will, smarter the ai. more likely to do special things.
 		this.myTurn = function(div, players,numTurns){
-			//console.log("Hp during my turn is: " + this.getHP())
+			//console.log("Hp during my turn is: " + this.getStat("currentHP"))
 			//free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
 			//special and fraymotif can attack multiple enemies, but aggrieve is one on one.
 			if(!this.willIAbscond(div,players,numTurns)){
@@ -976,7 +976,7 @@ function GameEntity(session, name, crowned){
 
 
 		this.rollForLuck = function(){
-			return getRandomInt(getStat("minLuck"), this.getStat("maxLuck"));
+			return getRandomInt(this.getStat("minLuck"), this.getStat("maxLuck"));
 		}
 
 		//place holders for now. being in diamonds with jack is NOT a core feature.

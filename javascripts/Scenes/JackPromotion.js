@@ -5,12 +5,12 @@ function JackPromotion(session){
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		if(this.session.jack.getHP() <= 0 || this.session.jack.exiled) return false;  //jack can't be dead or exiled.
+		if(this.session.jack.getStat("currentHP") <= 0 || this.session.jack.exiled) return false;  //jack can't be dead or exiled.
 		if(this.session.queensRing == null) return false; //all is moot if no ring
 		if(this.session.jack.crowned != null) return false; //don't steal the ring from yourself, dunkass
 		//console.log("jack is alive, there is a queens ring and jack doesn't have it: " + this.session.session_id)
 		//jack is alive, and stronger than queen. (even if queen is dead, this means her lackeys are undisciplined)
-		if(this.session.jack.getPower() > this.session.queen.getPower() || this.session.queen.currentHP <= 0){
+		if(this.session.jack.getStat("power") > this.session.queen.getStat("power") || this.session.queen.currentHP <= 0){
 			return true;
 		}
 
@@ -27,7 +27,7 @@ function JackPromotion(session){
 		var ret = " In a shocking turn of events, Jack Noir claims the Black Queen's RING OF ORBS " + this.session.convertPlayerNumberToWords();
 		ret += "FOLD. "
 		if(this.session.queen.crowned && !this.session.queen.exiled){
-			if(this.session.queen.getHP() > 0){
+			if(this.session.queen.getStat("currentHP") > 0){
 				if(Math.seededRandom() > .5){
 					console.log("Jack making out like a bandit in session: " + this.session.session_id); //get it? 'cause cause he is making otu with BQ but also stealing from her???'
 					//and now the players still have to fight her.  ringless sure, but....
@@ -45,7 +45,7 @@ function JackPromotion(session){
 		}else{
 			ret += "It's not hard at all to get his Crew to pull off a heist to get the RING OF ORBS "+ this.session.convertPlayerNumberToWords();
 			ret += "FOLD. "
-			if(this.session.queen.getHP() > 0 && !this.session.queen.exiled){
+			if(this.session.queen.getStat("currentHP") > 0 && !this.session.queen.exiled){
 				if(Math.seededRandom() > .5){
 					console.log("Jack making out like a bandit in session: " + this.session.session_id); //get it? 'cause cause he is making otu with BQ but also stealing from her???'
 					//and now the players still have to fight her.  ringless sure, but....

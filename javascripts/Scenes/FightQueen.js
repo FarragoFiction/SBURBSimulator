@@ -5,7 +5,7 @@ function FightQueen(session){
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return (this.session.queen.getHP() > 0) &&  (findLivingPlayers(this.session.players).length != 0) ;
+		return (this.session.queen.getStat("currentHP") > 0) &&  (findLivingPlayers(this.session.players).length != 0) ;
 	}
 
 
@@ -40,13 +40,13 @@ function FightQueen(session){
 
 
 	this.renderContent = function(div){
-		if(this.session.queen.getPower() < 0) console.log("rendering fight queen with negative power " +this.session.session_id)
+		if(this.session.queen.getStat("power") < 0) console.log("rendering fight queen with negative power " +this.session.session_id)
 		div.append("<br> <img src = 'images/sceneIcons/bq_icon.png'> ");
 		div.append(this.content());
 
 		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
 		var fighting = this.getGoodGuys()
-		if(this.session.democraticArmy.getHP() > 0) fighting.push(this.session.democraticArmy)
+		if(this.session.democraticArmy.getStat("currentHP") > 0) fighting.push(this.session.democraticArmy)
 		this.session.queen.strife(div, fighting,0)
 
 	}

@@ -12,7 +12,7 @@ function Reckoning(session){
 	this.renderContent = function(div){
 		this.session.reckoningStarted = true;
 		var intro = ""
-		if(this.session.king.getHP() < 0){
+		if(this.session.king.getStat("currentHP") < 0){
 			intro += "<br><br> The reckoning has begun, initiating a meteor storm to destroy Skaia. ";
 		}else{
 			intro += "<br><br> The reckoning has begun.  The Black King has defeated his Prospitian counterpart, initiating a meteor storm to destroy Skaia. ";
@@ -54,7 +54,7 @@ function Reckoning(session){
 		}
 		var living = findLivingPlayers(this.session.players);
 		if(living.length > 0){
-			if(this.session.king.getHP()<0){
+			if(this.session.king.getStat("currentHP")<0){
 				intro += "<br><br>Normally this is where the Black King would show up to do an epic boss fight. Jack fucked up THAT script, though.  Looks like there's nothing to stop the players from...just...deploying the frog into the Skaia hole???  I mean. If they have a Frog. They do, right?"
 			}else{
 					intro += " <br><br>Getting back to the King, all the players can do now is try to defeat him on Skaia before they lose their Ultimate Reward. ";

@@ -5,7 +5,7 @@ function KingPowerful(session){
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return this.session.king.getPower() > this.session.hardStrength;
+		return this.session.king.getStat("power") > this.session.hardStrength;
 	}
 
 	this.renderContent = function(div){

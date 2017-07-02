@@ -22,7 +22,7 @@ function PrepareToExileQueen(session){
 		this.player = null;
 		this.playerList = playerList;
 		this.findSufficientPlayer(this.session.availablePlayers);
-		return (this.player != null) && (this.session.queen.getHP() > 0 && !this.session.queen.exiled);
+		return (this.player != null) && (this.session.queen.getStat("currentHP") > 0 && !this.session.queen.exiled);
 	}
 
 	this.moderateDamage = function(){
@@ -52,11 +52,11 @@ function PrepareToExileQueen(session){
 		removeFromArray(this.player, this.session.availablePlayers);
 		//NOT RANDOM ANY MORE. INSTEAD BASED ON PLAYER POWER VS QUEEN POWER
 		//generally will start with light and owrk your way up.
-		if(this.player.power  < this.session.queen.getPower()* .25){ //queen is 100 and you are less than 25
+		if(this.player.power  < this.session.queen.getStat("power")* .25){ //queen is 100 and you are less than 25
 			return this.lightDamage();
-		}else if(this.player.power < this.session.queen.getPower()){ //queen is 100 and you are at least 50
+		}else if(this.player.power < this.session.queen.getStat("power")){ //queen is 100 and you are at least 50
 			return this.moderateDamage();
-		}else if(this.player.power > this.session.queen.getPower()){
+		}else if(this.player.power > this.session.queen.getStat("power")){
 			return this.heavyDamage()
 		}
 		this.player.increasePower();

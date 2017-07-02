@@ -350,7 +350,7 @@ function Session(session_id){
 	this.setUpBosses = function(){
 		this.queensRing = new GameEntity(this, "!!!RING!!! OMG YOU SHOULD NEVER SEE THIS!",false)
 		this.queensRing.setStats(0,0,0,0,0,0,0,false, false, [],1000);
-		this.kingsScepter = new GameEntity(this, "!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!",1000)
+		this.kingsScepter = new GameEntity(this, "!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!",false)
 		this.kingsScepter.setStats(0,0,0,0,0,0,0,false, false, [],1000);
 		this.king = new GameEntity(this, "Black King", this.kingsScepter);
 		//minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs
@@ -466,7 +466,7 @@ function Session(session_id){
 		summary.jackGotWeapon = this.jackGotWeapon;
 		summary.jackRampage = this.jackRampage;
 		summary.jackScheme = this.jackScheme;
-		summary.kingTooPowerful =  this.king.getPower()> this.hardStrength;
+		summary.kingTooPowerful =  this.king.getStat("power")> this.hardStrength;
 		summary.queenRejectRing = this.queenRejectRing;
 		summary.democracyStarted =  this.democraticArmy.power > 0;
 		summary.murderMode = this.murdersHappened;

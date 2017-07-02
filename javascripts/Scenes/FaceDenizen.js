@@ -11,12 +11,12 @@ function FaceDenizen(session){
 			var p = this.session.availablePlayers[i]
 			if(p.denizen_index >= 3 && !p.denizenDefeated && p.land != null){
 				var d = p.denizen;
-				if(p.power > d.getHP() || Math.seededRandom() > .5){  //you're allowed to do other things between failed boss fights, you know.
+				if(p.power > d.getStat("currentHP") || Math.seededRandom() > .5){  //you're allowed to do other things between failed boss fights, you know.
 					this.denizenFighters.push(p);
 				}
 			}else if(p.landLevel >= 6 && !p.denizenMinionDefeated && p.land != null){
 				var d = p.denizenMinion
-				if(p.power > d.getHP() || Math.seededRandom() > .5){//you're allowed to do other things between failed boss fights, you know.
+				if(p.power > d.getStat("currentHP") || Math.seededRandom() > .5){//you're allowed to do other things between failed boss fights, you know.
 					this.denizenFighters.push(p);
 				}
 			}
@@ -63,10 +63,10 @@ function FaceDenizen(session){
 	this.faceDenizenMinion = function(p,div){
 		var denizenMinion = p.denizenMinion
 		var ret = "<br>The " + p.htmlTitleHP() + " initiates a strife with the " + denizenMinion.name + ". "
-		if(p.sprite && p.sprite.getHP() > 0 ) ret += " " + p.sprite.htmlTitleHP() + " joins them! "
+		if(p.sprite && p.sprite.getStat("currentHP") > 0 ) ret += " " + p.sprite.htmlTitleHP() + " joins them! "
 		div.append(ret);
 		denizenMinion.strife(div, [p,p.sprite],0);
-		if(denizenMinion.getHP() <= 0 ){
+		if(denizenMinion.getStat("currentHP") <= 0 ){
 			p.denizenMinionDefeated = true;
 		}
 	}
@@ -96,7 +96,7 @@ function FaceDenizen(session){
 			ret += "<br>The " + p.htmlTitle() + " initiates a strife with their " + denizen.name + ". "
 			div.append(ret);
 			denizen.strife(div, [p],0);
-			if(denizen.getHP() <= 0 ){
+			if(denizen.getStat("currentHP") <= 0 ){
 				p.denizenDefeated = true;
 				p.power = p.power*2;  //current and future doubling of power.
 				this.session.denizenBeat = true;

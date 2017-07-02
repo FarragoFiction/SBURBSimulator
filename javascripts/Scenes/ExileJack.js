@@ -5,7 +5,7 @@ function ExileJack(session){
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return (!this.session.jack.exiled && this.session.jack.getPower() < 10) && (this.session.jack.getHP() >  0 && this.session.jack.crowned == null);
+		return (!this.session.jack.exiled && this.session.jack.getStat("power") < 10) && (this.session.jack.getStat("currentHP") >  0 && this.session.jack.crowned == null);
 	}
 
 	this.renderContent = function(div){
