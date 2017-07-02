@@ -98,7 +98,7 @@ function writeToCanvas(canvas, player,canvasId){
 
 	//TODO need to handle new line myself.  font is 18 px tall. work with that. each new line adds to the count (which is now 6)
 	//ctx.fillText("Quirk: " + player.quirk.rawStringExplanation(),left_margin,current + space_between_lines*6);
-	var text2 = player.quirk.translate(" The quick brown fox (named Lacy) jumped over the lazy dog (named Barkey) over 1234567890 times for reasons. It sure was exciting! I wonder why he did that? Was he going to be late? I wonder....I guess we'll just have to wait and see.");
+	var text2 = player.quirk.translate(" The quick brown fox (named Lacy) jumped over the lazy dog (named Barkey) over 1234567890 times for reasons. It sure was exciting! I wonder why he did that? Was he going to be late? I wonder... I guess we'll just have to wait and see.");
 	var color2 = player.getChatFontColor();
 
 	fillTextMultiLine(canvas, "Quirk: " + player.quirk.rawStringExplanation() + "\n \n Sample: \n", text2, color2, left_margin, current + space_between_lines*7);
