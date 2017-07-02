@@ -241,7 +241,7 @@ function Fraymotif(aspects, name,tier, flavorText){
   }
 
   this.getEnemyWords = function(){
-      return ["lance","spike","laser"]
+      return ["lance","spike","laser", "hammer"]
   }
 
   this.getEnemiesWords = function(){

@@ -1358,7 +1358,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			ret += this[statName]
 		}else{
 			for(var i = 0; i<this.relationships.length; i++){
-				ret += this.relationships[i].value;s
+				ret += this.relationships[i].value;
 			}
 		}
 		for(var i = 0; i<this.buffs.length; i++){

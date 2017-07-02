@@ -145,7 +145,7 @@ function GameEntity(session, name, crowned){
 			if(this.crowned != null) ret+="Crowned "
 			var pname = this.name;
 			if(this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
-			return ret + pname +" (" + Math.round(this.getHP()) + "/" + Math.round(this.getMaxHP())+" hp, " + Math.round(this.getPower()) + " power)</font>"; //TODO denizens are aspect colored.
+			return ret + pname +" (" + Math.round(this.getStat("currentHP")) + "/" + Math.round(this.getStat("hp"))+" hp, " + Math.round(this.getStat("power")) + " power)</font>"; //TODO denizens are aspect colored.
 		}
 
 		this.flipOut = function(reason){
@@ -199,7 +199,7 @@ function GameEntity(session, name, crowned){
 			for(var i = 0; i<diamonds.length; i++){
 				if(playersInFight.indexOf(diamonds[i] != -1)) reasonsToStay ++;  //extra reason to stay if they are your quadrant.
 			}
-			reasonsToStay += player.power/this.getHP(); //if i'm about to finish it off.
+			reasonsToStay += player.power/this.getStat("currentHP"); //if i'm about to finish it off.
 			reasonsToLeave += 2 * this.getPower()/player.currentHP;  //if you could kill me in two hits, that's one reason to leave. if you could kill me in one, that's two reasons.
 
 			//console.log("reasons to stay: " + reasonsToStay + " reasons to leave: " + reasonsToLeave)
