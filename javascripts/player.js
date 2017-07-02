@@ -1185,7 +1185,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	//she'll help me make sure i don't make everything boring implmeenting luck.
 	//luck can absolutely be negative. thems the breaks.
 	this.rollForLuck = function(){
-		return getRandomInt(this.minLuck, this.maxLuck);
+		return getRandomInt(this.getStat("minLuck"), this.getStat("maxLuck"));
 	}
 
 	//people like you less
@@ -2637,7 +2637,7 @@ function getAverageMobility(players){
 	if(players.length == 0) return 0;
 	var ret = 0;
 	for(var i = 0; i< players.length; i++){
-		ret += players[i].mobility;
+		ret += players[i].getStat("mobility");
 	}
 	return  Math.round(ret/players.length);
 }

@@ -221,7 +221,7 @@ function PlayerSnapshot(){
 	}
 
 	this.rollForLuck = function(){
-		return getRandomInt(this.minLuck, this.maxLuck);
+		return getRandomInt(this.getStat("minLuck"), this.getStat("maxLuck"));
 	}
 
 	this.interactionEffect = function(player){
