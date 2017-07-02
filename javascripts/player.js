@@ -1186,6 +1186,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	//luck can absolutely be negative. thems the breaks.
 	this.rollForLuck = function(){
 		return getRandomInt(this.getStat("minLuck"), this.getStat("maxLuck"));
+		//return getRandomInt(this.minLuck, this.maxLuck);
 	}
 
 	//people like you less
@@ -1993,14 +1994,14 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.initializeInterestStats();  //takes the place of old random intial stats.
 		//reroll goddestiny and sprite as well. luck might have changed.
 		var luck = this.rollForLuck();
-		if(this.class_name == "Witch" || luck < 10){
+		if(this.class_name == "Witch" || luck < -9){
 			this.object_to_prototype = getRandomElementFromArray(disastor_objects);
 			//console.log("disastor")
-		}else if(luck > 65){
+		}else if(luck > 10){
 			this.object_to_prototype = getRandomElementFromArray(fortune_objects);
 			//console.log("fortune")
 		}
-		if(luck>40){
+		if(luck>5){
 			this.godDestiny =true;
 		}
 		this.currentHP = this.hp; //could have been altered by associated stats

@@ -711,12 +711,12 @@ function Intro(session){
 				narration += " They appear to be destined for greatness. ";
 			}
 
-			if(this.player.minLuck + this.player.maxLuck >90){
+			if(this.player.minLuck + this.player.maxLuck >8){
 				//console.log("initially lucky player: " +this.session.session_id)
 				narration += " They have aaaaaaaall the luck. All of it.";
 			}
 
-			if(this.player.maxLuck < 10){
+			if(this.player.maxLuck < -8){
 				//console.log("initially unlucky player: " +this.session.session_id)
 				narration += "They have an insurmountable stockpile of TERRIBLE LUCK.";
 			}
