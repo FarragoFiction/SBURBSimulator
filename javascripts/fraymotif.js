@@ -141,7 +141,7 @@ function Fraymotif(aspects, name,tier, flavorText){
     if(statName == "hp") return ["plants","health","vines", "gardens", "stones"]
     if(statName == "RELATIONSHIPS") return ["chains","friendship bracelets","shipping grids", "connections", "hearts", "pulse", "bindings", "rainbows", "care bare stares"]
     if(statName == "mobility") return ["wind","speed","hedgehogs"]
-    if(statName == "sanity") return ["calmness","velvet pillows","sanity"]
+    if(statName == "sanity") return ["calmness","velvet pillows","sanity", "ripples", "glass", "fuzz"]
     if(statName == "freeWill") return ["electricity","will","open doors"]
     if(statName == "maxLuck") return ["dice","luck","light"]
     if(statName == "minLuck") return ["dice","luck","light"]
@@ -153,7 +153,7 @@ function Fraymotif(aspects, name,tier, flavorText){
     if(statName == "hp") return ["fragility","rotting plants","disease"]
     if(statName == "RELATIONSHIPS") return ["aggression","broken chains","empty friends lists"]
     if(statName == "mobility") return ["laziness","sloths","pillows"]
-    if(statName == "sanity") return ["harshwimsies","clowns","fractals"]
+    if(statName == "sanity") return ["harshwimsies","clowns","fractals", "madness", "tentacles", "rain"]
     if(statName == "freeWill") return ["acceptance","gullibility","closed doors"]
     if(statName == "maxLuck") return ["misfortune","blank books","broken mirrors"]
     if(statName == "minLuck") return ["misfortune","blank books","broken mirrors"]
@@ -551,6 +551,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 	}
 
 	this.applyBuff = function(targetArr, effectValue){
+    console.log("TODO: instead of modifying stat directly, have 'Buff' array on player, game entitity, etc. ")
 		var e = effectValue/targetArr.length; //more potent when a single target.
 		for(var i = 0; i<targetArr.length; i++){
 			var t = targetArr[i];
