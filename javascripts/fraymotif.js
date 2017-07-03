@@ -8,6 +8,7 @@ function Fraymotif(aspects, name,tier, flavorText){
     this.aspects = aspects; //expect to be an array
     this.name = name;
     this.tier = tier;
+    this.usable = true; //when used in a fight, switches to false. IMPORTANT: fights should turn it back on when over.
     //flavor text acts as a template, with ENEMIES and CASTERS and ALLIES and ENEMY being replaced.
     //you don't call flavor text directly, instead expecting the use of the fraymotif to return something
     //based on it.
@@ -260,6 +261,7 @@ function Fraymotif(aspects, name,tier, flavorText){
   }
 
   this.canCast = function(owner, allies, enemies){
+    if(!this.usable) return false; //once per fight.
     var casters = this.getCasters(owner, allies);
     return (casters.length == this.aspects.length)
   }

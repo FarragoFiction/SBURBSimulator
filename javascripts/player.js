@@ -1026,6 +1026,12 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		return powerBoost;
 	}
 
+	this.resetFraymotifs = function(){
+		for(var i = 0; i<this.fraymotifs.length; i++){
+			this.fraymotifs[i].usable = true;
+		}
+	}
+
 	this.processStatPowerIncrease = function(powerBoost, stat){
 		var powerBoost = this.modPowerBoostByClass(powerBoost,stat);
 		if(this.isActive()){ //modify me
@@ -1048,9 +1054,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			powerBoost = powerBoost * 5;
 		}
 
-		if(this.aspect == "Hope"){
-			powerBoost = powerBoost * 2;
-		}
 
 		if(this.godTier){
 			powerBoost = powerBoost * 20;  //god tiers are ridiculously strong.

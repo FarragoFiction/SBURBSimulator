@@ -242,6 +242,12 @@ function PlayerSnapshot(){
 
 	};
 
+	this.resetFraymotifs = function(){
+		for(var i = 0; i<this.fraymotifs.length; i++){
+			this.fraymotifs[i].usable = true;
+		}
+	}
+
 
 	//remember that hp and currentHP are different things.
 	this.getStat = function(statName){

@@ -34,7 +34,6 @@ function GameEntity(session, name, crowned){
 		this.crowned = crowned;
 		this.abscondable = true; //nice abscond
 		this.canAbscond = true; //can't abscond bro
-		this.fraymotifsUsed = [];  //horrorTerror
 		this.playersAbsconded = [];
 		this.iAbscond = false;
 		this.exiled = false;
@@ -479,6 +478,19 @@ function GameEntity(session, name, crowned){
 			return players;
 		}
 
+		this.resetFraymotifs = function(){
+			for(var i = 0; i<this.fraymotifs.length; i++){
+				this.fraymotifs[i].usable = true;
+			}
+		}
+
+		this.resetEveryonesFraymotifs = function(players){
+			this.resetFraymotifs();
+			for(var i = 0; i<players.length; i++){
+				players[i].resetFraymotifs();
+			}
+		}
+
 
 		//before a fight is called, decide who is in it. denizens are one on one, jack catches slower player and friends
 		//king/queen are whole party. if you want to comment on who's in it, do it before here.
@@ -596,7 +608,7 @@ function GameEntity(session, name, crowned){
 
 
 		this.ending = function(div, players){
-			this.fraymotifsUsed = []; //not used yet
+			this.resetEveryonesFraymotifs();
 
 			this.iAbscond = false;
 			this.playersInteract(players);
@@ -875,7 +887,7 @@ function GameEntity(session, name, crowned){
 					chosen = f; //all else equal, prefer the one with more members.
 				}
 			}
-			div.append(chosen.useFraymotif(owner, allies, enemies));
+			div.append("<Br><br>"+chosen.useFraymotif(owner, allies, enemies));
 			console.log("!!!!!!!!!!!!!!!!TODO: don't forget to mark this fraymotif as no longer useable in this fight.")
 			return true;
 		}
