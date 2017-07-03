@@ -780,7 +780,7 @@ function GameEntity(session, name, crowned){
 					if(!didGhostAttack && !this.useFraymotif(div, player, players, [this])){
 						this.aggrieve(div, player, this );
 					}
-				}else if(!this.useFraymotif(div, player, players)){
+				}else if(!this.useFraymotif(div, player, players, [this])){
 					this.aggrieve(div, player, this );
 				}
 			}
@@ -854,7 +854,7 @@ function GameEntity(session, name, crowned){
 			//console.log("Hp during my turn is: " + this.getStat("currentHP"))
 			//free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
 			//special and fraymotif can attack multiple enemies, but aggrieve is one on one.
-			if(!this.willIAbscond(div,players,numTurns) && !this.useFraymotif(div, this,[this], players, numTurns)){
+			if(!this.willIAbscond(div,players,numTurns) && !this.useFraymotif(div, this,[this], players)){
 				var target = this.chooseTarget(players)
 				if(target) this.aggrieve(div, this, target );
 			}
