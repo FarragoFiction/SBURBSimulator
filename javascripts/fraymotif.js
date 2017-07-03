@@ -45,7 +45,7 @@ function Fraymotif(aspects, name,tier, flavorText){
 		return casters;  //eventually do smarter things, like only allow to cast buff hp if heals are needed or anybody is dead.
 	}
 
-  this.processFlavorText = function(owner, casters, allies, enemy, enemies){
+  this.processFlavorText = function(owner, casters, allies, enemy, enemies, revives){
       //if this.flavorText is null, we need to create it from our effects.
       /*
         when creating procedural flavor text, don't just blindly concat effects.
@@ -61,8 +61,8 @@ function Fraymotif(aspects, name,tier, flavorText){
          this.flavorText = this.proceduralFlavorText();
       }
       var phrase = "The CASTERS do FRAYMOTIF. ";//shitty example.
-      if(casters.length == 1) phrase = "The CASTERS does FRAYMOTIF on the ENEMY. "
-      phrase += this.flavorText;
+      if(casters.length == 1) phrase = "The CASTERS does FRAYMOTIF. "
+      phrase += this.flavorText + revives;
       return this.replaceKeyWords(phrase, owner, casters, allies,  enemy, enemies);
   }
 
@@ -281,10 +281,9 @@ function Fraymotif(aspects, name,tier, flavorText){
 		}
     var revives = "";
     if(dead.length > findDeadPlayers(allies).length){
-      alert("make sure you confirm that the " + getPlayersTitlesBasic(dead) + " are alive again.")
       revives = " Also, the " + getPlayersTitlesBasic(dead) + " being dead is no longer a thing. ";
     }
-    return this.processFlavorText(owner, casters,allies, enemy, enemies);
+    return this.processFlavorText(owner, casters,allies, enemy, enemies, revives);
 	}
 }
 
