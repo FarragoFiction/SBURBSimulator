@@ -888,7 +888,6 @@ function GameEntity(session, name, crowned){
 				}
 			}
 			div.append("<Br><br>"+chosen.useFraymotif(owner, allies, enemies));
-			console.log("!!!!!!!!!!!!!!!!TODO: don't forget to mark this fraymotif as no longer useable in this fight.")
 			return true;
 		}
 
