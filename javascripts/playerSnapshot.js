@@ -12,7 +12,7 @@ function PlayerSnapshot(){
 	this.buffs = []; //only used in strifes, array of BuffStats (from fraymotifs and eventually weapons)
 	this.baby = null;
 	this.robot = null;
-
+	this.fraymotifs = [];
 	this.hp = 0;
 	this.currentHP = 0;
 	this.minLuck = 0;

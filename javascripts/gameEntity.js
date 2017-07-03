@@ -14,6 +14,7 @@ function GameEntity(session, name, crowned){
 		this.name = name;
 		this.armless = false;
 		this.grist = 0;
+		this.fraymotifs = [];
 		this.buffs = []; //only used in strifes, array of BuffStats (from fraymotifs and eventually weapons)
 		this.carapacian = false;
 		this.sanity = 0; //eventually replace triggerLevel with this (it's polarity is opposite triggerLevel)
