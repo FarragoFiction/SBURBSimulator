@@ -59,15 +59,12 @@ function Fraymotif(aspects, name,tier, flavorText){
          this.flavorText = this.proceduralFlavorText();
       }
       var phrase = "The CASTERS do FRAYMOTIF on the ENEMY. ";//shitty example.
+      if(casters.length == 1) phrase = "The CASTERS does FRAYMOTIF on the ENEMY."
       phrase += this.flavorText;
       return this.replaceKeyWords(phrase, owner, casters, allies,  enemy, enemies);
   }
 
   this.proceduralFlavorText = function(){
-    //first, compress the procedural effects text
-    //then, do a regexp on the parts.
-    //care about stats, not aspects. can mention aspects  as well somehow.
-    //a soothing ASPECTWORD descends upon the allies of CASTERS, healing them.
     var base = this.superCondenseEffectsText();
     return base;
   }
