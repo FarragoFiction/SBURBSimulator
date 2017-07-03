@@ -608,7 +608,7 @@ function GameEntity(session, name, crowned){
 
 
 		this.ending = function(div, players){
-			this.resetEveryonesFraymotifs();
+			this.resetEveryonesFraymotifs(players);
 
 			this.iAbscond = false;
 			this.playersInteract(players);
