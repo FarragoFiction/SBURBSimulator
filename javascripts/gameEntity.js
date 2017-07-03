@@ -888,6 +888,7 @@ function GameEntity(session, name, crowned){
 				}
 			}
 			div.append("<Br><br>"+chosen.useFraymotif(owner, allies, enemies));
+			chosen.usable = false;
 			return true;
 		}
 
