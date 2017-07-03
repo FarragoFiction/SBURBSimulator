@@ -405,7 +405,7 @@ function FraymotifCreator(session){
     return name;
   }
 
-  this.makeFraymotifForPlayer = function(player, tier){
+  this.makeFraymotifForPlayerWithFriends = function(player, tier){
     //anybody the player has a relationship with can be part of this fraymotif.
     //stronger the relationship (in either direction), the better the odds of being part of the fraymotif.
     //BUT want to have roughly even array of fraymotifs, with 2 and 3 player fraymotifs being most common.
@@ -426,6 +426,9 @@ function FraymotifCreator(session){
     if(rand >1) 12 player  1 % chance
 
     */
+    //for testing purposes
+    console.log("make multi person fraymotifs.")
+    return this.makeFraymotif([player], tier);
   }
 
   //classes is between 0 and aspects.length. each aspect is paired with a class.

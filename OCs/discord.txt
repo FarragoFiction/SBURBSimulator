@@ -67,3 +67,4 @@ b=%00%00%00h%C3%BE%22%00%14%19%19A&s=,,drawing,improvisation,royalCapitalist
 b=%00%00%00q%C3%B0V%00%10%22%22%25&s=,,Fighting,Justice,tactfulTester
 b=%00%00%C3%BF*%C3%BE%C2%B9%00A%0B%0B%0B&s=,,Psychology,Video Games,Capptersprite
 b=%09%09%17%C2%88%C3%BE%2C%00%17-%0DA&s=,,Drawing,Girls,iridescentRibcage
+b=S2%1E%06%C3%BEm%04K%15%15%1F&s=,,Mysteries,Linguistics,ablativeStoryteller
