@@ -405,7 +405,7 @@ function FraymotifCreator(session){
     return name;
   }
 
-  this.makeFraymotifForPlayerWithFriends = function(player, helper tier){
+  this.makeFraymotifForPlayerWithFriends = function(player, helper, tier){
     //if helper, helper is guaranteed to be part of fraymotif.
     var players = [player];
     if(helper) players.push(helper);
