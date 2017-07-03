@@ -407,9 +407,9 @@ function FraymotifCreator(){
     var players = [player];
     if(helper) players.push(helper);
     for(var i = 0; i<player.session.players.length; i++){
-      var rand = Math.seededRandom;
+      var rand = Math.seededRandom();
       var p = player.session.players[i];
-      if(rand > .9 && players.indexOf(p) == -1) players.push(player); //10% chance of adding each additional player
+      if(rand > .8 && players.indexOf(p) == -1) players.push(player); //MATH% chance of adding each additional player
     }
     console.log("Made: " + players.length + " player fraymotif in session: " + player.session)
     return this.makeFraymotif(players, tier);
