@@ -388,7 +388,7 @@ function FraymotifCreator(){
       indexOfMusic = getRandomInt(0,tier-1);
       for(var i = 0; i < tier; i++){
         var musicWord = "";
-        if(i == indexOfMusic) musicWord = this.getRandomMusicWord(players[i].aspect);
+        if(i == indexOfMusic) musicWord = this.getRandomMusicWord(players[0].aspect);
         name += this.getRandomNameForAspect(players[0].aspect) + musicWord +" ";
       }
     }else{
