@@ -3,7 +3,7 @@ function Session(session_id){
 	this.session_id = session_id; //initial seed
 	//this.sceneRenderingEngine = new SceneRenderingEngine(false); //default is homestuck  //comment this line out if need to run sim without it crashing
 	this.players = [];
-	this.fraymotifCreator = new FraymotifCreator(this);  //as long as FraymotifCreator has no state data, this is fine.
+	this.fraymotifCreator = new FraymotifCreator();  //as long as FraymotifCreator has no state data, this is fine.
 	this.hasClubs = false;
 	this.sessionHealth = 3000; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
 	this.hasDiamonds = false;

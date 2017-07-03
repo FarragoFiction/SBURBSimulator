@@ -289,9 +289,7 @@ function Fraymotif(aspects, name,tier, flavorText){
 
 
 //no global functions any more. bad pastJR.
-function FraymotifCreator(session){
-  this.session = session;
-
+function FraymotifCreator(){
 
   this.getRandomBreathName = function(){
       var names = ["Gale", "Feather", "Breathless","Jetstream", "Hurricane", "Tornado"," Kansas", "Breath", "Breeze", "Twister", "Storm", "Wild", "Inhale", "Windy", "Skylark", "Fugue", "Pneumatic", "Wheeze", "Forward", "Vertical", "Whirlwind", "Jetstream"];
@@ -355,7 +353,6 @@ function FraymotifCreator(session){
   }
 
   this.getRandomNameForAspect = function(aspect){
-    console.log(aspect);
     var ret = "";
     if(aspect == "Blood") ret = this.getRandomBloodName();
     if(aspect == "Mind") ret = this.getRandomMindName();
@@ -409,25 +406,12 @@ function FraymotifCreator(session){
     //if helper, helper is guaranteed to be part of fraymotif.
     var players = [player];
     if(helper) players.push(helper);
-
-    /*
-    Rand = rand * 100;
-    if(rand >90) 1 player   10% chance
-    if(rand >75) 2 player  14 % chance
-    if(rand >61) 3 player  13 % chance
-    if(rand >48) 4 player 12 % chance
-    if(rand >37) 5 player  11 % chance
-    if(rand >27) 6 player  10 % chance
-    if(rand >21) 7 player  6 % chance
-    if(rand >15) 8 player  5 % chance
-    if(rand >10) 9 player  4 % chance
-    if(rand >6) 10 player  3 % chance
-    if(rand >3) 11 player  2 % chance
-    if(rand >1) 12 player  1 % chance
-
-    */
-    //for testing purposes
-    console.log("make multi person fraymotifs.")
+    for(var i = 0; i<player.session.players.length; i++){
+      var rand = Math.seededRandom;
+      var p = player.session.players[i];
+      if(rand > .9 && players.indexOf(p) == -1) players.push(player); //10% chance of adding each additional player
+    }
+    console.log("Made: " + players.length + " player fraymotif in session: " + player.session)
     return this.makeFraymotif(players, tier);
   }
 
