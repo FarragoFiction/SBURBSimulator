@@ -59,7 +59,7 @@ function Fraymotif(aspects, name,tier, flavorText){
          this.flavorText = this.proceduralFlavorText();
       }
       var phrase = "The CASTERS do FRAYMOTIF on the ENEMY. ";//shitty example.
-      if(casters.length == 1) phrase = "The CASTERS does FRAYMOTIF on the ENEMY."
+      if(casters.length == 1) phrase = "The CASTERS does FRAYMOTIF on the ENEMY. "
       phrase += this.flavorText;
       return this.replaceKeyWords(phrase, owner, casters, allies,  enemy, enemies);
   }
@@ -290,11 +290,13 @@ function Fraymotif(aspects, name,tier, flavorText){
 //no global functions any more. bad pastJR.
 function FraymotifCreator(){
 
-  this.getUsableFraymotifs = function(fraymotifs, owner, allies, enemies){
+  this.getUsableFraymotifs = function(owner, allies, enemies){
+    var fraymotifs = owner.fraymotifs;
     var ret = [];
     for(var i = 0; i<fraymotifs.length; i++){
       if(fraymotifs[i].canCast(owner, allies, enemies)) ret.push(fraymotifs[i]);
     }
+    console.log("Found: " + ret.length + " usable fraymotifs for " + owner)
     return ret;
   }
 

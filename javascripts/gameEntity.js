@@ -863,7 +863,6 @@ function GameEntity(session, name, crowned){
 		//return true if you did.
 		//TODO l8r refactor strifes to NOT be part of game entitiy, so can have group of enemies fight group of players.
 		this.useFraymotif = function(div, owner, allies, enemies){
-			//useFraymotif(fs.players[0], fs.players, [fs.dummy])
 			var usableFraymotifs = this.session.fraymotifCreator.getUsableFraymotifs(owner, allies, enemies);
 			if(usableFraymotifs.length == 0) return false;
 			var chosen = usableFraymotifs[0];
@@ -875,7 +874,8 @@ function GameEntity(session, name, crowned){
 					chosen = f; //all else equal, prefer the one with more members.
 				}
 			}
-			div.append(chosne.useFraymotif(owner, allies, enemies));
+			div.append(chosen.useFraymotif(owner, allies, enemies));
+			console.log("!!!!!!!!!!!!!!!!TODO: don't forget to mark this fraymotif as no longer useable in this fight.")
 			return true;
 		}
 
