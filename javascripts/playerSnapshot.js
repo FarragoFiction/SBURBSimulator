@@ -253,7 +253,7 @@ function PlayerSnapshot(){
 				ret += this.relationships[i].value;s
 			}
 		}
-		if(this.buffs.length > 0) alert("buffs!!!")
+		//if(this.buffs.length > 0) alert("buffs!!!")
 		for(var i = 0; i<this.buffs.length; i++){
 			var b = this.buffs[i];
 			if(b.name == statName) ret += b.value;
