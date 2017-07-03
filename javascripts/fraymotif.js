@@ -399,20 +399,25 @@ function FraymotifCreator(){
         name += this.getRandomNameForAspect(players[i].aspect) + musicWord +  " ";
       }
     }
+    console.log("player length: "+ players.length + " tier: " + tier + " Name: " + name)
     return name;
   }
 
   this.makeFraymotifForPlayerWithFriends = function(player, helper, tier){
     //if helper, helper is guaranteed to be part of fraymotif.
-    var players = [player];
-    if(helper) players.push(helper);
+    var players_involved = [player];
+    if(helper) players_involved.push(helper);
     for(var i = 0; i<player.session.players.length; i++){
       var rand = Math.seededRandom();
       var p = player.session.players[i];
-      if(rand > .8 && players.indexOf(p) == -1) players.push(player); //MATH% chance of adding each additional player
+      var needed = 0.8
+      if(p.aspect == "Light" || p.aspect == "Blood") needed = 0.6; //light players have to be in the spot light, and blood players just wanna help.
+      if(rand > needed && players_involved .indexOf(p) == -1){
+        players_involved .push(player); //MATH% chance of adding each additional player
+      }
     }
-    console.log("Made: " + players.length + " player fraymotif in session: " + player.session)
-    return this.makeFraymotif(players, tier);
+    console.log("Made: " + players_involved .length + " player fraymotif in session: " + player.session)
+    return this.makeFraymotif(players_involved , tier);
   }
 
   //classes is between 0 and aspects.length. each aspect is paired with a class.
@@ -420,14 +425,14 @@ function FraymotifCreator(){
   //otherwise, effect is based on both class and aspect
   this.makeFraymotif = function(players,tier){ //asumming first player in that array is the owner of the framotif later on.
     var name = this.getFraymotifName(players, tier);
-	var aspects = [];
-	for(var i = 0; i<players.length; i++){
-		if(aspects.indexOf(players[i].aspect) == -1) aspects.push(players[i].aspect); //if multiple of the same aspect is included here, just ignore.
-	}
-    var f= new Fraymotif(aspects, name, tier);
-	f.addEffectsForPlayers(players);
-	return f;
-  }
+  	var aspects = [];
+  	for(var i = 0; i<players.length; i++){
+  		aspects.push(players[i].aspect); //allow fraymotifs tht are things like time/time. doomed time clones need love.
+  	}
+   var f= new Fraymotif(aspects, name, tier);
+   f.addEffectsForPlayers(players);
+  	return f;
+    }
 }
 
 
