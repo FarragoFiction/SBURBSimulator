@@ -116,11 +116,8 @@ function Fraymotif(aspects, name,tier, flavorText){
       }
 
     }
-    console.log(["retArray is: ",retArray]);
     var almostDone= [retArray.slice(0, -1).join(', '), retArray.slice(-1)[0]].join(retArray.length < 2 ? '' : ' and ')
-    console.log(almostDone);
     almostDone = almostDone.charAt(0).toUpperCase() + almostDone.slice(1) + "."; //sentence it.
-    console.log(almostDone.charAt(0).toUpperCase());
     return this.replaceKeyWordsForFlavorTextBase(almostDone);
 
   }
@@ -413,7 +410,7 @@ function FraymotifCreator(){
       var needed = 0.8
       if(p.aspect == "Light" || p.aspect == "Blood") needed = 0.6; //light players have to be in the spot light, and blood players just wanna help.
       if(rand > needed && players_involved .indexOf(p) == -1){
-        players_involved .push(player); //MATH% chance of adding each additional player
+        players_involved .push(p); //MATH% chance of adding each additional player
       }
     }
     console.log("Made: " + players_involved .length + " player fraymotif in session: " + player.session)
@@ -571,7 +568,6 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 	}
 
 	this.applyBuff = function(targetArr, effectValue){
-    console.log("TODO: instead of modifying stat directly, have 'Buff' array on player, game entitity, etc. ")
 		var e = effectValue/targetArr.length; //more potent when a single target.
 		for(var i = 0; i<targetArr.length; i++){
 			var t = targetArr[i];
