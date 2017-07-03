@@ -631,6 +631,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		return ret;
 	}
 
+
 	this.getRandomQuest = function(){
 		if(this.landLevel >= 9 && this.denizen_index < 3 && this.denizenDefeated == false){ //three quests before denizen
 			//console.log("denizen quest")

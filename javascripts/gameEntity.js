@@ -776,10 +776,10 @@ function GameEntity(session, name, crowned){
 					//actually, if that method returned true, it wrote to the screen all on it's own. so dumb. why can't i be consistent?
 				}else if(undrainedPacts.length > 0 ){
 					var didGhostAttack = this.ghostAttack(div, player, getRandomElementFromArray(undrainedPacts)[0]); //maybe later denizen can do ghost attac, but not for now
-					if(!didGhostAttack){
+					if(!didGhostAttack && !this.useFraymotif(div, player, players, [this])){
 						this.aggrieve(div, player, this );
 					}
-				}else{
+				}else if(!this.useFraymotif(div, player, players)){
 					this.aggrieve(div, player, this );
 				}
 			}
@@ -853,13 +853,30 @@ function GameEntity(session, name, crowned){
 			//console.log("Hp during my turn is: " + this.getStat("currentHP"))
 			//free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
 			//special and fraymotif can attack multiple enemies, but aggrieve is one on one.
-			if(!this.willIAbscond(div,players,numTurns)){
+			if(!this.willIAbscond(div,players,numTurns) && !this.useFraymotif(div, this,[this], players, numTurns)){
 				var target = this.chooseTarget(players)
 				if(target) this.aggrieve(div, this, target );
 			}
 			////console.log("have special attacks (like using ghost army, or reviving.). have fraymotifs. have prototypes that change stats of ring/scepter and even add fraymotifs.")
+		}
 
-
+		//return true if you did.
+		//TODO l8r refactor strifes to NOT be part of game entitiy, so can have group of enemies fight group of players.
+		this.useFraymotif = function(div, owner, allies, enemies){
+			//useFraymotif(fs.players[0], fs.players, [fs.dummy])
+			var usableFraymotifs = this.session.fraymotifCreator.getUsableFraymotifs(owner, allies, enemies);
+			if(usableFraymotifs.length == 0) return false;
+			var chosen = usableFraymotifs[0];
+			for(var i = 0; i<usableFraymotifs.length; i++){
+				var f = usableFraymotifs[i];
+				if(f.tier > chosen.tier){
+					chosen = f; //more stronger is more better (refance)
+				}else if(f.tier == chosen.tier && f.aspects.length > chosen.aspects.length){
+					chosen = f; //all else equal, prefer the one with more members.
+				}
+			}
+			div.append(chosne.useFraymotif(owner, allies, enemies));
+			return true;
 		}
 
 		//hopefully either player or gameEntity can call this.

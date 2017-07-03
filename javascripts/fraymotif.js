@@ -261,13 +261,18 @@ function Fraymotif(aspects, name,tier, flavorText){
     return ["soothing","supportive","friendly", "fortifying", "protecting", "warding", "defensive"];
   }
 
+  this.canCast = function(owner, allies, enemies){
+    var casters = this.getCasters(owner, allies);
+    return (casters.length == this.aspects.length)
+  }
+
 
 	//allies is NOT just who is helping to cast the fraymotif. it is everyone.
 	this.useFraymotif = function(owner, allies, enemies){
+    if(!this.canCast(owner, allies, enemies)) return;
 		var casters = this.getCasters(owner, allies);
     var dead = findDeadPlayers(allies);
 		console.log(casters);
-		if(casters.length != aspects.length) return;
     //ALL effects that target a single enemy target the SAME enemy.
     var enemy = getRandomElementFromArray(enemies);
 		for(var i = 0; i<this.effects.length; i++){
@@ -287,6 +292,14 @@ function Fraymotif(aspects, name,tier, flavorText){
 
 //no global functions any more. bad pastJR.
 function FraymotifCreator(){
+
+  this.getUsableFraymotifs = function(fraymotifs, owner, allies, enemies){
+    var ret = [];
+    for(var i = 0; i<fraymotifs.length; i++){
+      if(fraymotifs[i].canCast(owner, allies, enemies)) ret.push(fraymotifs[i]);
+    }
+    return ret;
+  }
 
   this.getRandomBreathName = function(){
       var names = ["Gale", "Feather", "Breathless","Jetstream", "Hurricane", "Tornado"," Kansas", "Breath", "Breeze", "Twister", "Storm", "Wild", "Inhale", "Windy", "Skylark", "Fugue", "Pneumatic", "Wheeze", "Forward", "Vertical", "Whirlwind", "Jetstream"];
