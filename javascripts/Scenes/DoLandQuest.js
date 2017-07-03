@@ -47,6 +47,30 @@ function DoLandQuest(session){
 		}
 	}
 
+	this.findFraymotif = function(player,helper){
+		var f;
+		if(player.fraymotifs.length == 0){
+			f = this.session.fraymotifCreator.makeFraymotif([player], 1);//shitty intial fraymotif.
+			player.fraymotifs.push(f);
+			return "The " + player.htmlTitle() + " feels...different. Like they are starting to understand what it MEANS to be a " + player.htmlTitleBasic() ". Huh. What do you think '" + f.name + "' means? ";
+		}
+
+		//i expect to do at least 10 land quests, so have a 3/10 chance of getting a fraymotif.
+		var randomNumber = Math.getSeededRandom();
+		if(randomNumber > 0.3) return "";
+
+		if(player.godTier){
+			f = (this.session.fraymotifCreator.makeFraymotifForPlayerWithFriends(player, helper 3));
+		}else if (player.denizenDefeated){
+			f = (this.session.fraymotifCreator.makeFraymotifForPlayerWithFriends(player, helper, 2));
+		}else{
+			f = (this.session.fraymotifCreator.makeFraymotifForPlayerWithFriends(player, helper, 1));
+		}
+		player.fraymotifs.push(f);
+		return " STUB FOR PLAYER FINDING AA FRAYMOTIF: " + f.name + ". l8r i want it to be different for classes and random shit."
+
+	}
+
 
 	this.renderContent = function(div){
 		var content = this.content(div);
@@ -286,6 +310,7 @@ function DoLandQuest(session){
 			r2 = helper.getRelationshipWith(player);
 			ret += getRelationshipFlavorText(r1,r2, player, helper);
 		}
+		ret += this.findFraymotif(player, helper);
 		ret += this.spriteContent(player);
 		ret += this.spreadCoruption(player, helper);
 		return ret;

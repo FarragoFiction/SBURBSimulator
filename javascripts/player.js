@@ -9,7 +9,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.interest2Category = null; //both should be null once they have been used to add the custom interest to the right place
 	this.spriteCanvasID = null;  //part of new rendering engine.
 	this.session = session;
-	this.fraymotifs = [];x
+	this.fraymotifs = [];
 	this.currentHP = 0;
 	this.denizen = null;
 	this.denizenMinion = null;
@@ -1705,7 +1705,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 
 	this.initializeDerivedStuff = function(){
-		this.fraymotifs.push(this.session.fraymotifCreator.makeFraymotif([this], 1));//shitty intial fraymotif. cant use it till first boss fight
 		var tmp =getRandomLandFromPlayer(this);
 		this.land1 = tmp[0]
 		this.land2 = tmp[1];
