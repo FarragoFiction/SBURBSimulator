@@ -85,7 +85,7 @@ function DoLandQuest(session){
 		if(player.class_name == "Seer") return "The " + player.htmlTitle() + " is made aware that " + fraymotif.name + " is hidden in a secret location, and claims it. "
 		if(player.class_name == "Bard") return "The " + player.htmlTitle() + " just suddenly knows " + fraymotif.name + ".  I sure hope you aren't expecting to find out HOW they learned it. "
 		if(player.class_name == "Page") return "The " + player.htmlTitle() + " has worked hard and put in the hours and now knows " + fraymotif.name + ".  Sometimes hard work pays off!. "
-		if(player.class_name == "Sylph") return "The " + player.htmlTitle() + " has built up a report with the consort running the fraymotif shop. They receive " + fraymotif.name + " on the house. "
+		if(player.class_name == "Sylph") return "The " + player.htmlTitle() + " has built up a rapport with the consort running the fraymotif shop. They receive " + fraymotif.name + " on the house. "
 		if(player.class_name == "Heir") return "The " + player.htmlTitle() + " finds out that " + fraymotif.name + " was bequeathed to them by a wealthy consort. Their death will not be in vain!  "
 		if(player.class_name == "Maid") return "The " + player.htmlTitle() + " helps the consort that runs the fraymotif shop organize everything.  They are rewarded with " + fraymotif.name + ". "
 		if(player.class_name == "Prince") return "The " + player.htmlTitle() + " scores " + fraymotif.name + " for a stupidly discounted 'going out of business' price. "
