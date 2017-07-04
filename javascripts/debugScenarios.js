@@ -27,7 +27,8 @@ function pen15Ouija(){
 	ouija = true;
 	alert("thats the spooky thing about penis ouija you can never be sure who did the dicks")
 	alert("was it you or me or maybe a ghoooost???")
-	$('body').css("background-image", "images/pen15_bg1.gif");
+	$('body').css("background-color", "#f8c858");
+	$('body').css("background-image", "url(images/pen15_bg1.png)");
 }
 
 function coolK1DMode(){
