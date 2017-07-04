@@ -290,6 +290,18 @@ function FraymotifCreator(){
     var denizen = player.denizen;
     var f = new Fraymotif([], name + "'s Song", 2); //CAN I have an aspectless fraymotif?
     f.flavorText = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+    //statName, target, damageInsteadOfBuff, flavorText
+    var plus = getOnlyPositiveAspectAssociatedStats //buff self and heal
+    for(var i = 0; i<plus.length; i++){
+      f.effects.push(new FraymotifEffect(plus[i].name,0,true));
+      f.effects.push(new FraymotifEffect(plus[i].name,0,false));
+    }
+    var minus = getOnlyNegativeAspectAssociatedStats //debuff enemy, and damage.
+    for(var i = 0; i<minus.length; i++){
+      f.effects.push(new FraymotifEffect(minus[i].name,2,true));
+      f.effects.push(new FraymotifEffect(minus[i].name,2,false));
+    }
+    player.denizen.fraymotifs.push(f);
   }
 
   this.getUsableFraymotifs = function(owner, allies, enemies){
