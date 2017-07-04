@@ -118,7 +118,7 @@ function VoidyStuff(session){
 	this.findFraymotif = function(div, specialDiv){
 		console.log("Void/Rage fraymotif acquired: " + this.session.session_id)
 		div.append(" What's that music playing? ");
-		var f = player.getNewFraymotif();
+		var f = this.player.getNewFraymotif();
 		specialDiv.append("A sweeping musical number kicks in, complete with consort back up dancers. The " + this.player.htmlTitle() + " is the star. It is them. When it is over, they seem to have learned " + f.name + ". ");
 	}
 

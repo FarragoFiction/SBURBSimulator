@@ -1107,7 +1107,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.htmlTitleHP = function(){
-		return getFontColorFromAspect(this.aspect) + this.title() + " (" + Math.round(this.getStat("currentHP")) + "/" + Math.round(this.getStat("minLuck")) + "hp, " + Math.round(this.getStat("power")) + " power)</font>"
+		return getFontColorFromAspect(this.aspect) + this.title() + " (" + Math.round(this.getStat("currentHP"))+ "hp, " + Math.round(this.getStat("power")) + " power)</font>"
 	}
 
 	this.generateBlandRelationships = function(friends){
@@ -2455,6 +2455,18 @@ function getPartyPower(party){
 		ret += party[i].power;
 	}
 	return ret;
+}
+
+function getPlayersTitlesHP(playerList){
+	//console.log(playerList)
+	if(playerList.length == 0){
+		return "";
+	}
+		var ret = playerList[0].htmlTitleHP();
+		for(var i = 1; i<playerList.length; i++){
+			ret += " and " + playerList[i].htmlTitleHP();
+		}
+		return ret;
 }
 
 function getPlayersTitlesNoHTML(playerList){

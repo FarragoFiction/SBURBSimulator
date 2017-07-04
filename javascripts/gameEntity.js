@@ -147,7 +147,7 @@ function GameEntity(session, name, crowned){
 			if(this.crowned != null) ret+="Crowned "
 			var pname = this.name;
 			if(this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
-			return ret + pname +" (" + Math.round(this.getStat("currentHP")) + "/" + Math.round(this.getStat("hp"))+" hp, " + Math.round(this.getStat("power")) + " power)</font>"; //TODO denizens are aspect colored.
+			return ret + pname +" (" + Math.round(this.getStat("currentHP")) +" hp, " + Math.round(this.getStat("power")) + " power)</font>"; //TODO denizens are aspect colored.
 		}
 
 		this.flipOut = function(reason){
@@ -996,15 +996,15 @@ function GameEntity(session, name, crowned){
 			}
 			var ret = "";
 			if(dead_o.length > 1){
-				ret = " The " + getPlayersTitles(dead_o) + "are dead. "
+				ret = " The " + getPlayersTitlesHP(dead_o) + "are dead. "
 			}else if(dead_o.length == 1){
-				ret += " The " + getPlayersTitles(dead_o) + "is dead. "
+				ret += " The " + getPlayersTitlesHP(dead_o) + "is dead. "
 			}
 
 			if(dead_d.length > 1){
-				ret = " The " + getPlayersTitles(dead_d) + "are dead. "
+				ret = " The " + getPlayersTitlesHP(dead_d) + "are dead. "
 			}else if(dead_d.length == 1){
-				ret += " The " + getPlayersTitles(dead_d) + "is dead. "
+				ret += " The " + getPlayersTitlesHP(dead_d) + "is dead. "
 			}
 
 			div.append(ret);
