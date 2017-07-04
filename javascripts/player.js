@@ -394,6 +394,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	this.makeDead = function(causeOfDeath){
 		this.dead = true;
+		this.buffs = [];
 		this.causeOfDeath = causeOfDeath;
 		//was in make alive, but realized that this makes doom ghosts way stronger if it's here. powered by DEATH, but being revived.
 		if(this.aspect == "Doom"){ //powered by their own doom.
@@ -553,6 +554,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			this.dead = false;
 			this.murderMode = false;
 			this.currentHP = Math.max(this.hp,1); //if for some reason your hp is negative, don't do that.
+			console.log("HP after being brought back from the dead: " + this.currentHP)
 			this.grimDark = 0;
 			this.sanity += -101;  //dying is pretty triggering.
 			this.flipOutReason = "they just freaking died"

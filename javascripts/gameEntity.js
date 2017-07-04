@@ -487,7 +487,9 @@ function GameEntity(session, name, crowned){
 
 		this.resetEveryonesFraymotifs = function(players){
 			this.resetFraymotifs();
+			this.buffs = [];
 			for(var i = 0; i<players.length; i++){
+				players[i].buffs = [];
 				players[i].resetFraymotifs();
 			}
 		}
