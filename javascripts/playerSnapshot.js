@@ -323,6 +323,7 @@ function MiniSnapShot(player){
 
 function makeRenderingSnapshot(player){
 	var ret = new PlayerSnapshot();
+	ret.fraymotifs = player.fraymotifs;
 	ret.robot = player.robot;
 	ret.spriteCanvasID = player.spriteCanvasID;
   ret.currentHP = player.currentHP;

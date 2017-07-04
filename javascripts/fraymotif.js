@@ -267,7 +267,7 @@ function Fraymotif(aspects, name,tier, flavorText){
 		var casters = this.getCasters(owner, allies);
     this.makeCastersUnavailable(casters);
     var dead = findDeadPlayers(allies);
-		console.log(casters);
+		//console.log(casters);
     //ALL effects that target a single enemy target the SAME enemy.
     var enemy = getRandomElementFromArray(enemies);
 		for(var i = 0; i<this.effects.length; i++){
@@ -311,7 +311,7 @@ function FraymotifCreator(){
     for(var i = 0; i<fraymotifs.length; i++){
       if(fraymotifs[i].canCast(owner, allies, enemies)) ret.push(fraymotifs[i]);
     }
-    console.log("Found: " + ret.length + " usable fraymotifs for " + owner)
+    //console.log("Found: " + ret.length + " usable fraymotifs for " + owner)
     return ret;
   }
 
@@ -423,7 +423,7 @@ function FraymotifCreator(){
         name += this.getRandomNameForAspect(players[i].aspect) + musicWord +  " ";
       }
     }
-    console.log("player length: "+ players.length + " tier: " + tier + " Name: " + name)
+    //console.log("player length: "+ players.length + " tier: " + tier + " Name: " + name)
     return name;
   }
 
@@ -440,7 +440,7 @@ function FraymotifCreator(){
         players_involved .push(p); //MATH% chance of adding each additional player
       }
     }
-    console.log("Made: " + players_involved .length + " player fraymotif in session: " + player.session)
+    //console.log("Made: " + players_involved .length + " player fraymotif in session: " + player.session)
     return this.makeFraymotif(players_involved , tier);
   }
 
@@ -566,18 +566,18 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 		//now, i need to USE this effect value.  is it doing "damage" or "buffing"?
 		if(this.target == this.e || this.target == this.e2) effectValue = effectValue * -1;  //do negative things to the enemy.
 		var targetArr = this.chooseTargetArr(owner, allies, casters, enemy, enemies);
-    console.log(["target chosen: ", targetArr])
+    //console.log(["target chosen: ", targetArr])
 		if(this.damageInsteadOfBuff){
-      console.log("applying damage: " + targetArr.length)
+      //console.log("applying damage: " + targetArr.length)
 			this.applyDamage(targetArr, effectValue);
 		}else{
-      console.log("applying buff")
+      //console.log("applying buff")
 			this.applyBuff(targetArr, effectValue);
 		}
 	}
 
 	this.chooseTargetArr = function(owner, allies, casters, enemy, enemies){
-		console.log(["potential targets: ",owner, allies, casters, enemies]);
+		//console.log(["potential targets: ",owner, allies, casters, enemies]);
 		if(this.target == this.s) return [owner];
 		if(this.target == this.a) return allies;
 		if(this.target == this.e) return [enemy]; //all effects target same enemy.
@@ -587,7 +587,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 	//targetArr is always an array, even if only 1 thing inside of it.
 	this.applyDamage = function(targetArr, effectValue){
 		var e = effectValue/targetArr.length;  //more potent when a single target.
-    console.log(["applying damage", effectValue, targetArr.length, e])
+    //console.log(["applying damage", effectValue, targetArr.length, e])
 		for(var i = 0; i<targetArr.length; i++){
 			var t = targetArr[i];
 			t.makeAlive();

@@ -161,6 +161,7 @@ function GameEntity(session, name, crowned){
 		//only the crown itself has this called. king and queen just use the crown.
 		this.addPrototyping = function(object){
 			this.name = object.name + this.name; //sprite becomes puppetsprite.
+			this.fraymotifs = this.fraymotifs.concat(object.fraymotifs);
 			this.corrupted = object.corrupted;
 			this.helpfulness = object.helpfulness; //completely overridden.
 			this.helpPhrase = object.helpPhrase;
@@ -894,6 +895,7 @@ function GameEntity(session, name, crowned){
 			if(Math.seededRandom() > 0.75) return false; //don't use them all at once, dunkass.
 			var usableFraymotifs = this.session.fraymotifCreator.getUsableFraymotifs(owner, allies, enemies);
 			if(usableFraymotifs.length == 0) return false;
+			if(owner == this) console.log(this.name + " is using a fraymotif in session: " + this.session.session_id);
 			var chosen = usableFraymotifs[0];
 			for(var i = 0; i<usableFraymotifs.length; i++){
 				var f = usableFraymotifs[i];
@@ -1116,9 +1118,6 @@ function copyGameEntity(object,name){
 sooooo...things that go in sprites are gameEntities. Just like jack/Queen/King. And Denizens. Keep. Keep thinking about this.
 */
 
-//TODO have each player have a "Sprite" game object that has basic stats. sprite gets one of these objects added pre-entry (or maybe a player);  later, can have other objects added.
-//when a gameEntitity has an object added to it, adds the stats to itself. eventuall adds fraymotifs as well.
-//sprites participate in fights until denizen fight. right before denizen fight, they leave to go do mysterious shit on the battlefield (set to null.)
 
 //make a fuck ton of sprites here. don't need to reinit for sessions because these entitites are never used directly. instead, stuck into a sprite that player has,
 //or into ring/scepter.
@@ -1139,6 +1138,10 @@ disastor_objects[disastor_objects.length-1].currentHP = 500;
 disastor_objects[disastor_objects.length-1].mobility = 500;
 disastor_objects[disastor_objects.length-1].power = 500;
 disastor_objects[disastor_objects.length-1].helpPhrase = "is fairly helpful with the teleporting and all, but when it speaks- Wow. No. That is not ok. ";
+var f = new Fraymotif([], name + "Atomic Teleport Spam", 3)
+f.effects.push(new FraymotifEffect("mobility",2,true));
+f.flavorText = " The OWNER shimers with radioactive stars, and then teleports behind the ENEMY, sneak-attacking them. "
+disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 
 
@@ -1150,6 +1153,10 @@ disastor_objects[disastor_objects.length-1].power = 250;
 disastor_objects[disastor_objects.length-1].lusus = true;
 disastor_objects[disastor_objects.length-1].freeWill = 250; //wants to mind control you.
 disastor_objects[disastor_objects.length-1].helpPhrase = "... Oh god. What is going on. Why does just listening to it make your ears bleed!? ";
+var f = new Fraymotif([], name + "Vast Glub", 3)
+f.effects.push(new FraymotifEffect("power",3,true));
+f.flavorText = " A galaxy spanning glub damages everyone. The only hope of survival is to spread the damage across so many enemies that everyone only takes a manageable amount. "
+disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 
 disastor_objects.push(new GameEntity(null, "Speaker of the Furthest Ring",null));  //vast glub
@@ -1159,6 +1166,11 @@ disastor_objects[disastor_objects.length-1].corrupted = true;
 disastor_objects[disastor_objects.length-1].power = 500;
 disastor_objects[disastor_objects.length-1].freeWill = 500; //wants to mind control you.
 disastor_objects[disastor_objects.length-1].helpPhrase = "whispers madness humankind was not meant to know. Its words are painful, hateful, yet… tempting. It speaks of flames and void, screams and gods. ";
+var f = new Fraymotif([], name + "Vast Glub", 3)
+f.effects.push(new FraymotifEffect("power",3,true));
+f.flavorText = " A galaxy spanning glub damages everyone. The only hope of survival is to spread the damage across so many enemies that everyone only takes a manageable amount. "
+disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
+
 
 
 disastor_objects.push(new GameEntity(null, "Clown",null));  //custom fraymotif: can' keep down the clown (heal).
@@ -1183,11 +1195,23 @@ disastor_objects[disastor_objects.length-1].freeWill = 250; //wants to mind cont
 disastor_objects[disastor_objects.length-1].mobility = 250;
 disastor_objects[disastor_objects.length-1].minLuck = -250;
 disastor_objects[disastor_objects.length-1].maxLuck = 250;
+var f = new Fraymotif([], name + "Hee Hee Hee Hoo!", 3)
+f.effects.push(new FraymotifEffect("sanity",3,false));
+f.flavorText = " Oh god! Shut up! Just once! Please shut up! "
+disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
+
+
 
 disastor_objects.push(new GameEntity(null, "Xenomorph",null));  //custom fraymotif: acid blood
 disastor_objects[disastor_objects.length-1].hp = 250;
 disastor_objects[disastor_objects.length-1].power = 250;
 disastor_objects[disastor_objects.length-1].mobility = 250;
+var f = new Fraymotif([], name + "Spawning", 3)
+f.effects.push(new FraymotifEffect("alchemy",3,true));
+f.flavorText = " Oh god. Where are all those baby monsters coming from. They are everywhere! Fuck! How are they so good at biting??? "
+disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
+
+
 
 disastor_objects.push(new GameEntity(null, "Deadpool",null));  //custom fraymotif: healing factor
 disastor_objects[disastor_objects.length-1].hp = 250;
@@ -1198,6 +1222,12 @@ disastor_objects[disastor_objects.length-1].helpfulness = 1;
 disastor_objects[disastor_objects.length-1].minLuck = -250;
 disastor_objects[disastor_objects.length-1].maxLuck = 250;
 disastor_objects[disastor_objects.length-1].helpPhrase = "demonstrates that when it comes to providing fourth wall breaking advice to getting through quests and killing baddies, he is pretty much the best there is. ";
+var f = new Fraymotif([], name + "Degenerate Regeneration", 3)
+f.effects.push(new FraymotifEffect("hp",0,true));
+f.flavorText = " Hey there, Observer! Want to see a neat trick? POW! Grew my own head back. Pretty cool, huh? (Now if only JR would let me spam this or make it be castable even while dead, THEN we'd be cooking with petrol) "
+disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
+
+
 
 
 disastor_objects.push(new GameEntity(null, "Dragon",null));    //custom fraymotif: mighty breath.
@@ -1227,6 +1257,11 @@ disastor_objects.push(new GameEntity(null, "Fiduspawn",null));
 disastor_objects[disastor_objects.length-1].hp = 250;
 disastor_objects[disastor_objects.length-1].currentHP = 250;
 disastor_objects[disastor_objects.length-1].power = 250;
+var f = new Fraymotif([], name + "Spawning", 3)
+f.effects.push(new FraymotifEffect("alchemy",3,true));
+f.flavorText = " Oh god. Where are all those baby monsters coming from. They are everywhere! Fuck! How are they so good at biting??? "
+disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
+
 
 disastor_objects.push(new GameEntity(null, "Doll",null));
 disastor_objects[disastor_objects.length-1].hp = 250;
