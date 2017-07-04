@@ -68,3 +68,9 @@ b=%00%00%00q%C3%B0V%00%10%22%22%25&s=,,Fighting,Justice,tactfulTester
 b=%00%00%C3%BF*%C3%BE%C2%B9%00A%0B%0B%0B&s=,,Psychology,Video Games,Capptersprite
 b=%09%09%17%C2%88%C3%BE%2C%00%17-%0DA&s=,,Drawing,Girls,iridescentRibcage
 b=S2%1E%06%C3%BEm%04K%15%15%1F&s=,,Mysteries,Linguistics,ablativeStoryteller
+b=%C3%9B%00%04%3A%C3%B0%C2%B1%10%17%0F-%0B&s=,,Role Playing,Singing,musicalPsychologist
+b=%00%00%00%C2%A7%C3%B2%C2%A9%10%126)A&s=,,Artificial Intelligence,Video Games,insectoidTechnician
+b=%C3%AE%C2%BEOa%C3%B8u%10%13''%17&s=,,Fantasy,Blood,sanguineDreamer
+b=%00%00%00t%C3%B5F%10Q%22%22%1F&s=,,Track and Field,Social Justice,bipolarGay
+b=%00%00%00C%C3%B4P%10%19%1D%1D%0B&s=,,Death,Puns,burntFlaw
+b=%00%00%00)%C3%B9%17%10W%0F%0F%06&s=,,Medieval Music,Roleplay,geneticAnomaly
