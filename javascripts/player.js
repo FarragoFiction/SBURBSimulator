@@ -965,8 +965,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.modPowerBoostByClass = function(powerBoost,stat){
-		//TODO add back -0.5, -1 and maybe even -2 once fraymotifs are a thing.
-		var lolrandoms = [1,2,0.25,0.5,-0.25]
 		switch (this.class_name) {
 			case "Knight":
 				if(stat.multiplier > 0){
@@ -983,7 +981,11 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				}
 				break;
 			case  "Bard":
-				powerBoost = powerBoost * getRandomElementFromArray(lolrandoms);
+				if(stat.multiplier > 0){
+					powerBoost = powerBoost * -1.0; //good things invert to bad.
+				}else{
+					powerBoost = powerBoost * -2.0; //bad thigns invert to good, with a boost to make up for the + to bad things
+				}
 				break;
 			case  "Heir":
 				powerBoost = powerBoost * 1.5;
@@ -1005,13 +1007,25 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				powerBoost = powerBoost * 0.5;
 				break;
 			case  "Sylph":
-				powerBoost = powerBoost * 1;
+				if(stat.multiplier > 0){
+					powerBoost = powerBoost * 0.5;
+				}else{
+					powerBoost = powerBoost * -0.5
+				}
 				break;
 			case  "Prince":
-				powerBoost = powerBoost * getRandomElementFromArray(lolrandoms);
+				if(stat.multiplier > 0){
+					powerBoost = powerBoost * -1.0; //good things invert to bad.
+				}else{
+					powerBoost = powerBoost * -2.0; //bad thigns invert to good, with a boost to make up for the + to bad things
+				}
 				break;
 			case  "Witch":
-				powerBoost = powerBoost * 1;
+				if(stat.multiplier > 0){
+					powerBoost = powerBoost * 0.5;
+				}else{
+					powerBoost = powerBoost *-0.5
+				}
 				break;
 			case  "Mage":
 				if(stat.multiplier > 0){
@@ -1741,6 +1755,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	//sum to 0
 	this.intializeAssociatedClassStatReferences = function(){
+		return //don't do this for now, too confusing.
 		var allStats = this.allStats();
 		switch (this.class_name) {
 			case "Knight":
