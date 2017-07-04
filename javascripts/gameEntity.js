@@ -15,6 +15,7 @@ function GameEntity(session, name, crowned){
 		this.armless = false;
 		this.grist = 0;
 		this.fraymotifs = [];
+		this.usedFraymotifThisTurn = false;
 		this.buffs = []; //only used in strifes, array of BuffStats (from fraymotifs and eventually weapons)
 		this.carapacian = false;
 		this.sanity = 0; //eventually replace triggerLevel with this (it's polarity is opposite triggerLevel)
@@ -491,7 +492,11 @@ function GameEntity(session, name, crowned){
 			}
 		}
 
-
+		this.resetPlayersAvailability = function(players){
+			for(var i = 0; i<players.length; i++){
+				players[i].usedFraymotifThisTurn = false;
+			}
+		}
 		//before a fight is called, decide who is in it. denizens are one on one, jack catches slower player and friends
 		//king/queen are whole party. if you want to comment on who's in it, do it before here.
 		//time clones count as players. have "doomed" in their title. that means players have a "doomed" stat.
@@ -505,6 +510,7 @@ function GameEntity(session, name, crowned){
 		prototyping. vast glub for horror terror is example.
 		*/
 		this.strife = function(div, players, numTurns){
+			this.resetPlayersAvailability(players);
 			if(numTurns == 0) div.append("<Br><img src = 'images/sceneIcons/strife_icon.png'>");
 			numTurns += 1;
 			if(this.name == "Black King" || this.name == "Black Queen"){
@@ -781,6 +787,7 @@ function GameEntity(session, name, crowned){
 		}
 
 		this.playerdecideWhatToDo = function(div, player,players){
+			if(player.usedFraymotifThisTurn) return; //already did something.
 			player.power = Math.max(1, player.power); //negative power is not allowed in an actual fight.
 			//for now, only one choice    //free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
 			if(!this.willPlayerAbscond(div,player,players)){
@@ -876,6 +883,7 @@ function GameEntity(session, name, crowned){
 		//return true if you did.
 		//TODO l8r refactor strifes to NOT be part of game entitiy, so can have group of enemies fight group of players.
 		this.useFraymotif = function(div, owner, allies, enemies){
+			if(Math.seededRandom() > 0.5) return false; //don't use them all at once, dunkass.
 			var usableFraymotifs = this.session.fraymotifCreator.getUsableFraymotifs(owner, allies, enemies);
 			if(usableFraymotifs.length == 0) return false;
 			var chosen = usableFraymotifs[0];

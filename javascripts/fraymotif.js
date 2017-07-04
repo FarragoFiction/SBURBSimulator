@@ -264,11 +264,18 @@ function Fraymotif(aspects, name,tier, flavorText){
     return (casters.length == this.aspects.length)
   }
 
+  this.makeCastersUnavailable = function(casters){
+    for(var i = 0; i<casters.length; i++){
+      casters[i].usedFraymotifThisTurn = true;
+    }
+  }
+
 
 	//allies is NOT just who is helping to cast the fraymotif. it is everyone.
 	this.useFraymotif = function(owner, allies, enemies){
     if(!this.canCast(owner, allies, enemies)) return;
 		var casters = this.getCasters(owner, allies);
+    this.makeCastersUnavailable(casters);
     var dead = findDeadPlayers(allies);
 		console.log(casters);
     //ALL effects that target a single enemy target the SAME enemy.

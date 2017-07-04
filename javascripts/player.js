@@ -9,6 +9,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.interest2Category = null; //both should be null once they have been used to add the custom interest to the right place
 	this.spriteCanvasID = null;  //part of new rendering engine.
 	this.session = session;
+	this.usedFraymotifThisTurn = false;
 	this.fraymotifs = [];
 	this.currentHP = 0;
 	this.denizen = null;
