@@ -883,7 +883,7 @@ function GameEntity(session, name, crowned){
 		//return true if you did.
 		//TODO l8r refactor strifes to NOT be part of game entitiy, so can have group of enemies fight group of players.
 		this.useFraymotif = function(div, owner, allies, enemies){
-			if(Math.seededRandom() > 0.5) return false; //don't use them all at once, dunkass.
+			if(Math.seededRandom() > 0.75) return false; //don't use them all at once, dunkass.
 			var usableFraymotifs = this.session.fraymotifCreator.getUsableFraymotifs(owner, allies, enemies);
 			if(usableFraymotifs.length == 0) return false;
 			var chosen = usableFraymotifs[0];
@@ -895,7 +895,7 @@ function GameEntity(session, name, crowned){
 					chosen = f; //all else equal, prefer the one with more members.
 				}
 			}
-			div.append("<Br><br>"+chosen.useFraymotif(owner, allies, enemies));
+			div.append("<Br><br>"+chosen.useFraymotif(owner, allies, enemies) + "<br><Br>");
 			chosen.usable = false;
 			return true;
 		}
@@ -903,7 +903,7 @@ function GameEntity(session, name, crowned){
 		//hopefully either player or gameEntity can call this.
 		this.aggrieve=function(div, offense, defense){
 			//mobility, luck hp, and power are used here.
-			var ret = " The " + offense.htmlTitleHP() + " targets the " +defense.htmlTitleHP() + ". ";
+			var ret = "<br><Br> The " + offense.htmlTitleHP() + " targets the " +defense.htmlTitleHP() + ". ";
 			if(defense.dead) ret += " Apparently their corpse sure is distracting? How luuuuuuuucky for the remaining players!"
 			div.append(ret);
 
