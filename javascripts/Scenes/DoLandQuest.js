@@ -58,7 +58,7 @@ function DoLandQuest(session){
 
 		//i expect to do at least 10 land quests, so have a 3/10 chance of getting a fraymotif.
 		var randomNumber = Math.seededRandom();
-		if(randomNumber > 0.3) return "";
+		if(randomNumber > 0.2) return "";
 
 		if(player.godTier){
 			f = this.session.fraymotifCreator.makeFraymotifForPlayerWithFriends(player, helper, 3);
