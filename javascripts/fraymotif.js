@@ -590,8 +590,8 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
     console.log(["applying damage", effectValue, targetArr.length, e])
 		for(var i = 0; i<targetArr.length; i++){
 			var t = targetArr[i];
-			t.currentHP += e;
 			t.makeAlive();
+      t.buffs.push(new Buff("currentHP", e)) //don't mod directly anymore
 		}
 	}
 
