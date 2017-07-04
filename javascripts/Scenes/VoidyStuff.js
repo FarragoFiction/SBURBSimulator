@@ -178,7 +178,7 @@ function VoidyStuff(session){
 			this.player.power = this.player.power*2;  //current and future doubling of power.
 			this.player.leveledTheHellUp = true;
 			this.player.denizenDefeated = true;
-			p.fraymotifs = p.fraymotifs.concat(p.denizen.fraymotifs);
+			this.player.fraymotifs = this.player.fraymotifs.concat(this.player.denizen.fraymotifs);
 			this.player.grist += denizen.grist;
 			ret += denizen.name + " lies dead on the ground. "
 			specialDiv.append(ret)

@@ -1867,9 +1867,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			case  "Mind":
 				this.associatedStats.push(new AssociatedStat("freeWill", 2,true));
 				this.associatedStats.push(new AssociatedStat("minLuck", 1,true));
-				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", -2,true));
-				//this.associatedStats.push(new AssociatedStat("power", -0.5,true));
-				//this.associatedStats.push(new AssociatedStat("maxLuck", -1,true)); //LUCK DO3SN'T M4TT3R!!!
+				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", -1,true));
+				this.associatedStats.push(new AssociatedStat("maxLuck", -1,true)); //LUCK DO3SN'T M4TT3R!!!
 				break;
 			case  "Rage":
 				this.associatedStats.push(new AssociatedStat("power", 2,true));
@@ -1894,12 +1893,14 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			case  "Breath":
 				this.associatedStats.push(new AssociatedStat("mobility", 2,true));
 				this.associatedStats.push(new AssociatedStat("sanity", 1,true));
-				this.associatedStats.push(new AssociatedStat( "RELATIONSHIPS", -2,true)); //somebody pointed out breath seems to destroy connections, sure, i'll roll with it.
+				this.associatedStats.push(new AssociatedStat("hp", -1,true));
+				this.associatedStats.push(new AssociatedStat( "RELATIONSHIPS", -1,true)); //somebody pointed out breath seems to destroy connections, sure, i'll roll with it.
 				break;
 			case  "Light":
 				this.associatedStats.push(new AssociatedStat("maxLuck", 2,true));
 				this.associatedStats.push(new AssociatedStat("freeWill", 1,true));
-				this.associatedStats.push(new AssociatedStat("sanity", -2,true));
+				this.associatedStats.push(new AssociatedStat("sanity", -1,true));
+				this.associatedStats.push(new AssociatedStat("freeWill", -1,true));
 				break;
 			case  "Space":
 				this.associatedStats.push(new AssociatedStat("alchemy", 2,true));
