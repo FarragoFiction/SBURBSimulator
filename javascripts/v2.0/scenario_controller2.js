@@ -74,6 +74,10 @@ function startSession(){
 		coolK1DMode();
 	}
 
+	if(getParameterByName("pen15")  == "ouija"){
+		pen15Ouija();
+	}
+
 	if(getParameterByName("tier")  == "cod"){
 		bardQuestMode();
 	}

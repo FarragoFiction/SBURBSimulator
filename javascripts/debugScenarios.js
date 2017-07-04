@@ -23,6 +23,12 @@ function bardQuestMode(){
 
 }
 
+function pen15Ouija(){
+	ouija = true;
+	alert("thats the spooky thing about penis ouija you can never be sure who did the dicks")
+	alert("was it you or me or maybe a ghoooost???")
+}
+
 function coolK1DMode(){
 	alert("H3Y TH3R3 COOL K1D 1S TH1S YOU???")
 }
@@ -72,7 +78,7 @@ function checkEasterEgg(callBack,that){  //only yellow yard session uses 'that' 
 	}else if(initial_seed == 0){
 		session0();
 	}
-	
+
 
 	if(getParameterByName("selfInsertOC")  == "true"){
 		// call a method, method will determine what other params exist, like reddit=true and shit.

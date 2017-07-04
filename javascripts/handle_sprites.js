@@ -1,8 +1,10 @@
 var asyncNumSprites = 0;
 var cool_kid = false;
 var bardQuest = false;
+var ouiji = false;
 //~~~~~~~~~~~IMPORTANT~~~~~~~~~~LET NOTHING HERE BE RANDOM
 //OR PREDICTIONS AND TIME LOOPS AND AI SEARCHES WILL BE WRONG
+//except nepepta, cuz that cat troll be crazy, yo
 
 //mod from http://stackoverflow.com/questions/21646738/convert-hex-to-rgba
 function hexToRgbA(hex){
