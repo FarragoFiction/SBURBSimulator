@@ -86,7 +86,7 @@ function VoidyStuff(session){
 			this.endingPhrase(classDiv, newDiv);
 			return;
 		}else{ //pick from random array.
-				var options = [this.makeEnemies.bind(this,normalDiv,newDiv), this.makeFriends.bind(this,normalDiv, newDiv),this.dolandQuests.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv)];
+				var options = [this.findFraymotif.bind(this,normalDiv,newDiv),this.makeEnemies.bind(this,normalDiv,newDiv), this.makeFriends.bind(this,normalDiv, newDiv),this.dolandQuests.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv)];
 				getRandomElementFromArray(options)();
 		}
 
@@ -115,6 +115,12 @@ function VoidyStuff(session){
 		newDiv.append( ret + " " + getRandomElementFromArray(phrases));
 	}
 
+	this.findFraymotif = function(div, specialDiv){
+		console.log("Void/Rage fraymotif acquired: " + this.session.session_id)
+		div.append(" What's that music playing? ");
+		var f = player.getNewFraymotif();
+		specialDiv.append("A sweeping musical number kicks in, complete with consort back up dancers. The " + this.player.htmlTitle() + " is the star. It is them. When it is over, they seem to have learned " + f.name + ". ");
+	}
 
 	//these methods are called shuffled randomly in an array,
 	//then called in order till one of them returns true.
@@ -172,6 +178,7 @@ function VoidyStuff(session){
 			this.player.power = this.player.power*2;  //current and future doubling of power.
 			this.player.leveledTheHellUp = true;
 			this.player.denizenDefeated = true;
+			p.fraymotifs = p.fraymotifs.concat(p.denizen.fraymotifs);
 			this.player.grist += denizen.grist;
 			ret += denizen.name + " lies dead on the ground. "
 			specialDiv.append(ret)

@@ -60,16 +60,7 @@ function DoLandQuest(session){
 		var randomNumber = Math.seededRandom();
 		if(randomNumber > 0.2) return "";
 
-		if(player.godTier){
-			f = this.session.fraymotifCreator.makeFraymotifForPlayerWithFriends(player, helper, 3);
-		}else if (player.denizenDefeated){
-			f = this.session.fraymotifCreator.makeFraymotifForPlayerWithFriends(player, helper, 2);
-		}else{
-			f = this.session.fraymotifCreator.makeFraymotifForPlayerWithFriends(player, helper, 1);
-		}
-		player.fraymotifs.push(f);
-
-
+		var f  = player.getNewFraymotif();
 		return this.fraymotifFlavorTextForPlayer(player, f)
 
 	}

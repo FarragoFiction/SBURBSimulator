@@ -1600,6 +1600,19 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 	}
 
+	this.getNewFraymotif = function(){
+		var f;
+		if(this.godTier){
+			f = this.session.fraymotifCreator.makeFraymotifForPlayerWithFriends(this, helper, 3);
+		}else if (this.denizenDefeated){
+			f = this.session.fraymotifCreator.makeFraymotifForPlayerWithFriends(this, helper, 2);
+		}else{
+			f = this.session.fraymotifCreator.makeFraymotifForPlayerWithFriends(this, helper, 1);
+		}
+		this.fraymotifs.push(f);
+		return f;
+	}
+
 	this.initializePower = function(){
 		this.power = 0;
 		if(this.trickster && this.aspect != "Doom"){

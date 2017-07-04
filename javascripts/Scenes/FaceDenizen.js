@@ -86,6 +86,7 @@ function FaceDenizen(session){
 				p.grist += denizen.grist;
 				div.append("<br>"+ret);
 				this.session.denizenBeat = true;
+				p.fraymotifs = p.fraymotifs.concat(p.denizen.fraymotifs);
 				//console.log("denizen beat through choice in session: " + this.session.session_id)
 			}else{
 				p.denizenDefeated = false;
@@ -98,6 +99,7 @@ function FaceDenizen(session){
 			denizen.strife(div, [p],0);
 			if(denizen.getStat("currentHP") <= 0 ){
 				p.denizenDefeated = true;
+				p.fraymotifs = p.fraymotifs.concat(p.denizen.fraymotifs);
 				p.power = p.power*2;  //current and future doubling of power.
 				this.session.denizenBeat = true;
 			}else if(p.dead){
