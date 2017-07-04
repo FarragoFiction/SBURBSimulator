@@ -249,6 +249,7 @@ function Fraymotif(aspects, name,tier, flavorText){
 
   this.canCast = function(owner, allies, enemies){
     if(!this.usable) return false; //once per fight.
+    if(this.aspects.length == 0) return true; //no associated aspect means anyone can cast
     var casters = this.getCasters(owner, allies);
     return (casters.length == this.aspects.length)
   }
