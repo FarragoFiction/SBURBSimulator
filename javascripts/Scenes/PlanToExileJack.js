@@ -11,7 +11,7 @@ function PlanToExileJack(session){
 		this.playerList = playerList;
 		this.findSympatheticPlayer();
 		//console.log("Planner: " + this.planner + " jack hp: " + this.session.jack.getStat("currentHP") + " jack crowned: " + this.session.jack.crowned );
-		return this.planner != null && 	this.session.jack.getStat("currentHP") > 0 && !jack.dead  && 	this.session.jack.crowned == null && !this.session.jack.exiled;
+		return this.planner != null && 	this.session.jack.getStat("currentHP") > 0 && !this.session.jack.dead  && 	this.session.jack.crowned == null && !this.session.jack.exiled;
 	}
 
 
