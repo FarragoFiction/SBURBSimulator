@@ -397,7 +397,9 @@ function Session(session_id){
 				}
 				div += tin[0] + tin[1]+";";
 			}
-			div += "' ></div>";
+			div += "' >"
+			if(ouija == true) div += "<img class = 'pen15' src = 'images/pen15_bg1.png'>" //can't forget the dicks
+			div += "</div>";
 		}else if(ouija == true){
 			var trueRandom = getRandomIntNoSeed(1,4);
 			div = "<div class = 'scene' id='scene"+this.currentSceneNum+"'>"
