@@ -983,7 +983,7 @@ function GameEntity(session, name, crowned){
 							var d = defense[j];
 							if(!d.dead){
 								var o_alive = this.checkForAPulse(o,d);
-								if(!o_dead) o.interactionEffect(d);
+								o.interactionEffect(d);
 								if(!this.checkForAPulse(d, o)){
 									dead_d.push(d);
 								}

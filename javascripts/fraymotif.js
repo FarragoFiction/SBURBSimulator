@@ -202,10 +202,10 @@ function Fraymotif(aspects, name,tier, flavorText){
 
   this.replaceKeyWords = function(phrase, owner, casters, allies, enemy, enemies){
     //ret= ret.replace(new RegExp(this.lettersToReplace[i][0], "g"),replace);
-    phrase = phrase.replace(new RegExp("OWNER","g"), owner.htmlTitleBasic())
+    phrase = phrase.replace(new RegExp("OWNER","g"), owner.htmlTitleHP())
     phrase = phrase.replace(new RegExp("CASTERS","g"), getPlayersTitlesBasic(casters))
     phrase = phrase.replace(new RegExp("ALLIES","g"), getPlayersTitlesBasic(allies))
-    phrase = phrase.replace(new RegExp("ENEMY","g"), enemy.htmlTitleBasic())
+    phrase = phrase.replace(new RegExp("ENEMY","g"), enemy.htmlTitleHP())
     phrase = phrase.replace(new RegExp("ENEMIES","g"), getPlayersTitlesBasic(enemies))
     phrase = phrase.replace(new RegExp("FRAYMOTIF","g"), this.name)
 
