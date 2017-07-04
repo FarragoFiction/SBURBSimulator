@@ -7,6 +7,7 @@
 <p> Hall of Fame is officially closed as of 6/12/17. </p>
 
 <p><a href = "index2.html?seerOfVoid=true">Seer of Void</a>: The Observer gains the ability to peer into the Void. What does this mean???</p>
+<p><a href = "index2.html?pen15=ouija">Pen15 Ouija</a>: What!??? Who let all those void players have markers???</p>
 <p><a href = "index2.html?royalRumble=true">Royal Rumble</a>: Everyone is an Heiress, which means they have a biological imperitive to kill each other. Also, a much higher rate of fish puns.</p>
 <p><a href = "index2.html?lollipop=true">Trickster</a>: Everyone enters the session at a stupidly high level, is in love with everybody else (except the heart player), has super annoying quirks (except the heart player) and instantly completes their land quests. You'd think death would be impossible in this mode, and you'd be right: Except for when the tricksters THEMSELVES go batshit. Holy fucking shit. Oh, and now Doom players are completely immune, not half-assidly immune like Heart players.</p>
 <p><a href = "index2.html?babyStuck=true">BabyStuck</a>: Everyone looks like a Baby/Grub and is practically incomprehensible. Suprisingly cute, until the murders start happening, then surprisingly disturbing.</p>

@@ -349,7 +349,6 @@ function wireUpScreen(canvas, screen){
 	if(screen.screenNum == 119)		egg1(canvas, screen,14);
 }
 
-//TODO make other 14 eggs.
 function egg1(canvas, screen,num){
 	canvas.click(function(){
 		processEgg(num);
@@ -370,7 +369,6 @@ function talkJanus(){
 		distactions[0] = distactions[1025];
 		denizenEnding = true;
 		denizenCheat();
-		//TODO have puzzle auto-solve itself.
 	}
 	janusNum ++;
 }

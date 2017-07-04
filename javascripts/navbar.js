@@ -7,6 +7,8 @@ function loadNavbar(){
 		success:(function(data){
 		 $("#navbar").html(data)
 		 if(getParameterByName("seerOfVoid")  == "true"){
+			 $('body').css("background-color", "#f8c858");
+		 	$('body').css("background-image", "url(images/pen15_bg1.png)");
 	 		alert("If you gaze long into an abyss, the abyss also gazes into you.  - Troll Bruce Willis")
 	 		$("#story").append("<button onclick='toggleVoid()'>Peer into Void, Y/N?</a><div class='void'>Well, NOW you've certainly gone and done it. You can expect to see any Void Player shenanignans now. If there are any.");
 	 	}
