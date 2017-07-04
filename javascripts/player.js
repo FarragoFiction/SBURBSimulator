@@ -1600,7 +1600,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 	}
 
-	this.getNewFraymotif = function(){
+	this.getNewFraymotif = function(helper){
 		var f;
 		if(this.godTier){
 			f = this.session.fraymotifCreator.makeFraymotifForPlayerWithFriends(this, helper, 3);

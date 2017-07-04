@@ -60,7 +60,7 @@ function DoLandQuest(session){
 		var randomNumber = Math.seededRandom();
 		if(randomNumber > 0.2) return "";
 
-		var f  = player.getNewFraymotif();
+		var f  = player.getNewFraymotif(helper);
 		return this.fraymotifFlavorTextForPlayer(player, f)
 
 	}
