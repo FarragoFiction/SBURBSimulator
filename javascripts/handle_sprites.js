@@ -1277,9 +1277,6 @@ function drawSprite(canvas, player, ctx, baby){
       drawWhateverTerezi(canvas,"/Bodies/coolk1dshades.png")
     }
 
-    if(ouija){
-      drawWhatever(canvas, "/Bodies/pen15.png");
-    }
 }
 
 
@@ -1321,6 +1318,7 @@ function drawSpriteFromScratch(canvas, player,ctx,baby){
   if(player.isTroll){//wings before sprite
     fin2(canvas,player);
   }
+
   if(!baby && !player.baby_stuck){
     playerToSprite(canvas,player);
     bloody_face(canvas, player)//not just for murder mode, because you can kill another player if THEY are murder mode.
@@ -1350,6 +1348,10 @@ function drawSpriteFromScratch(canvas, player,ctx,baby){
 	 }
   }
 
+
+  if(ouija){
+    drawWhatever(canvas, "/Bodies/pen15.png");
+  }
   hair(canvas, player);
   if(player.isTroll){//wings before sprite
     fin1(canvas,player);
