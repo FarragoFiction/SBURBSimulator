@@ -37,6 +37,7 @@
 }
 .scene{
 	width: 1000px;
+	position: relative;
 }
 
 .whiteCenterThingy{
@@ -68,6 +69,13 @@
 	padding: 10px;
 	border: 3px solid black;
 }
+
+.pen15{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
 
 
 .void{

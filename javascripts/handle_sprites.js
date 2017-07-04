@@ -1,7 +1,7 @@
 var asyncNumSprites = 0;
 var cool_kid = false;
 var bardQuest = false;
-var ouiji = false;
+var ouija = false;
 //~~~~~~~~~~~IMPORTANT~~~~~~~~~~LET NOTHING HERE BE RANDOM
 //OR PREDICTIONS AND TIME LOOPS AND AI SEARCHES WILL BE WRONG
 //except nepepta, cuz that cat troll be crazy, yo
@@ -1275,6 +1275,10 @@ function drawSprite(canvas, player, ctx, baby){
       drawWhateverTerezi(canvas,"/Bodies/coolk1dlogo.png")
       drawWhateverTerezi(canvas,"/Bodies/coolk1dsword.png")
       drawWhateverTerezi(canvas,"/Bodies/coolk1dshades.png")
+    }
+
+    if(ouija){
+      drawWhatever(canvas, "/Bodies/pen15.png");
     }
 }
 

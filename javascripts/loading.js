@@ -124,6 +124,10 @@ function loadOther(skipInit){
     loadImage("/Bodies/coolk1dshades.png",skipInit);
   }
 
+	if(ouija){
+		  loadImage("/Bodies/pen15.png",skipInit);
+	}
+
 	if(bardQuest){
 		loadImage("/Bodies/cod.png",skipInit);
 	}
