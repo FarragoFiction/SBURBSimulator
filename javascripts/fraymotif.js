@@ -445,6 +445,7 @@ function FraymotifCreator(){
   	for(var i = 0; i<players.length; i++){
   		aspects.push(players[i].aspect); //allow fraymotifs tht are things like time/time. doomed time clones need love.
   	}
+    name += " ( Tier " + tier + " )"
    var f= new Fraymotif(aspects, name, tier);
    f.addEffectsForPlayers(players);
   	return f;
