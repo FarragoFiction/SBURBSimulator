@@ -612,6 +612,12 @@ function GameEntity(session, name, crowned){
 			if(players[0].dead && players[0].denizen.name == this.name) denizenKill(canvasDiv, players[0]);
 		}
 
+		this.makeAlive  = function(){
+			if(this.dead == false) return; //don't do all this.
+			this.dead = false;
+			this.currentHP = this.hp;
+		}
+
 
 		this.ending = function(div, players){
 			this.resetEveryonesFraymotifs(players);
@@ -803,7 +809,7 @@ function GameEntity(session, name, crowned){
 					this.aggrieve(div, player, this );
 				}
 			}
-
+			this.processDeaths(div, players, [this]);
 		}
 
 		//only do attack if i don't expect to one shot the enemy
@@ -818,7 +824,7 @@ function GameEntity(session, name, crowned){
 
 					this.drawGhostAttack(div, player, ghost);
 					ghost.causeOfDrain = player.title();
-					this.processDeaths(div, player, this)
+					//this.processDeaths(div, player, this)
 					return true;
 			}
 			return false;
@@ -877,7 +883,7 @@ function GameEntity(session, name, crowned){
 				var target = this.chooseTarget(players)
 				if(target) this.aggrieve(div, this, target );
 			}
-			////console.log("have special attacks (like using ghost army, or reviving.). have fraymotifs. have prototypes that change stats of ring/scepter and even add fraymotifs.")
+			this.processDeaths(div, [this], players);
 		}
 
 		//return true if you did.
@@ -916,7 +922,7 @@ function GameEntity(session, name, crowned){
 				//console.log("Luck counter: " + this.session.session_id);
 				div.append("The attack backfires and causes unlucky damage. The " + defense.htmlTitleHP() + " sure is lucky!!!!!!!!" );
 				offense.currentHP += -1* offense.getStat("power")/10; //damaged by your own power.
-				this.processDeaths(div, offense, defense)
+				//this.processDeaths(div, offense, defense)
 				return;
 			}else if(defenseRoll > offenseRoll*5+10){
 				//console.log("Luck dodge: " + this.session.session_id);
@@ -935,7 +941,7 @@ function GameEntity(session, name, crowned){
 					ret += ". They miss pretty damn hard. "
 				}
 				div.append(ret + " ");
-				this.processDeaths(div, offense, defense)
+				//this.processDeaths(div, offense, defense)
 
 				return;
 			}else if(defense.getStat("mobility") > offense.getStat("mobility")*5 && rand > 25){
@@ -963,19 +969,45 @@ function GameEntity(session, name, crowned){
 
 
 			defense.currentHP += -1* hit;
-			this.processDeaths(div, offense, defense)
+			//this.processDeaths(div, offense, defense)
 		}
 
+		//7/4/17 modded so thta either offense of defense can be multiple things. needed cause fraymotifs can kill multiple ppl
 		this.processDeaths = function(div, offense,defense){
-			offense.interactionEffect(defense); //only players have this. doomed time clones or bosses will do nothing.
-			if(!this.checkForAPulse(defense, offense)){
-				//console.log(defense.htmlTitleHP() + " is dead.");
-				div.append("The " + defense.htmlTitleHP() + " is dead. ");
+			var dead_o = [];
+			var dead_d = [];
+			for(var i = 0; i<offense.length; i++){
+				var o = offense[i]
+					if(!o.dead){  //if you are already dead, don't bother.
+						for(var j= 0; j<defense.length; j++){
+							var d = defense[j];
+							if(!d.dead){
+								var o_alive = this.checkForAPulse(o,d);
+								if(!o_dead) o.interactionEffect(d);
+								if(!this.checkForAPulse(d, o)){
+									dead_d.push(d);
+								}
+								if(!this.checkForAPulse(o, d)){
+									dead_o.push(o);
+								}
+							}
+						}
+				}
 			}
-			if(!this.checkForAPulse(offense, defense)){
-				//console.log(offense.htmlTitleHP() + " is dead.");
-				div.append("The " + offense.htmlTitleHP() + " is dead. ");
+			var ret = "";
+			if(dead_o.length > 1){
+				ret = " The " + getPlayersTitles(dead_o) + "are dead. "
+			}else if(dead_o.length == 1){
+				ret += " The " + getPlayersTitles(dead_o) + "is dead. "
 			}
+
+			if(dead_d.length > 1){
+				ret = " The " + getPlayersTitles(dead_d) + "are dead. "
+			}else if(dead_d.length == 1){
+				ret += " The " + getPlayersTitles(dead_d) + "is dead. "
+			}
+
+			div.append(ret);
 		}
 
 		this.htmlTitleBasic = function(){

@@ -47,8 +47,8 @@ function Fraymotif(aspects, name,tier, flavorText){
       if(!this.flavorText){
          this.flavorText = this.proceduralFlavorText();
       }
-      var phrase = "The CASTERS do FRAYMOTIF. ";//shitty example.
-      if(casters.length == 1) phrase = "The CASTERS does FRAYMOTIF. "
+      var phrase = "The CASTERS use FRAYMOTIF. ";//shitty example.
+      if(casters.length == 1) phrase = "The CASTERS uses FRAYMOTIF. "
       phrase += this.flavorText + revives;
       return this.replaceKeyWords(phrase, owner, casters, allies,  enemy, enemies);
   }
@@ -292,12 +292,12 @@ function FraymotifCreator(){
     var f = new Fraymotif([], name + "'s Song", 2); //CAN I have an aspectless fraymotif?
     f.flavorText = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
     //statName, target, damageInsteadOfBuff, flavorText
-    var plus = player.getOnlyPositiveAspectAssociatedStats //buff self and heal
+    var plus = player.getOnlyPositiveAspectAssociatedStats() //buff self and heal
     for(var i = 0; i<plus.length; i++){
       f.effects.push(new FraymotifEffect(plus[i].name,0,true));
       f.effects.push(new FraymotifEffect(plus[i].name,0,false));
     }
-    var minus = player.getOnlyNegativeAspectAssociatedStats //debuff enemy, and damage.
+    var minus = player.getOnlyNegativeAspectAssociatedStats() //debuff enemy, and damage.
     for(var i = 0; i<minus.length; i++){
       f.effects.push(new FraymotifEffect(minus[i].name,2,true));
       f.effects.push(new FraymotifEffect(minus[i].name,2,false));
@@ -591,7 +591,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 		for(var i = 0; i<targetArr.length; i++){
 			var t = targetArr[i];
 			t.currentHP += e;
-			t.dead = false;
+			t.makeAlive();
 		}
 	}
 

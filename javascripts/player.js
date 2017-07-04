@@ -546,6 +546,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 
 	this.makeAlive = function(){
+			if(this.dead == false) return; //don't do all this.
 			if(this.stateBackup) this.stateBackup.restoreState(this);
 			this.influencePlayer = null;
 			this.influenceSymbol = null;

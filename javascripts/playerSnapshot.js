@@ -84,6 +84,12 @@ function PlayerSnapshot(){
 		return ret;
 	}
 
+	this.makeAlive  = function(){
+		if(this.dead == false) return; //don't do all this.
+		this.dead = false;
+		this.currentHP = this.hp;
+	}
+
 	this.modifyAssociatedStat = function(modValue, stat){
 		//modValue * stat.multiplier.
 		if(stat.name == "RELATIONSHIPS"){
