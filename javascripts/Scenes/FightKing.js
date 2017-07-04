@@ -6,7 +6,7 @@ function FightKing(session){
 	this.trigger = function(playerList){
 		this.playerList = playerList;
 		//console.log('fight kin trigger?')
-		return (this.session.king.getStat("currentHP") > 0) &&  (this.session.queen.getStat("currentHP") <= 0) && (findLivingPlayers(this.session.players).length != 0) ;
+		return (this.session.king.getStat("currentHP") > 0) && !this.session.king.dead&& (this.session.queen.getStat("currentHP") <= 0) && (findLivingPlayers(this.session.players).length != 0) ;
 	}
 
 

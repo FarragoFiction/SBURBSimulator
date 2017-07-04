@@ -5,7 +5,7 @@ function FightQueen(session){
 
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		return (this.session.queen.getStat("currentHP") > 0) &&  (findLivingPlayers(this.session.players).length != 0) ;
+		return (this.session.queen.getStat("currentHP") > 0) &&  !this.session.queen.dead&&(findLivingPlayers(this.session.players).length != 0) ;
 	}
 
 

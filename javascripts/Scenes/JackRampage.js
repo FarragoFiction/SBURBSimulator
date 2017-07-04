@@ -8,7 +8,7 @@ function JackRampage(session){
 
 	this.trigger = function(playerList){
 		//console.log("Jack is: " + this.session.jackStrength  + " and King is: " + this.session.kingStrength)
-		return this.session.jack.crowned != null && this.session.jack.getStat("currentHP") > 0; //Jack does not stop showing us his stabs.
+		return this.session.jack.crowned != null && this.session.jack.getStat("currentHP") > 0 && !this.session.jack.dead; //Jack does not stop showing us his stabs.
 	}
 
 	//target slowest player. their friends will try to help them. jack never hurts witch.

@@ -822,7 +822,7 @@ function GameEntity(session, name, crowned){
 					//console.log("ghost attack in: " + this.session.session_id)
 
 					this.currentHP += Math.round(-1* ghost.power*5); //not just one attack from the ghost
-					div.append(" The " + player.htmlTitleBasic() + " cashes in their promise of aid. The ghost of the " + ghost.htmlTitleBasic() + " unleashes an unblockable ghostly attack channeled through the living player. " + ghost.power + " damage is done to " + this.htmlTitleHP() + ". The ghost will need to rest after this for awhile. " );
+					div.append("<Br><Br> The " + player.htmlTitleBasic() + " cashes in their promise of aid. The ghost of the " + ghost.htmlTitleBasic() + " unleashes an unblockable ghostly attack channeled through the living player. " + ghost.power + " damage is done to " + this.htmlTitleHP() + ". The ghost will need to rest after this for awhile. " );
 
 					this.drawGhostAttack(div, player, ghost);
 					ghost.causeOfDrain = player.title();
@@ -1022,8 +1022,7 @@ function GameEntity(session, name, crowned){
 		}
 
 		this.makeDead = function(causeOfDeath){
-			//does nothing. game entities are assumed to be dead if zero hp
-			this.dead = true; //mostly ignored, but gameEntity's on the player side use this.
+			this.dead = true;
 			this.causeOfDeath = causeOfDeath;
 		}
 
