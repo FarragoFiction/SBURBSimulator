@@ -223,6 +223,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		denizen.setStats(ml,xl,hp,mob,tl,fw,power,true, false, [],1000000);
 		this.denizen = denizen;
 		this.denizenMinion = denizenMinion;
+		this.session.fraymtofCreator.createFraymotifForPlayerDenizen(this,name);
 	}
 
 	this.getDenizenNameArray = function(){

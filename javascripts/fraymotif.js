@@ -44,17 +44,6 @@ function Fraymotif(aspects, name,tier, flavorText){
 	}
 
   this.processFlavorText = function(owner, casters, allies, enemy, enemies, revives){
-      //if this.flavorText is null, we need to create it from our effects.
-      /*
-        when creating procedural flavor text, don't just blindly concat effects.
-        need to grab similar effects and combine.“Damages an Enemy based on how WILLFUL, STRONG, CALM, and FAST, the casters are compared to their enemy.”
-        do regexp replacement on the phrases the toString for effects generates.
-      */
-
-      //once i have flavor text, either procedural or hard coded
-      /*
-        Do regex replacment on CASTERS, ENEMY, FRAYMOTIF
-      */
       if(!this.flavorText){
          this.flavorText = this.proceduralFlavorText();
       }
@@ -296,6 +285,12 @@ function Fraymotif(aspects, name,tier, flavorText){
 
 //no global functions any more. bad pastJR.
 function FraymotifCreator(){
+
+  this.createFraymotifForPlayerDenizen = function(player, name){
+    var denizen = player.denizen;
+    var f = new Fraymotif([], name + "'s Song", 2); //CAN I have an aspectless fraymotif?
+    f.flavorText = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+  }
 
   this.getUsableFraymotifs = function(owner, allies, enemies){
     var fraymotifs = owner.fraymotifs;
