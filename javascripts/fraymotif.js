@@ -615,26 +615,12 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 		var ret = 0;
 		for(var i = 0; i<casters.length; i++ ){
 			var tmp = casters[i];
-			if(this.statName != "RELATIONSHIPS"){
-				ret += tmp[this.statName];
-			}else{
-				for(var j = 0; j<tmp.relationships.length; j++){
-					ret += tmp.relationships[j].value
-				}
-			}
-
+				ret += tmp.getStat(this.statName)
 		}
 
 		for(var i = 0; i< enemies.length; i++ ){
 			var tmp = enemies[i];
-			if(this.statName != "RELATIONSHIPS"){
-				ret += -1* tmp[this.statName];
-			}else{
-				for(varji = 0; j<tmp.relationships.length; j++){
-					ret += -1* tmp.relationships[i].value
-				}
-			}
-
+			ret += tmp.getStat(this.statName)
 		}
 		return ret;
 	}
