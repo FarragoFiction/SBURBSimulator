@@ -58,6 +58,7 @@ function GoGrimDark(session){
 				ret += " The " + this.player.htmlTitleBasic() + " will tell anyone who will listen that the game needs to be broken. "
 			}else if(this.player.grimDark == 4){
 				console.log("full grim dark: " + this.session.session_id)
+				//alert("full grim dark: " + this.session.session_id)
 				this.player.increasePower(200);
 				ret +=  "The " + this.player.htmlTitleBasic() + " slips into the fabled blackdeath trance of the woegothics, quaking all the while in the bloodeldritch throes of the broodfester tongues.";
 				ret += " It is now painfully obvious to anyone with a brain, they have basically gone completely off the deep end in every way. The "
