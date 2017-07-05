@@ -1139,6 +1139,7 @@ disastor_objects[disastor_objects.length-1].mobility = 500;
 disastor_objects[disastor_objects.length-1].power = 500;
 disastor_objects[disastor_objects.length-1].helpPhrase = "is fairly helpful with the teleporting and all, but when it speaks- Wow. No. That is not ok. ";
 var f = new Fraymotif([], name + "Atomic Teleport Spam", 3)
+f.effects.push(new FraymotifEffect("mobility",0,false));
 f.effects.push(new FraymotifEffect("mobility",2,true));
 f.flavorText = " The OWNER shimers with radioactive stars, and then teleports behind the ENEMY, sneak-attacking them. "
 disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
@@ -1197,6 +1198,7 @@ disastor_objects[disastor_objects.length-1].minLuck = -250;
 disastor_objects[disastor_objects.length-1].maxLuck = 250;
 var f = new Fraymotif([], name + "Hee Hee Hee Hoo!", 3)
 f.effects.push(new FraymotifEffect("sanity",3,false));
+f.effects.push(new FraymotifEffect("sanity",3,true));
 f.flavorText = " Oh god! Shut up! Just once! Please shut up! "
 disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
@@ -1236,13 +1238,11 @@ disastor_objects[disastor_objects.length-1].lusus = true;
 disastor_objects[disastor_objects.length-1].currentHP = 250;
 disastor_objects[disastor_objects.length-1].power = 250;
 disastor_objects[disastor_objects.length-1].helpPhrase = "breathes fire and offers condescending, yet useful advice. ";
+var f = new Fraymotif([], name + "Mighty Fire Breath", 3)
+f.effects.push(new FraymotifEffect("power",3,true));
+f.flavorText = " With a mighty breath, OWNER spits all the fires, sick and otherwise.  Who knew shaving cream was so flammable? "
+disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
-
-
-disastor_objects.push(new GameEntity(null, "Alien",null));
-disastor_objects[disastor_objects.length-1].hp = 250;
-disastor_objects[disastor_objects.length-1].currentHP = 250;
-disastor_objects[disastor_objects.length-1].power = 250;
 
 disastor_objects.push(new GameEntity(null, "Teacher",null));
 disastor_objects[disastor_objects.length-1].hp = 250;
@@ -1250,7 +1250,11 @@ disastor_objects[disastor_objects.length-1].currentHP = 250;
 disastor_objects[disastor_objects.length-1].power = 250;
 disastor_objects[disastor_objects.length-1].helpfulness = -1;
 disastor_objects[disastor_objects.length-1].helpPhrase = "dials the sprites natural tendency towards witholding information to have you 'figure it out yourself' up to eleven. ";
-
+var f = new Fraymotif([], name + "Lecture", 3)
+f.effects.push(new FraymotifEffect("freeWill",3,false));
+f.effects.push(new FraymotifEffect("sanity",3,false));
+f.flavorText = " OWNER begins a 3 part lecture on why you should probably just give up. It is hypnotic in it's ceaselessness."
+disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 
 disastor_objects.push(new GameEntity(null, "Fiduspawn",null));
@@ -1269,19 +1273,33 @@ disastor_objects[disastor_objects.length-1].currentHP = 250;
 disastor_objects[disastor_objects.length-1].power = 250;
 disastor_objects[disastor_objects.length-1].helpfulness = -1;
 disastor_objects[disastor_objects.length-1].helpPhrase = "stares creepily. It never moves when you're watching it. It's basically the worst, and that's all there is to say on that topic. ";
-
+var f = new Fraymotif([], name + "Disconcerting Ogle", 3)
+f.effects.push(new FraymotifEffect("sanity",3,false));
+f.effects.push(new FraymotifEffect("sanity",0,true));
+f.flavorText = " OWNER is staring at ENEMY. It makes you uncomfortable, the way they are just standing there. And watching.  "
+disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 
 disastor_objects.push(new GameEntity(null, "Zombie",null));
 disastor_objects[disastor_objects.length-1].hp = 250;
 disastor_objects[disastor_objects.length-1].currentHP = 250;
 disastor_objects[disastor_objects.length-1].power = 250;
+var f = new Fraymotif([], name + "Rise From The Grave", 3)
+f.effects.push(new FraymotifEffect("hp",0,true));
+f.flavorText = " You thought the OWNER was pretty hurt, but instead they are just getting going. "
+disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 disastor_objects.push(new GameEntity(null, "Demon",null));
 disastor_objects[disastor_objects.length-1].hp = 250;
 disastor_objects[disastor_objects.length-1].currentHP = 250;
 disastor_objects[disastor_objects.length-1].power = 500;
 disastor_objects[disastor_objects.length-1].freeWill = 250; //wants to mind control you.
+var f = new Fraymotif([], name + "Claw Claw MotherFuckers", 3)
+f.effects.push(new FraymotifEffect("power",2,true));
+f.effects.push(new FraymotifEffect("power",2,true));
+f.flavorText = " The OWNER slashes at the ENEMY twice. "
+disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
+
 
 
 disastor_objects.push(new GameEntity(null, "Monster",null));
@@ -1289,6 +1307,11 @@ disastor_objects[disastor_objects.length-1].hp = 250;
 disastor_objects[disastor_objects.length-1].currentHP = 250;
 disastor_objects[disastor_objects.length-1].power = 500; //generically scary
 disastor_objects[disastor_objects.length-1].sanity = -250;
+var f = new Fraymotif([], name + "Claw Claw MotherFuckers", 3)
+f.effects.push(new FraymotifEffect("power",2,true));
+f.effects.push(new FraymotifEffect("power",2,true));
+f.flavorText = " The OWNER slashes at the ENEMY twice. "
+disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 
 disastor_objects.push(new GameEntity(null, "Vampire",null));
@@ -1296,12 +1319,23 @@ disastor_objects[disastor_objects.length-1].hp = 250;
 disastor_objects[disastor_objects.length-1].currentHP = 250;
 disastor_objects[disastor_objects.length-1].power = 250;
 disastor_objects[disastor_objects.length-1].mobility = 250; //vampire fastness
+var f = new Fraymotif([], name + "I Vant to Drink Your Blood", 3)
+f.effects.push(new FraymotifEffect("hp",2,true));
+f.effects.push(new FraymotifEffect("hp",0,true));//damage you, heal self.
+f.flavorText = " The OWNER drains HP from the ENEMY. "
+disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 disastor_objects.push(new GameEntity(null, "Pumpkin",null));
 disastor_objects[disastor_objects.length-1].power = 250;
 disastor_objects[disastor_objects.length-1].maxLuck = 5000;
 disastor_objects[disastor_objects.length-1].mobility = 5000;  //what pumpkin?
 disastor_objects[disastor_objects.length-1].helpPhrase = "was kind of helpful, and then kind of didn’t exist. Please don’t think too hard about it, the simulation is barely handling a pumpkin sprite as is. ";
+var f = new Fraymotif([], name + "What Pumpkin???", 3)
+f.effects.push(new FraymotifEffect("mobility",2,false));
+f.effects.push(new FraymotifEffect("mobility",3,true));
+f.flavorText = " Everyone tries to hit the OWNER until suddenly they have never been there at all, causing attacks to miss so catastrophically they damage themselves. "
+disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
+
 
 
 disastor_objects.push(new GameEntity(null, "Werewolf",null));
@@ -1309,6 +1343,11 @@ disastor_objects[disastor_objects.length-1].hp = 250;
 disastor_objects[disastor_objects.length-1].currentHP = 250;
 disastor_objects[disastor_objects.length-1].power = 250;
 disastor_objects[disastor_objects.length-1].sanity = -250;
+var f = new Fraymotif([], name + "Grim Bark Slash Attack", 3)
+f.effects.push(new FraymotifEffect("power",2,true));
+f.effects.push(new FraymotifEffect("power",2,true));
+f.flavorText = " The OWNER slashes at the ENEMY twice. While being a werewolf. "
+disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 disastor_objects.push(new GameEntity(null, "Monkey",null));   //just, fuck monkeys in general.
 disastor_objects[disastor_objects.length-1].hp = 5;
@@ -1316,10 +1355,14 @@ disastor_objects[disastor_objects.length-1].currentHP = 250;
 disastor_objects[disastor_objects.length-1].power = 250;
 disastor_objects[disastor_objects.length-1].helpfulness = -1;
 disastor_objects[disastor_objects.length-1].maxLuck = -5000;  //fuck monkeys
-disastor_objects[disastor_objects.length-1].min = -5000;
+disastor_objects[disastor_objects.length-1].minLuck = -5000;
 disastor_objects[disastor_objects.length-1].mobility = 5000;
 disastor_objects[disastor_objects.length-1].helpPhrase = "actively inteferes with quests. Just. Fuck monkeys. ";
-
+var f = new Fraymotif([], name + "Monkey Business", 3)
+f.effects.push(new FraymotifEffect("mobility",0,false));
+f.effects.push(new FraymotifEffect("mobility",2,true));
+f.flavorText = " The OWNER uses their monkey like fastness to attack the ENEMY just way too fucking many times. "
+disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 
 
