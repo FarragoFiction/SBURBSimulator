@@ -392,5 +392,27 @@ function makeDoomedSnapshot(timePlayer){
 	}else if(rand>.2){
 		timeClone.murderMode = !timeClone.murderMode;
 	}
+
+	if(timeClone.grimDark > 3){
+		var f = new Fraymotif([],  "The Broodfester Tongues", 3)
+		f.effects.push(new FraymotifEffect("power",3,true));
+		f.effects.push(new FraymotifEffect("power",0,false));
+		f.flavorText = " They are stubborn throes. "
+		timeClone.fraymotifs.push(f);
+	}
+
+	if(timeClone.godTier){
+		f = this.session.fraymotifCreator.makeFraymotif([timeClone], 3);//first god tier fraymotif
+		timeClone.fraymotifs.push(f);
+	}
+
+	if(timeClone.power > 50){
+		f = this.session.fraymotifCreator.makeFraymotif([timeClone], 2);//probably beat denizen at least
+		timeClone.fraymotifs.push(f);
+	}
+
+	f = this.session.fraymotifCreator.makeFraymotif([timeClone], 1);//at least did first quest
+	timeClone.fraymotifs.push(f);
+
 	return timeClone;
 }
