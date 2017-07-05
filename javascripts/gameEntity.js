@@ -1475,10 +1475,14 @@ prototyping_objects[prototyping_objects.length-1].currentHP = 10;
 prototyping_objects[prototyping_objects.length-1].power = 10;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
 prototyping_objects[prototyping_objects.length-1].helpPhrase = "provides transcendent wisdom. ";
-prototyping_objects[prototyping_objects.length-1].freeWill = 100;
-prototyping_objects[prototyping_objects.length-1].mobility = 100;
-prototyping_objects[prototyping_objects.length-1].minLuck = 100;
-prototyping_objects[prototyping_objects.length-1].maxLuck = 100;
+prototyping_objects[prototyping_objects.length-1].freeWill = 50;
+prototyping_objects[prototyping_objects.length-1].mobility = 50;
+prototyping_objects[prototyping_objects.length-1].minLuck = 50;
+prototyping_objects[prototyping_objects.length-1].maxLuck = 50;
+var f = new Fraymotif([], "Duttobliteration", 2)
+f.effects.push(new FraymotifEffect("freeWill",2,true));
+f.flavorText = " The ENEMY is obliterated. Probably. A watermark of Charles Dutton appears, stage right. "
+prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
 
 
 
@@ -1512,13 +1516,34 @@ prototyping_objects.push(new GameEntity(null, "WebComicCreator",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
 prototyping_objects[prototyping_objects.length-1].helpPhrase = "refuses to explain anything about SBURB to you, prefering to let you speculate wildly while cackling to himself.";
+var f = new Fraymotif([], "Kill ALL The Characters", 2)
+f.effects.push(new FraymotifEffect("freeWill",3,true));
+f.flavorText = " All enemies are obliterated. Probably. A watermark of Andrew Hussie appears, stage right. "
+prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
 
 prototyping_objects.push(new GameEntity(null, "Sleuth",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
 prototyping_objects[prototyping_objects.length-1].helpPhrase = "suggests the player just input a password to skip all their land's weird puzzle shit. This is not actually a thing you can do.";
+var f = new Fraymotif([], "Sepulchritude", 2)
+f.effects.push(new FraymotifEffect("RELATIONSHIPS",1,true));
+f.flavorText = " The OWNER decides not to bring that noise just yet. They just heal the party instead. "
+prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
 
+var f = new Fraymotif([], "Sepulchritude", 2)
+f.effects.push(new FraymotifEffect("RELATIONSHIPS",1,true));
+f.flavorText = " THE OWNER just don't have the offensive gravitas for that attack. They just heal the party instead. "
+prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
 
+var f = new Fraymotif([], "Sepulchritude", 2)
+f.effects.push(new FraymotifEffect("RELATIONSHIPS",3,true));
+f.flavorText = " The OWNER finally fucking unleashes their Ultimate Attack. The resplendent light of divine PULCHRITUDE consumes all enemies. "
+prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
+
+var f = new Fraymotif([], "Sepulchritude", 2)
+f.effects.push(new FraymotifEffect("RELATIONSHIPS",1,true));
+f.flavorText = " No, not yet! The OWNER refuses to use Sepulchritude. They just heal the party instead. "
+prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
 
 prototyping_objects.push(new GameEntity(null, "Nick Cage",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
