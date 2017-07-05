@@ -658,6 +658,9 @@ function drawLevelUp(canvas, player,repeatTime){
 //player in center, on platform, level name underneath them. aspect symbol behind them.
 //bg color is shirt color
 function drawLevelUpGodTier(canvas, player,repeatTime){
+	 if(checkSimMode() == true){
+		return;
+	}
 	var leftMargin = 150;
 	var levelBuffer = getBufferCanvas(document.getElementById("godtierlevelup_template"));
 	drawBGRadialWithWidth(canvas, leftMargin, 650,650,"#000000",getShirtColorFromAspect(player.aspect))  //650 is iold
