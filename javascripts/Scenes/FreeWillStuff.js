@@ -62,12 +62,13 @@ function FreeWillStuff(session){
 		//console.log(this.playerGodTiered.title() + " rendering free will god tier: " + this.session.session_id)
 		var divID = (div.attr("id")) + "_freeWillBulshit" + this.playerGodTiered.chatHandle;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
-		div.append(canvasHTML);
-		var canvas = document.getElementById("canvas"+ divID);
-		
 		var f = this.session.fraymotifCreator.makeFraymotif([this.playerGodTiered], 3);//first god tier fraymotif
 		this.playerGodTiered.fraymotifs.push(f);
 		div.append(" They learn " + f.name + ". ") ;
+		div.append(canvasHTML);
+		var canvas = document.getElementById("canvas"+ divID);
+		
+
 	
 		drawGetTiger(canvas, [this.playerGodTiered],repeatTime) //only draw revivial if it actually happened.
 	}
