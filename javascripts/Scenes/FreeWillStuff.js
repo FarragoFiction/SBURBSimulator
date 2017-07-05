@@ -64,6 +64,12 @@ function FreeWillStuff(session){
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = document.getElementById("canvas"+ divID);
+		
+		var f = this.session.fraymotifCreator.makeFraymotif([this.playerGodTiered], 3);//first god tier fraymotif
+		this.playerGodTiered.fraymotifs.push(f);
+		div.append(" They learn " + f.name + ". ") ;
+		roll.player.makeGodTier();
+		
 		drawGetTiger(canvas, [this.playerGodTiered],repeatTime) //only draw revivial if it actually happened.
 	}
 

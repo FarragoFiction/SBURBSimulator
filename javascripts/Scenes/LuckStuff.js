@@ -214,6 +214,9 @@ function LuckStuff(session){
 				this.session.sacrificialSlab = true;
 				//roll.player.makeDead("luckily on their Sacrificial Slab") doesn't make a ghost 'cause the corpse itself revives'
 			}
+			var f = this.session.fraymotifCreator.makeFraymotif([roll.player], 3);//first god tier fraymotif
+			roll.player.fraymotifs.push(f);
+			ret += " They learn " + f.name + ". " ;
 			roll.player.makeGodTier();
 
 			this.session.luckyGodTier = true;
