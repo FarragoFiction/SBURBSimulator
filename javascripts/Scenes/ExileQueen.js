@@ -26,6 +26,7 @@ function ExileQueen(session){
 		}
 
 		this.session.queen.hp = -999990; //effectively dead.
+		this.session.queen.dead = true;
 		this.session.queen.currentHP = -999990; //effectively dead.
 		this.session.queen.exiled = true;
 		return ret;

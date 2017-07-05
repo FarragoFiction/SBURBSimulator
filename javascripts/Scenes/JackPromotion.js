@@ -37,6 +37,7 @@ function JackPromotion(session){
 					console.log("jack murdering queen instead of kissing her in sessin: " + this.session.session_id)
 					ret += "He easily murders the weakened queen and uses her ring to obtain her power. ";
 					this.session.queen.currentHP = -9999; //actually kill her you dunkass. not KISS her.
+					this.session.queen.dead = true;
 				}
 
 			}else{
