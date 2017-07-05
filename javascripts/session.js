@@ -371,7 +371,7 @@ function Session(session_id){
 		this.jack.setStats(-500,-10,20,-50,50,1000,40,true, true, [],100000); //jack is kind of a big deal. luck determines his odds of finding bullshit weapon
 		//jack uses "Stab to Meet You", it's not very effective (nobody seems to think his stabs are important until he's crowned.)
 		var f = new Fraymotif([],  "Stab To Meet You", 1)
-		f.effects.push(new FraymotifEffect("power",1,true));
+		f.effects.push(new FraymotifEffect("power",3,true));
 		f.flavorText = " It's pretty much how he says 'Hello'. "
 		this.jack.fraymotifs.push(f);
 
