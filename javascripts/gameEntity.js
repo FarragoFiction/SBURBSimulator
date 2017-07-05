@@ -1347,7 +1347,7 @@ disastor_objects[disastor_objects.length-1].helpPhrase = "was kind of helpful, a
 var f = new Fraymotif([],  "What Pumpkin???", 3)
 f.effects.push(new FraymotifEffect("mobility",2,false));
 f.effects.push(new FraymotifEffect("mobility",3,true));
-f.flavorText = " Everyone tries to hit the OWNER until suddenly they have never been there at all, causing attacks to miss so catastrophically they damage themselves. "
+f.flavorText = " Everyone tries to hit the OWNER until suddenly they have never been there at all, causing attacks to miss so catastrophically they backfire. "
 disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 
