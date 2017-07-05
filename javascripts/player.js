@@ -1760,7 +1760,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.initializeSprite = function(){
 		this.sprite = new GameEntity(session, "sprite",null); //unprototyped.
 		//minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs, grist
-		this.sprite.setStats(30,50,50,0,0,0,0,false, false, [],1000);//same as denizen minion, but empty power
+		this.sprite.setStats(0,0,10,0,0,0,10,false, false, [],1000);//same as denizen minion, but empty power
 		this.sprite.doomed = true
 		this.sprite.sprite = true;
 	}
