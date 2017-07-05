@@ -355,7 +355,7 @@ function Session(session_id){
 		f.effects.push(new FraymotifEffect("power",3,true));
 		f.flavorText = " You cannot escape them "
 		this.queensRing.fraymotifs.push(f);
-		
+
 		this.kingsScepter = new GameEntity(this, "!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!",false)
 		this.kingsScepter.setStats(0,0,0,0,0,0,0,false, false, [],1000);
 		this.king = new GameEntity(this, "Black King", this.kingsScepter);
@@ -368,7 +368,7 @@ function Session(session_id){
 
 		this.jack = new GameEntity(this, "Jack",null);
 		this.jack.carapacian = true;
-		this.jack.setStats(-500,-10,20,-50,50,1000,40,true, true, [],100000); //jack is kind of a big deal. luck determines his odds of finding bullshit weapon
+		this.jack.setStats(-500,-10,20,-50,-500,1000,40,true, true, [],100000); //jack is kind of a big deal. luck determines his odds of finding bullshit weapon
 		//jack uses "Stab to Meet You", it's not very effective (nobody seems to think his stabs are important until he's crowned.)
 		var f = new Fraymotif([],  "Stab To Meet You", 1)
 		f.effects.push(new FraymotifEffect("power",3,true));

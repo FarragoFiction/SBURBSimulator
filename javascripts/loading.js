@@ -128,6 +128,8 @@ function loadOther(skipInit){
 		  loadImage("/Bodies/pen15.png",skipInit);
 	}
 
+	loadImage("charSheet.png", skipInit);
+
 	if(bardQuest){
 		loadImage("/Bodies/cod.png",skipInit);
 	}

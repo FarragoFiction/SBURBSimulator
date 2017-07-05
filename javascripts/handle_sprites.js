@@ -572,6 +572,12 @@ function drawGodRevival(canvas, live_players, dead_players){
 		}
 }
 
+//should only be used at the end, draws the player and their stats.
+function drawCharSheet(canvas, player){
+  drawSinglePlayer(canvas, player);
+  drawWhatever(canvas, "charSheet.png");
+}
+
 
 function drawGetTiger(canvas, players, repeatTime){
   if(checkSimMode() == true){

@@ -196,17 +196,20 @@ function Aftermath(session){
 	div.append(end);
 	var divID = (div.attr("id")) + "_aftermath" ;
 
-	var ch = canvasHeight;
-	if(this.session.players.length > 6){
-		ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
-	}
-	var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+ch + "'>  </canvas>";
 
-	div.append(canvasHTML);
-	var canvasDiv = document.getElementById("canvas"+ divID);
-	poseAsATeam(canvasDiv, this.session.players, 2000); //everybody, even corpses, pose as a team.
+	//poseAsATeam(canvasDiv, this.session.players, 2000); //everybody, even corpses, pose as a team.
+	this.lastRender(div);
 	if(yellowYard == true || this.session.janusReward){
 		this.yellowLawnRing(div);  //can still scratch, even if yellow lawn ring is available
+	}
+}
+
+this.lastRender = function(div){
+	for(var i = 0; i<this.session.players.length; i++){
+		var canvasHTML = "<br><canvas class = 'charSheet' id='lastcanvas" + i+"' width='400' height='1000'>  </canvas>";
+		div.append(canvasHTML);
+		var canvasDiv = document.getElementById("lastcanvas"+ i);
+		drawCharSheet(canvasDiv,this.session.players[i])
 	}
 }
 
