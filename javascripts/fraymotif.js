@@ -37,7 +37,7 @@ function Fraymotif(aspects, name,tier, flavorText){
 		var living = findLivingPlayers(allies); //dead men use no fraymotifs. (for now)
 		for(var i = 1; i<this.aspects.length; i++){ //skip the first aspect, because that's owner.
 			var a = this.aspects[i];
-      var p = getRandomElementFromArray(findAllAspectPlayers(allies, a))//ANY player that matches my aspect can do this.
+			var p = getRandomElementFromArray(findAllAspectPlayers(allies, a))//ANY player that matches my aspect can do this.
 			if(p) casters.push(p); //don't add 'undefined' to this array like a dunkass.
 		}
 		return casters;  //eventually do smarter things, like only allow to cast buff hp if heals are needed or anybody is dead.
@@ -626,7 +626,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 		}
 
 		for(var i = 0; i< enemies.length; i++ ){
-			var tmp = casters[i];
+			var tmp = enemies[i];
 			if(this.statName != "RELATIONSHIPS"){
 				ret += -1* tmp[this.statName];
 			}else{

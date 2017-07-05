@@ -894,6 +894,9 @@ function GameEntity(session, name, crowned){
 		this.useFraymotif = function(div, owner, allies, enemies){
 			if(Math.seededRandom() > 0.75) return false; //don't use them all at once, dunkass.
 			var usableFraymotifs = this.session.fraymotifCreator.getUsableFraymotifs(owner, allies, enemies);
+			if(owner.crowned){  //ring/scepter has fraymotifs, too.  (maybe shouldn't let humans get thefraymotifs but what the fuck ever. roxyc could do voidy shit.)
+				usableFraymotifs = usableFraymotifs.concat(this.session.fraymotifCreator.getUsableFraymotifs(this.crowned, allies, enemies))
+			}
 			if(usableFraymotifs.length == 0) return false;
 			if(owner == this) console.log(this.name + " is using a fraymotif in session: " + this.session.session_id);
 			var chosen = usableFraymotifs[0];
