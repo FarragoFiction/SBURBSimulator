@@ -351,6 +351,11 @@ function Session(session_id){
 	this.setUpBosses = function(){
 		this.queensRing = new GameEntity(this, "!!!RING!!! OMG YOU SHOULD NEVER SEE THIS!",false)
 		this.queensRing.setStats(0,0,0,0,0,0,0,false, false, [],1000);
+		var f = new Fraymotif([],  "Red Miles", 3)
+		f.effects.push(new FraymotifEffect("power",3,true));
+		f.flavorText = " You cannot escape them "
+		this.queensRing.fraymotifs.push(f);
+		
 		this.kingsScepter = new GameEntity(this, "!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!",false)
 		this.kingsScepter.setStats(0,0,0,0,0,0,0,false, false, [],1000);
 		this.king = new GameEntity(this, "Black King", this.kingsScepter);
