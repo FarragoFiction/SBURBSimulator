@@ -28,7 +28,7 @@ function JackBeginScheming(session){
 	//a player has to be not busy to be your friend right now.
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		if(this.session.jack.getStat("currentHP") <= 0 && !jack.dead|| this.session.queen.getStat("currentHP") <= 0 && !queen.dead){  //the dead can't scheme or be schemed against
+		if(this.session.jack.getStat("currentHP") <= 0 && !this.session.jack.dead|| this.session.queen.getStat("currentHP") <= 0 && !this.session.queen.dead){  //the dead can't scheme or be schemed against
 			return false;
 		}
 		this.findSympatheticPlayer();
