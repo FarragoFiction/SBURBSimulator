@@ -62,6 +62,9 @@ function GetTiger(session){
 				////console.log("Quest bed: " + this.session.session_id)
 				ret += " Upon being laid to rest on their QUEST BED on the " + p.land + ", the " + p.htmlTitle() + "'s body glows, and rises Skaiaward. "
 				ret +="On " + p.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
+				f = this.session.fraymotifCreator.makeFraymotif([p], 3);//first god tier fraymotif
+				p.fraymotifs.push(f);
+				ret += " They learn " + f.name + "." ;
 				this.session.questBed = true;
 			}
 		}else if(withd && withd.length > 0){
@@ -78,6 +81,9 @@ function GetTiger(session){
 					////console.log("sacrificial slab: " + this.session.session_id)
 					ret += " Upon a wacky series of events leaving their corpse on their SACRIFICIAL SLAB on " + p.moon + ", the " + p.htmlTitle() + " glows and ascends to the God Tiers with a sweet new outfit."
 					this.session.sacrificialSlab = true;
+					f = this.session.fraymotifCreator.makeFraymotif([p], 3);//first god tier fraymotif
+					p.fraymotifs.push(f);
+					ret += " They learn " + f.name + "." ;
 				}
 
 			}
@@ -85,6 +91,8 @@ function GetTiger(session){
 		}
 		this.session.godTier = true;
 		ret += " They are now extremely powerful. ";
+		
+		
 
 		if(findClassPlayer(this.deadPlayersToGodTier, "Page") != null){
 			ret += " Everyone fails to ignore the Page's outfit. ";
