@@ -234,7 +234,9 @@ function VoidyStuff(session){
 		this.session.godTier = true;
 
 		div.append(" What was that light on " + this.player.shortLand() + "? ");
-		specialDiv.append("Holy shit. Did the " + this.player.htmlTitleBasic() + " just randomly go GodTier? What the fuck is going on? How did they even die? This is some flagrant bullshit. " );
+		f = this.session.fraymotifCreator.makeFraymotif([this.player], 3);//first god tier fraymotif
+		this.player.fraymotifs.push(f);
+		specialDiv.append("Holy shit. Did the " + this.player.htmlTitleBasic() + " just randomly go GodTier? What the fuck is going on? Did they even die? This is some flagrant bullshit. Somehow they learned " + f.name + " too." );
 		var divID = (specialDiv.attr("id")) + "godBS"
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		specialDiv.append(canvasHTML);
