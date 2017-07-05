@@ -167,7 +167,7 @@ function GameEntity(session, name, crowned){
 				f.effects.push(new FraymotifEffect("power",2,true)); //do damage
 				f.effects.push(new FraymotifEffect("hp",1,true)); //heal
 				f.flavorText = " An appropriately themed beam of light damages enemies and heals allies. "
-				disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
+				this.fraymotifs.push(f);
 			}
 			this.corrupted = object.corrupted;
 			this.helpfulness = object.helpfulness; //completely overridden.
