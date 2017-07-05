@@ -80,6 +80,10 @@ function checkEasterEgg(callBack,that){  //only yellow yard session uses 'that' 
 	}else if(initial_seed == 0){
 		session0();
 	}
+	
+	if(getParameterByName("images")  == "pumpkin"){
+		simulationMode = true
+	}
 
 
 	if(getParameterByName("selfInsertOC")  == "true"){

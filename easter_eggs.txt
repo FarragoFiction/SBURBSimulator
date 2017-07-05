@@ -8,6 +8,7 @@
 
 <p><a href = "index2.html?seerOfVoid=true">Seer of Void</a>: The Observer gains the ability to peer into the Void. What does this mean???</p>
 <p><a href = "index2.html?pen15=ouija">Pen15 Ouija</a>: What!??? Who let all those void players have markers???</p>
+
 <p><a href = "index2.html?royalRumble=true">Royal Rumble</a>: Everyone is an Heiress, which means they have a biological imperitive to kill each other. Also, a much higher rate of fish puns.</p>
 <p><a href = "index2.html?lollipop=true">Trickster</a>: Everyone enters the session at a stupidly high level, is in love with everybody else (except the heart player), has super annoying quirks (except the heart player) and instantly completes their land quests. You'd think death would be impossible in this mode, and you'd be right: Except for when the tricksters THEMSELVES go batshit. Holy fucking shit. Oh, and now Doom players are completely immune, not half-assidly immune like Heart players.</p>
 <p><a href = "index2.html?babyStuck=true">BabyStuck</a>: Everyone looks like a Baby/Grub and is practically incomprehensible. Suprisingly cute, until the murders start happening, then surprisingly disturbing.</p>
@@ -57,6 +58,7 @@
 <p> <a href = "rap.html">Extended Rap Battles</a>: Okay, so, like the rap battles are just so amazingly shitty, right? And they only get even SHITTIER the longer I let them go on. So, you know, here's a page that's just the rap battles going on for much, much longer. It was the easiest way to test them without waiting for sims to run. </p>
 <p> <a href = "test_fraymotif.html">Fraymotif Test Page</a>: Gotta test fraymotifs before they are part of the battle engine.</p>
 <p> <a href = "quadrantChatTest.html">Quadrant Chat Test</a>: New quadrant based dialogue engine.</p>
+<p><a href = "index2.html?images=pumpkin">What Images</a>: For those who just want to watch the world burn. I mean have 144 player sessions. </p>
 
 
 <p>$(".void").toggle()  What could this mean??? <div class = 'void'> Do you think it has something to do with this??? A better question: Do you really think this would be an easter egg if this were the only place with a div hidden in void???</div> </p>
