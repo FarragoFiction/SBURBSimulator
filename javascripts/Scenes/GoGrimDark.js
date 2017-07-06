@@ -19,7 +19,7 @@ function GoGrimDark(session){
 	}
 
 	this.corruptionReachedTippingPoint = function(p){
-		return p.corruptionLevelOther >= 50-(p.grimDark*10) //at level 4, only need 10 more points. at level 1, need 40
+		return p.corruptionLevelOther >= 50-(p.grimDark*11) //at level 4, only need 10 more points. at level 1, need 40
 	}
 
 	this.addImportantEvent = function(){
@@ -76,7 +76,7 @@ function GoGrimDark(session){
 	this.content = function(){
 
 		this.player.increasePower();
-		removeFromArray(this.player, this.session.availablePlayers);
+		//removeFromArray(this.player, this.session.availablePlayers); going grimDark is a free action.
 		var ret = this.raiseGrimDarkLevel();
 		return ret;
 	}

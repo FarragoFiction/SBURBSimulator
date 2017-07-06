@@ -905,7 +905,6 @@ function GameEntity(session, name, crowned){
 				usableFraymotifs = usableFraymotifs.concat(this.session.fraymotifCreator.getUsableFraymotifs(this.crowned, allies, enemies))
 			}
 			if(usableFraymotifs.length == 0) return false;
-			if(owner == this) console.log(this.name + " is using a fraymotif in session: " + this.session.session_id);
 			var chosen = usableFraymotifs[0];
 			for(var i = 0; i<usableFraymotifs.length; i++){
 				var f = usableFraymotifs[i];

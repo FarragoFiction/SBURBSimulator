@@ -45,11 +45,11 @@ function GrimDarkQuests(session){
 			var quip = "";
 			var amount =0;
 			if(player.grimDark < 2){
-				amount = -1* player.power/2; //not trying as hard
+				amount = -1* player.power/4; //not trying as hard
 			}else if(player.grimDark <3){
-				amount = -1* player.power;
+				amount = -1* player.power/2;
 			}else if(player.grimDark <4){
-				 amount = -2* player.power; //more powerful the player, the more damage they do. get rid of grimDark bonus
+				 amount = -1* player.power; //more powerful the player, the more damage they do. get rid of grimDark bonus
 			}
 			this.session.sessionHealth += amount;
 			player.landLevel += -1; //if they manage to snap out of this, they are gonna still have a bad time. why did they think this was a good idea?
