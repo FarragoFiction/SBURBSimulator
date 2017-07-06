@@ -34,7 +34,7 @@ function LifeStuff(session){
 		//for each nonGuide, see if you can do something on your own.
 		for(var i = 0; i<nonGuides.length; i++){
 			var player = nonGuides[i];
-			if(player.aspect == "Life" || player.aspect == "Doom"){
+			if(player.aspect == "Life" || player.aspect == "Doom" || player.canGhostCommune()){
 				if(player.className != "Witch" && player.className != "Sylph"){
 					this.enablingPlayerPairs.push([player, null, false]);
 					removeNonGuides.push(nonGuide)
@@ -118,6 +118,11 @@ function LifeStuff(session){
 		//div.append("<br>"+this.content());
 		for(var i = 0; i<this.enablingPlayerPairs.length; i++){
 			var player = this.enablingPlayerPairs[i][0];
+			var psychicPowers = (player.canGhostCommune();
+			if(psychicPowers){
+				console.log("use psychic powers to commune with ghosts in session: " + this.session.session_id);
+				div.append(" The " + player.htmlTitleBasic() + "uses their " + psychicPowers + ". ";
+			} 
 			var other_player = this.enablingPlayerPairs[i][1]; //could be null or a corpse.
 			var dreaming = this.enablingPlayerPairs[i][2];
 			if(player.dead && !dreaming){ //if you'e dreaming, you're not a dead life/doom heir/thief
