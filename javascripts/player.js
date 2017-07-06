@@ -679,7 +679,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	
 	this.canGhostCommune = function(){
 		for(var i = 0; i<this.fraymotifs.length; i++){
-			if(this.fraymotifs[i].name == "Ghost Communing") this.fraymotifs[i].name;
+			if(this.fraymotifs[i].name == "Ghost Communing")return  this.fraymotifs[i].name;
 		}
 		return false;
 	}
