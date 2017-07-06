@@ -3,7 +3,7 @@ function FreeWillStuff(session){
 	this.canRepeat = true;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.decision = null
-	this.player
+	this.player = null
 	this.renderPlayer1 = null;
 	this.renderPlayer2 = null;
 	this.playerGodTiered = null;
@@ -23,12 +23,14 @@ function FreeWillStuff(session){
 			var player = players[i];
 			var breakFree = this.considerBreakFreeControl(player);
 			if(breakFree){  //somebody breaking free of mind control ALWAYS has priority (otherwise, likely will never happen since they have so little free will to begin with.)
+				this.player = player;
 				this.decision = breakFree;
 				return true;
 			}
 			if(player.freeWill > 100 || player.canMindControl()){  //don't even get to consider a decision if you don't have  more than default free will.//TODO raise to over 60 'cause that is highest default free will possible. want free will to be rarer.
 				var decision = this.getPlayerDecision(player);
 				if(decision){
+					this.player = player;
 					this.decision = decision;
 					return true;
 				}
