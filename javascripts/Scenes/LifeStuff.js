@@ -118,11 +118,7 @@ function LifeStuff(session){
 		//div.append("<br>"+this.content());
 		for(var i = 0; i<this.enablingPlayerPairs.length; i++){
 			var player = this.enablingPlayerPairs[i][0];
-			var psychicPowers = player.canGhostCommune();
-			if(psychicPowers){
-				console.log("use psychic powers to commune with ghosts in session: " + this.session.session_id);
-				div.append(" The " + player.htmlTitleBasic() + " uses their " + psychicPowers + ". ");
-			} 
+
 			var other_player = this.enablingPlayerPairs[i][1]; //could be null or a corpse.
 			var dreaming = this.enablingPlayerPairs[i][2];
 			if(player.dead && !dreaming){ //if you'e dreaming, you're not a dead life/doom heir/thief
@@ -254,13 +250,23 @@ function LifeStuff(session){
 
 		if(ghost  && player.getPactWithGhost(ghost) == null && player.ghostWisdom.indexOf(ghost) == -1 && !ghost.causeOfDrain){
 			//console.log("commune potato" +this.session.session_id);
-			div.append("<br><br>" +str + this.communeDeadResult(playerClass, player, ghost, ghostName,enablingAspect));
+			div.append("<br><br>" + this.ghostPsionics(player) +str + this.communeDeadResult(playerClass, player, ghost, ghostName,enablingAspect));
 			var canvas = this.drawCommuneDead(div, player, ghost);
 			removeFromArray(player, this.session.availablePlayers);
 			return canvas;
 		}else{
 			//console.log("no ghosts to commune dead for: "+ player.titleBasic() + this.session.session_id);
 			return null;
+		}
+	}
+	
+	this.ghostPsionics = function(player){
+		var psychicPowers = player.canGhostCommune();
+		if(psychicPowers){
+			console.log("use psychic powers to commune with ghosts in session: " + this.session.session_id);
+			return " The " + player.htmlTitleBasic() + " uses their " + psychicPowers + ". ";
+		} else{
+			return "";
 		}
 	}
 
@@ -355,9 +361,9 @@ function LifeStuff(session){
 			var childDiv = $("#"+divID)
 			var text = "";
 			if(player1.class_name == "Seer"){
-				text += "The " + player1.htmlTitleBasic() + " guides the " + player2.htmlTitleBasic() + " to seek knowledge from the dead. "
+				text += this.ghostPsionics(player) +"The " + player1.htmlTitleBasic() + " guides the " + player2.htmlTitleBasic() + " to seek knowledge from the dead. "
 			}else if(player1.class_name == "Page"){
-				text += "The " + player1.htmlTitleBasic() + " guides the " + player2.htmlTitleBasic() + " to seek aid from the dead. "
+				text += this.ghostPsionics(player) + "The " + player1.htmlTitleBasic() + " guides the " + player2.htmlTitleBasic() + " to seek aid from the dead. "
 			}
 			var canvas = this.communeDead(childDiv, text, player2, player1.class_name, player1.aspect);
 			if(canvas){
@@ -401,7 +407,7 @@ function LifeStuff(session){
 
 		if(ghost  && !ghost.causeOfDrain){
 			//console.log("ghost drain dead for power: "+ player.titleBasic()  + this.session.session_id);
-			str += " The " + player.htmlTitleBasic() + " destroys the essence of the " + ghostName + " for greater destructive power, it will be a while before the ghost recovers.";
+			str +=this.ghostPsionics(player) + " The " + player.htmlTitleBasic() + " destroys the essence of the " + ghostName + " for greater destructive power, it will be a while before the ghost recovers.";
 			ghost.causeOfDrain = player.title();
 			player.increasePower(ghost.power)
 			player.leveledTheHellUp = true;
@@ -423,7 +429,7 @@ function LifeStuff(session){
 		var divID = (div.attr("id")) + "_communeDeadWithGuide"+player1.chatHandle ;
 		div.append("<div id ="+divID + "></div>")
 		var childDiv = $("#"+divID)
-		var text = "The " + player1.htmlTitleBasic() + " allows the " + player2.htmlTitleBasic() + " to take power from the dead. ";
+		var text = this.ghostPsionics(player) +"The " + player1.htmlTitleBasic() + " allows the " + player2.htmlTitleBasic() + " to take power from the dead. ";
 
 		var canvas = this.drainDeadForPower(childDiv, text, player2, true);
 		if(canvas){
@@ -449,9 +455,9 @@ function LifeStuff(session){
 			if(ghost  && !ghost.causeOfDrain && myGhost != ghost){
 				console.log("ghost drain dead for revive: "+ player.titleBasic()  + this.session.session_id);
 				if(className == "Thief" || className == "Rogue"){
-					str += " The " + player.htmlTitleBasic() + " steals the essence of the " + ghostName + " in order to revive. It will be a while before the ghost recovers.";
+					str += this.ghostPsionics(player) +" The " + player.htmlTitleBasic() + " steals the essence of the " + ghostName + " in order to revive. It will be a while before the ghost recovers.";
 				}else if(className == "Heir" || className == "Maid"){
-					str += " The " + player.htmlTitleBasic() + " inherits the essence and duties of the " + ghostName + " in order to revive and continue their work. It will be a while before the ghost recovers.";
+					str += this.ghostPsionics(player) +" The " + player.htmlTitleBasic() + " inherits the essence and duties of the " + ghostName + " in order to revive and continue their work. It will be a while before the ghost recovers.";
 				}
 
 
@@ -481,7 +487,7 @@ function LifeStuff(session){
 		var divID = (div.attr("id")) + "_communeDeadWithGuide"+player1.chatHandle ;
 		div.append("<div id ="+divID + "></div>")
 		var childDiv = $("#"+divID)
-		var text = "The " + player1.htmlTitleBasic() + " assists the " + player2.htmlTitleBasic() + ". ";
+		var text = this.ghostPsionics(player) + "The " + player1.htmlTitleBasic() + " assists the " + player2.htmlTitleBasic() + ". ";
 
 		var canvas = this.drainDeadForReviveSelf(childDiv, text, player2, player1.class_name, player1.aspect);
 		if(canvas){
@@ -513,7 +519,7 @@ function LifeStuff(session){
 		//leave room on left for possible 'guide' player.
 		copyTmpCanvasToRealCanvasAtPos(canvas, horrorSpriteBuffer,0,0)
 		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0)
-		var str = "What is the " + player.htmlTitleBasic() + " doing out near the furthest ring? Oh GOD, what are they DOING!?  Oh, wait, never mind. False alarm. Looks like they're just negotiating with the horrorterrors to give players without dreamselves access to the afterlife in Dream Bubbles. Carry on.";
+		var str = this.ghostPsionics(player) + "What is the " + player.htmlTitleBasic() + " doing out near the furthest ring? Oh GOD, what are they DOING!?  Oh, wait, never mind. False alarm. Looks like they're just negotiating with the horrorterrors to give players without dreamselves access to the afterlife in Dream Bubbles. Carry on.";
 		div.append("" +str);
 	}
 
