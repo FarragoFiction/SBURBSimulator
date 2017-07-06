@@ -90,7 +90,7 @@ function LifeStuff(session){
 		var chosenSuplicants = [];
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var possibleGuide = this.session.availablePlayers[i];
-			if(possibleGuide.aspect == "Doom" || possibleGuide.aspect == "Life"){
+			if(possibleGuide.aspect == "Doom" || possibleGuide.aspect == "Life" || player.canGhostCommune()){
 				if(possibleGuide.class_name == "Seer" ||  possibleGuide.class_name == "Page" || possibleGuide.class_name == "Bard" || possibleGuide.class_name == "Rogue" ||  possibleGuide.class_name == "Maid"){
 						chosenGuides.push(possibleGuide);
 				}
@@ -102,7 +102,7 @@ function LifeStuff(session){
 			var possibleGuide = this.session.availablePlayers[i];
 			if(possibleGuide.class_name == "Heir" ||  possibleGuide.class_name == "Thief" || possibleGuide.class_name == "Prince" || possibleGuide.class_name == "Witch" ||  possibleGuide.class_name == "Sylph" || possibleGuide.class_name == "Knight" ||  possibleGuide.class_name == "Mage"){
 				chosenSuplicants.push(possibleGuide);
-			}else if(possibleGuide.aspect != "Doom" && possibleGuide.aspect != "Life"){
+			}else if(possibleGuide.aspect != "Doom" && possibleGuide.aspect != "Life" || !possibleGuide.canGhostCommune()){
 				if(chosenGuides.indexOf(possibleGuide)  == -1){ //can't be both guide and non guide.
 					////console.log("supplicant is: " + possibleGuide.title());
 					chosenSuplicants.push(possibleGuide);
@@ -118,10 +118,10 @@ function LifeStuff(session){
 		//div.append("<br>"+this.content());
 		for(var i = 0; i<this.enablingPlayerPairs.length; i++){
 			var player = this.enablingPlayerPairs[i][0];
-			var psychicPowers = (player.canGhostCommune();
+			var psychicPowers = player.canGhostCommune();
 			if(psychicPowers){
 				console.log("use psychic powers to commune with ghosts in session: " + this.session.session_id);
-				div.append(" The " + player.htmlTitleBasic() + "uses their " + psychicPowers + ". ";
+				div.append(" The " + player.htmlTitleBasic() + "uses their " + psychicPowers + ". ");
 			} 
 			var other_player = this.enablingPlayerPairs[i][1]; //could be null or a corpse.
 			var dreaming = this.enablingPlayerPairs[i][2];
