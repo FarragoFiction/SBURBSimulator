@@ -578,7 +578,8 @@ function drawCharSheet(canvas, player){
   drawWhatever(canvas, "charSheet.png");
   var space_between_lines = 25;
   var left_margin = 100;
-  var line_height = 18;
+  var right_margin = 300;
+  var line_height = 24;
   var start = 30;
   var current = 275;
   tmp_canvas = getBufferCanvas(canvas);
@@ -591,6 +592,16 @@ function drawCharSheet(canvas, player){
   ctx.fillText(player.titleBasic(),left_margin,current);
   ctx.font = "24px Times New Roman"
   ctx.fillText("(" +player.chatHandle+")",left_margin,current+ 42);
+
+  left_margin = "10";
+  current = current + 42+42;
+  ctx.fillStyle = "#000000"
+  var allStats = player.allStats();
+  for(var i = 0; i<allStats.length; i++){
+    ctx.fillText(allStats[i] +": ",left_margin,current+line_height*i);
+    ctx.fillText(player.getStat(allStats[i]),right_margin,current+line_height*i);
+  }
+
 
   copyTmpCanvasToRealCanvasAtPos(canvas, tmp_canvas,0,0)
 }
