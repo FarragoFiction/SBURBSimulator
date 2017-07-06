@@ -259,7 +259,7 @@ function LifeStuff(session){
 			return null;
 		}
 	}
-	
+
 	this.ghostPsionics = function(player){
 		var psychicPowers = player.canGhostCommune();
 		if(psychicPowers){
@@ -361,9 +361,9 @@ function LifeStuff(session){
 			var childDiv = $("#"+divID)
 			var text = "";
 			if(player1.class_name == "Seer"){
-				text += this.ghostPsionics(player) +"The " + player1.htmlTitleBasic() + " guides the " + player2.htmlTitleBasic() + " to seek knowledge from the dead. "
+				text += this.ghostPsionics(player1) +"The " + player1.htmlTitleBasic() + " guides the " + player2.htmlTitleBasic() + " to seek knowledge from the dead. "
 			}else if(player1.class_name == "Page"){
-				text += this.ghostPsionics(player) + "The " + player1.htmlTitleBasic() + " guides the " + player2.htmlTitleBasic() + " to seek aid from the dead. "
+				text += this.ghostPsionics(player1) + "The " + player1.htmlTitleBasic() + " guides the " + player2.htmlTitleBasic() + " to seek aid from the dead. "
 			}
 			var canvas = this.communeDead(childDiv, text, player2, player1.class_name, player1.aspect);
 			if(canvas){
@@ -429,7 +429,7 @@ function LifeStuff(session){
 		var divID = (div.attr("id")) + "_communeDeadWithGuide"+player1.chatHandle ;
 		div.append("<div id ="+divID + "></div>")
 		var childDiv = $("#"+divID)
-		var text = this.ghostPsionics(player) +"The " + player1.htmlTitleBasic() + " allows the " + player2.htmlTitleBasic() + " to take power from the dead. ";
+		var text = this.ghostPsionics(player1) +"The " + player1.htmlTitleBasic() + " allows the " + player2.htmlTitleBasic() + " to take power from the dead. ";
 
 		var canvas = this.drainDeadForPower(childDiv, text, player2, true);
 		if(canvas){
@@ -487,7 +487,7 @@ function LifeStuff(session){
 		var divID = (div.attr("id")) + "_communeDeadWithGuide"+player1.chatHandle ;
 		div.append("<div id ="+divID + "></div>")
 		var childDiv = $("#"+divID)
-		var text = this.ghostPsionics(player) + "The " + player1.htmlTitleBasic() + " assists the " + player2.htmlTitleBasic() + ". ";
+		var text = this.ghostPsionics(player1) + "The " + player1.htmlTitleBasic() + " assists the " + player2.htmlTitleBasic() + ". ";
 
 		var canvas = this.drainDeadForReviveSelf(childDiv, text, player2, player1.class_name, player1.aspect);
 		if(canvas){
