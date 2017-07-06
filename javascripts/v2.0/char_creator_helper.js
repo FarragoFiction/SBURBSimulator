@@ -819,6 +819,7 @@ function CharacterCreatorHelper(players){
 
 	this.drawOneClassDropDown = function(player){
 		available_classes = classes.slice(0); //re-init available classes. make deep copy
+		available_classes = available_classes.concat(custom_only_classes);
 		var html = "<select id = 'classNameID" + player.id + "' name='className" +player.id +"'>";
 		for(var i = 0; i< available_classes.length; i++){
 			if(available_classes[i] == player.class_name){
