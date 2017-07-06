@@ -206,9 +206,9 @@ function Aftermath(session){
 
 this.lastRender = function(div){
 	for(var i = 0; i<this.session.players.length; i++){
-		var canvasHTML = "<canvas class = 'charSheet' id='lastcanvas" + this.player.id+"' width='400' height='1000'>  </canvas>";
+		var canvasHTML = "<canvas class = 'charSheet' id='lastcanvas" + this.session.players[i].id+"_" + this.session.session_id+"' width='400' height='1000'>  </canvas>";
 		div.append(canvasHTML);
-		var canvasDiv = document.getElementById("lastcanvas"+ this.player.id);
+		var canvasDiv = document.getElementById("lastcanvas"+ this.session.players[i].id+"_" + this.session.session_id);
 		drawCharSheet(canvasDiv,this.session.players[i])
 	}
 }

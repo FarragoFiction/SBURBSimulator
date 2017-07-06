@@ -1390,7 +1390,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			var b = this.buffs[i];
 			if(b.name == statName) ret += b.value;
 		}
-		return ret;
+		return Math.round(ret);
 	}
 
 
