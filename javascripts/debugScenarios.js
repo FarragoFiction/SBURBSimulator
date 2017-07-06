@@ -1186,6 +1186,11 @@ function session612IndexToTroll(player, index){
 		player.chatHandle = "carcinoGeneticist"
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
+		var f = new Fraymotif([],  "Limeade Refreshment", 1)
+		f.effects.push(new FraymotifEffect("sanity",1,false));
+		f.effects.push(new FraymotifEffect("sanity",1,true));
+		f.flavorText = " All allies just settle their shit for a little while. Cool it. "
+		player.fraymotifs.push(f);
 	}else if(index == 1){
 		player.moon = "Prospit"
 		player.aspect = "Mind"
@@ -1226,6 +1231,11 @@ function session612IndexToTroll(player, index){
 		player.chatHandle = "terminallyCapricious"
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
+		var f = new Fraymotif([],  "Chucklevoodoos", 1)
+		f.effects.push(new FraymotifEffect("sanity",3,false));
+		f.effects.push(new FraymotifEffect("sanity",3,true));
+		f.flavorText = " Oh god oh no no no no no no no no. The enemies are no longer doing okay, psychologically speaking. "
+		player.fraymotifs.push(f);
 	}else if(index == 3){
 		player.moon = "Derse"
 		player.land = "Land of Caves and Silence"
@@ -1327,6 +1337,11 @@ function session612IndexToTroll(player, index){
 		player.chatHandle = "adiosToreador"
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
+		var f = new Fraymotif([],  "Animal Communing", 1)
+		f.effects.push(new FraymotifEffect("sanity",3,true));
+		f.effects.push(new FraymotifEffect("sanity",3,false));
+		f.flavorText = " Local animal equivalents start hassling all enemies. "
+		player.push(f);
 	}else if(index == 7){
 		player.moon = "Prospit"
 		player.land = "Land of Maps and Treasure"
@@ -1348,6 +1363,12 @@ function session612IndexToTroll(player, index){
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
 		player.godDestiny = true;
+		var f = new Fraymotif([],  "Mind Control", 1)
+		f.effects.push(new FraymotifEffect("freeWill",3,true));
+		f.effects.push(new FraymotifEffect("freeWill",3,false));
+		f.flavorText = " All enemies start damaging themselves. It's kind of embarassing how easy this is.  "
+		player.push(f);
+		
 	}else if(index == 8){
 		player.moon = "Prospit"
 		player.land = "Land of Rays and Frogs"
@@ -1428,6 +1449,15 @@ function session612IndexToTroll(player, index){
 		player.chatHandle = "twinArmageddons"
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
+		var f = new Fraymotif([],  "Telekinisis", 1)
+		f.effects.push(new FraymotifEffect("power",2,true));
+		f.flavorText = " Large objects begin pelting the ENEMY. "
+		player.push(f);
+		
+		var f = new Fraymotif([],  "Optic Blast", 1)
+		f.effects.push(new FraymotifEffect("power",2,true));
+		f.flavorText = " Appropriately colored eye beams pierce the ENEMY. "
+		player.push(f);
 	}
 }
 
@@ -1454,6 +1484,11 @@ function session612IndexToTrollAncestor(player, index){
 		player.chatHandle = "carcinoGeneticist"
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
+		var f = new Fraymotif([],  "Limeade Refreshment", 1)
+		f.effects.push(new FraymotifEffect("sanity",1,false));
+		f.effects.push(new FraymotifEffect("sanity",1,true));
+		f.flavorText = " All allies just settle their shit for a little while. Cool it. "
+		player.fraymotifs.push(f);
 	}else if(index == 1){
 		player.moon = "Prospit"
 		player.land = "Land of Thought and Flow"
@@ -1493,6 +1528,11 @@ function session612IndexToTrollAncestor(player, index){
 		player.chatHandle = "terminallyCapricious"
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
+		var f = new Fraymotif([],  "Chucklevoodoos", 1)
+		f.effects.push(new FraymotifEffect("sanity",3,false));
+		f.effects.push(new FraymotifEffect("sanity",3,true));
+		f.flavorText = " Oh god oh no no no no no no no no. The enemies are no longer doing okay, psychologically speaking. "
+		player.fraymotifs.push(f);
 	}else if(index == 3){
 		player.moon = "Derse"
 		player.aspect = "Void"
@@ -1584,6 +1624,11 @@ function session612IndexToTrollAncestor(player, index){
 		player.chatHandle = "adiosToreador"
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
+		var f = new Fraymotif([],  "Animal Communing", 1)
+		f.effects.push(new FraymotifEffect("sanity",3,true));
+		f.effects.push(new FraymotifEffect("sanity",3,false));
+		f.flavorText = " Local animal equivalents start hassling all enemies. "
+		player.push(f);
 	}else if(index == 7){
 		player.aspect = "Light"
 		player.moon = "Prospit"
@@ -1605,6 +1650,12 @@ function session612IndexToTrollAncestor(player, index){
 		player.godDestiny = true;
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
+		var f = new Fraymotif([],  "Mind Control", 1)
+		f.effects.push(new FraymotifEffect("freeWill",3,true));
+		f.effects.push(new FraymotifEffect("freeWill",3,false));
+		f.flavorText = " All enemies start damaging themselves. It's kind of embarassing how easy this is.  "
+		player.push(f);
+
 	}else if(index == 8){
 		player.aspect = "Space"
 		player.moon = "Prospit"
@@ -1686,6 +1737,15 @@ function session612IndexToTrollAncestor(player, index){
 		player.chatHandle = "twinArmageddons"
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
+		var f = new Fraymotif([],  "Telekinisis", 1)
+		f.effects.push(new FraymotifEffect("power",2,true));
+		f.flavorText = " Large objects begin pelting the ENEMY. "
+		player.push(f);
+		
+		var f = new Fraymotif([],  "Optic Blast", 1)
+		f.effects.push(new FraymotifEffect("power",2,true));
+		f.flavorText = " Appropriately colored eye beams pierce the ENEMY. "
+		player.push(f);
 	}
 }
 
