@@ -353,6 +353,7 @@ function CharacterCreatorHelper(players){
 		if(specific == "Prince") return "A Prince increases the opposite of their own associated aspect and starts with a lot of it.";
 		if(specific == "Witch") return "A Witch increases their own associated aspect and starts with a lot of it.";
 		if(specific == "Page") return "A Page distributes their associated aspect to the entire party. They start with very little of their aspect and must earn it. They can not do quests on their own, but gain power very quickly.";
+		if(specific == "Waste") return "What could this be??? Probably shitty and not yet finished.";
 		return "Class help text not found for " + specific + "."
 	}
 
