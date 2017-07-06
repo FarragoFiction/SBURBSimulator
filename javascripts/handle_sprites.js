@@ -1691,8 +1691,7 @@ function princeTiara(canvas, player){
 
 //TODO put classes in THIS order and just have a single line that is all_classes.index_of(player.class_name);
 function playerToRegularBody(player){
-  var imageString = "Bodies/";
-  return imageString + "reg"+classNameToInt(player.class_name)+".png";
+  return "Bodies/" + "reg"+classNameToInt(player.class_name)+".png";
   if(player.class_name == "Page"){
     imageString += "reg001.png"
   }else if(player.class_name == "Knight" ){
@@ -1724,8 +1723,7 @@ function playerToRegularBody(player){
 }
 
 function playerToDreamBody(player){
-  var imageString = "Bodies/";
-  var tmp = "dream"
+  return "Bodies/" + "dream"+classNameToInt(player.class_name)+".png";
   if(player.class_name == "Page"){
     imageString += tmp +"001.png"
   }else if(player.class_name == "Knight" ){
@@ -1817,7 +1815,7 @@ function dreamSprite(canvas, player){
 }
 
 function playerToGodBody(player){
-  var imageString = "Bodies/";
+  return "Bodies/" + "god"+classNameToInt(player.class_name)+".png";
   if(player.class_name == "Page"){
     imageString += "001.png"
   }else if(player.class_name == "Knight" ){
