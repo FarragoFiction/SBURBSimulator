@@ -12,10 +12,10 @@ function FightQueen(session){
 //includes time clones
 	this.getGoodGuys = function(){
 		var living = findLivingPlayers(this.session.players);
-		var timePlayers = findAllAspectPlayers(this.session.players, "Time");
+		var allPlayers = this.session.players; //anybody can have doomedclones now, not just time players.
 
-		for(var i = 0; i<timePlayers.length; i++){
-			living = living.concat(timePlayers[i].doomedTimeClones)
+		for(var i = 0; i<allPlayers.length; i++){
+			living = living.concat(allPlayers[i].doomedTimeClones)
 		}
 		return living;
 	}

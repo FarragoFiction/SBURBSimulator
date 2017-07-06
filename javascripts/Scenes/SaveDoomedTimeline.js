@@ -19,8 +19,7 @@ function SaveDoomedTimeLine(session){
 			if(this.enablingPlayer.isActive() || Math.seededRandom() > .5){
 				this.timePlayer = this.enablingPlayer;
 			}else{  //somebody else can be voided.
-				this.timePlayer = getRandomElementFromArray(this.session.availablePlayers);  //passive time players make doomed clones of others.
-				if(!this.timePlayer) this.timePlayer = this.enablingPlayer;
+				this.timePlayer = getRandomElementFromArray(this.session.players);  //passive time players make doomed clones of others.
 			}
 		}
 		/*
@@ -36,7 +35,7 @@ function SaveDoomedTimeLine(session){
 
 
 	this.renderContent = function(div){
-		//console.log("time clone " + this.session.session_id);
+		console.log("time clone " + this.timePlayer + " " + this.session.session_id);
 		div.append("<br><img src = 'images/sceneIcons/time_icon.png'>"+this.content());
 		var divID = (div.attr("id"))
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
@@ -88,7 +87,7 @@ function SaveDoomedTimeLine(session){
 		ret += " They come with a dire warning of a doomed timeline. ";
 		if(this.enablingPlayer != this.timePlayer){
 			console.log("nonTime player doomed time clone: " + this.session.session_id)
-			ret += " The " + this.enablingPlayer + " helped them come back in time to change things. ";
+			ret += " The " + this.enablingPlayer.htmlTitleBasic() + " helped them come back in time to change things. ";
 
 		} 
 
