@@ -90,7 +90,7 @@ function LifeStuff(session){
 		var chosenSuplicants = [];
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var possibleGuide = this.session.availablePlayers[i];
-			if(possibleGuide.aspect == "Doom" || possibleGuide.aspect == "Life" || player.canGhostCommune()){
+			if(possibleGuide.aspect == "Doom" || possibleGuide.aspect == "Life" || possibleGuide.canGhostCommune()){
 				if(possibleGuide.class_name == "Seer" ||  possibleGuide.class_name == "Page" || possibleGuide.class_name == "Bard" || possibleGuide.class_name == "Rogue" ||  possibleGuide.class_name == "Maid"){
 						chosenGuides.push(possibleGuide);
 				}
