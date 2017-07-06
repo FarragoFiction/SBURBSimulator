@@ -669,6 +669,20 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.applyPossiblePsionics();
 	}
 	
+	this.canMindControl = function(){
+		for(var i == 0; i<this.fraymotifs.length; i++){
+			if(this.fraymotifs.name == "Mind Control") return true;
+		}
+		return false;
+	}
+	
+	this.canGhostCommune = function(){
+		for(var i == 0; i<this.fraymotifs.length; i++){
+			if(this.fraymotifs.name == "Ghost Communing") return true;
+		}
+		return false;
+	}
+	
 	//psionics are less than game powers, so tier 1 only.
 	this.psionicList = function(){
 		var psionics = [];
