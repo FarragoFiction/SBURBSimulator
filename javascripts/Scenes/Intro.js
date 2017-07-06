@@ -727,7 +727,7 @@ function Intro(session){
 			
 			if(this.player.fraymotifs.length > 0){
 				//console.log("initially unlucky player: " +this.session.session_id)
-				narration += "They have special powers, including " + turnArrayIntoHumanSentence(this.fraymotifs);
+				narration += " They have special powers, including " + turnArrayIntoHumanSentence(this.player.fraymotifs) + ". ";
 			}
 
 			if(this.player.dead==true){
