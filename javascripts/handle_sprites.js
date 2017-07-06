@@ -1689,6 +1689,7 @@ function princeTiara(canvas, player){
 	copyTmpCanvasToRealCanvas(canvas, c2)
 }
 
+//TODO put classes in THIS order and just have a single line that is all_classes.index_of(player.class_name);
 function playerToRegularBody(player){
   var imageString = "Bodies/";
   if(player.class_name == "Page"){
@@ -1715,6 +1716,8 @@ function playerToRegularBody(player){
     imageString += "reg011.png"
   }else if(player.class_name == "Bard" ){
     imageString += "reg012.png"
+  }else if(player.class_name == "Waste" ){
+    imageString += "reg013.png"
   }
   return imageString;
 }
@@ -1746,6 +1749,8 @@ function playerToDreamBody(player){
     imageString += tmp +"011.png"
   }else if(player.class_name == "Bard" ){
     imageString += tmp +"012.png"
+  }else if(player.class_name == "Waste" ){
+    imageString += tmp +"013.png"
   }
   return imageString;
 }
@@ -1836,6 +1841,8 @@ function playerToGodBody(player){
     imageString += "011.png"
   }else if(player.class_name == "Bard" ){
     imageString += "012.png"
+  }else if(player.class_name == "Waste" ){
+    imageString += "013.png"
   }
   return imageString;
 }
@@ -2387,101 +2394,7 @@ function aspectPalletSwap(canvas, player){
 }
 
 
-//return array of vales for draw image
-  //ctx.drawImage(sprites,srcX,srcY,srcW,srcH,destX,destY,destW,destH);
-//page knight witch sylph
-// thief rogue seer  mage
-// heir  maid  prince bard
-//Tracy is going to get me individual sprites rather than this mess.
-//will help with horns.
-function playerToSpriteOld(player){
-    //aspect determines origin
-    //class determines position relative to that origin.
-    var origin_x = 0;
-    var origin_y = 0;
-    if(player.aspect == "Light"){
-        origin_x = 75;
-        origin_y = 0;
-    }else if(player.aspect == "Breath"){
-      origin_x = 800;
-      origin_y = 0;
-    }else if(player.aspect == "Time"){
-      origin_x = 1520;
-      origin_y = 0;
-    }else if(player.aspect == "Space"){
-      origin_x = 2235;
-      origin_y = 0;
-    }else if(player.aspect == "Heart"){
-      origin_x = 75;
-      origin_y = 707;
-    }else if(player.aspect == "Mind"){
-      origin_x = 800;
-      origin_y = 707;
-    }else if(player.aspect == "Life"){
-      origin_x = 1520;
-      origin_y = 707;
-    }else if(player.aspect == "Void"){
-      origin_x = 2235;
-      origin_y = 707;
-    }else if(player.aspect == "Hope"){
-      origin_x = 75;
-      origin_y = 1410;
-    }else if(player.aspect == "Doom"){
-      origin_x = 800;
-      origin_y = 1410;
-    }else if(player.aspect == "Rage"){
-      origin_x = 1520;
-      origin_y = 1410;
-    }else if(player.aspect == "Blood"){
-      origin_x = 2235;
-      origin_y = 1410;
-    }
-    var class_mod_x=0;
-    var class_mod_y=0;
-    if(player.class_name == "Page"){
-      class_mod_x = -10;
-      class_mod_y = 0;
-    }else if(player.class_name == "Knight" ){
-      class_mod_x = 155;
-      class_mod_y = 0;
-    }else if(player.class_name == "Witch" ){
-      class_mod_x = 320;
-      class_mod_y = 0;
-    }else if(player.class_name == "Sylph" ){
-      class_mod_x = 490;
-      class_mod_y = 0;
-    }else if(player.class_name == "Thief" ){
-      class_mod_x = 0;
-      class_mod_y = 230;
-    }else if(player.class_name == "Rogue" ){
-      class_mod_x = 155;
-      class_mod_y = 230;
-    }else if(player.class_name == "Seer" ){
-      class_mod_x = 330;
-      class_mod_y = 230;
-    }else if(player.class_name == "Mage" ){
-      class_mod_x = 490;
-      class_mod_y = 230;
-    }else if(player.class_name == "Heir" ){
-      class_mod_x = 5;//windsock too big
-      class_mod_y = 480;
-    }else if(player.class_name == "Maid" ){
-      class_mod_x = 165;
-      class_mod_y = 480;
-    }else if(player.class_name == "Prince" ){
-      class_mod_x = 322;
-      class_mod_y = 480;
-    }else if(player.class_name == "Bard" ){
-      class_mod_x = 480;
-      class_mod_y = 480;
-    }
 
-    var x = origin_x+class_mod_x;
-    var y = origin_y+class_mod_y;
-    //ctx.drawImage(sprites,srcX,srcY,srcW,srcH,destX,destY,destW,destH);
-    //alert("x: "+x+", y"+y);
-    return [x,y,160,200, 0,0,160,200];
-}
 
 function getBufferCanvas(canvas){
 	var tmp_canvas = document.createElement('canvas');
