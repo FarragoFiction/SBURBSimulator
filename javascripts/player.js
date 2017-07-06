@@ -1117,6 +1117,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 					powerBoost = powerBoost * 0.25
 				}
 				break;
+				
+			case  "Waste":
+				powerBoost = powerBoost * 0;  //wastes WASTE their abilities, until the cataclysm.
+				break;
 			default:
 				console.log('What the hell kind of class is ' + this.class_name + '???');
 		}
