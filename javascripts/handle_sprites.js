@@ -1692,6 +1692,7 @@ function princeTiara(canvas, player){
 //TODO put classes in THIS order and just have a single line that is all_classes.index_of(player.class_name);
 function playerToRegularBody(player){
   var imageString = "Bodies/";
+  return imageString + "reg"+classNameToInt(player.class_name)+".png";
   if(player.class_name == "Page"){
     imageString += "reg001.png"
   }else if(player.class_name == "Knight" ){

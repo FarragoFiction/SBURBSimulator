@@ -1115,9 +1115,9 @@ var moons = ["Prospit", "Derse"];
 
 var active_classes = ["Thief","Knight","Heir","Mage","Witch", "Prince", "Waste"];
 var passive_classes = ["Rogue","Page","Maid","Seer","Sylph", "Bard"];
-var classes = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
+var classes = ["Page","Knight","Witch","Sylph","Thief","Rogue","Seer","Mage","Heir","Maid","Prince","Bard"];
 //when a class is used, remove from below list.
-var available_classes = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
+var available_classes = ["Page","Knight","Witch","Sylph","Thief","Rogue","Seer","Mage","Heir","Maid","Prince","Bard"];
 var custom_only_classes = ["Waste"]; //Lord, Muse, Guide, Scout, Scribe, Smith, Wright
 var required_aspects = ["Space", "Time"];
 var all_aspects = ["Space", "Time","Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
