@@ -6,11 +6,25 @@ function SaveDoomedTimeLine(session){
 	this.leaderPlayer = null;
 	this.reason = "";
 	this.doomedTimeClone = null;
+	this.enablingPlayer = null;
 	this.trigger = function(playerList){
 		var times = findAllAspectPlayers(this.session.players, "Time"); //they don't have to be in the medium, though
-		this.timePlayer = getRandomElementFromArray(times); //ironically will probably allow more timeless sessions without crashes.
+		this.enablingPlayer = getRandomElementFromArray(times); //ironically will probably allow more timeless sessions without crashes.
 		this.leaderPlayer = getLeader(session.players);
 		this.playerList = playerList;
+		
+		if(this.enablingPlayer){
+			if(this.enablingPlayer.isActive() || Math.seededRandom() > .5){
+				this.timePlayer = this.enablingPlayer;
+			}else{  //somebody else can be voided.
+				if(Math.seededRandom() > 0.5){
+					console.log("nonTime player doomed time clone: " + this.session.session_id)
+					this.timePlayer = getRandomElementFromArray(this.session.availablePlayers);  //passive time players make doomed clones of others.
+				}else{
+					this.timePlayer = this.enablingPlayer;
+				}
+			}
+		}
 		/*
 		if(this.timePlayer.dead){  //a dead time player can't prevent shit.
 			//console.log("time player is dead, not triggering")

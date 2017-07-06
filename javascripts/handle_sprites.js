@@ -618,11 +618,11 @@ function drawCharSheet(canvas, player){
   ctx.fillText("Grim Dark Level: ",left_margin,current+line_height*i);
   ctx.fillText(player.grimDark + "/4",right_margin,current+line_height*i);
 
-  if(player.aspect == "Time"){
-	  i++;
-	  ctx.fillText("Doomed Clones: ",left_margin,current+line_height*i);
-	  ctx.fillText(player.doomedTimeClones.length ,right_margin,current+line_height*i);
-  }
+
+  i++;
+  ctx.fillText("Doomed Clones: ",left_margin,current+line_height*i);
+  ctx.fillText(player.doomedTimeClones.length ,right_margin,current+line_height*i);
+  
   i++;
   ctx.fillText("Times Died: ",left_margin,current+line_height*i);
   ctx.fillText(player.timesDied ,right_margin,current+line_height*i);
