@@ -668,7 +668,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 		this.applyPossiblePsionics();
 	}
-	
+
 	//expect it to be first in list, so this is only bad if you DON'T have mind control AND have a shit ton of fraymotifs.
 	this.canMindControl = function(){
 		for(var i = 0; i<this.fraymotifs.length; i++){
@@ -676,63 +676,63 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 		return false;
 	}
-	
+
 	this.canGhostCommune = function(){
 		for(var i = 0; i<this.fraymotifs.length; i++){
 			if(this.fraymotifs[i].name == "Ghost Communing")return  this.fraymotifs[i].name;
 		}
 		return false;
 	}
-	
+
 	//psionics are less than game powers, so tier 1 only.
 	this.psionicList = function(){
 		var psionics = [];
-		//telekenisis, mind control, mind reading, ghost communing, animal communing, laser blasts, vision xfold. 
+		//telekenisis, mind control, mind reading, ghost communing, animal communing, laser blasts, vision xfold.
 		var f = new Fraymotif([],  "Telekinisis", 1)
 		f.effects.push(new FraymotifEffect("power",2,true));
 		f.flavorText = " Large objects begin pelting the ENEMY. "
 		psionics.push(f);
-		
+
 		var f = new Fraymotif([],  "Pyrokinisis", 1)
 		f.effects.push(new FraymotifEffect("power",2,true));
 		f.flavorText = " Who knew shaving cream was so flammable? "
 		psionics.push(f);
-		
+
 		var f = new Fraymotif([],  "Aquakinesis", 1)
 		f.effects.push(new FraymotifEffect("power",2,true));
 		f.flavorText = " A deluge begins damaging the ENEMY. "
 		psionics.push(f);
-		
+
 		var f = new Fraymotif([],  "Mind Control", 1)
 		f.effects.push(new FraymotifEffect("freeWill",3,true));
 		f.effects.push(new FraymotifEffect("freeWill",3,false));
 		f.flavorText = " All enemies start damaging themselves. It's kind of embarassing how easy this is.  "
 		psionics.push(f);
-		
-		
+
+
 		var f = new Fraymotif([],  "Optic Blast", 1)
 		f.effects.push(new FraymotifEffect("power",2,true));
 		f.flavorText = " Appropriately colored eye beams pierce the ENEMY. "
 		psionics.push(f);
-		
+
 		var f = new Fraymotif([],  "Ghost Communing", 1)
 		f.effects.push(new FraymotifEffect("sanity",3,true));
 		f.effects.push(new FraymotifEffect("sanity",3,false));
 		f.flavorText = " The souls of the dead start hassling all enemies. "
 		psionics.push(f);
-		
+
 		var f = new Fraymotif([],  "Animal Communing", 1)
 		f.effects.push(new FraymotifEffect("sanity",3,true));
 		f.effects.push(new FraymotifEffect("sanity",3,false));
 		f.flavorText = " Local animal equivalents start hassling all enemies. "
 		psionics.push(f);
-		
+
 		return psionics;
 	}
-	
+
 	this.applyPossiblePsionics = function(){
 		if(this.fraymotifs.length > 0) return; //if i already have fraymotifs, then they were probably predefined.
-		//highest land dwellers can have chucklevoodoos. Other than that, lower on hemospectrum = greater odds of having psionics. 
+		//highest land dwellers can have chucklevoodoos. Other than that, lower on hemospectrum = greater odds of having psionics.
 		//make sure psionic list is kept in global var, so that char creator eventually can access? Wait, no, just wrtap it in a function here. don't polute global name space.
 		//trolls can clearly have more than one set of psionics. so. odds of psionics is inverse with hemospectrum position. didn't i do this math before? where?
 		//oh! low blood vocabulary!!! that'd be in quirks, i think.
@@ -1132,7 +1132,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 					powerBoost = powerBoost * 0.25
 				}
 				break;
-				
+
 			case  "Waste":
 				powerBoost = powerBoost * 0;  //wastes WASTE their abilities, until the cataclysm.
 				break;
@@ -1796,6 +1796,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	//if it's part of player json, need to copy it over.
 	this.copyFromPlayer = function(replayPlayer){
+		console.log("copying from player who has a favorite number of: " + replayPlayer.quirk.favoriteNumber)
 		//console.log("Overriding player from a replay Player. ")
 		//console.log(replayPlayer)
 		this.aspect = replayPlayer.aspect;
@@ -1826,7 +1827,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.dead = replayPlayer.dead;
 		this.victimBlood = replayPlayer.victimBlood
 		this.robot = replayPlayer.robot;
-		//this.quirk.favoriteNumber = replayPlayer.quirk.favoriteNumber; //get overridden, has to be after initialization.
+		this.quirk.favoriteNumber = replayPlayer.quirk.favoriteNumber; //will get overridden, has to be after initialization, too, but if i don't do it here, char creartor will look wrong.
 		this.makeGuardian();
 	}
 

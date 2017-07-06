@@ -560,6 +560,7 @@ function dataBytesAndStringsToPlayer(charString, str_arr){
 	 //console.log("Binary string is: " + charString[7])
 	 player.godDestiny = 0 != ((1<<4) & charString.charCodeAt(7))
 	 player.quirk.favoriteNumber = charString.charCodeAt(7) & 15
+	 console.log("Player favorite number is: " + player.quirk.favoriteNumber)
 	 player.leftHorn = charString.charCodeAt(8)
 	 player.rightHorn = charString.charCodeAt(9)
 	 player.hair = charString.charCodeAt(10)
