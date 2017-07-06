@@ -116,14 +116,15 @@ function CharacterCreatorHelper(players){
 	}
 
 	this.syncPlayerToCheckBoxes= function(player){
-		$("#grimDark"+player.id).val(player.grimDark);
-	  $("#isDreamSelf"+player.id).val(player.isDreamSelf);
-		$("#godTier"+player.id).val(player.godTier);
-		$("#godDestiny"+player.id).val(player.godDestiny);
-		$("#murderMode"+player.id).val(player.murderMode);
-		$("#leftMurderMode"+player.id).val(player.leftMurderMode);
-		$("#dead"+player.id).val(player.dead);
-		$("#robot"+player.id).val(player.robot);
+		//.prop('checked', true);
+		$("#grimDark"+player.id).prop('checked',player.grimDark);
+	  $("#isDreamSelf"+player.id).prop('checked',player.isDreamSelf);
+		$("#godTier"+player.id).prop('checked',player.godTier);
+		$("#godDestiny"+player.id).prop('checked',player.godDestiny);
+		$("#murderMode"+player.id).prop('checked',player.murderMode);
+		$("#leftMurderMode"+player.id).prop('checked',player.leftMurderMode);
+		$("#dead"+player.id).prop('checked',player.dead);
+		$("#robot"+player.id).prop('checked',player.robot);
 	}
 
 	this.syncPlayerToTextBoxes= function(player){
