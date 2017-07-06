@@ -348,7 +348,7 @@ function LifeStuff(session){
 		}else if(playerClass == "Seer" || playerClass == "Mage"){
 			player.ghostWisdom.push(ghost); //don't do anything, but keeps repeats from happening.
 			var effect = "";
-			if(player.aspect == ghost.aspect && ghost.fraymotifs.length > 0){
+			if(player.aspect == ghost.aspect && ghost.fraymotifs.length > 0 && player.id != ghost.id){ //don't just relearn your own fraymotifs.
 				console.log("player learning fraymotifs from a ghost " + this.session.session_id);
 				player.fraymotifs = player.fraymotifs.concat(ghost.fraymotifs.slice(0)); //copy not reference
 				effect = "They learn " + turnArrayIntoHumanSentence(ghost.fraymotifs) + " from the " + ghostName + ". "
