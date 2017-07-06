@@ -76,7 +76,10 @@ function FreeWillStuff(session){
 	this.renderContent = function(div){
 		var psionic = "";
 		var pname = this.player.canMindControl()) psionic
-		if( pname) psionic =  " The " + this.player.htmlTitleBasic() + " uses their "+ pname + ". "
+		if( pname){
+			console.log("psychic powers used to mind control in session: " + this.session.session_id)
+			psionic =  " The " + this.player.htmlTitleBasic() + " uses their "+ pname + ". "
+		} 
 		div.append("<br><img src = 'images/sceneIcons/freewill_icon.png'> "+psionic + this.content());
 		if(this.playerGodTiered){
 			this.renderGodTier(div);
