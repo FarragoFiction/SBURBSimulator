@@ -121,7 +121,7 @@ function LifeStuff(session){
 			var psychicPowers = player.canGhostCommune();
 			if(psychicPowers){
 				console.log("use psychic powers to commune with ghosts in session: " + this.session.session_id);
-				div.append(" The " + player.htmlTitleBasic() + "uses their " + psychicPowers + ". ");
+				div.append(" The " + player.htmlTitleBasic() + " uses their " + psychicPowers + ". ");
 			} 
 			var other_player = this.enablingPlayerPairs[i][1]; //could be null or a corpse.
 			var dreaming = this.enablingPlayerPairs[i][2];
