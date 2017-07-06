@@ -2039,7 +2039,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(this.class_name == "Witch" || luck < -9){
 			this.object_to_prototype = getRandomElementFromArray(disastor_objects);
 			//console.log("disastor")
-		}else if(luck > 10){
+		}else if(luck > 25){
 			this.object_to_prototype = getRandomElementFromArray(fortune_objects);
 			//console.log("fortune")
 		}

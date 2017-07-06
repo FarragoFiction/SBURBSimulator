@@ -612,8 +612,21 @@ function drawCharSheet(canvas, player){
   ctx.fillText(player.grimDark + "/4",right_margin,current+line_height*i);
 
   i++;
+  ctx.fillText("Doomed Clones: ",left_margin,current+line_height*i);
+  ctx.fillText(player.doomedTimeClones.length ,right_margin,current+line_height*i);
+
+  i++;
   ctx.fillText("Times Died: ",left_margin,current+line_height*i);
   ctx.fillText(player.timesDied ,right_margin,current+line_height*i);
+
+  if(player.dead){
+    i++
+    i++
+    ctx.fillText("Final Cause of Death: ",left_margin,current+line_height*i);
+    i++
+    i++
+    wrap_text(ctx, player.causeOfDeath , 10, current+line_height*i, line_height, 300, "left");
+  }
 
 }
 

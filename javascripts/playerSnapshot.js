@@ -151,7 +151,7 @@ function PlayerSnapshot(){
 
 	this.titleBasic = function(){
 		var ret = "";
-
+		if(this.doomed) ret += "Doomed "
 		ret+= this.class_name + " of " + this.aspect;
 		return ret;
 	}
@@ -402,16 +402,16 @@ function makeDoomedSnapshot(timePlayer){
 	}
 
 	if(timeClone.godTier){
-		f = this.session.fraymotifCreator.makeFraymotif([timeClone], 3);//first god tier fraymotif
+		f = curSessionGlobalVar.fraymotifCreator.makeFraymotif([timePlayer], 3);//first god tier fraymotif
 		timeClone.fraymotifs.push(f);
 	}
 
 	if(timeClone.power > 50){
-		f = this.session.fraymotifCreator.makeFraymotif([timeClone], 2);//probably beat denizen at least
+		f = curSessionGlobalVar.fraymotifCreator.makeFraymotif([timePlayer], 2);//probably beat denizen at least
 		timeClone.fraymotifs.push(f);
 	}
 
-	f = this.session.fraymotifCreator.makeFraymotif([timeClone], 1);//at least did first quest
+	f = curSessionGlobalVar.fraymotifCreator.makeFraymotif([timePlayer], 1);//at least did first quest
 	timeClone.fraymotifs.push(f);
 
 	return timeClone;
