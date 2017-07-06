@@ -1691,11 +1691,11 @@ function princeTiara(canvas, player){
 
 //TODO put classes in THIS order and just have a single line that is all_classes.index_of(player.class_name);
 function playerToRegularBody(player){
-  return "Bodies/" + "reg"+classNameToInt(player.class_name)+".png";
+  return "Bodies/" + "reg"+(classNameToInt(player.class_name)+1)+".png";
 }
 
 function playerToDreamBody(player){
-  return "Bodies/" + "dream"+classNameToInt(player.class_name)+".png";
+  return "Bodies/" + "dream"+(classNameToInt(player.class_name)+1)+".png";
 }
 
 function robotSprite(canvas, player){
@@ -1759,7 +1759,7 @@ function dreamSprite(canvas, player){
 }
 
 function playerToGodBody(player){
-  return "Bodies/" + "god"+classNameToInt(player.class_name)+".png";
+  return "Bodies/" + "god"+(classNameToInt(player.class_name)+1)+".png";
 }
 
 function godTierSprite(canvas, player){
