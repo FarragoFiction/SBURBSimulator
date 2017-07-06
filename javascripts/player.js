@@ -669,9 +669,20 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.applyPossiblePsionics();
 	}
 	
+	//psionics are less than game powers, so tier 1 only.
 	this.psionicList = function(){
 		var psionics = [];
 		//telekenisis, mind control, mind reading, ghost communing, animal communing, laser blasts, vision xfold. 
+		var f = new Fraymotif([],  "Telekenisis", 1)
+		f.effects.push(new FraymotifEffect("power",2,true));
+		f.flavorText = " Large objects begin pelting the ENEMY. "
+		psionics.push(f);
+		
+		var f = new Fraymotif([],  "Mind Control", 1)
+		f.effects.push(new FraymotifEffect("freeWill",3,true));
+		f.effects.push(new FraymotifEffect("freeWill",3,false));
+		f.flavorText = " All enemies start damaging themselves. It's kind of embarassing how easy this is.  "
+		psionics.push(f);
 		return psionics;
 	}
 	
@@ -687,7 +698,20 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				this.fraymotifs.push(powers[i]);
 			}
 		}
-		//special psionics for high bloods and lime bloods. 
+		//special psionics for high bloods and lime bloods.  highblood: #631db4  lime: #658200
+		if(this.bloodColor == "#631db4"){
+			var f = new Fraymotif([],  "Chucklevoodoos", 1)
+			f.effects.push(new FraymotifEffect("sanity",3,false));
+			f.effects.push(new FraymotifEffect("sanity",3,true));
+			f.flavorText = " Oh god oh no no no no no no no no. The enemies are no longer doing okay, psychologically speaking. "
+			this.fraymotifs.push(f);
+		}else if(this.bloodColor == "#658200"){
+			var f = new Fraymotif([],  "Limeade Refreshment", 1)
+			f.effects.push(new FraymotifEffect("sanity",1,false));
+			f.effects.push(new FraymotifEffect("sanity",1,true));
+			f.flavorText = " All allies just settle their shit for a little while. Cool it. "
+			this.fraymotifs.push(f);
+		}
 	}
 
 	this.decideLusus = function(player){

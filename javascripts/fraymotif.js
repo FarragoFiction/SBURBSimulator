@@ -475,17 +475,17 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 	this.setEffectForPlayer = function(player){
 		var effect = new FraymotifEffect("",this.e, true); //default to just damaging the enemy.
 		if(player.class_name == "Knight") effect = getRandomElementFromArray(this.knightEffects());
-    if(player.class_name == "Seer") effect = getRandomElementFromArray(this.seerEffects());
-    if(player.class_name == "Bard") effect = getRandomElementFromArray(this.bardEffects());
-    if(player.class_name == "Heir") effect = getRandomElementFromArray(this.heirEffects());
-    if(player.class_name == "Maid") effect = getRandomElementFromArray(this.maidEffects());
-    if(player.class_name == "Rogue") effect = getRandomElementFromArray(this.rogueEffects());
-    if(player.class_name == "Page") effect = getRandomElementFromArray(this.pageEffects());
-    if(player.class_name == "Thief") effect = getRandomElementFromArray(this.thiefEffects());
-    if(player.class_name == "Sylph") effect = getRandomElementFromArray(this.sylphEffects());
-    if(player.class_name == "Prince") effect = getRandomElementFromArray(this.princeEffects());
-    if(player.class_name == "Witch") effect = getRandomElementFromArray(this.witchEffects());
-    if(player.class_name == "Mage") effect = getRandomElementFromArray(this.mageEffects());
+		if(player.class_name == "Seer") effect = getRandomElementFromArray(this.seerEffects());
+		if(player.class_name == "Bard") effect = getRandomElementFromArray(this.bardEffects());
+		if(player.class_name == "Heir") effect = getRandomElementFromArray(this.heirEffects());
+		if(player.class_name == "Maid") effect = getRandomElementFromArray(this.maidEffects());
+		if(player.class_name == "Rogue") effect = getRandomElementFromArray(this.rogueEffects());
+		if(player.class_name == "Page") effect = getRandomElementFromArray(this.pageEffects());
+		if(player.class_name == "Thief") effect = getRandomElementFromArray(this.thiefEffects());
+		if(player.class_name == "Sylph") effect = getRandomElementFromArray(this.sylphEffects());
+		if(player.class_name == "Prince") effect = getRandomElementFromArray(this.princeEffects());
+		if(player.class_name == "Witch") effect = getRandomElementFromArray(this.witchEffects());
+		if(player.class_name == "Mage") effect = getRandomElementFromArray(this.mageEffects());
 		this.target = effect.target;
 		this.damageInsteadOfBuff = effect.damageInsteadOfBuff;
 		this.statName = getRandomElementFromArray(player.getOnlyPositiveAspectAssociatedStats()).name; //TODO if I know it's a debuff, maybe debuff the things that are negative for me?
@@ -652,7 +652,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
     if(this.target == 0){
       ret += " envelopes the OWNER"
     }else if(this.target ==1){
-      ret += " surrounds the players"
+      ret += " surrounds the allies"
     }else if(this.target ==2){
       ret += " pierces the ENEMY"
     }else if(this.target ==3){
