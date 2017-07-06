@@ -2081,7 +2081,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		//modValue * stat.multiplier.
 		if(stat.name == "RELATIONSHIPS"){
 			for(var i = 0; i<this.relationships.length; i++){
-				this.relationships[i].value += modValue * stat.multiplier;
+				this.relationships[i].value += (modValue/this.relationships.length) * stat.multiplier;  //stop having relationship values on the scale of 100000
 			}
 		}else{
 			this[stat.name] += modValue * stat.multiplier;
