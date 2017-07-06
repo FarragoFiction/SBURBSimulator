@@ -602,6 +602,10 @@ function drawCharSheet(canvas, player){
     ctx.fillText(player.getStat(allStats[i]),right_margin,current+line_height*i);
   }
   var i = allStats.length;
+  ctx.fillText("Quests Completed: ",left_margin,current+line_height*i);
+  ctx.fillText(player.getStat("landLevel"),right_margin,current+line_height*i);
+  i++;
+  
   ctx.fillText("Former Friends Killed: ",left_margin,current+line_height*i);
   ctx.fillText(player.pvpKillCount,right_margin,current+line_height*i);
   i++;
