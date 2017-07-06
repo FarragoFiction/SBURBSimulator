@@ -8,6 +8,8 @@ function SaveDoomedTimeLine(session){
 	this.doomedTimeClone = null;
 	this.enablingPlayer = null;
 	this.trigger = function(playerList){
+		this.timePlayer = null;
+		this.enablingPlayer = null;
 		var times = findAllAspectPlayers(this.session.players, "Time"); //they don't have to be in the medium, though
 		this.enablingPlayer = getRandomElementFromArray(times); //ironically will probably allow more timeless sessions without crashes.
 		this.leaderPlayer = getLeader(session.players);
@@ -88,6 +90,7 @@ function SaveDoomedTimeLine(session){
 	this.content = function(){
 		var ret = "Minutes ago, but not many, in a slightly different timeline, a " + this.timePlayer.htmlTitleBasic() + " suddenly warps in from the future. ";
 		ret += " They come with a dire warning of a doomed timeline. ";
+		if(this.enablingPlayer != this.timePlayer) ret += " The " + this.enablingPlayer + " helped them come back in time to change things. ";
 
 		if(this.reason == "Leader killed before ectobiology."){
 			//alert("ecto doom")
