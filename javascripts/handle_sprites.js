@@ -576,6 +576,23 @@ function drawGodRevival(canvas, live_players, dead_players){
 function drawCharSheet(canvas, player){
   drawSinglePlayer(canvas, player);
   drawWhatever(canvas, "charSheet.png");
+  var space_between_lines = 25;
+  var left_margin = 100;
+  var line_height = 18;
+  var start = 30;
+  var current = 275;
+  tmp_canvas = getBufferCanvas(canvas);
+  var ctx = canvas.getContext("2d");
+  //title
+  ctx.font = "42px Times New Roman"
+  ctx.fillStyle = "#000000"
+  ctx.fillText(player.titleBasic(),left_margin+1,current+1);
+  ctx.fillStyle = getColorFromAspect(player.aspect)
+  ctx.fillText(player.titleBasic(),left_margin,current);
+  ctx.font = "24px Times New Roman"
+  ctx.fillText("(" +player.chatHandle+")",left_margin,current+ 42);
+
+  copyTmpCanvasToRealCanvasAtPos(canvas, tmp_canvas,0,0)
 }
 
 
