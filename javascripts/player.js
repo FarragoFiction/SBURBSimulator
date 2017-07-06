@@ -394,6 +394,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.renderSelf();
 	}
 
+
 	this.makeDead = function(causeOfDeath){
 		this.dead = true;
 		this.timesDied ++;
@@ -407,7 +408,9 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			this.minLuck = 100; //prophecy fulfilled. you are no longer doomed.
 		}
 		if(!this.godTier){ //god tiers only make ghosts in GodTierRevivial
-			this.session.afterLife.addGhost(makeRenderingSnapshot(this));
+			var g = makeRenderingSnapshot(this);
+			g.fraymotifs = this.fraymotifs.slice(0); //copy not reference
+			this.session.afterLife.addGhost(g);
 		}
 
 		this.renderSelf();
