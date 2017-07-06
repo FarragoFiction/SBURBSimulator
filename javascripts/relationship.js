@@ -33,9 +33,9 @@ function Relationship(initial_value, target_player){
 	//eventually, when i adapt this to be SGRUB, have 2d relationships.  feel good or bad, feel concupiscient or not.
 	//also trolls are rivals unless value is at least 5 (more likely to be enemies than friends)
 	this.changeType = function(){
-		if(this.value > 20){ //used to be -10 to 10, but too many crushes.
+		if(this.value > 100){ //used to be -10 to 10, but too many crushes.
 			return this.goodBig;
-		}else if(this.value < -20){
+		}else if(this.value < -100){  //need to calibrate scandalous fuck piles.
 			return this.badBig;
 		}else if(this.value > 0){
 			return this.goodMild;

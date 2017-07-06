@@ -722,7 +722,7 @@ function Intro(session){
 
 			if(this.player.maxLuck < -15){
 				//console.log("initially unlucky player: " +this.session.session_id)
-				narration += "They have an insurmountable stockpile of TERRIBLE LUCK.";
+				narration += " They have an insurmountable stockpile of TERRIBLE LUCK.";
 			}
 			
 			if(this.player.fraymotifs.length > 0){

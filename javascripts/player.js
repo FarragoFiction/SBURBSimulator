@@ -716,6 +716,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 	
 	this.applyPossiblePsionics = function(){
+		if(this.fraymotifs.length > 0) return; //if i already have fraymotifs, then they were probably predefined.
 		//highest land dwellers can have chucklevoodoos. Other than that, lower on hemospectrum = greater odds of having psionics. 
 		//make sure psionic list is kept in global var, so that char creator eventually can access? Wait, no, just wrtap it in a function here. don't polute global name space.
 		//trolls can clearly have more than one set of psionics. so. odds of psionics is inverse with hemospectrum position. didn't i do this math before? where?

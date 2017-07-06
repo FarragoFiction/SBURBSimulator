@@ -1289,7 +1289,7 @@ function session612IndexToTroll(player, index){
 		var f = new Fraymotif([],  "Telekinisis", 1)
 		f.effects.push(new FraymotifEffect("power",2,true));
 		f.flavorText = " Large objects begin pelting the ENEMY. "
-		player.push(f);
+		player.fraymotifs.push(f);
 		
 		var f = new Fraymotif([],  "Ghost Communing", 1)
 		f.effects.push(new FraymotifEffect("sanity",3,true));
@@ -1452,11 +1452,11 @@ function session612IndexToTroll(player, index){
 		var f = new Fraymotif([],  "Telekinisis", 1)
 		f.effects.push(new FraymotifEffect("power",2,true));
 		f.flavorText = " Large objects begin pelting the ENEMY. "
-		player.push(f);
+		player.fraymotifs.push(f);
 		
 		var f = new Fraymotif([],  "Optic Blast", 1)
 		f.effects.push(new FraymotifEffect("power",2,true));
-		f.flavorText = " Appropriately colored eye beams pierce the ENEMY. "
+		f.flavorText = " Red and blue eye beams pierce the ENEMY. "
 		player.fraymotifs.push(f);
 	}
 }
@@ -1582,7 +1582,7 @@ function session612IndexToTrollAncestor(player, index){
 		f.effects.push(new FraymotifEffect("sanity",3,true));
 		f.effects.push(new FraymotifEffect("sanity",3,false));
 		f.flavorText = " The souls of the dead start hassling all enemies. "
-		player.push(f);
+		player.fraymotifs.push(f);
 	}else if(index == 5){
 		player.aspect = "Heart"
 		player.moon = "Derse"
@@ -1744,7 +1744,7 @@ function session612IndexToTrollAncestor(player, index){
 		
 		var f = new Fraymotif([],  "Optic Blast", 1)
 		f.effects.push(new FraymotifEffect("power",2,true));
-		f.flavorText = " Appropriately colored eye beams pierce the ENEMY. "
+		f.flavorText = " Red and blue eye beams pierce the ENEMY. "
 		player.fraymotifs.push(f);
 	}
 }
