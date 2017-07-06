@@ -75,7 +75,7 @@ function FreeWillStuff(session){
 
 	this.renderContent = function(div){
 		var psionic = "";
-		var pname = this.player.canMindControl()) psionic
+		var pname = this.player.canMindControl()
 		if( pname){
 			console.log("psychic powers used to mind control in session: " + this.session.session_id)
 			psionic =  " The " + this.player.htmlTitleBasic() + " uses their "+ pname + ". "
