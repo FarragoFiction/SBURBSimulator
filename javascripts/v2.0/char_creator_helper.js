@@ -109,8 +109,10 @@ function CharacterCreatorHelper(players){
 		$("#leftHornID" +player.id).val(player.leftHorn);
 		$("#rightHornID" +player.id).val(player.rightHorn);
 		$("#bloodColorID" +player.id).val(player.bloodColor);
+		$("#bloodColorID" +player.id).css("background-color", player.bloodColor)
 		$("#favoriteNumberID" +player.id).val(player.quirk.favoriteNumber);
-		$("#moonID" +player.id).val(player.moon);;
+		$("#moonID" +player.id).val(player.moon);
+		$("#moonID" +player.id).css("background-color", moonToColor(player.moon));
 	}
 
 	this.syncPlayerToCheckBoxes= function(player){
@@ -936,7 +938,7 @@ function CharacterEasterEggEngine(){
 	this.redditCharacters = [];
 	this.tumblrCharacters = [];
 	this.discordCharcters = [];
-	this.creatorCharacters =["b=%2B*-%06%C3%B4%C2%A3%00%C3%90%2C%2C%0D&s=,,Authoring,Robots,authorBot","b=%C3%A8%C3%90%C2%99E%C3%BE)%00%17%1C%1C.&s=,,100 Art Projects At Once,Memes,karmicRetribution","b=%3C%1E%07%C3%86%C3%B4%C2%A3%04Q%2C%2C%0D&s=,,The AuthorBot,Authoring,jadedResearcher"];
+	this.creatorCharacters =["b=%2B*-%06%C3%B4%C2%A3%00%C3%90%2C%2C%0D&s=,,Authoring,Robots,authorBot","b=%C3%A8%C3%90%C2%99E%C3%BE)%00%17%1C%1C.&s=,,100 Art Projects At Once,Memes,karmicRetribution","b=%3C%1E%07%C3%86%C3%BE%C2%A3%04%13%18%18%0D&s=,,The AuthorBot,Authoring,jadedResearcher"];
 	this.creditsBuckaroos = [];
 	this.ideasWranglers = [];
 	this.patrons = [];
