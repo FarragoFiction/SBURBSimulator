@@ -666,6 +666,28 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(this.aspect != "Blood"){  //sorry karkat
 			this.bloodColor = getRandomElementFromArray(bloodColors);
 		}
+		this.applyPossiblePsionics();
+	}
+	
+	this.psionicList = function(){
+		var psionics = [];
+		//telekenisis, mind control, mind reading, ghost communing, animal communing, laser blasts, vision xfold. 
+		return psionics;
+	}
+	
+	this.applyPossiblePsionics = function(){
+		//highest land dwellers can have chucklevoodoos. Other than that, lower on hemospectrum = greater odds of having psionics. 
+		//make sure psionic list is kept in global var, so that char creator eventually can access? Wait, no, just wrtap it in a function here. don't polute global name space.
+		//trolls can clearly have more than one set of psionics. so. odds of psionics is inverse with hemospectrum position. didn't i do this math before? where?
+		//oh! low blood vocabulary!!! that'd be in quirks, i think.
+		var odds = 10 - bloodColors.indexOf(this.bloodColor);   //want gamzee and above to have NO powers (will give highbloods chucklevoodoos separate)
+		var powers = this.psionicList();
+		for(var i = 0; i<powers.length; i++){
+			if(Math.seededRandom()*10 < odds ){
+				this.fraymotifs.push(powers[i]);
+			}
+		}
+		//special psionics for high bloods and lime bloods. 
 	}
 
 	this.decideLusus = function(player){
