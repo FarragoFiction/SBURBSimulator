@@ -611,7 +611,11 @@ function drawCharSheet(canvas, player){
   ctx.fillText("Grim Dark Level: ",left_margin,current+line_height*i);
   ctx.fillText(player.grimDark + "/4",right_margin,current+line_height*i);
 
+  i++;
+  ctx.fillText("Times Died: ",left_margin,current+line_height*i);
+  ctx.fillText(player.timesDied ,right_margin,current+line_height*i);
 
+}
 
 function drawGetTiger(canvas, players, repeatTime){
   if(checkSimMode() == true){

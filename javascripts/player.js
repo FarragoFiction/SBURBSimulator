@@ -10,6 +10,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.spriteCanvasID = null;  //part of new rendering engine.
 	this.session = session;
 	this.pvpKillCount = 0; //for stats.
+	this.timesDied = 0;
 	this.usedFraymotifThisTurn = false;
 	this.fraymotifs = [];
 	this.currentHP = 0;
@@ -395,6 +396,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	this.makeDead = function(causeOfDeath){
 		this.dead = true;
+		this.timesDied ++;
 		this.buffs = [];
 		this.causeOfDeath = causeOfDeath;
 		//was in make alive, but realized that this makes doom ghosts way stronger if it's here. powered by DEATH, but being revived.
