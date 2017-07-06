@@ -2,7 +2,7 @@ var imagesWaiting = 0;
 var imagesLoaded = 0;
 
 function loadFuckingEverything(skipInit){
-
+	if(simulationMode == true) return checkDone(skipInit);
 	loadAllImages(skipInit);
 }
 
@@ -10,18 +10,20 @@ function loadFuckingEverything(skipInit){
 
 //load everything while showing a progress bar. delete loadingCanvas when done.
 function load(players, guardians,skipInit){
+	if(simulationMode == true) return checkDone(skipInit);
   var guardians = getGuardiansForPlayers(players)
 	loadAllImagesForPlayers(players, guardians,skipInit);
 }
 
 
 function loadAllImages(skipInit){
+	if(simulationMode == true) return checkDone(skipInit);
 	loadOther(skipInit);
-  loadAllPossiblePlayers(skipInit);
-
+	loadAllPossiblePlayers(skipInit);
 }
 
 function loadAllImagesForPlayersNew(players, guardians, skipInit){
+	if(simulationMode == true) return checkDone(skipInit);
 	var spriteLocations = curSessionGlobalVar.sceneRenderingEngine.loadAllImagesForPlayers(players);
 	spriteLocations = spriteLocations.concat(curSessionGlobalVar.sceneRenderingEngine.loadAllImagesForPlayers(guardians));
 	for(var i = 0; i<spriteLocations.length; i++){
@@ -31,6 +33,7 @@ function loadAllImagesForPlayersNew(players, guardians, skipInit){
 }
 
 function loadAllImagesForPlayers(players, guardians,skipInit){
+	if(simulationMode == true) return checkDone(skipInit);
 	var numImages = 0;
 	//loadFuckingEverything(skipInit); //lol, fuck the world, let's do this shit.
 
@@ -71,7 +74,7 @@ function addImageTagLoading(url){
 
 function checkDone(skipInit){
   $("#loading_stats").html("Images Loaded: " + imagesLoaded);
-	if(imagesLoaded != 0 && imagesWaiting == imagesLoaded){
+	if((imagesLoaded != 0 && imagesWaiting == imagesLoaded) || simulationMode == true){  //if i'm not using images, don't load them, dunkass.
 		//$("#loading").remove(); //not loading anymore
     if(skipInit){
       if(skipInit == "oc"){
@@ -90,6 +93,7 @@ function checkDone(skipInit){
 }
 
 function loadImage(img,skipInit){
+	if(simulationMode == true) return checkDone(skipInit);
 	//console.log(img);
 	imagesWaiting ++;
 	var imageObj = new Image();
@@ -110,6 +114,7 @@ function loadImage(img,skipInit){
 }
 
 function loadOtherNew(skipInit){
+	if(simulationMode == true) return checkDone(skipInit);
 	var spriteLocations = curSessionGlobalVar.sceneRenderingEngine.getAllImagesNeededForScenesBesidesPlayers();
 	for(var i = 0; i<spriteLocations.length; i++){
 		loadImage(spriteLocations[i],skipInit);
@@ -118,11 +123,12 @@ function loadOtherNew(skipInit){
 
 //load pesterchum, blood, big aspect symbols, echeladders, god tier level up, romance symbols, babies, grubs
 function loadOther(skipInit){
-  if(cool_kid){
-    loadImage("/Bodies/coolk1dlogo.png",skipInit);
-    loadImage("/Bodies/coolk1dsword.png",skipInit);
-    loadImage("/Bodies/coolk1dshades.png",skipInit);
-  }
+	if(simulationMode == true) return checkDone(skipInit);
+	  if(cool_kid){
+		loadImage("/Bodies/coolk1dlogo.png",skipInit);
+		loadImage("/Bodies/coolk1dsword.png",skipInit);
+		loadImage("/Bodies/coolk1dshades.png",skipInit);
+	  }
 
 	if(ouija){
 		  loadImage("/Bodies/pen15.png",skipInit);
@@ -196,7 +202,8 @@ function loadOther(skipInit){
 }
 
 function loadAllPossiblePlayers(skipInit){
-		var blankPlayer = new Player(); //need to get num hair and horns.
+	if(simulationMode == true) return checkDone(skipInit);
+	var blankPlayer = new Player(); //need to get num hair and horns.
     var numBodies = 12;  //1 indexed
     var numHair = blankPlayer.maxHairNumber; //+1025 for rufio.  1 indexed
     var numHorns = blankPlayer.maxHornNumber; //1 indexed.
@@ -257,6 +264,7 @@ function loadAllPossiblePlayers(skipInit){
 
 //load hair, horns, wings, regular sprite, god sprite, fins, aspect symbol, moon symbol for each player
 function loadPlayer(player,skipInit){
+	if(simulationMode == true) return checkDone(skipInit);
   if(!player) return null;
 	//var imageString = "Horns/right"+player.rightHorn + ".png";
   //addImageTag(imageString)
