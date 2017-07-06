@@ -673,17 +673,17 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.psionicList = function(){
 		var psionics = [];
 		//telekenisis, mind control, mind reading, ghost communing, animal communing, laser blasts, vision xfold. 
-		var f = new Fraymotif([],  "Telekenisis", 1)
+		var f = new Fraymotif([],  "Telekinisis", 1)
 		f.effects.push(new FraymotifEffect("power",2,true));
 		f.flavorText = " Large objects begin pelting the ENEMY. "
 		psionics.push(f);
 		
-		var f = new Fraymotif([],  "Pyrokenisis", 1)
+		var f = new Fraymotif([],  "Pyrokinisis", 1)
 		f.effects.push(new FraymotifEffect("power",2,true));
 		f.flavorText = " Who knew shaving cream was so flammable? "
 		psionics.push(f);
 		
-		var f = new Fraymotif([],  "Aquakenisis", 1)
+		var f = new Fraymotif([],  "Aquakinesis", 1)
 		f.effects.push(new FraymotifEffect("power",2,true));
 		f.flavorText = " A deluge begins damaging the ENEMY. "
 		psionics.push(f);

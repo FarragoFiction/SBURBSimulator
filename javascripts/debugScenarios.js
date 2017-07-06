@@ -1276,6 +1276,17 @@ function session612IndexToTroll(player, index){
 		player.godDestiny = true;
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
+		var f = new Fraymotif([],  "Telekinisis", 1)
+		f.effects.push(new FraymotifEffect("power",2,true));
+		f.flavorText = " Large objects begin pelting the ENEMY. "
+		player.push(f);
+		
+		var f = new Fraymotif([],  "Ghost Communing", 1)
+		f.effects.push(new FraymotifEffect("sanity",3,true));
+		f.effects.push(new FraymotifEffect("sanity",3,false));
+		f.flavorText = " The souls of the dead start hassling all enemies. "
+		player.push(f);
+		
 	}else if(index == 5){
 		player.moon = "Derse"
 		player.aspect = "Heart"
@@ -1522,6 +1533,16 @@ function session612IndexToTrollAncestor(player, index){
 		player.chatHandle = "apocalypseArisen"
 		player.quirk.suffix = ""
 		player.quirk.prefix = ""
+		var f = new Fraymotif([],  "Telekinisis", 1)
+		f.effects.push(new FraymotifEffect("power",2,true));
+		f.flavorText = " Large objects begin pelting the ENEMY. "
+		player.push(f);
+		
+		var f = new Fraymotif([],  "Ghost Communing", 1)
+		f.effects.push(new FraymotifEffect("sanity",3,true));
+		f.effects.push(new FraymotifEffect("sanity",3,false));
+		f.flavorText = " The souls of the dead start hassling all enemies. "
+		player.push(f);
 	}else if(index == 5){
 		player.aspect = "Heart"
 		player.moon = "Derse"
