@@ -678,11 +678,40 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		f.flavorText = " Large objects begin pelting the ENEMY. "
 		psionics.push(f);
 		
+		var f = new Fraymotif([],  "Pyrokenisis", 1)
+		f.effects.push(new FraymotifEffect("power",2,true));
+		f.flavorText = " Who knew shaving cream was so flammable? "
+		psionics.push(f);
+		
+		var f = new Fraymotif([],  "Aquakenisis", 1)
+		f.effects.push(new FraymotifEffect("power",2,true));
+		f.flavorText = " A deluge begins damaging the ENEMY. "
+		psionics.push(f);
+		
 		var f = new Fraymotif([],  "Mind Control", 1)
 		f.effects.push(new FraymotifEffect("freeWill",3,true));
 		f.effects.push(new FraymotifEffect("freeWill",3,false));
 		f.flavorText = " All enemies start damaging themselves. It's kind of embarassing how easy this is.  "
 		psionics.push(f);
+		
+		
+		var f = new Fraymotif([],  "Optic Blast", 1)
+		f.effects.push(new FraymotifEffect("power",2,true));
+		f.flavorText = " Appropriately colored eye beams pierce the ENEMY. "
+		psionics.push(f);
+		
+		var f = new Fraymotif([],  "Ghost Communing", 1)
+		f.effects.push(new FraymotifEffect("sanity",3,true));
+		f.effects.push(new FraymotifEffect("sanity",3,false));
+		f.flavorText = " The souls of the dead start hassling all enemies. "
+		psionics.push(f);
+		
+		var f = new Fraymotif([],  "Animal Communing", 1)
+		f.effects.push(new FraymotifEffect("sanity",3,true));
+		f.effects.push(new FraymotifEffect("sanity",3,false));
+		f.flavorText = " Local animal equivalents start hassling all enemies. "
+		psionics.push(f);
+		
 		return psionics;
 	}
 	
@@ -694,7 +723,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		var odds = 10 - bloodColors.indexOf(this.bloodColor);   //want gamzee and above to have NO powers (will give highbloods chucklevoodoos separate)
 		var powers = this.psionicList();
 		for(var i = 0; i<powers.length; i++){
-			if(Math.seededRandom()*10 < odds ){
+			if(Math.seededRandom()*40 < odds ){  //even burgundy bloods have only a 25% shot of each power.
 				this.fraymotifs.push(powers[i]);
 			}
 		}
