@@ -67,9 +67,9 @@ function FreeWillStuff(session){
 		div.append(" They learn " + f.name + ". ") ;
 		div.append(canvasHTML);
 		var canvas = document.getElementById("canvas"+ divID);
-		
 
-	
+
+
 		drawGetTiger(canvas, [this.playerGodTiered],repeatTime) //only draw revivial if it actually happened.
 	}
 
@@ -589,6 +589,7 @@ function FreeWillStuff(session){
 				this.renderPlayer1 = player;
 				this.renderPlayer2 = murderer;
 				murderer.makeDead("being put down like a rabid dog by the " + player.titleBasic());
+				player.pvpKillCount ++;
 				this.session.murdersHappened = true;
 				return "The " + player.htmlTitleBasic() + " cannot let this continue any further. The " + murderer.htmlTitleBasic() + " is a threat to everyone. They corner them, and have a brief, bloody duel that ends in the death of the " + murderer.htmlTitleBasic() + ". " + getPVPQuip(murderer,player, "Defender", "Attacker") + " Everyone is a little bit safer.";
 			}else{
@@ -597,6 +598,7 @@ function FreeWillStuff(session){
 				removeFromArray(murderer, this.session.availablePlayers);
 				removeFromArray(player, this.session.availablePlayers);
 				player.makeDead("fighting against the crazy " + murderer.titleBasic());
+				murderer.pvpKillCount ++;
 				this.session.murdersHappened = true;
 				this.renderPlayer1 = player;
 				this.renderPlayer2 = murderer;

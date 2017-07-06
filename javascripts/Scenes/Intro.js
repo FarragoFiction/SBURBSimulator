@@ -676,7 +676,7 @@ function Intro(session){
 	//i is so you know entry order
 	this.renderContent = function(div,i){
 		//foundRareSession(div, "This is just a test. " + this.session.session_id)
-		var canvasHTML = "<canvas class = 'charSheet' id='firstcanvas" + this.player.id+"_" + this.session.session_id+"' width='400' height='1000'>  </canvas>";
+		var canvasHTML = "<canvas style='display:none' class = 'charSheet' id='firstcanvas" + this.player.id+"_" + this.session.session_id+"' width='400' height='1000'>  </canvas>";
 		div.append(canvasHTML);
 		var canvasDiv = document.getElementById("firstcanvas"+ this.player.id+"_" + this.session.session_id);
 		drawCharSheet(canvasDiv,this.player)

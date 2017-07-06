@@ -217,6 +217,7 @@ function MurderPlayers(session){
 						}
 						ret += this.friendsOfVictimHateYou(worstEnemy, m);
 						worstEnemy.makeDead("fighting against the crazy " + m.title());
+						m.pvpKillCount ++;
 						this.session.murdersHappened = true;
 						var r = worstEnemy.getRelationshipWith(m);
 						r.value = -10; //you are not happy with murderer
@@ -236,6 +237,7 @@ function MurderPlayers(session){
 							ret += " The task is made especially easy by the " + m.htmlTitle() + " being already in the proccess of dying. "
 						}
 						m.makeDead("being put down like a rabid dog by the " + worstEnemy.title());
+						worstEnemy.pvpKillCount ++;
 						this.session.murdersHappened = true;
 						var r = worstEnemy.getRelationshipWith(m);
 						r.value = -10; //you are not happy with murderer
@@ -319,6 +321,7 @@ function MurderPlayers(session){
 					ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". "+ getPVPQuip(worstEnemy,m, "Defender", "Murderer");
 					ret += this.friendsOfVictimHateYou(worstEnemy, m);
 					worstEnemy.makeDead("fighting against the crazy " + m.title())
+					m.pvpKillCount ++;
 					this.session.murdersHappened = true;
 					m.victimBlood = worstEnemy.bloodColor;
 				}else{
@@ -326,6 +329,7 @@ function MurderPlayers(session){
 					ret += " The " + m.htmlTitle() + " attempts to brutally murder that asshole, the " + worstEnemy.htmlTitle();
 					ret += ",but instead gets murdered first, in self-defense. "+ getPVPQuip(m,worstEnemy, "Murderer", "Defender");
 					m.makeDead("being put down like a rabid dog by " + worstEnemy.title())
+					worstEnemy.pvpKillCount ++;
 					this.session.murdersHappened = true;
 					worstEnemy.victimBlood = m.bloodColor;
 				}

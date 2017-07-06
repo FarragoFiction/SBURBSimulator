@@ -204,12 +204,17 @@ function Aftermath(session){
 	}
 }
 
+//take "firstcanvas"+ this.player.id+"_" + this.session.session_id from intro, and copy it here to display for first time.
 this.lastRender = function(div){
 	for(var i = 0; i<this.session.players.length; i++){
-		var canvasHTML = "<canvas class = 'charSheet' id='lastcanvas" + this.session.players[i].id+"_" + this.session.session_id+"' width='400' height='1000'>  </canvas>";
+		var canvasHTML = "<canvas class = 'charSheet' id='lastcanvas" + this.session.players[i].id+"_" + this.session.session_id+"' width='800' height='1000'>  </canvas>";
 		div.append(canvasHTML);
 		var canvasDiv = document.getElementById("lastcanvas"+ this.session.players[i].id+"_" + this.session.session_id);
-		drawCharSheet(canvasDiv,this.session.players[i])
+		var first_canvas = document.getElementById("firstcanvas"+ this.session.players[i].id+"_" + this.session.session_id);
+		var tmp_canvas = getBufferCanvas(canvasDiv);
+		drawCharSheet(tmp_canvas,this.session.players[i])
+		copyTmpCanvasToRealCanvasAtPos(canvasDiv, first_canvas,0,0)
+		copyTmpCanvasToRealCanvasAtPos(canvasDiv, tmp_canvas,400,0)
 	}
 }
 

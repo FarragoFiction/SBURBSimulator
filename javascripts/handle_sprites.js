@@ -582,7 +582,7 @@ function drawCharSheet(canvas, player){
   var line_height = 24;
   var start = 30;
   var current = 275;
-  tmp_canvas = getBufferCanvas(canvas);
+
   var ctx = canvas.getContext("2d");
   //title
   ctx.font = "42px Times New Roman"
@@ -601,10 +601,16 @@ function drawCharSheet(canvas, player){
     ctx.fillText(allStats[i] +": ",left_margin,current+line_height*i);
     ctx.fillText(player.getStat(allStats[i]),right_margin,current+line_height*i);
   }
+  var i = allStats.length;
+  ctx.fillText("Former Friends Killed: ",left_margin,current+line_height*i);
+  ctx.fillText(player.pvpKillCount,right_margin,current+line_height*i);
+  i++;
+  ctx.fillText("Fraymotifs Unlocked: ",left_margin,current+line_height*i);
+  ctx.fillText(player.fraymotifs.length,right_margin,current+line_height*i);
+  i++;
+  ctx.fillText("Grim Dark Level: ",left_margin,current+line_height*i);
+  ctx.fillText(player.grimDark + "/4",right_margin,current+line_height*i);
 
-
-  copyTmpCanvasToRealCanvasAtPos(canvas, tmp_canvas,0,0)
-}
 
 
 function drawGetTiger(canvas, players, repeatTime){
