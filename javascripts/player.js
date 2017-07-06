@@ -669,16 +669,17 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.applyPossiblePsionics();
 	}
 	
+	//expect it to be first in list, so this is only bad if you DON'T have mind control AND have a shit ton of fraymotifs.
 	this.canMindControl = function(){
 		for(var i == 0; i<this.fraymotifs.length; i++){
-			if(this.fraymotifs.name == "Mind Control") return true;
+			if(this.fraymotifs[i].name == "Mind Control") return this.fraymotifs[i].name;
 		}
 		return false;
 	}
 	
 	this.canGhostCommune = function(){
 		for(var i == 0; i<this.fraymotifs.length; i++){
-			if(this.fraymotifs.name == "Ghost Communing") return true;
+			if(this.fraymotifs[i].name == "Ghost Communing") this.fraymotifs[i].name;
 		}
 		return false;
 	}
