@@ -1295,7 +1295,7 @@ function session612IndexToTroll(player, index){
 		f.effects.push(new FraymotifEffect("sanity",3,true));
 		f.effects.push(new FraymotifEffect("sanity",3,false));
 		f.flavorText = " The souls of the dead start hassling all enemies. "
-		player.push(f);
+		player.fraymotifs.push(f);
 		
 	}else if(index == 5){
 		player.moon = "Derse"
@@ -1341,7 +1341,7 @@ function session612IndexToTroll(player, index){
 		f.effects.push(new FraymotifEffect("sanity",3,true));
 		f.effects.push(new FraymotifEffect("sanity",3,false));
 		f.flavorText = " Local animal equivalents start hassling all enemies. "
-		player.push(f);
+		player.fraymotifs.push(f);
 	}else if(index == 7){
 		player.moon = "Prospit"
 		player.land = "Land of Maps and Treasure"
@@ -1367,7 +1367,7 @@ function session612IndexToTroll(player, index){
 		f.effects.push(new FraymotifEffect("freeWill",3,true));
 		f.effects.push(new FraymotifEffect("freeWill",3,false));
 		f.flavorText = " All enemies start damaging themselves. It's kind of embarassing how easy this is.  "
-		player.push(f);
+		player.fraymotifs.push(f);
 		
 	}else if(index == 8){
 		player.moon = "Prospit"
@@ -1457,7 +1457,7 @@ function session612IndexToTroll(player, index){
 		var f = new Fraymotif([],  "Optic Blast", 1)
 		f.effects.push(new FraymotifEffect("power",2,true));
 		f.flavorText = " Appropriately colored eye beams pierce the ENEMY. "
-		player.push(f);
+		player.fraymotifs.push(f);
 	}
 }
 
@@ -1576,7 +1576,7 @@ function session612IndexToTrollAncestor(player, index){
 		var f = new Fraymotif([],  "Telekinisis", 1)
 		f.effects.push(new FraymotifEffect("power",2,true));
 		f.flavorText = " Large objects begin pelting the ENEMY. "
-		player.push(f);
+		player.fraymotifs.push(f);
 		
 		var f = new Fraymotif([],  "Ghost Communing", 1)
 		f.effects.push(new FraymotifEffect("sanity",3,true));
@@ -1628,7 +1628,7 @@ function session612IndexToTrollAncestor(player, index){
 		f.effects.push(new FraymotifEffect("sanity",3,true));
 		f.effects.push(new FraymotifEffect("sanity",3,false));
 		f.flavorText = " Local animal equivalents start hassling all enemies. "
-		player.push(f);
+		player.fraymotifs.push(f);
 	}else if(index == 7){
 		player.aspect = "Light"
 		player.moon = "Prospit"
@@ -1654,7 +1654,7 @@ function session612IndexToTrollAncestor(player, index){
 		f.effects.push(new FraymotifEffect("freeWill",3,true));
 		f.effects.push(new FraymotifEffect("freeWill",3,false));
 		f.flavorText = " All enemies start damaging themselves. It's kind of embarassing how easy this is.  "
-		player.push(f);
+		player.fraymotifs.push(f);
 
 	}else if(index == 8){
 		player.aspect = "Space"
@@ -1740,12 +1740,12 @@ function session612IndexToTrollAncestor(player, index){
 		var f = new Fraymotif([],  "Telekinisis", 1)
 		f.effects.push(new FraymotifEffect("power",2,true));
 		f.flavorText = " Large objects begin pelting the ENEMY. "
-		player.push(f);
+		player.fraymotifs.push(f);
 		
 		var f = new Fraymotif([],  "Optic Blast", 1)
 		f.effects.push(new FraymotifEffect("power",2,true));
 		f.flavorText = " Appropriately colored eye beams pierce the ENEMY. "
-		player.push(f);
+		player.fraymotifs.push(f);
 	}
 }
 
