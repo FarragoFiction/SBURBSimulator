@@ -19,12 +19,8 @@ function SaveDoomedTimeLine(session){
 			if(this.enablingPlayer.isActive() || Math.seededRandom() > .5){
 				this.timePlayer = this.enablingPlayer;
 			}else{  //somebody else can be voided.
-				if(Math.seededRandom() > 0.5){
-					console.log("nonTime player doomed time clone: " + this.session.session_id)
-					this.timePlayer = getRandomElementFromArray(this.session.availablePlayers);  //passive time players make doomed clones of others.
-				}else{
-					this.timePlayer = this.enablingPlayer;
-				}
+				this.timePlayer = getRandomElementFromArray(this.session.availablePlayers);  //passive time players make doomed clones of others.
+				if(!this.timePlayer) this.timePlayer = this.enablingPlayer;
 			}
 		}
 		/*
@@ -34,7 +30,7 @@ function SaveDoomedTimeLine(session){
 			return false;
 		}*/
 		//console.log("time player is not dead,  do i trigger?")
-		return (this.ectoDoom() || this.playerDoom() || this.randomDoom(times.length));
+		return (this.timePlayer && (this.ectoDoom() || this.playerDoom() || this.randomDoom(times.length)));
 	}
 
 
@@ -90,7 +86,11 @@ function SaveDoomedTimeLine(session){
 	this.content = function(){
 		var ret = "Minutes ago, but not many, in a slightly different timeline, a " + this.timePlayer.htmlTitleBasic() + " suddenly warps in from the future. ";
 		ret += " They come with a dire warning of a doomed timeline. ";
-		if(this.enablingPlayer != this.timePlayer) ret += " The " + this.enablingPlayer + " helped them come back in time to change things. ";
+		if(this.enablingPlayer != this.timePlayer){
+			console.log("nonTime player doomed time clone: " + this.session.session_id)
+			ret += " The " + this.enablingPlayer + " helped them come back in time to change things. ";
+
+		} 
 
 		if(this.reason == "Leader killed before ectobiology."){
 			//alert("ecto doom")
