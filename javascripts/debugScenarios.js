@@ -144,6 +144,8 @@ function processXStuck(){
 	var params1 = window.location.search.substr(1);
 	var params2 = simulatedParamsGlobalVar;
 	console.log("~~~~~~~~~~~~~~~~~~params2 is " + params2)
+	var tmp = classes;
+	tmp = tmp.concat(custom_only_classes);
 	var params = "";
 	if(params1){
 		params = params1;
@@ -157,7 +159,7 @@ function processXStuck(){
 		console.log("stuck is: " + stuck)
 		if(stuck.length == 2){
 			var classOrAspect = stuck[0];
-			if(classes.indexOf(stuck[0]) != -1){
+			if(tmp.indexOf(stuck[0]) != -1){
 				setAllClassesTo(stuck[0].trim())
 			}else if(all_aspects.indexOf(stuck[0]) != -1){
 				setAllAspectsTo(stuck[0].trim());
