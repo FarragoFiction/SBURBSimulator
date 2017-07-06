@@ -574,6 +574,9 @@ function drawGodRevival(canvas, live_players, dead_players){
 
 //should only be used at the end, draws the player and their stats.
 function drawCharSheet(canvas, player){
+  if(checkSimMode() == true){
+    return;
+  }
   drawSinglePlayer(canvas, player);
   drawWhatever(canvas, "charSheet.png");
   var space_between_lines = 25;
