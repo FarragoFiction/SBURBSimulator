@@ -185,6 +185,11 @@ function makeFilteredCopyForLetters(array, letter){
 }
 
 
+function turnArrayIntoHumanSentence(a){
+	return [a.slice(0, -1).join(', '), a.slice(-1)[0]].join(a.length < 2 ? '' : ' and ');
+}
+
+
 
 //use class,aspect, and interests to generate a 16 element level array.
 //need to happen ahead of time and have more variety to display on
