@@ -1692,66 +1692,10 @@ function princeTiara(canvas, player){
 //TODO put classes in THIS order and just have a single line that is all_classes.index_of(player.class_name);
 function playerToRegularBody(player){
   return "Bodies/" + "reg"+classNameToInt(player.class_name)+".png";
-  if(player.class_name == "Page"){
-    imageString += "reg001.png"
-  }else if(player.class_name == "Knight" ){
-    imageString += "reg002.png"
-  }else if(player.class_name == "Witch" ){
-    imageString += "reg003.png"
-  }else if(player.class_name == "Sylph" ){
-    imageString += "reg004.png"
-  }else if(player.class_name == "Thief" ){
-    imageString += "reg005.png"
-  }else if(player.class_name == "Rogue" ){
-    imageString += "reg006.png"
-  }else if(player.class_name == "Seer" ){
-    imageString += "reg007.png"
-  }else if(player.class_name == "Mage" ){
-    imageString += "reg008.png"
-  }else if(player.class_name == "Heir" ){
-    imageString += "reg009.png"
-  }else if(player.class_name == "Maid" ){
-    imageString += "reg010.png"
-  }else if(player.class_name == "Prince" ){
-    imageString += "reg011.png"
-  }else if(player.class_name == "Bard" ){
-    imageString += "reg012.png"
-  }else if(player.class_name == "Waste" ){
-    imageString += "reg013.png"
-  }
-  return imageString;
 }
 
 function playerToDreamBody(player){
   return "Bodies/" + "dream"+classNameToInt(player.class_name)+".png";
-  if(player.class_name == "Page"){
-    imageString += tmp +"001.png"
-  }else if(player.class_name == "Knight" ){
-    imageString += tmp +"002.png"
-  }else if(player.class_name == "Witch" ){
-    imageString += tmp +"003.png"
-  }else if(player.class_name == "Sylph" ){
-    imageString += tmp +"004.png"
-  }else if(player.class_name == "Thief" ){
-    imageString += tmp +"005.png"
-  }else if(player.class_name == "Rogue" ){
-    imageString += tmp +"006.png"
-  }else if(player.class_name == "Seer" ){
-    imageString += tmp +"007.png"
-  }else if(player.class_name == "Mage" ){
-    imageString += tmp +"008.png"
-  }else if(player.class_name == "Heir" ){
-    imageString += tmp +"009.png"
-  }else if(player.class_name == "Maid" ){
-    imageString += tmp +"010.png"
-  }else if(player.class_name == "Prince" ){
-    imageString += tmp +"011.png"
-  }else if(player.class_name == "Bard" ){
-    imageString += tmp +"012.png"
-  }else if(player.class_name == "Waste" ){
-    imageString += tmp +"013.png"
-  }
-  return imageString;
 }
 
 function robotSprite(canvas, player){
@@ -1816,34 +1760,6 @@ function dreamSprite(canvas, player){
 
 function playerToGodBody(player){
   return "Bodies/" + "god"+classNameToInt(player.class_name)+".png";
-  if(player.class_name == "Page"){
-    imageString += "001.png"
-  }else if(player.class_name == "Knight" ){
-    imageString += "002.png"
-  }else if(player.class_name == "Witch" ){
-    imageString += "003.png"
-  }else if(player.class_name == "Sylph" ){
-    imageString += "004.png"
-  }else if(player.class_name == "Thief" ){
-    imageString += "005.png"
-  }else if(player.class_name == "Rogue" ){
-    imageString += "006.png"
-  }else if(player.class_name == "Seer" ){
-    imageString += "007.png"
-  }else if(player.class_name == "Mage" ){
-    imageString += "008.png"
-  }else if(player.class_name == "Heir" ){
-    imageString += "009.png"
-  }else if(player.class_name == "Maid" ){
-    imageString += "010.png"
-  }else if(player.class_name == "Prince" ){
-    imageString += "011.png"
-  }else if(player.class_name == "Bard" ){
-    imageString += "012.png"
-  }else if(player.class_name == "Waste" ){
-    imageString += "013.png"
-  }
-  return imageString;
 }
 
 function godTierSprite(canvas, player){
