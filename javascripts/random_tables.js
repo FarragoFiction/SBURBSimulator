@@ -1043,11 +1043,15 @@ function removeFromArray(item, array){
 }
 
 function classNameToInt(class_name){
-	return classes.indexOf(class_name);
+	var tmp = classes;
+	tmp = tmp.concat(custom_only_classes);
+	return tmp.indexOf(class_name);
 }
 
 function intToClassName(num){
-	return classes[num];
+	var tmp = classes;
+	tmp = tmp.concat(custom_only_classes);
+	return tmp[num];
 }
 
 function aspectToInt(aspect){
