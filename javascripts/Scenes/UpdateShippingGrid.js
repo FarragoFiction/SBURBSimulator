@@ -131,7 +131,8 @@ function UpdateShippingGrid(session){
 				return shipper;
 			}
 		}
-		var s = new Shipper(player, this.createShips(this.session.players, player));
+		var s = new Shipper(player);
+		s.ships = this.createShips(this.session.players, s)
 		s.savedShipText = ""; //make sure it's blank
 		this.shippers.push(s);
 		console.log("making new shipper for: " + player)
@@ -228,10 +229,11 @@ function UpdateShippingGrid(session){
 //contains both relationship and it's inverse, knows how to render itself. dead players have a hussie style x over their faces.
 //ships can also refuse to render themselves.  return false if that happens.
 // render if: r2.saved_type == r2.goodBig || r2.saved_type == r2.badBig
-function Ship(r1, r2, goal,player){
+function Ship(r1, r2, goal,shipper){
 		this.r1 = r1;
 		this.r2 = r2;
-		this.player = player
+		this.shipper = shipper; //so i can tell shipper if  am a potential OTP
+		this.player = shipper.player
 		this.goal = goal;
 		this.shipJustGotReal = false; //get it??? it's a joke!!! because 'shit just got real' (use this to know if your ship came true)
 
@@ -330,9 +332,9 @@ function Ship(r1, r2, goal,player){
 //eventually want blood/heart to have things like OTPs or whatever that they label and care about (even commenting if it beomes real and getting a power boost)
 //heart players will assume people who seem to have crushes on each other will end up spades/heart, and blood players clubs/diamonds
 //when ship becomes "real", if it's what they thought, comment and power boost???
-function Shipper(player, ships){
+function Shipper(player){
 	this.player = player;
-	this.ships = ships;
+	this.ships = null; //set right after creating.
 	this.powerNeeded = 1;
 	this.savedShipText = ""; ///need to know if my ships have updated.
 
