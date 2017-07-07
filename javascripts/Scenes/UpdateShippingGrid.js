@@ -113,7 +113,7 @@ function UpdateShippingGrid(session){
 			tmpPlayer = findAspectPlayer(this.session.availablePlayers, "Blood");
 		}
 		if(!tmpPlayer || tmpPlayer.dead) return false; //even the mighty power of shipping cannot transcend death.
-		this.chosenShipper = getShipper(tmpPlayer);
+		this.chosenShipper = this.getShipper(tmpPlayer);
 
 		var newShips = this.printShips(this.getGoodShips(this.chosenShipper))
 		if(newShips != this.chosenShipper.savedShipText && this.chosenShipper > this.powerNeeded){
