@@ -186,6 +186,7 @@ function UpdateShippingGrid(session){
 	}
 
 	this.drawRomanceChat = function(div){
+		alert("TODO handle romance chat, it only exists if player is convincned")
 		if(!this.romanceChat) return;
 	}
 
