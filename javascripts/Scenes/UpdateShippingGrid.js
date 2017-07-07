@@ -285,11 +285,11 @@ function UpdateShippingGrid(session){
 			var chat = "";
 			//chats happen in order.
 			var willItWork = this.evaluateFlushedProposal(p2);
-			var myRelationshipWithOTP1 = shipper.player.getRelationshipWith(p2);
+			var myRelationshipWithOTP1 = shipper.getRelationshipWith(p2);
 			var theirRelationshipWithMe = p2.getRelationshipWith(shipper);
 			var c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!"], ["Hey."],["Hey, asshole."]);
 			chat += c.getOpeningLine(shipper, shipperStart);
-			chat += c.p2GetResponseBasedOnRelationship(this.player2, this.player2Start, theirRelationshipWithMe)
+			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
 
 			//evaluate first few lines with default thingy of p2GetResponseBasedOnRelationship
 			//once i have stopped beating around the bush, need to evaluate chat based on: getP2ResponseBasedOnBool but before is just based on relationship
