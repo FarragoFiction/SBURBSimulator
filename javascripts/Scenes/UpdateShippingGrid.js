@@ -219,7 +219,7 @@ function UpdateShippingGrid(session){
 	//then they will pester the object of their affection and be rejected or not.
 	this.activateShippingPowers = function(otp){
 		alert("???")
-		var ret = " The " + this.chosenShipper.player.htmlTitleBasic() + "notices that one of their favorite ships seems to be on the verge of getting together! All it will take is the slightest of nudges...";
+		var ret = " <Br> <br> The " + this.chosenShipper.player.htmlTitleBasic() + " notices that one of their favorite ships seems to be on the verge of getting together! All it will take is the slightest of nudges...";
 		//if that chat results in them agreeing, do next chat. (between rom partners)
 		if(this.chosenShipper.player.aspect == "Blood"){
 			if(otp.r1.saved_type == otp.r1.goodBig){
