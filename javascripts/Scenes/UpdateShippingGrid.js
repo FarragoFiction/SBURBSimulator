@@ -181,7 +181,7 @@ function UpdateShippingGrid(session){
 				image = "discuss_ashenmance.png"
 			}
 		}
-		drawChat(canvasDiv, player1, player2, chatText, 1000,image);
+		drawChat(canvasDiv, player1, player2, this.shippingChat, 1000,image);
 
 	}
 
