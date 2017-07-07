@@ -131,7 +131,7 @@ function UpdateShippingGrid(session){
 				return shipper;
 			}
 		}
-		var s = new Shipper(player, this.createShips(this.session.players));
+		var s = new Shipper(player, this.createShips(this.session.players, player));
 		s.savedShipText = ""; //make sure it's blank
 		this.shippers.push(s);
 		console.log("making new shipper for: " + player)
@@ -146,7 +146,7 @@ function UpdateShippingGrid(session){
 
 	//for all players, look at all relationships. if goodBig or badBig, return.
 	//also grab clubs and diamonds. later.
-	this.createShips = function(players){
+	this.createShips = function(players, shipperPlayer){
 		//console.log("creating ships")
 		var ret = [];
 			for(var i = 0; i<players.length; i++){
@@ -158,7 +158,7 @@ function UpdateShippingGrid(session){
 					var r1 = player.relationships[j];
 					var r2 = r1.target.getRelationshipWith(player);
 					//console.log("made new ship")
-					ret.push(new Ship(r1, r2))
+					ret.push(new Ship(r1, r2, "",shipperPlayer))
 				}
 			}
 				var toRemove = [];
@@ -228,9 +228,10 @@ function UpdateShippingGrid(session){
 //contains both relationship and it's inverse, knows how to render itself. dead players have a hussie style x over their faces.
 //ships can also refuse to render themselves.  return false if that happens.
 // render if: r2.saved_type == r2.goodBig || r2.saved_type == r2.badBig
-function Ship(r1, r2, goal){
+function Ship(r1, r2, goal,player){
 		this.r1 = r1;
 		this.r2 = r2;
+		this.player = player
 		this.goal = goal;
 		this.shipJustGotReal = false; //get it??? it's a joke!!! because 'shit just got real' (use this to know if your ship came true)
 
