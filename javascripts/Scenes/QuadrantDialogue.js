@@ -698,24 +698,24 @@ function PlusMinusConversationalPair(openingLines, positiveRespones, negativeRes
 
 	//have a variety of ways you can start.
 	this.getOpeningLine = function(player, playerStart){
-		chat += chatLine(playerStart, player, getRandomElementFromArray(this.openingLines));
+		return chatLine(playerStart, player, getRandomElementFromArray(this.openingLines));
 	}
 
 	//was originally gonna use a call back to calculate if it's true or false on the fly, then realized i was being a DUNKASS
 	//and could just precompute the boolean.
 	this.getP2ResponseBasedOnBool = function(player, playerStart, calculatedBool){
 		if(calculatedBool){
-			chat += chatLine(playerStart, player, getRandomElementFromArray(this.positiveRespones));
+			return chatLine(playerStart, player, getRandomElementFromArray(this.positiveRespones));
 		}else{ //negative response.
-			chat += chatLine(playerStart, player, getRandomElementFromArray(this.negativeResponses));
+			return chatLine(playerStart, player, getRandomElementFromArray(this.negativeResponses));
 		}
 	}
 
 	this.p2GetResponseBasedOnRelationship = function(player, playerStart, relationship){
 		if(relationship.value > 0){
-			chat += chatLine(playerStart, player, getRandomElementFromArray(this.positiveRespones));
+			return chatLine(playerStart, player, getRandomElementFromArray(this.positiveRespones));
 		}else{ //negative response.
-			chat += chatLine(playerStart, player, getRandomElementFromArray(this.negativeResponses));
+			return chatLine(playerStart, player, getRandomElementFromArray(this.negativeResponses));
 		}
 	}
 }
