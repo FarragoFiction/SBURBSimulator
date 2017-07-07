@@ -112,7 +112,7 @@ function UpdateShippingGrid(session){
 		}else{
 			tmpPlayer = findAspectPlayer(this.session.availablePlayers, "Blood");
 		}
-		if(tmpPlayer.dead) return false; //even the mighty power of shipping cannot transcend death.
+		if(!tmpPlayer || tmpPlayer.dead) return false; //even the mighty power of shipping cannot transcend death.
 		this.chosenShipper = getShipper(tmpPlayer);
 
 		var newShips = this.printShips(this.getGoodShips(this.chosenShipper))
@@ -129,7 +129,7 @@ function UpdateShippingGrid(session){
 			var shipper = this.shippers[i];
 			if(shipper.player == player) return shipper;
 		}
-		var s = new Shipper(player, this.createShips(this.session.players);
+		var s = new Shipper(player, this.createShips(this.session.players));
 		this.shippers.push(s);
 		return s;
 	}
