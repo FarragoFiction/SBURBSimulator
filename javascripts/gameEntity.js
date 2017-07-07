@@ -829,7 +829,7 @@ function GameEntity(session, name, crowned){
 			if(player.power < this.getStat("currentHP")){
 					//console.log("ghost attack in: " + this.session.session_id)
 
-					this.currentHP += Math.round(-1* ghost.power*5); //not just one attack from the ghost
+					this.currentHP += Math.round(-1* (ghost.power*5 + player.power)); //not just one attack from the ghost
 					div.append("<Br><Br> The " + player.htmlTitleBasic() + " cashes in their promise of aid. The ghost of the " + ghost.htmlTitleBasic() + " unleashes an unblockable ghostly attack channeled through the living player. " + ghost.power + " damage is done to " + this.htmlTitleHP() + ". The ghost will need to rest after this for awhile. " );
 
 					this.drawGhostAttack(div, player, ghost);
