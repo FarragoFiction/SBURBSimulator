@@ -248,9 +248,10 @@ function UpdateShippingGrid(session){
 //contains both relationship and it's inverse, knows how to render itself. dead players have a hussie style x over their faces.
 //ships can also refuse to render themselves.  return false if that happens.
 // render if: r2.saved_type == r2.goodBig || r2.saved_type == r2.badBig
-function Ship(r1, r2){
+function Ship(r1, r2, goal){
 		this.r1 = r1;
 		this.r2 = r2;
+		this.goal = goal;
 		this.shipJustGotReal = false; //get it??? it's a joke!!! because 'shit just got real' (use this to know if your ship came true)
 
 		this.relationshipTypeToText = function(r){
@@ -314,6 +315,9 @@ function Ship(r1, r2){
 		this.isGoodShip = function(){
 			var r2 = this.r2;
 			var r1 = this.r1;
+			//might not work, not clear anymore on when old_type gets cleared out. will this work EVERY TIME after they get together (wrong), NO TIME (wrong) or just once (what i want)
+			//well, i guess if it works every time that's good too, shipper gets ongoing "smugness" bonus as long as the ship remains real.
+			if(r2.saved_type == this.goal && r1.saved_type == this.goal && r2.old_type  != this.goal && r1.old_type != this.goal) this.shipJustGotReal = true;
 			if(r2.saved_type == "" || r1.saved_type == "" ){
 				return false;
 			}
