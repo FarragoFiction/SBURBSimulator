@@ -208,7 +208,7 @@ function UpdateShippingGrid(session){
 	this.content = function(){
 		//console.log("Updating shipping grid in: " + this.session.session_id);
 		removeFromArray(this.chosenShipper.player, this.session.availablePlayers);
-		this.chosenShipper.increasePower();
+		this.chosenShipper.player.increasePower();
 		var fuckPile = ""
 		if(this.chosenShipper.savedShipText.length > 4000){
 			fuckPile += "How did this session turn into such a scandalous fuckpile?";
