@@ -696,9 +696,18 @@ function PlusMinusConversationalPair(openingLines, positiveRespones, negativeRes
 	this.positiveRespones = positiveRespones;
 	this.negativeResponses = negativeResponses;
 
-	//have a variety of ways you can start. 
+	//have a variety of ways you can start.
 	this.getOpeningLine = function(player, playerStart){
 		chat += chatLine(playerStart, player, getRandomElementFromArray(this.openingLines));
+	}
+
+	//VERY flexible, "postive" or "negative" can mean whatever I want.
+	this.getP2ResponseBasedOnCallBackFunction = function(player, playerStart, callBackFunction){
+		if(callBackFunction(player)){
+			chat += chatLine(playerStart, player, getRandomElementFromArray(this.positiveRespones));
+		}else{ //negative response.
+			chat += chatLine(playerStart, player, getRandomElementFromArray(this.negativeResponses));
+		}
 	}
 
 	this.p2GetResponseBasedOnRelationship = function(player, playerStart, relationship){
