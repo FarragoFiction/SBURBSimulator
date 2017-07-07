@@ -185,8 +185,8 @@ function UpdateShippingGrid(session){
 
 	this.getGoodShips = function(shipper){
 		var ret = [];
-		for(var i = 0; i<this.shipper.ships.length; i++){
-			var ship = this.shipper.ships[i];
+		for(var i = 0; i<shipper.ships.length; i++){
+			var ship = shipper.ships[i];
 			if(ship.isGoodShip()){
 				ret.push(ship);
 			}
@@ -205,7 +205,30 @@ function UpdateShippingGrid(session){
 	}
 
 
+	//contact the target of r2. suggest they get together in your preffered quadrant.
+	//they will either agree or disagree.
+	//then they will pester the object of their affection and be rejected or not.
+	this.activateShippingPowers = function(otp){
+		alert("???")
+		//drawChat(canvasDiv, player1, player2, chatText, 1000,"discuss_hatemance.png");
+		//if that chat results in them agreeing, do next chat. (between rom partners)
+	}
 
+	this.tryToConvinceFlushed = function(otp){
+
+	}
+
+	this.tryToConvinceBlack = function(otp){
+
+	}
+
+	this.tryToConvincePale = function(otp){
+
+	}
+
+	this.tryToConvinceAshen = function(otp){
+
+	}
 
 
 	this.content = function(){
@@ -218,9 +241,8 @@ function UpdateShippingGrid(session){
 		//	console.log( this.savedShipText.length + " scandalous fuck pile " + this.session.session_id)
 		}
 		var ret = "The " + this.chosenShipper.player.htmlTitleBasic() + " updates their shipping grid. " + fuckPile + " <Br>" + this.chosenShipper.savedShipText;
-		console.log("~~~~~~~~~~TODO: check to see if any of your predicted ships came true.")
 		if(this.chosenShipper.otp){
-			alert("i should do ssomething about this ship!!! " + this.chosenShipper.otp)
+			ret += this.activateShippingPowers(otp)
 		}
 		return ret;
 
