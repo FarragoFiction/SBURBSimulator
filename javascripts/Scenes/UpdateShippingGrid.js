@@ -159,7 +159,7 @@ function UpdateShippingGrid(session){
 					var r1 = player.relationships[j];
 					var r2 = r1.target.getRelationshipWith(player);
 					//console.log("made new ship")
-					ret.push(new Ship(r1, r2, "",shipperPlayer))
+					ret.push(new Ship(r1, r2, shipperPlayer))
 				}
 			}
 				var toRemove = [];
@@ -229,14 +229,11 @@ function UpdateShippingGrid(session){
 //contains both relationship and it's inverse, knows how to render itself. dead players have a hussie style x over their faces.
 //ships can also refuse to render themselves.  return false if that happens.
 // render if: r2.saved_type == r2.goodBig || r2.saved_type == r2.badBig
-function Ship(r1, r2, goal,shipper){
+function Ship(r1, r2,shipper){
 		this.r1 = r1;
 		this.r2 = r2;
 		this.shipper = shipper; //so i can tell shipper if  am a potential OTP
 		this.player = shipper.player
-		this.goal = goal;
-		this.shipJustGotReal = false; //get it??? it's a joke!!! because 'shit just got real' (use this to know if your ship came true)
-
 		this.relationshipTypeToText = function(r){
 		if(r.saved_type ==  r.heart){
 			return "<font color = 'red'>&#x2665</font>"
@@ -311,9 +308,14 @@ function Ship(r1, r2, goal,shipper){
 			var r1 = this.r1;
 			//might not work, not clear anymore on when old_type gets cleared out. will this work EVERY TIME after they get together (wrong), NO TIME (wrong) or just once (what i want)
 			//well, i guess if it works every time that's good too, shipper gets ongoing "smugness" bonus as long as the ship remains real.
-			if(r2.saved_type == this.goal && r1.saved_type == this.goal && r2.old_type  != this.goal && r1.old_type != this.goal) this.shipJustGotReal = true;
 			if(r2.saved_type == "" || r1.saved_type == "" ){
 				return false;
+			}
+
+			if((r1.saved_type == r1.goodBig || r1.saved_type == r1.badBig) && r2.saved_type == r1.saved_type){
+				alert("found an otp!!!")
+				shipper.otp = this;
+				return true;
 			}
 
 			if(r1.saved_type == r1.goodBig || r1.saved_type == r1.badBig || r1.saved_type == r1.heart || r1.saved_type == r1.diamond || r1.saved_type == r1.spades || r1.saved_type == r1.clubs){
@@ -334,6 +336,7 @@ function Ship(r1, r2, goal,shipper){
 //when ship becomes "real", if it's what they thought, comment and power boost???
 function Shipper(player){
 	this.player = player;
+	this.otp = null; //when i'm going through ships, if i see a clearly requirted crush, will try to get them together.
 	this.ships = null; //set right after creating.
 	this.powerNeeded = 1;
 	this.savedShipText = ""; ///need to know if my ships have updated.
