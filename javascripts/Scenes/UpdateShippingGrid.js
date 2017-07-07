@@ -212,6 +212,19 @@ function UpdateShippingGrid(session){
 		alert("???")
 		//drawChat(canvasDiv, player1, player2, chatText, 1000,"discuss_hatemance.png");
 		//if that chat results in them agreeing, do next chat. (between rom partners)
+		if(this.chosenShipper.player.aspect == "Blood"){
+			if(otp.r1.saved_type == otp.r1.goodBig){
+				this.tryToConvincePale(otp);
+			}else{
+				this.tryToConvinceAshen(otp);
+			}
+		}else{
+			if(otp.r1.saved_type == otp.r1.goodBig){
+				this.tryToConvinceFlushed(otp);
+			}else{
+				this.tryToConvinceBlack(otp);
+			}
+		}
 	}
 
 	this.tryToConvinceFlushed = function(otp){
