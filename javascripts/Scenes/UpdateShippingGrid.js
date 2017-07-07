@@ -166,16 +166,16 @@ function UpdateShippingGrid(session){
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvasDiv = document.getElementById("canvas"+ divID);
-
+		var otp = this.chosenShipper.otp;
 		var image = "discuss_hatemance.png";
 		if(player1.aspect == "Heart"){
-			if(otp.r1.saved_type = otp.r1.goodBig){
+			if(otp.r1.saved_type == otp.r1.goodBig){
 				image = "discuss_romance.png.png";
 			}else{
 				image = "discuss_hatemance.png";
 			}
 		}else{
-			if(otp.r1.saved_type = otp.r1.goodBig){
+			if(otp.r1.saved_type == otp.r1.goodBig){
 				image = "discuss_palemance.png"
 			}else{
 				image = "discuss_ashenmance.png"
