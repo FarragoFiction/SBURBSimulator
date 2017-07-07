@@ -1083,7 +1083,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				break;
 			case  "Bard":
 				if(stat.multiplier > 0){
-					powerBoost = powerBoost * -1.0; //good things invert to bad.
+					powerBoost = powerBoost * -0.5; //good things invert to bad.
 				}else{
 					powerBoost = powerBoost * -2.0; //bad thigns invert to good, with a boost to make up for the + to bad things
 				}
@@ -1116,7 +1116,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				break;
 			case  "Prince":
 				if(stat.multiplier > 0){
-					powerBoost = powerBoost * -1.0; //good things invert to bad.
+					powerBoost = powerBoost * -0.5; //good things invert to bad.
 				}else{
 					powerBoost = powerBoost * -2.0; //bad thigns invert to good, with a boost to make up for the + to bad things
 				}
