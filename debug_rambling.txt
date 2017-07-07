@@ -2335,8 +2335,30 @@ QUESTION: SHOULD I REFACTOR STRIFES TO BE THEIR OWN OBJECT, SEPARATE FROM GAME E
 
 What else... fraymotifs can raise our stats, lower the enemies stats...  (no longer am i trying to pretend stats can be good or bad and raising/lowering is equal).  fraymotifs can do damage (either a base level, or base plus associated stats)
 
-Which reminds me FRAYMOTIFS SHOULD USE ASSOCIATED STATS, and a new, similar kind of object called "buff". A buff should have a stat name, and a value. 
+Which reminds me FRAYMOTIFS SHOULD USE ASSOCIATED STATS, and a new, similar kind of object called "buff". A buff should have a stat name, and a value.
 
 If I'm a Prince of Breath, and I find a fraymotif, that fraymotif can buff or debuff an enmy for ANY of my ASPECT originated associated stats. My class will determine exactly what happens, though???
 
-Should class give you modifiers to buffs/debuffs and damage/healing?  This makes sense. 
+Should class give you modifiers to buffs/debuffs and damage/healing?  This makes sense.
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~
+
+Trying to upgrade the ShippingGrid shit.
+
+Current State: heart OR blood players can run shipping grids, and will speculate that any currently non-quadranted-but-interested-in-each-other
+pairs as being either conicillitory (blood) or concupisience (heart);  Once they are officially quadranted, though, they'll reflect resetPlayersAvailabilitya
+adequately.
+
+GOAL:  A shipping player will note any "requited" crushes and push them into going into their favorite relationship type together.
+If it's a blood player trying to do ashen, the blood player is the middle leaf.  concillitory town two wheel devices that they are.
+
+When they try to push them into a quadrant, 30% chance they will go into the quadrant they WEREN'T pushed into (flushed if blood player, for example.)
+
+Either way, shipper will comment on it and get a huge bonus if it was their chosen ship.
+
+can only create one ship at a time, and only when they can otherwise update their shipping grid.
+
+now, think about this awhile.
