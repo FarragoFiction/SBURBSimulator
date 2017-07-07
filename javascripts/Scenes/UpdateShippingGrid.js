@@ -118,9 +118,11 @@ function UpdateShippingGrid(session){
 
 		var newShips = this.printShips(this.getGoodShips(this.chosenShipper))
 		if(newShips != this.chosenShipper.savedShipText && this.chosenShipper.player.power > this.powerNeeded){
-			this.powerNeeded += 5;
+			//this.powerNeeded += 5;
 			this.chosenShipper.savedShipText = newShips;
 			return true;
+		}else{
+			console.log("shipper is: " + this.chosenShipper.player + "new ships is: " + newShips + " compared to old ships of: " + this.chosenShipper.savedShipText)
 		}
 		return false;
 	}
@@ -128,10 +130,14 @@ function UpdateShippingGrid(session){
 	this.getShipper = function(player){
 		for(var i = 0; i<this.shippers.length; i++){
 			var shipper = this.shippers[i];
-			if(shipper.player == player) return shipper;
+			if(shipper.player.id == player.id){
+				return shipper;
+			}
 		}
 		var s = new Shipper(player, this.createShips(this.session.players));
+		s.savedShipText = ""; //make sure it's blank
 		this.shippers.push(s);
+		console.log("making new shipper for: " + player)
 		return s;
 	}
 
