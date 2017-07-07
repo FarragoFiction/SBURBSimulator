@@ -17,7 +17,7 @@ function bardQuestMode(){
 	if(confirm("Behold the Majesty of the CodTier? Y/N")){
 		bardQuest = true;
 	}else{
-		alert("But thou must!")
+		alert("But thou must!f")
 		bardQuestMode();
 	}
 
@@ -80,9 +80,14 @@ function checkEasterEgg(callBack,that){  //only yellow yard session uses 'that' 
 	}else if(initial_seed == 0){
 		session0();
 	}
-	
+
 	if(getParameterByName("images")  == "pumpkin"){
 		simulationMode = true
+	}
+
+	if(getParameterByName("easter")  == "egg"){
+		easter_egg = true
+		alert("<insert giggle snort here>")
 	}
 
 
@@ -1292,13 +1297,13 @@ function session612IndexToTroll(player, index){
 		f.effects.push(new FraymotifEffect("power",2,true));
 		f.flavorText = " Large objects begin pelting the ENEMY. "
 		player.fraymotifs.push(f);
-		
+
 		var f = new Fraymotif([],  "Ghost Communing", 1)
 		f.effects.push(new FraymotifEffect("sanity",3,true));
 		f.effects.push(new FraymotifEffect("sanity",3,false));
 		f.flavorText = " The souls of the dead start hassling all enemies. "
 		player.fraymotifs.push(f);
-		
+
 	}else if(index == 5){
 		player.moon = "Derse"
 		player.aspect = "Heart"
@@ -1370,7 +1375,7 @@ function session612IndexToTroll(player, index){
 		f.effects.push(new FraymotifEffect("freeWill",3,false));
 		f.flavorText = " All enemies start damaging themselves. It's kind of embarassing how easy this is.  "
 		player.fraymotifs.push(f);
-		
+
 	}else if(index == 8){
 		player.moon = "Prospit"
 		player.land = "Land of Rays and Frogs"
@@ -1455,7 +1460,7 @@ function session612IndexToTroll(player, index){
 		f.effects.push(new FraymotifEffect("power",2,true));
 		f.flavorText = " Large objects begin pelting the ENEMY. "
 		player.fraymotifs.push(f);
-		
+
 		var f = new Fraymotif([],  "Optic Blast", 1)
 		f.effects.push(new FraymotifEffect("power",2,true));
 		f.flavorText = " Red and blue eye beams pierce the ENEMY. "
@@ -1579,7 +1584,7 @@ function session612IndexToTrollAncestor(player, index){
 		f.effects.push(new FraymotifEffect("power",2,true));
 		f.flavorText = " Large objects begin pelting the ENEMY. "
 		player.fraymotifs.push(f);
-		
+
 		var f = new Fraymotif([],  "Ghost Communing", 1)
 		f.effects.push(new FraymotifEffect("sanity",3,true));
 		f.effects.push(new FraymotifEffect("sanity",3,false));
@@ -1743,7 +1748,7 @@ function session612IndexToTrollAncestor(player, index){
 		f.effects.push(new FraymotifEffect("power",2,true));
 		f.flavorText = " Large objects begin pelting the ENEMY. "
 		player.fraymotifs.push(f);
-		
+
 		var f = new Fraymotif([],  "Optic Blast", 1)
 		f.effects.push(new FraymotifEffect("power",2,true));
 		f.flavorText = " Red and blue eye beams pierce the ENEMY. "

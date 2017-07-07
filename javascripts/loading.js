@@ -212,6 +212,7 @@ function loadAllPossiblePlayers(skipInit){
         loadImage("Bodies/reg"+i+".png",skipInit);  //as long as i i do a 'load' again when it's to to start the simulation, can get away with only loading these bodies.
         loadImage("Bodies/god"+i+".png",skipInit);
         loadImage("Bodies/dream"+i+".png",skipInit);
+				if(easter_egg == true)   loadImage("Bodies/egg"+i+".png",skipInit);
     }
 
     for(var i = 1; i<=numHair; i++){
