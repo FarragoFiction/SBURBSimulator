@@ -1,5 +1,6 @@
 var asyncNumSprites = 0;
 var cool_kid = false;
+var easter_egg = false;
 var bardQuest = false;
 var ouija = false;
 //~~~~~~~~~~~IMPORTANT~~~~~~~~~~LET NOTHING HERE BE RANDOM
@@ -608,7 +609,7 @@ function drawCharSheet(canvas, player){
   ctx.fillText("Quests Completed: ",left_margin,current+line_height*i);
   ctx.fillText(player.getStat("landLevel"),right_margin,current+line_height*i);
   i++;
-  
+
   ctx.fillText("Former Friends Killed: ",left_margin,current+line_height*i);
   ctx.fillText(player.pvpKillCount,right_margin,current+line_height*i);
   i++;
@@ -622,7 +623,7 @@ function drawCharSheet(canvas, player){
   i++;
   ctx.fillText("Doomed Clones: ",left_margin,current+line_height*i);
   ctx.fillText(player.doomedTimeClones.length ,right_margin,current+line_height*i);
-  
+
   i++;
   ctx.fillText("Times Died: ",left_margin,current+line_height*i);
   ctx.fillText(player.timesDied ,right_margin,current+line_height*i);
@@ -1691,11 +1692,17 @@ function princeTiara(canvas, player){
 
 //TODO put classes in THIS order and just have a single line that is all_classes.index_of(player.class_name);
 function playerToRegularBody(player){
+  if(easter_egg) return playerToEggBody(player);
   return "Bodies/" + "reg"+(classNameToInt(player.class_name)+1)+".png";
 }
 
 function playerToDreamBody(player){
+  if(easter_egg) return playerToEggBody(player);
   return "Bodies/" + "dream"+(classNameToInt(player.class_name)+1)+".png";
+}
+
+function playerToEggBody(player){
+  return "Bodies/" + "egg"+(classNameToInt(player.class_name)+1)+".png";
 }
 
 function robotSprite(canvas, player){
@@ -1759,6 +1766,7 @@ function dreamSprite(canvas, player){
 }
 
 function playerToGodBody(player){
+  if(easter_egg) return playerToEggBody(player);
   return "Bodies/" + "god"+(classNameToInt(player.class_name)+1)+".png";
 }
 
