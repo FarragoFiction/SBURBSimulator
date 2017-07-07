@@ -693,11 +693,13 @@ function getQuipAboutSession(sessionSummary){
 		quip += Zalgo.generate("Fuck. God damn. Do Grim Dark players even KNOW how much it sucks to crash? Assholes.");
 	}else if(!sessionSummary.scratched && dead == 0 && sessionSummary.frogStatus == "Full Frog" && sessionSummary.ectoBiologyStarted && !sessionSummary.crashedFromCorruption && !sessionSummary.crashedFromPlayerActions){
 		quip += "Everything went better than expected." ; //???
+		alert("???")
 	}else if(sessionSummary.yellowYard == true){
 		quip += "Fuck. I better go grab JR. They'll want to see this. " ;
 	}else if(living == 0){
 		quip += "Shit, you do not even want to KNOW how everybody died." ;
 	}else  if(strongest.power > 3000){
+		alert([!sessionSummary.scratched,dead == 0,sessionSummary.frogStatus == "Full Frog",sessionSummary.ectoBiologyStarted,!sessionSummary.crashedFromCorruption,!sessionSummary.crashedFromPlayerActions ].join(","))
 		quip += "Holy Shit, do you SEE the " + strongest.titleBasic() + "!?  How even strong ARE they?" ;
 	}else if(sessionSummary.frogStatus == "No Frog" ){
 		quip += "Man, why is it always the frogs? " ;

@@ -151,7 +151,7 @@ function Aftermath(session){
 					end += " Your way into the new universe is barred, and you remain trapped in the medium.  <Br><br>Game Over.";
 					end += " Or is it?"
 					if(this.session.ectoBiologyStarted == true){
-						spacePlayer.landLevel = -1025; //can't use the frog for anything else, it's officially a universe.
+						//spacePlayer.landLevel = -1025; //can't use the frog for anything else, it's officially a universe. wait don't do this, breaks abs frog reporting
 						this.session.makeCombinedSession = true; //triggers opportunity for mixed session
 					}
 					//if skaia is a frog, it can't take in the scratch command.
@@ -161,7 +161,7 @@ function Aftermath(session){
 				}else{
 					end += this.democracyBonus();
 					end += " <Br><br> The door to the new universe is revealed. Everyone files in. <Br><Br> Thanks for Playing. ";
-					spacePlayer.landLevel = -1025; //can't use the frog for anything else, it's officially a universe.
+					//spacePlayer.landLevel = -1025; //can't use the frog for anything else, it's officially a universe. wait don't do this, breaks abs frog reporting
 					this.session.won = true;
 				}
 			}else{

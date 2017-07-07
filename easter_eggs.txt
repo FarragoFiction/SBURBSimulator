@@ -39,7 +39,7 @@
 <p> <a href = "index2.html?shenanigans=temporal">Temporal Shenanigans x2 Combob!!</a>: Turn any random session into a bunch of Aradias.</p>
 
 <p> <a href = "index2.html?HopeStuck=true&PageStuck=true">PageStuck + HopeStuck</a>: Hello friends, you are good at riddles, yes? How would you make this be KnightStuck? Or BardStuck + TimeStuck?  Such mystery. Very giggle. Wow.</p>
-
+<p> <a href = "index2.html?easter=egg">Easter Egg</a>: Yo Dawg, I herd you liek easter eggs??? </p>
 
 <p> <a href = "rare_session_finder.html?seed=030303">Guided AuthorBot</a>: Did you know you could pass  a seed to the AuthorBot? It will direct her to the FIRST session she looks at.  The SECOND session will be the natural child of the first (unless there is a combo session, in which case it gets wrapped into the first). In this way you can look at the 'geneology' of the sessions/frogs. </p>
 <p><a href = "rare_session_finder.html?royalRumble=true">AuthorBot Royal Rumble</a>: Ask the AuthorBot to look through a bunch of RoyalRumble Sessions.</p>
