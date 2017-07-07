@@ -100,15 +100,45 @@ THEN I will have the perfect shitty quadrant life.
 function UpdateShippingGrid(session){
 	this.canRepeat = true;
 	this.session = session;
-	this.heartPlayer = null;
-	this.ships = [];
-	this.savedShipText = "";
+	this.shippers = [];  //Shipper objects are a player and their ships.
+	this.chosenShipper = null;
 	this.powerNeeded = 1;
 
-	//is there relationship drama!?
 	this.trigger = function(){
+		var tmpPlayer = null;
+		if(Math.seededRandom() > 0.5){
+			tmpPlayer = findAspectPlayer(this.session.availablePlayers, "Heart");
+		}else{
+			tmpPlayer = findAspectPlayer(this.session.availablePlayers, "Blood");
+		}
+		if(tmpPlayer.dead) return false; //even the mighty power of shipping cannot transcend death.
+		this.chosenShipper = getShipper(tmpPlayer);
+
+		var newShips = this.printShips(this.getGoodShips(this.chosenShipper))
+		if(newShips != this.chosenShipper.savedShipText && this.chosenShipper > this.powerNeeded){
+			this.powerNeeded += 5;
+			this.chosenShipper.savedShipText = newShips;
+			return true;
+		}
+		return false;
+	}
+
+	this.getShipper = function(player){
+		for(var i = 0; i<this.shippers.length; i++){
+			var shipper = this.shippers[i];
+			if(shipper.player == player) return shipper;
+		}
+		var s = new Shipper(player), this.createShips(this.session.players);
+		this.shippers.push(s);
+		return s;
+	}
+
+
+	//is there relationship drama!?
+	this.triggerOld = function(){
 		//console.log("checking shpping grid trigger.")
 		//if heart player chagnes, it's a combo session or scratch or i don't care, redo the ships.
+		if(Math.seeded)
 		var tmpheartPlayer = findAspectPlayer(this.session.availablePlayers, "Heart");
 		if(this.ships.length == 0 || tmpheartPlayer != this.heartPlayer){
 			this.createShips(this.session.players);
@@ -137,7 +167,7 @@ function UpdateShippingGrid(session){
 	//also grab clubs and diamonds. later.
 	this.createShips = function(players){
 		//console.log("creating ships")
-		this.ships = [];
+		var ret = [];
 			for(var i = 0; i<players.length; i++){
 
 				var player = players[i];
@@ -147,16 +177,16 @@ function UpdateShippingGrid(session){
 					var r1 = player.relationships[j];
 					var r2 = r1.target.getRelationshipWith(player);
 					//console.log("made new ship")
-					//this.ships.push(new Ship(r1, r2))
+					ret.push(new Ship(r1, r2))
 				}
 			}
 				var toRemove = [];
 				//get rid of equal ships
-				for(var i = 0; i<this.ships.length-1; i++){
-					var firstShip = this.ships[i];
+				for(var i = 0; i<ret.length-1; i++){
+					var firstShip = ret[i];
 					//second loop starts at i because i know i checked first ship no ships already, and second ship agains 1 ship
-					for(var j= (i+1); j<this.ships.length; j++){
-						var secondShip = this.ships[j];
+					for(var j= (i+1); j<ret.length; j++){
+						var secondShip = ret[j];
 							if(firstShip.isEqualToShip(secondShip)){
 								//console.log("pushing to remove")
 								toRemove.push(secondShip);
@@ -165,13 +195,13 @@ function UpdateShippingGrid(session){
 				}
 				//console.log("this many to remove: " + toRemove.length)
 				for(var i = 0; i<toRemove.length; i++){
-						removeFromArray(toRemove[i], this.ships)
+						removeFromArray(toRemove[i], ret)
 				}
-
+				return ret;
 	}
 
 
-	this.getGoodShips = function(){
+	this.getGoodShips = function(shipper){
 		var ret = [];
 		for(var i = 0; i<this.ships.length; i++){
 			var ship = this.ships[i];
@@ -221,6 +251,7 @@ function UpdateShippingGrid(session){
 function Ship(r1, r2){
 		this.r1 = r1;
 		this.r2 = r2;
+		this.shipJustGotReal = false; //get it??? it's a joke!!! because 'shit just got real' (use this to know if your ship came true)
 
 		this.relationshipTypeToText = function(r){
 		if(r.saved_type ==  r.heart){
@@ -296,5 +327,16 @@ function Ship(r1, r2){
 			}
 			return false;
 		}
+
+}
+
+//blood players keep track of concillitory, heart players concupisient. each one has their own shipping grid for future use
+//eventually want blood/heart to have things like OTPs or whatever that they label and care about (even commenting if it beomes real and getting a power boost)
+//heart players will assume people who seem to have crushes on each other will end up spades/heart, and blood players clubs/diamonds
+//when ship becomes "real", if it's what they thought, comment and power boost???
+function Shipper(player, ships){
+	this.player = player;
+	this.ships = ships;
+	this.savedShipText = ""; ///need to know if my ships have updated.
 
 }

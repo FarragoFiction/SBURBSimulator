@@ -97,7 +97,7 @@ function FaceDenizen(session){
 			ret += "<br>The " + p.htmlTitle() + " initiates a strife with their " + denizen.name + ". "
 			div.append(ret);
 			denizen.strife(div, [p],0);
-			if(denizen.getStat("currentHP") <= 0 || denizen.dead) ){
+			if(denizen.getStat("currentHP") <= 0 || denizen.dead) {
 				p.denizenDefeated = true;
 				p.fraymotifs = p.fraymotifs.concat(p.denizen.fraymotifs);
 				p.power = p.power*2;  //current and future doubling of power.
