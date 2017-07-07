@@ -180,8 +180,8 @@ function UpdateShippingGrid(session){
 
 	this.getGoodShips = function(shipper){
 		var ret = [];
-		for(var i = 0; i<this.ships.length; i++){
-			var ship = this.ships[i];
+		for(var i = 0; i<this.chosenShipper.ships.length; i++){
+			var ship = this.chosenShipper.ships[i];
 			if(ship.isGoodShip()){
 				ret.push(ship);
 			}
@@ -196,7 +196,7 @@ function UpdateShippingGrid(session){
 	}
 
 	this.printAllShips = function(){
-		return this.printShips(this.ships);
+		return this.printShips(this.chosenShipper.ships);
 	}
 
 
