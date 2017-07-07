@@ -1260,7 +1260,7 @@ function session612IndexToTroll(player, index){
 		player.quirk.prefix = "D -->"
 		player.quirk.suffix = ""
 		player.kernel_sprite = "Centaur"
-		player.interest1 = "Racism"
+		player.interest1 = "Classism"
 		player.interest2 = "Weight Lifting"
 		player.chatHandle = "centaursTesticle"
 
