@@ -701,9 +701,10 @@ function PlusMinusConversationalPair(openingLines, positiveRespones, negativeRes
 		chat += chatLine(playerStart, player, getRandomElementFromArray(this.openingLines));
 	}
 
-	//VERY flexible, "postive" or "negative" can mean whatever I want.
-	this.getP2ResponseBasedOnCallBackFunction = function(player, playerStart, callBackFunction){
-		if(callBackFunction(player)){
+	//was originally gonna use a call back to calculate if it's true or false on the fly, then realized i was being a DUNKASS
+	//and could just precompute the boolean.
+	this.getP2ResponseBasedOnBool = function(player, playerStart, calculatedBool){
+		if(calculatedBool){
 			chat += chatLine(playerStart, player, getRandomElementFromArray(this.positiveRespones));
 		}else{ //negative response.
 			chat += chatLine(playerStart, player, getRandomElementFromArray(this.negativeResponses));

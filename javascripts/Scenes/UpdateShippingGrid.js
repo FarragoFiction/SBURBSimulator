@@ -244,11 +244,19 @@ function UpdateShippingGrid(session){
 	*****************************************************************************************************************/
 	this.tryToConvinceFlushed = function(otp){
 			//chats happen in order.
-			var chats = [];
 			var p2 = otp.r2.target;  //first person listed in ship.
+			var willItWork = this.evaluateFlushedProposal(p2);
 			var myRelationshipWithOTP1 = this.chosenShipper.player.getRelationshipWith(p2);
-			chats.push( new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!"], ["Hey."],["Hey, asshole."]));
+			var c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!"], ["Hey."],["Hey, asshole."]);
 			//chats are saved to self, not returned.
+
+			//evaluate first few lines with default thingy of p2GetResponseBasedOnRelationship
+			//once i have stopped beating around the bush, need to evaluate chat based on: getP2ResponseBasedOnBool but before is just based on relationship
+
+	}
+
+	//do i already have a heart mate? do i like this.chosenShipper? these things matter.
+	this.evaluateFlushedProposal = function(player){
 
 	}
 
@@ -269,12 +277,14 @@ function UpdateShippingGrid(session){
 		//console.log("Updating shipping grid in: " + this.session.session_id);
 		removeFromArray(this.chosenShipper.player, this.session.availablePlayers);
 		this.chosenShipper.player.increasePower();
+		var shippingStyle = "They like the concillitory ships best, and default to those for people not yet in a quadrant.";
+		if(this.chosenShipper.player.aspect == "Heart") shippingStyle = "They like the concupiscient ships best. , and default to those for people not yet in a quadrant."
 		var fuckPile = ""
 		if(this.chosenShipper.savedShipText.length > 4000){
-			fuckPile += "How did this session turn into such a scandalous fuckpile?";
+			fuckPile += " How did this session turn into such a scandalous fuckpile? ";
 		//	console.log( this.savedShipText.length + " scandalous fuck pile " + this.session.session_id)
 		}
-		var ret = "The " + this.chosenShipper.player.htmlTitleBasic() + " updates their shipping grid. " + fuckPile + " <Br>" + this.chosenShipper.savedShipText;
+		var ret = "The " + this.chosenShipper.player.htmlTitleBasic() + " updates their shipping grid. " + shippingStyle +fuckPile + " <Br>" + this.chosenShipper.savedShipText;
 		if(this.chosenShipper.otp){
 			ret += this.activateShippingPowers(this.chosenShipper.otp)
 		}
