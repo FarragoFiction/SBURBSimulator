@@ -112,13 +112,15 @@ function UpdateShippingGrid(session){
 		}else{
 			tmpPlayer = findAspectPlayer(this.session.availablePlayers, "Blood");
 		}
+
 		if(!tmpPlayer || tmpPlayer.dead) return false; //even the mighty power of shipping cannot transcend death.
 		this.chosenShipper = this.getShipper(tmpPlayer);
 
 		var newShips = this.printShips(this.getGoodShips(this.chosenShipper))
-		if(newShips != this.chosenShipper.savedShipText && this.chosenShipper > this.powerNeeded){
+		if(newShips != this.chosenShipper.savedShipText && this.chosenShipper.player.power > this.powerNeeded){
 			this.powerNeeded += 5;
 			this.chosenShipper.savedShipText = newShips;
+			alert("need to update shipping grid")
 			return true;
 		}
 		return false;

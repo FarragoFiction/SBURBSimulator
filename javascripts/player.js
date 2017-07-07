@@ -560,7 +560,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			this.dead = false;
 			this.murderMode = false;
 			this.currentHP = Math.max(this.hp,1); //if for some reason your hp is negative, don't do that.
-			console.log("HP after being brought back from the dead: " + this.currentHP)
+			//console.log("HP after being brought back from the dead: " + this.currentHP)
 			this.grimDark = 0;
 			this.sanity += -101;  //dying is pretty triggering.
 			this.flipOutReason = "they just freaking died"
