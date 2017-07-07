@@ -160,7 +160,26 @@ function UpdateShippingGrid(session){
 
 	this.drawShippingChat = function(div){
 		if(!this.shippingChat) return;
-		//		//		//drawChat(canvasDiv, player1, player2, chatText, 1000,"discuss_hatemance.png");
+		var divID = (div.attr("id")) + "_" + player.chatHandle+"try_ship"+this.chosenShipper.player.chatHandle +  this.chosenShipper.id;
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		var player1 = this.chosenShipper.player;
+		var player2 = this.chosenShipper.otp.r2.target;
+		var image = "discuss_hatemance.png";
+		if(player1.aspect == "Heart"){
+			if(otp.r1.saved_type = otp.r1.goodBig){
+				image = "discuss_romance.png.png";
+			}else{
+				image = "discuss_hatemance.png";
+			}
+		}else{
+			if(otp.r1.saved_type = otp.r1.goodBig){
+				image = "discuss_palemance.png"
+			}else{
+				image = "discuss_ashenmance.png"
+			}
+		}
+		drawChat(canvasDiv, player1, player2, chatText, 1000,image);
 
 	}
 
