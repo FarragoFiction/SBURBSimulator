@@ -221,17 +221,23 @@ function UpdateShippingGrid(session){
 		alert("???")
 		var ret = " <Br> <br> The " + this.chosenShipper.player.htmlTitleBasic() + " notices that one of their favorite ships seems to be on the verge of getting together! All it will take is the slightest of nudges...";
 		//if that chat results in them agreeing, do next chat. (between rom partners)
+		var shipper = this.chosenShipper.player;
+		var shipperStart = shipper.chatHandleShort()+ ": "
+		var p1 = otp.r2.target
+		var p1Start = p1.chatHandleShort()+ ": "
+		var p2 = otp.r1.target
+		var p2Start = p2.chatHandleShort()+ ": "
 		if(this.chosenShipper.player.aspect == "Blood"){
 			if(otp.r1.saved_type == otp.r1.goodBig){
-				 this.tryToConvincePale(otp);
+				 this.tryToConvincePale(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}else{
-				 this.tryToConvinceAshen(otp);
+				 this.tryToConvinceAshen(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}
 		}else{
 			if(otp.r1.saved_type == otp.r1.goodBig){
-			 	this.tryToConvinceFlushed(otp);
+			 	this.tryToConvinceFlushed(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}else{
-				 this.tryToConvinceBlack(otp);
+				 this.tryToConvinceBlack(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}
 		}
 		return ret;  //chats will be stored to a var.
@@ -242,17 +248,19 @@ function UpdateShippingGrid(session){
 	*you don't have to go all out or anything, but at least TRY.
 	*also, it provides a mechanism for "agree" or "disagree": if the person you are talking to likes you or not.
 	*****************************************************************************************************************/
-	this.tryToConvinceFlushed = function(otp){
+	this.tryToConvinceFlushed = function(shipper, shipperStart, p1, p1Start, p2, p2Start){
+			var chat = "";
 			//chats happen in order.
-			var p2 = otp.r2.target;  //first person listed in ship.
 			var willItWork = this.evaluateFlushedProposal(p2);
 			var myRelationshipWithOTP1 = this.chosenShipper.player.getRelationshipWith(p2);
 			var c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!"], ["Hey."],["Hey, asshole."]);
-			//chats are saved to self, not returned.
+			chat += c.getOpeningLine(shipper, shipperStart);
+			chat += c.p2GetResponseBasedOnRelationship(this.player2, this.player2Start, relationship2)
 
 			//evaluate first few lines with default thingy of p2GetResponseBasedOnRelationship
 			//once i have stopped beating around the bush, need to evaluate chat based on: getP2ResponseBasedOnBool but before is just based on relationship
 
+			this.shippingChat = chat;
 	}
 
 	//do i already have a heart mate? do i like this.chosenShipper? these things matter.
@@ -260,15 +268,15 @@ function UpdateShippingGrid(session){
 
 	}
 
-	this.tryToConvinceBlack = function(otp){
+	this.tryToConvinceBlack = function(shipper, shipperStart, p1, p1Start, p2, p2Start){
 
 	}
 
-	this.tryToConvincePale = function(otp){
+	this.tryToConvincePale = function(shipper, shipperStart, p1, p1Start, p2, p2Start){
 
 	}
 
-	this.tryToConvinceAshen = function(otp){
+	this.tryToConvinceAshen = function(shipper, shipperStart, p1, p1Start, p2, p2Start){
 
 	}
 
@@ -278,7 +286,7 @@ function UpdateShippingGrid(session){
 		removeFromArray(this.chosenShipper.player, this.session.availablePlayers);
 		this.chosenShipper.player.increasePower();
 		var shippingStyle = "They like the concillitory ships best, and default to those for people not yet in a quadrant.";
-		if(this.chosenShipper.player.aspect == "Heart") shippingStyle = "They like the concupiscient ships best. , and default to those for people not yet in a quadrant."
+		if(this.chosenShipper.player.aspect == "Heart") shippingStyle = "They like the concupiscient ships best, and default to those for people not yet in a quadrant."
 		var fuckPile = ""
 		if(this.chosenShipper.savedShipText.length > 4000){
 			fuckPile += " How did this session turn into such a scandalous fuckpile? ";
