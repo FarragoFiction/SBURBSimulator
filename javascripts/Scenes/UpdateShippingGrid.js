@@ -120,7 +120,6 @@ function UpdateShippingGrid(session){
 		if(newShips != this.chosenShipper.savedShipText && this.chosenShipper.player.power > this.powerNeeded){
 			this.powerNeeded += 5;
 			this.chosenShipper.savedShipText = newShips;
-			alert("need to update shipping grid")
 			return true;
 		}
 		return false;
