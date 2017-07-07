@@ -185,8 +185,8 @@ function UpdateShippingGrid(session){
 
 	this.getGoodShips = function(shipper){
 		var ret = [];
-		for(var i = 0; i<this.chosenShipper.ships.length; i++){
-			var ship = this.chosenShipper.ships[i];
+		for(var i = 0; i<this.shipper.ships.length; i++){
+			var ship = this.shipper.ships[i];
 			if(ship.isGoodShip()){
 				ret.push(ship);
 			}
@@ -219,6 +219,9 @@ function UpdateShippingGrid(session){
 		}
 		var ret = "The " + this.chosenShipper.player.htmlTitleBasic() + " updates their shipping grid. " + fuckPile + " <Br>" + this.chosenShipper.savedShipText;
 		console.log("~~~~~~~~~~TODO: check to see if any of your predicted ships came true.")
+		if(this.chosenShipper.otp){
+			alert("i should do ssomething about this ship!!! " + this.chosenShipper.otp)
+		}
 		return ret;
 
 	}
@@ -313,7 +316,6 @@ function Ship(r1, r2,shipper){
 			}
 
 			if((r1.saved_type == r1.goodBig || r1.saved_type == r1.badBig) && r2.saved_type == r1.saved_type){
-				alert("found an otp!!!")
 				shipper.otp = this;
 				return true;
 			}
