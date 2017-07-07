@@ -170,7 +170,7 @@ function UpdateShippingGrid(session){
 		var image = "discuss_hatemance.png";
 		if(player1.aspect == "Heart"){
 			if(otp.r1.saved_type == otp.r1.goodBig){
-				image = "discuss_romance.png.png";
+				image = "discuss_romance.png";
 			}else{
 				image = "discuss_hatemance.png";
 			}
