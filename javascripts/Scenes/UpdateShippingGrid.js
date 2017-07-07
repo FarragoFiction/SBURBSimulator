@@ -255,12 +255,23 @@ function Ship(r1, r2, goal){
 			return "<font color = 'black'>0_0</font>"
 		}
 
+		//since these are speculative, player will assume it's gonna end up their favorite quadrant half
 		if(r.saved_type ==  r.goodBig){
-			return "<font color = 'red'>&#x2661</font>"
+			if(this.player.aspect == "Heart"){
+				return "<font color = 'red'>&#x2661</font>"
+			}else{
+				return "<font color = 'red'>&#x2662</font>" //i assume you are gonna end up as diamonds
+			}
+
 		}
 
 		if(r.saved_type ==  r.badBig){
-			return "<font color = 'black'>&#x2664</font>"
+			if(this.player.aspect == "Heart"){
+				return "<font color = 'black'>&#x2664</font>"
+			}else{
+				return "<font color = 'black'>&#x2667</font>" //i assume you are gonna end up as clubs
+			}
+
 		}
 
 		if(r.saved_type ==  r.goodMild){
