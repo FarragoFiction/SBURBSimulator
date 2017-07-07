@@ -118,11 +118,12 @@ function UpdateShippingGrid(session){
 
 		if(!tmpPlayer || tmpPlayer.dead) return false; //even the mighty power of shipping cannot transcend death.
 		this.chosenShipper = this.getShipper(tmpPlayer);
+		this.chosenShipper.otp = null;
+		alert("just set otp to null");
 
 		var newShips = this.printShips(this.getGoodShips(this.chosenShipper))
 		if(newShips != this.chosenShipper.savedShipText && this.chosenShipper.player.power > this.chosenShipper.powerNeeded){
 			this.chosenShipper.powerNeeded += 5;
-			this.chosenShipper.otp = null;
 			this.chosenShipper.savedShipText = newShips;
 			return true;
 		}
@@ -276,7 +277,7 @@ function UpdateShippingGrid(session){
 		}
 		var ret = "The " + this.chosenShipper.player.htmlTitleBasic() + " updates their shipping grid. " + fuckPile + " <Br>" + this.chosenShipper.savedShipText;
 		if(this.chosenShipper.otp){
-			ret += this.activateShippingPowers(otp)
+			ret += this.activateShippingPowers(this.chosenShipper.otp)
 		}
 		return ret;
 
@@ -372,6 +373,7 @@ function Ship(r1, r2,shipper){
 			}
 
 			if((r1.saved_type == r1.goodBig || r1.saved_type == r1.badBig) && r2.saved_type == r1.saved_type){
+				alert("setting otp")
 				shipper.otp = this;
 				return true;
 			}
