@@ -412,31 +412,15 @@ function QuadrantDialogue(session){
 		var chosen = getRandomElementFromArray(chats);
 		if(Math.seededRandom() > 0.5){
 			chat +=  chatLine(this.player1Start, this.player1, chosen.line1);
-			chat += this.p2GetResponseBasedOnRelationship(chosen, this.player2, this.player2Start, relationship2)
+			chat += chosen.p2GetResponseBasedOnRelationship(chosen, this.player2, this.player2Start, relationship2)
 		}else{
 			chat +=  chatLine(this.player2Start, this.player2, chosen.line1);
-			chat += this.p2GetResponseBasedOnRelationship(chosen, this.player1, this.player1Start, relationship1)
+			chat += chosen.p2GetResponseBasedOnRelationship(chosen, this.player1, this.player1Start, relationship1)
 		}
 		return chat;
 	}
 
-	this.p2GetResponseBasedOnRelationship = function(chosen, player, playerStart, relationship){
-		var chat = "";
-		if(relationship.saved_type == relationship.heart || relationship.saved_type == relationship.diamond){
-			if(relationship.value > 0){
-				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.responseLines));
-			}else{ //i don't love you like i should.
-				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.genericResponses));
-			}
-		}else{
-			if(relationship.value < 0){
-				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.responseLines));
-			}else{  //i don't hate you like i should.
-				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.genericResponses));
-			}
-		}
-		return chat;
-	}
+
 
 
 	this.spadesChat = function(relationship1, relationship2){
@@ -711,6 +695,24 @@ function ConversationalPair(line1, responseLines){
 	this.line1 = line1;
 	this.responseLines = responseLines;  //responses are just reactions
 	this.genericResponses = ["Yeah.", ":)", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "... ", "Whatever.", "Yes.", "Interesting...", "Hrmmm...", "lol", "Interesting!!!", "Umm. Okay?", "Really?", "Whatever floats your boat.","Why not", "K."]
+
+	chosen.p2GetResponseBasedOnRelationship = function(chosen, player, playerStart, relationship){
+		var chat = "";
+		if(relationship.saved_type == relationship.heart || relationship.saved_type == relationship.diamond){
+			if(relationship.value > 0){
+				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.responseLines));
+			}else{ //i don't love you like i should.
+				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.genericResponses));
+			}
+		}else{
+			if(relationship.value < 0){
+				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.responseLines));
+			}else{  //i don't hate you like i should.
+				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.genericResponses));
+			}
+		}
+		return chat;
+	}
 }
 
 function InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative){
