@@ -100,11 +100,15 @@ THEN I will have the perfect shitty quadrant life.
 function UpdateShippingGrid(session){
 	this.canRepeat = true;
 	this.session = session;
+	this.shippingChat = null; //what should it say when I try to convince my otp to get together?
+	this.romanceChat = null; //if i convince one member of my otp to get together, what do they say when they confess?
 	this.shippers = [];  //Shipper objects are a player and their ships.
 	this.chosenShipper = null;
 
 	this.trigger = function(){
 		this.chosenShipper = null;
+		this.shippingChat = null;
+		this.romanceChat = null;
 		var tmpPlayer = null;
 		if(Math.seededRandom() > 0.5){
 			tmpPlayer = findAspectPlayer(this.session.availablePlayers, "Heart");
@@ -118,6 +122,7 @@ function UpdateShippingGrid(session){
 		var newShips = this.printShips(this.getGoodShips(this.chosenShipper))
 		if(newShips != this.chosenShipper.savedShipText && this.chosenShipper.player.power > this.chosenShipper.powerNeeded){
 			this.chosenShipper.powerNeeded += 5;
+			this.chosenShipper.otp = null;
 			this.chosenShipper.savedShipText = newShips;
 			return true;
 		}
@@ -143,6 +148,10 @@ function UpdateShippingGrid(session){
 	this.renderContent = function(div){
 		div.append("<br>");
 		div.append(this.content());
+		console.log("!!!!!!!!!!TODO: don't forget to render chats.")
+		//will need to figure out what quadrant i ship them in but that's easily derivable.
+		//		//drawChat(canvasDiv, player1, player2, chatText, 1000,"discuss_hatemance.png");
+
 	}
 
 	//for all players, look at all relationships. if goodBig or badBig, return.
@@ -210,19 +219,18 @@ function UpdateShippingGrid(session){
 	//then they will pester the object of their affection and be rejected or not.
 	this.activateShippingPowers = function(otp){
 		alert("???")
-		//drawChat(canvasDiv, player1, player2, chatText, 1000,"discuss_hatemance.png");
 		//if that chat results in them agreeing, do next chat. (between rom partners)
 		if(this.chosenShipper.player.aspect == "Blood"){
 			if(otp.r1.saved_type == otp.r1.goodBig){
-				this.tryToConvincePale(otp);
+				return this.tryToConvincePale(otp);
 			}else{
-				this.tryToConvinceAshen(otp);
+				return this.tryToConvinceAshen(otp);
 			}
 		}else{
 			if(otp.r1.saved_type == otp.r1.goodBig){
-				this.tryToConvinceFlushed(otp);
+			 return	this.tryToConvinceFlushed(otp);
 			}else{
-				this.tryToConvinceBlack(otp);
+				return this.tryToConvinceBlack(otp);
 			}
 		}
 	}
@@ -233,7 +241,12 @@ function UpdateShippingGrid(session){
 	*also, it provides a mechanism for "agree" or "disagree": if the person you are talking to likes you or not.
 	*****************************************************************************************************************/
 	this.tryToConvinceFlushed = function(otp){
-			//in order. 
+			//chats happen in order.
+			var chats = [];
+			var p2 = otp.r2.target;  //first person listed in ship.
+			var myRelationshipWithOTP1 = this.chosenShipper.getRelationshipWith(p2);
+			chats.push( new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!"], ["Hey."],["Hey, asshole."]));
+
 	}
 
 	this.tryToConvinceBlack = function(otp){

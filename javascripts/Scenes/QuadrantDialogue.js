@@ -690,10 +690,16 @@ function QuadrantDialogue(session){
 
 }
 
-function PlusMinusConversationalPair(line1, positiveRespones, negativeResponses){
-	this.line1 = line1;
+//set of possible responses if i like you, set of possible respones if i don't.  (nothing generic)
+function PlusMinusConversationalPair(openingLines, positiveRespones, negativeResponses){
+	this.openingLines = openingLines;
 	this.positiveRespones = positiveRespones;
 	this.negativeResponses = negativeResponses;
+
+	//have a variety of ways you can start. 
+	this.getOpeningLine = function(player, playerStart){
+		chat += chatLine(playerStart, player, getRandomElementFromArray(this.openingLines));
+	}
 
 	this.p2GetResponseBasedOnRelationship = function(player, playerStart, relationship){
 		if(relationship.value > 0){
