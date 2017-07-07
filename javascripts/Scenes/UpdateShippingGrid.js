@@ -102,7 +102,6 @@ function UpdateShippingGrid(session){
 	this.session = session;
 	this.shippers = [];  //Shipper objects are a player and their ships.
 	this.chosenShipper = null;
-	this.powerNeeded = 1;
 
 	this.trigger = function(){
 		this.chosenShipper = null;
@@ -117,12 +116,10 @@ function UpdateShippingGrid(session){
 		this.chosenShipper = this.getShipper(tmpPlayer);
 
 		var newShips = this.printShips(this.getGoodShips(this.chosenShipper))
-		if(newShips != this.chosenShipper.savedShipText && this.chosenShipper.player.power > this.powerNeeded){
-			//this.powerNeeded += 5;
+		if(newShips != this.chosenShipper.savedShipText && this.chosenShipper.player.power > this.chosenShipper.powerNeeded){
+			this.chosenShipper.powerNeeded += 5;
 			this.chosenShipper.savedShipText = newShips;
 			return true;
-		}else{
-			console.log("shipper is: " + this.chosenShipper.player + "new ships is: " + newShips + " compared to old ships of: " + this.chosenShipper.savedShipText)
 		}
 		return false;
 	}
@@ -324,6 +321,7 @@ function Ship(r1, r2, goal){
 function Shipper(player, ships){
 	this.player = player;
 	this.ships = ships;
+	this.powerNeeded = 1;
 	this.savedShipText = ""; ///need to know if my ships have updated.
 
 }
