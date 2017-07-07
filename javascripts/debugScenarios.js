@@ -87,7 +87,7 @@ function checkEasterEgg(callBack,that){  //only yellow yard session uses 'that' 
 
 	if(getParameterByName("easter")  == "egg"){
 		easter_egg = true
-		alert("<insert giggle snort here>")
+		alert("Yo Dawg, I herd you liek easter eggs???")
 	}
 
 
