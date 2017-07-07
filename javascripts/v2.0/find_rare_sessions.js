@@ -81,6 +81,10 @@ function showHint(){
 	$("#spoiler").toggle();
 }
 
+//kid boy and abj is canon
+//you'll know that ABJ is thinking of kid boi every time she says "Interesting!!!"
+//it will be secret code
+//and definitely not terrifying at all
 function filterSessionsJunior(){
 	var num_players = parseInt($("#num_players").val());
 	var tmp = []
