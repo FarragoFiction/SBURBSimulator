@@ -233,7 +233,7 @@ function UpdateShippingGrid(session){
 	*also, it provides a mechanism for "agree" or "disagree": if the person you are talking to likes you or not.
 	*****************************************************************************************************************/
 	this.tryToConvinceFlushed = function(otp){
-
+			//in order. 
 	}
 
 	this.tryToConvinceBlack = function(otp){
