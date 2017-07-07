@@ -148,10 +148,24 @@ function UpdateShippingGrid(session){
 	this.renderContent = function(div){
 		div.append("<br>");
 		div.append(this.content());
-		console.log("!!!!!!!!!!TODO: don't forget to render chats.")
-		//will need to figure out what quadrant i ship them in but that's easily derivable.
-		//		//drawChat(canvasDiv, player1, player2, chatText, 1000,"discuss_hatemance.png");
+		this.drawChats(div);
 
+	}
+
+	this.drawChats = function(div){
+		this.drawShippingChat(div);
+		this.drawRomanceChat(div);
+
+	}
+
+	this.drawShippingChat = function(div){
+		if(!this.shippingChat) return;
+		//		//		//drawChat(canvasDiv, player1, player2, chatText, 1000,"discuss_hatemance.png");
+
+	}
+
+	this.drawRomanceChat = function(div){
+		if(!this.romanceChat) return;
 	}
 
 	//for all players, look at all relationships. if goodBig or badBig, return.
