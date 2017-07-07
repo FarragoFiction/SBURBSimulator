@@ -66,7 +66,7 @@ function FaceDenizen(session){
 		if(p.sprite && p.sprite.getStat("currentHP") > 0 ) ret += " " + p.sprite.htmlTitleHP() + " joins them! "
 		div.append(ret);
 		denizenMinion.strife(div, [p,p.sprite],0);
-		if(denizenMinion.getStat("currentHP") <= 0 ){
+		if(denizenMinion.getStat("currentHP") <= 0 || denizenMinion.dead){
 			p.denizenMinionDefeated = true;
 		}
 	}
@@ -97,7 +97,7 @@ function FaceDenizen(session){
 			ret += "<br>The " + p.htmlTitle() + " initiates a strife with their " + denizen.name + ". "
 			div.append(ret);
 			denizen.strife(div, [p],0);
-			if(denizen.getStat("currentHP") <= 0 ){
+			if(denizen.getStat("currentHP") <= 0 || denizen.dead) ){
 				p.denizenDefeated = true;
 				p.fraymotifs = p.fraymotifs.concat(p.denizen.fraymotifs);
 				p.power = p.power*2;  //current and future doubling of power.
