@@ -219,20 +219,22 @@ function UpdateShippingGrid(session){
 	//then they will pester the object of their affection and be rejected or not.
 	this.activateShippingPowers = function(otp){
 		alert("???")
+		var ret = " The " + this.chosenShipper.player.htmlTitleBasic() + "notices that one of their favorite ships seems to be on the verge of getting together! All it will take is the slightest of nudges...";
 		//if that chat results in them agreeing, do next chat. (between rom partners)
 		if(this.chosenShipper.player.aspect == "Blood"){
 			if(otp.r1.saved_type == otp.r1.goodBig){
-				return this.tryToConvincePale(otp);
+				 this.tryToConvincePale(otp);
 			}else{
-				return this.tryToConvinceAshen(otp);
+				 this.tryToConvinceAshen(otp);
 			}
 		}else{
 			if(otp.r1.saved_type == otp.r1.goodBig){
-			 return	this.tryToConvinceFlushed(otp);
+			 	this.tryToConvinceFlushed(otp);
 			}else{
-				return this.tryToConvinceBlack(otp);
+				 this.tryToConvinceBlack(otp);
 			}
 		}
+		return ret;  //chats will be stored to a var.
 	}
 
 	/****************************************************************************************************************
@@ -246,6 +248,7 @@ function UpdateShippingGrid(session){
 			var p2 = otp.r2.target;  //first person listed in ship.
 			var myRelationshipWithOTP1 = this.chosenShipper.getRelationshipWith(p2);
 			chats.push( new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!"], ["Hey."],["Hey, asshole."]));
+			//chats are saved to self, not returned.
 
 	}
 
