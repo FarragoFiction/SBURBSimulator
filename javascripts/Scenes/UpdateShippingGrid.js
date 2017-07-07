@@ -105,6 +105,7 @@ function UpdateShippingGrid(session){
 	this.powerNeeded = 1;
 
 	this.trigger = function(){
+		this.chosenShipper = null;
 		var tmpPlayer = null;
 		if(Math.seededRandom() > 0.5){
 			tmpPlayer = findAspectPlayer(this.session.availablePlayers, "Heart");
@@ -128,33 +129,9 @@ function UpdateShippingGrid(session){
 			var shipper = this.shippers[i];
 			if(shipper.player == player) return shipper;
 		}
-		var s = new Shipper(player), this.createShips(this.session.players);
+		var s = new Shipper(player, this.createShips(this.session.players);
 		this.shippers.push(s);
 		return s;
-	}
-
-
-	//is there relationship drama!?
-	this.triggerOld = function(){
-		//console.log("checking shpping grid trigger.")
-		//if heart player chagnes, it's a combo session or scratch or i don't care, redo the ships.
-		if(Math.seeded)
-		var tmpheartPlayer = findAspectPlayer(this.session.availablePlayers, "Heart");
-		if(this.ships.length == 0 || tmpheartPlayer != this.heartPlayer){
-			this.createShips(this.session.players);
-		}
-		this.heartPlayer = tmpheartPlayer;
-
-		if(!this.heartPlayer || this.heartPlayer.dead){
-			return false;
-		}
-		var newShips = this.printShips(this.getGoodShips())
-		if(newShips != this.savedShipText && this.heartPlayer.power > this.powerNeeded){
-			this.powerNeeded += 5;
-			this.savedShipText = newShips;
-			return true;
-		}
-		return false;
 	}
 
 
@@ -228,17 +205,16 @@ function UpdateShippingGrid(session){
 
 	this.content = function(){
 		//console.log("Updating shipping grid in: " + this.session.session_id);
-		removeFromArray(this.heartPlayer, this.session.availablePlayers);
-		this.heartPlayer.increasePower();
+		removeFromArray(this.chosenShipper.player, this.session.availablePlayers);
+		this.chosenShipper.increasePower();
 		var fuckPile = ""
-		if(this.savedShipText.length > 4000){
+		if(this.chosenShipper.savedShipText.length > 4000){
 			fuckPile += "How did this session turn into such a scandalous fuckpile?";
 		//	console.log( this.savedShipText.length + " scandalous fuck pile " + this.session.session_id)
 		}
-		var ret = "The " + this.heartPlayer.htmlTitleBasic() + " updates their shipping grid. " + fuckPile + " <Br>" + this.savedShipText;
-
+		var ret = "The " + this.chosenShipper.player.htmlTitleBasic() + " updates their shipping grid. " + fuckPile + " <Br>" + this.chosenShipper.savedShipText;
+		console.log("~~~~~~~~~~TODO: check to see if any of your predicted ships came true.")
 		return ret;
-		//return "todo: update shipping grid for heart player.  updating it lowers the trigger level of all involved.  also, save clubs and diamonds to session. extract ships from it. if a player is in more than one diamonds, erase previous one.";
 
 	}
 }
