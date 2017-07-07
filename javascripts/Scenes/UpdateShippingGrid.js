@@ -227,6 +227,11 @@ function UpdateShippingGrid(session){
 		}
 	}
 
+	/****************************************************************************************************************
+	*HEY, FUTURE JR, YOU DUNKASS, YOU SPEANT ALL THAT WORK MAKING QUADRANTDIALOG DOPE, USE IT!!! ConversationalPair
+	*you don't have to go all out or anything, but at least TRY.
+	*also, it provides a mechanism for "agree" or "disagree": if the person you are talking to likes you or not.
+	*****************************************************************************************************************/
 	this.tryToConvinceFlushed = function(otp){
 
 	}
