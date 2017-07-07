@@ -696,7 +696,7 @@ function ConversationalPair(line1, responseLines){
 	this.responseLines = responseLines;  //responses are just reactions
 	this.genericResponses = ["Yeah.", ":)", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "... ", "Whatever.", "Yes.", "Interesting...", "Hrmmm...", "lol", "Interesting!!!", "Umm. Okay?", "Really?", "Whatever floats your boat.","Why not", "K."]
 
-	chosen.p2GetResponseBasedOnRelationship = function(chosen, player, playerStart, relationship){
+	this.p2GetResponseBasedOnRelationship = function(chosen, player, playerStart, relationship){
 		var chat = "";
 		if(relationship.saved_type == relationship.heart || relationship.saved_type == relationship.diamond){
 			if(relationship.value > 0){
