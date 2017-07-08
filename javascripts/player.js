@@ -2013,7 +2013,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			case  "Hope":
 				this.associatedStats.push(new AssociatedStat("sanity", 2,true));
 				this.associatedStats.push(new AssociatedStat("maxLuck", 1,true));
-				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), 2,true));
+				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), -2,true));
 				break;
 			case  "Life":
 				this.associatedStats.push(new AssociatedStat("hp", 2,true));
