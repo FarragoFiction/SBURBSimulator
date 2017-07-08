@@ -347,7 +347,7 @@ function UpdateShippingGrid(session){
 					this.chosenShipper.player.increasePower();
 					this.chosenShipper.player.increasePower();
 					this.chosenShipper.player.increasePower();
-					stabbings[i].leveledTheHellUp = true;
+					this.chosenShipper.player.leveledTheHellUp = true;
 					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect + " player. ";
 				}else{ //response to being rejected.
 					c= new PlusMinusConversationalPair(["Fuck","But...fuck. "],["JR: this won't happen because i know they got rejected."], ["I'm sorry. I really am."]);
