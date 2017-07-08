@@ -312,7 +312,7 @@ function QuadrantDialogue(session){
 	this.getp2ResponseBasedOnInterests = function(chosen, interest, player, playerStart, relationship){
 		//console.log("interest is: " + interest)
 		var chat = "";
-		if(relationship.value > 0){
+		if(relationship && relationship.value > 0){
 			if(player.interestedIn(interest)){
 				//console.log("interested in " + interest)
 				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.responseLinesSharedInterestPositive));
@@ -712,7 +712,7 @@ function PlusMinusConversationalPair(openingLines, positiveRespones, negativeRes
 	}
 
 	this.p2GetResponseBasedOnRelationship = function(player, playerStart, relationship){
-		if(relationship.value > 0){
+		if(relationship && relationship.value > 0){
 			return chatLine(playerStart, player, getRandomElementFromArray(this.positiveRespones));
 		}else{ //negative response.
 			return chatLine(playerStart, player, getRandomElementFromArray(this.negativeResponses));
@@ -730,13 +730,13 @@ function ConversationalPair(line1, responseLines){
 	this.p2GetResponseBasedOnRelationship = function(player, playerStart, relationship){
 		var chat = "";
 		if(relationship.saved_type == relationship.heart || relationship.saved_type == relationship.diamond){
-			if(relationship.value > 0){
+			if(relationship && relationship.value > 0){
 				chat += chatLine(playerStart, player, getRandomElementFromArray(this.responseLines));
 			}else{ //i don't love you like i should.
 				chat += chatLine(playerStart, player, getRandomElementFromArray(this.genericResponses));
 			}
 		}else{
-			if(relationship.value < 0){
+			if(relationship && relationship.value < 0){
 				chat += chatLine(playerStart, player, getRandomElementFromArray(this.responseLines));
 			}else{  //i don't hate you like i should.
 				chat += chatLine(playerStart, player, getRandomElementFromArray(this.genericResponses));
