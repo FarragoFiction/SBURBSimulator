@@ -162,7 +162,7 @@ function UpdateShippingGrid(session){
 		if(!this.shippingChat) return;
 		var player1 = this.chosenShipper.player;
 		var player2 = this.chosenShipper.otp.r2.target;
-		var divID = (div.attr("id")) + "_canvas"+ this.chosenShipper.id;
+		var divID = (div.attr("id")) + "_canvas_shipping"+ this.chosenShipper.id;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvasDiv = document.getElementById("canvas"+ divID);
@@ -186,8 +186,29 @@ function UpdateShippingGrid(session){
 	}
 
 	this.drawRomanceChat = function(div){
-		alert("TODO handle romance chat, it only exists if player is convincned")
 		if(!this.romanceChat) return;
+		var player1 = this.chosenShipper.otp.r2.target;
+		var player2 = this.chosenShipper.otp.r1.target;
+		var divID = (div.attr("id")) + "_canvas_romance"+ this.chosenShipper.id;
+		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+		div.append(canvasHTML);
+		var canvasDiv = document.getElementById("canvas"+ divID);
+		var otp = this.chosenShipper.otp;
+		var image = "discuss_hatemance.png";
+		if(this.chosenShipper.player){
+			if(otp.r1.saved_type == otp.r1.goodBig){
+				image = "discuss_romance.png";
+			}else{
+				image = "discuss_hatemance.png";
+			}
+		}else{
+			if(otp.r1.saved_type == otp.r1.goodBig){
+				image = "discuss_palemance.png"
+			}else{
+				image = "discuss_ashenmance.png"
+			}
+		}
+		drawChat(canvasDiv, player1, player2, this.romanceChat, 1000,image);
 	}
 
 	//for all players, look at all relationships. if goodBig or badBig, return.
@@ -305,8 +326,14 @@ function UpdateShippingGrid(session){
 			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
 			this.shippingChat = chat;
 			if(willItWork){ //now it's time to build up the confession.
-				var willTheyAgree = this.evaluateFlushedProposal(p2, p1);
 				chat = "";  //don't need to get relationships, i know they both like each other
+				var willTheyAgree = this.evaluateFlushedProposal(p2, p1);
+				//for these, second column will always be about "are they going to say yes or not"
+				c= new PlusMinusConversationalPair(["Hey!"], ["Hey!", "Oh cool, I was just thinking of you!"],["What's up?", "Hey"]);
+				chat += c.getOpeningLine(shipper, shipperStart);
+				chat += c.getP2ResponseBasedOnBool(p1, p1Start, willTheyAgree)
+
+				this.romanceChat = chat;
 			}
 	}
 
