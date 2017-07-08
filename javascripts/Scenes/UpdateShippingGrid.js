@@ -104,9 +104,11 @@ function UpdateShippingGrid(session){
 	this.romanceChat = null; //if i convince one member of my otp to get together, what do they say when they confess?
 	this.shippers = [];  //Shipper objects are a player and their ships.
 	this.chosenShipper = null;
+	this.shippingAfterMath = null;
 
 	this.trigger = function(){
 		this.chosenShipper = null;
+		this.shippingAfterMath = null;
 		this.shippingChat = null;
 		this.romanceChat = null;
 		var tmpPlayer = null;
@@ -155,6 +157,7 @@ function UpdateShippingGrid(session){
 	this.drawChats = function(div){
 		this.drawShippingChat(div);
 		this.drawRomanceChat(div);
+		if(this.shippingAfterMath) div.append(this.shippingAfterMath)
 
 	}
 
@@ -286,15 +289,15 @@ function UpdateShippingGrid(session){
 		var p2Start = p2.chatHandleShort()+ ": "
 		if(this.chosenShipper.player.aspect == "Blood"){
 			if(otp.r1.saved_type == otp.r1.goodBig){
-				 ret += this.tryToConvincePale(shipper, shipperStart, p1, p1Start, p2, p2Start);
+				 this.tryToConvincePale(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}else{
-				 ret += this.tryToConvinceAshen(shipper, shipperStart, p1, p1Start, p2, p2Start);
+				 this.tryToConvinceAshen(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}
 		}else{
 			if(otp.r1.saved_type == otp.r1.goodBig){
-			 	ret += this.tryToConvinceFlushed(shipper, shipperStart, p1, p1Start, p2, p2Start);
+			 	this.tryToConvinceFlushed(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}else{
-				 ret += this.tryToConvinceBlack(shipper, shipperStart, p1, p1Start, p2, p2Start);
+				 this.tryToConvinceBlack(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}
 		}
 		return ret;  //chats will be stored to a var.
@@ -345,8 +348,6 @@ function UpdateShippingGrid(session){
 					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
 					makeHeart(p1, p2);
 					this.chosenShipper.player.increasePower();
-					this.chosenShipper.player.increasePower();
-					this.chosenShipper.player.increasePower();
 					this.chosenShipper.player.leveledTheHellUp = true;
 					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect + " player. ";
 				}else{ //response to being rejected.
@@ -359,7 +360,7 @@ function UpdateShippingGrid(session){
 			}else{
 				ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is frustrated that the " + p1.htmlTitleBasic() + " won't listen to reason. ";
 			}
-			return ret;
+			this.shippingAfterMath = ret;
 	}
 
 	//do i already have a heart mate? do i like this.chosenShipper? these things matter.
