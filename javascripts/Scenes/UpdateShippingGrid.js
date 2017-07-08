@@ -380,6 +380,52 @@ function UpdateShippingGrid(session){
 			return reasonsFor > reasonsAgainst;
 	}
 
+	this.evaluatePaleProposal = function(player, target){
+			var reasonsFor = 1; //come on, you know you like them.
+			var reasonsAgainst = 0;
+			reasonsAgainst += player.getDiamonds().length; //I am already in a relationship
+			reasonsAgainst += target.getDiamonds().length; //they are already in a relationship
+			if(player.getHearts().length == 0) reasonsFor ++; //I am single
+			if(player.sanity < 0) reasonsFor ++;  //i need SOMEBODY to stabilize me.
+			if(!player.isQuadranted()) reasonsFor += 4; //I am lonely
+			if(player.getBestFriend() == target) reasonsFor += 5; //I REALLY like them.
+			var r = player.getRelationshipWith(this.chosenShipper.player)
+			if(r.value < 0) this.reasonsAgainst ++; //say 'no' just to spite shipper
+			if(player.getWorstEnemyFromList(this.session.players) == this.chosenShipper.player) reasonsAgainst += 5; //I REALLY hate the shipper.
+			return reasonsFor > reasonsAgainst;
+	}
+
+	this.evaluateAshenProposal = function(player, target){
+			var reasonsFor = 1; //come on, you know you like them.
+			var reasonsAgainst = 0;
+			reasonsFor += player.getSpades().length; //I am already in a relationship, so I should stop being black for them.
+			reasonsFor += target.getSpades().length; //they are already in a relationship, so i should stop being black for them.
+			if(player.getHearts().length == 0) reasonsFor ++; //I am single
+			if(!player.isQuadranted()) reasonsFor += 4; //I am lonely
+			if(player.getWorstEnemyFromList(this.session.players) == target) reasonsFor += 5; //I REALLY like them.
+			var r = player.getRelationshipWith(this.chosenShipper.player)
+			if(r.value < 0) this.reasonsFor ++; //actually, you really hate the shipper, too, this might work out.
+			if(player.getWorstEnemyFromList(this.session.players) == this.chosenShipper.player) reasonsFor += 5; //I REALLY hate the shipper, this might work out.
+			if(r.value > 0) this.reasonsAgainst ++; //actually, you really like the shipper, you don't want to be ashen for them.
+			if(player.getBestFriend() == this.chosenShipper.player) reasonsAgainst += 50; //hell no, i can't be ashen for someone i like this much.
+
+			return reasonsFor > reasonsAgainst;
+	}
+
+	this.evaluateBlackProposal = function(player, target){
+			var reasonsFor = 1; //come on, you know you like them.
+			var reasonsAgainst = 0;
+			reasonsAgainst += player.getSpades().length; //I am already in a relationship
+			reasonsAgainst += target.getSpades().length; //they are already in a relationship
+			if(player.getHearts().length == 0) reasonsFor ++; //I am single
+			if(!player.isQuadranted()) reasonsFor += 4; //I am lonely
+			if(player.getWorstEnemyFromList(this.session.players) == target) reasonsFor += 5; //I REALLY hate them.
+			var r = player.getRelationshipWith(this.chosenShipper.player)
+			if(r.value < 0) this.reasonsAgainst ++; //say 'no' just to spite shipper
+			if(player.getWorstEnemyFromList(this.session.players) == this.chosenShipper.player) reasonsAgainst += 5; //I REALLY hate the shipper.
+			return reasonsFor > reasonsAgainst;
+	}
+
 	this.tryToConvinceBlack = function(shipper, shipperStart, p1, p1Start, p2, p2Start){
 
 	}
