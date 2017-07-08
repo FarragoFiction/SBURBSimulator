@@ -166,8 +166,8 @@ function UpdateShippingGrid(session){
 		var player1 = this.chosenShipper.player;
 		var player2 = this.chosenShipper.otp.r2.target;
 		if(player1 == player2){
-			player1 = makeRenderingSnapshot(shipper);
-			player1.chatHandle = "future" + shipper.chatHandle;
+			player1 = makeRenderingSnapshot(player1);
+			player1.chatHandle = "future" + player1.chatHandle.charAt(0).toUpperCase() + player1.chatHandle.slice(1);
 		}
 		var divID = (div.attr("id")) + "_canvas_shipping"+ this.chosenShipper.id;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
