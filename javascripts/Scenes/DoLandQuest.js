@@ -82,7 +82,7 @@ function DoLandQuest(session){
 		if(player.class_name == "Prince") return "The " + player.htmlTitle() + " scores " + fraymotif.name + " for a stupidly discounted 'going out of business' price. "
 		if(player.class_name == "Witch") return "The " + player.htmlTitle() + " joins a coven of Secret Wizards to learn " + fraymotif.name + ".   "
 		if(player.class_name == "Mage") return "The " + player.htmlTitle() + " is pretty sure they have figured out the fraymotif system, at least enough to learn " + fraymotif.name + ". "
-		return "CLASS UNDEFINED DUNKASS"
+		return getRandomElementFromArray(normalWays);
 	}
 
 
