@@ -369,10 +369,12 @@ function UpdateShippingGrid(session){
 					c= new PlusMinusConversationalPair(["Fuck","But...fuck. "],["JR: this won't happen because i know they got rejected."], ["I'm sorry. I really am."]);
 					chat += c.getOpeningLine(p1, p1Start);
 					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
+					console.log("Ship failed when it was almost done : " + this.session.session_id);
 					ret += "The " + chosenShipper.player.htmlTitleBasic() + " is disappointed that it didn't work out. Oh well, if at first you don't succeed...";
 				}
 				this.romanceChat = chat;
 			}else{
+				console.log("Ship failed before it started : " + this.session.session_id);
 				ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is frustrated that the " + p1.htmlTitleBasic() + " won't listen to reason. ";
 			}
 			this.shippingAfterMath = ret;
@@ -742,7 +744,7 @@ function Ship(r1, r2,shipper){
 			}
 
 			if((r1.saved_type == r1.goodBig || r1.saved_type == r1.badBig) && r2.saved_type == r1.saved_type){
-				shipper.otp = this;
+				if(!r1.target.dead && !r2.target.dead) shipper.otp = this; //omg stop trying to convince corpses to fuck. 
 				return true;
 			}
 
