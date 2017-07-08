@@ -176,13 +176,13 @@ function UpdateShippingGrid(session){
 		var otp = this.chosenShipper.otp;
 		var image = "discuss_hatemance.png";
 		if(player1.aspect == "Heart"){
-			if(otp.r1.saved_type == otp.r1.heart){
+			if(otp.r1.saved_type == otp.r1.heart || otp.r1.saved_type == otp.r1.goodBig ){
 				image = "discuss_romance.png";
 			}else{
 				image = "discuss_hatemance.png";
 			}
 		}else{
-			if(otp.r1.saved_type == otp.r1.diamond){
+			if(otp.r1.saved_type == otp.r1.diamond || otp.r1.saved_type == otp.r1.goodBig){
 				image = "discuss_palemance.png"
 			}else{
 				image = "discuss_ashenmance.png"
@@ -432,7 +432,7 @@ function UpdateShippingGrid(session){
 					c= new PlusMinusConversationalPair(["Fuck","But...fuck. "],["JR: this won't happen because i know they got rejected."], ["I'm sorry. I really am."]);
 					chat += c.getOpeningLine(p1, p1Start);
 					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
-					ret += "The " + chosenShipper.player.htmlTitleBasic() + " is disappointed that it didn't work out. Oh well, if at first you don't succeed...";
+					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is disappointed that it didn't work out. Oh well, if at first you don't succeed...";
 				}
 				this.romanceChat = chat;
 			}else{
@@ -493,7 +493,7 @@ function UpdateShippingGrid(session){
 					c= new PlusMinusConversationalPair(["Fuck","But...fuck. "],["JR: this won't happen because i know they got rejected."], ["I'm sorry. I really am."]);
 					chat += c.getOpeningLine(shipper, shipperStart);
 					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
-					ret += "The " + chosenShipper.player.htmlTitleBasic() + " is disappointed that it didn't work out. Oh well, if at first you don't succeed...";
+					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is disappointed that it didn't work out. Oh well, if at first you don't succeed...";
 				}
 				this.romanceChat = chat;
 			}else{
