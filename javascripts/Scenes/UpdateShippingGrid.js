@@ -370,7 +370,7 @@ function UpdateShippingGrid(session){
 					chat += c.getOpeningLine(p1, p1Start);
 					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
 					console.log("Ship failed when it was almost done : " + this.session.session_id);
-					ret += "The " + chosenShipper.player.htmlTitleBasic() + " is disappointed that it didn't work out. Oh well, if at first you don't succeed...";
+					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is disappointed that it didn't work out. Oh well, if at first you don't succeed...";
 				}
 				this.romanceChat = chat;
 			}else{
@@ -744,7 +744,7 @@ function Ship(r1, r2,shipper){
 			}
 
 			if((r1.saved_type == r1.goodBig || r1.saved_type == r1.badBig) && r2.saved_type == r1.saved_type){
-				if(!r1.target.dead && !r2.target.dead) shipper.otp = this; //omg stop trying to convince corpses to fuck. 
+				if(!r1.target.dead && !r2.target.dead) shipper.otp = this; //omg stop trying to convince corpses to fuck.
 				return true;
 			}
 
