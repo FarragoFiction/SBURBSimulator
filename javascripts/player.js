@@ -1157,6 +1157,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(this.isActive()){ //modify me
 			this.modifyAssociatedStat(powerBoost, stat);
 		}else{  //modify others.
+			powerBoost = 2* powerBoost; //to make up for passives being too nerfed.
 			for(var i = 0; i<this.session.players.length; i++){
 				this.session.players[i].modifyAssociatedStat(powerBoost/this.session.players.length, stat);
 			}
