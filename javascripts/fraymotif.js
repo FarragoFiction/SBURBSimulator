@@ -278,6 +278,7 @@ function Fraymotif(aspects, name,tier, flavorText){
     if(dead.length > findDeadPlayers(allies).length){
       revives = " Also, the " + getPlayersTitlesBasic(dead) + " being dead is no longer a thing. ";
     }
+    enemy.currentHP += -1 * owner.getStat("power"); //also, do at LEAST as much as a regular attack, dunkass.
     return this.processFlavorText(owner, casters,allies, enemy, enemies, revives);
 	}
 }
