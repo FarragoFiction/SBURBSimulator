@@ -363,6 +363,177 @@ function UpdateShippingGrid(session){
 			this.shippingAfterMath = ret;
 	}
 
+	this.tryToConvincePale = function(shipper, shipperStart, p1, p1Start, p2, p2Start){
+			var chat = "";
+			var ret = ""
+			//chats happen in order.
+			var willItWork = this.evaluatePaleProposal(p1, p2);
+			var myRelationshipWithOTP1 = shipper.getRelationshipWith(p2);
+			var theirRelationshipWithMe = p2.getRelationshipWith(shipper);
+			var c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!"], ["Hey."],["Hey, asshole."]);
+			chat += c.getOpeningLine(shipper, shipperStart);
+			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
+			c= new PlusMinusConversationalPair(["You know how I keep track of romance shit? ", "So I was going over my shipping grid, and I wanted to run something by you."], ["Okay?", "I'm listening..."],["Oh god, not that again.", "Is this REALLY a priority right now?"]);
+			chat += c.getOpeningLine(shipper, shipperStart);
+			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
+			//from this point on, second array isn't "i hate you you suck", but "i am NOT going to message my crush." it's getP2ResponseBasedOnBool, not relationship
+			c= new PlusMinusConversationalPair(["I think you and " + p2.chatHandleShort() + " might work out really well pale. ",  "I think you and " + p2.chatHandleShort() + " likes you, pale style."], ["Wait.... really!? ", "Holy shit."],["I am not going to dignify that with a response. ", "I don't see how that's any of your business."]);
+			chat += c.getOpeningLine(shipper, shipperStart);
+			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
+			c= new PlusMinusConversationalPair(["Just trust me, you should absolutely try messaging them. ",  "I believe in you!"], ["Wow...maybe you are right! ", "Yeah, okay, I'll message them right away."],["Yeah, that is not going to happen.", "Sorry, but no."]);
+			chat += c.getOpeningLine(shipper, shipperStart);
+			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
+			this.shippingChat = chat;
+			if(willItWork){ //now it's time to build up the confession.
+				chat = "";  //don't need to get relationships, i know they both like each other
+				var willTheyAgree = this.evaluatePaleProposal(p2, p1);
+				//for these, second column will always be about "are they going to say yes or not"
+				c= new PlusMinusConversationalPair(["Hey!"], ["Hey!", "Oh cool, I was just thinking of you!"],["What's up?", "Hey"]);
+				chat += c.getOpeningLine(p1, p1Start);
+				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
+				c= new PlusMinusConversationalPair(["So...you know how " + shipper.chatHandleShort() + " is always bugging and fussing and meddling? ",shipper.chatHandleShort() + " was just pestering me about that shipping grid thing they do. "], ["Oh! Yeah, that sure is a thing they do!", "Oh yeah?"],["Hah, they are always so off base with their ships.", "Uh huh?"]);
+				chat += c.getOpeningLine(p1, p1Start);
+				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
+				c= new PlusMinusConversationalPair(["Look, I'll come right out and say it. I think I'm pale for you. ","I like you. Romantically. In the pale quadrant."], ["Holy shit! Really!?  I...fuck, I like you too!", "Oh. Oh fuck. Wow. I like you, too!"],["I can't. Don't make me choose. I can't say yes.", "I'm so sorry... I just can't reciprocate right now."]);
+				chat += c.getOpeningLine(p1, p1Start);
+				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
+				if(willTheyAgree){ //celebrate success, change relationship status, give huge boost to shipper, return result.
+					c= new PlusMinusConversationalPair(["Of fuck yes!","Oh wow, I sure am glad I listened to " + shipper.chatHandleShort() + "! "], ["<>"],["JR: This will never hit cause i know they said yes."]);
+					chat += c.getOpeningLine(p1, p1Start);
+					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
+					makeDiamonds(p1, p2);
+					this.chosenShipper.player.increasePower();
+					this.chosenShipper.player.leveledTheHellUp = true;
+					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect + " player. ";
+				}else{ //response to being rejected.
+					c= new PlusMinusConversationalPair(["Fuck","But...fuck. "],["JR: this won't happen because i know they got rejected."], ["I'm sorry. I really am."]);
+					chat += c.getOpeningLine(p1, p1Start);
+					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
+					ret += "The " + chosenShipper.player.htmlTitleBasic() + " is disappointed that it didn't work out. Oh well, if at first you don't succeed...";
+				}
+				this.romanceChat = chat;
+			}else{
+				ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is frustrated that the " + p1.htmlTitleBasic() + " won't listen to reason. ";
+			}
+			this.shippingAfterMath = ret;
+	}
+
+	this.tryToConvinceAshen = function(shipper, shipperStart, p1, p1Start, p2, p2Start){
+			var chat = "";
+			var ret = ""
+			//chats happen in order.
+			var willItWork = this.evaluateAshenProposal(p1, p2);
+			var myRelationshipWithOTP1 = shipper.getRelationshipWith(p2);
+			var theirRelationshipWithMe = p2.getRelationshipWith(shipper);
+			var c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!"], ["Hey."],["Hey, asshole."]);
+			chat += c.getOpeningLine(shipper, shipperStart);
+			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
+			c= new PlusMinusConversationalPair(["You know how I keep track of romance shit? ", "So I was going over my shipping grid, and I wanted to run something by you."], ["Okay?", "I'm listening..."],["Oh god, not that again.", "Is this REALLY a priority right now?"]);
+			chat += c.getOpeningLine(shipper, shipperStart);
+			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
+			//from this point on, second array isn't "i hate you you suck", but "i am NOT going to message my crush." it's getP2ResponseBasedOnBool, not relationship
+			c= new PlusMinusConversationalPair(["I think you and " + p2.chatHandleShort() + " are a TERRIBLE match, for spades. I...kind of want to keep you guys from getting together. ",  "I think you and " + p2.chatHandleShort() + " likes you, spades style. Aaannnd...that is a TERRIBLE idea. I want to sort of maybe kind of auspisticize you guys."], ["Wait.... really!? ", "Holy shit."],["I am not going to dignify that with a response. ", "I don't see how that's any of your business."]);
+			chat += c.getOpeningLine(shipper, shipperStart);
+			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
+			c= new PlusMinusConversationalPair(["Just trust me, if you agree, I'll message them next. ",  "I am gonna contact them next if you agree. "], ["Wow...maybe you are right! ", "Yeah, okay, go ahead."],["Yeah, that is not going to happen.", "Sorry, but no."]);
+			chat += c.getOpeningLine(shipper, shipperStart);
+			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
+			this.shippingChat = chat;
+			if(willItWork){ //now it's time to build up the confession.
+				chat = "";  //don't need to get relationships, i know they both like each other
+				var willTheyAgree = this.evaluateAshenProposal(p2, p1);
+				//for these, second column will always be about "are they going to say yes or not"
+				c= new PlusMinusConversationalPair(["Hey!"], ["Hey!", "Oh cool, I was just thinking of you!"],["What's up?", "Hey"]);
+				chat += c.getOpeningLine(shipper, shipperStart);
+				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
+				c= new PlusMinusConversationalPair(["So...you know how I try to stay on top of romance shit? ","I just got done talking to " + p1.chatHandleShort() + ". "], ["Yeah?", "Oh yeah?"],["Hah, you always so off base with their ships.", "Uh huh?"]);
+				chat += c.getOpeningLine(shipper, shipperStart);
+				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
+				c= new PlusMinusConversationalPair(["Look, I'll come right out and say it. I think you guys would be terrible together black, and I'm willing to mediate. ","I like you. Romantically. In the ashen quadrant, with " + p1.chatHandleShort()+". "], ["Holy shit! Really!?  I...fuck, I would really like that!", "Oh. Oh fuck. Wow. I was wondering how I was gonna turn down that asshole. This works out perfect!"],["I can't. Don't make me choose. I can't say yes.", "I'm so sorry... I just can't reciprocate right now."]);
+				chat += c.getOpeningLine(shipper, shipperStart);
+				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
+				if(willTheyAgree){ //celebrate success, change relationship status, give huge boost to shipper, return result.
+					c= new PlusMinusConversationalPair(["Of fuck yes!","You guys had better behave! "], ["c3<"],["JR: This will never hit cause i know they said yes."]);
+					chat += c.getOpeningLine(shipper, shipperStart);
+					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
+					makeClubs(shipper,p1, p2);  //they get a relationship!!!
+					this.chosenShipper.player.increasePower();
+					this.chosenShipper.player.leveledTheHellUp = true;
+					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect + " player. ";
+				}else{ //response to being rejected.
+					c= new PlusMinusConversationalPair(["Fuck","But...fuck. "],["JR: this won't happen because i know they got rejected."], ["I'm sorry. I really am."]);
+					chat += c.getOpeningLine(shipper, shipperStart);
+					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
+					ret += "The " + chosenShipper.player.htmlTitleBasic() + " is disappointed that it didn't work out. Oh well, if at first you don't succeed...";
+				}
+				this.romanceChat = chat;
+			}else{
+				ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is frustrated that the " + p1.htmlTitleBasic() + " won't listen to reason. ";
+			}
+			this.shippingAfterMath = ret;
+	}
+
+
+	this.tryToConvinceBlack = function(shipper, shipperStart, p1, p1Start, p2, p2Start){
+			var chat = "";
+			var ret = ""
+			//chats happen in order.
+			var willItWork = this.evaluateBlackProposal(p1, p2);
+			var myRelationshipWithOTP1 = shipper.getRelationshipWith(p2);
+			var theirRelationshipWithMe = p2.getRelationshipWith(shipper);
+			var c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!"], ["Hey."],["Hey, asshole."]);
+			chat += c.getOpeningLine(shipper, shipperStart);
+			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
+			c= new PlusMinusConversationalPair(["You know how I keep track of romance shit? ", "So I was going over my shipping grid, and I wanted to run something by you."], ["Okay?", "I'm listening..."],["Oh god, not that again.", "Is this REALLY a priority right now?"]);
+			chat += c.getOpeningLine(shipper, shipperStart);
+			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
+			//from this point on, second array isn't "i hate you you suck", but "i am NOT going to message my crush." it's getP2ResponseBasedOnBool, not relationship
+			c= new PlusMinusConversationalPair(["I think you and " + p2.chatHandleShort() + " might work out really well spades. ",  "I think you and " + p2.chatHandleShort() + " likes you, spades style."], ["Wait.... really!? ", "Holy shit."],["I am not going to dignify that with a response. ", "I don't see how that's any of your business."]);
+			chat += c.getOpeningLine(shipper, shipperStart);
+			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
+			c= new PlusMinusConversationalPair(["Just trust me, you should absolutely try messaging them. ",  "I believe in you!"], ["Wow...maybe you are right! ", "Yeah, okay, I'll message them right away."],["Yeah, that is not going to happen.", "Sorry, but no."]);
+			chat += c.getOpeningLine(shipper, shipperStart);
+			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
+			this.shippingChat = chat;
+			if(willItWork){ //now it's time to build up the confession.
+				chat = "";  //don't need to get relationships, i know they both like each other
+				var willTheyAgree = this.evaluateBlackProposal(p2, p1);
+				//for these, second column will always be about "are they going to say yes or not"
+				c= new PlusMinusConversationalPair(["Hey!"], ["Hey!", "Oh cool, I was just thinking of you!"],["What's up?", "Hey"]);
+				chat += c.getOpeningLine(p1, p1Start);
+				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
+				c= new PlusMinusConversationalPair(["So...you know how " + shipper.chatHandleShort() + " is always bugging and fussing and meddling? ",shipper.chatHandleShort() + " was just pestering me about that shipping grid thing they do. "], ["Oh! Yeah, that sure is a thing they do!", "Oh yeah?"],["Hah, they are always so off base with their ships.", "Uh huh?"]);
+				chat += c.getOpeningLine(p1, p1Start);
+				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
+				c= new PlusMinusConversationalPair(["Look, I'll come right out and say it. I think I hate you, you fucking asshole. Spades-wise.","I hate you. Romantically. In the spades quadrant."], ["Holy shit! Really!?  I...fuck, I hate you too!", "Oh. Oh fuck. Wow. I hate you, too!"],["I can't. Don't make me choose. I can't say yes.", "I'm so sorry... I just can't reciprocate right now."]);
+				chat += c.getOpeningLine(p1, p1Start);
+				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
+				if(willTheyAgree){ //celebrate success, change relationship status, give huge boost to shipper, return result.
+					c= new PlusMinusConversationalPair(["Of fuck yes!","Oh wow, I sure am glad I listened to " + shipper.chatHandleShort() + "! "], ["<3<"],["JR: This will never hit cause i know they said yes."]);
+					chat += c.getOpeningLine(p1, p1Start);
+					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
+					makeDiamonds(p1, p2);
+					this.chosenShipper.player.increasePower();
+					this.chosenShipper.player.leveledTheHellUp = true;
+					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect + " player. ";
+				}else{ //response to being rejected.
+					c= new PlusMinusConversationalPair(["Fuck","But...fuck. "],["JR: this won't happen because i know they got rejected."], ["I'm sorry. I really am."]);
+					chat += c.getOpeningLine(p1, p1Start);
+					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
+					ret += "The " + chosenShipper.player.htmlTitleBasic() + " is disappointed that it didn't work out. Oh well, if at first you don't succeed...";
+				}
+				this.romanceChat = chat;
+			}else{
+				ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is frustrated that the " + p1.htmlTitleBasic() + " won't listen to reason. ";
+			}
+			this.shippingAfterMath = ret;
+	}
+
+
+
+
+
+
 	//do i already have a heart mate? do i like this.chosenShipper? these things matter.
 	//tick tock logical heart (best fraymotif name)
 	//yes it makes less since if the OTHER guy accepts or rejects based on shipper, but...whatever. it's heart/blood magic recoil failure. except magic is fake as shit. ignore that.
@@ -426,17 +597,6 @@ function UpdateShippingGrid(session){
 			return reasonsFor > reasonsAgainst;
 	}
 
-	this.tryToConvinceBlack = function(shipper, shipperStart, p1, p1Start, p2, p2Start){
-
-	}
-
-	this.tryToConvincePale = function(shipper, shipperStart, p1, p1Start, p2, p2Start){
-
-	}
-
-	this.tryToConvinceAshen = function(shipper, shipperStart, p1, p1Start, p2, p2Start){
-
-	}
 
 
 	this.content = function(){
