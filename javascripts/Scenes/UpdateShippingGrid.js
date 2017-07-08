@@ -202,7 +202,7 @@ function UpdateShippingGrid(session){
 		var canvasDiv = document.getElementById("canvas"+ divID);
 		var otp = this.chosenShipper.otp;
 		var image = "discuss_hatemance.png";
-		if(this.chosenShipper.player){
+		if(this.chosenShipper.player.aspect == "Heart"){
 			if(otp.r1.saved_type == otp.r1.heart){
 				image = "discuss_romance.png";
 			}else{
@@ -213,6 +213,7 @@ function UpdateShippingGrid(session){
 				image = "discuss_palemance.png"
 			}else{
 				image = "discuss_ashenmance.png"
+				player1 = this.chosenShipper.player //shipper messages BOTH side leafs.
 			}
 		}
 		drawChat(canvasDiv, player1, player2, this.romanceChat, 1000,image);
