@@ -286,15 +286,15 @@ function UpdateShippingGrid(session){
 		var p2Start = p2.chatHandleShort()+ ": "
 		if(this.chosenShipper.player.aspect == "Blood"){
 			if(otp.r1.saved_type == otp.r1.goodBig){
-				 this.tryToConvincePale(shipper, shipperStart, p1, p1Start, p2, p2Start);
+				 ret += this.tryToConvincePale(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}else{
-				 this.tryToConvinceAshen(shipper, shipperStart, p1, p1Start, p2, p2Start);
+				 ret += this.tryToConvinceAshen(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}
 		}else{
 			if(otp.r1.saved_type == otp.r1.goodBig){
-			 	this.tryToConvinceFlushed(shipper, shipperStart, p1, p1Start, p2, p2Start);
+			 	ret += this.tryToConvinceFlushed(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}else{
-				 this.tryToConvinceBlack(shipper, shipperStart, p1, p1Start, p2, p2Start);
+				 ret += this.tryToConvinceBlack(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}
 		}
 		return ret;  //chats will be stored to a var.
@@ -307,6 +307,7 @@ function UpdateShippingGrid(session){
 	*****************************************************************************************************************/
 	this.tryToConvinceFlushed = function(shipper, shipperStart, p1, p1Start, p2, p2Start){
 			var chat = "";
+			var ret = ""
 			//chats happen in order.
 			var willItWork = this.evaluateFlushedProposal(p1, p2);
 			var myRelationshipWithOTP1 = shipper.getRelationshipWith(p2);
@@ -330,11 +331,35 @@ function UpdateShippingGrid(session){
 				var willTheyAgree = this.evaluateFlushedProposal(p2, p1);
 				//for these, second column will always be about "are they going to say yes or not"
 				c= new PlusMinusConversationalPair(["Hey!"], ["Hey!", "Oh cool, I was just thinking of you!"],["What's up?", "Hey"]);
-				chat += c.getOpeningLine(shipper, shipperStart);
-				chat += c.getP2ResponseBasedOnBool(p1, p1Start, willTheyAgree)
+				chat += c.getOpeningLine(p1, p1Start);
+				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
+				c= new PlusMinusConversationalPair(["So...you know how " + shipper.chatHandleShort() + " is always bugging and fussing and meddling? ",shipper.chatHandleShort() + " was just pestering me about that shipping grid thing they do. "], ["Oh! Yeah, that sure is a thing they do!", "Oh yeah?"],["Hah, they are always so off base with their ships.", "Uh huh?"]);
+				chat += c.getOpeningLine(p1, p1Start);
+				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
+				c= new PlusMinusConversationalPair(["Look, I'll come right out and say it. I think I'm flushed for you. ","I like you. Romantically. In the flushed quadrant."], ["Holy shit! Really!?  I...fuck, I like you too!", "Oh. Oh fuck. Wow. I like you, too!"],["I can't. Don't make me choose. I can't say yes.", "I'm so sorry... I just can't reciprocate right now."]);
+				chat += c.getOpeningLine(p1, p1Start);
+				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
+				if(willTheyAgree){ //celebrate success, change relationship status, give huge boost to shipper, return result.
+					c= new PlusMinusConversationalPair(["Of fuck yes!","Oh wow, I sure am glad I listened to " + shipper.chatHandleShort() + "! "], ["<3"],["JR: This will never hit cause i know they said yes."]);
+					chat += c.getOpeningLine(p1, p1Start);
+					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
+					makeHeart(p1, p2);
+					this.chosenShipper.player.increasePower();
+					this.chosenShipper.player.increasePower();
+					this.chosenShipper.player.increasePower();
+				}else{ //response to being rejected.
+					c= new PlusMinusConversationalPair(["Fuck","But...fuck. "],["JR: this won't happen because i know they got rejected."], ["I'm sorry. I really am."]);
+					chat += c.getOpeningLine(p1, p1Start);
+					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
+					ret += "The " + chosenShipper.htmlTitleBasic() + " is disappointed that it didn't work out. Oh well, if at first you don't succeed...";
+				}
+
 
 				this.romanceChat = chat;
+			}else{
+				ret += "The " + chosenShipper.htmlTitleBasic() + " is frustrated that the " + p1.htmlTitleBasic() + " won't listen to reason. ";
 			}
+			return ret;
 	}
 
 	//do i already have a heart mate? do i like this.chosenShipper? these things matter.
