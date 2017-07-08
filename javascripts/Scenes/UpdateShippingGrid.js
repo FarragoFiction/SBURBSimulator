@@ -165,6 +165,10 @@ function UpdateShippingGrid(session){
 		if(!this.shippingChat) return;
 		var player1 = this.chosenShipper.player;
 		var player2 = this.chosenShipper.otp.r2.target;
+		if(player1 == player2){
+			player1 = makeRenderingSnapshot(shipper);
+			player1.chatHandle = "future" + shipper.chatHandle;
+		}
 		var divID = (div.attr("id")) + "_canvas_shipping"+ this.chosenShipper.id;
 		var canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
@@ -278,7 +282,7 @@ function UpdateShippingGrid(session){
 	//they will either agree or disagree.
 	//then they will pester the object of their affection and be rejected or not.
 	this.activateShippingPowers = function(otp){
-		alert("???")
+		//alert("??? " + this.session.session_id)
 		var ret = " <Br> <br> The " + this.chosenShipper.player.htmlTitleBasic() + " notices that one of their favorite ships seems to be on the verge of getting together! All it will take is the slightest of nudges...";
 		//if that chat results in them agreeing, do next chat. (between rom partners)
 		var shipper = this.chosenShipper.player;
@@ -320,6 +324,12 @@ function UpdateShippingGrid(session){
 			var myRelationshipWithOTP1 = shipper.getRelationshipWith(p2);
 			var theirRelationshipWithMe = p2.getRelationshipWith(shipper);
 			var c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!"], ["Hey."],["Hey, asshole."]);
+			if(shipper == p1){
+				shipper = makeRenderingSnapshot(shipper);
+				shipper.chatHandle = "future" + shipper.chatHandle;
+				shipperStart = "F"+shipperStart;
+				c= new PlusMinusConversationalPair(["Look, don't panic, but I'm you from the future and you HAVE to listen to me. "], ["What the fuck?", "Holy shit, give me your future wisdom."],["Holy shit, why are you dooming a timeline?"]);
+			}
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
 			c= new PlusMinusConversationalPair(["You know how I keep track of romance shit? ", "So I was going over my shipping grid, and I wanted to run something by you."], ["Okay?", "I'm listening..."],["Oh god, not that again.", "Is this REALLY a priority right now?"]);
@@ -375,6 +385,12 @@ function UpdateShippingGrid(session){
 			var myRelationshipWithOTP1 = shipper.getRelationshipWith(p2);
 			var theirRelationshipWithMe = p2.getRelationshipWith(shipper);
 			var c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!"], ["Hey."],["Hey, asshole."]);
+			if(shipper == p1){
+				shipper = makeRenderingSnapshot(shipper);
+				shipper.chatHandle = "future" + shipper.chatHandle;
+				shipperStart = "F"+shipperStart;
+				c= new PlusMinusConversationalPair(["Look, don't panic, but I'm you from the future and you HAVE to listen to me. "], ["What the fuck?", "Holy shit, give me your future wisdom."],["Holy shit, why are you dooming a timeline?"]);
+			}
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
 			c= new PlusMinusConversationalPair(["You know how I keep track of romance shit? ", "So I was going over my shipping grid, and I wanted to run something by you."], ["Okay?", "I'm listening..."],["Oh god, not that again.", "Is this REALLY a priority right now?"]);
@@ -433,6 +449,12 @@ function UpdateShippingGrid(session){
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
 			c= new PlusMinusConversationalPair(["You know how I keep track of romance shit? ", "So I was going over my shipping grid, and I wanted to run something by you."], ["Okay?", "I'm listening..."],["Oh god, not that again.", "Is this REALLY a priority right now?"]);
+			if(shipper == p1){
+				shipper = makeRenderingSnapshot(shipper);
+				shipper.chatHandle = "future" + shipper.chatHandle;
+				shipperStart = "F"+shipperStart;
+				c= new PlusMinusConversationalPair(["Look, don't panic, but I'm you from the future and you HAVE to listen to me. "], ["What the fuck?", "Holy shit, give me your future wisdom."],["Holy shit, why are you dooming a timeline?"]);
+			}
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
 			//from this point on, second array isn't "i hate you you suck", but "i am NOT going to message my crush." it's getP2ResponseBasedOnBool, not relationship
@@ -486,6 +508,12 @@ function UpdateShippingGrid(session){
 			var myRelationshipWithOTP1 = shipper.getRelationshipWith(p2);
 			var theirRelationshipWithMe = p2.getRelationshipWith(shipper);
 			var c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!"], ["Hey."],["Hey, asshole."]);
+			if(shipper == p1){
+				shipper = makeRenderingSnapshot(shipper);
+				shipper.chatHandle = "future" + shipper.chatHandle;
+				shipperStart = "F"+shipperStart;
+				c= new PlusMinusConversationalPair(["Look, don't panic, but I'm you from the future and you HAVE to listen to me. "], ["What the fuck?", "Holy shit, give me your future wisdom."],["Holy shit, why are you dooming a timeline?"]);
+			}
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
 			c= new PlusMinusConversationalPair(["You know how I keep track of romance shit? ", "So I was going over my shipping grid, and I wanted to run something by you."], ["Okay?", "I'm listening..."],["Oh god, not that again.", "Is this REALLY a priority right now?"]);
@@ -550,7 +578,7 @@ function UpdateShippingGrid(session){
 			if(!player.isQuadranted()) reasonsFor += 4; //I am lonely
 			if(player.getBestFriend() == target) reasonsFor += 5; //I REALLY like them.
 			var r = player.getRelationshipWith(this.chosenShipper.player)
-			if(r.value < 0) this.reasonsAgainst ++; //say 'no' just to spite shipper
+			if(r && r.value < 0) this.reasonsAgainst ++; //say 'no' just to spite shipper
 			if(player.getWorstEnemyFromList(this.session.players) == this.chosenShipper.player) reasonsAgainst += 5; //I REALLY hate the shipper.
 			return reasonsFor > reasonsAgainst;
 	}
@@ -565,7 +593,7 @@ function UpdateShippingGrid(session){
 			if(!player.isQuadranted()) reasonsFor += 4; //I am lonely
 			if(player.getBestFriend() == target) reasonsFor += 5; //I REALLY like them.
 			var r = player.getRelationshipWith(this.chosenShipper.player)
-			if(r.value < 0) this.reasonsAgainst ++; //say 'no' just to spite shipper
+			if(r && r.value < 0) this.reasonsAgainst ++; //say 'no' just to spite shipper
 			if(player.getWorstEnemyFromList(this.session.players) == this.chosenShipper.player) reasonsAgainst += 5; //I REALLY hate the shipper.
 			return reasonsFor > reasonsAgainst;
 	}
@@ -579,9 +607,9 @@ function UpdateShippingGrid(session){
 			if(!player.isQuadranted()) reasonsFor += 4; //I am lonely
 			if(player.getWorstEnemyFromList(this.session.players) == target) reasonsFor += 5; //I REALLY like them.
 			var r = player.getRelationshipWith(this.chosenShipper.player)
-			if(r.value < 0) this.reasonsFor ++; //actually, you really hate the shipper, too, this might work out.
+			if(r && r.value < 0) this.reasonsFor ++; //actually, you really hate the shipper, too, this might work out.
 			if(player.getWorstEnemyFromList(this.session.players) == this.chosenShipper.player) reasonsFor += 5; //I REALLY hate the shipper, this might work out.
-			if(r.value > 0) this.reasonsAgainst ++; //actually, you really like the shipper, you don't want to be ashen for them.
+			if(r && r.value > 0) this.reasonsAgainst ++; //actually, you really like the shipper, you don't want to be ashen for them.
 			if(player.getBestFriend() == this.chosenShipper.player) reasonsAgainst += 50; //hell no, i can't be ashen for someone i like this much.
 
 			return reasonsFor > reasonsAgainst;
@@ -596,7 +624,7 @@ function UpdateShippingGrid(session){
 			if(!player.isQuadranted()) reasonsFor += 4; //I am lonely
 			if(player.getWorstEnemyFromList(this.session.players) == target) reasonsFor += 5; //I REALLY hate them.
 			var r = player.getRelationshipWith(this.chosenShipper.player)
-			if(r.value < 0) this.reasonsAgainst ++; //say 'no' just to spite shipper
+			if(r && r.value < 0) this.reasonsAgainst ++; //say 'no' just to spite shipper
 			if(player.getWorstEnemyFromList(this.session.players) == this.chosenShipper.player) reasonsAgainst += 5; //I REALLY hate the shipper.
 			return reasonsFor > reasonsAgainst;
 	}

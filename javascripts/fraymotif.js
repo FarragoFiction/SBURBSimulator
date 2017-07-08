@@ -121,27 +121,29 @@ function Fraymotif(aspects, name,tier, flavorText){
 
 
   this.goodStatWords = function(statName){
-    if(statName == "power") return ["strength","power","might"]
-    if(statName == "hp") return ["plants","health","vines", "gardens", "stones"]
-    if(statName == "RELATIONSHIPS") return ["chains","friendship bracelets","shipping grids", "connections", "hearts", "pulse", "bindings", "rainbows", "care bare stares"]
-    if(statName == "mobility") return ["wind","speed","hedgehogs", "whirlwinds", "gales", "hurricanes"]
-    if(statName == "sanity") return ["calmness","velvet pillows","sanity", "ripples", "glass", "fuzz"]
-    if(statName == "freeWill") return ["electricity","will","open doors"]
-    if(statName == "maxLuck") return ["dice","luck","light"]
-    if(statName == "minLuck") return ["dice","luck","light"]
-    if(statName == "alchemy") return ["inspiration","creativeness","grist", "perfectly generic objects"]
+    if(statName == "power") return ["strength","power","might","fire","pure energy","STRENGTH"]
+    if(statName == "hp") return ["plants","health","vines", "gardens", "stones","earth","life","moss","fruit","growth"]
+    if(statName == "RELATIONSHIPS") return ["chains","friendship bracelets","shipping grids", "connections", "hearts", "pulse", "bindings", "rainbows", "care bare stares", "mirrors"]
+    if(statName == "mobility") return ["wind","speed","hedgehogs", "whirlwinds", "gales", "hurricanes","thunder","storms","momentum", "feathers"]
+    if(statName == "sanity") return ["calmness","sanity", "ripples", "glass", "fuzz","water","stillness","totally real magic"]
+//,"velvet pillows"
+    if(statName == "freeWill") return ["electricity","will", "open doors", "possibility", "quantum physics" ,"lightning","sparks","chaos", "broken gears"]
+    if(statName == "maxLuck") return ["dice","luck","light","playing cards", "suns","absolute bullshit","card suits", "hope"]
+    if(statName == "minLuck") return ["dice","luck","light","playing cards", "suns","absolute bullshit","card suits"]
+    if(statName == "alchemy") return ["inspiration","creativeness","grist", "perfectly generic objects","hammers","swords","weapons", "creativity","mist", "engines", "metals"]
   }
 
   this.badStatWords = function(statName){
-    if(statName == "power") return ["weakness","powerlessness","despair"]
-    if(statName == "hp") return ["fragility","rotting plants","disease", "bones", "skulls", "tombstones", "ash", "toxin"]
-    if(statName == "RELATIONSHIPS") return ["aggression","broken chains","empty friends lists"]
-    if(statName == "mobility") return ["laziness","sloths","pillows", "locks", "weights"]
-    if(statName == "sanity") return ["harshwimsies","clowns","fractals", "madness", "tentacles", "rain"]
-    if(statName == "freeWill") return ["acceptance","gullibility","closed doors", "gears", "clocks", "prophecy", "static"]
-    if(statName == "maxLuck") return ["misfortune","blank books","broken mirrors"]
-    if(statName == "minLuck") return ["misfortune","blank books","broken mirrors"]
-    if(statName == "alchemy") return ["failure","writer's blocks","monotony"]
+    if(statName == "power") return ["weakness","powerlessness","despair","wretchedness","misery"]
+    if(statName == "hp") return ["fragility","rotting plants","disease", "bones", "skulls", "tombstones", "ash", "toxin","mold", "viruses"]
+    if(statName == "RELATIONSHIPS") return ["aggression","broken chains","empty friends lists","sand","loneliness"]
+    if(statName == "mobility") return ["laziness", "locks", "weights","manacles","quicksand","gravitons","gravity","ice"]
+//"pillows", "sloths",
+    if(statName == "sanity") return ["harshwimsies","clowns","fractals", "madness", "tentacles", "rain", "screams", "terror", "nightmares", "mIrAcLeS", "rage","impossible angles","teeth"]
+    if(statName == "freeWill") return ["acceptance","gullibility","closed doors", "gears", "clocks", "prophecy", "static","skian clouds"]
+    if(statName == "maxLuck") return ["misfortune","blank books","broken mirrors","hexes", "doom", "8ad 8reaks", "disaster", "black cats"]
+    if(statName == "minLuck") return ["misfortune","blank books","broken mirrors","hexes", "doom", "8ad 8reaks", "disaster", "black cats"]
+    if(statName == "alchemy") return ["failure","writer's blocks","monotony","broken objects","object shards","nails","splinters"]
   }
 
 
@@ -217,35 +219,35 @@ function Fraymotif(aspects, name,tier, flavorText){
   }
 
   this.getSelfWords=function(){
-    return ["aura","cloak","shield", "armor", "robe"]
+    return ["aura", "cloak", "shield", "armor", "robe", "orbit", "suit", "aegis"]
   }
 
   this.getAlliesWords= function(){
-      return ["cloud","mist","fog"]
+      return ["cloud", "mist", "fog", "ward", "wall", "blockade", "matrix"]
   }
 
   this.getEnemyWords = function(){
-      return ["lance","spike","laser", "hammer", "shard", "ball", "meteor"]
+      return ["lance","spike","laser", "hammer", "shard", "ball", "meteor", "fist","beautiful pony", "cube", "bolt"]
   }
 
   this.getEnemiesWords = function(){
-      return ["explosion","blast","miasma", "matrix", "deluge", "cascade", "wave", "fleet"]
+      return ["explosion","blast","miasma", "matrix", "deluge", "cascade", "wave", "fleet", "illusion"]
   }
 
   this.getDamageWords = function(){
-        return ["painful","acidic","sharp", "harmful", "beautiful pony", "fist"];
+        return ["painful","acidic","sharp", "harmful", "violent", "murderous", "destructive", "explosive"];
   }
 
   this.getDebuffWords = function(){
-        return ["draining","malicious", "distracting", "degrading"];
+        return ["draining","malicious", "distracting", "degrading", "debuffing", "cursed", "vampiric"];
   }
 
   this.getHealingWords = function(){
-    return ["healing","restorative","restful"];
+    return ["healing","restorative","restful","rejuvenating","reinforcing"];
   }
 
   this.getBuffWords = function(){
-    return ["soothing","supportive","friendly", "fortifying", "protecting", "warding", "defensive"];
+    return ["soothing","supportive","friendly", "fortifying", "protecting", "warding", "defensive","blessed"];
   }
 
   this.canCast = function(owner, allies, enemies){
