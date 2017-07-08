@@ -312,7 +312,7 @@ function UpdateShippingGrid(session){
 			var reasonsFor = 1; //come on, you know you like them.
 			var reasonsAgainst = 0;
 			reasonsAgainst += this.getHearts().length; //they are already in a relationship
-			if(this.getHearts().length == 0) reasonsFor ++; //they are single
+			if(player.getHearts().length == 0) reasonsFor ++; //they are single
 			if(!player.isQuadranted()) reasonsFor += 4; //they are lonely
 			if(player.getBestFriend() == target) reasonsFor += 5; //you REALLY like them.
 			var r = player.getRelationshipWith(this.chosenShipper.player)
