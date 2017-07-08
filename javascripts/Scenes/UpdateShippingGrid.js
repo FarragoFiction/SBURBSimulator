@@ -296,22 +296,23 @@ function UpdateShippingGrid(session){
 			c= new PlusMinusConversationalPair(["You know how I keep track of romance shit? ", "So I was going over my shipping grid, and I wanted to run something by you."], ["Okay?", "I'm listening..."],["Oh god, not that again.", "Is this REALLY a priority right now?"]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
-			//from this point on, second array isn't "i hate you you suck", but "i am NOT going to message my crush."
+			//from this point on, second array isn't "i hate you you suck", but "i am NOT going to message my crush." it's getP2ResponseBasedOnBool, not relationship
 			c= new PlusMinusConversationalPair(["I think you and " + p2.chatHandleShort() + " might work out really well flushed. ",  "I think you and " + p2.chatHandleShort() + " likes you, flush style."], ["Wait.... really!? ", "Holy shit."],["I am not going to dignify that with a response. ", "I don't see how that's any of your business."]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
 			c= new PlusMinusConversationalPair(["Just trust me, you should absolutly try messaging them. ",  "I believe in you!"], ["Wow...maybe you are right! ", "Yeah, okay, I'll message them right away."],["Yeah, that is not going to happen.", "Sorry, but no."]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
-
-			//evaluate first few lines with default thingy of p2GetResponseBasedOnRelationship
-			//once i have stopped beating around the bush, need to evaluate chat based on: getP2ResponseBasedOnBool but before is just based on relationship
-
 			this.shippingChat = chat;
+			if(willItWork){ //now it's time to build up the confession.
+				var willTheyAgree = this.evaluateFlushedProposal(p2, p1);
+				chat = "";  //don't need to get relationships, i know they both like each other
+			}
 	}
 
 	//do i already have a heart mate? do i like this.chosenShipper? these things matter.
 	//tick tock logical heart (best fraymotif name)
+	//yes it makes less since if the OTHER guy accepts or rejects based on shipper, but...whatever. it's heart/blood magic recoil failure. except magic is fake as shit. ignore that.
 	this.evaluateFlushedProposal = function(player, target){
 			var reasonsFor = 1; //come on, you know you like them.
 			var reasonsAgainst = 0;
