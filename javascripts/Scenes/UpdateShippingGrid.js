@@ -172,13 +172,13 @@ function UpdateShippingGrid(session){
 		var otp = this.chosenShipper.otp;
 		var image = "discuss_hatemance.png";
 		if(player1.aspect == "Heart"){
-			if(otp.r1.saved_type == otp.r1.goodBig){
+			if(otp.r1.saved_type == otp.r1.heart){
 				image = "discuss_romance.png";
 			}else{
 				image = "discuss_hatemance.png";
 			}
 		}else{
-			if(otp.r1.saved_type == otp.r1.goodBig){
+			if(otp.r1.saved_type == otp.r1.diamond){
 				image = "discuss_palemance.png"
 			}else{
 				image = "discuss_ashenmance.png"
@@ -325,7 +325,7 @@ function UpdateShippingGrid(session){
 			c= new PlusMinusConversationalPair(["I think you and " + p2.chatHandleShort() + " might work out really well flushed. ",  "I think you and " + p2.chatHandleShort() + " likes you, flush style."], ["Wait.... really!? ", "Holy shit."],["I am not going to dignify that with a response. ", "I don't see how that's any of your business."]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
-			c= new PlusMinusConversationalPair(["Just trust me, you should absolutly try messaging them. ",  "I believe in you!"], ["Wow...maybe you are right! ", "Yeah, okay, I'll message them right away."],["Yeah, that is not going to happen.", "Sorry, but no."]);
+			c= new PlusMinusConversationalPair(["Just trust me, you should absolutely try messaging them. ",  "I believe in you!"], ["Wow...maybe you are right! ", "Yeah, okay, I'll message them right away."],["Yeah, that is not going to happen.", "Sorry, but no."]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
 			this.shippingChat = chat;
