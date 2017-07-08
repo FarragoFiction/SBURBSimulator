@@ -311,13 +311,14 @@ function UpdateShippingGrid(session){
 	this.evaluateFlushedProposal = function(player, target){
 			var reasonsFor = 1; //come on, you know you like them.
 			var reasonsAgainst = 0;
-			reasonsAgainst += this.getHearts().length; //they are already in a relationship
-			if(player.getHearts().length == 0) reasonsFor ++; //they are single
-			if(!player.isQuadranted()) reasonsFor += 4; //they are lonely
-			if(player.getBestFriend() == target) reasonsFor += 5; //you REALLY like them.
+			reasonsAgainst += player.getHearts().length; //I am already in a relationship
+			reasonsAgainst += target.getHearts().length; //they are already in a relationship
+			if(player.getHearts().length == 0) reasonsFor ++; //I am single
+			if(!player.isQuadranted()) reasonsFor += 4; //I am lonely
+			if(player.getBestFriend() == target) reasonsFor += 5; //I REALLY like them.
 			var r = player.getRelationshipWith(this.chosenShipper.player)
 			if(r.value < 0) this.reasonsAgainst ++; //say 'no' just to spite shipper
-			if(player.getWorstEnemyFromList(this.session.players) == this.chosenShipper.player) reasonsAgainst += 5; //you REALLY hate the shipper.
+			if(player.getWorstEnemyFromList(this.session.players) == this.chosenShipper.player) reasonsAgainst += 5; //I REALLY hate the shipper.
 			return reasonsFor > reasonsAgainst;
 	}
 
