@@ -203,13 +203,13 @@ function UpdateShippingGrid(session){
 		var otp = this.chosenShipper.otp;
 		var image = "discuss_hatemance.png";
 		if(this.chosenShipper.player.aspect == "Heart"){
-			if(otp.r1.saved_type == otp.r1.heart){
+			if(otp.r1.saved_type == otp.r1.heart || otp.r1.saved_type == otp.r1.goodBig){
 				image = "discuss_romance.png";
 			}else{
 				image = "discuss_hatemance.png";
 			}
 		}else{
-			if(otp.r1.saved_type == otp.r1.diamond){
+			if(otp.r1.saved_type == otp.r1.diamond || otp.r1.saved_type == otp.r1.goodBig){
 				image = "discuss_palemance.png"
 			}else{
 				image = "discuss_ashenmance.png"
