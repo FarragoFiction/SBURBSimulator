@@ -336,7 +336,7 @@ function UpdateShippingGrid(session){
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
 			//from this point on, second array isn't "i hate you you suck", but "i am NOT going to message my crush." it's getP2ResponseBasedOnBool, not relationship
-			c= new PlusMinusConversationalPair(["I think you and " + p2.chatHandleShort() + " might work out really well flushed. ",  "I think you and " + p2.chatHandleShort() + " likes you, flush style."], ["Wait.... really!? ", "Holy shit."],["I am not going to dignify that with a response. ", "I don't see how that's any of your business."]);
+			c= new PlusMinusConversationalPair(["I think you and " + p2.chatHandleShort() + " might work out really well flushed. ",  "I think " + p2.chatHandleShort() + " likes you, flush style."], ["Wait.... really!? ", "Holy shit."],["I am not going to dignify that with a response. ", "I don't see how that's any of your business."]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
 			c= new PlusMinusConversationalPair(["Just trust me, you should absolutely try messaging them. ",  "I believe in you!"], ["Wow...maybe you are right! ", "Yeah, okay, I'll message them right away."],["Yeah, that is not going to happen.", "Sorry, but no."]);
@@ -397,7 +397,7 @@ function UpdateShippingGrid(session){
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
 			//from this point on, second array isn't "i hate you you suck", but "i am NOT going to message my crush." it's getP2ResponseBasedOnBool, not relationship
-			c= new PlusMinusConversationalPair(["I think you and " + p2.chatHandleShort() + " might work out really well pale. ",  "I think you and " + p2.chatHandleShort() + " likes you, pale style."], ["Wait.... really!? ", "Holy shit."],["I am not going to dignify that with a response. ", "I don't see how that's any of your business."]);
+			c= new PlusMinusConversationalPair(["I think you and " + p2.chatHandleShort() + " might work out really well pale. ",  "I think " + p2.chatHandleShort() + " likes you, pale style."], ["Wait.... really!? ", "Holy shit."],["I am not going to dignify that with a response. ", "I don't see how that's any of your business."]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
 			c= new PlusMinusConversationalPair(["Just trust me, you should absolutely try messaging them. ",  "I believe in you!"], ["Wow...maybe you are right! ", "Yeah, okay, I'll message them right away."],["Yeah, that is not going to happen.", "Sorry, but no."]);
@@ -458,7 +458,7 @@ function UpdateShippingGrid(session){
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
 			//from this point on, second array isn't "i hate you you suck", but "i am NOT going to message my crush." it's getP2ResponseBasedOnBool, not relationship
-			c= new PlusMinusConversationalPair(["I think you and " + p2.chatHandleShort() + " are a TERRIBLE match, for spades. I...kind of want to keep you guys from getting together. ",  "I think you and " + p2.chatHandleShort() + " likes you, spades style. Aaannnd...that is a TERRIBLE idea. I want to sort of maybe kind of auspisticize you guys."], ["Wait.... really!? ", "Holy shit."],["I am not going to dignify that with a response. ", "I don't see how that's any of your business."]);
+			c= new PlusMinusConversationalPair(["I think you and " + p2.chatHandleShort() + " are a TERRIBLE match, for spades. I...kind of want to keep you guys from getting together. ",  "I think " + p2.chatHandleShort() + " likes you, spades style. Aaannnd...that is a TERRIBLE idea. I want to sort of maybe kind of auspisticize you guys."], ["Wait.... really!? ", "Holy shit."],["I am not going to dignify that with a response. ", "I don't see how that's any of your business."]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
 			c= new PlusMinusConversationalPair(["Just trust me, if you agree, I'll message them next. ",  "I am gonna contact them next if you agree. "], ["Wow...maybe you are right! ", "Yeah, okay, go ahead."],["Yeah, that is not going to happen.", "Sorry, but no."]);
@@ -520,7 +520,7 @@ function UpdateShippingGrid(session){
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
 			//from this point on, second array isn't "i hate you you suck", but "i am NOT going to message my crush." it's getP2ResponseBasedOnBool, not relationship
-			c= new PlusMinusConversationalPair(["I think you and " + p2.chatHandleShort() + " might work out really well spades. ",  "I think you and " + p2.chatHandleShort() + " likes you, spades style."], ["Wait.... really!? ", "Holy shit."],["I am not going to dignify that with a response. ", "I don't see how that's any of your business."]);
+			c= new PlusMinusConversationalPair(["I think you and " + p2.chatHandleShort() + " might work out really well spades. ",  "I think " + p2.chatHandleShort() + " likes you, spades style."], ["Wait.... really!? ", "Holy shit."],["I am not going to dignify that with a response. ", "I don't see how that's any of your business."]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
 			c= new PlusMinusConversationalPair(["Just trust me, you should absolutely try messaging them. ",  "I believe in you!"], ["Wow...maybe you are right! ", "Yeah, okay, I'll message them right away."],["Yeah, that is not going to happen.", "Sorry, but no."]);
