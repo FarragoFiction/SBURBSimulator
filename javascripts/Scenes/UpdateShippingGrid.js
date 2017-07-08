@@ -289,14 +289,18 @@ function UpdateShippingGrid(session){
 		var p2Start = p2.chatHandleShort()+ ": "
 		if(this.chosenShipper.player.aspect == "Blood"){
 			if(otp.r1.saved_type == otp.r1.goodBig){
+				 console.log("trying to make a pale ship happen: " + this.session.session_id)
 				 this.tryToConvincePale(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}else{
+				 console.log("trying to make an ashen ship happen: " + this.session.session_id)
 				 this.tryToConvinceAshen(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}
 		}else{
 			if(otp.r1.saved_type == otp.r1.goodBig){
+				 console.log("trying to make a flushed ship happen: " + this.session.session_id)
 			 	this.tryToConvinceFlushed(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}else{
+				 console.log("trying to make a black ship happen: " + this.session.session_id)
 				 this.tryToConvinceBlack(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}
 		}
