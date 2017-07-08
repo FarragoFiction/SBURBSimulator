@@ -366,7 +366,7 @@ function UpdateShippingGrid(session){
 					this.chosenShipper.player.leveledTheHellUp = true;
 					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect + " player. ";
 				}else{ //response to being rejected.
-					c= new PlusMinusConversationalPair(["Fuck","But...fuck. "],["JR: this won't happen because i know they got rejected."], ["I'm sorry. I really am."]);
+					c= new PlusMinusConversationalPair(["Fuck","But... fuck. "],["JR: this won't happen because i know they got rejected."], ["I'm sorry. I really am."]);
 					chat += c.getOpeningLine(p1, p1Start);
 					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
 					console.log("Ship failed when it was almost done : " + this.session.session_id);
@@ -429,7 +429,7 @@ function UpdateShippingGrid(session){
 					this.chosenShipper.player.leveledTheHellUp = true;
 					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect + " player. ";
 				}else{ //response to being rejected.
-					c= new PlusMinusConversationalPair(["Fuck","But...fuck. "],["JR: this won't happen because i know they got rejected."], ["I'm sorry. I really am."]);
+					c= new PlusMinusConversationalPair(["Fuck","But... fuck. "],["JR: this won't happen because i know they got rejected."], ["I'm sorry. I really am."]);
 					chat += c.getOpeningLine(p1, p1Start);
 					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
 					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is disappointed that it didn't work out. Oh well, if at first you don't succeed...";
@@ -490,7 +490,7 @@ function UpdateShippingGrid(session){
 					this.chosenShipper.player.leveledTheHellUp = true;
 					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect + " player. ";
 				}else{ //response to being rejected.
-					c= new PlusMinusConversationalPair(["Fuck","But...fuck. "],["JR: this won't happen because i know they got rejected."], ["I'm sorry. I really am."]);
+					c= new PlusMinusConversationalPair(["Fuck","But... fuck. "],["JR: this won't happen because i know they got rejected."], ["I'm sorry. I really am."]);
 					chat += c.getOpeningLine(shipper, shipperStart);
 					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
 					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is disappointed that it didn't work out. Oh well, if at first you don't succeed...";
@@ -552,7 +552,7 @@ function UpdateShippingGrid(session){
 					this.chosenShipper.player.leveledTheHellUp = true;
 					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect + " player. ";
 				}else{ //response to being rejected.
-					c= new PlusMinusConversationalPair(["Fuck","But...fuck. "],["JR: this won't happen because i know they got rejected."], ["I'm sorry. I really am."]);
+					c= new PlusMinusConversationalPair(["Fuck","But... fuck. "],["JR: this won't happen because i know they got rejected."], ["I'm sorry. I really am."]);
 					chat += c.getOpeningLine(p1, p1Start);
 					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
 					ret += "The " + chosenShipper.player.htmlTitleBasic() + " is disappointed that it didn't work out. Oh well, if at first you don't succeed...";
