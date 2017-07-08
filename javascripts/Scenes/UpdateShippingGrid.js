@@ -347,16 +347,16 @@ function UpdateShippingGrid(session){
 					this.chosenShipper.player.increasePower();
 					this.chosenShipper.player.increasePower();
 					this.chosenShipper.player.increasePower();
-					ret += "The " + this.chosenShipper.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.aspect + " player. ";
+					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect + " player. ";
 				}else{ //response to being rejected.
 					c= new PlusMinusConversationalPair(["Fuck","But...fuck. "],["JR: this won't happen because i know they got rejected."], ["I'm sorry. I really am."]);
 					chat += c.getOpeningLine(p1, p1Start);
 					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
-					ret += "The " + chosenShipper.htmlTitleBasic() + " is disappointed that it didn't work out. Oh well, if at first you don't succeed...";
+					ret += "The " + chosenShipper.player.htmlTitleBasic() + " is disappointed that it didn't work out. Oh well, if at first you don't succeed...";
 				}
 				this.romanceChat = chat;
 			}else{
-				ret += "The " + this.chosenShipper.htmlTitleBasic() + " is frustrated that the " + p1.htmlTitleBasic() + " won't listen to reason. ";
+				ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is frustrated that the " + p1.htmlTitleBasic() + " won't listen to reason. ";
 			}
 			return ret;
 	}
