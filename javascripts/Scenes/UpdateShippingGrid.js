@@ -287,12 +287,18 @@ function UpdateShippingGrid(session){
 	this.tryToConvinceFlushed = function(shipper, shipperStart, p1, p1Start, p2, p2Start){
 			var chat = "";
 			//chats happen in order.
-			var willItWork = this.evaluateFlushedProposal(p2);
+			var willItWork = this.evaluateFlushedProposal(p1, p2);
 			var myRelationshipWithOTP1 = shipper.getRelationshipWith(p2);
 			var theirRelationshipWithMe = p2.getRelationshipWith(shipper);
 			var c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!"], ["Hey."],["Hey, asshole."]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
+			c= new PlusMinusConversationalPair(["You know how I keep track of romance shit? ", "So I was going over my shipping grid, and I wanted to run something by you."], ["Okay?", "I'm listening..."],["Oh god, not that again.", "Is this REALLY a priority right now?"]);
+			chat += c.getOpeningLine(shipper, shipperStart);
+			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
+			c= new PlusMinusConversationalPair(["I think you and " + p2.chatHandleShort() + " might work out really well flushed. ",  "I think you and " + p2.chatHandleShort() + " likes you, flush style."], ["Wait.... really!? ", "Holy shit."],["I am not going to dignify that with a response. ", "Would you stop meddling!?"]);
+			chat += c.getOpeningLine(shipper, shipperStart);
+			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
 
 			//evaluate first few lines with default thingy of p2GetResponseBasedOnRelationship
 			//once i have stopped beating around the bush, need to evaluate chat based on: getP2ResponseBasedOnBool but before is just based on relationship
@@ -301,8 +307,18 @@ function UpdateShippingGrid(session){
 	}
 
 	//do i already have a heart mate? do i like this.chosenShipper? these things matter.
-	this.evaluateFlushedProposal = function(player){
-
+	//tick tock logical heart (best fraymotif name)
+	this.evaluateFlushedProposal = function(player, target){
+			var reasonsFor = 1; //come on, you know you like them.
+			var reasonsAgainst = 0;
+			reasonsAgainst += this.getHearts().length; //they are already in a relationship
+			if(this.getHearts().length == 0) reasonsFor ++; //they are single
+			if(!player.isQuadranted()) reasonsFor += 4; //they are lonely
+			if(player.getBestFriend() == target) reasonsFor += 5; //you REALLY like them.
+			var r = player.getRelationshipWith(this.chosenShipper.player)
+			if(r.value < 0) this.reasonsAgainst ++; //say 'no' just to spite shipper
+			if(player.getWorstEnemyFromList(this.session.players) == this.chosenShipper.player) reasonsAgainst += 5; //you REALLY hate the shipper.
+			return reasonsFor > reasonsAgainst;
 	}
 
 	this.tryToConvinceBlack = function(shipper, shipperStart, p1, p1Start, p2, p2Start){
