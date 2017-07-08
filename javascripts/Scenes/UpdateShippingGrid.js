@@ -599,6 +599,7 @@ function UpdateShippingGrid(session){
 	}
 
 	this.evaluateAshenProposal = function(player, target){
+			if(this.chosenShipper.player == player || this.chosenShipper.player == target) return false; // you can't be in a quadrant with yourself, dunkass.
 			var reasonsFor = 1; //come on, you know you like them.
 			var reasonsAgainst = 0;
 			reasonsFor += player.getSpades().length; //I am already in a relationship, so I should stop being black for them.
