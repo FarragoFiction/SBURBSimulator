@@ -209,7 +209,7 @@ function Aftermath(session){
 //take "firstcanvas"+ this.player.id+"_" + this.session.session_id from intro, and copy it here to display for first time.
 this.lastRender = function(div){
     div = $("#charSheets");
-    if(!div) return; //don't try to render if there's no where to render to
+    if(div.length == 0) return; //don't try to render if there's no where to render to
 	for(var i = 0; i<this.session.players.length; i++){
 		var canvasHTML = "<canvas class = 'charSheet' id='lastcanvas" + this.session.players[i].id+"_" + this.session.session_id+"' width='800' height='1000'>  </canvas>";
 		div.append(canvasHTML);
