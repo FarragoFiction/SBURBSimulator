@@ -1424,7 +1424,12 @@ function drawSpriteFromScratch(canvas, player,ctx,baby){
   }
 
   if(faceOff){
-    drawWhatever(canvas, "/Bodies/face"+ player.baby + ".png");
+    if(Math.random() > .9){
+      drawWhatever(canvas, "/Bodies/face4.png"); ///spooky wolf easter egg.
+    }else{
+      drawWhatever(canvas, "/Bodies/face"+ player.baby + ".png");
+    }
+
   }
   hair(canvas, player);
   if(player.isTroll){//wings before sprite
