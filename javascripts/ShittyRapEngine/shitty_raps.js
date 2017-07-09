@@ -1,6 +1,7 @@
+<script>
 //http://www.rhymezone.com/r/rhyme.cgi?Word=back&typeofrhyme=perfect&org1=syl&org2=l&org3=y
 //if this seems like it will work, move to random tables. based on recursiveSlacker's idea.
-var comedyInterestNouns = ["joke","clown","fun", "folk", "bloke","quack","flashback","piece of cake","shell game","skunk","debunk", "grump", "first-rate","mandate"];
+var comedyInterestNouns = ["joke","clown","fun", "folk", "bloke","quack","flashback","piece of cake","shell game","skunk","debunk", "grump", "first-rate","mandate", "card trick","card you pick"];
 var comedyInterestVerbs = ["joke", "frown", "stun", "soak", "choke", "scrunch", "wisecrack","smack","attack","crack","emergency break","flunk","jump", "copulate","syncopate"];
 
 var athleticInterestNouns = ["heavyweight","teammate","lightweight","deadweight","sun","lunch","crown","brown", "clown","yolk","seasick","smalltalk","hella drunk","punk","drunk","yardstick","pregame","postgame"];
@@ -32,7 +33,7 @@ var academicInterestNouns = ["trait", "same", "brain", "teammate","reference boo
 var academicInterestVerbs = ["trick", "calculate","look","took","shook","small talk","squawk","block","backtrack","yack","attack","crack","smack", "debunk", "forgot", "plot", "watt", "swat", "knot", "concentrate", "contemplate", "nauseate", "navigate", "overstate", "aim","simulate", "debate","checkmate", "abate", "germinate", "obfuscate", "pontificate","potassium dichromate", "prognosticate"];
 
 var domesticInterestNouns = ["cake", "teammate", "prognosticate", "lightweight", "deadweight", "piece of cake","cupcake","snake","mistake","huge mistake","flake","crock","cock","peacock","laughingstock","shell", "brandname"];
-var domesticInterestVerbs = ["communicate", "renovate","activate", "ddcorate", "nauseate", "contemplate", "overstate", "germinate", "bake","shake","wake","heartbreak","small talk","gawk","squawk","block","shellgame","maim","tame","aim", "plait"];
+var domesticInterestVerbs = ["communicate", "renovate","activate", "decorate", "nauseate", "contemplate", "overstate", "germinate", "bake","shake","wake","heartbreak","small talk","gawk","squawk","block","shellgame","maim","tame","aim", "plait"];
 
 var terribleInterestNouns = ["pill","retrobate","suicide pill","shill","swill","landfill","molehill","standstill","plush rump","hunk rump","rump","chump","snake", "asscrack", "inmate", "degenerate","trait","freight","subordinate","deadweight","teammate","shipmate", "rebate"];
 var terribleInterestVerbs = ["kill", "copulate","ill","drill","grill","dick","lick","trick","bump","hump","subjugate","hug bump","take","wake","payback", "assassinate","eviscerate","depopulate","terminate","checkmate","titillate","mutilate", "penetrate", "segregate","desecrate","immolate","mandate","dictate","exacerbate","accumulate"];
@@ -54,7 +55,7 @@ wordsRhymeLate = wordsRhymeLate.concat(["bitrate","calculate","retrobate","conce
 wordsRhymeLate =wordsRhymeLate.concat(["mitigate","obfuscate,","mitigate","moderate","mutilate","nauseate","navigate","overstate","penetrate","propagate","renovate","segregate","simulate","solid-state","subjugate","strangulate","suffocate","syncopate","terminate","titillate"]);
 wordsRhymeLate =wordsRhymeLate.concat(["accommodate","accumulate","assassinate","assimilate","asphyxiate","deadweight","degenerate","depopulate","exacerbate","eviscerate","pontificate","prognosticate","regurgitate","subordinate","resuscitate","decontaminate","potassium dichromate "]);
 
-var wordsRhymehot = ["hot", "bot", "knot", "caught", "robot", "thought", "clot","shot","plot","forgot","yaught","rot","watt","squat","trot","swat","brobot","ocelot"];
+var wordsRhymehot = ["hot", "bot", "knot", "caught", "robot", "thought", "clot","shot","plot","forgot","yaught","rot","watt","squat","trot","swat","brobot","ocelot","naught","shot"];
 var wordsRhymeTown = ["town", "down", "frown", "clown", "brown", "crown", "drown","noun"];
 var wordsRhymeJoke = ["bloke","broke","croak","choke","folk","oak","smoke","soak","woke","yolk","yoke","coke", "spoke"];
 var wordsRhymeSun = ["bun","fun","gun","son","hun","none","nun","stun","spun","shun","run","won"];
@@ -107,6 +108,18 @@ rapTemplates.push(new RapTemplate("you're just a wealth of ",noun, " and I'm fix
 rapTemplates.push(new RapTemplate("your tiny little  ",noun, " doesn't even seem to ", verb) );
 rapTemplates.push(new RapTemplate("I got beats and rhymes that never been ",verb, " how you think you can ", verb) );
 rapTemplates.push(new RapTemplate("I think you might actually be a ",noun, " cause how else do you explain why you think you can ", verb) );
+//bop de boop lets rhyme"
+rapTemplates.push(new RapTemplate("if you can't prove you are not a ",noun, " then the proof is there that you are nothing but a ",noun, ) );
+rapTemplates.push(new RapTemplate("if my rhymes are ",noun," its nothing but me knowing how to ",verb,) );
+rapTemplates.push(new RapTemplate("it is not my fault you are such a ",noun,", thats what happens when you just can't ",verb,) );
+rapTemplates.push(new RapTemplate("don't even " ,verb," kid, we all know you are a ",noun,) );
+rapTemplates.push(new RapTemplate("now I am the best fucking ",noun," that ever did ",verb,) );
+rapTemplates.push(new RapTemplate("it is time to ",verb,", so you best fucking ",verb,) );
+rapTemplates.push(new RapTemplate("because the truth is that I am a ",noun," and you are a ",noun,) );
+rapTemplates.push(new RapTemplate("learn your place, if you can't ",verb," you are not a ",noun,) );
+
+
+
 
 
 
@@ -319,13 +332,13 @@ function intersection (a, b) {
 }
 
 function rapMistake(){
-	var mistakes = ["...umm...,", "...fuck", "...fuck, can we start over? ", "...pretend I just finished that, okay?", "er...Shit.", "errr...", "ummm...shit.", "...fucking hell.", "what the hell, I know I had a rhyme for this...", "...okay, should I just...like, give up here?"];
+	var mistakes = ["...umm...,", "...fuck", "...fuck, can we start over? ", "...pretend I just finished that, okay?", "er...Shit.", "errr...", "ummm...shit.", "...fucking hell.", "what the hell, I know I had a rhyme for this...", "...okay, should I just...like, give up here?","and gog fucking damn it", "...fuuuuuuuuuuuuuuuuuu","... fuck my life"];
 	return getRandomElementFromArray(mistakes);
 
 }
 
 function rapInterjection(){
-	var interjections = ["Yo", "Trust", "Represent", "Respect", "Word", "Dawg", "Dog", "Bro", "Sup", "Okay", "What", "Yeah", "Aight", "Yeah Dog", "Fo, Shizzle", "Hey", "Boo yeah", "Break it down", "Fuck", "Shit", "Peace", "True that", "Double True", "Word up", "My homey", "Homey", "You knows it"];
+	var interjections = ["Yo", "Trust", "Represent", "Respect", "Word", "Dawg", "Dog", "Bro", "Sup", "Okay", "What", "Yeah", "Aight", "Yeah Dog", "Fo, Shizzle", "Hey", "Boo yeah", "Break it down", "Fuck", "Shit", "Peace", "True that", "Double True", "Word up", "My homey", "Homey", "You knows it", "Listen up","Back the fuck up","3,2,1"];
 	return getRandomElementFromArray(interjections);
 }
 
@@ -350,3 +363,5 @@ function getRapForPlayer(player,returnString, score){
 	return [returnString, score];
 
 }
+
+</script>
