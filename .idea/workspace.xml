@@ -50,8 +50,8 @@
       <file leaf-file-name="fraymotif.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
-              <caret line="435" column="5" lean-forward="false" selection-start-line="435" selection-start-column="5" selection-end-line="435" selection-end-column="5" />
+            <state relative-caret-position="133">
+              <caret line="448" column="97" lean-forward="false" selection-start-line="448" selection-start-column="97" selection-end-line="448" selection-end-column="97" />
               <folding />
             </state>
           </provider>
@@ -129,11 +129,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getSTat =</find>
-      <find>removeFromAr</find>
-      <find>allSTats =</find>
-      <find>getStron</find>
-      <find>rollForLuck =</find>
       <find>rollForLuck</find>
       <find>rollForLuck</find>
       <find>roll</find>
@@ -159,6 +154,11 @@
       <find>makeF</find>
       <find>getFraymotifName</find>
       <find>getCasters</find>
+      <find>NoOwner</find>
+      <find>premadeFraymotifNames</find>
+      <find>getCastersNoOwner</find>
+      <find>test</find>
+      <find>tryToGetPreMadeName</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -861,8 +861,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="435" column="5" lean-forward="false" selection-start-line="435" selection-start-column="5" selection-end-line="435" selection-end-column="5" />
+        <state relative-caret-position="133">
+          <caret line="448" column="97" lean-forward="false" selection-start-line="448" selection-start-column="97" selection-end-line="448" selection-end-column="97" />
           <folding />
         </state>
       </provider>

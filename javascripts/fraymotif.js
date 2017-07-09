@@ -33,8 +33,7 @@ function Fraymotif(aspects, name,tier, flavorText){
 
 	this.getCastersNoOwner = function(players){
 	    var casters = [];
-        var aspects = [];
-        for(var i = 1; i<this.aspects.length; i++){ //skip the first aspect, because that's owner.
+        for(var i = 0; i<this.aspects.length; i++){ //skip the first aspect, because that's owner.
             var a = this.aspects[i];
             var p = getRandomElementFromArray(findAllAspectPlayers(players, a))//ANY player that matches my aspect can do this.
             if(p) casters.push(p); //don't add 'undefined' to this array like a dunkass.
@@ -428,9 +427,10 @@ function FraymotifCreator(){
   //if they can, return name of fraymotif.
   this.tryToGetPreMadeName = function(players){
     if(Math.seededRandom() > 0.5) return; //just use the procedural name.
+
     if(this.premadeFraymotifNames.length == 0) this.initializePremadeNames();
     for(var i = 0; i<this.premadeFraymotifNames.length; i++){
-        var f = this.premadeFraymotifNames(f);
+        var f = this.premadeFraymotifNames[i];
         var casters = f.getCastersNoOwner(players);
         if (casters.length == f.aspects.length) return f.name;
     }
@@ -438,12 +438,15 @@ function FraymotifCreator(){
   }
 
   this.initializePremadeNames = function(){
-    //premadeFraymotifNames
+    this.premadeFraymotifNames = [];
+    this.premadeFraymotifNames.push(new Fraymotif(["Light"], "Blinded By The Light",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Breath", "Time"], "Stop, Hammertime",1, ""))
   }
 
   this.getFraymotifName = function(players, tier){
     var name = this.tryToGetPreMadeName(players);
     if(name){
+        console.log("Using a premade procedural fraymotif name: " + players[0].session.session_id)
         return name; //premade is good enough here. let the called function handle randomness.
     }else{
         name = "";
