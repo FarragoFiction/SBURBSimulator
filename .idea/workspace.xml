@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" afterPath="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/Scenes/GoGrimDark.js" afterPath="$PROJECT_DIR$/javascripts/Scenes/GoGrimDark.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/playerSnapshot.js" afterPath="$PROJECT_DIR$/javascripts/playerSnapshot.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,11 +28,51 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Aftermath.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Aftermath.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/Scenes/Aftermath.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
               <caret line="211" column="22" lean-forward="false" selection-start-line="211" selection-start-column="22" selection-end-line="211" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GoGrimDark.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/javascripts/Scenes/GoGrimDark.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="103">
+              <caret line="65" column="84" lean-forward="true" selection-start-line="65" selection-start-column="43" selection-end-line="65" selection-end-column="84" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SaveDoomedTimeline.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/javascripts/Scenes/SaveDoomedTimeline.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="103">
+              <caret line="38" column="23" lean-forward="false" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="quirk.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/javascripts/quirk.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="playerSnapshot.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/javascripts/playerSnapshot.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="103">
+              <caret line="402" column="76" lean-forward="false" selection-start-line="402" selection-start-column="76" selection-end-line="402" selection-end-column="76" />
               <folding />
             </state>
           </provider>
@@ -52,46 +93,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="186">
               <caret line="86" column="41" lean-forward="false" selection-start-line="86" selection-start-column="41" selection-end-line="86" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scenario_controller2.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/v2.0/scenario_controller2.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="400" column="6" lean-forward="false" selection-start-line="400" selection-start-column="6" selection-end-line="400" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="support.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/support.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="22" column="41" lean-forward="false" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gameEntity.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/gameEntity.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="928" column="24" lean-forward="false" selection-start-line="928" selection-start-column="24" selection-end-line="928" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="find_rare_sessions.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -129,8 +130,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getSTat</find>
-      <find>useFr</find>
       <find>drawCharSheet</find>
       <find>increasePower</find>
       <find>draw</find>
@@ -159,6 +158,8 @@
       <find>makeGu</find>
       <find>makePl</find>
       <find>charSh</find>
+      <find>Brood</find>
+      <find>brood</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -177,7 +178,6 @@
         <option value="$PROJECT_DIR$/Dart/dead_session_controller.dart" />
         <option value="$PROJECT_DIR$/DeadSessions/dead_session.html" />
         <option value="$PROJECT_DIR$/DeadSessions/dead_session_controller.js" />
-        <option value="$PROJECT_DIR$/javascripts/playerSnapshot.js" />
         <option value="$PROJECT_DIR$/javascripts/scene_controller.js" />
         <option value="$PROJECT_DIR$/Dart/planet.dart" />
         <option value="$PROJECT_DIR$/javascripts/fraymotif.js" />
@@ -189,6 +189,8 @@
         <option value="$PROJECT_DIR$/javascripts/session.js" />
         <option value="$PROJECT_DIR$/index2.html" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
+        <option value="$PROJECT_DIR$/javascripts/Scenes/GoGrimDark.js" />
+        <option value="$PROJECT_DIR$/javascripts/playerSnapshot.js" />
       </list>
     </option>
   </component>
@@ -713,14 +715,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/playerSnapshot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="242" column="4" lean-forward="false" selection-start-line="242" selection-start-column="4" selection-end-line="242" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/scene_controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -829,6 +823,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="211" column="22" lean-forward="false" selection-start-line="211" selection-start-column="22" selection-end-line="211" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/Scenes/GoGrimDark.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="65" column="84" lean-forward="true" selection-start-line="65" selection-start-column="43" selection-end-line="65" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/Scenes/SaveDoomedTimeline.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="38" column="23" lean-forward="false" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/quirk.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/playerSnapshot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="402" column="76" lean-forward="false" selection-start-line="402" selection-start-column="76" selection-end-line="402" selection-end-column="76" />
           <folding />
         </state>
       </provider>

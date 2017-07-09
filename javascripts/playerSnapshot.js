@@ -400,7 +400,7 @@ function makeDoomedSnapshot(timePlayer){
 	}
 
 	if(timeClone.grimDark > 3){
-		var f = new Fraymotif([],  "The Broodfester Tongues", 3)
+		var f = new Fraymotif([],  Zalgo.generate("The Broodfester Tongues"), 3)
 		f.effects.push(new FraymotifEffect("power",3,true));
 		f.effects.push(new FraymotifEffect("power",0,false));
 		f.flavorText = " They are stubborn throes. "
