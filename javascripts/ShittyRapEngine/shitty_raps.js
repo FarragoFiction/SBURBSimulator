@@ -1,4 +1,3 @@
-<script>
 //http://www.rhymezone.com/r/rhyme.cgi?Word=back&typeofrhyme=perfect&org1=syl&org2=l&org3=y
 //if this seems like it will work, move to random tables. based on recursiveSlacker's idea.
 var comedyInterestNouns = ["joke","clown","fun", "folk", "bloke","quack","flashback","piece of cake","shell game","skunk","debunk", "grump", "first-rate","mandate", "card trick","card you pick"];
@@ -363,5 +362,3 @@ function getRapForPlayer(player,returnString, score){
 	return [returnString, score];
 
 }
-
-</script>
