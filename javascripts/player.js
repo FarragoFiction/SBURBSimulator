@@ -1,6 +1,7 @@
 function Player(session,class_name, aspect, object_to_prototype, moon, godDestiny,id){
 	this.baby = null;
 	this.buffs = []; //only used in strifes, array of BuffStats (from fraymotifs and eventually weapons)
+	this.permaBuffs = {}; //is an object so it looks like a player with stats.  for things like manGrit which are permanent buffs to power (because modding power directly gets OP as shit because power controls future power)
 	this.renderingType = 0; //0 means default for this sim.
 	this.associatedStats = [];  //most players will have a 2x, a 1x and a -1x stat.
 	this.sanity = 0; //eventually replace triggerLevel with this (it's polarity is opposite triggerLevel)
@@ -1481,13 +1482,19 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	//remember that hp and currentHP are different things.
 	this.getStat = function(statName){
 		var ret =  0;
-		if(statName != "RELATIONSHIPS"){ //relationships, why you so cray cray???
-			ret += this[statName]
-		}else{
+		if(statName == "RELATIONSHIPS"){ //relationships, why you so cray cray???
+
 			for(var i = 0; i<this.relationships.length; i++){
-				ret += this.relationships[i].value;
-			}
+                ret += this.relationships[i].value;
+            }
+		} else if(statName == "power" ){
+		    ret += this[statName];
+		    ret += this.permaBuffs["MANGRIT"] //needed because if i mod power directly, it effects all future progress in an unbalanced way.
 		}
+		}else{
+		    ret += this[statName]
+		}
+
 		for(var i = 0; i<this.buffs.length; i++){
 			var b = this.buffs[i];
 			if(b.name == statName) ret += b.value;
@@ -1869,7 +1876,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.allStats = function(){
-		return ["power","hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
+		return ["MANGRIT","hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
 	}
 
 
@@ -1885,7 +1892,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				break;
 			case  "Seer":
 				this.associatedStats.push(new AssociatedStat("freeWill", 0.9));
-				this.associatedStats.push(new AssociatedStat("power", -0.9));
+				this.associatedStats.push(new AssociatedStat("MANGRIT", -0.9));
 				break;
 			case  "Bard":
 				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), 1));
@@ -1910,18 +1917,18 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				break;
 			case  "Thief":
 				this.associatedStats.push(new AssociatedStat("maxLuck", 0.5));
-				this.associatedStats.push(new AssociatedStat("power", -0.5));
+				this.associatedStats.push(new AssociatedStat("MANGRIT", -0.5));
 				break;
 			case  "Sylph":
 				this.associatedStats.push(new AssociatedStat("hp", 0.5));
 				this.associatedStats.push(new AssociatedStat("sanity", -0.5));
 				break;
 			case  "Prince":
-				this.associatedStats.push(new AssociatedStat("power", 1));
+				this.associatedStats.push(new AssociatedStat("MANGRIT", 1));
 				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", -1));
 				break;
 			case  "Witch":
-				this.associatedStats.push(new AssociatedStat("power", 0.5));
+				this.associatedStats.push(new AssociatedStat("MANGRIT", 0.5));
 				this.associatedStats.push(new AssociatedStat("freeWill", 0.5));
 				this.associatedStats.push(new AssociatedStat("sanity", -1));
 				break;
@@ -1974,7 +1981,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				this.associatedStats.push(new AssociatedStat("maxLuck", -1,true)); //LUCK DO3SN'T M4TT3R!!!
 				break;
 			case  "Rage":
-				this.associatedStats.push(new AssociatedStat("power", 2,true));
+				this.associatedStats.push(new AssociatedStat("MANGRIT", 2,true));
 				this.associatedStats.push(new AssociatedStat("mobility", 1,true));
 				this.associatedStats.push(new AssociatedStat("sanity", -1,true));
 				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", -1,true));
@@ -2017,7 +2024,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				break;
 			case  "Life":
 				this.associatedStats.push(new AssociatedStat("hp", 2,true));
-				this.associatedStats.push(new AssociatedStat("power", 1,true));
+				this.associatedStats.push(new AssociatedStat("MANGRIT", 1,true));
 				this.associatedStats.push(new AssociatedStat("alchemy", -2,true));
 				break;
 			case  "Doom":
@@ -2042,7 +2049,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	this.getEmphaticDescriptionForStatNamed = function(statName){
 		if(this.highInit()){
-			if(statName == "power") return "STRONG"
+			if(statName == "MANGRIT") return "STRONG"
 			if(statName == "hp") return "STURDY"
 			if(statName == "RELATIONSHIPS") return "FRIENDLY"
 			if(statName == "mobility") return "FAST"
@@ -2052,7 +2059,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			if(statName == "minLuck") return "LUCKY"
 			if(statName == "alchemy") return "CREATIVE"
 		}else{
-			if(statName == "power") return "WEAK"
+			if(statName == "MANGRIT") return "WEAK"
 			if(statName == "hp") return "FRAGILE"
 			if(statName == "RELATIONSHIPS") return "AGGRESSIVE"
 			if(statName == "mobility") return "SLOW"
@@ -2077,10 +2084,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(academic_interests.indexOf(interest) != -1) return [new AssociatedStat("freeWill",-2, true)]; //dont' get so caught up in how the old rules worked
 		if(comedy_interests.indexOf(interest) != -1) return [new AssociatedStat("minLuck",-1, true),new AssociatedStat("maxLuck",1, true)]; //hilarious (to SBURB) pratfalls abound.
 		if(domestic_interests.indexOf(interest) != -1) return [new AssociatedStat("sanity",1, true),new AssociatedStat("RELATIONSHIPS",1, true)];
-		if(athletic_interests.indexOf(interest) != -1) return [new AssociatedStat("power",2, true)]; //so STRONG
+		if(athletic_interests.indexOf(interest) != -1) return [new AssociatedStat("MANGRIT",2, true)]; //so STRONG
 		if(terrible_interests.indexOf(interest) != -1) return [new AssociatedStat("RELATIONSHIPS",-1, true), new AssociatedStat("sanity",-1, true)];
 		if(fantasy_interests.indexOf(interest) != -1) return [new AssociatedStat("maxLuck",1, true),new AssociatedStat("alchemy",1, true)];
-		if(justice_interests.indexOf(interest) != -1) return [new AssociatedStat("power",1, true),new AssociatedStat("hp",1, true)];
+		if(justice_interests.indexOf(interest) != -1) return [new AssociatedStat("MANGRIT",1, true),new AssociatedStat("hp",1, true)];
 	}
 
 
@@ -2107,9 +2114,11 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			for(var i = 0; i<this.relationships.length; i++){
 				this.relationships[i].value += (modValue/this.relationships.length) * stat.multiplier;  //stop having relationship values on the scale of 100000
 			}
-		}else{
-			this[stat.name] += modValue * stat.multiplier;
-		}
+		}else if(stat.name == "MANGRIT"{
+			this.permaBuffs["MANGRIT"] += modValue * stat.multiplier;
+		}else {
+         	this[stat.name] += modValue * stat.multiplier;
+        }
 	}
 
 	this.initializeInterestStats = function(){
