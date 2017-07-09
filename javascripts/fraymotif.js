@@ -121,7 +121,7 @@ function Fraymotif(aspects, name,tier, flavorText){
 
 
   this.goodStatWords = function(statName){
-    if(statName == "power") return ["strength","power","might","fire","pure energy","STRENGTH"]
+    if(statName == "MANGRIT") return ["mangrit","strength","power","might","fire","pure energy","STRENGTH"]
     if(statName == "hp") return ["plants","health","vines", "gardens", "stones","earth","life","moss","fruit","growth"]
     if(statName == "RELATIONSHIPS") return ["chains","friendship bracelets","shipping grids", "connections", "hearts", "pulse", "bindings", "rainbows", "care bare stares", "mirrors"]
     if(statName == "mobility") return ["wind","speed","hedgehogs", "whirlwinds", "gales", "hurricanes","thunder","storms","momentum", "feathers"]
@@ -134,7 +134,7 @@ function Fraymotif(aspects, name,tier, flavorText){
   }
 
   this.badStatWords = function(statName){
-    if(statName == "power") return ["weakness","powerlessness","despair","wretchedness","misery"]
+    if(statName == "MANGRIT") return ["weakness","powerlessness","despair","wretchedness","misery"]
     if(statName == "hp") return ["fragility","rotting plants","disease", "bones", "skulls", "tombstones", "ash", "toxin","mold", "viruses"]
     if(statName == "RELATIONSHIPS") return ["aggression","broken chains","empty friends lists","sand","loneliness"]
     if(statName == "mobility") return ["laziness", "locks", "weights","manacles","quicksand","gravitons","gravity","ice"]
