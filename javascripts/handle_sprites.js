@@ -609,7 +609,7 @@ function drawCharSheet(canvas, player){
   var i = allStats.length;
 
     ctx.fillText("MANGRIT: ",left_margin,current+line_height*i);
-    ctx.fillText(player.permaBuffs("MANGRIT"),right_margin,current+line_height*i);
+    ctx.fillText(player.permaBuffs["MANGRIT"],right_margin,current+line_height*i);
     i++;
 
   ctx.fillText("Quests Completed: ",left_margin,current+line_height*i);

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/handle_sprites.js" afterPath="$PROJECT_DIR$/javascripts/handle_sprites.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/player.js" afterPath="$PROJECT_DIR$/javascripts/player.js" />
     </list>
@@ -22,8 +21,8 @@
       <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1163" column="13" lean-forward="true" selection-start-line="1163" selection-start-column="13" selection-end-line="1163" selection-end-column="13" />
+            <state relative-caret-position="130">
+              <caret line="2115" column="40" lean-forward="false" selection-start-line="2115" selection-start-column="40" selection-end-line="2115" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -43,7 +42,7 @@
         <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="267">
-              <caret line="611" column="43" lean-forward="false" selection-start-line="611" selection-start-column="43" selection-end-line="611" selection-end-column="43" />
+              <caret line="611" column="45" lean-forward="false" selection-start-line="611" selection-start-column="45" selection-end-line="611" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -71,9 +70,9 @@
       <find>getSTat</find>
       <find>getSTat</find>
       <find>useFr</find>
-      <find>increasePower</find>
       <find>drawCharSheet</find>
       <find>draw</find>
+      <find>increasePower</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -472,14 +471,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1163" column="13" lean-forward="true" selection-start-line="1163" selection-start-column="13" selection-end-line="1163" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/Scenes/Aftermath.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="241">
@@ -488,10 +479,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="2115" column="40" lean-forward="false" selection-start-line="2115" selection-start-column="40" selection-end-line="2115" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="267">
-          <caret line="611" column="43" lean-forward="false" selection-start-line="611" selection-start-column="43" selection-end-line="611" selection-end-column="43" />
+          <caret line="611" column="45" lean-forward="false" selection-start-line="611" selection-start-column="45" selection-end-line="611" selection-end-column="45" />
           <folding />
         </state>
       </provider>

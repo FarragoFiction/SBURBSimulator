@@ -1490,7 +1490,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		} else if(statName == "power" ){
 		    ret += this[statName];
 		    ret += this.permaBuffs["MANGRIT"] //needed because if i mod power directly, it effects all future progress in an unbalanced way.
-		}
 		}else{
 		    ret += this[statName]
 		}
@@ -2114,7 +2113,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			for(var i = 0; i<this.relationships.length; i++){
 				this.relationships[i].value += (modValue/this.relationships.length) * stat.multiplier;  //stop having relationship values on the scale of 100000
 			}
-		}else if(stat.name == "MANGRIT"{
+		}else if(stat.name == "MANGRIT"){
 			this.permaBuffs["MANGRIT"] += modValue * stat.multiplier;
 		}else {
          	this[stat.name] += modValue * stat.multiplier;
