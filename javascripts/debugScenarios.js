@@ -26,6 +26,9 @@ function bardQuestMode(){
 function faceOffMode(){
 	faceOff = true;
 	alert("Wait...so...if this is 'face off' mode....does that mean the creepy flesh masks were their real faces all along, and THIS is what was hidden underneath???")
+	for(var i = 0; i<curSessionGlobalVar.players.length; i++){
+		curSessionGlobalVar.players[i].grimDark = 4;
+	}
 }
 
 function pen15Ouija(){
