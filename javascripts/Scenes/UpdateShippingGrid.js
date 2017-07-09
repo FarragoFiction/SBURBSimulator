@@ -222,6 +222,10 @@ function UpdateShippingGrid(session){
 	//for all players, look at all relationships. if goodBig or badBig, return.
 	//also grab clubs and diamonds. later.
 	this.createShips = function(players, shipperPlayer){
+		if(!shipperPlayer){
+			shipperPlayer = new Shipper(players[0]); //abj was calling this with no shipper player.
+			this.chosenShipper = shipperPlayer;
+		}
 		////console.log("creating ships")
 		var ret = [];
 			for(var i = 0; i<players.length; i++){
@@ -253,11 +257,13 @@ function UpdateShippingGrid(session){
 				for(var i = 0; i<toRemove.length; i++){
 						removeFromArray(toRemove[i], ret)
 				}
+				shipperPlayer.ships = ret;
 				return ret;
 	}
 
 
 	this.getGoodShips = function(shipper){
+		if(!shipper) shipper = this.chosenShipper;
 		var ret = [];
 		for(var i = 0; i<shipper.ships.length; i++){
 			var ship = shipper.ships[i];
