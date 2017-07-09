@@ -18,12 +18,13 @@
 class Planet{
   String word1;
   String word2;
+  List<QuestChain> questChains;
 }
 
 
 /*
   Dead Planets do everything a planet does, but ALSO has a timelimit
-  a penalty for not winning before timei limit
+  a penalty for not winning before timelimit
   and a reward for winning before timelimit.
  */
 class DeadPlanet extends Planet{
@@ -37,13 +38,31 @@ class DeadPlanet extends Planet{
   it is associated with a reward for completion. or something. still planning.
  */
 class QuestChain{
+  List<Quest> quests;
+  List<Reward> rewards; //most questChains only have one reward, but i won't limit things.
+
 
 }
 
 
 /*
-
+  A Quest is just flavor text.
+  maybe in the future it can be upgraded to be failable, maybe have a power requirement to pass?
  */
 class Quest{
   String flavorText;
+  List<Reward> rewards; //most quests only have one reward, but i won't limit things.
+}
+
+/*
+  base level reward just calls increasePower on the player passed to it.
+  but want to extend it so there is FraymotifReward, ItemReward, WeaponReward
+  etc. Each will call teh super reward so that all rewards at minimum increase Power.
+ */
+class Reward{
+
+  applyReward(player){
+    player.increasePower();
+  }
+
 }
