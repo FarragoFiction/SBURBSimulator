@@ -138,6 +138,7 @@ function loadOther(skipInit){
 		  loadImage("/Bodies/face1.png",skipInit);
 			loadImage("/Bodies/face2.png",skipInit);
 			loadImage("/Bodies/face3.png",skipInit);
+			loadImage("/Bodies/face4.png",skipInit); //wait, aren't there onyl 3 possible faces??? oh god
 	}
 
 	loadImage("charSheet.png", skipInit);
