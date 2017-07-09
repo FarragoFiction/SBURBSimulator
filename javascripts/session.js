@@ -244,7 +244,7 @@ function Session(session_id){
 		//console.log("Making players with seed: " + Math.seed)
 		this.players = [];
 		available_classes = classes.slice(0); //re-initPlayers available classes.
-		available_classes_guardians; = classes.slice(0);
+		available_classes_guardians = classes.slice(0);
 		available_aspects = nonrequired_aspects.slice(0);
 		var numPlayers = getRandomInt(2,12);
 		this.players.push(randomSpacePlayer(this));
