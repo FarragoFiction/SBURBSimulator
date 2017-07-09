@@ -1875,14 +1875,14 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.allStats = function(){
-		return ["hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
+		return ["power", "hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
 	}
 
 
 	//sum to 0
 	this.intializeAssociatedClassStatReferences = function(){
 		return //don't do this for now, too confusing.
-		var allStats = this.allStats();
+		var allStats = this.allStats().slice(0); //make copy
 		allStats = allStats.concat("MANGRIT")
 		allStats.removeFromArray("power"); //can't buff power directly
 		switch (this.class_name) {
@@ -1968,7 +1968,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	//sum to 1
 	this.intializeAssociatedAspectStatReferences = function(){
-		var allStats = this.allStats();
+		var allStats = this.allStats().slice(0);
         allStats = allStats.concat("MANGRIT")
         allStats.removeFromArray("power"); //can't buff power directly
 
