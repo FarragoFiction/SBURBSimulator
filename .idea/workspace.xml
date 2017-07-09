@@ -50,8 +50,8 @@
       <file leaf-file-name="fraymotif.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="412" column="102" lean-forward="false" selection-start-line="412" selection-start-column="102" selection-end-line="412" selection-end-column="102" />
+            <state relative-caret-position="94">
+              <caret line="435" column="5" lean-forward="false" selection-start-line="435" selection-start-column="5" selection-end-line="435" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -133,7 +133,6 @@
       <find>removeFromAr</find>
       <find>allSTats =</find>
       <find>getStron</find>
-      <find>getCasters</find>
       <find>rollForLuck =</find>
       <find>rollForLuck</find>
       <find>rollForLuck</find>
@@ -159,6 +158,7 @@
       <find>name</find>
       <find>makeF</find>
       <find>getFraymotifName</find>
+      <find>getCasters</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -861,8 +861,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="412" column="102" lean-forward="false" selection-start-line="412" selection-start-column="102" selection-end-line="412" selection-end-column="102" />
+        <state relative-caret-position="94">
+          <caret line="435" column="5" lean-forward="false" selection-start-line="435" selection-start-column="5" selection-end-line="435" selection-end-column="5" />
           <folding />
         </state>
       </provider>

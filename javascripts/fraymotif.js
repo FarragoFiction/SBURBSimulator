@@ -31,6 +31,18 @@ function Fraymotif(aspects, name,tier, flavorText){
 		}
 	}
 
+	this.getCastersNoOwner = function(players){
+	    var casters = [];
+        var aspects = [];
+        for(var i = 1; i<this.aspects.length; i++){ //skip the first aspect, because that's owner.
+            var a = this.aspects[i];
+            var p = getRandomElementFromArray(findAllAspectPlayers(players, a))//ANY player that matches my aspect can do this.
+            if(p) casters.push(p); //don't add 'undefined' to this array like a dunkass.
+        }
+        return casters;  //eventually do smarter things, like only allow to cast buff hp if heals are needed or anybody is dead.
+
+	}
+
 	this.getCasters = function(owner, allies){
 		//first check to see if all aspects are included in the allies array.
 		var casters = [owner];
@@ -38,7 +50,7 @@ function Fraymotif(aspects, name,tier, flavorText){
 		var living = findLivingPlayers(allies); //dead men use no fraymotifs. (for now)
 		for(var i = 1; i<this.aspects.length; i++){ //skip the first aspect, because that's owner.
 			var a = this.aspects[i];
-			var p = getRandomElementFromArray(findAllAspectPlayers(allies, a))//ANY player that matches my aspect can do this.
+			var p = getRandomElementFromArray(findAllAspectPlayers(living, a))//ANY player that matches my aspect can do this.
 			if(p) casters.push(p); //don't add 'undefined' to this array like a dunkass.
 		}
 		return casters;  //eventually do smarter things, like only allow to cast buff hp if heals are needed or anybody is dead.
@@ -290,7 +302,8 @@ function Fraymotif(aspects, name,tier, flavorText){
 
 //no global functions any more. bad pastJR.
 function FraymotifCreator(){
-
+    //some types of fraymotifs, that are otherwise procedurally generated, should have stupid pun names. they are kept here.
+    this.premadeFraymotifNames = [];
   this.createFraymotifForPlayerDenizen = function(player, name){
     var denizen = player.denizen;
     var f = new Fraymotif([], name + "'s Song", 2); //CAN I have an aspectless fraymotif?
@@ -414,7 +427,18 @@ function FraymotifCreator(){
   //look through array of premade fraymotifs and see if players can cast the fraymotif.
   //if they can, return name of fraymotif.
   this.tryToGetPreMadeName = function(players){
+    if(Math.seededRandom() > 0.5) return; //just use the procedural name.
+    if(this.premadeFraymotifNames.length == 0) this.initializePremadeNames();
+    for(var i = 0; i<this.premadeFraymotifNames.length; i++){
+        var f = this.premadeFraymotifNames(f);
+        var casters = f.getCastersNoOwner(players);
+        if (casters.length == f.aspects.length) return f.name;
+    }
+    return null;
+  }
 
+  this.initializePremadeNames = function(){
+    //premadeFraymotifNames
   }
 
   this.getFraymotifName = function(players, tier){
