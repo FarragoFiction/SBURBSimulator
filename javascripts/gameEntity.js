@@ -931,14 +931,14 @@ function GameEntity(session, name, crowned){
 			var defenseRoll = defense.rollForLuck("minLuck"); //try to avoid bad thing.
 			//alert("offense roll is: " + offenseRoll + " and defense roll is: " + defenseRoll)
 			//console.log("gonna roll for luck.")
-			if(defenseRoll > offenseRoll*10+10){ //adding 10 to try to keep it happening constantly at low levels
-				//console.log("Luck counter: " + this.session.session_id);
+			if(defenseRoll > offenseRoll*10+50){ //adding 10 to try to keep it happening constantly at low levels
+				console.log("Luck counter: " +  defense.htmlTitleHP() + this.session.session_id);
 				div.append("The attack backfires and causes unlucky damage. The " + defense.htmlTitleHP() + " sure is lucky!!!!!!!!" );
 				offense.currentHP += -1* offense.getStat("power")/10; //damaged by your own power.
 				//this.processDeaths(div, offense, defense)
 				return;
-			}else if(defenseRoll > offenseRoll*5+10){
-				//console.log("Luck dodge: " + this.session.session_id);
+			}else if(defenseRoll > offenseRoll*5+50){
+				console.log("Luck dodge: " +   defense.htmlTitleHP() +this.session.session_id);
 				div.append("The attack misses completely after an unlucky distraction.");
 				return;
 			}
