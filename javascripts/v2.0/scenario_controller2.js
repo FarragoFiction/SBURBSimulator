@@ -78,6 +78,10 @@ function startSession(){
 		pen15Ouija();
 	}
 
+	if(getParameterByName("faces")  == "off"){
+		faceOffMode();
+	}
+
 	if(getParameterByName("tier")  == "cod"){
 		bardQuestMode();
 	}

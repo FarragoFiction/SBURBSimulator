@@ -134,6 +134,12 @@ function loadOther(skipInit){
 		  loadImage("/Bodies/pen15.png",skipInit);
 	}
 
+	if(faceOff){
+		  loadImage("/Bodies/face1.png",skipInit);
+			loadImage("/Bodies/face2.png",skipInit);
+			loadImage("/Bodies/face3.png",skipInit);
+	}
+
 	loadImage("charSheet.png", skipInit);
 
 	if(bardQuest){

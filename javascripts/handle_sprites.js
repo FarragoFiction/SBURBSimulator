@@ -3,6 +3,7 @@ var cool_kid = false;
 var easter_egg = false;
 var bardQuest = false;
 var ouija = false;
+var faceOff = false;
 //~~~~~~~~~~~IMPORTANT~~~~~~~~~~LET NOTHING HERE BE RANDOM
 //OR PREDICTIONS AND TIME LOOPS AND AI SEARCHES WILL BE WRONG
 //except nepepta, cuz that cat troll be crazy, yo
@@ -1420,6 +1421,10 @@ function drawSpriteFromScratch(canvas, player,ctx,baby){
 
   if(ouija){
     drawWhatever(canvas, "/Bodies/pen15.png");
+  }
+
+  if(faceOff){
+    drawWhatever(canvas, "/Bodies/face"+ player.baby + ".png");
   }
   hair(canvas, player);
   if(player.isTroll){//wings before sprite
