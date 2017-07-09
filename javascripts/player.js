@@ -1,7 +1,7 @@
 function Player(session,class_name, aspect, object_to_prototype, moon, godDestiny,id){
 	this.baby = null;
 	this.buffs = []; //only used in strifes, array of BuffStats (from fraymotifs and eventually weapons)
-	this.permaBuffs = {}; //is an object so it looks like a player with stats.  for things like manGrit which are permanent buffs to power (because modding power directly gets OP as shit because power controls future power)
+	this.permaBuffs = {"MANGRIT":0}; //is an object so it looks like a player with stats.  for things like manGrit which are permanent buffs to power (because modding power directly gets OP as shit because power controls future power)
 	this.renderingType = 0; //0 means default for this sim.
 	this.associatedStats = [];  //most players will have a 2x, a 1x and a -1x stat.
 	this.sanity = 0; //eventually replace triggerLevel with this (it's polarity is opposite triggerLevel)
@@ -1875,7 +1875,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.allStats = function(){
-		return ["MANGRIT","hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
+		return ["hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
 	}
 
 
@@ -1883,6 +1883,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.intializeAssociatedClassStatReferences = function(){
 		return //don't do this for now, too confusing.
 		var allStats = this.allStats();
+		allStats = allStats.concat("MANGRIT")
+		allStats.removeFromArray("power"); //can't buff power directly
 		switch (this.class_name) {
 			case "Knight":
 				this.associatedStats.push(new AssociatedStat("mobility", 0.5)); //will run to protect you.
@@ -1967,6 +1969,9 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	//sum to 1
 	this.intializeAssociatedAspectStatReferences = function(){
 		var allStats = this.allStats();
+        allStats = allStats.concat("MANGRIT")
+        allStats.removeFromArray("power"); //can't buff power directly
+
 		switch (this.aspect) {
 			case "Blood":
 				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", 2,true));

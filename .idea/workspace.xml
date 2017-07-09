@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/handle_sprites.js" afterPath="$PROJECT_DIR$/javascripts/handle_sprites.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/player.js" afterPath="$PROJECT_DIR$/javascripts/player.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="player.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="2115" column="40" lean-forward="false" selection-start-line="2115" selection-start-column="40" selection-end-line="2115" selection-end-column="40" />
+            <state relative-caret-position="195">
+              <caret line="1886" column="32" lean-forward="false" selection-start-line="1886" selection-start-column="32" selection-end-line="1886" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -38,7 +37,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="handle_sprites.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="handle_sprites.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="267">
@@ -71,8 +70,10 @@
       <find>getSTat</find>
       <find>useFr</find>
       <find>drawCharSheet</find>
-      <find>draw</find>
       <find>increasePower</find>
+      <find>draw</find>
+      <find>MANGRIT</find>
+      <find>var allSTats</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -86,8 +87,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/javascripts/player.js" />
         <option value="$PROJECT_DIR$/javascripts/handle_sprites.js" />
+        <option value="$PROJECT_DIR$/javascripts/player.js" />
       </list>
     </option>
   </component>
@@ -471,6 +472,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="611" column="45" lean-forward="false" selection-start-line="611" selection-start-column="45" selection-end-line="611" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/Scenes/Aftermath.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="241">
@@ -481,16 +490,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="2115" column="40" lean-forward="false" selection-start-line="2115" selection-start-column="40" selection-end-line="2115" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="611" column="45" lean-forward="false" selection-start-line="611" selection-start-column="45" selection-end-line="611" selection-end-column="45" />
+        <state relative-caret-position="195">
+          <caret line="1886" column="32" lean-forward="false" selection-start-line="1886" selection-start-column="32" selection-end-line="1886" selection-end-column="32" />
           <folding />
         </state>
       </provider>
