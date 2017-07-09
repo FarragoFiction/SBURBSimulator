@@ -68,7 +68,8 @@ function VoidyStuff(session){
 		div.append(newDivHTML);
 		var normalDiv = $("#"+div.attr("id")+ "voidyStuffNormal")
 		var newDiv = $("#"+div.attr("id")+ "voidyStuffSpecial")
-		if(this.player.godDestiny && !this.player.godTier && Math.seededRandom()>0.8 && this.player.land != null){
+		//don't godtier as soon as you get in, too unfair to the other players.
+		if(this.player.godDestiny && this.player.power > 50 && !this.player.godTier && Math.seededRandom()>0.8 && this.player.land != null){
 			this.godTier(normalDiv, newDiv);
 			this.endingPhrase(classDiv, newDiv);
 			return;
