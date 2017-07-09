@@ -441,6 +441,21 @@ function FraymotifCreator(){
     this.premadeFraymotifNames = [];
     this.premadeFraymotifNames.push(new Fraymotif(["Light"], "Blinded By The Light",1, ""))
     this.premadeFraymotifNames.push(new Fraymotif(["Breath", "Time"], "Stop, Hammertime",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Breath", "Hope"], "Wings of Freedom",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Breath", "Hope"], "Happy Ending",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Space", "Time"], "Adagio Redshift",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Space", "Time"], "No Time To Live",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Heart", "Doom"], "Madrigal Melancholia",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Space", "Time", "Breath", "Light"], "Canon in HS Major",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Life", "Void", "Heart", "Hope"], "Canon in HS Minor",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Doom", "Time"], "Another One Bites The Dust",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Hope", "Time"], "Maybe Someday",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Mind", "Space"], "Mind Over Matter",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Space", "Life"], "Extraterrestrial Ensemble",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Space", "Time"], "No Time To Live",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Space", "Time"], "No Time To Live",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Space", "Time"], "No Time To Live",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Space", "Time"], "No Time To Live",1, ""))
   }
 
   this.getFraymotifName = function(players, tier){
