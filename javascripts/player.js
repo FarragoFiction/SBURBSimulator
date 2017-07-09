@@ -1021,10 +1021,9 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.makeGuardian =function(){
 		//console.log("guardian for " + player.titleBasic());
 		var player = this;
-		var possibilities = active_classes;
-		if(this.isActive()) possibilities = passive_classes;
+		var possibilities = available_classes_guardians;
 		var guardian = randomPlayerWithClaspect(this.session, getRandomElementFromArray(possibilities), this.aspect);
-
+        available_classes_guardians.removeFromArray(guardian.class_name)
 		guardian.isTroll = player.isTroll;
 		guardian.quirk.favoriteNumber = player.quirk.favoriteNumber;
 		if(guardian.isTroll){

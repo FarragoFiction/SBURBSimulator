@@ -1121,6 +1121,8 @@ var passive_classes = ["Rogue","Page","Maid","Seer","Sylph", "Bard"];
 var classes = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
 //when a class is used, remove from below list.
 var available_classes = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
+var available_classes_guardians = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
+
 var custom_only_classes = ["Waste"]; //Lord, Muse, Guide, Scout, Scribe, Smith, Wright
 var required_aspects = ["Space", "Time"];
 var all_aspects = ["Space", "Time","Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
