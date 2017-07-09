@@ -1,5 +1,10 @@
 
 /*
+
+  WARNING: BEING ABANDONED FOR NOW CAUSE IT TURNS OUT MY JS WOULDN'T BE ABLE TO CALL THIS EASILY.
+
+
+  
   A planet should be tailored for a specific player.
   It's land words should have one aspect related word, (only frog for space)
   and one "random" word.

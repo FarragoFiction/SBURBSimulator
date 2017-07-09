@@ -399,7 +399,7 @@ function createInitialSprites(){
 
 function intro(){
 	createInitialSprites();
-	advertisePatreon($("#story"));
+	//advertisePatreon($("#story"));
 	callNextIntroWithDelay(0);
 }
 
