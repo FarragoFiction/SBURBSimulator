@@ -1311,9 +1311,15 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	//couldn't really have implemented this without having authorBot have my back.
 	//she'll help me make sure i don't make everything boring implmeenting luck.
 	//luck can absolutely be negative. thems the breaks.
-	this.rollForLuck = function(){
-		return getRandomInt(this.getStat("minLuck"), this.getStat("maxLuck"));
-		//return getRandomInt(this.minLuck, this.maxLuck);
+	//if i pass a stat, then i want you to only look at one luck stat not the other.
+	this.rollForLuck = function(stat){
+		if(!stat){
+		    return getRandomInt(this.getStat("minLuck"), this.getStat("maxLuck"));
+		}else{
+		    //don't care if it's min or max, just compare it to zero.
+		    return getRandomInt(0, this.getStat(stat));
+		}
+
 	}
 
 	//people like you less

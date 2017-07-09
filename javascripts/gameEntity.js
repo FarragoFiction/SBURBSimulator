@@ -927,8 +927,8 @@ function GameEntity(session, name, crowned){
 			div.append(ret);
 
 			//luck dodge
-			var offenseRoll = offense.rollForLuck();
-			var defenseRoll = defense.rollForLuck();
+			var offenseRoll = offense.rollForLuck("maxLuck"); //try for good thing
+			var defenseRoll = defense.rollForLuck("minLuck"); //try to avoid bad thing.
 			//alert("offense roll is: " + offenseRoll + " and defense roll is: " + defenseRoll)
 			//console.log("gonna roll for luck.")
 			if(defenseRoll > offenseRoll*10+10){ //adding 10 to try to keep it happening constantly at low levels
@@ -1058,9 +1058,15 @@ function GameEntity(session, name, crowned){
 		}
 
 
-		this.rollForLuck = function(){
-			return getRandomInt(this.getStat("minLuck"), this.getStat("maxLuck"));
-		}
+		this.rollForLuck = function(stat){
+        		if(!stat){
+        		    return getRandomInt(this.getStat("minLuck"), this.getStat("maxLuck"));
+        		}else{
+        		    //don't care if it's min or max, just compare it to zero.
+        		    return getRandomInt(0, this.getStat(stat));
+        		}
+
+        }
 
 		//place holders for now. being in diamonds with jack is NOT a core feature.
 		//but when it IS "there there you blubbering goddamned pansy"

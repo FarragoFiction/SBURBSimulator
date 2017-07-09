@@ -232,9 +232,15 @@ function PlayerSnapshot(){
 		//stubb
 	}
 
-	this.rollForLuck = function(){
-		return getRandomInt(this.getStat("minLuck"), this.getStat("maxLuck"));
-	}
+	this.rollForLuck = function(stat){
+    		if(!stat){
+    		    return getRandomInt(this.getStat("minLuck"), this.getStat("maxLuck"));
+    		}else{
+    		    //don't care if it's min or max, just compare it to zero.
+    		    return getRandomInt(0, this.getStat(stat));
+    		}
+
+    }
 
 	this.interactionEffect = function(player){
 			//none
