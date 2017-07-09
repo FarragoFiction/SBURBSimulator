@@ -142,7 +142,7 @@ function UpdateShippingGrid(session){
 		s.ships = this.createShips(this.session.players, s)
 		s.savedShipText = ""; //make sure it's blank
 		this.shippers.push(s);
-		console.log("making new shipper for: " + player)
+		//console.log("making new shipper for: " + player)
 		return s;
 	}
 
@@ -222,17 +222,17 @@ function UpdateShippingGrid(session){
 	//for all players, look at all relationships. if goodBig or badBig, return.
 	//also grab clubs and diamonds. later.
 	this.createShips = function(players, shipperPlayer){
-		//console.log("creating ships")
+		////console.log("creating ships")
 		var ret = [];
 			for(var i = 0; i<players.length; i++){
 
 				var player = players[i];
-				//console.log("making ships for: " + player.title())
+				////console.log("making ships for: " + player.title())
 
 				for(var j = 0; j<player.relationships.length; j++){
 					var r1 = player.relationships[j];
 					var r2 = r1.target.getRelationshipWith(player);
-					//console.log("made new ship")
+					////console.log("made new ship")
 					ret.push(new Ship(r1, r2, shipperPlayer))
 				}
 			}
@@ -244,12 +244,12 @@ function UpdateShippingGrid(session){
 					for(var j= (i+1); j<ret.length; j++){
 						var secondShip = ret[j];
 							if(firstShip.isEqualToShip(secondShip)){
-								//console.log("pushing to remove")
+								////console.log("pushing to remove")
 								toRemove.push(secondShip);
 							}
 					}
 				}
-				//console.log("this many to remove: " + toRemove.length)
+				////console.log("this many to remove: " + toRemove.length)
 				for(var i = 0; i<toRemove.length; i++){
 						removeFromArray(toRemove[i], ret)
 				}
@@ -294,18 +294,18 @@ function UpdateShippingGrid(session){
 		var p2Start = p2.chatHandleShort()+ ": "
 		if(this.chosenShipper.player.aspect == "Blood"){
 			if(otp.r1.saved_type == otp.r1.goodBig){
-				 console.log("trying to make a pale ship happen: " + this.session.session_id)
+				 //console.log("trying to make a pale ship happen: " + this.session.session_id)
 				 this.tryToConvincePale(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}else{
-				 console.log("trying to make an ashen ship happen: " + this.session.session_id)
+				 //console.log("trying to make an ashen ship happen: " + this.session.session_id)
 				 this.tryToConvinceAshen(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}
 		}else{
 			if(otp.r1.saved_type == otp.r1.goodBig){
-				 console.log("trying to make a flushed ship happen: " + this.session.session_id)
+				 //console.log("trying to make a flushed ship happen: " + this.session.session_id)
 			 	this.tryToConvinceFlushed(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}else{
-				 console.log("trying to make a black ship happen: " + this.session.session_id)
+				 //console.log("trying to make a black ship happen: " + this.session.session_id)
 				 this.tryToConvinceBlack(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}
 		}
@@ -369,12 +369,12 @@ function UpdateShippingGrid(session){
 					c= new PlusMinusConversationalPair(["Fuck","But... fuck. "],["JR: this won't happen because i know they got rejected."], ["I'm sorry. I really am."]);
 					chat += c.getOpeningLine(p1, p1Start);
 					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
-					console.log("Ship failed when it was almost done : " + this.session.session_id);
+					//console.log("Ship failed when it was almost done : " + this.session.session_id);
 					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is disappointed that it didn't work out. Oh well, if at first you don't succeed...";
 				}
 				this.romanceChat = chat;
 			}else{
-				console.log("Ship failed before it started : " + this.session.session_id);
+				//console.log("Ship failed before it started : " + this.session.session_id);
 				ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is frustrated that the " + p1.htmlTitleBasic() + " won't listen to reason. ";
 			}
 			this.shippingAfterMath = ret;
@@ -636,7 +636,7 @@ function UpdateShippingGrid(session){
 
 
 	this.content = function(){
-		//console.log("Updating shipping grid in: " + this.session.session_id);
+		////console.log("Updating shipping grid in: " + this.session.session_id);
 		removeFromArray(this.chosenShipper.player, this.session.availablePlayers);
 		this.chosenShipper.player.increasePower();
 		var shippingStyle = "They like the concillitory ships best, and default to those for people not yet in a quadrant.";
@@ -644,7 +644,7 @@ function UpdateShippingGrid(session){
 		var fuckPile = ""
 		if(this.chosenShipper.savedShipText.length > 4000){
 			fuckPile += " How did this session turn into such a scandalous fuckpile? ";
-		//	console.log( this.savedShipText.length + " scandalous fuck pile " + this.session.session_id)
+		//	//console.log( this.savedShipText.length + " scandalous fuck pile " + this.session.session_id)
 		}
 		var ret = "The " + this.chosenShipper.player.htmlTitleBasic() + " updates their shipping grid. " + shippingStyle +fuckPile + " <Br>" + this.chosenShipper.savedShipText;
 		if(this.chosenShipper.otp){
@@ -721,15 +721,15 @@ function Ship(r1, r2,shipper){
 		}
 		//order doesn't matter.
 		this.isEqualToShip = function(ship){
-			//console.log("comparing: " + this.toString() + " to "  + ship.toString())
+			////console.log("comparing: " + this.toString() + " to "  + ship.toString())
 			if(ship.r1 == this.r1 && ship.r2 == this.r2){
-				//console.log("they are the same1")
+				////console.log("they are the same1")
 				return true;
 			}else if(ship.r2 == this.r1 && ship.r1 == this.r2){
-				//console.log("they are the same2")
+				////console.log("they are the same2")
 				return true;
 			}
-		//	console.log("they are not the same")
+		//	//console.log("they are not the same")
 			return false;
 		}
 
