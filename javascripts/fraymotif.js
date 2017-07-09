@@ -409,8 +409,21 @@ function FraymotifCreator(){
     }
   }
 
+  //if the creator's list of fraymotifs is empty, create it.
+  //return null with 50% chance. (don't want EVERY tier 2 light fraymotif to be called the same thing)
+  //look through array of premade fraymotifs and see if players can cast the fraymotif.
+  //if they can, return name of fraymotif.
+  this.tryToGetPreMadeName = function(players){
+
+  }
+
   this.getFraymotifName = function(players, tier){
-    var name = "";
+    var name = this.tryToGetPreMadeName(players);
+    if(name){
+        return name; //premade is good enough here. let the called function handle randomness.
+    }else{
+        name = "";
+    }
     var indexOfMusic = players.length-1;  //used to be random now always at end.
     if(players.length == 1){
       indexOfMusic = getRandomInt(0,tier-1);

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js" afterPath="$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/fraymotif.js" afterPath="$PROJECT_DIR$/javascripts/fraymotif.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,18 +20,8 @@
       <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="1204" column="5" lean-forward="true" selection-start-line="1204" selection-start-column="5" selection-end-line="1204" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VoidyStuff.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="70" column="79" lean-forward="false" selection-start-line="70" selection-start-column="79" selection-end-line="70" selection-end-column="79" />
+            <state relative-caret-position="175">
+              <caret line="1197" column="0" lean-forward="true" selection-start-line="1197" selection-start-column="0" selection-end-line="1197" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -52,6 +42,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="103">
               <caret line="65" column="84" lean-forward="true" selection-start-line="65" selection-start-column="43" selection-end-line="65" selection-end-column="84" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fraymotif.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="412" column="102" lean-forward="false" selection-start-line="412" selection-start-column="102" selection-end-line="412" selection-end-column="102" />
               <folding />
             </state>
           </provider>
@@ -129,10 +129,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>drawCharSheet</find>
-      <find>draw</find>
-      <find>var allSTats</find>
-      <find>MANGRIT</find>
       <find>getSTat =</find>
       <find>removeFromAr</find>
       <find>allSTats =</find>
@@ -158,7 +154,11 @@
       <find>charSh</find>
       <find>Brood</find>
       <find>brood</find>
+      <find>god</find>
       <find>increasePower</find>
+      <find>name</find>
+      <find>makeF</find>
+      <find>getFraymotifName</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -179,7 +179,6 @@
         <option value="$PROJECT_DIR$/DeadSessions/dead_session_controller.js" />
         <option value="$PROJECT_DIR$/javascripts/scene_controller.js" />
         <option value="$PROJECT_DIR$/Dart/planet.dart" />
-        <option value="$PROJECT_DIR$/javascripts/fraymotif.js" />
         <option value="$PROJECT_DIR$/javascripts/v2.0/scenario_controller2.js" />
         <option value="$PROJECT_DIR$/support.html" />
         <option value="$PROJECT_DIR$/javascripts/gameEntity.js" />
@@ -191,6 +190,7 @@
         <option value="$PROJECT_DIR$/javascripts/Scenes/GoGrimDark.js" />
         <option value="$PROJECT_DIR$/javascripts/playerSnapshot.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js" />
+        <option value="$PROJECT_DIR$/javascripts/fraymotif.js" />
       </list>
     </option>
   </component>
@@ -739,14 +739,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="136" column="27" lean-forward="false" selection-start-line="136" selection-start-column="27" selection-end-line="136" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/v2.0/scenario_controller2.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
@@ -851,18 +843,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="1204" column="5" lean-forward="true" selection-start-line="1204" selection-start-column="5" selection-end-line="1204" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
           <caret line="70" column="79" lean-forward="false" selection-start-line="70" selection-start-column="79" selection-end-line="70" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="1197" column="0" lean-forward="true" selection-start-line="1197" selection-start-column="0" selection-end-line="1197" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="412" column="102" lean-forward="false" selection-start-line="412" selection-start-column="102" selection-end-line="412" selection-end-column="102" />
           <folding />
         </state>
       </provider>
