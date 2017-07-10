@@ -905,6 +905,13 @@ function GameEntity(session, name, crowned){
 				usableFraymotifs = usableFraymotifs.concat(this.session.fraymotifCreator.getUsableFraymotifs(this.crowned, allies, enemies))
 			}
 			if(usableFraymotifs.length == 0) return false;
+			
+			if(owner.getStat("sanity") * 4 < getAverageSanity(enemies) && Math.seededRandom() < 0.5){
+				console.log("Too insane to use fraymotifs: " + this.htmlTitleHP() + " in session: " + this.session.session_id)
+				div.append(" The " + owner.this.htmlTitleHP() + " wants to use a Fraymotif, but they are too crazy to focus. "
+				return false;
+			}
+			
 			var chosen = usableFraymotifs[0];
 			for(var i = 0; i<usableFraymotifs.length; i++){
 				var f = usableFraymotifs[i];
@@ -914,6 +921,9 @@ function GameEntity(session, name, crowned){
 					chosen = f; //all else equal, prefer the one with more members.
 				}
 			}
+			
+			
+			
 			div.append("<Br><br>"+chosen.useFraymotif(owner, allies, enemies) + "<br><Br>");
 			chosen.usable = false;
 			return true;

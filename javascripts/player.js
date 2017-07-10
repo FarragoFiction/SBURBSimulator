@@ -2770,14 +2770,14 @@ function sortPlayersByFreeWill(players){
 }
 
 function compareFreeWill(a,b) {
-  return b.freeWill - a.freeWill;
+  return b.getStat("freeWill") - a.getStat("freeWill");
 }
 
 function getAverageMinLuck(players){
 	if(players.length == 0) return 0;
 	var ret = 0;
 	for(var i = 0; i< players.length; i++){
-		ret += players[i].minLuck;
+		ret += players[i].getStat("minLuck");
 	}
 	return  Math.round(ret/players.length);
 }
@@ -2786,7 +2786,7 @@ function getAverageMaxLuck(players){
 	if(players.length == 0) return 0;
 	var ret = 0;
 	for(var i = 0; i< players.length; i++){
-		ret += players[i].maxLuck;
+		ret += players[i].getStat("maxLuck");
 	}
 	return  Math.round(ret/players.length);
 }
@@ -2795,7 +2795,7 @@ function getAverageSanity(players){
 	if(players.length == 0) return 0;
 	var ret = 0;
 	for(var i = 0; i< players.length; i++){
-		ret += players[i].sanity;
+		ret += players[i].getStat("sanity");
 	}
 	return  Math.round(ret/players.length);
 }
@@ -2804,7 +2804,7 @@ function getAverageHP(players){
 	if(players.length == 0) return 0;
 	var ret = 0;
 	for(var i = 0; i< players.length; i++){
-		ret += players[i].hp;
+		ret += players[i].getStat("current_hp");
 	}
 	return  Math.round(ret/players.length);
 }
@@ -2831,7 +2831,7 @@ function getAveragePower(players){
 	if(players.length == 0) return 0;
 	var ret = 0;
 	for(var i = 0; i< players.length; i++){
-		ret += players[i].power;
+		ret += players[i].getStat("power");
 	}
 	return  Math.round(ret/players.length);
 }
