@@ -179,40 +179,23 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		//also make minion here.
 		var denizen =  new GameEntity(this.session, "Denizen " +name, null);
 		var denizenMinion = new GameEntity(this.session,name + " Minion", null);
-		var ml = -10;
-		var xl = 0;
-		var hp = 10 * strength;
-		var mob = 10;
-		var tl = 0;
-		var fw = 0;
-		var power = 5 * strength; //first minion.
-		if(this.aspect == "Hope") power = power *4;
-		if(this.aspect == "Life") hp = hp *4;
-		if(this.aspect == "Doom"){
-			 hp = hp/2;
-			 ml = ml/2;
+		var tmpStatHolder = {};
+		tmpStatHolder.minLuck = -10;
+		tmpStatHolder.maxLuck = 10;
+		tmpStatHolder.hp = 10 * strength;
+		tmpStatHolder.mobility = 10;
+		tmpStatHolder.sanity = 10;
+		tmpStatHolder.freeWill = 10;
+		tmpStatHolder.power = 5 * strength;
+		tmpStatHolder.RELATIONSHIPS = 10;  //not REAL relationships, but real enough for our purposes.
+		for(var i = 0; i<this.associatedStats.length; i++){
+			var stat = this.associatedStats[i];
+			if(stat.name == "MANGRIT"){
+				tmpStatHolder.power = tmpStatHolder.power * stat.multiplier
+			}else{
+				tmpStatHolder[stat.name] = tmpStatHolder[statName] * stat.multiplier;
+			} 
 		}
-		if(this.aspect == "Blood"){
-			hp = hp * 2;
-			tl = tl/2;
-		}
-		if(this.aspect == "Mind"){
-			fw = fw *2;
-			hp = hp * 2;
-		}
-		if(this.aspect == "Rage"){
-			tl = tl *2;
-			power = power*2;
-		}
-		if(this.aspect == "Void") power = power *4;
-		if(this.aspect == "Time") fw = fw /4;
-		if(this.aspect == "Heart"){
-			power = power *2;
-			ml = ml & 2;
-		}
-		if(this.aspect == "Breath") mob = mob *4;
-		if(this.aspect == "Light") xl = xl *4;
-		if(this.aspect == "Space") mob = mob /4;
 
 		denizenMinion.setStats(ml,xl,hp,mob,tl,fw,power,true, false, [],1000000);
 		power = 10*strength;
