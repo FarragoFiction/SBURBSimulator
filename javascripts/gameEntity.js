@@ -1563,18 +1563,18 @@ prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].mobility = 50;
 prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
 prototyping_objects[prototyping_objects.length-1].helpPhrase = " is the STAR. It is them. You don't think they have ever once attempted to even talk about the game. How HIGH did you have to BE to prototype this glitchy piece of shit? ";
-var f = new Fraymotif([],"Stairs", 3)
-f.effects.push(new FraymotifEffect("power",1,true));
+var f = new Fraymotif([],"FUCK IM FALLING DOWN ALL THESE STAIRS", 3)
+f.effects.push(new FraymotifEffect("mobility",1,false)); //buff to mobility bro
 f.flavorText = " It keeps hapening. "
 prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
 
-var f = new Fraymotif([],"Stairs", 3)
-f.effects.push(new FraymotifEffect("power",1,true));
+var f = new Fraymotif([],"FUCK IM FALLING DOWN ALL THESE STAIRS", 3)
+f.effects.push(new FraymotifEffect("mobility",1,false));
 f.flavorText = " I warned you about stairs bro!!! "
 prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
 
-var f = new Fraymotif([],"Stairs", 3)
-f.effects.push(new FraymotifEffect("power",1,true));
+var f = new Fraymotif([],"FUCK IM FALLING DOWN ALL THESE STAIRS", 3)
+f.effects.push(new FraymotifEffect("mobility",1,false));
 f.flavorText = " I told you dog! "
 prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
 
