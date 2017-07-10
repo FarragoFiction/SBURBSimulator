@@ -141,7 +141,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		ret += Math.abs(this.freeWill)
 		ret += Math.abs(this.mobility)
 		ret += Math.abs(this.hp)
-		ret += Math.abs(this.maxLuck - this.minLuck)
+		ret += Math.abs(this.maxLuck + this.minLuck)
 		ret += Math.abs(this.sanity)
 		return ret;
 	}
