@@ -20,8 +20,8 @@
       <file leaf-file-name="player.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="2278" column="24" lean-forward="false" selection-start-line="2278" selection-start-column="24" selection-end-line="2278" selection-end-column="24" />
+            <state relative-caret-position="208">
+              <caret line="2160" column="56" lean-forward="false" selection-start-line="2160" selection-start-column="56" selection-end-line="2160" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -69,10 +69,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>increasePower</find>
-      <find>name</find>
-      <find>makeF</find>
-      <find>getFraymotifName</find>
       <find>getCasters</find>
       <find>NoOwner</find>
       <find>premadeFraymotifNames</find>
@@ -99,6 +95,10 @@
       <find>classNameToInt</find>
       <find>loadAllPossiblePlayers</find>
       <find>getColorFromAspect</find>
+      <find>initialize</find>
+      <find>initializeStats</find>
+      <find>Null</find>
+      <find>Waste</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -837,8 +837,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="2278" column="24" lean-forward="false" selection-start-line="2278" selection-start-column="24" selection-end-line="2278" selection-end-column="24" />
+        <state relative-caret-position="208">
+          <caret line="2160" column="56" lean-forward="false" selection-start-line="2160" selection-start-column="56" selection-end-line="2160" selection-end-column="56" />
           <folding />
         </state>
       </provider>

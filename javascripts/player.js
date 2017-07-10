@@ -718,7 +718,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.applyPossiblePsionics = function(){
-		if(this.fraymotifs.length > 0) return; //if i already have fraymotifs, then they were probably predefined.
+		if(this.fraymotifs.length > 0 || !this.isTroll) return; //if i already have fraymotifs, then they were probably predefined.
 		//highest land dwellers can have chucklevoodoos. Other than that, lower on hemospectrum = greater odds of having psionics.
 		//make sure psionic list is kept in global var, so that char creator eventually can access? Wait, no, just wrtap it in a function here. don't polute global name space.
 		//trolls can clearly have more than one set of psionics. so. odds of psionics is inverse with hemospectrum position. didn't i do this math before? where?
@@ -2150,6 +2150,18 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			this.godDestiny =true;
 		}
 		this.currentHP = this.hp; //could have been altered by associated stats
+
+		if(this.class_name == "Waste"){
+		    var f = new Fraymotif([],  "Rocks Fall, Everyone Dies", 1) //what better fraymotif for an Author to start with
+            f.effects.push(new FraymotifEffect("power",3,true));
+            f.flavorText = " Hax, I call hax! "
+            this.fraymotifs.push(f);
+		}else if(this.class_name == "Null"){
+            var f = new Fraymotif([],  "What class???", 1) //what better fraymotif for an Author to start with
+            f.effects.push(new FraymotifEffect("power",1,true));
+            f.flavorText = " I am certain there is not a class here and it is laughable to imply otherwise. "
+            this.fraymotifs.push(f);
+		}
 	}
 
 
