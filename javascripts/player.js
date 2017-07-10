@@ -2848,7 +2848,7 @@ function getAverageFreeWill(players){
 	if(players.length == 0) return 0;
 	var ret = 0;
 	for(var i = 0; i< players.length; i++){
-		ret += players[i].freeWill;
+		ret += players[i].getStat("freeWill");
 	}
 	return  Math.round(ret/players.length);
 }
