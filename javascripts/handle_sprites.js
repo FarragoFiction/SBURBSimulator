@@ -2314,6 +2314,18 @@ function aspectPalletSwap(canvas, player){
 	new_color9='#2C1207';
 	new_color10='#5C2913';
 	new_color11='#4C1F0D';
+  }else{
+    new_color1='#FF9B00';
+  	new_color2='#FF8700';
+  	new_color3='#7F7F7F';
+  	new_color4='#727272';
+  	new_color5='#A3A3A3';
+  	new_color6='#999999';
+  	new_color7='#898989';
+  	new_color8='#EFEFEF';
+  	new_color9='#DBDBDB';
+  	new_color10='#C6C6C6';
+  	new_color11='#ADADAD';
   }
 
 

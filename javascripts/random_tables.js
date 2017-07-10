@@ -1061,10 +1061,13 @@ function intToClassName(num){
 }
 
 function aspectToInt(aspect){
-	return all_aspects.indexOf(aspect);
+    var tmp = all_aspects.indexOf(aspect);
+    if(tmp == -1) tmp = 255;
+	return tmp;
 }
 
 function intToAspect(num){
+    if(num > all_aspects.length || num == 255) return "Null"  //Heir of Null
 	return all_aspects[num];
 }
 

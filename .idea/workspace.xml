@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="" />
+    <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/Bodies/Aspect_Null.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/handle_sprites.js" afterPath="$PROJECT_DIR$/javascripts/handle_sprites.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/random_tables.js" afterPath="$PROJECT_DIR$/javascripts/random_tables.js" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,7 +22,7 @@
       <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-107">
+            <state relative-caret-position="4562">
               <caret line="2166" column="115" lean-forward="false" selection-start-line="2166" selection-start-column="115" selection-end-line="2166" selection-end-column="115" />
               <folding />
             </state>
@@ -35,21 +39,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="handle_sprites.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="handle_sprites.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="1829" column="17" lean-forward="false" selection-start-line="1829" selection-start-column="9" selection-end-line="1829" selection-end-column="17" />
+            <state relative-caret-position="280">
+              <caret line="2327" column="24" lean-forward="false" selection-start-line="2327" selection-start-column="24" selection-end-line="2327" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="random_tables.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="random_tables.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="1058" column="37" lean-forward="false" selection-start-line="1058" selection-start-column="37" selection-end-line="1058" selection-end-column="37" />
+            <state relative-caret-position="280">
+              <caret line="1069" column="76" lean-forward="false" selection-start-line="1069" selection-start-column="76" selection-end-line="1069" selection-end-column="76" />
               <folding />
             </state>
           </provider>
@@ -67,7 +71,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>brood</find>
       <find>god</find>
       <find>increasePower</find>
       <find>name</find>
@@ -92,11 +95,12 @@
       <find>new Fray</find>
       <find>soda</find>
       <find>Web</find>
-      <find>getRepl</find>
       <find>dream</find>
-      <find>classNameToInt</find>
       <find>loadAllPossiblePlayers</find>
       <find>aspectSy</find>
+      <find>classNameToInt</find>
+      <find>PalletSwap</find>
+      <find>getRepl</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -110,7 +114,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/javascripts/handle_sprites.js" />
         <option value="$PROJECT_DIR$/Dart/test.dart" />
         <option value="$PROJECT_DIR$/Dart/dead_session_controller.dart" />
         <option value="$PROJECT_DIR$/DeadSessions/dead_session.html" />
@@ -131,14 +134,15 @@
         <option value="$PROJECT_DIR$/javascripts/gameEntity.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/QuadrantDialogue.js" />
         <option value="$PROJECT_DIR$/todo.html" />
-        <option value="$PROJECT_DIR$/javascripts/random_tables.js" />
         <option value="$PROJECT_DIR$/javascripts/loading.js" />
+        <option value="$PROJECT_DIR$/javascripts/handle_sprites.js" />
+        <option value="$PROJECT_DIR$/javascripts/random_tables.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="71" />
-    <option name="y" value="70" />
+    <option name="x" value="189" />
+    <option name="y" value="71" />
     <option name="width" value="1061" />
     <option name="height" value="633" />
   </component>
@@ -506,7 +510,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="71" y="70" width="1061" height="633" extended-state="0" />
+    <frame x="189" y="71" width="1061" height="633" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -809,22 +813,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-107">
-          <caret line="2166" column="115" lean-forward="false" selection-start-line="2166" selection-start-column="115" selection-end-line="2166" selection-end-column="115" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="1058" column="37" lean-forward="false" selection-start-line="1058" selection-start-column="37" selection-end-line="1058" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/loading.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -835,8 +823,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="1829" column="17" lean-forward="false" selection-start-line="1829" selection-start-column="9" selection-end-line="1829" selection-end-column="17" />
+        <state relative-caret-position="280">
+          <caret line="2327" column="24" lean-forward="false" selection-start-line="2327" selection-start-column="24" selection-end-line="2327" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4562">
+          <caret line="2166" column="115" lean-forward="false" selection-start-line="2166" selection-start-column="115" selection-end-line="2166" selection-end-column="115" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="1069" column="76" lean-forward="false" selection-start-line="1069" selection-start-column="76" selection-end-line="1069" selection-end-column="76" />
           <folding />
         </state>
       </provider>
