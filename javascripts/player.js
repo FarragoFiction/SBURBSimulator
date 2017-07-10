@@ -149,7 +149,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.generateDenizen = function(){
 		var possibilities = this.getDenizenNameArray();
 		var strength = this.getOverallStrength();
-		var expectedMaxStrength = 600; //from sim values of 50+ sessions. then balancing exercises with AB
+		var expectedMaxStrength = 400; //from sim values of 50+ sessions. then balancing exercises with AB
 		var strengthPerTier = (expectedMaxStrength)/possibilities.length;
 		//console.log("Strength at start is, " + strength);//but what if you don't want STRANGTH!???
 		var denizenIndex = Math.round(strength/strengthPerTier)-1;  //want lowest value to be off the denizen array.
