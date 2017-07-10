@@ -187,6 +187,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		tmpStatHolder.sanity = 10;
 		tmpStatHolder.freeWill = 10;
 		tmpStatHolder.power = 5 * strength;
+		tmpStatHolder.grist = 1000;
 		tmpStatHolder.RELATIONSHIPS = 10;  //not REAL relationships, but real enough for our purposes.
 		for(var i = 0; i<this.associatedStats.length; i++){
 			var stat = this.associatedStats[i];
@@ -197,12 +198,15 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			} 
 		}
 
-		denizenMinion.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolder.sanity,tmpStatHolder.freeWill,tmpStatHolder.power,true, false, [],1000);
+		//denizenMinion.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolder.sanity,tmpStatHolder.freeWill,tmpStatHolder.power,true, false, [],1000);
+		
+		denizenMinion.setStatsHash(tmpStatHolder);
 		tmpStatHolder.power = 10*strength;
 		for(var key in tmpStatHolder){
 			tmpStatHolder[key] = tmpStatHolder[key] * 2; // same direction as minion stats, but bigger. 
 		}
-		denizen.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolder.sanity,tmpStatHolder.freeWill,tmpStatHolder.power,true, false, [],1000000);
+		//denizen.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolder.sanity,tmpStatHolder.freeWill,tmpStatHolder.power,true, false, [],1000000);
+		denizen.setStatsHash(tmpStatHolder);
 		this.denizen = denizen;
 		this.denizenMinion = denizenMinion;
 		this.session.fraymotifCreator.createFraymotifForPlayerDenizen(this,name);

@@ -113,7 +113,13 @@ function GameEntity(session, name, crowned){
 			}
 			return ret;
 		}
-
+	
+	
+		this.setStatsHash = function(hashStats){
+			for (var key in hashStats){
+				this[key] = hashStats[key];
+			}
+		}
 
 		this.setStats = function(minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs, grist){
 			this.minLuck = minLuck;
