@@ -332,12 +332,12 @@ function FraymotifCreator(){
   }
 
   this.getRandomBreathName = function(){
-      var names = ["Gale", "Feather", "Breathless","Jetstream", "Hurricane", "Tornado"," Kansas", "Breath", "Breeze", "Twister", "Storm", "Wild", "Inhale", "Windy", "Skylark", "Fugue", "Pneumatic", "Wheeze", "Forward", "Vertical", "Whirlwind", "Jetstream"];
+      var names = ["Gale", "Feather", "Lifting", "Breathless","Jetstream", "Hurricane", "Tornado"," Kansas", "Breath", "Breeze", "Twister", "Storm", "Wild", "Inhale", "Windy", "Skylark", "Fugue", "Pneumatic", "Wheeze", "Forward", "Vertical", "Whirlwind", "Jetstream"];
       return getRandomElementFromArray(names)
   }
 
   this.getRandomRageName = function(){
-      var names = ["Rage", "Barbaric", "Impossible", "Juggalo","Horrorcore" ,"Madness", "Carnival", "Mirthful", "Screaming", "Berserk", "MoThErFuCkInG", "War", "Haze", "Murder", "Furioso", "Aggressive", "ATBasher", "Violent", "Unbound", "Purple", "Unholy", "Hateful", "Fearful", "Inconceivable", "Impossible"];
+      var names = ["Rage", "Barbaric", "Impossible", "Tantrum", "Juggalo","Horrorcore" ,"Madness", "Carnival", "Mirthful", "Screaming", "Berserk", "MoThErFuCkInG", "War", "Haze", "Murder", "Furioso", "Aggressive", "ATBasher", "Violent", "Unbound", "Purple", "Unholy", "Hateful", "Fearful", "Inconceivable", "Impossible"];
       return getRandomElementFromArray(names)
   }
 
@@ -353,7 +353,7 @@ function FraymotifCreator(){
 
   this.getRandomVoidName = function(){
       var randBonus = "<span class = 'void'>" + getRandomElementFromArray(interests) +  "</span>"
-      var names = ["Undefined", "Void","Disappearification","Pumpkin", "Nothing", "Emptiness", "Invisible", "Dark", "Hole", "Solo", "Silent", "Alone", "Night", "Null", "[Censored]", "[???]", "Vacuous", "Abyss", "Noir", "Blank", "Tenebrous", "Antithesis", "404"];
+      var names = ["Undefined", "untitled.mp4" "Void","Disappearification","Pumpkin", "Nothing", "Emptiness", "Invisible", "Dark", "Hole", "Solo", "Silent", "Alone", "Night", "Null", "[Censored]", "[???]", "Vacuous", "Abyss", "Noir", "Blank", "Tenebrous", "Antithesis", "404"];
       return getRandomElementFromArray(names)+ randBonus;
   }
 
@@ -456,6 +456,29 @@ function FraymotifCreator(){
     this.premadeFraymotifNames.push(new Fraymotif(["Space", "Breath"], "Air on a Cosmic String",1, ""))
     this.premadeFraymotifNames.push(new Fraymotif(["Breath", "Void"], "Rhapsody in Blue",1, ""))
     this.premadeFraymotifNames.push(new Fraymotif(["Mind", "Breath"], "Brainstorm",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Space", "Void"], "Spaced Out",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Hope", "Light"], "Look On The Bright Side",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Light", "Void"], "Lights Out",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Hope", "Void"], "Lost Hope",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Light", "Hope"], "Grandiose Illuminations",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Hope", "Void"], "Lost Hope",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Rage", "Light", "Heart"], "Flipping the Light Fantastic",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Light", "Heart"], "Lucky Charms",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Heart", "Void"], "Hotel California",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Hope", "Heart"], "Feel Good",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Heart", "Void", "Space"], "Heart's Not In It",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Mind", "Breath"], "Freedom of Thought",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Doom", "Rage"], "Brick in The Wall",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Blood", "Doom", "Life"], "Ancestral Awakening",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Doom", "Time"], "You're Gonna Have a Bad Time",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Doom", "Hope"], "I Hope You Die",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Hope", "Void"], "Lost Hope",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Hope", "Void"], "Lost Hope",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Hope", "Void"], "Lost Hope",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Hope", "Void"], "Lost Hope",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Hope", "Void"], "Lost Hope",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Hope", "Void"], "Lost Hope",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Hope", "Void"], "Lost Hope",1, ""))
   }
 
   this.getFraymotifName = function(players, tier){

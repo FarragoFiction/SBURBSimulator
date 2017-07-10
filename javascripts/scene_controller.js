@@ -5,12 +5,13 @@ function createScenesForSession(session){
 	session.scenes = [new StartDemocracy(session), new JackBeginScheming(session), new KingPowerful(session), new QueenRejectRing(session), new GiveJackBullshitWeapon(session), new JackPromotion(session), new JackRampage(session)];
 	//relationship drama has a high priority because it can distract a session from actually making progress. happened to universe a trolls.
 	session.scenes = session.scenes.concat([new QuadrantDialogue(session),new FreeWillStuff(session),new GrimDarkQuests(session),new Breakup(session), new RelationshipDrama(session), new UpdateShippingGrid(session),  new EngageMurderMode(session), new GoGrimDark(session),  new DisengageMurderMode(session),new MurderPlayers(session),new BeTriggered(session),]);
-	session.scenes = session.scenes.concat([new VoidyStuff(session), new FaceDenizen(session), new DoEctobiology(session), new LuckStuff(session), new DoLandQuest(session), new LifeStuff(session)]);
+	session.scenes = session.scenes.concat([new VoidyStuff(session), new FaceDenizen(session), new DoEctobiology(session), new LuckStuff(session), new DoLandQuest(session)]);
 	session.scenes = session.scenes.concat([new SolvePuzzles(session), new ExploreMoon(session)]);
 	session.scenes = session.scenes.concat([new LevelTheHellUp(session)]);
 
 	//make sure kiss, then godtier, then godtierrevival, then any other form of revival.
-	session.deathScenes = [ new SaveDoomedTimeLine(session), new GetTiger(session), new CorpseSmooch(session), new GodTierRevival(session)];  //are always available.
+	//make sure life stuff happens AFTER a chance at god tier, or life players PREVENT god tiering.
+	session.deathScenes = [ new SaveDoomedTimeLine(session), new GetTiger(session), new CorpseSmooch(session), new GodTierRevival(session), new LifeStuff(session)];  //are always available.
 	session.reckoningScenes = [new FightQueen(session), new FightKing(session)];
 
 	//scenes can add other scenes to available scene list. (for example, spy missions being added if Jack began scheming)
