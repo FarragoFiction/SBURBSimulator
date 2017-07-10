@@ -2806,7 +2806,7 @@ function getAverageHP(players){
 	if(players.length == 0) return 0;
 	var ret = 0;
 	for(var i = 0; i< players.length; i++){
-		ret += players[i].getStat("current_hp");
+		ret += players[i].getStat("hp");
 	}
 	return  Math.round(ret/players.length);
 }
