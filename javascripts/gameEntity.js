@@ -908,13 +908,13 @@ function GameEntity(session, name, crowned){
 			
 			if(owner.getStat("sanity") * 4 < getAverageSanity(enemies) && Math.seededRandom() < 0.5){
 				console.log("Too insane to use fraymotifs: " + this.htmlTitleHP() + " in session: " + this.session.session_id)
-				div.append(" The " + owner.this.htmlTitleHP() + " wants to use a Fraymotif, but they are too crazy to focus. ")
+				div.append(" The " + owner.htmlTitleHP() + " wants to use a Fraymotif, but they are too crazy to focus. ")
 				return false;
 			}
 			
 			if(owner.getStat("freeWill") * 4 < getAverageFreeWill(enemies) && Math.seededRandom() < 0.5){
 				console.log("Too controlled to use fraymotifs: " + this.htmlTitleHP() + " in session: " + this.session.session_id)
-				div.append(" The " + owner.this.htmlTitleHP() + " wants to use a Fraymotif, but Fate dictates otherwise. ")
+				div.append(" The " + owner.htmlTitleHP() + " wants to use a Fraymotif, but Fate dictates otherwise. ")
 				return false;
 			}
 			
