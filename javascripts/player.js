@@ -405,8 +405,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(this.aspect == "Doom"){ //powered by their own doom.
 			//console.log("doom is powered by their own death: " + this.session.session_id) //omg, they are sayians.
 			this.power += 50;
-			this.hp = 100; //prophecy fulfilled. but hp and luck will probably drain again.
-			this.minLuck = 100; //prophecy fulfilled. you are no longer doomed.
+			this.hp = Math.max(100, this.hp); //prophecy fulfilled. but hp and luck will probably drain again.
+			this.minLuck = 30; //prophecy fulfilled. you are no longer doomed.
 		}
 		if(!this.godTier){ //god tiers only make ghosts in GodTierRevivial
 			var g = makeRenderingSnapshot(this);
@@ -1600,8 +1600,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.initializeLuck = function(){
-		this.minLuck = getRandomInt(0,10); //middle of the road.
-		this.maxLuck = this.minLuck + getRandomInt(-10,0);   //max needs to be more than min.
+		this.minLuck = getRandomInt(0,-10); //middle of the road.
+		this.maxLuck = this.minLuck + getRandomInt(10,1);   //max needs to be more than min.
 		if(this.trickster && this.aspect != "Doom"){
 			this.minLuck = 11111111111;
 			this.maxLuck = 11111111111;
@@ -2001,7 +2001,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), -2,true));  //hit to another thing.
 				break;
 			case  "Time":
-				this.associatedStats.push(new AssociatedStat("minLuck", 0,true));
+				this.associatedStats.push(new AssociatedStat("minLuck", 2,true));
 				this.associatedStats.push(new AssociatedStat("mobility", 1,true));
 				this.associatedStats.push(new AssociatedStat("freeWill", -2,true));
 				break;
@@ -2040,8 +2040,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			case  "Doom":
 				this.associatedStats.push(new AssociatedStat("alchemy", 2,true));
 				this.associatedStats.push(new AssociatedStat("freeWill", 1,true));
-				this.associatedStats.push(new AssociatedStat("minLuck", -2,true));
-				//this.associatedStats.push(new AssociatedStat("hp", -1,true));
+				this.associatedStats.push(new AssociatedStat("minLuck", -1,true));
+				this.associatedStats.push(new AssociatedStat("hp", -1,true));
 				break;
 			default:
 				console.log('What the hell kind of aspect is ' + this.aspect + '???');

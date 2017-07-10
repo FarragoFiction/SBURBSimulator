@@ -4,7 +4,7 @@ function LuckStuff(session){
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.rolls = [];
 	//luck can be good or it can be bad.
-	this.minLowValue = -25;
+	this.minLowValue = -10;
 	this.minHighValue = 200;
 	this.landLevelNeeded = 12;
 	this.numberTriggers = 0; //can't just spam this.
