@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/fraymotif.js" afterPath="$PROJECT_DIR$/javascripts/fraymotif.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/newsposts.js" afterPath="$PROJECT_DIR$/javascripts/newsposts.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,11 +48,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fraymotif.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fraymotif.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="355" column="47" lean-forward="false" selection-start-line="355" selection-start-column="47" selection-end-line="355" selection-end-column="47" />
+            <state relative-caret-position="118">
+              <caret line="428" column="3" lean-forward="true" selection-start-line="428" selection-start-column="3" selection-end-line="428" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="newsposts.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/javascripts/newsposts.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="20" column="538" lean-forward="false" selection-start-line="20" selection-start-column="538" selection-end-line="20" selection-end-column="538" />
               <folding />
             </state>
           </provider>
@@ -92,16 +103,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="103">
               <caret line="402" column="76" lean-forward="false" selection-start-line="402" selection-start-column="76" selection-end-line="402" selection-end-column="76" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="session.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/session.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="246" column="35" lean-forward="false" selection-start-line="246" selection-start-column="35" selection-end-line="246" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -153,12 +154,12 @@
       <find>premadeFraymotifNames</find>
       <find>getCastersNoOwner</find>
       <find>test</find>
-      <find>tryToGetPreMadeName</find>
       <find>undefined</find>
       <find>hurr</find>
       <find>canon</find>
       <find>After</find>
       <find>Rhap</find>
+      <find>tryToGetPreMadeName</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -191,6 +192,7 @@
         <option value="$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js" />
         <option value="$PROJECT_DIR$/javascripts/scene_controller.js" />
         <option value="$PROJECT_DIR$/javascripts/fraymotif.js" />
+        <option value="$PROJECT_DIR$/javascripts/newsposts.js" />
       </list>
     </option>
   </component>
@@ -582,7 +584,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1734213" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24787936" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -861,8 +863,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="355" column="47" lean-forward="false" selection-start-line="355" selection-start-column="47" selection-end-line="355" selection-end-column="47" />
+        <state relative-caret-position="118">
+          <caret line="428" column="3" lean-forward="true" selection-start-line="428" selection-start-column="3" selection-end-line="428" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/newsposts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="538" lean-forward="false" selection-start-line="20" selection-start-column="538" selection-end-line="20" selection-end-column="538" />
           <folding />
         </state>
       </provider>

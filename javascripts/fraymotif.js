@@ -426,7 +426,7 @@ function FraymotifCreator(){
   //look through array of premade fraymotifs and see if players can cast the fraymotif.
   //if they can, return name of fraymotif.
   this.tryToGetPreMadeName = function(players){
-   // if(Math.seededRandom() > 0.5) return; //just use the procedural name.
+    if(Math.seededRandom() > 0.5) return; //just use the procedural name.
 
     if(this.premadeFraymotifNames.length == 0) this.initializePremadeNames();
     for(var i = 0; i<this.premadeFraymotifNames.length; i++){
@@ -506,7 +506,7 @@ function FraymotifCreator(){
   this.getFraymotifName = function(players, tier){
     var name = this.tryToGetPreMadeName(players);
     if(name){
-        console.log("Using a premade procedural fraymotif name: " + players[0].session.session_id)
+        console.log("Using a premade procedural fraymotif name: " + name + " " + players[0].session.session_id)
         return name; //premade is good enough here. let the called function handle randomness.
     }else{
         name = "";
