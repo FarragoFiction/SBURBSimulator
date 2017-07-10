@@ -27,7 +27,7 @@ function FreeWillStuff(session){
 				this.decision = breakFree;
 				return true;
 			}
-			if(player.freeWill > 100 || player.canMindControl()){  //don't even get to consider a decision if you don't have  more than default free will.//TODO raise to over 60 'cause that is highest default free will possible. want free will to be rarer.
+			if(player.freeWill > 200 || player.canMindControl()){  //don't even get to consider a decision if you don't have  more than default free will.//TODO raise to over 60 'cause that is highest default free will possible. want free will to be rarer.
 				var decision = this.getPlayerDecision(player);
 				if(decision){
 					this.player = player;
