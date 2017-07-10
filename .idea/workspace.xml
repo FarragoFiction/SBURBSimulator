@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/gameEntity.js" afterPath="$PROJECT_DIR$/javascripts/gameEntity.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/Scenes/QuadrantDialogue.js" afterPath="$PROJECT_DIR$/javascripts/Scenes/QuadrantDialogue.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/loading.js" afterPath="$PROJECT_DIR$/javascripts/loading.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/todo.html" afterPath="$PROJECT_DIR$/todo.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,98 +23,28 @@
       <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="2182" column="115" lean-forward="false" selection-start-line="2182" selection-start-column="115" selection-end-line="2182" selection-end-column="115" />
+            <state relative-caret-position="-107">
+              <caret line="2166" column="115" lean-forward="false" selection-start-line="2166" selection-start-column="115" selection-end-line="2166" selection-end-column="115" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="session.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/session.js">
+      <file leaf-file-name="loading.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/javascripts/loading.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="246" column="8" lean-forward="false" selection-start-line="246" selection-start-column="8" selection-end-line="246" selection-end-column="55" />
+            <state relative-caret-position="265">
+              <caret line="226" column="33" lean-forward="false" selection-start-line="226" selection-start-column="33" selection-end-line="226" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="handle_sprites.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="handle_sprites.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="615" column="27" lean-forward="false" selection-start-line="615" selection-start-column="27" selection-end-line="615" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gameEntity.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/javascripts/gameEntity.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="1566" column="79" lean-forward="false" selection-start-line="1566" selection-start-column="79" selection-end-line="1566" selection-end-column="79" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fraymotif.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="428" column="3" lean-forward="true" selection-start-line="428" selection-start-column="3" selection-end-line="428" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="newsposts.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/newsposts.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="538" lean-forward="false" selection-start-line="20" selection-start-column="538" selection-end-line="20" selection-end-column="538" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="random_tables.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9198">
-              <caret line="1123" column="31" lean-forward="false" selection-start-line="1123" selection-start-column="4" selection-end-line="1123" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scene_controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/scene_controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="13" column="73" lean-forward="false" selection-start-line="13" selection-start-column="73" selection-end-line="13" selection-end-column="73" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="quirk.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/quirk.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="playerSnapshot.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/playerSnapshot.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="402" column="76" lean-forward="false" selection-start-line="402" selection-start-column="76" selection-end-line="402" selection-end-column="76" />
+            <state relative-caret-position="133">
+              <caret line="1715" column="44" lean-forward="false" selection-start-line="1715" selection-start-column="30" selection-end-line="1715" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -129,10 +62,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Guardian</find>
-      <find>Waste</find>
-      <find>makeGu</find>
-      <find>makePl</find>
       <find>charSh</find>
       <find>Brood</find>
       <find>brood</find>
@@ -157,8 +86,12 @@
       <find>reinit =</find>
       <find>available_classes_g</find>
       <find>available_classes_guardians = classes.slice(0);</find>
-      <find>getRepl</find>
       <find>new Fray</find>
+      <find>soda</find>
+      <find>Web</find>
+      <find>loadAllPossiblePlayers</find>
+      <find>getRepl</find>
+      <find>dream</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -192,6 +125,9 @@
         <option value="$PROJECT_DIR$/javascripts/session.js" />
         <option value="$PROJECT_DIR$/javascripts/player.js" />
         <option value="$PROJECT_DIR$/javascripts/gameEntity.js" />
+        <option value="$PROJECT_DIR$/javascripts/Scenes/QuadrantDialogue.js" />
+        <option value="$PROJECT_DIR$/todo.html" />
+        <option value="$PROJECT_DIR$/javascripts/loading.js" />
       </list>
     </option>
   </component>
@@ -823,15 +759,7 @@
     <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="118">
-          <caret line="428" column="3" lean-forward="true" selection-start-line="428" selection-start-column="3" selection-end-line="428" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/newsposts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="538" lean-forward="false" selection-start-line="20" selection-start-column="538" selection-end-line="20" selection-end-column="538" />
+          <caret line="428" column="3" lean-forward="false" selection-start-line="428" selection-start-column="3" selection-end-line="428" selection-end-column="3" />
           <folding />
         </state>
       </provider>
@@ -852,26 +780,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
+    <entry file="file://$PROJECT_DIR$/todo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="2182" column="115" lean-forward="false" selection-start-line="2182" selection-start-column="115" selection-end-line="2182" selection-end-column="115" />
+        <state relative-caret-position="119">
+          <caret line="100" column="24" lean-forward="false" selection-start-line="100" selection-start-column="24" selection-end-line="100" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
+    <entry file="file://$PROJECT_DIR$/javascripts/Scenes/QuadrantDialogue.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="615" column="27" lean-forward="false" selection-start-line="615" selection-start-column="27" selection-end-line="615" selection-end-column="27" />
+        <state relative-caret-position="208">
+          <caret line="462" column="64" lean-forward="false" selection-start-line="462" selection-start-column="64" selection-end-line="462" selection-end-column="64" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/gameEntity.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="1566" column="79" lean-forward="false" selection-start-line="1566" selection-start-column="79" selection-end-line="1566" selection-end-column="79" />
+        <state relative-caret-position="103">
+          <caret line="1543" column="50" lean-forward="false" selection-start-line="1543" selection-start-column="47" selection-end-line="1543" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/newsposts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="538" lean-forward="false" selection-start-line="20" selection-start-column="538" selection-end-line="20" selection-end-column="538" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/loading.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="226" column="33" lean-forward="false" selection-start-line="226" selection-start-column="33" selection-end-line="226" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-107">
+          <caret line="2166" column="115" lean-forward="false" selection-start-line="2166" selection-start-column="115" selection-end-line="2166" selection-end-column="115" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="1715" column="44" lean-forward="false" selection-start-line="1715" selection-start-column="30" selection-end-line="1715" selection-end-column="44" />
           <folding />
         </state>
       </provider>

@@ -222,6 +222,13 @@ function loadAllPossiblePlayers(skipInit){
 				if(easter_egg == true)   loadImage("Bodies/egg"+i+".png",skipInit);
     }
 
+    //error handling
+    loadImage("Bodies/Aspect_Null.png",skipInit);
+    loadImage("Bodies/Null-Glitch.png",skipInit);
+
+
+
+
     for(var i = 1; i<=numHair; i++){
         loadImage("Hair/hair_back"+i+".png",skipInit);
         loadImage("Hair/hair"+i+".png",skipInit);
