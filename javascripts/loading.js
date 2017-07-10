@@ -224,7 +224,9 @@ function loadAllPossiblePlayers(skipInit){
 
     //error handling
     loadImage("Bodies/Aspect_Null.png",skipInit);
-    loadImage("Bodies/Null-Glitch.png",skipInit);
+    loadImage("Bodies/reg1025.png",skipInit);
+    loadImage("Bodies/dream1025.png",skipInit);
+    loadImage("Bodies/god1025.png",skipInit);
 
 
 

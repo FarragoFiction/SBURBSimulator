@@ -1048,12 +1048,15 @@ function removeFromArray(item, array){
 function classNameToInt(class_name){
 	var tmp = classes;
 	tmp = tmp.concat(custom_only_classes);
-	return tmp.indexOf(class_name);
+	var ret = tmp.indexOf(class_name);
+	if (ret == -1) ret = 1025;
+	return ret;
 }
 
 function intToClassName(num){
 	var tmp = classes;
 	tmp = tmp.concat(custom_only_classes);
+	if(num > tmp.length) return "Null" //Null of Mind
 	return tmp[num];
 }
 
