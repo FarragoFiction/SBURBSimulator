@@ -18,9 +18,10 @@ function LuckStuff(session){
 		//what the hell roue of doom's corpse. corpses aren't part of the player list!
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var player = this.session.availablePlayers[i];
-			var rollValue = player.rollForLuck();
-			if(rollValue >= this.minHighValue || rollValue <= this.minLowValue){
-				this.rolls.push(new Roll(player, rollValue));
+			var rollValueLow = player.rollForLuck("minLuck");  //separate it out so that EITHER you are good at avoiding bad shit OR you are good at getting good shit.
+			var rollValueHigh = player.rollForLuck("maxLuck");
+			if(rollValueHigh >= this.minHighValue || rollValueLow <= this.minLowValue){
+				this.rolls.push(new Roll(player, rollValueHigh  - rollValueLow)); //does this make sense? before it was just a single role, but luck events are HELLA unbalanced and ppl started to complain that if min luck was higher than max luck the two values weren't logically separate. man, it made me happy that that was the case.  "If you steal doom from someone, they become lucky" and all.
 			}
 		}
 		return this.rolls.length > 0

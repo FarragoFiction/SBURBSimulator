@@ -2001,7 +2001,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), -2,true));  //hit to another thing.
 				break;
 			case  "Time":
-				this.associatedStats.push(new AssociatedStat("minLuck", 2,true));
+				this.associatedStats.push(new AssociatedStat("minLuck", 0,true));
 				this.associatedStats.push(new AssociatedStat("mobility", 1,true));
 				this.associatedStats.push(new AssociatedStat("freeWill", -2,true));
 				break;
@@ -2040,8 +2040,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			case  "Doom":
 				this.associatedStats.push(new AssociatedStat("alchemy", 2,true));
 				this.associatedStats.push(new AssociatedStat("freeWill", 1,true));
-				this.associatedStats.push(new AssociatedStat("minLuck", -1,true));
-				this.associatedStats.push(new AssociatedStat("hp", -1,true));
+				this.associatedStats.push(new AssociatedStat("minLuck", -2,true));
+				//this.associatedStats.push(new AssociatedStat("hp", -1,true));
 				break;
 			default:
 				console.log('What the hell kind of aspect is ' + this.aspect + '???');
