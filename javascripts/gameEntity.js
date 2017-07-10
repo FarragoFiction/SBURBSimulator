@@ -912,6 +912,12 @@ function GameEntity(session, name, crowned){
 				return false;
 			}
 			
+			if(owner.getStat("freeWill") * 4 < getAverageFreeWill(enemies) && Math.seededRandom() < 0.5){
+				console.log("Too controlled to use fraymotifs: " + this.htmlTitleHP() + " in session: " + this.session.session_id)
+				div.append(" The " + owner.this.htmlTitleHP() + " wants to use a Fraymotif, but Fate dictates otherwise. "
+				return false;
+			}
+			
 			var chosen = usableFraymotifs[0];
 			for(var i = 0; i<usableFraymotifs.length; i++){
 				var f = usableFraymotifs[i];
