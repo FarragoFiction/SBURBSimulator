@@ -426,7 +426,7 @@ function FraymotifCreator(){
   //look through array of premade fraymotifs and see if players can cast the fraymotif.
   //if they can, return name of fraymotif.
   this.tryToGetPreMadeName = function(players){
-    if(Math.seededRandom() > 0.5) return; //just use the procedural name.
+   // if(Math.seededRandom() > 0.5) return; //just use the procedural name.
 
     if(this.premadeFraymotifNames.length == 0) this.initializePremadeNames();
     for(var i = 0; i<this.premadeFraymotifNames.length; i++){
@@ -439,10 +439,10 @@ function FraymotifCreator(){
 
   this.initializePremadeNames = function(){
     this.premadeFraymotifNames = [];
-    this.premadeFraymotifNames.push(new Fraymotif(["Light"], "Blinded By The Light",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Light", "Mind"], "Blinded By The Light",1, ""))
     this.premadeFraymotifNames.push(new Fraymotif(["Breath", "Time"], "Stop, Hammertime",1, ""))
     this.premadeFraymotifNames.push(new Fraymotif(["Breath", "Hope"], "Wings of Freedom",1, ""))
-    this.premadeFraymotifNames.push(new Fraymotif(["Breath", "Hope"], "Happy Ending",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Doom", "Hope"], "Happy Ending",1, ""))
     this.premadeFraymotifNames.push(new Fraymotif(["Space", "Time"], "Adagio Redshift",1, ""))
     this.premadeFraymotifNames.push(new Fraymotif(["Space", "Time"], "No Time To Live",1, ""))
     this.premadeFraymotifNames.push(new Fraymotif(["Heart", "Doom"], "Madrigal Melancholia",1, ""))
@@ -452,10 +452,10 @@ function FraymotifCreator(){
     this.premadeFraymotifNames.push(new Fraymotif(["Hope", "Time"], "Maybe Someday",1, ""))
     this.premadeFraymotifNames.push(new Fraymotif(["Mind", "Space"], "Mind Over Matter",1, ""))
     this.premadeFraymotifNames.push(new Fraymotif(["Space", "Life"], "Extraterrestrial Ensemble",1, ""))
-    this.premadeFraymotifNames.push(new Fraymotif(["Space", "Time"], "No Time To Live",1, ""))
-    this.premadeFraymotifNames.push(new Fraymotif(["Space", "Time"], "No Time To Live",1, ""))
-    this.premadeFraymotifNames.push(new Fraymotif(["Space", "Time"], "No Time To Live",1, ""))
-    this.premadeFraymotifNames.push(new Fraymotif(["Space", "Time"], "No Time To Live",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Life", "Time"], "Lifetime Special",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Space", "Breath"], "Air on a Cosmic String",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Breath", "Void"], "Rhapsody in Blue",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Mind", "Breath"], "Brainstorm",1, ""))
   }
 
   this.getFraymotifName = function(players, tier){
