@@ -193,7 +193,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			if(stat.name == "MANGRIT"){
 				tmpStatHolder.power = tmpStatHolder.power * stat.multiplier
 			}else{
-				tmpStatHolder[stat.name] = tmpStatHolder[statName] * stat.multiplier;
+				tmpStatHolder[stat.name] = tmpStatHolder[stat.name] * stat.multiplier;
 			} 
 		}
 
