@@ -197,16 +197,13 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			} 
 		}
 
-		denizenMinion.setStats(ml,xl,hp,mob,tl,fw,power,true, false, [],1000000);
-		power = 10*strength;
-		if(this.aspect == "Hope") power = power *4; //only power and hp need recalced, will be same for all others.
-		hp = 20* strength;
-		if(this.aspect == "Life") hp = hp *4;
-		if(this.aspect == "Doom"){
-			 hp = hp/2;
-			 ml = ml/2;
+		denizenMinion.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolder.sanity,tmpStatHolder.freeWill,tmpStatHolder.power,true, false, [],1000);
+		tmpStatHolder.power = 10*strength;
+		for(var i = 0; i<tmpStatHolder.keys.length; i++){
+			var key = tmpStatHolder.keys[i];
+			tmpStatHolder[key] = tmpStatHolder[key] * 2; // same direction as minion stats, but bigger. 
 		}
-		denizen.setStats(ml,xl,hp,mob,tl,fw,power,true, false, [],1000000);
+		denizen.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolder.sanity,tmpStatHolder.freeWill,tmpStatHolder.power,true, false, [],1000000);
 		this.denizen = denizen;
 		this.denizenMinion = denizenMinion;
 		this.session.fraymotifCreator.createFraymotifForPlayerDenizen(this,name);
