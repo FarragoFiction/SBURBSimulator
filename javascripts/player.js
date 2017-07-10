@@ -1998,7 +1998,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				break;
 			case  "Void":
 				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), 3,true)); //really good at one thing
-				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), -2,true));  //hit to another thing.
+				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), -1,true));  //hit to another thing.
+				this.associatedStats.push(new AssociatedStat( "minLuck", -1,true));  //hit to another thing.
 				break;
 			case  "Time":
 				this.associatedStats.push(new AssociatedStat("minLuck", 2,true));
