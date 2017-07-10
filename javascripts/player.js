@@ -2157,9 +2157,14 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
             f.flavorText = " Hax, I call hax! "
             this.fraymotifs.push(f);
 		}else if(this.class_name == "Null"){
-            var f = new Fraymotif([],  "What class???", 1) //what better fraymotif for an Author to start with
+            var f = new Fraymotif([],  "What class???", 1)
             f.effects.push(new FraymotifEffect("power",1,true));
             f.flavorText = " I am certain there is not a class here and it is laughable to imply otherwise. "
+            this.fraymotifs.push(f);
+
+            var f = new Fraymotif([],  "Nulzilla", 2)
+            f.effects.push(new FraymotifEffect("power",1,true));
+            f.flavorText = " If you get this reference, you may reward yourself 15 Good Taste In Media Points (tm).  "
             this.fraymotifs.push(f);
 		}
 	}
