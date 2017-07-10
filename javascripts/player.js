@@ -199,8 +199,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 		denizenMinion.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolder.sanity,tmpStatHolder.freeWill,tmpStatHolder.power,true, false, [],1000);
 		tmpStatHolder.power = 10*strength;
-		for(var i = 0; i<tmpStatHolder.keys.length; i++){
-			var key = tmpStatHolder.keys[i];
+		for(var key in tmpStatHolder){
 			tmpStatHolder[key] = tmpStatHolder[key] * 2; // same direction as minion stats, but bigger. 
 		}
 		denizen.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolder.sanity,tmpStatHolder.freeWill,tmpStatHolder.power,true, false, [],1000000);
