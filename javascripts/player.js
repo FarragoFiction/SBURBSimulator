@@ -1022,6 +1022,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		//console.log("guardian for " + player.titleBasic());
 		var player = this;
 		var possibilities = available_classes_guardians;
+		console.log("class names available for guardians is: " + possibilities)
 		var guardian = randomPlayerWithClaspect(this.session, getRandomElementFromArray(possibilities), this.aspect);
         available_classes_guardians.removeFromArray(guardian.class_name)
 		guardian.isTroll = player.isTroll;
@@ -2179,6 +2180,7 @@ javascript is "WAT"ing me
 because of COURSE "null" == null is fucking false, so my code is like "oh, i must have some players" and then try to fucking parse!!!!!!!!!!!!!!*/
 function getReplayers(){
 //	var b = LZString.decompressFromEncodedURIComponent(getRawParameterByName("b"));
+	available_classes_guardians = classes.slice(0); //if there are replayers, then i need to reset guardian classes
 	var b = decodeURIComponent(LZString.decompressFromEncodedURIComponent(getRawParameterByName("b")));
 	var s = LZString.decompressFromEncodedURIComponent(getRawParameterByName("s"));
 	if(!b||!s) return [];
