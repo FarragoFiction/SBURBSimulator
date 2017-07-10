@@ -1049,14 +1049,14 @@ function classNameToInt(class_name){
 	var tmp = classes;
 	tmp = tmp.concat(custom_only_classes);
 	var ret = tmp.indexOf(class_name);
-	if (ret == -1) ret = 1025;
+	if (ret == -1) ret = 255;
 	return ret;
 }
 
 function intToClassName(num){
 	var tmp = classes;
 	tmp = tmp.concat(custom_only_classes);
-	if(num > tmp.length) return "Null" //Null of Mind
+	if(num > tmp.length || num == 255) return "Null" //Null of Mind
 	return tmp[num];
 }
 

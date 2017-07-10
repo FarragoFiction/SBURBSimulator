@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/Bodies/dream1025.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/Bodies/god1025.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/Bodies/reg1025.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/loading.js" afterPath="$PROJECT_DIR$/javascripts/loading.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/random_tables.js" afterPath="$PROJECT_DIR$/javascripts/random_tables.js" />
     </list>
@@ -28,11 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="loading.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="loading.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/loading.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="280">
-              <caret line="228" column="25" lean-forward="false" selection-start-line="228" selection-start-column="25" selection-end-line="228" selection-end-column="25" />
+              <caret line="228" column="28" lean-forward="false" selection-start-line="228" selection-start-column="28" selection-end-line="228" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -48,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="random_tables.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="random_tables.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="1058" column="42" lean-forward="false" selection-start-line="1058" selection-start-column="42" selection-end-line="1058" selection-end-column="42" />
+            <state relative-caret-position="205">
+              <caret line="1058" column="37" lean-forward="false" selection-start-line="1058" selection-start-column="37" selection-end-line="1058" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -134,8 +137,8 @@
         <option value="$PROJECT_DIR$/javascripts/gameEntity.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/QuadrantDialogue.js" />
         <option value="$PROJECT_DIR$/todo.html" />
-        <option value="$PROJECT_DIR$/javascripts/loading.js" />
         <option value="$PROJECT_DIR$/javascripts/random_tables.js" />
+        <option value="$PROJECT_DIR$/javascripts/loading.js" />
       </list>
     </option>
   </component>
@@ -820,14 +823,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/loading.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="228" column="25" lean-forward="false" selection-start-line="228" selection-start-column="25" selection-end-line="228" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -838,8 +833,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="1058" column="42" lean-forward="false" selection-start-line="1058" selection-start-column="42" selection-end-line="1058" selection-end-column="42" />
+        <state relative-caret-position="205">
+          <caret line="1058" column="37" lean-forward="false" selection-start-line="1058" selection-start-column="37" selection-end-line="1058" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/loading.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="228" column="28" lean-forward="false" selection-start-line="228" selection-start-column="28" selection-end-line="228" selection-end-column="28" />
           <folding />
         </state>
       </provider>
