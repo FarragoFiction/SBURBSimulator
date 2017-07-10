@@ -942,7 +942,7 @@ function GameEntity(session, name, crowned){
 			}
 			//mobility dodge
 			var rand = getRandomInt(1,100) //don't dodge EVERY time. oh god, infinite boss fights. on average, fumble a dodge every 4 turns.
-			if(defense.getStat("mobility") > offense.getStat("mobility") * 10+100 && rand > 25){
+			if(defense.getStat("mobility") > offense.getStat("mobility") * 10+50 && rand > 25){
 				////console.log("Mobility counter: " + this.session.session_id);
 				ret = ("The " + offense.htmlTitleHP() + " practically appears to be standing still as they clumsily lunge towards the " + defense.htmlTitleHP()  );
 				if(defense.getStat("currentHP")> 0 ){
@@ -955,7 +955,7 @@ function GameEntity(session, name, crowned){
 				//this.processDeaths(div, offense, defense)
 
 				return;
-			}else if(defense.getStat("mobility") > offense.getStat("mobility")*50+100 && rand > 25){
+			}else if(defense.getStat("mobility") > offense.getStat("mobility")*50+50 && rand > 25){
 				div.append(" The " + defense.htmlTitleHP() + " dodges the attack completely. ");
 				return;
 			}
