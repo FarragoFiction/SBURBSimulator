@@ -2275,6 +2275,8 @@ function getColorFromAspect(aspect){
 		color = "#ffcc66";
 	}else if(aspect == "Life"){
 		color = "#494132";
+	}else{
+	    color = "#efefef"
 	}
 	return color;
 }
