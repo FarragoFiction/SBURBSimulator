@@ -1558,6 +1558,28 @@ prototyping_objects.push(new GameEntity(null, "Praying Mantis",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].maxLuck = 20;
 
+prototyping_objects.push(new GameEntity(null, "Shitty Comic Character",null));
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].mobility = 50;
+prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = " is the STAR. It is them. You don't think they have ever once attempted to even talk about the game. How HIGH did you have to BE to prototype this glitchy piece of shit? ";
+var f = new Fraymotif([],"Stairs", 3)
+f.effects.push(new FraymotifEffect("power",1,true));
+f.flavorText = " It keeps hapening. "
+prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
+
+var f = new Fraymotif([],"Stairs", 3)
+f.effects.push(new FraymotifEffect("power",1,true));
+f.flavorText = " I warned you about stairs bro!!! "
+prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
+
+var f = new Fraymotif([],"Stairs", 3)
+f.effects.push(new FraymotifEffect("power",1,true));
+f.flavorText = " I told you dog! "
+prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
+
+
+
 prototyping_objects.push(new GameEntity(null, "Doctor",null));   //healing fraymotif
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;

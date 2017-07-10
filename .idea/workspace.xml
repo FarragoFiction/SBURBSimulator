@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/player.js" afterPath="$PROJECT_DIR$/javascripts/player.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/gameEntity.js" afterPath="$PROJECT_DIR$/javascripts/gameEntity.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,7 +17,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="player.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="133">
@@ -38,11 +37,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GoGrimDark.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/Scenes/GoGrimDark.js">
+      <file leaf-file-name="handle_sprites.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="65" column="84" lean-forward="true" selection-start-line="65" selection-start-column="43" selection-end-line="65" selection-end-column="84" />
+            <state relative-caret-position="306">
+              <caret line="615" column="27" lean-forward="false" selection-start-line="615" selection-start-column="27" selection-end-line="615" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gameEntity.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/javascripts/gameEntity.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="265">
+              <caret line="1577" column="32" lean-forward="false" selection-start-line="1577" selection-start-column="32" selection-end-line="1577" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -88,16 +97,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SaveDoomedTimeline.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/Scenes/SaveDoomedTimeline.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="38" column="23" lean-forward="false" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="quirk.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/quirk.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -130,8 +129,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>this.classes</find>
-      <find>classes</find>
       <find>Guardian</find>
       <find>Waste</find>
       <find>makeGu</find>
@@ -160,6 +157,8 @@
       <find>reinit =</find>
       <find>available_classes_g</find>
       <find>available_classes_guardians = classes.slice(0);</find>
+      <find>getRepl</find>
+      <find>new Fray</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -181,7 +180,6 @@
         <option value="$PROJECT_DIR$/Dart/planet.dart" />
         <option value="$PROJECT_DIR$/javascripts/v2.0/scenario_controller2.js" />
         <option value="$PROJECT_DIR$/support.html" />
-        <option value="$PROJECT_DIR$/javascripts/gameEntity.js" />
         <option value="$PROJECT_DIR$/javascripts/random_tables.js" />
         <option value="$PROJECT_DIR$/index2.html" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
@@ -193,6 +191,7 @@
         <option value="$PROJECT_DIR$/javascripts/newsposts.js" />
         <option value="$PROJECT_DIR$/javascripts/session.js" />
         <option value="$PROJECT_DIR$/javascripts/player.js" />
+        <option value="$PROJECT_DIR$/javascripts/gameEntity.js" />
       </list>
     </option>
   </component>
@@ -693,14 +692,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="615" column="27" lean-forward="false" selection-start-line="615" selection-start-column="27" selection-end-line="615" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/Scenes/LuckStuff.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
@@ -745,14 +736,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="22" column="41" lean-forward="false" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/gameEntity.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="928" column="24" lean-forward="false" selection-start-line="928" selection-start-column="24" selection-end-line="928" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -873,6 +856,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="2182" column="115" lean-forward="false" selection-start-line="2182" selection-start-column="115" selection-end-line="2182" selection-end-column="115" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="615" column="27" lean-forward="false" selection-start-line="615" selection-start-column="27" selection-end-line="615" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/gameEntity.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="1577" column="32" lean-forward="false" selection-start-line="1577" selection-start-column="32" selection-end-line="1577" selection-end-column="32" />
           <folding />
         </state>
       </provider>
