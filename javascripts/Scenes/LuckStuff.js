@@ -65,7 +65,7 @@ function LuckStuff(session){
 		if(roll.player.land){
 			land = roll.player.shortLand();
 		}
-		var f = player.getNewFraymotif();
+		var f = roll.player.getNewFraymotif();
 		var ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + land + " when they suddenly tripped over a huge treasure chest! When opened, it revealed a modest cache of boonbucks. They will finally be able to afford that fraymotiff, "+f.name + ", they have had their eye on! ";
 		//roll.player.increasePower();
 		this.session.goodLuckEvent = true;
