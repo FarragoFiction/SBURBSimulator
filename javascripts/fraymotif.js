@@ -332,7 +332,7 @@ function FraymotifCreator(){
   }
 
   this.getRandomBreathName = function(){
-      var names = ["Gale", "Feather", "Lifting", "Breathless","Jetstream", "Hurricane", "Tornado"," Kansas", "Breath", "Breeze", "Twister", "Storm", "Wild", "Inhale", "Windy", "Skylark", "Fugue", "Pneumatic", "Wheeze", "Forward", "Vertical", "Whirlwind", "Jetstream"];
+      var names = ["Gale", "Wiznado", "Feather", "Lifting", "Breathless","Jetstream", "Hurricane", "Tornado"," Kansas", "Breath", "Breeze", "Twister", "Storm", "Wild", "Inhale", "Windy", "Skylark", "Fugue", "Pneumatic", "Wheeze", "Forward", "Vertical", "Whirlwind", "Jetstream"];
       return getRandomElementFromArray(names)
   }
 

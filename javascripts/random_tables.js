@@ -1048,20 +1048,26 @@ function removeFromArray(item, array){
 function classNameToInt(class_name){
 	var tmp = classes;
 	tmp = tmp.concat(custom_only_classes);
-	return tmp.indexOf(class_name);
+	var ret = tmp.indexOf(class_name);
+	if (ret == -1) ret = 255;
+	return ret;
 }
 
 function intToClassName(num){
 	var tmp = classes;
 	tmp = tmp.concat(custom_only_classes);
+	if(num > tmp.length || num == 255) return "Null" //Null of Mind
 	return tmp[num];
 }
 
 function aspectToInt(aspect){
-	return all_aspects.indexOf(aspect);
+    var tmp = all_aspects.indexOf(aspect);
+    if(tmp == -1) tmp = 255;
+	return tmp;
 }
 
 function intToAspect(num){
+    if(num > all_aspects.length || num == 255) return "Null"  //Heir of Null
 	return all_aspects[num];
 }
 
@@ -1071,13 +1077,16 @@ function bloodColorToBoost(color){
 
 function bloodColorToInt(color){
 	if(color == "#ff0000") return 14;
+	if(color == "#ffc3df") return 13;
 	if(color == null) return 15;
-	return bloodColors.indexOf(color);
+	var ret =  bloodColors.indexOf(color);
+	return ret;
 }
 
 function intToBloodColor(num){
-	if(num == 15) return null;
+	if(num == 15) return null; //bubble gum pink not an option 'cause my special snowlake fan troll needs to stay special
 	if(num == 14) return "#ff0000";
+	if(num == 13) return "#ffc3df";
 	return bloodColors[num];
 }
 

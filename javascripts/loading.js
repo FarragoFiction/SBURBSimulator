@@ -222,6 +222,16 @@ function loadAllPossiblePlayers(skipInit){
 				if(easter_egg == true)   loadImage("Bodies/egg"+i+".png",skipInit);
     }
 
+    //error handling
+    loadImage("Null.png",skipInit);
+    //cause i made images 1 indexed like a dunkass
+    loadImage("Bodies/reg256.png",skipInit);
+    loadImage("Bodies/dream256.png",skipInit);
+    loadImage("Bodies/god256.png",skipInit);
+
+
+
+
     for(var i = 1; i<=numHair; i++){
         loadImage("Hair/hair_back"+i+".png",skipInit);
         loadImage("Hair/hair"+i+".png",skipInit);
@@ -255,6 +265,12 @@ function loadAllPossiblePlayers(skipInit){
         loadImage("Horns/left"+i+".png",skipInit);
         loadImage("Horns/right"+i+".png",skipInit);
     }
+
+    var maxCustomHorns = 4;
+    for(var i = 255; i> 255-maxCustomHorns; i+=-1){
+        loadImage("Horns/left"+i+".png",skipInit);
+        loadImage("Horns/right"+i+".png",skipInit);
+     }
 }
 
 //load hair, horns, wings, regular sprite, god sprite, fins, aspect symbol, moon symbol for each player
