@@ -915,14 +915,14 @@ function GameEntity(session, name, crowned){
 			
 			var mine = owner.getStat("sanity")
 			var theirs = getAverageSanity(enemies)
-			if(mine+100 < theirs && Math.seededRandom() < 0.5){
+			if(mine+200 < theirs && Math.seededRandom() < 0.5){
 				console.log("Too insane to use fraymotifs: " + owner.htmlTitleHP() +" against " + enemies[0].htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id)
 				div.append(" The " + owner.htmlTitleHP() + " wants to use a Fraymotif, but they are too crazy to focus. ")
 				return false;
 			}
 			mine = owner.getStat("freeWill") 
 			theirs = getAverageFreeWill(enemies)
-			if(mine +100 < theirs && Math.seededRandom() < 0.5){
+			if(mine +200 < theirs && Math.seededRandom() < 0.5){
 				console.log("Too controlled to use fraymotifs: " + owner.htmlTitleHP() +" against " + enemies[0].htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id)
 				div.append(" The " + owner.htmlTitleHP() + " wants to use a Fraymotif, but Fate dictates otherwise. ")
 				return false;
@@ -1630,6 +1630,10 @@ prototyping_objects.push(new GameEntity(null, "Rabbit",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].maxLuck = 100;
 prototyping_objects[prototyping_objects.length-1].helpPhrase = "remains physically adorable and mentally idiotic. Gigglysnort hideytalk ahoy. ";
+
+prototyping_objects.push(new GameEntity(null, "Tissue",null));
+prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "is useless in every possible way. ";
 
 
 prototyping_objects.push(new GameEntity(null, "Librarian",null));
