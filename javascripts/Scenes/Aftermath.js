@@ -170,6 +170,7 @@ function Aftermath(session){
 				}else{
 					end += "<br>Unfortunately, the " + spacePlayer.htmlTitle() + " was unable to complete frog breeding duties. ";
 					end += " They only got " + Math.round(spacePlayer.landLevel/this.session.minFrogLevel*100) + "% of the way through. ";
+					if(Math.round(spacePlayer.landLevel/this.session.minFrogLevel*100) <= -100) console.log("!!!!!!!!!!!!!!!!!!!!TROLL KID ROCK INCOMING!!!!!!!!!!!!!!!!" + this.session.session_id)
 
 					if(spacePlayer.landLevel < 0){
 						end += " Stupid lousy goddamned GrimDark players fucking with the frog breeding. Somehow you ended up with less of a frog than when you got into the medium. ";
