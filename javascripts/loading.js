@@ -266,7 +266,7 @@ function loadAllPossiblePlayers(skipInit){
         loadImage("Horns/right"+i+".png",skipInit);
     }
 
-    var maxCustomHorns = 2;
+    var maxCustomHorns = 3;
     for(var i = 255; i> 255-maxCustomHorns; i+=-1){
         loadImage("Horns/left"+i+".png",skipInit);
         loadImage("Horns/right"+i+".png",skipInit);

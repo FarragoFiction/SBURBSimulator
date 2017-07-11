@@ -829,7 +829,7 @@ function CharacterCreatorHelper(players){
 			}
 		}
 
-		var maxCustomHorns = 2;
+		var maxCustomHorns = 3;
             for(var i = 255; i> 255-maxCustomHorns; i+=-1){
                 if(player.rightHorn == i){
                     html += '<option  selected = "selected" value="' + i +'">' + i+'</option>'
