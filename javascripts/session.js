@@ -85,7 +85,7 @@ function Session(session_id){
 	
 	//space stuck needs love
 	this.findBestSpace = function(){
-		var spaces = findAllAspectPlayers(this.session.players, "Space");
+		var spaces = findAllAspectPlayers(this.players, "Space");
 		var ret = spaces[0];
 		for(var i = 0; i<spaces.length; i++){
 			if(spaces[i].landLevel > ret.landLevel) ret = spaces[i];
@@ -94,7 +94,7 @@ function Session(session_id){
 	}
 	
 	this.findMostCorruptedSpace = function(){
-		var spaces = findAllAspectPlayers(this.session.players, "Space");
+		var spaces = findAllAspectPlayers(this.players, "Space");
 		var ret = spaces[0];
 		for(var i = 0; i<spaces.length; i++){
 			if(spaces[i].landLevel< ret.landLevel) ret = spaces[i];
