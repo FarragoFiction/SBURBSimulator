@@ -805,6 +805,15 @@ function CharacterCreatorHelper(players){
 			}
 		}
 
+		var maxCustomHorns = 2;
+		for(var i = 255; i> 255-maxCustomHorns; i+=-1){
+            if(player.leftHorn == i){
+                html += '<option  selected = "selected" value="' + i +'">' + i+'</option>'
+            }else{
+                html += '<option value="' + i +'">' + i+'</option>'
+            }
+        }
+
 		//another for loop of "non-canon" horns you can choose but aren't part of main sim.
 		html += '</select>'
 		return html;
@@ -819,6 +828,17 @@ function CharacterCreatorHelper(players){
 				html += '<option value="' + i +'">' + i+'</option>'
 			}
 		}
+
+		var maxCustomHorns = 2;
+            for(var i = 255; i> 255-maxCustomHorns; i+=-1){
+                if(player.rightHorn == i){
+                    html += '<option  selected = "selected" value="' + i +'">' + i+'</option>'
+                }else{
+                    html += '<option value="' + i +'">' + i+'</option>'
+                }
+            }
+
+
 		html += '</select>'
 		return html;
 	}
