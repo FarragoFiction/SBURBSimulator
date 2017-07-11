@@ -113,6 +113,15 @@ function Aftermath(session){
 		}
 		return ret;
 	}
+	
+	this.findMostCorruptedSpace = function(){
+		var spaces = findAllAspectPlayers(this.session.players, "Space");
+		var ret = spaces[0];
+		for(var i = 0; i<spaces.length; i++){
+			if(spaces[i].landLevel< ret.landLevel) ret = spaces[i];
+		}
+		return ret;  //lowest space player.
+	}
 
 
 	this.renderContent = function(div){
@@ -120,6 +129,7 @@ function Aftermath(session){
 		var end = "<Br>";
 		var living = findLivingPlayers(this.session.players);
 		var spacePlayer = this.findBestSpace();
+		var corruptedSpacePlayer = this.findMostCorruptedSpace();
 		//var spacePlayer = findAspectPlayer(this.session.players, "Space");
 		//...hrrrm...better debug this. looks like this can be triggered when players AREN"T being revived???
 		if(living.length > 0  && (!this.session.king.dead || !this.session.queen.dead && this.session.queen.exiled == false)){
@@ -139,6 +149,8 @@ function Aftermath(session){
 		}
 
 		if(living.length > 0){
+			//check for inverted frog.
+			if(corruptedSpacePlayer.landLevel <= (this.session.goodFrogLevel * -1)) return this.purpleFrogEnding(div, end);
 			if(spacePlayer.landLevel >= this.session.minFrogLevel){
 				end += "<br><img src = 'images/sceneIcons/frogger_animated.gif'> Luckily, the " + spacePlayer.htmlTitle() + " was diligent in frog breeding duties. ";
 				if(spacePlayer.landLevel < 28){
@@ -206,6 +218,68 @@ function Aftermath(session){
 	if(yellowYard == true || this.session.janusReward){
 		this.yellowLawnRing(div);  //can still scratch, even if yellow lawn ring is available
 	}
+}
+
+
+	//kid rock needs fraymotif: BANG DA DANG DIGGY DIGGY
+//thanks goes to Ancient for this amazing idea.
+this.trollKidRock(){
+	var trollKidRockString = "b=%C3%B2%C3%9C%C2%829%C3%BE%11%10%0CCC%20&s=,,Rap,Rap,kidRock" //Ancient, thank you for best meme. 
+	var trollKidRock = new CharacterEasterEggEngine().playerDataStringArrayToURLFormat([trollKidRockString])[0];
+	alert(trollKidRock.title())	
+	var f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) //most repetitive song, ACTIVATE!!!
+	f.effects.push(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
+	f.effects.push(new FraymotifEffect("power",1,false));
+	f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? "
+	trollKidRock.fraymotifs.push(f);
+	
+	var f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) //most repetitive song, ACTIVATE!!!
+	f.effects.push(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
+	f.effects.push(new FraymotifEffect("power",1,false));
+	f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? "
+	trollKidRock.fraymotifs.push(f);
+	
+	var f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) //most repetitive song, ACTIVATE!!!
+	f.effects.push(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
+	f.effects.push(new FraymotifEffect("power",1,false));
+	f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? "
+	trollKidRock.fraymotifs.push(f);
+	
+	var f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) //most repetitive song, ACTIVATE!!!
+	f.effects.push(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
+	f.effects.push(new FraymotifEffect("power",1,false));
+	f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? "
+	trollKidRock.fraymotifs.push(f);
+	
+	return trollKidRock;
+}
+
+this.purpleFrog(){
+	var mvp = findStrongestPlayer(this.session.players);
+	var tmpStatHolder = {};
+	tmpStatHolder.minLuck = -100;
+	tmpStatHolder.maxLuck = -100;
+	tmpStatHolder.hp = mvp.getStat("hp") * this.session.players.length;  //this will be a challenge.
+	tmpStatHolder.mobility = -100
+	tmpStatHolder.sanity = -100
+	tmpStatHolder.freeWill = -100
+	tmpStatHolder.power =mvp.getStat("power") * this.session.players.length; //this will be a challenge.
+	tmpStatHolder.grist = 100000000;
+	tmpStatHolder.RELATIONSHIPS = -100;  //not REAL relationships, but real enough for our purposes.
+	var purpleFrog =  new GameEntity(this.session, Zalgo.generate("The Purple Frog"), null);
+}
+
+//purple frog was the name of my old host. but also, it sounds like a grim dark frog, doesn't it?
+//reference to rp at: http://forums.msparp.com/showthread.php?tid=16049
+//guest starring troll kid rock
+this.purpleFrogEnding = function(div, precedingText){
+	alert("purple frog incoming!!!")
+	//maybe load kid rock first and have callback for when he's done.
+	//maybe kid rock only shows up for half purple frogs??? need plausible deniability? "Troll Kid Rock??? Never heard of him. Sounds like a cool dude, though."
+	var trollKidRock = this.trollKidRock();
+	alert(trollKidRock.title())
+	var purpleFrog = this.purpleFrog();
+	
 }
 
 //take "firstcanvas"+ this.player.id+"_" + this.session.session_id from intro, and copy it here to display for first time.
