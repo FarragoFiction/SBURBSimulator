@@ -20,7 +20,8 @@ function Session(session_id){
 	this.jackScheme = false;
 	this.luckyGodTier = false;
 	this.choseGodTier = false;
-	this.createdMultiVerse = false;
+	this.createdMultiVerseForSquiddles = false;
+	this.createdMultiVerseForPlayers = false;
 	this.plannedToExileJack = false;
 	this.hasHearts = false;
 	this.hasSpades = false;
@@ -522,6 +523,8 @@ function Session(session_id){
 		summary.democracyStarted =  this.democraticArmy.power > 0;
 		summary.murderMode = this.murdersHappened;
 		summary.grimDark = this.grimDarkPlayers;
+		summary.createdMultiVerseForSquiddles = this.createdMultiVerseForSquiddles
+		summary.createdUniverseForPlayers = this.createdUniverseForPlayers
 		var spacePlayer = this.findBestSpace();
 		var corruptedSpacePlayer = this.findMostCorruptedSpace();
 		if(summary.frogStatus == "Purple Frog" ){

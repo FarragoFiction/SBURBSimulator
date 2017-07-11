@@ -306,10 +306,11 @@ this.purpleFrogEnding = function(div, precedingText){
 	purpleFrog.strife(div, this.getGoodGuys(trollKidRock),0)
 	var ret = "";
 	if(purpleFrog.getStat("currentHP") <= 0 || purpleFrog.dead) {
-		this.session.createdMultiVerse = true;
-		ret += "With a final, defeaning 'CROAK', the " + purpleFrog.name + " slumps over. While it appears dead, it is merely unconscious. Entire universes swirl within it now that it has settled down, including the Players original Universe. You guess it would make sense that your Universe would be such an agressive, glitchy asshole, if it generated such a shitty, antagonistic game as SBURB.  You don't know what happened to Troll Kid Rock (did that really happen???).  <Br><br> The door to the new universe is revealed. Everyone files in. <Br><Br> Thanks for Playing. "
+		this.session.createdMultiVerseForPlayers = true;
+		ret += "With a final, defeaning 'CROAK', the " + purpleFrog.name + " slumps over. While it appears dead, it is merely unconscious. Entire universes swirl within it now that it has settled down, including the Players original Universe. You guess it would make sense that your Universe would be such an agressive, glitchy asshole, if it generated such a shitty, antagonistic game as SBURB.  You don't know what happened to Troll Kid Rock (did that really happen???).  <Br><br> The door to the new universe is revealed. Everyone files in. <Br><Br> Thanks for Playing. <span class = 'void'>Though, of course, the HorrorTerrors slither in right after the Players. It's probably nothing. Don't worry about it.  THE END</span>"
 	}else{
-		//console.log("denizen kill " + this.session.session_id)
+		this.session.createdMultiVerseForSquiddles = true;
+		ret += "With a final, defeaning 'CROAK', the " + purpleFrog.name + " floats victorious over the remains of the Players.   The Horror Terrors happily colonize the new Universe, though, so I guess the GrimDark players would be happy with this ending?  <Br><Br> Thanks for Playing. "
 	}
 	div.append(ret);
 }

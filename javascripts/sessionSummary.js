@@ -68,6 +68,8 @@ function SessionSummary(){
 	this.sizeOfAfterLife = null;
 	this.ghosts = null;
 	this.miniPlayers = [] //array of mini player objects
+	this.createdMultiVerseForSquiddles = false;
+	this.createdMultiVerseForPlayers = false;
 
 	this.setMiniPlayers = function(players){
 
@@ -360,6 +362,8 @@ function SessionSummaryJunior(players,session_id){
 function MultiSessionSummary(){
 	this.ghosts = [];
 	this.total = 0;
+	this.timesCreatedMultiVerseForSquiddles = 0;
+	this.timesCreatedMultiVerseForPlayers = 0;
 	this.badBreakDeath = 0;
 	this.choseGodTier = 0;
 	this.luckyGodTier = 0;
@@ -881,6 +885,8 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		if(ss.hasUnluckyEvents) mss.hasUnluckyEvents ++;
 		if(ss.hasFreeWillEvents) mss.hasFreeWillEvents ++;
 		if(ss.scratched) mss.scratched ++;
+		if(ss.createdMultiVerseForSquiddles) mss.timesCreatedMultiVerseForSquiddles ++;
+		if(ss.createdMultiVerseForPlayers) mss.timesCreatedMultiVerseForPlayers ++;
 		if(ss.won) mss.won ++;
 
 		mss.sizeOfAfterLife += ss.sizeOfAfterLife;
