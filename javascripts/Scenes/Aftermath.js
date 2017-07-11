@@ -314,7 +314,7 @@ this.purpleFrogEnding = function(div, precedingText){
 	
 }
 
-this.finishPurpleStrife(trollKidRock){
+this.finishPurpleStrife = function(trollKidRock){
 	trollKidRock.renderSelf();
 	var tkrCanvas =  document.getElementById("trollKidRockAppears");
 	drawTimeGears(tkrCanvas, trollKidRock);

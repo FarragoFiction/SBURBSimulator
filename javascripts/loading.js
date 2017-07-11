@@ -34,10 +34,10 @@ function loadAllImagesForPlayersNew(players, guardians, skipInit){
 }
 
 function loadAllImagesForPlayerWithCallback(player, callBack){
-	this.callBack = callBack;
+	callBack = callBack;
 	var skipInit = true;
 	if(simulationMode == true) return checkDone(skipInit);
-	loadPlayer(player],skipInit);
+	loadPlayer(player,skipInit);
 }
 
 function loadAllImagesForPlayers(players, guardians,skipInit){
