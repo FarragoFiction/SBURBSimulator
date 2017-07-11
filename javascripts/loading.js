@@ -265,6 +265,12 @@ function loadAllPossiblePlayers(skipInit){
         loadImage("Horns/left"+i+".png",skipInit);
         loadImage("Horns/right"+i+".png",skipInit);
     }
+
+    var maxCustomHorns = 2;
+    for(var i = 255; i> 255-maxCustomHorns; i+=-1){
+        loadImage("Horns/left"+i+".png",skipInit);
+        loadImage("Horns/right"+i+".png",skipInit);
+     }
 }
 
 //load hair, horns, wings, regular sprite, god sprite, fins, aspect symbol, moon symbol for each player
