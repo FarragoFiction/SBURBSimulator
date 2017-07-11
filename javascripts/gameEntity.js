@@ -954,20 +954,20 @@ function GameEntity(session, name, crowned){
 			//luck dodge
 			//alert("offense roll is: " + offenseRoll + " and defense roll is: " + defenseRoll)
 			//console.log("gonna roll for luck.")
-			if(defense.rollForLuck("minLuck") > offense.rollForLuck("minLuck")*10+100){ //adding 10 to try to keep it happening constantly at low levels
+			if(defense.rollForLuck("minLuck") > offense.rollForLuck("minLuck")*10+200){ //adding 10 to try to keep it happening constantly at low levels
 				console.log("Luck counter: " +  defense.htmlTitleHP() + this.session.session_id);
 				div.append("The attack backfires and causes unlucky damage. The " + defense.htmlTitleHP() + " sure is lucky!!!!!!!!" );
 				offense.currentHP += -1* offense.getStat("power")/10; //damaged by your own power.
 				//this.processDeaths(div, offense, defense)
 				return;
-			}else if(defense.rollForLuck("maxLuck") > offense.rollForLuck("maxLuck")*5+50){
+			}else if(defense.rollForLuck("maxLuck") > offense.rollForLuck("maxLuck")*5+100){
 				console.log("Luck dodge: " +   defense.htmlTitleHP() +this.session.session_id);
 				div.append("The attack misses completely after an unlucky distraction.");
 				return;
 			}
 			//mobility dodge
 			var rand = getRandomInt(1,100) //don't dodge EVERY time. oh god, infinite boss fights. on average, fumble a dodge every 4 turns.
-			if(defense.getStat("mobility") > offense.getStat("mobility") * 10+1 && rand > 25){
+			if(defense.getStat("mobility") > offense.getStat("mobility") * 10+200 && rand > 25){
 				console.log("Mobility counter: " +   defense.htmlTitleHP() +this.session.session_id);
 				ret = ("The " + offense.htmlTitleHP() + " practically appears to be standing still as they clumsily lunge towards the " + defense.htmlTitleHP()  );
 				if(defense.getStat("currentHP")> 0 ){
@@ -980,7 +980,7 @@ function GameEntity(session, name, crowned){
 				//this.processDeaths(div, offense, defense)
 
 				return;
-			}else if(defense.getStat("mobility") > offense.getStat("mobility")*5+1 && rand > 25){
+			}else if(defense.getStat("mobility") > offense.getStat("mobility")*5+100 && rand > 25){
 				console.log("Mobility dodge: " +   defense.htmlTitleHP() +this.session.session_id);
 				div.append(" The " + defense.htmlTitleHP() + " dodges the attack completely. ");
 				return;
