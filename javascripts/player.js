@@ -149,13 +149,14 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.generateDenizen = function(){
 		var possibilities = this.getDenizenNameArray();
 		var strength = this.getOverallStrength();
-		var expectedMaxStrength = 400; //from sim values of 50+ sessions. then balancing exercises with AB
+		var expectedMaxStrength = 150; 
 		var strengthPerTier = (expectedMaxStrength)/possibilities.length;
 		//console.log("Strength at start is, " + strength);//but what if you don't want STRANGTH!???
 		var denizenIndex = Math.round(strength/strengthPerTier)-1;  //want lowest value to be off the denizen array.
 
 		var denizenName = "";
-		var denizenStrength = (denizenIndex/(possibilities.length/2))+1
+		var denizenStrength = (denizenIndex/(possibilities.length))+1 //between 1 and 2
+		console.log("Strength for denizen calculated from index of: " + denizenIndex + " out of " + possibilities.length)
 		if(denizenIndex == 0){
 			denizenName = this.weakDenizenNames();
 			denizenStrength = 0.1;//fraymotifs about standing and looking at your pittifully
@@ -175,6 +176,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	//generate denizen gets me name and strength, this just takes care of making it.
 	this.makeDenizenWithStrength = function(name, strength){
+		console.log("Strength for denizen " + name + " is: " + strength)
 		//based off existing denizen code.  care about which aspect i am.
 		//also make minion here.
 		var denizen =  new GameEntity(this.session, "Denizen " +name, null);
