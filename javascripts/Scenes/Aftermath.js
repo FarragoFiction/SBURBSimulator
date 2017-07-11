@@ -1,6 +1,7 @@
 function Aftermath(session){
 	this.session = session;
 	this.canRepeat = false;
+	this.purpleFighters = []; //what is this???
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.trigger = function(playerList){
 		this.playerList = playerList;
@@ -307,7 +308,9 @@ this.purpleFrogEnding = function(div, precedingText){
 	var tkrCanvas =  document.getElementById("trollKidRockAppears");
 	drawTimeGears(tkrCanvas, trollKidRock);
 	drawSinglePlayer(tkrCanvas, trollKidRock);
-	purpleFrog.strife(div, this.getGoodGuys(trollKidRock),0)
+	this.purpleFighters = this.getGoodGuys(trollKidRock)
+	alert("TODO: load kid rock, have it take in a callback where it does the strife and etc.")
+	purpleFrog.strife(div, this.purpleFighters,0)
 	var ret = "";
 	if(purpleFrog.getStat("currentHP") <= 0 || purpleFrog.dead) {
 		this.session.createdMultiVerseForPlayers = true;
