@@ -221,7 +221,7 @@ function Aftermath(session){
 }
 
 
-	//kid rock needs fraymotif: BANG DA DANG DIGGY DIGGY
+//kid rock NEEDS fraymotif: BANG DA DANG DIGGY DIGGY
 //thanks goes to Ancient for this amazing idea.
 this.trollKidRock(){
 	var trollKidRockString = "b=%C3%B2%C3%9C%C2%829%C3%BE%11%10%0CCC%20&s=,,Rap,Rap,kidRock" //Ancient, thank you for best meme. 
@@ -259,7 +259,7 @@ this.purpleFrog(){
 	var tmpStatHolder = {};
 	tmpStatHolder.minLuck = -100;
 	tmpStatHolder.maxLuck = -100;
-	tmpStatHolder.hp = mvp.getStat("hp") * this.session.players.length;  //this will be a challenge.
+	tmpStatHolder.hp = mvp.getStat("hp") * this.session.players.length;  //this will be a challenge. good thing you have troll kid rock to lay down some sick beats.
 	tmpStatHolder.mobility = -100
 	tmpStatHolder.sanity = -100
 	tmpStatHolder.freeWill = -100
@@ -267,6 +267,15 @@ this.purpleFrog(){
 	tmpStatHolder.grist = 100000000;
 	tmpStatHolder.RELATIONSHIPS = -100;  //not REAL relationships, but real enough for our purposes.
 	var purpleFrog =  new GameEntity(this.session, Zalgo.generate("The Purple Frog"), null);
+	purpleFrog.setStatsHash(tmpStatHolder);
+	//what kind of attacks does a grim dark purple frog have???  Croak Blast is from rp, but what else?
+	
+	var f = new Fraymotif([],  "CROAK BLAST", 3) //freeMiliu_2K01 [F☆] came up with this one in the RP :)  :) :)
+	f.effects.push(new FraymotifEffect("power",3,true));
+	f.flavorText = " OWNER uses a weaponized croak. You would be in awe if it weren't so painful. "
+	purpleFrog.fraymotifs.push(f);
+	
+	return purpleFrog;
 }
 
 //purple frog was the name of my old host. but also, it sounds like a grim dark frog, doesn't it?
@@ -279,6 +288,7 @@ this.purpleFrogEnding = function(div, precedingText){
 	var trollKidRock = this.trollKidRock();
 	alert(trollKidRock.title())
 	var purpleFrog = this.purpleFrog();
+	
 	
 }
 
