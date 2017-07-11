@@ -954,7 +954,7 @@ function GameEntity(session, name, crowned){
 			//luck dodge
 			//alert("offense roll is: " + offenseRoll + " and defense roll is: " + defenseRoll)
 			//console.log("gonna roll for luck.")
-			if(defense.rollForLuck("minLuck") > offense.rollForLuck("minLuck")*10+50){ //adding 10 to try to keep it happening constantly at low levels
+			if(defense.rollForLuck("minLuck") > offense.rollForLuck("minLuck")*10+100){ //adding 10 to try to keep it happening constantly at low levels
 				console.log("Luck counter: " +  defense.htmlTitleHP() + this.session.session_id);
 				div.append("The attack backfires and causes unlucky damage. The " + defense.htmlTitleHP() + " sure is lucky!!!!!!!!" );
 				offense.currentHP += -1* offense.getStat("power")/10; //damaged by your own power.
@@ -968,7 +968,7 @@ function GameEntity(session, name, crowned){
 			//mobility dodge
 			var rand = getRandomInt(1,100) //don't dodge EVERY time. oh god, infinite boss fights. on average, fumble a dodge every 4 turns.
 			if(defense.getStat("mobility") > offense.getStat("mobility") * 10+1 && rand > 25){
-				////console.log("Mobility counter: " + this.session.session_id);
+				console.log("Mobility counter: " +   defense.htmlTitleHP() +this.session.session_id);
 				ret = ("The " + offense.htmlTitleHP() + " practically appears to be standing still as they clumsily lunge towards the " + defense.htmlTitleHP()  );
 				if(defense.getStat("currentHP")> 0 ){
 					ret += ". They miss so hard the " + defense.htmlTitleHP() + " has plenty of time to get a counterattack in."
@@ -981,6 +981,7 @@ function GameEntity(session, name, crowned){
 
 				return;
 			}else if(defense.getStat("mobility") > offense.getStat("mobility")*5+1 && rand > 25){
+				console.log("Mobility dodge: " +   defense.htmlTitleHP() +this.session.session_id);
 				div.append(" The " + defense.htmlTitleHP() + " dodges the attack completely. ");
 				return;
 			}

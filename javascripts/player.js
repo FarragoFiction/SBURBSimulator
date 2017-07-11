@@ -149,14 +149,14 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.generateDenizen = function(){
 		var possibilities = this.getDenizenNameArray();
 		var strength = this.getOverallStrength();
-		var expectedMaxStrength = 150; 
+		var expectedMaxStrength = 150;  //if i change how stats work, i need to update this value 
 		var strengthPerTier = (expectedMaxStrength)/possibilities.length;
 		//console.log("Strength at start is, " + strength);//but what if you don't want STRANGTH!???
 		var denizenIndex = Math.round(strength/strengthPerTier)-1;  //want lowest value to be off the denizen array.
 
 		var denizenName = "";
 		var denizenStrength = (denizenIndex/(possibilities.length))+1 //between 1 and 2
-		console.log("Strength for denizen calculated from index of: " + denizenIndex + " out of " + possibilities.length)
+		//console.log("Strength for denizen calculated from index of: " + denizenIndex + " out of " + possibilities.length)
 		if(denizenIndex == 0){
 			denizenName = this.weakDenizenNames();
 			denizenStrength = 0.1;//fraymotifs about standing and looking at your pittifully
@@ -176,7 +176,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	//generate denizen gets me name and strength, this just takes care of making it.
 	this.makeDenizenWithStrength = function(name, strength){
-		console.log("Strength for denizen " + name + " is: " + strength)
+		//console.log("Strength for denizen " + name + " is: " + strength)
 		//based off existing denizen code.  care about which aspect i am.
 		//also make minion here.
 		var denizen =  new GameEntity(this.session, "Denizen " +name, null);
@@ -197,7 +197,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			if(stat.name == "MANGRIT"){
 				tmpStatHolder.power = tmpStatHolder.power * stat.multiplier * strength
 			}else{
-				console.log("current stat is: " + tmpStatHolder[stat.name] + " and modifying by: " + stat.multiplier)
 				tmpStatHolder[stat.name] += tmpStatHolder[stat.name] * stat.multiplier * strength;
 			} 
 		}
