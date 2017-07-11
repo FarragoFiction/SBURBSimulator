@@ -907,24 +907,26 @@ function GameEntity(session, name, crowned){
 		//return true if you did.
 		//TODO l8r refactor strifes to NOT be part of game entitiy, so can have group of enemies fight group of players.
 		this.useFraymotif = function(div, owner, allies, enemies){
+			var living_enemies = getLivingMinusAbsconded(enemies);
+			var living_allies = getLivingMinusAbsconded(allies)
 			if(Math.seededRandom() > 0.75) return false; //don't use them all at once, dunkass.
-			var usableFraymotifs = this.session.fraymotifCreator.getUsableFraymotifs(owner, allies, enemies);
+			var usableFraymotifs = this.session.fraymotifCreator.getUsableFraymotifs(owner, living_allies, enemies);
 			if(owner.crowned){  //ring/scepter has fraymotifs, too.  (maybe shouldn't let humans get thefraymotifs but what the fuck ever. roxyc could do voidy shit.)
-				usableFraymotifs = usableFraymotifs.concat(this.session.fraymotifCreator.getUsableFraymotifs(this.crowned, allies, enemies))
+				usableFraymotifs = usableFraymotifs.concat(this.session.fraymotifCreator.getUsableFraymotifs(this.crowned, living_allies, enemies))
 			}
 			if(usableFraymotifs.length == 0) return false;
 			
 			var mine = owner.getStat("sanity")
-			var theirs = getAverageSanity(enemies)
+			var theirs = getAverageSanity(living_enemies)
 			if(mine+200 < theirs && Math.seededRandom() < 0.5){
-				console.log("Too insane to use fraymotifs: " + owner.htmlTitleHP() +" against " + enemies[0].htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id)
+				console.log("Too insane to use fraymotifs: " + owner.htmlTitleHP() +" against " + living_enemies[0].htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id)
 				div.append(" The " + owner.htmlTitleHP() + " wants to use a Fraymotif, but they are too crazy to focus. ")
 				return false;
 			}
 			mine = owner.getStat("freeWill") 
-			theirs = getAverageFreeWill(enemies)
+			theirs = getAverageFreeWill(living_enemies)
 			if(mine +200 < theirs && Math.seededRandom() < 0.5){
-				console.log("Too controlled to use fraymotifs: " + owner.htmlTitleHP() +" against " + enemies[0].htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id)
+				console.log("Too controlled to use fraymotifs: " + owner.htmlTitleHP() +" against " + living_enemies[0].htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id)
 				div.append(" The " + owner.htmlTitleHP() + " wants to use a Fraymotif, but Fate dictates otherwise. ")
 				return false;
 			}
@@ -941,7 +943,7 @@ function GameEntity(session, name, crowned){
 			
 			
 			
-			div.append("<Br><br>"+chosen.useFraymotif(owner, allies, enemies) + "<br><Br>");
+			div.append("<Br><br>"+chosen.useFraymotif(owner, living_allies, living_enemies) + "<br><Br>");
 			chosen.usable = false;
 			return true;
 		}

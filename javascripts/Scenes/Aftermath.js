@@ -251,6 +251,7 @@ this.trollKidRock = function(){
 	f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? "
 	trollKidRock.fraymotifs.push(f);
 	initializePlayers([trollKidRock]);
+	trollKidRock.currentHP = 1000;
 	return makeRenderingSnapshot(trollKidRock);  //sorry kid rock, you're not REALLY a player.
 }
 
@@ -258,17 +259,20 @@ this.purpleFrog = function(){
 	var mvp = findStrongestPlayer(this.session.players);
 	var tmpStatHolder = {};
 	tmpStatHolder.minLuck = -100;
-	tmpStatHolder.maxLuck = -100;
+	tmpStatHolder.maxLuck = 100;
 	tmpStatHolder.hp = mvp.getStat("power") * this.session.players.length;  //this will be a challenge. good thing you have troll kid rock to lay down some sick beats.
 	tmpStatHolder.mobility = -100
-	tmpStatHolder.sanity = -100
-	tmpStatHolder.freeWill = -100
+	tmpStatHolder.sanity = 0
+	tmpStatHolder.freeWill = 200
 	tmpStatHolder.power =mvp.getStat("power") * this.session.players.length; //this will be a challenge.
 	tmpStatHolder.grist = 100000000;
+	tmpStatHolder.abscondable = false; //this is still the final battle, 
+	tmpStatHolder.canAbscond = false;
 	tmpStatHolder.RELATIONSHIPS = -100;  //not REAL relationships, but real enough for our purposes.
-	alert(tmpStatHolder.hp)
+	console.log(purpleFrog)
 	var purpleFrog =  new GameEntity(this.session, " <font color='purple'>" +Zalgo.generate("Purple Frog") + "</font>", null);
 	purpleFrog.setStatsHash(tmpStatHolder);
+	console.log(purpleFrog)
 	//what kind of attacks does a grim dark purple frog have???  Croak Blast is from rp, but what else?
 	
 	var f = new Fraymotif([], Zalgo.generate("CROAK BLAST"), 3) //freeMiliu_2K01 [F☆] came up with this one in the RP :)  :) :)
@@ -295,7 +299,7 @@ this.purpleFrog = function(){
 	return purpleFrog;
 }
 this.getGoodGuys = function(trollKidRock){
-	var living = findLivingPlayers(this.session.players);
+	var living = this.session.players;
 	var allPlayers = this.session.players; //anybody can have doomedclones now, not just time players.
 
 	for(var i = 0; i<allPlayers.length; i++){
