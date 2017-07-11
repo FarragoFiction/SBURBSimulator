@@ -353,14 +353,14 @@ function Session(session_id){
 		this.queensRing = new GameEntity(this, "!!!RING!!! OMG YOU SHOULD NEVER SEE THIS!",false)
 		this.queensRing.setStats(0,0,0,0,0,0,0,false, false, [],1000);
 		var f = new Fraymotif([],  "Red Miles", 3)
-		f.effects.push(new FraymotifEffect("power",3,true));
+		f.effects.push(new FraymotifEffect("power",2,true));
 		f.flavorText = " You cannot escape them "
 		this.queensRing.fraymotifs.push(f);
 
 		this.kingsScepter = new GameEntity(this, "!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!",false)
 		this.kingsScepter.setStats(0,0,0,0,0,0,0,false, false, [],1000);
 		var f = new Fraymotif([],  "Reckoning Meteors", 3)  //TODO eventually check for this fraymotif (just lik you do troll psionics) to decide if you can start recknoing.
-		f.effects.push(new FraymotifEffect("power",3,true));
+		f.effects.push(new FraymotifEffect("power",2,true));
 		f.flavorText = " The very meteors from the Reckoning rain down. "
 		this.kingsScepter.fraymotifs.push(f);
 		
