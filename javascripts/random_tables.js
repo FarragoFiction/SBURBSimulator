@@ -1077,15 +1077,16 @@ function bloodColorToBoost(color){
 
 function bloodColorToInt(color){
 	if(color == "#ff0000") return 14;
+	if(color == "#ffc3df") return 13;
 	if(color == null) return 15;
 	var ret =  bloodColors.indexOf(color);
-	if(ret == -1) ret = 15;
 	return ret;
 }
 
 function intToBloodColor(num){
-	if(num == 15) return "#ffc3df"; //bubble gum pink not an option 'cause my special snowlake fan troll needs to stay special
+	if(num == 15) return null; //bubble gum pink not an option 'cause my special snowlake fan troll needs to stay special
 	if(num == 14) return "#ff0000";
+	if(num == 13) return "#ffc3df";
 	return bloodColors[num];
 }
 

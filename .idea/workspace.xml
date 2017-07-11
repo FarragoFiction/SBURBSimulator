@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OCs/discord.txt" afterPath="$PROJECT_DIR$/OCs/discord.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/fraymotif.js" afterPath="$PROJECT_DIR$/javascripts/fraymotif.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/random_tables.js" afterPath="$PROJECT_DIR$/javascripts/random_tables.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,17 +49,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="discord.txt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="discord.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/OCs/discord.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="234">
-              <caret line="78" column="94" lean-forward="false" selection-start-line="78" selection-start-column="94" selection-end-line="78" selection-end-column="94" />
+              <caret line="78" column="88" lean-forward="false" selection-start-line="78" selection-start-column="88" selection-end-line="78" selection-end-column="88" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="creditsBuckaroos.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="creditsBuckaroos.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/OCs/creditsBuckaroos.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
@@ -90,8 +92,8 @@
       <file leaf-file-name="random_tables.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="1086" column="33" lean-forward="false" selection-start-line="1086" selection-start-column="33" selection-end-line="1086" selection-end-column="33" />
+            <state relative-caret-position="191">
+              <caret line="1088" column="33" lean-forward="false" selection-start-line="1088" selection-start-column="33" selection-end-line="1088" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -109,7 +111,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>canon</find>
       <find>After</find>
       <find>Rhap</find>
       <find>tryToGetPreMadeName</find>
@@ -123,7 +124,6 @@
       <find>Web</find>
       <find>dream</find>
       <find>aspectSy</find>
-      <find>PalletSwap</find>
       <find>getRepl</find>
       <find>classNameToInt</find>
       <find>initialize</find>
@@ -135,10 +135,12 @@
       <find>horn</find>
       <find>loadAllPossiblePlayers</find>
       <find>ocData</find>
-      <find>toJSON</find>
-      <find>getColorFromAspect</find>
       <find>maxCustomHorns</find>
+      <find>Hurr</find>
+      <find>toJSON</find>
       <find>asoci</find>
+      <find>PalletSwap</find>
+      <find>getColorFromAspect</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -165,7 +167,6 @@
         <option value="$PROJECT_DIR$/javascripts/playerSnapshot.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js" />
         <option value="$PROJECT_DIR$/javascripts/scene_controller.js" />
-        <option value="$PROJECT_DIR$/javascripts/fraymotif.js" />
         <option value="$PROJECT_DIR$/javascripts/newsposts.js" />
         <option value="$PROJECT_DIR$/javascripts/session.js" />
         <option value="$PROJECT_DIR$/javascripts/gameEntity.js" />
@@ -177,6 +178,7 @@
         <option value="$PROJECT_DIR$/credits.html" />
         <option value="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" />
         <option value="$PROJECT_DIR$/javascripts/loading.js" />
+        <option value="$PROJECT_DIR$/javascripts/fraymotif.js" />
         <option value="$PROJECT_DIR$/javascripts/random_tables.js" />
         <option value="$PROJECT_DIR$/OCs/discord.txt" />
       </list>
@@ -821,14 +823,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="428" column="3" lean-forward="false" selection-start-line="428" selection-start-column="3" selection-end-line="428" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/session.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
@@ -869,34 +863,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="2327" column="24" lean-forward="false" selection-start-line="2327" selection-start-column="24" selection-end-line="2327" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/loading.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="316">
           <caret line="268" column="26" lean-forward="false" selection-start-line="268" selection-start-column="26" selection-end-line="268" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="1783" column="260" lean-forward="false" selection-start-line="1783" selection-start-column="245" selection-end-line="1783" selection-end-column="260" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="1086" column="33" lean-forward="false" selection-start-line="1086" selection-start-column="33" selection-end-line="1086" selection-end-column="33" />
           <folding />
         </state>
       </provider>
@@ -909,6 +879,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/OCs/creditsBuckaroos.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="1783" column="260" lean-forward="false" selection-start-line="1783" selection-start-column="245" selection-end-line="1783" selection-end-column="260" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="336" column="3" lean-forward="true" selection-start-line="336" selection-start-column="3" selection-end-line="336" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/credits.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
@@ -917,18 +911,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OCs/discord.txt">
+    <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="78" column="94" lean-forward="false" selection-start-line="78" selection-start-column="94" selection-end-line="78" selection-end-column="94" />
+        <state relative-caret-position="280">
+          <caret line="2327" column="24" lean-forward="false" selection-start-line="2327" selection-start-column="24" selection-end-line="2327" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OCs/creditsBuckaroos.txt">
+    <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state relative-caret-position="191">
+          <caret line="1088" column="33" lean-forward="false" selection-start-line="1088" selection-start-column="33" selection-end-line="1088" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OCs/discord.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="78" column="88" lean-forward="false" selection-start-line="78" selection-start-column="88" selection-end-line="78" selection-end-column="88" />
           <folding />
         </state>
       </provider>
