@@ -81,6 +81,26 @@ function Session(session_id){
 		this.jack.crowned = null;
 		this.queen.crowned = null;
 	}
+	
+	
+	//space stuck needs love
+	this.findBestSpace = function(){
+		var spaces = findAllAspectPlayers(this.session.players, "Space");
+		var ret = spaces[0];
+		for(var i = 0; i<spaces.length; i++){
+			if(spaces[i].landLevel > ret.landLevel) ret = spaces[i];
+		}
+		return ret;
+	}
+	
+	this.findMostCorruptedSpace = function(){
+		var spaces = findAllAspectPlayers(this.session.players, "Space");
+		var ret = spaces[0];
+		for(var i = 0; i<spaces.length; i++){
+			if(spaces[i].landLevel< ret.landLevel) ret = spaces[i];
+		}
+		return ret;  //lowest space player.
+	}
 
 	//IMPORTANT do not add important events directly, or can't check for alternate timelines.
 	//oh god, just typing that gives me chills. time shenanigans are so great.
@@ -99,7 +119,10 @@ function Session(session_id){
 	}
 
 	this.frogStatus = function(){
+		var spacePlayer = this.findBestSpace();
+		var corruptedSpacePlayer = this.findMostCorruptedSpace();
 		var spacePlayer = findAspectPlayer(this.players, "Space");
+		if(corruptedSpacePlayer.landLevel <= this.goodFrogLevel * -1) return "Purple Frog" //is this...a REFRANCE???
 		if(spacePlayer.landLevel < this.minFrogLevel){
 			return "No Frog"
 		}else if(spacePlayer.landLevel > this.goodFrogLevel){
@@ -498,8 +521,14 @@ function Session(session_id){
 		summary.democracyStarted =  this.democraticArmy.power > 0;
 		summary.murderMode = this.murdersHappened;
 		summary.grimDark = this.grimDarkPlayers;
-		var spacePlayer = findAspectPlayer(this.players, "Space");
-		summary.frogLevel =spacePlayer.landLevel
+		var spacePlayer = this.findBestSpace();
+		var corruptedSpacePlayer = this.findMostCorruptedSpace();
+		if(summary.frogStatus == "Purple Frog" ){
+			summary.frogLevel =corruptedSpacePlayer.landLevel
+		}else{
+			summary.frogLevel =spacePlayer.landLevel
+		}
+		
 		summary.hasDiamonds =this.hasDiamonds;
 		summary.hasSpades = this.hasSpades;
 		summary.hasClubs = this.hasClubs;

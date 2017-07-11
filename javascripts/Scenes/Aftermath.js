@@ -104,32 +104,14 @@ function Aftermath(session){
 		copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
 	}
 
-	//space stuck needs love
-	this.findBestSpace = function(){
-		var spaces = findAllAspectPlayers(this.session.players, "Space");
-		var ret = spaces[0];
-		for(var i = 0; i<spaces.length; i++){
-			if(spaces[i].landLevel > ret.landLevel) ret = spaces[i];
-		}
-		return ret;
-	}
-	
-	this.findMostCorruptedSpace = function(){
-		var spaces = findAllAspectPlayers(this.session.players, "Space");
-		var ret = spaces[0];
-		for(var i = 0; i<spaces.length; i++){
-			if(spaces[i].landLevel< ret.landLevel) ret = spaces[i];
-		}
-		return ret;  //lowest space player.
-	}
 
 
 	this.renderContent = function(div){
 		var yellowYard = false;
 		var end = "<Br>";
 		var living = findLivingPlayers(this.session.players);
-		var spacePlayer = this.findBestSpace();
-		var corruptedSpacePlayer = this.findMostCorruptedSpace();
+		var spacePlayer = this.session.findBestSpace();
+		var corruptedSpacePlayer = this.session.findMostCorruptedSpace();
 		//var spacePlayer = findAspectPlayer(this.session.players, "Space");
 		//...hrrrm...better debug this. looks like this can be triggered when players AREN"T being revived???
 		if(living.length > 0  && (!this.session.king.dead || !this.session.queen.dead && this.session.queen.exiled == false)){
