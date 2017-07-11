@@ -170,6 +170,7 @@ function Aftermath(session){
 				}else{
 					end += "<br>Unfortunately, the " + spacePlayer.htmlTitle() + " was unable to complete frog breeding duties. ";
 					end += " They only got " + Math.round(spacePlayer.landLevel/this.session.minFrogLevel*100) + "% of the way through. ";
+					console.log(Math.round(spacePlayer.landLevel/this.session.minFrogLevel*100) + " % frog in session: " + this.session.session_id)
 					if(Math.round(spacePlayer.landLevel/this.session.minFrogLevel*100) <= -100) console.log("!!!!!!!!!!!!!!!!!!!!TROLL KID ROCK INCOMING!!!!!!!!!!!!!!!!" + this.session.session_id)
 
 					if(spacePlayer.landLevel < 0){
