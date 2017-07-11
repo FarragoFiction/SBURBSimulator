@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/gameEntity.js" afterPath="$PROJECT_DIR$/javascripts/gameEntity.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/newsposts.js" afterPath="$PROJECT_DIR$/javascripts/newsposts.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -57,11 +57,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gameEntity.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="gameEntity.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/gameEntity.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="268">
               <caret line="982" column="82" lean-forward="false" selection-start-line="982" selection-start-column="82" selection-end-line="982" selection-end-column="82" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="newsposts.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/javascripts/newsposts.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="20" column="781" lean-forward="false" selection-start-line="20" selection-start-column="781" selection-end-line="20" selection-end-column="781" />
               <folding />
             </state>
           </provider>
@@ -119,7 +129,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>After</find>
       <find>Rhap</find>
       <find>tryToGetPreMadeName</find>
       <find>available_classes_guardians</find>
@@ -149,6 +158,7 @@
       <find>PalletSwap</find>
       <find>getColorFromAspect</find>
       <find>asoci</find>
+      <find>standing still</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -175,7 +185,6 @@
         <option value="$PROJECT_DIR$/javascripts/playerSnapshot.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js" />
         <option value="$PROJECT_DIR$/javascripts/scene_controller.js" />
-        <option value="$PROJECT_DIR$/javascripts/newsposts.js" />
         <option value="$PROJECT_DIR$/javascripts/session.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/QuadrantDialogue.js" />
         <option value="$PROJECT_DIR$/todo.html" />
@@ -189,6 +198,7 @@
         <option value="$PROJECT_DIR$/javascripts/random_tables.js" />
         <option value="$PROJECT_DIR$/OCs/discord.txt" />
         <option value="$PROJECT_DIR$/javascripts/gameEntity.js" />
+        <option value="$PROJECT_DIR$/javascripts/newsposts.js" />
       </list>
     </option>
   </component>
@@ -855,14 +865,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/newsposts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="538" lean-forward="false" selection-start-line="20" selection-start-column="538" selection-end-line="20" selection-end-column="538" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/loading.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="316">
@@ -939,6 +941,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="268">
           <caret line="982" column="82" lean-forward="false" selection-start-line="982" selection-start-column="82" selection-end-line="982" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/newsposts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="781" lean-forward="false" selection-start-line="20" selection-start-column="781" selection-end-line="20" selection-end-column="781" />
           <folding />
         </state>
       </provider>
