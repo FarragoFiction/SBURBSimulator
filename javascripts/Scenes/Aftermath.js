@@ -226,7 +226,7 @@ function Aftermath(session){
 this.trollKidRock = function(){
 	var trollKidRockString = "b=%C3%B2%C3%9C%C2%829%C3%BE%11%10%0CCC%20&s=,,Rap,Rap,kidRock" //Ancient, thank you for best meme. 
 	var trollKidRock = new CharacterEasterEggEngine().playerDataStringArrayToURLFormat([trollKidRockString])[0];
-	alert(trollKidRock.title())	
+	trollKidRock.session = this.session;
 	var f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) //most repetitive song, ACTIVATE!!!
 	f.effects.push(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
 	f.effects.push(new FraymotifEffect("power",1,false));
@@ -250,7 +250,7 @@ this.trollKidRock = function(){
 	f.effects.push(new FraymotifEffect("power",1,false));
 	f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? "
 	trollKidRock.fraymotifs.push(f);
-	
+	initializePlayers([trollKidRock]);
 	return trollKidRock;
 }
 
@@ -259,13 +259,14 @@ this.purpleFrog = function(){
 	var tmpStatHolder = {};
 	tmpStatHolder.minLuck = -100;
 	tmpStatHolder.maxLuck = -100;
-	tmpStatHolder.hp = mvp.getStat("hp") * this.session.players.length;  //this will be a challenge. good thing you have troll kid rock to lay down some sick beats.
+	tmpStatHolder.hp = mvp.getStat("power") * this.session.players.length;  //this will be a challenge. good thing you have troll kid rock to lay down some sick beats.
 	tmpStatHolder.mobility = -100
 	tmpStatHolder.sanity = -100
 	tmpStatHolder.freeWill = -100
 	tmpStatHolder.power =mvp.getStat("power") * this.session.players.length; //this will be a challenge.
 	tmpStatHolder.grist = 100000000;
 	tmpStatHolder.RELATIONSHIPS = -100;  //not REAL relationships, but real enough for our purposes.
+	alert(tmpStatHolder.hp)
 	var purpleFrog =  new GameEntity(this.session, " <font color='purple'>" +Zalgo.generate("Purple Frog") + "</font>", null);
 	purpleFrog.setStatsHash(tmpStatHolder);
 	//what kind of attacks does a grim dark purple frog have???  Croak Blast is from rp, but what else?
@@ -310,7 +311,7 @@ this.purpleFrogEnding = function(div, precedingText){
 	var trollKidRock = this.trollKidRock();
 	alert(trollKidRock.title())
 	var purpleFrog = this.purpleFrog();
-	precedingText += " What...what is going on? How...how can you have NEGATIVE 100% of a frog??? This...this doesn't look right.   The vast frog lets out a CROAK, but it HURTS.  It seems...hostile.  Oh fuck. <Br><br> The " + purpleFrog.name + " initiates a strife with the Players! Troll Kid Rock appears out of nowhere to help them. (What the hell???)"
+	precedingText += " What...what is going on? How...how can you have NEGATIVE 100% of a frog??? This...this doesn't look right.   The vast frog lets out a CROAK, but it HURTS.  It seems...hostile.  Oh fuck. <Br><br> The " + purpleFrog.htmlTitleHP() + " initiates a strife with the Players! Troll Kid Rock appears out of nowhere to help them. (What the hell???)"
 	div.append(precedingText);
 	purpleFrog.strife(div, this.getGoodGuys(trollKidRock),0)
 }
