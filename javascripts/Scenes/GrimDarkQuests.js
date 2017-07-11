@@ -42,6 +42,7 @@ function GrimDarkQuests(session){
 				tasks.push("just straight up murdering frogs out of frustration")
 				tasks.push("try to tamper with the Forge")
 				player.landLevel += -15; //they FOCUS on killing frogs and ruining the game.
+				console.log("A grim dark space player is actively trying to breed a corrupt frog in session: " + this.session.session_id)
 			}
 			var quip = "";
 			var amount =0;
@@ -72,7 +73,7 @@ function GrimDarkQuests(session){
 
 
 	this.renderContent = function(div){
-		console.log("A grim dark player is actively working to crash session " + this.session.session_id + " and this much health remains: " + this.session.sessionHealth )
+		//console.log("A grim dark player is actively working to crash session " + this.session.session_id + " and this much health remains: " + this.session.sessionHealth )
 		//console.log("trying to crash session like an idiot: " + this.session.session_id)
 		div.append("<br><img src = 'images/sceneIcons/grimdark_black_icon.png'> "+this.content(div));
 		if(this.session.sessionHealth <= 0){
