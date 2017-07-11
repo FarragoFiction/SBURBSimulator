@@ -387,6 +387,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.timesDied ++;
 		this.buffs = [];
 		this.causeOfDeath = causeOfDeath;
+		this.currentHP = Math.max(0, this.currentHP);
 		//was in make alive, but realized that this makes doom ghosts way stronger if it's here. powered by DEATH, but being revived.
 		if(this.aspect == "Doom"){ //powered by their own doom.
 			//console.log("doom is powered by their own death: " + this.session.session_id) //omg, they are sayians.
