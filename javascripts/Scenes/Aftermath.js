@@ -1,8 +1,7 @@
 function Aftermath(session){
 	this.session = session;
 	this.canRepeat = false;
-	this.purpleFighters = []; //what is this???
-	this.purpleDiv = null;
+
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.trigger = function(playerList){
 		this.playerList = playerList;
@@ -306,20 +305,19 @@ this.purpleFrogEnding = function(div, precedingText){
 	precedingText += " What...what is going on? How...how can you have NEGATIVE 100% of a frog??? This...this doesn't look right.   The vast frog lets out a CROAK, but it HURTS.  It seems...hostile.  Oh fuck. <Br><br> The " + purpleFrog.htmlTitleHP() + " initiates a strife with the Players! Troll Kid Rock appears out of nowhere to help them. (What the hell???)<br><br><canvas id = 'trollKidRockAppears' width ='400' height = '300'></canvas>"
 	div.append(precedingText);
 	
-	this.purpleFighters = this.getGoodGuys(trollKidRock)
-	this.purpleDiv = div;
-	var callBack = this.finishPurpleStrife.bind(this, trollKidRock)
+	var purpleFighters = this.getGoodGuys(trollKidRock)
+	var callBack = this.finishPurpleStrife.bind(this, div, purpleFrog, purpleFighters, trollKidRock)
 	loadAllImagesForPlayerWithCallback(trollKidRock, callBack)
 	
 }
 
-this.finishPurpleStrife = function(trollKidRock){
+this.finishPurpleStrife = function(div, purpleFrog, fighters, trollKidRock){
 	trollKidRock.renderSelf();
 	var tkrCanvas =  document.getElementById("trollKidRockAppears");
 	drawTimeGears(tkrCanvas, trollKidRock);
 	drawSinglePlayer(tkrCanvas, trollKidRock);
-	this.purpleFighters.push(makeRenderingSnapshot(trollKidRock)) //sorry trollKidRock you are not REALLY a player.
-	purpleFrog.strife(this.purpleDiv, this.purpleFighters,0)
+	fighters.push(makeRenderingSnapshot(trollKidRock)) //sorry trollKidRock you are not REALLY a player.
+	purpleFrog.strife(div, fighters,0)
 	var ret = "";
 	if(purpleFrog.getStat("currentHP") <= 0 || purpleFrog.dead) {
 		this.session.createdMultiVerseForPlayers = true;
@@ -328,7 +326,7 @@ this.finishPurpleStrife = function(trollKidRock){
 		this.session.createdMultiVerseForSquiddles = true;
 		ret += "With a final, defeaning 'CROAK', the " + purpleFrog.name + " floats victorious over the remains of the Players.   The Horror Terrors happily colonize the new Universe, though, so I guess the GrimDark players would be happy with this ending?  <Br><Br> Thanks for Playing. "
 	}
-	this.purpleDiv.append(ret);
+	div.append(ret);
 }
 
 //take "firstcanvas"+ this.player.id+"_" + this.session.session_id from intro, and copy it here to display for first time.
