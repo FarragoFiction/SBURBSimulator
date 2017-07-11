@@ -33,8 +33,8 @@ function loadAllImagesForPlayersNew(players, guardians, skipInit){
 	loadOther(skipInit);
 }
 
-function loadAllImagesForPlayerWithCallback(player, callBack){
-	callBack = callBack;
+function loadAllImagesForPlayerWithCallback(player, cb){
+	callBack = cb;
 	var skipInit = true;
 	if(simulationMode == true) return checkDone(skipInit);
 	loadPlayer(player,skipInit);
@@ -85,6 +85,7 @@ function checkDone(skipInit){
 	if((imagesLoaded != 0 && imagesWaiting == imagesLoaded) || simulationMode == true){  //if i'm not using images, don't load them, dunkass.
 		//$("#loading").remove(); //not loading anymore
     if(skipInit){
+		alert(callBack)
 		if(callBack) return callBack();
       if(skipInit == "oc"){
         console.log("images loaded: " + imagesLoaded)

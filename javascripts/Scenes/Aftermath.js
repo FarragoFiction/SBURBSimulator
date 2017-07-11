@@ -310,6 +310,7 @@ this.purpleFrogEnding = function(div, precedingText){
 	this.purpleFighters = this.getGoodGuys(trollKidRock)
 	this.purpleDiv = div;
 	var callBack = this.finishPurpleStrife.bind(this, trollKidRock)
+	alert(callBack)
 	loadAllImagesForPlayerWithCallback(trollKidRock, callBack)
 	
 }
