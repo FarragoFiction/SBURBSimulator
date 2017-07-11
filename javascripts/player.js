@@ -2596,8 +2596,10 @@ function getPlayersTitlesHP(playerList){
 		return "";
 	}
 		var ret = playerList[0].htmlTitleHP();
+		console.log("Player has hp of: " + playerList[0].htmlTitleHP())
 		for(var i = 1; i<playerList.length; i++){
 			ret += " and " + playerList[i].htmlTitleHP();
+			console.log("Player has hp of: " + playerList[i].htmlTitleHP())
 		}
 		return ret;
 }
