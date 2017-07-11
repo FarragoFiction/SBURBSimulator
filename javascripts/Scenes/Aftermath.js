@@ -296,7 +296,7 @@ this.getGoodGuys = function(trollKidRock){
 //reference to rp at: http://forums.msparp.com/showthread.php?tid=16049
 //guest starring troll kid rock
 this.purpleFrogEnding = function(div, precedingText){
-	alert("purple frog incoming!!!")
+	alert("purple frog incoming!!!" + this.session.session_id)
 	//maybe load kid rock first and have callback for when he's done.
 	//maybe kid rock only shows up for half purple frogs??? need plausible deniability? "Troll Kid Rock??? Never heard of him. Sounds like a cool dude, though."
 	var trollKidRock = this.trollKidRock();
