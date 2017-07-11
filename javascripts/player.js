@@ -387,7 +387,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.timesDied ++;
 		this.buffs = [];
 		this.causeOfDeath = causeOfDeath;
-		this.currentHP = Math.max(0, this.currentHP);
+		if(this.currentHP > 0) this.currentHP = -1; //just in case anything weird is going on. dead is dead.  (for example, you could have been debuffed of hp).
 		//was in make alive, but realized that this makes doom ghosts way stronger if it's here. powered by DEATH, but being revived.
 		if(this.aspect == "Doom"){ //powered by their own doom.
 			//console.log("doom is powered by their own death: " + this.session.session_id) //omg, they are sayians.
@@ -2596,10 +2596,8 @@ function getPlayersTitlesHP(playerList){
 		return "";
 	}
 		var ret = playerList[0].htmlTitleHP();
-		console.log("Player has hp of: " + playerList[0].htmlTitleHP())
 		for(var i = 1; i<playerList.length; i++){
 			ret += " and " + playerList[i].htmlTitleHP();
-			console.log("Player has hp of: " + playerList[i].htmlTitleHP())
 		}
 		return ret;
 }
