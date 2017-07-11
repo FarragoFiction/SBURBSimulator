@@ -805,7 +805,7 @@ function CharacterCreatorHelper(players){
 			}
 		}
 
-		var maxCustomHorns = 4;
+		var maxCustomHorns = 0;  //kr wants no shitty horns widely available
 		for(var i = 255; i> 255-maxCustomHorns; i+=-1){
             if(player.leftHorn == i){
                 html += '<option  selected = "selected" value="' + i +'">' + i+'</option>'
@@ -829,7 +829,7 @@ function CharacterCreatorHelper(players){
 			}
 		}
 
-		var maxCustomHorns = 4;
+		var maxCustomHorns = 0;
             for(var i = 255; i> 255-maxCustomHorns; i+=-1){
                 if(player.rightHorn == i){
                     html += '<option  selected = "selected" value="' + i +'">' + i+'</option>'
