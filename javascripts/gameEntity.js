@@ -1068,7 +1068,7 @@ function GameEntity(session, name, crowned){
 
 		this.checkForAPulse =function(player, attacker){
 			if(player.getStat("currentHP") <= 0){
-				console.log("Checking hp to see if" + player.htmlTitleHP() +"  is  dead");
+				//console.log("Checking hp to see if" + player.htmlTitleHP() +"  is  dead");
 				var cod = "fighting the " + attacker.htmlTitle();
 				if(this.name == "Jack"){
 					cod =  "after being shown too many stabs from Jack";
@@ -1077,10 +1077,10 @@ function GameEntity(session, name, crowned){
 					cod = "fighting the Black King";
 				}
 				player.makeDead(cod);
-				console.log("Returning that " + player.htmlTitleHP() +"  is  dead");
+				//console.log("Returning that " + player.htmlTitleHP() +"  is  dead");
 				return false;
 			}
-			console.log("Returning that " + player.htmlTitleHP() +"  is not dead");
+			//console.log("Returning that " + player.htmlTitleHP() +"  is not dead");
 			return true;
 		}
 
