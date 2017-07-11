@@ -366,15 +366,15 @@ function Session(session_id){
 		
 		this.king = new GameEntity(this, "Black King", this.kingsScepter);
 		//minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs
-		this.king.setStats(-10,10,1000,0,0,25,100,false, false, [],1000);
+		this.king.setStats(-10,10,1000,0,0,-100,100,false, false, [],1000); //royalty have no free will
 		this.queen = new GameEntity(this, "Black Queen",this.queensRing);
-		this.queen.setStats(-10,10,500,10,0,100,50,false, false, [],1000); //red miles, put on ring
+		this.queen.setStats(-10,10,500,10,0,-100,50,false, false, [],1000); //red miles, put on ring
 		this.queen.carapacian = true;
 		this.king.carapacian = true;
 
 		this.jack = new GameEntity(this, "Jack",null);
 		this.jack.carapacian = true;
-		this.jack.setStats(-500,-10,20,-50,-500,1000,40,true, true, [],100000); //jack is kind of a big deal. luck determines his odds of finding bullshit weapon
+		this.jack.setStats(-500,-10,20,-50,-100,1000,40,true, true, [],100000); //jack is kind of a big deal. luck determines his odds of finding bullshit weapon
 		//jack uses "Stab to Meet You", it's not very effective (nobody seems to think his stabs are important until he's crowned.)
 		var f = new Fraymotif([],  "Stab To Meet You", 1)
 		f.effects.push(new FraymotifEffect("power",3,true));

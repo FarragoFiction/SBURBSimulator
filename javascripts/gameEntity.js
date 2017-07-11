@@ -912,17 +912,17 @@ function GameEntity(session, name, crowned){
 			}
 			if(usableFraymotifs.length == 0) return false;
 			
-			var mine = owner.getStat("sanity") +500
+			var mine = owner.getStat("sanity")
 			var theirs = getAverageSanity(enemies)
-			if(mine < theirs && Math.seededRandom() < 0.5){
-				console.log("Too insane to use fraymotifs: " + owner.htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id)
+			if(mine+100 < theirs && Math.seededRandom() < 0.5){
+				console.log("Too insane to use fraymotifs: " + owner.htmlTitleHP() +" against " + enemies[0].htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id)
 				div.append(" The " + owner.htmlTitleHP() + " wants to use a Fraymotif, but they are too crazy to focus. ")
 				return false;
 			}
-			mine = owner.getStat("freeWill") +500
+			mine = owner.getStat("freeWill") 
 			theirs = getAverageFreeWill(enemies)
-			if(mine < theirs && Math.seededRandom() < 0.5){
-				console.log("Too controlled to use fraymotifs: " + owner.htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id)
+			if(mine +100 < theirs && Math.seededRandom() < 0.5){
+				console.log("Too controlled to use fraymotifs: " + owner.htmlTitleHP() +" against " + enemies[0].htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id)
 				div.append(" The " + owner.htmlTitleHP() + " wants to use a Fraymotif, but Fate dictates otherwise. ")
 				return false;
 			}
