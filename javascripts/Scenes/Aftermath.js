@@ -304,9 +304,9 @@ this.purpleFrogEnding = function(div, precedingText){
 	var purpleFrog = this.purpleFrog();
 	precedingText += " What...what is going on? How...how can you have NEGATIVE 100% of a frog??? This...this doesn't look right.   The vast frog lets out a CROAK, but it HURTS.  It seems...hostile.  Oh fuck. <Br><br> The " + purpleFrog.htmlTitleHP() + " initiates a strife with the Players! Troll Kid Rock appears out of nowhere to help them. (What the hell???)<br><br><canvas id = 'trollKidRockAppears'></canvas>"
 	div.append(precedingText);
-	var tkrCanvas =  document.getElementById("canvas"+ divID);
-	drawTimeGears(canvas, trollKidRock);
-	drawSinglePlayer(canvas, trollKidRock);
+	var tkrCanvas =  document.getElementById("trollKidRockAppears");
+	drawTimeGears(tkrCanvas, trollKidRock);
+	drawSinglePlayer(tkrCanvas, trollKidRock);
 	purpleFrog.strife(div, this.getGoodGuys(trollKidRock),0)
 	var ret = "";
 	if(purpleFrog.getStat("currentHP") <= 0 || purpleFrog.dead) {
