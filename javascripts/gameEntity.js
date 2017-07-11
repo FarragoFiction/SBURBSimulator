@@ -119,7 +119,7 @@ function GameEntity(session, name, crowned){
 			for (var key in hashStats){
 				this[key] = hashStats[key];
 			}
-			this.currentHP = this.hp;
+			this.currentHP = Math.min(this.hp, 25); //no negative hp asshole.
 		}
 
 		this.setStats = function(minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs, grist){
