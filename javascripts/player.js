@@ -2008,7 +2008,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				this.associatedStats.push(new AssociatedStat("maxLuck", 2,true));
 				this.associatedStats.push(new AssociatedStat("freeWill", 1,true));
 				this.associatedStats.push(new AssociatedStat("sanity", -1,true));
-				this.associatedStats.push(new AssociatedStat("freeWill", -1,true));
+				this.associatedStats.push(new AssociatedStat("hp", -1,true));
 				break;
 			case  "Space":
 				this.associatedStats.push(new AssociatedStat("alchemy", 2,true));
