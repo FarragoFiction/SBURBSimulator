@@ -312,7 +312,7 @@ this.purpleFrogEnding = function(div, precedingText){
 }
 
 this.finishPurpleStrife = function(div, purpleFrog, fighters, trollKidRock){
-	trollKidRock.renderSelf();
+	trollKidRock.renderSelf();  //gotta cache his sprite
 	var tkrCanvas =  document.getElementById("trollKidRockAppears");
 	drawTimeGears(tkrCanvas, trollKidRock);
 	drawSinglePlayer(tkrCanvas, trollKidRock);

@@ -615,7 +615,7 @@ function GameEntity(session, name, crowned){
 			for(var i = 0; i<players.length; i++){
 				if(players[i].renderable()) poseable.push(players[i]);
 			}
-			var divID = (div.attr("id")) + this.name+players[0].id;
+			var divID = (div.attr("id")) + this.session.timeTillReckoning+players[0].id;
 			var ch = canvasHeight;
 			if(poseable.length > 6){
 				ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
