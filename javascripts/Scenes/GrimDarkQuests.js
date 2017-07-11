@@ -41,7 +41,7 @@ function GrimDarkQuests(session){
 				tasks.push("try to destroy frog breeding equipment")
 				tasks.push("just straight up murdering frogs out of frustration")
 				tasks.push("try to tamper with the Forge")
-				player.landLevel += -50; //they FOCUS on killing frogs and ruining the game.
+				player.landLevel += -15; //they FOCUS on killing frogs and ruining the game.
 				console.log("A grim dark space player is actively trying to breed a corrupt frog in session: " + this.session.session_id)
 			}
 			var quip = "";
