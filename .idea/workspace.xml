@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OCs/discord.txt" afterPath="$PROJECT_DIR$/OCs/discord.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" afterPath="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easter_eggs.txt" afterPath="$PROJECT_DIR$/easter_eggs.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -48,11 +47,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="discord.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="discord.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/OCs/discord.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="260">
               <caret line="78" column="88" lean-forward="false" selection-start-line="78" selection-start-column="88" selection-end-line="78" selection-end-column="88" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="easter_eggs.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/easter_eggs.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="223" lean-forward="false" selection-start-line="8" selection-start-column="223" selection-end-line="8" selection-end-column="223" />
               <folding />
             </state>
           </provider>
@@ -170,6 +179,7 @@
         <option value="$PROJECT_DIR$/javascripts/player.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
         <option value="$PROJECT_DIR$/OCs/discord.txt" />
+        <option value="$PROJECT_DIR$/easter_eggs.txt" />
       </list>
     </option>
   </component>
@@ -936,6 +946,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="78" column="88" lean-forward="false" selection-start-line="78" selection-start-column="88" selection-end-line="78" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/easter_eggs.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="223" lean-forward="false" selection-start-line="8" selection-start-column="223" selection-end-line="8" selection-end-column="223" />
           <folding />
         </state>
       </provider>
