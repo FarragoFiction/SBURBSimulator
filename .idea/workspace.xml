@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="" />
+    <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/player.js" afterPath="$PROJECT_DIR$/javascripts/player.js" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,8 +20,8 @@
       <file leaf-file-name="player.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="2010" column="64" lean-forward="false" selection-start-line="2010" selection-start-column="64" selection-end-line="2010" selection-end-column="64" />
+            <state relative-caret-position="118">
+              <caret line="2130" column="103" lean-forward="false" selection-start-line="2130" selection-start-column="103" selection-end-line="2130" selection-end-column="103" />
               <folding />
             </state>
           </provider>
@@ -38,8 +40,8 @@
       <file leaf-file-name="handle_sprites.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="2327" column="24" lean-forward="false" selection-start-line="2327" selection-start-column="24" selection-end-line="2327" selection-end-column="24" />
+            <state relative-caret-position="103">
+              <caret line="1448" column="35" lean-forward="true" selection-start-line="1448" selection-start-column="35" selection-end-line="1448" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -57,11 +59,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>reinit</find>
-      <find>reinit =</find>
-      <find>available_classes_g</find>
-      <find>available_classes_guardians = classes.slice(0);</find>
-      <find>new Fray</find>
       <find>soda</find>
       <find>Web</find>
       <find>dream</find>
@@ -87,6 +84,11 @@
       <find>culture_in</find>
       <find>new As</find>
       <find>PalletSwap</find>
+      <find>t</find>
+      <find>new Asso</find>
+      <find>player.tri</find>
+      <find>trickster</find>
+      <find>initializeSt</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -116,7 +118,6 @@
         <option value="$PROJECT_DIR$/javascripts/session.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/QuadrantDialogue.js" />
         <option value="$PROJECT_DIR$/todo.html" />
-        <option value="$PROJECT_DIR$/javascripts/handle_sprites.js" />
         <option value="$PROJECT_DIR$/OCs/creditsBuckaroos.txt" />
         <option value="$PROJECT_DIR$/credits.html" />
         <option value="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" />
@@ -126,6 +127,7 @@
         <option value="$PROJECT_DIR$/OCs/discord.txt" />
         <option value="$PROJECT_DIR$/javascripts/gameEntity.js" />
         <option value="$PROJECT_DIR$/javascripts/newsposts.js" />
+        <option value="$PROJECT_DIR$/javascripts/handle_sprites.js" />
         <option value="$PROJECT_DIR$/javascripts/player.js" />
       </list>
     </option>
@@ -867,16 +869,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="2327" column="24" lean-forward="false" selection-start-line="2327" selection-start-column="24" selection-end-line="2327" selection-end-column="24" />
+        <state relative-caret-position="103">
+          <caret line="1448" column="35" lean-forward="true" selection-start-line="1448" selection-start-column="35" selection-end-line="1448" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="2010" column="64" lean-forward="false" selection-start-line="2010" selection-start-column="64" selection-end-line="2010" selection-end-column="64" />
+        <state relative-caret-position="118">
+          <caret line="2130" column="103" lean-forward="false" selection-start-line="2130" selection-start-column="103" selection-end-line="2130" selection-end-column="103" />
           <folding />
         </state>
       </provider>
