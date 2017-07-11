@@ -242,7 +242,7 @@ this.purpleFrog = function(){
 	var tmpStatHolder = {};
 	tmpStatHolder.minLuck = -100;
 	tmpStatHolder.maxLuck = 100;
-	tmpStatHolder.hp = mvp.getStat("power") * this.session.players.length;  //this will be a challenge. good thing you have troll kid rock to lay down some sick beats.
+	tmpStatHolder.hp = mvp.getStat("power") * this.session.players.length*2;  //this will be a challenge. good thing you have troll kid rock to lay down some sick beats.
 	tmpStatHolder.mobility = -100
 	tmpStatHolder.sanity = 0
 	tmpStatHolder.freeWill = 200
@@ -300,11 +300,18 @@ this.purpleFrogEnding = function(div, precedingText){
 	//maybe load kid rock first and have callback for when he's done.
 	//maybe kid rock only shows up for half purple frogs??? need plausible deniability? "Troll Kid Rock??? Never heard of him. Sounds like a cool dude, though."
 	var trollKidRock = this.trollKidRock();
-	alert(trollKidRock.title())
 	var purpleFrog = this.purpleFrog();
 	precedingText += " What...what is going on? How...how can you have NEGATIVE 100% of a frog??? This...this doesn't look right.   The vast frog lets out a CROAK, but it HURTS.  It seems...hostile.  Oh fuck. <Br><br> The " + purpleFrog.htmlTitleHP() + " initiates a strife with the Players! Troll Kid Rock appears out of nowhere to help them. (What the hell???)"
 	div.append(precedingText);
 	purpleFrog.strife(div, this.getGoodGuys(trollKidRock),0)
+	var ret = "";
+	if(purpleFrog.getStat("currentHP") <= 0 || purpleFrog.dead) {
+		this.session.createdMultiVerse = true;
+		ret += "With a final, defeaning 'CROAK', the " + purpleFrog.name + " slumps over. While it appears dead, it is merely unconscious. Entire universes swirl within it now that it has settled down, including the Players original Universe. You guess it would make sense that your Universe would be such an agressive, glitchy asshole, if it generated such a shitty, antagonistic game as SBURB.  You don't know what happened to Troll Kid Rock (did that really happen???).  <Br><br> The door to the new universe is revealed. Everyone files in. <Br><Br> Thanks for Playing. "
+	}else{
+		//console.log("denizen kill " + this.session.session_id)
+	}
+	div.append(ret);
 }
 
 //take "firstcanvas"+ this.player.id+"_" + this.session.session_id from intro, and copy it here to display for first time.

@@ -20,6 +20,7 @@ function Session(session_id){
 	this.jackScheme = false;
 	this.luckyGodTier = false;
 	this.choseGodTier = false;
+	this.createdMultiVerse = false;
 	this.plannedToExileJack = false;
 	this.hasHearts = false;
 	this.hasSpades = false;
