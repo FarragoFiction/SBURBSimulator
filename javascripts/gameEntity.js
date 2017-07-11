@@ -907,8 +907,8 @@ function GameEntity(session, name, crowned){
 		//return true if you did.
 		//TODO l8r refactor strifes to NOT be part of game entitiy, so can have group of enemies fight group of players.
 		this.useFraymotif = function(div, owner, allies, enemies){
-			var living_enemies = getLivingMinusAbsconded(enemies);
-			var living_allies = getLivingMinusAbsconded(allies)
+			var living_enemies = this.getLivingMinusAbsconded(enemies);
+			var living_allies = this.getLivingMinusAbsconded(allies)
 			if(Math.seededRandom() > 0.75) return false; //don't use them all at once, dunkass.
 			var usableFraymotifs = this.session.fraymotifCreator.getUsableFraymotifs(owner, living_allies, enemies);
 			if(owner.crowned){  //ring/scepter has fraymotifs, too.  (maybe shouldn't let humans get thefraymotifs but what the fuck ever. roxyc could do voidy shit.)
