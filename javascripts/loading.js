@@ -1,5 +1,6 @@
 var imagesWaiting = 0;
 var imagesLoaded = 0;
+var callBack = null;
 
 function loadFuckingEverything(skipInit){
 	if(simulationMode == true) return checkDone(skipInit);
@@ -30,6 +31,13 @@ function loadAllImagesForPlayersNew(players, guardians, skipInit){
 		loadImage(spriteLocations[i],skipInit);
 	}
 	loadOther(skipInit);
+}
+
+function loadAllImagesForPlayerWithCallback(player, callBack){
+	this.callBack = callBack;
+	var skipInit = true;
+	if(simulationMode == true) return checkDone(skipInit);
+	loadPlayer(player],skipInit);
 }
 
 function loadAllImagesForPlayers(players, guardians,skipInit){
@@ -77,6 +85,7 @@ function checkDone(skipInit){
 	if((imagesLoaded != 0 && imagesWaiting == imagesLoaded) || simulationMode == true){  //if i'm not using images, don't load them, dunkass.
 		//$("#loading").remove(); //not loading anymore
     if(skipInit){
+		if(callBack) return callBack();
       if(skipInit == "oc"){
         console.log("images loaded: " + imagesLoaded)
         reroll();

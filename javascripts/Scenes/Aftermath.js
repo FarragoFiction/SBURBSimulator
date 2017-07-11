@@ -2,6 +2,7 @@ function Aftermath(session){
 	this.session = session;
 	this.canRepeat = false;
 	this.purpleFighters = []; //what is this???
+	this.purpleDiv = null;
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.trigger = function(playerList){
 		this.playerList = playerList;
@@ -309,8 +310,14 @@ this.purpleFrogEnding = function(div, precedingText){
 	drawTimeGears(tkrCanvas, trollKidRock);
 	drawSinglePlayer(tkrCanvas, trollKidRock);
 	this.purpleFighters = this.getGoodGuys(trollKidRock)
-	alert("TODO: load kid rock, have it take in a callback where it does the strife and etc.")
-	purpleFrog.strife(div, this.purpleFighters,0)
+	this.purpleDiv = div;
+	var callBack = this.finishPurpleStrife.bind(this)
+	loadAllImagesForPlayerWithCallback(trollKidRock, callBack)
+	
+}
+
+this.finishPurpleStrife(){
+	purpleFrog.strife(this.purpleDiv, this.purpleFighters,0)
 	var ret = "";
 	if(purpleFrog.getStat("currentHP") <= 0 || purpleFrog.dead) {
 		this.session.createdMultiVerseForPlayers = true;
@@ -319,7 +326,7 @@ this.purpleFrogEnding = function(div, precedingText){
 		this.session.createdMultiVerseForSquiddles = true;
 		ret += "With a final, defeaning 'CROAK', the " + purpleFrog.name + " floats victorious over the remains of the Players.   The Horror Terrors happily colonize the new Universe, though, so I guess the GrimDark players would be happy with this ending?  <Br><Br> Thanks for Playing. "
 	}
-	div.append(ret);
+	this.purpleDiv.append(ret);
 }
 
 //take "firstcanvas"+ this.player.id+"_" + this.session.session_id from intro, and copy it here to display for first time.
