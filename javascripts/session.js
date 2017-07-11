@@ -524,7 +524,7 @@ function Session(session_id){
 		summary.murderMode = this.murdersHappened;
 		summary.grimDark = this.grimDarkPlayers;
 		summary.createdMultiVerseForSquiddles = this.createdMultiVerseForSquiddles
-		summary.createdUniverseForPlayers = this.createdUniverseForPlayers
+		summary.createdMultiVerseForPlayers = this.createdMultiVerseForPlayers
 		var spacePlayer = this.findBestSpace();
 		var corruptedSpacePlayer = this.findMostCorruptedSpace();
 		if(summary.frogStatus == "Purple Frog" ){
