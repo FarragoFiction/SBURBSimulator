@@ -266,13 +266,24 @@ this.purpleFrog = function(){
 	tmpStatHolder.power =mvp.getStat("power") * this.session.players.length; //this will be a challenge.
 	tmpStatHolder.grist = 100000000;
 	tmpStatHolder.RELATIONSHIPS = -100;  //not REAL relationships, but real enough for our purposes.
-	var purpleFrog =  new GameEntity(this.session, " <font color='purple'>" +Zalgo.generate("The Purple Frog") + "</font>", null);
+	var purpleFrog =  new GameEntity(this.session, " <font color='purple'>" +Zalgo.generate("Purple Frog") + "</font>", null);
 	purpleFrog.setStatsHash(tmpStatHolder);
 	//what kind of attacks does a grim dark purple frog have???  Croak Blast is from rp, but what else?
 	
-	var f = new Fraymotif([],  "CROAK BLAST", 3) //freeMiliu_2K01 [F☆] came up with this one in the RP :)  :) :)
-	f.effects.push(new FraymotifEffect("power",3,true));
+	var f = new Fraymotif([], Zalgo.generate("CROAK BLAST"), 3) //freeMiliu_2K01 [F☆] came up with this one in the RP :)  :) :)
+	f.effects.push(new FraymotifEffect("mobility",3,true));
 	f.flavorText = " OWNER uses a weaponized croak. You would be in awe if it weren't so painful. "
+	purpleFrog.fraymotifs.push(f);
+	
+	f = new Fraymotif([],  Zalgo.generate("HYPERBOLIC GEOMETRY"), 3)//DM, the owner of the purple frog website came up with this one.
+	f.effects.push(new FraymotifEffect("mobility",3,false));
+	f.flavorText = " OWNER somehow corrupts the very fabric of space. Everyone begins to have trouble nagigating the corrupted and broken rules of three dimensional space. "
+	purpleFrog.fraymotifs.push(f);
+	
+	f = new Fraymotif([],  Zalgo.generate("LITERAL TONGUE LASHING"), 3)//DM, the owner of the purple frog website came up with this one.
+	f.effects.push(new FraymotifEffect("mobility",2,false));
+	f.effects.push(new FraymotifEffect("mobility",2,true));
+	f.flavorText = " OWNER uses an incredibly long, sticky tongue to attack the ENEMY, hurting and immobilizing them. "
 	purpleFrog.fraymotifs.push(f);
 	
 	return purpleFrog;
