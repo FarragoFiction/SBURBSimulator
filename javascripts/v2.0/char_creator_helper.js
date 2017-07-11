@@ -804,6 +804,8 @@ function CharacterCreatorHelper(players){
 				html += '<option value="' + i +'">' + i+'</option>'
 			}
 		}
+
+		//another for loop of "non-canon" horns you can choose but aren't part of main sim.
 		html += '</select>'
 		return html;
 	}
