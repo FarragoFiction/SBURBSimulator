@@ -1043,6 +1043,7 @@ function GameEntity(session, name, crowned){
 			if(dead_d.length > 1){
 				ret = " The " + getPlayersTitlesHP(dead_d) + "are dead. "
 			}else if(dead_d.length == 1){
+				if(dead_d[0].getStat("currentHP" > 0) alert ("pastJR: why does a player have positive hp yet also is dead???" + this.session.session_id)
 				ret += " The " + getPlayersTitlesHP(dead_d) + "is dead. "
 			}
 
