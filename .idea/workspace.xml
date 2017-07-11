@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/loading.js" afterPath="$PROJECT_DIR$/javascripts/loading.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/random_tables.js" afterPath="$PROJECT_DIR$/javascripts/random_tables.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" afterPath="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,8 +20,8 @@
       <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="1755" column="28" lean-forward="true" selection-start-line="1755" selection-start-column="28" selection-end-line="1755" selection-end-column="28" />
+            <state relative-caret-position="210">
+              <caret line="1783" column="260" lean-forward="false" selection-start-line="1783" selection-start-column="245" selection-end-line="1783" selection-end-column="260" />
               <folding />
             </state>
           </provider>
@@ -92,8 +90,8 @@
       <file leaf-file-name="random_tables.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="1084" column="53" lean-forward="false" selection-start-line="1084" selection-start-column="53" selection-end-line="1084" selection-end-column="53" />
+            <state relative-caret-position="376">
+              <caret line="1086" column="33" lean-forward="false" selection-start-line="1086" selection-start-column="33" selection-end-line="1086" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -111,7 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>hurr</find>
       <find>canon</find>
       <find>After</find>
       <find>Rhap</find>
@@ -129,7 +126,6 @@
       <find>PalletSwap</find>
       <find>getRepl</find>
       <find>classNameToInt</find>
-      <find>getColorFromAspect</find>
       <find>initialize</find>
       <find>initializeStats</find>
       <find>Null</find>
@@ -141,6 +137,8 @@
       <find>maxCustomHorns</find>
       <find>loadAllPossiblePlayers</find>
       <find>ocData</find>
+      <find>getColorFromAspect</find>
+      <find>toJSON</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -950,16 +948,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="1755" column="28" lean-forward="true" selection-start-line="1755" selection-start-column="28" selection-end-line="1755" selection-end-column="28" />
+        <state relative-caret-position="210">
+          <caret line="1783" column="260" lean-forward="false" selection-start-line="1783" selection-start-column="245" selection-end-line="1783" selection-end-column="260" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="1084" column="53" lean-forward="false" selection-start-line="1084" selection-start-column="53" selection-end-line="1084" selection-end-column="53" />
+        <state relative-caret-position="376">
+          <caret line="1086" column="33" lean-forward="false" selection-start-line="1086" selection-start-column="33" selection-end-line="1086" selection-end-column="33" />
           <folding />
         </state>
       </provider>
