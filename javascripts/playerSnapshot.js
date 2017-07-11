@@ -373,6 +373,7 @@ function makeRenderingSnapshot(player){
 	return ret;
 }
 
+
 //taken out of SaveDoomedTimeLine this
 function makeDoomedSnapshot(timePlayer){
 	var timeClone = makeRenderingSnapshot(timePlayer);

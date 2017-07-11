@@ -251,7 +251,7 @@ this.trollKidRock = function(){
 	f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? "
 	trollKidRock.fraymotifs.push(f);
 	initializePlayers([trollKidRock]);
-	return makeDoomedSnapshot(trollKidRock);  //sorry kid rock, you're not REALLY a player.
+	return makeRenderingSnapshot(trollKidRock);  //sorry kid rock, you're not REALLY a player.
 }
 
 this.purpleFrog = function(){
@@ -279,6 +279,11 @@ this.purpleFrog = function(){
 	f = new Fraymotif([],  Zalgo.generate("HYPERBOLIC GEOMETRY"), 3)//DM, the owner of the purple frog website came up with this one.
 	f.effects.push(new FraymotifEffect("mobility",3,false));
 	f.flavorText = " OWNER somehow corrupts the very fabric of space. Everyone begins to have trouble nagigating the corrupted and broken rules of three dimensional space. "
+	purpleFrog.fraymotifs.push(f);
+	
+	f = new Fraymotif([],  Zalgo.generate("ANURA JARATE"), 3)//DM, the owner of the purple frog website came up with this one. team fortress + texts from super heroes ftw.
+	f.effects.push(new FraymotifEffect("sanity",3,false));
+	f.flavorText = " Did you know that some species of frogs weaponize their own urine? Now you do. You can never unknow this. The entire party is disgusted. "
 	purpleFrog.fraymotifs.push(f);
 	
 	f = new Fraymotif([],  Zalgo.generate("LITERAL TONGUE LASHING"), 3)//DM, the owner of the purple frog website came up with this one.
