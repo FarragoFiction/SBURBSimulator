@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/loading.js" afterPath="$PROJECT_DIR$/javascripts/loading.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/random_tables.js" afterPath="$PROJECT_DIR$/javascripts/random_tables.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" afterPath="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,11 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="char_creator_helper.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="char_creator_helper.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
-              <caret line="807" column="30" lean-forward="false" selection-start-line="807" selection-start-column="30" selection-end-line="807" selection-end-column="30" />
+              <caret line="831" column="30" lean-forward="false" selection-start-line="831" selection-start-column="30" selection-end-line="831" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -87,11 +89,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="random_tables.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="random_tables.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="1069" column="76" lean-forward="false" selection-start-line="1069" selection-start-column="76" selection-end-line="1069" selection-end-column="76" />
+            <state relative-caret-position="346">
+              <caret line="1084" column="53" lean-forward="false" selection-start-line="1084" selection-start-column="53" selection-end-line="1084" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -109,7 +111,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>undefined</find>
       <find>hurr</find>
       <find>canon</find>
       <find>After</find>
@@ -135,10 +136,11 @@
       <find>Waste</find>
       <find>getRandomInt</find>
       <find>horns</find>
-      <find>ocData</find>
       <find>asoci</find>
       <find>horn</find>
+      <find>maxCustomHorns</find>
       <find>loadAllPossiblePlayers</find>
+      <find>ocData</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -172,12 +174,12 @@
         <option value="$PROJECT_DIR$/javascripts/Scenes/QuadrantDialogue.js" />
         <option value="$PROJECT_DIR$/todo.html" />
         <option value="$PROJECT_DIR$/javascripts/handle_sprites.js" />
-        <option value="$PROJECT_DIR$/javascripts/random_tables.js" />
         <option value="$PROJECT_DIR$/javascripts/player.js" />
         <option value="$PROJECT_DIR$/OCs/creditsBuckaroos.txt" />
         <option value="$PROJECT_DIR$/credits.html" />
-        <option value="$PROJECT_DIR$/javascripts/loading.js" />
         <option value="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" />
+        <option value="$PROJECT_DIR$/javascripts/loading.js" />
+        <option value="$PROJECT_DIR$/javascripts/random_tables.js" />
       </list>
     </option>
   </component>
@@ -906,22 +908,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="1069" column="76" lean-forward="false" selection-start-line="1069" selection-start-column="76" selection-end-line="1069" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="1755" column="28" lean-forward="true" selection-start-line="1755" selection-start-column="28" selection-end-line="1755" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/OCs/discord.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -946,6 +932,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="831" column="30" lean-forward="false" selection-start-line="831" selection-start-column="30" selection-end-line="831" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/loading.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="316">
@@ -954,10 +948,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js">
+    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="807" column="30" lean-forward="false" selection-start-line="807" selection-start-column="30" selection-end-line="807" selection-end-column="30" />
+        <state relative-caret-position="280">
+          <caret line="1755" column="28" lean-forward="true" selection-start-line="1755" selection-start-column="28" selection-end-line="1755" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="1084" column="53" lean-forward="false" selection-start-line="1084" selection-start-column="53" selection-end-line="1084" selection-end-column="53" />
           <folding />
         </state>
       </provider>

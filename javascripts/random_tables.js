@@ -1082,7 +1082,7 @@ function bloodColorToInt(color){
 }
 
 function intToBloodColor(num){
-	if(num == 15) return null;
+	if(num == 15) return "#f7a1ff"; //bubble gum pink
 	if(num == 14) return "#ff0000";
 	return bloodColors[num];
 }
