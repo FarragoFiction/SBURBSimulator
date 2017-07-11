@@ -440,6 +440,7 @@ function FraymotifCreator(){
   this.initializePremadeNames = function(){
     this.premadeFraymotifNames = [];
     this.premadeFraymotifNames.push(new Fraymotif(["Light", "Mind"], "Blinded By The Light",1, ""))
+		this.premadeFraymotifNames.push(new Fraymotif(["Light", "Heart"], "Total Eclipse of the Heart",1, ""))
     this.premadeFraymotifNames.push(new Fraymotif(["Breath", "Time"], "Stop, Hammertime",1, ""))
     this.premadeFraymotifNames.push(new Fraymotif(["Breath", "Hope"], "Wings of Freedom",1, ""))
     this.premadeFraymotifNames.push(new Fraymotif(["Doom", "Hope"], "Happy Ending",1, ""))
@@ -463,7 +464,6 @@ function FraymotifCreator(){
     this.premadeFraymotifNames.push(new Fraymotif(["Light", "Hope"], "Grandiose Illuminations",1, ""))
     this.premadeFraymotifNames.push(new Fraymotif(["Hope", "Void"], "Lost Hope",1, ""))
     this.premadeFraymotifNames.push(new Fraymotif(["Rage", "Light", "Heart"], "Flipping the Light Fantastic",1, ""))
-    this.premadeFraymotifNames.push(new Fraymotif(["Light", "Heart"], "Lucky Charms",1, ""))
     this.premadeFraymotifNames.push(new Fraymotif(["Heart", "Void"], "Hotel California",1, ""))
     this.premadeFraymotifNames.push(new Fraymotif(["Hope", "Heart"], "Feel Good",1, ""))
     this.premadeFraymotifNames.push(new Fraymotif(["Heart", "Void", "Space"], "Heart's Not In It",1, ""))
@@ -498,7 +498,6 @@ function FraymotifCreator(){
     this.premadeFraymotifNames.push(new Fraymotif(["Mind", "Time", "Doom"], "Timeline Evisceration",1, ""))
     this.premadeFraymotifNames.push(new Fraymotif(["Heart", "Blood"], "Shipping Grades",1, ""))
     this.premadeFraymotifNames.push(new Fraymotif(["Void", "Space", "Rage"], "In Space, No One Can Hear You Scream",1, ""))
-    this.premadeFraymotifNames.push(new Fraymotif(["Hope", "Time"], "Hope For The Future",1, ""))
     this.premadeFraymotifNames.push(new Fraymotif(["Hope", "Time"], "Hope For The Future",1, ""))
 
   }

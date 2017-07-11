@@ -190,12 +190,13 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		tmpStatHolder.grist = 1000;
 		tmpStatHolder.RELATIONSHIPS = 10;  //not REAL relationships, but real enough for our purposes.
 		for(var i = 0; i<this.associatedStats.length; i++){
-			alert("I have associated stats: " + i)
+			//alert("I have associated stats: " + i)
 			var stat = this.associatedStats[i];
 			if(stat.name == "MANGRIT"){
-				tmpStatHolder.power = tmpStatHolder.power * stat.multiplier
+				tmpStatHolder.power = tmpStatHolder.power * stat.multiplier * strength
 			}else{
-				tmpStatHolder[stat.name] = tmpStatHolder[stat.name] * stat.multiplier;
+				console.log("current stat is: " + tmpStatHolder[stat.name] + " and modifying by: " + stat.multiplier)
+				tmpStatHolder[stat.name] += tmpStatHolder[stat.name] * stat.multiplier * strength;
 			} 
 		}
 
