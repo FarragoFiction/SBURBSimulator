@@ -205,6 +205,9 @@ function Aftermath(session){
 
 
 //kid rock NEEDS fraymotif: BANG DA DANG DIGGY DIGGY
+//Fun Fact: In this test session i'm working on, Troll Kid Rock FUCKING REFUSES to play BANG DA DANG DIGGY DIGGY and instead 
+//partners up with a doom player to help them use "Another One Bites the Dust" and this is so objectively hilarious.
+//like holy fuck, imagine him doing this at a concert. how CONFUSED the audience would be. ultimate troll.
 //thanks goes to Ancient for this amazing idea.
 this.trollKidRock = function(){
 	var trollKidRockString = "b=%00%00%00%C2%91%C3%B0%15%10VDD%20&s=,,Rap-Rock,Riches,bawitdaBastard" //Ancient, thank you for best meme. 
@@ -265,7 +268,7 @@ this.purpleFrog = function(){
 	
 	f = new Fraymotif([],  Zalgo.generate("HYPERBOLIC GEOMETRY"), 3)//DM, the owner of the purple frog website came up with this one.
 	f.effects.push(new FraymotifEffect("mobility",3,false));
-	f.flavorText = " OWNER somehow corrupts the very fabric of space. Everyone begins to have trouble nagigating the corrupted and broken rules of three dimensional space. "
+	f.flavorText = " OWNER somehow corrupts the very fabric of space. Everyone begins to have trouble navigating the corrupted and broken rules of three dimensional space. "
 	purpleFrog.fraymotifs.push(f);
 	
 	f = new Fraymotif([],  Zalgo.generate("ANURA JARATE"), 3)//DM, the owner of the purple frog website came up with this one. team fortress + texts from super heroes ftw.
