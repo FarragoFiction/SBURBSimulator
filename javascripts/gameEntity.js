@@ -30,6 +30,7 @@ function GameEntity(session, name, crowned){
 		this.maxLuck = 0; //rabbit
 		this.freeWill = 0; //jack has extremely high free will. why he is such a wild card
 		this.relationships = [];
+		this.RELATIONSHIPS = 0; //fake as fuck stat so gameEntieties buffing or debuffing relationships have something to do.
 		this.power = 0;
 		this.dead = false;
 		this.crowned = crowned;
@@ -88,9 +89,8 @@ function GameEntity(session, name, crowned){
 		//remember that hp and currentHP are different things.
 		this.getStat = function(statName){
 			var ret =  0;
-			if(statName != "RELATIONSHIPS"){ //relationships, why you so cray cray???
-				ret += this[statName]
-			}else{
+			ret += this[statName] //for game entitties RELATIONSHIPS will ALSO be a fake as fuck int var thingy.
+			if(statName == "RELATIONSHIPS"){ //in addition to the for loop of doom.
 				for(var i = 0; i<this.relationships.length; i++){
 					ret += this.relationships[i].value;s
 				}
