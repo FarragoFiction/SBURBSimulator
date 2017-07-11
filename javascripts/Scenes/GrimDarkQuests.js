@@ -41,7 +41,7 @@ function GrimDarkQuests(session){
 				tasks.push("try to destroy frog breeding equipment")
 				tasks.push("just straight up murdering frogs out of frustration")
 				tasks.push("try to tamper with the Forge")
-				player.landLevel += -10; //they FOCUS on killing frogs and ruining the game.
+				player.landLevel += -15; //they FOCUS on killing frogs and ruining the game.
 			}
 			var quip = "";
 			var amount =0;

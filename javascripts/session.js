@@ -5,7 +5,7 @@ function Session(session_id){
 	this.players = [];
 	this.fraymotifCreator = new FraymotifCreator();  //as long as FraymotifCreator has no state data, this is fine.
 	this.hasClubs = false;
-	this.sessionHealth = 2000; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
+	this.sessionHealth = 1000; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
 	this.hasDiamonds = false;
 	this.opossumVictory = false;
 	this.hasBreakups = false;  //sessions aren't in charge of denizens anymore, they are for players and set when they get in the medium
