@@ -684,15 +684,16 @@ function GameEntity(session, name, crowned){
 		this.fightOver = function(div, players){
 			var living = this.getLivingMinusAbsconded(players);
 			if(living.length == 0 && players.length > this.playersAbsconded.length){
-				if(players.length == 1){
-					div.append("<br><br><img src = 'images/sceneIcons/defeat_icon.png'> The strife is over. The " + players[0].htmlTitle() + " is dead.<br> ");
+				var dead = findDeadPlayers(players)
+				if(dead.length == 1){
+					div.append("<br><br><img src = 'images/sceneIcons/defeat_icon.png'> The strife is over. The " + dead[0].htmlTitle() + " is dead.<br> ");
 				}else{
-					div.append("<br><br><img src = 'images/sceneIcons/defeat_icon.png'> The strife is over. The players are dead.<br> ");
+					div.append("<br><br><img src = 'images/sceneIcons/defeat_icon.png'> The strife is over. The players are dead or fled.<br> ");
 				}
 
 				this.minorLevelPlayers(players)
 				return true;
-			}else if(this.getStat("currentHP") <= 0){
+			}else if(this.getStat("currentHP") <= 0 || this.dead){
 				div.append(" <Br><br> <img src = 'images/sceneIcons/victory_icon.png'>The fight is over. " + this.name + " is dead. <br>");
 				this.levelPlayers(players) //even corpses
 				this.givePlayersGrist(players);
