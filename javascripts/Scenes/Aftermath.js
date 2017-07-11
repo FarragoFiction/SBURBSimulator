@@ -288,6 +288,17 @@ this.purpleFrog = function(){
 	
 	return purpleFrog;
 }
+this.getGoodGuys = function(trollKidRock){
+	var living = findLivingPlayers(this.session.players);
+	var allPlayers = this.session.players; //anybody can have doomedclones now, not just time players.
+
+	for(var i = 0; i<allPlayers.length; i++){
+		living = living.concat(allPlayers[i].doomedTimeClones)
+	}
+	living.push(trollKidRock);
+	return living;
+}
+
 
 //purple frog was the name of my old host. but also, it sounds like a grim dark frog, doesn't it?
 //reference to rp at: http://forums.msparp.com/showthread.php?tid=16049
@@ -300,8 +311,8 @@ this.purpleFrogEnding = function(div, precedingText){
 	alert(trollKidRock.title())
 	var purpleFrog = this.purpleFrog();
 	precedingText += " What...what is going on? How...how can you have NEGATIVE 100% of a frog??? This...this doesn't look right.   The vast frog lets out a CROAK, but it HURTS.  It seems...hostile.  Oh fuck. <Br><br> The " + purpleFrog.name + " initiates a strife with the Players! Troll Kid Rock appears out of nowhere to help them. (What the hell???)"
-	
 	div.append(precedingText);
+	purpleFrog.strife(div, this.getGoodGuys(trollKidRock),0)
 }
 
 //take "firstcanvas"+ this.player.id+"_" + this.session.session_id from intro, and copy it here to display for first time.
