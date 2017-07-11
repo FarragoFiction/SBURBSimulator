@@ -251,7 +251,7 @@ this.trollKidRock = function(){
 	f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? "
 	trollKidRock.fraymotifs.push(f);
 	initializePlayers([trollKidRock]);
-	return trollKidRock;
+	return makeDoomedSnapshot(trollKidRock);  //sorry kid rock, you're not REALLY a player.
 }
 
 this.purpleFrog = function(){
