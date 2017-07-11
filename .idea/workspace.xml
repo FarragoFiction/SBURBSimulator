@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/session.js" afterPath="$PROJECT_DIR$/javascripts/session.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js" afterPath="$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/gameEntity.js" afterPath="$PROJECT_DIR$/javascripts/gameEntity.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,16 +17,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/player.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="2130" column="103" lean-forward="false" selection-start-line="2130" selection-start-column="103" selection-end-line="2130" selection-end-column="103" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Aftermath.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/Scenes/Aftermath.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -48,6 +37,26 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="fraymotif.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-5283">
+              <caret line="336" column="3" lean-forward="true" selection-start-line="336" selection-start-column="3" selection-end-line="336" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gameEntity.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/javascripts/gameEntity.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="815" column="120" lean-forward="false" selection-start-line="815" selection-start-column="120" selection-end-line="815" selection-end-column="120" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="session.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/session.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -58,7 +67,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="find_rare_sessions.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="find_rare_sessions.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="118">
@@ -108,16 +117,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BeTriggered.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/Scenes/BeTriggered.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -130,10 +129,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Waste</find>
-      <find>getRandomInt</find>
-      <find>horns</find>
-      <find>horn</find>
       <find>loadAllPossiblePlayers</find>
       <find>ocData</find>
       <find>maxCustomHorns</find>
@@ -160,6 +155,10 @@
       <find>created</find>
       <find>summ</find>
       <find>better</find>
+      <find>useFray</find>
+      <find>Turn</find>
+      <find>useF</find>
+      <find>useFraymotif</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -193,7 +192,6 @@
         <option value="$PROJECT_DIR$/javascripts/loading.js" />
         <option value="$PROJECT_DIR$/javascripts/fraymotif.js" />
         <option value="$PROJECT_DIR$/javascripts/random_tables.js" />
-        <option value="$PROJECT_DIR$/javascripts/gameEntity.js" />
         <option value="$PROJECT_DIR$/javascripts/newsposts.js" />
         <option value="$PROJECT_DIR$/javascripts/handle_sprites.js" />
         <option value="$PROJECT_DIR$/javascripts/player.js" />
@@ -203,6 +201,7 @@
         <option value="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
         <option value="$PROJECT_DIR$/javascripts/session.js" />
         <option value="$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js" />
+        <option value="$PROJECT_DIR$/javascripts/gameEntity.js" />
       </list>
     </option>
   </component>
@@ -861,26 +860,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="336" column="3" lean-forward="true" selection-start-line="336" selection-start-column="3" selection-end-line="336" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/credits.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
           <caret line="184" column="0" lean-forward="false" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/gameEntity.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="986" column="82" lean-forward="false" selection-start-line="986" selection-start-column="82" selection-end-line="986" selection-end-column="82" />
           <folding />
         </state>
       </provider>
@@ -985,6 +968,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="118">
           <caret line="699" column="219" lean-forward="false" selection-start-line="699" selection-start-column="219" selection-end-line="699" selection-end-column="219" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5283">
+          <caret line="336" column="3" lean-forward="true" selection-start-line="336" selection-start-column="3" selection-end-line="336" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/gameEntity.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="815" column="120" lean-forward="false" selection-start-line="815" selection-start-column="120" selection-end-line="815" selection-end-column="120" />
           <folding />
         </state>
       </provider>

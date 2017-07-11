@@ -12,6 +12,7 @@
 function GameEntity(session, name, crowned){
 		this.session = session;
 		this.name = name;
+		this.alchemy = 0;
 		this.armless = false;
 		this.grist = 0;
 		this.fraymotifs = [];
@@ -812,6 +813,7 @@ function GameEntity(session, name, crowned){
 
 		this.playerdecideWhatToDo = function(div, player,players){
 			if(player.usedFraymotifThisTurn) return; //already did something.
+			if(this.dead == true || this.getStat("currentHP" <= 0)) return // they are dead, stop beating a dead corpse.
 			player.power = Math.max(1, player.power); //negative power is not allowed in an actual fight.
 			//for now, only one choice    //free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
 			if(!this.willPlayerAbscond(div,player,players)){
@@ -897,6 +899,8 @@ function GameEntity(session, name, crowned){
 			//console.log("Hp during my turn is: " + this.getStat("currentHP"))
 			//free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
 			//special and fraymotif can attack multiple enemies, but aggrieve is one on one.
+			var living_enemies = this.getLivingMinusAbsconded(players);
+			if(living_enemies.length == 0) return; //there is no one left to fight
 			if(!this.willIAbscond(div,players,numTurns) && !this.useFraymotif(div, this,[this], players)){
 				var target = this.chooseTarget(players)
 				if(target) this.aggrieve(div, this, target );
