@@ -208,7 +208,7 @@ function Aftermath(session){
 //kid rock NEEDS fraymotif: BANG DA DANG DIGGY DIGGY
 //thanks goes to Ancient for this amazing idea.
 this.trollKidRock = function(){
-	var trollKidRockString = "b=%C3%B2%C3%9C%C2%829%C3%BE%11%10%0CCC%20&s=,,Rap,Rap,kidRock" //Ancient, thank you for best meme. 
+	var trollKidRockString = "b=%00%00%00%C2%91%C3%B0%15%10VDD%20&s=,,Rap-Rock,Riches,bawitdaBastard" //Ancient, thank you for best meme. 
 	var trollKidRock = new CharacterEasterEggEngine().playerDataStringArrayToURLFormat([trollKidRockString])[0];
 	trollKidRock.session = this.session;
 	var f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) //most repetitive song, ACTIVATE!!!
@@ -236,7 +236,7 @@ this.trollKidRock = function(){
 	trollKidRock.fraymotifs.push(f);
 	initializePlayers([trollKidRock]);
 	trollKidRock.currentHP = 1000;
-	return makeRenderingSnapshot(trollKidRock);  //sorry kid rock, you're not REALLY a player.
+	return trollKidRock; 
 }
 
 this.purpleFrog = function(){
@@ -289,7 +289,6 @@ this.getGoodGuys = function(trollKidRock){
 	for(var i = 0; i<allPlayers.length; i++){
 		living = living.concat(allPlayers[i].doomedTimeClones)
 	}
-	living.push(trollKidRock);
 	return living;
 }
 
@@ -304,13 +303,12 @@ this.purpleFrogEnding = function(div, precedingText){
 	var trollKidRock = this.trollKidRock();
 	console.log(trollKidRock)
 	var purpleFrog = this.purpleFrog();
-	precedingText += " What...what is going on? How...how can you have NEGATIVE 100% of a frog??? This...this doesn't look right.   The vast frog lets out a CROAK, but it HURTS.  It seems...hostile.  Oh fuck. <Br><br> The " + purpleFrog.htmlTitleHP() + " initiates a strife with the Players! Troll Kid Rock appears out of nowhere to help them. (What the hell???)<br><br><canvas id = 'trollKidRockAppears'></canvas>"
+	precedingText += " What...what is going on? How...how can you have NEGATIVE 100% of a frog??? This...this doesn't look right.   The vast frog lets out a CROAK, but it HURTS.  It seems...hostile.  Oh fuck. <Br><br> The " + purpleFrog.htmlTitleHP() + " initiates a strife with the Players! Troll Kid Rock appears out of nowhere to help them. (What the hell???)<br><br><canvas id = 'trollKidRockAppears' width ='400' height = '300'></canvas>"
 	div.append(precedingText);
 	
 	this.purpleFighters = this.getGoodGuys(trollKidRock)
 	this.purpleDiv = div;
 	var callBack = this.finishPurpleStrife.bind(this, trollKidRock)
-	alert(callBack)
 	loadAllImagesForPlayerWithCallback(trollKidRock, callBack)
 	
 }
@@ -320,6 +318,7 @@ this.finishPurpleStrife = function(trollKidRock){
 	var tkrCanvas =  document.getElementById("trollKidRockAppears");
 	drawTimeGears(tkrCanvas, trollKidRock);
 	drawSinglePlayer(tkrCanvas, trollKidRock);
+	this.purpleFighters.push(makeRenderingSnapshot(trollKidRock)) //sorry trollKidRock you are not REALLY a player.
 	purpleFrog.strife(this.purpleDiv, this.purpleFighters,0)
 	var ret = "";
 	if(purpleFrog.getStat("currentHP") <= 0 || purpleFrog.dead) {

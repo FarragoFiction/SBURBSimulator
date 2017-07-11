@@ -85,7 +85,6 @@ function checkDone(skipInit){
 	if((imagesLoaded != 0 && imagesWaiting == imagesLoaded) || simulationMode == true){  //if i'm not using images, don't load them, dunkass.
 		//$("#loading").remove(); //not loading anymore
     if(skipInit){
-		alert(callBack)
 		if(callBack) return callBack();
       if(skipInit == "oc"){
         console.log("images loaded: " + imagesLoaded)
