@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js" afterPath="$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/player.js" afterPath="$PROJECT_DIR$/javascripts/player.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/Scenes/LifeStuff.js" afterPath="$PROJECT_DIR$/javascripts/Scenes/LifeStuff.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -38,11 +37,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VoidyStuff.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="VoidyStuff.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="118">
               <caret line="71" column="59" lean-forward="false" selection-start-line="71" selection-start-column="59" selection-end-line="71" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LifeStuff.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/javascripts/Scenes/LifeStuff.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="73">
+              <caret line="128" column="142" lean-forward="false" selection-start-line="128" selection-start-column="142" selection-end-line="128" selection-end-column="142" />
               <folding />
             </state>
           </provider>
@@ -100,8 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>redoR</find>
-      <find>hp</find>
       <find>redoRel</find>
       <find>guardians</find>
       <find>makeGu</find>
@@ -130,6 +137,8 @@
       <find>jaded</find>
       <find>highInit</find>
       <find>new Asso</find>
+      <find>god</find>
+      <find>Seer</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -177,6 +186,7 @@
         <option value="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" />
         <option value="$PROJECT_DIR$/javascripts/player.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js" />
+        <option value="$PROJECT_DIR$/javascripts/Scenes/LifeStuff.js" />
       </list>
     </option>
   </component>
@@ -983,6 +993,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="118">
           <caret line="71" column="59" lean-forward="false" selection-start-line="71" selection-start-column="59" selection-end-line="71" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/Scenes/LifeStuff.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="128" column="142" lean-forward="false" selection-start-line="128" selection-start-column="142" selection-end-line="128" selection-end-column="142" />
           <folding />
         </state>
       </provider>
