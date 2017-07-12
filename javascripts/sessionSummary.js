@@ -68,8 +68,6 @@ function SessionSummary(){
 	this.sizeOfAfterLife = null;
 	this.ghosts = null;
 	this.miniPlayers = [] //array of mini player objects
-	this.createdMultiVerseForSquiddles = false;
-	this.createdMultiVerseForPlayers = false;
 
 	this.setMiniPlayers = function(players){
 
@@ -153,7 +151,13 @@ function SessionSummary(){
 					//console.log("not full frog")
 					return false;
 				}
+			}else if(filter == "numberPurpleFrog"){
+			    if(this.frogStatus  != "Purple Frog"){
+                    //console.log("not full frog")
+                    return false;
+                }
 			}else if(filter == "timesAllDied"){
+			}
 				if(this.numLiving != 0){
 					//console.log("not all dead")
 					return false;
@@ -411,6 +415,7 @@ function MultiSessionSummary(){
 	this.fiveTimesSessionCombo = 0;
 	this.holyShitMmmmmonsterCombo = 0;
 	this.numberFullFrog = 0;
+	this.numberPurpleFrog = 0;
 	this.numberSickFrog = 0;
 	this.numberNoFrog = 0;
 	this.godTier = 0;
@@ -431,8 +436,6 @@ function MultiSessionSummary(){
 	this.checkedCorpseBoxes = [];
 	this.classes = {};
 	this.aspects = {};
-	this.timesCreatedMultiVerseForSquiddles = 0;
-	this.timesCreatedMultiVerseForPlayers = 0;
 
 	this.setClasses = function(){
 		var labels = ["Knight","Seer","Bard","Maid","Heir","Rogue","Page","Thief","Sylph","Prince","Witch","Mage"];
@@ -619,7 +622,7 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 		if(propertyName == "yellowYard" || propertyName == "timesAllLived" ||propertyName == "timesAllDied" || propertyName == "scratchAvailable"  || propertyName == "won") return true
 		if(propertyName == "crashedFromPlayerActions" || propertyName == "ectoBiologyStarted" ||propertyName == "comboSessions" || propertyName == "threeTimesSessionCombo")return true
 		if(propertyName == "fourTimesSessionCombo" || propertyName == "fiveTimesSessionCombo" ||propertyName == "holyShitMmmmmonsterCombo" || propertyName == "numberFullFrog") return true;
-		if(propertyName == "numberFullFrog" || propertyName == "numberSickFrog" || propertyName == "numberNoFrog" || propertyName == "rocksFell" || propertyName == "opossumVictory") return true;
+		if(propertyName == "numberPurpleFrog" ||propertyName == "numberFullFrog" || propertyName == "numberSickFrog" || propertyName == "numberNoFrog" || propertyName == "rocksFell" || propertyName == "opossumVictory") return true;
 		if(propertyName == "timesCreatedMultiVerseForPlayers" || propertyName == "timesCreatedMultiVerseForSquiddles"|| propertyName == "mayorEnding" || propertyName == "waywardVagabondEnding") return true;
 		return false;
 	}
@@ -874,6 +877,7 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		if(ss.frogStatus == "No Frog") mss.numberNoFrog ++;
 		if(ss.frogStatus == "Sick Frog") mss.numberSickFrog ++;
 		if(ss.frogStatus == "Full Frog") mss.numberFullFrog ++;
+		if(ss.frogStatus == "Purple Frog") mss.numberPurpleFrog ++;
 		if(ss.godTier) mss.godTier ++;
 		if(ss.questBed) mss.questBed ++;
 		if(ss.sacrificialSlab) mss.sacrificialSlab ++;
@@ -885,8 +889,7 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		if(ss.hasUnluckyEvents) mss.hasUnluckyEvents ++;
 		if(ss.hasFreeWillEvents) mss.hasFreeWillEvents ++;
 		if(ss.scratched) mss.scratched ++;
-		if(ss.createdMultiVerseForSquiddles) mss.timesCreatedMultiVerseForSquiddles ++;
-		if(ss.createdMultiVerseForPlayers) mss.timesCreatedMultiVerseForPlayers ++;
+
 		if(ss.won) mss.won ++;
 
 		mss.sizeOfAfterLife += ss.sizeOfAfterLife;
