@@ -305,8 +305,9 @@ function FraymotifCreator(){
     this.premadeFraymotifNames = [];
   this.createFraymotifForPlayerDenizen = function(player, name){
     var denizen = player.denizen;
-    var f = new Fraymotif([], name + "'s Song", 2); //CAN I have an aspectless fraymotif?
-    f.flavorText = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+    var f = new Fraymotif([], name + this.getDenizenFraymotifNameFromAspect(player.aspect), 2); //CAN I have an aspectless fraymotif?
+    f.flavorText = this.getDenizenFraymotifDescriptionForAspect(player.aspect);
+
     //statName, target, damageInsteadOfBuff, flavorText
     var plus = player.getOnlyPositiveAspectAssociatedStats() //buff self and heal
     for(var i = 0; i<plus.length; i++){
@@ -319,6 +320,71 @@ function FraymotifCreator(){
       f.effects.push(new FraymotifEffect(minus[i].name,2,false));
     }
     player.denizen.fraymotifs.push(f);
+  }
+
+  this.getDenizenFraymotifNameFromAspect(aspect){
+      var ret = "";
+      if(aspect == "Blood"){
+          ret = "Ballad " //a song passed over generations in an oral history
+      }else if(aspect == "Mind"){
+        ret = "Fugue"  //a musical core that is altered and changed and interwoven with itself. Also, a mental state of confusion and loss of identity
+      }else if(aspect == "Rage"){
+         ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Void"){
+         ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Time"){
+         ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Heart"){
+        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Breath"){
+        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Light"){
+        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Space"){
+        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Hope"){
+        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Life"){
+        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Doom"){
+        ret = "Lament"
+      }else{
+        ret = "Song"
+      }
+      return ret;
+  }
+
+  this.getDenizenFraymotifDescriptionForAspect(aspect){
+      var ret = "";
+      if(aspect == "Blood"){
+          ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Mind"){
+        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Rage"){
+         ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Void"){
+         ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Time"){
+         ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Heart"){
+        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Breath"){
+        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Light"){
+        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Space"){
+        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Hope"){
+        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Life"){
+        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Doom"){
+        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else{
+        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }
+
+      return ret;
   }
 
   this.getUsableFraymotifs = function(owner, allies, enemies){

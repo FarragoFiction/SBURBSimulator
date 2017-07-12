@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OCs/tumblr.txt" afterPath="$PROJECT_DIR$/OCs/tumblr.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/fraymotif.js" afterPath="$PROJECT_DIR$/javascripts/fraymotif.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,88 +20,18 @@
       <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="2021" column="63" lean-forward="true" selection-start-line="2021" selection-start-column="63" selection-end-line="2021" selection-end-column="63" />
+            <state relative-caret-position="190">
+              <caret line="214" column="69" lean-forward="false" selection-start-line="214" selection-start-column="38" selection-end-line="214" selection-end-column="69" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SaveDoomedTimeline.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/Scenes/SaveDoomedTimeline.js">
+      <file leaf-file-name="fraymotif.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="38" column="23" lean-forward="false" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VoidyStuff.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="71" column="59" lean-forward="false" selection-start-line="71" selection-start-column="59" selection-end-line="71" selection-end-column="59" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LifeStuff.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/Scenes/LifeStuff.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="73">
-              <caret line="128" column="142" lean-forward="false" selection-start-line="128" selection-start-column="142" selection-end-line="128" selection-end-column="142" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tumblr.txt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/OCs/tumblr.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="random_tables.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="810" column="8" lean-forward="false" selection-start-line="810" selection-start-column="8" selection-end-line="810" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="handle_sprites.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="1869" column="29" lean-forward="false" selection-start-line="1869" selection-start-column="29" selection-end-line="1869" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="char_creator_helper.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="964" column="105" lean-forward="false" selection-start-line="964" selection-start-column="105" selection-end-line="964" selection-end-column="105" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="loading.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/loading.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="223" column="40" lean-forward="false" selection-start-line="223" selection-start-column="40" selection-end-line="223" selection-end-column="40" />
+            <state relative-caret-position="148">
+              <caret line="329" column="94" lean-forward="false" selection-start-line="329" selection-start-column="94" selection-end-line="329" selection-end-column="94" />
               <folding />
             </state>
           </provider>
@@ -119,8 +49,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>redoRel</find>
-      <find>guardians</find>
       <find>makeGu</find>
       <find>WEbcomic</find>
       <find>void</find>
@@ -140,15 +68,17 @@
       <find>getInterestHandle1</find>
       <find>getLevelFromClass</find>
       <find>witch_levels</find>
-      <find>generic_levels</find>
-      <find>loadAllPossiblePlayers</find>
       <find>aspectPa</find>
-      <find>fa4900</find>
-      <find>jaded</find>
       <find>highInit</find>
       <find>new Asso</find>
       <find>god</find>
       <find>Seer</find>
+      <find>generic_levels</find>
+      <find>fa4900</find>
+      <find>jaded</find>
+      <find>loadAllPossiblePlayers</find>
+      <find>makeDenizen</find>
+      <find>createFraymotifForPlayerDenizen</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -177,7 +107,6 @@
         <option value="$PROJECT_DIR$/todo.html" />
         <option value="$PROJECT_DIR$/OCs/creditsBuckaroos.txt" />
         <option value="$PROJECT_DIR$/credits.html" />
-        <option value="$PROJECT_DIR$/javascripts/fraymotif.js" />
         <option value="$PROJECT_DIR$/easter_eggs.txt" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/GrimDarkQuests.js" />
         <option value="$PROJECT_DIR$/javascripts/newsposts.js" />
@@ -198,6 +127,7 @@
         <option value="$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/LifeStuff.js" />
         <option value="$PROJECT_DIR$/OCs/tumblr.txt" />
+        <option value="$PROJECT_DIR$/javascripts/fraymotif.js" />
       </list>
     </option>
   </component>
@@ -832,14 +762,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5283">
-          <caret line="336" column="3" lean-forward="true" selection-start-line="336" selection-start-column="3" selection-end-line="336" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/Scenes/GrimDarkQuests.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="163">
@@ -992,14 +914,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="2021" column="63" lean-forward="true" selection-start-line="2021" selection-start-column="63" selection-end-line="2021" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="118">
@@ -1020,6 +934,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="214" column="69" lean-forward="false" selection-start-line="214" selection-start-column="38" selection-end-line="214" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="329" column="94" lean-forward="false" selection-start-line="329" selection-start-column="94" selection-end-line="329" selection-end-column="94" />
           <folding />
         </state>
       </provider>
