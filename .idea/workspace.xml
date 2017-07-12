@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" afterPath="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" afterPath="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js" afterPath="$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -67,11 +68,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Aftermath.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Aftermath.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/Scenes/Aftermath.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
               <caret line="135" column="75" lean-forward="false" selection-start-line="135" selection-start-column="75" selection-end-line="135" selection-end-column="75" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UpdateShippingGrid.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="186">
+              <caret line="563" column="41" lean-forward="false" selection-start-line="563" selection-start-column="41" selection-end-line="563" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="find_rare_sessions.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="697" column="54" lean-forward="false" selection-start-line="697" selection-start-column="54" selection-end-line="697" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -97,26 +118,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sessionSummary.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/sessionSummary.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="158" column="47" lean-forward="false" selection-start-line="158" selection-start-column="47" selection-end-line="158" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="newsposts.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/newsposts.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="414" lean-forward="false" selection-start-line="20" selection-start-column="414" selection-end-line="20" selection-end-column="414" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -129,7 +130,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Afterman</find>
       <find>created</find>
       <find>summ</find>
       <find>better</find>
@@ -159,6 +159,7 @@
       <find>redoRelationships</find>
       <find>incoming</find>
       <find>friends</find>
+      <find>corr</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -194,7 +195,6 @@
         <option value="$PROJECT_DIR$/javascripts/random_tables.js" />
         <option value="$PROJECT_DIR$/javascripts/handle_sprites.js" />
         <option value="$PROJECT_DIR$/easter_eggs.txt" />
-        <option value="$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/GrimDarkQuests.js" />
         <option value="$PROJECT_DIR$/javascripts/session.js" />
         <option value="$PROJECT_DIR$/javascripts/sessionSummary.js" />
@@ -204,6 +204,8 @@
         <option value="$PROJECT_DIR$/javascripts/player.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/Intro.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
+        <option value="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" />
+        <option value="$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js" />
       </list>
     </option>
   </component>
@@ -886,14 +888,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="699" column="219" lean-forward="false" selection-start-line="699" selection-start-column="219" selection-end-line="699" selection-end-column="219" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-5283">
@@ -994,6 +988,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="135" column="75" lean-forward="false" selection-start-line="135" selection-start-column="75" selection-end-line="135" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="563" column="41" lean-forward="false" selection-start-line="563" selection-start-column="41" selection-end-line="563" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="697" column="54" lean-forward="false" selection-start-line="697" selection-start-column="54" selection-end-line="697" selection-end-column="54" />
           <folding />
         </state>
       </provider>
