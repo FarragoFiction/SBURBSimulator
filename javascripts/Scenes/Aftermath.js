@@ -133,7 +133,9 @@ function Aftermath(session){
 
 		if(living.length > 0){
 			//check for inverted frog.
-			if(corruptedSpacePlayer.landLevel <= (this.session.goodFrogLevel * -1)) return this.purpleFrogEnding(div, end);
+			if(corruptedSpacePlayer.landLevel <= (this.session.goodFrogLevel * -1) || spacePlayer.landLevel <= (this.session.goodFrogLevel * -1) ){
+			    return this.purpleFrogEnding(div, end);
+			}
 			if(spacePlayer.landLevel >= this.session.minFrogLevel){
 				end += "<br><img src = 'images/sceneIcons/frogger_animated.gif'> Luckily, the " + spacePlayer.htmlTitle() + " was diligent in frog breeding duties. ";
 				if(spacePlayer.landLevel < 28){
@@ -166,8 +168,6 @@ function Aftermath(session){
 					end += "<br>Unfortunately, the " + spacePlayer.htmlTitle() + " was unable to complete frog breeding duties. ";
 					end += " They only got " + Math.round(spacePlayer.landLevel/this.session.minFrogLevel*100) + "% of the way through. ";
 					console.log(Math.round(spacePlayer.landLevel/this.session.minFrogLevel*100) + " % frog in session: " + this.session.session_id)
-					if(Math.round(spacePlayer.landLevel/this.session.minFrogLevel*100) <= -100) console.log("!!!!!!!!!!!!!!!!!!!!TROLL KID ROCK INCOMING!!!!!!!!!!!!!!!!" + this.session.session_id)
-
 					if(spacePlayer.landLevel < 0){
 						end += " Stupid lousy goddamned GrimDark players fucking with the frog breeding. Somehow you ended up with less of a frog than when you got into the medium. ";
 					}

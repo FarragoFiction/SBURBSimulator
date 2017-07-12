@@ -757,7 +757,7 @@ function Intro(session){
 
 			for(var j = 0; j<this.player.relationships.length; j++){
 				var r = this.player.relationships[j];
-				console.log("Initial relationship value is: " + r.value + " and grim dark is: " + this.player.grimDark)
+				//console.log("Initial relationship value is: " + r.value + " and grim dark is: " + this.player.grimDark)
 				if(r.type() != "Friends" && r.type() != "Rivals"){
 					narration += "They are " + r.description() + ". ";
 				}
