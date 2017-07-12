@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/Scenes/Intro.js" afterPath="$PROJECT_DIR$/javascripts/Scenes/Intro.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/player.js" afterPath="$PROJECT_DIR$/javascripts/player.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,8 +22,18 @@
       <file leaf-file-name="player.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="1696" column="40" lean-forward="false" selection-start-line="1696" selection-start-column="40" selection-end-line="1696" selection-end-column="40" />
+            <state relative-caret-position="73">
+              <caret line="2269" column="131" lean-forward="false" selection-start-line="2269" selection-start-column="131" selection-end-line="2269" selection-end-column="131" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Intro.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/javascripts/Scenes/Intro.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="103">
+              <caret line="759" column="118" lean-forward="false" selection-start-line="759" selection-start-column="118" selection-end-line="759" selection-end-column="118" />
               <folding />
             </state>
           </provider>
@@ -77,16 +89,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fraymotif.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5283">
-              <caret line="336" column="3" lean-forward="true" selection-start-line="336" selection-start-column="3" selection-end-line="336" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="gameEntity.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/gameEntity.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -129,10 +131,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>freeWill</find>
-      <find>culture_in</find>
-      <find>new As</find>
-      <find>PalletSwap</find>
       <find>t</find>
       <find>new Asso</find>
       <find>player.tri</find>
@@ -157,8 +155,12 @@
       <find>purple</find>
       <find>fullFrog</find>
       <find>multi</find>
-      <find>initializeRel</find>
       <find>relation</find>
+      <find>initializeRel</find>
+      <find>friends</find>
+      <find>redo</find>
+      <find>asdf</find>
+      <find>redoRelationships</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -194,7 +196,6 @@
         <option value="$PROJECT_DIR$/javascripts/random_tables.js" />
         <option value="$PROJECT_DIR$/javascripts/handle_sprites.js" />
         <option value="$PROJECT_DIR$/easter_eggs.txt" />
-        <option value="$PROJECT_DIR$/javascripts/Scenes/Intro.js" />
         <option value="$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js" />
         <option value="$PROJECT_DIR$/javascripts/gameEntity.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/GrimDarkQuests.js" />
@@ -203,13 +204,14 @@
         <option value="$PROJECT_DIR$/javascripts/newsposts.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
         <option value="$PROJECT_DIR$/OCs/discord.txt" />
+        <option value="$PROJECT_DIR$/javascripts/Scenes/Intro.js" />
         <option value="$PROJECT_DIR$/javascripts/player.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="71" />
-    <option name="y" value="65" />
+    <option name="x" value="26" />
+    <option name="y" value="35" />
     <option name="width" value="1216" />
     <option name="height" value="633" />
   </component>
@@ -591,7 +593,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="71" y="65" width="1216" height="633" extended-state="0" />
+    <frame x="26" y="35" width="1216" height="633" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -894,14 +896,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/Scenes/Intro.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="726" column="12" lean-forward="true" selection-start-line="726" selection-start-column="12" selection-end-line="726" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="118">
@@ -982,10 +976,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/Scenes/Intro.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="759" column="118" lean-forward="false" selection-start-line="759" selection-start-column="118" selection-end-line="759" selection-end-column="118" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="1696" column="40" lean-forward="false" selection-start-line="1696" selection-start-column="40" selection-end-line="1696" selection-end-column="40" />
+        <state relative-caret-position="73">
+          <caret line="2269" column="131" lean-forward="false" selection-start-line="2269" selection-start-column="131" selection-end-line="2269" selection-end-column="131" />
           <folding />
         </state>
       </provider>

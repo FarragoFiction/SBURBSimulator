@@ -1693,7 +1693,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				}
 			}
 		}
-
+        console.log("initializing relationships")
 		if(this.robot || this.grimDark>1){ //you can technically start grimDark
 			for(var k = 0; k <this.relationships.length; k++){
 					var r = this.relationships[k];
@@ -2218,6 +2218,8 @@ function syncReplayNumberToPlayerNumber(replayPlayers){
 
 function redoRelationships(players){
 	var guardians = [];
+	return; //WHY is this code being called after i initialize their relationships???
+	console.log("redoing relationships")
 	for(var j = 0; j<players.length; j++){
 		var p = players[j];
 		guardians.push(p.guardian)
@@ -2252,7 +2254,7 @@ function initializePlayers(players,session){
 		}
 	}
 	if(replayPlayers.length > 0){
-		redoRelationships(players);
+		//redoRelationships(players);  //why was i doing this, this overrides robot and gim dark and initial relationships
 	}
 
 }
@@ -2265,9 +2267,9 @@ function initializePlayersNoDerived(players,session){
 		players[i].initializeSprite();
 	}
 
-	//might not be needed
+	//might not be needed.   futureJadedResearcher (FJR) has begun pestering pastJadedResearcher(PJR).  FJR: Yeah, no shit sherlock
 	if(replayPlayers.length > 0){
-		redoRelationships(players);
+		//redoRelationships(players);  //why was i doing this, this overrides robot and gim dark and initial relationships
 	}
 }
 
