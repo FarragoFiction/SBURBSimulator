@@ -133,7 +133,7 @@ function Aftermath(session){
 
 		if(living.length > 0){
 			//check for inverted frog.
-			if(corruptedSpacePlayer.landLevel <= (this.session.goodFrogLevel * -1) || spacePlayer.landLevel <= (this.session.goodFrogLevel * -1) ){
+			if(corruptedSpacePlayer.landLevel <= (this.session.minFrogLevel * -1)){
 			    return this.purpleFrogEnding(div, end);
 			}
 			if(spacePlayer.landLevel >= this.session.minFrogLevel){
