@@ -1125,14 +1125,16 @@ function moonToColor(moon){
 
 var moons = ["Prospit", "Derse"];
 
-var active_classes = ["Thief","Knight","Heir","Mage","Witch", "Prince", "Waste"];
+var active_classes = ["Thief","Knight","Heir","Mage","Witch", "Prince", "Waste", "Scout"];
 var passive_classes = ["Rogue","Page","Maid","Seer","Sylph", "Bard"];
+//if you change the order of ANY of these classes, it will break ocDataStrings
 var classes = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
-//when a class is used, remove from below list.
+//when a class is used, remove from below list. //if you change the order of ANY of these classes, it will break ocDataStrings
 var available_classes = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
 var available_classes_guardians = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
 
-var custom_only_classes = ["Waste"]; //Lord, Muse, Guide, Scout, Scribe, Smith, Wright
+//if you change the order of ANY of these classes, it will break ocDataStrings
+var custom_only_classes = ["Waste", "Scout", "Sage", "Scribe"]; //Lord, Muse, Guide, Scout, Scribe, Smith, Wright
 var required_aspects = ["Space", "Time"];
 var all_aspects = ["Space", "Time","Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
 var nonrequired_aspects = ["Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
