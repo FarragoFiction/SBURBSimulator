@@ -2216,21 +2216,23 @@ function syncReplayNumberToPlayerNumber(replayPlayers){
 	}
 }
 
+//this code is needed to make sure replay players have guardians.
 function redoRelationships(players){
 	var guardians = [];
-	return; //WHY is this code being called after i initialize their relationships???
 	console.log("redoing relationships")
 	for(var j = 0; j<players.length; j++){
 		var p = players[j];
 		guardians.push(p.guardian)
 		p.relationships = [];
 		p.generateRelationships(curSessionGlobalVar.players);
+		p.initializeRelationships();
 	}
 
 	for(var j = 0; j<guardians.length; j++){
 		var p = guardians[j]
 		p.relationships = [];
 		p.generateRelationships(guardians);
+		p.initializeRelationships();
 	}
 }
 
@@ -2254,7 +2256,8 @@ function initializePlayers(players,session){
 		}
 	}
 	if(replayPlayers.length > 0){
-		//redoRelationships(players);  //why was i doing this, this overrides robot and gim dark and initial relationships
+		redoRelationships(players);  //why was i doing this, this overrides robot and gim dark and initial relationships
+	    //oh because it makes replayed sessions with scratches crash.
 	}
 
 }
@@ -2269,7 +2272,8 @@ function initializePlayersNoDerived(players,session){
 
 	//might not be needed.   futureJadedResearcher (FJR) has begun pestering pastJadedResearcher(PJR).  FJR: Yeah, no shit sherlock
 	if(replayPlayers.length > 0){
-		//redoRelationships(players);  //why was i doing this, this overrides robot and gim dark and initial relationships
+		redoRelationships(players);  //why was i doing this, this overrides robot and gim dark and initial relationships
+		//oh because it makes replayed sessions with scratches crash.
 	}
 }
 
