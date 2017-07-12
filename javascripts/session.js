@@ -466,6 +466,7 @@ function Session(session_id){
 	this.generateSummary = function(){
 		var summary = new SessionSummary();
 		summary.setMiniPlayers(this.players);
+		summary.blackKingDead = this.king.dead || this.king.getStat("currentHP") <=0
 		summary.mayorEnding = this.mayorEnding;
 		summary.waywardVagabondEnding = this.waywardVagabondEnding;
 		summary.badBreakDeath = this.badBreakDeath;

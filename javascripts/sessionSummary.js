@@ -5,6 +5,7 @@ function SessionSummary(){
 	this.session_id = null;
 	this.crashedFromSessionBug = null;
 	this.crashedFromPlayerActions = null;
+	this.blackKingDead = null;
 	this.won = null;
 	this.opossumVictory = null;
 	this.mayorEnding = null;
@@ -387,6 +388,7 @@ function MultiSessionSummary(){
 	this.scratchAvailable = 0;
 	this.yellowYard = 0;
 	this.timesAllLived = 0;
+	this.blackKingDead = 0;
 	this.timesAllDied = 0;
 	this.ectoBiologyStarted = 0;
 	this.denizenBeat = 0;
@@ -622,7 +624,7 @@ this.generateHTMLForAspectPropertyCorpseParty = function(label, value,total){
 		if(propertyName == "crashedFromPlayerActions" || propertyName == "ectoBiologyStarted" ||propertyName == "comboSessions" || propertyName == "threeTimesSessionCombo")return true
 		if(propertyName == "fourTimesSessionCombo" || propertyName == "fiveTimesSessionCombo" ||propertyName == "holyShitMmmmmonsterCombo" || propertyName == "numberFullFrog") return true;
 		if(propertyName == "numberPurpleFrog" ||propertyName == "numberFullFrog" || propertyName == "numberSickFrog" || propertyName == "numberNoFrog" || propertyName == "rocksFell" || propertyName == "opossumVictory") return true;
-		if(propertyName == "timesCreatedMultiVerseForPlayers" || propertyName == "timesCreatedMultiVerseForSquiddles"|| propertyName == "mayorEnding" || propertyName == "waywardVagabondEnding") return true;
+		if(propertyName == "blackKingDead" || propertyName == "mayorEnding" || propertyName == "waywardVagabondEnding") return true;
 		return false;
 	}
 
@@ -842,6 +844,7 @@ function collateMultipleSessionSummaries(sessionSummaries){
 		if(ss.waywardVagabondEnding) mss.waywardVagabondEnding ++;
 		if(ss.choseGodTier) mss.choseGodTier ++;
 		if(ss.luckyGodTier) mss.luckyGodTier ++;
+		if(ss.blackKingDead) mss.blackKingDead ++;
 		if(ss.crashedFromSessionBug) mss.crashedFromSessionBug ++;
 		if(ss.opossumVictory) mss.opossumVictory ++;
 		if(ss.rocksFell) mss.rocksFell ++;

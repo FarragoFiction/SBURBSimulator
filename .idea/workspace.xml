@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/Scenes/FreeWillStuff.js" afterPath="$PROJECT_DIR$/javascripts/Scenes/FreeWillStuff.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/session.js" afterPath="$PROJECT_DIR$/javascripts/session.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/sessionSummary.js" afterPath="$PROJECT_DIR$/javascripts/sessionSummary.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js" afterPath="$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,31 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="handle_sprites.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="1448" column="35" lean-forward="true" selection-start-line="1448" selection-start-column="35" selection-end-line="1448" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="gameEntity.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/gameEntity.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="220">
               <caret line="1570" column="27" lean-forward="true" selection-start-line="1570" selection-start-column="27" selection-end-line="1570" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GoGrimDark.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/Scenes/GoGrimDark.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="54" column="46" lean-forward="false" selection-start-line="54" selection-start-column="46" selection-end-line="54" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -77,7 +59,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FreeWillStuff.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FreeWillStuff.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/Scenes/FreeWillStuff.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="103">
@@ -101,7 +83,27 @@
         <entry file="file://$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="88">
-              <caret line="697" column="54" lean-forward="false" selection-start-line="697" selection-start-column="54" selection-end-line="697" selection-end-column="54" />
+              <caret line="697" column="87" lean-forward="false" selection-start-line="697" selection-start-column="74" selection-end-line="697" selection-end-column="87" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sessionSummary.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/javascripts/sessionSummary.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="178">
+              <caret line="626" column="46" lean-forward="false" selection-start-line="626" selection-start-column="46" selection-end-line="626" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="session.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/javascripts/session.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="148">
+              <caret line="468" column="84" lean-forward="false" selection-start-line="468" selection-start-column="84" selection-end-line="468" selection-end-column="84" />
               <folding />
             </state>
           </provider>
@@ -129,11 +131,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>better</find>
-      <find>useFray</find>
-      <find>Turn</find>
-      <find>useF</find>
-      <find>useFraymotif</find>
       <find>space</find>
       <find>won</find>
       <find>initializeLuck</find>
@@ -157,8 +154,13 @@
       <find>incoming</find>
       <find>friends</find>
       <find>corr</find>
-      <find>organi</find>
       <find>Troll kid Rock</find>
+      <find>organi</find>
+      <find>summ</find>
+      <find>times</find>
+      <find>this.times</find>
+      <find>++</find>
+      <find>collate</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -195,17 +197,17 @@
         <option value="$PROJECT_DIR$/javascripts/handle_sprites.js" />
         <option value="$PROJECT_DIR$/easter_eggs.txt" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/GrimDarkQuests.js" />
-        <option value="$PROJECT_DIR$/javascripts/session.js" />
-        <option value="$PROJECT_DIR$/javascripts/sessionSummary.js" />
         <option value="$PROJECT_DIR$/javascripts/newsposts.js" />
         <option value="$PROJECT_DIR$/OCs/discord.txt" />
         <option value="$PROJECT_DIR$/javascripts/gameEntity.js" />
         <option value="$PROJECT_DIR$/javascripts/player.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/Intro.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" />
-        <option value="$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/FreeWillStuff.js" />
+        <option value="$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js" />
+        <option value="$PROJECT_DIR$/javascripts/session.js" />
+        <option value="$PROJECT_DIR$/javascripts/sessionSummary.js" />
       </list>
     </option>
   </component>
@@ -896,22 +898,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/session.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2054">
-          <caret line="21" column="30" lean-forward="false" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/sessionSummary.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="158" column="47" lean-forward="false" selection-start-line="158" selection-start-column="47" selection-end-line="158" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/newsposts.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -984,14 +970,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="697" column="54" lean-forward="false" selection-start-line="697" selection-start-column="54" selection-end-line="697" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/Scenes/Aftermath.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
@@ -1004,6 +982,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
           <caret line="565" column="231" lean-forward="false" selection-start-line="565" selection-start-column="231" selection-end-line="565" selection-end-column="231" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="697" column="87" lean-forward="false" selection-start-line="697" selection-start-column="74" selection-end-line="697" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/session.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="468" column="84" lean-forward="false" selection-start-line="468" selection-start-column="84" selection-end-line="468" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/sessionSummary.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="626" column="46" lean-forward="false" selection-start-line="626" selection-start-column="46" selection-end-line="626" selection-end-column="46" />
           <folding />
         </state>
       </provider>
