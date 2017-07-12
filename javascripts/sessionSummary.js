@@ -157,7 +157,6 @@ function SessionSummary(){
                     return false;
                 }
 			}else if(filter == "timesAllDied"){
-			}
 				if(this.numLiving != 0){
 					//console.log("not all dead")
 					return false;
