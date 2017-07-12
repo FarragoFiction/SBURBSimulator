@@ -1562,6 +1562,19 @@ f.effects.push(new FraymotifEffect("freeWill",3,true));
 f.flavorText = " All enemies are obliterated. Probably. A watermark of Andrew Hussie appears, stage right. "
 prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
 
+
+
+prototyping_objects.push(new GameEntity(null, "KidRock",null));
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "does absolutly nothing but sing repetitive, late 90's rock to you.";
+var f = new Fraymotif([], "BANG DA DANG DIGGY DIGGY", 2)
+f.effects.push(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
+f.effects.push(new FraymotifEffect("power",1,false));
+f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. Somehow, this doesn't feel like the true version of this attack."
+prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
+
+
 prototyping_objects.push(new GameEntity(null, "Sleuth",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
