@@ -30,8 +30,8 @@
       <file leaf-file-name="random_tables.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="1206" column="0" lean-forward="true" selection-start-line="1206" selection-start-column="0" selection-end-line="1206" selection-end-column="0" />
+            <state relative-caret-position="193">
+              <caret line="810" column="8" lean-forward="false" selection-start-line="810" selection-start-column="8" selection-end-line="810" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -49,7 +49,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>purple</find>
       <find>fullFrog</find>
       <find>multi</find>
       <find>relation</find>
@@ -79,6 +78,7 @@
       <find>getInterestHandle1</find>
       <find>getLevelFromClass</find>
       <find>witch_levels</find>
+      <find>generic_levels</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -922,8 +922,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="1206" column="0" lean-forward="true" selection-start-line="1206" selection-start-column="0" selection-end-line="1206" selection-end-column="0" />
+        <state relative-caret-position="193">
+          <caret line="810" column="8" lean-forward="false" selection-start-line="810" selection-start-column="8" selection-end-line="810" selection-end-column="8" />
           <folding />
         </state>
       </provider>

@@ -801,7 +801,15 @@ function getLevelFromClass(i,class_name){
 		first_arr = prince_levels;
 	}else if(class_name == "Witch"){
 		first_arr = witch_levels;
-	}else{
+	}else if(class_name == "Waste"){
+     	first_arr = waste_levels;
+    }else if(class_name == "Scout"){
+      	first_arr = scout_levels;
+    }else if(class_name == "Sage"){
+     	first_arr = sage_levels;
+    }else if(class_name == "Scribe"){
+     	first_arr = scribe_levels;
+    }else{
 	    first_arr = generic_levels;
 	}
 	return first_arr[i];
