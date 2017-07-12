@@ -1694,7 +1694,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			}
 		}
 
-		if(this.robot){
+		if(this.robot || this.grimDark>1){ //you can technically start grimDark
 			for(var k = 0; k <this.relationships.length; k++){
 					var r = this.relationships[k];
 					r.value = 0; //robots are tin cans with no feelings
