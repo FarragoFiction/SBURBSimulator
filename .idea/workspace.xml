@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" afterPath="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OCs/discord.txt" afterPath="$PROJECT_DIR$/OCs/discord.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,11 +27,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Aftermath.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Aftermath.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/Scenes/Aftermath.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="148">
               <caret line="328" column="39" lean-forward="false" selection-start-line="328" selection-start-column="39" selection-end-line="328" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="discord.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/OCs/discord.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="305">
+              <caret line="81" column="84" lean-forward="false" selection-start-line="81" selection-start-column="84" selection-end-line="81" selection-end-column="84" />
               <folding />
             </state>
           </provider>
@@ -92,16 +102,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="118">
               <caret line="699" column="219" lean-forward="false" selection-start-line="699" selection-start-column="219" selection-end-line="699" selection-end-column="219" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Intro.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/Scenes/Intro.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="726" column="12" lean-forward="true" selection-start-line="726" selection-start-column="12" selection-end-line="726" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -194,7 +194,6 @@
         <option value="$PROJECT_DIR$/javascripts/random_tables.js" />
         <option value="$PROJECT_DIR$/javascripts/handle_sprites.js" />
         <option value="$PROJECT_DIR$/javascripts/player.js" />
-        <option value="$PROJECT_DIR$/OCs/discord.txt" />
         <option value="$PROJECT_DIR$/easter_eggs.txt" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/Intro.js" />
         <option value="$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js" />
@@ -204,6 +203,7 @@
         <option value="$PROJECT_DIR$/javascripts/sessionSummary.js" />
         <option value="$PROJECT_DIR$/javascripts/newsposts.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
+        <option value="$PROJECT_DIR$/OCs/discord.txt" />
       </list>
     </option>
   </component>
@@ -894,14 +894,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OCs/discord.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="78" column="88" lean-forward="false" selection-start-line="78" selection-start-column="88" selection-end-line="78" selection-end-column="88" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/easter_eggs.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -986,6 +978,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="148">
           <caret line="328" column="39" lean-forward="false" selection-start-line="328" selection-start-column="39" selection-end-line="328" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OCs/discord.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="81" column="84" lean-forward="false" selection-start-line="81" selection-start-column="84" selection-end-line="81" selection-end-column="84" />
           <folding />
         </state>
       </provider>
