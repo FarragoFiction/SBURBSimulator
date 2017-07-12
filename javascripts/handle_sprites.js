@@ -1865,9 +1865,9 @@ function robotPalletSwap(canvas, player){
 	var new_color2 = "#0022cf";
 	var new_color3 ="#B6B6B6";
 	var new_color4 = "#A6A6A6";
-	var new_color5 = "#B6B6B6";
+	var new_color5 = "#484848";
 	var new_color6 = "#595959";
-	var new_color7 = "#696969";
+	var new_color7 = "#313131";
 	var new_color8 = "#B6B6B6";
 	var new_color9 = "#797979";
 	var new_color10 = "#494949";

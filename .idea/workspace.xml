@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/random_tables.js" afterPath="$PROJECT_DIR$/javascripts/random_tables.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/Bodies/god14.png" afterPath="$PROJECT_DIR$/images/Bodies/god14.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/Bodies/god15.png" afterPath="$PROJECT_DIR$/images/Bodies/god15.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/handle_sprites.js" afterPath="$PROJECT_DIR$/javascripts/handle_sprites.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/loading.js" afterPath="$PROJECT_DIR$/javascripts/loading.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" afterPath="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,11 +31,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="random_tables.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="random_tables.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="193">
               <caret line="810" column="8" lean-forward="false" selection-start-line="810" selection-start-column="8" selection-end-line="810" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="handle_sprites.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="265">
+              <caret line="1869" column="29" lean-forward="false" selection-start-line="1869" selection-start-column="29" selection-end-line="1869" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="char_creator_helper.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="103">
+              <caret line="964" column="105" lean-forward="false" selection-start-line="964" selection-start-column="105" selection-end-line="964" selection-end-column="105" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="loading.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/javascripts/loading.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="163">
+              <caret line="223" column="40" lean-forward="false" selection-start-line="223" selection-start-column="40" selection-end-line="223" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -49,9 +83,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>fullFrog</find>
-      <find>multi</find>
-      <find>relation</find>
       <find>initializeRel</find>
       <find>redo</find>
       <find>asdf</find>
@@ -79,6 +110,9 @@
       <find>getLevelFromClass</find>
       <find>witch_levels</find>
       <find>generic_levels</find>
+      <find>loadAllPossiblePlayers</find>
+      <find>aspectPa</find>
+      <find>fa4900</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -108,10 +142,7 @@
         <option value="$PROJECT_DIR$/todo.html" />
         <option value="$PROJECT_DIR$/OCs/creditsBuckaroos.txt" />
         <option value="$PROJECT_DIR$/credits.html" />
-        <option value="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" />
-        <option value="$PROJECT_DIR$/javascripts/loading.js" />
         <option value="$PROJECT_DIR$/javascripts/fraymotif.js" />
-        <option value="$PROJECT_DIR$/javascripts/handle_sprites.js" />
         <option value="$PROJECT_DIR$/easter_eggs.txt" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/GrimDarkQuests.js" />
         <option value="$PROJECT_DIR$/javascripts/newsposts.js" />
@@ -126,6 +157,9 @@
         <option value="$PROJECT_DIR$/javascripts/sessionSummary.js" />
         <option value="$PROJECT_DIR$/javascripts/player.js" />
         <option value="$PROJECT_DIR$/javascripts/random_tables.js" />
+        <option value="$PROJECT_DIR$/javascripts/loading.js" />
+        <option value="$PROJECT_DIR$/javascripts/handle_sprites.js" />
+        <option value="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" />
       </list>
     </option>
   </component>
@@ -744,22 +778,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/loading.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="277" column="26" lean-forward="false" selection-start-line="277" selection-start-column="26" selection-end-line="277" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="831" column="30" lean-forward="false" selection-start-line="831" selection-start-column="30" selection-end-line="831" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/OCs/creditsBuckaroos.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -828,14 +846,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="118">
           <caret line="54" column="46" lean-forward="false" selection-start-line="54" selection-start-column="46" selection-end-line="54" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="1448" column="35" lean-forward="true" selection-start-line="1448" selection-start-column="35" selection-end-line="1448" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -924,6 +934,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
           <caret line="810" column="8" lean-forward="false" selection-start-line="810" selection-start-column="8" selection-end-line="810" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/lz-string.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/loading.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="223" column="40" lean-forward="false" selection-start-line="223" selection-start-column="40" selection-end-line="223" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="1869" column="29" lean-forward="false" selection-start-line="1869" selection-start-column="29" selection-end-line="1869" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="964" column="105" lean-forward="false" selection-start-line="964" selection-start-column="105" selection-end-line="964" selection-end-column="105" />
           <folding />
         </state>
       </provider>
