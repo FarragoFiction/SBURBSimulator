@@ -238,7 +238,7 @@ this.trollKidRock = function(){
 	trollKidRock.fraymotifs.push(f);
 	initializePlayers([trollKidRock]);
 	trollKidRock.currentHP = 1000;
-	return trollKidRock; 
+	return trollKidRock;
 }
 
 this.purpleFrog = function(){
@@ -246,11 +246,11 @@ this.purpleFrog = function(){
 	var tmpStatHolder = {};
 	tmpStatHolder.minLuck = -100;
 	tmpStatHolder.maxLuck = 100;
-	tmpStatHolder.hp = 1000+mvp.getStat("power") * this.session.players.length;  //this will be a challenge. good thing you have troll kid rock to lay down some sick beats.
+	tmpStatHolder.hp = 10000+mvp.getStat("power") * this.session.players.length;  //this will be a challenge. good thing you have troll kid rock to lay down some sick beats.
 	tmpStatHolder.mobility = -100
 	tmpStatHolder.sanity = 0
 	tmpStatHolder.freeWill = 200
-	tmpStatHolder.power =1000+mvp.getStat("power") * this.session.players.length; //this will be a challenge.
+	tmpStatHolder.power =10000+mvp.getStat("power") * this.session.players.length; //this will be a challenge.
 	tmpStatHolder.grist = 100000000;
 	tmpStatHolder.abscondable = false; //this is still the final battle, 
 	tmpStatHolder.canAbscond = false;
