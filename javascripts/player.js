@@ -1613,7 +1613,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.highInit = function(){
-		return (this.class_name == "Rogue" || this.class_name == "Knight" || this.class_name == "Maid"|| this.class_name == "Mage"|| this.class_name == "Sylph"|| this.class_name == "Prince")
+		return (this.class_name == "Rogue" || this.class_name == "Sage" ||  this.class_name == "Waste" ||  this.class_name == "Guide" || this.class_name == "Knight" || this.class_name == "Maid"|| this.class_name == "Mage"|| this.class_name == "Sylph"|| this.class_name == "Prince")
 	}
 
 	this.initializeLuck = function(){
@@ -2055,7 +2055,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				this.associatedStats.push(new AssociatedStat("MANGRIT", 1,true));
 				this.associatedStats.push(new AssociatedStat("alchemy", -2,true));
 				break;
-			case  "Doom":
+			case  "Doom":  //fool, doom will toot as it pleases
 				this.associatedStats.push(new AssociatedStat("alchemy", 2,true));
 				this.associatedStats.push(new AssociatedStat("freeWill", 1,true));
 				this.associatedStats.push(new AssociatedStat("minLuck", -1,true));
