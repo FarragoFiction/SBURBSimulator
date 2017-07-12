@@ -984,10 +984,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	}
 
-	//SBURB is not a mystery to these classes/aspects.
+	//SBURB is not a mystery to these classes/aspects.  TODO MAKE THIS AN ACTUAL ASSOCIATED STAT
 	this.knowsAboutSburb = function(){
 		//time might not innately get it, but they have future knowledge
-		var rightClass = this.class_name == "Seer" || this.class_name == "Mage" || this.aspect == "Light" || this.aspect == "Mind" || this.aspect == "Doom" || this.aspect == "Time"
+		var rightClass = this.class_name == "Sage" || this.class_name == "Scribe" || this.class_name == "Seer" || this.class_name == "Mage" || this.aspect == "Light" || this.aspect == "Mind" || this.aspect == "Doom" || this.aspect == "Time"
 		return rightClass && this.power > 20; //need to be far enough in my claspect
 	}
 
@@ -1062,6 +1062,20 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 					powerBoost = powerBoost * 0.5
 				}
 				break;
+            case "Scout":
+                if(stat.multiplier > 0){
+                    powerBoost = powerBoost * 2;
+                }else{
+                    powerBoost = powerBoost * 0.5
+                }
+                break;
+            case "Guide":
+                if(stat.multiplier > 0){
+                    powerBoost = powerBoost * 2;
+                }else{
+                    powerBoost = powerBoost * 0.5
+                }
+                break;
 			case  "Seer":
 				if(stat.multiplier > 0){
 					powerBoost = powerBoost * 1;
@@ -1123,6 +1137,22 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 					powerBoost = powerBoost * 0.25
 				}
 				break;
+
+			case  "Sage":
+                if(stat.multiplier > 0){
+                    powerBoost = powerBoost * 1;
+                }else{
+                    powerBoost = powerBoost * 0.25
+                }
+                break;
+
+            case  "Scribe":
+                if(stat.multiplier > 0){
+                    powerBoost = powerBoost * 1;
+                }else{
+                    powerBoost = powerBoost * 0.25
+                }
+                break;
 
 			case  "Waste":
 				powerBoost = powerBoost * 0;  //wastes WASTE their abilities, until the cataclysm.

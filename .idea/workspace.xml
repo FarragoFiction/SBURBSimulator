@@ -2,6 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/Bodies/dream14.png" afterPath="$PROJECT_DIR$/images/Bodies/dream14.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/Bodies/dream15.png" afterPath="$PROJECT_DIR$/images/Bodies/dream15.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/Bodies/dream16.png" afterPath="$PROJECT_DIR$/images/Bodies/dream16.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/Bodies/god14.png" afterPath="$PROJECT_DIR$/images/Bodies/god14.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/Bodies/god15.png" afterPath="$PROJECT_DIR$/images/Bodies/god15.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/Bodies/god16.png" afterPath="$PROJECT_DIR$/images/Bodies/god16.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/Bodies/reg14.png" afterPath="$PROJECT_DIR$/images/Bodies/reg14.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/Bodies/reg15.png" afterPath="$PROJECT_DIR$/images/Bodies/reg15.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/Bodies/reg16.png" afterPath="$PROJECT_DIR$/images/Bodies/reg16.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/player.js" afterPath="$PROJECT_DIR$/javascripts/player.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/random_tables.js" afterPath="$PROJECT_DIR$/javascripts/random_tables.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,11 +27,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/javascripts/player.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="1071" column="25" lean-forward="true" selection-start-line="1071" selection-start-column="25" selection-end-line="1071" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="random_tables.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="1129" column="78" lean-forward="false" selection-start-line="1129" selection-start-column="78" selection-end-line="1129" selection-end-column="78" />
+            <state relative-caret-position="15">
+              <caret line="586" column="49" lean-forward="true" selection-start-line="586" selection-start-column="49" selection-end-line="586" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -39,7 +59,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>initializeLuck</find>
       <find>filter</find>
       <find>numberF</find>
       <find>purple</find>
@@ -69,6 +88,7 @@
       <find>isEnd</find>
       <find>summ</find>
       <find>Waste</find>
+      <find>getInterestHandle1</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -107,7 +127,6 @@
         <option value="$PROJECT_DIR$/javascripts/newsposts.js" />
         <option value="$PROJECT_DIR$/OCs/discord.txt" />
         <option value="$PROJECT_DIR$/javascripts/gameEntity.js" />
-        <option value="$PROJECT_DIR$/javascripts/player.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/Intro.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
@@ -115,6 +134,7 @@
         <option value="$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js" />
         <option value="$PROJECT_DIR$/javascripts/session.js" />
         <option value="$PROJECT_DIR$/javascripts/sessionSummary.js" />
+        <option value="$PROJECT_DIR$/javascripts/player.js" />
         <option value="$PROJECT_DIR$/javascripts/random_tables.js" />
       </list>
     </option>
@@ -846,14 +866,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="2275" column="69" lean-forward="false" selection-start-line="2275" selection-start-column="69" selection-end-line="2275" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/Scenes/Intro.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
@@ -910,10 +922,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="1071" column="25" lean-forward="true" selection-start-line="1071" selection-start-column="25" selection-end-line="1071" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="1129" column="78" lean-forward="false" selection-start-line="1129" selection-start-column="78" selection-end-line="1129" selection-end-column="78" />
+        <state relative-caret-position="15">
+          <caret line="586" column="49" lean-forward="true" selection-start-line="586" selection-start-column="49" selection-end-line="586" selection-end-column="49" />
           <folding />
         </state>
       </provider>

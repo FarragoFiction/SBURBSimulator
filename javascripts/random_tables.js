@@ -600,9 +600,9 @@ function getBlandHandle1(class_name){
 		second_arr = knight_handles;
 	}else if(class_name == "Rogue"){
 		second_arr = rogue_handles;
-	}else if(class_name == "Sylph"){
+	}else if(class_name == "Sylph" || class_name =="Sage" || class_name =="Scout"){
 		second_arr = sylph_handles;
-	}else if(class_name == "Seer"){
+	}else if(class_name == "Seer"|| class_name =="Scribe"){
 		second_arr = seer_handles;
 	}else if(class_name == "Thief"){
 		second_arr = thief_handles;
@@ -612,7 +612,7 @@ function getBlandHandle1(class_name){
 		second_arr = bard_handles;
 	}else if(class_name == "Prince"){
 		second_arr = prince_handles;
-	}else if(class_name == "Witch"){
+	}else if(class_name == "Witch"||class_name =="Waste"){
 		second_arr = witch_handles;
 	}
 	return getRandomElementFromArray(second_arr);
@@ -1125,7 +1125,7 @@ function moonToColor(moon){
 
 var moons = ["Prospit", "Derse"];
 
-var active_classes = ["Thief","Knight","Heir","Mage","Witch", "Prince", "Waste", "Scout"];
+var active_classes = ["Thief","Knight","Heir","Mage","Witch", "Prince", "Waste", "Scout", "Scribe"];
 var passive_classes = ["Rogue","Page","Maid","Seer","Sylph", "Bard"];
 //if you change the order of ANY of these classes, it will break ocDataStrings
 var classes = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
