@@ -801,6 +801,8 @@ function getLevelFromClass(i,class_name){
 		first_arr = prince_levels;
 	}else if(class_name == "Witch"){
 		first_arr = witch_levels;
+	}else{
+	    first_arr = generic_levels;
 	}
 	return first_arr[i];
 }
@@ -1197,6 +1199,11 @@ var bard_levels = ["SKAIA'S TOP IDOL","POPSTAR BOPPER","SONGSCUFFER"];
 var prince_levels = ["PRINCE HARMING","ROYAL RUMBLER","DIGIT PRINCE"];
 var witch_levels = ["WESTWORD WORRYBITER","BUBBLETROUBLER","EYE OF GRINCH"];
 var seer_levels = ["SEEING iDOG","PIPSQUEAK PROGNOSTICATOR","SCAMPERVIEWER 5000"];
+var waste_levels = ["4TH WALL AFICIONADO","CATACLYSM COMMANDER","AUTHOR"];
+var scout_levels = ["BOSTON SCREAMPIE","COOKIE OFFERER","FIRE FRIEND"];
+var scribe_levels = ["MIDNIGHT BURNER","WRITER WATCHER","DIARY DEAREST"];
+var sage_levels = ["HERBAL ESSENCE","CHICKEN SEASONER","TOMEMASTER"];
+var generic_levels = ["SNOWMAN SAVIOR","NOBODY NOWHERE","NULLZILLA"];
 
 var free_levels = ["NIPPER CADET","PESKY URCHIN","BRAVESPROUT","JUVESQUIRT","RUMPUS BUSTER","CHAMP-FRY","ANKLEBITER","CALLOUSED TENDERFOOT","RASCALSPRAT","GRITTY MIDGET","BRITCHES RIPPER","ALIEN URCHIN", "NESTING NEWB"]
 //only need two for each. since each player has two interests, combines to 4
