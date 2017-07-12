@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" afterPath="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js" afterPath="$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" afterPath="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -68,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Aftermath.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Aftermath.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/Scenes/Aftermath.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="135" column="75" lean-forward="false" selection-start-line="135" selection-start-column="75" selection-end-line="135" selection-end-column="75" />
+            <state relative-caret-position="103">
+              <caret line="326" column="410" lean-forward="false" selection-start-line="326" selection-start-column="410" selection-end-line="326" selection-end-column="410" />
               <folding />
             </state>
           </provider>
@@ -88,7 +87,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="find_rare_sessions.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="find_rare_sessions.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="88">
@@ -130,8 +129,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>created</find>
-      <find>summ</find>
       <find>better</find>
       <find>useFray</find>
       <find>Turn</find>
@@ -160,6 +157,8 @@
       <find>incoming</find>
       <find>friends</find>
       <find>corr</find>
+      <find>organi</find>
+      <find>Troll kid Rock</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -203,9 +202,9 @@
         <option value="$PROJECT_DIR$/javascripts/gameEntity.js" />
         <option value="$PROJECT_DIR$/javascripts/player.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/Intro.js" />
-        <option value="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" />
         <option value="$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js" />
+        <option value="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
       </list>
     </option>
   </component>
@@ -984,14 +983,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/Scenes/Aftermath.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="135" column="75" lean-forward="false" selection-start-line="135" selection-start-column="75" selection-end-line="135" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
@@ -1004,6 +995,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
           <caret line="697" column="54" lean-forward="false" selection-start-line="697" selection-start-column="54" selection-end-line="697" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/Scenes/Aftermath.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="326" column="410" lean-forward="false" selection-start-line="326" selection-start-column="410" selection-end-line="326" selection-end-column="410" />
           <folding />
         </state>
       </provider>
