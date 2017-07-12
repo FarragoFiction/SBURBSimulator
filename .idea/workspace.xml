@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/gameEntity.js" afterPath="$PROJECT_DIR$/javascripts/gameEntity.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/Scenes/GrimDarkQuests.js" afterPath="$PROJECT_DIR$/javascripts/Scenes/GrimDarkQuests.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,7 +47,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gameEntity.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="gameEntity.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/gameEntity.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
@@ -87,11 +87,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GrimDarkQuests.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GrimDarkQuests.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/Scenes/GrimDarkQuests.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="44" column="72" lean-forward="false" selection-start-line="44" selection-start-column="57" selection-end-line="44" selection-end-column="72" />
+            <state relative-caret-position="163">
+              <caret line="43" column="39" lean-forward="false" selection-start-line="43" selection-start-column="39" selection-end-line="43" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -202,6 +202,7 @@
         <option value="$PROJECT_DIR$/javascripts/session.js" />
         <option value="$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js" />
         <option value="$PROJECT_DIR$/javascripts/gameEntity.js" />
+        <option value="$PROJECT_DIR$/javascripts/Scenes/GrimDarkQuests.js" />
       </list>
     </option>
   </component>
@@ -908,14 +909,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/Scenes/GrimDarkQuests.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="44" column="72" lean-forward="false" selection-start-line="44" selection-start-column="57" selection-end-line="44" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/OCs/discord.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -984,6 +977,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="815" column="120" lean-forward="false" selection-start-line="815" selection-start-column="120" selection-end-line="815" selection-end-column="120" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/Scenes/GrimDarkQuests.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="43" column="39" lean-forward="false" selection-start-line="43" selection-start-column="39" selection-end-line="43" selection-end-column="39" />
           <folding />
         </state>
       </provider>
