@@ -30,8 +30,8 @@
       <file leaf-file-name="fraymotif.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="286" column="19" lean-forward="false" selection-start-line="286" selection-start-column="19" selection-end-line="286" selection-end-column="19" />
+            <state relative-caret-position="175">
+              <caret line="283" column="80" lean-forward="false" selection-start-line="283" selection-start-column="80" selection-end-line="283" selection-end-column="80" />
               <folding />
             </state>
           </provider>
@@ -1011,8 +1011,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="286" column="19" lean-forward="false" selection-start-line="286" selection-start-column="19" selection-end-line="286" selection-end-column="19" />
+        <state relative-caret-position="175">
+          <caret line="283" column="80" lean-forward="false" selection-start-line="283" selection-start-column="80" selection-end-line="283" selection-end-column="80" />
           <folding />
         </state>
       </provider>

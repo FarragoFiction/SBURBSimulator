@@ -281,7 +281,7 @@ function Fraymotif(aspects, name,tier, flavorText){
 		var casters = this.getCasters(owner, allies);
     this.makeCastersUnavailable(casters);
     //Hope Rides Alone
-    if(owner.aspect == "Hope" && allies.length == 1 && Math.seededRandom() > 0.75){
+    if(owner.aspect == "Hope" && allies.length == 1 && Math.seededRandom() > 0.85){
         enemies[0].buffs.push(new Buff("currentHP", -9999)) //they REALLY believed in this attack.
         var jakeisms = ["GADZOOKS!","BOY HOWDY!","TALLY HO!","BY GUM"];
         console.log("Hope Rides Alone in session: "  + owner.session.session_id)
