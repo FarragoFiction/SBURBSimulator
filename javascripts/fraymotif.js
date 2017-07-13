@@ -628,7 +628,7 @@ function FraymotifCreator(){
         //check to see if we are upgrading rocks fall.
         var f = this.findFraymotifNamed(players[0].fraymotifs, "Rocks Fall, Everyone Dies")
         if(f && f.tier < 10){
-            f.tier = 10;
+            f.tier = 100;
             f.name += " (True Form)"
             f.flavorText = "Incredibly huge meteors rain down from above. What the hell??? Didn't this used to suck?  Hax, I call hax!";
             return f;
