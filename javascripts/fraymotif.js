@@ -284,7 +284,7 @@ function Fraymotif(aspects, name,tier, flavorText){
     if(owner.aspect == "Hope" && allies.length == 1 && Math.seededRandom() > 0.75){
         enemies[0].buffs.push(new Buff("currentHP", -9999)) //they REALLY believed in this attack.
         var jakeisms = ["GADZOOKS!","BOY HOWDY!","TALLY HO!","BY GUM"];
-        alert("Hope Rides Alone in session: "  + owner.session.session_id)
+        console.log("Hope Rides Alone in session: "  + owner.session.session_id)
         var scream =  getFontColorFromAspect(owner.aspect) + getRandomElementFromArray(jakeisms) + "</font>"
         return " [HOPE RIDES ALONE] is activated. " + owner.htmlTitle() +  " starts screaming. <br><br><span class = 'jake'> " + scream + " </span>  <Br><Br> Holy fucking SHIT, that is WAY MORE DAMAGE then is needed. Jesus christ. Someone nerf that Hope player already!"
     }
