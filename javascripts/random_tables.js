@@ -990,7 +990,19 @@ function getRandomQuestFromClass(class_name,postDenizen){
 	}else if(class_name == "Witch"){
 		if(!postDenizen) first_arr = witch_quests;
 		if(postDenizen) first_arr = postdenizen_witch_quests;
-	}else{
+	}else if(class_name == "Waste"){
+     		if(!postDenizen) first_arr = waste_quests;
+     		if(postDenizen) first_arr = postdenizen_waste_quests;
+    }else if(class_name == "Scout"){
+      		if(!postDenizen) first_arr = scout_quests;
+      		if(postDenizen) first_arr = postdenizen_scout_quests;
+    }else if(class_name == "Scribe"){
+     		if(!postDenizen) first_arr = scribe_quests;
+     		if(postDenizen) first_arr = postdenizen_scribe_quests;
+    }else if(class_name == "Sage"){
+     		if(!postDenizen) first_arr = sage_quests;
+     		if(postDenizen) first_arr = postdenizen_sage_quests;
+    }else{
 		if(!postDenizen) first_arr = generic_quests;
 		if(postDenizen) first_arr = postdenizen_generic_quests;
 	}
