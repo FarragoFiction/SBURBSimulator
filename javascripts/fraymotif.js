@@ -327,27 +327,27 @@ function FraymotifCreator(){
       if(aspect == "Blood"){
           ret = "Ballad " //a song passed over generations in an oral history
       }else if(aspect == "Mind"){
-        ret = "Fugue"  //a musical core that is altered and changed and interwoven with itself. Also, a mental state of confusion and loss of identity
+        ret = "Fugue"  //a musical core that is altered and changed and interwoven with itself. Also, a mental state of confusion and loss of identity  (alternate selves that made different choices)
       }else if(aspect == "Rage"){
-         ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+         ret = " Aria" // a musical piece full of emotion
       }else if(aspect == "Void"){
-         ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+         ret = "Silence" //
       }else if(aspect == "Time"){
-         ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+         ret = "Canon" //a musical piece in which a section is repeated (but unchanged) at different times, layered until it's unreconizable  (stable time loops)
       }else if(aspect == "Heart"){
-        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+        ret = "Leitmotif" //a musical theme representing a particular character
       }else if(aspect == "Breath"){
-        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+        ret = "Refrain"
       }else if(aspect == "Light"){
-        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+        ret = "Opera" //lol, cuz light players never shut up
       }else if(aspect == "Space"){
-        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+        ret = "Sonata" //a composition for a soloist.  Space players are stuck doing something different from everyone,
       }else if(aspect == "Hope"){
-        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+        ret = "Etude" //a musical exercise designed to improve the performer
       }else if(aspect == "Life"){
-        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+        ret = "Lament" //passionate expression of grief. so much life has been lost to SBURB.
       }else if(aspect == "Doom"){
-        ret = "Lament"
+        ret = "Dirge" //a song for the dead
       }else{
         ret = "Song"
       }
