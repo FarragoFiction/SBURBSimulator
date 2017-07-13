@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/handle_sprites.js" afterPath="$PROJECT_DIR$/javascripts/handle_sprites.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/random_tables.js" afterPath="$PROJECT_DIR$/javascripts/random_tables.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,21 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="handle_sprites.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
+      <file leaf-file-name="random_tables.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="1252" column="3" lean-forward="false" selection-start-line="1252" selection-start-column="3" selection-end-line="1252" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="creditsBuckaroos.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/OCs/creditsBuckaroos.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="95" lean-forward="false" selection-start-line="17" selection-start-column="95" selection-end-line="17" selection-end-column="95" />
+            <state relative-caret-position="133">
+              <caret line="1652" column="139" lean-forward="true" selection-start-line="1652" selection-start-column="139" selection-end-line="1652" selection-end-column="139" />
               <folding />
             </state>
           </provider>
@@ -62,56 +52,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="95">
               <caret line="103" column="568" lean-forward="false" selection-start-line="103" selection-start-column="568" selection-end-line="103" selection-end-column="568" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fraymotif.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="739" column="46" lean-forward="false" selection-start-line="739" selection-start-column="46" selection-end-line="739" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="about.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/about.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="257" column="105" lean-forward="false" selection-start-line="257" selection-start-column="56" selection-end-line="257" selection-end-column="105" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="navbar.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/navbar.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="35" column="84" lean-forward="false" selection-start-line="35" selection-start-column="84" selection-end-line="35" selection-end-column="84" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="oc.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/oc.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="51" lean-forward="false" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LuckStuff.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/Scenes/LuckStuff.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="225" column="63" lean-forward="false" selection-start-line="225" selection-start-column="50" selection-end-line="225" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -129,13 +69,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>jaded</find>
-      <find>loadAllPossiblePlayers</find>
-      <find>makeDenizen</find>
-      <find>createFraymotifForPlayerDenizen</find>
-      <find>gold</find>
-      <find>bloo</find>
-      <find>processEffectValue</find>
       <find>tier</find>
       <find>god Ti</find>
       <find>makeFraymotif</find>
@@ -158,7 +91,14 @@
       <find>makedead</find>
       <find>sanit</find>
       <find>sanitize</find>
+      <find>denize</find>
       <find>makeDead</find>
+      <find>var witch_quests</find>
+      <find>witch_quests</find>
+      <find>postdenizen_witch_quests</find>
+      <find>generic_qu</find>
+      <find>generic_q</find>
+      <find>waste_q</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -196,7 +136,6 @@
         <option value="$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js" />
         <option value="$PROJECT_DIR$/javascripts/session.js" />
         <option value="$PROJECT_DIR$/javascripts/sessionSummary.js" />
-        <option value="$PROJECT_DIR$/javascripts/random_tables.js" />
         <option value="$PROJECT_DIR$/javascripts/loading.js" />
         <option value="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js" />
@@ -211,6 +150,7 @@
         <option value="$PROJECT_DIR$/credits.html" />
         <option value="$PROJECT_DIR$/javascripts/player.js" />
         <option value="$PROJECT_DIR$/javascripts/handle_sprites.js" />
+        <option value="$PROJECT_DIR$/javascripts/random_tables.js" />
       </list>
     </option>
   </component>
@@ -963,14 +903,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="1357" column="43" lean-forward="false" selection-start-line="1357" selection-start-column="2" selection-end-line="1357" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/newsposts.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -1027,14 +959,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OCs/ideasWranglers.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="95" lean-forward="false" selection-start-line="1" selection-start-column="95" selection-end-line="1" selection-end-column="95" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/OCs/creditsBuckaroos.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1063,6 +987,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="148">
           <caret line="1252" column="3" lean-forward="false" selection-start-line="1252" selection-start-column="3" selection-end-line="1252" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OCs/ideasWranglers.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="95" lean-forward="false" selection-start-line="1" selection-start-column="95" selection-end-line="1" selection-end-column="95" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="1652" column="139" lean-forward="true" selection-start-line="1652" selection-start-column="139" selection-end-line="1652" selection-end-column="139" />
           <folding />
         </state>
       </provider>

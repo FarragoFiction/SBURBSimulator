@@ -991,8 +991,8 @@ function getRandomQuestFromClass(class_name,postDenizen){
 		if(!postDenizen) first_arr = witch_quests;
 		if(postDenizen) first_arr = postdenizen_witch_quests;
 	}else{
-		if(!postDenizen) first_arr = witch_quests;
-		if(postDenizen) first_arr = postdenizen_witch_quests;
+		if(!postDenizen) first_arr = generic_quests;
+		if(postDenizen) first_arr = postdenizen_generic_quests;
 	}
 	return getRandomElementFromArray(first_arr);
 }
@@ -1308,6 +1308,11 @@ seer_quests.push("suddenly understanding everything, and casting sincere doubt a
 var witch_quests = ["performing elaborate punch card alchemy through the use of a novelty witch's cauldron"];
 witch_quests.push("deciding which way to go in a series of way-too-long mazes");
 witch_quests.push("solving puzzles in ways that completely defy expectations");
+var waste_quests = ["being a useless piece of shit and requiring the consorts to practically do the quests themselves","causing ridiculous amounts of destruction trying to skip quest lines","learning that sometimes you have to do things right, and can't just skip ahead"];
+var scout_quests = ["exploring areas no Consort has dared to trespass in","getting lost in ridiculously convoluted mazes","playing map-creating mini games"];
+var scribe_quests = ["taking down the increasingly random and nonsensical oral history of a group of local Consorts","playing typing themed mini games.","reading just, so many books"];
+var sage_quests = ["making the lore of SBURB part of their personal mythos","learning to nod wisely and remain silent when Consorts start yammering on about the Ultimate Riddle","participating in riddle contests to prove their intelligence to local Consorts"];
+var generic_quests = ["definitely doing class related quests", "solving consorts problems in a class themed manner", "absolutely not goofing off"];
 
 
 //if bike quests are too common, lock them to real selves only, no dream selves.
@@ -1641,6 +1646,15 @@ var postdenizen_witch_quests = ["alchemizing a mind crushingly huge number of co
 postdenizen_witch_quests.push("whizzing around their land like it's fucking christmas")
 postdenizen_witch_quests.push("defeating a completely out of nowhere mini boss")
 postdenizen_witch_quests.push("wondering if their sprite prototyping choice was the right one after all")
+
+var postdenizen_generic_quests = ["cleaning up after their Denizen in a class approrpiate fashion","absolutly not goofing off instead of cleaing up after their Denizen","vaguely sweeping up rubble"];
+var postdenizen_waste_quests = ["figuring out the least-disruptive way to help the local Consorts recover from the Denizen's rule","being a useless piece of shit and not joining cleanup efforts.","accidentally causing MORE destruction in an attempt to help clean up after their epic as fuck fight agains their Denizen"];
+var postdenizen_scout_quests = ["finding Consorts that still need help even after the Denizen has been defeated", "scouting out areas that have opened up following the Denizen's defeat","looking for rare treasures that are no longer being guarded by the Denizen"];
+var postdenizen_scribe_quests = ["documenting the various Consorts lost to the Denizen.","writing up a recovery plan for the Local Consorts","figuring out the best way to explain how to recover from the ravages of Denizen"];
+var postdenizen_sage_quests = ["learning everything there is learn about the Denizen, now that it is safely defeated","learning what Consort civilization was like before the Denizen, to better help them return to 'normal'","demonstrating to the local Consorts the best way to move on from the tyranny of the Denizen"];
+
+
+
 
 var postdenizen_space_quests = ["stoking the forge and preparing to create a new universe"];
 postdenizen_space_quests.push("cloning ribbiting assholes till you’re up to your eyeballs in frogs");
