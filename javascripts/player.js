@@ -141,7 +141,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		ret += Math.abs(this.freeWill)
 		ret += Math.abs(this.mobility)
 		ret += Math.abs(this.hp)
-		ret += Math.abs(this.maxLuck + this.minLuck)
+		ret += Math.abs
+		(this.maxLuck + this.minLuck)
 		ret += Math.abs(this.sanity)
 		return ret;
 	}
@@ -183,6 +184,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		var denizenMinion = new GameEntity(this.session,name + " Minion", null);
 		var tmpStatHolder = {};
 		tmpStatHolder.minLuck = -10;
+		tmpStatHolder.abscondable = false; //this is still the final battle,
+        tmpStatHolder.canAbscond = false;
 		tmpStatHolder.maxLuck = 10;
 		tmpStatHolder.hp = 10 * strength;
 		tmpStatHolder.mobility = 10;

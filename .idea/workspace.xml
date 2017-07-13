@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/OCs/bards.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Dart/planet.dart" afterPath="$PROJECT_DIR$/Dart/planet.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" afterPath="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/player.js" afterPath="$PROJECT_DIR$/javascripts/player.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="player.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="719" column="25" lean-forward="true" selection-start-line="719" selection-start-column="25" selection-end-line="719" selection-end-column="25" />
+            <state relative-caret-position="238">
+              <caret line="187" column="8" lean-forward="false" selection-start-line="187" selection-start-column="8" selection-end-line="187" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -40,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Aftermath.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Aftermath.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/Scenes/Aftermath.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="307" column="74" lean-forward="false" selection-start-line="307" selection-start-column="74" selection-end-line="307" selection-end-column="74" />
+            <state relative-caret-position="103">
+              <caret line="254" column="4" lean-forward="false" selection-start-line="254" selection-start-column="4" selection-end-line="255" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -102,8 +99,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>rocks fall</find>
-      <find>baseV</find>
       <find>Waste</find>
       <find>baseValue</find>
       <find>waste</find>
@@ -132,6 +127,8 @@
       <find>bastard</find>
       <find>vision</find>
       <find>purple</find>
+      <find>makeDen</find>
+      <find>abscon</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -179,12 +176,12 @@
         <option value="$PROJECT_DIR$/OCs/ideasWranglers.txt" />
         <option value="$PROJECT_DIR$/OCs/creditsBuckaroos.txt" />
         <option value="$PROJECT_DIR$/credits.html" />
-        <option value="$PROJECT_DIR$/javascripts/player.js" />
         <option value="$PROJECT_DIR$/javascripts/handle_sprites.js" />
         <option value="$PROJECT_DIR$/javascripts/random_tables.js" />
         <option value="$PROJECT_DIR$/OCs/bards.txt" />
         <option value="$PROJECT_DIR$/Dart/planet.dart" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
+        <option value="$PROJECT_DIR$/javascripts/player.js" />
       </list>
     </option>
   </component>
@@ -1022,14 +1019,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="719" column="25" lean-forward="true" selection-start-line="719" selection-start-column="25" selection-end-line="719" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Dart/planet.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -1040,8 +1029,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/Scenes/Aftermath.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="307" column="74" lean-forward="false" selection-start-line="307" selection-start-column="74" selection-end-line="307" selection-end-column="74" />
+        <state relative-caret-position="103">
+          <caret line="254" column="4" lean-forward="false" selection-start-line="254" selection-start-column="4" selection-end-line="255" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="187" column="8" lean-forward="false" selection-start-line="187" selection-start-column="8" selection-end-line="187" selection-end-column="8" />
           <folding />
         </state>
       </provider>
