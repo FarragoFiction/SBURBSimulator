@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OCs/creditsBuckaroos.txt" afterPath="$PROJECT_DIR$/OCs/creditsBuckaroos.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OCs/ideasWranglers.txt" afterPath="$PROJECT_DIR$/OCs/ideasWranglers.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/credits.html" afterPath="$PROJECT_DIR$/credits.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/player.js" afterPath="$PROJECT_DIR$/javascripts/player.js" />
-    </list>
+    <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
