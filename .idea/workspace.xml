@@ -20,8 +20,18 @@
       <file leaf-file-name="player.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="187" column="8" lean-forward="false" selection-start-line="187" selection-start-column="8" selection-end-line="187" selection-end-column="8" />
+            <state relative-caret-position="223">
+              <caret line="186" column="90" lean-forward="false" selection-start-line="186" selection-start-column="90" selection-end-line="186" selection-end-column="90" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gameEntity.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/javascripts/gameEntity.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="103">
+              <caret line="210" column="32" lean-forward="false" selection-start-line="210" selection-start-column="21" selection-end-line="210" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -99,7 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Waste</find>
       <find>baseValue</find>
       <find>waste</find>
       <find>applyEffect</find>
@@ -127,8 +136,9 @@
       <find>bastard</find>
       <find>vision</find>
       <find>purple</find>
-      <find>makeDen</find>
       <find>abscon</find>
+      <find>makeDen</find>
+      <find>abscondable</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -795,14 +805,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/gameEntity.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="1570" column="27" lean-forward="true" selection-start-line="1570" selection-start-column="27" selection-end-line="1570" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/OCs/otherFandoms.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -1035,10 +1037,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/gameEntity.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="210" column="32" lean-forward="false" selection-start-line="210" selection-start-column="21" selection-end-line="210" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="187" column="8" lean-forward="false" selection-start-line="187" selection-start-column="8" selection-end-line="187" selection-end-column="8" />
+        <state relative-caret-position="223">
+          <caret line="186" column="90" lean-forward="false" selection-start-line="186" selection-start-column="90" selection-end-line="186" selection-end-column="90" />
           <folding />
         </state>
       </provider>
