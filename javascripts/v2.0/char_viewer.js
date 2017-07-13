@@ -28,7 +28,7 @@ function renderHeader(){
 	if(getParameterByName("canon")  == "true") header += " canon"
 	if(getParameterByName("otherFandoms")  == "true") header += " otherFandoms"
 	if(getParameterByName("creators")  == "true") header += " creators"
-	if(getParameterByName("bards")  == "true") header += " bards"
+	if(getParameterByName("bards")  == "true") header += " bards<span class='void'>Not gonna lie, gonna add a secret boss for each one of these assholes</span>"
 	header += ""
 	if(header!= "" ) $("#header").html(header);
 
