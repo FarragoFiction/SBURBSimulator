@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/oc.css" afterPath="$PROJECT_DIR$/css/oc.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/fraymotif.js" afterPath="$PROJECT_DIR$/javascripts/fraymotif.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,8 +21,8 @@
       <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="2191" column="43" lean-forward="false" selection-start-line="2191" selection-start-column="28" selection-end-line="2191" selection-end-column="43" />
+            <state relative-caret-position="160">
+              <caret line="2401" column="31" lean-forward="false" selection-start-line="2401" selection-start-column="9" selection-end-line="2401" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -31,7 +32,17 @@
         <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="235">
-              <caret line="631" column="30" lean-forward="false" selection-start-line="631" selection-start-column="30" selection-end-line="631" selection-end-column="30" />
+              <caret line="287" column="57" lean-forward="false" selection-start-line="287" selection-start-column="57" selection-end-line="287" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="oc.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/oc.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="51" lean-forward="false" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -79,8 +90,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>++</find>
-      <find>collate</find>
       <find>isEnd</find>
       <find>summ</find>
       <find>getInterestHandle1</find>
@@ -99,7 +108,6 @@
       <find>createFraymotifForPlayerDenizen</find>
       <find>gold</find>
       <find>bloo</find>
-      <find>applyEffect</find>
       <find>processEffectValue</find>
       <find>tier</find>
       <find>god Ti</find>
@@ -109,6 +117,9 @@
       <find>Waste</find>
       <find>baseValue</find>
       <find>waste</find>
+      <find>applyEffect</find>
+      <find>Hope Rid</find>
+      <find>font</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -157,6 +168,7 @@
         <option value="$PROJECT_DIR$/OCs/tumblr.txt" />
         <option value="$PROJECT_DIR$/javascripts/newsposts.js" />
         <option value="$PROJECT_DIR$/javascripts/player.js" />
+        <option value="$PROJECT_DIR$/css/oc.css" />
         <option value="$PROJECT_DIR$/javascripts/fraymotif.js" />
       </list>
     </option>
@@ -270,6 +282,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Dart" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SBURBSimulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SBURBSimulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -968,10 +994,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/css/oc.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="51" lean-forward="false" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="2191" column="43" lean-forward="false" selection-start-line="2191" selection-start-column="28" selection-end-line="2191" selection-end-column="43" />
+        <state relative-caret-position="160">
+          <caret line="2401" column="31" lean-forward="false" selection-start-line="2401" selection-start-column="9" selection-end-line="2401" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -979,7 +1013,7 @@
     <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="235">
-          <caret line="631" column="30" lean-forward="false" selection-start-line="631" selection-start-column="30" selection-end-line="631" selection-end-column="30" />
+          <caret line="287" column="57" lean-forward="false" selection-start-line="287" selection-start-column="57" selection-end-line="287" selection-end-column="57" />
           <folding />
         </state>
       </provider>

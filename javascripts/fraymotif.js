@@ -280,6 +280,14 @@ function Fraymotif(aspects, name,tier, flavorText){
     if(!this.canCast(owner, allies, enemies)) return;
 		var casters = this.getCasters(owner, allies);
     this.makeCastersUnavailable(casters);
+    //Hope Rides Alone
+    if(owner.aspect == "Hope" && allies.length == 1 && Math.seededRandom() > 0.75){
+        enemies[0].buffs.push(new Buff("currentHP", -9999)) //they REALLY believed in this attack.
+        var jakeisms = ["GADZOOKS!","BOY HOWDY!","TALLY HO!","BY GUM"];
+        alert("Hope Rides Alone in session: "  + owner.session.session_id)
+        var scream =  getFontColorFromAspect(owner.aspect) + getRandomElementFromArray(jakeisms) + "</font>"
+        return " [HOPE RIDES ALONE] is activated. " + owner.htmlTitle() +  " starts screaming. <br><br><span class = 'jake'> " + scream + " </span>  <Br><Br> Holy fucking SHIT, that is WAY MORE DAMAGE then is needed. Jesus christ. Someone nerf that Hope player already!"
+    }
     var dead = findDeadPlayers(allies);
 		//console.log(casters);
     //ALL effects that target a single enemy target the SAME enemy.
@@ -631,7 +639,7 @@ function FraymotifCreator(){
             f.tier = 99;
             f.baseValue = 9999;
             f.name += " (True Form)"
-            f.flavorText = "Incredibly huge meteors rain down from above. What the hell??? Didn't this used to suck?  Hax, I call hax!";
+            f.flavorText = "Incredibly huge meteors rain down from above. What the hell??? Didn't this used to suck?  Hax! I call hax!";
             return f;
         }
     }
@@ -779,7 +787,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 		for(var i = 0; i<targetArr.length; i++){
 			var t = targetArr[i];
 			t.makeAlive();
-      t.buffs.push(new Buff("currentHP", e)) //don't mod directly anymore
+            t.buffs.push(new Buff("currentHP", e)) //don't mod directly anymore
 		}
 	}
 
