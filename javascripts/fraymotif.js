@@ -613,10 +613,28 @@ function FraymotifCreator(){
     return this.makeFraymotif(players_involved , tier);
   }
 
+  this.findFraymotifNamed(fraymotifs, name){
+    for(var i = 0; i<fraymotifs.length; i++){
+        if(fraymotifs[i].name == name) return fraymotifs[i];
+    }
+    return null;
+  }
+
   //classes is between 0 and aspects.length. each aspect is paired with a class.
   //should there be no class to pair with, random effect based on aspect
   //otherwise, effect is based on both class and aspect
   this.makeFraymotif = function(players,tier){ //asumming first player in that array is the owner of the framotif later on.
+    if(players.length == 0 && players[0].class_name == "Waste" && players[0].godTier){
+        //check to see if we are upgrading rocks fall.
+        var f = this.findFraymotifNamed(players[0].fraymotifs, "Rocks Fall, Everyone Dies")
+        if(f && f.tier < 10){
+            alert("HAXING FRAYMOTIF IN SESSION: " + this.session.session_id);
+            f.tier = 10;
+            f.flavorText = "What the hell??? Didn't this used to suck?  Hax, I call hax!";
+            return f;
+        }
+    }
+
     var name = this.getFraymotifName(players, tier);
   	var aspects = [];
   	for(var i = 0; i<players.length; i++){

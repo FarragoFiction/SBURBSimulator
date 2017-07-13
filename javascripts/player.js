@@ -2187,9 +2187,9 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.currentHP = this.hp; //could have been altered by associated stats
 
 		if(this.class_name == "Waste"){
-		    var f = new Fraymotif([],  "Rocks Fall, Everyone Dies", 1) //what better fraymotif for an Author to start with
+		    var f = new Fraymotif([],  "Rocks Fall, Everyone Dies", 1) //what better fraymotif for an Author to start with. Too bad it sucks.  If ONLY there were some way to hax0r SBURB???
             f.effects.push(new FraymotifEffect("power",3,true));
-            f.flavorText = " Hax, I call hax! "
+            f.flavorText = " Man, for such a cool name, this fraymotif kind of sucks. "
             this.fraymotifs.push(f);
 		}else if(this.class_name == "Null"){
             var f = new Fraymotif([],  "What class???", 1)
