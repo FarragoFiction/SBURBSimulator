@@ -15,4 +15,5 @@ b=%00%00%00%20%C3%B8%23%10PGGD&s=,,Drawing,Character Creation,InsufferableOracle
 b=B1%0F%C2%81%C3%BE%C2%A7%00H%19%193&s=,,Coding,Science Fiction,insipidTestimony
 b=G%22%0E%15%C3%BE-%00%06%0F%0F%3A&s=,,Drawing,History,celeriApocryph
 b=%00%00%00%26%C3%BE%3D%00%07))%18&s=,,Writing,Science,asocialGoldfish
+b=%00%00%00%C3%BB%C3%BE%C3%9B%00%5C%06%068&s=,,Mathematics,Tabletop Roleplaying,aspiringWatcher
 

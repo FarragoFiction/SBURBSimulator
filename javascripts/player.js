@@ -281,7 +281,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.strongDenizenNames = function(){
-	   // alert("What if you don't want stranth?" + this.session.session_id)
+	    console.log("What if you don't want stranth? " + this.session.session_id)
 		var ret = ['Yaldabaoth', '<span class = "void">Nobrop, the </span>Null', '<span class = "void">Paraxalan, The </span>Ever-Searching', "<span class = 'void'>Algebron, The </span>Dilletant", '<span class = "void">Doomod, The </span>Wanderer', 'Jörmungandr','Apollyon','Siseneg','Borunam','<span class = "void">Jadeacher the,</span>Researcher','Karmiution','<span class = "void">Authorot, the</span> Robot', '<span class = "void">Abbiejean, the </span>Scout', 'Aspiratcher, The Librarian','<span class = "void">Recurscker, The</span>Hollow One','Insurorracle','<span class = "void">Maniomnia, the Dreamwaker</span>','Kazerad','Shiva','Goliath'];
 		return getRandomElementFromArray(ret);
 	}
@@ -387,7 +387,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.dead = true;
 		this.timesDied ++;
 		this.buffs = [];
-		this.causeOfDeath = causeOfDeath;
+		this.causeOfDeath = sanitizeString(causeOfDeath);
 		if(this.currentHP > 0) this.currentHP = -1; //just in case anything weird is going on. dead is dead.  (for example, you could have been debuffed of hp).
 		//was in make alive, but realized that this makes doom ghosts way stronger if it's here. powered by DEATH, but being revived.
 		if(this.aspect == "Doom"){ //powered by their own doom.
