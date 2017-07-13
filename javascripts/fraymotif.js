@@ -305,7 +305,7 @@ function FraymotifCreator(){
     this.premadeFraymotifNames = [];
   this.createFraymotifForPlayerDenizen = function(player, name){
     var denizen = player.denizen;
-    var f = new Fraymotif([], name + this.getDenizenFraymotifNameFromAspect(player.aspect), 2); //CAN I have an aspectless fraymotif?
+    var f = new Fraymotif([], name + "'s " + this.getDenizenFraymotifNameFromAspect(player.aspect), 2); //CAN I have an aspectless fraymotif?
     f.flavorText = this.getDenizenFraymotifDescriptionForAspect(player.aspect);
 
     //statName, target, damageInsteadOfBuff, flavorText
@@ -322,7 +322,7 @@ function FraymotifCreator(){
     player.denizen.fraymotifs.push(f);
   }
 
-  this.getDenizenFraymotifNameFromAspect(aspect){
+  this.getDenizenFraymotifNameFromAspect = function(aspect){
       var ret = "";
       if(aspect == "Blood"){
           ret = "Ballad " //a song passed over generations in an oral history
@@ -354,7 +354,7 @@ function FraymotifCreator(){
       return ret;
   }
 
-  this.getDenizenFraymotifDescriptionForAspect(aspect){
+  this.getDenizenFraymotifDescriptionForAspect = function(aspect){
       var ret = "";
       if(aspect == "Blood"){
           ret = " A sour note is produced. It's the one Agitation plays to make its audience squirm. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
@@ -571,7 +571,7 @@ function FraymotifCreator(){
   this.getFraymotifName = function(players, tier){
     var name = this.tryToGetPreMadeName(players);
     if(name){
-        console.log("Using a premade procedural fraymotif name: " + name + " " + players[0].session.session_id)
+        //console.log("Using a premade procedural fraymotif name: " + name + " " + players[0].session.session_id)
         return name; //premade is good enough here. let the called function handle randomness.
     }else{
         name = "";
