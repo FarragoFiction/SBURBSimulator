@@ -965,6 +965,7 @@ function CharacterEasterEggEngine(){
 	this.creatorCharacters =["b=%2B*-%C3%96%C3%B4%5C%00%C3%90%2C%2C%0D&s=,,Arson,Shipping,authorBotJunior","b=%2B*-%06%C3%B4%C2%A3%00%C3%90%2C%2C%0D&s=,,Authoring,Robots,authorBot","b=%C3%A8%C3%90%C2%99E%C3%BE)%00%17%1C%1C.&s=,,100 Art Projects At Once,Memes,karmicRetribution","b=%3C%1E%07%C3%86%C3%BE%C2%A3%04%13%18%18%0D&s=,,The AuthorBot,Authoring,jadedResearcher"];
 	this.creditsBuckaroos = [];
 	this.ideasWranglers = [];
+	this.bards = [];
 	this.patrons = [];
 	this.patrons2 = [];
 	this.patrons3 = [];
@@ -1056,6 +1057,7 @@ function CharacterEasterEggEngine(){
 		this.loadArrayFromFile("patrons2","OCs/patrons2.txt", processForSim)
 		this.loadArrayFromFile("patrons3","OCs/patrons3.txt", processForSim)
 		this.loadArrayFromFile("canon","OCs/canon.txt", processForSim)
+		this.loadArrayFromFile("bards","OCs/bards.txt", processForSim)
 		this.loadArrayFromFile("otherFandoms","OCs/otherFandoms.txt", processForSim,callBack,that) //last one in list has callback so I know to do next thing.
 	}
 
@@ -1083,6 +1085,10 @@ function CharacterEasterEggEngine(){
 		if(getParameterByName("ideasWranglers")  == "true"){
 			pool = pool.concat(this.ideasWranglers)
 		}
+
+		if(getParameterByName("bards")  == "true"){
+        	pool = pool.concat(this.bards)
+        }
 
 		if(getParameterByName("patrons")  == "true"){
 			pool = pool.concat(this.patrons)
@@ -1119,6 +1125,7 @@ function CharacterEasterEggEngine(){
 			pool = pool.concat(this.ideasWranglers)
 			pool = pool.concat(this.canon)
 			pool = pool.concat(this.creatorCharacters)
+			pool = pool.concat(this.bards)
 		}
 
 		//return pool;

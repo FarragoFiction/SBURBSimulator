@@ -28,6 +28,7 @@ function renderHeader(){
 	if(getParameterByName("canon")  == "true") header += " canon"
 	if(getParameterByName("otherFandoms")  == "true") header += " otherFandoms"
 	if(getParameterByName("creators")  == "true") header += " creators"
+	if(getParameterByName("bards")  == "true") header += " bards"
 	header += ""
 	if(header!= "" ) $("#header").html(header);
 
