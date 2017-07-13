@@ -1248,6 +1248,9 @@ function drawBGRadialWithWidth(canvas, startX, endX, width, color1, color2){
 }
 
 function denizenKill(canvas,player){
+  if(checkSimMode() == true){
+    return;
+  }
   var p1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
   //drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff")
 	var ctx = p1SpriteBuffer.getContext('2d');
