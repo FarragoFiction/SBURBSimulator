@@ -18,21 +18,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="player.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="2189" column="69" lean-forward="false" selection-start-line="2189" selection-start-column="69" selection-end-line="2189" selection-end-column="69" />
+            <state relative-caret-position="190">
+              <caret line="2191" column="43" lean-forward="false" selection-start-line="2191" selection-start-column="28" selection-end-line="2191" selection-end-column="43" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fraymotif.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fraymotif.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="617" column="60" lean-forward="false" selection-start-line="617" selection-start-column="60" selection-end-line="617" selection-end-column="60" />
+            <state relative-caret-position="316">
+              <caret line="632" column="74" lean-forward="false" selection-start-line="632" selection-start-column="74" selection-end-line="632" selection-end-column="74" />
               <folding />
             </state>
           </provider>
@@ -107,9 +107,9 @@
       <find>applyEffect</find>
       <find>processEffectValue</find>
       <find>tier</find>
+      <find>rocks fall</find>
       <find>god Ti</find>
       <find>makeFraymotif</find>
-      <find>rocks fall</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -157,8 +157,8 @@
         <option value="$PROJECT_DIR$/javascripts/Scenes/LifeStuff.js" />
         <option value="$PROJECT_DIR$/OCs/tumblr.txt" />
         <option value="$PROJECT_DIR$/javascripts/newsposts.js" />
-        <option value="$PROJECT_DIR$/javascripts/player.js" />
         <option value="$PROJECT_DIR$/javascripts/fraymotif.js" />
+        <option value="$PROJECT_DIR$/javascripts/player.js" />
       </list>
     </option>
   </component>
@@ -969,18 +969,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
+    <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="2189" column="69" lean-forward="false" selection-start-line="2189" selection-start-column="69" selection-end-line="2189" selection-end-column="69" />
+        <state relative-caret-position="316">
+          <caret line="632" column="74" lean-forward="false" selection-start-line="632" selection-start-column="74" selection-end-line="632" selection-end-column="74" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
+    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="617" column="60" lean-forward="false" selection-start-line="617" selection-start-column="60" selection-end-line="617" selection-end-column="60" />
+        <state relative-caret-position="190">
+          <caret line="2191" column="43" lean-forward="false" selection-start-line="2191" selection-start-column="28" selection-end-line="2191" selection-end-column="43" />
           <folding />
         </state>
       </provider>
