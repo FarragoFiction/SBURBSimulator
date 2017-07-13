@@ -281,7 +281,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.strongDenizenNames = function(){
-		var ret = ['Yaldabaoth', 'Nobrop', 'Paraxalan',  'Jörmungandr','Apollyon','Siseneg','Borunam','Jadeacher','Karmiution','Authorot','Aspiratcher','Recurscker','Insurorracle','Maniomnia','Kazerad','Shiva','Goliath'];
+	   // alert("What if you don't want stranth?" + this.session.session_id)
+		var ret = ['Yaldabaoth', 'Nobrop', 'Paraxalan', 'Doomod', 'Jörmungandr','Apollyon','Siseneg','Borunam','Jadeacher','Karmiution','Authorot','Librarian','Recurscker','Insurorracle','Maniomnia','Kazerad','Shiva','Goliath'];
 		return getRandomElementFromArray(ret);
 	}
 
