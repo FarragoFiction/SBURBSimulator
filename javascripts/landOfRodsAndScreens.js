@@ -579,7 +579,9 @@ function quip(state){
 		ret = "Holy shit, how old IS that picture???"
 	} else if(state == 110){
 		ret = "Holy shit, classic 'You're Welcome' x2 combo. I added the cod piece as an easter egg AND I am showing you the way to turn on the Mindy Thing without waiting for 5 whole minutes. Truly, my magnanimity is breath taking."
-	}  else{
+	} else if(state == 116){
+     		ret = "Holy fuck, I remember this. That denizen just fucking absconded mid boss fight. Kicked out the player and took their entire lair with them and rocked off into space.  So fucking weird."
+    }   else{
 		ret = "???"
 	}
 	console.log("JR: " + ret)
