@@ -282,7 +282,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	this.strongDenizenNames = function(){
 	   // alert("What if you don't want stranth?" + this.session.session_id)
-		var ret = ['Yaldabaoth', 'Nobrop', 'Paraxalan', 'Doomod', 'Jörmungandr','Apollyon','Siseneg','Borunam','Jadeacher','Karmiution','Authorot','Librarian','Recurscker','Insurorracle','Maniomnia','Kazerad','Shiva','Goliath'];
+		var ret = ['Yaldabaoth', '<span class = "void">Nobrop, the </span>Null', '<span class = "void">Paraxalan, The </span>Ever-Searching', "<span class = 'void'>Algebron, The </span>Dilletant", '<span class = "void">Doomod, The </span>Wanderer', 'Jörmungandr','Apollyon','Siseneg','Borunam','<span class = "void">Jadeacher the,</span>Researcher','Karmiution','<span class = "void">Authorot, the</span> Robot', '<span class = "void">Abbiejean, the </span>Scout', 'Aspiratcher, The Librarian','<span class = "void">Recurscker, The</span>Hollow One','Insurorracle','<span class = "void">Maniomnia, the Dreamwaker</span>','Kazerad','Shiva','Goliath'];
 		return getRandomElementFromArray(ret);
 	}
 
