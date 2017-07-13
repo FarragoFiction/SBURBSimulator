@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/newsposts.js" afterPath="$PROJECT_DIR$/javascripts/newsposts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/fraymotif.js" afterPath="$PROJECT_DIR$/javascripts/fraymotif.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,17 +27,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fraymotif.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="fraymotif.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="307" column="44" lean-forward="false" selection-start-line="307" selection-start-column="44" selection-end-line="307" selection-end-column="44" />
+            <state relative-caret-position="175">
+              <caret line="19" column="118" lean-forward="false" selection-start-line="19" selection-start-column="118" selection-end-line="19" selection-end-column="118" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="newsposts.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="newsposts.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/newsposts.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="300">
@@ -69,9 +69,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>void</find>
-      <find>redoRelationships</find>
-      <find>incoming</find>
       <find>friends</find>
       <find>corr</find>
       <find>Troll kid Rock</find>
@@ -99,6 +96,9 @@
       <find>createFraymotifForPlayerDenizen</find>
       <find>gold</find>
       <find>bloo</find>
+      <find>applyEffect</find>
+      <find>processEffectValue</find>
+      <find>tier</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -146,8 +146,8 @@
         <option value="$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/LifeStuff.js" />
         <option value="$PROJECT_DIR$/OCs/tumblr.txt" />
-        <option value="$PROJECT_DIR$/javascripts/fraymotif.js" />
         <option value="$PROJECT_DIR$/javascripts/newsposts.js" />
+        <option value="$PROJECT_DIR$/javascripts/fraymotif.js" />
       </list>
     </option>
   </component>
@@ -958,18 +958,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="307" column="44" lean-forward="false" selection-start-line="307" selection-start-column="44" selection-end-line="307" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/newsposts.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="170" lean-forward="false" selection-start-line="20" selection-start-column="170" selection-end-line="20" selection-end-column="170" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="19" column="118" lean-forward="false" selection-start-line="19" selection-start-column="118" selection-end-line="19" selection-end-column="118" />
           <folding />
         </state>
       </provider>

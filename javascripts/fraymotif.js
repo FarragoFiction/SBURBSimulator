@@ -17,7 +17,7 @@ function Fraymotif(aspects, name,tier, flavorText){
     this.used = false; //when start fight, set to false. set to true when used. once per fight
   	this.effects = [];  //each effect is a target, a revive, a statName
   	this.baseValue = 50 * this.tier;
-    if(this.tier ==3) this.baseValue = 1000;//gods, man
+    if(this.tier >=3) this.baseValue = 1000 * this.tier-2;//so a tier 3 is 1000 * 3 -2, or....1000.  But..maybe there is a way to make them even more op???
 
     this.toString  = function(){
       return this.name;
