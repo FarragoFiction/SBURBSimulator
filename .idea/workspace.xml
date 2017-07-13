@@ -30,8 +30,18 @@
       <file leaf-file-name="fraymotif.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="451">
-              <caret line="357" column="19" lean-forward="true" selection-start-line="357" selection-start-column="19" selection-end-line="357" selection-end-column="19" />
+            <state relative-caret-position="331">
+              <caret line="381" column="90" lean-forward="false" selection-start-line="381" selection-start-column="90" selection-end-line="381" selection-end-column="90" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="random_tables.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="145">
+              <caret line="1357" column="43" lean-forward="false" selection-start-line="1357" selection-start-column="2" selection-end-line="1357" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -49,8 +59,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>makeGu</find>
-      <find>WEbcomic</find>
       <find>void</find>
       <find>redoRelationships</find>
       <find>incoming</find>
@@ -79,6 +87,8 @@
       <find>loadAllPossiblePlayers</find>
       <find>makeDenizen</find>
       <find>createFraymotifForPlayerDenizen</find>
+      <find>bloo</find>
+      <find>gold</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -866,14 +876,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="810" column="8" lean-forward="false" selection-start-line="810" selection-start-column="8" selection-end-line="810" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/lz-string.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -946,10 +948,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="1357" column="43" lean-forward="false" selection-start-line="1357" selection-start-column="2" selection-end-line="1357" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="357" column="19" lean-forward="true" selection-start-line="357" selection-start-column="19" selection-end-line="357" selection-end-column="19" />
+        <state relative-caret-position="331">
+          <caret line="381" column="90" lean-forward="false" selection-start-line="381" selection-start-column="90" selection-end-line="381" selection-end-column="90" />
           <folding />
         </state>
       </provider>
