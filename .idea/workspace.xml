@@ -20,8 +20,8 @@
       <file leaf-file-name="player.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="1183" column="53" lean-forward="false" selection-start-line="1183" selection-start-column="53" selection-end-line="1183" selection-end-column="53" />
+            <state relative-caret-position="180">
+              <caret line="1087" column="48" lean-forward="false" selection-start-line="1087" selection-start-column="48" selection-end-line="1087" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -50,8 +50,18 @@
       <file leaf-file-name="char_creator_helper.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="345" column="305" lean-forward="false" selection-start-line="345" selection-start-column="305" selection-end-line="345" selection-end-column="305" />
+            <state relative-caret-position="205">
+              <caret line="384" column="30" lean-forward="false" selection-start-line="384" selection-start-column="30" selection-end-line="384" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DoLandQuest.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/javascripts/Scenes/DoLandQuest.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="163">
+              <caret line="76" column="22" lean-forward="false" selection-start-line="76" selection-start-column="22" selection-end-line="76" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -69,9 +79,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>myTurn =</find>
-      <find>feeling</find>
-      <find>human</find>
       <find>describeBuffs</find>
       <find>getStat</find>
       <find>than nom</find>
@@ -86,7 +93,6 @@
       <find>Ancient</find>
       <find>session413</find>
       <find>generateClassHelp</find>
-      <find>Scribe</find>
       <find>interactionEffect</find>
       <find>highInit</find>
       <find>Rogue</find>
@@ -99,6 +105,10 @@
       <find>Knight</find>
       <find>increasePower</find>
       <find>processStatPowerIncrease</find>
+      <find>Scribe</find>
+      <find>load</find>
+      <find>scoring</find>
+      <find>Mage</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -612,14 +622,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/javascripts/v2.0/scenario_controller2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="400" column="6" lean-forward="false" selection-start-line="400" selection-start-column="6" selection-end-line="400" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/support.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
@@ -1006,16 +1008,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="345" column="305" lean-forward="false" selection-start-line="345" selection-start-column="305" selection-end-line="345" selection-end-column="305" />
+        <state relative-caret-position="205">
+          <caret line="384" column="30" lean-forward="false" selection-start-line="384" selection-start-column="30" selection-end-line="384" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/Scenes/DoLandQuest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="76" column="22" lean-forward="false" selection-start-line="76" selection-start-column="22" selection-end-line="76" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="1183" column="53" lean-forward="false" selection-start-line="1183" selection-start-column="53" selection-end-line="1183" selection-end-column="53" />
+        <state relative-caret-position="180">
+          <caret line="1087" column="48" lean-forward="false" selection-start-line="1087" selection-start-column="48" selection-end-line="1087" selection-end-column="48" />
           <folding />
         </state>
       </provider>

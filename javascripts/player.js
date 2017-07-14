@@ -1083,9 +1083,9 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
                 break;
 			case  "Seer":
 				if(stat.multiplier > 0){
-					powerBoost = powerBoost * 1;
+					powerBoost = powerBoost * 2;
 				}else{
-					powerBoost = powerBoost * 0.25
+					powerBoost = powerBoost * 2.5
 				}
 				break;
 			case  "Bard":
@@ -1137,9 +1137,9 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				break;
 			case  "Mage":
 				if(stat.multiplier > 0){
-					powerBoost = powerBoost * 1;
+					powerBoost = powerBoost * 2;
 				}else{
-					powerBoost = powerBoost * 0.25
+					powerBoost = powerBoost * 2.5
 				}
 				break;
 
