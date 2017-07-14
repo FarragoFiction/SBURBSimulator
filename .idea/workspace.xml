@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/gameEntity.js" afterPath="$PROJECT_DIR$/javascripts/gameEntity.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/newsposts.js" afterPath="$PROJECT_DIR$/javascripts/newsposts.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/player.js" afterPath="$PROJECT_DIR$/javascripts/player.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,21 +28,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gameEntity.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="gameEntity.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/gameEntity.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="148">
               <caret line="853" column="29" lean-forward="false" selection-start-line="853" selection-start-column="29" selection-end-line="853" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Aftermath.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/Scenes/Aftermath.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="254" column="4" lean-forward="false" selection-start-line="254" selection-start-column="4" selection-end-line="255" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -101,8 +91,18 @@
       <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="1534" column="52" lean-forward="false" selection-start-line="1534" selection-start-column="52" selection-end-line="1534" selection-end-column="52" />
+            <state relative-caret-position="225">
+              <caret line="1544" column="24" lean-forward="false" selection-start-line="1544" selection-start-column="24" selection-end-line="1544" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="newsposts.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/javascripts/newsposts.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="291">
+              <caret line="20" column="450" lean-forward="false" selection-start-line="20" selection-start-column="450" selection-end-line="20" selection-end-column="450" />
               <folding />
             </state>
           </provider>
@@ -157,9 +157,9 @@
       <find>feeling</find>
       <find>human</find>
       <find>describeBuffs</find>
-      <find>playerdec</find>
       <find>getStat</find>
       <find>than nom</find>
+      <find>playerdec</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -197,7 +197,6 @@
         <option value="$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/LifeStuff.js" />
         <option value="$PROJECT_DIR$/OCs/tumblr.txt" />
-        <option value="$PROJECT_DIR$/javascripts/newsposts.js" />
         <option value="$PROJECT_DIR$/css/oc.css" />
         <option value="$PROJECT_DIR$/javascripts/fraymotif.js" />
         <option value="$PROJECT_DIR$/navbar.txt" />
@@ -214,8 +213,9 @@
         <option value="$PROJECT_DIR$/character_viewer.html" />
         <option value="$PROJECT_DIR$/javascripts/v2.0/char_viewer.js" />
         <option value="$PROJECT_DIR$/javascripts/playerSnapshot.js" />
-        <option value="$PROJECT_DIR$/javascripts/player.js" />
         <option value="$PROJECT_DIR$/javascripts/gameEntity.js" />
+        <option value="$PROJECT_DIR$/javascripts/player.js" />
+        <option value="$PROJECT_DIR$/javascripts/newsposts.js" />
       </list>
     </option>
   </component>
@@ -902,14 +902,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/newsposts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="170" lean-forward="false" selection-start-line="20" selection-start-column="170" selection-end-line="20" selection-end-column="170" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/Scenes/LuckStuff.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -1062,18 +1054,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="1534" column="52" lean-forward="false" selection-start-line="1534" selection-start-column="52" selection-end-line="1534" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/gameEntity.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="148">
           <caret line="853" column="29" lean-forward="false" selection-start-line="853" selection-start-column="29" selection-end-line="853" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="1544" column="24" lean-forward="false" selection-start-line="1544" selection-start-column="24" selection-end-line="1544" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/newsposts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="20" column="450" lean-forward="false" selection-start-line="20" selection-start-column="450" selection-end-line="20" selection-end-column="450" />
           <folding />
         </state>
       </provider>
