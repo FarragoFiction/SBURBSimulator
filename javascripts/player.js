@@ -2941,7 +2941,6 @@ function getAverageFreeWill(players){
 	return  Math.round(ret/players.length);
 }
 
-///TODO USE SOMETHING SIMILAR FOR fraymotifS (BUT THROWN AWAY AT END OF STRIFE)
 //need to know if you're from aspect, 'cause only aspect associatedStats will be used for fraymotifs.
 //except for heart, which can use ALL associated stats. (cause none will be from aspect.)
 function AssociatedStat(statName, multiplier, isFromAspect){
