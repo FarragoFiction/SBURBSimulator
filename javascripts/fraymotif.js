@@ -317,12 +317,12 @@ function FraymotifCreator(){
     f.flavorText = this.getDenizenFraymotifDescriptionForAspect(player.aspect);
 
     //statName, target, damageInsteadOfBuff, flavorText
-    var plus = player.getOnlyPositiveAspectAssociatedStats() //buff self and heal
+    var plus = player.associatedStats //buff self and heal. used to be only positive, but that gave witches/sylphs/princes/bards the shaft
     for(var i = 0; i<plus.length; i++){
       f.effects.push(new FraymotifEffect(plus[i].name,0,true));
       f.effects.push(new FraymotifEffect(plus[i].name,0,false));
     }
-    var minus = player.getOnlyNegativeAspectAssociatedStats() //debuff enemy, and damage.
+    var minus = player.associatedStats //debuff enemy, and damage. used to be only negative, but that gave witches/sylphs/princes/bards the shaft
     for(var i = 0; i<minus.length; i++){
       f.effects.push(new FraymotifEffect(minus[i].name,2,true));
       f.effects.push(new FraymotifEffect(minus[i].name,2,false));
@@ -684,7 +684,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 		if(player.class_name == "Mage") effect = getRandomElementFromArray(this.mageEffects());
 		this.target = effect.target;
 		this.damageInsteadOfBuff = effect.damageInsteadOfBuff;
-		this.statName = getRandomElementFromArray(player.getOnlyPositiveAspectAssociatedStats()).name; //TODO if I know it's a debuff, maybe debuff the things that are negative for me?
+		this.statName = getRandomElementFromArray(player.associatedStats).name;
 	}
 
 	//preliminary design detailed here: https://docs.google.com/spreadsheets/d/1kam2FnKJiek6DidDpQdSnR3Wl9-vk1oZBa0pPpxlJk4/edit#gid=0
