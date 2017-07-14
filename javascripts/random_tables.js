@@ -1320,7 +1320,7 @@ seer_quests.push("suddenly understanding everything, and casting sincere doubt a
 var witch_quests = ["performing elaborate punch card alchemy through the use of a novelty witch's cauldron"];
 witch_quests.push("deciding which way to go in a series of way-too-long mazes");
 witch_quests.push("solving puzzles in ways that completely defy expectations");
-var waste_quests = ["being a useless piece of shit and requiring the consorts to practically do the quests themselves","causing ridiculous amounts of destruction trying to skip quest lines","learning that sometimes you have to do things right, and can't just skip ahead"];
+var waste_quests = ["being a useless piece of shit and reading FAQs to skip the hard shit in levels","causing ridiculous amounts of destruction trying to skip quest lines","learning that sometimes you have to do things right, and can't just skip ahead"];
 var scout_quests = ["exploring areas no Consort has dared to trespass in","getting lost in ridiculously convoluted mazes","playing map-creating mini games"];
 var scribe_quests = ["taking down the increasingly random and nonsensical oral history of a group of local Consorts","playing typing themed mini games.","reading just, so many books"];
 var sage_quests = ["making the lore of SBURB part of their personal mythos","learning to nod wisely and remain silent when Consorts start yammering on about the Ultimate Riddle","participating in riddle contests to prove their intelligence to local Consorts"];
