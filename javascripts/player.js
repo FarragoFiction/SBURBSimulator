@@ -1532,6 +1532,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	//used for strifes.
 	this.describeBuffs = function(){
+	    alert("i have been asked to describe buffs")
 	    var ret = [];
 	    var allStats = this.allStats();
 	    for(var i = 0; i<allStats.length; i++){
@@ -1541,6 +1542,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	        if(b<0) ret.push("less " + this.humanWordForBuffNamed(allStats[i]));
 	    }
 	    if(ret.length == 0) return "";
+	    alert("buffs printing out in: " + this.session.session_id);
 	    return this.htmlTitleHP() + " is feeling " + turnArrayIntoHumanSentence(ret) + " than normal. ";
 	}
 
