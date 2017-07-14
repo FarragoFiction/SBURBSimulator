@@ -325,18 +325,18 @@ function CharacterCreatorHelper(players){
 	}
 
 	this.generateAspectHelp = function(topic, specific){
-		if(specific == "Space") return "Space players are in charge of breeding the frog, and are associated with the low mobility needed to focus exclusively on their own quests. ";
-		if(specific == "Time") return "Time players are in charge of timeline management, creating various doomed time clones and provide the ability to 'scratch' a failed session. They are chained to inevitability and as a result are associated with low free will. They know a lot about SBURB/SGRUB, usually through time shenanigans.";
-		if(specific == "Breath") return "Breath players are associted with high mobility, and tend to help other players out with their quests, even at the detriment to their own. They are stupidly hard to catch.";
-		if(specific == "Doom") return "Doom players are associated with bad luck and low hp. Each Doom player death is according to a vast prophecy and considerably strengthens them, as well as lifting the Doom on their head for a short time.  They are capable of using the dead as a resource. They know a lot about SBURB/SGRUB.";
-		if(specific == "Heart") return "Heart players are associated with how a target relates to other players.  They are also in charge of shipping grids.";
-		if(specific == "Mind") return "Mind players are associated with high free will. They know a lot about SBURB/SGRUB.";
-		if(specific == "Light") return "Light players are associated with good luck, and know a lot about SBURB/SGRUB. They are awfully distracting and flashy in battle.";
-		if(specific == "Void") return "Void players are capable of accessing the Void, which allows them narrative freedom, random stats and being difficult to find.";
-		if(specific == "Rage") return "Rage players are capable of accessing Madness, which allows them narrative freedom, random stats and the destruction of positive relationships and sanity.";
-		if(specific == "Hope") return "Hope players are associated with raw power. If a strong enough Hope player is alive, players will be less likely to waste time flipping their shit.";
-		if(specific == "Life") return "Life players are associated with high HP. They are capable of using the dead as a resource.";
-		if(specific == "Blood") return "Blood players are associated with how other players relate to a target, in a positive direction as well as sanity. A Blood player is very difficult to murder, being able to insta-calm rampaging players in most cases.";
+		if(specific == "Space") return "Space players are in charge of breeding the frog, and are associated with the low mobility needed to focus exclusively on their own quests, alchemy ability, and health. ";
+		if(specific == "Time") return "Time players are in charge of timeline management, creating various doomed time clones and provide the ability to 'scratch' a failed session. They are chained to inevitability and as a result are associated with low free will offset by high minLuck and mobility . They know a lot about SBURB/SGRUB, usually through time shenanigans.";
+		if(specific == "Breath") return "Breath players are associted with high mobility, and tend to help other players out with their quests, even at the detriment to their own. They are very sane, but tend to have difficulty staying in one place long enough to form social connections. They are stupidly hard to catch.";
+		if(specific == "Doom") return "Doom players are associated with bad luck and low hp. Each Doom player death is according to a vast prophecy and considerably strengthens them, as well as lifting the Doom on their head for a short time. They excel at alchemy, and have limited success with freeWill.  They are capable of using the dead as a resource. They know a lot about SBURB/SGRUB.";
+		if(specific == "Heart") return "Heart players are associated with their INTERESTS. A Heart player interested in Romance, for example, will have a high relationship stat, while one interested in Athletics will have high MANGRIT.  They are also in charge of concupiscient shipping grids.";
+		if(specific == "Mind") return "Mind players are associated with high free will. Luck doesn't R34LLY M4TTER, so they have both good 'minLuck' and poor 'maxLuck'. They have difficulty forming bonds with other players. They know a lot about SBURB/SGRUB.";
+		if(specific == "Light") return "Light players are associated with good luck, have a lot of willpower,  and know a lot about SBURB/SGRUB. They have less hp than other players, and tend to have more fragile psyches. They are awfully distracting and flashy in battle.";
+		if(specific == "Void") return "Void players are capable of accessing the Void, which allows them narrative freedom, random stats and being difficult to find. They have a trait they are SO GOOD or SO BAD at when they enter the medium and increase it over time. They tend to have similarly random flaws, as well as bad luck.";
+		if(specific == "Rage") return "Rage players are capable of accessing Madness, which allows them narrative freedom, raw MANGRIT and speed, and the destruction of positive relationships and sanity.";
+		if(specific == "Hope") return "Hope players are associated with sanity and good luck. If a strong enough Hope player is alive, players will be less likely to waste time flipping their shit. Occasionally, a Hope player will flip their shit and use an insanely powerful attack rather than a regular fraymotif. Hope players have random flaws.";
+		if(specific == "Life") return "Life players are associated with high HP and good MANGRIT. They are capable of using the dead as a resource, but have trouble with Alchemy.";
+		if(specific == "Blood") return "Blood players are associated with high positive relationships, as well as sanity. They are not very lucky. A Blood player is very difficult to murder, being able to insta-calm rampaging players in most cases. They are also in charge of concillitory shipping grids.";
 		return "Aspect help text not found for " + specific + "."
 	}
 
