@@ -1506,6 +1506,44 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		return worstRelationshipSoFar.value;
 	}
 
+
+	//checks array of buffs, and adds up all buffs that effect a given stat.
+	//useful so combat can now how to describe status.
+	this.getTotalBuffForStat = function(statName){
+	    var ret = 0;
+	    for(var i = 0; i<this.buffs.length; i++){
+	        var b = this.buffs[i];
+	        if(b.name == statName) ret += b.value;
+	    }
+	    return ret;
+	}
+
+	this.humanWordForBuffNamed = function(statName){
+        if(statName == "MANGRIT") return "powerful"
+        if(statName == "hp") return "sturdy"
+        if(statName == "RELATIONSHIPS") return "friendly"
+        if(statName == "mobility") return "fast"
+        if(statName == "sanity") return "calm"
+        if(statName == "freeWill") return "willful"
+        if(statName == "maxLuck") return "lucky"
+        if(statName == "minLuck") return "lucky"
+        if(statName == "alchemy") return "creative"
+	}
+
+	//used for strifes.
+	this.describeBuffs = function(){
+	    var ret = [];
+	    var allStats = this.allStats();
+	    for(var i = 0; i<allStats.length; i++){
+	        var b = this.getTotalBuffForStat(allStats[i]);
+	        //only say nothing if equal to zero
+	        if(b>0) ret.push("more "+this.humanWordForBuffNamed(allStats[i]));
+	        if(b<0) ret.push("less " + this.humanWordForBuffNamed(allStats[i]));
+	    }
+	    if(ret.length == 0) return "";
+	    return this.htmlTitleHP() + " is feeling " + turnArrayIntoHumanSentence(ret) + " than normal. ";
+	}
+
 	//remember that hp and currentHP are different things.
 	this.getStat = function(statName){
 		var ret =  0;
@@ -1525,6 +1563,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			var b = this.buffs[i];
 			if(b.name == statName) ret += b.value;
 		}
+
+		if(statName == "power") ret = Math.max(0, ret); //no negative power, dunkass.
 		return Math.round(ret);
 	}
 

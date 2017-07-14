@@ -62,6 +62,43 @@ function GameEntity(session, name, crowned){
 			//stub for sprites, and maybe later consorts or carapcians
 		}
 
+			//checks array of buffs, and adds up all buffs that effect a given stat.
+        	//useful so combat can now how to describe status.
+        	this.getTotalBuffForStat = function(statName){
+        	    var ret = 0;
+        	    for(var i = 0; i<this.buffs.length; i++){
+        	        var b = this.buffs[i];
+        	        if(b.name == statName) ret += b.value;
+        	    }
+        	    return ret;
+        	}
+
+        	this.humanWordForBuffNamed = function(statName){
+                if(statName == "MANGRIT") return "powerful"
+                if(statName == "hp") return "sturdy"
+                if(statName == "RELATIONSHIPS") return "friendly"
+                if(statName == "mobility") return "fast"
+                if(statName == "sanity") return "calm"
+                if(statName == "freeWill") return "willful"
+                if(statName == "maxLuck") return "lucky"
+                if(statName == "minLuck") return "lucky"
+                if(statName == "alchemy") return "creative"
+        	}
+
+        	//used for strifes.
+        	this.describeBuffs = function(){
+        	    var ret = [];
+        	    var allStats = this.allStats();
+        	    for(var i = 0; i<allStats.length; i++){
+        	        var b = this.getTotalBuffForStat(allStats[i]);
+        	        //only say nothing if equal to zero
+        	        if(b>0) ret.push("more "+this.humanWordForBuffNamed(allStats[i]));
+        	        if(b<0) ret.push("less " + this.humanWordForBuffNamed(allStats[i]));
+        	    }
+        	    if(ret.length == 0) return "";
+        	    return this.htmlTitleHP() + " is feeling " + turnArrayIntoHumanSentence(ret) + " than normal. ";
+        	}
+
 		this.getMobility = function(){
 			if(this.crowned){
 				return this.mobility + this.crowned.mobility;
@@ -814,7 +851,7 @@ function GameEntity(session, name, crowned){
 		this.playerdecideWhatToDo = function(div, player,players){
 			if(player.usedFraymotifThisTurn) return; //already did something.
 			if(this.dead == true || this.getStat("currentHP" <= 0)) return // they are dead, stop beating a dead corpse.
-			player.power = Math.max(1, player.power); //negative power is not allowed in an actual fight.
+			div.append(this.describeBuffs());
 			//for now, only one choice    //free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
 			if(!this.willPlayerAbscond(div,player,players)){
 				var undrainedPacts = removeDrainedGhostsFromPacts(player.ghostPacts);
@@ -901,6 +938,9 @@ function GameEntity(session, name, crowned){
 			//special and fraymotif can attack multiple enemies, but aggrieve is one on one.
 			var living_enemies = this.getLivingMinusAbsconded(players);
 			if(living_enemies.length == 0) return; //there is no one left to fight
+
+            div.append(this.describeBuffs());
+
 			if(!this.willIAbscond(div,players,numTurns) && !this.useFraymotif(div, this,[this], players)){
 				var target = this.chooseTarget(players)
 				if(target) this.aggrieve(div, this, target );
