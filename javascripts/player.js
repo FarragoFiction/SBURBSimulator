@@ -959,6 +959,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 		var powerBoost = this.modPowerBoostByClass(powerBoost,stat);
 		if(this.class_name == "Rogue"|| this.class_name == "Thief"){
+		    powerBoost = 3 * powerBoost; //make up for how shitty your boost is for increasePower, THIS is how you are supposed to level.
 			player.modifyAssociatedStat((-1 * powerBoost), stat);
 			if(this.isActive()){ //modify me
 				this.modifyAssociatedStat(powerBoost, stat);
