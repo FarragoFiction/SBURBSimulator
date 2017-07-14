@@ -287,7 +287,7 @@ function CharacterCreatorHelper(players){
 
 	//this game is so esey. i mean, all you do is hit the refresh button. thats it! how is this an RPG anyway? you cant contrail anything but what it says on the screen!
 	this.generateHelpText = function(topic,specific){
-		if(topic == "Class") return "totol lies, in the middle of classpect update. will update l8r. " + this.generateClassHelp(topic, specific);
+		if(topic == "Class") return this.generateClassHelp(topic, specific);
 		if(topic == "Aspect") return "totol lies, in the middle of classpect update. will update l8r. " + this.generateAspectHelp(topic, specific);
 		if(topic == "BloodColor") return this.generateBloodColorHelp(topic, specific);
 		if(topic == "Moon") return this.generateMoonHelp(topic, specific);
@@ -341,19 +341,24 @@ function CharacterCreatorHelper(players){
 	}
 
 	this.generateClassHelp = function(topic, specific){
-		if(specific == "Maid") return "A Maid distributes their associated aspect to the entire party and starts with a lot of it.";
-		if(specific == "Mage") return "A Mage increases their own associated aspect and starts with a lot of it. They know a lot about SBURB/SGRUB.";
-		if(specific == "Knight") return "A Knight increases their own associated aspect and starts with a lot of it.";
-		if(specific == "Rogue") return "A Rogue increases the parties associated aspect, steals it from someone to give to everyone, and starts with a lot it.";
-		if(specific == "Sylph") return "A Sylph distributes their associated aspect to the entire party and start with a lot of it. They give an extra boost to players they meet in person.";
-		if(specific == "Seer") return "A Seer distributes their associated aspect to the entire party. They start with very little of their aspect and must gain more through experience. They know a lot about SBURB/SGRUB. ";
-		if(specific == "Thief") return "A Thief increases their own associated aspect, steals it from others, and starts with very little of it and must steal more.";
-		if(specific == "Heir") return "An Heir increases their own associated aspect. They start with very little of their aspect and must inherit it.";
-		if(specific == "Bard") return "A Bard distributes the opposite of their associated aspect to the entire party and starts with very little of it. They have an increased effect in person.";
-		if(specific == "Prince") return "A Prince increases the opposite of their own associated aspect and starts with a lot of it.";
-		if(specific == "Witch") return "A Witch increases their own associated aspect and starts with a lot of it.";
-		if(specific == "Page") return "A Page distributes their associated aspect to the entire party. They start with very little of their aspect and must earn it. They can not do quests on their own, but gain power very quickly.";
-		if(specific == "Waste") return "What could this be??? Probably shitty and not yet finished.";
+		if(specific == "Maid") return "A Maid distributes their associated aspect to the entire party and starts with a lot of it. They give a boost to their Aspect, embracing even the bad parts.";
+		if(specific == "Mage") return "A Mage increases their own associated aspect and starts with a lot of it. They know a lot about SBURB/SGRUB. They reduce the negative parts of their Aspect through their wisdom.";
+		if(specific == "Knight") return "A Knight increases their own associated aspect and starts with a lot of it. They give a  boost to the positive parts of their Aspect, while protecting themselves from the negative parts.";
+		if(specific == "Rogue") return "A Rogue increases the parties associated aspect, steals it from someone to give to everyone, and starts with a lot it. They are affected by their Aspect less than normal, even the good parts.";
+		if(specific == "Sylph") return "A Sylph distributes their associated aspect to the entire party and start with a lot of it. They give an extra boost to players they meet in person.  They feel less of the positive effects of their Aspect, but can twist weakness into strength.";
+		if(specific == "Seer") return "A Seer distributes their associated aspect to the entire party. They start with very little of their aspect and must gain more through experience. They know a lot about SBURB/SGRUB. They reduce the negative parts of their Aspect through their wisdom. ";
+		if(specific == "Thief") return "A Thief increases their own associated aspect, steals it from others, and starts with very little of it and must steal more.  They are affected by their Aspect less than normal, even the good parts.";
+		if(specific == "Heir") return "An Heir increases their own associated aspect. They start with very little of their aspect and must inherit it. They give a 1.5 boost to their Aspect, inheriting even the bad parts.";
+		if(specific == "Bard") return "A Bard distributes their inverted Aspect to the entire party and starts with very little of it. They have an increased effect in person. They invert their aspect, causing its strengths to become weaknesses while using what should be weaknesses as tools of destruction.";
+		if(specific == "Prince") return "A Prince increase their inverted aspect in themselves and starts with a lot of it. They invert their aspect, causing its strengths to become weaknesses while using what should be weaknesses as tools of destruction. They destroy their Aspect faster in themselves around others.";
+		if(specific == "Witch") return "A Witch increases their own associated aspect and starts with a lot of it. They are stronger around others. They feel less of the positive effects of their Aspect, but can twist weakness into strength.";
+		if(specific == "Page") return "A Page distributes their associated aspect to the entire party. They start with very little of their aspect and must earn it. They can not do quests on their own, but gain power very quickly. They give a  boost to the positive parts of their Aspect, while protecting others from the negative parts";
+		if(specific == "Waste") return "Wastes gain no benefits or detriments related to their Aspect. They are associated with extreme highs and lows, either entirely avoiding their aspect or causing great destruction with it. They are assholes who won't stop hacking my damn code.";
+		if(specific == "Scribe") return "A Scribe distributes their associated aspect to the entire party. They start with very little of their aspect and must gain more through experience. They know a lot about SBURB/SGRUB. They reduce the negative parts of their Aspect through their wisdom. ";
+        if(specific == "Sage") return "A Sage increases their own associated aspect and starts with a lot of it. They know a lot about SBURB/SGRUB. They reduce the negative parts of their Aspect through their wisdom.";
+        if(specific == "Scout") return "A Scout increases their own associated aspect and starts with very little of it. They give a  boost to the positive parts of their Aspect, while reducing the damage from the negative parts. They know how to navigate their Aspect to avoid the pitfalls.";
+
+
 		return "Class help text not found for " + specific + "."
 	}
 
