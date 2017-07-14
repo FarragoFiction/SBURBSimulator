@@ -19,6 +19,8 @@
 
   Lands should have a "questCompletion" rate that determines which set of quests to use.
 
+  is prospit/derse a planet? a subtype of planet?
+
  */
 class Planet{
   String word1;
