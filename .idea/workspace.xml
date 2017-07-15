@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/credits.html" afterPath="$PROJECT_DIR$/credits.html" />
-    </list>
+    <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +95,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="credits.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="credits.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/credits.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="159">
@@ -107,11 +105,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bards.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/OCs/bards.txt">
+      <file leaf-file-name="debugScenarios.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/javascripts/debugScenarios.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="63" lean-forward="false" selection-start-line="11" selection-start-column="63" selection-end-line="11" selection-end-column="63" />
+            <state relative-caret-position="103">
+              <caret line="148" column="20" lean-forward="false" selection-start-line="148" selection-start-column="9" selection-end-line="148" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -129,9 +127,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>inverted</find>
-      <find>li</find>
-      <find>M4t</find>
       <find>1.5</find>
       <find>Null</find>
       <find>Knight</find>
@@ -159,6 +154,9 @@
       <find>doomed</find>
       <find>Mage</find>
       <find>makeRenderingSnapshot</find>
+      <find>morbidly</find>
+      <find>lawn</find>
+      <find>janusReward</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -945,14 +943,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/debugScenarios.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="72" column="18" lean-forward="false" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/newsposts.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="291">
@@ -1077,6 +1067,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
           <caret line="172" column="64" lean-forward="false" selection-start-line="172" selection-start-column="64" selection-end-line="172" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/debugScenarios.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="148" column="20" lean-forward="false" selection-start-line="148" selection-start-column="9" selection-end-line="148" selection-end-column="20" />
           <folding />
         </state>
       </provider>
