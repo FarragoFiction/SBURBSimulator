@@ -47,6 +47,7 @@ function Fraymotif(aspects, name,tier, flavorText){
 		var casters = [owner];
 		var aspects = [];
 		var living = findLivingPlayers(allies); //dead men use no fraymotifs. (for now)
+		//TODO readd hope/rage player to living so they can do dumb shit like help with fraymotifs while dead.
 		for(var i = 1; i<this.aspects.length; i++){ //skip the first aspect, because that's owner.
 			var a = this.aspects[i];
 			var p = getRandomElementFromArray(findAllAspectPlayers(living, a))//ANY player that matches my aspect can do this.
