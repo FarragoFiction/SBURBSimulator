@@ -379,9 +379,13 @@ function CharacterCreatorHelper(players){
 			var bs = dataBox.val();
 			var b = decodeURIComponent(bs.split("=")[1].split("&s")[0])
 			var s = bs.split("=")[2]
+			console.log("b: " + b);
+			console.log("s: " + s);
+
 			var players = dataBytesAndStringsToPlayers(b, s) //technically an array of one players.
+			console.log("Player class name: " + players[0].class_name);
 			player.copyFromPlayer(players[0]);
-			that.redrawSinglePlayer(player);  //TODO not enough to redraw, need to reload every single field like an asshole.
+			that.redrawSinglePlayer(player);
 			//should have had wireUp methods to the fields to begin with. looks like I gotta pay for pastJR's mistakes.
 		});
 

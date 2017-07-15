@@ -542,6 +542,7 @@ function dataBytesAndStringsToPlayer(charString, str_arr){
 	 //console.log("charString is: " + charString)
 	 player.hairColor = intToHexColor((charString.charCodeAt(0) << 16) + (charString.charCodeAt(1) << 8) + (charString.charCodeAt(2)) )
 	 player.class_name = intToClassName(charString.charCodeAt(3) >> 4)
+	 console.log("I believe the int value of the class name is: " + (charString.charCodeAt(3) >> 4) + " which is: " + player.class_name);
 	 player.aspect = intToAspect(charString.charCodeAt(3) & 15) //get 4 bits on end
 	 player.victimBlood = intToBloodColor(charString.charCodeAt(4) >> 4);
 	 player.bloodColor = intToBloodColor(charString.charCodeAt(4) & 15);
