@@ -1,5 +1,5 @@
-/*
 
+/*
 
                           ```````   `                 `  ``   `                        ```````                           `
                       ```` `   `   ````           `````   `   `````               ````  `   `` ````                ````  `   ``` `
@@ -330,23 +330,23 @@ function UpdateShippingGrid(session){
 			var willItWork = this.evaluateFlushedProposal(p1, p2);
 			var myRelationshipWithOTP1 = shipper.getRelationshipWith(p2);
 			var theirRelationshipWithMe = p2.getRelationshipWith(shipper);
-			var c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!"], ["Hey."],["Hey, asshole."]);
+			var c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!","Hey!","Hello!","Um... hey!","I kind of need to talk to you."], ["Hey.","Hiya","Whats up?","Good to see you.","Hows it going?"],["Hey, asshole.","Fuck off.","Eat shit and die.","Oh god.", "Sup, dipshit.","Blugh.","FML.", "Nope. Nope. Nope.", "Yes?", "And you are?", "Ugh."]);
 			if(shipper == p1){
 				shipper = makeRenderingSnapshot(shipper);
 				shipper.chatHandle = "future" + shipper.chatHandle;
 				shipperStart = "F"+shipperStart;
-				c= new PlusMinusConversationalPair(["Look, don't panic, but I'm you from the future and you HAVE to listen to me. "], ["What the fuck?", "Holy shit, give me your future wisdom."],["Holy shit, why are you dooming a timeline?"]);
+				c= new PlusMinusConversationalPair(["Look, don't panic, but I'm you from the future and you HAVE to listen to me. ", "Yo, its future you. Again.", "Time for future you/me to give you future wisdom."], ["What the fuck?", "Holy shit, give me your future wisdom.","Ok.","Again?"],["Holy shit, why are you dooming a timeline?","Not this shit again, we agreed no cross time chats!", "Nope. Nope. Nope.", "Fuck my life.", "Oh god.", "Sup, dipshit.","Blugh.","FML.","Eat shit and die."]);
 			}
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
-			c= new PlusMinusConversationalPair(["You know how I keep track of romance shit? ", "So I was going over my shipping grid, and I wanted to run something by you."], ["Okay?", "I'm listening..."],["Oh god, not that again.", "Is this REALLY a priority right now?"]);
+			c= new PlusMinusConversationalPair(["You know how I keep track of romance shit? ", "So I was going over my shipping grid, and I wanted to run something by you.","So that shipping thing I do…","I have found your soulmate.", "Its time to talk romance.", "We need to find you a mate.", "You have been single for too long!"], ["Okay?", "I'm listening…","Whats going on?","Alright?","Your point?","Uhm.", "Yeah?"],["Oh god, not that again.", "Is this REALLY a priority right now?","I fucking knew you were here about that.", "Why do these things happen to me?", "Nope. Nope. Nope."]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
 			//from this point on, second array isn't "i hate you you suck", but "i am NOT going to message my crush." it's getP2ResponseBasedOnBool, not relationship
-			c= new PlusMinusConversationalPair(["I think you and " + p2.chatHandleShort() + " might work out really well flushed. ",  "I think " + p2.chatHandleShort() + " likes you, flush style."], ["Wait.... really!? ", "Holy shit."],["I am not going to dignify that with a response. ", "I don't see how that's any of your business."]);
+			c= new PlusMinusConversationalPair(["I think you and " + p2.chatHandleShort() + " might work out really well flushed. ",  "I think " + p2.chatHandleShort() + " likes you, flush style.", "You and " + p2.chatHandleShort() + " should totally get together!", "I have it figured out: You and " + p2.chatHandleShort() + " were meant for each other!", "You need to get funky with " + p2.chatHandleShort() +", okay?", "You and  " + p2.chatHandleShort() + " would be the cutest couple!", "I am one hundred percent sure that  " + p2.chatHandleShort() + " <3 the shit out of you!" ], ["Wait.... really!?", "Holy shit.","Your joking.", "Me?",   "Really? " + p2.chatHandleShort() + "?", "Are you sure?", "Oh my gog really!?", "arglbualabagadsfWHAT?", "Oh my god you are joking." ],["I am not going to dignify that with a response. ", "I don't see how that's any of your business.", "Stay the fuck out of my personal life.", "Nope. Nope. Nope.", "When I want your advice- wait no I never want your advice. Fuck off!", "When I want your romantic advice I'll ask for it!", "Leave me alone.", "Do you really have nothing better to do? No monster to slay or quest to do?", "Can we not.", "No.", "You are fucking with me, aren't you.", "This is why we don't talk.", "I'd rather not talk about this, okay?", "I just don't want to talk about this shit.", "Please stop." ]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
-			c= new PlusMinusConversationalPair(["Just trust me, you should absolutely try messaging them. ",  "I believe in you!"], ["Wow...maybe you are right! ", "Yeah, okay, I'll message them right away."],["Yeah, that is not going to happen.", "Sorry, but no."]);
+			c= new PlusMinusConversationalPair(["Just trust me, you should absolutely try messaging them. ",  "I believe in you!","Ask them out! It'll totally work!", "Believe in the shipping guru.", "Trust me!","When have I ever let you down?", "Listen, this is the best idea since sliced bread!", "You two are the OTP, trust me.", "You can do it!"], ["Wow...maybe you are right! ", "Yeah, okay, I'll message them right away.", "Ok, I'm trusting you.", "I'll give it a shot!", "Whats the worst that can happen, I'll try!", "Uh... OK!", "I...I...Alright. I'll message them.", "Ok, lets hope you are right!"],["Yeah, that is not going to happen.", "Sorry, but no.","No way.", "Nope. Nope. Nope.", "Please leave me alone.", "I'd rather not.", "Its a bad idea.", "I don't like them that much.", "You don't tell me what to do!", "This is a terrible idea.","Fuck off.","No way in hell.", "Stay out of my personal business!", "I'll do what I want, not what you tell me!"]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
 			this.shippingChat = chat;
@@ -357,14 +357,14 @@ function UpdateShippingGrid(session){
 				c= new PlusMinusConversationalPair(["Hey!"], ["Hey!", "Oh cool, I was just thinking of you!"],["What's up?", "Hey"]);
 				chat += c.getOpeningLine(p1, p1Start);
 				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
-				c= new PlusMinusConversationalPair(["So...you know how " + shipper.chatHandleShort() + " is always bugging and fussing and meddling? ",shipper.chatHandleShort() + " was just pestering me about that shipping grid thing they do. "], ["Oh! Yeah, that sure is a thing they do!", "Oh yeah?"],["Hah, they are always so off base with their ships.", "Uh huh?"]);
+				c= new PlusMinusConversationalPair(["So...you know how " + shipper.chatHandleShort() + " is always bugging and fussing and meddling? ", shipper.chatHandleShort() + " was just pestering me about that shipping grid thing they do.", "You know " + shipper.chatHandleShort() + "'s 'thing' about romance?", "Hey, you know how " + shipper.chatHandleShort() + " is always going on and on about relationships?",  + shipper.chatHandleShort() + "has been bugging me soooo much recently."], ["Oh! Yeah, that sure is a thing they do!", "Oh yeah?", "Oh yeah. You know, its kind of flattering how much effort they put into that.", "Yeah?", "They do give unacannaly good advice sometimes."],["Hah, they are always so off base with their ships.", "Uh huh?","Hm.", "Oh yeah, they are such idiots about it too!", "Yeah, they're always trying to find my 'soulmate' or whatever! Like I of all people need one?"]);
 				chat += c.getOpeningLine(p1, p1Start);
 				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
-				c= new PlusMinusConversationalPair(["Look, I'll come right out and say it. I think I'm flushed for you. ","I like you. Romantically. In the flushed quadrant."], ["Holy shit! Really!?  I...fuck, I like you too!", "Oh. Oh fuck. Wow. I like you, too!"],["I can't. Don't make me choose. I can't say yes.", "I'm so sorry... I just can't reciprocate right now."]);
+				c= new PlusMinusConversationalPair(["Look, I'll come right out and say it. I think I'm flushed for you. ","I like you. Romantically. In the flushed quadrant.","Uhm. Well. I like you. Like, like like you.", "Uh-er... I think I'm in love with you.", "Well they were talking, and I realized: I really really really really really like you.", "Look, forget about that. Its just...I think you are the most beautiful person I have ever met.","Its just-I like you. I like you soooo much."], ["Holy shit! Really!?  I...fuck, I like you too!", "Oh. Oh fuck. Wow. I like you, too!","I... You are the most beautiful person I have met.", "Oh my god. I was just about to say the same to you!","Holy fuck. Are you serious? I... I like you too!"],["I can't. Don't make me choose. I can't say yes.", "I'm so sorry... I just can't reciprocate right now.", "I... I'm sorry I don't like you that way.", "I... I can't...I don't…", "I'm sorry, I'm just not ready for that kind of relationship right now.", "We are in a murder game. As flattering as this is, I can't return those feelings. Not now."]);
 				chat += c.getOpeningLine(p1, p1Start);
 				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
 				if(willTheyAgree){ //celebrate success, change relationship status, give huge boost to shipper, return result.
-					c= new PlusMinusConversationalPair(["Of fuck yes!","Oh wow, I sure am glad I listened to " + shipper.chatHandleShort() + "! "], ["<3"],["JR: This will never hit cause i know they said yes."]);
+					c= new PlusMinusConversationalPair(["Oh fuck yes!","Oh wow, I sure am glad I listened to " + shipper.chatHandleShort() + "! ", "YES!!!!","I am so, so, so happy right now.", "Really? YES YES YES YES YES YES!"], ["<3","Now I can finally discuss how fucking cute you are!", "Hahahahaha"],["JR: This will never hit cause i know they said yes.", "MI: the temptation is there to but some really snarky bullshit here anyway"]);
 					chat += c.getOpeningLine(p1, p1Start);
 					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
 					makeHeart(p1, p2);
@@ -372,7 +372,7 @@ function UpdateShippingGrid(session){
 					this.chosenShipper.player.leveledTheHellUp = true;
 					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect + " player. ";
 				}else{ //response to being rejected.
-					c= new PlusMinusConversationalPair(["Fuck","But... fuck. "],["JR: this won't happen because i know they got rejected."], ["I'm sorry. I really am."]);
+					c= new PlusMinusConversationalPair(["Fuck","But... fuck. ","I…really?", "But I thought-", "Fuck my life.", "Ugh, I'm such an idiot! I shouldn't have- I'm sorry for bothering you.", "Please?", "Are you sure?"],["JR: this won't happen because i know they got rejected.", "MI: How sad."], ["I'm sorry. I really am.","Its not your fault, okay?", "I'm sorry. I can't change how I feel.", "Its not you its me.", "I just can't commit like that, not now.","You can find someone else, It'll be all right.","I have to go."]);
 					chat += c.getOpeningLine(p1, p1Start);
 					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
 					//console.log("Ship failed when it was almost done : " + this.session.session_id);
@@ -393,23 +393,23 @@ function UpdateShippingGrid(session){
 			var willItWork = this.evaluatePaleProposal(p1, p2);
 			var myRelationshipWithOTP1 = shipper.getRelationshipWith(p2);
 			var theirRelationshipWithMe = p2.getRelationshipWith(shipper);
-			var c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!"], ["Hey."],["Hey, asshole."]);
+			var c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!","Hey!","Hello!","Um... hey!","I kind of need to talk to you."], ["Hey.","Hiya","Whats up?","Good to see you.","Hows it going?"],["Hey, asshole.","Fuck off.","Eat shit and die.","Oh god.", "Sup, dipshit.","Blugh.","FML.", "Nope. Nope. Nope.", "Yes?", "And you are?", "Ugh.","Not this again."]);
 			if(shipper == p1){
 				shipper = makeRenderingSnapshot(shipper);
 				shipper.chatHandle = "future" + shipper.chatHandle;
 				shipperStart = "F"+shipperStart;
-				c= new PlusMinusConversationalPair(["Look, don't panic, but I'm you from the future and you HAVE to listen to me. "], ["What the fuck?", "Holy shit, give me your future wisdom."],["Holy shit, why are you dooming a timeline?"]);
+				c= new PlusMinusConversationalPair(c= new PlusMinusConversationalPair(["Look, don't panic, but I'm you from the future and you HAVE to listen to me. ", "Yo, its future you. Again.", "Time for future you/me to give you future wisdom."], ["What the fuck?", "Holy shit, give me your future wisdom.","Ok.","Again?"],["Holy shit, why are you dooming a timeline?","Not this shit again, we agreed no cross time chats!", "Nope. Nope. Nope.", "Fuck my life.", "Oh god.", "Sup, dipshit.","Blugh.","FML.","Eat shit and die."]));
 			}
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
-			c= new PlusMinusConversationalPair(["You know how I keep track of romance shit? ", "So I was going over my shipping grid, and I wanted to run something by you."], ["Okay?", "I'm listening..."],["Oh god, not that again.", "Is this REALLY a priority right now?"]);
+			c= new PlusMinusConversationalPair(["You know how I try to make sure everyones doing okay?", "So I was going over my shipping grid, and I wanted to run something by you.","So that shipping thing I do…", "I have it figured out! I know who can help keep you calm!.", "Its time to talk romance.", "We need to find you someone to chill you down.", "You have been single for too long!"], ["Okay?", "I'm listening…","Whats going on?","Alright?","Your point?","Uhm.", "Yeah?","Okay I guess?"],["Oh god, not that again.", "Is this REALLY a priority right now?","I fucking knew you were here about that.", "Why do these things happen to me?", "Nope. Nope. Nope.","Blugh.","Lets not and say we did."]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
 			//from this point on, second array isn't "i hate you you suck", but "i am NOT going to message my crush." it's getP2ResponseBasedOnBool, not relationship
-			c= new PlusMinusConversationalPair(["I think you and " + p2.chatHandleShort() + " might work out really well pale. ",  "I think " + p2.chatHandleShort() + " likes you, pale style."], ["Wait.... really!? ", "Holy shit."],["I am not going to dignify that with a response. ", "I don't see how that's any of your business."]);
+			c= new PlusMinusConversationalPair(["I think you and " + p2.chatHandleShort() + " might work out really well pale. ",  "I think " + p2.chatHandleShort() + " likes you, pale style.", "I think you should hang out with " + p2.chatHandleShort() + " more, they could work great with you!", "You and " + p2.chatHandleShort() + " would be amazing, pale-wise.", "I've got it figured out: " + p2.chatHandleShort() + " wants to shoosh the shit out of you." ], ["Wait.... really?", "Holy shit.","Your joking.", "Me?",   "Really? " + p2.chatHandleShort() + "?", "Are you sure?", "Oh my gog really?", "Oh my god you are joking."],["I am not going to dignify that with a response. ", "I don't see how that's any of your business.","I don't need anyone to calm me down!","I'm doing just fine on my own, thanks.","I don't want to talk about this with you.", "Please stop pestering me about this.","So much no."]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
-			c= new PlusMinusConversationalPair(["Just trust me, you should absolutely try messaging them. ",  "I believe in you!"], ["Wow...maybe you are right! ", "Yeah, okay, I'll message them right away."],["Yeah, that is not going to happen.", "Sorry, but no."]);
+			c= new PlusMinusConversationalPair(["Just trust me, you should absolutely try messaging them. ",  "I believe in you!","Ask them out! It'll totally work!", "Believe in the shipping guru.", "Trust me!","When have I ever let you down?", "Listen, this is the best idea since sliced bread!", "You two are the OTP, trust me.", "You can do it!"], ["Wow...maybe you are right! ", "Yeah, okay, I'll message them right away."],["Yeah, that is not going to happen.", "Sorry, but no."]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
 			this.shippingChat = chat;
@@ -417,17 +417,17 @@ function UpdateShippingGrid(session){
 				chat = "";  //don't need to get relationships, i know they both like each other
 				var willTheyAgree = this.evaluatePaleProposal(p2, p1);
 				//for these, second column will always be about "are they going to say yes or not"
-				c= new PlusMinusConversationalPair(["Hey!"], ["Hey!", "Oh cool, I was just thinking of you!"],["What's up?", "Hey"]);
+				c= new PlusMinusConversationalPair(["Hey!","Hey", "Hello!", "Hiya!","Hey hey!","Hows it going?"], ["Hey!", "Oh cool, I was just thinking of you!","Hey! Good to see you!","Hey!"],["What's up?", "Hey.","Oh. Hey.","Hey.","What do you want?"]);
 				chat += c.getOpeningLine(p1, p1Start);
 				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
-				c= new PlusMinusConversationalPair(["So...you know how " + shipper.chatHandleShort() + " is always bugging and fussing and meddling? ",shipper.chatHandleShort() + " was just pestering me about that shipping grid thing they do. "], ["Oh! Yeah, that sure is a thing they do!", "Oh yeah?"],["Hah, they are always so off base with their ships.", "Uh huh?"]);
+				c= new PlusMinusConversationalPair(["So...you know how " + shipper.chatHandleShort() + " is always bugging and fussing and meddling? ", shipper.chatHandleShort() + " was just pestering me about that shipping grid thing they do.", "You know " + shipper.chatHandleShort() + "'s 'thing' about romance?", "Hey, you know how " + shipper.chatHandleShort() + " is always going on and on about relationships?",  + shipper.chatHandleShort() + "has been bugging me soooo much recently."], ["Oh! Yeah, that sure is a thing they do!", "Oh yeah?", "Oh yeah. You know, its kind of flattering how much effort they put into that.", "Yeah?", "They do give unacannaly good advice sometimes."],["Hah, they are always so off base with their ships.", "Uh huh?","Hm.", "Oh yeah, they are such idiots about it too!", "Yeah, they're always trying to find my 'pap-mate' or whatever!?"]);
 				chat += c.getOpeningLine(p1, p1Start);
 				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
-				c= new PlusMinusConversationalPair(["Look, I'll come right out and say it. I think I'm pale for you. ","I like you. Romantically. In the pale quadrant."], ["Holy shit! Really!?  I...fuck, I like you too!", "Oh. Oh fuck. Wow. I like you, too!"],["I can't. Don't make me choose. I can't say yes.", "I'm so sorry... I just can't reciprocate right now."]);
+				c= new PlusMinusConversationalPair(["Look, I'll come right out and say it. I think I'm pale for you. ","I like you. Romantically. In the pale quadrant.","Look I... I want to pap the shit out of you.", "Look I was thinking, and I realized: I want us to moirails."], ["Holy shit! Really!?  I...fuck, I like you too!", "Oh. Oh fuck. Wow. I like you, too!", "I... nothing would make me happier!", "I've wanted to pap you to unconsiousness for forever!"],["I can't. Don't make me choose. I can't say yes.", "I'm so sorry... I just can't reciprocate right now.", "I... I'm sorry I don't like you that way.", "I... I can't...I don't...", "I'm sorry, I'm just not ready for that kind of relationship right now.", "We are in a murder game. As flattering as this is, I can't return those feelings. Not now.","I don't need a moirail!"]);
 				chat += c.getOpeningLine(p1, p1Start);
 				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
 				if(willTheyAgree){ //celebrate success, change relationship status, give huge boost to shipper, return result.
-					c= new PlusMinusConversationalPair(["Of fuck yes!","Oh wow, I sure am glad I listened to " + shipper.chatHandleShort() + "! "], ["<>"],["JR: This will never hit cause i know they said yes."]);
+					c= new PlusMinusConversationalPair(["Oh fuck yes!","Oh wow, I sure am glad I listened to " + shipper.chatHandleShort() + "! ", "YES!!!!","I am so, so, so happy right now.", "Really? YES YES YES YES YES YES!","Oh thank god. Now I don't have to worry about hurting people!"], ["<>","I'll always be glad to be here for you!","Shoosh."],["JR: This will never hit cause i know they said yes."]);
 					chat += c.getOpeningLine(p1, p1Start);
 					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
 					makeDiamonds(p1, p2);
@@ -454,23 +454,23 @@ function UpdateShippingGrid(session){
 			var willItWork = this.evaluateAshenProposal(p1, p2);
 			var myRelationshipWithOTP1 = shipper.getRelationshipWith(p2);
 			var theirRelationshipWithMe = p2.getRelationshipWith(shipper);
-			var c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!"], ["Hey."],["Hey, asshole."]);
+			var c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!","Hey!","Hello!","Um... hey!","I kind of need to talk to you."], ["Hey.","Hiya","Whats up?","Good to see you.","Hows it going?"],["Hey, asshole.","Fuck off.","Eat shit and die.","Oh god.", "Sup, dipshit.","Blugh.","FML.", "Nope. Nope. Nope.", "Yes?", "And you are?", "Ugh."]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
-			c= new PlusMinusConversationalPair(["You know how I keep track of romance shit? ", "So I was going over my shipping grid, and I wanted to run something by you."], ["Okay?", "I'm listening..."],["Oh god, not that again.", "Is this REALLY a priority right now?"]);
+			c= new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!","Hey!","Hello!","Um... hey!","I kind of need to talk to you."], ["Hey.","Hiya","Whats up?","Good to see you.","Hows it going?"],["Hey, asshole.","Fuck off.","Eat shit and die.","Oh god.", "Sup, dipshit.","Blugh.","FML.", "Nope. Nope. Nope.", "Yes?", "And you are?", "Ugh."]);
 			if(shipper == p1){
 				shipper = makeRenderingSnapshot(shipper);
 				shipper.chatHandle = "future" + shipper.chatHandle;
 				shipperStart = "F"+shipperStart;
-				c= new PlusMinusConversationalPair(["Look, don't panic, but I'm you from the future and you HAVE to listen to me. "], ["What the fuck?", "Holy shit, give me your future wisdom."],["Holy shit, why are you dooming a timeline?"]);
+				c= new PlusMinusConversationalPair(["Look, don't panic, but I'm you from the future and you HAVE to listen to me. ", "Yo, its future you. Again.", "Time for future you/me to give you future wisdom."], ["What the fuck?", "Holy shit, give me your future wisdom.","Ok.","Again?"],["Holy shit, why are you dooming a timeline?","Not this shit again, we agreed no cross time chats!", "Nope. Nope. Nope.", "Fuck my life.", "Oh god.", "Sup, dipshit.","Blugh.","FML.","Eat shit and die."]);
 			}
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
 			//from this point on, second array isn't "i hate you you suck", but "i am NOT going to message my crush." it's getP2ResponseBasedOnBool, not relationship
-			c= new PlusMinusConversationalPair(["I think you and " + p2.chatHandleShort() + " are a TERRIBLE match, for spades. I...kind of want to keep you guys from getting together. ",  "I think " + p2.chatHandleShort() + " likes you, spades style. Aaannnd...that is a TERRIBLE idea. I want to sort of maybe kind of auspisticize you guys."], ["Wait.... really!? ", "Holy shit."],["I am not going to dignify that with a response. ", "I don't see how that's any of your business."]);
+			c= new PlusMinusConversationalPair(["I think you and " + p2.chatHandleShort() + " are a TERRIBLE match, for spades. I...kind of want to keep you guys from getting together. ",  "I think " + p2.chatHandleShort() + " likes you, spades style. Aaannnd...that is a TERRIBLE idea. I want to sort of maybe kind of auspisticize you guys.", "You know that hate thing " + p2.chatHandleShort() + " has for you? I want to step in.", "You and " + p2.chatHandleShort() + " need to get that hate thing together or I'm going to have to mediate."], ["Wait.... really!? ", "Holy shit.","Oh thank god!","Uh?","Are you joking me?"],["I am not going to dignify that with a response. ", "I don't see how that's any of your business.","We don't need your help.","HAHAHAHAHAHAHAHAHA!","Uh.","Nope. Nope. Nope."]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
-			c= new PlusMinusConversationalPair(["Just trust me, if you agree, I'll message them next. ",  "I am gonna contact them next if you agree. "], ["Wow...maybe you are right! ", "Yeah, okay, go ahead."],["Yeah, that is not going to happen.", "Sorry, but no."]);
+			c= new PlusMinusConversationalPair(["Just trust me, if you agree, I'll message them next. ",  "I am gonna contact them next if you agree. ", "Believe in the shipping guru.", "Trust me!","When have I ever let you down?", "Listen, this is the best idea since sliced bread!", "We three are the OTP, trust me.", "Please? I'll contact them next if you say yes."], ["Wow...maybe you are right! ", "Yeah, okay, go ahead.","I was at my wits end! Thank you so much!","Uh...uh yeah! That works!","I... wow…yes!"],["Yeah, that is not going to happen.", "Sorry, but no.","Oh my god no. So much no.","Like hell am I letting you get between me and " + p2.chatHandleShort() + ".", "I respectfully decline your help.","I think we can manage ourselves without the village two wheel device stepping in, thank you very much.","Fuck off.","Nope. Nope. Nope."]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
 			this.shippingChat = chat;
@@ -478,7 +478,7 @@ function UpdateShippingGrid(session){
 				chat = "";  //don't need to get relationships, i know they both like each other
 				var willTheyAgree = this.evaluateAshenProposal(p2, p1);
 				//for these, second column will always be about "are they going to say yes or not"
-				c= new PlusMinusConversationalPair(["Hey!"], ["Hey!", "Oh cool, I was just thinking of you!"],["What's up?", "Hey"]);
+				c= new PlusMinusConversationalPair(["Hey!","Hey!", "Hello!", "Hiya!","Hey hey!","Hows it going?"], ["Hey!", "Oh cool, I was just thinking of you!"],["What's up?", "Hey"]);
 				chat += c.getOpeningLine(shipper, shipperStart);
 				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
 				c= new PlusMinusConversationalPair(["So...you know how I try to stay on top of romance shit? ","I just got done talking to " + p1.chatHandleShort() + ". "], ["Yeah?", "Oh yeah?"],["Hah, you always so off base with their ships.", "Uh huh?"]);
@@ -488,7 +488,7 @@ function UpdateShippingGrid(session){
 				chat += c.getOpeningLine(shipper, shipperStart);
 				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
 				if(willTheyAgree){ //celebrate success, change relationship status, give huge boost to shipper, return result.
-					c= new PlusMinusConversationalPair(["Of fuck yes!","You guys had better behave! "], ["c3<"],["JR: This will never hit cause i know they said yes."]);
+					c= new PlusMinusConversationalPair(["Oh fuck yes!","You guys had better behave! "], ["c3<"],["JR: This will never hit cause i know they said yes."]);
 					chat += c.getOpeningLine(shipper, shipperStart);
 					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
 					makeClubs(shipper,p1, p2);  //they get a relationship!!!
@@ -516,12 +516,12 @@ function UpdateShippingGrid(session){
 			var willItWork = this.evaluateBlackProposal(p1, p2);
 			var myRelationshipWithOTP1 = shipper.getRelationshipWith(p2);
 			var theirRelationshipWithMe = p2.getRelationshipWith(shipper);
-			var c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!"], ["Hey."],["Hey, asshole."]);
+			var c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!","Hey!","Hello!","Um... hey!","I kind of need to talk to you."], ["Hey.","Hiya","Whats up?","Good to see you.","Hows it going?"],["Hey, asshole.","Fuck off.","Eat shit and die.","Oh god.", "Sup, dipshit.","Blugh.","FML.", "Nope. Nope. Nope.", "Yes?", "And you are?", "Ugh."]);
 			if(shipper == p1){
 				shipper = makeRenderingSnapshot(shipper);
 				shipper.chatHandle = "future" + shipper.chatHandle;
 				shipperStart = "F"+shipperStart;
-				c= new PlusMinusConversationalPair(["Look, don't panic, but I'm you from the future and you HAVE to listen to me. "], ["What the fuck?", "Holy shit, give me your future wisdom."],["Holy shit, why are you dooming a timeline?"]);
+				c= new PlusMinusConversationalPair(["Look, don't panic, but I'm you from the future and you HAVE to listen to me. ", "Yo, its future you. Again.", "Time for future you/me to give you future wisdom."], ["What the fuck?", "Holy shit, give me your future wisdom.","Ok.","Again?"],["Holy shit, why are you dooming a timeline?","Not this shit again, we agreed no cross time chats!", "Nope. Nope. Nope.", "Fuck my life.", "Oh god.", "Sup, dipshit.","Blugh.","FML.","Eat shit and die."]);
 			}
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
@@ -532,7 +532,7 @@ function UpdateShippingGrid(session){
 			c= new PlusMinusConversationalPair(["I think you and " + p2.chatHandleShort() + " might work out really well spades. ",  "I think " + p2.chatHandleShort() + " likes you, spades style."], ["Wait.... really!? ", "Holy shit."],["I am not going to dignify that with a response. ", "I don't see how that's any of your business."]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
-			c= new PlusMinusConversationalPair(["Just trust me, you should absolutely try messaging them. ",  "I believe in you!"], ["Wow...maybe you are right! ", "Yeah, okay, I'll message them right away."],["Yeah, that is not going to happen.", "Sorry, but no."]);
+			c= new PlusMinusConversationalPair(["Just trust me, you should absolutely try messaging them. ",  "I believe in you!","Ask them out! It'll totally work!", "Believe in the shipping guru.", "Trust me!","When have I ever let you down?", "Listen, this is the best idea since sliced bread!", "You two are the OTP, trust me.", "You can do it!"], ["Wow...maybe you are right! ", "Yeah, okay, I'll message them right away."],["Yeah, that is not going to happen.", "Sorry, but no.","Ehhh. I don't think I hate them that much.]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
 			this.shippingChat = chat;
@@ -540,7 +540,7 @@ function UpdateShippingGrid(session){
 				chat = "";  //don't need to get relationships, i know they both like each other
 				var willTheyAgree = this.evaluateBlackProposal(p2, p1);
 				//for these, second column will always be about "are they going to say yes or not"
-				c= new PlusMinusConversationalPair(["Hey!"], ["Hey!", "Oh cool, I was just thinking of you!"],["What's up?", "Hey"]);
+				c= new PlusMinusConversationalPair(["Hey!","Hey dunkass!","Hows it going shit for brains?","Its time you and me talk.","Ugh, I really wish I didn't have to talk to you.","Sup shitface.","Hey asshat.","I need to talk.","Yo, fuckface."], ["Hey!", "Oh cool, I was just thinking of you!","Go fuck yourself, dipshit.","Eat me.","Oh gog. Not this fucker.","Fuck this.", "Fuck off and die.", "Hey dunkass.", "Hey poopbreath.", "Whats up, farmstink?"],["What's up?", "Hey","Uh, hey?","Hey?","Hey?","Uh, hows it going?","Whats up?"]);
 				chat += c.getOpeningLine(p1, p1Start);
 				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
 				c= new PlusMinusConversationalPair(["So...you know how " + shipper.chatHandleShort() + " is always bugging and fussing and meddling? ",shipper.chatHandleShort() + " was just pestering me about that shipping grid thing they do. "], ["Oh! Yeah, that sure is a thing they do!", "Oh yeah?"],["Hah, they are always so off base with their ships.", "Uh huh?"]);
@@ -550,7 +550,7 @@ function UpdateShippingGrid(session){
 				chat += c.getOpeningLine(p1, p1Start);
 				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
 				if(willTheyAgree){ //celebrate success, change relationship status, give huge boost to shipper, return result.
-					c= new PlusMinusConversationalPair(["Of fuck yes!","Oh wow, I sure am glad I listened to " + shipper.chatHandleShort() + "! "], ["<3<"],["JR: This will never hit cause i know they said yes."]);
+					c= new PlusMinusConversationalPair(["Oh fuck yes!","Oh wow, I sure am glad I listened to " + shipper.chatHandleShort() + "! "], ["<3<"],["JR: This will never hit cause i know they said yes."]);
 					chat += c.getOpeningLine(p1, p1Start);
 					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
 					makeDiamonds(p1, p2);
@@ -561,7 +561,7 @@ function UpdateShippingGrid(session){
 					c= new PlusMinusConversationalPair(["Fuck","But... fuck. "],["JR: this won't happen because i know they got rejected."], ["I'm sorry. I really am."]);
 					chat += c.getOpeningLine(p1, p1Start);
 					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree)
-					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is disappointed that it didn't work out. Oh well, if at first you don't succeed...";
+					ret += "The " + chosenShipper.player.htmlTitleBasic() + " is disappointed that it didn't work out. Oh well, if at first you don't succeed...";
 				}
 				this.romanceChat = chat;
 			}else{
@@ -778,3 +778,7 @@ function Shipper(player){
 	this.savedShipText = ""; ///need to know if my ships have updated.
 
 }
+
+
+
+
