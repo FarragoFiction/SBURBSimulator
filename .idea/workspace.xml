@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" afterPath="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" afterPath="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,6 +22,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
               <caret line="1082" column="15" lean-forward="true" selection-start-line="1082" selection-start-column="15" selection-end-line="1082" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Aftermath.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/javascripts/Scenes/Aftermath.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="243" column="43" lean-forward="false" selection-start-line="243" selection-start-column="43" selection-end-line="243" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -57,7 +67,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UpdateShippingGrid.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UpdateShippingGrid.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="58">
@@ -189,7 +199,6 @@
         <option value="$PROJECT_DIR$/OCs/ideasWranglers.txt" />
         <option value="$PROJECT_DIR$/OCs/creditsBuckaroos.txt" />
         <option value="$PROJECT_DIR$/javascripts/handle_sprites.js" />
-        <option value="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
         <option value="$PROJECT_DIR$/javascripts/landOfRodsAndScreens.js" />
         <option value="$PROJECT_DIR$/character_viewer.html" />
         <option value="$PROJECT_DIR$/javascripts/v2.0/char_viewer.js" />
@@ -208,6 +217,7 @@
         <option value="$PROJECT_DIR$/OCs/bards.txt" />
         <option value="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" />
+        <option value="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
       </list>
     </option>
   </component>
@@ -886,14 +896,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/Scenes/Aftermath.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="254" column="4" lean-forward="false" selection-start-line="254" selection-start-column="4" selection-end-line="255" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/landOfRodsAndScreens.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -1066,6 +1068,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="58">
           <caret line="539" column="95" lean-forward="true" selection-start-line="539" selection-start-column="95" selection-end-line="539" selection-end-column="95" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/Scenes/Aftermath.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="243" column="43" lean-forward="false" selection-start-line="243" selection-start-column="43" selection-end-line="243" selection-end-column="43" />
           <folding />
         </state>
       </provider>

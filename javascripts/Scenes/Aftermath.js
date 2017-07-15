@@ -241,6 +241,7 @@ this.trollKidRock = function(){
 	return trollKidRock;
 }
 
+//omg ancient just called it "Bileus Prick"
 this.purpleFrog = function(){
 	var mvp = findStrongestPlayer(this.session.players);
 	var tmpStatHolder = {};
