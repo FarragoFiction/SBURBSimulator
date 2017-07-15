@@ -398,7 +398,7 @@ function UpdateShippingGrid(session){
 				shipper = makeRenderingSnapshot(shipper);
 				shipper.chatHandle = "future" + shipper.chatHandle;
 				shipperStart = "F"+shipperStart;
-				c= new PlusMinusConversationalPair(c= new PlusMinusConversationalPair(["Look, don't panic, but I'm you from the future and you HAVE to listen to me. ", "Yo, its future you. Again.", "Time for future you/me to give you future wisdom."], ["What the fuck?", "Holy shit, give me your future wisdom.","Ok.","Again?"],["Holy shit, why are you dooming a timeline?","Not this shit again, we agreed no cross time chats!", "Nope. Nope. Nope.", "Fuck my life.", "Oh god.", "Sup, dipshit.","Blugh.","FML.","Eat shit and die."]));
+				c= new PlusMinusConversationalPair(["Look, don't panic, but I'm you from the future and you HAVE to listen to me. ", "Yo, its future you. Again.", "Time for future you/me to give you future wisdom."], ["What the fuck?", "Holy shit, give me your future wisdom.","Ok.","Again?"],["Holy shit, why are you dooming a timeline?","Not this shit again, we agreed no cross time chats!", "Nope. Nope. Nope.", "Fuck my life.", "Oh god.", "Sup, dipshit.","Blugh.","FML.","Eat shit and die."]);
 			}
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe)
