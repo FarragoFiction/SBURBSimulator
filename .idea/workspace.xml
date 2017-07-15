@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/playerSnapshot.js" afterPath="$PROJECT_DIR$/javascripts/playerSnapshot.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/glitches.html" afterPath="$PROJECT_DIR$/glitches.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -88,7 +87,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="playerSnapshot.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="playerSnapshot.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/playerSnapshot.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="133">
@@ -98,11 +97,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="credits.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/credits.html">
+      <file leaf-file-name="glitches.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/glitches.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="166" column="114" lean-forward="false" selection-start-line="166" selection-start-column="108" selection-end-line="166" selection-end-column="114" />
+            <state relative-caret-position="255">
+              <caret line="430" column="193" lean-forward="false" selection-start-line="430" selection-start-column="193" selection-end-line="430" selection-end-column="193" />
               <folding />
             </state>
           </provider>
@@ -219,6 +218,7 @@
         <option value="$PROJECT_DIR$/javascripts/fraymotif.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" />
         <option value="$PROJECT_DIR$/javascripts/playerSnapshot.js" />
+        <option value="$PROJECT_DIR$/glitches.html" />
       </list>
     </option>
   </component>
@@ -673,14 +673,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/support.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="22" column="41" lean-forward="false" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index2.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
@@ -1077,6 +1069,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="368" column="139" lean-forward="false" selection-start-line="368" selection-start-column="139" selection-end-line="368" selection-end-column="139" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glitches.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="430" column="193" lean-forward="false" selection-start-line="430" selection-start-column="193" selection-end-line="430" selection-end-column="193" />
           <folding />
         </state>
       </provider>
