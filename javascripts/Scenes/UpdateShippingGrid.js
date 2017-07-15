@@ -532,7 +532,7 @@ function UpdateShippingGrid(session){
 			c= new PlusMinusConversationalPair(["I think you and " + p2.chatHandleShort() + " might work out really well spades. ",  "I think " + p2.chatHandleShort() + " likes you, spades style."], ["Wait.... really!? ", "Holy shit."],["I am not going to dignify that with a response. ", "I don't see how that's any of your business."]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
-			c= new PlusMinusConversationalPair(["Just trust me, you should absolutely try messaging them. ",  "I believe in you!","Ask them out! It'll totally work!", "Believe in the shipping guru.", "Trust me!","When have I ever let you down?", "Listen, this is the best idea since sliced bread!", "You two are the OTP, trust me.", "You can do it!"], ["Wow...maybe you are right! ", "Yeah, okay, I'll message them right away."],["Yeah, that is not going to happen.", "Sorry, but no.","Ehhh. I don't think I hate them that much.]);
+			c= new PlusMinusConversationalPair(["Just trust me, you should absolutely try messaging them. ",  "I believe in you!","Ask them out! It'll totally work!", "Believe in the shipping guru.", "Trust me!","When have I ever let you down?", "Listen, this is the best idea since sliced bread!", "You two are the OTP, trust me.", "You can do it!"], ["Wow...maybe you are right! ", "Yeah, okay, I'll message them right away."],["Yeah, that is not going to happen.", "Sorry, but no.","Ehhh. I don't think I hate them that much."]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.getP2ResponseBasedOnBool(p1, p1Start, willItWork)
 			this.shippingChat = chat;

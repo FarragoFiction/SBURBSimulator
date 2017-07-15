@@ -60,7 +60,7 @@ function Fraymotif(aspects, name,tier, flavorText){
          this.flavorText = this.proceduralFlavorText();
       }
       var phrase = "The CASTERS use FRAYMOTIF. ";//shitty example.
-      if(casters.length == 1) phrase = "The CASTERS uses FRAYMOTIF. "
+      if(casters.length == 1) phrase = "The CASTERS uses FRAYMOTIF. It damages the ENEMY.  "
       phrase += this.flavorText + revives;
       return this.replaceKeyWords(phrase, owner, casters, allies,  enemy, enemies);
   }
