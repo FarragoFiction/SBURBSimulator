@@ -366,7 +366,7 @@ function MiniSnapShot(player){
 
 function makeRenderingSnapshot(player){
 	var ret = new PlayerSnapshot();
-	ret.fraymotifs = player.fraymotifs;
+	ret.fraymotifs = player.fraymotifs.slice(0)//omg, make a copy you dunkass, or time players get the OP fraymotifs of their doomed clones;
 	ret.robot = player.robot;
 	ret.spriteCanvasID = player.spriteCanvasID;
   ret.currentHP = player.currentHP;
