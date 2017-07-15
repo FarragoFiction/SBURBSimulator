@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" afterPath="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/fraymotif.js" afterPath="$PROJECT_DIR$/javascripts/fraymotif.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -48,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fraymotif.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fraymotif.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="117" column="3" lean-forward="false" selection-start-line="117" selection-start-column="3" selection-end-line="117" selection-end-column="3" />
+            <state relative-caret-position="148">
+              <caret line="65" column="3" lean-forward="true" selection-start-line="65" selection-start-column="3" selection-end-line="65" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -68,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UpdateShippingGrid.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UpdateShippingGrid.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="534" column="529" lean-forward="false" selection-start-line="534" selection-start-column="529" selection-end-line="534" selection-end-column="529" />
+            <state relative-caret-position="103">
+              <caret line="469" column="264" lean-forward="false" selection-start-line="469" selection-start-column="264" selection-end-line="469" selection-end-column="264" />
               <folding />
             </state>
           </provider>
@@ -130,8 +129,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>session413</find>
-      <find>generateClassHelp</find>
       <find>interactionEffect</find>
       <find>highInit</find>
       <find>Rogue</find>
@@ -160,6 +157,8 @@
       <find>proceduralFlavorText</find>
       <find>A</find>
       <find>a</find>
+      <find>damages the</find>
+      <find>...</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -217,8 +216,8 @@
         <option value="$PROJECT_DIR$/OCs/bards.txt" />
         <option value="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
-        <option value="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" />
         <option value="$PROJECT_DIR$/javascripts/fraymotif.js" />
+        <option value="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" />
       </list>
     </option>
   </component>
@@ -1065,18 +1064,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js">
+    <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="534" column="529" lean-forward="false" selection-start-line="534" selection-start-column="529" selection-end-line="534" selection-end-column="529" />
+        <state relative-caret-position="148">
+          <caret line="65" column="3" lean-forward="true" selection-start-line="65" selection-start-column="3" selection-end-line="65" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
+    <entry file="file://$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
-          <caret line="117" column="3" lean-forward="false" selection-start-line="117" selection-start-column="3" selection-end-line="117" selection-end-column="3" />
+          <caret line="469" column="264" lean-forward="false" selection-start-line="469" selection-start-column="264" selection-end-line="469" selection-end-column="264" />
           <folding />
         </state>
       </provider>
