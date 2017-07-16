@@ -47,7 +47,6 @@ function Fraymotif(aspects, name,tier, flavorText){
 		var casters = [owner];
 		var aspects = [];
 		var living = findLivingPlayers(allies); //dead men use no fraymotifs. (for now)
-		//TODO readd hope/rage player to living so they can do dumb shit like help with fraymotifs while dead.
 		for(var i = 1; i<this.aspects.length; i++){ //skip the first aspect, because that's owner.
 			var a = this.aspects[i];
 			var p = getRandomElementFromArray(findAllAspectPlayers(living, a))//ANY player that matches my aspect can do this.
@@ -61,7 +60,7 @@ function Fraymotif(aspects, name,tier, flavorText){
          this.flavorText = this.proceduralFlavorText();
       }
       var phrase = "The CASTERS use FRAYMOTIF. ";//shitty example.
-      if(casters.length == 1) phrase = "The CASTERS uses FRAYMOTIF. It damages the ENEMY.  "
+      if(casters.length == 1) phrase = "The CASTERS uses FRAYMOTIF. It damages the ENEMY. "
       phrase += this.flavorText + revives;
       return this.replaceKeyWords(phrase, owner, casters, allies,  enemy, enemies);
   }
@@ -259,7 +258,7 @@ function Fraymotif(aspects, name,tier, flavorText){
   }
 
   this.getBuffWords = function(){
-    return ["soothing","supportive","friendly", "fortifying", "protecting", "warding", "defensive","blessed"];
+    return ["soothing","supportive","friendly", "fortifying", "protective", "warding", "defensive","blessed"];
   }
 
   this.canCast = function(owner, allies, enemies){
@@ -370,13 +369,13 @@ function FraymotifCreator(){
       }else if(aspect == "Mind"){
         ret = " A fractured chord is prepared. It is the one Regret plays to make insomnia reign. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
       }else if(aspect == "Rage"){
-         ret = " A hsirvprmt xslri begins to tryyvi. It is the one Madness plays gl pvvk rgh rmhgifnvmg rm gfmv. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+         ret = " A hsirvprmt xslri begins to tryyvi. It is the one Madness plays gl pvvk rgh rmhgifnvmg rm gfmv. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And yes, The OWNER know you're watching them. "
       }else if(aspect == "Void"){
-         ret = " A yawning silence engulfs the world. It is the one Reality plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+         ret = " A yawning silence rings out. It is the NULL Reality sings to keep the worlds on their dance. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
       }else if(aspect == "Time"){
-         ret = " A sun threatens to set. It is the one Despair plays to turn cause and effect meaningless. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+         ret = "  A sun skips on a groove its tracing 'round the earth, the one-two beat Despair plays to turn cause and effect meaningless. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is/was/will be to say on the matter. "
       }else if(aspect == "Heart"){
-        ret = " A chord begins to echo. It is the one Damnation longs to play. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+        ret = " A chord begins to echo. It is the one Damnation will play at their brith. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
       }else if(aspect == "Breath"){
         ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
       }else if(aspect == "Light"){

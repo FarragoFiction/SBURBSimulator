@@ -1842,7 +1842,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
     //takes in a reader because it acts as a stream, not a byte array
     //read will read "next thing", all player has to do is know how to handle self.
 	this.readInExtensionsString = function(reader){
-	    alert("reading in extension string")
+	    console.log("reading in extension string")
 	    //just inverse of encoding process.
 	    var numFeatures = reader.readExpGolomb(); //assume features are in set order. and that if a given feature is variable it is ALWAYS variable.
 	    if(numFeatures > 0)  this.class_name = intToClassName(reader.readByte());

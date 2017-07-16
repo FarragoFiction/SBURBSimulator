@@ -1076,6 +1076,7 @@ function classNameToInt(class_name){
 }
 
 function intToClassName(num){
+    console.log("looking for class name from: " + num)
 	var tmp = classes;
 	tmp = tmp.concat(custom_only_classes);
 	if(num > tmp.length || num == 255) return "Null" //Null of Mind
@@ -1089,6 +1090,7 @@ function aspectToInt(aspect){
 }
 
 function intToAspect(num){
+    console.log("looking for aspect from: " + num)
     if(num > all_aspects.length || num == 255) return "Null"  //Heir of Null
 	return all_aspects[num];
 }
