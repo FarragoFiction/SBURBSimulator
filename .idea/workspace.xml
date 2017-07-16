@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/character_creator.html" afterPath="$PROJECT_DIR$/character_creator.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/character_viewer.html" afterPath="$PROJECT_DIR$/character_viewer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index2.html" afterPath="$PROJECT_DIR$/index2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index_pw.html" afterPath="$PROJECT_DIR$/index_pw.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/player.js" afterPath="$PROJECT_DIR$/javascripts/player.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newsposts.html" afterPath="$PROJECT_DIR$/newsposts.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/oc_generator.html" afterPath="$PROJECT_DIR$/oc_generator.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quadrantChatTest.html" afterPath="$PROJECT_DIR$/quadrantChatTest.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rap.html" afterPath="$PROJECT_DIR$/rap.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rare_session_finder.html" afterPath="$PROJECT_DIR$/rare_session_finder.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,17 +17,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="player.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="1823" column="82" lean-forward="false" selection-start-line="1823" selection-start-column="82" selection-end-line="1823" selection-end-column="82" />
+            <state relative-caret-position="225">
+              <caret line="1835" column="30" lean-forward="true" selection-start-line="1835" selection-start-column="30" selection-end-line="1835" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="quadrantChatTest.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="quadrantChatTest.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/quadrantChatTest.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="134">
@@ -68,7 +59,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>increasePower</find>
       <find>processStatPowerIncrease</find>
       <find>Scribe</find>
       <find>scoring</find>
@@ -98,6 +88,7 @@
       <find>living</find>
       <find>ocDataST</find>
       <find>aspi</find>
+      <find>toDataBytes</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -160,8 +151,8 @@
         <option value="$PROJECT_DIR$/index2.html" />
         <option value="$PROJECT_DIR$/character_viewer.html" />
         <option value="$PROJECT_DIR$/character_creator.html" />
-        <option value="$PROJECT_DIR$/javascripts/player.js" />
         <option value="$PROJECT_DIR$/quadrantChatTest.html" />
+        <option value="$PROJECT_DIR$/javascripts/player.js" />
       </list>
     </option>
   </component>
@@ -1000,14 +991,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="1823" column="82" lean-forward="false" selection-start-line="1823" selection-start-column="82" selection-end-line="1823" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/loading.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -1020,6 +1003,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="134">
           <caret line="35" column="138" lean-forward="false" selection-start-line="35" selection-start-column="138" selection-end-line="35" selection-end-column="138" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="1835" column="30" lean-forward="true" selection-start-line="1835" selection-start-column="30" selection-end-line="1835" selection-end-column="30" />
           <folding />
         </state>
       </provider>

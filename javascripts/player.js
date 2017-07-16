@@ -1833,6 +1833,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
         builder.appendBits(1, 2*8); //1 means "class and aspect only"
         builder.appendByte(j.class_name);
         builder.appendByte(j.aspect);
+        return encodeURIComponent(builder.data).replace(/#/g, '%23').replace(/&/g, '%26');
 	}
 
 
