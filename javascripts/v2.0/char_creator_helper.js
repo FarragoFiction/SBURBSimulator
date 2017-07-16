@@ -377,12 +377,13 @@ function CharacterCreatorHelper(players){
 		loadButton.click(function() {
 			var dataBox = $("#dataBoxDiv"+player.id);
 			var bs = dataBox.val();
-			var b = decodeURIComponent(bs.split("=")[1].split("&s")[0])
-			var s = bs.split("=")[2]
+			var b = decodeURIComponent(getParameterByName("b", bs))
+			var s = getParameterByName("s", bs)
+			var x = getParameterByName("x", bs)
 			console.log("b: " + b);
 			console.log("s: " + s);
 
-			var players = dataBytesAndStringsToPlayers(b, s) //technically an array of one players.
+			var players = dataBytesAndStringsToPlayers(b, s,x) //technically an array of one players.
 			console.log("Player class name: " + players[0].class_name);
 			player.copyFromPlayer(players[0]);
 			that.redrawSinglePlayer(player);

@@ -513,7 +513,7 @@ function generateURLParamsForPlayers(players,includeChatHandle){
  }
 
  function dataBytesAndStringsToPlayers(bytes, strings,xbytes){
-	 console.log("dataBytesAndStringsToPlayers");
+	 console.log("dataBytesAndStringsToPlayers: xbytes is: " + xbytes);
 	//bytes are 11 chars per player
 	//strings are 5 csv per player.
 	//console.log(bytes);
