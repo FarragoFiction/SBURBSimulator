@@ -1839,6 +1839,11 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
         return encodeURIComponent(builder.data).replace(/#/g, '%23').replace(/&/g, '%26');
 	}
 
+    //values for extension string should overwrite existing values.
+	this.readInExtensionsString = function(x){
+
+	}
+
 
 	/*
 		3 bytes: (24 bits) hairColor

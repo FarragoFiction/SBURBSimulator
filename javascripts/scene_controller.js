@@ -498,7 +498,7 @@ function generateURLParamsForPlayers(players,includeChatHandle){
 
  }
 
- function dataBytesAndStringsToPlayers(bytes, strings){
+ function dataBytesAndStringsToPlayers(bytes, strings,xbytes){
 	 console.log("dataBytesAndStringsToPlayers");
 	//bytes are 11 chars per player
 	//strings are 5 csv per player.
@@ -520,14 +520,20 @@ function generateURLParamsForPlayers(players,includeChatHandle){
 		p.id = i; //will be overwritten by sim, but viewer needs it
 		players.push(p);
 	}
+	//TODO NOW go through the extension bytes
+	//if(extensionString) player.readInExtensionsString(extensionString);
+	if(xbytes) applyExtensionStringToPlayers(players, xbytes);
 	return players;
 
  }
 
+ function applyExtensionStringToPlayers(players, xbytes){
+
+ }
 
 //TODO FUTUREJR, REMOVE THIS METHOD AND INSTAD RELY ON session.RenderingEngine.renderers[1].dataBytesAndStringsToPlayer
 //see player.js toDataBytes and toDataString to see how I expect them to be formatted.
-function dataBytesAndStringsToPlayer(charString, str_arr, extension_arr){
+function dataBytesAndStringsToPlayer(charString, str_arr){
 	 var player = new Player();
 	 player.quirk = new Quirk();
 	 //console.log("strings is: " + str_arr)
@@ -569,6 +575,7 @@ function dataBytesAndStringsToPlayer(charString, str_arr, extension_arr){
 	 player.hair = charString.charCodeAt(10)
 	 if(player.interest1Category) interestCategoryToInterestList(player.interest1Category ).push(player.interest1) //maybe don't add if already exists but whatevs for now.
 	 if(player.interest2Category )interestCategoryToInterestList(player.interest2Category ).push(player.interest2)
+
 	 return player;
 }
 

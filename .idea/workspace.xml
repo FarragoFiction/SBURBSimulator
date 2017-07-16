@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/player.js" afterPath="$PROJECT_DIR$/javascripts/player.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/relationship.js" afterPath="$PROJECT_DIR$/javascripts/relationship.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/scene_controller.js" afterPath="$PROJECT_DIR$/javascripts/scene_controller.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="player.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="1830" column="106" lean-forward="false" selection-start-line="1830" selection-start-column="106" selection-end-line="1830" selection-end-column="106" />
+            <state relative-caret-position="265">
+              <caret line="1842" column="31" lean-forward="false" selection-start-line="1842" selection-start-column="9" selection-end-line="1842" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -32,8 +32,8 @@
       <file leaf-file-name="scene_controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/scene_controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="540" column="13" lean-forward="true" selection-start-line="540" selection-start-column="13" selection-end-line="540" selection-end-column="13" />
+            <state relative-caret-position="250">
+              <caret line="529" column="55" lean-forward="false" selection-start-line="529" selection-start-column="55" selection-end-line="529" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -42,8 +42,18 @@
       <file leaf-file-name="bytebuilder.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/bytebuilder.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="97" column="0" lean-forward="true" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+            <state relative-caret-position="103">
+              <caret line="32" column="40" lean-forward="false" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="relationship.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/javascripts/relationship.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="137" column="10" lean-forward="false" selection-start-line="137" selection-start-column="10" selection-end-line="137" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -61,9 +71,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>processStatPowerIncrease</find>
-      <find>Scribe</find>
-      <find>scoring</find>
       <find>data</find>
       <find>load</find>
       <find>dataBytesAndStringsToPlayers</find>
@@ -91,6 +98,9 @@
       <find>ocDataST</find>
       <find>aspi</find>
       <find>toDataBytes</find>
+      <find>dataBytesAndStringsToPlayer</find>
+      <find>exp</find>
+      <find>getR</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -104,7 +114,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/javascripts/v2.0/scenario_controller2.js" />
         <option value="$PROJECT_DIR$/support.html" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/GoGrimDark.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/QuadrantDialogue.js" />
@@ -153,8 +162,9 @@
         <option value="$PROJECT_DIR$/character_viewer.html" />
         <option value="$PROJECT_DIR$/character_creator.html" />
         <option value="$PROJECT_DIR$/quadrantChatTest.html" />
-        <option value="$PROJECT_DIR$/javascripts/scene_controller.js" />
         <option value="$PROJECT_DIR$/javascripts/player.js" />
+        <option value="$PROJECT_DIR$/javascripts/scene_controller.js" />
+        <option value="$PROJECT_DIR$/javascripts/relationship.js" />
       </list>
     </option>
   </component>
@@ -609,14 +619,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="71" column="59" lean-forward="false" selection-start-line="71" selection-start-column="59" selection-end-line="71" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/Scenes/LifeStuff.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="73">
@@ -993,26 +995,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/bytebuilder.js">
+    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="97" column="0" lean-forward="true" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+        <state relative-caret-position="265">
+          <caret line="1842" column="31" lean-forward="false" selection-start-line="1842" selection-start-column="9" selection-end-line="1842" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/scene_controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="540" column="13" lean-forward="true" selection-start-line="540" selection-start-column="13" selection-end-line="540" selection-end-column="13" />
+        <state relative-caret-position="250">
+          <caret line="529" column="55" lean-forward="false" selection-start-line="529" selection-start-column="55" selection-end-line="529" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
+    <entry file="file://$PROJECT_DIR$/javascripts/bytebuilder.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="1830" column="106" lean-forward="false" selection-start-line="1830" selection-start-column="106" selection-end-line="1830" selection-end-column="106" />
+        <state relative-caret-position="103">
+          <caret line="32" column="40" lean-forward="false" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/relationship.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="137" column="10" lean-forward="false" selection-start-line="137" selection-start-column="10" selection-end-line="137" selection-end-column="10" />
           <folding />
         </state>
       </provider>
