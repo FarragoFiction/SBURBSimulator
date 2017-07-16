@@ -22,8 +22,28 @@
       <file leaf-file-name="player.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="2359" column="0" lean-forward="false" selection-start-line="2359" selection-start-column="0" selection-end-line="2359" selection-end-column="0" />
+            <state relative-caret-position="225">
+              <caret line="1019" column="66" lean-forward="false" selection-start-line="1019" selection-start-column="66" selection-end-line="1019" selection-end-column="66" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="newsposts.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/javascripts/newsposts.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="20" column="444" lean-forward="false" selection-start-line="20" selection-start-column="444" selection-end-line="20" selection-end-column="444" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="image_browser.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/javascripts/v2.0/image_browser.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="87" column="22" lean-forward="false" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -91,8 +111,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>var b \= decodeURIComponent\(getParameterByName\(\&quot;b\&quot;\, bs\)\)\n\	\	\	var s \= getParameterByName\(\&quot;s\&quot;\, bs\)\n\	\	\	var x \= getParameterByName\(\&quot;x\&quot;\, bs\)</find>
-      <find>d</find>
       <find>dataB</find>
       <find>dataBytes</find>
       <find>dataBytesA</find>
@@ -121,6 +139,8 @@
       <find>bloodColors</find>
       <find>this.fraymotifs = [</find>
       <find>replayers</find>
+      <find>pop</find>
+      <find>renderAllHair</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -669,14 +689,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/javascripts/Scenes/LuckStuff.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="225" column="63" lean-forward="false" selection-start-line="225" selection-start-column="50" selection-end-line="225" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/oc.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -1053,14 +1065,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/newsposts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="20" column="319" lean-forward="false" selection-start-line="20" selection-start-column="319" selection-end-line="20" selection-end-column="319" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -1069,10 +1073,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/newsposts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="20" column="444" lean-forward="false" selection-start-line="20" selection-start-column="444" selection-end-line="20" selection-end-column="444" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/v2.0/image_browser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="87" column="22" lean-forward="false" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="2359" column="0" lean-forward="false" selection-start-line="2359" selection-start-column="0" selection-end-line="2359" selection-end-column="0" />
+        <state relative-caret-position="225">
+          <caret line="1019" column="66" lean-forward="false" selection-start-line="1019" selection-start-column="66" selection-end-line="1019" selection-end-column="66" />
           <folding />
         </state>
       </provider>
