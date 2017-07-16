@@ -1828,7 +1828,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.toDataBytesX = function(){
         var builder = new ByteBuilder();
         var j = this.toJSON();
-        if(j.class_name < 15 && j.aspect < 15){ //if NEITHER have need of extension, just return size zero
+        if(j.class_name <= 15 && j.aspect <= 15){ //if NEITHER have need of extension, just return size zero
             builder.appendExpGolomb(0) //for length
             return encodeURIComponent(builder.data).replace(/#/g, '%23').replace(/&/g, '%26');
         }
