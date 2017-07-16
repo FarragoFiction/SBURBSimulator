@@ -543,7 +543,10 @@ function generateURLParamsForPlayers(players,includeChatHandle){
 
  function applyExtensionStringToPlayers(players, xbytes){
    var reader = new ByteReader(xbytes, 0);
-   var length = reader.readExpGolomb();
+   var numPlayers = reader.readExpGolomb(); //exp whatever doesn't have to encode num bits. can be any length.
+   for(var i = 0; i<players.length; i++){
+        players[i].readInExtensionsString(reader);
+   }
  }
 
 //TODO FUTUREJR, REMOVE THIS METHOD AND INSTAD RELY ON session.RenderingEngine.renderers[1].dataBytesAndStringsToPlayer

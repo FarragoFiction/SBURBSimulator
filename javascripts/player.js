@@ -1832,16 +1832,21 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
             builder.appendExpGolomb(0) //for length
             return encodeURIComponent(builder.data).replace(/#/g, '%23').replace(/&/g, '%26');
         }
-        builder.appendExpGolomb(4) //for length
-        builder.appendBits(1, 2*8); //1 means "class and aspect only"
+        builder.appendExpGolomb(2) //for length
         builder.appendByte(j.class_name);
         builder.appendByte(j.aspect);
         return encodeURIComponent(builder.data).replace(/#/g, '%23').replace(/&/g, '%26');
 	}
 
     //values for extension string should overwrite existing values.
-	this.readInExtensionsString = function(x){
-
+    //takes in a reader because it acts as a stream, not a byte array
+    //read will read "next thing", all player has to do is know how to handle self.
+	this.readInExtensionsString = function(reader){
+	    //just inverse of encoding process.
+	    var numFeatures = reader.readExpGolomb(); //assume features are in set order. and that if a given feature is variable it is ALWAYS variable.
+	    if(numFeatures > 0)  this.class_name = intToClassName(reader.readByte());
+	    if(numFeatures > 1) this.aspect = intToAspect(reader.readByte());
+	    //as i add more things, add more lines. ALWAYS in same order, but not all features all the time.
 	}
 
 
