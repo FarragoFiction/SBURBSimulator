@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/player.js" afterPath="$PROJECT_DIR$/javascripts/player.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/scene_controller.js" afterPath="$PROJECT_DIR$/javascripts/scene_controller.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,28 +22,28 @@
       <file leaf-file-name="player.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="1835" column="30" lean-forward="true" selection-start-line="1835" selection-start-column="30" selection-end-line="1835" selection-end-column="30" />
+            <state relative-caret-position="158">
+              <caret line="1830" column="106" lean-forward="false" selection-start-line="1830" selection-start-column="106" selection-end-line="1830" selection-end-column="106" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="quadrantChatTest.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/quadrantChatTest.html">
+      <file leaf-file-name="scene_controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/javascripts/scene_controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="35" column="138" lean-forward="false" selection-start-line="35" selection-start-column="138" selection-end-line="35" selection-end-column="138" />
+            <state relative-caret-position="220">
+              <caret line="540" column="13" lean-forward="true" selection-start-line="540" selection-start-column="13" selection-end-line="540" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="loading.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/loading.js">
+      <file leaf-file-name="bytebuilder.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/javascripts/bytebuilder.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <state relative-caret-position="280">
+              <caret line="97" column="0" lean-forward="true" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -133,7 +135,6 @@
         <option value="$PROJECT_DIR$/Dart/Strife.dart" />
         <option value="$PROJECT_DIR$/javascripts/debugScenarios.js" />
         <option value="$PROJECT_DIR$/javascripts/newsposts.js" />
-        <option value="$PROJECT_DIR$/javascripts/scene_controller.js" />
         <option value="$PROJECT_DIR$/OCs/bards.txt" />
         <option value="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
@@ -152,6 +153,7 @@
         <option value="$PROJECT_DIR$/character_viewer.html" />
         <option value="$PROJECT_DIR$/character_creator.html" />
         <option value="$PROJECT_DIR$/quadrantChatTest.html" />
+        <option value="$PROJECT_DIR$/javascripts/scene_controller.js" />
         <option value="$PROJECT_DIR$/javascripts/player.js" />
       </list>
     </option>
@@ -767,14 +769,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/scene_controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="544" column="135" lean-forward="false" selection-start-line="544" selection-start-column="135" selection-end-line="544" selection-end-column="135" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/OCs/bards.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -875,14 +869,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
           <caret line="400" column="495" lean-forward="true" selection-start-line="400" selection-start-column="495" selection-end-line="400" selection-end-column="495" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/bytebuilder.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-684">
-          <caret line="7" column="20" lean-forward="false" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -1007,10 +993,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/bytebuilder.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="97" column="0" lean-forward="true" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/scene_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="540" column="13" lean-forward="true" selection-start-line="540" selection-start-column="13" selection-end-line="540" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="1835" column="30" lean-forward="true" selection-start-line="1835" selection-start-column="30" selection-end-line="1835" selection-end-column="30" />
+        <state relative-caret-position="158">
+          <caret line="1830" column="106" lean-forward="false" selection-start-line="1830" selection-start-column="106" selection-end-line="1830" selection-end-column="106" />
           <folding />
         </state>
       </provider>

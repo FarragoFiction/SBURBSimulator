@@ -1820,16 +1820,19 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	//not compressed
 	this.toOCDataString = function(){
 	    //for now, only extentsion sequence is for classpect. so....
-	    var x = "";
-	    if(this.toJSON().class_name > 15 || this.toJSON().aspect > 15) x = "&x=" +this.toDataBytesX();
+	    var x = "&x=" +this.toDataBytesX(); //ALWAYS have it. worst case scenario is 1 bit.
 		return "b=" + this.toDataBytes() + "&s="+this.toDataStrings(true) + x;
 	}
 
 	//for now, only type is 1, which is class + aspect.
 	this.toDataBytesX = function(){
-	    //TODO PL has convinced me to try their exp golomb code, that will handle length
         var builder = new ByteBuilder();
         var j = this.toJSON();
+        if(j.class_name < 15 && j.aspect < 15){ //if NEITHER have need of extension, just return size zero
+            builder.appendExpGolomb(0) //for length
+            return encodeURIComponent(builder.data).replace(/#/g, '%23').replace(/&/g, '%26');
+        }
+        builder.appendExpGolomb(4) //for length
         builder.appendBits(1, 2*8); //1 means "class and aspect only"
         builder.appendByte(j.class_name);
         builder.appendByte(j.aspect);

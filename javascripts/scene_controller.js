@@ -527,7 +527,7 @@ function generateURLParamsForPlayers(players,includeChatHandle){
 
 //TODO FUTUREJR, REMOVE THIS METHOD AND INSTAD RELY ON session.RenderingEngine.renderers[1].dataBytesAndStringsToPlayer
 //see player.js toDataBytes and toDataString to see how I expect them to be formatted.
-function dataBytesAndStringsToPlayer(charString, str_arr){
+function dataBytesAndStringsToPlayer(charString, str_arr, extension_arr){
 	 var player = new Player();
 	 player.quirk = new Quirk();
 	 //console.log("strings is: " + str_arr)
