@@ -464,6 +464,16 @@ function playersToDataBytes(players){
 	//return ret;
 }
 
+function playersToExtensionBytes(players){
+	var ret = "";
+	for(var i = 0; i<players.length; i++){
+		//console.log("player " + i + " to data byte")
+		ret += players[i].toDataBytesX();
+	}
+	return LZString.compressToEncodedURIComponent(ret);
+	//return ret;
+}
+
 function truncateString(str, num) {
     return str.length > num ?
         str.slice(0, num > 3 ? num - 3 : num) + "..." :
@@ -494,7 +504,8 @@ function generateURLParamsForPlayers(players,includeChatHandle){
 	//console.log(compressed)
 	var data = playersToDataBytes(players);
 	var strings = playersToDataStrings(players,true);
-	return "b="+data+"&s="+strings;
+	var extensions = playersToExtensionBytes(players);
+	return "b="+data+"&s="+strings + "&x="+extensions;
 
  }
 
@@ -528,7 +539,8 @@ function generateURLParamsForPlayers(players,includeChatHandle){
  }
 
  function applyExtensionStringToPlayers(players, xbytes){
-
+   var reader = new ByteReader(xbytes, 0);
+   var length = reader.readExpGolomb();
  }
 
 //TODO FUTUREJR, REMOVE THIS METHOD AND INSTAD RELY ON session.RenderingEngine.renderers[1].dataBytesAndStringsToPlayer
