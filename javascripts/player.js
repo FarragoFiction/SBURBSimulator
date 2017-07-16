@@ -726,11 +726,13 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.applyPossiblePsionics = function(){
+	    console.log("Checking to see how many fraymotifs I have: " + this.fraymotifs.length + " and if I am a troll: " + this.isTroll);
 		if(this.fraymotifs.length > 0 || !this.isTroll) return; //if i already have fraymotifs, then they were probably predefined.
 		//highest land dwellers can have chucklevoodoos. Other than that, lower on hemospectrum = greater odds of having psionics.
 		//make sure psionic list is kept in global var, so that char creator eventually can access? Wait, no, just wrtap it in a function here. don't polute global name space.
 		//trolls can clearly have more than one set of psionics. so. odds of psionics is inverse with hemospectrum position. didn't i do this math before? where?
 		//oh! low blood vocabulary!!! that'd be in quirks, i think.
+		console.log("My blood color is: " + this.bloodColor);
 		var odds = 10 - bloodColors.indexOf(this.bloodColor);   //want gamzee and above to have NO powers (will give highbloods chucklevoodoos separate)
 		var powers = this.psionicList();
 		for(var i = 0; i<powers.length; i++){
@@ -752,6 +754,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			f.flavorText = " All allies just settle their shit for a little while. Cool it. "
 			this.fraymotifs.push(f);
 		}
+		console.log(this.fraymotifs);
 	}
 
 	this.decideLusus = function(player){
@@ -1939,6 +1942,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.robot = replayPlayer.robot;
 		this.fraymotifs = [];  //whoever you were before, you don't have those psionics anymore
 		this.applyPossiblePsionics(); //now you have new psionics
+		console.log("after applying psionics I have this many fraymotifs: " + this.fraymotifs.length);
 		this.quirk.favoriteNumber = replayPlayer.quirk.favoriteNumber; //will get overridden, has to be after initialization, too, but if i don't do it here, char creartor will look wrong.
 		this.makeGuardian();
 	}
@@ -2353,7 +2357,6 @@ function initializePlayers(players,session){
 	for(var i = 0; i<players.length; i++){
 		if(replayPlayers[i]) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
 		if(players[i].land){ //don't reinit aliens, their stats stay how they were cloned.
-			players[i].fraymotifs = []; //get rid of any class/blood bonus you had before.
 			players[i].initialize();
 			players[i].guardian.initialize();
 			if(replayPlayers[i]){
