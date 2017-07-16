@@ -466,6 +466,9 @@ function playersToDataBytes(players){
 
 function playersToExtensionBytes(players){
 	var ret = "";
+	var builder = new ByteBuilder();
+	builder.appendExpGolomb(players.length) //encode how many players, doesn't have to be how many bits.
+	ret += encodeURIComponent(builder.data).replace(/#/g, '%23').replace(/&/g, '%26');
 	for(var i = 0; i<players.length; i++){
 		//console.log("player " + i + " to data byte")
 		ret += players[i].toDataBytesX();
