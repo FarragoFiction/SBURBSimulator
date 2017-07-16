@@ -753,6 +753,12 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			f.effects.push(new FraymotifEffect("sanity",1,true));
 			f.flavorText = " All allies just settle their shit for a little while. Cool it. "
 			this.fraymotifs.push(f);
+		}else if(this.bloodColor == "#ffc3df"){
+		    var f = new Fraymotif([],  this.htmlTitleBasic() + " and the Power of Looove~~~~~<3<3<3", 1)
+            f.effects.push(new FraymotifEffect("RELATIONSHIPS",3,false));
+            f.effects.push(new FraymotifEffect("RELATIONSHIPS",3,true));
+            f.flavorText = " You are pretty sure this is not a real type of Troll Psionic.  It heals everybody in a bullshit parade of sparkles, and heart effects despite your disbelief. Everybody is also SUPER MEGA ULTRA IN LOVE with each other now, but ESPECIALLY in love with  " + this.htmlTitleHP() + ". "
+            this.fraymotifs.push(f);
 		}
 		console.log(this.fraymotifs);
 	}
