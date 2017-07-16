@@ -1017,7 +1017,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		//console.log("guardian for " + player.titleBasic());
 		var player = this;
 		var possibilities = available_classes_guardians;
-		if(possibilities.length == 0) possibilities = all_classes;
+		if(possibilities.length == 0) possibilities = classes;
 		//console.log("class names available for guardians is: " + possibilities)
 		var guardian = randomPlayerWithClaspect(this.session, getRandomElementFromArray(possibilities), this.aspect);
         available_classes_guardians.removeFromArray(guardian.class_name)
