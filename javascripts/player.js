@@ -1937,6 +1937,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.dead = replayPlayer.dead;
 		this.victimBlood = replayPlayer.victimBlood
 		this.robot = replayPlayer.robot;
+		this.fraymotifs = [];  //whoever you were before, you don't have those psionics anymore
+		this.applyPossiblePsionics(); //now you have new psionics
 		this.quirk.favoriteNumber = replayPlayer.quirk.favoriteNumber; //will get overridden, has to be after initialization, too, but if i don't do it here, char creartor will look wrong.
 		this.makeGuardian();
 	}
@@ -2351,6 +2353,7 @@ function initializePlayers(players,session){
 	for(var i = 0; i<players.length; i++){
 		if(replayPlayers[i]) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
 		if(players[i].land){ //don't reinit aliens, their stats stay how they were cloned.
+			players[i].fraymotifs = []; //get rid of any class/blood bonus you had before.
 			players[i].initialize();
 			players[i].guardian.initialize();
 			if(replayPlayers[i]){
