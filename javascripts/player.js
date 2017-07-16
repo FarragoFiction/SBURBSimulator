@@ -1816,10 +1816,25 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		var ret = ""+sanitizeString(this.causeOfDrain) + ","+sanitizeString(this.causeOfDeath) + "," + sanitizeString(this.interest1) + "," + sanitizeString(this.interest2) + "," + sanitizeString(ch)
 		return ret;
 	}
+
 	//not compressed
 	this.toOCDataString = function(){
-		return "b=" + this.toDataBytes() + "&s="+this.toDataStrings(true)
+	    //for now, only extentsion sequence is for classpect. so....
+	    var x = "";
+	    if(this.toJSON().class_name > 15 || this.toJSON().aspect > 15) x = "&x=" +this.toDataBytesX();
+		return "b=" + this.toDataBytes() + "&s="+this.toDataStrings(true) + x;
 	}
+
+	//for now, only type is 1, which is class + aspect.
+	this.toDataBytesX = function(){
+	    //TODO PL has convinced me to try their exp golomb code, that will handle length
+        var builder = new ByteBuilder();
+        var j = this.toJSON();
+        builder.appendBits(1, 2*8); //1 means "class and aspect only"
+        builder.appendByte(j.class_name);
+        builder.appendByte(j.aspect);
+	}
+
 
 	/*
 		3 bytes: (24 bits) hairColor
