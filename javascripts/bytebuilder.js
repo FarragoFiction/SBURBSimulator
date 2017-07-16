@@ -1,5 +1,3 @@
-//JR: From ParadoxLands
-
 /**
  *	Builds ArrayBuffers of data in an easy to use way.
  *
@@ -21,12 +19,12 @@ ByteBuilder.prototype.appendBit = function(bit) {
 		this.currentByte |= (1 << this.position);
 	}
 	this.position++;
-	
+
 	if (this.position >= 8) {
 		this.position = 0;
 		
 		this.data += String.fromCharCode(this.currentByte);
-		
+
 		this.currentByte = 0;
 	}
 }
@@ -67,10 +65,27 @@ ByteBuilder.prototype.appendByte = function(byte) {
 /**
  *	Appends 32 bytes from the input to the buffer
  *
- *	@param {number} byte - The number from which 32 bits will be appended.
+ *	@param {number} num - The number from which 32 bits will be appended.
  */
-ByteBuilder.prototype.appendInt32 = function(i) {
-	this.appendBits(i, 32);
+ByteBuilder.prototype.appendInt32 = function(num) {
+	this.appendBits(num, 32);
+}
+
+/**
+ *  Appends a number to the buffer using exponential-Golomb encoding
+ *
+ *  @param {number} num - The number to encode
+ */
+ByteBuilder.prototype.appendExpGolomb = function(num) {
+    num++;
+
+    var bits = Math.floor(Math.log(num)/Math.LN2);
+
+    for (var i=0; i<bits; i++) {
+        this.appendBit(false);
+    }
+
+    this.appendBitsReversed(num, bits+1);
 }
 
 /**
@@ -142,7 +157,11 @@ function ByteReader(bytes, offset) {
 ByteReader.prototype.read = function(position) {
 	var bytepos = Math.floor(position / 8);
 	var bitpos = position % 8;
-	
+
+	if (bytepos >= this.bytes.length) {
+	    throw "Attempted to read out of range: "+bytepos;
+	}
+
 	var byte = this.bytes[bytepos];
 	
 	return (byte & (1 << bitpos)) > 0;
@@ -189,7 +208,7 @@ ByteReader.prototype.readBits = function(bitcount) {
  *	@returns {number} A number representing the next bitcount bits from the buffer, read in reverse order.
  */
 ByteReader.prototype.readBitsReversed = function(bitcount) {
-	if (bitcount > 32) {
+		if (bitcount > 32) {
 		throw "bitcount may not exceed 32";
 	}
 	var val = 0;
@@ -219,4 +238,22 @@ ByteReader.prototype.readByte = function() {
  */
 ByteReader.prototype.readInt32 = function() {
 	return this.readBits(32);
+}
+
+/**
+ *  Reads a number encoded using exponential-Golomb encoding.
+ */
+ByteReader.prototype.readExpGolomb = function() {
+    var bits = 0;
+
+    while (true) {
+        if (this.readBit()) {
+            this.position--;
+            break;
+        } else {
+            bits++;
+        }
+    }
+
+    return (this.readBitsReversed(bits+1))-1;
 }
