@@ -466,10 +466,10 @@ function playersToDataBytes(players){
 
 function playersToExtensionBytes(players){
 	var ret = "";
-	var builder = new ByteBuilder();
+	//var builder = new ByteBuilder();
 	//do NOT do this because it fucks up the single player strings. i know how many players there are other ways, don't worry about it.
 	//builder.appendExpGolomb(players.length) //encode how many players, doesn't have to be how many bits.
-	ret += encodeURIComponent(builder.data).replace(/#/g, '%23').replace(/&/g, '%26');
+	//ret += encodeURIComponent(builder.toBuffer()).replace(/#/g, '%23').replace(/&/g, '%26');
 	for(var i = 0; i<players.length; i++){
 		//console.log("player " + i + " to data byte")
 		ret += players[i].toDataBytesX();
@@ -555,6 +555,16 @@ function generateURLParamsForPlayers(players,includeChatHandle){
         uint8View[i] = str.charCodeAt(i);
     }
     return buffer;
+ }
+ 
+ function byteArrayToString(byteBuffer){
+	 var ret = "";
+	 var uint8View = new Uint8Array(byteBuffer);
+	 for(var i = 0; i<uint8View.length; i++){
+		 ret += String.fromCharCode(uint8View[i]);
+	 }
+	 return ret;
+	 
  }
 
 //TODO FUTUREJR, REMOVE THIS METHOD AND INSTAD RELY ON session.RenderingEngine.renderers[1].dataBytesAndStringsToPlayer

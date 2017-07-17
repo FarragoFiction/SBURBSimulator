@@ -1839,12 +1839,12 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
         var j = this.toJSON();
         if(j.class_name <= 15 && j.aspect <= 15){ //if NEITHER have need of extension, just return size zero
             builder.appendExpGolomb(0) //for length
-            return encodeURIComponent(builder.data).replace(/#/g, '%23').replace(/&/g, '%26');
+            return encodeURIComponent(byteArrayToString(builder.toBuffer())).replace(/#/g, '%23').replace(/&/g, '%26');
         }
         builder.appendExpGolomb(2) //for length
         builder.appendByte(j.class_name);
         builder.appendByte(j.aspect);
-        return encodeURIComponent(builder.data).replace(/#/g, '%23').replace(/&/g, '%26');
+        return encodeURIComponent(byteArrayToString(builder.toBuffer())).replace(/#/g, '%23').replace(/&/g, '%26');
 	}
 
     //values for extension string should overwrite existing values.
@@ -1860,7 +1860,11 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	      console.log("Class Name ID : " + cid)
 	      this.class_name = intToClassName(reader.readByte());
 	      }
-	    if(numFeatures > 1) this.aspect = intToAspect(reader.readByte());
+	    if(numFeatures > 1){
+			var aid = reader.readByte();
+			console.log("Aspect ID : " + aid)
+			this.aspect = intToAspect(aid);
+		} 
 	    //as i add more things, add more lines. ALWAYS in same order, but not all features all the time.
 	}
 

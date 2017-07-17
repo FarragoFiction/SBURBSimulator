@@ -83,12 +83,12 @@ function PlayerSnapshot(){
         var j = this.toJSON();
         if(j.class_name <= 15 && j.aspect <= 15){ //if NEITHER have need of extension, just return size zero
             builder.appendExpGolomb(0) //for length
-            return encodeURIComponent(builder.data).replace(/#/g, '%23').replace(/&/g, '%26');
+            return encodeURIComponent(builder.toBuffer()).replace(/#/g, '%23').replace(/&/g, '%26');
         }
         builder.appendExpGolomb(2) //for length
         builder.appendByte(j.class_name);
         builder.appendByte(j.aspect);
-        return encodeURIComponent(builder.data).replace(/#/g, '%23').replace(/&/g, '%26');
+        return encodeURIComponent(byteArrayToString(builder.toBuffer())).replace(/#/g, '%23').replace(/&/g, '%26');
     }
 
     //values for extension string should overwrite existing values.
