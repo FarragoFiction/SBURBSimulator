@@ -1,5 +1,6 @@
 var imagesWaiting = 0;
 var imagesLoaded = 0;
+var callBack = null;
 
 function loadFuckingEverything(skipInit){
 	if(simulationMode == true) return checkDone(skipInit);
@@ -30,6 +31,13 @@ function loadAllImagesForPlayersNew(players, guardians, skipInit){
 		loadImage(spriteLocations[i],skipInit);
 	}
 	loadOther(skipInit);
+}
+
+function loadAllImagesForPlayerWithCallback(player, cb){
+	callBack = cb;
+	var skipInit = true;
+	if(simulationMode == true) return checkDone(skipInit);
+	loadPlayer(player,skipInit);
 }
 
 function loadAllImagesForPlayers(players, guardians,skipInit){
@@ -77,6 +85,7 @@ function checkDone(skipInit){
 	if((imagesLoaded != 0 && imagesWaiting == imagesLoaded) || simulationMode == true){  //if i'm not using images, don't load them, dunkass.
 		//$("#loading").remove(); //not loading anymore
     if(skipInit){
+		if(callBack) return callBack();
       if(skipInit == "oc"){
         console.log("images loaded: " + imagesLoaded)
         reroll();
@@ -211,7 +220,7 @@ function loadOther(skipInit){
 function loadAllPossiblePlayers(skipInit){
 	if(simulationMode == true) return checkDone(skipInit);
 	var blankPlayer = new Player(); //need to get num hair and horns.
-    var numBodies = 13;  //1 indexed
+    var numBodies = 16;  //1 indexed
     var numHair = blankPlayer.maxHairNumber; //+1025 for rufio.  1 indexed
     var numHorns = blankPlayer.maxHornNumber; //1 indexed.
     //var numWings = 12 //0 indexed, not 1.  for now, don't bother with wings. not gonna show godtier, for now.
@@ -221,6 +230,16 @@ function loadAllPossiblePlayers(skipInit){
         loadImage("Bodies/dream"+i+".png",skipInit);
 				if(easter_egg == true)   loadImage("Bodies/egg"+i+".png",skipInit);
     }
+
+    //error handling
+    loadImage("Null.png",skipInit);
+    //cause i made images 1 indexed like a dunkass
+    loadImage("Bodies/reg256.png",skipInit);
+    loadImage("Bodies/dream256.png",skipInit);
+    loadImage("Bodies/god256.png",skipInit);
+
+
+
 
     for(var i = 1; i<=numHair; i++){
         loadImage("Hair/hair_back"+i+".png",skipInit);
@@ -255,6 +274,12 @@ function loadAllPossiblePlayers(skipInit){
         loadImage("Horns/left"+i+".png",skipInit);
         loadImage("Horns/right"+i+".png",skipInit);
     }
+
+    var maxCustomHorns = 4; //kr doesn't want these widely available.
+    for(var i = 255; i> 255-maxCustomHorns; i+=-1){
+        loadImage("Horns/left"+i+".png",skipInit);
+        loadImage("Horns/right"+i+".png",skipInit);
+     }
 }
 
 //load hair, horns, wings, regular sprite, god sprite, fins, aspect symbol, moon symbol for each player

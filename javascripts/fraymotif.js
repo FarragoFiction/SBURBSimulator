@@ -17,7 +17,7 @@ function Fraymotif(aspects, name,tier, flavorText){
     this.used = false; //when start fight, set to false. set to true when used. once per fight
   	this.effects = [];  //each effect is a target, a revive, a statName
   	this.baseValue = 50 * this.tier;
-    if(this.tier ==3) this.baseValue = 1000;//gods, man
+    if(this.tier >=3) this.baseValue = 1000 * this.tier-2;//so a tier 3 is 1000 * 3 -2, or....1000.  But..maybe there is a way to make them even more op???
 
     this.toString  = function(){
       return this.name;
@@ -31,6 +31,17 @@ function Fraymotif(aspects, name,tier, flavorText){
 		}
 	}
 
+	this.getCastersNoOwner = function(players){
+	    var casters = [];
+        for(var i = 0; i<this.aspects.length; i++){ //skip the first aspect, because that's owner.
+            var a = this.aspects[i];
+            var p = getRandomElementFromArray(findAllAspectPlayers(players, a))//ANY player that matches my aspect can do this.
+            if(p) casters.push(p); //don't add 'undefined' to this array like a dunkass.
+        }
+        return casters;  //eventually do smarter things, like only allow to cast buff hp if heals are needed or anybody is dead.
+
+	}
+
 	this.getCasters = function(owner, allies){
 		//first check to see if all aspects are included in the allies array.
 		var casters = [owner];
@@ -38,7 +49,7 @@ function Fraymotif(aspects, name,tier, flavorText){
 		var living = findLivingPlayers(allies); //dead men use no fraymotifs. (for now)
 		for(var i = 1; i<this.aspects.length; i++){ //skip the first aspect, because that's owner.
 			var a = this.aspects[i];
-			var p = getRandomElementFromArray(findAllAspectPlayers(allies, a))//ANY player that matches my aspect can do this.
+			var p = getRandomElementFromArray(findAllAspectPlayers(living, a))//ANY player that matches my aspect can do this.
 			if(p) casters.push(p); //don't add 'undefined' to this array like a dunkass.
 		}
 		return casters;  //eventually do smarter things, like only allow to cast buff hp if heals are needed or anybody is dead.
@@ -49,7 +60,7 @@ function Fraymotif(aspects, name,tier, flavorText){
          this.flavorText = this.proceduralFlavorText();
       }
       var phrase = "The CASTERS use FRAYMOTIF. ";//shitty example.
-      if(casters.length == 1) phrase = "The CASTERS uses FRAYMOTIF. "
+      if(casters.length == 1) phrase = "The CASTERS uses FRAYMOTIF. It damages the ENEMY. "
       phrase += this.flavorText + revives;
       return this.replaceKeyWords(phrase, owner, casters, allies,  enemy, enemies);
   }
@@ -247,7 +258,7 @@ function Fraymotif(aspects, name,tier, flavorText){
   }
 
   this.getBuffWords = function(){
-    return ["soothing","supportive","friendly", "fortifying", "protecting", "warding", "defensive","blessed"];
+    return ["soothing","supportive","friendly", "fortifying", "protective", "warding", "defensive","blessed"];
   }
 
   this.canCast = function(owner, allies, enemies){
@@ -269,6 +280,14 @@ function Fraymotif(aspects, name,tier, flavorText){
     if(!this.canCast(owner, allies, enemies)) return;
 		var casters = this.getCasters(owner, allies);
     this.makeCastersUnavailable(casters);
+    //Hope Rides Alone
+    if(owner.aspect == "Hope" && allies.length == 1 && Math.seededRandom() > 0.85){
+        enemies[0].buffs.push(new Buff("currentHP", -9999)) //they REALLY believed in this attack.
+        var jakeisms = ["GADZOOKS!","BOY HOWDY!","TALLY HO!","BY GUM"];
+        console.log("Hope Rides Alone in session: "  + owner.session.session_id)
+        var scream =  getFontColorFromAspect(owner.aspect) + getRandomElementFromArray(jakeisms) + "</font>"
+        return " [HOPE RIDES ALONE] is activated. " + owner.htmlTitle() +  " starts screaming. <br><br><span class = 'jake'> " + scream + " </span>  <Br><Br> Holy fucking SHIT, that is WAY MORE DAMAGE then is needed. Jesus christ. Someone nerf that Hope player already!"
+    }
     var dead = findDeadPlayers(allies);
 		//console.log(casters);
     //ALL effects that target a single enemy target the SAME enemy.
@@ -290,23 +309,90 @@ function Fraymotif(aspects, name,tier, flavorText){
 
 //no global functions any more. bad pastJR.
 function FraymotifCreator(){
-
+    //some types of fraymotifs, that are otherwise procedurally generated, should have stupid pun names. they are kept here.
+    this.premadeFraymotifNames = [];
   this.createFraymotifForPlayerDenizen = function(player, name){
     var denizen = player.denizen;
-    var f = new Fraymotif([], name + "'s Song", 2); //CAN I have an aspectless fraymotif?
-    f.flavorText = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+    var f = new Fraymotif([], name + "'s " + this.getDenizenFraymotifNameFromAspect(player.aspect), 2); //CAN I have an aspectless fraymotif?
+    f.flavorText = this.getDenizenFraymotifDescriptionForAspect(player.aspect);
+
     //statName, target, damageInsteadOfBuff, flavorText
-    var plus = player.getOnlyPositiveAspectAssociatedStats() //buff self and heal
+    var plus = player.associatedStats //buff self and heal. used to be only positive, but that gave witches/sylphs/princes/bards the shaft
     for(var i = 0; i<plus.length; i++){
       f.effects.push(new FraymotifEffect(plus[i].name,0,true));
       f.effects.push(new FraymotifEffect(plus[i].name,0,false));
     }
-    var minus = player.getOnlyNegativeAspectAssociatedStats() //debuff enemy, and damage.
+    var minus = player.associatedStats //debuff enemy, and damage. used to be only negative, but that gave witches/sylphs/princes/bards the shaft
     for(var i = 0; i<minus.length; i++){
       f.effects.push(new FraymotifEffect(minus[i].name,2,true));
       f.effects.push(new FraymotifEffect(minus[i].name,2,false));
     }
     player.denizen.fraymotifs.push(f);
+  }
+
+  this.getDenizenFraymotifNameFromAspect = function(aspect){
+      var ret = "";
+      if(aspect == "Blood"){
+          ret = "Ballad " //a song passed over generations in an oral history
+      }else if(aspect == "Mind"){
+        ret = "Fugue"  //a musical core that is altered and changed and interwoven with itself. Also, a mental state of confusion and loss of identity  (alternate selves that made different choices)
+      }else if(aspect == "Rage"){
+         ret = " Aria" // a musical piece full of emotion
+      }else if(aspect == "Void"){
+         ret = "Silence" //
+      }else if(aspect == "Time"){
+         ret = "Canon" //a musical piece in which a section is repeated (but unchanged) at different times, layered until it's unreconizable  (stable time loops)
+      }else if(aspect == "Heart"){
+        ret = "Leitmotif" //a musical theme representing a particular character
+      }else if(aspect == "Breath"){
+        ret = "Refrain"
+      }else if(aspect == "Light"){
+        ret = "Opera" //lol, cuz light players never shut up
+      }else if(aspect == "Space"){
+        ret = "Sonata" //a composition for a soloist.  Space players are stuck doing something different from everyone,
+      }else if(aspect == "Hope"){
+        ret = "Etude" //a musical exercise designed to improve the performer
+      }else if(aspect == "Life"){
+        ret = "Lament" //passionate expression of grief. so much life has been lost to SBURB.
+      }else if(aspect == "Doom"){
+        ret = "Dirge" //a song for the dead
+      }else{
+        ret = "Song"
+      }
+      return ret;
+  }
+
+  this.getDenizenFraymotifDescriptionForAspect = function(aspect){
+      var ret = "";
+      if(aspect == "Blood"){
+          ret = " A sour note is produced. It's the one Agitation plays to make its audience squirm. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Mind"){
+        ret = " A fractured chord is prepared. It is the one Regret plays to make insomnia reign. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Rage"){
+         ret = " A hsirvprmt xslri begins to tryyvi. It is the one Madness plays gl pvvk rgh rmhgifnvmg rm gfmv. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And yes, The OWNER know you're watching them. "
+      }else if(aspect == "Void"){
+         ret = " A yawning silence rings out. It is the NULL Reality sings to keep the worlds on their dance. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Time"){
+         ret = "  A sun skips on a groove its tracing 'round the earth, the one-two beat Despair plays to turn cause and effect meaningless. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is/was/will be to say on the matter. "
+      }else if(aspect == "Heart"){
+        ret = " A chord begins to echo. It is the one Damnation will play at their brith. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Breath"){
+        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Light"){
+        ret = " A beautiful opera begins to be performed. It starts to really pick up around Act 4. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Space"){
+        ret = " An echoing note is plucked. It is the one Isolation plays to chart the depths of reality. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Hope"){
+        ret = " A resounding hootenanny begins to play. It is the one Irony performs to remember the past. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Life"){
+        ret = " A plucked note echos in the stillness. It is the one Desire plays to summon it's audience. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else if(aspect == "Doom"){
+        ret = " A slow dirge begins to play. It is the one Death plays to keep in practice. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }else{
+        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. "
+      }
+
+      return ret;
   }
 
   this.getUsableFraymotifs = function(owner, allies, enemies){
@@ -320,12 +406,12 @@ function FraymotifCreator(){
   }
 
   this.getRandomBreathName = function(){
-      var names = ["Gale", "Feather", "Breathless","Jetstream", "Hurricane", "Tornado"," Kansas", "Breath", "Breeze", "Twister", "Storm", "Wild", "Inhale", "Windy", "Skylark", "Fugue", "Pneumatic", "Wheeze", "Forward", "Vertical", "Whirlwind", "Jetstream"];
+      var names = ["Gale", "Wiznado", "Feather", "Lifting", "Breathless","Jetstream", "Hurricane", "Tornado"," Kansas", "Breath", "Breeze", "Twister", "Storm", "Wild", "Inhale", "Windy", "Skylark", "Fugue", "Pneumatic", "Wheeze", "Forward", "Vertical", "Whirlwind", "Jetstream"];
       return getRandomElementFromArray(names)
   }
 
   this.getRandomRageName = function(){
-      var names = ["Rage", "Barbaric", "Impossible", "Juggalo","Horrorcore" ,"Madness", "Carnival", "Mirthful", "Screaming", "Berserk", "MoThErFuCkInG", "War", "Haze", "Murder", "Furioso", "Aggressive", "ATBasher", "Violent", "Unbound", "Purple", "Unholy", "Hateful", "Fearful", "Inconceivable", "Impossible"];
+      var names = ["Rage", "Barbaric", "Impossible", "Tantrum", "Juggalo","Horrorcore" ,"Madness", "Carnival", "Mirthful", "Screaming", "Berserk", "MoThErFuCkInG", "War", "Haze", "Murder", "Furioso", "Aggressive", "ATBasher", "Violent", "Unbound", "Purple", "Unholy", "Hateful", "Fearful", "Inconceivable", "Impossible"];
       return getRandomElementFromArray(names)
   }
 
@@ -341,7 +427,7 @@ function FraymotifCreator(){
 
   this.getRandomVoidName = function(){
       var randBonus = "<span class = 'void'>" + getRandomElementFromArray(interests) +  "</span>"
-      var names = ["Undefined", "Void","Disappearification","Pumpkin", "Nothing", "Emptiness", "Invisible", "Dark", "Hole", "Solo", "Silent", "Alone", "Night", "Null", "[Censored]", "[???]", "Vacuous", "Abyss", "Noir", "Blank", "Tenebrous", "Antithesis", "404"];
+      var names = ["Undefined", "untitled.mp4", "Void","Disappearification","Pumpkin", "Nothing", "Emptiness", "Invisible", "Dark", "Hole", "Solo", "Silent", "Alone", "Night", "Null", "[Censored]", "[???]", "Vacuous", "Abyss", "Noir", "Blank", "Tenebrous", "Antithesis", "404"];
       return getRandomElementFromArray(names)+ randBonus;
   }
 
@@ -409,8 +495,95 @@ function FraymotifCreator(){
     }
   }
 
+  //if the creator's list of fraymotifs is empty, create it.
+  //return null with 50% chance. (don't want EVERY tier 2 light fraymotif to be called the same thing)
+  //look through array of premade fraymotifs and see if players can cast the fraymotif.
+  //if they can, return name of fraymotif.
+  this.tryToGetPreMadeName = function(players){
+    if(Math.seededRandom() > 0.5) return; //just use the procedural name.
+
+    if(this.premadeFraymotifNames.length == 0) this.initializePremadeNames();
+    for(var i = 0; i<this.premadeFraymotifNames.length; i++){
+        var f = this.premadeFraymotifNames[i];
+        var casters = f.getCastersNoOwner(players);
+        if (casters.length == f.aspects.length) return f.name;
+    }
+    return null;
+  }
+
+  this.initializePremadeNames = function(){
+    this.premadeFraymotifNames = [];
+    this.premadeFraymotifNames.push(new Fraymotif(["Light", "Mind"], "Blinded By The Light",1, ""))
+		this.premadeFraymotifNames.push(new Fraymotif(["Light", "Heart"], "Total Eclipse of the Heart",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Breath", "Time"], "Stop, Hammertime",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Breath", "Hope"], "Wings of Freedom",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Doom", "Hope"], "Happy Ending",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Space", "Time"], "Adagio Redshift",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Life", "Time"], "Time Heals All Wounds",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Heart", "Doom"], "Madrigal Melancholia",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Space", "Time", "Breath", "Light"], "Canon in HS Major",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Life", "Void", "Heart", "Hope"], "Canon in HS Minor",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Doom", "Time"], "Another One Bites The Dust",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Hope", "Time"], "Maybe Someday",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Mind", "Space"], "Mind Over Matter",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Space", "Life"], "Extraterrestrial Ensemble",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Life", "Time"], "Lifetime Special",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Space", "Breath"], "Air on a Cosmic String",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Breath", "Void"], "Rhapsody in Blue",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Mind", "Breath"], "Brainstorm",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Space", "Void"], "Spaced Out",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Hope", "Light"], "Look On The Bright Side",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Light", "Void"], "Lights Out",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Hope", "Void"], "Lost Hope",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Light", "Hope"], "Grandiose Illuminations",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Hope", "Void"], "Lost Hope",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Rage", "Light", "Heart"], "Flipping the Light Fantastic",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Heart", "Void"], "Hotel California",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Hope", "Heart"], "Feel Good",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Heart", "Void", "Space"], "Heart's Not In It",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Mind", "Breath"], "Freedom of Thought",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Doom", "Rage"], "Brick in The Wall",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Blood", "Doom", "Life"], "Ancestral Awakening",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Doom", "Time"], "You're Gonna Have a Bad Time",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Doom", "Hope"], "I Hope You Die",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Rage", "Breath"], "Free Rage Chicken",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Time", "Rage"], "Gears of War",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Breath", "Void"], "You Suck",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Light", "Breath"], "Apollo's Chariot",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Space", "Hope"], "Planck Fandango",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Breath", "Life"], "Emancipation Proclamation",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Space", "Void"], "Glass Half Empty",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Blood", "Hope", "Mind"], "It's Raining Zen (Hallelujah)",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Light", "Space"], "She Blinded Me With Science",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Time", "Life", "Blood"], "Never Gonna Let You Down",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Doom", "Breath"], "Bad Breath",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Rage", "Blood"], "Opposites Attract",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Life", "Doom", "Heart", "Space"], "Life and Death and Love and Birth",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Breath", "Doom"], "Freedom is Slavery",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Breath", "Time", "Space"], "Alternate Universe",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Void", "Life"], "Tangle Buddies",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Breath", "Hope"], "Let's Pierce the Heavens",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Void", "Time"], "Volatile Times",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Space", "Void"], "Mom's Spaghettification",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Rage", "Doom", "Light"], "Kill the Light",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Doom", "Light"], "Deadly Laser",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Blood", "Mind","Breath", "Light","Space", "Void","Time", "Heart","Hope", "Life","Doom"], "Just...Fuck That Guy",1, "")) ///lol, no gamzee
+    this.premadeFraymotifNames.push(new Fraymotif(["Life", "Doom"], "Grim Fandango",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Mind", "Time", "Doom"], "Timeline Evisceration",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Heart", "Blood"], "Shipping Grades",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Void", "Space", "Rage"], "In Space, No One Can Hear You Scream",1, ""))
+    this.premadeFraymotifNames.push(new Fraymotif(["Hope", "Time"], "Hope For The Future",1, ""))
+
+  }
+
   this.getFraymotifName = function(players, tier){
-    var name = "";
+    var name = this.tryToGetPreMadeName(players);
+    if(name){
+        //console.log("Using a premade procedural fraymotif name: " + name + " " + players[0].session.session_id)
+        return name; //premade is good enough here. let the called function handle randomness.
+    }else{
+        name = "";
+    }
     var indexOfMusic = players.length-1;  //used to be random now always at end.
     if(players.length == 1){
       indexOfMusic = getRandomInt(0,tier-1);
@@ -448,16 +621,35 @@ function FraymotifCreator(){
     return this.makeFraymotif(players_involved , tier);
   }
 
+  this.findFraymotifNamed = function(fraymotifs, name){
+    for(var i = 0; i<fraymotifs.length; i++){
+        if(fraymotifs[i].name == name) return fraymotifs[i];
+    }
+    return null;
+  }
+
   //classes is between 0 and aspects.length. each aspect is paired with a class.
   //should there be no class to pair with, random effect based on aspect
   //otherwise, effect is based on both class and aspect
   this.makeFraymotif = function(players,tier){ //asumming first player in that array is the owner of the framotif later on.
+    if(players.length == 1 && players[0].class_name == "Waste" && tier == 3){
+        //check to see if we are upgrading rocks fall.
+        var f = this.findFraymotifNamed(players[0].fraymotifs, "Rocks Fall, Everyone Dies")
+        if(f && f.tier < 10){
+            f.tier = 99;
+            f.baseValue = 9999;
+            f.name += " (True Form)"
+            f.flavorText = "Incredibly huge meteors rain down from above. What the hell??? Didn't this used to suck?  Hax! I call hax!";
+            return f;
+        }
+    }
+
     var name = this.getFraymotifName(players, tier);
   	var aspects = [];
   	for(var i = 0; i<players.length; i++){
   		aspects.push(players[i].aspect); //allow fraymotifs tht are things like time/time. doomed time clones need love.
   	}
-    name += " ( Tier " + tier + " )"
+    name += " (Tier " + tier + ")"
    var f= new Fraymotif(aspects, name, tier);
    f.addEffectsForPlayers(players);
   	return f;
@@ -492,7 +684,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 		if(player.class_name == "Mage") effect = getRandomElementFromArray(this.mageEffects());
 		this.target = effect.target;
 		this.damageInsteadOfBuff = effect.damageInsteadOfBuff;
-		this.statName = getRandomElementFromArray(player.getOnlyPositiveAspectAssociatedStats()).name; //TODO if I know it's a debuff, maybe debuff the things that are negative for me?
+		this.statName = getRandomElementFromArray(player.associatedStats).name;
 	}
 
 	//preliminary design detailed here: https://docs.google.com/spreadsheets/d/1kam2FnKJiek6DidDpQdSnR3Wl9-vk1oZBa0pPpxlJk4/edit#gid=0
@@ -595,7 +787,7 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 		for(var i = 0; i<targetArr.length; i++){
 			var t = targetArr[i];
 			t.makeAlive();
-      t.buffs.push(new Buff("currentHP", e)) //don't mod directly anymore
+            t.buffs.push(new Buff("currentHP", e)) //don't mod directly anymore
 		}
 	}
 

@@ -19,6 +19,8 @@
 
   Lands should have a "questCompletion" rate that determines which set of quests to use.
 
+  is prospit/derse a planet? a subtype of planet?
+
  */
 class Planet{
   String word1;
@@ -41,6 +43,8 @@ class DeadPlanet extends Planet{
   A QuestChain is a collection of quests that must be completed in order.
 
   it is associated with a reward for completion. or something. still planning.
+
+  IDEA: MAKE THEM BRANCHING BASED ON CLASS.  A PRINCE MIGHT DO DESTRUCTIVE THINGS TO WIN, WHILE A SYLPH MEDDLE-WINS
  */
 class QuestChain{
   List<Quest> quests;

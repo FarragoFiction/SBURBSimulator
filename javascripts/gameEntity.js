@@ -12,6 +12,7 @@
 function GameEntity(session, name, crowned){
 		this.session = session;
 		this.name = name;
+		this.alchemy = 0;
 		this.armless = false;
 		this.grist = 0;
 		this.fraymotifs = [];
@@ -30,6 +31,7 @@ function GameEntity(session, name, crowned){
 		this.maxLuck = 0; //rabbit
 		this.freeWill = 0; //jack has extremely high free will. why he is such a wild card
 		this.relationships = [];
+		this.RELATIONSHIPS = 0; //fake as fuck stat so gameEntieties buffing or debuffing relationships have something to do.
 		this.power = 0;
 		this.dead = false;
 		this.crowned = crowned;
@@ -60,6 +62,43 @@ function GameEntity(session, name, crowned){
 			//stub for sprites, and maybe later consorts or carapcians
 		}
 
+			//checks array of buffs, and adds up all buffs that effect a given stat.
+        	//useful so combat can now how to describe status.
+        	this.getTotalBuffForStat = function(statName){
+        	    var ret = 0;
+        	    for(var i = 0; i<this.buffs.length; i++){
+        	        var b = this.buffs[i];
+        	        if(b.name == statName) ret += b.value;
+        	    }
+        	    return ret;
+        	}
+
+        	this.humanWordForBuffNamed = function(statName){
+                if(statName == "MANGRIT") return "powerful"
+                if(statName == "hp") return "sturdy"
+                if(statName == "RELATIONSHIPS") return "friendly"
+                if(statName == "mobility") return "fast"
+                if(statName == "sanity") return "calm"
+                if(statName == "freeWill") return "willful"
+                if(statName == "maxLuck") return "lucky"
+                if(statName == "minLuck") return "lucky"
+                if(statName == "alchemy") return "creative"
+        	}
+
+        	//used for strifes.
+        	this.describeBuffs = function(){
+        	    var ret = [];
+        	    var allStats = this.allStats();
+        	    for(var i = 0; i<allStats.length; i++){
+        	        var b = this.getTotalBuffForStat(allStats[i]);
+        	        //only say nothing if equal to zero
+        	        if(b>0) ret.push("more "+this.humanWordForBuffNamed(allStats[i]));
+        	        if(b<0) ret.push("less " + this.humanWordForBuffNamed(allStats[i]));
+        	    }
+        	    if(ret.length == 0) return "";
+        	    return this.htmlTitleHP() + " is feeling " + turnArrayIntoHumanSentence(ret) + " than normal. ";
+        	}
+
 		this.getMobility = function(){
 			if(this.crowned){
 				return this.mobility + this.crowned.mobility;
@@ -88,9 +127,8 @@ function GameEntity(session, name, crowned){
 		//remember that hp and currentHP are different things.
 		this.getStat = function(statName){
 			var ret =  0;
-			if(statName != "RELATIONSHIPS"){ //relationships, why you so cray cray???
-				ret += this[statName]
-			}else{
+			ret += this[statName] //for game entitties RELATIONSHIPS will ALSO be a fake as fuck int var thingy.
+			if(statName == "RELATIONSHIPS"){ //in addition to the for loop of doom.
 				for(var i = 0; i<this.relationships.length; i++){
 					ret += this.relationships[i].value;s
 				}
@@ -113,7 +151,14 @@ function GameEntity(session, name, crowned){
 			}
 			return ret;
 		}
-
+	
+	
+		this.setStatsHash = function(hashStats){
+			for (var key in hashStats){
+				this[key] = hashStats[key];
+			}
+			this.currentHP = Math.max(this.hp, 10); //no negative hp asshole.
+		}
 
 		this.setStats = function(minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs, grist){
 			this.minLuck = minLuck;
@@ -608,7 +653,7 @@ function GameEntity(session, name, crowned){
 			for(var i = 0; i<players.length; i++){
 				if(players[i].renderable()) poseable.push(players[i]);
 			}
-			var divID = (div.attr("id")) + this.name+players[0].id;
+			var divID = (div.attr("id")) + this.session.timeTillReckoning+players[0].id;
 			var ch = canvasHeight;
 			if(poseable.length > 6){
 				ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
@@ -677,15 +722,16 @@ function GameEntity(session, name, crowned){
 		this.fightOver = function(div, players){
 			var living = this.getLivingMinusAbsconded(players);
 			if(living.length == 0 && players.length > this.playersAbsconded.length){
-				if(players.length == 1){
-					div.append("<br><br><img src = 'images/sceneIcons/defeat_icon.png'> The strife is over. The " + players[0].htmlTitle() + " is dead.<br> ");
+				var dead = findDeadPlayers(players)
+				if(dead.length == 1){
+					div.append("<br><br><img src = 'images/sceneIcons/defeat_icon.png'> The strife is over. The " + dead[0].htmlTitle() + " is dead.<br> ");
 				}else{
-					div.append("<br><br><img src = 'images/sceneIcons/defeat_icon.png'> The strife is over. The players are dead.<br> ");
+					div.append("<br><br><img src = 'images/sceneIcons/defeat_icon.png'> The strife is over. The players are dead or fled.<br> ");
 				}
 
 				this.minorLevelPlayers(players)
 				return true;
-			}else if(this.getStat("currentHP") <= 0){
+			}else if(this.getStat("currentHP") <= 0 || this.dead){
 				div.append(" <Br><br> <img src = 'images/sceneIcons/victory_icon.png'>The fight is over. " + this.name + " is dead. <br>");
 				this.levelPlayers(players) //even corpses
 				this.givePlayersGrist(players);
@@ -804,7 +850,8 @@ function GameEntity(session, name, crowned){
 
 		this.playerdecideWhatToDo = function(div, player,players){
 			if(player.usedFraymotifThisTurn) return; //already did something.
-			player.power = Math.max(1, player.power); //negative power is not allowed in an actual fight.
+			if(this.dead == true || this.getStat("currentHP" <= 0)) return // they are dead, stop beating a dead corpse.
+			div.append(player.describeBuffs());
 			//for now, only one choice    //free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
 			if(!this.willPlayerAbscond(div,player,players)){
 				var undrainedPacts = removeDrainedGhostsFromPacts(player.ghostPacts);
@@ -889,6 +936,11 @@ function GameEntity(session, name, crowned){
 			//console.log("Hp during my turn is: " + this.getStat("currentHP"))
 			//free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
 			//special and fraymotif can attack multiple enemies, but aggrieve is one on one.
+			var living_enemies = this.getLivingMinusAbsconded(players);
+			if(living_enemies.length == 0) return; //there is no one left to fight
+
+            div.append(this.describeBuffs());
+
 			if(!this.willIAbscond(div,players,numTurns) && !this.useFraymotif(div, this,[this], players)){
 				var target = this.chooseTarget(players)
 				if(target) this.aggrieve(div, this, target );
@@ -899,12 +951,30 @@ function GameEntity(session, name, crowned){
 		//return true if you did.
 		//TODO l8r refactor strifes to NOT be part of game entitiy, so can have group of enemies fight group of players.
 		this.useFraymotif = function(div, owner, allies, enemies){
+			var living_enemies = this.getLivingMinusAbsconded(enemies);
+			var living_allies = this.getLivingMinusAbsconded(allies)
 			if(Math.seededRandom() > 0.75) return false; //don't use them all at once, dunkass.
-			var usableFraymotifs = this.session.fraymotifCreator.getUsableFraymotifs(owner, allies, enemies);
+			var usableFraymotifs = this.session.fraymotifCreator.getUsableFraymotifs(owner, living_allies, enemies);
 			if(owner.crowned){  //ring/scepter has fraymotifs, too.  (maybe shouldn't let humans get thefraymotifs but what the fuck ever. roxyc could do voidy shit.)
-				usableFraymotifs = usableFraymotifs.concat(this.session.fraymotifCreator.getUsableFraymotifs(this.crowned, allies, enemies))
+				usableFraymotifs = usableFraymotifs.concat(this.session.fraymotifCreator.getUsableFraymotifs(this.crowned, living_allies, enemies))
 			}
 			if(usableFraymotifs.length == 0) return false;
+			
+			var mine = owner.getStat("sanity")
+			var theirs = getAverageSanity(living_enemies)
+			if(mine+200 < theirs && Math.seededRandom() < 0.5){
+				console.log("Too insane to use fraymotifs: " + owner.htmlTitleHP() +" against " + living_enemies[0].htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id)
+				div.append(" The " + owner.htmlTitleHP() + " wants to use a Fraymotif, but they are too crazy to focus. ")
+				return false;
+			}
+			mine = owner.getStat("freeWill") 
+			theirs = getAverageFreeWill(living_enemies)
+			if(mine +200 < theirs && Math.seededRandom() < 0.5){
+				console.log("Too controlled to use fraymotifs: " + owner.htmlTitleHP() +" against " + living_enemies[0].htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id)
+				div.append(" The " + owner.htmlTitleHP() + " wants to use a Fraymotif, but Fate dictates otherwise. ")
+				return false;
+			}
+			
 			var chosen = usableFraymotifs[0];
 			for(var i = 0; i<usableFraymotifs.length; i++){
 				var f = usableFraymotifs[i];
@@ -914,7 +984,10 @@ function GameEntity(session, name, crowned){
 					chosen = f; //all else equal, prefer the one with more members.
 				}
 			}
-			div.append("<Br><br>"+chosen.useFraymotif(owner, allies, enemies) + "<br><Br>");
+			
+			
+			
+			div.append("<Br><br>"+chosen.useFraymotif(owner, living_allies, living_enemies) + "<br><Br>");
 			chosen.usable = false;
 			return true;
 		}
@@ -927,25 +1000,23 @@ function GameEntity(session, name, crowned){
 			div.append(ret);
 
 			//luck dodge
-			var offenseRoll = offense.rollForLuck("maxLuck"); //try for good thing
-			var defenseRoll = defense.rollForLuck("minLuck"); //try to avoid bad thing.
 			//alert("offense roll is: " + offenseRoll + " and defense roll is: " + defenseRoll)
 			//console.log("gonna roll for luck.")
-			if(defenseRoll > offenseRoll*10+50){ //adding 10 to try to keep it happening constantly at low levels
+			if(defense.rollForLuck("minLuck") > offense.rollForLuck("minLuck")*10+200){ //adding 10 to try to keep it happening constantly at low levels
 				console.log("Luck counter: " +  defense.htmlTitleHP() + this.session.session_id);
 				div.append("The attack backfires and causes unlucky damage. The " + defense.htmlTitleHP() + " sure is lucky!!!!!!!!" );
 				offense.currentHP += -1* offense.getStat("power")/10; //damaged by your own power.
 				//this.processDeaths(div, offense, defense)
 				return;
-			}else if(defenseRoll > offenseRoll*5+50){
+			}else if(defense.rollForLuck("maxLuck") > offense.rollForLuck("maxLuck")*5+100){
 				console.log("Luck dodge: " +   defense.htmlTitleHP() +this.session.session_id);
 				div.append("The attack misses completely after an unlucky distraction.");
 				return;
 			}
 			//mobility dodge
 			var rand = getRandomInt(1,100) //don't dodge EVERY time. oh god, infinite boss fights. on average, fumble a dodge every 4 turns.
-			if(defense.getStat("mobility") > offense.getStat("mobility") * 10+10 && rand > 25){
-				////console.log("Mobility counter: " + this.session.session_id);
+			if(defense.getStat("mobility") > offense.getStat("mobility") * 10+200 && rand > 25){
+				console.log("Mobility counter: " +   defense.htmlTitleHP() +this.session.session_id);
 				ret = ("The " + offense.htmlTitleHP() + " practically appears to be standing still as they clumsily lunge towards the " + defense.htmlTitleHP()  );
 				if(defense.getStat("currentHP")> 0 ){
 					ret += ". They miss so hard the " + defense.htmlTitleHP() + " has plenty of time to get a counterattack in."
@@ -957,7 +1028,8 @@ function GameEntity(session, name, crowned){
 				//this.processDeaths(div, offense, defense)
 
 				return;
-			}else if(defense.getStat("mobility") > offense.getStat("mobility")*5 && rand > 25){
+			}else if(defense.getStat("mobility") > offense.getStat("mobility")*5+100 && rand > 25){
+				console.log("Mobility dodge: " +   defense.htmlTitleHP() +this.session.session_id);
 				div.append(" The " + defense.htmlTitleHP() + " dodges the attack completely. ");
 				return;
 			}
@@ -1017,6 +1089,7 @@ function GameEntity(session, name, crowned){
 			if(dead_d.length > 1){
 				ret = " The " + getPlayersTitlesHP(dead_d) + "are dead. "
 			}else if(dead_d.length == 1){
+				if(dead_d[0].getStat("currentHP" > 0)) alert ("pastJR: why does a player have positive hp yet also is dead???" + this.session.session_id)
 				ret += " The " + getPlayersTitlesHP(dead_d) + "is dead. "
 			}
 
@@ -1039,6 +1112,7 @@ function GameEntity(session, name, crowned){
 
 		this.checkForAPulse =function(player, attacker){
 			if(player.getStat("currentHP") <= 0){
+				//console.log("Checking hp to see if" + player.htmlTitleHP() +"  is  dead");
 				var cod = "fighting the " + attacker.htmlTitle();
 				if(this.name == "Jack"){
 					cod =  "after being shown too many stabs from Jack";
@@ -1047,9 +1121,10 @@ function GameEntity(session, name, crowned){
 					cod = "fighting the Black King";
 				}
 				player.makeDead(cod);
-
+				//console.log("Returning that " + player.htmlTitleHP() +"  is  dead");
 				return false;
 			}
+			//console.log("Returning that " + player.htmlTitleHP() +"  is not dead");
 			return true;
 		}
 
@@ -1148,10 +1223,10 @@ var sea_lusus_objects = [];
 //DinceJof -  you prototype your kernel sprite with the ashes of your ancestor. They used to be a SBURB player like you, until they took a scratch to the timeline.
 
 disastor_objects.push(new GameEntity(null, "First Guardian",null));  //also a custom fraymotif.
-disastor_objects[disastor_objects.length-1].hp = 500;
-disastor_objects[disastor_objects.length-1].currentHP = 500;
+disastor_objects[disastor_objects.length-1].hp = 1000;
+disastor_objects[disastor_objects.length-1].currentHP = 1000;
 disastor_objects[disastor_objects.length-1].mobility = 500;
-disastor_objects[disastor_objects.length-1].power = 500;
+disastor_objects[disastor_objects.length-1].power = 250;
 disastor_objects[disastor_objects.length-1].helpPhrase = "is fairly helpful with the teleporting and all, but when it speaks- Wow. No. That is not ok. ";
 var f = new Fraymotif([], "Atomic Teleport Spam", 3)
 f.effects.push(new FraymotifEffect("mobility",0,false));
@@ -1162,37 +1237,37 @@ disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 
 disastor_objects.push(new GameEntity(null, "Horror Terror",null));  //vast glub
-disastor_objects[disastor_objects.length-1].hp = 250;
-disastor_objects[disastor_objects.length-1].currentHP = 250;
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
 disastor_objects[disastor_objects.length-1].corrupted = true;  //gives the corrupted status to whoever wears the ring, and the sprite, too. fighting corruption corrupts you.
-disastor_objects[disastor_objects.length-1].power = 250;
+disastor_objects[disastor_objects.length-1].power = 150;
 disastor_objects[disastor_objects.length-1].lusus = true;
 disastor_objects[disastor_objects.length-1].freeWill = 250; //wants to mind control you.
 disastor_objects[disastor_objects.length-1].helpPhrase = "... Oh god. What is going on. Why does just listening to it make your ears bleed!? ";
 var f = new Fraymotif([],"Vast Glub", 3)
-f.effects.push(new FraymotifEffect("power",3,true));
+f.effects.push(new FraymotifEffect("freeWill",3,true));
 f.flavorText = " A galaxy spanning glub damages everyone. The only hope of survival is to spread the damage across so many enemies that everyone only takes a manageable amount. "
 disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 
 disastor_objects.push(new GameEntity(null, "Speaker of the Furthest Ring",null));  //vast glub
-disastor_objects[disastor_objects.length-1].hp = 500;
-disastor_objects[disastor_objects.length-1].currentHP = 500;
+disastor_objects[disastor_objects.length-1].hp = 1000;
+disastor_objects[disastor_objects.length-1].currentHP = 1000;
 disastor_objects[disastor_objects.length-1].corrupted = true;
-disastor_objects[disastor_objects.length-1].power = 500;
+disastor_objects[disastor_objects.length-1].power = 250;
 disastor_objects[disastor_objects.length-1].freeWill = 500; //wants to mind control you.
 disastor_objects[disastor_objects.length-1].helpPhrase = "whispers madness humankind was not meant to know. Its words are painful, hateful, yet… tempting. It speaks of flames and void, screams and gods. ";
 var f = new Fraymotif([],"Vast Glub", 3)
-f.effects.push(new FraymotifEffect("power",3,true));
+f.effects.push(new FraymotifEffect("freeWill",3,true));
 f.flavorText = " A galaxy spanning glub damages everyone. The only hope of survival is to spread the damage across so many enemies that everyone only takes a manageable amount. "
 disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 
 
 disastor_objects.push(new GameEntity(null, "Clown",null));  //custom fraymotif: can' keep down the clown (heal).
-disastor_objects[disastor_objects.length-1].hp = 250;
-disastor_objects[disastor_objects.length-1].currentHP = 250;
-disastor_objects[disastor_objects.length-1].power = 250;
+disastor_objects[disastor_objects.length-1].hp = 1000;
+disastor_objects[disastor_objects.length-1].currentHP = 1000;
+disastor_objects[disastor_objects.length-1].power = 100;
 disastor_objects[disastor_objects.length-1].minLuck = -250; //unpredictable
 disastor_objects[disastor_objects.length-1].maxLuck = 250;
 disastor_objects[disastor_objects.length-1].helpfulness = -1;
@@ -1205,11 +1280,11 @@ disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 
 disastor_objects.push(new GameEntity(null, "Puppet",null));
-disastor_objects[disastor_objects.length-1].hp = 250;
+disastor_objects[disastor_objects.length-1].hp = 500;
 disastor_objects[disastor_objects.length-1].helpPhrase =  "is the most unhelpful piece of shit in the world. Oh my god, just once. Please, just shut up. ";
-disastor_objects[disastor_objects.length-1].currentHP = 250;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
 disastor_objects[disastor_objects.length-1].helpfulness = -1;
-disastor_objects[disastor_objects.length-1].power = 250;
+disastor_objects[disastor_objects.length-1].power = 100;
 disastor_objects[disastor_objects.length-1].sanity = -250; //unpredictable
 disastor_objects[disastor_objects.length-1].freeWill = 250; //wants to mind control you.
 disastor_objects[disastor_objects.length-1].mobility = 250;
@@ -1224,8 +1299,9 @@ disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 
 disastor_objects.push(new GameEntity(null, "Xenomorph",null));  //custom fraymotif: acid blood
-disastor_objects[disastor_objects.length-1].hp = 250;
-disastor_objects[disastor_objects.length-1].power = 250;
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
+disastor_objects[disastor_objects.length-1].power = 100;
 disastor_objects[disastor_objects.length-1].mobility = 250;
 var f = new Fraymotif([], "Spawning", 3)
 f.effects.push(new FraymotifEffect("alchemy",3,true));
@@ -1235,9 +1311,9 @@ disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 
 disastor_objects.push(new GameEntity(null, "Deadpool",null));  //custom fraymotif: healing factor
-disastor_objects[disastor_objects.length-1].hp = 250;
-disastor_objects[disastor_objects.length-1].currentHP = 250;
-disastor_objects[disastor_objects.length-1].power = 250;
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
+disastor_objects[disastor_objects.length-1].power = 100;
 disastor_objects[disastor_objects.length-1].mobility = 250;
 disastor_objects[disastor_objects.length-1].helpfulness = 1;
 disastor_objects[disastor_objects.length-1].minLuck = -250;
@@ -1252,10 +1328,10 @@ disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 
 disastor_objects.push(new GameEntity(null, "Dragon",null));    //custom fraymotif: mighty breath.
-disastor_objects[disastor_objects.length-1].hp = 250;
+disastor_objects[disastor_objects.length-1].hp = 500;
 disastor_objects[disastor_objects.length-1].lusus = true;
-disastor_objects[disastor_objects.length-1].currentHP = 250;
-disastor_objects[disastor_objects.length-1].power = 250;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
+disastor_objects[disastor_objects.length-1].power = 100;
 disastor_objects[disastor_objects.length-1].helpPhrase = "breathes fire and offers condescending, yet useful advice. ";
 var f = new Fraymotif([],  "Mighty Fire Breath", 3)
 f.effects.push(new FraymotifEffect("power",3,true));
@@ -1264,9 +1340,9 @@ disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 
 disastor_objects.push(new GameEntity(null, "Teacher",null));
-disastor_objects[disastor_objects.length-1].hp = 250;
-disastor_objects[disastor_objects.length-1].currentHP = 250;
-disastor_objects[disastor_objects.length-1].power = 250;
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
+disastor_objects[disastor_objects.length-1].power = 100;
 disastor_objects[disastor_objects.length-1].helpfulness = -1;
 disastor_objects[disastor_objects.length-1].helpPhrase = "dials the sprites natural tendency towards witholding information to have you 'figure it out yourself' up to eleven. ";
 var f = new Fraymotif([],  "Lecture", 3)
@@ -1277,9 +1353,9 @@ disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 
 disastor_objects.push(new GameEntity(null, "Fiduspawn",null));
-disastor_objects[disastor_objects.length-1].hp = 250;
-disastor_objects[disastor_objects.length-1].currentHP = 250;
-disastor_objects[disastor_objects.length-1].power = 250;
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
+disastor_objects[disastor_objects.length-1].power = 100;
 var f = new Fraymotif([],  "Spawning", 3)
 f.effects.push(new FraymotifEffect("alchemy",3,true));
 f.flavorText = " Oh god. Where are all those baby monsters coming from. They are everywhere! Fuck! How are they so good at biting??? "
@@ -1287,9 +1363,9 @@ disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 
 disastor_objects.push(new GameEntity(null, "Doll",null));
-disastor_objects[disastor_objects.length-1].hp = 250;
-disastor_objects[disastor_objects.length-1].currentHP = 250;
-disastor_objects[disastor_objects.length-1].power = 250;
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
+disastor_objects[disastor_objects.length-1].power = 100;
 disastor_objects[disastor_objects.length-1].helpfulness = -1;
 disastor_objects[disastor_objects.length-1].helpPhrase = "stares creepily. It never moves when you're watching it. It's basically the worst, and that's all there is to say on that topic. ";
 var f = new Fraymotif([],  "Disconcerting Ogle", 3)
@@ -1300,18 +1376,18 @@ disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 
 disastor_objects.push(new GameEntity(null, "Zombie",null));
-disastor_objects[disastor_objects.length-1].hp = 250;
-disastor_objects[disastor_objects.length-1].currentHP = 250;
-disastor_objects[disastor_objects.length-1].power = 250;
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
+disastor_objects[disastor_objects.length-1].power = 100;
 var f = new Fraymotif([],  "Rise From The Grave", 3)
 f.effects.push(new FraymotifEffect("hp",0,true));
 f.flavorText = " You thought the OWNER was pretty hurt, but instead they are just getting going. "
 disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 disastor_objects.push(new GameEntity(null, "Demon",null));
-disastor_objects[disastor_objects.length-1].hp = 250;
-disastor_objects[disastor_objects.length-1].currentHP = 250;
-disastor_objects[disastor_objects.length-1].power = 500;
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
+disastor_objects[disastor_objects.length-1].power = 250;
 disastor_objects[disastor_objects.length-1].freeWill = 250; //wants to mind control you.
 var f = new Fraymotif([],  "Claw Claw MotherFuckers", 3)
 f.effects.push(new FraymotifEffect("power",2,true));
@@ -1322,9 +1398,9 @@ disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 
 disastor_objects.push(new GameEntity(null, "Monster",null));
-disastor_objects[disastor_objects.length-1].hp = 250;
-disastor_objects[disastor_objects.length-1].currentHP = 250;
-disastor_objects[disastor_objects.length-1].power = 500; //generically scary
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
+disastor_objects[disastor_objects.length-1].power = 100; //generically scary
 disastor_objects[disastor_objects.length-1].sanity = -250;
 var f = new Fraymotif([],  "Claw Claw MotherFuckers", 3)
 f.effects.push(new FraymotifEffect("power",2,true));
@@ -1334,10 +1410,10 @@ disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 
 disastor_objects.push(new GameEntity(null, "Vampire",null));
-disastor_objects[disastor_objects.length-1].hp = 250;
-disastor_objects[disastor_objects.length-1].currentHP = 250;
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
 disastor_objects[disastor_objects.length-1].power = 250;
-disastor_objects[disastor_objects.length-1].mobility = 250; //vampire fastness
+disastor_objects[disastor_objects.length-1].mobility = 100; //vampire fastness
 var f = new Fraymotif([],  "I Vant to Drink Your Blood", 3)
 f.effects.push(new FraymotifEffect("hp",2,true));
 f.effects.push(new FraymotifEffect("hp",0,true));//damage you, heal self.
@@ -1345,7 +1421,7 @@ f.flavorText = " The OWNER drains HP from the ENEMY. "
 disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 disastor_objects.push(new GameEntity(null, "Pumpkin",null));
-disastor_objects[disastor_objects.length-1].power = 250;
+disastor_objects[disastor_objects.length-1].power = 100;
 disastor_objects[disastor_objects.length-1].maxLuck = 5000;
 disastor_objects[disastor_objects.length-1].mobility = 5000;  //what pumpkin?
 disastor_objects[disastor_objects.length-1].helpPhrase = "was kind of helpful, and then kind of didn’t exist. Please don’t think too hard about it, the simulation is barely handling a pumpkin sprite as is. ";
@@ -1358,9 +1434,9 @@ disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 
 disastor_objects.push(new GameEntity(null, "Werewolf",null));
-disastor_objects[disastor_objects.length-1].hp = 250;
-disastor_objects[disastor_objects.length-1].currentHP = 250;
-disastor_objects[disastor_objects.length-1].power = 250;
+disastor_objects[disastor_objects.length-1].hp = 500;
+disastor_objects[disastor_objects.length-1].currentHP = 500;
+disastor_objects[disastor_objects.length-1].power = 100;
 disastor_objects[disastor_objects.length-1].sanity = -250;
 var f = new Fraymotif([],  "Grim Bark Slash Attack", 3)
 f.effects.push(new FraymotifEffect("power",2,true));
@@ -1370,8 +1446,8 @@ disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
 disastor_objects.push(new GameEntity(null, "Monkey",null));   //just, fuck monkeys in general.
 disastor_objects[disastor_objects.length-1].hp = 5;
-disastor_objects[disastor_objects.length-1].currentHP = 250;
-disastor_objects[disastor_objects.length-1].power = 250;
+disastor_objects[disastor_objects.length-1].currentHP = 5;
+disastor_objects[disastor_objects.length-1].power = 100;
 disastor_objects[disastor_objects.length-1].helpfulness = -1;
 disastor_objects[disastor_objects.length-1].maxLuck = -5000;  //fuck monkeys
 disastor_objects[disastor_objects.length-1].minLuck = -5000;
@@ -1526,6 +1602,19 @@ f.effects.push(new FraymotifEffect("freeWill",3,true));
 f.flavorText = " All enemies are obliterated. Probably. A watermark of Andrew Hussie appears, stage right. "
 prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
 
+
+
+prototyping_objects.push(new GameEntity(null, "KidRock",null));
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "does absolutly nothing but sing repetitive, late 90's rock to you.";
+var f = new Fraymotif([], "BANG DA DANG DIGGY DIGGY", 2)
+f.effects.push(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
+f.effects.push(new FraymotifEffect("power",1,false));
+f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. Somehow, this doesn't feel like the true version of this attack."
+prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
+
+
 prototyping_objects.push(new GameEntity(null, "Sleuth",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
@@ -1560,6 +1649,28 @@ prototyping_objects.push(new GameEntity(null, "Praying Mantis",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].maxLuck = 20;
 
+prototyping_objects.push(new GameEntity(null, "Shitty Comic Character",null));
+prototyping_objects[prototyping_objects.length-1].power = 20;
+prototyping_objects[prototyping_objects.length-1].mobility = 50;
+prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = " is the STAR. It is them. You don't think they have ever once attempted to even talk about the game. How HIGH did you have to BE to prototype this glitchy piece of shit? ";
+var f = new Fraymotif([],"FUCK IM FALLING DOWN ALL THESE STAIRS", 3)
+f.effects.push(new FraymotifEffect("mobility",1,false)); //buff to mobility bro
+f.flavorText = " It keeps hapening. "
+prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
+
+var f = new Fraymotif([],"FUCK IM FALLING DOWN ALL THESE STAIRS", 3)
+f.effects.push(new FraymotifEffect("mobility",1,false));
+f.flavorText = " I warned you about stairs bro!!! "
+prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
+
+var f = new Fraymotif([],"FUCK IM FALLING DOWN ALL THESE STAIRS", 3)
+f.effects.push(new FraymotifEffect("mobility",1,false));
+f.flavorText = " I told you dog! "
+prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
+
+
+
 prototyping_objects.push(new GameEntity(null, "Doctor",null));   //healing fraymotif
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
@@ -1582,6 +1693,10 @@ prototyping_objects.push(new GameEntity(null, "Rabbit",null));
 prototyping_objects[prototyping_objects.length-1].power = 20;
 prototyping_objects[prototyping_objects.length-1].maxLuck = 100;
 prototyping_objects[prototyping_objects.length-1].helpPhrase = "remains physically adorable and mentally idiotic. Gigglysnort hideytalk ahoy. ";
+
+prototyping_objects.push(new GameEntity(null, "Tissue",null));
+prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
+prototyping_objects[prototyping_objects.length-1].helpPhrase = "is useless in every possible way. ";
 
 
 prototyping_objects.push(new GameEntity(null, "Librarian",null));

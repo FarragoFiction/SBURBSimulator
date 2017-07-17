@@ -1047,6 +1047,8 @@ function session420(){
 			console.log("blank player");
 			player = blankPlayerNoDerived(curSessionGlobalVar);
 			guardian = blankPlayerNoDerived(curSessionGlobalVar);
+			player.initialize();
+			guardian.initialize();
 			player.guardian = guardian;
 			guardian.guardian = player;
 			curSessionGlobalVar.players.push(player);
@@ -1080,6 +1082,8 @@ function session0(){
 			guardian = blankPlayerNoDerived(curSessionGlobalVar);
 			player.guardian = guardian;
 			guardian.guardian = player;
+			player.initialize();
+            guardian.initialize();
 			curSessionGlobalVar.players.push(player);
 		}
 	}
@@ -1121,6 +1125,8 @@ function session613(){
 		}else{
 			player = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
 			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
+			player.initialize();
+            guardian.initialize();
 			guardian.quirk = randomTrollSim(guardian);
 			player.quirk = randomTrollSim(player);
 			//curSessionGlobalVar.guardians.push(guardian);
@@ -1154,6 +1160,8 @@ function session612(){
 		}else{
 			player = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
 			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
+			player.initialize();
+            guardian.initialize();
 			guardian.quirk = randomTrollSim(guardian);
 			player.quirk = randomTrollSim(player);
 			//curSessionGlobalVar.guardians.push(guardian);

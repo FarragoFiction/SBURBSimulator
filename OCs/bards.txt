@@ -1,0 +1,12 @@
+b=%00%00%00%C2%91%C3%B0%15%10VDD%20&s=,,Rap-Rock,Riches,kidRock
+b=%00%00%00%C2%95%C3%B1%19%10A55C&s=,,Rap,Movies,realSlimShady
+b=%00%00%00%C2%90%C3%B5%19%10H%1C%1CC&s=,,Rap,Movies,willSmith
+b=%00%00%00%C2%92%C3%B2%15%10DFF9&s=,,Rap,Treasure,snoopDogg
+b=%00%00%00%C2%93%C3%B8%15%10%07HH%16&s=,,Rap,Treasure,MCA
+b=%00%00%00%C2%97%C3%BB%1C%10%01%15%153&s=,,Music,Boys,britneySpears
+b=%00%00%00%C2%96%C3%B7%16%10D%40%40%15&s=,,Rap,Social Justice,eddieVedder
+b=%C3%BFY%2F%C2%94%C3%BE%C3%81%10K%2F%2F%1F&s=,,Girls,Music,gingerSpice
+b=%00%00%00%C2%9B%C3%BA%C3%81%10K22%0C&s=,,Girls,Music,justinTimberlake
+b=%00%00%00%C2%9A%C3%B4%11%10C1B%3D&s=,,Rap,Rock,fredDurst
+b=%00%00%00%C2%98%C3%B6%11%10C%3B%3B%15&s=,,Grunge,Rock,kurtCobain
+b=%00%00%00%C2%99%C3%B9Q%11%0B046&s=,,Death,Music,marilynManson

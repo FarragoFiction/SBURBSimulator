@@ -287,8 +287,8 @@ function CharacterCreatorHelper(players){
 
 	//this game is so esey. i mean, all you do is hit the refresh button. thats it! how is this an RPG anyway? you cant contrail anything but what it says on the screen!
 	this.generateHelpText = function(topic,specific){
-		if(topic == "Class") return "totol lies, in the middle of classpect update. will update l8r. " + this.generateClassHelp(topic, specific);
-		if(topic == "Aspect") return "totol lies, in the middle of classpect update. will update l8r. " + this.generateAspectHelp(topic, specific);
+		if(topic == "Class") return this.generateClassHelp(topic, specific);
+		if(topic == "Aspect") return this.generateAspectHelp(topic, specific);
 		if(topic == "BloodColor") return this.generateBloodColorHelp(topic, specific);
 		if(topic == "Moon") return this.generateMoonHelp(topic, specific);
 		if(topic == "FavoriteNumber") return "Favorite number can affect a Player's quirk, as well as determining a troll's god tier Wings.";
@@ -325,35 +325,40 @@ function CharacterCreatorHelper(players){
 	}
 
 	this.generateAspectHelp = function(topic, specific){
-		if(specific == "Space") return "Space players are in charge of breeding the frog, and are associated with the low mobility needed to focus exclusively on their own quests. ";
-		if(specific == "Time") return "Time players are in charge of timeline management, creating various doomed time clones and provide the ability to 'scratch' a failed session. They are chained to inevitability and as a result are associated with low free will. They know a lot about SBURB/SGRUB, usually through time shenanigans.";
-		if(specific == "Breath") return "Breath players are associted with high mobility, and tend to help other players out with their quests, even at the detriment to their own. They are stupidly hard to catch.";
-		if(specific == "Doom") return "Doom players are associated with bad luck and low hp. Each Doom player death is according to a vast prophecy and considerably strengthens them, as well as lifting the Doom on their head for a short time.  They are capable of using the dead as a resource. They know a lot about SBURB/SGRUB.";
-		if(specific == "Heart") return "Heart players are associated with how a target relates to other players.  They are also in charge of shipping grids.";
-		if(specific == "Mind") return "Mind players are associated with high free will. They know a lot about SBURB/SGRUB.";
-		if(specific == "Light") return "Light players are associated with good luck, and know a lot about SBURB/SGRUB. They are awfully distracting and flashy in battle.";
-		if(specific == "Void") return "Void players are capable of accessing the Void, which allows them narrative freedom, random stats and being difficult to find.";
-		if(specific == "Rage") return "Rage players are capable of accessing Madness, which allows them narrative freedom, random stats and the destruction of positive relationships and sanity.";
-		if(specific == "Hope") return "Hope players are associated with raw power. If a strong enough Hope player is alive, players will be less likely to waste time flipping their shit.";
-		if(specific == "Life") return "Life players are associated with high HP. They are capable of using the dead as a resource.";
-		if(specific == "Blood") return "Blood players are associated with how other players relate to a target, in a positive direction as well as sanity. A Blood player is very difficult to murder, being able to insta-calm rampaging players in most cases.";
+		if(specific == "Space") return "Space players are in charge of breeding the frog, and are associated with the low mobility needed to focus exclusively on their own quests, good alchemy ability, and good health. ";
+		if(specific == "Time") return "Time players are in charge of timeline management, creating various doomed time clones and provide the ability to 'scratch' a failed session. They are chained to inevitability and as a result are associated with low free will offset by high minLuck and mobility . They know a lot about SBURB/SGRUB, usually through time shenanigans.";
+		if(specific == "Breath") return "Breath players are associted with high mobility, and tend to help other players out with their quests, even at the detriment to their own. They are very sane, but tend to have difficulty staying in one place long enough to form social connections. They are stupidly hard to catch.";
+		if(specific == "Doom") return "Doom players are associated with bad luck and low hp. Each Doom player death is according to a vast prophecy and considerably strengthens them, as well as lifting the Doom on their head for a short time. They excel at alchemy, and have limited success with freeWill.  They are capable of using the dead as a resource. They know a lot about SBURB/SGRUB.";
+		if(specific == "Heart") return "Heart players are associated with their INTERESTS. A Heart player interested in Romance, for example, will have a high relationship stat, while one interested in Athletics will have high MANGRIT.  They are also in charge of concupiscient shipping grids.";
+		if(specific == "Mind") return "Mind players are associated with high free will. Luck DO3SN'T R34LLY M4TTER, so they have both good 'minLuck' and poor 'maxLuck'. They have difficulty forming bonds with other players. They know a lot about SBURB/SGRUB.";
+		if(specific == "Light") return "Light players are associated with good luck, have a lot of willpower,  and know a lot about SBURB/SGRUB. They have less hp than other players, and tend to have more fragile psyches. They are awfully distracting and flashy in battle.";
+		if(specific == "Void") return "Void players are capable of accessing the Void, which allows them narrative freedom, random stats and being difficult to find. They have a trait they are SO GOOD or SO BAD at when they enter the medium and increase it over time. They tend to have similarly random flaws, as well as bad luck.";
+		if(specific == "Rage") return "Rage players are capable of accessing Madness, which allows them narrative freedom, raw MANGRIT and speed, and the destruction of positive relationships and sanity.";
+		if(specific == "Hope") return "Hope players are associated with sanity and good luck. If a strong enough Hope player is alive, players will be less likely to waste time flipping their shit. Occasionally, a Hope player will flip their shit and use an insanely powerful attack rather than a regular fraymotif. Hope players have random flaws.";
+		if(specific == "Life") return "Life players are associated with high HP and good MANGRIT. They are capable of using the dead as a resource, but have trouble with Alchemy.";
+		if(specific == "Blood") return "Blood players are associated with high positive relationships, as well as sanity. They are not very lucky. A Blood player is very difficult to murder, being able to insta-calm rampaging players in most cases. They are also in charge of concillitory shipping grids.";
 		return "Aspect help text not found for " + specific + "."
 	}
 
 	this.generateClassHelp = function(topic, specific){
-		if(specific == "Maid") return "A Maid distributes their associated aspect to the entire party and starts with a lot of it.";
-		if(specific == "Mage") return "A Mage increases their own associated aspect and starts with a lot of it. They know a lot about SBURB/SGRUB.";
-		if(specific == "Knight") return "A Knight increases their own associated aspect and starts with a lot of it.";
-		if(specific == "Rogue") return "A Rogue increases the parties associated aspect, steals it from someone to give to everyone, and starts with a lot it.";
-		if(specific == "Sylph") return "A Sylph distributes their associated aspect to the entire party and start with a lot of it. They give an extra boost to players they meet in person.";
-		if(specific == "Seer") return "A Seer distributes their associated aspect to the entire party. They start with very little of their aspect and must gain more through experience. They know a lot about SBURB/SGRUB. ";
-		if(specific == "Thief") return "A Thief increases their own associated aspect, steals it from others, and starts with very little of it and must steal more.";
-		if(specific == "Heir") return "An Heir increases their own associated aspect. They start with very little of their aspect and must inherit it.";
-		if(specific == "Bard") return "A Bard distributes the opposite of their associated aspect to the entire party and starts with very little of it. They have an increased effect in person.";
-		if(specific == "Prince") return "A Prince increases the opposite of their own associated aspect and starts with a lot of it.";
-		if(specific == "Witch") return "A Witch increases their own associated aspect and starts with a lot of it.";
-		if(specific == "Page") return "A Page distributes their associated aspect to the entire party. They start with very little of their aspect and must earn it. They can not do quests on their own, but gain power very quickly.";
-		if(specific == "Waste") return "What could this be??? Probably shitty and not yet finished.";
+		if(specific == "Maid") return "A Maid distributes their associated aspect to the entire party and starts with a lot of it. They give a boost to their Aspect, embracing even the bad parts.";
+		if(specific == "Mage") return "A Mage increases their own associated aspect and starts with a lot of it. They know a lot about SBURB/SGRUB. They reduce the negative parts of their Aspect through their wisdom.";
+		if(specific == "Knight") return "A Knight increases their own associated aspect and starts with a lot of it. They give a  boost to the positive parts of their Aspect, while protecting themselves from the negative parts.  Knights are charged with protecting the Space player while they breed frogs.";
+		if(specific == "Rogue") return "A Rogue increases the parties associated aspect, steals it from someone to give to everyone, and starts with a lot it. They are affected by their Aspect less than normal, even the good parts.";
+		if(specific == "Sylph") return "A Sylph distributes their associated aspect to the entire party and start with a lot of it. They give an extra boost to players they meet in person.  They feel less of the positive effects of their Aspect, but can twist weakness into strength.";
+		if(specific == "Seer") return "A Seer distributes their associated aspect to the entire party. They start with very little of their aspect and must gain more through experience. They know a lot about SBURB/SGRUB. They get a great deal of the positive of their aspect, but even more of the negative. ";
+		if(specific == "Thief") return "A Thief increases their own associated aspect, steals it from others, and starts with very little of it and must steal more.  They are affected by their Aspect less than normal, even the good parts.";
+		if(specific == "Heir") return "An Heir increases their own associated aspect. They start with very little of their aspect and must inherit it. They give a 1.5 boost to their Aspect, inheriting even the bad parts.";
+		if(specific == "Bard") return "A Bard distributes their inverted Aspect to the entire party and starts with very little of it. They have an increased effect in person. They invert their aspect, causing its strengths to become weaknesses while using what should be weaknesses as tools of destruction.";
+		if(specific == "Prince") return "A Prince increase their inverted aspect in themselves and starts with a lot of it. They invert their aspect, causing its strengths to become weaknesses while using what should be weaknesses as tools of destruction. They destroy their Aspect faster in themselves around others.";
+		if(specific == "Witch") return "A Witch increases their own associated aspect and starts with a lot of it. They are stronger around others. They feel less of the positive effects of their Aspect, but can twist weakness into strength.";
+		if(specific == "Page") return "A Page distributes their associated aspect to the entire party. They start with very little of their aspect and must earn it. They can not do quests on their own, but gain power very quickly. They give a  boost to the positive parts of their Aspect, while protecting others from the negative parts";
+		if(specific == "Waste") return "Wastes gain no benefits or detriments related to their Aspect. They are associated with extreme highs and lows, either entirely avoiding their aspect or causing great destruction with it. They are assholes who won't stop hacking my damn code.";
+		if(specific == "Scribe") return "A Scribe distributes their associated aspect to the entire party. They start with very little of their aspect and must gain more through experience. They know a lot about SBURB/SGRUB. They get a great deal of the positive of their aspect, but even more of the negative. ";
+        if(specific == "Sage") return "A Sage increases their own associated aspect and starts with a lot of it. They know a lot about SBURB/SGRUB. They reduce the negative parts of their Aspect through their wisdom.";
+        if(specific == "Scout") return "A Scout increases their own associated aspect and starts with very little of it. They give a  boost to the positive parts of their Aspect, while reducing the damage from the negative parts. They know how to navigate their Aspect to avoid the pitfalls.";
+
+
 		return "Class help text not found for " + specific + "."
 	}
 
@@ -371,12 +376,19 @@ function CharacterCreatorHelper(players){
 
 		loadButton.click(function() {
 			var dataBox = $("#dataBoxDiv"+player.id);
-			var bs = dataBox.val();
-			var b = decodeURIComponent(bs.split("=")[1].split("&s")[0])
-			var s = bs.split("=")[2]
-			var players = dataBytesAndStringsToPlayers(b, s) //technically an array of one players.
+			var bs = "?" + dataBox.val(); //need "?" so i can parse as url
+			console.log("bs is: " + bs);
+			var b = decodeURIComponent(getParameterByName("b", bs))
+			var s = getParameterByName("s", bs)
+			var x = decodeURIComponent(getParameterByName("x", bs))
+			console.log("b: " + b);
+			console.log("s: " + s);
+			console.log("x: " + x);
+
+			var players = dataBytesAndStringsToPlayers(b, s,x) //technically an array of one players.
+			console.log("Player class name: " + players[0].class_name);
 			player.copyFromPlayer(players[0]);
-			that.redrawSinglePlayer(player);  //TODO not enough to redraw, need to reload every single field like an asshole.
+			that.redrawSinglePlayer(player);
 			//should have had wireUp methods to the fields to begin with. looks like I gotta pay for pastJR's mistakes.
 		});
 
@@ -804,6 +816,17 @@ function CharacterCreatorHelper(players){
 				html += '<option value="' + i +'">' + i+'</option>'
 			}
 		}
+
+		var maxCustomHorns = 0;  //kr wants no shitty horns widely available
+		for(var i = 255; i> 255-maxCustomHorns; i+=-1){
+            if(player.leftHorn == i){
+                html += '<option  selected = "selected" value="' + i +'">' + i+'</option>'
+            }else{
+                html += '<option value="' + i +'">' + i+'</option>'
+            }
+        }
+
+		//another for loop of "non-canon" horns you can choose but aren't part of main sim.
 		html += '</select>'
 		return html;
 	}
@@ -817,6 +840,17 @@ function CharacterCreatorHelper(players){
 				html += '<option value="' + i +'">' + i+'</option>'
 			}
 		}
+
+		var maxCustomHorns = 0;
+            for(var i = 255; i> 255-maxCustomHorns; i+=-1){
+                if(player.rightHorn == i){
+                    html += '<option  selected = "selected" value="' + i +'">' + i+'</option>'
+                }else{
+                    html += '<option value="' + i +'">' + i+'</option>'
+                }
+            }
+
+
 		html += '</select>'
 		return html;
 	}
@@ -940,9 +974,10 @@ function CharacterEasterEggEngine(){
 	this.redditCharacters = [];
 	this.tumblrCharacters = [];
 	this.discordCharcters = [];
-	this.creatorCharacters =["b=%2B*-%06%C3%B4%C2%A3%00%C3%90%2C%2C%0D&s=,,Authoring,Robots,authorBot","b=%C3%A8%C3%90%C2%99E%C3%BE)%00%17%1C%1C.&s=,,100 Art Projects At Once,Memes,karmicRetribution","b=%3C%1E%07%C3%86%C3%BE%C2%A3%04%13%18%18%0D&s=,,The AuthorBot,Authoring,jadedResearcher"];
+	this.creatorCharacters =["b=%2B*-%C3%96%C3%B4%5C%00%C3%90%2C%2C%0D&s=,,Arson,Shipping,authorBotJunior","b=%2B*-%06%C3%B4%C2%A3%00%C3%90%2C%2C%0D&s=,,Authoring,Robots,authorBot","b=%C3%A8%C3%90%C2%99E%C3%BE)%00%17%1C%1C.&s=,,100 Art Projects At Once,Memes,karmicRetribution","b=%3C%1E%07%C3%86%C3%BE%C2%A3%04%13%18%18%0D&s=,,The AuthorBot,Authoring,jadedResearcher"];
 	this.creditsBuckaroos = [];
 	this.ideasWranglers = [];
+	this.bards = [];
 	this.patrons = [];
 	this.patrons2 = [];
 	this.patrons3 = [];
@@ -1034,6 +1069,7 @@ function CharacterEasterEggEngine(){
 		this.loadArrayFromFile("patrons2","OCs/patrons2.txt", processForSim)
 		this.loadArrayFromFile("patrons3","OCs/patrons3.txt", processForSim)
 		this.loadArrayFromFile("canon","OCs/canon.txt", processForSim)
+		this.loadArrayFromFile("bards","OCs/bards.txt", processForSim)
 		this.loadArrayFromFile("otherFandoms","OCs/otherFandoms.txt", processForSim,callBack,that) //last one in list has callback so I know to do next thing.
 	}
 
@@ -1061,6 +1097,10 @@ function CharacterEasterEggEngine(){
 		if(getParameterByName("ideasWranglers")  == "true"){
 			pool = pool.concat(this.ideasWranglers)
 		}
+
+		if(getParameterByName("bards")  == "true"){
+        	pool = pool.concat(this.bards)
+        }
 
 		if(getParameterByName("patrons")  == "true"){
 			pool = pool.concat(this.patrons)
@@ -1097,6 +1137,7 @@ function CharacterEasterEggEngine(){
 			pool = pool.concat(this.ideasWranglers)
 			pool = pool.concat(this.canon)
 			pool = pool.concat(this.creatorCharacters)
+			pool = pool.concat(this.bards)
 		}
 
 		//return pool;

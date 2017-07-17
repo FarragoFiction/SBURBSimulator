@@ -27,7 +27,7 @@ function FreeWillStuff(session){
 				this.decision = breakFree;
 				return true;
 			}
-			if(player.freeWill > 100 || player.canMindControl()){  //don't even get to consider a decision if you don't have  more than default free will.//TODO raise to over 60 'cause that is highest default free will possible. want free will to be rarer.
+			if(player.freeWill > 200 || player.canMindControl()){  //don't even get to consider a decision if you don't have  more than default free will.//TODO raise to over 60 'cause that is highest default free will possible. want free will to be rarer.
 				var decision = this.getPlayerDecision(player);
 				if(decision){
 					this.player = player;
@@ -563,7 +563,7 @@ function FreeWillStuff(session){
 			this.renderPlayer1 = player;
 			this.renderPlayer2 = murderer;
 			console.log(trait + " control calming a player: " + this.session.session_id)
-			return "The " + player.htmlTitle() + " has had enough of the " + murderer.htmlTitle() + "'s murderous ways.  They manipulate their " + trait+ " until they are basically little more than an empty shell. They are such as asshole before they are finally controlled. Oh, wow. No. They are never going to be allowed to be free again. Never, never, never again. Never. Wow.  " ;
+			return "The " + player.htmlTitle() + " has had enough of the " + murderer.htmlTitle() + "'s murderous ways.  They manipulate their " + trait+ " until they are basically little more than an empty shell. They are such an asshole before they are finally controlled. Oh, wow. No. They are never going to be allowed to be free again. Never, never, never again. Never. Wow.  " ;
 		}
 		return null;
 	}

@@ -600,9 +600,9 @@ function getBlandHandle1(class_name){
 		second_arr = knight_handles;
 	}else if(class_name == "Rogue"){
 		second_arr = rogue_handles;
-	}else if(class_name == "Sylph"){
+	}else if(class_name == "Sylph" || class_name =="Sage" || class_name =="Scout"){
 		second_arr = sylph_handles;
-	}else if(class_name == "Seer"){
+	}else if(class_name == "Seer"|| class_name =="Scribe"){
 		second_arr = seer_handles;
 	}else if(class_name == "Thief"){
 		second_arr = thief_handles;
@@ -612,7 +612,7 @@ function getBlandHandle1(class_name){
 		second_arr = bard_handles;
 	}else if(class_name == "Prince"){
 		second_arr = prince_handles;
-	}else if(class_name == "Witch"){
+	}else if(class_name == "Witch"||class_name =="Waste"){
 		second_arr = witch_handles;
 	}
 	return getRandomElementFromArray(second_arr);
@@ -801,6 +801,16 @@ function getLevelFromClass(i,class_name){
 		first_arr = prince_levels;
 	}else if(class_name == "Witch"){
 		first_arr = witch_levels;
+	}else if(class_name == "Waste"){
+     	first_arr = waste_levels;
+    }else if(class_name == "Scout"){
+      	first_arr = scout_levels;
+    }else if(class_name == "Sage"){
+     	first_arr = sage_levels;
+    }else if(class_name == "Scribe"){
+     	first_arr = scribe_levels;
+    }else{
+	    first_arr = generic_levels;
 	}
 	return first_arr[i];
 }
@@ -980,9 +990,21 @@ function getRandomQuestFromClass(class_name,postDenizen){
 	}else if(class_name == "Witch"){
 		if(!postDenizen) first_arr = witch_quests;
 		if(postDenizen) first_arr = postdenizen_witch_quests;
-	}else{
-		if(!postDenizen) first_arr = witch_quests;
-		if(postDenizen) first_arr = postdenizen_witch_quests;
+	}else if(class_name == "Waste"){
+     		if(!postDenizen) first_arr = waste_quests;
+     		if(postDenizen) first_arr = postdenizen_waste_quests;
+    }else if(class_name == "Scout"){
+      		if(!postDenizen) first_arr = scout_quests;
+      		if(postDenizen) first_arr = postdenizen_scout_quests;
+    }else if(class_name == "Scribe"){
+     		if(!postDenizen) first_arr = scribe_quests;
+     		if(postDenizen) first_arr = postdenizen_scribe_quests;
+    }else if(class_name == "Sage"){
+     		if(!postDenizen) first_arr = sage_quests;
+     		if(postDenizen) first_arr = postdenizen_sage_quests;
+    }else{
+		if(!postDenizen) first_arr = generic_quests;
+		if(postDenizen) first_arr = postdenizen_generic_quests;
 	}
 	return getRandomElementFromArray(first_arr);
 }
@@ -1048,20 +1070,28 @@ function removeFromArray(item, array){
 function classNameToInt(class_name){
 	var tmp = classes;
 	tmp = tmp.concat(custom_only_classes);
-	return tmp.indexOf(class_name);
+	var ret = tmp.indexOf(class_name);
+	if (ret == -1) ret = 255;
+	return ret;
 }
 
 function intToClassName(num){
+    console.log("looking for class name from: " + num)
 	var tmp = classes;
 	tmp = tmp.concat(custom_only_classes);
+	if(num > tmp.length || num == 255) return "Null" //Null of Mind
 	return tmp[num];
 }
 
 function aspectToInt(aspect){
-	return all_aspects.indexOf(aspect);
+    var tmp = all_aspects.indexOf(aspect);
+    if(tmp == -1) tmp = 255;
+	return tmp;
 }
 
 function intToAspect(num){
+    console.log("looking for aspect from: " + num)
+    if(num > all_aspects.length || num == 255) return "Null"  //Heir of Null
 	return all_aspects[num];
 }
 
@@ -1071,13 +1101,16 @@ function bloodColorToBoost(color){
 
 function bloodColorToInt(color){
 	if(color == "#ff0000") return 14;
+	if(color == "#ffc3df") return 13;
 	if(color == null) return 15;
-	return bloodColors.indexOf(color);
+	var ret =  bloodColors.indexOf(color);
+	return ret;
 }
 
 function intToBloodColor(num){
-	if(num == 15) return null;
+	if(num == 15) return null; //bubble gum pink not an option 'cause my special snowlake fan troll needs to stay special
 	if(num == 14) return "#ff0000";
+	if(num == 13) return "#ffc3df";
 	return bloodColors[num];
 }
 
@@ -1116,12 +1149,16 @@ function moonToColor(moon){
 
 var moons = ["Prospit", "Derse"];
 
-var active_classes = ["Thief","Knight","Heir","Mage","Witch", "Prince", "Waste"];
+var active_classes = ["Thief","Knight","Heir","Mage","Witch", "Prince", "Waste", "Scout", "Scribe"];
 var passive_classes = ["Rogue","Page","Maid","Seer","Sylph", "Bard"];
+//if you change the order of ANY of these classes, it will break ocDataStrings
 var classes = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
-//when a class is used, remove from below list.
+//when a class is used, remove from below list. //if you change the order of ANY of these classes, it will break ocDataStrings
 var available_classes = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
-var custom_only_classes = ["Waste"]; //Lord, Muse, Guide, Scout, Scribe, Smith, Wright
+var available_classes_guardians = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
+
+//if you change the order of ANY of these classes, it will break ocDataStrings
+var custom_only_classes = ["Waste", "Scout", "Sage", "Scribe"]; //Lord, Muse, Guide, Scout, Scribe, Smith, Wright
 var required_aspects = ["Space", "Time"];
 var all_aspects = ["Space", "Time","Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
 var nonrequired_aspects = ["Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
@@ -1184,6 +1221,11 @@ var bard_levels = ["SKAIA'S TOP IDOL","POPSTAR BOPPER","SONGSCUFFER"];
 var prince_levels = ["PRINCE HARMING","ROYAL RUMBLER","DIGIT PRINCE"];
 var witch_levels = ["WESTWORD WORRYBITER","BUBBLETROUBLER","EYE OF GRINCH"];
 var seer_levels = ["SEEING iDOG","PIPSQUEAK PROGNOSTICATOR","SCAMPERVIEWER 5000"];
+var waste_levels = ["4TH WALL AFICIONADO","CATACLYSM COMMANDER","AUTHOR"];
+var scout_levels = ["BOSTON SCREAMPIE","COOKIE OFFERER","FIRE FRIEND"];
+var scribe_levels = ["MIDNIGHT BURNER","WRITER WATCHER","DIARY DEAREST"];
+var sage_levels = ["HERBAL ESSENCE","CHICKEN SEASONER","TOMEMASTER"];
+var generic_levels = ["SNOWMAN SAVIOR","NOBODY NOWHERE","NULLZILLA"];
 
 var free_levels = ["NIPPER CADET","PESKY URCHIN","BRAVESPROUT","JUVESQUIRT","RUMPUS BUSTER","CHAMP-FRY","ANKLEBITER","CALLOUSED TENDERFOOT","RASCALSPRAT","GRITTY MIDGET","BRITCHES RIPPER","ALIEN URCHIN", "NESTING NEWB"]
 //only need two for each. since each player has two interests, combines to 4
@@ -1280,6 +1322,11 @@ seer_quests.push("suddenly understanding everything, and casting sincere doubt a
 var witch_quests = ["performing elaborate punch card alchemy through the use of a novelty witch's cauldron"];
 witch_quests.push("deciding which way to go in a series of way-too-long mazes");
 witch_quests.push("solving puzzles in ways that completely defy expectations");
+var waste_quests = ["being a useless piece of shit and reading FAQs to skip the hard shit in levels","causing ridiculous amounts of destruction trying to skip quest lines","learning that sometimes you have to do things right, and can't just skip ahead"];
+var scout_quests = ["exploring areas no Consort has dared to trespass in","getting lost in ridiculously convoluted mazes","playing map-creating mini games"];
+var scribe_quests = ["taking down the increasingly random and nonsensical oral history of a group of local Consorts","playing typing themed mini games.","saving an important piece of a riddle from a crumbling building"];
+var sage_quests = ["making the lore of SBURB part of their personal mythos","learning to nod wisely and remain silent when Consorts start yammering on about the Ultimate Riddle","participating in riddle contests to prove their intelligence to local Consorts"];
+var generic_quests = ["definitely doing class related quests", "solving consorts problems in a class themed manner", "absolutely not goofing off"];
 
 
 //if bike quests are too common, lock them to real selves only, no dream selves.
@@ -1613,6 +1660,15 @@ var postdenizen_witch_quests = ["alchemizing a mind crushingly huge number of co
 postdenizen_witch_quests.push("whizzing around their land like it's fucking christmas")
 postdenizen_witch_quests.push("defeating a completely out of nowhere mini boss")
 postdenizen_witch_quests.push("wondering if their sprite prototyping choice was the right one after all")
+
+var postdenizen_generic_quests = ["cleaning up after their Denizen in a class approrpiate fashion","absolutly not goofing off instead of cleaing up after their Denizen","vaguely sweeping up rubble"];
+var postdenizen_waste_quests = ["figuring out the least-disruptive way to help the local Consorts recover from the Denizen's rule","being a useless piece of shit and not joining cleanup efforts.","accidentally causing MORE destruction in an attempt to help clean up after their epic as fuck fight agains their Denizen"];
+var postdenizen_scout_quests = ["finding Consorts that still need help even after the Denizen has been defeated", "scouting out areas that have opened up following the Denizen's defeat","looking for rare treasures that are no longer being guarded by the Denizen"];
+var postdenizen_scribe_quests = ["documenting the various Consorts lost to the Denizen.","writing up a recovery plan for the Local Consorts","figuring out the best way to explain how to recover from the ravages of Denizen"];
+var postdenizen_sage_quests = ["learning everything there is learn about the Denizen, now that it is safely defeated","learning what Consort civilization was like before the Denizen, to better help them return to 'normal'","demonstrating to the local Consorts the best way to move on from the tyranny of the Denizen"];
+
+
+
 
 var postdenizen_space_quests = ["stoking the forge and preparing to create a new universe"];
 postdenizen_space_quests.push("cloning ribbiting assholes till you’re up to your eyeballs in frogs");
