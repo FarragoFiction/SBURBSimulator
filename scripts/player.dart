@@ -98,7 +98,7 @@ class Player {
 	
 
 
-	Player(this.session, this.class_name, this.aspect, this.object_to_prototype, this.moon, this.godDestiny, this.id) {}
+	Player([this.session, this.class_name, this.aspect, this.object_to_prototype, this.moon, this.godDestiny, this.id]) {}
 
 
 	bool fromThisSession(Session session){

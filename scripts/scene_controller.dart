@@ -1,15 +1,15 @@
-
+part of SBURBSim;
 
 var nonRareSessionCallback = null; //AB is already storing a callback for easter egg, so broke down and polluted the global namespace once more like an asshole.
-var startTime = Date.now(); //gets page load.
+DateTime startTime = new DateTime.now(); //gets page load.
 num stopTime = 0;
-void createScenesForSession(session){
+void createScenesForSession(Session session){
 	session.scenes = [new StartDemocracy(session), new JackBeginScheming(session), new KingPowerful(session), new QueenRejectRing(session), new GiveJackBullshitWeapon(session), new JackPromotion(session), new JackRampage(session)];
 	//relationship drama has a high priority because it can distract a session from actually making progress. happened to universe a trolls.
-	session.scenes = session.scenes.concat([new QuadrantDialogue(session),new FreeWillStuff(session),new GrimDarkQuests(session),new Breakup(session), new RelationshipDrama(session), new UpdateShippingGrid(session),  new EngageMurderMode(session), new GoGrimDark(session),  new DisengageMurderMode(session),new MurderPlayers(session),new BeTriggered(session),]);
-	session.scenes = session.scenes.concat([new VoidyStuff(session), new FaceDenizen(session), new DoEctobiology(session), new LuckStuff(session), new DoLandQuest(session)]);
-	session.scenes = session.scenes.concat([new SolvePuzzles(session), new ExploreMoon(session)]);
-	session.scenes = session.scenes.concat([new LevelTheHellUp(session)]);
+	session.scenes.addAll([new QuadrantDialogue(session),new FreeWillStuff(session),new GrimDarkQuests(session),new Breakup(session), new RelationshipDrama(session), new UpdateShippingGrid(session),  new EngageMurderMode(session), new GoGrimDark(session),  new DisengageMurderMode(session),new MurderPlayers(session),new BeTriggered(session),]);
+	session.scenes.addAll([new VoidyStuff(session), new FaceDenizen(session), new DoEctobiology(session), new LuckStuff(session), new DoLandQuest(session)]);
+	session.scenes.addAll([new SolvePuzzles(session), new ExploreMoon(session)]);
+	session.scenes.addAll([new LevelTheHellUp(session)]);
 
 	//make sure kiss, then godtier, then godtierrevival, then any other form of revival.
 	//make sure life stuff happens AFTER a chance at god tier, or life players PREVENT god tiering.
@@ -20,7 +20,7 @@ void createScenesForSession(session){
 	session.available_scenes = []; //remove scenes from this if they get used up.
 	//make non shallow copy.
 	for(num i = 0; i<session.scenes.length; i++){
-		session.available_scenes.push(session.scenes[i]);
+		session.available_scenes.add(session.scenes[i]);
 	}
 }
 
@@ -33,37 +33,37 @@ bool printCorruptionMessage(msg, url, lineNo, columnNo, error){
 	var space = findAspectPlayer(curSessionGlobalVar.players, "Space");
 	var time = findAspectPlayer(curSessionGlobalVar.players, "Time");
 	if(curSessionGlobalVar.crashedFromPlayerActions){
-		querySelector("#story").append("<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. HORRORTERROR INFLUENCE: COMPLETE.");
+		querySelector("#story").appendHtml("<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. HORRORTERROR INFLUENCE: COMPLETE.");
 		recomendedAction = "OMFG JUST STOP CRASHING MY DAMN SESSIONS. FUCKING GRIMDARK PLAYERS. BREAKING SBURB DOES NOT HELP ANYBODY! ";
 	}else if(curSessionGlobalVar.players.length < 1){
-		querySelector("#story").append("<BR>ERROR: USELESS 0 PLAYER SESSION DETECTED.");
+		querySelector("#story").appendHtml("<BR>ERROR: USELESS 0 PLAYER SESSION DETECTED.");
 		recomendedAction = ":/ REALLY? WHAT DID YOU THINK WAS GOING TO HAPPEN HERE, THE FREAKING *CONSORTS* WOULD PLAY THE GAME. ACTUALLY, THAT'S NOT HALF BAD AN IDEA. INTO THE PILE.";
 	}else if(curSessionGlobalVar.players.length < 2){
-		querySelector("#story").append("<BR>ERROR: DEAD SESSION DETECTED.");
+		querySelector("#story").appendHtml("<BR>ERROR: DEAD SESSION DETECTED.");
 		recomendedAction = ":/ YEAH, MAYBE SOME DAY I'LL DO DEAD SESSIONS FOR YOUR SPECIAL SNOWFLAKE SINGLE PLAYER FANTASY, BUT TODAY IS NOT THAT DAY.";
 	}else if(!space){
-		querySelector("#story").append("<BR>ERROR: SPACE PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED.");
+		querySelector("#story").appendHtml("<BR>ERROR: SPACE PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED.");
 		curSessionGlobalVar.crashedFromCustomShit = true;
 		recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A SPACE PLAYER, DUNKASS. ";
 	}else if(!time){
 		curSessionGlobalVar.crashedFromCustomShit = true;
-		querySelector("#story").append("<BR>ERROR: TIME PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED");
+		querySelector("#story").appendHtml("<BR>ERROR: TIME PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED");
 		recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A TIME PLAYER, DUNKASS. ";
 	}else{
 		curSessionGlobalVar.crashedFromSessionBug = true;
-		querySelector("#story").append("<BR>ERROR: AN ACTUAL BUG IN SBURB HAS CRASHED THE SESSION. THE HORRORTERRORS ARE PLEASED THEY NEEDED TO DO NO WORK. (IF THIS HAPPENS FOR ALL SESSIONS, IT MIGHT BE A BROWSER BUG)");
+		querySelector("#story").appendHtml("<BR>ERROR: AN ACTUAL BUG IN SBURB HAS CRASHED THE SESSION. THE HORRORTERRORS ARE PLEASED THEY NEEDED TO DO NO WORK. (IF THIS HAPPENS FOR ALL SESSIONS, IT MIGHT BE A BROWSER BUG)");
 		recomendedAction = "TRY HOLDING 'SHIFT' AND CLICKING REFRESH TO CLEAR YOUR CACHE. IF THE BUG PERSISTS, CONTACT JADEDRESEARCHER. CONVINCE THEM TO FIX SESSION: " + scratchedLineageText(curSessionGlobalVar.getLineage());
 	}
-	var message = [;
+	var message = [
             'Message: ' + msg,
             'URL: ' + url,
             'Line: ' + lineNo,
             'Column: ' + columnNo,
-            'Error object: ' + JSON.stringify(error);
+            'Error object: ' + JSON.encode(error)
         ].join(' - ');
 	print(message);
 	String str = "<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. LAST ERROR: " + message + " ABORTING.";
-	querySelector("#story").append(str);
+	querySelector("#story").appendHtml(str);
 	crashEasterEgg(url);
 
 
@@ -82,17 +82,17 @@ bool printCorruptionMessage(msg, url, lineNo, columnNo, error){
 	}
 
 	for(int i = 0; i<3; i++){
-	 querySelector("#story").append("<BR>...");
+	 querySelector("#story").appendHtml("<BR>...");
 	}
 	//once I let PLAYERS cause this (through grim darkness or finding their sesions disk or whatever), have different suggested actions.
 	//maybe throw custom error?
-	querySelector("#story").append("<BR>SUGGESTED ACTION: " + recomendedAction);
+	querySelector("#story").appendHtml("<BR>SUGGESTED ACTION: " + recomendedAction);
 	renderAfterlifeURL();
 
 	print("Corrupted session: " + scratchedLineageText(curSessionGlobalVar.getLineage()) + " helping AB return, if she is lost here.")
 
 	if(junior == true){
-		querySelector("#button").prop('disabled', false);
+		querySelector("#button").setAttribute('disabled', "false");
 	}else{
 		print("going to summarize session after crash");
 		summarizeSession(curSessionGlobalVar);// let's the author bot summarize the session. doens't matter if I'm not in AB mode, arleady crashed, right?
@@ -107,7 +107,9 @@ bool printCorruptionMessage(msg, url, lineNo, columnNo, error){
 
 
 void causeError(){
-	cusdhgfd.kjg  //qwhy does this not get caight???
+	//cusdhgfd.kjg  //qwhy does this not get caight???
+
+	throw new Error(); // -PL
 }
 
 
@@ -154,14 +156,10 @@ window.addEventListener("error", (e) {
 })
 */
 
-class crashEasterEgg {
+void crashEasterEgg(String url) {
 
-	crashEasterEgg(this.url) {}
-
-
-
-	String canvasHTML = "<br><canvas class ;= 'void' id='canvasVoidCorruptionEnding"+"' width;='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
-	querySelector("#story").append(canvasHTML);
+	String canvasHTML = "<br><canvas class ;= 'void' id='canvasVoidCorruptionEnding"+"' width;='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
+	querySelector("#story").appendHtml(canvasHTML);
 	var canvas = querySelector("#canvasVoidCorruptionEnding");
 	String chat = "";
 	chat += "RS: We are gathered here today in loving memory of- \n";
@@ -228,7 +226,7 @@ dynamic processReckoning(playerList, session){
 
 
 
-dynamic processScenes2(playerList, session){
+dynamic processScenes2(playerList, Session session){
 	//print("processing scene");
 	//querySelector("#story").append("processing scene");
 	String ret = "";
@@ -241,7 +239,8 @@ dynamic processScenes2(playerList, session){
 			session.numScenes ++;
 			s.renderContent(session.newScene());
 			if(!s.canRepeat){
-				removeFromArray(s,session.available_scenes);
+				//removeFromArray(s,session.available_scenes);
+				session.available_scenes.remove(s);
 			}
 		}
 	}
@@ -309,7 +308,7 @@ dynamic processReckoning2(playerList, session){
 //can't just add an "if 2.0" check, btw.
 //need to have a pause between each scene to give time for rendering.
 //gotta test method in scenario_controller2.js move here, modify
-dynamic processScenes(playerList, session){
+dynamic processScenes(playerList, Session session){
 	//print(session);
 	String ret = "";
 	setAvailablePlayers(playerList,session);
@@ -330,7 +329,8 @@ dynamic processScenes(playerList, session){
 				//print(s);
 			//}
 			if(!s.canRepeat){
-				removeFromArray(s,session.available_scenes);
+				//removeFromArray(s,session.available_scenes);
+				session.available_scenes.remove(s);
 			}
 		}
 	}
@@ -354,7 +354,7 @@ dynamic processScenes(playerList, session){
 
 
 var raggedPlayers = null; //just for scratch'
-var numPlayersPreScratch
+var numPlayersPreScratch = 0;
 
 void scratch(){
 	print("scratch has been confirmed");
@@ -418,7 +418,7 @@ void scratchEasterEggCallBack(){
 	scratch += " What will happen?";
 	print("about to switch players");
 
-	querySelector("#story").html(scratch);
+	querySelector("#story").innerHtml = (scratch);
 	if(!simulationMode) window.scrollTo(0, 0);
 
 	var guardians = raggedPlayers; //if i use guardians, they will be all fresh and squeaky. want the former players.
@@ -432,20 +432,20 @@ void scratchEasterEggCallBack(){
 	String canvasHTML = "<br><canvas id;='canvas" + guardianID+"' width='" +canvasWidth + "' height;="+ch + "'>  </canvas>";
 
 	guardianDiv.append(canvasHTML);
-	var canvasDiv = querySelector("#canvas"+ guardianID);
+	Element canvasDiv = querySelector("#canvas"+ guardianID);
 	poseAsATeam(canvasDiv, guardians, 2000); //everybody, even corpses, pose as a team.
 
 
 	var playerDiv = curSessionGlobalVar.newScene();
 	var playerID = (playerDiv.attr("id")) + "_players" ;
-	var ch = canvasHeight;
+	ch = canvasHeight;
 	if(curSessionGlobalVar.players.length > 6){
 		ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
 	}
-	String canvasHTML = "<br><canvas id;='canvas" + playerID+"' width='" +canvasWidth + "' height;="+ch + "'>  </canvas>";
+	canvasHTML = "<br><canvas id;='canvas" + playerID+"' width='" +canvasWidth.toString() + "' height;="+ch + "'>  </canvas>";
 
 	playerDiv.append(canvasHTML);
-	var canvasDiv = querySelector("#canvas"+ playerID);
+	canvasDiv = querySelector("#canvas"+ playerID);
 
 	//need to render self for caching to work for this
 	for(num i = 0; i<curSessionGlobalVar.players.length; i++){
@@ -459,7 +459,7 @@ void scratchEasterEggCallBack(){
 
 
 //http://stackoverflow.com/questions/9763441/milliseconds-to-time-in-javascript
-function msToTime(s) {
+String msToTime(s) {
   var ms = s % 1000;
   s = (s - ms) / 1000;
   var secs = s % 60;
@@ -473,17 +473,17 @@ function msToTime(s) {
 
 void renderAfterlifeURL(){
 	if(curSessionGlobalVar.afterLife.ghosts.length > 0){
-		stopTime = Date.now();
-		var params = window.location.href.substr(window.location.href.indexOf("?")+1);
+		stopTime = new DateTime.now();
+		var params = window.location.href.substring(window.location.href.indexOf("?")+1);
 		if (params == window.location.href) params = "";
 
-		String html = "<Br><br><a href ;= 'rip.html?" + generateURLParamsForPlayers(curSessionGlobalVar.afterLife.ghosts,false) + "' target='_blank'>View Afterlife In New Tab?</a>";
-		html += '<br><br><a href ;= "character_creator.html?seed=' +initial_seed +'&' + params + ' " target;="_blank">Replay Session </a> '
-		html += "<br><br><a href ;= 'index2.html'>Random New Session?</a>"
-		html += '<br><br><a href ;= "index2.html?seed=' +initial_seed +'&' + params + ' " target;="_blank">Shareable URL </a> '
+		String html = "<Br><br><a href = 'rip.html?" + generateURLParamsForPlayers(curSessionGlobalVar.afterLife.ghosts,false) + "' target='_blank'>View Afterlife In New Tab?</a>";
+		html += '<br><br><a href = "character_creator.html?seed=' +initial_seed.toString() +'&' + params + ' " target;="_blank">Replay Session </a> ';
+		html += "<br><br><a href = 'index2.html'>Random New Session?</a>";
+		html += '<br><br><a href = "index2.html?seed=' +initial_seed.toString() +'&' + params + ' " target;="_blank">Shareable URL </a> ';
 		html += "<Br><Br>Simulation took: " + msToTime(stopTime - startTime) + " to render. ";
 		//print("gonna append: " + html);
-		querySelector("#story").append(html);
+		querySelector("#story").appendHtml(html);
 	}else{
 		print("no ghosts");
 	}
@@ -519,15 +519,15 @@ dynamic playersToExtensionBytes(players){
 
 
 
-function truncateString(str, num) {
-    return str.length > num ?;
+String truncateString(str, num) {
+    return str.length > num ?
         str.slice(0, num > 3 ? num - 3 : num) + "..." :
         str;
 }
 
 
-dynamic sanitizeString(string){
-		return truncateString(string.replace(new RegExp(r"""<(,?:.|\n)*?>""", multiLine:true), '').replace(new RegExp(r""",""", multiLine:true),''), 144); //good enough for twitter.
+String sanitizeString(String string){
+		return truncateString(string.replaceAll(new RegExp(r"""<(,?:.|\n)*?>""", multiLine:true), '').replaceAll(new RegExp(",", multiLine:true),''), 144); //good enough for twitter.
 	}
 
 
@@ -536,7 +536,7 @@ dynamic sanitizeString(string){
 dynamic playersToDataStrings(players, includeChatHandle){
 	List<dynamic> ret = [];
 	for(num i = 0; i<players.length; i++){
-		ret.push(players[i].toDataStrings(true))
+		ret.add(players[i].toDataStrings(true));
 	}
 	//return encodeURIComponent(ret.join(",")).replace(new RegExp(r"""#""", multiLine:true), '%23').replace(new RegExp(r"""&""", multiLine:true), '%26');;
 	return LZString.compressToEncodedURIComponent(ret.join(","));
@@ -574,13 +574,13 @@ String generateURLParamsForPlayers(players, includeChatHandle){
 		var bi = i*11; //i is which player we are on, which is 11 bytes long
 		var si = i*5; //or 5 strings long
 		var b = bytes.substring(bi, bi+11);
-		List<dynamic> s = [];
+		//List<dynamic> s = [];
 		var s = strings.slice(si, si +5);
 		//print("passing b to player parser");
 		//print(b);
 		var p = (dataBytesAndStringsToPlayer(b,s));
 		p.id = i; //will be overwritten by sim, but viewer needs it
-		players.push(p);
+		players.add(p);
 	}
 	//if(extensionString) player.readInExtensionsString(extensionString);
 	if(xbytes) applyExtensionStringToPlayers(players, xbytes);
@@ -634,25 +634,25 @@ dynamic dataBytesAndStringsToPlayer(charString, str_arr){
 	 player.interest1Category = intToInterestCategory(charString.charCodeAt(5) >> 4);
 	 player.interest2Category = intToInterestCategory(charString.charCodeAt(5) & 15);
 	 player.grimDark = charString.charCodeAt(6) >> 5;
-	 player.isTroll = 0 !;= ((1<<4) & charString.charCodeAt(6)) //only is 1 if character at 1<<4 is 1 in charString
-	 player.isDreamSelf = 0 !;= ((1<<3) & charString.charCodeAt(6))
-	 player.godTier = 0 !;= ((1<<2) & charString.charCodeAt(6))
-	 player.murderMode = 0 !;= ((1<<1) & charString.charCodeAt(6))
-	 player.leftMurderMode = 0 !;= ((1) & charString.charCodeAt(6))
-	 player.robot = 0 !;= ((1<<7) & charString.charCodeAt(7))
-	 var moon = 0 !;= ((1<<6) & charString.charCodeAt(7));
+	 player.isTroll = 0 != ((1<<4) & charString.charCodeAt(6)); //only is 1 if character at 1<<4 is 1 in charString
+	 player.isDreamSelf = 0 != ((1<<3) & charString.charCodeAt(6));
+	 player.godTier = 0 != ((1<<2) & charString.charCodeAt(6));
+	 player.murderMode = 0 != ((1<<1) & charString.charCodeAt(6));
+	 player.leftMurderMode = 0 != ((1) & charString.charCodeAt(6));
+	 player.robot = 0 != ((1<<7) & charString.charCodeAt(7));
+	 var moon = 0 != ((1<<6) & charString.charCodeAt(7));
 	 //print("moon binary is: " + moon);
 	 player.moon = moon ? "Prospit" : "Derse";
 	 //print("moon string is: "  + player.moon);
-	 player.dead = 0 !;= ((1<<5) & charString.charCodeAt(7))
+	 player.dead = 0 != ((1<<5) & charString.charCodeAt(7));
 	 //print("Binary string is: " + charString[7]);
-	 player.godDestiny = 0 !;= ((1<<4) & charString.charCodeAt(7))
+	 player.godDestiny = 0 != ((1<<4) & charString.charCodeAt(7));
 	 player.quirk.favoriteNumber = charString.charCodeAt(7) & 15;
 	 print("Player favorite number is: " + player.quirk.favoriteNumber);
 	 player.leftHorn = charString.charCodeAt(8);
 	 player.rightHorn = charString.charCodeAt(9);
 	 player.hair = charString.charCodeAt(10);
-	 if(player.interest1Category) interestCategoryToInterestList(player.interest1Category ).push(player.interest1) //maybe don't add if already exists but whatevs for now.
+	 if(player.interest1Category) interestCategoryToInterestList(player.interest1Category ).push(player.interest1); //maybe don't add if already exists but whatevs for now.
 	 if(player.interest2Category )interestCategoryToInterestList(player.interest2Category ).push(player.interest2);
 
 	 return player;
@@ -661,7 +661,7 @@ dynamic dataBytesAndStringsToPlayer(charString, str_arr){
 
 
 //looks not called anymore since i moved away from json.
- dynamic objToPlayer(obj){
+ /*dynamic objToPlayer(obj){
 	 var ret = new Player();
 	 for (var prop in obj){
 		 print(prop + " : " + obj[prop]);
@@ -673,4 +673,4 @@ dynamic dataBytesAndStringsToPlayer(charString, str_arr){
 	 ret.quirk = new Quirk();
 	 ret.quirk.favoriteNumber = obj.quirk.favoriteNumber;
 	 return ret;
- }
+ }*/

@@ -1,4 +1,4 @@
-
+part of SBURBSim;
 
 //okay, fine, yes, global variables are getting untenable.
 class Session {
@@ -28,6 +28,7 @@ class Session {
 	bool denizenBeat = false;	//session no longer keeps track of guardians.
 	var king = null;
 	var queen = null;
+	var jack = null;
 	num numScenes = 0;
 	bool rapBattle = false;
 	bool crashedFromSessionBug = false; //gets corrupted if an unrecoverable error gets caught.
@@ -73,9 +74,11 @@ class Session {
 	var parentSession = null;
 	List<dynamic> availablePlayers = [];  //which players are available for scenes or whatever.
 	List<dynamic> importantEvents = [];
-	bool yellowYard = false;	var yellowYardController = new YellowYardResultController();//don't expect doomed time clones to follow them to any new sessions
+	bool yellowYard = false;
+	var yellowYardController = new YellowYardResultController();//don't expect doomed time clones to follow them to any new sessions
 
-	
+	// extra fields - stop abusing object notation lol -PL
+	bool crashedFromCustomShit = false;
 
 
 	Session(this.session_id) {}
@@ -111,15 +114,15 @@ class Session {
 			return alternate; //scene will use the alternate to go a different way. important event no longer happens.
 		}else{
 			//print(" pushing important event and returning null");
-			this.importantEvents.push(important_event);
+			this.importantEvents.add(important_event);
 			return null;
 		}
 	}
-	void frogStatus(){
+	String frogStatus(){
 		var spacePlayer = this.findBestSpace();
 		var corruptedSpacePlayer = this.findMostCorruptedSpace();
-		var spacePlayer = findAspectPlayer(this.players, "Space");
-		if(corruptedSpacePlayer.landLevel <= this.goodFrogLevel * -1) return "Purple Frog" //is this...a REFRANCE???;
+		//var spacePlayer = findAspectPlayer(this.players, "Space");
+		if(corruptedSpacePlayer.landLevel <= this.goodFrogLevel * -1) return "Purple Frog"; //is this...a REFRANCE???
 		if(spacePlayer.landLevel < this.minFrogLevel){
 			return "No Frog";
 		}else if(spacePlayer.landLevel > this.goodFrogLevel){
@@ -149,6 +152,7 @@ class Session {
 		curSessionGlobalVar.makeGuardians(); //after entry order established
 		checkEasterEgg(this.easterCallBack,this); //in the controller.
 
+		return null;
 	}
 	void easterCallBack(that){
 		//now that i've done that, (for seed reasons) fucking ignore it and stick the actual players in
@@ -199,7 +203,7 @@ class Session {
 		newSession.makeGuardians();
 		if(living.length + newSession.players.length > 12){
 			//print("New session " + newSession.session_id +" cannot support living players. Already has " + newSession.players.length + " and would need to add: " + living.length);
-			return;  //their child session is not able to support them
+			return null;  //their child session is not able to support them
 		}
 	//	print("about to add: " + living.length + " aliens to new session.");
 		//print(getPlayersTitles(living));
@@ -221,6 +225,7 @@ class Session {
 			}
 		}
 		print("Error finding session's: " + player.title());
+		return null;
 	}
 	void reinit(){
 		groundHog = false;
@@ -245,15 +250,15 @@ class Session {
 	void makePlayers(){
 		//print("Making players with seed: " + Math.seed);
 		this.players = [];
-		available_classes = classes.slice(0); //re-initPlayers available classes.
-		available_classes_guardians = classes.slice(0);
-		available_aspects = nonrequired_aspects.slice(0);
+		available_classes = classes.sublist(0); //re-initPlayers available classes.
+		available_classes_guardians = classes.sublist(0);
+		available_aspects = nonrequired_aspects.sublist(0);
 		var numPlayers = getRandomInt(2,12);
-		this.players.push(randomSpacePlayer(this));
-		this.players.push(randomTimePlayer(this));
+		this.players.add(randomSpacePlayer(this));
+		this.players.add(randomTimePlayer(this));
 
 		for(int i = 2; i<numPlayers; i++){
-			this.players.push(randomPlayer(this));
+			this.players.add(randomPlayer(this));
 		}
 
 		for(num j = 0; j<this.players.length; j++){
@@ -300,14 +305,14 @@ class Session {
 	}
 	void makeGuardians(){
 		//print("Making guardians");
-		available_classes = classes.slice(0);
-		available_aspects = nonrequired_aspects.slice(0); //required_aspects
-		available_aspects = available_aspects.concat(required_aspects.slice(0));
+		available_classes = classes.sublist(0);
+		available_aspects = nonrequired_aspects.sublist(0); //required_aspects
+		available_aspects.addAll(required_aspects.sublist(0));
 		List<dynamic> guardians = [];
 		for(num i = 0; i<this.players.length; i++){
 			  var player = this.players[i];
 				player.makeGuardian();
-				guardians.push(player.guardian);
+				guardians.add(player.guardian);
 		}
 
 		for(num j = 0; j<this.players.length; j++){
@@ -329,7 +334,7 @@ class Session {
 		var guardians = getGuardiansForPlayers(nativePlayers);
 		this.players = guardians;
 	}
-	void getSessionType(){
+	String getSessionType(){
 		if(this.sessionType > .6){
 			return "Human";
 		}else if(this.sessionType > .3){
@@ -338,17 +343,18 @@ class Session {
 		return "Mixed";
 	}
 	void setUpBosses(){
+
 		this.queensRing = new GameEntity(this, "!!!RING!!! OMG YOU SHOULD NEVER SEE THIS!",false);
 		this.queensRing.setStats(0,0,0,0,0,0,0,false, false, [],1000);
 		var f = new Fraymotif([],  "Red Miles", 3);
-		f.effects.push(new FraymotifEffect("power",2,true));
+		f.effects.add(new FraymotifEffect("power",2,true));
 		f.flavorText = " You cannot escape them ";
 		this.queensRing.fraymotifs.push(f);
 
 		this.kingsScepter = new GameEntity(this, "!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!",false);
 		this.kingsScepter.setStats(0,0,0,0,0,0,0,false, false, [],1000);
-		var f = new Fraymotif([],  "Reckoning Meteors", 3)  ;//TODO eventually check for this fraymotif (just lik you do troll psionics) to decide if you can start recknoing.;
-		f.effects.push(new FraymotifEffect("power",2,true));
+		f = new Fraymotif([],  "Reckoning Meteors", 3)  ;//TODO eventually check for this fraymotif (just lik you do troll psionics) to decide if you can start recknoing.;
+		f.effects.add(new FraymotifEffect("power",2,true));
 		f.flavorText = " The very meteors from the Reckoning rain down. ";
 		this.kingsScepter.fraymotifs.push(f);
 		
@@ -364,31 +370,31 @@ class Session {
 		this.jack.carapacian = true;
 		this.jack.setStats(-500,-10,20,-50,-100,1000,40,true, true, [],100000); //jack is kind of a big deal. luck determines his odds of finding bullshit weapon
 		//jack uses "Stab to Meet You", it's not very effective (nobody seems to think his stabs are important until he's crowned.)
-		var f = new Fraymotif([],  "Stab To Meet You", 1);
-		f.effects.push(new FraymotifEffect("power",3,true));
+		f = new Fraymotif([],  "Stab To Meet You", 1);
+		f.effects.add(new FraymotifEffect("power",3,true));
 		f.flavorText = " It's pretty much how he says 'Hello'. ";
 		this.jack.fraymotifs.push(f);
 
 		this.democraticArmy = new GameEntity(this, "Democratic Army",null); //doesn't actually exist till WV does his thing.
 		this.democraticArmy.carapacian = true;
 		this.democraticArmy.setStats(0,0,0,0,0,0,0,false, false, [],1000);
-		var f = new Fraymotif([],  "Democracy Charge", 2);
-		f.effects.push(new FraymotifEffect("power",3,true));
+		f = new Fraymotif([],  "Democracy Charge", 2);
+		f.effects.add(new FraymotifEffect("power",3,true));
 		f.flavorText = " The people have chosen to Rise Up against their oppressors. ";
 		this.democraticArmy.fraymotifs.push(f);
 
 
 	}
-	void toString(){
+	String toString(){
 		return this.session_id;
 	}
 	dynamic newScene(){
 		this.currentSceneNum ++;
 		var div;
 		if(this.sbahj){
-			div = "<div class ;= 'scene' id='scene"+this.currentSceneNum+"' style;='";
-			div += "background-color: #00ff00;"
-			div += "font-family: Comic Sans MS, cursive, sans-serif;"
+			div = "<div class ;= 'scene' id='scene"+this.currentSceneNum.toString()+"' style;='";
+			div += "background-color: #00ff00;";
+			div += "font-family: Comic Sans MS, cursive, sans-serif;";
 			//querySelector("#scene"+this.currentSceneNum).css("background-color", "#00ff00");
 			var reallyRand = getRandomIntNoSeed(1,10);
 			for(int i = 0; i<reallyRand; i++){
@@ -499,7 +505,7 @@ class Session {
 
 
 
-void summarizeScene(scenesTriggered, str){
+String summarizeScene(scenesTriggered, str){
 	var tmp = findSceneNamed(scenesTriggered,str);
 	if(tmp != "No"){
 		tmp = "Yes";
