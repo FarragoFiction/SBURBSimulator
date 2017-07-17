@@ -2,9 +2,92 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/player.js" afterPath="$PROJECT_DIR$/javascripts/player.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/scene_controller.js" afterPath="$PROJECT_DIR$/javascripts/scene_controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" afterPath="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/AfterLife.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/SceneRenderingEngine.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/BeTriggered.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/Breakup.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/CorpseSmooch.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/DisengageMurderMode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/DoEctobiology.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/DoLandQuest.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/EngageMurderMode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/ExileJack.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/ExileQueen.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/ExploreMoon.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/FaceDenizen.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/FightKing.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/FightQueen.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/ForeshadowYellowYard.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/FreeWillStuff.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/GetTiger.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/GiveJackBullshitWeapon.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/GoGrimDark.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/GodTierRevival.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/GrimDarkQuests.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/Intro.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/JackBeginScheming.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/JackPromotion.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/JackRampage.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/KingPowerful.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/LifeStuff.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/LuckStuff.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/MurderPlayers.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/PlanToExileJack.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/PowerDemocracy.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/PrepareToExileJack.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/PrepareToExileQueen.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/QuadrantDialogue.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/QueenRejectRing.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/Reckoning.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/RelationshipDrama.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/SaveDoomedTimeline.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/SolvePuzzles.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/StartDemocracy.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/YellowYard.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/Scenes/levelthehellup.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/ShittyRapEngine/rap_controller.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/ShittyRapEngine/shitty_raps.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/SpriteRenderingEngine.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/afterlife_viewer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/bytebuilder.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/debugScenarios.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/fraymotif.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/gameEntity.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/handle_sprites.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/jquery-1.7.1.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/landOfRodsAndScreens.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/loading.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/lz-string.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/navbar.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/newsposts.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/oc_generator.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/player.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/playerSnapshot.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/quirk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/random_tables.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/relationship.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/scenario_controller.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/scene_controller.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/session.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/sessionSummary.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/strength.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/v2.0/ImportantEvents.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/v2.0/README.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/v2.0/Scenes/AuthorMessage.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/v2.0/YellowYardResultController.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/v2.0/char_creator.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/v2.0/char_viewer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/v2.0/graph_controller.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/v2.0/image_browser.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/v2.0/scenario_controller2.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/v2.0/testFraymotifController.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/javascripts/v2.0/tournament_controller.js" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,47 +96,60 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="SBURBSim.dart" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/scripts/SBURBSim.dart">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="306">
+                    <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+                    <folding>
+                      <element signature="e#19#46#0" expanded="true" />
+                      <element signature="e#120#139#0" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="SBURBSimulator" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/player.js">
+      <file leaf-file-name="player.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/player.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="2311" column="24" lean-forward="true" selection-start-line="2311" selection-start-column="24" selection-end-line="2311" selection-end-column="24" />
+            <state relative-caret-position="188">
+              <caret line="1133" column="5" lean-forward="true" selection-start-line="1133" selection-start-column="5" selection-end-line="1133" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="playerSnapshot.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/playerSnapshot.js">
+      <file leaf-file-name="session.dart" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scripts/session.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="91" column="5" lean-forward="true" selection-start-line="91" selection-start-column="5" selection-end-line="91" selection-end-column="5" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scene_controller.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/javascripts/scene_controller.js">
+      <file leaf-file-name="fraymotif.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/fraymotif.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="469" column="135" lean-forward="false" selection-start-line="469" selection-start-column="135" selection-end-line="469" selection-end-column="135" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="char_creator_helper.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="382" column="38" lean-forward="false" selection-start-line="382" selection-start-column="20" selection-end-line="382" selection-end-column="38" />
+            <state relative-caret-position="907">
+              <caret line="462" column="47" lean-forward="true" selection-start-line="462" selection-start-column="47" selection-end-line="462" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -71,10 +167,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>initialize()</find>
-      <find>decideHem</find>
-      <find>decideTroll</find>
-      <find>psioni</find>
       <find>copyFromPlayer</find>
       <find>applyPossiblePsionics</find>
       <find>bloodColors</find>
@@ -101,7 +193,14 @@
       <find>xbytes</find>
       <find>dataBytesAndStringsToPlayers</find>
       <find>playersToExtensionBytes</find>
+      <find>ghost</find>
+      <find>))</find>
+      <find>getStatWord</find>
+      <find>htmlTitleBasic</find>
     </findStrings>
+    <replaceStrings>
+      <replace>));</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -114,9 +213,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/support.html" />
-        <option value="$PROJECT_DIR$/javascripts/Scenes/GoGrimDark.js" />
-        <option value="$PROJECT_DIR$/javascripts/Scenes/QuadrantDialogue.js" />
         <option value="$PROJECT_DIR$/todo.html" />
         <option value="$PROJECT_DIR$/easter_eggs.txt" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/GrimDarkQuests.js" />
@@ -165,15 +261,19 @@
         <option value="$PROJECT_DIR$/javascripts/player.js" />
         <option value="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" />
         <option value="$PROJECT_DIR$/javascripts/scene_controller.js" />
+        <option value="$PROJECT_DIR$/scripts/fraymotif.dart" />
+        <option value="$PROJECT_DIR$/scripts/SBURBSim.dart" />
+        <option value="$PROJECT_DIR$/scripts/player.dart" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="26" />
-    <option name="y" value="35" />
-    <option name="width" value="1216" />
-    <option name="height" value="633" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1456" />
+    <option name="height" value="916" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -189,7 +289,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -212,57 +311,21 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SBURBSimulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SBURBSimulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="OCs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SBURBSimulator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SBURBSimulator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javascripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SBURBSimulator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SBURBSimulator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javascripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v2.0" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SBURBSimulator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SBURBSimulator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javascripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Scenes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -296,13 +359,14 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.smartKeys" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
@@ -571,7 +635,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="26" y="35" width="1216" height="633" extended-state="0" />
+    <frame x="-8" y="-8" width="1456" height="916" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -582,26 +646,26 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Dart Analysis" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Dart Analysis" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31571993" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.026595745" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21628289" sideWeight="0.8741135" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2191977" sideWeight="0.8741135" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21628289" sideWeight="0.12588653" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21628289" sideWeight="0.12588653" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -640,6 +704,11 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
@@ -649,43 +718,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/about.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="257" column="105" lean-forward="false" selection-start-line="257" selection-start-column="56" selection-end-line="257" selection-end-column="105" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/navbar.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="35" column="84" lean-forward="false" selection-start-line="35" selection-start-column="84" selection-end-line="35" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ab_image_text.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="0" column="21196" lean-forward="false" selection-start-line="0" selection-start-column="21196" selection-end-line="0" selection-end-column="21196" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OCs/creditsBuckaroos.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="95" lean-forward="false" selection-start-line="17" selection-start-column="95" selection-end-line="17" selection-end-column="95" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/handle_sprites.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="148">
           <caret line="1252" column="3" lean-forward="false" selection-start-line="1252" selection-start-column="3" selection-end-line="1252" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -693,7 +729,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="95" lean-forward="false" selection-start-line="1" selection-start-column="95" selection-end-line="1" selection-end-column="95" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -701,7 +736,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="18" lean-forward="false" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -709,7 +743,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="261">
           <caret line="30" column="152" lean-forward="false" selection-start-line="30" selection-start-column="152" selection-end-line="30" selection-end-column="152" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -717,7 +750,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -725,7 +757,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="201">
           <caret line="779" column="19" lean-forward="true" selection-start-line="779" selection-start-column="19" selection-end-line="779" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -733,47 +764,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="21" column="49" lean-forward="false" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Dart/Strife.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="16" column="57" lean-forward="false" selection-start-line="16" selection-start-column="57" selection-end-line="16" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Dart/gameEntity.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="30" column="33" lean-forward="false" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Dart/Strife.dart" />
+    <entry file="file://$PROJECT_DIR$/Dart/gameEntity.dart" />
     <entry file="file://$PROJECT_DIR$/javascripts/Scenes/DoLandQuest.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="163">
           <caret line="76" column="22" lean-forward="false" selection-start-line="76" selection-start-column="22" selection-end-line="76" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OCs/bards.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="63" lean-forward="false" selection-start-line="11" selection-start-column="63" selection-end-line="11" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/OCs/bards.txt" />
     <entry file="file://$PROJECT_DIR$/javascripts/gameEntity.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="148">
           <caret line="853" column="29" lean-forward="false" selection-start-line="853" selection-start-column="29" selection-end-line="853" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -781,7 +788,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="243" column="43" lean-forward="false" selection-start-line="243" selection-start-column="43" selection-end-line="243" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -789,7 +795,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
           <caret line="70" column="62" lean-forward="false" selection-start-line="70" selection-start-column="56" selection-end-line="70" selection-end-column="62" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -797,7 +802,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="430" column="193" lean-forward="false" selection-start-line="430" selection-start-column="193" selection-end-line="430" selection-end-column="193" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -805,7 +809,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
           <caret line="148" column="20" lean-forward="false" selection-start-line="148" selection-start-column="9" selection-end-line="148" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -813,7 +816,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
           <caret line="182" column="23" lean-forward="false" selection-start-line="182" selection-start-column="23" selection-end-line="182" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -821,7 +823,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
           <caret line="400" column="495" lean-forward="true" selection-start-line="400" selection-start-column="495" selection-end-line="400" selection-end-column="495" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -829,7 +830,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -837,7 +837,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -845,7 +844,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -853,7 +851,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="35" column="41" lean-forward="false" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -861,7 +858,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -933,7 +929,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -949,7 +944,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="137" column="10" lean-forward="false" selection-start-line="137" selection-start-column="10" selection-end-line="137" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -957,23 +951,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/bytebuilder.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="139" column="20" lean-forward="false" selection-start-line="139" selection-start-column="9" selection-end-line="139" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/bytebuilder.js" />
     <entry file="file://$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
           <caret line="71" column="59" lean-forward="false" selection-start-line="71" selection-start-column="59" selection-end-line="71" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -981,7 +966,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
           <caret line="62" column="90" lean-forward="false" selection-start-line="62" selection-start-column="90" selection-end-line="62" selection-end-column="90" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -989,7 +973,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="87" column="22" lean-forward="false" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -997,7 +980,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="1112" column="33" lean-forward="false" selection-start-line="1112" selection-start-column="27" selection-end-line="1112" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1005,7 +987,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="369">
           <caret line="186" column="71" lean-forward="false" selection-start-line="186" selection-start-column="71" selection-end-line="186" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1013,7 +994,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="72" column="23" lean-forward="true" selection-start-line="72" selection-start-column="23" selection-end-line="72" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1021,30 +1001,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="25" column="478" lean-forward="false" selection-start-line="25" selection-start-column="473" selection-end-line="25" selection-end-column="478" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/playerSnapshot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="91" column="5" lean-forward="true" selection-start-line="91" selection-start-column="5" selection-end-line="91" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="2311" column="24" lean-forward="true" selection-start-line="2311" selection-start-column="24" selection-end-line="2311" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="382" column="38" lean-forward="false" selection-start-line="382" selection-start-column="20" selection-end-line="382" selection-end-column="38" />
+        <state relative-caret-position="6698">
+          <caret line="394" column="38" lean-forward="false" selection-start-line="394" selection-start-column="38" selection-end-line="394" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -1052,7 +1015,58 @@
     <entry file="file://$PROJECT_DIR$/javascripts/scene_controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="469" column="135" lean-forward="false" selection-start-line="469" selection-start-column="135" selection-end-line="469" selection-end-column="135" />
+          <caret line="484" column="1" lean-forward="false" selection-start-line="484" selection-start-column="1" selection-end-line="484" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/playerSnapshot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="117" column="0" lean-forward="false" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="41684">
+          <caret line="2452" column="24" lean-forward="false" selection-start-line="2452" selection-start-column="24" selection-end-line="2452" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/SBURBSim.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+          <folding>
+            <element signature="e#19#46#0" expanded="true" />
+            <element signature="e#120#139#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/fraymotif.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="907">
+          <caret line="462" column="47" lean-forward="true" selection-start-line="462" selection-start-column="47" selection-end-line="462" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/player.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="1133" column="5" lean-forward="true" selection-start-line="1133" selection-start-column="5" selection-end-line="1133" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/session.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
