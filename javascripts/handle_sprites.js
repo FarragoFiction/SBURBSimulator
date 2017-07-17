@@ -603,8 +603,14 @@ function drawCharSheet(canvas, player){
   ctx.fillStyle = "#000000"
   var allStats = player.allStats();
   for(var i = 0; i<allStats.length; i++){
-    ctx.fillText(allStats[i] +": ",left_margin,current+line_height*i);
-    ctx.fillText(player.getStat(allStats[i]),right_margin,current+line_height*i);
+	  if(allStats[i] == "power"){ //use mangrit seperately
+		 ctx.fillText(allStats[i] +": ",left_margin,current+line_height*i);
+		ctx.fillText(player.power,right_margin,current+line_height*i); 
+	  }else{
+		 ctx.fillText(allStats[i] +": ",left_margin,current+line_height*i);
+		ctx.fillText(player.getStat(allStats[i]),right_margin,current+line_height*i);
+	  }
+    
   }
   var i = allStats.length;
 
