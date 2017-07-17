@@ -562,7 +562,7 @@ class Player {
 		return ret;
 	}
 	dynamic getRandomLevel(){
-		if(Math.seededRandom() > .5){
+		if(seededRandom() > .5){
 			return getRandomLevelFromAspect(this.aspect);
 		}else{
 			return getRandomLevelFromClass(this.class_name);
@@ -578,7 +578,7 @@ class Player {
 			//print("denizen quest");
 			return getRandomDenizenQuestFromAspect(this); //denizen quests are aspect only, no class.
 		}else if((this.landLevel < 9 || this.denizen_index >=3) && this.denizenDefeated == false){  //can do more land quests if denizen kicked your ass. need to grind.
-			if(Math.seededRandom() > .5 || this.aspect == "Space"){ //back to having space players be locked to frogs.
+			if(seededRandom() > .5 || this.aspect == "Space"){ //back to having space players be locked to frogs.
 				return getRandomQuestFromAspect(this.aspect);
 			}else{
 				return getRandomQuestFromClass(this.class_name);
@@ -586,7 +586,7 @@ class Player {
 		}else if(this.denizenDefeated){
 			//print("post denizen quests " +this.session.session_id);
 			//return "restoring their land from the ravages of " + this.session.getDenizenForPlayer(this).name;
-			if(Math.seededRandom() > .5 || this.aspect == "Space"){ //back to having space players be locked to frogs.
+			if(seededRandom() > .5 || this.aspect == "Space"){ //back to having space players be locked to frogs.
 				return getRandomQuestFromAspect(this.aspect,true);
 			}else{
 				return getRandomQuestFromClass(this.class_name,true);
@@ -677,7 +677,7 @@ class Player {
 		var odds = 10 - bloodColors.indexOf(this.bloodColor);   //want gamzee and above to have NO powers (will give highbloods chucklevoodoos separate)
 		var powers = this.psionicList();
 		for(num i = 0; i<powers.length; i++){
-			if(Math.seededRandom()*40 < odds ){  //even burgundy bloods have only a 25% shot of each power.
+			if(seededRandom()*40 < odds ){  //even burgundy bloods have only a 25% shot of each power.
 				this.fraymotifs.add(powers[i]);
 			}
 		}
@@ -809,14 +809,14 @@ class Player {
 
 		//if much less friends than enemies.
 		if(this.getFriends().length < this.getEnemies().length){
-			if(Math.seededRandom() > .9){ //just deaths are rarer without things like triggers.
+			if(seededRandom() > .9){ //just deaths are rarer without things like triggers.
 				ret = true;
 			}
 			//way more likely to be a just death if you're being an asshole.
 
 
 			if((this.murderMode || this.grimDark > 2)){
-				var rand = Math.seededRandom();
+				var rand = seededRandom();
 				//print("rand is: " + rand);
 				if(rand > .2){
 					//print(" just death for: " + this.title() + "rand is: " + rand)
@@ -825,7 +825,7 @@ class Player {
 			}
 		}else{  //you are a good person. just corrupt.
 			//way more likely to be a just death if you're being an asshole.
-			if((this.murderMode || this.grimDark > 2) && Math.seededRandom()>.5){
+			if((this.murderMode || this.grimDark > 2) && seededRandom()>.5){
 				ret = true;
 			}
 		}
@@ -843,19 +843,19 @@ class Player {
 
 		//if far more enemies than friends.
 		if(this.getFriends().length > this.getEnemies().length ){
-			if(Math.seededRandom() > .6){
+			if(seededRandom() > .6){
 				ret = true;
 			}
 			//extra likely if you just killed the king/queen, you hero you.
-			if(curSessionGlobalVar.kingStrength <=0 && Math.seededRandom()>.2){
+			if(curSessionGlobalVar.kingStrength <=0 && seededRandom()>.2){
 				ret = true;
 			}
 		}else{ //unlikely hero
-			if(Math.seededRandom() > .8){
+			if(seededRandom() > .8){
 				ret = true;
 			}
 			//extra likely if you just killed the king/queen, you hero you.
-			if(curSessionGlobalVar.kingStrength <=0 && Math.seededRandom()>.4){
+			if(curSessionGlobalVar.kingStrength <=0 && seededRandom()>.4){
 				ret = true;
 			}
 		}
@@ -953,7 +953,7 @@ class Player {
 		guardian.level_index = 5; //scratched kids start more leveled up
 		guardian.power = 50;
 		guardian.leader = player.leader;
-		if(Math.seededRandom() >0.5){ //have SOMETHING in common with your ectorelative.
+		if(seededRandom() >0.5){ //have SOMETHING in common with your ectorelative.
 			guardian.interest1 = player.interest1;
 		}else{
 			guardian.interest2 = player.interest2;
@@ -1097,7 +1097,7 @@ class Player {
 		}
 	}
 	void increasePower(){
-		if(Math.seededRandom() >.9){
+		if(seededRandom() >.9){
 			this.leveledTheHellUp = true; //that multiple of ten thing is bullshit.
 		}
 		num powerBoost = 1;
@@ -1119,7 +1119,7 @@ class Player {
 
 		this.associatedStatsIncreasePower(powerBoost);
 		//gain a bit of hp, otherwise denizen will never let players fight them if their hp isn't high enough.
-		if(this.godTier || Math.seededRandom() >.85){
+		if(this.godTier || seededRandom() >.85){
 			this.hp += 5;
 			this.currentHP += 5;
 		}
@@ -1692,7 +1692,7 @@ class Player {
 	dynamic toJSON(){
 		num moon = 0;
 		if(this.moon == "Prospit") moon =1;
-		var json = {aspect: aspectToInt(this.aspect), class_name: classNameToInt(this.class_name), favoriteNumber: this.quirk.favoriteNumber, hair: this.hair,  hairColor: hexColorToInt(this.hairColor), isTroll: this.isTroll ? 1 : 0, bloodColor: bloodColorToInt(this.bloodColor), leftHorn: this.leftHorn, rightHorn: this.rightHorn, interest1Category: interestCategoryToInt(this.interest1Category), interest2Category: interestCategoryToInt(this.interest2Category), interest1: this.interest1, interest2: this.interest2, robot: this.robot ? 1 : 0, moon: moon,causeOfDrain: this.causeOfDrain,victimBlood: bloodColorToInt(this.victimBlood), godTier: this.godTier ? 1 : 0, isDreamSelf:this.isDreamSelf ? 1 : 0, murderMode:this.murderMode ? 1 : 0, leftMurderMode:this.leftMurderMode ? 1 : 0,grimDark:this.grimDark, causeOfDeath: this.causeOfDeath, dead: this.dead ? 1 : 0, godDestiny: this.godDestiny ? 1 : 0 };
+		var json = {"aspect": aspectToInt(this.aspect), "class_name": classNameToInt(this.class_name), "favoriteNumber": this.quirk.favoriteNumber, "hair": this.hair,  "hairColor": hexColorToInt(this.hairColor), "isTroll": this.isTroll ? 1 : 0, "bloodColor": bloodColorToInt(this.bloodColor), "leftHorn": this.leftHorn, "rightHorn": this.rightHorn, "interest1Category": interestCategoryToInt(this.interest1Category), "interest2Category": interestCategoryToInt(this.interest2Category), "interest1": this.interest1, "interest2": this.interest2, "robot": this.robot ? 1 : 0, "moon": moon,"causeOfDrain": this.causeOfDrain,"victimBlood": bloodColorToInt(this.victimBlood), "godTier": this.godTier ? 1 : 0, "isDreamSelf":this.isDreamSelf ? 1 : 0, "murderMode":this.murderMode ? 1 : 0, "leftMurderMode":this.leftMurderMode ? 1 : 0,"grimDark":this.grimDark, "causeOfDeath": this.causeOfDeath, "dead": this.dead ? 1 : 0, "godDestiny": this.godDestiny ? 1 : 0 };
 		return json;
 	}
 	dynamic toString(){
@@ -2313,7 +2313,7 @@ dynamic randomPlayerNoDerived(session, c, a){
 	//hair color in decideTroll.
 	p.leftHorn =  getRandomInt(1,p.maxHornNumber);
 	p.rightHorn = p.leftHorn;
-	if(Math.seededRandom() > .7 ){ //preference for symmetry
+	if(seededRandom() > .7 ){ //preference for symmetry
 			p.rightHorn = getRandomInt(1,p.maxHornNumber);
 	}
 	p.initializeStats();
@@ -2349,7 +2349,7 @@ dynamic randomPlayerWithClaspect(session, c, a){
 	p.hair = getRandomInt(1,p.maxHairNumber); //hair color in decide troll
 	p.leftHorn =  getRandomInt(1,46);
 	p.rightHorn = p.leftHorn;
-	if(Math.seededRandom() > .7 ){ //preference for symmetry
+	if(seededRandom() > .7 ){ //preference for symmetry
 			p.rightHorn = getRandomInt(1,46);
 	}
 

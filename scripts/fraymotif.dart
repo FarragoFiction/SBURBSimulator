@@ -263,7 +263,7 @@ class Fraymotif {
 		var casters = this.getCasters(owner, allies);
     this.makeCastersUnavailable(casters);
     //Hope Rides Alone
-    if(owner.aspect == "Hope" && allies.length == 1 && Math.seededRandom() > 0.85){
+    if(owner.aspect == "Hope" && allies.length == 1 && seededRandom() > 0.85){
         enemies[0].buffs.add(new Buff("currentHP", -9999)); //they REALLY believed in this attack.
         var jakeisms = ["GADZOOKS!","BOY HOWDY!","TALLY HO!","BY GUM"];
         print("Hope Rides Alone in session: "  + owner.session.session_id);
@@ -461,14 +461,14 @@ class FraymotifCreator {
     names.addAll(["Cadenza", "Cadence", "Waltz", "Concerto", "Finale", "Requiem", "Coda", "Dirge", "Battaglia", "Leggiadro", "Capriccio", "Presto", "Largo", "Accelerando", "Polytempo", "Overture", "Reprise", "Orchestra"]);
 
     var ret = getRandomElementFromArray(names);
-    if(Math.seededRandom() > 0.5){
+    if(seededRandom() > 0.5){
       return "<span style='color:" + getColorFromAspect(aspect) + "'>" + ret.toLowerCase()+"</span>";  //tacked onto existin word
     }else{
       return " " + ret; //extra word
     }
   }
 	dynamic tryToGetPreMadeName(players){
-    if(Math.seededRandom() > 0.5) return null; //just use the procedural name.
+    if(seededRandom() > 0.5) return null; //just use the procedural name.
 
     if(this.premadeFraymotifNames.length == 0) this.initializePremadeNames();
     for(num i = 0; i<this.premadeFraymotifNames.length; i++){
@@ -574,7 +574,7 @@ class FraymotifCreator {
     var players_involved = [player];
     if(helper) players_involved.add(helper);
     for(num i = 0; i<player.session.players.length; i++){
-      var rand = Math.seededRandom();
+      var rand = seededRandom();
       var p = player.session.players[i];
       num needed = 0.8;
       if(p.aspect == "Light" || p.aspect == "Blood") needed = 0.6; //light players have to be in the spot light, and blood players just wanna help.

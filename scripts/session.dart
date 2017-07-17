@@ -79,6 +79,7 @@ class Session {
 
 	// extra fields - stop abusing object notation lol -PL
 	bool crashedFromCustomShit = false;
+	num democracyStrength = 0;
 
 
 	Session(this.session_id) {}
@@ -232,7 +233,7 @@ class Session {
 		Math.seed = this.session_id; //if session is reset,
 		//print("reinit with seed: "  + Math.seed);
 		this.timeTillReckoning = getRandomInt(10,30);
-		this.sessionType = Math.seededRandom();
+		this.sessionType = seededRandom();
 		this.available_scenes = [];  //need a fresh slate because UpdateShippingGrid has MEMORY unlike all other scenes.
 		createScenesForSession(this);
 		//curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);

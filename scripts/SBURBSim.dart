@@ -10,6 +10,8 @@ part "player.dart";
 part "fraymotif.dart";
 part "session.dart";
 part "scene_controller.dart";
+part "quirk.dart";
+part "random_tables.dart";
 
 // temporary functions to be replaced later!
 
@@ -21,4 +23,16 @@ T getRandomElementFromArray<T>(List<T> list) {
 
 int getRandomInt(int lower, int upper) {
 	return lower;
+}
+
+int getRandomIntNoSeed(int lower, int upper) {
+	return lower;
+}
+
+double seededRandom() {
+	return 0.0;
+}
+
+double random() {
+	return 0.0;
 }
