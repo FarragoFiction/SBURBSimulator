@@ -41,7 +41,7 @@ function Session(session_id){
 	this.justDeath = null;
 	this.mayorEnding = false;
 	this.waywardVagabondEnding = false;
-	this.hardStrength = 1000;
+	this.hardStrength = 500;
 	this.minFrogLevel = 18;
 	this.goodFrogLevel = 28;
 	this.reckoningStarted = false;
@@ -284,7 +284,7 @@ function Session(session_id){
 
 		decideInitialQuadrants(this.players);
 
-		this.hardStrength = 1000 + 50 * this.players.length;
+		this.hardStrength = 300 + 50 * this.players.length;
 	}
 
 	this.convertPlayerNumberToWords = function(){

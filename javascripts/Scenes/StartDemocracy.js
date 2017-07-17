@@ -36,11 +36,11 @@ function StartDemocracy(session){
 	//a player has to be not busy to be your friend right now.
 	this.trigger = function(playerList){
 		this.playerList = playerList;
-		if(this.session.king.getStat("currentHP") <= 0 ||this.session.queen.getStat("currentHP") <= 0){  //the dead can't scheme or be schemed against
+		if(this.session.king.getStat("currentHP") <= 0 || this.session.king.dead ||this.session.queen.getStat("currentHP") <= 0 || this.session.queen.dead){  //the dead can't scheme or be schemed against
 			return false;
 		}
 		this.findSympatheticPlayer();
-
+		console.log("king strength is: " + this.session.king.getStat("power") + " compared to hard strength of: " + this.session.hardStrength)
 		return (this.session.democracyStrength <= 0 ) && this.session.king.getStat("power") >  this.session.hardStrength && (this.friend != null);
 	}
 
