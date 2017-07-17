@@ -480,6 +480,7 @@ function FraymotifCreator(){
     if(aspect == "Hope") ret =  this.getRandomHopeName();
     if(aspect == "Life") ret =  this.getRandomLifeName();
     if(aspect == "Doom") ret =  this.getRandomDoomName();
+    if(ret == "") ret = "Null";
     return getFontColorFromAspect(aspect) + ret + "</font>"
   }
 
@@ -684,7 +685,12 @@ function FraymotifEffect(statName, target, damageInsteadOfBuff, flavorText){
 		if(player.class_name == "Mage") effect = getRandomElementFromArray(this.mageEffects());
 		this.target = effect.target;
 		this.damageInsteadOfBuff = effect.damageInsteadOfBuff;
-		this.statName = getRandomElementFromArray(player.associatedStats).name;
+		if(player.associatedStats.length > 0){
+		    this.statName = getRandomElementFromArray(player.associatedStats).name;
+		}else{
+		    this.statName = "MANGRIT"
+		}
+
 	}
 
 	//preliminary design detailed here: https://docs.google.com/spreadsheets/d/1kam2FnKJiek6DidDpQdSnR3Wl9-vk1oZBa0pPpxlJk4/edit#gid=0
