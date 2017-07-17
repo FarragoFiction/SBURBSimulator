@@ -466,7 +466,7 @@ function playersToDataBytes(players){
 
 function playersToExtensionBytes(players){
 	var ret = "";
-	//var builder = new ByteBuilder();
+	var builder = new ByteBuilder();
 	//do NOT do this because it fucks up the single player strings. i know how many players there are other ways, don't worry about it.
 	//builder.appendExpGolomb(players.length) //encode how many players, doesn't have to be how many bits.
 	//ret += encodeURIComponent(builder.toBuffer()).replace(/#/g, '%23').replace(/&/g, '%26');
@@ -474,6 +474,7 @@ function playersToExtensionBytes(players){
 		//console.log("player " + i + " to data byte")
 		ret += players[i].toDataBytesX();
 	}
+	console.log("ret is: " + ret);
 	return LZString.compressToEncodedURIComponent(ret);
 	//return ret;
 }
@@ -509,7 +510,7 @@ function generateURLParamsForPlayers(players,includeChatHandle){
 	var data = playersToDataBytes(players);
 	var strings = playersToDataStrings(players,true);
 	var extensions = playersToExtensionBytes(players);
-	return "b="+data+"&s="+strings + "&x="+extensions;
+	return "b="+data+"&s="+strings // + "&x="+extensions; come back l8r and fix this.
 
  }
 

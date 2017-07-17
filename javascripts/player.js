@@ -1829,11 +1829,16 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	//not compressed
 	this.toOCDataString = function(){
 	    //for now, only extentsion sequence is for classpect. so....
-	    var x = "&x=" +this.toDataBytesX(); //ALWAYS have it. worst case scenario is 1 bit.
+	   // var x = "&x=" +this.toDataBytesX(); //ALWAYS have it. worst case scenario is 1 bit.
+	    var x = ""; //come back later to fix this. this.toDataBytes needs to not be a string.
 		return "b=" + this.toDataBytes() + "&s="+this.toDataStrings(true) + x;
 	}
 
 	//for now, only type is 1, which is class + aspect.
+	/*
+	    TODO COMEBACK L8R AND FIX THIS.  needs to return bytes, not string
+	    so byte builder can handle makign the joing x string for mulitple players
+	*/
 	this.toDataBytesX = function(){
         var builder = new ByteBuilder();
         var j = this.toJSON();
@@ -1855,6 +1860,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	    //just inverse of encoding process.
 	    var numFeatures = reader.readExpGolomb(); //assume features are in set order. and that if a given feature is variable it is ALWAYS variable.
 	    console.log("num features is: " + numFeatures);
+	    console.log(["read bytes is: ",reader]);
+
 	     if(numFeatures > 0){
 	      var cid = reader.readByte();
 	      console.log("Class Name ID : " + cid)
@@ -2318,7 +2325,7 @@ function getReplayers(){
 	available_classes_guardians = classes.slice(0); //if there are replayers, then i need to reset guardian classes
 	var b = decodeURIComponent(LZString.decompressFromEncodedURIComponent(getRawParameterByName("b")));
 	var s = LZString.decompressFromEncodedURIComponent(getRawParameterByName("s"));
-	var x = LZString.decompressFromEncodedURIComponent(getRawParameterByName("x"));
+	var x = decodeURIComponent(LZString.decompressFromEncodedURIComponent(getRawParameterByName("x")));
 	if(!b||!s) return [];
 	if(b== "null" || s == "null") return []; //why was this necesassry????????????????
 	//console.log("b is");
