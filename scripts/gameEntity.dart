@@ -1,4 +1,4 @@
-
+part of SBURBSim;
 
 //jack/queen/king/denizen.
 //multiround, but only takes 1 tick.
@@ -14,7 +14,7 @@
 class GameEntity {
 	var session;
 	var name;
-	num alchemy = 0;
+	//num alchemy = 0;
 	bool armless = false;
 	num grist = 0;
 	List<dynamic> fraymotifs = [];
@@ -50,6 +50,11 @@ class GameEntity {
 	num helpfulness = 0; //if 0, cagey riddles. if 1, basically another player. if -1, like calsprite. omg, just shut up.  NOT additive for when double prototyping. most recent prototyping overrides.
 	String helpPhrase = "provides the requisite amount of gigglesnort hideytalk to be juuuust barely helpful. ";		
 
+	// more undefined fields... -PL
+	var flippingOutOverDeadPlayer = null;
+	String flipOutReason = "";
+	String causeOfDeath = "";
+
 
 	GameEntity(this.session, this.name, this.crowned) {}
 
@@ -71,7 +76,7 @@ class GameEntity {
         	    }
         	    return ret;
         	}
-	void humanWordForBuffNamed(statName){
+	String humanWordForBuffNamed(statName){
                 if(statName == "MANGRIT") return "powerful";
                 if(statName == "hp") return "sturdy";
                 if(statName == "RELATIONSHIPS") return "friendly";
@@ -81,6 +86,7 @@ class GameEntity {
                 if(statName == "maxLuck") return "lucky";
                 if(statName == "minLuck") return "lucky";
                 if(statName == "alchemy") return "creative";
+                return null;
         	}
 	dynamic describeBuffs(){
         	    List<dynamic> ret = [];
@@ -88,8 +94,8 @@ class GameEntity {
         	    for(num i = 0; i<allStats.length; i++){
         	        var b = this.getTotalBuffForStat(allStats[i]);
         	        //only say nothing if equal to zero
-        	        if(b>0) ret.push("more "+this.humanWordForBuffNamed(allStats[i]));
-        	        if(b<0) ret.push("less " + this.humanWordForBuffNamed(allStats[i]));
+        	        if(b>0) ret.add("more "+this.humanWordForBuffNamed(allStats[i]));
+        	        if(b<0) ret.add("less " + this.humanWordForBuffNamed(allStats[i]));
         	    }
         	    if(ret.length == 0) return "";
         	    return this.htmlTitleHP() + " is feeling " + turnArrayIntoHumanSentence(ret) + " than normal. ";
@@ -135,7 +141,7 @@ class GameEntity {
 			List<dynamic> ret = [];
 			for(num i = 0; i< players.length; i++){
 				var p = players[i];
-				if(!p.carapacian && !p.sprite && !p.consort) ret.push(p);
+				if(!p.carapacian && !p.sprite && !p.consort) ret.add(p);
 			}
 			return ret;
 		}
@@ -175,7 +181,7 @@ class GameEntity {
 			if(this.crowned != null) ret+="Crowned ";
 			var pname = this.name;
 			if(this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
-			return ret + pname +" (" + Math.round(this.getStat("currentHP")) +" hp, " + Math.round(this.getStat("power")) + " power)</font>"; //TODO denizens are aspect colored.
+			return ret + pname +" (" + (this.getStat("currentHP")).round() +" hp, " + (this.getStat("power")).round() + " power)</font>"; //TODO denizens are aspect colored.
 		}
 	void flipOut(reason){
 			this.flippingOutOverDeadPlayer = null;
@@ -183,13 +189,13 @@ class GameEntity {
 		}
 	void addPrototyping(object){
 			this.name = object.name + this.name; //sprite becomes puppetsprite.
-			this.fraymotifs = this.fraymotifs.concat(object.fraymotifs);
+			this.fraymotifs.addAll(object.fraymotifs);
 			if(object.fraymotifs.length == 0){
 				var f = new Fraymotif([], object.name + "Sprite Beam!", 1);
-				f.effects.push(new FraymotifEffect("power",2,true)); //do damage
-				f.effects.push(new FraymotifEffect("hp",1,true)); //heal
+				f.effects.add(new FraymotifEffect("power",2,true)); //do damage
+				f.effects.add(new FraymotifEffect("hp",1,true)); //heal
 				f.flavorText = " An appropriately themed beam of light damages enemies and heals allies. ";
-				this.fraymotifs.push(f);
+				this.fraymotifs.add(f);
 			}
 			this.corrupted = object.corrupted;
 			this.helpfulness = object.helpfulness; //completely overridden.
@@ -218,7 +224,7 @@ class GameEntity {
 			if(player.doomed) return false; //doomed players accept their fate.
 			num reasonsToLeave = 0;
 			num reasonsToStay = 2; //grist man.
-			reasonsToStay += this.getFriendsFromList(playersInFight);
+			reasonsToStay += this.getFriendsFromList(playersInFight).length; // TODO: confirm?
 			var hearts = this.getHearts();
 			var diamonds = this.getDiamonds();
 			for(num i = 0; i<hearts.length; i++){
@@ -237,7 +243,7 @@ class GameEntity {
 				if(player.mobility > this.mobility){
 					//print(" player actually absconds: they had " + player.hp + " and enemy had " + enemy.getStat("power") + this.session.session_id)
 					div.append("<br><img src = 'images/sceneIcons/abscond_icon.png'> The " + player.htmlTitleHP() + " absconds right the fuck out of this fight. ");
-					this.playersAbsconded.push(player);
+					this.playersAbsconded.add(player);
 					this.remainingPlayersHateYou(div, player, playersInFight);
 					return true;
 				}else{
@@ -248,7 +254,7 @@ class GameEntity {
 				if(player.mobility > this.mobility){
 					//print(" player actually absconds: " + this.session.session_id);
 					div.append("<br><img src = 'images/sceneIcons/abscond_icon.png'>  Shit. The " + player.htmlTitleHP() + " doesn't know what to do. They don't want to die... They abscond. ");
-					this.playersAbsconded.push(player);
+					this.playersAbsconded.add(player);
 					this.remainingPlayersHateYou(div, player, playersInFight);
 					return true;
 				}else{
@@ -270,6 +276,7 @@ class GameEntity {
 						if(r) r.value += -5; //could be a sprite, after all.
 					}
 				}
+				return null;
 		}
 	bool willIAbscond(div, players, numTurns){
 				if(!this.canAbscond || numTurns < 2) return false; //can't even abscond. also, don't run away after starting the fight, asshole.
@@ -344,7 +351,7 @@ class GameEntity {
 	void denizenIsSoNotPuttingUpWithYourShitAnyLonger(div, players, numTurns){
 			//print("!!!!!!!!!!!!!!!!!denizen not putting up with your shit: " + this.session.session_id);
 				div.append("<Br><Br>" + this.name + " decides that the " + players[0].htmlTitleBasic() + " is being a little baby who poops hard in their diapers and are in no way ready for this fight. The Denizen recommends that they come back after they mature a little bit. The " +players[0].htmlTitleBasic() + "'s ass is kicked so hard they are ejected from the fight, but are not killed.")
-				if(Math.seededRandom() > .5){ //players don't HAVE to take the advice after all. assholes.
+				if(seededRandom() > .5){ //players don't HAVE to take the advice after all. assholes.
 					this.levelPlayers(players);
 					div.append(" They actually seem to be taking " + this.name + "'s advice. ");
 				}
@@ -355,7 +362,7 @@ class GameEntity {
 				var potential = getRandomElementFromArray(living);
 				if(!potential) return players;
 				if(players.indexOf(potential) == -1 && potential.sprite.name != "sprite"){ //you aren't already in the fight and aren't still on earth/alternaia/beforus/etc.
-					if((potential.mobility > getAverageMobility(players) || Math.seededRandom() >.5)){ //you're fast enough to get here, or randomness happened.
+					if((potential.mobility > getAverageMobility(players) || seededRandom() >.5)){ //you're fast enough to get here, or randomness happened.
 
 						players.push(potential);
 						potential.currentHP = Math.max(1, potential.hp) ;//have at least 1 hp, dunkass;
@@ -365,7 +372,7 @@ class GameEntity {
 						div.append(canvasHTML);
 						//different format for canvas code
 						var canvasDiv = querySelector("#canvas"+ divID);
-						if(potential.aspect == "Time" && Math.seededRandom() > .50){
+						if(potential.aspect == "Time" && seededRandom() > .50){
 							drawTimeGears(canvasDiv, potential);
 							//print("summoning a stable time loop player to this fight. " +this.session.session_id);
 							div.append("The " + potential.htmlTitleHP() + " has joined the Strife!!! (Don't worry about the time bullshit, they have their stable time loops on LOCK. No doom for them.)");
@@ -407,8 +414,8 @@ class GameEntity {
 				}else{
 					div.append("<br><br>A " + doomedTimeClone.htmlTitleHP() + " suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline. YOUR " + doomedTimeClone.htmlTitleBasic() + " is fine, but THIS one is now doomed. Which SHOULD mean they can fight like there is no tomorrow.")
 				}
-				var divID = (div.attr("id")) + "doomTimeArrival"+players.join("")+numTurns;
-				String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+				String divID = (div.attr("id")) + "doomTimeArrival"+players.join("")+numTurns;
+				String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 				div.append(canvasHTML);
 				//different format for canvas code
 				var canvasDiv = querySelector("#canvas"+ divID);
@@ -445,7 +452,7 @@ class GameEntity {
 				return false; //denizen fights can not be interupted and are self limiting
 			}
 
-			if(numTurns > 20 && Math.seededRandom() < .05){
+			if(numTurns > 20 && seededRandom() < .05){
 				this.summonAssHoleMcGee(div, players, numTurns);
 				return true;
 			}
@@ -462,7 +469,7 @@ class GameEntity {
 				return players;
 			}
 			//if i assume a 3 turn fight is "ideal", then have a 1/10 chance of backup each turn.
-			var rand =Math.seededRandom();
+			var rand =seededRandom();
 			if(rand<.05){  //rand isn't great cause might not find  player to summon, or might try summon player already in fight.
 				return this.summonPlayerBackup(div, players, numTurns); //will return modded player list;
 			}else if(rand < .15 && numTurns >5){
@@ -498,13 +505,13 @@ class GameEntity {
 				if(this.session.timeTillReckoning < this.session.reckoningEndsAt){
 				  this.rocksFallEverybodyDies(div, players, numTurns);
 					this.ending(div, players, numTurns);
-					return;
+					return null;
 				}
 			}
 
 			if(this.fightNeedsToEnd(div, players, numTurns)){
 				 this.ending(div,players, numTurns);
-				 return;
+				 return null;
 			}
 
 			players = this.summonBackUp(div, players, numTurns);//might do nothing;
@@ -521,12 +528,12 @@ class GameEntity {
 
 			if(this.fightOver(div, players) ){
 				this.ending(div,players);
-				return;
+				return null;
 			}else{
 				if(this.fightOverAbscond(div,players)){
 					 	this.processAbscond(div,players);
 						this.ending(div,players);
-					 	return;
+					 	return null;
 				}
 				return this.strife(div, players,numTurns);
 			}
@@ -568,15 +575,15 @@ class GameEntity {
 			//don't pose sprites
 			List<dynamic> poseable = [];
 			for(num i = 0; i<players.length; i++){
-				if(players[i].renderable()) poseable.push(players[i]);
+				if(players[i].renderable()) poseable.add(players[i]);
 			}
 			var divID = (div.attr("id")) + this.session.timeTillReckoning+players[0].id;
 			var ch = canvasHeight;
 			if(poseable.length > 6){
 				ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
 			}
-			String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+ch + "'>  </canvas>";
-			div.append(canvasHTML);
+			String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+ch.toString() + "'>  </canvas>";
+			div.appendHtml(canvasHTML);
 			//different format for canvas code
 			var canvasDiv = querySelector("#canvas"+ divID);
 			poseAsATeam(canvasDiv, poseable, 2000);
@@ -619,7 +626,7 @@ class GameEntity {
 				stabbings[i].increasePower();
 			}
 		}
-	void getLivingMinusAbsconded(players){
+	List<dynamic> getLivingMinusAbsconded(players){
 			var living = findLivingPlayers(players);
 			for(num i = 0; i<this.playersAbsconded.length; i++){
 				removeFromArray(this.playersAbsconded[i], living);
@@ -666,7 +673,7 @@ class GameEntity {
 				if(!dead[i].doomed) this.tryAutoRevive(div, dead[i]);
 			}
 		}
-	dynamic tryAutoRevive(div, deadPlayer){
+	void tryAutoRevive(div, deadPlayer){
 
 			//first try using pacts
 			var undrainedPacts = removeDrainedGhostsFromPacts(deadPlayer.ghostPacts);
@@ -748,10 +755,11 @@ class GameEntity {
 				player.minLuck += 100; //you've fulfilled the prophecy. you are no longer doomed.
 				div.append("The prophecy is fulfilled. ");
 			}
+			return null;
 		}
-	dynamic playerdecideWhatToDo(div, player, players){
+	void playerdecideWhatToDo(div, player, players){
 			if(player.usedFraymotifThisTurn) return; //already did something.
-			if(this.dead == true || this.getStat("currentHP" <= 0)) return // they are dead, stop beating a dead corpse.;
+			if(this.dead == true || this.getStat("currentHP") <= 0) return; // they are dead, stop beating a dead corpse.;
 			div.append(player.describeBuffs());
 			//for now, only one choice    //free will, triggerLevel and canIAbscond adn mobility all effect what is chosen here.  highTrigger level makes aggrieve way more likely and abscond way less likely. lowFreeWill makes special and fraymotif way less likely. mobility effects whether you try to abascond.
 			if(!this.willPlayerAbscond(div,player,players)){
@@ -774,7 +782,7 @@ class GameEntity {
 			if(player.power < this.getStat("currentHP")){
 					//print("ghost attack in: " + this.session.session_id);
 
-					this.currentHP += Math.round(-1* (ghost.power*5 + player.power)); //not just one attack from the ghost
+					this.currentHP += (-1* (ghost.power*5 + player.power)).round(); //not just one attack from the ghost
 					div.append("<Br><Br> The " + player.htmlTitleBasic() + " cashes in their promise of aid. The ghost of the " + ghost.htmlTitleBasic() + " unleashes an unblockable ghostly attack channeled through the living player. " + ghost.power + " damage is done to " + this.htmlTitleHP() + ". The ghost will need to rest after this for awhile. " );
 
 					this.drawGhostAttack(div, player, ghost);
@@ -785,9 +793,9 @@ class GameEntity {
 			return false;
 		}
 	dynamic drawGhostAttack(div, player, ghost){
-			var canvasId = div.attr("id") + "attack" +player.chatHandle+ghost.chatHandle+player.power+ghost.power;
-			String canvasHTML = "<br><canvas id;='" + canvasId +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
-			div.append(canvasHTML);
+			String canvasId = div.attr("id") + "attack" +player.chatHandle+ghost.chatHandle+player.power+ghost.power;
+			String canvasHTML = "<br><canvas id='" + canvasId +"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
+			div.appendHtml(canvasHTML);
 			var canvas = querySelector("#${canvasId}");
 			var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 			drawSprite(pSpriteBuffer,player);
@@ -818,7 +826,7 @@ class GameEntity {
 			//todo more likely to target light, less void.
 			ret = findAspectPlayer(players, "Light");
 			//can attack light players corpse up to 5 times, randomly.
-			if(ret && ret.dead && (Math.seededRandom() > 5 || ret.currentHP < -1 * this.getStat("power")*5)) ret = null;  //only SOMETIMES target light player corpses. after all, that's SUPER lucky for the living.
+			if(ret && ret.dead && (seededRandom() > 5 || ret.currentHP < -1 * this.getStat("power")*5)) ret = null;  //only SOMETIMES target light player corpses. after all, that's SUPER lucky for the living.
 			if(ret) return ret;
 			return findLowestMobilityPlayer(living);
 		}
@@ -840,7 +848,7 @@ class GameEntity {
 	bool useFraymotif(div, owner, allies, enemies){
 			var living_enemies = this.getLivingMinusAbsconded(enemies);
 			var living_allies = this.getLivingMinusAbsconded(allies);
-			if(Math.seededRandom() > 0.75) return false; //don't use them all at once, dunkass.
+			if(seededRandom() > 0.75) return false; //don't use them all at once, dunkass.
 			var usableFraymotifs = this.session.fraymotifCreator.getUsableFraymotifs(owner, living_allies, enemies);
 			if(owner.crowned){  //ring/scepter has fraymotifs, too.  (maybe shouldn't let humans get thefraymotifs but what the fuck ever. roxyc could do voidy shit.)
 				usableFraymotifs = usableFraymotifs.concat(this.session.fraymotifCreator.getUsableFraymotifs(this.crowned, living_allies, enemies));
@@ -849,14 +857,14 @@ class GameEntity {
 			
 			var mine = owner.getStat("sanity");
 			var theirs = getAverageSanity(living_enemies);
-			if(mine+200 < theirs && Math.seededRandom() < 0.5){
+			if(mine+200 < theirs && seededRandom() < 0.5){
 				print("Too insane to use fraymotifs: " + owner.htmlTitleHP() +" against " + living_enemies[0].htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id)
 				div.append(" The " + owner.htmlTitleHP() + " wants to use a Fraymotif, but they are too crazy to focus. ")
 				return false;
 			}
 			mine = owner.getStat("freeWill") ;
 			theirs = getAverageFreeWill(living_enemies);
-			if(mine +200 < theirs && Math.seededRandom() < 0.5){
+			if(mine +200 < theirs && seededRandom() < 0.5){
 				print("Too controlled to use fraymotifs: " + owner.htmlTitleHP() +" against " + living_enemies[0].htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id)
 				div.append(" The " + owner.htmlTitleHP() + " wants to use a Fraymotif, but Fate dictates otherwise. ")
 				return false;
@@ -920,8 +928,8 @@ class GameEntity {
 			}
 			//base damage
 			var hit = offense.getStat("power");
-			offenseRoll = offense.rollForLuck();
-			defenseRoll = defense.rollForLuck();
+			num offenseRoll = offense.rollForLuck();
+			num defenseRoll = defense.rollForLuck();
 			//critical/glancing hit odds.
 			if(defenseRoll > offenseRoll*2){ //glancing blow.
 				//print("Glancing Hit: " + this.session.session_id);
@@ -953,10 +961,10 @@ class GameEntity {
 								var o_alive = this.checkForAPulse(o,d);
 								o.interactionEffect(d);
 								if(!this.checkForAPulse(d, o)){
-									dead_d.push(d);
+									dead_d.add(d);
 								}
 								if(!this.checkForAPulse(o, d)){
-									dead_o.push(o);
+									dead_o.add(o);
 								}
 							}
 						}
@@ -972,7 +980,7 @@ class GameEntity {
 			if(dead_d.length > 1){
 				ret = " The " + getPlayersTitlesHP(dead_d) + "are dead. ";
 			}else if(dead_d.length == 1){
-				if(dead_d[0].getStat("currentHP" > 0)) alert ("pastJR: why does a player have positive hp yet also is dead???" + this.session.session_id)
+				if(dead_d[0].getStat("currentHP") > 0) window.alert("pastJR: why does a player have positive hp yet also is dead???" + this.session.session_id)
 				ret += " The " + getPlayersTitlesHP(dead_d) + "is dead. ";
 			}
 
@@ -1023,7 +1031,7 @@ class GameEntity {
 	void boostAllRelationshipsBy(amount){
 
 		}
-	List<dynamic> getFriendsFromList(){
+	List<dynamic> getFriendsFromList(list){
 			return [];
 		}
 	List<dynamic> getHearts(){

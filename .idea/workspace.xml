@@ -104,8 +104,8 @@
             <file leaf-file-name="SBURBSim.dart" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/scripts/SBURBSim.dart">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="422">
-                    <caret line="36" column="15" lean-forward="false" selection-start-line="36" selection-start-column="15" selection-end-line="36" selection-end-column="15" />
+                  <state relative-caret-position="340">
+                    <caret line="20" column="17" lean-forward="false" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
                     <folding>
                       <element signature="e#19#46#0" expanded="true" />
                       <element signature="e#143#162#0" expanded="true" />
@@ -175,11 +175,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fraymotif.dart" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fraymotif.dart" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/fraymotif.dart">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2862">
               <caret line="577" column="1" lean-forward="false" selection-start-line="577" selection-start-column="1" selection-end-line="577" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gameEntity.dart" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scripts/gameEntity.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="320">
+              <caret line="1129" column="63" lean-forward="true" selection-start-line="1104" selection-start-column="0" selection-end-line="1129" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -225,15 +235,15 @@
       <find>json</find>
       <find>.push</find>
       <find>Math.random</find>
-      <find>Math.seededRandom</find>
       <find>Math.seededRandom()</find>
+      <find>Math.seededRandom</find>
     </findStrings>
     <replaceStrings>
       <replace>));</replace>
       <replace>.add</replace>
       <replace>random</replace>
-      <replace>seededRandom</replace>
       <replace>seededRandom()</replace>
+      <replace>seededRandom</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -247,7 +257,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/javascripts/Scenes/Intro.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/FreeWillStuff.js" />
         <option value="$PROJECT_DIR$/javascripts/v2.0/find_rare_sessions.js" />
         <option value="$PROJECT_DIR$/javascripts/session.js" />
@@ -294,10 +303,11 @@
         <option value="$PROJECT_DIR$/scripts/scene_controller.dart" />
         <option value="$PROJECT_DIR$/scripts/player.dart" />
         <option value="$PROJECT_DIR$/scripts/fraymotif.dart" />
-        <option value="$PROJECT_DIR$/scripts/SBURBSim.dart" />
         <option value="$PROJECT_DIR$/scripts/random_tables.dart" />
         <option value="$PROJECT_DIR$/scripts/session.dart" />
         <option value="$PROJECT_DIR$/scripts/quirk.dart" />
+        <option value="$PROJECT_DIR$/scripts/SBURBSim.dart" />
+        <option value="$PROJECT_DIR$/scripts/gameEntity.dart" />
       </list>
     </option>
   </component>
@@ -816,13 +826,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/javascripts/v2.0/char_viewer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="30" column="152" lean-forward="false" selection-start-line="30" selection-start-column="152" selection-end-line="30" selection-end-column="152" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/Scenes/GetTiger.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1121,17 +1124,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/SBURBSim.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="36" column="15" lean-forward="false" selection-start-line="36" selection-start-column="15" selection-end-line="36" selection-end-column="15" />
-          <folding>
-            <element signature="e#19#46#0" expanded="true" />
-            <element signature="e#143#162#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/random_tables.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
@@ -1168,6 +1160,25 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2862">
           <caret line="577" column="1" lean-forward="false" selection-start-line="577" selection-start-column="1" selection-end-line="577" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/SBURBSim.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="17" lean-forward="false" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+          <folding>
+            <element signature="e#19#46#0" expanded="true" />
+            <element signature="e#143#162#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/gameEntity.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="1129" column="63" lean-forward="true" selection-start-line="1104" selection-start-column="0" selection-end-line="1129" selection-end-column="63" />
           <folding />
         </state>
       </provider>

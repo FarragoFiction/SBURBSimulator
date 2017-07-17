@@ -12,10 +12,13 @@ part "session.dart";
 part "scene_controller.dart";
 part "quirk.dart";
 part "random_tables.dart";
+part "gameEntity.dart";
 
 // temporary functions to be replaced later!
 
 Session curSessionGlobalVar;
+int canvasWidth;
+int canvasHeight;
 
 T getRandomElementFromArray<T>(List<T> list) {
 	return list[0];
