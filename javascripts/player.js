@@ -2465,6 +2465,8 @@ function getShirtColorFromAspect(aspect){
 		color = "#ffe094";
 	}else if(aspect == "Life"){
 		color = "#ccc4b5";
+	}else{
+	    color = "#ffffff"
 	}
 	return color;
 }
@@ -2495,6 +2497,8 @@ function getDarkShirtColorFromAspect(aspect){
 		color = "#E8C15E";
 	}else if(aspect == "Life"){
 		color = "#CCC4B5";
+	}else{
+	    color = "#eeeeee"
 	}
 	return color;
 }
