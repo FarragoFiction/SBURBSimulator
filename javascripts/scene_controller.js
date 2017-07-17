@@ -467,7 +467,8 @@ function playersToDataBytes(players){
 function playersToExtensionBytes(players){
 	var ret = "";
 	var builder = new ByteBuilder();
-	builder.appendExpGolomb(players.length) //encode how many players, doesn't have to be how many bits.
+	//do NOT do this because it fucks up the single player strings. i know how many players there are other ways, don't worry about it.
+	//builder.appendExpGolomb(players.length) //encode how many players, doesn't have to be how many bits.
 	ret += encodeURIComponent(builder.data).replace(/#/g, '%23').replace(/&/g, '%26');
 	for(var i = 0; i<players.length; i++){
 		//console.log("player " + i + " to data byte")
@@ -534,7 +535,6 @@ function generateURLParamsForPlayers(players,includeChatHandle){
 		p.id = i; //will be overwritten by sim, but viewer needs it
 		players.push(p);
 	}
-	//TODO NOW go through the extension bytes
 	//if(extensionString) player.readInExtensionsString(extensionString);
 	if(xbytes) applyExtensionStringToPlayers(players, xbytes);
 	return players;
@@ -542,9 +542,7 @@ function generateURLParamsForPlayers(players,includeChatHandle){
  }
 
  function applyExtensionStringToPlayers(players, xbytes){
-
    var reader = new ByteReader(stringToByteArray(xbytes), 0);
-   var numPlayers = reader.readExpGolomb(); //exp whatever doesn't have to encode num bits. can be any length.
    for(var i = 0; i<players.length; i++){
         players[i].readInExtensionsString(reader);
    }

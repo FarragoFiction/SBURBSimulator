@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/Hair/hair73.png" afterPath="$PROJECT_DIR$/images/Hair/hair73.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/player.js" afterPath="$PROJECT_DIR$/javascripts/player.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/playerSnapshot.js" afterPath="$PROJECT_DIR$/javascripts/playerSnapshot.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/scene_controller.js" afterPath="$PROJECT_DIR$/javascripts/scene_controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" afterPath="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,28 +22,28 @@
       <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="1859" column="5" lean-forward="true" selection-start-line="1835" selection-start-column="4" selection-end-line="1859" selection-end-column="5" />
+            <state relative-caret-position="15">
+              <caret line="2311" column="24" lean-forward="true" selection-start-line="2311" selection-start-column="24" selection-end-line="2311" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="playerSnapshot.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="playerSnapshot.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/playerSnapshot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="80" column="4" lean-forward="false" selection-start-line="80" selection-start-column="4" selection-end-line="103" selection-end-column="5" />
+            <state relative-caret-position="286">
+              <caret line="91" column="5" lean-forward="true" selection-start-line="91" selection-start-column="5" selection-end-line="91" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scene_controller.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="scene_controller.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/scene_controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="473" column="38" lean-forward="false" selection-start-line="473" selection-start-column="26" selection-end-line="473" selection-end-column="38" />
+            <state relative-caret-position="210">
+              <caret line="469" column="135" lean-forward="false" selection-start-line="469" selection-start-column="135" selection-end-line="469" selection-end-column="135" />
               <folding />
             </state>
           </provider>
@@ -53,8 +52,8 @@
       <file leaf-file-name="char_creator_helper.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="378" column="74" lean-forward="false" selection-start-line="378" selection-start-column="74" selection-end-line="378" selection-end-column="74" />
+            <state relative-caret-position="150">
+              <caret line="382" column="38" lean-forward="false" selection-start-line="382" selection-start-column="20" selection-end-line="382" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -72,15 +71,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>dataBytesAndStringsToPlayers</find>
-      <find>alert</find>
-      <find>uses</find>
-      <find>flipoutReas</find>
-      <find>\n\n\	\/\/flipping out over the dead won\'t call this but everything else will\.</find>
-      <find>f</find>
-      <find>flip</find>
-      <find>flipOut</find>
-      <find>replayer</find>
       <find>initialize()</find>
       <find>decideHem</find>
       <find>decideTroll</find>
@@ -101,7 +91,16 @@
       <find>console.log</find>
       <find>copying from</find>
       <find>apply</find>
+      <find>toDAta</find>
+      <find>decodeURI</find>
+      <find>xbyte</find>
       <find>toDataBytesX</find>
+      <find>dataBytesAndStringsToPlayer</find>
+      <find>x=</find>
+      <find>decode</find>
+      <find>xbytes</find>
+      <find>dataBytesAndStringsToPlayers</find>
+      <find>playersToExtensionBytes</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -158,14 +157,14 @@
         <option value="$PROJECT_DIR$/quadrantChatTest.html" />
         <option value="$PROJECT_DIR$/javascripts/relationship.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js" />
-        <option value="$PROJECT_DIR$/javascripts/scene_controller.js" />
         <option value="$PROJECT_DIR$/javascripts/random_tables.js" />
         <option value="$PROJECT_DIR$/javascripts/fraymotif.js" />
         <option value="$PROJECT_DIR$/javascripts/newsposts.js" />
         <option value="$PROJECT_DIR$/credits.html" />
-        <option value="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" />
-        <option value="$PROJECT_DIR$/javascripts/player.js" />
         <option value="$PROJECT_DIR$/javascripts/playerSnapshot.js" />
+        <option value="$PROJECT_DIR$/javascripts/player.js" />
+        <option value="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" />
+        <option value="$PROJECT_DIR$/javascripts/scene_controller.js" />
       </list>
     </option>
   </component>
@@ -1026,34 +1025,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js">
+    <entry file="file://$PROJECT_DIR$/javascripts/playerSnapshot.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="378" column="74" lean-forward="false" selection-start-line="378" selection-start-column="74" selection-end-line="378" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/scene_controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="473" column="38" lean-forward="false" selection-start-line="473" selection-start-column="26" selection-end-line="473" selection-end-column="38" />
+        <state relative-caret-position="286">
+          <caret line="91" column="5" lean-forward="true" selection-start-line="91" selection-start-column="5" selection-end-line="91" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="1859" column="5" lean-forward="true" selection-start-line="1835" selection-start-column="4" selection-end-line="1859" selection-end-column="5" />
+        <state relative-caret-position="15">
+          <caret line="2311" column="24" lean-forward="true" selection-start-line="2311" selection-start-column="24" selection-end-line="2311" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/playerSnapshot.js">
+    <entry file="file://$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="80" column="4" lean-forward="false" selection-start-line="80" selection-start-column="4" selection-end-line="103" selection-end-column="5" />
+        <state relative-caret-position="150">
+          <caret line="382" column="38" lean-forward="false" selection-start-line="382" selection-start-column="20" selection-end-line="382" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/scene_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="469" column="135" lean-forward="false" selection-start-line="469" selection-start-column="135" selection-end-line="469" selection-end-column="135" />
           <folding />
         </state>
       </provider>

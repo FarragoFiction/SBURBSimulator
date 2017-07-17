@@ -1854,7 +1854,12 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	    console.log("reading in extension string")
 	    //just inverse of encoding process.
 	    var numFeatures = reader.readExpGolomb(); //assume features are in set order. and that if a given feature is variable it is ALWAYS variable.
-	    if(numFeatures > 0)  this.class_name = intToClassName(reader.readByte());
+	    console.log("num features is: " + numFeatures);
+	     if(numFeatures > 0){
+	      var cid = reader.readByte();
+	      console.log("Class Name ID : " + cid)
+	      this.class_name = intToClassName(reader.readByte());
+	      }
 	    if(numFeatures > 1) this.aspect = intToAspect(reader.readByte());
 	    //as i add more things, add more lines. ALWAYS in same order, but not all features all the time.
 	}

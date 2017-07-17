@@ -380,7 +380,7 @@ function CharacterCreatorHelper(players){
 			console.log("bs is: " + bs);
 			var b = decodeURIComponent(getParameterByName("b", bs))
 			var s = getParameterByName("s", bs)
-			var x = getParameterByName("x", bs)
+			var x = decodeURIComponent(getParameterByName("x", bs))
 			console.log("b: " + b);
 			console.log("s: " + s);
 			console.log("x: " + x);
