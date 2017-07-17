@@ -542,6 +542,9 @@ function generateURLParamsForPlayers(players,includeChatHandle){
  }
 
  function applyExtensionStringToPlayers(players, xbytes){
+    console.log("gonna pply extension of: " + xbytes);
+   if(xbytes == null || xbytes == "null") return; //javascript you FICKLE BITCH
+   console.log("xbytes is not null");
    var reader = new ByteReader(stringToByteArray(xbytes), 0);
    for(var i = 0; i<players.length; i++){
         players[i].readInExtensionsString(reader);
