@@ -460,6 +460,7 @@ function QuadrantDialogue(session){
 		chats.push( new ConversationalPair("Hows that one side quest going?",["Needlessly complicated, like everything in this stupid game.","Well its looking like I'm going to have to go to Derse so yeah. Thats a thing.","Stupidly stupidly.","It would be better with you here.","Finally found the consort the quest wants me to talk to."]));
 		chats.push( new ConversationalPair("Hows the building up going?",["My fucking server player keeps making stairs.","Like a fly through honey","Grist is low, house is high. Bluuuh."]));
 		chats.push( new ConversationalPair("Jesus fuck have you seen the size of some of these underlings?",["Do they get that big over there? Most of mine are waist-high at most.","I KNOW RIGHT?","Yeah, things those size shouldn't be able to exist."]));
+        chats.push( new ConversationalPair("Lemme Smash. Please?",["Oh god...remind me why I'm dating you again?","No Ron. Go find Becky.","You want some blue?", "You want sum fuk?", "No. We are done with this meme. I love you, but I am done."])); //can't believe i forgot to add this.
 
 
 

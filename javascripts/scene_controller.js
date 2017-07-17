@@ -5,12 +5,13 @@ function createScenesForSession(session){
 	session.scenes = [new StartDemocracy(session), new JackBeginScheming(session), new KingPowerful(session), new QueenRejectRing(session), new GiveJackBullshitWeapon(session), new JackPromotion(session), new JackRampage(session)];
 	//relationship drama has a high priority because it can distract a session from actually making progress. happened to universe a trolls.
 	session.scenes = session.scenes.concat([new QuadrantDialogue(session),new FreeWillStuff(session),new GrimDarkQuests(session),new Breakup(session), new RelationshipDrama(session), new UpdateShippingGrid(session),  new EngageMurderMode(session), new GoGrimDark(session),  new DisengageMurderMode(session),new MurderPlayers(session),new BeTriggered(session),]);
-	session.scenes = session.scenes.concat([new VoidyStuff(session), new FaceDenizen(session), new DoEctobiology(session), new LuckStuff(session), new DoLandQuest(session), new LifeStuff(session)]);
+	session.scenes = session.scenes.concat([new VoidyStuff(session), new FaceDenizen(session), new DoEctobiology(session), new LuckStuff(session), new DoLandQuest(session)]);
 	session.scenes = session.scenes.concat([new SolvePuzzles(session), new ExploreMoon(session)]);
 	session.scenes = session.scenes.concat([new LevelTheHellUp(session)]);
 
 	//make sure kiss, then godtier, then godtierrevival, then any other form of revival.
-	session.deathScenes = [ new SaveDoomedTimeLine(session), new GetTiger(session), new CorpseSmooch(session), new GodTierRevival(session)];  //are always available.
+	//make sure life stuff happens AFTER a chance at god tier, or life players PREVENT god tiering.
+	session.deathScenes = [ new SaveDoomedTimeLine(session), new GetTiger(session), new CorpseSmooch(session), new GodTierRevival(session), new LifeStuff(session)];  //are always available.
 	session.reckoningScenes = [new FightQueen(session), new FightKing(session)];
 
 	//scenes can add other scenes to available scene list. (for example, spy missions being added if Jack began scheming)
@@ -463,6 +464,20 @@ function playersToDataBytes(players){
 	//return ret;
 }
 
+function playersToExtensionBytes(players){
+	var ret = "";
+	var builder = new ByteBuilder();
+	//do NOT do this because it fucks up the single player strings. i know how many players there are other ways, don't worry about it.
+	//builder.appendExpGolomb(players.length) //encode how many players, doesn't have to be how many bits.
+	ret += encodeURIComponent(builder.data).replace(/#/g, '%23').replace(/&/g, '%26');
+	for(var i = 0; i<players.length; i++){
+		//console.log("player " + i + " to data byte")
+		ret += players[i].toDataBytesX();
+	}
+	return LZString.compressToEncodedURIComponent(ret);
+	//return ret;
+}
+
 function truncateString(str, num) {
     return str.length > num ?
         str.slice(0, num > 3 ? num - 3 : num) + "..." :
@@ -493,12 +508,13 @@ function generateURLParamsForPlayers(players,includeChatHandle){
 	//console.log(compressed)
 	var data = playersToDataBytes(players);
 	var strings = playersToDataStrings(players,true);
-	return "b="+data+"&s="+strings;
+	var extensions = playersToExtensionBytes(players);
+	return "b="+data+"&s="+strings + "&x="+extensions;
 
  }
 
- function dataBytesAndStringsToPlayers(bytes, strings){
-	 console.log("dataBytesAndStringsToPlayers");
+ function dataBytesAndStringsToPlayers(bytes, strings,xbytes){
+	 console.log("dataBytesAndStringsToPlayers: xbytes is: " + xbytes);
 	//bytes are 11 chars per player
 	//strings are 5 csv per player.
 	//console.log(bytes);
@@ -519,10 +535,27 @@ function generateURLParamsForPlayers(players,includeChatHandle){
 		p.id = i; //will be overwritten by sim, but viewer needs it
 		players.push(p);
 	}
+	//if(extensionString) player.readInExtensionsString(extensionString);
+	if(xbytes) applyExtensionStringToPlayers(players, xbytes);
 	return players;
 
  }
 
+ function applyExtensionStringToPlayers(players, xbytes){
+   var reader = new ByteReader(stringToByteArray(xbytes), 0);
+   for(var i = 0; i<players.length; i++){
+        players[i].readInExtensionsString(reader);
+   }
+ }
+
+ function stringToByteArray(str){
+    var buffer = new ArrayBuffer(str.length);
+    var uint8View = new Uint8Array(buffer);
+    for(var i = 0; i<str.length; i++){
+        uint8View[i] = str.charCodeAt(i);
+    }
+    return buffer;
+ }
 
 //TODO FUTUREJR, REMOVE THIS METHOD AND INSTAD RELY ON session.RenderingEngine.renderers[1].dataBytesAndStringsToPlayer
 //see player.js toDataBytes and toDataString to see how I expect them to be formatted.
@@ -541,6 +574,7 @@ function dataBytesAndStringsToPlayer(charString, str_arr){
 	 //console.log("charString is: " + charString)
 	 player.hairColor = intToHexColor((charString.charCodeAt(0) << 16) + (charString.charCodeAt(1) << 8) + (charString.charCodeAt(2)) )
 	 player.class_name = intToClassName(charString.charCodeAt(3) >> 4)
+	 console.log("I believe the int value of the class name is: " + (charString.charCodeAt(3) >> 4) + " which is: " + player.class_name);
 	 player.aspect = intToAspect(charString.charCodeAt(3) & 15) //get 4 bits on end
 	 player.victimBlood = intToBloodColor(charString.charCodeAt(4) >> 4);
 	 player.bloodColor = intToBloodColor(charString.charCodeAt(4) & 15);
@@ -567,6 +601,7 @@ function dataBytesAndStringsToPlayer(charString, str_arr){
 	 player.hair = charString.charCodeAt(10)
 	 if(player.interest1Category) interestCategoryToInterestList(player.interest1Category ).push(player.interest1) //maybe don't add if already exists but whatevs for now.
 	 if(player.interest2Category )interestCategoryToInterestList(player.interest2Category ).push(player.interest2)
+
 	 return player;
 }
 
