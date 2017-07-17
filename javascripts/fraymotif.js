@@ -202,7 +202,7 @@ function Fraymotif(aspects, name,tier, flavorText){
 
   }
 
-  this.replaceKeyWordsForFlavorTextBase = function(phrase,){
+  this.replaceKeyWordsForFlavorTextBase = function(phrase){
     phrase = phrase.replace(new RegExp("damages","g"), getRandomElementFromArray(this.getDamageWords()));
     phrase = phrase.replace(new RegExp("debuffs","g"), getRandomElementFromArray(this.getDebuffWords()));
     phrase = phrase.replace(new RegExp("heals","g"), getRandomElementFromArray(this.getHealingWords()));
