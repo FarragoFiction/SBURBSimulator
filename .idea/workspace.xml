@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/player.js" afterPath="$PROJECT_DIR$/javascripts/player.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/random_tables.js" afterPath="$PROJECT_DIR$/javascripts/random_tables.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,51 +17,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="player.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="2464" column="24" lean-forward="true" selection-start-line="2464" selection-start-column="24" selection-end-line="2464" selection-end-column="24" />
+            <state relative-caret-position="165">
+              <caret line="1978" column="71" lean-forward="false" selection-start-line="1978" selection-start-column="52" selection-end-line="1978" selection-end-column="71" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="random_tables.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="random_tables.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="847" column="20" lean-forward="false" selection-start-line="847" selection-start-column="20" selection-end-line="847" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="char_creator_helper.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="14535">
-              <caret line="969" column="54" lean-forward="false" selection-start-line="969" selection-start-column="54" selection-end-line="969" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scene_controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/scene_controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="513" column="2" lean-forward="false" selection-start-line="513" selection-start-column="2" selection-end-line="513" selection-end-column="2" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fraymotif.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="690" column="36" lean-forward="false" selection-start-line="690" selection-start-column="36" selection-end-line="690" selection-end-column="36" />
+            <state relative-caret-position="376">
+              <caret line="280" column="22" lean-forward="false" selection-start-line="280" selection-start-column="22" selection-end-line="280" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -80,9 +49,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>bloodColors</find>
-      <find>this.fraymotifs = [</find>
-      <find>replayers</find>
       <find>renderAllHair</find>
       <find>Waste</find>
       <find>makeGuard</find>
@@ -107,9 +73,12 @@
       <find>reading in</find>
       <find>readInExtensionsString</find>
       <find>dataBytesAndStringsToPlayers</find>
-      <find>getRandomElem</find>
       <find>getDenizenNameArray</find>
+      <find>getShirtColorFromAspect</find>
       <find>getRandomDenizenQuestFromAspect</find>
+      <find>getRandomElem</find>
+      <find>chatHandle</find>
+      <find>chatHandle =</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -172,8 +141,8 @@
         <option value="$PROJECT_DIR$/javascripts/newsposts.js" />
         <option value="$PROJECT_DIR$/javascripts/scene_controller.js" />
         <option value="$PROJECT_DIR$/javascripts/fraymotif.js" />
-        <option value="$PROJECT_DIR$/javascripts/random_tables.js" />
         <option value="$PROJECT_DIR$/javascripts/player.js" />
+        <option value="$PROJECT_DIR$/javascripts/random_tables.js" />
       </list>
     </option>
   </component>
@@ -984,7 +953,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14535">
+        <state relative-caret-position="165">
           <caret line="969" column="54" lean-forward="false" selection-start-line="969" selection-start-column="54" selection-end-line="969" selection-end-column="54" />
           <folding />
         </state>
@@ -1006,18 +975,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
+    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="847" column="20" lean-forward="false" selection-start-line="847" selection-start-column="20" selection-end-line="847" selection-end-column="20" />
+        <state relative-caret-position="165">
+          <caret line="1978" column="71" lean-forward="false" selection-start-line="1978" selection-start-column="52" selection-end-line="1978" selection-end-column="71" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/player.js">
+    <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="2464" column="24" lean-forward="true" selection-start-line="2464" selection-start-column="24" selection-end-line="2464" selection-end-column="24" />
+        <state relative-caret-position="376">
+          <caret line="280" column="22" lean-forward="false" selection-start-line="280" selection-start-column="22" selection-end-line="280" selection-end-column="22" />
           <folding />
         </state>
       </provider>

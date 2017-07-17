@@ -277,6 +277,8 @@ function getRandomChatHandle(class_name, aspect,interest1, interest2){
 	if(!second || second == ""){
 		second = getBlandHandle2(aspect);
 	}
+	if(!first) first = "Null"
+	if(!second) second = "Null"
 	return first+second;
 }
 
