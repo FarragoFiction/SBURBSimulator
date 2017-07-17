@@ -1,6 +1,6 @@
 
-
-class FightKing {
+part of SBURBSim;
+class FightKing extends Scene {
 	bool canRepeat = true;
 	var session;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?

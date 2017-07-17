@@ -13,6 +13,9 @@ part "scene_controller.dart";
 part "quirk.dart";
 part "random_tables.dart";
 part "gameEntity.dart";
+//scenes
+part "Scenes/Scene.dart";
+part "Scenes/FightKing.dart";
 
 // temporary functions to be replaced later!
 
