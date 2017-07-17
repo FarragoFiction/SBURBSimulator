@@ -754,7 +754,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			f.flavorText = " All allies just settle their shit for a little while. Cool it. "
 			this.fraymotifs.push(f);
 		}else if(this.bloodColor == "#ffc3df"){
-		    var f = new Fraymotif([],  this.htmlTitleBasic() + " and the Power of Looove~~~~~<3<3<3", 1)
+		    var f = new Fraymotif([],  "'<font color='pink'>"+this.chatHandle + " and the Power of Looove~~~~~<3<3<3</font>'", 1)
             f.effects.push(new FraymotifEffect("RELATIONSHIPS",3,false));
             f.effects.push(new FraymotifEffect("RELATIONSHIPS",3,true));
             f.flavorText = " You are pretty sure this is not a real type of Troll Psionic.  It heals everybody in a bullshit parade of sparkles, and heart effects despite your disbelief. Everybody is also SUPER MEGA ULTRA IN LOVE with each other now, but ESPECIALLY in love with  " + this.htmlTitleHP() + ". "
@@ -1915,7 +1915,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	//if it's part of player json, need to copy it over.
 	this.copyFromPlayer = function(replayPlayer){
-		console.log("copying from player who has a favorite number of: " + replayPlayer.quirk.favoriteNumber)
+		//console.log("copying from player who has a favorite number of: " + replayPlayer.quirk.favoriteNumber)
 		//console.log("Overriding player from a replay Player. ")
 		//console.log(replayPlayer)
 		this.aspect = replayPlayer.aspect;
@@ -1948,9 +1948,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.robot = replayPlayer.robot;
 		this.fraymotifs = [];  //whoever you were before, you don't have those psionics anymore
 		this.applyPossiblePsionics(); //now you have new psionics
-		console.log("after applying psionics I have this many fraymotifs: " + this.fraymotifs.length);
+		//console.log("after applying psionics I have this many fraymotifs: " + this.fraymotifs.length);
 		this.quirk.favoriteNumber = replayPlayer.quirk.favoriteNumber; //will get overridden, has to be after initialization, too, but if i don't do it here, char creartor will look wrong.
 		this.makeGuardian();
+		this.guardian.applyPossiblePsionics(); //now you have new psionics
 	}
 
 

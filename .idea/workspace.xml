@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/Hair/hair73.png" afterPath="$PROJECT_DIR$/images/Hair/hair73.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/player.js" afterPath="$PROJECT_DIR$/javascripts/player.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/playerSnapshot.js" afterPath="$PROJECT_DIR$/javascripts/playerSnapshot.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" afterPath="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,91 +20,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="player.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="896" column="29" lean-forward="false" selection-start-line="896" selection-start-column="18" selection-end-line="896" selection-end-column="29" />
+            <state relative-caret-position="391">
+              <caret line="1859" column="5" lean-forward="true" selection-start-line="1835" selection-start-column="4" selection-end-line="1859" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="credits.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/credits.html">
+      <file leaf-file-name="playerSnapshot.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/javascripts/playerSnapshot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="186" column="71" lean-forward="false" selection-start-line="186" selection-start-column="71" selection-end-line="186" selection-end-column="71" />
+            <state relative-caret-position="121">
+              <caret line="80" column="4" lean-forward="false" selection-start-line="80" selection-start-column="4" selection-end-line="103" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="newsposts.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/newsposts.js">
+      <file leaf-file-name="scene_controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/javascripts/scene_controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="25" column="478" lean-forward="false" selection-start-line="25" selection-start-column="473" selection-end-line="25" selection-end-column="478" />
+            <state relative-caret-position="255">
+              <caret line="473" column="38" lean-forward="false" selection-start-line="473" selection-start-column="26" selection-end-line="473" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="image_browser.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/v2.0/image_browser.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="87" column="22" lean-forward="false" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="random_tables.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/random_tables.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="1112" column="33" lean-forward="false" selection-start-line="1112" selection-start-column="27" selection-end-line="1112" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fraymotif.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="62" column="90" lean-forward="false" selection-start-line="62" selection-start-column="90" selection-end-line="62" selection-end-column="90" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VoidyStuff.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="71" column="59" lean-forward="false" selection-start-line="71" selection-start-column="59" selection-end-line="71" selection-end-column="59" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bytebuilder.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/bytebuilder.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="139" column="20" lean-forward="false" selection-start-line="139" selection-start-column="9" selection-end-line="139" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="relationship.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascripts/relationship.js">
+      <file leaf-file-name="char_creator_helper.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
-              <caret line="137" column="10" lean-forward="false" selection-start-line="137" selection-start-column="10" selection-end-line="137" selection-end-column="10" />
+              <caret line="378" column="74" lean-forward="false" selection-start-line="378" selection-start-column="74" selection-end-line="378" selection-end-column="74" />
               <folding />
             </state>
           </provider>
@@ -119,9 +72,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>readInExtensionsString</find>
-      <find>reader</find>
-      <find>UInt</find>
       <find>dataBytesAndStringsToPlayers</find>
       <find>alert</find>
       <find>uses</find>
@@ -149,6 +99,9 @@
       <find>limeade</find>
       <find>snowl</find>
       <find>console.log</find>
+      <find>copying from</find>
+      <find>apply</find>
+      <find>toDataBytesX</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -191,7 +144,6 @@
         <option value="$PROJECT_DIR$/javascripts/debugScenarios.js" />
         <option value="$PROJECT_DIR$/OCs/bards.txt" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
-        <option value="$PROJECT_DIR$/javascripts/playerSnapshot.js" />
         <option value="$PROJECT_DIR$/glitches.html" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" />
         <option value="$PROJECT_DIR$/javascripts/bytebuilder.js" />
@@ -205,14 +157,15 @@
         <option value="$PROJECT_DIR$/character_creator.html" />
         <option value="$PROJECT_DIR$/quadrantChatTest.html" />
         <option value="$PROJECT_DIR$/javascripts/relationship.js" />
-        <option value="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/VoidyStuff.js" />
         <option value="$PROJECT_DIR$/javascripts/scene_controller.js" />
         <option value="$PROJECT_DIR$/javascripts/random_tables.js" />
         <option value="$PROJECT_DIR$/javascripts/fraymotif.js" />
         <option value="$PROJECT_DIR$/javascripts/newsposts.js" />
         <option value="$PROJECT_DIR$/credits.html" />
+        <option value="$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js" />
         <option value="$PROJECT_DIR$/javascripts/player.js" />
+        <option value="$PROJECT_DIR$/javascripts/playerSnapshot.js" />
       </list>
     </option>
   </component>
@@ -637,14 +590,14 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21628289" sideWeight="0.4929078" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21628289" sideWeight="0.8741135" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21628289" sideWeight="0.5070922" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21628289" sideWeight="0.12588653" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -849,14 +802,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/playerSnapshot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="368" column="139" lean-forward="false" selection-start-line="368" selection-start-column="139" selection-end-line="368" selection-end-column="139" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/debugScenarios.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
@@ -1033,22 +978,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="379" column="12" lean-forward="false" selection-start-line="379" selection-start-column="12" selection-end-line="381" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/scene_controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13">
-          <caret line="541" column="2" lean-forward="false" selection-start-line="541" selection-start-column="2" selection-end-line="541" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/fraymotif.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
@@ -1097,10 +1026,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/v2.0/char_creator_helper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="378" column="74" lean-forward="false" selection-start-line="378" selection-start-column="74" selection-end-line="378" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/scene_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="473" column="38" lean-forward="false" selection-start-line="473" selection-start-column="26" selection-end-line="473" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="896" column="29" lean-forward="false" selection-start-line="896" selection-start-column="18" selection-end-line="896" selection-end-column="29" />
+        <state relative-caret-position="391">
+          <caret line="1859" column="5" lean-forward="true" selection-start-line="1835" selection-start-column="4" selection-end-line="1859" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/playerSnapshot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="80" column="4" lean-forward="false" selection-start-line="80" selection-start-column="4" selection-end-line="103" selection-end-column="5" />
           <folding />
         </state>
       </provider>

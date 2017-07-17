@@ -77,6 +77,32 @@ function PlayerSnapshot(){
 		return ["power","hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
 	}
 
+	//for now, only type is 1, which is class + aspect.
+    this.toDataBytesX = function(){
+        var builder = new ByteBuilder();
+        var j = this.toJSON();
+        if(j.class_name <= 15 && j.aspect <= 15){ //if NEITHER have need of extension, just return size zero
+            builder.appendExpGolomb(0) //for length
+            return encodeURIComponent(builder.data).replace(/#/g, '%23').replace(/&/g, '%26');
+        }
+        builder.appendExpGolomb(2) //for length
+        builder.appendByte(j.class_name);
+        builder.appendByte(j.aspect);
+        return encodeURIComponent(builder.data).replace(/#/g, '%23').replace(/&/g, '%26');
+    }
+
+    //values for extension string should overwrite existing values.
+    //takes in a reader because it acts as a stream, not a byte array
+    //read will read "next thing", all player has to do is know how to handle self.
+    this.readInExtensionsString = function(reader){
+        console.log("reading in extension string")
+        //just inverse of encoding process.
+        var numFeatures = reader.readExpGolomb(); //assume features are in set order. and that if a given feature is variable it is ALWAYS variable.
+        if(numFeatures > 0)  this.class_name = intToClassName(reader.readByte());
+        if(numFeatures > 1) this.aspect = intToAspect(reader.readByte());
+        //as i add more things, add more lines. ALWAYS in same order, but not all features all the time.
+    }
+
 	this.toDataStrings = function(includeChatHandle){
 		var ch = "";
 		if(includeChatHandle) ch = sanitizeString(this.chatHandle);
