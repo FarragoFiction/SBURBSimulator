@@ -726,13 +726,13 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.applyPossiblePsionics = function(){
-	    console.log("Checking to see how many fraymotifs I have: " + this.fraymotifs.length + " and if I am a troll: " + this.isTroll);
+	   // console.log("Checking to see how many fraymotifs I have: " + this.fraymotifs.length + " and if I am a troll: " + this.isTroll);
 		if(this.fraymotifs.length > 0 || !this.isTroll) return; //if i already have fraymotifs, then they were probably predefined.
 		//highest land dwellers can have chucklevoodoos. Other than that, lower on hemospectrum = greater odds of having psionics.
 		//make sure psionic list is kept in global var, so that char creator eventually can access? Wait, no, just wrtap it in a function here. don't polute global name space.
 		//trolls can clearly have more than one set of psionics. so. odds of psionics is inverse with hemospectrum position. didn't i do this math before? where?
 		//oh! low blood vocabulary!!! that'd be in quirks, i think.
-		console.log("My blood color is: " + this.bloodColor);
+		//console.log("My blood color is: " + this.bloodColor);
 		var odds = 10 - bloodColors.indexOf(this.bloodColor);   //want gamzee and above to have NO powers (will give highbloods chucklevoodoos separate)
 		var powers = this.psionicList();
 		for(var i = 0; i<powers.length; i++){
@@ -760,7 +760,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
             f.flavorText = " You are pretty sure this is not a real type of Troll Psionic.  It heals everybody in a bullshit parade of sparkles, and heart effects despite your disbelief. Everybody is also SUPER MEGA ULTRA IN LOVE with each other now, but ESPECIALLY in love with  " + this.htmlTitleHP() + ". "
             this.fraymotifs.push(f);
 		}
-		console.log(this.fraymotifs);
 	}
 
 	this.decideLusus = function(player){
