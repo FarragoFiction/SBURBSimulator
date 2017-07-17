@@ -1858,7 +1858,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	     if(numFeatures > 0){
 	      var cid = reader.readByte();
 	      console.log("Class Name ID : " + cid)
-	      this.class_name = intToClassName(reader.readByte());
+	      this.class_name = intToClassName(cid);
 	      }
 	    if(numFeatures > 1){
 			var aid = reader.readByte();
