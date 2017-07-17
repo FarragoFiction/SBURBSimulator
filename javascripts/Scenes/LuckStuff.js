@@ -4,7 +4,7 @@ function LuckStuff(session){
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.rolls = [];
 	//luck can be good or it can be bad.
-	this.minLowValue = -100;
+	this.minLowValue = -25;
 	this.minHighValue = 200;
 	this.landLevelNeeded = 12;
 	this.numberTriggers = 0; //can't just spam this.
@@ -18,17 +18,9 @@ function LuckStuff(session){
 		//what the hell roue of doom's corpse. corpses aren't part of the player list!
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var player = this.session.availablePlayers[i];
-			var rollValueLow = player.rollForLuck("minLuck");  //separate it out so that EITHER you are good at avoiding bad shit OR you are good at getting good shit.
-			var rollValueHigh = player.rollForLuck("maxLuck");
-			//can have two luck events in same turn, whatever. fuck this complicated code, what was i even thinking???
-			if(rollValueHigh > this.minHighValue){
-				//alert("High  roll of: " + rollValueHigh);
-				this.rolls.push(new Roll(player, rollValueHigh));
-			}
-			
-			if(rollValueLow < this.minLowValue){
-				//alert("Low  roll of: " + rollValueLow);
-				this.rolls.push(new Roll(player, rollValueLow));
+			var rollValue = player.rollForLuck();
+			if(rollValue >= this.minHighValue || rollValue <= this.minLowValue){
+				this.rolls.push(new Roll(player, rollValue));
 			}
 		}
 		return this.rolls.length > 0
@@ -65,9 +57,8 @@ function LuckStuff(session){
 		if(roll.player.land){
 			land = roll.player.shortLand();
 		}
-		var f = roll.player.getNewFraymotif();
-		var ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + land + " when they suddenly tripped over a huge treasure chest! When opened, it revealed a modest cache of boonbucks. They will finally be able to afford that fraymotiff, "+f.name + ", they have had their eye on! ";
-		//roll.player.increasePower();
+		var ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + land + " when they suddenly tripped over a huge treasure chest! When opened, it revealed a modest cache of boonbucks. They will finally be able to afford that fraymotiff they have had their eye on!";
+		roll.player.increasePower();
 		this.session.goodLuckEvent = true;
 		return ret;
 	}
@@ -315,10 +306,9 @@ function LuckStuff(session){
 			return this.roll10(roll);  //used to be enough for a roll 0, but not anymore.
 		}else if(roll.value > this. minHighValue){//if i got here, i fell in the crack left where the old godtier value used to be.
 			return this.roll95(roll);
-		}else{
-			alert("NO this is NOT RIGHT, LUCK EVENT BROKEN")
-			return "What the hell, mate? roll was: " + roll.value + " and needed to be not between  " + this.minLowValue + " and " + this.minHighValue;
-		} 
+		}
+
+		else return "What the hell, mate? roll was: " + roll.value + " and needed to be not between  " + this.minLowValue + " and " + this.minHighValue;
 
 
 

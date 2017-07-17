@@ -1248,9 +1248,6 @@ function drawBGRadialWithWidth(canvas, startX, endX, width, color1, color2){
 }
 
 function denizenKill(canvas,player){
-  if(checkSimMode() == true){
-    return;
-  }
   var p1SpriteBuffer = getBufferCanvas(document.getElementById("sprite_template"));
   //drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff")
 	var ctx = p1SpriteBuffer.getContext('2d');
@@ -1868,9 +1865,9 @@ function robotPalletSwap(canvas, player){
 	var new_color2 = "#0022cf";
 	var new_color3 ="#B6B6B6";
 	var new_color4 = "#A6A6A6";
-	var new_color5 = "#484848";
+	var new_color5 = "#B6B6B6";
 	var new_color6 = "#595959";
-	var new_color7 = "#313131";
+	var new_color7 = "#696969";
 	var new_color8 = "#B6B6B6";
 	var new_color9 = "#797979";
 	var new_color10 = "#494949";
@@ -2317,18 +2314,6 @@ function aspectPalletSwap(canvas, player){
 	new_color9='#2C1207';
 	new_color10='#5C2913';
 	new_color11='#4C1F0D';
-  }else{
-    new_color1='#FF9B00';
-  	new_color2='#FF8700';
-  	new_color3='#7F7F7F';
-  	new_color4='#727272';
-  	new_color5='#A3A3A3';
-  	new_color6='#999999';
-  	new_color7='#898989';
-  	new_color8='#EFEFEF';
-  	new_color9='#DBDBDB';
-  	new_color10='#C6C6C6';
-  	new_color11='#ADADAD';
   }
 
 

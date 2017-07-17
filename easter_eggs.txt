@@ -6,7 +6,7 @@
 
 <p> Hall of Fame is officially closed as of 6/12/17. </p>
 
-<p><a href = "index2.html?seerOfVoid=true">Seer of Void</a>: A button will display on screen, pressing it allows you to peer into the Void. What mysteries are within??? (ProTip: not all Sessions have void players in them). </p>
+<p><a href = "index2.html?seerOfVoid=true">Seer of Void</a>: The Observer gains the ability to peer into the Void. What does this mean???</p>
 <p><a href = "index2.html?pen15=ouija">Pen15 Ouija</a>: What!??? Who let all those void players have markers???</p>
 
 <p><a href = "index2.html?royalRumble=true">Royal Rumble</a>: Everyone is an Heiress, which means they have a biological imperitive to kill each other. Also, a much higher rate of fish puns.</p>
@@ -51,7 +51,7 @@
 <p> <a href = "test_fraymotif.html">Fraymotif Test Page</a>: Gotta test fraymotifs before they are part of the battle engine.</p>
 <p> <a href = "quadrantChatTest.html">Quadrant Chat Test</a>: New quadrant based dialogue engine.</p>
 <p><a href = "index2.html?images=pumpkin">What Images</a>: For those who just want to watch the world burn. I mean have 144 player sessions. </p>
-<textarea>b=%C3%BF%C2%83%C2%9A%05%C3%BD%C3%8C%14%03%C3%BE%C3%BE%1B&s=,,Dave,Karkat,specialSnowlake</textarea>
+
 
 <p>$(".void").toggle()  What could this mean??? <div class = 'void'> Do you think it has something to do with this??? A better question: Do you really think this would be an easter egg if this were the only place with a div hidden in void???</div> </p>
 <p>DID YOU KNOW: In addition to sharing hair color/blood color with their guardians, players share at least one interest with them as well.  So a player might like Wizards and Writing while their Guardian might enjoy Wizards and Hacking.

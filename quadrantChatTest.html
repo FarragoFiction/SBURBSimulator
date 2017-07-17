@@ -6,10 +6,10 @@
 	<link rel="stylesheet" href="css/rap.css">
 	<link rel="stylesheet" href="css/navbar.css">
 	<script type="text/javascript" src="javascripts/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" src="javascripts/bytebuilder.js"></script>
 	<script type="text/javascript" src="javascripts/ShittyRapEngine/shitty_raps.js"></script>
 	<script type="text/javascript" src="javascripts/fraymotif.js"></script>
-	<script type="text/javascript" src="javascripts/handle_sprites.js"></script>
+	<script type="text/javascript" src="javascripts/SpriteRenderingEngine.js"></script>
+	<script type="text/javascript" src="javascripts/SceneRenderingEngine.js"></script>
 	<script type="text/javascript" src="javascripts/v2.0/char_creator_helper.js"></script>
 	<script type="text/javascript" src="javascripts/loading.js"></script>
 	<script type="text/javascript" src="javascripts/gameEntity.js"></script>
@@ -33,7 +33,7 @@
 		var simulationMode = false;
 		window.onload = function() {
 			curSessionGlobalVar =  new Session(getRandomSeed())
-			//curSessionGlobalVar.reinit(); //don't do this 'cause it's trying to get all the scenes and REALLY don't want all scenes here
+			curSessionGlobalVar.reinit();
 			curSessionGlobalVar.makePlayers();
 			curSessionGlobalVar.randomizeEntryOrder();
 			var p1 = curSessionGlobalVar.players[0];

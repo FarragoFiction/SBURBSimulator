@@ -5,7 +5,7 @@ function Session(session_id){
 	this.players = [];
 	this.fraymotifCreator = new FraymotifCreator();  //as long as FraymotifCreator has no state data, this is fine.
 	this.hasClubs = false;
-	this.sessionHealth = 500; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
+	this.sessionHealth = 3000; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
 	this.hasDiamonds = false;
 	this.opossumVictory = false;
 	this.hasBreakups = false;  //sessions aren't in charge of denizens anymore, they are for players and set when they get in the medium
@@ -81,26 +81,6 @@ function Session(session_id){
 		this.jack.crowned = null;
 		this.queen.crowned = null;
 	}
-	
-	
-	//space stuck needs love
-	this.findBestSpace = function(){
-		var spaces = findAllAspectPlayers(this.players, "Space");
-		var ret = spaces[0];
-		for(var i = 0; i<spaces.length; i++){
-			if(spaces[i].landLevel > ret.landLevel) ret = spaces[i];
-		}
-		return ret;
-	}
-	
-	this.findMostCorruptedSpace = function(){
-		var spaces = findAllAspectPlayers(this.players, "Space");
-		var ret = spaces[0];
-		for(var i = 0; i<spaces.length; i++){
-			if(spaces[i].landLevel< ret.landLevel) ret = spaces[i];
-		}
-		return ret;  //lowest space player.
-	}
 
 	//IMPORTANT do not add important events directly, or can't check for alternate timelines.
 	//oh god, just typing that gives me chills. time shenanigans are so great.
@@ -119,10 +99,7 @@ function Session(session_id){
 	}
 
 	this.frogStatus = function(){
-		var spacePlayer = this.findBestSpace();
-		var corruptedSpacePlayer = this.findMostCorruptedSpace();
 		var spacePlayer = findAspectPlayer(this.players, "Space");
-		if(corruptedSpacePlayer.landLevel <= this.goodFrogLevel * -1) return "Purple Frog" //is this...a REFRANCE???
 		if(spacePlayer.landLevel < this.minFrogLevel){
 			return "No Frog"
 		}else if(spacePlayer.landLevel > this.goodFrogLevel){
@@ -267,7 +244,6 @@ function Session(session_id){
 		//console.log("Making players with seed: " + Math.seed)
 		this.players = [];
 		available_classes = classes.slice(0); //re-initPlayers available classes.
-		available_classes_guardians = classes.slice(0);
 		available_aspects = nonrequired_aspects.slice(0);
 		var numPlayers = getRandomInt(2,12);
 		this.players.push(randomSpacePlayer(this));
@@ -376,28 +352,23 @@ function Session(session_id){
 		this.queensRing = new GameEntity(this, "!!!RING!!! OMG YOU SHOULD NEVER SEE THIS!",false)
 		this.queensRing.setStats(0,0,0,0,0,0,0,false, false, [],1000);
 		var f = new Fraymotif([],  "Red Miles", 3)
-		f.effects.push(new FraymotifEffect("power",2,true));
+		f.effects.push(new FraymotifEffect("power",3,true));
 		f.flavorText = " You cannot escape them "
 		this.queensRing.fraymotifs.push(f);
 
 		this.kingsScepter = new GameEntity(this, "!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!",false)
 		this.kingsScepter.setStats(0,0,0,0,0,0,0,false, false, [],1000);
-		var f = new Fraymotif([],  "Reckoning Meteors", 3)  //TODO eventually check for this fraymotif (just lik you do troll psionics) to decide if you can start recknoing.
-		f.effects.push(new FraymotifEffect("power",2,true));
-		f.flavorText = " The very meteors from the Reckoning rain down. "
-		this.kingsScepter.fraymotifs.push(f);
-		
 		this.king = new GameEntity(this, "Black King", this.kingsScepter);
 		//minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs
-		this.king.setStats(-10,10,1000,0,0,-100,100,false, false, [],1000); //royalty have no free will
+		this.king.setStats(-10,10,1000,0,0,25,100,false, false, [],1000);
 		this.queen = new GameEntity(this, "Black Queen",this.queensRing);
-		this.queen.setStats(-10,10,500,10,0,-100,50,false, false, [],1000); //red miles, put on ring
+		this.queen.setStats(-10,10,500,10,0,100,50,false, false, [],1000); //red miles, put on ring
 		this.queen.carapacian = true;
 		this.king.carapacian = true;
 
 		this.jack = new GameEntity(this, "Jack",null);
 		this.jack.carapacian = true;
-		this.jack.setStats(-500,-10,20,-50,-100,1000,40,true, true, [],100000); //jack is kind of a big deal. luck determines his odds of finding bullshit weapon
+		this.jack.setStats(-500,-10,20,-50,-500,1000,40,true, true, [],100000); //jack is kind of a big deal. luck determines his odds of finding bullshit weapon
 		//jack uses "Stab to Meet You", it's not very effective (nobody seems to think his stabs are important until he's crowned.)
 		var f = new Fraymotif([],  "Stab To Meet You", 1)
 		f.effects.push(new FraymotifEffect("power",3,true));
@@ -466,7 +437,6 @@ function Session(session_id){
 	this.generateSummary = function(){
 		var summary = new SessionSummary();
 		summary.setMiniPlayers(this.players);
-		summary.blackKingDead = this.king.dead || this.king.getStat("currentHP") <=0
 		summary.mayorEnding = this.mayorEnding;
 		summary.waywardVagabondEnding = this.waywardVagabondEnding;
 		summary.badBreakDeath = this.badBreakDeath;
@@ -522,15 +492,8 @@ function Session(session_id){
 		summary.democracyStarted =  this.democraticArmy.power > 0;
 		summary.murderMode = this.murdersHappened;
 		summary.grimDark = this.grimDarkPlayers;
-
-		var spacePlayer = this.findBestSpace();
-		var corruptedSpacePlayer = this.findMostCorruptedSpace();
-		if(summary.frogStatus == "Purple Frog" ){
-			summary.frogLevel =corruptedSpacePlayer.landLevel
-		}else{
-			summary.frogLevel =spacePlayer.landLevel
-		}
-		
+		var spacePlayer = findAspectPlayer(this.players, "Space");
+		summary.frogLevel =spacePlayer.landLevel
 		summary.hasDiamonds =this.hasDiamonds;
 		summary.hasSpades = this.hasSpades;
 		summary.hasClubs = this.hasClubs;

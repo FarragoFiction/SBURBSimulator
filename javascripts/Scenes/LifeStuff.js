@@ -91,7 +91,7 @@ function LifeStuff(session){
 		for(var i = 0; i<this.session.availablePlayers.length; i++){
 			var possibleGuide = this.session.availablePlayers[i];
 			if(possibleGuide.aspect == "Doom" || possibleGuide.aspect == "Life" || possibleGuide.canGhostCommune()){
-				if(possibleGuide.class_name == "Seer" ||  possibleGuide.class_name == "Scribe" ||possibleGuide.class_name == "Page" || possibleGuide.class_name == "Bard" || possibleGuide.class_name == "Rogue" ||  possibleGuide.class_name == "Maid"){
+				if(possibleGuide.class_name == "Seer" ||  possibleGuide.class_name == "Page" || possibleGuide.class_name == "Bard" || possibleGuide.class_name == "Rogue" ||  possibleGuide.class_name == "Maid"){
 						chosenGuides.push(possibleGuide);
 				}
 			}
@@ -126,9 +126,9 @@ function LifeStuff(session){
 					this.drainDeadForReviveSelf(div, "",player, player.class_name, player.aspect);
 				}
 			}else if(!dreaming){
-				if(player.class_name == "Mage" ||  player.class_name == "Knight"|| player.class_name == "Sage" || player.class_name == "Scout"){
+				if(player.class_name == "Mage" ||  player.class_name == "Knight"){
 					this.communeDead(div, "", player, player.class_name,player.aspect);
-				}else if((player.class_name == "Seer" || player.class_name == "Scribe" || player.class_name == "Page") && other_player && !other_player.dead){
+				}else if((player.class_name == "Seer" ||  player.class_name == "Page") && other_player && !other_player.dead){
 					this.helpPlayerCommuneDead(div, player, other_player);
 				}else if(player.class_name == "Prince"){
 					this.drainDeadForPower(div, "", player,false);

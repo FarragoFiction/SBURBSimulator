@@ -1,5 +1,5 @@
 b=P%3A!%C2%93%C3%BE1%00E%12%12%01&s=,,Data Entry,Song Writing,manicInsomniac
-b=%00%00%00%C3%BB%C3%BE%C3%9B%00%5C%06%068&s=,,Mathematics,Tabletop Roleplaying,aspiringWatcher
+b=%00%00%00K%C3%BE%C3%9B%00W%08%088&s=,,Mathematics,Tabletop Roleplaying,aspiringWatcher
 b=8%22%07h%C3%BE%C3%93%04%1A%1A%1A%3C&s=,,Theorycrafting,Storytelling,recursiveSlacker
 b=%C2%80%00%00R%C3%BE%C2%8B%00Q%20%05%11&s=,,Cooking,Tabletop Roleplaying,wooMod
 b=%00%00%00%20%C3%B8%23%10PGGD&s=,,Drawing,Character Creation,InsufferableOracle

@@ -85,4 +85,3 @@ b=%00%00%00%13%C3%BEm%00F%15'1&s=,,Leadership,Learning,kiyotakaIshimaru
  b=%00%00%00%C2%8B%C3%BE%C2%95%04P%2C%20%3D&s=,,Superheroes,Strong Enemies,baldCape
  b=%00%00%00%C2%97%C3%BE%C2%97%00%C2%90%0D%0D%3D&s=,,Artifacts,Magik,somewhatRobotic
  b=%00%00%00%3A%C3%BET%00%14%2B%2B%0F&s=,,Purification,Baseball,theBatter
- b=%00%00%00%C2%91%C3%B0%15%10VDD%20&s=,,Rap-Rock,Riches,bawitdaBastard

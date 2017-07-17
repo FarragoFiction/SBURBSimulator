@@ -18,7 +18,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.denizen = null;
 	this.denizenMinion = null;
 	this.maxHornNumber = 73; //don't fuck with this
-	this.maxHairNumber = 74; //same
+	this.maxHairNumber = 68; //same
 	this.sprite = null; //gets set to a blank sprite when character is created.
 	this.grist = 0; //total party grist needs to be at a certain level for the ultimate alchemy. luck events can raise it, boss fights, etc.
 	this.hp = 0; //mostly used for boss battles;
@@ -141,8 +141,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		ret += Math.abs(this.freeWill)
 		ret += Math.abs(this.mobility)
 		ret += Math.abs(this.hp)
-		ret += Math.abs
-		(this.maxLuck + this.minLuck)
+		ret += Math.abs(this.maxLuck - this.minLuck)
 		ret += Math.abs(this.sanity)
 		return ret;
 	}
@@ -150,14 +149,13 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.generateDenizen = function(){
 		var possibilities = this.getDenizenNameArray();
 		var strength = this.getOverallStrength();
-		var expectedMaxStrength = 150;  //if i change how stats work, i need to update this value 
+		var expectedMaxStrength = 600; //from sim values of 50+ sessions. then balancing exercises with AB
 		var strengthPerTier = (expectedMaxStrength)/possibilities.length;
 		//console.log("Strength at start is, " + strength);//but what if you don't want STRANGTH!???
 		var denizenIndex = Math.round(strength/strengthPerTier)-1;  //want lowest value to be off the denizen array.
 
 		var denizenName = "";
-		var denizenStrength = (denizenIndex/(possibilities.length))+1 //between 1 and 2
-		//console.log("Strength for denizen calculated from index of: " + denizenIndex + " out of " + possibilities.length)
+		var denizenStrength = (denizenIndex/(possibilities.length/2))+1
 		if(denizenIndex == 0){
 			denizenName = this.weakDenizenNames();
 			denizenStrength = 0.1;//fraymotifs about standing and looking at your pittifully
@@ -177,42 +175,55 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	//generate denizen gets me name and strength, this just takes care of making it.
 	this.makeDenizenWithStrength = function(name, strength){
-		//console.log("Strength for denizen " + name + " is: " + strength)
 		//based off existing denizen code.  care about which aspect i am.
 		//also make minion here.
 		var denizen =  new GameEntity(this.session, "Denizen " +name, null);
 		var denizenMinion = new GameEntity(this.session,name + " Minion", null);
-		var tmpStatHolder = {};
-		tmpStatHolder.minLuck = -10;
-		tmpStatHolder.abscondable = true; //players can decide to flee like little bitches
-        tmpStatHolder.canAbscond = false;
-		tmpStatHolder.maxLuck = 10;
-		tmpStatHolder.hp = 10 * strength;
-		tmpStatHolder.mobility = 10;
-		tmpStatHolder.sanity = 10;
-		tmpStatHolder.freeWill = 10;
-		tmpStatHolder.power = 5 * strength;
-		tmpStatHolder.grist = 1000;
-		tmpStatHolder.RELATIONSHIPS = 10;  //not REAL relationships, but real enough for our purposes.
-		for(var i = 0; i<this.associatedStats.length; i++){
-			//alert("I have associated stats: " + i)
-			var stat = this.associatedStats[i];
-			if(stat.name == "MANGRIT"){
-				tmpStatHolder.power = tmpStatHolder.power * stat.multiplier * strength
-			}else{
-				tmpStatHolder[stat.name] += tmpStatHolder[stat.name] * stat.multiplier * strength;
-			} 
+		var ml = -10;
+		var xl = 0;
+		var hp = 10 * strength;
+		var mob = 10;
+		var tl = 0;
+		var fw = 0;
+		var power = 5 * strength; //first minion.
+		if(this.aspect == "Hope") power = power *4;
+		if(this.aspect == "Life") hp = hp *4;
+		if(this.aspect == "Doom"){
+			 hp = hp/2;
+			 ml = ml/2;
 		}
+		if(this.aspect == "Blood"){
+			hp = hp * 2;
+			tl = tl/2;
+		}
+		if(this.aspect == "Mind"){
+			fw = fw *2;
+			hp = hp * 2;
+		}
+		if(this.aspect == "Rage"){
+			tl = tl *2;
+			power = power*2;
+		}
+		if(this.aspect == "Void") power = power *4;
+		if(this.aspect == "Time") fw = fw /4;
+		if(this.aspect == "Heart"){
+			power = power *2;
+			ml = ml & 2;
+		}
+		if(this.aspect == "Breath") mob = mob *4;
+		if(this.aspect == "Light") xl = xl *4;
+		if(this.aspect == "Space") mob = mob /4;
 
-		//denizenMinion.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolder.sanity,tmpStatHolder.freeWill,tmpStatHolder.power,true, false, [],1000);
-		
-		denizenMinion.setStatsHash(tmpStatHolder);
-		tmpStatHolder.power = 10*strength;
-		for(var key in tmpStatHolder){
-			tmpStatHolder[key] = tmpStatHolder[key] * 2; // same direction as minion stats, but bigger. 
+		denizenMinion.setStats(ml,xl,hp,mob,tl,fw,power,true, false, [],1000000);
+		power = 10*strength;
+		if(this.aspect == "Hope") power = power *4; //only power and hp need recalced, will be same for all others.
+		hp = 20* strength;
+		if(this.aspect == "Life") hp = hp *4;
+		if(this.aspect == "Doom"){
+			 hp = hp/2;
+			 ml = ml/2;
 		}
-		//denizen.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolder.sanity,tmpStatHolder.freeWill,tmpStatHolder.power,true, false, [],1000000);
-		denizen.setStatsHash(tmpStatHolder);
+		denizen.setStats(ml,xl,hp,mob,tl,fw,power,true, false, [],1000000);
 		this.denizen = denizen;
 		this.denizenMinion = denizenMinion;
 		this.session.fraymotifCreator.createFraymotifForPlayerDenizen(this,name);
@@ -284,8 +295,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.strongDenizenNames = function(){
-	    console.log("What if you don't want stranth? " + this.session.session_id)
-		var ret = ['Yaldabaoth', '<span class = "void">Nobrop, the </span>Null', '<span class = "void">Paraxalan, The </span>Ever-Searching', "<span class = 'void'>Algebron, The </span>Dilletant", '<span class = "void">Doomod, The </span>Wanderer', 'Jörmungandr','Apollyon','Siseneg','Borunam','<span class = "void">Jadeacher the,</span>Researcher','Karmiution','<span class = "void">Authorot, the</span> Robot', '<span class = "void">Abbiejean, the </span>Scout', 'Aspiratcher, The Librarian','<span class = "void">Recurscker, The</span>Hollow One','Insurorracle','<span class = "void">Maniomnia, the Dreamwaker</span>','Kazerad','Shiva','Goliath'];
+		var ret = ['Yaldabaoth', 'Jörmungandr','Apollyon','Siseneg','Borunam','Jadeacher','Karmiution','Authorot','Aspiratcher','Recurscker','Insurorracle','Maniomnia','Kazerad','Shiva','Goliath'];
 		return getRandomElementFromArray(ret);
 	}
 
@@ -390,14 +400,13 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.dead = true;
 		this.timesDied ++;
 		this.buffs = [];
-		this.causeOfDeath = sanitizeString(causeOfDeath);
-		if(this.currentHP > 0) this.currentHP = -1; //just in case anything weird is going on. dead is dead.  (for example, you could have been debuffed of hp).
+		this.causeOfDeath = causeOfDeath;
 		//was in make alive, but realized that this makes doom ghosts way stronger if it's here. powered by DEATH, but being revived.
 		if(this.aspect == "Doom"){ //powered by their own doom.
 			//console.log("doom is powered by their own death: " + this.session.session_id) //omg, they are sayians.
 			this.power += 50;
-			this.hp = Math.max(100, this.hp); //prophecy fulfilled. but hp and luck will probably drain again.
-			this.minLuck = 30; //prophecy fulfilled. you are no longer doomed.
+			this.hp = 100; //prophecy fulfilled. but hp and luck will probably drain again.
+			this.minLuck = 100; //prophecy fulfilled. you are no longer doomed.
 		}
 		if(!this.godTier){ //god tiers only make ghosts in GodTierRevivial
 			var g = makeRenderingSnapshot(this);
@@ -726,13 +735,11 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.applyPossiblePsionics = function(){
-	   // console.log("Checking to see how many fraymotifs I have: " + this.fraymotifs.length + " and if I am a troll: " + this.isTroll);
-		if(this.fraymotifs.length > 0 || !this.isTroll) return; //if i already have fraymotifs, then they were probably predefined.
+		if(this.fraymotifs.length > 0) return; //if i already have fraymotifs, then they were probably predefined.
 		//highest land dwellers can have chucklevoodoos. Other than that, lower on hemospectrum = greater odds of having psionics.
 		//make sure psionic list is kept in global var, so that char creator eventually can access? Wait, no, just wrtap it in a function here. don't polute global name space.
 		//trolls can clearly have more than one set of psionics. so. odds of psionics is inverse with hemospectrum position. didn't i do this math before? where?
 		//oh! low blood vocabulary!!! that'd be in quirks, i think.
-		//console.log("My blood color is: " + this.bloodColor);
 		var odds = 10 - bloodColors.indexOf(this.bloodColor);   //want gamzee and above to have NO powers (will give highbloods chucklevoodoos separate)
 		var powers = this.psionicList();
 		for(var i = 0; i<powers.length; i++){
@@ -753,12 +760,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			f.effects.push(new FraymotifEffect("sanity",1,true));
 			f.flavorText = " All allies just settle their shit for a little while. Cool it. "
 			this.fraymotifs.push(f);
-		}else if(this.bloodColor == "#ffc3df"){
-		    var f = new Fraymotif([],  "'<font color='pink'>"+this.chatHandle + " and the Power of Looove~~~~~<3<3<3</font>'", 1)
-            f.effects.push(new FraymotifEffect("RELATIONSHIPS",3,false));
-            f.effects.push(new FraymotifEffect("RELATIONSHIPS",3,true));
-            f.flavorText = " You are pretty sure this is not a real type of Troll Psionic.  It heals everybody in a bullshit parade of sparkles, and heart effects despite your disbelief. Everybody is also SUPER MEGA ULTRA IN LOVE with each other now, but ESPECIALLY in love with  " + this.htmlTitleHP() + ". "
-            this.fraymotifs.push(f);
 		}
 	}
 
@@ -967,7 +968,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		}
 		var powerBoost = this.modPowerBoostByClass(powerBoost,stat);
 		if(this.class_name == "Rogue"|| this.class_name == "Thief"){
-		    powerBoost = 3 * powerBoost; //make up for how shitty your boost is for increasePower, THIS is how you are supposed to level.
 			player.modifyAssociatedStat((-1 * powerBoost), stat);
 			if(this.isActive()){ //modify me
 				this.modifyAssociatedStat(powerBoost, stat);
@@ -997,10 +997,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	}
 
-	//SBURB is not a mystery to these classes/aspects.  TODO MAKE THIS AN ACTUAL ASSOCIATED STAT
+	//SBURB is not a mystery to these classes/aspects.
 	this.knowsAboutSburb = function(){
 		//time might not innately get it, but they have future knowledge
-		var rightClass = this.class_name == "Sage" || this.class_name == "Scribe" || this.class_name == "Seer" || this.class_name == "Mage" || this.aspect == "Light" || this.aspect == "Mind" || this.aspect == "Doom" || this.aspect == "Time"
+		var rightClass = this.class_name == "Seer" || this.class_name == "Mage" || this.aspect == "Light" || this.aspect == "Mind" || this.aspect == "Doom" || this.aspect == "Time"
 		return rightClass && this.power > 20; //need to be far enough in my claspect
 	}
 
@@ -1021,11 +1021,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	this.makeGuardian =function(){
 		//console.log("guardian for " + player.titleBasic());
 		var player = this;
-		var possibilities = available_classes_guardians;
-		if(possibilities.length == 0) possibilities = classes;
-		//console.log("class names available for guardians is: " + possibilities)
+		var possibilities = active_classes;
+		if(this.isActive()) possibilities = passive_classes;
 		var guardian = randomPlayerWithClaspect(this.session, getRandomElementFromArray(possibilities), this.aspect);
-        available_classes_guardians.removeFromArray(guardian.class_name)
+
 		guardian.isTroll = player.isTroll;
 		guardian.quirk.favoriteNumber = player.quirk.favoriteNumber;
 		if(guardian.isTroll){
@@ -1076,25 +1075,11 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 					powerBoost = powerBoost * 0.5
 				}
 				break;
-            case "Scout":
-                if(stat.multiplier > 0){
-                    powerBoost = powerBoost * 2;
-                }else{
-                    powerBoost = powerBoost * 0.5
-                }
-                break;
-            case "Guide":
-                if(stat.multiplier > 0){
-                    powerBoost = powerBoost * 2;
-                }else{
-                    powerBoost = powerBoost * 0.5
-                }
-                break;
 			case  "Seer":
 				if(stat.multiplier > 0){
-					powerBoost = powerBoost * 2;
+					powerBoost = powerBoost * 1;
 				}else{
-					powerBoost = powerBoost * 2.5
+					powerBoost = powerBoost * 0.25
 				}
 				break;
 			case  "Bard":
@@ -1146,27 +1131,11 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				break;
 			case  "Mage":
 				if(stat.multiplier > 0){
-					powerBoost = powerBoost * 2;
+					powerBoost = powerBoost * 1;
 				}else{
-					powerBoost = powerBoost * 2.5
+					powerBoost = powerBoost * 0.25
 				}
 				break;
-
-			case  "Sage":
-                if(stat.multiplier > 0){
-                    powerBoost = powerBoost * 1;
-                }else{
-                    powerBoost = powerBoost * 0.25
-                }
-                break;
-
-            case  "Scribe":
-                if(stat.multiplier > 0){
-                    powerBoost = powerBoost * 1;
-                }else{
-                    powerBoost = powerBoost * 0.25
-                }
-                break;
 
 			case  "Waste":
 				powerBoost = powerBoost * 0;  //wastes WASTE their abilities, until the cataclysm.
@@ -1189,8 +1158,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		if(this.isActive()){ //modify me
 			this.modifyAssociatedStat(powerBoost, stat);
 		}else{  //modify others.
-			powerBoost = 1* powerBoost; //to make up for passives being too nerfed. 1 for you
-			this.modifyAssociatedStat(powerBoost* 0.5, stat); //half for me
+			powerBoost = 2* powerBoost; //to make up for passives being too nerfed.
 			for(var i = 0; i<this.session.players.length; i++){
 				this.session.players[i].modifyAssociatedStat(powerBoost/this.session.players.length, stat);
 			}
@@ -1517,45 +1485,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		return worstRelationshipSoFar.value;
 	}
 
-
-	//checks array of buffs, and adds up all buffs that effect a given stat.
-	//useful so combat can now how to describe status.
-	this.getTotalBuffForStat = function(statName){
-	    var ret = 0;
-	    for(var i = 0; i<this.buffs.length; i++){
-	        var b = this.buffs[i];
-	        if(b.name == statName) ret += b.value;
-	    }
-	    return ret;
-	}
-
-	this.humanWordForBuffNamed = function(statName){
-        if(statName == "MANGRIT") return "powerful"
-        if(statName == "hp") return "sturdy"
-        if(statName == "RELATIONSHIPS") return "friendly"
-        if(statName == "mobility") return "fast"
-        if(statName == "sanity") return "calm"
-        if(statName == "freeWill") return "willful"
-        if(statName == "maxLuck") return "lucky"
-        if(statName == "minLuck") return "lucky"
-        if(statName == "alchemy") return "creative"
-	}
-
-	//used for strifes.
-	this.describeBuffs = function(){
-	    var ret = [];
-	    var allStats = this.allStats();
-	    for(var i = 0; i<allStats.length; i++){
-	        var b = this.getTotalBuffForStat(allStats[i]);
-	        //only say nothing if equal to zero
-	        if(b>0) ret.push("more "+this.humanWordForBuffNamed(allStats[i]));
-	        if(b<0) ret.push("less " + this.humanWordForBuffNamed(allStats[i]));
-	    }
-	    if(ret.length == 0) return "";
-	    //console.log("buffs printing out in: " + this.session.session_id);
-	    return "<Br><Br>" +this.htmlTitleHP() + " is feeling " + turnArrayIntoHumanSentence(ret) + " than normal. ";
-	}
-
 	//remember that hp and currentHP are different things.
 	this.getStat = function(statName){
 		var ret =  0;
@@ -1575,8 +1504,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			var b = this.buffs[i];
 			if(b.name == statName) ret += b.value;
 		}
-
-		if(statName == "power") ret = Math.max(0, ret); //no negative power, dunkass.
 		return Math.round(ret);
 	}
 
@@ -1669,12 +1596,12 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	}
 
 	this.highInit = function(){
-		return (this.class_name == "Rogue" || this.class_name == "Sage" ||  this.class_name == "Waste" ||  this.class_name == "Guide" || this.class_name == "Knight" || this.class_name == "Maid"|| this.class_name == "Mage"|| this.class_name == "Sylph"|| this.class_name == "Prince")
+		return (this.class_name == "Rogue" || this.class_name == "Knight" || this.class_name == "Maid"|| this.class_name == "Mage"|| this.class_name == "Sylph"|| this.class_name == "Prince")
 	}
 
 	this.initializeLuck = function(){
-		this.minLuck = getRandomInt(0,-10); //middle of the road.
-		this.maxLuck = this.minLuck + getRandomInt(10,1);   //max needs to be more than min.
+		this.minLuck = getRandomInt(0,10); //middle of the road.
+		this.maxLuck = this.minLuck + getRandomInt(-10,0);   //max needs to be more than min.
 		if(this.trickster && this.aspect != "Doom"){
 			this.minLuck = 11111111111;
 			this.maxLuck = 11111111111;
@@ -1779,8 +1706,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				}
 			}
 		}
-        console.log("initializing relationships")
-		if(this.robot || this.grimDark>1){ //you can technically start grimDark
+
+		if(this.robot){
 			for(var k = 0; k <this.relationships.length; k++){
 					var r = this.relationships[k];
 					r.value = 0; //robots are tin cans with no feelings
@@ -1825,45 +1752,10 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		var ret = ""+sanitizeString(this.causeOfDrain) + ","+sanitizeString(this.causeOfDeath) + "," + sanitizeString(this.interest1) + "," + sanitizeString(this.interest2) + "," + sanitizeString(ch)
 		return ret;
 	}
-
 	//not compressed
 	this.toOCDataString = function(){
-	    //for now, only extentsion sequence is for classpect. so....
-	    var x = "&x=" +this.toDataBytesX(); //ALWAYS have it. worst case scenario is 1 bit.
-		return "b=" + this.toDataBytes() + "&s="+this.toDataStrings(true) + x;
+		return "b=" + this.toDataBytes() + "&s="+this.toDataStrings(true)
 	}
-
-	//for now, only type is 1, which is class + aspect.
-	this.toDataBytesX = function(){
-        var builder = new ByteBuilder();
-        var j = this.toJSON();
-        if(j.class_name <= 15 && j.aspect <= 15){ //if NEITHER have need of extension, just return size zero
-            builder.appendExpGolomb(0) //for length
-            return encodeURIComponent(builder.data).replace(/#/g, '%23').replace(/&/g, '%26');
-        }
-        builder.appendExpGolomb(2) //for length
-        builder.appendByte(j.class_name);
-        builder.appendByte(j.aspect);
-        return encodeURIComponent(builder.data).replace(/#/g, '%23').replace(/&/g, '%26');
-	}
-
-    //values for extension string should overwrite existing values.
-    //takes in a reader because it acts as a stream, not a byte array
-    //read will read "next thing", all player has to do is know how to handle self.
-	this.readInExtensionsString = function(reader){
-	    console.log("reading in extension string")
-	    //just inverse of encoding process.
-	    var numFeatures = reader.readExpGolomb(); //assume features are in set order. and that if a given feature is variable it is ALWAYS variable.
-	    console.log("num features is: " + numFeatures);
-	     if(numFeatures > 0){
-	      var cid = reader.readByte();
-	      console.log("Class Name ID : " + cid)
-	      this.class_name = intToClassName(reader.readByte());
-	      }
-	    if(numFeatures > 1) this.aspect = intToAspect(reader.readByte());
-	    //as i add more things, add more lines. ALWAYS in same order, but not all features all the time.
-	}
-
 
 	/*
 		3 bytes: (24 bits) hairColor
@@ -1920,7 +1812,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 
 	//if it's part of player json, need to copy it over.
 	this.copyFromPlayer = function(replayPlayer){
-		//console.log("copying from player who has a favorite number of: " + replayPlayer.quirk.favoriteNumber)
+		console.log("copying from player who has a favorite number of: " + replayPlayer.quirk.favoriteNumber)
 		//console.log("Overriding player from a replay Player. ")
 		//console.log(replayPlayer)
 		this.aspect = replayPlayer.aspect;
@@ -1951,12 +1843,8 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 		this.dead = replayPlayer.dead;
 		this.victimBlood = replayPlayer.victimBlood
 		this.robot = replayPlayer.robot;
-		this.fraymotifs = [];  //whoever you were before, you don't have those psionics anymore
-		this.applyPossiblePsionics(); //now you have new psionics
-		//console.log("after applying psionics I have this many fraymotifs: " + this.fraymotifs.length);
 		this.quirk.favoriteNumber = replayPlayer.quirk.favoriteNumber; //will get overridden, has to be after initialization, too, but if i don't do it here, char creartor will look wrong.
 		this.makeGuardian();
-		this.guardian.applyPossiblePsionics(); //now you have new psionics
 	}
 
 
@@ -2110,8 +1998,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				break;
 			case  "Void":
 				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), 3,true)); //really good at one thing
-				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), -1,true));  //hit to another thing.
-				this.associatedStats.push(new AssociatedStat( "minLuck", -1,true));  //hit to another thing.
+				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), -2,true));  //hit to another thing.
 				break;
 			case  "Time":
 				this.associatedStats.push(new AssociatedStat("minLuck", 2,true));
@@ -2133,7 +2020,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				this.associatedStats.push(new AssociatedStat("maxLuck", 2,true));
 				this.associatedStats.push(new AssociatedStat("freeWill", 1,true));
 				this.associatedStats.push(new AssociatedStat("sanity", -1,true));
-				this.associatedStats.push(new AssociatedStat("hp", -1,true));
+				this.associatedStats.push(new AssociatedStat("freeWill", -1,true));
 				break;
 			case  "Space":
 				this.associatedStats.push(new AssociatedStat("alchemy", 2,true));
@@ -2150,7 +2037,7 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 				this.associatedStats.push(new AssociatedStat("MANGRIT", 1,true));
 				this.associatedStats.push(new AssociatedStat("alchemy", -2,true));
 				break;
-			case  "Doom":  //fool, doom will toot as it pleases
+			case  "Doom":
 				this.associatedStats.push(new AssociatedStat("alchemy", 2,true));
 				this.associatedStats.push(new AssociatedStat("freeWill", 1,true));
 				this.associatedStats.push(new AssociatedStat("minLuck", -1,true));
@@ -2253,7 +2140,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 	//players can start with any luck, (remember, Vriska started out super unlucky and only got AAAAAAAALL the luck when she hit godtier)
 	//make sure session calls this before first tick, cause otherwise won't be initialized by right claspect after easter egg or character creation.
 	this.initializeStats = function(){
-		if(this.trickster && this.aspect == "Doom") this.trickster == false; //doom players break rules
 		this.associatedStats = []; //this might be called multiple times, wipe yourself out.
 		this.intializeAssociatedAspectStatReferences();
 		this.intializeAssociatedClassStatReferences();
@@ -2280,23 +2166,6 @@ function Player(session,class_name, aspect, object_to_prototype, moon, godDestin
 			this.godDestiny =true;
 		}
 		this.currentHP = this.hp; //could have been altered by associated stats
-
-		if(this.class_name == "Waste"){
-		    var f = new Fraymotif([],  "Rocks Fall, Everyone Dies", 1) //what better fraymotif for an Author to start with. Too bad it sucks.  If ONLY there were some way to hax0r SBURB???
-            f.effects.push(new FraymotifEffect("power",3,true));
-            f.flavorText = "Disappointingly sized meteors rain down from above.  Man, for such a cool name, this fraymotif kind of sucks. "
-            this.fraymotifs.push(f);
-		}else if(this.class_name == "Null"){
-            var f = new Fraymotif([],  "What class???", 1)
-            f.effects.push(new FraymotifEffect("power",1,true));
-            f.flavorText = " I am certain there is not a class here and it is laughable to imply otherwise. "
-            this.fraymotifs.push(f);
-
-            var f = new Fraymotif([],  "Nulzilla", 2)
-            f.effects.push(new FraymotifEffect("power",1,true));
-            f.flavorText = " If you get this reference, you may reward yourself 15 Good Taste In Media Points (tm).  "
-            this.fraymotifs.push(f);
-		}
 	}
 
 
@@ -2311,17 +2180,15 @@ javascript is "WAT"ing me
 because of COURSE "null" == null is fucking false, so my code is like "oh, i must have some players" and then try to fucking parse!!!!!!!!!!!!!!*/
 function getReplayers(){
 //	var b = LZString.decompressFromEncodedURIComponent(getRawParameterByName("b"));
-	available_classes_guardians = classes.slice(0); //if there are replayers, then i need to reset guardian classes
 	var b = decodeURIComponent(LZString.decompressFromEncodedURIComponent(getRawParameterByName("b")));
 	var s = LZString.decompressFromEncodedURIComponent(getRawParameterByName("s"));
-	var x = LZString.decompressFromEncodedURIComponent(getRawParameterByName("x"));
 	if(!b||!s) return [];
 	if(b== "null" || s == "null") return []; //why was this necesassry????????????????
 	//console.log("b is");
 	//console.log(b)
 	//console.log("s is ")
 	//console.log(s)
-	return dataBytesAndStringsToPlayers(b,s,x);
+	return dataBytesAndStringsToPlayers(b,s);
 }
 
 function syncReplayNumberToPlayerNumber(replayPlayers){
@@ -2342,23 +2209,19 @@ function syncReplayNumberToPlayerNumber(replayPlayers){
 	}
 }
 
-//this code is needed to make sure replay players have guardians.
 function redoRelationships(players){
 	var guardians = [];
-	console.log("redoing relationships")
 	for(var j = 0; j<players.length; j++){
 		var p = players[j];
 		guardians.push(p.guardian)
 		p.relationships = [];
 		p.generateRelationships(curSessionGlobalVar.players);
-		p.initializeRelationships();
 	}
 
 	for(var j = 0; j<guardians.length; j++){
 		var p = guardians[j]
 		p.relationships = [];
 		p.generateRelationships(guardians);
-		p.initializeRelationships();
 	}
 }
 
@@ -2382,8 +2245,7 @@ function initializePlayers(players,session){
 		}
 	}
 	if(replayPlayers.length > 0){
-		redoRelationships(players);  //why was i doing this, this overrides robot and gim dark and initial relationships
-	    //oh because it makes replayed sessions with scratches crash.
+		redoRelationships(players);
 	}
 
 }
@@ -2396,10 +2258,9 @@ function initializePlayersNoDerived(players,session){
 		players[i].initializeSprite();
 	}
 
-	//might not be needed.   futureJadedResearcher (FJR) has begun pestering pastJadedResearcher(PJR).  FJR: Yeah, no shit sherlock
+	//might not be needed
 	if(replayPlayers.length > 0){
-		redoRelationships(players);  //why was i doing this, this overrides robot and gim dark and initial relationships
-		//oh because it makes replayed sessions with scratches crash.
+		redoRelationships(players);
 	}
 }
 
@@ -2429,8 +2290,6 @@ function getColorFromAspect(aspect){
 		color = "#ffcc66";
 	}else if(aspect == "Life"){
 		color = "#494132";
-	}else{
-	    color = "#efefef"
 	}
 	return color;
 }
@@ -2909,14 +2768,14 @@ function sortPlayersByFreeWill(players){
 }
 
 function compareFreeWill(a,b) {
-  return b.getStat("freeWill") - a.getStat("freeWill");
+  return b.freeWill - a.freeWill;
 }
 
 function getAverageMinLuck(players){
 	if(players.length == 0) return 0;
 	var ret = 0;
 	for(var i = 0; i< players.length; i++){
-		ret += players[i].getStat("minLuck");
+		ret += players[i].minLuck;
 	}
 	return  Math.round(ret/players.length);
 }
@@ -2925,7 +2784,7 @@ function getAverageMaxLuck(players){
 	if(players.length == 0) return 0;
 	var ret = 0;
 	for(var i = 0; i< players.length; i++){
-		ret += players[i].getStat("maxLuck");
+		ret += players[i].maxLuck;
 	}
 	return  Math.round(ret/players.length);
 }
@@ -2934,7 +2793,7 @@ function getAverageSanity(players){
 	if(players.length == 0) return 0;
 	var ret = 0;
 	for(var i = 0; i< players.length; i++){
-		ret += players[i].getStat("sanity");
+		ret += players[i].sanity;
 	}
 	return  Math.round(ret/players.length);
 }
@@ -2943,7 +2802,7 @@ function getAverageHP(players){
 	if(players.length == 0) return 0;
 	var ret = 0;
 	for(var i = 0; i< players.length; i++){
-		ret += players[i].getStat("hp");
+		ret += players[i].hp;
 	}
 	return  Math.round(ret/players.length);
 }
@@ -2970,7 +2829,7 @@ function getAveragePower(players){
 	if(players.length == 0) return 0;
 	var ret = 0;
 	for(var i = 0; i< players.length; i++){
-		ret += players[i].getStat("power");
+		ret += players[i].power;
 	}
 	return  Math.round(ret/players.length);
 }
@@ -2987,11 +2846,12 @@ function getAverageFreeWill(players){
 	if(players.length == 0) return 0;
 	var ret = 0;
 	for(var i = 0; i< players.length; i++){
-		ret += players[i].getStat("freeWill");
+		ret += players[i].freeWill;
 	}
 	return  Math.round(ret/players.length);
 }
 
+///TODO USE SOMETHING SIMILAR FOR fraymotifS (BUT THROWN AWAY AT END OF STRIFE)
 //need to know if you're from aspect, 'cause only aspect associatedStats will be used for fraymotifs.
 //except for heart, which can use ALL associated stats. (cause none will be from aspect.)
 function AssociatedStat(statName, multiplier, isFromAspect){

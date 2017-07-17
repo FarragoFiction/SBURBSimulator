@@ -77,32 +77,6 @@ function PlayerSnapshot(){
 		return ["power","hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
 	}
 
-	//for now, only type is 1, which is class + aspect.
-    this.toDataBytesX = function(){
-        var builder = new ByteBuilder();
-        var j = this.toJSON();
-        if(j.class_name <= 15 && j.aspect <= 15){ //if NEITHER have need of extension, just return size zero
-            builder.appendExpGolomb(0) //for length
-            return encodeURIComponent(builder.data).replace(/#/g, '%23').replace(/&/g, '%26');
-        }
-        builder.appendExpGolomb(2) //for length
-        builder.appendByte(j.class_name);
-        builder.appendByte(j.aspect);
-        return encodeURIComponent(builder.data).replace(/#/g, '%23').replace(/&/g, '%26');
-    }
-
-    //values for extension string should overwrite existing values.
-    //takes in a reader because it acts as a stream, not a byte array
-    //read will read "next thing", all player has to do is know how to handle self.
-    this.readInExtensionsString = function(reader){
-        console.log("reading in extension string")
-        //just inverse of encoding process.
-        var numFeatures = reader.readExpGolomb(); //assume features are in set order. and that if a given feature is variable it is ALWAYS variable.
-        if(numFeatures > 0)  this.class_name = intToClassName(reader.readByte());
-        if(numFeatures > 1) this.aspect = intToAspect(reader.readByte());
-        //as i add more things, add more lines. ALWAYS in same order, but not all features all the time.
-    }
-
 	this.toDataStrings = function(includeChatHandle){
 		var ch = "";
 		if(includeChatHandle) ch = sanitizeString(this.chatHandle);
@@ -326,43 +300,6 @@ function PlayerSnapshot(){
 		return [];
 	}
 
-		//checks array of buffs, and adds up all buffs that effect a given stat.
-    	//useful so combat can now how to describe status.
-    	this.getTotalBuffForStat = function(statName){
-    	    var ret = 0;
-    	    for(var i = 0; i<this.buffs.length; i++){
-    	        var b = this.buffs[i];
-    	        if(b.name == statName) ret += b.value;
-    	    }
-    	    return ret;
-    	}
-
-    	this.humanWordForBuffNamed = function(statName){
-            if(statName == "MANGRIT") return "powerful"
-            if(statName == "hp") return "sturdy"
-            if(statName == "RELATIONSHIPS") return "friendly"
-            if(statName == "mobility") return "fast"
-            if(statName == "sanity") return "calm"
-            if(statName == "freeWill") return "willful"
-            if(statName == "maxLuck") return "lucky"
-            if(statName == "minLuck") return "lucky"
-            if(statName == "alchemy") return "creative"
-    	}
-
-    	//used for strifes.
-    	this.describeBuffs = function(){
-    	    var ret = [];
-    	    var allStats = this.allStats();
-    	    for(var i = 0; i<allStats.length; i++){
-    	        var b = this.getTotalBuffForStat(allStats[i]);
-    	        //only say nothing if equal to zero
-    	        if(b>0) ret.push("more "+this.humanWordForBuffNamed(allStats[i]));
-    	        if(b<0) ret.push("less " + this.humanWordForBuffNamed(allStats[i]));
-    	    }
-    	    if(ret.length == 0) return "";
-    	    return this.htmlTitleHP() + " is feeling " + turnArrayIntoHumanSentence(ret) + " than normal. ";
-    	}
-
 
 
 
@@ -392,7 +329,7 @@ function MiniSnapShot(player){
 
 function makeRenderingSnapshot(player){
 	var ret = new PlayerSnapshot();
-	ret.fraymotifs = player.fraymotifs.slice(0)//omg, make a copy you dunkass, or time players get the OP fraymotifs of their doomed clones;
+	ret.fraymotifs = player.fraymotifs;
 	ret.robot = player.robot;
 	ret.spriteCanvasID = player.spriteCanvasID;
   ret.currentHP = player.currentHP;
@@ -436,7 +373,6 @@ function makeRenderingSnapshot(player){
 	return ret;
 }
 
-
 //taken out of SaveDoomedTimeLine this
 function makeDoomedSnapshot(timePlayer){
 	var timeClone = makeRenderingSnapshot(timePlayer);
@@ -464,7 +400,7 @@ function makeDoomedSnapshot(timePlayer){
 	}
 
 	if(timeClone.grimDark > 3){
-		var f = new Fraymotif([],  Zalgo.generate("The Broodfester Tongues"), 3)
+		var f = new Fraymotif([],  "The Broodfester Tongues", 3)
 		f.effects.push(new FraymotifEffect("power",3,true));
 		f.effects.push(new FraymotifEffect("power",0,false));
 		f.flavorText = " They are stubborn throes. "

@@ -715,12 +715,12 @@ function Intro(session){
 				narration += " They appear to be destined for greatness. ";
 			}
 
-			if(this.player.minLuck + this.player.maxLuck >25){
+			if(this.player.minLuck + this.player.maxLuck >15){
 				//console.log("initially lucky player: " +this.session.session_id)
 				narration += " They have aaaaaaaall the luck. All of it.";
 			}
 
-			if(this.player.maxLuck < -25){
+			if(this.player.maxLuck < -15){
 				//console.log("initially unlucky player: " +this.session.session_id)
 				narration += " They have an insurmountable stockpile of TERRIBLE LUCK.";
 			}
@@ -757,7 +757,6 @@ function Intro(session){
 
 			for(var j = 0; j<this.player.relationships.length; j++){
 				var r = this.player.relationships[j];
-				//console.log("Initial relationship value is: " + r.value + " and grim dark is: " + this.player.grimDark)
 				if(r.type() != "Friends" && r.type() != "Rivals"){
 					narration += "They are " + r.description() + ". ";
 				}

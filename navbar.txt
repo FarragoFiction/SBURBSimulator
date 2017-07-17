@@ -33,7 +33,6 @@
       <a href="about.html">FAQ</a>
       <a href="todo.html">TODO Pile</a>
       <a href="glitches.html">Glitch FAQ</a>
-      <a href = "https://github.com/jadedResearcher/SBURBSimulator"> GitHub Repo</a>
     </div>
   </li>
 

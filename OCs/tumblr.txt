@@ -12,4 +12,3 @@ b=%00%00%00%20%C3%B8%23%10PGGD&s=,,Drawing,Character Creation,InsufferableOracle
 b=%C3%9Bm%00%C2%80%C3%BE2%00X%0D%0D.&s=,,Authoring,Drawing,
 b=3%13%0B%C2%B8%C3%BE%02%00%14%07.%13&s=,,Horror,Acting,animatronicPuppets
 b=E0%12%C2%B8%C3%BE*%00%11%1E%1E%2F&s=,,Drawing distant Lands,Procedural Generation,ParadoxLands
-b=kF%1A%C2%A1%C3%BE%C2%A2%00%1B%17%17%16&s=,,Cooking,Theater,minuteMinuet

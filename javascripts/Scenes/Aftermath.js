@@ -1,7 +1,6 @@
 function Aftermath(session){
 	this.session = session;
 	this.canRepeat = false;
-
 	this.playerList = [];  //what players are already in the medium when i trigger?
 	this.trigger = function(playerList){
 		this.playerList = playerList;
@@ -105,14 +104,22 @@ function Aftermath(session){
 		copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0)
 	}
 
+	//space stuck needs love
+	this.findBestSpace = function(){
+		var spaces = findAllAspectPlayers(this.session.players, "Space");
+		var ret = spaces[0];
+		for(var i = 0; i<spaces.length; i++){
+			if(spaces[i].landLevel > ret.landLevel) ret = spaces[i];
+		}
+		return ret;
+	}
 
 
 	this.renderContent = function(div){
 		var yellowYard = false;
 		var end = "<Br>";
 		var living = findLivingPlayers(this.session.players);
-		var spacePlayer = this.session.findBestSpace();
-		var corruptedSpacePlayer = this.session.findMostCorruptedSpace();
+		var spacePlayer = this.findBestSpace();
 		//var spacePlayer = findAspectPlayer(this.session.players, "Space");
 		//...hrrrm...better debug this. looks like this can be triggered when players AREN"T being revived???
 		if(living.length > 0  && (!this.session.king.dead || !this.session.queen.dead && this.session.queen.exiled == false)){
@@ -132,10 +139,6 @@ function Aftermath(session){
 		}
 
 		if(living.length > 0){
-			//check for inverted frog.
-			if(corruptedSpacePlayer.landLevel <= (this.session.minFrogLevel * -1)){
-			    return this.purpleFrogEnding(div, end);
-			}
 			if(spacePlayer.landLevel >= this.session.minFrogLevel){
 				end += "<br><img src = 'images/sceneIcons/frogger_animated.gif'> Luckily, the " + spacePlayer.htmlTitle() + " was diligent in frog breeding duties. ";
 				if(spacePlayer.landLevel < 28){
@@ -167,7 +170,7 @@ function Aftermath(session){
 				}else{
 					end += "<br>Unfortunately, the " + spacePlayer.htmlTitle() + " was unable to complete frog breeding duties. ";
 					end += " They only got " + Math.round(spacePlayer.landLevel/this.session.minFrogLevel*100) + "% of the way through. ";
-					console.log(Math.round(spacePlayer.landLevel/this.session.minFrogLevel*100) + " % frog in session: " + this.session.session_id)
+
 					if(spacePlayer.landLevel < 0){
 						end += " Stupid lousy goddamned GrimDark players fucking with the frog breeding. Somehow you ended up with less of a frog than when you got into the medium. ";
 					}
@@ -203,140 +206,8 @@ function Aftermath(session){
 	}
 }
 
-
-//kid rock NEEDS fraymotif: BANG DA DANG DIGGY DIGGY
-//Fun Fact: In this test session i'm working on, Troll Kid Rock FUCKING REFUSES to play BANG DA DANG DIGGY DIGGY and instead 
-//partners up with a doom player to help them use "Another One Bites the Dust" and this is so objectively hilarious.
-//like holy fuck, imagine him doing this at a concert. how CONFUSED the audience would be. ultimate troll.
-//thanks goes to Ancient for this amazing idea.
-this.trollKidRock = function(){
-	var trollKidRockString = "b=%00%00%00%C2%91%C3%B0%15%10VDD%20&s=,,Rap-Rock,Riches,bawitdaBastard" //Ancient, thank you for best meme. 
-	var trollKidRock = new CharacterEasterEggEngine().playerDataStringArrayToURLFormat([trollKidRockString])[0];
-	trollKidRock.session = this.session;
-	var f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) //most repetitive song, ACTIVATE!!!
-	f.effects.push(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
-	f.effects.push(new FraymotifEffect("power",1,false));
-	f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? "
-	trollKidRock.fraymotifs.push(f);
-	
-	var f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) //most repetitive song, ACTIVATE!!!
-	f.effects.push(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
-	f.effects.push(new FraymotifEffect("power",1,false));
-	f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? "
-	trollKidRock.fraymotifs.push(f);
-	
-	var f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) //most repetitive song, ACTIVATE!!!
-	f.effects.push(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
-	f.effects.push(new FraymotifEffect("power",1,false));
-	f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? "
-	trollKidRock.fraymotifs.push(f);
-	
-	var f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) //most repetitive song, ACTIVATE!!!
-	f.effects.push(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
-	f.effects.push(new FraymotifEffect("power",1,false));
-	f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? "
-	trollKidRock.fraymotifs.push(f);
-	initializePlayers([trollKidRock]);
-	trollKidRock.currentHP = 1000;
-	return trollKidRock;
-}
-
-//omg ancient just called it "Bileus Prick"
-this.purpleFrog = function(){
-	var mvp = findStrongestPlayer(this.session.players);
-	var tmpStatHolder = {};
-	tmpStatHolder.minLuck = -100;
-	tmpStatHolder.maxLuck = 100;
-	tmpStatHolder.hp = 30000+mvp.getStat("power") * this.session.players.length;  //this will be a challenge. good thing you have troll kid rock to lay down some sick beats.
-	tmpStatHolder.mobility = -100
-	tmpStatHolder.sanity = 0
-	tmpStatHolder.freeWill = 200
-	tmpStatHolder.power =20000+mvp.getStat("power") * this.session.players.length; //this will be a challenge.
-	tmpStatHolder.grist = 100000000;
-	tmpStatHolder.abscondable = false; //this is still the final battle, 
-	tmpStatHolder.canAbscond = false;
-	tmpStatHolder.RELATIONSHIPS = -100;  //not REAL relationships, but real enough for our purposes.
-	console.log(purpleFrog)
-	var purpleFrog =  new GameEntity(this.session, " <font color='purple'>" +Zalgo.generate("Purple Frog") + "</font>", null);
-	purpleFrog.setStatsHash(tmpStatHolder);
-	console.log(purpleFrog)
-	//what kind of attacks does a grim dark purple frog have???  Croak Blast is from rp, but what else?
-	
-	var f = new Fraymotif([], Zalgo.generate("CROAK BLAST"), 3) //freeMiliu_2K01 [F☆] came up with this one in the RP :)  :) :)
-	f.effects.push(new FraymotifEffect("mobility",3,true));
-	f.flavorText = " OWNER uses a weaponized croak. You would be in awe if it weren't so painful. "
-	purpleFrog.fraymotifs.push(f);
-	
-	f = new Fraymotif([],  Zalgo.generate("HYPERBOLIC GEOMETRY"), 3)//DM, the owner of the purple frog website came up with this one.
-	f.effects.push(new FraymotifEffect("mobility",3,false));
-	f.flavorText = " OWNER somehow corrupts the very fabric of space. Everyone begins to have trouble navigating the corrupted and broken rules of three dimensional space. "
-	purpleFrog.fraymotifs.push(f);
-	
-	f = new Fraymotif([],  Zalgo.generate("ANURA JARATE"), 3)//DM, the owner of the purple frog website came up with this one. team fortress + texts from super heroes ftw.
-	f.effects.push(new FraymotifEffect("sanity",3,false));
-	f.flavorText = " Did you know that some species of frogs weaponize their own urine? Now you do. You can never unknow this. The entire party is disgusted. "
-	purpleFrog.fraymotifs.push(f);
-	
-	f = new Fraymotif([],  Zalgo.generate("LITERAL TONGUE LASHING"), 3)//DM, the owner of the purple frog website came up with this one.
-	f.effects.push(new FraymotifEffect("mobility",2,false));
-	f.effects.push(new FraymotifEffect("mobility",2,true));
-	f.flavorText = " OWNER uses an incredibly long, sticky tongue to attack the ENEMY, hurting and immobilizing them. "
-	purpleFrog.fraymotifs.push(f);
-	
-	return purpleFrog;
-}
-this.getGoodGuys = function(trollKidRock){
-	var living = this.session.players;
-	var allPlayers = this.session.players; //anybody can have doomedclones now, not just time players.
-
-	for(var i = 0; i<allPlayers.length; i++){
-		living = living.concat(allPlayers[i].doomedTimeClones)
-	}
-	return living;
-}
-
-
-//purple frog was the name of my old host. but also, it sounds like a grim dark frog, doesn't it?
-//reference to rp at: http://forums.msparp.com/showthread.php?tid=16049
-//guest starring troll kid rock
-this.purpleFrogEnding = function(div, precedingText){
-	//alert("purple frog incoming!!!" + this.session.session_id)
-	//maybe load kid rock first and have callback for when he's done.
-	//maybe kid rock only shows up for half purple frogs??? need plausible deniability? "Troll Kid Rock??? Never heard of him. Sounds like a cool dude, though."
-	var trollKidRock = this.trollKidRock();
-	console.log(trollKidRock)
-	var purpleFrog = this.purpleFrog();
-	precedingText += "<img src = 'images/sceneicons/Purple_Frog_ANGERY.png'> What...what is going on? How...how can you have NEGATIVE 100% of a frog??? This...this doesn't look right.   The vast frog lets out a CROAK, but it HURTS.  It seems...hostile.  Oh fuck. <Br><br> The " + purpleFrog.htmlTitleHP() + " initiates a strife with the Players! Troll Kid Rock appears out of nowhere to help them. (What the hell???)<br><br><canvas id = 'trollKidRockAppears' width ='400' height = '300'></canvas>"
-	div.append(precedingText);
-	
-	var purpleFighters = this.getGoodGuys(trollKidRock)
-	var callBack = this.finishPurpleStrife.bind(this, div, purpleFrog, purpleFighters, trollKidRock)
-	loadAllImagesForPlayerWithCallback(trollKidRock, callBack)
-	
-}
-
-this.finishPurpleStrife = function(div, purpleFrog, fighters, trollKidRock){
-	trollKidRock.renderSelf();  //gotta cache his sprite
-	var tkrCanvas =  document.getElementById("trollKidRockAppears");
-	drawTimeGears(tkrCanvas, trollKidRock);
-	drawSinglePlayer(tkrCanvas, trollKidRock);
-	fighters.push(makeRenderingSnapshot(trollKidRock)) //sorry trollKidRock you are not REALLY a player.
-	purpleFrog.strife(div, fighters,0)
-	var ret = "";
-	if(purpleFrog.getStat("currentHP") <= 0 || purpleFrog.dead) {
-		this.session.won = true;
-		ret += "With a final, deafening 'CROAK', the " + purpleFrog.name + " slumps over. While it appears dead, it is merely unconscious. Entire universes swirl within it now that it has settled down, including the Players original Universe. You guess it would make sense that your Multiverse would be such an aggressive, glitchy asshole, if it generated such a shitty, antagonistic game as SBURB.  You still don't know what happened with Troll Kid Rock. You...guess that while regular Universes start with a 'bang', Skaia has decreed that Multiverses have to start with a 'BANG DA DANG DIGGY DIGGY'.  <Br><br> The door to the new multiverse is revealed. Everyone files in. <Br><Br> Thanks for Playing. <span class = 'void'>Though, of course, the Horror Terrors slither in right after the Players. It's probably nothing. Don't worry about it.  THE END</span>"
-	}else{
-		ret += "With a final, deafening 'CROAK', the " + purpleFrog.name + " floats victorious over the remains of the Players.   The Horror Terrors happily colonize the new Universe, though, so I guess the GrimDark players would be happy with this ending?  <Br><Br> Thanks for Playing. "
-	}
-	div.append(ret);
-	this.lastRender(div);
-}
-
 //take "firstcanvas"+ this.player.id+"_" + this.session.session_id from intro, and copy it here to display for first time.
 this.lastRender = function(div){
-    div = $("#charSheets");
-    if(div.length == 0) return; //don't try to render if there's no where to render to
 	for(var i = 0; i<this.session.players.length; i++){
 		var canvasHTML = "<canvas class = 'charSheet' id='lastcanvas" + this.session.players[i].id+"_" + this.session.session_id+"' width='800' height='1000'>  </canvas>";
 		div.append(canvasHTML);
