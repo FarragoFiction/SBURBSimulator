@@ -1093,944 +1093,929 @@ sooooo...things that go in sprites are gameEntities. Just like jack/Queen/King. 
 //or into ring/scepter.
 //an objects stats are zero unless otherwise stated.
 //don't bother allocating memory for objects, just leave in array.
-var disastor_objects =[];
-var fortune_objects =[];
-List<dynamic> prototyping_objects = [];
-List<dynamic> lusus_objects = [];
-List<dynamic> sea_lusus_objects = [];
+
+
 
 //seperate 'cause of witches and bad luck and good luck
 //DinceJof -  you prototype your kernel sprite with the ashes of your ancestor. They used to be a SBURB player like you, until they took a scratch to the timeline.
-
-disastor_objects.push(new GameEntity(null, "First Guardian",null));  //also a custom fraymotif.
-disastor_objects[disastor_objects.length-1].hp = 1000;
-disastor_objects[disastor_objects.length-1].currentHP = 1000;
-disastor_objects[disastor_objects.length-1].mobility = 500;
-disastor_objects[disastor_objects.length-1].power = 250;
-disastor_objects[disastor_objects.length-1].helpPhrase = "is fairly helpful with the teleporting and all, but when it speaks- Wow. No. That is not ok. ";
-var f = new Fraymotif([], "Atomic Teleport Spam", 3);
-f.effects.push(new FraymotifEffect("mobility",0,false));
-f.effects.push(new FraymotifEffect("mobility",2,true));
-f.flavorText = " The OWNER shimers with radioactive stars, and then teleports behind the ENEMY, sneak-attacking them. ";
-disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
-
+var disastor_objects =[
+	new GameEntity(null, "First Guardian",null)  //also a custom fraymotif.
+		..hp = 1000
+		..currentHP = 1000
+		..mobility = 500
+		..power = 250
+		..helpPhrase = "is fairly helpful with the teleporting and all, but when it speaks- Wow. No. That is not ok. "
+		..fraymotifs.add( new Fraymotif([], "Atomic Teleport Spam", 3)
+			..effects.add(new FraymotifEffect("mobility",0,false))
+			..effects.add(new FraymotifEffect("mobility",2,true))
+			..flavorText = " The OWNER shimers with radioactive stars, and then teleports behind the ENEMY, sneak-attacking them. "),
 
 
-disastor_objects.push(new GameEntity(null, "Horror Terror",null));  //vast glub
-disastor_objects[disastor_objects.length-1].hp = 500;
-disastor_objects[disastor_objects.length-1].currentHP = 500;
-disastor_objects[disastor_objects.length-1].corrupted = true;  //gives the corrupted status to whoever wears the ring, and the sprite, too. fighting corruption corrupts you.
-disastor_objects[disastor_objects.length-1].power = 150;
-disastor_objects[disastor_objects.length-1].lusus = true;
-disastor_objects[disastor_objects.length-1].freeWill = 250; //wants to mind control you.
-disastor_objects[disastor_objects.length-1].helpPhrase = "... Oh god. What is going on. Why does just listening to it make your ears bleed!? ";
-var f = new Fraymotif([],"Vast Glub", 3);
-f.effects.push(new FraymotifEffect("freeWill",3,true));
-f.flavorText = " A galaxy spanning glub damages everyone. The only hope of survival is to spread the damage across so many enemies that everyone only takes a manageable amount. ";
-disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
+	new GameEntity(null, "Horror Terror",null)  //vast glub
+		..hp = 500
+		..currentHP = 500
+		..corrupted = true  //gives the corrupted status to whoever wears the ring, and the sprite, too. fighting corruption corrupts you.
+		..power = 150
+		..lusus = true
+		..freeWill = 250 //wants to mind control you.
+		..helpPhrase = "... Oh god. What is going on. Why does just listening to it make your ears bleed!? "
+		..fraymotifs.add( new Fraymotif([],"Vast Glub", 3)
+			..effects.add(new FraymotifEffect("freeWill",3,true))
+			..flavorText = " A galaxy spanning glub damages everyone. The only hope of survival is to spread the damage across so many enemies that everyone only takes a manageable amount. "),
 
 
-disastor_objects.push(new GameEntity(null, "Speaker of the Furthest Ring",null));  //vast glub
-disastor_objects[disastor_objects.length-1].hp = 1000;
-disastor_objects[disastor_objects.length-1].currentHP = 1000;
-disastor_objects[disastor_objects.length-1].corrupted = true;
-disastor_objects[disastor_objects.length-1].power = 250;
-disastor_objects[disastor_objects.length-1].freeWill = 500; //wants to mind control you.
-disastor_objects[disastor_objects.length-1].helpPhrase = "whispers madness humankind was not meant to know. Its words are painful, hateful, yet… tempting. It speaks of flames and void, screams and gods. ";
-var f = new Fraymotif([],"Vast Glub", 3);
-f.effects.push(new FraymotifEffect("freeWill",3,true));
-f.flavorText = " A galaxy spanning glub damages everyone. The only hope of survival is to spread the damage across so many enemies that everyone only takes a manageable amount. ";
-disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
+	new GameEntity(null, "Speaker of the Furthest Ring",null)  //vast glub
+		..hp = 1000
+		..currentHP = 1000
+		..corrupted = true
+		..power = 250
+		..freeWill = 500 //wants to mind control you.
+		..helpPhrase = "whispers madness humankind was not meant to know. Its words are painful, hateful, yet… tempting. It speaks of flames and void, screams and gods. "
+		..fraymotifs.add( new Fraymotif([],"Vast Glub", 3)
+			..effects.add(new FraymotifEffect("freeWill",3,true))
+			..flavorText = " A galaxy spanning glub damages everyone. The only hope of survival is to spread the damage across so many enemies that everyone only takes a manageable amount. "),
 
 
-
-disastor_objects.push(new GameEntity(null, "Clown",null));  //custom fraymotif: can' keep down the clown (heal).
-disastor_objects[disastor_objects.length-1].hp = 1000;
-disastor_objects[disastor_objects.length-1].currentHP = 1000;
-disastor_objects[disastor_objects.length-1].power = 100;
-disastor_objects[disastor_objects.length-1].minLuck = -250; //unpredictable
-disastor_objects[disastor_objects.length-1].maxLuck = 250;
-disastor_objects[disastor_objects.length-1].helpfulness = -1;
-disastor_objects[disastor_objects.length-1].helpPhrase = "goes hehehehehehehehehehehehehehehehehehehehehehehehehehe. ";
-var f = new Fraymotif([], "Hee Hee Hee Hoo!", 3);
-f.effects.push(new FraymotifEffect("sanity",3,false));
-f.effects.push(new FraymotifEffect("sanity",3,true));
-f.flavorText = " Oh god! Shut up! Just once! Please shut up! ";
-disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
+	new GameEntity(null, "Clown",null)  //custom fraymotif: can' keep down the clown (heal).
+		..hp = 1000
+		..currentHP = 1000
+		..power = 100
+		..minLuck = -250 //unpredictable
+		..maxLuck = 250
+		..helpfulness = -1
+		..helpPhrase = "goes hehehehehehehehehehehehehehehehehehehehehehehehehehe. "
+		..fraymotifs.add( new Fraymotif([], "Hee Hee Hee Hoo!", 3)
+			..effects.add(new FraymotifEffect("sanity",3,false))
+			..effects.add(new FraymotifEffect("sanity",3,true))
+			..flavorText = " Oh god! Shut up! Just once! Please shut up! "),
 
 
-disastor_objects.push(new GameEntity(null, "Puppet",null));
-disastor_objects[disastor_objects.length-1].hp = 500;
-disastor_objects[disastor_objects.length-1].helpPhrase =  "is the most unhelpful piece of shit in the world. Oh my god, just once. Please, just shut up. ";
-disastor_objects[disastor_objects.length-1].currentHP = 500;
-disastor_objects[disastor_objects.length-1].helpfulness = -1;
-disastor_objects[disastor_objects.length-1].power = 100;
-disastor_objects[disastor_objects.length-1].sanity = -250; //unpredictable
-disastor_objects[disastor_objects.length-1].freeWill = 250; //wants to mind control you.
-disastor_objects[disastor_objects.length-1].mobility = 250;
-disastor_objects[disastor_objects.length-1].minLuck = -250;
-disastor_objects[disastor_objects.length-1].maxLuck = 250;
-var f = new Fraymotif([], "Hee Hee Hee Hoo!", 3);
-f.effects.push(new FraymotifEffect("sanity",3,false));
-f.effects.push(new FraymotifEffect("sanity",3,true));
-f.flavorText = " Oh god! Shut up! Just once! Please shut up! ";
-disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
+	new GameEntity(null, "Puppet",null)
+		..hp = 500
+		..helpPhrase =  "is the most unhelpful piece of shit in the world. Oh my god, just once. Please, just shut up. "
+		..currentHP = 500
+		..helpfulness = -1
+		..power = 100
+		..sanity = -250 //unpredictable
+		..freeWill = 250 //wants to mind control you.
+		..mobility = 250
+		..minLuck = -250
+		..maxLuck = 250
+		..fraymotifs.add( new Fraymotif([], "Hee Hee Hee Hoo!", 3)
+			..effects.add(new FraymotifEffect("sanity",3,false))
+			..effects.add(new FraymotifEffect("sanity",3,true))
+			..flavorText = " Oh god! Shut up! Just once! Please shut up! "),
 
 
-
-disastor_objects.push(new GameEntity(null, "Xenomorph",null));  //custom fraymotif: acid blood
-disastor_objects[disastor_objects.length-1].hp = 500;
-disastor_objects[disastor_objects.length-1].currentHP = 500;
-disastor_objects[disastor_objects.length-1].power = 100;
-disastor_objects[disastor_objects.length-1].mobility = 250;
-var f = new Fraymotif([], "Spawning", 3);
-f.effects.push(new FraymotifEffect("alchemy",3,true));
-f.flavorText = " Oh god. Where are all those baby monsters coming from. They are everywhere! Fuck! How are they so good at biting??? ";
-disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
+	new GameEntity(null, "Xenomorph",null)  //custom fraymotif: acid blood
+		..hp = 500
+		..currentHP = 500
+		..power = 100
+		..mobility = 250
+		..fraymotifs.add( new Fraymotif([], "Spawning", 3)
+			..effects.add(new FraymotifEffect("alchemy",3,true))
+			..flavorText = " Oh god. Where are all those baby monsters coming from. They are everywhere! Fuck! How are they so good at biting??? "),
 
 
-
-disastor_objects.push(new GameEntity(null, "Deadpool",null));  //custom fraymotif: healing factor
-disastor_objects[disastor_objects.length-1].hp = 500;
-disastor_objects[disastor_objects.length-1].currentHP = 500;
-disastor_objects[disastor_objects.length-1].power = 100;
-disastor_objects[disastor_objects.length-1].mobility = 250;
-disastor_objects[disastor_objects.length-1].helpfulness = 1;
-disastor_objects[disastor_objects.length-1].minLuck = -250;
-disastor_objects[disastor_objects.length-1].maxLuck = 250;
-disastor_objects[disastor_objects.length-1].helpPhrase = "demonstrates that when it comes to providing fourth wall breaking advice to getting through quests and killing baddies, he is pretty much the best there is. ";
-var f = new Fraymotif([],  "Degenerate Regeneration", 3);
-f.effects.push(new FraymotifEffect("hp",0,true));
-f.flavorText = " Hey there, Observer! Want to see a neat trick? POW! Grew my own head back. Pretty cool, huh? (Now if only JR would let me spam this or make it be castable even while dead, THEN we'd be cooking with petrol) ";
-disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
+	new GameEntity(null, "Deadpool",null)  //custom fraymotif: healing factor
+		..hp = 500
+		..currentHP = 500
+		..power = 100
+		..mobility = 250
+		..helpfulness = 1
+		..minLuck = -250
+		..maxLuck = 250
+		..helpPhrase = "demonstrates that when it comes to providing fourth wall breaking advice to getting through quests and killing baddies, he is pretty much the best there is. "
+		..fraymotifs.add( new Fraymotif([],  "Degenerate Regeneration", 3)
+			..effects.add(new FraymotifEffect("hp",0,true))
+			..flavorText = " Hey there, Observer! Want to see a neat trick? POW! Grew my own head back. Pretty cool, huh? (Now if only JR would let me spam this or make it be castable even while dead, THEN we'd be cooking with petrol) "),
 
 
+	new GameEntity(null, "Dragon",null)  //custom fraymotif: mighty breath.
+		..hp = 500
+		..lusus = true
+		..currentHP = 500
+		..power = 100
+		..helpPhrase = "breathes fire and offers condescending, yet useful advice. "
+		..fraymotifs.add( new Fraymotif([],  "Mighty Fire Breath", 3)
+			..effects.add(new FraymotifEffect("power",3,true))
+			..flavorText = " With a mighty breath, OWNER spits all the fires, sick and otherwise."),
 
 
-disastor_objects.push(new GameEntity(null, "Dragon",null));    //custom fraymotif: mighty breath.
-disastor_objects[disastor_objects.length-1].hp = 500;
-disastor_objects[disastor_objects.length-1].lusus = true;
-disastor_objects[disastor_objects.length-1].currentHP = 500;
-disastor_objects[disastor_objects.length-1].power = 100;
-disastor_objects[disastor_objects.length-1].helpPhrase = "breathes fire and offers condescending, yet useful advice. ";
-var f = new Fraymotif([],  "Mighty Fire Breath", 3);
-f.effects.push(new FraymotifEffect("power",3,true));
-f.flavorText = " With a mighty breath, OWNER spits all the fires, sick and otherwise.";
-disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
+	new GameEntity(null, "Teacher",null)
+		..hp = 500
+		..currentHP = 500
+		..power = 100
+		..helpfulness = -1
+		..helpPhrase = "dials the sprites natural tendency towards witholding information to have you 'figure it out yourself' up to eleven. "
+		..fraymotifs.add( new Fraymotif([],  "Lecture", 3)
+			..effects.add(new FraymotifEffect("freeWill",3,false))
+			..effects.add(new FraymotifEffect("sanity",3,false))
+			..flavorText = " OWNER begins a 3 part lecture on why you should probably just give up. It is hypnotic in it's ceaselessness."),
 
 
-disastor_objects.push(new GameEntity(null, "Teacher",null));
-disastor_objects[disastor_objects.length-1].hp = 500;
-disastor_objects[disastor_objects.length-1].currentHP = 500;
-disastor_objects[disastor_objects.length-1].power = 100;
-disastor_objects[disastor_objects.length-1].helpfulness = -1;
-disastor_objects[disastor_objects.length-1].helpPhrase = "dials the sprites natural tendency towards witholding information to have you 'figure it out yourself' up to eleven. ";
-var f = new Fraymotif([],  "Lecture", 3);
-f.effects.push(new FraymotifEffect("freeWill",3,false));
-f.effects.push(new FraymotifEffect("sanity",3,false));
-f.flavorText = " OWNER begins a 3 part lecture on why you should probably just give up. It is hypnotic in it's ceaselessness.";
-disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
+	new GameEntity(null, "Fiduspawn",null)
+		..hp = 500
+		..currentHP = 500
+		..power = 100
+		..fraymotifs.add( new Fraymotif([],  "Spawning", 3)
+			..effects.add(new FraymotifEffect("alchemy",3,true))
+			..flavorText = " Oh god. Where are all those baby monsters coming from. They are everywhere! Fuck! How are they so good at biting??? "),
 
 
-disastor_objects.push(new GameEntity(null, "Fiduspawn",null));
-disastor_objects[disastor_objects.length-1].hp = 500;
-disastor_objects[disastor_objects.length-1].currentHP = 500;
-disastor_objects[disastor_objects.length-1].power = 100;
-var f = new Fraymotif([],  "Spawning", 3);
-f.effects.push(new FraymotifEffect("alchemy",3,true));
-f.flavorText = " Oh god. Where are all those baby monsters coming from. They are everywhere! Fuck! How are they so good at biting??? ";
-disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
+	new GameEntity(null, "Doll",null)
+		..hp = 500
+		..currentHP = 500
+		..power = 100
+		..helpfulness = -1
+		..helpPhrase = "stares creepily. It never moves when you're watching it. It's basically the worst, and that's all there is to say on that topic. "
+		..fraymotifs.add( new Fraymotif([],  "Disconcerting Ogle", 3)
+			..effects.add(new FraymotifEffect("sanity",3,false))
+			..effects.add(new FraymotifEffect("sanity",0,true))
+			..flavorText = " OWNER is staring at ENEMY. It makes you uncomfortable, the way they are just standing there. And watching.  "),
 
 
-disastor_objects.push(new GameEntity(null, "Doll",null));
-disastor_objects[disastor_objects.length-1].hp = 500;
-disastor_objects[disastor_objects.length-1].currentHP = 500;
-disastor_objects[disastor_objects.length-1].power = 100;
-disastor_objects[disastor_objects.length-1].helpfulness = -1;
-disastor_objects[disastor_objects.length-1].helpPhrase = "stares creepily. It never moves when you're watching it. It's basically the worst, and that's all there is to say on that topic. ";
-var f = new Fraymotif([],  "Disconcerting Ogle", 3);
-f.effects.push(new FraymotifEffect("sanity",3,false));
-f.effects.push(new FraymotifEffect("sanity",0,true));
-f.flavorText = " OWNER is staring at ENEMY. It makes you uncomfortable, the way they are just standing there. And watching.  ";
-disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
+	new GameEntity(null, "Zombie",null)
+		..hp = 500
+		..currentHP = 500
+		..power = 100
+		..fraymotifs.add( new Fraymotif([],  "Rise From The Grave", 3)
+			..effects.add(new FraymotifEffect("hp",0,true))
+			..flavorText = " You thought the OWNER was pretty hurt, but instead they are just getting going. "),
 
 
-disastor_objects.push(new GameEntity(null, "Zombie",null));
-disastor_objects[disastor_objects.length-1].hp = 500;
-disastor_objects[disastor_objects.length-1].currentHP = 500;
-disastor_objects[disastor_objects.length-1].power = 100;
-var f = new Fraymotif([],  "Rise From The Grave", 3);
-f.effects.push(new FraymotifEffect("hp",0,true));
-f.flavorText = " You thought the OWNER was pretty hurt, but instead they are just getting going. ";
-disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
-
-disastor_objects.push(new GameEntity(null, "Demon",null));
-disastor_objects[disastor_objects.length-1].hp = 500;
-disastor_objects[disastor_objects.length-1].currentHP = 500;
-disastor_objects[disastor_objects.length-1].power = 250;
-disastor_objects[disastor_objects.length-1].freeWill = 250; //wants to mind control you.
-var f = new Fraymotif([],  "Claw Claw MotherFuckers", 3);
-f.effects.push(new FraymotifEffect("power",2,true));
-f.effects.push(new FraymotifEffect("power",2,true));
-f.flavorText = " The OWNER slashes at the ENEMY twice. ";
-disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
+	new GameEntity(null, "Demon",null)
+		..hp = 500
+		..currentHP = 500
+		..power = 250
+		..freeWill = 250 //wants to mind control you.
+		..fraymotifs.add( new Fraymotif([],  "Claw Claw MotherFuckers", 3)
+			..effects.add(new FraymotifEffect("power",2,true))
+			..effects.add(new FraymotifEffect("power",2,true))
+			..flavorText = " The OWNER slashes at the ENEMY twice. "),
 
 
-
-disastor_objects.push(new GameEntity(null, "Monster",null));
-disastor_objects[disastor_objects.length-1].hp = 500;
-disastor_objects[disastor_objects.length-1].currentHP = 500;
-disastor_objects[disastor_objects.length-1].power = 100; //generically scary
-disastor_objects[disastor_objects.length-1].sanity = -250;
-var f = new Fraymotif([],  "Claw Claw MotherFuckers", 3);
-f.effects.push(new FraymotifEffect("power",2,true));
-f.effects.push(new FraymotifEffect("power",2,true));
-f.flavorText = " The OWNER slashes at the ENEMY twice. ";
-disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
+	new GameEntity(null, "Monster",null)
+		..hp = 500
+		..currentHP = 500
+		..power = 100 //generically scary
+		..sanity = -250
+		..fraymotifs.add( new Fraymotif([],  "Claw Claw MotherFuckers", 3)
+			..effects.add(new FraymotifEffect("power",2,true))
+			..effects.add(new FraymotifEffect("power",2,true))
+			..flavorText = " The OWNER slashes at the ENEMY twice. "),
 
 
-disastor_objects.push(new GameEntity(null, "Vampire",null));
-disastor_objects[disastor_objects.length-1].hp = 500;
-disastor_objects[disastor_objects.length-1].currentHP = 500;
-disastor_objects[disastor_objects.length-1].power = 250;
-disastor_objects[disastor_objects.length-1].mobility = 100; //vampire fastness
-var f = new Fraymotif([],  "I Vant to Drink Your Blood", 3);
-f.effects.push(new FraymotifEffect("hp",2,true));
-f.effects.push(new FraymotifEffect("hp",0,true));//damage you, heal self.
-f.flavorText = " The OWNER drains HP from the ENEMY. ";
-disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
-
-disastor_objects.push(new GameEntity(null, "Pumpkin",null));
-disastor_objects[disastor_objects.length-1].power = 100;
-disastor_objects[disastor_objects.length-1].maxLuck = 5000;
-disastor_objects[disastor_objects.length-1].mobility = 5000;  //what pumpkin?
-disastor_objects[disastor_objects.length-1].helpPhrase = "was kind of helpful, and then kind of didn’t exist. Please don’t think too hard about it, the simulation is barely handling a pumpkin sprite as is. ";
-var f = new Fraymotif([],  "What Pumpkin???", 3);
-f.effects.push(new FraymotifEffect("mobility",2,false));
-f.effects.push(new FraymotifEffect("mobility",3,true));
-f.flavorText = " Everyone tries to hit the OWNER until suddenly they have never been there at all, causing attacks to miss so catastrophically they backfire. ";
-disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
+	new GameEntity(null, "Vampire",null)
+		..hp = 500
+		..currentHP = 500
+		..power = 250
+		..mobility = 100 //vampire fastness
+		..fraymotifs.add( new Fraymotif([],  "I Vant to Drink Your Blood", 3)
+			..effects.add(new FraymotifEffect("hp",2,true))
+			..effects.add(new FraymotifEffect("hp",0,true))//damage you, heal self.
+			..flavorText = " The OWNER drains HP from the ENEMY. "),
 
 
+	new GameEntity(null, "Pumpkin",null)
+		..power = 100
+		..maxLuck = 5000
+		..mobility = 5000  //what pumpkin?
+		..helpPhrase = "was kind of helpful, and then kind of didn’t exist. Please don’t think too hard about it, the simulation is barely handling a pumpkin sprite as is. "
+		..fraymotifs.add( new Fraymotif([],  "What Pumpkin???", 3)
+			..effects.add(new FraymotifEffect("mobility",2,false))
+			..effects.add(new FraymotifEffect("mobility",3,true))
+			..flavorText = " Everyone tries to hit the OWNER until suddenly they have never been there at all, causing attacks to miss so catastrophically they backfire. "),
 
-disastor_objects.push(new GameEntity(null, "Werewolf",null));
-disastor_objects[disastor_objects.length-1].hp = 500;
-disastor_objects[disastor_objects.length-1].currentHP = 500;
-disastor_objects[disastor_objects.length-1].power = 100;
-disastor_objects[disastor_objects.length-1].sanity = -250;
-var f = new Fraymotif([],  "Grim Bark Slash Attack", 3);
-f.effects.push(new FraymotifEffect("power",2,true));
-f.effects.push(new FraymotifEffect("power",2,true));
-f.flavorText = " The OWNER slashes at the ENEMY twice. While being a werewolf. ";
-disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
 
-disastor_objects.push(new GameEntity(null, "Monkey",null));   //just, fuck monkeys in general.
-disastor_objects[disastor_objects.length-1].hp = 5;
-disastor_objects[disastor_objects.length-1].currentHP = 5;
-disastor_objects[disastor_objects.length-1].power = 100;
-disastor_objects[disastor_objects.length-1].helpfulness = -1;
-disastor_objects[disastor_objects.length-1].maxLuck = -5000;  //fuck monkeys
-disastor_objects[disastor_objects.length-1].minLuck = -5000;
-disastor_objects[disastor_objects.length-1].mobility = 5000;
-disastor_objects[disastor_objects.length-1].helpPhrase = "actively inteferes with quests. Just. Fuck monkeys. ";
-var f = new Fraymotif([],  "Monkey Business", 3);
-f.effects.push(new FraymotifEffect("mobility",0,false));
-f.effects.push(new FraymotifEffect("mobility",2,true));
-f.flavorText = " The OWNER uses their monkey like fastness to attack the ENEMY just way too fucking many times. ";
-disastor_objects[disastor_objects.length-1].fraymotifs.push(f);
+	new GameEntity(null, "Werewolf",null)
+		..hp = 500
+		..currentHP = 500
+		..power = 100
+		..sanity = -250
+		..fraymotifs.add( new Fraymotif([],  "Grim Bark Slash Attack", 3)
+			..effects.add(new FraymotifEffect("power",2,true))
+			..effects.add(new FraymotifEffect("power",2,true))
+			..flavorText = " The OWNER slashes at the ENEMY twice. While being a werewolf. "),
 
+
+	new GameEntity(null, "Monkey",null)  //just, fuck monkeys in general.
+		..hp = 5
+		..currentHP = 5
+		..power = 100
+		..helpfulness = -1
+		..maxLuck = -5000  //fuck monkeys
+		..minLuck = -5000
+		..mobility = 5000
+		..helpPhrase = "actively inteferes with quests. Just. Fuck monkeys. "
+		..fraymotifs.add( new Fraymotif([],  "Monkey Business", 3)
+			..effects.add(new FraymotifEffect("mobility",0,false))
+			..effects.add(new FraymotifEffect("mobility",2,true))
+			..flavorText = " The OWNER uses their monkey like fastness to attack the ENEMY just way too fucking many times. "),
+];
 
 
 //fortune
-fortune_objects.push(new GameEntity(null, "Frog",null));
-fortune_objects[fortune_objects.length-1].power = 20;
-fortune_objects[fortune_objects.length-1].illegal = true;
-fortune_objects[fortune_objects.length-1].mobility = 100;
-fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
+var fortune_objects =[
+	new GameEntity(null, "Frog",null)
+		..power = 20
+		..illegal = true
+		..mobility = 100
+		..helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ",
 
 
-fortune_objects.push(new GameEntity(null, "Lizard",null));
-fortune_objects[fortune_objects.length-1].power = 20;
-fortune_objects[fortune_objects.length-1].illegal = true;
-fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
+	new GameEntity(null, "Lizard",null)
+		..power = 20
+		..illegal = true
+		..helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ",
 
 
-fortune_objects.push(new GameEntity(null, "Salamander",null));
-fortune_objects[fortune_objects.length-1].power = 20;
-fortune_objects[fortune_objects.length-1].illegal = true;
-fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
+	new GameEntity(null, "Salamander",null)
+		..power = 20
+		..illegal = true
+		..helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ",
 
 
-fortune_objects.push(new GameEntity(null, "Iguana",null));
-fortune_objects[fortune_objects.length-1].power = 20;
-fortune_objects[fortune_objects.length-1].illegal = true;
-fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
+	new GameEntity(null, "Iguana",null)
+		..power = 20
+		..illegal = true
+		..helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ",
 
 
-fortune_objects.push(new GameEntity(null, "Crocodile",null));
-fortune_objects[fortune_objects.length-1].power = 50;
-fortune_objects[fortune_objects.length-1].illegal = true;
-fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
+	new GameEntity(null, "Crocodile",null)
+		..power = 50
+		..illegal = true
+		..helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ",
 
 
-fortune_objects.push(new GameEntity(null, "Turtle",null));
-fortune_objects[fortune_objects.length-1].power = 20;
-fortune_objects[fortune_objects.length-1].illegal = true;
-fortune_objects[fortune_objects.length-1].mobility = -100;
-fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
+	new GameEntity(null, "Turtle",null)
+		..power = 20
+		..illegal = true
+		..mobility = -100
+		..helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ",
 
 
-fortune_objects.push(new GameEntity(null, "Alligator",null));
-fortune_objects[fortune_objects.length-1].power = 50;
-fortune_objects[fortune_objects.length-1].illegal = true;
-fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
+	new GameEntity(null, "Alligator",null)
+		..power = 50
+		..illegal = true
+		..helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ",
 
 
-fortune_objects.push(new GameEntity(null, "Snake",null));  //poison fraymotif
-fortune_objects[fortune_objects.length-1].power = 50;
-fortune_objects[fortune_objects.length-1].armless = true;
-fortune_objects[fortune_objects.length-1].illegal = true;
-fortune_objects[fortune_objects.length-1].helpPhrase = "providessss the requisssssite amount of gigglessssssnort hideytalk to be jusssssst barely helpful. AND the underlings seem to go after it first! Bonus! ";
+	new GameEntity(null, "Snake",null)  //poison fraymotif
+		..power = 50
+		..armless = true
+		..illegal = true
+		..helpPhrase = "providessss the requisssssite amount of gigglessssssnort hideytalk to be jusssssst barely helpful. AND the underlings seem to go after it first! Bonus! ",
 
 
-fortune_objects.push(new GameEntity(null, "Axolotl",null)); //apparently real ones are good at regeneration?
-fortune_objects[fortune_objects.length-1].power = 20;
-fortune_objects[fortune_objects.length-1].hp =  50;
-fortune_objects[fortune_objects.length-1].currentHP = 50;
-fortune_objects[fortune_objects.length-1].illegal = true;
-fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
+	new GameEntity(null, "Axolotl",null)  //apparently real ones are good at regeneration?
+		..power = 20
+		..hp =  50
+		..currentHP = 50
+		..illegal = true
+		..helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ",
 
 
-fortune_objects.push(new GameEntity(null, "Newt",null));
-fortune_objects[fortune_objects.length-1].power = 20;
-fortune_objects[fortune_objects.length-1].illegal = true;
-fortune_objects[fortune_objects.length-1].helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ";
+	new GameEntity(null, "Newt",null)
+		..power = 20
+		..illegal = true
+		..helpPhrase = "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ",
 
-
-
-
-//regular
-prototyping_objects.push(new GameEntity(null, "Buggy As Fuck Retro Game",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].corrupted = true;  //no stats, just corrupted. maybe a fraymotif later.
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "provides painful, painful sound file malfunctions, why is this even a thing? ";
-
-prototyping_objects.push(new GameEntity(null, "Robot",null));
-prototyping_objects[prototyping_objects.length-1].hp = 100;
-prototyping_objects[prototyping_objects.length-1].currentHP = 100;
-prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "is <b>more</b> useful than another player. How could a mere human measure up to the awesome logical capabilities of a machine? ";
-prototyping_objects[prototyping_objects.length-1].freeWill = 100;
-prototyping_objects[prototyping_objects.length-1].power = 100;
-
-prototyping_objects.push(new GameEntity(null, "Golfer",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
-prototyping_objects[prototyping_objects.length-1].minLuck = 20;
-prototyping_objects[prototyping_objects.length-1].maxLuck = 20;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "provides surprisingly helpful advice, even if they do insist on calling all enemies ‘bogeys’. ";
-
-prototyping_objects.push(new GameEntity(null, "Dutton",null));
-prototyping_objects[prototyping_objects.length-1].hp = 10;
-prototyping_objects[prototyping_objects.length-1].currentHP = 10;
-prototyping_objects[prototyping_objects.length-1].power = 10;
-prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "provides transcendent wisdom. ";
-prototyping_objects[prototyping_objects.length-1].freeWill = 50;
-prototyping_objects[prototyping_objects.length-1].mobility = 50;
-prototyping_objects[prototyping_objects.length-1].minLuck = 50;
-prototyping_objects[prototyping_objects.length-1].maxLuck = 50;
-var f = new Fraymotif([], "Duttobliteration", 2);
-f.effects.push(new FraymotifEffect("freeWill",2,true));
-f.flavorText = " The ENEMY is obliterated. Probably. A watermark of Charles Dutton appears, stage right. ";
-prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
-
-
-
-
-prototyping_objects.push(new GameEntity(null, "Game Bro",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "provides rad as fuck tips and tricks for beating SBURB and getting mad snacks, yo. 5 out of 5 hats. ";
-
-
-//in joke, lol, google always reports that sessions are crashed. google is a horror terror (see tumblr)
-prototyping_objects.push(new GameEntity(null, "Google",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
-prototyping_objects[prototyping_objects.length-1].corrupted = true;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "sure knows a lot about everything, but why does it only seem to return results about crashing SBURB?";
-
-
-prototyping_objects.push(new GameEntity(null, "Game Grl",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "provides rad as fuck tips and tricks for beating SBURB and getting mad snacks, yo, but, like, while also being a GIRL? *record scratch*  5 out of 5 lady hats. ";
-
-prototyping_objects.push(new GameEntity(null, "Paperclip",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "says: 'It looks like you're trying to play a cosmic game where you breed frogs to create a universe. Would you like me to'-No. 'Would you like me to'-No! 'It looks like you're'-shut up!!! This is not helpful.";
-
-
-prototyping_objects.push(new GameEntity(null, "WebComicCreator",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "refuses to explain anything about SBURB to you, prefering to let you speculate wildly while cackling to himself.";
-var f = new Fraymotif([], "Kill ALL The Characters", 2);
-f.effects.push(new FraymotifEffect("freeWill",3,true));
-f.flavorText = " All enemies are obliterated. Probably. A watermark of Andrew Hussie appears, stage right. ";
-prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
-
-
-
-prototyping_objects.push(new GameEntity(null, "KidRock",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "does absolutly nothing but sing repetitive, late 90's rock to you.";
-var f = new Fraymotif([], "BANG DA DANG DIGGY DIGGY", 2);
-f.effects.push(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
-f.effects.push(new FraymotifEffect("power",1,false));
-f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. Somehow, this doesn't feel like the true version of this attack.";
-prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
-
-
-prototyping_objects.push(new GameEntity(null, "Sleuth",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "suggests the player just input a password to skip all their land's weird puzzle shit. This is not actually a thing you can do.";
-var f = new Fraymotif([], "Sepulchritude", 2);
-f.effects.push(new FraymotifEffect("RELATIONSHIPS",1,true));
-f.flavorText = " The OWNER decides not to bring that noise just yet. They just heal the party instead. ";
-prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
-
-var f = new Fraymotif([], "Sepulchritude", 2);
-f.effects.push(new FraymotifEffect("RELATIONSHIPS",1,true));
-f.flavorText = " THE OWNER just don't have the offensive gravitas for that attack. They just heal the party instead. ";
-prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
-
-var f = new Fraymotif([], "Sepulchritude", 2);
-f.effects.push(new FraymotifEffect("RELATIONSHIPS",3,true));
-f.flavorText = " The OWNER finally fucking unleashes their Ultimate Attack. The resplendent light of divine PULCHRITUDE consumes all enemies. ";
-prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
-
-var f = new Fraymotif([], "Sepulchritude", 2);
-f.effects.push(new FraymotifEffect("RELATIONSHIPS",1,true));
-f.flavorText = " No, not yet! The OWNER refuses to use Sepulchritude. They just heal the party instead. ";
-prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
-
-prototyping_objects.push(new GameEntity(null, "Nick Cage",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "demonstrates that when it comes to solving bullshit riddles to get National *cough* I mean SBURBian treasure, he is simply the best there is. ";
-
-
-prototyping_objects.push(new GameEntity(null, "Praying Mantis",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].maxLuck = 20;
-
-prototyping_objects.push(new GameEntity(null, "Shitty Comic Character",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].mobility = 50;
-prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = " is the STAR. It is them. You don't think they have ever once attempted to even talk about the game. How HIGH did you have to BE to prototype this glitchy piece of shit? ";
-var f = new Fraymotif([],"FUCK IM FALLING DOWN ALL THESE STAIRS", 3);
-f.effects.push(new FraymotifEffect("mobility",1,false)); //buff to mobility bro
-f.flavorText = " It keeps hapening. ";
-prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
-
-var f = new Fraymotif([],"FUCK IM FALLING DOWN ALL THESE STAIRS", 3);
-f.effects.push(new FraymotifEffect("mobility",1,false));
-f.flavorText = " I warned you about stairs bro!!! ";
-prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
-
-var f = new Fraymotif([],"FUCK IM FALLING DOWN ALL THESE STAIRS", 3);
-f.effects.push(new FraymotifEffect("mobility",1,false));
-f.flavorText = " I told you dog! ";
-prototyping_objects[prototyping_objects.length-1].fraymotifs.push(f);
-
-
-
-prototyping_objects.push(new GameEntity(null, "Doctor",null));   //healing fraymotif
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "is pretty much as useful as another player. No cagey riddles, just straight answers on how to finish the quests. ";
-
-
-prototyping_objects.push(new GameEntity(null, "Gerbil",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "remains physically adorable and mentally idiotic. Gigglysnort hideytalk ahoy. ";
-
-
-prototyping_objects.push(new GameEntity(null, "Chinchilla",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "remains physically adorable and mentally idiotic. Gigglysnort hideytalk ahoy. ";
-
-
-prototyping_objects.push(new GameEntity(null, "Rabbit",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].maxLuck = 100;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "remains physically adorable and mentally idiotic. Gigglysnort hideytalk ahoy. ";
-
-prototyping_objects.push(new GameEntity(null, "Tissue",null));
-prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "is useless in every possible way. ";
-
-
-prototyping_objects.push(new GameEntity(null, "Librarian",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "Is pretty much as useful as another player. No cagey riddles, just straight answers on where the book on how to finish the quest is, and could you please keep it down? ";
-
-
-prototyping_objects.push(new GameEntity(null, "Pit Bull",null));
-prototyping_objects[prototyping_objects.length-1].power = 50;
-
-prototyping_objects.push(new GameEntity(null, "Butler",null));
-prototyping_objects[prototyping_objects.length-1].power = 50;  //he will serve you like a man on butler island
-prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "is serving their player like a dude on butlersprite island. ";
-prototyping_objects[prototyping_objects.length-1].sanity = 50;
-
-prototyping_objects.push(new GameEntity(null, "Sloth",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].mobility = -50;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "provides. Slow. But. Useful. Advice.";
-
-
-prototyping_objects.push(new GameEntity(null, "Cowboy",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "provides useful advice, even if they do insist on calling literally everyone 'pardner.' ";
-
-
-
-prototyping_objects.push(new GameEntity(null, "Pomeranian",null));
-prototyping_objects[prototyping_objects.length-1].power = 1; //pomeranians aren't actually very good at fights.  (trust me, i know)
-prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "unhelpfully insists that every rock is probably a boss fight (it isn’t). ";
-
-
-prototyping_objects.push(new GameEntity(null, "Chihuahua",null));
-prototyping_objects[prototyping_objects.length-1].power = 1;  //i'm extrapolating here, but I imagine Chihuahua's aren't very good at fights, either.
-prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "unhelpfully insists that every rock is probably a boss fight (it isn’t). ";
-
-
-prototyping_objects.push(new GameEntity(null, "Pony",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
-prototyping_objects[prototyping_objects.length-1].sanity = -1000;  //ponyPals taught me that ponys are just flipping their shit, like, 100% of the time.
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "is constantly flipping their fucking shit instead of being useful in any way shape or form, as ponies are known for. ";
-
-
-prototyping_objects.push(new GameEntity(null, "Horse",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
-prototyping_objects[prototyping_objects.length-1].sanity = -100;  //probably flip out less than ponys???
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "is constantly flipping their fucking shit instead of being useful in any way shape or form, as horses are known for. ";
-
-
-prototyping_objects.push(new GameEntity(null, "Internet Troll",null));   //needs to have a fraymotif called "u mad, bro" and "butt hurt"
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
-prototyping_objects[prototyping_objects.length-1].sanity = 1000;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "actively does its best to hinder their efforts. ";
-
-
-prototyping_objects.push(new GameEntity(null, "Mosquito",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "is a complete dick, buzzing and fussing and biting. What's its deal? ";
-
-
-prototyping_objects.push(new GameEntity(null, "Fly",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "is a complete dick, buzzing and fussing and biting. What's its deal? ";
-
-
-prototyping_objects.push(new GameEntity(null, "Cow",null));
-prototyping_objects[prototyping_objects.length-1].power = 30; //cows kill more people a year than sharks.
-
-prototyping_objects.push(new GameEntity(null, "Bird",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].mobility = 20;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "provides sort of helpful advice when not grabbing random objects to make nests. ";
-
-
-
-prototyping_objects.push(new GameEntity(null, "Bug",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "provides the requisite amount of buzzybuz zuzytalk to be juuuust barely helpful. ";
-
-
-
-prototyping_objects.push(new GameEntity(null, "Llama",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-
-
-prototyping_objects.push(new GameEntity(null, "Penguin",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-
-
-
-prototyping_objects.push(new GameEntity(null, "Husky",null));
-prototyping_objects[prototyping_objects.length-1].power = 30;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "alternates between loud, insistent barks and long, eloquent monologues on the deeper meaning behind each and every fragment of the game. ";
-
-
-
-prototyping_objects.push(new GameEntity(null, "Cat",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].minLuck = -20;
-prototyping_objects[prototyping_objects.length-1].maxLuck = 20;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "Is kind of helpful? Maybe? You can't tell if it loves their player or hates them. ";
-
-
-
-prototyping_objects.push(new GameEntity(null, "Dog",null));
-prototyping_objects[prototyping_objects.length-1].power = 30;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "alternates between loud, insistent barks and long, eloquent monologues on the deeper meaning behind each and every fragment of the game. ";
-
-
-
-prototyping_objects.push(new GameEntity(null, "Pigeon",null));
-prototyping_objects[prototyping_objects.length-1].power = 0.5;  //pigeons are not famous for their combat prowess. I bet even a pomeranian could beat one up.
-prototyping_objects[prototyping_objects.length-1].freeWill = -40;
-
-
-prototyping_objects.push(new GameEntity(null, "Octopus",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].mobility = 80; //so many legs! more legs is more faster!!!
-
-
-prototyping_objects.push(new GameEntity(null, "Fish",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].armless = true;
-
-
-prototyping_objects.push(new GameEntity(null, "Kitten",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "is kind of helpful? Maybe? You can't tell if it loves their player or hates them. ";
-
-
-
-prototyping_objects.push(new GameEntity(null, "Worm",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].armless = true;
-
-
-prototyping_objects.push(new GameEntity(null, "Bear",null));
-prototyping_objects[prototyping_objects.length-1].power = 50;
-
-
-prototyping_objects.push(new GameEntity(null, "Goat",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-
-
-prototyping_objects.push(new GameEntity(null, "Rat",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-
-
-prototyping_objects.push(new GameEntity(null, "Raccoon",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "demonstrates that SBURB basically hides quest items in the same places humans would throw away their garbage. ";
-
-
-
-
-prototyping_objects.push(new GameEntity(null, "Crow",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].freeWill = 20; //have you ever tried to convince a crow not to do something? not gonna happen.
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "provides sort of helpful advice when not grabbing random objects to make nests. ";
-
-
-
-prototyping_objects.push(new GameEntity(null, "Chicken",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].freeWill = -20;  //mike the headless chicken has convinced me that chickens don't really need brains. god that takes me back.
-
-
-prototyping_objects.push(new GameEntity(null, "Duck",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-
-
-prototyping_objects.push(new GameEntity(null, "Sparrow",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-
-
-prototyping_objects.push(new GameEntity(null, "Fancy Santa",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "goes hohohohohohohohoho. ";
-
-prototyping_objects.push(new GameEntity(null, "Politician",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = -1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "offers a blueprint for an ECONONY that works for everyone. That would've been more useful before the earth was destroyed.... ";
-
-
-prototyping_objects.push(new GameEntity(null, "Tiger",null));
-prototyping_objects[prototyping_objects.length-1].power = 50;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "Provides just enough pants-shitingly terrifying growly-roar meow talk to be useful. ";
-
-
-
-prototyping_objects.push(new GameEntity(null, "Sugar Glider",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "remains physically adorable and mentally idiotic. Gigglysnort hideytalk ahoy. ";
-
-
-
-prototyping_objects.push(new GameEntity(null, "Rapper",null));
-prototyping_objects[prototyping_objects.length-1].power = 20;
-prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "provides surprisingly helpful advice, even if it does insist on some frankly antiquated slang and rhymes. I mean, civilization is dead, there isn’t exactly a police left to fuck. ";
-
-
-
-prototyping_objects.push(new GameEntity(null, "Kangaroo",null));
-prototyping_objects[prototyping_objects.length-1].power = 30;
-prototyping_objects[prototyping_objects.length-1].mobility = 30;
-
-prototyping_objects.push(new GameEntity(null, "Stoner",null));
-prototyping_objects[prototyping_objects.length-1].power = 42.0; //blaze it
-prototyping_objects[prototyping_objects.length-1].minLuck = -42.0;
-prototyping_objects[prototyping_objects.length-1].maxLuck = 42.0;
-prototyping_objects[prototyping_objects.length-1].helpfulness = 1;
-prototyping_objects[prototyping_objects.length-1].helpPhrase = "is pretty much as useful as another player, assuming that player was higher then a fucking kite. ";
-
+];
 
 
 //////////////////////lusii are a little stronger in general
-
-lusus_objects.push(new GameEntity(null, "Hoofbeast",null));
-lusus_objects[lusus_objects.length-1].power = 30;
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Meow Beast",null));
-lusus_objects[lusus_objects.length-1].power = 30;
-lusus_objects[lusus_objects.length-1].lusus = true;
-lusus_objects[lusus_objects.length-1].minLuck = 20;
-lusus_objects[lusus_objects.length-1].maxLuck = 20;
-lusus_objects[lusus_objects.length-1].helpPhrase = "is kind of helpful? Maybe? You can't tell if it loves their player or hates them. ";
+List<dynamic> lusus_objects = [
+	new GameEntity(null, "Hoofbeast",null)
+		..power = 30
+		..lusus = true,
 
 
-
-lusus_objects.push(new GameEntity(null, "Bark Beast",null));
-lusus_objects[lusus_objects.length-1].power = 40;
-lusus_objects[lusus_objects.length-1].lusus = true;
-lusus_objects[lusus_objects.length-1].helpPhrase = "alternates between loud, insistent barks and long, eloquent monologues on the deeper meaning behind each and every fragment of the game. ";
-
-
-lusus_objects.push(new GameEntity(null, "Nut Creature",null));
-lusus_objects[lusus_objects.length-1].power = 30;
-lusus_objects[lusus_objects.length-1].mobility = 30;
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Gobblefiend",null));
-lusus_objects[lusus_objects.length-1].power = 50; //turkeys are honestly terrifying.
-lusus_objects[lusus_objects.length-1].lusus = true;
-lusus_objects[lusus_objects.length-1].helpfulness = -1;
-lusus_objects[lusus_objects.length-1].helpPhrase = "is the most unhelpful piece of shit in the world. Oh my god, just once. Please, just shut up. ";
+	new GameEntity(null, "Meow Beast",null)
+		..power = 30
+		..lusus = true
+		..minLuck = 20
+		..maxLuck = 20
+		..helpPhrase = "is kind of helpful? Maybe? You can't tell if it loves their player or hates them. ",
 
 
-lusus_objects.push(new GameEntity(null, "Bicyclops",null));  //laser fraymotif?
-lusus_objects[lusus_objects.length-1].power = 30;
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Centaur",null));
-lusus_objects[lusus_objects.length-1].power = 50;
-lusus_objects[lusus_objects.length-1].sanity = 50; //lusii in the butler genus simply are unflappable.
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Fairy Bull",null));
-lusus_objects[lusus_objects.length-1].power = 1; //kinda useless. like a small dog or something.
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Slither Beast",null));
-lusus_objects[lusus_objects.length-1].power = 30;
-lusus_objects[lusus_objects.length-1].lusus = true;
-lusus_objects[lusus_objects.length-1].armless = true;
+	new GameEntity(null, "Bark Beast",null)
+		..power = 40
+		..lusus = true
+		..helpPhrase = "alternates between loud, insistent barks and long, eloquent monologues on the deeper meaning behind each and every fragment of the game. ",
 
 
-lusus_objects.push(new GameEntity(null, "Wiggle Beast",null));
-lusus_objects[lusus_objects.length-1].power = 30;
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Honkbird",null));
-lusus_objects[lusus_objects.length-1].power = 30;
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Dig Beast",null));
-lusus_objects[lusus_objects.length-1].power = 30;
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Cholerbear",null));
-lusus_objects[lusus_objects.length-1].power = 50;
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Antler Beast",null));
-lusus_objects[lusus_objects.length-1].power = 30;
-lusus_objects[lusus_objects.length-1].mobility = 30;
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Ram Beast",null));
-lusus_objects[lusus_objects.length-1].power = 30;
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Crab",null));
-lusus_objects[lusus_objects.length-1].power = 30;
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Spider",null));
-lusus_objects[lusus_objects.length-1].power = 30;
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Thief Beast",null));
-lusus_objects[lusus_objects.length-1].power = 30;
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "March Bug",null));
-lusus_objects[lusus_objects.length-1].power = 30;
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Nibble Vermin",null));
-lusus_objects[lusus_objects.length-1].power = 30;
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Woolbeast",null));
-lusus_objects[lusus_objects.length-1].power = 30;
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Hop Beast",null));
-lusus_objects[lusus_objects.length-1].power = 30;
-lusus_objects[lusus_objects.length-1].maxLuck = 30;
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Stink Creature",null));
-lusus_objects[lusus_objects.length-1].power = 30;
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Speed Beast",null));
-lusus_objects[lusus_objects.length-1].power = 30;
-lusus_objects[lusus_objects.length-1].mobility = 50;
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Jump Creature",null));
-lusus_objects[lusus_objects.length-1].power = 30;
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Fight Beast",null));
-lusus_objects[lusus_objects.length-1].power = 50;
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Claw Beast",null));
-lusus_objects[lusus_objects.length-1].power = 50;
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Tooth Beast",null));
-lusus_objects[lusus_objects.length-1].power = 50;
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Armor Beast",null));
-lusus_objects[lusus_objects.length-1].power = 30;
-lusus_objects[lusus_objects.length-1].currentHP = 100;
-lusus_objects[lusus_objects.length-1].hp = 100;
-
-lusus_objects[lusus_objects.length-1].lusus = true;
-
-lusus_objects.push(new GameEntity(null, "Trap Beast",null));
-lusus_objects[lusus_objects.length-1].power = 30;
-lusus_objects[lusus_objects.length-1].lusus = true;
+	new GameEntity(null, "Nut Creature",null)
+		..power = 30
+		..mobility = 30
+		..lusus = true,
 
 
+	new GameEntity(null, "Gobblefiend",null)
+		..power = 50 //turkeys are honestly terrifying.
+		..lusus = true
+		..helpfulness = -1
+		..helpPhrase = "is the most unhelpful piece of shit in the world. Oh my god, just once. Please, just shut up. ",
 
 
+	new GameEntity(null, "Bicyclops",null)  //laser fraymotif?
+		..power = 30
+		..lusus = true,
 
+
+	new GameEntity(null, "Centaur",null)
+		..power = 50
+		..sanity = 50 //lusii in the butler genus simply are unflappable.
+		..lusus = true,
+
+
+	new GameEntity(null, "Fairy Bull",null)
+		..power = 1 //kinda useless. like a small dog or something.
+		..lusus = true,
+
+
+	new GameEntity(null, "Slither Beast",null)
+		..power = 30
+		..lusus = true
+		..armless = true,
+
+
+	new GameEntity(null, "Wiggle Beast",null)
+		..power = 30
+		..lusus = true,
+
+
+	new GameEntity(null, "Honkbird",null)
+		..power = 30
+		..lusus = true,
+
+
+	new GameEntity(null, "Dig Beast",null)
+		..power = 30
+		..lusus = true,
+
+
+	new GameEntity(null, "Cholerbear",null)
+		..power = 50
+		..lusus = true,
+
+
+	new GameEntity(null, "Antler Beast",null)
+		..power = 30
+		..mobility = 30
+		..lusus = true,
+
+
+	new GameEntity(null, "Ram Beast",null)
+		..power = 30
+		..lusus = true,
+
+
+	new GameEntity(null, "Crab",null)
+		..power = 30
+		..lusus = true,
+
+
+	new GameEntity(null, "Spider",null)
+		..power = 30
+		..lusus = true,
+
+
+	new GameEntity(null, "Thief Beast",null)
+		..power = 30
+		..lusus = true,
+
+
+	new GameEntity(null, "March Bug",null)
+		..power = 30
+		..lusus = true,
+
+
+	new GameEntity(null, "Nibble Vermin",null)
+		..power = 30
+		..lusus = true,
+
+
+	new GameEntity(null, "Woolbeast",null)
+		..power = 30
+		..lusus = true,
+
+
+	new GameEntity(null, "Hop Beast",null)
+		..power = 30
+		..maxLuck = 30
+		..lusus = true,
+
+
+	new GameEntity(null, "Stink Creature",null)
+		..power = 30
+		..lusus = true,
+
+
+	new GameEntity(null, "Speed Beast",null)
+		..power = 30
+		..mobility = 50
+		..lusus = true,
+
+
+	new GameEntity(null, "Jump Creature",null)
+		..power = 30
+		..lusus = true,
+
+
+	new GameEntity(null, "Fight Beast",null)
+		..power = 50
+		..lusus = true,
+
+
+	new GameEntity(null, "Claw Beast",null)
+		..power = 50
+		..lusus = true,
+
+
+	new GameEntity(null, "Tooth Beast",null)
+		..power = 50
+		..lusus = true,
+
+
+	new GameEntity(null, "Armor Beast",null)
+		..power = 30
+		..currentHP = 100
+		..hp = 100
+		..lusus = true,
+
+
+	new GameEntity(null, "Trap Beast",null)
+		..power = 30
+		..lusus = true,
+];
 
 ////////////////////////sea lusii
 
-sea_lusus_objects.push(new GameEntity(null, "Zap Beast",null));  //zap fraymotif
-sea_lusus_objects[sea_lusus_objects.length-1].power = 50;
-sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
-
-sea_lusus_objects.push(new GameEntity(null, "Sea Slither Beast",null));
-sea_lusus_objects[sea_lusus_objects.length-1].power = 30;
-sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
-sea_lusus_objects[sea_lusus_objects.length-1].armless = true;
-
-sea_lusus_objects.push(new GameEntity(null, "Electric Beast",null)); //zap fraymotif
-sea_lusus_objects[sea_lusus_objects.length-1].power = 50;
-sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
-sea_lusus_objects[sea_lusus_objects.length-1].armless = true;
-
-sea_lusus_objects.push(new GameEntity(null, "Whale",null));
-sea_lusus_objects[sea_lusus_objects.length-1].power = 30;
-sea_lusus_objects[sea_lusus_objects.length-1].currentHP = 50;
-sea_lusus_objects[sea_lusus_objects.length-1].hp = 50;
-sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
-sea_lusus_objects[sea_lusus_objects.length-1].armless = true;
-
-sea_lusus_objects.push(new GameEntity(null, "Sky Horse",null));
-sea_lusus_objects[sea_lusus_objects.length-1].power = 30;
-sea_lusus_objects[sea_lusus_objects.length-1].mobility = 20;
-sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
-
-sea_lusus_objects.push(new GameEntity(null, "Sea Meow Beast",null));
-sea_lusus_objects[sea_lusus_objects.length-1].power = 30;
-sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
-sea_lusus_objects[sea_lusus_objects.length-1].minLuck = -20;
-sea_lusus_objects[sea_lusus_objects.length-1].maxLuck = 20;
-
-sea_lusus_objects.push(new GameEntity(null, "Sea Hoofbeast",null));
-sea_lusus_objects[sea_lusus_objects.length-1].power = 30;
-sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
-
-sea_lusus_objects.push(new GameEntity(null, "Cuttlefish",null));
-sea_lusus_objects[sea_lusus_objects.length-1].power = 30;
-sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
-
-sea_lusus_objects.push(new GameEntity(null, "Swim Beast",null));
-sea_lusus_objects[sea_lusus_objects.length-1].power = 30;
-sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
-
-sea_lusus_objects.push(new GameEntity(null, "Sea Goat",null));
-sea_lusus_objects[sea_lusus_objects.length-1].power = 30;
-sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
-sea_lusus_objects[sea_lusus_objects.length-1].minLuck = 30;
-sea_lusus_objects[sea_lusus_objects.length-1].maxLuck = 20;
+List<dynamic> sea_lusus_objects = [
+	new GameEntity(null, "Zap Beast",null)  //zap fraymotif
+		..power = 50
+		..lusus = true,
 
 
-sea_lusus_objects.push(new GameEntity(null, "Light Beast",null));
-sea_lusus_objects[sea_lusus_objects.length-1].power = 30;
-sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
-
-sea_lusus_objects.push(new GameEntity(null, "Dive Beast",null));
-sea_lusus_objects[sea_lusus_objects.length-1].power = 30;
-sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
-
-sea_lusus_objects.push(new GameEntity(null, "Honkbird",null));
-sea_lusus_objects[sea_lusus_objects.length-1].power = 30;
-sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
-
-sea_lusus_objects.push(new GameEntity(null, "Sea Bear",null));
-sea_lusus_objects[sea_lusus_objects.length-1].power = 30;
-sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
-
-sea_lusus_objects.push(new GameEntity(null, "Sea Armorbeast",null));
-sea_lusus_objects[sea_lusus_objects.length-1].power = 30;
-sea_lusus_objects[sea_lusus_objects.length-1].lusus = true;
-sea_lusus_objects[sea_lusus_objects.length-1].currentHP = 50;
-sea_lusus_objects[sea_lusus_objects.length-1].hp = 50;
+	new GameEntity(null, "Sea Slither Beast",null)
+		..power = 30
+		..lusus = true
+		..armless = true,
 
 
+	new GameEntity(null, "Electric Beast",null)  //zap fraymotif
+		..power = 50
+		..lusus = true
+		..armless = true,
 
-prototyping_objects = prototyping_objects.concat(disastor_objects);
-prototyping_objects = prototyping_objects.concat(fortune_objects);
-prototyping_objects = prototyping_objects.concat(lusus_objects);
-prototyping_objects = prototyping_objects.concat(sea_lusus_objects); //yes, a human absolutely could prototype some troll's lusus. that is a thing that is true.
+
+	new GameEntity(null, "Whale",null)
+		..power = 30
+		..currentHP = 50
+		..hp = 50
+		..lusus = true
+		..armless = true,
+
+
+	new GameEntity(null, "Sky Horse",null)
+		..power = 30
+		..mobility = 20
+		..lusus = true,
+
+
+	new GameEntity(null, "Sea Meow Beast",null)
+		..power = 30
+		..lusus = true
+		..minLuck = -20
+		..maxLuck = 20,
+
+
+	new GameEntity(null, "Sea Hoofbeast",null)
+		..power = 30
+		..lusus = true,
+
+
+	new GameEntity(null, "Cuttlefish",null)
+		..power = 30
+		..lusus = true,
+
+
+	new GameEntity(null, "Swim Beast",null)
+		..power = 30
+		..lusus = true,
+
+
+	new GameEntity(null, "Sea Goat",null)
+		..power = 30
+		..lusus = true
+		..minLuck = 30
+		..maxLuck = 20,
+
+
+	new GameEntity(null, "Light Beast",null)
+		..power = 30
+		..lusus = true,
+
+
+	new GameEntity(null, "Dive Beast",null)
+		..power = 30
+		..lusus = true,
+
+
+	new GameEntity(null, "Honkbird",null)
+		..power = 30
+		..lusus = true,
+
+
+	new GameEntity(null, "Sea Bear",null)
+		..power = 30
+		..lusus = true,
+
+
+	new GameEntity(null, "Sea Armorbeast",null)
+		..power = 30
+		..lusus = true
+		..currentHP = 50
+		..hp = 50,
+];
+
+//regular
+List<dynamic> prototyping_objects = [
+	new GameEntity(null, "Buggy As Fuck Retro Game",null)
+		..power = 20
+		..corrupted = true  //no stats, just corrupted. maybe a fraymotif later.
+		..helpPhrase = "provides painful, painful sound file malfunctions, why is this even a thing? ",
+
+
+	new GameEntity(null, "Robot",null)
+		..hp = 100
+		..currentHP = 100
+		..helpfulness = 1
+		..helpPhrase = "is <b>more</b> useful than another player. How could a mere human measure up to the awesome logical capabilities of a machine? "
+		..freeWill = 100
+		..power = 100,
+
+
+	new GameEntity(null, "Golfer",null)
+		..power = 20
+		..helpfulness = 1
+		..minLuck = 20
+		..maxLuck = 20
+		..helpPhrase = "provides surprisingly helpful advice, even if they do insist on calling all enemies ‘bogeys’. ",
+
+
+	new GameEntity(null, "Dutton",null)
+		..hp = 10
+		..currentHP = 10
+		..power = 10
+		..helpfulness = 1
+		..helpPhrase = "provides transcendent wisdom. "
+		..freeWill = 50
+		..mobility = 50
+		..minLuck = 50
+		..maxLuck = 50
+		..fraymotifs.add( new Fraymotif([], "Duttobliteration", 2)
+			..effects.add(new FraymotifEffect("freeWill",2,true))
+			..flavorText = " The ENEMY is obliterated. Probably. A watermark of Charles Dutton appears, stage right. "),
+
+	new GameEntity(null, "Game Bro",null)
+		..power = 20
+		..helpfulness = 1
+		..helpPhrase = "provides rad as fuck tips and tricks for beating SBURB and getting mad snacks, yo. 5 out of 5 hats. ",
+
+
+	//in joke, lol, google always reports that sessions are crashed. google is a horror terror (see tumblr)
+	new GameEntity(null, "Google",null)
+		..power = 20
+		..helpfulness = 1
+		..corrupted = true
+		..helpPhrase = "sure knows a lot about everything, but why does it only seem to return results about crashing SBURB?",
+
+
+	new GameEntity(null, "Game Grl",null)
+		..power = 20
+		..helpfulness = 1
+		..helpPhrase = "provides rad as fuck tips and tricks for beating SBURB and getting mad snacks, yo, but, like, while also being a GIRL? *record scratch*  5 out of 5 lady hats. ",
+
+
+	new GameEntity(null, "Paperclip",null)
+		..power = 20
+		..helpfulness = -1
+		..helpPhrase = "says: 'It looks like you're trying to play a cosmic game where you breed frogs to create a universe. Would you like me to'-No. 'Would you like me to'-No! 'It looks like you're'-shut up!!! This is not helpful.",
+
+
+	new GameEntity(null, "WebComicCreator",null)
+		..power = 20
+		..helpfulness = -1
+		..helpPhrase = "refuses to explain anything about SBURB to you, prefering to let you speculate wildly while cackling to himself."
+		..fraymotifs.add( new Fraymotif([], "Kill ALL The Characters", 2)
+			..effects.add(new FraymotifEffect("freeWill",3,true))
+			..flavorText = " All enemies are obliterated. Probably. A watermark of Andrew Hussie appears, stage right. "),
+
+
+	new GameEntity(null, "KidRock",null)
+		..power = 20
+		..helpfulness = -1
+		..helpPhrase = "does absolutly nothing but sing repetitive, late 90's rock to you."
+		..fraymotifs.add( new Fraymotif([], "BANG DA DANG DIGGY DIGGY", 2)
+			..effects.add(new FraymotifEffect("power",3,true))  //buffs party and hurts enemies
+			..effects.add(new FraymotifEffect("power",1,false))
+			..flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. Somehow, this doesn't feel like the true version of this attack."),
+
+
+	new GameEntity(null, "Sleuth",null)
+		..power = 20
+		..helpfulness = -1
+		..helpPhrase = "suggests the player just input a password to skip all their land's weird puzzle shit. This is not actually a thing you can do."
+		..fraymotifs.add( new Fraymotif([], "Sepulchritude", 2)
+			..effects.add(new FraymotifEffect("RELATIONSHIPS",1,true))
+			..flavorText = " The OWNER decides not to bring that noise just yet. They just heal the party instead. ")
+		..fraymotifs.add( new Fraymotif([], "Sepulchritude", 2)
+			..effects.add(new FraymotifEffect("RELATIONSHIPS",1,true))
+			..flavorText = " THE OWNER just don't have the offensive gravitas for that attack. They just heal the party instead. ")
+		..fraymotifs.add( new Fraymotif([], "Sepulchritude", 2)
+			..effects.add(new FraymotifEffect("RELATIONSHIPS",3,true))
+			..flavorText = " The OWNER finally fucking unleashes their Ultimate Attack. The resplendent light of divine PULCHRITUDE consumes all enemies. ")
+		..fraymotifs.add( new Fraymotif([], "Sepulchritude", 2)
+			..effects.add(new FraymotifEffect("RELATIONSHIPS",1,true))
+			..flavorText = " No, not yet! The OWNER refuses to use Sepulchritude. They just heal the party instead. "),
+
+
+	new GameEntity(null, "Nick Cage",null)
+		..power = 20
+		..helpfulness = 1
+		..helpPhrase = "demonstrates that when it comes to solving bullshit riddles to get National *cough* I mean SBURBian treasure, he is simply the best there is. ",
+
+
+	new GameEntity(null, "Praying Mantis",null)
+		..power = 20
+		..maxLuck = 20,
+
+
+	new GameEntity(null, "Shitty Comic Character",null)
+		..power = 20
+		..mobility = 50
+		..helpfulness = -1
+		..helpPhrase = " is the STAR. It is them. You don't think they have ever once attempted to even talk about the game. How HIGH did you have to BE to prototype this glitchy piece of shit? "
+		..fraymotifs.add( new Fraymotif([],"FUCK IM FALLING DOWN ALL THESE STAIRS", 3)
+			..effects.add(new FraymotifEffect("mobility",1,false)) //buff to mobility bro
+			..flavorText = " It keeps hapening. ")
+		..fraymotifs.add( new Fraymotif([],"FUCK IM FALLING DOWN ALL THESE STAIRS", 3)
+			..effects.add(new FraymotifEffect("mobility",1,false))
+			..flavorText = " I warned you about stairs bro!!! ")
+		..fraymotifs.add( new Fraymotif([],"FUCK IM FALLING DOWN ALL THESE STAIRS", 3)
+			..effects.add(new FraymotifEffect("mobility",1,false))
+			..flavorText = " I told you dog! "),
+
+
+	new GameEntity(null, "Doctor",null)  //healing fraymotif
+		..power = 20
+		..helpfulness = 1
+		..helpPhrase = "is pretty much as useful as another player. No cagey riddles, just straight answers on how to finish the quests. ",
+
+
+	new GameEntity(null, "Gerbil",null)
+		..power = 20
+		..helpfulness = 1
+		..helpPhrase = "remains physically adorable and mentally idiotic. Gigglysnort hideytalk ahoy. ",
+
+
+	new GameEntity(null, "Chinchilla",null)
+		..power = 20
+		..helpfulness = 1
+		..helpPhrase = "remains physically adorable and mentally idiotic. Gigglysnort hideytalk ahoy. ",
+
+
+	new GameEntity(null, "Rabbit",null)
+		..power = 20
+		..maxLuck = 100
+		..helpPhrase = "remains physically adorable and mentally idiotic. Gigglysnort hideytalk ahoy. ",
+
+
+	new GameEntity(null, "Tissue",null)
+		..helpfulness = -1
+		..helpPhrase = "is useless in every possible way. ",
+
+
+	new GameEntity(null, "Librarian",null)
+		..power = 20
+		..helpfulness = 1
+		..helpPhrase = "Is pretty much as useful as another player. No cagey riddles, just straight answers on where the book on how to finish the quest is, and could you please keep it down? ",
+
+
+	new GameEntity(null, "Pit Bull",null)
+		..power = 50,
+
+
+	new GameEntity(null, "Butler",null)
+		..power = 50  //he will serve you like a man on butler island
+		..helpfulness = 1
+		..helpPhrase = "is serving their player like a dude on butlersprite island. "
+		..sanity = 50,
+
+
+	new GameEntity(null, "Sloth",null)
+		..power = 20
+		..mobility = -50
+		..helpPhrase = "provides. Slow. But. Useful. Advice.",
+
+
+	new GameEntity(null, "Cowboy",null)
+		..power = 20
+		..helpfulness = 1
+		..helpPhrase = "provides useful advice, even if they do insist on calling literally everyone 'pardner.' ",
+
+
+	new GameEntity(null, "Pomeranian",null)
+		..power = 1 //pomeranians aren't actually very good at fights.  (trust me, i know)
+		..helpfulness = -1
+		..helpPhrase = "unhelpfully insists that every rock is probably a boss fight (it isn’t). ",
+
+
+	new GameEntity(null, "Chihuahua",null)
+		..power = 1  //i'm extrapolating here, but I imagine Chihuahua's aren't very good at fights, either.
+		..helpfulness = -1
+		..helpPhrase = "unhelpfully insists that every rock is probably a boss fight (it isn’t). ",
+
+
+	new GameEntity(null, "Pony",null)
+		..power = 20
+		..helpfulness = -1
+		..sanity = -1000  //ponyPals taught me that ponys are just flipping their shit, like, 100% of the time.
+		..helpPhrase = "is constantly flipping their fucking shit instead of being useful in any way shape or form, as ponies are known for. ",
+
+
+	new GameEntity(null, "Horse",null)
+		..power = 20
+		..helpfulness = -1
+		..sanity = -100  //probably flip out less than ponys???
+		..helpPhrase = "is constantly flipping their fucking shit instead of being useful in any way shape or form, as horses are known for. ",
+
+
+	new GameEntity(null, "Internet Troll",null)  //needs to have a fraymotif called "u mad, bro" and "butt hurt"
+		..power = 20
+		..helpfulness = -1
+		..sanity = 1000
+		..helpPhrase = "actively does its best to hinder their efforts. ",
+
+
+	new GameEntity(null, "Mosquito",null)
+		..power = 20
+		..helpfulness = -1
+		..helpPhrase = "is a complete dick, buzzing and fussing and biting. What's its deal? ",
+
+
+	new GameEntity(null, "Fly",null)
+		..power = 20
+		..helpfulness = -1
+		..helpPhrase = "is a complete dick, buzzing and fussing and biting. What's its deal? ",
+
+
+	new GameEntity(null, "Cow",null)
+		..power = 30, //cows kill more people a year than sharks.
+
+
+	new GameEntity(null, "Bird",null)
+		..power = 20
+		..mobility = 20
+		..helpPhrase = "provides sort of helpful advice when not grabbing random objects to make nests. ",
+
+
+	new GameEntity(null, "Bug",null)
+		..power = 20
+		..helpPhrase = "provides the requisite amount of buzzybuz zuzytalk to be juuuust barely helpful. ",
+
+
+	new GameEntity(null, "Llama",null)
+		..power = 20,
+
+
+	new GameEntity(null, "Penguin",null)
+		..power = 20,
+
+
+	new GameEntity(null, "Husky",null)
+		..power = 30
+		..helpPhrase = "alternates between loud, insistent barks and long, eloquent monologues on the deeper meaning behind each and every fragment of the game. ",
+
+
+	new GameEntity(null, "Cat",null)
+		..power = 20
+		..minLuck = -20
+		..maxLuck = 20
+		..helpPhrase = "Is kind of helpful? Maybe? You can't tell if it loves their player or hates them. ",
+
+
+	new GameEntity(null, "Dog",null)
+		..power = 30
+		..helpPhrase = "alternates between loud, insistent barks and long, eloquent monologues on the deeper meaning behind each and every fragment of the game. ",
+
+
+	new GameEntity(null, "Pigeon",null)
+		..power = 0.5  //pigeons are not famous for their combat prowess. I bet even a pomeranian could beat one up.
+		..freeWill = -40,
+
+
+	new GameEntity(null, "Octopus",null)
+		..power = 20
+		..mobility = 80, //so many legs! more legs is more faster!!!
+
+
+	new GameEntity(null, "Fish",null)
+		..power = 20
+		..armless = true,
+
+
+	new GameEntity(null, "Kitten",null)
+		..power = 20
+		..helpPhrase = "is kind of helpful? Maybe? You can't tell if it loves their player or hates them. ",
+
+
+	new GameEntity(null, "Worm",null)
+		..power = 20
+		..armless = true,
+
+
+	new GameEntity(null, "Bear",null)
+		..power = 50,
+
+
+	new GameEntity(null, "Goat",null)
+		..power = 20,
+
+
+	new GameEntity(null, "Rat",null)
+		..power = 20,
+
+
+	new GameEntity(null, "Raccoon",null)
+		..power = 20
+		..helpfulness = 1
+		..helpPhrase = "demonstrates that SBURB basically hides quest items in the same places humans would throw away their garbage. ",
+
+
+	new GameEntity(null, "Crow",null)
+		..power = 20
+		..freeWill = 20 //have you ever tried to convince a crow not to do something? not gonna happen.
+		..helpPhrase = "provides sort of helpful advice when not grabbing random objects to make nests. ",
+
+
+	new GameEntity(null, "Chicken",null)
+		..power = 20
+		..freeWill = -20,  //mike the headless chicken has convinced me that chickens don't really need brains. god that takes me back.
+
+
+	new GameEntity(null, "Duck",null)
+		..power = 20,
+
+
+	new GameEntity(null, "Sparrow",null)
+		..power = 20,
+
+
+	new GameEntity(null, "Fancy Santa",null)
+		..power = 20
+		..helpfulness = -1
+		..helpPhrase = "goes hohohohohohohohoho. ",
+
+
+	new GameEntity(null, "Politician",null)
+		..power = 20
+		..helpfulness = -1
+		..helpPhrase = "offers a blueprint for an ECONONY that works for everyone. That would've been more useful before the earth was destroyed.... ",
+
+
+	new GameEntity(null, "Tiger",null)
+		..power = 50
+		..helpPhrase = "Provides just enough pants-shitingly terrifying growly-roar meow talk to be useful. ",
+
+
+	new GameEntity(null, "Sugar Glider",null)
+		..power = 20
+		..helpPhrase = "remains physically adorable and mentally idiotic. Gigglysnort hideytalk ahoy. ",
+
+
+	new GameEntity(null, "Rapper",null)
+		..power = 20
+		..helpfulness = 1
+		..helpPhrase = "provides surprisingly helpful advice, even if it does insist on some frankly antiquated slang and rhymes. I mean, civilization is dead, there isn’t exactly a police left to fuck. ",
+
+
+	new GameEntity(null, "Kangaroo",null)
+		..power = 30
+		..mobility = 30,
+
+
+	new GameEntity(null, "Stoner",null)
+		..power = 42.0 //blaze it
+		..minLuck = -42.0
+		..maxLuck = 42.0
+		..helpfulness = 1
+		..helpPhrase = "is pretty much as useful as another player, assuming that player was higher then a fucking kite. ",
+
+]
+..addAll(disastor_objects)
+..addAll(fortune_objects)
+..addAll(lusus_objects)
+..addAll(sea_lusus_objects); //yes, a human absolutely could prototype some troll's lusus. that is a thing that is true.
