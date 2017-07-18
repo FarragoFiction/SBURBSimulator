@@ -2,7 +2,7 @@ part of SBURBSim;
 abstract class Scene {
   Session session;
   bool canRepeat = true;
-  List<Player> playerList = new List<Player>();
+  List<Player> playerList = new List<Player>(); //eventually get rid of this, but not today
   Scene(this.session); //eventually take in session.
 
 
