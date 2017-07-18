@@ -1,8 +1,6 @@
 part of SBURBSim;
-
 /*
 	Each of these important events have:
-	a subtype (which is just the classname)
 	a session
 	a player (optional, whoever died, or went murder mode, or whatever)
 	a mvp value (at time of event creation) keeps the important event referenceing the right timeline
@@ -10,6 +8,17 @@ part of SBURBSim;
 	a alternateTimeline function.
 	a humanLabel function.  instead of PlayerDiedButCouldGodTier it would be "The Heir of Life died with a living dream self. Make them GodTier."
 */
+abstract class ImportantEvent {
+  Session session;
+  Player player;
+  num mvp_value; //could be a float?
+  num importanceRating = 1; //am I even still using this?
+  Player doomedTimeClone; //TODO or should it be a playerSnapShot?
+  num times_called=0; //what was this for again?
+  Player secondTimeClone; //used to undo this event
+}
+
+
 
 //TODO, maybe allow them to prevent existing god tiers?
 
@@ -17,9 +26,10 @@ part of SBURBSim;
 //have alternate timeline change based on it being a dreamself that's dying versus an unsmooched regular self.
 //if i ever implmeent moon destruction, will need to refactor this, unless want to have time shenanigans. (god tier time players can take dying player to before moon was destroyed???)
 class PlayerDiedButCouldGodTier {
-	var session;
+	Session session;
 	num importanceRating = 9;
-	var mvp_value;	var player = makeRenderingSnapshot;
+	var mvp_value;
+	var player = makeRenderingSnapshot(player); //TODO this needs to refer to a playerSnapshot factory or something.
 	var doomedTimeClone;
 	num timesCalled = 0;
 	var secondTimeClone = null;  //second time clone undoes first undo
