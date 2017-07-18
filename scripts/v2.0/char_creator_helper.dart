@@ -805,7 +805,7 @@ class CharacterCreatorHelper {
 	}
 	dynamic drawOneClassDropDown(player){
 		available_classes = classes.slice(0); //re-init available classes. make deep copy
-		available_classes = available_classes.concat(custom_only_classes);
+	  available_classes.addAll(custom_only_classes);
 		String html = "<select id ;= 'classNameID" + player.id + "' name='className" +player.id +"'>";
 		for(num i = 0; i< available_classes.length; i++){
 			if(available_classes[i] == player.class_name){
@@ -875,7 +875,7 @@ class CharacterCreatorHelper {
 	}
 	dynamic drawOneAspectDropDown(player){
 		available_aspects = nonrequired_aspects.slice(0); //required_aspects
-		available_aspects = available_aspects.concat(required_aspects.slice(0));
+		available_aspects.addAll(required_aspects.slice(0));
 		String html = "<select class ;= 'selectDiv' id = 'aspectID" + player.id + "' name;='aspect" +player.id +"'>";
 		for(num i = 0; i< available_aspects.length; i++){
 			if(available_aspects[i] == player.aspect){
@@ -1013,65 +1013,65 @@ class CharacterEasterEggEngine {
 		List<dynamic> pool = [];
 		//first, parse url params. for each param you find that's right, append the relevant characters into the array.
 		if(getParameterByName("reddit")  == "true"){
-			pool = pool.concat(this.redditCharacters);
+			pool.addAll(this.redditCharacters);
 		}
 
 		if(getParameterByName("tumblr")  == "true"){
-			pool = pool.concat(this.tumblrCharacters);
+			pool.addAll(this.tumblrCharacters);
 		}
 
 		if(getParameterByName("discord")  == "true"){
-			pool = pool.concat(this.discordCharcters);
+			pool.addAll(this.discordCharcters);
 		}
 
 		if(getParameterByName("creditsBuckaroos")  == "true"){
-			pool = pool.concat(this.creditsBuckaroos);
+			pool.addAll(this.creditsBuckaroos);
 		}
 
 		if(getParameterByName("ideasWranglers")  == "true"){
-			pool = pool.concat(this.ideasWranglers);
+			pool.addAll(this.ideasWranglers);
 		}
 
 		if(getParameterByName("bards")  == "true"){
-        	pool = pool.concat(this.bards);
+        	pool.addAll(this.bards);
         }
 
 		if(getParameterByName("patrons")  == "true"){
-			pool = pool.concat(this.patrons);
+			pool.addAll(this.patrons);
 		}
 
 		if(getParameterByName("patrons2")  == "true"){
-			pool = pool.concat(this.patrons2);
+			pool.addAll(this.patrons2);
 		}
 
 		if(getParameterByName("patrons3")  == "true"){
-			pool = pool.concat(this.patrons3);
+			pool.addAll(this.patrons3);
 		}
 
 		if(getParameterByName("canon")  == "true"){
-			pool = pool.concat(this.canon);
+			pool.addAll(this.canon);
 		}
 
 		if(getParameterByName("otherFandoms")  == "true"){
-			pool = pool.concat(this.otherFandoms);
+			pool.addAll(this.otherFandoms);
 		}
 
 
 		if(getParameterByName("creators")  == "true"){
-			pool = pool.concat(this.creatorCharacters);
+			pool.addAll(this.creatorCharacters);
 		}
 
 		if(pool.length == 0){
 		//	print("i think i should be returning all characters.");
-			pool = pool.concat(this.redditCharacters);
-			pool = pool.concat(this.tumblrCharacters);
-			pool = pool.concat(this.discordCharcters);
-			pool = pool.concat(this.creditsBuckaroos);
-			pool = pool.concat(this.patrons);
-			pool = pool.concat(this.ideasWranglers);
-			pool = pool.concat(this.canon);
-			pool = pool.concat(this.creatorCharacters);
-			pool = pool.concat(this.bards);
+			pool.addAll(this.redditCharacters);
+			pool.addAll(this.tumblrCharacters);
+			pool.addAll(this.discordCharcters);
+			pool.addAll(this.creditsBuckaroos);
+			pool.addAll(this.patrons);
+			pool.addAll(this.ideasWranglers);
+			pool.addAll(this.canon);
+			pool.addAll(this.creatorCharacters);
+			pool.addAll(this.bards);
 		}
 
 		//return pool;

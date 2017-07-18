@@ -52,9 +52,9 @@ var justiceInterestVerbs = ["took","shook","look","kill","ill","aim","blame","hu
 //gotta give the trolls with 8 quirks love.
 var wordsRhymeLate = ["late", "eight", "ate", "wait", "weight", "bait", "date","fate","freight","gate","gait","mate","plate","plait","straight","trait","abate","abate","birthddate","castrate","checkmate","create","dictate","debate","donate","first-rate","flowrate","rate","inmate","mandate","locate","ornate","rebate","shipmate","teammate","activate","actuate","communicate","callibrate"];
 //holy shit,t here's still more????????
-wordsRhymeLate = wordsRhymeLate.concat(["bitrate","calculate","retrobate","concentrate","copulate","contemplate","decorate","desecrate","germinate","heavyweight","lightweight","immolate","instigate","liquidate"]);
-wordsRhymeLate =wordsRhymeLate.concat(["mitigate","obfuscate,","mitigate","moderate","mutilate","nauseate","navigate","overstate","penetrate","propagate","renovate","segregate","simulate","solid-state","subjugate","strangulate","suffocate","syncopate","terminate","titillate"]);
-wordsRhymeLate =wordsRhymeLate.concat(["accommodate","accumulate","assassinate","assimilate","asphyxiate","deadweight","degenerate","depopulate","exacerbate","eviscerate","pontificate","prognosticate","regurgitate","subordinate","resuscitate","decontaminate","potassium dichromate "]);
+wordsRhymeLate.addAll(["bitrate","calculate","retrobate","concentrate","copulate","contemplate","decorate","desecrate","germinate","heavyweight","lightweight","immolate","instigate","liquidate"]);
+wordsRhymeLate.addAll(["mitigate","obfuscate,","mitigate","moderate","mutilate","nauseate","navigate","overstate","penetrate","propagate","renovate","segregate","simulate","solid-state","subjugate","strangulate","suffocate","syncopate","terminate","titillate"]);
+wordsRhymeLate.addAll(["accommodate","accumulate","assassinate","assimilate","asphyxiate","deadweight","degenerate","depopulate","exacerbate","eviscerate","pontificate","prognosticate","regurgitate","subordinate","resuscitate","decontaminate","potassium dichromate "]);
 
 var wordsRhymehot = ["hot", "bot", "knot", "caught", "robot", "thought", "clot","shot","plot","forgot","yaught","rot","watt","squat","trot","swat","brobot","ocelot","naught","shot"];
 var wordsRhymeTown = ["town", "down", "frown", "clown", "brown", "crown", "drown","noun"];

@@ -611,7 +611,7 @@ class RelationshipDrama extends Scene {
 		var living = findLivingPlayers(this.session.players);
 		var dead = findDeadPlayers(this.session.players);
 		var players = living;
-		players = players.concat(dead);
+		players.addAll(dead);
 		//print("living: " + living.length + "dead: " + dead.length + " both: " + players.length);
 		//alert("removing crush: " + crush.title() + " from array: " + living.length)
 		removeFromArray(crush, players);

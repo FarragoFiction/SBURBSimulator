@@ -168,7 +168,7 @@ void renderURLToSendPlayersIntoSBURB(){
 void reinit(){
 	available_classes = classes.slice(0);
 	available_aspects = nonrequired_aspects.slice(0); //required_aspects
-	available_aspects = available_aspects.concat(required_aspects.slice(0));
+	available_aspects.addAll(required_aspects.slice(0));
 
 	curSessionGlobalVar.reinit();
 }

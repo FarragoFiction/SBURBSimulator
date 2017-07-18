@@ -20,7 +20,7 @@ class FightKing extends Scene {
 	var allPlayers = this.session.players; //anybody can have doomedclones now, not just time players.
 
 	for(num i = 0; i<allPlayers.length; i++){
-		living = living.concat(allPlayers[i].doomedTimeClones);
+		living.addAll(allPlayers[i].doomedTimeClones);
 	}
 	return living;
 }

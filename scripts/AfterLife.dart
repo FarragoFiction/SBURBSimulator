@@ -1,15 +1,15 @@
-
+part of SBURBSim;
 
 //the afterlife is essentially just a list of player snapshots. when a snapshot is added, make them not "dead". ghosts can double die.
 class AfterLife {
-	List<dynamic> ghosts = [];
-	List<dynamic> ghostsBannedFromInteracting = []; //for time reasons, if ghosts didn't interact with session the first time, they can't until the timeline divurges.
+	List<Player> ghosts = []; //TODO maybe eventually have "ghost" object
+	List<Player> ghostsBannedFromInteracting = []; //for time reasons, if ghosts didn't interact with session the first time, they can't until the timeline divurges.
 	var timeLineSplitsWhen = null; //what is the event i'm waitin for to allow ghosts back in?
 
 	
 
 
-	AfterLife(this.) {}
+	AfterLife() {}
 
 
 	void addGhost(ghost){
@@ -19,13 +19,14 @@ class AfterLife {
 	}
 	void allowTransTimeLineInteraction(){
 		print("timelines divurged, allowing transTimeline interaction");
-		this.ghosts = this.ghosts.concat(this.ghostsBannedFromInteracting);
+		//this.ghosts = this.ghosts.concat(this.ghostsBannedFromInteracting);
+		this.ghosts.addAll(this.ghostsBannedFromInteracting);
 		this.ghostsBannedFromInteracting = [];
 		this.timeLineSplitsWhen = null;
 	}
 	void complyWithLifeTimeShenanigans(importantEvent){
 		print("ghosts cant interact with a yellow yyard until timelines divurge");
-		this.ghostsBannedFromInteracting = this.ghostsBannedFromInteracting.concat(this.ghosts);
+		this.ghostsBannedFromInteracting.addAll(this.ghosts);
 		this.ghosts = [];
 		this.timeLineSplitsWhen = importantEvent; //e can be null if undoing an undo
 	}
@@ -75,7 +76,8 @@ class AfterLife {
 		var relationships = player.getFriends();
 		for(num i = 0; i <relationships.length; i++){
 			var r = relationships[i];
-			lovedOnes = lovedOnes.concat(this.findAllAlternateSelves(r));
+
+			lovedOnes.addAll(this.findAllAlternateSelves(r));
 		}
 
 		return lovedOnes;
@@ -96,7 +98,7 @@ class AfterLife {
 	dynamic findFriendlySpirit(player){
 		return getRandomElementFromArray(this.findAllDeadFriends(player));
 	}
-	void areTwoPlayersTheSame(player1, player2){
+	bool areTwoPlayersTheSame(player1, player2){
 		return player2.id == player1.id && player2.class_name == player1.class_name && player2.aspect == player1.aspect && player1.hair == player2.hair   //if they STILL match, well fuck it. they are the same person just alternate universe versions of each other.;
 	}
 	dynamic findClosesToRealSelf(player){
@@ -116,8 +118,8 @@ class AfterLife {
 		}
 		return bestCanidate; //no way to know for SURE this is the most recent ghost...but...PRETTY sure???
 	}
-	void findAllAlternateSelves(player){
-		List<dynamic> selves = [];
+	List<Player> findAllAlternateSelves(player){
+		List<Player> selves = [];
 		for(num i = 0; i<this.ghosts.length; i++){
 			var ghost = this.ghosts[i];
 			if(this.areTwoPlayersTheSame(player, ghost)){

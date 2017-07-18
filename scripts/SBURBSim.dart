@@ -15,6 +15,7 @@ part "random_tables.dart";
 part "gameEntity.dart";
 part "relationship.dart";
 part "handle_sprites.dart";
+part "AfterLife.dart";
 
 //scenes
 part "Scenes/Scene.dart";

@@ -149,8 +149,8 @@ class VoidyStuff extends Scene {
 			specialDiv.append( "The " + this.player.htmlTitle() + " is " + getRandomQuestFromAspect(this.player.aspect) + ". ");
 		}else{
 			var specialStuff = ["teaching the local consorts all the illest of beats","explaining the finer points of the human game 'hopscotch' to local consorts","passing out banned orange fruits that may or may not exist to hungry local consorts","throwing a birthday party for the local consorts"];
-			specialStuff = specialStuff.concat(["reenacting tear jerking scenes from classic cinema with local consorts","adopting a local consort as their beloved daughter","explaining that all conflict will be resolved through the medium of rap, going forwards","passing out rumpled headgear like cheap cigars"]);
-			specialStuff = specialStuff.concat(["completely destabilizing the local consort economy by just handing out fat stacks of boonbucks","showing the local consorts how to draw graffiti all over the Denizen temples","explaining that each local consort is probably the hero of legend or some shit","encouraging local consorts to form secret societies around household items"]);
+			specialStuff.addAll(["reenacting tear jerking scenes from classic cinema with local consorts","adopting a local consort as their beloved daughter","explaining that all conflict will be resolved through the medium of rap, going forwards","passing out rumpled headgear like cheap cigars"]);
+			specialStuff.addAll(["completely destabilizing the local consort economy by just handing out fat stacks of boonbucks","showing the local consorts how to draw graffiti all over the Denizen temples","explaining that each local consort is probably the hero of legend or some shit","encouraging local consorts to form secret societies around household items"]);
 
 			specialDiv.append( "The " + this.player.htmlTitle() + " is " + getRandomElementFromArray(specialStuff) + ". ");
 		}
@@ -173,7 +173,7 @@ class VoidyStuff extends Scene {
 			this.player.power = this.player.power*2;  //current and future doubling of power.
 			this.player.leveledTheHellUp = true;
 			this.player.denizenDefeated = true;
-			this.player.fraymotifs = this.player.fraymotifs.concat(this.player.denizen.fraymotifs);
+			this.player.fraymotifs.addAll(this.player.denizen.fraymotifs);
 			this.player.grist += denizen.grist;
 			ret += denizen.name + " lies dead on the ground. ";
 			specialDiv.append(ret);

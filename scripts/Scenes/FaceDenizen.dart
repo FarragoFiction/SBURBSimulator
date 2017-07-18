@@ -89,7 +89,7 @@ class FaceDenizen extends Scene{
 				p.grist += denizen.grist;
 				div.append("<br>"+ret);
 				this.session.denizenBeat = true;
-				p.fraymotifs = p.fraymotifs.concat(p.denizen.fraymotifs);
+				p.fraymotifs.addAll(p.denizen.fraymotifs);
 				//print("denizen beat through choice in session: " + this.session.session_id);
 			}else{
 				p.denizenDefeated = false;
@@ -102,7 +102,7 @@ class FaceDenizen extends Scene{
 			denizen.strife(div, [p],0);
 			if(denizen.getStat("currentHP") <= 0 || denizen.dead) {
 				p.denizenDefeated = true;
-				p.fraymotifs = p.fraymotifs.concat(p.denizen.fraymotifs);
+				p.fraymotifs.addAll(p.denizen.fraymotifs);
 				p.power = p.power*2;  //current and future doubling of power.
 				this.session.denizenBeat = true;
 			}else if(p.dead){

@@ -427,7 +427,7 @@ void reinit(){
 	//print("reinit");
 	available_classes = classes.slice(0);
 	available_aspects = nonrequired_aspects.slice(0); //required_aspects
-	available_aspects = available_aspects.concat(required_aspects.slice(0));
+	available_aspects.addAll(required_aspects.slice(0));
 	curSessionGlobalVar.reinit();
 }
 
@@ -593,7 +593,7 @@ void checkPasswordAgainstQuip(summary){
 
 void avatarCarousel(){
 	var possibleAvatars = ["images/CandyAuthorBot.png","images/ab_doll.jpg","images/trickster_author_transparent.png","images/ab_guide_sprite.png","images/trickster_artist_transparent.png","images/jr_sprite.png"];
-  var possibleAvatars = possibleAvatars.concat(["images/misc/fanArt/ABFanArt/reDead-ITA.png","images/misc/fanArt/ABFanArt/chaoticConvergence.jpeg", "pumpkin.png", "images/misc/fanArt/ABFanArt/artificialArtificer.png","images/misc/fanArt/ABFanArt/Makin.png","images/misc/fanArt/ABFanArt/waltzingOphidan.png"]);
+  possibleAvatars.addAll(["images/misc/fanArt/ABFanArt/reDead-ITA.png","images/misc/fanArt/ABFanArt/chaoticConvergence.jpeg", "pumpkin.png", "images/misc/fanArt/ABFanArt/artificialArtificer.png","images/misc/fanArt/ABFanArt/Makin.png","images/misc/fanArt/ABFanArt/waltzingOphidan.png"]);
 	querySelector("#avatar").attr("src",getRandomElementFromArray(possibleAvatars));
 	setTimeout(avatarCarousel,10000);
 }

@@ -55,7 +55,7 @@ class LifeStuff extends Scene {
 		}
 
 		var dead = findDeadPlayers(this.session.players) ;//dead players can always be revived;
-		nonGuides = nonGuides.concat(dead);
+		nonGuides.addAll(dead);
 		List<dynamic> removeGuides = []; //don't remove elements in teh array you are in.
 		//for each guide, see if there are any non guides left to guide.
 		for(num i = 0; i<guides.length; i++){
@@ -72,7 +72,7 @@ class LifeStuff extends Scene {
 			removeFromArray(removeGuides[i], guides);
 		}
 		//if you don't have an official role, join the pool of dreamers.
-		nonGuides = nonGuides.concat(guides);
+		nonGuides.addAll(guides);
 		if(this.session.dreamBubbleAfterlife){
 			for(num i = 0; i<nonGuides.length; i++){
 					var rand = seededRandom() ;//only spend half your time dreaming right.;
@@ -333,7 +333,7 @@ class LifeStuff extends Scene {
 			String effect = "";
 			if(player.aspect == ghost.aspect && ghost.fraymotifs.length > 0 && player.id != ghost.id){ //don't just relearn your own fraymotifs.
 				print("player learning fraymotifs from a ghost " + this.session.session_id);
-				player.fraymotifs = player.fraymotifs.concat(ghost.fraymotifs.slice(0)); //copy not reference
+				player.fraymotifs.addAll(ghost.fraymotifs.slice(0)); //copy not reference
 				effect = "They learn " + turnArrayIntoHumanSentence(ghost.fraymotifs) + " from the " + ghostName + ". ";
 			}else{
 				player.increasePower(ghost.power/2); //want to increase aspect stats, too.

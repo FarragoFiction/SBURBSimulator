@@ -46,9 +46,9 @@ class QuadrantDialogue extends Scene {
 		if(this.player2  && !this.player2.dead && seededRandom > 0.5){ //don't completely ignore your other relationships in favor of your moirail.
 			return;
 		}
-		potentials = potentials.concat(this.player1.getHearts());
-		potentials = potentials.concat(this.player1.getClubs());
-		potentials = potentials.concat(this.player1.getSpades());
+		potentials.addAll(this.player1.getHearts());
+		potentials.addAll(this.player1.getClubs());
+		potentials.addAll(this.player1.getSpades());
 		this.player2 = getRandomElementFromArray(potentials).target;
 		if(this.player2.dead) this.player2 = null;
 		return;
