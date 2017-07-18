@@ -74,13 +74,13 @@ class SessionSummary {
 	
 
 
-	SessionSummary(this.) {}
+	SessionSummary() {}
 
 
 	void setMiniPlayers(players){
 
 		for(num i = 0; i<players.length; i++){
-			this.miniPlayers.add({class_name: players[i].class_name, aspect: players[i].aspect});
+			this.miniPlayers.add({"class_name": players[i].class_name, "aspect": players[i].aspect});
 		}
 	}
 	bool matchesClass(classes){

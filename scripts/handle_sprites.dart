@@ -1,4 +1,4 @@
-
+part of SBURBSim;
 
 num asyncNumSprites = 0;
 bool cool_kid = false;
@@ -11,8 +11,8 @@ bool faceOff = false;
 //except nepepta, cuz that cat troll be crazy, yo
 
 //mod from http://stackoverflow.com/questions/21646738/convert-hex-to-rgba
-dynamic hexToRgbA(hex){
-    var c;
+List<int> hexToRgbA(String hex){
+    /*var c;
     if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
         c= hex.substring(1).split('');
         if(c.length== 3){
@@ -22,7 +22,11 @@ dynamic hexToRgbA(hex){
         //return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+',1)';
         return [(c>>16)&255, (c>>8)&255, c&255];
     }
-    throw new Error('Bad Hex ' + hex);
+    throw new Error('Bad Hex ' + hex);*/
+
+    int col = int.parse(hex.substring(1), radix:16, onError:(String hex) => 0xFF0000);
+
+    return [(col>>16)&255, (col>>8)&255, col&255];
 }
 
 
@@ -38,8 +42,8 @@ void sbahjifier(canvas){
   //var weights = [  0, -1,  0, -1,  5, -1, 0, -1,  0 ];
   var weights = [  -1, -1,  -1, -1,  9, -1, -1, -1,  -1 ];
   //var weights = [  1, 1, 1, 1,  5, -1, -1, -1, -1 ];
-  var side = Math.round(Math.sqrt(weights.length));
-  var halfSide = Math.floor(side/2);
+  var side = (Math.sqrt(weights.length)).round();
+  var halfSide = (side~/2);
   var src = pixels.data;
   var sw = pixels.width;
   var sh = pixels.height;
@@ -57,7 +61,7 @@ void sbahjifier(canvas){
       var dstOff = (y*w+x)*4;
       // calculate the weighed sum of the source image pixels that
       // fall under the convolution matrix
-      var r=0, g;=0, b=0, a;=0;
+      int r=0, g=0, b=0, a=0;
       for (var cy=0; cy<side; cy++) {
         for (var cx=0; cx<side; cx++) {
           var scy = sy + cy - halfSide;
@@ -103,9 +107,9 @@ void rainbowSwap(canvas){
 	//4 *Math.floor(i/(4000)) is because 1/(width*4) get me the row number (*4 'cause there are 4 elements per pixel). then, when i have the row number, *4 again because first row is 0,1,2,3 and second is 4,5,6,7 and third is 8,9,10,11
 	for(num i = 0; i<img_data.data.length; i += 4){;
 		if(img_data.data[i+3] >= 128){
-			img_data.data[i] =img_data_rainbow.data[4 *Math.floor(i/(4000))];
-			img_data.data[i+1] = img_data_rainbow.data[4 *Math.floor(i/(4000))+1];
-			img_data.data[i+2] =img_data_rainbow.data[4 *Math.floor(i/(4000))+2];
+			img_data.data[i] =img_data_rainbow.data[4 *(i~/(4000))];
+			img_data.data[i+1] = img_data_rainbow.data[4 *(i~/(4000))+1];
+			img_data.data[i+2] =img_data_rainbow.data[4 *(i~/(4000))+2];
 			img_data.data[i+3] = getRandomIntNoSeed(100,255); //make it look speckled.
 
 		}
@@ -127,7 +131,7 @@ void voidSwap(canvas, alphaPercent){
   //4 byte color array
   for(num i = 0; i<img_data.data.length; i += 4){;
     if(img_data.data[i+3] > 50){
-      img_data.data[i+3] = Math.floor(img_data.data[i+3]*alphaPercent);  //keeps wings at relative transparency
+      img_data.data[i+3] = (img_data.data[i+3]*alphaPercent).floor();  //keeps wings at relative transparency
     }
   }
   ctx.putImageData(img_data, 0, 0);
@@ -154,7 +158,7 @@ void drainedGhostSwap(canvas){
 	//4 *Math.floor(i/(4000)) is because 1/(width*4) get me the row number (*4 'cause there are 4 elements per pixel). then, when i have the row number, *4 again because first row is 0,1,2,3 and second is 4,5,6,7 and third is 8,9,10,11
 	for(num i = 0; i<img_data.data.length; i += 4){;
 		if(img_data.data[i+3] >= 128){
-			img_data.data[i+3] = img_data_rainbow.data[4 *Math.floor(i/(4000))+3]/2 ;//only mimic transparency. even fainter.;
+			img_data.data[i+3] = img_data_rainbow.data[4 *(i~/(4000))+3]/2 ;//only mimic transparency. even fainter.;
 
 		}
 	}
@@ -183,7 +187,7 @@ void ghostSwap(canvas){
 	//4 *Math.floor(i/(4000)) is because 1/(width*4) get me the row number (*4 'cause there are 4 elements per pixel). then, when i have the row number, *4 again because first row is 0,1,2,3 and second is 4,5,6,7 and third is 8,9,10,11
 	for(num i = 0; i<img_data.data.length; i += 4){;
 		if(img_data.data[i+3] >= 128){
-			img_data.data[i+3] = img_data_rainbow.data[4 *Math.floor(i/(4000))+3]*2 ;//only mimic transparency.;
+			img_data.data[i+3] = img_data_rainbow.data[4 *(i~/(4000))+3]*2 ;//only mimic transparency.;
 
 		}
 	}
@@ -304,22 +308,22 @@ void roboSkin(canvas){
 
 
 
-void wings(canvas, player){
+void wings(CanvasElement canvas, Player player){
   //blood players have no wings, all other players have wings matching
   //favorite color
   if(player.aspect == "Blood"){
     //return;  //karkat and kankri don't have wings, but is that standard? or are they just hiding them?
   }
 
-  ctx = canvas.getContext('2d');
+  CanvasRenderingContext2D ctx = canvas.getContext('2d');
   var num = player.quirk.favoriteNumber;
   //num num = 5;
   String imageString = "Wings/wing"+num + ".png";
   addImageTag(imageString);
-  var img=querySelector("#${imageString}");
+  ImageElement img=querySelector("#${imageString}");
   var width = img.width;
   var height = img.height;
-  ctx.drawImage(img,0,0,width,height);
+  ctx.drawImage(img,0,0);//,width,height);
 
   swapColors(canvas, "#ff0000",player.bloodColor);
   swapColors50(canvas, "#00ff2a",player.bloodColor);

@@ -1771,8 +1771,8 @@ class Player {
 		return ["power", "hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
 	}
 	dynamic intializeAssociatedClassStatReferences(){
-		return //don't do this for now, too confusing.;
-		var allStats = this.allStats().slice(0); //make copy
+		return null;//don't do this for now, too confusing.;
+		/*var allStats = this.allStats().slice(0); //make copy
 		allStats = allStats.concat("MANGRIT");
 		allStats.removeFromArray("power"); //can't buff power directly
 		switch (this.class_name) {
@@ -1829,7 +1829,7 @@ class Player {
 				break;
 			default:
 				print('What the hell kind of class is ' + this.class_name + '???');
-		}
+		}*/
 	}
 	dynamic getOnlyAspectAssociatedStats(){
 		List<dynamic> ret = [];
