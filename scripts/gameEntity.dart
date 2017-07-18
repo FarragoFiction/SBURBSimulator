@@ -364,7 +364,7 @@ class GameEntity {
 				if(players.indexOf(potential) == -1 && potential.sprite.name != "sprite"){ //you aren't already in the fight and aren't still on earth/alternaia/beforus/etc.
 					if((potential.mobility > getAverageMobility(players) || seededRandom() >.5)){ //you're fast enough to get here, or randomness happened.
 
-						players.push(potential);
+						players.add(potential);
 						potential.currentHP = Math.max(1, potential.hp) ;//have at least 1 hp, dunkass;
 						this.session.availablePlayers.removeFromArray(potential); //you aren't available anymore.
 						var divID = (div.attr("id")) + "doomTimeArrival"+players.join("")+numTurns;
@@ -397,7 +397,7 @@ class GameEntity {
 				//print("summoning a doomed time clone to this fight. " +this.session.session_id);
 				var timePlayer = findAspectPlayer(this.session.players, "Time");
 				var doomedTimeClone = makeDoomedSnapshot(timePlayer);
-				players.push(doomedTimeClone);
+				players.add(doomedTimeClone);
 				if(players.indexOf(timePlayer) !=-1){
 					if(timePlayer.dead){
 						var living = findLivingPlayers(this.session.players);
@@ -423,7 +423,7 @@ class GameEntity {
 				drawTimeGears(pSpriteBuffer, doomedTimeClone);
 				drawSinglePlayer(pSpriteBuffer, doomedTimeClone);
 				copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0);
-				timePlayer.doomedTimeClones.push(doomedTimeClone);
+				timePlayer.doomedTimeClones.add(doomedTimeClone);
 				timePlayer.sanity += -10;
 				timePlayer.flipOut("their own doomed time clones");
 				return players;

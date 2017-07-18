@@ -311,7 +311,7 @@ void makePlayers(){
 		}
 
 		decideTroll(p);
-		players.push(p);
+		players.add(p);
 	}
  // players[0].class_name = "Page" ;//for testing;
 

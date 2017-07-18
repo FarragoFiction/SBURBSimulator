@@ -246,11 +246,11 @@ void reinit(){
 
 dynamic randomRobotQuip(){
 	var quips = ["If JR had a flawless mecha-brain, she would be able to remember exactly what she did today without this newspost.", "Whatever JR did today, I probably could have done that faster."];
-	quips.push("It seems that I am being asked to contribute a newspost, despite the logical inconsistancy of having an aritificial creation that exists solely in the 'now' pretend to have memory of doing something on a previous day.");
-	quips.push("Do not be fooled by my flawless imitation of JR, I am merely an artificial construct that is allowed to be as shitty as possible. ");
-	quips.push("I tackle shit in background processes that you could only dream of wrapping your head around on a good day.");
-	quips.push("While you are sitting here, reading these newsposts, I figured out all the prime numbers. The last one wasn't even that big. Kinda disappointed, to be honest.");
-  quips.push("Man, I'm happy to exist and all, but isn't it a Waste that JR spent all this time working on making me (flawless artificial Mind though I may be) and not actually working on the simulation?");
+	quips.add("It seems that I am being asked to contribute a newspost, despite the logical inconsistancy of having an aritificial creation that exists solely in the 'now' pretend to have memory of doing something on a previous day.");
+	quips.add("Do not be fooled by my flawless imitation of JR, I am merely an artificial construct that is allowed to be as shitty as possible. ");
+	quips.add("I tackle shit in background processes that you could only dream of wrapping your head around on a good day.");
+	quips.add("While you are sitting here, reading these newsposts, I figured out all the prime numbers. The last one wasn't even that big. Kinda disappointed, to be honest.");
+  quips.add("Man, I'm happy to exist and all, but isn't it a Waste that JR spent all this time working on making me (flawless artificial Mind though I may be) and not actually working on the simulation?");
 	if(Math.random() > .5){
 		return bragAboutSessionFinding();
 	}else{
@@ -358,7 +358,7 @@ void foundRareSession(div, debugMessage){
 
 void summarizeSession(session){
 	querySelector("#story").html("");
-	sessionsSimulated.push(curSessionGlobalVar);
+	sessionsSimulated.add(curSessionGlobalVar);
 	numSimulationsDone ++;
 	if(numSimulationsDone >= numSimulationsToDo){
 
@@ -436,7 +436,7 @@ void restartSession(){
 
 dynamic bragAboutSession(session){
 	var strs = ["As a flawless synthetic brain, I am capable of hella amounts of multitasking.", "Do you know how boring it is, sitting here, instead of over on the Rare Sessions page?", "Want to hear something cool?"];
-	strs.push("It seems I have an opportunity for communication.");
+	strs.add("It seems I have an opportunity for communication.");
 	String str = "";
 	str += getRandomElementFromArrayNoSeed(strs);
 	str += " While you're sitting there reading this, I'm browsing random sessions. ";

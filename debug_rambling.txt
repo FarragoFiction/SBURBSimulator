@@ -1217,7 +1217,7 @@ That reveals a path forwards. It's two levels.   Within just class or just aspec
  Don't panic about how lost you are. Find a way to move forwrds and do it. So. What does the code look like right now?
 
  if($("#"+ghost.class_name).is(":checked") || $("#"+ghost.aspect).is(":checked")){
-   filteredGhosts.push(ghost)
+   filteredGhosts.add(ghost)
  }
 
 
@@ -1291,18 +1291,18 @@ so, is the html already set up so jquery can get what i need??? No. find where i
 
 if(classFiltered && !aspectFiltered){
   if($("#"+ghost.class_name).is(":checked")){
-    filteredGhosts.push(ghost)
+    filteredGhosts.add(ghost)
   }
 }else if(aspectFiltered && !classFiltered){
   if($("#"+ghost.aspect).is(":checked")){
-    filteredGhosts.push(ghost)
+    filteredGhosts.add(ghost)
   }
 }else if(aspectFiltered && classFiltered){
   if($("#"+ghost.class_name).is(":checked") && $("#"+ghost.aspect).is(":checked")){
-    filteredGhosts.push(ghost)
+    filteredGhosts.add(ghost)
   }
 }else{//nothing filtered.
-  filteredGhosts.push(ghost)
+  filteredGhosts.add(ghost)
 }
 
 
@@ -1339,16 +1339,16 @@ function filterSessionSummaries(){
 	var filters = [];
 	sessionSummariesDisplayed = [] //can filter already filtered arrays.
 	for(var i = 0; i<allSessionsSummaries.length; i++){
-			sessionSummariesDisplayed.push(allSessionsSummaries[i]);
+			sessionSummariesDisplayed.add(allSessionsSummaries[i]);
 	}
 
 	$("input[name='filter']:checked").each(function(){
-		filters.push($(this).val());
+		filters.add($(this).val());
 	});
 		for(var i = 0; i<sessionSummariesDisplayed.length; i++){
 			var ss = sessionSummariesDisplayed[i];
 			if(ss.satifies_filter_array(filters)){
-				tmp.push(ss);
+				tmp.add(ss);
 			}
 
 	}
@@ -2198,7 +2198,7 @@ this.addEventToUndoAndReset = function(e){
 			return this.addEventToUndoAndResetScratch(e); //works different
 		}
 		if(e){//will be null if undoing an undo
-			this.yellowYardController.eventsToUndo.push(e);
+			this.yellowYardController.eventsToUndo.add(e);
 		}
 		//reinit the seed and restart the session
 		var savedPlayers = curSessionGlobalVar.players;
@@ -2217,7 +2217,7 @@ this.addEventToUndoAndReset = function(e){
 		//console.log(getPlayersTitles(curSessionGlobalVar.aliensClonedOnArrival));
 		var living = []  //if don't make copy of aliensClonedOnArrival, goes into an infinite loop as it loops on it and adds to it inside of addAliens
 		for(var i = 0; i<this.aliensClonedOnArrival.length; i++){
-			living.push(this.aliensClonedOnArrival[i])
+			living.add(this.aliensClonedOnArrival[i])
 		}
 		this.aliensClonedOnArrival = [];//jettison old clones.
 		addAliensToSession(curSessionGlobalVar, living);
@@ -2242,7 +2242,7 @@ this.addEventToUndoAndReset = function(e){
 		//console.log(getPlayersTitles(curSessionGlobalVar.aliensClonedOnArrival));
 		var living = []  //if don't make copy of aliensClonedOnArrival, goes into an infinite loop as it loops on it and adds to it inside of addAliens
 		for(var i = 0; i<this.aliensClonedOnArrival.length; i++){
-			living.push(this.aliensClonedOnArrival[i])
+			living.add(this.aliensClonedOnArrival[i])
 		}
 		this.aliensClonedOnArrival = [];//jettison old clones.
 		addAliensToSession(curSessionGlobalVar, living);

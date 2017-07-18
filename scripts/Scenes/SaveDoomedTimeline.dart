@@ -96,7 +96,7 @@ class SaveDoomedTimeLine extends Scene {
 			ret += " If the " + this.leaderPlayer.htmlTitleBasic() + " dies right now, ";
 			ret += " none of the Players will even be born in the first place (Long story, just trust them). ";
 
-			this.session.doomedTimelineReasons.push(this.reason);
+			this.session.doomedTimelineReasons.add(this.reason);
 			this.leaderPlayer.dead = false;
 			this.leaderPlayer.renderSelf();
 			var r = this.timePlayer.getRelationshipWith(this.leaderPlayer);
@@ -138,17 +138,17 @@ class SaveDoomedTimeLine extends Scene {
 				ret += " They interupt things before the " + this.leaderPlayer.htmlTitleBasic() +  " gets hurt too bad. ";
 				this.leaderPlayer.currentHP = this.leaderPlayer.hp/2;
 			}
-			this.session.doomedTimelineReasons.push(this.reason);
+			this.session.doomedTimelineReasons.add(this.reason);
 		}else{
 			if(this.timePlayer.leader && !this.session.ectoBiologyStarted ){
 					print("time player doing time ectobiology: " + this.session.session_id);
 					this.timePlayer.performEctobiology(this.session);
 					this.reason = "Time player didn't do ectobiology.";
-					session.doomedTimelineReasons.push(this.reason);
+					session.doomedTimelineReasons.add(this.reason);
 					ret += " They need to do the ectobiology right freaking now, or none of the players will ever even be born.";
 			}else{
 				this.reason = "Shenanigans";
-				session.doomedTimelineReasons.push(this.reason);
+				session.doomedTimelineReasons.add(this.reason);
 				ret += " It's too complicated to explain, but everyone has already screwed up beyond repair. Just trust them. ";
 			}
 		}
@@ -166,7 +166,7 @@ class SaveDoomedTimeLine extends Scene {
 			ret += " Time really is the shittiest aspect. They make sure everybody is dead in this timeline, as per inevitability's requirements, then they sullenly vanish in a cloud of clocks and gears. ";
 		}
 		this.doomedTimeClone = makeDoomedSnapshot(this.timePlayer);
-		this.timePlayer.doomedTimeClones.push(this.doomedTimeClone);
+		this.timePlayer.doomedTimeClones.add(this.doomedTimeClone);
 		this.timePlayer.sanity += -10;
 		this.timePlayer.flipOut("their own doomed time clones");
 		return ret;

@@ -206,28 +206,28 @@ class Aftermath extends Scene {
 	var trollKidRock = new CharacterEasterEggEngine().playerDataStringArrayToURLFormat([trollKidRockString])[0];
 	trollKidRock.session = this.session;
 	var f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) ;//most repetitive song, ACTIVATE!!!;
-	f.effects.push(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
-	f.effects.push(new FraymotifEffect("power",1,false));
+	f.effects.add(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
+	f.effects.add(new FraymotifEffect("power",1,false));
 	f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? ";
-	trollKidRock.fraymotifs.push(f);
+	trollKidRock.fraymotifs.add(f);
 	
 	var f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) ;//most repetitive song, ACTIVATE!!!;
-	f.effects.push(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
-	f.effects.push(new FraymotifEffect("power",1,false));
+	f.effects.add(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
+	f.effects.add(new FraymotifEffect("power",1,false));
 	f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? ";
-	trollKidRock.fraymotifs.push(f);
+	trollKidRock.fraymotifs.add(f);
 	
 	var f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) ;//most repetitive song, ACTIVATE!!!;
-	f.effects.push(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
-	f.effects.push(new FraymotifEffect("power",1,false));
+	f.effects.add(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
+	f.effects.add(new FraymotifEffect("power",1,false));
 	f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? ";
-	trollKidRock.fraymotifs.push(f);
+	trollKidRock.fraymotifs.add(f);
 	
 	var f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) ;//most repetitive song, ACTIVATE!!!;
-	f.effects.push(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
-	f.effects.push(new FraymotifEffect("power",1,false));
+	f.effects.add(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
+	f.effects.add(new FraymotifEffect("power",1,false));
 	f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? ";
-	trollKidRock.fraymotifs.push(f);
+	trollKidRock.fraymotifs.add(f);
 	initializePlayers([trollKidRock]);
 	trollKidRock.currentHP = 1000;
 	return trollKidRock;
@@ -253,25 +253,25 @@ class Aftermath extends Scene {
 	//what kind of attacks does a grim dark purple frog have???  Croak Blast is from rp, but what else?
 	
 	var f = new Fraymotif([], Zalgo.generate("CROAK BLAST"), 3) ;//freeMiliu_2K01 [F☆] came up with this one in the RP :)  :) :);
-	f.effects.push(new FraymotifEffect("mobility",3,true));
+	f.effects.add(new FraymotifEffect("mobility",3,true));
 	f.flavorText = " OWNER uses a weaponized croak. You would be in awe if it weren't so painful. ";
-	purpleFrog.fraymotifs.push(f);
+	purpleFrog.fraymotifs.add(f);
 	
 	f = new Fraymotif([],  Zalgo.generate("HYPERBOLIC GEOMETRY"), 3);//DM, the owner of the purple frog website came up with this one.;
-	f.effects.push(new FraymotifEffect("mobility",3,false));
+	f.effects.add(new FraymotifEffect("mobility",3,false));
 	f.flavorText = " OWNER somehow corrupts the very fabric of space. Everyone begins to have trouble navigating the corrupted and broken rules of three dimensional space. ";
-	purpleFrog.fraymotifs.push(f);
+	purpleFrog.fraymotifs.add(f);
 	
 	f = new Fraymotif([],  Zalgo.generate("ANURA JARATE"), 3);//DM, the owner of the purple frog website came up with this one. team fortress + texts from super heroes ftw.;
-	f.effects.push(new FraymotifEffect("sanity",3,false));
+	f.effects.add(new FraymotifEffect("sanity",3,false));
 	f.flavorText = " Did you know that some species of frogs weaponize their own urine? Now you do. You can never unknow this. The entire party is disgusted. ";
-	purpleFrog.fraymotifs.push(f);
+	purpleFrog.fraymotifs.add(f);
 	
 	f = new Fraymotif([],  Zalgo.generate("LITERAL TONGUE LASHING"), 3);//DM, the owner of the purple frog website came up with this one.;
-	f.effects.push(new FraymotifEffect("mobility",2,false));
-	f.effects.push(new FraymotifEffect("mobility",2,true));
+	f.effects.add(new FraymotifEffect("mobility",2,false));
+	f.effects.add(new FraymotifEffect("mobility",2,true));
 	f.flavorText = " OWNER uses an incredibly long, sticky tongue to attack the ENEMY, hurting and immobilizing them. ";
-	purpleFrog.fraymotifs.push(f);
+	purpleFrog.fraymotifs.add(f);
 	
 	return purpleFrog;
 }
@@ -304,7 +304,7 @@ class Aftermath extends Scene {
 	var tkrCanvas = querySelector("#trollKidRockAppears");
 	drawTimeGears(tkrCanvas, trollKidRock);
 	drawSinglePlayer(tkrCanvas, trollKidRock);
-	fighters.push(makeRenderingSnapshot(trollKidRock)) //sorry trollKidRock you are not REALLY a player.
+	fighters.add(makeRenderingSnapshot(trollKidRock)) //sorry trollKidRock you are not REALLY a player.
 	purpleFrog.strife(div, fighters,0);
 	String ret = "";
 	if(purpleFrog.getStat("currentHP") <= 0 || purpleFrog.dead) {

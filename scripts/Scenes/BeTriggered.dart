@@ -18,7 +18,7 @@ class BeTriggered extends Scene{
 			var p = this.session.availablePlayers[i];
 			if(this.IsPlayerTriggered(p) && seededRandom() >.75){ //don't all flip out/find out at once. if i find something ELSE to flip out before i can flip out about this, well, oh well. SBURB is a bitch. 75 is what it should be when i'm done testing.
 				//print("shit flipping: " + p.flipOutReason + " in session " + this.session.session_id);
-				this.triggeredPlayers.push(p);
+				this.triggeredPlayers.add(p);
 			}
 		}
 		return this.triggeredPlayers.length > 0;

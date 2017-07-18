@@ -8,7 +8,7 @@ class JackPromotion extends Scene{
 	
 
 
-	JackPromotion(Session session): super(session)
+	JackPromotion(Session session): super(session);
 
 
 	@override

@@ -147,7 +147,7 @@ class UpdateShippingGrid extends Scene{
 		var s = new Shipper(player);
 		s.ships = this.createShips(this.session.players, s);
 		s.savedShipText = ""; //make sure it's blank
-		this.shippers.push(s);
+		this.shippers.add(s);
 		//print("making new shipper for: " + player);
 		return s;
 	}
@@ -237,7 +237,7 @@ class UpdateShippingGrid extends Scene{
 					var r1 = player.relationships[j];
 					var r2 = r1.target.getRelationshipWith(player);
 					////print("made new ship");
-					ret.push(new Ship(r1, r2, shipperPlayer))
+					ret.add(new Ship(r1, r2, shipperPlayer))
 				}
 			}
 				List<dynamic> toRemove = [];
@@ -249,7 +249,7 @@ class UpdateShippingGrid extends Scene{
 						var secondShip = ret[j];
 							if(firstShip.isEqualToShip(secondShip)){
 								////print("pushing to remove");
-								toRemove.push(secondShip);
+								toRemove.add(secondShip);
 							}
 					}
 				}
@@ -266,7 +266,7 @@ class UpdateShippingGrid extends Scene{
 		for(num i = 0; i<shipper.ships.length; i++){
 			var ship = shipper.ships[i];
 			if(ship.isGoodShip()){
-				ret.push(ship);
+				ret.add(ship);
 			}
 		}
 		return ret;

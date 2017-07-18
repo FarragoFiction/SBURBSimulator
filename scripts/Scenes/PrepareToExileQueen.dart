@@ -13,10 +13,10 @@ class PrepareToExileQueen extends Scene {
 	void findSufficientPlayer(){
 		//old way tended to have only one player do the thing each session. make it a team effort now.
 		var potentials = [findAspectPlayer(this.session.availablePlayers, "Void")];
-		potentials.push(findAspectPlayer(this.session.availablePlayers, "Mind"));
-		potentials.push(findAspectPlayer(this.session.availablePlayers, "Hope"));
-		potentials.push(findClassPlayer(this.session.availablePlayers, "Thief"));
-		potentials.push(findClassPlayer(this.session.availablePlayers, "Rogue"));
+		potentials.add(findAspectPlayer(this.session.availablePlayers, "Mind"));
+		potentials.add(findAspectPlayer(this.session.availablePlayers, "Hope"));
+		potentials.add(findClassPlayer(this.session.availablePlayers, "Thief"));
+		potentials.add(findClassPlayer(this.session.availablePlayers, "Rogue"));
 		this.player =  getRandomElementFromArray(potentials);
 	}
 

@@ -1488,8 +1488,8 @@ var denizen_void_quests = ["???"]
 
 //http://rumkin.com/tools/cipher/atbash.php (thinking of lOSS here)
 //var denizen_rage_quests = ["~~~You can't believe how easy it is. You just have to go... a little crazy. And then, suddenly, it all makes sense, and everything you do turns to gold.~~~"]; //
-//denizen_rage_quests.push("~~~ The denizen, Bacchus, thinks that grammar is important. That rules are important. That so much is important. You'll show him. ~~~");
-//denizen_rage_quests.push("~~~ Nothing makes sense here anymore. Just the way you like it. The consorts are whipped into a frothing fury. Bacchus is awake.  ~~~");
+//denizen_rage_quests.add("~~~ The denizen, Bacchus, thinks that grammar is important. That rules are important. That so much is important. You'll show him. ~~~");
+//denizen_rage_quests.add("~~~ Nothing makes sense here anymore. Just the way you like it. The consorts are whipped into a frothing fury. Bacchus is awake.  ~~~");
 
 var denizen_rage_quests = ["~~~You can't believe how vzhb it is. You just have to go... a little xizab. Zmw gsvm, suddenly, rg all makes sense, zmw everything blf wl gfimh gl gold. ~~~"] //
 	..add("~~~ Gsv denizen, XXXXXX, gsrmph gszg grammar rh important. Gszg rules ziv important. Gszg hl nfxs rh rnkligzmg. You'll show him.  ~~~")
@@ -1873,7 +1873,7 @@ String getRandomColor() {
     List<dynamic> a = [];
     for (var i=0, l;=arr.length; i<l; i++)
         if (a.indexOf(arr[i]) === -1 && arr[i] !== '')
-            a.push(arr[i]);
+            a.add(arr[i]);
     return a;
 }*/
 

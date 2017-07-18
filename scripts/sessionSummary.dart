@@ -80,7 +80,7 @@ class SessionSummary {
 	void setMiniPlayers(players){
 
 		for(num i = 0; i<players.length; i++){
-			this.miniPlayers.push({class_name: players[i].class_name, aspect: players[i].aspect});
+			this.miniPlayers.add({class_name: players[i].class_name, aspect: players[i].aspect});
 		}
 	}
 	bool matchesClass(classes){
@@ -309,7 +309,7 @@ class SessionSummaryJunior {
 		List<dynamic> ret = [];
 		for(num i = 0; i<this.players.length; i++){
 			var player = this.players[i];
-			if(player.godDestiny) ret.push(player);
+			if(player.godDestiny) ret.add(player);
 		}
 		return ret;
 	}
@@ -317,8 +317,8 @@ class SessionSummaryJunior {
 		List<dynamic> ret = [];
 		for(num i = 0; i<this.players.length; i++){
 			var player = this.players[i];
-			ret.push(player.interest1);
-			ret.push(player.interest2);
+			ret.add(player.interest1);
+			ret.add(player.interest2);
 
 		}
 		return ret;
@@ -327,7 +327,7 @@ class SessionSummaryJunior {
 		List<dynamic> ret = [];
 		for(num i = 0; i<this.players.length; i++){
 			var player = this.players[i];
-			ret.push(player.object_to_prototype.htmlTitle());
+			ret.add(player.object_to_prototype.htmlTitle());
 
 		}
 		return ret;
@@ -336,7 +336,7 @@ class SessionSummaryJunior {
 		List<dynamic> ret = [];
 		for(num i = 0; i<this.players.length; i++){
 			var player = this.players[i];
-			ret.push(player.land);
+			ret.add(player.land);
 
 		}
 		return ret;
@@ -467,18 +467,18 @@ class MultiSessionSummary {
 			//add self to filtered ghost if my class OR my aspect is checked. How to tell?  .is(":checked");
 			if(classFiltered && !aspectFiltered){
 				if(querySelector("#"+ghost.class_name).is(":checked")){
-					filteredGhosts.push(ghost);
+					filteredGhosts.add(ghost);
 				}
 			}else if(aspectFiltered && !classFiltered){
 				if(querySelector("#"+ghost.aspect).is(":checked")){
-					filteredGhosts.push(ghost);
+					filteredGhosts.add(ghost);
 				}
 			}else if(aspectFiltered && classFiltered){
 				if(querySelector("#"+ghost.class_name).is(":checked") && querySelector("#"+ghost.aspect).is(":checked")){
-					filteredGhosts.push(ghost);
+					filteredGhosts.add(ghost);
 				}
 			}else{//nothing filtered.
-				filteredGhosts.push(ghost);
+				filteredGhosts.add(ghost);
 			}
 
 		}
@@ -488,7 +488,7 @@ class MultiSessionSummary {
 		for(num i = 0; i<labels.length; i++){
 			var l = labels[i];
 			if(querySelector("#"+l).is(":checked")){
-				that.checkedCorpseBoxes.push(l);
+				that.checkedCorpseBoxes.add(l);
 				noneChecked = false;
 			}
 		}
@@ -639,15 +639,15 @@ class MultiSessionSummary {
 			}else if(propertyName == "crashedFromSessionBug"){
 				html += this.generateHTMLForProperty(propertyName) ;//don't ignore bugs, either.;
 			}else if(this.isRomanceProperty(propertyName)){
-				romanceProperties.push(propertyName);
+				romanceProperties.add(propertyName);
 			}else if(this.isDramaticProperty(propertyName)){
-				dramaProperties.push(propertyName);
+				dramaProperties.add(propertyName);
 			}else if(this.isEndingProperty(propertyName)){
-				endingProperties.push(propertyName);
+				endingProperties.add(propertyName);
 			}else if(this.isAverageProperty(propertyName)){
-				averageProperties.push(propertyName);
+				averageProperties.add(propertyName);
 			}else if(!this.isPropertyToIgnore(propertyName)){
-				miscProperties.push(propertyName);
+				miscProperties.add(propertyName);
 			}
 		}
 		html += "</div><br>";

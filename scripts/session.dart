@@ -142,7 +142,7 @@ class Session {
 			return this.addEventToUndoAndResetScratch(e); //works different
 		}
 		if(e){//will be null if undoing an undo
-			this.yellowYardController.eventsToUndo.push(e);
+			this.yellowYardController.eventsToUndo.add(e);
 		}
 		//reinit the seed and restart the session
 		var savedPlayers = curSessionGlobalVar.players;
@@ -165,7 +165,7 @@ class Session {
 		//print(getPlayersTitles(curSessionGlobalVar.aliensClonedOnArrival));
 		var aliens = []  ;//if don't make copy of aliensClonedOnArrival, goes into an infinite loop as it loops on it and adds to it inside of addAliens;
 		for(num i = 0; i<that.aliensClonedOnArrival.length; i++){
-			aliens.push(that.aliensClonedOnArrival[i]);
+			aliens.add(that.aliensClonedOnArrival[i]);
 		}
 		that.aliensClonedOnArrival = [];//jettison old clones.
 		addAliensToSession(curSessionGlobalVar, aliens);
@@ -175,7 +175,7 @@ class Session {
 	void addEventToUndoAndResetScratch(e){
 		print('yellow yard from scratched session');
 		if(e){//will be null if undoing an undo
-			this.yellowYardController.eventsToUndo.push(e);
+			this.yellowYardController.eventsToUndo.add(e);
 		}
 		var ectoSave = this.ectoBiologyStarted;
 		reinit();
@@ -351,14 +351,14 @@ class Session {
 		var f = new Fraymotif([],  "Red Miles", 3);
 		f.effects.add(new FraymotifEffect("power",2,true));
 		f.flavorText = " You cannot escape them ";
-		this.queensRing.fraymotifs.push(f);
+		this.queensRing.fraymotifs.add(f);
 
 		this.kingsScepter = new GameEntity(this, "!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!",false);
 		this.kingsScepter.setStats(0,0,0,0,0,0,0,false, false, [],1000);
 		f = new Fraymotif([],  "Reckoning Meteors", 3)  ;//TODO eventually check for this fraymotif (just lik you do troll psionics) to decide if you can start recknoing.;
 		f.effects.add(new FraymotifEffect("power",2,true));
 		f.flavorText = " The very meteors from the Reckoning rain down. ";
-		this.kingsScepter.fraymotifs.push(f);
+		this.kingsScepter.fraymotifs.add(f);
 		
 		this.king = new GameEntity(this, "Black King", this.kingsScepter);
 		//minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs
@@ -375,7 +375,7 @@ class Session {
 		f = new Fraymotif([],  "Stab To Meet You", 1);
 		f.effects.add(new FraymotifEffect("power",3,true));
 		f.flavorText = " It's pretty much how he says 'Hello'. ";
-		this.jack.fraymotifs.push(f);
+		this.jack.fraymotifs.add(f);
 
 		this.democraticArmy = new GameEntity(this, "Democratic Army",null); //doesn't actually exist till WV does his thing.
 		this.democraticArmy.carapacian = true;
@@ -383,7 +383,7 @@ class Session {
 		f = new Fraymotif([],  "Democracy Charge", 2);
 		f.effects.add(new FraymotifEffect("power",3,true));
 		f.flavorText = " The people have chosen to Rise Up against their oppressors. ";
-		this.democraticArmy.fraymotifs.push(f);
+		this.democraticArmy.fraymotifs.add(f);
 
 
 	}
@@ -543,7 +543,7 @@ dynamic findSceneNamed(scenesToCheck, name){
 
 		for(num i = 0; i<aliens.length; i++){
 			var survivor = aliens[i];
-			newSession.aliensClonedOnArrival.push(clonePlayer(survivor, newSession));
+			newSession.aliensClonedOnArrival.add(clonePlayer(survivor, newSession));
 		}
 		//don't want relationships to still be about original players
 		for(num i = 0; i<newSession.aliensClonedOnArrival.length; i++){

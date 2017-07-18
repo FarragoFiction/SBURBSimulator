@@ -22,7 +22,7 @@ class JackRampage extends Scene{
 		for(num i = 0; i<this.session.availablePlayers.length; i++){
 			var p = this.session.availablePlayers[i];
 			if(p.class_name != "Witch"){
-				potentialPlayers.push(p); //don't make a big deal out of it, but jack doesn't want to hurt the witch. familiar loyalty, yo.
+				potentialPlayers.add(p); //don't make a big deal out of it, but jack doesn't want to hurt the witch. familiar loyalty, yo.
 				//this is actually a bad thing, too, cause it means the witch's OP sprite doesn't get to kick Jack's ass.
 			}
 		}
@@ -32,14 +32,14 @@ class JackRampage extends Scene{
 		if(potentialPlayers.length == 0){
 			return ret;
 		}
-		ret.push(getRandomElementFromArray(potentialPlayers)); //used to get slowest player, but too many perma deaths happened.
+		ret.add(getRandomElementFromArray(potentialPlayers)); //used to get slowest player, but too many perma deaths happened.
 		var friends = ret[0].getFriendsFromList(potentialPlayers);
 		if(friends.length == 0) return ret;
 		//print("friends: " + friends.length);
 		for(int i = 0; i<=numStabbings; i++){
 			var f = getRandomElementFromArray(friends);
 			//print(f);
-			if(this.canCatch(f)) ret.push(f);
+			if(this.canCatch(f)) ret.add(f);
 
 		}
 		//var unique = Array.from(new Set(ret));  breaks IE because IE is a whiny little bitch.
@@ -48,8 +48,8 @@ class JackRampage extends Scene{
 
 		List<dynamic> ret = []; //add some sprites. this is literally the only other fight they are good for.
 		for(num i = 0; i<unique.length; i++){
-			ret.push(unique[i]);
-			ret.push(unique[i].sprite);
+			ret.add(unique[i]);
+			ret.add(unique[i].sprite);
 			if(unique[i].sprite.name == "sprite") print("trying to stab somebody not in the medium yet in session: " + this.session_id);
 		}
 		return ret;

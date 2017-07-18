@@ -16,7 +16,7 @@ class MurderPlayers extends Scene {
 		this.murderers = [];
 		for(num i = 0; i<this.session.availablePlayers.length; i++){
 			if(this.session.availablePlayers[i].murderMode){
-				this.murderers.push(this.session.availablePlayers[i]);
+				this.murderers.add(this.session.availablePlayers[i]);
 			}
 		}
 

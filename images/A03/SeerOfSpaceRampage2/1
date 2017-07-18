@@ -138,10 +138,10 @@
   r.async=true;r.src="https://d24n15hnbwhuhn.cloudfront.net/libs/amplitude-2.10.0-min.gz.js";
   r.onload=function(){e.amplitude.runQueuedFunctions()};var i=t.getElementsByTagName("script")[0];
   i.parentNode.insertBefore(r,i);var s=function(){this._q=[];return this};function o(e){
-  s.prototype[e]=function(){this._q.push([e].concat(Array.prototype.slice.call(arguments,0)));
+  s.prototype[e]=function(){this._q.add([e].concat(Array.prototype.slice.call(arguments,0)));
   return this} }var a=["add","append","clearAll","prepend","set","setOnce","unset"];for(var c=0;c<a.length;c++){
   o(a[c])}n.Identify=s;var u=["init","logEvent","logRevenue","setUserId","setUserProperties","setOptOut","setVersionName","setDomain","setDeviceId","setGlobalUserProperties","identify","clearUserProperties"];
-  function p(e){function t(t){e[t]=function(){e._q.push([t].concat(Array.prototype.slice.call(arguments,0)));
+  function p(e){function t(t){e[t]=function(){e._q.add([t].concat(Array.prototype.slice.call(arguments,0)));
   } }for(var n=0;n<u.length;n++){t(u[n])} }p(n);e.amplitude=n})(window,document);
 
 
@@ -166,7 +166,7 @@
 
     <!-- Google Analytics -->
     <script>
-        window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+        window.ga=window.ga||function(){(ga.q=ga.q||[]).add(arguments)};ga.l=+new Date;
         var ga_options = {'allowLinker': true};
             ga_options['userId'] = "6476827";
         ga('create', 'UA-40726300-1', 'auto', ga_options);
@@ -203,10 +203,10 @@
             var _session_id = "c29ac7d491a948c6fe6ff23ee922a40cbf94eea06126125bba8ab82a53e62f03";
 
             var _sift = window._sift = window._sift || [];
-            _sift.push(['_setAccount', "7848bad5f1"]);
-            _sift.push(['_setUserId', _user_id]);
-            _sift.push(['_setSessionId', _session_id]);
-            _sift.push(['_trackPageview']);
+            _sift.add(['_setAccount', "7848bad5f1"]);
+            _sift.add(['_setUserId', _user_id]);
+            _sift.add(['_setSessionId', _session_id]);
+            _sift.add(['_trackPageview']);
 
             (function() {
                 function ls() {
@@ -231,7 +231,7 @@
     <!-- Facebook Pixel Code -->
     <script>
         !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.callMethod.apply(n,arguments):n.queue.add(arguments)};if(!f._fbq)f._fbq=n;
         n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
         t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
         document,'script','https://connect.facebook.net/en_US/fbevents.js');

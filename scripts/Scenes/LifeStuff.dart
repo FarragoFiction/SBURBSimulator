@@ -27,7 +27,7 @@ class LifeStuff extends Scene {
 			var d = dead[i];
 			if(d.aspect == "Life" || d.aspect == "Doom"){
 				if(d.class_name == "Thief" || d.class_name == "Heir"){
-					this.enablingPlayerPairs.push([d, null, false]); //gonna revive myself.
+					this.enablingPlayerPairs.add([d, null, false]); //gonna revive myself.
 				}
 			}
 		}
@@ -41,11 +41,11 @@ class LifeStuff extends Scene {
 			var player = nonGuides[i];
 			if(player.aspect == "Life" || player.aspect == "Doom" || player.canGhostCommune()){
 				if(player.className != "Witch" && player.className != "Sylph"){
-					this.enablingPlayerPairs.push([player, null, false]);
-					removeNonGuides.push(nonGuide);
+					this.enablingPlayerPairs.add([player, null, false]);
+					removeNonGuides.add(nonGuide);
 				}else if(!this.session.dreamBubbleAfterlife){
-					this.enablingPlayerPairs.push([player, null], false); //witches and sylphs turn on the dream bubble afterlife if it's not already on.
-					removeNonGuides.push(nonGuide);
+					this.enablingPlayerPairs.add([player, null], false); //witches and sylphs turn on the dream bubble afterlife if it's not already on.
+					removeNonGuides.add(nonGuide);
 				}
 			}
 		}
@@ -63,8 +63,8 @@ class LifeStuff extends Scene {
 				var guide = guides[i];
 				var nonGuide = getRandomElementFromArray(nonGuides);
 				removeFromArray(nonGuide, nonGuides);
-				removeGuides.push(guide);
-				this.enablingPlayerPairs.push([guide, nonGuide, false]);
+				removeGuides.add(guide);
+				this.enablingPlayerPairs.add([guide, nonGuide, false]);
 			}
 		}
 
@@ -78,7 +78,7 @@ class LifeStuff extends Scene {
 					var rand = seededRandom() ;//only spend half your time dreaming right.;
 					var player = nonGuides[i];
 					if(!player.dreamSelf && !player.dead && rand > .5){
-						this.enablingPlayerPairs.push([player, null, true]);
+						this.enablingPlayerPairs.add([player, null, true]);
 					}
 			}
 		}
@@ -95,7 +95,7 @@ class LifeStuff extends Scene {
 			var possibleGuide = this.session.availablePlayers[i];
 			if(possibleGuide.aspect == "Doom" || possibleGuide.aspect == "Life" || possibleGuide.canGhostCommune()){
 				if(possibleGuide.class_name == "Seer" ||  possibleGuide.class_name == "Scribe" ||possibleGuide.class_name == "Page" || possibleGuide.class_name == "Bard" || possibleGuide.class_name == "Rogue" ||  possibleGuide.class_name == "Maid"){
-						chosenGuides.push(possibleGuide);
+						chosenGuides.add(possibleGuide);
 				}
 			}
 		}
@@ -104,11 +104,11 @@ class LifeStuff extends Scene {
 		for(num i = 0; i<this.session.availablePlayers.length; i++){
 			var possibleGuide = this.session.availablePlayers[i];
 			if(possibleGuide.class_name == "Heir" ||  possibleGuide.class_name == "Thief" || possibleGuide.class_name == "Prince" || possibleGuide.class_name == "Witch" ||  possibleGuide.class_name == "Sylph" || possibleGuide.class_name == "Knight" ||  possibleGuide.class_name == "Mage"){
-				chosenSuplicants.push(possibleGuide);
+				chosenSuplicants.add(possibleGuide);
 			}else if(possibleGuide.aspect != "Doom" && possibleGuide.aspect != "Life" || !possibleGuide.canGhostCommune()){
 				if(chosenGuides.indexOf(possibleGuide)  == -1){ //can't be both guide and non guide.
 					////print("supplicant is: " + possibleGuide.title());
-					chosenSuplicants.push(possibleGuide);
+					chosenSuplicants.add(possibleGuide);
 				}
 			}
 		}
@@ -325,11 +325,11 @@ class LifeStuff extends Scene {
 	dynamic communeDeadResult(playerClass, player, ghost, ghostName, enablingAspect){
 
 		if(playerClass == "Knight" || playerClass == "Page"){
-			player.ghostPacts.push([ghost,enablingAspect]);  //help with a later fight.
+			player.ghostPacts.add([ghost,enablingAspect]);  //help with a later fight.
 			//print("Knight or Page promise of ghost attack: " + this.session.session_id);
 			return " The " +player.htmlTitleBasic() + " gains a promise of aid from the " + ghostName + ". ";
 		}else if(playerClass == "Seer" || playerClass == "Mage"){
-			player.ghostWisdom.push(ghost); //don't do anything, but keeps repeats from happening.
+			player.ghostWisdom.add(ghost); //don't do anything, but keeps repeats from happening.
 			String effect = "";
 			if(player.aspect == ghost.aspect && ghost.fraymotifs.length > 0 && player.id != ghost.id){ //don't just relearn your own fraymotifs.
 				print("player learning fraymotifs from a ghost " + this.session.session_id);

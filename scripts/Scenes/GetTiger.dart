@@ -23,7 +23,7 @@ class GetTiger extends Scene{
 		for(num i = 0; i<deadPlayers.length; i++){
 			var p = deadPlayers[i];
 			if(!p.godTier && p.godDestiny && (p.isDreamSelf || p.dreamSelf)){
-				this.deadPlayersToGodTier.push(p);
+				this.deadPlayersToGodTier.add(p);
 			}
 		}
 		return this.deadPlayersToGodTier.length > 0;
@@ -67,7 +67,7 @@ class GetTiger extends Scene{
 				ret += " Upon being laid to rest on their QUEST BED on the " + p.land + ", the " + p.htmlTitle() + "'s body glows, and rises Skaiaward. ";
 				ret +="On " + p.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
 				f = this.session.fraymotifCreator.makeFraymotif([p], 3);//first god tier fraymotif
-				p.fraymotifs.push(f);
+				p.fraymotifs.add(f);
 				ret += " They learn " + f.name + "." ;
 				this.session.questBed = true;
 			}
@@ -86,7 +86,7 @@ class GetTiger extends Scene{
 					ret += " Upon a wacky series of events leaving their corpse on their SACRIFICIAL SLAB on " + p.moon + ", the " + p.htmlTitle() + " glows and ascends to the God Tiers with a sweet new outfit.";
 					this.session.sacrificialSlab = true;
 					f = this.session.fraymotifCreator.makeFraymotif([p], 3);//first god tier fraymotif
-					p.fraymotifs.push(f);
+					p.fraymotifs.add(f);
 					ret += " They learn " + f.name + "." ;
 				}
 

@@ -20,7 +20,7 @@ class RelationshipDrama extends Scene {
 		for(num i = 0; i< playerList.length; i++){
 			var p = playerList[i];
 			if(p.hasRelationshipDrama() && p.dead == false){ //stop corpse confessions!
-				this.dramaPlayers.push(p);
+				this.dramaPlayers.add(p);
 			}
 		}
 		return this.dramaPlayers.length > 0;

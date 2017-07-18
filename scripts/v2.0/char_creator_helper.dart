@@ -15,7 +15,7 @@ class CharacterCreatorHelper {
 
 
 	void drawAllPlayers(){
-		bloodColors.push("#ff0000") //for humans
+		bloodColors.add("#ff0000") //for humans
 		for(num i = 0; i<this.players.length; i++){
 			this.drawSinglePlayer(this.players[i]);
 		}
@@ -978,12 +978,12 @@ class CharacterEasterEggEngine {
 		}
 		//print("space chatHandle " + space.chatHandle);
 		//print(space);
-		ret.push(space);
-		ret.push(time);
+		ret.add(space);
+		ret.add(time);
 		var numPlayers = getRandomInt(2,12);
 		for(int i = 2; i<numPlayers; i++){
 			var p = getRandomElementFromArray(potentials);
-			if(p) ret.push(p);
+			if(p) ret.add(p);
 			if(p) potentials.removeFromArray(p);  //no repeats. <-- modify all the removes l8r if i want to have a mode that enables them.
 		}
 		//print(ret);

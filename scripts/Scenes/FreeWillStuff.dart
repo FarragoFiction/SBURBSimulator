@@ -70,7 +70,7 @@ class FreeWillStuff extends Scene{
 		var divID = (div.attr("id")) + "_freeWillBulshit" + this.playerGodTiered.chatHandle;
 		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
 		var f = this.session.fraymotifCreator.makeFraymotif([this.playerGodTiered], 3);//first god tier fraymotif
-		this.playerGodTiered.fraymotifs.push(f);
+		this.playerGodTiered.fraymotifs.add(f);
 		div.append(" They learn " + f.name + ". ") ;
 		div.append(canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);

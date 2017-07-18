@@ -175,7 +175,7 @@ dynamic cloneRelationshipsStopgap(relationships){
 		List<dynamic> ret = [];
 		for(num i = 0; i<relationships.length; i++){
 			var r = relationships[i];
-			ret.push(cloneRelationship(r));
+			ret.add(cloneRelationship(r));
 		}
 		return ret;
 }

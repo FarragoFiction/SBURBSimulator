@@ -82,13 +82,13 @@ class Fraymotif {
     for(num i = 0; i<this.effects.length; i++){
       var e = this.effects[i];
       if(e.damageInsteadOfBuff){
-        if(effectTypes["damage"+ e.target].length == 0)   effectTypes["damage"+ e.target].push(e.toStringSimple());
+        if(effectTypes["damage"+ e.target].length == 0)   effectTypes["damage"+ e.target].add(e.toStringSimple());
         //no repeats
-        if( effectTypes["damage"+ e.target].indexOf(e.statName) == -1) effectTypes["damage"+ e.target].push(e.statName);
+        if( effectTypes["damage"+ e.target].indexOf(e.statName) == -1) effectTypes["damage"+ e.target].add(e.statName);
       }else{
-        if(effectTypes["buff"+ e.target].length == 0)   effectTypes["buff"+ e.target].push(e.toStringSimple());
+        if(effectTypes["buff"+ e.target].length == 0)   effectTypes["buff"+ e.target].add(e.toStringSimple());
         //no repeats
-        if( effectTypes["buff"+ e.target].indexOf(e.statName) == -1) effectTypes["buff"+ e.target].push(e.statName);
+        if( effectTypes["buff"+ e.target].indexOf(e.statName) == -1) effectTypes["buff"+ e.target].add(e.statName);
       }
     }
 
@@ -173,12 +173,12 @@ class Fraymotif {
         for(num i = 0; i<this.effects.length; i++){
           var e = this.effects[i];
           if(e.damageInsteadOfBuff){
-            if(effectTypes["damage"+ e.target].length == 0)   effectTypes["damage"+ e.target].push(e.toString());
+            if(effectTypes["damage"+ e.target].length == 0)   effectTypes["damage"+ e.target].add(e.toString());
             //no repeats
-            if( effectTypes["damage"+ e.target].indexOf(e.statName) == -1) effectTypes["damage"+ e.target].push(e.statName);
+            if( effectTypes["damage"+ e.target].indexOf(e.statName) == -1) effectTypes["damage"+ e.target].add(e.statName);
           }else{
-            if(effectTypes["buff"+ e.target].length == 0)   effectTypes["buff"+ e.target].push(e.toString());
-            if( effectTypes["buff"+ e.target].indexOf(e.statName) == -1) effectTypes["buff"+ e.target].push(e.statName);
+            if(effectTypes["buff"+ e.target].length == 0)   effectTypes["buff"+ e.target].add(e.toString());
+            if( effectTypes["buff"+ e.target].indexOf(e.statName) == -1) effectTypes["buff"+ e.target].add(e.statName);
           }
         }
         //now i have a hash of all effect types and the stats i'm applying to them.
@@ -317,7 +317,7 @@ class FraymotifCreator {
       f.effects.add(new FraymotifEffect(minus[i].name,2,true));
       f.effects.add(new FraymotifEffect(minus[i].name,2,false));
     }
-    player.denizen.fraymotifs.push(f);
+    player.denizen.fraymotifs.add(f);
   }
 	dynamic getDenizenFraymotifNameFromAspect(aspect){
       String ret = "";

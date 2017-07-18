@@ -46,7 +46,7 @@ class FightQueen extends Scene {
 
 		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
 		var fighting = this.getGoodGuys();
-		if(this.session.democraticArmy.getStat("currentHP") > 0) fighting.push(this.session.democraticArmy);
+		if(this.session.democraticArmy.getStat("currentHP") > 0) fighting.add(this.session.democraticArmy);
 		this.session.queen.strife(div, fighting,0);
 
 	}
@@ -66,7 +66,7 @@ class FightQueen extends Scene {
 		List<dynamic> ret = [];
 		//doomed time clones absorb some of the hits.
 		for(num i = 0; i<timePlayer.doomedTimeClones.length; i++){
-				ret.push(timePlayer.doomedTimeClones[i]);
+				ret.add(timePlayer.doomedTimeClones[i]);
 				removeFromArray(timePlayer.doomedTimeClones[i], timePlayer.doomedTimeClones);
 		}
 
@@ -74,7 +74,7 @@ class FightQueen extends Scene {
 			return ret;
 		}
 		for(var i = ret.length; i<=numStabbings; i++){
-			ret.push(getRandomElementFromArray(living));
+			ret.add(getRandomElementFromArray(living));
 		}
 		return Array.from(new Set(ret));
 	}

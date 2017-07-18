@@ -67,7 +67,7 @@ void doTheMindyThing(){
 
 void initializeX(){
 	for(int i = 0; i<3; i++){
-		x.push([maxState, maxState, maxState]);
+		x.add([maxState, maxState, maxState]);
 	}
 }
 

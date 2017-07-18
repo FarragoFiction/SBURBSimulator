@@ -680,7 +680,7 @@ class Intro  extends Scene{
 				print(session.session_id + " dead player enters, " +this.player.title())
 				narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably. I...I guess time flowing differently between universes is still a thing that is true, and they were able to contact them even before they died.  Shit, this is extra tragic.  <br>";
 				div.append(narration);
-				this.session.availablePlayers.push(this.player);
+				this.session.availablePlayers.add(this.player);
 				return;
 			}
 		}else{
@@ -718,7 +718,7 @@ class Intro  extends Scene{
 				print(session.session_id + " dead player enters, " +this.player.title())
 				narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably. I...I guess their GHOST or something is making sure their house and corpse makes it into the medium? And their client player, as appropriate. Their kernel somehow gets prototyped with a "+this.player.object_to_prototype.htmlTitle() + ". ";
 				this.player.timesDied ++;
-				this.session.availablePlayers.push(this.player);
+				this.session.availablePlayers.add(this.player);
 				this.player.sprite.addPrototyping(this.player.object_to_prototype); //hot damn this is coming together.
 				if(this.session.kingsScepter) this.session.kingsScepter.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
 				if(this.player.object_to_prototype.armless){
@@ -764,7 +764,7 @@ class Intro  extends Scene{
 		}
 		div.append(narration);
 		this.chat(div);
-		this.session.availablePlayers.push(this.player);
+		this.session.availablePlayers.add(this.player);
 	}
 	void content(div, i){
 		//String ret = " TODO: Figure out what a non 2.0 version of the Intro scene would look like. ";
