@@ -18,7 +18,6 @@ class KingPowerful extends Scene {
 
 	@override
 	void renderContent(div){
-	  setPlayerList();
 		div.append("<br>"+this.content());
 	}
 
