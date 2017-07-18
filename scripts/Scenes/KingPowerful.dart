@@ -3,30 +3,34 @@ part of SBURBSim;
 
 class KingPowerful extends Scene {
 	bool canRepeat = false;
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
-
-	
 
 
 	KingPowerful(Session session): super(session)
 
 
-	dynamic trigger(playerList){
-		this.playerList = playerList;
+  @override
+	bool trigger(){
 		return this.session.king.getStat("power") > this.session.hardStrength;
 	}
+
+
+
+	@override
 	void renderContent(div){
+	  setPlayerList();
 		div.append("<br>"+this.content());
 	}
-	dynamic content(){
+
+	String content(){
 		var nativePlayersInSession = findPlayersFromSessionWithId(this.playerList,this.session.session_id);
 		var badPrototyping = findBadPrototyping(nativePlayersInSession);
 		if(!badPrototyping){
 			badPrototyping = "glitchy piece of shit that is SBURB itself";
 		}
-		String ret = " At this point, the various prototypings from " +this.playerList.length;
+		String ret = " At this point, the various prototypings from " +this.playerList.length.toString();
 		ret += " players, especially the " + badPrototyping;
 		ret += ", have made the enemies  far too powerful. ";
+
 
 		if(this.playerList.length < this.session.players.length){
 			ret += " Further prototypings will only serve to further strengthen the enemies. ";

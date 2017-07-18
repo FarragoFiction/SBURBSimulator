@@ -104,6 +104,13 @@ class Player {
 	bool fromThisSession(Session session){
 		return (this.ectoBiologicalSource == null || this.ectoBiologicalSource == session.session_id);
 	}
+
+	//if i haven't prototyped my kernel sprite yet assume i'm in the medium
+	//TODO come up with a differnet metric l8r, but quick bandaid to stop using playerList
+	bool isInMediumyet() {
+		return (this.sprite.name == "Sprite");
+	}
+
 	bool isQuadranted(){
 		if(this.getHearts().length > 0) return true;
 		if(this.getClubs().length > 0) return true;
