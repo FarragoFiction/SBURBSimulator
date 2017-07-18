@@ -8,7 +8,7 @@ part of SBURBSim;
 	a alternateTimeline function.
 	a humanLabel function.  instead of PlayerDiedButCouldGodTier it would be "The Heir of Life died with a living dream self. Make them GodTier."
 */
-abstract class ImportantEvent {
+abstract class ImportantEvent { //TODO consider making this non abstract and have it have static methods? or can abstract clases have static methods?
   Session session;
   Player player;
   num mvp_value; //could be a float?
@@ -16,6 +16,9 @@ abstract class ImportantEvent {
   Player doomedTimeClone; //TODO or should it be a playerSnapShot?
   num times_called=0; //what was this for again?
   Player secondTimeClone; //used to undo this event
+  ImportantEvent(this.session, this.mvp_value, this.player, this.doomedTimeClone);
+  String humanLabel();
+  bool alternateScene(div);
 }
 
 
@@ -25,27 +28,17 @@ abstract class ImportantEvent {
 //screw fate, we have a time player here, and obviously this fate leads to a doomed timeline anyways and thus is changeable.
 //have alternate timeline change based on it being a dreamself that's dying versus an unsmooched regular self.
 //if i ever implmeent moon destruction, will need to refactor this, unless want to have time shenanigans. (god tier time players can take dying player to before moon was destroyed???)
-class PlayerDiedButCouldGodTier {
-	Session session;
-	num importanceRating = 9;
-	var mvp_value;
-	var player = makeRenderingSnapshot(player); //TODO this needs to refer to a playerSnapshot factory or something.
-	var doomedTimeClone;
-	num timesCalled = 0;
-	var secondTimeClone = null;  //second time clone undoes first undo
-	//print("Created GodTier opportunity, for: " + this.player.title());
+class PlayerDiedButCouldGodTier extends ImportantEvent{
 
-	
+	PlayerDiedButCouldGodTier(Session session, num mvp_value, Player player, Player doomedTimeClone): super(session, mvp_value, player, doomedTimeClone);
 
-
-	PlayerDiedButCouldGodTier(this.session, this.mvp_value, this.player, this.doomedTimeClone) {}
-
-
+  @override
 	dynamic humanLabel(){
 		String ret = "";
 		ret += "Have the " + this.player.htmlTitle() + " go God Tier instead of dying forever. ";
 		return ret;
 	}
+  @override
 	bool alternateScene(div){
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
@@ -103,22 +96,17 @@ class PlayerDiedButCouldGodTier {
 
 
 
-class PlayerDiedForever {
-	var session;
-	var secondTimeClone = null;  //second time clone undoes first undo
-	var mvp_value;
-	num importanceRating = 5;	var player = makeRenderingSnapshot;
-	var doomedTimeClone;
-	num timesCalled = 0;	
+class PlayerDiedForever  extends ImportantEvent {
+	num importanceRating = 5;
 
+	PlayerDiedForever(Session session, num mvp_value, Player player, Player doomedTimeClone): super(session, mvp_value, player, doomedTimeClone);
 
-	PlayerDiedForever(this.session, this.mvp_value, this.player, this.doomedTimeClone) {}
-
-
+  @override
 	dynamic humanLabel(){
 		String ret = "Make the " + this.player.htmlTitle() + " not permanently dead.";
 		return ret;
 	}
+  @override
 	bool alternateScene(div){
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
@@ -167,24 +155,17 @@ class PlayerDiedForever {
 
 
 
-class PlayerWentGrimDark {
-	var session;
-	var mvp_value;
+class PlayerWentGrimDark  extends ImportantEvent {
 	num importanceRating = 7;	var player = makeRenderingSnapshot;
-	num timesCalled = 0;
-	var doomedTimeClone;
-	var secondTimeClone = null;  //second time clone undoes first undo
 
-	
+	PlayerWentGrimDark(Session session, num mvp_value, Player player, Player doomedTimeClone): super(session, mvp_value, player, doomedTimeClone);
 
-
-	PlayerWentGrimDark(this.session, this.mvp_value, this.player, this.doomedTimeClone) {}
-
-
+  @override
 	dynamic humanLabel(){
 		String ret = "Prevent the " + this.player.htmlTitle() + " from going Grimdark.";
 		return ret;
 	}
+  @override
 	bool alternateScene(div){
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
@@ -230,24 +211,17 @@ class PlayerWentGrimDark {
 
 
 
-class PlayerWentMurderMode {
-	var session;
-	var mvp_value;
-	num importanceRating = 7;	var player = makeRenderingSnapshot;
-	num timesCalled = 0;
-	var doomedTimeClone;
-	var secondTimeClone = null;  //second time clone undoes first undo
+class PlayerWentMurderMode  extends ImportantEvent{
+	num importanceRating = 7;
 
-	
+	PlayerWentMurderMode(Session session, num mvp_value, Player player, Player doomedTimeClone): super(session, mvp_value, player, doomedTimeClone);
 
-
-	PlayerWentMurderMode(this.session, this.mvp_value, this.player, this.doomedTimeClone) {}
-
-
+  @override
 	dynamic humanLabel(){
 		String ret = "Prevent the " + this.player.htmlTitle() + " from going into Murder Mode.";
 		return ret;
 	}
+  @override
 	bool alternateScene(div){
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
@@ -294,24 +268,17 @@ class PlayerWentMurderMode {
 
 
 //grab ring before this can happen.
-class JackPromoted {
-	var session;
-	var mvp_value;
+class JackPromoted  extends ImportantEvent{
 	num importanceRating = 10;
-	num timesCalled = 0;
-	var doomedTimeClone;
-	var secondTimeClone = null;  //second time clone undoes first undo
 
-	
+	JackPromoted(Session session, num mvp_value, Player player, Player doomedTimeClone): super(session, mvp_value, player, doomedTimeClone);
 
-
-	JackPromoted(this.session, this.mvp_value, this.doomedTimeClone) {}
-
-
+  @override
 	dynamic humanLabel(){
 		String ret = "Prevent Jack from obtaining the Black Queen's RING OF ORBS " +this.session.convertPlayerNumberToWords() + "FOLD.";
 		return ret;
 	}
+  @override
 	bool alternateScene(div){
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
@@ -348,26 +315,17 @@ class JackPromoted {
 
 //if knight, directly help, if not but knight alive, force them to help. else, indirect help
 //if knight of space (most common reason this is called, indirect help)
-class FrogBreedingNeedsHelp {
-	var session;
-	var mvp_value;
-	num timesCalled = 0;
-	var doomedTimeClone;
+class FrogBreedingNeedsHelp extends ImportantEvent {
 	num importanceRating = 2;  //really, this is probably the least useful thing you could do. If this is the ONLY thing that went wrong, your session is going great.
-	num timesCalled = 0;
-	var secondTimeClone = null;  //second time clone undoes first undo
-  //print("creating frog needs help event, seed is: " + Math.seed);
-	
+	FrogBreedingNeedsHelp(Session session, num mvp_value, Player player, Player doomedTimeClone): super(session, mvp_value, player, doomedTimeClone);
 
-
-	FrogBreedingNeedsHelp(this.session, this.mvp_value, this.doomedTimeClone) {}
-
-
+  @override
 	dynamic humanLabel(){
 		var spacePlayer = findAspectPlayer(this.session.players, "Space");
 		String ret = "Help the " + spacePlayer.htmlTitleBasic() + " complete frog breeding duties.";
 		return ret;
 	}
+  @override
 	bool alternateScene(div){
 			var spacePlayer = findAspectPlayer(this.session.players, "Space");
 			this.timesCalled ++;
@@ -417,25 +375,16 @@ class FrogBreedingNeedsHelp {
 
 
 
-class PlayerEnteredSession {
-	var session;
-	var mvp_value;
-	num timesCalled = 0;	var player = makeRenderingSnapshot;
-	var doomedTimeClone;
+class PlayerEnteredSession  extends ImportantEvent {
 	num importanceRating = 5;
-	num timesCalled = 0;
-	var secondTimeClone = null;  //second time clone undoes first undo
+	PlayerEnteredSession(Session session, num mvp_value, Player player, Player doomedTimeClone): super(session, mvp_value, player, doomedTimeClone);
 
-	
-
-
-	PlayerEnteredSession(this.session, this.mvp_value, this.player, this.doomedTimeClone) {}
-
-
+  @override
 	dynamic humanLabel(){
 		String ret = "Kill the " + this.player.htmlTitle() + " before they enter the session.";
 		return ret;
 	}
+  @override
 	bool alternateScene(div){
 		this.timesCalled ++;
 		this.doomedTimeClone.dead = false;
@@ -481,27 +430,19 @@ class PlayerEnteredSession {
 }
 
 
-
-class TimePlayerEnteredSessionWihtoutFrog {
-	var session;
-	var mvp_value;
-	num timesCalled = 0;	var player = makeRenderingSnapshot;
-	var doomedTimeClone;
+//...huh...how did I not notice this typo soner.
+//TODO when refactor is done and everything is hooked up, test out intellij-s auto refactor rename variable thing
+class TimePlayerEnteredSessionWihtoutFrog  extends ImportantEvent {
 	num importanceRating = 10;
-	num timesCalled = 0;
-	var secondTimeClone = null;  //second time clone undoes first undo
-
 	//this is so illegal.
-	
+	TimePlayerEnteredSessionWihtoutFrog(Session session, num mvp_value, Player player, Player doomedTimeClone): super(session, mvp_value, player, doomedTimeClone);
 
-
-	TimePlayerEnteredSessionWihtoutFrog(this.session, this.mvp_value, this.player, this.doomedTimeClone) {}
-
-
+  @override
 	dynamic humanLabel(){
 		String ret = "Make the " + this.player.htmlTitle() + " prototype a frog before entering the session. ";
 		return ret;
 	}
+  @override
 	bool alternateScene(div){
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
