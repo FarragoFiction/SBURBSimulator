@@ -4,13 +4,14 @@ part of SBURBSim;
 class Session {
 	var session_id; //initial seed
 	//var sceneRenderingEngine = new SceneRenderingEngine(false); //default is homestuck  //comment this line out if need to run sim without it crashing
-	List<dynamic> players = [];	var fraymotifCreator = new FraymotifCreator();  //as long as FraymotifCreator has no state data, this is fine.
+	List<Player> players = [];
+	var fraymotifCreator = new FraymotifCreator();  //as long as FraymotifCreator has no state data, this is fine.
 	bool hasClubs = false;
 	num sessionHealth = 500; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
 	bool hasDiamonds = false;
 	bool opossumVictory = false;
 	bool hasBreakups = false;  //sessions aren't in charge of denizens anymore, they are for players and set when they get in the medium
-	List<dynamic> replayers = []; //used for fan oc easter eggs.
+	List<Player> replayers = []; //used for fan oc easter eggs.
 	var afterLife = new AfterLife();
 	var queensRing = null; //eventually have white and black ones.
 	var kingsScepter = null;
@@ -46,7 +47,7 @@ class Session {
 	num minFrogLevel = 18;
 	num goodFrogLevel = 28;
 	bool reckoningStarted = false;
-	List<dynamic> aliensClonedOnArrival = []; //if i'm gonna do time shenanigans, i need to know what the aliens were like when they got here.
+	List<Player> aliensClonedOnArrival = []; //if i'm gonna do time shenanigans, i need to know what the aliens were like when they got here.
 	bool murdersHappened = false;
 	bool queenRejectRing = false;
 	bool goodLuckEvent = false;
@@ -64,15 +65,15 @@ class Session {
 	bool questBed = false;
 	bool sacrificialSlab = false;
 	num sessionType = -999;
-	List<dynamic> doomedTimelineReasons = [];
+	List<String> doomedTimelineReasons = []; //am I even still using this?
 	num currentSceneNum = 0;
-	List<dynamic> scenes = []; //scene controller initializes all this.
-	List<dynamic> reckoningScenes = [];
-	List<dynamic> deathScenes = [];
-	List<dynamic> available_scenes = [];
+	List<Scene> scenes = []; //scene controller initializes all this.
+	List<Scene> reckoningScenes = [];
+	List<Scene> deathScenes = [];
+	List<Scene> available_scenes = [];
 	bool hadCombinedSession = false;
 	var parentSession = null;
-	List<dynamic> availablePlayers = [];  //which players are available for scenes or whatever.
+	List<Player> availablePlayers = [];  //which players are available for scenes or whatever.
 	List<dynamic> importantEvents = [];
 	bool yellowYard = false;
 	var yellowYardController = new YellowYardResultController();//don't expect doomed time clones to follow them to any new sessions
