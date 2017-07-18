@@ -1,3 +1,4 @@
+part of SBURBSim;
 
 
 //x times corpse smooch combo.
@@ -191,7 +192,8 @@ class CorpseSmooch {
 	dynamic addImportantEvent(player){
 		//print("adding important event from corpse smooch");
 		var current_mvp = findStrongestPlayer(this.session.players);
-		//only one alternate event can happen at a time. if one gets replaced, return;
+		//only one alternate event can happen at a time. if one gets replaced, return
+;
 		if(player.godDestiny == false && player.godTier == false){//could god tier, but fate wn't let them
 			return this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
 		}else if(this.session.reckoningStarted == true && player.godTier == false) { //if the reckoning started, they couldn't god tier.

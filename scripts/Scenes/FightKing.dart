@@ -2,13 +2,12 @@
 part of SBURBSim;
 class FightKing extends Scene {
 	bool canRepeat = true;
-	var session;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 
 	
 
 
-	FightKing(this.session) {}
+	FightKing(Session session): super(session);
 
 
 	dynamic trigger(playerList){
@@ -25,7 +24,7 @@ class FightKing extends Scene {
 	}
 	return living;
 }
-	void renderGoodguys(div, living){
+	void renderGoodguys(div){
 		num repeatTime = 1000;
 		var divID = (div.attr("id")) + "_final_boss";
 		var ch = canvasHeight;

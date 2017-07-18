@@ -1,13 +1,12 @@
-
+part of SBURBSim;
 
 class Aftermath {
-	var session;
 	bool canRepeat = false;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	
 
 
-	Aftermath(this.session) {}
+	Aftermath(Session session): super(session);
 
 
 	bool trigger(playerList){
