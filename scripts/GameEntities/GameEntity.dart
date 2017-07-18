@@ -5,6 +5,7 @@ part of SBURBSim;
 class GameEntity {
   Session session;
   String name;
+  bool ghost; //if you are ghost, you are rendered spoopy style
   num grist; //everything has it.
   bool dead = false;
   bool corrupted = false; //players are corrupted at level 4. will be easier than always checking grimDark level

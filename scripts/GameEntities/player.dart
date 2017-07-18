@@ -2047,7 +2047,7 @@ class Player extends GameEntity{
    * If testing shows that having it be this big heavy class is a problem
    * I can make a tiny version with only what I need.
    *
-   * DO NOT FALL INTO THE TRAP OF USING THIS FOR DOOMED TIME PLAYERS.
+   * DO NOT FALL INTO THE TRAP OF USING THIS NEW TINY ONE FOR DOOMED TIME PLAYERS.
    *
    * THEY NEED MORE METHODS THAN YOU THINK THEY DO.
    *
@@ -2057,12 +2057,12 @@ class Player extends GameEntity{
    *****************************************************************/
 
   //TODO how do you NORMALLY make deep copies of things when all objects aren't secretly hashes?
-  static makeRenderingSnapshot(GameEntity ge) {
-    var ret = new PlayerSnapshot();
-    ret.fraymotifs = player.fraymotifs.slice(0);//omg, make a copy you dunkass, or time players get the OP fraymotifs of their doomed clones;
+	//get rid of thigns doomed time players were using. they are just players. just like this is just a player
+	//until ll8r when i bother to make it a mini class of just stats.
+   static Player makeRenderingSnapshot(Player player) {
+    Player ret = new Player();
     ret.robot = player.robot;
     ret.spriteCanvasID = player.spriteCanvasID;
-    ret.currentHP = player.currentHP;
     ret.doomed = player.doomed;
     ret.ghost = player.ghost;
     ret.causeOfDrain = player.causeOfDrain;
@@ -2092,26 +2092,19 @@ class Player extends GameEntity{
     ret.quirk = player.quirk;
     ret.baby = player.baby;
     ret.causeOfDeath = player.causeOfDeath;
-    ret.hp = player.hp;
-    ret.minLuck = player.minLuck;
-    ret.maxLuck = player.maxLuck;
-    ret.freeWill = player.freeWill;
-    ret.power = player.power;
+
     ret.interest1 = player.interest1;
     ret.interest2 = player.interest2;
-    ret.mobility = player.mobility;
+    ret.setStatsHash(player.stats);
     return ret;
   }
 
-  static clonePlayer(player) {
-
-  }
 
   //TODO has specific 'doomed time clone' stuff in it, like randomizing state
-  static makeDoomedSnapshot(Player doomedPlayer) {
-    Player timeClone = Player.copyFromPlayer(doomedPlayer);
+  static Player makeDoomedSnapshot(Player doomedPlayer) {
+    Player timeClone = Player.makeRenderingSnapshot(doomedPlayer);
     timeClone.dead = false;
-    timeClone.setStat("currentHP", timeClone.getStat(hp));
+    timeClone.setStat("currentHP", doomedPlayer.getStat("hp")); //heal
     timeClone.doomed = true;
     //from a different timeline, things went differently.
     var rand = seededRandom();
@@ -2146,7 +2139,7 @@ class Player extends GameEntity{
       timeClone.fraymotifs.add(f);
     }
 
-    if(timeClone.power > 50){
+    if(timeClone.getStat("power") > 50){
       var f = curSessionGlobalVar.fraymotifCreator.makeFraymotif([doomedPlayer], 2);//probably beat denizen at least
       timeClone.fraymotifs.add(f);
     }
