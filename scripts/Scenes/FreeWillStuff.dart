@@ -2,7 +2,6 @@ part of SBURBSim;
 
 
 class FreeWillStuff extends Scene{
-	var session;
 	bool canRepeat = true;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	var decision = null;
@@ -15,7 +14,7 @@ class FreeWillStuff extends Scene{
 	
 
 
-	FreeWillStuff(this.session) {}
+	FreeWillStuff(Session session): super(session)
 
 
 	dynamic trigger(playerList){

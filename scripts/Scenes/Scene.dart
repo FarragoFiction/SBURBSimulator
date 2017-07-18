@@ -9,4 +9,7 @@ abstract class Scene {
 
   //each scene should handle rendering itself
   renderContent(var playerList);
+
+  //maybe things that used to be global methods in  scene ccontroller can be static methods here
+  //don't need a separate thing.  scene_controller's make scenes for session is a natural fit here.
 }

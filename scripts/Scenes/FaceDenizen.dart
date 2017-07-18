@@ -3,12 +3,11 @@ part of SBURBSim;
 
 class FaceDenizen extends Scene{
 	bool canRepeat = true;
-	var session;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	List<dynamic> denizenFighters = [];	
 
 
-	FaceDenizen(this.session) {}
+	FaceDenizen(Session session): super(session)
 
 
 	dynamic trigger(playerList){

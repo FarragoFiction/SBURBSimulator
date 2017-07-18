@@ -4,7 +4,6 @@ part of SBURBSim;
 //if i am page or blood player, can't do this alone.
 
 class SolvePuzzles extends Scene {
-	var session;
 	bool canRepeat = true;
 	var player1 = null;
 	var player2 = null; //optional
@@ -13,7 +12,7 @@ class SolvePuzzles extends Scene {
 	
 
 
-	SolvePuzzles(this.session) {}
+	SolvePuzzles(Session session): super(session)
 
 
 	dynamic checkPlayer(player){

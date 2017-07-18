@@ -2,14 +2,13 @@ part of SBURBSim;
 
 
 class VoidyStuff extends Scene {
-	var session;
 	bool canRepeat = true;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	var player = null;
 	var enablingPlayer = null;	
 
 
-	VoidyStuff(this.session) {}
+	VoidyStuff(Session session): super(session)
 
 
 	dynamic trigger(playerList){

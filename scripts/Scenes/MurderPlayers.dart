@@ -2,13 +2,12 @@ part of SBURBSim;
 
 
 class MurderPlayers extends Scene {
-	var session;
 	bool canRepeat = true;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	List<dynamic> murderers = [];	
 
 
-	MurderPlayers(this.session) {}
+	MurderPlayers(Session session): super(session)
 
 
 	dynamic trigger(playerList){

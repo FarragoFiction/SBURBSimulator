@@ -2,7 +2,6 @@ part of SBURBSim;
 
 
 class LuckStuff extends Scene{
-	var session;
 	bool canRepeat = true;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	List<dynamic> rolls = [];	//luck can be good or it can be bad.
@@ -14,7 +13,7 @@ class LuckStuff extends Scene{
 	
 
 
-	LuckStuff(this.session) {}
+	LuckStuff(Session session): super(session)
 
 
 	bool trigger(playerList){

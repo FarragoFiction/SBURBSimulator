@@ -2,13 +2,12 @@ part of SBURBSim;
 
 
 class GrimDarkQuests extends Scene{
-	var session;
 	bool canRepeat = true;
 	List<dynamic> players = [];	//grim dark players don't do their jobs. they try to crash the session.
 	
 
 
-	GrimDarkQuests(this.session) {}
+	GrimDarkQuests(Session session): super(session)
 
 
 	dynamic trigger(playerList){

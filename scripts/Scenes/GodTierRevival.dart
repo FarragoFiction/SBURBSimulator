@@ -3,12 +3,11 @@ part of SBURBSim;
 
 class GodTierRevival extends Scene {
 	bool canRepeat = true;
-	var session;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	List<dynamic> godsToRevive = [];	
 
 
-	GodTierRevival(this.session) {}
+	GodTierRevival(Session session): super(session)
 
 
 	dynamic trigger(playerList){

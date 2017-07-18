@@ -6,7 +6,6 @@ part of SBURBSim;
 //resuability, yo
 //http://www.neoseeker.com/forums/26839/t1277308-random-npc-conversations/   (or i guess i could just play oblivion, but I want a LIST dammit, of memes to add.)
 class QuadrantDialogue extends Scene {
-	var session;
 	bool canRepeat = true;
 	var player1 = null;
 	var player2 = null;
@@ -15,7 +14,7 @@ class QuadrantDialogue extends Scene {
 	
 
 
-	QuadrantDialogue(this.session) {}
+	QuadrantDialogue(Session session): super(session)
 
 
 	dynamic trigger(){

@@ -2,13 +2,12 @@ part of SBURBSim;
 
 
 class PrepareToExileQueen extends Scene {
-	var session;
 	bool canRepeat = true;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	var player = null;	
 
 
-	PrepareToExileQueen(this.session) {}
+	PrepareToExileQueen(Session session): super(session)
 
 
 	void findSufficientPlayer(){

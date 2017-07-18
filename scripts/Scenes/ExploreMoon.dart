@@ -3,14 +3,13 @@ part of SBURBSim;
 
 class ExploreMoon extends Scene {
 	bool canRepeat = true;
-	var session;
 	var player1 = null;
 	var player2 = null; //optional
 
 	
 
 
-	ExploreMoon(this.session) {}
+	ExploreMoon(Session session): super(session)
 
 
 	dynamic checkPlayer(player){

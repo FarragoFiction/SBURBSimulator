@@ -6,11 +6,10 @@ part of SBURBSim;
 //can fight 0 or more players at once. (if zero, he just kills nonplayers.)
 //total playerStrength must be at least half of his to survive.
 class JackRampage extends Scene{
-	var session;
-	bool canRepeat = true;	
+	bool canRepeat = true;
 
 
-	JackRampage(this.session) {}
+	JackRampage(Session session): super(session)
 
 
 	dynamic trigger(playerList){

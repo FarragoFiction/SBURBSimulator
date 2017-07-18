@@ -102,7 +102,6 @@ THEN I will have the perfect shitty quadrant life.
 
 class UpdateShippingGrid extends Scene{
 	bool canRepeat = true;
-	var session;
 	var shippingChat = null; //what should it say when I try to convince my otp to get together?
 	var romanceChat = null; //if i convince one member of my otp to get together, what do they say when they confess?
 	List<dynamic> shippers = [];  //Shipper objects are a player and their ships.
@@ -110,7 +109,7 @@ class UpdateShippingGrid extends Scene{
 	var shippingAfterMath = null;	
 
 
-	UpdateShippingGrid(this.session) {}
+	UpdateShippingGrid(Session session): super(session)
 
 
 	bool trigger(){

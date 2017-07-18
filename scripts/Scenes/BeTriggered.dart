@@ -2,14 +2,13 @@ part of SBURBSim;
 
 
 class BeTriggered extends Scene{
-	var session;
 	bool canRepeat = true;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	List<dynamic> triggeredPlayers = [];
 	List<dynamic> triggers = [];	
 
 
-	BeTriggered(this.session) {}
+	BeTriggered(Session session): super(session)
 
 
 	dynamic trigger(playerList){

@@ -2,13 +2,12 @@ part of SBURBSim;
 
 
 class EngageMurderMode extends Scene{
-	var session;
 	bool canRepeat = true;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	var player = null;	
 
 
-	EngageMurderMode(this.session) {}
+	EngageMurderMode(Session session): super(session)
 
 
 	bool trigger(playerList){

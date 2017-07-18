@@ -2,7 +2,6 @@ part of SBURBSim;
 
 
 class YellowYard extends Scene{
-	var session;
 	bool canRepeat = false;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	this.timePlayer;
@@ -11,7 +10,7 @@ class YellowYard extends Scene{
 	
 
 
-	YellowYard(this.session) {}
+	YellowYard(Session session): super(session)
 
 
 	bool trigger(playerList){

@@ -2,13 +2,12 @@ part of SBURBSim;
 
 
 class GoGrimDark extends Scene {
-	var session;
 	bool canRepeat = true;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	var player = null;	
 
 
-	GoGrimDark(this.session) {}
+	GoGrimDark(Session session): super(session)
 
 
 	bool trigger(playerList){

@@ -3,7 +3,6 @@ part of SBURBSim;
 
 //if leader dies before last player is in OR before performing ectobiology, it's a doomed timeline.
 class SaveDoomedTimeLine extends Scene {
-	var session;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	var timePlayer = null;
 	var leaderPlayer = null;
@@ -12,7 +11,7 @@ class SaveDoomedTimeLine extends Scene {
 	var enablingPlayer = null;	
 
 
-	SaveDoomedTimeLine(this.session) {}
+	SaveDoomedTimeLine(Session session): super(session)
 
 
 	dynamic trigger(playerList){

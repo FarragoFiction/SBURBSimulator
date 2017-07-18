@@ -3,14 +3,13 @@ part of SBURBSim;
 
 //x times corpse smooch combo.
 class CorpseSmooch extends Scene {
-	var session;
 	bool canRepeat = true;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	List<dynamic> dreamersToRevive = [];
 	num combo = 0;	
 
 
-	CorpseSmooch(this.session) {}
+	CorpseSmooch(Session session): super(session)
 
 
 	dynamic trigger(playerList){

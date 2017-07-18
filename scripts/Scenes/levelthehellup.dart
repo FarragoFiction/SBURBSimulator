@@ -4,10 +4,9 @@ part of SBURBSim;
 class LevelTheHellUp extends Scene {
 	bool canRepeat = true;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
-	var session;	
 
 
-	LevelTheHellUp(this.session) {}
+	LevelTheHellUp(Session session): super(session)
 
 
 	bool trigger(playerList){

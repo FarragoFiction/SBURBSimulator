@@ -2,14 +2,13 @@ part of SBURBSim;
 
 
 class JackBeginScheming extends Scene {
-	bool canRepeat = false;
 	var session;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	var friend = null;	//blood or page or thief or rogue.  don't go for non native players
 	
 
 
-	JackBeginScheming(this.session) {}
+	JackBeginScheming(Session session): super(session)
 
 
 	dynamic findSympatheticPlayer(){

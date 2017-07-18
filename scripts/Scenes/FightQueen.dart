@@ -3,13 +3,12 @@ part of SBURBSim;
 
 class FightQueen extends Scene {
 	bool canRepeat = true;
-	var session;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 
 	
 
 
-	FightQueen(this.session) {}
+	FightQueen(Session session): super(session)
 
 
 	dynamic trigger(playerList){

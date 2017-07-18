@@ -3,12 +3,11 @@ part of SBURBSim;
 
 class Intro  extends Scene{
 	bool canRepeat = false;
-	var session;
 	List<dynamic> playerList = [];  //whatthis.session.players are already in the medium when i trigger?
 	var player = null;	
 
 
-	Intro(this.session) {}
+	Intro(Session session): super(session)
 
 
 	bool trigger(playerList, player){

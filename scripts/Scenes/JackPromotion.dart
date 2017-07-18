@@ -3,13 +3,12 @@ part of SBURBSim;
 
 class JackPromotion extends Scene{
 	bool canRepeat = false;
-	var session;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 
 	
 
 
-	JackPromotion(this.session) {}
+	JackPromotion(Session session): super(session)
 
 
 	bool trigger(playerList){

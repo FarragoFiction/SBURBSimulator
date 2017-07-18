@@ -3,7 +3,6 @@ part of SBURBSim;
 
 //not being used anymore since yellow yard is implemented.
 class ForeshadowYellowYard extends Scene{
-	var session;
 	bool canRepeat = false;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	this.timePlayer;
@@ -12,7 +11,7 @@ class ForeshadowYellowYard extends Scene{
 	
 
 
-	ForeshadowYellowYard(this.session) {}
+	ForeshadowYellowYard(Session session): super(session)
 
 
 	bool trigger(playerList){

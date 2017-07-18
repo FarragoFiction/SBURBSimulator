@@ -2,7 +2,6 @@ part of SBURBSim;
 
 
 class Breakup extends Scene {
-	var session;
 	bool canRepeat = false;
 	var player = null;
 	var relationshipToBreakUp = null;
@@ -13,7 +12,7 @@ class Breakup extends Scene {
 	
 
 
-	Breakup(this.session) {}
+	Breakup(Session session): super(session)
 
 
 	bool trigger(){

@@ -2,7 +2,6 @@ part of SBURBSim;
 
 
 class LifeStuff extends Scene {
-	var session;
 	bool canRepeat = true;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	num combo = 0;	//arrays of [life/Doom player, other player] pairs. other player can be a corpse. other player can be null;
@@ -14,7 +13,7 @@ class LifeStuff extends Scene {
 	
 
 
-	LifeStuff(this.session) {}
+	LifeStuff(Session session): super(session)
 
 
 	dynamic trigger(playerList){

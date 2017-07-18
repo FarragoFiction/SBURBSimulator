@@ -8,13 +8,12 @@ part of SBURBSim;
 //can get help from another player, different bonuses based on claspect if so.
 class DoLandQuest extends Scene{
 	bool canRepeat = true;
-	var session;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	List<dynamic> playersPlusHelpers = []; //who is doing a land quest this turn?
 	num landLevelNeeded = 12;	
 
 
-	DoLandQuest(this.session) {}
+	DoLandQuest(Session session): super(session)
 
 
 	dynamic trigger(playerList){
