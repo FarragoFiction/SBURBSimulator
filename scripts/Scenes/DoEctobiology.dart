@@ -2,7 +2,7 @@ part of SBURBSim;
 
 
 //only needs to happen once, but if it DOESN'T happen before reckoning (or leader is permanently killed) doomed timeline.
-class DoEctobiology {
+class DoEctobiology extends Scene {
 	var session;
 	bool canRepeat = false;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?

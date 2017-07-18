@@ -2,7 +2,7 @@ part of SBURBSim;
 
 
 //x times corpse smooch combo.
-class CorpseSmooch {
+class CorpseSmooch extends Scene {
 	var session;
 	bool canRepeat = true;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?

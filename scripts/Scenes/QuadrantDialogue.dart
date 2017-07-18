@@ -5,7 +5,7 @@ part of SBURBSim;
 //it's render function can just call new QuadrantDialogue(this.session).renderContent(div); and be done.
 //resuability, yo
 //http://www.neoseeker.com/forums/26839/t1277308-random-npc-conversations/   (or i guess i could just play oblivion, but I want a LIST dammit, of memes to add.)
-class QuadrantDialogue {
+class QuadrantDialogue extends Scene {
 	var session;
 	bool canRepeat = true;
 	var player1 = null;

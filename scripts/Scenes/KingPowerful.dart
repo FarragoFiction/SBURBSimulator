@@ -1,7 +1,7 @@
 part of SBURBSim;
 
 
-class KingPowerful {
+class KingPowerful extends Scene {
 	var session;
 	bool canRepeat = false;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?

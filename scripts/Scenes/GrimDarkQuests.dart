@@ -1,7 +1,7 @@
 part of SBURBSim;
 
 
-class GrimDarkQuests {
+class GrimDarkQuests extends Scene{
 	var session;
 	bool canRepeat = true;
 	List<dynamic> players = [];	//grim dark players don't do their jobs. they try to crash the session.

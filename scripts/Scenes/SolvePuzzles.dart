@@ -3,7 +3,7 @@ part of SBURBSim;
 
 //if i am page or blood player, can't do this alone.
 
-class SolvePuzzles {
+class SolvePuzzles extends Scene {
 	var session;
 	bool canRepeat = true;
 	var player1 = null;

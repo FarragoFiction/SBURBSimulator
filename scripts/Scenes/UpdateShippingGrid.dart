@@ -100,7 +100,7 @@ THEN I will have the perfect shitty quadrant life.
 
 
 
-class UpdateShippingGrid {
+class UpdateShippingGrid extends Scene{
 	bool canRepeat = true;
 	var session;
 	var shippingChat = null; //what should it say when I try to convince my otp to get together?

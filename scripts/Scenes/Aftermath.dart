@@ -1,6 +1,6 @@
 part of SBURBSim;
 
-class Aftermath {
+class Aftermath extends Scene {
 	bool canRepeat = false;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	

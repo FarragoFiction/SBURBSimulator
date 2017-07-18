@@ -1,7 +1,7 @@
 part of SBURBSim;
 
 
-class JackBeginScheming {
+class JackBeginScheming extends Scene {
 	bool canRepeat = false;
 	var session;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?

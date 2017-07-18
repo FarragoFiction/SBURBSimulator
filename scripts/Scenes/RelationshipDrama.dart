@@ -3,7 +3,7 @@ part of SBURBSim;
 
 //only one player at a time.
 //compare old relationship with new relationship.
-class RelationshipDrama {
+class RelationshipDrama extends Scene {
 	var session;
 	bool canRepeat = true;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?

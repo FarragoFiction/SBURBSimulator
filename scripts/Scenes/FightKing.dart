@@ -9,7 +9,7 @@ class FightKing extends Scene {
 
 	FightKing(Session session): super(session);
 
-
+	@override
 	dynamic trigger(playerList){
 		this.playerList = playerList;
 		//print('fight kin trigger?');
@@ -38,6 +38,8 @@ class FightKing extends Scene {
 		var canvasDiv = querySelector("#canvas"+ divID);
 		poseAsATeam(canvasDiv, fightingPlayers, 2000);
 	}
+
+	@override
 	void renderContent(div){
 		//print("rendering fight king);")
 		div.append("<br> <img src = 'images/sceneIcons/bk_icon.png'>");

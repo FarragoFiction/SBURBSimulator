@@ -1,7 +1,7 @@
 part of SBURBSim;
 
 
-class LifeStuff {
+class LifeStuff extends Scene {
 	var session;
 	bool canRepeat = true;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?

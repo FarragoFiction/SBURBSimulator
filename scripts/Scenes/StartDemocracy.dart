@@ -14,7 +14,7 @@ part of SBURBSim;
   During ending, if democracy = true, mention that.;
 */
 
-class StartDemocracy {
+class StartDemocracy extends Scene {
 	var session;
 	bool canRepeat = false;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?

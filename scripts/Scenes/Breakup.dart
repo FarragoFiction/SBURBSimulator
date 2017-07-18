@@ -1,7 +1,7 @@
 part of SBURBSim;
 
 
-class Breakup {
+class Breakup extends Scene {
 	var session;
 	bool canRepeat = false;
 	var player = null;

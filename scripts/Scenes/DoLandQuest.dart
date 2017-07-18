@@ -6,7 +6,7 @@ part of SBURBSim;
 //get quest from either class or aspect array in random tables. if space, only aspect array (frog);
 
 //can get help from another player, different bonuses based on claspect if so.
-class DoLandQuest {
+class DoLandQuest extends Scene{
 	bool canRepeat = true;
 	var session;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?

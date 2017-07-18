@@ -1,7 +1,7 @@
 part of SBURBSim;
 
 
-class PowerDemocracy {
+class PowerDemocracy extends Scene{
 	bool canRepeat = true;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	var session;	//a player has to be not busy to be your friend right now.

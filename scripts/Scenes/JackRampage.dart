@@ -5,7 +5,7 @@ part of SBURBSim;
 //if jack is much stronger than a player, insta-kills them.
 //can fight 0 or more players at once. (if zero, he just kills nonplayers.)
 //total playerStrength must be at least half of his to survive.
-class JackRampage {
+class JackRampage extends Scene{
 	var session;
 	bool canRepeat = true;	
 
