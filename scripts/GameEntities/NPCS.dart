@@ -1,6 +1,6 @@
 part of SBURBSim;
 //most of these are just so I can say "is this a type of npc" and not any real functionality
-//might be the wrong way to do this. can refactor later
+//might be the wrong way to do this. can refactor later. they will have more functionality as time goes on, tho.
 
 class NPC extends GameEntity {
   NPC(String name, num id, Session session): super(name, id, session);
@@ -21,6 +21,8 @@ class Consort extends NPC {
 }
 
 //denizens are spawned with innate knowledge of a personal fraymotif.
+//TODO eventually put this logic here instead of in player, and have mechanism for
+//creating a denizen live here in a static method.
 class Denizen extends NPC {
   Denizen(String name, num id, Session session): super(name, id, session);
 }

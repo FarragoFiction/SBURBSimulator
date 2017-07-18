@@ -77,6 +77,18 @@ class Player extends GameEntity{
 		return (this.ectoBiologicalSource == null || this.ectoBiologicalSource == session.session_id);
 	}
 
+  @override
+  void setStat(statName,value){
+    if(statName == "RELATIONSHIPS") throw "Players modify the actual relationships, not the calculated value.";
+    super.setStat(statName, value);
+  }
+
+  @override
+  void addStat(statName,value){
+    if(statName == "RELATIONSHIPS") throw "Players modify the actual relationships, not the calculated value.";
+    super.addStat(statName, value);
+  }
+
 
 	bool isQuadranted(){
 		if(this.getHearts().length > 0) return true;
@@ -334,7 +346,7 @@ class Player extends GameEntity{
 		this.timesDied ++;
 		this.buffs = [];
 		this.causeOfDeath = sanitizeString(causeOfDeath);
-		if(this.currentHP > 0) this.currentHP = -1; //just in case anything weird is going on. dead is dead.  (for example, you could have been debuffed of hp).
+		if(this.getStat("currentHP") > 0) this.setStat("currentHP",-1); //just in case anything weird is going on. dead is dead.  (for example, you could have been debuffed of hp).
 		//was in make alive, but realized that this makes doom ghosts way stronger if it's here. powered by DEATH, but being revived.
 		if(this.aspect == "Doom"){ //powered by their own doom.
 			//print("doom is powered by their own death: " + this.session.session_id) //omg, they are sayians.
@@ -2027,6 +2039,123 @@ class Player extends GameEntity{
 	}
 
 
+  /******************************************************************
+   *
+   * No Premature Optimization. V1 will have a rendering
+   * Snapshot just be a deep copy of the player.
+   *
+   * If testing shows that having it be this big heavy class is a problem
+   * I can make a tiny version with only what I need.
+   *
+   * DO NOT FALL INTO THE TRAP OF USING THIS FOR DOOMED TIME PLAYERS.
+   *
+   * THEY NEED MORE METHODS THAN YOU THINK THEY DO.
+   *
+   * Find out how you are SUPPOSED to make deep copies of objects in
+   * langugages where objects aren't just shitty hashes.
+   *
+   *****************************************************************/
+
+  //TODO how do you NORMALLY make deep copies of things when all objects aren't secretly hashes?
+  static makeRenderingSnapshot(GameEntity ge) {
+    var ret = new PlayerSnapshot();
+    ret.fraymotifs = player.fraymotifs.slice(0);//omg, make a copy you dunkass, or time players get the OP fraymotifs of their doomed clones;
+    ret.robot = player.robot;
+    ret.spriteCanvasID = player.spriteCanvasID;
+    ret.currentHP = player.currentHP;
+    ret.doomed = player.doomed;
+    ret.ghost = player.ghost;
+    ret.causeOfDrain = player.causeOfDrain;
+    ret.session = player.session;
+    ret.id = player.id;
+    ret.trickster = player.trickster;
+    ret.baby_stuck = player.baby_stuck;
+    ret.sbahj = player.sbahj;
+    ret.influenceSymbol = player.influenceSymbol;
+    ret.grimDark = player.grimDark;
+    ret.victimBlood = player.victimBlood;
+    ret.murderMode = player.murderMode;
+    ret.leftMurderMode = player.leftMurderMode; //scars
+    ret.dead = player.dead;
+    ret.isTroll = player.isTroll;
+    ret.godTier = player.godTier;
+    ret.class_name = player.class_name;
+    ret.aspect = player.aspect;
+    ret.isDreamSelf = player.isDreamSelf;
+    ret.hair = player.hair;
+    ret.bloodColor = player.bloodColor;
+    ret.hairColor = player.hairColor;
+    ret.moon = player.moon;
+    ret.chatHandle = player.chatHandle;
+    ret.leftHorn = player.leftHorn;
+    ret.rightHorn = player.rightHorn;
+    ret.quirk = player.quirk;
+    ret.baby = player.baby;
+    ret.causeOfDeath = player.causeOfDeath;
+    ret.hp = player.hp;
+    ret.minLuck = player.minLuck;
+    ret.maxLuck = player.maxLuck;
+    ret.freeWill = player.freeWill;
+    ret.power = player.power;
+    ret.interest1 = player.interest1;
+    ret.interest2 = player.interest2;
+    ret.mobility = player.mobility;
+    return ret;
+  }
+
+  static clonePlayer(player) {
+
+  }
+
+  //TODO has specific 'doomed time clone' stuff in it, like randomizing state
+  static makeDoomedSnapshot(Player doomedPlayer) {
+    Player timeClone = Player.copyFromPlayer(doomedPlayer);
+    timeClone.dead = false;
+    timeClone.setStat("currentHP", timeClone.getStat(hp));
+    timeClone.doomed = true;
+    //from a different timeline, things went differently.
+    var rand = seededRandom();
+    timeClone.setStat("power",seededRandom() * 80+10);
+    if(rand > 0.9){
+      timeClone.robot = true;
+      timeClone.hairColor = getRandomGreyColor();
+    }else if(rand>.8){
+      timeClone.godTier = !timeClone.godTier;
+      if(timeClone.godTier){
+        timeClone.setStat("power", 200); //act like a god, damn it.
+      }
+    }else if(rand>.6){
+      timeClone.isDreamSelf = !timeClone.isDreamSelf;
+    }else if(rand>.4){
+      timeClone.grimDark = getRandomInt(0,4);
+      timeClone.addStat("power",50 * timeClone.grimDark);
+    }else if(rand>.2){
+      timeClone.murderMode = !timeClone.murderMode;
+    }
+
+    if(timeClone.grimDark > 3){
+      var f = new Fraymotif([],  Zalgo.generate("The Broodfester Tongues"), 3);
+      f.effects.add(new FraymotifEffect("power",3,true));
+      f.effects.add(new FraymotifEffect("power",0,false));
+      f.flavorText = " They are stubborn throes. ";
+      timeClone.fraymotifs.add(f);
+    }
+
+    if(timeClone.godTier){
+     var f = curSessionGlobalVar.fraymotifCreator.makeFraymotif([doomedPlayer], 3);//first god tier fraymotif
+      timeClone.fraymotifs.add(f);
+    }
+
+    if(timeClone.power > 50){
+      var f = curSessionGlobalVar.fraymotifCreator.makeFraymotif([doomedPlayer], 2);//probably beat denizen at least
+      timeClone.fraymotifs.add(f);
+    }
+
+    var f = curSessionGlobalVar.fraymotifCreator.makeFraymotif([doomedPlayer], 1);//at least did first quest
+    timeClone.fraymotifs.add(f);
+
+    return timeClone;
+  }
 
 }
 

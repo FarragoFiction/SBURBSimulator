@@ -1,6 +1,7 @@
 part of SBURBSim;
 
 //fully replacing old GameEntity that was also an unholy combo of strife engine
+//not abstract, COULD spawn just a generic game entity.
 class GameEntity {
   Session session;
   String name;
@@ -87,10 +88,18 @@ class GameEntity {
       this.stats[stat.name] += modValue * stat.multiplier;
     }
   }
-  //dynamic is right here.
-  dynamic getStat(statName){
+  num getStat(statName){
     return this.stats[statName];
   }
+
+  void setStat(statName,value){
+    this.stats[statName] = value;
+  }
+
+  void addStat(statName,value){
+    this.stats[statName] += value;
+  }
+
 
   void setStatsHash(hashStats){
     for (var key in hashStats){
@@ -165,14 +174,5 @@ class GameEntity {
     return this.stats.keys;
   }
 
-  //TODO how do you NORMALLY make deep copies of things when all objects aren't secretly hashes?
-  static makeRenderingSnapshot(GameEntity ge) {
-
-  }
-
-  //TODO have player have a static version of this too (remember you don't override static shit) and it does time player specific stuff, like randomizing state.
-  static makeDoomedSnapshot(GameEntity ge) {
-
-  }
 
 }
