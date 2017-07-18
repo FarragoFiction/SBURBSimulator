@@ -9,9 +9,9 @@ class CorpseSmooch extends Scene {
 	num combo = 0;	
 
 
-	CorpseSmooch(Session session): super(session)
+	CorpseSmooch(Session session): super(session);
 
-
+	@override
 	dynamic trigger(playerList){
 		//print('checking corpse smooch');
 		this.playerList = playerList;
@@ -31,6 +31,7 @@ class CorpseSmooch extends Scene {
 		return this.dreamersToRevive.length > 0 && living.length>0;
 
 	}
+	@override
 	void renderContent(div){
 		this.dreamersToRevive;
 		////print(this.dreamersToRevive);

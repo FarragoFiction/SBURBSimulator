@@ -21,7 +21,7 @@ class StartDemocracy extends Scene {
 	
 
 
-	StartDemocracy(Session session): super(session)
+	StartDemocracy(Session session): super(session);
 
 
 	dynamic findSympatheticPlayer(){
@@ -34,10 +34,12 @@ class StartDemocracy extends Scene {
 			return null;
 		}
 	}
+	@override
 	void renderContent(div){
 		div.append("<br> <img src = 'images/sceneIcons/wv_icon.png'> "+this.content());
 	}
-	dynamic trigger(playerList){
+	@override
+	bool trigger(playerList){
 		this.playerList = playerList;
 		if(this.session.king.getStat("currentHP") <= 0 ||this.session.queen.getStat("currentHP") <= 0){  //the dead can't scheme or be schemed against
 			return false;

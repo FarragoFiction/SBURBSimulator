@@ -8,9 +8,9 @@ class GiveJackBullshitWeapon extends Scene {
 	
 
 
-	GiveJackBullshitWeapon(Session session): super(session)
+	GiveJackBullshitWeapon(Session session): super(session);
 
-
+	@override
 	dynamic trigger(playerList){
 		this.playerList = playerList;
 		var partyRoll = partyRollForLuck(this.session.players);
@@ -29,6 +29,8 @@ class GiveJackBullshitWeapon extends Scene {
 		this.session.queen.dead = true;
 		return ret;
 	}
+
+	@override
 	void renderContent(div){
 		div.append("<br><img src = 'images/sceneIcons/jack_icon.png'> "+this.content());
 	}

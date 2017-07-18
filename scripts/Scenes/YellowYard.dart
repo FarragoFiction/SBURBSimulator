@@ -10,9 +10,10 @@ class YellowYard extends Scene{
 	
 
 
-	YellowYard(Session session): super(session)
+	YellowYard(Session session): super(session);
 
 
+	@override
 	bool trigger(playerList){
 		this.playerList = playerList;
 		return true;
@@ -130,7 +131,10 @@ class YellowYard extends Scene{
 ```   `.....-+`                +y+hddddddddddddddddddddo         `` `.`                                                      `+-.....`   ```
 ```   `.-...-+`                ys+yddddddddddddddddddddd/         ` `.`                                                      `+-...-.`    ```
 ```   `.....-+`               -d++sdddddddddddddddddddddh-        ```.`                                                      `+-.....`    ```
-```   `:....-+`               -s++ohhhhhddhdddddddhhhhyso+        ` `..`                                                
+```   `:....-+`               -s++ohhhhhddhdddddddhhhhyso+        ` `..`
+
+
+   @override
 	void renderContent(div){
 		this.session.yellowYard = true;
 		//div.append("<br>"+this.content());

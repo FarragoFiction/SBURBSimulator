@@ -7,7 +7,7 @@ class PrepareToExileQueen extends Scene {
 	var player = null;	
 
 
-	PrepareToExileQueen(Session session): super(session)
+	PrepareToExileQueen(Session session): super(session);
 
 
 	void findSufficientPlayer(){
@@ -19,10 +19,14 @@ class PrepareToExileQueen extends Scene {
 		potentials.push(findClassPlayer(this.session.availablePlayers, "Rogue"));
 		this.player =  getRandomElementFromArray(potentials);
 	}
+
+	@override
 	void renderContent(div){
 		div.append("<br> <img src = 'images/sceneIcons/shenanigans_icon.png'>"+this.content());
 	}
-	dynamic trigger(playerList){
+
+	@override
+	bool trigger(playerList){
 		this.player = null;
 		this.playerList = playerList;
 		this.findSufficientPlayer(this.session.availablePlayers);

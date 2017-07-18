@@ -7,13 +7,16 @@ class Reckoning extends Scene {
 	
 
 
-	Reckoning(Session session): super(session)
+	Reckoning(Session session): super(session);
 
 
+	@override
 	bool trigger(playerList){
 		this.playerList = playerList;
 		return true; //this should never be in the main array. call manually.
 	}
+
+	@override
 	dynamic renderContent(div){
 		this.session.reckoningStarted = true;
 		String intro = "";

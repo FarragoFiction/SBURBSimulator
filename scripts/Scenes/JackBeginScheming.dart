@@ -8,7 +8,8 @@ class JackBeginScheming extends Scene {
 	
 
 
-	JackBeginScheming(Session session): super(session)
+	JackBeginScheming(Session session): super(session);
+
 
 
 	dynamic findSympatheticPlayer(){
@@ -30,6 +31,7 @@ class JackBeginScheming extends Scene {
 			return null;
 		}
 	}
+	@override
 	dynamic trigger(playerList){
 		this.playerList = playerList;
 		if(this.session.jack.getStat("currentHP") <= 0 && !this.session.jack.dead|| this.session.queen.getStat("currentHP") <= 0 && !this.session.queen.dead){  //the dead can't scheme or be schemed against
@@ -202,6 +204,8 @@ class JackBeginScheming extends Scene {
 
 		drawChat(canvasDiv, player1, player2, chatText, repeatTime,"discuss_jack.png");
 	}
+
+	@override
 	dynamic renderContent(div){
 		if(!this.friend){
 			return;

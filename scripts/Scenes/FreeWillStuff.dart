@@ -14,9 +14,9 @@ class FreeWillStuff extends Scene{
 	
 
 
-	FreeWillStuff(Session session): super(session)
+	FreeWillStuff(Session session): super(session);
 
-
+	@override
 	dynamic trigger(playerList){
 		this.decision = null;//reset
 		this.player = null;
@@ -79,6 +79,7 @@ class FreeWillStuff extends Scene{
 
 		drawGetTiger(canvas, [this.playerGodTiered],repeatTime) //only draw revivial if it actually happened.
 	}
+	@override
 	void renderContent(div){
 		String psionic = "";
 		var pname = this.player.canMindControl();

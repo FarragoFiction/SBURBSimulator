@@ -13,9 +13,9 @@ class DoLandQuest extends Scene{
 	num landLevelNeeded = 12;	
 
 
-	DoLandQuest(Session session): super(session)
+	DoLandQuest(Session session): super(session);
 
-
+	@override
 	dynamic trigger(playerList){
 		this.playersPlusHelpers = [];
 		var availablePlayers = this.session.availablePlayers.slice(); //don't modify available players while you iterate on it, dummy
@@ -86,6 +86,7 @@ class DoLandQuest extends Scene{
 		if(player.class_name == "Mage") return "The " + player.htmlTitle() + " is pretty sure they have figured out the fraymotif system, at least enough to learn " + fraymotif.name + ". ";
 		return getRandomElementFromArray(normalWays);
 	}
+	@override
 	void renderContent(div){
 		var content = this.content(div);
 		//if(simulationMode) return;  will doing things like this speed AB up. might want to refactor gameEntity so only one div redered at fight end and not consantly.

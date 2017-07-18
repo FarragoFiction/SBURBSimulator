@@ -7,9 +7,9 @@ class GoGrimDark extends Scene {
 	var player = null;	
 
 
-	GoGrimDark(Session session): super(session)
+	GoGrimDark(Session session): super(session);
 
-
+	@override
 	bool trigger(playerList){
 		this.playerList = playerList;
 		this.player = null;
@@ -30,6 +30,8 @@ class GoGrimDark extends Scene {
 		var current_mvp = findStrongestPlayer(this.session.players);
 		return this.session.addImportantEvent(new PlayerWentGrimDark(this.session, current_mvp.power,this.player) );
 	}
+
+	@override
 	void renderContent(div){
 		var alt = this.addImportantEvent();
 		if(alt && alt.alternateScene(div)){

@@ -7,7 +7,8 @@ class prepareToExileJack extends Scene {
 	var player = null;	
 
 
-	prepareToExileJack(Session session): super(session)
+	prepareToExileJack(Session session): super(session);
+
 
 
 	void findSufficientPlayer(){
@@ -27,10 +28,14 @@ class prepareToExileJack extends Scene {
 			this.player =  findAspectPlayer(this.session.availablePlayers, "Light");
 		}
 	}
+
+	@override
 	void renderContent(div){
 		div.append("<br><img src = 'images/sceneIcons/shenanigans_icon.png'>"+this.content());
 	}
-	dynamic trigger(playerList){
+
+	@override
+	bool trigger(playerList){
 		this.player = null;
 		this.playerList = playerList;
 		this.findSufficientPlayer(this.session.availablePlayers);

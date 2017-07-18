@@ -8,10 +8,11 @@ class PlanToExileJack extends Scene {
 	
 
 
-	PlanToExileJack(Session session): super(session)
+	PlanToExileJack(Session session): super(session);
 
 
-	dynamic trigger(playerList){
+	@override
+	bool trigger(playerList){
 		this.playerList = playerList;
 		this.findSympatheticPlayer();
 		//print("Planner: " + this.planner + " jack hp: " + this.session.jack.getStat("currentHP") + " jack crowned: " + this.session.jack.crowned );
@@ -159,6 +160,8 @@ class PlanToExileJack extends Scene {
 	void smart(player){
 		return ((player.aspect == "Light" || player.class_name == "Seer") ||(player.aspect == "Doom" || player.aspect == "Mind"));
 	}
+
+	@override
 	dynamic renderContent(div){
 		this.session.plannedToExileJack = true;
 		if(!this.planner){

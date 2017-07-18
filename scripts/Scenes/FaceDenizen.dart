@@ -7,9 +7,9 @@ class FaceDenizen extends Scene{
 	List<dynamic> denizenFighters = [];	
 
 
-	FaceDenizen(Session session): super(session)
+	FaceDenizen(Session session): super(session);
 
-
+	@override
 	dynamic trigger(playerList){
 		this.denizenFighters = [];
 		this.playerList = playerList;
@@ -50,6 +50,7 @@ class FaceDenizen extends Scene{
 		}
 		*/
 	}
+	@override
 	void renderContent(div){
 		div.append("<br><br>");
 		for(num i = 0; i<this.denizenFighters.length; i++){

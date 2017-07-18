@@ -7,10 +7,11 @@ class MurderPlayers extends Scene {
 	List<dynamic> murderers = [];	
 
 
-	MurderPlayers(Session session): super(session)
+	MurderPlayers(Session session): super(session);
 
 
-	dynamic trigger(playerList){
+	@override
+	bool trigger(playerList){
 		this.playerList = playerList;
 		this.murderers = [];
 		for(num i = 0; i<this.session.availablePlayers.length; i++){
@@ -29,6 +30,8 @@ class MurderPlayers extends Scene {
 			return this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
 		}
 	}
+
+	@override
 	void renderContent(div){
 		div.append("<br> <img src = 'images/sceneIcons/murder_icon.png'>"+this.contentForRender(div));
 	}

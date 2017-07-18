@@ -14,10 +14,10 @@ class QuadrantDialogue extends Scene {
 	
 
 
-	QuadrantDialogue(Session session): super(session)
+	QuadrantDialogue(Session session): super(session);
 
-
-	dynamic trigger(){
+	@override
+	bool trigger(){
 		this.player1 = null;
 		this.player2 = null;
 		//if want to be more frequent, can allo goodBig and badBig to trigger this as well.
@@ -582,6 +582,8 @@ class QuadrantDialogue extends Scene {
 		//this.session.sceneRenderingEngine.drawChat(querySelector("#canvas"+ (div.attr("id"))), this.player1, this.player2, chatText, 0,this.getDiscussSymbol(relationship));
 
 	}
+
+	@override
 	void renderContent(div){
 		if(this.player1.aspect != "Time") removeFromArray(this.player1, this.session.availablePlayers);
 		if(this.player2.aspect != "Time") removeFromArray(this.player2, this.session.availablePlayers);

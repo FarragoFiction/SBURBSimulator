@@ -8,9 +8,9 @@ class BeTriggered extends Scene{
 	List<dynamic> triggers = [];	
 
 
-	BeTriggered(Session session): super(session)
+	BeTriggered(Session session): super(session);
 
-
+	@override
 	dynamic trigger(playerList){
 		this.playerList = playerList;
 		this.triggeredPlayers = [];
@@ -23,6 +23,7 @@ class BeTriggered extends Scene{
 		}
 		return this.triggeredPlayers.length > 0;
 	}
+	@override
 	void renderContent(div){
 		div.append("<br><img src = 'images/sceneIcons/flipout_icon_animated.gif'>"+this.content());
 	}

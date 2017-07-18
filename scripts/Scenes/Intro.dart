@@ -7,9 +7,9 @@ class Intro  extends Scene{
 	var player = null;	
 
 
-	Intro(Session session): super(session)
+	Intro(Session session): super(session);
 
-
+	@override
 	bool trigger(playerList, player){
 		this.playerList = playerList;
 		this.player = player;
@@ -657,6 +657,7 @@ class Intro  extends Scene{
 		//alien chat won't get here, renders itself cause can talk to dead
 		drawChat(querySelector("#canvas"+ (div.attr("id"))), player1, player2, chatText, repeatTime,"discuss_sburb.png");
 	}
+	@override
 	void renderContent(div, i){
 		//foundRareSession(div, "This is just a test. " + this.session.session_id);
 		String canvasHTML = "<canvas style;='display:none' class = 'charSheet' id;='firstcanvas" + this.player.id+"_" + this.session.session_id+"' width='400' height;='1000'>  </canvas>";

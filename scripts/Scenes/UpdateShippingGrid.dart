@@ -109,9 +109,10 @@ class UpdateShippingGrid extends Scene{
 	var shippingAfterMath = null;	
 
 
-	UpdateShippingGrid(Session session): super(session)
+	UpdateShippingGrid(Session session): super(session);
 
 
+	@override
 	bool trigger(){
 		this.chosenShipper = null;
 		this.shippingAfterMath = null;
@@ -150,6 +151,8 @@ class UpdateShippingGrid extends Scene{
 		//print("making new shipper for: " + player);
 		return s;
 	}
+
+	@override
 	void renderContent(div){
 		div.append("<br>");
 		div.append(this.content());

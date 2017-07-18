@@ -8,7 +8,7 @@ class Aftermath extends Scene {
 
 	Aftermath(Session session): super(session);
 
-
+	@override
 	bool trigger(playerList){
 		this.playerList = playerList;
 		return true; //this should never be in the main array. call manually.
@@ -104,6 +104,8 @@ class Aftermath extends Scene {
 		copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
 		copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
 	}
+
+	@override
 	dynamic renderContent(div){
 		bool yellowYard = false;
 		String end = "<Br>";

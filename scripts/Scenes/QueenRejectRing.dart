@@ -8,16 +8,19 @@ class QueenRejectRing extends Scene {
 	
 
 
-	QueenRejectRing(Session session): super(session)
+	QueenRejectRing(Session session): super(session);
 
 
-	dynamic trigger(playerList){
+	@override
+	bool trigger(playerList){
 		this.playerList = playerList;
 		var nativePlayersInSession = findPlayersFromSessionWithId(playerList);
 		var goodPrototyping = findGoodPrototyping(playerList);
 		//print("holy fucking shit, don't reject the ring if an alien player comes in.");
 		return goodPrototyping != null && this.session.queen.crowned;
 	}
+
+	@override
 	void renderContent(div){
 		div.append("<br> <img src = 'images/sceneIcons/bq_icon.png'> "+this.content());
 	}

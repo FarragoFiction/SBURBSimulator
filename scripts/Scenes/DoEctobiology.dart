@@ -11,9 +11,9 @@ class DoEctobiology extends Scene {
 	
 
 
-	DoEctobiology(Session session): super(session)
+	DoEctobiology(Session session): super(session);
 
-
+	@override
 	bool trigger(playerList){
 		this.playerList = playerList;
 		this.leader = getLeader(this.session.availablePlayers);  //dead men do no ectobiology
@@ -36,6 +36,7 @@ class DoEctobiology extends Scene {
 		var canvasDiv = querySelector("#canvas"+ divID);
 		poseBabiesAsATeam(canvasDiv, this.leader, this.playersMade, getGuardiansForPlayers(this.playersMade), 4000);
 	}
+	@override
 	void renderContent(div){
 		div.append("<br><img src = 'images/sceneIcons/ectobiology_icon.png'>"+this.content());
 		this.drawLeaderPlusBabies(div);

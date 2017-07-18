@@ -12,7 +12,7 @@ class SolvePuzzles extends Scene {
 	
 
 
-	SolvePuzzles(Session session): super(session)
+	SolvePuzzles(Session session): super(session);
 
 
 	dynamic checkPlayer(player){
@@ -42,6 +42,7 @@ class SolvePuzzles extends Scene {
 		}
 
 	}
+	@override
 	bool trigger(playerList){
 		this.player1 = null; //reset
 		this.player2 = null;
@@ -79,6 +80,8 @@ class SolvePuzzles extends Scene {
 			var thing2 = getRandomElementFromArray(possibilities);
 			return "random bullshit sidequests at " + this.player1.shortLand() + ", " + thing1 + " and " + thing2 + ". ";
 	}
+
+	@override
 	void renderContent(div){
 		//print("Ultimate Riddle for Player with power of: " + this.player1.power + " and land level of: " + this.player1.landLevel + " " + this.player1);
 		div.append("<br> <img src = 'images/sceneIcons/sidequest_icon.png'> "+this.content());

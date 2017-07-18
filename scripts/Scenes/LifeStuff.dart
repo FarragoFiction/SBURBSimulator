@@ -13,10 +13,11 @@ class LifeStuff extends Scene {
 	
 
 
-	LifeStuff(Session session): super(session)
+	LifeStuff(Session session): super(session);
 
 
-	dynamic trigger(playerList){
+	@override
+	bool trigger(playerList){
 		this.enablingPlayerPairs = []; //player1, player2, dreamShenanigns
 		//not just available players. if class that could revive SELF this way, can be called on dead. otherwise requires a living life/doom player.
 		if(this.session.afterLife.ghosts.length == 0) return false; //can't exploit the afterlife if there isn't one.
@@ -113,6 +114,8 @@ class LifeStuff extends Scene {
 		}
 		return [chosenGuides, chosenSuplicants];
 	}
+
+	@override
 	void renderContent(div){
 		//print("rendering content for life stuff (won't necessarily be on screen): " + this.enablingPlayerPairs.length + " " + this.session.session_id)
 		//div.append("<br>"+this.content());

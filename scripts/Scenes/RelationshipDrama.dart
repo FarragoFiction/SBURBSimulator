@@ -9,10 +9,11 @@ class RelationshipDrama extends Scene {
 	List<dynamic> dramaPlayers = [];	
 
 
-	RelationshipDrama(Session session): super(session)
+	RelationshipDrama(Session session): super(session);
 
 
-	dynamic trigger(playerList){
+	@override
+	bool trigger(playerList){
 		this.playerList = playerList;
 		this.dramaPlayers = [];
 		//CAN change how ou feel about somebody not yet in the medium
@@ -630,6 +631,8 @@ class RelationshipDrama extends Scene {
 		}
 		return null;
 	}
+
+	@override
 	void renderContent(div){
 		//div.append(this.content());
 		for(num i = 0; i<this.dramaPlayers.length; i++){

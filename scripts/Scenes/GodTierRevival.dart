@@ -7,9 +7,9 @@ class GodTierRevival extends Scene {
 	List<dynamic> godsToRevive = [];	
 
 
-	GodTierRevival(Session session): super(session)
+	GodTierRevival(Session session): super(session);
 
-
+	@override
 	dynamic trigger(playerList){
 		this.playerList = playerList;
 		this.godsToRevive = [];
@@ -25,6 +25,7 @@ class GodTierRevival extends Scene {
 		return this.godsToRevive.length > 0;
 
 	}
+	@override
 	void renderContent(div){
 		div.append("<br>"+this.content());
 		num repeatTime = 1000;

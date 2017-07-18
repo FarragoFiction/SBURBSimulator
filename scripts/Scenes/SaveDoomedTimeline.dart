@@ -11,10 +11,10 @@ class SaveDoomedTimeLine extends Scene {
 	var enablingPlayer = null;	
 
 
-	SaveDoomedTimeLine(Session session): super(session)
+	SaveDoomedTimeLine(Session session): super(session);
 
-
-	dynamic trigger(playerList){
+	@override
+	bool trigger(playerList){
 		this.timePlayer = null;
 		this.enablingPlayer = null;
 		var times = findAllAspectPlayers(this.session.players, "Time"); //they don't have to be in the medium, though
@@ -38,6 +38,8 @@ class SaveDoomedTimeLine extends Scene {
 		//print("time player is not dead,  do i trigger?");
 		return (this.timePlayer && (this.ectoDoom() || this.playerDoom() || this.randomDoom(times.length)));
 	}
+
+	@override
 	void renderContent(div){
 		print("time clone " + this.timePlayer + " " + this.session.session_id);
 		div.append("<br><img src = 'images/sceneIcons/time_icon.png'>"+this.content());

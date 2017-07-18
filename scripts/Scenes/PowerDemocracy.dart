@@ -7,15 +7,17 @@ class PowerDemocracy extends Scene{
 
 
 
-	PowerDemocracy(Session session): super(session)
+	PowerDemocracy(Session session): super(session);
 
-
-	dynamic trigger(playerList){
+	@override
+	bool trigger(playerList){
 		this.playerList = playerList;
 
 
 		return (this.session.democracyStrength > 0);
 	}
+
+	@override
 	void renderContent(div){
 		div.append("<br><img src = 'images/sceneIcons/wv_icon.png'>"+this.content());
 	}

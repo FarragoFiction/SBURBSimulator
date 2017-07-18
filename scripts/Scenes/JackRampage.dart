@@ -9,9 +9,10 @@ class JackRampage extends Scene{
 	bool canRepeat = true;
 
 
-	JackRampage(Session session): super(session)
+	JackRampage(Session session): super(session);
 
 
+	@override
 	dynamic trigger(playerList){
 		//print("Jack is: " + this.session.jackStrength  + " and King is: " + this.session.kingStrength);
 		return this.session.jack.crowned != null && this.session.jack.getStat("currentHP") > 0 && !this.session.jack.dead; //Jack does not stop showing us his stabs.
@@ -74,6 +75,7 @@ class JackRampage extends Scene{
 			var canvasDiv = querySelector("#canvas"+ divID);
 			//poseAsATeam(canvasDiv, stabbings, 2000); //can't do this anymore, mighit be  a sprite in there.
 		}
+	@override
 	dynamic renderContent(div){
 		this.session.jackRampage = true;
 		//div.append("<br>"+this.content());

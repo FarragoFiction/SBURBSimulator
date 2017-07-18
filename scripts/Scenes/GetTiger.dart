@@ -9,9 +9,9 @@ class GetTiger extends Scene{
 	
 
 
-	GetTiger(Session session): super(session)
+	GetTiger(Session session): super(session);
 
-
+	@override
 	dynamic trigger(playerList){
 		this.playerList = playerList;
 		this.deadPlayersToGodTier = [];
@@ -29,6 +29,7 @@ class GetTiger extends Scene{
 		return this.deadPlayersToGodTier.length > 0;
 
 	}
+	@override
 	void renderContent(div){
 		var text = this.content();
 

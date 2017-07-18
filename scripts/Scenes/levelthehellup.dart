@@ -6,9 +6,9 @@ class LevelTheHellUp extends Scene {
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 
 
-	LevelTheHellUp(Session session): super(session)
+	LevelTheHellUp(Session session): super(session);
 
-
+	@override
 	bool trigger(playerList){
 		this.playerList = playerList;
 		for(num i = 0; i<playerList.length; i++){  //can happen even after death, because why not?
@@ -77,6 +77,7 @@ class LevelTheHellUp extends Scene {
 		}
 
 	}
+	@override
 	void renderContent(div){
       String narration = "";
 			for(num i = 0; i<this.playerList.length; i++){

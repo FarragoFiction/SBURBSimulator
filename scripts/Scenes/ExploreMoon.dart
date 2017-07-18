@@ -9,9 +9,9 @@ class ExploreMoon extends Scene {
 	
 
 
-	ExploreMoon(Session session): super(session)
+	ExploreMoon(Session session): super(session);
 
-
+	@override
 	dynamic checkPlayer(player){
 		this.player1 = player;
 		if(this.player1.dreamSelf == false){ //can't explore a moon without a dream self.
@@ -86,6 +86,7 @@ class ExploreMoon extends Scene {
 		}
 
 	}
+	@override
 	void renderContent(div){
 		if(this.player1.moon == "Prospit")div.append("<br><img src = 'images/sceneIcons/prospit_icon.png'> ");
 		if(this.player1.moon == "Derse")div.append("<br><img src = 'images/sceneIcons/derse_icon.png'> ");

@@ -8,9 +8,9 @@ class ExileQueen extends Scene {
 	
 
 
-	ExileQueen(Session session): super(session)
+	ExileQueen(Session session): super(session);
 
-
+	@override
 	dynamic trigger(playerList){
 		this.playerList = playerList;
 		return (this.session.queen.getStat("power")<10 && !this.session.queen.exiled );
@@ -38,6 +38,7 @@ class ExileQueen extends Scene {
 		this.session.queen.exiled = true;
 		return ret;
 	}
+	@override
 	void renderContent(div){
 		div.append("<br>"+this.content());
 	}

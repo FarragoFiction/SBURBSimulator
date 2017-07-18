@@ -7,9 +7,10 @@ class DisengageMurderMode extends Scene {
 	var player = null;	
 
 
-	DisengageMurderMode(Session session): super(session)
+	DisengageMurderMode(Session session): super(session);
 
 
+	@override
 	bool trigger(playerList){
 		this.playerList = playerList;
 		//select a random player. if they've been triggered, random chance of going murderMode if enemies (based on how triggered.)
@@ -21,6 +22,7 @@ class DisengageMurderMode extends Scene {
 		}
 		return false;
 	}
+	@override
 	void renderContent(div){
 		//alert("disengaged");
 		div.append("<br>"+this.content());

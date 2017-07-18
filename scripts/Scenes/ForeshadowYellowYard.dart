@@ -11,13 +11,15 @@ class ForeshadowYellowYard extends Scene{
 	
 
 
-	ForeshadowYellowYard(Session session): super(session)
+	ForeshadowYellowYard(Session session): super(session);
 
 
+	@override
 	bool trigger(playerList){
 		this.playerList = playerList;
 		return true;
 	}
+	@override
 	void renderContent(div){
 		//div.append("<br>"+this.content());
 		print("Yellow yard foreshadowing. " + this.session.session_id);

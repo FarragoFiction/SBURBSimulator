@@ -7,9 +7,9 @@ class GrimDarkQuests extends Scene{
 	
 
 
-	GrimDarkQuests(Session session): super(session)
+	GrimDarkQuests(Session session): super(session);
 
-
+	@override
 	dynamic trigger(playerList){
 		this.players = [];
 		var living = findLivingPlayers(playerList);
@@ -73,6 +73,7 @@ class GrimDarkQuests extends Scene{
 		this.session.crashedFromPlayerActions = true;
 		throw new PlayersCrashedSession(getPlayersTitlesNoHTML(this.players) + " has foolishly crashed session: " + this.session.session_id);
 	}
+	@override
 	void renderContent(div){
 		//print("A grim dark player is actively working to crash session " + this.session.session_id + " and this much health remains: " + this.session.sessionHealth );
 		//print("trying to crash session like an idiot: " + this.session.session_id);

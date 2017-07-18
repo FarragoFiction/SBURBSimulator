@@ -13,9 +13,9 @@ class LuckStuff extends Scene{
 	
 
 
-	LuckStuff(Session session): super(session)
+	LuckStuff(Session session): super(session);
 
-
+	@override
 	bool trigger(playerList){
 		this.rolls = [];//reset
 		if(this.numberTriggers > 10){
@@ -40,6 +40,8 @@ class LuckStuff extends Scene{
 		}
 		return this.rolls.length > 0;
 	}
+
+	@override
 	void renderContent(div){
 		this.numberTriggers ++;
 		//String ret = "<img src ;= 'images/fortune_event.png'/><Br>";  //maybe display image for this event, like not canvas, just image. Single image for event.

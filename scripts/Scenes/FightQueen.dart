@@ -8,9 +8,9 @@ class FightQueen extends Scene {
 	
 
 
-	FightQueen(Session session): super(session)
+	FightQueen(Session session): super(session);
 
-
+	@override
 	dynamic trigger(playerList){
 		this.playerList = playerList;
 		return (this.session.queen.getStat("currentHP") > 0) &&  !this.session.queen.dead&&(findLivingPlayers(this.session.players).length != 0) ;
@@ -38,6 +38,7 @@ class FightQueen extends Scene {
 		var canvasDiv = querySelector("#canvas"+ divID);
 		poseAsATeam(canvasDiv, fightingPlayers, 2000);
 	}
+	@override
 	void renderContent(div){
 		if(this.session.queen.getStat("power") < 0) print("rendering fight queen with negative power " +this.session.session_id);
 		div.append("<br> <img src = 'images/sceneIcons/bq_icon.png'> ");

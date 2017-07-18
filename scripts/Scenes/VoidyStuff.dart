@@ -8,10 +8,11 @@ class VoidyStuff extends Scene {
 	var enablingPlayer = null;	
 
 
-	VoidyStuff(Session session): super(session)
+	VoidyStuff(Session session): super(session);
 
 
-	dynamic trigger(playerList){
+	@override
+	bool trigger(playerList){
 		this.playerList = playerList;
 		this.player = null;
 		if(Math.seededRandom() > .5){
@@ -31,6 +32,8 @@ class VoidyStuff extends Scene {
 		}
 		return this.player != null;
 	}
+
+	@override
 	void renderContent(div){
 		this.player.increasePower();
 		this.player.increasePower();

@@ -7,9 +7,10 @@ class EngageMurderMode extends Scene{
 	var player = null;	
 
 
-	EngageMurderMode(Session session): super(session)
+	EngageMurderMode(Session session): super(session);
 
 
+	@override
 	bool trigger(playerList){
 		this.playerList = playerList;
 		//select a random player. if they've been triggered, random chance of going murderMode if enemies (based on how triggered.)
@@ -302,6 +303,7 @@ class EngageMurderMode extends Scene{
 		var current_mvp = findStrongestPlayer(this.session.players);
 		return this.session.addImportantEvent(new PlayerWentMurderMode(this.session, current_mvp.power,this.player) );
 	}
+	@override
 	void renderContent(div){
 		var alt = this.addImportantEvent();
 		if(alt && alt.alternateScene(div)){

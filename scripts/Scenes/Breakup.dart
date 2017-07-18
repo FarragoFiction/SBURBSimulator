@@ -12,9 +12,9 @@ class Breakup extends Scene {
 	
 
 
-	Breakup(Session session): super(session)
+	Breakup(Session session): super(session);
 
-
+	@override
 	bool trigger(){
 		this.player = null;
 		this.relationshipToBreakUp = null;
@@ -306,6 +306,7 @@ class Breakup extends Scene {
 
 		return chatText;
 	}
+	@override
 	void renderContent(div){
 		div.append("<br>"+this.content());
 		//takes up time from both of them

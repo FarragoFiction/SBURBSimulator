@@ -8,13 +8,15 @@ class ExileJack extends Scene{
 	
 
 
-	ExileJack(Session session): super(session)
+	ExileJack(Session session): super(session);
 
 
+	@override
 	dynamic trigger(playerList){
 		this.playerList = playerList;
 		return (!this.session.jack.exiled && this.session.jack.getStat("power") < 10) && (this.session.jack.getStat("currentHP") >  0 && this.session.jack.crowned == null);
 	}
+	@override
 	void renderContent(div){
 		div.append("<br> <img src = 'images/sceneIcons/jack_icon.png'> "+this.content());
 	}

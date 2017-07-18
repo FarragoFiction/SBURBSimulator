@@ -11,6 +11,7 @@ class JackPromotion extends Scene{
 	JackPromotion(Session session): super(session)
 
 
+	@override
 	bool trigger(playerList){
 		this.playerList = playerList;
 		if(this.session.jack.getStat("currentHP") <= 0 || this.session.jack.exiled) return false;  //jack can't be dead or exiled.
@@ -75,6 +76,7 @@ class JackPromotion extends Scene{
 		}
 		return ret;
 	}
+	@override
 	void renderContent(div){
 		var alt = this.addImportantEvent();
 		//print("Alt for jack promotion is: " + alt);
