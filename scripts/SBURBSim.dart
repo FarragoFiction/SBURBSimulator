@@ -16,6 +16,7 @@ part "gameEntity.dart";
 part "relationship.dart";
 part "handle_sprites.dart";
 part "AfterLife.dart";
+part "ImportantEvents.dart";
 
 //scenes
 part "Scenes/Scene.dart";

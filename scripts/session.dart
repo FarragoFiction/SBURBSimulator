@@ -6,15 +6,16 @@ class Session {
 	//var sceneRenderingEngine = new SceneRenderingEngine(false); //default is homestuck  //comment this line out if need to run sim without it crashing
 	List<Player> players = [];
 	var fraymotifCreator = new FraymotifCreator();  //as long as FraymotifCreator has no state data, this is fine.
+	//TODO all these "session summary stats" things should just be a SessionSummary object I own.
 	bool hasClubs = false;
 	num sessionHealth = 500; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
 	bool hasDiamonds = false;
 	bool opossumVictory = false;
 	bool hasBreakups = false;  //sessions aren't in charge of denizens anymore, they are for players and set when they get in the medium
 	List<Player> replayers = []; //used for fan oc easter eggs.
-	var afterLife = new AfterLife();
-	var queensRing = null; //eventually have white and black ones.
-	var kingsScepter = null;
+	AfterLife afterLife = new AfterLife();
+	GameEntity queensRing = null; //eventually have white and black ones.
+  GameEntity kingsScepter = null;
 	bool janusReward = false;
 	bool badBreakDeath = false;
 	bool jackGotWeapon = false;
@@ -27,20 +28,21 @@ class Session {
 	bool hasSpades = false;
 	bool rocksFell = false;
 	bool denizenBeat = false;	//session no longer keeps track of guardians.
-	var king = null;
-	var queen = null;
-	var jack = null;
+  //TODO eventually NPC engine will be responsible for these
+  GameEntity king = null;
+  GameEntity queen = null;
+  GameEntity jack = null;
 	num numScenes = 0;
 	bool rapBattle = false;
 	bool crashedFromSessionBug = false; //gets corrupted if an unrecoverable error gets caught.
 	bool crashedFromPlayerActions = false;
 	bool sickFires = false;
 	bool dreamBubbleAfterlife = false;
-	var democraticArmy = null;
+  GameEntity democraticArmy = null;
 	bool sbahj = false;
-	var heroicDeath = null;
+	bool heroicDeath = false;
 	bool won = false;
-	var justDeath = null;
+	bool justDeath = false;
 	bool mayorEnding = false;
 	bool waywardVagabondEnding = false;
 	num hardStrength = 1000;
@@ -72,7 +74,7 @@ class Session {
 	List<Scene> deathScenes = [];
 	List<Scene> available_scenes = [];
 	bool hadCombinedSession = false;
-	var parentSession = null;
+	Session parentSession = null;
 	List<Player> availablePlayers = [];  //which players are available for scenes or whatever.
 	List<dynamic> importantEvents = [];
 	bool yellowYard = false;
