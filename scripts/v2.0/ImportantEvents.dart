@@ -14,11 +14,108 @@ abstract class ImportantEvent { //TODO consider making this non abstract and hav
   num mvp_value; //could be a float?
   num importanceRating = 1; //am I even still using this?
   Player doomedTimeClone; //TODO or should it be a playerSnapShot?
-  num times_called=0; //what was this for again?
+  num timesCalled=0; //what was this for again?
   Player secondTimeClone; //used to undo this event
   ImportantEvent(this.session, this.mvp_value, this.player, this.doomedTimeClone);
   String humanLabel();
   bool alternateScene(div);
+
+  //TODO maybe these shouldn't live here, but dragging them out of global namespace for now.
+  //reference with ImportantEvent.methodname.   It's fucking nice to have static again.
+  //this'll really change up rleationships.
+
+//you really shouldn't need to help with frog breeding more than twice.
+  static dynamic removeFrogSpam(events){
+    List<dynamic> eventsToRemove = []; //don't mod an array as you loop over it.
+    num frogsSoFar = 0;
+    for(num i = 0; i<events.length; i++){
+      if(events[i].constructor.name == "FrogBreedingNeedsHelp"){
+        frogsSoFar ++;
+        if(frogsSoFar > 1){
+          eventsToRemove.add(events[i]);
+        }
+      }
+    }
+
+    for(num k = 0; k<eventsToRemove.length; k++){
+      removeFromArray(eventsToRemove[k], events);
+    }
+    return events;
+  }
+
+
+//YellowYardcontroller knows what makes two events functionally equivalent
+  static dynamic removeRepeatEvents(events){
+    List<dynamic> eventsToRemove = []; //don't mod an array as you loop over it.
+    for(num i = 0; i<events.length; i++){
+      var e1 = events[i];
+      for(var j = i; j<events.length-i; j++){
+        var e2 = events[j];
+        //don't be literally teh same object, but do you match?
+        if(e1 != e2 && doEventsMatch(e1,e2)){ // TODO was this kept in YellowYardController?
+          // print(e1.humanLabel() + " matches " + e2.humanLabel())
+          eventsToRemove.add(e2);
+        }
+      }
+    }
+
+    for(num k = 0; k<eventsToRemove.length; k++){
+      removeFromArray(eventsToRemove[k], events);
+    }
+    return events;
+  }
+
+
+  static List<ImportantEvent> sortEventsByImportance(List<ImportantEvent> events){
+    return events.sort(ImportantEvent.comparePriority); //TODO how do you do sorting in Dart?
+  }
+
+
+
+  static bool comparePriority(a,b) {
+    return b.importanceRating - a.importanceRating;
+  }
+
+
+  static String listEvents(events){
+    String ret = "";
+    for(num i = 0; i<events.length; i++){
+      ret += "\n" +events[i].humanLabel();
+    }
+    return ret;
+  }
+
+
+//why was this a class???
+  static bool undoTimeUndoScene(var div, Session session, ImportantEvent event, Player timeClone1, Player timeClone2)  {
+
+//	print("times called : " + this.timesCalled);
+  String narration = "<br>A doomed " + timeClone1.htmlTitleBasic() + " suddenly warps in from the future. ";
+  narration +=  " But before they can do anything, a second doomed " +timeClone2.htmlTitleBasic()  + " warps in and grabs them.  Both vanish in a cloud of gears and clocks to join the final battle.";
+
+  div.append(narration);
+
+  var divID = (div.attr("id")) + "_alt_" + timeClone1.chatHandle;
+  String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+  div.append(canvasHTML);
+  var canvasDiv = querySelector("#canvas"+ divID);
+
+  var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+  drawTimeGears(pSpriteBuffer);
+  drawSprite(pSpriteBuffer,timeClone1);
+
+  var dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+  drawTimeGears(dSpriteBuffer);
+  drawSpriteTurnways(dSpriteBuffer,timeClone2);
+
+
+  copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
+  copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
+
+  removeFromArray(event, session.yellowYardController.eventsToUndo);
+  return false;
+  }
+
 }
 
 
@@ -40,14 +137,15 @@ class PlayerDiedButCouldGodTier extends ImportantEvent{
 	}
   @override
 	bool alternateScene(div){
-			this.timesCalled ++;
+			timesCalled ++;
 			this.doomedTimeClone.dead = false;
 			this.doomedTimeClone.currentHP = this.doomedTimeClone.hp;
 
-			if(this.secondTimeClone){
+
+			if(secondTimeClone != null){
 				this.secondTimeClone.dead = false;
 				this.secondTimeClone.currentHP = this.secondTimeClone.hp;
-				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
+				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			//print("times called : " + this.timesCalled);
 			String narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
@@ -111,10 +209,10 @@ class PlayerDiedForever  extends ImportantEvent {
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
 			this.doomedTimeClone.currentHP = this.doomedTimeClone.hp;
-			if(this.secondTimeClone) this.secondTimeClone.dead = false;
-			if(this.secondTimeClone) this.secondTimeClone.currentHP = this.secondTimeClone.hp;
-			if(this.secondTimeClone){
-				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
+			if(secondTimeClone != null) this.secondTimeClone.dead = false;
+			if(secondTimeClone != null) this.secondTimeClone.currentHP = this.secondTimeClone.hp;
+			if(secondTimeClone != null){
+				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
 			String narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
@@ -171,10 +269,10 @@ class PlayerWentGrimDark  extends ImportantEvent {
 			this.doomedTimeClone.dead = false;
 			this.doomedTimeClone.currentHP = this.doomedTimeClone.hp;
 
-			if(this.secondTimeClone){
+			if(secondTimeClone != null){
 				this.secondTimeClone.dead = false;
 				this.secondTimeClone.currentHP = this.secondTimeClone.hp;
-				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
+				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
 			String narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
@@ -227,10 +325,10 @@ class PlayerWentMurderMode  extends ImportantEvent{
 			this.doomedTimeClone.dead = false;
 			this.doomedTimeClone.currentHP = this.doomedTimeClone.hp;
 
-			if(this.secondTimeClone){
+			if(secondTimeClone != null){
 				this.secondTimeClone.dead = false;
 				this.secondTimeClone.currentHP = this.secondTimeClone.hp;
-				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
+				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
 			String narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
@@ -284,10 +382,10 @@ class JackPromoted  extends ImportantEvent{
 			this.doomedTimeClone.dead = false;
 			this.doomedTimeClone.currentHP = this.doomedTimeClone.hp;
 
-			if(this.secondTimeClone){
+			if(secondTimeClone != null){
 				this.secondTimeClone.dead = false;
 				this.secondTimeClone.currentHP = this.secondTimeClone.hp;
-				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
+				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			String narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
 			narration +=  " They come with a dire warning of a doomed timeline. ";
@@ -332,10 +430,10 @@ class FrogBreedingNeedsHelp extends ImportantEvent {
 			this.doomedTimeClone.dead = false;
 			this.doomedTimeClone.currentHP = this.doomedTimeClone.hp;
 
-			if(this.secondTimeClone){
+			if(secondTimeClone != null){
 				this.secondTimeClone.dead = false;
 				this.secondTimeClone.currentHP = this.secondTimeClone.hp;
-				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
+				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			String narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
 			narration +=  " They come with a dire warning of a doomed timeline. ";
@@ -390,10 +488,10 @@ class PlayerEnteredSession  extends ImportantEvent {
 		this.doomedTimeClone.dead = false;
 		this.doomedTimeClone.currentHP = this.doomedTimeClone.hp;
 
-			if(this.secondTimeClone){
+			if(secondTimeClone != null){
 				this.secondTimeClone.dead = false;
 				this.secondTimeClone.currentHP = this.secondTimeClone.hp;
-				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
+				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
 			String narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
@@ -448,10 +546,10 @@ class TimePlayerEnteredSessionWihtoutFrog  extends ImportantEvent {
 			this.doomedTimeClone.dead = false;
 			this.doomedTimeClone.currentHP = this.doomedTimeClone.hp;
 
-			if(this.secondTimeClone){
+			if(secondTimeClone != null){
 				this.secondTimeClone.dead = false;
 				this.secondTimeClone.currentHP = this.secondTimeClone.hp;
-				return undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
+				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
 			String narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
@@ -479,110 +577,3 @@ class TimePlayerEnteredSessionWihtoutFrog  extends ImportantEvent {
 
 }
 
-
-
-//you really shouldn't need to help with frog breeding more than twice.
-dynamic removeFrogSpam(events){
-	List<dynamic> eventsToRemove = []; //don't mod an array as you loop over it.
-	num frogsSoFar = 0;
-	 for(num i = 0; i<events.length; i++){
-		 if(events[i].constructor.name == "FrogBreedingNeedsHelp"){
-			 frogsSoFar ++;
-			 if(frogsSoFar > 1){
-				 eventsToRemove.add(events[i]);
-			 }
-		 }
-	 }
-
-	  for(num k = 0; k<eventsToRemove.length; k++){
-		 removeFromArray(eventsToRemove[k], events);
-	 }
-	 return events;
-}
-
-
-//YellowYardcontroller knows what makes two events functionally equivalent
-dynamic removeRepeatEvents(events){
-	List<dynamic> eventsToRemove = []; //don't mod an array as you loop over it.
-	 for(num i = 0; i<events.length; i++){
-        var e1 = events[i];
-		for(var j = i; j<events.length-i; j++){
-		  var e2 = events[j];
-		  //don't be literally teh same object, but do you match?
-		   if(e1 != e2 && doEventsMatch(e1,e2)){
-			 // print(e1.humanLabel() + " matches " + e2.humanLabel())
-              eventsToRemove.add(e2);
-			}
-		}
-     }
-
-	 for(num k = 0; k<eventsToRemove.length; k++){
-		 removeFromArray(eventsToRemove[k], events);
-	 }
-	 return events;
-}
-
-
-dynamic padEventsToNumWithKilling(events, session, doomedTimeClone, num){
-	var num = num - events.length;
-	num = Math.min(num, session.players.length);
-	for(int i = 0; i<num; i++){
-			events.add(new KillPlayer(session, session.players[i]))
-	}
-	return events;
-}
-
-
-void sortEventsByImportance(events){
-	return events.sort(comparePriority);
-}
-
-
-
-function comparePriority(a,b) {
-  return b.importanceRating - a.importanceRating;
-}
-
-
-dynamic listEvents(events){
-	String ret = "";
-	for(num i = 0; i<events.length; i++){
-		ret += "\n" +events[i].humanLabel();
-	}
-	return ret;
-}
-
-
-
-class undoTimeUndoScene {
-
-	undoTimeUndoScene(this.div, this.session, this.event, this.timeClone1, this.timeClone2) {}
-
-
-
-//	print("times called : " + this.timesCalled);
-	String narration = "<br>A doomed " + timeClone1.htmlTitleBasic() + " suddenly warps in from the future. ";
-	narration +=  " But before they can do anything, a second doomed " +timeClone2.htmlTitleBasic()  + " warps in and grabs them.  Both vanish in a cloud of gears and clocks to join the final battle.";
-
-	div.append(narration);
-
-	var divID = (div.attr("id")) + "_alt_" + timeClone1.chatHandle;
-	String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
-	div.append(canvasHTML);
-	var canvasDiv = querySelector("#canvas"+ divID);
-
-	var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-	drawTimeGears(pSpriteBuffer);
-	drawSprite(pSpriteBuffer,timeClone1);
-
-	var dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-	drawTimeGears(dSpriteBuffer);
-	drawSpriteTurnways(dSpriteBuffer,timeClone2);
-
-
-	copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
-	copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
-
-	removeFromArray(event, session.yellowYardController.eventsToUndo);
-	return false;
-}
