@@ -4,6 +4,7 @@ part of SBURBSim;
 class GameEntity {
   Session session;
   String name;
+  num grist; //everything has it.
   bool dead = false;
   bool corrupted = false; //players are corrupted at level 4. will be easier than always checking grimDark level
   List<dynamic> fraymotifs = [];
@@ -16,7 +17,7 @@ class GameEntity {
   List<dynamic> associatedStats = [];  //most players will have a 2x, a 1x and a -1x stat.
   var spriteCanvasID = null;  //part of new rendering engine.
   num id;
-  bool doomed = false; //stat that doomed time clones have.
+  bool doomed = false; //if you are doomed, no matter what you are, you are likely to die.
   List<GameEntity> doomedTimeClones = []; //help fight the final boss(es).
   String causeOfDeath = ""; //fill in every time you die. only matters if you're dead at end
   GameEntity crowned = null; //TODO figure out how this should work. for now, crowns count as Game Entities, but should be an Item eventually
@@ -120,7 +121,7 @@ class GameEntity {
   void flipOut(reason){
 
   }
-  
+
   dynamic htmlTitleBasic(){
     return this.name;
   }
@@ -162,6 +163,16 @@ class GameEntity {
 
   dynamic allStats(){
     return this.stats.keys;
+  }
+
+  //TODO how do you NORMALLY make deep copies of things when all objects aren't secretly hashes?
+  static makeRenderingSnapshot(GameEntity ge) {
+
+  }
+
+  //TODO have player have a static version of this too (remember you don't override static shit) and it does time player specific stuff, like randomizing state.
+  static makeDoomedSnapshot(GameEntity ge) {
+
   }
 
 }

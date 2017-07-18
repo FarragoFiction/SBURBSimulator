@@ -110,12 +110,13 @@ class Player extends GameEntity{
 	}
 	dynamic getOverallStrength(){
 		num ret = 0;
-		ret += this.power;
-		ret += (this.freeWill).abs();
-		ret += (this.mobility).abs();
-		ret += (this.hp).abs();
-		ret += (this.maxLuck + this.minLuck).abs();
-		ret += (this.sanity).abs();
+		ret += this.getStat("power");
+		ret += this.getStat("alchemy");
+		ret += this.getStat("freeWill").abs();
+		ret += this.getStat("mobility").abs();
+		ret += this.getStat("hp").abs();
+		ret += (this.getStat("maxLuck") + this.getStat("minLuck")).abs();
+		ret += this.getStat("sanity").abs();
 		return ret;
 	}
 	void generateDenizen(){
@@ -149,8 +150,8 @@ class Player extends GameEntity{
 		//print("Strength for denizen " + name + " is: " + strength);
 		//based off existing denizen code.  care about which aspect i am.
 		//also make minion here.
-		var denizen = new GameEntity(this.session, "Denizen " +name, null);
-		var denizenMinion = new GameEntity(this.session,name + " Minion", null);
+		var denizen = new Denizen("Denizen " +name, this.id, this.session);
+		var denizenMinion = new DenizenMinion(name + " Minion", this.id, this.session);
 		var tmpStatHolder = {};
 		tmpStatHolder["minLuck"] = -10;
 		tmpStatHolder["abscondable"] = true; //players can decide to flee like little bitches

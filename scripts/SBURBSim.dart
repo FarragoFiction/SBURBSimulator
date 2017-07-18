@@ -6,7 +6,8 @@ import 'dart:typed_data';
 import 'dart:collection';
 import 'dart:convert';
 
-part "player.dart";
+//TODO DEAD SESSIONS will only have a small subset of this, so will need to make a different library
+
 part "fraymotif.dart";
 part "session.dart";
 part "scene_controller.dart";
@@ -19,6 +20,8 @@ part "AfterLife.dart";
 part "v2.0/ImportantEvents.dart";
 part "Strife.dart";
 part "GameEntities/GameEntity.dart";
+part "GameEntities/NPCS.dart";
+part "GameEntities/player.dart";
 
 
 //scenes
