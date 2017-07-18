@@ -3,26 +3,6 @@ part of SBURBSim;
 var nonRareSessionCallback = null; //AB is already storing a callback for easter egg, so broke down and polluted the global namespace once more like an asshole.
 DateTime startTime = new DateTime.now(); //gets page load.
 num stopTime = 0;
-void createScenesForSession(Session session){
-	session.scenes = [new StartDemocracy(session), new JackBeginScheming(session), new KingPowerful(session), new QueenRejectRing(session), new GiveJackBullshitWeapon(session), new JackPromotion(session), new JackRampage(session)];
-	//relationship drama has a high priority because it can distract a session from actually making progress. happened to universe a trolls.
-	session.scenes.addAll([new QuadrantDialogue(session),new FreeWillStuff(session),new GrimDarkQuests(session),new Breakup(session), new RelationshipDrama(session), new UpdateShippingGrid(session),  new EngageMurderMode(session), new GoGrimDark(session),  new DisengageMurderMode(session),new MurderPlayers(session),new BeTriggered(session),]);
-	session.scenes.addAll([new VoidyStuff(session), new FaceDenizen(session), new DoEctobiology(session), new LuckStuff(session), new DoLandQuest(session)]);
-	session.scenes.addAll([new SolvePuzzles(session), new ExploreMoon(session)]);
-	session.scenes.addAll([new LevelTheHellUp(session)]);
-
-	//make sure kiss, then godtier, then godtierrevival, then any other form of revival.
-	//make sure life stuff happens AFTER a chance at god tier, or life players PREVENT god tiering.
-	session.deathScenes = [ new SaveDoomedTimeLine(session), new GetTiger(session), new CorpseSmooch(session), new GodTierRevival(session), new LifeStuff(session)];  //are always available.
-	session.reckoningScenes = [new FightQueen(session), new FightKing(session)];
-
-	//scenes can add other scenes to available scene list. (for example, spy missions being added if Jack began scheming)
-	session.available_scenes = []; //remove scenes from this if they get used up.
-	//make non shallow copy.
-	for(num i = 0; i<session.scenes.length; i++){
-		session.available_scenes.add(session.scenes[i]);
-	}
-}
 
 
 
@@ -183,173 +163,26 @@ void crashEasterEgg(String url) {
 
 
 
-//makes copy of player list (no shallow copies!!!!)
-dynamic setAvailablePlayers(playerList, session){
-	session.availablePlayers = [];
-	for(num i = 0; i<playerList.length; i++){
-		//dead players are always unavailable.
-		if(!playerList[i].dead){
-			session.availablePlayers.add(playerList[i]);
-		}
-	}
-	return session.availablePlayers;
-}
-
-
-
-//playerlist is everybody in the medium
-//might not be all players in the begining.
-dynamic processReckoning(playerList, session){
-	String ret = "";
-	for(num i = 0; i<session.reckoningScenes.length; i++){
-		var s = session.reckoningScenes[i];
-		if(s.trigger(playerList)){
-		//	session.scenesTriggered.add(s);
-		session.numScenes ++;
-			//print(s);
-			//print("was triggered");
-			ret += s.content() + " <br><br> ";
-		}
-	}
-
-	for(num i = 0; i<session.deathScenes.length; i++){
-		var s = session.deathScenes[i];
-		if(s.trigger(playerList)){
-		//	session.scenesTriggered.add(s);
-				session.numScenes ++;
-			ret += s.content() + " <br><br> ";
-		}
-	}
-
-	return ret;
-}
-
-
-
-dynamic processScenes2(playerList, Session session){
-	//print("processing scene");
-	//querySelector("#story").append("processing scene");
-	String ret = "";
-	setAvailablePlayers(playerList,session);
-	for(num i = 0; i<session.available_scenes.length; i++){
-		var s = session.available_scenes[i];
-		//var debugQueen = queenStrength;
-		if(s.trigger(playerList)){
-			//session.scenesTriggered.add(s);
-			session.numScenes ++;
-			s.renderContent(session.newScene());
-			if(!s.canRepeat){
-				//removeFromArray(s,session.available_scenes);
-				session.available_scenes.remove(s);
-			}
-		}
-	}
-
-	for(num i = 0; i<session.deathScenes.length; i++){
-		var s = session.deathScenes[i];
-		if(s.trigger(playerList)){
-		//	session.scenesTriggered.add(s);
-		session.numScenes ++;
-			s.renderContent(session.newScene());
-		}
-	}
-
-
-	return ret;
-}
-
-
-
-//scenes call this
-dynamic chatLine(start, player, line){
-  if(player.grimDark  > 3){
-		line = Zalgo.generate(line);
-    return start + line.trim()+"\n"; //no whimsy for grim dark players
-  }else if(player.grimDark  > 1){
-			return start + line.trim()+"\n"; //no whimsy for grim dark players
-	}else{
-    return start + player.quirk.translate(line).trim()+"\n";
-  }
-}
-
-
-
-//playerlist is everybody in the medium
-//might not be all players in the begining.
-dynamic processReckoning2(playerList, session){
-	String ret = "";
-	for(num i = 0; i<session.reckoningScenes.length; i++){
-		var s = session.reckoningScenes[i];
-		if(s.trigger(playerList)){
-			//session.scenesTriggered.add(s);
-			session.numScenes ++;
-			s.renderContent(session.newScene());
-		}
-	}
-
-	for(num i = 0; i<session.deathScenes.length; i++){
-		var s = session.deathScenes[i];
-		if(s.trigger(playerList)){
-		//	session.scenesTriggered.add(s);
-		session.numScenes ++;
-			s.renderContent(session.newScene());
-		}
-	}
-
-	return ret;
-}
 
 
 
 
 
-//playerlist is everybody in the medium
-//might not be all players in the begining.
-//can't just add an "if 2.0" check, btw.
-//need to have a pause between each scene to give time for rendering.
-//gotta test method in scenario_controller2.js move here, modify
-dynamic processScenes(playerList, Session session){
-	//print(session);
-	String ret = "";
-	setAvailablePlayers(playerList,session);
-	for(num i = 0; i<session.available_scenes.length; i++){
-		var s = session.available_scenes[i];
-		//var debugQueen = queenStrength;
-		if(s.trigger(playerList)){
-			//session.scenesTriggered.add(s);
-			session.numScenes ++;
-			//print("was triggered");
-			var content = s.content();
-			if(content != ""){
-			ret += content + " <br><br> ";
-			}else{
-				"Debug: " + s;
-			}
-			//if(queenStrength != debugQueen){
-				//print(s);
-			//}
-			if(!s.canRepeat){
-				//removeFromArray(s,session.available_scenes);
-				session.available_scenes.remove(s);
-			}
-		}
-	}
-
-	for(num i = 0; i<session.deathScenes.length; i++){
-		var s = session.deathScenes[i];
-		if(s.trigger(playerList)){
-			//print(s);
-			//print("was triggered");
-			//session.scenesTriggered.add(s);
-			session.numScenes ++;
-			ret += s.content() + " <br><br> ";
-		}
-	}
 
 
 
-	return ret;
-}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -490,7 +323,7 @@ void renderAfterlifeURL(){
 }
 
 
-
+//TODO shove methods like this into static player methods
 dynamic playersToDataBytes(players){
 	String ret = "";
 	for(num i = 0; i<players.length; i++){
@@ -657,20 +490,3 @@ dynamic dataBytesAndStringsToPlayer(charString, str_arr){
 
 	 return player;
 }
-
-
-
-//looks not called anymore since i moved away from json.
- /*dynamic objToPlayer(obj){
-	 var ret = new Player();
-	 for (var prop in obj){
-		 print(prop + " : " + obj[prop]);
-		 ret[prop] = obj[prop];
-	 }
-	 print(ret.interestCategory1);
-	 interestCategoryToInterestList(ret.interest1Category ).add(ret.interest1) //maybe don't add if already exists but whatevs for now.
-	 interestCategoryToInterestList(ret.interest2Category ).add(ret.interest2);
-	 ret.quirk = new Quirk();
-	 ret.quirk.favoriteNumber = obj.quirk.favoriteNumber;
-	 return ret;
- }*/

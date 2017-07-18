@@ -113,7 +113,7 @@ class UpdateShippingGrid extends Scene{
 
 
 	@override
-	bool trigger(){
+	bool trigger(List<Player> playerList){
 		this.chosenShipper = null;
 		this.shippingAfterMath = null;
 		this.shippingChat = null;
