@@ -75,7 +75,7 @@ class LifeStuff extends Scene {
 		nonGuides = nonGuides.concat(guides);
 		if(this.session.dreamBubbleAfterlife){
 			for(num i = 0; i<nonGuides.length; i++){
-					var rand = Math.seededRandom() ;//only spend half your time dreaming right.;
+					var rand = seededRandom() ;//only spend half your time dreaming right.;
 					var player = nonGuides[i];
 					if(!player.dreamSelf && !player.dead && rand > .5){
 						this.enablingPlayerPairs.push([player, null, true]);

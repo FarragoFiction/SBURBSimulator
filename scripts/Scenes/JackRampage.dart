@@ -86,7 +86,7 @@ class JackRampage extends Scene{
 	//	if(stabbings.length > 1) print("Jack fighting more than one player: " + this.session.session_id);
 		String ret = "";
 		if(stabbings.length == 0){
-			if(Math.seededRandom() > .5){
+			if(seededRandom() > .5){
 				ret += " Jack listlessly shows his stabs to a few Prospitian pawns. ";
 				div.append(""+ret);
 			}else{
@@ -103,7 +103,7 @@ class JackRampage extends Scene{
 		}else{
 
 
-			if(stabbings[0].dreamSelf && !stabbings[0].isDreamSelf && Math.seededRandom() >.5){
+			if(stabbings[0].dreamSelf && !stabbings[0].isDreamSelf && seededRandom() >.5){
 				//jack kills the dream self instead of the active self. no strife. just death.
 				//want to test out a dream self dying without active.
 				//print("jack kills nonactive dream self: " + this.session.session_id);
@@ -148,7 +148,7 @@ class JackRampage extends Scene{
 		var stabbings = this.getStabList();
 		String ret = "";
 		if(stabbings.length == 0){
-			if(Math.seededRandom() > .5){
+			if(seededRandom() > .5){
 				ret += " Jack listlessly shows his stabs to a few Prospitian pawns. ";
 			}else{
 				ret += " Jack listlessly shows his stabs to a few Dersite pawns. ";
@@ -168,7 +168,7 @@ class JackRampage extends Scene{
 			ret += " Jack fails to stab " + getPlayersTitles(stabbings);
 			ret += "  He goes away to stab someone else, licking his wounds. ";
 			//TODO if one of them was a god tier, make their be a chance of him destroying one of the moons. kills all non active dream selves.
-			if(Math.seededRandom()>.9){
+			if(seededRandom()>.9){
 				ret += " Bored of this, he decides to show his stabs to BOTH the Black and White Kings.  The battle is over. The Reckoning will soon start.";
 				timeTillReckoning = 0;
 			}

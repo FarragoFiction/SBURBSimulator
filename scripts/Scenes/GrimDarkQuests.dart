@@ -17,7 +17,7 @@ class GrimDarkQuests extends Scene{
 			var player = living[i];
 			if(player.grimDark>2){
 				 this.players.push(player);
-			}else if(player.grimDark>1 && Math.seededRandom() > .5){
+			}else if(player.grimDark>1 && seededRandom() > .5){
 				this.players.push(player);
 			}
 		}

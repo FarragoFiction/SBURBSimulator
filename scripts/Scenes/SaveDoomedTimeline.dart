@@ -23,7 +23,7 @@ class SaveDoomedTimeLine extends Scene {
 		this.playerList = playerList;
 		
 		if(this.enablingPlayer){
-			if(this.enablingPlayer.isActive() || Math.seededRandom() > .5){
+			if(this.enablingPlayer.isActive() || seededRandom() > .5){
 				this.timePlayer = this.enablingPlayer;
 			}else{  //somebody else can be voided.
 				this.timePlayer = getRandomElementFromArray(this.session.players);  //passive time players make doomed clones of others.
@@ -78,7 +78,7 @@ class SaveDoomedTimeLine extends Scene {
 	bool randomDoom(numTries){
 		this.reason = "Shenanigans";
 		for(int i = 0; i<numTries; i++){
-			 if(Math.seededRandom() > .99) return true;
+			 if(seededRandom() > .99) return true;
 		}
 		return false;
 	}

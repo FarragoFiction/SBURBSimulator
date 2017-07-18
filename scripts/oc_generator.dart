@@ -209,7 +209,7 @@ void randomParagraph(div, player){
 
 
 void decideTroll(player){
-	if(querySelector('[name="species"] option:selected').val() ;== "Any" && Math.seededRandom() > .5 ){
+	if(querySelector('[name="species"] option:selected').val() ;== "Any" && seededRandom() > .5 ){
 		player.isTroll = true;
 		decideHemoCaste(player);
 		player.decideLusus();

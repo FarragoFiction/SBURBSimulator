@@ -401,8 +401,8 @@ dynamic makeDoomedSnapshot(timePlayer){
 	timeClone.currentHP = timeClone.hp;
 	timeClone.doomed = true;
 	//from a different timeline, things went differently.
-	var rand = Math.seededRandom();
-	timeClone.power = Math.seededRandom() * 80+10;
+	var rand = seededRandom();
+	timeClone.power = seededRandom() * 80+10;
 	if(rand > 0.9){
 		timeClone.robot = true;
 		timeClone.hairColor = getRandomGreyColor();

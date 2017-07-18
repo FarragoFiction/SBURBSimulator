@@ -82,7 +82,7 @@ class Relationship {
 			return this.saved_type;
 		}
 
-		if(Math.seededRandom() > 0.25){
+		if(seededRandom() > 0.25){
 			//enter or leave a relationship, or vaccilate.
 			this.old_type = this.saved_type;
 			this.saved_type = this.changeType();
@@ -316,5 +316,5 @@ void decideInitialQuadrants(players){
 }
 
 function getRandomInt(min, max) {
-    return Math.floor(Math.seededRandom() * (max - min + 1)) + min;
+    return Math.floor(seededRandom() * (max - min + 1)) + min;
 }

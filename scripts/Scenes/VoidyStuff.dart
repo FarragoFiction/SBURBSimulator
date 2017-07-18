@@ -15,7 +15,7 @@ class VoidyStuff extends Scene {
 	bool trigger(playerList){
 		this.playerList = playerList;
 		this.player = null;
-		if(Math.seededRandom() > .5){
+		if(seededRandom() > .5){
 			this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Void");
 			if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Rage"); //if there is no void player
 		}else{
@@ -24,7 +24,7 @@ class VoidyStuff extends Scene {
 		}
 
 		if(this.enablingPlayer){
-			if(this.enablingPlayer.isActive() || Math.seededRandom() > .5){
+			if(this.enablingPlayer.isActive() || seededRandom() > .5){
 				this.player = this.enablingPlayer;
 			}else{  //somebody else can be voided.
 				this.player = getRandomElementFromArray(this.session.availablePlayers);  //don't forget that light players will never have void display none
@@ -77,19 +77,19 @@ class VoidyStuff extends Scene {
 		var normalDiv = querySelector("#"+div.attr("id")+ "voidyStuffNormal");
 		var newDiv = querySelector("#"+div.attr("id")+ "voidyStuffSpecial");
 		//don't godtier as soon as you get in, too unfair to the other players.
-		if(this.player.godDestiny && this.player.power > 10 && !this.player.godTier && Math.seededRandom()>0.8 && this.player.land != null){
+		if(this.player.godDestiny && this.player.power > 10 && !this.player.godTier && seededRandom()>0.8 && this.player.land != null){
 			this.godTier(normalDiv, newDiv);
 			this.endingPhrase(classDiv, newDiv);
 			return;
-		}else if(this.player.leader && !this.session.ectoBiologyStarted && Math.seededRandom() > .8){
+		}else if(this.player.leader && !this.session.ectoBiologyStarted && seededRandom() > .8){
 				this.ectoBiologyStarted(normalDiv, newDiv);
 				this.endingPhrase(classDiv, newDiv);
 				return;
-		}else if(this.player.landLevel >= 6 && this.player.land != null && !this.player.denizenDefeated && Math.seededRandom() > .8){
+		}else if(this.player.landLevel >= 6 && this.player.land != null && !this.player.denizenDefeated && seededRandom() > .8){
 			this.fightDenizen(normalDiv, newDiv);
 			this.endingPhrase(classDiv, newDiv);
 			return;
-		}else if(this.player.sanity < 5 && !this.player.murderMode && Math.seededRandom() > 0.9){
+		}else if(this.player.sanity < 5 && !this.player.murderMode && seededRandom() > 0.9){
 			print("flipping shit through voidy stuff");
 			this.goMurderMode(normalDiv, newDiv);
 			this.endingPhrase(classDiv, newDiv);
@@ -145,7 +145,7 @@ class VoidyStuff extends Scene {
 	void dolandQuests(div, specialDiv){
 		this.player.landLevel +=2;
 		div.append(" Their consorts seem pretty happy, though. ") ;
-		if(Math.seededRandom() > .95){ //small chance of serious.
+		if(seededRandom() > .95){ //small chance of serious.
 			specialDiv.append( "The " + this.player.htmlTitle() + " is " + getRandomQuestFromAspect(this.player.aspect) + ". ");
 		}else{
 			var specialStuff = ["teaching the local consorts all the illest of beats","explaining the finer points of the human game 'hopscotch' to local consorts","passing out banned orange fruits that may or may not exist to hungry local consorts","throwing a birthday party for the local consorts"];
@@ -169,7 +169,7 @@ class VoidyStuff extends Scene {
 		div.append(" Why is the " + denizen.name + " bellowing so loudly on " + this.player.shortLand() + "? ");
 		String ret = "The " + this.player.htmlTitle() + " is fighting " +denizen.name + ".  It is bloody, brutal and short. ";
 
-		if(Math.seededRandom() >.5){
+		if(seededRandom() >.5){
 			this.player.power = this.player.power*2;  //current and future doubling of power.
 			this.player.leveledTheHellUp = true;
 			this.player.denizenDefeated = true;

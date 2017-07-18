@@ -932,7 +932,7 @@ void fruityRumpusAssholeFactory(){
 	for(num i = 0; i<curSessionGlobalVar.players.length; i++){
 		var p = curSessionGlobalVar.players[i];
 		var g = p.guardian;
-		var rand = Math.seededRandom();
+		var rand = seededRandom();
 		if(p.aspect == "Time"){
 			if(rand > 0.6){
 				session612IndexToTroll(g,4);
@@ -1408,12 +1408,12 @@ void session612IndexToTroll(player, index){
 		player.interest1 = "Archaeology";
 		player.interest2 = "Death";
 		var savedSeed = Math.seed;
-		if(Math.seededRandom() > 0.6){
+		if(seededRandom() > 0.6){
 			player.robot = true; //not all aradias are robo aradias.
 			player.bloodColor = "#0021cb"; //b100 blood
 			player.hairColor = "#313131";
 		}
-		if(Math.seededRandom() > 0.6) player.dead = true; //not all aradias are ghost aradias.
+		if(seededRandom() > 0.6) player.dead = true; //not all aradias are ghost aradias.
 		Math.seed = savedSeed;
 		player.chatHandle = "apocalypseArisen";
 		player.godDestiny = true;

@@ -22,7 +22,7 @@ class QuadrantDialogue extends Scene {
 		this.player2 = null;
 		//if want to be more frequent, can allo goodBig and badBig to trigger this as well.
 
-		if(Math.seededRandom() > 0.5){
+		if(seededRandom() > 0.5){
 			this.findSemiRandomQuadrantedAvailablePlayer();
 		}
 		if(this.player2 && this.player2.dead) print("corpse chat in:  " + this.session.session_id);
@@ -43,7 +43,7 @@ class QuadrantDialogue extends Scene {
 		//set this.player2 to be one of player1's quadrant mates. first diamond, then randomly from heart, then spade, then clubs.
 		var potentials = this.player1.getDiamonds();
 		this.player2 = getRandomElementFromArray(potentials);
-		if(this.player2  && !this.player2.dead && Math.seededRandom > 0.5){ //don't completely ignore your other relationships in favor of your moirail.
+		if(this.player2  && !this.player2.dead && seededRandom > 0.5){ //don't completely ignore your other relationships in favor of your moirail.
 			return;
 		}
 		potentials = potentials.concat(this.player1.getHearts());
@@ -82,7 +82,7 @@ class QuadrantDialogue extends Scene {
 		var p2 = this.player2;
 		var p1Start = this.player1Start;
 		var p2Start = this.player2Start;
-		if(Math.seededRandom() > 0.5){ //change who is initiating
+		if(seededRandom() > 0.5){ //change who is initiating
 			p1 = this.player2;
 			p2 = this.player1;
 			p1Start = this.player2Start;
@@ -303,7 +303,7 @@ class QuadrantDialogue extends Scene {
 		var p2 = this.player2;
 		var p1Start = this.player1Start;
 		var p2Start = this.player2Start;
-		if(Math.seededRandom() > 0.5){ //change who is initiating
+		if(seededRandom() > 0.5){ //change who is initiating
 			p1 = this.player2;
 			p2 = this.player1;
 			p1Start = this.player2Start;
@@ -313,7 +313,7 @@ class QuadrantDialogue extends Scene {
 			relationship2 = tmp;
 		}
 		var interest = p1.interest1;
-		if(Math.seededRandom() > 0.5){ //change who is initiating
+		if(seededRandom() > 0.5){ //change who is initiating
 			interest = p1.interest2;
 		}
 		//print("chatting about lack of interests.");
@@ -365,7 +365,7 @@ class QuadrantDialogue extends Scene {
 	dynamic processChatPair(chats, relationship1, relationship2){
 		String chat = "";
 		var chosen = getRandomElementFromArray(chats);
-		if(Math.seededRandom() > 0.5){
+		if(seededRandom() > 0.5){
 			chat +=  chatLine(this.player1Start, this.player1, chosen.line1);
 			chat += chosen.p2GetResponseBasedOnRelationship(this.player2, this.player2Start, relationship2);
 		}else{
@@ -508,7 +508,7 @@ class QuadrantDialogue extends Scene {
 	dynamic interestAndQuadrantChat(trait, relationship, relationship2){
 		String ret = "";
 		for(int i = 0; i<3; i++){
-			var rand = Math.seededRandom();
+			var rand = seededRandom();
 			if(rand < 0.25){ //maybe make them MORE likely to chat about interests?
 				ret += this.chatAboutInterests(trait,relationship, relationship2); //more likely to talk about interests.
 			}else if(rand < 0.5){
@@ -522,7 +522,7 @@ class QuadrantDialogue extends Scene {
 	dynamic lackOfInterestAndQuadrantChat(relationship, relationship2){
 		String ret = "";
 		for(int i = 0; i<3; i++){
-		if(Math.seededRandom() > 0.5){
+		if(seededRandom() > 0.5){
 				ret += this.chatAboutLackOfInterests(relationship, relationship2); //one character tries to talk about something that interests them, other character is bored as fuck.
 			}else{
 				ret += this.chatAboutQuadrant(relationship, relationship2);
