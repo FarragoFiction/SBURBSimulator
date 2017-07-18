@@ -1,5 +1,7 @@
 
-
+//TODO make this stats ONLY and be a thing a gameEntity can own.
+//make it private, and only way to "get it" is get a copy of it. snapshot.
+//STOP using this for doomed time clones.
 //keeps track of information the sprite needs to render itself
 //allows player to go ahead and change while their snapshot remains the same
 //even with asynchronous rendering.

@@ -1,32 +1,18 @@
 part of SBURBSim;
 
-class Player {
+class Player extends GameEntity{
 	var baby = null;
-	List<dynamic> buffs = []; //only used in strifes, array of BuffStats (from fraymotifs and eventually weapons)
-	var permaBuffs = {"MANGRIT":0}; //is an object so it looks like a player with stats.  for things like manGrit which are permanent buffs to power (because modding power directly gets OP as shit because power controls future power)
-	num renderingType = 0; //0 means default for this sim.
-	List<dynamic> associatedStats = [];  //most players will have a 2x, a 1x and a -1x stat.
-	//num sanity = 0; //eventually replace triggerLevel with this (it's polarity is opposite triggerLevel)
-	num alchemy = 0; //mostly unused until we get to the Alchemy update.
 	var interest1Category = null; //used by Replay page for custom interests.
 	var interest2Category = null; //both should be null once they have been used to add the custom interest to the right place
-	var spriteCanvasID = null;  //part of new rendering engine.
-	var session;
 	num pvpKillCount = 0; //for stats.
 	num timesDied = 0;
-	bool usedFraymotifThisTurn = false;
-	List<dynamic> fraymotifs = [];
-	num currentHP = 0;
 	var denizen = null;
 	var denizenMinion = null;
 	num maxHornNumber = 73; //don't fuck with this
 	num maxHairNumber = 74; //same
 	var sprite = null; //gets set to a blank sprite when character is created.
 	num grist = 0; //total party grist needs to be at a certain level for the ultimate alchemy. luck events can raise it, boss fights, etc.
-	num hp = 0; //mostly used for boss battles;
-	List<dynamic> graphs = [];
-	bool deriveChatHandle = true;
-	var id;
+		bool deriveChatHandle = true;
 	var flipOutReason = null; //if it's null, i'm not flipping my shit.
 	var flippingOutOverDeadPlayer = null; //don't let this go into url. but, don't flip out if the friend is currently alive, you goof.
 	num denizen_index = 0; //denizen quests are in order.
@@ -35,11 +21,6 @@ class Player {
 	List<dynamic> ghostPacts = []; //some classes can form pacts with ghosts for use in boss battles (attack or revive) (ghosts don't leave bubbles, just lend power). or help others do so.  if i actually use a ghost i have a pact with, it's drained. (so anybody else with a pact with it can't use it.)
 	var land1 = null; //words my land is made of.
 	var land2 = null;
-	num minLuck = 0;
-	num maxLuck = 0;
-	num freeWill = 0;
-	num mobility = 0;
-	var crowned = null; //players can't be crowned.
 	bool trickster = false;
 	bool sbahj = false;
 	List<dynamic> sickRhymes = []; //oh hell yes. Hell. FUCKING. Yes!
@@ -61,7 +42,6 @@ class Player {
 	var object_to_prototype;
 	List<dynamic> relationships = [];
 	var moon;
-	num power = 1;   //power is generic. generally scales with any aplicable stats. lets me compare two different aspect players.
 	bool leveledTheHellUp = false; //triggers level up scene.
 	var mylevels = null;
 	num level_index = -1; //will be ++ before i query
@@ -76,11 +56,10 @@ class Player {
 	var rightHorn = null;
 	String lusus = "Adult Human";
 	var quirk = null;
-	bool dead = false;
+
 	var godDestiny;	//should only be false if killed permananetly as god tier
 	bool canGodTierRevive = true;  //even if a god tier perma dies, a life or time player or whatever can brings them back.
 	bool isDreamSelf = false;	//players can be triggered for various things. higher their triggerLevle, greater chance of going murdermode or GrimDark.
-	num sanity = 2; //make up for moon bonus
 	bool murderMode = false;  //kill all players you don't like. odds of a just death skyrockets.
 	bool leftMurderMode = false; //have scars, unless left via death.
 	num corruptionLevelOther = 0; //every 100 points, sends you to next grimDarkLevel.
@@ -90,15 +69,8 @@ class Player {
 	bool denizenFaced = false;
 	bool denizenDefeated = false;
 	bool denizenMinionDefeated = false;
-	String causeOfDeath = ""; //fill in every time you die. only matters if you're dead at end
-	List<dynamic> doomedTimeClones = []; //help fight the final boss(es).
-	bool doomed = false; //stat that doomed time clones have.
 
-
-	
-
-
-	Player([this.session, this.class_name, this.aspect, this.object_to_prototype, this.moon, this.godDestiny, this.id]) {}
+	Player([String name, Session session, this.class_name, this.aspect, this.object_to_prototype, this.moon, this.godDestiny, num id]): super(name, id, session);
 
 
 	bool fromThisSession(Session session){

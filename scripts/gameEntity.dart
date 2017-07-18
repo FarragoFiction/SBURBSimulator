@@ -1,17 +1,8 @@
 part of SBURBSim;
 
-//jack/queen/king/denizen.
-//multiround, but only takes 1 tick.
-//when call fight method, pass in array of players. only those players are involved in fight.
-//whoever calls fight is reponsible for high mobility players to be more likely in a fight.
-//should use ALL stats. luck, mobility, freeWill, raw power, relationships, etc. Hope powered up by how screwed things are, for example. (number of corpses, lack of Ecto lack of frog, etc. ).
-//denizens have a particular stat that won't matter. Can't beat Cetus in a Luck-Off, she is simply the best there is, for example.
-//mini boss = denizen minion;
-//before I decide boss stats, need to have AB compile me a list of average player stats. She's getting kinda...busy though. maybe a secret extra area? same page, but on bottom?
-//maybe eventually refactor murder mode to use this engine. both players get converted to game entitites for the fight?
-//are sprites a game entity attached to player? have same stats as their prototyping would cause. help player fight. can be killed. leave the player entirely after
-//denizen minion fight.
-class GameEntity {
+//TODO strip out all "strife" parts and leave this as the "parent" to Player, Ghost, DoomedPlayer, and NPC.
+//TODO eventually subtype NPC out to consort, sprite and carapace.
+class GameEntityOld {
 	var session;
 	var name;
 	//num alchemy = 0;

@@ -12,11 +12,14 @@ part "session.dart";
 part "scene_controller.dart";
 part "quirk.dart";
 part "random_tables.dart";
-part "gameEntity.dart";
+
 part "relationship.dart";
 part "handle_sprites.dart";
 part "AfterLife.dart";
 part "v2.0/ImportantEvents.dart";
+part "Strife.dart";
+part "GameEntities/GameEntity.dart";
+
 
 //scenes
 part "Scenes/Scene.dart";
