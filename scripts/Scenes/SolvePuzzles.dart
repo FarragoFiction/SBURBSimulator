@@ -34,10 +34,10 @@ class SolvePuzzles extends Scene {
 		}
 
 		//if i'm not blood or page, random roll for a friend.
-		if(this.session.availablePlayers.length > 1 && Math.seededRandom() > .5){
+		if(this.session.availablePlayers.length > 1 && seededRandom() > .5){
 			this.player2 = findHighestMobilityPlayer(this.session.availablePlayers);
 			if(this.player2 == this.player1 && this.player1.aspect != "Time"){  //only time player can help themselves out.
-				this.player2 == null
+				this.player2 == null;
 			}
 		}
 
@@ -59,9 +59,9 @@ class SolvePuzzles extends Scene {
 
 
 	}
-	void checkBloodBoost(){
+	void checkBloodBoost(){ //TODO seriously rip this out
 		if(this.player1.aspect == "Blood" && this.player2 != null){
-			this.player2.boostAllRelationships
+			this.player2.boostAllRelationships();
 		}
 
 		if(this.player2!=null && this.player2.aspect == "Blood"){
@@ -72,7 +72,7 @@ class SolvePuzzles extends Scene {
 		//if i stored this in random tables like my old stuff (this is may 2017, btw), then i couldn't avoid repeats as easily as i am here.
 		//remember kids: design and architecture really do fucking matter.
 			var landChosen = this.player1.land1;
-			if(Math.seededRandom() > 0.5) landChosen = this.player1.land2;
+			if(seededRandom() > 0.5) landChosen = this.player1.land2;
 			//shits on adventure game tropes and just uses a cheat code to solve the puzzle (star.eyes from discorse)
 			var possibilities = ["learning the true meaning of " + landChosen,"learning to really hate the entire concept of " + landChosen,"getting really fucking sick of " + landChosen,  "getting coy hints about The Ultimate Riddle","shitting on adventure game tropes and just using a cheat code","killing underlings","delving into dungeons", "exploring ruins", "solving puzzles", "playing minigames", "learning about the lore"];
 			var thing1 = getRandomElementFromArray(possibilities);
