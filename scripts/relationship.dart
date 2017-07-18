@@ -1,4 +1,4 @@
-
+part of SBURBSim;
 
 
 //can be positive or negative. if high enough, can
@@ -20,10 +20,10 @@ class Relationship {
 	String spades = "Kismesissitude";	
 
 
-	Relationship(this.initial_value, this.target_player) {}
+	Relationship([this.value, this.target]) {}
 
 
-	void nounDescription(){
+	String nounDescription(){
 		if(this.saved_type == this.diamond) return "moirail";
 		if(this.saved_type == this.goodBig) return "crush";
 		if(this.saved_type == this.badBig) return "black crush";
@@ -82,7 +82,7 @@ class Relationship {
 			return this.saved_type;
 		}
 
-		if(Math.seededRandom() > 0.25){
+		if(seededRandom() > 0.25){
 			//enter or leave a relationship, or vaccilate.
 			this.old_type = this.saved_type;
 			this.saved_type = this.changeType();
@@ -127,9 +127,7 @@ dynamic getRelationshipFlavorGreeting(r1, r2, me, you){
 
 
 
-class getRelationshipFlavorText {
-
-	getRelationshipFlavorText(this.r1, this.r2, this.me, this.you) {}
+String getRelationshipFlavorText(r1, r2, me, you) {
 
 
 
@@ -158,7 +156,7 @@ class getRelationshipFlavorText {
 
 
 dynamic cloneRelationship(relationship){
-	var clone = new Relationship();
+	Relationship clone = new Relationship();
 	for(var propertyName in relationship) {
 		clone[propertyName] = relationship[propertyName];
 	}
@@ -175,7 +173,7 @@ dynamic cloneRelationshipsStopgap(relationships){
 		List<dynamic> ret = [];
 		for(num i = 0; i<relationships.length; i++){
 			var r = relationships[i];
-			ret.push(cloneRelationship(r));
+			ret.add(cloneRelationship(r));
 		}
 		return ret;
 }
@@ -294,7 +292,7 @@ void decideInitialQuadrants(players){
 			var roll = player.rollForLuck();
 			if(roll > rollNeeded){
 				if(r.type() == r.goodBig){
-					var difference = Math.abs(player.sanity - r.target.sanity);
+					var difference = (player.sanity - r.target.sanity).abs();
 					if(difference > 2 || roll < rollNeeded + 25){ //pale
 						makeDiamonds(player, r.target);
 					}else{
@@ -315,6 +313,6 @@ void decideInitialQuadrants(players){
 	}
 }
 
-function getRandomInt(min, max) {
+/*function getRandomInt(min, max) {
     return Math.floor(Math.seededRandom() * (max - min + 1)) + min;
-}
+}*/
