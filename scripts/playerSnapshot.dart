@@ -301,8 +301,8 @@ class PlayerSnapshot {
     	    for(num i = 0; i<allStats.length; i++){
     	        var b = this.getTotalBuffForStat(allStats[i]);
     	        //only say nothing if equal to zero
-    	        if(b>0) ret.push("more "+this.humanWordForBuffNamed(allStats[i]));
-    	        if(b<0) ret.push("less " + this.humanWordForBuffNamed(allStats[i]));
+    	        if(b>0) ret.add("more "+this.humanWordForBuffNamed(allStats[i]));
+    	        if(b<0) ret.add("less " + this.humanWordForBuffNamed(allStats[i]));
     	    }
     	    if(ret.length == 0) return "";
     	    return this.htmlTitleHP() + " is feeling " + turnArrayIntoHumanSentence(ret) + " than normal. ";
@@ -401,8 +401,8 @@ dynamic makeDoomedSnapshot(timePlayer){
 	timeClone.currentHP = timeClone.hp;
 	timeClone.doomed = true;
 	//from a different timeline, things went differently.
-	var rand = Math.seededRandom();
-	timeClone.power = Math.seededRandom() * 80+10;
+	var rand = seededRandom();
+	timeClone.power = seededRandom() * 80+10;
 	if(rand > 0.9){
 		timeClone.robot = true;
 		timeClone.hairColor = getRandomGreyColor();
@@ -422,24 +422,24 @@ dynamic makeDoomedSnapshot(timePlayer){
 
 	if(timeClone.grimDark > 3){
 		var f = new Fraymotif([],  Zalgo.generate("The Broodfester Tongues"), 3);
-		f.effects.push(new FraymotifEffect("power",3,true));
-		f.effects.push(new FraymotifEffect("power",0,false));
+		f.effects.add(new FraymotifEffect("power",3,true));
+		f.effects.add(new FraymotifEffect("power",0,false));
 		f.flavorText = " They are stubborn throes. ";
-		timeClone.fraymotifs.push(f);
+		timeClone.fraymotifs.add(f);
 	}
 
 	if(timeClone.godTier){
 		f = curSessionGlobalVar.fraymotifCreator.makeFraymotif([timePlayer], 3);//first god tier fraymotif
-		timeClone.fraymotifs.push(f);
+		timeClone.fraymotifs.add(f);
 	}
 
 	if(timeClone.power > 50){
 		f = curSessionGlobalVar.fraymotifCreator.makeFraymotif([timePlayer], 2);//probably beat denizen at least
-		timeClone.fraymotifs.push(f);
+		timeClone.fraymotifs.add(f);
 	}
 
 	f = curSessionGlobalVar.fraymotifCreator.makeFraymotif([timePlayer], 1);//at least did first quest
-	timeClone.fraymotifs.push(f);
+	timeClone.fraymotifs.add(f);
 
 	return timeClone;
 }

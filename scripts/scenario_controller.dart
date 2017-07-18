@@ -323,7 +323,7 @@ dynamic isThereMeetup(playersInMedium){
 	var me = playersInMedium[playersInMedium.length-1];
 	//don't loop on yourself.
 	for(var i =0; i<playersInMedium.length-1; i++){
-		if(Math.seededRandom() > 0.90){
+		if(seededRandom() > 0.90){
 			var you = playersInMedium[i];
 			me.increasePower();
 			you.increasePower();
@@ -357,5 +357,5 @@ dynamic isThereMeetup(playersInMedium){
  * Using Math.round() will give you a non-uniform distribution!
  */
 function getRandomInt(min, max) {
-    return Math.floor(Math.seededRandom() * (max - min + 1)) + min;
+    return Math.floor(seededRandom() * (max - min + 1)) + min;
 }

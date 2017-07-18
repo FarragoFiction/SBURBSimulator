@@ -157,21 +157,21 @@ class PlanToExileJack extends Scene {
 
 		drawChat(canvasDiv,player1, player2, chatText, repeatTime,"discuss_jack.png");
 	}
-	void smart(player){
+	bool smart(player){
 		return ((player.aspect == "Light" || player.class_name == "Seer") ||(player.aspect == "Doom" || player.aspect == "Mind"));
 	}
 
 	@override
-	dynamic renderContent(div){
+	void renderContent(div){
 		this.session.plannedToExileJack = true;
 		if(!this.planner){
 			return;
 		}
 		this.planner.increasePower();
 		removeFromArray(this.planner, this.session.availablePlayers);
-		this.session.available_scenes.unshift( new prepareToExileJack(this.session));
-		this.session.available_scenes.unshift( new ExileJack(this.session));
-		this.session.available_scenes.unshift( new ExileQueen(this.session));  //make it top priority, so unshift, don't push
+		this.session.available_scenes.insert(0, new prepareToExileJack(this.session));
+		this.session.available_scenes.insert(0, new ExileJack(this.session));
+		this.session.available_scenes.insert(0, new ExileQueen(this.session));  //make it top priority, so unshift, don't push
 		var player1 = this.planner;
 		var player2 = getLeader(findLivingPlayers(	this.session.players));
 		if(player2 && player2 != player1){
@@ -181,7 +181,8 @@ class PlanToExileJack extends Scene {
 			//leader gossips with friends
 			player2 = player1.getBestFriendFromList(findLivingPlayers(	this.session.players));
 			if(!player2){
-				return div.append(this.content);
+				div.append(this.content);
+				return;
 			}else{
 				this.chatWithFriend(div,player1, player2);
 			}
@@ -190,14 +191,14 @@ class PlanToExileJack extends Scene {
 			div.append(this.content);
 		}
 	}
-	dynamic content(){
+	String content(){
 		if(!this.planner){
-			return;//this should theoretically never happen
+			return "";//this should theoretically never happen
 		}
 		this.planner.increasePower();
 		removeFromArray(this.planner, this.session.availablePlayers);
-		this.session.available_scenes.unshift( new prepareToExileJack(this.session));
-		this.session.available_scenes.unshift( new ExileJack(this.session));
+		this.session.available_scenes.insert(0, new prepareToExileJack(this.session));
+		this.session.available_scenes.insert(0, new ExileJack(this.session));
 		String ret = " The " + this.planner.htmlTitle() + " is getting a bad feeling about Jack Noir. ";
 		ret += " Even though he is their ally, he has stabbed players on multiple occasions, for example. ";
 		ret += "There's only so many 'accidents' a single Desite can reasonably have. ";

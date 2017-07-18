@@ -74,50 +74,50 @@ var wordsRhymeCrook = ["crook","nook", "cook", "rook","took","look","shook","hoo
 String noun = "noun";
 String verb = "verb";
 var rapTemplates = [new RapTemplate("you must be some kind of ",noun, " sitting there like you think you can ", verb) ];
-rapTemplates.push(new RapTemplate("your ass is grass, you ain't got that ",noun, " you have the worst skills that i ever did ", verb) );
-rapTemplates.push(new RapTemplate("i got that  ",noun, " you have no ", noun) );
-rapTemplates.push(new RapTemplate("I am da best at ",verb, " you aint even tried to ", verb) );
-rapTemplates.push(new RapTemplate("all day sittin and chillin and ",verb, " like some kind of ", noun) );
-rapTemplates.push(new RapTemplate("bitches think I'm ",noun, " and you all sitting there like you can't ", verb) );
-rapTemplates.push(new RapTemplate("I do an acrobatic pirouette off the ",noun, " while you struggle to even ", verb) );
-rapTemplates.push(new RapTemplate("you're all up in my ",noun, " like you think it's ", noun) );
-rapTemplates.push(new RapTemplate("I'm officially the canidate for having some ",noun, " but you dropped out the race in disgrace for  ", noun) );
-rapTemplates.push(new RapTemplate("you know I got the ",noun, " all up and ", verb) );
-rapTemplates.push(new RapTemplate("bustin old school ",noun, " like I can't even ", verb) );
-rapTemplates.push(new RapTemplate("all day I'm ",verb, " but you can't even ", verb) );
-rapTemplates.push(new RapTemplate("should i count all the reasons you're ",noun, " fuck, i got better things to ", verb) );
-rapTemplates.push(new RapTemplate("it's too bad my rhymes are so  ",noun, " but I can't even stop to ", verb) );
+rapTemplates.add(new RapTemplate("your ass is grass, you ain't got that ",noun, " you have the worst skills that i ever did ", verb) );
+rapTemplates.add(new RapTemplate("i got that  ",noun, " you have no ", noun) );
+rapTemplates.add(new RapTemplate("I am da best at ",verb, " you aint even tried to ", verb) );
+rapTemplates.add(new RapTemplate("all day sittin and chillin and ",verb, " like some kind of ", noun) );
+rapTemplates.add(new RapTemplate("bitches think I'm ",noun, " and you all sitting there like you can't ", verb) );
+rapTemplates.add(new RapTemplate("I do an acrobatic pirouette off the ",noun, " while you struggle to even ", verb) );
+rapTemplates.add(new RapTemplate("you're all up in my ",noun, " like you think it's ", noun) );
+rapTemplates.add(new RapTemplate("I'm officially the canidate for having some ",noun, " but you dropped out the race in disgrace for  ", noun) );
+rapTemplates.add(new RapTemplate("you know I got the ",noun, " all up and ", verb) );
+rapTemplates.add(new RapTemplate("bustin old school ",noun, " like I can't even ", verb) );
+rapTemplates.add(new RapTemplate("all day I'm ",verb, " but you can't even ", verb) );
+rapTemplates.add(new RapTemplate("should i count all the reasons you're ",noun, " fuck, i got better things to ", verb) );
+rapTemplates.add(new RapTemplate("it's too bad my rhymes are so  ",noun, " but I can't even stop to ", verb) );
 
 //just read through and it don't stop (mirror: http://anditd0ntstop.tumblr.com) for more template inspiration.
-rapTemplates.push(new RapTemplate("you're getting served so hard it's like you're a ",noun, " and I'm your very own butler making sure to ", verb) );
-rapTemplates.push(new RapTemplate("why don't you polish my  ",noun, " it's the closest you'll ever get to ", verb) );
-rapTemplates.push(new RapTemplate("I'll beat your ass and then if I'm  ",verb, " I'll even take the time to lock you in a ", noun) );
-rapTemplates.push(new RapTemplate("when you see me you start feeling your ",noun, " but I can't blame you, you just a ", noun) );
-rapTemplates.push(new RapTemplate("you think i'm ",verb, " just because i sit here rapping with a  ", noun) );
-rapTemplates.push(new RapTemplate("my raps are so good you know they ain't  ",noun, " if you don't respect you must be a ", noun) );
-rapTemplates.push(new RapTemplate("I'm the rap king of  ",noun, " and you ain't fit to ", verb) );
-rapTemplates.push(new RapTemplate("my flow is chicken fried ",noun, " and you think you can ", verb) );
-rapTemplates.push(new RapTemplate("you're  ",noun, " but you think you're ", noun) );
-rapTemplates.push(new RapTemplate("why you think you belong in that sweetest of ",noun, " when you aint even fit to lick my ", noun) );
+rapTemplates.add(new RapTemplate("you're getting served so hard it's like you're a ",noun, " and I'm your very own butler making sure to ", verb) );
+rapTemplates.add(new RapTemplate("why don't you polish my  ",noun, " it's the closest you'll ever get to ", verb) );
+rapTemplates.add(new RapTemplate("I'll beat your ass and then if I'm  ",verb, " I'll even take the time to lock you in a ", noun) );
+rapTemplates.add(new RapTemplate("when you see me you start feeling your ",noun, " but I can't blame you, you just a ", noun) );
+rapTemplates.add(new RapTemplate("you think i'm ",verb, " just because i sit here rapping with a  ", noun) );
+rapTemplates.add(new RapTemplate("my raps are so good you know they ain't  ",noun, " if you don't respect you must be a ", noun) );
+rapTemplates.add(new RapTemplate("I'm the rap king of  ",noun, " and you ain't fit to ", verb) );
+rapTemplates.add(new RapTemplate("my flow is chicken fried ",noun, " and you think you can ", verb) );
+rapTemplates.add(new RapTemplate("you're  ",noun, " but you think you're ", noun) );
+rapTemplates.add(new RapTemplate("why you think you belong in that sweetest of ",noun, " when you aint even fit to lick my ", noun) );
 
-rapTemplates.push(new RapTemplate("your heads all  ",verb, " like you got a bad ", noun) );
-rapTemplates.push(new RapTemplate("everybody already thinks you're a ",noun, " gotta say you ain't doing anything to ", verb) );
-rapTemplates.push(new RapTemplate("your rhymes are so  ",noun, " that even my Guardian could do better ", verb) );
-rapTemplates.push(new RapTemplate("as I turn up the heat you turn up the  ",noun, " but how that gonna save you when you can't even ", verb) );
-rapTemplates.push(new RapTemplate("this shit is such a flagrant  ",verb, " you really think you fooling the ", noun) );
-rapTemplates.push(new RapTemplate("you're just a wealth of ",noun, " and I'm fixin to inherit ", noun) );
-rapTemplates.push(new RapTemplate("your tiny little  ",noun, " doesn't even seem to ", verb) );
-rapTemplates.push(new RapTemplate("I got beats and rhymes that never been ",verb, " how you think you can ", verb) );
-rapTemplates.push(new RapTemplate("I think you might actually be a ",noun, " cause how else do you explain why you think you can ", verb) );
+rapTemplates.add(new RapTemplate("your heads all  ",verb, " like you got a bad ", noun) );
+rapTemplates.add(new RapTemplate("everybody already thinks you're a ",noun, " gotta say you ain't doing anything to ", verb) );
+rapTemplates.add(new RapTemplate("your rhymes are so  ",noun, " that even my Guardian could do better ", verb) );
+rapTemplates.add(new RapTemplate("as I turn up the heat you turn up the  ",noun, " but how that gonna save you when you can't even ", verb) );
+rapTemplates.add(new RapTemplate("this shit is such a flagrant  ",verb, " you really think you fooling the ", noun) );
+rapTemplates.add(new RapTemplate("you're just a wealth of ",noun, " and I'm fixin to inherit ", noun) );
+rapTemplates.add(new RapTemplate("your tiny little  ",noun, " doesn't even seem to ", verb) );
+rapTemplates.add(new RapTemplate("I got beats and rhymes that never been ",verb, " how you think you can ", verb) );
+rapTemplates.add(new RapTemplate("I think you might actually be a ",noun, " cause how else do you explain why you think you can ", verb) );
 //bop de boop lets rhyme"
-rapTemplates.push(new RapTemplate("if you can't prove you are not a ",noun, " then the proof is there that you are nothing but a ",noun, ) );
-rapTemplates.push(new RapTemplate("if my rhymes are ",noun," its nothing but me knowing how to ",verb,) );
-rapTemplates.push(new RapTemplate("it is not my fault you are such a ",noun,", thats what happens when you just can't ",verb,) );
-rapTemplates.push(new RapTemplate("don't even " ,verb," kid, we all know you are a ",noun,) );
-rapTemplates.push(new RapTemplate("now I am the best fucking ",noun," that ever did ",verb,) );
-rapTemplates.push(new RapTemplate("it is time to ",verb,", so you best fucking ",verb,) );
-rapTemplates.push(new RapTemplate("because the truth is that I am a ",noun," and you are a ",noun,) );
-rapTemplates.push(new RapTemplate("learn your place, if you can't ",verb," you are not a ",noun,) );
+rapTemplates.add(new RapTemplate("if you can't prove you are not a ",noun, " then the proof is there that you are nothing but a ",noun, ) );
+rapTemplates.add(new RapTemplate("if my rhymes are ",noun," its nothing but me knowing how to ",verb,) );
+rapTemplates.add(new RapTemplate("it is not my fault you are such a ",noun,", thats what happens when you just can't ",verb,) );
+rapTemplates.add(new RapTemplate("don't even " ,verb," kid, we all know you are a ",noun,) );
+rapTemplates.add(new RapTemplate("now I am the best fucking ",noun," that ever did ",verb,) );
+rapTemplates.add(new RapTemplate("it is time to ",verb,", so you best fucking ",verb,) );
+rapTemplates.add(new RapTemplate("because the truth is that I am a ",noun," and you are a ",noun,) );
+rapTemplates.add(new RapTemplate("learn your place, if you can't ",verb," you are not a ",noun,) );
 
 
 
@@ -312,7 +312,7 @@ dynamic tryToUseRhyme(rhyme, player){
 		var usedRhymes = player.sickRhymes;
 
 		if(usedRhymes.indexOf(rhyme) == -1){
-			usedRhymes.push(rhyme);
+			usedRhymes.add(rhyme);
 			return rhyme;
 		}
 		//the rhyme is not fresh.

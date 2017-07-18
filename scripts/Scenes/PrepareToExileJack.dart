@@ -69,7 +69,7 @@ class prepareToExileJack extends Scene {
 	dynamic content(){
 		this.player.increasePower();
 		removeFromArray(this.player, this.session.availablePlayers);
-		var rand = Math.seededRandom();
+		var rand = seededRandom();
 		if(rand > .3){
 			return this.harrassContent();
 		}else if(rand > .6){

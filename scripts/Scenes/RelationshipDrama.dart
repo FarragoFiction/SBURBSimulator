@@ -20,7 +20,7 @@ class RelationshipDrama extends Scene {
 		for(num i = 0; i< playerList.length; i++){
 			var p = playerList[i];
 			if(p.hasRelationshipDrama() && p.dead == false){ //stop corpse confessions!
-				this.dramaPlayers.push(p);
+				this.dramaPlayers.add(p);
 			}
 		}
 		return this.dramaPlayers.length > 0;
@@ -578,7 +578,7 @@ class RelationshipDrama extends Scene {
 			chatText += chatLine(player2Start, player2,"Fuck you, at least I'm not " + trait2 + "!");
 			makeSpades(player1, player2);
 			this.session.hasSpades = true;
-			if(Math.seededRandom() > .5){
+			if(seededRandom() > .5){
 				this.celebratoryRapBattle(div, player1, player2);
 			}
 

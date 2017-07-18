@@ -19,7 +19,7 @@ class ExploreMoon extends Scene {
 			return null;
 		}
 
-		this.getProspitBullshit = (){
+		String getProspitBullshit(){
 			var possibilities = ["attending dance parties", "fluttering about aimlessly", "chatting up Prospitans", "learning the recipe for HOLY PASTRIES", "listening to sermons on the vast Croak","attending dance offs", "protecting the sacred candy shop from burglars", "racing frogs"];
 			var thing1 = getRandomElementFromArray(possibilities);
 			possibilities.removeFromArray(thing1);
@@ -39,7 +39,7 @@ class ExploreMoon extends Scene {
 			return "whimsical Prospit activities, such as " + thing1 + " and " + thing2 + ". " + vision;
 		}
 
-		this.getDerseBullshit = (){
+		String getDerseBullshit(){
 			var possibilities = ["attending dance parties", "cheating at poker", "keeping tabs on the lifeblood of Derse", "learning the Derse waltz","understanding the nuances of a stab","lying their asses off to anyone and everyone","attending jazz clubs","setting up black market businesses","dodging the Derse law","smuggling contraband","delivering finely crafted suits"];
 			var thing1 = getRandomElementFromArray(possibilities);
 			possibilities.removeFromArray(thing1);
@@ -78,7 +78,7 @@ class ExploreMoon extends Scene {
 		}
 
 		//if i'm not blood or page, random roll for a friend.
-		if(this.session.availablePlayers.length > 1 && Math.seededRandom() > .5){
+		if(this.session.availablePlayers.length > 1 && seededRandom() > .5){
 			this.player2 = getRandomElementFromArray(this.session.availablePlayers);
 			if(this.player1 == this.player2 || !this.player2.dreamSelf || this.player1.moon != this.player2.moon){
 				this.player2 = null;
@@ -108,9 +108,10 @@ class ExploreMoon extends Scene {
 
 
 	}
+	//TODO get rid of this, don't need it anymore.
 	void checkBloodBoost(){
 		if(this.player1.aspect == "Blood" && this.player2 != null){
-			this.player2.boostAllRelationships
+			this.player2.boostAllRelationships();
 		}
 
 		if(this.player2!=null && this.player2.aspect == "Blood"){

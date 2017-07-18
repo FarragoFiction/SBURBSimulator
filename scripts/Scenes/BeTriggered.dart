@@ -16,9 +16,9 @@ class BeTriggered extends Scene{
 		this.triggeredPlayers = [];
 		for(num i = 0; i<this.session.availablePlayers.length; i++){
 			var p = this.session.availablePlayers[i];
-			if(this.IsPlayerTriggered(p) && Math.seededRandom() >.75){ //don't all flip out/find out at once. if i find something ELSE to flip out before i can flip out about this, well, oh well. SBURB is a bitch. 75 is what it should be when i'm done testing.
+			if(this.IsPlayerTriggered(p) && seededRandom() >.75){ //don't all flip out/find out at once. if i find something ELSE to flip out before i can flip out about this, well, oh well. SBURB is a bitch. 75 is what it should be when i'm done testing.
 				//print("shit flipping: " + p.flipOutReason + " in session " + this.session.session_id);
-				this.triggeredPlayers.push(p);
+				this.triggeredPlayers.add(p);
 			}
 		}
 		return this.triggeredPlayers.length > 0;
@@ -47,7 +47,7 @@ class BeTriggered extends Scene{
 			return true; //i am flipping out over not a dead player, thank you very much.
 
 		}
-		if(-1 * player.sanity > Math.seededRandom() * 100 ){
+		if(-1 * player.sanity > seededRandom() * 100 ){
 			player.flipOutReason = "how they seem to be going shithive maggots for no goddamned reason";
 			return true;
 		}
@@ -62,7 +62,7 @@ class BeTriggered extends Scene{
 
 		var deadDiamond = player.hasDeadDiamond();
 		var deadHeart = player.hasDeadHeart();
-		if(deadDiamond && Math.seededRandom() > 0.3){
+		if(deadDiamond && seededRandom() > 0.3){
 			player.sanity += -1000;
 			player.damageAllRelationships();
 			player.damageAllRelationships();
@@ -71,14 +71,14 @@ class BeTriggered extends Scene{
 			return " their dead Moirail, the " + deadDiamond.htmlTitleBasic() + " ";
 		}
 
-		if(deadHeart&& Math.seededRandom() > 0.2){
+		if(deadHeart&& seededRandom() > 0.2){
 			player.sanity += -1000;
 			//print("triggered by dead matesprit in session" + this.session.session_id);
 			return " their dead Matesprit, the " + deadHeart.htmlTitleBasic() + " ";
 		}
 		//small chance
 		if(deadPlayers.length > 0){
-			if(Math.seededRandom() > 0.9){
+			if(seededRandom() > 0.9){
 				player.sanity += -10;
 				return deadPlayers.length +" dead players ";
 			}
@@ -92,7 +92,7 @@ class BeTriggered extends Scene{
 
 		//bigger chance
 		if(deadFriends.length > 0){
-			if(Math.seededRandom() > 0.5){
+			if(seededRandom() > 0.5){
 				player.sanity += -10;
 				return deadFriends.length + " dead friends";
 			}
@@ -107,18 +107,18 @@ class BeTriggered extends Scene{
 
 		//huge chance, the dead outnumber the living.
 		if(deadPlayers.length > livePlayers.length){
-			if(Math.seededRandom() > 0.1){
+			if(seededRandom() > 0.1){
 				player.sanity += -30;
 				return " how absolutely fucked they are ";
 			}
 		}
 
-		if(player.doomedTimeClones.length > 0 && Math.seededRandom() > .9){
+		if(player.doomedTimeClones.length > 0 && seededRandom() > .9){
 			player.sanity += -10;
 			return " their own doomed Time Clones ";
 		}
 
-		if(player.denizenFaced && player.denizenDefeated && Math.seededRandom() > .95){
+		if(player.denizenFaced && player.denizenDefeated && seededRandom() > .95){
 			player.sanity += -10;
 			return " how terrifying " +player.getDenizen() + " was " ;
 		}

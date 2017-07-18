@@ -233,7 +233,7 @@ dynamic getGraphWithLabel(graphs, label){
 dynamic getAllGraphsForPlayersNamed(players, label){
 	List<dynamic> ret = [];
 	for(num i = 0; i<players.length; i++){
-		ret.push(getGraphWithLabel(players[i].graphs, label))
+		ret.add(getGraphWithLabel(players[i].graphs, label))
 	}
 	return ret;
 }

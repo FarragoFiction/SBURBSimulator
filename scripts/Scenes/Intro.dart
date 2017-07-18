@@ -57,7 +57,7 @@ class Intro  extends Scene{
 			}
 	}
 	String changePrototyping(div){
-		if(this.player.object_to_prototype.power > 200 && Math.seededRandom() > .8){
+		if(this.player.object_to_prototype.power > 200 && seededRandom() > .8){
 			var divID = (div.attr("id"));
 			String canvasHTML = "<br><canvas id;='canvaskernel" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
@@ -79,7 +79,7 @@ class Intro  extends Scene{
 			this.player.object_to_prototype.player = true;
 			print("time player sprite in session: " + this.session.session_id);
 
-		}else if((this.player.dead == true || this.player.isDreamSelf == true || this.player.dreamSelf == false) && Math.seededRandom() > .1){ //if tier 2 is ever a thing, make this 50% instead and have spries very attracted to extra corpes later on as well if they aren't already players or...what would even HAPPEN if you prototyped yourself twice....???
+		}else if((this.player.dead == true || this.player.isDreamSelf == true || this.player.dreamSelf == false) && seededRandom() > .1){ //if tier 2 is ever a thing, make this 50% instead and have spries very attracted to extra corpes later on as well if they aren't already players or...what would even HAPPEN if you prototyped yourself twice....???
 			String ret = "Through outrageous shenanigans, one of the " + this.player.htmlTitle() + "'s superfluous corpses ends up prototyped into their kernel sprite. <br>";
 			this.player.object_to_prototype =copyGameEntity(this.player, this.player.chatHandle) ;//no, don't say 'corpsesprite';
 			print("player sprite in session: " + this.session.session_id);
@@ -680,7 +680,7 @@ class Intro  extends Scene{
 				print(session.session_id + " dead player enters, " +this.player.title())
 				narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably. I...I guess time flowing differently between universes is still a thing that is true, and they were able to contact them even before they died.  Shit, this is extra tragic.  <br>";
 				div.append(narration);
-				this.session.availablePlayers.push(this.player);
+				this.session.availablePlayers.add(this.player);
 				return;
 			}
 		}else{
@@ -718,7 +718,7 @@ class Intro  extends Scene{
 				print(session.session_id + " dead player enters, " +this.player.title())
 				narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably. I...I guess their GHOST or something is making sure their house and corpse makes it into the medium? And their client player, as appropriate. Their kernel somehow gets prototyped with a "+this.player.object_to_prototype.htmlTitle() + ". ";
 				this.player.timesDied ++;
-				this.session.availablePlayers.push(this.player);
+				this.session.availablePlayers.add(this.player);
 				this.player.sprite.addPrototyping(this.player.object_to_prototype); //hot damn this is coming together.
 				if(this.session.kingsScepter) this.session.kingsScepter.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
 				if(this.player.object_to_prototype.armless){
@@ -751,7 +751,7 @@ class Intro  extends Scene{
 			}
 			this.player.sprite.addPrototyping(this.player.object_to_prototype); //hot damn this is coming together.
 			if(this.session.kingsScepter) this.session.kingsScepter.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
-			if(this.player.object_to_prototype.armless && Math.seededRandom() > 0.93){
+			if(this.player.object_to_prototype.armless && seededRandom() > 0.93){
 					print("armless prototyping in session: " + this.session.session_id);
 					narration += "Huh. Of all the things to take from prototyping a " + this.player.object_to_prototype.name + ", why did it have to be its fingerless attribute? The Black Queen's RING OF ORBS " + this.session.convertPlayerNumberToWords() + "FOLD is now useless. If any carapacian attempts to put it on, they lose the finger it was on, which makes it fall off.  She destroys the RING in a fit of vexation. ";
 					this.session.destroyBlackRing();
@@ -764,7 +764,7 @@ class Intro  extends Scene{
 		}
 		div.append(narration);
 		this.chat(div);
-		this.session.availablePlayers.push(this.player);
+		this.session.availablePlayers.add(this.player);
 	}
 	void content(div, i){
 		//String ret = " TODO: Figure out what a non 2.0 version of the Intro scene would look like. ";

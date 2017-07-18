@@ -15,7 +15,7 @@ class AfterLife {
 	void addGhost(ghost){
 		ghost.ghost = true;
 		ghost.dead = false;
-		this.ghosts.push(ghost);
+		this.ghosts.add(ghost);
 	}
 	void allowTransTimeLineInteraction(){
 		print("timelines divurged, allowing transTimeline interaction");
@@ -121,7 +121,7 @@ class AfterLife {
 		for(num i = 0; i<this.ghosts.length; i++){
 			var ghost = this.ghosts[i];
 			if(this.areTwoPlayersTheSame(player, ghost)){
-				selves.push(ghost);
+				selves.add(ghost);
 			}
 		}
 		return selves;
@@ -135,7 +135,7 @@ class AfterLife {
 	dynamic findAnyUndrainedGhost(){
 		List<dynamic> ret = [];
 		for(var i=0; i<this.ghosts.length; i++){
-			if(this.ghosts[i].causeOfDrain == null) ret.push(this.ghosts[i]);
+			if(this.ghosts[i].causeOfDrain == null) ret.add(this.ghosts[i]);
 		}
 		return getRandomElementFromArray(ret);
 	}
@@ -151,7 +151,7 @@ dynamic removeDrainedGhostsFromPacts(ghostPacts){
 	if(!ghostPacts) return [];
 	for(num i = 0; i<ghostPacts.length; i++){
 		if(!ghostPacts[i][0].causeOfDrain){
-			ret.push(ghostPacts[i]);
+			ret.add(ghostPacts[i]);
 		}
 	}
 	return ret;

@@ -189,7 +189,7 @@ dynamic setAvailablePlayers(playerList, session){
 	for(num i = 0; i<playerList.length; i++){
 		//dead players are always unavailable.
 		if(!playerList[i].dead){
-			session.availablePlayers.push(playerList[i]);
+			session.availablePlayers.add(playerList[i]);
 		}
 	}
 	return session.availablePlayers;
@@ -204,7 +204,7 @@ dynamic processReckoning(playerList, session){
 	for(num i = 0; i<session.reckoningScenes.length; i++){
 		var s = session.reckoningScenes[i];
 		if(s.trigger(playerList)){
-		//	session.scenesTriggered.push(s);
+		//	session.scenesTriggered.add(s);
 		session.numScenes ++;
 			//print(s);
 			//print("was triggered");
@@ -215,7 +215,7 @@ dynamic processReckoning(playerList, session){
 	for(num i = 0; i<session.deathScenes.length; i++){
 		var s = session.deathScenes[i];
 		if(s.trigger(playerList)){
-		//	session.scenesTriggered.push(s);
+		//	session.scenesTriggered.add(s);
 				session.numScenes ++;
 			ret += s.content() + " <br><br> ";
 		}
@@ -235,7 +235,7 @@ dynamic processScenes2(playerList, Session session){
 		var s = session.available_scenes[i];
 		//var debugQueen = queenStrength;
 		if(s.trigger(playerList)){
-			//session.scenesTriggered.push(s);
+			//session.scenesTriggered.add(s);
 			session.numScenes ++;
 			s.renderContent(session.newScene());
 			if(!s.canRepeat){
@@ -248,7 +248,7 @@ dynamic processScenes2(playerList, Session session){
 	for(num i = 0; i<session.deathScenes.length; i++){
 		var s = session.deathScenes[i];
 		if(s.trigger(playerList)){
-		//	session.scenesTriggered.push(s);
+		//	session.scenesTriggered.add(s);
 		session.numScenes ++;
 			s.renderContent(session.newScene());
 		}
@@ -281,7 +281,7 @@ dynamic processReckoning2(playerList, session){
 	for(num i = 0; i<session.reckoningScenes.length; i++){
 		var s = session.reckoningScenes[i];
 		if(s.trigger(playerList)){
-			//session.scenesTriggered.push(s);
+			//session.scenesTriggered.add(s);
 			session.numScenes ++;
 			s.renderContent(session.newScene());
 		}
@@ -290,7 +290,7 @@ dynamic processReckoning2(playerList, session){
 	for(num i = 0; i<session.deathScenes.length; i++){
 		var s = session.deathScenes[i];
 		if(s.trigger(playerList)){
-		//	session.scenesTriggered.push(s);
+		//	session.scenesTriggered.add(s);
 		session.numScenes ++;
 			s.renderContent(session.newScene());
 		}
@@ -316,7 +316,7 @@ dynamic processScenes(playerList, Session session){
 		var s = session.available_scenes[i];
 		//var debugQueen = queenStrength;
 		if(s.trigger(playerList)){
-			//session.scenesTriggered.push(s);
+			//session.scenesTriggered.add(s);
 			session.numScenes ++;
 			//print("was triggered");
 			var content = s.content();
@@ -340,7 +340,7 @@ dynamic processScenes(playerList, Session session){
 		if(s.trigger(playerList)){
 			//print(s);
 			//print("was triggered");
-			//session.scenesTriggered.push(s);
+			//session.scenesTriggered.add(s);
 			session.numScenes ++;
 			ret += s.content() + " <br><br> ";
 		}
@@ -652,8 +652,8 @@ dynamic dataBytesAndStringsToPlayer(charString, str_arr){
 	 player.leftHorn = charString.charCodeAt(8);
 	 player.rightHorn = charString.charCodeAt(9);
 	 player.hair = charString.charCodeAt(10);
-	 if(player.interest1Category) interestCategoryToInterestList(player.interest1Category ).push(player.interest1); //maybe don't add if already exists but whatevs for now.
-	 if(player.interest2Category )interestCategoryToInterestList(player.interest2Category ).push(player.interest2);
+	 if(player.interest1Category) interestCategoryToInterestList(player.interest1Category ).add(player.interest1); //maybe don't add if already exists but whatevs for now.
+	 if(player.interest2Category )interestCategoryToInterestList(player.interest2Category ).add(player.interest2);
 
 	 return player;
 }
@@ -668,8 +668,8 @@ dynamic dataBytesAndStringsToPlayer(charString, str_arr){
 		 ret[prop] = obj[prop];
 	 }
 	 print(ret.interestCategory1);
-	 interestCategoryToInterestList(ret.interest1Category ).push(ret.interest1) //maybe don't add if already exists but whatevs for now.
-	 interestCategoryToInterestList(ret.interest2Category ).push(ret.interest2);
+	 interestCategoryToInterestList(ret.interest1Category ).add(ret.interest1) //maybe don't add if already exists but whatevs for now.
+	 interestCategoryToInterestList(ret.interest2Category ).add(ret.interest2);
 	 ret.quirk = new Quirk();
 	 ret.quirk.favoriteNumber = obj.quirk.favoriteNumber;
 	 return ret;

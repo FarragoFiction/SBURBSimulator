@@ -23,7 +23,7 @@ class DoLandQuest extends Scene{
 			var p = this.session.availablePlayers[j];
 			var ph = this.getPlayerPlusHelper(p, availablePlayers);
 			if(ph){
-				this.playersPlusHelpers.push(ph);
+				this.playersPlusHelpers.add(ph);
 				if(ph[0].aspect != "Time" && ph[0].aspect != "Breath") availablePlayers.removeFromArray(ph[0]);   //for land qeusts only, breath players can do multiple. time players ALWAYS do multiple of everything.
 				if(ph[1] && ph[0].aspect != "Time" && ph[0].aspect != "Breath" )availablePlayers.removeFromArray(ph[1]);
 			}
@@ -39,13 +39,13 @@ class DoLandQuest extends Scene{
 
 		if((p.aspect == "Blood" || p.class_name == "Page") ){// if page or blood player, can't do it on own.
 			if(playerPlusHelper[1] != null){
-				if((p.landLevel < this.landLevelNeeded || p.aspect == "Space") || Math.seededRandom() > .5){
+				if((p.landLevel < this.landLevelNeeded || p.aspect == "Space") || seededRandom() > .5){
 					return (playerPlusHelper);
 				}
 
 			}
 		}else{
-			if((p.landLevel < this.landLevelNeeded || p.aspect == "Space") || Math.seededRandom() > .5){
+			if((p.landLevel < this.landLevelNeeded || p.aspect == "Space") || seededRandom() > .5){
 				return (playerPlusHelper);
 			}
 		}
@@ -55,12 +55,12 @@ class DoLandQuest extends Scene{
 
 		if(player.fraymotifs.length == 0){
 			f = this.session.fraymotifCreator.makeFraymotif([player], 1);//shitty intial fraymotif.
-			player.fraymotifs.push(f);
+			player.fraymotifs.add(f);
 			return "The " + player.htmlTitle() + " feels...different. Like they are starting to understand what it MEANS to be a " + player.htmlTitleBasic() +". Huh. What do you think '" + f.name + "' means? ";
 		}
 
 		//i expect to do at least 10 land quests, so have a 3/10 chance of getting a fraymotif.
-		var randomNumber = Math.seededRandom();
+		var randomNumber = seededRandom();
 		if(randomNumber > 0.2) return "";
 
 		var f = player.getNewFraymotif(helper);
@@ -69,8 +69,8 @@ class DoLandQuest extends Scene{
 	}
 	String fraymotifFlavorTextForPlayer(player, fraymotif){
 		var normalWays = ["The " + player.htmlTitle() + " purchases " + fraymotif.name + "from the fraymotif store like a sensible person. "];
-		normalWays.push("The " + player.htmlTitle() + " has finally saved up enough boondollars to buy " + fraymotif.name + "from the fraymotif store. ");
-		if(Math.seededRandom() > 0.5) return getRandomElementFromArray(normalWays);
+		normalWays.add("The " + player.htmlTitle() + " has finally saved up enough boondollars to buy " + fraymotif.name + "from the fraymotif store. ");
+		if(seededRandom() > 0.5) return getRandomElementFromArray(normalWays);
 		//otherwise do special shit.
 		if(player.class_name == "Thief") return "The " + player.htmlTitle() + " blatantly robs the fraymotif store, scoring " + fraymotif.name + ".  I sure hope it's worth the risk of being put in the slammer. ";
 		if(player.class_name == "Rogue") return "The " + player.htmlTitle() + " daringly heists fraymotif store, scoring " + fraymotif.name + ".  Nobody will notice it's missing for days. ";
@@ -110,7 +110,7 @@ class DoLandQuest extends Scene{
 			}
 		}
 
-		if(player.aspect == "Time" && Math.seededRandom() > .2){ //time players often partner up with themselves
+		if(player.aspect == "Time" && seededRandom() > .2){ //time players often partner up with themselves
 			return player;
 		}
 
@@ -125,7 +125,7 @@ class DoLandQuest extends Scene{
 
 
 		//if i'm not blood or page, or space, or maybe time random roll for a friend.
-		if(this.session.availablePlayers.length > 1 && Math.seededRandom() > .5){
+		if(this.session.availablePlayers.length > 1 && seededRandom() > .5){
 			helper = findHighestMobilityPlayer(availablePlayers);
 			if(player == helper ){
 				return null;
@@ -169,7 +169,7 @@ class DoLandQuest extends Scene{
 		var r2 = helper.getRelationshipWith(player);
 
 		if(helper.aspect == "Breath"){
-			this.session.availablePlayers.push(player); //player isn't even involved, at this point.
+			this.session.availablePlayers.add(player); //player isn't even involved, at this point.
 			helper.increasePower();
 			player.landLevel ++;
 			if(r2.value > 0){
@@ -305,7 +305,7 @@ class DoLandQuest extends Scene{
 			ret += " does";
 		}
 
-		if(Math.seededRandom() >0.8){
+		if(seededRandom() >0.8){
 			ret += " quests at " + player.shortLand();
 		}else{
 			ret += " quests in the " + player.land;

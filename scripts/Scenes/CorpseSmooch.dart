@@ -22,7 +22,7 @@ class CorpseSmooch extends Scene {
 			var p = deadPlayers[i];
 			//only get one shot at this. if you're a jerk, no luck.
 			//if(p.dreamSelf){ //no longer only dream self cause this generates important events for ANY death that is left unfixed.
-			this.dreamersToRevive.push(p);
+			this.dreamersToRevive.add(p);
 			//}
 		}
 		//corspses can't smooch themselves.

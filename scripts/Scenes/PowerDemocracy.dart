@@ -23,7 +23,7 @@ class PowerDemocracy extends Scene{
 	}
 	dynamic content(){
 		String ret = "";
-		var rand = Math.seededRandom();
+		var rand = seededRandom();
 		if(rand < .25){
 			ret += getRandomElementFromArray(democracyTasks);
 			this.session.democraticArmy.power += 10;

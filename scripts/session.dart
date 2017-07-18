@@ -4,13 +4,14 @@ part of SBURBSim;
 class Session {
 	var session_id; //initial seed
 	//var sceneRenderingEngine = new SceneRenderingEngine(false); //default is homestuck  //comment this line out if need to run sim without it crashing
-	List<dynamic> players = [];	var fraymotifCreator = new FraymotifCreator();  //as long as FraymotifCreator has no state data, this is fine.
+	List<Player> players = [];
+	var fraymotifCreator = new FraymotifCreator();  //as long as FraymotifCreator has no state data, this is fine.
 	bool hasClubs = false;
 	num sessionHealth = 500; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
 	bool hasDiamonds = false;
 	bool opossumVictory = false;
 	bool hasBreakups = false;  //sessions aren't in charge of denizens anymore, they are for players and set when they get in the medium
-	List<dynamic> replayers = []; //used for fan oc easter eggs.
+	List<Player> replayers = []; //used for fan oc easter eggs.
 	var afterLife = new AfterLife();
 	var queensRing = null; //eventually have white and black ones.
 	var kingsScepter = null;
@@ -46,7 +47,7 @@ class Session {
 	num minFrogLevel = 18;
 	num goodFrogLevel = 28;
 	bool reckoningStarted = false;
-	List<dynamic> aliensClonedOnArrival = []; //if i'm gonna do time shenanigans, i need to know what the aliens were like when they got here.
+	List<Player> aliensClonedOnArrival = []; //if i'm gonna do time shenanigans, i need to know what the aliens were like when they got here.
 	bool murdersHappened = false;
 	bool queenRejectRing = false;
 	bool goodLuckEvent = false;
@@ -64,15 +65,15 @@ class Session {
 	bool questBed = false;
 	bool sacrificialSlab = false;
 	num sessionType = -999;
-	List<dynamic> doomedTimelineReasons = [];
+	List<String> doomedTimelineReasons = []; //am I even still using this?
 	num currentSceneNum = 0;
-	List<dynamic> scenes = []; //scene controller initializes all this.
-	List<dynamic> reckoningScenes = [];
-	List<dynamic> deathScenes = [];
-	List<dynamic> available_scenes = [];
+	List<Scene> scenes = []; //scene controller initializes all this.
+	List<Scene> reckoningScenes = [];
+	List<Scene> deathScenes = [];
+	List<Scene> available_scenes = [];
 	bool hadCombinedSession = false;
 	var parentSession = null;
-	List<dynamic> availablePlayers = [];  //which players are available for scenes or whatever.
+	List<Player> availablePlayers = [];  //which players are available for scenes or whatever.
 	List<dynamic> importantEvents = [];
 	bool yellowYard = false;
 	var yellowYardController = new YellowYardResultController();//don't expect doomed time clones to follow them to any new sessions
@@ -141,7 +142,7 @@ class Session {
 			return this.addEventToUndoAndResetScratch(e); //works different
 		}
 		if(e){//will be null if undoing an undo
-			this.yellowYardController.eventsToUndo.push(e);
+			this.yellowYardController.eventsToUndo.add(e);
 		}
 		//reinit the seed and restart the session
 		var savedPlayers = curSessionGlobalVar.players;
@@ -164,7 +165,7 @@ class Session {
 		//print(getPlayersTitles(curSessionGlobalVar.aliensClonedOnArrival));
 		var aliens = []  ;//if don't make copy of aliensClonedOnArrival, goes into an infinite loop as it loops on it and adds to it inside of addAliens;
 		for(num i = 0; i<that.aliensClonedOnArrival.length; i++){
-			aliens.push(that.aliensClonedOnArrival[i]);
+			aliens.add(that.aliensClonedOnArrival[i]);
 		}
 		that.aliensClonedOnArrival = [];//jettison old clones.
 		addAliensToSession(curSessionGlobalVar, aliens);
@@ -174,7 +175,7 @@ class Session {
 	void addEventToUndoAndResetScratch(e){
 		print('yellow yard from scratched session');
 		if(e){//will be null if undoing an undo
-			this.yellowYardController.eventsToUndo.push(e);
+			this.yellowYardController.eventsToUndo.add(e);
 		}
 		var ectoSave = this.ectoBiologyStarted;
 		reinit();
@@ -350,14 +351,14 @@ class Session {
 		var f = new Fraymotif([],  "Red Miles", 3);
 		f.effects.add(new FraymotifEffect("power",2,true));
 		f.flavorText = " You cannot escape them ";
-		this.queensRing.fraymotifs.push(f);
+		this.queensRing.fraymotifs.add(f);
 
 		this.kingsScepter = new GameEntity(this, "!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!",false);
 		this.kingsScepter.setStats(0,0,0,0,0,0,0,false, false, [],1000);
 		f = new Fraymotif([],  "Reckoning Meteors", 3)  ;//TODO eventually check for this fraymotif (just lik you do troll psionics) to decide if you can start recknoing.;
 		f.effects.add(new FraymotifEffect("power",2,true));
 		f.flavorText = " The very meteors from the Reckoning rain down. ";
-		this.kingsScepter.fraymotifs.push(f);
+		this.kingsScepter.fraymotifs.add(f);
 		
 		this.king = new GameEntity(this, "Black King", this.kingsScepter);
 		//minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs
@@ -374,7 +375,7 @@ class Session {
 		f = new Fraymotif([],  "Stab To Meet You", 1);
 		f.effects.add(new FraymotifEffect("power",3,true));
 		f.flavorText = " It's pretty much how he says 'Hello'. ";
-		this.jack.fraymotifs.push(f);
+		this.jack.fraymotifs.add(f);
 
 		this.democraticArmy = new GameEntity(this, "Democratic Army",null); //doesn't actually exist till WV does his thing.
 		this.democraticArmy.carapacian = true;
@@ -382,7 +383,7 @@ class Session {
 		f = new Fraymotif([],  "Democracy Charge", 2);
 		f.effects.add(new FraymotifEffect("power",3,true));
 		f.flavorText = " The people have chosen to Rise Up against their oppressors. ";
-		this.democraticArmy.fraymotifs.push(f);
+		this.democraticArmy.fraymotifs.add(f);
 
 
 	}
@@ -542,7 +543,7 @@ dynamic findSceneNamed(scenesToCheck, name){
 
 		for(num i = 0; i<aliens.length; i++){
 			var survivor = aliens[i];
-			newSession.aliensClonedOnArrival.push(clonePlayer(survivor, newSession));
+			newSession.aliensClonedOnArrival.add(clonePlayer(survivor, newSession));
 		}
 		//don't want relationships to still be about original players
 		for(num i = 0; i<newSession.aliensClonedOnArrival.length; i++){

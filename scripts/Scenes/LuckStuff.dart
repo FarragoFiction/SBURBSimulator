@@ -30,12 +30,12 @@ class LuckStuff extends Scene{
 			//can have two luck events in same turn, whatever. fuck this complicated code, what was i even thinking???
 			if(rollValueHigh > this.minHighValue){
 				//alert("High  roll of: " + rollValueHigh);
-				this.rolls.push(new Roll(player, rollValueHigh));
+				this.rolls.add(new Roll(player, rollValueHigh));
 			}
 			
 			if(rollValueLow < this.minLowValue){
 				//alert("Low  roll of: " + rollValueLow);
-				this.rolls.push(new Roll(player, rollValueLow));
+				this.rolls.add(new Roll(player, rollValueLow));
 			}
 		}
 		return this.rolls.length > 0;
@@ -217,7 +217,7 @@ class LuckStuff extends Scene{
 				//roll.player.makeDead("luckily on their Sacrificial Slab") doesn't make a ghost 'cause the corpse itself revives'
 			}
 			var f = this.session.fraymotifCreator.makeFraymotif([roll.player], 3);//first god tier fraymotif
-			roll.player.fraymotifs.push(f);
+			roll.player.fraymotifs.add(f);
 			ret += " They learn " + f.name + ". " ;
 			roll.player.makeGodTier();
 

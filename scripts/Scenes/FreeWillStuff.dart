@@ -70,7 +70,7 @@ class FreeWillStuff extends Scene{
 		var divID = (div.attr("id")) + "_freeWillBulshit" + this.playerGodTiered.chatHandle;
 		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
 		var f = this.session.fraymotifCreator.makeFraymotif([this.playerGodTiered], 3);//first god tier fraymotif
-		this.playerGodTiered.fraymotifs.push(f);
+		this.playerGodTiered.fraymotifs.add(f);
 		div.append(" They learn " + f.name + ". ") ;
 		div.append(canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);
@@ -122,7 +122,7 @@ class FreeWillStuff extends Scene{
 					return ret;
 				}
 				//NOT luck. just obfuscated reasons.
-				if(Math.seededRandom() > 0.5){
+				if(seededRandom() > 0.5){
 					//print("Free will stop from killing everybody: " + this.session.session_id);
 					ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. No matter HOW much of an asshole people are, SBURB is the true enemy, and they are not going to let themselves forget that. ";
 					player.unmakeMurderMode();
@@ -147,9 +147,9 @@ class FreeWillStuff extends Scene{
 	}
 	dynamic considerEngagingMurderMode(player){
 		var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
-		if(player.isActive() && enemies.length > 2 && player.sanity < 0 && !player.murderMode && Math.seededRandom() >0.98){
+		if(player.isActive() && enemies.length > 2 && player.sanity < 0 && !player.murderMode && seededRandom() >0.98){
 			return this.becomeMurderMode(player);
-		}else if(enemies.length > 0 && player.sanity < 0 && Math.seededRandom() > 0.98){
+		}else if(enemies.length > 0 && player.sanity < 0 && seededRandom() > 0.98){
 			return this.forceSomeOneElseMurderMode(player);
 		}
 		return null;
@@ -237,7 +237,7 @@ class FreeWillStuff extends Scene{
 					}
 				}
 			}
-			if(bestPatsy.murderMode && Math.seededRandom() > .75) bestPatsy = null; //mostly don't bother already murder mode players.
+			if(bestPatsy.murderMode && seededRandom() > .75) bestPatsy = null; //mostly don't bother already murder mode players.
 			return bestPatsy;
 	}
 	bool canInfluenceEnemies(player){

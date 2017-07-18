@@ -51,9 +51,9 @@ class StartDemocracy extends Scene {
 	dynamic content(){
 		this.friend.increasePower();
 		removeFromArray(this.friend, this.session.availablePlayers);
-		this.session.available_scenes.unshift( new PrepareToExileQueen(session));  //make it top priority, so unshift, don't push
-		this.session.available_scenes.unshift( new ExileQueen(session));  //make it top priority, so unshift, don't push
-		this.session.available_scenes.unshift( new PowerDemocracy(session));  //make it top priority, so unshift, don't push
+		this.session.available_scenes.insert(0, new PrepareToExileQueen(session));  //make it top priority, so unshift, don't push
+		this.session.available_scenes.insert(0, new ExileQueen(session));  //make it top priority, so unshift, don't push
+		this.session.available_scenes.insert(0, new PowerDemocracy(session));  //make it top priority, so unshift, don't push
 
 		String ret = " The " + this.friend.htmlTitle() + " is just minding their own business when they are approached by an adorable little Dersite. ";
 		ret += " The Dersite introduces himself as a Warweary Villein hoping to recruit a Champion. ";

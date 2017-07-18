@@ -10,7 +10,7 @@ void makeFraymotif(){
 		var tier = querySelector('[name;="tier"] option:selected');
 		List<dynamic> aspects = [];
 		querySelector('#aspects :selected').each((i, selected){
-			aspects.push(querySelector(selected).text());
+			aspects.add(querySelector(selected).text());
 		});
 		//in real sim, won't be shuffled, first player will be first element
 		var players = createPlayersFromAspects(aspects);
@@ -23,7 +23,7 @@ void makeFraymotif(){
 		querySelector("#fm"+fraymotifSandBoxes.length).click((){
 			fraymotifClicked(fmsb);
 		});
-		fraymotifSandBoxes.push(fmsb);
+		fraymotifSandBoxes.add(fmsb);
 }
 
 
@@ -134,7 +134,7 @@ dynamic createPlayersFromAspects(aspects){
 	available_classes = classes; //allow all classes again for next fraymotif.
 	available_aspects = all_aspects;
 	for(num i = 0; i< aspects.length; i++){
-		ret.push(getPlayerForAspect(aspects[i]));
+		ret.add(getPlayerForAspect(aspects[i]));
 	}
 	return ret;
 }

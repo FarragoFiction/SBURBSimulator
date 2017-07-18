@@ -83,7 +83,7 @@ class PlayerDiedButCouldGodTier {
 			div.append(canvasHTML2);
 			var canvasDiv2 = querySelector("#canvas"+ divID2);
 			List<dynamic> players = [];
-			players.push(player);
+			players.add(player);
 			drawGetTiger(canvasDiv2, players,repeatTime);
 			return true;
 	}
@@ -538,7 +538,7 @@ dynamic removeFrogSpam(events){
 		 if(events[i].constructor.name == "FrogBreedingNeedsHelp"){
 			 frogsSoFar ++;
 			 if(frogsSoFar > 1){
-				 eventsToRemove.push(events[i]);
+				 eventsToRemove.add(events[i]);
 			 }
 		 }
 	 }
@@ -560,7 +560,7 @@ dynamic removeRepeatEvents(events){
 		  //don't be literally teh same object, but do you match?
 		   if(e1 != e2 && doEventsMatch(e1,e2)){
 			 // print(e1.humanLabel() + " matches " + e2.humanLabel())
-              eventsToRemove.push(e2);
+              eventsToRemove.add(e2);
 			}
 		}
      }
@@ -576,7 +576,7 @@ dynamic padEventsToNumWithKilling(events, session, doomedTimeClone, num){
 	var num = num - events.length;
 	num = Math.min(num, session.players.length);
 	for(int i = 0; i<num; i++){
-			events.push(new KillPlayer(session, session.players[i]))
+			events.add(new KillPlayer(session, session.players[i]))
 	}
 	return events;
 }

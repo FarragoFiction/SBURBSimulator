@@ -283,16 +283,16 @@ void initGraphs(){
 		var freeWill = new Graph("freeWill", player.title(),[], getColorFromAspect(player.aspect));
 		var mobility = new Graph("mobility", player.title(),[], getColorFromAspect(player.aspect));
 		var hp = new Graph("hp", player.title(),[], getColorFromAspect(player.aspect));
-		player.graphs.push(powerGraph);
-		player.graphs.push(luckGraph1);
-		player.graphs.push(luckGraph2);
-		player.graphs.push(triggerGraph);
-		player.graphs.push(landLevelGraph);
-		player.graphs.push(enemyGraph);
-		player.graphs.push(friendGraph);
-		player.graphs.push(mobility);
-		player.graphs.push(freeWill);
-		player.graphs.push(hp);
+		player.graphs.add(powerGraph);
+		player.graphs.add(luckGraph1);
+		player.graphs.add(luckGraph2);
+		player.graphs.add(triggerGraph);
+		player.graphs.add(landLevelGraph);
+		player.graphs.add(enemyGraph);
+		player.graphs.add(friendGraph);
+		player.graphs.add(mobility);
+		player.graphs.add(freeWill);
+		player.graphs.add(hp);
 	}
 }
 
@@ -327,16 +327,16 @@ void renderGraphs(){
 void updateGraphs(){
 	for(num i = 0; i<curSessionGlobalVar.players.length; i++){
 		var player = curSessionGlobalVar.players[i];
-		getGraphWithLabel(player.graphs, "power").points.push(player.power);
-		getGraphWithLabel(player.graphs, "minLuck").points.push(player.minLuck);
-		getGraphWithLabel(player.graphs, "maxLuck").points.push(player.maxLuck);
-		getGraphWithLabel(player.graphs, "sanity").points.push(player.sanity);
-		getGraphWithLabel(player.graphs, "landLevel").points.push(player.landLevel);
-		getGraphWithLabel(player.graphs, "bestFriendLevel").points.push(player.getHighestRelationshipValue());
-		getGraphWithLabel(player.graphs, "worstEnemyLevel").points.push(player.getLowestRelationshipValue());
-		getGraphWithLabel(player.graphs, "freeWill").points.push(player.freeWill);
-		getGraphWithLabel(player.graphs, "mobility").points.push(player.mobility);
-		getGraphWithLabel(player.graphs, "hp").points.push(player.hp);
+		getGraphWithLabel(player.graphs, "power").points.add(player.power);
+		getGraphWithLabel(player.graphs, "minLuck").points.add(player.minLuck);
+		getGraphWithLabel(player.graphs, "maxLuck").points.add(player.maxLuck);
+		getGraphWithLabel(player.graphs, "sanity").points.add(player.sanity);
+		getGraphWithLabel(player.graphs, "landLevel").points.add(player.landLevel);
+		getGraphWithLabel(player.graphs, "bestFriendLevel").points.add(player.getHighestRelationshipValue());
+		getGraphWithLabel(player.graphs, "worstEnemyLevel").points.add(player.getLowestRelationshipValue());
+		getGraphWithLabel(player.graphs, "freeWill").points.add(player.freeWill);
+		getGraphWithLabel(player.graphs, "mobility").points.add(player.mobility);
+		getGraphWithLabel(player.graphs, "hp").points.add(player.hp);
 		//print(player.mobility);
 	}
 }
@@ -474,7 +474,7 @@ void callNextIntroWithDelay(player_index){
 
 void newPlayer(){
 	var p = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
-	curSessionGlobalVar.players.push(p);
+	curSessionGlobalVar.players.add(p);
 	if(curSessionGlobalVar.players.length == 13) alert("Like, go ahead and all, but this is your Official Warning that the sim is optimized for no more than 12 player sessions.");
 	charCreatorHelperGlobalVar.drawSinglePlayer(p);
 

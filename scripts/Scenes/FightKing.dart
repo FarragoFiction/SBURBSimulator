@@ -47,7 +47,7 @@ class FightKing extends Scene {
 
 		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
 		var fighting = this.getGoodGuys();
-		if(this.session.democraticArmy.getStat("currentHP") > 0) fighting.push(this.session.democraticArmy);
+		if(this.session.democraticArmy.getStat("currentHP") > 0) fighting.add(this.session.democraticArmy);
 		this.session.king.strife(div, fighting,0);
 
 	}

@@ -255,14 +255,14 @@ void roboMode(){
 		p.power += 20; //Robots are superior.
 		p.quirk.capitalization = 2; //OBVIOUSLY robots all speak in all caps.
 		p.quirk.punctuation = 0; //robots speak in monotone, DUH.
-		p.quirk.lettersToReplaceIgnoreCase.push(["\\bhuh\\b","BEEP"]);
-		p.quirk.lettersToReplaceIgnoreCase.push(["\\ber\\b","BEEP"]);
-		p.quirk.lettersToReplaceIgnoreCase.push(["\\bhrmm\\b","BEEP"]);
-		p.quirk.lettersToReplaceIgnoreCase.push(["\\bum\\b","BEEP"]);
-		p.quirk.lettersToReplaceIgnoreCase.push(["\\buh\\b","BEEP"]);
-		p.quirk.lettersToReplaceIgnoreCase.push(["\\boh\\b","BEEP"]);
-		p.quirk.lettersToReplaceIgnoreCase.push(["fuck","BEEP"]);
-		p.quirk.lettersToReplaceIgnoreCase.push(["ass","BEEP"]);
+		p.quirk.lettersToReplaceIgnoreCase.add(["\\bhuh\\b","BEEP"]);
+		p.quirk.lettersToReplaceIgnoreCase.add(["\\ber\\b","BEEP"]);
+		p.quirk.lettersToReplaceIgnoreCase.add(["\\bhrmm\\b","BEEP"]);
+		p.quirk.lettersToReplaceIgnoreCase.add(["\\bum\\b","BEEP"]);
+		p.quirk.lettersToReplaceIgnoreCase.add(["\\buh\\b","BEEP"]);
+		p.quirk.lettersToReplaceIgnoreCase.add(["\\boh\\b","BEEP"]);
+		p.quirk.lettersToReplaceIgnoreCase.add(["fuck","BEEP"]);
+		p.quirk.lettersToReplaceIgnoreCase.add(["ass","BEEP"]);
 		for(num k = 0; k <p.relationships.length; k++){
 				var r = p.relationships[k];
 				r.value = 0.00001; // Clearly they are just tin cans without feelings. Robo, or otherwise.  if i set it to zero, they never even bother to talk to each other....
@@ -469,14 +469,14 @@ void debugPowerfulKing(){
 
 void generateDebugPlayers1(){
 	//Player(class_name, aspect, land, kernel_sprite, moon);
-	players.push(new Player("Knight", "Time", "Land of Headbanging and Stress", "Bugs", "Prospit", true));
-	players.push(new Player("Page", "Space", "Land of BS and Tickles", "Code", "Prospit", true));
-	players.push(new Player("Seer", "Void", "Land of Nothing and More Nothing", "Frog", "Prospit", true));
-	players.push(new Player("Mage", "Mind", "Land of Slides and Whistles", "Lame", "Prospit", false));
-	players.push(new Player("Heir", "Blood", "Land of Debugging and Tests", "Decoy", "Derse", false));
-	players.push(new Player("Witch", "Light", "Land of Bugs and More Bugs", "First Guardian", "Derse",false));
-	players.push(new Player("Thief", "Hope", "Land of Why and Serious", "Debug", "Derse",false));
-	players.push(new Player("Rogue", "Heart", "Land of Flipping and Shit", "Spray", "Derse",false));
+	players.add(new Player("Knight", "Time", "Land of Headbanging and Stress", "Bugs", "Prospit", true));
+	players.add(new Player("Page", "Space", "Land of BS and Tickles", "Code", "Prospit", true));
+	players.add(new Player("Seer", "Void", "Land of Nothing and More Nothing", "Frog", "Prospit", true));
+	players.add(new Player("Mage", "Mind", "Land of Slides and Whistles", "Lame", "Prospit", false));
+	players.add(new Player("Heir", "Blood", "Land of Debugging and Tests", "Decoy", "Derse", false));
+	players.add(new Player("Witch", "Light", "Land of Bugs and More Bugs", "First Guardian", "Derse",false));
+	players.add(new Player("Thief", "Hope", "Land of Why and Serious", "Debug", "Derse",false));
+	players.add(new Player("Rogue", "Heart", "Land of Flipping and Shit", "Spray", "Derse",false));
 
 	for(num j = 0; j<players.length; j++){
 		players[j].generateRelationships(players);
@@ -487,11 +487,11 @@ void generateDebugPlayers1(){
 
 void generateVoidLeader(){
 	//Player(class_name, aspect, land, kernel_sprite, moon);
-	players.push(new Player("Knight", "Void", "Land of Headbanging and Stress", "Bugs", "Prospit", true));
-	players.push(new Player("Heir", "Space", "Land of BS and Tickles", "Code", "Prospit", true));
-	players.push(new Player("Seer", "Time", "Land of Nothing and More Nothing", "Frog", "Prospit", true));
-	players.push(new Player("Mage", "Mind", "Land of Slides and Whistles", "Lame", "Prospit", false));
-	players.push(new Player("Thief", "Hope", "Land of Why and Serious", "Debug", "Derse",false));
+	players.add(new Player("Knight", "Void", "Land of Headbanging and Stress", "Bugs", "Prospit", true));
+	players.add(new Player("Heir", "Space", "Land of BS and Tickles", "Code", "Prospit", true));
+	players.add(new Player("Seer", "Time", "Land of Nothing and More Nothing", "Frog", "Prospit", true));
+	players.add(new Player("Mage", "Mind", "Land of Slides and Whistles", "Lame", "Prospit", false));
+	players.add(new Player("Thief", "Hope", "Land of Why and Serious", "Debug", "Derse",false));
 
 	for(num j = 0; j<players.length; j++){
 		players[j].generateRelationships(players);
@@ -501,14 +501,14 @@ void generateVoidLeader(){
 
 
 void generateDebugBloodPlayers(){
-	players.push(new Player("Knight", "Blood", "Land of Headbanging and Stress", "Bugs", "Prospit", true));
-	players.push(new Player("Page", "Blood", "Land of BS and Tickles", "Code", "Prospit", true));
-	players.push(new Player("Seer", "Blood", "Land of Nothing and More Nothing", "Frog", "Prospit", true));
-	players.push(new Player("Mage", "Blood", "Land of Slides and Whistles", "Lame", "Prospit", false));
-	players.push(new Player("Heir", "Blood", "Land of Debugging and Tests", "Decoy", "Derse", false));
-	players.push(new Player("Witch", "Space", "Land of Bugs and More Bugs", "First Guardian", "Derse",false));
-	players.push(new Player("Thief", "Time", "Land of Why and Serious", "Debug", "Derse",false));
-	players.push(new Player("Rogue", "Blood", "Land of Flipping and Shit", "Spray", "Derse",false));
+	players.add(new Player("Knight", "Blood", "Land of Headbanging and Stress", "Bugs", "Prospit", true));
+	players.add(new Player("Page", "Blood", "Land of BS and Tickles", "Code", "Prospit", true));
+	players.add(new Player("Seer", "Blood", "Land of Nothing and More Nothing", "Frog", "Prospit", true));
+	players.add(new Player("Mage", "Blood", "Land of Slides and Whistles", "Lame", "Prospit", false));
+	players.add(new Player("Heir", "Blood", "Land of Debugging and Tests", "Decoy", "Derse", false));
+	players.add(new Player("Witch", "Space", "Land of Bugs and More Bugs", "First Guardian", "Derse",false));
+	players.add(new Player("Thief", "Time", "Land of Why and Serious", "Debug", "Derse",false));
+	players.add(new Player("Rogue", "Blood", "Land of Flipping and Shit", "Spray", "Derse",false));
 
 	for(num j = 0; j<players.length; j++){
 		players[j].generateRelationships(players);
@@ -518,14 +518,14 @@ void generateDebugBloodPlayers(){
 
 
 void generateDebugRagePlayers(){
-	players.push(new Player("Knight", "Rage", "Land of Headbanging and Stress", "Bugs", "Prospit", true));
-	players.push(new Player("Page", "Rage", "Land of BS and Tickles", "Code", "Prospit", true));
-	players.push(new Player("Seer", "Rage", "Land of Nothing and More Nothing", "Frog", "Prospit", true));
-	players.push(new Player("Mage", "Rage", "Land of Slides and Whistles", "Lame", "Prospit", false));
-	players.push(new Player("Heir", "Rage", "Land of Debugging and Tests", "Decoy", "Derse", false));
-	players.push(new Player("Witch", "Space", "Land of Bugs and More Bugs", "First Guardian", "Derse",false));
-	players.push(new Player("Thief", "Time", "Land of Why and Serious", "Debug", "Derse",false));
-	players.push(new Player("Rogue", "Rage", "Land of Flipping and Shit", "Spray", "Derse",false));
+	players.add(new Player("Knight", "Rage", "Land of Headbanging and Stress", "Bugs", "Prospit", true));
+	players.add(new Player("Page", "Rage", "Land of BS and Tickles", "Code", "Prospit", true));
+	players.add(new Player("Seer", "Rage", "Land of Nothing and More Nothing", "Frog", "Prospit", true));
+	players.add(new Player("Mage", "Rage", "Land of Slides and Whistles", "Lame", "Prospit", false));
+	players.add(new Player("Heir", "Rage", "Land of Debugging and Tests", "Decoy", "Derse", false));
+	players.add(new Player("Witch", "Space", "Land of Bugs and More Bugs", "First Guardian", "Derse",false));
+	players.add(new Player("Thief", "Time", "Land of Why and Serious", "Debug", "Derse",false));
+	players.add(new Player("Rogue", "Rage", "Land of Flipping and Shit", "Spray", "Derse",false));
 
 	for(num j = 0; j<players.length; j++){
 		players[j].generateRelationships(players);
@@ -535,18 +535,18 @@ void generateDebugRagePlayers(){
 
 
 void generateDebugAllPlayers(){
-	players.push(new Player("Knight", "Space", "Land of Headbanging and Stress", "Bugs", "Prospit", true));
-	players.push(new Player("Page", "Time", "Land of BS and Tickles", "Code", "Prospit", true));
-	players.push(new Player("Seer", "Void", "Land of Nothing and More Nothing", "Frog", "Prospit", true));
-	players.push(new Player("Mage", "Mind", "Land of Slides and Whistles", "Lame", "Prospit", true));
-	players.push(new Player("Heir", "Blood", "Land of Debugging and Tests", "Decoy", "Derse", true));
-	players.push(new Player("Witch", "Light", "Land of Bugs and More Bugs", "First Guardian", "Derse",true));
-	players.push(new Player("Thief", "Hope", "Land of Why and Serious", "Debug", "Derse",true));
-	players.push(new Player("Maid", "Rage", "Land of Flipping and Shit", "Spray", "Derse",true));
-	players.push(new Player("Rogue", "Doom", "Land of Fire and Ice", "Dictionary", "Derse",true));
-	players.push(new Player("Sylph", "Life", "Land of Why and Not", "Wizard", "Prospit",true));
-	players.push(new Player("Prince", "Breath", "Land of Here and There", "Beer", "Derse",true));
-	players.push(new Player("Bard", "Heart", "Land of Fake and Magic", "Nonsense", "Prospit",true));
+	players.add(new Player("Knight", "Space", "Land of Headbanging and Stress", "Bugs", "Prospit", true));
+	players.add(new Player("Page", "Time", "Land of BS and Tickles", "Code", "Prospit", true));
+	players.add(new Player("Seer", "Void", "Land of Nothing and More Nothing", "Frog", "Prospit", true));
+	players.add(new Player("Mage", "Mind", "Land of Slides and Whistles", "Lame", "Prospit", true));
+	players.add(new Player("Heir", "Blood", "Land of Debugging and Tests", "Decoy", "Derse", true));
+	players.add(new Player("Witch", "Light", "Land of Bugs and More Bugs", "First Guardian", "Derse",true));
+	players.add(new Player("Thief", "Hope", "Land of Why and Serious", "Debug", "Derse",true));
+	players.add(new Player("Maid", "Rage", "Land of Flipping and Shit", "Spray", "Derse",true));
+	players.add(new Player("Rogue", "Doom", "Land of Fire and Ice", "Dictionary", "Derse",true));
+	players.add(new Player("Sylph", "Life", "Land of Why and Not", "Wizard", "Prospit",true));
+	players.add(new Player("Prince", "Breath", "Land of Here and There", "Beer", "Derse",true));
+	players.add(new Player("Bard", "Heart", "Land of Fake and Magic", "Nonsense", "Prospit",true));
 
 
 	for(num j = 0; j<players.length; j++){
@@ -609,7 +609,7 @@ void session413(){
 			player.quirk = randomHumanSim(player);
 			player.guardian = guardian;
 			guardian.guardian = player;
-			curSessionGlobalVar.players.push(player);
+			curSessionGlobalVar.players.add(player);
 		}
 	}
 
@@ -642,7 +642,7 @@ void session111111(){
 			player.quirk = randomHumanSim(player);
 			player.guardian = guardian;
 			guardian.guardian = player;
-			curSessionGlobalVar.players.push(player);
+			curSessionGlobalVar.players.add(player);
 		}
 	}
 
@@ -932,7 +932,7 @@ void fruityRumpusAssholeFactory(){
 	for(num i = 0; i<curSessionGlobalVar.players.length; i++){
 		var p = curSessionGlobalVar.players[i];
 		var g = p.guardian;
-		var rand = Math.seededRandom();
+		var rand = seededRandom();
 		if(p.aspect == "Time"){
 			if(rand > 0.6){
 				session612IndexToTroll(g,4);
@@ -1082,8 +1082,8 @@ void nepetaQuest(){
 			player.quirk.favoriteNumber = 3;
 			guardian.quirk.favoriteNumber = 3;
 		}else{
-			player.quirk.lettersToReplaceIgnoreCase.push(["ee","33"], ["per","purr"]);//trying to reoleplay as nepeta, but badly.
-			player.quirk.lettersToReplaceIgnoreCase.push(["ee","33"], ["per","purr"]);
+			player.quirk.lettersToReplaceIgnoreCase.add(["ee","33"], ["per","purr"]);//trying to reoleplay as nepeta, but badly.
+			player.quirk.lettersToReplaceIgnoreCase.add(["ee","33"], ["per","purr"]);
 		}
 
 		guardian.hair = 7;
@@ -1112,7 +1112,7 @@ void session88888888(){
 		}
 		player.guardian = guardian;
 		guardian.guardian = player;
-		curSessionGlobalVar.players.push(player);
+		curSessionGlobalVar.players.add(player);
 	}
 	lucky8rk();
 	for(num i = 0; i<curSessionGlobalVar.players.length;i++){
@@ -1151,7 +1151,7 @@ void session420(){
 			guardian.initialize();
 			player.guardian = guardian;
 			guardian.guardian = player;
-			curSessionGlobalVar.players.push(player);
+			curSessionGlobalVar.players.add(player);
 		}
 	}
 
@@ -1186,7 +1186,7 @@ void session0(){
 			guardian.guardian = player;
 			player.initialize();
             guardian.initialize();
-			curSessionGlobalVar.players.push(player);
+			curSessionGlobalVar.players.add(player);
 		}
 	}
 
@@ -1235,8 +1235,8 @@ void session613(){
             guardian.initialize();
 			guardian.quirk = randomTrollSim(guardian);
 			player.quirk = randomTrollSim(player);
-			//curSessionGlobalVar.guardians.push(guardian);
-			curSessionGlobalVar.players.push(player);
+			//curSessionGlobalVar.guardians.add(guardian);
+			curSessionGlobalVar.players.add(player);
 			player.guardian = guardian;
 			guardian.guardian = player;
 		}
@@ -1272,8 +1272,8 @@ void session612(){
             guardian.initialize();
 			guardian.quirk = randomTrollSim(guardian);
 			player.quirk = randomTrollSim(player);
-			//curSessionGlobalVar.guardians.push(guardian);
-			curSessionGlobalVar.players.push(player);
+			//curSessionGlobalVar.guardians.add(guardian);
+			curSessionGlobalVar.players.add(player);
 			player.guardian = guardian;
 			guardian.guardian = player;
 		}
@@ -1320,10 +1320,10 @@ void session612IndexToTroll(player, index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 		var f = new Fraymotif([],  "Limeade Refreshment", 1);
-		f.effects.push(new FraymotifEffect("sanity",1,false));
-		f.effects.push(new FraymotifEffect("sanity",1,true));
+		f.effects.add(new FraymotifEffect("sanity",1,false));
+		f.effects.add(new FraymotifEffect("sanity",1,true));
 		f.flavorText = " All allies just settle their shit for a little while. Cool it. ";
-		player.fraymotifs.push(f);
+		player.fraymotifs.add(f);
 	}else if(index == 1){
 		player.moon = "Prospit";
 		player.aspect = "Mind";
@@ -1365,10 +1365,10 @@ void session612IndexToTroll(player, index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 		var f = new Fraymotif([],  "Chucklevoodoos", 1);
-		f.effects.push(new FraymotifEffect("sanity",3,false));
-		f.effects.push(new FraymotifEffect("sanity",3,true));
+		f.effects.add(new FraymotifEffect("sanity",3,false));
+		f.effects.add(new FraymotifEffect("sanity",3,true));
 		f.flavorText = " Oh god oh no no no no no no no no. The enemies are no longer doing okay, psychologically speaking. ";
-		player.fraymotifs.push(f);
+		player.fraymotifs.add(f);
 	}else if(index == 3){
 		player.moon = "Derse";
 		player.land = "Land of Caves and Silence";
@@ -1408,27 +1408,27 @@ void session612IndexToTroll(player, index){
 		player.interest1 = "Archaeology";
 		player.interest2 = "Death";
 		var savedSeed = Math.seed;
-		if(Math.seededRandom() > 0.6){
+		if(seededRandom() > 0.6){
 			player.robot = true; //not all aradias are robo aradias.
 			player.bloodColor = "#0021cb"; //b100 blood
 			player.hairColor = "#313131";
 		}
-		if(Math.seededRandom() > 0.6) player.dead = true; //not all aradias are ghost aradias.
+		if(seededRandom() > 0.6) player.dead = true; //not all aradias are ghost aradias.
 		Math.seed = savedSeed;
 		player.chatHandle = "apocalypseArisen";
 		player.godDestiny = true;
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 		var f = new Fraymotif([],  "Telekinisis", 1);
-		f.effects.push(new FraymotifEffect("power",2,true));
+		f.effects.add(new FraymotifEffect("power",2,true));
 		f.flavorText = " Large objects begin pelting the ENEMY. ";
-		player.fraymotifs.push(f);
+		player.fraymotifs.add(f);
 
 		var f = new Fraymotif([],  "Ghost Communing", 1);
-		f.effects.push(new FraymotifEffect("sanity",3,true));
-		f.effects.push(new FraymotifEffect("sanity",3,false));
+		f.effects.add(new FraymotifEffect("sanity",3,true));
+		f.effects.add(new FraymotifEffect("sanity",3,false));
 		f.flavorText = " The souls of the dead start hassling all enemies. ";
-		player.fraymotifs.push(f);
+		player.fraymotifs.add(f);
 
 	}else if(index == 5){
 		player.moon = "Derse";
@@ -1471,10 +1471,10 @@ void session612IndexToTroll(player, index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 		var f = new Fraymotif([],  "Animal Communing", 1);
-		f.effects.push(new FraymotifEffect("sanity",3,true));
-		f.effects.push(new FraymotifEffect("sanity",3,false));
+		f.effects.add(new FraymotifEffect("sanity",3,true));
+		f.effects.add(new FraymotifEffect("sanity",3,false));
 		f.flavorText = " Local animal equivalents start hassling all enemies. ";
-		player.fraymotifs.push(f);
+		player.fraymotifs.add(f);
 	}else if(index == 7){
 		player.moon = "Prospit";
 		player.land = "Land of Maps and Treasure";
@@ -1497,10 +1497,10 @@ void session612IndexToTroll(player, index){
 		player.quirk.prefix = "";
 		player.godDestiny = true;
 		var f = new Fraymotif([],  "Mind Control", 1);
-		f.effects.push(new FraymotifEffect("freeWill",3,true));
-		f.effects.push(new FraymotifEffect("freeWill",3,false));
+		f.effects.add(new FraymotifEffect("freeWill",3,true));
+		f.effects.add(new FraymotifEffect("freeWill",3,false));
 		f.flavorText = " All enemies start damaging themselves. It's kind of embarassing how easy this is.  ";
-		player.fraymotifs.push(f);
+		player.fraymotifs.add(f);
 
 	}else if(index == 8){
 		player.moon = "Prospit";
@@ -1583,14 +1583,14 @@ void session612IndexToTroll(player, index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 		var f = new Fraymotif([],  "Telekinisis", 1);
-		f.effects.push(new FraymotifEffect("power",2,true));
+		f.effects.add(new FraymotifEffect("power",2,true));
 		f.flavorText = " Large objects begin pelting the ENEMY. ";
-		player.fraymotifs.push(f);
+		player.fraymotifs.add(f);
 
 		var f = new Fraymotif([],  "Optic Blast", 1);
-		f.effects.push(new FraymotifEffect("power",2,true));
+		f.effects.add(new FraymotifEffect("power",2,true));
 		f.flavorText = " Red and blue eye beams pierce the ENEMY. ";
-		player.fraymotifs.push(f);
+		player.fraymotifs.add(f);
 	}
 }
 
@@ -1620,10 +1620,10 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 		var f = new Fraymotif([],  "Limeade Refreshment", 1);
-		f.effects.push(new FraymotifEffect("sanity",1,false));
-		f.effects.push(new FraymotifEffect("sanity",1,true));
+		f.effects.add(new FraymotifEffect("sanity",1,false));
+		f.effects.add(new FraymotifEffect("sanity",1,true));
 		f.flavorText = " All allies just settle their shit for a little while. Cool it. ";
-		player.fraymotifs.push(f);
+		player.fraymotifs.add(f);
 	}else if(index == 1){
 		player.moon = "Prospit";
 		player.land = "Land of Thought and Flow";
@@ -1664,10 +1664,10 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 		var f = new Fraymotif([],  "Chucklevoodoos", 1);
-		f.effects.push(new FraymotifEffect("sanity",3,false));
-		f.effects.push(new FraymotifEffect("sanity",3,true));
+		f.effects.add(new FraymotifEffect("sanity",3,false));
+		f.effects.add(new FraymotifEffect("sanity",3,true));
 		f.flavorText = " Oh god oh no no no no no no no no. The enemies are no longer doing okay, psychologically speaking. ";
-		player.fraymotifs.push(f);
+		player.fraymotifs.add(f);
 	}else if(index == 3){
 		player.moon = "Derse";
 		player.aspect = "Void";
@@ -1709,15 +1709,15 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 		var f = new Fraymotif([],  "Telekinisis", 1);
-		f.effects.push(new FraymotifEffect("power",2,true));
+		f.effects.add(new FraymotifEffect("power",2,true));
 		f.flavorText = " Large objects begin pelting the ENEMY. ";
-		player.fraymotifs.push(f);
+		player.fraymotifs.add(f);
 
 		var f = new Fraymotif([],  "Ghost Communing", 1);
-		f.effects.push(new FraymotifEffect("sanity",3,true));
-		f.effects.push(new FraymotifEffect("sanity",3,false));
+		f.effects.add(new FraymotifEffect("sanity",3,true));
+		f.effects.add(new FraymotifEffect("sanity",3,false));
 		f.flavorText = " The souls of the dead start hassling all enemies. ";
-		player.fraymotifs.push(f);
+		player.fraymotifs.add(f);
 	}else if(index == 5){
 		player.aspect = "Heart";
 		player.moon = "Derse";
@@ -1760,10 +1760,10 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 		var f = new Fraymotif([],  "Animal Communing", 1);
-		f.effects.push(new FraymotifEffect("sanity",3,true));
-		f.effects.push(new FraymotifEffect("sanity",3,false));
+		f.effects.add(new FraymotifEffect("sanity",3,true));
+		f.effects.add(new FraymotifEffect("sanity",3,false));
 		f.flavorText = " Local animal equivalents start hassling all enemies. ";
-		player.fraymotifs.push(f);
+		player.fraymotifs.add(f);
 	}else if(index == 7){
 		player.aspect = "Light";
 		player.moon = "Prospit";
@@ -1786,10 +1786,10 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 		var f = new Fraymotif([],  "Mind Control", 1);
-		f.effects.push(new FraymotifEffect("freeWill",3,true));
-		f.effects.push(new FraymotifEffect("freeWill",3,false));
+		f.effects.add(new FraymotifEffect("freeWill",3,true));
+		f.effects.add(new FraymotifEffect("freeWill",3,false));
 		f.flavorText = " All enemies start damaging themselves. It's kind of embarassing how easy this is.  ";
-		player.fraymotifs.push(f);
+		player.fraymotifs.add(f);
 
 	}else if(index == 8){
 		player.aspect = "Space";
@@ -1873,14 +1873,14 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 		var f = new Fraymotif([],  "Telekinisis", 1);
-		f.effects.push(new FraymotifEffect("power",2,true));
+		f.effects.add(new FraymotifEffect("power",2,true));
 		f.flavorText = " Large objects begin pelting the ENEMY. ";
-		player.fraymotifs.push(f);
+		player.fraymotifs.add(f);
 
 		var f = new Fraymotif([],  "Optic Blast", 1);
-		f.effects.push(new FraymotifEffect("power",2,true));
+		f.effects.add(new FraymotifEffect("power",2,true));
 		f.flavorText = " Red and blue eye beams pierce the ENEMY. ";
-		player.fraymotifs.push(f);
+		player.fraymotifs.add(f);
 	}
 }
 
@@ -1897,10 +1897,10 @@ void session1025(){
 			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
 			guardian.quirk = randomTrollSim(guardian);
 			player.quirk = randomTrollSim(player);
-			//curSessionGlobalVar.guardians.push(guardian);
+			//curSessionGlobalVar.guardians.add(guardian);
 			player.guardian = guardian;
 			guardian.guardian = player;
-			curSessionGlobalVar.players.push(player);
+			curSessionGlobalVar.players.add(player);
 		}
 	}
 

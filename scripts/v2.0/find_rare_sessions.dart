@@ -98,13 +98,13 @@ void filterSessionsJunior(){
 	List<dynamic> tmp = [];
 	sessionSummariesDisplayed = [];
 	for(num i = 0; i<allSessionsSummaries.length; i++){
-		sessionSummariesDisplayed.push(allSessionsSummaries[i]);
+		sessionSummariesDisplayed.add(allSessionsSummaries[i]);
 	}
 
 	for(num i = 0; i<sessionSummariesDisplayed.length; i++){
 		var ss = sessionSummariesDisplayed[i];
 		if(ss.players.length == num_players){
-			tmp.push(ss);
+			tmp.add(ss);
 		}
 	}
 	sessionSummariesDisplayed = tmp;
@@ -119,7 +119,7 @@ dynamic removeNonMatchingClasspects(tmp, classes, aspects){
 	for(num i = 0; i<tmp.length; i++){
 		var ss = tmp[i];
 		if(!ss.matchesClasspect(classes, aspects)){
-			toRemove.push(ss);
+			toRemove.add(ss);
 		}
 	}
 
@@ -138,16 +138,16 @@ void filterSessionSummaries(){
 	List<dynamic> filters = [];
 	sessionSummariesDisplayed = [] ;//can filter already filtered arrays.;
 	for(num i = 0; i<allSessionsSummaries.length; i++){
-			sessionSummariesDisplayed.push(allSessionsSummaries[i]);
+			sessionSummariesDisplayed.add(allSessionsSummaries[i]);
 	}
 
 	querySelector("input[name='filter']:checked").each((){;
-		filters.push(querySelector(this).val());
+		filters.add(querySelector(this).val());
 	});
 		for(num i = 0; i<sessionSummariesDisplayed.length; i++){
 			var ss = sessionSummariesDisplayed[i];
 			if(ss.satifies_filter_array(filters)){
-				tmp.push(ss);
+				tmp.add(ss);
 			}
 	}
 
@@ -155,11 +155,11 @@ void filterSessionSummaries(){
 	List<dynamic> aspects = [];
 
 	querySelector("input[name='filterAspect']:checked").each((){;
-		aspects.push(querySelector(this).val());
+		aspects.add(querySelector(this).val());
 	});
 
 	querySelector("input[name='filterClass']:checked").each((){;
-		classes.push(querySelector(this).val());
+		classes.add(querySelector(this).val());
 	});
 
 	tmp = removeNonMatchingClasspects(tmp,classes,aspects);
@@ -178,7 +178,7 @@ void filterSessionSummariesBy(filter){
 	sessionSummariesDisplayed = [];
 	if(!filter){
 		for(num i = 0; i<allSessionsSummaries.length; i++){
-			sessionSummariesDisplayed.push(allSessionsSummaries[i]);
+			sessionSummariesDisplayed.add(allSessionsSummaries[i]);
 		}
 		printSummaries();
 		printStats();
@@ -188,20 +188,20 @@ void filterSessionSummariesBy(filter){
 	for(num i = 0; i<sessionSummariesDisplayed.length; i++){
 		var ss = sessionSummariesDisplayed[i];
 		if(!filter){
-			tmp.push(ss);  //add all, but deep copy
+			tmp.add(ss);  //add all, but deep copy
 		}else if(filter == "No Frog" && ss.frogStatus == filter){
-			tmp.push(ss);
+			tmp.add(ss);
 		}else if(filter == "Sick Frog" && ss.frogStatus == filter){
-			tmp.push(ss);
+			tmp.add(ss);
 		}else if(filter == "Full Frog" && ss.frogStatus == filter){
-			tmp.push(ss);
+			tmp.add(ss);
 		}else if(filter == "timesAllDied" && ss.numLiving == 0){
-			tmp.push(ss);
+			tmp.add(ss);
 		}else if(filter == "timesAllLived" && ss.numDead == 0){
-			tmp.push(ss);
+			tmp.add(ss);
 		}else if(ss[filter]){
 			//print("adding filter");
-			tmp.push(ss);
+			tmp.add(ss);
 		}
 	}
 	sessionSummariesDisplayed = tmp;
@@ -216,7 +216,7 @@ void checkSessionsJunior(){
 	numSimulationsDone = 0; //but don't reset stats
 	sessionSummariesDisplayed = [];
 	for(num i = 0; i<allSessionsSummaries.length; i++){
-		sessionSummariesDisplayed.push(allSessionsSummaries[i]);
+		sessionSummariesDisplayed.add(allSessionsSummaries[i]);
 	}
 	querySelector("#story").html("");
 	numSimulationsToDo = parseInt(querySelector("#num_sessions").val());
@@ -231,7 +231,7 @@ void checkSessions(){
 	numSimulationsDone = 0; //but don't reset stats
 	sessionSummariesDisplayed = [];
 	for(num i = 0; i<allSessionsSummaries.length; i++){
-			sessionSummariesDisplayed.push(allSessionsSummaries[i]);
+			sessionSummariesDisplayed.add(allSessionsSummaries[i]);
 	}
 	//don't filter by anything.
 	querySelector("input[name='filter']").each((){;
@@ -295,11 +295,11 @@ void startSessionJunior(){
 void easterEggCallBackJR(){
 	initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar);  //need to redo it here because all other versions are in case customizations
 	//aaaaand. done.
-	sessionsSimulated.push(curSessionGlobalVar.session_id);
+	sessionsSimulated.add(curSessionGlobalVar.session_id);
 	var sum = curSessionGlobalVar.generateSummary();
 	var sumJR = sum.getSessionSummaryJunior();
-	allSessionsSummaries.push(sumJR);
-	sessionSummariesDisplayed.push(sumJR);
+	allSessionsSummaries.add(sumJR);
+	sessionSummariesDisplayed.add(sumJR);
 	var str = sumJR.generateHTML();
 	debug("<br><hr><font color = 'orange'> ABJ: " + getQuipAboutSessionJunior() + "</font><Br>" );
 	debug(str);
@@ -661,13 +661,13 @@ dynamic summarizeSession(session){
 
 		//return;
 	}
-	sessionsSimulated.push(curSessionGlobalVar.session_id);
+	sessionsSimulated.add(curSessionGlobalVar.session_id);
 
 	var sum = curSessionGlobalVar.generateSummary();
 	if(nonRareSessionCallback) return nonRareSessionCallback(sum); //it will handle calling next session.
 	querySelector("#story").html("");
-	allSessionsSummaries.push(sum);
-	sessionSummariesDisplayed.push(sum);
+	allSessionsSummaries.add(sum);
+	sessionSummariesDisplayed.add(sum);
 	//printSummaries();  //this slows things down too much. don't erase and reprint every time.
 	var str = sum.generateHTML();
 	debug("<br><hr><font color = 'red'> AB: " + getQuipAboutSession(sum) + "</font><Br>" );
@@ -712,12 +712,12 @@ dynamic summarizeSessionNoTimeout(session){
 
 		//return;
 	}
-	sessionsSimulated.push(curSessionGlobalVar.session_id);
+	sessionsSimulated.add(curSessionGlobalVar.session_id);
 	querySelector("#story").html("");
 	var sum = curSessionGlobalVar.generateSummary();
 	if(nonRareSessionCallback) return null; //tournament doens't support scratches.
-	allSessionsSummaries.push(sum);
-	sessionSummariesDisplayed.push(sum);
+	allSessionsSummaries.add(sum);
+	sessionSummariesDisplayed.add(sum);
 	//printSummaries();  //this slows things down too much. don't erase and reprint every time.
 	var str = sum.generateHTML();
 	debug("<br><hr><font color = 'red'> AB: " + getQuipAboutSession(sum) + "</font><Br>" );

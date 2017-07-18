@@ -35,7 +35,7 @@ window.onload = () {
 void resetColors(){
 	remainingColors = [];
 	for(num i = 0; i<allColors.length; i++){
-		remainingColors.push(allColors[i]);
+		remainingColors.add(allColors[i]);
 	}
 }
 
@@ -43,7 +43,7 @@ void resetColors(){
 
 void setStartingTeams(){
 	for(var i =0; i<teamsGlobalVar.length; i++){
-		startingTeams.push(teamsGlobalVar[i]);
+		startingTeams.add(teamsGlobalVar[i]);
 	}
 }
 
@@ -135,8 +135,8 @@ dynamic startTournament(){
 
 void missionComplete(){
 	//have some sort of css pop up with winner, hide tournament, show all team descriptions (hopefully in horizontally scrolling line)
-	currentTier.rounds.push(new Round(teamsGlobalVar[0], null,takeColor()));  //so i can display winner.
-	tiers.push(currentTier);
+	currentTier.rounds.add(new Round(teamsGlobalVar[0], null,takeColor()));  //so i can display winner.
+	tiers.add(currentTier);
 	querySelector("#tournament").hide();
 	querySelector("#winner").html("<h1>Winner: " + teamsGlobalVar[0].name+"</h1>");
 	//showAllTiers();
@@ -214,7 +214,7 @@ dynamic takeColor(){
 dynamic doneWithRound(){
 	var team1 = teamsGlobalVar[lastTeamIndex];
 	var team2 = teamsGlobalVar[lastTeamIndex+1];
-	currentTier.rounds.push(new Round(team1, team2,takeColor()));
+	currentTier.rounds.add(new Round(team1, team2,takeColor()));
 	if(!team2) return doneWithTier();
 	if(team1.score() > team2.score()){
 		team2.lostRound = true;
@@ -260,7 +260,7 @@ void markLoser(loser){
 void doneWithTier(){
 	//remove all losers. clear out all "wonRounds" rerender Combatants. start round up with lastTeamIndex of 0.
 	//alert("ready for round " + (tierNumber+1) + "?")
-	tiers.push(currentTier);
+	tiers.add(currentTier);
 	removeLosers();
 	startTournament();
 }
@@ -275,7 +275,7 @@ void removeLosers(){
 			//do nothing.
 		}else{
 			team = team.resetStats(); //<--otherwise will think they are done nxt round casue already did 10 sessions.
-			toSave.push(team);
+			toSave.add(team);
 		}
 	}
 	teamsGlobalVar = toSave;
@@ -516,7 +516,7 @@ void wireUpTeamSelector(){
 	querySelector("#teams").change(() {
 		teamsGlobalVar = [];
 		querySelector('#teams :selected').each((i, selected){
-			teamsGlobalVar.push(new Team(querySelector(selected).text(), abj));
+			teamsGlobalVar.add(new Team(querySelector(selected).text(), abj));
 		});
 		displayTeams(querySelector("#description"+tierNumber));
 		querySelector("#tournamentButtonDiv").css('display', 'inline-block');

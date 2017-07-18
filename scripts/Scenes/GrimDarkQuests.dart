@@ -16,9 +16,9 @@ class GrimDarkQuests extends Scene{
 		for (num i = 0; i<living.length; i++){
 			var player = living[i];
 			if(player.grimDark>2){
-				 this.players.push(player);
-			}else if(player.grimDark>1 && Math.seededRandom() > .5){
-				this.players.push(player);
+				 this.players.add(player);
+			}else if(player.grimDark>1 && seededRandom() > .5){
+				this.players.add(player);
 			}
 		}
 		if(this.players.length > 0 && this.players[0].trickster && Math.random() >.01) return false; //tricksters are too op and distractable, don't often actually try to break sim
@@ -42,9 +42,9 @@ class GrimDarkQuests extends Scene{
 	String workToCrashSession(player){
 			var tasks = ["try to explode a gate using dark magicks. ", "try to destroy a temple meant to help them with their Quests.","search for the game disk for SBURB itself.","seek the counsel of the noble circle of the Horrorterrors. ","begin asking the local consorts VERY uncomfortable questsions.","meet with the Dersites to discuss game destroying options.","attempt to use their powers to access the Game's source code.","exploit glitches to access areas of the game meant never to be seen by players. ","seek forbidden knowledge hidden deep within the glitchiest parts of the Furthest Ring. "];
 			if(player.aspect == "Space"){
-				tasks.push("try to destroy frog breeding equipment");
-				tasks.push("just straight up murdering frogs out of frustration");
-				tasks.push("try to tamper with the Forge");
+				tasks.add("try to destroy frog breeding equipment");
+				tasks.add("just straight up murdering frogs out of frustration");
+				tasks.add("try to tamper with the Forge");
 				player.landLevel += -10; //they FOCUS on killing frogs and ruining the game.
 				print("A grim dark space player is actively trying to breed a corrupt frog in session: " + this.session.session_id);
 			}

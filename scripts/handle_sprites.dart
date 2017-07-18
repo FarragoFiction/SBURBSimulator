@@ -502,11 +502,11 @@ void poseBabiesAsATeam(canvas, leader, players, guardians, repeatTime){
   var leaderBuffer = getBufferCanvas(querySelector("#sprite_template"));
   drawSprite(leaderBuffer, leader);
   for(num i = 0; i<players.length; i++){
-		playerBuffers.push(getBufferCanvas(querySelector("#sprite_template")));
+		playerBuffers.add(getBufferCanvas(querySelector("#sprite_template")));
 		drawBabySprite(playerBuffers[i],players[i],repeatTime);
 	}
   for(num i = 0; i<guardians.length; i++){
-		guardianBuffers.push(getBufferCanvas(querySelector("#sprite_template")));
+		guardianBuffers.add(getBufferCanvas(querySelector("#sprite_template")));
 		drawBabySprite(guardianBuffers[i],guardians[i],repeatTime);
 	}
   //leader on far left, babies arranged to right.
@@ -549,7 +549,7 @@ void poseAsATeam(canvas, players, repeatTime){
 	List<dynamic> spriteBuffers = [];
 	num startXpt = -235;
 	for(num i = 0; i<players.length; i++){
-		spriteBuffers.push(getBufferCanvas(querySelector("#sprite_template")));
+		spriteBuffers.add(getBufferCanvas(querySelector("#sprite_template")));
 		drawSprite(spriteBuffers[i],players[i]);
 	}
 
@@ -578,12 +578,12 @@ void drawGodRevival(canvas, live_players, dead_players){
 	List<dynamic> live_spriteBuffers = [];
 	List<dynamic> dead_spriteBuffers = [];
 	for(num i = 0; i<live_players.length; i++){
-		live_spriteBuffers.push(getBufferCanvas(querySelector("#sprite_template")));
+		live_spriteBuffers.add(getBufferCanvas(querySelector("#sprite_template")));
 		drawSprite(live_spriteBuffers[i],live_players[i]);
 	}
 
 	for(num i = 0; i<dead_players.length; i++){
-		dead_spriteBuffers.push(getBufferCanvas(querySelector("#sprite_template")));
+		dead_spriteBuffers.add(getBufferCanvas(querySelector("#sprite_template")));
 		//drawBG(dead_spriteBuffers[i], "#00ff00", "#ff0000");
 		drawSprite(dead_spriteBuffers[i],dead_players[i]);
 	}
@@ -705,7 +705,7 @@ void drawGetTiger(canvas, players, repeatTime){
   }
 	List<dynamic> spriteBuffers = [];
 	for(num i = 0; i<players.length; i++){
-		spriteBuffers.push(getBufferCanvas(querySelector("#sprite_template")));
+		spriteBuffers.add(getBufferCanvas(querySelector("#sprite_template")));
 		drawSprite(spriteBuffers[i],players[i]);
 	}
 
@@ -2700,11 +2700,11 @@ function wrap_text(ctx, text, x, y, lineHeight, maxWidth, textAlign) {
     var last = i ;=== words.length - 1;
     var bigger = ctx.measureText(chunk).width > maxWidth;
     if(bigger) {
-      lines.push(words.slice(sliceFrom, i).join(' '))
+      lines.add(words.slice(sliceFrom, i).join(' '))
       sliceFrom = i;
     }
     if(last) {
-      lines.push(words.slice(sliceFrom, words.length).join(' '))
+      lines.add(words.slice(sliceFrom, words.length).join(' '))
       sliceFrom = i;
     }
   }

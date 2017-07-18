@@ -22,7 +22,7 @@ class JackRampage extends Scene{
 		for(num i = 0; i<this.session.availablePlayers.length; i++){
 			var p = this.session.availablePlayers[i];
 			if(p.class_name != "Witch"){
-				potentialPlayers.push(p); //don't make a big deal out of it, but jack doesn't want to hurt the witch. familiar loyalty, yo.
+				potentialPlayers.add(p); //don't make a big deal out of it, but jack doesn't want to hurt the witch. familiar loyalty, yo.
 				//this is actually a bad thing, too, cause it means the witch's OP sprite doesn't get to kick Jack's ass.
 			}
 		}
@@ -32,14 +32,14 @@ class JackRampage extends Scene{
 		if(potentialPlayers.length == 0){
 			return ret;
 		}
-		ret.push(getRandomElementFromArray(potentialPlayers)); //used to get slowest player, but too many perma deaths happened.
+		ret.add(getRandomElementFromArray(potentialPlayers)); //used to get slowest player, but too many perma deaths happened.
 		var friends = ret[0].getFriendsFromList(potentialPlayers);
 		if(friends.length == 0) return ret;
 		//print("friends: " + friends.length);
 		for(int i = 0; i<=numStabbings; i++){
 			var f = getRandomElementFromArray(friends);
 			//print(f);
-			if(this.canCatch(f)) ret.push(f);
+			if(this.canCatch(f)) ret.add(f);
 
 		}
 		//var unique = Array.from(new Set(ret));  breaks IE because IE is a whiny little bitch.
@@ -48,8 +48,8 @@ class JackRampage extends Scene{
 
 		List<dynamic> ret = []; //add some sprites. this is literally the only other fight they are good for.
 		for(num i = 0; i<unique.length; i++){
-			ret.push(unique[i]);
-			ret.push(unique[i].sprite);
+			ret.add(unique[i]);
+			ret.add(unique[i].sprite);
 			if(unique[i].sprite.name == "sprite") print("trying to stab somebody not in the medium yet in session: " + this.session_id);
 		}
 		return ret;
@@ -86,7 +86,7 @@ class JackRampage extends Scene{
 	//	if(stabbings.length > 1) print("Jack fighting more than one player: " + this.session.session_id);
 		String ret = "";
 		if(stabbings.length == 0){
-			if(Math.seededRandom() > .5){
+			if(seededRandom() > .5){
 				ret += " Jack listlessly shows his stabs to a few Prospitian pawns. ";
 				div.append(""+ret);
 			}else{
@@ -103,7 +103,7 @@ class JackRampage extends Scene{
 		}else{
 
 
-			if(stabbings[0].dreamSelf && !stabbings[0].isDreamSelf && Math.seededRandom() >.5){
+			if(stabbings[0].dreamSelf && !stabbings[0].isDreamSelf && seededRandom() >.5){
 				//jack kills the dream self instead of the active self. no strife. just death.
 				//want to test out a dream self dying without active.
 				//print("jack kills nonactive dream self: " + this.session.session_id);
@@ -148,7 +148,7 @@ class JackRampage extends Scene{
 		var stabbings = this.getStabList();
 		String ret = "";
 		if(stabbings.length == 0){
-			if(Math.seededRandom() > .5){
+			if(seededRandom() > .5){
 				ret += " Jack listlessly shows his stabs to a few Prospitian pawns. ";
 			}else{
 				ret += " Jack listlessly shows his stabs to a few Dersite pawns. ";
@@ -168,7 +168,7 @@ class JackRampage extends Scene{
 			ret += " Jack fails to stab " + getPlayersTitles(stabbings);
 			ret += "  He goes away to stab someone else, licking his wounds. ";
 			//TODO if one of them was a god tier, make their be a chance of him destroying one of the moons. kills all non active dream selves.
-			if(Math.seededRandom()>.9){
+			if(seededRandom()>.9){
 				ret += " Bored of this, he decides to show his stabs to BOTH the Black and White Kings.  The battle is over. The Reckoning will soon start.";
 				timeTillReckoning = 0;
 			}

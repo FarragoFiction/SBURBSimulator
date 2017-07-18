@@ -98,11 +98,11 @@ void spawnDoomedTimeClone(newEvent, storedEvent){
     //trigger the new sessions timePlayer.  time shenanigans wear on sanaity.
     var alphaTimePlayer = findAspectPlayer(newEvent.session.players, "Time");
     alphaTimePlayer.sanity += -10; //how many re-dos does this give me before they snap?
-    alphaTimePlayer.doomedTimeClones.push(storedEvent.doomedTimeClone);
+    alphaTimePlayer.doomedTimeClones.add(storedEvent.doomedTimeClone);
     alphaTimePlayer.flipOut("their own doomed time clones that seem to be mind controlled or something");
     if(storedEvent.secondTimeClone){
         print("think there is a second time clone");
-        alphaTimePlayer.doomedTimeClones.push(storedEvent.secondTimeClone);
+        alphaTimePlayer.doomedTimeClones.add(storedEvent.secondTimeClone);
     }
 }
 

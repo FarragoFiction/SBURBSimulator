@@ -613,29 +613,29 @@ class Player {
 		//telekenisis, mind control, mind reading, ghost communing, animal communing, laser blasts, vision xfold.
 			{
 			var f = new Fraymotif([], "Telekinisis", 1);
-			f.effects.push(new FraymotifEffect("power", 2, true));
+			f.effects.add(new FraymotifEffect("power", 2, true));
 			f.flavorText = " Large objects begin pelting the ENEMY. ";
 			psionics.add(f);
 		}
 
 		{
 			var f = new Fraymotif([], "Pyrokinisis", 1);
-			f.effects.push(new FraymotifEffect("power", 2, true));
+			f.effects.add(new FraymotifEffect("power", 2, true));
 			f.flavorText = " Who knew shaving cream was so flammable? ";
 			psionics.add(f);
 		}
 
 		{
 			var f = new Fraymotif([], "Aquakinesis", 1);
-			f.effects.push(new FraymotifEffect("power", 2, true));
+			f.effects.add(new FraymotifEffect("power", 2, true));
 			f.flavorText = " A deluge begins damaging the ENEMY. ";
 			psionics.add(f);
 		}
 
 		{
 			var f = new Fraymotif([], "Mind Control", 1);
-			f.effects.push(new FraymotifEffect("freeWill", 3, true));
-			f.effects.push(new FraymotifEffect("freeWill", 3, false));
+			f.effects.add(new FraymotifEffect("freeWill", 3, true));
+			f.effects.add(new FraymotifEffect("freeWill", 3, false));
 			f.flavorText =
 			" All enemies start damaging themselves. It's kind of embarassing how easy this is.  ";
 			psionics.add(f);
@@ -643,7 +643,7 @@ class Player {
 
 		{
 			var f = new Fraymotif([], "Optic Blast", 1);
-			f.effects.push(new FraymotifEffect("power", 2, true));
+			f.effects.add(new FraymotifEffect("power", 2, true));
 			f.flavorText =
 			" Appropriately colored eye beams pierce the ENEMY. ";
 			psionics.add(f);
@@ -651,16 +651,16 @@ class Player {
 
 		{
 			var f = new Fraymotif([], "Ghost Communing", 1);
-			f.effects.push(new FraymotifEffect("sanity", 3, true));
-			f.effects.push(new FraymotifEffect("sanity", 3, false));
+			f.effects.add(new FraymotifEffect("sanity", 3, true));
+			f.effects.add(new FraymotifEffect("sanity", 3, false));
 			f.flavorText = " The souls of the dead start hassling all enemies. ";
 			psionics.add(f);
 		}
 
 		{
 			var f = new Fraymotif([], "Animal Communing", 1);
-			f.effects.push(new FraymotifEffect("sanity", 3, true));
-			f.effects.push(new FraymotifEffect("sanity", 3, false));
+			f.effects.add(new FraymotifEffect("sanity", 3, true));
+			f.effects.add(new FraymotifEffect("sanity", 3, false));
 			f.flavorText = " Local animal equivalents start hassling all enemies. ";
 			psionics.add(f);
 		}
@@ -686,20 +686,20 @@ class Player {
 		//special psionics for high bloods and lime bloods.  highblood: #631db4  lime: #658200
 		if(this.bloodColor == "#631db4"){
 			var f = new Fraymotif([],  "Chucklevoodoos", 1);
-			f.effects.push(new FraymotifEffect("sanity",3,false));
-			f.effects.push(new FraymotifEffect("sanity",3,true));
+			f.effects.add(new FraymotifEffect("sanity",3,false));
+			f.effects.add(new FraymotifEffect("sanity",3,true));
 			f.flavorText = " Oh god oh no no no no no no no no. The enemies are no longer doing okay, psychologically speaking. ";
 			this.fraymotifs.add(f);
 		}else if(this.bloodColor == "#658200"){
 			var f = new Fraymotif([],  "Limeade Refreshment", 1);
-			f.effects.push(new FraymotifEffect("sanity",1,false));
-			f.effects.push(new FraymotifEffect("sanity",1,true));
+			f.effects.add(new FraymotifEffect("sanity",1,false));
+			f.effects.add(new FraymotifEffect("sanity",1,true));
 			f.flavorText = " All allies just settle their shit for a little while. Cool it. ";
 			this.fraymotifs.add(f);
 		}else if(this.bloodColor == "#ffc3df"){
 		    var f = new Fraymotif([],  "'<font color;='pink'>"+this.chatHandle + " and the Power of Looove~~~~~<3<3<3</font>'", 1);
-            f.effects.push(new FraymotifEffect("RELATIONSHIPS",3,false));
-            f.effects.push(new FraymotifEffect("RELATIONSHIPS",3,true));
+            f.effects.add(new FraymotifEffect("RELATIONSHIPS",3,false));
+            f.effects.add(new FraymotifEffect("RELATIONSHIPS",3,true));
             f.flavorText = " You are pretty sure this is not a real type of Troll Psionic.  It heals everybody in a bullshit parade of sparkles, and heart effects despite your disbelief. Everybody is also SUPER MEGA ULTRA IN LOVE with each other now, but ESPECIALLY in love with  " + this.htmlTitleHP() + ". ";
             this.fraymotifs.add(f);
 		}
@@ -961,7 +961,7 @@ class Player {
 			guardian.interest2 = player.interest2;
 		}
 		guardian.initializeDerivedStuff();//redo levels and land based on real aspect
-		//this.guardians.push(guardian); //sessions don't keep track of this anymore
+		//this.guardians.add(guardian); //sessions don't keep track of this anymore
 		player.guardian = guardian;
 		guardian.guardian = this;//goes both ways.
 	}
@@ -1777,55 +1777,55 @@ class Player {
 		allStats.removeFromArray("power"); //can't buff power directly
 		switch (this.class_name) {
 			case "Knight":
-				this.associatedStats.push(new AssociatedStat("mobility", 0.5)); //will run to protect you.
-				this.associatedStats.push(new AssociatedStat("hp", 0.5));
-				this.associatedStats.push(new AssociatedStat("freeWill", -1));
+				this.associatedStats.add(new AssociatedStat("mobility", 0.5)); //will run to protect you.
+				this.associatedStats.add(new AssociatedStat("hp", 0.5));
+				this.associatedStats.add(new AssociatedStat("freeWill", -1));
 				break;
 			case  "Seer":
-				this.associatedStats.push(new AssociatedStat("freeWill", 0.9));
-				this.associatedStats.push(new AssociatedStat("MANGRIT", -0.9));
+				this.associatedStats.add(new AssociatedStat("freeWill", 0.9));
+				this.associatedStats.add(new AssociatedStat("MANGRIT", -0.9));
 				break;
 			case  "Bard":
-				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), 1));
-				this.associatedStats.push(new AssociatedStat( getRandomElementFromArray(allStats), -1));
+				this.associatedStats.add(new AssociatedStat( getRandomElementFromArray(allStats), 1));
+				this.associatedStats.add(new AssociatedStat( getRandomElementFromArray(allStats), -1));
 				break;
 			case  "Heir":
-				this.associatedStats.push(new AssociatedStat("maxLuck", 0.5));
-				this.associatedStats.push(new AssociatedStat("minLuck", 0.5));
-				this.associatedStats.push(new AssociatedStat("freeWill", -1));
+				this.associatedStats.add(new AssociatedStat("maxLuck", 0.5));
+				this.associatedStats.add(new AssociatedStat("minLuck", 0.5));
+				this.associatedStats.add(new AssociatedStat("freeWill", -1));
 				break;
 			case  "Maid":
-				this.associatedStats.push(new AssociatedStat("sanity", 1));
-				this.associatedStats.push(new AssociatedStat("minLuck", -1));
+				this.associatedStats.add(new AssociatedStat("sanity", 1));
+				this.associatedStats.add(new AssociatedStat("minLuck", -1));
 				break;
 			case  "Rogue":
-				this.associatedStats.push(new AssociatedStat("mobility", 0.5));
-				this.associatedStats.push(new AssociatedStat("sanity", -0.5));
+				this.associatedStats.add(new AssociatedStat("mobility", 0.5));
+				this.associatedStats.add(new AssociatedStat("sanity", -0.5));
 				break;
 			case  "Page":
-				this.associatedStats.push(new AssociatedStat("mobility", -0.5));
-				this.associatedStats.push(new AssociatedStat("hp", 0.5));
+				this.associatedStats.add(new AssociatedStat("mobility", -0.5));
+				this.associatedStats.add(new AssociatedStat("hp", 0.5));
 				break;
 			case  "Thief":
-				this.associatedStats.push(new AssociatedStat("maxLuck", 0.5));
-				this.associatedStats.push(new AssociatedStat("MANGRIT", -0.5));
+				this.associatedStats.add(new AssociatedStat("maxLuck", 0.5));
+				this.associatedStats.add(new AssociatedStat("MANGRIT", -0.5));
 				break;
 			case  "Sylph":
-				this.associatedStats.push(new AssociatedStat("hp", 0.5));
-				this.associatedStats.push(new AssociatedStat("sanity", -0.5));
+				this.associatedStats.add(new AssociatedStat("hp", 0.5));
+				this.associatedStats.add(new AssociatedStat("sanity", -0.5));
 				break;
 			case  "Prince":
-				this.associatedStats.push(new AssociatedStat("MANGRIT", 1));
-				this.associatedStats.push(new AssociatedStat("RELATIONSHIPS", -1));
+				this.associatedStats.add(new AssociatedStat("MANGRIT", 1));
+				this.associatedStats.add(new AssociatedStat("RELATIONSHIPS", -1));
 				break;
 			case  "Witch":
-				this.associatedStats.push(new AssociatedStat("MANGRIT", 0.5));
-				this.associatedStats.push(new AssociatedStat("freeWill", 0.5));
-				this.associatedStats.push(new AssociatedStat("sanity", -1));
+				this.associatedStats.add(new AssociatedStat("MANGRIT", 0.5));
+				this.associatedStats.add(new AssociatedStat("freeWill", 0.5));
+				this.associatedStats.add(new AssociatedStat("sanity", -1));
 				break;
 			case  "Mage":
-				this.associatedStats.push(new AssociatedStat("freeWill", 1));
-				this.associatedStats.push(new AssociatedStat("hp", -1));
+				this.associatedStats.add(new AssociatedStat("freeWill", 1));
+				this.associatedStats.add(new AssociatedStat("hp", -1));
 				break;
 			default:
 				print('What the hell kind of class is ' + this.class_name + '???');
@@ -2033,20 +2033,20 @@ class Player {
 
 		if(this.class_name == "Waste"){
 		    var f = new Fraymotif([],  "Rocks Fall, Everyone Dies", 1) ;//what better fraymotif for an Author to start with. Too bad it sucks.  If ONLY there were some way to hax0r SBURB???;
-            f.effects.push(new FraymotifEffect("power",3,true));
+            f.effects.add(new FraymotifEffect("power",3,true));
             f.flavorText = "Disappointingly sized meteors rain down from above.  Man, for such a cool name, this fraymotif kind of sucks. ";
             this.fraymotifs.add(f);
 		}else if(this.class_name == "Null"){
 			{
 				var f = new Fraymotif([], "What class???", 1);
-				f.effects.push(new FraymotifEffect("power", 1, true));
+				f.effects.add(new FraymotifEffect("power", 1, true));
 				f.flavorText = " I am certain there is not a class here and it is laughable to imply otherwise. ";
 				this.fraymotifs.add(f);
 			}
 
 			{
 				var f = new Fraymotif([], "Nulzilla", 2);
-				f.effects.push(new FraymotifEffect("power", 1, true));
+				f.effects.add(new FraymotifEffect("power", 1, true));
 				f.flavorText = " If you get this reference, you may reward yourself 15 Good Taste In Media Points (tm).  ";
 				this.fraymotifs.add(f);
 			}
@@ -2094,7 +2094,7 @@ void syncReplayNumberToPlayerNumber(replayPlayers){
 		//print("Have: " + curSessionGlobalVar.players.length + " need: " + replayPlayers.length + " think the difference is: " + numNeeded);
 		for(int i = 0; i<numNeeded; i++){
 			// print("making new player: " + i);
-			 curSessionGlobalVar.players.push( randomPlayerWithClaspect(curSessionGlobalVar, "Page", "Void"));
+			 curSessionGlobalVar.players.add( randomPlayerWithClaspect(curSessionGlobalVar, "Page", "Void"));
 		}
 		//print("Number of players is now: " + curSessionGlobalVar.players.length);
 		return;

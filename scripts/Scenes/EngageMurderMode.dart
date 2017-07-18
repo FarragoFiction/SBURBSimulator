@@ -29,7 +29,7 @@ class EngageMurderMode extends Scene{
 
 		if(diamond) triggerMinimum += -1*(this.player.getRelationshipWith(diamond).value);  //hope you don't hate your moirail
 		if(this.player.moon == "Prospit") triggerMinimum += 100; //easier to flip shit when you see murders in the clouds.
-		var ret = (Math.seededRandom() * this.player.sanity < triggerMinimum);
+		var ret = (seededRandom() * this.player.sanity < triggerMinimum);
 		if(ret && diamond) print("flipping shit even with moirail"  + this.session.session_id);
 		if(ret) print("flipping shit naturally " + this.session.session_id);
 		return ret;
@@ -211,7 +211,7 @@ class EngageMurderMode extends Scene{
 		chatText += chatLine(player2Start, player2,"Fuck.");
 		chatText += chatLine(player2Start, player2,"Look, I get that you have trouble controling your temper.");
 		chatText += chatLine(player2Start, player2,"But you can be better than that.");
-		if(Math.seededRandom() > .7){
+		if(seededRandom() > .7){
 			r1.increase();
 			player1.sanity += 1;
 			chatText += chatLine(player2Start, player2,"Why don't we meet up in person. We can vent about whatever's bothering you. Nobody has to do anything that can't be undone.");

@@ -19,7 +19,7 @@ class GodTierRevival extends Scene {
 			var p = deadPlayers[i];
 			//only get one shot at this.
 			if(p.godTier && p.canGodTierRevive){
-				this.godsToRevive.push(p);
+				this.godsToRevive.add(p);
 			}
 		}
 		return this.godsToRevive.length > 0;
@@ -43,9 +43,9 @@ class GodTierRevival extends Scene {
 		for(num i = 0; i<this.godsToRevive.length; i++){
 			var p = this.godsToRevive[i];
 			if(p.dead == false){
-				live_players.push(this.godsToRevive[i]);
+				live_players.add(this.godsToRevive[i]);
 			}else{
-				dead_players.push(this.godsToRevive[i]);
+				dead_players.add(this.godsToRevive[i]);
 			}
 		}
 
