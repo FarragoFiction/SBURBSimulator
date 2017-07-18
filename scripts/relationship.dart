@@ -100,75 +100,74 @@ class Relationship {
 	}
 
 
-}
 
 
+  static dynamic getRelationshipFlavorGreeting(r1, r2, me, you){
+		String ret = "";
+		if(r1.type() == r1.goodBig && r2.type() == r2.goodBig){
+			ret += " Hey! ";
+		}else if(r2.type() == r2.goodBig){
+			ret += "Hey.";
+		}else if(r1.type() == r1.goodBig){
+			ret += " Uh, hey!";
+		}else if(r1.type() == r1.badBig && r2.type() == r2.badBig){
+			ret += " Hey, asshole.";
+		}else if(r2.type() == r2.badBig){
+			ret += "Er...hey?";
+		}else if(r1.type() == r2.badBig){
+			ret += "I'll make this quick. ";
+		}else{
+			ret += "Hey.";
+		}
+		return ret;
 
-dynamic getRelationshipFlavorGreeting(r1, r2, me, you){
-	String ret = "";
-	if(r1.type() == r1.goodBig && r2.type() == r2.goodBig){
-		ret += " Hey! ";
-	}else if(r2.type() == r2.goodBig){
-		ret += "Hey.";
-	}else if(r1.type() == r1.goodBig){
-		ret += " Uh, hey!";
-	}else if(r1.type() == r1.badBig && r2.type() == r2.badBig){
-		ret += " Hey, asshole.";
-	}else if(r2.type() == r2.badBig){
-		ret += "Er...hey?";
-	}else if(r1.type() == r2.badBig){
-		ret += "I'll make this quick. ";
-	}else{
-		ret += "Hey.";
 	}
-	return ret;
-
-}
 
 
 
-String getRelationshipFlavorText(r1, r2, me, you) {
+  static String getRelationshipFlavorText(r1, r2, me, you) {
 
 
 
-	String ret = "";
-	if(r1.type() == r1.goodBig && r2.type() == r2.goodBig || r1.type == r1.heart){
-		ret += " The two flirt a bit. ";
-	}if(r1.type() == r1.diamonds){
-		//print("impromptu feelings jam: " + this.session.session_id);
-		ret += " The two have an impromptu feelings jam. ";
-		me.sanity += 1;
-		you.sanity += 1;
-	}else if(r2.type() == r2.goodBig){
-		ret += " The" + you.htmlTitle() + " is flustered around the " + me.htmlTitle()+ ". ";
-	}else if(r1.type() == r1.goodBig){
-		ret += " The" + me.htmlTitle() + " is flustered around the " + you.htmlTitle()+ ". ";
-	}else if(r1.type() == r1.badBig && r2.type() == r2.badBig || r1.type == r1.spades){
-		ret += " The two are just giant assholes to each other. ";
-	}else if(r2.type() == r2.badBig){
-		ret += you.htmlTitle() + " is irritable around the " + me.htmlTitle() + ". ";
-	}else if(r1.type() == r2.badBig){
-		ret += " The" + me.htmlTitle() + " is irritable around the " + you.htmlTitle() + ". ";
+		String ret = "";
+		if(r1.type() == r1.goodBig && r2.type() == r2.goodBig || r1.type == r1.heart){
+			ret += " The two flirt a bit. ";
+		}if(r1.type() == r1.diamonds){
+			//print("impromptu feelings jam: " + this.session.session_id);
+			ret += " The two have an impromptu feelings jam. ";
+			me.sanity += 1;
+			you.sanity += 1;
+		}else if(r2.type() == r2.goodBig){
+			ret += " The" + you.htmlTitle() + " is flustered around the " + me.htmlTitle()+ ". ";
+		}else if(r1.type() == r1.goodBig){
+			ret += " The" + me.htmlTitle() + " is flustered around the " + you.htmlTitle()+ ". ";
+		}else if(r1.type() == r1.badBig && r2.type() == r2.badBig || r1.type == r1.spades){
+			ret += " The two are just giant assholes to each other. ";
+		}else if(r2.type() == r2.badBig){
+			ret += you.htmlTitle() + " is irritable around the " + me.htmlTitle() + ". ";
+		}else if(r1.type() == r2.badBig){
+			ret += " The" + me.htmlTitle() + " is irritable around the " + you.htmlTitle() + ". ";
+		}
+		return ret;
 	}
-	return ret;
-}
 
 
-
-dynamic cloneRelationship(relationship){
-	Relationship clone = new Relationship();
-	for(var propertyName in relationship) {
-		clone[propertyName] = relationship[propertyName];
+  //TODO if i remember right, this is used for alien players. how does Dart handle list of vars again?
+  //is it reflection only?
+  static dynamic cloneRelationship(relationship){
+		Relationship clone = new Relationship();
+		for(var propertyName in relationship) {
+			clone[propertyName] = relationship[propertyName];
+		}
+		return clone;
 	}
-	return clone;
-}
 
 
 
 //when i am cloning players, i need to make sure they don't have a reference to the same relationships the original player does.
 //if i fail to do this step, i accidentally give the players the Capgras delusion.
 //this HAS to happen before transferFeelingsToClones.
-dynamic cloneRelationshipsStopgap(relationships){
+  static	dynamic cloneRelationshipsStopgap(relationships){
 		//print("clone relationships stopgap");
 		List<dynamic> ret = [];
 		for(num i = 0; i<relationships.length; i++){
@@ -176,16 +175,16 @@ dynamic cloneRelationshipsStopgap(relationships){
 			ret.add(cloneRelationship(r));
 		}
 		return ret;
-}
+	}
 
 
 
 //when i clone alien players on arival, i need their cloned relationships to be about the other clones
 //not the original players.
 //also, I <3 this method name. i <3 this sim.
-void transferFeelingsToClones(player, clones){
-	//print("transfer feelings to clones");
-	for(var i =0; i<player.relationships.length; i++){
+  static void transferFeelingsToClones(player, clones){
+		//print("transfer feelings to clones");
+		for(var i =0; i<player.relationships.length; i++){
 			var r = player.relationships[i];
 			var clone = findClaspectPlayer(clones, r.target.class_name, r.target.aspect);
 			//if i can't find a clone, it's probably a dead player that didn't come to the new session.
@@ -194,125 +193,127 @@ void transferFeelingsToClones(player, clones){
 				r.target = clone;
 			}
 
+		}
 	}
-}
 
 
 
-void makeHeart(player1, player2){
-	player1.session.hasHearts = true;
-	var r1 = player1.getRelationshipWith(player2);
-	r1.setOfficialRomance(r1.heart);
-	var r2 = player2.getRelationshipWith(player1);
-	r2.setOfficialRomance(r2.heart);
-}
-
-
-
-void makeSpades(player1, player2){
-	player1.session.hasSpades = true;
-	var r1 = player1.getRelationshipWith(player2);
-	r1.setOfficialRomance(r1.spades);
-	var r2 = player2.getRelationshipWith(player1);
-	r2.setOfficialRomance(r2.spades);
-}
-
-
-
-void makeDiamonds(player1, player2){
-	player1.session.hasDiamonds = true;
-	var r1 = player1.getRelationshipWith(player2);
-	if(r1.value < 0){
-		r1.value = 1;  //like you at least a little
+  static void makeHeart(player1, player2){
+		player1.session.hasHearts = true;
+		var r1 = player1.getRelationshipWith(player2);
+		r1.setOfficialRomance(r1.heart);
+		var r2 = player2.getRelationshipWith(player1);
+		r2.setOfficialRomance(r2.heart);
 	}
-	r1.setOfficialRomance(r1.diamond);
-	var r2 = player2.getRelationshipWith(player1);
-	if(r2.value < 0){
-		r2.value = 1;
+
+
+
+  static void makeSpades(player1, player2){
+		player1.session.hasSpades = true;
+		var r1 = player1.getRelationshipWith(player2);
+		r1.setOfficialRomance(r1.spades);
+		var r2 = player2.getRelationshipWith(player1);
+		r2.setOfficialRomance(r2.spades);
 	}
-	r2.setOfficialRomance(r2.diamond);
-}
+
+
+
+  static void makeDiamonds(player1, player2){
+		player1.session.hasDiamonds = true;
+		var r1 = player1.getRelationshipWith(player2);
+		if(r1.value < 0){
+			r1.value = 1;  //like you at least a little
+		}
+		r1.setOfficialRomance(r1.diamond);
+		var r2 = player2.getRelationshipWith(player1);
+		if(r2.value < 0){
+			r2.value = 1;
+		}
+		r2.setOfficialRomance(r2.diamond);
+	}
 
 
 
 //clubs, why you so cray cray?
-void makeClubs(middleLeaf, asshole1, asshole2){
-	asshole1.session.hasClubs = true;
-	var rmid1 = middleLeaf.getRelationshipWith(asshole1);
-	var rmid2 = middleLeaf.getRelationshipWith(asshole2);
+  static void makeClubs(middleLeaf, asshole1, asshole2){
+		asshole1.session.hasClubs = true;
+		var rmid1 = middleLeaf.getRelationshipWith(asshole1);
+		var rmid2 = middleLeaf.getRelationshipWith(asshole2);
 
-	var rass1mid = asshole1.getRelationshipWith(middleLeaf);
-	var rass12 = asshole1.getRelationshipWith(asshole2);
+		var rass1mid = asshole1.getRelationshipWith(middleLeaf);
+		var rass12 = asshole1.getRelationshipWith(asshole2);
 
-	var rass2mid = asshole2.getRelationshipWith(middleLeaf);
-	var rass21 = asshole2.getRelationshipWith(asshole1);
+		var rass2mid = asshole2.getRelationshipWith(middleLeaf);
+		var rass21 = asshole2.getRelationshipWith(asshole1);
 
-	if(rmid1.value > 0){
-		rmid1.value = -1;  //hate you at least a little
+		if(rmid1.value > 0){
+			rmid1.value = -1;  //hate you at least a little
+		}
+
+		if(rmid2.value > 0){
+			rmid2.value = -1;  //hate you at least a little
+		}
+
+		rmid1.setOfficialRomance(rmid1.clubs);
+		rmid2.setOfficialRomance(rmid1.clubs);
+		rass1mid.setOfficialRomance(rmid1.clubs);
+		rass12.setOfficialRomance(rmid1.clubs);
+		rass2mid.setOfficialRomance(rmid1.clubs);
+		rass21.setOfficialRomance(rmid1.clubs);
 	}
 
-	if(rmid2.value > 0){
-		rmid2.value = -1;  //hate you at least a little
+
+
+  static dynamic randomBlandRelationship(targetPlayer){
+		return new Relationship(1, targetPlayer);
 	}
 
-	rmid1.setOfficialRomance(rmid1.clubs);
-	rmid2.setOfficialRomance(rmid1.clubs);
-	rass1mid.setOfficialRomance(rmid1.clubs);
-	rass12.setOfficialRomance(rmid1.clubs);
-	rass2mid.setOfficialRomance(rmid1.clubs);
-	rass21.setOfficialRomance(rmid1.clubs);
-}
 
 
+  static dynamic randomRelationship(targetPlayer){
+		var r = new Relationship(getRandomInt(-21,21), targetPlayer);
 
-dynamic randomBlandRelationship(targetPlayer){
-	return new Relationship(1, targetPlayer);
-}
-
-
-
-dynamic randomRelationship(targetPlayer){
-	var r = new Relationship(getRandomInt(-21,21), targetPlayer);
-
-	return r;
-}
+		return r;
+	}
 
 
 
 //go through every pair of relationships. if both have same type AND they are lucky, be in quadrant.   (clover was VERY 'lucky' in love.)
 //high is flushed or pale (if one player much more triggered than other). low is spades. no clubs for now.
 //yes, claspect boosts might alter relationships from 'initial' value, but that just means they characters are likelyt o break up. realism.
-void decideInitialQuadrants(players){
-	num rollNeeded = 50;
-	for(var i =0; i<players.length; i++){
-		var player = players[i];
-		var relationships = player.relationships;
-		for(num j = 0; j<relationships.length; j++){
-			var r = relationships[j];
-			var roll = player.rollForLuck();
-			if(roll > rollNeeded){
-				if(r.type() == r.goodBig){
-					var difference = (player.sanity - r.target.sanity).abs();
-					if(difference > 2 || roll < rollNeeded + 25){ //pale
-						makeDiamonds(player, r.target);
-					}else{
-						makeHeart(player, r.target);
-					}
-				}else if(r.type() == r.badBig){
-					if(player.sanity > 0 || r.target.sanity > 0 || roll < rollNeeded + 10){ //likely to murder each other
-						var ausp = getRandomElementFromArray(players);
-						if(ausp && ausp != player && ausp != r.target){
-							makeClubs(ausp, player, r.target);
+	static void decideInitialQuadrants(players){
+		num rollNeeded = 50;
+		for(var i =0; i<players.length; i++){
+			var player = players[i];
+			var relationships = player.relationships;
+			for(num j = 0; j<relationships.length; j++){
+				var r = relationships[j];
+				var roll = player.rollForLuck();
+				if(roll > rollNeeded){
+					if(r.type() == r.goodBig){
+						var difference = (player.sanity - r.target.sanity).abs();
+						if(difference > 2 || roll < rollNeeded + 25){ //pale
+							makeDiamonds(player, r.target);
+						}else{
+							makeHeart(player, r.target);
 						}
-					}else{
-						makeSpades(player, r.target);
+					}else if(r.type() == r.badBig){
+						if(player.sanity > 0 || r.target.sanity > 0 || roll < rollNeeded + 10){ //likely to murder each other
+							var ausp = getRandomElementFromArray(players);
+							if(ausp && ausp != player && ausp != r.target){
+								makeClubs(ausp, player, r.target);
+							}
+						}else{
+							makeSpades(player, r.target);
+						}
 					}
 				}
 			}
 		}
 	}
+
+
+
 }
 
-/*function getRandomInt(min, max) {
-    return Math.floor(Math.seededRandom() * (max - min + 1)) + min;
-}*/
+
