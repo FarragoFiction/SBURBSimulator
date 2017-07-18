@@ -413,6 +413,8 @@ class JackPromoted  extends ImportantEvent{
 
 //if knight, directly help, if not but knight alive, force them to help. else, indirect help
 //if knight of space (most common reason this is called, indirect help)
+//TODO important, time player isn't being passed in this contstructor for some reason.
+//was i derping?
 class FrogBreedingNeedsHelp extends ImportantEvent {
 	num importanceRating = 2;  //really, this is probably the least useful thing you could do. If this is the ONLY thing that went wrong, your session is going great.
 	FrogBreedingNeedsHelp(Session session, num mvp_value, Player player, Player doomedTimeClone): super(session, mvp_value, player, doomedTimeClone);

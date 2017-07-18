@@ -18,7 +18,7 @@ class DoLandQuest extends Scene{
 	@override
 	dynamic trigger(playerList){
 		this.playersPlusHelpers = [];
-		var availablePlayers = this.session.availablePlayers.slice(); //don't modify available players while you iterate on it, dummy
+		var availablePlayers = new List<String>.from(this.session.availablePlayers); //don't modify available players while you iterate on it, dummy
 		for(num j = 0; j<this.session.availablePlayers.length; j++){
 			var p = this.session.availablePlayers[j];
 			var ph = this.getPlayerPlusHelper(p, availablePlayers);
@@ -63,7 +63,7 @@ class DoLandQuest extends Scene{
 		var randomNumber = seededRandom();
 		if(randomNumber > 0.2) return "";
 
-		var f = player.getNewFraymotif(helper);
+		f = player.getNewFraymotif(helper);
 		return this.fraymotifFlavorTextForPlayer(player, f);
 
 	}
@@ -95,7 +95,7 @@ class DoLandQuest extends Scene{
 	}
 	dynamic addImportantEvent(){
 			var current_mvp = findStrongestPlayer(this.session.players);
-			return this.session.addImportantEvent(new FrogBreedingNeedsHelp(this.session, current_mvp.power) );
+			return this.session.addImportantEvent(new FrogBreedingNeedsHelp(this.session, current_mvp.power,null,null) );
 	}
 	dynamic lookForHelper(player, availablePlayers){
 		var helper = null;
@@ -118,7 +118,7 @@ class DoLandQuest extends Scene{
 			if(this.session.availablePlayers.length > 1){
 				helper = findHighestMobilityPlayer(availablePlayers); //mobility might be useful in a fight, but it curses you to not get your shit done on your own planet.
 			}else{
-				this.player1 = null;
+				player = null;
 				return null;
 			}
 		}
@@ -315,8 +315,8 @@ class DoLandQuest extends Scene{
 			ret += this.calculateClasspectBoost(player, helper);
 		}
 		if(helper != null && player  != helper ){
-			r1 = player.getRelationshipWith(helper);
-			r2 = helper.getRelationshipWith(player);
+			Relationship r1 = player.getRelationshipWith(helper);
+			Relationship r2 = helper.getRelationshipWith(player);
 			ret += getRelationshipFlavorText(r1,r2, player, helper);
 		}
 		ret += this.findFraymotif(player, helper);
