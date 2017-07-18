@@ -48,10 +48,10 @@ class AfterLife {
 		var diamonds = player.getDiamonds();
 		var crushes = player.getCrushes();
 		var relationships = hearts.concat(diamonds);
-		var relationships = relationships.concat(crushes);
+	  relationships.addAll(crushes);
 		for(num i = 0; i<relationships.length; i++){
 			var r = relationships[i];
-			lovedOnes = lovedOnes.concat(this.findAllAlternateSelves(r));
+			lovedOnes.addAll(this.findAllAlternateSelves(r));
 		}
 
 		return lovedOnes;
@@ -62,11 +62,11 @@ class AfterLife {
 		var spades = player.getSpades();
 		var crushes = player.getBlackCrushes();
 		var relationships = spades.concat(clubs);
-		var relationships = relationships.concat(crushes);
+		relationships.addAll(crushes);
 
 		for(num i = 0; i<relationships.length; i++){
 			var r = relationships[i];
-			hatedOnes = hatedOnes.concat(this.findAllAlternateSelves(r));
+			hatedOnes.addAll(this.findAllAlternateSelves(r));
 		}
 
 		return hatedOnes;
@@ -87,7 +87,7 @@ class AfterLife {
 		var relationships = player.getEnemies();
 		for(num i = 0; i <relationships.length; i++){
 			var r = relationships[i];
-			hatedOnes = hatedOnes.concat(this.findAllAlternateSelves(r));
+			hatedOnes.addAll(this.findAllAlternateSelves(r));
 		}
 
 		return hatedOnes;
@@ -99,7 +99,7 @@ class AfterLife {
 		return getRandomElementFromArray(this.findAllDeadFriends(player));
 	}
 	bool areTwoPlayersTheSame(player1, player2){
-		return player2.id == player1.id && player2.class_name == player1.class_name && player2.aspect == player1.aspect && player1.hair == player2.hair   //if they STILL match, well fuck it. they are the same person just alternate universe versions of each other.;
+		return player2.id == player1.id && player2.class_name == player1.class_name && player2.aspect == player1.aspect && player1.hair == player2.hair;   //if they STILL match, well fuck it. they are the same person just alternate universe versions of each other.;
 	}
 	dynamic findClosesToRealSelf(player){
 		var selves = this.findAllAlternateSelves(player);
@@ -109,7 +109,7 @@ class AfterLife {
 		for(num i = 0; i<selves.length; i++){
 			var ghost = selves[i];
 			if(ghost.isDreamSelf == player.isDreamSelf && ghost.godTier == player.godTier){ //at least LOOK the same. (call this BEFORE reviving)
-				var val = Math.abs(ghost.power - player.power );
+				num val = (ghost.power - player.power ).abs();
 				if(val < bestCanidateValue){
 					bestCanidateValue = val;
 					bestCanidate = ghost;
