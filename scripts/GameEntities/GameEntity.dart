@@ -126,7 +126,7 @@ class GameEntity {
     if(this.crowned != null) ret+="Crowned ";
     var pname = this.name;
     if(this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
-    return ret + pname +" (" + (this.getStat("currentHP")).round() +" hp, " + (this.getStat("power")).round() + " power)</font>"; //TODO denizens are aspect colored.
+    return ret + pname +" (" + (this.getStat("currentHP")).round().toString() +" hp, " + (this.getStat("power")).round().toString() + " power)</font>"; //TODO denizens are aspect colored.
   }
   void flipOut(reason){
 
@@ -177,3 +177,5 @@ class GameEntity {
 
 
 }
+
+

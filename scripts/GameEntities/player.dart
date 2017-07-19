@@ -369,7 +369,7 @@ class Player extends GameEntity{
 		//if triggered, also give a flip out reason.
 		var dead = findDeadPlayers(this.session.players);
 		for(num i = 0; i <this.relationships.length; i++){
-			var r = this.relationships[i];
+			Relationship r = this.relationships[i];
 
 			if(r.saved_type == r.goodBig){
 				r.target.sanity += -10;
@@ -400,16 +400,16 @@ class Player extends GameEntity{
 				r.target.flipOutReason = " their dead Moirail, the " + this.htmlTitleBasic() + ", fuck, that can't be good...";
 				r.target.flippingOutOverDeadPlayer = this;
 			}
-			//print(r.target.title() + " has flipOutReason of: " + r.target.flipOutReason + " and knows about dead player: " + r.target.flippingOutOverDeadPlayer);
-		}
 
-		//whether or not i care about them, there's also the novelty factor.
-		if(dead.length == 1){  //if only I am dead, death still has it's impact and even my enemies care.
-			r.target.sanity += -10;
-			if(r.target.flipOutReason == null){
-				r.target.flipOutReason = " the dead player, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead player.
-			 r.target.flippingOutOverDeadPlayer = this;
-			}
+      //whether or not i care about them, there's also the novelty factor.
+      if(dead.length == 1){  //if only I am dead, death still has it's impact and even my enemies care.
+        r.target.sanity += -10;
+        if(r.target.flipOutReason == null){
+          r.target.flipOutReason = " the dead player, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead player.
+          r.target.flippingOutOverDeadPlayer = this;
+        }
+      }
+			//print(r.target.title() + " has flipOutReason of: " + r.target.flipOutReason + " and knows about dead player: " + r.target.flippingOutOverDeadPlayer);
 		}
 	}
 	dynamic getPactWithGhost(ghost){
@@ -470,8 +470,9 @@ class Player extends GameEntity{
 		return tmp;
 	}
 	void makeGodTier(){
-		this.hp += 500; //they are GODS.
-		this.power += 500;
+		this.addStat("hp",500); //they are GODS.
+    this.addStat("currentHP",500); //they are GODS.
+    this.addStat("power",500); //they are GODS.
 		this.increasePower();
 		this.godTier = true;
 		this.session.godTier = true;
@@ -488,10 +489,10 @@ class Player extends GameEntity{
 			this.influenceSymbol = null;
 			this.dead = false;
 			this.murderMode = false;
-			this.currentHP = Math.max(this.hp,1); //if for some reason your hp is negative, don't do that.
+			this.setStat("currentHP", Math.max(this.getStat("hp"),1)); //if for some reason your hp is negative, don't do that.
 			//print("HP after being brought back from the dead: " + this.currentHP);
 			this.grimDark = 0;
-			this.sanity += -101;  //dying is pretty triggering.
+			this.addStat("sanity",-101);  //dying is pretty triggering.
 			this.flipOutReason = "they just freaking died";
 			//this.leftMurderMode = false; //no scars
 			this.victimBlood = null; //clean face
@@ -566,9 +567,9 @@ class Player extends GameEntity{
 			return getRandomDenizenQuestFromAspect(this); //denizen quests are aspect only, no class.
 		}else if((this.landLevel < 9 || this.denizen_index >=3) && this.denizenDefeated == false){  //can do more land quests if denizen kicked your ass. need to grind.
 			if(seededRandom() > .5 || this.aspect == "Space"){ //back to having space players be locked to frogs.
-				return getRandomQuestFromAspect(this.aspect);
+				return getRandomQuestFromAspect(this.aspect,false);
 			}else{
-				return getRandomQuestFromClass(this.class_name);
+				return getRandomQuestFromClass(this.class_name,false);
 			}
 		}else if(this.denizenDefeated){
 			//print("post denizen quests " +this.session.session_id);

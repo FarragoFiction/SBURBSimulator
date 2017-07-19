@@ -1,5 +1,5 @@
 part of SBURBSim;
-
+//TODO strip all this out and put in classes. eventually. but for now, just fucking get thigns working
 //little bobby tables
 
 //going to refactor so that all randomness is seeded.
