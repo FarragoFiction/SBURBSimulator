@@ -24,7 +24,7 @@ part "Strife.dart";
 part "GameEntities/GameEntity.dart";
 part "GameEntities/NPCS.dart";
 part "GameEntities/player.dart";
-
+part "v2.0/YellowYardResultController.dart";
 
 //scenes
 part "Scenes/Scene.dart";
@@ -72,7 +72,6 @@ part "Scenes/StartDemocracy.dart";
 part "Scenes/UpdateShippingGrid.dart";
 part "Scenes/VoidyStuff.dart";
 part "Scenes/YellowYard.dart";
-
 
 
 // temporary functions to be replaced later!

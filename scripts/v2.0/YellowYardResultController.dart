@@ -1,4 +1,4 @@
-
+part of SBURBSim;
 
  /*
 	While the session contains a list of every ImportantEvent that happens inside of it,
@@ -23,7 +23,7 @@ class YellowYardResultController {
  List<dynamic> eventsToUndo = [];    
 
 
-	YellowYardResultController(this.) {}
+	YellowYardResultController() {}
 
 
 	dynamic doesEventNeedToBeUndone(e){
@@ -50,7 +50,7 @@ class YellowYardResultController {
 */
 bool doEventsMatch(newEvent, storedEvent, spawn){
 	//print("comparing: '" + newEvent.humanLabel() + "' to '" + storedEvent.humanLabel() + "'")
-	if(!newEvent || !storedEvent) return false //can't match if one of them doesn't exist.;
+	if(!newEvent || !storedEvent) return false; //can't match if one of them doesn't exist.;
   if(newEvent.session.session_id != storedEvent.session.session_id){
     //  print("session id did not match.");
       return false;
@@ -110,10 +110,10 @@ void spawnDoomedTimeClone(newEvent, storedEvent){
 
 
 void decision(){
-  var a =querySelector("input[name;='decision']:checked").val();
-  var index = parseInt(a);
-  if(a<yyrEventsGlobalVar.length){
-    var eventDecided = yyrEventsGlobalVar[parseInt(a)];
+  String a = (querySelector("input[name='decision']:checked") as InputElement).value;
+  int index = int.parse(a, onError:(String s) => 0);
+  if(index < yyrEventsGlobalVar.length){
+    var eventDecided = yyrEventsGlobalVar[int.parse(a, onError:(String s) => 0)];
     //alert(eventDecided.humanLabel());
     curSessionGlobalVar.addEventToUndoAndReset(eventDecided);
   }else{
