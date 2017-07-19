@@ -108,14 +108,14 @@ rapTemplates.push(new RapTemplate("your tiny little  ",noun, " doesn't even seem
 rapTemplates.push(new RapTemplate("I got beats and rhymes that never been ",verb, " how you think you can ", verb) );
 rapTemplates.push(new RapTemplate("I think you might actually be a ",noun, " cause how else do you explain why you think you can ", verb) );
 //bop de boop lets rhyme"
-rapTemplates.push(new RapTemplate("if you can't prove you are not a ",noun, " then the proof is there that you are nothing but a ",noun, ) );
-rapTemplates.push(new RapTemplate("if my rhymes are ",noun," its nothing but me knowing how to ",verb,) );
-rapTemplates.push(new RapTemplate("it is not my fault you are such a ",noun,", thats what happens when you just can't ",verb,) );
-rapTemplates.push(new RapTemplate("don't even " ,verb," kid, we all know you are a ",noun,) );
-rapTemplates.push(new RapTemplate("now I am the best fucking ",noun," that ever did ",verb,) );
-rapTemplates.push(new RapTemplate("it is time to ",verb,", so you best fucking ",verb,) );
-rapTemplates.push(new RapTemplate("because the truth is that I am a ",noun," and you are a ",noun,) );
-rapTemplates.push(new RapTemplate("learn your place, if you can't ",verb," you are not a ",noun,) );
+rapTemplates.push(new RapTemplate("if you can't prove you are not a ",noun, " then the proof is there that you are nothing but a ",noun ) );
+rapTemplates.push(new RapTemplate("if my rhymes are ",noun," its nothing but me knowing how to ",verb) );
+rapTemplates.push(new RapTemplate("it is not my fault you are such a ",noun,", thats what happens when you just can't ",verb) );
+rapTemplates.push(new RapTemplate("don't even " ,verb," kid, we all know you are a ",noun) );
+rapTemplates.push(new RapTemplate("now I am the best fucking ",noun," that ever did ",verb) );
+rapTemplates.push(new RapTemplate("it is time to ",verb,", so you best fucking ",verb) );
+rapTemplates.push(new RapTemplate("because the truth is that I am a ",noun," and you are a ",noun) );
+rapTemplates.push(new RapTemplate("learn your place, if you can't ",verb," you are not a ",noun) );
 
 
 
@@ -355,7 +355,7 @@ function getRapForPlayer(player,returnString, score){
 	if(firstWord && secondWord && firstWord != secondWord){
 				score ++;
 				//dont rap forever, like you can on rap.html
-				if(score<5) return this.getRapForPlayer(player, returnString, score); //keep going till you can't
+				if(score<5) return getRapForPlayer(player, returnString, score); //keep going till you can't
 	}else{
 		//give up
 	}
