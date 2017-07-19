@@ -21,12 +21,15 @@ testName() {
   setup();
   print(testGE.name);
   assert(testGE.name == "Firsty");
+  print(testGE); //testing toString
+  print("Name passed");
 }
 
 testID() {
   setup();
   print(testGE.id);
   assert(testGE.id == 413 ? true : throw "ID should be 413, but is: ${testGE.id}");
+  print("Id passed");
 }
 
 testStats() {
@@ -45,8 +48,15 @@ testStats() {
   jRAssert("freeWill", testGE.getStat("freeWill"), 0);  //confirm did not change.
   jRAssert("mobility", testGE.getStat("mobility"), 0);  //confirm did not change.
   print(testGE.stats);
+  testGE.setStat("hp", 50);
+  jRAssert("hp", testGE.getStat("hp"), 50);
+  testGE.addStat("hp", 5000);
+  jRAssert("hp", testGE.getStat("hp"), 5050);
+  print("Stats passed");
 }
 
+
+//this is how i want asserts to work
 jRAssert(name, tested, expected)
 {
   assert(tested == expected ? true : throw "${name} should be ${expected}, but is: ${tested}");
