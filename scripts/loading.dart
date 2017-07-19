@@ -1,4 +1,4 @@
-
+part of SBURBSim;
 
 num imagesWaiting = 0;
 num imagesLoaded = 0;
@@ -7,6 +7,7 @@ var callBack = null;
 dynamic loadFuckingEverything(skipInit){
 	if(simulationMode == true) return checkDone(skipInit);
 	loadAllImages(skipInit);
+	return null;
 }
 
 
@@ -18,6 +19,7 @@ dynamic load(players, guardians, skipInit){
 	if(simulationMode == true) return checkDone(skipInit);
   var guardians = getGuardiansForPlayers(players);
 	loadAllImagesForPlayers(players, guardians,skipInit);
+	return null;
 }
 
 
@@ -27,11 +29,12 @@ dynamic loadAllImages(skipInit){
 	if(simulationMode == true) return checkDone(skipInit);
 	loadOther(skipInit);
 	loadAllPossiblePlayers(skipInit);
+	return null;
 }
 
 
 
-dynamic loadAllImagesForPlayersNew(players, guardians, skipInit){
+/*dynamic loadAllImagesForPlayersNew(players, guardians, skipInit){
 	if(simulationMode == true) return checkDone(skipInit);
 	var spriteLocations = curSessionGlobalVar.sceneRenderingEngine.loadAllImagesForPlayers(players);
 	spriteLocations = spriteLocations.concat(curSessionGlobalVar.sceneRenderingEngine.loadAllImagesForPlayers(guardians));
@@ -39,15 +42,16 @@ dynamic loadAllImagesForPlayersNew(players, guardians, skipInit){
 		loadImage(spriteLocations[i],skipInit);
 	}
 	loadOther(skipInit);
-}
+}*/
 
 
 
 dynamic loadAllImagesForPlayerWithCallback(player, cb){
 	callBack = cb;
-	bool skipInit = true;
+	String skipInit = "yes";
 	if(simulationMode == true) return checkDone(skipInit);
 	loadPlayer(player,skipInit);
+	return null;
 }
 
 
@@ -68,6 +72,7 @@ dynamic loadAllImagesForPlayers(players, guardians, skipInit){
 
 	loadOther(skipInit);
 
+	return null;
 }
 
 
@@ -88,7 +93,7 @@ void addImageTagLoading(url){
 		String tag = '<img id ;="' + url + '" src = "images/' + url + '" style;="display:none">';
 		//var urlID = urlToID(url);
 		//String tag = '<img id ;="' + urlID + '" src = "' + url + '" style;="display:none">';
-		querySelector("#loading_image_staging").append(tag);
+		querySelector("#loading_image_staging").appendHtml(tag);
 	}else{
 		//print("I thought i found a document with id of: " + url);
 
@@ -98,64 +103,61 @@ void addImageTagLoading(url){
 
 
 
-dynamic checkDone(skipInit){
-  querySelector("#loading_stats").html("Images Loaded: " + imagesLoaded);
+dynamic checkDone(String skipInit){
+  querySelector("#loading_stats").text = ("Images Loaded: $imagesLoaded");
 	if((imagesLoaded != 0 && imagesWaiting == imagesLoaded) || simulationMode == true){  //if i'm not using images, don't load them, dunkass.
 		//querySelector("#loading").remove(); //not loading anymore
-    if(skipInit){
-		if(callBack) return callBack();
+    if(skipInit != null){
+		if(callBack != null) return callBack();
       if(skipInit == "oc"){
-        print("images loaded: " + imagesLoaded);
+        print("images loaded: $imagesLoaded");
         reroll();
-        return;
+        return null;
       }else if(skipInit == "ghosts"){
         renderGhosts();
       }else{
         renderPlayersForEditing();
       }
-      return;
+      return null;
     }
 		intro();
 	}
+	return null;
 }
 
 
 
-class loadImage {
-
-	loadImage(this.img, this.skipInit) {}
-
-
+void loadImage(img, skipInit) {
 
 	if(simulationMode == true) return checkDone(skipInit);
 	//print(img);
 	imagesWaiting ++;
-	var imageObj = new Image();
-  imageObj.onload = () {
+	ImageElement imageObj = new ImageElement();
+  imageObj.onLoad.listen((Event e) {
       //  context.drawImage(imageObj, 69, 50); //i don't want to draw it. i could put it in image staging?
 			addImageTagLoading(img);
 			imagesLoaded ++;
 			checkDone(skipInit);
-  };
+  });
 
-  imageObj.onerror = (){
-    debug("Error loading image: " + this.src);
-		print("Error loading image: " + this.src);
+  imageObj.onError.listen((Event e){
+    debug("Error loading image: " + imageObj.src);
+		print("Error loading image: " + imageObj.src);
     //alert(this.src);
-  }
+  });
   imageObj.src = "images/"+img;
 //	imageObj.src = img;
 }
 
 
 
-dynamic loadOtherNew(skipInit){
+/*dynamic loadOtherNew(skipInit){
 	if(simulationMode == true) return checkDone(skipInit);
 	var spriteLocations = curSessionGlobalVar.sceneRenderingEngine.getAllImagesNeededForScenesBesidesPlayers();
 	for(num i = 0; i<spriteLocations.length; i++){
 		loadImage(spriteLocations[i],skipInit);
 	}
-}
+}*/
 
 
 
@@ -212,22 +214,22 @@ dynamic loadOther(skipInit){
 	loadImage("echeladder.png",skipInit);
 	loadImage("godtierlevelup.png",skipInit);
 	loadImage("pesterchum.png",skipInit);
-	loadImage("blood_puddle.png",skipInit)  //re load
-	loadImage("scratch_face.png",skipInit) //re load
-	loadImage("robo_face.png",skipInit)  //re load
-	loadImage("calm_scratch_face.png",skipInit) //rendering engine will load
+	loadImage("blood_puddle.png",skipInit);  //re load
+	loadImage("scratch_face.png",skipInit); //re load
+	loadImage("robo_face.png",skipInit);  //re load
+	loadImage("calm_scratch_face.png",skipInit); //rendering engine will load
 	loadImage( "Prospit.png",skipInit);
 	//loadImage("Prospit_symbol.png");
 	loadImage("Derse.png",skipInit);
 	//loadImage("Derse_symbol.png");
-	loadImage("bloody_face.png",skipInit)  ///Rendering engine will load
+	loadImage("bloody_face.png",skipInit);  ///Rendering engine will load
 	loadImage("Moirail.png",skipInit);
 	loadImage("Matesprit.png",skipInit);
   loadImage("horrorterror.png", skipInit);
   loadImage("dreambubbles.png", skipInit);
 	loadImage("Auspisticism.png",skipInit);
 	loadImage("Kismesis.png",skipInit);
-	loadImage("prince_hat.png",skipInit)   //rendering engine will load
+	loadImage("prince_hat.png",skipInit);   //rendering engine will load
 	loadImage("discuss_romance.png",skipInit);
 	loadImage("discuss_ashenmance.png",skipInit);
 	loadImage("discuss_palemance.png",skipInit);
@@ -238,12 +240,13 @@ dynamic loadOther(skipInit){
 	loadImage("discuss_murder.png",skipInit);
   loadImage("discuss_raps.png",skipInit);
 	for(int i = 1; i<4; i++){
-		loadImage("Bodies/baby"+i + ".png",skipInit) //rendering engine will laod
+		loadImage("Bodies/baby${i}.png",skipInit); //rendering engine will laod
 	}
 
 	for(int i = 1; i<4; i++){
-		loadImage("Bodies/grub"+i + ".png",skipInit);
+		loadImage("Bodies/grub${i}.png",skipInit);
 	}
+	return null;
 }
 
 
@@ -256,10 +259,10 @@ dynamic loadAllPossiblePlayers(skipInit){
     var numHorns = blankPlayer.maxHornNumber; //1 indexed.
     //var numWings = 12 ;//0 indexed, not 1.  for now, don't bother with wings. not gonna show godtier, for now.;
     for(int i = 1; i<=numBodies; i++){
-        loadImage("Bodies/reg"+i+".png",skipInit);  //as long as i i do a 'load' again when it's to to start the simulation, can get away with only loading these bodies.
-        loadImage("Bodies/god"+i+".png",skipInit);
-        loadImage("Bodies/dream"+i+".png",skipInit);
-				if(easter_egg == true)   loadImage("Bodies/egg"+i+".png",skipInit);
+        loadImage("Bodies/reg${i}.png",skipInit);  //as long as i i do a 'load' again when it's to to start the simulation, can get away with only loading these bodies.
+        loadImage("Bodies/god${i}.png",skipInit);
+        loadImage("Bodies/dream${i}.png",skipInit);
+				if(easter_egg == true)   loadImage("Bodies/egg${i}.png",skipInit);
     }
 
     //error handling
@@ -273,13 +276,13 @@ dynamic loadAllPossiblePlayers(skipInit){
 
 
     for(int i = 1; i<=numHair; i++){
-        loadImage("Hair/hair_back"+i+".png",skipInit);
-        loadImage("Hair/hair"+i+".png",skipInit);
+        loadImage("Hair/hair_back${i}.png",skipInit);
+        loadImage("Hair/hair${i}.png",skipInit);
     }
 
 
       for(int i = 0; i<13; i++){
-        loadImage("Wings/wing"+i+".png",skipInit);
+        loadImage("Wings/wing${i}.png",skipInit);
       }
 
       loadImage("Blood.png",skipInit);
@@ -302,15 +305,16 @@ dynamic loadAllPossiblePlayers(skipInit){
     loadImage("Hair/hair254.png",skipInit);
 
     for(int i = 1; i<=numHorns; i++){
-        loadImage("Horns/left"+i+".png",skipInit);
-        loadImage("Horns/right"+i+".png",skipInit);
+        loadImage("Horns/left${i}.png",skipInit);
+        loadImage("Horns/right${i}.png",skipInit);
     }
 
     num maxCustomHorns = 4; //kr doesn't want these widely available.
     for(num i = 255; i> 255-maxCustomHorns; i+=-1){;
-        loadImage("Horns/left"+i+".png",skipInit);
-        loadImage("Horns/right"+i+".png",skipInit);
+        loadImage("Horns/left${i}.png",skipInit);
+        loadImage("Horns/right${i}.png",skipInit);
      }
+     return null;
 }
 
 
@@ -338,4 +342,5 @@ dynamic loadPlayer(player, skipInit){
 	}else{
 		//loadImage("Bodies/baby"+player.baby + ".png");
 	}
+	return null;
 }

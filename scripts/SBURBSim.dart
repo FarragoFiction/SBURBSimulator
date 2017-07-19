@@ -16,6 +16,7 @@ part "session.dart";
 part "scene_controller.dart";
 part "quirk.dart";
 part "random_tables.dart";
+part "loading.dart";
 
 part "relationship.dart";
 part "handle_sprites.dart";
@@ -80,6 +81,7 @@ part "Scenes/YellowYard.dart";
 Session curSessionGlobalVar;
 int canvasWidth;
 int canvasHeight;
+bool simulationMode;
 
 T getRandomElementFromArray<T>(List<T> list) {
 	return list[0];

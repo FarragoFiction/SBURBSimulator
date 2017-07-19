@@ -1614,7 +1614,7 @@ void drawSpriteFromScratch(CanvasElement canvas, Player player, [CanvasRendering
   }
 
   if(!baby && player.aspect == "Void"){
-    voidSwap(canvas, 1-player.power/2000); //a void player at 2000 power is fully invisible.
+    voidSwap(canvas, 1-player.getStat("power")/2000); //a void player at 2000 power is fully invisible.
   }
 
 
