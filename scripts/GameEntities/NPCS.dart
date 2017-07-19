@@ -36,6 +36,7 @@ class PrototypingObject extends NPC {
   String helpPhrase =
       "provides the requisite amount of gigglesnort hideytalk to be juuuust barely helpful. ";
   num helpfulness = 0;
+  bool illegal = false; //maybe AR won't help players with ILLEGAL sprites?
   PrototypingObject(String name, num id, Session session)
       : super(name, id, session);
 }
