@@ -103,7 +103,7 @@ class GameEntity {
 
 
   void setStatsHash(hashStats){
-    for (var key in hashStats){
+    for (var key in hashStats.keys){
       this.stats[key] =  hashStats[key];
     }
     this.stats["currentHP"] =  Math.max(this.stats["hp"], 10); //no negative hp asshole.

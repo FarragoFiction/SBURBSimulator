@@ -2,6 +2,7 @@
 import 'dart:typed_data';
 import 'dart:collection';
 import 'dart:convert';
+import 'dart:math' as Math;
 part "../GameEntities/GameEntity.dart"; //internet says "part" is functionally like saying "pretend this thing is literally line for line right here".
 
 var testGE = null;
@@ -34,7 +35,7 @@ testStats() {
   assert(testGE.getStat("hp") == 0 ? true : throw "initial hp should be 0, but is: ${testGE..getStats("hp")}");
   testGE.setStatsHash({"hp": 100, "currentHP":10, "power":3, "maxLuck": 100});
   jRAssert("hp", testGE.getStat("hp"), 100);
-  jRAssert("currentHP", testGE.getStat("currentHP"), 10);
+  jRAssert("currentHP", testGE.getStat("currentHP"), 100); //even though i set it to 10, setSTatsHash should not let it e less than HP
   jRAssert("power", testGE.getStat("power"), 3);
   jRAssert("maxLuck", testGE.getStat("maxLuck"), 100);
   jRAssert("minLuck", testGE.getStat("minLuck"), 0);  //confirm did not change.
