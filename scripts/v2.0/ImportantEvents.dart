@@ -254,7 +254,7 @@ class PlayerDiedForever  extends ImportantEvent {
 
 
 class PlayerWentGrimDark  extends ImportantEvent {
-	num importanceRating = 7;	var player = makeRenderingSnapshot;
+	num importanceRating = 7;	var player = Player.makeRenderingSnapshot;
 
 	PlayerWentGrimDark(Session session, num mvp_value, Player player, Player doomedTimeClone): super(session, mvp_value, player, doomedTimeClone);
 

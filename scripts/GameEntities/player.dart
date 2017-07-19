@@ -355,7 +355,7 @@ class Player extends GameEntity{
 			this.minLuck = 30; //prophecy fulfilled. you are no longer doomed.
 		}
 		if(!this.godTier){ //god tiers only make ghosts in GodTierRevivial
-			var g = makeRenderingSnapshot(this);
+			var g = Player.makeRenderingSnapshot(this);
 			g.fraymotifs = this.fraymotifs.sublist(0); //copy not reference
 			this.session.afterLife.addGhost(g);
 		}

@@ -194,7 +194,7 @@ class Strife {
   void summonDoomedTimeClone(div, players, numTurns){
     //print("summoning a doomed time clone to this fight. " +this.session.session_id);
     var timePlayer = findAspectPlayer(this.session.players, "Time");
-    var doomedTimeClone = makeDoomedSnapshot(timePlayer);
+    var doomedTimeClone = Player.makeDoomedSnapshot(timePlayer);
     players.add(doomedTimeClone);
     if(players.indexOf(timePlayer) !=-1){
       if(timePlayer.dead){

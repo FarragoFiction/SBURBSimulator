@@ -304,7 +304,7 @@ class Aftermath extends Scene {
 	var tkrCanvas = querySelector("#trollKidRockAppears");
 	drawTimeGears(tkrCanvas, trollKidRock);
 	drawSinglePlayer(tkrCanvas, trollKidRock);
-	fighters.add(makeRenderingSnapshot(trollKidRock)) //sorry trollKidRock you are not REALLY a player.
+	fighters.add(Player.makeRenderingSnapshot(trollKidRock)) //sorry trollKidRock you are not REALLY a player.
 	purpleFrog.strife(div, fighters,0);
 	String ret = "";
 	if(purpleFrog.getStat("currentHP") <= 0 || purpleFrog.dead) {

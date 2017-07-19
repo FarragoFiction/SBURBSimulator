@@ -320,7 +320,7 @@ class YellowYard extends Scene{
 			return chat;
 	}
 	dynamic getDoomedTimeClone(){
-		var timeClone = makeRenderingSnapshot(this.timePlayer);
+		var timeClone = Player.makeRenderingSnapshot(this.timePlayer);
 		timeClone.dead = false;
 		timeClone.doomed = true;
 		timeClone.currentHP = timeClone.hp;

@@ -170,7 +170,7 @@ class UpdateShippingGrid extends Scene{
 		var player1 = this.chosenShipper.player;
 		var player2 = this.chosenShipper.otp.r2.target;
 		if(player1 == player2){
-			player1 = makeRenderingSnapshot(player1);
+			player1 = Player.makeRenderingSnapshot(player1);
 			player1.chatHandle = "future" + player1.chatHandle.charAt(0).toUpperCase() + player1.chatHandle.slice(1);
 		}
 		var divID = (div.attr("id")) + "_canvas_shipping"+ this.chosenShipper.id;
@@ -317,7 +317,7 @@ class UpdateShippingGrid extends Scene{
 			var theirRelationshipWithMe = p2.getRelationshipWith(shipper);
 			var c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!","Hey!","Hello!","Um... hey!","I kind of need to talk to you."], ["Hey.","Hiya","Whats up?","Good to see you.","Hows it going?"],["Hey, asshole.","Fuck off.","Eat shit and die.","Oh god.", "Sup, dipshit.","Blugh.","FML.", "Nope. Nope. Nope.", "Yes?", "And you are?", "Ugh."]);
 			if(shipper == p1){
-				shipper = makeRenderingSnapshot(shipper);
+				shipper = Player.makeRenderingSnapshot(shipper);
 				shipper.chatHandle = "future" + shipper.chatHandle;
 				shipperStart = "F"+shipperStart;
 				c= new PlusMinusConversationalPair(["Look, don't panic, but I'm you from the future and you HAVE to listen to me. ", "Yo, its future you. Again.", "Time for future you/me to give you future wisdom."], ["What the fuck?", "Holy shit, give me your future wisdom.","Ok.","Again?"],["Holy shit, why are you dooming a timeline?","Not this shit again, we agreed no cross time chats!", "Nope. Nope. Nope.", "Fuck my life.", "Oh god.", "Sup, dipshit.","Blugh.","FML.","Eat shit and die."]);
@@ -379,7 +379,7 @@ class UpdateShippingGrid extends Scene{
 			var theirRelationshipWithMe = p2.getRelationshipWith(shipper);
 			var c = new PlusMinusConversationalPair(["Sooo... hey! ", "We never talk!","Hey!","Hello!","Um... hey!","I kind of need to talk to you."], ["Hey.","Hiya","Whats up?","Good to see you.","Hows it going?"],["Hey, asshole.","Fuck off.","Eat shit and die.","Oh god.", "Sup, dipshit.","Blugh.","FML.", "Nope. Nope. Nope.", "Yes?", "And you are?", "Ugh.","Not this again."]);
 			if(shipper == p1){
-				shipper = makeRenderingSnapshot(shipper);
+				shipper = Player.makeRenderingSnapshot(shipper);
 				shipper.chatHandle = "future" + shipper.chatHandle;
 				shipperStart = "F"+shipperStart;
 				c= new PlusMinusConversationalPair(["Look, don't panic, but I'm you from the future and you HAVE to listen to me. ", "Yo, its future you. Again.", "Time for future you/me to give you future wisdom."], ["What the fuck?", "Holy shit, give me your future wisdom.","Ok.","Again?"],["Holy shit, why are you dooming a timeline?","Not this shit again, we agreed no cross time chats!", "Nope. Nope. Nope.", "Fuck my life.", "Oh god.", "Sup, dipshit.","Blugh.","FML.","Eat shit and die."]);
@@ -442,7 +442,7 @@ class UpdateShippingGrid extends Scene{
 			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe);
 			c= new PlusMinusConversationalPair(["Sooo... hey! ", "We never talk!","Hey!","Hello!","Um... hey!","I kind of need to talk to you."], ["Hey.","Hiya","Whats up?","Good to see you.","Hows it going?"],["Hey, asshole.","Fuck off.","Eat shit and die.","Oh god.", "Sup, dipshit.","Blugh.","FML.", "Nope. Nope. Nope.", "Yes?", "And you are?", "Ugh."]);
 			if(shipper == p1){
-				shipper = makeRenderingSnapshot(shipper);
+				shipper = Player.makeRenderingSnapshot(shipper);
 				shipper.chatHandle = "future" + shipper.chatHandle;
 				shipperStart = "F"+shipperStart;
 				c= new PlusMinusConversationalPair(["Look, don't panic, but I'm you from the future and you HAVE to listen to me. ", "Yo, its future you. Again.", "Time for future you/me to give you future wisdom."], ["What the fuck?", "Holy shit, give me your future wisdom.","Ok.","Again?"],["Holy shit, why are you dooming a timeline?","Not this shit again, we agreed no cross time chats!", "Nope. Nope. Nope.", "Fuck my life.", "Oh god.", "Sup, dipshit.","Blugh.","FML.","Eat shit and die."]);
@@ -499,7 +499,7 @@ class UpdateShippingGrid extends Scene{
 			var theirRelationshipWithMe = p2.getRelationshipWith(shipper);
 			var c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!","Hey!","Hello!","Um... hey!","I kind of need to talk to you."], ["Hey.","Hiya","Whats up?","Good to see you.","Hows it going?"],["Hey, asshole.","Fuck off.","Eat shit and die.","Oh god.", "Sup, dipshit.","Blugh.","FML.", "Nope. Nope. Nope.", "Yes?", "And you are?", "Ugh."]);
 			if(shipper == p1){
-				shipper = makeRenderingSnapshot(shipper);
+				shipper = Player.makeRenderingSnapshot(shipper);
 				shipper.chatHandle = "future" + shipper.chatHandle;
 				shipperStart = "F"+shipperStart;
 				c= new PlusMinusConversationalPair(["Look, don't panic, but I'm you from the future and you HAVE to listen to me. ", "Yo, its future you. Again.", "Time for future you/me to give you future wisdom."], ["What the fuck?", "Holy shit, give me your future wisdom.","Ok.","Again?"],["Holy shit, why are you dooming a timeline?","Not this shit again, we agreed no cross time chats!", "Nope. Nope. Nope.", "Fuck my life.", "Oh god.", "Sup, dipshit.","Blugh.","FML.","Eat shit and die."]);

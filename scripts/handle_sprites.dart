@@ -1448,7 +1448,7 @@ void drawBabySprite(canvas, player){
   if(checkSimMode() == true){
     return;
   }
-    player = makeRenderingSnapshot(player);//probably dont need to, but whatever
+    player = Player.makeRenderingSnapshot(player);//probably dont need to, but whatever
     var ctx = canvas.getContext('2d');
     ctx.imageSmoothingEnabled = false;
     //don't forget to shrink baby
@@ -1466,7 +1466,7 @@ void drawSprite(canvas, player, ctx, baby){
     if(checkSimMode() == true){
       return;
     }
-	var player = makeRenderingSnapshot(player);
+	var player = Player.makeRenderingSnapshot(player);
     if(player.ghost || player.doomed){  //don't expect ghosts or doomed players to render more than a time or two, don't bother caching for now.
         //print("drawing ghost or doomed player from scratch: " + player);
         drawSpriteFromScratch(canvas, player, ctx, false);
@@ -1497,7 +1497,7 @@ void drawSpriteFromScratch(canvas, player, ctx, baby){
   if(checkSimMode() == true){
     return;
   }
-	player = makeRenderingSnapshot(player);
+	player = Player.makeRenderingSnapshot(player);
   //could be turnways or baby
  if(!ctx){
    ctx = canvas.getContext('2d');

@@ -79,7 +79,7 @@ class GodTierRevival extends Scene {
 						p.causeOfDeath += " (it was a JUST judgement)";
 					}
 
-					this.session.afterLife.addGhost(makeRenderingSnapshot(p));
+					this.session.afterLife.addGhost(Player.makeRenderingSnapshot(p));
 				}
 
 			}else if (p.heroicDeath()){
@@ -95,7 +95,7 @@ class GodTierRevival extends Scene {
 					ret += " HEROIC. They do not revive. ";
 					p.canGodTierRevive = false;
 					p.causeOfDeath += " (it was HEROIC judgement)";
-					this.session.afterLife.addGhost(makeRenderingSnapshot(p));
+					this.session.afterLife.addGhost(Player.makeRenderingSnapshot(p));
 				}
 			}else{
 				if(roll < -1 * breakNeeded){
@@ -103,7 +103,7 @@ class GodTierRevival extends Scene {
 					ret += " ... Huh. Should the clock be DOING that? It's on both HEROIC and JUST at the same time, somehow? Not neither of them. Talk about a BAD BREAK. They do not revive.  ";
 					p.canGodTierRevive = false;
 					p.causeOfDeath += " (it was an unlucky judgement) ";
-					this.session.afterLife.addGhost(makeRenderingSnapshot(p));
+					this.session.afterLife.addGhost(Player.makeRenderingSnapshot(p));
 				}else{
 					//print("god tier revival in: " + this.session.session_id);
 					ret += " neither HEROIC nor JUST.  They revive in a rainbow glow, stronger than ever. ";
