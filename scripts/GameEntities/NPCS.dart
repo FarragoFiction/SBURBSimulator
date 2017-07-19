@@ -281,7 +281,7 @@ var fortune_objects = [
         "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ",
   new PotentialSprite("Crocodile",0, null)
     ..illegal = true
-    ..setStatsHash("power": 50})
+    ..setStatsHash({"power": 50})
     ..helpPhrase =
         "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ",
   new PotentialSprite("Turtle",0, null)
