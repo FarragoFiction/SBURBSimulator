@@ -11,17 +11,18 @@ main() {
   testName();
   testID();
   testStats();
+  testBuffs();
 }
 
 setup() {
-  testGE = new GameEntity("Firsty", 413, null);
+  testGE = new GameEntity("Firsty Testy", 413, null);
 }
 
 testName() {
   setup();
   print(testGE.name);
-  assert(testGE.name == "Firsty");
-  print(testGE); //testing toString
+  assert(testGE.name == "Firsty Testy");
+  jRAssert("toString", testGE.toString(), "FirstyTesty"); //to string gets rid of spaces, which is apparently important because sometimes use it for div.
   print("Name passed");
 }
 
@@ -55,9 +56,28 @@ testStats() {
   print("Stats passed");
 }
 
+testBuffs() {
+  setup();
+  jRAssert("hp", testGE.getStat("hp"), 0);
+  jRAssert("number of buffs",testGE.buffs.length, 0);
+  jRAssert("buffs for hp",testGE.getTotalBuffForStat("hp"), 0);
+  var hpBuff1 = new Buff("hp", 10);
+  testGE.buffs.add(hpBuff1); //TODO maybe eventaully should be a funciton instead of exposed array.
+  jRAssert("number of buffs",testGE.buffs.length, 1);
+  jRAssert("buffs for hp",testGE.getTotalBuffForStat("hp"), 10);
+  var hpBuff2 = new Buff("hp", 5);
+  testGE.buffs.add(hpBuff2);
+  jRAssert("number of buffs",testGE.buffs.length, 2);
+  jRAssert("buffs for hp",testGE.getTotalBuffForStat("hp"), 15);
+  jRAssert("functional hp", testGE.getStat("hp"), 15); //functional is a pun, cuz it is both FROM a function AND the working value of hp (but not actual). I am the BEST at jokes.
+  jRAssert("real hp", testGE.stats["hp"], 0);  //real hp is unmodified.
+  print("Buffs passed");
+}
+
 
 //this is how i want asserts to work
 jRAssert(name, tested, expected)
 {
   assert(tested == expected ? true : throw "${name} should be ${expected}, but is: ${tested}");
 }
+
