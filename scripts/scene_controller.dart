@@ -480,7 +480,7 @@ dynamic dataBytesAndStringsToPlayer(charString, str_arr){
 	 player.dead = 0 != ((1<<5) & charString.charCodeAt(7));
 	 //print("Binary string is: " + charString[7]);
 	 player.godDestiny = 0 != ((1<<4) & charString.charCodeAt(7));
-	 player.quirk.favoriteNumber = charString.charCodeAt(7) & 15; 
+	 player.quirk.favoriteNumber = charString.charCodeAt(7) & 15;
 	 print("Player favorite number is: " + player.quirk.favoriteNumber);
 	 player.leftHorn = charString.charCodeAt(8);
 	 player.rightHorn = charString.charCodeAt(9);
