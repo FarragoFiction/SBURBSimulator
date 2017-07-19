@@ -15,10 +15,10 @@ class Aftermath extends Scene {
 	}
 	dynamic democracyBonus(){
 		String ret = "<Br><br><img src ;= 'images/sceneIcons/wv_icon.png'>";
-		if(this.session.democraticArmy.power == 0){
+		if(this.session.democraticArmy.getStat("power") == 0){
 			return "";
 		}
-		if(this.session.democraticArmy.currentHP > 10 && findLivingPlayers(this.session.players).length > 0 ){
+		if(this.session.democraticArmy.getStat("currentHP") > 10 && findLivingPlayers(this.session.players).length > 0 ){
 			this.session.mayorEnding = true;
 			ret += "The adorable Warweary Villein has been duly elected Mayor by the assembled consorts and Carapacians. ";
 			ret += " His acceptance speech consists of promising to be a really great mayor that everyone loves who is totally amazing and heroic and brave. ";
@@ -51,7 +51,7 @@ class Aftermath extends Scene {
 			timePlayer = findAspectPlayer(this.session.players, "Time") ;//NEED to have a time player here.;
 			var s = new YellowYard(this.session);
 			s.timePlayer = timePlayer;
-			s.trigger();
+			s.trigger(null);
 			s.renderContent(div);
 		}
 	}
@@ -87,11 +87,11 @@ class Aftermath extends Scene {
 			}
 		}
 		div.append(ret);
-
+		return null;
 	}
 	void drawMourning(div, dead_player, friend){
 		var divID = (div.attr("id")) + "_" + dead_player.chatHandle;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='canvas$divID' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
 		div.append(canvasHTML);
 		var canvasDiv = querySelector("#canvas"+ divID);
 
@@ -165,8 +165,8 @@ class Aftermath extends Scene {
 					end += "<br>With Skaia's destruction, there is nowhere to deploy the frog to. It doesn't matter how much frog breeding the Space Player did.";
 				}else{
 					end += "<br>Unfortunately, the " + spacePlayer.htmlTitle() + " was unable to complete frog breeding duties. ";
-					end += " They only got " + Math.round(spacePlayer.landLevel/this.session.minFrogLevel*100) + "% of the way through. ";
-					print(Math.round(spacePlayer.landLevel/this.session.minFrogLevel*100) + " % frog in session: " + this.session.session_id)
+					end += " They only got " + (spacePlayer.landLevel/this.session.minFrogLevel*100).round() + "% of the way through. ";
+					print((spacePlayer.landLevel/this.session.minFrogLevel*100).round() + " % frog in session: " + this.session.session_id);
 					if(spacePlayer.landLevel < 0){
 						end += " Stupid lousy goddamned GrimDark players fucking with the frog breeding. Somehow you ended up with less of a frog than when you got into the medium. ";
 					}
@@ -200,7 +200,9 @@ class Aftermath extends Scene {
 	if(yellowYard == true || this.session.janusReward){
 		this.yellowLawnRing(div);  //can still scratch, even if yellow lawn ring is available
 	}
+	return null;
 }
+
 	dynamic trollKidRock(){
 	String trollKidRockString = "b;=%00%00%00%C2%91%C3%B0%15%10VDD%20&s=,,Rap-Rock,Riches,bawitdaBastard" ;//Ancient, thank you for best meme. ;
 	var trollKidRock = new CharacterEasterEggEngine().playerDataStringArrayToURLFormat([trollKidRockString])[0];
@@ -211,43 +213,43 @@ class Aftermath extends Scene {
 	f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? ";
 	trollKidRock.fraymotifs.add(f);
 	
-	var f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) ;//most repetitive song, ACTIVATE!!!;
+	f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) ;//most repetitive song, ACTIVATE!!!;
 	f.effects.add(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
 	f.effects.add(new FraymotifEffect("power",1,false));
 	f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? ";
 	trollKidRock.fraymotifs.add(f);
 	
-	var f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) ;//most repetitive song, ACTIVATE!!!;
+	f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) ;//most repetitive song, ACTIVATE!!!;
 	f.effects.add(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
 	f.effects.add(new FraymotifEffect("power",1,false));
 	f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? ";
 	trollKidRock.fraymotifs.add(f);
 	
-	var f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) ;//most repetitive song, ACTIVATE!!!;
+	f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) ;//most repetitive song, ACTIVATE!!!;
 	f.effects.add(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
 	f.effects.add(new FraymotifEffect("power",1,false));
 	f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? ";
 	trollKidRock.fraymotifs.add(f);
-	initializePlayers([trollKidRock]);
+	initializePlayers([trollKidRock], null); //TODO: confirm -PL
 	trollKidRock.currentHP = 1000;
 	return trollKidRock;
 }
 	dynamic purpleFrog(){
 	var mvp = findStrongestPlayer(this.session.players);
-	var tmpStatHolder = {};
-	tmpStatHolder.minLuck = -100;
-	tmpStatHolder.maxLuck = 100;
-	tmpStatHolder.hp = 30000+mvp.getStat("power") * this.session.players.length;  //this will be a challenge. good thing you have troll kid rock to lay down some sick beats.
-	tmpStatHolder.mobility = -100;
-	tmpStatHolder.sanity = 0;
-	tmpStatHolder.freeWill = 200;
-	tmpStatHolder.power =20000+mvp.getStat("power") * this.session.players.length; //this will be a challenge.
-	tmpStatHolder.grist = 100000000;
-	tmpStatHolder.abscondable = false; //this is still the final battle, 
-	tmpStatHolder.canAbscond = false;
-	tmpStatHolder.RELATIONSHIPS = -100;  //not REAL relationships, but real enough for our purposes.
-	print(purpleFrog);
-	var purpleFrog = new GameEntity(this.session, " <font color;='purple'>" +Zalgo.generate("Purple Frog") + "</font>", null);
+	Map<String,dynamic> tmpStatHolder = {};
+	tmpStatHolder["minLuck"] = -100;
+	tmpStatHolder["maxLuck"] = 100;
+	tmpStatHolder["hp"] = 30000+mvp.getStat("power") * this.session.players.length;  //this will be a challenge. good thing you have troll kid rock to lay down some sick beats.
+	tmpStatHolder["mobility"] = -100;
+	tmpStatHolder["sanity"] = 0;
+	tmpStatHolder["freeWill"] = 200;
+	tmpStatHolder["power"] =20000+mvp.getStat("power") * this.session.players.length; //this will be a challenge.
+	tmpStatHolder["grist"] = 100000000;
+	tmpStatHolder["abscondable"] = false; //this is still the final battle,
+	tmpStatHolder["canAbscond"] = false;
+	tmpStatHolder["RELATIONSHIPS"] = -100;  //not REAL relationships, but real enough for our purposes.
+	//print(purpleFrog);
+	var purpleFrog = new GameEntity(" <font color;='purple'>" +Zalgo.generate("Purple Frog") + "</font>", null, this.session);
 	purpleFrog.setStatsHash(tmpStatHolder);
 	print(purpleFrog);
 	//what kind of attacks does a grim dark purple frog have???  Croak Blast is from rp, but what else?
@@ -297,19 +299,18 @@ class Aftermath extends Scene {
 	var purpleFighters = this.getGoodGuys(trollKidRock);
 	var callBack = this.finishPurpleStrife.bind(this, div, purpleFrog, purpleFighters, trollKidRock);
 	loadAllImagesForPlayerWithCallback(trollKidRock, callBack);
-	
 }
 	void finishPurpleStrife(div, purpleFrog, fighters, trollKidRock){
 	trollKidRock.renderSelf();  //gotta cache his sprite
 	var tkrCanvas = querySelector("#trollKidRockAppears");
-	drawTimeGears(tkrCanvas, trollKidRock);
+	drawTimeGears(tkrCanvas);//, trollKidRock);
 	drawSinglePlayer(tkrCanvas, trollKidRock);
-	fighters.add(Player.makeRenderingSnapshot(trollKidRock)) //sorry trollKidRock you are not REALLY a player.
+	fighters.add(Player.makeRenderingSnapshot(trollKidRock)); //sorry trollKidRock you are not REALLY a player.
 	purpleFrog.strife(div, fighters,0);
 	String ret = "";
 	if(purpleFrog.getStat("currentHP") <= 0 || purpleFrog.dead) {
 		this.session.won = true;
-		ret += "With a final, deafening 'CROAK', the " + purpleFrog.name + " slumps over. While it appears dead, it is merely unconscious. Entire universes swirl within it now that it has settled down, including the Players original Universe. You guess it would make sense that your Multiverse would be such an aggressive, glitchy asshole, if it generated such a shitty, antagonistic game as SBURB.  You still don't know what happened with Troll Kid Rock. You...guess that while regular Universes start with a 'bang', Skaia has decreed that Multiverses have to start with a 'BANG DA DANG DIGGY DIGGY'.  <Br><br> The door to the new multiverse is revealed. Everyone files in. <Br><Br> Thanks for Playing. <span class ;= 'void'>Though, of course, the Horror Terrors slither in right after the Players. It's probably nothing. Don't worry about it.  THE END</span>"
+		ret += "With a final, deafening 'CROAK', the " + purpleFrog.name + " slumps over. While it appears dead, it is merely unconscious. Entire universes swirl within it now that it has settled down, including the Players original Universe. You guess it would make sense that your Multiverse would be such an aggressive, glitchy asshole, if it generated such a shitty, antagonistic game as SBURB.  You still don't know what happened with Troll Kid Rock. You...guess that while regular Universes start with a 'bang', Skaia has decreed that Multiverses have to start with a 'BANG DA DANG DIGGY DIGGY'.  <Br><br> The door to the new multiverse is revealed. Everyone files in. <Br><Br> Thanks for Playing. <span class ;= 'void'>Though, of course, the Horror Terrors slither in right after the Players. It's probably nothing. Don't worry about it.  THE END</span>";
 	}else{
 		ret += "With a final, deafening 'CROAK', the " + purpleFrog.name + " floats victorious over the remains of the Players.   The Horror Terrors happily colonize the new Universe, though, so I guess the GrimDark players would be happy with this ending?  <Br><Br> Thanks for Playing. ";
 	}
@@ -320,10 +321,10 @@ class Aftermath extends Scene {
     div = querySelector("#charSheets");
     if(div.length == 0) return; //don't try to render if there's no where to render to
 	for(num i = 0; i<this.session.players.length; i++){
-		String canvasHTML = "<canvas class ;= 'charSheet' id='lastcanvas" + this.session.players[i].id+"_" + this.session.session_id+"' width;='800' height='1000'>  </canvas>";
-		div.append(canvasHTML);
-		var canvasDiv = querySelector("#lastcanvas"+ this.session.players[i].id+"_" + this.session.session_id);
-		var first_canvas = querySelector("#firstcanvas"+ this.session.players[i].id+"_" + this.session.session_id);
+		String canvasHTML = "<canvas class = 'charSheet' id='lastcanvas${this.session.players[i].id}_${this.session.session_id}' width='800' height='1000'>  </canvas>";
+		div.appendHtml(canvasHTML);
+		var canvasDiv = querySelector("#lastcanvas${this.session.players[i].id}_${this.session.session_id}");
+		var first_canvas = querySelector("#firstcanvas${this.session.players[i].id}_${this.session.session_id}");
 		var tmp_canvas = getBufferCanvas(canvasDiv);
 		drawCharSheet(tmp_canvas,this.session.players[i]);
 		copyTmpCanvasToRealCanvasAtPos(canvasDiv, first_canvas,0,0);
