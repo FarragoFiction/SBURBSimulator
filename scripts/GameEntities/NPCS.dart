@@ -314,7 +314,7 @@ var fortune_objects = [
 
 
 //////////////////////lusii are a little stronger in general
-List<dynamic> lusus = [
+List<dynamic> lusus_objects = [
   new Lusus("Hoofbeast",0, null)
     
   ..setStatsHash({"power": 30}),
@@ -470,71 +470,61 @@ List<dynamic> sea_lusus_objects = [
 //regular
 List<dynamic> prototyping_objects = [
   new PotentialSprite("Buggy As Fuck Retro Game",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..corrupted = true //no stats, just corrupted. maybe a fraymotif later.
     ..helpPhrase =
         "provides painful, painful sound file malfunctions, why is this even a thing? ",
 
   new PotentialSprite("Robot",0, null)
-    ..hp = 100
-    ..currentHP = 100
+    ..setStatsHash({"power": 100, "hp":100,"currentHP":100, "freeWill":100})
     ..helpfulness = 1
     ..helpPhrase =
         "is <b>more</b> useful than another player. How could a mere human measure up to the awesome logical capabilities of a machine? "
-    ..freeWill = 100
-    ..power = 100,
+,
 
   new PotentialSprite("Golfer",0, null)
-    ..power = 20
     ..helpfulness = 1
-    ..minLuck = 20
-    ..maxLuck = 20
+    ..setStatsHash({"power": 20, "minLuck":20, "maxLuck":20})
     ..helpPhrase =
         "provides surprisingly helpful advice, even if they do insist on calling all enemies ‘bogeys’. ",
 
   new PotentialSprite("Dutton",0, null)
-    ..hp = 10
-    ..currentHP = 10
-    ..power = 10
     ..helpfulness = 1
     ..helpPhrase = "provides transcendent wisdom. "
-    ..freeWill = 50
-    ..mobility = 50
-    ..minLuck = 50
-    ..maxLuck = 50
+    ..setStatsHash({"power": 10,"hp": 10, "currentHP":10, "freeWill":50, "mobility":50, "minLuck":50, "maxLuck":50})
     ..fraymotifs.add(new Fraymotif([], "Duttobliteration", 2)
       ..effects.add(new FraymotifEffect("freeWill", 2, true))
       ..flavorText =
           " The ENEMY is obliterated. Probably. A watermark of Charles Dutton appears, stage right. "),
 
   new PotentialSprite("Game Bro",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..helpfulness = 1
     ..helpPhrase =
         "provides rad as fuck tips and tricks for beating SBURB and getting mad snacks, yo. 5 out of 5 hats. ",
 
 //in joke, lol, google always reports that sessions are crashed. google is a horror terror (see tumblr)
   new PotentialSprite("Google",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..helpfulness = 1
     ..corrupted = true
     ..helpPhrase =
         "sure knows a lot about everything, but why does it only seem to return results about crashing SBURB?",
 
   new PotentialSprite("Game Grl",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..helpfulness = 1
     ..helpPhrase =
         "provides rad as fuck tips and tricks for beating SBURB and getting mad snacks, yo, but, like, while also being a GIRL? *record scratch*  5 out of 5 lady hats. ",
 
   new PotentialSprite("Paperclip",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..helpfulness = -1
     ..helpPhrase =
         "says: 'It looks like you're trying to play a cosmic game where you breed frogs to create a universe. Would you like me to'-No. 'Would you like me to'-No! 'It looks like you're'-shut up!!! This is not helpful.",
 
   new PotentialSprite("WebComicCreator",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..helpfulness = -1
     ..helpPhrase =
         "refuses to explain anything about SBURB to you, prefering to let you speculate wildly while cackling to himself."
@@ -544,7 +534,7 @@ List<dynamic> prototyping_objects = [
           " All enemies are obliterated. Probably. A watermark of Andrew Hussie appears, stage right. "),
 
   new PotentialSprite("KidRock",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..helpfulness = -1
     ..helpPhrase =
         "does absolutly nothing but sing repetitive, late 90's rock to you."
@@ -556,7 +546,7 @@ List<dynamic> prototyping_objects = [
           " OWNER plays a 90s hit classic, and you can't help but tap your feet. Somehow, this doesn't feel like the true version of this attack."),
 
   new PotentialSprite("Sleuth",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20, "RELATIONSHIPS":100})
     ..helpfulness = -1
     ..helpPhrase =
         "suggests the player just input a password to skip all their land's weird puzzle shit. This is not actually a thing you can do."
@@ -578,18 +568,17 @@ List<dynamic> prototyping_objects = [
           " No, not yet! The OWNER refuses to use Sepulchritude. They just heal the party instead. "),
 
   new PotentialSprite("Nick Cage",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..helpfulness = 1
     ..helpPhrase =
         "demonstrates that when it comes to solving bullshit riddles to get National *cough* I mean SBURBian treasure, he is simply the best there is. ",
 
   new PotentialSprite("Praying Mantis",0, null)
-    ..power = 20
-    ..maxLuck = 20,
+    ..setStatsHash({"power": 20, "maxLuck":20})
+    ,
 
   new PotentialSprite("Shitty Comic Character",0, null)
-    ..power = 20
-    ..mobility = 50
+    ..setStatsHash({"power": 20, "mobility":50})
     ..helpfulness = -1
     ..helpPhrase =
         " is the STAR. It is them. You don't think they have ever once attempted to even talk about the game. How HIGH did you have to BE to prototype this glitchy piece of shit? "
@@ -608,27 +597,26 @@ List<dynamic> prototyping_objects = [
       ..flavorText = " I told you dog! "),
 
   new PotentialSprite("Doctor",0, null) //healing fraymotif
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..helpfulness = 1
     ..helpPhrase =
         "is pretty much as useful as another player. No cagey riddles, just straight answers on how to finish the quests. ",
 
   new PotentialSprite("Gerbil",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..helpfulness = 1
     ..helpPhrase =
         "remains physically adorable and mentally idiotic. Gigglysnort hideytalk ahoy. ",
 
   new PotentialSprite("Chinchilla",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..helpfulness = 1
     ..helpPhrase =
         "remains physically adorable and mentally idiotic. Gigglysnort hideytalk ahoy. ",
 
   new PotentialSprite("Rabbit",0, null)
-    ..power = 20
-    ..maxLuck = 100
-    ..helpPhrase =
+    ..setStatsHash({"power": 20,"maxLuck":100})
+     ..helpPhrase =
         "remains physically adorable and mentally idiotic. Gigglysnort hideytalk ahoy. ",
 
   new PotentialSprite("Tissue",0, null)
@@ -636,199 +624,183 @@ List<dynamic> prototyping_objects = [
     ..helpPhrase = "is useless in every possible way. ",
 
   new PotentialSprite("Librarian",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..helpfulness = 1
     ..helpPhrase =
         "Is pretty much as useful as another player. No cagey riddles, just straight answers on where the book on how to finish the quest is, and could you please keep it down? ",
 
-  new PotentialSprite("Pit Bull",0, null)..power = 50,
+  new PotentialSprite("Pit Bull",0, null)..setStatsHash({"power": 50}),
 
   new PotentialSprite("Butler",0, null)
-    ..power = 50 //he will serve you like a man on butler island
+    ..setStatsHash({"power": 20, "sanity": 50}) //he will serve you like a man on butler island
     ..helpfulness = 1
     ..helpPhrase =
         "is serving their player like a dude on butlersprite island. "
-    ..sanity = 50,
+    ,
 
   new PotentialSprite("Sloth",0, null)
-    ..power = 20
-    ..mobility = -50
+    ..setStatsHash({"power": 20,"mobility":-50})
     ..helpPhrase = "provides. Slow. But. Useful. Advice.",
 
   new PotentialSprite("Cowboy",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..helpfulness = 1
     ..helpPhrase =
         "provides useful advice, even if they do insist on calling literally everyone 'pardner.' ",
 
   new PotentialSprite("Pomeranian",0, null)
-    ..power =
-    1 //pomeranians aren't actually very good at fights.  (trust me, i know)
+    ..setStatsHash({"power": 1})//pomeranians aren't actually very good at fights.  (trust me, i know)
     ..helpfulness = -1
     ..helpPhrase =
         "unhelpfully insists that every rock is probably a boss fight (it isn’t). ",
 
   new PotentialSprite("Chihuahua",0, null)
-    ..power =
-    1 //i'm extrapolating here, but I imagine Chihuahua's aren't very good at fights, either.
+    ..setStatsHash({"power": 1})//i'm extrapolating here, but I imagine Chihuahua's aren't very good at fights, either.
     ..helpfulness = -1
     ..helpPhrase =
         "unhelpfully insists that every rock is probably a boss fight (it isn’t). ",
 
   new PotentialSprite("Pony",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20, "sanity": -1000})
     ..helpfulness = -1
-    ..sanity =
-    -1000 //ponyPals taught me that ponys are just flipping their shit, like, 100% of the time.
+    //ponyPals taught me that ponys are just flipping their shit, like, 100% of the time.
     ..helpPhrase =
         "is constantly flipping their fucking shit instead of being useful in any way shape or form, as ponies are known for. ",
 
   new PotentialSprite("Horse",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20,"sanity":-100})
     ..helpfulness = -1
-    ..sanity = -100 //probably flip out less than ponys???
+     //probably flip out less than ponys???
     ..helpPhrase =
         "is constantly flipping their fucking shit instead of being useful in any way shape or form, as horses are known for. ",
 
-  new PotentialSprite("Internet Troll",
-      null) //needs to have a fraymotif called "u mad, bro" and "butt hurt"
-    ..power = 20
+  new PotentialSprite("Internet Troll",0, null) //needs to have a fraymotif called "u mad, bro" and "butt hurt"
+    ..setStatsHash({"power": 20, "sanity": 1000})
     ..helpfulness = -1
-    ..sanity = 1000
     ..helpPhrase = "actively does its best to hinder their efforts. ",
 
   new PotentialSprite("Mosquito",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..helpfulness = -1
     ..helpPhrase =
         "is a complete dick, buzzing and fussing and biting. What's its deal? ",
 
   new PotentialSprite("Fly",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..helpfulness = -1
     ..helpPhrase =
         "is a complete dick, buzzing and fussing and biting. What's its deal? ",
 
   new PotentialSprite("Cow",0, null)
-    ..power = 30, //cows kill more people a year than sharks.
+    ..setStatsHash({"power": 30}), //cows kill more people a year than sharks.
 
   new PotentialSprite("Bird",0, null)
-    ..power = 20
-    ..mobility = 20
+    ..setStatsHash({"power": 20, "mobility":50})
     ..helpPhrase =
         "provides sort of helpful advice when not grabbing random objects to make nests. ",
 
   new PotentialSprite("Bug",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..helpPhrase =
         "provides the requisite amount of buzzybuz zuzytalk to be juuuust barely helpful. ",
 
-  new PotentialSprite("Llama",0, null)..power = 20,
+  new PotentialSprite("Llama",0, null)..setStatsHash({"power": 20}),
 
-  new PotentialSprite("Penguin",0, null)..power = 20,
+  new PotentialSprite("Penguin",0, null)..setStatsHash({"power": 20}),
 
   new PotentialSprite("Husky",0, null)
-    ..power = 30
+    ..setStatsHash({"power": 30})
     ..helpPhrase =
         "alternates between loud, insistent barks and long, eloquent monologues on the deeper meaning behind each and every fragment of the game. ",
 
   new PotentialSprite("Cat",0, null)
-    ..power = 20
-    ..minLuck = -20
-    ..maxLuck = 20
+    ..setStatsHash({"power": 20, "minLuck":-20, "maxLuck":20})
     ..helpPhrase =
         "Is kind of helpful? Maybe? You can't tell if it loves their player or hates them. ",
 
   new PotentialSprite("Dog",0, null)
-    ..power = 30
+    ..setStatsHash({"power": 30})
     ..helpPhrase =
         "alternates between loud, insistent barks and long, eloquent monologues on the deeper meaning behind each and every fragment of the game. ",
 
   new PotentialSprite("Pigeon",0, null)
-    ..power =
-    0.5 //pigeons are not famous for their combat prowess. I bet even a pomeranian could beat one up.
-    ..freeWill = -40,
+    ..setStatsHash({"power": 0.5, "freeWill":-40}) //pigeons are not famous for their combat prowess. I bet even a pomeranian could beat one up.
+    ,
 
   new PotentialSprite("Octopus",0, null)
-    ..power = 20
-    ..mobility = 80, //so many legs! more legs is more faster!!!
+    ..setStatsHash({"power": 20, "mobility":80})
+    , //so many legs! more legs is more faster!!!
 
   new PotentialSprite("Fish",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..armless = true,
 
   new PotentialSprite("Kitten",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..helpPhrase =
         "is kind of helpful? Maybe? You can't tell if it loves their player or hates them. ",
 
   new PotentialSprite("Worm",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..armless = true,
 
-  new PotentialSprite("Bear",0, null)..power = 50,
+  new PotentialSprite("Bear",0, null)..setStatsHash({"power": 50}),
 
-  new PotentialSprite("Goat",0, null)..power = 20,
+  new PotentialSprite("Goat",0, null)..setStatsHash({"power": 20}),
 
-  new PotentialSprite("Rat",0, null)..power = 20,
+  new PotentialSprite("Rat",0, null)..setStatsHash({"power": 20}),
 
   new PotentialSprite("Raccoon",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..helpfulness = 1
     ..helpPhrase =
         "demonstrates that SBURB basically hides quest items in the same places humans would throw away their garbage. ",
 
   new PotentialSprite("Crow",0, null)
-    ..power = 20
-    ..freeWill =
-    20 //have you ever tried to convince a crow not to do something? not gonna happen.
+    ..setStatsHash({"power": 20, "freeWill":50})//have you ever tried to convince a crow not to do something? not gonna happen.
     ..helpPhrase =
         "provides sort of helpful advice when not grabbing random objects to make nests. ",
 
   new PotentialSprite("Chicken",0, null)
-    ..power = 20
-    ..freeWill =
-    -20, //mike the headless chicken has convinced me that chickens don't really need brains. god that takes me back.
+    ..setStatsHash({"power": 20, "freeWill":-50}), //mike the headless chicken has convinced me that chickens don't really need brains. god that takes me back.
 
-  new PotentialSprite("Duck",0, null)..power = 20,
+  new PotentialSprite("Duck",0, null)..setStatsHash({"power": 20}),
 
-  new PotentialSprite("Sparrow",0, null)..power = 20,
+  new PotentialSprite("Sparrow",0, null)..setStatsHash({"power": 20}),
 
   new PotentialSprite("Fancy Santa",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..helpfulness = -1
     ..helpPhrase = "goes hohohohohohohohoho. ",
 
   new PotentialSprite("Politician",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..helpfulness = -1
     ..helpPhrase =
         "offers a blueprint for an ECONONY that works for everyone. That would've been more useful before the earth was destroyed.... ",
 
   new PotentialSprite("Tiger",0, null)
-    ..power = 50
+    ..setStatsHash({"power": 50})
     ..helpPhrase =
         "Provides just enough pants-shitingly terrifying growly-roar meow talk to be useful. ",
 
   new PotentialSprite("Sugar Glider",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..helpPhrase =
         "remains physically adorable and mentally idiotic. Gigglysnort hideytalk ahoy. ",
 
   new PotentialSprite("Rapper",0, null)
-    ..power = 20
+    ..setStatsHash({"power": 20})
     ..helpfulness = 1
     ..helpPhrase =
         "provides surprisingly helpful advice, even if it does insist on some frankly antiquated slang and rhymes. I mean, civilization is dead, there isn’t exactly a police left to fuck. ",
 
   new PotentialSprite("Kangaroo",0, null)
-    ..power = 30
-    ..mobility = 30,
+    ..setStatsHash({"power": 30, "mobility":30}),
 
   new PotentialSprite("Stoner",0, null)
-    ..power = 42.0 //blaze it
-    ..minLuck = -42.0
-    ..maxLuck = 42.0
+    //blaze it
+    ..setStatsHash({"power": 42.0, "minLuck":-42.0, "maxLuck":42.0})
     ..helpfulness = 1
     ..helpPhrase =
         "is pretty much as useful as another player, assuming that player was higher then a fucking kite. ",
