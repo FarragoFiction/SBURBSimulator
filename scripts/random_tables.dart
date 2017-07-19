@@ -195,7 +195,7 @@ dynamic makeFilteredCopyForLetters(array, letter){
 
 
 
-dynamic turnArrayIntoHumanSentence(List<dynamic> a){
+String turnArrayIntoHumanSentence(List<dynamic> a){
 	return [a.sublist(0, a.length-1).join(', '), a.sublist(a.length-1)[0]].join(a.length < 2 ? '' : ' and ');
 }
 

@@ -5,6 +5,7 @@ part of SBURBSim;
 class GameEntity {
   Session session;
   String name;
+  String fontColor = "#000000";
   bool ghost; //if you are ghost, you are rendered spoopy style
   num grist; //everything has it.
   bool dead = false;
@@ -57,23 +58,26 @@ class GameEntity {
   String humanWordForBuffNamed(statName){
     if(statName == "MANGRIT") return "powerful";
     if(statName == "hp") return "sturdy";
+    if(statName == "currentHP") return "sturdy";
     if(statName == "RELATIONSHIPS") return "friendly";
     if(statName == "mobility") return "fast";
     if(statName == "sanity") return "calm";
     if(statName == "freeWill") return "willful";
+    if(statName == "power") return "powerful";  //should never buff this directly, just use MANGRIT
     if(statName == "maxLuck") return "lucky";
     if(statName == "minLuck") return "lucky";
     if(statName == "alchemy") return "creative";
-    return null;
+    print("what the hell kind of stat name is: ${statName}");
+    return "glitchy";
   }
-  dynamic describeBuffs(){
+  String describeBuffs(){
     List<dynamic> ret = [];
-    var allStats = this.allStats();
-    for(num i = 0; i<allStats.length; i++){
-      var b = this.getTotalBuffForStat(allStats[i]);
+    Iterable allStats = this.allStats();
+    for(String stat in allStats){
+      var b = this.getTotalBuffForStat(stat);
       //only say nothing if equal to zero
-      if(b>0) ret.add("more "+this.humanWordForBuffNamed(allStats[i]));
-      if(b<0) ret.add("less " + this.humanWordForBuffNamed(allStats[i]));
+      if(b>0) ret.add("more "+this.humanWordForBuffNamed(stat));
+      if(b<0) ret.add("less " + this.humanWordForBuffNamed(stat));
     }
     if(ret.length == 0) return "";
     return this.htmlTitleHP() + " is feeling " + turnArrayIntoHumanSentence(ret) + " than normal. ";
@@ -127,8 +131,8 @@ class GameEntity {
     if(this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
     return ret + pname; //TODO denizens are aspect colored.
   }
-  dynamic htmlTitleHP(){
-    String ret = "";
+  String htmlTitleHP(){
+    String ret = "<font color ='${fontColor}'>" ;
     if(this.crowned != null) ret+="Crowned ";
     var pname = this.name;
     if(this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
@@ -177,7 +181,7 @@ class GameEntity {
     return [];
   }
 
-  dynamic allStats(){
+  Iterable allStats(){
     return this.stats.keys;
   }
 
