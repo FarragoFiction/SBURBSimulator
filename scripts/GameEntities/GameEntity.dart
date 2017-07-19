@@ -11,12 +11,12 @@ class GameEntity {
   bool corrupted = false; //players are corrupted at level 4. will be easier than always checking grimDark level
   List<dynamic> fraymotifs = [];
   bool usedFraymotifThisTurn = false;
-  List<dynamic> buffs = []; //only used in strifes, array of BuffStats (from fraymotifs and eventually weapons)
+  List<Buff> buffs = []; //only used in strifes, array of BuffStats (from fraymotifs and eventually weapons)
   HashMap stats = {};
   List<Relationship> relationships; //not to be confused with the RELATIONSHIPS stat which is the value of all relationships.
-  var permaBuffs = {"MANGRIT":0}; //is an object so it looks like a player with stats.  for things like manGrit which are permanent buffs to power (because modding power directly gets OP as shit because power controls future power)
+  HashMap permaBuffs = {"MANGRIT":0}; //is an object so it looks like a player with stats.  for things like manGrit which are permanent buffs to power (because modding power directly gets OP as shit because power controls future power)
   num renderingType = 0; //0 means default for this sim.
-  List<dynamic> associatedStats = [];  //most players will have a 2x, a 1x and a -1x stat.
+  List<AssociatedStat> associatedStats = [];  //most players will have a 2x, a 1x and a -1x stat.
   var spriteCanvasID = null;  //part of new rendering engine.
   num id;
   bool doomed = false; //if you are doomed, no matter what you are, you are likely to die.
@@ -41,12 +41,12 @@ class GameEntity {
   //TODO make sure Player's @overide them.
 
   dynamic toString(){
-    return this.htmlTitle().replace(new RegExp(r"""\s""", multiLine:true), '').replace(new RegExp(r"""'""", multiLine:true), ''); //no spces probably trying to use this for a div
+    return this.htmlTitle().replaceAll(new RegExp(r"\s", multiLine:true), '').replaceAll(new RegExp(r"'", multiLine:true), ''); //no spces probably trying to use this for a div
   }
   void increasePower(){
     //stub for sprites, and maybe later consorts or carapcians
   }
-  dynamic getTotalBuffForStat(statName){
+  num getTotalBuffForStat(statName){
     num ret = 0;
     for(num i = 0; i<this.buffs.length; i++){
       var b = this.buffs[i];
@@ -89,8 +89,14 @@ class GameEntity {
       this.stats[stat.name] += modValue * stat.multiplier;
     }
   }
+  //TODO players (and any complicated NPCS) need to override this to hook up RELATIONSHIPS to actual other players.
   num getStat(statName){
-    return this.stats[statName];
+    num ret = this.stats[statName];
+    for(var i = 0; i<this.buffs.length; i++){
+      var b = this.buffs[i];
+      if(b.name == statName) ret += b.value;
+    }
+    return ret;
   }
 
   void setStat(statName,value){
@@ -103,7 +109,7 @@ class GameEntity {
 
 
   void setStatsHash(hashStats){
-    for (var key in hashStats){
+    for (var key in hashStats.keys){
       this.stats[key] =  hashStats[key];
     }
     this.stats["currentHP"] =  Math.max(this.stats["hp"], 10); //no negative hp asshole.
@@ -178,4 +184,35 @@ class GameEntity {
 
 }
 
+
+
+
+//need to know if you're from aspect, 'cause only aspect associatedStats will be used for fraymotifs.
+//except for heart, which can use ALL associated stats. (cause none will be from aspect.)
+class AssociatedStat {
+  var name;
+  var multiplier;
+  var isFromAspect;
+
+
+  AssociatedStat(this.name, this.multiplier, this.isFromAspect) {}
+
+
+  String toString(){
+    String tmp = "";
+    if(this.isFromAspect) tmp = " (from Aspect) ";
+    return "["+this.name + " x " +this.multiplier + tmp+"]";
+  }
+
+}
+
+
+
+//can eventually have a duration, but for now, assumed to be the whole fight. i don't want fights to last long.
+class Buff {
+  Buff(String this.name, num this.value) {}
+
+  String name;
+  num value;
+}
 

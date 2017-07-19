@@ -2953,33 +2953,3 @@ dynamic getAverageFreeWill(players){
 	return  (ret/players.length).round();
 }
 
-
-
-//need to know if you're from aspect, 'cause only aspect associatedStats will be used for fraymotifs.
-//except for heart, which can use ALL associated stats. (cause none will be from aspect.)
-class AssociatedStat {
-	var name;
-	var multiplier;
-	var isFromAspect;	
-
-
-	AssociatedStat(this.name, this.multiplier, this.isFromAspect) {}
-
-
-	String toString(){
-		String tmp = "";
-		if(this.isFromAspect) tmp = " (from Aspect) ";
-		return "["+this.name + " x " +this.multiplier + tmp+"]";
-	}
-
-}
-
-
-
-//can eventually have a duration, but for now, assumed to be the whole fight. i don't want fights to last long.
-class Buff {
-	Buff(String this.name, num this.value) {}
-
-	String name;
-	num value;
-}
