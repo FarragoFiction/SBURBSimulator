@@ -26,7 +26,7 @@ class Player extends GameEntity{
 	List<dynamic> sickRhymes = []; //oh hell yes. Hell. FUCKING. Yes!
 	bool robot = false;
 	var ectoBiologicalSource = null; //might not be created in their own session now.
-	var class_name;
+	var class_name;  //TODO make class and aspect an object, not a string.  have that object ONLY place things happen based on classpect.  Player asks classpect "How do I increase power"? and aspect has static for colors and what associated stats that player should get.
 	var guardian = null; //no longer the sessions job to keep track.
 	num number_confessions = 0;
 	num number_times_confessed_to = 0;
