@@ -312,106 +312,107 @@ var fortune_objects = [
         "provides the requisite amount of gigglesnort  hideytalk to be fairly useful, AND the underlings seem to go after it first! Bonus! ",
 ];
 
+
 //////////////////////lusii are a little stronger in general
-List<dynamic> lusus_objects = [
+List<dynamic> lusus = [
   new Lusus("Hoofbeast",0, null)
-    ..lusus = true,
-  ..setStatsHash({"power": 30})
+    
+  ..setStatsHash({"power": 30}),
   new Lusus("Meow Beast",0, null)
-    ..lusus = true
+    
 ..setStatsHash({"power": 30, "minLuck":20, "maxLuck":20})
     ..helpPhrase =
         "is kind of helpful? Maybe? You can't tell if it loves their player or hates them. ",
   new Lusus("Bark Beast", 0,null)
 ..setStatsHash({"power": 40})
-    ..lusus = true
+    
     ..helpPhrase =
         "alternates between loud, insistent barks and long, eloquent monologues on the deeper meaning behind each and every fragment of the game. ",
-  new Lusus("Nut Creature", null)
+  new Lusus("Nut Creature", 0,null)
 ..setStatsHash({"power": 30, "mobility":30})
-    ..lusus = true,
+    ,
   new Lusus("Gobblefiend", 0,null)
 ..setStatsHash({"power": 50}) //turkeys are honestly terrifying.
-    ..lusus = true
+    
     ..helpfulness = -1
     ..helpPhrase =
         "is the most unhelpful piece of shit in the world. Oh my god, just once. Please, just shut up. ",
   new Lusus("Bicyclops",0, null) //laser fraymotif?
 ..setStatsHash({"power": 30})
-    ..lusus = true,
+    ,
   new Lusus("Centaur",0, null)
 ..setStatsHash({"power": 50, "sanity": 50})//lusii in the butler genus simply are unflappable.
-    ..lusus = true,
+    ,
   new Lusus( "Fairy Bull",0, null)
 ..setStatsHash({"power": 1}) //kinda useless. like a small dog or something.
-    ..lusus = true,
+    ,
   new Lusus( "Slither Beast",0, null)
 ..setStatsHash({"power": 30})
-    ..lusus = true
+    
     ..armless = true,
   new Lusus("Wiggle Beast",0, null)
 ..setStatsHash({"power": 30})
-    ..lusus = true,
+    ,
   new Lusus("Honkbird",0, null)
 ..setStatsHash({"power": 30})
-    ..lusus = true,
+    ,
   new Lusus("Dig Beast",0, null)
 ..setStatsHash({"power": 30})
-    ..lusus = true,
+    ,
   new Lusus("Cholerbear",0, null)
 ..setStatsHash({"power": 50})
-    ..lusus = true,
+    ,
   new Lusus("Antler Beast",0, null)
 ..setStatsHash({"power": 30, "mobility":30})
-    ..lusus = true,
+    ,
   new Lusus("Ram Beast",0, null)
 ..setStatsHash({"power": 30})
-    ..lusus = true,
+    ,
   new Lusus("Crab",0, null)
 ..setStatsHash({"power": 30})
-    ..lusus = true,
+    ,
   new Lusus("Spider",0, null)
 ..setStatsHash({"power": 30})
-    ..lusus = true,
+    ,
   new Lusus("Thief Beast",0, null)
 ..setStatsHash({"power": 30})
-    ..lusus = true,
+    ,
   new Lusus("March Bug",0, null)
 ..setStatsHash({"power": 30})
-    ..lusus = true,
+    ,
   new Lusus("Nibble Vermin",0, null)
 ..setStatsHash({"power": 30})
-    ..lusus = true,
+    ,
   new Lusus("Woolbeast",0, null)
 ..setStatsHash({"power": 30})
-    ..lusus = true,
+    ,
   new Lusus("Hop Beast",0, null)
 ..setStatsHash({"power": 30, "maxLuck":30})
-    ..lusus = true,
+    ,
   new Lusus("Stink Creature",0, null)
 ..setStatsHash({"power": 30})
-    ..lusus = true,
+    ,
   new Lusus("Speed Beast",0, null)
 ..setStatsHash({"power": 30, "mobility":50})
-    ..lusus = true,
+    ,
   new Lusus("Jump Creature",0, null)
 ..setStatsHash({"power": 30})
-    ..lusus = true,
+    ,
   new Lusus("Fight Beast",0, null)
 ..setStatsHash({"power": 50})
-    ..lusus = true,
+    ,
   new Lusus("Claw Beast",0, null)
 ..setStatsHash({"power": 50})
-    ..lusus = true,
+    ,
   new Lusus("Tooth Beast",0, null)
 ..setStatsHash({"power": 50})
-    ..lusus = true,
+    ,
   new Lusus("Armor Beast",0, null)
 ..setStatsHash({"power": 30, "currentHP":100, "hp":100})
-    ..lusus = true,
+    ,
   new Lusus("Trap Beast",0, null)
 ..setStatsHash({"power": 30})
-    ..lusus = true,
+    
 ];
 
 ////////////////////////sea lusii
@@ -419,54 +420,51 @@ List<dynamic> lusus_objects = [
 List<dynamic> sea_lusus_objects = [
   new Lusus("Zap Beast",0, null) //zap fraymotif
     ..setStatsHash({"power": 50})
-    ..lusus = true,
+    ,
   new Lusus("Sea Slither Beast",0, null)
     ..setStatsHash({"power": 30})
-    ..lusus = true
+
     ..armless = true,
   new Lusus("Electric Beast",0, null) //zap fraymotif
-    ...setStatsHash({"power": 50})
-    ..lusus = true
+    ..setStatsHash({"power": 50})
     ..armless = true,
   new Lusus("Whale",0, null)
 ..setStatsHash({"power": 30, "currentHP":50, "hp":50})
-    ..lusus = true
     ..armless = true,
   new Lusus("Sky Horse",0, null)
 ..setStatsHash({"power": 30, "mobility":20})
-    ..lusus = true,
+    ,
   new Lusus("Sea Meow Beast",0, null)
 ..setStatsHash({"power": 30, "minLuck":20, "maxLuck":20})
-    ..lusus = true,
+    ,
   new Lusus("Sea Hoofbeast",0, null)
 ..setStatsHash({"power": 30})
-    ..lusus = true,
+    ,
   new Lusus("Cuttlefish",0, null)
 ..setStatsHash({"power": 30})
-    ..lusus = true,
+    ,
   new Lusus("Swim Beast",0, null)
 ..setStatsHash({"power": 30})
-    ..lusus = true,
+    ,
   new Lusus("Sea Goat",0, null)
 ..setStatsHash({"power": 30, "minLuck":-30, "maxLuck":30})
-    ..lusus = true
+
 ,
   new Lusus("Light Beast",0, null)
 ..setStatsHash({"power": 30})
-    ..lusus = true,
+    ,
   new Lusus("Dive Beast",0, null)
 ..setStatsHash({"power": 30})
-    ..lusus = true,
+    ,
   new Lusus("Honkbird",0, null)
 ..setStatsHash({"power": 30})
-    ..lusus = true,
+    ,
   new Lusus("Sea Bear",0, null)
 ..setStatsHash({"power": 30})
-    ..lusus = true,
+    ,
   new Lusus("Sea Armorbeast",0, null)
 ..setStatsHash({"power": 30, "currentHP":50, "hp":50})
-    ..lusus = true
-,
+
 ];
 
 //regular
