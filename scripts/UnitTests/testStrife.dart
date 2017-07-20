@@ -17,6 +17,7 @@ Strife testStrife = null;
 main() {
   print("Hello World");
   testCreation();
+  //TODO test sorting teams by mobility.
 
 }
 

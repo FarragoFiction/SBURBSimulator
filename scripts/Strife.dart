@@ -8,10 +8,104 @@ part of SBURBSim;
  */
 class Strife {
   List<Team> teams; //for now, assume 2 teams, but could support more in future. think terezi +dave +dirk fighting two non-allied Jacks
-
+  num turnsPassed = 0; //keep track for interuptions and etc.
   Strife(this.teams);
 
-  //TODO remove all assumptions that "this" is a GameEntity
+  //TODO for now keeping old code as reference material, but delete it whole sale. it is too tangled up in "this" is a GameEntity.
+
+  //TODO get this working, then rewrite code for each sub part.
+  void startTurn(div) {
+    /*
+        Have each team compare mobility stats to determine team order.
+
+        Each team goes in order. When it is a team's turn, pass the div and num turn and teams to the Team object.  The team is in charge of knowing what to do.
+        Once each team has finished, the strife calls itself again.
+
+        What functionality MUST life in the Strife and what can a team have?
+
+        I expect a team to be able to interact with other teams (hence getting passed teams).
+        I expect a team to be able to draw/write to screen (hence getting passed a div).
+        I expect the STRIFE to know when it is over (all teams have 0 living members prsent).
+        I expect the STRIFE to know when it is interupted (rocks fall).
+        I expect the TEAM to know when it is interupted (new member, etc). IMPORTANT: How will I know who is applicable to be a new member. Need new field on team.
+    */
+
+    //first, decide what order the teams take their turns  (how does Dart do complex sorts?)
+    //then, have each team take turns.
+    //then, I check for ending conditions
+    //if ending, ending
+    //if not, call start again with numTurns ++
+    teams.sort(); //we do this every turn because mobility can change and should effect turn order.
+    for(Team team in teams) {
+        team.takeTurn(div, turnsPassed, teams);
+    }
+    if(strifeEnded()) {
+      processEnding();
+    }else {
+       turnsPassed ++;
+       startTurn(div);
+    }
+  }
+
+  //a strife is over when only one team is capable of fighting anymore. livingMinusAbsconded == 0;
+  bool strifeEnded() {
+      throw "Todo write strife ended";
+  }
+
+  //need to list out who is dead, who absconded, and who is alive.  Who WON.
+  void processEnding() {
+      throw "Todo write process ending";
+  }
+
+
+
+
+  //TODO remove this, but keep for now for reference.
+  dynamic strife(div, numTurns){
+    this.resetPlayersAvailability(players);
+    if(numTurns == 0) div.append("<Br><img src = 'images/sceneIcons/strife_icon.png'>");
+    numTurns += 1;
+    if(this.name == "Black King" || this.name == "Black Queen"){
+      //print("checking to see if rocks fall.");
+      this.session.timeTillReckoning += -1; //other fights are a a single tick. maybe do this differently later. have fights be multi tick. but it wouldn't tick for everybody. laws of physics man.
+      if(this.session.timeTillReckoning < this.session.reckoningEndsAt){
+        this.rocksFallEverybodyDies(div, players, numTurns);
+        this.ending(div, players, numTurns);
+        return null;
+      }
+    }
+
+    if(this.fightNeedsToEnd(div, players, numTurns)){
+      this.ending(div,players, numTurns);
+      return null;
+    }
+
+    players = this.summonBackUp(div, players, numTurns);//might do nothing;
+    //print(this.name + ": strife! " + numTurns + " turns against: " + getPlayersTitlesNoHTML(players) + this.session.session_id);
+    div.append("<br><Br>");
+    //as players die or mobility stat changes, might go players, me, me, players or something. double turns.
+    if(getAverageMobility(players) > this.getStat("mobility")){ //players turn
+      if(!this.fightOverAbscond(div, players) )this.playersTurn(div, players,numTurns);
+      if(this.getStat("currentHP") > 0 && !this.fightOverAbscond(div, players)) this.myTurn(div, players,numTurns);
+    }else{ //my turn
+      if(this.getStat("currentHP") > 0 && !this.fightOverAbscond(div,players))  this.myTurn(div, players,numTurns);
+      if(!this.fightOverAbscond(div, players) )this.playersTurn(div, players,numTurns);
+    }
+
+    if(this.fightOver(div, players) ){
+      this.ending(div,players);
+      return null;
+    }else{
+      if(this.fightOverAbscond(div,players)){
+        this.processAbscond(div,players);
+        this.ending(div,players);
+        return null;
+      }
+      return this.strife(div, players,numTurns);
+    }
+  }//TODO delete this.
+
+
   List<Player> removeAllNonPlayers(List<GameEntity>players){
     List<Player> ret = [];
     for(num i = 0; i< players.length; i++){
@@ -283,74 +377,11 @@ class Strife {
     }
   }
 
-  //TODO expect this to be called when I have teams. none of this "passed players in strife call bs".
-  void start(div, num numTurns) {
-    /*
-        Have each team compare mobility stats to determine team order.
 
-        Each team goes in order. When it is a team's turn, pass the div and num turn and teams to the Team object.  The team is in charge of knowing what to do.
-        Once each team has finished, the strife calls itself again.
 
-        What functionality MUST life in the Strife and what can a team have?
 
-        I expect a team to be able to interact with other teams (hence getting passed teams).
-        I expect a team to be able to draw/write to screen (hence getting passed a div).
-        I expect the STRIFE to know when it is over (all teams have 0 living members prsent).
-        I expect the STRIFE to know when it is interupted (rocks fall).
-        I expect the TEAM to know when it is interupted (new member, etc). IMPORTANT: How will I know who is applicable to be a new member. Need new field on team.
-    */
 
-    //first, decide what order the teams take their turns  (how does Dart do complex sorts?)
-    //then, have each team take turns.
-    //then, I check for ending conditions
-    //if ending, ending
-    //if not, call start again with numTurns ++
-  }
 
-//begins the Strife.  TODO get rid of ALL assumptions about who is involved.
-  dynamic strife(div, numTurns){
-    this.resetPlayersAvailability(players);
-    if(numTurns == 0) div.append("<Br><img src = 'images/sceneIcons/strife_icon.png'>");
-    numTurns += 1;
-    if(this.name == "Black King" || this.name == "Black Queen"){
-      //print("checking to see if rocks fall.");
-      this.session.timeTillReckoning += -1; //other fights are a a single tick. maybe do this differently later. have fights be multi tick. but it wouldn't tick for everybody. laws of physics man.
-      if(this.session.timeTillReckoning < this.session.reckoningEndsAt){
-        this.rocksFallEverybodyDies(div, players, numTurns);
-        this.ending(div, players, numTurns);
-        return null;
-      }
-    }
-
-    if(this.fightNeedsToEnd(div, players, numTurns)){
-      this.ending(div,players, numTurns);
-      return null;
-    }
-
-    players = this.summonBackUp(div, players, numTurns);//might do nothing;
-    //print(this.name + ": strife! " + numTurns + " turns against: " + getPlayersTitlesNoHTML(players) + this.session.session_id);
-    div.append("<br><Br>");
-    //as players die or mobility stat changes, might go players, me, me, players or something. double turns.
-    if(getAverageMobility(players) > this.getStat("mobility")){ //players turn
-      if(!this.fightOverAbscond(div, players) )this.playersTurn(div, players,numTurns);
-      if(this.getStat("currentHP") > 0 && !this.fightOverAbscond(div, players)) this.myTurn(div, players,numTurns);
-    }else{ //my turn
-      if(this.getStat("currentHP") > 0 && !this.fightOverAbscond(div,players))  this.myTurn(div, players,numTurns);
-      if(!this.fightOverAbscond(div, players) )this.playersTurn(div, players,numTurns);
-    }
-
-    if(this.fightOver(div, players) ){
-      this.ending(div,players);
-      return null;
-    }else{
-      if(this.fightOverAbscond(div,players)){
-        this.processAbscond(div,players);
-        this.ending(div,players);
-        return null;
-      }
-      return this.strife(div, players,numTurns);
-    }
-  }
   bool fightOverAbscond(div, players){
     //print("checking if fight is over beause of abscond " + this.playersAbsconded.length);
     if(this.iAbscond){
@@ -815,7 +846,7 @@ class Strife {
 }
 
 //it is assumed that all members are on the same side and won't hurt each other.
-class Team {
+class Team implements Comparable{  //when you want to sort teams, you sort by mobility.
   List<GameEntity> members;
   List<GameEntity> potentialMembers = new List<GameEntity>(); //who is allowed to join this team mid-strife. (i.e. I would be shocked if a player showed up to help a Denizen kill their buddy).
   List<GameEntity> absconded; //this only matters for one strife, so save to the team.
@@ -912,5 +943,9 @@ class Team {
 
   static String getTeamsNames(List<Team> teams) {
     return teams.join(",");  //TODO put an and at last team.
+  }
+  @override  //sorting Teams automatically sorts them by mobility so strife knows turn order
+  int compareTo(other) {
+    return other.getTeamStatAverage("mobility") - getTeamStatAverage("mobility");  //TODO or is it the otherway around???
   }
 }
