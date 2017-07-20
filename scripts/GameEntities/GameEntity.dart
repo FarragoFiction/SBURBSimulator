@@ -203,8 +203,8 @@ class GameEntity {
     return this.stats.keys;
   }
 
-  static String getEntitiesTitles() {
-    throw "todo: have all entities list out their titles";
+  static String getEntitiesNames(List<GameEntity> ges) {
+   return ges.join(',');  //TODO put an and at the end.
   }
 
 

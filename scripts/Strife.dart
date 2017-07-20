@@ -869,7 +869,9 @@ class Team {
     better than fussing with div down here and up there too.
 
    */
-
+  String toString() {
+    return getEntitiesNames(members);
+  }
   List<GameEntity> getLiving() {
     List<GameEntity> ret = new List<GameEntity>();
     for(GameEntity ge in members) {
@@ -932,6 +934,6 @@ class Team {
 
 
   static String getTeamsNames(List<Team> teams) {
-    throw "TODO get list of team names";
+    return teams.join(",");  //TODO put an and at last team.
   }
 }

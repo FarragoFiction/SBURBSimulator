@@ -70,7 +70,9 @@ class Player extends GameEntity{
 	bool denizenDefeated = false;
 	bool denizenMinionDefeated = false;
 
-	Player([String name, Session session, this.class_name, this.aspect, this.object_to_prototype, this.moon, this.godDestiny, num id]): super(name, id, session);
+	Player([Session session, this.class_name, this.aspect, this.object_to_prototype, this.moon, this.godDestiny, num id]): super("", id, session) {
+    this.name = this.htmlTitleBasic();
+  }
 
 
 	bool fromThisSession(Session session){
@@ -2375,7 +2377,7 @@ dynamic blankPlayerNoDerived(session){
 	var id = seed();
 	//	Player([String name, Session session, this.class_name, this.aspect, this.object_to_prototype, this.moon, this.godDestiny, num id]): super(name, id, session);
 
-  var p = new Player("player", session,"Page","Void",k,m,gd,id);
+  var p = new Player(session,"Page","Void",k,m,gd,id);
 	p.interest1 = interests[0];
 	p.interest2 = interests[0];
 	p.baby = 1;
@@ -2400,7 +2402,7 @@ dynamic randomPlayerNoDerived(session, c, a){
 
 	var m = getRandomElementFromArray(moons);
 	var id = seed();
-	var p = new Player("player", session,c,a,k,m,gd,id);
+	var p = new Player(session,c,a,k,m,gd,id);
 	p.decideTroll();
 	p.interest1 = getRandomElementFromArray(interests);
 	p.interest2 = getRandomElementFromArray(interests);
@@ -2434,7 +2436,7 @@ dynamic randomPlayerWithClaspect(session, c, a){
 
 	var m = getRandomElementFromArray(moons);
 	var id = seed();
-	var p = new Player("player", session,c,a,k,m,gd,id);
+	var p = new Player(session,c,a,k,m,gd,id);
 	p.decideTroll();
 	p.interest1 = getRandomElementFromArray(interests);
 	p.interest2 = getRandomElementFromArray(interests);
