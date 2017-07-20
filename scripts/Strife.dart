@@ -852,17 +852,25 @@ class Team {
     return living;
   }
 
-  num getTeamPower() {
+  num getTeamStatTotal(statName) {
     num ret = 0;
     for(GameEntity ge in members) {
-      ret += ge.getStat("power");
+      ret += ge.getStat(statName);
     }
     return ret;
   }
 
-  num getTeamCurrentHP() {
-
+  num getTeamStatAverage(statName) {
+    num ret = 0;
+    if(members.length <= 0) return ret;
+    for(GameEntity ge in members) {
+      ret += ge.getStat(statName);
+    }
+    return ret/members.length;
   }
+
+
+
 
   //don't include me.
   List<Team> getOtherTeams(List<Team>teams) {
@@ -876,7 +884,7 @@ class Team {
   static num getTeamsPower(List<Team> teams) {
     num ret = 0;
     for(Team team in teams) {
-     ret += (team.getTeamPower());
+     ret += (team.getTeamStat("power"));
     }
     return ret;
   }
@@ -884,7 +892,7 @@ class Team {
   static num getTeamsCurrentHP(List<Team> teams) {
     num ret = 0;
     for(Team team in teams) {
-      ret += (team.getTeamCurrentHP());
+      ret += (team.getTeamStat("currentHP"));
     }
     return ret;
   }

@@ -75,9 +75,9 @@ testStats() {
     print("Exception: " + exception + " caught as expected for adding a stat.");
   }
 
-  testGE.addStat("power", 0);
+  testGE.setStat("power", 0);
   testGE.permaBuffs["MANGRIT"] = 10;
-  jRAssert("power (taking into account MANGRIT)", testGE.getStat("power"), 10);
+  jRAssert("power (taking into account MANGRIT)", testGE.getStat("power"), 10); //TODO implement MANGRIT
   print("Stats passed");
 }
 
