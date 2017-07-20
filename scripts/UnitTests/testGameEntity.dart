@@ -13,6 +13,7 @@ main() {
   testID();
   testStats(); //when i do this for players, make sure relationships are being added right.
   testBuffs();
+  testLuck();
 }
 
 setup() {
@@ -111,10 +112,19 @@ testBuffs() {
   print("Buffs passed");
 }
 
+//do you feel lucky, punk?
+testLuck() {
+  setup();
+  testGE.setStatsHash({"minLuck": -100,"maxLuck": 100});
+  num roll = testGE.rollForLuck("");
+  assert((roll < 100 && roll > -100)); //expect this to fail, for now. random numbers don't REALLY work yet.
+}
+
 //this is how i want asserts to work
 jRAssert(name, tested, expected) {
   assert(tested == expected
       ? true
       : throw "${name} should be ${expected}, but is: ${tested}");
 }
+
 
