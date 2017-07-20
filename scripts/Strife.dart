@@ -10,6 +10,7 @@ class Strife {
   List<Team> teams; //for now, assume 2 teams, but could support more in future. think terezi +dave +dirk fighting two non-allied Jacks
   num turnsPassed = 0; //keep track for interuptions and etc.
   Strife(this.teams);
+  num timeTillRocks = 99999999; //unless it's a royalty fight, assume no rocks.
 
   //TODO for now keeping old code as reference material, but delete it whole sale. it is too tangled up in "this" is a GameEntity.
 
@@ -37,14 +38,23 @@ class Strife {
     //if not, call start again with numTurns ++
     teams.sort(); //we do this every turn because mobility can change and should effect turn order.
     for(Team team in teams) {
-        team.takeTurn(div, turnsPassed, teams);
+        team.takeTurn(div, turnsPassed, teams); //will handling resetting player availablity
     }
+    checkForRocks();
     if(strifeEnded()) {
       processEnding();
     }else {
        turnsPassed ++;
        startTurn(div);
     }
+  }
+
+  void checkForRocks() {
+      if(turnsPassed > timeTillRocks) {
+        for(Team team in teams) {
+            team.killEveryone("from terminal meteors to the face");
+        }
+      }
   }
 
   //a strife is over when only one team is capable of fighting anymore. livingMinusAbsconded == 0;
@@ -850,6 +860,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
   List<GameEntity> members;
   List<GameEntity> potentialMembers = new List<GameEntity>(); //who is allowed to join this team mid-strife. (i.e. I would be shocked if a player showed up to help a Denizen kill their buddy).
   List<GameEntity> absconded; //this only matters for one strife, so save to the team.
+  List<GameEntity> usedFraymotifThisTurn; //if you're in this list, you don't get a regular turn.
   String name = ""; //TODO like The Midnight Crew.  If not given, just make it a list of all members of the team.
   Team.withName(name, this.members);
   Team(this.members) {
@@ -869,14 +880,21 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
 
   void takeTurn(div, num numTurnOn, List<Team> teams) {
     /*
-       TODO centralized place.  And type of team with any members decides if they want to do ghost things, aggrieve directly, or use fraymotifs.
+       TODO centralized place.  And type of team with any members for each member decides if they want to do ghost things, aggrieve directly, or use fraymotifs.
        doomed members are banned from being ghost revived,but otherwise are free to do whatever.
 
        When choosing a target to attack, always target doomed members of another team first.  If multiple other teams, choose first team first (for now).
 
+       If you used a fraymotif this turn (check membership of list) you can't take your turn.
+
      */
+    resetPlayersAvailability();
     List<Team> otherTeams = getOtherTeams(teams);
 
+  }
+
+  void resetPlayersAvailability() {
+      usedFraymotifThisTurn.clear(); //no longer kept in player.
   }
 
 
@@ -887,6 +905,13 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     }
     return ret;
   }
+
+  void killEveryone(String reason) {
+    for(GameEntity ge in members) {
+      ge.makeDead(reason);
+    }
+  }
+
   List<GameEntity> getLivingMinusAbsconded(){
     var living = getLiving();
     for(num i = 0; i<this.absconded.length; i++){
