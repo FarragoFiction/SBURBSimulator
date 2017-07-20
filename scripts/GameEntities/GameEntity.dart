@@ -203,6 +203,10 @@ class GameEntity {
     return this.stats.keys;
   }
 
+  static String getEntitiesTitles() {
+    throw "todo: have all entities list out their titles";
+  }
+
 
 }
 
@@ -225,7 +229,6 @@ class AssociatedStat {
     if(this.isFromAspect) tmp = " (from Aspect) ";
     return "["+this.name + " x " +this.multiplier + tmp+"]";
   }
-
 }
 
 

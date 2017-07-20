@@ -38,9 +38,38 @@ class Strife {
     for(num i = 0; i<diamonds.length; i++){
       if(playersInFight.indexOf(diamonds[i] != -1)) reasonsToStay ++;  //extra reason to stay if they are your quadrant.
     }
-    reasonsToStay += member.power/this.getStat("currentHP"); //if i'm about to finish it off.
-    reasonsToLeave += 2 * this.getStat("power")/player.getStat("currentHP");  //if you could kill me in two hits, that's one reason to leave. if you could kill me in one, that's two reasons.
+    List<Team> otherTeams = team.getOtherTeams(teams);
+    num otherTeamsPower = Team.getTeamsStatTotal(otherTeams, "power"); //TODO should it be average or total?
+    num otherTeamsHealth = Team.getTeamsStatTotal(otherTeams, "currentHP");
+    reasonsToStay += member.getStat("power")/otherTeamsHealth; //if i'm about to finish it off.
+    reasonsToLeave += 2 * otherTeamsPower/member.getStat("currentHP");  //if you could kill me in two hits, that's one reason to leave. if you could kill me in one, that's two reasons.
 
+    if(reasonsToLeave > reasonsToStay * 2){
+      member.addStat("sanity", -10);
+      member.flipOut("how terrifying " + Team.getTeamsNames(otherTeams) + " were");
+      if(member.getStat("mobility") > Team.getTeamsStatAverage(otherTeams, "mobility")){
+        //print(" player actually absconds: they had " + player.hp + " and enemy had " + enemy.getStat("power") + this.session.session_id)
+        div.append("<br><img src = 'images/sceneIcons/abscond_icon.png'> The " + player.htmlTitleHP() + " absconds right the fuck out of this fight. ");
+        this.playersAbsconded.add(player);
+        this.remainingPlayersHateYou(div, player, playersInFight);
+        return true;
+      }else{
+        div.append(" The " + player.htmlTitleHP() + " tries to absconds right the fuck out of this fight, but the " + this.htmlTitleHP() + " blocks them. Can't abscond, bro. ")
+        return false;
+      }
+    }else if(reasonsToLeave > reasonsToStay){
+      if(player.mobility > this.mobility){
+        //print(" player actually absconds: " + this.session.session_id);
+        div.append("<br><img src = 'images/sceneIcons/abscond_icon.png'>  Shit. The " + player.htmlTitleHP() + " doesn't know what to do. They don't want to die... They abscond. ");
+        this.playersAbsconded.add(player);
+        this.remainingPlayersHateYou(div, player, playersInFight);
+        return true;
+      }else{
+        div.append(" Shit. The " + player.htmlTitleHP() + " doesn't know what to do. They don't want to die... Before they can decide whether or not to abscond " + this.htmlTitleHP() + " blocks their escape route. Can't abscond, bro. ")
+        return false;
+      }
+    }
+    return false;
 
 
   }
@@ -827,7 +856,11 @@ class Strife {
 class Team {
   List<GameEntity> members;
   List<GameEntity> absconded; //this only matters for one strife, so save to the team.
-  Team(this.members);
+  String name = ""; //TODO like The Midnight Crew.  If not given, just make it a list of all members of the team.
+  Team.withName(name, this.members);
+  Team(this.members) {
+    name = GameEntity.getEntitiesTitles();
+  }
   bool canAbscond; //sometimes you are forced to keep fighting.
 
   //TODO have code for taking a turn in here. have Strife be relatively empty.
@@ -881,19 +914,24 @@ class Team {
     return ret;
   }
 
-  static num getTeamsPower(List<Team> teams) {
+  static num getTeamsStatAverage(List<Team> teams, statName) {
     num ret = 0;
     for(Team team in teams) {
-     ret += (team.getTeamStatTotal("power"));
+     ret += (team.getTeamStatAverage(statName));
     }
     return ret;
   }
 
-  static num getTeamsCurrentHP(List<Team> teams) {
+  static num getTeamsStatTotal(List<Team> teams, statName) {
     num ret = 0;
     for(Team team in teams) {
-      ret += (team.getTeamStatTotal("currentHP"));
+      ret += (team.getTeamStatTotal(statName));
     }
     return ret;
+  }
+
+
+  static String getTeamsNames(List<Team> teams) {
+    throw "TODO get list of team names";
   }
 }
