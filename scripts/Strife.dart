@@ -51,7 +51,7 @@ class Strife {
         //print(" player actually absconds: they had " + player.hp + " and enemy had " + enemy.getStat("power") + this.session.session_id)
         div.append("<br><img src = 'images/sceneIcons/abscond_icon.png'> The " + member.htmlTitleHP() + " absconds right the fuck out of this fight. ");
         team.absconded.add(member);
-        this.remainingPlayersHateYou(div, member, playersInFight);
+        this.remainingPlayersHateYou(div, member, playersInFight,team);
         return true;
       }else{
         div.append(" The " + member.htmlTitleHP() + " tries to absconds right the fuck out of this fight, but the " + Team.getTeamsNames(otherTeams) + " blocks them. Can't abscond, bro. ");
@@ -62,7 +62,7 @@ class Strife {
         //print(" player actually absconds: " + this.session.session_id);
         div.append("<br><img src = 'images/sceneIcons/abscond_icon.png'>  Shit. The " + member.htmlTitleHP() + " doesn't know what to do. They don't want to die... They abscond. ");
         team.absconded.add(member);
-        this.remainingPlayersHateYou(div, member, team.getLivingMinusAbsconded());
+        this.remainingPlayersHateYou(div, member, team.getLivingMinusAbsconded(), team);
         return true;
       }else{
         div.append(" Shit. The " + member.htmlTitleHP() + " doesn't know what to do. They don't want to die... Before they can decide whether or not to abscond " + Team.getTeamsNames(otherTeams) + " blocks their escape route. Can't abscond, bro. ");
@@ -74,94 +74,30 @@ class Strife {
 
   }
 
-  bool willMemberAbscondOld(div, GameEntity member, Team team){
-    if(!team.canAbscond) return false;
-    var playersInFight = team.getLivingMinusAbsconded();
-    if(player.doomed) return false; //doomed players accept their fate.
-    num reasonsToLeave = 0;
-    num reasonsToStay = 2; //grist man.
-    reasonsToStay += this.getFriendsFromList(playersInFight).length; // TODO: confirm?
-    var hearts = this.getHearts();
-    var diamonds = this.getDiamonds();
-    for(num i = 0; i<hearts.length; i++){
-      if(playersInFight.indexOf(hearts[i] != -1)) reasonsToStay ++;  //extra reason to stay if they are your quadrant.
-    }
-    for(num i = 0; i<diamonds.length; i++){
-      if(playersInFight.indexOf(diamonds[i] != -1)) reasonsToStay ++;  //extra reason to stay if they are your quadrant.
-    }
-    reasonsToStay += player.power/this.getStat("currentHP"); //if i'm about to finish it off.
-    reasonsToLeave += 2 * this.getStat("power")/player.getStat("currentHP");  //if you could kill me in two hits, that's one reason to leave. if you could kill me in one, that's two reasons.
 
-    //print("reasons to stay: " + reasonsToStay + " reasons to leave: " + reasonsToLeave);
-    if(reasonsToLeave > reasonsToStay * 2){
-      player.sanity += -10;
-      player.flipOut("how terrifying " + this.htmlTitle() + " was");
-      if(player.mobility > this.mobility){
-        //print(" player actually absconds: they had " + player.hp + " and enemy had " + enemy.getStat("power") + this.session.session_id)
-        div.append("<br><img src = 'images/sceneIcons/abscond_icon.png'> The " + player.htmlTitleHP() + " absconds right the fuck out of this fight. ");
-        this.playersAbsconded.add(player);
-        this.remainingPlayersHateYou(div, player, playersInFight);
-        return true;
-      }else{
-        div.append(" The " + player.htmlTitleHP() + " tries to absconds right the fuck out of this fight, but the " + this.htmlTitleHP() + " blocks them. Can't abscond, bro. ")
-        return false;
-      }
-    }else if(reasonsToLeave > reasonsToStay){
-      if(player.mobility > this.mobility){
-        //print(" player actually absconds: " + this.session.session_id);
-        div.append("<br><img src = 'images/sceneIcons/abscond_icon.png'>  Shit. The " + player.htmlTitleHP() + " doesn't know what to do. They don't want to die... They abscond. ");
-        this.playersAbsconded.add(player);
-        this.remainingPlayersHateYou(div, player, playersInFight);
-        return true;
-      }else{
-        div.append(" Shit. The " + player.htmlTitleHP() + " doesn't know what to do. They don't want to die... Before they can decide whether or not to abscond " + this.htmlTitleHP() + " blocks their escape route. Can't abscond, bro. ")
-        return false;
-      }
-    }
-    return false;
-  }
-  dynamic remainingPlayersHateYou(div, player, players){
+  dynamic remainingPlayersHateYou(div, player, players,Team team){
     if(players.length == 1){
       return null;
     }
     div.append(" The remaining players are not exactly happy to be abandoned. ");
     for(num i = 0; i<players.length; i++){
       var p = players[i];
-      if(p != player && this.playersAbsconded.indexOf(p) == -1){ //don't be a hypocrite and hate them if you already ran.
+      if(p != player && team.absconded.indexOf(p) == -1){ //don't be a hypocrite and hate them if you already ran.
         var r = p.getRelationshipWith(player);
         if(r) r.value += -5; //could be a sprite, after all.
       }
     }
     return null;
   }
-  bool willIAbscond(div, players, numTurns){
-    if(!this.canAbscond || numTurns < 2) return false; //can't even abscond. also, don't run away after starting the fight, asshole.
-    num playerPower = 0;
-    var living = this.getLivingMinusAbsconded(players);
-    for(num i = 0; i<living.length; i++){
-      playerPower += living[i].power;
-    }
-    //print("playerPower is: " + playerPower);
-    if(playerPower > this.getStat("currentHP")*2){
-      this.iAbscond = true;
-      //print("absconding when turn number is: " +numTurns);
-      return true;
-    }
-    return false;
-  }
-  void processAbscond(div, players){
-    if(this.iAbscond){
-      //print("game entity abscond: " + this.session.session_id);
+
+  //TODO this needs redone entirely. which team is the only one left?
+  void processAbscond(div){
       div.append("<Br><img src = 'images/sceneIcons/abscond_icon.png'> The " + this.htmlTitleHP() + " has had enough of this bullshit. They just fucking leave. ");
-      return;
-    }else{
-      //print("players abscond: " + this.session.session_id);
-      div.append("<Br><img src = 'images/sceneIcons/abscond_icon.png'> The strife is over due to a lack of player presence. ");
       return;
     }
 
   }
-  void rocksFallEverybodyDies(div, players, numTurns){
+  void rocksFallEverybodyDies(div, numTurns){
     print("Rocks fall, everybody dies in session: " + this.session.session_id);
     div.append("<Br><Br> In case you forgot, freaking METEORS have been falling onto the battlefield this whole time. This battle has been going on for so long that, literally, rocks fall, everybody dies.  ");
     var living = findLivingPlayers(players); //dosn't matter if you absconded.
@@ -346,7 +282,14 @@ class Strife {
       players[i].usedFraymotifThisTurn = false;
     }
   }
-  dynamic strife(div, players, numTurns){
+
+  //TODO expect this to be called when I have teams. none of this "passed players in strife call bs".
+  void start(div, numTurns) {
+
+  }
+
+//begins the Strife.  TODO get rid of ALL assumptions about who is involved.
+  dynamic strife(div, numTurns){
     this.resetPlayersAvailability(players);
     if(numTurns == 0) div.append("<Br><img src = 'images/sceneIcons/strife_icon.png'>");
     numTurns += 1;
