@@ -350,9 +350,9 @@ class Player extends GameEntity{
 		//was in make alive, but realized that this makes doom ghosts way stronger if it's here. powered by DEATH, but being revived.
 		if(this.aspect == "Doom"){ //powered by their own doom.
 			//print("doom is powered by their own death: " + this.session.session_id) //omg, they are sayians.
-			this.power += 50;
-			this.hp = Math.max(100, this.hp); //prophecy fulfilled. but hp and luck will probably drain again.
-			this.minLuck = 30; //prophecy fulfilled. you are no longer doomed.
+			this.addStat("power", 50);
+			this.addStat("hp",Math.max(100, this.getStat("hp")); //prophecy fulfilled. but hp and luck will probably drain again.
+			this.setStat("minLuck",30); //prophecy fulfilled. you are no longer doomed.
 		}
 		if(!this.godTier){ //god tiers only make ghosts in GodTierRevivial
 			var g = Player.makeRenderingSnapshot(this);
@@ -835,7 +835,7 @@ class Player extends GameEntity{
 				ret = true;
 			}
 			//extra likely if you just killed the king/queen, you hero you.
-			if(curSessionGlobalVar.kingStrength <=0 && seededRandom()>.2){
+			if((this.session.king.getStat("currentHP") <=0 || this.session.king.dead == true) && seededRandom()>.2){
 				ret = true;
 			}
 		}else{ //unlikely hero
@@ -843,7 +843,7 @@ class Player extends GameEntity{
 				ret = true;
 			}
 			//extra likely if you just killed the king/queen, you hero you.
-			if(curSessionGlobalVar.kingStrength <=0 && seededRandom()>.4){
+			if(this.session.king.getStat("currentHP") <=0 || this.session.king.dead == true) {
 				ret = true;
 			}
 		}
@@ -864,7 +864,7 @@ class Player extends GameEntity{
 		}
 	}
 	void processStatInteractionEffect(player, stat){
-		var powerBoost = this.power/20;
+		var powerBoost = this.getStat("power")"/20;
 		if(this.class_name == "Witch"|| this.class_name == "Sylph"){
 			powerBoost = powerBoost *  2 ;//sylph and witch get their primary boost here, so make it a good one.;
 		}
@@ -1134,8 +1134,8 @@ class Player extends GameEntity{
 				var r = randomBlandRelationship(friends[i]);
 				if(this.isTroll && this.bloodColor == "#99004d" && friends[i].isTroll && friends[i].bloodColor == "#99004d"){
 					r.value = -20; //biological imperitive to fight for throne.
-					this.sanity += -100;
-					friends[i].sanity += -100;
+					this.addStat("sanity", -100)
+					friends[i].addStat("sanity",-100);
 				}
 				this.relationships.add(r);
 			}
