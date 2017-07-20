@@ -102,3 +102,8 @@ double seededRandom() {
 double random() {
 	return 0.0;
 }
+
+//placeholder for now. need a way to know "what is the next random number in the list without using that number"
+double seed() {
+
+}

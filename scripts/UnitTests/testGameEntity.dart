@@ -11,7 +11,7 @@ main() {
   print("Hello World");
   testName();
   testID();
-  testStats();
+  testStats(); //when i do this for players, make sure relationships are being added right.
   testBuffs();
 }
 

@@ -1,63 +1,63 @@
 part of SBURBSim;
 
 class Player extends GameEntity{
-	var baby = null;
-	var interest1Category = null; //used by Replay page for custom interests.
-	var interest2Category = null; //both should be null once they have been used to add the custom interest to the right place
+	num baby = null;
+	String interest1Category = null; //used by Replay page for custom interests.
+	String interest2Category = null; //both should be null once they have been used to add the custom interest to the right place
 	num pvpKillCount = 0; //for stats.
 	num timesDied = 0;
-	var denizen = null;
-	var denizenMinion = null;
+	GameEntity denizen = null;
+	GameEntity denizenMinion = null;
 	num maxHornNumber = 73; //don't fuck with this
 	num maxHairNumber = 74; //same
-	var sprite = null; //gets set to a blank sprite when character is created.
+	GameEntity sprite = null; //gets set to a blank sprite when character is created.
 	num grist = 0; //total party grist needs to be at a certain level for the ultimate alchemy. luck events can raise it, boss fights, etc.
 		bool deriveChatHandle = true;
-	var flipOutReason = null; //if it's null, i'm not flipping my shit.
-	var flippingOutOverDeadPlayer = null; //don't let this go into url. but, don't flip out if the friend is currently alive, you goof.
+	String flipOutReason = null; //if it's null, i'm not flipping my shit.
+	Player flippingOutOverDeadPlayer = null; //don't let this go into url. but, don't flip out if the friend is currently alive, you goof.
 	num denizen_index = 0; //denizen quests are in order.
 	String causeOfDrain = ""; //just ghost things
 	List<dynamic> ghostWisdom = []; //keeps you from spamming the same ghost over and over for wisdom.
 	List<dynamic> ghostPacts = []; //some classes can form pacts with ghosts for use in boss battles (attack or revive) (ghosts don't leave bubbles, just lend power). or help others do so.  if i actually use a ghost i have a pact with, it's drained. (so anybody else with a pact with it can't use it.)
-	var land1 = null; //words my land is made of.
-	var land2 = null;
+	String land1 = null; //words my land is made of. //TODO eventually folded into planet
+	String land2 = null;
 	bool trickster = false;
 	bool sbahj = false;
 	List<dynamic> sickRhymes = []; //oh hell yes. Hell. FUCKING. Yes!
 	bool robot = false;
-	var ectoBiologicalSource = null; //might not be created in their own session now.
-	var class_name;  //TODO make class and aspect an object, not a string.  have that object ONLY place things happen based on classpect.  Player asks classpect "How do I increase power"? and aspect has static for colors and what associated stats that player should get.
-	var guardian = null; //no longer the sessions job to keep track.
+	num ectoBiologicalSource = null; //might not be created in their own session now.
+	String class_name;  //TODO make class and aspect an object, not a string.  have that object ONLY place things happen based on classpect.  Player asks classpect "How do I increase power"? and aspect has static for colors and what associated stats that player should get.
+	Player guardian = null; //no longer the sessions job to keep track.
 	num number_confessions = 0;
 	num number_times_confessed_to = 0;
 	bool baby_stuck = false;
-	var influenceSymbol = null; //multiple aspects can influence/mind control.
-	var influencePlayer = null; //who is controlling me? (so i can break free if i have more free will or they die)
+	String influenceSymbol = null; //multiple aspects can influence/mind control.
+	Player influencePlayer = null; //who is controlling me? (so i can break free if i have more free will or they die)
 	var stateBackup = null; //if you get influenced by something, here's where your true self is stored until you break free.
-	var aspect;
-	var land = null;
-	var interest1 = null;
-	var interest2 = null;
-	var chatHandle = null;
-	var object_to_prototype;
-	List<dynamic> relationships = [];
-	var moon;
+	String aspect; //TODO eventually a full object
+	String land = null;
+	String interest1 = null;  //TODO maybe interest categories are objects too, know what is inside them and what they do
+	String interest2 = null;
+	String chatHandle = null;
+	GameEntity object_to_prototype;
+	List<Relationship> relationships = [];
+	String moon;  //TODO eventually a shared planet between players.
 	bool leveledTheHellUp = false; //triggers level up scene.
-	var mylevels = null;
+	List<String> mylevels = null;
 	num level_index = -1; //will be ++ before i query
 	bool godTier = false;
-	var victimBlood = null; //used for murdermode players.
-	var hair = null;	//num hair = 16;
-	var hairColor = null;
+	String victimBlood = null; //used for murdermode players.
+	num hair = null;	//num hair = 16;
+	String hairColor = null;
 	bool dreamSelf = true;
 	bool isTroll = false; //later
 	String bloodColor = "#ff0000"; //human red.
-	var leftHorn = null;
-	var rightHorn = null;
+	num leftHorn = null;
+	num rightHorn = null;
 	String lusus = "Adult Human";
-	var quirk = null;
+	Quirk quirk = null;
 
-	var godDestiny;	//should only be false if killed permananetly as god tier
+	bool godDestiny;
 	bool canGodTierRevive = true;  //even if a god tier perma dies, a life or time player or whatever can brings them back.
 	bool isDreamSelf = false;	//players can be triggered for various things. higher their triggerLevle, greater chance of going murdermode or GrimDark.
 	bool murderMode = false;  //kill all players you don't like. odds of a just death skyrockets.
@@ -1397,7 +1397,8 @@ class Player extends GameEntity{
 	    //print("buffs printing out in: " + this.session.session_id);
 	    return "<Br><Br>" +this.htmlTitleHP() + " is feeling " + turnArrayIntoHumanSentence(ret) + " than normal. ";
 	}
-	dynamic getStat(statName){
+	@override  //players have ACTUAL relationships, not a placeholder stat, so do different shit
+	num getStat(statName){
 		num ret = 0;
 		if(statName == "RELATIONSHIPS"){ //relationships, why you so cray cray???
 
@@ -1405,10 +1406,10 @@ class Player extends GameEntity{
                 ret += this.relationships[i].value;
             }
 		} else if(statName == "power" ){
-		    ret += this[statName];
+		    ret += this.stats[statName];
 		    ret += this.permaBuffs["MANGRIT"] ;//needed because if i mod power directly, it effects all future progress in an unbalanced way.;
 		}else{
-		    ret += this[statName];
+		    ret += this.stats[statName];
 		}
 
 		for(num i = 0; i<this.buffs.length; i++){
@@ -1419,6 +1420,11 @@ class Player extends GameEntity{
 		if(statName == "power") ret = Math.max(0, ret); //no negative power, dunkass.
 		return (ret).round();
 	}
+
+
+
+
+
 	dynamic getHighestRelationshipValue(){
 		var bestRelationshipSoFar = this.relationships[0];
 		for(num i = 1; i<this.relationships.length; i++){
@@ -1464,7 +1470,7 @@ class Player extends GameEntity{
 		return null;
 	}
 	dynamic getWorstEnemyFromList(potentialFriends){
-		var worstRelationshipSoFar = this.relationships[0];
+		Relationship worstRelationshipSoFar = this.relationships[0];
 		for(num i = 0; i<potentialFriends.length; i++){
 			var p = potentialFriends[i];
 			if(p!=this){
@@ -1481,8 +1487,8 @@ class Player extends GameEntity{
 		}
 		return null;
 	}
-	dynamic getFriends(){
-		List<dynamic> ret = [];
+	List<Player> getFriends(){
+		List<Player> ret = [];
 		for(num i = 0; i<this.relationships.length; i++){
 			if(this.relationships[i].value > 0){
 				ret.add(this.relationships[i].target);
@@ -1490,8 +1496,8 @@ class Player extends GameEntity{
 		}
 		return ret;
 	}
-	dynamic getEnemies(){
-		List<dynamic> ret = [];
+	List<Player> getEnemies(){
+		List<Player> ret = [];
 		for(num i = 0; i<this.relationships.length; i++){
 			if(this.relationships[i].value < 0){
 				ret.add( this.relationships[i].target);
@@ -1499,41 +1505,41 @@ class Player extends GameEntity{
 		}
 		return ret;
 	}
-	bool highInit(){
+	bool highInit(){ //TODO eventually part of class object
 		return (this.class_name == "Rogue" || this.class_name == "Sage" ||  this.class_name == "Waste" ||  this.class_name == "Guide" || this.class_name == "Knight" || this.class_name == "Maid"|| this.class_name == "Mage"|| this.class_name == "Sylph"|| this.class_name == "Prince");
 	}
 	void initializeLuck(){
-		this.minLuck = getRandomInt(0,-10); //middle of the road.
-		this.maxLuck = this.minLuck + getRandomInt(10,1);   //max needs to be more than min.
+		this.setStat("minLuck",getRandomInt(0,-10)); //middle of the road.
+		this.setStat("maxLuck,", this.getStat("minLuck") + getRandomInt(10,1));   //max needs to be more than min.
 		if(this.trickster && this.aspect != "Doom"){
-			this.minLuck = 11111111111;
-			this.maxLuck = 11111111111;
+			this.setStat("minLuck",11111111111);
+			this.setStat("maxLuck",11111111111);
 		}
 
 	}
 	void initializeFreeWill(){
-		this.freeWill = getRandomInt(-10,10);
+		this.setStat("freeWill",getRandomInt(-10,10));
 		if(this.trickster && this.aspect != "Doom"){
-			this.freeWill = 11111111111;
+			this.setStat("freeWill",11111111111);
 		}
 	}
 	void initializeHP(){
-		this.hp = getRandomInt(40,60);
-		this.currentHP = this.hp;
+		this.setStat("hp", getRandomInt(40,60));
+		this.setStat("currentHP", this.getStat("hp"));
 		if(this.trickster && this.aspect != "Doom"){
-			this.currentHP = 11111111111;
-			this.hp = 11111111111;
+			this.setStat("currentHP", 11111111111);
+			this.setStat("hp", 11111111111);
 		}
 
 		if(this.isTroll && this.bloodColor != "#ff0000"){
-			this.currentHP += bloodColorToBoost(this.bloodColor);
-			this.hp += bloodColorToBoost(this.bloodColor);
+			this.addStat("currentHP", bloodColorToBoost(this.bloodColor));
+			this.addStat("hp", bloodColorToBoost(this.bloodColor));
 		}
 	}
 	void initSpriteCanvas(){
 		//print("Initializing derived stuff.");
-		this.spriteCanvasID = this.id+"spriteCanvas";
-		String canvasHTML = "<br><canvas style;='display:none' id='" + this.spriteCanvasID+"' width;='" +400 + "' height="+300 + "'>  </canvas>";
+		this.spriteCanvasID = this.id.toString()+"spriteCanvas";
+		String canvasHTML = "<br><canvas style;='display:none' id='" + this.spriteCanvasID+"' width;='" +400.toString() + "' height="+300.toString() + "'>  </canvas>";
 		querySelector("#playerSprites").appendHtml(canvasHTML);
 	}
 	void renderSelf(){
@@ -1555,13 +1561,13 @@ class Player extends GameEntity{
 		ctx.clearRect(0, 0, canvasDiv.width, canvasDiv.height);
 	}
 	void initializeMobility(){
-		this.mobility = getRandomInt(0,10);
+		this.setStat("mobility",getRandomInt(0,10));
 		if(this.trickster && this.aspect != "Doom"){
-			this.mobility = 11111111111;
+			this.setStat("mobility",11111111111);
 		}
 	}
 	void initializeSanity(){
-		this.sanity = getRandomInt(-10,10);
+		this.setStat("sanity",getRandomInt(-10,10));
 	}
 	void initializeRelationships(){
 		if(this.trickster && this.aspect != "Doom" && this.aspect != "Heart"){
@@ -1575,11 +1581,11 @@ class Player extends GameEntity{
 		if(this.isTroll && this.bloodColor == "#99004d"){
 			for(num i = 0; i<this.relationships.length; i++){
 				//needs to be part of this in ADDITION to initialization because what about custom players now.
-				var r = this.relationships[i];
+				Relationship r = this.relationships[i];
 				if(this.isTroll && this.bloodColor == "#99004d" && r.target.isTroll && r.target.bloodColor == "#99004d"){
 					r.value = -20; //biological imperitive to fight for throne.
-					this.sanity += -10;
-					r.target.sanity += -10;
+					this.addStat("sanity",-10);
+					r.target.addStat("sanity",-10);
 				}
 			}
 		}
@@ -1606,17 +1612,17 @@ class Player extends GameEntity{
 		return f;
 	}
 	void initializePower(){
-		this.power = 0;
+		this.setStat("power", 0);
 		if(this.trickster && this.aspect != "Doom"){
-			this.power = 11111111111;
+			this.setStat("power",11111111111);
 		}
 
 		if(this.robot){
-			this.power += 100; //robots are superior
+			this.addStat("power", 100); //robots are superior
 		}
 
 		if(this.isTroll && this.bloodColor != "#ff0000"){
-			this.power += bloodColorToBoost(this.bloodColor);
+			this.addStat("power",bloodColorToBoost(this.bloodColor));
 		}
 	}
 	dynamic toDataStrings(includeChatHandle){
@@ -2374,7 +2380,7 @@ dynamic blankPlayerNoDerived(session){
 	var k = prototyping_objects[0];
 	bool gd = true;
 	String m = "Prospit";
-	var id = Math.seed;
+	var id = seed();
 	var p = new Player(session,"Page","Void",k,m,gd,id);
 	p.interest1 = interests[0];
 	p.interest2 = interests[0];
@@ -2399,7 +2405,7 @@ dynamic randomPlayerNoDerived(session, c, a){
 	bool gd = false;
 
 	var m = getRandomElementFromArray(moons);
-	var id = Math.seed;
+	var id = seed();
 	var p = new Player(session,c,a,k,m,gd,id);
 	p.decideTroll();
 	p.interest1 = getRandomElementFromArray(interests);
@@ -2433,7 +2439,7 @@ dynamic randomPlayerWithClaspect(session, c, a){
 	bool gd = false;
 
 	var m = getRandomElementFromArray(moons);
-	var id = Math.seed;
+	var id = seed();
 	var p = new Player(session,c,a,k,m,gd,id);
 	p.decideTroll();
 	p.interest1 = getRandomElementFromArray(interests);
