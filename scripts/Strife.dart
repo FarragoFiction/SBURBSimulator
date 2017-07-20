@@ -6,7 +6,7 @@ part of SBURBSim;
   remains that GameEntities, Players and PlayerSnapshots are all treated as interchangeable
   and in Dart they are NOT.  So I need to do inheritance proper style.
  */
-class Strife {
+class Strife {//TODO subclass strife for pvp but everybody lives strifes
   List<Team> teams; //for now, assume 2 teams, but could support more in future. think terezi +dave +dirk fighting two non-allied Jacks
   num turnsPassed = 0; //keep track for interuptions and etc.
   Strife(this.teams);
@@ -16,26 +16,6 @@ class Strife {
 
   //TODO get this working, then rewrite code for each sub part.
   void startTurn(div) {
-    /*
-        Have each team compare mobility stats to determine team order.
-
-        Each team goes in order. When it is a team's turn, pass the div and num turn and teams to the Team object.  The team is in charge of knowing what to do.
-        Once each team has finished, the strife calls itself again.
-
-        What functionality MUST life in the Strife and what can a team have?
-
-        I expect a team to be able to interact with other teams (hence getting passed teams).
-        I expect a team to be able to draw/write to screen (hence getting passed a div).
-        I expect the STRIFE to know when it is over (all teams have 0 living members prsent).
-        I expect the STRIFE to know when it is interupted (rocks fall).
-        I expect the TEAM to know when it is interupted (new member, etc). IMPORTANT: How will I know who is applicable to be a new member. Need new field on team.
-    */
-
-    //first, decide what order the teams take their turns  (how does Dart do complex sorts?)
-    //then, have each team take turns.
-    //then, I check for ending conditions
-    //if ending, ending
-    //if not, call start again with numTurns ++
     teams.sort(); //we do this every turn because mobility can change and should effect turn order.
     for(Team team in teams) {
         team.takeTurn(div, turnsPassed, teams); //will handling resetting player availablity
@@ -59,7 +39,12 @@ class Strife {
 
   //a strife is over when only one team is capable of fighting anymore. livingMinusAbsconded == 0;
   bool strifeEnded() {
-      throw "Todo write strife ended";
+      num remaining = 0;
+      for(Team team in teams) { //this is the Buffalo buffallo bufallo Buffalo bufallo of this sim.
+          if(team.hasLivingMembersPresent()) remaining ++;
+          if(remaining > 1) return false;
+      }
+      return true; //1 or fewer teams remain
   }
 
   //need to list out who is dead, who absconded, and who is alive.  Who WON.
@@ -914,7 +899,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
   }
 
   void killEveryone(String reason) {
-    for(GameEntity ge in members) {
+    for(GameEntity ge in getLivingMinusAbsconded()) {
       ge.makeDead(reason);
     }
   }
@@ -942,6 +927,15 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
       ret += ge.getStat(statName);
     }
     return ret/members.length;
+  }
+
+  @override  //sorting Teams automatically sorts them by mobility so strife knows turn order
+  int compareTo(other) {
+    return other.getTeamStatAverage("mobility") - getTeamStatAverage("mobility");  //TODO or is it the otherway around???
+  }
+
+  bool hasLivingMembersPresent() {
+      return this.getLivingMinusAbsconded().length > 0;
   }
 
 
@@ -976,8 +970,5 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
   static String getTeamsNames(List<Team> teams) {
     return teams.join(",");  //TODO put an and at last team.
   }
-  @override  //sorting Teams automatically sorts them by mobility so strife knows turn order
-  int compareTo(other) {
-    return other.getTeamStatAverage("mobility") - getTeamStatAverage("mobility");  //TODO or is it the otherway around???
-  }
+
 }

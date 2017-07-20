@@ -1,6 +1,6 @@
 part of SBURBSim;
 
-class Player extends GameEntity{
+class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have subclass of relationship)
 	num baby = null;
 	String interest1Category = null; //used by Replay page for custom interests.
 	String interest2Category = null; //both should be null once they have been used to add the custom interest to the right place
