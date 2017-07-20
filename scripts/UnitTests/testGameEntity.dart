@@ -3,8 +3,10 @@ import 'dart:typed_data';
 import 'dart:collection';
 import 'dart:convert';
 import 'dart:math' as Math;
+
 part "../GameEntities/GameEntity.dart"; //internet says "part" is functionally like saying "pretend this thing is literally line for line right here".
 part "../random_tables.dart"; //needed for global functions
+part "JRTestSuite.dart";
 
 var testGE = null;
 main() {
@@ -72,6 +74,10 @@ testStats() {
   }catch(exception, stackTrace) {
     print("Exception: " + exception + " caught as expected for adding a stat.");
   }
+
+  testGE.addStat("power", 0);
+  testGE.permaBuffs["MANGRIT"] = 10;
+  jRAssert("power (taking into account MANGRIT)", testGE.getStat("power"), 10);
   print("Stats passed");
 }
 
@@ -118,13 +124,6 @@ testLuck() {
   testGE.setStatsHash({"minLuck": -100,"maxLuck": 100});
   num roll = testGE.rollForLuck("");
   assert((roll < 100 && roll > -100)); //expect this to fail, for now. random numbers don't REALLY work yet.
-}
-
-//this is how i want asserts to work
-jRAssert(name, tested, expected) {
-  assert(tested == expected
-      ? true
-      : throw "${name} should be ${expected}, but is: ${tested}");
 }
 
 

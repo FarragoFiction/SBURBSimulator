@@ -1136,7 +1136,7 @@ class Player extends GameEntity{
 				var r = randomBlandRelationship(friends[i]);
 				if(this.isTroll && this.bloodColor == "#99004d" && friends[i].isTroll && friends[i].bloodColor == "#99004d"){
 					r.value = -20; //biological imperitive to fight for throne.
-					this.addStat("sanity", -100)
+					this.addStat("sanity", -100);
 					friends[i].addStat("sanity",-100);
 				}
 				this.relationships.add(r);
@@ -2174,7 +2174,7 @@ because of COURSE "null" == null is fucking false, so my code is like "oh, i mus
 dynamic getReplayers(){
 //	var b = LZString.decompressFromEncodedURIComponent(getRawParameterByName("b"));
 	var available_classes_guardians = classes.sublist(0); //if there are replayers, then i need to reset guardian classes
-	var b = Uri.decodeComponent(LZString.decompressFromEncodedURIComponent(getRawParameterByName("b")));
+	var b = Uri.decodeComponent(LZString.decompressFromEncodedURIComponent(getRawParameterByName("b"))); //TODO  is there Dart libraries to do this compression?
 	var s = LZString.decompressFromEncodedURIComponent(getRawParameterByName("s"));
 	var x = LZString.decompressFromEncodedURIComponent(getRawParameterByName("x"));
 	if(!b||!s) return [];

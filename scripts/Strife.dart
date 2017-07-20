@@ -12,18 +12,42 @@ class Strife {
   Strife(this.teams);
 
   //TODO remove all assumptions that "this" is a GameEntity
-  dynamic removeAllNonPlayers(players){
-    List<dynamic> ret = [];
+  List<Player> removeAllNonPlayers(List<GameEntity>players){
+    List<Player> ret = [];
     for(num i = 0; i< players.length; i++){
       var p = players[i];
-      if(!p.carapacian && !p.sprite && !p.consort) ret.add(p);
+      if(p is Player) ret.add(p);
     }
     return ret;
   }
 
-  bool willPlayerAbscond(div, player, players){
-    var playersInFight = this.getLivingMinusAbsconded(players);
-    if(!this.abscondable) return false;
+
+  bool willMemberAbscond(div, GameEntity member, Team team) {
+    if(!team.canAbscond) return false;
+    var playersInFight = team.getLivingMinusAbsconded();
+    if(member.doomed) return false; //doomed players accept their fate.
+    num reasonsToLeave = 0;
+    num reasonsToStay = 2; //grist man.
+    reasonsToStay += member.getFriendsFromList(playersInFight).length;
+    var hearts = member.getHearts();
+    var diamonds = member.getDiamonds();
+
+    for(num i = 0; i<hearts.length; i++){
+      if(playersInFight.indexOf(hearts[i] != -1)) reasonsToStay ++;  //extra reason to stay if they are your quadrant.
+    }
+    for(num i = 0; i<diamonds.length; i++){
+      if(playersInFight.indexOf(diamonds[i] != -1)) reasonsToStay ++;  //extra reason to stay if they are your quadrant.
+    }
+    reasonsToStay += member.power/this.getStat("currentHP"); //if i'm about to finish it off.
+    reasonsToLeave += 2 * this.getStat("power")/player.getStat("currentHP");  //if you could kill me in two hits, that's one reason to leave. if you could kill me in one, that's two reasons.
+
+
+
+  }
+
+  bool willMemberAbscondOld(div, GameEntity member, Team team){
+    if(!team.canAbscond) return false;
+    var playersInFight = team.getLivingMinusAbsconded();
     if(player.doomed) return false; //doomed players accept their fate.
     num reasonsToLeave = 0;
     num reasonsToStay = 2; //grist man.
@@ -424,13 +448,7 @@ class Strife {
       stabbings[i].increasePower();
     }
   }
-  List<dynamic> getLivingMinusAbsconded(players){
-    var living = findLivingPlayers(players);
-    for(num i = 0; i<this.playersAbsconded.length; i++){
-      removeFromArray(this.playersAbsconded[i], living);
-    }
-    return living;
-  }
+
   bool fightOver(div, players){
     var living = this.getLivingMinusAbsconded(players);
     if(living.length == 0 && players.length > this.playersAbsconded.length){
@@ -808,5 +826,66 @@ class Strife {
 //it is assumed that all members are on the same side and won't hurt each other.
 class Team {
   List<GameEntity> members;
+  List<GameEntity> absconded; //this only matters for one strife, so save to the team.
   Team(this.members);
+  bool canAbscond; //sometimes you are forced to keep fighting.
+
+  //TODO have code for taking a turn in here. have Strife be relatively empty.
+  /*
+    Maybe have each member decide what to do, and then have strife apply those things?
+    better than fussing with div down here and up there too.
+
+   */
+
+  List<GameEntity> getLiving() {
+    List<GameEntity> ret = new List<GameEntity>();
+    for(GameEntity ge in members) {
+      if(!ge.dead) ret.add(ge);
+    }
+    return ret;
+  }
+  List<GameEntity> getLivingMinusAbsconded(){
+    var living = getLiving();
+    for(num i = 0; i<this.absconded.length; i++){
+      removeFromArray(this.absconded[i], living);
+    }
+    return living;
+  }
+
+  num getTeamPower() {
+    num ret = 0;
+    for(GameEntity ge in members) {
+      ret += ge.getStat("power");
+    }
+    return ret;
+  }
+
+  num getTeamCurrentHP() {
+
+  }
+
+  //don't include me.
+  List<Team> getOtherTeams(List<Team>teams) {
+    List<Team> ret = new List<Team>();
+    for(Team team in teams) {
+      if(team != this) ret.add(team);
+    }
+    return ret;
+  }
+
+  static num getTeamsPower(List<Team> teams) {
+    num ret = 0;
+    for(Team team in teams) {
+     ret += (team.getTeamPower());
+    }
+    return ret;
+  }
+
+  static num getTeamsCurrentHP(List<Team> teams) {
+    num ret = 0;
+    for(Team team in teams) {
+      ret += (team.getTeamCurrentHP());
+    }
+    return ret;
+  }
 }

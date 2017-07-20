@@ -54,9 +54,7 @@ class GameEntityOld {
 		}
 
 
-	void changeGrimDark(){
-			//stubb
-		}
+
 	void summonMidnightCrew(div, player, numTurns){
 
   }

@@ -41,8 +41,12 @@ class GameEntity {
   //TODO grab out every method that current gameEntity, Player and PlayerSnapshot are required to have.
   //TODO make sure Player's @overide them.
 
-  dynamic toString(){
+  String toString(){
     return this.htmlTitle().replaceAll(new RegExp(r"\s", multiLine:true), '').replaceAll(new RegExp(r"'", multiLine:true), ''); //no spces probably trying to use this for a div
+  }
+
+  void changeGrimDark(){
+    //stubb
   }
   void increasePower(){
     //stub for sprites, and maybe later consorts or carapcians

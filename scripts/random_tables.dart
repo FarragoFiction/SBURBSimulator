@@ -1145,7 +1145,7 @@ List<T> shuffle<T>(List<T> array) {
 }*/
 
 
-
+//TODO Dart may have better ways to do this.
 void removeFromArray(item, array){
 	var index = array.indexOf(item);
 	if (index > -1) {
