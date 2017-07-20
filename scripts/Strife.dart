@@ -889,8 +889,15 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
 
      */
     resetPlayersAvailability();
+    if(potentialMembers.length > 0) checkForBackup(numTurnOn); //longer fight goes on, more likely to get backup.  IMPORTANT: BACK UP HAS TO BE GIVEN TO THIS TEAM ON CREATION
     List<Team> otherTeams = getOtherTeams(teams);
 
+  }
+
+  //back up can be any player in the potentialMembers list. You are responsible for populating that list on team creation.
+  //doomed time players will NOT be treated any differently anymore. (though a player marked as doomed might have a different narrative).
+  void checkForBackup(numTurnOn) {
+      throw "TODO check for backup.";
   }
 
   void resetPlayersAvailability() {
