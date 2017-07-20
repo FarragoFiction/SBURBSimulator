@@ -284,8 +284,27 @@ class Strife {
   }
 
   //TODO expect this to be called when I have teams. none of this "passed players in strife call bs".
-  void start(div, numTurns) {
+  void start(div, num numTurns) {
+    /*
+        Have each team compare mobility stats to determine team order.
 
+        Each team goes in order. When it is a team's turn, pass the div and num turn and teams to the Team object.  The team is in charge of knowing what to do.
+        Once each team has finished, the strife calls itself again.
+
+        What functionality MUST life in the Strife and what can a team have?
+
+        I expect a team to be able to interact with other teams (hence getting passed teams).
+        I expect a team to be able to draw/write to screen (hence getting passed a div).
+        I expect the STRIFE to know when it is over (all teams have 0 living members prsent).
+        I expect the STRIFE to know when it is interupted (rocks fall).
+        I expect the TEAM to know when it is interupted (new member, etc). IMPORTANT: How will I know who is applicable to be a new member. Need new field on team.
+    */
+
+    //first, decide what order the teams take their turns  (how does Dart do complex sorts?)
+    //then, have each team take turns.
+    //then, I check for ending conditions
+    //if ending, ending
+    //if not, call start again with numTurns ++
   }
 
 //begins the Strife.  TODO get rid of ALL assumptions about who is involved.
@@ -798,6 +817,7 @@ class Strife {
 //it is assumed that all members are on the same side and won't hurt each other.
 class Team {
   List<GameEntity> members;
+  List<GameEntity> potentialMembers = new List<GameEntity>(); //who is allowed to join this team mid-strife. (i.e. I would be shocked if a player showed up to help a Denizen kill their buddy).
   List<GameEntity> absconded; //this only matters for one strife, so save to the team.
   String name = ""; //TODO like The Midnight Crew.  If not given, just make it a list of all members of the team.
   Team.withName(name, this.members);
@@ -815,6 +835,20 @@ class Team {
   String toString() {
     return name;
   }
+
+  void takeTurn(div, num numTurnOn, List<Team> teams) {
+    /*
+       TODO centralized place.  And type of team with any members decides if they want to do ghost things, aggrieve directly, or use fraymotifs.
+       doomed members are banned from being ghost revived,but otherwise are free to do whatever.
+
+       When choosing a target to attack, always target doomed members of another team first.  If multiple other teams, choose first team first (for now).
+
+     */
+    List<Team> otherTeams = getOtherTeams(teams);
+
+  }
+
+
   List<GameEntity> getLiving() {
     List<GameEntity> ret = new List<GameEntity>();
     for(GameEntity ge in members) {
