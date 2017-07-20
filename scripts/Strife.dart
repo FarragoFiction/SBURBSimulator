@@ -49,23 +49,23 @@ class Strife {
       member.flipOut("how terrifying " + Team.getTeamsNames(otherTeams) + " were");
       if(member.getStat("mobility") > Team.getTeamsStatAverage(otherTeams, "mobility")){
         //print(" player actually absconds: they had " + player.hp + " and enemy had " + enemy.getStat("power") + this.session.session_id)
-        div.append("<br><img src = 'images/sceneIcons/abscond_icon.png'> The " + player.htmlTitleHP() + " absconds right the fuck out of this fight. ");
-        this.playersAbsconded.add(player);
-        this.remainingPlayersHateYou(div, player, playersInFight);
+        div.append("<br><img src = 'images/sceneIcons/abscond_icon.png'> The " + member.htmlTitleHP() + " absconds right the fuck out of this fight. ");
+        team.absconded.add(member);
+        this.remainingPlayersHateYou(div, member, playersInFight);
         return true;
       }else{
-        div.append(" The " + player.htmlTitleHP() + " tries to absconds right the fuck out of this fight, but the " + this.htmlTitleHP() + " blocks them. Can't abscond, bro. ")
+        div.append(" The " + member.htmlTitleHP() + " tries to absconds right the fuck out of this fight, but the " + Team.getTeamsNames(otherTeams) + " blocks them. Can't abscond, bro. ");
         return false;
       }
     }else if(reasonsToLeave > reasonsToStay){
-      if(player.mobility > this.mobility){
+      if(member.getStat("mobility") > Team.getTeamsStatAverage(otherTeams, "mobility")){
         //print(" player actually absconds: " + this.session.session_id);
-        div.append("<br><img src = 'images/sceneIcons/abscond_icon.png'>  Shit. The " + player.htmlTitleHP() + " doesn't know what to do. They don't want to die... They abscond. ");
-        this.playersAbsconded.add(player);
-        this.remainingPlayersHateYou(div, player, playersInFight);
+        div.append("<br><img src = 'images/sceneIcons/abscond_icon.png'>  Shit. The " + member.htmlTitleHP() + " doesn't know what to do. They don't want to die... They abscond. ");
+        team.absconded.add(member);
+        this.remainingPlayersHateYou(div, member, team.getLivingMinusAbsconded());
         return true;
       }else{
-        div.append(" Shit. The " + player.htmlTitleHP() + " doesn't know what to do. They don't want to die... Before they can decide whether or not to abscond " + this.htmlTitleHP() + " blocks their escape route. Can't abscond, bro. ")
+        div.append(" Shit. The " + member.htmlTitleHP() + " doesn't know what to do. They don't want to die... Before they can decide whether or not to abscond " + Team.getTeamsNames(otherTeams) + " blocks their escape route. Can't abscond, bro. ");
         return false;
       }
     }
@@ -859,7 +859,7 @@ class Team {
   String name = ""; //TODO like The Midnight Crew.  If not given, just make it a list of all members of the team.
   Team.withName(name, this.members);
   Team(this.members) {
-    name = GameEntity.getEntitiesTitles();
+    name = GameEntity.getEntitiesNames();
   }
   bool canAbscond; //sometimes you are forced to keep fighting.
 
@@ -870,7 +870,7 @@ class Team {
 
    */
   String toString() {
-    return getEntitiesNames(members);
+    return name;
   }
   List<GameEntity> getLiving() {
     List<GameEntity> ret = new List<GameEntity>();
