@@ -104,10 +104,12 @@ class GameEntity {
   }
 
   void setStat(statName,value){
+    if(this.stats[statName] == null) throw("I have never heard of a stat called: " +statName);
     this.stats[statName] = value;
   }
 
   void addStat(statName,value){
+    if(this.stats[statName] == null) throw("I have never heard of a stat called: " +statName);
     this.stats[statName] += value;
   }
 

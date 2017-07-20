@@ -60,6 +60,17 @@ testStats() {
   jRAssert("hp", testGE.getStat("hp"), 50);
   testGE.addStat("hp", 5000);
   jRAssert("hp", testGE.getStat("hp"), 5050);
+  try {
+    testGE.setStat("bogus413", 345); //test that it throws an error
+  }catch(exception, stackTrace) {
+    print("Exception: " + exception + " caught as expected for setting a stat.");
+  }
+
+  try {
+    testGE.addStat("bogus413", 345); //test that it throws an error
+  }catch(exception, stackTrace) {
+    print("Exception: " + exception + " caught as expected for adding a stat.");
+  }
   print("Stats passed");
 }
 
@@ -106,3 +117,4 @@ jRAssert(name, tested, expected) {
       ? true
       : throw "${name} should be ${expected}, but is: ${tested}");
 }
+
