@@ -167,9 +167,9 @@ class Relationship {
 //when i am cloning players, i need to make sure they don't have a reference to the same relationships the original player does.
 //if i fail to do this step, i accidentally give the players the Capgras delusion.
 //this HAS to happen before transferFeelingsToClones.
-  static	dynamic cloneRelationshipsStopgap(relationships){
+  static	List<Relationship> cloneRelationshipsStopgap(relationships){
 		//print("clone relationships stopgap");
-		List<dynamic> ret = [];
+		List<Relationship> ret = [];
 		for(num i = 0; i<relationships.length; i++){
 			var r = relationships[i];
 			ret.add(cloneRelationship(r));

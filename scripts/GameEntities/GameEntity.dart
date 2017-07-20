@@ -142,12 +142,19 @@ class GameEntity {
 
   }
 
-  dynamic htmlTitleBasic(){
+  String htmlTitleBasic(){
     return this.name;
   }
-  void getRelationshipWith(){
+
+  void makeAlive() {
+    this.dead = false;
+  }
+
+
+  void getRelationshipWith(GameEntity target){
     //stub for boss fights where an asshole absconds.
   }
+
   void makeDead(causeOfDeath){
     this.dead = true;
     this.causeOfDeath = causeOfDeath;

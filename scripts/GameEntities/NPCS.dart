@@ -11,6 +11,11 @@ class Carapace extends NPC {
   Carapace(String name, num id, Session session) : super(name, id, session);
 }
 
+//srites are definitely going to behave differntly soon
+class Sprite extends NPC {
+  Sprite(String name, num id, Session session) : super(name, id, session);
+}
+
 class Underling extends NPC {
   Underling(String name, num id, Session session) : super(name, id, session);
 }

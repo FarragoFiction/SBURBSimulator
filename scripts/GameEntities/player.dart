@@ -40,7 +40,7 @@ class Player extends GameEntity{
 	String interest2 = null;
 	String chatHandle = null;
 	GameEntity object_to_prototype;
-	List<Relationship> relationships = [];
+	List<Relationship> relationships = [];  //TODO keep a list of player relationships and npc relationships. MAYBE don't wax red for npcs? dunno though.
 	String moon;  //TODO eventually a shared planet between players.
 	bool leveledTheHellUp = false; //triggers level up scene.
 	List<String> mylevels = null;
@@ -498,6 +498,7 @@ class Player extends GameEntity{
 			this.victimBlood = null; //clean face
 			this.renderSelf();
 		}
+
 	dynamic title(){
 		String ret = "";
 
@@ -540,9 +541,11 @@ class Player extends GameEntity{
 		ret += " (" + this.chatHandle + ")";
 		return ret;
 	}
+	@override
 	String htmlTitleBasic(){
 			return getFontColorFromAspect(this.aspect) + this.titleBasic() + "</font>";
 	}
+	@override
 	dynamic titleBasic(){
 		String ret = "";
 
@@ -864,7 +867,7 @@ class Player extends GameEntity{
 		}
 	}
 	void processStatInteractionEffect(player, stat){
-		var powerBoost = this.getStat("power")"/20;
+		var powerBoost = this.getStat("power")/20;
 		if(this.class_name == "Witch"|| this.class_name == "Sylph"){
 			powerBoost = powerBoost *  2 ;//sylph and witch get their primary boost here, so make it a good one.;
 		}
@@ -901,7 +904,7 @@ class Player extends GameEntity{
 	dynamic knowsAboutSburb(){
 		//time might not innately get it, but they have future knowledge
 		var rightClass = this.class_name == "Sage" || this.class_name == "Scribe" || this.class_name == "Seer" || this.class_name == "Mage" || this.aspect == "Light" || this.aspect == "Mind" || this.aspect == "Doom" || this.aspect == "Time";
-		return rightClass && this.power > 20; //need to be far enough in my claspect
+		return rightClass && this.getStat("power") > 20; //need to be far enough in my claspect
 	}
 	dynamic performEctobiology(session){
 		session.ectoBiologyStarted = true;
@@ -1073,7 +1076,7 @@ class Player extends GameEntity{
 		}
 	}
 	void processStatPowerIncrease(powerBoost, stat){
-		var powerBoost = this.modPowerBoostByClass(powerBoost,stat);
+		powerBoost = this.modPowerBoostByClass(powerBoost,stat);
 		if(this.isActive()){ //modify me
 			this.modifyAssociatedStat(powerBoost, stat);
 		}else{  //modify others.
@@ -1103,15 +1106,15 @@ class Player extends GameEntity{
 			powerBoost = powerBoost * 2; //permanent doubling of stats forever.
 		}
 
-		this.power += powerBoost;
+		this.addStat("power",powerBoost);
 
 		this.associatedStatsIncreasePower(powerBoost);
 		//gain a bit of hp, otherwise denizen will never let players fight them if their hp isn't high enough.
 		if(this.godTier || seededRandom() >.85){
-			this.hp += 5;
-			this.currentHP += 5;
+			this.addStat("hp", 5);
+			this.addStat("currentHP",5);
 		}
-		if(this.power > 0) this.power = (this.power).round();
+		if(this.getStat("power") > 0) this.setStat("power",this.getStat("power").round());
 
 	}
 	String shortLand(){
@@ -1120,11 +1123,10 @@ class Player extends GameEntity{
 	String htmlTitle(){
 		return getFontColorFromAspect(this.aspect) + this.title() + "</font>";
 	}
-	/*String htmlTitleBasic(){
-		return getFontColorFromAspect(this.aspect) + this.titleBasic() + "</font>";
-	}*/
+
+	@override
 	String htmlTitleHP(){
-		return getFontColorFromAspect(this.aspect) + this.title() + " (" + (this.getStat("currentHP")).round()+ "hp, " + (this.getStat("power")).round() + " power)</font>";
+		return getFontColorFromAspect(this.aspect) + this.title() + " (" + (this.getStat("currentHP")).round().toString()+ "hp, " + (this.getStat("power")).round().toString() + " power)</font>";
 	}
 	void generateBlandRelationships(friends){
 		for(num i = 0; i<friends.length; i++){
@@ -1150,8 +1152,8 @@ class Player extends GameEntity{
 				var r = randomRelationship(friends[i]);
 				if(this.isTroll && this.bloodColor == "#99004d" && friends[i].isTroll && friends[i].bloodColor == "#99004d"){
 					r.value = -20; //biological imperitive to fight for throne.
-					this.sanity += -10;
-					friends[i].sanity += -10;
+					this.addStat("sanity", -10);
+					friends[i].addStat("sanity", -10);
 				}
 				this.relationships.add(r);
 			}else{
@@ -1208,7 +1210,7 @@ class Player extends GameEntity{
 		}
 	}
 	dynamic rollForLuck(stat){
-		if(!stat){
+		if(stat == ""){
 		    return getRandomInt(this.getStat("minLuck"), this.getStat("maxLuck"));
 		}else{
 		    //don't care if it's min or max, just compare it to zero.
@@ -1256,7 +1258,9 @@ class Player extends GameEntity{
 		}
 		return null;
 	}
-	dynamic getRelationshipWith(player){
+
+	@override
+	Relationship getRelationshipWith(player){
 		for(num i = 0; i<this.relationships.length; i++){
 			if(this.relationships[i].target == player){
 				return this.relationships[i];
@@ -1264,7 +1268,7 @@ class Player extends GameEntity{
 		}
 		return null;
 	}
-	dynamic getWhoLikesMeBestFromList(potentialFriends){
+	Player getWhoLikesMeBestFromList(potentialFriends){
 		var bestRelationshipSoFar = this.relationships[0];
 		var friend = bestRelationshipSoFar.target;
 		for(num i = 0; i<potentialFriends.length; i++){
@@ -1690,7 +1694,7 @@ class Player extends GameEntity{
 		return json;
 	}
 	dynamic toString(){
-		return (this.class_name+this.aspect).replace(new RegExp(r"""'""", multiLine:true), '');; //no spaces.
+		return (this.class_name+this.aspect).replaceAll(new RegExp(r"'", multiLine:true), '');; //no spaces.
 	}
 	void copyFromPlayer(replayPlayer){
 		//print("copying from player who has a favorite number of: " + replayPlayer.quirk.favoriteNumber);
@@ -1745,19 +1749,18 @@ class Player extends GameEntity{
 		this.mylevels = getLevelArray(this);//make them ahead of time for echeladder graphic
 
 		if(this.isTroll){
-			if(!this.quirk) this.quirk = randomTrollSim(this)  ;//if i already have a quirk it was defined already. don't override it.;
-			this.sanity += -10;//trolls are slightly less stable
+			if(this.quirk == null) this.quirk = randomTrollSim(this)  ;//if i already have a quirk it was defined already. don't override it.;
+			this.addStat("sanity",-10);//trolls are slightly less stable
 
 		}else{
-			if(!this.quirk) this.quirk = randomHumanSim(this);
+			if(this.quirk == null) this.quirk = randomHumanSim(this);
 		}
 	}
 	void initializeSprite(){
-		this.sprite = new GameEntity(session, "sprite",null); //unprototyped.
+		this.sprite = new Sprite("sprite", 0, session); //unprototyped.
 		//minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs, grist
-		this.sprite.setStats(0,0,10,0,0,0,0,false, false, [],1000);//same as denizen minion, but empty power
+		this.sprite.setStatsHash({"hp":10, "currentHP":10});//same as denizen minion, but empty power
 		this.sprite.doomed = true;
-		this.sprite.sprite = true;
 	}
 	dynamic allStats(){
 		return ["power", "hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
@@ -1986,7 +1989,7 @@ class Player extends GameEntity{
 		}else if(stat.name == "MANGRIT"){
 			this.permaBuffs["MANGRIT"] += modValue * stat.multiplier;
 		}else {
-         	this[stat.name] += modValue * stat.multiplier;
+         	this.stats[stat.name] += modValue * stat.multiplier;
         }
 	}
 	void initializeInterestStats(){
@@ -2010,7 +2013,7 @@ class Player extends GameEntity{
 		this.initializeAssociatedStats();
 		this.initializeInterestStats();  //takes the place of old random intial stats.
 		//reroll goddestiny and sprite as well. luck might have changed.
-		var luck = this.rollForLuck();
+		var luck = this.rollForLuck("");
 		if(this.class_name == "Witch" || luck < -9){
 			this.object_to_prototype = getRandomElementFromArray(disastor_objects);
 			//print("disastor");
@@ -2021,7 +2024,7 @@ class Player extends GameEntity{
 		if(luck>5){
 			this.godDestiny =true;
 		}
-		this.currentHP = this.hp; //could have been altered by associated stats
+		this.setStat("currentHP",getStat("hp")); //could have been altered by associated stats
 
 		if(this.class_name == "Waste"){
 		    var f = new Fraymotif([],  "Rocks Fall, Everyone Dies", 1) ;//what better fraymotif for an Author to start with. Too bad it sucks.  If ONLY there were some way to hax0r SBURB???;
@@ -2189,7 +2192,8 @@ void syncReplayNumberToPlayerNumber(replayPlayers){
 	if(curSessionGlobalVar.players.length == replayPlayers.length || replayPlayers.length == 0) return; //nothing to do.
 
 	if(replayPlayers.length < curSessionGlobalVar.players.length ){ //gotta destroy some players (you monster);
-		curSessionGlobalVar.players.splice(-1 * (curSessionGlobalVar.players.length - replayPlayers.length));
+		num remove_length = curSessionGlobalVar.players.length - replayPlayers.lenghth;
+		curSessionGlobalVar.players.removeRange(0,remove_length); //TODO check to see if off by one
 		return;
 	}else if(replayPlayers.length > curSessionGlobalVar.players.length){
 		var numNeeded = replayPlayers.length - curSessionGlobalVar.players.length;
@@ -2381,7 +2385,9 @@ dynamic blankPlayerNoDerived(session){
 	bool gd = true;
 	String m = "Prospit";
 	var id = seed();
-	var p = new Player(session,"Page","Void",k,m,gd,id);
+	//	Player([String name, Session session, this.class_name, this.aspect, this.object_to_prototype, this.moon, this.godDestiny, num id]): super(name, id, session);
+
+  var p = new Player("player", session,"Page","Void",k,m,gd,id);
 	p.interest1 = interests[0];
 	p.interest2 = interests[0];
 	p.baby = 1;
@@ -2406,7 +2412,7 @@ dynamic randomPlayerNoDerived(session, c, a){
 
 	var m = getRandomElementFromArray(moons);
 	var id = seed();
-	var p = new Player(session,c,a,k,m,gd,id);
+	var p = new Player("player", session,c,a,k,m,gd,id);
 	p.decideTroll();
 	p.interest1 = getRandomElementFromArray(interests);
 	p.interest2 = getRandomElementFromArray(interests);
@@ -2440,7 +2446,7 @@ dynamic randomPlayerWithClaspect(session, c, a){
 
 	var m = getRandomElementFromArray(moons);
 	var id = seed();
-	var p = new Player(session,c,a,k,m,gd,id);
+	var p = new Player("player", session,c,a,k,m,gd,id);
 	p.decideTroll();
 	p.interest1 = getRandomElementFromArray(interests);
 	p.interest2 = getRandomElementFromArray(interests);
