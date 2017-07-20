@@ -16,7 +16,7 @@ abstract class ImportantEvent { //TODO consider making this non abstract and hav
   Player doomedTimeClone; //TODO or should it be a playerSnapShot?
   num timesCalled=0; //what was this for again?
   Player secondTimeClone; //used to undo this event
-  ImportantEvent(this.session, this.mvp_value, this.player, this.doomedTimeClone);
+  ImportantEvent(this.session, this.mvp_value, this.player, [this.doomedTimeClone = null]);
   String humanLabel();
   bool alternateScene(div);
 
@@ -127,7 +127,7 @@ abstract class ImportantEvent { //TODO consider making this non abstract and hav
 //if i ever implmeent moon destruction, will need to refactor this, unless want to have time shenanigans. (god tier time players can take dying player to before moon was destroyed???)
 class PlayerDiedButCouldGodTier extends ImportantEvent{
 
-	PlayerDiedButCouldGodTier(Session session, num mvp_value, Player player, Player doomedTimeClone): super(session, mvp_value, player, doomedTimeClone);
+	PlayerDiedButCouldGodTier(Session session, num mvp_value, Player player, [Player doomedTimeClone = null]): super(session, mvp_value, player, doomedTimeClone);
 
   @override
 	dynamic humanLabel(){

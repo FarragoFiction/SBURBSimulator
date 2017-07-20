@@ -15,7 +15,7 @@ class Breakup extends Scene {
 	Breakup(Session session): super(session);
 
 	@override
-	bool trigger(){
+	bool trigger(List<Player> playerList){
 		this.player = null;
 		this.relationshipToBreakUp = null;
 		for(num i = 0; i<this.session.availablePlayers.length; i++){
@@ -82,6 +82,7 @@ class Breakup extends Scene {
 				return true;
 			}
 		}
+		return false;
 	}
 	bool breakUpBecauseTheyCheating(){
 		//higher = more likely to break up if i'm given a reason.;
@@ -144,6 +145,7 @@ class Breakup extends Scene {
 				}
 			}
 		}
+		return false;
 	}
 	bool breakUpBecauseNotFeelingIt(){
 		var breakUpChance = this.getModifierForAspect() + this.getModifierForClass() + this.getModifierForInterestsBored(); //returns min value of .3
@@ -180,7 +182,7 @@ class Breakup extends Scene {
 				}
 			}
 		}
-
+		return false;
 	}
 	num getModifierForClass(){
 		if(this.player.class_name == "Thief" || this.player.class_name == "Knight" || this.player.class_name == "Heir"|| this.player.class_name == "Seer"|| this.player.class_name == "Witch"|| this.player.class_name == "Prince"){
@@ -220,7 +222,7 @@ class Breakup extends Scene {
 		}
 		return 0.1;
 	}
-	void getChat(player1, player2){
+	String getChat(player1, player2){
 		if(this.reason == "me_cheat"){
 			return this.meCheatChatText(player1, player2);
 		}else if(this.reason == "you_cheat"){
@@ -228,27 +230,26 @@ class Breakup extends Scene {
 		}else{
 			return this.meBoredChatText(player1, player2);
 		}
-
 	}
-	void breakupChat(div){
+	void breakupChat(Element div){
 		//drawChat(canvasDiv, player1, player2, chatText, 1000,"discuss_hatemance.png");
-		String canvasHTML = "<br><canvas id;='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
-		div.append(canvasHTML);
-		var player1 = this.player;
-		var player2 = this.relationshipToBreakUp.target;
-		var chatText = this.getChat(player1,player2);
+		String canvasHTML = "<br><canvas id='canvas" + (div.id) +"' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
+		div.appendHtml(canvasHTML);
+		Player player1 = this.player;
+		Player player2 = this.relationshipToBreakUp.target;
+		String chatText = this.getChat(player1,player2);
 
-		drawChat(querySelector("#canvas"+ (div.attr("id"))), player1, player2, chatText, repeatTime,"discuss_breakup.png");
+		drawChat(querySelector("#canvas"+ (div.id)), player1, player2, chatText, null,"discuss_breakup.png");
 	}
-	dynamic youCheatChatText(player1, player2){
-		var player1Start = player1.chatHandleShort()+ ": ";
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
+	String youCheatChatText(Player player1, Player player2){
+		String player1Start = player1.chatHandleShort()+ ": ";
+		String player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		String chatText = "";
-		chatText += chatLine(player1Start, player1,"You. Asshole!");
-		chatText += chatLine(player2Start, player2,"Hey?");
+		chatText += Scene.chatLine(player1Start, player1,"You. Asshole!");
+		chatText += Scene.chatLine(player2Start, player2,"Hey?");
 		var mocking = player2.quirk.translate("Hey");
-		chatText += chatLine(player1Start, player1,"Don't '" + mocking + "' me. I know what you did. ");
-		chatText += chatLine(player2Start, player2,"I have no idea what you are talking about!");
+		chatText += Scene.chatLine(player1Start, player1,"Don't '" + mocking + "' me. I know what you did. ");
+		chatText += Scene.chatLine(player2Start, player2,"I have no idea what you are talking about!");
 		String other = "";
 		if(this.formerQuadrant == this.relationshipToBreakUp.heart){
 			 other = player2.getHearts()[0].target.chatHandle;
@@ -257,23 +258,23 @@ class Breakup extends Scene {
 		}else if(this.formerQuadrant == this.relationshipToBreakUp.spades){
 			other = player2.getSpades()[0].target.chatHandle;
 		}
-		chatText += chatLine(player1Start, player1,"I know what you've been doing with " + other + ". ");
-		chatText += chatLine(player2Start, player2,"Fuck.");
-		chatText += chatLine(player1Start, player1,"It's over.");
+		chatText += Scene.chatLine(player1Start, player1,"I know what you've been doing with " + other + ". ");
+		chatText += Scene.chatLine(player2Start, player2,"Fuck.");
+		chatText += Scene.chatLine(player1Start, player1,"It's over.");
 		return chatText;
 
 	}
-	dynamic meCheatChatText(player1, player2){
-		var player1Start = player1.chatHandleShort()+ ": ";
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
+	String meCheatChatText(Player player1, Player player2){
+		String player1Start = player1.chatHandleShort()+ ": ";
+		String player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		String chatText = "";
-		chatText += chatLine(player1Start, player1,"Um. Hey.");
-		chatText += chatLine(player2Start, player2,"Hey?");
-		chatText += chatLine(player1Start, player1,"Fuck. Why's this so hard?");
-		chatText += chatLine(player1Start, player1,"How do I say this?");
-		chatText += chatLine(player2Start, player2,"?");
-		chatText += chatLine(player1Start, player1,"We need to break up.");
-		chatText += chatLine(player2Start, player2,"What!?");
+		chatText += Scene.chatLine(player1Start, player1,"Um. Hey.");
+		chatText += Scene.chatLine(player2Start, player2,"Hey?");
+		chatText += Scene.chatLine(player1Start, player1,"Fuck. Why's this so hard?");
+		chatText += Scene.chatLine(player1Start, player1,"How do I say this?");
+		chatText += Scene.chatLine(player2Start, player2,"?");
+		chatText += Scene.chatLine(player1Start, player1,"We need to break up.");
+		chatText += Scene.chatLine(player2Start, player2,"What!?");
 		String other = "";
 		if(this.formerQuadrant == this.relationshipToBreakUp.heart){
 			 other = player1.getHearts()[0].target.chatHandle;
@@ -282,33 +283,33 @@ class Breakup extends Scene {
 		}else if(this.formerQuadrant == this.relationshipToBreakUp.spades){
 			other = player1.getSpades()[0].target.chatHandle;
 		}
-		chatText += chatLine(player1Start, player1,"I didn't mean to hurt you. It just happened. But... I'm with " + other + " now. And I didn't want to keep stringing you along.");
-		chatText += chatLine(player2Start, player2,"How could you!? I thought we were special!");
-		chatText += chatLine(player1Start, player1,"I'm sorry.");
+		chatText += Scene.chatLine(player1Start, player1,"I didn't mean to hurt you. It just happened. But... I'm with " + other + " now. And I didn't want to keep stringing you along.");
+		chatText += Scene.chatLine(player2Start, player2,"How could you!? I thought we were special!");
+		chatText += Scene.chatLine(player1Start, player1,"I'm sorry.");
 
 		return chatText;
 
 	}
-	dynamic meBoredChatText(player1, player2){
-		var player1Start = player1.chatHandleShort()+ ": ";
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
+	String meBoredChatText(Player player1, Player player2){
+		String player1Start = player1.chatHandleShort()+ ": ";
+		String player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		String chatText = "";
-		chatText += chatLine(player1Start, player1,"Um. Hey.");
-		chatText += chatLine(player2Start, player2,"Hey?");
-		chatText += chatLine(player1Start, player1,"Fuck. Why's this so hard?");
-		chatText += chatLine(player2Start, player2,"?");
-		chatText += chatLine(player1Start, player1,"We need to break up.");
-		chatText += chatLine(player2Start, player2,"What!?");
-		chatText += chatLine(player1Start, player1,"I just... don't feel the same way about you anymore. Maybe we changed too much.");
-		chatText += chatLine(player1Start, player1,"I'm sorry. I can't keep pretending.");
-		chatText += chatLine(player2Start, player2,"Wait! No! Let's talk about this!");
-		chatText += chatLine(player1Start, player1,"I've made up my mind. I'm sorry. Goodbye.");
+		chatText += Scene.chatLine(player1Start, player1,"Um. Hey.");
+		chatText += Scene.chatLine(player2Start, player2,"Hey?");
+		chatText += Scene.chatLine(player1Start, player1,"Fuck. Why's this so hard?");
+		chatText += Scene.chatLine(player2Start, player2,"?");
+		chatText += Scene.chatLine(player1Start, player1,"We need to break up.");
+		chatText += Scene.chatLine(player2Start, player2,"What!?");
+		chatText += Scene.chatLine(player1Start, player1,"I just... don't feel the same way about you anymore. Maybe we changed too much.");
+		chatText += Scene.chatLine(player1Start, player1,"I'm sorry. I can't keep pretending.");
+		chatText += Scene.chatLine(player2Start, player2,"Wait! No! Let's talk about this!");
+		chatText += Scene.chatLine(player1Start, player1,"I've made up my mind. I'm sorry. Goodbye.");
 
 		return chatText;
 	}
 	@override
-	void renderContent(div){
-		div.append("<br>"+this.content());
+	void renderContent(Element div){
+		div.appendHtml("<br>"+this.content());
 		//takes up time from both of them
 		removeFromArray(this.player, this.session.availablePlayers);
 		removeFromArray(this.relationshipToBreakUp.target, this.session.availablePlayers);
