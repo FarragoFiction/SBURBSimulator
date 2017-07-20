@@ -884,7 +884,7 @@ class Team {
   static num getTeamsPower(List<Team> teams) {
     num ret = 0;
     for(Team team in teams) {
-     ret += (team.getTeamStat("power"));
+     ret += (team.getTeamStatTotal("power"));
     }
     return ret;
   }
@@ -892,7 +892,7 @@ class Team {
   static num getTeamsCurrentHP(List<Team> teams) {
     num ret = 0;
     for(Team team in teams) {
-      ret += (team.getTeamStat("currentHP"));
+      ret += (team.getTeamStatTotal("currentHP"));
     }
     return ret;
   }

@@ -1405,24 +1405,12 @@ class Player extends GameEntity{
 	num getStat(statName){
 		num ret = 0;
 		if(statName == "RELATIONSHIPS"){ //relationships, why you so cray cray???
-
 			for(num i = 0; i<this.relationships.length; i++){
                 ret += this.relationships[i].value;
-            }
-		} else if(statName == "power" ){
-		    ret += this.stats[statName];
-		    ret += this.permaBuffs["MANGRIT"] ;//needed because if i mod power directly, it effects all future progress in an unbalanced way.;
-		}else{
-		    ret += this.stats[statName];
+      }
+		}else {
+			super.getStat(statName);
 		}
-
-		for(num i = 0; i<this.buffs.length; i++){
-			var b = this.buffs[i];
-			if(b.name == statName) ret += b.value;
-		}
-
-		if(statName == "power") ret = Math.max(0, ret); //no negative power, dunkass.
-		return (ret).round();
 	}
 
 
