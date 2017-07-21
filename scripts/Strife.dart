@@ -9,7 +9,8 @@ part of SBURBSim;
 class Strife {//TODO subclass strife for pvp but everybody lives strifes
   List<Team> teams; //for now, assume 2 teams, but could support more in future. think terezi +dave +dirk fighting two non-allied Jacks
   num turnsPassed = 0; //keep track for interuptions and etc.
-  Strife(this.teams);
+  Session session;
+  Strife(this.session, this.teams);
   num timeTillRocks = 99999999; //unless it's a royalty fight, assume no rocks.
 
   //TODO for now keeping old code as reference material, but delete it whole sale. it is too tangled up in "this" is a GameEntity.
@@ -20,22 +21,63 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
     for(Team team in teams) {
         team.takeTurn(div, turnsPassed, teams); //will handling resetting player availablity
     }
-    checkForRocks();
+    checkForSuddenEnding(div);
     if(strifeEnded()) {
-      processEnding();
+      processEnding(div);
     }else {
        turnsPassed ++;
        startTurn(div);
     }
   }
 
-  void checkForRocks() {
+  void checkForSuddenEnding(div) {
       if(turnsPassed > timeTillRocks) {
-        throw "TODO: display JR killing everyone. readd caliborn easter egg";
-        for(Team team in teams) {
-            team.killEveryone("from terminal meteors to the face");
+        this.rocksFallEverybodyDies(div);
+        processEnding(div);
+      }else if(denizenDoneWithYourShit(div)) {
+        processEnding(div);
+      }
+      throw "TODO: check for JR or caliborn endings or Denizen";
+  }
+
+  bool denizenDoneWithYourShit(div) {
+      List<GameEntity> members = findMembersOfDenizenFight();
+      Denizen d = members[0];
+      Player p = members[1];
+      if(members.length != 2) return false; //it's not a denizen fight.
+      //okay, now i know it IS a denizen fight.
+      if(turnsPassed > 5) return true; //you should have beaten me by now.
+      if(p.godDestiny) return false; //eh, you'll be okay even if I kill you.
+      if(p.getStat("currentHP") < d.getStat("power")) return true; //i can kill you in one hit.
+      if(p.getStat("currentHP") < 2*d.getStat("power")&& seededRandom() > 0.5) return true; //i can kill you in two hits and am worried about a critical hit.
+  }
+
+
+  //returns [Denizen, Player] if either is null, this isn't a denizen fight.
+  //denizen fights have special rules when it is 1 on 1, denizen vs player.
+  //if can't find one, won't add it. so anything other than size 2 is invalid.
+  List<GameEntity> findMembersOfDenizenFight() {
+      Denizen d;
+      Player p;
+      List<GameEntity> ret = new List<GameEntity>();
+      for(Team team in teams) {
+        Denizen tmpd = team.findDenizen();
+        Player  tmpp = team.findPlayer();
+        if(d == null) {
+          d = tmpd;
+        }else {
+          return ret; //i found TWO deniznes. Hax. I call hax.
+        }
+
+        if(p == null) {
+          p = tmpp;
+        }else {
+          return ret; //i found TWO players. Hax. I call hax.
         }
       }
+      if(d != null) ret.add(d);
+      if(p != null) ret.add(p);
+      return ret;
   }
 
   //a strife is over when only one team is capable of fighting anymore. livingMinusAbsconded == 0;
@@ -49,7 +91,7 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
   }
 
   //need to list out who is dead, who absconded, and who is alive.  Who WON.
-  void processEnding() {
+  void processEnding(div) {
       throw "Todo write process ending";
       //who won?
       //heal winners and absconded.
@@ -57,6 +99,36 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
       //extra level up winners
       //clear out fraymotif useage (wait that's in team now, team gets destroyed when strife ends).
       //anything i'm missing? go check current code
+  }
+
+  void rocksFallEverybodyDies(div){
+    print("Rocks fall, everybody dies in session: " + session.session_id.toString());
+    div.append("<Br><Br> In case you forgot, freaking METEORS have been falling onto the battlefield this whole time. This battle has been going on for so long that, literally, rocks fall, everybody dies.  ");
+    var spacePlayer = findAspectPlayer(session.players, "Space");
+    session.rocksFell = true;
+    spacePlayer.landLevel = 0; //can't deploy a frog if skaia was just destroyed. my test session helpfully reminded me of this 'cause one of the players god tier revived adn then used the sick frog to combo session. ...that...shouldn't happen.
+    for(Team team in teams) {
+      team.killEveryone("from terminal meteors to the face");
+    }
+
+  }
+
+  void denizenIsSoNotPuttingUpWithYourShitAnyLonger(div){
+    //print("!!!!!!!!!!!!!!!!!denizen not putting up with your shit: " + this.session.session_id);
+    List<GameEntity> members = findMembersOfDenizenFight();
+    Denizen denizen = members[0];
+    Player player = members[1];
+    div.append("<Br><Br>" + denizen.name + " decides that the " + player.htmlTitleBasic() + " is being a little baby who poops hard in their diapers and are in no way ready for this fight. The Denizen recommends that they come back after they mature a little bit. The " +player.htmlTitleBasic() + "'s ass is kicked so hard they are ejected from the fight, but are not killed.");
+    if(seededRandom() > .5){ //players don't HAVE to take the advice after all. assholes.
+      levelEveryone();
+      div.append(" They actually seem to be taking " + denizen.name + "'s advice. ");
+    }
+  }
+
+  void levelEveryone() {
+    for(Team team in teams) { //buffallo
+      team.levelEveryone();
+    }
   }
 
 
@@ -193,19 +265,7 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
     }
 
   }
-  void rocksFallEverybodyDies(div, numTurns){
-    print("Rocks fall, everybody dies in session: " + this.session.session_id);
-    div.append("<Br><Br> In case you forgot, freaking METEORS have been falling onto the battlefield this whole time. This battle has been going on for so long that, literally, rocks fall, everybody dies.  ");
-    var living = findLivingPlayers(players); //dosn't matter if you absconded.
-    var spacePlayer = findAspectPlayer(this.session.players, "Space");
-    this.session.rocksFell = true;
-    spacePlayer.landLevel = 0; //can't deploy a frog if skaia was just destroyed. my test session helpfully reminded me of this 'cause one of the players god tier revived adn then used the sick frog to combo session. ...that...shouldn't happen.
-    for(num i = 0; i<living.length; i++){
-      var p = living[i];
-      p.makeDead("from terminal meteors to the face");
-    }
 
-  }
   void summonAuthor(div, players, numTurns){
     print("author is saving AB in session: " + this.session.session_id);
     var divID = (div.attr("id")) + "authorRocks"+players.join("");
@@ -236,14 +296,7 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
     }
 
   }
-  void denizenIsSoNotPuttingUpWithYourShitAnyLonger(div, players, numTurns){
-    //print("!!!!!!!!!!!!!!!!!denizen not putting up with your shit: " + this.session.session_id);
-    div.append("<Br><Br>" + this.name + " decides that the " + players[0].htmlTitleBasic() + " is being a little baby who poops hard in their diapers and are in no way ready for this fight. The Denizen recommends that they come back after they mature a little bit. The " +players[0].htmlTitleBasic() + "'s ass is kicked so hard they are ejected from the fight, but are not killed.")
-    if(seededRandom() > .5){ //players don't HAVE to take the advice after all. assholes.
-      this.levelPlayers(players);
-      div.append(" They actually seem to be taking " + this.name + "'s advice. ");
-    }
-  }
+
   dynamic summonPlayerBackup(div, players, numTurns){
     //if it's a time player/ 50/50 it's a future version of them in a stable time loop
     var living = findLivingPlayers(this.session.players); //who isn't ALREADY in this bullshit strife??? and is alive. and has a sprite (and so is in the medium.)
@@ -322,7 +375,7 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
     }
 
   }
-  bool fightNeedsToEnd(div, players, numTurns){
+  bool fightNeedsToEnd(div){
     //if this IS a denizen fight, i can assume there is only one player in it
     if(players[0].denizen.name == this.name){
       if(numTurns>5 || (players[0].currentHP < this.getStat("power") && !players[0].godDestiny)){ //denizens are cool with killing players that will godtier.
@@ -943,6 +996,28 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
 
   bool hasLivingMembersPresent() {
       return this.getLivingMinusAbsconded().length > 0;
+  }
+
+  void levelEveryone() {
+    for(GameEntity ge in members) {
+      ge.increasePower(); //don't care who you are.
+    }
+  }
+
+  //Denizen fights work differently
+  GameEntity findDenizen() {
+      for(GameEntity ge in members) {
+        if(ge is Denizen) return ge;
+      }
+      return null;
+  }
+
+  //player fights work differently
+  GameEntity findPlayer() {
+    for(GameEntity ge in members) {
+      if(ge is Player) return ge;
+    }
+    return null;
   }
 
 

@@ -30,5 +30,5 @@ setup() {
   List<Team> t  = new List<Team>();
   t.add(new Team(disastor_objects.subset(0,3)));
   t.add(new Team(fortune_objects.subset(0,5)));
-  testStrife = new Strife(t);
+  testStrife = new Strife(null,t);
 }
