@@ -101,11 +101,17 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
 
   //need to list out who is dead, who absconded, and who is alive.  Who WON.
   void describeEnding(div, winner) {
-      processEnding();
-      winner.level();
+    processEnding();
+    winner.level();
+    winner.giveGristFromTeams(teams); //will filter out 'me'
+    //TODO give winner any ITEMS (such as QUEENS RING) as well. Item should inherit from GameEntity. Maybe. It does now.
     //anything i'm missing? go check current code
-      throw "todo describe ending: team name that one. maybe try to find out if it's via death or abscond.";
-      winner.poseAsATeam(div);
+    String icon = "<img src = 'images/sceneIcons/defeat_icon.png'>";
+    //if even one player is on the winning side, it's a victory.
+    if(winner.getPlayer() != null) icon = "<img src = 'images/sceneIcons/victory_icon.png'>";
+    String endingHTML = "<Br><br> ${icon} The fight is over. ${winner.name} remains alive and unabsconded. <br>";
+    div.appendHtml(endingHTML);
+    winner.poseAsATeam(div);
   }
 
 
@@ -995,9 +1001,34 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     }
   }
 
+  void giveGristFromTeams(List<Team>teams) {
+    List<Team> otherTeams = getOtherTeams(teams);
+    for(Team team in otherTeams) { //bufallo
+      giveGrist(team.takeGrist());
+    }
+  }
+
+  //return how much grist you took from teh team
+  //take half of each members grist.
+  num takeGrist() {
+    num ret = 0;
+    for(GameEntity member in members) {
+      ret += member.grist/2;
+      member.grist += -1 * (member.grist/2).round();
+    }
+    return ret.round();
+  }
+
+  void giveGrist(num gristAmount) {
+      for(GameEntity member in members) {
+        member.grist += (gristAmount/members.length).round();
+      }
+  }
+
+
   //this is how you know shit just got real.
   void poseAsATeam(div) {
-      throw "TODO: pose as a team."
+      throw "TODO: pose as a team.";
   }
 
   //Denizen fights work differently

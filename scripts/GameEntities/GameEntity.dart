@@ -140,7 +140,7 @@ class GameEntity {
     var pname = this.name;
     if(pname == "Yaldabaoth"){
       var misNames = ['Yaldobob', 'Yolobroth', 'Yodelbooger', "Yaldabruh", 'Yogertboner','Yodelboth'];
-      print("Yaldobooger!!! " + this.session.session_id);
+      print("Yaldobooger!!! " + this.session.session_id.toString());
       pname = getRandomElementFromArray(misNames);
     }
     if(this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
