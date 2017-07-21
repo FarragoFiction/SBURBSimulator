@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" afterPath="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/glitches.html" afterPath="$PROJECT_DIR$/glitches.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="glitches.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="glitches.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/glitches.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6660">
-              <caret line="444" column="27" lean-forward="false" selection-start-line="444" selection-start-column="18" selection-end-line="444" selection-end-column="27" />
+            <state relative-caret-position="228">
+              <caret line="473" column="462" lean-forward="false" selection-start-line="473" selection-start-column="462" selection-end-line="473" selection-end-column="462" />
               <folding />
             </state>
           </provider>
@@ -67,10 +67,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UpdateShippingGrid.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UpdateShippingGrid.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
+            <state relative-caret-position="982">
               <caret line="562" column="36" lean-forward="false" selection-start-line="562" selection-start-column="36" selection-end-line="562" selection-end-column="36" />
               <folding />
             </state>
@@ -180,9 +180,9 @@
         <option value="$PROJECT_DIR$/javascripts/newsposts.js" />
         <option value="$PROJECT_DIR$/Dart/planet.dart" />
         <option value="$PROJECT_DIR$/credits.html" />
-        <option value="$PROJECT_DIR$/glitches.html" />
         <option value="$PROJECT_DIR$/css/oc.css" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" />
+        <option value="$PROJECT_DIR$/glitches.html" />
       </list>
     </option>
   </component>
@@ -1016,14 +1016,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/glitches.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6660">
-          <caret line="444" column="27" lean-forward="false" selection-start-line="444" selection-start-column="18" selection-end-line="444" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/oc.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1034,8 +1026,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
+        <state relative-caret-position="982">
           <caret line="562" column="36" lean-forward="false" selection-start-line="562" selection-start-column="36" selection-end-line="562" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glitches.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="473" column="462" lean-forward="false" selection-start-line="473" selection-start-column="462" selection-end-line="473" selection-end-column="462" />
           <folding />
         </state>
       </provider>
