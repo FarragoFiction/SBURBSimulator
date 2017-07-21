@@ -6,6 +6,13 @@
 	padding: 10px;
 }
 
+.pesterlog{
+    padding: 10px;
+    margin: 10px;
+    background-color: lightgrey;
+    border 1px solid grey;
+}
+
 .navbarLink{
 	padding-left: 10px;
 	padding-right:10px;

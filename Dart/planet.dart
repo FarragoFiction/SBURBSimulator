@@ -45,6 +45,16 @@ class DeadPlanet extends Planet{
   it is associated with a reward for completion. or something. still planning.
 
   IDEA: MAKE THEM BRANCHING BASED ON CLASS.  A PRINCE MIGHT DO DESTRUCTIVE THINGS TO WIN, WHILE A SYLPH MEDDLE-WINS
+
+  ALSO branch based on help?  Maybe....instead of branching based on X, make it branching based on
+  some internal marker, which different classes and aspects and helpers can effect?
+  like a QuestChain has a "friendly" rating which you contribute to x2 and your helper contributes to x0.5
+  and is just your RELATIONSHIPS stat.  If currentQuestChain.friendly > 10, do this, else do that.
+  what kinds of branches could you expect?
+  ways to solve quests:
+  friendly -- agressive
+  clever -- dumb
+  lucky -- unlucky
  */
 class QuestChain{
   List<Quest> quests;
