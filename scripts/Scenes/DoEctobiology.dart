@@ -4,9 +4,9 @@ part of SBURBSim;
 //only needs to happen once, but if it DOESN'T happen before reckoning (or leader is permanently killed) doomed timeline.
 class DoEctobiology extends Scene {
 	bool canRepeat = false;
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+	List<Player> playerList = [];  //what players are already in the medium when i trigger?
 	var leader = null;
-	List<dynamic> playersMade = []; //keep track because not all players get made (multi session bullshit)
+	List<Player> playersMade = []; //keep track because not all players get made (multi session bullshit)
 
 	
 
@@ -14,7 +14,7 @@ class DoEctobiology extends Scene {
 	DoEctobiology(Session session): super(session);
 
 	@override
-	bool trigger(playerList){
+	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
 		this.leader = getLeader(this.session.availablePlayers);  //dead men do no ectobiology
 		if(this.leader && this.leader.dead == false && this.session.ectoBiologyStarted == false){
@@ -22,23 +22,23 @@ class DoEctobiology extends Scene {
 		}
 		return false;
 	}
-	void drawLeaderPlusBabies(div){
+	void drawLeaderPlusBabies(Element div){
 		//alert("drawing babies");
 		num repeatTime = 1000;
-		var divID = (div.attr("id")) + "_babies";
-		var ch = canvasHeight;
+		String divID = (div.id) + "_babies";
+		int ch = canvasHeight;
 		if(this.session.players.length > 6){
-			ch = canvasHeight*1.5;
+			ch = (canvasHeight*1.5).round();
 		}
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+ch + "'>  </canvas>";
-		div.append(canvasHTML);
+		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='$canvasWidth' height='$ch'>  </canvas>";
+		div.appendHtml(canvasHTML);
 		//different format for canvas code
-		var canvasDiv = querySelector("#canvas"+ divID);
+		Element canvasDiv = querySelector("#canvas"+ divID);
 		poseBabiesAsATeam(canvasDiv, this.leader, this.playersMade, getGuardiansForPlayers(this.playersMade), 4000);
 	}
 	@override
-	void renderContent(div){
-		div.append("<br><img src = 'images/sceneIcons/ectobiology_icon.png'>"+this.content());
+	void renderContent(Element div){
+		div.appendHtml("<br><img src = 'images/sceneIcons/ectobiology_icon.png'>"+this.content());
 		this.drawLeaderPlusBabies(div);
 	}
 	dynamic content(){

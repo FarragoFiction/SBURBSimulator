@@ -2,10 +2,10 @@ part of SBURBSim;
 
 //okay, fine, yes, global variables are getting untenable.
 class Session {
-	var session_id; //initial seed
+	int session_id; //initial seed
 	//var sceneRenderingEngine = new SceneRenderingEngine(false); //default is homestuck  //comment this line out if need to run sim without it crashing
 	List<Player> players = [];
-	var fraymotifCreator = new FraymotifCreator();  //as long as FraymotifCreator has no state data, this is fine.
+	FraymotifCreator fraymotifCreator = new FraymotifCreator();  //as long as FraymotifCreator has no state data, this is fine.
 	//TODO all these "session summary stats" things should just be a SessionSummary object I own.
 	bool hasClubs = false;
 	num sessionHealth = 500; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
@@ -78,7 +78,7 @@ class Session {
 	List<Player> availablePlayers = [];  //which players are available for scenes or whatever.
 	List<dynamic> importantEvents = [];
 	bool yellowYard = false;
-	var yellowYardController = new YellowYardResultController();//don't expect doomed time clones to follow them to any new sessions
+	YellowYardResultController yellowYardController = new YellowYardResultController();//don't expect doomed time clones to follow them to any new sessions
 
 	// extra fields - stop abusing object notation lol -PL
 	bool crashedFromCustomShit = false;

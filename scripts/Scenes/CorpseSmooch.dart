@@ -156,7 +156,7 @@ class CorpseSmooch extends Scene {
 			if(d.dreamSelf == true){
 				Player royalty = this.getRoyalty(d);
 				if(royalty != null){
-					royalty.sanity += -10;
+					royalty.addStat("sanity", -10);
 					ret += " The " + royalty.htmlTitle() + ", as a member of the royalty of " + royalty.moon + ", administers the universal remedy for the unawakened ";
 					ret += " to the " + d.htmlTitle() + ". Their dream self takes over on " + d.moon + ". ";
 					if(d.aspect == "Doom") ret += "The prophecy is fulfilled. ";

@@ -8,31 +8,31 @@ part of SBURBSim;
 //can get help from another player, different bonuses based on claspect if so.
 class DoLandQuest extends Scene{
 	bool canRepeat = true;
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
-	List<dynamic> playersPlusHelpers = []; //who is doing a land quest this turn?
+	List<Player> playerList = [];  //what players are already in the medium when i trigger?
+	List<List<Player>> playersPlusHelpers = []; //who is doing a land quest this turn?
 	num landLevelNeeded = 12;	
 
 
 	DoLandQuest(Session session): super(session);
 
 	@override
-	dynamic trigger(playerList){
+	dynamic trigger(List<Player> playerList){
 		this.playersPlusHelpers = [];
 		var availablePlayers = new List<String>.from(this.session.availablePlayers); //don't modify available players while you iterate on it, dummy
 		for(num j = 0; j<this.session.availablePlayers.length; j++){
-			var p = this.session.availablePlayers[j];
-			var ph = this.getPlayerPlusHelper(p, availablePlayers);
-			if(ph){
+			Player p = this.session.availablePlayers[j];
+			List<Player> ph = this.getPlayerPlusHelper(p, availablePlayers);
+			if(ph != null){
 				this.playersPlusHelpers.add(ph);
-				if(ph[0].aspect != "Time" && ph[0].aspect != "Breath") availablePlayers.removeFromArray(ph[0]);   //for land qeusts only, breath players can do multiple. time players ALWAYS do multiple of everything.
-				if(ph[1] && ph[0].aspect != "Time" && ph[0].aspect != "Breath" )availablePlayers.removeFromArray(ph[1]);
+				if(ph[0].aspect != "Time" && ph[0].aspect != "Breath") availablePlayers.remove(ph[0]);   //for land qeusts only, breath players can do multiple. time players ALWAYS do multiple of everything.
+				if(ph[1] != null && ph[0].aspect != "Time" && ph[0].aspect != "Breath" )availablePlayers.remove(ph[1]);
 			}
 		}
 		//print(this.playersPlusHelpers.length + " players are available for quests.");
 		return this.playersPlusHelpers.length > 0;
 	}
-	dynamic getPlayerPlusHelper(p, availablePlayers){
-		if(!p.land || p.power < 2 || p.grimDark > 3) return false;  //can't do quests at all.
+	List<Player> getPlayerPlusHelper(p, availablePlayers){
+		if(!p.land || p.power < 2 || p.grimDark > 3) return null;  //can't do quests at all.
 		var helper = this.lookForHelper(p,availablePlayers);
 		if(helper && helper.grimDark >= 3) helper = null;  //grim dark players aren't going to do quests.
 		var playerPlusHelper = [p,helper];
@@ -49,9 +49,10 @@ class DoLandQuest extends Scene{
 				return (playerPlusHelper);
 			}
 		}
+		return null;
 	}
-	String findFraymotif(player, helper){
-		var f;
+	String findFraymotif(Player player, Player helper){
+		Fraymotif f;
 
 		if(player.fraymotifs.length == 0){
 			f = this.session.fraymotifCreator.makeFraymotif([player], 1);//shitty intial fraymotif.
@@ -60,7 +61,7 @@ class DoLandQuest extends Scene{
 		}
 
 		//i expect to do at least 10 land quests, so have a 3/10 chance of getting a fraymotif.
-		var randomNumber = seededRandom();
+		double randomNumber = seededRandom();
 		if(randomNumber > 0.2) return "";
 
 		f = player.getNewFraymotif(helper);
@@ -68,7 +69,7 @@ class DoLandQuest extends Scene{
 
 	}
 	String fraymotifFlavorTextForPlayer(player, fraymotif){
-		var normalWays = ["The " + player.htmlTitle() + " purchases " + fraymotif.name + "from the fraymotif store like a sensible person. "];
+		List<String> normalWays = ["The " + player.htmlTitle() + " purchases " + fraymotif.name + "from the fraymotif store like a sensible person. "];
 		normalWays.add("The " + player.htmlTitle() + " has finally saved up enough boondollars to buy " + fraymotif.name + "from the fraymotif store. ");
 		if(seededRandom() > 0.5) return getRandomElementFromArray(normalWays);
 		//otherwise do special shit.
@@ -87,18 +88,18 @@ class DoLandQuest extends Scene{
 		return getRandomElementFromArray(normalWays);
 	}
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		var content = this.content(div);
 		//if(simulationMode) return;  will doing things like this speed AB up. might want to refactor gameEntity so only one div redered at fight end and not consantly.
-		div.append("<br> <img src = 'images/sceneIcons/quest_icon.png'>"+content);
+		div.appendHtml("<br> <img src = 'images/sceneIcons/quest_icon.png'>"+content);
 
 	}
 	dynamic addImportantEvent(){
-			var current_mvp = findStrongestPlayer(this.session.players);
-			return this.session.addImportantEvent(new FrogBreedingNeedsHelp(this.session, current_mvp.power,null,null) );
+			Player current_mvp = findStrongestPlayer(this.session.players);
+			return this.session.addImportantEvent(new FrogBreedingNeedsHelp(this.session, current_mvp.getStat("power"),null,null) );
 	}
-	dynamic lookForHelper(player, availablePlayers){
-		var helper = null;
+	dynamic lookForHelper(Player player, List<Player> availablePlayers){
+		Player helper = null;
 
 		//space player can ONLY be helped by knight, and knight prioritizes this
 		if(player.aspect == "Space"){//this shit is so illegal
@@ -138,12 +139,12 @@ class DoLandQuest extends Scene{
 		return null;
 
 	}
-	dynamic calculateClasspectBoost(player, helper){
+	dynamic calculateClasspectBoost(Player player, Player helper){
 
 
 		if(helper.aspect == "Heart" && helper.class_name == "Sylph"){
-			print("Will i heal corruption? grim dark is:" + player.grimDark);
-			print("sylph of heart corruption helping" + this.session.session_id);
+			print("Will i heal corruption? grim dark is: ${player.grimDark}");
+			print("sylph of heart corruption helping ${this.session.session_id}");
 			if(player.grimDark > 1){
 				return " The " + helper.htmlTitle() + " heals the " + player.htmlTitle() + "'s broken identity', restoring any holds the broodfester tongues of GrimDarkness had on them and increasing their resistance to future infestations. ";
 			}
@@ -160,13 +161,13 @@ class DoLandQuest extends Scene{
 		}
 
 		if(player.grimDark>0 && helper.aspect == "Void"){
-			print("void corruption helping" + this.session.session_id);
+			print("void corruption helping ${this.session.session_id}");
 			return " The " + helper.htmlTitle() + " seems to commune with the ambiant corruption in the " + player.htmlTitle() + ", preventing it from piling up enough for them to reach the next tier of GrimDarkness.";
 		}
 
 		//okay, now that i know it's not a time clone, look at my relationship with my helper.
-		var r1 = player.getRelationshipWith(helper);
-		var r2 = helper.getRelationshipWith(player);
+		Relationship r1 = player.getRelationshipWith(helper);
+		Relationship r2 = helper.getRelationshipWith(player);
 
 		if(helper.aspect == "Breath"){
 			this.session.availablePlayers.add(player); //player isn't even involved, at this point.
@@ -184,7 +185,7 @@ class DoLandQuest extends Scene{
 		if(helper.aspect == "Blood"){
 			player.boostAllRelationships();
 			player.boostAllRelationshipsWithMe();
-			player.sanity += 1;
+			player.addStat("sanity", 1);
 			if(r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " spends a great deal of time helping the " + player.htmlTitle() + " out with their relationship drama. " ;
 			}else{
@@ -192,7 +193,7 @@ class DoLandQuest extends Scene{
 			}
 		}
 
-		if(helper.aspect == "Time" || helper.aspect == "Light" || helper.aspect == "Hope" || helper.aspect == "Mind" || helper.className == "Page" || helper.className == "Seer"){
+		if(helper.aspect == "Time" || helper.aspect == "Light" || helper.aspect == "Hope" || helper.aspect == "Mind" || helper.class_name == "Page" || helper.class_name == "Seer"){
 			player.landLevel ++;
 			helper.increasePower();
 			if(r2.value > 0){
@@ -205,8 +206,8 @@ class DoLandQuest extends Scene{
 		if(helper.aspect == "Rage"){
 			player.damageAllRelationships();
 			player.damageAllRelationshipsWithMe();
-			player.sanity += -10;
-			helper.sanity += -10;
+			player.addStat("sanity", -10);
+			helper.addStat("sanity", -10);
 			if(r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " spends a great deal of time shit talking about the other players. ";
 			}else{
@@ -224,7 +225,7 @@ class DoLandQuest extends Scene{
 			}
 		}
 
-		if(helper.className == "Thief"){
+		if(helper.class_name == "Thief"){
 			player.landLevel += -1;
 			helper.landLevel ++;
 			if(r2.value > 0){
@@ -238,14 +239,14 @@ class DoLandQuest extends Scene{
 		return ret;
 
 	}
-	String spreadCoruption(player1, player2){
+	String spreadCoruption(Player player1, Player player2){
 		bool ret = false;
-		if(player2 && player2.grimDark>0){
+		if(player2 != null && player2.grimDark>0){
 			player1.corruptionLevelOther += 5;
 			ret = true;
 		}
 
-		if(player2 && player1.grimDark>0){
+		if(player2 != null && player1.grimDark>0){
 			player2.corruptionLevelOther += 5;
 			ret = true;
 		}
@@ -253,14 +254,14 @@ class DoLandQuest extends Scene{
 		if(corruptedOtherLandTitles.indexOf(player1.land1) != -1 || corruptedOtherLandTitles.indexOf(player1.land2) != -1 ){
 			player1.corruptionLevelOther += 5;
 			ret = true;
-			if(player2) player2.corruptionLevelOther += 5;
+			if(player2 != null) player2.corruptionLevelOther += 5;
 		}
 
 		if(player1.object_to_prototype.corrupted && !player1.sprite.dead){
 		//	print("corrupt sprite: " + this.session.session_id);
 			player1.corruptionLevelOther += 5;
 			ret = true;
-			if(player2) player2.corruptionLevelOther += 5;
+			if(player2 != null) player2.corruptionLevelOther += 5;
 		}
 
 		if(ret){
@@ -270,9 +271,9 @@ class DoLandQuest extends Scene{
 		return "";
 
 	}
-	dynamic spriteContent(player){
+	String spriteContent(Player player){
 		if(player.sprite.dead) return "";//nothing to see here.
-		var ret = player.sprite.htmlTitle();
+		String ret = player.sprite.htmlTitle();
 		if(player.sprite.corrupted){
 			player.landLevel += -0.75;
 		}else if(player.sprite.helpfulness > 0){
@@ -281,7 +282,7 @@ class DoLandQuest extends Scene{
 		}else if(player.sprite.helpfulness < 0){
 			//print("bad sprite: " + this.session.session_id);
 			player.landLevel += -0.5;
-			player.sanity += -0.1;
+			player.addStat("sanity", -0.1);
 		}else{
 			//print("normal sprite: " + this.session.session_id);
 			player.landLevel += 0.5;
@@ -289,14 +290,14 @@ class DoLandQuest extends Scene{
 		ret +=  " " + player.sprite.helpPhrase + " "; //best idea.
 		return ret;
 	}
-	dynamic contentForPlayer(player, helper){
+	String contentForPlayer(Player player, Player helper){
 		String ret = "<Br><Br> ";
 		ret += "The " + player.htmlTitle()  ;
 		if(player.aspect != "Time") removeFromArray(player, this.session.availablePlayers);
 
 		player.increasePower();
 		player.landLevel ++;
-		if(helper){
+		if(helper != null){
 			if(helper.aspect != "Time") removeFromArray(helper, this.session.availablePlayers); //don't let my helper do their own quests.
 			ret += " and the " + helper.htmlTitle() + " do " ;
 			helper.increasePower();
@@ -311,7 +312,7 @@ class DoLandQuest extends Scene{
 			ret += " quests in the " + player.land;
 		}
 		ret += ", " + player.getRandomQuest() + ". ";
-		if(helper){
+		if(helper != null){
 			ret += this.calculateClasspectBoost(player, helper);
 		}
 		if(helper != null && player  != helper ){
@@ -332,10 +333,10 @@ class DoLandQuest extends Scene{
 			var living = findLivingPlayers(this.session.players);
 			var dead = findDeadPlayers(this.session.players);
 			if(living.length == 1 && dead.length > 2){
-				print("SWEET BIKE STUNTS, BRO: " + this.session.session_id);
+				print("SWEET BIKE STUNTS, BRO: ${this.session.session_id}");
 				String realSelf = "";
 				if(!player.isDreamSelf && !player.godTier){
-					print("Real self stunting in: " + this.session.session_id);
+					print("Real self stunting in: ${this.session.session_id}");
 					realSelf =  "You are duly impressed that they are not a poser who does dreamself stunting.  Realself stunting 5ever, bro.";
 				}
 				return "The " + player.htmlTitle()  + " is " + getRandomElementFromArray(bike_quests) + ". " + realSelf;
