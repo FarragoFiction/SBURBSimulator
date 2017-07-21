@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Dart/planet.dart" afterPath="$PROJECT_DIR$/Dart/planet.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/credits.html" afterPath="$PROJECT_DIR$/credits.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/oc.css" afterPath="$PROJECT_DIR$/css/oc.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/glitches.html" afterPath="$PROJECT_DIR$/glitches.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" afterPath="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -61,11 +57,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="oc.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="oc.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/oc.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
               <caret line="12" column="26" lean-forward="false" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UpdateShippingGrid.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="404">
+              <caret line="562" column="36" lean-forward="false" selection-start-line="562" selection-start-column="36" selection-end-line="562" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -152,7 +158,6 @@
         <option value="$PROJECT_DIR$/javascripts/debugScenarios.js" />
         <option value="$PROJECT_DIR$/OCs/bards.txt" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/Aftermath.js" />
-        <option value="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" />
         <option value="$PROJECT_DIR$/javascripts/bytebuilder.js" />
         <option value="$PROJECT_DIR$/oc_generator.html" />
         <option value="$PROJECT_DIR$/rap.html" />
@@ -177,6 +182,7 @@
         <option value="$PROJECT_DIR$/credits.html" />
         <option value="$PROJECT_DIR$/glitches.html" />
         <option value="$PROJECT_DIR$/css/oc.css" />
+        <option value="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" />
       </list>
     </option>
   </component>
@@ -752,13 +758,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="400" column="495" lean-forward="true" selection-start-line="400" selection-start-column="495" selection-end-line="400" selection-end-column="495" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rip.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1029,6 +1028,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="26" lean-forward="false" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="562" column="36" lean-forward="false" selection-start-line="562" selection-start-column="36" selection-end-line="562" selection-end-column="36" />
           <folding />
         </state>
       </provider>
