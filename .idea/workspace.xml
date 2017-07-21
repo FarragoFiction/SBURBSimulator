@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="" />
+    <list default="true" id="0624bccc-4263-495a-a5ee-40aee49abc4f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/landOfRodsAndScreens.js" afterPath="$PROJECT_DIR$/javascripts/landOfRodsAndScreens.js" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,11 +17,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="player.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/player.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
               <caret line="287" column="78" lean-forward="false" selection-start-line="287" selection-start-column="74" selection-end-line="287" selection-end-column="78" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="landOfRodsAndScreens.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/javascripts/landOfRodsAndScreens.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="18" lean-forward="false" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -123,10 +135,10 @@
       <find>power of log</find>
       <find>strife</find>
       <find>strife =</find>
-      <find>Null</find>
       <find>ending</find>
       <find>playersInteract</find>
       <find>the fight is over</find>
+      <find>Null</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -158,7 +170,6 @@
         <option value="$PROJECT_DIR$/OCs/ideasWranglers.txt" />
         <option value="$PROJECT_DIR$/OCs/creditsBuckaroos.txt" />
         <option value="$PROJECT_DIR$/javascripts/handle_sprites.js" />
-        <option value="$PROJECT_DIR$/javascripts/landOfRodsAndScreens.js" />
         <option value="$PROJECT_DIR$/javascripts/v2.0/char_viewer.js" />
         <option value="$PROJECT_DIR$/javascripts/gameEntity.js" />
         <option value="$PROJECT_DIR$/Dart/gameEntity.dart" />
@@ -191,6 +202,7 @@
         <option value="$PROJECT_DIR$/css/oc.css" />
         <option value="$PROJECT_DIR$/javascripts/Scenes/UpdateShippingGrid.js" />
         <option value="$PROJECT_DIR$/glitches.html" />
+        <option value="$PROJECT_DIR$/javascripts/landOfRodsAndScreens.js" />
       </list>
     </option>
   </component>
@@ -682,13 +694,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/landOfRodsAndScreens.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="18" lean-forward="false" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascripts/v2.0/char_viewer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="261">
@@ -1044,6 +1049,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="287" column="78" lean-forward="false" selection-start-line="287" selection-start-column="74" selection-end-line="287" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/landOfRodsAndScreens.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="18" lean-forward="false" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
           <folding />
         </state>
       </provider>
