@@ -825,62 +825,6 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
     defense.currentHP += -1* hit;
     //this.processDeaths(div, offense, defense);
   }
-  void processDeaths(div, offense, defense){
-    List<dynamic> dead_o = [];
-    List<dynamic> dead_d = [];
-    for(num i = 0; i<offense.length; i++){
-      var o = offense[i];
-      if(!o.dead){  //if you are already dead, don't bother.
-        for(var j= 0; j<defense.length; j++){
-          var d = defense[j];
-          if(!d.dead){
-            var o_alive = this.checkForAPulse(o,d);
-            o.interactionEffect(d);
-            if(!this.checkForAPulse(d, o)){
-              dead_d.add(d);
-            }
-            if(!this.checkForAPulse(o, d)){
-              dead_o.add(o);
-            }
-          }
-        }
-      }
-    }
-    String ret = "";
-    if(dead_o.length > 1){
-      ret = " The " + getPlayersTitlesHP(dead_o) + "are dead. ";
-    }else if(dead_o.length == 1){
-      ret += " The " + getPlayersTitlesHP(dead_o) + "is dead. ";
-    }
-
-    if(dead_d.length > 1){
-      ret = " The " + getPlayersTitlesHP(dead_d) + "are dead. ";
-    }else if(dead_d.length == 1){
-      if(dead_d[0].getStat("currentHP") > 0) window.alert("pastJR: why does a player have positive hp yet also is dead???" + this.session.session_id)
-      ret += " The " + getPlayersTitlesHP(dead_d) + "is dead. ";
-    }
-
-    div.append(ret);
-  }
-
-  bool checkForAPulse(player, attacker){
-    if(player.getStat("currentHP") <= 0){
-      //print("Checking hp to see if" + player.htmlTitleHP() +"  is  dead");
-      String cod = "fighting the " + attacker.htmlTitle();
-      if(this.name == "Jack"){
-        cod =  "after being shown too many stabs from Jack";
-      }else if(this.name == "Black King"){
-
-        cod = "fighting the Black King";
-      }
-      player.makeDead(cod);
-      //print("Returning that " + player.htmlTitleHP() +"  is  dead");
-      return false;
-    }
-    //print("Returning that " + player.htmlTitleHP() +"  is not dead");
-    return true;
-  }
-}
 
 //it is assumed that all members are on the same side and won't hurt each other.
 class Team implements Comparable{  //when you want to sort teams, you sort by mobility.
@@ -1010,8 +954,15 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     }
   }
 
-  void checkForAPulse(div) {
-      throw"TODO loop on all members and see if any are newly dead. if they are, print shit out"
+  //will print out all deaths. and also cause them. because you don't auto die when hp is less than zero.
+  void checkForAPulse(div, List<Team> enemyTeams) {
+    String ret = "";
+    for(GameEntity member in members) {
+      if(!member.dead) {
+          ret += member.checkDiedInAStrife(enemyTeams);
+      }
+    }
+    if(ret.isEmpty) div.appendHTML(ret);
   }
 
   void giveGristFromTeams(List<Team>teams) {

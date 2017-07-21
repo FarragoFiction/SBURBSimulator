@@ -50,7 +50,7 @@ class GameEntity implements Comparable{
     return other.getStat("mobility") - getStat("mobility");  //TODO or is it the otherway around???
   }
 
-  String checkDiedInAStrife(div, List<Team> enemyTeams) {
+  String checkDiedInAStrife(List<Team> enemyTeams) {
       if(getStat("currentHP") <= 0) {
         //TODO check for jack, king
         GameEntity jack = Team.findJackInTeams(enemyTeams);
@@ -91,9 +91,12 @@ class GameEntity implements Comparable{
 
       //TODO when choosing target, if there is a player who is light aspect in other team, preferentially target them.
       //opposite for void.
-      mySide.checkForAPulse(div);
+      //last thing you do is die.
+      mySide.checkForAPulse(div, enemyTeams);
+      List<Team> allTeams = new List<Team>.from(enemyTeams);
+      allTeams.add(mySide);
       for(Team team in enemyTeams) {
-          team.checkForAPulse(div);
+          team.checkForAPulse(div, team.getOtherTeams(allTeams));
       }
 
   }
