@@ -22,8 +22,9 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
         team.takeTurn(div, turnsPassed, teams); //will handling resetting player availablity
     }
     checkForSuddenEnding(div); //everyone is killed. or absconded in denizen case. calls processEnding on own.
-    if(strifeEnded()) {
-      describeEnding(div); //will call processEnding.
+    Team winner = strifeEnded();
+    if(winner != null) {
+      describeEnding(div,winner); //will call processEnding.
     }else {
        turnsPassed ++;
        startTurn(div);
@@ -83,28 +84,31 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
   }
 
   //a strife is over when only one team is capable of fighting anymore. livingMinusAbsconded == 0;
-  bool strifeEnded() {
-      num remaining = 0;
+  Team strifeEnded() {
+      Team t;
       for(Team team in teams) { //this is the Buffalo buffallo bufallo Buffalo bufallo of this sim.
-          if(team.hasLivingMembersPresent()) remaining ++;
-          if(remaining > 1) return false;
+          if(team.hasLivingMembersPresent()) {
+            if(t != null){
+              return null; //more than one team is still in the game.
+            }else {
+              t = team;
+            }
+          }
       }
-      return true; //1 or fewer teams remain
+      return t; //1 or fewer teams remain
   }
 
 
   //need to list out who is dead, who absconded, and who is alive.  Who WON.
-  void describeEnding(div) {
+  void describeEnding(div, winner) {
       processEnding();
-      throw "todo describe ending";
-    //who won?
-    //heal winners and absconded.
-    //level up all parties
-    //extra level up winners
-    //clear out fraymotif useage (wait that's in team now, team gets destroyed when strife ends).
+      winner.level();
     //anything i'm missing? go check current code
-      this.poseAsATeam(div,players);
+      throw "todo describe ending: team name that one. maybe try to find out if it's via death or abscond.";
+      winner.poseAsATeam(div);
   }
+
+
 
   //take care of healing the living, and leveling everyone
   void processEnding() {
@@ -174,57 +178,10 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
 
   void levelEveryone() {
     for(Team team in teams) { //buffallo
-      team.levelEveryone();
+      team.level();
     }
   }
 
-
-
-
-  //TODO remove this, but keep for now for reference.
-  dynamic strife(div, numTurns){
-    this.resetPlayersAvailability(players);
-    if(numTurns == 0) div.append("<Br><img src = 'images/sceneIcons/strife_icon.png'>");
-    numTurns += 1;
-    if(this.name == "Black King" || this.name == "Black Queen"){
-      //print("checking to see if rocks fall.");
-      this.session.timeTillReckoning += -1; //other fights are a a single tick. maybe do this differently later. have fights be multi tick. but it wouldn't tick for everybody. laws of physics man.
-      if(this.session.timeTillReckoning < this.session.reckoningEndsAt){
-        this.rocksFallEverybodyDies(div, players, numTurns);
-        this.ending(div, players, numTurns);
-        return null;
-      }
-    }
-
-    if(this.fightNeedsToEnd(div, players, numTurns)){
-      this.ending(div,players, numTurns);
-      return null;
-    }
-
-    players = this.summonBackUp(div, players, numTurns);//might do nothing;
-    //print(this.name + ": strife! " + numTurns + " turns against: " + getPlayersTitlesNoHTML(players) + this.session.session_id);
-    div.append("<br><Br>");
-    //as players die or mobility stat changes, might go players, me, me, players or something. double turns.
-    if(getAverageMobility(players) > this.getStat("mobility")){ //players turn
-      if(!this.fightOverAbscond(div, players) )this.playersTurn(div, players,numTurns);
-      if(this.getStat("currentHP") > 0 && !this.fightOverAbscond(div, players)) this.myTurn(div, players,numTurns);
-    }else{ //my turn
-      if(this.getStat("currentHP") > 0 && !this.fightOverAbscond(div,players))  this.myTurn(div, players,numTurns);
-      if(!this.fightOverAbscond(div, players) )this.playersTurn(div, players,numTurns);
-    }
-
-    if(this.fightOver(div, players) ){
-      this.ending(div,players);
-      return null;
-    }else{
-      if(this.fightOverAbscond(div,players)){
-        this.processAbscond(div,players);
-        this.ending(div,players);
-        return null;
-      }
-      return this.strife(div, players,numTurns);
-    }
-  }//TODO delete this.
 
 
   //TODO do i still need this? maybe i'm using it for rendering.
@@ -955,6 +912,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     resetPlayersAvailability();
     if(potentialMembers.length > 0) checkForBackup(numTurnOn); //longer fight goes on, more likely to get backup.  IMPORTANT: BACK UP HAS TO BE GIVEN TO THIS TEAM ON CREATION
     List<Team> otherTeams = getOtherTeams(teams);
+    throw("TODO: Actually need to take turn."
 
   }
 
@@ -1035,6 +993,11 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
         ge2.interactionEffect(ge1); //it'll handle friendship and aspect stuff.
       }
     }
+  }
+
+  //this is how you know shit just got real.
+  void poseAsATeam(div) {
+      throw "TODO: pose as a team."
   }
 
   //Denizen fights work differently
