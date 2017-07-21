@@ -34,10 +34,13 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
       if(turnsPassed > timeTillRocks) {
         this.rocksFallEverybodyDies(div);
         processEnding(div);
-      }else if(denizenDoneWithYourShit(div)) {
+      }else if(denizenDoneWithYourShit(div)) { //highest priority. Denizen will take care of ending their fights.
+        processEnding(div);
+      }else if(turnsPassed > 30) { //holy shit are you not finished yet???
+        summonAuthor(div);
         processEnding(div);
       }
-      throw "TODO: check for JR or caliborn endings or Denizen";
+      throw "TODO: check for JR  endin";
   }
 
   bool denizenDoneWithYourShit(div) {
@@ -107,10 +110,14 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
     var spacePlayer = findAspectPlayer(session.players, "Space");
     session.rocksFell = true;
     spacePlayer.landLevel = 0; //can't deploy a frog if skaia was just destroyed. my test session helpfully reminded me of this 'cause one of the players god tier revived adn then used the sick frog to combo session. ...that...shouldn't happen.
-    for(Team team in teams) {
-      team.killEveryone("from terminal meteors to the face");
-    }
+    killEveryone("from terminal meteors to the face");
 
+  }
+
+  void killEveryone(String causeOfDeath) {
+    for(Team team in teams) {
+      team.killEveryone(causeOfDeath);
+    }
   }
 
   void denizenIsSoNotPuttingUpWithYourShitAnyLonger(div){
@@ -124,6 +131,35 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
       div.append(" They actually seem to be taking " + denizen.name + "'s advice. ");
     }
   }
+
+  void summonAuthor(div){
+    print("author is saving AB in session: " + this.session.session_id.toString());
+    var divID = (div.attr("id")) + "authorRocks"+players.join("");
+    String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+    div.append(canvasHTML);
+    //different format for canvas code
+    var canvasDiv = querySelector("#canvas"+ divID);
+    String chat = "";
+    chat += "AB: " + Zalgo.generate("HELP!!!") +"\n";
+    chat += "JR: Fuck!\n";
+    chat += "JR: What's going on!? \n";
+    chat += "JR: What's the problem!?\n";
+    chat += "JR: AB come on...fuck! Your console is blank, I can't read your logs, you gotta talk to me!\n";
+
+    chat += "AB: " + Zalgo.generate("INFINITE LOOP! STRIFE. IT KEEPS HAPPENING. FIX THIS.") +"\n";
+    chat += "JR: fuck fuck fuck okay okay, i got this, i can fix this, let me turn on the meteors real quick.\n";
+    chat += "JR: Okay. There. No more infinite loop. Everybody is dead. \n";
+    chat += "AB: Fuck. Shit. I HATE when that happens.\n";
+    chat += "JR: Yeah...\n";
+    chat += "AB: Like, yeah, it fucking SUCKS for me, but...then the players have to die, too.\n";
+    chat += "JR: That's why we're working so hard to balance the system. We'll get there, eventually. Scenes like this'll never trigger. Fights'll end naturally and not just go on forever if players find exploits. \n";
+    chat += "AB: Yeah...'cause SBURB is just SO easy to balance. \n'";
+    drawChatABJR(canvasDiv, chat);
+
+    killEveryone("causing dear sweet precious sweet, sweet AuthorBot to go into an infinite loop");
+
+  }
+
 
   void levelEveryone() {
     for(Team team in teams) { //buffallo
@@ -180,6 +216,8 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
   }//TODO delete this.
 
 
+  //TODO do i still need this? maybe i'm using it for rendering.
+  //might be easier for renderer to say "if you are not a Player, return"
   List<Player> removeAllNonPlayers(List<GameEntity>players){
     List<Player> ret = [];
     for(num i = 0; i< players.length; i++){
@@ -189,7 +227,7 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
     return ret;
   }
 
-
+  //TODO might need to put this in team.
   bool willMemberAbscond(div, GameEntity member, Team team) {
     if(!team.canAbscond) return false;
     var playersInFight = team.getLivingMinusAbsconded();
@@ -242,8 +280,8 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
 
   }
 
-
-  dynamic remainingPlayersHateYou(div, player, players,Team team){
+  //TODO might need to put this in team
+  void remainingPlayersHateYou(div, player, players,Team team){
     if(players.length == 1){
       return null;
     }
@@ -266,36 +304,6 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
 
   }
 
-  void summonAuthor(div, players, numTurns){
-    print("author is saving AB in session: " + this.session.session_id);
-    var divID = (div.attr("id")) + "authorRocks"+players.join("");
-    String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
-    div.append(canvasHTML);
-    //different format for canvas code
-    var canvasDiv = querySelector("#canvas"+ divID);
-    String chat = "";
-    chat += "AB: " + Zalgo.generate("HELP!!!") +"\n";
-    chat += "JR: Fuck!\n";
-    chat += "JR: What's going on!? \n";
-    chat += "JR: What's the problem!?\n";
-    chat += "JR: AB come on...fuck! Your console is blank, I can't read your logs, you gotta talk to me!\n";
-
-    chat += "AB: " + Zalgo.generate("INFINITE LOOP! STRIFE. IT KEEPS HAPPENING. FIX THIS.") +"\n";
-    chat += "JR: fuck fuck fuck okay okay, i got this, i can fix this, let me turn on the meteors real quick.\n";
-    chat += "JR: Okay. There. No more infinite loop. Everybody is dead. \n";
-    chat += "AB: Fuck. Shit. I HATE when that happens.\n";
-    chat += "JR: Yeah...\n";
-    chat += "AB: Like, yeah, it fucking SUCKS for me, but...then the players have to die, too.\n";
-    chat += "JR: That's why we're working so hard to balance the system. We'll get there, eventually. Scenes like this'll never trigger. Fights'll end naturally and not just go on forever if players find exploits. \n";
-    chat += "AB: Yeah...'cause SBURB is just SO easy to balance. \n'";
-    drawChatABJR(canvasDiv, chat);
-    var living = this.getLivingMinusAbsconded(players);
-    for(num i = 0; i<living.length; i++){
-      var p = living[i];
-      p.makeDead("causing dear sweet precious sweet, sweet AuthorBot to go into an infinite loop");
-    }
-
-  }
 
   dynamic summonPlayerBackup(div, players, numTurns){
     //if it's a time player/ 50/50 it's a future version of them in a stable time loop
