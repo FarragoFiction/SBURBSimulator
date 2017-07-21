@@ -892,7 +892,8 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			}
 		}
 	}
-	void interactionEffect(player){
+	@override
+	void interactionEffect(GameEntity player){
 
 		this.associatedStatsInteractionEffect(player);
 
@@ -901,13 +902,14 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		if(r1){
 			r1.moreOfSame();
 		}
-
 	}
-	dynamic knowsAboutSburb(){
+
+	bool knowsAboutSburb(){
 		//time might not innately get it, but they have future knowledge
 		var rightClass = this.class_name == "Sage" || this.class_name == "Scribe" || this.class_name == "Seer" || this.class_name == "Mage" || this.aspect == "Light" || this.aspect == "Mind" || this.aspect == "Doom" || this.aspect == "Time";
 		return rightClass && this.getStat("power") > 20; //need to be far enough in my claspect
 	}
+
 	dynamic performEctobiology(session){
 		session.ectoBiologyStarted = true;
 		dynamic playersMade = findPlayersWithoutEctobiologicalSource(session.players);

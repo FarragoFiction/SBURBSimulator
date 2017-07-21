@@ -111,6 +111,11 @@ class GameEntity {
     return (ret).round();
   }
 
+  //sets current hp to max hp. mostly called after strifes assuming you'll use healing items
+  void heal() {
+      setStat("currentHP", getStat("hp"));
+  }
+
   void setStat(statName,value){
     if(this.stats[statName] == null) throw("I have never heard of a stat called: " +statName);
     this.stats[statName] = value;
@@ -165,12 +170,12 @@ class GameEntity {
     //stub for boss fights where an asshole absconds.
   }
 
-  void makeDead(causeOfDeath){
+  void makeDead(String causeOfDeath){
     this.dead = true;
     this.causeOfDeath = causeOfDeath;
   }
 
-  void interactionEffect(player){
+  void interactionEffect(GameEntity ge){
     //none
   }
   //takes in a stat name we want to use. for example, use only min luck to avoid bad events.

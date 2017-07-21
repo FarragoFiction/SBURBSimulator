@@ -21,9 +21,9 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
     for(Team team in teams) {
         team.takeTurn(div, turnsPassed, teams); //will handling resetting player availablity
     }
-    checkForSuddenEnding(div);
+    checkForSuddenEnding(div); //everyone is killed. or absconded in denizen case. calls processEnding on own.
     if(strifeEnded()) {
-      processEnding(div);
+      describeEnding(div); //will call processEnding.
     }else {
        turnsPassed ++;
        startTurn(div);
@@ -33,14 +33,13 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
   void checkForSuddenEnding(div) {
       if(turnsPassed > timeTillRocks) {
         this.rocksFallEverybodyDies(div);
-        processEnding(div);
+        processEnding();
       }else if(denizenDoneWithYourShit(div)) { //highest priority. Denizen will take care of ending their fights.
-        processEnding(div);
+        processEnding();
       }else if(turnsPassed > 30) { //holy shit are you not finished yet???
         summonAuthor(div);
-        processEnding(div);
+        processEnding();
       }
-      throw "TODO: check for JR  endin";
   }
 
   bool denizenDoneWithYourShit(div) {
@@ -93,15 +92,27 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
       return true; //1 or fewer teams remain
   }
 
+
   //need to list out who is dead, who absconded, and who is alive.  Who WON.
-  void processEnding(div) {
-      throw "Todo write process ending";
-      //who won?
-      //heal winners and absconded.
-      //level up all parties
-      //extra level up winners
-      //clear out fraymotif useage (wait that's in team now, team gets destroyed when strife ends).
-      //anything i'm missing? go check current code
+  void describeEnding(div) {
+      processEnding();
+      throw "todo describe ending";
+    //who won?
+    //heal winners and absconded.
+    //level up all parties
+    //extra level up winners
+    //clear out fraymotif useage (wait that's in team now, team gets destroyed when strife ends).
+    //anything i'm missing? go check current code
+      this.poseAsATeam(div,players);
+  }
+
+  //take care of healing the living, and leveling everyone
+  void processEnding() {
+    for(Team team in teams) {  //bufallo
+      team.interact();
+      team.heal();
+      team.level();
+    }
   }
 
   void rocksFallEverybodyDies(div){
@@ -127,14 +138,14 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
     Player player = members[1];
     div.append("<Br><Br>" + denizen.name + " decides that the " + player.htmlTitleBasic() + " is being a little baby who poops hard in their diapers and are in no way ready for this fight. The Denizen recommends that they come back after they mature a little bit. The " +player.htmlTitleBasic() + "'s ass is kicked so hard they are ejected from the fight, but are not killed.");
     if(seededRandom() > .5){ //players don't HAVE to take the advice after all. assholes.
-      levelEveryone();
+      player.increasePower();
       div.append(" They actually seem to be taking " + denizen.name + "'s advice. ");
     }
   }
 
   void summonAuthor(div){
     print("author is saving AB in session: " + this.session.session_id.toString());
-    var divID = (div.attr("id")) + "authorRocks"+players.join("");
+    var divID = (div.attr("id")) + "authorRocks";
     String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
     div.append(canvasHTML);
     //different format for canvas code
@@ -1006,9 +1017,23 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
       return this.getLivingMinusAbsconded().length > 0;
   }
 
-  void levelEveryone() {
+  void level() {
     for(GameEntity ge in members) {
       ge.increasePower(); //don't care who you are.
+    }
+  }
+
+  void heal() {
+    for(GameEntity ge in members) {
+      ge.heal(); //
+    }
+  }
+
+  void interact() {
+    for(GameEntity ge1 in members) {
+      for(GameEntity ge2 in members) {
+        ge2.interactionEffect(ge1); //it'll handle friendship and aspect stuff.
+      }
     }
   }
 
