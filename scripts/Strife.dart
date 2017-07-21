@@ -1010,6 +1010,10 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     }
   }
 
+  void checkForAPulse(div) {
+      throw"TODO loop on all members and see if any are newly dead. if they are, print shit out"
+  }
+
   void giveGristFromTeams(List<Team>teams) {
     List<Team> otherTeams = getOtherTeams(teams);
     for(Team team in otherTeams) { //bufallo
@@ -1046,6 +1050,22 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
         if(ge is Denizen) return ge;
       }
       return null;
+  }
+
+  //need to find jack in particular so that i can have custom death graphic
+  GameEntity findJack() {
+    for(GameEntity ge in members) {
+      if(ge.name == "Jack") return ge;
+    }
+    return null;
+  }
+
+  //need to find king in particular so that i can have custom death graphic
+  GameEntity findKing() {
+    for(GameEntity ge in members) {
+      if(ge.name == "Black King") return ge;
+    }
+    return null;
   }
 
   //player fights work differently
@@ -1087,6 +1107,22 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
 
   static String getTeamsNames(List<Team> teams) {
     return teams.join(",");  //TODO put an and at last team.
+  }
+
+  static GameEntity findJackInTeams(List<Team> teams) {
+      for(Team team in teams) { //moooo
+        GameEntity possibleJack = team.findJack();
+        if(possibleJack != null) return possibleJack;
+      }
+      return null;
+  }
+
+  static GameEntity findKingInTeams(List<Team> teams) {
+    for(Team team in teams) { //moooo
+      GameEntity possibleKing = team.findKing();
+      if(possibleKing != null) return possibleKing;
+    }
+    return null;
   }
 
 }

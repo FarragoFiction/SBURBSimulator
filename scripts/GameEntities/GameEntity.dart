@@ -50,11 +50,52 @@ class GameEntity implements Comparable{
     return other.getStat("mobility") - getStat("mobility");  //TODO or is it the otherway around???
   }
 
+  String checkDiedInAStrife(div, List<Team> enemyTeams) {
+      if(getStat("currentHP") <= 0) {
+        //TODO check for jack, king
+        GameEntity jack = Team.findJackInTeams(enemyTeams);
+        GameEntity king = Team.findKingInTeams(enemyTeams);
+        String causeOfDeath = "fighting in a strife against ${Team.getTeamsNames(enemyTeams)}";
+        if(jack != null) {
+          causeOfDeath = "after being shown too many stabs from Jack";
+        }else if(king != null){
+          causeOfDeath = "fighting the Black King";
+        }
+        makeDead(causeOfDeath);
+        return "${htmlTitleHP()} has died. ";
+      }
+      return "";
+  }
+
   //any subclass can choose to do things differently. for now, this is default.
   //so yes, npcs can have ghost attacks.
-  void takeTurn(div, Team mySide, List<Team> targetTeams) {
+  //this won't be called if I CAN'T take a turn because i participated in fraymotif
+  void takeTurn(div, Team mySide, List<Team> enemyTeams) {
       throw "TODO: take turn";
       //don't forget to let Team know if you used fraymotifs this turn.
+
+      //if i am dead, and have a ghost pact, try to revive (no more non ghost pact strife reviving). pact only works on self.
+
+      //if still dead, return, can't do anything.
+      if(dead) return;
+
+      //pick a team to target.  if cant find target, return
+      //pick a member of the team to extra target. ig player and light, even if corpse
+
+      //try to use fraymotif
+
+      //try to aggrieve
+
+      //check to see if you died.  if you died, cause of death is fighting getTeamsNames(targetTeams)
+
+
+      //TODO when choosing target, if there is a player who is light aspect in other team, preferentially target them.
+      //opposite for void.
+      mySide.checkForAPulse(div);
+      for(Team team in enemyTeams) {
+          team.checkForAPulse(div);
+      }
+
   }
 
   void changeGrimDark(){

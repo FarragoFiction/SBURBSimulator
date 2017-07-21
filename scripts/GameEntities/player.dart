@@ -501,8 +501,8 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			this.renderSelf();
 		}
 
-	dynamic title(){
-		String ret = "";
+	String title(){
+		String ret = "The "; //TODO get rid of anywhere else using 'the'
 
 		if(this.doomed){
 			ret += "Doomed ";
