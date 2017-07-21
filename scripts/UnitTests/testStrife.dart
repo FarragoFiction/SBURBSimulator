@@ -19,6 +19,7 @@ main() {
   testCreation();
   //TODO test sorting teams by mobility.
 
+
 }
 
 testCreation() {

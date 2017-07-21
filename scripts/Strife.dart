@@ -918,7 +918,12 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     resetPlayersAvailability();
     if(potentialMembers.length > 0) checkForBackup(numTurnOn); //longer fight goes on, more likely to get backup.  IMPORTANT: BACK UP HAS TO BE GIVEN TO THIS TEAM ON CREATION
     List<Team> otherTeams = getOtherTeams(teams);
-    throw("TODO: Actually need to take turn."
+    //loop on all members each member takes turn.
+    for(GameEntity member in members) {
+      //if you helped with a fraymotif, that's your turn
+      if(!usedFraymotifThisTurn.contains(member)) member.takeTurn(div, this, teams);
+    }
+
 
   }
 
@@ -926,6 +931,10 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
   //doomed time players will NOT be treated any differently anymore. (though a player marked as doomed might have a different narrative).
   void checkForBackup(numTurnOn) {
       throw "TODO check for backup.";
+      /*
+
+        if player is doomed, diff text, draw time gears
+       */
   }
 
   void resetPlayersAvailability() {

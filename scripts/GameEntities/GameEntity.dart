@@ -2,7 +2,7 @@ part of SBURBSim;
 
 //fully replacing old GameEntity that was also an unholy combo of strife engine
 //not abstract, COULD spawn just a generic game entity.
-class GameEntity {
+class GameEntity implements Comparable{
   Session session;
   String name;
   String fontColor = "#000000";
@@ -43,6 +43,18 @@ class GameEntity {
 
   String toString(){
     return this.htmlTitle().replaceAll(new RegExp(r"\s", multiLine:true), '').replaceAll(new RegExp(r"'", multiLine:true), ''); //no spces probably trying to use this for a div
+  }
+
+  //naturally sorted by mobility
+  int compareTo(other) {
+    return other.getStat("mobility") - getStat("mobility");  //TODO or is it the otherway around???
+  }
+
+  //any subclass can choose to do things differently. for now, this is default.
+  //so yes, npcs can have ghost attacks.
+  void takeTurn(div, Team mySide, List<Team> targetTeams) {
+      throw "TODO: take turn";
+      //don't forget to let Team know if you used fraymotifs this turn.
   }
 
   void changeGrimDark(){
