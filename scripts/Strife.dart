@@ -31,6 +31,7 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
 
   void checkForRocks() {
       if(turnsPassed > timeTillRocks) {
+        throw "TODO: display JR killing everyone. readd caliborn easter egg";
         for(Team team in teams) {
             team.killEveryone("from terminal meteors to the face");
         }
@@ -50,6 +51,12 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
   //need to list out who is dead, who absconded, and who is alive.  Who WON.
   void processEnding() {
       throw "Todo write process ending";
+      //who won?
+      //heal winners and absconded.
+      //level up all parties
+      //extra level up winners
+      //clear out fraymotif useage (wait that's in team now, team gets destroyed when strife ends).
+      //anything i'm missing? go check current code
   }
 
 
