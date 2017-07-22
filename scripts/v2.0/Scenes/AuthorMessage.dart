@@ -1,12 +1,14 @@
+//part of SBURBSim;
 
+// Wait... why am I even doing this? -PL
 
-class AuthorMessage {
+/***class AuthorMessage extends Scene {
 	bool canRepeat = false;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	var player = null;	
 
 
-	AuthorMessage(this.) {}
+	AuthorMessage(Session session) : super(session) {}
 
 
 	bool trigger(playerList, player){
@@ -60,3 +62,4 @@ class AuthorMessage {
 	}
 
 }
+***/
