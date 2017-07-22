@@ -1,4 +1,5 @@
-
+import '../SBURBSim.dart';
+import "dart:html";
 
 //stay fresh, don't repeat rhymes.
 
@@ -9,7 +10,7 @@ num player2Score = 0;
 //could read session summary?
 //worry about this LATER, and definitely not in this stand alone page.
 //for now, rap about your own interests.
-window.onload = () {
+main() {
 		//Math.seed = 612;
 		var player1 = randomPlayerWithClaspect(new Session(83475), "Witch", "Time" );
 		player1.chatHandle = "squareWave";
@@ -25,7 +26,7 @@ window.onload = () {
 		rap(2,player2);
 		rap(1,player1);
 		rap(2,player2);
-		querySelector("#score").html("Player1: " + player1Score + " Player2: " + player2Score);
+		querySelector("#score").innerHtml = "Player1: $player1Score Player2: $player2Score";
 
 }
 
@@ -72,12 +73,12 @@ void rap(playerNum, player){
 
 //red text
 void rapper1Line(line){
-	querySelector("#rap").append("<font color='red'>"+line+"</font><br>");
+	querySelector("#rap").appendHtml("<font color='red'>"+line+"</font><br>");
 }
 
 
 
 //blue text
 void rapper2Line(line){
-	querySelector("#rap").append("<font color='blue'>"+line+"</font><br>");
+	querySelector("#rap").appendHtml("<font color='blue'>"+line+"</font><br>");
 }
