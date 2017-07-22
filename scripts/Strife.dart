@@ -282,7 +282,7 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
     //first try using pacts
     var undrainedPacts = removeDrainedGhostsFromPacts(deadPlayer.ghostPacts);
     if(undrainedPacts.length > 0){
-      print("using a pact to autorevive in session " + this.session.session_id);
+      print("using a pact to autorevive in session " + this.session.session_id.toString());
       var source = undrainedPacts[0][0];
       source.causeOfDrain = deadPlayer.title();
       String ret = " In the afterlife, the " + deadPlayer.htmlTitleBasic() +" reminds the " + source.htmlTitleBasic() + " of their promise of aid. The ghost agrees to donate their life force to return the " + deadPlayer.htmlTitleBasic() + " to life ";
@@ -557,14 +557,15 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
 
 //it is assumed that all members are on the same side and won't hurt each other.
 class Team implements Comparable{  //when you want to sort teams, you sort by mobility.
+  Session session;
   List<GameEntity> members;
   List<GameEntity> potentialMembers = new List<GameEntity>(); //who is allowed to join this team mid-strife. (i.e. I would be shocked if a player showed up to help a Denizen kill their buddy).
   List<GameEntity> absconded; //this only matters for one strife, so save to the team.
   List<GameEntity> usedFraymotifThisTurn; //if you're in this list, you don't get a regular turn.
   String name = ""; //TODO like The Midnight Crew.  If not given, just make it a list of all members of the team.
-  Team.withName(name, this.members);
-  Team(this.members) {
-    name = GameEntity.getEntitiesNames();
+  Team.withName(name, this.session, this.members);
+  Team(this.session, this.members) {
+    name = GameEntity.getEntitiesNames(members);
   }
   bool canAbscond; //sometimes you are forced to keep fighting.
 
@@ -605,9 +606,23 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
   void checkForBackup(numTurnOn,div) {
       if(potentialMembers.length == 0) return;
       potentialMembers.sort(); //fasted members get dibs.
+      List<Player> timePlayers = new List<Player>();
       for(GameEntity member in members) {
-        if(seededRandom() > .9) summonBackup(member);
+        if(member is Player){
+          Player p = member;
+          if(p.aspect == "Time") timePlayers.add(p);
+        }
+        if(!member.dead && seededRandom() > .9){
+          session.availablePlayers.remove(member);
+          summonBackup(member, div);
+          return;
+        }
       }
+
+      //nobody could come, but I have me some time players i could clone.
+      if
+
+
   }
 
   //handle doomed time clones here, too
