@@ -27,6 +27,7 @@ part "GameEntities/GameEntity.dart";
 part "GameEntities/NPCS.dart";
 part "GameEntities/player.dart";
 part "v2.0/YellowYardResultController.dart";
+part "ShittyRapEngine/shitty_raps.dart";
 
 //scenes
 part "Scenes/Scene.dart";

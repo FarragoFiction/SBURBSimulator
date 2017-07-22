@@ -1,128 +1,129 @@
-
+part of SBURBSim;
 
 //http://www.rhymezone.com/r/rhyme.cgi?Word=back&typeofrhyme;=perfect&org1=syl&org2;=l&org3=y;
 //if this seems like it will work, move to random tables. based on recursiveSlacker's idea.
-var comedyInterestNouns = ["joke","clown","fun", "folk", "bloke","quack","flashback","piece of cake","shell game","skunk","debunk", "grump", "first-rate","mandate", "card trick","card you pick"];
-var comedyInterestVerbs = ["joke", "frown", "stun", "soak", "choke", "scrunch", "wisecrack","smack","attack","crack","emergency break","flunk","jump", "copulate","syncopate"];
+List<String> comedyInterestNouns = ["joke","clown","fun", "folk", "bloke","quack","flashback","piece of cake","shell game","skunk","debunk", "grump", "first-rate","mandate", "card trick","card you pick"];
+List<String> comedyInterestVerbs = ["joke", "frown", "stun", "soak", "choke", "scrunch", "wisecrack","smack","attack","crack","emergency break","flunk","jump", "copulate","syncopate"];
 
-var athleticInterestNouns = ["heavyweight","teammate","lightweight","deadweight","sun","lunch","crown","brown", "clown","yolk","seasick","smalltalk","hella drunk","punk","drunk","yardstick","pregame","postgame"];
-var athleticInterestVerbs = ["run","punch", "down", "drown", "soak", "won","block","sunk","spelunk","aim","maim","tame", "castrate", "asphyxiate","suffocate","strangulate","decontaminate","dictate"];
+List<String> athleticInterestNouns = ["heavyweight","teammate","lightweight","deadweight","sun","lunch","crown","brown", "clown","yolk","seasick","smalltalk","hella drunk","punk","drunk","yardstick","pregame","postgame"];
+List<String> athleticInterestVerbs = ["run","punch", "down", "drown", "soak", "won","block","sunk","spelunk","aim","maim","tame", "castrate", "asphyxiate","suffocate","strangulate","decontaminate","dictate"];
 
-var musicInterestNouns = ["trait","songbook","wack","hook","feedback","flashback","soundtrack","punk","drunk","flashback","megalomaniac","Jack","sack","quack","asscrack","throwback","huge mistake","piece of cake","flake","mistake","game","video game"];
-var musicInterestVerbs = ["mitigate","hook","fame","attack","backtrack","hijack","clack","funk","wisecrack","throwback","horseback","ransack","take","wake","headache","shake","croak","choke","maim","tame"];
+List<String> musicInterestNouns = ["trait","songbook","wack","hook","feedback","flashback","soundtrack","punk","drunk","flashback","megalomaniac","Jack","sack","quack","asscrack","throwback","huge mistake","piece of cake","flake","mistake","game","video game"];
+List<String> musicInterestVerbs = ["mitigate","hook","fame","attack","backtrack","hijack","clack","funk","wisecrack","throwback","horseback","ransack","take","wake","headache","shake","croak","choke","maim","tame"];
 
-var cultureInterestNouns = ["songbook","hook","feedback","flashback","soundtrack","punk","drunk", "mistake","huge mistake", "headache","ache"];
-var cultureInterestVerbs = ["hook","fame","attack","backtrack","hijack","clack","funk", "wake", "take", "brake"];
+List<String> cultureInterestNouns = ["songbook","hook","feedback","flashback","soundtrack","punk","drunk", "mistake","huge mistake", "headache","ache"];
+List<String> cultureInterestVerbs = ["hook","fame","attack","backtrack","hijack","clack","funk", "wake", "take", "brake"];
 
-var writingInterestNouns = ["rook","reference book","textbook","guidebook","book","hook","swill","quill","daffodil","flashback","megalomaniac","Jack","sack","quack","asscrack","throwback","huge mistake","piece of cake","flake","mistake","game","video game"];
-var writingInterestVerbs = ["gobbledygook","shook","look","will","thrill","kill","chill","fire drill","ill","wisecrack","throwback","hoseseback","ransack","take","wake","headache","shake","croak","choke","maim","tame"];
+List<String> writingInterestNouns = ["rook","reference book","textbook","guidebook","book","hook","swill","quill","daffodil","flashback","megalomaniac","Jack","sack","quack","asscrack","throwback","huge mistake","piece of cake","flake","mistake","game","video game"];
+List<String> writingInterestVerbs = ["gobbledygook","shook","look","will","thrill","kill","chill","fire drill","ill","wisecrack","throwback","hoseseback","ransack","take","wake","headache","shake","croak","choke","maim","tame"];
 
-var popCultureInterestNouns = ["flashback","wack","megalomaniac","Jack","sack","quack","asscrack","throwback","huge mistake","piece of cake","flake","mistake","game","video game"];
-var popCultureInterestVerbs = ["wisecrack","throwback","hoseseback","ransack","take","wake","headache","shake","croak","choke","maim","tame"];
+List<String> popCultureInterestNouns = ["flashback","wack","megalomaniac","Jack","sack","quack","asscrack","throwback","huge mistake","piece of cake","flake","mistake","game","video game"];
+List<String> popCultureInterestVerbs = ["wisecrack","throwback","hoseseback","ransack","take","wake","headache","shake","croak","choke","maim","tame"];
 
-var technologyInterestNouns = ["hack","jock","gridlock","solid-state", "subordinate","inmate", "teammate","deadlock","laughingstock", "hot", "bot", "knot", "robot", "thought", "brobot"];
-var technologyInterestVerbs = ["calculate", "accumulate", "concentrate","regurgitate","simulate", "hijack","atack","terminate","propogate","hack","smack","block", "trot", "shot", "plot", "forgot", "rot"];
+List<String> technologyInterestNouns = ["hack","jock","gridlock","solid-state", "subordinate","inmate", "teammate","deadlock","laughingstock", "hot", "bot", "knot", "robot", "thought", "brobot"];
+List<String> technologyInterestVerbs = ["calculate", "accumulate", "concentrate","regurgitate","simulate", "hijack","atack","terminate","propogate","hack","smack","block", "trot", "shot", "plot", "forgot", "rot"];
 
-var socialInterestNouns = ["teammate", "inmate", "late", "first-rate","punk","drunk","shame","heartbreak","mistake","fake","grump","dump","lump","ocelot","hot", "moderate"];
-var socialInterestVerbs = ["mitigate", "renovate", "accommodate","blame","fame","brandname","quake","shake","fake","jump","rot","caught", "moderate","plait"];
+List<String> socialInterestNouns = ["teammate", "inmate", "late", "first-rate","punk","drunk","shame","heartbreak","mistake","fake","grump","dump","lump","ocelot","hot", "moderate"];
+List<String> socialInterestVerbs = ["mitigate", "renovate", "accommodate","blame","fame","brandname","quake","shake","fake","jump","rot","caught", "moderate","plait"];
 
-var romanticInterestNouns = ["heartbreak","heartache","fake","snake","flake","crock","punk","drunk","hunk","junk","fun","dick", "hot"];
-var romanticInterestVerbs = ["heartbreak","sweet talk","talk","walk","stun","fun","sick","click","trick","lick", "caught"];
+List<String> romanticInterestNouns = ["heartbreak","heartache","fake","snake","flake","crock","punk","drunk","hunk","junk","fun","dick", "hot"];
+List<String> romanticInterestVerbs = ["heartbreak","sweet talk","talk","walk","stun","fun","sick","click","trick","lick", "caught"];
 
 
-var academicInterestNouns = ["trait", "same", "brain", "teammate","reference book","book","guidebook","reference book","lunatic","dipstick","brick","jock","laughingstock","quack","junk","monk", "yaught", "watt", "clot", "thought"];
-var academicInterestVerbs = ["trick", "calculate","look","took","shook","small talk","squawk","block","backtrack","yack","attack","crack","smack", "debunk", "forgot", "plot", "watt", "swat", "knot", "concentrate", "contemplate", "nauseate", "navigate", "overstate", "aim","simulate", "debate","checkmate", "abate", "germinate", "obfuscate", "pontificate","potassium dichromate", "prognosticate"];
+List<String> academicInterestNouns = ["trait", "same", "brain", "teammate","reference book","book","guidebook","reference book","lunatic","dipstick","brick","jock","laughingstock","quack","junk","monk", "yaught", "watt", "clot", "thought"];
+List<String> academicInterestVerbs = ["trick", "calculate","look","took","shook","small talk","squawk","block","backtrack","yack","attack","crack","smack", "debunk", "forgot", "plot", "watt", "swat", "knot", "concentrate", "contemplate", "nauseate", "navigate", "overstate", "aim","simulate", "debate","checkmate", "abate", "germinate", "obfuscate", "pontificate","potassium dichromate", "prognosticate"];
 
-var domesticInterestNouns = ["cake", "teammate", "prognosticate", "lightweight", "deadweight", "piece of cake","cupcake","snake","mistake","huge mistake","flake","crock","cock","peacock","laughingstock","shell", "brandname"];
-var domesticInterestVerbs = ["communicate", "renovate","activate", "decorate", "nauseate", "contemplate", "overstate", "germinate", "bake","shake","wake","heartbreak","small talk","gawk","squawk","block","shellgame","maim","tame","aim", "plait"];
+List<String> domesticInterestNouns = ["cake", "teammate", "prognosticate", "lightweight", "deadweight", "piece of cake","cupcake","snake","mistake","huge mistake","flake","crock","cock","peacock","laughingstock","shell", "brandname"];
+List<String> domesticInterestVerbs = ["communicate", "renovate","activate", "decorate", "nauseate", "contemplate", "overstate", "germinate", "bake","shake","wake","heartbreak","small talk","gawk","squawk","block","shellgame","maim","tame","aim", "plait"];
 
-var terribleInterestNouns = ["pill","retrobate","suicide pill","shill","swill","landfill","molehill","standstill","plush rump","hunk rump","rump","chump","snake", "asscrack", "inmate", "degenerate","trait","freight","subordinate","deadweight","teammate","shipmate", "rebate"];
-var terribleInterestVerbs = ["kill", "copulate","ill","drill","grill","dick","lick","trick","bump","hump","subjugate","hug bump","take","wake","payback", "assassinate","eviscerate","depopulate","terminate","checkmate","titillate","mutilate", "penetrate", "segregate","desecrate","immolate","mandate","dictate","exacerbate","accumulate"];
+List<String> terribleInterestNouns = ["pill","retrobate","suicide pill","shill","swill","landfill","molehill","standstill","plush rump","hunk rump","rump","chump","snake", "asscrack", "inmate", "degenerate","trait","freight","subordinate","deadweight","teammate","shipmate", "rebate"];
+List<String> terribleInterestVerbs = ["kill", "copulate","ill","drill","grill","dick","lick","trick","bump","hump","subjugate","hug bump","take","wake","payback", "assassinate","eviscerate","depopulate","terminate","checkmate","titillate","mutilate", "penetrate", "segregate","desecrate","immolate","mandate","dictate","exacerbate","accumulate"];
 
-var fantasyInterestNouns = ["fake","fakey-fake","lake","game","fame","brandname"];
-var fantasyInterestVerbs = ["ache","make","quake","shake","game","shame","maim","tame"];
+List<String> fantasyInterestNouns = ["fake","fakey-fake","lake","game","fame","brandname"];
+List<String> fantasyInterestVerbs = ["ache","make","quake","shake","game","shame","maim","tame"];
 
-var justiceInterestNouns = ["crook","hook","same","game","suicide pill","fire drill","bunch","gun","son","hunch"];
-var justiceInterestVerbs = ["took","shook","look","kill","ill","aim","blame","hunch","punch","stun"];
+List<String> justiceInterestNouns = ["crook","hook","same","game","suicide pill","fire drill","bunch","gun","son","hunch"];
+List<String> justiceInterestVerbs = ["took","shook","look","kill","ill","aim","blame","hunch","punch","stun"];
 
 
 
 //http://www.rhymezone.com/r/rhyme.cgi?Word=sun&typeofrhyme;=perfect&org1=syl&org2;=l&org3=y;
 //most common rhyming sounds are things like "ack", "ake", "ame", "ill", "uck", "ock", "unk", "ump", "ice", "unk"
 //gotta give the trolls with 8 quirks love.
-var wordsRhymeLate = ["late", "eight", "ate", "wait", "weight", "bait", "date","fate","freight","gate","gait","mate","plate","plait","straight","trait","abate","abate","birthddate","castrate","checkmate","create","dictate","debate","donate","first-rate","flowrate","rate","inmate","mandate","locate","ornate","rebate","shipmate","teammate","activate","actuate","communicate","callibrate"];
+List<String> wordsRhymeLate = ["late", "eight", "ate", "wait", "weight", "bait", "date","fate","freight","gate","gait","mate","plate","plait","straight","trait","abate","abate","birthddate","castrate","checkmate","create","dictate","debate","donate","first-rate","flowrate","rate","inmate","mandate","locate","ornate","rebate","shipmate","teammate","activate","actuate","communicate","callibrate",
 //holy shit,t here's still more????????
-wordsRhymeLate.addAll(["bitrate","calculate","retrobate","concentrate","copulate","contemplate","decorate","desecrate","germinate","heavyweight","lightweight","immolate","instigate","liquidate"]);
-wordsRhymeLate.addAll(["mitigate","obfuscate,","mitigate","moderate","mutilate","nauseate","navigate","overstate","penetrate","propagate","renovate","segregate","simulate","solid-state","subjugate","strangulate","suffocate","syncopate","terminate","titillate"]);
-wordsRhymeLate.addAll(["accommodate","accumulate","assassinate","assimilate","asphyxiate","deadweight","degenerate","depopulate","exacerbate","eviscerate","pontificate","prognosticate","regurgitate","subordinate","resuscitate","decontaminate","potassium dichromate "]);
+	"bitrate","calculate","retrobate","concentrate","copulate","contemplate","decorate","desecrate","germinate","heavyweight","lightweight","immolate","instigate","liquidate",
+	"mitigate","obfuscate,","mitigate","moderate","mutilate","nauseate","navigate","overstate","penetrate","propagate","renovate","segregate","simulate","solid-state","subjugate","strangulate","suffocate","syncopate","terminate","titillate",
+	"accommodate","accumulate","assassinate","assimilate","asphyxiate","deadweight","degenerate","depopulate","exacerbate","eviscerate","pontificate","prognosticate","regurgitate","subordinate","resuscitate","decontaminate","potassium dichromate "];
 
-var wordsRhymehot = ["hot", "bot", "knot", "caught", "robot", "thought", "clot","shot","plot","forgot","yaught","rot","watt","squat","trot","swat","brobot","ocelot","naught","shot"];
-var wordsRhymeTown = ["town", "down", "frown", "clown", "brown", "crown", "drown","noun"];
-var wordsRhymeJoke = ["bloke","broke","croak","choke","folk","oak","smoke","soak","woke","yolk","yoke","coke", "spoke"];
-var wordsRhymeSun = ["bun","fun","gun","son","hun","none","nun","stun","spun","shun","run","won"];
-var wordsRhymePunch = ["brunch","punch","lunch","bunch","crunch","hunch","munch","scrunch"];
-var wordsRhymeJack = ["jack", "hack","Jack", "black","sack","clack","crack","knack","quack" ,"wack","snack","smack","yack","attack","backtrack","hijack" ,"flashback","feedback","payback","soundtrack","wisecrack","throwback" ,"hunchback","horseback","ransack","asscrack","fallback","carjack","megalomaniac"];
-var wordsRhymeFake = ["fake","fakey-fake","ache","bake","brake","break","cake","flake","lake","make","quake","shake","snake","wake","take","awake","cupcake","headache","heartache","heartbreak","mistake","piece of cake","emergency break","huge mistake"];
-var wordsRhymeGame = ["game", "brain", "same","name","aim","blame","fame","lame","maim","tame","shellgame","shame","video game","pregame","postgame","brandname"];
-var wordsRhymeKill = ["ill","kill","chill","drill","grill","shill","quill","will","thrill","swill","anthill","foothill","downhill","landfill","molehill","standstill","treadmill","daffodil","fire drill","pill","sleeping pill","suicide pill"];
-var wordsRhymeSick = ["sick","slick","Billious Slick","brick","click","dick","lick","quick","thick","trick","homesick","dipstick","picnic","yardstick","seasick","lunatic","","","",""];
-var wordsRhymeBlock = ["block","cock","hawk","gawk","crock","jock","squawk","talk","walk","bedrock","deadlock","gridlock","hemlock","peacock","small talk","sweet talk","laughingstock"];
-var wordsRhymeJunk = ["hunk","junk","flunk","drunk","monk","skunk","sunk","debunk","spelunk","punk","funk","hella drunk"];
-var wordsRhymeRump = ["rump","plush rump","hunk rump","chump","bump","hug bump","grump","hump","jump","slump","dump","lump"];
-var wordsRhymeCrook = ["crook","nook", "cook", "rook","took","look","shook","hook","guidebook","book","songbook","sketchbook", "textbook", "comic book", "gobbledygook", "reference book"];
+List<String> wordsRhymehot = ["hot", "bot", "knot", "caught", "robot", "thought", "clot","shot","plot","forgot","yaught","rot","watt","squat","trot","swat","brobot","ocelot","naught","shot"];
+List<String> wordsRhymeTown = ["town", "down", "frown", "clown", "brown", "crown", "drown","noun"];
+List<String> wordsRhymeJoke = ["bloke","broke","croak","choke","folk","oak","smoke","soak","woke","yolk","yoke","coke", "spoke"];
+List<String> wordsRhymeSun = ["bun","fun","gun","son","hun","none","nun","stun","spun","shun","run","won"];
+List<String> wordsRhymePunch = ["brunch","punch","lunch","bunch","crunch","hunch","munch","scrunch"];
+List<String> wordsRhymeJack = ["jack", "hack","Jack", "black","sack","clack","crack","knack","quack" ,"wack","snack","smack","yack","attack","backtrack","hijack" ,"flashback","feedback","payback","soundtrack","wisecrack","throwback" ,"hunchback","horseback","ransack","asscrack","fallback","carjack","megalomaniac"];
+List<String> wordsRhymeFake = ["fake","fakey-fake","ache","bake","brake","break","cake","flake","lake","make","quake","shake","snake","wake","take","awake","cupcake","headache","heartache","heartbreak","mistake","piece of cake","emergency break","huge mistake"];
+List<String> wordsRhymeGame = ["game", "brain", "same","name","aim","blame","fame","lame","maim","tame","shellgame","shame","video game","pregame","postgame","brandname"];
+List<String> wordsRhymeKill = ["ill","kill","chill","drill","grill","shill","quill","will","thrill","swill","anthill","foothill","downhill","landfill","molehill","standstill","treadmill","daffodil","fire drill","pill","sleeping pill","suicide pill"];
+List<String> wordsRhymeSick = ["sick","slick","Billious Slick","brick","click","dick","lick","quick","thick","trick","homesick","dipstick","picnic","yardstick","seasick","lunatic","","","",""];
+List<String> wordsRhymeBlock = ["block","cock","hawk","gawk","crock","jock","squawk","talk","walk","bedrock","deadlock","gridlock","hemlock","peacock","small talk","sweet talk","laughingstock"];
+List<String> wordsRhymeJunk = ["hunk","junk","flunk","drunk","monk","skunk","sunk","debunk","spelunk","punk","funk","hella drunk"];
+List<String> wordsRhymeRump = ["rump","plush rump","hunk rump","chump","bump","hug bump","grump","hump","jump","slump","dump","lump"];
+List<String> wordsRhymeCrook = ["crook","nook", "cook", "rook","took","look","shook","hook","guidebook","book","songbook","sketchbook", "textbook", "comic book", "gobbledygook", "reference book"];
 
-String noun = "noun";
-String verb = "verb";
-var rapTemplates = [new RapTemplate("you must be some kind of ",noun, " sitting there like you think you can ", verb) ];
-rapTemplates.add(new RapTemplate("your ass is grass, you ain't got that ",noun, " you have the worst skills that i ever did ", verb) );
-rapTemplates.add(new RapTemplate("i got that  ",noun, " you have no ", noun) );
-rapTemplates.add(new RapTemplate("I am da best at ",verb, " you aint even tried to ", verb) );
-rapTemplates.add(new RapTemplate("all day sittin and chillin and ",verb, " like some kind of ", noun) );
-rapTemplates.add(new RapTemplate("bitches think I'm ",noun, " and you all sitting there like you can't ", verb) );
-rapTemplates.add(new RapTemplate("I do an acrobatic pirouette off the ",noun, " while you struggle to even ", verb) );
-rapTemplates.add(new RapTemplate("you're all up in my ",noun, " like you think it's ", noun) );
-rapTemplates.add(new RapTemplate("I'm officially the canidate for having some ",noun, " but you dropped out the race in disgrace for  ", noun) );
-rapTemplates.add(new RapTemplate("you know I got the ",noun, " all up and ", verb) );
-rapTemplates.add(new RapTemplate("bustin old school ",noun, " like I can't even ", verb) );
-rapTemplates.add(new RapTemplate("all day I'm ",verb, " but you can't even ", verb) );
-rapTemplates.add(new RapTemplate("should i count all the reasons you're ",noun, " fuck, i got better things to ", verb) );
-rapTemplates.add(new RapTemplate("it's too bad my rhymes are so  ",noun, " but I can't even stop to ", verb) );
+enum RapPart {
+	NOUN,
+	VERB
+}
 
-//just read through and it don't stop (mirror: http://anditd0ntstop.tumblr.com) for more template inspiration.
-rapTemplates.add(new RapTemplate("you're getting served so hard it's like you're a ",noun, " and I'm your very own butler making sure to ", verb) );
-rapTemplates.add(new RapTemplate("why don't you polish my  ",noun, " it's the closest you'll ever get to ", verb) );
-rapTemplates.add(new RapTemplate("I'll beat your ass and then if I'm  ",verb, " I'll even take the time to lock you in a ", noun) );
-rapTemplates.add(new RapTemplate("when you see me you start feeling your ",noun, " but I can't blame you, you just a ", noun) );
-rapTemplates.add(new RapTemplate("you think i'm ",verb, " just because i sit here rapping with a  ", noun) );
-rapTemplates.add(new RapTemplate("my raps are so good you know they ain't  ",noun, " if you don't respect you must be a ", noun) );
-rapTemplates.add(new RapTemplate("I'm the rap king of  ",noun, " and you ain't fit to ", verb) );
-rapTemplates.add(new RapTemplate("my flow is chicken fried ",noun, " and you think you can ", verb) );
-rapTemplates.add(new RapTemplate("you're  ",noun, " but you think you're ", noun) );
-rapTemplates.add(new RapTemplate("why you think you belong in that sweetest of ",noun, " when you aint even fit to lick my ", noun) );
-
-rapTemplates.add(new RapTemplate("your heads all  ",verb, " like you got a bad ", noun) );
-rapTemplates.add(new RapTemplate("everybody already thinks you're a ",noun, " gotta say you ain't doing anything to ", verb) );
-rapTemplates.add(new RapTemplate("your rhymes are so  ",noun, " that even my Guardian could do better ", verb) );
-rapTemplates.add(new RapTemplate("as I turn up the heat you turn up the  ",noun, " but how that gonna save you when you can't even ", verb) );
-rapTemplates.add(new RapTemplate("this shit is such a flagrant  ",verb, " you really think you fooling the ", noun) );
-rapTemplates.add(new RapTemplate("you're just a wealth of ",noun, " and I'm fixin to inherit ", noun) );
-rapTemplates.add(new RapTemplate("your tiny little  ",noun, " doesn't even seem to ", verb) );
-rapTemplates.add(new RapTemplate("I got beats and rhymes that never been ",verb, " how you think you can ", verb) );
-rapTemplates.add(new RapTemplate("I think you might actually be a ",noun, " cause how else do you explain why you think you can ", verb) );
-//bop de boop lets rhyme"
-rapTemplates.add(new RapTemplate("if you can't prove you are not a ",noun, " then the proof is there that you are nothing but a ",noun, ) );
-rapTemplates.add(new RapTemplate("if my rhymes are ",noun," its nothing but me knowing how to ",verb,) );
-rapTemplates.add(new RapTemplate("it is not my fault you are such a ",noun,", thats what happens when you just can't ",verb,) );
-rapTemplates.add(new RapTemplate("don't even " ,verb," kid, we all know you are a ",noun,) );
-rapTemplates.add(new RapTemplate("now I am the best fucking ",noun," that ever did ",verb,) );
-rapTemplates.add(new RapTemplate("it is time to ",verb,", so you best fucking ",verb,) );
-rapTemplates.add(new RapTemplate("because the truth is that I am a ",noun," and you are a ",noun,) );
-rapTemplates.add(new RapTemplate("learn your place, if you can't ",verb," you are not a ",noun,) );
-
-
-
-
-
+List<RapTemplate> rapTemplates = [
+	new RapTemplate("you must be some kind of ",RapPart.NOUN, " sitting there like you think you can ", RapPart.VERB), 
+	new RapTemplate("your ass is grass, you ain't got that ",RapPart.NOUN, " you have the worst skills that i ever did ", RapPart.VERB),
+	new RapTemplate("i got that  ",RapPart.NOUN, " you have no ", RapPart.NOUN),
+	new RapTemplate("I am da best at ",RapPart.VERB, " you aint even tried to ", RapPart.VERB),
+	new RapTemplate("all day sittin and chillin and ",RapPart.VERB, " like some kind of ", RapPart.NOUN),
+	new RapTemplate("bitches think I'm ",RapPart.NOUN, " and you all sitting there like you can't ", RapPart.VERB),
+	new RapTemplate("I do an acrobatic pirouette off the ",RapPart.NOUN, " while you struggle to even ", RapPart.VERB),
+	new RapTemplate("you're all up in my ",RapPart.NOUN, " like you think it's ", RapPart.NOUN),
+	new RapTemplate("I'm officially the canidate for having some ",RapPart.NOUN, " but you dropped out the race in disgrace for  ", RapPart.NOUN),
+	new RapTemplate("you know I got the ",RapPart.NOUN, " all up and ", RapPart.VERB),
+	new RapTemplate("bustin old school ",RapPart.NOUN, " like I can't even ", RapPart.VERB),
+	new RapTemplate("all day I'm ",RapPart.VERB, " but you can't even ", RapPart.VERB),
+	new RapTemplate("should i count all the reasons you're ",RapPart.NOUN, " fuck, i got better things to ", RapPart.VERB),
+	new RapTemplate("it's too bad my rhymes are so  ",RapPart.NOUN, " but I can't even stop to ", RapPart.VERB),
+	
+	//just read through and it don't stop (mirror: http://anditd0ntstop.tumblr.com) for more template inspiration.
+	new RapTemplate("you're getting served so hard it's like you're a ",RapPart.NOUN, " and I'm your very own butler making sure to ", RapPart.VERB),
+	new RapTemplate("why don't you polish my  ",RapPart.NOUN, " it's the closest you'll ever get to ", RapPart.VERB),
+	new RapTemplate("I'll beat your ass and then if I'm  ",RapPart.VERB, " I'll even take the time to lock you in a ", RapPart.NOUN),
+	new RapTemplate("when you see me you start feeling your ",RapPart.NOUN, " but I can't blame you, you just a ", RapPart.NOUN),
+	new RapTemplate("you think i'm ",RapPart.VERB, " just because i sit here rapping with a  ", RapPart.NOUN),
+	new RapTemplate("my raps are so good you know they ain't  ",RapPart.NOUN, " if you don't respect you must be a ", RapPart.NOUN),
+	new RapTemplate("I'm the rap king of  ",RapPart.NOUN, " and you ain't fit to ", RapPart.VERB),
+	new RapTemplate("my flow is chicken fried ",RapPart.NOUN, " and you think you can ", RapPart.VERB),
+	new RapTemplate("you're  ",RapPart.NOUN, " but you think you're ", RapPart.NOUN),
+	new RapTemplate("why you think you belong in that sweetest of ",RapPart.NOUN, " when you aint even fit to lick my ", RapPart.NOUN),
+	
+	new RapTemplate("your heads all  ",RapPart.VERB, " like you got a bad ", RapPart.NOUN),
+	new RapTemplate("everybody already thinks you're a ",RapPart.NOUN, " gotta say you ain't doing anything to ", RapPart.VERB),
+	new RapTemplate("your rhymes are so  ",RapPart.NOUN, " that even my Guardian could do better ", RapPart.VERB),
+	new RapTemplate("as I turn up the heat you turn up the  ",RapPart.NOUN, " but how that gonna save you when you can't even ", RapPart.VERB),
+	new RapTemplate("this shit is such a flagrant  ",RapPart.VERB, " you really think you fooling the ", RapPart.NOUN),
+	new RapTemplate("you're just a wealth of ",RapPart.NOUN, " and I'm fixin to inherit ", RapPart.NOUN),
+	new RapTemplate("your tiny little  ",RapPart.NOUN, " doesn't even seem to ", RapPart.VERB),
+	new RapTemplate("I got beats and rhymes that never been ",RapPart.VERB, " how you think you can ", RapPart.VERB),
+	new RapTemplate("I think you might actually be a ",RapPart.NOUN, " cause how else do you explain why you think you can ", RapPart.VERB),
+	
+	//bop de boop lets rhyme"
+	new RapTemplate("if you can't prove you are not a ",RapPart.NOUN, " then the proof is there that you are nothing but a ",RapPart.NOUN, ),
+	new RapTemplate("if my rhymes are ",RapPart.NOUN," its nothing but me knowing how to ",RapPart.VERB,),
+	new RapTemplate("it is not my fault you are such a ",RapPart.NOUN,", thats what happens when you just can't ",RapPart.VERB,),
+	new RapTemplate("don't even " ,RapPart.VERB," kid, we all know you are a ",RapPart.NOUN,),
+	new RapTemplate("now I am the best fucking ",RapPart.NOUN," that ever did ",RapPart.VERB,),
+	new RapTemplate("it is time to ",RapPart.VERB,", so you best fucking ",RapPart.VERB,),
+	new RapTemplate("because the truth is that I am a ",RapPart.NOUN," and you are a ",RapPart.NOUN,),
+	new RapTemplate("learn your place, if you can't ",RapPart.VERB," you are not a ",RapPart.NOUN,),
+];
 
 
 //would be so dope to rap about what's happened in the session.
@@ -131,31 +132,31 @@ rapTemplates.add(new RapTemplate("learn your place, if you can't ",verb," you ar
 //instead of just your interests, can use THEIR interests to diss them.  "Yo, you ain't nothing but a piece of cake, a shake and bake."
 
 class RapTemplate {
-	var part1;
-	var part1Type;
-	var part2;
-	var part2Type;	
+	String part1;
+	RapPart part1Type;
+	String part2;
+	RapPart part2Type;
 
 
-	RapTemplate(this.part1, this.p1Type, this.part2, this.p2Type) {}
+	RapTemplate(String this.part1, RapPart this.part1Type, String this.part2, RapPart this.part2Type) {}
 
 
-	dynamic getRapLineForPlayer(player){
-			var interest = getRandomElementFromArray([player.interest1, player.interest2]);
-			var firstWord = this.findWordBasedOnPart1AndInterest(interest);
-			var secondWord = null;
+	List<String> getRapLineForPlayer(Player player){
+			String interest = getRandomElementFromArray([player.interest1, player.interest2]);
+			String firstWord = this.findWordBasedOnPart1AndInterest(interest);
+			String secondWord = null;
 		  firstWord = tryToUseRhyme(firstWord, player);
-			if(!firstWord){
+			if(firstWord == null){
 				//second shot for first word
 				firstWord = this.findWordBasedOnPart1AndInterest(interest);
 			  firstWord = tryToUseRhyme(firstWord, player);
 			}
 			//print("first word final is: " + firstWord);
-			if(firstWord){
+			if(firstWord != null){
 			  secondWord = this.findWordBasedOnPart2AndInterestAndPart1Word(interest, firstWord);
 				//print("second word is: " + secondWord);
 			  secondWord = tryToUseRhyme(secondWord, player);
-				if(!secondWord){
+				if(secondWord == null){
 					//second shot for first word
 					secondWord = this.findWordBasedOnPart2AndInterestAndPart1Word(interest, firstWord);
 					//print("second word2 is: " + secondWord);
@@ -165,10 +166,10 @@ class RapTemplate {
 			//print("second word final is: " + secondWord);
 			String str = "";
 			str += rapInterjection() + ", " + this.part1;
-			if(firstWord){
+			if(firstWord != null){
 					str += firstWord;
 					str += this.part2;
-					if(secondWord){
+					if(secondWord != null){
 						str += secondWord + ".";
 					}else{
 						str += rapMistake();
@@ -178,76 +179,76 @@ class RapTemplate {
 			}
 			return [player.chatHandleShort()+ ": "+player.quirk.translate(str), firstWord, secondWord];
 	}
-	dynamic findWordBasedOnPart1AndInterest(interest){
-		var wordTypeArray = this.matchInterestToWordTypeArray(interest, this.part1Type);
-		if(wordTypeArray){
+	String findWordBasedOnPart1AndInterest(interest){
+		List<String> wordTypeArray = this.matchInterestToWordTypeArray(interest, this.part1Type);
+		if(wordTypeArray != null){
 				return getRandomElementFromArray(wordTypeArray);
 		}
 		return null;
 	}
-	dynamic matchInterestToWordTypeArray(interest, type){
-		var ret = null;
-		if(comedy_interests.indexOf(interest) != -1 && type == noun){
+	List<String> matchInterestToWordTypeArray(String interest, RapPart type){
+		List<String> ret = null;
+		if(comedy_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
 				ret = comedyInterestNouns;
-		}else if(comedy_interests.indexOf(interest) != -1 && type == verb){
+		}else if(comedy_interests.indexOf(interest) != -1 && type == RapPart.VERB){
 			ret = comedyInterestVerbs;
-		}else if(athletic_interests.indexOf(interest) != -1 && type == noun){
+		}else if(athletic_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
 			ret = athleticInterestNouns;
-		}else if(athletic_interests.indexOf(interest) != -1 && type == verb){
+		}else if(athletic_interests.indexOf(interest) != -1 && type == RapPart.VERB){
 			ret = athleticInterestVerbs;
-		}else if(music_interests.indexOf(interest) != -1 && type == noun){
+		}else if(music_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
 			ret = musicInterestNouns;
-		}else if(music_interests.indexOf(interest) != -1 && type == verb){
+		}else if(music_interests.indexOf(interest) != -1 && type == RapPart.VERB){
 			ret = musicInterestVerbs;
-		}else if(writing_interests.indexOf(interest) != -1 && type == noun){
+		}else if(writing_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
 			ret = writingInterestNouns;
-		}else if(writing_interests.indexOf(interest) != -1 && type == verb){
+		}else if(writing_interests.indexOf(interest) != -1 && type == RapPart.VERB){
 			ret = writingInterestVerbs;
-		}else if(pop_culture_interests.indexOf(interest) != -1 && type == noun){
+		}else if(pop_culture_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
 			ret = popCultureInterestNouns;
-		}else if(pop_culture_interests.indexOf(interest) != -1 && type == verb){
+		}else if(pop_culture_interests.indexOf(interest) != -1 && type == RapPart.VERB){
 			ret = popCultureInterestVerbs;
-		}else if(technology_interests.indexOf(interest) != -1 && type == noun){
+		}else if(technology_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
 			ret = technologyInterestNouns;
-		}else if(technology_interests.indexOf(interest) != -1 && type == verb){
+		}else if(technology_interests.indexOf(interest) != -1 && type == RapPart.VERB){
 			ret = technologyInterestVerbs;
-		}else if(social_interests.indexOf(interest) != -1 && type == noun){
+		}else if(social_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
 			ret = socialInterestNouns;
-		}else if(social_interests.indexOf(interest) != -1 && type == verb){
+		}else if(social_interests.indexOf(interest) != -1 && type == RapPart.VERB){
 			ret = socialInterestVerbs;
-		}else if(romantic_interests.indexOf(interest) != -1 && type == noun){
+		}else if(romantic_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
 			ret = romanticInterestNouns;
-		}else if(romantic_interests.indexOf(interest) != -1 && type == verb){
+		}else if(romantic_interests.indexOf(interest) != -1 && type == RapPart.VERB){
 			ret = romanticInterestVerbs;
-		}else if(academic_interests.indexOf(interest) != -1 && type == noun){
+		}else if(academic_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
 			ret = academicInterestNouns;
-		}else if(academic_interests.indexOf(interest) != -1 && type == verb){
+		}else if(academic_interests.indexOf(interest) != -1 && type == RapPart.VERB){
 			ret = academicInterestVerbs;
-		}else if(domestic_interests.indexOf(interest) != -1 && type == noun){
+		}else if(domestic_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
 			ret = domesticInterestNouns;
-		}else if(domestic_interests.indexOf(interest) != -1 && type == verb){
+		}else if(domestic_interests.indexOf(interest) != -1 && type == RapPart.VERB){
 			ret = domesticInterestVerbs;
-		}else if(terrible_interests.indexOf(interest) != -1 && type == noun){
+		}else if(terrible_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
 			ret = terribleInterestNouns;
-		}else if(terrible_interests.indexOf(interest) != -1 && type == verb){
+		}else if(terrible_interests.indexOf(interest) != -1 && type == RapPart.VERB){
 			ret = terribleInterestVerbs;
-		}else if(fantasy_interests.indexOf(interest) != -1 && type == noun){
+		}else if(fantasy_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
 			ret = fantasyInterestNouns;
-		}else if(fantasy_interests.indexOf(interest) != -1 && type == verb){
+		}else if(fantasy_interests.indexOf(interest) != -1 && type == RapPart.VERB){
 			ret = fantasyInterestVerbs;
-		}else if(justice_interests.indexOf(interest) != -1 && type == noun){
+		}else if(justice_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
 			ret = justiceInterestNouns;
-		}else if(justice_interests.indexOf(interest) != -1 && type == verb){
+		}else if(justice_interests.indexOf(interest) != -1 && type == RapPart.VERB){
 			ret = justiceInterestVerbs;
-		}else if(culture_interests.indexOf(interest) != -1 && type == noun){
+		}else if(culture_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
 			ret = cultureInterestNouns;
-		}else if(culture_interests.indexOf(interest) != -1 && type == verb){
+		}else if(culture_interests.indexOf(interest) != -1 && type == RapPart.VERB){
 			ret = cultureInterestVerbs;
 		}
 		return ret;
 	}
-	dynamic matchWordWithRhymeArray(word){
-		var ret = null;
+	List<String> matchWordWithRhymeArray(word){
+		//List<String> ret = null;
 		if(wordsRhymeTown.indexOf(word) != -1){
 			return wordsRhymeTown;
 		}else if(wordsRhymeJoke.indexOf(word) != -1){
@@ -279,17 +280,17 @@ class RapTemplate {
 		}else if(wordsRhymeLate.indexOf(word) != -1){
 			return wordsRhymeLate;
 		}
-
-
-
+		return null;
 	}
-	dynamic findWordBasedOnPart2AndInterestAndPart1Word(interest, word){
+
+	dynamic findWordBasedOnPart2AndInterestAndPart1Word(String interest, String word){
 		//first, I need to know which set of rhyming words the word falls in.
-		var rhyme_array = this.matchWordWithRhymeArray(word);
+		List<String> rhyme_array = this.matchWordWithRhymeArray(word);
 		//once I know that, see if I can find one of the rhyming words in the interest verb/noun list.
-		var wordTypeArray = this.matchInterestToWordTypeArray(interest, this.part2Type);
-		if(rhyme_array){
-			var results = intersection(rhyme_array, wordTypeArray);
+		List<String> wordTypeArray = this.matchInterestToWordTypeArray(interest, this.part2Type);
+		var results = null;
+		if(rhyme_array != null){
+			results = intersection(rhyme_array, wordTypeArray);
 		}
 		if(!results){
 			return null;
@@ -323,7 +324,7 @@ dynamic tryToUseRhyme(rhyme, player){
 
 //http://stackoverflow.com/questions/1885557/simplest-code-for-array-intersection-in-javascript
 //really was a good idea on recursiveSlacker's part.
-function intersection (a, b) {
+/*function intersection (a, b) {
   var seen = a.reduce((h, k) {;
     h[k] = true;
     return h;
@@ -334,17 +335,13 @@ function intersection (a, b) {
     delete seen[k];
     return exists;
   });
-}
+}*/
 
-class rapMistake {
+List<T> intersection<T>(List<T> a, List<T> b) => a.where((T item) => b.contains(item)).toList();
 
-	rapMistake(this.) {}
-
-
-
+String rapMistake() {
 	var mistakes = ["...umm...,", "...fuck", "...fuck, can we start over? ", "...pretend I just finished that, okay?", "er...Shit.", "errr...", "ummm...shit.", "...fucking hell.", "what the hell, I know I had a rhyme for this...", "...okay, should I just...like, give up here?","and gog fucking damn it", "...fuuuuuuuuuuuuuuuuuu","... fuck my life"];
 	return getRandomElementFromArray(mistakes);
-
 }
 
 
@@ -359,11 +356,7 @@ dynamic rapInterjection(){
 
 
 
-class getRapForPlayer {
-
-	getRapForPlayer(this.player, this.returnString, this.score) {}
-
-
+List<dynamic> getRapForPlayer(Player player, String returnString, num score) {
 
 	var chosenRapTemplate = getRandomElementFromArray(rapTemplates);
 	var raps = chosenRapTemplate.getRapLineForPlayer(player);
@@ -375,10 +368,9 @@ class getRapForPlayer {
 	if(firstWord && secondWord && firstWord != secondWord){
 				score ++;
 				//dont rap forever, like you can on rap.html
-				if(score<5) return this.getRapForPlayer(player, returnString, score); //keep going till you can't
+				if(score<5) return getRapForPlayer(player, returnString, score); //keep going till you can't
 	}else{
 		//give up
 	}
 	return [returnString, score];
-
 }
