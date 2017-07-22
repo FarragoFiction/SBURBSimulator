@@ -25,6 +25,9 @@
   could be an object, so a Player can TALK about their planet by getting the object and
   the object has associated phrases or whatever. Don't just say "it's full of wind and shade, lol"
 
+  NOT random though. Each land word has list of traits and the Planet that comes from it
+  picks from one of the traits, just like consorts. Oh fuck, love this.
+
  */
 class Planet{
   String word1;
