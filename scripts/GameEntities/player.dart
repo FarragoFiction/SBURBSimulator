@@ -1213,8 +1213,8 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			}
 		}
 	}
-	dynamic rollForLuck(stat){
-		if(stat == ""){
+	dynamic rollForLuck([String stat]){
+		if(stat == null || stat == ""){
 		    return getRandomInt(this.getStat("minLuck"), this.getStat("maxLuck"));
 		}else{
 		    //don't care if it's min or max, just compare it to zero.
@@ -1230,7 +1230,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			}
 		}
 	}
-	dynamic getAverageRelationshipValue(){
+	num getAverageRelationshipValue(){
 		if(this.relationships.length == 0) return 0;
 		num ret = 0;
 		for(num i = 0; i< this.relationships.length; i++){
@@ -1238,7 +1238,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		}
 		return ret/this.relationships.length;
 	}
-	dynamic hasDiamond(){
+	Player hasDiamond(){
 		for(num i = 0; i<this.relationships.length; i++){
 			if(this.relationships[i].saved_type == this.relationships[i].diamond && !this.relationships[i].target.dead ){
 				return this.relationships[i].target;
@@ -1246,7 +1246,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		}
 		return null;
 	}
-	dynamic hasDeadDiamond(){
+	Player hasDeadDiamond(){
 		for(num i = 0; i<this.relationships.length; i++){
 			if(this.relationships[i].saved_type == this.relationships[i].diamond && this.relationships[i].target.dead ){
 				return this.relationships[i].target;
@@ -1254,7 +1254,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		}
 		return null;
 	}
-	dynamic hasDeadHeart(){
+	Player hasDeadHeart(){
 		for(num i = 0; i<this.relationships.length; i++){
 			if(this.relationships[i].saved_type == this.relationships[i].heart && this.relationships[i].target.dead ){
 				return this.relationships[i].target;
@@ -1264,7 +1264,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	}
 
 	@override
-	Relationship getRelationshipWith(player){
+	Relationship getRelationshipWith(Player player){
 		for(num i = 0; i<this.relationships.length; i++){
 			if(this.relationships[i].target == player){
 				return this.relationships[i];
