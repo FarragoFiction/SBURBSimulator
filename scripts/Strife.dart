@@ -860,7 +860,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
 
      */
     resetPlayersAvailability();
-    if(potentialMembers.length > 0) checkForBackup(numTurnOn); //longer fight goes on, more likely to get backup.  IMPORTANT: BACK UP HAS TO BE GIVEN TO THIS TEAM ON CREATION
+    if(potentialMembers.length > 0) checkForBackup(numTurnOn,div); //longer fight goes on, more likely to get backup.  IMPORTANT: BACK UP HAS TO BE GIVEN TO THIS TEAM ON CREATION
     List<Team> otherTeams = getOtherTeams(teams);
     //loop on all members each member takes turn.
     for(GameEntity member in members) {
@@ -873,12 +873,39 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
 
   //back up can be any player in the potentialMembers list. You are responsible for populating that list on team creation.
   //doomed time players will NOT be treated any differently anymore. (though a player marked as doomed might have a different narrative).
-  void checkForBackup(numTurnOn) {
-      throw "TODO check for backup.";
-      /*
+  void checkForBackup(numTurnOn,div) {
+      if(potentialMembers.length == 0) return;
+      potentialMembers.sort(); //fasted members get dibs.
+      for(GameEntity member in members) {
+        if(seededRandom() > .9) summonBackup(member);
+      }
+  }
 
-        if player is doomed, diff text, draw time gears
-       */
+  //handle doomed time clones here, too
+  void summonBackup(GameEntity backup, div) {
+    if(backup.doomed){
+      String canvasHTML = "<br><canvas id='canvasDoomed${backup.id}" + (div.id) +"' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
+      div.appendHtml(canvasHTML);
+      var canvasDiv = querySelector("#canvas"+ divID);
+      drawTimeGears(canvasDiv, potential);
+      //console.log("summoning a stable time loop player to this fight. " +this.session.session_id)
+      div.appendHTML("suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline.");
+
+    }else if(backup.aspect == "Time" && Math.seededRandom() > .50){
+      String canvasHTML = "<br><canvas id='canvasDoomed${backup.id}" + (div.id) +"' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
+      div.appendHtml(canvasHTML);
+      var canvasDiv = querySelector("#canvas"+ divID);
+      drawTimeGears(canvasDiv, potential);
+      //console.log("summoning a stable time loop player to this fight. " +this.session.session_id)
+      div.appendHTML("The " + backup.htmlTitleHP() + " has joined the Strife!!! (Don't worry about the time bullshit, they have their stable time loops on LOCK. No doom for them.)");
+    }else{
+      //console.log("summoning a player to this fight. " +this.session.session_id)
+      String canvasHTML = "<br><canvas id='canvasDoomed${backup.id}" + (div.id) +"' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
+      div.appendHtml(canvasHTML);
+      var canvasDiv = querySelector("#canvas"+ divID);
+      div.appendHTML("The " + backup.htmlTitleHP() + " has joined the Strife!!!");
+    }
+    drawSinglePlayer(canvasDiv, backup);
   }
 
   void resetPlayersAvailability() {
