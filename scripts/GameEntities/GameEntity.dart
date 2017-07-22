@@ -45,6 +45,11 @@ class GameEntity implements Comparable{
     return this.htmlTitle().replaceAll(new RegExp(r"\s", multiLine:true), '').replaceAll(new RegExp(r"'", multiLine:true), ''); //no spces probably trying to use this for a div
   }
 
+  //as each type of entity gets renderable, override this.
+  bool renderable() {
+    return false;
+  }
+
   //naturally sorted by mobility
   int compareTo(other) {
     return other.getStat("mobility") - getStat("mobility");  //TODO or is it the otherway around???

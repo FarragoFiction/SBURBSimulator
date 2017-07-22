@@ -201,7 +201,7 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
     return ret;
   }
 
-  //TODO might need to put this in team.
+  //TODO  put this in GameEntity.
   bool willMemberAbscond(div, GameEntity member, Team team) {
     if(!team.canAbscond) return false;
     var playersInFight = team.getLivingMinusAbsconded();
@@ -254,7 +254,7 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
 
   }
 
-  //TODO might need to put this in team
+  //TODO put this in GameEntity
   void remainingPlayersHateYou(div, player, players,Team team){
     if(players.length == 1){
       return null;
@@ -270,284 +270,13 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
     return null;
   }
 
-  //TODO this needs redone entirely. which team is the only one left?
-  void processAbscond(div){
-      div.append("<Br><img src = 'images/sceneIcons/abscond_icon.png'> The " + this.htmlTitleHP() + " has had enough of this bullshit. They just fucking leave. ");
-      return;
-    }
-
-  }
-
-
-  dynamic summonPlayerBackup(div, players, numTurns){
-    //if it's a time player/ 50/50 it's a future version of them in a stable time loop
-    var living = findLivingPlayers(this.session.players); //who isn't ALREADY in this bullshit strife??? and is alive. and has a sprite (and so is in the medium.)
-    var potential = getRandomElementFromArray(living);
-    if(!potential) return players;
-    if(players.indexOf(potential) == -1 && potential.sprite.name != "sprite"){ //you aren't already in the fight and aren't still on earth/alternaia/beforus/etc.
-      if((potential.mobility > getAverageMobility(players) || seededRandom() >.5)){ //you're fast enough to get here, or randomness happened.
-
-        players.add(potential);
-        potential.currentHP = Math.max(1, potential.hp) ;//have at least 1 hp, dunkass;
-        this.session.availablePlayers.removeFromArray(potential); //you aren't available anymore.
-        var divID = (div.attr("id")) + "doomTimeArrival"+players.join("")+numTurns;
-        String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
-        div.append(canvasHTML);
-        //different format for canvas code
-        var canvasDiv = querySelector("#canvas"+ divID);
-        if(potential.aspect == "Time" && seededRandom() > .50){
-          drawTimeGears(canvasDiv, potential);
-          //print("summoning a stable time loop player to this fight. " +this.session.session_id);
-          div.append("The " + potential.htmlTitleHP() + " has joined the Strife!!! (Don't worry about the time bullshit, they have their stable time loops on LOCK. No doom for them.)");
-        }else{
-          //print("summoning a player to this fight. " +this.session.session_id);
-          div.append("The " + potential.htmlTitleHP() + " has joined the Strife!!!");
-        }
-
-        drawSinglePlayer(canvasDiv, potential);
-      }
-    }
-
-    return players;
-  }
-
-  void summonDoomedTimeClone(div, players, numTurns){
-    //print("summoning a doomed time clone to this fight. " +this.session.session_id);
-    var timePlayer = findAspectPlayer(this.session.players, "Time");
-    var doomedTimeClone = Player.makeDoomedSnapshot(timePlayer);
-    players.add(doomedTimeClone);
-    if(players.indexOf(timePlayer) !=-1){
-      if(timePlayer.dead){
-        var living = findLivingPlayers(this.session.players);
-        if(living.length == 0){
-          //rip knight of time that made me realize this could be a thing.
-          div.append("<br><br>A " + doomedTimeClone.htmlTitleHP() + " suddenly warps in from an alternate timeline. They know that everyone is already dead. They know there is nothing they can do. They've tried already. They've tried so many times. They can't bring themselves to give up, but they can't force themselves to watch their friends die again, either. Maybe if they just learn how to kill this asshole, they can go back and do it RIGHT next time. ");
-        }else{
-          div.append("<br><br>A " + doomedTimeClone.htmlTitleHP() + " suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline. YOUR " + doomedTimeClone.htmlTitleBasic() + " is, well, I mean, obviously NOT fine, their corpse is just over there. But... whatever. THIS one is now doomed, as well. Which SHOULD mean they can fight like there is no tomorrow.")
-        }
-
-      }else{
-        div.append("<br><br>A " + doomedTimeClone.htmlTitleHP() + " suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline. YOUR " + doomedTimeClone.htmlTitleBasic() + " is fine, I mean, obviously, they are right there...but THIS one is now doomed. Which SHOULD mean they can fight like there is no tomorrow.")
-      }
-    }else{
-      div.append("<br><br>A " + doomedTimeClone.htmlTitleHP() + " suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline. YOUR " + doomedTimeClone.htmlTitleBasic() + " is fine, but THIS one is now doomed. Which SHOULD mean they can fight like there is no tomorrow.")
-    }
-    String divID = (div.attr("id")) + "doomTimeArrival"+players.join("")+numTurns;
-    String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
-    div.append(canvasHTML);
-    //different format for canvas code
-    var canvasDiv = querySelector("#canvas"+ divID);
-    var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-    drawTimeGears(pSpriteBuffer, doomedTimeClone);
-    drawSinglePlayer(pSpriteBuffer, doomedTimeClone);
-    copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0);
-    timePlayer.doomedTimeClones.add(doomedTimeClone);
-    timePlayer.sanity += -10;
-    timePlayer.flipOut("their own doomed time clones");
-    return players;
-
-  }
-  void summonAssHoleMcGee(div, players, numTurns){
-    print("!!!!!!!!!!!!!!!!!This is stupid. Summon asshole mcgee in session: " + this.session.session_id);
-    div.append("<Br><Br>THIS IS STuPID. EVERYBODY INVOLVED. IN THIS STuPID. STuPID FIGHT. IS NOW DEAD. SuCK IT.  tumut");
-    var living = this.getLivingMinusAbsconded(players); //dosn't matter if you absconded.
-    for(num i = 0; i<living.length; i++){
-      var p = living[i];
-      p.makeDead("BEING INVOLVED. IN A STuPID. STuPID FIGHT. THAT WENT ON. FOR WAY TOO LONG.");
-    }
-
-  }
-  bool fightNeedsToEnd(div){
-    //if this IS a denizen fight, i can assume there is only one player in it
-    if(players[0].denizen.name == this.name){
-      if(numTurns>5 || (players[0].currentHP < this.getStat("power") && !players[0].godDestiny)){ //denizens are cool with killing players that will godtier.
-        //	print("Denizen is fucking done after  " + numTurns +" turns " + this.session.session_id);
-        this.denizenIsSoNotPuttingUpWithYourShitAnyLonger(div, players, numTurns);
-        return true;
-      }else if((players[0].currentHP < this.getStat("power") && players.godDestiny)){
-        print("Denizen is fine with killing this player, because they will probably GodTier. " + this.session.session_id);
-      }
-      return false; //denizen fights can not be interupted and are self limiting
-    }
-
-    if(numTurns > 20 && seededRandom() < .05){
-      this.summonAssHoleMcGee(div, players, numTurns);
-      return true;
-    }
-
-    if(numTurns > 30){
-      this.summonAuthor(div, players, numTurns);
-      return true;
-    }
-    return false;
-
-  }
-  dynamic summonBackUp(div, players, numTurns){
-    if(players[0].denizen.name == this.name){
-      return players;
-    }
-    //if i assume a 3 turn fight is "ideal", then have a 1/10 chance of backup each turn.
-    var rand =seededRandom();
-    if(rand<.05){  //rand isn't great cause might not find  player to summon, or might try summon player already in fight.
-      return this.summonPlayerBackup(div, players, numTurns); //will return modded player list;
-    }else if(rand < .15 && numTurns >5){
-      return this.summonDoomedTimeClone(div,players, numTurns);
-    }
-    return players;
-  }
-  void resetFraymotifs(){
-    for(num i = 0; i<this.fraymotifs.length; i++){
-      this.fraymotifs[i].usable = true;
-    }
-  }
-  void resetEveryonesFraymotifs(players){
-    this.resetFraymotifs();
-    this.buffs = [];
-    for(num i = 0; i<players.length; i++){
-      players[i].buffs = [];
-      players[i].resetFraymotifs();
-    }
-  }
-  void resetPlayersAvailability(players){
-    for(num i = 0; i<players.length; i++){
-      players[i].usedFraymotifThisTurn = false;
-    }
-  }
 
 
 
 
 
 
-  bool fightOverAbscond(div, players){
-    //print("checking if fight is over beause of abscond " + this.playersAbsconded.length);
-    if(this.iAbscond){
-      return true;
-    }
-    if(this.playersAbsconded.length == 0) return false;
 
-    var living = findLivingPlayers(players);
-    if(living.length == 0) return false;  //technically, they havent absconded
-    for (num i = 0; i<living.length; i++){
-      //print("has: " + living[i].title() + " run away?")
-      if(this.playersAbsconded.indexOf(living[i]) == -1){
-        return false; //found living player that hasn't yet absconded.
-      }
-    }
-    return true;
-
-  }
-  void playersInteract(players){
-    if(this.name == "Black Queen" || this.name == "Black King"){
-      return; //whatever, when it's ALL the players too much is going on AND this won't effect things for very long. games over, man.
-    }
-
-    for(num i = 0; i<players.length; i++){
-      var player1 = players[i];
-      for(num j = 0; j < players.length; j ++){
-        var player2 = players[j];
-        if(player1 != player2){ //sorry time clones, can't buff your player. cause ALL players hae 'clones' in this double for loop
-          player1.interactionEffect(player2); //opposite will happen eventually in this double loop.
-        }
-      }
-    }
-  }
-  void poseAsATeam(div, players){
-    //don't pose sprites
-    List<dynamic> poseable = [];
-    for(num i = 0; i<players.length; i++){
-      if(players[i].renderable()) poseable.add(players[i]);
-    }
-    var divID = (div.attr("id")) + this.session.timeTillReckoning+players[0].id;
-    var ch = canvasHeight;
-    if(poseable.length > 6){
-      ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
-    }
-    String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+ch.toString() + "'>  </canvas>";
-    div.appendHtml(canvasHTML);
-    //different format for canvas code
-    var canvasDiv = querySelector("#canvas"+ divID);
-    poseAsATeam(canvasDiv, poseable, 2000);
-
-    if(players[0].dead && players[0].denizen.name == this.name) denizenKill(canvasDiv, players[0]);
-  }
-  void makeAlive(){
-    if(this.dead == false) return; //don't do all this.
-    this.dead = false;
-    this.currentHP = this.hp;
-  }
-  void ending(div, players){
-    this.resetEveryonesFraymotifs(players);
-
-    this.iAbscond = false;
-    this.playersInteract(players);
-    this.healPlayers(div,players);
-
-
-    this.playersAbsconded = [];
-    this.poseAsATeam(div,players);
-  }
-  void healPlayers(div, players){
-    for(num i = 0; i<players.length; i++){
-      var player = players[i];
-      if(!player.doomed &&  !player.dead && player.currentHP < player.hp) player.currentHP = player.hp;
-    }
-  }
-  void levelPlayers(stabbings){
-    for(num i = 0; i<stabbings.length; i++){
-      stabbings[i].increasePower();
-      stabbings[i].increasePower();
-      stabbings[i].increasePower();
-      stabbings[i].leveledTheHellUp = true;
-      stabbings[i].level_index +=2;
-    }
-  }
-  void minorLevelPlayers(stabbings){
-    for(num i = 0; i<stabbings.length; i++){
-      stabbings[i].increasePower();
-    }
-  }
-
-  bool fightOver(div, players){
-    var living = this.getLivingMinusAbsconded(players);
-    if(living.length == 0 && players.length > this.playersAbsconded.length){
-      var dead = findDeadPlayers(players);
-      if(dead.length == 1){
-        div.append("<br><br><img src = 'images/sceneIcons/defeat_icon.png'> The strife is over. The " + dead[0].htmlTitle() + " is dead.<br> ");
-      }else{
-        div.append("<br><br><img src = 'images/sceneIcons/defeat_icon.png'> The strife is over. The players are dead or fled.<br> ");
-      }
-
-      this.minorLevelPlayers(players);
-      return true;
-    }else if(this.getStat("currentHP") <= 0 || this.dead){
-      div.append(" <Br><br> <img src = 'images/sceneIcons/victory_icon.png'>The fight is over. " + this.name + " is dead. <br>");
-      this.levelPlayers(players) //even corpses
-      this.givePlayersGrist(players);
-      return true;
-    }//TODO have alternate win conditions for denizens???
-    return false;
-  }
-  void givePlayersGrist(players){
-    for(num i = 0; i<players.length; i++){
-      players.grist += this.grist/players.length;
-    }
-  }
-  void playersTurn(div, players){
-    for(num i = 0; i<players.length; i++){  //check all players, abscond or living status can change.
-      var player = players[i];
-      ///print("It is the " + player.titleBasic() + "'s turn. '");
-      if(!player.dead && this.getStat("currentHP")>0 && this.playersAbsconded.indexOf(player) == -1){
-        this.playerdecideWhatToDo(div, player,players);  //
-      }
-    }
-
-    var dead = findDeadPlayers(players);
-    //give dead a chance to autoRevive
-    for(num i = 0; i<dead.length; i++){
-      if(!dead[i].doomed) this.tryAutoRevive(div, dead[i]);
-    }
-  }
   void tryAutoRevive(div, deadPlayer){
 
     //first try using pacts
@@ -886,19 +615,24 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     if(backup.doomed){
       String canvasHTML = "<br><canvas id='canvasDoomed${backup.id}" + (div.id) +"' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
       div.appendHtml(canvasHTML);
-      var canvasDiv = querySelector("#canvas"+ divID);
-      drawTimeGears(canvasDiv, potential);
+      var canvasDiv = querySelector("#canvas"+ div.id);
+      drawTimeGears(canvasDiv, backup);
       //console.log("summoning a stable time loop player to this fight. " +this.session.session_id)
       div.appendHTML("suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline.");
 
-    }else if(backup.aspect == "Time" && Math.seededRandom() > .50){
-      String canvasHTML = "<br><canvas id='canvasDoomed${backup.id}" + (div.id) +"' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
-      div.appendHtml(canvasHTML);
-      var canvasDiv = querySelector("#canvas"+ divID);
-      drawTimeGears(canvasDiv, potential);
-      //console.log("summoning a stable time loop player to this fight. " +this.session.session_id)
-      div.appendHTML("The " + backup.htmlTitleHP() + " has joined the Strife!!! (Don't worry about the time bullshit, they have their stable time loops on LOCK. No doom for them.)");
     }else{
+      if(backup is Player){
+        Player p = backup;
+        if(p.aspect == "Time" && seededRandom() > .5){
+          String canvasHTML = "<br><canvas id='canvasDoomed${backup.id}" + (div.id) +"' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
+          div.appendHtml(canvasHTML);
+          var canvasDiv = querySelector("#canvas"+ div.id);
+          drawTimeGears(canvasDiv, backup);
+          //console.log("summoning a stable time loop player to this fight. " +this.session.session_id)
+          div.appendHTML("The " + backup.htmlTitleHP() + " has joined the Strife!!! (Don't worry about the time bullshit, they have their stable time loops on LOCK. No doom for them.)");
+          return;
+          }
+      }//not a time player
       //console.log("summoning a player to this fight. " +this.session.session_id)
       String canvasHTML = "<br><canvas id='canvasDoomed${backup.id}" + (div.id) +"' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
       div.appendHtml(canvasHTML);
@@ -1018,7 +752,24 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
 
 
   //this is how you know shit just got real.
-  void poseAsATeam(div) {
+  void renderPoseAsATeam(div) {
+    List<GameEntity> poseable = [];
+    for(num i = 0; i<members.length; i++){
+      if(members[i].renderable()) poseable.add(members[i]);
+    }
+
+    var ch = canvasHeight;
+    if(poseable.length > 6){
+      ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
+    }
+    String canvasHTML = "<br><canvas id;='canvas" + div.id+"' width='" +canvasWidth.toString() + "' height;="+ch.toString() + "'>  </canvas>";
+    div.appendHtml(canvasHTML);
+    //different format for canvas code
+    var canvasDiv = querySelector("#canvas"+ div.id);
+    poseAsATeam(canvasDiv, poseable); //in handle sprites
+
+    //TODO need to figure out when to render Denizowned again.
+    //if(members[0].dead && members[0].denizen.name == this.name) denizenKill(canvasDiv, players[0]);
       throw "TODO: pose as a team.";
   }
 

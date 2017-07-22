@@ -501,6 +501,12 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			this.renderSelf();
 		}
 
+		@override
+		bool renderable(){
+			return true;
+		}
+
+
 	String title(){
 		String ret = "The "; //TODO get rid of anywhere else using 'the'
 
