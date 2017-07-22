@@ -581,6 +581,8 @@ function quip(state){
 		ret = "Holy shit, classic 'You're Welcome' x2 combo. I added the cod piece as an easter egg AND I am showing you the way to turn on the Mindy Thing without waiting for 5 whole minutes. Truly, my magnanimity is breath taking."
 	} else if(state == 116){
      		ret = "Holy fuck, I remember this. That denizen just fucking absconded mid boss fight. Kicked out the player and took their entire lair with them and rocked off into space.  So fucking weird."
+    } else if(state == 122){
+          		ret = "What the actual FUCK is that!???"
     } else if(state == 126 || state == 126 || state == 120 ){
           		ret = "Ummm...shit. Is LORAS...asking me to KILL it??? Too spoopy for me."
     }else{
