@@ -21,6 +21,10 @@
 
   is prospit/derse a planet? a subtype of planet?
 
+  each planet could have associated sense words? How does it feel? Smell? Sound?
+  could be an object, so a Player can TALK about their planet by getting the object and
+  the object has associated phrases or whatever. Don't just say "it's full of wind and shade, lol"
+
  */
 class Planet{
   String word1;
