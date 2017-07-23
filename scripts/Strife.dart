@@ -254,22 +254,6 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
 
   }
 
-  //TODO put this in GameEntity
-  void remainingPlayersHateYou(div, player, players,Team team){
-    if(players.length == 1){
-      return null;
-    }
-    div.append(" The remaining players are not exactly happy to be abandoned. ");
-    for(num i = 0; i<players.length; i++){
-      var p = players[i];
-      if(p != player && team.absconded.indexOf(p) == -1){ //don't be a hypocrite and hate them if you already ran.
-        var r = p.getRelationshipWith(player);
-        if(r) r.value += -5; //could be a sprite, after all.
-      }
-    }
-    return null;
-  }
-
 
 
 
@@ -490,6 +474,8 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     resetFraymotifsForMembers(); //usable on team creation
   }
 
+
+
   void resetFraymotifsForMembers(){
     for(GameEntity ge in members){
       ge.resetFraymotifs();
@@ -525,7 +511,11 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
   }
 
   void remainingPlayersHateYou(div, GameEntity coward){
-    throw "TODO: remaining players hate you.";
+    List<GameEntity> present = getLivingMinusAbsconded();
+    for(GameEntity m in present){
+       var r = m.getRelationshipWith(coward);
+       if(r) r.value += -5; //could be a sprite, after all.
+    }
   }
 
   //back up can be any player in the potentialMembers list. You are responsible for populating that list on team creation.
