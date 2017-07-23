@@ -601,8 +601,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     List<Team> otherTeams = getOtherTeams(teams);
     //loop on all members each member takes turn.
     for(GameEntity member in members) {
-      //if you helped with a fraymotif, that's your turn
-      if(!usedFraymotifThisTurn.contains(member)) member.takeTurn(div, this, teams);
+      member.takeTurn(div, this, teams);
     }
 
 
