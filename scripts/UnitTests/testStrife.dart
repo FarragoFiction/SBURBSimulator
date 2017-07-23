@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'dart:convert';
 import 'dart:math' as Math;
 part "../GameEntities/GameEntity.dart";
+part "../GameEntities/player.dart";
 part "../GameEntities/NPCS.dart";
 part "../Strife.dart";
 part "../fraymotif.dart";
@@ -19,12 +20,11 @@ main() {
   print("Hello World");
   jRAssert("initialTest", "this should always pass", "this should always pass");
   testCreation();
-  //TODO test sorting teams by mobility.
   //test choosing a target.
-  //test draining a ghost.
   //TODO find members of denizen fight.
 
   testMobilitySort();
+  testChooseTarget();
 }
 
 void testMobilitySort() {
@@ -39,7 +39,17 @@ void testMobilitySort() {
     jRAssert("slug name", slug.name, "Slug");
     expectedSlowest.members.sort();
     jRAssert("slowest member of slowest team", expectedSlowest.members[1], slug);
+    print("mobility psases");
+}
 
+void testChooseTarget()
+{
+  setup();
+  GameEntity attacker = testStrife.teams[0].members[1];
+  jRAssert("attacker name", attacker.name, "Turtle");
+  GameEntity target = attacker.pickATarget(testStrife.teams[1].members);
+  jRAssert("target name", target.name, "DragonFly"); //can one shot it, even though it is faster than Hare.
+  print("choose target passed");
 }
 
 void testCreation() {
@@ -58,7 +68,7 @@ void setup() {
 List<GameEntity> makeSlowTeam() {
   List<GameEntity> ret = [
   new PotentialSprite("Slug", 0, null)
-    ..setStatsHash({"hp": 500, "mobility": -5000, "power": 100}),
+    ..setStatsHash({"hp": 5, "mobility": -5000, "power": 100}),
   new PotentialSprite("Turtle", 0, null)
     ..setStatsHash({"hp": 500, "mobility": -500, "power": 100})
   ];
@@ -71,7 +81,7 @@ List<GameEntity> makeFastTeam() {
     new PotentialSprite("Hare", 0, null)
       ..setStatsHash({"hp": 500, "mobility": 500, "power": 100}),
     new PotentialSprite("Dragonfly", 0, null)
-      ..setStatsHash({"hp": 500, "mobility": 5000, "power": 100})
+      ..setStatsHash({"hp": 5, "mobility": 5000, "power": 100})
   ];
   return ret;
 }

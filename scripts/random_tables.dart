@@ -973,6 +973,18 @@ dynamic getRandomQuestFromAspect(aspect, postDenizen){
 
 
 
+String truncateString(str, num) {
+	return str.length > num ?
+	str.slice(0, num > 3 ? num - 3 : num) + "..." :
+	str;
+}
+
+
+String sanitizeString(String string){
+	return truncateString(string.replaceAll(new RegExp(r"""<(,?:.|\n)*?>""", multiLine:true), '').replaceAll(new RegExp(",", multiLine:true),''), 144); //good enough for twitter.
+}
+
+
 
 
 /**

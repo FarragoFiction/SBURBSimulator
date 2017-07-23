@@ -84,7 +84,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
     super.setStat(statName, value);
   }
 
-  @override
+  @override //literally ad value to existing value
   void addStat(statName,value){
     if(statName == "RELATIONSHIPS") throw "Players modify the actual relationships, not the calculated value.";
     super.addStat(statName, value);
@@ -146,11 +146,11 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		if(denizenIndex == 0){
 			denizenName = this.weakDenizenNames();
 			denizenStrength = 0.1;//fraymotifs about standing and looking at your pittifully
-			print("strength demands a weak denizen " + this.session.session_id);
+			print("strength demands a weak denizen " + this.session.session_id.toString());
 		}else if(denizenIndex >= possibilities.length){
 			denizenName = this.strongDenizenNames(); //<-- doesn't have to be literally him. points for various mispellings of his name.
 			denizenStrength = 5;
-			print("Strength demands strong denizen. " + this.session.session_id);
+			print("Strength demands strong denizen. " + this.session.session_id.toString());
 		}else{
 			denizenName = possibilities[denizenIndex];
 
@@ -315,13 +315,13 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		}
 		return false;
 	}
-	void changeGrimDark(val){
+	void changeGrimDark(num val){
 		//this.grimDark += val;
 		var tmp = this.grimDark + val;
 		bool render = false;
 
 		if(this.grimDark <= 3 && tmp > 3){ //newly GrimDark
-			print("grim dark 3 or more in session: " + this.session.session_id);
+			print("grim dark 3 or more in session: " + this.session.session_id.toString();
 			render = true;
 		}else if(this.grimDark >3 && tmp <=3){ //newly recovered.
 			render = true;
@@ -358,7 +358,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		if(this.aspect == "Doom"){ //powered by their own doom.
 			//print("doom is powered by their own death: " + this.session.session_id) //omg, they are sayians.
 			this.addStat("power", 50);
-			this.addStat("hp",Math.max(100, this.getStat("hp")); //prophecy fulfilled. but hp and luck will probably drain again.
+			this.addStat("hp",Math.max(100, this.getStat("hp"))); //prophecy fulfilled. but hp and luck will probably drain again.
 			this.setStat("minLuck",30); //prophecy fulfilled. you are no longer doomed.
 		}
 		if(!this.godTier){ //god tiers only make ghosts in GodTierRevivial
@@ -379,13 +379,13 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			Relationship r = this.relationships[i];
 
 			if(r.saved_type == r.goodBig){
-				r.target.sanity += -10;
+				r.target.addStat("sanity", -10);
 				if(r.target.flipOutReason == null){
 					r.target.flipOutReason = " their dead crush, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead crush.
 					r.target.flippingOutOverDeadPlayer = this;
 				}
 			}else if(r.value > 0){
-				r.target.sanity += -10;
+				r.target.addStat("sanity", -10);
 				if(r.target.flipOutReason == null){
 					 r.target.flippingOutOverDeadPlayer = this;
 					 r.target.flipOutReason = " their dead friend, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead friend.
@@ -1644,12 +1644,12 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
         var j = this.toJSON();
         if(j.class_name <= 15 && j.aspect <= 15){ //if NEITHER have need of extension, just return size zero;
             builder.appendExpGolomb(0); //for length
-            return encodeURIComponent(builder.data).replace(new RegExp(r"""#""", multiLine:true), '%23').replace(new RegExp(r"""&""", multiLine:true), '%26');
+            return Uri.encodeComponent(builder.data).replaceAll(new RegExp(r"""#""", multiLine:true), '%23').replaceAll(new RegExp(r"""&""", multiLine:true), '%26');
         }
         builder.appendExpGolomb(2); //for length
         builder.appendByte(j.class_name);
         builder.appendByte(j.aspect);
-        return encodeURIComponent(builder.data).replace(new RegExp(r"""#""", multiLine:true), '%23').replace(new RegExp(r"""&""", multiLine:true), '%26');
+        return Uri.encodeComponent(builder.data).replaceAll(new RegExp(r"""#""", multiLine:true), '%23').replaceAll(new RegExp(r"""&""", multiLine:true), '%26');
 	}
 	void readInExtensionsString(reader){
 	    print("reading in extension string");
@@ -2774,6 +2774,7 @@ dynamic clonePlayer(player, session, isGuardian){
 				clone.guardian.guardian = clone;
 		}
 	}else if(propertyName == "relationships"){
+		  //TODO where was this again?
 		clone.relationships = cloneRelationshipsStopgap(player.relationships); //won't actually work, but will let me actually clone the relationships later without modifying originals
 	}else{
 				clone[propertyName] = player[propertyName];

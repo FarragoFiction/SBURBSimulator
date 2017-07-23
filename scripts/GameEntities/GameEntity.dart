@@ -334,7 +334,7 @@ class GameEntity implements Comparable{
     return ret;
   }
 
-  void changeGrimDark(){
+  void changeGrimDark(num val){
     //stubb
   }
   void increasePower(){

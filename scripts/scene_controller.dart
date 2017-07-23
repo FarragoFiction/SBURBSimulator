@@ -341,7 +341,7 @@ dynamic playersToExtensionBytes(players){
 	var builder = new ByteBuilder();
 	//do NOT do this because it fucks up the single player strings. i know how many players there are other ways, don't worry about it.
 	//builder.appendExpGolomb(players.length) //encode how many players, doesn't have to be how many bits.
-	ret += encodeURIComponent(builder.data).replace(new RegExp(r"""#""", multiLine:true), '%23').replace(new RegExp(r"""&""", multiLine:true), '%26');
+	ret += Uri.encodeComponent(builder.data).replace(new RegExp(r"""#""", multiLine:true), '%23').replace(new RegExp(r"""&""", multiLine:true), '%26');
 	for(num i = 0; i<players.length; i++){
 		//print("player " + i + " to data byte");
 		ret += players[i].toDataBytesX();
@@ -352,18 +352,6 @@ dynamic playersToExtensionBytes(players){
 
 
 
-String truncateString(str, num) {
-    return str.length > num ?
-        str.slice(0, num > 3 ? num - 3 : num) + "..." :
-        str;
-}
-
-
-String sanitizeString(String string){
-		return truncateString(string.replaceAll(new RegExp(r"""<(,?:.|\n)*?>""", multiLine:true), '').replaceAll(new RegExp(",", multiLine:true),''), 144); //good enough for twitter.
-	}
-
-
 
 
 dynamic playersToDataStrings(players, includeChatHandle){
@@ -371,7 +359,7 @@ dynamic playersToDataStrings(players, includeChatHandle){
 	for(num i = 0; i<players.length; i++){
 		ret.add(players[i].toDataStrings(true));
 	}
-	//return encodeURIComponent(ret.join(",")).replace(new RegExp(r"""#""", multiLine:true), '%23').replace(new RegExp(r"""&""", multiLine:true), '%26');;
+	//return Uri.encodeComponent(ret.join(",")).replace(new RegExp(r"""#""", multiLine:true), '%23').replace(new RegExp(r"""&""", multiLine:true), '%26');;
 	return LZString.compressToEncodedURIComponent(ret.join(","));
 }
 
