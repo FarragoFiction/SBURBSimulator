@@ -167,15 +167,33 @@ class GameEntity implements Comparable{
   }
 
   Team pickATeamToTarget(List<Team> team){
-    //when assigning assholePoints to a team, give them extra if they have light players on them. light players are distracting.
-    //negative points for void players.
-    throw("TODO");
+    //TODO later add actual AI to this but for now, should only be one other team.
+    return getRandomElementFromArray(team);
   }
 
   GameEntity pickATarget(List<GameEntity> targets){
-    //when assigning assholePoints to a target, give them extra if they have light players on them. light players are distracting.
-    //negative points for void players.
-    throw("TODO");
+    if(targets.length == 0) return null;
+    if(targets.length == 1) return targets[0];
+    targets.sort(); //as long as I always prefer new targets of equal juciness, will target slowest people preferentially.
+    List<num> ratings = new List<num>();
+    for(GameEntity t in targets) {
+      num r = 0;
+      if(t.getStat("currentHP") < getStat("power")) r += 1; //i can kill you in one hit.
+      if(t is Player) {
+        Player p = t;
+        if(p.aspect == "Void") r += -1; //hard to see
+        if(p.aspect == "Light") r+= 1; //easy to see
+      }
+      ratings.add(r);
+    }
+    GameEntity ret;
+    num chosen_rating = 0;
+    for(num i = 0; i< targets.length; i++) {
+      GameEntity checked = targets[i];
+      num checked_rating = ratings[i];
+      if(checked_rating >= chosen_rating) ret = checked; //equal, because want LAST thing in list to be preffered if all things equal since slowest.
+    }
+    return ret;
   }
 
   void changeGrimDark(){
