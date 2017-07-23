@@ -72,6 +72,12 @@ class GameEntity implements Comparable{
       return "";
   }
 
+  void resetFraymotifs(){
+    for(num i = 0; i<this.fraymotifs.length; i++){
+      this.fraymotifs[i].usable = true;
+    }
+  }
+
   //any subclass can choose to do things differently. for now, this is default.
   //so yes, npcs can have ghost attacks.
   //this won't be called if I CAN'T take a turn because i participated in fraymotif

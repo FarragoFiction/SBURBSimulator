@@ -343,6 +343,12 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		this.leftMurderMode = true;
 		this.renderSelf();
 	}
+
+	void addDoomedTimeClone(Player timeClone) {
+		doomedTimeClones.add(timeClone);
+		addStat("sanity", -10);
+		flipOut("their own doomed time clones");
+	}
 	void makeDead(causeOfDeath){
 		this.dead = true;
 		this.timesDied ++;
@@ -1080,11 +1086,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 
 		return powerBoost;
 	}
-	void resetFraymotifs(){
-		for(num i = 0; i<this.fraymotifs.length; i++){
-			this.fraymotifs[i].usable = true;
-		}
-	}
+
 	void processStatPowerIncrease(powerBoost, stat){
 		powerBoost = this.modPowerBoostByClass(powerBoost,stat);
 		if(this.isActive()){ //modify me

@@ -166,9 +166,7 @@ class SaveDoomedTimeLine extends Scene {
 			ret += " Time really is the shittiest aspect. They make sure everybody is dead in this timeline, as per inevitability's requirements, then they sullenly vanish in a cloud of clocks and gears. ";
 		}
 		this.doomedTimeClone = Player.makeDoomedSnapshot(this.timePlayer);
-		this.timePlayer.doomedTimeClones.add(this.doomedTimeClone);
-		this.timePlayer.sanity += -10;
-		this.timePlayer.flipOut("their own doomed time clones");
+		this.timePlayer.addDoomedTimeClone();
 		return ret;
 	}
 

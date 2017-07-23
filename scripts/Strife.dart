@@ -563,9 +563,19 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
   List<GameEntity> absconded; //this only matters for one strife, so save to the team.
   List<GameEntity> usedFraymotifThisTurn; //if you're in this list, you don't get a regular turn.
   String name = ""; //TODO like The Midnight Crew.  If not given, just make it a list of all members of the team.
-  Team.withName(name, this.session, this.members);
+  Team.withName(name, this.session, this.members){
+    resetFraymotifsForMembers();
+  }
+
   Team(this.session, this.members) {
     name = GameEntity.getEntitiesNames(members);
+    resetFraymotifsForMembers(); //usable on team creation
+  }
+
+  void resetFraymotifsForMembers(){
+    for(GameEntity ge in members){
+      ge.resetFraymotifs();
+    }
   }
   bool canAbscond; //sometimes you are forced to keep fighting.
 
@@ -612,7 +622,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
           Player p = member;
           if(p.aspect == "Time") timePlayers.add(p);
         }
-        if(!member.dead && seededRandom() > .9){
+        if(!member.dead && seededRandom() > .75){
           session.availablePlayers.remove(member);
           summonBackup(member, div);
           return;
@@ -620,9 +630,14 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
       }
 
       //nobody could come, but I have me some time players i could clone.
-      throw("TODO:");
-
-
+      for(Player p in timePlayers){
+        if(!p.dead && seededRandom() > .9){
+          Player timeClone =Player.makeDoomedSnapshot(p);
+          p.addDoomedTimeClone(timeClone);
+           summonBackup(timeClone, div);
+        return;
+        }
+      }
   }
 
   //handle doomed time clones here, too
