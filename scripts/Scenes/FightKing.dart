@@ -32,11 +32,11 @@ class FightKing extends Scene {
 		if(fightingPlayers.length > 6){
 			ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
 		}
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+ch + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+ch + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);
-		poseAsATeam(canvasDiv, fightingPlayers, 2000);
+		poseAsATeam(canvasDiv, fightingPlayers);
 	}
 
 	@override
@@ -48,7 +48,10 @@ class FightKing extends Scene {
 		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
 		var fighting = this.getGoodGuys();
 		if(this.session.democraticArmy.getStat("currentHP") > 0) fighting.add(this.session.democraticArmy);
-		this.session.king.strife(div, fighting,0);
+		Team pTeam = new Team.withName("The Players", this.session, fighting);
+		Team dTeam = new Team(this.session, [this.session.king]);
+		Strife strife = new Strife(this.session, [pTeam, dTeam]);
+		strife.startTurn(div);
 
 	}
 	void setPlayersUnavailable(stabbings){
@@ -57,7 +60,7 @@ class FightKing extends Scene {
 		}
 	}
 	dynamic content(){
-		var nativePlayersInSession = findPlayersFromSessionWithId(this.playerList);
+		var nativePlayersInSession = findPlayersFromSessionWithId(this.playerList,this.session.session_id);
 		var badPrototyping = findBadPrototyping(nativePlayersInSession);
 
 		String ret = " It is time for the final opponent, the Black King. ";
