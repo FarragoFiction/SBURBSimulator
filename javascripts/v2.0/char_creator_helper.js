@@ -378,9 +378,9 @@ function CharacterCreatorHelper(players){
 			var dataBox = $("#dataBoxDiv"+player.id);
 			var bs = "?" + dataBox.val(); //need "?" so i can parse as url
 			console.log("bs is: " + bs);
-			var b = decodeURIComponent(getParameterByName("b", bs))
+			var b = (getParameterByName("b", bs)) //this will come to you already decoded, if you decode again it MOSTLY is fine, but mages of heart get corrupted because they are '%'
 			var s = getParameterByName("s", bs)
-			var x = decodeURIComponent(getParameterByName("x", bs))
+			var x = (getParameterByName("x", bs))
 			console.log("b: " + b);
 			console.log("s: " + s);
 			console.log("x: " + x);
