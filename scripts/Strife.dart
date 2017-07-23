@@ -21,8 +21,7 @@ class Strife {
 
   //TODO get this working, then rewrite code for each sub part.
   void startTurn(div) {
-    teams
-        .sort(); //we do this every turn because mobility can change and should effect turn order.
+    teams.sort(); //we do this every turn because mobility can change and should effect turn order.
     for (Team team in teams) {
       team.takeTurn(
           div, turnsPassed, teams); //will handling resetting player availablity
@@ -235,12 +234,12 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
   List<GameEntity> absconded; //this only matters for one strife, so save to the team.
   String name = ""; //TODO like The Midnight Crew.  If not given, just make it a list of all members of the team.
   bool canAbscond; //sometimes you are forced to keep fighting.
-  Team.withName(name, this.session, this.members){
+  Team.withName(this.name, this.session, this.members){
     resetFraymotifsForMembers();
   }
 
   Team(this.session, this.members) {
-    name = GameEntity.getEntitiesNames(members);
+    name = "The ${GameEntity.getEntitiesNames(members)}";
     resetFraymotifsForMembers(); //usable on team creation
   }
 
@@ -389,7 +388,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
 
   @override  //sorting Teams automatically sorts them by mobility so strife knows turn order
   int compareTo(other) {
-    return other.getTeamStatAverage("mobility") - getTeamStatAverage("mobility");  //TODO or is it the otherway around???
+    return (other.getTeamStatAverage("mobility") - getTeamStatAverage("mobility")).round();
   }
 
   bool hasLivingMembersPresent() {

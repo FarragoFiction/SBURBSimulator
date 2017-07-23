@@ -5,6 +5,7 @@ import 'dart:math' as Math;
 part "../GameEntities/GameEntity.dart";
 part "../GameEntities/NPCS.dart";
 part "../Strife.dart";
+part "../fraymotif.dart";
 part "../random_tables.dart"; //needed for global functions
 part "JRTestSuite.dart";
 
@@ -16,28 +17,66 @@ Strife testStrife = null;
 
 main() {
   print("Hello World");
+  jRAssert("initialTest", "this should always pass", "this should always pass");
   testCreation();
   //TODO test sorting teams by mobility.
   //test choosing a target.
   //test draining a ghost.
+  //TODO find members of denizen fight.
 
+  testMobilitySort();
+}
+
+void testMobilitySort() {
+    setup();
+    print("Before Sort, Teams are: ${Team.getTeamsNames(testStrife.teams)}");
+    Team expectedSlowest = testStrife.teams[0];
+    Team expectedFasted = testStrife.teams[1];
+    testStrife.teams.sort();
+    jRAssert("fastest team", testStrife.teams[0], expectedFasted);
+    print("After Sort, Teams are: ${Team.getTeamsNames(testStrife.teams)}");
+    GameEntity slug = expectedSlowest.members[0];
+    jRAssert("slug name", slug.name, "Slug");
+    expectedSlowest.members.sort();
+    jRAssert("slowest member of slowest team", expectedSlowest.members[1], slug);
 
 }
 
-testCreation() {
+void testCreation() {
   setup();
   print(testStrife);
+  print("Teams are: ${Team.getTeamsNames(testStrife.teams)}");
 }
 
-setup() {
+void setup() {
   List<Team> t  = new List<Team>();
-  t.add(new Team(disastor_objects.subset(0,3)));
-  t.add(new Team(fortune_objects.subset(0,5)));
+  t.add(new Team(null, makeSlowTeam()));
+  t.add(new Team.withName("The Probably RainbowDrinkers",null, makeFastTeam()));
   testStrife = new Strife(null,t);
 }
 
+List<GameEntity> makeSlowTeam() {
+  List<GameEntity> ret = [
+  new PotentialSprite("Slug", 0, null)
+    ..setStatsHash({"hp": 500, "mobility": -5000, "power": 100}),
+  new PotentialSprite("Turtle", 0, null)
+    ..setStatsHash({"hp": 500, "mobility": -500, "power": 100})
+  ];
+  return ret;
 
-Session curSessionGlobalVar;
+}
+
+List<GameEntity> makeFastTeam() {
+  List<GameEntity> ret = [
+    new PotentialSprite("Hare", 0, null)
+      ..setStatsHash({"hp": 500, "mobility": 500, "power": 100}),
+    new PotentialSprite("Dragonfly", 0, null)
+      ..setStatsHash({"hp": 500, "mobility": 5000, "power": 100})
+  ];
+  return ret;
+}
+
+
 int canvasWidth;
 int canvasHeight;
 bool simulationMode;
