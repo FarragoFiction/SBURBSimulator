@@ -544,7 +544,7 @@ void poseBabiesAsATeam(canvas, leader, players, guardians, repeatTime){
 
 
 //might be repeats of players in there, cause of time clones
-void poseAsATeam(canvas, players, repeatTime){
+void poseAsATeam(canvas, players){
   if(checkSimMode() == true){
     return;
   }
@@ -1477,7 +1477,7 @@ void drawSprite(CanvasElement canvas, Player inputplayer, [CanvasRenderingContex
       copyTmpCanvasToRealCanvasAtPos(canvas, canvasDiv,0,0);
     }
 
-    if(!baby && player.influenceSymbol){ //dont make sprite for this, always on top, unlike scars
+    if(!baby && player.influenceSymbol != null){ //dont make sprite for this, always on top, unlike scars
       //wasteOfMindSymbol(canvas, player);
       influenceSymbol(canvas, player.influenceSymbol);
     }
@@ -1570,7 +1570,7 @@ void drawSpriteFromScratch(CanvasElement canvas, Player player, [CanvasRendering
     if(random() > .9){
       drawWhatever(canvas, "/Bodies/face4.png"); ///spooky wolf easter egg.
     }else{
-      drawWhatever(canvas, "/Bodies/face"+ player.baby + ".png");
+      drawWhatever(canvas, "/Bodies/face"+ player.baby.toString() + ".png");
     }
 
   }
