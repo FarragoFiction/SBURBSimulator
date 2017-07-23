@@ -561,7 +561,6 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
   List<GameEntity> members;
   List<GameEntity> potentialMembers = new List<GameEntity>(); //who is allowed to join this team mid-strife. (i.e. I would be shocked if a player showed up to help a Denizen kill their buddy).
   List<GameEntity> absconded; //this only matters for one strife, so save to the team.
-  List<GameEntity> usedFraymotifThisTurn; //if you're in this list, you don't get a regular turn.
   String name = ""; //TODO like The Midnight Crew.  If not given, just make it a list of all members of the team.
   Team.withName(name, this.session, this.members){
     resetFraymotifsForMembers();
@@ -589,16 +588,14 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     return name;
   }
 
+  //TODO figure out a better way to handle this but right now i need to be fucking done.
+  void resetPlayersAvailability(){
+      for(GameEntity ge in members){
+        ge.usedFraymotifThisTurn = false;
+      }
+  }
+
   void takeTurn(div, num numTurnOn, List<Team> teams) {
-    /*
-       TODO centralized place.  And type of team with any members for each member decides if they want to do ghost things, aggrieve directly, or use fraymotifs.
-       doomed members are banned from being ghost revived,but otherwise are free to do whatever.
-
-       When choosing a target to attack, always target doomed members of another team first.  If multiple other teams, choose first team first (for now).
-
-       If you used a fraymotif this turn (check membership of list) you can't take your turn.
-
-     */
     resetPlayersAvailability();
     if(potentialMembers.length > 0) checkForBackup(numTurnOn,div); //longer fight goes on, more likely to get backup.  IMPORTANT: BACK UP HAS TO BE GIVEN TO THIS TEAM ON CREATION
     List<Team> otherTeams = getOtherTeams(teams);

@@ -83,9 +83,7 @@ class GameEntity implements Comparable{
   //this won't be called if I CAN'T take a turn because i participated in fraymotif
   void takeTurn(div, Team mySide, List<Team> enemyTeams) {
 
-      //don't forget to let Team know if you used fraymotifs this turn.
-
-      //if i am dead, and have a ghost pact, try to revive (no more non ghost pact strife reviving). pact only works on self.
+      if(usedFraymotifThisTurn) return; //already did an attack.
 
       //if still dead, return, can't do anything.
       if(dead) {
@@ -110,8 +108,6 @@ class GameEntity implements Comparable{
       for(Team team in enemyTeams) {
           team.checkForAPulse(div, team.getOtherTeams(allTeams));
       }
-        throw "TODO: take turn";
-
   }
 
   bool useFraymotif(div, Team mySide, GameEntity target, Team targetTeam){
@@ -123,18 +119,18 @@ class GameEntity implements Comparable{
       usableFraymotifs.addAll(this.session.fraymotifCreator.getUsableFraymotifs(crowned, living_allies, living_enemies));
     }
     if(usableFraymotifs.length == 0) return false;
-    var mine = owner.getStat("sanity");
+    var mine = getStat("sanity");
     var theirs = getAverageSanity(living_enemies);
     if(mine+200 < theirs && seededRandom() < 0.5){
-      print("Too insane to use fraymotifs: " + owner.htmlTitleHP() +" against " + living_enemies[0].htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id)
-      div.append(" The " + owner.htmlTitleHP() + " wants to use a Fraymotif, but they are too crazy to focus. ")
+      print("Too insane to use fraymotifs: " + htmlTitleHP() +" against " + target.htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id.toString());
+      div.append(" The " + htmlTitleHP() + " wants to use a Fraymotif, but they are too crazy to focus. ");
       return false;
     }
-    mine = owner.getStat("freeWill") ;
+    mine = getStat("freeWill") ;
     theirs = getAverageFreeWill(living_enemies);
     if(mine +200 < theirs && seededRandom() < 0.5){
-      print("Too controlled to use fraymotifs: " + owner.htmlTitleHP() +" against " + living_enemies[0].htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id)
-      div.append(" The " + owner.htmlTitleHP() + " wants to use a Fraymotif, but Fate dictates otherwise. ")
+      print("Too controlled to use fraymotifs: " + htmlTitleHP() +" against " + target.htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id)
+      div.append(" The " + htmlTitleHP() + " wants to use a Fraymotif, but Fate dictates otherwise. ");
       return false;
     }
 
@@ -150,14 +146,13 @@ class GameEntity implements Comparable{
 
 
 
-    div.append("<Br><br>"+chosen.useFraymotif(owner, living_allies, living_enemies) + "<br><Br>");
+    div.append("<Br><br>"+chosen.useFraymotif(this, living_allies, target, living_enemies) + "<br><Br>");
     chosen.usable = false;
     return true;
-    throw("TODO");
   }
 
   void aggrieve(div, GameEntity target){
-
+    throw("TODO");
 
   }
 
