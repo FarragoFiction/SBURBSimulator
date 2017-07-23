@@ -64,12 +64,15 @@ class FaceDenizen extends Scene{
 
 		}
 	}
-	void faceDenizenMinion(p, div){
-		var denizenMinion = p.denizenMinion;
+	void faceDenizenMinion(Player p, div){
+		GameEntity denizenMinion = p.denizenMinion;
 		String ret = "<br>The " + p.htmlTitleHP() + " initiates a strife with the " + denizenMinion.name + ". ";
-		if(p.sprite && p.sprite.getStat("currentHP") > 0 ) ret += " " + p.sprite.htmlTitleHP() + " joins them! ";
+		if(p.sprite != null && p.sprite.getStat("currentHP") > 0 ) ret += " " + p.sprite.htmlTitleHP() + " joins them! ";
 		div.append(ret);
-		denizenMinion.strife(div, [p,p.sprite],0);
+		Team pTeam = new Team(this.session, [p]);
+		Team dTeam = new Team(this.session, [denizenMinion]);
+		Strife strife = new Strife(this.session, [pTeam, dTeam]);
+		strife.startTurn(div);
 		if(denizenMinion.getStat("currentHP") <= 0 || denizenMinion.dead){
 			p.denizenMinionDefeated = true;
 		}
@@ -79,7 +82,7 @@ class FaceDenizen extends Scene{
 		var denizen = p.denizen;
 		if(!p.denizenFaced && p.getFriends().length > p.getEnemies().length){ //one shot at The Choice
 			//print("confront icon: " + this.session.session_id);
-			ret += "<br><img src ;= 'images/sceneIcons/confront_icon.png'> The " + p.htmlTitle() + " cautiously approaches their " + denizen.name + " and are presented with The Choice. "
+			ret += "<br><img src ;= 'images/sceneIcons/confront_icon.png'> The " + p.htmlTitle() + " cautiously approaches their " + denizen.name + " and are presented with The Choice. ";
 			if(p.power > 27){ //calibrate this l8r
 				ret += " The " + p.htmlTitle() + " manages to choose correctly, despite the seeming impossibility of the matter. ";
 				ret += " They gain the power they need to acomplish their objectives. ";
@@ -99,6 +102,10 @@ class FaceDenizen extends Scene{
 		}else{
 			ret += "<br>The " + p.htmlTitle() + " initiates a strife with their " + denizen.name + ". ";
 			div.append(ret);
+      Team pTeam = new Team(this.session, [p]);
+      Team dTeam = new Team(this.session, [denizen]);
+      Strife strife = new Strife(this.session, [pTeam, dTeam]);
+      strife.startTurn(div);
 			denizen.strife(div, [p],0);
 			if(denizen.getStat("currentHP") <= 0 || denizen.dead) {
 				p.denizenDefeated = true;
@@ -138,7 +145,7 @@ class FaceDenizen extends Scene{
 					p.makeDead("fighting their Denizen way too early");
 					div.append("<br>"+ret);
 					var divID = (div.attr("id"));
-					String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+					String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 					div.append(canvasHTML);
 					var canvas = querySelector("#canvas"+ divID);
 					drawSinglePlayer(canvas, p);
