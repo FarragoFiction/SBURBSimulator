@@ -277,90 +277,8 @@ class Strife {//TODO subclass strife for pvp but everybody lives strifes
 
 
 
-  void tryAutoRevive(div, deadPlayer){
 
-    //first try using pacts
-    var undrainedPacts = removeDrainedGhostsFromPacts(deadPlayer.ghostPacts);
-    if(undrainedPacts.length > 0){
-      print("using a pact to autorevive in session " + this.session.session_id.toString());
-      var source = undrainedPacts[0][0];
-      source.causeOfDrain = deadPlayer.title();
-      String ret = " In the afterlife, the " + deadPlayer.htmlTitleBasic() +" reminds the " + source.htmlTitleBasic() + " of their promise of aid. The ghost agrees to donate their life force to return the " + deadPlayer.htmlTitleBasic() + " to life ";
-      if(deadPlayer.godTier) ret += ", but not before a lot of grumbling and arguing about how the pact shouldn't even be VALID anymore since the player is fucking GODTIER, they are going to revive fucking ANYWAY. But yeah, MAYBE it'd be judged HEROIC or some shit. Fine, they agree to go into a ghost coma or whatever. ";
-      ret += "It will be a while before the ghost recovers.";
-      div.append(ret);
-      var myGhost = this.session.afterLife.findClosesToRealSelf(deadPlayer);
-      removeFromArray(myGhost, this.session.afterLife.ghosts);
-      var canvas = drawReviveDead(div, deadPlayer, source, undrainedPacts[0][1]);
-      deadPlayer.makeAlive();
-      if(undrainedPacts[0][1] == "Life"){
-        deadPlayer.hp += 100; //i won't let you die again.
-      }else if(undrainedPacts[0][1] == "Doom"){
-        deadPlayer.minLuck += 100; //you've fulfilled the prophecy. you are no longer doomed.
-        div.append("The prophecy is fulfilled. ");
-      }
-    }else if((deadPlayer.aspect == "Doom" || deadPlayer.aspect == "Life")&& (deadPlayer.class_name == "Heir" || deadPlayer.class_name == "Thief")){
-      var ghost = this.session.afterLife.findAnyUndrainedGhost();
-      var myGhost = this.session.afterLife.findClosesToRealSelf(deadPlayer);
-      if(!ghost || ghost == myGhost) return;
-      ghost.causeOfDrain = deadPlayer.title();
 
-      removeFromArray(myGhost, this.session.afterLife.ghosts);
-      if(deadPlayer.class_name  == "Thief" ){
-        print("thief autorevive in session " + this.session.session_id);
-        div.append(" The " + deadPlayer.htmlTitleBasic() + " steals the essence of the " + ghost.htmlTitle() + " in order to revive and keep fighting. It will be a while before the ghost recovers.");
-      }else if(deadPlayer.class_name  == "Heir" ){
-        print("heir autorevive in session " + this.session.session_id);
-        div.append(" The " + deadPlayer.htmlTitleBasic() + " inherits the essence and duties of the " + ghost.htmlTitle() + " in order to revive and continue their battle. It will be a while before the ghost recovers.");
-      }
-      var canvas = drawReviveDead(div, deadPlayer, ghost, deadPlayer.aspect);
-      deadPlayer.makeAlive();
-      if(deadPlayer.aspect == "Life"){
-        deadPlayer.hp += 100; //i won't let you die again.
-      }else if(deadPlayer.aspect == "Doom"){
-        deadPlayer.minLuck += 100; //you've fulfilled the prophecy. you are no longer doomed.
-        div.append("The prophecy is fulfilled. ");
-      }
-    }
-  }
-  bool playerHelpGhostRevive(div, player, players){
-    if(player.aspect != "Life" && player.aspect != "Doom") return false;
-    if(player.class_name != "Rogue" && player.class_name != "Maid") return false;
-    var dead = findDeadPlayers(players);
-    dead = this.removeAllNonPlayers(dead);
-    if(dead.length == 0) return false;
-    print(dead.length + " need be helping!!!");
-    var deadPlayer = getRandomElementFromArray(dead) ;//heal random 'cause oldest could be doomed time clone';
-    if(deadPlayer.doomed) return false; //doomed players can't be healed. sorry.
-    //alright. I'm the right player. there's a dead player in this battle. now for the million boondollar question. is there an undrained ghost?
-    var ghost = this.session.afterLife.findAnyUndrainedGhost(player);
-    var myGhost = this.session.afterLife.findClosesToRealSelf(deadPlayer);
-    if(!ghost || ghost == myGhost) return false;
-    print("helping a corpse revive during a battle in session: " + this.session.session_id);
-    ghost.causeOfDrain = deadPlayer.titleBasic();
-    String text = "<Br><Br>The " + player.htmlTitleBasic() + " assists the " + deadPlayer.htmlTitleBasic() + ". ";
-    if(player.class_name == "Rogue"){
-      text += " The " + deadPlayer.htmlTitleBasic() + " steals the essence of the " + ghost.htmlTitleBasic() + " in order to revive and continue fighting. It will be a while before the ghost recovers.";
-    }else if(player.class_name == "Maid"){
-      text += " The " + deadPlayer.htmlTitleBasic() + " inherits the essence and duties of the " + ghost.htmlTitleBasic() + " in order to revive and continue their fight. It will be a while before the ghost recovers.";
-    }
-    div.append(text);
-    var canvas = drawReviveDead(div, deadPlayer, ghost, player.aspect);
-    if(canvas){
-      var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-      drawSprite(pSpriteBuffer,player);
-      copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
-    }
-    removeFromArray(myGhost, this.session.afterLife.ghosts);
-    deadPlayer.makeAlive();
-    if(player.aspect == "Life"){
-      player.hp += 100; //i won't let you die again.
-    }else if(player.aspect == "Doom"){
-      player.minLuck += 100; //you've fulfilled the prophecy. you are no longer doomed.
-      div.append("The prophecy is fulfilled. ");
-    }
-    return null;
-  }
   void playerdecideWhatToDo(div, player, players){
     if(player.usedFraymotifThisTurn) return; //already did something.
     if(this.dead == true || this.getStat("currentHP") <= 0) return; // they are dead, stop beating a dead corpse.;
@@ -562,6 +480,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
   List<GameEntity> potentialMembers = new List<GameEntity>(); //who is allowed to join this team mid-strife. (i.e. I would be shocked if a player showed up to help a Denizen kill their buddy).
   List<GameEntity> absconded; //this only matters for one strife, so save to the team.
   String name = ""; //TODO like The Midnight Crew.  If not given, just make it a list of all members of the team.
+  bool canAbscond; //sometimes you are forced to keep fighting.
   Team.withName(name, this.session, this.members){
     resetFraymotifsForMembers();
   }
@@ -576,7 +495,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
       ge.resetFraymotifs();
     }
   }
-  bool canAbscond; //sometimes you are forced to keep fighting.
+
 
   //TODO have code for taking a turn in here. have Strife be relatively empty.
   /*
@@ -600,11 +519,13 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     if(potentialMembers.length > 0) checkForBackup(numTurnOn,div); //longer fight goes on, more likely to get backup.  IMPORTANT: BACK UP HAS TO BE GIVEN TO THIS TEAM ON CREATION
     List<Team> otherTeams = getOtherTeams(teams);
     //loop on all members each member takes turn.
-    for(GameEntity member in members) {
+    for(GameEntity member in members) { //member will take care of checking if they are absconded or dead.
       member.takeTurn(div, this, teams);
     }
+  }
 
-
+  void remainingPlayersHateYou(div, GameEntity coward){
+    throw "TODO: remaining players hate you.";
   }
 
   //back up can be any player in the potentialMembers list. You are responsible for populating that list on team creation.
@@ -668,9 +589,6 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     drawSinglePlayer(canvasDiv, backup);
   }
 
-  void resetPlayersAvailability() {
-      usedFraymotifThisTurn.clear(); //no longer kept in player.
-  }
 
 
   List<GameEntity> getLiving() {

@@ -18,7 +18,6 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	num denizen_index = 0; //denizen quests are in order.
 	String causeOfDrain = ""; //just ghost things
 	List<dynamic> ghostWisdom = []; //keeps you from spamming the same ghost over and over for wisdom.
-	List<dynamic> ghostPacts = []; //some classes can form pacts with ghosts for use in boss battles (attack or revive) (ghosts don't leave bubbles, just lend power). or help others do so.  if i actually use a ghost i have a pact with, it's drained. (so anybody else with a pact with it can't use it.)
 	String land1 = null; //words my land is made of. //TODO eventually folded into planet
 	String land2 = null;
 	bool trickster = false;

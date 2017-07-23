@@ -18,6 +18,8 @@ main() {
   print("Hello World");
   testCreation();
   //TODO test sorting teams by mobility.
+  //test choosing a target.
+  //test draining a ghost.
 
 
 }

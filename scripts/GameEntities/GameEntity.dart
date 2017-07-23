@@ -9,6 +9,7 @@ class GameEntity implements Comparable{
   bool ghost; //if you are ghost, you are rendered spoopy style
   num grist; //everything has it.
   bool dead = false;
+  List<dynamic> ghostPacts = []; //list of two element array [Ghost, enablingAspect]
   bool corrupted = false; //players are corrupted at level 4. will be easier than always checking grimDark level
   List<dynamic> fraymotifs = [];
   bool usedFraymotifThisTurn = false;
@@ -82,21 +83,23 @@ class GameEntity implements Comparable{
   //so yes, npcs can have ghost attacks.
   //this won't be called if I CAN'T take a turn because i participated in fraymotif
   void takeTurn(div, Team mySide, List<Team> enemyTeams) {
-
       if(usedFraymotifThisTurn) return; //already did an attack.
-
+      if(mySide.absconded.contains(this)) return;
       //if still dead, return, can't do anything.
       if(dead) {
         reviveViaGhostPact(div);
         //whether it works or not, return. you can't revive AND do other stuff.
         return;
       }
+      div.apendHTML(describeBuffs());
+      if(checkAbscond(div, mySide, enemyTeams)) return; //nice abscond, bro
 
       //pick a team to target.  if cant find target, return
       Team targetTeam = pickATeamToTarget(enemyTeams);
       if(targetTeam == null) return; //nobody to fight.
       //pick a member of the team to extra target. ig player and light, even if corpse
-      GameEntity target = pickATarget(targetTeam.members);
+      GameEntity target = pickATarget(targetTeam.getLivingMinusAbsconded());
+      if(target == null) return; //nobody to attack.
       //try to use fraymotif
       if(!useFraymotif(div, mySide, target, targetTeam)){
         aggrieve(div, target);
@@ -111,8 +114,8 @@ class GameEntity implements Comparable{
   }
 
   bool useFraymotif(div, Team mySide, GameEntity target, Team targetTeam){
-    List<GameEntity> living_enemies = findLivingPlayers(targetTeam.members);
-    List<GameEntity> living_allies = findLivingPlayers(mySide.members);
+    List<GameEntity> living_enemies = targetTeam.getLivingMinusAbsconded();
+    List<GameEntity> living_allies = mySide.getLivingMinusAbsconded();
     if(seededRandom() > 0.5) return false; //don't use them all at once, dunkass.
     List<Fraymotif> usableFraymotifs = this.session.fraymotifCreator.getUsableFraymotifs(this, living_allies, living_enemies);
     if(crowned != null){  //ring/scepter has fraymotifs, too.  (maybe shouldn't let humans get thefraymotifs but what the fuck ever. roxyc could do voidy shit.)
@@ -129,7 +132,7 @@ class GameEntity implements Comparable{
     mine = getStat("freeWill") ;
     theirs = getAverageFreeWill(living_enemies);
     if(mine +200 < theirs && seededRandom() < 0.5){
-      print("Too controlled to use fraymotifs: " + htmlTitleHP() +" against " + target.htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id)
+      print("Too controlled to use fraymotifs: " + htmlTitleHP() +" against " + target.htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id.toString());
       div.append(" The " + htmlTitleHP() + " wants to use a Fraymotif, but Fate dictates otherwise. ");
       return false;
     }
@@ -143,12 +146,56 @@ class GameEntity implements Comparable{
         chosen = f; //all else equal, prefer the one with more members.
       }
     }
-
-
-
+    div.append("<Br><br>"+chosen.useFraymotif(this, living_allies, target, living_enemies) + "<br><Br>");
     div.append("<Br><br>"+chosen.useFraymotif(this, living_allies, target, living_enemies) + "<br><Br>");
     chosen.usable = false;
     return true;
+  }
+
+  bool checkAbscond(div, Team mySide, List<Team> enemies) {
+    if(!mySide.canAbscond) return false; //can't abscond, bro
+    if(doomed) return false; //accept your fate.
+    List<GameEntity> whoINeedToProtect = mySide.getLivingMinusAbsconded();
+    num reasonsToLeave = 0;
+    num reasonsToStay = 2; //generally prefer to win fights.
+    reasonsToStay += getFriendsFromList(whoINeedToProtect).length;
+    List<GameEntity> hearts = getHearts();
+    List<GameEntity> diamonds = getDiamonds();
+    for(GameEntity heart in hearts) {
+      if(whoINeedToProtect.contains(heart)) reasonsToStay += 1;
+    }
+
+    for(GameEntity diamond in diamonds) {
+      if(whoINeedToProtect.contains(diamond)) reasonsToStay += 1;
+    }
+    reasonsToStay += getStat("power")/Team.getTeamsStatTotal(enemies, "currentHP"); //i can take you.
+    reasonsToLeave += Team.getTeamsStatTotal(enemies, "power")/getStat("currentHP"); //you can take me.
+    if(reasonsToLeave > reasonsToStay * 2){
+      addStat("sanity", "-10");
+      flipOut("how terrifying " + Team.getTeamsNames(enemies) + " were");
+      if(getStat("mobility") > Team.getTeamsStatAverage(enemies, "mobility")){
+        //console.log(" player actually absconds: they had " + player.hp + " and enemy had " + enemy.getStat("power") + this.session.session_id)
+        div.append("<br><img src = 'images/sceneIcons/abscond_icon.png'> The " + htmlTitleHP() + " absconds right the fuck out of this fight. ");
+        mySide.absconded.add(this);
+        mySide.remainingPlayersHateYou(div, this);
+        return true;
+      }else{
+        div.append(" The " + htmlTitleHP() + " tries to absconds right the fuck out of this fight, but the " + Team.getTeamsNames(enemies) + " blocks them. Can't abscond, bro. ");
+        return false;
+      }
+    }else if(reasonsToLeave > reasonsToStay){
+      if(getStat("mobility") > Team.getTeamsStatAverage(enemies, "mobility")){
+        //console.log(" player actually absconds: " + this.session.session_id)
+        div.append("<br><img src = 'images/sceneIcons/abscond_icon.png'>  Shit. The " + htmlTitleHP() + " doesn't know what to do. They don't want to die... They abscond. ");
+        mySide.absconded.add(this);
+        mySide.remainingPlayersHateYou(div, this);
+        return true;
+      }else{
+        div.append(" Shit. The " + htmlTitleHP() + " doesn't know what to do. They don't want to die... Before they can decide whether or not to abscond " + Team.getTeamsNames(enemies) + " blocks their escape route. Can't abscond, bro. ");
+        return false;
+      }
+    }
+    return false;
   }
 
   void aggrieve(div, GameEntity target){
@@ -158,7 +205,30 @@ class GameEntity implements Comparable{
 
   //currently only thing ghost pacts are good for post refactor.
   void reviveViaGhostPact(div){
-      throw("TODO");
+    List<dynamic> undrainedPacts = removeDrainedGhostsFromPacts(ghostPacts);
+    if(undrainedPacts.length > 0){
+      print("using a pact to autorevive in session " + this.session.session_id.toString());
+      var source = undrainedPacts[0][0];
+      source.causeOfDrain = name;
+      String ret = " In the afterlife, the " + htmlTitleBasic() +" reminds the " + source.htmlTitleBasic() + " of their promise of aid. The ghost agrees to donate their life force to return the " + htmlTitleBasic() + " to life ";
+      if(this is Player) {
+        Player me = this;
+        if (me.godTier) ret +=
+        ", but not before a lot of grumbling and arguing about how the pact shouldn't even be VALID anymore since the player is fucking GODTIER, they are going to revive fucking ANYWAY. But yeah, MAYBE it'd be judged HEROIC or some shit. Fine, they agree to go into a ghost coma or whatever. ";
+      }
+      ret += "It will be a while before the ghost recovers.";
+      div.append(ret);
+      var myGhost = this.session.afterLife.findClosesToRealSelf(this);
+      removeFromArray(myGhost, this.session.afterLife.ghosts);
+      var canvas = drawReviveDead(div, this, source, undrainedPacts[0][1]);
+      makeAlive();
+      if(undrainedPacts[0][1] == "Life"){
+        addStat("currentHP",100); //i won't let you die again.
+      }else if(undrainedPacts[0][1] == "Doom"){
+        addStat("minLuck",100); //you've fulfilled the prophecy. you are no longer doomed.
+        div.append("The prophecy is fulfilled. ");
+      }
+    }
   }
 
   Team pickATeamToTarget(List<Team> team){
