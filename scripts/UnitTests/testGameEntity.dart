@@ -127,3 +127,31 @@ testLuck() {
 }
 
 
+int canvasWidth;
+int canvasHeight;
+bool simulationMode;
+
+T getRandomElementFromArray<T>(List<T> list) {
+  return list[0];
+}
+
+int getRandomInt(int lower, int upper) {
+  return lower;
+}
+
+int getRandomIntNoSeed(int lower, int upper) {
+  return lower;
+}
+
+double seededRandom() {
+  return 0.0;
+}
+
+double random() {
+  return 0.0;
+}
+
+//placeholder for now. need a way to know "what is the next random number in the list without using that number"
+double seed() {
+
+}

@@ -620,7 +620,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
       }
 
       //nobody could come, but I have me some time players i could clone.
-      if
+      throw("TODO:");
 
 
   }

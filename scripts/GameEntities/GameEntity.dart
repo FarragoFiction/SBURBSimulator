@@ -76,26 +76,27 @@ class GameEntity implements Comparable{
   //so yes, npcs can have ghost attacks.
   //this won't be called if I CAN'T take a turn because i participated in fraymotif
   void takeTurn(div, Team mySide, List<Team> enemyTeams) {
-      throw "TODO: take turn";
+
       //don't forget to let Team know if you used fraymotifs this turn.
 
       //if i am dead, and have a ghost pact, try to revive (no more non ghost pact strife reviving). pact only works on self.
 
       //if still dead, return, can't do anything.
-      if(dead) return;
+      if(dead) {
+        reviveViaGhostPact(div);
+        //whether it works or not, return. you can't revive AND do other stuff.
+        return;
+      }
 
       //pick a team to target.  if cant find target, return
+      Team targetTeam = pickATeamToTarget(enemyTeams);
+      if(targetTeam == null) return; //nobody to fight.
       //pick a member of the team to extra target. ig player and light, even if corpse
-
+      GameEntity target = pickATarget(targetTeam.members);
       //try to use fraymotif
-
-      //try to aggrieve
-
-      //check to see if you died.  if you died, cause of death is fighting getTeamsNames(targetTeams)
-
-
-      //TODO when choosing target, if there is a player who is light aspect in other team, preferentially target them.
-      //opposite for void.
+      if(!useFraymotif(div, mySide, target, targetTeam)){
+        aggrieve(div, target);
+      }
       //last thing you do is die.
       mySide.checkForAPulse(div, enemyTeams);
       List<Team> allTeams = new List<Team>.from(enemyTeams);
@@ -103,7 +104,72 @@ class GameEntity implements Comparable{
       for(Team team in enemyTeams) {
           team.checkForAPulse(div, team.getOtherTeams(allTeams));
       }
+        throw "TODO: take turn";
 
+  }
+
+  bool useFraymotif(div, Team mySide, GameEntity target, Team targetTeam){
+    List<GameEntity> living_enemies = findLivingPlayers(targetTeam.members);
+    List<GameEntity> living_allies = findLivingPlayers(mySide.members);
+    if(seededRandom() > 0.5) return false; //don't use them all at once, dunkass.
+    List<Fraymotif> usableFraymotifs = this.session.fraymotifCreator.getUsableFraymotifs(this, living_allies, living_enemies);
+    if(crowned != null){  //ring/scepter has fraymotifs, too.  (maybe shouldn't let humans get thefraymotifs but what the fuck ever. roxyc could do voidy shit.)
+      usableFraymotifs.addAll(this.session.fraymotifCreator.getUsableFraymotifs(crowned, living_allies, living_enemies));
+    }
+    if(usableFraymotifs.length == 0) return false;
+    var mine = owner.getStat("sanity");
+    var theirs = getAverageSanity(living_enemies);
+    if(mine+200 < theirs && seededRandom() < 0.5){
+      print("Too insane to use fraymotifs: " + owner.htmlTitleHP() +" against " + living_enemies[0].htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id)
+      div.append(" The " + owner.htmlTitleHP() + " wants to use a Fraymotif, but they are too crazy to focus. ")
+      return false;
+    }
+    mine = owner.getStat("freeWill") ;
+    theirs = getAverageFreeWill(living_enemies);
+    if(mine +200 < theirs && seededRandom() < 0.5){
+      print("Too controlled to use fraymotifs: " + owner.htmlTitleHP() +" against " + living_enemies[0].htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id)
+      div.append(" The " + owner.htmlTitleHP() + " wants to use a Fraymotif, but Fate dictates otherwise. ")
+      return false;
+    }
+
+    var chosen = usableFraymotifs[0];
+    for(num i = 0; i<usableFraymotifs.length; i++){
+      var f = usableFraymotifs[i];
+      if(f.tier > chosen.tier){
+        chosen = f; //more stronger is more better (refance)
+      }else if(f.tier == chosen.tier && f.aspects.length > chosen.aspects.length){
+        chosen = f; //all else equal, prefer the one with more members.
+      }
+    }
+
+
+
+    div.append("<Br><br>"+chosen.useFraymotif(owner, living_allies, living_enemies) + "<br><Br>");
+    chosen.usable = false;
+    return true;
+    throw("TODO");
+  }
+
+  void aggrieve(div, GameEntity target){
+
+
+  }
+
+  //currently only thing ghost pacts are good for post refactor.
+  void reviveViaGhostPact(div){
+      throw("TODO");
+  }
+
+  Team pickATeamToTarget(List<Team> team){
+    //when assigning assholePoints to a team, give them extra if they have light players on them. light players are distracting.
+    //negative points for void players.
+    throw("TODO");
+  }
+
+  GameEntity pickATarget(List<GameEntity> targets){
+    //when assigning assholePoints to a target, give them extra if they have light players on them. light players are distracting.
+    //negative points for void players.
+    throw("TODO");
   }
 
   void changeGrimDark(){

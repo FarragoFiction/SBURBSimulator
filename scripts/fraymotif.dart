@@ -258,12 +258,13 @@ class Fraymotif {
       casters[i].usedFraymotifThisTurn = true;
     }
   }
-	dynamic useFraymotif(owner, allies, enemies){
+	dynamic useFraymotif(owner, List<GameEntity> allies, GameEntity enemy, List<GameEntity> enemies){
     if(!this.canCast(owner, allies, enemies)) return "";
 		var casters = this.getCasters(owner, allies);
     this.makeCastersUnavailable(casters);
+    var living = findLivingPlayers(allies);
     //Hope Rides Alone
-    if(owner.aspect == "Hope" && allies.length == 1 && seededRandom() > 0.85){
+    if(owner.aspect == "Hope" && living.length == 1 && seededRandom() > 0.85){
         enemies[0].buffs.add(new Buff("currentHP", -9999)); //they REALLY believed in this attack.
         var jakeisms = ["GADZOOKS!","BOY HOWDY!","TALLY HO!","BY GUM"];
         print("Hope Rides Alone in session: "  + owner.session.session_id);
@@ -273,7 +274,6 @@ class Fraymotif {
     var dead = findDeadPlayers(allies);
 		//print(casters);
     //ALL effects that target a single enemy target the SAME enemy.
-    var enemy = getRandomElementFromArray(enemies);
 		for(num i = 0; i<this.effects.length; i++){
 			//effect knows how to apply itself. pass it baseValue.
 			this.effects[i].applyEffect(owner, allies, casters,  enemy, enemies, this.baseValue);
@@ -382,7 +382,7 @@ class FraymotifCreator {
 
       return ret;
   }
-	dynamic getUsableFraymotifs(owner, allies, enemies){
+	List<Fraymotif> getUsableFraymotifs(owner, allies, enemies){
     var fraymotifs = owner.fraymotifs;
     List<dynamic> ret = [];
     for(num i = 0; i<fraymotifs.length; i++){

@@ -2618,8 +2618,8 @@ dynamic findDoomedPlayers(playerList){
 }
 
 
-
-dynamic findLivingPlayers(playerList){
+//TODO shove this somewhere mroe useful, rename so not just players
+List<GameEntity> findLivingPlayers(List<GameEntity>playerList){
 	var ret = [];
 	for(var i= 0; i<playerList.length; i++){
 		var p = playerList[i];
