@@ -18,7 +18,7 @@ sessionsSimulated = [];
 var version2 = true; //even though idon't want  to render content, 2.0 is different from 1.0 (think of dialog that triggers)
 
 function newsposts(main){
-    writeNewspost(main, "7/23/17", "Mages of Heart no longer suffer from the corruption of their own identity, in the most hilariously ironic bug to hit the OCDataStrings yet.");
+    writeNewspost(main, "7/23/17", "Mages of Heart no longer suffer from the corruption of their own identity, in the most hilariously ironic bug to hit the OCDataStrings yet.<br><Br>Also, ParadoxLands has helpfully provided this explanation for just what the Great Refactoring is.<br><Br><a href = 'images/misc/fanArt/gifs/the_great_refactor.gif'><img width = '300' src = 'images/misc/fanArt/gifs/the_great_refactor.gif'></a>");
     writeNewspost(main, "7/22/17","The Witch of Void and Waste of Mind use The Great Refactoring. A defensive ward of glass and open doors surrounds the allies.");
     writeNewspost(main, "7/21/17", "<span class='void'>Just. Fuck bees.</span>");
     writeNewspost(main, "7/20/17", "The God Tier Waste of Mind (jadedResearcher) is doing... something. It's kind of hard to see. You are definitely blaming the God Tier Witch of Void (paradoxLands), somehow. Everyone seems to be pretty happy about it, though.<span class ='void'>The Waste of Mind and Witch of Void are refactoring like goddamn machines. It's crazy how much refactoring they are doing. How HIGH do you even have to be etc. etc.  ... ... ...  It's going well.</span>");
