@@ -568,13 +568,8 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		ret+= this.class_name + " of " + this.aspect;
 		return ret;
 	}
-	dynamic getRandomLevel(){
-		if(seededRandom() > .5){
-			return getRandomLevelFromAspect(this.aspect);
-		}else{
-			return getRandomLevelFromClass(this.class_name);
-		}
-	}
+
+
 	dynamic getNextLevel(){
 		this.level_index ++;
 		var ret= this.mylevels[this.level_index];
@@ -1146,7 +1141,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			if(friends[i] != this){  //No, Karkat, you can't be your own Kismesis.
 				//one time in a random sim two heirresses decided to kill each other and this was so amazing and canon compliant
 				//that it needs to be a thing.
-				var r = randomBlandRelationship(friends[i]);
+				var r = Relationship.randomBlandRelationship(friends[i]);
 				if(this.isTroll && this.bloodColor == "#99004d" && friends[i].isTroll && friends[i].bloodColor == "#99004d"){
 					r.value = -20; //biological imperitive to fight for throne.
 					this.addStat("sanity", -100);
@@ -1162,7 +1157,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			if(friends[i] != this){  //No, Karkat, you can't be your own Kismesis.
 				//one time in a random sim two heirresses decided to kill each other and this was so amazing and canon compliant
 				//that it needs to be a thing.
-				var r = randomRelationship(friends[i]);
+				var r = Relationship.randomRelationship(friends[i]);
 				if(this.isTroll && this.bloodColor == "#99004d" && friends[i].isTroll && friends[i].bloodColor == "#99004d"){
 					r.value = -20; //biological imperitive to fight for throne.
 					this.addStat("sanity", -10);
@@ -2769,6 +2764,7 @@ dynamic findPlayersWithoutEctobiologicalSource(playerList){
 //have to treat properties that are objects differently. luckily i think those are only player and relationships.
 dynamic clonePlayer(player, session, isGuardian){
 	var clone = new Player();
+	//TODO this is NOT how cloning works anymore.
 	for(var propertyName in player) {
 		if(propertyName == "guardian"){
 			if(!isGuardian){ //no infinite recursion, plz
@@ -2776,11 +2772,9 @@ dynamic clonePlayer(player, session, isGuardian){
 				clone.guardian.guardian = clone;
 		}
 	}else if(propertyName == "relationships"){
-		  //TODO where was this again?
-		clone.relationships = cloneRelationshipsStopgap(player.relationships); //won't actually work, but will let me actually clone the relationships later without modifying originals
+		clone.relationships = Relationship.cloneRelationshipsStopgap(player.relationships); //won't actually work, but will let me actually clone the relationships later without modifying originals
 	}else{
 				clone[propertyName] = player[propertyName];
-	}
 	}
 	return clone;
 }

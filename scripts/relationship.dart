@@ -149,13 +149,15 @@ class Relationship {
 	}
 
 
-  //TODO if i remember right, this is used for alien players. how does Dart handle list of vars again?
+  //TODO if i remember right, this is used for alien players. how does Dart handle list of vars again? oh. it doesn't.
   //is it reflection only?
-  static dynamic cloneRelationship(relationship){
+  static Relationship cloneRelationship(Relationship relationship){
 		Relationship clone = new Relationship();
-		for(var propertyName in relationship) {
-			clone[propertyName] = relationship[propertyName];
-		}
+		clone.value = relationship.value;
+    clone.target = relationship.target;
+    clone.saved_type = relationship.saved_type;
+    clone.drama = relationship.drama; //drama is set to true if type of relationship changes.
+    clone.old_type = relationship.old_type;	//wish class variables were a thing.
 		return clone;
 	}
 
@@ -164,7 +166,7 @@ class Relationship {
 //when i am cloning players, i need to make sure they don't have a reference to the same relationships the original player does.
 //if i fail to do this step, i accidentally give the players the Capgras delusion.
 //this HAS to happen before transferFeelingsToClones.
-  static List<Relationship> cloneRelationshipsStopgap(relationships){
+  static List<Relationship> cloneRelationshipsStopgap(List<Relationship> relationships){
 		//print("clone relationships stopgap");
 		List<Relationship> ret = [];
 		for(num i = 0; i<relationships.length; i++){
@@ -261,7 +263,7 @@ class Relationship {
 
 
 
-  static dynamic randomBlandRelationship(Player targetPlayer){
+  static Relationship randomBlandRelationship(Player targetPlayer){
 		return new Relationship(1, targetPlayer);
 	}
 
