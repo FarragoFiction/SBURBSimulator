@@ -80,4 +80,4 @@ b=%C3%BF%C2%83%C2%9A%05%C3%BD%C3%8C%14%03%C3%BE%C3%BE%1B&s=,,Dave,Karkat,special
 b=uO%15s%C3%BE%C2%A7%00%12%26%26%11&s=,,Hacking,Undead,hackedLifeform
 b=%00%00%003%C3%BE%60%00%04%18%1D%03&s=,,Justice,Funnies,fearlessDreamer
 b=8%22%07%14%C3%BE%C2%9B%00%13%1A%1BC&s=,,Charles Dutton,Online Roleplaying,theBrope
-b=%C2%9CX%00%C2%80%C3%BE%09%00W%0C%0C%16&s=,,Jokes,Video Games,timidDrifter
+b=uC%007%C3%BE%09%00W%0C%0C%16&s=,,Jokes,Video Games,timidDrifter
