@@ -318,7 +318,7 @@ class DoLandQuest extends Scene{
 		if(helper != null && player  != helper ){
 			Relationship r1 = player.getRelationshipWith(helper);
 			Relationship r2 = helper.getRelationshipWith(player);
-			ret += getRelationshipFlavorText(r1,r2, player, helper);
+			ret += Relationship.getRelationshipFlavorText(r1,r2, player, helper);
 		}
 		ret += this.findFraymotif(player, helper);
 		ret += this.spriteContent(player);

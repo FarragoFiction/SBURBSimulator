@@ -140,7 +140,7 @@ class CorpseSmooch extends Scene {
 			Element canvasDiv = querySelector("#canvas"+ divID);
 			this.drawCorpseSmooch(canvasDiv, deadPlayer, royalty, 1000);
 		}else{
-			print("dream self dies from no corpse smooch: " + this.session.session_id);
+			print("dream self dies from no corpse smooch: " + this.session.session_id.toString());
 			deadPlayer.isDreamSelf = true;
 			deadPlayer.causeOfDeath = "sympathetic wounds after real self died unsmooched";
 			this.makeDead(deadPlayer); //dream self dies, too

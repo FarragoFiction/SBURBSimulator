@@ -271,7 +271,7 @@ class QuadrantDialogue extends Scene {
 	dynamic processChatAboutInterests(chats, interest, p1, p2, p1Start, p2Start, relationship1, relationship2){
 		var chosen = getRandomElementFromArray(chats);
 		String chat = "";
-		chat +=  chatLine(p1Start, p1, chosen.line1);
+		chat +=  Scene.chatLine(p1Start, p1, chosen.line1);
 		chat += this.getp2ResponseBasedOnInterests(chosen, interest, p2, p2Start, relationship2);
 		return chat;
 	}
@@ -281,19 +281,19 @@ class QuadrantDialogue extends Scene {
 		if(relationship && relationship.value > 0){
 			if(player.interestedIn(interest)){
 				//print("interested in " + interest);
-				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.responseLinesSharedInterestPositive));
+				chat += Scene.chatLine(playerStart, player, getRandomElementFromArray(chosen.responseLinesSharedInterestPositive));
 			}else{
 				//print("not interested in " + interest);
-				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.genericResponses));
+				chat += Scene.chatLine(playerStart, player, getRandomElementFromArray(chosen.genericResponses));
 			}
 		}else{
 			if(player.interestedIn(interest)){
 				//print("interested in " + interest);
-				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.responseLinesSharedInterestNegative));
+				chat += Scene.chatLine(playerStart, player, getRandomElementFromArray(chosen.responseLinesSharedInterestNegative));
 				//print("adding negative shared interest response: " + chat);
 			}else{
 				//print("not interested in " + interest);
-				chat += chatLine(playerStart, player, getRandomElementFromArray(chosen.genericResponses));
+				chat += Scene.chatLine(playerStart, player, getRandomElementFromArray(chosen.genericResponses));
 			}
 		}
 		return chat;
@@ -366,10 +366,10 @@ class QuadrantDialogue extends Scene {
 		String chat = "";
 		var chosen = getRandomElementFromArray(chats);
 		if(seededRandom() > 0.5){
-			chat +=  chatLine(this.player1Start, this.player1, chosen.line1);
+			chat +=  Scene.chatLine(this.player1Start, this.player1, chosen.line1);
 			chat += chosen.p2GetResponseBasedOnRelationship(this.player2, this.player2Start, relationship2);
 		}else{
-			chat +=  chatLine(this.player2Start, this.player2, chosen.line1);
+			chat +=  Scene.chatLine(this.player2Start, this.player2, chosen.line1);
 			chat += chosen.p2GetResponseBasedOnRelationship(this.player1, this.player1Start, relationship1);
 		}
 		return chat;
@@ -453,52 +453,52 @@ class QuadrantDialogue extends Scene {
 		if(!freakOutWeasel.flipOutReason) return "ERROR: NO ONE IS FLIPPING OUT.";
 		if(freakOutWeasel.flippingOutOverDeadPlayer && freakOutWeasel.flippingOutOverDeadPlayer.dead){
 			var deadRelationship = freakOutWeasel.getRelationshipWith(freakOutWeasel.flippingOutOverDeadPlayer);
-			chat +=  chatLine(p1start, freakOutWeasel, "Oh god. Oh god they are dead. Fuck.");
-			chat +=  chatLine(p2start, shoosher, "Shit. Wait, who is dead?");
-			chat +=  chatLine(p1start, freakOutWeasel,freakOutWeasel.flippingOutOverDeadPlayer.chatHandle + ". Fuck. They died " + freakOutWeasel.flippingOutOverDeadPlayer.causeOfDeath );
-			chat +=  chatLine(p2start, shoosher, "Shit. Weren't they your " + deadRelationship.nounDescription() + "? Fuck.");
-			chat +=  chatLine(p1start, freakOutWeasel, "Yeah. Fuck.");
-			chat +=  chatLine(p2start, shoosher, "Listen. It's okay. Maybe this game has a bullshit way to bring them back?");
-			chat +=  chatLine(p1start, freakOutWeasel, "I hope so.");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Oh god. Oh god they are dead. Fuck.");
+			chat +=  Scene.chatLine(p2start, shoosher, "Shit. Wait, who is dead?");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel,freakOutWeasel.flippingOutOverDeadPlayer.chatHandle + ". Fuck. They died " + freakOutWeasel.flippingOutOverDeadPlayer.causeOfDeath );
+			chat +=  Scene.chatLine(p2start, shoosher, "Shit. Weren't they your " + deadRelationship.nounDescription() + "? Fuck.");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Yeah. Fuck.");
+			chat +=  Scene.chatLine(p2start, shoosher, "Listen. It's okay. Maybe this game has a bullshit way to bring them back?");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "I hope so.");
 		}else if(freakOutWeasel.flippingOutOverDeadPlayer && !freakOutWeasel.flippingOutOverDeadPlayer.dead){
 			var deadRelationship = freakOutWeasel.getRelationshipWith(freakOutWeasel.flippingOutOverDeadPlayer);
-			chat +=  chatLine(p1start, freakOutWeasel, "Jesus fuck, apparently my " + deadRelationship.nounDescription() + ", " + freakOutWeasel.flippingOutOverDeadPlayer.chatHandle + ",  died.");
-			chat +=  chatLine(p2start, shoosher, "Oh god. I'm so sorry.");
-			chat +=  chatLine(p1start, freakOutWeasel, "Apparently they got better? I don't even know how to feel about this.");
-			chat +=  chatLine(p2start, shoosher, "SBURB fucking sucks.");
-			chat +=  chatLine(p1start, freakOutWeasel, "It really, really does.");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Jesus fuck, apparently my " + deadRelationship.nounDescription() + ", " + freakOutWeasel.flippingOutOverDeadPlayer.chatHandle + ",  died.");
+			chat +=  Scene.chatLine(p2start, shoosher, "Oh god. I'm so sorry.");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Apparently they got better? I don't even know how to feel about this.");
+			chat +=  Scene.chatLine(p2start, shoosher, "SBURB fucking sucks.");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "It really, really does.");
 		}else if(freakOutWeasel.flipOutReason.indexOf("doomed time clones") != -1){
-			chat +=  chatLine(p1start, freakOutWeasel, "Oh my god, time really is the shittiest aspect.");
-			chat +=  chatLine(p2start, shoosher, "Everything okay?");
-			chat +=  chatLine(p1start, freakOutWeasel, "Hell no. There are fucking clones of me running around and dying and agreeing to die and fuck...");
-			chat +=  chatLine(p2start, shoosher, "Shoosh, it will be fine. It just proves you are dedicated to beating this game. That's a good thing.");
-			chat +=  chatLine(p1start, freakOutWeasel, "No, it proves THEY are. I haven't done fuck all.");
-			chat +=  chatLine(p2start, shoosher, "Shhhh, there there. They are just you in a slightly different situation. It still reflects well on you.");
-			chat +=  chatLine(p1start, freakOutWeasel, "Yeah. Okay. You're right.");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Oh my god, time really is the shittiest aspect.");
+			chat +=  Scene.chatLine(p2start, shoosher, "Everything okay?");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Hell no. There are fucking clones of me running around and dying and agreeing to die and fuck...");
+			chat +=  Scene.chatLine(p2start, shoosher, "Shoosh, it will be fine. It just proves you are dedicated to beating this game. That's a good thing.");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "No, it proves THEY are. I haven't done fuck all.");
+			chat +=  Scene.chatLine(p2start, shoosher, "Shhhh, there there. They are just you in a slightly different situation. It still reflects well on you.");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Yeah. Okay. You're right.");
 		}else if(freakOutWeasel.flipOutReason.indexOf("Ultimate Goddamned Riddle") != -1){
-			chat +=  chatLine(p1start, freakOutWeasel, "lol lol lololololol");
-			chat +=  chatLine(p2start, shoosher, "Everything okay?");
-			chat +=  chatLine(p1start, freakOutWeasel, "Oh god, it's all so FUCKING hilarious!");
-			chat +=  chatLine(p2start, shoosher, "?");
-			chat +=  chatLine(p1start, freakOutWeasel, "Don't you get it? The goddamned fucking ULTIMATE RIDDLE!?");
-			chat +=  chatLine(p1start, freakOutWeasel, "It was right there, all along! We were always meant to play this fucking game.");
-			chat +=  chatLine(p1start, freakOutWeasel, "And here I thought Skaia didn't have a sense of HUMOR!");
-			chat +=  chatLine(p2start, shoosher, "Okay. You need to calm down. Whatever happened isn't ...well, I was going to say 'the end of the world', but I think that would just set you off again.");
-			chat +=  chatLine(p2start, shoosher, "We aren't giving up, okay? YOU aren't giving up. We can still beat this. So calm your tits.");
-			chat +=  chatLine(p1start, freakOutWeasel, "Yes. Yes. You're right. Of course your are. I'll ... try to focus.");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "lol lol lololololol");
+			chat +=  Scene.chatLine(p2start, shoosher, "Everything okay?");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Oh god, it's all so FUCKING hilarious!");
+			chat +=  Scene.chatLine(p2start, shoosher, "?");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Don't you get it? The goddamned fucking ULTIMATE RIDDLE!?");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "It was right there, all along! We were always meant to play this fucking game.");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "And here I thought Skaia didn't have a sense of HUMOR!");
+			chat +=  Scene.chatLine(p2start, shoosher, "Okay. You need to calm down. Whatever happened isn't ...well, I was going to say 'the end of the world', but I think that would just set you off again.");
+			chat +=  Scene.chatLine(p2start, shoosher, "We aren't giving up, okay? YOU aren't giving up. We can still beat this. So calm your tits.");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Yes. Yes. You're right. Of course your are. I'll ... try to focus.");
 		}else if(freakOutWeasel.flipOutReason.indexOf("they just freaking died") != -1){
-			chat +=  chatLine(p1start, freakOutWeasel, "Well.");
-			chat +=  chatLine(p2start, shoosher, "Shit, are you okay? Jesus fuck I thought I lost you there.");
-			chat +=  chatLine(p1start, freakOutWeasel, "I mean, you did right? I died. That is a thing that is true.");
-			chat +=  chatLine(p2start, shoosher, "What... was it like?");
-			chat +=  chatLine(p1start, freakOutWeasel, "Dying sucks. I do not recommend you try it out.");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Well.");
+			chat +=  Scene.chatLine(p2start, shoosher, "Shit, are you okay? Jesus fuck I thought I lost you there.");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "I mean, you did right? I died. That is a thing that is true.");
+			chat +=  Scene.chatLine(p2start, shoosher, "What... was it like?");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Dying sucks. I do not recommend you try it out.");
 		}else{
-			chat +=  chatLine(p1start, freakOutWeasel, "Fuck. I can't take this anymore.");
-			chat +=  chatLine(p2start, shoosher, "Shit, what's up, talk to me...");
-			chat +=  chatLine(p1start, freakOutWeasel, "God, I don't even know what to say. Everything is just so shitty.");
-			chat +=  chatLine(p2start, shoosher, "It really is. But we aren't going to give up, okay?");
-			chat +=  chatLine(p2start, shoosher, "One foot in front of the other, and we keep going.");
-			chat +=  chatLine(p1start, freakOutWeasel, "Yeah. Okay.");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Fuck. I can't take this anymore.");
+			chat +=  Scene.chatLine(p2start, shoosher, "Shit, what's up, talk to me...");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "God, I don't even know what to say. Everything is just so shitty.");
+			chat +=  Scene.chatLine(p2start, shoosher, "It really is. But we aren't going to give up, okay?");
+			chat +=  Scene.chatLine(p2start, shoosher, "One foot in front of the other, and we keep going.");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Yeah. Okay.");
 		}
 
 		freakOutWeasel.flipOutReason = null;
@@ -546,8 +546,8 @@ class QuadrantDialogue extends Scene {
 	}
 	dynamic getGreeting(r1, r2){
 		String ret = "";
-		ret += chatLine(this.player1Start, this.player1,getRelationshipFlavorGreeting(r1, r2, this.player1, this.player2) + this.getQuadrantASCII(r1));
-		ret += chatLine(this.player2Start, this.player2,getRelationshipFlavorGreeting(r2, r1, this.player2, this.player1)+ this.getQuadrantASCII(r2));
+		ret += Scene.chatLine(this.player1Start, this.player1,getRelationshipFlavorGreeting(r1, r2, this.player1, this.player2) + this.getQuadrantASCII(r1));
+		ret += Scene.chatLine(this.player2Start, this.player2,getRelationshipFlavorGreeting(r2, r1, this.player2, this.player1)+ this.getQuadrantASCII(r2));
 		return ret;
 	}
 	dynamic fareWell(relationship, relationship2){
@@ -558,15 +558,15 @@ class QuadrantDialogue extends Scene {
 
 		var r2 = this.player2.getRelationshipWith(this.player1);
 		if(relationship.value > 0){
-			ret += chatLine(this.player1Start, this.player1, getRandomElementFromArray(goodByes) + this.getQuadrantASCII(relationship));
+			ret += Scene.chatLine(this.player1Start, this.player1, getRandomElementFromArray(goodByes) + this.getQuadrantASCII(relationship));
 		}else{
-			ret += chatLine(this.player1Start, this.player1, getRandomElementFromArray(badByes) + this.getQuadrantASCII(relationship));
+			ret += Scene.chatLine(this.player1Start, this.player1, getRandomElementFromArray(badByes) + this.getQuadrantASCII(relationship));
 		}
 
 		if(r2.value > 0){
-			ret += chatLine(this.player2Start, this.player2, getRandomElementFromArray(badByes)+ this.getQuadrantASCII(relationship));
+			ret += Scene.chatLine(this.player2Start, this.player2, getRandomElementFromArray(badByes)+ this.getQuadrantASCII(relationship));
 		}else{
-			ret += chatLine(this.player2Start, this.player2, getRandomElementFromArray(badByes)+ this.getQuadrantASCII(relationship));
+			ret += Scene.chatLine(this.player2Start, this.player2, getRandomElementFromArray(badByes)+ this.getQuadrantASCII(relationship));
 		}
 
 		return ret;
@@ -642,20 +642,20 @@ class PlusMinusConversationalPair {
 
 
 	dynamic getOpeningLine(player, playerStart){
-		return chatLine(playerStart, player, getRandomElementFromArray(this.openingLines));
+		return Scene.chatLine(playerStart, player, getRandomElementFromArray(this.openingLines));
 	}
 	dynamic getP2ResponseBasedOnBool(player, playerStart, calculatedBool){
 		if(calculatedBool){
-			return chatLine(playerStart, player, getRandomElementFromArray(this.positiveRespones));
+			return Scene.chatLine(playerStart, player, getRandomElementFromArray(this.positiveRespones));
 		}else{ //negative response.
-			return chatLine(playerStart, player, getRandomElementFromArray(this.negativeResponses));
+			return Scene.chatLine(playerStart, player, getRandomElementFromArray(this.negativeResponses));
 		}
 	}
 	dynamic p2GetResponseBasedOnRelationship(player, playerStart, relationship){
 		if(relationship && relationship.value > 0){
-			return chatLine(playerStart, player, getRandomElementFromArray(this.positiveRespones));
+			return Scene.chatLine(playerStart, player, getRandomElementFromArray(this.positiveRespones));
 		}else{ //negative response.
-			return chatLine(playerStart, player, getRandomElementFromArray(this.negativeResponses));
+			return Scene.chatLine(playerStart, player, getRandomElementFromArray(this.negativeResponses));
 		}
 	}
 
@@ -680,15 +680,15 @@ class ConversationalPair {
 		String chat = "";
 		if(relationship.saved_type == relationship.heart || relationship.saved_type == relationship.diamond){
 			if(relationship && relationship.value > 0){
-				chat += chatLine(playerStart, player, getRandomElementFromArray(this.responseLines));
+				chat += Scene.chatLine(playerStart, player, getRandomElementFromArray(this.responseLines));
 			}else{ //i don't love you like i should.
-				chat += chatLine(playerStart, player, getRandomElementFromArray(this.genericResponses));
+				chat += Scene.chatLine(playerStart, player, getRandomElementFromArray(this.genericResponses));
 			}
 		}else{
 			if(relationship && relationship.value < 0){
-				chat += chatLine(playerStart, player, getRandomElementFromArray(this.responseLines));
+				chat += Scene.chatLine(playerStart, player, getRandomElementFromArray(this.responseLines));
 			}else{  //i don't hate you like i should.
-				chat += chatLine(playerStart, player, getRandomElementFromArray(this.genericResponses));
+				chat += Scene.chatLine(playerStart, player, getRandomElementFromArray(this.genericResponses));
 			}
 		}
 		return chat;

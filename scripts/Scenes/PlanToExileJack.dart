@@ -36,19 +36,19 @@ class PlanToExileJack extends Scene {
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 
-		chatText += chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2));
-		chatText += chatLine(player1Start, player1,"So, new plan. Jack is WAY too stabby, we need to exile him.");
+		chatText += Scene.chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2));
+		chatText += Scene.chatLine(player1Start, player1,"So, new plan. Jack is WAY too stabby, we need to exile him.");
 		if(this.smart(player2)){
-				chatText += chatLine(player2Start, player2,"Agreed.");
+				chatText += Scene.chatLine(player2Start, player2,"Agreed.");
 		}else{
-			chatText += chatLine(player2Start, player2,"I don't see how this helps us beat the game.");
-			chatText += chatLine(player1Start, player1,"Look, if we're constantly being stabbed, then we're not exactly climbing our echeladders, right?");
-			chatText += chatLine(player1Start, player1,"Just trust me, we can focus on the game once the stabs stop.");
+			chatText += Scene.chatLine(player2Start, player2,"I don't see how this helps us beat the game.");
+			chatText += Scene.chatLine(player1Start, player1,"Look, if we're constantly being stabbed, then we're not exactly climbing our echeladders, right?");
+			chatText += Scene.chatLine(player1Start, player1,"Just trust me, we can focus on the game once the stabs stop.");
 		}
-		chatText += chatLine(player1Start, player1,"We'll keep up the ruse of exiling the Black Queen.");
-		chatText += chatLine(player1Start, player1,"But also 'accidentally' take out Jack's allies at the same time.");
-		chatText += chatLine(player1Start, player1,"Then, we exile Jack.");
-		chatText += chatLine(player2Start, player2,"Fine.");
+		chatText += Scene.chatLine(player1Start, player1,"We'll keep up the ruse of exiling the Black Queen.");
+		chatText += Scene.chatLine(player1Start, player1,"But also 'accidentally' take out Jack's allies at the same time.");
+		chatText += Scene.chatLine(player1Start, player1,"Then, we exile Jack.");
+		chatText += Scene.chatLine(player2Start, player2,"Fine.");
 
 		return chatText;
 	}
@@ -57,22 +57,22 @@ class PlanToExileJack extends Scene {
 			var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 			String chatText = "";
 
-			chatText += chatLine(player1Start, player1,"In order to beat the game quicker, we will now be exiling Jack.");
+			chatText += Scene.chatLine(player1Start, player1,"In order to beat the game quicker, we will now be exiling Jack.");
 
 			if(this.smart(player2)){
-				chatText += chatLine(player2Start, player2,"Makes sense. How will we pull it off without getting stabbed?");
-				chatText += chatLine(player1Start, player1,"We will continue working with Jack to exile the Black Queen.");
-				chatText += chatLine(player1Start, player1,"While also exiling Jack's allies and weakening him in other ways. With deniability.");
-				chatText += chatLine(player2Start, player2,"Here's hoping it works.");
+				chatText += Scene.chatLine(player2Start, player2,"Makes sense. How will we pull it off without getting stabbed?");
+				chatText += Scene.chatLine(player1Start, player1,"We will continue working with Jack to exile the Black Queen.");
+				chatText += Scene.chatLine(player1Start, player1,"While also exiling Jack's allies and weakening him in other ways. With deniability.");
+				chatText += Scene.chatLine(player2Start, player2,"Here's hoping it works.");
 			}else{
-				chatText += chatLine(player2Start, player2,"What!? No way! He's our ALLY!");
-				chatText += chatLine(player1Start, player1,"You are a fool. His betrayal is inevitable.");
-				chatText += chatLine(player2Start, player2,"Okay. MAYBE he's a little stabby.  But that's part of his charm!");
-				chatText += chatLine(player2Start, player2,"Also, he is way too terrifying to backstab.");
-				chatText += chatLine(player1Start, player1,"Ideally, he will never suspect our treachery.");
-				chatText += chatLine(player1Start, player1,"We will continue working with Jack to exile the Black Queen.");
-				chatText += chatLine(player1Start, player1,"While also exiling Jack's allies and weakening him in other ways. With deniability.");
-				chatText += chatLine(player2Start, player2,"Fuck.");
+				chatText += Scene.chatLine(player2Start, player2,"What!? No way! He's our ALLY!");
+				chatText += Scene.chatLine(player1Start, player1,"You are a fool. His betrayal is inevitable.");
+				chatText += Scene.chatLine(player2Start, player2,"Okay. MAYBE he's a little stabby.  But that's part of his charm!");
+				chatText += Scene.chatLine(player2Start, player2,"Also, he is way too terrifying to backstab.");
+				chatText += Scene.chatLine(player1Start, player1,"Ideally, he will never suspect our treachery.");
+				chatText += Scene.chatLine(player1Start, player1,"We will continue working with Jack to exile the Black Queen.");
+				chatText += Scene.chatLine(player1Start, player1,"While also exiling Jack's allies and weakening him in other ways. With deniability.");
+				chatText += Scene.chatLine(player2Start, player2,"Fuck.");
 			}
 
 			return chatText;
@@ -83,23 +83,23 @@ class PlanToExileJack extends Scene {
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		String chatText = "";
 
-		chatText += chatLine(player1Start, player1,"In order to beat the game quicker, we will now be exiling Jack.");
+		chatText += Scene.chatLine(player1Start, player1,"In order to beat the game quicker, we will now be exiling Jack.");
 
 		if(this.smart(player2)){
-			chatText += chatLine(player2Start, player2,"Agreed.");
-			chatText += chatLine(player1Start, player1,"We will continue working with Jack to exile the Black Queen.");
-			chatText += chatLine(player1Start, player1,"While also exiling Jack's allies and weakening him in other ways. With deniability.");
-			chatText += chatLine(player2Start, player2,"Fine.");
+			chatText += Scene.chatLine(player2Start, player2,"Agreed.");
+			chatText += Scene.chatLine(player1Start, player1,"We will continue working with Jack to exile the Black Queen.");
+			chatText += Scene.chatLine(player1Start, player1,"While also exiling Jack's allies and weakening him in other ways. With deniability.");
+			chatText += Scene.chatLine(player2Start, player2,"Fine.");
 		}else{
-			chatText += chatLine(player2Start, player2,"I don't see how this helps us beat the game.");
-			chatText += chatLine(player1Start, player1,"You are a fool. His betrayal is inevitable.");
-			chatText += chatLine(player2Start, player2,"It might not become relevant until we have left the Medium.");
-			chatText += chatLine(player1Start, player1,"I want nothing to risk our Ascension.");
-			chatText += chatLine(player2Start, player2,"Betraying Jack is a risk of its own.");
-			chatText += chatLine(player1Start, player1,"Ideally, he will never suspect our treachery.");
-			chatText += chatLine(player1Start, player1,"We will continue working with Jack to exile the Black Queen.");
-			chatText += chatLine(player1Start, player1,"While also exiling Jack's allies and weakening him in other ways. With deniability.");
-			chatText += chatLine(player2Start, player2,"I will hold you accountable should this fail.");
+			chatText += Scene.chatLine(player2Start, player2,"I don't see how this helps us beat the game.");
+			chatText += Scene.chatLine(player1Start, player1,"You are a fool. His betrayal is inevitable.");
+			chatText += Scene.chatLine(player2Start, player2,"It might not become relevant until we have left the Medium.");
+			chatText += Scene.chatLine(player1Start, player1,"I want nothing to risk our Ascension.");
+			chatText += Scene.chatLine(player2Start, player2,"Betraying Jack is a risk of its own.");
+			chatText += Scene.chatLine(player1Start, player1,"Ideally, he will never suspect our treachery.");
+			chatText += Scene.chatLine(player1Start, player1,"We will continue working with Jack to exile the Black Queen.");
+			chatText += Scene.chatLine(player1Start, player1,"While also exiling Jack's allies and weakening him in other ways. With deniability.");
+			chatText += Scene.chatLine(player2Start, player2,"I will hold you accountable should this fail.");
 		}
 
 
@@ -113,24 +113,24 @@ class PlanToExileJack extends Scene {
 		var r2 = player2.getRelationshipWith(player1);
 		String chatText = "";
 
-		chatText += chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2));
-		chatText += chatLine(player2Start, player2,getRelationshipFlavorGreeting(r2, r1, player2, player1));
-		chatText += chatLine(player1Start, player1,"So, new plan. Jack is WAY too stabby, we need to exile him.");
+		chatText += Scene.chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2));
+		chatText += Scene.chatLine(player2Start, player2,getRelationshipFlavorGreeting(r2, r1, player2, player1));
+		chatText += Scene.chatLine(player1Start, player1,"So, new plan. Jack is WAY too stabby, we need to exile him.");
 		if(this.smart(player2)){
-			chatText += chatLine(player2Start, player2,"Makes sense. How will we pull it off without getting stabbed?");
-			chatText += chatLine(player1Start, player1,"We keep up the ruse of exiling the Black Queen.");
-			chatText += chatLine(player1Start, player1,"But also 'accidentally' take out Jack's allies at the same time.");
-			chatText += chatLine(player1Start, player1,"Then, we exile Jack.");
-			chatText += chatLine(player2Start, player2,"Here's hoping it works.");
+			chatText += Scene.chatLine(player2Start, player2,"Makes sense. How will we pull it off without getting stabbed?");
+			chatText += Scene.chatLine(player1Start, player1,"We keep up the ruse of exiling the Black Queen.");
+			chatText += Scene.chatLine(player1Start, player1,"But also 'accidentally' take out Jack's allies at the same time.");
+			chatText += Scene.chatLine(player1Start, player1,"Then, we exile Jack.");
+			chatText += Scene.chatLine(player2Start, player2,"Here's hoping it works.");
 		}else{
-			chatText += chatLine(player2Start, player2,"What!? No way! He's our ALLY!");
-			chatText += chatLine(player1Start, player1,"What part of 'stabby' isn't getting through to you?");
-			chatText += chatLine(player1Start, player1,"You can't spell 'backstab' without 'stab'. We have to backstab him first.");
-			chatText += chatLine(player2Start, player2,"But you said it yourself: He's the BEST at stabs!");
-			chatText += chatLine(player1Start, player1,"And that's why we're going to plan this. We'll take out his allies.");
-			chatText += chatLine(player1Start, player1,"And exile him before he knows anything is going on.");
-			chatText += chatLine(player2Start, player2,"I want it on the official record that this is a bad idea.");
-			chatText += chatLine(player1Start, player1,"Yes.");
+			chatText += Scene.chatLine(player2Start, player2,"What!? No way! He's our ALLY!");
+			chatText += Scene.chatLine(player1Start, player1,"What part of 'stabby' isn't getting through to you?");
+			chatText += Scene.chatLine(player1Start, player1,"You can't spell 'backstab' without 'stab'. We have to backstab him first.");
+			chatText += Scene.chatLine(player2Start, player2,"But you said it yourself: He's the BEST at stabs!");
+			chatText += Scene.chatLine(player1Start, player1,"And that's why we're going to plan this. We'll take out his allies.");
+			chatText += Scene.chatLine(player1Start, player1,"And exile him before he knows anything is going on.");
+			chatText += Scene.chatLine(player2Start, player2,"I want it on the official record that this is a bad idea.");
+			chatText += Scene.chatLine(player1Start, player1,"Yes.");
 		}
 
 		return chatText;

@@ -50,26 +50,26 @@ class JackBeginScheming extends Scene {
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 
-		chatText += chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2));
-		chatText += chatLine(player1Start, player1,"So, this Dersite named Jack showed up. Apparently he wants to help us exile the Black Queen?");
-		chatText += chatLine(player1Start, player1,"Something about a grudge?");
-		chatText += chatLine(player1Start, player1,"So I told him we'd see what we could do. ");
+		chatText += Scene.chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2));
+		chatText += Scene.chatLine(player1Start, player1,"So, this Dersite named Jack showed up. Apparently he wants to help us exile the Black Queen?");
+		chatText += Scene.chatLine(player1Start, player1,"Something about a grudge?");
+		chatText += Scene.chatLine(player1Start, player1,"So I told him we'd see what we could do. ");
 		if(this.smart(player2)){
-			chatText += chatLine(player2Start, player2,"You are a fool. Jack is more dangerous than the Queen.");
-			chatText += chatLine(player2Start, player2,"Empowering him will only make this game harder. ");
+			chatText += Scene.chatLine(player2Start, player2,"You are a fool. Jack is more dangerous than the Queen.");
+			chatText += Scene.chatLine(player2Start, player2,"Empowering him will only make this game harder. ");
 			if(this.smart(player1)){
-				chatText +=  chatLine(player1Start, player1,"Yes, and pissing him off will make the game impossible.");
-				chatText +=  chatLine(player1Start, player1,"We need to weaken the Queen anyways. ");
-				chatText +=  chatLine(player1Start, player1,"We just have to be careful not to let him take her ring. ");
-				chatText += chatLine(player2Start, player2,"I don't care.");
-				chatText += chatLine(player1Start, player1,"Yes, I know. Goodbye. ");
+				chatText +=  Scene.chatLine(player1Start, player1,"Yes, and pissing him off will make the game impossible.");
+				chatText +=  Scene.chatLine(player1Start, player1,"We need to weaken the Queen anyways. ");
+				chatText +=  Scene.chatLine(player1Start, player1,"We just have to be careful not to let him take her ring. ");
+				chatText += Scene.chatLine(player2Start, player2,"I don't care.");
+				chatText += Scene.chatLine(player1Start, player1,"Yes, I know. Goodbye. ");
 			}else{
-				chatText +=  chatLine(player1Start, player1,"Well, I'd like to see YOU say 'no' to Jack when he's stabbing you. ");
-				chatText += chatLine(player2Start, player2,"You are a fool.");
+				chatText +=  Scene.chatLine(player1Start, player1,"Well, I'd like to see YOU say 'no' to Jack when he's stabbing you. ");
+				chatText += Scene.chatLine(player2Start, player2,"You are a fool.");
 			}
 		}else{
-			chatText += chatLine(player2Start, player2,"I don't care.");
-			chatText += chatLine(player1Start, player1,"Yes. Well... If you ever do care, ping me and I'll bring you up to speed.");
+			chatText += Scene.chatLine(player2Start, player2,"I don't care.");
+			chatText += Scene.chatLine(player1Start, player1,"Yes. Well... If you ever do care, ping me and I'll bring you up to speed.");
 		}
 		return chatText;
 	}
@@ -77,28 +77,28 @@ class JackBeginScheming extends Scene {
 		var player1Start = player1.chatHandleShort()+ ": ";
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		String chatText = "";
-		chatText += chatLine(player1Start, player1,"In order to beat the Queen, we will be working with a Dersite named Jack to exile her. ");
+		chatText += Scene.chatLine(player1Start, player1,"In order to beat the Queen, we will be working with a Dersite named Jack to exile her. ");
 		if(player2.aspect == "Light" || player2.class_name == "Seer"){
-			chatText += chatLine(player2Start, player2,"... are you SURE that's a good idea?");
+			chatText += Scene.chatLine(player2Start, player2,"... are you SURE that's a good idea?");
 			if(this.smart(player1)){
-				chatText += chatLine(player1Start, player1,"The Queen needs exiled. Jack gaining power is a risk I am willing to take.");
+				chatText += Scene.chatLine(player1Start, player1,"The Queen needs exiled. Jack gaining power is a risk I am willing to take.");
 			}else{
-				chatText += chatLine(player1Start, player1,"Beating this game is the only thing that matters. ");
+				chatText += Scene.chatLine(player1Start, player1,"Beating this game is the only thing that matters. ");
 			}
 		}else if(player2.aspect == "Doom" || player2.aspect == "Mind"){
-			chatText += chatLine(player2Start, player2,"Somehow, I'm getting a bad feeling from this.");
+			chatText += Scene.chatLine(player2Start, player2,"Somehow, I'm getting a bad feeling from this.");
 			if(this.smart(player1)){
-				chatText += chatLine(player1Start, player1,"I commend your foresight. Jack is not to be trusted. But the Queen must be exiled.");
+				chatText += Scene.chatLine(player1Start, player1,"I commend your foresight. Jack is not to be trusted. But the Queen must be exiled.");
 			}else{
-				chatText += chatLine(player1Start, player1,"Your feelings are irrelevant. ");
+				chatText += Scene.chatLine(player1Start, player1,"Your feelings are irrelevant. ");
 			}
 		}else{
-			chatText += chatLine(player2Start, player2,"Cool, side quests for the win.");
-			chatText += chatLine(player2Start, player2,"Anything's gotta be better than taking her head on. I hear she's a huge bitch.");
+			chatText += Scene.chatLine(player2Start, player2,"Cool, side quests for the win.");
+			chatText += Scene.chatLine(player2Start, player2,"Anything's gotta be better than taking her head on. I hear she's a huge bitch.");
 			if(this.smart(player1)){
-				chatText += chatLine(player1Start, player1,"You are a fool. ");
+				chatText += Scene.chatLine(player1Start, player1,"You are a fool. ");
 			}else{
-				chatText += chatLine(player1Start, player1,"We shall win.");
+				chatText += Scene.chatLine(player1Start, player1,"We shall win.");
 			}
 		}
 		return chatText;
@@ -107,27 +107,27 @@ class JackBeginScheming extends Scene {
 		var player1Start = player1.chatHandleShort()+ ": ";
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		String chatText = "";
-		chatText += chatLine(player1Start, player1,"In order to beat the Queen, we will be working with a Dersite named Jack to exile her. ");
+		chatText += Scene.chatLine(player1Start, player1,"In order to beat the Queen, we will be working with a Dersite named Jack to exile her. ");
 		if(player2.aspect == "Light" || player2.class_name == "Seer"){
-			chatText += chatLine(player2Start, player2,"I forsee problems.");
+			chatText += Scene.chatLine(player2Start, player2,"I forsee problems.");
 			if(this.smart(player1)){
-				chatText += chatLine(player1Start, player1,"The Queen needs exiled. Jack gaining power is a risk I am willing to take.");
+				chatText += Scene.chatLine(player1Start, player1,"The Queen needs exiled. Jack gaining power is a risk I am willing to take.");
 			}else{
-				chatText += chatLine(player1Start, player1,"Beating this game is the only thing that matters. ");
+				chatText += Scene.chatLine(player1Start, player1,"Beating this game is the only thing that matters. ");
 			}
 		}else if(player2.aspect == "Doom" || player2.aspect == "Mind"){
-			chatText += chatLine(player2Start, player2,"This endeavor is doomed.");
+			chatText += Scene.chatLine(player2Start, player2,"This endeavor is doomed.");
 			if(this.smart(player1)){
-				chatText += chatLine(player1Start, player1,"I commend your foresight. Jack is not to be trusted. But the Queen must be exiled.");
+				chatText += Scene.chatLine(player1Start, player1,"I commend your foresight. Jack is not to be trusted. But the Queen must be exiled.");
 			}else{
-				chatText += chatLine(player1Start, player1,"Everything in this game is doomed. ");
+				chatText += Scene.chatLine(player1Start, player1,"Everything in this game is doomed. ");
 			}
 		}else{
-			chatText += chatLine(player2Start, player2,"Yes.");
+			chatText += Scene.chatLine(player2Start, player2,"Yes.");
 			if(this.smart(player1)){
-				chatText += chatLine(player1Start, player1,"I will monitor Jack for signs of treachery.");
+				chatText += Scene.chatLine(player1Start, player1,"I will monitor Jack for signs of treachery.");
 			}else{
-				chatText += chatLine(player1Start, player1,"We shall win.");
+				chatText += Scene.chatLine(player1Start, player1,"We shall win.");
 			}
 		}
 		return chatText;
@@ -138,43 +138,43 @@ class JackBeginScheming extends Scene {
 		String chatText = "";
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
-		chatText += chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2));
-		chatText += chatLine(player2Start, player2,getRelationshipFlavorGreeting(r2, r1, player2, player1));
-		chatText += chatLine(player1Start, player1,"So, this Dersite named Jack showed up. Apparently he wants to help us exile the Black Queen?");
-		chatText += chatLine(player1Start, player1,"Something about a grudge?");
-		chatText += chatLine(player1Start, player1,"So I told him we'd see what we could do. ");
+		chatText += Scene.chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2));
+		chatText += Scene.chatLine(player2Start, player2,getRelationshipFlavorGreeting(r2, r1, player2, player1));
+		chatText += Scene.chatLine(player1Start, player1,"So, this Dersite named Jack showed up. Apparently he wants to help us exile the Black Queen?");
+		chatText += Scene.chatLine(player1Start, player1,"Something about a grudge?");
+		chatText += Scene.chatLine(player1Start, player1,"So I told him we'd see what we could do. ");
 		if(player2.aspect == "Light" || player2.class_name == "Seer"){
-			chatText += chatLine(player2Start, player2,"... are you SURE that's a good idea?");
+			chatText += Scene.chatLine(player2Start, player2,"... are you SURE that's a good idea?");
 			if(this.smart(player1)){
-				chatText += chatLine(player1Start, player1,"I'm pretty sure it isn't. But a WORSE idea would have been telling that psycho 'no'.  ");
+				chatText += Scene.chatLine(player1Start, player1,"I'm pretty sure it isn't. But a WORSE idea would have been telling that psycho 'no'.  ");
 			}else{
-				chatText += chatLine(player1Start, player1,"What? Come on, do you really want to fight the Black Queen? This is easy mode!");
+				chatText += Scene.chatLine(player1Start, player1,"What? Come on, do you really want to fight the Black Queen? This is easy mode!");
 			}
 		}else if(player2.aspect == "Doom" || player2.aspect == "Mind"){
-			chatText += chatLine(player2Start, player2,"Somehow, I'm getting a bad feeling from this.");
+			chatText += Scene.chatLine(player2Start, player2,"Somehow, I'm getting a bad feeling from this.");
 			if(this.smart(player1)){
-				chatText += chatLine(player1Start, player1,"Yeah. But we need to get rid of the Black Queen one way or another. We'll just keep an eye on Jack.");
+				chatText += Scene.chatLine(player1Start, player1,"Yeah. But we need to get rid of the Black Queen one way or another. We'll just keep an eye on Jack.");
 			}else{
-				chatText += chatLine(player1Start, player1,"You worry too much. It'll be fine. What's the point of sidequests if you don't do them?");
+				chatText += Scene.chatLine(player1Start, player1,"You worry too much. It'll be fine. What's the point of sidequests if you don't do them?");
 			}
 		}else{
-			chatText += chatLine(player2Start, player2,"Cool, side quests for the win.");
-			chatText += chatLine(player2Start, player2,"Anything's gotta be better than taking her head on. I hear she's a huge bitch.");
+			chatText += Scene.chatLine(player2Start, player2,"Cool, side quests for the win.");
+			chatText += Scene.chatLine(player2Start, player2,"Anything's gotta be better than taking her head on. I hear she's a huge bitch.");
 			if(this.smart(player1)){
-				chatText += chatLine(player1Start, player1,"Well, I don't exactly trust Jack. But it can't hurt to weaken the Queen. ");
+				chatText += Scene.chatLine(player1Start, player1,"Well, I don't exactly trust Jack. But it can't hurt to weaken the Queen. ");
 			}else{
-				chatText += chatLine(player1Start, player1,"Yep, espionage and stuff has to be way easier than a huge boss fight.");
+				chatText += Scene.chatLine(player1Start, player1,"Yep, espionage and stuff has to be way easier than a huge boss fight.");
 			}
 		}
-		chatText += chatLine(player1Start, player1,"On a side note, he's a little stabby. ");
-		chatText += chatLine(player2Start, player2,"!");
+		chatText += Scene.chatLine(player1Start, player1,"On a side note, he's a little stabby. ");
+		chatText += Scene.chatLine(player2Start, player2,"!");
 		if(this.smart(player1)){
-				chatText += chatLine(player1Start, player1,"Yeah. Definitely going to keep an eye on him. ");
+				chatText += Scene.chatLine(player1Start, player1,"Yeah. Definitely going to keep an eye on him. ");
 			}else{
-				chatText += chatLine(player1Start, player1,"But I'm pretty sure at least ONE of those stabs was on accident.");
-				chatText += chatLine(player1Start, player1,"It's... kind of how he says 'hello'?");
+				chatText += Scene.chatLine(player1Start, player1,"But I'm pretty sure at least ONE of those stabs was on accident.");
+				chatText += Scene.chatLine(player1Start, player1,"It's... kind of how he says 'hello'?");
 				if(this.smart(player2)){
-					chatText += chatLine(player2Start, player2,"Why do I even bother?");
+					chatText += Scene.chatLine(player2Start, player2,"Why do I even bother?");
 				}
 			}
 			return chatText;

@@ -10,7 +10,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	GameEntity denizenMinion = null;
 	num maxHornNumber = 73; //don't fuck with this
 	num maxHairNumber = 74; //same
-	GameEntity sprite = null; //gets set to a blank sprite when character is created.
+	Sprite  sprite = null; //gets set to a blank sprite when character is created.
 		bool deriveChatHandle = true;
 	String flipOutReason = null; //if it's null, i'm not flipping my shit.
 	Player flippingOutOverDeadPlayer = null; //don't let this go into url. but, don't flip out if the friend is currently alive, you goof.

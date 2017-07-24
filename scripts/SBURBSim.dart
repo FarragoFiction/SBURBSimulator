@@ -32,6 +32,7 @@ part "v2.0/YellowYardResultController.dart";
 part "ShittyRapEngine/shitty_raps.dart";
 part "navbar.dart"; //handles drawing navbar and url param stuff
 part "debugScenarios.dart"; //handles easter eggs
+part "v2.0/char_creator_helper.dart"; //more easter egg stuff, and oc stuff TODO probably should drag that out sometime.
 
 
 //scenes

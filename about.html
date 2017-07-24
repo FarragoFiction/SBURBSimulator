@@ -119,7 +119,7 @@
 		Q:  How are the PesterChum dialogue things handled?
 
 		A:  Scenes/Intro.js is a good example of how the dialogue works.  First, the scene itself knows whether or not there is dialogue in it. The scene will create an entire dialogue all as a single string, using a helper method called
-		"chatLine" which is kept in scene_controller.js.  Once all the lines are done, it calls "drawChat", in handle_sprites.js.
+		"Scene.chatLine" which is kept in scene_controller.js.  Once all the lines are done, it calls "drawChat", in handle_sprites.js.
 
 		drawChat is reponsible for rendering the players, and rendering the text as lines (seperated by 'new lines' or \n characters) colored in the players' font color. It does this by checking for the players chatHandleInitials at the start of a line.
 

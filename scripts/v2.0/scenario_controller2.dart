@@ -354,11 +354,11 @@ void advertisePatreon(div){
 	var canvasDiv = querySelector("#canvasJRAB"+  (div.attr("id")));
 	String chat = "";
 	chat += "JR: Hey!!! Sorry for the confusion, just bare with me, but this is pretty much the only way I have to talk directly to the Observers! \n";
-	chat += chatLine(playerStart, player,"What the actual fuck?");
+	chat += Scene.chatLine(playerStart, player,"What the actual fuck?");
 	chat += "JR: Don't worry about it. This practically doesn't even concern you.  \n";
 	chat += "JR: So! SBURBSim's Patreon totally reached it's major practicality goals!  You guys are the best!!! <3<3<3  \n";
 	chat += "JR: Money earned past this point'll be to let KR and me focus on SBURBSim rather than trying to pay bills.\n";
-	chat += chatLine(playerStart, player,"Yeah. I'm blocking you, weirdo.");
+	chat += Scene.chatLine(playerStart, player,"Yeah. I'm blocking you, weirdo.");
 	if(checkSimMode() == true){
     return;
   }

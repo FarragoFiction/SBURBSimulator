@@ -39,9 +39,9 @@ class BeTriggered extends Scene{
 				player.flippingOutOverDeadPlayer = null;
 				return false;
 			}
-			if(player.flipOutReason == "being haunted by their own ghost") print("flipping otu over own ghost" + this.session.session_id);
+			if(player.flipOutReason == "being haunted by their own ghost") print("flipping otu over own ghost" + this.session.session_id.toString());
 			//"being haunted by the ghost of the Player they killed"
-				if(player.flipOutReason == "being haunted by the ghost of the Player they killed") print("flipping otu over victim ghost" + this.session.session_id);
+				if(player.flipOutReason == "being haunted by the ghost of the Player they killed") print("flipping otu over victim ghost" + this.session.session_id.toString());
 			///okay. player.flippingOutOverDeadPlayer apparently can be null even if i totally and completely am flipping otu over a dead player. why.
 			//print("preparing to flip my shit. and its about " + player.flipOutReason + " which BETTEr fucking not be about a dead player. " + player.flippingOutOverDeadPlayer);
 			return true; //i am flipping out over not a dead player, thank you very much.

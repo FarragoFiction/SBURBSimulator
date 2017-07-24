@@ -18,7 +18,7 @@ class Intro  extends Scene{
 	String corruptedLand(){
 		if(corruptedOtherLandTitles.indexOf(this.player.land1) != -1 || corruptedOtherLandTitles.indexOf(this.player.land2) != -1 ){
 			this.player.corruptionLevelOther = 100;
-			print("corrupted land" + this.session.session_id);
+			print("corrupted land" + this.session.session_id.toString());
 			return "There is ...something very, very wrong about the " + this.player.land +". ";
 		}
 		return "";
@@ -64,7 +64,7 @@ class Intro  extends Scene{
 			var canvas = querySelector("#canvaskernel"+ divID);
 			var times = findAllAspectPlayers(this.session.players, "Time"); //they don't have to be in the medium, though
 			var timePlayer = getRandomElementFromArray(times); //ironically will probably allow more timeless sessions without crashes.
-			drawTimeGears(canvas, timePlayer);
+			drawTimeGears(canvas);
 			drawSinglePlayer(canvas, timePlayer);
 			String ret = "A " + timePlayer.htmlTitleBasic() + " suddenly warps in from the future. ";
 			if(timePlayer.dead){
@@ -77,12 +77,12 @@ class Intro  extends Scene{
 			//shout out to DinceJof for the great sprite phrase
 			this.player.object_to_prototype.helpPhrase = " used to be a Player like you, until they took a splinter to the timeline, so they know how all this shit works. Super helpful.";
 			this.player.object_to_prototype.player = true;
-			print("time player sprite in session: " + this.session.session_id);
+			print("time player sprite in session: " + this.session.session_id.toString());
 
 		}else if((this.player.dead == true || this.player.isDreamSelf == true || this.player.dreamSelf == false) && seededRandom() > .1){ //if tier 2 is ever a thing, make this 50% instead and have spries very attracted to extra corpes later on as well if they aren't already players or...what would even HAPPEN if you prototyped yourself twice....???
 			String ret = "Through outrageous shenanigans, one of the " + this.player.htmlTitle() + "'s superfluous corpses ends up prototyped into their kernel sprite. <br>";
 			this.player.object_to_prototype =copyGameEntity(this.player, this.player.chatHandle) ;//no, don't say 'corpsesprite';
-			print("player sprite in session: " + this.session.session_id);
+			print("player sprite in session: " + this.session.session_id.toString());
 			this.player.object_to_prototype.helpfulness = 1;
 			this.player.object_to_prototype.helpPhrase = " is interested in trying to figure out how to play the game, since but for shenanigans they would be playing it themselves.";
 			this.player.object_to_prototype.player = true;
@@ -95,9 +95,9 @@ class Intro  extends Scene{
 		var current_mvp = findStrongestPlayer(this.session.players);
 		//print("Entering session, mvp is: " + current_mvp.power);
 		if(this.player.aspect == "Time" && !this.player.object_to_prototype.illegal){
-			return this.session.addImportantEvent(new TimePlayerEnteredSessionWihtoutFrog(this.session, current_mvp.power,this.player) );
+			return this.session.addImportantEvent(new TimePlayerEnteredSessionWihtoutFrog(this.session, current_mvp.power,this.player,null) );
 		}else{
-			return this.session.addImportantEvent(new PlayerEnteredSession(this.session, current_mvp.power,this.player) );
+			return this.session.addImportantEvent(new PlayerEnteredSession(this.session, current_mvp.power,this.player,null) );
 		}
 
 	}
@@ -107,20 +107,20 @@ class Intro  extends Scene{
 			var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 			String chatText = "";
 			if(r1.type() == r1.goodBig){
-				chatText += chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm in the medium!");
+				chatText += Scene.chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm in the medium!");
 			}else{
-				chatText += chatLine(player1Start, player1,"Hey, I'm in the medium!");
+				chatText += Scene.chatLine(player1Start, player1,"Hey, I'm in the medium!");
 			}
 
-			chatText += chatLine(player2Start, player2,"I don't care.");
-			chatText += chatLine(player1Start, player1,"Whoa, uh. Are you okay?");
-			chatText += chatLine(player2Start, player2,"I don't care.");
-			chatText += chatLine(player1Start, player1,"Um...");
-			chatText += chatLine(player2Start, player2,"Fine. Tell me about your Land.");
-			chatText += chatLine(player1Start, player1,"Oh. Um. It's the " + player1.land +".");
-			chatText += chatLine(player2Start, player2,"And your kernel?");
-			chatText += chatLine(player1Start, player1,"A " + player1.object_to_prototype.htmlTitle() +".\n");
-			chatText += chatLine(player2Start, player2,"Social obligation complete. Goodbye.");
+			chatText += Scene.chatLine(player2Start, player2,"I don't care.");
+			chatText += Scene.chatLine(player1Start, player1,"Whoa, uh. Are you okay?");
+			chatText += Scene.chatLine(player2Start, player2,"I don't care.");
+			chatText += Scene.chatLine(player1Start, player1,"Um...");
+			chatText += Scene.chatLine(player2Start, player2,"Fine. Tell me about your Land.");
+			chatText += Scene.chatLine(player1Start, player1,"Oh. Um. It's the " + player1.land +".");
+			chatText += Scene.chatLine(player2Start, player2,"And your kernel?");
+			chatText += Scene.chatLine(player1Start, player1,"A " + player1.object_to_prototype.htmlTitle() +".\n");
+			chatText += Scene.chatLine(player2Start, player2,"Social obligation complete. Goodbye.");
 			return chatText;
 	}
 	dynamic lightChat(player1, player2){
@@ -133,43 +133,43 @@ class Intro  extends Scene{
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		String chatText = "";
 		if(r1.type() == r1.goodBig){
-			chatText += chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm in the medium!");
+			chatText += Scene.chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm in the medium!");
 		}else{
-			chatText += chatLine(player1Start, player1,"Hey, I'm in the medium!");
+			chatText += Scene.chatLine(player1Start, player1,"Hey, I'm in the medium!");
 		}
 
-		chatText += chatLine(player2Start, player2,"Good, what's it like?");
-		chatText += chatLine(player1Start, player1,"It appears to be the " + player1.land +".");
-		chatText += chatLine(player1Start, player1,"I guess it has something to do with my title? I am apparently the ' " + player1.titleBasic() + "'. ");
-		chatText +=chatLine(player2Start, player2,"Whatever THAT means. ");
-		chatText += chatLine(player1Start, player1,"Yes. Also, I prototyped my kernelsprite with a " + player1.object_to_prototype.htmlTitle() +".\n");
+		chatText += Scene.chatLine(player2Start, player2,"Good, what's it like?");
+		chatText += Scene.chatLine(player1Start, player1,"It appears to be the " + player1.land +".");
+		chatText += Scene.chatLine(player1Start, player1,"I guess it has something to do with my title? I am apparently the ' " + player1.titleBasic() + "'. ");
+		chatText +=Scene.chatLine(player2Start, player2,"Whatever THAT means. ");
+		chatText += Scene.chatLine(player1Start, player1,"Yes. Also, I prototyped my kernelsprite with a " + player1.object_to_prototype.htmlTitle() +".\n");
 		if(player1.object_to_prototype.player){
-			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
-			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
+			chatText +=Scene.chatLine(player2Start, player2,"Wait! Isn't that...");
+			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");
 		}else if(player1.isTroll == true && player1.object_to_prototype.lusus){
-			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
-			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
+			chatText +=Scene.chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
+			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
 		}
 		if(player1.object_to_prototype.power>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
-				chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
-				chatText += chatLine(player1Start, player1, "I suspect it will prove to have been a very bad idea.");
+				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
+				chatText += Scene.chatLine(player1Start, player1, "I suspect it will prove to have been a very bad idea.");
 			}else{
-				chatText += chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
-				chatText += chatLine(player1Start, player1, "Agreed.");
+				chatText += Scene.chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
+				chatText += Scene.chatLine(player1Start, player1, "Agreed.");
 			}
 		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
-				chatText += chatLine(player2Start, player2,"What did that do?");
-				chatText += chatLine(player1Start, player1, "I suspect it will prove to have been a very good idea.");
+				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
+				chatText += Scene.chatLine(player1Start, player1, "I suspect it will prove to have been a very good idea.");
 			}else{
-				chatText += chatLine(player2Start, player2,"Huh. That sounds cool.");
-				chatText += chatLine(player2Start, player2,"Yes.");
+				chatText += Scene.chatLine(player2Start, player2,"Huh. That sounds cool.");
+				chatText += Scene.chatLine(player2Start, player2,"Yes.");
 			}
 		}else{
-			chatText += chatLine(player2Start, player2,"What did that do?");
-			chatText += chatLine(player1Start, player1, "I suspect it will prove to have been very pointless.");
+			chatText += Scene.chatLine(player2Start, player2,"What did that do?");
+			chatText += Scene.chatLine(player1Start, player1, "I suspect it will prove to have been very pointless.");
 		}
 		return chatText;
 	}
@@ -183,41 +183,41 @@ class Intro  extends Scene{
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		String chatText = "";
 		if(r1.type() == r1.goodBig){
-			chatText += chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm in the medium!");
+			chatText += Scene.chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm in the medium!");
 		}else{
-			chatText += chatLine(player1Start, player1,"Hey, I'm in the medium!");
+			chatText += Scene.chatLine(player1Start, player1,"Hey, I'm in the medium!");
 		}
 
-		chatText += chatLine(player2Start, player2,"Good, what's it like?");
-		chatText += chatLine(player1Start, player1,"Oh, man, it's the " + player1.land +".");
-		chatText += chatLine(player1Start, player1,"It is so weird! Where even are we compared to our solar system? There's no sun! How does this work!?");
-		chatText +=chatLine(player2Start, player2,"Through bullshit hand-wavy game magic. ");
-		chatText += chatLine(player1Start, player1,"Oh! I prototyped my kernelsprite with a " + player1.object_to_prototype.htmlTitle() +".\n");
+		chatText += Scene.chatLine(player2Start, player2,"Good, what's it like?");
+		chatText += Scene.chatLine(player1Start, player1,"Oh, man, it's the " + player1.land +".");
+		chatText += Scene.chatLine(player1Start, player1,"It is so weird! Where even are we compared to our solar system? There's no sun! How does this work!?");
+		chatText +=Scene.chatLine(player2Start, player2,"Through bullshit hand-wavy game magic. ");
+		chatText += Scene.chatLine(player1Start, player1,"Oh! I prototyped my kernelsprite with a " + player1.object_to_prototype.htmlTitle() +".\n");
 		if(player1.object_to_prototype.player){
-			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
-			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
+			chatText +=Scene.chatLine(player2Start, player2,"Wait! Isn't that...");
+			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");
 		}else if(player1.isTroll == true && player1.object_to_prototype.lusus){
-			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
-			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
+			chatText +=Scene.chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
+			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
 		}
 		if(player1.object_to_prototype.power>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
-				chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
+				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
-				chatText += chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
+				chatText += Scene.chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
 		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
-				chatText += chatLine(player2Start, player2,"What did that do?");
-				chatText += chatLine(player1Start, player1, "So far, it made the enemies look like a  "+player1.object_to_prototype.htmlTitle() + " but I can't wait to find out what else it did!");
-				chatText += chatLine(player2Start, player2,"I don't know, it probably did  nothing.");
+				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
+				chatText += Scene.chatLine(player1Start, player1, "So far, it made the enemies look like a  "+player1.object_to_prototype.htmlTitle() + " but I can't wait to find out what else it did!");
+				chatText += Scene.chatLine(player2Start, player2,"I don't know, it probably did  nothing.");
 			}else{
-				chatText += chatLine(player2Start, player2,"Huh. That sounds cool.");
+				chatText += Scene.chatLine(player2Start, player2,"Huh. That sounds cool.");
 			}
 		}else{
-			chatText += chatLine(player2Start, player2,"What did that do?");
-			chatText += chatLine(player1Start, player1, "So far, it made the enemies look like a  "+player1.object_to_prototype.htmlTitle() + " but I can't wait to find out what else it did!");
+			chatText += Scene.chatLine(player2Start, player2,"What did that do?");
+			chatText += Scene.chatLine(player1Start, player1, "So far, it made the enemies look like a  "+player1.object_to_prototype.htmlTitle() + " but I can't wait to find out what else it did!");
 		}
 		return chatText;
 	}
@@ -231,38 +231,38 @@ class Intro  extends Scene{
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		String chatText = "";
 
-		chatText += chatLine(player1Start, player1,"Oh man, I'm finally in the medium!");
-		chatText += chatLine(player2Start, player2,"Good, what's it like?");
-		chatText += chatLine(player1Start, player1,"It's the " + player1.land +".");
-		chatText += chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+". It's just like something out of a VIDEO GAME!");
-		chatText +=chatLine(player2Start, player2,"lol, it IS a video game, or did you forget?");
-		chatText += chatLine(player1Start, player1,"Well, yeah, but... like... SBURB is not a NORMAL video game. You know what I mean.");
-		chatText += chatLine(player1Start, player1,"ANYWAYS... I prototyped my kernel thingy with a " + player1.object_to_prototype.htmlTitle() +".\n");
+		chatText += Scene.chatLine(player1Start, player1,"Oh man, I'm finally in the medium!");
+		chatText += Scene.chatLine(player2Start, player2,"Good, what's it like?");
+		chatText += Scene.chatLine(player1Start, player1,"It's the " + player1.land +".");
+		chatText += Scene.chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+". It's just like something out of a VIDEO GAME!");
+		chatText +=Scene.chatLine(player2Start, player2,"lol, it IS a video game, or did you forget?");
+		chatText += Scene.chatLine(player1Start, player1,"Well, yeah, but... like... SBURB is not a NORMAL video game. You know what I mean.");
+		chatText += Scene.chatLine(player1Start, player1,"ANYWAYS... I prototyped my kernel thingy with a " + player1.object_to_prototype.htmlTitle() +".\n");
 		if(player1.object_to_prototype.player){
-			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
-			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
+			chatText +=Scene.chatLine(player2Start, player2,"Wait! Isn't that...");
+			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");
 		}else if(player1.isTroll == true && player1.object_to_prototype.lusus){
-			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
-			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
+			chatText +=Scene.chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
+			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
 		}
 		if(player1.object_to_prototype.power>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
-				chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
+				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
-				chatText += chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
+				chatText += Scene.chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
 		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
-				chatText += chatLine(player2Start, player2,"What did that do?");
-				chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.htmlTitle() + " like a customization kind of thing? ");
-				chatText += chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
+				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
+				chatText += Scene.chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.htmlTitle() + " like a customization kind of thing? ");
+				chatText += Scene.chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
 			}else{
-				chatText += chatLine(player2Start, player2,"Huh. That sounds cool.");
+				chatText += Scene.chatLine(player2Start, player2,"Huh. That sounds cool.");
 			}
 		}else{
-			chatText += chatLine(player2Start, player2,"What did that do?");
-			chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.htmlTitle()+ " like a customization kind of thing? ");
+			chatText += Scene.chatLine(player2Start, player2,"What did that do?");
+			chatText += Scene.chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.htmlTitle()+ " like a customization kind of thing? ");
 		}
 		return chatText;
 	}
@@ -276,61 +276,61 @@ class Intro  extends Scene{
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		String chatText = "";
 		if(r1.type() == r1.goodBig){
-			chatText += chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I made it to the medium safely!");
+			chatText += Scene.chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I made it to the medium safely!");
 		}else{
-			chatText += chatLine(player1Start, player1,"Hey, I made it to the medium safely!");
+			chatText += Scene.chatLine(player1Start, player1,"Hey, I made it to the medium safely!");
 		}
 
-		chatText += chatLine(player2Start, player2,"Good, what's it like?");
-		chatText += chatLine(player1Start, player1,"It's the " + player1.land +".");
-		chatText += chatLine(player1Start, player1,"It's chock full of " + player1.land.split("Land of ")[1]+".");
-		chatText +=chatLine(player2Start, player2,"lol");
-		chatText += chatLine(player1Start, player1,"Have you made it in, yet?");
+		chatText += Scene.chatLine(player2Start, player2,"Good, what's it like?");
+		chatText += Scene.chatLine(player1Start, player1,"It's the " + player1.land +".");
+		chatText += Scene.chatLine(player1Start, player1,"It's chock full of " + player1.land.split("Land of ")[1]+".");
+		chatText +=Scene.chatLine(player2Start, player2,"lol");
+		chatText += Scene.chatLine(player1Start, player1,"Have you made it in, yet?");
 		if(this.playerList.indexOf(player2) != -1){
 			if(player1.fromThisSession(this.session)){
-				chatText +=chatLine(player2Start, player2,"Yep, I'm exploring the " + player2.land + ".");
+				chatText +=Scene.chatLine(player2Start, player2,"Yep, I'm exploring the " + player2.land + ".");
 			}else{
-				chatText +=chatLine(player2Start, player2,"Yep, it's weird how similar it is to our session.");
+				chatText +=Scene.chatLine(player2Start, player2,"Yep, it's weird how similar it is to our session.");
 			}
-			chatText += chatLine(player1Start, player1,"Yay! We're SBURB buddies!");
+			chatText += Scene.chatLine(player1Start, player1,"Yay! We're SBURB buddies!");
 		}else{
 			if(player2.aspect != "Time"){
-			chatText +=chatLine(player2Start, player2,"Nope, still waiting.");
-			chatText += chatLine(player1Start, player1,"Aww... I'll make sure to grind extra hard to help you out when you're in!");
-			chatText +=chatLine(player2Start, player2,"Thanks!");
+			chatText +=Scene.chatLine(player2Start, player2,"Nope, still waiting.");
+			chatText += Scene.chatLine(player1Start, player1,"Aww... I'll make sure to grind extra hard to help you out when you're in!");
+			chatText +=Scene.chatLine(player2Start, player2,"Thanks!");
 			}else{
-				chatText +=chatLine(player2Start, player2,"Well... I mean... yes and also no?");
-				chatText +=chatLine(player2Start, player2,"Past me isn't in yet, but current me (which is future me from your perspective) has been in awhile. Time shenanigans. ");
-				chatText += chatLine(player1Start, player1,"!  This game is way more confusing than I thought!");
+				chatText +=Scene.chatLine(player2Start, player2,"Well... I mean... yes and also no?");
+				chatText +=Scene.chatLine(player2Start, player2,"Past me isn't in yet, but current me (which is future me from your perspective) has been in awhile. Time shenanigans. ");
+				chatText += Scene.chatLine(player1Start, player1,"!  This game is way more confusing than I thought!");
 			}
 		}
-		chatText += chatLine(player1Start, player1,"So... I prototyped my kernel thingy with a " + player1.object_to_prototype.htmlTitle() +".\n");
+		chatText += Scene.chatLine(player1Start, player1,"So... I prototyped my kernel thingy with a " + player1.object_to_prototype.htmlTitle() +".\n");
 		if(player1.object_to_prototype.player){
-			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
-			chatText += chatLine(player1Start, player1,":/  Yeah... They figured out a way to not die when they time travel! ");
+			chatText +=Scene.chatLine(player2Start, player2,"Wait! Isn't that...");
+			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... They figured out a way to not die when they time travel! ");
 		}else if(player1.isTroll == true && player1.object_to_prototype.lusus){
-			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
-			chatText += chatLine(player1Start, player1,":/  Yeah... It was so sad when they died. But now I'm happy because SBURB brought them back! ");
-			chatText +=chatLine(player2Start, player2,"Oh, man....");
+			chatText +=Scene.chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
+			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... It was so sad when they died. But now I'm happy because SBURB brought them back! ");
+			chatText +=Scene.chatLine(player2Start, player2,"Oh, man....");
 			return chatText; // too depressing to keep going.
 		}
 		if(player1.object_to_prototype.power>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
-				chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
+				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
-				chatText += chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
+				chatText += Scene.chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
 		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
-				chatText += chatLine(player2Start, player2,"What did that do?");
-				chatText += chatLine(player1Start, player1, "It made the enemies look like a "+player1.object_to_prototype.htmlTitle());
-				chatText += chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
+				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
+				chatText += Scene.chatLine(player1Start, player1, "It made the enemies look like a "+player1.object_to_prototype.htmlTitle());
+				chatText += Scene.chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
 			}else{
-				chatText += chatLine(player2Start, player2,"Huh. That sounds cool.");
+				chatText += Scene.chatLine(player2Start, player2,"Huh. That sounds cool.");
 			}
 		}else{
-			chatText += chatLine(player2Start, player2,"What did that do?");
-			chatText += chatLine(player1Start, player1, "It made the enemies look like a "+player1.object_to_prototype.htmlTitle());
+			chatText += Scene.chatLine(player2Start, player2,"What did that do?");
+			chatText += Scene.chatLine(player1Start, player1, "It made the enemies look like a "+player1.object_to_prototype.htmlTitle());
 		}
 		return chatText;
 	}
@@ -344,38 +344,38 @@ class Intro  extends Scene{
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		String chatText = "";
 		if(r1.type() == r1.goodBig){
-			chatText += chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm in the medium!");
+			chatText += Scene.chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm in the medium!");
 		}else{
-			chatText += chatLine(player1Start, player1,"Hey, I'm in the medium!");
+			chatText += Scene.chatLine(player1Start, player1,"Hey, I'm in the medium!");
 		}
 
-		chatText += chatLine(player2Start, player2,"Good, what's it like?");
-		chatText += chatLine(player1Start, player1,"It's the " + player1.land +".");
-		chatText += chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+".");
-		chatText +=chatLine(player2Start, player2,"lol");
-		chatText += chatLine(player1Start, player1,"So... I prototyped my kernel whatever with a " + player1.object_to_prototype.htmlTitle() +".\n");
+		chatText += Scene.chatLine(player2Start, player2,"Good, what's it like?");
+		chatText += Scene.chatLine(player1Start, player1,"It's the " + player1.land +".");
+		chatText += Scene.chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+".");
+		chatText +=Scene.chatLine(player2Start, player2,"lol");
+		chatText += Scene.chatLine(player1Start, player1,"So... I prototyped my kernel whatever with a " + player1.object_to_prototype.htmlTitle() +".\n");
 		if(player1.isTroll == true && player1.object_to_prototype.lusus){
-			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
-			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
+			chatText +=Scene.chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
+			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
 		}
 		if(player1.object_to_prototype.power>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
-				chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
+				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
-				chatText += chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
+				chatText += Scene.chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
 		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
-				chatText += chatLine(player2Start, player2,"What did that do?");
-				chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.htmlTitle());
-				chatText += chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
+				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
+				chatText += Scene.chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.htmlTitle());
+				chatText += Scene.chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
 			}else{
-				chatText += chatLine(player2Start, player2,"Huh. That sounds cool.");
+				chatText += Scene.chatLine(player2Start, player2,"Huh. That sounds cool.");
 			}
 		}else{
-			chatText += chatLine(player2Start, player2,"What did that do?");
-			chatText += chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.htmlTitle());
+			chatText += Scene.chatLine(player2Start, player2,"What did that do?");
+			chatText += Scene.chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.htmlTitle());
 		}
 		return chatText;
 	}
@@ -389,41 +389,41 @@ class Intro  extends Scene{
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		String chatText = "";
 		if(r1.type() == r1.goodBig){
-			chatText += chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm in the medium!");
+			chatText += Scene.chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm in the medium!");
 		}else{
-			chatText += chatLine(player1Start, player1,"Hey, I'm in the medium!");
+			chatText += Scene.chatLine(player1Start, player1,"Hey, I'm in the medium!");
 		}
 
-		chatText += chatLine(player2Start, player2,"Good, what's it like?");
-		chatText += chatLine(player1Start, player1,"It's the " + player1.land +".");
-		chatText += chatLine(player1Start, player1,"It's so cool! Like something out of a story! I always KNEW I'd have an adventure like this one day!");
-		chatText +=chatLine(player2Start, player2,"lol");
-		chatText += chatLine(player1Start, player1,"So... I prototyped my kernelsprite with a " + player1.object_to_prototype.htmlTitle() +".\n");
+		chatText += Scene.chatLine(player2Start, player2,"Good, what's it like?");
+		chatText += Scene.chatLine(player1Start, player1,"It's the " + player1.land +".");
+		chatText += Scene.chatLine(player1Start, player1,"It's so cool! Like something out of a story! I always KNEW I'd have an adventure like this one day!");
+		chatText +=Scene.chatLine(player2Start, player2,"lol");
+		chatText += Scene.chatLine(player1Start, player1,"So... I prototyped my kernelsprite with a " + player1.object_to_prototype.htmlTitle() +".\n");
 		if(player1.object_to_prototype.player){
-			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
-			chatText += chatLine(player1Start, player1,":/  Yeah... That's a story all on it's own. ");
+			chatText +=Scene.chatLine(player2Start, player2,"Wait! Isn't that...");
+			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... That's a story all on it's own. ");
 		}else if(player1.isTroll == true && player1.object_to_prototype.lusus){
-			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
-			chatText += chatLine(player1Start, player1,":/  Yeah... That probably wouldn't have happened in a story. ");
+			chatText +=Scene.chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
+			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... That probably wouldn't have happened in a story. ");
 
 		}
 		if(player1.object_to_prototype.power>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
-				chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
+				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
-				chatText += chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
+				chatText += Scene.chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
 		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
-				chatText += chatLine(player2Start, player2,"What did that do?");
-				chatText += chatLine(player1Start, player1, "I think it  made the enemies look like a "+player1.object_to_prototype.htmlTitle());
-				chatText += chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
+				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
+				chatText += Scene.chatLine(player1Start, player1, "I think it  made the enemies look like a "+player1.object_to_prototype.htmlTitle());
+				chatText += Scene.chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
 			}else{
-				chatText += chatLine(player2Start, player2,"Huh. That sounds cool.");
+				chatText += Scene.chatLine(player2Start, player2,"Huh. That sounds cool.");
 			}
 		}else{
-			chatText += chatLine(player2Start, player2,"What did that do?");
-			chatText += chatLine(player1Start, player1, "I think it  made the enemies look like a "+player1.object_to_prototype.htmlTitle());
+			chatText += Scene.chatLine(player2Start, player2,"What did that do?");
+			chatText += Scene.chatLine(player1Start, player1, "I think it  made the enemies look like a "+player1.object_to_prototype.htmlTitle());
 		}
 		return chatText;
 	}
@@ -436,50 +436,50 @@ class Intro  extends Scene{
 		var player1Start = player1.chatHandleShort()+ ": ";
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		String chatText = "";
-		chatText += chatLine(player1Start, player1,"I am fucking FINALLY in the medium!");
+		chatText += Scene.chatLine(player1Start, player1,"I am fucking FINALLY in the medium!");
 
-		chatText += chatLine(player2Start, player2,"Good, what's it like?");
-		chatText += chatLine(player1Start, player1,"It's the " + player1.land +".");
-		chatText += chatLine(player1Start, player1,"And I am going to rule it with an iron fist.");
-		chatText +=chatLine(player2Start, player2,"lol");
+		chatText += Scene.chatLine(player2Start, player2,"Good, what's it like?");
+		chatText += Scene.chatLine(player1Start, player1,"It's the " + player1.land +".");
+		chatText += Scene.chatLine(player1Start, player1,"And I am going to rule it with an iron fist.");
+		chatText +=Scene.chatLine(player2Start, player2,"lol");
 		String born = "born";
 		if(player1.isTroll == true){
 			born = "hatched";
 		}
-		chatText += chatLine(player1Start, player1,"Seriously, I was " + born + " for this.");
-		chatText += chatLine(player1Start, player1,"I even prototyped my kernel with a " + player1.object_to_prototype.htmlTitle() +".\n");
+		chatText += Scene.chatLine(player1Start, player1,"Seriously, I was " + born + " for this.");
+		chatText += Scene.chatLine(player1Start, player1,"I even prototyped my kernel with a " + player1.object_to_prototype.htmlTitle() +".\n");
 		if(player1.object_to_prototype.player){
-			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
-			chatText += chatLine(player1Start, player1,"Yes! I already have my first minion! ");
+			chatText +=Scene.chatLine(player2Start, player2,"Wait! Isn't that...");
+			chatText += Scene.chatLine(player1Start, player1,"Yes! I already have my first minion! ");
 		}else	if(player1.isTroll == true && player1.object_to_prototype.lusus){
-			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
-			chatText += chatLine(player1Start, player1,"Yes! Who better to assist me on my epic quest? ");
+			chatText +=Scene.chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
+			chatText += Scene.chatLine(player1Start, player1,"Yes! Who better to assist me on my epic quest? ");
 
 		}
 		if(player1.object_to_prototype.power>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
-				chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
-				chatText += chatLine(player1Start, player1, "Fuck you. It will obviously give me a huge edge in this game.");
+				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
+				chatText += Scene.chatLine(player1Start, player1, "Fuck you. It will obviously give me a huge edge in this game.");
 			}else{
-				chatText += chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
-				chatText += chatLine(player1Start, player1, "Fuck you. It will obviously give me a huge edge in this game.");
-				chatText += chatLine(player2Start, player2,"Eh.");
+				chatText += Scene.chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
+				chatText += Scene.chatLine(player1Start, player1, "Fuck you. It will obviously give me a huge edge in this game.");
+				chatText += Scene.chatLine(player2Start, player2,"Eh.");
 			}
 		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
-				chatText += chatLine(player2Start, player2,"What did that do?");
-				chatText += chatLine(player1Start, player1, "Obviously give me an advantage.");
-				chatText += chatLine(player2Start, player2,"Huh. Probably. ");
+				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
+				chatText += Scene.chatLine(player1Start, player1, "Obviously give me an advantage.");
+				chatText += Scene.chatLine(player2Start, player2,"Huh. Probably. ");
 			}else{
-				chatText += chatLine(player2Start, player2,"What did that do?");
-				chatText += chatLine(player1Start, player1, "Obviously give me an advantage.");
+				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
+				chatText += Scene.chatLine(player1Start, player1, "Obviously give me an advantage.");
 
-				chatText += chatLine(player2Start, player2,"You know, I think you're right.");
+				chatText += Scene.chatLine(player2Start, player2,"You know, I think you're right.");
 			}
 		}else{
-			chatText += chatLine(player2Start, player2,"What did that do?");
-			chatText += chatLine(player1Start, player1, "I'm not sure NOW, but I just know it'll turn out to have been a good idea.");
-			chatText += chatLine(player2Start, player2,"Huh.");
+			chatText += Scene.chatLine(player2Start, player2,"What did that do?");
+			chatText += Scene.chatLine(player1Start, player1, "I'm not sure NOW, but I just know it'll turn out to have been a good idea.");
+			chatText += Scene.chatLine(player2Start, player2,"Huh.");
 		}
 		return chatText;
 	}
@@ -493,42 +493,42 @@ class Intro  extends Scene{
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		String chatText = "";
 		if(r1.type() == r1.goodBig){
-			chatText += chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm in the medium!");
+			chatText += Scene.chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm in the medium!");
 		}else{
-			chatText += chatLine(player1Start, player1,"Hey, I'm in the medium!");
+			chatText += Scene.chatLine(player1Start, player1,"Hey, I'm in the medium!");
 		}
 
-		chatText += chatLine(player2Start, player2,"Good, what's it like?");
-		chatText += chatLine(player1Start, player1,"It's the " + player1.land +".");
-		chatText += chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+". Honestly, I'm a little disappointed in how literal it is.");
-		chatText +=chatLine(player2Start, player2,"lol");
-		chatText += chatLine(player1Start, player1,"So... I prototyped my kernel with a " + player1.object_to_prototype.htmlTitle() +".\n");
+		chatText += Scene.chatLine(player2Start, player2,"Good, what's it like?");
+		chatText += Scene.chatLine(player1Start, player1,"It's the " + player1.land +".");
+		chatText += Scene.chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+". Honestly, I'm a little disappointed in how literal it is.");
+		chatText +=Scene.chatLine(player2Start, player2,"lol");
+		chatText += Scene.chatLine(player1Start, player1,"So... I prototyped my kernel with a " + player1.object_to_prototype.htmlTitle() +".\n");
 		if(player1.object_to_prototype.player){
-			chatText +=chatLine(player2Start, player2,"Wait! Isn't that...");
-			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
+			chatText +=Scene.chatLine(player2Start, player2,"Wait! Isn't that...");
+			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");
 		}else if(player1.isTroll == true && player1.object_to_prototype.lusus){
-			chatText +=chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
-			chatText += chatLine(player1Start, player1,":/  Yeah... Long story. ");
+			chatText +=Scene.chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
+			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
 		}
 		if(player1.object_to_prototype.power>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
-				chatText += chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
+				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
-				chatText += chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
+				chatText += Scene.chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
 		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
-				chatText += chatLine(player2Start, player2,"What did that do?");
-				chatText += chatLine(player1Start, player1, "I'm not sure. Do you think it was symbolic?");
-				chatText += chatLine(player2Start, player2,"No. Probably didn't mean anything at all. I'm sure of it.");
+				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
+				chatText += Scene.chatLine(player1Start, player1, "I'm not sure. Do you think it was symbolic?");
+				chatText += Scene.chatLine(player2Start, player2,"No. Probably didn't mean anything at all. I'm sure of it.");
 			}else{
-				chatText += chatLine(player2Start, player2,"Huh. Probably. Symbolic of something cool.");
+				chatText += Scene.chatLine(player2Start, player2,"Huh. Probably. Symbolic of something cool.");
 			}
 		}else{
-			chatText += chatLine(player2Start, player2,"What did that do?");
-			chatText += chatLine(player1Start, player1, "I'm not sure. Do you think it was symbolic?");
-			chatText += chatLine(player2Start, player2,"Huh. Probably.");
+			chatText += Scene.chatLine(player2Start, player2,"What did that do?");
+			chatText += Scene.chatLine(player1Start, player1, "I'm not sure. Do you think it was symbolic?");
+			chatText += Scene.chatLine(player2Start, player2,"Huh. Probably.");
 		}
 		return chatText;
 	}
@@ -547,19 +547,19 @@ class Intro  extends Scene{
 		if(player2.ectoBiologicalSource == this.session.session_id || player2.ectoBiologicalSource == null){
 			//print(player2.ectoBiologicalSource);
 			if(r1.type() == r1.goodBig){
-				chatText += chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm finally in your session.");
-				chatText += chatLine(player2Start, player2,"Oh wow! What are you going to do? It's not like you have a land or anything...");
-				chatText += chatLine(player1Start, player1,"Eh, I'll get things ready for you guys' reckoning. Mess with the Black Queen. Plus, I can always help out you guys with your Land Quests.");
-				chatText += chatLine(player2Start, player2,"Oh yeah...");
+				chatText += Scene.chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm finally in your session.");
+				chatText += Scene.chatLine(player2Start, player2,"Oh wow! What are you going to do? It's not like you have a land or anything...");
+				chatText += Scene.chatLine(player1Start, player1,"Eh, I'll get things ready for you guys' reckoning. Mess with the Black Queen. Plus, I can always help out you guys with your Land Quests.");
+				chatText += Scene.chatLine(player2Start, player2,"Oh yeah...");
 			}else if(r1.type() == r1.badBig){
-				chatText += chatLine(player1Start, player1, "So I guess today is finally the day you fuck everything up.");
-				chatText += chatLine(player2Start, player2,"God, you are such an asshole. Just because you fucked your session up doesn't mean we will!");
-				chatText += chatLine(player1Start, player1, "You are just not getting it. This game only has one level: fucking everything up.");
+				chatText += Scene.chatLine(player1Start, player1, "So I guess today is finally the day you fuck everything up.");
+				chatText += Scene.chatLine(player2Start, player2,"God, you are such an asshole. Just because you fucked your session up doesn't mean we will!");
+				chatText += Scene.chatLine(player1Start, player1, "You are just not getting it. This game only has one level: fucking everything up.");
 			}else{
-				chatText += chatLine(player1Start, player1,"Hey, I'm finally in your session.");
-				chatText += chatLine(player2Start, player2,"Oh wow! What are you going to do? It's not like you have a land or anything...");
-				chatText += chatLine(player1Start, player1,"Eh, I'll get things ready for you guys' reckoning. Mess with the Black Queen. Plus, I can always help out you guys with your Land Quests.");
-				chatText += chatLine(player2Start, player2,"Oh yeah...");
+				chatText += Scene.chatLine(player1Start, player1,"Hey, I'm finally in your session.");
+				chatText += Scene.chatLine(player2Start, player2,"Oh wow! What are you going to do? It's not like you have a land or anything...");
+				chatText += Scene.chatLine(player1Start, player1,"Eh, I'll get things ready for you guys' reckoning. Mess with the Black Queen. Plus, I can always help out you guys with your Land Quests.");
+				chatText += Scene.chatLine(player2Start, player2,"Oh yeah...");
 			}
 
 
@@ -567,17 +567,17 @@ class Intro  extends Scene{
 				if(player2.dead){
 					//print("player 2 is: " + player2.title())
 					//print(player2);
-					chatText += chatLine(player1Start, player1, "So. Uh. Hey, I'm finally in the new session I was telling you about.");
-					chatText += chatLine(player1Start, player1, "You would have loved it.");
-					chatText += chatLine(player1Start, player1, "Don't worry. I'll make sure it will all have been worth it. A whole new universe, a second chance.");
-					chatText += chatLine(player1Start, player1, "...");
-					chatText += chatLine(player1Start, player1, "Goodbye.");
+					chatText += Scene.chatLine(player1Start, player1, "So. Uh. Hey, I'm finally in the new session I was telling you about.");
+					chatText += Scene.chatLine(player1Start, player1, "You would have loved it.");
+					chatText += Scene.chatLine(player1Start, player1, "Don't worry. I'll make sure it will all have been worth it. A whole new universe, a second chance.");
+					chatText += Scene.chatLine(player1Start, player1, "...");
+					chatText += Scene.chatLine(player1Start, player1, "Goodbye.");
 				}else{
 
-						chatText += chatLine(player1Start, player1,"Hey, I'm finally in the new session.");
-						chatText += chatLine(player2Start, player2,"Ugh. I am just ready to be DONE playing this game.");
-						chatText += chatLine(player1Start, player1,"I know right? At least this time we don't have to worry about all those bullshit sidequests.");
-						chatText += chatLine(player2Start, player2,"Yes, we can just focus on getting ready for the end game.");
+						chatText += Scene.chatLine(player1Start, player1,"Hey, I'm finally in the new session.");
+						chatText += Scene.chatLine(player2Start, player2,"Ugh. I am just ready to be DONE playing this game.");
+						chatText += Scene.chatLine(player1Start, player1,"I know right? At least this time we don't have to worry about all those bullshit sidequests.");
+						chatText += Scene.chatLine(player2Start, player2,"Yes, we can just focus on getting ready for the end game.");
 
 				}
 

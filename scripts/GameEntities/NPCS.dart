@@ -13,6 +13,12 @@ class Carapace extends NPC {
 
 //srites are definitely going to behave differntly soon
 class Sprite extends NPC {
+  String helpPhrase = "provides the requisite amount of gigglesnort hideytalk to be juuuust barely helpful. ";
+  num helpfulness = 0;
+  bool armless = false;
+  bool disaster = false;
+  bool illegal = false; //maybe AR won't help players with ILLEGAL sprites?
+  //TODO make sure when prototyped all your specific shit gets added.
   Sprite(String name, num id, Session session) : super(name, id, session);
 }
 
