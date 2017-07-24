@@ -6,6 +6,7 @@ import 'dart:typed_data';
 import 'dart:collection';
 import 'dart:convert';
 import 'dart:async';
+import "lz-string.dart";
 //import 'package:unittest/unittest.dart';  need to do special shit to use. spend no more than 30 minutes trying to install. maybe this isn't in library, but in other thing?
 //in a different library can import only part by import 'package:lib1/lib1.dart' show foo; might be more useful than doing unit testing here.
 //if dart load time of code is a problem, can chop this up into sub libraries and use lazy or deffered loading.
