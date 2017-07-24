@@ -1,5 +1,6 @@
 part of SBURBSim;
 
+typedef ShenaniganCallback(Element normalDiv, Element newDiv);
 
 class VoidyStuff extends Scene {
 	bool canRepeat = true;
@@ -96,8 +97,10 @@ class VoidyStuff extends Scene {
 			return;
 		}else{ //pick from random array.
 				//TODO is there a dart equivalent to bind?
-				var options = [this.findFraymotif.bind(this,normalDiv,newDiv),this.makeEnemies.bind(this,normalDiv,newDiv), this.makeFriends.bind(this,normalDiv, newDiv),this.dolandQuests.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv)];
-				getRandomElementFromArray(options)();
+				//var options = [this.findFraymotif.bind(this,normalDiv,newDiv),this.makeEnemies.bind(this,normalDiv,newDiv), this.makeFriends.bind(this,normalDiv, newDiv),this.dolandQuests.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv)];
+				var options = [this.findFraymotif, this.makeEnemies, this.makeFriends, this.dolandQuests, this.weakenDesites,this.dolandQuests, this.weakenDesites,this.dolandQuests, this.weakenDesites];
+        ShenaniganCallback chosen = getRandomElementFromArray(options);
+        chosen(normalDiv, newDiv);
 		}
 
 		this.endingPhrase(classDiv, newDiv);
