@@ -53,7 +53,7 @@ class Reckoning extends Scene {
 			intro += "was not on the ball with timeline management. Nothing you can do about it. <Br><Br>GAME OVER.";
 			this.session.doomedTimeline = true;
 			intro += "<br><br>";
-			querySelector("#story").append(intro);
+			querySelector("#story").appendHTML(intro);
 			print("reckoning scratch button");
 			this.session.scratchAvailable = true;
 			renderScratchButton(this.session);

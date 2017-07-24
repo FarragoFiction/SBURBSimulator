@@ -122,10 +122,10 @@ class SolvePuzzles extends Scene {
 		var living = findLivingPlayers(this.session.players);
 		var dead = findDeadPlayers(this.session.players);
 		if(living.length == 1 && dead.length > 2){  //less of a reference if it's just one dead dude.
-			print("SWEET BIKE STUNTS, BRO: " + this.session.session_id);
+			print("SWEET BIKE STUNTS, BRO: " + this.session.session_id.toString());
 			String realSelf = "";
 			if(!this.player1.isDreamSelf && !this.player1.godTier){
-				print("Real self stunting in: " + this.session.session_id);
+				print("Real self stunting in: " + this.session.session_id.toString());
 				realSelf =  "You are duly impressed that they are not a poser who does dreamself stunting.  Realself stunting 5ever, bro.";
 			}
 			return "The " +  this.player1.htmlTitle()  + " is "+ getRandomElementFromArray(bike_quests) + "." + realSelf;

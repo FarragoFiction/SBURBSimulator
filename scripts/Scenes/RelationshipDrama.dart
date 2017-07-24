@@ -38,7 +38,7 @@ class RelationshipDrama extends Scene {
 		var divId = (div.attr("id")) + player1.chatHandle + player1.id;
 		var player1Start = player1.chatHandleShort()+ ": ";
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
-		String canvasHTML = "<br><canvas id;='canvas" + divId +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + divId +"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvasDiv = querySelector("#canvas"+  divId);
 		String chatText = "";
@@ -53,7 +53,7 @@ class RelationshipDrama extends Scene {
 		var raps2 = getRapForPlayer(player2,"",0);
 		chatText += raps2[0];
 		p2score = raps1[1];
-		drawChat(canvasDiv, player1, player2, chatText, repeatTime,"discuss_raps.png");
+		drawChat(canvasDiv, player1, player2, chatText,"discuss_raps.png");
 		if(p1score + p2score > 6){ //it's not winning that calms them down, but sick fires in general.
 			//print("rap sick fires in session: " + this.session.session_id + " score: " + (p1score + p2score))
 			div.append("<img class = 'sickFiresCentered' src ;= 'images/sick_fires.gif'><br> It seems that the " + player1.htmlTitle() + " has been calmed down, for now.");
@@ -76,7 +76,7 @@ class RelationshipDrama extends Scene {
 		var player2 = crush;
 
 		var divID = (div.attr("id")) + "_" + player.chatHandle+"confess_crush_"+crush.chatHandle + player.id;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvasDiv = querySelector("#canvas"+ divID);
 		var player1Start = player1.chatHandleShort()+ ": ";
@@ -103,7 +103,7 @@ class RelationshipDrama extends Scene {
 			chatText += Scene.chatLine(player2Start, player2,"Honestly, I was kind of insulted you hit on everybody BUT ME.");
 			chatText += Scene.chatLine(player1Start, player1,"Holy shit.");
 			this.session.hasHearts = true;
-			makeHeart(player1, player2);
+			Relationship.makeHeart(player1, player2);
 		}else if(r2.saved_type ==r2.badBig){
 			chatText += Scene.chatLine(player2Start, player2, "lol");
 			chatText += Scene.chatLine(player2Start, player2, "You really think I'm dumb enough to fall for that?");
@@ -156,7 +156,7 @@ class RelationshipDrama extends Scene {
 		}
 		relationship.drama = false; //it is consumed.
 		relationship.old_type = relationship.saved_type;
-		drawRelationshipChat(canvasDiv, player1, player2, chatText, 1000);
+		drawRelationshipChat(canvasDiv, player1, player2, chatText);
 
 		if(makeHate == true){
 			player1.sanity += -10;
@@ -182,14 +182,14 @@ class RelationshipDrama extends Scene {
 			narration += this.generateOldOpinion(relationship) + ", but now they can't help but think they are " + this.generateNewOpinion(relationship) + ".";
 			narration += " It's especially tragic that they didn't realize this until the " + crush.htmlTitle() + " died.";
 			div.append(narration);
-			return;
+			return null;
 		}
 		if(player1.number_confessions > 3){
 			//alert("why can't I hold all these feels?");
 			return this.confessTooManyFeeling(div, player, crush); //don't just keep spinning your wheels.
 		}
 		var divID = (div.attr("id")) + "_" + player.chatHandle+"confess_crush_"+crush.chatHandle+ player.id;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvasDiv = querySelector("#canvas"+ divID);
 		var player1Start = player1.chatHandleShort()+ ": ";
@@ -209,7 +209,7 @@ class RelationshipDrama extends Scene {
 			chatText += Scene.chatLine(player2Start, player2,"!");
 			chatText += Scene.chatLine(player2Start, player2,"Wow... I ... I feel the same way!");
 			chatText += Scene.chatLine(player1Start, player1,"Holy shit!");
-			makeHeart(player1, player2);
+			Relationship.makeHeart(player1, player2);
 			this.session.hasHearts = true;
 		}else if(r2.saved_type ==r2.badBig){
 			chatText += Scene.chatLine(player2Start, player2, "lol");
@@ -263,7 +263,7 @@ class RelationshipDrama extends Scene {
 
 		relationship.drama = false; //it is consumed.
 		relationship.old_type = relationship.saved_type;
-		drawRelationshipChat(canvasDiv, player1, player2, chatText, 1000);
+		drawRelationshipChat(canvasDiv, player1, player2, chatText);
 		if(makeHate == true){
 			player1.sanity += -10;
 			r1.value = -20;
@@ -275,7 +275,7 @@ class RelationshipDrama extends Scene {
 		String chatText = "";
 
 		var divID = (div.attr("id")) + "_" + player1.chatHandle+"advice_crush_"+crush.chatHandle + player1.id;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);
@@ -284,14 +284,14 @@ class RelationshipDrama extends Scene {
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = relationship;
 		var r2 = player2.getRelationshipWith(player1);
-		String chatText = "";
+		chatText = "";
 		var trait = whatDontPlayersHaveInCommon(player1, crush);
-		chatText += Scene.chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2));
+		chatText += Scene.chatLine(player1Start, player1,Relationship.getRelationshipFlavorGreeting(r1, r2, player1, player2));
 		chatText += Scene.chatLine(player1Start, player1,"So... " + crush.chatHandle + ", they are " + this.generateNewOpinion(r1) + ", you know?");
 		chatText += Scene.chatLine(player1Start, player1,"Shit...I just want to punch them in their " + trait + " face.");
 		chatText += Scene.chatLine(player1Start, player1,"Fuck. I need to just avoid them. This stupid game is dangerous enough without me flying off the handle. ");
 		chatText += Scene.chatLine(player1Start, player1,"You're always so good at advice.  Thanks!");
-		drawChat(canvasDiv, player1, player2, chatText, 1000,"discuss_hatemance.png");
+		drawChat(canvasDiv, player1, player2, chatText,"discuss_hatemance.png");
 	}
 	void corpseAdvice(div, player1, player2, crush){
 		//alert("tell jadedResearcher you saw corpse advice in session: " + this.session.session_id);
@@ -299,7 +299,7 @@ class RelationshipDrama extends Scene {
 		String chatText = "";
 
 		var divID = (div.attr("id")) + "_" + player1.chatHandle+"advice_crush_"+crush.chatHandle + player1.id;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);
@@ -308,16 +308,16 @@ class RelationshipDrama extends Scene {
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = relationship;
 		var r2 = player2.getRelationshipWith(player1);
-		String chatText = "";
+		 chatText = "";
 		//print("player1: " + player1.title() + 'player2: ' + player2.title())
 		var trait = whatDoPlayersHaveInCommon(player1, crush);
-		chatText += Scene.chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2));
+		chatText += Scene.chatLine(player1Start, player1,Relationship.getRelationshipFlavorGreeting(r1, r2, player1, player2));
 		chatText += Scene.chatLine(player1Start, player1,"So... " + crush.chatHandle + ", they are " + this.generateNewOpinion(r1) + ", you know?");
 	  chatText += Scene.chatLine(player1Start, player1,"Like, maybe I didn't see that at first, but now all I can do is think about how " + trait + " they are.");
 		chatText += Scene.chatLine(player1Start, player1,"Shit... maybe I should just tell them? God, why is it so hard being in love. It's hard and nobody understands.");
 		chatText += Scene.chatLine(player1Start, player1,"You're right. I'm going to tell them. Soon. When the time is right. ");
 		chatText += Scene.chatLine(player1Start, player1,"You're always so good at advice.  Thanks!");
-		drawChat(canvasDiv, player1, player2, chatText, 1000,"discuss_romance.png");
+		drawChat(canvasDiv, player1, player2, chatText,"discuss_romance.png");
 	}
 	dynamic relationshipAdvice(div, player, crush){
 		var relationship = player.getRelationshipWith(crush);
@@ -335,7 +335,7 @@ class RelationshipDrama extends Scene {
 			}
 			narration += " It's a shame the " + player.htmlTitle() + " has nobody to talk to about this. ";
 			div.append(narration);
-			return;
+			return null;
 		}
 		if(player2.dead == true){
 			return this.corpseAdvice(div,player1,player2,crush);
@@ -343,7 +343,7 @@ class RelationshipDrama extends Scene {
 		removeFromArray(player2, this.session.availablePlayers);
 
 		var divID = (div.attr("id")) + "_" + player.chatHandle+"advice_crush_"+crush.chatHandle + player.id;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);
@@ -357,10 +357,10 @@ class RelationshipDrama extends Scene {
 		 //print("Player2: " + player2.title())
 
 		//alert("I am: " + player2.title() + " and my relationship with : " + crush.title() + " is being checked")
-		String chatText = "";
+		 chatText = "";
 
-		chatText += Scene.chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2));
-		chatText += Scene.chatLine(player2Start, player2,getRelationshipFlavorGreeting(r2, r1, player2, player1));
+		chatText += Scene.chatLine(player1Start, player1,Relationship.getRelationshipFlavorGreeting(r1, r2, player1, player2));
+		chatText += Scene.chatLine(player2Start, player2,Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1));
 		chatText += Scene.chatLine(player1Start, player1,"So... " + crush.chatHandle + ", they are " + this.generateNewOpinion(r1) + ", you know?");
 		if(crush.dead == true){
 			player.sanity += -20;  //still hurts that they are dead.
@@ -418,7 +418,7 @@ class RelationshipDrama extends Scene {
 							chatText += Scene.chatLine(player1Start, player1,"I... kind of like you, too?");
 							chatText += Scene.chatLine(player1Start, player1,"I assumed you wouldn't like me back, God, this is so awkward.");
 							chatText += Scene.chatLine(player2Start, player2,"Holy shit.");
-							makeHeart(player1, player2);
+							Relationship.makeHeart(player1, player2);
 						}else{
 							chatText += Scene.chatLine(player1Start, player1,"Fuck. I'm sorry. I just don't feel that way about you. ");
 							chatText += Scene.chatLine(player2Start, player2,"Yeah. I kind of figured. But, I wanted to get that off my chest. ");
@@ -446,7 +446,7 @@ class RelationshipDrama extends Scene {
 				}
 			}
 		}
-		drawChat(canvasDiv, player1, player2, chatText, 1000,"discuss_romance.png");
+		drawChat(canvasDiv, player1, player2, chatText,"discuss_romance.png");
 	}
 	dynamic ventAboutJerk(div, player, jerk){
 		var relationship = player.getRelationshipWith(jerk);
@@ -466,7 +466,7 @@ class RelationshipDrama extends Scene {
 			}
 			narration += " It's a shame the " + player.htmlTitle() + " has nobody to talk to about this. ";
 			div.append(narration);
-			return;
+			return null;
 		}
 
 		if(player2.dead == true){
@@ -474,7 +474,7 @@ class RelationshipDrama extends Scene {
 		}
 		removeFromArray(player2, this.session.availablePlayers);
 		var divID = (div.attr("id")) + "_" + player.chatHandle+"vent_jerk_"+jerk.chatHandle +  player.id;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);
@@ -485,12 +485,12 @@ class RelationshipDrama extends Scene {
 		var r2 = player2.getRelationshipWith(player1);
 		var r2jerk = player2.getRelationshipWith(jerk);
 		if(!r2jerk){
-			print("I am : " + player2.title() + " and jerk is: " + jerk.title() + " and apparently I don't know them. ")
+			print("I am : " + player2.title() + " and jerk is: " + jerk.title() + " and apparently I don't know them. ");
 		}
-		String chatText = "";
+		 chatText = "";
 		var trait = whatDontPlayersHaveInCommon(player1, jerk);
-		chatText += Scene.chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2));
-		chatText += Scene.chatLine(player2Start, player2,getRelationshipFlavorGreeting(r2, r1, player2, player1));
+		chatText += Scene.chatLine(player1Start, player1,Relationship.getRelationshipFlavorGreeting(r1, r2, player1, player2));
+		chatText += Scene.chatLine(player2Start, player2,Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1));
 		chatText += Scene.chatLine(player1Start, player1,"Oh my god, I can't STAND " + jerk.chatHandle + ", they are " + this.generateNewOpinion(r1) + ", you know?");
 		if(jerk.dead == true){
 			chatText += Scene.chatLine(player2Start, player2,"Do you really want to speak ill of the dead?");
@@ -532,7 +532,7 @@ class RelationshipDrama extends Scene {
 				}
 			}
 		}
-		drawChat(canvasDiv, player1, player2, chatText, 1000,"discuss_hatemance.png");
+		drawChat(canvasDiv, player1, player2, chatText,"discuss_hatemance.png");
 
 	}
 	void antagonizeJerk(div, player, jerk){
@@ -552,7 +552,7 @@ class RelationshipDrama extends Scene {
 		}
 		removeFromArray(jerk, this.session.availablePlayers);
 		var divID = (div.attr("id")) + "_" + player.chatHandle+"antagonize_jerk_"+jerk.chatHandle + player.id;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvasDiv = querySelector("#canvas"+ divID);
 		//different format for canvas code
@@ -563,10 +563,10 @@ class RelationshipDrama extends Scene {
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = relationship;
 		var r2 = player2.getRelationshipWith(player1);
-		String chatText = "";
+		chatText = "";
 
-		chatText += Scene.chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2));
-		chatText += Scene.chatLine(player2Start, player2,getRelationshipFlavorGreeting(r2, r1, player2, player1));
+		chatText += Scene.chatLine(player1Start, player1,Relationship.getRelationshipFlavorGreeting(r1, r2, player1, player2));
+		chatText += Scene.chatLine(player2Start, player2,Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1));
 		chatText += Scene.chatLine(player1Start, player1,"You are " + this.generateNewOpinion(r1) + ", you know that?");
 		r2.decrease();
 		if(r2.saved_type == r2.badBig){
@@ -576,7 +576,7 @@ class RelationshipDrama extends Scene {
 			var trait2 = whatDontPlayersHaveInCommon(player2, player1);
 			chatText += Scene.chatLine(player1Start, player1,"God, why are you so " + trait + "?");
 			chatText += Scene.chatLine(player2Start, player2,"Fuck you, at least I'm not " + trait2 + "!");
-			makeSpades(player1, player2);
+			Relationship.makeSpades(player1, player2);
 			this.session.hasSpades = true;
 			if(seededRandom() > .5){
 				this.celebratoryRapBattle(div, player1, player2);
@@ -602,10 +602,11 @@ class RelationshipDrama extends Scene {
 			}else{
 				if(player1.isTroll == true){
 					chatText += Scene.chatLine(player1Start, player1,"Fuck.");
+
 				}
 			}
 		}
-		drawRelationshipChat(canvasDiv, player1, player2, chatText, 1000);
+		drawRelationshipChat(canvasDiv, player1, player2, chatText);
 	}
 	dynamic getBestFriendBesidesCrush(player, crush){
 		var living = findLivingPlayers(this.session.players);
@@ -630,6 +631,32 @@ class RelationshipDrama extends Scene {
 			return player.getBestFriendFromList(living,"getLivingBestFriendBesidesCrush"+living);
 		}
 		return null;
+	}
+
+	dynamic renderForPlayer(div, Player player){
+		var player1 = player;
+		var relationships = player.getRelationshipDrama();
+
+		for(var j = 0; j<relationships.length; j++){
+			var r = relationships[j];
+			if(r.type() == r.goodBig){
+				if(player.getStat("sanity") > 1){
+					this.confessFeelings(div, player, r.target);
+				}else{
+					this.relationshipAdvice(div, player, r.target);
+				}
+			}else if(r.type() == r.badBig){
+				if(player.getStat("sanity") > 1){
+					this.ventAboutJerk(div, player, r.target);
+				}else{
+					this.antagonizeJerk(div, player, r.target); //not thinking clearly, gonna start shit.
+				}
+			}else{
+				//narration. but is it really worth it for something so small?
+				//debug("tiny drama")
+			}
+
+		}
 	}
 
 	@override
