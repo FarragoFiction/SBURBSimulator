@@ -163,9 +163,9 @@ bool printCorruptionMessage(String msg, String url, String lineNo, String column
 
     var words = getRandomElementFromArray(rand);
     words = Zalgo.generate(words);
-    var plea = start + "style ;= 'color: " +getColorFromAspect(player.aspect) +"; " + end +str + words+ "</b>"
+    var plea = start + "style ;= 'color: " +getColorFromAspect(player.aspect) +"; " + end +str + words+ "</b>";
     //print(getColorFromAspect(getRandomElementFromArray(curSessionGlobalVar.players).aspect+";") )
-    querySelector("#story").append(plea);
+    querySelector("#story").appendHTML(plea);
   }
 
   for(int i = 0; i<3; i++){
