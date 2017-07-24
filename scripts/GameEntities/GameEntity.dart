@@ -47,6 +47,33 @@ class GameEntity implements Comparable{
     return this.htmlTitle().replaceAll(new RegExp(r"\s", multiLine:true), '').replaceAll(new RegExp(r"'", multiLine:true), ''); //no spces probably trying to use this for a div
   }
 
+  void addPrototyping(GameEntity object) {
+    this.name = object.name + this.name; //sprite becomes puppetsprite.
+    this.fraymotifs.addAll(object.fraymotifs);
+    if(object.fraymotifs.length == 0){
+      var f = new Fraymotif([], object.name + "Sprite Beam!", 1);
+      f.effects.push(new FraymotifEffect("power",2,true)); //do damage
+      f.effects.push(new FraymotifEffect("hp",1,true)); //heal
+      f.flavorText = " An appropriately themed beam of light damages enemies and heals allies. ";
+      this.fraymotifs.add(f);
+    }
+    this.corrupted = object.corrupted;
+    if(this is Sprite && object is PotentialSprite) {
+      Sprite s = this;
+      PotentialSprite ps = object;
+      s.helpfulness = ps.helpfulness; //completely overridden.
+      s.helpPhrase = ps.helpPhrase;
+      s.grist += ps.grist;
+      s.lusus = ps.lusus;
+      s.illegal = ps.illegal;
+      s.player = ps.player;
+    }
+    for(String key in object.stats.keys) {
+      addStat(key, object.stats[key]); //add your stats to my stas.
+    }
+
+  }
+
   //handles cloning generic stuff
   GameEntity clone() {
       GameEntity clonege = new GameEntity(name, id, session);

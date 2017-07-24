@@ -130,5 +130,5 @@ abstract class IntroScene {
   bool trigger(List<Player> playerList, Player player);
 
   //each scene should handle rendering itself, whether via text or canvas
-  void renderContent(var div);
+  void renderContent(Element div, num i);
 }

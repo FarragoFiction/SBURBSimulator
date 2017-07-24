@@ -17,6 +17,8 @@ class Sprite extends NPC {
   num helpfulness = 0;
   bool armless = false;
   bool disaster = false;
+  bool lusus = false; //HAVE to be vars or can't inherit through prototyping.
+  bool player = false;
   bool illegal = false; //maybe AR won't help players with ILLEGAL sprites?
   //TODO make sure when prototyped all your specific shit gets added.
   Sprite(String name, num id, Session session) : super(name, id, session);
@@ -48,17 +50,10 @@ class PotentialSprite extends NPC {
   num helpfulness = 0;
   bool armless = false;
   bool disaster = false;
+  bool lusus = false; //HAVE to be vars or can't inherit through prototyping.
+  bool player = false;
   bool illegal = false; //maybe AR won't help players with ILLEGAL sprites?
   PotentialSprite(String name, num id, Session session): super(name, id, session);
-}
-
-class PlayerSprite extends PotentialSprite {
-  PlayerSprite(String name, num id, Session session): super(name, id, session);
-}
-
-//eventually guardians/lusii will DEFINITELY behave different
-class Lusus extends PotentialSprite {
-  Lusus(String name, num id, Session session) : super(name, id, session);
 }
 
 

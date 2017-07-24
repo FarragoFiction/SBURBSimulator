@@ -57,9 +57,10 @@ class Intro  extends IntroScene{
 			}
 	}
 	String changePrototyping(div){
-		if(this.player.object_to_prototype.power > 200 && seededRandom() > .8){
+	  String ret = "";
+		if(this.player.object_to_prototype.getStat("power") > 200 && seededRandom() > .8){
 			var divID = (div.attr("id"));
-			String canvasHTML = "<br><canvas id;='canvaskernel" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+			String canvasHTML = "<br><canvas id;='canvaskernel" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 			div.append(canvasHTML);
 			var canvas = querySelector("#canvaskernel"+ divID);
 			var times = findAllAspectPlayers(this.session.players, "Time"); //they don't have to be in the medium, though
@@ -72,8 +73,8 @@ class Intro  extends IntroScene{
 			}
 			ret += " They come with a dire warning of a doomed timeline. ";
 			ret += "They dropkick the " + this.player.object_to_prototype.htmlTitle() + " out of the way and jump into the " + this.player.htmlTitleBasic() + "'s kernel sprite instead. <br> ";
-			this.player.object_to_prototype = new PlayerSprite(timePlayer.chatHandle, 0, this.session);
-      this.player.object_to_prototype.clone(timePlayer);
+			this.player.object_to_prototype = timePlayer.clone;
+      this.player.object_to_prototype.name = timePlayer.chatHandle;
 			this.player.object_to_prototype.helpfulness = 1;
 			//shout out to DinceJof for the great sprite phrase
 			this.player.object_to_prototype.helpPhrase = " used to be a Player like you, until they took a splinter to the timeline, so they know how all this shit works. Super helpful.";
@@ -81,14 +82,14 @@ class Intro  extends IntroScene{
 
 		}else if((this.player.dead == true || this.player.isDreamSelf == true || this.player.dreamSelf == false) && seededRandom() > .1){ //if tier 2 is ever a thing, make this 50% instead and have spries very attracted to extra corpes later on as well if they aren't already players or...what would even HAPPEN if you prototyped yourself twice....???
 			String ret = "Through outrageous shenanigans, one of the " + this.player.htmlTitle() + "'s superfluous corpses ends up prototyped into their kernel sprite. <br>";
-			this.player.object_to_prototype =copyGameEntity(this.player, this.player.chatHandle) ;//no, don't say 'corpsesprite';
+			this.player.object_to_prototype =this.player.clone() ;//no, don't say 'corpsesprite';
+      this.player.object_to_prototype.name = this.player.chatHandle;
 			print("player sprite in session: " + this.session.session_id.toString());
 			this.player.object_to_prototype.helpfulness = 1;
 			this.player.object_to_prototype.helpPhrase = " is interested in trying to figure out how to play the game, since but for shenanigans they would be playing it themselves.";
-			this.player.object_to_prototype.player = true;
 
 		}
-		div.append(ret);
+		div.appendHtml(ret);
 		return "";
 	}
 	dynamic addImportantEvent(){
@@ -129,9 +130,7 @@ class Intro  extends IntroScene{
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 
-		var player1Start = player1.chatHandleShort()+ ": ";
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
-		String chatText = "";
+    String chatText = "";
 		if(r1.type() == r1.goodBig){
 			chatText += Scene.chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm in the medium!");
 		}else{
@@ -179,9 +178,7 @@ class Intro  extends IntroScene{
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 
-		var player1Start = player1.chatHandleShort()+ ": ";
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
-		String chatText = "";
+    String chatText = "";
 		if(r1.type() == r1.goodBig){
 			chatText += Scene.chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm in the medium!");
 		}else{
@@ -227,8 +224,6 @@ class Intro  extends IntroScene{
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 
-		var player1Start = player1.chatHandleShort()+ ": ";
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		String chatText = "";
 
 		chatText += Scene.chatLine(player1Start, player1,"Oh man, I'm finally in the medium!");
@@ -272,9 +267,7 @@ class Intro  extends IntroScene{
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 
-		var player1Start = player1.chatHandleShort()+ ": ";
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
-		String chatText = "";
+  	String chatText = "";
 		if(r1.type() == r1.goodBig){
 			chatText += Scene.chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I made it to the medium safely!");
 		}else{
@@ -340,8 +333,6 @@ class Intro  extends IntroScene{
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 
-		var player1Start = player1.chatHandleShort()+ ": ";
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		String chatText = "";
 		if(r1.type() == r1.goodBig){
 			chatText += Scene.chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm in the medium!");
@@ -385,8 +376,6 @@ class Intro  extends IntroScene{
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 
-		var player1Start = player1.chatHandleShort()+ ": ";
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		String chatText = "";
 		if(r1.type() == r1.goodBig){
 			chatText += Scene.chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm in the medium!");
@@ -433,9 +422,7 @@ class Intro  extends IntroScene{
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 
-		var player1Start = player1.chatHandleShort()+ ": ";
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
-		String chatText = "";
+  	String chatText = "";
 		chatText += Scene.chatLine(player1Start, player1,"I am fucking FINALLY in the medium!");
 
 		chatText += Scene.chatLine(player2Start, player2,"Good, what's it like?");
@@ -489,9 +476,7 @@ class Intro  extends IntroScene{
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 
-		var player1Start = player1.chatHandleShort()+ ": ";
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
-		String chatText = "";
+  	String chatText = "";
 		if(r1.type() == r1.goodBig){
 			chatText += Scene.chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm in the medium!");
 		}else{
@@ -540,9 +525,7 @@ class Intro  extends IntroScene{
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 
-		var player1Start = player1.chatHandleShort()+ ": ";
-		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
-		String chatText = "";
+  	String chatText = "";
 
 		if(player2.ectoBiologicalSource == this.session.session_id || player2.ectoBiologicalSource == null){
 			//print(player2.ectoBiologicalSource);
@@ -582,7 +565,7 @@ class Intro  extends IntroScene{
 				}
 
 		}
-		drawChat(querySelector("#canvas"+ (div.attr("id"))), player1, player2, chatText, repeatTime,"discuss_sburb.png");
+		drawChat(querySelector("#canvas"+ (div.attr("id"))), player1, player2, chatText,"discuss_sburb.png");
 		return null;
 	}
 	dynamic getChat(player1, player2, div){
@@ -626,7 +609,7 @@ class Intro  extends IntroScene{
 	}
 	dynamic chat(div){
 		num repeatTime = 1000;
-		String canvasHTML = "<br><canvas id;='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + (div.attr("id")) +"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		//first, find/make pesterchum skin. Want it to be no more than 300 tall for now.
 		//then, have some text I want to render to it.
@@ -644,8 +627,8 @@ class Intro  extends IntroScene{
 
 
 		if(player2 == null){
-			return div.append(this.content()); //give up, forever alone.
-
+			//div.append(""); //give up, forever alone.
+      return;
 		}
 
 
@@ -655,14 +638,14 @@ class Intro  extends IntroScene{
 			return;
 		}
 		//alien chat won't get here, renders itself cause can talk to dead
-		drawChat(querySelector("#canvas"+ (div.attr("id"))), player1, player2, chatText, repeatTime,"discuss_sburb.png");
+		drawChat(querySelector("#canvas"+ (div.attr("id"))), player1, player2, chatText,"discuss_sburb.png");
 	}
 	@override
 	void renderContent(div, i){
 		//foundRareSession(div, "This is just a test. " + this.session.session_id);
-		String canvasHTML = "<canvas style;='display:none' class = 'charSheet' id;='firstcanvas" + this.player.id+"_" + this.session.session_id+"' width='400' height;='1000'>  </canvas>";
+		String canvasHTML = "<canvas style;='display:none' class = 'charSheet' id;='firstcanvas" + this.player.id.toString()+"_" + this.session.session_id.toString()+"' width='400' height;='1000'>  </canvas>";
 		div.append(canvasHTML);
-		var canvasDiv = querySelector("#firstcanvas"+ this.player.id+"_" + this.session.session_id);
+		var canvasDiv = querySelector("#firstcanvas"+ this.player.id.toString()+"_" + this.session.session_id.toString());
 		drawCharSheet(canvasDiv,this.player);
 		this.player.generateDenizen();
 		var alt = this.addImportantEvent();
@@ -674,10 +657,10 @@ class Intro  extends IntroScene{
 		if(this.player.land == null){
 			//print("This session is:  " + this.session.session_id + " and the " + this.player.title() + " is from session: " + this.player.ectoBiologicalSource + " and their land is: " + this.player.land);
 		}
-		if(!this.player.fromThisSession(this.session) || !this.player.land){
+		if(!this.player.fromThisSession(this.session) || this.player.land != null){
 			narration += "<br>The " + this.player.htmlTitle() + " has been in contact with the native players of this session for most of their lives. It's weird how time flows differently between universes. Now, after inumerable shenanigans, they will finally be able to meet up face to face.";
 			if(this.player.dead==true){
-				print(session.session_id + " dead player enters, " +this.player.title())
+				print(session.session_id.toString() + " dead player enters, " +this.player.title());
 				narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably. I...I guess time flowing differently between universes is still a thing that is true, and they were able to contact them even before they died.  Shit, this is extra tragic.  <br>";
 				div.append(narration);
 				this.session.availablePlayers.add(this.player);
@@ -699,12 +682,12 @@ class Intro  extends IntroScene{
 				narration += " They appear to be destined for greatness. ";
 			}
 
-			if(this.player.minLuck + this.player.maxLuck >25){
+			if(this.player.getStat("minLuck") + this.player.getStat("maxLuck") >25){
 				//print("initially lucky player: " +this.session.session_id);
 				narration += " They have aaaaaaaall the luck. All of it.";
 			}
 
-			if(this.player.maxLuck < -25){
+			if(this.player.getStat("maxLuck") < -25){
 				//print("initially unlucky player: " +this.session.session_id);
 				narration += " They have an insurmountable stockpile of TERRIBLE LUCK.";
 			}
@@ -715,7 +698,7 @@ class Intro  extends IntroScene{
 			}
 
 			if(this.player.dead==true){
-				print(session.session_id + " dead player enters, " +this.player.title())
+				print(session.session_id.toString() + " dead player enters, " +this.player.title());
 				narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably. I...I guess their GHOST or something is making sure their house and corpse makes it into the medium? And their client player, as appropriate. Their kernel somehow gets prototyped with a "+this.player.object_to_prototype.htmlTitle() + ". ";
 				this.player.timesDied ++;
 				this.session.availablePlayers.add(this.player);
@@ -766,7 +749,7 @@ class Intro  extends IntroScene{
 		this.chat(div);
 		this.session.availablePlayers.add(this.player);
 	}
-	void content(div, i){
+	void content(){
 		//String ret = " TODO: Figure out what a non 2.0 version of the Intro scene would look like. ";
 		//div.append(ret);
 	}
