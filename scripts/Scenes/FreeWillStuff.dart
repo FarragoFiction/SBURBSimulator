@@ -312,7 +312,7 @@ class FreeWillStuff extends Scene{
 						if(player == patsy){
 							loop = "You get dizzy trying to follow the time logic that must have caused this to happen. Did they only go crazy because their future self went crazy because THEIR future self went crazy....? Or wait, is this a doomed time clone...? Fuck. Time is the shittiest aspect.";
 							//print(player.title() +" convincing past/future self to go murder mode " + this.session.session_id);
-						}else if(player.aspect == "Time" && seededRandom>.25){ //most manipulative time bastards are from teh future
+						}else if(player.aspect == "Time" && seededRandom()>.25){ //most manipulative time bastards are from teh future
 							timeIntro = " from the future";
 						}
 						//print("forcing someone else to be flipping shit");

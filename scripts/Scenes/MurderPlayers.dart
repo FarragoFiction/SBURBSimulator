@@ -27,7 +27,7 @@ class MurderPlayers extends Scene {
 
 		if(player.isDreamSelf == true && player.godDestiny == false && player.godTier == false){
 			var current_mvp = findStrongestPlayer(this.session.players);
-			return this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
+			return this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player,null) );
 		}
 	}
 
@@ -79,7 +79,7 @@ class MurderPlayers extends Scene {
 	}
 	void renderMurder(div, murderer, victim){
 		var divID = (div.attr("id")) + "_" + victim.chatHandle;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);
 
@@ -96,7 +96,7 @@ class MurderPlayers extends Scene {
 	void renderDiamonds(div, murderer, diamond){
 
 		var divID = (div.attr("id")) + "_" + diamond.chatHandle;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);
 
@@ -111,16 +111,13 @@ class MurderPlayers extends Scene {
 		var diSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 		drawDiamond(diSpriteBuffer);
 		copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,175,0);
-
-		setTimeout((){
-			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
-			copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,150,0);
-		},1000);
+		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
+		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,150,0);
 	}
 	void renderClubs(div, murderer, victim, club){
 		//alert("clubs)")
 		var divID = (div.attr("id")) + "_" + club.chatHandle;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);
 
@@ -131,27 +128,25 @@ class MurderPlayers extends Scene {
 		drawSprite(vSpriteBuffer,victim);
 
 		var dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-		drawSpriteTurnways(dSpriteBuffer,club)  //facing non-middle leafs
+		drawSpriteTurnways(dSpriteBuffer,club);  //facing non-middle leafs
 
 		//used to check if troll was involved. what the fuck ever. everybody uses the quadrant system. it's just easier.
 		var diSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-		drawClub(diSpriteBuffer,1000) //Auspisticism
+		drawClub(diSpriteBuffer); //Auspisticism
 		copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,475,50);
 
-		setTimeout((){
-			copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
-			copyTmpCanvasToRealCanvasAtPos(canvas, vSpriteBuffer,200,0);
-			copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,500,0);
-		},1000);
+		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
+		copyTmpCanvasToRealCanvasAtPos(canvas, vSpriteBuffer,200,0);
+		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,500,0);
 	}
 	dynamic contentForRender(div){
 		var livePlayers = this.session.availablePlayers; //just because they are alive doesn't mean they are in the medium
 		String ret = "";
 		for(num i = 0; i<this.murderers.length; i++){
-			var m = this.murderers[i];
-			var worstEnemy = m.getWorstEnemyFromList(this.session.availablePlayers);
-			if(worstEnemy) m.interactionEffect(worstEnemy);
-			if(worstEnemy && worstEnemy.sprite.name == "sprite") print("trying to kill somebody not in the medium yet: " + worstEnemy.title() + " in session: " + this.session.session_id)
+			Player m = this.murderers[i];
+			Player worstEnemy = m.getWorstEnemyFromList(this.session.availablePlayers);
+			if(worstEnemy != null) m.interactionEffect(worstEnemy);
+			if(worstEnemy !=null && worstEnemy.sprite.name == "sprite") print("trying to kill somebody not in the medium yet: " + worstEnemy.title() + " in session: " + this.session.session_id.toString());
 			var living = findLivingPlayers(this.session.players);
 			removeFromArray(worstEnemy, living);
 			var ausp = getRandomElementFromArray(living);
@@ -161,16 +156,16 @@ class MurderPlayers extends Scene {
 			//var notEnemy = m.getWorstEnemyFromList(this.session.availablePlayers);
 			removeFromArray(m, this.session.availablePlayers);
 
-			if(worstEnemy && worstEnemy.dead == false && this.canCatch(m,worstEnemy)){
+			if(worstEnemy !=null && worstEnemy.dead == false && this.canCatch(m,worstEnemy)){
 				removeFromArray(worstEnemy, this.session.availablePlayers);
 				//if blood player is at all competant, can talk down murder mode player.
-				if(worstEnemy.aspect == "Blood" && worstEnemy.power > 2){
+				if(worstEnemy.aspect == "Blood" && worstEnemy.getStat("power") > 25){
 					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
 					ret += ", but instead the Bloody Thing happens and the " + m.htmlTitleBasic() + " is calmed down, and hug bumps are shared. ";
 					if(m.dead) ret += " It is especially tragic that the burgeoning palemance is cut short with the " + m.htmlTitleBasic() + "'s untimely death. ";
 					m.unmakeMurderMode();
 					worstEnemy.checkBloodBoost(livePlayers);
-					makeDiamonds(m, worstEnemy);
+					Relationship.makeDiamonds(m, worstEnemy);
 					this.renderDiamonds(div, m, worstEnemy);
 
 					return ret; //don't try to murder. (and also blood powers stop any other potential murders);
@@ -184,8 +179,8 @@ class MurderPlayers extends Scene {
 						ret += " The task is made especially easy (yet tragic) by the " + m.htmlTitle() + " being in the middle of dying. ";
 					}
 					m.unmakeMurderMode();
-					m.sanity = 1;
-					makeDiamonds(m, worstEnemy);
+					m.setStat("sanity",1);
+					Relationship.makeDiamonds(m, worstEnemy);
 					this.renderDiamonds(div, m, worstEnemy);
 
 				}else if(ausp != null && r.type() == r.badBig){  //they hate you back....
@@ -196,17 +191,17 @@ class MurderPlayers extends Scene {
 						ret += " The task is made especially easy by the " + m.htmlTitle() + " dying partway through. ";
 					}
 					m.unmakeMurderMode();
-					m.sanity = 1;
+					m.setStat("sanity",1);
 					this.renderClubs(div, m, worstEnemy,ausp);
-					makeClubs(ausp, m, worstEnemy);
+					Relationship.makeClubs(ausp, m, worstEnemy);
 
-				}else if(worstEnemy.power * worstEnemy.getPVPModifier("Defender") < m.power*m.getPVPModifier("Murderer")){
+				}else if(worstEnemy.getStat("power") * worstEnemy.getPVPModifier("Defender") < m.getStat("power")*m.getPVPModifier("Murderer")){
 					var alt = this.addImportantEvent(worstEnemy);
 					if(alt && alt.alternateScene(div)){
 						//do nothing, alt scene will handle this.
 					}else{
 						m.increasePower();
-						m.sanity += Math.abs(m.sanity); //killing someone really takes the edge off.
+						m.addStat("sanity",100); //killing someone really takes the edge off.
 
 						ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". " + getPVPQuip(worstEnemy,m, "Defender", "Murderer");
 						if(m.dead == true){ //they could have been killed by another murder player in this same tick
@@ -244,32 +239,33 @@ class MurderPlayers extends Scene {
 				}
 			}else{
 
-				m.sanity += 3;
-				if(m.sanity>0){
+				m.addStat("sanity", 30);
+				if(m.getStat("sanity")>0){
 					//alert("shit settled");
 					ret += " The " + m.htmlTitle() + " has officially settled their shit. ";
 					m.unmakeMurderMode();
 				}else{
-					if(!m.dead && worstEnemy && !this.canCatch(m,worstEnemy)){
+					if(!m.dead && worstEnemy != null && !this.canCatch(m,worstEnemy)){
 						//print("murder thwarted by mobility: " + this.session.session_id);
 						if(worstEnemy.sprite.name == "sprite"){
 							ret += " The " + m.htmlTitle() + " is too enraged to think things through.  The " + worstEnemy.htmlTitle() + " that they want to kill isn't even in the Medium, yet, dunkass!";
 						}else if(worstEnemy.aspect == "Void"){
-							print("void avoiding murderer: " + this.session.session_id);
+							print("void avoiding murderer: " + this.session.session_id.toString());
 							ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! It's like they're fucking INVISIBLE or something. It's hard to stay enraged while wandering around, lost.";
 						}else if (worstEnemy.aspect == "Space"){
 							ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! They probably aren't even running away, but somehow the " + m.htmlTitle() + " keeps getting turned around. It's hard to stay enraged while wandering around, lost.";
 						}else{
 							ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! Do they just never stay in one spot for more than five seconds? Flighty bastard. It's hard to stay enraged while wandering around lost.";
 						}
-						m.sanity += 3;
+						m.addStat("sanity",30);
 					}else if(!m.dead){
 						ret += " The " + m.htmlTitle() + " can't find anybody they hate enough to murder. They calm down a little. ";
 					}
 				}
 			}
+			removeFromArray(m, this.session.availablePlayers);
 		}
-		removeFromArray(m, this.session.availablePlayers);
+
 		return ret;
 	}
 	bool canCatch(m, worstEnemy){
@@ -277,76 +273,11 @@ class MurderPlayers extends Scene {
 		if(worstEnemy.mobility > m.mobility) return false;
 		if(worstEnemy.aspect == "Void" && worstEnemy.isVoidAvailable() && worstEnemy.power >50) return false;
 		if(worstEnemy.aspect == "Space" && worstEnemy.power > 50){
-			print("high level space player avoiding a murderer" + this.session.session_id);
+			print("high level space player avoiding a murderer" + this.session.session_id.toString());
 			return false;  //god tier calliope managed to hide from a Lord of Time. space players might not move around a lot, but that doesn't mean they are easy to catch.
 		}
 		return true;
 	}
-	dynamic content(){
-		var livePlayers = this.playerList; //just because they are alive doesn't mean they are in the medium
-		for(num i = 0; i<this.murderers.length; i++){
-			var m = this.murderers[i];
-			var worstEnemy = m.getWorstEnemyFromList(livePlayers);
-			removeFromArray(m, this.session.availablePlayers);
-			String ret = "";
-			if(worstEnemy && worstEnemy.dead == false && this.canCatch(m,worstEnemy)){ //gotta fucking catch them.
-				removeFromArray(worstEnemy, this.session.availablePlayers);
-				//if blood player is at all competant, can talk down murder mode player.
-				if(worstEnemy.aspect == "Blood" && worstEnemy.power > 2){
-					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
-					ret += ", but instead the Bloody Thing happens and the " + m.htmlTitle() + " is calmed down, and hug bumps are shared. ";
-					m.unmakeMurderMode();
-					worstEnemy.checkBloodBoost(livePlayers);
-					m.sanity = 1;
-					return ret; //don't try to murder. (and also blood powers stop any other potential murders);
-				}
 
-				var r = worstEnemy.getRelationshipWith(m);
-				if(r.type() == r.goodBig ){
-					//moiralligance.
-					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
-					ret += ", but instead gets talked down hardcore. Shit is downright tender.";
-					m.unmakeMurderMode();
-					m.sanity = 1;
-					this.renderDiamonds(div, m, worstEnemy);
-				}else if(worstEnemy.power * worstEnemy.getPVPModifier("Defender") < m.power*m.getPVPModifier("Murderer")){
-					m.increasePower();
-
-					ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". "+ getPVPQuip(worstEnemy,m, "Defender", "Murderer");
-					ret += this.friendsOfVictimHateYou(worstEnemy, m);
-					worstEnemy.makeDead("fighting against the crazy " + m.title())
-					m.pvpKillCount ++;
-					this.session.murdersHappened = true;
-					m.victimBlood = worstEnemy.bloodColor;
-				}else{
-					worstEnemy.increasePower();
-					ret += " The " + m.htmlTitle() + " attempts to brutally murder that asshole, the " + worstEnemy.htmlTitle();
-					ret += ",but instead gets murdered first, in self-defense. "+ getPVPQuip(m,worstEnemy, "Murderer", "Defender");
-					m.makeDead("being put down like a rabid dog by " + worstEnemy.title())
-					worstEnemy.pvpKillCount ++;
-					this.session.murdersHappened = true;
-					worstEnemy.victimBlood = m.bloodColor;
-				}
-			}else{
-
-				if(worstEnemy && !worstEnemy.dead && !this.canCatch(m,worstEnemy)){
-					if(worstEnemy.aspect == "Void"){
-						ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! It's like they're fucking INVISIBLE or something.";
-					}else if (worstEnemy.aspect == "Space"){
-						ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! They probably aren't even running away, but somehow the " + m.htmlTitle() + " keeps getting turned around. ";
-					}else{
-						ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! Do they just never stay in one spot for more than five seconds? Flighty bastard. It's hard to stay enraged while wandering around lost.";
-					}
-
-					m.sanity += 3;
-				}else{
-					ret += " The " + m.htmlTitle() + " can't find anybody they hate enough to murder. They calm down a little. ";
-				}
-				m.sanity += 1;
-			}
-		}
-		removeFromArray(m, this.session.availablePlayers);
-		return ret;
-	}
 
 }

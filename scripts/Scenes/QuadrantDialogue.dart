@@ -17,7 +17,7 @@ class QuadrantDialogue extends Scene {
 	QuadrantDialogue(Session session): super(session);
 
 	@override
-	bool trigger(){
+	bool trigger(List<Player> playerList){
 		this.player1 = null;
 		this.player2 = null;
 		//if want to be more frequent, can allo goodBig and badBig to trigger this as well.
@@ -25,7 +25,7 @@ class QuadrantDialogue extends Scene {
 		if(seededRandom() > 0.5){
 			this.findSemiRandomQuadrantedAvailablePlayer();
 		}
-		if(this.player2 && this.player2.dead) print("corpse chat in:  " + this.session.session_id);
+		if(this.player2 && this.player2.dead) print("corpse chat in:  " + this.session.session_id.toString());
 		return this.player1 != null && this.player2 != null; //technically if one is set both should be but whatever.
 	}
 	dynamic findSemiRandomQuadrantedAvailablePlayer(){
@@ -43,7 +43,7 @@ class QuadrantDialogue extends Scene {
 		//set this.player2 to be one of player1's quadrant mates. first diamond, then randomly from heart, then spade, then clubs.
 		var potentials = this.player1.getDiamonds();
 		this.player2 = getRandomElementFromArray(potentials);
-		if(this.player2  && !this.player2.dead && seededRandom > 0.5){ //don't completely ignore your other relationships in favor of your moirail.
+		if(this.player2  && !this.player2.dead && seededRandom() > 0.5){ //don't completely ignore your other relationships in favor of your moirail.
 			return;
 		}
 		potentials.addAll(this.player1.getHearts());
@@ -53,8 +53,7 @@ class QuadrantDialogue extends Scene {
 		if(this.player2.dead) this.player2 = null;
 		return;
 	}
-	void getDiscussSymbol(relationship){
-		//TODO, turn which quadrant player1 and player2 are in into a png to pass.  Create pngs for diamonds and clubs.
+	String getDiscussSymbol(relationship){
 		if(relationship.saved_type == relationship.diamond)return "discuss_palemance.png";
 		if(relationship.saved_type == relationship.heart)return "discuss_romance.png";
 		if(relationship.saved_type == relationship.clubs)return "discuss_ashenmance.png";
@@ -135,8 +134,7 @@ class QuadrantDialogue extends Scene {
 		List<dynamic> chats = [];
 		//chats.add(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
 		chats.add(new InterestConversationalPair(interest, "Gosh, do you know what everybody being dead means? Our SOUL MATES must be the other players! That makes it WAY more likely to find them!", ["omg i hadn't though of it in that light!","You are so right. Romance for everybody!","But, what if you're wrong and our soulmates died in the apocalypse?", "... I MUST UPDATE THE SHIPPING CHARTS."], ["Huh, what's that strange sensation? Oh, it must be my brain dribbling out of my ears. People DIED, asshole.", "God, how stupid can you get, that's not how soul mates work, asshole.", "Even that IS true, it's not worth billions of people dying, asshole.", "Glad you can find the silver lining on the DEATH OF OUR SPECIES."]));
-		chats.add(new InterestConversationalPair(interest, "How am I supposed to get any good ships with only " + this.session.players.length + " people left!", ["Hrrm...guess this will be the shipping challenge of our lives.","If anyone can do it, it's you. I believe in you with all my heart.","I'd argue it makes it easier. You don't have to worry about strangers coming out of nowhere and wrecking your ships!", "What a conundrum!"], ["Oh yes, the world ends but it's not a tragedy until it effects SHIPPING.", "God, I hate you. If hate were a tree mine would be a mighty sequoia, towering over all others like a mighty 'fuck you' to God himself.", "If you were any good at ships then you wouldn't let a minor think like the WORLD FUCKING ENDING stop you.", "You're not. This is the sign from the universe that its time for you to finally stop shipping. You're the literal worst at it."]));
-		///TODO what about x/y (if there are at least two remaining people who aren't p1 or p2)
+		chats.add(new InterestConversationalPair(interest, "How am I supposed to get any good ships with only " + this.session.players.length.toString() + " people left!", ["Hrrm...guess this will be the shipping challenge of our lives.","If anyone can do it, it's you. I believe in you with all my heart.","I'd argue it makes it easier. You don't have to worry about strangers coming out of nowhere and wrecking your ships!", "What a conundrum!"], ["Oh yes, the world ends but it's not a tragedy until it effects SHIPPING.", "God, I hate you. If hate were a tree mine would be a mighty sequoia, towering over all others like a mighty 'fuck you' to God himself.", "If you were any good at ships then you wouldn't let a minor think like the WORLD FUCKING ENDING stop you.", "You're not. This is the sign from the universe that its time for you to finally stop shipping. You're the literal worst at it."]));
 		chats.add(new InterestConversationalPair(interest, "Yeah, the end of the world sucked, but at least it brought us together!", ["That is so sweet! You'll always be in my heart.","I feel the same way, we never would have met in person if it wasn't for all of this!","It's like you're reading my mind!", "Morbid, but I appreciate the sentiment!"], ["God, hearing you write off billions of deaths in the name of romance only makes me hate you more.", "Is your brain made of worms? People DIED but it's OKAY because some people started dating? What is WRONG with you?", "That may be the dumbest thing I've ever heard. Have a gold star.", "Are you actually damaged? THE PLANET IS DEAD." ]));
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 
@@ -176,7 +174,7 @@ class QuadrantDialogue extends Scene {
 			List<dynamic> chats = [];
 			if(p1.interest1 == "Rap"||p1.interest2 == "Rap" || p1.interest1 == "Turntables" || p1.interest2 == "Turntables"){
 				//pass a 4 so you only get 1 line.
-				chats.add(new InterestConversationalPair(interest, getRapForPlayer(p1, "", 4)[0], ["Yeah dog you got that mad flow.","Shit, your rhymes are tight.","Hell yes. Hell FUCKING yes.","Your beats are hella ill!"], [getRapForPlayer(p2, "", 4)[0]]))
+				chats.add(new InterestConversationalPair(interest, getRapForPlayer(p1, "", 4)[0], ["Yeah dog you got that mad flow.","Shit, your rhymes are tight.","Hell yes. Hell FUCKING yes.","Your beats are hella ill!"], [getRapForPlayer(p2, "", 4)[0]]));
 				return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 			}
 			chats.add(new InterestConversationalPair(interest, "Did you ever hear Mobius Trip and Hadron Kaledio's last album?", ["Oh yeah, I love their blissed out style of music.","No, I don't think I ever did catch that one. You should show it to me the next time we meet up!","No, I don't think I've heard of them. Well, if you like them, they must be good!"], ["Ahaha no. Fuck no. Trip and Kal are shit.", "Mobius Trip sucks, Pumpkin for life.", "Anything made by Trip and Kal after Beta Version has been shit. I can't believe you like them.","Oh yay, lets all get aboard the techno train! No, of course I didn't. Nails down a chalkboard are more appealing then anything by those two hippies.", "Yes, I did. It hurt me physically to listen to."]));
@@ -339,8 +337,7 @@ class QuadrantDialogue extends Scene {
 		if(relationship.saved_type == relationship.clubs)return this.clubsChat(relationship, relationship2);
 		if(relationship.saved_type == relationship.spades) return this.spadesChat(relationship, relationship2);
 	}
-	void getQuadrantASCII(relationship){
-		//calls different methods based on quadrant.  THOSE methods have different shit in them based on value (foreshadows break up.)
+	String getQuadrantASCII(relationship){
 		if(relationship.saved_type == relationship.diamond)return " <> ";
 		if(relationship.saved_type == relationship.heart)return " <3 ";
 		if(relationship.saved_type == relationship.clubs)return " c3< ";
@@ -444,7 +441,7 @@ class QuadrantDialogue extends Scene {
 		if(!freakOutWeasel.flipOutReason){
 			freakOutWeasel = this.player2;
 			p1start = this.player2Start;
-			shooser = this.player1;
+			shoosher = this.player1;
 			p2start = this.player1Start;
 			var tmp = relationship;
 			relationship = relationship2;
@@ -546,8 +543,8 @@ class QuadrantDialogue extends Scene {
 	}
 	dynamic getGreeting(r1, r2){
 		String ret = "";
-		ret += Scene.chatLine(this.player1Start, this.player1,getRelationshipFlavorGreeting(r1, r2, this.player1, this.player2) + this.getQuadrantASCII(r1));
-		ret += Scene.chatLine(this.player2Start, this.player2,getRelationshipFlavorGreeting(r2, r1, this.player2, this.player1)+ this.getQuadrantASCII(r2));
+		ret += Scene.chatLine(this.player1Start, this.player1,Relationship.getRelationshipFlavorGreeting(r1, r2, this.player1, this.player2) + this.getQuadrantASCII(r1));
+		ret += Scene.chatLine(this.player2Start, this.player2,Relationship.getRelationshipFlavorGreeting(r2, r1, this.player2, this.player1)+ this.getQuadrantASCII(r2));
 		return ret;
 	}
 	dynamic fareWell(relationship, relationship2){
@@ -572,13 +569,13 @@ class QuadrantDialogue extends Scene {
 		return ret;
 	}
 	void chat(div){
-		String canvasHTML = "<br><canvas id;='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + (div.attr("id")) +"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var relationship = this.getQuadrant();
 		var relationship2 = this.getQuadrant2();
 		var chatText = this.getGreeting(relationship, relationship2);
 		chatText += this.getChat(relationship, relationship2);
-		drawChat(querySelector("#canvas"+ (div.attr("id"))), this.player1, this.player2, chatText, 0,this.getDiscussSymbol(relationship));
+		drawChat(querySelector("#canvas"+ (div.attr("id"))), this.player1, this.player2, chatText,this.getDiscussSymbol(relationship));
 		//this.session.sceneRenderingEngine.drawChat(querySelector("#canvas"+ (div.attr("id"))), this.player1, this.player2, chatText, 0,this.getDiscussSymbol(relationship));
 
 	}
@@ -621,7 +618,7 @@ class QuadrantDialogue extends Scene {
 
 	}
 	void content(){
-		return "NEVER RUN IN 1.0 YOU DUNKASS. Seriously, I don't support it anymore.";
+		throw "NEVER RUN IN 1.0 YOU DUNKASS. Seriously, I don't support it anymore.";
 	}
 
 
@@ -667,7 +664,7 @@ class PlusMinusConversationalPair {
 class ConversationalPair {
 	var line1;
 	var responseLines;  //responses are just reactions
-	var genericResponses = [;"Yeah.", ":)", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "... ", "Whatever.", "Yes.", "Interesting...", "Hrmmm...", "lol", "Interesting!!!", "Umm. Okay?", "Really?", "Whatever floats your boat.","Why not", "K."]
+	var genericResponses = ["Yeah.", ":)", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "... ", "Whatever.", "Yes.", "Interesting...", "Hrmmm...", "lol", "Interesting!!!", "Umm. Okay?", "Really?", "Whatever floats your boat.","Why not", "K."];
 
 
 	
@@ -709,6 +706,6 @@ class InterestConversationalPair {
 	//what can i say if i like you and share your interest
 	var responseLinesSharedInterestPositive;	//what can i say if i hate you and share your interests.
 	var responseLinesSharedInterestNegative;	//below happens if you don't share an interest at all.
-	var genericResponses = [;"Yeah.", ":)", "Nice", "Double nice", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "... ", "lol","Whatever.", "Yes.", "Interesting...", "Hrmmm...", "Interesting!!!", "Um.","Why not.","Whatever you say.", "K."]
+	var genericResponses = ["Yeah.", ":)", "Nice", "Double nice", "Tell me more", "You don't say.",  "Wow", "Cool", "Fascinating", "Uh-huh.", "Sure.", "I've heard others say the same.", "... ", "lol","Whatever.", "Yes.", "Interesting...", "Hrmmm...", "Interesting!!!", "Um.","Why not.","Whatever you say.", "K."];
 
 }

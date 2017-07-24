@@ -239,7 +239,7 @@ class Breakup extends Scene {
 		Player player2 = this.relationshipToBreakUp.target;
 		String chatText = this.getChat(player1,player2);
 
-		drawChat(querySelector("#canvas"+ (div.id)), player1, player2, chatText, null,"discuss_breakup.png");
+		drawChat(querySelector("#canvas"+ (div.id)), player1, player2, chatText,"discuss_breakup.png");
 	}
 	String youCheatChatText(Player player1, Player player2){
 		String player1Start = player1.chatHandleShort()+ ": ";

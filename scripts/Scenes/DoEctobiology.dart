@@ -34,7 +34,7 @@ class DoEctobiology extends Scene {
 		div.appendHtml(canvasHTML);
 		//different format for canvas code
 		Element canvasDiv = querySelector("#canvas"+ divID);
-		poseBabiesAsATeam(canvasDiv, this.leader, this.playersMade, getGuardiansForPlayers(this.playersMade), 4000);
+		poseBabiesAsATeam(canvasDiv, this.leader, this.playersMade, getGuardiansForPlayers(this.playersMade));
 	}
 	@override
 	void renderContent(Element div){

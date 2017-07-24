@@ -306,7 +306,7 @@ class LuckStuff extends Scene{
 			return this.roll95(roll);
 		}else{
 			throw("NO this is NOT RIGHT, LUCK EVENT BROKEN");
-			return "What the hell, mate? roll was: " + roll.value + " and needed to be not between  " + this.minLowValue + " and " + this.minHighValue;
+			//return "What the hell, mate? roll was: " + roll.value + " and needed to be not between  " + this.minLowValue + " and " + this.minHighValue;
 		} 
 
 

@@ -36,7 +36,7 @@ class PlanToExileJack extends Scene {
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 
-		chatText += Scene.chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2));
+		chatText += Scene.chatLine(player1Start, player1,Relationship.getRelationshipFlavorGreeting(r1, r2, player1, player2));
 		chatText += Scene.chatLine(player1Start, player1,"So, new plan. Jack is WAY too stabby, we need to exile him.");
 		if(this.smart(player2)){
 				chatText += Scene.chatLine(player2Start, player2,"Agreed.");
@@ -113,8 +113,8 @@ class PlanToExileJack extends Scene {
 		var r2 = player2.getRelationshipWith(player1);
 		String chatText = "";
 
-		chatText += Scene.chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2));
-		chatText += Scene.chatLine(player2Start, player2,getRelationshipFlavorGreeting(r2, r1, player2, player1));
+		chatText += Scene.chatLine(player1Start, player1,Relationship.getRelationshipFlavorGreeting(r1, r2, player1, player2));
+		chatText += Scene.chatLine(player2Start, player2,Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1));
 		chatText += Scene.chatLine(player1Start, player1,"So, new plan. Jack is WAY too stabby, we need to exile him.");
 		if(this.smart(player2)){
 			chatText += Scene.chatLine(player2Start, player2,"Makes sense. How will we pull it off without getting stabbed?");
@@ -138,7 +138,7 @@ class PlanToExileJack extends Scene {
 	void chatWithFriend(div, player1, player2){
 		num repeatTime = 1000;
 		var divID = (div.attr("id")) + "_" + player1.chatHandle;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);
@@ -155,7 +155,7 @@ class PlanToExileJack extends Scene {
 			chatText += this.normalConvo(div,player1, player2);
 		}
 
-		drawChat(canvasDiv,player1, player2, chatText, repeatTime,"discuss_jack.png");
+		drawChat(canvasDiv,player1, player2, chatText,"discuss_jack.png");
 	}
 	bool smart(player){
 		return ((player.aspect == "Light" || player.class_name == "Seer") ||(player.aspect == "Doom" || player.aspect == "Mind"));

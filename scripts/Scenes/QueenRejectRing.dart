@@ -14,10 +14,10 @@ class QueenRejectRing extends Scene {
 	@override
 	bool trigger(playerList){
 		this.playerList = playerList;
-		var nativePlayersInSession = findPlayersFromSessionWithId(playerList);
+		var nativePlayersInSession = findPlayersFromSessionWithId(playerList, this.session.session_id);
 		var goodPrototyping = findGoodPrototyping(playerList);
 		//print("holy fucking shit, don't reject the ring if an alien player comes in.");
-		return goodPrototyping != null && this.session.queen.crowned;
+		return goodPrototyping != null && this.session.queen.crowned != null;
 	}
 
 	@override
@@ -36,12 +36,12 @@ class QueenRejectRing extends Scene {
 		}
 
 		ret += ". ";
-		if(this.playerList.length != this.session.players.length && this.session.players[this.playerList.length].land){
+		if(this.playerList.length != this.session.players.length && this.session.players[this.playerList.length].land != null){
 			ret += " She would even stand eventually being prototyped with " ;
 			ret += this.session.players[this.playerList.length].object_to_prototype.htmlTitle() ;
 		}
 		for(var i = this.playerList.length+1; i<this.session.players.length; i++){
-			if(this.session.players[i].land) ret += ", and " + this.session.players[i].object_to_prototype.htmlTitle();
+			if(this.session.players[i].land != null) ret += ", and " + this.session.players[i].object_to_prototype.htmlTitle();
 		}
 
 		if(this.playerList.length != this.session.players.length){
