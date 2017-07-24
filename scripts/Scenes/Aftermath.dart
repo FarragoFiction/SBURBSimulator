@@ -290,7 +290,7 @@ class Aftermath extends Scene {
 	//alert("purple frog incoming!!!" + this.session.session_id);
 	//maybe load kid rock first and have callback for when he's done.
 	//maybe kid rock only shows up for half purple frogs??? need plausible deniability? "Troll Kid Rock??? Never heard of him. Sounds like a cool dude, though."
-	var trollKidRock = this.trollKidRock();
+	Player trollKidRock = this.trollKidRock();
 	print(trollKidRock);
 	var purpleFrog = this.purpleFrog();
 	precedingText += "<img src ;= 'images/sceneicons/Purple_Frog_ANGERY.png'> What...what is going on? How...how can you have NEGATIVE 100% of a frog??? This...this doesn't look right.   The vast frog lets out a CROAK, but it HURTS.  It seems...hostile.  Oh fuck. <Br><br> The " + purpleFrog.htmlTitleHP() + " initiates a strife with the Players! Troll Kid Rock appears out of nowhere to help them. (What the hell???)<br><br><canvas id = 'trollKidRockAppears' width ;='400' height = '300'></canvas>";

@@ -555,7 +555,7 @@ bool playerLikesJustice(player){
 
 
 
-void interestCategoryToInterestList(interestWord){
+List<String> interestCategoryToInterestList(interestWord){
 	//alert(interestWord);
 	if(interestWord == "Comedy") return comedy_interests;
 	if(interestWord == "Music") return music_interests;
