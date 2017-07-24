@@ -55,7 +55,7 @@ class LuckStuff extends Scene{
 		}
 		div.append("" + ret);
 	}
-	dynamic roll60(roll){
+	String roll60(roll){
 		//print("roll60 in " + this.session.session_id);
 		if(!roll.player.land || (roll.player.aspect != "Space" && roll.player.landLevel >= this.landLevelNeeded)){  //not lucky to get land level when you don't need it.
 			return this.roll65(roll);
@@ -65,7 +65,7 @@ class LuckStuff extends Scene{
 		this.session.goodLuckEvent = true;
 		return ret;
 	}
-	dynamic roll65(roll){
+	String roll65(roll){
 		//print("roll65 in " + this.session.session_id);
 		String land = "some random planet";
 		if(roll.player.land){
@@ -77,9 +77,9 @@ class LuckStuff extends Scene{
 		this.session.goodLuckEvent = true;
 		return ret;
 	}
-	dynamic roll40(roll){
+	String roll40(roll){
 		if(!roll.player.land){
-			return; //you've had enough bad luck. just...go rest or something.
+			return ""; //you've had enough bad luck. just...go rest or something.
 		}
 		//print("roll40 in " + this.session.session_id);
 		String ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + roll.player.shortLand()+ " when they suddenly tripped over a huge bee hive. The angry bees immediately ravage the country side, pestering local consorts.";
@@ -87,15 +87,15 @@ class LuckStuff extends Scene{
 		this.session.badLuckEvent = true;
 		return ret;
 	}
-	dynamic roll35(roll){
-		print("unlucky trigger event: " + this.session.session_id);
+	String roll35(roll){
+		print("unlucky trigger event: " + this.session.session_id.toString());
 		var items = ["soper slime", "candy", "apple juice", "alcohol", "cat nip","chocolate", "orange soda", "blanket","hat","lucky coin", "magic 8 ball"];
 		String ret = "The " + roll.player.htmlTitle() + " has lost their " + getRandomElementFromArray(items) + ". Sure, it seems stupid to you or me but... it was one of the few things left holding their sanity together. They are enraged.";
 		roll.player.sanity += -1000;
 		this.session.badLuckEvent = true;
 		return ret;
 	}
-	dynamic roll70(roll){
+	String roll70(roll){
 		//print("roll70 in " + this.session.session_id);
 		var friend = getRandomElementFromArray(roll.player.getFriendsFromList(findLivingPlayers(this.session.players)));
 		if(!friend){
@@ -108,7 +108,7 @@ class LuckStuff extends Scene{
 		this.session.goodLuckEvent = true;
 		return ret;
 	}
-	dynamic roll30(roll){
+	String roll30(roll){
 		//print("roll30 in " + this.session.session_id);
 		var friend = getRandomElementFromArray(roll.player.getFriendsFromList(findLivingPlayers(this.session.players)));
 		if(!friend){
@@ -121,8 +121,8 @@ class LuckStuff extends Scene{
 		this.session.badLuckEvent = true;
 		return ret;
 	}
-	dynamic roll25(roll){
-		print("unluck grim dark: " + this.session.session_id);
+	String roll25(roll){
+		print("unluck grim dark: " + this.session.session_id.toString());
 		var items = ["magic cue ball", "grimoire", "original VHS tape of Mac and Me", "fluthlu doll", "dream catcher","squiddles plush", "Dr Seuss Book", "commemorative Plaque from a World Event That Never Happened","SCP-093"];
 		String ret = "The " + roll.player.htmlTitle() + " has had a momentary lapse of judgement and alchemized a weapon with the " + getRandomElementFromArray(items) + " they just found. Any sane adventurer would cast these instruments of the occult into the FURTHEST RING and forget they ever existed. Instead, the " + roll.player.htmlTitleBasic() + " equips them. This is a phenomenally bad idea. ";
 		roll.player.corruptionLevelOther += 666; //will only increase corruption by one level, but in style
@@ -130,7 +130,7 @@ class LuckStuff extends Scene{
 		this.session.badLuckEvent = true;
 		return ret;
 	}
-	dynamic roll80(roll){
+	String roll80(roll){
 		//print("roll80 in " + this.session.session_id);
 		if(!roll.player.land || (roll.player.aspect != "Space" && roll.player.landLevel >= this.landLevelNeeded)){  //not lucky to get land level when you don't need it.
 			return this.roll85(roll);
@@ -141,7 +141,7 @@ class LuckStuff extends Scene{
 		this.session.goodLuckEvent = true;
 		return ret;
 	}
-	dynamic roll85(roll){
+	String roll85(roll){
 		//print("roll85 in " + this.session.session_id);
 		String land = "some random planet";
 		if(roll.player.land){
@@ -155,17 +155,17 @@ class LuckStuff extends Scene{
 		this.session.goodLuckEvent = true;
 		return ret;
 	}
-	dynamic roll20(roll){
+	String roll20(roll){
 		//print("roll20 in " + this.session.session_id);
 		if(!roll.player.land){
-			return; //you've had enough bad luck. just...go rest or something.
+			return ""; //you've had enough bad luck. just...go rest or something.
 		}
 		String ret = "The " + roll.player.htmlTitle() + " tripped right through a glitched section of wall, only to find a single consort. 'Shh.' the imp says, handing over a frankly obscene bucket of...something, 'It's a secret to everybody.' The " + roll.player.htmlTitleBasic() + " agrees that it would be ideal if it was a secret even to themselves, and prays for amnesia.  They can't quite bring themselves to go near their consorts for a little while aftewards. " ;
 		roll.player.landLevel += -2;
 		this.session.badLuckEvent = true;
 		return ret;
 	}
-	dynamic roll90(roll){
+	String roll90(roll){
 		//print("roll90 in " + this.session.session_id);
 		String ret = "Holy shit, the " + roll.player.htmlTitle() + " just found a METAL PUMPKIN. Those things are worth a LOT of experience points! And they totally managed to explode it before it never existed in the first place! Score! Talk about luuuuuuuucky!" ;
 		roll.player.increasePower();
@@ -176,7 +176,7 @@ class LuckStuff extends Scene{
 		this.session.goodLuckEvent = true;
 		return ret;
 	}
-	dynamic roll95(roll){
+	String roll95(roll){
 		//print("roll95 in " + this.session.session_id);
 		if(!roll.player.land || (roll.player.aspect != "Space" && roll.player.landLevel >= this.landLevelNeeded)){  //not lucky to get land level when you don't need it.
 			return this.roll90(roll);
@@ -192,7 +192,7 @@ class LuckStuff extends Scene{
 
 		return ret;
 	}
-	dynamic roll10(roll){
+	String roll10(roll){
 		//print("roll10 in " + this.session.session_id);
 		if(!roll.player.land){
 			return "The " + roll.player.htmlTitle() + " gets a bad feeling, like maybe their land back in their home session just got damaged. But...it's not like they can ever go back, right? Who cares."; //you've had enough bad luck. just...go rest or something.
@@ -202,7 +202,7 @@ class LuckStuff extends Scene{
 		this.session.badLuckEvent = true;
 		return ret;
 	}
-	dynamic roll100(roll, div){
+	String roll100(roll, div){
 		//print("roll100 in " + this.session.session_id + " roll is: " + roll.value);
 
 		if(roll.player.godDestiny && !roll.player.godTier && (roll.player.dreamSelf || roll.player.isDreamSelf)){
@@ -224,11 +224,11 @@ class LuckStuff extends Scene{
 			this.session.luckyGodTier = true;
 			this.session.godTier = true;
 			var divID = (div.attr("id")) + "_luckGodBS" + roll.player.chatHandle;
-			String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+			String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 			div.append(ret);
 			div.append(canvasHTML);
 			var canvas = querySelector("#canvas"+ divID);
-			drawGetTiger(canvas, [roll.player],repeatTime) //only draw revivial if it actually happened.
+			drawGetTiger(canvas, [roll.player]); //only draw revivial if it actually happened.
 			return "";
 		}else{
 			if(!roll.player.godDestiny && roll.player.dreamSelf && !roll.player.godTier ){
@@ -255,7 +255,7 @@ class LuckStuff extends Scene{
 		div.append(ret);
 
 		var divID = (div.attr("id")) + "_badLuckDeath" + roll.player.chatHandle;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);
 
@@ -305,16 +305,14 @@ class LuckStuff extends Scene{
 		}else if(roll.value > this. minHighValue){//if i got here, i fell in the crack left where the old godtier value used to be.
 			return this.roll95(roll);
 		}else{
-			alert("NO this is NOT RIGHT, LUCK EVENT BROKEN");
+			throw("NO this is NOT RIGHT, LUCK EVENT BROKEN");
 			return "What the hell, mate? roll was: " + roll.value + " and needed to be not between  " + this.minLowValue + " and " + this.minHighValue;
 		} 
 
 
 
 	}
-	void content(div){
-		return "1.0 is basically dead now, thems the breaks.";
-	}
+
 
 }
 
@@ -322,9 +320,10 @@ class LuckStuff extends Scene{
 
 class Roll {
 
-	Roll(this.player, this.rollValue) {}
+	Roll(this.player, this.value) {}
 
 
 
 	var player;
-	var value;}
+	var value;
+}
