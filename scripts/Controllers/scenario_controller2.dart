@@ -1,5 +1,5 @@
 
-
+//TODO convert this to StoryController.dart
 bool simulationMode = false;
 bool debugMode = false;
 num spriteWidth = 400;

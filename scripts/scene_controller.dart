@@ -1,5 +1,5 @@
 part of SBURBSim;
-
+//TODO murder the rest of this, already dragged out all Scene stuff
 var nonRareSessionCallback = null; //AB is already storing a callback for easter egg, so broke down and polluted the global namespace once more like an asshole.
 DateTime startTime = new DateTime.now(); //gets page load.
 num stopTime = 0;

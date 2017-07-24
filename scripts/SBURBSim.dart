@@ -13,6 +13,7 @@ import "bytebuilder.dart";
 //if dart load time of code is a problem, can chop this up into sub libraries and use lazy or deffered loading.
 //TODO DEAD SESSIONS will only have a small subset of this, so will need to make a different library
 
+part "Controllers/SimController.dart";
 part "fraymotif.dart";
 part "session.dart";
 part "scene_controller.dart";
