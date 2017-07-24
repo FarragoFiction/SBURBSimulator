@@ -10,6 +10,7 @@ class ByteBuilder {
 	/// Bit position within the current working byte.
 	int _position = 0;
 
+	/// Creates a new ByteBuilder with an empty buffer.
 	ByteBuilder();
 
 	/// Appends a single bit to the buffer.
@@ -121,12 +122,13 @@ class ByteBuilder {
 /// Reads a [ByteBuffer] as a stream of bits.
 class ByteReader {
 	/// Source buffer.
-	ByteData bytes;
+	ByteData _bytes;
 	/// Current bit position within the buffer.
-	int position = 0;
+	int _position = 0;
 
+	/// Creates a new ByteReader reading from [bytes]. The start position will be offset by [offset] bytes.
 	ByteReader(ByteBuffer bytes, [int offset = 0]) {
-		this.bytes = bytes.asByteData(offset);
+		this._bytes = bytes.asByteData(offset);
 	}
 
 	/// Internal method for reading a bit at a specific position. Use read for getting single bits from the buffer instead.
@@ -134,15 +136,15 @@ class ByteReader {
 		int bytepos = (position / 8.0).floor();
 		int bitpos = position % 8;
 
-		int byte = bytes.getUint8(bytepos);
+		int byte = _bytes.getUint8(bytepos);
 
 		return byte & (1 << bitpos) > 0;
 	}
 
 	/// Reads the next bit from the buffer.
 	bool readBit() {
-		bool val = this._read(this.position);
-		position++;
+		bool val = this._read(this._position);
+		_position++;
 		return val;
 	}
 
@@ -200,7 +202,7 @@ class ByteReader {
 
 		while (true) {
 			if (this.readBit()) {
-				this.position--;
+				this._position--;
 				break;
 			} else {
 				bits++;
