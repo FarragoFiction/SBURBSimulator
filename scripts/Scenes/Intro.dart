@@ -76,6 +76,7 @@ class Intro  extends IntroScene{
 			this.player.object_to_prototype = timePlayer.clone;
       this.player.object_to_prototype.name = timePlayer.chatHandle;
 			this.player.object_to_prototype.helpfulness = 1;
+      this.player.object_to_prototype.player = true;
 			//shout out to DinceJof for the great sprite phrase
 			this.player.object_to_prototype.helpPhrase = " used to be a Player like you, until they took a splinter to the timeline, so they know how all this shit works. Super helpful.";
 			print("time player sprite in session: " + this.session.session_id.toString());
@@ -86,6 +87,7 @@ class Intro  extends IntroScene{
       this.player.object_to_prototype.name = this.player.chatHandle;
 			print("player sprite in session: " + this.session.session_id.toString());
 			this.player.object_to_prototype.helpfulness = 1;
+      this.player.object_to_prototype.player = true;
 			this.player.object_to_prototype.helpPhrase = " is interested in trying to figure out how to play the game, since but for shenanigans they would be playing it themselves.";
 
 		}
@@ -703,13 +705,13 @@ class Intro  extends IntroScene{
 				this.player.timesDied ++;
 				this.session.availablePlayers.add(this.player);
 				this.player.sprite.addPrototyping(this.player.object_to_prototype); //hot damn this is coming together.
-				if(this.session.kingsScepter) this.session.kingsScepter.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
+				if(this.session.kingsScepter != null) this.session.kingsScepter.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
 				if(this.player.object_to_prototype.armless){
-					print("armless prototyping in session: " + this.session.session_id);
+					print("armless prototyping in session: " + this.session.session_id.toString());
 					narration += "Huh. Of all the things to take from prototyping a " + this.player.object_to_prototype.name + ", why did it have to be its fingerless attribute? The Black Queen's RING OF ORBS " + this.session.convertPlayerNumberToWords() + "FOLD is now useless. If any carapacian attempts to put it on, they lose the finger it was on, which makes it fall off.  She destroys the RING in a fit of vexation. ";
 					this.session.destroyBlackRing();
 				}
-				if(this.session.queensRing){
+				if(this.session.queensRing != null){
 					this.session.queensRing.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
 					narration += "The Black Queen's RING OF ORBS "+ this.session.convertPlayerNumberToWords() + "FOLD grows stronger from prototyping the " +  this.player.object_to_prototype.name +". ";
 				}
@@ -733,13 +735,13 @@ class Intro  extends IntroScene{
 				narration += "They immediately heal their land in an explosion of bullshit candy giggle-magic. ";
 			}
 			this.player.sprite.addPrototyping(this.player.object_to_prototype); //hot damn this is coming together.
-			if(this.session.kingsScepter) this.session.kingsScepter.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
+			if(this.session.kingsScepter != null) this.session.kingsScepter.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
 			if(this.player.object_to_prototype.armless && seededRandom() > 0.93){
-					print("armless prototyping in session: " + this.session.session_id);
+					print("armless prototyping in session: " + this.session.session_id.toString());
 					narration += "Huh. Of all the things to take from prototyping a " + this.player.object_to_prototype.name + ", why did it have to be its fingerless attribute? The Black Queen's RING OF ORBS " + this.session.convertPlayerNumberToWords() + "FOLD is now useless. If any carapacian attempts to put it on, they lose the finger it was on, which makes it fall off.  She destroys the RING in a fit of vexation. ";
 					this.session.destroyBlackRing();
 			}
-			if(this.session.queensRing){
+			if(this.session.queensRing != null){
 				this.session.queensRing.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
 				narration += "The Black Queen's RING OF ORBS "+ this.session.convertPlayerNumberToWords() + "FOLD grows stronger from prototyping the " +  this.player.object_to_prototype.name +". ";
 			}
