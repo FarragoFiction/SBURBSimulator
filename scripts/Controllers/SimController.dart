@@ -25,7 +25,7 @@ abstract class SimController {
   void easterEggCallBackRestart();
   void checkSGRUB();
   void getSessionType(); //TODO probably could live in session.
-  void renderScratchButton(); //Aftermath will call this.
+  void renderScratchButton(Session session); //Aftermath will call this.
   void restartSession();
   void tick();
   void reckoning();
@@ -33,4 +33,5 @@ abstract class SimController {
   void processCombinedSession();
   void intro();
   void callNextIntroWithDelay();
+  void recoverFromCorruption(); //AB will run next session, newspost will stop trying to get sessions, etc.
 }

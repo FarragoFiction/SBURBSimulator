@@ -10,6 +10,7 @@ SBURB Sim has posing as a team, leveling up, pesterchum logs (along with topic, 
 
 
 */
+/*  TODO abandoned.
 
 class SceneRenderingEngine {
 	var dontRender;	var spriteRenderingEngine = new SpriteRenderingEngine(this.dontRender, 1); //default is homestuck
@@ -298,3 +299,5 @@ class SceneRenderingEngine {
 
 
 }
+
+*/

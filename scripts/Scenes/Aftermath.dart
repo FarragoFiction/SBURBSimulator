@@ -177,7 +177,7 @@ class Aftermath extends Scene {
 				end += " If it's any consolation, it really does suck to fight so hard only to fail at the last minute. <Br><Br>Game Over.";
 				end += " Or is it? ";
 				this.session.scratchAvailable = true;
-				renderScratchButton(this.session);
+				SimController.instance.renderScratchButton(this.session);
 				yellowYard = true;
 
 			}

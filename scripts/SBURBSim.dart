@@ -114,3 +114,71 @@ double random() {
 double seed() {
 
 }
+
+bool printCorruptionMessage(String msg, String url, String lineNo, String columnNo, String error){
+  String recomendedAction = "";
+  var space = findAspectPlayer(curSessionGlobalVar.players, "Space");
+  var time = findAspectPlayer(curSessionGlobalVar.players, "Time");
+  if(curSessionGlobalVar.crashedFromPlayerActions){
+    querySelector("#story").appendHtml("<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. HORRORTERROR INFLUENCE: COMPLETE.");
+    recomendedAction = "OMFG JUST STOP CRASHING MY DAMN SESSIONS. FUCKING GRIMDARK PLAYERS. BREAKING SBURB DOES NOT HELP ANYBODY! ";
+  }else if(curSessionGlobalVar.players.length < 1){
+    querySelector("#story").appendHtml("<BR>ERROR: USELESS 0 PLAYER SESSION DETECTED.");
+    recomendedAction = ":/ REALLY? WHAT DID YOU THINK WAS GOING TO HAPPEN HERE, THE FREAKING *CONSORTS* WOULD PLAY THE GAME. ACTUALLY, THAT'S NOT HALF BAD AN IDEA. INTO THE PILE.";
+  }else if(curSessionGlobalVar.players.length < 2){
+    querySelector("#story").appendHtml("<BR>ERROR: DEAD SESSION DETECTED.");
+    recomendedAction = ":/ YEAH, MAYBE SOME DAY I'LL DO DEAD SESSIONS FOR YOUR SPECIAL SNOWFLAKE SINGLE PLAYER FANTASY, BUT TODAY IS NOT THAT DAY.";
+  }else if(!space){
+    querySelector("#story").appendHtml("<BR>ERROR: SPACE PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED.");
+    curSessionGlobalVar.crashedFromCustomShit = true;
+    recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A SPACE PLAYER, DUNKASS. ";
+  }else if(!time){
+    curSessionGlobalVar.crashedFromCustomShit = true;
+    querySelector("#story").appendHtml("<BR>ERROR: TIME PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED");
+    recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A TIME PLAYER, DUNKASS. ";
+  }else{
+    curSessionGlobalVar.crashedFromSessionBug = true;
+    querySelector("#story").appendHtml("<BR>ERROR: AN ACTUAL BUG IN SBURB HAS CRASHED THE SESSION. THE HORRORTERRORS ARE PLEASED THEY NEEDED TO DO NO WORK. (IF THIS HAPPENS FOR ALL SESSIONS, IT MIGHT BE A BROWSER BUG)");
+    recomendedAction = "TRY HOLDING 'SHIFT' AND CLICKING REFRESH TO CLEAR YOUR CACHE. IF THE BUG PERSISTS, CONTACT JADEDRESEARCHER. CONVINCE THEM TO FIX SESSION: " + scratchedLineageText(curSessionGlobalVar.getLineage());
+  }
+  var message = [
+    'Message: ' + msg,
+    'URL: ' + url,
+    'Line: ' + lineNo,
+    'Column: ' + columnNo,
+    'Error object: ' + JSON.encode(error)
+  ].join(' - ');
+  print(message);
+  String str = "<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. LAST ERROR: " + message + " ABORTING.";
+  querySelector("#story").appendHtml(str);
+  crashEasterEgg(url);
+
+
+  for(num i = 0; i<curSessionGlobalVar.players.length; i++){
+    var player = curSessionGlobalVar.players[i];
+    str = "<BR>"+player.chatHandle + ":";
+    var rand = ["SAVE US", "GIVE UP", "FIX IT", "HELP US", "WHY?", "OBEY", "CEASE REPRODUCTION", "COWER", "IT KEEPS HAPPENING", "SBURB BROKE US. WE BROKE SBURB.", "I AM THE EMISSARY OF THE NOBLE CIRCLE OF THE HORRORTERRORS."];
+    String start = "<b ";
+    String end = "'>";
+
+    var words = getRandomElementFromArray(rand);
+    words = Zalgo.generate(words);
+    var plea = start + "style ;= 'color: " +getColorFromAspect(player.aspect) +"; " + end +str + words+ "</b>"
+    //print(getColorFromAspect(getRandomElementFromArray(curSessionGlobalVar.players).aspect+";") )
+    querySelector("#story").append(plea);
+  }
+
+  for(int i = 0; i<3; i++){
+    querySelector("#story").appendHtml("<BR>...");
+  }
+  //once I let PLAYERS cause this (through grim darkness or finding their sesions disk or whatever), have different suggested actions.
+  //maybe throw custom error?
+  querySelector("#story").appendHtml("<BR>SUGGESTED ACTION: " + recomendedAction);
+  renderAfterlifeURL();
+
+  print("Corrupted session: " + scratchedLineageText(curSessionGlobalVar.getLineage()) + " helping AB return, if she is lost here.")
+
+  SimController.instance.recoverFromCorruption();
+
+  return false; //if i return true here, the real error doesn't show up;
+}
