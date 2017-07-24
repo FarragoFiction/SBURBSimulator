@@ -25,8 +25,8 @@ void loadNavbar(){
 
 //http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
 //simulatedParamsGlobalVar is the simulated global vars.
-String getParameterByName(name, url) {
-    if (!url) {
+String getParameterByName(String name, String url) {
+    if (url == null) {
       url = window.location.href;
     }
 		url += "&" + simulatedParamsGlobalVar;//lets me use existing framework to parse simulated params for tourney
@@ -38,8 +38,8 @@ String getParameterByName(name, url) {
     return decodeURIComponent(results[2].replaceAll(new RegExp(r"""\+""", multiLine:true), " "));
 }
 
-String getRawParameterByName(name, url) {
-    if (!url) {
+String getRawParameterByName(String name, String url) {
+    if (url == null) {
       url = window.location.href;
     }
     name = name.replace(new RegExp(r"""[\[\]]""", multiLine:true), "\\$&");

@@ -2159,7 +2159,6 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 }
 
 
-
 /*
 oh my fucking god 234908u2alsk;d
 javascript, you shitty shitty langugage
@@ -2170,9 +2169,9 @@ because of COURSE "null" == null is fucking false, so my code is like "oh, i mus
 dynamic getReplayers(){
 //	var b = LZString.decompressFromEncodedURIComponent(getRawParameterByName("b"));
 	var available_classes_guardians = classes.sublist(0); //if there are replayers, then i need to reset guardian classes
-	var b = Uri.decodeComponent(LZString.decompressFromEncodedURIComponent(getRawParameterByName("b"))); //TODO  is there Dart libraries to do this compression?
-	var s = LZString.decompressFromEncodedURIComponent(getRawParameterByName("s"));
-	var x = LZString.decompressFromEncodedURIComponent(getRawParameterByName("x"));
+	var b = Uri.decodeComponent(LZString.decompressFromEncodedURIComponent(getRawParameterByName("b",null)));
+	var s = LZString.decompressFromEncodedURIComponent(getRawParameterByName("s",null));
+	var x = LZString.decompressFromEncodedURIComponent(getRawParameterByName("x",null));
 	if(!b||!s) return [];
 	if(b== "null" || s == "null") return []; //why was this necesassry????????????????
 	//print("b is");
@@ -2762,202 +2761,197 @@ dynamic findPlayersWithoutEctobiologicalSource(playerList){
 
 //deeper than a snapshot, for yellowyard aliens
 //have to treat properties that are objects differently. luckily i think those are only player and relationships.
-dynamic clonePlayer(player, session, isGuardian){
-	var clone = new Player();
-	//TODO this is NOT how cloning works anymore.
-	for(var propertyName in player) {
-		if(propertyName == "guardian"){
-			if(!isGuardian){ //no infinite recursion, plz
-				clone.guardian = clonePlayer(player.guardian, session, true);
-				clone.guardian.guardian = clone;
-		}
-	}else if(propertyName == "relationships"){
-		clone.relationships = Relationship.cloneRelationshipsStopgap(player.relationships); //won't actually work, but will let me actually clone the relationships later without modifying originals
-	}else{
-				clone[propertyName] = player[propertyName];
-	}
-	return clone;
+dynamic clonePlayer(player, session, isGuardian) {
+  var clone = new Player();
+  //TODO this is NOT how cloning works anymore.
+  for (var propertyName in player) {
+    if (propertyName == "guardian") {
+      if (!isGuardian) { //no infinite recursion, plz
+        clone.guardian = clonePlayer(player.guardian, session, true);
+        clone.guardian.guardian = clone;
+      }
+    } else if (propertyName == "relationships") {
+      clone.relationships = Relationship.cloneRelationshipsStopgap(player
+          .relationships); //won't actually work, but will let me actually clone the relationships later without modifying originals
+    } else {
+      clone[propertyName] = player[propertyName];
+    }
+    return clone;
+  }
 }
 
 
-
-dynamic findPlayersFromSessionWithId(playerList, source){
-	var ret = [];
-	for(var i= 0; i<playerList.length; i++){
-		var p = playerList[i];
-		//if it' snull, you could be from here, but not yet ectoborn
-		if(p.ectoBiologicalSource == source || p.ectoBiologicalSource == null){
-			ret.add(p);
-		}
-	}
-	return ret;
-}
-
+  dynamic findPlayersFromSessionWithId(playerList, source) {
+    var ret = [];
+    for (var i = 0; i < playerList.length; i++) {
+      var p = playerList[i];
+      //if it' snull, you could be from here, but not yet ectoborn
+      if (p.ectoBiologicalSource == source || p.ectoBiologicalSource == null) {
+        ret.add(p);
+      }
+    }
+    return ret;
+  }
 
 
-dynamic findBadPrototyping(playerList){
-	for(var i= 0; i<playerList.length; i++){
-		if(playerList[i].object_to_prototype.power >= 200){
-			return (playerList[i].object_to_prototype.htmlTitle());
-		}
-	}
-	return null;
-}
+  dynamic findBadPrototyping(playerList) {
+    for (var i = 0; i < playerList.length; i++) {
+      if (playerList[i].object_to_prototype.power >= 200) {
+        return (playerList[i].object_to_prototype.htmlTitle());
+      }
+    }
+    return null;
+  }
 
 
-
-dynamic findHighestMobilityPlayer(playerList){
-	var ret = playerList[0];
-	for(var i= 0; i<playerList.length; i++){
-		var p = playerList[i];
-		if(p.mobility > ret.mobility){
-			ret = p;
-		}
-	}
-	return ret;
-}
-
+  dynamic findHighestMobilityPlayer(playerList) {
+    var ret = playerList[0];
+    for (var i = 0; i < playerList.length; i++) {
+      var p = playerList[i];
+      if (p.mobility > ret.mobility) {
+        ret = p;
+      }
+    }
+    return ret;
+  }
 
 
-dynamic findLowestMobilityPlayer(playerList){
-	var ret = playerList[0];
-	for(var i= 0; i<playerList.length; i++){
-		var p = playerList[i];
-		if(p.mobility < ret.mobility){
-			ret = p;
-		}
-	}
-	return ret;
-}
+  dynamic findLowestMobilityPlayer(playerList) {
+    var ret = playerList[0];
+    for (var i = 0; i < playerList.length; i++) {
+      var p = playerList[i];
+      if (p.mobility < ret.mobility) {
+        ret = p;
+      }
+    }
+    return ret;
+  }
 
 
-
-dynamic findGoodPrototyping(playerList){
-	for(var i= 0; i<playerList.length; i++){
-		if(playerList[i].object_to_prototype.illegal ==true){
-			//print("found good");
-			return (playerList[i].object_to_prototype.htmlTitle());
-		}
-	}
-	return null;
-}
-
+  dynamic findGoodPrototyping(playerList) {
+    for (var i = 0; i < playerList.length; i++) {
+      if (playerList[i].object_to_prototype.illegal == true) {
+        //print("found good");
+        return (playerList[i].object_to_prototype.htmlTitle());
+      }
+    }
+    return null;
+  }
 
 
-dynamic getGuardiansForPlayers(playerList){
-	List<dynamic> tmp = [];
-	for(var i= 0; i<playerList.length; i++){
-		var g = playerList[i].guardian;
-		tmp.add(g);
-	}
-	return tmp;
-}
+  List<Player> getGuardiansForPlayers(List<Player> playerList) {
+    List<Player> tmp = [];
+    for (var i = 0; i < playerList.length; i++) {
+      var g = playerList[i].guardian;
+      tmp.add(g);
+    }
+    return tmp;
+  }
 
 
-
-void sortPlayersByFreeWill(players){
-	return players.sort(compareFreeWill);
-}
-
-
-
-dynamic compareFreeWill(a,b) {
-	return b.getStat("freeWill") - a.getStat("freeWill");
-}
-
-dynamic getAverageMinLuck(players){
-	if(players.length == 0) return 0;
-	num ret = 0;
-	for(num i = 0; i< players.length; i++){
-		ret += players[i].getStat("minLuck");
-	}
-	return  (ret/players.length).round();
-}
+//mobility is "natural" way to sort players but this works, too.
+  void sortPlayersByFreeWill(players) {
+    return players.sort((Player a, Player b) {
+      return a.getStat("freeWill") - b.getStat("freeWill");
+    });
+  }
 
 
+  dynamic compareFreeWill(a, b) {
+    return b.getStat("freeWill") - a.getStat("freeWill");
+  }
 
-dynamic getAverageMaxLuck(players){
-	if(players.length == 0) return 0;
-	num ret = 0;
-	for(num i = 0; i< players.length; i++){
-		ret += players[i].getStat("maxLuck");
-	}
-	return  (ret/players.length).round();
-}
-
-
-
-dynamic getAverageSanity(players){
-	if(players.length == 0) return 0;
-	num ret = 0;
-	for(num i = 0; i< players.length; i++){
-		ret += players[i].getStat("sanity");
-	}
-	return  (ret/players.length).round();
-}
+  num getAverageMinLuck(players) {
+    if (players.length == 0) return 0;
+    num ret = 0;
+    for (num i = 0; i < players.length; i++) {
+      ret += players[i].getStat("minLuck");
+    }
+    return (ret / players.length).round();
+  }
 
 
-
-dynamic getAverageHP(players){
-	if(players.length == 0) return 0;
-	num ret = 0;
-	for(num i = 0; i< players.length; i++){
-		ret += players[i].getStat("hp");
-	}
-	return (ret/players.length).round();
-}
-
+  dynamic getAverageMaxLuck(players) {
+    if (players.length == 0) return 0;
+    num ret = 0;
+    for (num i = 0; i < players.length; i++) {
+      ret += players[i].getStat("maxLuck");
+    }
+    return (ret / players.length).round();
+  }
 
 
-dynamic getAverageMobility(players){
-	if(players.length == 0) return 0;
-	num ret = 0;
-	for(num i = 0; i< players.length; i++){
-		ret += players[i].getStat("mobility");
-	}
-	return  (ret/players.length).round();
-}
+  dynamic getAverageSanity(players) {
+    if (players.length == 0) return 0;
+    num ret = 0;
+    for (num i = 0; i < players.length; i++) {
+      ret += players[i].getStat("sanity");
+    }
+    return (ret / players.length).round();
+  }
 
 
-
-dynamic getAverageRelationshipValue(players){
-	if(players.length == 0) return 0;
-	num ret = 0;
-	for(num i = 0; i< players.length; i++){
-		ret += players[i].getAverageRelationshipValue();
-	}
-	return (ret/players.length).round();
-}
-
+  dynamic getAverageHP(players) {
+    if (players.length == 0) return 0;
+    num ret = 0;
+    for (num i = 0; i < players.length; i++) {
+      ret += players[i].getStat("hp");
+    }
+    return (ret / players.length).round();
+  }
 
 
-dynamic getAveragePower(players){
-	if(players.length == 0) return 0;
-	num ret = 0;
-	for(num i = 0; i< players.length; i++){
-		ret += players[i].getStat("power");
-	}
-	return  (ret/players.length).round();
-}
+  dynamic getAverageMobility(players) {
+    if (players.length == 0) return 0;
+    num ret = 0;
+    for (num i = 0; i < players.length; i++) {
+      ret += players[i].getStat("mobility");
+    }
+    return (ret / players.length).round();
+  }
 
 
+  dynamic getAverageRelationshipValue(players) {
+    if (players.length == 0) return 0;
+    num ret = 0;
+    for (num i = 0; i < players.length; i++) {
+      ret += players[i].getAverageRelationshipValue();
+    }
+    return (ret / players.length).round();
+  }
 
-String getPVPQuip(deadPlayer, victor, deadRole, victorRole){
-	if(victor.getPVPModifier(victorRole) > deadPlayer.getPVPModifier(deadRole)){
-		return "Which is pretty much how you expected things to go down between a " + deadPlayer.class_name + " and a " + victor.class_name + " in that exact situation. ";
-	}else{
-		return "Which is weird because you would expect the " + deadPlayer.class_name + " to have a clear advantage. Guess echeladder rank really does matter?";
-	}
-}
+
+  dynamic getAveragePower(players) {
+    if (players.length == 0) return 0;
+    num ret = 0;
+    for (num i = 0; i < players.length; i++) {
+      ret += players[i].getStat("power");
+    }
+    return (ret / players.length).round();
+  }
 
 
+  String getPVPQuip(deadPlayer, victor, deadRole, victorRole) {
+    if (victor.getPVPModifier(victorRole) >
+        deadPlayer.getPVPModifier(deadRole)) {
+      return "Which is pretty much how you expected things to go down between a " +
+          deadPlayer.class_name + " and a " + victor.class_name +
+          " in that exact situation. ";
+    } else {
+      return "Which is weird because you would expect the " +
+          deadPlayer.class_name +
+          " to have a clear advantage. Guess echeladder rank really does matter?";
+    }
+  }
 
-dynamic getAverageFreeWill(players){
-	if(players.length == 0) return 0;
-	num ret = 0;
-	for(num i = 0; i< players.length; i++){
-		ret += players[i].getStat("freeWill");
-	}
-	return  (ret/players.length).round();
-}
+
+  num getAverageFreeWill(players) {
+    if (players.length == 0) return 0;
+    num ret = 0;
+    for (num i = 0; i < players.length; i++) {
+      ret += players[i].getStat("freeWill");
+    }
+    return (ret / players.length).round();
+  }
+
 
