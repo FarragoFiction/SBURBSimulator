@@ -3009,3 +3009,35 @@ Player clonePlayer(Player player, Session session, bool isGuardian) {
   }
 
 
+//used to recover form mind control, with a few extra things for planned shit.
+class MiniSnapShot {
+  Player player;
+  List<Relationship> relationships;
+  bool murderMode ;
+  num grimDark;
+  bool isTroll;
+  String class_name;
+  String aspect;
+
+
+  MiniSnapShot(this.player) {
+    relationships = player.relationships;
+    murderMode = player.murderMode;
+    grimDark = player.grimDark;
+    isTroll = player.isTroll;
+    class_name = player.class_name;
+    aspect = player.aspect;
+  }
+
+
+  void restoreState(player){
+    player.relationships = this.relationships;
+    player.murderMode = this.murderMode;
+    player.grimDark = this.grimDark;
+    player.isTroll = this.isTroll;
+    player.class_name = this.class_name;
+    player.aspect = this.aspect;
+    player.stateBackup = null; //no longer need to keep track of old state.
+  }
+
+}

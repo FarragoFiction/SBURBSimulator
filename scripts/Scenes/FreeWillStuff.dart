@@ -386,7 +386,7 @@ class FreeWillStuff extends Scene{
 			if(player == sacrifice){
 				loop = "You get dizzy trying to follow the time logic that must have caused this to happen. Did they try to god tier because their future self told them to? But the future self only told them to because THEIR future self told them... Or wait, is this a doomed time clone...? Fuck. Time is the shittiest aspect.";
 				print(player.title() +" convincing past/future self to go god tier" + this.session.session_id);
-			}else if(player.aspect == "Time" && seededRandom>.25){
+			}else if(player.aspect == "Time" && seededRandom()>.25){
 				timeIntro = " from the future";
 			}
 			String intro = "The " + player.htmlTitleBasic() + timeIntro + " knows how the god tiering mechanic works";
@@ -415,7 +415,7 @@ class FreeWillStuff extends Scene{
 					removeFromArray(sacrifice, this.session.availablePlayers);
 
 					player.sanity += -1000;
-					player.flipOut(" how stupid they could have been to force the " + sacrifice.htmlTitleBasic() + " to commit suicide" )
+					player.flipOut(" how stupid they could have been to force the " + sacrifice.htmlTitleBasic() + " to commit suicide" );
 					this.renderPlayer1 = player;
 					this.renderPlayer2 = sacrifice;
 					//print(player.title() + " commits murder for god tier but doesn't get tiger " + this.session.session_id);
@@ -454,9 +454,9 @@ class FreeWillStuff extends Scene{
 					var ret = this.godTierHappens(player);
 					return intro + ". They steel their will and prepare to commit a trivial act of self suicide. " + ret + " It is not a very big deal at all. ";  //caliborn
 				}else{
-					print(player.title() + " player accidentally suicided trying to god tier without a dream self : "  + this.session.session_id)
+					print(player.title() + " player accidentally suicided trying to god tier without a dream self : "  + this.session.session_id.toString());
 					player.makeDead( "trying to go God Tier without a dream self.");
-					return intro + ". They steel their will and prepare to commit a trivial act of self suicide. " + ret + " They may have known enough to exploit the God Tiering mechanic, but apparently hadn't taken into account the fact that you need a DREAM SELF to ascend to the GOD TIERS. Whoops. DEAD. ";
+					return intro + ". They steel their will and prepare to commit a trivial act of self suicide.  They may have known enough to exploit the God Tiering mechanic, but apparently hadn't taken into account the fact that you need a DREAM SELF to ascend to the GOD TIERS. Whoops. DEAD. ";
 				}
 				//print(player.title() + " commits suicide and gets tiger " + this.session.session_id);
 			}else{
@@ -466,9 +466,9 @@ class FreeWillStuff extends Scene{
 						var ret = this.godTierHappens(player);
 						return intro + ". They steel their will and prepare to commit a trivial act of self suicide. " + ret + " It is probably for the best that they don't know how huge a deal this is. If they hadn't caught a LUCKY BREAK, they would have died here forever. They were never destined to go God Tier, even if they commited suicide.  ";
 					}else{
-						print(player.title() + " player accidentally suicided trying to god tier without a dream self : "  + this.session.session_id)
+						print(player.title() + " player accidentally suicided trying to god tier without a dream self : "  + this.session.session_id.toString());
 						player.makeDead( "trying to go God Tier without a dream self.");
-						return intro + ". They steel their will and prepare to commit a trivial act of self suicide. " + ret + " They may have known enough to exploit the God Tiering mechanic, but apparently hadn't taken into account the fact that you need a DREAM SELF to ascend to the GOD TIERS. Whoops. DEAD. ";
+						return intro + ". They steel their will and prepare to commit a trivial act of self suicide. "  + " They may have known enough to exploit the God Tiering mechanic, but apparently hadn't taken into account the fact that you need a DREAM SELF to ascend to the GOD TIERS. Whoops. DEAD. ";
 
 					}
 					}else{
@@ -592,7 +592,7 @@ class FreeWillStuff extends Scene{
 	dynamic considerMakingEctobiologistDoJob(player){
 		if(!this.session.ectoBiologyStarted && player.knowsAboutSburb() && player.grimDark < 2 ){
 			String timeIntro = "";
-			if(player.aspect == "Time" && Math.random()>.25){
+			if(player.aspect == "Time" && seededRandom()>.25){
 				timeIntro = " from the future";
 			}
 			if(player.leader){
