@@ -30,6 +30,9 @@ part "GameEntities/NPCS.dart";
 part "GameEntities/player.dart";
 part "v2.0/YellowYardResultController.dart";
 part "ShittyRapEngine/shitty_raps.dart";
+part "navbar.dart"; //handles drawing navbar and url param stuff
+part "debugScenarios.dart"; //handles easter eggs
+
 
 //scenes
 part "Scenes/Scene.dart";

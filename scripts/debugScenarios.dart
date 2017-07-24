@@ -1,3 +1,4 @@
+part of SBURBSim;
 
 
 //bool startScratched = false;  <-- as suspected, this does not work. You NEED to finish simulating the first session to get important details for the second. Like ectobiology.

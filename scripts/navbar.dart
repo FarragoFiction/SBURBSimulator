@@ -1,3 +1,4 @@
+part of SBURBSim;
 
 
 String simulatedParamsGlobalVar = "";
@@ -10,7 +11,7 @@ void loadNavbar(){
 		 querySelector("#navbar").html(data);
 		 if(getParameterByName("seerOfVoid")  == "true"){
 	 		alert("If you gaze long into an abyss, the abyss also gazes into you.  - Troll Bruce Willis");
-	 		querySelector("#story").append("<button onclick='toggleVoid()'>Peer into Void, Y/N?</a><div class;='void'>Well, NOW you've certainly gone and done it. You can expect to see any Void Player shenanignans now. If there are any.");
+	 		querySelector("#story").appendHTML("<button onclick='toggleVoid()'>Peer into Void, Y/N?</a><div class;='void'>Well, NOW you've certainly gone and done it. You can expect to see any Void Player shenanignans now. If there are any.");
 	 	}
 		}),
 		dataType: "text"
@@ -24,7 +25,7 @@ void loadNavbar(){
 
 //http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
 //simulatedParamsGlobalVar is the simulated global vars.
-function getParameterByName(name, url) {
+String getParameterByName(name, url) {
     if (!url) {
       url = window.location.href;
     }
@@ -34,10 +35,10 @@ function getParameterByName(name, url) {
         results = regex.exec(url);
     if (!results) return null;
     if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(new RegExp(r"""\+""", multiLine:true), " "));
+    return decodeURIComponent(results[2].replaceAll(new RegExp(r"""\+""", multiLine:true), " "));
 }
 
-function getRawParameterByName(name, url) {
+String getRawParameterByName(name, url) {
     if (!url) {
       url = window.location.href;
     }

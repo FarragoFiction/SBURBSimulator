@@ -252,7 +252,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		return ['Doom','Hades','Achlys','Cassandra','Osiris','Ananke','Thanatos','Moros','Iapetus','Themis','Aisa','Oizys','Styx','Keres','Maat','Castor and Pollux','Anubis','Azrael','Ankou','Kapre','Moros','Atropos','Oizys','Korne','Odin'];
 	}
 	dynamic strongDenizenNames(){
-	    print("What if you don't want stranth? " + this.session.session_id);
+	    print("What if you don't want stranth? " + this.session.session_id.toString());
 		var ret = ['Yaldabaoth', '<span class ;= "void">Nobrop, the </span>Null', '<span class = "void">Paraxalan, The </span>Ever-Searching', "<span class ;= 'void'>Algebron, The </span>Dilletant", '<span class = "void">Doomod, The </span>Wanderer', 'Jörmungandr','Apollyon','Siseneg','Borunam','<span class ;= "void">Jadeacher the,</span>Researcher','Karmiution','<span class = "void">Authorot, the</span> Robot', '<span class ;= "void">Abbiejean, the </span>Scout', 'Aspiratcher, The Librarian','<span class = "void">Recurscker, The</span>Hollow One','Insurorracle','<span class ;= "void">Maniomnia, the Dreamwaker</span>','Kazerad','Shiva','Goliath'];
 		return getRandomElementFromArray(ret);
 	}
@@ -321,7 +321,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		bool render = false;
 
 		if(this.grimDark <= 3 && tmp > 3){ //newly GrimDark
-			print("grim dark 3 or more in session: " + this.session.session_id.toString();
+			print("grim dark 3 or more in session: " + this.session.session_id.toString());
 			render = true;
 		}else if(this.grimDark >3 && tmp <=3){ //newly recovered.
 			render = true;
@@ -391,16 +391,16 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 					 r.target.flipOutReason = " their dead friend, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead friend.
 				}
 			}else if(r.saved_type == r.spades){
-				r.target.sanity += -100;
+				r.target.addStat("sanity",  -100);
 				r.target.flipOutReason = " their dead Kismesis, the " + this.htmlTitleBasic();
 				r.target.flippingOutOverDeadPlayer = this;
 			}else if(r.saved_type == r.heart){
-				r.target.sanity += -100;
+				r.target.addStat("sanity", -100);
 				r.target.flipOutReason = " their dead Matesprit, the " + this.htmlTitleBasic();
 				r.target.flippingOutOverDeadPlayer = this;
 			}
 			else if(r.saved_type == r.diamond){
-				r.target.sanity += -1000;
+				r.target.addStat("sanity", -1000);
 				r.target.damageAllRelationships();
 				r.target.damageAllRelationships();
 				r.target.damageAllRelationships();
@@ -410,7 +410,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 
       //whether or not i care about them, there's also the novelty factor.
       if(dead.length == 1){  //if only I am dead, death still has it's impact and even my enemies care.
-        r.target.sanity += -10;
+        r.target.addStat("sanity", -10);
         if(r.target.flipOutReason == null){
           r.target.flipOutReason = " the dead player, the " + this.htmlTitleBasic(); //don't override existing flip out reasons. not for something as generic as a dead player.
           r.target.flippingOutOverDeadPlayer = this;
@@ -467,15 +467,18 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		return ret;
 	}
 	dynamic chatHandleShort(){
-		return this.chatHandle.match(new RegExp(r"""\b(\w)|[A-Z]""", multiLine:true)).join('').toUpperCase();
+    RegExp exp = new RegExp(r"""\b(\w)|[A-Z]""", multiLine:true);
+    return exp.allMatches(chatHandle).join('').toUpperCase();
 	}
 	dynamic chatHandleShortCheckDup(otherHandle){
-		var tmp= this.chatHandle.match(new RegExp(r"""\b(\w)|[A-Z]""", multiLine:true)).join('').toUpperCase();
+    RegExp exp = new RegExp(r"""\b(\w)|[A-Z]""", multiLine:true);
+    String tmp =  exp.allMatches(chatHandle).join('').toUpperCase();
 		if(tmp == otherHandle){
 			tmp = tmp + "2";
 		}
 		return tmp;
 	}
+
 	void makeGodTier(){
 		this.addStat("hp",500); //they are GODS.
     this.addStat("currentHP",500); //they are GODS.
@@ -724,9 +727,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		if(role == "Murderer") return this.getMurderousModifier();
 		return null;
 	}
-	bool renderable(){
-		return true;
-	}
+
 	num getAttackerModifier(){
 		if(this.class_name == "Knight") return 1.0;
 		if(this.class_name == "Seer") return 0.67;
@@ -806,7 +807,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		if(this.didDenizenKillYou() && !(this.grimDark <= 2)){
 			return false;
 		}else if(this.grimDark > 2){
-			print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!just death for a corrupt player from their denizen or denizen minion in session: " + this.session.session_id);
+			print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!just death for a corrupt player from their denizen or denizen minion in session: " + this.session.session_id.toString());
 			return true; //always just if the denizen puts down a corrupt player.
 		}
 
@@ -1129,7 +1130,8 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 
 	}
 	String shortLand(){
-		return this.land.match(new RegExp(r"""\b(\w)""", multiLine:true)).join('').toUpperCase();
+		RegExp exp = new RegExp(r"""\b(\w)""", multiLine:true);
+		return exp.allMatches(land).join('').toUpperCase();
 	}
 	String htmlTitle(){
 		return getFontColorFromAspect(this.aspect) + this.title() + "</font>";
