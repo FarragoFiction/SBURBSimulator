@@ -50,7 +50,7 @@ class FreeWillStuff extends Scene{
 		//print("rendering free will player(s): " + this.session.session_id)
 
 		var divID = (div.attr("id")) + "_freeWillBulshit" + this.renderPlayer1.chatHandle;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);
 
@@ -68,7 +68,7 @@ class FreeWillStuff extends Scene{
 	void renderGodTier(div){
 		//print(this.playerGodTiered.title() + " rendering free will god tier: " + this.session.session_id)
 		var divID = (div.attr("id")) + "_freeWillBulshit" + this.playerGodTiered.chatHandle;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		var f = this.session.fraymotifCreator.makeFraymotif([this.playerGodTiered], 3);//first god tier fraymotif
 		this.playerGodTiered.fraymotifs.add(f);
 		div.append(" They learn " + f.name + ". ") ;
@@ -77,14 +77,14 @@ class FreeWillStuff extends Scene{
 
 
 
-		drawGetTiger(canvas, [this.playerGodTiered],repeatTime) //only draw revivial if it actually happened.
+		drawGetTiger(canvas, [this.playerGodTiered]); //only draw revivial if it actually happened.
 	}
 	@override
 	void renderContent(div){
 		String psionic = "";
 		var pname = this.player.canMindControl();
 		if( pname){
-			print("psychic powers used to mind control in session: " + this.session.session_id);
+			print("psychic powers used to mind control in session: " + this.session.session_id.toString());
 			psionic =  " The " + this.player.htmlTitleBasic() + " uses their "+ pname + ". ";
 		} 
 		div.append("<br><img src = 'images/sceneIcons/freewill_icon.png'> "+psionic + this.content());
@@ -158,7 +158,7 @@ class FreeWillStuff extends Scene{
 		if(!player.murderMode){
 			var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
 			if(this.isValidTargets(enemies,player)){
-					print("chosing to go into murdermode " +this.session.session_id);
+					print("chosing to go into murdermode " +this.session.session_id.toString());
 					player.makeMurderMode();
 					player.sanity = -10;
 					removeFromArray(player, this.session.availablePlayers);
@@ -172,21 +172,21 @@ class FreeWillStuff extends Scene{
 	}
 	dynamic howManyEnemiesInCommon(enemies, patsy){
 		var myEnemies = patsy.getEnemiesFromList(findLivingPlayers(this.session.players));
-		num num = 0;
+		num numb = 0;
 		for(num i = 0; i<enemies.length; i++){
 			var e = enemies[i];
-			if(myEnemies.indexOf(e) != -1) num ++;
+			if(myEnemies.indexOf(e) != -1) numb ++;
 		}
-		return num;
+		return numb;
 	}
 	dynamic howManyFriendsYouHate(friends, patsy){
 		var myEnemies = patsy.getEnemiesFromList(findLivingPlayers(this.session.players));
-		num num = 0;
+		num numb = 0;
 		for(num i = 0; i<friends.length; i++){
 			var e = friends[i];
-			if(myEnemies.indexOf(e) != -1) num ++;
+			if(myEnemies.indexOf(e) != -1) numb ++;
 		}
-		return num;
+		return numb;
 	}
 	dynamic findMurderModePlayerBesides(player){
 		var ret = null;
@@ -208,7 +208,7 @@ class FreeWillStuff extends Scene{
 		//ideally somebody i wouldn't miss too much if they were gone, and wouldn't fear too much if they had phenomenal cosmic power. so. lowest abs value.
 		for(num i = 0; i<player.relationships.length; i++){
 			var r = player.relationships[i];
-			var v = Math.abs(r.value);
+			var v = (r.value).abs();
 			if(!ret || (v < ret_abs_value && !r.target.dead && !r.target.godTier)){
 				ret = r;
 				ret_abs_value = v;
@@ -286,7 +286,8 @@ class FreeWillStuff extends Scene{
 		if(player.aspect == "Life") ret = "purpose";
 		return ret;
 	}
-	void getInfluenceSymbol(player){
+
+	String getInfluenceSymbol(player){
 		if(player.aspect == "Mind") return "mind_forehead.png";
 		if(player.aspect == "Rage") return "rage_forehead.png";
 		if(player.aspect == "Blood") return "blood_forehead.png";
@@ -299,7 +300,7 @@ class FreeWillStuff extends Scene{
 		var patsyVal = patsyArr[1];
 		if(this.isValidTargets(enemies,player) && patsy){
 				if(patsyVal > enemies.length/2 && patsy.sanity < 1){
-						print("manipulating someone to go into murdermode " +this.session.session_id + " patsyVal = " + patsyVal);
+						print("manipulating someone to go into murdermode " +this.session.session_id.toString() + " patsyVal = " + patsyVal);
 						patsy.makeMurderMode();
 						patsy.sanity = -10;
 						removeFromArray(player, this.session.availablePlayers);
@@ -311,7 +312,7 @@ class FreeWillStuff extends Scene{
 						if(player == patsy){
 							loop = "You get dizzy trying to follow the time logic that must have caused this to happen. Did they only go crazy because their future self went crazy because THEIR future self went crazy....? Or wait, is this a doomed time clone...? Fuck. Time is the shittiest aspect.";
 							//print(player.title() +" convincing past/future self to go murder mode " + this.session.session_id);
-						}else if(player.aspect == "Time" && Math.random()>.25){ //most manipulative time bastards are from teh future
+						}else if(player.aspect == "Time" && seededRandom>.25){ //most manipulative time bastards are from teh future
 							timeIntro = " from the future";
 						}
 						//print("forcing someone else to be flipping shit");
@@ -385,13 +386,13 @@ class FreeWillStuff extends Scene{
 			if(player == sacrifice){
 				loop = "You get dizzy trying to follow the time logic that must have caused this to happen. Did they try to god tier because their future self told them to? But the future self only told them to because THEIR future self told them... Or wait, is this a doomed time clone...? Fuck. Time is the shittiest aspect.";
 				print(player.title() +" convincing past/future self to go god tier" + this.session.session_id);
-			}else if(player.aspect == "Time" && Math.random()>.25){
+			}else if(player.aspect == "Time" && seededRandom>.25){
 				timeIntro = " from the future";
 			}
 			String intro = "The " + player.htmlTitleBasic() + timeIntro + " knows how the god tiering mechanic works";
 			if(sacrifice.sprite.name == "sprite"){  //isn't gonna happen to yourself, 'cause you have to be 'available'.
 				intro += ", to the point of abusing glitches and technicalities the game itself to exploit it before the " + sacrifice.htmlTitle() + " is even in the Medium";
-				print("HAX! I call HAX! " + this.session.session_id);
+				print("HAX! I call HAX! " + this.session.session_id.toString());
 			}
 			if(player.murderMode){
 				intro += " and they are too far gone to care about casualties if it fails";
@@ -423,7 +424,7 @@ class FreeWillStuff extends Scene{
 						sacrifice.makeDead("trying to go God Tier against destiny.");
 						ret +=  ". A frankly ridiculous series of events causes the " + sacrifice.htmlTitleBasic() + "'s dying body to fall off their " + bed + ". They were never destined to GodTier, and SBURB neurotically enforces such things. The " + player.htmlTitleBasic() + timeIntro + " tries desparately to get them to their " + bed + " in time, but in vain. They are massively triggered by their own astonishing amount of hubris. ";
 					}else{
-						print(" could not god tier because lack of dream self in session: " + this.session.session_id);
+						print(" could not god tier because lack of dream self in session: " + this.session.session_id.toString());
 						sacrifice.makeDead("trying to go God Tier wthout a dream self.");
 						ret += ".  Unfortunately, you need a dream self to go GodTier, and the " + sacrifice.htmlTitleBasic() + " does not have one. They die for no reason. Nothing glows, their body does not float, and the magnitude of the " + player.htmlTitleBasic() + timeIntro +"'s hubris astonishes everyone. ";
 					}
@@ -505,7 +506,7 @@ class FreeWillStuff extends Scene{
 		if(murderer && !murderer.dead && this.canInfluenceEnemies(player) && player.power > 25 && player.getFriends().length > player.getEnemies().length){  //if I am not a violent person, and I CAN force you to calm down. I will.
 			String loop = "";
 
-		    print(player.title() + " controlling murderer to make them placid " + this.session.session_id)
+		    print(player.title() + " controlling murderer to make them placid " + this.session.session_id);
 			removeFromArray(player, this.session.availablePlayers);
 			removeFromArray(murderer, this.session.availablePlayers);
 			if(!murderer.stateBackup) murderer.stateBackup = new MiniSnapShot(murderer);
@@ -633,7 +634,7 @@ class FreeWillStuff extends Scene{
 				return "The " + player.htmlTitle() + " is not going to fall into SBURB's trap. They know why frog breeding is important, and they are going to fucking DO it. ";
 			}else{
 				String timeIntro = "";
-				if(player.aspect == "Time" && Math.random()>.25){
+				if(player.aspect == "Time" && seededRandom()>.25){
 					timeIntro = " from the future";
 				}
 				if(!space.dead){

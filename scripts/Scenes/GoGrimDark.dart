@@ -23,12 +23,14 @@ class GoGrimDark extends Scene {
 		}
 		return false;
 	}
-	void corruptionReachedTippingPoint(p){
-		return p.corruptionLevelOther >= 50-(p.grimDark*11) //at level 4, only need 10 more points. at level 1, need 40;
+
+	bool corruptionReachedTippingPoint(Player p){
+		return p.corruptionLevelOther >= 50-(p.grimDark*11); //at level 4, only need 10 more points. at level 1, need 40;
 	}
+
 	dynamic addImportantEvent(){
 		var current_mvp = findStrongestPlayer(this.session.players);
-		return this.session.addImportantEvent(new PlayerWentGrimDark(this.session, current_mvp.power,this.player) );
+		return this.session.addImportantEvent(new PlayerWentGrimDark(this.session, current_mvp.power,this.player,null) );
 	}
 
 	@override
@@ -40,7 +42,7 @@ class GoGrimDark extends Scene {
 		div.append("<br><img src = 'images/sceneIcons/grimdark_black_icon.png'>"+this.content());
 		if(this.player.grimDark ==4){
 			var divID = div.attr("id") + "grimdark";
-			String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+			String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 			div.append(canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 			drawSinglePlayer(canvasDiv, this.player);
@@ -60,7 +62,7 @@ class GoGrimDark extends Scene {
 				this.player.increasePower(100);
 				ret += " The " + this.player.htmlTitleBasic() + " will tell anyone who will listen that the game needs to be broken. ";
 			}else if(this.player.grimDark == 4){
-				print("full grim dark: " + this.session.session_id);
+				print("full grim dark: " + this.session.session_id.toString());
 				//alert("full grim dark: " + this.session.session_id);
 				this.player.increasePower(200);
 				ret +=  "The " + this.player.htmlTitleBasic() + " slips into the fabled blackdeath trance of the woegothics, quaking all the while in the bloodeldritch throes of the broodfester tongues.";

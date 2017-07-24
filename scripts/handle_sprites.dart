@@ -495,7 +495,7 @@ dynamic drawReviveDead(div, player, ghost, enablingAspect){
 
 
 //leader is an adult, though.
-void poseBabiesAsATeam(canvas, leader, players, guardians, repeatTime){
+void poseBabiesAsATeam(canvas, leader, players, guardians){
   if(checkSimMode() == true){
     return;
   }
@@ -701,7 +701,7 @@ void drawCharSheet(canvas, player){
 
 
 
-void drawGetTiger(canvas, players, repeatTime){
+void drawGetTiger(canvas, players){
   if(checkSimMode() == true){
     return;
   }
@@ -741,13 +741,13 @@ void drawGetTiger(canvas, players, repeatTime){
 
 //player on left, echeladder on right. text with boonies. all levels listed
 //obtained levels have a colored background, others have black.
-void drawLevelUp(canvas, player, repeatTime){
+void drawLevelUp(canvas, player){
   if(checkSimMode() == true){
     return;
   }
 	if(player.godTier){
 		//print("god tier");
-		drawLevelUpGodTier(canvas, player,repeatTime);
+		drawLevelUpGodTier(canvas, player);
 		return;
 	}
   //for echeladder
@@ -790,7 +790,7 @@ void drawLevelUp(canvas, player, repeatTime){
 
 //player in center, on platform, level name underneath them. aspect symbol behind them.
 //bg color is shirt color
-void drawLevelUpGodTier(canvas, player, repeatTime){
+void drawLevelUpGodTier(canvas, player){
 	 if(checkSimMode() == true){
 		return;
 	}
@@ -977,7 +977,7 @@ void writeLevels(canvas, player){
 
 
 
-void drawRelationshipChat(canvas, player1, player2, chat, repeatTime){
+void drawRelationshipChat(canvas, player1, player2, chat){
 
   if(checkSimMode() == true){
     return;
@@ -1150,7 +1150,7 @@ void drawSinglePlayer(canvas, player){
 
 
 //need to parse the text to figure out who is talking to determine color for chat.
-void drawChat(canvas, player1, player2, chat, repeatTime, topicImage){
+void drawChat(canvas, player1, player2, chat, topicImage){
   if(checkSimMode() == true){
     return;
   }

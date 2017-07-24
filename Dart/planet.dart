@@ -28,6 +28,10 @@
   NOT random though. Each land word has list of traits and the Planet that comes from it
   picks from one of the traits, just like consorts. Oh fuck, love this.
 
+  TODO Actually implement boonies for player.  Quests can give out boonies, and leveling up does, too.
+  So you can end up with classes like Rogue and Theif tripping boonies, and so have a lot of fraymotifs.
+  while other classes might have raw power but not a lot of fraymotifs.
+
  */
 class Planet{
   String word1;

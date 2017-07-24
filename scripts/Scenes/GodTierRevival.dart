@@ -34,7 +34,7 @@ class GodTierRevival extends Scene {
 		if(this.godsToRevive.length > 6){
 			ch = canvasHeight*2;
 		}
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+ch + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+ch + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);
@@ -49,7 +49,7 @@ class GodTierRevival extends Scene {
 			}
 		}
 
-		drawGodRevival(canvasDiv, live_players, dead_players,repeatTime);
+		drawGodRevival(canvasDiv, live_players, dead_players);
 	}
 	dynamic addImportantEvent(player){
 			return null;
@@ -110,12 +110,12 @@ class GodTierRevival extends Scene {
 					p.canGodTierRevive = true;
 					p.increasePower();
 					p.makeAlive();
-					if(this.aspect == "Doom"){ //powered by their own doom.
-						print("doom is powered by their own death: " + this.session.session_id) //omg, they are sayians.
-						this.power += 500;
-						this.minLuck = 500; //prophecy fulfilled. you are no longer doomed. (will probably get drained again quickly, tho).  Do...do doom players EVER revive?????
+					if(p.aspect == "Doom"){ //powered by their own doom.
+						print("doom is powered by their own death: " + this.session.session_id.toString()); //omg, they are sayians.
+						p.addStat("MANGRIT",500);
+						p.setStat("minLuck", 500); //prophecy fulfilled. you are no longer doomed. (will probably get drained again quickly, tho).  Do...do doom players EVER revive?????
 						ret += " They prophesied this death. Now that their Doom is over, they can finally get on with their life. ";
-						print("godtier doom player using their own death as a source of power. so proud of this. "  + this.session.session_id);
+						print("godtier doom player using their own death as a source of power. so proud of this. "  + this.session.session_id.toString());
 					}
 				}
 			}

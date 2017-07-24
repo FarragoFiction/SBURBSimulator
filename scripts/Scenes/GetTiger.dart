@@ -42,17 +42,17 @@ class GetTiger extends Scene{
 		var players = this.deadPlayersToGodTier;
 		if(!players[0].dead){
 			div.append("<br><img src = 'images/sceneIcons/rainbow_ascend_animated.gif'> " + text);
-			String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+ch + "'>  </canvas>";
+			String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+ch + "'>  </canvas>";
 			div.append(canvasHTML);
 			//different format for canvas code
 			var canvasDiv = querySelector("#canvas"+ divID);
 
-			drawGetTiger(canvasDiv, players,repeatTime) //only draw revivial if it actually happened.
+			drawGetTiger(canvasDiv, players); //only draw revivial if it actually happened.
 		}
 
 
 	}
-	dynamic content(){
+	String content(){
 		//print("trying to get tiger for: " + getPlayersTitles(this.deadPlayersToGodTier))
 		String ret = "" +getPlayersTitles(this.deadPlayersToGodTier) + " was always destined to take a Legendary Nap, and upon waking, become a God Tier. ";
 
@@ -66,14 +66,14 @@ class GetTiger extends Scene{
 				////print("Quest bed: " + this.session.session_id);
 				ret += " Upon being laid to rest on their QUEST BED on the " + p.land + ", the " + p.htmlTitle() + "'s body glows, and rises Skaiaward. ";
 				ret +="On " + p.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
-				f = this.session.fraymotifCreator.makeFraymotif([p], 3);//first god tier fraymotif
+				Fraymotif f = this.session.fraymotifCreator.makeFraymotif([p], 3);//first god tier fraymotif
 				p.fraymotifs.add(f);
 				ret += " They learn " + f.name + "." ;
 				this.session.questBed = true;
 			}
 		}else if(withd && withd.length > 0){
 			//print("We COULD have been on my quest bed, but random chance said no. " + getPlayersTitles(withd))
-			return;
+			return "";
 		}
 
 		if(withoutd){
@@ -85,7 +85,7 @@ class GetTiger extends Scene{
 					////print("sacrificial slab: " + this.session.session_id);
 					ret += " Upon a wacky series of events leaving their corpse on their SACRIFICIAL SLAB on " + p.moon + ", the " + p.htmlTitle() + " glows and ascends to the God Tiers with a sweet new outfit.";
 					this.session.sacrificialSlab = true;
-					f = this.session.fraymotifCreator.makeFraymotif([p], 3);//first god tier fraymotif
+					Fraymotif f = this.session.fraymotifCreator.makeFraymotif([p], 3);//first god tier fraymotif
 					p.fraymotifs.add(f);
 					ret += " They learn " + f.name + "." ;
 				}

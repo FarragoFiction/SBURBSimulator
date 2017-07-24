@@ -40,7 +40,7 @@ class JackBeginScheming extends Scene {
 		this.findSympatheticPlayer();
 		return (this.session.jack.getStat("power") >= this.session.queen.getStat("power")) && (this.friend != null);
 	}
-	void smart(player){
+	bool smart(player){
 		return ((player.aspect == "Light" || player.class_name == "Seer") ||(player.aspect == "Doom" || player.aspect == "Mind"));
 	}
 	dynamic grimChat2(div, player1, player2){
@@ -50,7 +50,7 @@ class JackBeginScheming extends Scene {
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
 
-		chatText += Scene.chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2));
+		chatText += Scene.chatLine(player1Start, player1,Relationship.getRelationshipFlavorGreeting(r1, r2, player1, player2));
 		chatText += Scene.chatLine(player1Start, player1,"So, this Dersite named Jack showed up. Apparently he wants to help us exile the Black Queen?");
 		chatText += Scene.chatLine(player1Start, player1,"Something about a grudge?");
 		chatText += Scene.chatLine(player1Start, player1,"So I told him we'd see what we could do. ");
@@ -138,8 +138,8 @@ class JackBeginScheming extends Scene {
 		String chatText = "";
 		var r1 = player1.getRelationshipWith(player2);
 		var r2 = player2.getRelationshipWith(player1);
-		chatText += Scene.chatLine(player1Start, player1,getRelationshipFlavorGreeting(r1, r2, player1, player2));
-		chatText += Scene.chatLine(player2Start, player2,getRelationshipFlavorGreeting(r2, r1, player2, player1));
+		chatText += Scene.chatLine(player1Start, player1,Relationship.getRelationshipFlavorGreeting(r1, r2, player1, player2));
+		chatText += Scene.chatLine(player2Start, player2,Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1));
 		chatText += Scene.chatLine(player1Start, player1,"So, this Dersite named Jack showed up. Apparently he wants to help us exile the Black Queen?");
 		chatText += Scene.chatLine(player1Start, player1,"Something about a grudge?");
 		chatText += Scene.chatLine(player1Start, player1,"So I told him we'd see what we could do. ");
@@ -182,7 +182,7 @@ class JackBeginScheming extends Scene {
 	void chatWithFriend(div, player1, player2){
 		num repeatTime = 1000;
 		var divID = (div.attr("id")) + "_" + player1.chatHandle;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);
@@ -206,7 +206,7 @@ class JackBeginScheming extends Scene {
 	}
 
 	@override
-	dynamic renderContent(div){
+	void renderContent(div){
 		if(!this.friend){
 			return;
 		}
@@ -225,7 +225,8 @@ class JackBeginScheming extends Scene {
 			//leader gossips with friends
 			player2 = player1.getBestFriendFromList(findLivingPlayers(this.session.players));
 			if(!player2){
-				return div.append(this.content);
+				div.append(this.content);
+				return;
 			}else{
 				this.chatWithFriend(div,player1, player2);
 			}

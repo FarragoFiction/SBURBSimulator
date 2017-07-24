@@ -21,7 +21,7 @@ class GrimDarkQuests extends Scene{
 				this.players.add(player);
 			}
 		}
-		if(this.players.length > 0 && this.players[0].trickster && Math.random() >.01) return false; //tricksters are too op and distractable, don't often actually try to break sim
+		if(this.players.length > 0 && this.players[0].trickster && seededRandom() >.01) return false; //tricksters are too op and distractable, don't often actually try to break sim
 
 		return this.players.length>0;
 	}
@@ -32,7 +32,7 @@ class GrimDarkQuests extends Scene{
 			if(r.value > 10){
 				String ret = "The " + player.htmlTitle() + " suddenly snaps out of it.  Their friendship with the " + bestFriend.htmlTitle() + " has managed to free them of the Horrorterror's influence. ";
 				if(bestFriend.grimDark > 1) ret += " The irony of this does not escape anyone. ";
-				player.changeGrimDark(-3) //if you are max grimDark doesn't fully save you...but if you weren't....maybe you get an extra buffer?
+				player.changeGrimDark(-3); //if you are max grimDark doesn't fully save you...but if you weren't....maybe you get an extra buffer?
 				return ret;
 			}
 		}
@@ -46,7 +46,7 @@ class GrimDarkQuests extends Scene{
 				tasks.add("just straight up murdering frogs out of frustration");
 				tasks.add("try to tamper with the Forge");
 				player.landLevel += -10; //they FOCUS on killing frogs and ruining the game.
-				print("A grim dark space player is actively trying to breed a corrupt frog in session: " + this.session.session_id);
+				print("A grim dark space player is actively trying to breed a corrupt frog in session: " + this.session.session_id.toString());
 			}
 			String quip = "";
 			var amount =0;
@@ -77,7 +77,7 @@ class GrimDarkQuests extends Scene{
 	void renderContent(div){
 		//print("A grim dark player is actively working to crash session " + this.session.session_id + " and this much health remains: " + this.session.sessionHealth );
 		//print("trying to crash session like an idiot: " + this.session.session_id);
-		div.append("<br><img src = 'images/sceneIcons/grimdark_black_icon.png'> "+this.content(div));
+		div.append("<br><img src = 'images/sceneIcons/grimdark_black_icon.png'> "+this.content());
 		if(this.session.sessionHealth <= 0){
 			div.append("<br><br>YOU MANIACS! YOU BLEW IT UP! AH, DAMN YOU! GOD DAMN YOU ALL TO HELL! <br><br>Just joking. Well, I mean. Not about them blowing it up. Sessions fucked. But. I mean, come on. What did you THINK would happen? Stupid, lousy goddamned GrimDark players crashing my fucking sessions.");
 			this.crashSession();
@@ -102,11 +102,9 @@ class GrimDarkQuests extends Scene{
 }
 
 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error#Custom_Error_Types
-function PlayersCrashedSession(message) {
-  this.name = 'PlayersCrashedSession';
-  this.message = message || 'PlayersCrashedSession';
-  this.stack = (new Error()).stack;
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error#Custom_Error_Types
+class PlayersCrashedSession implements Exception {
+  String name = 'PlayersCrashedSession';
+  String message =  'PlayersCrashedSession';
+  PlayersCrashedSession(this.message);
 }
-PlayersCrashedSession.prototype = Object.create(Error.prototype);
-PlayersCrashedSession.prototype.constructor = PlayersCrashedSession;

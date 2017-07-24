@@ -9,7 +9,7 @@ class Intro  extends Scene{
 
 	Intro(Session session): super(session);
 
-	@override
+	@override  //TODO is there no way to have an Intro trigger have more params than Scene?
 	bool trigger(playerList, player){
 		this.playerList = playerList;
 		this.player = player;

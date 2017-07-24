@@ -52,7 +52,6 @@ part "Scenes/ExploreMoon.dart";
 part "Scenes/FaceDenizen.dart";
 part "Scenes/FightQueen.dart";
 part "Scenes/FreeWillStuff.dart";
-part "Scenes/ForeshadowYellowYard.dart";
 part "Scenes/GetTiger.dart";
 part "Scenes/GiveJackBullshitWeapon.dart";
 part "Scenes/GodTierRevival.dart";
