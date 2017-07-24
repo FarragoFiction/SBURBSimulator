@@ -46,6 +46,32 @@ class GameEntity implements Comparable{
     return this.htmlTitle().replaceAll(new RegExp(r"\s", multiLine:true), '').replaceAll(new RegExp(r"'", multiLine:true), ''); //no spces probably trying to use this for a div
   }
 
+  //handles cloning generic stuff
+  GameEntity clone() {
+      GameEntity clonege = new GameEntity(name, id, session);
+      clonege.setStatsHash(stats);
+      clonege.fontColor = fontColor;
+      clonege.ghost = ghost; //if you are ghost, you are rendered spoopy style
+      clonege.grist = grist; //everything has it.
+      clonege.dead = dead;
+      clonege.ghostPacts = ghostPacts; //list of two element array [Ghost, enablingAspect]
+      clonege.corrupted = corrupted; //players are corrupted at level 4. will be easier than always checking grimDark level
+      clonege.fraymotifs = fraymotifs; //TODO should these be cloned, too?
+      clonege.usedFraymotifThisTurn = usedFraymotifThisTurn;
+      clonege.buffs = buffs; //only used in strifes, array of BuffStats (from fraymotifs and eventually weapons)
+      clonege.relationships = Relationship.cloneRelationshipsStopgap(relationships);
+      clonege.permaBuffs = permaBuffs; //is an object so it looks like a player with stats.  for things like manGrit which are permanent buffs to power (because modding power directly gets OP as shit because power controls future power)
+      clonege.renderingType = renderingType; //0 means default for this sim.
+      clonege.associatedStats = associatedStats;  //most players will have a 2x, a 1x and a -1x stat.
+      clonege.spriteCanvasID = spriteCanvasID;  //part of new rendering engine.
+      clonege.doomed = doomed; //if you are doomed, no matter what you are, you are likely to die.
+      clonege.doomedTimeClones = doomedTimeClones; //TODO should these be cloned? help fight the final boss(es).
+      clonege.causeOfDeath = causeOfDeath; //fill in every time you die. only matters if you're dead at end
+      clonege.crowned = crowned; //TODO figure out how this should work. for now, crowns count as Game Entities, but should be an Item eventually
+
+      return clonege;
+  }
+
   //as each type of entity gets renderable, override this.
   bool renderable() {
     return false;

@@ -11,7 +11,6 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	num maxHornNumber = 73; //don't fuck with this
 	num maxHairNumber = 74; //same
 	GameEntity sprite = null; //gets set to a blank sprite when character is created.
-	num grist = 0; //total party grist needs to be at a certain level for the ultimate alchemy. luck events can raise it, boss fights, etc.
 		bool deriveChatHandle = true;
 	String flipOutReason = null; //if it's null, i'm not flipping my shit.
 	Player flippingOutOverDeadPlayer = null; //don't let this go into url. but, don't flip out if the friend is currently alive, you goof.
@@ -2761,23 +2760,78 @@ dynamic findPlayersWithoutEctobiologicalSource(playerList){
 
 //deeper than a snapshot, for yellowyard aliens
 //have to treat properties that are objects differently. luckily i think those are only player and relationships.
-dynamic clonePlayer(player, session, isGuardian) {
-  var clone = new Player();
-  //TODO this is NOT how cloning works anymore.
-  for (var propertyName in player) {
-    if (propertyName == "guardian") {
-      if (!isGuardian) { //no infinite recursion, plz
-        clone.guardian = clonePlayer(player.guardian, session, true);
-        clone.guardian.guardian = clone;
-      }
-    } else if (propertyName == "relationships") {
-      clone.relationships = Relationship.cloneRelationshipsStopgap(player
-          .relationships); //won't actually work, but will let me actually clone the relationships later without modifying originals
-    } else {
-      clone[propertyName] = player[propertyName];
-    }
-    return clone;
+Player clonePlayer(Player player, Session session, bool isGuardian) {
+  Player clone = player.clone();
+  //clone stats.
+  clone.baby = player.baby;
+  clone.interest1Category = player.interest1Category ; //used by Replay page for custom interests.
+  clone.interest2Category = player.interest2Category; //both should be null once they have been used to add the custom interest to the right place
+  clone.pvpKillCount = player.pvpKillCount; //for stats.
+  clone.timesDied = player.timesDied ;
+  clone.denizen = player.denizen.clone();
+  clone.denizenMinion = player.denizenMinion.clone();
+  clone.sprite = player.sprite.clone(); //gets set to a blank sprite when character is created.
+  clone.deriveChatHandle = player.deriveChatHandle;
+  clone.flipOutReason = player.flipOutReason; //if it's null, i'm not flipping my shit.
+  clone.flippingOutOverDeadPlayer =  player.flippingOutOverDeadPlayer; //don't let this go into url. but, don't flip out if the friend is currently alive, you goof.
+  clone.denizen_index = player.denizen_index; //denizen quests are in order.
+  clone.causeOfDrain = player.causeOfDrain; //just ghost things
+  clone.ghostWisdom = player.ghostWisdom;//keeps you from spamming the same ghost over and over for wisdom.
+  clone.land1 = player.land1;
+  clone.land2 = player.land2;
+  clone.trickster =  player.trickster;
+  clone.sbahj = player.sbahj;
+  clone.sickRhymes = player.sickRhymes; //oh hell yes. Hell. FUCKING. Yes!
+  clone.robot =  player.robot;
+  clone.ectoBiologicalSource = player.ectoBiologicalSource; //might not be created in their own session now.
+  clone.class_name = player.class_name;
+  clone.number_confessions = player.number_confessions;
+  clone.number_times_confessed_to = player.number_times_confessed_to;
+  clone.baby_stuck = player.baby_stuck;
+  clone.influenceSymbol = player.influenceSymbol; //multiple aspects can influence/mind control.
+  clone.influencePlayer = player.influencePlayer; //TODO  probably don't have to clone this. who is controlling me? (so i can break free if i have more free will or they die)
+  clone.stateBackup = player.stateBackup; //if you get influenced by something, here's where your true self is stored until you break free.
+  clone.aspect = player.aspect;
+  clone.land = player.land;
+  clone.interest1 = player.interest1;
+  clone.interest2 = player.interest2;
+  clone.chatHandle = player.chatHandle;
+  clone.object_to_prototype = player.object_to_prototype;
+  clone.moon = player.moon;
+  clone.leveledTheHellUp = player.leveledTheHellUp; //triggers level up scene.
+  clone.mylevels = player.mylevels;
+  clone.level_index = player.level_index; //will be ++ before i query
+  clone.godTier = player.godTier;
+  clone.victimBlood = player.victimBlood; //used for murdermode players.
+  clone.hair = player.hair;
+  clone.hairColor =  player.hairColor;
+  clone.dreamSelf = player.dreamSelf ;
+  clone.isTroll = player.isTroll; //later
+  clone.bloodColor = player.bloodColor;
+  clone.leftHorn = player.leftHorn;
+  clone.rightHorn = player.rightHorn;
+  clone.lusus =  player.lusus;
+  clone.quirk = player.quirk; //probably don't have to clone this???
+  clone.godDestiny = player.godDestiny;
+  clone.canGodTierRevive = player.canGodTierRevive;  //even if a god tier perma dies, a life or time player or whatever can brings them back.
+  clone.isDreamSelf =  player.isDreamSelf;	//players can be triggered for various things. higher their triggerLevle, greater chance of going murdermode or GrimDark.
+  clone.murderMode = player.murderMode;  //kill all players you don't like. odds of a just death skyrockets.
+  clone.leftMurderMode = player.leftMurderMode; //have scars, unless left via death.
+  clone.corruptionLevelOther =  player.corruptionLevelOther; //every 100 points, sends you to next grimDarkLevel.
+  clone.grimDark = player.grimDark;  //  0 = none, 1 ;= some, 2 = some more 3 ;= full grim dark with aura and font and everything.
+  clone.leader = player.leader;
+  clone.landLevel = player.landLevel; //at 10, you can challenge denizen.  only space player can go over 100 (breed better universe.)
+  clone.denizenFaced = player.denizenFaced;
+  clone.denizenDefeated = player.denizenDefeated;
+  clone.denizenMinionDefeated = player.denizenMinionDefeated;
+
+
+  if(!isGuardian) {
+    clone.guardian = clonePlayer(player.guardian, session, true);
+    clone.guardian.guardian = clone;
   }
+
+  return clone;
 }
 
 
