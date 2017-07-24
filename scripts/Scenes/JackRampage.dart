@@ -13,7 +13,7 @@ class JackRampage extends Scene{
 
 
 	@override
-	dynamic trigger(playerList){
+	bool trigger(playerList){
 		//print("Jack is: " + this.session.jackStrength  + " and King is: " + this.session.kingStrength);
 		return this.session.jack.crowned != null && this.session.jack.getStat("currentHP") > 0 && !this.session.jack.dead; //Jack does not stop showing us his stabs.
 	}
@@ -44,24 +44,24 @@ class JackRampage extends Scene{
 		}
 		//var unique = Array.from(new Set(ret));  breaks IE because IE is a whiny little bitch.
 		//var unique = [...new Set(ret)]  ;//IE ALSO bitches about this. Fucking IE.  I think it doesn't implement Sets. What the actual fuck.;
-		var unique = uniqueArrayBecauesIEIsAWhinyBitch(ret);
+    Set<Player> unique = new Set<Player>.from(ret);
 
-		List<dynamic> ret = []; //add some sprites. this is literally the only other fight they are good for.
-		for(num i = 0; i<unique.length; i++){
-			ret.add(unique[i]);
-			ret.add(unique[i].sprite);
-			if(unique[i].sprite.name == "sprite") print("trying to stab somebody not in the medium yet in session: " + this.session_id);
+		 ret = []; //add some sprites. this is literally the only other fight they are good for.
+		for(Player g in unique){
+			ret.add(g);
+			ret.add(g.sprite);
+			if(g.sprite.name == "sprite") print("trying to stab somebody not in the medium yet in session: " + this.session.session_id.toString());
 		}
 		return ret;
 	}
-	bool canCatch(victim){
-			if(this.session.jack.getMobility() < victim.mobility) return false;
-			if(victim.aspect == "Void" && victim.isVoidAvailable() && victim.power >50) return false;
-			if(victim.aspect == "Space" && victim.power > 50){
-				print("high level space player avoiding jack" + this.session.session_id);
+	bool canCatch(Player victim){
+			if(this.session.jack.getStat("mobility") < victim.getStat("mobility")) return false;
+			if(victim.aspect == "Void" && victim.isVoidAvailable() && victim.getStat("power") >50) return false;
+			if(victim.aspect == "Space" && victim.getStat("power") > 50){
+				print("high level space player avoiding jack" + this.session.session_id.toString());
 				return false;  //god tier calliope managed to hide from a Lord of Time. space players might not move around a lot, but that doesn't mean they are easy to catch.
 			}
-			print("jack found a stab victim" + this.session.session_id);
+			print("jack found a stab victim" + this.session.session_id.toString());
 		return true;
 	}
 	void renderPrestabs(div, stabbings){
@@ -76,7 +76,7 @@ class JackRampage extends Scene{
 			//poseAsATeam(canvasDiv, stabbings, 2000); //can't do this anymore, mighit be  a sprite in there.
 		}
 	@override
-	dynamic renderContent(div){
+	void renderContent(div){
 		this.session.jackRampage = true;
 		//div.append("<br>"+this.content());
 		div.append("<br><img src = 'images/sceneIcons/jack_icon.png'> ");
@@ -95,11 +95,10 @@ class JackRampage extends Scene{
 			}
 			ret += " Bored of this, he decides to show his stabs to BOTH the Black and White Kings.  The battle is over. The Reckoning will soon start.";
 			this.session.timeTillReckoning = 0;
-			this.session.king.currentHP = -99999999;
+			this.session.king.setStat("currentHP",-99999999);
 			this.session.king.dead = true;
-			print("jack starts reckoning " + this.session.session_id);
+			print("jack starts reckoning " + this.session.session_id.toString());
 			div.append(""+ret);
-			return ret;
 		}else{
 
 
@@ -119,7 +118,10 @@ class JackRampage extends Scene{
 				ret = "Jack has caught the " + getPlayersTitlesBasic(stabbings) + ".  Will he show them his stabs? Strife!";
 				div.append(""+ret);
 				this.renderPrestabs(div, stabbings); //pose as a team BEFORE getting your ass handed to you.
-				this.session.jack.strife(div, stabbings,0);
+				Team pTeam = new Team(this.session, stabbings);
+				Team dTeam = new Team(this.session, [this.session.jack]);
+				Strife strife = new Strife(this.session, [pTeam, dTeam]);
+				strife.startTurn(div);
 		}
 			return;//make sure text is over image
 		}
@@ -141,53 +143,6 @@ class JackRampage extends Scene{
 		}
 		*/
 
-	}
-	dynamic content(){
-		this.session.jackRampage = true;
-		//jack finds 0 or more players.
-		var stabbings = this.getStabList();
-		String ret = "";
-		if(stabbings.length == 0){
-			if(seededRandom() > .5){
-				ret += " Jack listlessly shows his stabs to a few Prospitian pawns. ";
-			}else{
-				ret += " Jack listlessly shows his stabs to a few Dersite pawns. ";
-			}
-			ret += " Bored of this, he decides to show his stabs to BOTH the Black and White Kings.  The battle is over. The Reckoning will soon start.";
-			this.session.timeTillReckoning = 0;
-			return ret;
-		}
-		this.setPlayersUnavailable(stabbings);
-		var partyPower = getPartyPower(stabbings);
-		if(partyPower > this.session.jackStrength*5){
-			ret += getPlayersTitles(stabbings) + " suprise Jack with stabbings of their own. He is DEAD. ";
-			this.session.jackStrength =  -9999;
-			this.levelPlayers(stabbings);
-			ret += findDeadPlayers(this.session.players).length + " players are dead in the wake of his rampage. ";
-		}else if(partyPower > this.session.jackStrength){
-			ret += " Jack fails to stab " + getPlayersTitles(stabbings);
-			ret += "  He goes away to stab someone else, licking his wounds. ";
-			//TODO if one of them was a god tier, make their be a chance of him destroying one of the moons. kills all non active dream selves.
-			if(seededRandom()>.9){
-				ret += " Bored of this, he decides to show his stabs to BOTH the Black and White Kings.  The battle is over. The Reckoning will soon start.";
-				timeTillReckoning = 0;
-			}
-			this.minorLevelPlayers(stabbings);
-			this.session.jackStrength += -10;
-		}else if(partyPower == this.session.jackStrength){
-			ret += " Jack is invigorated by the worthy battle with " + getPlayersTitles(stabbings);
-			ret += " he retreats, for now, but with new commitment to stabbings. ";
-			this.session.jackStrength += 10;
-		}else{
-			var alt = this.addImportantEvents(stabbings);
-			if(alt && alt.alternateScene(div)){
-				return;
-			}else{
-				ret += " Jack shows his stabs to " + getPlayersTitles(stabbings) + " until they die.  DEAD.";
-				this.killPlayers(stabbings);
-		}
-		}
-		return ret;
 	}
 
 }

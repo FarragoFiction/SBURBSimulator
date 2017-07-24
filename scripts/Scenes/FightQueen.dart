@@ -32,22 +32,25 @@ class FightQueen extends Scene {
 		if(fightingPlayers.length > 6){
 			ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
 		}
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+ch + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+ch + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);
-		poseAsATeam(canvasDiv, fightingPlayers, 2000);
+		poseAsATeam(canvasDiv, fightingPlayers);
 	}
 	@override
 	void renderContent(div){
-		if(this.session.queen.getStat("power") < 0) print("rendering fight queen with negative power " +this.session.session_id);
+		if(this.session.queen.getStat("power") < 0) print("rendering fight queen with negative power " +this.session.session_id.toString());
 		div.append("<br> <img src = 'images/sceneIcons/bq_icon.png'> ");
 		div.append(this.content());
 
 		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
 		var fighting = this.getGoodGuys();
 		if(this.session.democraticArmy.getStat("currentHP") > 0) fighting.add(this.session.democraticArmy);
-		this.session.queen.strife(div, fighting,0);
+		Team pTeam = new Team(this.session, fighting);
+		Team dTeam = new Team(this.session, [this.session.queen]);
+		Strife strife = new Strife(this.session, [pTeam, dTeam]);
+		strife.startTurn(div);
 
 	}
 	void minorLevelPlayers(stabbings){
@@ -60,32 +63,15 @@ class FightQueen extends Scene {
 			removeFromArray(stabbings[i], this.session.availablePlayers);
 		}
 	}
-	dynamic getDeadList(living){
-		var numStabbings = getRandomInt(0,living.length);
-		var timePlayer = findAspectPlayer(this.session.players, "Time");
-		List<dynamic> ret = [];
-		//doomed time clones absorb some of the hits.
-		for(num i = 0; i<timePlayer.doomedTimeClones.length; i++){
-				ret.add(timePlayer.doomedTimeClones[i]);
-				removeFromArray(timePlayer.doomedTimeClones[i], timePlayer.doomedTimeClones);
-		}
 
-		if(living.length == 0){
-			return ret;
-		}
-		for(var i = ret.length; i<=numStabbings; i++){
-			ret.add(getRandomElementFromArray(living));
-		}
-		return Array.from(new Set(ret));
-	}
 	dynamic content(){
 		//print("Queen Strength : " + this.session.queenStrength);
 		var badPrototyping = findBadPrototyping(this.playerList);
 		var living = findLivingPlayers(this.session.players);
 		String ret = " Before the players can reach the Black King, they are intercepted by the Black Queen. ";
-		if(badPrototyping && this.session.queen.crowned){
+		if(badPrototyping && this.session.queen.crowned != null){
 			ret += " She is made especially ferocious with the addition of the " + badPrototyping + ". ";
-		}else if(!this.session.queen.crowned){
+		}else if(!this.session.queen.crowned != null){
 			ret += "She may no longer have her RING OF ORBS " +this.session.convertPlayerNumberToWords() + "FOLD, but she is dedicated to her duty and will fight the Players to the bitter end.";
 		}
 
