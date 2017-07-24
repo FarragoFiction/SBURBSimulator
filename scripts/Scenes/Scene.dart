@@ -117,3 +117,18 @@ abstract class Scene {
   }
 
 }
+
+abstract class IntroScene {
+  Session session;
+  bool canRepeat = true;
+  List<Player> playerList = new List<
+      Player>(); //eventually get rid of this, but not today
+  IntroScene(this.session); //eventually take in session.
+
+
+  //apparently can't have method overloading. blugh.
+  bool trigger(List<Player> playerList, Player player);
+
+  //each scene should handle rendering itself, whether via text or canvas
+  void renderContent(var div);
+}

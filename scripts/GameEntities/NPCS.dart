@@ -52,6 +52,10 @@ class PotentialSprite extends NPC {
   PotentialSprite(String name, num id, Session session): super(name, id, session);
 }
 
+class PlayerSprite extends PotentialSprite {
+  PlayerSprite(String name, num id, Session session): super(name, id, session);
+}
+
 //eventually guardians/lusii will DEFINITELY behave different
 class Lusus extends PotentialSprite {
   Lusus(String name, num id, Session session) : super(name, id, session);

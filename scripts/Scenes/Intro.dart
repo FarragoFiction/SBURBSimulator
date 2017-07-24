@@ -1,16 +1,16 @@
 part of SBURBSim;
 
 
-class Intro  extends Scene{
+class Intro  extends IntroScene{
 	bool canRepeat = false;
 	List<dynamic> playerList = [];  //whatthis.session.players are already in the medium when i trigger?
-	var player = null;	
+	Player player = null;
 
 
 	Intro(Session session): super(session);
 
 	@override  //TODO is there no way to have an Intro trigger have more params than Scene?
-	bool trigger(playerList, player){
+	bool trigger(List<Player> playerList, Player player){
 		this.playerList = playerList;
 		this.player = player;
 		return true; //this should never be in the main array. call manually.
@@ -72,11 +72,11 @@ class Intro  extends Scene{
 			}
 			ret += " They come with a dire warning of a doomed timeline. ";
 			ret += "They dropkick the " + this.player.object_to_prototype.htmlTitle() + " out of the way and jump into the " + this.player.htmlTitleBasic() + "'s kernel sprite instead. <br> ";
-			this.player.object_to_prototype = copyGameEntity(timePlayer, timePlayer.chatHandle);
+			this.player.object_to_prototype = new PlayerSprite(timePlayer.chatHandle, 0, this.session);
+      this.player.object_to_prototype.clone(timePlayer);
 			this.player.object_to_prototype.helpfulness = 1;
 			//shout out to DinceJof for the great sprite phrase
 			this.player.object_to_prototype.helpPhrase = " used to be a Player like you, until they took a splinter to the timeline, so they know how all this shit works. Super helpful.";
-			this.player.object_to_prototype.player = true;
 			print("time player sprite in session: " + this.session.session_id.toString());
 
 		}else if((this.player.dead == true || this.player.isDreamSelf == true || this.player.dreamSelf == false) && seededRandom() > .1){ //if tier 2 is ever a thing, make this 50% instead and have spries very attracted to extra corpes later on as well if they aren't already players or...what would even HAPPEN if you prototyped yourself twice....???

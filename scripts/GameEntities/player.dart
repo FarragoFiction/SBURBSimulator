@@ -37,7 +37,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	String interest1 = null;  //TODO maybe interest categories are objects too, know what is inside them and what they do
 	String interest2 = null;
 	String chatHandle = null;
-	GameEntity object_to_prototype;
+	PotentialSprite object_to_prototype;
 	List<Relationship> relationships = [];  //TODO keep a list of player relationships and npc relationships. MAYBE don't wax red for npcs? dunno though.
 	String moon;  //TODO eventually a shared planet between players.
 	bool leveledTheHellUp = false; //triggers level up scene.
