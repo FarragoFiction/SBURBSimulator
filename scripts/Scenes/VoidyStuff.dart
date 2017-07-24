@@ -74,7 +74,7 @@ class VoidyStuff extends Scene {
 
 		String newDivHTML = "<span class ;='"+classDiv+"' id = '" +div.attr("id")+ "voidyStuffSpecial'>  </span> ";
 		div.append(newDivHTML);
-		var normalDiv = querySelector("#"+div.attr("id")+ "voidyStuffNormal");
+		normalDiv = querySelector("#"+div.attr("id")+ "voidyStuffNormal");
 		var newDiv = querySelector("#"+div.attr("id")+ "voidyStuffSpecial");
 		//don't godtier as soon as you get in, too unfair to the other players.
 		if(this.player.godDestiny && this.player.power > 10 && !this.player.godTier && seededRandom()>0.8 && this.player.land != null){
@@ -95,6 +95,7 @@ class VoidyStuff extends Scene {
 			this.endingPhrase(classDiv, newDiv);
 			return;
 		}else{ //pick from random array.
+				//TODO is there a dart equivalent to bind?
 				var options = [this.findFraymotif.bind(this,normalDiv,newDiv),this.makeEnemies.bind(this,normalDiv,newDiv), this.makeFriends.bind(this,normalDiv, newDiv),this.dolandQuests.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv)];
 				getRandomElementFromArray(options)();
 		}
@@ -121,7 +122,7 @@ class VoidyStuff extends Scene {
 		newDiv.append( ret + " " + getRandomElementFromArray(phrases));
 	}
 	void findFraymotif(div, specialDiv){
-		print("Void/Rage fraymotif acquired: " + this.session.session_id);
+		print("Void/Rage fraymotif acquired: " + this.session.session_id.toString());
 		div.append(" What's that music playing? ");
 		var f = this.player.getNewFraymotif();
 		specialDiv.append("A sweeping musical number kicks in, complete with consort back up dancers. The " + this.player.htmlTitle() + " is the star. It is them. When it is over, they seem to have learned " + f.name + ". ");
@@ -146,7 +147,7 @@ class VoidyStuff extends Scene {
 		this.player.landLevel +=2;
 		div.append(" Their consorts seem pretty happy, though. ") ;
 		if(seededRandom() > .95){ //small chance of serious.
-			specialDiv.append( "The " + this.player.htmlTitle() + " is " + getRandomQuestFromAspect(this.player.aspect) + ". ");
+			specialDiv.append( "The " + this.player.htmlTitle() + " is " + getRandomQuestFromAspect(this.player.aspect,false) + ". ");
 		}else{
 			var specialStuff = ["teaching the local consorts all the illest of beats","explaining the finer points of the human game 'hopscotch' to local consorts","passing out banned orange fruits that may or may not exist to hungry local consorts","throwing a birthday party for the local consorts"];
 			specialStuff.addAll(["reenacting tear jerking scenes from classic cinema with local consorts","adopting a local consort as their beloved daughter","explaining that all conflict will be resolved through the medium of rap, going forwards","passing out rumpled headgear like cheap cigars"]);
@@ -157,11 +158,11 @@ class VoidyStuff extends Scene {
 
 	}
 	void weakenDesites(div, specialDiv){
-		this.session.queen.power += -5;
-		this.session.jack.power += -5;
-		this.session.king.power += -5;
+		this.session.queen.addStat("power",-5);
+		this.session.jack.addStat("power",-5);
+		this.session.king.addStat("power",-5);
 		div.append( " The Dersites sure seem to be mad at them, though. ");
-		specialDiv.append( "The " + this.player.htmlTitle() + " " + getRandomElementFromArray(lightQueenQuests))
+		specialDiv.append( "The " + this.player.htmlTitle() + " " + getRandomElementFromArray(lightQueenQuests));
 	}
 	void fightDenizen(div, specialDiv){
 		this.player.denizenFaced = true;
@@ -188,7 +189,7 @@ class VoidyStuff extends Scene {
 				specialDiv.append(ret);
 
 				var divID = (specialDiv.attr("id")) + "denizenDeath";
-				String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+				String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 				specialDiv.append(canvasHTML);
 				var canvas = querySelector("#canvas"+ divID);
 
@@ -207,11 +208,11 @@ class VoidyStuff extends Scene {
 		if(this.session.players.length > 6){
 			ch = canvasHeight*1.5;
 		}
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+ch + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+ch + "'>  </canvas>";
 		specialDiv.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);
-		poseBabiesAsATeam(canvasDiv, this.player, playersMade, getGuardiansForPlayers(playersMade), 4000);
+		poseBabiesAsATeam(canvasDiv, this.player, playersMade, getGuardiansForPlayers(playersMade));
 
 	}
 	void godTier(div, specialDiv){
@@ -228,10 +229,10 @@ class VoidyStuff extends Scene {
 		this.player.fraymotifs.add(f);
 		specialDiv.append("Holy shit. Did the " + this.player.htmlTitleBasic() + " just randomly go GodTier? What the fuck is going on? Did they even die? This is some flagrant bullshit. Somehow they learned " + f.name + " too." );
 		var divID = (specialDiv.attr("id")) + "godBS";
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		specialDiv.append(canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);
-		drawGetTiger(canvas, [this.player],repeatTime) //only draw revivial if it actually happened.
+		drawGetTiger(canvas, [this.player]); //only draw revivial if it actually happened.
 
 	}
 

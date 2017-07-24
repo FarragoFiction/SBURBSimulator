@@ -41,8 +41,8 @@ class YellowYard extends Scene {
 			num count = 14;
 			//yyrEventsGlobalVar = padEventsToNumWithKilling(yyrEventsGlobalVar, this.session, time,num);
 			//yyrEventsGlobalVar = sortEventsByImportance(yyrEventsGlobalVar);  this edges out diversity. end up with all "make so and so god tier" and nothing else
-			yyrEventsGlobalVar = removeRepeatEvents(yyrEventsGlobalVar);
-			yyrEventsGlobalVar = removeFrogSpam(yyrEventsGlobalVar);
+			yyrEventsGlobalVar = ImportantEvent.removeRepeatEvents(yyrEventsGlobalVar);
+			yyrEventsGlobalVar = ImportantEvent.removeFrogSpam(yyrEventsGlobalVar);
 			html +=
 			"<div id = 'decisions' style='position: relative; top: 133px; left: 280px; font-size: 12px; width:480px;height:280px;'> ";
 			for (int i = 0; i < count; i++) {

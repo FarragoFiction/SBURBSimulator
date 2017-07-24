@@ -174,7 +174,7 @@ class UpdateShippingGrid extends Scene{
 			player1.chatHandle = "future" + player1.chatHandle.charAt(0).toUpperCase() + player1.chatHandle.slice(1);
 		}
 		var divID = (div.attr("id")) + "_canvas_shipping"+ this.chosenShipper.id;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvasDiv = querySelector("#canvas"+ divID);
 		var otp = this.chosenShipper.otp;
@@ -192,7 +192,7 @@ class UpdateShippingGrid extends Scene{
 				image = "discuss_ashenmance.png";
 			}
 		}
-		drawChat(canvasDiv, player1, player2, this.shippingChat, 1000,image);
+		drawChat(canvasDiv, player1, player2, this.shippingChat,image);
 
 	}
 	void drawRomanceChat(div){
@@ -200,7 +200,7 @@ class UpdateShippingGrid extends Scene{
 		var player1 = this.chosenShipper.otp.r2.target;
 		var player2 = this.chosenShipper.otp.r1.target;
 		var divID = (div.attr("id")) + "_canvas_romance"+ this.chosenShipper.id;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvasDiv = querySelector("#canvas"+ divID);
 		var otp = this.chosenShipper.otp;
@@ -219,7 +219,7 @@ class UpdateShippingGrid extends Scene{
 				player1 = this.chosenShipper.player ;//shipper messages BOTH side leafs.;
 			}
 		}
-		drawChat(canvasDiv, player1, player2, this.romanceChat, 1000,image);
+		drawChat(canvasDiv, player1, player2, this.romanceChat,image);
 	}
 	dynamic createShips(players, shipperPlayer){
 		if(!shipperPlayer){
@@ -237,7 +237,7 @@ class UpdateShippingGrid extends Scene{
 					var r1 = player.relationships[j];
 					var r2 = r1.target.getRelationshipWith(player);
 					////print("made new ship");
-					ret.add(new Ship(r1, r2, shipperPlayer))
+					ret.add(new Ship(r1, r2, shipperPlayer));
 				}
 			}
 				List<dynamic> toRemove = [];
@@ -342,7 +342,7 @@ class UpdateShippingGrid extends Scene{
 				c= new PlusMinusConversationalPair(["Hey!"], ["Hey!", "Oh cool, I was just thinking of you!"],["What's up?", "Hey"]);
 				chat += c.getOpeningLine(p1, p1Start);
 				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree);
-				c= new PlusMinusConversationalPair(["So... you know how " + shipper.chatHandleShort() + " is always bugging and fussing and meddling? ", shipper.chatHandleShort() + " was just pestering me about that shipping grid thing they do.", "You know " + shipper.chatHandleShort() + "'s 'thing' about romance?", "Hey, you know how " + shipper.chatHandleShort() + " is always going on and on about relationships?",  + shipper.chatHandleShort() + "has been bugging me soooo much recently."], ["Oh! Yeah, that sure is a thing they do!", "Oh yeah?", "Oh yeah. You know, its kind of flattering how much effort they put into that.", "Yeah?", "They do give unacannaly good advice sometimes."],["Hah, they are always so off base with their ships.", "Uh huh?","Hm.", "Oh yeah, they are such idiots about it too!", "Yeah, they're always trying to find my 'soulmate' or whatever! Like I of all people need one?"]);
+				c= new PlusMinusConversationalPair(["So... you know how " + shipper.chatHandleShort() + " is always bugging and fussing and meddling? ", shipper.chatHandleShort() + " was just pestering me about that shipping grid thing they do.", "You know " + shipper.chatHandleShort() + "'s 'thing' about romance?", "Hey, you know how " + shipper.chatHandleShort() + " is always going on and on about relationships?",   shipper.chatHandleShort() + "has been bugging me soooo much recently."], ["Oh! Yeah, that sure is a thing they do!", "Oh yeah?", "Oh yeah. You know, its kind of flattering how much effort they put into that.", "Yeah?", "They do give unacannaly good advice sometimes."],["Hah, they are always so off base with their ships.", "Uh huh?","Hm.", "Oh yeah, they are such idiots about it too!", "Yeah, they're always trying to find my 'soulmate' or whatever! Like I of all people need one?"]);
 				chat += c.getOpeningLine(p1, p1Start);
 				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree);
 				c= new PlusMinusConversationalPair(["Look, I'll come right out and say it. I think I'm flushed for you. ","I like you. Romantically. In the flushed quadrant.","Uhm. Well. I like you. Like, like like you.", "Uh-er... I think I'm in love with you.", "Well they were talking, and I realized: I really really really really really like you.", "Look, forget about that. Its just... I think you are the most beautiful person I have ever met.","Its just-I like you. I like you soooo much."], ["Holy shit! Really!?  I... fuck, I like you too!", "Oh. Oh fuck. Wow. I like you, too!","I... You are the most beautiful person I have met.", "Oh my god. I was just about to say the same to you!","Holy fuck. Are you serious? I... I like you too!"],["I can't. Don't make me choose. I can't say yes.", "I'm so sorry... I just can't reciprocate right now.", "I... I'm sorry I don't like you that way.", "I... I can't... I don't…", "I'm sorry, I'm just not ready for that kind of relationship right now.", "We are in a murder game. As flattering as this is, I can't return those feelings. Not now."]);
@@ -352,7 +352,7 @@ class UpdateShippingGrid extends Scene{
 					c= new PlusMinusConversationalPair(["Oh fuck yes!","Oh wow, I sure am glad I listened to " + shipper.chatHandleShort() + "! ", "YES!!!!","I am so, so, so happy right now.", "Really? YES YES YES YES YES YES!"], ["<3","Now I can finally discuss how fucking cute you are!", "Hahahahaha"],["JR: This will never hit cause i know they said yes.", "MI: the temptation is there to but some really snarky bullshit here anyway"]);
 					chat += c.getOpeningLine(p1, p1Start);
 					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree);
-					makeHeart(p1, p2);
+					Relationship.makeHeart(p1, p2);
 					this.chosenShipper.player.increasePower();
 					this.chosenShipper.player.leveledTheHellUp = true;
 					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect + " player. ";
@@ -404,7 +404,7 @@ class UpdateShippingGrid extends Scene{
 				c= new PlusMinusConversationalPair(["Hey!","Hey", "Hello!", "Hiya!","Hey hey!","Hows it going?"], ["Hey!", "Oh cool, I was just thinking of you!","Hey! Good to see you!","Hey!"],["What's up?", "Hey.","Oh. Hey.","Hey.","What do you want?"]);
 				chat += c.getOpeningLine(p1, p1Start);
 				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree);
-				c= new PlusMinusConversationalPair(["So... you know how " + shipper.chatHandleShort() + " is always bugging and fussing and meddling? ", shipper.chatHandleShort() + " was just pestering me about that shipping grid thing they do.", "You know " + shipper.chatHandleShort() + "'s 'thing' about romance?", "Hey, you know how " + shipper.chatHandleShort() + " is always going on and on about relationships?",  + shipper.chatHandleShort() + "has been bugging me soooo much recently."], ["Oh! Yeah, that sure is a thing they do!", "Oh yeah?", "Oh yeah. You know, its kind of flattering how much effort they put into that.", "Yeah?", "They do give unacannaly good advice sometimes."],["Hah, they are always so off base with their ships.", "Uh huh?","Hm.", "Oh yeah, they are such idiots about it too!", "Yeah, they're always trying to find my 'pap-mate' or whatever!?"]);
+				c= new PlusMinusConversationalPair(["So... you know how " + shipper.chatHandleShort() + " is always bugging and fussing and meddling? ", shipper.chatHandleShort() + " was just pestering me about that shipping grid thing they do.", "You know " + shipper.chatHandleShort() + "'s 'thing' about romance?", "Hey, you know how " + shipper.chatHandleShort() + " is always going on and on about relationships?",  shipper.chatHandleShort() + "has been bugging me soooo much recently."], ["Oh! Yeah, that sure is a thing they do!", "Oh yeah?", "Oh yeah. You know, its kind of flattering how much effort they put into that.", "Yeah?", "They do give unacannaly good advice sometimes."],["Hah, they are always so off base with their ships.", "Uh huh?","Hm.", "Oh yeah, they are such idiots about it too!", "Yeah, they're always trying to find my 'pap-mate' or whatever!?"]);
 				chat += c.getOpeningLine(p1, p1Start);
 				chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree);
 				c= new PlusMinusConversationalPair(["Look, I'll come right out and say it. I think I'm pale for you. ","I like you. Romantically. In the pale quadrant.","Look I... I want to pap the shit out of you.", "Look I was thinking, and I realized: I want us to moirails."], ["Holy shit! Really!?  I... fuck, I like you too!", "Oh. Oh fuck. Wow. I like you, too!", "I... nothing would make me happier!", "I've wanted to pap you to unconsiousness for forever!"],["I can't. Don't make me choose. I can't say yes.", "I'm so sorry... I just can't reciprocate right now.", "I... I'm sorry I don't like you that way.", "I... I can't... I don't...", "I'm sorry, I'm just not ready for that kind of relationship right now.", "We are in a murder game. As flattering as this is, I can't return those feelings. Not now.","I don't need a moirail!"]);
@@ -414,7 +414,7 @@ class UpdateShippingGrid extends Scene{
 					c= new PlusMinusConversationalPair(["Oh fuck yes!","Oh wow, I sure am glad I listened to " + shipper.chatHandleShort() + "! ", "YES!!!!","I am so, so, so happy right now.", "Really? YES YES YES YES YES YES!","Oh thank god. Now I don't have to worry about hurting people!"], ["<>","I'll always be glad to be here for you!","Shoosh."],["JR: This will never hit cause i know they said yes."]);
 					chat += c.getOpeningLine(p1, p1Start);
 					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree);
-					makeDiamonds(p1, p2);
+					Relationship.makeDiamonds(p1, p2);
 					this.chosenShipper.player.increasePower();
 					this.chosenShipper.player.leveledTheHellUp = true;
 					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect + " player. ";
@@ -474,7 +474,7 @@ class UpdateShippingGrid extends Scene{
 					c= new PlusMinusConversationalPair(["Oh fuck yes!","You guys had better behave! "], ["c3<"],["JR: This will never hit cause i know they said yes."]);
 					chat += c.getOpeningLine(shipper, shipperStart);
 					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree);
-					makeClubs(shipper,p1, p2);  //they get a relationship!!!
+					Relationship.makeClubs(shipper,p1, p2);  //they get a relationship!!!
 					this.chosenShipper.player.increasePower();
 					this.chosenShipper.player.leveledTheHellUp = true;
 					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect + " player. ";
@@ -534,7 +534,7 @@ class UpdateShippingGrid extends Scene{
 					c= new PlusMinusConversationalPair(["Oh fuck yes!","Oh wow, I sure am glad I listened to " + shipper.chatHandleShort() + "! "], ["<3<"],["JR: This will never hit cause i know they said yes."]);
 					chat += c.getOpeningLine(p1, p1Start);
 					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree);
-					makeDiamonds(p1, p2);
+					Relationship.makeDiamonds(p1, p2);
 					this.chosenShipper.player.increasePower();
 					this.chosenShipper.player.leveledTheHellUp = true;
 					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect + " player. ";
@@ -559,7 +559,7 @@ class UpdateShippingGrid extends Scene{
 			if(!player.isQuadranted()) reasonsFor += 4; //I am lonely
 			if(player.getBestFriend() == target) reasonsFor += 5; //I REALLY like them.
 			var r = player.getRelationshipWith(this.chosenShipper.player);
-			if(r && r.value < 0) this.reasonsAgainst ++; //say 'no' just to spite shipper
+			if(r && r.value < 0) reasonsAgainst ++; //say 'no' just to spite shipper
 			if(player.getWorstEnemyFromList(this.session.players) == this.chosenShipper.player) reasonsAgainst += 5; //I REALLY hate the shipper.
 			return reasonsFor > reasonsAgainst;
 	}
@@ -573,7 +573,7 @@ class UpdateShippingGrid extends Scene{
 			if(!player.isQuadranted()) reasonsFor += 4; //I am lonely
 			if(player.getBestFriend() == target) reasonsFor += 5; //I REALLY like them.
 			var r = player.getRelationshipWith(this.chosenShipper.player);
-			if(r && r.value < 0) this.reasonsAgainst ++; //say 'no' just to spite shipper
+			if(r && r.value < 0) reasonsAgainst ++; //say 'no' just to spite shipper
 			if(player.getWorstEnemyFromList(this.session.players) == this.chosenShipper.player) reasonsAgainst += 5; //I REALLY hate the shipper.
 			return reasonsFor > reasonsAgainst;
 	}
@@ -587,9 +587,9 @@ class UpdateShippingGrid extends Scene{
 			if(!player.isQuadranted()) reasonsFor += 4; //I am lonely
 			if(player.getWorstEnemyFromList(this.session.players) == target) reasonsFor += 5; //I REALLY like them.
 			var r = player.getRelationshipWith(this.chosenShipper.player);
-			if(r && r.value < 0) this.reasonsFor ++; //actually, you really hate the shipper, too, this might work out.
+			if(r && r.value < 0) reasonsFor ++; //actually, you really hate the shipper, too, this might work out.
 			if(player.getWorstEnemyFromList(this.session.players) == this.chosenShipper.player) reasonsFor += 5; //I REALLY hate the shipper, this might work out.
-			if(r && r.value > 0) this.reasonsAgainst ++; //actually, you really like the shipper, you don't want to be ashen for them.
+			if(r && r.value > 0) reasonsAgainst ++; //actually, you really like the shipper, you don't want to be ashen for them.
 			if(player.getBestFriend() == this.chosenShipper.player) reasonsAgainst += 50; //hell no, i can't be ashen for someone i like this much.
 
 			return reasonsFor > reasonsAgainst;
@@ -603,7 +603,7 @@ class UpdateShippingGrid extends Scene{
 			if(!player.isQuadranted()) reasonsFor += 4; //I am lonely
 			if(player.getWorstEnemyFromList(this.session.players) == target) reasonsFor += 5; //I REALLY hate them.
 			var r = player.getRelationshipWith(this.chosenShipper.player);
-			if(r && r.value < 0) this.reasonsAgainst ++; //say 'no' just to spite shipper
+			if(r && r.value < 0) reasonsAgainst ++; //say 'no' just to spite shipper
 			if(player.getWorstEnemyFromList(this.session.players) == this.chosenShipper.player) reasonsAgainst += 5; //I REALLY hate the shipper.
 			return reasonsFor > reasonsAgainst;
 	}
@@ -638,11 +638,12 @@ class UpdateShippingGrid extends Scene{
 class Ship {
 	var r1;
 	var r2;
-	var shipper; //so i can tell shipper if  am a potential OTP
-	var player = shipper.player;		
+	Shipper shipper; //so i can tell shipper if  am a potential OTP
+	Player player;
 
-
-	Ship(this.r1, this.r2, this.shipper) {}
+	Ship(this.r1, this.r2, this.shipper) {
+		player = shipper.player;
+	}
 
 
 	String relationshipTypeToText(r){
@@ -748,9 +749,9 @@ class Shipper {
 
 
 
-	var player;
+	Player player;
 	var otp = null; //when i'm going through ships, if i see a clearly requirted crush, will try to get them together.
-	var ships = null; //set right after creating.
+	List<Ship> ships = null; //set right after creating.
 	num powerNeeded = 1;
 	String savedShipText = ""; ///need to know if my ships have updated.
 
