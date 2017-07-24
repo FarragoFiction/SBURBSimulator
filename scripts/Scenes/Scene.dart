@@ -116,6 +116,4 @@ abstract class Scene {
     }
   }
 
-
-
 }

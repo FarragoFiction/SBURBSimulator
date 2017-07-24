@@ -71,7 +71,7 @@ class FightQueen extends Scene {
 		String ret = " Before the players can reach the Black King, they are intercepted by the Black Queen. ";
 		if(badPrototyping && this.session.queen.crowned != null){
 			ret += " She is made especially ferocious with the addition of the " + badPrototyping + ". ";
-		}else if(!this.session.queen.crowned != null){
+		}else if(this.session.queen.crowned != null){
 			ret += "She may no longer have her RING OF ORBS " +this.session.convertPlayerNumberToWords() + "FOLD, but she is dedicated to her duty and will fight the Players to the bitter end.";
 		}
 

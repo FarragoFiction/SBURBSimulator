@@ -12,12 +12,14 @@ class ExploreMoon extends Scene {
 	ExploreMoon(Session session): super(session);
 
 	@override
-	dynamic checkPlayer(player){
+	dynamic checkPlayer(player) {
 		this.player1 = player;
-		if(this.player1.dreamSelf == false){ //can't explore a moon without a dream self.
+		if (this.player1.dreamSelf ==
+				false) { //can't explore a moon without a dream self.
 			this.player1 = null;
 			return null;
 		}
+	}
 
 		String getProspitBullshit(){
 			var possibilities = ["attending dance parties", "fluttering about aimlessly", "chatting up Prospitans", "learning the recipe for HOLY PASTRIES", "listening to sermons on the vast Croak","attending dance offs", "protecting the sacred candy shop from burglars", "racing frogs"];
@@ -58,40 +60,16 @@ class ExploreMoon extends Scene {
 			return "whimsical Derse activities, such as " + thing1 + " and " + thing2 + ". " + whisper;
 		}
 
-		if(player.aspect == "Blood" || player.class_name == "Page"){
-			if(this.session.availablePlayers.length > 1){
-				this.player2 = getRandomElementFromArray(this.session.availablePlayers);
-				if(this.player2 == this.player1){
-					this.player1 = null;
-					this.player2 = null;
-					return null;
-				}
-				if(this.player1.moon != this.player2.moon || !this.player2.dreamSelf){
-					this.player2 = null;
-					return null;
-				}
 
-			}else{
-				this.player1 = null;
-				return null;
-			}
-		}
 
-		//if i'm not blood or page, random roll for a friend.
-		if(this.session.availablePlayers.length > 1 && seededRandom() > .5){
-			this.player2 = getRandomElementFromArray(this.session.availablePlayers);
-			if(this.player1 == this.player2 || !this.player2.dreamSelf || this.player1.moon != this.player2.moon){
-				this.player2 = null;
-			}
-		}
-
-	}
 	@override
 	void renderContent(div){
 		if(this.player1.moon == "Prospit")div.append("<br><img src = 'images/sceneIcons/prospit_icon.png'> ");
 		if(this.player1.moon == "Derse")div.append("<br><img src = 'images/sceneIcons/derse_icon.png'> ");
 		div.append(this.content());
 	}
+
+	@override
 	bool trigger(playerList){
 		this.player1 = null; //reset
 		this.player2 = null;
@@ -105,8 +83,6 @@ class ExploreMoon extends Scene {
 			return false;
 		}
 		return true;
-
-
 	}
 	//TODO get rid of this, don't need it anymore.
 	void checkBloodBoost(){
@@ -142,9 +118,9 @@ class ExploreMoon extends Scene {
 			ret += " does ";
 		}
 		if(this.player1.moon == "Prospit"){
-			ret += this.getProspitBullshit();
+			ret += getProspitBullshit();
 		}else{
-			ret += this.getDerseBullshit();
+			ret += getDerseBullshit();
 			this.player1.corruptionLevelOther += 3;
 			if(this.player2) this.player2.corruptionLevelOther += 3;
 		}
@@ -174,7 +150,7 @@ class ExploreMoon extends Scene {
 
 		if(this.player2 && this.player1.grimDark>0){
 			this.player2.corruptionLevelOther += 25;
-			print("spreading corruption in: "  + this.session.session_id);
+			print("spreading corruption in: "  + this.session.session_id.toString());
 			ret += " The corruption is spreading. ";
 		}
 		return ret;
@@ -182,3 +158,4 @@ class ExploreMoon extends Scene {
 
 
 }
+

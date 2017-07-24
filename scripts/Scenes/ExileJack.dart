@@ -21,7 +21,7 @@ class ExileJack extends Scene{
 		div.append("<br> <img src = 'images/sceneIcons/jack_icon.png'> "+this.content());
 	}
 	dynamic content(){
-		this.session.jack.currentHP = 0; //effectively dead.
+		this.session.jack.setStat("currentHP",0); //effectively dead.
 		this.session.jack.exiled = true;
 		String ret = " The plan has been performed flawlessly.  Jack has been exiled to the post-Apocalyptic version of Earth before he can cause too much damage.";
 		return ret;
