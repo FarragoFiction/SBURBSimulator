@@ -132,8 +132,8 @@ int getRandomSeed() {
 
 bool printCorruptionMessage(String msg, String url, String lineNo, String columnNo, String error){
   String recomendedAction = "";
-  var space = findAspectPlayer(curSessionGlobalVar.players, "Space");
-  var time = findAspectPlayer(curSessionGlobalVar.players, "Time");
+  Player space = findAspectPlayer(curSessionGlobalVar.players, "Space");
+  Player time = findAspectPlayer(curSessionGlobalVar.players, "Time");
   if(curSessionGlobalVar.crashedFromPlayerActions){
     querySelector("#story").appendHtml("<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. HORRORTERROR INFLUENCE: COMPLETE.");
     recomendedAction = "OMFG JUST STOP CRASHING MY DAMN SESSIONS. FUCKING GRIMDARK PLAYERS. BREAKING SBURB DOES NOT HELP ANYBODY! ";
@@ -143,11 +143,11 @@ bool printCorruptionMessage(String msg, String url, String lineNo, String column
   }else if(curSessionGlobalVar.players.length < 2){
     querySelector("#story").appendHtml("<BR>ERROR: DEAD SESSION DETECTED.");
     recomendedAction = ":/ YEAH, MAYBE SOME DAY I'LL DO DEAD SESSIONS FOR YOUR SPECIAL SNOWFLAKE SINGLE PLAYER FANTASY, BUT TODAY IS NOT THAT DAY.";
-  }else if(!space){
+  }else if(space == null){
     querySelector("#story").appendHtml("<BR>ERROR: SPACE PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED.");
     curSessionGlobalVar.crashedFromCustomShit = true;
     recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A SPACE PLAYER, DUNKASS. ";
-  }else if(!time){
+  }else if(time == null){
     curSessionGlobalVar.crashedFromCustomShit = true;
     querySelector("#story").appendHtml("<BR>ERROR: TIME PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED");
     recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A TIME PLAYER, DUNKASS. ";
