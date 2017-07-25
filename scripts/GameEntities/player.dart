@@ -2206,9 +2206,11 @@ why the fuck does trying to decode a URI that is null, return the string "null";
 why would ANYONE EVER WANT THAT!?????????
 javascript is "WAT"ing me
 because of COURSE "null" == null is fucking false, so my code is like "oh, i must have some players" and then try to fucking parse!!!!!!!!!!!!!!*/
-dynamic getReplayers(){
+List<Player> getReplayers(){
 //	var b = LZString.decompressFromEncodedURIComponent(getRawParameterByName("b"));
 	var available_classes_guardians = classes.sublist(0); //if there are replayers, then i need to reset guardian classes
+  String raw = getRawParameterByName("b",null);
+  if(raw == null) return []; //don't even try getting the rest.
 	var b = Uri.decodeComponent(LZString.decompressFromEncodedURIComponent(getRawParameterByName("b",null)));
 	var s = LZString.decompressFromEncodedURIComponent(getRawParameterByName("s",null));
 	var x = LZString.decompressFromEncodedURIComponent(getRawParameterByName("x",null));
@@ -2266,16 +2268,16 @@ void redoRelationships(players){
 
 
 
-void initializePlayers(players, session){
+void initializePlayers(List<Player> players, Session  session){
 	var replayPlayers = getReplayers();
-	if(replayPlayers.length == 0 && session) replayPlayers = session.replayers; //<-- probably blank too, but won't be for fan oc easter eggs.
+	if(replayPlayers.length == 0 && session!= null) replayPlayers = session.replayers; //<-- probably blank too, but won't be for fan oc easter eggs.
 	syncReplayNumberToPlayerNumber(replayPlayers);
 	for(num i = 0; i<players.length; i++){
-		if(replayPlayers[i]) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
-		if(players[i].land){ //don't reinit aliens, their stats stay how they were cloned.
+		if(replayPlayers.length > i) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
+		if(players[i].land  != null){ //don't reinit aliens, their stats stay how they were cloned.
 			players[i].initialize();
 			players[i].guardian.initialize();
-			if(replayPlayers[i]){
+			if(replayPlayers.length > i){
 				players[i].quirk.favoriteNumber = int.parse(replayPlayers[i].quirk.favoriteNumber, onError:(String input) => 0) ;//has to be after initialization;
 				if(players[i].isTroll){
 					players[i].quirk.makeTrollQuirk(players[i]); //redo quirk
