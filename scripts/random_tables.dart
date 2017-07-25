@@ -213,10 +213,10 @@ dynamic getLevelArray(Player player){
 	for(int i = 0; i<16; i++){
 			if(i%4 == 3 && i> 4){//dont start with claspects
 				//get the i/4th element from the class level array.
-				//if i =7, would get element 1. if i ;= 15, would get element 3.
-				ret.add(getLevelFromClass(((i-8)/4).round(), player.class_name));
+				//if i =7, would get element 1. if i = 15, would get element 3.
+				ret.add(getLevelFromClass(((i-6)/4).round(), player.class_name)); //don't listen to even further pastJR up there, ther eis no logic here.
 			}else if(i%4 == 2  && i>4){
-				ret.add(getLevelFromAspect(((i-8)/4).round(), player.aspect));
+				ret.add(getLevelFromAspect(((i-5)/4).round(), player.aspect)); //5 because fuck you futureJR, that's why.
 			}else if(i%4==1){
 				if(i<8){
 					ret.add(getLevelFromInterests((i/4).round(), player.interest1));
@@ -233,7 +233,7 @@ dynamic getLevelArray(Player player){
 
 
 
-String getRandomLandFromPlayer(Player player){
+List<String> getRandomLandFromPlayer(Player player){
 	List<dynamic> first_arr = [];
 	var aspect = player.aspect;
 	if(aspect == "Space"){
@@ -261,7 +261,7 @@ String getRandomLandFromPlayer(Player player){
 	}else if(aspect == "Life"){
 		first_arr = life_land_titles;
 	}
-	var tmp = randomFromTwoArrays(player.session.rand, first_arr, free_land_titles);
+	List<String> tmp = randomFromTwoArrays(player.session.rand, first_arr, free_land_titles);
 	return tmp;
 	//return "Land of " + tmp[0] + " and " + tmp[1];
 }
@@ -812,8 +812,8 @@ void getLevelFromInterests(i, interest){
 }
 
 
-dynamic getLevelFromAspect(i, aspect){
-	//print("looking for level from aspect, i is " + i);
+dynamic getLevelFromAspect(num i, String aspect){
+	//print("looking for level from aspect, i is " + i.toString());
 	List<dynamic> first_arr = [];
 	if(aspect == "Space"){
 		first_arr = space_levels;
