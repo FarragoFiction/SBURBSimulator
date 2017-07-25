@@ -11,7 +11,12 @@ class Random implements Math.Random {
 	}
 
 	@override
-	int nextInt([int max = 0xFFFFFFFF]) => this._impl.nextInt(max);
+	int nextInt([int max = 0xFFFFFFFF]) {
+		if (max < 0) {
+			return -this._impl.nextInt(-max);
+		}
+		return this._impl.nextInt(max);
+	}
 
 	@override
 	bool nextBool() => this._impl.nextBool();
