@@ -14,6 +14,11 @@ window.onload = function() {
 		renderFanArtGrimAB();
 	}
 
+	if (getParameterByName("firstPlayer")  == "true"){
+    		$("#header").html("First Player Post Great Refactoring Gallery");
+    		renderFirstPlayerFanArt();
+    }
+
 	if (getParameterByName("stareyes")  == "true"){
 		$("#header").html("star.eyes memes");
 		renderFanArtStarEyes();
@@ -31,7 +36,12 @@ window.onload = function() {
 		$("#header").html("FanArt Gallery");
 	}
 }
+function renderFirstPlayerFanArt(){
+//var folder = "images/misc/fanArt/ABFanArt/"
+	var folder = "http://farragofiction.com/SBURBSimE/images/misc/fanArt/FirstPlayer/";
+	renderAllImagesInFolder(folder); //if can't scrape from local computer, make this an absolute reference to server.  haha, no i can't cross session scripting is a bitch. HAVE to test on server l8r.
 
+}
 //don't hard code fan art, instead, scrape all files of .png or .jpg or .gif or .jpeg out of a given folder and render.
 function renderFanArtGrimAB(){
 	//var folder = "images/misc/fanArt/ABFanArt/"
