@@ -164,18 +164,18 @@ void janusReward(){
 void processXStuck(){
 	//TODO get this working again. window.location.search is empty.
 	if(window.location.search.isEmpty) return ;
-	var params1 = window.location.search.substring(0);
-	var params2 = simulatedParamsGlobalVar;
+	String params1 = window.location.search.substring(0);
+	String params2 = simulatedParamsGlobalVar;
 	print("~~~~~~~~~~~~~~~~~~params2 is " + params2);
 	var tmp = classes;
 	tmp.addAll(custom_only_classes);
 	String params = "";
-	if(params1){
+	if(params1 != null){
 		params = params1;
-		if(params2){
+		if(params2!= null){
 			params += "&" + params2;
 		}
-	}else if(params2) params = params2;
+	}else if(params2 != null) params = params2;
 	var paramsArray = params.split("&");
 	for(num i = 0; i<paramsArray.length; i++){
 		var stuck = paramsArray[i].split("Stuck");
