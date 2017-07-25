@@ -25,7 +25,7 @@ class JackBeginScheming extends Scene {
 		}else if(this.friend == null || this.friend.land == null){
 			this.friend =  findAspectPlayer(living, "Hope");
 		}else{
-			this.friend = getRandomElementFromArray(curSessionGlobalVar.availablePlayers);
+			this.friend = rand.pickFrom(curSessionGlobalVar.availablePlayers);
 		}
 		if(this.friend == null || this.friend.land == null){
 			return null;

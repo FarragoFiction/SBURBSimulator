@@ -119,7 +119,7 @@ class UpdateShippingGrid extends Scene{
 		this.shippingChat = null;
 		this.romanceChat = null;
 		var tmpPlayer = null;
-		if(seededRandom() > 0.5){
+		if(rand.nextDouble() > 0.5){
 			tmpPlayer = findAspectPlayer(this.session.availablePlayers, "Heart");
 		}else{
 			tmpPlayer = findAspectPlayer(this.session.availablePlayers, "Blood");

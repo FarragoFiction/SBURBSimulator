@@ -16,7 +16,7 @@ class BeTriggered extends Scene{
 		this.triggeredPlayers = [];
 		for(num i = 0; i<this.session.availablePlayers.length; i++){
 			var p = this.session.availablePlayers[i];
-			if(this.IsPlayerTriggered(p) && seededRandom() >.75){ //don't all flip out/find out at once. if i find something ELSE to flip out before i can flip out about this, well, oh well. SBURB is a bitch. 75 is what it should be when i'm done testing.
+			if(this.IsPlayerTriggered(p) && rand.nextDouble() >.75){ //don't all flip out/find out at once. if i find something ELSE to flip out before i can flip out about this, well, oh well. SBURB is a bitch. 75 is what it should be when i'm done testing.
 				//print("shit flipping: " + p.flipOutReason + " in session " + this.session.session_id);
 				this.triggeredPlayers.add(p);
 			}
@@ -47,10 +47,11 @@ class BeTriggered extends Scene{
 			return true; //i am flipping out over not a dead player, thank you very much.
 
 		}
-		if(-1 * player.sanity > seededRandom() * 100 ){
+		if(-1 * player.sanity > rand.nextDouble() * 100 ){
 			player.flipOutReason = "how they seem to be going shithive maggots for no goddamned reason";
 			return true;
 		}
+		return false;
 	}
 	String IsPlayerTriggeredOld(player){
 		//are any of your friends  dead?
@@ -62,7 +63,7 @@ class BeTriggered extends Scene{
 
 		var deadDiamond = player.hasDeadDiamond();
 		var deadHeart = player.hasDeadHeart();
-		if(deadDiamond && seededRandom() > 0.3){
+		if(deadDiamond && rand.nextDouble() > 0.3){
 			player.sanity += -1000;
 			player.damageAllRelationships();
 			player.damageAllRelationships();
@@ -71,14 +72,14 @@ class BeTriggered extends Scene{
 			return " their dead Moirail, the " + deadDiamond.htmlTitleBasic() + " ";
 		}
 
-		if(deadHeart&& seededRandom() > 0.2){
+		if(deadHeart&& rand.nextDouble() > 0.2){
 			player.sanity += -1000;
 			//print("triggered by dead matesprit in session" + this.session.session_id);
 			return " their dead Matesprit, the " + deadHeart.htmlTitleBasic() + " ";
 		}
 		//small chance
 		if(deadPlayers.length > 0){
-			if(seededRandom() > 0.9){
+			if(rand.nextDouble() > 0.9){
 				player.sanity += -10;
 				return deadPlayers.length +" dead players ";
 			}
@@ -92,7 +93,7 @@ class BeTriggered extends Scene{
 
 		//bigger chance
 		if(deadFriends.length > 0){
-			if(seededRandom() > 0.5){
+			if(rand.nextDouble() > 0.5){
 				player.sanity += -10;
 				return deadFriends.length + " dead friends";
 			}
@@ -107,18 +108,18 @@ class BeTriggered extends Scene{
 
 		//huge chance, the dead outnumber the living.
 		if(deadPlayers.length > livePlayers.length){
-			if(seededRandom() > 0.1){
+			if(rand.nextDouble() > 0.1){
 				player.sanity += -30;
 				return " how absolutely fucked they are ";
 			}
 		}
 
-		if(player.doomedTimeClones.length > 0 && seededRandom() > .9){
+		if(player.doomedTimeClones.length > 0 && rand.nextDouble() > .9){
 			player.sanity += -10;
 			return " their own doomed Time Clones ";
 		}
 
-		if(player.denizenFaced && player.denizenDefeated && seededRandom() > .95){
+		if(player.denizenFaced && player.denizenDefeated && rand.nextDouble() > .95){
 			player.sanity += -10;
 			return " how terrifying " +player.getDenizen() + " was " ;
 		}
@@ -130,9 +131,9 @@ class BeTriggered extends Scene{
 	dynamic content(){
 		String ret = "";
 		for(num i = 0; i<this.triggeredPlayers.length; i++){
-			var p = this.triggeredPlayers[i];
-			var hope = findAspectPlayer(findLivingPlayers(this.session.players), "Hope");
-			if(hope && hope.power > 100){
+			Player p = this.triggeredPlayers[i];
+			Player hope = findAspectPlayer(findLivingPlayers(this.session.players), "Hope");
+			if(hope!=null && hope.getStat("power") > 100){
 
 				//print("Hope Survives: " + this.session.session_id);
 				ret += " The " +p.htmlTitle() + " should probably be flipping the fuck out about  " + p.flipOutReason;
@@ -146,10 +147,10 @@ class BeTriggered extends Scene{
 				removeFromArray(p, this.session.availablePlayers);
 				ret += " The " +p.htmlTitle() + " is currently too busy flipping the fuck out about ";
 				ret += p.flipOutReason + " to be anything but a useless piece of gargbage. ";
-				p.sanity += -10;
+				p.addStat("sanity", -10);
 				p.flipOutReason = null;
 				p.flippingOutOverDeadPlayer = null;
-				if(p.sanity < -5){
+				if(p.getStat("sanity") < -5){
 					ret += " Their freakout level is getting dangerously high. ";
 				}
 			}

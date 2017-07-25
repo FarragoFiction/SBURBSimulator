@@ -38,42 +38,42 @@ class Fraymotif {
 			this.effects.add(effect);
 		}
 	}
-	dynamic getCastersNoOwner(players){
-	    List<dynamic> casters = [];
+	List<Player> getCastersNoOwner(Random rand, List<Player> players){
+	    List<Player> casters = [];
         for(num i = 0; i<this.aspects.length; i++){ //skip the first aspect, because that's owner.
-            var a = this.aspects[i];
-            var p = getRandomElementFromArray(findAllAspectPlayers(players, a));//ANY player that matches my aspect can do this.;
+            String a = this.aspects[i];
+            Player p = rand.pickFrom(findAllAspectPlayers(players, a));//ANY player that matches my aspect can do this.;
             if(p != null) casters.add(p); //don't add 'undefined' to this array like a dunkass.
         }
         return casters;  //eventually do smarter things, like only allow to cast buff hp if heals are needed or anybody is dead.
 
 	}
-	dynamic getCasters(owner, allies){
+	dynamic getCasters(GameEntity owner, List<GameEntity> allies){
 		//first check to see if all aspects are included in the allies array.
-		var casters = [owner];
+		List<GameEntity> casters = [owner];
 		//List<dynamic> aspects = [];
-		var living = findLivingPlayers(allies); //dead men use no fraymotifs. (for now)
+		List<Player> living = findLivingPlayers(allies); //dead men use no fraymotifs. (for now)
 		for(num i = 1; i<this.aspects.length; i++){ //skip the first aspect, because that's owner.
 			var a = this.aspects[i];
-			var p = getRandomElementFromArray(findAllAspectPlayers(living, a));//ANY player that matches my aspect can do this.;
+			var p = owner.rand.pickFrom(findAllAspectPlayers(living, a));//ANY player that matches my aspect can do this.;
 			if(p != null) casters.add(p); //don't add 'undefined' to this array like a dunkass.
 		}
 		return casters;  //eventually do smarter things, like only allow to cast buff hp if heals are needed or anybody is dead.
 	}
-	dynamic processFlavorText(owner, casters, allies, enemy, enemies, revives){
+	dynamic processFlavorText(GameEntity owner, List<GameEntity> casters, List<GameEntity> allies, GameEntity enemy, List<GameEntity> enemies, revives){
       if(this.flavorText == null || this.flavorText.length == 0){
-         this.flavorText = this.proceduralFlavorText();
+         this.flavorText = this.proceduralFlavorText(owner.rand);
       }
       String phrase = "The CASTERS use FRAYMOTIF. ";//shitty example.
       if(casters.length == 1) phrase = "The CASTERS uses FRAYMOTIF. It damages the ENEMY. ";
       phrase += this.flavorText + revives;
       return this.replaceKeyWords(phrase, owner, casters, allies,  enemy, enemies);
   }
-	dynamic proceduralFlavorText(){
-    var base = this.superCondenseEffectsText();
+	dynamic proceduralFlavorText(Random rand){
+    var base = this.superCondenseEffectsText(rand);
     return base;
   }
-	dynamic superCondenseEffectsText(){
+	dynamic superCondenseEffectsText(Random rand){
     var effectTypes = {};  //hash coded by effectType damage0 vs damage1 vs buff0. first element is template
     for(int i = 0; i<4; i++){
       effectTypes["damage$i"] = [];
@@ -102,7 +102,7 @@ class Fraymotif {
         var template = stats[0];
         stats.remove(template);
         for(num j = 0; j<stats.length; j++){
-          stats[j] = this.getStatWord(stats[j], i); //i is who the target is, j is the stat.
+          stats[j] = this.getStatWord(rand, stats[j], i); //i is who the target is, j is the stat.
         }
         retArray.add(template.replace("STAT", [stats.sublist(0, -1).join(', '), stats.sublist(-1)[0]].join(stats.length < 2 ? '' : ' and ')));
       }
@@ -111,7 +111,7 @@ class Fraymotif {
         var template = stats[0];
         stats.remove(template);
         for(num j = 0; j<stats.length; j++){
-          stats[j] = this.getStatWord(stats[j], i); //i is who the target is, j is the stat.
+          stats[j] = this.getStatWord(rand, stats[j], i); //i is who the target is, j is the stat.
         }
         retArray.add(template.replace("STAT", [stats.sublist(0, -1).join(', '), stats.sublist(-1)[0]].join(stats.length < 2 ? '' : ' and ')));
       }
@@ -119,16 +119,16 @@ class Fraymotif {
     }
     String almostDone= [retArray.sublist(0, -1).join(', '), retArray.sublist(-1)[0]].join(retArray.length < 2 ? '' : ' and ');
     almostDone = almostDone[0].toUpperCase() + almostDone.substring(1) + "."; //sentence it.
-    return this.replaceKeyWordsForFlavorTextBase(almostDone);
+    return this.replaceKeyWordsForFlavorTextBase(rand, almostDone);
 
   }
-	String getStatWord(stat, target){
+	String getStatWord(Random rand, String stat, num target){
     bool bad = true;
     if(target == 0 || target == 1 ) bad = false;
     if(!bad){
-       return getRandomElementFromArray(this.goodStatWords(stat));
+       return rand.pickFrom(this.goodStatWords(stat));
     }else{
-       return getRandomElementFromArray(this.badStatWords(stat));
+       return rand.pickFrom(this.badStatWords(stat));
     }
   }
 	List<String> goodStatWords(statName){
@@ -201,18 +201,18 @@ class Fraymotif {
         return [retArray.sublist(0, -1).join(', '), retArray.sublist(-1)[0]].join(retArray.length < 2 ? '' : ' and ');
 
   }
-	dynamic replaceKeyWordsForFlavorTextBase(phrase, ){
-    phrase = phrase.replaceAll("damages", getRandomElementFromArray(this.getDamageWords()));
-    phrase = phrase.replaceAll("debuffs", getRandomElementFromArray(this.getDebuffWords()));
-    phrase = phrase.replaceAll("heals", getRandomElementFromArray(this.getHealingWords()));
-    phrase = phrase.replaceAll("buffs", getRandomElementFromArray(this.getBuffWords()));
-    phrase = phrase.replaceAll("SELF", getRandomElementFromArray(this.getSelfWords()));
-    phrase = phrase.replaceAll("EBLUH", getRandomElementFromArray(this.getEnemyWords()));
-    phrase = phrase.replaceAll("FRIENDSBLUH", getRandomElementFromArray(this.getAlliesWords()));
-    phrase = phrase.replaceAll("ESBLUHS", getRandomElementFromArray(this.getEnemiesWords()));
+	dynamic replaceKeyWordsForFlavorTextBase(Random rand, String phrase){
+    phrase = phrase.replaceAll("damages", rand.pickFrom(this.getDamageWords()));
+    phrase = phrase.replaceAll("debuffs", rand.pickFrom(this.getDebuffWords()));
+    phrase = phrase.replaceAll("heals", rand.pickFrom(this.getHealingWords()));
+    phrase = phrase.replaceAll("buffs", rand.pickFrom(this.getBuffWords()));
+    phrase = phrase.replaceAll("SELF", rand.pickFrom(this.getSelfWords()));
+    phrase = phrase.replaceAll("EBLUH", rand.pickFrom(this.getEnemyWords()));
+    phrase = phrase.replaceAll("FRIENDSBLUH", rand.pickFrom(this.getAlliesWords()));
+    phrase = phrase.replaceAll("ESBLUHS", rand.pickFrom(this.getEnemiesWords()));
     return phrase;
   }
-	void replaceKeyWords(phrase, owner, casters, allies, enemy, enemies){
+	String replaceKeyWords(String phrase, GameEntity owner, List<GameEntity> casters, List<GameEntity> allies, GameEntity enemy, List<GameEntity> enemies){
     //ret= ret.replace(new RegExp(this.lettersToReplace[i][0], "g"),replace);
     phrase = phrase.replaceAll("OWNER", owner.htmlTitleHP());
     phrase = phrase.replaceAll("CASTERS", getPlayersTitlesBasic(casters));
@@ -258,17 +258,17 @@ class Fraymotif {
       casters[i].usedFraymotifThisTurn = true;
     }
   }
-	dynamic useFraymotif(owner, List<GameEntity> allies, GameEntity enemy, List<GameEntity> enemies){
+	dynamic useFraymotif(Player owner, List<GameEntity> allies, GameEntity enemy, List<GameEntity> enemies){
     if(!this.canCast(owner, allies, enemies)) return "";
 		var casters = this.getCasters(owner, allies);
     this.makeCastersUnavailable(casters);
     var living = findLivingPlayers(allies);
     //Hope Rides Alone
-    if(owner.aspect == "Hope" && living.length == 1 && seededRandom() > 0.85){
+    if(owner.aspect == "Hope" && living.length == 1 && owner.rand.nextDouble() > 0.85){
         enemies[0].buffs.add(new Buff("currentHP", -9999)); //they REALLY believed in this attack.
         var jakeisms = ["GADZOOKS!","BOY HOWDY!","TALLY HO!","BY GUM"];
-        print("Hope Rides Alone in session: "  + owner.session.session_id);
-        var scream = getFontColorFromAspect(owner.aspect) + getRandomElementFromArray(jakeisms) + "</font>";
+        print("Hope Rides Alone in session: ${owner.session.session_id}");
+        var scream = getFontColorFromAspect(owner.aspect) + owner.rand.pickFrom(jakeisms) + "</font>";
         return " [HOPE RIDES ALONE] is activated. " + owner.htmlTitle() +  " starts screaming. <br><br><span class = 'jake'> " + scream + " </span>  <Br><Br> Holy fucking SHIT, that is WAY MORE DAMAGE then is needed. Jesus christ. Someone nerf that Hope player already!";
     }
     var dead = findDeadPlayers(allies);
@@ -391,84 +391,84 @@ class FraymotifCreator {
     //print("Found: " + ret.length + " usable fraymotifs for " + owner);
     return ret;
   }
-	String getRandomBreathName(){
+	String getRandomBreathName(Random rand){
       var names = ["Gale", "Wiznado", "Feather", "Lifting", "Breathless","Jetstream", "Hurricane", "Tornado"," Kansas", "Breath", "Breeze", "Twister", "Storm", "Wild", "Inhale", "Windy", "Skylark", "Fugue", "Pneumatic", "Wheeze", "Forward", "Vertical", "Whirlwind", "Jetstream"];
-      return getRandomElementFromArray(names);
+      return rand.pickFrom(names);
   }
- String getRandomRageName(){
+ String getRandomRageName(Random rand){
       var names = ["Rage", "Barbaric", "Impossible", "Tantrum", "Juggalo","Horrorcore" ,"Madness", "Carnival", "Mirthful", "Screaming", "Berserk", "MoThErFuCkInG", "War", "Haze", "Murder", "Furioso", "Aggressive", "ATBasher", "Violent", "Unbound", "Purple", "Unholy", "Hateful", "Fearful", "Inconceivable", "Impossible"];
-      return getRandomElementFromArray(names);
+      return rand.pickFrom(names);
   }
- String getRandomLifeName(){
+ String getRandomLifeName(Random rand){
       var names = ["Life" ,"Pastoral", "Green", "Relief", "Healing", "Plant", "Vitality", "Growing", "Garden", "Multiplying", "Rising", "Survival", "Phoenix", "Respawn", "Mangrit", "Animato", "Gaia", "Increasing", "Overgrowth", "Jungle", "Harvest", "Lazarus"];
-      return getRandomElementFromArray(names);
+      return rand.pickFrom(names);
   }
- String getRandomHopeName(){
+ String getRandomHopeName(Random rand){
       var names = ["Hope","Fake", "Belief", "Bullshit", "Determination", "Burn", "Stubborn", "Religion", "Will", "Hero", "Undying", "Dream", "Sepulchritude", "Prophet", "Apocryphal"];
-      return getRandomElementFromArray(names);
+      return rand.pickFrom(names);
   }
- String getRandomVoidName(){
-      String randBonus = "<span class ;= 'void'>" + getRandomElementFromArray(interests) +  "</span>";
+ String getRandomVoidName(Random rand){
+      String randBonus = "<span class ;= 'void'>" + rand.pickFrom(interests) +  "</span>";
       var names = ["Undefined", "untitled.mp4", "Void","Disappearification","Pumpkin", "Nothing", "Emptiness", "Invisible", "Dark", "Hole", "Solo", "Silent", "Alone", "Night", "Null", "[Censored]", "[???]", "Vacuous", "Abyss", "Noir", "Blank", "Tenebrous", "Antithesis", "404"];
-      return getRandomElementFromArray(names)+ randBonus;
+      return rand.pickFrom(names)+ randBonus;
   }
- String getRandomLightName(){
+ String getRandomLightName(Random rand){
       var names = ["Lucky", "Light", "Knowledge", "Blinding", "Brilliant", "Break", "Blazing", "Glow", "Flare", "Gamble", "Omnifold", "Apollo", "Helios", "Scintillating", "Horseshoe", "Leggiero", "Star", "Kindle", "Gambit", "Blaze"];
-      return getRandomElementFromArray(names);
+      return rand.pickFrom(names);
   }
- String getRandomMindName(){
+ String getRandomMindName(Random rand){
       var names = ["Mind", "Modulation", "Shock", "Awe", "Coin", "Judgement", "Mind", "Decision", "Spark", "Path", "Trial", "Variations", "Thunder", "Logical", "Telekinetic", "Brainiac", "Hysteria", "Deciso", "Thesis", "Imagination",  "Psycho", "Control", "Execution", "Bolt"];
-      return getRandomElementFromArray(names);
+      return rand.pickFrom(names);
   }
- String getRandomHeartName(){
+ String getRandomHeartName(Random rand){
       var names = ["Heart","Soul", "Jazz", "Blues", "Spirit", "Splintering", "Clone", "Self", "Havoc", "Noble", "Animus", "Astral", "Shatter", "Breakdown", "Ethereal", "Beat", "Pulchritude"];
-      return getRandomElementFromArray(names);
+      return rand.pickFrom(names);
   }
- String getRandomBloodName(){
+ String getRandomBloodName(Random rand){
       var names = ["Blood", "Trigger","Chain", "Flow", "Charge", "Awakening", "Ichorial", "Friendship", "Trusting", "Clotting", "Union", "Bleeding", "Team", "Transfusion", "Pulse", "Sanguine", "Positive", "Negative", "Cruor", "Vim", "Chorus", "Iron", "Ichorial", "Fever", "Heat"];
-      return getRandomElementFromArray(names);
+      return rand.pickFrom(names);
   }
- String getRandomDoomName(){
+ String getRandomDoomName(Random rand){
       var names = ["Dark", "Broken", "Meteoric", "Diseased","Fate", "Doomed", "Inevitable", "Doom", "End", "Final", "Dead", "Ruin", "Rot", "Coffin", "Apocalypse", "Morendo", "Smorzando", "~Ath", "Armistyx", "Grave", "Corpse", "Ashen", "Reaper", "Diseased", "Armageddon", "Cursed"];
-      return getRandomElementFromArray(names);
+      return rand.pickFrom(names);
   }
- String getRandomTimeName(){
+ String getRandomTimeName(Random rand){
       var names = ["Time","Paradox", "Chrono", "Moment", "Foregone", "Reset", "Endless", "Temporal", "Shenanigans", "Clock", "Tick-Tock", "Spinning", "Repeat", "Rhythm", "Redshift",  "Epoch", "Beatdown", "Slow", "Remix", "Clockwork", "Lock", "Eternal"];
-      return getRandomElementFromArray(names);
+      return rand.pickFrom(names);
   }
- String getRandomSpaceName(){
+ String getRandomSpaceName(Random rand){
       var names = ["Canon","Space","Frogs", "Location", "Spatial", "Universe", "Infinite", "Spiral", "Physics", "Star", "Galaxy", "Nuclear", "Atomic", "Nucleus", "Horizon", "Event", "CROAK", "Spatium", "Squiddle", "Engine", "Meteor", "Gravity", "Crush"];
-      return getRandomElementFromArray(names);
+      return rand.pickFrom(names);
   }
- String getRandomNameForAspect(aspect){
+ String getRandomNameForAspect(Random rand, String aspect){
     String ret = "";
-    if(aspect == "Blood") ret = this.getRandomBloodName();
-    if(aspect == "Mind") ret = this.getRandomMindName();
-    if(aspect == "Rage") ret =  this.getRandomRageName();
-    if(aspect == "Time") ret =  this.getRandomTimeName();
-    if(aspect == "Void") ret =  this.getRandomVoidName();
-    if(aspect == "Heart") ret =  this.getRandomHeartName();
-    if(aspect == "Breath") ret =  this.getRandomBreathName();
-    if(aspect == "Light") ret =  this.getRandomLightName();
-    if(aspect == "Space") ret =  this.getRandomSpaceName();
-    if(aspect == "Hope") ret =  this.getRandomHopeName();
-    if(aspect == "Life") ret =  this.getRandomLifeName();
-    if(aspect == "Doom") ret =  this.getRandomDoomName();
+    if(aspect == "Blood") ret = this.getRandomBloodName(rand);
+    if(aspect == "Mind") ret = this.getRandomMindName(rand);
+    if(aspect == "Rage") ret =  this.getRandomRageName(rand);
+    if(aspect == "Time") ret =  this.getRandomTimeName(rand);
+    if(aspect == "Void") ret =  this.getRandomVoidName(rand);
+    if(aspect == "Heart") ret =  this.getRandomHeartName(rand);
+    if(aspect == "Breath") ret =  this.getRandomBreathName(rand);
+    if(aspect == "Light") ret =  this.getRandomLightName(rand);
+    if(aspect == "Space") ret =  this.getRandomSpaceName(rand);
+    if(aspect == "Hope") ret =  this.getRandomHopeName(rand);
+    if(aspect == "Life") ret =  this.getRandomLifeName(rand);
+    if(aspect == "Doom") ret =  this.getRandomDoomName(rand);
     return getFontColorFromAspect(aspect) + ret + "</font>";
   }
-	String getRandomMusicWord(aspect){ //takes in an aspect for color
+	String getRandomMusicWord(Random rand, String aspect){ //takes in an aspect for color
     List<String> names = ["Fortississimo", "Leitmotif", "Liberetto", "Sarabande", "Serenade", "Anthem", "Crescendo", "Vivace", "Encore", "Vivante", "Allegretto", "Fugue", "Choir", "Nobilmente", "Hymn", "Eroico", "Chant", "Mysterioso", "Diminuendo", "Perdendo", "Staccato", "Allegro", "Caloroso", "Nocturne"];
     names.addAll(["Cadenza", "Cadence", "Waltz", "Concerto", "Finale", "Requiem", "Coda", "Dirge", "Battaglia", "Leggiadro", "Capriccio", "Presto", "Largo", "Accelerando", "Polytempo", "Overture", "Reprise", "Orchestra"]);
 
-    var ret = getRandomElementFromArray(names);
-    if(seededRandom() > 0.5){
+    var ret = rand.pickFrom(names);
+    if(rand.nextDouble() > 0.5){
       return "<span style='color:" + getColorFromAspect(aspect) + "'>" + ret.toLowerCase()+"</span>";  //tacked onto existin word
     }else{
       return " " + ret; //extra word
     }
   }
-	dynamic tryToGetPreMadeName(players){
-    if(seededRandom() > 0.5) return null; //just use the procedural name.
+	dynamic tryToGetPreMadeName(Random rand, List<Player> players){
+    if(rand.nextDouble() > 0.5) return null; //just use the procedural name.
 
     if(this.premadeFraymotifNames.length == 0) this.initializePremadeNames();
     for(num i = 0; i<this.premadeFraymotifNames.length; i++){
@@ -542,8 +542,8 @@ class FraymotifCreator {
     this.premadeFraymotifNames.add(new Fraymotif(["Hope", "Time"], "Hope For The Future",1, ""));
 
   }
-	dynamic getFraymotifName(players, tier){
-    var name = this.tryToGetPreMadeName(players);
+	dynamic getFraymotifName(Random rand, List<Player> players, int tier){
+    var name = this.tryToGetPreMadeName(rand, players);
     if(name){
         //print("Using a premade procedural fraymotif name: " + name + " " + players[0].session.session_id);
         return name; //premade is good enough here. let the called function handle randomness.
@@ -552,29 +552,29 @@ class FraymotifCreator {
     }
     var indexOfMusic = players.length-1;  //used to be random now always at end.
     if(players.length == 1){
-      indexOfMusic = getRandomInt(0,tier-1);
+      indexOfMusic = rand.nextIntRange(0,tier-1);
       for(int i = 0; i<tier; i++){
         String musicWord = "";
-        if(i == indexOfMusic) musicWord = this.getRandomMusicWord(players[0].aspect);
-        name += this.getRandomNameForAspect(players[0].aspect) + musicWord +" ";
+        if(i == indexOfMusic) musicWord = this.getRandomMusicWord(rand, players[0].aspect);
+        name += this.getRandomNameForAspect(rand, players[0].aspect) + musicWord +" ";
       }
     }else{
 
       for(num i = 0; i<players.length; i++){
         String musicWord = "";
-        if(i == indexOfMusic) musicWord = this.getRandomMusicWord(players[i].aspect);
-        name += this.getRandomNameForAspect(players[i].aspect) + musicWord +  " ";
+        if(i == indexOfMusic) musicWord = this.getRandomMusicWord(rand, players[i].aspect);
+        name += this.getRandomNameForAspect(rand, players[i].aspect) + musicWord +  " ";
       }
     }
     //print("player length: "+ players.length + " tier: " + tier + " Name: " + name);
     return name;
   }
-	dynamic makeFraymotifForPlayerWithFriends(player, helper, tier){
+	dynamic makeFraymotifForPlayerWithFriends(Player player, Player helper, int tier){
     //if helper, helper is guaranteed to be part of fraymotif.
     var players_involved = [player];
-    if(helper) players_involved.add(helper);
+    if(helper != null) players_involved.add(helper);
     for(num i = 0; i<player.session.players.length; i++){
-      var rand = seededRandom();
+      var rand = player.rand.nextDouble();
       var p = player.session.players[i];
       num needed = 0.8;
       if(p.aspect == "Light" || p.aspect == "Blood") needed = 0.6; //light players have to be in the spot light, and blood players just wanna help.
@@ -583,7 +583,7 @@ class FraymotifCreator {
       }
     }
     //print("Made: " + players_involved .length + " player fraymotif in session: " + player.session);
-    return this.makeFraymotif(players_involved , tier);
+    return this.makeFraymotif(player.rand, players_involved , tier);
   }
 	dynamic findFraymotifNamed(fraymotifs, name){
     for(num i = 0; i<fraymotifs.length; i++){
@@ -591,7 +591,7 @@ class FraymotifCreator {
     }
     return null;
   }
-	dynamic makeFraymotif(players, tier){ //asumming first player in that array is the owner of the framotif later on.
+	dynamic makeFraymotif(Random rand, List<Player> players, int tier){ //asumming first player in that array is the owner of the framotif later on.
     if(players.length == 1 && players[0].class_name == "Waste" && tier == 3){
         //check to see if we are upgrading rocks fall.
         var f = this.findFraymotifNamed(players[0].fraymotifs, "Rocks Fall, Everyone Dies");
@@ -604,12 +604,12 @@ class FraymotifCreator {
         }
     }
 
-    var name = this.getFraymotifName(players, tier);
+    var name = this.getFraymotifName(rand, players, tier);
   	List<dynamic> aspects = [];
   	for(num i = 0; i<players.length; i++){
   		aspects.add(players[i].aspect); //allow fraymotifs tht are things like time/time. doomed time clones need love.
   	}
-    name += " (Tier " + tier + ")";
+    name += " (Tier $tier)";
    var f= new Fraymotif(aspects, name, tier);
    f.addEffectsForPlayers(players);
   	return f;
@@ -637,23 +637,24 @@ class FraymotifEffect {
 	FraymotifEffect(this.statName, this.target, this.damageInsteadOfBuff, [this.flavorText  =""]) {}
 
 
-	void setEffectForPlayer(player){
+	void setEffectForPlayer(Player player){
+		Random rand = player.rand;
 		var effect = new FraymotifEffect("",this.e, true); //default to just damaging the enemy.
-		if(player.class_name == "Knight") effect = getRandomElementFromArray(this.knightEffects());
-		if(player.class_name == "Seer") effect = getRandomElementFromArray(this.seerEffects());
-		if(player.class_name == "Bard") effect = getRandomElementFromArray(this.bardEffects());
-		if(player.class_name == "Heir") effect = getRandomElementFromArray(this.heirEffects());
-		if(player.class_name == "Maid") effect = getRandomElementFromArray(this.maidEffects());
-		if(player.class_name == "Rogue") effect = getRandomElementFromArray(this.rogueEffects());
-		if(player.class_name == "Page") effect = getRandomElementFromArray(this.pageEffects());
-		if(player.class_name == "Thief") effect = getRandomElementFromArray(this.thiefEffects());
-		if(player.class_name == "Sylph") effect = getRandomElementFromArray(this.sylphEffects());
-		if(player.class_name == "Prince") effect = getRandomElementFromArray(this.princeEffects());
-		if(player.class_name == "Witch") effect = getRandomElementFromArray(this.witchEffects());
-		if(player.class_name == "Mage") effect = getRandomElementFromArray(this.mageEffects());
+		if(player.class_name == "Knight") effect = rand.pickFrom(this.knightEffects());
+		if(player.class_name == "Seer") effect = rand.pickFrom(this.seerEffects());
+		if(player.class_name == "Bard") effect = rand.pickFrom(this.bardEffects());
+		if(player.class_name == "Heir") effect = rand.pickFrom(this.heirEffects());
+		if(player.class_name == "Maid") effect = rand.pickFrom(this.maidEffects());
+		if(player.class_name == "Rogue") effect = rand.pickFrom(this.rogueEffects());
+		if(player.class_name == "Page") effect = rand.pickFrom(this.pageEffects());
+		if(player.class_name == "Thief") effect = rand.pickFrom(this.thiefEffects());
+		if(player.class_name == "Sylph") effect = rand.pickFrom(this.sylphEffects());
+		if(player.class_name == "Prince") effect = rand.pickFrom(this.princeEffects());
+		if(player.class_name == "Witch") effect = rand.pickFrom(this.witchEffects());
+		if(player.class_name == "Mage") effect = rand.pickFrom(this.mageEffects());
 		this.target = effect.target;
 		this.damageInsteadOfBuff = effect.damageInsteadOfBuff;
-		this.statName = getRandomElementFromArray(player.associatedStats).name;
+		this.statName = rand.pickFrom(player.associatedStats).name;
 	}
 	dynamic knightEffects(){
 		return [new FraymotifEffect("",this.s,true),new FraymotifEffect("",this.e,true),new FraymotifEffect("",this.e2,true),new FraymotifEffect("",this.s,false),new FraymotifEffect("",this.e,false) ];

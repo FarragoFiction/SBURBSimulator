@@ -17,7 +17,7 @@ class PrepareToExileQueen extends Scene {
 		potentials.add(findAspectPlayer(this.session.availablePlayers, "Hope"));
 		potentials.add(findClassPlayer(this.session.availablePlayers, "Thief"));
 		potentials.add(findClassPlayer(this.session.availablePlayers, "Rogue"));
-		this.player =  getRandomElementFromArray(potentials);
+		this.player =  rand.pickFrom(potentials);
 	}
 
 	@override
@@ -36,20 +36,20 @@ class PrepareToExileQueen extends Scene {
 	//	print(this.session.scratched +  this.player + " moderate damage to queen's power in: " + this.session.session_id);
 		String ret = "The " + this.player.htmlTitle() + " ";
 		this.session.queen.addStat("power", -10);
-		return ret + getRandomElementFromArray(moderateQueenQuests);
+		return ret + rand.pickFrom(moderateQueenQuests);
 	}
 	dynamic heavyDamage(){
 		//print(this.session.scratched +  this.player +   " heavy damage to queen's power in: " + this.session.session_id);
 		String ret = "The " + this.player.htmlTitle() + " ";
 		this.session.queen..addStat("power", -15);
-		return ret + getRandomElementFromArray(heavyQueenQuests);
+		return ret + rand.pickFrom(heavyQueenQuests);
 	}
 	dynamic lightDamage(){
 		//print(this.session.scratched +  this.player +  " light damage to queen's power in: " + this.session.session_id);
 		String ret = "The " + this.player.htmlTitle() + " ";
 		this.session.queen..addStat("power", -5);; //ATTENTION FUTURE JR:  you will look at this and wonder why we didn't make it proportional to the queens power. after all,  a five decrease is HUGE to an uncrowned queen and nothing to a First Guardian Queen.   Consider Xeno's paradox, however. If we do it that way, the closer we get to exiling the queen, the less power we'll take from her. She'll never reach zero. DO NOT FUCKING DO THIS.
 		//also, maybe it SHOULD be fucking nothing to a first guardian queen. why the fuck does she care about whatever bullshit you doing. she's a GOD.
-		return ret + getRandomElementFromArray(lightQueenQuests);
+		return ret + rand.pickFrom(lightQueenQuests);
 	}
 	dynamic content(){
 

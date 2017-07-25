@@ -5,10 +5,10 @@ part of SBURBSim;
 //going to refactor so that all randomness is seeded.
 /*Math.seed = getRandomSeed();  //can be overwritten on load
 var initial_seed = Math.seed;
-dynamic getRandomElementFromArray(array){
+dynamic rand.pickFrom(array){
 	num min = 0;
 	var max = array.length-1;
-	var i = Math.floor(seededRandom() * (max - min + 1)) + min;
+	var i = Math.floor(rand.nextDouble() * (max - min + 1)) + min;
 	return array[i];
 }*/
 
@@ -994,8 +994,8 @@ String sanitizeString(String string){
  * Returns a random integer between min (inclusive) and max (inclusive)
  * Using Math.round() will give you a non-uniform distribution!
  */
-/*int getRandomInt(min, max) {
-    return (seededRandom() * (max - min + 1)).floor() + min;
+/*int rand.nextIntRange(min, max) {
+    return (rand.nextDouble() * (max - min + 1)).floor() + min;
 }
 
 int getRandomIntNoSeed(min, max) {

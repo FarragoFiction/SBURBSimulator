@@ -89,10 +89,10 @@ bool printCorruptionMessage(msg, url, lineNo, columnNo, error){
 		String start = "<b ";
 		String end = "'>";
 
-		var words = getRandomElementFromArray(rand);
+		var words = rand.pickFrom(rand);
 		words = Zalgo.generate(words);
 		var plea = start + "style ;= 'color: " +getColorFromAspect(player.aspect) +"; " + end +str + words+ "</b>"
-		//print(getColorFromAspect(getRandomElementFromArray(curSessionGlobalVar.players).aspect+";") )
+		//print(getColorFromAspect(rand.pickFrom(curSessionGlobalVar.players).aspect+";") )
 		querySelector("#afterlifeViewer").append(plea);
 	}
 

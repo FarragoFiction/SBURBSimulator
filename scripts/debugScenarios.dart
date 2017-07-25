@@ -273,8 +273,8 @@ void tricksterMode(){
 	for(num j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
 		if(p.aspect != "Doom"){ //kr says it would be funny if doom plalyers completely immune.
-			p.hairColor = getRandomElementFromArray(tricksterColors);
-			p.bloodColor = getRandomElementFromArray(tricksterColors);
+			p.hairColor = rand.pickFrom(tricksterColors);
+			p.bloodColor = rand.pickFrom(tricksterColors);
 			p.trickster  = true;
 		}else{
 		}
@@ -607,7 +607,7 @@ void homestuck(){
 			session413IndexToHuman(p,3);
 			session413IndexToHuman(g,3);
 		}else{
-			var index = getRandomInt(0,7);
+			var index = rand.nextIntRange(0,7);
 			session413IndexToHuman(p,index);
 			session413IndexToAncestor(g,index);
 		}
@@ -631,7 +631,7 @@ void hivebent(){
 			session612IndexToTroll(p,8);
 			session612IndexToTrollAncestor(g,8);
 		}else{
-			var index = getRandomInt(0,11);
+			var index = rand.nextIntRange(0,11);
 			session612IndexToTroll(p,index);
 			session612IndexToTrollAncestor(g,index);
 		}
@@ -655,7 +655,7 @@ void openBound(){
 			session612IndexToTroll(g,8);
 			session612IndexToTrollAncestor(p,8);
 		}else{
-			var index = getRandomInt(0,11);
+			var index = rand.nextIntRange(0,11);
 			session612IndexToTroll(g,index);
 			session612IndexToTrollAncestor(p,index);
 		}
@@ -674,7 +674,7 @@ void fruityRumpusAssholeFactory(){
 	for(num i = 0; i<curSessionGlobalVar.players.length; i++){
 		var p = curSessionGlobalVar.players[i];
 		var g = p.guardian;
-		var rand = seededRandom();
+		var rand = rand.nextDouble();
 		if(p.aspect == "Time"){
 			if(rand > 0.6){
 				session612IndexToTroll(g,4);
@@ -699,15 +699,15 @@ void fruityRumpusAssholeFactory(){
 			}
 		}else{
 			if(rand > 0.6){
-				var index = getRandomInt(0,12);
+				var index = rand.nextIntRange(0,12);
 				session612IndexToTroll(g, index);
 				session612IndexToTrollAncestor(p,index);
 			}else if(rand > 0.3){
-				var index = getRandomInt(0,12);
+				var index = rand.nextIntRange(0,12);
 				session612IndexToTrollAncestor(p,index);
 				session612IndexToTroll(g,index);
 			}else{
-				var index = getRandomInt(0,7);
+				var index = rand.nextIntRange(0,7);
 				session413IndexToHuman(p,index);
 				session413IndexToAncestor(g,index);
 			}
@@ -1150,12 +1150,12 @@ void session612IndexToTroll(player, index){
 		player.interest1 = "Archaeology";
 		player.interest2 = "Death";
 		var savedSeed = Math.seed;
-		if(seededRandom() > 0.6){
+		if(rand.nextDouble() > 0.6){
 			player.robot = true; //not all aradias are robo aradias.
 			player.bloodColor = "#0021cb"; //b100 blood
 			player.hairColor = "#313131";
 		}
-		if(seededRandom() > 0.6) player.dead = true; //not all aradias are ghost aradias.
+		if(rand.nextDouble() > 0.6) player.dead = true; //not all aradias are ghost aradias.
 		Math.seed = savedSeed;
 		player.chatHandle = "apocalypseArisen";
 		player.godDestiny = true;

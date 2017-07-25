@@ -62,11 +62,11 @@ class GetTiger extends Scene{
 		if(withd && partyRollForLuck(withd) > 50){  //MOST players in canon go god tier via sacrificial slab.
 			for(num i = 0; i< withd.length; i++){
 				var p = withd[i];
-				p.currentHP = p.hp;
+				p.setStat("currentHP", p.getStat("hp"));
 				////print("Quest bed: " + this.session.session_id);
 				ret += " Upon being laid to rest on their QUEST BED on the " + p.land + ", the " + p.htmlTitle() + "'s body glows, and rises Skaiaward. ";
 				ret +="On " + p.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
-				Fraymotif f = this.session.fraymotifCreator.makeFraymotif([p], 3);//first god tier fraymotif
+				Fraymotif f = this.session.fraymotifCreator.makeFraymotif(rand, [p], 3);//first god tier fraymotif
 				p.fraymotifs.add(f);
 				ret += " They learn " + f.name + "." ;
 				this.session.questBed = true;
@@ -80,12 +80,12 @@ class GetTiger extends Scene{
 			for(num i = 0; i< withoutd.length; i++){
 				var p = withoutd[i];
 				if(p.isDreamSelf){
-					p.currentHP = p.hp;
+					p.setStat("currentHP", p.getStat("hp"));
 					removeFromArray(this.session.afterLife.findClosesToRealSelf(p), this.session.afterLife.ghosts);
 					////print("sacrificial slab: " + this.session.session_id);
 					ret += " Upon a wacky series of events leaving their corpse on their SACRIFICIAL SLAB on " + p.moon + ", the " + p.htmlTitle() + " glows and ascends to the God Tiers with a sweet new outfit.";
 					this.session.sacrificialSlab = true;
-					Fraymotif f = this.session.fraymotifCreator.makeFraymotif([p], 3);//first god tier fraymotif
+					Fraymotif f = this.session.fraymotifCreator.makeFraymotif(rand, [p], 3);//first god tier fraymotif
 					p.fraymotifs.add(f);
 					ret += " They learn " + f.name + "." ;
 				}

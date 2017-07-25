@@ -1488,7 +1488,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			return;
 		}
 
-		if(this.session.getSessionType() == "Troll" || (this.session.getSessionType() == "Mixed" && seededRandom() > 0.5) ){
+		if(this.session.getSessionType() == "Troll" || (this.session.getSessionType() == "Mixed" && rand.nextDouble() > 0.5) ){
 			this.isTroll = true;
 			this.hairColor = "#000000";
 			this.decideHemoCaste();

@@ -39,8 +39,8 @@ class Breakup extends Scene {
 
 		var hearts = this.player.getHearts();
 		if(hearts.length > 1){
-			if(seededRandom()*3 < breakUpChance){
-				this.relationshipToBreakUp = getRandomElementFromArray(hearts);
+			if(rand.nextDouble()*3 < breakUpChance){
+				this.relationshipToBreakUp = rand.pickFrom(hearts);
 				this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 				this.relationshipToBreakUp.target.sanity += -10;
 				this.relationshipToBreakUp.target.flipOut("getting cheated on by their Matesprit, the  " + this.player.htmlTitle() );
@@ -55,8 +55,8 @@ class Breakup extends Scene {
 
 		var spades = this.player.getSpades();
 		if(spades.length > 1){
-			if(seededRandom()*3 < breakUpChance){
-				this.relationshipToBreakUp = getRandomElementFromArray(spades);
+			if(rand.nextDouble()*3 < breakUpChance){
+				this.relationshipToBreakUp = rand.pickFrom(spades);
 				this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 				this.relationshipToBreakUp.target.sanity += -10;
 				this.relationshipToBreakUp.target.flipOut("getting cheated on by their Kismesis, the  " + this.player.htmlTitle() );
@@ -69,8 +69,8 @@ class Breakup extends Scene {
 		}
 		var diamonds = this.player.getDiamonds();
 		if(diamonds.length > 1){
-			if(seededRandom()*3 < breakUpChance){
-				this.relationshipToBreakUp = getRandomElementFromArray(diamonds);
+			if(rand.nextDouble()*3 < breakUpChance){
+				this.relationshipToBreakUp = rand.pickFrom(diamonds);
 				this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 				//cheating with diamonds sounds like a terrible idea.
 				this.relationshipToBreakUp.target.sanity += -100;
@@ -97,7 +97,7 @@ class Breakup extends Scene {
 			if(r.saved_type ==r.heart){
 				var hearts = r.target.getHearts();
 				if(hearts.length > 1){
-					if(seededRandom()*3 < breakUpChance){
+					if(rand.nextDouble()*3 < breakUpChance){
 						this.relationshipToBreakUp = r;
 						this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 						//not happy with cheating bastards.
@@ -114,7 +114,7 @@ class Breakup extends Scene {
 			if(r.saved_type ==r.spades){
 				var spades = r.target.getSpades();
 				if(spades.length > 1){
-					if(seededRandom()*3 < breakUpChance){
+					if(rand.nextDouble()*3 < breakUpChance){
 						this.relationshipToBreakUp = r;
 						this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 						//not happy with cheating bastards.
@@ -131,7 +131,7 @@ class Breakup extends Scene {
 			if(r.saved_type ==r.diamond){
 				var diamonds = r.target.getDiamonds();
 				if(diamonds.length > 1){
-					if(seededRandom()*3 < breakUpChance){
+					if(rand.nextDouble()*3 < breakUpChance){
 						this.relationshipToBreakUp = r;
 						this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 						//dude, cheating on diamonds sounds like a TERRIBLE idea.
@@ -153,7 +153,7 @@ class Breakup extends Scene {
 			var r = this.player.relationships[i];
 			var realType = r.changeType(); //doesn't save anything.
 			if(r.saved_type ==r.heart && realType != r.goodBig ){
-				if(seededRandom()*3 < breakUpChance){
+				if(rand.nextDouble()*3 < breakUpChance){
 						this.relationshipToBreakUp = r;
 						this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 						this.reason = "bored";
@@ -163,7 +163,7 @@ class Breakup extends Scene {
 			}
 
 			if(r.saved_type ==r.spades && realType != r.badBig ){
-				if(seededRandom()*3 < breakUpChance){
+				if(rand.nextDouble()*3 < breakUpChance){
 						this.relationshipToBreakUp =r;
 						this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 						this.reason = "bored";
@@ -173,7 +173,7 @@ class Breakup extends Scene {
 			}
 
 			if(r.saved_type ==r.diamond && r.value < 0 ){
-				if(seededRandom()*3 < breakUpChance){
+				if(rand.nextDouble()*3 < breakUpChance){
 						this.relationshipToBreakUp = r;
 						this.reason = "bored";
 						this.formerQuadrant = this.relationshipToBreakUp.saved_type;

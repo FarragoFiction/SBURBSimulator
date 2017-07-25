@@ -184,7 +184,7 @@ void describe(){
 void decideHemoCaste(player){
 	if(player.aspect != "Blood"){  //sorry karkat
 		if(querySelector('[name="color"] option:selected').val() ;== "Any"){
-			player.bloodColor = getRandomElementFromArray(bloodColors);
+			player.bloodColor = rand.pickFrom(bloodColors);
 		}else{
 			//do i want blood color to be a drop down, too? can make bg the blood color?
 			player.bloodColor = querySelector('[name;="color"] option:selected').val();
@@ -209,7 +209,7 @@ void randomParagraph(div, player){
 
 
 void decideTroll(player){
-	if(querySelector('[name="species"] option:selected').val() ;== "Any" && seededRandom() > .5 ){
+	if(querySelector('[name="species"] option:selected').val() ;== "Any" && rand.nextDouble() > .5 ){
 		player.isTroll = true;
 		decideHemoCaste(player);
 		player.decideLusus();
@@ -224,7 +224,7 @@ void decideTroll(player){
 	}else{
 		player.isTroll = false;
 		player.bloodColor = "#ffffff";
-		player.hairColor = getRandomElementFromArray(human_hair_colors);
+		player.hairColor = rand.pickFrom(human_hair_colors);
 		player.quirk = randomHumanQuirk(player);
 	}
 }

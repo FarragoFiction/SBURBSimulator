@@ -557,7 +557,7 @@ class GameEntity implements Comparable{
    return ges.join(',');  //TODO put an and at the end.
   }
 
-
+  Random get rand => this.session.rand;
 }
 
 

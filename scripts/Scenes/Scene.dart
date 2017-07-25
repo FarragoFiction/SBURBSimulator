@@ -121,6 +121,7 @@ abstract class Scene {
     }
   }
 
+  Random get rand => this.session.rand;
 }
 
 abstract class IntroScene {
@@ -136,4 +137,6 @@ abstract class IntroScene {
 
   //each scene should handle rendering itself, whether via text or canvas
   void renderContent(Element div, num i);
+
+  Random get rand => this.session.rand;
 }

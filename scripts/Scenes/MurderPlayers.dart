@@ -149,7 +149,7 @@ class MurderPlayers extends Scene {
 			if(worstEnemy !=null && worstEnemy.sprite.name == "sprite") print("trying to kill somebody not in the medium yet: " + worstEnemy.title() + " in session: " + this.session.session_id.toString());
 			var living = findLivingPlayers(this.session.players);
 			removeFromArray(worstEnemy, living);
-			var ausp = getRandomElementFromArray(living);
+			var ausp = rand.pickFrom(living);
 			if(ausp == worstEnemy || ausp == m){
 				ausp = null;
 			}

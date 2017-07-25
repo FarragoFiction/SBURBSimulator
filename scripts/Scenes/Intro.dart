@@ -55,16 +55,17 @@ class Intro  extends IntroScene{
 			}else if(this.player.aspect == "Doom"){
 				return " They stare with trepidation at the " + this.player.land + ". ";
 			}
+			return null;
 	}
-	String changePrototyping(div){
+	String changePrototyping(Element div){
 	  String ret = "";
-		if(this.player.object_to_prototype.getStat("power") > 200 && seededRandom() > .8){
-			var divID = (div.attr("id"));
+		if(this.player.object_to_prototype.getStat("power") > 200 && rand.nextDouble() > .8){
+			String divID = (div.id);
 			String canvasHTML = "<br><canvas id;='canvaskernel" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
-			div.append(canvasHTML);
-			var canvas = querySelector("#canvaskernel"+ divID);
-			var times = findAllAspectPlayers(this.session.players, "Time"); //they don't have to be in the medium, though
-			var timePlayer = getRandomElementFromArray(times); //ironically will probably allow more timeless sessions without crashes.
+			div.appendHtml(canvasHTML);
+			CanvasElement canvas = querySelector("#canvaskernel"+ divID);
+			List<Player> times = findAllAspectPlayers(this.session.players, "Time"); //they don't have to be in the medium, though
+			Player timePlayer = rand.pickFrom(times); //ironically will probably allow more timeless sessions without crashes.
 			drawTimeGears(canvas);
 			drawSinglePlayer(canvas, timePlayer);
 			String ret = "A " + timePlayer.htmlTitleBasic() + " suddenly warps in from the future. ";
@@ -73,7 +74,7 @@ class Intro  extends IntroScene{
 			}
 			ret += " They come with a dire warning of a doomed timeline. ";
 			ret += "They dropkick the " + this.player.object_to_prototype.htmlTitle() + " out of the way and jump into the " + this.player.htmlTitleBasic() + "'s kernel sprite instead. <br> ";
-			this.player.object_to_prototype = timePlayer.clone;
+			this.player.object_to_prototype = timePlayer.clone();
       this.player.object_to_prototype.name = timePlayer.chatHandle;
 			this.player.object_to_prototype.helpfulness = 1;
       this.player.object_to_prototype.player = true;
@@ -81,7 +82,7 @@ class Intro  extends IntroScene{
 			this.player.object_to_prototype.helpPhrase = " used to be a Player like you, until they took a splinter to the timeline, so they know how all this shit works. Super helpful.";
 			print("time player sprite in session: " + this.session.session_id.toString());
 
-		}else if((this.player.dead == true || this.player.isDreamSelf == true || this.player.dreamSelf == false) && seededRandom() > .1){ //if tier 2 is ever a thing, make this 50% instead and have spries very attracted to extra corpes later on as well if they aren't already players or...what would even HAPPEN if you prototyped yourself twice....???
+		}else if((this.player.dead == true || this.player.isDreamSelf == true || this.player.dreamSelf == false) && rand.nextDouble() > .1){ //if tier 2 is ever a thing, make this 50% instead and have spries very attracted to extra corpes later on as well if they aren't already players or...what would even HAPPEN if you prototyped yourself twice....???
 			String ret = "Through outrageous shenanigans, one of the " + this.player.htmlTitle() + "'s superfluous corpses ends up prototyped into their kernel sprite. <br>";
 			this.player.object_to_prototype =this.player.clone() ;//no, don't say 'corpsesprite';
       this.player.object_to_prototype.name = this.player.chatHandle;
@@ -736,7 +737,7 @@ class Intro  extends IntroScene{
 			}
 			this.player.sprite.addPrototyping(this.player.object_to_prototype); //hot damn this is coming together.
 			if(this.session.kingsScepter != null) this.session.kingsScepter.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
-			if(this.player.object_to_prototype.armless && seededRandom() > 0.93){
+			if(this.player.object_to_prototype.armless && rand.nextDouble() > 0.93){
 					print("armless prototyping in session: " + this.session.session_id.toString());
 					narration += "Huh. Of all the things to take from prototyping a " + this.player.object_to_prototype.name + ", why did it have to be its fingerless attribute? The Black Queen's RING OF ORBS " + this.session.convertPlayerNumberToWords() + "FOLD is now useless. If any carapacian attempts to put it on, they lose the finger it was on, which makes it fall off.  She destroys the RING in a fit of vexation. ";
 					this.session.destroyBlackRing();

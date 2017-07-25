@@ -23,9 +23,9 @@ class ExploreMoon extends Scene {
 
 		String getProspitBullshit(){
 			var possibilities = ["attending dance parties", "fluttering about aimlessly", "chatting up Prospitans", "learning the recipe for HOLY PASTRIES", "listening to sermons on the vast Croak","attending dance offs", "protecting the sacred candy shop from burglars", "racing frogs"];
-			var thing1 = getRandomElementFromArray(possibilities);
+			var thing1 = rand.pickFrom(possibilities);
 			possibilities.removeFromArray(thing1);
-			var thing2 = getRandomElementFromArray(possibilities);
+			var thing2 = rand.pickFrom(possibilities);
 
 
 			String vision = "The visions of the future provided by Skaia were largely ignored.";
@@ -43,9 +43,9 @@ class ExploreMoon extends Scene {
 
 		String getDerseBullshit(){
 			var possibilities = ["attending dance parties", "cheating at poker", "keeping tabs on the lifeblood of Derse", "learning the Derse waltz","understanding the nuances of a stab","lying their asses off to anyone and everyone","attending jazz clubs","setting up black market businesses","dodging the Derse law","smuggling contraband","delivering finely crafted suits"];
-			var thing1 = getRandomElementFromArray(possibilities);
+			var thing1 = rand.pickFrom(possibilities);
 			possibilities.removeFromArray(thing1);
-			var thing2 = getRandomElementFromArray(possibilities);
+			var thing2 = rand.pickFrom(possibilities);
 
 			var dead = findDeadPlayers(this.session.players);
 			var living = findLivingPlayers(this.session.players);
