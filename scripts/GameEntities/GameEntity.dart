@@ -74,7 +74,7 @@ class GameEntity implements Comparable{
 
   }
 
-  //handles cloning generic stuff
+  //handles cloning generic stuff important because it's how a PLayer becomes a GameEntity (such as a PLayerSprite)
   GameEntity clone() {
       GameEntity clonege = new GameEntity(name, id, session);
       clonege.setStatsHash(stats);
