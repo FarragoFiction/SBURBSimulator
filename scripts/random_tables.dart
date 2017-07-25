@@ -172,9 +172,10 @@ dynamic getRandomElementFromArrayNoSeed(array){
 
 
 String getRandomElementFromArrayThatStartsWith(Random rand, List<String> array, String letter){
-	var array2 = makeFilteredCopyForLetters(array, letter);
+	List<String> array2 = makeFilteredCopyForLetters(array, letter);
+	if(array2.length == 0) return null;
 	num min = 0;
-	var max = array2.length-1;
+	num max = array2.length-1;
 	var i = (rand.nextDouble() * (max - min + 1)).floor() + min;
 	return array2[i];
 }
@@ -183,9 +184,9 @@ String getRandomElementFromArrayThatStartsWith(Random rand, List<String> array, 
 
 //regular filter modifies the array. do not want this. bluh.
 List<String> makeFilteredCopyForLetters(List<String> array, String letter){
-	List<dynamic> tmp = [];
+	List<String> tmp = [];
 	for(num i = 0; i<array.length; i++ ){
-		var word = array[i];
+		String word = array[i];
 		if(word.startsWith(letter)){
 			tmp.add(word);
 		}

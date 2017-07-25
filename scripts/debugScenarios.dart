@@ -1,28 +1,13 @@
 part of SBURBSim;
 
 
-//bool startScratched = false;  <-- as suspected, this does not work. You NEED to finish simulating the first session to get important details for the second. Like ectobiology.
-//maybe eventually i can devote the time needed to AB-Style do teh first session very quickly, then go to the second one.
-void debugLevelTheHellUp(){
-	for(int j = 0; j<2; j++){
-		players[j].leveledTheHellUp = true; //only .evel 2 players up
-	}
-	var s = new LevelTheHellUp();
-	if(s.trigger(players) && !version2){
-		//alert("v1 " + version2);
-		querySelector("#story").append(s.content()+ "<br><br> ");
-	}else if (s.trigger(players) && version2){
-		s.renderContent(newScene());
-	}
-}
-
 
 
 void bardQuestMode(){
 	if(confirm("Behold the Majesty of the CodTier? Y/N")){
 		bardQuest = true;
 	}else{
-		alert("But thou must!f");
+		window.alert("But thou must!f");
 		bardQuestMode();
 	}
 
@@ -32,7 +17,7 @@ void bardQuestMode(){
 
 void faceOffMode(){
 	faceOff = true;
-	alert("Wait...so...if this is 'face off' mode....does that mean the creepy flesh masks were their real faces all along, and THIS is what was hidden underneath???");
+	window.alert("Wait...so...if this is 'face off' mode....does that mean the creepy flesh masks were their real faces all along, and THIS is what was hidden underneath???");
 	for(num i = 0; i<curSessionGlobalVar.players.length; i++){
 		curSessionGlobalVar.players[i].grimDark = 4;
 	}
@@ -42,8 +27,8 @@ void faceOffMode(){
 
 void pen15Ouija(){
 	ouija = true;
-	alert("thats the spooky thing about penis ouija you can never be sure who did the dicks");
-	alert("was it you or me or maybe a ghoooost???");
+	window.alert("thats the spooky thing about penis ouija you can never be sure who did the dicks");
+	window.alert("was it you or me or maybe a ghoooost???");
 	querySelector('body').css("background-color", "#f8c858");
 	querySelector('body').css("background-image", "url(images/pen15_bg1.png)");
 }
@@ -51,7 +36,7 @@ void pen15Ouija(){
 
 
 void coolK1DMode(){
-	alert("H3Y TH3R3 COOL K1D 1S TH1S YOU???");
+	window.alert("H3Y TH3R3 COOL K1D 1S TH1S YOU???");
 }
 
 
@@ -60,7 +45,7 @@ void coolK1DMode(){
 //rendering shouldu be different
 //making new scenes to be different
 void sbahjMode(){
-	if(!simulationMode) alert("where MAKING THIS HAPEN");
+	if(!simulationMode) window.alert("where MAKING THIS HAPEN");
 	//when kr has their stuff read, render it after everything else is done , or just, like put it on a 30 second timer. needs comedic timing, needs to be on top
 	//maybe my laughing reaction shot sbahj_author.jpg goes then, too
 	querySelector("#story").append("<img src = 'images/AUTHORSBAHJ.jpg' style;='position:absolute; top:111px'><img src = 'images/sbahj_author.jpg' style;='position:absolute; left:0px; z-index: 999;'>");
@@ -84,76 +69,76 @@ void sbahjMode(){
 void checkEasterEgg(callBack, that){  //only yellow yard session uses 'that' because it needs to get back to the session context after doing easter egg.
 	//authorMessage();
 	//i cannot resist
-	if(initial_seed == 413){
+	if(curSessionGlobalVar.session_id == 413){
 		session413();
-	}else if(initial_seed == 612){
+	}else if(curSessionGlobalVar.session_id == 612){
 		session612();
-	}else if(initial_seed == 613){
+	}else if(curSessionGlobalVar.session_id == 613){
 		session613();
-	}else if(initial_seed == 1025){
+	}else if(curSessionGlobalVar.session_id == 1025){
 		session1025();
-	}else if(initial_seed == 33){
+	}else if(curSessionGlobalVar.session_id == 33){
 		session33();
-	}else if(initial_seed == 111111){
+	}else if(curSessionGlobalVar.session_id == 111111){
 		session111111();
-	}else if(initial_seed == 88888888){
+	}else if(curSessionGlobalVar.session_id == 88888888){
 		session88888888();
-	}else if(initial_seed == 420){
+	}else if(curSessionGlobalVar.session_id == 420){
 		session420();
-	}else if(initial_seed == 0){
+	}else if(curSessionGlobalVar.session_id == 0){
 		session0();
 	}
 
-	if(getParameterByName("images")  == "pumpkin"){
+	if(getParameterByName("images",null)  == "pumpkin"){
 		simulationMode = true;
 	}
 
-	if(getParameterByName("easter")  == "egg"){
+	if(getParameterByName("easter",null)  == "egg"){
 		easter_egg = true;
-		alert("Yo Dawg, I herd you liek easter eggs???");
+		window.alert("Yo Dawg, I herd you liek easter eggs???");
 	}
 
 
-	if(getParameterByName("selfInsertOC")  == "true"){
+	if(getParameterByName("selfInsertOC",null)  == "true"){
 		// call a method, method will determine what other params exist, like reddit=true and shit.;
 		processFanOCs(callBack,that);
 		return; //do nothing else. processFanOCs will handle the callback, since it's the reason it exists in the first place, 'cause async
 	}
 
 	//not an else if because this OVERIDES other easter egg sessions. but called here and not where other params are 'cause needs to have session initialized first.
-	if(getParameterByName("nepeta")  == ":33"){
+	if(getParameterByName("nepeta",null)  == ":33"){
 		nepetaQuest(); //ANY session can be all nepetas.
 	}
 
-	if(getParameterByName("luck")  == "AAAAAAAALL"){
+	if(getParameterByName("luck",null)  == "AAAAAAAALL"){
 		lucky8rk();
 	}
 
-	if(getParameterByName("honk")  == ":o)"){
+	if(getParameterByName("honk",null)  == ":o)"){
 		fridgeQuest();
 	}
 
-	if(getParameterByName("shenanigans")  == "temporal"){
+	if(getParameterByName("shenanigans",null)  == "temporal"){
 		aradiaQuest();
 	}
 
-	if(getParameterByName("home")  == "stuck"){
+	if(getParameterByName("home",null)  == "stuck"){
 		homestuck();
 	}
 
-	if(getParameterByName("hive")  == "bent"){
+	if(getParameterByName("hive",null)  == "bent"){
 		hivebent();
 	}
 
-	if(getParameterByName("open")  == "bound"){
+	if(getParameterByName("open",null)  == "bound"){
 		openBound();
 	}
 
-	if(getParameterByName("rumpus")  == "fruity"){
+	if(getParameterByName("rumpus",null)  == "fruity"){
 		fruityRumpusAssholeFactory();
 	}
 
-	if(getParameterByName("lawnring")  == "yellow"){
+	if(getParameterByName("lawnring",null)  == "yellow"){
 		janusReward();
 	}
 
@@ -234,7 +219,7 @@ void processFanOCs(callBack, that){
 
 
 void babyStuckMode(){
-	if(!simulationMode) alert("goo goo GA GAH!");
+	if(!simulationMode) window.alert("goo goo GA GAH!");
 	for(num j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
 		p.baby_stuck = true;
@@ -246,7 +231,7 @@ void babyStuckMode(){
 
 //AB told me this was funny! I SWEAR I am not Robo-Racist! It's IRONIC.
 void roboMode(){
-	if(!simulationMode) alert("BEEP");
+	if(!simulationMode) window.alert("BEEP");
 	querySelector("#story").append("<img src = 'images/guide_bot.png' style;='float:left;'>");
 	for(num j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
@@ -274,7 +259,7 @@ void roboMode(){
 
 
 void tricksterMode(){
-	if(!simulationMode) alert("I FEEL JUST PEEEEEEEEEEEACHY!!!!!!!!!!!");
+	if(!simulationMode) window.alert("I FEEL JUST PEEEEEEEEEEEACHY!!!!!!!!!!!");
 	if(simulationMode)querySelector("#avatar").attr("src","images/CandyAuthorBot.png");
 	querySelector("#story").append("<img src = 'images/trickster_author.png' style;='float:left;'><img src = 'images/trickster_artist.png' style;='float:left;'>");
 	querySelector('body').css("background-image", "url(images/zilly.gif)");
@@ -311,7 +296,7 @@ void tricksterMode(){
 
 
 void debugRoyalRumble(){
-	if(!simulationMode) alert("royal rumble!");
+	if(!simulationMode) window.window.alert("royal rumble!");
 	for(num j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
 		p.isTroll = true; //only .evel 2 players up
@@ -329,23 +314,6 @@ void debugRoyalRumble(){
 
 
 
-void debugGrimDark(){
-	for(int j = 0; j<2; j++){
-		players[j].grimDark = true; //only .evel 2 players up
-	}
-
-}
-
-
-
-void debugTriggerLevel(){
-	for(int j = 0; j<2; j++){
-		players[j].sanity = -10;
-	}
-
-}
-
-
 //does this even work? oh, yeah, it does, but won't trigger until land quests are done
 void debugRelationshipDrama(){
 	var p1 = players[0];
@@ -358,239 +326,6 @@ void debugRelationshipDrama(){
 	p2.getRelationshipWith(friend).drama = true;
 
 }
-
-
-
-void debugJackScheme(){
-	queenStrength = 20;
-	players[0].class_name = "Page" ;//make a chump for Jack to talk to.;
-	var s = new JackBeginScheming();
-	if(s.trigger(players) && !version2){
-		//alert("v1 " + version2);
-		querySelector("#story").append(s.content()+ "<br><br> ");
-	}else if (s.trigger(players) && version2){
-		s.renderContent(newScene());
-	}
-}
-
-
-
-void debugCorpseLevelTheHellUp(){
-	for(int j = 0; j<2; j++){
-		players[j].dead = true;
-		players[j].leveledTheHellUp = true; //only .evel 2 players up
-	}
-	var s = new LevelTheHellUp();
-	if(s.trigger(players) && !version2){
-		//alert("v1 " + version2);
-		querySelector("#story").append(s.content()+ "<br><br> ");
-	}else if (s.trigger(players) && version2){
-		s.renderContent(newScene());
-	}
-}
-
-
-
-void debugGodTierLevelTheHellUp(){
-	for(int j = 0; j<2; j++){
-		players[j].godTier = true;
-		players[j].leveledTheHellUp = true; //only .evel 2 players up
-	}
-	var s = new LevelTheHellUp();
-	if(s.trigger(players) && !version2){
-		//alert("v1 " + version2);
-		querySelector("#story").append(s.content()+ "<br><br> ");
-	}else if (s.trigger(players) && version2){
-		s.renderContent(newScene());
-	}
-}
-
-
-
-void debugGodTier(){
-	for(num j = 0; j<players.length; j++){
-		players[j].godDestiny = true;
-		players[j].dead = true; //only .evel 2 players up
-	}
-	var s = new GetTiger();
-	if(s.trigger(players) && !version2){
-		//alert("v1 " + version2);
-		querySelector("#story").append(s.content()+ "<br><br> ");
-	}else if (s.trigger(players) && version2){
-		s.renderContent(newScene());
-	}
-}
-
-
-
-void debugCorpseSmooch(){
-	for(int j = 0; j<2; j++){
-		players[j].dead = true;
-	}
-	var s = new CorpseSmooch();
-	if(s.trigger(players) && !version2){
-		//alert("v1 " + version2);
-		querySelector("#story").append(s.content()+ "<br><br> ");
-	}else if (s.trigger(players) && version2){
-		s.renderContent(newScene());
-	}
-}
-
-
-
-void debugGodTierRevive(){
-	for(num j = 0; j<players.length; j++){
-		players[j].godTier = true;
-		players[j].dead = true; //only .evel 2 players up
-	}
-	var s = new GodTierRevival();
-	if(s.trigger(players) && !version2){
-		//alert("v1 " + version2);
-		querySelector("#story").append(s.content()+ "<br><br> ");
-	}else if (s.trigger(players) && version2){
-		s.renderContent(newScene());
-	}
-}
-
-
-
-void debugPowerfulKing(){
-	kingStrength = 10000;
-	var s = new KingPowerful();
-	if(s.trigger(players) && !version2){
-		//alert("v1 " + version2);
-		querySelector("#story").append(s.content()+ "<br><br> ");
-	}else if (s.trigger(players) && version2){
-		s.renderContent(newScene());
-	}
-
-}
-
-
-
-void generateDebugPlayers1(){
-	//Player(class_name, aspect, land, kernel_sprite, moon);
-	players.add(new Player("Knight", "Time", "Land of Headbanging and Stress", "Bugs", "Prospit", true));
-	players.add(new Player("Page", "Space", "Land of BS and Tickles", "Code", "Prospit", true));
-	players.add(new Player("Seer", "Void", "Land of Nothing and More Nothing", "Frog", "Prospit", true));
-	players.add(new Player("Mage", "Mind", "Land of Slides and Whistles", "Lame", "Prospit", false));
-	players.add(new Player("Heir", "Blood", "Land of Debugging and Tests", "Decoy", "Derse", false));
-	players.add(new Player("Witch", "Light", "Land of Bugs and More Bugs", "First Guardian", "Derse",false));
-	players.add(new Player("Thief", "Hope", "Land of Why and Serious", "Debug", "Derse",false));
-	players.add(new Player("Rogue", "Heart", "Land of Flipping and Shit", "Spray", "Derse",false));
-
-	for(num j = 0; j<players.length; j++){
-		players[j].generateRelationships(players);
-	}
-}
-
-
-
-void generateVoidLeader(){
-	//Player(class_name, aspect, land, kernel_sprite, moon);
-	players.add(new Player("Knight", "Void", "Land of Headbanging and Stress", "Bugs", "Prospit", true));
-	players.add(new Player("Heir", "Space", "Land of BS and Tickles", "Code", "Prospit", true));
-	players.add(new Player("Seer", "Time", "Land of Nothing and More Nothing", "Frog", "Prospit", true));
-	players.add(new Player("Mage", "Mind", "Land of Slides and Whistles", "Lame", "Prospit", false));
-	players.add(new Player("Thief", "Hope", "Land of Why and Serious", "Debug", "Derse",false));
-
-	for(num j = 0; j<players.length; j++){
-		players[j].generateRelationships(players);
-	}
-}
-
-
-
-void generateDebugBloodPlayers(){
-	players.add(new Player("Knight", "Blood", "Land of Headbanging and Stress", "Bugs", "Prospit", true));
-	players.add(new Player("Page", "Blood", "Land of BS and Tickles", "Code", "Prospit", true));
-	players.add(new Player("Seer", "Blood", "Land of Nothing and More Nothing", "Frog", "Prospit", true));
-	players.add(new Player("Mage", "Blood", "Land of Slides and Whistles", "Lame", "Prospit", false));
-	players.add(new Player("Heir", "Blood", "Land of Debugging and Tests", "Decoy", "Derse", false));
-	players.add(new Player("Witch", "Space", "Land of Bugs and More Bugs", "First Guardian", "Derse",false));
-	players.add(new Player("Thief", "Time", "Land of Why and Serious", "Debug", "Derse",false));
-	players.add(new Player("Rogue", "Blood", "Land of Flipping and Shit", "Spray", "Derse",false));
-
-	for(num j = 0; j<players.length; j++){
-		players[j].generateRelationships(players);
-	}
-}
-
-
-
-void generateDebugRagePlayers(){
-	players.add(new Player("Knight", "Rage", "Land of Headbanging and Stress", "Bugs", "Prospit", true));
-	players.add(new Player("Page", "Rage", "Land of BS and Tickles", "Code", "Prospit", true));
-	players.add(new Player("Seer", "Rage", "Land of Nothing and More Nothing", "Frog", "Prospit", true));
-	players.add(new Player("Mage", "Rage", "Land of Slides and Whistles", "Lame", "Prospit", false));
-	players.add(new Player("Heir", "Rage", "Land of Debugging and Tests", "Decoy", "Derse", false));
-	players.add(new Player("Witch", "Space", "Land of Bugs and More Bugs", "First Guardian", "Derse",false));
-	players.add(new Player("Thief", "Time", "Land of Why and Serious", "Debug", "Derse",false));
-	players.add(new Player("Rogue", "Rage", "Land of Flipping and Shit", "Spray", "Derse",false));
-
-	for(num j = 0; j<players.length; j++){
-		players[j].generateRelationships(players);
-	}
-}
-
-
-
-void generateDebugAllPlayers(){
-	players.add(new Player("Knight", "Space", "Land of Headbanging and Stress", "Bugs", "Prospit", true));
-	players.add(new Player("Page", "Time", "Land of BS and Tickles", "Code", "Prospit", true));
-	players.add(new Player("Seer", "Void", "Land of Nothing and More Nothing", "Frog", "Prospit", true));
-	players.add(new Player("Mage", "Mind", "Land of Slides and Whistles", "Lame", "Prospit", true));
-	players.add(new Player("Heir", "Blood", "Land of Debugging and Tests", "Decoy", "Derse", true));
-	players.add(new Player("Witch", "Light", "Land of Bugs and More Bugs", "First Guardian", "Derse",true));
-	players.add(new Player("Thief", "Hope", "Land of Why and Serious", "Debug", "Derse",true));
-	players.add(new Player("Maid", "Rage", "Land of Flipping and Shit", "Spray", "Derse",true));
-	players.add(new Player("Rogue", "Doom", "Land of Fire and Ice", "Dictionary", "Derse",true));
-	players.add(new Player("Sylph", "Life", "Land of Why and Not", "Wizard", "Prospit",true));
-	players.add(new Player("Prince", "Breath", "Land of Here and There", "Beer", "Derse",true));
-	players.add(new Player("Bard", "Heart", "Land of Fake and Magic", "Nonsense", "Prospit",true));
-
-
-	for(num j = 0; j<players.length; j++){
-		players[j].generateRelationships(players);
-	}
-}
-
-
-
-void exileQueenInit(){
-	available_classes = classes; //re-init available classes.
-	available_aspects = nonrequired_aspects;
-	generateDebugPlayers1();
-
-
-}
-
-
-
-void voidLeaderInit(){
-	available_classes = classes; //re-init available classes.
-	available_aspects = nonrequired_aspects;
-	//generateDebugPlayers1();
-	generateVoidLeader();
-
-
-}
-
-
-
-void murderModeInit(){
-	available_classes = classes; //re-init available classes.
-	available_aspects = nonrequired_aspects;
-	generateDebugRagePlayers();	 //blood players can talk a murderer down.
-	var mm = findAspectPlayer(players, "Rage");
-	for(int i = 0; i<10; i++){
-		mm.damageAllRelationships();
-	}
-	mm.triggerLevel = 3;
-	mm.murderMode = true;
-}
-
-
 
 
 
