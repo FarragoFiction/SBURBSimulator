@@ -1,3 +1,4 @@
+
 part of SBURBSim;
 //TODO strip all this out and put in classes. eventually. but for now, just fucking get thigns working
 //little bobby tables
@@ -141,8 +142,9 @@ class Zalgo{
     };
 
     static num random ([int len]) {
+        var rng = new Math.Random();
         if (len == 1) return 0;
-        return len!=null ? (random() * len + 1).floor() - 1 : random();
+        return len!=null ? (rng.nextDouble() * len + 1).floor() - 1 : rng.nextDouble();
     }
     static String generate(str) {
         var str_arr = str.split(''),
@@ -1170,7 +1172,7 @@ void removeFromArray(item, array){
 
 dynamic classNameToInt(class_name){
 	var tmp = classes;
-	tmp = tmp.concat(custom_only_classes);
+	tmp = new List.from(tmp)..addAll(custom_only_classes);
 	var ret = tmp.indexOf(class_name);
 	if (ret == -1) ret = 255;
 	return ret;

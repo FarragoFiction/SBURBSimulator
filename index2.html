@@ -1,36 +1,45 @@
 <html>
-	<head>
+
+<head>
 	<meta charset="utf-8">
 	<meta name="description" content="Homestuck SBURB Simulator, see how millions of non canon sessions turn out, then bug and fuss and meddle to change things. Similar to a 'Zero Player Game', with a focus on story over gameplay, but has limited user interactivity. Runs in most browsers.">
 
-		<link rel="stylesheet" href="css/oc.css">
-		<link rel="stylesheet" href="css/navbar.css">
-			<script type="application/dart" src="scripts/Controllers/StoryController.dart"></script>
-		<title>
-			SBURB Session Simulator by jadedResearcher
-		</title>
-	</head>
-	<body>
-		<div id  = "navbar"></div>
-		<h3 id = "seedText"><a href = "index2.html">Shareable URL </a></h3>
-		<div id = "debug"></div>
+	<link rel="stylesheet" href="css/oc.css">
+	<link rel="stylesheet" href="css/navbar.css">
+	<script type="application/dart" src="scripts/Controllers/StoryController.dart"></script>
+	<title>
+		SBURB Session Simulator by jadedResearcher
+	</title>
+	<style>
+	.loadedimg {
+		display: none;
+	}
+	</style>
+</head>
+
+<body>
+	<div id="navbar"></div>
+	<h3 id="seedText"><a href = "index2.html">Shareable URL </a></h3>
+	<div id="debug"></div>
 
 
-        <div id = "story" ><div id = "loading_stats"></div>
-        <img id="loading.png" src = "images/loading.png"></div>
+	<div id="story">
+		<div id="loading_stats"></div>
+		<img id="loading.png" src="images/loading.png"></div>
 
-        <div class = "whiteCenterThingy" id = 'charSheets'> </div>
+	<div class="whiteCenterThingy" id='charSheets'> </div>
 
 
-		<canvas id="echeladder_template" width="202" height="300">  </canvas>
-		<canvas id="sprite_template" width="400" height="300">  </canvas>
-		<canvas id="canvas_template" width="1000" height="300">  </canvas>
-		<canvas id="rainbow_template" width="1" height="300">  </canvas>
-		<canvas id="chat_text_template" width="472" height="239">  </canvas>
-		<canvas id="godtierlevelup_template" width="1000" height="572">  </canvas>
+	<canvas id="echeladder_template" width="202" height="300">  </canvas>
+	<canvas id="sprite_template" width="400" height="300">  </canvas>
+	<canvas id="canvas_template" width="1000" height="300">  </canvas>
+	<canvas id="rainbow_template" width="1" height="300">  </canvas>
+	<canvas id="chat_text_template" width="472" height="239">  </canvas>
+	<canvas id="godtierlevelup_template" width="1000" height="572">  </canvas>
 
-		<div id = "image_staging">  </div>
-		<div id = "loading_image_staging">  </div>
-		<div id = "playerSprites"></div>
-	</body>
+	<div id="image_staging"> </div>
+	<div id="loading_image_staging"> </div>
+	<div id="playerSprites"></div>
+</body>
+
 </html>

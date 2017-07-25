@@ -88,9 +88,9 @@ void urlToID(url){
 void addImageTagLoading(url){
   //print(url);
 	//only do it if image hasn't already been added.
-	if(querySelector("#${url}") == null) {
+	if(querySelector("#${escapeId(url)}") == null) {
 		//print("I couldn't find a document with id of: " + url);
-		String tag = '<img id ;="' + url + '" src = "images/' + url + '" style;="display:none">';
+		String tag = '<img id="' + escapeId(url) + '" src = "images/' + url + '" class="loadedimg">';
 		//var urlID = urlToID(url);
 		//String tag = '<img id ;="' + urlID + '" src = "' + url + '" style;="display:none">';
 		querySelector("#loading_image_staging").appendHtml(tag);
@@ -101,6 +101,9 @@ void addImageTagLoading(url){
 
 }
 
+String escapeId(String toEscape) {
+	return toEscape.replaceAll(new RegExp(r"\.|\/"),"");
+}
 
 
 dynamic checkDone(String skipInit){

@@ -425,8 +425,8 @@ void rightHorn(canvas, player){
 void addImageTag(String url){
   //print(url);
 	//only do it if image hasn't already been added.
-	if(querySelector("#${url}") == null) {
-		String tag = '<img id ;="' + url + '" src = "images/' + url + '" style;="display:none">';
+	if(querySelector("#${escapeId(url)}") == null) {
+		String tag = '<img id="' + url + '" src = "images/' + url + '" class="loadedimg">';
 		querySelector("#image_staging").appendHtml(tag);
 	}
 
@@ -885,10 +885,12 @@ void drawWhatever(canvas, imageString){
   }
 	var ctx = canvas.getContext('2d');
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
-	ctx.drawImage(img,0,0,width,height);
+	ImageElement img=querySelector("#${escapeId(imageString)}");
+    if(img == null) {
+        print("img was null!");
+        print("was looking for ${escapeId(imageString)}");
+    }
+	ctx.drawImage(img, 0, 0);
 }
 
 
@@ -900,10 +902,8 @@ void drawDreamBubble(canvas){
 	var ctx = canvas.getContext('2d');
 	var imageString ="dreambubbles.png";
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
-	ctx.drawImage(img,0,0,width,height);
+	var img=querySelector("#${escapeId(imageString)}");
+	ctx.drawImage(img,0,0);
 
 }
 
@@ -1057,10 +1057,14 @@ void drawChatJRPlayer(canvas, chat, player){
 	var ctx = canvasSpriteBuffer.getContext('2d');
 	String imageString = "pesterchum.png";
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
+	var img=querySelector("#${escapeId(imageString)}");
 	var width = img.width;
 	var height = img.height;
-	ctx.drawImage(img,0,0,width,height);
+    if(img == null) {
+        print("img was null!");
+        print("was looking for ${escapeId(imageString)}");
+    }
+	ctx.drawImage(img,0,0);
 
 	var jrSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 	drawJR(jrSpriteBuffer);
@@ -1112,10 +1116,12 @@ void drawChatNonPlayer(canvas, chat, introText, player1PNG, player2PNG, player1S
 	var ctx = canvasSpriteBuffer.getContext('2d');
 	String imageString = "pesterchum.png";
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
-	ctx.drawImage(img,0,0,width,height);
+	ImageElement img=querySelector("#${escapeId(imageString)}");
+    if(img == null) {
+        print("img was null!");
+        print("was looking for ${escapeId(imageString)}");
+    }
+	ctx.drawImage(img,0,0);
 
 	var p2SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 	drawWhateverTurnways(p2SpriteBuffer, player2PNG);
@@ -1880,20 +1886,20 @@ void princeTiara(CanvasElement canvas, Player player){
 //TODO put classes in THIS order and just have a single line that is all_classes.index_of(player.class_name);
 String playerToRegularBody(player){
   if(easter_egg) return playerToEggBody(player);
-  return "Bodies/" + "reg"+(classNameToInt(player.class_name)+1)+".png";
+  return "Bodies/" + "reg"+ (classNameToInt(player.class_name)+1).toString() +".png";
 }
 
 
 
 String playerToDreamBody(player){
   if(easter_egg) return playerToEggBody(player);
-  return "Bodies/" + "dream"+(classNameToInt(player.class_name)+1)+".png";
+  return "Bodies/" + "dream"+(classNameToInt(player.class_name)+1).toString()+".png";
 }
 
 
 
 String playerToEggBody(player){
-  return "Bodies/" + "egg"+(classNameToInt(player.class_name)+1)+".png";
+  return "Bodies/" + "egg"+(classNameToInt(player.class_name)+1).toString()+".png";
 }
 
 
@@ -1968,7 +1974,7 @@ void dreamSprite(canvas, player){
 
 String playerToGodBody(player){
   if(easter_egg) return playerToEggBody(player);
-  return "Bodies/" + "god"+(classNameToInt(player.class_name)+1)+".png";
+  return "Bodies/" + "god"+(classNameToInt(player.class_name)+1).toString()+".png";
 }
 
 
