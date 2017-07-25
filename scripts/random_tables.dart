@@ -1169,8 +1169,8 @@ void removeFromArray(item, array){
 
 
 dynamic classNameToInt(class_name){
-	var tmp = classes;
-	tmp = tmp.concat(custom_only_classes);
+	List<String> tmp = classes;
+	tmp.addAll(custom_only_classes);
 	var ret = tmp.indexOf(class_name);
 	if (ret == -1) ret = 255;
 	return ret;
@@ -1181,7 +1181,7 @@ dynamic classNameToInt(class_name){
 String intToClassName(num){
     print("looking for class name from: " + num);
 	var tmp = classes;
-	tmp = tmp.concat(custom_only_classes);
+	tmp.addAll(custom_only_classes);
 	if(num > tmp.length || num == 255) return "Null"; //Null of Mind;
 	return tmp[num];
 }

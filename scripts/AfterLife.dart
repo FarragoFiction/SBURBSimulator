@@ -44,10 +44,12 @@ class AfterLife {
 	}
 	dynamic findAllDeadLovedOnes(player){
 		List<dynamic> lovedOnes = [];
-		var hearts = player.getHearts();
-		var diamonds = player.getDiamonds();
-		var crushes = player.getCrushes();
-		var relationships = hearts.concat(diamonds);
+		List<Player> hearts = player.getHearts();
+		List<Player> diamonds = player.getDiamonds();
+		List<Player> crushes = player.getCrushes();
+		List<Player> relationships = new List<Player>();
+    relationships.addAll(hearts);
+		relationships.addAll(diamonds);
 	  relationships.addAll(crushes);
 		for(num i = 0; i<relationships.length; i++){
 			var r = relationships[i];
@@ -57,15 +59,17 @@ class AfterLife {
 		return lovedOnes;
 	}
 	dynamic findAllDeadHatedOnes(player){
-		List<dynamic> hatedOnes = [];
-		var clubs = player.getClubs();
-		var spades = player.getSpades();
-		var crushes = player.getBlackCrushes();
-		var relationships = spades.concat(clubs);
+		List<Player> hatedOnes = [];
+    List<Player> clubs = player.getClubs();
+    List<Player> spades = player.getSpades();
+    List<Player> crushes = player.getBlackCrushes();
+		List<Player> relationships = new List<Player>();
+		relationships.addAll(spades);
+		relationships.addAll(clubs);
 		relationships.addAll(crushes);
 
 		for(num i = 0; i<relationships.length; i++){
-			var r = relationships[i];
+			Player r = relationships[i];
 			hatedOnes.addAll(this.findAllAlternateSelves(r));
 		}
 

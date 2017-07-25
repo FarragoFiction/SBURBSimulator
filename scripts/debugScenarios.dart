@@ -168,7 +168,7 @@ void processXStuck(){
 	var params2 = simulatedParamsGlobalVar;
 	print("~~~~~~~~~~~~~~~~~~params2 is " + params2);
 	var tmp = classes;
-	tmp = tmp.concat(custom_only_classes);
+	tmp.addAll(custom_only_classes);
 	String params = "";
 	if(params1){
 		params = params1;

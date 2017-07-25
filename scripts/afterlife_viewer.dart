@@ -1,4 +1,4 @@
-
+/*TODO make this work
 
 //loads players from url.  then renders those players, along with their cause of death. if the player is "dead", then mention that they haven't respawned yet, with new cause of death (getting drained by Thief of life, for example.)
 List<dynamic> playersGlobalVar = [];
@@ -107,3 +107,4 @@ bool printCorruptionMessage(msg, url, lineNo, columnNo, error){
 
 }
 window.onerror = printCorruptionMessage;
+*/

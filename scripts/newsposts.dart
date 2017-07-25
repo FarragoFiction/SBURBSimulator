@@ -1,4 +1,4 @@
-
+/*TODO: make this work and also update from js
 
 //have list of me-generated news posts, and maybe let the AuthorBot say some shit too.
 //have a route for her to get a random session to parse.
@@ -528,3 +528,4 @@ void callNextIntroWithDelay(player_index){
 void intro(){
 	callNextIntroWithDelay(0);
 }
+*/

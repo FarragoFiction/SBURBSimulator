@@ -425,7 +425,9 @@ class Session {
 	}
 	dynamic getLineage(){
 			if(this.parentSession != null){
-					return this.parentSession.getLineage().concat([this]);
+			    List<Session> tmp = this.parentSession.getLineage();
+					tmp.addAll([this]);
+					return tmp;
 			}
 			return [this];
 	}
