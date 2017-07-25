@@ -26,7 +26,9 @@ String getParameterByName(String name, String url) {
   if(url != null) {
     uri = new Uri.file(url); //TODO is there no built in way to parse a string as a URI? need for virtual parameters like ocDataSTrings from selfInsertOC=true
   }
-  return Uri.decodeComponent(uri.queryParameters[name]);
+  String tmp = (uri.queryParameters[name]);
+  if(tmp != null) tmp = Uri.decodeComponent(tmp);
+  return tmp;
 }
 
 String getRawParameterByName(String name, String url) {
