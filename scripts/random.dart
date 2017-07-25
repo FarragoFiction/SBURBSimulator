@@ -30,7 +30,7 @@ class Random implements Math.Random {
 		this._impl = new Math.Random(seed);
 	}
 
-	int nextIntRange(int min, int max) => this._impl.nextInt(max-min) + min;
+	int nextIntRange(int min, int max) => this.nextInt(max-min) + min;
 
 	T pickFrom<T>(List<T> list) {
 		return list[this.nextInt(list.length)];
