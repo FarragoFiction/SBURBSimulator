@@ -143,7 +143,11 @@ void checkEasterEgg(callBack, that){  //only yellow yard session uses 'that' bec
 	}
 
 	processXStuck(); //might not do anything.
-	callBack(that);
+  if(that != null) {
+    callBack(that); //TODO might never need to do this again in Dart.
+  }else {
+    callBack();
+  }
 }
 
 
