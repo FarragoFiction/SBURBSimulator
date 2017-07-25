@@ -2082,6 +2082,8 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		}
 	}
 
+	//TODO make all this shit down here static or put in other places.
+
 
   /******************************************************************
    *

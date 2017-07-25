@@ -44,14 +44,16 @@ class StoryController extends SimController {
 
   @override
   void easterEggCallBack() {
-    throw "TODO";
-    // TODO: implement easterEggCallBack
+    initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //will take care of overriding players if need be.
+    checkSGRUB();
+    load(curSessionGlobalVar.players, getGuardiansForPlayers(curSessionGlobalVar.players),""); //in loading.js
   }
 
   @override
   void easterEggCallBackRestart() {
-    throw "TODO";
-    // TODO: implement easterEggCallBackRestart
+    initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //initializePlayers
+    intro();  //<-- instead of load, bc don't need to load.
+
   }
 
   @override

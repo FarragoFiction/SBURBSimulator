@@ -15,7 +15,7 @@ dynamic loadFuckingEverything(skipInit){
 
 
 //load everything while showing a progress bar. delete loadingCanvas when done.
-dynamic load(players, guardians, skipInit){
+dynamic load(List<Player>players, List<Player>guardians, String skipInit){
 	if(simulationMode == true) return checkDone(skipInit);
   var guardians = getGuardiansForPlayers(players);
 	loadAllImagesForPlayers(players, guardians,skipInit);
@@ -46,7 +46,7 @@ dynamic loadAllImages(skipInit){
 
 
 
-dynamic loadAllImagesForPlayerWithCallback(player, cb){
+dynamic loadAllImagesForPlayerWithCallback(Player player, cb){
 	callBack = cb;
 	String skipInit = "yes";
 	if(simulationMode == true) return checkDone(skipInit);
@@ -56,7 +56,7 @@ dynamic loadAllImagesForPlayerWithCallback(player, cb){
 
 
 
-dynamic loadAllImagesForPlayers(players, guardians, skipInit){
+dynamic loadAllImagesForPlayers(List<Player> players, List<Player> guardians, String skipInit){
 	if(simulationMode == true) return checkDone(skipInit);
 	num numImages = 0;
 	//loadFuckingEverything(skipInit); //lol, fuck the world, let's do this shit.
@@ -111,23 +111,26 @@ dynamic checkDone(String skipInit){
 		if(callBack != null) return callBack();
       if(skipInit == "oc"){
         print("images loaded: $imagesLoaded");
-        reroll();
+				throw("not supported yet.");
+        //reroll();
         return null;
       }else if(skipInit == "ghosts"){
-        renderGhosts();
+      	throw("not supported yet.");
+        //renderGhosts();
       }else{
-        renderPlayersForEditing();
+				throw("not supported yet.");
+        //renderPlayersForEditing();
       }
       return null;
     }
-		intro();
+		SimController.instance.intro();
 	}
 	return null;
 }
 
 
 
-void loadImage(img, skipInit) {
+void loadImage(String img, String skipInit) {
 
 	if(simulationMode == true) return checkDone(skipInit);
 	//print(img);
@@ -162,7 +165,7 @@ void loadImage(img, skipInit) {
 
 
 //load pesterchum, blood, big aspect symbols, echeladders, god tier level up, romance symbols, babies, grubs
-dynamic loadOther(skipInit){
+dynamic loadOther(String skipInit){
 	if(simulationMode == true) return checkDone(skipInit);
 	  if(cool_kid){
 		loadImage("/Bodies/coolk1dlogo.png",skipInit);
