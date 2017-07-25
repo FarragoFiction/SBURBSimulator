@@ -179,7 +179,7 @@ void processXStuck(){
 	var paramsArray = params.split("&");
 	for(num i = 0; i<paramsArray.length; i++){
 		var stuck = paramsArray[i].split("Stuck");
-		print("stuck is: " + stuck);
+		print("stuck is: " + stuck.toString());
 		if(stuck.length == 2){
 			var classOrAspect = stuck[0];
 			if(tmp.indexOf(stuck[0]) != -1){
