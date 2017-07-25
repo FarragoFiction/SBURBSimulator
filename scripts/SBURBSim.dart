@@ -86,8 +86,8 @@ part "Scenes/YellowYard.dart";
 // temporary functions to be replaced later!
 
 Session curSessionGlobalVar;
-int canvasWidth;
-int canvasHeight;
+int canvasWidth = 1000;
+int canvasHeight = 400;
 bool simulationMode; //TODO won't need this with AB having her own shit, can just ask what SimController.instance is.
 var nonRareSessionCallback = null; //AB is already storing a callback for easter egg, so broke down and polluted the global namespace once more like an asshole.
 DateTime startTime = new DateTime.now(); //gets page load.
