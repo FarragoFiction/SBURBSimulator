@@ -142,7 +142,7 @@ class Zalgo{
 
     static num random ([int len]) {
         if (len == 1) return 0;
-        return len!=null ? (random() * (len + 1).floor()) - 1 : random();
+        return len!=null ? (random() * len + 1).floor() - 1 : random();
     }
     static String generate(str) {
         var str_arr = str.split(''),

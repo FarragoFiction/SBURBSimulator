@@ -52,7 +52,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	String bloodColor = "#ff0000"; //human red.
 	num leftHorn = null;
 	num rightHorn = null;
-	String lusus = "Adult Human";
+	PotentialSprite lusus = null;
 	Quirk quirk = null;
 
 	bool godDestiny;
@@ -703,13 +703,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
             this.fraymotifs.add(f);
 		}
 	}
-	void decideLusus(player){
-		if(this.bloodColor == "#610061" || this.bloodColor == "#99004d" || this.bloodColor == "#631db4" ){
-			this.lusus = this.session.rand.pickFrom(sea_lusus_objects);
-		}else{
-			this.lusus = this.session.rand.pickFrom(lusus_objects);
-		}
-	}
+
 	bool isVoidAvailable(){
 		var light = findAspectPlayer(findLivingPlayers(this.session.players), "Light");
 		if(light && light.godTier) return false;
@@ -1487,6 +1481,39 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		}
 		return null;
 	}
+
+	void decideTroll(){
+		if(this.session.getSessionType() == "Human"){
+			this.hairColor = session.rand.pickFrom(human_hair_colors);
+			return;
+		}
+
+		if(this.session.getSessionType() == "Troll" || (this.session.getSessionType() == "Mixed" && seededRandom() > 0.5) ){
+			this.isTroll = true;
+			this.hairColor = "#000000";
+			this.decideHemoCaste();
+			this.decideLusus();
+			this.object_to_prototype = lusus;
+		}else{
+			this.hairColor = session.rand.pickFrom(human_hair_colors);
+		}
+	}
+
+  void decideHemoCaste(){
+    if(this.aspect != "Blood"){  //sorry karkat
+      this.bloodColor = session.rand.pickFrom(bloodColors);
+    }
+    this.applyPossiblePsionics();
+  }
+
+	void decideLusus (){
+		if(this.bloodColor == "#610061" || this.bloodColor == "#99004d" || this.bloodColor == "#631db4" ){
+			this.lusus = session.rand.pickFrom(sea_lusus_objects);
+		}else{
+			this.lusus = session.rand.pickFrom(lusus_objects);
+		}
+	}
+
 	List<Player> getFriends(){
 		List<Player> ret = [];
 		for(num i = 0; i<this.relationships.length; i++){
@@ -1515,8 +1542,9 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			this.setStat("minLuck",11111111111);
 			this.setStat("maxLuck",11111111111);
 		}
-
 	}
+
+
 	void initializeFreeWill(){
 		this.setStat("freeWill",this.session.rand.nextIntRange(-10,10));
 		if(this.trickster && this.aspect != "Doom"){
@@ -2407,7 +2435,7 @@ dynamic randomPlayerNoDerived(Session session, String c, String a){
 
 	var m = session.rand.pickFrom(moons);
 	var id = seed();
-	var p = new Player(session,c,a,k,m,gd,id);
+	Player p = new Player(session,c,a,k,m,gd,id);
 	p.decideTroll();
 	p.interest1 = session.rand.pickFrom(interests);
 	p.interest2 = session.rand.pickFrom(interests);
