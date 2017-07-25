@@ -3,6 +3,7 @@ part of SBURBSim;
 //fully replacing old GameEntity that was also an unholy combo of strife engine
 //not abstract, COULD spawn just a generic game entity.
 class GameEntity implements Comparable{
+  //TODO figure out how i want tier 2 sprites to work. prototyping with a carapace and then a  player and then god tiering should result in a god tier Player that can use the Royalty's Items.
   Session session;
   String name;
   String fontColor = "#000000";
@@ -25,7 +26,7 @@ class GameEntity implements Comparable{
   bool doomed = false; //if you are doomed, no matter what you are, you are likely to die.
   List<Player> doomedTimeClones = []; //help fight the final boss(es).
   String causeOfDeath = ""; //fill in every time you die. only matters if you're dead at end
-  GameEntity crowned = null; //TODO figure out how this should work. for now, crowns count as Game Entities, but should be an Item eventually
+  GameEntity crowned = null; //TODO figure out how this should work. for now, crowns count as Game Entities, but should be an Item eventually (and should be able to have multiple crowns)
 
   GameEntity(this.name, this.id, this.session) {
     stats['sanity'] = 0;

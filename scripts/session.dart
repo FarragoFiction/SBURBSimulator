@@ -152,7 +152,7 @@ class Session {
 		//reinit the seed and restart the session
 		var savedPlayers = curSessionGlobalVar.players;
 		this.reinit();
-		createScenesForSession(curSessionGlobalVar);
+		Scene.createScenesForSession(curSessionGlobalVar);
 		//players need to be reinit as well.
 		curSessionGlobalVar.makePlayers();
 		curSessionGlobalVar.randomizeEntryOrder();
@@ -194,7 +194,7 @@ class Session {
 
 
 
-		restartSession();//in controller
+		SimController.instance.restartSession();//in controller
 	}
 	dynamic initializeCombinedSession(){
 		this.aliensClonedOnArrival = []; //PROBABLY want to do this.
@@ -219,7 +219,7 @@ class Session {
 
 		this.hadCombinedSession = true;
 		newSession.parentSession = this;
-		createScenesForSession(newSession);
+		Scene.createScenesForSession(newSession);
 		//print("Session: " + this.session_id + " has made child universe: " + newSession.session_id + " child has this long till reckoning: " + newSession.timeTillReckoning);
 		return newSession;
 	}
@@ -273,7 +273,7 @@ class Session {
 			p.generateRelationships(this.players);
 		}
 
-		decideInitialQuadrants(this.players);
+		Relationship.decideInitialQuadrants(this.players);
 
 		this.hardStrength = 1000 + 50 * this.players.length;
 	}
@@ -326,7 +326,7 @@ class Session {
 			var g = this.players[j].guardian;
 			g.generateRelationships(guardians);
 		}
-		decideInitialQuadrants(guardians);
+		Relationship.decideInitialQuadrants(guardians);
 	}
 	void randomizeEntryOrder(){
 		this.players = shuffle(this.rand, this.players);
@@ -351,40 +351,37 @@ class Session {
 	}
 	void setUpBosses(){
 
-		this.queensRing = new GameEntity(this, "!!!RING!!! OMG YOU SHOULD NEVER SEE THIS!",false);
-		this.queensRing.setStats(0,0,0,0,0,0,0,false, false, [],1000);
+		this.queensRing = new GameEntity("!!!RING!!! OMG YOU SHOULD NEVER SEE THIS!",0, this);
 		var f = new Fraymotif([],  "Red Miles", 3);
 		f.effects.add(new FraymotifEffect("power",2,true));
 		f.flavorText = " You cannot escape them ";
 		this.queensRing.fraymotifs.add(f);
 
-		this.kingsScepter = new GameEntity(this, "!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!",false);
-		this.kingsScepter.setStats(0,0,0,0,0,0,0,false, false, [],1000);
+		this.kingsScepter = new GameEntity("!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!",0, this);
 		f = new Fraymotif([],  "Reckoning Meteors", 3)  ;//TODO eventually check for this fraymotif (just lik you do troll psionics) to decide if you can start recknoing.;
 		f.effects.add(new FraymotifEffect("power",2,true));
 		f.flavorText = " The very meteors from the Reckoning rain down. ";
 		this.kingsScepter.fraymotifs.add(f);
 		
-		this.king = new GameEntity(this, "Black King", this.kingsScepter);
-		//minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs
-		this.king.setStats(-10,10,1000,0,0,-100,100,false, false, [],1000); //royalty have no free will
-		this.queen = new GameEntity(this, "Black Queen",this.queensRing);
-		this.queen.setStats(-10,10,500,10,0,-100,50,false, false, [],1000); //red miles, put on ring
-		this.queen.carapacian = true;
-		this.king.carapacian = true;
+		this.king = new Carapace("The Black King", 0, this);
+		this.king.crowned = this.kingsScepter;
 
-		this.jack = new GameEntity(this, "Jack",null);
-		this.jack.carapacian = true;
-		this.jack.setStats(-500,-10,20,-50,-100,1000,40,true, true, [],100000); //jack is kind of a big deal. luck determines his odds of finding bullshit weapon
-		//jack uses "Stab to Meet You", it's not very effective (nobody seems to think his stabs are important until he's crowned.)
+		king.grist = 1000;
+		king.setStatsHash({"hp":1000, "freeWill": -100, "power":100});
+		this.queen = new Carapace("The Black Queen",0, this);
+		this.queen.crowned = this.queensRing;
+		queen.setStatsHash({"hp":500, "freeWill": -100, "power":50});
+
+
+		this.jack = new Carapace("Jack",0, this);
+		//minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs
+		queen.setStatsHash({"minLuck": -500, "maxLuck": 10, "sanity":-100, "hp":20, "freeWill": -100, "power":30});
 		f = new Fraymotif([],  "Stab To Meet You", 1);
 		f.effects.add(new FraymotifEffect("power",3,true));
 		f.flavorText = " It's pretty much how he says 'Hello'. ";
 		this.jack.fraymotifs.add(f);
 
-		this.democraticArmy = new GameEntity(this, "Democratic Army",null); //doesn't actually exist till WV does his thing.
-		this.democraticArmy.carapacian = true;
-		this.democraticArmy.setStats(0,0,0,0,0,0,0,false, false, [],1000);
+		this.democraticArmy = new Carapace("Democratic Army",0,this); //doesn't actually exist till WV does his thing.
 		f = new Fraymotif([],  "Democracy Charge", 2);
 		f.effects.add(new FraymotifEffect("power",3,true));
 		f.flavorText = " The people have chosen to Rise Up against their oppressors. ";

@@ -39,6 +39,11 @@ abstract class Scene {
     }
   }
 
+  //dead sessions are exactly like regular sessions but only 1 player in array and less scenes.
+  static void createScenesForDeadSession(Session session) {
+      throw("todo");
+  }
+
   //makes copy of player list (no shallow copies!!!!)
   static List<Player> setAvailablePlayers(List<Player> playerList, Session session){
     session.availablePlayers = [];
