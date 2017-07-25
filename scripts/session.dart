@@ -80,12 +80,15 @@ class Session {
 	bool yellowYard = false;
 	YellowYardResultController yellowYardController = new YellowYardResultController();//don't expect doomed time clones to follow them to any new sessions
 
-	// extra fields - stop abusing object notation lol -PL
+	// extra fields
 	bool crashedFromCustomShit = false;
 	num democracyStrength = 0;
+	Random rand;
 
 
-	Session(this.session_id) {}
+	Session(this.session_id) {
+		this.rand = new Random(session_id);
+	}
 
 
 	void destroyBlackRing(){
@@ -197,7 +200,7 @@ class Session {
 		this.aliensClonedOnArrival = []; //PROBABLY want to do this.
 		var living = findLivingPlayers(this.players);
 		//nobody is the leader anymore.
-		var newSession = new Session(Math.seed);  //this is a real session that could have gone on without these new players.
+		var newSession = new Session(this.rand.nextInt());//Math.seed);  //this is a real session that could have gone on without these new players.
 		newSession.currentSceneNum = this.currentSceneNum;
 		newSession.afterLife = this.afterLife; //afterlife carries over.
 		newSession.dreamBubbleAfterlife = this.dreamBubbleAfterlife; //this, too
@@ -233,10 +236,11 @@ class Session {
 	}
 	void reinit(){
 		groundHog = false;
-		Math.seed = this.session_id; //if session is reset,
+		//Math.seed = this.session_id; //if session is reset,
+		this.rand.setSeed(this.session_id);
 		//print("reinit with seed: "  + Math.seed);
-		this.timeTillReckoning = getRandomInt(10,30);
-		this.sessionType = seededRandom();
+		this.timeTillReckoning = this.rand.nextIntRange(10,30);//getRandomInt(10,30);
+		this.sessionType = this.rand.nextDouble();//seededRandom();
 		this.available_scenes = [];  //need a fresh slate because UpdateShippingGrid has MEMORY unlike all other scenes.
 		createScenesForSession(this);
 		//curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);
@@ -257,7 +261,7 @@ class Session {
 		available_classes = classes.sublist(0); //re-initPlayers available classes.
 		available_classes_guardians = classes.sublist(0);
 		available_aspects = nonrequired_aspects.sublist(0);
-		var numPlayers = getRandomInt(2,12);
+		var numPlayers = this.rand.nextIntRange(2,12);//getRandomInt(2,12);
 		this.players.add(randomSpacePlayer(this));
 		this.players.add(randomTimePlayer(this));
 
@@ -326,7 +330,7 @@ class Session {
 		decideInitialQuadrants(guardians);
 	}
 	void randomizeEntryOrder(){
-		this.players = shuffle(this.players);
+		this.players = shuffle(this.rand, this.players);
 		this.players[0].leader = true;
 	}
 	void switchPlayersForScratch(){
@@ -390,13 +394,13 @@ class Session {
 
 	}
 	String toString(){
-		return this.session_id;
+		return "$this.session_id";
 	}
-	dynamic newScene(){
+	Element newScene(){
 		this.currentSceneNum ++;
-		var div;
+		String div;
 		if(this.sbahj){
-			div = "<div class ;= 'scene' id='scene"+this.currentSceneNum.toString()+"' style;='";
+			div = "<div class = 'scene' id='scene${this.currentSceneNum.toString()}' style='";
 			div += "background-color: #00ff00;";
 			div += "font-family: Comic Sans MS, cursive, sans-serif;";
 			//querySelector("#scene"+this.currentSceneNum).css("background-color", "#00ff00");
@@ -405,26 +409,26 @@ class Session {
 				var indexOfTerribleCSS = getRandomIntNoSeed(0,terribleCSSOptions.length-1);
 				var tin = terribleCSSOptions[indexOfTerribleCSS];
 				if(tin[1] == "????"){
-					tin[1] = getRandomIntNoSeed(1,100) +"%";
+					tin[1] = "${getRandomIntNoSeed(1,100)}%";
 				}
 				div += tin[0] + tin[1]+";";
 			}
 			div += "' >";
-			if(ouija == true) div += "<img class ;= 'pen15' src = 'images/pen15_bg1.png'>" ;//can't forget the dicks;
+			if(ouija == true) div += "<img class = 'pen15' src = 'images/pen15_bg1.png'>" ;//can't forget the dicks;
 			div += "</div>";
 		}else if(ouija == true){
 			var trueRandom = getRandomIntNoSeed(1,4);
-			div = "<div class ;= 'scene' id='scene"+this.currentSceneNum+"'>";
-			div += "<img class ;= 'pen15' src = 'images/pen15_bg"+ trueRandom+".png'>";
+			div = "<div class = 'scene' id='scene${this.currentSceneNum}'>";
+			div += "<img class = 'pen15' src = 'images/pen15_bg"+ trueRandom+".png'>";
 			div += "</div>";
 		}else{
-			div = "<div class ;= 'scene' id='scene"+this.currentSceneNum+"'></div>";
+			div = "<div class = 'scene' id='scene${this.currentSceneNum}'></div>";
 		}
-		querySelector("#story").append(div);
-		return querySelector("#scene"+this.currentSceneNum);
+		querySelector("#story").appendHtml(div);
+		return querySelector("#scene${this.currentSceneNum}");
 	}
 	dynamic getLineage(){
-			if(this.parentSession){
+			if(this.parentSession != null){
 					return this.parentSession.getLineage().concat([this]);
 			}
 			return [this];
@@ -432,7 +436,7 @@ class Session {
 	dynamic generateSummary(){
 		var summary = new SessionSummary();
 		summary.setMiniPlayers(this.players);
-		summary.blackKingDead = this.king.dead || this.king.getStat("currentHP") <;=0
+		summary.blackKingDead = this.king.dead || this.king.getStat("currentHP") <= 0;
 		summary.mayorEnding = this.mayorEnding;
 		summary.waywardVagabondEnding = this.waywardVagabondEnding;
 		summary.badBreakDeath = this.badBreakDeath;
@@ -485,7 +489,7 @@ class Session {
 		summary.jackScheme = this.jackScheme;
 		summary.kingTooPowerful =  this.king.getStat("power")> this.hardStrength;
 		summary.queenRejectRing = this.queenRejectRing;
-		summary.democracyStarted =  this.democraticArmy.power > 0;
+		summary.democracyStarted =  this.democraticArmy.getStat("power") > 0;
 		summary.murderMode = this.murdersHappened;
 		summary.grimDark = this.grimDarkPlayers;
 

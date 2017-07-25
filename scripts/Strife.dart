@@ -50,7 +50,7 @@ class Strife {
     }
   }
 
-  bool denizenDoneWithYourShit(div) {
+  bool denizenDoneWithYourShit(Element div) {
     List<GameEntity> members = findMembersOfDenizenFight();
     Denizen d = members[0];
     Player p = members[1];
@@ -60,8 +60,10 @@ class Strife {
     if (p.godDestiny) return false; //eh, you'll be okay even if I kill you.
     if (p.getStat("currentHP") < d.getStat("power"))
       return true; //i can kill you in one hit.
-    if (p.getStat("currentHP") < 2 * d.getStat("power") && seededRandom() > 0.5)
+    if (p.getStat("currentHP") < 2 * d.getStat("power") && p.session.rand.nextDouble() > 0.5)
       return true; //i can kill you in two hits and am worried about a critical hit.
+
+	  return false; // need to cover all the bases! -PL
   }
 
 
@@ -163,7 +165,7 @@ class Strife {
         " is being a little baby who poops hard in their diapers and are in no way ready for this fight. The Denizen recommends that they come back after they mature a little bit. The " +
         player.htmlTitleBasic() +
         "'s ass is kicked so hard they are ejected from the fight, but are not killed.");
-    if (seededRandom() >
+    if (player.session.rand.nextDouble() >
         .5) { //players don't HAVE to take the advice after all. assholes.
       player.increasePower();
       div.append(
@@ -298,7 +300,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
           Player p = member;
           if(p.aspect == "Time") timePlayers.add(p);
         }
-        if(!member.dead && seededRandom() > .75){
+        if(!member.dead && member.session.rand.nextDouble() > .75){
           session.availablePlayers.remove(member);
           summonBackup(member, div);
           return;
@@ -307,7 +309,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
 
       //nobody could come, but I have me some time players i could clone.
       for(Player p in timePlayers){
-        if(!p.dead && seededRandom() > .9){
+        if(!p.dead && p.session.rand.nextDouble() > .9){
           Player timeClone =Player.makeDoomedSnapshot(p);
           p.addDoomedTimeClone(timeClone);
            summonBackup(timeClone, div);
@@ -329,7 +331,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     }else{
       if(backup is Player){
         Player p = backup;
-        if(p.aspect == "Time" && seededRandom() > .5){
+        if(p.aspect == "Time" && p.session.rand.nextDouble() > .5){
           drawTimeGears(canvasDiv);
           //console.log("summoning a stable time loop player to this fight. " +this.session.session_id)
           div.appendHTML("The " + backup.htmlTitleHP() + " has joined the Strife!!! (Don't worry about the time bullshit, they have their stable time loops on LOCK. No doom for them.)");

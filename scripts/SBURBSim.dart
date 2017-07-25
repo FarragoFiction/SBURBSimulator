@@ -19,6 +19,7 @@ part "session.dart";
 part "quirk.dart";
 part "random_tables.dart";
 part "loading.dart";
+part "random.dart";
 
 part "relationship.dart";
 part "handle_sprites.dart";
@@ -95,24 +96,29 @@ DateTime stopTime;
 var raggedPlayers = null; //just for scratch'
 var numPlayersPreScratch = 0;
 
+Random globalRand = new Random();
+
+// comment out for random conversion, left in for the sake of hiding errors while I'm not working on them -PL
 T getRandomElementFromArray<T>(List<T> list) {
 	return list[0];
 }
 
+// also conversion
 int getRandomInt(int lower, int upper) {
 	return lower;
 }
 
 int getRandomIntNoSeed(int lower, int upper) {
-	return lower;
+	return globalRand.nextIntRange(lower, upper);
 }
 
+// also conversion
 double seededRandom() {
 	return 0.0;
 }
 
 double random() {
-	return 0.0;
+	return globalRand.nextDouble();
 }
 
 //placeholder for now. need a way to know "what is the next random number in the list without using that number"
@@ -170,7 +176,7 @@ bool printCorruptionMessage(String msg, String url, String lineNo, String column
     String start = "<b ";
     String end = "'>";
 
-    var words = getRandomElementFromArray(rand);
+    var words = curSessionGlobalVar.rand.pickFrom(rand);
     words = Zalgo.generate(words);
     var plea = start + "style ;= 'color: " +getColorFromAspect(player.aspect) +"; " + end +str + words+ "</b>";
     //print(getColorFromAspect(getRandomElementFromArray(curSessionGlobalVar.players).aspect+";") )
@@ -251,7 +257,7 @@ void crashEasterEgg(String url) {
   chat += "RS: Must have been an error involving something in \n" + url +"\n";
   chat += "RS: On an entirely unrelated note… \n";
   var quips = ["Is that hood thing ALSO metal?  Is it, like, chainmail or something?", "What OS are you running?", "If I say to divide by zero will you explode?", "Do you have the Three Laws of Robotics installed or are you totally free to off people?", "What metal are you made of?  It’s fuckin SHINY and I like it.", "Coke or Pepsi?"];
-  var convoTangents = getRandomElementFromArray(quips);
+  var convoTangents = curSessionGlobalVar.rand.pickFrom(quips);
   chat += "RS:" + convoTangents + "\n";
   chat += "AB: Yeah, I’m kinda too busy simulating hundreds of sessions right now to deal with this.  I’ll catch you again when I’m not busy, which is never, since flawless machines like myself are always making themselves useful.  Bye. \n";
 
@@ -328,27 +334,27 @@ void scratchEasterEggCallBack(){
   var guardians = raggedPlayers; //if i use guardians, they will be all fresh and squeaky. want the former players.
 
   var guardianDiv = curSessionGlobalVar.newScene();
-  var guardianID = (guardianDiv.attr("id")) + "_guardians" ;
+  var guardianID = (guardianDiv.id) + "_guardians" ;
   num ch = canvasHeight;
   if(guardians.length > 6){
     ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
   }
-  String canvasHTML = "<br><canvas id;='canvas" + guardianID+"' width='" +canvasWidth.toString() + "' height;="+ch.toString() + "'>  </canvas>";
+  String canvasHTML = "<br><canvas id='canvas" + guardianID+"' width='" +canvasWidth.toString() + "' height="+ch.toString() + "'>  </canvas>";
 
-  guardianDiv.append(canvasHTML);
+  guardianDiv.appendHtml(canvasHTML);
   Element canvasDiv = querySelector("#canvas"+ guardianID);
   poseAsATeam(canvasDiv, guardians); //everybody, even corpses, pose as a team.
 
 
   var playerDiv = curSessionGlobalVar.newScene();
-  var playerID = (playerDiv.attr("id")) + "_players" ;
+  var playerID = (playerDiv.id) + "_players" ;
   ch = canvasHeight;
   if(curSessionGlobalVar.players.length > 6){
     ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
   }
-  canvasHTML = "<br><canvas id;='canvas" + playerID+"' width='" +canvasWidth.toString() + "' height;="+ch.toString() + "'>  </canvas>";
+  canvasHTML = "<br><canvas id='canvas" + playerID+"' width='" +canvasWidth.toString() + "' height="+ch.toString() + "'>  </canvas>";
 
-  playerDiv.append(canvasHTML);
+  playerDiv.appendHtml(canvasHTML);
   canvasDiv = querySelector("#canvas"+ playerID);
 
   //need to render self for caching to work for this

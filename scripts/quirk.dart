@@ -8,13 +8,16 @@ class Quirk {
  String prefix = ""; //what do you put at the start of a line?
  String suffix = ""; //what do you put at the end of a line?
     //if in murdermode, rerandomize capitalization quirk.
- num capitalization = 0;  //0 == none, 4 = alternating, 5;= inverted, 3 = begining of every word, 1 ;= normal, 2 = ALL;
- var favoriteNumber = getRandomInt;    //num favoriteNumber = 8;    //4 and 6 and 12 has green not change, 7 has SOME green not change
+ int capitalization = 0;  //0 == none, 4 = alternating, 5;= inverted, 3 = begining of every word, 1 ;= normal, 2 = ALL;
+ int favoriteNumber = 0; //getRandomInt;    //num favoriteNumber = 8;    //4 and 6 and 12 has green not change, 7 has SOME green not change
     //take an input string and quirkify it.
     
+    Random rand;
 
 
-	Quirk() {}
+	Quirk(Random this.rand) {
+		this.favoriteNumber = rand.nextInt(12);
+	}
 
 
 	dynamic translate(input){
@@ -71,7 +74,7 @@ class Quirk {
             ret += "\n *  Suffix: " + this.suffix;
         }
 
-        ret += "\n * Favorite Number: " + this.favoriteNumber;
+        ret += "\n * Favorite Number: ${this.favoriteNumber}";
 
         if(this.lettersToReplace.length > 0){
             ret += " \n * Replaces: ";
@@ -120,7 +123,7 @@ class Quirk {
             ret += "<br> Suffix: " + this.suffix;
         }
 
-        ret += "<br> Favorite Number: " + this.favoriteNumber;
+        ret += "<br> Favorite Number: ${this.favoriteNumber}";
 
         if(this.lettersToReplace.length > 0){
             ret += " <br>Replaces: ";
@@ -174,7 +177,7 @@ class Quirk {
         }
         return ret;
     }
-	String handlePunctuation(input){
+	String handlePunctuation(String input){
         String ret = input;
         if(this.punctuation==0){
             var punctuationless = ret.replaceAll(new RegExp(r"[.?,\/#!;{}=\-_`~]", multiLine:true),"");
@@ -190,7 +193,7 @@ class Quirk {
         }
         return ret;
     }
-	void lowBloodVocabulary(player){
+	void lowBloodVocabulary(Player player){
 		//Troll words: year, month, refrigerator, bathtub, ears, heart, brain,rap,nose,mouth,bed,tea,worm,beans,tree,legs,eyes, gold star,born,toilet,foot,spine,vampire,tits,baby,
 		//red blood adds all of these, mid blood adds half, and eridan or above adds none.
 		//which ones you add are random.
@@ -198,32 +201,32 @@ class Quirk {
 
 		var odds = 15 - bloodColors.indexOf(player.bloodColor);   //15 is max odds, 0 is min odds.  after all, even meenah used some low blood words, right?
 		for(num i = 0; i<words.length; i++){
-			if(seededRandom()*15 < odds ){
+			if(this.rand.nextDouble()*15 < odds ){
 				this.lettersToReplaceIgnoreCase.add(words[i]);
 			}
 		}
 	}
-	void makeTrollQuirk(player){
+	void makeTrollQuirk(Player player){
       //print("generting troll quirk with favorite number: " + this.favoriteNumber);
-      this.capitalization = getRandomInt(0,5);
-      this.punctuation = getRandomInt(0,5);
+      this.capitalization = this.rand.nextIntRange(0,5);
+      this.punctuation = this.rand.nextIntRange(0,5);
       this.lettersToReplace = [];
       this.lettersToReplaceIgnoreCase = [];
-      if(this.capitalization == 2 && seededRandom() >.2){ //seriously, less all caps.
-          this.capitalization = getRandomInt(0,1);
+      if(this.capitalization == 2 && this.rand.nextDouble() >.2){ //seriously, less all caps.
+          this.capitalization = this.rand.nextIntRange(0,1);
       }
 
-      if(seededRandom() > .95){
-          this.prefix = getRandomElementFromArray(prefixes);
+      if(this.rand.nextDouble() > .95){
+          this.prefix = this.rand.pickFrom(prefixes);
           if(this.prefix.length == 1 && this.favoriteNumber < 8){
               this.prefix = multiplyCharacter(this.prefix, this.prefix[0], this.favoriteNumber);
           }
       }
-      if(seededRandom() > .95){
-          if(this.prefix != "" && seededRandom()>.7){ //mostly just repeat your prefix
+      if(this.rand.nextDouble() > .95){
+          if(this.prefix != "" && this.rand.nextDouble()>.7){ //mostly just repeat your prefix
               this.suffix = this.prefix;
           }else{
-              this.suffix = getRandomElementFromArray(prefixes);
+              this.suffix = this.rand.pickFrom(prefixes);
           }
 
           if(this.suffix.length == 1 && this.favoriteNumber < 8){
@@ -233,36 +236,36 @@ class Quirk {
       //have at least 3 fish puns.
       if(player.bloodColor == "#99004d" || player.bloodColor == "#610061"){
           for(int i = 0; i<3; i++){
-              this.lettersToReplaceIgnoreCase.add(getOneRandomFishArray());
+              this.lettersToReplaceIgnoreCase.add(getOneRandomFishArray(rand));
           }
       }
       num roomLeft = 0;
       //most people spell things, fine, other people have random problems
-      if(seededRandom() > 0.50){
-          var roomLeft = getRandomInt(0,10);
+      if(this.rand.nextDouble() > 0.50){
+          var roomLeft = this.rand.nextIntRange(0,10);
       }
       if(roomLeft < 0) roomLeft = 0;
 
 
       for(int i = 0; i<roomLeft; i++){
-          this.lettersToReplaceIgnoreCase.add(getOneRandomReplaceArray());
+          this.lettersToReplaceIgnoreCase.add(getOneRandomReplaceArray(rand));
           if(player.bloodColor == "#99004d" || player.bloodColor == "#610061"){
-              this.lettersToReplaceIgnoreCase.add(getOneRandomFishArray());
+              this.lettersToReplaceIgnoreCase.add(getOneRandomFishArray(rand));
           }
       }
 
 
-      this.lettersToReplaceIgnoreCase.add(getRandomElementFromArray(very_quirks));
-      this.lettersToReplaceIgnoreCase.add(getRandomElementFromArray(good_quirks));
-      this.lettersToReplaceIgnoreCase.add(getRandomElementFromArray(lol_quirks));
-      this.lettersToReplaceIgnoreCase.add(getRandomElementFromArray(greeting_quirks));
-      this.lettersToReplaceIgnoreCase.add(getRandomElementFromArray(dude_quirks));
-      this.lettersToReplaceIgnoreCase.add(getRandomElementFromArray(curse_quirks));
-      this.lettersToReplaceIgnoreCase.add(getRandomElementFromArray(yes_quirks));
-      this.lettersToReplaceIgnoreCase.add(getRandomElementFromArray(no_quirks));
+      this.lettersToReplaceIgnoreCase.add(this.rand.pickFrom(very_quirks));
+      this.lettersToReplaceIgnoreCase.add(this.rand.pickFrom(good_quirks));
+      this.lettersToReplaceIgnoreCase.add(this.rand.pickFrom(lol_quirks));
+      this.lettersToReplaceIgnoreCase.add(this.rand.pickFrom(greeting_quirks));
+      this.lettersToReplaceIgnoreCase.add(this.rand.pickFrom(dude_quirks));
+      this.lettersToReplaceIgnoreCase.add(this.rand.pickFrom(curse_quirks));
+      this.lettersToReplaceIgnoreCase.add(this.rand.pickFrom(yes_quirks));
+      this.lettersToReplaceIgnoreCase.add(this.rand.pickFrom(no_quirks));
 
       //smileys have special characters, do later
-      this.lettersToReplace.add(getRandomElementFromArray(smiley_quirks));
+      this.lettersToReplace.add(this.rand.pickFrom(smiley_quirks));
 
       this.addNumberQuirk();
       //querySelector("#debug").append("Human letters to replace: " + this.lettersToReplace.length);
@@ -271,33 +274,33 @@ class Quirk {
 
     }
 	void makeHumanQuirk(player){
-      this.capitalization = getRandomInt(0,2);
-      this.punctuation = getRandomInt(0,3);
+      this.capitalization = this.rand.nextIntRange(0,2);
+      this.punctuation = this.rand.nextIntRange(0,3);
       this.lettersToReplace = [];
       this.lettersToReplaceIgnoreCase = [];
-      if(this.capitalization == 2 && seededRandom() >0.2){ //seriously, less all caps.
-          this.capitalization = getRandomInt(0,1);
+      if(this.capitalization == 2 && this.rand.nextDouble() >0.2){ //seriously, less all caps.
+          this.capitalization = this.rand.nextIntRange(0,1);
       }
       num roomLeft = 0;
       //most people spell things, fine, other people have random problems
-      if(seededRandom() > 0.50){
-          var roomLeft = getRandomInt(0,10);
+      if(this.rand.nextDouble() > 0.50){
+          var roomLeft = this.rand.nextIntRange(0,10);
       }
       if(roomLeft < 0) roomLeft = 0;
       for(int i = 0; i<roomLeft; i++){
-          this.lettersToReplaceIgnoreCase.add(getOneNormalReplaceArray());
+          this.lettersToReplaceIgnoreCase.add(getOneNormalReplaceArray(rand));
       }
-      this.lettersToReplaceIgnoreCase.add(getRandomElementFromArray(very_quirks));
-      this.lettersToReplaceIgnoreCase.add(getRandomElementFromArray(good_quirks));
-      this.lettersToReplaceIgnoreCase.add(getRandomElementFromArray(lol_quirks));
-      this.lettersToReplaceIgnoreCase.add(getRandomElementFromArray(greeting_quirks));
-      this.lettersToReplaceIgnoreCase.add(getRandomElementFromArray(dude_quirks));
-      this.lettersToReplaceIgnoreCase.add(getRandomElementFromArray(curse_quirks));
-      this.lettersToReplaceIgnoreCase.add(getRandomElementFromArray(yes_quirks));
-      this.lettersToReplaceIgnoreCase.add(getRandomElementFromArray(no_quirks));
-      this.lettersToReplaceIgnoreCase.add(getRandomElementFromArray(asshole_quirks));
+      this.lettersToReplaceIgnoreCase.add(this.rand.pickFrom(very_quirks));
+      this.lettersToReplaceIgnoreCase.add(this.rand.pickFrom(good_quirks));
+      this.lettersToReplaceIgnoreCase.add(this.rand.pickFrom(lol_quirks));
+      this.lettersToReplaceIgnoreCase.add(this.rand.pickFrom(greeting_quirks));
+      this.lettersToReplaceIgnoreCase.add(this.rand.pickFrom(dude_quirks));
+      this.lettersToReplaceIgnoreCase.add(this.rand.pickFrom(curse_quirks));
+      this.lettersToReplaceIgnoreCase.add(this.rand.pickFrom(yes_quirks));
+      this.lettersToReplaceIgnoreCase.add(this.rand.pickFrom(no_quirks));
+      this.lettersToReplaceIgnoreCase.add(this.rand.pickFrom(asshole_quirks));
       //smileys have special characters, do later
-      this.lettersToReplace.add(getRandomElementFromArray(smiley_quirks));
+      this.lettersToReplace.add(this.rand.pickFrom(smiley_quirks));
 
 
       //querySelector("#debug").append("Human letters to replace: " + this.lettersToReplace.length);
@@ -305,65 +308,65 @@ class Quirk {
     }
 	void addNumberQuirk(){
         if(this.favoriteNumber == 1){
-            if(seededRandom()>0.5) this.lettersToReplace.add(["I","1"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["i","1"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["l","1"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["L","1"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["won","1"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["I","1"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["i","1"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["l","1"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["L","1"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["won","1"]);
         }else if(this.favoriteNumber == 2){
-            if(seededRandom()>0.5) this.lettersToReplace.add(["S","2"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["s","2"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["Z","2"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["z","2"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["too","2"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["to","2"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["two","2"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["S","2"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["s","2"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["Z","2"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["z","2"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["too","2"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["to","2"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["two","2"]);
         }else if(this.favoriteNumber == 3){
-            if(seededRandom()>0.5) this.lettersToReplace.add(["E","3"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["e","3"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["E","3"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["e","3"]);
         }else if(this.favoriteNumber == 4){
-            if(seededRandom()>0.5) this.lettersToReplace.add(["A","4"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["a","4"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["for","4"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["four","4"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["A","4"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["a","4"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["for","4"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["four","4"]);
         }else if(this.favoriteNumber == 5){
-            if(seededRandom()>0.5) this.lettersToReplace.add(["S","5"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["s","5"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["Z","5"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["J","5"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["z","5"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["S","5"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["s","5"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["Z","5"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["J","5"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["z","5"]);
         }else if(this.favoriteNumber == 6){
-            if(seededRandom()>0.5) this.lettersToReplace.add(["G","6"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["G","6"]);
         }else if(this.favoriteNumber == 7){
-            if(seededRandom()>0.5) this.lettersToReplace.add(["T","7"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["t","7"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["T","7"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["t","7"]);
         }else if(this.favoriteNumber == 8){
-            if(seededRandom()>0.5) this.lettersToReplace.add(["ate","8"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["eight","8"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["EIGHT","8"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["B","8"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["ate","8"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["eight","8"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["EIGHT","8"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["B","8"]);
         }else if(this.favoriteNumber == 9){
-            if(seededRandom()>0.5) this.lettersToReplace.add(["g","9"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["nine","9"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["NINE","9"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["g","9"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["nine","9"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["NINE","9"]);
         }else if(this.favoriteNumber == 10){
-            if(seededRandom()>0.5) this.lettersToReplace.add(["ten","10"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["TEN","10"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["lo","10"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["ten","10"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["TEN","10"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["lo","10"]);
         }else if(this.favoriteNumber == 11){
-            if(seededRandom()>0.5) this.lettersToReplace.add(["ll","11"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["II","11"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["ii","11"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["ll","11"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["II","11"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["ii","11"]);
         }else if(this.favoriteNumber == 12){
-            if(seededRandom()>0.5) this.lettersToReplace.add(["is","12"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["IS","12"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["iz","12"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["IZ","12"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["is","12"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["IS","12"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["iz","12"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["IZ","12"]);
         }else if(this.favoriteNumber == 0){
-            if(seededRandom()>0.5) this.lettersToReplace.add(["o","0"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["O","0"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["oh","0"]);
-            if(seededRandom()>0.5) this.lettersToReplace.add(["OH","0"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["o","0"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["O","0"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["oh","0"]);
+            if(this.rand.nextDouble()>0.5) this.lettersToReplace.add(["OH","0"]);
         }
     }
 
@@ -422,17 +425,17 @@ dynamic multiplyCharacter(str, character, times){
 
 
 
-dynamic randomHumanQuirk(){
-    var ret = new Quirk();
-    ret.capitalization = getRandomInt(0,2);
-    ret.punctuation = getRandomInt(0,3);
-    if(ret.capitalization == 2 && seededRandom() >0.2){ //seriously, less all caps.
-        ret.capitalization = getRandomInt(0,1);
+Quirk randomHumanQuirk(Random rand){
+    Quirk ret = new Quirk(rand);
+    ret.capitalization = rand.nextIntRange(0,2);
+    ret.punctuation = rand.nextIntRange(0,3);
+    if(ret.capitalization == 2 && rand.nextDouble() >0.2){ //seriously, less all caps.
+        ret.capitalization = rand.nextIntRange(0,1);
     }
-    var roomLeft = getRandomInt(0,6) - ret.lettersToReplace.length;
+    int roomLeft = rand.nextIntRange(0,6) - ret.lettersToReplace.length;
     if(roomLeft < 0) roomLeft = 0;
     for(int i = 0; i<roomLeft; i++){
-        ret.lettersToReplace.add(getOneNormalReplaceArray());
+        ret.lettersToReplace.add(getOneNormalReplaceArray(rand));
     }
     //querySelector("#debug").append("Human letters to replace: " + ret.lettersToReplace.length);
     return ret;
@@ -440,15 +443,15 @@ dynamic randomHumanQuirk(){
 
 
 
-dynamic randomCapitalQuirk(){
-    return getRandomInt(0,5);
+int randomCapitalQuirk(Random rand){
+    return rand.nextIntRange(0,5);
 
 }
 
 
 //since I'm not gonna list 'em out, have more quirks, and make sure you have certain CATEGORIES of quirk.
-dynamic randomHumanSim(player){
-    var ret = new Quirk();
+Quirk randomHumanSim(Random rand, Player player){
+    Quirk ret = new Quirk(rand);
     ret.makeHumanQuirk(player);
     return ret;
 }
@@ -459,8 +462,8 @@ dynamic randomHumanSim(player){
 
 
 //since I'm not gonna list 'em out, have more quirks, and make sure you have certain CATEGORIES of quirk.
-dynamic randomTrollSim(player){
-    var ret = new Quirk();
+dynamic randomTrollSim(Random rand, Player player){
+    Quirk ret = new Quirk(rand);
     ret.makeTrollQuirk(player);
     return ret;
 }
@@ -468,21 +471,21 @@ dynamic randomTrollSim(player){
 
 
 //troll quirks are more extreme
-dynamic randomTrollQuirk(player){
-    var ret = new Quirk();
-    ret.capitalization = getRandomInt(0,5);
-    ret.punctuation = getRandomInt(0,5);
-    if(seededRandom() > .5){
-        ret.prefix = getRandomElementFromArray(prefixes);
+Quirk randomTrollQuirk(Random rand, Player player){
+    Quirk ret = new Quirk(rand);
+    ret.capitalization = ret.rand.nextIntRange(0,5);
+    ret.punctuation = ret.rand.nextIntRange(0,5);
+    if(ret.rand.nextDouble() > .5){
+        ret.prefix = ret.rand.pickFrom(prefixes);
         if(ret.prefix.length == 1){
             ret.prefix = multiplyCharacter(ret.prefix, ret.prefix[0], ret.favoriteNumber);
         }
     }
-    if(seededRandom() > .5){
-        if(ret.prefix != "" && seededRandom()>.7){ //mostly just repeat your prefix
+    if(ret.rand.nextDouble() > .5){
+        if(ret.prefix != "" && ret.rand.nextDouble()>.7){ //mostly just repeat your prefix
             ret.suffix = ret.prefix;
         }else{
-            ret.suffix = getRandomElementFromArray(prefixes);
+            ret.suffix = ret.rand.pickFrom(prefixes);
         }
 
         if(ret.suffix.length == 1){
@@ -491,13 +494,13 @@ dynamic randomTrollQuirk(player){
     }
 
     ret.addNumberQuirk();
-    var roomLeft = getRandomInt(0,6) - ret.lettersToReplace.length;
+    var roomLeft = ret.rand.nextIntRange(0,6) - ret.lettersToReplace.length;
     if(roomLeft < 0) roomLeft = 0;
     for(int i = 0; i<roomLeft; i++){
         if(player.bloodColor == "#99004d" || player.bloodColor == "#610061"){
-            ret.lettersToReplace.add(getOneRandomFishArray());
+            ret.lettersToReplace.add(getOneRandomFishArray(rand));
         }
-        ret.lettersToReplace.add(getOneRandomReplaceArray());
+        ret.lettersToReplace.add(getOneRandomReplaceArray(rand));
     }
 
     return ret;
@@ -506,21 +509,21 @@ dynamic randomTrollQuirk(player){
 
 
 
-dynamic getOneNormalReplaceArray(){
+dynamic getOneNormalReplaceArray(Random rand){
     //these should ignore case.
-    return getRandomElementFromArray(conversational_quirks);
+    return rand.pickFrom(conversational_quirks);
 }
 
 
 
-dynamic getOneRandomFishArray(){
-    return getRandomElementFromArray(fish_quirks);
+dynamic getOneRandomFishArray(Random rand){
+    return rand.pickFrom(fish_quirks);
 }
 
 
 
 //% to cross or x.  8 for b.  69 for oo.  o+ for o
-dynamic getOneRandomReplaceArray(){
+dynamic getOneRandomReplaceArray(Random rand){
     var arr = [["x","%"],["X","%"],["s","z"],["w","vv"],["w","v"],["v","w"],["!","~"],["N","|\\/"],["\\b[a-z]*\\b","私"]];
     arr.add(["M","|\\/|"]);
     arr.add(["W","\\/\\/"]);
@@ -548,11 +551,11 @@ dynamic getOneRandomReplaceArray(){
     arr.add(["per","purr"]);
     arr.add(["mu","mew"]);
 
-    if(seededRandom() > .5){
-        return getRandomElementFromArray(arr);
+    if(rand.nextDouble() > .5){
+        return rand.pickFrom(arr);
     }
 
-    return getOneNormalReplaceArray(); //if i get here, just do a normal one.
+    return getOneNormalReplaceArray(rand); //if i get here, just do a normal one.
 }
 
 

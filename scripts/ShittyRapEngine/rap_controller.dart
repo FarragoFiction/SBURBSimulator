@@ -12,12 +12,13 @@ num player2Score = 0;
 //for now, rap about your own interests.
 main() {
 		//Math.seed = 612;
-		var player1 = randomPlayerWithClaspect(new Session(83475), "Witch", "Time" );
+		Session session = new Session(83475);
+		var player1 = randomPlayerWithClaspect(session, "Witch", "Time" );
 		player1.chatHandle = "squareWave";
-		player1.quirk = randomTrollSim(player1);
-		var player2 = randomPlayerWithClaspect(new Session(83475), "Mage", "Space" );//why was it so hard to not type 'ace of space'???;
+		player1.quirk = randomTrollSim(session.rand, player1);
+		var player2 = randomPlayerWithClaspect(session, "Mage", "Space" );//why was it so hard to not type 'ace of space'???;
 		player2.chatHandle = "sawTooth";
-		player2.quirk = randomHumanSim(player2);
+		player2.quirk = randomHumanSim(session.rand, player2);
 		//player2.interest1 = "Programming";
 		//player2.interest2 = "Writing";
 		rap(1,player1);
@@ -30,12 +31,12 @@ main() {
 
 }
 
-void rap(playerNum, player){
+void rap(playerNum, Player player){
 	//Math.seed =  getRandomSeed();
 
 	//print("Rapping about: " + interest);
 
-	var chosenRapTemplate = getRandomElementFromArray(rapTemplates);
+	var chosenRapTemplate = player.session.rand.pickFrom(rapTemplates);
 
 	var raps = chosenRapTemplate.getRapLineForPlayer(player);
 	var str = raps[0];

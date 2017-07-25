@@ -253,11 +253,11 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	dynamic strongDenizenNames(){
 	    print("What if you don't want stranth? " + this.session.session_id.toString());
 		var ret = ['Yaldabaoth', '<span class ;= "void">Nobrop, the </span>Null', '<span class = "void">Paraxalan, The </span>Ever-Searching', "<span class ;= 'void'>Algebron, The </span>Dilletant", '<span class = "void">Doomod, The </span>Wanderer', 'Jörmungandr','Apollyon','Siseneg','Borunam','<span class ;= "void">Jadeacher the,</span>Researcher','Karmiution','<span class = "void">Authorot, the</span> Robot', '<span class ;= "void">Abbiejean, the </span>Scout', 'Aspiratcher, The Librarian','<span class = "void">Recurscker, The</span>Hollow One','Insurorracle','<span class ;= "void">Maniomnia, the Dreamwaker</span>','Kazerad','Shiva','Goliath'];
-		return getRandomElementFromArray(ret);
+		return this.session.rand.pickFrom(ret);
 	}
 	dynamic weakDenizenNames(){
 		var ret = ['Eriotur','Abraxas','Succra','Watojo','Bluhubit','Swefrat','Helaja','Fischapris'];
-		return getRandomElementFromArray(ret);
+		return this.session.rand.pickFrom(ret);
 	}
 	void flipOut(reason){
 		//print("flip out method called for: " + reason);
@@ -561,7 +561,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			return getFontColorFromAspect(this.aspect) + this.titleBasic() + "</font>";
 	}
 	@override
-	dynamic titleBasic(){
+	String titleBasic(){
 		String ret = "";
 
 		ret+= this.class_name + " of " + this.aspect;
@@ -579,18 +579,18 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			//print("denizen quest");
 			return getRandomDenizenQuestFromAspect(this); //denizen quests are aspect only, no class.
 		}else if((this.landLevel < 9 || this.denizen_index >=3) && this.denizenDefeated == false){  //can do more land quests if denizen kicked your ass. need to grind.
-			if(seededRandom() > .5 || this.aspect == "Space"){ //back to having space players be locked to frogs.
-				return getRandomQuestFromAspect(this.aspect,false);
+			if(this.session.rand.nextDouble() > .5 || this.aspect == "Space"){ //back to having space players be locked to frogs.
+				return getRandomQuestFromAspect(this.session.rand, this.aspect,false);
 			}else{
-				return getRandomQuestFromClass(this.class_name,false);
+				return getRandomQuestFromClass(this.session.rand, this.class_name,false);
 			}
 		}else if(this.denizenDefeated){
 			//print("post denizen quests " +this.session.session_id);
 			//return "restoring their land from the ravages of " + this.session.getDenizenForPlayer(this).name;
-			if(seededRandom() > .5 || this.aspect == "Space"){ //back to having space players be locked to frogs.
-				return getRandomQuestFromAspect(this.aspect,true);
+			if(this.session.rand.nextDouble() > .5 || this.aspect == "Space"){ //back to having space players be locked to frogs.
+				return getRandomQuestFromAspect(this.session.rand, this.aspect,true);
 			}else{
-				return getRandomQuestFromClass(this.class_name,true);
+				return getRandomQuestFromClass(this.session.rand, this.class_name,true);
 			}
 		}
 		return null;
@@ -678,7 +678,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		var odds = 10 - bloodColors.indexOf(this.bloodColor);   //want gamzee and above to have NO powers (will give highbloods chucklevoodoos separate)
 		var powers = this.psionicList();
 		for(num i = 0; i<powers.length; i++){
-			if(seededRandom()*40 < odds ){  //even burgundy bloods have only a 25% shot of each power.
+			if(this.session.rand.nextDouble()*40 < odds ){  //even burgundy bloods have only a 25% shot of each power.
 				this.fraymotifs.add(powers[i]);
 			}
 		}
@@ -705,9 +705,9 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	}
 	void decideLusus(player){
 		if(this.bloodColor == "#610061" || this.bloodColor == "#99004d" || this.bloodColor == "#631db4" ){
-			this.lusus = getRandomElementFromArray(sea_lusus_objects);
+			this.lusus = this.session.rand.pickFrom(sea_lusus_objects);
 		}else{
-			this.lusus = getRandomElementFromArray(lusus_objects);
+			this.lusus = this.session.rand.pickFrom(lusus_objects);
 		}
 	}
 	bool isVoidAvailable(){
@@ -808,14 +808,14 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 
 		//if much less friends than enemies.
 		if(this.getFriends().length < this.getEnemies().length){
-			if(seededRandom() > .9){ //just deaths are rarer without things like triggers.
+			if(this.session.rand.nextDouble() > .9){ //just deaths are rarer without things like triggers.
 				ret = true;
 			}
 			//way more likely to be a just death if you're being an asshole.
 
 
 			if((this.murderMode || this.grimDark > 2)){
-				var rand = seededRandom();
+				var rand = this.session.rand.nextDouble();
 				//print("rand is: " + rand);
 				if(rand > .2){
 					//print(" just death for: " + this.title() + "rand is: " + rand)
@@ -824,7 +824,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			}
 		}else{  //you are a good person. just corrupt.
 			//way more likely to be a just death if you're being an asshole.
-			if((this.murderMode || this.grimDark > 2) && seededRandom()>.5){
+			if((this.murderMode || this.grimDark > 2) && this.session.rand.nextDouble()>.5){
 				ret = true;
 			}
 		}
@@ -842,15 +842,15 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 
 		//if far more enemies than friends.
 		if(this.getFriends().length > this.getEnemies().length ){
-			if(seededRandom() > .6){
+			if(this.session.rand.nextDouble() > .6){
 				ret = true;
 			}
 			//extra likely if you just killed the king/queen, you hero you.
-			if((this.session.king.getStat("currentHP") <=0 || this.session.king.dead == true) && seededRandom()>.2){
+			if((this.session.king.getStat("currentHP") <=0 || this.session.king.dead == true) && this.session.rand.nextDouble()>.2){
 				ret = true;
 			}
 		}else{ //unlikely hero
-			if(seededRandom() > .8){
+			if(this.session.rand.nextDouble() > .8){
 				ret = true;
 			}
 			//extra likely if you just killed the king/queen, you hero you.
@@ -931,14 +931,14 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		var possibilities = available_classes_guardians;
 		if(possibilities.length == 0) possibilities = classes;
 		//print("class names available for guardians is: " + possibilities);
-		var guardian = randomPlayerWithClaspect(this.session, getRandomElementFromArray(possibilities), this.aspect);
+		var guardian = randomPlayerWithClaspect(this.session, this.session.rand.pickFrom(possibilities), this.aspect);
         available_classes_guardians.removeFromArray(guardian.class_name);
 		guardian.isTroll = player.isTroll;
 		guardian.quirk.favoriteNumber = player.quirk.favoriteNumber;
 		if(guardian.isTroll){
-			guardian.quirk = randomTrollSim(guardian) ;//not same quirk as guardian;
+			guardian.quirk = randomTrollSim(this.session.rand, guardian) ;//not same quirk as guardian;
 		}else{
-			guardian.quirk = randomHumanSim(guardian);
+			guardian.quirk = randomHumanSim(this.session.rand, guardian);
 		}
 
 		guardian.bloodColor = player.bloodColor;
@@ -954,7 +954,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		guardian.level_index = 5; //scratched kids start more leveled up
 		guardian.power = 50;
 		guardian.leader = player.leader;
-		if(seededRandom() >0.5){ //have SOMETHING in common with your ectorelative.
+		if(this.session.rand.nextDouble() >0.5){ //have SOMETHING in common with your ectorelative.
 			guardian.interest1 = player.interest1;
 		}else{
 			guardian.interest2 = player.interest2;
@@ -1094,7 +1094,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		}
 	}
 	void increasePower(){
-		if(seededRandom() >.9){
+		if(this.session.rand.nextDouble() >.9){
 			this.leveledTheHellUp = true; //that multiple of ten thing is bullshit.
 		}
 		num powerBoost = 1;
@@ -1116,7 +1116,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 
 		this.associatedStatsIncreasePower(powerBoost);
 		//gain a bit of hp, otherwise denizen will never let players fight them if their hp isn't high enough.
-		if(this.godTier || seededRandom() >.85){
+		if(this.godTier || this.session.rand.nextDouble() >.85){
 			this.addStat("hp", 5);
 			this.addStat("currentHP",5);
 		}
@@ -1140,7 +1140,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			if(friends[i] != this){  //No, Karkat, you can't be your own Kismesis.
 				//one time in a random sim two heirresses decided to kill each other and this was so amazing and canon compliant
 				//that it needs to be a thing.
-				var r = Relationship.randomBlandRelationship(friends[i]);
+				var r = Relationship.randomBlandRelationship(this, friends[i]);
 				if(this.isTroll && this.bloodColor == "#99004d" && friends[i].isTroll && friends[i].bloodColor == "#99004d"){
 					r.value = -20; //biological imperitive to fight for throne.
 					this.addStat("sanity", -100);
@@ -1156,7 +1156,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			if(friends[i] != this){  //No, Karkat, you can't be your own Kismesis.
 				//one time in a random sim two heirresses decided to kill each other and this was so amazing and canon compliant
 				//that it needs to be a thing.
-				var r = Relationship.randomRelationship(friends[i]);
+				var r = Relationship.randomRelationship(this, friends[i]);
 				if(this.isTroll && this.bloodColor == "#99004d" && friends[i].isTroll && friends[i].bloodColor == "#99004d"){
 					r.value = -20; //biological imperitive to fight for throne.
 					this.addStat("sanity", -10);
@@ -1218,10 +1218,10 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	}
 	dynamic rollForLuck([String stat]){
 		if(stat == null || stat == ""){
-		    return getRandomInt(this.getStat("minLuck"), this.getStat("maxLuck"));
+		    return this.session.rand.nextIntRange(this.getStat("minLuck"), this.getStat("maxLuck"));
 		}else{
 		    //don't care if it's min or max, just compare it to zero.
-		    return getRandomInt(0, this.getStat(stat));
+		    return this.session.rand.nextIntRange(0, this.getStat(stat));
 		}
 
 	}
@@ -1414,9 +1414,10 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		if(statName == "RELATIONSHIPS"){ //relationships, why you so cray cray???
 			for(num i = 0; i<this.relationships.length; i++){
                 ret += this.relationships[i].value;
-      }
+            }
+            return ret;
 		}else {
-			super.getStat(statName);
+			return super.getStat(statName);
 		}
 	}
 
@@ -1508,8 +1509,8 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		return (this.class_name == "Rogue" || this.class_name == "Sage" ||  this.class_name == "Waste" ||  this.class_name == "Guide" || this.class_name == "Knight" || this.class_name == "Maid"|| this.class_name == "Mage"|| this.class_name == "Sylph"|| this.class_name == "Prince");
 	}
 	void initializeLuck(){
-		this.setStat("minLuck",getRandomInt(0,-10)); //middle of the road.
-		this.setStat("maxLuck,", this.getStat("minLuck") + getRandomInt(10,1));   //max needs to be more than min.
+		this.setStat("minLuck",this.session.rand.nextIntRange(0,-10)); //middle of the road.
+		this.setStat("maxLuck,", this.getStat("minLuck") + this.session.rand.nextIntRange(10,1));   //max needs to be more than min.
 		if(this.trickster && this.aspect != "Doom"){
 			this.setStat("minLuck",11111111111);
 			this.setStat("maxLuck",11111111111);
@@ -1517,13 +1518,13 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 
 	}
 	void initializeFreeWill(){
-		this.setStat("freeWill",getRandomInt(-10,10));
+		this.setStat("freeWill",this.session.rand.nextIntRange(-10,10));
 		if(this.trickster && this.aspect != "Doom"){
 			this.setStat("freeWill",11111111111);
 		}
 	}
 	void initializeHP(){
-		this.setStat("hp", getRandomInt(40,60));
+		this.setStat("hp", this.session.rand.nextIntRange(40,60));
 		this.setStat("currentHP", this.getStat("hp"));
 		if(this.trickster && this.aspect != "Doom"){
 			this.setStat("currentHP", 11111111111);
@@ -1560,13 +1561,13 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		ctx.clearRect(0, 0, canvasDiv.width, canvasDiv.height);
 	}
 	void initializeMobility(){
-		this.setStat("mobility",getRandomInt(0,10));
+		this.setStat("mobility",this.session.rand.nextIntRange(0,10));
 		if(this.trickster && this.aspect != "Doom"){
 			this.setStat("mobility",11111111111);
 		}
 	}
 	void initializeSanity(){
-		this.setStat("sanity",getRandomInt(-10,10));
+		this.setStat("sanity",this.session.rand.nextIntRange(-10,10));
 	}
 	void initializeRelationships(){
 		if(this.trickster && this.aspect != "Doom" && this.aspect != "Heart"){
@@ -1740,15 +1741,15 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		this.land1 = tmp[0];
 		this.land2 = tmp[1];
 		this.land = "Land of " + tmp[0] + " and " + tmp[1];
-		if(this.deriveChatHandle) this.chatHandle = getRandomChatHandle(this.class_name,this.aspect,this.interest1, this.interest2);
+		if(this.deriveChatHandle) this.chatHandle = getRandomChatHandle(this.session.rand, this.class_name,this.aspect,this.interest1, this.interest2);
 		this.mylevels = getLevelArray(this);//make them ahead of time for echeladder graphic
 
 		if(this.isTroll){
-			if(this.quirk == null) this.quirk = randomTrollSim(this)  ;//if i already have a quirk it was defined already. don't override it.;
+			if(this.quirk == null) this.quirk = randomTrollSim(this.session.rand, this)  ;//if i already have a quirk it was defined already. don't override it.;
 			this.addStat("sanity",-10);//trolls are slightly less stable
 
 		}else{
-			if(this.quirk == null) this.quirk = randomHumanSim(this);
+			if(this.quirk == null) this.quirk = randomHumanSim(this.session.rand, this);
 		}
 	}
 	void initializeSprite(){
@@ -1776,8 +1777,8 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 				this.associatedStats.add(new AssociatedStat("MANGRIT", -0.9));
 				break;
 			case  "Bard":
-				this.associatedStats.add(new AssociatedStat( getRandomElementFromArray(allStats), 1));
-				this.associatedStats.add(new AssociatedStat( getRandomElementFromArray(allStats), -1));
+				this.associatedStats.add(new AssociatedStat( this.session.rand.pickFrom(allStats), 1));
+				this.associatedStats.add(new AssociatedStat( this.session.rand.pickFrom(allStats), -1));
 				break;
 			case  "Heir":
 				this.associatedStats.add(new AssociatedStat("maxLuck", 0.5));
@@ -1866,8 +1867,8 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 				this.associatedStats.add(new AssociatedStat("RELATIONSHIPS", -1,true));
 				break;
 			case  "Void":
-				this.associatedStats.add(new AssociatedStat( getRandomElementFromArray(allStats), 3,true)); //really good at one thing
-				this.associatedStats.add(new AssociatedStat( getRandomElementFromArray(allStats), -1,true));  //hit to another thing.
+				this.associatedStats.add(new AssociatedStat( this.session.rand.pickFrom(allStats), 3,true)); //really good at one thing
+				this.associatedStats.add(new AssociatedStat( this.session.rand.pickFrom(allStats), -1,true));  //hit to another thing.
 				this.associatedStats.add(new AssociatedStat( "minLuck", -1,true));  //hit to another thing.
 				break;
 			case  "Time":
@@ -1900,7 +1901,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			case  "Hope":
 				this.associatedStats.add(new AssociatedStat("sanity", 2,true));
 				this.associatedStats.add(new AssociatedStat("maxLuck", 1,true));
-				this.associatedStats.add(new AssociatedStat( getRandomElementFromArray(allStats), -2,true));
+				this.associatedStats.add(new AssociatedStat( this.session.rand.pickFrom(allStats), -2,true));
 				break;
 			case  "Life":
 				this.associatedStats.add(new AssociatedStat("hp", 2,true));
@@ -2010,10 +2011,10 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		//reroll goddestiny and sprite as well. luck might have changed.
 		var luck = this.rollForLuck("");
 		if(this.class_name == "Witch" || luck < -9){
-			this.object_to_prototype = getRandomElementFromArray(disastor_objects);
+			this.object_to_prototype = this.session.rand.pickFrom(disastor_objects);
 			//print("disastor");
 		}else if(luck > 25){
-			this.object_to_prototype = getRandomElementFromArray(fortune_objects);
+			this.object_to_prototype = this.session.rand.pickFrom(fortune_objects);
 			//print("fortune");
 		}
 		if(luck>5){
@@ -2112,8 +2113,8 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
     timeClone.setStat("currentHP", doomedPlayer.getStat("hp")); //heal
     timeClone.doomed = true;
     //from a different timeline, things went differently.
-    var rand = seededRandom();
-    timeClone.setStat("power",seededRandom() * 80+10);
+    var rand = doomedPlayer.session.rand.nextDouble();
+    timeClone.setStat("power",doomedPlayer.session.rand.nextDouble() * 80+10);
     if(rand > 0.9){
       timeClone.robot = true;
       timeClone.hairColor = getRandomGreyColor();
@@ -2125,7 +2126,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
     }else if(rand>.6){
       timeClone.isDreamSelf = !timeClone.isDreamSelf;
     }else if(rand>.4){
-      timeClone.grimDark = getRandomInt(0,4);
+      timeClone.grimDark = doomedPlayer.session.rand.nextIntRange(0,4);
       timeClone.addStat("power",50 * timeClone.grimDark);
     }else if(rand>.2){
       timeClone.murderMode = !timeClone.murderMode;
@@ -2388,7 +2389,7 @@ dynamic blankPlayerNoDerived(session){
 	p.hair = 1;
 	p.leftHorn =  1;
 	p.rightHorn = 1;
-	p.quirk = new Quirk();
+	p.quirk = new Quirk(session.rand);
 	p.quirk.capitalization = 1;
 	p.quirk.punctuation = 1;
 	p.quirk.favoriteNumber = 1;
@@ -2398,27 +2399,27 @@ dynamic blankPlayerNoDerived(session){
 
 
 
-dynamic randomPlayerNoDerived(session, c, a){
-	var k = getRandomElementFromArray(prototyping_objects);
+dynamic randomPlayerNoDerived(Session session, String c, String a){
+	var k = session.rand.pickFrom(prototyping_objects);
 
 
 	bool gd = false;
 
-	var m = getRandomElementFromArray(moons);
+	var m = session.rand.pickFrom(moons);
 	var id = seed();
 	var p = new Player(session,c,a,k,m,gd,id);
 	p.decideTroll();
-	p.interest1 = getRandomElementFromArray(interests);
-	p.interest2 = getRandomElementFromArray(interests);
-	p.baby = getRandomInt(1,3);
+	p.interest1 = session.rand.pickFrom(interests);
+	p.interest2 = session.rand.pickFrom(interests);
+	p.baby = session.rand.nextIntRange(1,3);
 
 
-	p.hair = getRandomInt(1,p.maxHairNumber);
+	p.hair = session.rand.nextIntRange(1,p.maxHairNumber);
 	//hair color in decideTroll.
-	p.leftHorn =  getRandomInt(1,p.maxHornNumber);
+	p.leftHorn =  session.rand.nextIntRange(1,p.maxHornNumber);
 	p.rightHorn = p.leftHorn;
-	if(seededRandom() > .7 ){ //preference for symmetry
-			p.rightHorn = getRandomInt(1,p.maxHornNumber);
+	if(session.rand.nextDouble() > .7 ){ //preference for symmetry
+			p.rightHorn = session.rand.nextIntRange(1,p.maxHornNumber);
 	}
 	p.initializeStats();
 	p.initializeSprite();
@@ -2433,28 +2434,28 @@ dynamic randomPlayerNoDerived(session, c, a){
 dynamic randomPlayerWithClaspect(session, c, a){
 	//print("random player");
 
-	var k = getRandomElementFromArray(prototyping_objects);
+	var k = session.rand.pickFrom(prototyping_objects);
 
 
 	bool gd = false;
 
-	var m = getRandomElementFromArray(moons);
+	var m = session.rand.pickFrom(moons);
 	var id = seed();
 	var p = new Player(session,c,a,k,m,gd,id);
 	p.decideTroll();
-	p.interest1 = getRandomElementFromArray(interests);
-	p.interest2 = getRandomElementFromArray(interests);
+	p.interest1 = session.rand.pickFrom(interests);
+	p.interest2 = session.rand.pickFrom(interests);
 	p.initialize();
 
 	//no longer any randomness directly in player class. don't want to eat seeds if i don't have to.
-	p.baby = getRandomInt(1,3);
+	p.baby = session.rand.nextIntRange(1,3);
 
 
-	p.hair = getRandomInt(1,p.maxHairNumber); //hair color in decide troll
-	p.leftHorn =  getRandomInt(1,46);
+	p.hair = session.rand.nextIntRange(1,p.maxHairNumber); //hair color in decide troll
+	p.leftHorn =  session.rand.nextIntRange(1,46);
 	p.rightHorn = p.leftHorn;
-	if(seededRandom() > .7 ){ //preference for symmetry
-			p.rightHorn = getRandomInt(1,46);
+	if(session.rand.nextDouble() > .7 ){ //preference for symmetry
+			p.rightHorn = session.rand.nextIntRange(1,46);
 	}
 
 
@@ -2465,9 +2466,9 @@ dynamic randomPlayerWithClaspect(session, c, a){
 
 dynamic randomPlayer(session){
 	//remove class AND aspect from available
-	var c = getRandomElementFromArray(available_classes);
+	var c = session.rand.pickFrom(available_classes);
 	removeFromArray(c, available_classes);
-	var a = getRandomElementFromArray(available_aspects);
+	var a = session.rand.pickFrom(available_aspects);
 	removeFromArray(a, available_aspects);
 	return randomPlayerWithClaspect(session,c,a);
 
@@ -2477,9 +2478,9 @@ dynamic randomPlayer(session){
 
 dynamic randomPlayerWithoutRemoving(session){
 	//remove class AND aspect from available
-	var c = getRandomElementFromArray(available_classes);
+	var c = session.rand.pickFrom(available_classes);
 	//removeFromArray(c, available_classes);
-	var a = getRandomElementFromArray(available_aspects);
+	var a = session.rand.pickFrom(available_aspects);
 	//removeFromArray(a, available_aspects);
 	return randomPlayerWithClaspect(session,c,a);
 
@@ -2487,9 +2488,9 @@ dynamic randomPlayerWithoutRemoving(session){
 
 
 
-dynamic randomSpacePlayer(session){
+dynamic randomSpacePlayer(Session session){
 	//remove class from available
-	var c = getRandomElementFromArray(available_classes);
+	var c = session.rand.pickFrom(available_classes);
 	removeFromArray(c, available_classes);
 	var a = required_aspects[0];
 	return randomPlayerWithClaspect(session,c,a);
@@ -2497,19 +2498,19 @@ dynamic randomSpacePlayer(session){
 
 
 
-dynamic randomTimePlayer(session){
+Player randomTimePlayer(Session session){
 	//remove class from available
-	var c = getRandomElementFromArray(available_classes);
+	String c = session.rand.pickFrom(available_classes);
 	removeFromArray(c, available_classes);
-	var a = required_aspects[1];
+	String a = required_aspects[1];
 	return randomPlayerWithClaspect(session,c,a);
 }
 
 
 
-dynamic findAspectPlayer(playerList, aspect){
-	for(var i= 0; i<playerList.length; i++){
-		var p = playerList[i];
+Player findAspectPlayer(List<Player> playerList, String aspect){
+	for(int i= 0; i<playerList.length; i++){
+		Player p = playerList[i];
 		if(p.aspect == aspect){
 			//print("Found " + aspect + " player");
 			return p;
@@ -2520,10 +2521,10 @@ dynamic findAspectPlayer(playerList, aspect){
 
 
 
-dynamic findAllAspectPlayers(playerList, aspect){
-	List<dynamic> ret = [];
-	for(var i= 0; i<playerList.length; i++){
-		var p = playerList[i];
+List<Player> findAllAspectPlayers(List<Player> playerList, String aspect){
+	List<Player> ret = [];
+	for(int i= 0; i<playerList.length; i++){
+		Player p = playerList[i];
 		if(p.aspect == aspect){
 			//print("Found " + aspect + " player");
 			ret.add(p);
@@ -2535,9 +2536,9 @@ dynamic findAllAspectPlayers(playerList, aspect){
 
 
 
-dynamic getLeader(playerList){
-	for(var i= 0; i<playerList.length; i++){
-		var p = playerList[i];
+Player getLeader(List<Player> playerList){
+	for(int i= 0; i<playerList.length; i++){
+		Player p = playerList[i];
 		if(p.leader){
 			return p;
 		}
@@ -2548,9 +2549,9 @@ dynamic getLeader(playerList){
 
 
 //in combo sessions, mibht be more than one rage player, for example.
-dynamic findClaspectPlayer(playerList, class_name, aspect){
-	for(var i= 0; i<playerList.length; i++){
-		var p = playerList[i];
+Player findClaspectPlayer(List<Player> playerList, String class_name, String aspect){
+	for(int i= 0; i<playerList.length; i++){
+		Player p = playerList[i];
 		if(p.class_name == class_name && p.aspect == aspect){
 			//print("Found " + class_name + " player");
 			return p;
@@ -2562,9 +2563,9 @@ dynamic findClaspectPlayer(playerList, class_name, aspect){
 
 
 
-dynamic findClassPlayer(playerList, class_name){
-	for(var i= 0; i<playerList.length; i++){
-		var p = playerList[i];
+Player findClassPlayer(List<Player> playerList, String class_name){
+	for(int i= 0; i<playerList.length; i++){
+		Player p = playerList[i];
 		if(p.class_name == class_name){
 			//print("Found " + class_name + " player");
 			return p;
@@ -2575,12 +2576,12 @@ dynamic findClassPlayer(playerList, class_name){
 
 
 
-dynamic findStrongestPlayer(playerList){
-	var strongest = playerList[0];
+Player findStrongestPlayer(List<Player> playerList){
+	Player strongest = playerList[0];
 
-	for(var i= 0; i<playerList.length; i++){
-		var p = playerList[i];
-		if(p.power > strongest.power){
+	for(int i= 0; i<playerList.length; i++){
+		Player p = playerList[i];
+		if(p.getStat("power") > strongest.getStat("power")){
 			strongest = p;
 		}
 	}
@@ -2589,10 +2590,10 @@ dynamic findStrongestPlayer(playerList){
 
 
 
-dynamic findDeadPlayers(playerList){
-	var ret = [];
-	for(var i= 0; i<playerList.length; i++){
-		var p = playerList[i];
+List<Player> findDeadPlayers(List<Player> playerList){
+	List<Player> ret = [];
+	for(int i= 0; i<playerList.length; i++){
+		Player p = playerList[i];
 		if(p.dead){
 			ret.add(p);
 		}
@@ -2602,10 +2603,10 @@ dynamic findDeadPlayers(playerList){
 
 
 
-dynamic findDoomedPlayers(playerList){
-	var ret = [];
-	for(var i= 0; i<playerList.length; i++){
-		var p = playerList[i];
+List<Player> findDoomedPlayers(List<Player> playerList){
+	List<Player> ret = [];
+	for(int i= 0; i<playerList.length; i++){
+		Player p = playerList[i];
 		if(p.doomed){
 			ret.add(p);
 		}
@@ -2616,9 +2617,9 @@ dynamic findDoomedPlayers(playerList){
 
 //TODO shove this somewhere mroe useful, rename so not just players
 List<GameEntity> findLivingPlayers(List<GameEntity>playerList){
-	var ret = [];
-	for(var i= 0; i<playerList.length; i++){
-		var p = playerList[i];
+	List<GameEntity> ret = [];
+	for(int i= 0; i<playerList.length; i++){
+		GameEntity p = playerList[i];
 		if(!p.dead){
 			ret.add(p);
 		}
@@ -2628,23 +2629,23 @@ List<GameEntity> findLivingPlayers(List<GameEntity>playerList){
 
 
 
-dynamic getPartyPower(party){
+num getPartyPower(List<GameEntity> party){
 	num ret = 0;
-	for(num i = 0; i<party.length; i++){
-		ret += party[i].power;
+	for(int i = 0; i<party.length; i++){
+		ret += party[i].getStat("power");
 	}
 	return ret;
 }
 
 
 
-dynamic getPlayersTitlesHP(playerList){
+String getPlayersTitlesHP(List<Player> playerList){
 	//print(playerList);
 	if(playerList.length == 0){
 		return "";
 	}
-	var ret = playerList[0].htmlTitleHP();
-	for(num i = 1; i<playerList.length; i++){
+	String ret = playerList[0].htmlTitleHP();
+	for(int i = 1; i<playerList.length; i++){
 		ret += " and " + playerList[i].htmlTitleHP();
 	}
 	return ret;
@@ -2652,13 +2653,13 @@ dynamic getPlayersTitlesHP(playerList){
 
 
 
-dynamic getPlayersTitlesNoHTML(playerList){
+String getPlayersTitlesNoHTML(List<Player> playerList){
 	//print(playerList);
 	if(playerList.length == 0){
 		return "";
 	}
-	var ret = playerList[0].title();
-	for(num i = 1; i<playerList.length; i++){
+	String ret = playerList[0].title();
+	for(int i = 1; i<playerList.length; i++){
 		ret += " and " + playerList[i].title();
 	}
 	return ret;
@@ -2666,13 +2667,13 @@ dynamic getPlayersTitlesNoHTML(playerList){
 
 
 
-dynamic getPlayersTitles(playerList){
+String getPlayersTitles(List<Player> playerList){
 	//print(playerList);
 	if(playerList.length == 0){
 		return "";
 	}
-	var ret = playerList[0].htmlTitle();
-	for(num i = 1; i<playerList.length; i++){
+	String ret = playerList[0].htmlTitle();
+	for(int i = 1; i<playerList.length; i++){
 		ret += " and " + playerList[i].htmlTitle();
 	}
 	return ret;
@@ -2680,9 +2681,9 @@ dynamic getPlayersTitles(playerList){
 
 
 
-dynamic partyRollForLuck(players){
+num partyRollForLuck(List<Player> players){
 	num ret = 0;
-	for(num i = 0; i<players.length; i++){
+	for(int i = 0; i<players.length; i++){
 		ret += players[i].rollForLuck();
 	}
 	return ret/players.length;
@@ -2690,12 +2691,12 @@ dynamic partyRollForLuck(players){
 
 
 
-dynamic getPlayersTitlesBasic(playerList){
+String getPlayersTitlesBasic(List<Player> playerList){
 	if(playerList.length == 0){
 		return "";
 	}
-		var ret = playerList[0].htmlTitleBasic();
-		for(num i = 1; i<playerList.length; i++){
+		String ret = playerList[0].htmlTitleBasic();
+		for(int i = 1; i<playerList.length; i++){
 			ret += " and " + playerList[i].htmlTitleBasic();
 		}
 		return ret;
@@ -2703,10 +2704,10 @@ dynamic getPlayersTitlesBasic(playerList){
 
 
 
-dynamic findPlayersWithDreamSelves(playerList){
-	var ret = [];
-	for(var i= 0; i<playerList.length; i++){
-		var p = playerList[i];
+List<Player> findPlayersWithDreamSelves(List<Player> playerList){
+	List<Player> ret = [];
+	for(int i= 0; i<playerList.length; i++){
+		Player p = playerList[i];
 		if(p.dreamSelf && !p.isDreamSelf){
 			ret.add(p);
 		}
@@ -2716,10 +2717,10 @@ dynamic findPlayersWithDreamSelves(playerList){
 
 
 
-dynamic findPlayersWithoutDreamSelves(playerList){
-	var ret = [];
-	for(var i= 0; i<playerList.length; i++){
-		var p = playerList[i];
+List<Player> findPlayersWithoutDreamSelves(List<Player> playerList){
+	List<Player> ret = [];
+	for(int i= 0; i<playerList.length; i++){
+		Player p = playerList[i];
 		if(!p.dreamSelf || p.isDreamSelf){ //if you ARE your dream self, then when you go to sleep....
 			ret.add(p);
 		}
@@ -2731,10 +2732,10 @@ dynamic findPlayersWithoutDreamSelves(playerList){
 
 
 //don't override existing source
-void setEctobiologicalSource(playerList, source){
-	for(var i= 0; i<playerList.length; i++){
-		var p = playerList[i];
-		var g = p.guardian; //not doing this caused a bug in session 149309 and probably many, many others.
+void setEctobiologicalSource(List<Player> playerList, num source){
+	for(int i= 0; i<playerList.length; i++){
+		Player p = playerList[i];
+		Player g = p.guardian; //not doing this caused a bug in session 149309 and probably many, many others.
 		if(p.ectoBiologicalSource == null){
 			p.ectoBiologicalSource = source;
 			g.ectoBiologicalSource = source;
@@ -2745,10 +2746,10 @@ void setEctobiologicalSource(playerList, source){
 
 
 
-dynamic findPlayersWithoutEctobiologicalSource(playerList){
-	var ret = [];
-	for(var i= 0; i<playerList.length; i++){
-		var p = playerList[i];
+List<Player> findPlayersWithoutEctobiologicalSource(List<Player> playerList){
+	List<Player> ret = [];
+	for(int i= 0; i<playerList.length; i++){
+		Player p = playerList[i];
 		if(p.ectoBiologicalSource == null){
 			ret.add(p);
 		}
@@ -2835,10 +2836,10 @@ Player clonePlayer(Player player, Session session, bool isGuardian) {
 }
 
 
-  dynamic findPlayersFromSessionWithId(playerList, source) {
-    var ret = [];
-    for (var i = 0; i < playerList.length; i++) {
-      var p = playerList[i];
+  List<Player> findPlayersFromSessionWithId(List<Player> playerList, num source) {
+    List<Player> ret = [];
+    for (int i = 0; i < playerList.length; i++) {
+      Player p = playerList[i];
       //if it' snull, you could be from here, but not yet ectoborn
       if (p.ectoBiologicalSource == source || p.ectoBiologicalSource == null) {
         ret.add(p);
@@ -2848,9 +2849,9 @@ Player clonePlayer(Player player, Session session, bool isGuardian) {
   }
 
 
-  dynamic findBadPrototyping(playerList) {
+  String findBadPrototyping(List<Player> playerList) {
     for (var i = 0; i < playerList.length; i++) {
-      if (playerList[i].object_to_prototype.power >= 200) {
+      if (playerList[i].object_to_prototype.getStat("power") >= 200) {
         return (playerList[i].object_to_prototype.htmlTitle());
       }
     }
@@ -2858,11 +2859,11 @@ Player clonePlayer(Player player, Session session, bool isGuardian) {
   }
 
 
-  dynamic findHighestMobilityPlayer(playerList) {
-    var ret = playerList[0];
-    for (var i = 0; i < playerList.length; i++) {
-      var p = playerList[i];
-      if (p.mobility > ret.mobility) {
+  Player findHighestMobilityPlayer(List<Player> playerList) {
+    Player ret = playerList[0];
+    for (int i = 0; i < playerList.length; i++) {
+      Player p = playerList[i];
+      if (p.getStat("mobility") > ret.getStat("mobility")) {
         ret = p;
       }
     }
@@ -2870,11 +2871,11 @@ Player clonePlayer(Player player, Session session, bool isGuardian) {
   }
 
 
-  dynamic findLowestMobilityPlayer(playerList) {
-    var ret = playerList[0];
-    for (var i = 0; i < playerList.length; i++) {
-      var p = playerList[i];
-      if (p.mobility < ret.mobility) {
+  Player findLowestMobilityPlayer(List<Player> playerList) {
+    Player ret = playerList[0];
+    for (int i = 0; i < playerList.length; i++) {
+      Player p = playerList[i];
+      if (p.getStat("mobility") < ret.getStat("mobility")) {
         ret = p;
       }
     }
@@ -2882,8 +2883,8 @@ Player clonePlayer(Player player, Session session, bool isGuardian) {
   }
 
 
-  dynamic findGoodPrototyping(playerList) {
-    for (var i = 0; i < playerList.length; i++) {
+  String findGoodPrototyping(List<Player> playerList) {
+    for (int i = 0; i < playerList.length; i++) {
       if (playerList[i].object_to_prototype.illegal == true) {
         //print("found good");
         return (playerList[i].object_to_prototype.htmlTitle());
@@ -2904,18 +2905,18 @@ Player clonePlayer(Player player, Session session, bool isGuardian) {
 
 
 //mobility is "natural" way to sort players but this works, too.
-  void sortPlayersByFreeWill(players) {
+  void sortPlayersByFreeWill(List<Player> players) {
     return players.sort((Player a, Player b) {
       return a.getStat("freeWill") - b.getStat("freeWill");
     });
   }
 
 
-  dynamic compareFreeWill(a, b) {
+  num compareFreeWill(Player a, Player b) {
     return b.getStat("freeWill") - a.getStat("freeWill");
   }
 
-  num getAverageMinLuck(players) {
+  num getAverageMinLuck(List<Player> players) {
     if (players.length == 0) return 0;
     num ret = 0;
     for (num i = 0; i < players.length; i++) {
@@ -2925,67 +2926,67 @@ Player clonePlayer(Player player, Session session, bool isGuardian) {
   }
 
 
-  dynamic getAverageMaxLuck(players) {
+  num getAverageMaxLuck(List<Player> players) {
     if (players.length == 0) return 0;
     num ret = 0;
-    for (num i = 0; i < players.length; i++) {
+    for (int i = 0; i < players.length; i++) {
       ret += players[i].getStat("maxLuck");
     }
     return (ret / players.length).round();
   }
 
 
-  dynamic getAverageSanity(players) {
+  num getAverageSanity(List<Player> players) {
     if (players.length == 0) return 0;
     num ret = 0;
-    for (num i = 0; i < players.length; i++) {
+    for (int i = 0; i < players.length; i++) {
       ret += players[i].getStat("sanity");
     }
     return (ret / players.length).round();
   }
 
 
-  dynamic getAverageHP(players) {
+  num getAverageHP(List<Player> players) {
     if (players.length == 0) return 0;
     num ret = 0;
-    for (num i = 0; i < players.length; i++) {
+    for (int i = 0; i < players.length; i++) {
       ret += players[i].getStat("hp");
     }
     return (ret / players.length).round();
   }
 
 
-  dynamic getAverageMobility(players) {
+  dynamic getAverageMobility(List<Player> players) {
     if (players.length == 0) return 0;
     num ret = 0;
-    for (num i = 0; i < players.length; i++) {
+    for (int i = 0; i < players.length; i++) {
       ret += players[i].getStat("mobility");
     }
     return (ret / players.length).round();
   }
 
 
-  dynamic getAverageRelationshipValue(players) {
+  dynamic getAverageRelationshipValue(List<Player> players) {
     if (players.length == 0) return 0;
     num ret = 0;
-    for (num i = 0; i < players.length; i++) {
+    for (int i = 0; i < players.length; i++) {
       ret += players[i].getAverageRelationshipValue();
     }
     return (ret / players.length).round();
   }
 
 
-  dynamic getAveragePower(players) {
+  num getAveragePower(List<Player> players) {
     if (players.length == 0) return 0;
     num ret = 0;
-    for (num i = 0; i < players.length; i++) {
+    for (int i = 0; i < players.length; i++) {
       ret += players[i].getStat("power");
     }
     return (ret / players.length).round();
   }
 
 
-  String getPVPQuip(deadPlayer, victor, deadRole, victorRole) {
+  String getPVPQuip(Player deadPlayer, Player victor, deadRole, victorRole) {
     if (victor.getPVPModifier(victorRole) >
         deadPlayer.getPVPModifier(deadRole)) {
       return "Which is pretty much how you expected things to go down between a " +
@@ -2999,10 +3000,10 @@ Player clonePlayer(Player player, Session session, bool isGuardian) {
   }
 
 
-  num getAverageFreeWill(players) {
+  num getAverageFreeWill(List<Player> players) {
     if (players.length == 0) return 0;
     num ret = 0;
-    for (num i = 0; i < players.length; i++) {
+    for (int i = 0; i < players.length; i++) {
       ret += players[i].getStat("freeWill");
     }
     return (ret / players.length).round();

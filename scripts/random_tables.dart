@@ -170,18 +170,18 @@ dynamic getRandomElementFromArrayNoSeed(array){
 
 
 
-dynamic getRandomElementFromArrayThatStartsWith(array, letter){
+String getRandomElementFromArrayThatStartsWith(Random rand, List<String> array, String letter){
 	var array2 = makeFilteredCopyForLetters(array, letter);
 	num min = 0;
 	var max = array2.length-1;
-	var i = (seededRandom() * (max - min + 1)).floor() + min;
+	var i = (rand.nextDouble() * (max - min + 1)).floor() + min;
 	return array2[i];
 }
 
 
 
 //regular filter modifies the array. do not want this. bluh.
-dynamic makeFilteredCopyForLetters(array, letter){
+List<String> makeFilteredCopyForLetters(List<String> array, String letter){
 	List<dynamic> tmp = [];
 	for(num i = 0; i<array.length; i++ ){
 		var word = array[i];
@@ -206,7 +206,7 @@ String turnArrayIntoHumanSentence(List<dynamic> a){
 //use class,aspect, and interests to generate a 16 element level array.
 //need to happen ahead of time and have more variety to display on
 //echeladder graphic.  4 interests total
-dynamic getLevelArray(player){
+dynamic getLevelArray(Player player){
 	List<dynamic> ret = [];
 
 	for(int i = 0; i<16; i++){
@@ -224,7 +224,7 @@ dynamic getLevelArray(player){
 					ret.add(getLevelFromInterests(((i-8)/4).round(), player.interest2));
 				}
 			}else if(i%4 == 0 || i < 4){
-				ret.add(getLevelFromFree()); //don't care about repeats here. should be long enough.
+				ret.add(getLevelFromFree(player.session.rand)); //don't care about repeats here. should be long enough.
 			}
 	}
 	return ret;
@@ -232,7 +232,7 @@ dynamic getLevelArray(player){
 
 
 
-String getRandomLandFromPlayer(player){
+String getRandomLandFromPlayer(Player player){
 	List<dynamic> first_arr = [];
 	var aspect = player.aspect;
 	if(aspect == "Space"){
@@ -260,7 +260,7 @@ String getRandomLandFromPlayer(player){
 	}else if(aspect == "Life"){
 		first_arr = life_land_titles;
 	}
-	var tmp = randomFromTwoArrays(first_arr, free_land_titles);
+	var tmp = randomFromTwoArrays(player.session.rand, first_arr, free_land_titles);
 	return tmp;
 	//return "Land of " + tmp[0] + " and " + tmp[1];
 }
@@ -268,30 +268,30 @@ String getRandomLandFromPlayer(player){
 
 
 //handle can either be about interests, or your claspect. each word can be separately origined
-dynamic getRandomChatHandle(class_name, aspect, interest1, interest2){
+dynamic getRandomChatHandle(Random rand, String class_name, String aspect, String interest1, String interest2){
 	//print("Class: " + class_name + "aspect: " + aspect);
 	String first = "";
-	var rand = seededRandom();
-	if(rand>0.3){
-		first = getInterestHandle1(class_name, interest1);
-	}else if(rand > .6){
-		first = getInterestHandle1(class_name, interest2);
+	var r = rand.nextDouble();
+	if(r>0.3){
+		first = getInterestHandle1(rand, class_name, interest1);
+	}else if(r > .6){
+		first = getInterestHandle1(rand, class_name, interest2);
 	}else{
-		first = getBlandHandle1(class_name);
+		first = getBlandHandle1(rand, class_name);
 	}
 	if(first == null || first == ""){
-		first = getBlandHandle1(class_name);  //might have forgot to have a interest handle of the right letter.
+		first = getBlandHandle1(rand, class_name);  //might have forgot to have a interest handle of the right letter.
 	}
 	String second = "";
-	if(rand>.3){
-		second = getInterestHandle2(aspect, interest1);
-	}else if(rand > .6){
-		second = getInterestHandle2(aspect, interest2);
+	if(r>.3){
+		second = getInterestHandle2(rand, aspect, interest1);
+	}else if(r > .6){
+		second = getInterestHandle2(rand, aspect, interest2);
 	}else{
-		second = getBlandHandle2(aspect);
+		second = getBlandHandle2(rand, aspect);
 	}
 	if(second == null || second == ""){
-		second = getBlandHandle2(aspect);
+		second = getBlandHandle2(rand, aspect);
 	}
 	return first+second;
 }
@@ -571,39 +571,40 @@ List<String> interestCategoryToInterestList(interestWord){
 	if(interestWord == "Social") return social_interests;
 	if(interestWord == "Romance") return romantic_interests;
 	if(interestWord == "Academic") return academic_interests;
+	return null;
 }
 
 
 
-dynamic getInterestHandle1(class_name, interest){
+dynamic getInterestHandle1(Random rand, String class_name, String interest){
 	if(music_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(music_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, music_handles1, class_name.toLowerCase()[0]);
 	}else if (culture_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(culture_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, culture_handles1, class_name.toLowerCase()[0]);
 	}else if (writing_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(writing_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, writing_handles1, class_name.toLowerCase()[0]);
 	}else if (pop_culture_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(pop_culture_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, pop_culture_handles1, class_name.toLowerCase()[0]);
 	}else if (technology_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(technology_handles2, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, technology_handles2, class_name.toLowerCase()[0]);
 	}else if (social_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(social_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, social_handles1, class_name.toLowerCase()[0]);
 	}else if (romantic_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(romantic_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, romantic_handles1, class_name.toLowerCase()[0]);
 	}else if (academic_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(academic_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, academic_handles1, class_name.toLowerCase()[0]);
 	}else if (comedy_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(comedy_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, comedy_handles1, class_name.toLowerCase()[0]);
 	}else if (domestic_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(domestic_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, domestic_handles1, class_name.toLowerCase()[0]);
 	}else if (athletic_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(athletic_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, athletic_handles1, class_name.toLowerCase()[0]);
 	}else if (terrible_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(terrible_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, terrible_handles1, class_name.toLowerCase()[0]);
 	}else if (fantasy_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(fantasy_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, fantasy_handles1, class_name.toLowerCase()[0]);
 	}else if (justice_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(justice_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, justice_handles1, class_name.toLowerCase()[0]);
 	}
 	print("I didn't return anything!? What was my interest: " + interest);
 	return null;
@@ -611,42 +612,42 @@ dynamic getInterestHandle1(class_name, interest){
 
 
 
-dynamic getInterestHandle2(aspect, interest){
+dynamic getInterestHandle2(Random rand, String aspect, String interest){
 	if(music_interests.indexOf(interest) != -1){
-		return getRandomElementFromArrayThatStartsWith(music_handles2, aspect.toUpperCase()[0]);
+		return getRandomElementFromArrayThatStartsWith(rand, music_handles2, aspect.toUpperCase()[0]);
 	}else if (culture_interests.indexOf(interest) != -1){
-		return getRandomElementFromArrayThatStartsWith(culture_handles2, aspect.toUpperCase()[0]);
+		return getRandomElementFromArrayThatStartsWith(rand, culture_handles2, aspect.toUpperCase()[0]);
 	}else if (writing_interests.indexOf(interest) != -1){
-		return getRandomElementFromArrayThatStartsWith(writing_handles2, aspect.toUpperCase()[0]);
+		return getRandomElementFromArrayThatStartsWith(rand, writing_handles2, aspect.toUpperCase()[0]);
 	}else if (pop_culture_interests.indexOf(interest) != -1){
-		return getRandomElementFromArrayThatStartsWith(pop_culture_handles2, aspect.toUpperCase()[0]);
+		return getRandomElementFromArrayThatStartsWith(rand, pop_culture_handles2, aspect.toUpperCase()[0]);
 	}else if (technology_interests.indexOf(interest) != -1){
-		return getRandomElementFromArrayThatStartsWith(technology_handles2, aspect.toUpperCase()[0]);
+		return getRandomElementFromArrayThatStartsWith(rand, technology_handles2, aspect.toUpperCase()[0]);
 	}else if (social_interests.indexOf(interest) != -1){
-		return getRandomElementFromArrayThatStartsWith(social_handles2, aspect.toUpperCase()[0]);
+		return getRandomElementFromArrayThatStartsWith(rand, social_handles2, aspect.toUpperCase()[0]);
 	}else if (romantic_interests.indexOf(interest) != -1){
-		return getRandomElementFromArrayThatStartsWith(romantic_handles2, aspect.toUpperCase()[0]);
+		return getRandomElementFromArrayThatStartsWith(rand, romantic_handles2, aspect.toUpperCase()[0]);
 	}else if (academic_interests.indexOf(interest) != -1){
-		return getRandomElementFromArrayThatStartsWith(academic_handles2, aspect.toUpperCase()[0]);
+		return getRandomElementFromArrayThatStartsWith(rand, academic_handles2, aspect.toUpperCase()[0]);
 	}else if (comedy_interests.indexOf(interest) != -1){
-		return getRandomElementFromArrayThatStartsWith(comedy_handles2, aspect.toUpperCase()[0]);
+		return getRandomElementFromArrayThatStartsWith(rand, comedy_handles2, aspect.toUpperCase()[0]);
 	}else if (domestic_interests.indexOf(interest) != -1){
-		return getRandomElementFromArrayThatStartsWith(domestic_handles2, aspect.toUpperCase()[0]);
+		return getRandomElementFromArrayThatStartsWith(rand, domestic_handles2, aspect.toUpperCase()[0]);
 	}else if (athletic_interests.indexOf(interest) != -1){
-		return getRandomElementFromArrayThatStartsWith(athletic_handles2, aspect.toUpperCase()[0]);
+		return getRandomElementFromArrayThatStartsWith(rand, athletic_handles2, aspect.toUpperCase()[0]);
 	}else if (terrible_interests.indexOf(interest) != -1){
-		return getRandomElementFromArrayThatStartsWith(terrible_handles2, aspect.toUpperCase()[0]);
+		return getRandomElementFromArrayThatStartsWith(rand, terrible_handles2, aspect.toUpperCase()[0]);
 	}else if (fantasy_interests.indexOf(interest) != -1){
-		return getRandomElementFromArrayThatStartsWith(fantasy_handles2, aspect.toUpperCase()[0]);
+		return getRandomElementFromArrayThatStartsWith(rand, fantasy_handles2, aspect.toUpperCase()[0]);
 	}else if (justice_interests.indexOf(interest) != -1){
-		return getRandomElementFromArrayThatStartsWith(justice_handles2, aspect.toUpperCase()[0]);
+		return getRandomElementFromArrayThatStartsWith(rand, justice_handles2, aspect.toUpperCase()[0]);
 	}
 	return null;
 }
 
 
 
-dynamic getBlandHandle1(class_name){
+String getBlandHandle1(Random rand, String class_name){
 	List<dynamic> second_arr = [];
 	if(class_name == "Maid"){
 		second_arr = maid_handles;
@@ -673,12 +674,12 @@ dynamic getBlandHandle1(class_name){
 	}else if(class_name == "Witch"||class_name =="Waste"){
 		second_arr = witch_handles;
 	}
-	return getRandomElementFromArray(second_arr);
+	return rand.pickFrom(second_arr);
 }
 
 
 
-dynamic getBlandHandle2(aspect){
+String getBlandHandle2(Random rand, String aspect){
 	List<dynamic> first_arr = [];
 	if(aspect == "Space"){
 		first_arr = space_handles;
@@ -705,13 +706,13 @@ dynamic getBlandHandle2(aspect){
 	}else if(aspect == "Life"){
 		first_arr = life_handles;
 	}
-	return getRandomElementFromArray(first_arr);
+	return rand.pickFrom(first_arr);
 }
 
 
 
 
-dynamic getRandomChatHandleOld(class_name, aspect){
+String getRandomChatHandleOld(Random rand, String class_name, String aspect){
 	List<dynamic> first_arr = [];
 	if(aspect == "Space"){
 		first_arr = space_handles;
@@ -765,14 +766,14 @@ dynamic getRandomChatHandleOld(class_name, aspect){
 	}else if(class_name == "Witch"){
 		second_arr = witch_handles;
 	}
-	var tmp = randomFromTwoArraysOrdered(second_arr, first_arr);
+	var tmp = randomFromTwoArraysOrdered(rand, second_arr, first_arr);
 	return tmp[0]  + tmp[1];
 }
 
 
 
-void getLevelFromFree(){
-	return getRandomElementFromArray(free_levels);
+void getLevelFromFree(Random rand){
+	return rand.pickFrom(free_levels);
 }
 
 
@@ -928,7 +929,7 @@ dynamic getRandomDenizenQuestFromAspect(player){
 
 
 
-dynamic getRandomQuestFromAspect(aspect, postDenizen){
+dynamic getRandomQuestFromAspect(Random rand, String aspect, bool postDenizen){
 	//print("looking for level from aspect");
 	List<dynamic> first_arr = [];
 	if(aspect == "Space"){
@@ -968,7 +969,7 @@ dynamic getRandomQuestFromAspect(aspect, postDenizen){
 		if(!postDenizen) first_arr = life_quests;
 		if(postDenizen) first_arr = postdenizen_life_quests;
 	}
-	return getRandomElementFromArray(first_arr);
+	return rand.pickFrom(first_arr);
 }
 
 
@@ -1039,7 +1040,7 @@ int getRandomIntNoSeed(min, max) {
     return min + rnd * (max - min);
 }*/
 
-dynamic getRandomQuestFromClass(class_name, postDenizen){
+dynamic getRandomQuestFromClass(Random rand, String class_name, bool postDenizen){
 	//print("looking for level from class");
 	List<dynamic> first_arr = [];
 	if(class_name == "Maid"){
@@ -1094,23 +1095,23 @@ dynamic getRandomQuestFromClass(class_name, postDenizen){
 		if(!postDenizen) first_arr = generic_quests;
 		if(postDenizen) first_arr = postdenizen_generic_quests;
 	}
-	return getRandomElementFromArray(first_arr);
+	return rand.pickFrom(first_arr);
 }
 
 
 
-dynamic randomFromTwoArrays(arr1, arr2){
-	if(seededRandom() > .5){
-		return [getRandomElementFromArray(arr2), getRandomElementFromArray(arr1)];
+List<T> randomFromTwoArrays<T>(Random rand, List<T> arr1, List<T> arr2){
+	if(rand.nextDouble() > .5){
+		return [rand.pickFrom(arr2), rand.pickFrom(arr1)];
 	}else{
-		return [getRandomElementFromArray(arr1), getRandomElementFromArray(arr2)];
+		return [rand.pickFrom(arr1), rand.pickFrom(arr2)];
 	}
 }
 
 
 
-dynamic randomFromTwoArraysOrdered(arr1, arr2){
-	return [getRandomElementFromArray(arr1), getRandomElementFromArray(arr2)];
+List<T> randomFromTwoArraysOrdered<T>(Random rand, List<T> arr1, List<T> arr2){
+	return [rand.pickFrom(arr1), rand.pickFrom(arr2)];
 }
 
 
@@ -1130,14 +1131,15 @@ void debug(String str){
 
 
 //why does this not work with seeded randomness?
-List<T> shuffle<T>(List<T> array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
+List<T> shuffle<T>(Random rand, List<T> array) {
+  int currentIndex = array.length, randomIndex;
+  T temporaryValue;
 
   // While there remain elements to shuffle...
   while (0 != currentIndex) {
 
     // Pick a remaining element...
-    randomIndex = (seededRandom() * currentIndex).floor;
+    randomIndex = rand.nextInt(currentIndex);//(rand.nextDouble() * currentIndex).floor();
     currentIndex -= 1;
 
     // And swap it with the current element.

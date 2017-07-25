@@ -142,47 +142,47 @@ class RapTemplate {
 
 
 	List<String> getRapLineForPlayer(Player player){
-			String interest = getRandomElementFromArray([player.interest1, player.interest2]);
-			String firstWord = this.findWordBasedOnPart1AndInterest(interest);
+			String interest = player.session.rand.pickFrom([player.interest1, player.interest2]);
+			String firstWord = this.findWordBasedOnPart1AndInterest(player.session.rand, interest);
 			String secondWord = null;
 		  firstWord = tryToUseRhyme(firstWord, player);
 			if(firstWord == null){
 				//second shot for first word
-				firstWord = this.findWordBasedOnPart1AndInterest(interest);
+				firstWord = this.findWordBasedOnPart1AndInterest(player.session.rand, interest);
 			  firstWord = tryToUseRhyme(firstWord, player);
 			}
 			//print("first word final is: " + firstWord);
 			if(firstWord != null){
-			  secondWord = this.findWordBasedOnPart2AndInterestAndPart1Word(interest, firstWord);
+			  secondWord = this.findWordBasedOnPart2AndInterestAndPart1Word(player.session.rand, interest, firstWord);
 				//print("second word is: " + secondWord);
 			  secondWord = tryToUseRhyme(secondWord, player);
 				if(secondWord == null){
 					//second shot for first word
-					secondWord = this.findWordBasedOnPart2AndInterestAndPart1Word(interest, firstWord);
+					secondWord = this.findWordBasedOnPart2AndInterestAndPart1Word(player.session.rand, interest, firstWord);
 					//print("second word2 is: " + secondWord);
 				  secondWord = tryToUseRhyme(secondWord, player);
 				}
 		}
 			//print("second word final is: " + secondWord);
 			String str = "";
-			str += rapInterjection() + ", " + this.part1;
+			str += rapInterjection(player.session.rand) + ", " + this.part1;
 			if(firstWord != null){
 					str += firstWord;
 					str += this.part2;
 					if(secondWord != null){
 						str += secondWord + ".";
 					}else{
-						str += rapMistake();
+						str += rapMistake(player.session.rand);
 					}
 			}else{
-				str += rapMistake();
+				str += rapMistake(player.session.rand);
 			}
 			return [player.chatHandleShort()+ ": "+player.quirk.translate(str), firstWord, secondWord];
 	}
-	String findWordBasedOnPart1AndInterest(interest){
+	String findWordBasedOnPart1AndInterest(Random rand, String interest){
 		List<String> wordTypeArray = this.matchInterestToWordTypeArray(interest, this.part1Type);
 		if(wordTypeArray != null){
-				return getRandomElementFromArray(wordTypeArray);
+				return rand.pickFrom(wordTypeArray);
 		}
 		return null;
 	}
@@ -283,7 +283,7 @@ class RapTemplate {
 		return null;
 	}
 
-	dynamic findWordBasedOnPart2AndInterestAndPart1Word(String interest, String word){
+	dynamic findWordBasedOnPart2AndInterestAndPart1Word(Random rand, String interest, String word){
 		//first, I need to know which set of rhyming words the word falls in.
 		List<String> rhyme_array = this.matchWordWithRhymeArray(word);
 		//once I know that, see if I can find one of the rhyming words in the interest verb/noun list.
@@ -298,7 +298,7 @@ class RapTemplate {
 		removeFromArray(word, results); //don't even try to rhyme with yourself.
 		//print("trying to rhyme: " + word + " found: " + results);
 		if(results && results.length > 0){
-			return getRandomElementFromArray(results);
+			return rand.pickFrom(results);
 		}
 		return null;
 
@@ -339,16 +339,16 @@ dynamic tryToUseRhyme(rhyme, player){
 
 List<T> intersection<T>(List<T> a, List<T> b) => a.where((T item) => b.contains(item)).toList();
 
-String rapMistake() {
+String rapMistake(Random rand) {
 	var mistakes = ["...umm...,", "...fuck", "...fuck, can we start over? ", "...pretend I just finished that, okay?", "er...Shit.", "errr...", "ummm...shit.", "...fucking hell.", "what the hell, I know I had a rhyme for this...", "...okay, should I just...like, give up here?","and gog fucking damn it", "...fuuuuuuuuuuuuuuuuuu","... fuck my life"];
-	return getRandomElementFromArray(mistakes);
+	return rand.pickFrom(mistakes);
 }
 
 
 
-dynamic rapInterjection(){
+dynamic rapInterjection(Random rand){
 	var interjections = ["Yo", "Trust", "Represent", "Respect", "Word", "Dawg", "Dog", "Bro", "Sup", "Okay", "What", "Yeah", "Aight", "Yeah Dog", "Fo, Shizzle", "Hey", "Boo yeah", "Break it down", "Fuck", "Shit", "Peace", "True that", "Double True", "Word up", "My homey", "Homey", "You knows it", "Listen up","Back the fuck up","3,2,1"];
-	return getRandomElementFromArray(interjections);
+	return rand.pickFrom(interjections);
 }
 
 
@@ -358,7 +358,7 @@ dynamic rapInterjection(){
 
 List<dynamic> getRapForPlayer(Player player, String returnString, num score) {
 
-	var chosenRapTemplate = getRandomElementFromArray(rapTemplates);
+	var chosenRapTemplate = player.session.rand.pickFrom(rapTemplates);
 	var raps = chosenRapTemplate.getRapLineForPlayer(player);
 	var str = raps[0];
 	var firstWord = raps[1];

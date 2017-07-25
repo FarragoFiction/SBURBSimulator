@@ -170,7 +170,7 @@ class GameEntity implements Comparable{
   bool useFraymotif(Element div, Team mySide, GameEntity target, Team targetTeam){
     List<GameEntity> living_enemies = targetTeam.getLivingMinusAbsconded();
     List<GameEntity> living_allies = mySide.getLivingMinusAbsconded();
-    if(seededRandom() > 0.5) return false; //don't use them all at once, dunkass.
+    if(this.session.rand.nextDouble() > 0.5) return false; //don't use them all at once, dunkass.
     List<Fraymotif> usableFraymotifs = this.session.fraymotifCreator.getUsableFraymotifs(this, living_allies, living_enemies);
     if(crowned != null){  //ring/scepter has fraymotifs, too.  (maybe shouldn't let humans get thefraymotifs but what the fuck ever. roxyc could do voidy shit.)
       usableFraymotifs.addAll(this.session.fraymotifCreator.getUsableFraymotifs(crowned, living_allies, living_enemies));
@@ -178,14 +178,14 @@ class GameEntity implements Comparable{
     if(usableFraymotifs.length == 0) return false;
     var mine = getStat("sanity");
     var theirs = getAverageSanity(living_enemies);
-    if(mine+200 < theirs && seededRandom() < 0.5){
+    if(mine+200 < theirs && this.session.rand.nextDouble() < 0.5){
       print("Too insane to use fraymotifs: " + htmlTitleHP() +" against " + target.htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id.toString());
       div.appendHtml(" The " + htmlTitleHP() + " wants to use a Fraymotif, but they are too crazy to focus. ");
       return false;
     }
     mine = getStat("freeWill") ;
     theirs = getAverageFreeWill(living_enemies);
-    if(mine +200 < theirs && seededRandom() < 0.5){
+    if(mine +200 < theirs && this.session.rand.nextDouble() < 0.5){
       print("Too controlled to use fraymotifs: " + htmlTitleHP() +" against " + target.htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id.toString());
       div.appendHtml(" The " + htmlTitleHP() + " wants to use a Fraymotif, but Fate dictates otherwise. ");
       return false;
@@ -277,7 +277,7 @@ class GameEntity implements Comparable{
       return;
     }
     //mobility dodge
-    var rand = getRandomInt(1,
+    var rand = this.session.rand.nextIntRange(1,
         100); //don't dodge EVERY time. oh god, infinite boss fights. on average, fumble a dodge every 4 turns.;
     if (defense.getStat("mobility") > offense.getStat("mobility") * 10 + 200 &&
         rand > 25) {
@@ -360,7 +360,7 @@ class GameEntity implements Comparable{
 
   Team pickATeamToTarget(List<Team> team){
     //TODO later add actual AI to this but for now, should only be one other team.
-    return getRandomElementFromArray(team);
+    return this.session.rand.pickFrom(team);
   }
 
   GameEntity pickATarget(List<GameEntity> targets){
@@ -484,7 +484,7 @@ class GameEntity implements Comparable{
     if(pname == "Yaldabaoth"){
       var misNames = ['Yaldobob', 'Yolobroth', 'Yodelbooger', "Yaldabruh", 'Yogertboner','Yodelboth'];
       print("Yaldobooger!!! " + this.session.session_id.toString());
-      pname = getRandomElementFromArray(misNames);
+      pname = this.session.rand.pickFrom(misNames);
     }
     if(this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
     return ret + pname; //TODO denizens are aspect colored.
@@ -509,8 +509,9 @@ class GameEntity implements Comparable{
   }
 
 
-  void getRelationshipWith(GameEntity target){
+  Relationship getRelationshipWith(GameEntity target){
     //stub for boss fights where an asshole absconds.
+	  return null;
   }
 
   void makeDead(String causeOfDeath){
@@ -524,10 +525,10 @@ class GameEntity implements Comparable{
   //takes in a stat name we want to use. for example, use only min luck to avoid bad events.
   num rollForLuck(String stat){
     if(stat==""){
-      return getRandomInt(this.getStat("minLuck"), this.getStat("maxLuck"));
+      return this.session.rand.nextIntRange(this.getStat("minLuck"), this.getStat("maxLuck"));
     }else{
       //don't care if it's min or max, just compare it to zero.
-      return getRandomInt(0, this.getStat(stat));
+      return this.session.rand.nextIntRange(0, this.getStat(stat));
     }
 
   }

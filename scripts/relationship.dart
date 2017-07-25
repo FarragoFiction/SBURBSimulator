@@ -4,6 +4,7 @@ part of SBURBSim;
 //can be positive or negative. if high enough, can
 //turn into romance in a quadrant.
 class Relationship {
+	Player source;
 	num value;
 	Player target;
 	String saved_type = "";
@@ -20,7 +21,7 @@ class Relationship {
 	String spades = "Kismesissitude";	
 
 
-	Relationship([num this.value = 0, Player this.target = null]) {}
+	Relationship(Player this.source, [num this.value = 0, Player this.target = null]) {}
 
 
 	String nounDescription(){
@@ -82,7 +83,7 @@ class Relationship {
 			return this.saved_type;
 		}
 
-		if(seededRandom() > 0.25){
+		if(this.source.session.rand.nextDouble() > 0.25){
 			//enter or leave a relationship, or vaccilate.
 			this.old_type = this.saved_type;
 			this.saved_type = this.changeType();
@@ -152,7 +153,7 @@ class Relationship {
   //TODO if i remember right, this is used for alien players. how does Dart handle list of vars again? oh. it doesn't.
   //is it reflection only?
   static Relationship cloneRelationship(Relationship relationship){
-		Relationship clone = new Relationship();
+		Relationship clone = new Relationship(relationship.source);
 		clone.value = relationship.value;
     clone.target = relationship.target;
     clone.saved_type = relationship.saved_type;
@@ -263,14 +264,14 @@ class Relationship {
 
 
 
-  static Relationship randomBlandRelationship(Player targetPlayer){
-		return new Relationship(1, targetPlayer);
+  static Relationship randomBlandRelationship(Player source, Player targetPlayer){
+		return new Relationship(source, 1, targetPlayer);
 	}
 
 
 
-  static dynamic randomRelationship(Player targetPlayer){
-		Relationship r = new Relationship(getRandomInt(-21,21), targetPlayer);
+  static dynamic randomRelationship(Player source, Player targetPlayer){
+		Relationship r = new Relationship(source, source.session.rand.nextIntRange(-21,21), targetPlayer);
 
 		return r;
 	}
@@ -280,7 +281,7 @@ class Relationship {
 //go through every pair of relationships. if both have same type AND they are lucky, be in quadrant.   (clover was VERY 'lucky' in love.)
 //high is flushed or pale (if one player much more triggered than other). low is spades. no clubs for now.
 //yes, claspect boosts might alter relationships from 'initial' value, but that just means they characters are likelyt o break up. realism.
-	static void decideInitialQuadrants(List<Player> players){
+	static void decideInitialQuadrants(Random rand, List<Player> players){
 		num rollNeeded = 50;
 		for(var i =0; i<players.length; i++){
 			Player player = players[i];
@@ -298,7 +299,7 @@ class Relationship {
 						}
 					}else if(r.type() == r.badBig){
 						if(player.getStat("sanity") > 0 || r.target.getStat("sanity") > 0 || roll < rollNeeded + 10){ //likely to murder each other
-							Player ausp = getRandomElementFromArray(players);
+							Player ausp = rand.pickFrom(players);
 							if(ausp != null && ausp != player && ausp != r.target){
 								makeClubs(ausp, player, r.target);
 							}
