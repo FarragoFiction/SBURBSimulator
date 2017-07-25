@@ -1,4 +1,4 @@
-
+/* TODO fix this l8r
 //TODO NOTE FROM JR: This is for the rare session finder and will be a BITCH to convert. wait on this.
 //how AuthorBot summarizes a session
 //eventually moon prophecies will use this.
@@ -983,3 +983,4 @@ void toggleAverage(){
 		querySelector('#multiSessionSummaryAverage').toggle();
 		displayAverages = !displayAverages;
 }
+*/

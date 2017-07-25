@@ -1,5 +1,5 @@
 
-
+/* TODO fix l8r
 bool simulationMode = false;
 bool debugMode = false;
 num spriteWidth = 400;
@@ -512,3 +512,4 @@ void makeAuthorAvatar(){
 	players[0].bloodColor = "#ff0000";
 	players[0].mylevels = ["INSTEAD","a CORPSE JUST RENDERS HERE","STILL CAN LEVEL UP.","OH, AND CORPSES.","SAME LEVELS","BUT STILL HAVE","IMAGE","THEY GET A DIFFERENT","BEFORE MAXING OUT","IF THEY GODTIER","AND GO UP THE LADDER","LEVELS NOW","16 PREDETERMINED","HAVE","PLAYERS","I FINISHED ECHELADDERS."];
 }
+*/
