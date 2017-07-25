@@ -921,12 +921,12 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	}
 	void makeGuardian(){
 		//print("guardian for " + player.titleBasic());
-		var player = this;
+		Player player = this;
 		var possibilities = available_classes_guardians;
 		if(possibilities.length == 0) possibilities = classes;
 		//print("class names available for guardians is: " + possibilities);
-		var guardian = randomPlayerWithClaspect(this.session, this.session.rand.pickFrom(possibilities), this.aspect);
-        available_classes_guardians.removeFromArray(guardian.class_name);
+		Player guardian = randomPlayerWithClaspect(this.session, this.session.rand.pickFrom(possibilities), this.aspect);
+    removeFromArray(guardian.class_name,available_classes_guardians);
 		guardian.isTroll = player.isTroll;
 		guardian.quirk.favoriteNumber = player.quirk.favoriteNumber;
 		if(guardian.isTroll){
@@ -946,7 +946,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		guardian.leftHorn = player.leftHorn;
 		guardian.rightHorn = player.rightHorn;
 		guardian.level_index = 5; //scratched kids start more leveled up
-		guardian.power = 50;
+		guardian.setStat("power",50);
 		guardian.leader = player.leader;
 		if(this.session.rand.nextDouble() >0.5){ //have SOMETHING in common with your ectorelative.
 			guardian.interest1 = player.interest1;
@@ -964,7 +964,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			this.processStatPowerIncrease(powerBoost, this.associatedStats[i]);
 		}
 	}
-	dynamic modPowerBoostByClass(powerBoost, stat){
+	num modPowerBoostByClass(powerBoost, stat){
 		switch (this.class_name) {
 			case "Knight":
 				if(stat.multiplier > 0){

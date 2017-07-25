@@ -200,7 +200,7 @@ bool printCorruptionMessage(String msg, String url, String lineNo, String column
 }
 
 
-dynamic getYellowYardEvents(session){
+String getYellowYardEvents(session){
   String ret = "";
   for(num i = 0; i<session.yellowYardController.eventsToUndo.length; i++){
     var decision = session.yellowYardController.eventsToUndo[i];
@@ -211,13 +211,13 @@ dynamic getYellowYardEvents(session){
 
 
 
-dynamic scratchedLineageText(lineage){
+String scratchedLineageText(lineage){
   String scratched = "";
   String ret = "";
-  var yellowYard = getYellowYardEvents(lineage[0]);
+  String yellowYard = getYellowYardEvents(lineage[0]);
   if(yellowYard != ". ") yellowYard = "Which had YellowYardEvents:  " + yellowYard;
   if(lineage[0].scratched) scratched = "(scratched)";
-  ret += lineage[0].session_id + scratched + yellowYard;
+  ret += lineage[0].session_id.toString() + scratched + yellowYard;
   for(num i = 1; i< lineage.length; i++){
     String scratched = "";
     yellowYard = getYellowYardEvents(lineage[i]);
