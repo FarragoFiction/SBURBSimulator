@@ -175,7 +175,7 @@ class Session {
 		that.aliensClonedOnArrival = [];//jettison old clones.
 		addAliensToSession(curSessionGlobalVar, aliens);
 
-		restartSession();//in controller
+		SimController.instance.restartSession();//in controller
 	}
 	void addEventToUndoAndResetScratch(e){
 		print('yellow yard from scratched session');
@@ -273,7 +273,7 @@ class Session {
 			p.generateRelationships(this.players);
 		}
 
-		Relationship.decideInitialQuadrants(this.players);
+		Relationship.decideInitialQuadrants(rand, this.players);
 
 		this.hardStrength = 1000 + 50 * this.players.length;
 	}
@@ -326,7 +326,7 @@ class Session {
 			var g = this.players[j].guardian;
 			g.generateRelationships(guardians);
 		}
-		Relationship.decideInitialQuadrants(guardians);
+		Relationship.decideInitialQuadrants(rand,guardians);
 	}
 	void randomizeEntryOrder(){
 		this.players = shuffle(this.rand, this.players);
@@ -430,6 +430,8 @@ class Session {
 			return [this];
 	}
 	dynamic generateSummary(){
+	  throw"TODO: FIX AB";
+	  /*
 		var summary = new SessionSummary();
 		summary.setMiniPlayers(this.players);
 		summary.blackKingDead = this.king.dead || this.king.getStat("currentHP") <= 0;
@@ -502,6 +504,7 @@ class Session {
 		summary.hasClubs = this.hasClubs;
 		summary.hasHearts =  this.hasHearts;
 		return summary;
+		*/
 	}
 
 }
@@ -545,12 +548,12 @@ dynamic findSceneNamed(scenesToCheck, name){
 
 		for(num i = 0; i<aliens.length; i++){
 			var survivor = aliens[i];
-			newSession.aliensClonedOnArrival.add(clonePlayer(survivor, newSession));
+			newSession.aliensClonedOnArrival.add(clonePlayer(survivor, newSession,false));
 		}
 		//don't want relationships to still be about original players
 		for(num i = 0; i<newSession.aliensClonedOnArrival.length; i++){
 			var clone = newSession.aliensClonedOnArrival[i];
-			transferFeelingsToClones(clone, newSession.aliensClonedOnArrival);
+			Relationship.transferFeelingsToClones(clone, newSession.aliensClonedOnArrival);
 		}
 			//print("generated relationships between clones");
 		//generate relationships AFTER saving a backup of hte player.
