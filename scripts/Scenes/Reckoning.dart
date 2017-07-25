@@ -47,7 +47,7 @@ class Reckoning extends Scene {
 			intro += " was totally supposed to have taken care of the ectobiology. ";
 			intro += " They didn't. They totally didn't.  And now, it turns out that none of the players could have possibly been born in the first place. ";
 			intro += " Textbook case of a doomed timeline.  Apparently the Time Player ";
-			if(findAspectPlayer(session.players, "Time").doomedTimeClones >0){
+			if(findAspectPlayer(session.players, "Time").doomedTimeClones.length >0){
 				intro += ", despite all the doomed time clone shenanigans, ";
 			}
 			intro += "was not on the ball with timeline management. Nothing you can do about it. <Br><Br>GAME OVER.";
@@ -75,7 +75,7 @@ class Reckoning extends Scene {
 			intro += " <br><br>No one is alive. <BR><BR>Game Over.  ";
 			intro += "<img src ;= 'images/abj_watermark.png' class='watermark'>";
 			var strongest = findStrongestPlayer(this.session.players);
-			intro += "The MVP of the session was: " + strongest.htmlTitle() + " with a power of: " + strongest.power;
+			intro += "The MVP of the session was: " + strongest.htmlTitle() + " with a power of: " + strongest.getStat("power");
 		}
 		intro += "<br><br>";
 

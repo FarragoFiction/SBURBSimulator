@@ -61,7 +61,7 @@ class LifeStuff extends Scene {
 		for(num i = 0; i<guides.length; i++){
 			if(nonGuides.length > 0){
 				var guide = guides[i];
-				var nonGuide = getRandomElementFromArray(nonGuides);
+				var nonGuide = rand.pickFrom(nonGuides);
 				removeFromArray(nonGuide, nonGuides);
 				removeGuides.add(guide);
 				this.enablingPlayerPairs.add([guide, nonGuide, false]);
@@ -75,9 +75,9 @@ class LifeStuff extends Scene {
 		nonGuides.addAll(guides);
 		if(this.session.dreamBubbleAfterlife){
 			for(num i = 0; i<nonGuides.length; i++){
-					var rand = seededRandom() ;//only spend half your time dreaming right.;
+					var r = rand.nextDouble() ;//only spend half your time dreaming right.;
 					var player = nonGuides[i];
-					if(!player.dreamSelf && !player.dead && rand > .5){
+					if(!player.dreamSelf && !player.dead && r > .5){
 						this.enablingPlayerPairs.add([player, null, true]);
 					}
 			}
@@ -430,7 +430,7 @@ class LifeStuff extends Scene {
 		}
 	}
 	dynamic drainDeadForReviveSelf(div, String str, Player player, String className, String enablingAspect){
-			Player ghost = this.session.afterLife.findAnyUndrainedGhost(); //not picky in a crisis.
+			Player ghost = this.session.afterLife.findAnyUndrainedGhost(player.rand); //not picky in a crisis.
 			String ghostName = "dead player";
 			//need to find my own ghost and remove it from the afterlife.
 			var myGhost = this.session.afterLife.findClosesToRealSelf(player);

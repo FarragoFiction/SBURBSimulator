@@ -16,7 +16,7 @@ class VoidyStuff extends Scene {
 	bool trigger(playerList){
 		this.playerList = playerList;
 		this.player = null;
-		if(seededRandom() > .5){
+		if(rand.nextDouble() > .5){
 			this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Void");
 			if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Rage"); //if there is no void player
 		}else{
@@ -25,10 +25,10 @@ class VoidyStuff extends Scene {
 		}
 
 		if(this.enablingPlayer){
-			if(this.enablingPlayer.isActive() || seededRandom() > .5){
+			if(this.enablingPlayer.isActive() || rand.nextDouble() > .5){
 				this.player = this.enablingPlayer;
 			}else{  //somebody else can be voided.
-				this.player = getRandomElementFromArray(this.session.availablePlayers);  //don't forget that light players will never have void display none
+				this.player = rand.pickFrom(this.session.availablePlayers);  //don't forget that light players will never have void display none
 			}
 		}
 		return this.player != null;
@@ -38,7 +38,7 @@ class VoidyStuff extends Scene {
 	void renderContent(div){
 		this.player.increasePower();
 		this.player.increasePower();
-		if(this.enablingPlayer.aspect == "Void") this.player.corruptionLevelOther += getRandomInt(1,5); //void isn't a safe place to be.
+		if(this.enablingPlayer.aspect == "Void") this.player.corruptionLevelOther += rand.nextIntRange(1,5); //void isn't a safe place to be.
 		//div.append("<br>"+this.content());
 		div.append("<br><img src = 'images/sceneIcons/shenanigans_icon.png'> ");
 		this.chooseShenanigans(div);
@@ -78,19 +78,19 @@ class VoidyStuff extends Scene {
 		normalDiv = querySelector("#"+div.attr("id")+ "voidyStuffNormal");
 		var newDiv = querySelector("#"+div.attr("id")+ "voidyStuffSpecial");
 		//don't godtier as soon as you get in, too unfair to the other players.
-		if(this.player.godDestiny && this.player.power > 10 && !this.player.godTier && seededRandom()>0.8 && this.player.land != null){
+		if(this.player.godDestiny && this.player.power > 10 && !this.player.godTier && rand.nextDouble()>0.8 && this.player.land != null){
 			this.godTier(normalDiv, newDiv);
 			this.endingPhrase(classDiv, newDiv);
 			return;
-		}else if(this.player.leader && !this.session.ectoBiologyStarted && seededRandom() > .8){
+		}else if(this.player.leader && !this.session.ectoBiologyStarted && rand.nextDouble() > .8){
 				this.ectoBiologyStarted(normalDiv, newDiv);
 				this.endingPhrase(classDiv, newDiv);
 				return;
-		}else if(this.player.landLevel >= 6 && this.player.land != null && !this.player.denizenDefeated && seededRandom() > .8){
+		}else if(this.player.landLevel >= 6 && this.player.land != null && !this.player.denizenDefeated && rand.nextDouble() > .8){
 			this.fightDenizen(normalDiv, newDiv);
 			this.endingPhrase(classDiv, newDiv);
 			return;
-		}else if(this.player.sanity < 5 && !this.player.murderMode && seededRandom() > 0.9){
+		}else if(this.player.sanity < 5 && !this.player.murderMode && rand.nextDouble() > 0.9){
 			print("flipping shit through voidy stuff");
 			this.goMurderMode(normalDiv, newDiv);
 			this.endingPhrase(classDiv, newDiv);
@@ -99,7 +99,7 @@ class VoidyStuff extends Scene {
 				//TODO is there a dart equivalent to bind?
 				//var options = [this.findFraymotif.bind(this,normalDiv,newDiv),this.makeEnemies.bind(this,normalDiv,newDiv), this.makeFriends.bind(this,normalDiv, newDiv),this.dolandQuests.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv)];
 				var options = [this.findFraymotif, this.makeEnemies, this.makeFriends, this.dolandQuests, this.weakenDesites,this.dolandQuests, this.weakenDesites,this.dolandQuests, this.weakenDesites];
-        ShenaniganCallback chosen = getRandomElementFromArray(options);
+        ShenaniganCallback chosen = rand.pickFrom(options);
         chosen(normalDiv, newDiv);
 		}
 
@@ -117,12 +117,12 @@ class VoidyStuff extends Scene {
 	void voidEndingPhrase(newDiv){
 		String ret = " The " + this.player.htmlTitle();
 		var phrases = ["is sneaking around like a cartoon burglar.", "is holding up a sign saying 'You don't see me!'. ", "is hiding very obviously behind that lamppost.", "is badly disguised as a consort.", "is badly disguised as a carapacian.","is sneaking around underneath the only cardboard box in all of Paradox Space."];
-		newDiv.append( ret + " " + getRandomElementFromArray(phrases));
+		newDiv.append( ret + " " + rand.pickFrom(phrases));
 	}
 	void rageEndingPhrase(newDiv){
 		String ret = " The " + this.player.htmlTitle();
 		List<String> phrases = ["is probably actually under the influence of psychoactive drugs.","might actually be sleep walking.", "is all up and laughing the whole time.","can't seem to stop laughing.", "has a look of utmost concentration.", "doesn't even seem to know what's going on themselves.", "is badly cosplaying as a consort.", "somehow got a hold of 413 helium balloon and has had them tied to their neck this whole time.", "is wearing a sombrero. How HIGH do you even have to BE?","is screaming. They are not stopping.","has way to many fucking teeth.","wasn't there a second ago.","can see you.","is wearing the worlds strangest face paint.","is slowly but surely breaking everything.","seems to be ignoring gravity.","is walking on walls, somehow.", "wants you to know that they, like, really love you, man.","is humming the tune from Jaws over and over again.","is just breaking all the laws. All of them.","is failing to blink at all.","laughs and laughs and laughs and laughs and laughs and laughs and laughs and laughs."];
-		newDiv.append( ret + " " + getRandomElementFromArray(phrases));
+		newDiv.append( ret + " " + rand.pickFrom(phrases));
 	}
 	void findFraymotif(div, specialDiv){
 		print("Void/Rage fraymotif acquired: " + this.session.session_id.toString());
@@ -149,14 +149,14 @@ class VoidyStuff extends Scene {
 	void dolandQuests(div, specialDiv){
 		this.player.landLevel +=2;
 		div.append(" Their consorts seem pretty happy, though. ") ;
-		if(seededRandom() > .95){ //small chance of serious.
-			specialDiv.append( "The " + this.player.htmlTitle() + " is " + getRandomQuestFromAspect(this.session.rand, this.player.aspect,false) + ". ");
+		if(rand.nextDouble() > .95){ //small chance of serious.
+			specialDiv.append( "The " + this.player.htmlTitle() + " is " + getRandomQuestFromAspect(rand, this.player.aspect,false) + ". ");
 		}else{
 			var specialStuff = ["teaching the local consorts all the illest of beats","explaining the finer points of the human game 'hopscotch' to local consorts","passing out banned orange fruits that may or may not exist to hungry local consorts","throwing a birthday party for the local consorts"];
 			specialStuff.addAll(["reenacting tear jerking scenes from classic cinema with local consorts","adopting a local consort as their beloved daughter","explaining that all conflict will be resolved through the medium of rap, going forwards","passing out rumpled headgear like cheap cigars"]);
 			specialStuff.addAll(["completely destabilizing the local consort economy by just handing out fat stacks of boonbucks","showing the local consorts how to draw graffiti all over the Denizen temples","explaining that each local consort is probably the hero of legend or some shit","encouraging local consorts to form secret societies around household items"]);
 
-			specialDiv.append( "The " + this.player.htmlTitle() + " is " + getRandomElementFromArray(specialStuff) + ". ");
+			specialDiv.append( "The " + this.player.htmlTitle() + " is " + rand.pickFrom(specialStuff) + ". ");
 		}
 
 	}
@@ -165,7 +165,7 @@ class VoidyStuff extends Scene {
 		this.session.jack.addStat("power",-5);
 		this.session.king.addStat("power",-5);
 		div.append( " The Dersites sure seem to be mad at them, though. ");
-		specialDiv.append( "The " + this.player.htmlTitle() + " " + getRandomElementFromArray(lightQueenQuests));
+		specialDiv.append( "The " + this.player.htmlTitle() + " " + rand.pickFrom(lightQueenQuests));
 	}
 	void fightDenizen(div, specialDiv){
 		this.player.denizenFaced = true;
@@ -173,7 +173,7 @@ class VoidyStuff extends Scene {
 		div.append(" Why is the " + denizen.name + " bellowing so loudly on " + this.player.shortLand() + "? ");
 		String ret = "The " + this.player.htmlTitle() + " is fighting " +denizen.name + ".  It is bloody, brutal and short. ";
 
-		if(seededRandom() >.5){
+		if(rand.nextDouble() >.5){
 			this.player.power = this.player.power*2;  //current and future doubling of power.
 			this.player.leveledTheHellUp = true;
 			this.player.denizenDefeated = true;
@@ -228,7 +228,7 @@ class VoidyStuff extends Scene {
 		this.session.godTier = true;
 
 		div.append(" What was that light on " + this.player.shortLand() + "? ");
-		var f = this.session.fraymotifCreator.makeFraymotif([this.player], 3);//first god tier fraymotif
+		var f = this.session.fraymotifCreator.makeFraymotif(rand, [this.player], 3);//first god tier fraymotif
 		this.player.fraymotifs.add(f);
 		specialDiv.append("Holy shit. Did the " + this.player.htmlTitleBasic() + " just randomly go GodTier? What the fuck is going on? Did they even die? This is some flagrant bullshit. Somehow they learned " + f.name + " too." );
 		var divID = (specialDiv.attr("id")) + "godBS";

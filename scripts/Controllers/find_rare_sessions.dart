@@ -1,4 +1,4 @@
-
+/* TODO l8r.  Sleep well, dear sweet precious sweet sweet AB
 
 //looking for rare sessions  not rendering.
 //I just realized that AuthorBot was technically born in a lab!!!
@@ -975,3 +975,6 @@ void intro(){
 
 //the password is: Any session that AB would describe as "better than expected".  If you're in the code you could probably figure out what that means on your own.
 //just doing a 'find on page' of this file will find it for you, in fact.
+
+
+*/

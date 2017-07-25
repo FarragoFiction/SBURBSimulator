@@ -105,7 +105,7 @@ class CorpseSmooch extends Scene {
 		//from here on out, prefer to god tier than to be corpse smooched.
 		if(royalty == null){
 			//okay, anybody free?
-			royalty = getRandomElementFromArray(findLivingPlayers(this.session.availablePlayers));
+			royalty = rand.pickFrom(findLivingPlayers(this.session.availablePlayers));
 			if(royalty != null && royalty.grimDark > 0){
 				royalty = null; //grim dark won't corpse smooch unless they actual want to.
 			}
@@ -118,7 +118,7 @@ class CorpseSmooch extends Scene {
 		royalty = this.ignoreEnemies(d, royalty);
 		//is ANYBODY even alive out there????
 		if(royalty == null){
-			royalty = getRandomElementFromArray(findLivingPlayers(this.playerList));
+			royalty = rand.pickFrom(findLivingPlayers(this.playerList));
 			if(royalty != null && royalty.grimDark > 0){
 				royalty = null; //grim dark won't corpse smooch unless they actual want to.
 			}

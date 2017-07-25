@@ -326,9 +326,9 @@ dynamic loadAllPossiblePlayers(skipInit){
 
 
 //load hair, horns, wings, regular sprite, god sprite, fins, aspect symbol, moon symbol for each player
-dynamic loadPlayer(player, skipInit){
+dynamic loadPlayer(Player player, String skipInit){
 	if(simulationMode == true) return checkDone(skipInit);
-  if(!player) return null;
+  if(player == null) return null;
 	//String imageString = "Horns/right"+player.rightHorn + ".png";
   //addImageTag(imageString);
 	loadImage(playerToRegularBody(player),skipInit);
@@ -337,13 +337,13 @@ dynamic loadPlayer(player, skipInit){
 	loadImage(player.aspect + ".png",skipInit);
 
 	loadImage(player.aspect + "Big.png",skipInit);
-	loadImage("Hair/hair"+player.hair+".png",skipInit);
-  loadImage("Hair/hair_back"+player.hair+".png",skipInit);
+	loadImage("Hair/hair"+player.hair.toString()+".png",skipInit);
+  loadImage("Hair/hair_back"+player.hair.toString()+".png",skipInit);
 
 	if(player.isTroll == true){
-		loadImage("Wings/wing"+player.quirk.favoriteNumber + ".png",skipInit);
-		loadImage("Horns/left"+player.leftHorn + ".png",skipInit);
-		loadImage("Horns/right"+player.rightHorn + ".png",skipInit);
+		loadImage("Wings/wing"+player.quirk.favoriteNumber.toString() + ".png",skipInit);
+		loadImage("Horns/left"+player.leftHorn.toString() + ".png",skipInit);
+		loadImage("Horns/right"+player.rightHorn.toString() + ".png",skipInit);
 		//loadImage("Bodies/grub"+player.baby + ".png");
 	}else{
 		//loadImage("Bodies/baby"+player.baby + ".png");

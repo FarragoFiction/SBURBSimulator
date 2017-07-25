@@ -26,18 +26,18 @@ class JackRampage extends Scene{
 				//this is actually a bad thing, too, cause it means the witch's OP sprite doesn't get to kick Jack's ass.
 			}
 		}
-		var numStabbings = getRandomInt(1,Math.min(4,potentialPlayers.length));
+		var numStabbings = rand.nextIntRange(1,Math.min(4,potentialPlayers.length));
 		//print("Number stabbings is: " + numStabbings);
 		List<dynamic> ret = [];
 		if(potentialPlayers.length == 0){
 			return ret;
 		}
-		ret.add(getRandomElementFromArray(potentialPlayers)); //used to get slowest player, but too many perma deaths happened.
+		ret.add(rand.pickFrom(potentialPlayers)); //used to get slowest player, but too many perma deaths happened.
 		var friends = ret[0].getFriendsFromList(potentialPlayers);
 		if(friends.length == 0) return ret;
 		//print("friends: " + friends.length);
 		for(int i = 0; i<=numStabbings; i++){
-			var f = getRandomElementFromArray(friends);
+			var f = rand.pickFrom(friends);
 			//print(f);
 			if(this.canCatch(f)) ret.add(f);
 
@@ -86,7 +86,7 @@ class JackRampage extends Scene{
 	//	if(stabbings.length > 1) print("Jack fighting more than one player: " + this.session.session_id);
 		String ret = "";
 		if(stabbings.length == 0){
-			if(seededRandom() > .5){
+			if(rand.nextDouble() > .5){
 				ret += " Jack listlessly shows his stabs to a few Prospitian pawns. ";
 				div.append(""+ret);
 			}else{
@@ -102,7 +102,7 @@ class JackRampage extends Scene{
 		}else{
 
 
-			if(stabbings[0].dreamSelf && !stabbings[0].isDreamSelf && seededRandom() >.5){
+			if(stabbings[0].dreamSelf && !stabbings[0].isDreamSelf && rand.nextDouble() >.5){
 				//jack kills the dream self instead of the active self. no strife. just death.
 				//want to test out a dream self dying without active.
 				//print("jack kills nonactive dream self: " + this.session.session_id);

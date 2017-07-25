@@ -1,4 +1,4 @@
-
+/* Fix l8r, MUCH later, nothing uses this anymore except my secret char creator
 
 //creates a single svg for each graph to render itself to.
 //it will be whatever is ticking's responsibilty to make the graphs and update the data.
@@ -253,3 +253,4 @@ dynamic bobsMagic(fromMin, fromMax, input, toMin, toMax){
 	var tmp = (input - fromMin)/(fromMax - fromMin);
 	return (toMax - toMin) * tmp + toMin;
 }
+*/

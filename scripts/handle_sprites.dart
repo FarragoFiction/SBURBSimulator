@@ -1886,7 +1886,7 @@ void princeTiara(CanvasElement canvas, Player player){
 //TODO put classes in THIS order and just have a single line that is all_classes.index_of(player.class_name);
 String playerToRegularBody(player){
   if(easter_egg) return playerToEggBody(player);
-  return "Bodies/" + "reg"+ (classNameToInt(player.class_name)+1).toString() +".png";
+  return "Bodies/" + "reg"+(classNameToInt(player.class_name)+1).toString()+".png";
 }
 
 

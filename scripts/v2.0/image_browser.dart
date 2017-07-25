@@ -1,4 +1,4 @@
-
+/* fix l8r
 
 //simple code that allows you to browser hair/horns or fanart.
 window.onload = () {
@@ -146,3 +146,4 @@ class SpritePart {
 
 	var location;
 	var name;}
+*/

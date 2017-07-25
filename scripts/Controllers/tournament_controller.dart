@@ -1,5 +1,5 @@
 
-
+/*TODO  Fix l8r
 var charCreatorHelperGlobalVar;
 List<dynamic> playersGlobalVar = [];
 var easterEggEngineGlobalVar;
@@ -672,3 +672,5 @@ class Team {
 	}
 
 }
+
+*/

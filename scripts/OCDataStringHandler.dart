@@ -45,27 +45,28 @@ class CharacterEasterEggEngine {
     //print(this[arr]);
   }
   void processForSim(callBack){
+  	Random rand = curSessionGlobalVar.rand;
     var pool = this.getPoolBasedOnEggs();
     var potentials = this.playerDataStringArrayToURLFormat(pool);
     List<dynamic> ret = [];
-    var spacePlayers = findAllAspectPlayers(potentials, "Space");
-    var space = getRandomElementFromArray(spacePlayers);
+    List<Player> spacePlayers = findAllAspectPlayers(potentials, "Space");
+    var space = rand.pickFrom(spacePlayers);
     potentials.removeFromArray(space);
     if(!space){
       space = randomSpacePlayer(curSessionGlobalVar);
       space.chatHandle = "randomSpace";
       //print("Random space player!");
-      space.quirk = new Quirk();
+      space.quirk = new Quirk(rand);
       space.quirk.favoriteNumber = 0;
       space.deriveChatHandle = false;
     }
     var timePlayers = findAllAspectPlayers(potentials, "Time");
-    var time = getRandomElementFromArray(timePlayers);
+    var time = rand.pickFrom(timePlayers);
     potentials.removeFromArray(time);
     if(!time){
       time = randomTimePlayer(curSessionGlobalVar);
       time.chatHandle = "randomTime";
-      time.quirk = new Quirk();
+      time.quirk = new Quirk(rand);
       time.quirk.favoriteNumber = 0;
       time.deriveChatHandle = false;
     }
@@ -73,9 +74,9 @@ class CharacterEasterEggEngine {
     //print(space);
     ret.add(space);
     ret.add(time);
-    var numPlayers = getRandomInt(2,12);
+    var numPlayers = rand.nextIntRange(2,12);
     for(int i = 2; i<numPlayers; i++){
-      var p = getRandomElementFromArray(potentials);
+      var p = rand.pickFrom(potentials);
       if(p) ret.add(p);
       if(p) potentials.removeFromArray(p);  //no repeats. <-- modify all the removes l8r if i want to have a mode that enables them.
     }
@@ -83,7 +84,7 @@ class CharacterEasterEggEngine {
     for(num i = 0; i<ret.length; i++){
       var p = ret[i];
       //print(p);
-      if(p.chatHandle.trim() == "") p.chatHandle = getRandomChatHandle(p.class_name,p.aspect,p.interest1, p.interest2);
+      if(p.chatHandle.trim() == "") p.chatHandle = getRandomChatHandle(rand, p.class_name,p.aspect,p.interest1, p.interest2);
     }
     curSessionGlobalVar.replayers = ret;
     callBack();
@@ -314,7 +315,7 @@ dynamic stringToByteArray(str){
 //see player.js toDataBytes and toDataString to see how I expect them to be formatted.
 dynamic dataBytesAndStringsToPlayer(charString, str_arr){
   var player = new Player();
-  player.quirk = new Quirk();
+  player.quirk = new Quirk(player.rand);
   //print("strings is: " + str_arr);
   //print("chars is: " + charString);
   player.causeOfDrain = sanitizeString(Uri.decodeFull(str_arr[0]).trim());

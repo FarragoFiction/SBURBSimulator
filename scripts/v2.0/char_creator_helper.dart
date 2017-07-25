@@ -1,5 +1,4 @@
-part of SBURBSim;
-
+/* Fix l8r
 
 //need to render all players
 class CharacterCreatorHelper {
@@ -894,7 +893,7 @@ class CharacterCreatorHelper {
 
 
 
-
+*/
 
 
 

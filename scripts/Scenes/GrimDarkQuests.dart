@@ -17,11 +17,11 @@ class GrimDarkQuests extends Scene{
 			var player = living[i];
 			if(player.grimDark>2){
 				 this.players.add(player);
-			}else if(player.grimDark>1 && seededRandom() > .5){
+			}else if(player.grimDark>1 && rand.nextDouble() > .5){
 				this.players.add(player);
 			}
 		}
-		if(this.players.length > 0 && this.players[0].trickster && seededRandom() >.01) return false; //tricksters are too op and distractable, don't often actually try to break sim
+		if(this.players.length > 0 && this.players[0].trickster && rand.nextDouble() >.01) return false; //tricksters are too op and distractable, don't often actually try to break sim
 
 		return this.players.length>0;
 	}
@@ -66,12 +66,12 @@ class GrimDarkQuests extends Scene{
 			}else if(player.power > 300){
 				quip = " They seem strong enough to do some serious damage. ";
 			}
-			return "The "+ player.htmlTitle() + " is trying to break SBURB itself. They " + getRandomElementFromArray(tasks) + quip;
+			return "The "+ player.htmlTitle() + " is trying to break SBURB itself. They " + rand.pickFrom(tasks) + quip;
 
 	}
 	void crashSession(){
 		this.session.crashedFromPlayerActions = true;
-		throw new PlayersCrashedSession(getPlayersTitlesNoHTML(this.players) + " has foolishly crashed session: " + this.session.session_id);
+		throw new PlayersCrashedSession(getPlayersTitlesNoHTML(this.players) + " has foolishly crashed session: ${this.session.session_id}");
 	}
 	@override
 	void renderContent(div){

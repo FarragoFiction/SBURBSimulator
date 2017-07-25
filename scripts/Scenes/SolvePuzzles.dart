@@ -20,7 +20,7 @@ class SolvePuzzles extends Scene {
 		this.player2 = null;
 		if(player.aspect == "Blood" || player.class_name == "Page"){
 			if(this.session.availablePlayers.length > 1){
-				this.player2 = getRandomElementFromArray(this.session.availablePlayers);
+				this.player2 = rand.pickFrom(this.session.availablePlayers);
 				if(this.player2 == this.player1 && this.player2.aspect != "Time"){
 					this.player1 = null;
 					this.player2 = null;
@@ -34,7 +34,7 @@ class SolvePuzzles extends Scene {
 		}
 
 		//if i'm not blood or page, random roll for a friend.
-		if(this.session.availablePlayers.length > 1 && seededRandom() > .5){
+		if(this.session.availablePlayers.length > 1 && rand.nextDouble() > .5){
 			this.player2 = findHighestMobilityPlayer(this.session.availablePlayers);
 			if(this.player2 == this.player1 && this.player1.aspect != "Time"){  //only time player can help themselves out.
 				this.player2 == null;
@@ -72,12 +72,12 @@ class SolvePuzzles extends Scene {
 		//if i stored this in random tables like my old stuff (this is may 2017, btw), then i couldn't avoid repeats as easily as i am here.
 		//remember kids: design and architecture really do fucking matter.
 			var landChosen = this.player1.land1;
-			if(seededRandom() > 0.5) landChosen = this.player1.land2;
+			if(rand.nextDouble() > 0.5) landChosen = this.player1.land2;
 			//shits on adventure game tropes and just uses a cheat code to solve the puzzle (star.eyes from discorse)
 			var possibilities = ["learning the true meaning of " + landChosen,"learning to really hate the entire concept of " + landChosen,"getting really fucking sick of " + landChosen,  "getting coy hints about The Ultimate Riddle","shitting on adventure game tropes and just using a cheat code","killing underlings","delving into dungeons", "exploring ruins", "solving puzzles", "playing minigames", "learning about the lore"];
-			var thing1 = getRandomElementFromArray(possibilities);
+			var thing1 = rand.pickFrom(possibilities);
 			possibilities.removeFromArray(thing1);
-			var thing2 = getRandomElementFromArray(possibilities);
+			var thing2 = rand.pickFrom(possibilities);
 			return "random bullshit sidequests at " + this.player1.shortLand() + ", " + thing1 + " and " + thing2 + ". ";
 	}
 
@@ -128,7 +128,7 @@ class SolvePuzzles extends Scene {
 				print("Real self stunting in: " + this.session.session_id.toString());
 				realSelf =  "You are duly impressed that they are not a poser who does dreamself stunting.  Realself stunting 5ever, bro.";
 			}
-			return "The " +  this.player1.htmlTitle()  + " is "+ getRandomElementFromArray(bike_quests) + "." + realSelf;
+			return "The " +  this.player1.htmlTitle()  + " is "+ rand.pickFrom(bike_quests) + "." + realSelf;
 		}
 		this.player1.increasePower();
 		if(this.player2 != null &&  this.player1  != this.player2){  //could be a time double, don't have a relationship with a time double (it never works out)

@@ -17,12 +17,12 @@ class FaceDenizen extends Scene{
 			var p = this.session.availablePlayers[i];
 			if(p.denizen_index >= 3 && !p.denizenDefeated && p.land != null){
 				var d = p.denizen;
-				if(p.power > d.getStat("currentHP") || seededRandom() > .5){  //you're allowed to do other things between failed boss fights, you know.
+				if(p.power > d.getStat("currentHP") || rand.nextDouble() > .5){  //you're allowed to do other things between failed boss fights, you know.
 					this.denizenFighters.add(p);
 				}
 			}else if(p.landLevel >= 6 && !p.denizenMinionDefeated && p.land != null){
 				var d = p.denizenMinion;
-				if(p.power > d.getStat("currentHP") || seededRandom() > .5){//you're allowed to do other things between failed boss fights, you know.
+				if(p.power > d.getStat("currentHP") || rand.nextDouble() > .5){//you're allowed to do other things between failed boss fights, you know.
 					this.denizenFighters.add(p);
 				}
 			}

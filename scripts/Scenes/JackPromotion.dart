@@ -34,7 +34,7 @@ class JackPromotion extends Scene{
 		ret += "FOLD. ";
 		if(this.session.queen.crowned != null && !this.session.queen.exiled){
 			if(this.session.queen.getStat("currentHP") > 0){
-				if(seededRandom() > .5){
+				if(rand.nextDouble() > .5){
 					print("Jack making out like a bandit in session: " + this.session.session_id.toString()); //get it? 'cause cause he is making otu with BQ but also stealing from her???'
 					//and now the players still have to fight her.  ringless sure, but....
 					this.session.queen.setStat("power",50); //she gets a morale boost, any weakening she had is reduced.
@@ -53,7 +53,7 @@ class JackPromotion extends Scene{
 			ret += "It's not hard at all to get his Crew to pull off a heist to get the RING OF ORBS "+ this.session.convertPlayerNumberToWords();
 			ret += "FOLD. ";
 			if(this.session.queen.getStat("currentHP") > 0 && !this.session.queen.exiled){
-				if(seededRandom() > .5){
+				if(rand.nextDouble() > .5){
 					print("Jack making out like a bandit in session: " + this.session.session_id.toString()); //get it? 'cause cause he is making otu with BQ but also stealing from her???'
 					//and now the players still have to fight her.  ringless sure, but....
 					this.session.queen.setStat("power",50); //she gets a morale boost, any weakening she had is reduced.

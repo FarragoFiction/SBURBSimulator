@@ -18,7 +18,7 @@ class DoEctobiology extends Scene {
 		this.playerList = playerList;
 		this.leader = getLeader(this.session.availablePlayers);  //dead men do no ectobiology
 		if(this.leader && this.leader.dead == false && this.session.ectoBiologyStarted == false){
-			return this.leader.power > (seededRandom()*200); //can't do it right out of the bat. might never do it
+			return this.leader.power > (rand.nextDouble()*200); //can't do it right out of the bat. might never do it
 		}
 		return false;
 	}

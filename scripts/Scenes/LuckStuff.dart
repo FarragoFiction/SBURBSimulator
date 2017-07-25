@@ -90,14 +90,14 @@ class LuckStuff extends Scene{
 	String roll35(roll){
 		print("unlucky trigger event: " + this.session.session_id.toString());
 		var items = ["soper slime", "candy", "apple juice", "alcohol", "cat nip","chocolate", "orange soda", "blanket","hat","lucky coin", "magic 8 ball"];
-		String ret = "The " + roll.player.htmlTitle() + " has lost their " + getRandomElementFromArray(items) + ". Sure, it seems stupid to you or me but... it was one of the few things left holding their sanity together. They are enraged.";
+		String ret = "The " + roll.player.htmlTitle() + " has lost their " + rand.pickFrom(items) + ". Sure, it seems stupid to you or me but... it was one of the few things left holding their sanity together. They are enraged.";
 		roll.player.sanity += -1000;
 		this.session.badLuckEvent = true;
 		return ret;
 	}
 	String roll70(roll){
 		//print("roll70 in " + this.session.session_id);
-		var friend = getRandomElementFromArray(roll.player.getFriendsFromList(findLivingPlayers(this.session.players)));
+		var friend = rand.pickFrom(roll.player.getFriendsFromList(findLivingPlayers(this.session.players)));
 		if(!friend){
 			return this.roll65(roll); //backup result.
 		}
@@ -110,7 +110,7 @@ class LuckStuff extends Scene{
 	}
 	String roll30(roll){
 		//print("roll30 in " + this.session.session_id);
-		var friend = getRandomElementFromArray(roll.player.getFriendsFromList(findLivingPlayers(this.session.players)));
+		var friend = rand.pickFrom(roll.player.getFriendsFromList(findLivingPlayers(this.session.players)));
 		if(!friend){
 			return this.roll65(roll); //backup result.
 		}
@@ -124,7 +124,7 @@ class LuckStuff extends Scene{
 	String roll25(roll){
 		print("unluck grim dark: " + this.session.session_id.toString());
 		var items = ["magic cue ball", "grimoire", "original VHS tape of Mac and Me", "fluthlu doll", "dream catcher","squiddles plush", "Dr Seuss Book", "commemorative Plaque from a World Event That Never Happened","SCP-093"];
-		String ret = "The " + roll.player.htmlTitle() + " has had a momentary lapse of judgement and alchemized a weapon with the " + getRandomElementFromArray(items) + " they just found. Any sane adventurer would cast these instruments of the occult into the FURTHEST RING and forget they ever existed. Instead, the " + roll.player.htmlTitleBasic() + " equips them. This is a phenomenally bad idea. ";
+		String ret = "The " + roll.player.htmlTitle() + " has had a momentary lapse of judgement and alchemized a weapon with the " + rand.pickFrom(items) + " they just found. Any sane adventurer would cast these instruments of the occult into the FURTHEST RING and forget they ever existed. Instead, the " + roll.player.htmlTitleBasic() + " equips them. This is a phenomenally bad idea. ";
 		roll.player.corruptionLevelOther += 666; //will only increase corruption by one level, but in style
 		roll.player.power += 50;  //it IS a weapon, points out aspiringWatcher
 		this.session.badLuckEvent = true;
@@ -216,7 +216,7 @@ class LuckStuff extends Scene{
 				this.session.sacrificialSlab = true;
 				//roll.player.makeDead("luckily on their Sacrificial Slab") doesn't make a ghost 'cause the corpse itself revives'
 			}
-			var f = this.session.fraymotifCreator.makeFraymotif([roll.player], 3);//first god tier fraymotif
+			var f = this.session.fraymotifCreator.makeFraymotif(rand, [roll.player], 3);//first god tier fraymotif
 			roll.player.fraymotifs.add(f);
 			ret += " They learn " + f.name + ". " ;
 			roll.player.makeGodTier();

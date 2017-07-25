@@ -1,4 +1,4 @@
-
+/*TODO make this work
 
 //loads players from url.  then renders those players, along with their cause of death. if the player is "dead", then mention that they haven't respawned yet, with new cause of death (getting drained by Thief of life, for example.)
 List<dynamic> playersGlobalVar = [];
@@ -89,10 +89,10 @@ bool printCorruptionMessage(msg, url, lineNo, columnNo, error){
 		String start = "<b ";
 		String end = "'>";
 
-		var words = getRandomElementFromArray(rand);
+		var words = rand.pickFrom(rand);
 		words = Zalgo.generate(words);
 		var plea = start + "style ;= 'color: " +getColorFromAspect(player.aspect) +"; " + end +str + words+ "</b>"
-		//print(getColorFromAspect(getRandomElementFromArray(curSessionGlobalVar.players).aspect+";") )
+		//print(getColorFromAspect(rand.pickFrom(curSessionGlobalVar.players).aspect+";") )
 		querySelector("#afterlifeViewer").append(plea);
 	}
 
@@ -107,3 +107,4 @@ bool printCorruptionMessage(msg, url, lineNo, columnNo, error){
 
 }
 window.onerror = printCorruptionMessage;
+*/

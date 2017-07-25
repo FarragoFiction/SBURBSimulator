@@ -179,7 +179,7 @@ function ia(k,nk){
 	if(nk%2 != 0){
 		//punishment. (maybe show on screen in some way)
 		console.log("WRONG!!!")
-		x[k][2] = getRandomInt(0, maxState); //NOW you fucked up!  (i mean, probably, i am still fuzzy on what x even does.)
+		x[k][2] = rand.nextIntRange(0, maxState); //NOW you fucked up!  (i mean, probably, i am still fuzzy on what x even does.)
 	}
 	return nk/2;
 }
@@ -863,7 +863,7 @@ function Screen(canvas,maxState, uX, uY, screenNum, i, k){
 	this.k = k;
 
 	this.randomizeState = function(){
-		this.state = getRandomInt(0,maxState-1)
+		this.state = rand.nextIntRange(0,maxState-1)
 		//this.state = 0;
 		this.display();
 	}

@@ -34,20 +34,22 @@ class AfterLife {
 		ghost.dead = true;
 	}
 	dynamic findGuardianSpirit(player){
-		return getRandomElementFromArray(this.findAllAlternateSelves(player.guardian));
+		return player.rand.pickFrom(this.findAllAlternateSelves(player.guardian));
 	}
 	dynamic findLovedOneSpirit(player){
-		return getRandomElementFromArray(this.findAllDeadLovedOnes(player));
+		return player.rand.pickFrom(this.findAllDeadLovedOnes(player));
 	}
 	dynamic findHatedOneSpirit(player){
-		return getRandomElementFromArray(this.findAllDeadLovedOnes(player));
+		return player.rand.pickFrom(this.findAllDeadLovedOnes(player));
 	}
 	dynamic findAllDeadLovedOnes(player){
 		List<dynamic> lovedOnes = [];
-		var hearts = player.getHearts();
-		var diamonds = player.getDiamonds();
-		var crushes = player.getCrushes();
-		var relationships = hearts.concat(diamonds);
+		List<Player> hearts = player.getHearts();
+		List<Player> diamonds = player.getDiamonds();
+		List<Player> crushes = player.getCrushes();
+		List<Player> relationships = new List<Player>();
+    relationships.addAll(hearts);
+		relationships.addAll(diamonds);
 	  relationships.addAll(crushes);
 		for(num i = 0; i<relationships.length; i++){
 			var r = relationships[i];
@@ -57,15 +59,17 @@ class AfterLife {
 		return lovedOnes;
 	}
 	dynamic findAllDeadHatedOnes(player){
-		List<dynamic> hatedOnes = [];
-		var clubs = player.getClubs();
-		var spades = player.getSpades();
-		var crushes = player.getBlackCrushes();
-		var relationships = spades.concat(clubs);
+		List<Player> hatedOnes = [];
+    List<Player> clubs = player.getClubs();
+    List<Player> spades = player.getSpades();
+    List<Player> crushes = player.getBlackCrushes();
+		List<Player> relationships = new List<Player>();
+		relationships.addAll(spades);
+		relationships.addAll(clubs);
 		relationships.addAll(crushes);
 
 		for(num i = 0; i<relationships.length; i++){
-			var r = relationships[i];
+			Player r = relationships[i];
 			hatedOnes.addAll(this.findAllAlternateSelves(r));
 		}
 
@@ -93,10 +97,10 @@ class AfterLife {
 		return hatedOnes;
 	}
 	dynamic findAssholeSpirit(player){
-		return getRandomElementFromArray(this.findAllDeadEnemies(player));
+		return player.rand.pickFrom(this.findAllDeadEnemies(player));
 	}
 	dynamic findFriendlySpirit(player){
-		return getRandomElementFromArray(this.findAllDeadFriends(player));
+		return player.rand.pickFrom(this.findAllDeadFriends(player));
 	}
 	bool areTwoPlayersTheSame(player1, player2){
 		return player2.id == player1.id && player2.class_name == player1.class_name && player2.aspect == player1.aspect && player1.hair == player2.hair;   //if they STILL match, well fuck it. they are the same person just alternate universe versions of each other.;
@@ -109,7 +113,7 @@ class AfterLife {
 		for(num i = 0; i<selves.length; i++){
 			var ghost = selves[i];
 			if(ghost.isDreamSelf == player.isDreamSelf && ghost.godTier == player.godTier){ //at least LOOK the same. (call this BEFORE reviving)
-				num val = (ghost.power - player.power ).abs();
+				num val = (ghost.getStat("power") - player.power ).abs();
 				if(val < bestCanidateValue){
 					bestCanidateValue = val;
 					bestCanidate = ghost;
@@ -129,17 +133,17 @@ class AfterLife {
 		return selves;
 	}
 	dynamic findAnyAlternateSelf(player){
-		return getRandomElementFromArray(this.findAllAlternateSelves(player));
+		return player.rand.pickFrom(this.findAllAlternateSelves(player));
 	}
 	dynamic findAnyGhost(player){
-		return getRandomElementFromArray(this.ghosts);
+		return player.rand.pickFrom(this.ghosts);
 	}
-	dynamic findAnyUndrainedGhost(){
+	dynamic findAnyUndrainedGhost(Random rand){
 		List<dynamic> ret = [];
 		for(var i=0; i<this.ghosts.length; i++){
 			if(this.ghosts[i].causeOfDrain == null) ret.add(this.ghosts[i]);
 		}
-		return getRandomElementFromArray(ret);
+		return rand.pickFrom(ret);
 	}
 
 

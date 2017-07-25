@@ -238,8 +238,8 @@ class Session {
 		//Math.seed = this.session_id; //if session is reset,
 		this.rand.setSeed(this.session_id);
 		//print("reinit with seed: "  + Math.seed);
-		this.timeTillReckoning = this.rand.nextIntRange(10,30);//getRandomInt(10,30);
-		this.sessionType = this.rand.nextDouble();//seededRandom();
+		this.timeTillReckoning = this.rand.nextIntRange(10,30);//rand.nextIntRange(10,30);
+		this.sessionType = this.rand.nextDouble();//rand.nextDouble();
 		this.available_scenes = [];  //need a fresh slate because UpdateShippingGrid has MEMORY unlike all other scenes.
 		Scene.createScenesForSession(this);
 		//curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);
@@ -260,7 +260,7 @@ class Session {
 		available_classes = classes.sublist(0); //re-initPlayers available classes.
 		available_classes_guardians = classes.sublist(0);
 		available_aspects = nonrequired_aspects.sublist(0);
-		var numPlayers = this.rand.nextIntRange(2,12);//getRandomInt(2,12);
+		var numPlayers = this.rand.nextIntRange(2,12);//rand.nextIntRange(2,12);
 		this.players.add(randomSpacePlayer(this));
 		this.players.add(randomTimePlayer(this));
 
@@ -425,7 +425,9 @@ class Session {
 	}
 	dynamic getLineage(){
 			if(this.parentSession != null){
-					return this.parentSession.getLineage().concat([this]);
+			    List<Session> tmp = this.parentSession.getLineage();
+					tmp.addAll([this]);
+					return tmp;
 			}
 			return [this];
 	}

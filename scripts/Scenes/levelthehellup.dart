@@ -37,7 +37,7 @@ class LevelTheHellUp extends Scene {
 			num = (num/1000).floor();
 			denomination = " BOONBUCKS";
 		}
-		num += (seededRandom()*75).floor();
+		num += (rand.nextDouble()*75).floor();
 		return num + denomination;
 	}
 	void renderForPlayer(div, player){

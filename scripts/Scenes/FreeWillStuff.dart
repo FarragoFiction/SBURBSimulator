@@ -69,7 +69,7 @@ class FreeWillStuff extends Scene{
 		//print(this.playerGodTiered.title() + " rendering free will god tier: " + this.session.session_id)
 		var divID = (div.attr("id")) + "_freeWillBulshit" + this.playerGodTiered.chatHandle;
 		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
-		var f = this.session.fraymotifCreator.makeFraymotif([this.playerGodTiered], 3);//first god tier fraymotif
+		var f = this.session.fraymotifCreator.makeFraymotif(rand, [this.playerGodTiered], 3);//first god tier fraymotif
 		this.playerGodTiered.fraymotifs.add(f);
 		div.append(" They learn " + f.name + ". ") ;
 		div.append(canvasHTML);
@@ -122,7 +122,7 @@ class FreeWillStuff extends Scene{
 					return ret;
 				}
 				//NOT luck. just obfuscated reasons.
-				if(seededRandom() > 0.5){
+				if(rand.nextDouble() > 0.5){
 					//print("Free will stop from killing everybody: " + this.session.session_id);
 					ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. No matter HOW much of an asshole people are, SBURB is the true enemy, and they are not going to let themselves forget that. ";
 					player.unmakeMurderMode();
@@ -147,9 +147,9 @@ class FreeWillStuff extends Scene{
 	}
 	dynamic considerEngagingMurderMode(player){
 		var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
-		if(player.isActive() && enemies.length > 2 && player.sanity < 0 && !player.murderMode && seededRandom() >0.98){
+		if(player.isActive() && enemies.length > 2 && player.sanity < 0 && !player.murderMode && rand.nextDouble() >0.98){
 			return this.becomeMurderMode(player);
-		}else if(enemies.length > 0 && player.sanity < 0 && seededRandom() > 0.98){
+		}else if(enemies.length > 0 && player.sanity < 0 && rand.nextDouble() > 0.98){
 			return this.forceSomeOneElseMurderMode(player);
 		}
 		return null;
@@ -237,7 +237,7 @@ class FreeWillStuff extends Scene{
 					}
 				}
 			}
-			if(bestPatsy.murderMode && seededRandom() > .75) bestPatsy = null; //mostly don't bother already murder mode players.
+			if(bestPatsy.murderMode && rand.nextDouble() > .75) bestPatsy = null; //mostly don't bother already murder mode players.
 			return bestPatsy;
 	}
 	bool canInfluenceEnemies(player){
@@ -312,14 +312,14 @@ class FreeWillStuff extends Scene{
 						if(player == patsy){
 							loop = "You get dizzy trying to follow the time logic that must have caused this to happen. Did they only go crazy because their future self went crazy because THEIR future self went crazy....? Or wait, is this a doomed time clone...? Fuck. Time is the shittiest aspect.";
 							//print(player.title() +" convincing past/future self to go murder mode " + this.session.session_id);
-						}else if(player.aspect == "Time" && seededRandom()>.25){ //most manipulative time bastards are from teh future
+						}else if(player.aspect == "Time" && rand.nextDouble()>.25){ //most manipulative time bastards are from teh future
 							timeIntro = " from the future";
 						}
 						//print("forcing someone else to be flipping shit");
 						return "The " + player.htmlTitleBasic() + timeIntro + " has thought things through. They are not crazy. To the contrary, they feel so sane it burns like ice. It's SBURB that's crazy.  Surely anyone can see this? The only logical thing left to do is kill everyone to save them from their terrible fates. They use clever words to convince the " + patsy.htmlTitleBasic() + " of the righteousness of their plan. They agree to carry out the bloody work. " + loop;
 
 				}else{
-					patsy = getRandomElementFromArray(enemies);//no longer care about "best"
+					patsy = rand.pickFrom(enemies);//no longer care about "best"
 					if(this.canInfluenceEnemies(player) && patsy.freeWill  < player.freeWill && patsy.influencePlayer != player){
 						print(player.title() +" controling into murdermode and altering their enemies with game powers." +this.session.session_id);
 						patsy.makeMurderMode();
@@ -386,7 +386,7 @@ class FreeWillStuff extends Scene{
 			if(player == sacrifice){
 				loop = "You get dizzy trying to follow the time logic that must have caused this to happen. Did they try to god tier because their future self told them to? But the future self only told them to because THEIR future self told them... Or wait, is this a doomed time clone...? Fuck. Time is the shittiest aspect.";
 				print(player.title() +" convincing past/future self to go god tier" + this.session.session_id);
-			}else if(player.aspect == "Time" && seededRandom()>.25){
+			}else if(player.aspect == "Time" && rand.nextDouble()>.25){
 				timeIntro = " from the future";
 			}
 			String intro = "The " + player.htmlTitleBasic() + timeIntro + " knows how the god tiering mechanic works";
@@ -592,7 +592,7 @@ class FreeWillStuff extends Scene{
 	dynamic considerMakingEctobiologistDoJob(player){
 		if(!this.session.ectoBiologyStarted && player.knowsAboutSburb() && player.grimDark < 2 ){
 			String timeIntro = "";
-			if(player.aspect == "Time" && seededRandom()>.25){
+			if(player.aspect == "Time" && rand.nextDouble()>.25){
 				timeIntro = " from the future";
 			}
 			if(player.leader){
@@ -634,7 +634,7 @@ class FreeWillStuff extends Scene{
 				return "The " + player.htmlTitle() + " is not going to fall into SBURB's trap. They know why frog breeding is important, and they are going to fucking DO it. ";
 			}else{
 				String timeIntro = "";
-				if(player.aspect == "Time" && seededRandom()>.25){
+				if(player.aspect == "Time" && rand.nextDouble()>.25){
 					timeIntro = " from the future";
 				}
 				if(!space.dead){

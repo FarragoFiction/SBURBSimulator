@@ -1,4 +1,4 @@
-
+/* Fix l8r
 
 var charCreatorHelperGlobalVar;
 List<dynamic> playersGlobalVar = [];
@@ -62,3 +62,4 @@ void callBackForLoadOCsFromFile(){
 void draw12(){
 	charCreatorHelperGlobalVar.draw12PlayerSummaries();
 }
+/*

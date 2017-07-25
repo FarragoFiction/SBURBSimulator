@@ -41,7 +41,7 @@ class Aftermath extends Scene {
 		var living = findLivingPlayers(this.session.players);
 		var dead = findDeadPlayers(this.session.players);
 		//time players doesn't HAVE to be alive, but it makes it way more likely.
-		var singleUseOfSeed = seededRandom();
+		var singleUseOfSeed = rand.nextDouble();
 		var timePlayer = findAspectPlayer(living, "Time");
 		if(!timePlayer && singleUseOfSeed > .5){
 			timePlayer = findAspectPlayer(this.session.players, "Time");

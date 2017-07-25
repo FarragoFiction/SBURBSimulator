@@ -1,5 +1,5 @@
 
-
+/* TODO fix l8r
 var globalFraymotifCreator = new FraymotifCreator(null);
 loadNavbar();
 var curSessionGlobalVar;
@@ -178,3 +178,5 @@ class FraymotifSandBox {
 	var players;	var dummy = new GameEntity(null, "Dummy",null);	//minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs
 	this.dummy.setStats(0,10,100,10,10,10,100,false, false, [],1000);
 }
+
+*/

@@ -14,7 +14,7 @@ class EngageMurderMode extends Scene{
 	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
 		//select a random player. if they've been triggered, random chance of going murderMode if enemies (based on how triggered.)
-		this.player = getRandomElementFromArray(this.session.availablePlayers);
+		this.player = rand.pickFrom(this.session.availablePlayers);
 		num moon = 0;
 
 		if(this.player != null){
@@ -29,7 +29,7 @@ class EngageMurderMode extends Scene{
 
 		if(diamond != null) triggerMinimum += -1*(this.player.getRelationshipWith(diamond).value);  //hope you don't hate your moirail
 		if(this.player.moon == "Prospit") triggerMinimum += 100; //easier to flip shit when you see murders in the clouds.
-		bool ret = (seededRandom() * this.player.getStat("sanity") < triggerMinimum);
+		bool ret = (rand.nextDouble() * this.player.getStat("sanity") < triggerMinimum);
 		if(ret && diamond != null) print("flipping shit even with moirail ${this.session.session_id}");
 		if(ret) print("flipping shit naturally ${this.session.session_id}");
 		return ret;
@@ -212,7 +212,7 @@ class EngageMurderMode extends Scene{
 		chatText += Scene.chatLine(player2Start, player2,"Fuck.");
 		chatText += Scene.chatLine(player2Start, player2,"Look, I get that you have trouble controling your temper.");
 		chatText += Scene.chatLine(player2Start, player2,"But you can be better than that.");
-		if(seededRandom() > .7){
+		if(rand.nextDouble() > .7){
 			r1.increase();
 			player1.addStat("sanity", 1);
 			chatText += Scene.chatLine(player2Start, player2,"Why don't we meet up in person. We can vent about whatever's bothering you. Nobody has to do anything that can't be undone.");
@@ -311,7 +311,7 @@ class EngageMurderMode extends Scene{
 			return;
 		}
 		//reset capitilization quirk
-		this.player.quirk.capitalization = getRandomInt(0,5);
+		this.player.quirk.capitalization = rand.nextIntRange(0,5);
 		div.appendHtml("<br>"+this.content());
 		this.chat(div);
 	}

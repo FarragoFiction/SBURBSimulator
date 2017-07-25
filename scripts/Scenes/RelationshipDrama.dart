@@ -578,7 +578,7 @@ class RelationshipDrama extends Scene {
 			chatText += Scene.chatLine(player2Start, player2,"Fuck you, at least I'm not " + trait2 + "!");
 			Relationship.makeSpades(player1, player2);
 			this.session.hasSpades = true;
-			if(seededRandom() > .5){
+			if(rand.nextDouble() > .5){
 				this.celebratoryRapBattle(div, player1, player2);
 			}
 
@@ -672,19 +672,19 @@ class RelationshipDrama extends Scene {
 	}
 	dynamic matchTypeToOpinion(type, relationship){
 		if(type == relationship.badBig){
-			return getRandomElementFromArray(bigBadDesc);
+			return rand.pickFrom(bigBadDesc);
 		}
 
 		if(type == relationship.badMild){
-			return getRandomElementFromArray(bigMildDesc);
+			return rand.pickFrom(bigMildDesc);
 		}
 
 		if(type == relationship.goodBig){
-			return getRandomElementFromArray(goodBigDesc);
+			return rand.pickFrom(goodBigDesc);
 		}
 
 		if(type == relationship.goodMild){;
-			return getRandomElementFromArray(goodMildDesc);
+			return rand.pickFrom(goodMildDesc);
 		}
 
 		return "okay";

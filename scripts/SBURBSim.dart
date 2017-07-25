@@ -99,23 +99,23 @@ var numPlayersPreScratch = 0;
 Random globalRand = new Random();
 
 // comment out for random conversion, left in for the sake of hiding errors while I'm not working on them -PL
-T getRandomElementFromArray<T>(List<T> list) {
+/*T getRandomElementFromArray<T>(List<T> list) {
 	return list[0];
-}
+}*/
 
 // also conversion
-int getRandomInt(int lower, int upper) {
+/*int getRandomInt(int lower, int upper) {
 	return lower;
-}
+}*/
 
 int getRandomIntNoSeed(int lower, int upper) {
 	return globalRand.nextIntRange(lower, upper);
 }
 
 // also conversion
-double seededRandom() {
+/*double seededRandom() {
 	return 0.0;
-}
+}*/
 
 double random() {
 	return globalRand.nextDouble();
