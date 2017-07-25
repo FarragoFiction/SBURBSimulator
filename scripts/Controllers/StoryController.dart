@@ -8,7 +8,7 @@ main() {
   //make a new StoryController (which will auto set itself as it's parent's singleton instance
   window.onError.listen((ErrorEvent e){
     //String msg, String url, lineNo, columnNo, error
-    printCorruptionMessage(e.message, e.path, e.lineno.toString(), e.colno.toString(), e.toString());
+    printCorruptionMessage(e.message, e.path.toString(), e.lineno.toString(), e.colno.toString(), e.toString());
   });
 }
 

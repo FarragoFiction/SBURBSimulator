@@ -325,154 +325,196 @@ var fortune_objects = [
 
 //////////////////////lusii are a little stronger in general
 List<dynamic> lusus_objects = [
-  new Lusus("Hoofbeast",0, null)
-    
+  new PotentialSprite("Hoofbeast",0, null)
+  ..lusus = true
   ..setStatsHash({"power": 30}),
-  new Lusus("Meow Beast",0, null)
-    
+  new PotentialSprite("Meow Beast",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30, "minLuck":20, "maxLuck":20})
     ..helpPhrase =
         "is kind of helpful? Maybe? You can't tell if it loves their player or hates them. ",
-  new Lusus("Bark Beast", 0,null)
+  new PotentialSprite("Bark Beast", 0,null)
+    ..lusus = true
 ..setStatsHash({"power": 40})
     
     ..helpPhrase =
         "alternates between loud, insistent barks and long, eloquent monologues on the deeper meaning behind each and every fragment of the game. ",
-  new Lusus("Nut Creature", 0,null)
+  new PotentialSprite("Nut Creature", 0,null)
+    ..lusus = true
 ..setStatsHash({"power": 30, "mobility":30})
     ,
-  new Lusus("Gobblefiend", 0,null)
+  new PotentialSprite("Gobblefiend", 0,null)
+    ..lusus = true
 ..setStatsHash({"power": 50}) //turkeys are honestly terrifying.
     
     ..helpfulness = -1
     ..helpPhrase =
         "is the most unhelpful piece of shit in the world. Oh my god, just once. Please, just shut up. ",
-  new Lusus("Bicyclops",0, null) //laser fraymotif?
+  new PotentialSprite("Bicyclops",0, null) //laser fraymotif?
+    ..lusus = true
 ..setStatsHash({"power": 30})
     ,
-  new Lusus("Centaur",0, null)
+  new PotentialSprite("Centaur",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 50, "sanity": 50})//lusii in the butler genus simply are unflappable.
     ,
-  new Lusus( "Fairy Bull",0, null)
+  new PotentialSprite( "Fairy Bull",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 1}) //kinda useless. like a small dog or something.
     ,
-  new Lusus( "Slither Beast",0, null)
+  new PotentialSprite( "Slither Beast",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30})
     
     ..armless = true,
-  new Lusus("Wiggle Beast",0, null)
+  new PotentialSprite("Wiggle Beast",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30})
     ,
-  new Lusus("Honkbird",0, null)
+  new PotentialSprite("Honkbird",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30})
     ,
-  new Lusus("Dig Beast",0, null)
+  new PotentialSprite("Dig Beast",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30})
     ,
-  new Lusus("Cholerbear",0, null)
+  new PotentialSprite("Cholerbear",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 50})
     ,
-  new Lusus("Antler Beast",0, null)
+  new PotentialSprite("Antler Beast",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30, "mobility":30})
     ,
-  new Lusus("Ram Beast",0, null)
+  new PotentialSprite("Ram Beast",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30})
     ,
-  new Lusus("Crab",0, null)
+  new PotentialSprite("Crab",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30})
     ,
-  new Lusus("Spider",0, null)
+  new PotentialSprite("Spider",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30})
     ,
-  new Lusus("Thief Beast",0, null)
+  new PotentialSprite("Thief Beast",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30})
     ,
-  new Lusus("March Bug",0, null)
+  new PotentialSprite("March Bug",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30})
     ,
-  new Lusus("Nibble Vermin",0, null)
+  new PotentialSprite("Nibble Vermin",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30})
     ,
-  new Lusus("Woolbeast",0, null)
+  new PotentialSprite("Woolbeast",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30})
     ,
-  new Lusus("Hop Beast",0, null)
+  new PotentialSprite("Hop Beast",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30, "maxLuck":30})
     ,
-  new Lusus("Stink Creature",0, null)
+  new PotentialSprite("Stink Creature",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30})
     ,
-  new Lusus("Speed Beast",0, null)
+  new PotentialSprite("Speed Beast",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30, "mobility":50})
     ,
-  new Lusus("Jump Creature",0, null)
+  new PotentialSprite("Jump Creature",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30})
     ,
-  new Lusus("Fight Beast",0, null)
+  new PotentialSprite("Fight Beast",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 50})
     ,
-  new Lusus("Claw Beast",0, null)
+  new PotentialSprite("Claw Beast",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 50})
     ,
-  new Lusus("Tooth Beast",0, null)
+  new PotentialSprite("Tooth Beast",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 50})
     ,
-  new Lusus("Armor Beast",0, null)
+  new PotentialSprite("Armor Beast",0, null)
 ..setStatsHash({"power": 30, "currentHP":100, "hp":100})
+    ..lusus = true
     ,
-  new Lusus("Trap Beast",0, null)
+  new PotentialSprite("Trap Beast",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30})
     
 ];
 
 ////////////////////////sea lusii
 
-List<dynamic> sea_lusus_objects = [
-  new Lusus("Zap Beast",0, null) //zap fraymotif
+List<PotentialSprite> sea_lusus_objects = [
+  new PotentialSprite("Zap Beast",0, null) //zap fraymotif
+    ..lusus = true
     ..setStatsHash({"power": 50})
     ,
-  new Lusus("Sea Slither Beast",0, null)
+  new PotentialSprite("Sea Slither Beast",0, null)
+    ..lusus = true
     ..setStatsHash({"power": 30})
 
     ..armless = true,
-  new Lusus("Electric Beast",0, null) //zap fraymotif
+  new PotentialSprite("Electric Beast",0, null) //zap fraymotif
+    ..lusus = true
     ..setStatsHash({"power": 50})
     ..armless = true,
-  new Lusus("Whale",0, null)
+  new PotentialSprite("Whale",0, null)
 ..setStatsHash({"power": 30, "currentHP":50, "hp":50})
+    ..lusus = true
     ..armless = true,
-  new Lusus("Sky Horse",0, null)
+  new PotentialSprite("Sky Horse",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30, "mobility":20})
     ,
-  new Lusus("Sea Meow Beast",0, null)
+  new PotentialSprite("Sea Meow Beast",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30, "minLuck":20, "maxLuck":20})
     ,
-  new Lusus("Sea Hoofbeast",0, null)
+  new PotentialSprite("Sea Hoofbeast",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30})
     ,
-  new Lusus("Cuttlefish",0, null)
+  new PotentialSprite("Cuttlefish",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30})
     ,
-  new Lusus("Swim Beast",0, null)
+  new PotentialSprite("Swim Beast",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30})
     ,
-  new Lusus("Sea Goat",0, null)
+  new PotentialSprite("Sea Goat",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30, "minLuck":-30, "maxLuck":30})
 
 ,
-  new Lusus("Light Beast",0, null)
+  new PotentialSprite("Light Beast",0, null)
 ..setStatsHash({"power": 30})
     ,
-  new Lusus("Dive Beast",0, null)
+  new PotentialSprite("Dive Beast",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30})
     ,
-  new Lusus("Honkbird",0, null)
+  new PotentialSprite("Honkbird",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30})
     ,
-  new Lusus("Sea Bear",0, null)
+  new PotentialSprite("Sea Bear",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30})
     ,
-  new Lusus("Sea Armorbeast",0, null)
+  new PotentialSprite("Sea Armorbeast",0, null)
+    ..lusus = true
 ..setStatsHash({"power": 30, "currentHP":50, "hp":50})
 
 ];

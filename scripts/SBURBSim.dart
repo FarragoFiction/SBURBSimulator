@@ -32,7 +32,7 @@ part "v2.0/YellowYardResultController.dart";
 part "ShittyRapEngine/shitty_raps.dart";
 part "navbar.dart"; //handles drawing navbar and url param stuff
 part "debugScenarios.dart"; //handles easter eggs
-part "v2.0/char_creator_helper.dart"; //more easter egg stuff, and oc stuff TODO probably should drag that out sometime.
+part "OCDataStringHandler.dart";
 
 
 //scenes
@@ -91,6 +91,9 @@ bool simulationMode; //TODO won't need this with AB having her own shit, can jus
 var nonRareSessionCallback = null; //AB is already storing a callback for easter egg, so broke down and polluted the global namespace once more like an asshole.
 DateTime startTime = new DateTime.now(); //gets page load.
 DateTime stopTime;
+
+var raggedPlayers = null; //just for scratch'
+var numPlayersPreScratch = 0;
 
 T getRandomElementFromArray<T>(List<T> list) {
 	return list[0];
@@ -253,34 +256,6 @@ void crashEasterEgg(String url) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var raggedPlayers = null; //just for scratch'
-var numPlayersPreScratch = 0;
-
 void scratch(){
   print("scratch has been confirmed");
   numPlayersPreScratch = curSessionGlobalVar.players.length;
@@ -415,160 +390,3 @@ void renderAfterlifeURL(){
 }
 
 
-//TODO shove methods like this into static player methods
-dynamic playersToDataBytes(players){
-  String ret = "";
-  for(num i = 0; i<players.length; i++){
-    //print("player " + i + " to data byte");
-    ret += players[i].toDataBytes();
-  }
-  return LZString.compressToEncodedURIComponent(ret);
-  //return ret;
-}
-
-
-
-dynamic playersToExtensionBytes(players){
-  String ret = "";
-  var builder = new ByteBuilder();
-  //do NOT do this because it fucks up the single player strings. i know how many players there are other ways, don't worry about it.
-  //builder.appendExpGolomb(players.length) //encode how many players, doesn't have to be how many bits.
-  ret += Uri.encodeComponent(builder.data).replaceAll(new RegExp(r"""#""", multiLine:true), '%23').replaceAll(new RegExp(r"""&""", multiLine:true), '%26');
-  for(num i = 0; i<players.length; i++){
-    //print("player " + i + " to data byte");
-    ret += players[i].toDataBytesX();
-  }
-  return LZString.compressToEncodedURIComponent(ret);
-  //return ret;
-}
-
-
-
-
-
-dynamic playersToDataStrings(players, includeChatHandle){
-  List<dynamic> ret = [];
-  for(num i = 0; i<players.length; i++){
-    ret.add(players[i].toDataStrings(true));
-  }
-  //return Uri.encodeComponent(ret.join(",")).replace(new RegExp(r"""#""", multiLine:true), '%23').replace(new RegExp(r"""&""", multiLine:true), '%26');;
-  return LZString.compressToEncodedURIComponent(ret.join(","));
-}
-
-
-
-//pair with seed for shareable url for character creator, or pair with nothing for afterlife viewer.
-String generateURLParamsForPlayers(players, includeChatHandle){
-  //var json = JSON.stringify(players);  //inside of players handles looking for keys
-  //print(json);
-  //if want localStorage , then compressToUTF16  http://pieroxy.net/blog/pages/lz-string/guide.html
-  //var compressed = LZString.compressToEncodedURIComponent(json);
-  //print(compressed);
-  var data = playersToDataBytes(players);
-  var strings = playersToDataStrings(players,true);
-  var extensions = playersToExtensionBytes(players);
-  return "b="+data+"&s;="+strings + "&x="+extensions;
-
-}
-
-
-
-dynamic dataBytesAndStringsToPlayers(bytes, strings, xbytes){
-  print("dataBytesAndStringsToPlayers: xbytes is: " + xbytes);
-  //bytes are 11 chars per player
-  //strings are 5 csv per player.
-  //print(bytes);
-  //print(bytes.length);
-  strings = strings.split(",");
-  List<dynamic> players = [];
-  //print(bytes);
-  for(num i = 0; i<bytes.length/11; i+=1){;
-  //print("player i: " + i + " being parsed from url");
-  var bi = i*11; //i is which player we are on, which is 11 bytes long
-  var si = i*5; //or 5 strings long
-  var b = bytes.substring(bi, bi+11);
-  //List<dynamic> s = [];
-  var s = strings.slice(si, si +5);
-  //print("passing b to player parser");
-  //print(b);
-  var p = (dataBytesAndStringsToPlayer(b,s));
-  p.id = i; //will be overwritten by sim, but viewer needs it
-  players.add(p);
-  }
-  //if(extensionString) player.readInExtensionsString(extensionString);
-  if(xbytes) applyExtensionStringToPlayers(players, xbytes);
-  return players;
-
-}
-
-
-
-void applyExtensionStringToPlayers(players, xbytes){
-  var reader = new ByteReader(stringToByteArray(xbytes), 0);
-  for(num i = 0; i<players.length; i++){
-    players[i].readInExtensionsString(reader);
-  }
-}
-
-
-
-dynamic stringToByteArray(str){
-  throw"TODO: do I need to turn string to array buffer anymore???";
-  /*
-  var buffer = new ArrayBuffer(str.length);
-  var uint8View = new Uint8Array(buffer);
-  for(num i = 0; i<str.length; i++){
-    uint8View[i] = str.charCodeAt(i);
-  }
-  return buffer;*/
-}
-
-
-
-//TODO FUTUREJR, REMOVE THIS METHOD AND INSTAD RELY ON session.RenderingEngine.renderers[1].dataBytesAndStringsToPlayer
-//see player.js toDataBytes and toDataString to see how I expect them to be formatted.
-dynamic dataBytesAndStringsToPlayer(charString, str_arr){
-  var player = new Player();
-  player.quirk = new Quirk();
-  //print("strings is: " + str_arr);
-  //print("chars is: " + charString);
-  player.causeOfDrain = sanitizeString(Uri.decodeFull(str_arr[0]).trim());
-  player.causeOfDeath = sanitizeString(Uri.decodeFull(str_arr[1]).trim());
-  player.interest1 = sanitizeString(Uri.decodeFull(str_arr[2]).trim());
-  player.interest2 = sanitizeString(Uri.decodeFull(str_arr[3]).trim());
-  player.chatHandle = sanitizeString(Uri.decodeFull(str_arr[4]).trim());
-  //for bytes, how to convert uri encoded string into char string into unit8 buffer?
-  //holy shit i haven't had this much fun since i did the color replacement engine a million years ago. this is exactlyt he right flavor of challenging.
-  //print("charString is: " + charString);
-  player.hairColor = intToHexColor((charString.charCodeAt(0) << 16) + (charString.charCodeAt(1) << 8) + (charString.charCodeAt(2)) );
-  player.class_name = intToClassName(charString.charCodeAt(3) >> 4);
-  print("I believe the int value of the class name is: " + (charString.charCodeAt(3) >> 4) + " which is: " + player.class_name);
-  player.aspect = intToAspect(charString.charCodeAt(3) & 15) ;//get 4 bits on end;
-  player.victimBlood = intToBloodColor(charString.charCodeAt(4) >> 4);
-  player.bloodColor = intToBloodColor(charString.charCodeAt(4) & 15);
-  player.interest1Category = intToInterestCategory(charString.charCodeAt(5) >> 4);
-  player.interest2Category = intToInterestCategory(charString.charCodeAt(5) & 15);
-  player.grimDark = charString.charCodeAt(6) >> 5;
-  player.isTroll = 0 != ((1<<4) & charString.charCodeAt(6)); //only is 1 if character at 1<<4 is 1 in charString
-  player.isDreamSelf = 0 != ((1<<3) & charString.charCodeAt(6));
-  player.godTier = 0 != ((1<<2) & charString.charCodeAt(6));
-  player.murderMode = 0 != ((1<<1) & charString.charCodeAt(6));
-  player.leftMurderMode = 0 != ((1) & charString.charCodeAt(6));
-  player.robot = 0 != ((1<<7) & charString.charCodeAt(7));
-  var moon = 0 != ((1<<6) & charString.charCodeAt(7));
-  //print("moon binary is: " + moon);
-  player.moon = moon ? "Prospit" : "Derse";
-  //print("moon string is: "  + player.moon);
-  player.dead = 0 != ((1<<5) & charString.charCodeAt(7));
-  //print("Binary string is: " + charString[7]);
-  player.godDestiny = 0 != ((1<<4) & charString.charCodeAt(7));
-  player.quirk.favoriteNumber = charString.charCodeAt(7) & 15;
-  print("Player favorite number is: " + player.quirk.favoriteNumber);
-  player.leftHorn = charString.charCodeAt(8);
-  player.rightHorn = charString.charCodeAt(9);
-  player.hair = charString.charCodeAt(10);
-  if(player.interest1Category) interestCategoryToInterestList(player.interest1Category ).add(player.interest1); //maybe don't add if already exists but whatevs for now.
-  if(player.interest2Category )interestCategoryToInterestList(player.interest2Category ).add(player.interest2);
-
-  return player;
-}
