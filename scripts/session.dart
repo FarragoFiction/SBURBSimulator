@@ -235,14 +235,13 @@ class Session {
 		return null;
 	}
 	void reinit(){
-		groundHog = false;
 		//Math.seed = this.session_id; //if session is reset,
 		this.rand.setSeed(this.session_id);
 		//print("reinit with seed: "  + Math.seed);
 		this.timeTillReckoning = this.rand.nextIntRange(10,30);//getRandomInt(10,30);
 		this.sessionType = this.rand.nextDouble();//seededRandom();
 		this.available_scenes = [];  //need a fresh slate because UpdateShippingGrid has MEMORY unlike all other scenes.
-		createScenesForSession(this);
+		Scene.createScenesForSession(this);
 		//curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);
 		//curSessionGlobalVar.doomedTimeline = false;
 		this.doomedTimeline = false;

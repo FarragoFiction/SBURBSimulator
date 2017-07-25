@@ -1,5 +1,8 @@
 import '../SBURBSim.dart';
 import 'dart:html';
+import 'dart:html';
+import 'dart:typed_data';
+import 'dart:collection';
 
 //replaces the poorly named scenario_controller2.js
 num initial_seed = 0;
@@ -35,61 +38,75 @@ class StoryController extends SimController {
 
   @override
   void checkSGRUB() {
+    throw "TODO";
     // TODO: implement checkSGRUB
   }
 
   @override
   void easterEggCallBack() {
+    throw "TODO";
     // TODO: implement easterEggCallBack
   }
 
   @override
   void easterEggCallBackRestart() {
+    throw "TODO";
     // TODO: implement easterEggCallBackRestart
   }
 
   @override
   void getSessionType() {
+    throw "TODO";
     // TODO: implement getSessionType
   }
 
   @override
   void intro() {
+    throw "TODO";
     // TODO: implement intro
   }
 
   @override
   void processCombinedSession() {
+    throw "TODO";
     // TODO: implement processCombinedSession
   }
 
   @override
   void reckoning() {
+    throw "TODO";
     // TODO: implement reckoning
   }
 
   @override
   void recoverFromCorruption() {
+    throw "TODO";
     // TODO: implement recoverFromCorruption
   }
 
   @override
   void reinit() {
-    // TODO: implement reinit
+    available_classes = new List<String>.from(classes);
+    available_aspects = new List<String>.from(nonrequired_aspects);
+    available_aspects.addAll(required_aspects);
+    curSessionGlobalVar.reinit();
   }
 
   @override
   void renderAfterlifeURL() {
+    throw "TODO";
     // TODO: implement renderAfterlifeURL
   }
 
   @override
   void renderScratchButton(Session session) {
+    throw "TODO";
     // TODO: implement renderScratchButton
   }
 
   @override
   void restartSession() {
+    throw "TODO";
     // TODO: implement restartSession
   }
 
@@ -104,11 +121,57 @@ class StoryController extends SimController {
 
   @override
   void startSession() {
-    // TODO: implement startSession
+    curSessionGlobalVar = new Session(initial_seed);
+    reinit();
+    Scene.createScenesForSession(curSessionGlobalVar);
+    curSessionGlobalVar.makePlayers();
+    curSessionGlobalVar.randomizeEntryOrder();
+    //authorMessage();
+    curSessionGlobalVar.makeGuardians(); //after entry order established
+    //easter egg ^_^
+    if(getParameterByName("royalRumble",null)  == "true"){
+      debugRoyalRumble();
+    }
+
+    if(getParameterByName("COOLK1D",null)  == "true"){
+      cool_kid = true;
+      coolK1DMode();
+    }
+
+    if(getParameterByName("pen15",null)  == "ouija"){
+      pen15Ouija();
+    }
+
+    if(getParameterByName("faces",null)  == "off"){
+      faceOffMode();
+    }
+
+    if(getParameterByName("tier",null)  == "cod"){
+      bardQuestMode();
+    }
+
+    if(getParameterByName("lollipop",null)  == "true"){
+      tricksterMode();
+    }
+
+    if(getParameterByName("robot",null)  == "true"){
+      roboMode();
+    }
+
+    if(getParameterByName("sbajifier",null)  == "true"){
+      sbahjMode();
+    }
+
+    if(getParameterByName("babyStuck",null)  == "true"){
+      babyStuckMode();
+    }
+
+    checkEasterEgg(easterEggCallBack,null);
   }
 
   @override
   void tick() {
+    throw "TODO";
     // TODO: implement tick
   }
 }
