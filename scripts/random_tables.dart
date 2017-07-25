@@ -16,8 +16,8 @@ dynamic getRandomElementFromArray(array){
 
 
 //http://jsfiddle.net/JKirchartz/wwckP/    horrorterror html stuff
-var Zalgo = {
-    "chars": {
+class Zalgo{
+    static HashMap chars= {
         0 : [ /* up */
     '\u030d', /*     ̍     */
     '\u030e', /*     ̎     */
@@ -138,12 +138,13 @@ var Zalgo = {
     '\u0489' /*     ҉_     */
     ]
 
-    },
-    "random": ([int len]) {
+    };
+
+    static num random ([int len]) {
         if (len == 1) return 0;
-        return len!=null ? (random() * len + 1).floor() - 1 : random();
-    },
-    "generate": (str) {
+        return len!=null ? (random() * (len + 1).floor()) - 1 : random();
+    }
+    static String generate(str) {
         var str_arr = str.split(''),
             output = str_arr.map((a) {;
                 if(a == " ") return a;
@@ -158,7 +159,7 @@ var Zalgo = {
             });
         return output.join('');
     }
-};
+}
 
 //using this won't effect the sanctity of the shareable url
 dynamic getRandomElementFromArrayNoSeed(array){
@@ -1159,12 +1160,9 @@ List<T> shuffle<T>(Random rand, List<T> array) {
 }*/
 
 
-//TODO Dart may have better ways to do this.
 void removeFromArray(item, array){
 	var index = array.indexOf(item);
-	if (index > -1) {
-		array.splice(index, 1);
-	}
+	array.removeAt(index);
 }
 
 
