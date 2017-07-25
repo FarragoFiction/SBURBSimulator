@@ -158,7 +158,9 @@ void janusReward(){
 //if last word is stuck, look for first word in either all class, or all aspects, mod the approriate thing to be the first word.
 //auto works with new claspects, too. genius
 void processXStuck(){
-	var params1 = window.location.search.substr(1);
+	//TODO get this working again. window.location.search is empty.
+	if(window.location.search.isEmpty) return ;
+	var params1 = window.location.search.substring(0);
 	var params2 = simulatedParamsGlobalVar;
 	print("~~~~~~~~~~~~~~~~~~params2 is " + params2);
 	var tmp = classes;
@@ -177,7 +179,7 @@ void processXStuck(){
 		if(stuck.length == 2){
 			var classOrAspect = stuck[0];
 			if(tmp.indexOf(stuck[0]) != -1){
-				setAllClassesTo(stuck[0].trim())
+				setAllClassesTo(stuck[0].trim());
 			}else if(all_aspects.indexOf(stuck[0]) != -1){
 				setAllAspectsTo(stuck[0].trim());
 			}
