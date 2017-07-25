@@ -23,7 +23,7 @@ class GameEntity implements Comparable{
   var spriteCanvasID = null;  //part of new rendering engine.
   num id;
   bool doomed = false; //if you are doomed, no matter what you are, you are likely to die.
-  List<GameEntity> doomedTimeClones = []; //help fight the final boss(es).
+  List<Player> doomedTimeClones = []; //help fight the final boss(es).
   String causeOfDeath = ""; //fill in every time you die. only matters if you're dead at end
   GameEntity crowned = null; //TODO figure out how this should work. for now, crowns count as Game Entities, but should be an Item eventually
 
@@ -51,9 +51,9 @@ class GameEntity implements Comparable{
     this.name = object.name + this.name; //sprite becomes puppetsprite.
     this.fraymotifs.addAll(object.fraymotifs);
     if(object.fraymotifs.length == 0){
-      var f = new Fraymotif([], object.name + "Sprite Beam!", 1);
-      f.effects.push(new FraymotifEffect("power",2,true)); //do damage
-      f.effects.push(new FraymotifEffect("hp",1,true)); //heal
+      Fraymotif f = new Fraymotif([], object.name + "Sprite Beam!", 1);
+      f.effects.add(new FraymotifEffect("power",2,true)); //do damage
+      f.effects.add(new FraymotifEffect("hp",1,true)); //heal
       f.flavorText = " An appropriately themed beam of light damages enemies and heals allies. ";
       this.fraymotifs.add(f);
     }
@@ -167,7 +167,7 @@ class GameEntity implements Comparable{
       }
   }
 
-  bool useFraymotif(div, Team mySide, GameEntity target, Team targetTeam){
+  bool useFraymotif(Element div, Team mySide, GameEntity target, Team targetTeam){
     List<GameEntity> living_enemies = targetTeam.getLivingMinusAbsconded();
     List<GameEntity> living_allies = mySide.getLivingMinusAbsconded();
     if(seededRandom() > 0.5) return false; //don't use them all at once, dunkass.
@@ -180,14 +180,14 @@ class GameEntity implements Comparable{
     var theirs = getAverageSanity(living_enemies);
     if(mine+200 < theirs && seededRandom() < 0.5){
       print("Too insane to use fraymotifs: " + htmlTitleHP() +" against " + target.htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id.toString());
-      div.append(" The " + htmlTitleHP() + " wants to use a Fraymotif, but they are too crazy to focus. ");
+      div.appendHtml(" The " + htmlTitleHP() + " wants to use a Fraymotif, but they are too crazy to focus. ");
       return false;
     }
     mine = getStat("freeWill") ;
     theirs = getAverageFreeWill(living_enemies);
     if(mine +200 < theirs && seededRandom() < 0.5){
       print("Too controlled to use fraymotifs: " + htmlTitleHP() +" against " + target.htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id.toString());
-      div.append(" The " + htmlTitleHP() + " wants to use a Fraymotif, but Fate dictates otherwise. ");
+      div.appendHtml(" The " + htmlTitleHP() + " wants to use a Fraymotif, but Fate dictates otherwise. ");
       return false;
     }
 
@@ -200,13 +200,13 @@ class GameEntity implements Comparable{
         chosen = f; //all else equal, prefer the one with more members.
       }
     }
-    div.append("<Br><br>"+chosen.useFraymotif(this, living_allies, target, living_enemies) + "<br><Br>");
-    div.append("<Br><br>"+chosen.useFraymotif(this, living_allies, target, living_enemies) + "<br><Br>");
+    div.appendHtml("<Br><br>"+chosen.useFraymotif(this, living_allies, target, living_enemies) + "<br><Br>");
+    div.appendHtml("<Br><br>"+chosen.useFraymotif(this, living_allies, target, living_enemies) + "<br><Br>");
     chosen.usable = false;
     return true;
   }
 
-  bool checkAbscond(div, Team mySide, List<Team> enemies) {
+  bool checkAbscond(Element div, Team mySide, List<Team> enemies) {
     if(!mySide.canAbscond) return false; //can't abscond, bro
     if(doomed) return false; //accept your fate.
     List<GameEntity> whoINeedToProtect = mySide.getLivingMinusAbsconded();
@@ -229,23 +229,23 @@ class GameEntity implements Comparable{
       flipOut("how terrifying " + Team.getTeamsNames(enemies) + " were");
       if(getStat("mobility") > Team.getTeamsStatAverage(enemies, "mobility")){
         //console.log(" player actually absconds: they had " + player.hp + " and enemy had " + enemy.getStat("power") + this.session.session_id)
-        div.append("<br><img src = 'images/sceneIcons/abscond_icon.png'> The " + htmlTitleHP() + " absconds right the fuck out of this fight. ");
+        div.appendHtml("<br><img src = 'images/sceneIcons/abscond_icon.png'> The " + htmlTitleHP() + " absconds right the fuck out of this fight. ");
         mySide.absconded.add(this);
         mySide.remainingPlayersHateYou(div, this);
         return true;
       }else{
-        div.append(" The " + htmlTitleHP() + " tries to absconds right the fuck out of this fight, but the " + Team.getTeamsNames(enemies) + " blocks them. Can't abscond, bro. ");
+        div.appendHtml(" The " + htmlTitleHP() + " tries to absconds right the fuck out of this fight, but the " + Team.getTeamsNames(enemies) + " blocks them. Can't abscond, bro. ");
         return false;
       }
     }else if(reasonsToLeave > reasonsToStay){
       if(getStat("mobility") > Team.getTeamsStatAverage(enemies, "mobility")){
         //console.log(" player actually absconds: " + this.session.session_id)
-        div.append("<br><img src = 'images/sceneIcons/abscond_icon.png'>  Shit. The " + htmlTitleHP() + " doesn't know what to do. They don't want to die... They abscond. ");
+        div.appendHtml("<br><img src = 'images/sceneIcons/abscond_icon.png'>  Shit. The " + htmlTitleHP() + " doesn't know what to do. They don't want to die... They abscond. ");
         mySide.absconded.add(this);
         mySide.remainingPlayersHateYou(div, this);
         return true;
       }else{
-        div.append(" Shit. The " + htmlTitleHP() + " doesn't know what to do. They don't want to die... Before they can decide whether or not to abscond " + Team.getTeamsNames(enemies) + " blocks their escape route. Can't abscond, bro. ");
+        div.appendHtml(" Shit. The " + htmlTitleHP() + " doesn't know what to do. They don't want to die... Before they can decide whether or not to abscond " + Team.getTeamsNames(enemies) + " blocks their escape route. Can't abscond, bro. ");
         return false;
       }
     }
@@ -331,7 +331,7 @@ class GameEntity implements Comparable{
 
 
   //currently only thing ghost pacts are good for post refactor.
-  void reviveViaGhostPact(div){
+  void reviveViaGhostPact(Element div){
     List<dynamic> undrainedPacts = removeDrainedGhostsFromPacts(ghostPacts);
     if(undrainedPacts.length > 0){
       print("using a pact to autorevive in session " + this.session.session_id.toString());
@@ -344,16 +344,16 @@ class GameEntity implements Comparable{
         ", but not before a lot of grumbling and arguing about how the pact shouldn't even be VALID anymore since the player is fucking GODTIER, they are going to revive fucking ANYWAY. But yeah, MAYBE it'd be judged HEROIC or some shit. Fine, they agree to go into a ghost coma or whatever. ";
       }
       ret += "It will be a while before the ghost recovers.";
-      div.append(ret);
-      var myGhost = this.session.afterLife.findClosesToRealSelf(this);
+      div.appendHtml(ret);
+      Player myGhost = this.session.afterLife.findClosesToRealSelf(this);
       removeFromArray(myGhost, this.session.afterLife.ghosts);
-      var canvas = drawReviveDead(div, this, source, undrainedPacts[0][1]);
+      CanvasElement canvas = drawReviveDead(div, this, source, undrainedPacts[0][1]);
       makeAlive();
       if(undrainedPacts[0][1] == "Life"){
         addStat("currentHP",100); //i won't let you die again.
       }else if(undrainedPacts[0][1] == "Doom"){
         addStat("minLuck",100); //you've fulfilled the prophecy. you are no longer doomed.
-        div.append("The prophecy is fulfilled. ");
+        div.appendHtml("The prophecy is fulfilled. ");
       }
     }
   }
@@ -394,9 +394,9 @@ class GameEntity implements Comparable{
   void increasePower(){
     //stub for sprites, and maybe later consorts or carapcians
   }
-  num getTotalBuffForStat(statName){
-    num ret = 0;
-    for(num i = 0; i<this.buffs.length; i++){
+  int getTotalBuffForStat(String statName){
+    int ret = 0;
+    for(int i = 0; i<this.buffs.length; i++){
       var b = this.buffs[i];
       if(b.name == statName) ret += b.value;
     }
@@ -418,10 +418,10 @@ class GameEntity implements Comparable{
     return "glitchy";
   }
   String describeBuffs(){
-    List<dynamic> ret = [];
+    List<String> ret = [];
     Iterable allStats = this.allStats();
     for(String stat in allStats){
-      var b = this.getTotalBuffForStat(stat);
+      int b = this.getTotalBuffForStat(stat);
       //only say nothing if equal to zero
       if(b>0) ret.add("more "+this.humanWordForBuffNamed(stat));
       if(b<0) ret.add("less " + this.humanWordForBuffNamed(stat));
@@ -441,7 +441,7 @@ class GameEntity implements Comparable{
     }
   }
   //TODO players (and any complicated NPCS) need to override this to hook up RELATIONSHIPS to actual other players.
-  num getStat(statName){
+  num getStat(String statName){
     num ret = this.stats[statName];
     for(var i = 0; i<this.buffs.length; i++){
       var b = this.buffs[i];
@@ -477,10 +477,10 @@ class GameEntity implements Comparable{
     this.stats["currentHP"] =  Math.max(this.stats["hp"], 10); //no negative hp asshole.
   }
 
-  dynamic htmlTitle(){
+  String htmlTitle(){
     String ret = "";
     if(this.crowned != null) ret+="Crowned ";
-    var pname = this.name;
+    String pname = this.name;
     if(pname == "Yaldabaoth"){
       var misNames = ['Yaldobob', 'Yolobroth', 'Yodelbooger', "Yaldabruh", 'Yogertboner','Yodelboth'];
       print("Yaldobooger!!! " + this.session.session_id.toString());
@@ -492,7 +492,7 @@ class GameEntity implements Comparable{
   String htmlTitleHP(){
     String ret = "<font color ='${fontColor}'>" ;
     if(this.crowned != null) ret+="Crowned ";
-    var pname = this.name;
+    String pname = this.name;
     if(this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
     return ret + pname +" (" + (this.getStat("currentHP")).round().toString() +" hp, " + (this.getStat("power")).round().toString() + " power)</font>"; //TODO denizens are aspect colored.
   }
