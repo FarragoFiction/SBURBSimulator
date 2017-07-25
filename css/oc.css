@@ -1,3 +1,7 @@
+.loadedimg {
+    display: none;
+}
+
 #story{
 	width:1000px;
 	background-color: white;
