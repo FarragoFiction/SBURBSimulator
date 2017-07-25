@@ -1536,8 +1536,8 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		return (this.class_name == "Rogue" || this.class_name == "Sage" ||  this.class_name == "Waste" ||  this.class_name == "Guide" || this.class_name == "Knight" || this.class_name == "Maid"|| this.class_name == "Mage"|| this.class_name == "Sylph"|| this.class_name == "Prince");
 	}
 	void initializeLuck(){
-		this.setStat("minLuck",this.session.rand.nextIntRange(0,-10)); //middle of the road.
-		this.setStat("maxLuck,", this.getStat("minLuck") + this.session.rand.nextIntRange(10,1));   //max needs to be more than min.
+		this.setStat("minLuck",this.session.rand.nextIntRange(-10,0)); //middle of the road.
+		this.setStat("maxLuck", this.getStat("minLuck") + this.session.rand.nextIntRange(1,10));   //max needs to be more than min.
 		if(this.trickster && this.aspect != "Doom"){
 			this.setStat("minLuck",11111111111);
 			this.setStat("maxLuck",11111111111);
@@ -1786,7 +1786,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		this.sprite.setStatsHash({"hp":10, "currentHP":10});//same as denizen minion, but empty power
 		this.sprite.doomed = true;
 	}
-	dynamic allStats(){
+	List<String> allStats(){
 		return ["power", "hp","RELATIONSHIPS","mobility","sanity","freeWill","maxLuck","minLuck","alchemy"];
 	}
 	dynamic intializeAssociatedClassStatReferences(){
@@ -1872,9 +1872,9 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		return ret;
 	}
 	void intializeAssociatedAspectStatReferences(){
-		var allStats = this.allStats().slice(0);
-        allStats = allStats.concat("MANGRIT");
-        allStats.removeFromArray("power"); //can't buff power directly
+		List<String> allStats = new List<String>.from(this.allStats());
+    allStats.add("MANGRIT");
+    removeFromArray("power",allStats); //can't buff power directly
 
 		switch (this.aspect) {
 			case "Blood":
@@ -2003,8 +2003,8 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			}
 		}
 	}
-	void modifyAssociatedStat(modValue, stat){
-		if(!stat) return;
+	void modifyAssociatedStat(num modValue, AssociatedStat stat){
+		if(stat == null) return;
 		//modValue * stat.multiplier.
 		if(stat.name == "RELATIONSHIPS"){
 			for(num i = 0; i<this.relationships.length; i++){
@@ -2014,12 +2014,22 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			this.permaBuffs["MANGRIT"] += modValue * stat.multiplier;
 		}else {
          	this.stats[stat.name] += modValue * stat.multiplier;
-        }
+    }
 	}
+
+	//oh my fuck, how was this ever allowed in javascript, it was trying to add stats to the LIST OF STATS.
 	void initializeInterestStats(){
 		//getInterestAssociatedStats
-		this.modifyAssociatedStat(35, this.getInterestAssociatedStats(this.interest1));
-		this.modifyAssociatedStat(35, this.getInterestAssociatedStats(this.interest2));
+    List<AssociatedStat> interest1Stats = this.getInterestAssociatedStats(this.interest1);
+    List<AssociatedStat> interest2Stats = this.getInterestAssociatedStats(this.interest2);
+    for(AssociatedStat stat in interest1Stats) {
+      this.modifyAssociatedStat(10, stat);
+    }
+
+    for(AssociatedStat stat in interest2Stats) {
+      this.modifyAssociatedStat(10, stat);
+    }
+
 	}
 	void initializeStats(){
 		if(this.trickster && this.aspect == "Doom") this.trickster == false; //doom players break rules
