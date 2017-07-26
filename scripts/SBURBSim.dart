@@ -243,7 +243,7 @@ window.addEventListener("error", (e) {
 
 void crashEasterEgg(String url) {
 
-  String canvasHTML = "<br><canvas class ;= 'void' id='canvasVoidCorruptionEnding"+"' width;='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
+  String canvasHTML = "<br><canvas class = 'void' id='canvasVoidCorruptionEnding"+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
   querySelector("#story").appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
   var canvas = querySelector("#canvasVoidCorruptionEnding");
   String chat = "";
