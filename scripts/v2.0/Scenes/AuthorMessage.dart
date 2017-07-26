@@ -18,7 +18,7 @@
 	}
 	void chat(div){
 		num repeatTime = 1000;
-		String canvasHTML = "<br><canvas id;='canvas" + (div.id) +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='canvas" + (div.id) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		//first, find/make pesterchum skin. Want it to be no more than 300 tall for now.
 		//then, have some text I want to render to it.

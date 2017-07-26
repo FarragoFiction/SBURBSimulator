@@ -4,11 +4,11 @@ part of SBURBSim;
 class Quirk {
  List<dynamic> lettersToReplace = []; //array of two element arrays. ["e", "3"], ["two",2] would be two examples. e replaced by 3 and two replaced by 2
  List<dynamic> lettersToReplaceIgnoreCase = [];
- num punctuation = 0; //0 = none, 1 ;= ends of sentences, 2 = perfect punctuation 3;= excessive punctuation
+ num punctuation = 0; //0 = none, 1 = ends of sentences, 2 = perfect punctuation 3= excessive punctuation
  String prefix = ""; //what do you put at the start of a line?
  String suffix = ""; //what do you put at the end of a line?
     //if in murdermode, rerandomize capitalization quirk.
- int capitalization = 0;  //0 == none, 4 = alternating, 5;= inverted, 3 = begining of every word, 1 ;= normal, 2 = ALL;
+ int capitalization = 0;  //0 == none, 4 = alternating, 5= inverted, 3 = begining of every word, 1 = normal, 2 = ALL;
  int favoriteNumber = 0; //getRandomInt;    //num favoriteNumber = 8;    //4 and 6 and 12 has green not change, 7 has SOME green not change
     //take an input string and quirkify it.
     

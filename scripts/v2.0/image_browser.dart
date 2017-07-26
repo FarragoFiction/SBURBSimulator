@@ -96,7 +96,7 @@ class renderAllImagesInFolder {
 
 
 void renderRegularSprite(spritePart){
-	querySelector("#images").append("<div class = 'spriteParentNoSize'><img class ;= 'spriteImgNoLayers' src = '" + spritePart.location + "'></img><br>"+spritePart.name+"</div>");
+	querySelector("#images").append("<div class = 'spriteParentNoSize'><img class = 'spriteImgNoLayers' src = '" + spritePart.location + "'></img><br>"+spritePart.name+"</div>");
 }
 
 
@@ -127,9 +127,9 @@ void renderAllHorns(){
 
 //first thing on bottom, last thing on top
 void renderLayeredSprites(spriteArray){
-	String html = "<div class ;= 'spriteParent'>"; //all images should be rendered at same position in sprite parent
+	String html = "<div class = 'spriteParent'>"; //all images should be rendered at same position in sprite parent
 	for(num i = 0; i<spriteArray.length; i++){
-		html += "<img class ;= 'spriteImg' src = '" + spriteArray[i].location + "'></img><br>"+spriteArray[i].name;
+		html += "<img class = 'spriteImg' src = '" + spriteArray[i].location + "'></img><br>"+spriteArray[i].name;
 	}
 	html += "</div>";
 	querySelector("#images").append(html);

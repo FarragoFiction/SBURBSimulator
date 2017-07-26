@@ -12,7 +12,7 @@ void onNavbarLoaded(String data) {
   querySelector("#navbar").appendHtml(data,treeSanitizer: NodeTreeSanitizer.trusted);
   if(getParameterByName("seerOfVoid",null)  == "true"){
     window.alert("If you gaze long into an abyss, the abyss also gazes into you.  - Troll Bruce Willis");
-    querySelector("#story").appendHtml("<button onclick='toggleVoid()'>Peer into Void, Y/N?</a><div class;='void'>Well, NOW you've certainly gone and done it. You can expect to see any Void Player shenanignans now. If there are any.",treeSanitizer: NodeTreeSanitizer.trusted);
+    querySelector("#story").appendHtml("<button onclick='toggleVoid()'>Peer into Void, Y/N?</a><div class='void'>Well, NOW you've certainly gone and done it. You can expect to see any Void Player shenanignans now. If there are any.",treeSanitizer: NodeTreeSanitizer.trusted);
   }
 }
 

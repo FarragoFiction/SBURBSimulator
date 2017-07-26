@@ -34,7 +34,7 @@ class GodTierRevival extends Scene {
 		if(this.godsToRevive.length > 6){
 			ch = canvasHeight*2;
 		}
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+ch + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+ch + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);
@@ -55,7 +55,7 @@ class GodTierRevival extends Scene {
 			return null;
 	}
 	dynamic content(){
-		String ret = " <img src ;= 'images/sceneIcons/judgement_icon.png'>The game abstraction of the Judgement Clock is ruling on the death of the " + getPlayersTitles(this.godsToRevive ) + ". ";
+		String ret = " <img src = 'images/sceneIcons/judgement_icon.png'>The game abstraction of the Judgement Clock is ruling on the death of the " + getPlayersTitles(this.godsToRevive ) + ". ";
 		num breakNeeded = 200;
 		for(num i = 0; i< this.godsToRevive.length; i++){
 			var p = this.godsToRevive[i];

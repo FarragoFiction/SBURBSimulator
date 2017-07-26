@@ -48,9 +48,9 @@ void sbahjMode(){
 	if(!simulationMode) window.alert("where MAKING THIS HAPEN");
 	//when kr has their stuff read, render it after everything else is done , or just, like put it on a 30 second timer. needs comedic timing, needs to be on top
 	//maybe my laughing reaction shot sbahj_author.jpg goes then, too
-	querySelector("#story").append("<img src = 'images/AUTHORSBAHJ.jpg' style;='position:absolute; top:111px'><img src = 'images/sbahj_author.jpg' style;='position:absolute; left:0px; z-index: 999;'>");
+	querySelector("#story").append("<img src = 'images/AUTHORSBAHJ.jpg' style='position:absolute; top:111px'><img src = 'images/sbahj_author.jpg' style='position:absolute; left:0px; z-index: 999;'>");
 	setTimeout((){
-		querySelector("#story").append("<img src = 'images/kR_falls_DOWN_stairs_forever.gif' style;='position:fixed; top:0px;; z-index: 999;'>");
+		querySelector("#story").append("<img src = 'images/kR_falls_DOWN_stairs_forever.gif' style='position:fixed; top:0px;; z-index: 999;'>");
 	}, 10000);
 	querySelector('body').css("background-color", "#0000ff");
 	querySelector('body').css("background-image", "none");
@@ -158,7 +158,7 @@ void janusReward(){
 
 
 
-//omg, so easy, KnightStuck = true, SylphStuck ;= true, PageStuck = true.;
+//omg, so easy, KnightStuck = true, SylphStuck = true, PageStuck = true.;
 //if last word is stuck, look for first word in either all class, or all aspects, mod the approriate thing to be the first word.
 //auto works with new claspects, too. genius
 void processXStuck(){
@@ -238,7 +238,7 @@ void babyStuckMode(){
 //AB told me this was funny! I SWEAR I am not Robo-Racist! It's IRONIC.
 void roboMode(){
 	if(!simulationMode) window.alert("BEEP");
-	querySelector("#story").append("<img src = 'images/guide_bot.png' style;='float:left;'>");
+	querySelector("#story").append("<img src = 'images/guide_bot.png' style='float:left;'>");
 	for(num j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
 		p.hairColor = getRandomGreyColor();
@@ -267,7 +267,7 @@ void roboMode(){
 void tricksterMode(){
 	if(!simulationMode) window.alert("I FEEL JUST PEEEEEEEEEEEACHY!!!!!!!!!!!");
 	if(simulationMode)querySelector("#avatar").attr("src","images/CandyAuthorBot.png");
-	querySelector("#story").append("<img src = 'images/trickster_author.png' style;='float:left;'><img src = 'images/trickster_artist.png' style;='float:left;'>");
+	querySelector("#story").append("<img src = 'images/trickster_author.png' style='float:left;'><img src = 'images/trickster_artist.png' style='float:left;'>");
 	querySelector('body').css("background-image", "url(images/zilly.gif)");
 	querySelector('#story').css("background-color", "#ff93e4");
 	for(num j = 0; j<curSessionGlobalVar.players.length; j++){
@@ -1424,7 +1424,7 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.favoriteNumber = 6;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["x","%"],["fuck","fiddlesticks"]];
-		player.quirk.prefix = "8;==D"
+		player.quirk.prefix = "8==D"
 		player.quirk.suffix = "";
 		player.kernel_sprite = "Centaur";
 		player.interest1 = "Animals";
@@ -1607,7 +1607,7 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.punctuation = 2;
 		player.quirk.favoriteNumber = 2;
 		player.quirk.lettersToReplace = [];
-		player.quirk.lettersToReplaceIgnoreCase = [["E","3"],["S","5"],["O","0"],["S","2"],["T","7"],["I","1"],["B","8"]]; // E=3, A;=4, S=5, O;=0, T=7, I;=1 and B=8.;
+		player.quirk.lettersToReplaceIgnoreCase = [["E","3"],["S","5"],["O","0"],["S","2"],["T","7"],["I","1"],["B","8"]]; // E=3, A=4, S=5, O=0, T=7, I=1 and B=8.;
 		player.kernel_sprite = "Bicyclops";
 		player.interest1 = "Video Games";
 		player.interest2 = "Programming";

@@ -37,11 +37,11 @@ class CharacterCreatorHelper {
 	}
 	void drawSinglePlayerSummary(player){
 		//print("drawing: " + player.title())
-		String str = "<div class;='standAloneSummary' id='createdCharacter"+ player.id + "'>";
+		String str = "<div class='standAloneSummary' id='createdCharacter"+ player.id + "'>";
 		var divId = player.id;
 		str += this.drawCanvasSummary(player);
 		//this.drawDataBoxNoButtons(player);
-		str += "</div><div class ;= 'standAloneSummary'>" + this.drawDataBoxNoButtons(player) + "</div>";
+		str += "</div><div class = 'standAloneSummary'>" + this.drawDataBoxNoButtons(player) + "</div>";
 		this.div.append(str);
 		this.createSummaryOnCanvas(player);
 		querySelector(".optionBox").show(); //unlike char creator, always show
@@ -53,12 +53,12 @@ class CharacterCreatorHelper {
 		var divId = player.id;
 		if(curSessionGlobalVar.session_id != 612 && curSessionGlobalVar.session_id != 613  && curSessionGlobalVar.session_id != 413 && curSessionGlobalVar.session_id != 1025 &&  curSessionGlobalVar.session_id != 111111)player.chatHandle = "";
 		//divId = divId.replace(new RegExp(r"""\s+""", multiLine:true), '');
-		str += "<div class;='createdCharacter' id='createdCharacter"+ player.id + "'>";
-		str += "<canvas class ;= 'createdCharacterCanvas' id='canvas" +divId + "' width;='" +400 + "' height="+300 + "'>  </canvas>";
-		str += "<div class ;= 'folderDealy'>"
+		str += "<div class='createdCharacter' id='createdCharacter"+ player.id + "'>";
+		str += "<canvas class = 'createdCharacterCanvas' id='canvas" +divId + "' width='" +400 + "' height="+300 + "'>  </canvas>";
+		str += "<div class = 'folderDealy'>"
 		str += this.drawTabs(player);
-		str += "<div class ;= 'charOptions'>"
-		str += "<div class ;= 'charOptionsForms'>"
+		str += "<div class = 'charOptions'>"
+		str += "<div class = 'charOptionsForms'>"
 		str += this.drawDropDowns(player);
 		str += this.drawCheckBoxes(player);
 		str += this.drawTextBoxes(player);
@@ -75,7 +75,7 @@ class CharacterCreatorHelper {
 		this.div.append(str);
 
 		player.spriteCanvasID = player.id+player.id+"spriteCanvas";
-		String canvasHTML = "<br><canvas style;='display:none' id='" + player.spriteCanvasID+"' width;='" +400 + "' height="+300 + "'>  </canvas>";
+		String canvasHTML = "<br><canvas style='display:none' id='" + player.spriteCanvasID+"' width='" +400 + "' height="+300 + "'>  </canvas>";
 		querySelector("#playerSprites").append(canvasHTML);
 
 		player.renderSelf();
@@ -135,59 +135,59 @@ class CharacterCreatorHelper {
 		querySelector("#chatHandle"+player.id).val(player.chatHandle);
 	}
 	dynamic drawDropDowns(player){
-		String str = "<div id ;= 'dropDowns" + player.id + "' class='optionBox'>";
+		String str = "<div id = 'dropDowns" + player.id + "' class='optionBox'>";
 		str += "<div>" + (this.drawOneClassDropDown(player));
 		str += (" of ");
 		str+= (this.drawOneAspectDropDown(player)) + "</div>";
 		str += "<hr>";
-		str += "<span class;='formElementLeft'>Hair Type:</span>" + this.drawOneHairDropDown(player);
-		str += "<span class;='formElementRight'>Hair Color:</span>" + this.drawOneHairColorPicker(player);
-		str += "<span class;='formElementLeft'>Species:</span>" + this.drawOneSpeciesDropDown(player);
-		str += "<span class;='formElementRight'>Moon:</span>" + this.drawOneMoonDropDown(player);
-		str += "<span class;='formElementLeft'>L. Horn:</span>" + this.drawOneLeftHornDropDown(player);
-		str += "<span class;='formElementRight'>R. Horn:</span>" + this.drawOneRightHornDropDown(player);
-		str += "<span class;='formElementLeft'>BloodColor:</span>" + this.drawOneBloodColorDropDown(player);
-		str += "<span class;='formElementRight'>Fav. Num:</span>" + this.drawOneFavoriteNumberDropDown(player);
+		str += "<span class='formElementLeft'>Hair Type:</span>" + this.drawOneHairDropDown(player);
+		str += "<span class='formElementRight'>Hair Color:</span>" + this.drawOneHairColorPicker(player);
+		str += "<span class='formElementLeft'>Species:</span>" + this.drawOneSpeciesDropDown(player);
+		str += "<span class='formElementRight'>Moon:</span>" + this.drawOneMoonDropDown(player);
+		str += "<span class='formElementLeft'>L. Horn:</span>" + this.drawOneLeftHornDropDown(player);
+		str += "<span class='formElementRight'>R. Horn:</span>" + this.drawOneRightHornDropDown(player);
+		str += "<span class='formElementLeft'>BloodColor:</span>" + this.drawOneBloodColorDropDown(player);
+		str += "<span class='formElementRight'>Fav. Num:</span>" + this.drawOneFavoriteNumberDropDown(player);
 		str += "</div>";
 		return str;
 	}
 	dynamic drawTabs(player){
-		String str = "<div id ;= 'tabs'"+player.id + " class='optionTabs'>";
-		str += "<span id ;= 'ddTab" +player.id + "'class='optionTab optionTabSelected'> DropDowns</span>";
-		str += "<span id ;= 'cbTab" +player.id + "'class='optionTab'> CheckBoxes</span>";
-		str += "<span id ;= 'tbTab" +player.id + "'class='optionTab'> TextBoxes</span>";
-		str += "<span id ;= 'csTab" +player.id + "'class='optionTab'> Summary</span>";
-		str += "<span id ;= 'dataTab" +player.id + "'class='optionTab'> Data</span>";
-		str += "<span id ;= 'deleteTab" +player.id + "'class='deleteTab'> X </span>";
+		String str = "<div id = 'tabs'"+player.id + " class='optionTabs'>";
+		str += "<span id = 'ddTab" +player.id + "'class='optionTab optionTabSelected'> DropDowns</span>";
+		str += "<span id = 'cbTab" +player.id + "'class='optionTab'> CheckBoxes</span>";
+		str += "<span id = 'tbTab" +player.id + "'class='optionTab'> TextBoxes</span>";
+		str += "<span id = 'csTab" +player.id + "'class='optionTab'> Summary</span>";
+		str += "<span id = 'dataTab" +player.id + "'class='optionTab'> Data</span>";
+		str += "<span id = 'deleteTab" +player.id + "'class='deleteTab'> X </span>";
 		str += "</div>";
 		return str;
 	}
 	dynamic drawCheckBoxes(player){
-		String str = "<div id ;= 'checkBoxes"+player.id + "' class='optionBox'>";
-		str += '<span class;="formElementLeft">GrimDark:</span> <input id="grimDark' + player.id + '" type;="checkbox">'
-		str += '<span class;="formElementRight">IsDreamSelf:</span> <input id="isDreamSelf' + player.id + '" type;="checkbox">'
-		str += '<span class;="formElementLeft">GodDestiny:</span> <input id="godDestiny' + player.id + '" type;="checkbox">'
-		str += '<span class;="formElementRight">GodTier:</span> <input id="godTier' + player.id + '" type;="checkbox">'
-		str += '<span class;="formElementLeft">MurderMode:</span> <input id="murderMode' + player.id + '" type;="checkbox">'
-		str += '<span class;="formElementRight">LeftMurderMode:</span> <input id="leftMurderMode' + player.id + '" type;="checkbox">'
-		str += '<span class;="formElementLeft">Dead:</span> <input id="dead' + player.id + '" type;="checkbox">'
-		str += '<span class;="formElementRight">Robot:</span> <input id="robot' + player.id + '" type;="checkbox">'
+		String str = "<div id = 'checkBoxes"+player.id + "' class='optionBox'>";
+		str += '<span class="formElementLeft">GrimDark:</span> <input id="grimDark' + player.id + '" type="checkbox">'
+		str += '<span class="formElementRight">IsDreamSelf:</span> <input id="isDreamSelf' + player.id + '" type="checkbox">'
+		str += '<span class="formElementLeft">GodDestiny:</span> <input id="godDestiny' + player.id + '" type="checkbox">'
+		str += '<span class="formElementRight">GodTier:</span> <input id="godTier' + player.id + '" type="checkbox">'
+		str += '<span class="formElementLeft">MurderMode:</span> <input id="murderMode' + player.id + '" type="checkbox">'
+		str += '<span class="formElementRight">LeftMurderMode:</span> <input id="leftMurderMode' + player.id + '" type="checkbox">'
+		str += '<span class="formElementLeft">Dead:</span> <input id="dead' + player.id + '" type="checkbox">'
+		str += '<span class="formElementRight">Robot:</span> <input id="robot' + player.id + '" type="checkbox">'
 
 		str += "</div>";
 		return str;
 	}
 	dynamic drawTextBoxes(player){
-		String str = "<div id ;= 'textBoxes"+player.id + "'' class='optionBox'>";
+		String str = "<div id = 'textBoxes"+player.id + "'' class='optionBox'>";
 		str += this.drawChatHandleBox(player);
 		str += this.drawInterests(player);
 		str += "</div>";
 		return str;
 	}
 	dynamic drawCanvasSummary(player){
-		String str = "<div id ;= 'canvasSummary"+player.id + "' class='optionBox'>";
+		String str = "<div id = 'canvasSummary"+player.id + "' class='optionBox'>";
 		num height = 300;
 		num width = 600;
-		str += "<canvas id;='canvasSummarycanvas" + player.id +"' width='" +width + "' height;="+height + "'>  </canvas>"
+		str += "<canvas id='canvasSummarycanvas" + player.id +"' width='" +width + "' height="+height + "'>  </canvas>"
 		str += "</div>";
 		return str;
 	}
@@ -233,22 +233,22 @@ class CharacterCreatorHelper {
 
 	}
 	dynamic drawHelpText(player){
-		String str = "<div id ;= 'helpText" + player.id + "' class ='helpText'>...</div>";
+		String str = "<div id = 'helpText" + player.id + "' class ='helpText'>...</div>";
 
 		return str;
 	}
 	dynamic drawDataBoxNoButtons(player){
-		String str = "<div id ;= 'dataBox"+player.id + "'>";
-		str += "<button class ;= 'charCreatorButton' id = 'copyButton" + player.id + "'> Copy To ClipBoard</button>  </div>";
-		str += "<textarea class ;= 'dataInputSmall' id='dataBoxDiv"+player.id + "'> </textarea>";
+		String str = "<div id = 'dataBox"+player.id + "'>";
+		str += "<button class = 'charCreatorButton' id = 'copyButton" + player.id + "'> Copy To ClipBoard</button>  </div>";
+		str += "<textarea class = 'dataInputSmall' id='dataBoxDiv"+player.id + "'> </textarea>";
 		str += "</div>";
 		return str;
 	}
 	dynamic drawDataBox(player){
-		String str = "<div id ;= 'dataBox"+player.id + "' class='optionBox'>";
-		str += "<textarea class ;= 'dataInput' id='dataBoxDiv"+player.id + "'> </textarea>";
-		str += "<div><button class ;= 'charCreatorButton' id = 'loadButton" + player.id + "'>Load From Text</button>";
-		str += "<button class ;= 'charCreatorButton' id = 'copyButton" + player.id + "'> Copy To ClipBoard</button>  </div>";
+		String str = "<div id = 'dataBox"+player.id + "' class='optionBox'>";
+		str += "<textarea class = 'dataInput' id='dataBoxDiv"+player.id + "'> </textarea>";
+		str += "<div><button class = 'charCreatorButton' id = 'loadButton" + player.id + "'>Load From Text</button>";
+		str += "<button class = 'charCreatorButton' id = 'copyButton" + player.id + "'> Copy To ClipBoard</button>  </div>";
 		str += "</div>";
 		return str;
 	}
@@ -269,9 +269,9 @@ class CharacterCreatorHelper {
 		if(topic == "BloodColor") return this.generateBloodColorHelp(topic, specific);
 		if(topic == "Moon") return this.generateMoonHelp(topic, specific);
 		if(topic == "FavoriteNumber") return "Favorite number can affect a Player's quirk, as well as determining a troll's god tier Wings.";
-		if(topic == "Horns") return "Horns are purely cosmetic. See gallery of horns <a target = '_blank' href ;='image_browser.html?horns=true'>here</a>";
+		if(topic == "Horns") return "Horns are purely cosmetic. See gallery of horns <a target = '_blank' href ='image_browser.html?horns=true'>here</a>";
 		if(topic == "chatHandle") return "If left blank, chatHandle will be auto-generated by the sim based on class, aspect, and interests.";
-		if(topic == "Hair") return "Hair is purely cosmetic. See gallery of hair <a target = '_blank' href ;='image_browser.html?hair=true'>here</a>";
+		if(topic == "Hair") return "Hair is purely cosmetic. See gallery of hair <a target = '_blank' href ='image_browser.html?hair=true'>here</a>";
 		if(topic == "grimDark") return "Grim Dark players are more powerful and actively work to crash SBURB/SGRUB.";
 		if(topic == "murderMode") return "Has done an acrobatic flip into a pile of crazy. Will try to kill other players.";
 		if(topic == "leftMurderMode") return "Has recovered from an acrobatic flip into a pile of crazy. Still bears the scars.";
@@ -459,7 +459,7 @@ class CharacterCreatorHelper {
 
 			var that = this;
 			c2.change(() {
-					var classDropDown = querySelector('[name;="className' +player.id +'"] option:selected') //need to get what is selected inside the .change, otheriise is always the same;
+					var classDropDown = querySelector('[name="className' +player.id +'"] option:selected') //need to get what is selected inside the .change, otheriise is always the same;
 					player.class_name = classDropDown.val();
 					that.redrawSinglePlayer(player);
 					helpText.html(that.generateHelpText("Class",player.class_name));
@@ -467,7 +467,7 @@ class CharacterCreatorHelper {
 			});
 
 			moonDiv.change(() {
-					var moonDropDown = querySelector('[name;="moon' +player.id +'"] option:selected');
+					var moonDropDown = querySelector('[name="moon' +player.id +'"] option:selected');
 					player.moon = moonDropDown.val();
 					that.redrawSinglePlayer(player);
 					moonDiv.css("background-color", moonToColor(player.moon));
@@ -476,7 +476,7 @@ class CharacterCreatorHelper {
 			});
 
 			favoriteNumberDiv.change(() {
-					var numberDropDown = querySelector('[name;="favoriteNumber' +player.id +'"] option:selected');
+					var numberDropDown = querySelector('[name="favoriteNumber' +player.id +'"] option:selected');
 					player.quirk.favoriteNumber = parseInt(numberDropDown.val());
 					that.redrawSinglePlayer(player);
 					helpText.html(that.generateHelpText("FavoriteNumber",player.quirk.favoriteNumber));
@@ -484,42 +484,42 @@ class CharacterCreatorHelper {
 
 
 			a2.change(() {
-					var aspectDropDown = querySelector('[name;="aspect' +player.id +'"] option:selected');
+					var aspectDropDown = querySelector('[name="aspect' +player.id +'"] option:selected');
 					player.aspect = aspectDropDown.val();
 					that.redrawSinglePlayer(player);
 					helpText.html(that.generateHelpText("Aspect",player.aspect));
 			});
 
 			hairDiv.change(() {
-				  var aspectDropDown = querySelector('[name;="hair' +player.id +'"] option:selected');
+				  var aspectDropDown = querySelector('[name="hair' +player.id +'"] option:selected');
 					player.hair = aspectDropDown.val();
 					that.redrawSinglePlayer(player);
 					helpText.html(that.generateHelpText("Hair",player.class_name));
 			});
 
 			hairColorDiv.change(() {
-					//var aspectDropDown = querySelector('[name;="hairColor' +player.id +'"] option:selected');
+					//var aspectDropDown = querySelector('[name="hairColor' +player.id +'"] option:selected');
 					player.hairColor = hairColorDiv.val();
 					that.redrawSinglePlayer(player);
 					helpText.html(that.generateHelpText("HairColor",player.class_name));
 			});
 
 			leftHornDiv.change(() {
-					var aspectDropDown = querySelector('[name;="leftHorn' +player.id +'"] option:selected');
+					var aspectDropDown = querySelector('[name="leftHorn' +player.id +'"] option:selected');
 					player.leftHorn = aspectDropDown.val();
 					that.redrawSinglePlayer(player);
 					helpText.html(that.generateHelpText("Horns",player.class_name));
 			});
 
 			rightHornDiv.change(() {
-					var aspectDropDown = querySelector('[name;="rightHorn' +player.id +'"] option:selected');
+					var aspectDropDown = querySelector('[name="rightHorn' +player.id +'"] option:selected');
 					player.rightHorn = aspectDropDown.val();
 					that.redrawSinglePlayer(player);
 					helpText.html(that.generateHelpText("Horns",player.class_name));
 			});
 
 			bloodDiv.change(() {
-					var aspectDropDown = querySelector('[name;="bloodColor' +player.id +'"] option:selected');
+					var aspectDropDown = querySelector('[name="bloodColor' +player.id +'"] option:selected');
 					player.bloodColor = aspectDropDown.val();
 					bloodDiv.css("background-color", player.bloodColor);
 					bloodDiv.css("color", "black");
@@ -528,7 +528,7 @@ class CharacterCreatorHelper {
 			});
 
 			speciesDiv.change(() {
-					var aspectDropDown = querySelector('[name;="species' +player.id +'"] option:selected');
+					var aspectDropDown = querySelector('[name="species' +player.id +'"] option:selected');
 					var str = aspectDropDown.val();
 					if(str == "Troll"){
 						player.isTroll = true;
@@ -647,21 +647,21 @@ class CharacterCreatorHelper {
 
 
 		interestCategory1Dom.change(() {
-					var icDropDown = querySelector('[name;="interestCategory1' +player.id +'"] option:selected');
+					var icDropDown = querySelector('[name="interestCategory1' +player.id +'"] option:selected');
 					interest1DropDom.html(that.drawInterestDropDown(icDropDown.val(), 1, player))
 					helpText.html(that.generateHelpText("Interests",player.class_name));
 					player.interest1Category = icDropDown.val();
 		});
 
 		interestCategory2Dom.change(() {
-					var icDropDown = querySelector('[name;="interestCategory2' +player.id +'"] option:selected');
+					var icDropDown = querySelector('[name="interestCategory2' +player.id +'"] option:selected');
 					interest2DropDom.html(that.drawInterestDropDown(icDropDown.val(), 2, player))
 					helpText.html(that.generateHelpText("Interests",player.class_name));
 					player.interest2Category = icDropDown.val();
 		});
 
 		interest1DropDom.change(() {
-					var icDropDown = querySelector('[name;="interestDrop1' +player.id +'"] option:selected');
+					var icDropDown = querySelector('[name="interestDrop1' +player.id +'"] option:selected');
 					interest1TextDom.val(icDropDown.val());
 					helpText.html(that.generateHelpText("Interests",player.class_name));
 					player.interest1 = icDropDown.val();
@@ -669,7 +669,7 @@ class CharacterCreatorHelper {
 		});
 
 		interest2DropDom.change(() {
-					var icDropDown = querySelector('[name;="interestDrop2' +player.id +'"] option:selected');
+					var icDropDown = querySelector('[name="interestDrop2' +player.id +'"] option:selected');
 					interest2TextDom.val(icDropDown.val());
 					helpText.html(that.generateHelpText("Interests",player.class_name));
 					player.interest2 = icDropDown.val();
@@ -678,12 +678,12 @@ class CharacterCreatorHelper {
 
 	}
 	dynamic drawOneHairDropDown(player){
-		String html = "<select id ;= 'hairTypeID" + player.id + "' name='hair" +player.id +"'>";
+		String html = "<select id = 'hairTypeID" + player.id + "' name='hair" +player.id +"'>";
 		for(num i = 1; i<= player.maxHairNumber; i++){
 			if(player.hair == i){
-				html += '<option  selected ;= "selected" value="' + i +'">' + i+'</option>';
+				html += '<option  selected = "selected" value="' + i +'">' + i+'</option>';
 			}else{
-				html += '<option value;="' + i +'">' + i+'</option>'
+				html += '<option value="' + i +'">' + i+'</option>'
 			}
 		}
 		html += '</select>';
@@ -691,43 +691,43 @@ class CharacterCreatorHelper {
 	}
 	dynamic drawInterests(player){
 		String str = "";
-		str += " <div class ;= 'formSection'><b>Interest1</b>:</div><div class = 'formSection'>Category: " + this.drawInterestCategoryDropDown(1,player);
+		str += " <div class = 'formSection'><b>Interest1</b>:</div><div class = 'formSection'>Category: " + this.drawInterestCategoryDropDown(1,player);
 		str += " Existing: " +this.drawInterestDropDown(player.interest1Category, 1,player);
 		str += " Write In: " + this.drawInterestTextBox(1,player) +"</div>";
-		str += "<div class ;= 'formSection'><b>Interest2</b>:</div><div class = 'formSection'>Category: " +this.drawInterestCategoryDropDown(2,player);
+		str += "<div class = 'formSection'><b>Interest2</b>:</div><div class = 'formSection'>Category: " +this.drawInterestCategoryDropDown(2,player);
 		str += " Existing: " +this.drawInterestDropDown(player.interest2Category, 2,player);
 		str += " Write In: " + this.drawInterestTextBox(2,player);
 		str += "</div>";
 		return str;
 	}
 	dynamic drawChatHandleBox(player){
-		String html = "Chat Handle: <input type;='text' id = 'chatHandle" + player.id + "' name;='interest" + player.id +"' + value=''> </input>";
+		String html = "Chat Handle: <input type='text' id = 'chatHandle" + player.id + "' name='interest" + player.id +"' + value=''> </input>";
 		return html;
 	}
 	dynamic drawInterestTextBox(num, player){
 		var interestToCheck = player.interest1;
 		if(num == 2) interestToCheck = player.interest2;
-		String html = "<input type;='text' id = 'interest" + num+ player.id + "' name;='interest" +num+player.id +"' + value='" + interestToCheck +"'> </input>";
+		String html = "<input type='text' id = 'interest" + num+ player.id + "' name='interest" +num+player.id +"' + value='" + interestToCheck +"'> </input>";
 		return html;
 	}
 	dynamic drawInterestDropDown(category, num, player){
-		String html = "<select id ;= 'interestDrop" + num+ player.id + "' name='interestDrop" +num+player.id +"'>";
+		String html = "<select id = 'interestDrop" + num+ player.id + "' name='interestDrop" +num+player.id +"'>";
 		var interestsInCategory = interestCategoryToInterestList(category);
 		var interestToCheck = player.interest1;
 		if(num == 2) interestToCheck = player.interest2;
 		for(num i = 0; i< interestsInCategory.length; i++){
 			var pi = interestsInCategory[i];
 			if(interestToCheck == pi){
-				html += '<option  selected ;= "selected" value="' + pi +'">' + pi+'</option>';
+				html += '<option  selected = "selected" value="' + pi +'">' + pi+'</option>';
 			}else{
-				html += '<option value;="' + pi +'">' + pi+'</option>'
+				html += '<option value="' + pi +'">' + pi+'</option>'
 			}
 		}
 		html += '</select>';
 		return html;
 	}
 	dynamic drawInterestCategoryDropDown(num, player){
-		String html = "<select id ;= 'interestCategory" + num+ player.id + "' name='interestCategory" +num+player.id +"'>";
+		String html = "<select id = 'interestCategory" + num+ player.id + "' name='interestCategory" +num+player.id +"'>";
 		for(num i = 0; i< interestCategories.length; i++){
 			var ic = interestCategories[i];
 			if(player.interestedIn(ic, num)){
@@ -736,42 +736,42 @@ class CharacterCreatorHelper {
 				}else if(num == 2){
 					player.interest2Category = ic;
 				}
-				html += '<option  selected ;= "selected" value="' + ic +'">' + ic+'</option>';
+				html += '<option  selected = "selected" value="' + ic +'">' + ic+'</option>';
 			}else{
-				html += '<option value;="' + ic +'">' + ic+'</option>'
+				html += '<option value="' + ic +'">' + ic+'</option>'
 			}
 		}
 		html += '</select>';
 		return html;
 	}
 	dynamic drawOneFavoriteNumberDropDown(player){
-		String html = "<select id ;= 'favoriteNumberID" + player.id + "' name='favoriteNumber" +player.id +"'>";
+		String html = "<select id = 'favoriteNumberID" + player.id + "' name='favoriteNumber" +player.id +"'>";
 		for(int i = 0; i<=12; i++){
 			if(player.quirk.favoriteNumber == i){
-				html += '<option  selected ;= "selected" value="' + i +'">' + i+'</option>';
+				html += '<option  selected = "selected" value="' + i +'">' + i+'</option>';
 			}else{
-				html += '<option value;="' + i +'">' + i+'</option>'
+				html += '<option value="' + i +'">' + i+'</option>'
 			}
 		}
 		html += '</select>';
 		return html;
 	}
 	dynamic drawOneLeftHornDropDown(player){
-		String html = "<select id ;= 'leftHornID" + player.id + "' name='leftHorn" +player.id +"'>";
+		String html = "<select id = 'leftHornID" + player.id + "' name='leftHorn" +player.id +"'>";
 		for(num i = 1; i<= player.maxHornNumber; i++){
 			if(player.leftHorn == i){
-				html += '<option  selected ;= "selected" value="' + i +'">' + i+'</option>';
+				html += '<option  selected = "selected" value="' + i +'">' + i+'</option>';
 			}else{
-				html += '<option value;="' + i +'">' + i+'</option>'
+				html += '<option value="' + i +'">' + i+'</option>'
 			}
 		}
 
 		num maxCustomHorns = 0;  //kr wants no shitty horns widely available
 		for(num i = 255; i> 255-maxCustomHorns; i+=-1){;
             if(player.leftHorn == i){
-                html += '<option  selected ;= "selected" value="' + i +'">' + i+'</option>';
+                html += '<option  selected = "selected" value="' + i +'">' + i+'</option>';
             }else{
-                html += '<option value;="' + i +'">' + i+'</option>'
+                html += '<option value="' + i +'">' + i+'</option>'
             }
         }
 
@@ -780,21 +780,21 @@ class CharacterCreatorHelper {
 		return html;
 	}
 	dynamic drawOneRightHornDropDown(player){
-		String html = "<select id ;= 'rightHornID" + player.id + "' name='rightHorn" +player.id +"'>";
+		String html = "<select id = 'rightHornID" + player.id + "' name='rightHorn" +player.id +"'>";
 		for(num i = 1; i<= player.maxHornNumber; i++){
 			if(player.leftHorn == i){
-				html += '<option  selected ;= "selected" value="' + i +'">' + i+'</option>';
+				html += '<option  selected = "selected" value="' + i +'">' + i+'</option>';
 			}else{
-				html += '<option value;="' + i +'">' + i+'</option>'
+				html += '<option value="' + i +'">' + i+'</option>'
 			}
 		}
 
 		num maxCustomHorns = 0;
             for(num i = 255; i> 255-maxCustomHorns; i+=-1){;
                 if(player.rightHorn == i){
-                    html += '<option  selected ;= "selected" value="' + i +'">' + i+'</option>';
+                    html += '<option  selected = "selected" value="' + i +'">' + i+'</option>';
                 }else{
-                    html += '<option value;="' + i +'">' + i+'</option>'
+                    html += '<option value="' + i +'">' + i+'</option>'
                 }
             }
 
@@ -805,24 +805,24 @@ class CharacterCreatorHelper {
 	dynamic drawOneClassDropDown(player){
 		available_classes = classes.slice(0); //re-init available classes. make deep copy
 	  available_classes.addAll(custom_only_classes);
-		String html = "<select id ;= 'classNameID" + player.id + "' name='className" +player.id +"'>";
+		String html = "<select id = 'classNameID" + player.id + "' name='className" +player.id +"'>";
 		for(num i = 0; i< available_classes.length; i++){
 			if(available_classes[i] == player.class_name){
-				html += '<option  selected ;= "selected" value="' + available_classes[i] +'">' + available_classes[i]+'</option>';
+				html += '<option  selected = "selected" value="' + available_classes[i] +'">' + available_classes[i]+'</option>';
 			}else{
-				html += '<option value;="' + available_classes[i] +'">' + available_classes[i]+'</option>'
+				html += '<option value="' + available_classes[i] +'">' + available_classes[i]+'</option>'
 			}
 		}
 		html += '</select>';
 		return html;
 	}
 	dynamic drawOneMoonDropDown(player){
-		String html = "<select style ;= 'background: " + moonToColor(player.moon) + "' id = 'moonID" + player.id + "' name;='moon" +player.id +"'>";
+		String html = "<select style = 'background: " + moonToColor(player.moon) + "' id = 'moonID" + player.id + "' name='moon" +player.id +"'>";
 		for(num i = 0; i< moons.length; i++){
 			if(moons[i] == player.moon){
-				html += '<option style;="background:' + moonToColor(moons[i]) + '" selected = "moon" value;="' + moons[i] +'">' + moons[i]+'</option>'
+				html += '<option style="background:' + moonToColor(moons[i]) + '" selected = "moon" value="' + moons[i] +'">' + moons[i]+'</option>'
 			}else{
-				html += '<option style;="background:' + moonToColor(moons[i]) + '" value="' + moons[i] +'">' + moons[i]+'</option>';
+				html += '<option style="background:' + moonToColor(moons[i]) + '" value="' + moons[i] +'">' + moons[i]+'</option>';
 			}
 		}
 		html += '</select> ';
@@ -831,12 +831,12 @@ class CharacterCreatorHelper {
 	}
 	dynamic drawOneSpeciesDropDown(player){
 		var species = ["Human", "Troll"];
-		String html = "<select id ;= 'speciesID" + player.id + "' name='species" +player.id +"'>";
+		String html = "<select id = 'speciesID" + player.id + "' name='species" +player.id +"'>";
 		for(num i = 0; i< species.length; i++){
 			if((species[i] == "Troll" && player.isTroll) || (species[i] == "Human" && !player.isTroll)){
-				html += '<option  selected ;= "species" value="' + species[i] +'">' + species[i]+'</option>';
+				html += '<option  selected = "species" value="' + species[i] +'">' + species[i]+'</option>';
 			}else{
-				html += '<option value;="' + species[i] +'">' + species[i]+'</option>'
+				html += '<option value="' + species[i] +'">' + species[i]+'</option>'
 			}
 		}
 		html += '</select>';
@@ -845,28 +845,28 @@ class CharacterCreatorHelper {
 	}
 	dynamic drawOneHairColorPicker(player){
 		String id = "hairColorID" + player.id;
-		String html = "<input id ;= '" + id + "' type='color' name;='favcolor' value='" + player.hairColor + "'>";
+		String html = "<input id = '" + id + "' type='color' name='favcolor' value='" + player.hairColor + "'>";
 		return html;
 	}
 	dynamic drawOneHairColorDropDownOLD(player){
-		String html = "<select id ;= 'hairColorID" + player.id + "' name='hairColor" +player.id +"'>";
+		String html = "<select id = 'hairColorID" + player.id + "' name='hairColor" +player.id +"'>";
 		for(num i = 0; i< human_hair_colors.length; i++){
 			if(human_hair_colors[i] == player.hairColor){
-				html += '<option style;="background:' + human_hair_colors[i] + '" selected = "hairColor" value;="' + human_hair_colors[i] +'">' + human_hair_colors[i]+'</option>'
+				html += '<option style="background:' + human_hair_colors[i] + '" selected = "hairColor" value="' + human_hair_colors[i] +'">' + human_hair_colors[i]+'</option>'
 			}else{
-				html += '<option style;="background:' + human_hair_colors[i] + '"value="' + human_hair_colors[i] +'">' + human_hair_colors[i]+'</option>';
+				html += '<option style="background:' + human_hair_colors[i] + '"value="' + human_hair_colors[i] +'">' + human_hair_colors[i]+'</option>';
 			}
 		}
 		html += '</select>';
 		return html;
 	}
 	dynamic drawOneBloodColorDropDown(player){
-		String html = "<select style;='color: black; background:" + player.bloodColor + "' id = 'bloodColorID" + player.id + "' name;='bloodColor" +player.id +"'>"
+		String html = "<select style='color: black; background:" + player.bloodColor + "' id = 'bloodColorID" + player.id + "' name='bloodColor" +player.id +"'>"
 		for(num i = 0; i< bloodColors.length; i++){
 			if(bloodColors[i] == player.bloodColor){
-				html += '<option style;="color: black; background:' + bloodColors[i] + '" selected = "bloodColor" value;="' + bloodColors[i] +'">' + bloodColors[i]+'</option>'
+				html += '<option style="color: black; background:' + bloodColors[i] + '" selected = "bloodColor" value="' + bloodColors[i] +'">' + bloodColors[i]+'</option>'
 			}else{
-				html += '<option style;="color: black; background:' + bloodColors[i] + '"value="' + bloodColors[i] +'">' + bloodColors[i]+'</option>';
+				html += '<option style="color: black; background:' + bloodColors[i] + '"value="' + bloodColors[i] +'">' + bloodColors[i]+'</option>';
 			}
 		}
 		html += '</select>';
@@ -875,12 +875,12 @@ class CharacterCreatorHelper {
 	dynamic drawOneAspectDropDown(player){
 		available_aspects = nonrequired_aspects.slice(0); //required_aspects
 		available_aspects.addAll(required_aspects.slice(0));
-		String html = "<select class ;= 'selectDiv' id = 'aspectID" + player.id + "' name;='aspect" +player.id +"'>";
+		String html = "<select class = 'selectDiv' id = 'aspectID" + player.id + "' name='aspect" +player.id +"'>";
 		for(num i = 0; i< available_aspects.length; i++){
 			if(available_aspects[i] == player.aspect){
-				html += '<option selected ;= "selected" value="' + available_aspects[i] + '" >' + available_aspects[i]+'</option>';
+				html += '<option selected = "selected" value="' + available_aspects[i] + '" >' + available_aspects[i]+'</option>';
 			}else{
-				html += '<option value;="' + available_aspects[i] + '" >' + available_aspects[i]+'</option>'
+				html += '<option value="' + available_aspects[i] + '" >' + available_aspects[i]+'</option>'
 			}
 
 		}

@@ -182,7 +182,7 @@ class JackBeginScheming extends Scene {
 	void chatWithFriend(div, player1, player2){
 		num repeatTime = 1000;
 		var divID = (div.id) + "_" + player1.chatHandle;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);

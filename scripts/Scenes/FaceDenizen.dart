@@ -82,7 +82,7 @@ class FaceDenizen extends Scene{
 		var denizen = p.denizen;
 		if(!p.denizenFaced && p.getFriends().length > p.getEnemies().length){ //one shot at The Choice
 			//print("confront icon: " + this.session.session_id);
-			ret += "<br><img src ;= 'images/sceneIcons/confront_icon.png'> The " + p.htmlTitle() + " cautiously approaches their " + denizen.name + " and are presented with The Choice. ";
+			ret += "<br><img src = 'images/sceneIcons/confront_icon.png'> The " + p.htmlTitle() + " cautiously approaches their " + denizen.name + " and are presented with The Choice. ";
 			if(p.power > 27){ //calibrate this l8r
 				ret += " The " + p.htmlTitle() + " manages to choose correctly, despite the seeming impossibility of the matter. ";
 				ret += " They gain the power they need to acomplish their objectives. ";
@@ -145,7 +145,7 @@ class FaceDenizen extends Scene{
 					p.makeDead("fighting their Denizen way too early");
 					div.append("<br>"+ret);
 					var divID = (div.id);
-					String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+					String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 					div.append(canvasHTML);
 					var canvas = querySelector("#canvas"+ divID);
 					drawSinglePlayer(canvas, p);

@@ -69,11 +69,11 @@ class VoidyStuff extends Scene {
 		//make array of functions. call one at random.
 		//div you pass to fucntion is created here. div class is VOID, nothing or RAGE.
 
-		String normalDivHTML = "<span id ;= '" +div.id+ "voidyStuffNormal'>  </span> ";
+		String normalDivHTML = "<span id = '" +div.id+ "voidyStuffNormal'>  </span> ";
 		div.append(normalDivHTML);
 		var normalDiv = querySelector("#"+div.id+ "voidyStuffNormal");
 
-		String newDivHTML = "<span class ;='"+classDiv+"' id = '" +div.id+ "voidyStuffSpecial'>  </span> ";
+		String newDivHTML = "<span class ='"+classDiv+"' id = '" +div.id+ "voidyStuffSpecial'>  </span> ";
 		div.append(newDivHTML);
 		normalDiv = querySelector("#"+div.id+ "voidyStuffNormal");
 		var newDiv = querySelector("#"+div.id+ "voidyStuffSpecial");
@@ -192,7 +192,7 @@ class VoidyStuff extends Scene {
 				specialDiv.append(ret);
 
 				var divID = (specialDiv.id) + "denizenDeath";
-				String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+				String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 				specialDiv.append(canvasHTML);
 				var canvas = querySelector("#canvas"+ divID);
 
@@ -211,7 +211,7 @@ class VoidyStuff extends Scene {
 		if(this.session.players.length > 6){
 			ch = canvasHeight*1.5;
 		}
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+ch + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+ch + "'>  </canvas>";
 		specialDiv.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);
@@ -232,7 +232,7 @@ class VoidyStuff extends Scene {
 		this.player.fraymotifs.add(f);
 		specialDiv.append("Holy shit. Did the " + this.player.htmlTitleBasic() + " just randomly go GodTier? What the fuck is going on? Did they even die? This is some flagrant bullshit. Somehow they learned " + f.name + " too." );
 		var divID = (specialDiv.id) + "godBS";
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		specialDiv.append(canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);
 		drawGetTiger(canvas, [this.player]); //only draw revivial if it actually happened.

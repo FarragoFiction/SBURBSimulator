@@ -61,7 +61,7 @@ class Intro  extends IntroScene{
 	  String ret = "";
 		if(this.player.object_to_prototype.getStat("power") > 200 && rand.nextDouble() > .8){
 			String divID = (div.id);
-			String canvasHTML = "<br><canvas id;='canvaskernel" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+			String canvasHTML = "<br><canvas id='canvaskernel" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 			div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
 			CanvasElement canvas = querySelector("#canvaskernel"+ divID);
 			List<Player> times = findAllAspectPlayers(this.session.players, "Time"); //they don't have to be in the medium, though
@@ -127,7 +127,7 @@ class Intro  extends IntroScene{
 			chatText += Scene.chatLine(player2Start, player2,"Social obligation complete. Goodbye.");
 			return chatText;
 	}
-	dynamic lightChat(player1, player2){
+	String lightChat(player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": ";
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		var r1 = player1.getRelationshipWith(player2);
@@ -520,7 +520,7 @@ class Intro  extends IntroScene{
 		}
 		return chatText;
 	}
-	dynamic alienChat(player1, Element div){
+  String alienChat(player1, Element div){
 		//print("inside alien chat");
 		var player2 = player1.getBestFriend(); //even if they are dead. even if they are from another session.
 		var player1Start = player1.chatHandleShort()+ ": ";
@@ -568,10 +568,10 @@ class Intro  extends IntroScene{
 				}
 
 		}
-		drawChat(querySelector("#canvas"+ (div.id)), player1, player2, chatText,"discuss_sburb.png");
-		return null;
+		//drawChat(querySelector("#canvas"+ (div.id)), player1, player2, chatText,"discuss_sburb.png");
+		return chatText; //only one place draws to screen now
 	}
-	dynamic getChat(player1, player2, div){
+	String getChat(player1, player2, div){
 
 		if(!player1.fromThisSession(this.session) || player1.land != null){
 			return this.alienChat(player1,div);
@@ -612,7 +612,7 @@ class Intro  extends IntroScene{
 	}
 	dynamic chat(Element div){
 		num repeatTime = 1000;
-		String canvasHTML = "<br><canvas id;='canvas" + (div.id) +"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='canvas" + (div.id) +"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
 		//first, find/make pesterchum skin. Want it to be no more than 300 tall for now.
 		//then, have some text I want to render to it.
@@ -637,9 +637,6 @@ class Intro  extends IntroScene{
 
 
 		var chatText = this.getChat(player1,player2,div);
-		if(chatText == null){//alien chat
-			return;
-		}
 		//alien chat won't get here, renders itself cause can talk to dead
 		drawChat(querySelector("#canvas"+ (div.id)), player1, player2, chatText,"discuss_sburb.png");
 	}

@@ -38,7 +38,7 @@ class RelationshipDrama extends Scene {
 		var divId = (div.id) + player1.chatHandle + player1.id;
 		var player1Start = player1.chatHandleShort()+ ": ";
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
-		String canvasHTML = "<br><canvas id;='canvas" + divId +"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='canvas" + divId +"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvasDiv = querySelector("#canvas"+  divId);
 		String chatText = "";
@@ -56,7 +56,7 @@ class RelationshipDrama extends Scene {
 		drawChat(canvasDiv, player1, player2, chatText,"discuss_raps.png");
 		if(p1score + p2score > 6){ //it's not winning that calms them down, but sick fires in general.
 			//print("rap sick fires in session: " + this.session.session_id + " score: " + (p1score + p2score))
-			div.append("<img class = 'sickFiresCentered' src ;= 'images/sick_fires.gif'><br> It seems that the " + player1.htmlTitle() + " has been calmed down, for now.");
+			div.append("<img class = 'sickFiresCentered' src = 'images/sick_fires.gif'><br> It seems that the " + player1.htmlTitle() + " has been calmed down, for now.");
 			if(player1.murderMode) player1.unmakeMurderMode(); //if they WERE in murder mode, well, now they ain't.
 			if(player2.murderMode) player2.unmakeMurderMode();
 			//rap battles are truly the best way to power level.
@@ -76,7 +76,7 @@ class RelationshipDrama extends Scene {
 		var player2 = crush;
 
 		var divID = (div.id) + "_" + player.chatHandle+"confess_crush_"+crush.chatHandle + player.id;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvasDiv = querySelector("#canvas"+ divID);
 		var player1Start = player1.chatHandleShort()+ ": ";
@@ -189,7 +189,7 @@ class RelationshipDrama extends Scene {
 			return this.confessTooManyFeeling(div, player, crush); //don't just keep spinning your wheels.
 		}
 		var divID = (div.id) + "_" + player.chatHandle+"confess_crush_"+crush.chatHandle+ player.id;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvasDiv = querySelector("#canvas"+ divID);
 		var player1Start = player1.chatHandleShort()+ ": ";
@@ -275,7 +275,7 @@ class RelationshipDrama extends Scene {
 		String chatText = "";
 
 		var divID = (div.id) + "_" + player1.chatHandle+"advice_crush_"+crush.chatHandle + player1.id;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);
@@ -299,7 +299,7 @@ class RelationshipDrama extends Scene {
 		String chatText = "";
 
 		var divID = (div.id) + "_" + player1.chatHandle+"advice_crush_"+crush.chatHandle + player1.id;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);
@@ -343,7 +343,7 @@ class RelationshipDrama extends Scene {
 		removeFromArray(player2, this.session.availablePlayers);
 
 		var divID = (div.id) + "_" + player.chatHandle+"advice_crush_"+crush.chatHandle + player.id;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);
@@ -474,7 +474,7 @@ class RelationshipDrama extends Scene {
 		}
 		removeFromArray(player2, this.session.availablePlayers);
 		var divID = (div.id) + "_" + player.chatHandle+"vent_jerk_"+jerk.chatHandle +  player.id;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);
@@ -552,7 +552,7 @@ class RelationshipDrama extends Scene {
 		}
 		removeFromArray(jerk, this.session.availablePlayers);
 		var divID = (div.id) + "_" + player.chatHandle+"antagonize_jerk_"+jerk.chatHandle + player.id;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvasDiv = querySelector("#canvas"+ divID);
 		//different format for canvas code
@@ -696,7 +696,7 @@ class RelationshipDrama extends Scene {
 		return this.matchTypeToOpinion(relationship.saved_type, relationship);
 	}
 	dynamic processDrama(player, relationship){
-		String ret = "<img src ;= 'images/sceneIcons/heart_icon.png'> The " + player.htmlTitle() + " used to think that the " + relationship.target.htmlTitle() + " was ";
+		String ret = "<img src = 'images/sceneIcons/heart_icon.png'> The " + player.htmlTitle() + " used to think that the " + relationship.target.htmlTitle() + " was ";
 		ret += this.generateOldOpinion(relationship) + ", but now they can't help but think they are " + this.generateNewOpinion(relationship) + ".";
 
 		if(relationship.saved_type == relationship.goodBig && relationship.target.dead){

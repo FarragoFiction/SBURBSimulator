@@ -32,7 +32,7 @@ class FightQueen extends Scene {
 		if(fightingPlayers.length > 6){
 			ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
 		}
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+ch + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+ch + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);

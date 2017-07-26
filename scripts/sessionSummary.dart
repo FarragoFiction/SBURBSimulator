@@ -184,15 +184,15 @@ class SessionSummary {
 			var lineage = this.parentSession.getLineage(); //i am not a session so remember to tack myself on at the end.
 			String scratched = "";
 			if(lineage[0].scratched) scratched = "(scratched)";
-			html += "<Br><b> Session</b>: <a href ;= 'index2.html?seed=" + lineage[0].session_id +"&"+params+ "'>" +lineage[0].session_id + scratched +"</a> ";
+			html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + lineage[0].session_id +"&"+params+ "'>" +lineage[0].session_id + scratched +"</a> ";
 			for(num i = 1; i< lineage.length; i++){
 				String scratched = "";
 				if(lineage[i].scratched) scratched = "(scratched)";
-				html += " combined with: " + "<a href ;= 'index2.html?seed=" + lineage[i].session_id +"&"+params+ "'>" +lineage[i].session_id + scratched +"</a> ";
+				html += " combined with: " + "<a href = 'index2.html?seed=" + lineage[i].session_id +"&"+params+ "'>" +lineage[i].session_id + scratched +"</a> ";
 			}
 			String scratched = "";
 			if(this.scratched) scratched = "(scratched)";
-			html += " combined with: " + "<a href ;= 'index2.html?seed=" + this.session_id +"&"+params+ "'>" +this.session_id + scratched + "</a> ";
+			html += " combined with: " + "<a href = 'index2.html?seed=" + this.session_id +"&"+params+ "'>" +this.session_id + scratched + "</a> ";
 			if((lineage.length +1) == 3){
 				this.threeTimesSessionCombo = true;
 				html += " 3x SESSIONS COMBO!!!";
@@ -218,7 +218,7 @@ class SessionSummary {
 	dynamic generateHTML(){
 		var params = window.location.href.substr(window.location.href.indexOf("?")+1);
 		if (params == window.location.href) params = "";
-		String html = "<div class ;= 'sessionSummary' id = 'summarizeSession" + this.session_id +"'>";
+		String html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id +"'>";
 		for(var propertyName in this) {
 				if(propertyName == "players"){
 					html += "<Br><b>" + propertyName + "</b>: " + getPlayersTitlesBasic(this.players);
@@ -233,7 +233,7 @@ class SessionSummary {
 						String scratch = "";
 						if(this.scratched) scratch = "(scratched)";
 
-						html += "<Br><b> Session</b>: <a href ;= 'index2.html?seed=" + this.session_id + "&"+params+"'>" +this.session_id + scratch +  "</a>";
+						html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "&"+params+"'>" +this.session_id + scratch +  "</a>";
 					}
 				}else if(propertyName == "matchesClass" || propertyName == "matchesAspect" || propertyName == "miniPlayerMatchesAnyClasspect" || propertyName == "matchesBothClassAndAspect" || propertyName == "matchesClasspect" ||propertyName == "matchesClass" || propertyName == "miniPlayers" || propertyName == "setMiniPlayers" || propertyName == "scratched" || propertyName == "ghosts" || propertyName == "satifies_filter_array" || propertyName == "frogStatus" || propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo" || propertyName == "parentSession"  ){
 					//do nothing. properties used elsewhere.
@@ -273,8 +273,8 @@ class SessionSummaryJunior {
 		this.getAverages();
 		var params = window.location.href.substr(window.location.href.indexOf("?")+1);
 		if (params == window.location.href) params = "";
-		String html = "<div class ;= 'sessionSummary' id = 'summarizeSession" + this.session_id +"'>";
-		html += "<Br><b> Session</b>: <a href ;= 'index2.html?seed=" + this.session_id + "&"+params+"'>" +this.session_id + "</a>";
+		String html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id +"'>";
+		html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "&"+params+"'>" +this.session_id + "</a>";
 		html += "<Br><b>Players</b>: " + getPlayersTitlesBasic(this.players);
 		html += "<Br><b>Potential God Tiers</b>: " + getPlayersTitlesBasic(this.grabPotentialGodTiers(this.players));
 
@@ -460,8 +460,8 @@ class MultiSessionSummary {
 	void filterCorpseParty(that){
 		List<dynamic> filteredGhosts = [];
 		that.checkedCorpseBoxes = []; //reset
-		var classFiltered = querySelector("input:checkbox[name;=CorpsefilterClass]:checked").length > 0;
-		var aspectFiltered = querySelector("input:checkbox[name;=CorpsefilterAspect]:checked").length > 0;
+		var classFiltered = querySelector("input:checkbox[name=CorpsefilterClass]:checked").length > 0;
+		var aspectFiltered = querySelector("input:checkbox[name=CorpsefilterAspect]:checked").length > 0;
 		for(num i = 0; i<that.ghosts.length; i++){
 			var ghost = that.ghosts[i];
 			//add self to filtered ghost if my class OR my aspect is checked. How to tell?  .is(":checked");
@@ -515,22 +515,22 @@ class MultiSessionSummary {
 		}
 	}
 	dynamic generateHTMLForClassPropertyCorpseParty(label, value, total){
-	//		//<input disabled='true' type;='checkbox' name='filter' value;='"+propertyName +"' id='" + propertyName + "' onchange;='filterSessionSummaries()'>"
-	String input = "<input type;='checkbox' name='CorpsefilterClass' value;='"+label +"' id='" + label + "'>";
+	//		//<input disabled='true' type='checkbox' name='filter' value='"+propertyName +"' id='" + propertyName + "' onchange='filterSessionSummaries()'>"
+	String input = "<input type='checkbox' name='CorpsefilterClass' value='"+label +"' id='" + label + "'>";
 	String html = "<Br>" +input + label + ": " + value + "(" + Math.round( 100* value/total) + "%)";
 	return html;
 
 }
 	dynamic generateHTMLForAspectPropertyCorpseParty(label, value, total){
-	//		//<input disabled='true' type;='checkbox' name='filter' value;='"+propertyName +"' id='" + propertyName + "' onchange;='filterSessionSummaries()'>"
-	String input = "<input type;='checkbox' name='CorpsefilterAspect' value;='"+label +"' id='" + label + "'>";
+	//		//<input disabled='true' type='checkbox' name='filter' value='"+propertyName +"' id='" + propertyName + "' onchange='filterSessionSummaries()'>"
+	String input = "<input type='checkbox' name='CorpsefilterAspect' value='"+label +"' id='" + label + "'>";
 	String html = "<Br>" +input + label + ": " + value + "(" + Math.round( 100* value/total) + "%)";
 	return html;
 
 }
 	dynamic generateCorpsePartyHTML(filteredGhosts){
-		String html = "<div class ;= 'multiSessionSummary'>Corpse Party: (filtering here will ONLY modify the corpse party, not the other boxes) <button onclick='toggleCorpse()'>Toggle View </button>";
-		html += "<div id ;= 'multiSessionSummaryCorpseParty'>"
+		String html = "<div class = 'multiSessionSummary'>Corpse Party: (filtering here will ONLY modify the corpse party, not the other boxes) <button onclick='toggleCorpse()'>Toggle View </button>";
+		html += "<div id = 'multiSessionSummaryCorpseParty'>"
 		html += this.generateCorpsePartyInnerHTML(filteredGhosts);
 		html += "</div></div>";
 		return html;
@@ -619,7 +619,7 @@ class MultiSessionSummary {
 		return !(propertyName == "sizeOfAfterLife" || propertyName == "averageNumScenes" || propertyName == "averageAfterLifeSize" ||propertyName == "averageSanity" || propertyName == "averageRelationshipValue"  || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck");
 	}
 	dynamic generateHTML(){
-		String html = "<div class ;= 'multiSessionSummary' id = 'multiSessionSummary'>";
+		String html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
 		String header = "<h2>Stats for All Displayed Sessions: </h2>(When done finding, can filter)";
 		html += header;
 
@@ -667,18 +667,18 @@ class MultiSessionSummary {
 
 	}
 	dynamic generateClassFilterHTML(){
-		String html = "<div class ;= 'multiSessionSummary topAligned' id = 'multiSessionSummaryClasses'>Classes:";
+		String html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryClasses'>Classes:";
 		for(var propertyName in this.classes) {
-			String input = "<input type;='checkbox' name='filterClass' value;='"+propertyName +"' id='class" + propertyName  + "' onchange;='filterSessionSummaries()'>";
+			String input = "<input type='checkbox' name='filterClass' value='"+propertyName +"' id='class" + propertyName  + "' onchange='filterSessionSummaries()'>";
 			html += "<Br>" +input + propertyName + ": " + this.classes[propertyName] + "(" + Math.round( 100* this.classes[propertyName]/this.total) + "%)";
 		}
 		html += "</div>";
 		return html;
 	}
 	dynamic generateAspectFilterHTML(){
-		String html = "<div class ;= 'multiSessionSummary topAligned' id = 'multiSessionSummaryAspects'>Aspects:";
+		String html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryAspects'>Aspects:";
 		for(var propertyName in this.aspects) {
-			String input = "<input type;='checkbox' name='filterAspect' value;='"+propertyName +"' id='aspect" + propertyName +  "' onchange;='filterSessionSummaries()'>";
+			String input = "<input type='checkbox' name='filterAspect' value='"+propertyName +"' id='aspect" + propertyName +  "' onchange='filterSessionSummaries()'>";
 			html += "<Br>" +input + propertyName + ": " + this.aspects[propertyName] + "(" + Math.round( 100* this.aspects[propertyName]/this.total) + "%)";
 		}
 		html += "</div>";
@@ -687,7 +687,7 @@ class MultiSessionSummary {
 	dynamic generateHTMLForProperty(propertyName){
 		String html = "";
 		if(this.isFilterableProperty(propertyName)){
-			html += "<Br><b> <input disabled;='true' type='checkbox' name;='filter' value='"+propertyName +"' id;='" + propertyName + "' onchange='filterSessionSummaries()'>";
+			html += "<Br><b> <input disabled='true' type='checkbox' name='filter' value='"+propertyName +"' id='" + propertyName + "' onchange='filterSessionSummaries()'>";
 			html +=  propertyName + "</b>: " + this[propertyName] ;
 			html += " (" + Math.round(100* (this[propertyName]/this.total)) + "%)";
 		}else{
@@ -696,8 +696,8 @@ class MultiSessionSummary {
 		return html;
 	}
 	dynamic generateRomanceHTML(properties){
-		String html = "<div  class ;= 'bottomAligned multiSessionSummary'>Romance: <button onclick='toggleRomance()'>Toggle View </button>";
-		html += "<div id ;= 'multiSessionSummaryRomance' >"
+		String html = "<div  class = 'bottomAligned multiSessionSummary'>Romance: <button onclick='toggleRomance()'>Toggle View </button>";
+		html += "<div id = 'multiSessionSummaryRomance' >"
 		for(num i = 0; i<properties.length; i++){
 			var propertyName = properties[i];
 			html += this.generateHTMLForProperty(propertyName);
@@ -707,8 +707,8 @@ class MultiSessionSummary {
 		return html;
 	}
 	dynamic generateDramaHTML(properties){
-		String html = "<div class ;= 'bottomAligned multiSessionSummary' >Drama: <button onclick='toggleDrama()'>Toggle View </button>";
-		html += "<div id ;= 'multiSessionSummaryDrama' >"
+		String html = "<div class = 'bottomAligned multiSessionSummary' >Drama: <button onclick='toggleDrama()'>Toggle View </button>";
+		html += "<div id = 'multiSessionSummaryDrama' >"
 		for(num i = 0; i<properties.length; i++){
 			var propertyName = properties[i];
 			html += this.generateHTMLForProperty(propertyName);
@@ -717,8 +717,8 @@ class MultiSessionSummary {
 		return html;
 	}
 	dynamic generateEndingHTML(properties){
-		String html = "<div class ;= 'topligned multiSessionSummary'>Ending: <button onclick='toggleEnding()'>Toggle View </button>";
-		html += "<div id ;= 'multiSessionSummaryEnding' >"
+		String html = "<div class = 'topligned multiSessionSummary'>Ending: <button onclick='toggleEnding()'>Toggle View </button>";
+		html += "<div id = 'multiSessionSummaryEnding' >"
 		for(num i = 0; i<properties.length; i++){
 			var propertyName = properties[i];
 			html += this.generateHTMLForProperty(propertyName);
@@ -727,8 +727,8 @@ class MultiSessionSummary {
 		return html;
 	}
 	dynamic generateMiscHTML(properties){
-		String html = "<div class ;= 'bottomAligned multiSessionSummary' >Misc <button onclick='toggleMisc()'>Toggle View </button>";
-		html += "<div id ;= 'multiSessionSummaryMisc' >"
+		String html = "<div class = 'bottomAligned multiSessionSummary' >Misc <button onclick='toggleMisc()'>Toggle View </button>";
+		html += "<div id = 'multiSessionSummaryMisc' >"
 		for(num i = 0; i<properties.length; i++){
 			var propertyName = properties[i];
 			html += this.generateHTMLForProperty(propertyName);
@@ -737,8 +737,8 @@ class MultiSessionSummary {
 		return html;
 	}
 	dynamic generateAverageHTML(properties){
-		String html = "<div class ;= 'topAligned multiSessionSummary' >Averages <button onclick='toggleAverage()'>Toggle View </button>";
-		html += "<div id ;= 'multiSessionSummaryAverage' >"
+		String html = "<div class = 'topAligned multiSessionSummary' >Averages <button onclick='toggleAverage()'>Toggle View </button>";
+		html += "<div id = 'multiSessionSummaryAverage' >"
 		for(num i = 0; i<properties.length; i++){
 			var propertyName = properties[i];
 			html += this.generateHTMLForProperty(propertyName);
@@ -912,7 +912,7 @@ class MultiSessionSummaryJunior {
 
 
 	dynamic generateHTML(){
-		String html = "<div class ;= 'multiSessionSummary' id = 'multiSessionSummary'>";
+		String html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
 		String header = "<h2>Stats for All Displayed Sessions: </h2><br>";
 		html += header;
 		html += "<Br><b>Number of Sessions:</b> " + this.numSessions;
@@ -928,9 +928,9 @@ class MultiSessionSummaryJunior {
 		html += "<Br><b>averageSanity:</b> " + this.averageSanity;
 
 		html += "<Br><b>Average Initial Ships Per Session:</b> " + round2Places(this.numShips/this.numSessions);
-		html += "<Br><br><b>Filter Sessions By Number of Players:</b><Br>2 <input id;='num_players' type='range' min;='2' max='12' value;='2'> 12"
-		html += "<br><input type;='text' id='num_players_text' value;='2' size='2' disabled>";
-		html += "<br><br><button id ;= 'button' onclick='filterSessionsJunior()'>Filter Sessions</button>";
+		html += "<Br><br><b>Filter Sessions By Number of Players:</b><Br>2 <input id='num_players' type='range' min='2' max='12' value='2'> 12"
+		html += "<br><input type='text' id='num_players_text' value='2' size='2' disabled>";
+		html += "<br><br><button id = 'button' onclick='filterSessionsJunior()'>Filter Sessions</button>";
 		html += "</div><Br>";
 		return html;
 	}

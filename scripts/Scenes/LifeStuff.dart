@@ -262,7 +262,7 @@ class LifeStuff extends Scene {
 	}
 	dynamic drawDreamBubbleH(div, player, ghost){
 		var canvasId = div.id + "commune_" +player.chatHandle;
-		String canvasHTML = "<br><canvas id;='" + canvasId +"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='" + canvasId +"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = querySelector("#${canvasId}");
 		var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
@@ -284,7 +284,7 @@ class LifeStuff extends Scene {
 	}
 	dynamic drawCommuneDead(div, player, ghost){
 		var canvasId = div.id + "commune_" +player.chatHandle;
-		String canvasHTML = "<br><canvas id;='" + canvasId +"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='" + canvasId +"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = querySelector("#${canvasId}");
 		var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
@@ -299,7 +299,7 @@ class LifeStuff extends Scene {
 	dynamic drawDrainDead(div, player, ghost, long){
 		print("drain dead in: " + this.session.session_id.toString());
 		var canvasId = div.id + "commune_" +player.chatHandle;
-		String canvasHTML = "<br><canvas id;='" + canvasId +"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='" + canvasId +"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = querySelector("#${canvasId}");
 		var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
@@ -487,7 +487,7 @@ class LifeStuff extends Scene {
 		//print("Turning on dream bubble afterlife: " + this.session.session_id);
 		this.session.dreamBubbleAfterlife = true;
 		var canvasId = div.id + "horror_terrors_" +player.chatHandle;
-		String canvasHTML = "<br><canvas id;='" + canvasId +"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='" + canvasId +"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = querySelector("#${canvasId}");
 		var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));

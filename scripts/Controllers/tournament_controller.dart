@@ -50,7 +50,7 @@ void setStartingTeams(){
 
 
 void createEndingTable(){
-	String html = "(matching colors means they faced each other that tier) <div class ;= 'tournamentResults'><table id = 'endingTable' >";
+	String html = "(matching colors means they faced each other that tier) <div class = 'tournamentResults'><table id = 'endingTable' >";
 	html += createEndingTableHeader();
 	//for loop on number of tiers.
 	for(num i = 0; i<startingTeams.length; i++){
@@ -79,13 +79,13 @@ dynamic createEndingTableRow(team){
 		if(round){
 			var teamInRound = round.getTeam(team.name);
 			if(teamInRound.lostRound){
-				html += "<td style ;= 'text-decoration: line-through;' class = 'tournamentCell' bgcolor;='" +round.color + "'>"
+				html += "<td style = 'text-decoration: line-through;' class = 'tournamentCell' bgcolor='" +round.color + "'>"
 			}else{
-				html += "<td class ;= 'tournamentCell' bgcolor='" +round.color + "'>";
+				html += "<td class = 'tournamentCell' bgcolor='" +round.color + "'>";
 			}
 
 			html += team.name + ": " +teamInRound.score();
-			html += "<div class ;= 'mvp'><b>MVP:</b>  " + teamInRound.mvp_name + " with a power of: " + Math.round(teamInRound.mvp_score) + "</div>"
+			html += "<div class = 'mvp'><b>MVP:</b>  " + teamInRound.mvp_name + " with a power of: " + Math.round(teamInRound.mvp_score) + "</div>"
 			html += " </td>";
 		}else{ //was disqualified
 			html += "<td></td>";
@@ -167,7 +167,7 @@ void showAllTiers(){
 
 
 void makeDescriptionList(){
-	String divHTML = "<div class ;= 'descriptionBox' id = 'description"+tierNumber +  "'></div>";
+	String divHTML = "<div class = 'descriptionBox' id = 'description"+tierNumber +  "'></div>";
 	querySelector("#descriptions").append(divHTML);
 
 	querySelector("#description"+(tierNumber-1)).hide(); //only current is shown.
@@ -189,8 +189,8 @@ dynamic startRoundPart2(){
 	var team1 = teamsGlobalVar[lastTeamIndex];
 	var team2 = teamsGlobalVar[lastTeamIndex+1]  ;//if no team 2, they win???;
 	if(team2 == null) return doneWithRound();
-	String team1Title = "<span class ;= 'vsName' id = 'team1Title'>"+ team1 + "</span>";
-	String team2Title = "<span class ;= 'vsName' id = 'team2Title'>"+ team2 + "</span>";
+	String team1Title = "<span class = 'vsName' id = 'team1Title'>"+ team1 + "</span>";
+	String team2Title = "<span class = 'vsName' id = 'team2Title'>"+ team2 + "</span>";
 	querySelector("#roundTitle").html(team1Title +" vs " + team2Title);
 	renderTeam(team1, querySelector("#team1"));
 	renderTeam(team2, querySelector("#team2"));
@@ -297,8 +297,8 @@ dynamic fight(){
 	if(team.numberSessions >= numSimulationsToDo) return doneWithRound();
 	//var team2 = teamsGlobalVar[lastTeamIndex+1]  ;//if no team 2, they win???;
 	String selfInsert = "";
-	if(!isClassOrAspectStuck(team)) selfInsert = "&selfInsertOC;=true"
-	simulatedParamsGlobalVar = team.name + ";=true"+selfInsert; //which session are we checking?
+	if(!isClassOrAspectStuck(team)) selfInsert = "&selfInsertOC=true"
+	simulatedParamsGlobalVar = team.name + "=true"+selfInsert; //which session are we checking?
 	startSession(aBCallBack);
 }
 
@@ -501,9 +501,9 @@ void displayPotentialFighters(){
 	var aspectTeams = ["BloodStuck", "MindStuck","RageStuck","VoidStuck","TimeStuck","HeartStuck","BreathStuck","LightStuck","SpaceStuck","HopeStuck","LifeStuck","DoomStuck"];
 	var teams = fanTeams.concat(classTeams);
 	teams = teams.concat(aspectTeams);
-	String html = "<b>Choose Combatants!</b><Br><select multiple size ;= '" + teams.length + "' id = 'tiers' name;='tier'>";
+	String html = "<b>Choose Combatants!</b><Br><select multiple size = '" + teams.length + "' id = 'tiers' name='tier'>";
 	for(num i = 0; i< teams.length; i++){
-			html += '<option value;="' + teams[i] +'">' + teams[i]+'</option>'
+			html += '<option value="' + teams[i] +'">' + teams[i]+'</option>'
 	}
 	html += '</select>';
 	querySelector("#teams").append(html);
@@ -551,7 +551,7 @@ void displayTeamsTournament(div){
 
 	for(num i = 0; i < teamsGlobalVar.length; i++){
 		if(i%2 == 0){
-			html += "</div><div class ;= 'twoTeams'>"
+			html += "</div><div class = 'twoTeams'>"
 		}
 		html +=displayTeamInList(teamsGlobalVar[i]);
 	}
@@ -565,7 +565,7 @@ void displayTeamsTournament(div){
 
 dynamic displayTeamInList(team){
 	String html = "";
-	String divStart = "<div id ;= '" +team.name + tierNumber+"' class = 'teamDescription'>";
+	String divStart = "<div id = '" +team.name + tierNumber+"' class = 'teamDescription'>";
 	String divEnd = "</div>";
 	html += divStart + getTeamDescription(team) + divEnd;
 	return html;
@@ -576,10 +576,10 @@ dynamic displayTeamInList(team){
 //when tournament starts up, drop down is set to none, and this is left most thing.
 dynamic getTeamDescription(team){
 	var stuck = team.name.split("Stuck");
-	if(tierNumber > 0) return team.name + ": <div class = 'score' id ;= 'score_" + team.name + tierNumber +"'></div>";
-	if(stuck.length == 2) return "<h2>" +stuck[0] +"Stuck</h2> <div id = 'score_" + team.name + tierNumber +"'></div><div id ;= 'mvp_" + team.name + tierNumber +"'></div><hr> A random team of only  " + stuck[0] + " Players. (With Time/Space guaranteed)";
+	if(tierNumber > 0) return team.name + ": <div class = 'score' id = 'score_" + team.name + tierNumber +"'></div>";
+	if(stuck.length == 2) return "<h2>" +stuck[0] +"Stuck</h2> <div id = 'score_" + team.name + tierNumber +"'></div><div id = 'mvp_" + team.name + tierNumber +"'></div><hr> A random team of only  " + stuck[0] + " Players. (With Time/Space guaranteed)";
 
-	return "<h2>" + team + "</h2><div id = 'score_" + team.name + tierNumber+"'></div><div id ;= 'mvp_" + team.name + tierNumber +"'></div> <hr>Players chosen randomly from the " + team + " fan OCs";
+	return "<h2>" + team + "</h2><div id = 'score_" + team.name + tierNumber+"'></div><div id = 'mvp_" + team.name + tierNumber +"'></div> <hr>Players chosen randomly from the " + team + " fan OCs";
 
 }
 

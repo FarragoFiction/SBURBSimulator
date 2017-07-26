@@ -7,7 +7,7 @@ List<dynamic> fraymotifSandBoxes = [];
 
 void makeFraymotif(){
 		curSessionGlobalVar = new Session(Math.seed);
-		var tier = querySelector('[name;="tier"] option:selected');
+		var tier = querySelector('[name="tier"] option:selected');
 		List<dynamic> aspects = [];
 		querySelector('#aspects :selected').each((i, selected){
 			aspects.add(querySelector(selected).text());
@@ -56,8 +56,8 @@ void drawStats(fs, flavorText){
 	html += "<hr>"+fs.dummy.htmlTitleHP()+ "<hr><br>" +getStatsForPlayer(fs.dummy);
 	for(num i = 0; i< fs.players.length; i++){
 		var p = fs.players[i];
-		html += "<div class ;= 'playerStat'>"
-		html += "<hr>"+p.htmlTitleHP() + p.bloodColor+"<hr><button id ;= 'player"+fs.players[i].id+"'>+ PlayerPower</button>"
+		html += "<div class = 'playerStat'>"
+		html += "<hr>"+p.htmlTitleHP() + p.bloodColor+"<hr><button id = 'player"+fs.players[i].id+"'>+ PlayerPower</button>"
 		html += "<hr>" + p.associatedStats.join("<br>") +"<hr>";
  		html += getStatsForPlayer(p);
 		html += "</div>";
@@ -79,8 +79,8 @@ void drawStats(fs, flavorText){
 
 
 dynamic drawFraymotif(fs, flavorText){
-	String html = "<div class ;= 'fraymotifStat'>";
-	html += "<hr>" +fs.fraymotif.name+ "<Br><button id ;= 'testFraymotif'>Use Fraymotif</button> </hr>"
+	String html = "<div class = 'fraymotifStat'>";
+	html += "<hr>" +fs.fraymotif.name+ "<Br><button id = 'testFraymotif'>Use Fraymotif</button> </hr>"
 	if(flavorText) html += "<hr>"+flavorText + "</hr><Br><br>";
 	html += "<br>"+ fs.fraymotif.condenseEffectsText();
 	html += "</div><Br>";
@@ -107,7 +107,7 @@ void getStatsForPlayer(player){
 
 	for(num i = 0; i<allStats.length; i++){
 		var stat = allStats[i];
-		ret += "<div class;='statHolder'><div class='statName'>"+stat+ ":</div><div class ;= 'statValue'>"
+		ret += "<div class='statHolder'><div class='statName'>"+stat+ ":</div><div class = 'statValue'>"
 		if(stat != "RELATIONSHIPS"){
 			ret += Math.round(player[stat]);
 			if(player[stat] != player.getStat(stat)) ret += "(" + player.getStat(stat) + " with buffs/debuffs)";

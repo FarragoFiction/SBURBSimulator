@@ -377,7 +377,7 @@ void restartSession(){
 
 
 void shareableURL(){
-	String str = '<a href ;= "index2.html?seed=' +initial_seed +'">Shareable URL </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <a href ;= "index2.html">Random Session URL </a> ';
+	String str = '<a href = "index2.html?seed=' +initial_seed +'">Shareable URL </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <a href = "index2.html">Random Session URL </a> ';
 	querySelector("#seedText").html(str);
 }
 
@@ -810,7 +810,7 @@ dynamic getQuipAboutSession(sessionSummary){
 
 void foundRareSession(div, debugMessage){
 	//print(debugMessage);
-	String canvasHTML = "<br><canvas id;='canvasJRAB" + (div.id) +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+	String canvasHTML = "<br><canvas id='canvasJRAB" + (div.id) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 	div.append(canvasHTML);
 
 	var canvasDiv = querySelector("#canvasJRAB"+  (div.id));

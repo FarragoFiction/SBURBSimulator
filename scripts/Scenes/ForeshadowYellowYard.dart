@@ -22,7 +22,7 @@ class ForeshadowYellowYard extends Scene{
 	void renderContent(div){
 		//div.append("<br>"+this.content());
 		print("Yellow yard foreshadowing. " + this.session.session_id);
-		String canvasHTML = "<br><canvas id;='canvasJRAB" + (div.id) +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='canvasJRAB" + (div.id) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 
 		var canvasDiv = querySelector("#canvasJRAB"+  (div.id));
@@ -39,7 +39,7 @@ class ForeshadowYellowYard extends Scene{
 		drawChatABJR(canvasDiv, chat);
 		chat = "";
 		if(this.timePlayer.dead){
-			String canvasHTML2 = "<br><canvas id;='canvasJRAB2" + (div.id) +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+			String canvasHTML2 = "<br><canvas id='canvasJRAB2" + (div.id) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML2);
 
 			var canvasDiv2 = querySelector("#canvasJRAB2"+  (div.id));

@@ -30,13 +30,13 @@ class YellowYard extends Scene {
 		Player time = this.getDoomedTimeClone();
 
 		time.influenceSymbol = "mind_forehead.png";
-		//String html = "<img src ;= 'images/yellow_yard.png'>";
+		//String html = "<img src = 'images/yellow_yard.png'>";
 		String html = "<div id = '4thwall' style='background:url(images/4thwall.png); width:1000px; height:521px;'>";
 		Session session = this.session;
 		div2.appendHtml(html,treeSanitizer: NodeTreeSanitizer.trusted);
 		querySelector("#4thwall").onClick.listen((Event e) {
 			//helloWorld();
-			String html = "<div id ;= 'yellow_yard.png' style='background:url(images/yellow_yard.png); width:1000px; height: 521px'>";
+			String html = "<div id = 'yellow_yard.png' style='background:url(images/yellow_yard.png); width:1000px; height: 521px'>";
 			yyrEventsGlobalVar = session.importantEvents;
 			num count = 14;
 			//yyrEventsGlobalVar = padEventsToNumWithKilling(yyrEventsGlobalVar, this.session, time,num);
@@ -48,7 +48,7 @@ class YellowYard extends Scene {
 			for (int i = 0; i < count; i++) {
 				if (i < yyrEventsGlobalVar.length) {
 					yyrEventsGlobalVar[i].doomedTimeClone = time;
-					//String customRadio = "<img src ;= 'images/mind_radio.png' id = 'decision"+i+  "'>";
+					//String customRadio = "<img src = 'images/mind_radio.png' id = 'decision"+i+  "'>";
 					//http://www.tutorialrepublic.com/faq/how-to-create-custom-radio-buttons-using-css-and-jquery.php
 					html += " <span class='custom-radio'><input type='radio' name='decision' value='$i'></span>${yyrEventsGlobalVar[i].humanLabel()}<br>";
 				} else { //no more important events to undo

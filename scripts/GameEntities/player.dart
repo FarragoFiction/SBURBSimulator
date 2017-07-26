@@ -61,7 +61,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	bool murderMode = false;  //kill all players you don't like. odds of a just death skyrockets.
 	bool leftMurderMode = false; //have scars, unless left via death.
 	num corruptionLevelOther = 0; //every 100 points, sends you to next grimDarkLevel.
-	num grimDark = 0;  //  0 = none, 1 ;= some, 2 = some more 3 ;= full grim dark with aura and font and everything.
+	num grimDark = 0;  //  0 = none, 1 = some, 2 = some more 3 = full grim dark with aura and font and everything.
 	bool leader = false;
 	num landLevel = 0; //at 10, you can challenge denizen.  only space player can go over 100 (breed better universe.)
 	bool denizenFaced = false;
@@ -251,7 +251,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	}
 	dynamic strongDenizenNames(){
 	    print("What if you don't want stranth? " + this.session.session_id.toString());
-		var ret = ['Yaldabaoth', '<span class ;= "void">Nobrop, the </span>Null', '<span class = "void">Paraxalan, The </span>Ever-Searching', "<span class ;= 'void'>Algebron, The </span>Dilletant", '<span class = "void">Doomod, The </span>Wanderer', 'Jörmungandr','Apollyon','Siseneg','Borunam','<span class ;= "void">Jadeacher the,</span>Researcher','Karmiution','<span class = "void">Authorot, the</span> Robot', '<span class ;= "void">Abbiejean, the </span>Scout', 'Aspiratcher, The Librarian','<span class = "void">Recurscker, The</span>Hollow One','Insurorracle','<span class ;= "void">Maniomnia, the Dreamwaker</span>','Kazerad','Shiva','Goliath'];
+		var ret = ['Yaldabaoth', '<span class = "void">Nobrop, the </span>Null', '<span class = "void">Paraxalan, The </span>Ever-Searching', "<span class = 'void'>Algebron, The </span>Dilletant", '<span class = "void">Doomod, The </span>Wanderer', 'Jörmungandr','Apollyon','Siseneg','Borunam','<span class = "void">Jadeacher the,</span>Researcher','Karmiution','<span class = "void">Authorot, the</span> Robot', '<span class = "void">Abbiejean, the </span>Scout', 'Aspiratcher, The Librarian','<span class = "void">Recurscker, The</span>Hollow One','Insurorracle','<span class = "void">Maniomnia, the Dreamwaker</span>','Kazerad','Shiva','Goliath'];
 		return this.session.rand.pickFrom(ret);
 	}
 	dynamic weakDenizenNames(){
@@ -695,7 +695,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			f.flavorText = " All allies just settle their shit for a little while. Cool it. ";
 			this.fraymotifs.add(f);
 		}else if(this.bloodColor == "#ffc3df"){
-		    var f = new Fraymotif([],  "'<font color;='pink'>"+this.chatHandle + " and the Power of Looove~~~~~<3<3<3</font>'", 1);
+		    var f = new Fraymotif([],  "'<font color='pink'>"+this.chatHandle + " and the Power of Looove~~~~~<3<3<3</font>'", 1);
             f.effects.add(new FraymotifEffect("RELATIONSHIPS",3,false));
             f.effects.add(new FraymotifEffect("RELATIONSHIPS",3,true));
             f.flavorText = " You are pretty sure this is not a real type of Troll Psionic.  It heals everybody in a bullshit parade of sparkles, and heart effects despite your disbelief. Everybody is also SUPER MEGA ULTRA IN LOVE with each other now, but ESPECIALLY in love with  " + this.htmlTitleHP() + ". ";
@@ -1661,8 +1661,8 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	}
 	String toOCDataString(){
 	    //for now, only extentsion sequence is for classpect. so....
-	    String x = "&x;=" +this.toDataBytesX(); //ALWAYS have it. worst case scenario is 1 bit.
-		return "b=" + this.toDataBytes() + "&s;="+this.toDataStrings(true) + x;
+	    String x = "&x=" +this.toDataBytesX(); //ALWAYS have it. worst case scenario is 1 bit.
+		return "b=" + this.toDataBytes() + "&s="+this.toDataStrings(true) + x;
 	}
 	dynamic toDataBytesX(){
         var builder = new ByteBuilder();
@@ -2861,7 +2861,7 @@ Player clonePlayer(Player player, Session session, bool isGuardian) {
   clone.murderMode = player.murderMode;  //kill all players you don't like. odds of a just death skyrockets.
   clone.leftMurderMode = player.leftMurderMode; //have scars, unless left via death.
   clone.corruptionLevelOther =  player.corruptionLevelOther; //every 100 points, sends you to next grimDarkLevel.
-  clone.grimDark = player.grimDark;  //  0 = none, 1 ;= some, 2 = some more 3 ;= full grim dark with aura and font and everything.
+  clone.grimDark = player.grimDark;  //  0 = none, 1 = some, 2 = some more 3 = full grim dark with aura and font and everything.
   clone.leader = player.leader;
   clone.landLevel = player.landLevel; //at 10, you can challenge denizen.  only space player can go over 100 (breed better universe.)
   clone.denizenFaced = player.denizenFaced;

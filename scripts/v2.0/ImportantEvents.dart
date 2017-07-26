@@ -96,7 +96,7 @@ abstract class ImportantEvent { //TODO consider making this non abstract and hav
   div.append(narration);
 
   var divID = (div.id) + "_alt_" + timeClone1.chatHandle;
-  String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+  String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
   div.append(canvasHTML);
   var canvasDiv = querySelector("#canvas"+ divID);
 
@@ -163,7 +163,7 @@ class PlayerDiedButCouldGodTier extends ImportantEvent{
 			div.append(narration);
 
 			var divID = (div.id) + "_alt_" + this.player.chatHandle;
-			String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
@@ -180,7 +180,7 @@ class PlayerDiedButCouldGodTier extends ImportantEvent{
 			player.makeGodTier();
 
 			var divID2 = (div.id) + "_alt_god" + player.chatHandle;
-			String canvasHTML2 = "<br><canvas id;='canvas" + divID2+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+			String canvasHTML2 = "<br><canvas id='canvas" + divID2+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML2);
 			var canvasDiv2 = querySelector("#canvas"+ divID2);
 			List<dynamic> players = [];
@@ -230,7 +230,7 @@ class PlayerDiedForever  extends ImportantEvent {
 			this.doomedTimeClone.makeDead("sacrificing themselves through a YellowYard");
 
 			var divID = (div.id) + "_alt_" + player.chatHandle;
-			String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
@@ -289,7 +289,7 @@ class PlayerWentGrimDark  extends ImportantEvent {
 
 
 			var divID = (div.id) + "_alt_" + player.chatHandle;
-			String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
@@ -345,7 +345,7 @@ class PlayerWentMurderMode  extends ImportantEvent{
 
 
 			var divID = (div.id) + "_alt_" + player.chatHandle;
-			String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
@@ -396,7 +396,7 @@ class JackPromoted  extends ImportantEvent{
 			this.session.destroyBlackRing();
 
 			var divID = (div.id) + "_alt_jack_promotion";
-			String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
@@ -452,7 +452,7 @@ class FrogBreedingNeedsHelp extends ImportantEvent {
 			div.append(narration);
 
 			var divID = (div.id) + "_alt_" + spacePlayer.chatHandle;
-			String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
@@ -509,7 +509,7 @@ class PlayerEnteredSession  extends ImportantEvent {
 
 
 			var divID = (div.id) + "_alt_" + player.chatHandle;
-			String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
@@ -566,7 +566,7 @@ class TimePlayerEnteredSessionWihtoutFrog  extends ImportantEvent {
 			player.object_to_prototype.illegal = true;
 			player.object_to_prototype.mobility = 100;
 			var divID = (div.id) + "_alt_jack_promotion";
-			String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 

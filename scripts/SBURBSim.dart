@@ -388,9 +388,9 @@ void renderAfterlifeURL(){
     if (params == window.location.href) params = "";
 
     String html = "<Br><br><a href = 'rip.html?" + generateURLParamsForPlayers(curSessionGlobalVar.afterLife.ghosts,false) + "' target='_blank'>View Afterlife In New Tab?</a>";
-    html += '<br><br><a href = "character_creator.html?seed=' +curSessionGlobalVar.session_id.toString() +'&' + params + ' " target;="_blank">Replay Session </a> ';
+    html += '<br><br><a href = "character_creator.html?seed=' +curSessionGlobalVar.session_id.toString() +'&' + params + ' " target="_blank">Replay Session </a> ';
     html += "<br><br><a href = 'index2.html'>Random New Session?</a>";
-    html += '<br><br><a href = "index2.html?seed=' +curSessionGlobalVar.session_id.toString() +'&' + params + ' " target;="_blank">Shareable URL </a> ';
+    html += '<br><br><a href = "index2.html?seed=' +curSessionGlobalVar.session_id.toString() +'&' + params + ' " target="_blank">Shareable URL </a> ';
     html += "<Br><Br>Simulation took: " + msToTime(stopTime.difference(startTime)) + " to render. ";
     //print("gonna append: " + html);
     querySelector("#story").appendHtml(html,treeSanitizer: NodeTreeSanitizer.trusted);

@@ -50,7 +50,7 @@ class FreeWillStuff extends Scene{
 		//print("rendering free will player(s): " + this.session.session_id)
 
 		var divID = (div.id) + "_freeWillBulshit" + this.renderPlayer1.chatHandle;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);
 
@@ -68,7 +68,7 @@ class FreeWillStuff extends Scene{
 	void renderGodTier(div){
 		//print(this.playerGodTiered.title() + " rendering free will god tier: " + this.session.session_id)
 		var divID = (div.id) + "_freeWillBulshit" + this.playerGodTiered.chatHandle;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		var f = this.session.fraymotifCreator.makeFraymotif(rand, [this.playerGodTiered], 3);//first god tier fraymotif
 		this.playerGodTiered.fraymotifs.add(f);
 		div.append(" They learn " + f.name + ". ") ;
@@ -712,7 +712,7 @@ class FreeWillStuff extends Scene{
 	}
 	dynamic content(){
 		this.session.hasFreeWillEvents = true;
-		//String ret = "<img src ;= 'images/free_will_event.png'/><Br>"; //get rid of prefix soon.
+		//String ret = "<img src = 'images/free_will_event.png'/><Br>"; //get rid of prefix soon.
 		String ret = "";
 		removeFromArray(this.player, this.session.availablePlayers);
 		ret += this.decision;  //it already happened, it's a string. ineligible for being an important event influencable by yellow yard. (john's retcon time powers can confound a decision like this tho)

@@ -143,7 +143,7 @@ void convertCanvasToPlaceholderImgTag(){
 void shareableURL(){
 	var params = window.location.href.substr(window.location.href.indexOf("?")+1);
 	if (params == window.location.href) params = "";
-	String str = '<div class ;= "links"><a href = "index2.html?seed;=' +initial_seed +'&' + params + ' ">Shareable URL </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <a href = "character_creator.html?seed;=' +initial_seed +'&' + params + ' " target="_blank">Replay Session  </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp<a href ;= "index2.html">Random Session URL </a> </div>';
+	String str = '<div class = "links"><a href = "index2.html?seed=' +initial_seed +'&' + params + ' ">Shareable URL </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <a href = "character_creator.html?seed=' +initial_seed +'&' + params + ' " target="_blank">Replay Session  </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp<a href = "index2.html">Random Session URL </a> </div>';
 	querySelector("#seedText").html(str);
 	querySelector("#story").append("Session: " + initial_seed);
 }
@@ -171,39 +171,39 @@ void checkSGRUB(){
 	if(curSessionGlobalVar.session_id == 33){
 		querySelector(document).attr("title", "NepetaQuest by jadedResearcher");
 		querySelector("#heading").html("NepetaQuest by jadedResearcher (art assistance by karmicRetribution) ");
-		querySelector("#story").append(" <a href = 'index2.html?seed;=" + getRandomSeed()+ "&nepeta=:33'>The furryocious huntress makes sure to bat at this link to learn a secret!</a>");
+		querySelector("#story").append(" <a href = 'index2.html?seed=" + getRandomSeed()+ "&nepeta=:33'>The furryocious huntress makes sure to bat at this link to learn a secret!</a>");
 	}else if(curSessionGlobalVar.session_id == 420){
 		querySelector(document).attr("title", "FridgeQuest by jadedResearcher");
 		querySelector("#heading").html("FridgeQuest by jadedResearcher (art assistance by karmicRetribution) ");
-		querySelector("#story").append(" <a href = 'index2.html?seed;=" + getRandomSeed()+ "&honk=:o)'>wHoA. lIkE. wHaT If yOu jUsT...ReAcHeD OuT AnD ToUcHeD ThIs? HoNk!</a>");
+		querySelector("#story").append(" <a href = 'index2.html?seed=" + getRandomSeed()+ "&honk=:o)'>wHoA. lIkE. wHaT If yOu jUsT...ReAcHeD OuT AnD ToUcHeD ThIs? HoNk!</a>");
 	}else if(curSessionGlobalVar.session_id == 88888888){
 		querySelector(document).attr("title", "SpiderQuuuuuuuuest!!!!!!!! by jadedResearcher");
 		querySelector("#heading").html("SpiderQuuuuuuuuest!!!!!!!!  by jadedResearcher (art assistance by karmicRetribution) ");
-		querySelector("#story").append(" <a href = 'index2.html?seed;=" + getRandomSeed()+ "&luck=AAAAAAAALL'>Only the BEST Observers click here!!!!!!!!</a>");
+		querySelector("#story").append(" <a href = 'index2.html?seed=" + getRandomSeed()+ "&luck=AAAAAAAALL'>Only the BEST Observers click here!!!!!!!!</a>");
 	}else if(curSessionGlobalVar.session_id == 0){
 		querySelector(document).attr("title", "0_0 by jadedResearcher");
 		querySelector("#heading").html("0_0 by jadedResearcher (art assistance by karmicRetribution) ");
-		querySelector("#story").append(" <a href = 'index2.html?seed;=" + getRandomSeed()+ "&temporal=shenanigans'>Y0ur inevitabile clicking here will briefly masquerade as free will, and I'm 0kay with it.</a>");
+		querySelector("#story").append(" <a href = 'index2.html?seed=" + getRandomSeed()+ "&temporal=shenanigans'>Y0ur inevitabile clicking here will briefly masquerade as free will, and I'm 0kay with it.</a>");
 	}else if(curSessionGlobalVar.session_id == 413){//why the hell is this one not triggering?
 		querySelector(document).attr("title", "Homestuck Simulator by jadedResearcher");
 		querySelector("#heading").html("Homestuck Simulator by jadedResearcher (art assistance by karmicRetribution) ");
-		querySelector("#story").append(" <a href = 'index2.html?seed;=" + getRandomSeed()+ "&home=stuck'>A young man stands next to a link. Though it was 13 years ago he was given life, it is only today he will click it.</a>");
+		querySelector("#story").append(" <a href = 'index2.html?seed=" + getRandomSeed()+ "&home=stuck'>A young man stands next to a link. Though it was 13 years ago he was given life, it is only today he will click it.</a>");
 	}else if(curSessionGlobalVar.session_id == 111111){//why the hell is this one not triggering?
 		querySelector(document).attr("title", "Homestuck Simulator by jadedResearcher");
 		querySelector("#heading").html("Homestuck Simulator by jadedResearcher (art assistance by karmicRetribution) ");
-		querySelector("#story").append(" <a href = 'index2.html?seed;=" + getRandomSeed()+ "&home=stuck'>A young lady stands next to a link. Though it was 16 years ago she was given life, it is only today she will click it.</a>");
+		querySelector("#story").append(" <a href = 'index2.html?seed=" + getRandomSeed()+ "&home=stuck'>A young lady stands next to a link. Though it was 16 years ago she was given life, it is only today she will click it.</a>");
 	}else if(curSessionGlobalVar.session_id == 613){
 		querySelector(document).attr("title", "OpenBound Simulator by jadedResearcher");
 		querySelector("#heading").html("OpenBound Simulator by jadedResearcher (art assistance by karmicRetribution) ");
-		querySelector("#story").append(" <a href = 'index2.html?seed;=" + getRandomSeed()+ "&open=bound'>Rebubble this link?.</a>");
+		querySelector("#story").append(" <a href = 'index2.html?seed=" + getRandomSeed()+ "&open=bound'>Rebubble this link?.</a>");
 	}else if(curSessionGlobalVar.session_id == 612){
 		querySelector(document).attr("title", "HiveBent Simulator by jadedResearcher");
 		querySelector("#heading").html("HiveBent Simulator by jadedResearcher (art assistance by karmicRetribution) ");
-		querySelector("#story").append(" <a href = 'index2.html?seed;=" + getRandomSeed()+ "&hive=bent'>A young troll stands next to a click horizon. Though it was six solar sweeps ago that he was given life, it is only today that he will click it.</a>");
+		querySelector("#story").append(" <a href = 'index2.html?seed=" + getRandomSeed()+ "&hive=bent'>A young troll stands next to a click horizon. Though it was six solar sweeps ago that he was given life, it is only today that he will click it.</a>");
 	}else if(curSessionGlobalVar.session_id == 1025){
 		querySelector(document).attr("title", "Fruity Rumpus Asshole Simulator by jadedResearcher");
 		querySelector("#heading").html("Fruity Rumpus Asshole Simulator by jadedResearcher (art assistance by karmicRetribution) ");
-		querySelector("#story").append(" <a href = 'index2.html?seed;=" + getRandomSeed()+ "&rumpus=fruity'>I will have order in this RumpusBlock!!!</a>");
+		querySelector("#story").append(" <a href = 'index2.html?seed=" + getRandomSeed()+ "&rumpus=fruity'>I will have order in this RumpusBlock!!!</a>");
 	}
 }
 
@@ -235,7 +235,7 @@ void renderScratchButton(session){
 			//this is apparently spoilery.
 			//alert(living.length  + " living players and the " + timePlayer.land + " makes a scratch available!");
 			if(session.scratchAvailable){
-				String html = '<img src;="images/Scratch.png" onclick="scratchConfirm()"><br>Click To Scratch Session?';
+				String html = '<img src="images/Scratch.png" onclick="scratchConfirm()"><br>Click To Scratch Session?';
 				querySelector("#story").append(html);
 				renderAfterlifeURL();
 			}
@@ -263,7 +263,7 @@ void scratchConfirm(){
 
 //yellow yard calls, at very least.
 void restartSession(){
-	querySelector("#story").html('<canvas id="loading" width;="1000" height="354"> ');
+	querySelector("#story").html('<canvas id="loading" width="1000" height="354"> ');
 	window.scrollTo(0, 0);
 	checkEasterEgg(easterEggCallBackRestart);
 }
@@ -331,7 +331,7 @@ void processCombinedSession(){
 	if(tmpcurSessionGlobalVar){
 		curSessionGlobalVar = tmpcurSessionGlobalVar;
 		//maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
-		querySelector("#story").append("<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Their sick frog may have screwed them over, but the connection it provides to their child universe will equally prove to be their salvation. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session <a href = 'index2.html?seed;=" + curSessionGlobalVar.session_id + "'>"+curSessionGlobalVar.session_id +"</a>. You are a little scared to ask them why they are bringing the corpses with them. Something about...shipping??? That can't be right.");
+		querySelector("#story").append("<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Their sick frog may have screwed them over, but the connection it provides to their child universe will equally prove to be their salvation. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session <a href = 'index2.html?seed=" + curSessionGlobalVar.session_id + "'>"+curSessionGlobalVar.session_id +"</a>. You are a little scared to ask them why they are bringing the corpses with them. Something about...shipping??? That can't be right.");
 		checkSGRUB();
 		load(curSessionGlobalVar.players); //in loading.js
 	}else{
@@ -348,7 +348,7 @@ void processCombinedSession(){
 void advertisePatreon(div){
 	var player = curSessionGlobalVar.players[0];
 	var playerStart = player.chatHandleShort()+ ": ";
-	String canvasHTML = "<br><a target;='_blank' href = 'https:;//www.patreon.com/FarragoFiction'><canvas id;='canvasJRAB" + (div.id) +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas></a>";
+	String canvasHTML = "<br><a target='_blank' href = 'https:;//www.patreon.com/FarragoFiction'><canvas id='canvasJRAB" + (div.id) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas></a>";
 	div.append(canvasHTML);
 
 	var canvasDiv = querySelector("#canvasJRAB"+  (div.id));
@@ -370,7 +370,7 @@ void advertisePatreon(div){
 
 void foundRareSession(div, debugMessage){
 	print(debugMessage);
-	String canvasHTML = "<br><canvas id;='canvasJRAB" + (div.id) +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+	String canvasHTML = "<br><canvas id='canvasJRAB" + (div.id) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 	div.append(canvasHTML);
 
 	var canvasDiv = querySelector("#canvasJRAB"+  (div.id));

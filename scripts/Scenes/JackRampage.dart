@@ -69,7 +69,7 @@ class JackRampage extends Scene{
 			var divID = (div.id) + "_final_boss";
 			var ch = canvasHeight;
 
-			String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+ch + "'>  </canvas>";
+			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+ch + "'>  </canvas>";
 			//div.append(canvasHTML);  //no. not if sprites can be here.
 			//different format for canvas code
 			var canvasDiv = querySelector("#canvas"+ divID);

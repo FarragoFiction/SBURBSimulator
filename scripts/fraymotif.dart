@@ -408,7 +408,7 @@ class FraymotifCreator {
       return rand.pickFrom(names);
   }
  String getRandomVoidName(Random rand){
-      String randBonus = "<span class ;= 'void'>" + rand.pickFrom(interests) +  "</span>";
+      String randBonus = "<span class = 'void'>" + rand.pickFrom(interests) +  "</span>";
       var names = ["Undefined", "untitled.mp4", "Void","Disappearification","Pumpkin", "Nothing", "Emptiness", "Invisible", "Dark", "Hole", "Solo", "Silent", "Alone", "Night", "Null", "[Censored]", "[???]", "Vacuous", "Abyss", "Noir", "Blank", "Tenebrous", "Antithesis", "404"];
       return rand.pickFrom(names)+ randBonus;
   }

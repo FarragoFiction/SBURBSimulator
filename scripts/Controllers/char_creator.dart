@@ -159,7 +159,7 @@ void renderURLToSendPlayersIntoSBURB(){
 	grabAllPlayerInterests();
 	grabCustomChatHandles();
 	numURLS ++;
-	String html = "<Br><br><a href ;= 'index2.html?seed=" + curSessionGlobalVar.session_id +"&" + generateURLParamsForPlayers(curSessionGlobalVar.players,true) + "' target;='_blank'>Be Responsible For Sending Players into SBURB? (Link " + numURLS +")</a>";
+	String html = "<Br><br><a href = 'index2.html?seed=" + curSessionGlobalVar.session_id +"&" + generateURLParamsForPlayers(curSessionGlobalVar.players,true) + "' target='_blank'>Be Responsible For Sending Players into SBURB? (Link " + numURLS +")</a>";
 	querySelector("#character_creator").append(html);
 }
 
@@ -197,7 +197,7 @@ void startSession(){
 
 
 void shareableURL(){
-	String str = '<a href ;= "character_creator.html?seed=' +initial_seed +'">Shareable URL </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <a href ;= "character_creator.html">Random Session URL </a> ';
+	String str = '<a href = "character_creator.html?seed=' +initial_seed +'">Shareable URL </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <a href = "character_creator.html">Random Session URL </a> ';
 	querySelector("#seedText").html(str);
 }
 
@@ -238,7 +238,7 @@ void renderScratchButton(session){
 		if(!session.scratched){
 			//this is apparently spoilery.
 			//alert(living.length  + " living players and the " + timePlayer.land + " makes a scratch available!");
-			String html = '<img src;="images/Scratch.png" onclick="scratchConfirm()"><br>Click To Scratch Session?';
+			String html = '<img src="images/Scratch.png" onclick="scratchConfirm()"><br>Click To Scratch Session?';
 			querySelector("#story").append(html);
 		}else{
 			querySelector("#story").append("<br>This session is already scratched. No further scratches available.");
@@ -401,7 +401,7 @@ void processCombinedSession(){
 	if(tmpcurSessionGlobalVar){
 		curSessionGlobalVar = tmpcurSessionGlobalVar;
 		initGraphs();
-		querySelector("#story").append("<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Their sick frog may have screwed them over, but the connection it provides to their child universe will equally prove to be their salvation. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session <a href = 'index2.html?seed;=" + curSessionGlobalVar.session_id + "'>"+curSessionGlobalVar.session_id +"</a>. ");
+		querySelector("#story").append("<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Their sick frog may have screwed them over, but the connection it provides to their child universe will equally prove to be their salvation. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session <a href = 'index2.html?seed=" + curSessionGlobalVar.session_id + "'>"+curSessionGlobalVar.session_id +"</a>. ");
 		checkSGRUB();
 		load(curSessionGlobalVar.players); //in loading.js
 	}else{
@@ -415,7 +415,7 @@ void processCombinedSession(){
 
 void foundRareSession(div, debugMessage){
 	print(debugMessage);
-	String canvasHTML = "<br><canvas id;='canvasJRAB" + (div.id) +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+	String canvasHTML = "<br><canvas id='canvasJRAB" + (div.id) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 	div.append(canvasHTML);
 
 	var canvasDiv = querySelector("#canvasJRAB"+  (div.id));

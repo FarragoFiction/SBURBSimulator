@@ -569,7 +569,7 @@ class QuadrantDialogue extends Scene {
 		return ret;
 	}
 	void chat(div){
-		String canvasHTML = "<br><canvas id;='canvas" + (div.id) +"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='canvas" + (div.id) +"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var relationship = this.getQuadrant();
 		var relationship2 = this.getQuadrant2();

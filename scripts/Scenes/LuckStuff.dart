@@ -44,7 +44,7 @@ class LuckStuff extends Scene{
 	@override
 	void renderContent(div){
 		this.numberTriggers ++;
-		//String ret = "<img src ;= 'images/fortune_event.png'/><Br>";  //maybe display image for this event, like not canvas, just image. Single image for event.
+		//String ret = "<img src = 'images/fortune_event.png'/><Br>";  //maybe display image for this event, like not canvas, just image. Single image for event.
 		String ret = "";
 		div.append("<br> <img src = 'images/sceneIcons/luck_icon.png'>");
 		for(num i = 0; i<this.rolls.length; i++){
@@ -224,7 +224,7 @@ class LuckStuff extends Scene{
 			this.session.luckyGodTier = true;
 			this.session.godTier = true;
 			var divID = (div.id) + "_luckGodBS" + roll.player.chatHandle;
-			String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 			div.append(ret);
 			div.append(canvasHTML);
 			var canvas = querySelector("#canvas"+ divID);
@@ -255,7 +255,7 @@ class LuckStuff extends Scene{
 		div.append(ret);
 
 		var divID = (div.id) + "_badLuckDeath" + roll.player.chatHandle;
-		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);
 

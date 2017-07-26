@@ -44,7 +44,7 @@ class GraphRenderer {
 				this.calculateMaxY();
 			}
 			if(this.svg == null){
-				querySelector("#story").append('<svg id="svg' + this.label + '" width;="' + width +'" height="' + height + '"></svg><Br><Br>');
+				querySelector("#story").append('<svg id="svg' + this.label + '" width="' + width +'" height="' + height + '"></svg><Br><Br>');
 				this.svg = querySelector("#svg'+this.label);
 			}else{
 				this.clearSVG();

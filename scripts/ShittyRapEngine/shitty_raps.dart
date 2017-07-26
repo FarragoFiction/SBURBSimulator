@@ -1,6 +1,6 @@
 part of SBURBSim;
 
-//http://www.rhymezone.com/r/rhyme.cgi?Word=back&typeofrhyme;=perfect&org1=syl&org2;=l&org3=y;
+//http://www.rhymezone.com/r/rhyme.cgi?Word=back&typeofrhyme=perfect&org1=syl&org2=l&org3=y;
 //if this seems like it will work, move to random tables. based on recursiveSlacker's idea.
 List<String> comedyInterestNouns = ["joke","clown","fun", "folk", "bloke","quack","flashback","piece of cake","shell game","skunk","debunk", "grump", "first-rate","mandate", "card trick","card you pick"];
 List<String> comedyInterestVerbs = ["joke", "frown", "stun", "soak", "choke", "scrunch", "wisecrack","smack","attack","crack","emergency break","flunk","jump", "copulate","syncopate"];
@@ -47,7 +47,7 @@ List<String> justiceInterestVerbs = ["took","shook","look","kill","ill","aim","b
 
 
 
-//http://www.rhymezone.com/r/rhyme.cgi?Word=sun&typeofrhyme;=perfect&org1=syl&org2;=l&org3=y;
+//http://www.rhymezone.com/r/rhyme.cgi?Word=sun&typeofrhyme=perfect&org1=syl&org2=l&org3=y;
 //most common rhyming sounds are things like "ack", "ake", "ame", "ill", "uck", "ock", "unk", "ump", "ice", "unk"
 //gotta give the trolls with 8 quirks love.
 List<String> wordsRhymeLate = ["late", "eight", "ate", "wait", "weight", "bait", "date","fate","freight","gate","gait","mate","plate","plait","straight","trait","abate","abate","birthddate","castrate","checkmate","create","dictate","debate","donate","first-rate","flowrate","rate","inmate","mandate","locate","ornate","rebate","shipmate","teammate","activate","actuate","communicate","callibrate",

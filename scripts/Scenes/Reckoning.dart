@@ -73,7 +73,7 @@ class Reckoning extends Scene {
 
 		}else{
 			intro += " <br><br>No one is alive. <BR><BR>Game Over.  ";
-			intro += "<img src ;= 'images/abj_watermark.png' class='watermark'>";
+			intro += "<img src = 'images/abj_watermark.png' class='watermark'>";
 			var strongest = findStrongestPlayer(this.session.players);
 			intro += "The MVP of the session was: " + strongest.htmlTitle() + " with a power of: " + strongest.getStat("power");
 		}

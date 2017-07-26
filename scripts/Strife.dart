@@ -177,8 +177,8 @@ class Strife {
     print("author is saving AB in session: " +
         this.session.session_id.toString());
     var divID = (div.id) + "authorRocks";
-    String canvasHTML = "<br><canvas id;='canvas" + divID + "' width='" +
-        canvasWidth.toString() + "' height;=" + canvasHeight.toString() +
+    String canvasHTML = "<br><canvas id='canvas" + divID + "' width='" +
+        canvasWidth.toString() + "' height=" + canvasHeight.toString() +
         "'>  </canvas>";
     div.append(canvasHTML);
     //different format for canvas code
@@ -464,7 +464,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     if(poseable.length > 6){
       ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
     }
-    String canvasHTML = "<br><canvas id;='canvas" + div.id+"' width='" +canvasWidth.toString() + "' height;="+ch.toString() + "'>  </canvas>";
+    String canvasHTML = "<br><canvas id='canvas" + div.id+"' width='" +canvasWidth.toString() + "' height="+ch.toString() + "'>  </canvas>";
     div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
     //different format for canvas code
     var canvasDiv = querySelector("#canvas"+ div.id);

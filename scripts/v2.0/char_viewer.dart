@@ -10,7 +10,7 @@ window.onload = () {
 	renderHeader();
 	var params = window.location.href.substr(window.location.href.indexOf("?")+1);
 	if (params == window.location.href) params = "";
-	querySelector("#character_creator").append("<a target='_blank' href ;= 'index2.html?selfInsertOC=true&" + params + "'>Send Random Fan OCs From This Category Into SBURB?</a> &nbsp &nbsp &nbsp<a target;='_blank' href = 'rare_session_finder.html?selfInsertOC;=true&" + params + "'>AB Report For Fan OCs From This Category</a><Br><Br><Br>");
+	querySelector("#character_creator").append("<a target='_blank' href = 'index2.html?selfInsertOC=true&" + params + "'>Send Random Fan OCs From This Category Into SBURB?</a> &nbsp &nbsp &nbsp<a target='_blank' href = 'rare_session_finder.html?selfInsertOC=true&" + params + "'>AB Report For Fan OCs From This Category</a><Br><Br><Br>");
 	loadFuckingEverything(true);
 
 
@@ -30,7 +30,7 @@ void renderHeader(){
 	if(getParameterByName("canon")  == "true") header += " canon";
 	if(getParameterByName("otherFandoms")  == "true") header += " otherFandoms";
 	if(getParameterByName("creators")  == "true") header += " creators";
-	if(getParameterByName("bards")  == "true") header += " bards<span class;='void'>Not gonna lie, gonna add a secret boss for each one of these assholes</span>"
+	if(getParameterByName("bards")  == "true") header += " bards<span class='void'>Not gonna lie, gonna add a secret boss for each one of these assholes</span>"
 	header += "";
 	if(header!= "" ) querySelector("#header").html(header);
 

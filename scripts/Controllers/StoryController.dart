@@ -191,7 +191,7 @@ class StoryController extends SimController {
   void shareableURL() {
     var params = window.location.href.substring(window.location.href.indexOf("?")+1);
     if (params == window.location.href) params = "";
-    String str = '<div class = "links"><a href = "index2.html?seed=${initial_seed}&' + params + ' ">Shareable URL </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <a href = "character_creator.html?seed${initial_seed}&' + params + ' " target="_blank">Replay Session  </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp<a href ;= "index2.html">Random Session URL </a> </div>';
+    String str = '<div class = "links"><a href = "index2.html?seed=${initial_seed}&' + params + ' ">Shareable URL </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <a href = "character_creator.html?seed${initial_seed}&' + params + ' " target="_blank">Replay Session  </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp<a href = "index2.html">Random Session URL </a> </div>';
     querySelector("#seedText").setInnerHtml(str);
     querySelector("#story").appendHtml("Session: ${initial_seed}",treeSanitizer: NodeTreeSanitizer.trusted);
   }

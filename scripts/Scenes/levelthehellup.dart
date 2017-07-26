@@ -50,7 +50,7 @@ class LevelTheHellUp extends Scene {
 		String narration = "";
 		num repeatTime = 1000;
 		var divID = (div.id) + "_" + player.chatHandle+player.ectoBiologicalSource+player.id;
-		String narrationHTML = "<br><div id ;= 'narration" + divID + "'></div>";
+		String narrationHTML = "<br><div id = 'narration" + divID + "'></div>";
 
 		div.append(narrationHTML);
 
@@ -65,13 +65,13 @@ class LevelTheHellUp extends Scene {
 		}
 		narrationDiv.append(narration);
 		if(levelName &&!player.godTier){
-				String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+				String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 				div.append(canvasHTML);
 			  var canvasDiv = querySelector("#canvas"+ divID);
 				drawLevelUp(canvasDiv, player);
 		}else if(levelName && player.godTier){
 			//god tier has to be taller.
-			String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +1000.toString() + "' height;="+572.toString() + "'>  </canvas>";
+			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +1000.toString() + "' height="+572.toString() + "'>  </canvas>";
 			div.append(canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 			drawLevelUpGodTier(canvasDiv, player);

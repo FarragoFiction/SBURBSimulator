@@ -452,7 +452,7 @@ function imgLoaded(imgElement) {
 
 CanvasElement drawReviveDead(Element div, Player player, Player ghost, String enablingAspect){
   String canvasId = "${div.id}commune_${player.chatHandle}${ghost.chatHandle}${player.getStat("power")}${ghost.getStat("power")}";
-  String canvasHTML = "<br><canvas id;='" + canvasId +"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+  String canvasHTML = "<br><canvas id='" + canvasId +"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
   div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
   CanvasElement canvas = querySelector("#${canvasId}");
   CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));

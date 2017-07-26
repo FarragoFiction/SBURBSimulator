@@ -35,7 +35,7 @@ void reroll(){
 void renderDownloadURLs(){
 	var keys = Object.keys(dataURLs);
 	for(num i = 0; i<keys.length; i++){
-		querySelector("#"+keys[i]+"url").html("<a href = '" +dataURLs[keys[i]] + "'  target;='_blank'> Download Character</a><br>" );
+		querySelector("#"+keys[i]+"url").html("<a href = '" +dataURLs[keys[i]] + "'  target='_blank'> Download Character</a><br>" );
 	}
 	//drawSpriteAll();
 }
@@ -128,7 +128,7 @@ void writeToCanvas(canvas, player, canvasId){
 void describe(){
 	for(num i = 0; i<players.length; i++){
 		//decideTroll(players[i]);
-		String intro = "<canvas id;='canvas" + (i+1) +"' width='400' height;='800'>  </canvas>";
+		String intro = "<canvas id='canvas" + (i+1) +"' width='400' height='800'>  </canvas>";
 
 		//want to move all this into the canvas.
 		intro += "<h1> " + players[i].htmlTitle() +" </h1>";
@@ -141,7 +141,7 @@ void describe(){
 			intro += "Human";
 		}
 		intro += "<li>Blood Color:";
-		intro += "<font color;= '" + players[i].bloodColor + "'> "
+		intro += "<font color= '" + players[i].bloodColor + "'> "
 		intro +=  players[i].bloodColor + "</font>";
 		if(players[i].isTroll && players[i].aspect == "Blood"){
 			intro += " (Blood Player Default)";
@@ -165,12 +165,12 @@ void describe(){
 		intro += "<Li>  Quirk: " + players[i].quirk.stringExplanation() +"</li>";
 		intro += "Sample: ";
 		if(players[i].isTroll){
-			intro += "<font color;= '" + players[i].bloodColor + "'> "
+			intro += "<font color= '" + players[i].bloodColor + "'> "
 		}else{
 			intro += getFontColorFromAspect(players[i].aspect);
 		}
 		intro += players[i].quirk.translate(" The quick brown fox (named Lacy) jumped over the lazy dog (named Barkey) over 1234567890 times for reasons. It sure was exciting! I wonder why he did that? Was he going to be late? I wonder....I guess we'll just have to wait and see.");
-		intro += " <br><br> <div id ;= 'gibberish" +i+"'>"
+		intro += " <br><br> <div id = 'gibberish" +i+"'>"
 		//randomParagraph("#gibberish"+i, players[i]);
 		intro += "</div></font>";
 
@@ -183,11 +183,11 @@ void describe(){
 
 void decideHemoCaste(player){
 	if(player.aspect != "Blood"){  //sorry karkat
-		if(querySelector('[name="color"] option:selected').val() ;== "Any"){
+		if(querySelector('[name="color"] option:selected').val() == "Any"){
 			player.bloodColor = rand.pickFrom(bloodColors);
 		}else{
 			//do i want blood color to be a drop down, too? can make bg the blood color?
-			player.bloodColor = querySelector('[name;="color"] option:selected').val();
+			player.bloodColor = querySelector('[name="color"] option:selected').val();
 		}
 
 
@@ -209,13 +209,13 @@ void randomParagraph(div, player){
 
 
 void decideTroll(player){
-	if(querySelector('[name="species"] option:selected').val() ;== "Any" && rand.nextDouble() > .5 ){
+	if(querySelector('[name="species"] option:selected').val() == "Any" && rand.nextDouble() > .5 ){
 		player.isTroll = true;
 		decideHemoCaste(player);
 		player.decideLusus();
 		player.hairColor = "#000000";
 		player.quirk = randomTrollQuirk(player);
-	}else if(querySelector('[name="species"] option:selected').val() ;== "Troll"){
+	}else if(querySelector('[name="species"] option:selected').val() == "Troll"){
 		player.isTroll = true;
 		decideHemoCaste(player);
 		player.decideLusus(player);
@@ -232,10 +232,10 @@ void decideTroll(player){
 
 
 void makeColorDropDown(){
-	String html = '<select name;="color">';
-  	html += '<option value;="Any" selected = "selected">Any</option>';
+	String html = '<select name="color">';
+  	html += '<option value="Any" selected = "selected">Any</option>';
 	for(num i = 0; i< bloodColors.length; i++){
-		html += '<option  style;="background:'+bloodColors[i]+'"" value="' + bloodColors[i] + '" >' + bloodColors[i]+'</option>';
+		html += '<option  style="background:'+bloodColors[i]+'"" value="' + bloodColors[i] + '" >' + bloodColors[i]+'</option>';
 	}
 	html += '</select>';
 	querySelector("#colorList").append(html);
@@ -246,10 +246,10 @@ void makeColorDropDown(){
 void makeAspectDropDown(){
 	available_aspects = nonrequired_aspects.slice(0); //required_aspects
     available_aspects = available_aspects.concat(required_aspects.slice(0));
-	String html = '<select name;="aspect">';
-  	html += '<option value;="Any" selected = "selected">Any</option>';
+	String html = '<select name="aspect">';
+  	html += '<option value="Any" selected = "selected">Any</option>';
 	for(num i = 0; i< available_aspects.length; i++){
-		html += '<option value;="' + available_aspects[i] + '" >' + available_aspects[i]+'</option>'
+		html += '<option value="' + available_aspects[i] + '" >' + available_aspects[i]+'</option>'
 	}
 	html += '</select>';
 	querySelector("#aspectList").append(html);
@@ -258,10 +258,10 @@ void makeAspectDropDown(){
 
 
 void makeSpeciesDropDown(){
-	String html = '<select name;="species">';
-  html += '<option value;="Any" selected = "selected">Any</option>';
-	html += '<option value;="Human">Human</option>'
-	html += '<option value;="Troll" >Troll</option>'
+	String html = '<select name="species">';
+  html += '<option value="Any" selected = "selected">Any</option>';
+	html += '<option value="Human">Human</option>'
+	html += '<option value="Troll" >Troll</option>'
 	html += '</select>';
 	querySelector("#speciesList").append(html);
 }
@@ -271,10 +271,10 @@ void makeSpeciesDropDown(){
 
 void makeClassDropDown(){
 	available_classes = classes.slice(0); //re-init available classes. make deep copy
-	String html = '<select name;="className">';
-  	html += '<option value;="Any" selected = "selected">Any</option>';
+	String html = '<select name="className">';
+  	html += '<option value="Any" selected = "selected">Any</option>';
 	for(num i = 0; i< available_classes.length; i++){
-		html += '<option value;="' + available_classes[i] +'">' + available_classes[i]+'</option>'
+		html += '<option value="' + available_classes[i] +'">' + available_classes[i]+'</option>'
 	}
 	html += '</select>';
 	querySelector("#classList").append(html);
@@ -286,17 +286,17 @@ void makeClassDropDown(){
 void makePlayers(){
 	players = [];
 
-	if(querySelector('[name="className"] option:selected').val() ;== "Any"){
+	if(querySelector('[name="className"] option:selected').val() == "Any"){
 		available_classes = classes.slice(0); //re-init available classes. make deep copy
 	}else{
-		available_classes = [querySelector('[name;="className"] option:selected').val()];
+		available_classes = [querySelector('[name="className"] option:selected').val()];
 	}
 
-	if(querySelector('[name="aspect"] option:selected').val() ;== "Any"){
+	if(querySelector('[name="aspect"] option:selected').val() == "Any"){
 		available_aspects = nonrequired_aspects.slice(0); //required_aspects
    	available_aspects = available_aspects.concat(required_aspects.slice(0));
 	}else{
-		available_aspects = [querySelector('[name;="aspect"] option:selected').val()];
+		available_aspects = [querySelector('[name="aspect"] option:selected').val()];
 	}
 
 

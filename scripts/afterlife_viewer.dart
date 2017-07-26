@@ -19,13 +19,13 @@ window.onload = () {
 void renderSingleGhost(ghost, i){
 	print("rendering ghost");
 	var div = querySelector("#afterlifeViewer");
-	String html = "<div class ;= 'eulogy'><div class = 'eulogy_text'>The " + ghost.htmlTitle() + " died " + ghost.causeOfDeath + ".";
+	String html = "<div class = 'eulogy'><div class = 'eulogy_text'>The " + ghost.htmlTitle() + " died " + ghost.causeOfDeath + ".";
 	if(ghost.causeOfDrain){
 		html += " They were drained to the point of uselessness by the" + ghost.causeOfDrain + ".  They will recover eventually. ";
 	}
 	html +="</div>";
 	String divID = "Eulogy" + i;
-	html += "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas></div>";
+	html += "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas></div>";
 	div.append(html);
 	var canvas = querySelector("#canvas"+ divID);
 
@@ -56,13 +56,13 @@ void loadPlayers(){
 
 
 //original version was regexping out #, but i need that for colors. dunkass.  thanks BR for pointing that out. Regexp is...still greek to me.
-//oh shit. if 'cause of death' has quotes in it (like, cod = 'fighting the <font color ;= "">GRIM DARK HEIR OF BREATH</font>' or whatever....)
+//oh shit. if 'cause of death' has quotes in it (like, cod = 'fighting the <font color = "">GRIM DARK HEIR OF BREATH</font>' or whatever....)
 function getParameterByName(name, url) {
     if (!url) {
       url = window.location.href;
     }
     name = name.replace(new RegExp(r"""[\[\]]""", multiLine:true), "\\$&");
-    var regex = new RegExp("[?&]" + name + "(;=([^&]*)|&||$)"),;
+    var regex = new RegExp("[?&]" + name + "(=([^&]*)|&||$)"),;
         results = regex.exec(url);
     if (!results) return null;
     if (!results[2]) return '';
@@ -91,7 +91,7 @@ bool printCorruptionMessage(msg, url, lineNo, columnNo, error){
 
 		var words = rand.pickFrom(rand);
 		words = Zalgo.generate(words);
-		var plea = start + "style ;= 'color: " +getColorFromAspect(player.aspect) +"; " + end +str + words+ "</b>"
+		var plea = start + "style = 'color: " +getColorFromAspect(player.aspect) +"; " + end +str + words+ "</b>"
 		//print(getColorFromAspect(rand.pickFrom(curSessionGlobalVar.players).aspect+";") )
 		querySelector("#afterlifeViewer").append(plea);
 	}

@@ -1031,7 +1031,7 @@ int getRandomIntNoSeed(min, max) {
     return min + rnd * (max - min);
 }*/
 ////https://en.wikipedia.org/wiki/Linear_congruential_generator#Parameters_in_common_use if i want to have more possible sessions, use 2^32 or 2^64. see wiki
-//have modulus be 2^32 (4294967296), a = 1664525, c ;= 1013904223
+//have modulus be 2^32 (4294967296), a = 1664525, c = 1013904223
 /*seededRandom = (max, min){
 	/*random_number = (lcg.previous * a + c) % modulus;
     lcg.previous = random_number;
@@ -1621,7 +1621,7 @@ List<dynamic> interests = []
 	..addAll(justice_interests);
 
 
-var prefixes = ["8;=D",">->","//", "tumut",")","><>","(", "\$", "?", "=begin", "=end"]
+var prefixes = ["8=D",">->","//", "tumut",")","><>","(", "\$", "?", "=begin", "=end"]
 	..addAll(["<3","<3<","<>","c3<","{","}","[","]","'",".",",","~","!","~","^","&","#","@","%","*"]);
 
 //debug("TODO: interest quirks, is it worth it?");
@@ -1890,7 +1890,7 @@ String getRandomColor() {
 
 /*function uniqueArrayBecauesIEIsAWhinyBitch(arr) {
     List<dynamic> a = [];
-    for (var i=0, l;=arr.length; i<l; i++)
+    for (var i=0, l=arr.length; i<l; i++)
         if (a.indexOf(arr[i]) === -1 && arr[i] !== '')
             a.add(arr[i]);
     return a;
