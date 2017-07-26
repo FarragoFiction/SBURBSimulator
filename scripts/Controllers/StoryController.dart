@@ -7,6 +7,8 @@ import 'dart:collection';
 //replaces the poorly named scenario_controller2.js
 num initial_seed = 0;
 main() {
+  print("If you are in dartium, make sure to select this file to access it's global vars");
+
   //TODO scroll the window up
   //make a new StoryController (which will auto set itself as it's parent's singleton instance
   window.onError.listen((ErrorEvent e){
