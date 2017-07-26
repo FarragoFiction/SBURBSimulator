@@ -178,7 +178,7 @@ bool printCorruptionMessage(String msg, String url, String lineNo, String column
 
     var words = curSessionGlobalVar.rand.pickFrom(rand);
     //words = Zalgo.generate(words); TODO RENEABLE L8r
-    var plea = start + "style ;= 'color: " +getColorFromAspect(player.aspect) +"; " + end +str + words+ "</b>";
+    var plea = start + "style = 'color: " +getColorFromAspect(player.aspect) +"; " + end +str + words+ "</b>";
     //print(getColorFromAspect(getRandomElementFromArray(curSessionGlobalVar.players).aspect+";") )
 
     querySelector("#story").appendHtml(plea,treeSanitizer: NodeTreeSanitizer.trusted);
