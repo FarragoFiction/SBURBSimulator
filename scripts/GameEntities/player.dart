@@ -1438,13 +1438,13 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		}
 		return bestRelationshipSoFar.target;
 	}
-	dynamic getBestFriendFromList(potentialFriends, debugCallBack){
+	dynamic getBestFriendFromList(List<Player>potentialFriends, debugCallBack){
 		var bestRelationshipSoFar = this.relationships[0];
 		for(num i = 0; i<potentialFriends.length; i++){
 			var p = potentialFriends[i];
 			if(p!=this){
-				var r = this.getRelationshipWith(p);
-				if(!r){
+				Relationship r = this.getRelationshipWith(p);
+				if(r == null){
 					//print("Couldn't find relationships between " + this.chatHandle + " and " + p.chatHandle);
 					//print(debugCallBack);
 					//print(potentialFriends);

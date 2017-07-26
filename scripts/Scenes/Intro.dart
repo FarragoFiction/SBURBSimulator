@@ -573,7 +573,7 @@ class Intro  extends IntroScene{
 	}
 	dynamic getChat(player1, player2, div){
 
-		if(!player1.fromThisSession(this.session) || !player1.land){
+		if(!player1.fromThisSession(this.session) || player1.land != null){
 			return this.alienChat(player1,div);
 		}
 
@@ -610,10 +610,10 @@ class Intro  extends IntroScene{
 
 		return this.getNormalChat(player1, player2);
 	}
-	dynamic chat(div){
+	dynamic chat(Element div){
 		num repeatTime = 1000;
 		String canvasHTML = "<br><canvas id;='canvas" + (div.id) +"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
-		div.append(canvasHTML);
+		div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
 		//first, find/make pesterchum skin. Want it to be no more than 300 tall for now.
 		//then, have some text I want to render to it.
 		//filter through quirks, and render.  (you can splurge and make more quirks here, future me)
