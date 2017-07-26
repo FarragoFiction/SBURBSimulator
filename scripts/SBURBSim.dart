@@ -397,6 +397,10 @@ String joinMatches(Iterable<Match> matches, [String joiner = null]) {
 	return sb.toString();
 }
 
+void appendHtml(Element element, String html) {
+	element.appendHtml(html, treeSanitizer: NodeTreeSanitizer.trusted);
+}
+
 void renderAfterlifeURL(){
   if(curSessionGlobalVar.afterLife.ghosts.length > 0){
     stopTime = new DateTime.now();

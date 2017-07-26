@@ -2,13 +2,13 @@ part of SBURBSim;
 
 
 class FreeWillStuff extends Scene{
-	bool canRepeat = true;
+	//bool canRepeat = true;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	var decision = null;
-	var player = null;
-	var renderPlayer1 = null;
-	var renderPlayer2 = null;
-	var playerGodTiered = null;	//luck can be good or it can be bad.
+	Player player = null;
+	Player renderPlayer1 = null;
+	Player renderPlayer2 = null;
+	Player playerGodTiered = null;	//luck can be good or it can be bad.
 	//should something special happen if you have a lot of negative free will? like...
 	//maybe exile shenanigans?
 	
@@ -17,7 +17,7 @@ class FreeWillStuff extends Scene{
 	FreeWillStuff(Session session): super(session);
 
 	@override
-	dynamic trigger(playerList){
+	dynamic trigger(List<Player> playerList){
 		this.decision = null;//reset
 		this.player = null;
 		this.renderPlayer1 = null;
@@ -25,18 +25,18 @@ class FreeWillStuff extends Scene{
 		this.playerGodTiered = null;
 		//sort players by free will. highest goes first. as soon as someone makes a decision, return. decision happens during trigger, not content. (might be a mistake)
 		//way i was doing it before means that MULTIPLE decisions happen, but only one of them render.
-		var players = sortPlayersByFreeWill(this.session.availablePlayers);
+		List<Player> players = sortPlayersByFreeWill(this.session.availablePlayers);
 		for(num i = 0; i<players.length; i++){
-			var player = players[i];
-			var breakFree = this.considerBreakFreeControl(player);
-			if(breakFree){  //somebody breaking free of mind control ALWAYS has priority (otherwise, likely will never happen since they have so little free will to begin with.)
+			Player player = players[i];
+			String breakFree = this.considerBreakFreeControl(player);
+			if(breakFree != null){  //somebody breaking free of mind control ALWAYS has priority (otherwise, likely will never happen since they have so little free will to begin with.)
 				this.player = player;
 				this.decision = breakFree;
 				return true;
 			}
-			if(player.freeWill > 200 || player.canMindControl()){  //don't even get to consider a decision if you don't have  more than default free will.//TODO raise to over 60 'cause that is highest default free will possible. want free will to be rarer.
-				var decision = this.getPlayerDecision(player);
-				if(decision){
+			if(player.getStat("freeWill") > 200 || player.canMindControl() != null){  //don't even get to consider a decision if you don't have  more than default free will.//TODO raise to over 60 'cause that is highest default free will possible. want free will to be rarer.
+				String decision = this.getPlayerDecision(player);
+				if(decision != null){
 					this.player = player;
 					this.decision = decision;
 					return true;
@@ -46,33 +46,33 @@ class FreeWillStuff extends Scene{
 
 		return this.decision != null;
 	}
-	void renderPlayers(div){
+	void renderPlayers(Element div){
 		//print("rendering free will player(s): " + this.session.session_id)
 
-		var divID = (div.id) + "_freeWillBulshit" + this.renderPlayer1.chatHandle;
-		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-		div.append(canvasHTML);
-		var canvas = querySelector("#canvas"+ divID);
+		String divID = (div.id) + "_freeWillBulshit" + this.renderPlayer1.chatHandle;
+		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height='"+canvasHeight.toString() + "'>  </canvas>";
+		div.appendHtml(canvasHTML, treeSanitizer: NodeTreeSanitizer.trusted);
+		CanvasElement canvas = querySelector("#canvas"+ divID);
 
-		var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+		CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 		drawSprite(pSpriteBuffer,this.renderPlayer1);
 
 		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
-		if(this.renderPlayer2){
-			var dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+		if(this.renderPlayer2 != null){
+			CanvasElement dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 			drawSprite(dSpriteBuffer,this.renderPlayer2);
 			copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,200,0);
 		}
 
 	}
-	void renderGodTier(div){
+	void renderGodTier(Element div){
 		//print(this.playerGodTiered.title() + " rendering free will god tier: " + this.session.session_id)
 		var divID = (div.id) + "_freeWillBulshit" + this.playerGodTiered.chatHandle;
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		var f = this.session.fraymotifCreator.makeFraymotif(rand, [this.playerGodTiered], 3);//first god tier fraymotif
 		this.playerGodTiered.fraymotifs.add(f);
-		div.append(" They learn " + f.name + ". ") ;
-		div.append(canvasHTML);
+		appendHtml(div, " They learn " + f.name + ". ") ;
+		appendHtml(div, canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);
 
 
@@ -80,21 +80,21 @@ class FreeWillStuff extends Scene{
 		drawGetTiger(canvas, [this.playerGodTiered]); //only draw revivial if it actually happened.
 	}
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		String psionic = "";
-		var pname = this.player.canMindControl();
-		if( pname){
+		Fraymotif pname = this.player.canMindControl();
+		if( pname != null){
 			print("psychic powers used to mind control in session: " + this.session.session_id.toString());
-			psionic =  " The " + this.player.htmlTitleBasic() + " uses their "+ pname + ". ";
+			psionic =  " The " + this.player.htmlTitleBasic() + " uses their $pname. ";
 		} 
-		div.append("<br><img src = 'images/sceneIcons/freewill_icon.png'> "+psionic + this.content());
-		if(this.playerGodTiered){
+		appendHtml(div, "<br><img src = 'images/sceneIcons/freewill_icon.png'> "+psionic + this.content());
+		if(this.playerGodTiered != null){
 			this.renderGodTier(div);
-		}else if(this.renderPlayer1){
+		}else if(this.renderPlayer1 != null){
 			this.renderPlayers(div);
 		}
 	}
-	dynamic considerDisEngagingMurderMode(player){
+	dynamic considerDisEngagingMurderMode(Player player){
 		if(player.murderMode){
 			//print("disengage murde mode");
 				String ret = "";
@@ -107,7 +107,7 @@ class FreeWillStuff extends Scene{
 					ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. If this keeps up, they are going to end up killing the " + ectobiologistEnemy.htmlTitle();
 					ret += " and then they will NEVER do ectobiology.  No matter HOW much of an asshole they are, it's not worth dooming the timeline. ";
 					player.unmakeMurderMode();
-					player.sanity = 10; //
+					player.setStat("sanity",10); //
 					removeFromArray(player, this.session.availablePlayers);
 					return ret;
 				}
@@ -117,7 +117,7 @@ class FreeWillStuff extends Scene{
 					ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. If this keeps up, they are going to end up killing the " + spacePlayerEnemy.htmlTitle();
 					ret += " and then they will NEVER have frog breeding done. They can always kill them AFTER they've escaped to the new Universe, right? ";
 					player.unmakeMurderMode();
-					player.sanity = 10; //
+					player.setStat("sanity", 10); //
 					removeFromArray(player, this.session.availablePlayers);
 					return ret;
 				}
@@ -126,41 +126,41 @@ class FreeWillStuff extends Scene{
 					//print("Free will stop from killing everybody: " + this.session.session_id);
 					ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. No matter HOW much of an asshole people are, SBURB is the true enemy, and they are not going to let themselves forget that. ";
 					player.unmakeMurderMode();
-					player.sanity = 10; //
+					player.setStat("sanity", 10); //
 					removeFromArray(player, this.session.availablePlayers);
 					return ret;
 				}
 		}
 		return null;
 	}
-	bool isValidTargets(enemies, player){
-		var spacePlayerEnemy = findAspectPlayer(enemies, "Space");
-		var ectobiologistEnemy = getLeader(enemies);
-		if(spacePlayerEnemy && spacePlayerEnemy.landLevel < this.session.goodFrogLevel  && (player.knowsAboutSburb() && player.grimDark < 2)){ //grim dark players don't care if it dooms things.
+	bool isValidTargets(List<Player> enemies, Player player){
+		Player spacePlayerEnemy = findAspectPlayer(enemies, "Space");
+		Player ectobiologistEnemy = getLeader(enemies);
+		if(spacePlayerEnemy != null && spacePlayerEnemy.landLevel < this.session.goodFrogLevel  && (player.knowsAboutSburb() && player.grimDark < 2)){ //grim dark players don't care if it dooms things.
 			return false;
 		}
-		if(!this.session.ectoBiologyStarted && ectobiologistEnemy && (player.knowsAboutSburb() && player.grimDark < 2)){
+		if(!this.session.ectoBiologyStarted && ectobiologistEnemy != null && (player.knowsAboutSburb() && player.grimDark < 2)){
 				return false;
 		}
 
 		return true;
 	}
-	dynamic considerEngagingMurderMode(player){
-		var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
-		if(player.isActive() && enemies.length > 2 && player.sanity < 0 && !player.murderMode && rand.nextDouble() >0.98){
+	String considerEngagingMurderMode(Player player){
+		List<Player> enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
+		if(player.isActive() && enemies.length > 2 && player.getStat("sanity") < 0 && !player.murderMode && rand.nextDouble() >0.98){
 			return this.becomeMurderMode(player);
-		}else if(enemies.length > 0 && player.sanity < 0 && rand.nextDouble() > 0.98){
+		}else if(enemies.length > 0 && player.getStat("sanity") < 0 && rand.nextDouble() > 0.98){
 			return this.forceSomeOneElseMurderMode(player);
 		}
 		return null;
 	}
-	dynamic becomeMurderMode(player){
+	String becomeMurderMode(Player player){
 		if(!player.murderMode){
-			var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
+			List<Player> enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
 			if(this.isValidTargets(enemies,player)){
 					print("chosing to go into murdermode " +this.session.session_id.toString());
 					player.makeMurderMode();
-					player.sanity = -10;
+					player.setStat("sanity", -10);
 					removeFromArray(player, this.session.availablePlayers);
 					this.renderPlayer1 = player;
 					print('deciding to be flipping shit');
@@ -170,29 +170,29 @@ class FreeWillStuff extends Scene{
 		}
 		return null;
 	}
-	dynamic howManyEnemiesInCommon(enemies, patsy){
+	int howManyEnemiesInCommon(List<Player> enemies, Player patsy){
 		var myEnemies = patsy.getEnemiesFromList(findLivingPlayers(this.session.players));
-		num numb = 0;
-		for(num i = 0; i<enemies.length; i++){
-			var e = enemies[i];
+		int numb = 0;
+		for(int i = 0; i<enemies.length; i++){
+			Player e = enemies[i];
 			if(myEnemies.indexOf(e) != -1) numb ++;
 		}
 		return numb;
 	}
-	dynamic howManyFriendsYouHate(friends, patsy){
-		var myEnemies = patsy.getEnemiesFromList(findLivingPlayers(this.session.players));
-		num numb = 0;
-		for(num i = 0; i<friends.length; i++){
-			var e = friends[i];
+	int howManyFriendsYouHate(List<Player> friends, Player patsy){
+		List<Player> myEnemies = patsy.getEnemiesFromList(findLivingPlayers(this.session.players));
+		int numb = 0;
+		for(int i = 0; i<friends.length; i++){
+			Player e = friends[i];
 			if(myEnemies.indexOf(e) != -1) numb ++;
 		}
 		return numb;
 	}
-	dynamic findMurderModePlayerBesides(player){
-		var ret = null;
-		for(num i = 0; i<this.session.availablePlayers.length; i++){
-			var m = this.session.availablePlayers[i];
-			if(!ret || (m.sanity < ret.sanity && !m.dead && m.murderMode)){
+	Player findMurderModePlayerBesides(Player player){
+		Player ret = null;
+		for(int i = 0; i<this.session.availablePlayers.length; i++){
+			Player m = this.session.availablePlayers[i];
+			if(ret == null || (m.getStat("sanity") < ret.getStat("sanity") && !m.dead && m.murderMode)){
 				ret = m;
 			}
 		}
@@ -200,16 +200,16 @@ class FreeWillStuff extends Scene{
 		if(ret == player && player.aspect != "Time") ret = null;  //you should TOTALLY be able to calm your past selves shit.
 		return ret;
 	}
-	dynamic findNonGodTierBesidesMe(player){
+	Player findNonGodTierBesidesMe(Player player){
 		//print(player.title() + " is looking for a god tier besides themselves: " + this.session.session_id)
-		var ret = null;
-		num ret_abs_value = 0;
+		Relationship ret = null;
+		int ret_abs_value = 0;
 		if(player.aspect == "Time" && !player.godTier) return player;  //god tier yourself first.
 		//ideally somebody i wouldn't miss too much if they were gone, and wouldn't fear too much if they had phenomenal cosmic power. so. lowest abs value.
-		for(num i = 0; i<player.relationships.length; i++){
-			var r = player.relationships[i];
-			var v = (r.value).abs();
-			if(!ret || (v < ret_abs_value && !r.target.dead && !r.target.godTier)){
+		for(int i = 0; i<player.relationships.length; i++){
+			Relationship r = player.relationships[i];
+			int v = (r.value).abs();
+			if(ret == null || (v < ret_abs_value && !r.target.dead && !r.target.godTier)){
 				ret = r;
 				ret_abs_value = v;
 			}
@@ -218,29 +218,29 @@ class FreeWillStuff extends Scene{
 		if(ret.target == player && player.aspect != "Time") ret = null;
 		return ret.target;
 	}
-	void findBestPatsy(player, enemies){
-			var bestPatsy = null; //array with [patsy, numEnemiesInCommon]
-			var living = findLivingPlayers(this.session.players);
-			var friends = player.getFriendsFromList(living);
+	List<dynamic> findBestPatsy(Player player, List<Player> enemies){
+			List<dynamic> bestPatsy = null; //array with [patsy, numEnemiesInCommon]
+			List<Player> living = findLivingPlayers(this.session.players);
+			List<Player> friends = player.getFriendsFromList(living);
 			for(num i = 0; i<living.length; i++){
 				var p = living[i];
 				if(p != player || player.aspect == "Time"){ //can't be own patsy
 					if(bestPatsy == null){
 						bestPatsy = [p,this.howManyEnemiesInCommon(enemies, p)];
 					}else if(!p.murderMode){ //not already in murder mode
-							var numEnemiesInCommon = this.howManyEnemiesInCommon(enemies, p);
-							var patsyHatesMyFriend = this.howManyFriendsYouHate(friends, p)  ;//you aren't a good patsy if you are going to kill the people i care about along with my enemies.;
-							var val = numEnemiesInCommon - patsyHatesMyFriend;
+							int numEnemiesInCommon = this.howManyEnemiesInCommon(enemies, p);
+							int patsyHatesMyFriend = this.howManyFriendsYouHate(friends, p)  ;//you aren't a good patsy if you are going to kill the people i care about along with my enemies.;
+							int val = numEnemiesInCommon - patsyHatesMyFriend;
 							if(val > bestPatsy[1]){
 								bestPatsy = [p,val];
 							}
 					}
 				}
 			}
-			if(bestPatsy.murderMode && rand.nextDouble() > .75) bestPatsy = null; //mostly don't bother already murder mode players.
+			if(bestPatsy[0].murderMode && rand.nextDouble() > .75) bestPatsy = null; //mostly don't bother already murder mode players.
 			return bestPatsy;
 	}
-	bool canInfluenceEnemies(player){
+	bool canInfluenceEnemies(Player player){
 		if(player.aspect == "Blood" || player.aspect == "Heart" ||player.aspect == "Mind" ){
 			if(player.class_name == "Maid" || player.class_name == "Seer" || player.class_name == "Bard" || player.class_name == "Rogue"){
 				return true;
@@ -256,7 +256,7 @@ class FreeWillStuff extends Scene{
 		return false;
 
 	}
-	bool canAlterNegativeFate(player){
+	bool canAlterNegativeFate(Player player){
 		if(player.aspect == "Light" || player.aspect == "Life" || player.aspect == "Heart" || player.aspect == "Mind"){
 			if(player.class_name == "Maid" || player.class_name == "Seer"){
 				return true;
@@ -270,7 +270,7 @@ class FreeWillStuff extends Scene{
 		}
 		return false;
 	}
-	dynamic getManipulatableTrait(player){
+	String getManipulatableTrait(Player player){
 		String ret = "";
 		if(player.aspect == "Heart") ret = "identity";
 		if(player.aspect == "Blood") ret = "relationships";
@@ -292,17 +292,18 @@ class FreeWillStuff extends Scene{
 		if(player.aspect == "Rage") return "rage_forehead.png";
 		if(player.aspect == "Blood") return "blood_forehead.png";
 		if(player.aspect == "Heart") return "heart_forehead.png";
+		return null;
 	}
-	dynamic forceSomeOneElseMurderMode(player){
-		var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
-		var patsyArr = this.findBestPatsy(player, enemies);
-		var patsy = patsyArr[0];
-		var patsyVal = patsyArr[1];
-		if(this.isValidTargets(enemies,player) && patsy){
-				if(patsyVal > enemies.length/2 && patsy.sanity < 1){
-						print("manipulating someone to go into murdermode " +this.session.session_id.toString() + " patsyVal = " + patsyVal);
+	dynamic forceSomeOneElseMurderMode(Player player){
+		List<Player> enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
+		List<dynamic> patsyArr = this.findBestPatsy(player, enemies);
+		Player patsy = patsyArr[0];
+		num patsyVal = patsyArr[1];
+		if(this.isValidTargets(enemies,player) && patsy != null){
+				if(patsyVal > enemies.length/2 && patsy.getStat("sanity") < 1){
+						print("manipulating someone to go into murdermode " +this.session.session_id.toString() + " patsyVal = $patsyVal");
 						patsy.makeMurderMode();
-						patsy.sanity = -10;
+						patsy.setStat("sanity", -10);
 						removeFromArray(player, this.session.availablePlayers);
 						removeFromArray(patsy, this.session.availablePlayers);
 						this.renderPlayer1 = player;
@@ -320,10 +321,10 @@ class FreeWillStuff extends Scene{
 
 				}else{
 					patsy = rand.pickFrom(enemies);//no longer care about "best"
-					if(this.canInfluenceEnemies(player) && patsy.freeWill  < player.freeWill && patsy.influencePlayer != player){
-						print(player.title() +" controling into murdermode and altering their enemies with game powers." +this.session.session_id);
+					if(this.canInfluenceEnemies(player) && patsy.getStat("freeWill")  < player.getStat("freeWill") && patsy.influencePlayer != player){
+						print(player.title() +" controling into murdermode and altering their enemies with game powers. ${this.session.session_id}");
 						patsy.makeMurderMode();
-						patsy.sanity = -10;
+						patsy.setStat("sanity", -10);
 						patsy.flipOut(" about how they are being forced into MurderMode");
 						patsy.influenceSymbol = this.getInfluenceSymbol(player);
 						patsy.influencePlayer = player;
@@ -342,12 +343,12 @@ class FreeWillStuff extends Scene{
 		}
 		return null;
 	}
-	dynamic alterEnemies(patsy, enemies, player){
+	String alterEnemies(Player patsy, List<Player> enemies, Player player){
 			//hate you for doing this to me.
-			var r = patsy.getRelationshipWith(player);
+			Relationship r = patsy.getRelationshipWith(player);
 			num rage = 0;
-			if (patsy.freeWill > 0) rage = -3;
-			if (patsy.freeWill > 50) rage = -9;
+			if (patsy.getStat("freeWill") > 0) rage = -3;
+			if (patsy.getStat("freeWill") > 50) rage = -9;
 			r.value += rage;
 			String ret = "";
 			if(rage < -3) ret = "The " + patsy.htmlTitle() + " seems to be upset about this, underneath the control.";
@@ -355,10 +356,10 @@ class FreeWillStuff extends Scene{
 			//make snapshot of state so they can maybe break free later.
 			if(!patsy.stateBackup) patsy.stateBackup = new MiniSnapShot(patsy);  //but don't save state if ALREADY controlled.
 			for(num i = 0; i< enemies.length; i++){
-				var enemy = enemies[i];
+				Player enemy = enemies[i];
 				if(enemy != patsy){//maybe i SHOULD reneable self-relationships. maybe you hate yourself? try to kill yourself?
-					var r1 = player.getRelationshipWith(enemies[i]);
-					var r2 = patsy.getRelationshipWith(enemies[i]);
+					Relationship r1 = player.getRelationshipWith(enemies[i]);
+					Relationship r2 = patsy.getRelationshipWith(enemies[i]);
 					r2.saved_type = r2.badBig;
 					r2.old_type = r2.saved_type; //no drama on my end.
 					r2.value = r1.value;
@@ -366,17 +367,17 @@ class FreeWillStuff extends Scene{
 			}
 			return ret;
 	}
-	dynamic considerForceGodTier(player){
+	String considerForceGodTier(Player player){
 		if(!player.knowsAboutSburb()) return null; //regular players will never do this
-		if(player.freeWill < 50) return null; //requires great will power to commit suicide or murder for the greater good.
-		if(player.isActive() && (player.sanity > 0 || player.murderMode)){
+		if(player.getStat("freeWill") < 50) return null; //requires great will power to commit suicide or murder for the greater good.
+		if(player.isActive() && (player.getStat("sanity") > 0 || player.murderMode)){
 			return this.becomeGod(player);
-		}else if(player.sanity > 0 || player.murderMode) {  //don't risk killing a friend unless you're already crazy or the idea of failure hasn't even occured to you.
+		}else if(player.getStat("sanity") > 0 || player.murderMode) {  //don't risk killing a friend unless you're already crazy or the idea of failure hasn't even occured to you.
 			return this.forceSomeOneElseBecomeGod(player);
 		}
 		return null;
 	}
-	String forceSomeOneElseBecomeGod(player){
+	String forceSomeOneElseBecomeGod(Player player){
 		var sacrifice = this.findNonGodTierBesidesMe(player);
 		if(sacrifice && !sacrifice.dead && !sacrifice.godTier){
 			String bed = "bed";
@@ -385,7 +386,7 @@ class FreeWillStuff extends Scene{
 			String timeIntro = "";
 			if(player == sacrifice){
 				loop = "You get dizzy trying to follow the time logic that must have caused this to happen. Did they try to god tier because their future self told them to? But the future self only told them to because THEIR future self told them... Or wait, is this a doomed time clone...? Fuck. Time is the shittiest aspect.";
-				print(player.title() +" convincing past/future self to go god tier" + this.session.session_id);
+				print(player.title() +" convincing past/future self to go god tier ${this.session.session_id}");
 			}else if(player.aspect == "Time" && rand.nextDouble()>.25){
 				timeIntro = " from the future";
 			}
@@ -399,7 +400,7 @@ class FreeWillStuff extends Scene{
 			}
 
 			if(sacrifice.isDreamSelf) bed = "slab";
-			if(sacrifice.freeWill <= player.freeWill && player.power < 200){ //can just talk them into this terrible idea.   not a good chance of working.
+			if(sacrifice.getStat("freeWill") <= player.getStat("freeWill") && player.getStat("power") < 200){ //can just talk them into this terrible idea.   not a good chance of working.
 				if(sacrifice.godDestiny && (sacrifice.dreamSelf || sacrifice.isDreamSelf)){ //if my dream self is dead and i am my real self....
 					var ret = this.godTierHappens(sacrifice);
 					removeFromArray(player, this.session.availablePlayers);
@@ -414,7 +415,7 @@ class FreeWillStuff extends Scene{
 					removeFromArray(player, this.session.availablePlayers);
 					removeFromArray(sacrifice, this.session.availablePlayers);
 
-					player.sanity += -1000;
+					player.addStat("sanity", -1000);
 					player.flipOut(" how stupid they could have been to force the " + sacrifice.htmlTitleBasic() + " to commit suicide" );
 					this.renderPlayer1 = player;
 					this.renderPlayer2 = sacrifice;
@@ -430,7 +431,7 @@ class FreeWillStuff extends Scene{
 					}
 					return ret + loop;
 				}
-			}else if(player.power > 200 && this.canAlterNegativeFate(player) && (sacrifice.dreamSelf || sacrifice.isDreamSelf)){  //straight up ignores godDestiny  no chance of failure.
+			}else if(player.getStat("power") > 200 && this.canAlterNegativeFate(player) && (sacrifice.dreamSelf || sacrifice.isDreamSelf)){  //straight up ignores godDestiny  no chance of failure.
 				var ret = this.godTierHappens(sacrifice);
 				removeFromArray(player, this.session.availablePlayers);
 				removeFromArray(sacrifice, this.session.availablePlayers);
@@ -440,8 +441,9 @@ class FreeWillStuff extends Scene{
 
 			}
 		}
+		return null;
 	}
-	dynamic becomeGod(player){
+	String becomeGod(Player player){
 		if(!player.godTier){
 			String intro = "The " + player.htmlTitleBasic()+" knows how the god tiering mechanic works";
 			if(player.murderMode){
@@ -484,8 +486,9 @@ class FreeWillStuff extends Scene{
 				}
 			}
 		}
+		return null;
 	}
-	dynamic godTierHappens(player){
+	String godTierHappens(Player player){
 		String ret = "";
 		if(!player.isDreamSelf){
 				ret += "The " + player.htmlTitleBasic() + "'s body glows, and rises Skaiaward. "+"On " + player.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
@@ -501,46 +504,46 @@ class FreeWillStuff extends Scene{
 		this.playerGodTiered = player;
 		return ret;
 	}
-	dynamic considerCalmMurderModePlayer(player){
-		var murderer = this.findMurderModePlayerBesides(player);
-		if(murderer && !murderer.dead && this.canInfluenceEnemies(player) && player.power > 25 && player.getFriends().length > player.getEnemies().length){  //if I am not a violent person, and I CAN force you to calm down. I will.
-			String loop = "";
+	String considerCalmMurderModePlayer(Player player){
+		Player murderer = this.findMurderModePlayerBesides(player);
+		if(murderer != null && !murderer.dead && this.canInfluenceEnemies(player) && player.getStat("power") > 25 && player.getFriends().length > player.getEnemies().length){  //if I am not a violent person, and I CAN force you to calm down. I will.
+			//String loop = "";
 
-		    print(player.title() + " controlling murderer to make them placid " + this.session.session_id);
+		    print(player.title() + " controlling murderer to make them placid ${this.session.session_id}");
 			removeFromArray(player, this.session.availablePlayers);
 			removeFromArray(murderer, this.session.availablePlayers);
 			if(!murderer.stateBackup) murderer.stateBackup = new MiniSnapShot(murderer);
 			murderer.nullAllRelationships();
 			murderer.unmakeMurderMode();
-			murderer.sanity = 100;
+			murderer.setStat("sanity", 100);
 			murderer.influenceSymbol = this.getInfluenceSymbol(player);
 			murderer.influencePlayer = player;
-			murderer.getRelationshipWith(player).value += (player.freeWill - murderer.freeWill*2);  //might love or hate you during this.
-			var trait = this.getManipulatableTrait(player);
+			murderer.getRelationshipWith(player).value += (player.getStat("freeWill") - murderer.getStat("freeWill")*2);  //might love or hate you during this.
+			String trait = this.getManipulatableTrait(player);
 			this.renderPlayer1 = player;
 			this.renderPlayer2 = murderer;
-			print(trait + " control calming a player: " + this.session.session_id);
+			print(trait + " control calming a player: ${this.session.session_id}");
 			return "The " + player.htmlTitle() + " has had enough of the " + murderer.htmlTitle() + "'s murderous ways.  They manipulate their " + trait+ " until they are basically little more than an empty shell. They are such an asshole before they are finally controlled. Oh, wow. No. They are never going to be allowed to be free again. Never, never, never again. Never. Wow.  " ;
 		}
 		return null;
 	}
-	dynamic considerMakeSomeoneLove(player){
+	dynamic considerMakeSomeoneLove(Player player){
 
 		return null;
 	}
-	dynamic considerKillMurderModePlayer(player){
-		var murderer = this.findMurderModePlayerBesides(player);
-		if(murderer && !player.isActive() && !murderer.dead && this.isValidTargets([murderer], player) && player.power > 25 && this.canInfluenceEnemies(player)){
+	String considerKillMurderModePlayer(Player player){
+		Player murderer = this.findMurderModePlayerBesides(player);
+		if(murderer != null && !player.isActive() && !murderer.dead && this.isValidTargets([murderer], player) && player.getStat("power") > 25 && this.canInfluenceEnemies(player)){
 			return this.sendPatsyAfterMurderer(player, murderer);
-		}else if(murderer && !murderer.dead && (player.causeOfDeath.indexOf(murderer.class_name) == -1)){  //you haven't killed me recently.
+		}else if(murderer != null && !murderer.dead && (player.causeOfDeath.indexOf(murderer.class_name) == -1)){  //you haven't killed me recently.
 			//print(player.title() + " want to kill murdermode player and my causeOfeath is" + player.causeOfDeath +  " and session is: " + this.session.session_id)
 			return this.killMurderer(player, murderer);
 		}
 		return null;
 	}
-	String killMurderer(player, murderer){
-		if(player.mobility > murderer.mobility){
-			if(player.power * player.getPVPModifier("Attacker") > murderer.power * murderer.getPVPModifier("Defender")){  //power is generic. generally scales with any aplicable stats. lets me compare two different aspect players.
+	String killMurderer(Player player, Player murderer){
+		if(player.getStat("mobility") > murderer.getStat("mobility")){
+			if(player.getStat("power") * player.getPVPModifier("Attacker") > murderer.getStat("power") * murderer.getPVPModifier("Defender")){  //power is generic. generally scales with any aplicable stats. lets me compare two different aspect players.
 				//print(player.title() + " choosing to kill murderer. " + this.session.session_id)
 				player.victimBlood = murderer.bloodColor;
 				removeFromArray(player, this.session.availablePlayers);
@@ -564,32 +567,34 @@ class FreeWillStuff extends Scene{
 				return "The " + player.htmlTitleBasic() + " cannot let this continue any further. The " + murderer.htmlTitleBasic() + " is a threat to everyone. They corner them, and have a brief, bloody duel that ends in the death of the " + player.htmlTitleBasic() + ".  " + getPVPQuip(player,murderer, "Attacker", "Defender") + " Everyone is a little bit less safe.";
 			}
 		}
+		return null;
 	}
-	String sendPatsyAfterMurderer(player, murderer){
-		var patsy = player.getWorstEnemyFromList(this.session.availablePlayers);
-		if(patsy && !patsy.dead && patsy != murderer && patsy.freeWill  < player.freeWill ){  //they exist and I don't already control them.
+	String sendPatsyAfterMurderer(Player player, Player murderer){
+		Player patsy = player.getWorstEnemyFromList(this.session.availablePlayers);
+		if(patsy != null && !patsy.dead && patsy != murderer && patsy.getStat("freeWill")  < player.getStat("freeWill") ){  //they exist and I don't already control them.
 			if(!patsy.stateBackup) patsy.stateBackup = new MiniSnapShot(patsy);
 			//print(player.title() + " controlling player to kill murderer. " + this.session.session_id)
 			patsy.nullAllRelationships();
-			var r = patsy.getRelationshipWith(murderer);
+			Relationship r = patsy.getRelationshipWith(murderer);
 			r.value = -100;;
 			r.saved_type = r.badBig;
 			r.old_type = r.saved_type; //no drama on my end.
 			patsy.makeMurderMode();
 			removeFromArray(player, this.session.availablePlayers);
 			removeFromArray(patsy, this.session.availablePlayers);
-			patsy.sanity = -100;
+			patsy.setStat("sanity", -100);
 			patsy.flipOut(" how they are being forced to try to kill the " + murderer.htmlTitleBasic());
 			patsy.influenceSymbol = this.getInfluenceSymbol(player);
 			patsy.influencePlayer = player;
-			patsy.getRelationshipWith(player).value += (player.freeWill - patsy.freeWill*2);  //might love or hate you during this.
+			patsy.getRelationshipWith(player).value += (player.getStat("freeWill") - patsy.getStat("freeWill")*2);  //might love or hate you during this.
 			this.renderPlayer1 = player;
 			this.renderPlayer2 = patsy;
-			var trait = this.getManipulatableTrait(player);
+			String trait = this.getManipulatableTrait(player);
 			return "The " + murderer.htmlTitle() + " needs to die. They are a threat to everyone. The " +player.htmlTitleBasic() + " manipulates the " + patsy.htmlTitleBasic() + "'s " + trait + " until they focus only on their hate for the " + murderer.htmlTitle() + " and how they need to die.";
 		}
+		return null;
 	}
-	dynamic considerMakingEctobiologistDoJob(player){
+	String considerMakingEctobiologistDoJob(Player player){
 		if(!this.session.ectoBiologyStarted && player.knowsAboutSburb() && player.grimDark < 2 ){
 			String timeIntro = "";
 			if(player.aspect == "Time" && rand.nextDouble()>.25){
@@ -602,21 +607,21 @@ class FreeWillStuff extends Scene{
 				return "The " + player.htmlTitle() + timeIntro + " is not going to play by SBURB's rules. Yes, they could wait to do Ectobiology until they are 'supposed' to. But. Just. Fuck that shit. That's how doomed timelines get made. They create baby versions of everybody. Don't worry about it.";
 			}else{
 
-				var leader = getLeader(this.session.availablePlayers);
-				if(leader && !leader.dead && leader.grimDark < 2){ //you are NOT gonna be able to convince a grim dark player to do their SBURB duties.
-					if(leader.freeWill < player.freeWill){
+				Player leader = getLeader(this.session.availablePlayers);
+				if(leader != null && !leader.dead && leader.grimDark < 2){ //you are NOT gonna be able to convince a grim dark player to do their SBURB duties.
+					if(leader.getStat("freeWill") < player.getStat("freeWill")){
 						removeFromArray(player, this.session.availablePlayers);
 						removeFromArray(leader, this.session.availablePlayers);
 						//print(player.title() +" convinced ectobiologist to do their damn job. " +this.session.session_id);
 						player.performEctobiology(this.session);
 						return "The " + player.htmlTitle() + timeIntro + " is not going to play by SBURB's rules. They pester the " + leader.htmlTitle() + " to do Ectobiology. That's why they're the leader. They bug and fuss and meddle and finally the " + leader.htmlTitle() + " agrees to ...just FUCKING DO IT.  Baby versions of everybody are created. Don't worry about it.";
 
-					}else if(player.power > 50){
+					}else if(player.getStat("power") > 50){
 						//print(player.title() +" mind controlled ectobiologist to do their damn job. " +this.session.session_id);
 						player.performEctobiology(this.session);
 						removeFromArray(player, this.session.availablePlayers);
 						removeFromArray(leader, this.session.availablePlayers);
-						var trait = this.getManipulatableTrait(player);
+						String trait = this.getManipulatableTrait(player);
 						return "The " + player.htmlTitle() + timeIntro + " is not going to play by SBURB's rules.  When bugging and fussing and meddling doesn't work, they decide to rely on game powers. They straight up manipulate the recalcitrant " + leader.htmlTitle() + "'s " + trait + " until they just FUCKING DO ectobiology.  Baby versions of everybody are created. The " + player.htmlTitle() + timeIntro + " immediatley drops the effect. It's like it never happened. Other than one major source of failure being removed from the game. " ;
 					}
 				}
@@ -624,9 +629,9 @@ class FreeWillStuff extends Scene{
 		}
 		return null;
 	}
-	dynamic considerMakingSpacePlayerDoJob(player){
-		var space = findAspectPlayer(this.session.availablePlayers, "Space");
-		if(space && space.landLevel < this.session.goodFrogLevel && player.knowsAboutSburb() && player.grimDark < 2 ){ //grim dark players don't care about sburb
+	String considerMakingSpacePlayerDoJob(Player player){
+		Player space = findAspectPlayer(this.session.availablePlayers, "Space");
+		if(space != null && space.landLevel < this.session.goodFrogLevel && player.knowsAboutSburb() && player.grimDark < 2 ){ //grim dark players don't care about sburb
 			if(player == space){
 				//print(player.title() +" did their damn job breeding frogs. " +this.session.session_id);
 				space.landLevel += 10;
@@ -638,19 +643,19 @@ class FreeWillStuff extends Scene{
 					timeIntro = " from the future";
 				}
 				if(!space.dead){
-					if(space.freeWill < player.freeWill && space.grimDark < 2){  //grim dark players just don't do their SBURB duties unless forced.
+					if(space.getStat("freeWill") < player.getStat("freeWill") && space.grimDark < 2){  //grim dark players just don't do their SBURB duties unless forced.
 						removeFromArray(player, this.session.availablePlayers);
 						removeFromArray(player, this.session.availablePlayers);
 						//print(player.title() +" convinced space player to do their damn job. " +this.session.session_id);
 						space.landLevel += 10;
 						return "The " + player.htmlTitle() + timeIntro + " is not going to to fall into SBURB's trap. They pester the " + space.htmlTitle() + " to do frog breeding, even if it seems useless. They bug and fuss and meddle and finally the " + space.htmlTitle() + " agrees to ...just FUCKING DO IT.";
 
-					}else if(player.power > 50){
+					}else if(player.getStat("power") > 50){
 						//print(player.title() +" mind controlled space player to do their damn job. " +this.session.session_id);
 						space.landLevel += 10;
 						removeFromArray(player, this.session.availablePlayers);
 						removeFromArray(space, this.session.availablePlayers);
-						var trait = this.getManipulatableTrait(player);
+						String trait = this.getManipulatableTrait(player);
 						return "The " + player.htmlTitle() + " is not going to to fall into SBURB's trap. When bugging and fussing and meddling doesn't work, they decide to rely on game powers. They straight up manipulate the recalcitrant " + space.htmlTitle() + "'s " + trait + " until they just FUCKING DO frog breeding for awhile. The " + player.htmlTitle() + " drops the effect before it can change something permanent. " ;
 					}
 				}
@@ -658,9 +663,9 @@ class FreeWillStuff extends Scene{
 		}
 		return null;
 	}
-	dynamic considerBreakFreeControl(player){
-		var ip = player.influencePlayer;
-		if(ip){
+	String considerBreakFreeControl(Player player){
+		Player ip = player.influencePlayer;
+		if(ip != null){
 			////print("I definitely am mind controlled. " + player.title() + " by " + ip.title() + " " + this.session.session_id);
 			if(ip.dead){
 				removeFromArray(player, this.session.availablePlayers);
@@ -678,7 +683,7 @@ class FreeWillStuff extends Scene{
 				this.renderPlayer1 = player;
 				//print("death freed player from control" +this.session.session_id);
 				return "In death, the " + player.htmlTitle() + " is finally free of the " + ip.htmlTitle() + "'s control.";
-			}else if(player.freeWill > ip.freeWill){
+			}else if(player.getStat("freeWill") > ip.getStat("freeWill")){
 				removeFromArray(player, this.session.availablePlayers);
 				player.influencePlayer = null;
 				player.influenceSymbol = null;
@@ -687,16 +692,16 @@ class FreeWillStuff extends Scene{
 				//print("freed from control with player will" +this.session.session_id);
 				return "The " + player.htmlTitle() + " manages to wrench themselves free of the " + ip.htmlTitle() + "'s control.";
 			}else{
-				////print("The " + player.title() + "cannot break free of the " + ip.title() + "'s control. IP Dead: " + ip.dead + " ME Dead: " + player.dead + " My FW: " + player.freeWill + " IPFW:" + ip.freeWill)
+				////print("The " + player.title() + "cannot break free of the " + ip.title() + "'s control. IP Dead: " + ip.dead + " ME Dead: " + player.dead + " My FW: " + player.getStat("freeWill") + " IPFW:" + ip.getStat("freeWill"))
 				return null;
 			}
 		}
 		////print("returning null");
 		return null;
 	}
-	dynamic getPlayerDecision(player){
+	String getPlayerDecision(Player player){
 		//reorder things to change prevelance.
-		var ret = null;  //breaking free of mind control doesn't happen here.
+		String ret = null;  //breaking free of mind control doesn't happen here.
 		//consider trying to force someone to love you.either through wordss (like horrus/rufioh (not that horrus knew that's what was happening) or through creepy game powers.
 		if(ret == null) ret = this.considerCalmMurderModePlayer(player);
 		if(ret == null) ret = this.considerKillMurderModePlayer(player);
@@ -710,7 +715,7 @@ class FreeWillStuff extends Scene{
 
 		return ret;
 	}
-	dynamic content(){
+	String content(){
 		this.session.hasFreeWillEvents = true;
 		//String ret = "<img src = 'images/free_will_event.png'/><Br>"; //get rid of prefix soon.
 		String ret = "";

@@ -594,20 +594,20 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		}
 		return null;
 	}
-	bool canMindControl(){
+	Fraymotif canMindControl(){
 		for(num i = 0; i<this.fraymotifs.length; i++){
 			if(this.fraymotifs[i].name == "Mind Control") return this.fraymotifs[i].name;
 		}
-		return false;
+		return null;
 	}
-	bool canGhostCommune(){
+	Fraymotif canGhostCommune(){
 		for(num i = 0; i<this.fraymotifs.length; i++){
 			if(this.fraymotifs[i].name == "Ghost Communing")return  this.fraymotifs[i].name;
 		}
-		return false;
+		return null;
 	}
-	dynamic psionicList() {
-		List<dynamic> psionics = [];
+	List<Fraymotif> psionicList() {
+		List<Fraymotif> psionics = [];
 		//telekenisis, mind control, mind reading, ghost communing, animal communing, laser blasts, vision xfold.
 			{
 			var f = new Fraymotif([], "Telekinisis", 1);
@@ -2947,8 +2947,8 @@ Player clonePlayer(Player player, Session session, bool isGuardian) {
 
 
 //mobility is "natural" way to sort players but this works, too.
-  void sortPlayersByFreeWill(List<Player> players) {
-    return players.sort((Player a, Player b) {
+  List<Player> sortPlayersByFreeWill(List<Player> players) {
+    return new List<Player>.from(players)..sort((Player a, Player b) {
       return a.getStat("freeWill") - b.getStat("freeWill");
     });
   }
