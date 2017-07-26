@@ -40,19 +40,19 @@ class LevelTheHellUp extends Scene {
 		num += (rand.nextDouble()*75).floor();
 		return num + denomination;
 	}
-	void renderForPlayer(div, player){
+	void renderForPlayer(Element div, Player player){
 		var levelName = player.getNextLevel(); //could be undefined
-		if(!levelName){
+		if(levelName != null){
 			//print("Scratched is: " + this.session.scratched + " Player has AAAAAAAALL the levels. All of them. " + this.session.session_id);
 			return; //don't make a blank div
 		}
 		var boonies = this.getBoonies(player);
 		String narration = "";
 		num repeatTime = 1000;
-		var divID = (div.id) + "_" + player.chatHandle+player.ectoBiologicalSource+player.id;
-		String narrationHTML = "<br><div id = 'narration" + divID + "'></div>";
+		var divID = (div.id) + "_" + player.chatHandle+player.ectoBiologicalSource.toString()+player.id.toString();
+		String narrationHTML = "<br><div id = 'narration" + divID.toString() + "'></div>";
 
-		div.append(narrationHTML);
+    appendHtml(div, narrationHTML);
 
 		var narrationDiv = querySelector("#narration"+divID);
 		//different format for canvas code
@@ -63,16 +63,16 @@ class LevelTheHellUp extends Scene {
 			narration += " skyrockets up the ECHELADDER to a new rung: " + levelName;
 			narration +=	" and earns " + boonies + ". ";
 		}
-		narrationDiv.append(narration);
+    appendHtml(narrationDiv, narration);
 		if(levelName &&!player.godTier){
 				String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-				div.append(canvasHTML);
+				appendHtml(div, canvasHTML);
 			  var canvasDiv = querySelector("#canvas"+ divID);
 				drawLevelUp(canvasDiv, player);
 		}else if(levelName && player.godTier){
 			//god tier has to be taller.
 			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +1000.toString() + "' height="+572.toString() + "'>  </canvas>";
-			div.append(canvasHTML);
+      appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 			drawLevelUpGodTier(canvasDiv, player);
 		}

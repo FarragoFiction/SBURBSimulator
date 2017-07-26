@@ -24,7 +24,7 @@ class ExploreMoon extends Scene {
 		String getProspitBullshit(){
 			var possibilities = ["attending dance parties", "fluttering about aimlessly", "chatting up Prospitans", "learning the recipe for HOLY PASTRIES", "listening to sermons on the vast Croak","attending dance offs", "protecting the sacred candy shop from burglars", "racing frogs"];
 			var thing1 = rand.pickFrom(possibilities);
-			possibilities.removeFromArray(thing1);
+			removeFromArray(thing1,possibilities);
 			var thing2 = rand.pickFrom(possibilities);
 
 
@@ -44,7 +44,7 @@ class ExploreMoon extends Scene {
 		String getDerseBullshit(){
 			var possibilities = ["attending dance parties", "cheating at poker", "keeping tabs on the lifeblood of Derse", "learning the Derse waltz","understanding the nuances of a stab","lying their asses off to anyone and everyone","attending jazz clubs","setting up black market businesses","dodging the Derse law","smuggling contraband","delivering finely crafted suits"];
 			var thing1 = rand.pickFrom(possibilities);
-			possibilities.removeFromArray(thing1);
+			removeFromArray(thing1, possibilities);
 			var thing2 = rand.pickFrom(possibilities);
 
 			var dead = findDeadPlayers(this.session.players);
@@ -54,8 +54,8 @@ class ExploreMoon extends Scene {
 			String whisper = "The whisperings of the HorrorTerrors provided a nice backdrop.";
 			if(dead.length > 0) whisper = "...so, THAT's what it sounds like when a horrorterror laughs. Good to know." ;//the dead won't be rare. replace this if at all possible.;
 			if(this.session.timeTillReckoning < 3 && this.session.king.getStat("power")> getAverageHP(living) * 2) whisper = "Oh god, did the Horrorterrors get LOUDER!?";
-			if(this.player1.aspect == "Void" || (this.player2 && this.player2.aspect == "Void")) whisper = "The Horrorterrors are strangely quiet, their whisperings strained, like someone trying to speak through a broken speaker.";
-			if(this.player1.grimDark > 0 || (this.player2 && this.player2.grimDark > 0)) whisper = "The Horrorterrors whisperings call to them. ";
+			if(this.player1.aspect == "Void" || (this.player2 != null && this.player2.aspect == "Void")) whisper = "The Horrorterrors are strangely quiet, their whisperings strained, like someone trying to speak through a broken speaker.";
+			if(this.player1.grimDark > 0 || (this.player2 != null && this.player2.grimDark > 0)) whisper = "The Horrorterrors whisperings call to them. ";
 
 			return "whimsical Derse activities, such as " + thing1 + " and " + thing2 + ". " + whisper;
 		}
@@ -122,7 +122,7 @@ class ExploreMoon extends Scene {
 		}else{
 			ret += getDerseBullshit();
 			this.player1.corruptionLevelOther += 3;
-			if(this.player2) this.player2.corruptionLevelOther += 3;
+			if(this.player2 != null) this.player2.corruptionLevelOther += 3;
 		}
 
 		if(this.player2 != null){
@@ -143,12 +143,12 @@ class ExploreMoon extends Scene {
 			}
 		}
 
-		if(this.player2 && this.player2.grimDark>0){
+		if(this.player2 != null && this.player2.grimDark>0){
 			this.player1.corruptionLevelOther += 25;
 			ret += " The corruption is spreading. ";
 		}
 
-		if(this.player2 && this.player1.grimDark>0){
+		if(this.player2 != null && this.player1.grimDark>0){
 			this.player2.corruptionLevelOther += 25;
 			print("spreading corruption in: "  + this.session.session_id.toString());
 			ret += " The corruption is spreading. ";

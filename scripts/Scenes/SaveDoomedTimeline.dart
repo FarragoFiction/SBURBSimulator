@@ -22,7 +22,7 @@ class SaveDoomedTimeLine extends Scene {
 		this.leaderPlayer = getLeader(session.players);
 		this.playerList = playerList;
 		
-		if(this.enablingPlayer){
+		if(this.enablingPlayer != null){
 			if(this.enablingPlayer.isActive() || rand.nextDouble() > .5){
 				this.timePlayer = this.enablingPlayer;
 			}else{  //somebody else can be voided.
@@ -36,7 +36,7 @@ class SaveDoomedTimeLine extends Scene {
 			return false;
 		}*/
 		//print("time player is not dead,  do i trigger?");
-		return (this.timePlayer && (this.ectoDoom() || this.playerDoom() || this.randomDoom(times.length)));
+		return (this.timePlayer != null && (this.ectoDoom() || this.playerDoom() || this.randomDoom(times.length)));
 	}
 
 	@override
