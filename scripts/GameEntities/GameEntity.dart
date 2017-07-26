@@ -11,6 +11,7 @@ class GameEntity implements Comparable{
   bool ghost = false; //if you are ghost, you are rendered spoopy style
   num grist = 100; //everything has it.
   bool dead = false;
+  String causeOfDrain = null; //if it's ever not null they will be sideways
   bool exiled = false;
   List<dynamic> ghostPacts = []; //list of two element array [Ghost, enablingAspect]
   bool corrupted = false; //players are corrupted at level 4. will be easier than always checking grimDark level

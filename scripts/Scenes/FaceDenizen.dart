@@ -17,12 +17,12 @@ class FaceDenizen extends Scene{
 			var p = this.session.availablePlayers[i];
 			if(p.denizen_index >= 3 && !p.denizenDefeated && p.land != null){
 				var d = p.denizen;
-				if(p.power > d.getStat("currentHP") || rand.nextDouble() > .5){  //you're allowed to do other things between failed boss fights, you know.
+				if(p.getStat("power") > d.getStat("currentHP") || rand.nextDouble() > .5){  //you're allowed to do other things between failed boss fights, you know.
 					this.denizenFighters.add(p);
 				}
 			}else if(p.landLevel >= 6 && !p.denizenMinionDefeated && p.land != null){
 				var d = p.denizenMinion;
-				if(p.power > d.getStat("currentHP") || rand.nextDouble() > .5){//you're allowed to do other things between failed boss fights, you know.
+				if(p.getStat("power") > d.getStat("currentHP") || rand.nextDouble() > .5){//you're allowed to do other things between failed boss fights, you know.
 					this.denizenFighters.add(p);
 				}
 			}
@@ -34,7 +34,7 @@ class FaceDenizen extends Scene{
 		var current_mvp = findStrongestPlayer(this.session.players);
 		//need to grab this cause if they are dream self corpse smooch won't trigger an important event
 		if(player.godDestiny == false && player.isDreamSelf == true){//could god tier, but fate wn't let them
-			var ret = this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
+			var ret = this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.getStat("power"),player) );
 			if(ret){
 				return ret;
 			}
@@ -44,9 +44,9 @@ class FaceDenizen extends Scene{
 			if(ret){
 				return ret;
 			}
-			this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.power,player) );
+			this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.getStat("power"),player) );
 		}else if(player.isDreamSelf == true){
-				return this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
+				return this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.getStat("power"),player) );
 		}
 		*/
 	}
@@ -83,11 +83,11 @@ class FaceDenizen extends Scene{
 		if(!p.denizenFaced && p.getFriends().length > p.getEnemies().length){ //one shot at The Choice
 			//print("confront icon: " + this.session.session_id);
 			ret += "<br><img src = 'images/sceneIcons/confront_icon.png'> The " + p.htmlTitle() + " cautiously approaches their " + denizen.name + " and are presented with The Choice. ";
-			if(p.power > 27){ //calibrate this l8r
+			if(p.getStat("power") > 27){ //calibrate this l8r
 				ret += " The " + p.htmlTitle() + " manages to choose correctly, despite the seeming impossibility of the matter. ";
 				ret += " They gain the power they need to acomplish their objectives. ";
 				p.denizenDefeated = true;
-				p.power = p.power*2;  //current and future doubling of power.
+				p.addStat("power",p.getStat("power")*2);  //current and future doubling of power.
 				p.leveledTheHellUp = true;
 				p.grist += denizen.grist;
 				div.append("<br>"+ret);
@@ -110,7 +110,7 @@ class FaceDenizen extends Scene{
 			if(denizen.getStat("currentHP") <= 0 || denizen.dead) {
 				p.denizenDefeated = true;
 				p.fraymotifs.addAll(p.denizen.fraymotifs);
-				p.power = p.power*2;  //current and future doubling of power.
+				p.getStat("power") = p.getStat("power")*2;  //current and future doubling of power.
 				this.session.denizenBeat = true;
 			}else if(p.dead){
 				//print("denizen kill " + this.session.session_id);
@@ -124,14 +124,14 @@ class FaceDenizen extends Scene{
 			String ret = "<br>";
 			var p = this.denizenFighters[i];
 			removeFromArray(p, this.session.availablePlayers);
-			//ret += "Debug Power: " + p.power;
+			//ret += "Debug Power: " + p.getStat("power");
 			//fight denizen
 			if(p.getFriends().length < p.getEnemies().length){
 				ret += " The " + p.htmlTitle() + " sneak attacks their denizen, " + p.getDenizen() + ". ";
-				if(p.power > 17){
+				if(p.getStat("power") > 17){
 					ret += " They win handly, and obtain untold levels of power and sweet sweet hoarde grist. They gain all the levels. All of them. ";
 					p.denizenFaced = true;
-					p.power = p.power*2;  //current and future doubling of power.
+					p.getStat("power") = p.getStat("power")*2;  //current and future doubling of power.
 					p.level_index +=3;
 					p.leveledTheHellUp = true;
 					p.denizenDefeated = true;
@@ -156,12 +156,12 @@ class FaceDenizen extends Scene{
 				}
 			}else{//do The Choice
 				ret += " The " + p.htmlTitle() + " cautiously approaches their denizen, " + p.getDenizen() + " and are presented with The Choice. ";
-				if(p.power > 27){
+				if(p.getStat("power") > 27){
 					ret += " The " + p.htmlTitle() + " manages to choose correctly, despite the seeming impossibility of the matter. ";
 					ret += " They gain the power they need to acomplish their objectives. ";
 					p.denizenFaced = true;
 					p.denizenDefeated = true;
-					p.power = p.power*2;  //current and future doubling of power.
+					p.getStat("power") = p.getStat("power")*2;  //current and future doubling of power.
 					p.leveledTheHellUp = true;
 					div.append("<br>"+ret);
 					this.session.denizenBeat = true;
@@ -181,14 +181,14 @@ class FaceDenizen extends Scene{
 		for(num i = 0; i<this.denizenFighters.length; i++){
 			var p = this.denizenFighters[i];
 			removeFromArray(p, this.session.availablePlayers);
-			//ret += "Debug Power: " + p.power;
+			//ret += "Debug Power: " + p.getStat("power");
 			//fight denizen
 			if(p.getFriends().length < p.getEnemies().length){
 				ret += " The " + p.htmlTitle() + " sneak attacks their denizen, " + p.getDenizen() + ". ";
-				if(p.power > 7){
+				if(p.getStat("power") > 7){
 					ret += " They win handly, and obtain untold levels of power and sweet sweet hoarde grist. They gain all the levels. All of them. ";
 					p.denizenFaced = true;
-					p.power = p.power*2;  //current and future doubling of power.
+					p.getStat("power") = p.getStat("power")*2;  //current and future doubling of power.
 					p.level_index +=3;
 					p.leveledTheHellUp = true;
 					p.denizenDefeated = true;
@@ -203,12 +203,12 @@ class FaceDenizen extends Scene{
 				}
 			}else{//do The Choice
 				ret += " The " + p.htmlTitle() + " cautiously approaches their denizen, " + p.getDenizen() + " and are presented with The Choice. ";
-				if(p.power > 10){
+				if(p.getStat("power") > 10){
 					ret += " The " + p.htmlTitle() + " manages to choose correctly, despite the seeming impossibility of the matter. ";
 					ret += " They gain the power they need to acomplish their objectives. ";
 					p.denizenFaced = true;
 					p.denizenDefeated = true;
-					p.power = p.power*2;  //current and future doubling of power.
+					p.getStat("power") = p.getStat("power")*2;  //current and future doubling of power.
 					p.leveledTheHellUp = true;
 					//this.session.denizenBeat = true;
 					//print("denizen beat through choice in session: " + this.session.session_id);

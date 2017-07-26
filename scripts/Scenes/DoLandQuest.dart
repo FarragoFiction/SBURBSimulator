@@ -32,7 +32,7 @@ class DoLandQuest extends Scene{
 		return this.playersPlusHelpers.length > 0;
 	}
 	List<Player> getPlayerPlusHelper(p, availablePlayers){
-		if(!p.land || p.power < 2 || p.grimDark > 3) return null;  //can't do quests at all.
+		if(!p.land || p.getStat("power") < 2 || p.grimDark > 3) return null;  //can't do quests at all.
 		var helper = this.lookForHelper(p,availablePlayers);
 		if(helper && helper.grimDark >= 3) helper = null;  //grim dark players aren't going to do quests.
 		var playerPlusHelper = [p,helper];

@@ -78,7 +78,7 @@ class VoidyStuff extends Scene {
 		normalDiv = querySelector("#"+div.id+ "voidyStuffNormal");
 		var newDiv = querySelector("#"+div.id+ "voidyStuffSpecial");
 		//don't godtier as soon as you get in, too unfair to the other players.
-		if(this.player.godDestiny && this.player.power > 10 && !this.player.godTier && rand.nextDouble()>0.8 && this.player.land != null){
+		if(this.player.godDestiny && this.player.getStat("power") > 10 && !this.player.godTier && rand.nextDouble()>0.8 && this.player.land != null){
 			this.godTier(normalDiv, newDiv);
 			this.endingPhrase(classDiv, newDiv);
 			return;
@@ -174,7 +174,7 @@ class VoidyStuff extends Scene {
 		String ret = "The " + this.player.htmlTitle() + " is fighting " +denizen.name + ".  It is bloody, brutal and short. ";
 
 		if(rand.nextDouble() >.5){
-			this.player.power = this.player.power*2;  //current and future doubling of power.
+			this.player.addStat("power",this.player.power*2);  //current and future doubling of power.
 			this.player.leveledTheHellUp = true;
 			this.player.denizenDefeated = true;
 			this.player.fraymotifs.addAll(this.player.denizen.fraymotifs);

@@ -113,7 +113,7 @@ class AfterLife {
 		for(num i = 0; i<selves.length; i++){
 			var ghost = selves[i];
 			if(ghost.isDreamSelf == player.isDreamSelf && ghost.godTier == player.godTier){ //at least LOOK the same. (call this BEFORE reviving)
-				num val = (ghost.getStat("power") - player.power ).abs();
+				num val = (ghost.getStat("power") - player.getStat("power") ).abs();
 				if(val < bestCanidateValue){
 					bestCanidateValue = val;
 					bestCanidate = ghost;

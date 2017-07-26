@@ -343,9 +343,9 @@ dynamic aBCallBack(sessionSummary){
 			abRight();
 		}
 	}
-	if(sessionSummary.mvp.power > team.mvp_score){
+	if(sessionSummary.mvp.getStat("power") > team.mvp_score){
 		team.mvp_name = sessionSummary.mvp.htmlTitle();
-		team.mvp_score = sessionSummary.mvp.power;
+		team.mvp_score = sessionSummary.mvp.getStat("power");
 	}
 
 	if(team.mvp_score > mvpScore){
@@ -388,9 +388,9 @@ void abjCallBack(sessionSummary){
 			abRight();
 		}
 	}
-	if(sessionSummary.mvp.power > team.mvp_score){
+	if(sessionSummary.mvp.getStat("power") > team.mvp_score){
 		team.mvp_name = sessionSummary.mvp.htmlTitle();
-		team.mvp_score = sessionSummary.mvp.power;
+		team.mvp_score = sessionSummary.mvp.getStat("power");
 	}
 
 	if(team.mvp_score > mvpScore){

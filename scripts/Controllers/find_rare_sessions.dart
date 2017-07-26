@@ -767,7 +767,7 @@ dynamic getQuipAboutSession(sessionSummary){
 		quip += "Fuck. I better go grab JR. They'll want to see this. " ;
 	}else if(living == 0){
 		quip += "Shit, you do not even want to KNOW how everybody died." ;
-	}else  if(strongest.power > 3000){
+	}else  if(strongest.getStat("power") > 3000){
 		//alert([!sessionSummary.scratched,dead == 0,sessionSummary.frogStatus == "Full Frog",sessionSummary.ectoBiologyStarted,!sessionSummary.crashedFromCorruption,!sessionSummary.crashedFromPlayerActions ].join(","))
 		quip += "Holy Shit, do you SEE the " + strongest.titleBasic() + "!?  How even strong ARE they?" ;
 	}else if(sessionSummary.frogStatus == "No Frog" ){

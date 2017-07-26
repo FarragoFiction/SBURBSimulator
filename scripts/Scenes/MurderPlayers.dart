@@ -27,7 +27,7 @@ class MurderPlayers extends Scene {
 
 		if(player.isDreamSelf == true && player.godDestiny == false && player.godTier == false){
 			var current_mvp = findStrongestPlayer(this.session.players);
-			return this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player,null) );
+			return this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.getStat("power"),player,null) );
 		}
 	}
 
@@ -271,8 +271,8 @@ class MurderPlayers extends Scene {
 	bool canCatch(m, worstEnemy){
 		if(worstEnemy.sprite.name == "sprite") return false; //not in medium, dunkass.
 		if(worstEnemy.mobility > m.mobility) return false;
-		if(worstEnemy.aspect == "Void" && worstEnemy.isVoidAvailable() && worstEnemy.power >50) return false;
-		if(worstEnemy.aspect == "Space" && worstEnemy.power > 50){
+		if(worstEnemy.aspect == "Void" && worstEnemy.isVoidAvailable() && worstEnemy.getStat("power") >50) return false;
+		if(worstEnemy.aspect == "Space" && worstEnemy.getStat("power") > 50){
 			print("high level space player avoiding a murderer" + this.session.session_id.toString());
 			return false;  //god tier calliope managed to hide from a Lord of Time. space players might not move around a lot, but that doesn't mean they are easy to catch.
 		}

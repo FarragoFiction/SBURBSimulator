@@ -130,7 +130,7 @@ class UpdateShippingGrid extends Scene{
 		this.chosenShipper.otp = null;
 
 		var newShips = this.printShips(this.getGoodShips(this.chosenShipper));
-		if(newShips != this.chosenShipper.savedShipText && this.chosenShipper.player.power > this.chosenShipper.powerNeeded){
+		if(newShips != this.chosenShipper.savedShipText && this.chosenShipper.player.getStat("power") > this.chosenShipper.powerNeeded){
 			this.chosenShipper.powerNeeded += 5;
 			this.chosenShipper.savedShipText = newShips;
 			return true;

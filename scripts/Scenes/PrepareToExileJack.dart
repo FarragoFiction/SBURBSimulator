@@ -43,7 +43,7 @@ class prepareToExileJack extends Scene {
 	}
 	dynamic spyContent(){
 		String ret = "The " + this.player.htmlTitle() + " performs a daring spy mission,";
-		if(this.player.power > 	this.session.king.getStat("power")/100){
+		if(this.player.getStat("power") > 	this.session.king.getStat("power")/100){
 			this.session.jack.addStat("power", -15);
 			ret += " gaining valuable intel to use against Jack Noir. ";
 		}else{
@@ -53,7 +53,7 @@ class prepareToExileJack extends Scene {
 	}
 	dynamic assasinationContent(){
 		String ret = "The " + this.player.htmlTitle() + " performs a daring assasination mission against one of Jack Noir's minions,";
-		if(this.player.power > 	this.session.king.getStat("power")/100){
+		if(this.player.getStat("power") > 	this.session.king.getStat("power")/100){
 			this.session.jack.addStat("power", -30);
 			ret += " losing him a valuable ally. ";
 		}else{

@@ -97,7 +97,7 @@ class Intro  extends IntroScene{
 	}
 	dynamic addImportantEvent(){
 		var current_mvp = findStrongestPlayer(this.session.players);
-		//print("Entering session, mvp is: " + current_mvp.power);
+		//print("Entering session, mvp is: " + current_mvp.getStat("power"));
 		if(this.player.aspect == "Time" && !this.player.object_to_prototype.illegal){
 			return this.session.addImportantEvent(new TimePlayerEnteredSessionWihtoutFrog(this.session, current_mvp.getStat("power"),this.player,null) );
 		}else{
@@ -153,7 +153,7 @@ class Intro  extends IntroScene{
 			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
 		}
-		if(player1.object_to_prototype.power>200) {
+		if(player1.object_to_prototype.getStat("power")>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 				chatText += Scene.chatLine(player1Start, player1, "I suspect it will prove to have been a very bad idea.");
@@ -201,7 +201,7 @@ class Intro  extends IntroScene{
 			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
 		}
-		if(player1.object_to_prototype.power>200) {
+		if(player1.object_to_prototype.getStat("power")>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
@@ -244,7 +244,7 @@ class Intro  extends IntroScene{
 			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
 		}
-		if(player1.object_to_prototype.power>200) {
+		if(player1.object_to_prototype.getStat("power")>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
@@ -310,7 +310,7 @@ class Intro  extends IntroScene{
 			chatText +=Scene.chatLine(player2Start, player2,"Oh, man....");
 			return chatText; // too depressing to keep going.
 		}
-		if(player1.object_to_prototype.power>200) {
+		if(player1.object_to_prototype.getStat("power")>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
@@ -353,7 +353,7 @@ class Intro  extends IntroScene{
 			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
 		}
-		if(player1.object_to_prototype.power>200) {
+		if(player1.object_to_prototype.getStat("power")>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
@@ -399,7 +399,7 @@ class Intro  extends IntroScene{
 			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... That probably wouldn't have happened in a story. ");
 
 		}
-		if(player1.object_to_prototype.power>200) {
+		if(player1.object_to_prototype.getStat("power")>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
@@ -446,7 +446,7 @@ class Intro  extends IntroScene{
 			chatText += Scene.chatLine(player1Start, player1,"Yes! Who better to assist me on my epic quest? ");
 
 		}
-		if(player1.object_to_prototype.power>200) {
+		if(player1.object_to_prototype.getStat("power")>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 				chatText += Scene.chatLine(player1Start, player1, "Fuck you. It will obviously give me a huge edge in this game.");
@@ -499,7 +499,7 @@ class Intro  extends IntroScene{
 			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
 		}
-		if(player1.object_to_prototype.power>200) {
+		if(player1.object_to_prototype.getStat("power")>200) {
 			if(player2.aspect != "Light" && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{

@@ -191,10 +191,10 @@ class LifeStuff extends Scene {
 				player.flipOutReason = "being haunted by their own ghost";
 			}else if(trait != 'nice' && ghost.id != player.id){
 				str += " They bond over how " + trait + " they both are. The " + player.htmlTitle() + " feels their determination to beat the game grow. ";
-				player.increasePower(ghost.power/2);
+				player.increasePower(ghost.getStat("power")/2);
 			}else{
 				str += " It's a little awkward. ";
-				player.increasePower(ghost.power/10);
+				player.increasePower(ghost.getStat("power")/10);
 			}
 			div.append("<br><br>" + str);
 			var canvas = drawDreamBubbleH(div, player, ghost);
@@ -336,7 +336,7 @@ class LifeStuff extends Scene {
 				player.fraymotifs.addAll(ghost.fraymotifs.slice(0)); //copy not reference
 				effect = "They learn " + turnArrayIntoHumanSentence(ghost.fraymotifs) + " from the " + ghostName + ". ";
 			}else{
-				player.increasePower(ghost.power/2); //want to increase aspect stats, too.
+				player.increasePower(ghost.getStat("power")/2); //want to increase aspect stats, too.
 				effect = " The " +player.htmlTitleBasic() + " gains valuable wisdom from the " + ghostName + ". Their power grows much more quickly than merely doing quests. ";
 			}
 
@@ -397,7 +397,7 @@ class LifeStuff extends Scene {
 			//print("ghost drain dead for power: "+ player.titleBasic()  + this.session.session_id);
 			str +=this.ghostPsionics(player) + " The " + player.htmlTitleBasic() + " destroys the essence of the " + ghostName + " for greater destructive power, it will be a while before the ghost recovers.";
 			ghost.causeOfDrain = player.title();
-			player.increasePower(ghost.power);
+			player.increasePower(ghost.getStat("power"));
 			player.leveledTheHellUp = true;
 			player.level_index +=1;
 			div.append("<br><br>" +str);

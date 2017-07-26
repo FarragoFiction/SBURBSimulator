@@ -15,7 +15,6 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	String flipOutReason = null; //if it's null, i'm not flipping my shit.
 	Player flippingOutOverDeadPlayer = null; //don't let this go into url. but, don't flip out if the friend is currently alive, you goof.
 	num denizen_index = 0; //denizen quests are in order.
-	String causeOfDrain = ""; //just ghost things
 	List<dynamic> ghostWisdom = []; //keeps you from spamming the same ghost over and over for wisdom.
 	String land1 = null; //words my land is made of. //TODO eventually folded into planet
 	String land2 = null;
@@ -185,14 +184,14 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			} 
 		}
 
-		//denizenMinion.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolder.sanity,tmpStatHolder.freeWill,tmpStatHolder.power,true, false, [],1000);
+		//denizenMinion.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolder.sanity,tmpStatHolder.freeWill,tmpStatHolder.getStat("power"),true, false, [],1000);
 		
 		denizenMinion.setStatsHash(tmpStatHolder);
 		tmpStatHolder["power"] = 10*strength;
 		for(String key in tmpStatHolder.keys){
 			tmpStatHolder[key] = tmpStatHolder[key] * 2; // same direction as minion stats, but bigger. 
 		}
-		//denizen.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolder.sanity,tmpStatHolder.freeWill,tmpStatHolder.power,true, false, [],1000000);
+		//denizen.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolder.sanity,tmpStatHolder.freeWill,tmpStatHolder.getStat("power"),true, false, [],1000000);
 		denizen.setStatsHash(tmpStatHolder);
 		this.denizen = denizen;
 		this.denizenMinion = denizenMinion;

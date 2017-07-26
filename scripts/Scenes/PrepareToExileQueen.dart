@@ -56,11 +56,11 @@ class PrepareToExileQueen extends Scene {
 		removeFromArray(this.player, this.session.availablePlayers);
 		//NOT RANDOM ANY MORE. INSTEAD BASED ON PLAYER POWER VS QUEEN POWER
 		//generally will start with light and owrk your way up.
-		if(this.player.power  < this.session.queen.getStat("power")* .25){ //queen is 100 and you are less than 25
+		if(this.player.getStat("power")  < this.session.queen.getStat("power")* .25){ //queen is 100 and you are less than 25
 			return this.lightDamage();
-		}else if(this.player.power < this.session.queen.getStat("power")){ //queen is 100 and you are at least 50
+		}else if(this.player.getStat("power") < this.session.queen.getStat("power")){ //queen is 100 and you are at least 50
 			return this.moderateDamage();
-		}else if(this.player.power > this.session.queen.getStat("power")){
+		}else if(this.player.getStat("power") > this.session.queen.getStat("power")){
 			return this.heavyDamage();
 		}
 		this.player.increasePower();

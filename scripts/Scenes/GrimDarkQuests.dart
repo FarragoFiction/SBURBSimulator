@@ -51,19 +51,19 @@ class GrimDarkQuests extends Scene{
 			String quip = "";
 			var amount =0;
 			if(player.grimDark < 2){
-				amount = -1* player.power/4; //not trying as hard
+				amount = -1* player.getStat("power")/4; //not trying as hard
 			}else if(player.grimDark <3){
-				amount = -1* player.power/2;
+				amount = -1* player.getStat("power")/2;
 			}else if(player.grimDark <4){
-				 amount = -1* player.power; //more powerful the player, the more damage they do. get rid of grimDark bonus
+				 amount = -1* player.getStat("power"); //more powerful the player, the more damage they do. get rid of grimDark bonus
 			}
 			this.session.sessionHealth += amount;
 			player.landLevel += -1; //if they manage to snap out of this, they are gonna still have a bad time. why did they think this was a good idea?
-			if(player.power < 250){
+			if(player.getStat("power") < 250){
 				quip = " Luckily, they kind of suck at this game. ";
-			}else if(player.power > 500){
+			}else if(player.getStat("power") > 500){
 				quip = " Oh shit. This looks bad. ";
-			}else if(player.power > 300){
+			}else if(player.getStat("power") > 300){
 				quip = " They seem strong enough to do some serious damage. ";
 			}
 			return "The "+ player.htmlTitle() + " is trying to break SBURB itself. They " + rand.pickFrom(tasks) + quip;
