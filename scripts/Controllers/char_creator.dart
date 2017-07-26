@@ -327,7 +327,7 @@ void renderGraphs(){
 void updateGraphs(){
 	for(num i = 0; i<curSessionGlobalVar.players.length; i++){
 		var player = curSessionGlobalVar.players[i];
-		getGraphWithLabel(player.graphs, "power").points.add(player.power);
+		getGraphWithLabel(player.graphs, "power").points.add(player.getStat("power"));
 		getGraphWithLabel(player.graphs, "minLuck").points.add(player.minLuck);
 		getGraphWithLabel(player.graphs, "maxLuck").points.add(player.maxLuck);
 		getGraphWithLabel(player.graphs, "sanity").points.add(player.sanity);

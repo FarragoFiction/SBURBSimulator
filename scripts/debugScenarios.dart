@@ -244,7 +244,7 @@ void roboMode(){
 		p.hairColor = getRandomGreyColor();
 		p.bloodColor = getRandomGreyColor();
 		p.robot  = true;
-		p.power += 20; //Robots are superior.
+		p.addStat("power",20); //Robots are superior.
 		p.quirk.capitalization = 2; //OBVIOUSLY robots all speak in all caps.
 		p.quirk.punctuation = 0; //robots speak in monotone, DUH.
 		p.quirk.lettersToReplaceIgnoreCase.add(["\\bhuh\\b","BEEP"]);
@@ -290,7 +290,7 @@ void tricksterMode(){
 			}
 		}
 		if(p.aspect != "Doom"){
-			p.power = 111111;
+			p.setStat("power",  111111);
 			p.landLevel = 111111;
 			p.level_index = 111111;
 		}

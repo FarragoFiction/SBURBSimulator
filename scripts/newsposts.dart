@@ -386,7 +386,7 @@ dynamic getQuipAboutSession(sessionSummary){
 		quip += "Fuck. I better go grab JR. They'll want to see this. " ;
 	}else if(living == 0){
 		quip += "Shit, you do not even want to KNOW how everybody died." ;
-	}else  if(strongest.power > 3000){
+	}else  if(strongestsetStat("power") > 3000){
 		quip += "Holy Shit, do you SEE the " + strongest.titleBasic() + "!?  How even strong ARE they?" ;
 	}else if(sessionSummary.frogStatus == "No Frog" ){
 		quip += "Man, why is it always the frogs? " ;

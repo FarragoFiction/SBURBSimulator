@@ -561,18 +561,18 @@ class TimePlayerEnteredSessionWihtoutFrog  extends ImportantEvent {
 			narration +=  "The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes with in a cloud of gears to join the final battle.";
 			div.append(narration);
 
-			player.object_to_prototype = new GameEntity(null, "Frog",null);
-			player.object_to_prototype.power = 20;
+			player.object_to_prototype = new GameEntity("Frog",0,null);
+			player.object_to_prototype.setStat("power",20);
 			player.object_to_prototype.illegal = true;
 			player.object_to_prototype.mobility = 100;
 			var divID = (div.id) + "_alt_jack_promotion";
-			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
+			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.canvasWidth.toString() + "'>  </canvas>";
 			div.append(canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
 			var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 			drawSprite(pSpriteBuffer,this.doomedTimeClone);
-			drawTimeGears(canvasDiv, this.doomedTimeClone);
+			drawTimeGears(canvasDiv);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
 			return false;  //let original scene happen as well.
 	}

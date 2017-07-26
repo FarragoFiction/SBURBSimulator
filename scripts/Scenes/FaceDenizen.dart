@@ -38,9 +38,9 @@ class FaceDenizen extends Scene{
 			if(ret){
 				return ret;
 			}
-			this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
+			this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.getStat("power"),player) );
 		}else if(this.session.reckoningStarted == true && player.isDreamSelf == true) { //if the reckoning started, they couldn't god tier.
-			var ret = this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.power,player) );
+			var ret = this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.getStat("power"),player) );
 			if(ret){
 				return ret;
 			}

@@ -21,7 +21,7 @@ class LevelTheHellUp extends Scene {
 	}
 	//TODO if i evenually do something with boonies, can have fraymotifs locked to this.
 	dynamic getBoonies(p){
-		var num = (p.power).round() * 15;
+		var num = (p.getStat("power")).round() * 15;
 		String denomination = " BOONDOLLARS";
 		if(num > 1000000){
 			num = (num/1000000).floor();

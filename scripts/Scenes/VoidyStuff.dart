@@ -174,7 +174,7 @@ class VoidyStuff extends Scene {
 		String ret = "The " + this.player.htmlTitle() + " is fighting " +denizen.name + ".  It is bloody, brutal and short. ";
 
 		if(rand.nextDouble() >.5){
-			this.player.addStat("power",this.player.power*2);  //current and future doubling of power.
+			this.player.addStat("power",this.player.getStat("power")*2);  //current and future doubling of power.
 			this.player.leveledTheHellUp = true;
 			this.player.denizenDefeated = true;
 			this.player.fraymotifs.addAll(this.player.denizen.fraymotifs);
