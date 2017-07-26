@@ -438,7 +438,7 @@ class Session {
 
 		this.jack = new Carapace("Jack",0, this);
 		//minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs
-		queen.setStatsHash({"minLuck": -500, "maxLuck": 10, "sanity":-100, "hp":20, "freeWill": -100, "power":30});
+		jack.setStatsHash({"minLuck": -500, "maxLuck": 10, "sanity":-100, "hp":20, "freeWill": -100, "power":30});
 		f = new Fraymotif([],  "Stab To Meet You", 1);
 		f.effects.add(new FraymotifEffect("power",3,true));
 		f.flavorText = " It's pretty much how he says 'Hello'. ";

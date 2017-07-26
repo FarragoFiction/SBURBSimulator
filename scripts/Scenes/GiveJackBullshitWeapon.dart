@@ -14,7 +14,7 @@ class GiveJackBullshitWeapon extends Scene {
 	dynamic trigger(playerList){
 		this.playerList = playerList;
 		var partyRoll = partyRollForLuck(this.session.players);
-		var jackRoll = this.session.jack.rollForLuck("");
+		var jackRoll = this.session.jack.rollForLuck();
 		//if(partyRoll< jackRoll) print("We rolled: " + partyRoll + " jack rolled: " + jackRoll);
 		return (!this.session.queen.exiled && !this.session.jack.exiled && this.session.jack.crowned == null) && (this.session.jack.getStat("currentHP") > 0 && partyRoll < jackRoll );
 	}

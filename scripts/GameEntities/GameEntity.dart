@@ -525,8 +525,8 @@ class GameEntity implements Comparable{
     //none
   }
   //takes in a stat name we want to use. for example, use only min luck to avoid bad events.
-  num rollForLuck(String stat){
-    if(stat==""){
+  num rollForLuck([String stat]){
+    if(stat == null || stat==""){
       return this.session.rand.nextIntRange(this.getStat("minLuck"), this.getStat("maxLuck"));
     }else{
       //don't care if it's min or max, just compare it to zero.

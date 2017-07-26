@@ -2,9 +2,9 @@ part of SBURBSim;
 
 
 class JackBeginScheming extends Scene {
-	var session;
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
-	var friend = null;	//blood or page or thief or rogue.  don't go for non native players
+	//Session session;
+	List<Player> playerList = [];  //what players are already in the medium when i trigger?
+	Player friend = null;	//blood or page or thief or rogue.  don't go for non native players
 	
 
 
@@ -12,7 +12,7 @@ class JackBeginScheming extends Scene {
 
 
 
-	dynamic findSympatheticPlayer(){
+	Player findSympatheticPlayer(){
 		//not available, living. jack inerupts whatever they are doingv
 		var living = findLivingPlayers(this.session.players);
 		this.friend =  findAspectPlayer(living, "Blood");
@@ -30,6 +30,7 @@ class JackBeginScheming extends Scene {
 		if(this.friend == null || this.friend.land == null){
 			return null;
 		}
+		return null;
 	}
 	@override
 	dynamic trigger(playerList){
@@ -206,16 +207,16 @@ class JackBeginScheming extends Scene {
 	}
 
 	@override
-	void renderContent(div){
-		if(!this.friend){
+	void renderContent(Element div){
+		if(this.friend == null){
 			return;
 		}
 		this.session.jackScheme = true;
 		this.friend.increasePower();
 		removeFromArray(this.friend, this.session.availablePlayers);
-		this.session.available_scenes.unshift( new PrepareToExileQueen(session));  //make it top priority, so unshift, don't push
-		this.session.available_scenes.unshift( new PlanToExileJack(session));  //make it top priority, so unshift, don't push
-		this.session.available_scenes.unshift( new ExileQueen(session));  //make it top priority, so unshift, don't push
+		this.session.available_scenes.insert(0, new PrepareToExileQueen(session));  //make it top priority, so unshift, don't push
+		this.session.available_scenes.insert(0, new PlanToExileJack(session));  //make it top priority, so unshift, don't push
+		this.session.available_scenes.insert(0, new ExileQueen(session));  //make it top priority, so unshift, don't push
 		var player1 = this.friend;
 		var player2 = getLeader(findLivingPlayers(this.session.players));
 		if(player2 && player2 != player1){
@@ -223,31 +224,32 @@ class JackBeginScheming extends Scene {
 			this.chatWithFriend(div,player1, player2);
 		}else if(player2 == player1){
 			//leader gossips with friends
-			player2 = player1.getBestFriendFromList(findLivingPlayers(this.session.players));
+			player2 = player1.getBestFriendFromList(findLivingPlayers(this.session.players), (){});
 			if(!player2){
-				div.append(this.content);
+				div.appendHtml(this.content(), treeSanitizer: NodeTreeSanitizer.trusted);
 				return;
 			}else{
 				this.chatWithFriend(div,player1, player2);
 			}
 		}else{
 			//we get a narration
-			div.append(this.content);
+			div.appendHtml(this.content(), treeSanitizer: NodeTreeSanitizer.trusted);
 		}
 	}
-	dynamic content(){
-		if(this.friend){
+	String content(){
+		if(this.friend != null){
 			this.friend.increasePower();
 			removeFromArray(this.friend, this.session.availablePlayers);
-			this.session.available_scenes.unshift( new PrepareToExileQueen(this.session));  //make it top priority, so unshift, don't push
-			this.session.available_scenes.unshift( new PlanToExileJack(this.session));  //make it top priority, so unshift, don't push
-			this.session.available_scenes.unshift( new ExileQueen(this.session));  //make it top priority, so unshift, don't push
+			this.session.available_scenes.insert(0, new PrepareToExileQueen(this.session));  //make it top priority, so unshift, don't push
+			this.session.available_scenes.insert(0, new PlanToExileJack(this.session));  //make it top priority, so unshift, don't push
+			this.session.available_scenes.insert(0, new ExileQueen(this.session));  //make it top priority, so unshift, don't push
 			String ret = " Archagent Jack Noir has not let the Queen's relative weakness go unnoticed. ";
 			ret += " He meets with the " + this.friend.htmlTitle() + " at " + this.friend.shortLand() + " and begins scheming to exile her. ";
 			ret += " You can tell he likes the " + this.friend.htmlTitle() + " because he only stabbed them, like, three times, tops. ";
 			ret += " And at least ONE of those was on accident. ";
 		return ret;
 		}
+		return "";
 	}
 
 }
