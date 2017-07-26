@@ -122,8 +122,8 @@ double random() {
 }
 
 //placeholder for now. need a way to know "what is the next random number in the list without using that number"
-double seed() {
-
+int seed() {
+  return curSessionGlobalVar.rand.nextInt();
 }
 
 int getRandomSeed() {
