@@ -381,21 +381,25 @@ String msToTime(s) {
   return mins + " minutes and " + secs + " seconds";
 }
 
-String joinMatches(Iterable<Match> matches, [String joiner = null]) {
+U joinCollection<T,U>(Iterable<T> list, {U convert(T input), U combine(U previous, U element)}) {
+	Iterator<T> iter = list.iterator;
+
 	bool first = true;
-	StringBuffer sb = new StringBuffer();
+	U ret = null;
 
-	for (Match m in matches) {
-		if (joiner != null && !first) {
-			sb.write(joiner);
+	while(iter.moveNext()) {
+		if (first) {
+			first = false;
+			ret = convert(iter.current);
+		} else {
+			ret = combine(ret, convert(iter.current));
 		}
-		first = false;
-
-		sb.write(m.group(0));
 	}
 
-	return sb.toString();
+	return ret;
 }
+String joinMatches(Iterable<Match> matches, [String joiner = ""]) => joinCollection(matches, convert:(Match m) => m.group(0), combine:(String p, String e) => "$p$joiner$e");
+String joinList<T>(Iterable<T> list, [String joiner = ""]) => joinCollection(list, convert:(T e) => e.toString(), combine:(String p, String e) => "$p$joiner$e");
 
 void appendHtml(Element element, String html) {
 	element.appendHtml(html, treeSanitizer: NodeTreeSanitizer.trusted);

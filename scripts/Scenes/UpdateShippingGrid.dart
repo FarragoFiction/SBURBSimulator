@@ -101,12 +101,12 @@ THEN I will have the perfect shitty quadrant life.
 
 
 class UpdateShippingGrid extends Scene{
-	bool canRepeat = true;
-	var shippingChat = null; //what should it say when I try to convince my otp to get together?
-	var romanceChat = null; //if i convince one member of my otp to get together, what do they say when they confess?
-	List<dynamic> shippers = [];  //Shipper objects are a player and their ships.
-	var chosenShipper = null;
-	var shippingAfterMath = null;	
+	//bool canRepeat = true;
+	String shippingChat = null; //what should it say when I try to convince my otp to get together?
+	String romanceChat = null; //if i convince one member of my otp to get together, what do they say when they confess?
+	List<Shipper> shippers = [];  //Shipper objects are a player and their ships.
+	Shipper chosenShipper = null;
+	String shippingAfterMath = null;
 
 
 	UpdateShippingGrid(Session session): super(session);
@@ -118,14 +118,14 @@ class UpdateShippingGrid extends Scene{
 		this.shippingAfterMath = null;
 		this.shippingChat = null;
 		this.romanceChat = null;
-		var tmpPlayer = null;
+		Player tmpPlayer = null;
 		if(rand.nextDouble() > 0.5){
 			tmpPlayer = findAspectPlayer(this.session.availablePlayers, "Heart");
 		}else{
 			tmpPlayer = findAspectPlayer(this.session.availablePlayers, "Blood");
 		}
 
-		if(!tmpPlayer || tmpPlayer.dead) return false; //even the mighty power of shipping cannot transcend death.
+		if(tmpPlayer == null || tmpPlayer.dead) return false; //even the mighty power of shipping cannot transcend death.
 		this.chosenShipper = this.getShipper(tmpPlayer);
 		this.chosenShipper.otp = null;
 
@@ -137,14 +137,14 @@ class UpdateShippingGrid extends Scene{
 		}
 		return false;
 	}
-	dynamic getShipper(player){
+	Shipper getShipper(Player player){
 		for(num i = 0; i<this.shippers.length; i++){
 			var shipper = this.shippers[i];
 			if(shipper.player.id == player.id){
 				return shipper;
 			}
 		}
-		var s = new Shipper(player);
+		Shipper s = new Shipper(player);
 		s.ships = this.createShips(this.session.players, s);
 		s.savedShipText = ""; //make sure it's blank
 		this.shippers.add(s);
@@ -153,31 +153,31 @@ class UpdateShippingGrid extends Scene{
 	}
 
 	@override
-	void renderContent(div){
-		div.append("<br>");
-		div.append(this.content());
+	void renderContent(Element div){
+		appendHtml(div, "<br>");
+		appendHtml(div, this.content());
 		this.drawChats(div);
 
 	}
-	void drawChats(div){
+	void drawChats(Element div){
 		this.drawShippingChat(div);
 		this.drawRomanceChat(div);
-		if(this.shippingAfterMath) div.append(this.shippingAfterMath);
+		if(this.shippingAfterMath != null) appendHtml(div, this.shippingAfterMath);
 
 	}
-	void drawShippingChat(div){
-		if(!this.shippingChat) return;
-		var player1 = this.chosenShipper.player;
-		var player2 = this.chosenShipper.otp.r2.target;
+	void drawShippingChat(Element div){
+		if(this.shippingChat == null) return;
+		Player player1 = this.chosenShipper.player;
+		Player player2 = this.chosenShipper.otp.r2.target;
 		if(player1 == player2){
 			player1 = Player.makeRenderingSnapshot(player1);
-			player1.chatHandle = "future" + player1.chatHandle.charAt(0).toUpperCase() + player1.chatHandle.slice(1);
+			player1.chatHandle = "future" + player1.chatHandle[0].toUpperCase() + player1.chatHandle.substring(1);
 		}
-		var divID = (div.id) + "_canvas_shipping"+ this.chosenShipper.id;
-		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-		div.append(canvasHTML);
-		var canvasDiv = querySelector("#canvas"+ divID);
-		var otp = this.chosenShipper.otp;
+		String divID = (div.id) + "_canvas_shipping${this.chosenShipper.player.id}";
+		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height='"+canvasHeight.toString() + "'>  </canvas>";
+		appendHtml(div, canvasHTML);
+		CanvasElement canvasDiv = querySelector("#canvas"+ divID);
+		Ship otp = this.chosenShipper.otp;
 		String image = "discuss_hatemance.png";
 		if(player1.aspect == "Heart"){
 			if(otp.r1.saved_type == otp.r1.heart || otp.r1.saved_type == otp.r1.goodBig ){
@@ -195,15 +195,15 @@ class UpdateShippingGrid extends Scene{
 		drawChat(canvasDiv, player1, player2, this.shippingChat,image);
 
 	}
-	void drawRomanceChat(div){
-		if(!this.romanceChat) return;
-		var player1 = this.chosenShipper.otp.r2.target;
-		var player2 = this.chosenShipper.otp.r1.target;
-		var divID = (div.id) + "_canvas_romance"+ this.chosenShipper.id;
-		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-		div.append(canvasHTML);
-		var canvasDiv = querySelector("#canvas"+ divID);
-		var otp = this.chosenShipper.otp;
+	void drawRomanceChat(Element div){
+		if(this.romanceChat == null) return;
+		Player player1 = this.chosenShipper.otp.r2.target;
+		Player player2 = this.chosenShipper.otp.r1.target;
+		String divID = (div.id) + "_canvas_romance${this.chosenShipper.player.id}";
+		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height='"+canvasHeight.toString() + "'>  </canvas>";
+		appendHtml(div, canvasHTML);
+		CanvasElement canvasDiv = querySelector("#canvas"+ divID);
+		Ship otp = this.chosenShipper.otp;
 		String image = "discuss_hatemance.png";
 		if(this.chosenShipper.player.aspect == "Heart"){
 			if(otp.r1.saved_type == otp.r1.heart || otp.r1.saved_type == otp.r1.goodBig){
@@ -221,32 +221,32 @@ class UpdateShippingGrid extends Scene{
 		}
 		drawChat(canvasDiv, player1, player2, this.romanceChat,image);
 	}
-	dynamic createShips(players, shipperPlayer){
-		if(!shipperPlayer){
+	List<Ship> createShips(List<Player> players, Shipper shipperPlayer){
+		if(shipperPlayer == null){
 			shipperPlayer = new Shipper(players[0]); //abj was calling this with no shipper player.
 			this.chosenShipper = shipperPlayer;
 		}
 		////print("creating ships");
-		List<dynamic> ret = [];
+		List<Ship> ret = [];
 			for(num i = 0; i<players.length; i++){
 
-				var player = players[i];
+				Player player = players[i];
 				////print("making ships for: " + player.title())
 
 				for(num j = 0; j<player.relationships.length; j++){
-					var r1 = player.relationships[j];
-					var r2 = r1.target.getRelationshipWith(player);
+					Relationship r1 = player.relationships[j];
+					Relationship r2 = r1.target.getRelationshipWith(player);
 					////print("made new ship");
 					ret.add(new Ship(r1, r2, shipperPlayer));
 				}
 			}
-				List<dynamic> toRemove = [];
+				List<Ship> toRemove = [];
 				//get rid of equal ships
 				for(num i = 0; i<ret.length-1; i++){
-					var firstShip = ret[i];
+					Ship firstShip = ret[i];
 					//second loop starts at i because i know i checked first ship no ships already, and second ship agains 1 ship
 					for(var j= (i+1); j<ret.length; j++){
-						var secondShip = ret[j];
+						Ship secondShip = ret[j];
 							if(firstShip.isEqualToShip(secondShip)){
 								////print("pushing to remove");
 								toRemove.add(secondShip);
@@ -260,35 +260,33 @@ class UpdateShippingGrid extends Scene{
 				shipperPlayer.ships = ret;
 				return ret;
 	}
-	dynamic getGoodShips(shipper){
-		if(!shipper) shipper = this.chosenShipper;
-		List<dynamic> ret = [];
+	List<Ship> getGoodShips(Shipper shipper){
+		if(shipper == null) shipper = this.chosenShipper;
+		List<Ship> ret = [];
 		for(num i = 0; i<shipper.ships.length; i++){
-			var ship = shipper.ships[i];
+			Ship ship = shipper.ships[i];
 			if(ship.isGoodShip()){
 				ret.add(ship);
 			}
 		}
 		return ret;
 	}
-	dynamic printShips(ships){
-		return(ships.map((e){;
-			return e.toString();
-		}).join("\n<br>"));
+	String printShips(List<Ship> ships){
+		return joinList(ships, "\n<br>");
 	}
-	dynamic printAllShips(){
+	String printAllShips(){
 		return this.printShips(this.chosenShipper.ships);
 	}
-	dynamic activateShippingPowers(otp){
+	String activateShippingPowers(Ship otp){
 		//alert("??? " + this.session.session_id);
 		String ret = " <Br> <br> The " + this.chosenShipper.player.htmlTitleBasic() + " notices that one of their favorite ships seems to be on the verge of getting together! All it will take is the slightest of nudges...";
 		//if that chat results in them agreeing, do next chat. (between rom partners)
-		var shipper = this.chosenShipper.player;
-		var shipperStart = shipper.chatHandleShort()+ ": ";
-		var p1 = otp.r2.target;
-		var p1Start = p1.chatHandleShort()+ ": ";
-		var p2 = otp.r1.target;
-		var p2Start = p2.chatHandleShort()+ ": ";
+		Player shipper = this.chosenShipper.player;
+		String shipperStart = shipper.chatHandleShort()+ ": ";
+		Player p1 = otp.r2.target;
+		String p1Start = p1.chatHandleShort()+ ": ";
+		Player p2 = otp.r1.target;
+		String p2Start = p2.chatHandleShort()+ ": ";
 		if(this.chosenShipper.player.aspect == "Blood"){
 			if(otp.r1.saved_type == otp.r1.goodBig){
 				 //print("trying to make a pale ship happen: " + this.session.session_id);
@@ -308,14 +306,14 @@ class UpdateShippingGrid extends Scene{
 		}
 		return ret;  //chats will be stored to a var.
 	}
-	dynamic tryToConvinceFlushed(shipper, shipperStart, p1, p1Start, p2, p2Start){
+	void tryToConvinceFlushed(Player shipper, String shipperStart, Player p1, String p1Start, Player p2, String p2Start){
 			String chat = "";
 			String ret = "";
 			//chats happen in order.
-			var willItWork = this.evaluateFlushedProposal(p1, p2);
-			var myRelationshipWithOTP1 = shipper.getRelationshipWith(p2);
-			var theirRelationshipWithMe = p2.getRelationshipWith(shipper);
-			var c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!","Hey!","Hello!","Um... hey!","I kind of need to talk to you."], ["Hey.","Hiya","Whats up?","Good to see you.","Hows it going?"],["Hey, asshole.","Fuck off.","Eat shit and die.","Oh god.", "Sup, dipshit.","Blugh.","FML.", "Nope. Nope. Nope.", "Yes?", "And you are?", "Ugh."]);
+			bool willItWork = this.evaluateFlushedProposal(p1, p2);
+			//Relationship myRelationshipWithOTP1 = shipper.getRelationshipWith(p2);
+			Relationship theirRelationshipWithMe = p2.getRelationshipWith(shipper);
+			PlusMinusConversationalPair c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!","Hey!","Hello!","Um... hey!","I kind of need to talk to you."], ["Hey.","Hiya","Whats up?","Good to see you.","Hows it going?"],["Hey, asshole.","Fuck off.","Eat shit and die.","Oh god.", "Sup, dipshit.","Blugh.","FML.", "Nope. Nope. Nope.", "Yes?", "And you are?", "Ugh."]);
 			if(shipper == p1){
 				shipper = Player.makeRenderingSnapshot(shipper);
 				shipper.chatHandle = "future" + shipper.chatHandle;
@@ -337,7 +335,7 @@ class UpdateShippingGrid extends Scene{
 			this.shippingChat = chat;
 			if(willItWork){ //now it's time to build up the confession.
 				chat = "";  //don't need to get relationships, i know they both like each other
-				var willTheyAgree = this.evaluateFlushedProposal(p2, p1);
+				bool willTheyAgree = this.evaluateFlushedProposal(p2, p1);
 				//for these, second column will always be about "are they going to say yes or not"
 				c= new PlusMinusConversationalPair(["Hey!"], ["Hey!", "Oh cool, I was just thinking of you!"],["What's up?", "Hey"]);
 				chat += c.getOpeningLine(p1, p1Start);
@@ -370,14 +368,14 @@ class UpdateShippingGrid extends Scene{
 			}
 			this.shippingAfterMath = ret;
 	}
-	dynamic tryToConvincePale(shipper, shipperStart, p1, p1Start, p2, p2Start){
+	void tryToConvincePale(Player shipper, String shipperStart, Player p1, String p1Start, Player p2, String p2Start){
 			String chat = "";
 			String ret = "";
 			//chats happen in order.
-			var willItWork = this.evaluatePaleProposal(p1, p2);
-			var myRelationshipWithOTP1 = shipper.getRelationshipWith(p2);
-			var theirRelationshipWithMe = p2.getRelationshipWith(shipper);
-			var c = new PlusMinusConversationalPair(["Sooo... hey! ", "We never talk!","Hey!","Hello!","Um... hey!","I kind of need to talk to you."], ["Hey.","Hiya","Whats up?","Good to see you.","Hows it going?"],["Hey, asshole.","Fuck off.","Eat shit and die.","Oh god.", "Sup, dipshit.","Blugh.","FML.", "Nope. Nope. Nope.", "Yes?", "And you are?", "Ugh.","Not this again."]);
+			bool willItWork = this.evaluatePaleProposal(p1, p2);
+			//Relationship myRelationshipWithOTP1 = shipper.getRelationshipWith(p2);
+			Relationship theirRelationshipWithMe = p2.getRelationshipWith(shipper);
+			PlusMinusConversationalPair c = new PlusMinusConversationalPair(["Sooo... hey! ", "We never talk!","Hey!","Hello!","Um... hey!","I kind of need to talk to you."], ["Hey.","Hiya","Whats up?","Good to see you.","Hows it going?"],["Hey, asshole.","Fuck off.","Eat shit and die.","Oh god.", "Sup, dipshit.","Blugh.","FML.", "Nope. Nope. Nope.", "Yes?", "And you are?", "Ugh.","Not this again."]);
 			if(shipper == p1){
 				shipper = Player.makeRenderingSnapshot(shipper);
 				shipper.chatHandle = "future" + shipper.chatHandle;
@@ -430,14 +428,14 @@ class UpdateShippingGrid extends Scene{
 			}
 			this.shippingAfterMath = ret;
 	}
-	dynamic tryToConvinceAshen(shipper, shipperStart, p1, p1Start, p2, p2Start){
+	void tryToConvinceAshen(Player shipper, String shipperStart, Player p1, String p1Start, Player p2, String p2Start){
 			String chat = "";
 			String ret = "";
 			//chats happen in order.
-			var willItWork = this.evaluateAshenProposal(p1, p2);
-			var myRelationshipWithOTP1 = shipper.getRelationshipWith(p2);
-			var theirRelationshipWithMe = p2.getRelationshipWith(shipper);
-			var c = new PlusMinusConversationalPair(["Sooo... hey! ", "We never talk!","Hey!","Hello!","Um... hey!","I kind of need to talk to you."], ["Hey.","Hiya","Whats up?","Good to see you.","Hows it going?"],["Hey, asshole.","Fuck off.","Eat shit and die.","Oh god.", "Sup, dipshit.","Blugh.","FML.", "Nope. Nope. Nope.", "Yes?", "And you are?", "Ugh."]);
+			bool willItWork = this.evaluateAshenProposal(p1, p2);
+			//Relationship myRelationshipWithOTP1 = shipper.getRelationshipWith(p2);
+			Relationship theirRelationshipWithMe = p2.getRelationshipWith(shipper);
+			PlusMinusConversationalPair c = new PlusMinusConversationalPair(["Sooo... hey! ", "We never talk!","Hey!","Hello!","Um... hey!","I kind of need to talk to you."], ["Hey.","Hiya","Whats up?","Good to see you.","Hows it going?"],["Hey, asshole.","Fuck off.","Eat shit and die.","Oh god.", "Sup, dipshit.","Blugh.","FML.", "Nope. Nope. Nope.", "Yes?", "And you are?", "Ugh."]);
 			chat += c.getOpeningLine(shipper, shipperStart);
 			chat += c.p2GetResponseBasedOnRelationship(p1, p1Start, theirRelationshipWithMe);
 			c= new PlusMinusConversationalPair(["Sooo... hey! ", "We never talk!","Hey!","Hello!","Um... hey!","I kind of need to talk to you."], ["Hey.","Hiya","Whats up?","Good to see you.","Hows it going?"],["Hey, asshole.","Fuck off.","Eat shit and die.","Oh god.", "Sup, dipshit.","Blugh.","FML.", "Nope. Nope. Nope.", "Yes?", "And you are?", "Ugh."]);
@@ -490,14 +488,14 @@ class UpdateShippingGrid extends Scene{
 			}
 			this.shippingAfterMath = ret;
 	}
-	dynamic tryToConvinceBlack(shipper, shipperStart, p1, p1Start, p2, p2Start){
+	void tryToConvinceBlack(Player shipper, String shipperStart, Player p1, String p1Start, Player p2, String p2Start){
 			String chat = "";
 			String ret = "";
 			//chats happen in order.
-			var willItWork = this.evaluateBlackProposal(p1, p2);
-			var myRelationshipWithOTP1 = shipper.getRelationshipWith(p2);
-			var theirRelationshipWithMe = p2.getRelationshipWith(shipper);
-			var c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!","Hey!","Hello!","Um... hey!","I kind of need to talk to you."], ["Hey.","Hiya","Whats up?","Good to see you.","Hows it going?"],["Hey, asshole.","Fuck off.","Eat shit and die.","Oh god.", "Sup, dipshit.","Blugh.","FML.", "Nope. Nope. Nope.", "Yes?", "And you are?", "Ugh."]);
+			bool willItWork = this.evaluateBlackProposal(p1, p2);
+			//Relationship myRelationshipWithOTP1 = shipper.getRelationshipWith(p2);
+			Relationship theirRelationshipWithMe = p2.getRelationshipWith(shipper);
+			PlusMinusConversationalPair c = new PlusMinusConversationalPair(["Sooo...hey! ", "We never talk!","Hey!","Hello!","Um... hey!","I kind of need to talk to you."], ["Hey.","Hiya","Whats up?","Good to see you.","Hows it going?"],["Hey, asshole.","Fuck off.","Eat shit and die.","Oh god.", "Sup, dipshit.","Blugh.","FML.", "Nope. Nope. Nope.", "Yes?", "And you are?", "Ugh."]);
 			if(shipper == p1){
 				shipper = Player.makeRenderingSnapshot(shipper);
 				shipper.chatHandle = "future" + shipper.chatHandle;
@@ -550,64 +548,64 @@ class UpdateShippingGrid extends Scene{
 			}
 			this.shippingAfterMath = ret;
 	}
-	dynamic evaluateFlushedProposal(player, target){
-			num reasonsFor = 1; //come on, you know you like them.
-			num reasonsAgainst = 0;
+	bool evaluateFlushedProposal(Player player, Player target){
+			int reasonsFor = 1; //come on, you know you like them.
+			int reasonsAgainst = 0;
 			reasonsAgainst += player.getHearts().length; //I am already in a relationship
 			reasonsAgainst += target.getHearts().length; //they are already in a relationship
 			if(player.getHearts().length == 0) reasonsFor ++; //I am single
 			if(!player.isQuadranted()) reasonsFor += 4; //I am lonely
 			if(player.getBestFriend() == target) reasonsFor += 5; //I REALLY like them.
-			var r = player.getRelationshipWith(this.chosenShipper.player);
-			if(r && r.value < 0) reasonsAgainst ++; //say 'no' just to spite shipper
+			Relationship r = player.getRelationshipWith(this.chosenShipper.player);
+			if(r != null && r.value < 0) reasonsAgainst ++; //say 'no' just to spite shipper
 			if(player.getWorstEnemyFromList(this.session.players) == this.chosenShipper.player) reasonsAgainst += 5; //I REALLY hate the shipper.
 			return reasonsFor > reasonsAgainst;
 	}
-	dynamic evaluatePaleProposal(player, target){
-			num reasonsFor = 1; //come on, you know you like them.
-			num reasonsAgainst = 0;
+	bool evaluatePaleProposal(player, target){
+			int reasonsFor = 1; //come on, you know you like them.
+			int reasonsAgainst = 0;
 			reasonsAgainst += player.getDiamonds().length; //I am already in a relationship
 			reasonsAgainst += target.getDiamonds().length; //they are already in a relationship
 			if(player.getHearts().length == 0) reasonsFor ++; //I am single
 			if(player.sanity < 0) reasonsFor ++;  //i need SOMEBODY to stabilize me.
 			if(!player.isQuadranted()) reasonsFor += 4; //I am lonely
 			if(player.getBestFriend() == target) reasonsFor += 5; //I REALLY like them.
-			var r = player.getRelationshipWith(this.chosenShipper.player);
-			if(r && r.value < 0) reasonsAgainst ++; //say 'no' just to spite shipper
+			Relationship r = player.getRelationshipWith(this.chosenShipper.player);
+			if(r != null && r.value < 0) reasonsAgainst ++; //say 'no' just to spite shipper
 			if(player.getWorstEnemyFromList(this.session.players) == this.chosenShipper.player) reasonsAgainst += 5; //I REALLY hate the shipper.
 			return reasonsFor > reasonsAgainst;
 	}
-	dynamic evaluateAshenProposal(player, target){
+	bool evaluateAshenProposal(player, target){
 			if(this.chosenShipper.player == player || this.chosenShipper.player == target) return false; // you can't be in a quadrant with yourself, dunkass.
-			num reasonsFor = 1; //come on, you know you like them.
-			num reasonsAgainst = 0;
+			int reasonsFor = 1; //come on, you know you like them.
+			int reasonsAgainst = 0;
 			reasonsFor += player.getSpades().length; //I am already in a relationship, so I should stop being black for them.
 			reasonsFor += target.getSpades().length; //they are already in a relationship, so i should stop being black for them.
 			if(player.getHearts().length == 0) reasonsFor ++; //I am single
 			if(!player.isQuadranted()) reasonsFor += 4; //I am lonely
 			if(player.getWorstEnemyFromList(this.session.players) == target) reasonsFor += 5; //I REALLY like them.
-			var r = player.getRelationshipWith(this.chosenShipper.player);
-			if(r && r.value < 0) reasonsFor ++; //actually, you really hate the shipper, too, this might work out.
+			Relationship r = player.getRelationshipWith(this.chosenShipper.player);
+			if(r != null && r.value < 0) reasonsFor ++; //actually, you really hate the shipper, too, this might work out.
 			if(player.getWorstEnemyFromList(this.session.players) == this.chosenShipper.player) reasonsFor += 5; //I REALLY hate the shipper, this might work out.
-			if(r && r.value > 0) reasonsAgainst ++; //actually, you really like the shipper, you don't want to be ashen for them.
+			if(r != null && r.value > 0) reasonsAgainst ++; //actually, you really like the shipper, you don't want to be ashen for them.
 			if(player.getBestFriend() == this.chosenShipper.player) reasonsAgainst += 50; //hell no, i can't be ashen for someone i like this much.
 
 			return reasonsFor > reasonsAgainst;
 	}
-	dynamic evaluateBlackProposal(player, target){
-			num reasonsFor = 1; //come on, you know you like them.
-			num reasonsAgainst = 0;
+	bool evaluateBlackProposal(player, target){
+			int reasonsFor = 1; //come on, you know you like them.
+			int reasonsAgainst = 0;
 			reasonsAgainst += player.getSpades().length; //I am already in a relationship
 			reasonsAgainst += target.getSpades().length; //they are already in a relationship
 			if(player.getHearts().length == 0) reasonsFor ++; //I am single
 			if(!player.isQuadranted()) reasonsFor += 4; //I am lonely
 			if(player.getWorstEnemyFromList(this.session.players) == target) reasonsFor += 5; //I REALLY hate them.
-			var r = player.getRelationshipWith(this.chosenShipper.player);
-			if(r && r.value < 0) reasonsAgainst ++; //say 'no' just to spite shipper
+			Relationship r = player.getRelationshipWith(this.chosenShipper.player);
+			if(r != null && r.value < 0) reasonsAgainst ++; //say 'no' just to spite shipper
 			if(player.getWorstEnemyFromList(this.session.players) == this.chosenShipper.player) reasonsAgainst += 5; //I REALLY hate the shipper.
 			return reasonsFor > reasonsAgainst;
 	}
-	dynamic content(){
+	String content(){
 		////print("Updating shipping grid in: " + this.session.session_id);
 		removeFromArray(this.chosenShipper.player, this.session.availablePlayers);
 		this.chosenShipper.player.increasePower();
@@ -619,7 +617,7 @@ class UpdateShippingGrid extends Scene{
 		//	//print( this.savedShipText.length + " scandalous fuck pile " + this.session.session_id);
 		}
 		String ret = "The " + this.chosenShipper.player.htmlTitleBasic() + " updates their shipping grid. " + shippingStyle +fuckPile + " <Br>" + this.chosenShipper.savedShipText;
-		if(this.chosenShipper.otp){
+		if(this.chosenShipper.otp != null){
 			ret += this.activateShippingPowers(this.chosenShipper.otp);
 		}
 		return ret;
@@ -636,17 +634,17 @@ class UpdateShippingGrid extends Scene{
 //ships can also refuse to render themselves.  return false if that happens.;
 // render if: r2.saved_type == r2.goodBig || r2.saved_type == r2.badBig
 class Ship {
-	var r1;
-	var r2;
+	Relationship r1;
+	Relationship r2;
 	Shipper shipper; //so i can tell shipper if  am a potential OTP
 	Player player;
 
-	Ship(this.r1, this.r2, this.shipper) {
+	Ship(Relationship this.r1, Relationship this.r2, Shipper this.shipper) {
 		player = shipper.player;
 	}
 
 
-	String relationshipTypeToText(r){
+	String relationshipTypeToText(Relationship r){
 		if(r.saved_type ==  r.heart){
 			return "<font color = 'red'>&#x2665</font>";
 		}
@@ -695,7 +693,7 @@ class Ship {
 		}
 		return r.saved_type;
 	}
-	dynamic toString(){
+	String toString(){
 			return r2.target.htmlTitleBasic() + " " + this.relationshipTypeToText(r1) + "---" + this.relationshipTypeToText(r2) + " " + r1.target.htmlTitleBasic();
 		}
 	bool isEqualToShip(ship){
@@ -711,8 +709,8 @@ class Ship {
 			return false;
 		}
 	bool isGoodShip(){
-			var r2 = this.r2;
-			var r1 = this.r1;
+			Relationship r2 = this.r2;
+			Relationship r1 = this.r1;
 			//might not work, not clear anymore on when old_type gets cleared out. will this work EVERY TIME after they get together (wrong), NO TIME (wrong) or just once (what i want)
 			//well, i guess if it works every time that's good too, shipper gets ongoing "smugness" bonus as long as the ship remains real.
 			if(r2.saved_type == "" || r1.saved_type == "" ){
@@ -750,7 +748,7 @@ class Shipper {
 
 
 	Player player;
-	var otp = null; //when i'm going through ships, if i see a clearly requirted crush, will try to get them together.
+	Ship otp = null; //when i'm going through ships, if i see a clearly requirted crush, will try to get them together.
 	List<Ship> ships = null; //set right after creating.
 	num powerNeeded = 1;
 	String savedShipText = ""; ///need to know if my ships have updated.
