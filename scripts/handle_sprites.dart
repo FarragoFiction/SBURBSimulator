@@ -1,6 +1,6 @@
 part of SBURBSim;
 
-num asyncNumSprites = 0;
+int asyncNumSprites = 0;
 bool cool_kid = false;
 bool easter_egg = false;
 bool bardQuest = false;
@@ -39,10 +39,8 @@ void sbahjifier(CanvasElement canvas){
   CanvasRenderingContext2D ctx = canvas.getContext('2d');
   ctx.rotate(getRandomIntNoSeed(0,10)*Math.PI/180);
 	ImageData pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  //var weights = [  0, -1,  0, -1,  5, -1, 0, -1,  0 ];
-  var weights = [  -1, -1,  -1, -1,  9, -1, -1, -1,  -1 ];
-  //var weights = [  1, 1, 1, 1,  5, -1, -1, -1, -1 ];
-  int side = (Math.sqrt(weights.length)).round();
+    List<int> weights = [  -1, -1,  -1, -1,  9, -1, -1, -1,  -1 ];
+    int side = (Math.sqrt(weights.length)).round();
   int halfSide = (side~/2);
   List<int> src = pixels.data;
   int sw = pixels.width;
@@ -53,7 +51,7 @@ void sbahjifier(CanvasElement canvas){
   ImageData output = ctx.getImageData(0, 0, canvas.width, canvas.height);
   List<int> dst = output.data;
   // go through the destination image pixels
-  var alphaFac = opaque ? 1 : 0;
+  int alphaFac = opaque ? 1 : 0;
   for (int y=0; y<h; y++) {
     for (int x=0; x<w; x++) {
       int sy = y;
@@ -89,23 +87,23 @@ void sbahjifier(CanvasElement canvas){
 
 
 //work once again gives me inspiration for this sim. thanks, bob!!!
-void rainbowSwap(canvas){
+void rainbowSwap(CanvasElement canvas){
 	if(checkSimMode() == true){
 		return;
 	}
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
-	var img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
+	ImageData img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
 	String imageString = "rainbow.png";
-    var img=querySelector("#${imageString}");
-    var width = img.width;
-  	var height = img.height;
-	var print= true;
-	 var rainbow_canvas = getBufferCanvas(querySelector("#rainbow_template"));
-  CanvasRenderingContext2D rctx = rainbow_canvas.getContext('2d');
+    ImageElement img=querySelector("#${imageString}");
+    int width = img.width;
+  	int height = img.height;
+	
+	 CanvasElement rainbow_canvas = getBufferCanvas(querySelector("#rainbow_template"));
+  CanvasRenderingContext2D rctx = rainbow_canvas.context2D;
   	rctx.drawImage(img,0,0);
-	var img_data_rainbow =rctx.getImageData(0, 0,width, height);
+	ImageData img_data_rainbow =rctx.getImageData(0, 0,width, height);
 	//4 *Math.floor(i/(4000)) is because 1/(width*4) get me the row number (*4 'cause there are 4 elements per pixel). then, when i have the row number, *4 again because first row is 0,1,2,3 and second is 4,5,6,7 and third is 8,9,10,11
-	for(num i = 0; i<img_data.data.length; i += 4){;
+	for(int i = 0; i<img_data.data.length; i += 4){;
 		if(img_data.data[i+3] >= 128){
 			img_data.data[i] =img_data_rainbow.data[4 *(i~/(4000))];
 			img_data.data[i+1] = img_data_rainbow.data[4 *(i~/(4000))+1];
@@ -121,15 +119,15 @@ void rainbowSwap(canvas){
 
 
 //how translucent are we talking, here?  number between 0 and 1
-void voidSwap(canvas, alphaPercent){
+void voidSwap(CanvasElement canvas, double alphaPercent){
   if(checkSimMode() == true){
     return;
   }
   // print("replacing: " + oldc  + " with " + newc);
-  CanvasRenderingContext2D ctx = canvas.getContext('2d');
-  var img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
+  CanvasRenderingContext2D ctx = canvas.context2D;
+  ImageData img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
   //4 byte color array
-  for(num i = 0; i<img_data.data.length; i += 4){;
+  for(int i = 0; i<img_data.data.length; i += 4){;
     if(img_data.data[i+3] > 50){
       img_data.data[i+3] = (img_data.data[i+3]*alphaPercent).floor();  //keeps wings at relative transparency
     }
@@ -140,25 +138,25 @@ void voidSwap(canvas, alphaPercent){
 
 
 //work once again gives me inspiration for this sim. thanks, bob!!!
-void drainedGhostSwap(canvas){
+void drainedGhostSwap(CanvasElement canvas){
 	if(checkSimMode() == true){
 		return;
 	}
-	CanvasRenderingContext2D ctx = canvas.getContext('2d');
-	var img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
+	CanvasRenderingContext2D ctx = canvas.context2D;
+	ImageData img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
 	String imageString = "ghostGradient.png";
-    var img=querySelector("#${imageString}");
-    var width = img.width;
-  	var height = img.height;
-	var print= true;
-	 var rainbow_canvas = getBufferCanvas(querySelector("#rainbow_template"));
-  CanvasRenderingContext2D rctx = rainbow_canvas.getContext('2d');
+    ImageElement img=querySelector("#${imageString}");
+    int width = img.width;
+  	int height = img.height;
+	
+	 CanvasElement rainbow_canvas = getBufferCanvas(querySelector("#rainbow_template"));
+  CanvasRenderingContext2D rctx = rainbow_canvas.context2D;
   	rctx.drawImage(img,0,0);
-	var img_data_rainbow =rctx.getImageData(0, 0,width, height);
+	ImageData img_data_rainbow =rctx.getImageData(0, 0,width, height);
 	//4 *Math.floor(i/(4000)) is because 1/(width*4) get me the row number (*4 'cause there are 4 elements per pixel). then, when i have the row number, *4 again because first row is 0,1,2,3 and second is 4,5,6,7 and third is 8,9,10,11
-	for(num i = 0; i<img_data.data.length; i += 4){;
+	for(int i = 0; i<img_data.data.length; i += 4){;
 		if(img_data.data[i+3] >= 128){
-			img_data.data[i+3] = img_data_rainbow.data[4 *(i~/(4000))+3]/2 ;//only mimic transparency. even fainter.;
+			img_data.data[i+3] = img_data_rainbow.data[4 *(i~/(4000))+3]~/2 ;//only mimic transparency. even fainter.;
 
 		}
 	}
@@ -169,23 +167,23 @@ void drainedGhostSwap(canvas){
 
 
 //work once again gives me inspiration for this sim. thanks, bob!!!
-void ghostSwap(canvas){
+void ghostSwap(CanvasElement canvas){
 	if(checkSimMode() == true){
 		return;
 	}
-	CanvasRenderingContext2D ctx = canvas.getContext('2d');
-	var img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
+	CanvasRenderingContext2D ctx = canvas.context2D;
+	ImageData img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
 	String imageString = "ghostGradient.png";
-    var img=querySelector("#${imageString}");
-    var width = img.width;
-  	var height = img.height;
-	var print= true;
-	 var rainbow_canvas = getBufferCanvas(querySelector("#rainbow_template"));
-	var rctx = rainbow_canvas.getContext('2d');
+    ImageElement img=querySelector("#${imageString}");
+    int width = img.width;
+  	int height = img.height;
+	
+	 CanvasElement rainbow_canvas = getBufferCanvas(querySelector("#rainbow_template"));
+	CanvasRenderingContext2D rctx = rainbow_canvas.context2D;
   	rctx.drawImage(img,0,0);
-	var img_data_rainbow =rctx.getImageData(0, 0,width, height);
+	ImageData img_data_rainbow =rctx.getImageData(0, 0,width, height);
 	//4 *Math.floor(i/(4000)) is because 1/(width*4) get me the row number (*4 'cause there are 4 elements per pixel). then, when i have the row number, *4 again because first row is 0,1,2,3 and second is 4,5,6,7 and third is 8,9,10,11
-	for(num i = 0; i<img_data.data.length; i += 4){;
+	for(int i = 0; i<img_data.data.length; i += 4){;
 		if(img_data.data[i+3] >= 128){
 			img_data.data[i+3] = img_data_rainbow.data[4 *(i~/(4000))+3]*2 ;//only mimic transparency.;
 
@@ -200,20 +198,20 @@ void ghostSwap(canvas){
 
 
 
-void rainbowSwapProgram(canvas){
+void rainbowSwapProgram(CanvasElement canvas){
   if(checkSimMode() == true){
     return;
   }
-	CanvasRenderingContext2D ctx = canvas.getContext('2d');
-	var img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
-	var colorRatio = 1/canvas.width;
+	CanvasRenderingContext2D ctx = canvas.context2D;
+	ImageData img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
+	//double colorRatio = 1/canvas.width;
 	//4 byte color array
-	for(num i = 0; i<img_data.data.length; i += 4){;
+	for(int i = 0; i<img_data.data.length; i += 4){;
 		if(img_data.data[i+3] >= 128){
 		  //would some sort of fractal look better here?
       img_data.data[i] = getRandomIntNoSeed(0,255);
-    	img_data.data[i+1] =(i/canvas.width+ getRandomIntNoSeed(0,50))%255;
-    	img_data.data[i+2] = (i/canvas.height +getRandomIntNoSeed(0,50))%255;
+    	img_data.data[i+1] =(i/canvas.width+ getRandomIntNoSeed(0,50)).floor()%255;
+    	img_data.data[i+2] = (i/canvas.height +getRandomIntNoSeed(0,50)).floor()%255;
 		  img_data.data[i+3] = 255;
 		}
 	}
@@ -226,17 +224,17 @@ void rainbowSwapProgram(canvas){
 //swaps one hex color with another.
 //wait no, would be same amount of things. just would have nested for loops instead of
 //multiple calls
-void swapColors(canvas, color1, color2){
+void swapColors(CanvasElement canvas, String color1, String color2){
   if(checkSimMode() == true){
     return;
   }
-  var oldc = hexToRgbA(color1);
-  var newc= hexToRgbA(color2);
+  List<int> oldc = hexToRgbA(color1);
+  List<int> newc= hexToRgbA(color2);
   // print("replacing: " + oldc  + " with " + newc);
   CanvasRenderingContext2D ctx = canvas.getContext('2d');
-  var img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
+  ImageData img_data = ctx.getImageData(0, 0, canvas.width, canvas.height);
   //4 byte color array
-  for(num i = 0; i<img_data.data.length; i += 4){;
+  for(int i = 0; i<img_data.data.length; i += 4){;
     if(img_data.data[i] == oldc[0] && img_data.data[i+1] == oldc[1] &&img_data.data[i+2] == oldc[2]&&img_data.data[i+3] == 255){
       img_data.data[i] = newc[0];
       img_data.data[i+1] = newc[1];
@@ -251,17 +249,17 @@ void swapColors(canvas, color1, color2){
 
 
 
-void swapColors50(canvas, color1, color2){
+void swapColors50(CanvasElement canvas, String color1, String color2){
   if(checkSimMode() == true){
     return;
   }
-  var oldc = hexToRgbA(color1);
-  var newc= hexToRgbA(color2);
+  List<int> oldc = hexToRgbA(color1);
+  List<int> newc= hexToRgbA(color2);
   // print("replacing: " + oldc  + " with " + newc);
   CanvasRenderingContext2D ctx = canvas.getContext('2d');
-  var img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
+  ImageData img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
   //4 byte color array
-  for(num i = 0; i<img_data.data.length; i += 4){;
+  for(int i = 0; i<img_data.data.length; i += 4){;
     if(img_data.data[i] == oldc[0] && img_data.data[i+1] == oldc[1] &&img_data.data[i+2] == oldc[2]){
       img_data.data[i] = newc[0];
       img_data.data[i+1] = newc[1];
@@ -283,26 +281,26 @@ void swapColors50(canvas, color1, color2){
 
 
 
-void grimDarkSkin(canvas){
+void grimDarkSkin(CanvasElement canvas){
   swapColors(canvas, "#ffffff", "#424242");
 }
 
 
 
-void peachSkin(canvas, player){
-  var index = player.hair % tricksterColors.length;
+void peachSkin(CanvasElement canvas, Player player){
+  int index = player.hair % tricksterColors.length;
   swapColors(canvas, "#ffffff", tricksterColors[index]);
 }
 
 
 
-void greySkin(canvas){
+void greySkin(CanvasElement canvas){
   swapColors(canvas, "#ffffff", "#c4c4c4");
 }
 
 
 
-void roboSkin(canvas){
+void roboSkin(CanvasElement canvas){
   swapColors(canvas, "#ffffff", "#b6b6b6");
 }
 
@@ -316,13 +314,11 @@ void wings(CanvasElement canvas, Player player){
   }
 
   CanvasRenderingContext2D ctx = canvas.getContext('2d');
-  var num = player.quirk.favoriteNumber;
-  //num num = 5;
-  String imageString = "Wings/wing"+num + ".png";
+  int num = player.quirk.favoriteNumber;
+  //int num = 5;
+  String imageString = "Wings/wing$num.png";
   addImageTag(imageString);
   ImageElement img=querySelector("#${imageString}");
-  var width = img.width;
-  var height = img.height;
   ctx.drawImage(img,0,0);//,width,height);
 
   swapColors(canvas, "#ff0000",player.bloodColor);
@@ -333,22 +329,20 @@ void wings(CanvasElement canvas, Player player){
 
 
 
-void grimDarkHalo(canvas, player){
+void grimDarkHalo(CanvasElement canvas, Player player){
 	 CanvasRenderingContext2D ctx = canvas.getContext('2d');
     String imageString = "grimdark.png";
     if(player.trickster){
       imageString = "squiddles_chaos.png";
     }
     addImageTag(imageString);
-    var img=querySelector("#${imageString}");
-    var width = img.width;
-    var height = img.height;
+    ImageElement img=querySelector("#${imageString}");
     ctx.drawImage(img,0,0);
 }
 
 
 //TODO, eventually render fin1, then hair, then fin2
-void fin1(canvas, player){
+void fin1(CanvasElement canvas, Player player){
   if(player.bloodColor == "#610061" || player.bloodColor == "#99004d"){
     CanvasRenderingContext2D ctx = canvas.getContext('2d');
     String imageString = "fin1.png";
@@ -360,14 +354,12 @@ void fin1(canvas, player){
 
 
 
-void fin2(canvas, player){
+void fin2(CanvasElement canvas, Player player){
   if(player.bloodColor == "#610061" || player.bloodColor == "#99004d"){
     CanvasRenderingContext2D ctx = canvas.getContext('2d');
     String imageString = "fin2.png";
     addImageTag(imageString);
-    var img=querySelector("#${imageString}");
-    var width = img.width;
-    var height = img.height;
+    ImageElement img=querySelector("#${imageString}");
     ctx.drawImage(img,0,0);
   }
 }
@@ -376,7 +368,7 @@ void fin2(canvas, player){
 
 
 
-void horns(canvas, player){
+void horns(CanvasElement canvas, Player player){
     leftHorn(canvas,player);
     rightHorn(canvas,player);
 }
@@ -389,14 +381,12 @@ void horns(canvas, player){
 //position horns on an image as big as the canvas. put the horns directly on the
 //place where the head of every sprite would be.
 //same for wings eventually.
-void leftHorn(canvas, player){
+void leftHorn(CanvasElement canvas, Player player){
     CanvasRenderingContext2D ctx = canvas.getContext('2d');
-    String imageString = "Horns/left"+player.leftHorn + ".png";
+    String imageString = "Horns/left${player.leftHorn}.png";
     addImageTag(imageString);
-    var img=querySelector("#${imageString}");
-    var width = img.width;
-  	var height = img.height;
-  	ctx.drawImage(img,0,0);
+    ImageElement img=querySelector("#${imageString}");
+    ctx.drawImage(img,0,0);
     //print("Random number is: " + randNum);
 }
 
@@ -405,16 +395,14 @@ void leftHorn(canvas, player){
 
 //parse horns sprite sheet. render a random right horn.
 //right horn should be at: 120,40
-void rightHorn(canvas, player){
+void rightHorn(CanvasElement canvas, Player player){
  // print("doing right horn");
   CanvasRenderingContext2D ctx = canvas.getContext('2d');
 
-  String imageString = "Horns/right"+player.rightHorn + ".png";
+  String imageString = "Horns/right${player.rightHorn}.png";
   addImageTag(imageString);
 
-  var img=querySelector("#${imageString}");
-  var width = img.width;
-  var height = img.height;
+  ImageElement img=querySelector("#${imageString}");
   ctx.drawImage(img,0,0);
 }
 
@@ -438,7 +426,7 @@ Hrrrm. Problem is that async would mean that things would be rendered in the wro
 could have something that knows when ALL things in a single sprite have been rendered?
 function start_loading_images(ctx, canvas, view);
 {
-    var img = new Image();
+    ImageElement img = new Image();
     img.onload = () {
         //print(this);
 
@@ -460,17 +448,17 @@ function imgLoaded(imgElement) {
 
 */
 
-dynamic drawReviveDead(div, player, ghost, enablingAspect){
-  String canvasId = div.attr("id") + "commune_" +player.chatHandle + ghost.chatHandle+player.power+ghost.power;
+CanvasElement drawReviveDead(Element div, Player player, Player ghost, String enablingAspect){
+  String canvasId = "${div.id}commune_${player.chatHandle}${ghost.chatHandle}${player.getStat("power")}${ghost.getStat("power")}";
   String canvasHTML = "<br><canvas id;='" + canvasId +"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
-  div.append(canvasHTML);
-  var canvas = querySelector("#${canvasId}");
-  var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+  div.appendHtml(canvasHTML);
+  CanvasElement canvas = querySelector("#${canvasId}");
+  CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
   drawSprite(pSpriteBuffer,player);
-  var gSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+  CanvasElement gSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
   drawSpriteTurnways(gSpriteBuffer,ghost);
 
-  var canvasBuffer = getBufferCanvas(querySelector("#canvas_template"));
+  //CanvasElement canvasBuffer = getBufferCanvas(querySelector("#canvas_template"));
 
 
 
@@ -495,19 +483,19 @@ dynamic drawReviveDead(div, player, ghost, enablingAspect){
 
 
 //leader is an adult, though.
-void poseBabiesAsATeam(canvas, leader, players, guardians){
+void poseBabiesAsATeam(CanvasElement canvas, Player leader, List<Player> players, List<Player> guardians){
   if(checkSimMode() == true){
     return;
   }
   List<dynamic> playerBuffers = [];
   List<dynamic> guardianBuffers = [];
-  var leaderBuffer = getBufferCanvas(querySelector("#sprite_template"));
+  CanvasElement leaderBuffer = getBufferCanvas(querySelector("#sprite_template"));
   drawSprite(leaderBuffer, leader);
-  for(num i = 0; i<players.length; i++){
+  for(int i = 0; i<players.length; i++){
 		playerBuffers.add(getBufferCanvas(querySelector("#sprite_template")));
 		drawBabySprite(playerBuffers[i],players[i]);//,repeatTime);
 	}
-  for(num i = 0; i<guardians.length; i++){
+  for(int i = 0; i<guardians.length; i++){
 		guardianBuffers.add(getBufferCanvas(querySelector("#sprite_template")));
 		drawBabySprite(guardianBuffers[i],guardians[i]);//,repeatTime);
 	}
@@ -515,10 +503,10 @@ void poseBabiesAsATeam(canvas, leader, players, guardians){
 	  copyTmpCanvasToRealCanvasAtPos(canvas, leaderBuffer,-100,0);
 	  //max of 24 babies take a LOT of render time. allow just this one thing to be async.
 	new Timer(new Duration(seconds:1), (){
-		num x = 50;
-		num y = 0;
-		num total = 0;
-		for(num i = 0; i<playerBuffers.length; i++){
+		int x = 50;
+		int y = 0;
+		//int total = 0;
+		for(int i = 0; i<playerBuffers.length; i++){
 				if(i == 6){
 					x = 50; //down a row
 					y = 75;
@@ -529,7 +517,7 @@ void poseBabiesAsATeam(canvas, leader, players, guardians){
 		//guardians down a bit
 		x = 50;
 		y += 100;
-		for(num i = 0; i<guardianBuffers.length; i++){
+		for(int i = 0; i<guardianBuffers.length; i++){
 				if(i == 6){
 					x = 50; //down a row
 					y += 75;
@@ -544,21 +532,21 @@ void poseBabiesAsATeam(canvas, leader, players, guardians){
 
 
 //might be repeats of players in there, cause of time clones
-void poseAsATeam(canvas, players){
+void poseAsATeam(CanvasElement canvas, List<Player> players){
   if(checkSimMode() == true){
     return;
   }
-	List<dynamic> spriteBuffers = [];
-	num startXpt = -235;
-	for(num i = 0; i<players.length; i++){
+	List<CanvasElement> spriteBuffers = [];
+	int startXpt = -235;
+	for(int i = 0; i<players.length; i++){
 		spriteBuffers.add(getBufferCanvas(querySelector("#sprite_template")));
 		drawSprite(spriteBuffers[i],players[i]);
 	}
 
-		var x = startXpt; //-275 cuts of left most part.
-		num y = 0;
-		num total = 0;
-		for(num i = 0; i<spriteBuffers.length; i++){
+		int x = startXpt; //-275 cuts of left most part.
+		int y = 0;
+		//int total = 0;
+		for(int i = 0; i<spriteBuffers.length; i++){
 			if(i == 6){
 				x = startXpt; //down a row
 				y = 100;
@@ -573,27 +561,27 @@ void poseAsATeam(canvas, players){
 
 
 
-void drawGodRevival(canvas, live_players, dead_players){
+void drawGodRevival(CanvasElement canvas, List<Player> live_players, List<Player> dead_players){
   if(checkSimMode() == true){
     return;
   }
-	List<dynamic> live_spriteBuffers = [];
-	List<dynamic> dead_spriteBuffers = [];
-	for(num i = 0; i<live_players.length; i++){
+	List<CanvasElement> live_spriteBuffers = [];
+	List<CanvasElement> dead_spriteBuffers = [];
+	for(int i = 0; i<live_players.length; i++){
 		live_spriteBuffers.add(getBufferCanvas(querySelector("#sprite_template")));
 		drawSprite(live_spriteBuffers[i],live_players[i]);
 	}
 
-	for(num i = 0; i<dead_players.length; i++){
+	for(int i = 0; i<dead_players.length; i++){
 		dead_spriteBuffers.add(getBufferCanvas(querySelector("#sprite_template")));
 		//drawBG(dead_spriteBuffers[i], "#00ff00", "#ff0000");
 		drawSprite(dead_spriteBuffers[i],dead_players[i]);
 	}
 
-		num x = -275;
-		num y = -50;
-		num total = 0;
-		for(num i = 0; i<live_spriteBuffers.length; i++){
+		int x = -275;
+		int y = -50;
+		int total = 0;
+		for(int i = 0; i<live_spriteBuffers.length; i++){
 			if(i == 6){
 				x = -300; //down a row
 				y = 100;
@@ -606,7 +594,7 @@ void drawGodRevival(canvas, live_players, dead_players){
 		//render again, but offset, makes rainbow an aura
 		x = -260;
 		y = -35;
-		for(num i = 0; i<live_spriteBuffers.length; i++){
+		for(int i = 0; i<live_spriteBuffers.length; i++){
 			if(i == 6){
 				x = -285; //down a row
 				y = 85;
@@ -615,7 +603,7 @@ void drawGodRevival(canvas, live_players, dead_players){
 			copyTmpCanvasToRealCanvasAtPos(canvas, live_spriteBuffers[i],x,y);
 		}
 		y += 50; //dead players need to be rendered higher.
-		for(num i = 0; i<dead_spriteBuffers.length; i++){
+		for(int i = 0; i<dead_spriteBuffers.length; i++){
 			if(total == 6){
 				x = -300; //down a row
 				y += 120;
@@ -629,18 +617,18 @@ void drawGodRevival(canvas, live_players, dead_players){
 
 
 //should only be used at the end, draws the player and their stats.
-void drawCharSheet(canvas, player){
+void drawCharSheet(CanvasElement canvas, Player player){
   if(checkSimMode() == true){
     return;
   }
   drawSinglePlayer(canvas, player);
   drawWhatever(canvas, "charSheet.png");
-  num space_between_lines = 25;
-  num left_margin = 100;
-  num right_margin = 300;
-  num line_height = 24;
-  num start = 30;
-  num current = 275;
+  //int space_between_lines = 25;
+  int left_margin = 100;
+  int right_margin = 300;
+  int line_height = 24;
+  //int start = 30;
+  int current = 275;
 
   CanvasRenderingContext2D ctx = canvas.getContext("2d");
   //title
@@ -655,38 +643,38 @@ void drawCharSheet(canvas, player){
   left_margin = 10;
   current = current + 42+42;
   ctx.fillStyle = "#000000";
-  var allStats = player.allStats();
-  for(num i = 0; i<allStats.length; i++){
+  List<String> allStats = player.allStats();
+  for(int i = 0; i<allStats.length; i++){
     ctx.fillText(allStats[i] +": ",left_margin,current+line_height*i);
-    ctx.fillText(player.getStat(allStats[i]),right_margin,current+line_height*i);
+    ctx.fillText(player.getStat(allStats[i]).toString(),right_margin,current+line_height*i);
   }
-  var i = allStats.length;
+  int i = allStats.length;
 
     ctx.fillText("MANGRIT: ",left_margin,current+line_height*i);
     ctx.fillText((player.permaBuffs["MANGRIT"]).round(),right_margin,current+line_height*i);
     i++;
 
   ctx.fillText("Quests Completed: ",left_margin,current+line_height*i);
-  ctx.fillText(player.getStat("landLevel"),right_margin,current+line_height*i);
+  ctx.fillText(player.getStat("landLevel").toString(),right_margin,current+line_height*i);
   i++;
 
   ctx.fillText("Former Friends Killed: ",left_margin,current+line_height*i);
-  ctx.fillText(player.pvpKillCount,right_margin,current+line_height*i);
+  ctx.fillText(player.pvpKillCount.toString(),right_margin,current+line_height*i);
   i++;
   ctx.fillText("Fraymotifs Unlocked: ",left_margin,current+line_height*i);
-  ctx.fillText(player.fraymotifs.length,right_margin,current+line_height*i);
+  ctx.fillText(player.fraymotifs.length.toString(),right_margin,current+line_height*i);
   i++;
   ctx.fillText("Grim Dark Level: ",left_margin,current+line_height*i);
-  ctx.fillText(player.grimDark + "/4",right_margin,current+line_height*i);
+  ctx.fillText("${player.grimDark}/4",right_margin,current+line_height*i);
 
 
   i++;
   ctx.fillText("Doomed Clones: ",left_margin,current+line_height*i);
-  ctx.fillText(player.doomedTimeClones.length ,right_margin,current+line_height*i);
+  ctx.fillText(player.doomedTimeClones.length.toString() ,right_margin,current+line_height*i);
 
   i++;
   ctx.fillText("Times Died: ",left_margin,current+line_height*i);
-  ctx.fillText(player.timesDied ,right_margin,current+line_height*i);
+  ctx.fillText(player.timesDied.toString() ,right_margin,current+line_height*i);
 
   if(player.dead){
     i++;
@@ -701,20 +689,20 @@ void drawCharSheet(canvas, player){
 
 
 
-void drawGetTiger(canvas, players){
+void drawGetTiger(CanvasElement canvas, List<Player> players){
   if(checkSimMode() == true){
     return;
   }
-	List<dynamic> spriteBuffers = [];
-	for(num i = 0; i<players.length; i++){
+	List<CanvasElement> spriteBuffers = [];
+	for(int i = 0; i<players.length; i++){
 		spriteBuffers.add(getBufferCanvas(querySelector("#sprite_template")));
 		drawSprite(spriteBuffers[i],players[i]);
 	}
 
-		num x = -275;
-		num y = -50;
+		int x = -275;
+		int y = -50;
 
-		for(num i = 0; i<spriteBuffers.length; i++){
+		for(int i = 0; i<spriteBuffers.length; i++){
 			if(i == 6){
 				x = -300; //down a row
 				y = 100;
@@ -727,7 +715,7 @@ void drawGetTiger(canvas, players){
 		//render again, but offset, makes rainbow an aura
 		x = -260;
 		y = -35;
-		for(num i = 0; i<spriteBuffers.length; i++){
+		for(int i = 0; i<spriteBuffers.length; i++){
 			if(i == 6){
 				x = -285; //down a row
 				y = 85;
@@ -741,7 +729,7 @@ void drawGetTiger(canvas, players){
 
 //player on left, echeladder on right. text with boonies. all levels listed
 //obtained levels have a colored background, others have black.
-void drawLevelUp(canvas, player){
+void drawLevelUp(CanvasElement canvas, Player player){
   if(checkSimMode() == true){
     return;
   }
@@ -751,18 +739,16 @@ void drawLevelUp(canvas, player){
 		return;
 	}
   //for echeladder
-  var canvasSpriteBuffer = getBufferCanvas(querySelector("#canvas_template"));
+  CanvasElement canvasSpriteBuffer = getBufferCanvas(querySelector("#canvas_template"));
   CanvasRenderingContext2D ctx = canvasSpriteBuffer.getContext('2d');
   String imageString = "echeladder.png";
   addImageTag(imageString);
-  var img=querySelector("#${imageString}");
-  var width = img.width;
-  var height = img.height;
+  ImageElement img=querySelector("#${imageString}");
   ctx.drawImage(img,0,0,);
   swapColors(canvasSpriteBuffer, "#4a92f7", getColorFromAspect(player.aspect));
   //set fill before you start, don't set it in the for loop, expensive
   ctx.fillStyle="#000000";
-  for(num i = 0; i<level_bg_colors.length; i++){
+  for(int i = 0; i<level_bg_colors.length; i++){
 	  if(player.level_index < i){
 		//swapColors(canvasSpriteBuffer, level_bg_colors[i], "#000000" ); //black out levels i don't yet have
     //x,y,width,height
@@ -770,14 +756,14 @@ void drawLevelUp(canvas, player){
 	  }
   }
 
-  var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+  CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
   	if(player.dead){
 		drawSprite(pSpriteBuffer,player);
 	}else{
 		drawSprite(pSpriteBuffer,player);
 	}
 
-  var levelsBuffer = getBufferCanvas(querySelector("#echeladder_template"));
+  CanvasElement levelsBuffer = getBufferCanvas(querySelector("#echeladder_template"));
   writeLevels(levelsBuffer,player); //level_bg_colors,level_font_colors
 
 	copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
@@ -790,28 +776,26 @@ void drawLevelUp(canvas, player){
 
 //player in center, on platform, level name underneath them. aspect symbol behind them.
 //bg color is shirt color
-void drawLevelUpGodTier(canvas, player){
+void drawLevelUpGodTier(CanvasElement canvas, Player player){
 	 if(checkSimMode() == true){
 		return;
 	}
-	num leftMargin = 150;
-	var levelBuffer = getBufferCanvas(querySelector("#godtierlevelup_template"));
+	int leftMargin = 150;
+	CanvasElement levelBuffer = getBufferCanvas(querySelector("#godtierlevelup_template"));
 	drawBGRadialWithWidth(canvas, leftMargin, 650,650,"#000000",getShirtColorFromAspect(player.aspect));  //650 is iold
 
 
-	var symbolBuffer = getBufferCanvas(querySelector("#sprite_template"));
+	CanvasElement symbolBuffer = getBufferCanvas(querySelector("#sprite_template"));
 	drawGodSymbolBG(symbolBuffer, player);
 
-	var godBuffer = getBufferCanvas(querySelector("#godtierlevelup_template"));
+	CanvasElement godBuffer = getBufferCanvas(querySelector("#godtierlevelup_template"));
 	CanvasRenderingContext2D ctx = godBuffer.getContext('2d');
 	String imageString = "godtierlevelup.png";
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
+	ImageElement img=querySelector("#${imageString}");
 	ctx.drawImage(img,0,0);
 
-	var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+	CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 	if(player.dead){
 		drawSprite(pSpriteBuffer,player);
 	}else{
@@ -832,13 +816,11 @@ void drawLevelUpGodTier(canvas, player){
 
 
 
-void drawGodSymbolBG(canvas, player){
+void drawGodSymbolBG(CanvasElement canvas, Player player){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
-	var imageString = player.aspect + "Big.png";
+	String imageString = player.aspect + "Big.png";
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
+	ImageElement img=querySelector("#${imageString}");
 	ctx.drawImage(img,0,0);
 
 }
@@ -846,18 +828,16 @@ void drawGodSymbolBG(canvas, player){
 
 
 //true random position
-void drawWhateverTerezi(canvas, imageString){
+void drawWhateverTerezi(CanvasElement canvas, String imageString){
   if(checkSimMode() == true){
     return;
   }
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
-  //all true random
-  var x = getRandomIntNoSeed(0, 50);
-  var y = getRandomIntNoSeed(0,50);
+	ImageElement img=querySelector("#${imageString}");
+	//	//  //all true random
+  int x = getRandomIntNoSeed(0, 50);
+  int y = getRandomIntNoSeed(0,50);
   if(random() > .5) x = x * -1;
   if(random() > .5) y = y * -1;
 	ctx.drawImage(img,x,y);
@@ -865,7 +845,7 @@ void drawWhateverTerezi(canvas, imageString){
 
 
 
-void drawWhateverTurnways(canvas, imageString){
+void drawWhateverTurnways(CanvasElement canvas, String imageString){
   if(checkSimMode() == true){
     return;
   }
@@ -879,7 +859,7 @@ void drawWhateverTurnways(canvas, imageString){
 
 
 //have i really been too lazy to make this until now
-void drawWhatever(canvas, imageString){
+void drawWhatever(CanvasElement canvas, String imageString){
   if(checkSimMode() == true){
     return;
   }
@@ -895,53 +875,49 @@ void drawWhatever(canvas, imageString){
 
 
 
-void drawDreamBubble(canvas){
+void drawDreamBubble(CanvasElement canvas){
   if(checkSimMode() == true){
     return;
   }
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
-	var imageString ="dreambubbles.png";
+	String imageString ="dreambubbles.png";
 	addImageTag(imageString);
-	var img=querySelector("#${escapeId(imageString)}");
+	ImageElement img=querySelector("#${escapeId(imageString)}");
 	ctx.drawImage(img,0,0);
 
 }
 
 
 
-void drawHorrorterror(canvas){
+void drawHorrorterror(CanvasElement canvas){
   if(checkSimMode() == true){
     return;
   }
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
-	var imageString ="horrorterror.png";
+	String imageString ="horrorterror.png";
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
-	ctx.drawImage(img,0,0);
+	ImageElement img=querySelector("#${imageString}");
+			ctx.drawImage(img,0,0);
 
 }
 
 
 
-void drawMoon(canvas, player){
+void drawMoon(CanvasElement canvas, Player player){
   if(checkSimMode() == true){
     return;
   }
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
-	var imageString =player.moon + ".png";
+	String imageString =player.moon + ".png";
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
-	ctx.drawImage(img,0,0);
+	ImageElement img=querySelector("#${imageString}");
+			ctx.drawImage(img,0,0);
 }
 
 
 
-void writeLevelGod(canvas, player){
-	num left_margin = 0; //center
+void writeLevelGod(CanvasElement canvas, Player player){
+	//int left_margin = 0; //center
 	CanvasRenderingContext2D ctx = canvas.getContext("2d");
 	ctx.textAlign="center";
 	ctx.font = "bold 32px Times New Roman";
@@ -954,17 +930,17 @@ void writeLevelGod(canvas, player){
 
 
 //no image, so no repeat needed.
-void writeLevels(canvas, player){
-	num left_margin = 101; //center
-	num line_height = 17.0;
-	num start = 289; //start at bottom, go up
-	var current = start;
+void writeLevels(CanvasElement canvas, Player player){
+	int left_margin = 101; //center
+	double line_height = 17.0;
+	int start = 289; //start at bottom, go up
+	double current = start.toDouble();
 	CanvasRenderingContext2D ctx = canvas.getContext("2d");
 	ctx.textAlign="center";
 	ctx.font = "bold 12px Courier New";
 	ctx.fillStyle = "#ffffff";
 
-	for(num i = 0; i<player.mylevels.length; i++){
+	for(int i = 0; i<player.mylevels.length; i++){
 		if(player.level_index+1 > i){
 			ctx.fillStyle = level_font_colors[i];
 		}else{
@@ -977,28 +953,26 @@ void writeLevels(canvas, player){
 
 
 
-void drawRelationshipChat(canvas, player1, player2, chat){
+void drawRelationshipChat(CanvasElement canvas, Player player1, player2, chat){
 
   if(checkSimMode() == true){
     return;
   }
-	var canvasSpriteBuffer = getBufferCanvas(querySelector("#canvas_template"));
+	CanvasElement canvasSpriteBuffer = getBufferCanvas(querySelector("#canvas_template"));
 	CanvasRenderingContext2D ctx = canvasSpriteBuffer.getContext('2d');
 	String imageString = "pesterchum.png";
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
-	ctx.drawImage(img,0,0);
+	ImageElement img=querySelector("#${imageString}");
+			ctx.drawImage(img,0,0);
 
-	var p1SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+	CanvasElement p1SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 	drawSprite(p1SpriteBuffer,player1);
 
-	var p2SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+	CanvasElement p2SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 	drawSpriteTurnways(p2SpriteBuffer,player2);
 
 	//don't need buffer for text?
-	var textSpriteBuffer = getBufferCanvas(querySelector("#chat_text_template"));
+	CanvasElement textSpriteBuffer = getBufferCanvas(querySelector("#chat_text_template"));
 	String introText = "-- " +player1.chatHandle + " [" + player1.chatHandleShort()+ "] began pestering ";
 	introText += player2.chatHandle + " [" + player2.chatHandleShort()+ "] --";
 	drawChatText(textSpriteBuffer,player1, player2, introText, chat);
@@ -1006,10 +980,10 @@ void drawRelationshipChat(canvas, player1, player2, chat){
 	//heart or spades (moirallegence doesn't get confessed, it's more actiony)  spades is trolls only
 
 
-	var r1 = player1.getRelationshipWith(player2);
-	var r2 = player2.getRelationshipWith(player1);
-	var r1SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-	var r2SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+	Relationship r1 = player1.getRelationshipWith(player2);
+	Relationship r2 = player2.getRelationshipWith(player1);
+	CanvasElement r1SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+    CanvasElement r2SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 
 	if(r1.saved_type == r1.goodBig || r1.saved_type == r1.heart){
 		drawHeart(r1SpriteBuffer);
@@ -1048,31 +1022,29 @@ bool checkSimMode(){
 
 
 
-void drawChatJRPlayer(canvas, chat, player){
+void drawChatJRPlayer(CanvasElement canvas, String chat, Player player){
   if(checkSimMode() == true){
     return;
   }
 
-  var canvasSpriteBuffer = getBufferCanvas(querySelector("#canvas_template"));
+  CanvasElement canvasSpriteBuffer = getBufferCanvas(querySelector("#canvas_template"));
 	CanvasRenderingContext2D ctx = canvasSpriteBuffer.getContext('2d');
 	String imageString = "pesterchum.png";
 	addImageTag(imageString);
-	var img=querySelector("#${escapeId(imageString)}");
-	var width = img.width;
-	var height = img.height;
-    if(img == null) {
+	ImageElement img=querySelector("#${escapeId(imageString)}");
+		    if(img == null) {
         print("img was null!");
         print("was looking for ${escapeId(imageString)}");
     }
 	ctx.drawImage(img,0,0);
 
-	var jrSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+	CanvasElement jrSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 	drawJR(jrSpriteBuffer);
 
-  var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+  CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 	drawSpriteTurnways(pSpriteBuffer,player);
 
-  var textSpriteBuffer = getBufferCanvas(querySelector("#chat_text_template"));
+  CanvasElement textSpriteBuffer = getBufferCanvas(querySelector("#chat_text_template"));
 	String introText = "-- jadedResearcher [AB] began pestering ";
 	introText += player.chatHandle + " [" + player.chatHandleShort()+ "] --";
 	drawChatTextJRPlayer(textSpriteBuffer, introText, chat,player);
@@ -1087,7 +1059,7 @@ void drawChatJRPlayer(canvas, chat, player){
 
 
 //she is the best <3
-void drawChatABJR(canvas, chat){
+void drawChatABJR(CanvasElement canvas, chat){
   if(checkSimMode() == true){
     return;
   }
@@ -1096,7 +1068,7 @@ void drawChatABJR(canvas, chat){
 
 
 
-void drawChatJRAB(canvas, chat){
+void drawChatJRAB(CanvasElement canvas, chat){
   if(checkSimMode() == true){
     return;
   }
@@ -1108,11 +1080,11 @@ void drawChatJRAB(canvas, chat){
 
 //drawChatTextNonPlayer canvas, introText, chat, player1Start, player2Start, player1Color, player2Color
 //could be spadeslick talking to one of his crew,  could be an easter egg recursiveSlacker
-void drawChatNonPlayer(canvas, chat, introText, player1PNG, player2PNG, player1Start, player2Start, player1Color, player2Color ){
+void drawChatNonPlayer(CanvasElement canvas, chat, introText, player1PNG, player2PNG, player1Start, player2Start, player1Color, player2Color ){
   if(checkSimMode() == true){
     return;
   }
-  var canvasSpriteBuffer = getBufferCanvas(querySelector("#canvas_template"));
+  CanvasElement canvasSpriteBuffer = getBufferCanvas(querySelector("#canvas_template"));
   CanvasRenderingContext2D ctx = canvasSpriteBuffer.getContext('2d');
 	String imageString = "pesterchum.png";
 	addImageTag(imageString);
@@ -1123,13 +1095,13 @@ void drawChatNonPlayer(canvas, chat, introText, player1PNG, player2PNG, player1S
     }
 	ctx.drawImage(img,0,0);
 
-	var p2SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+	CanvasElement p2SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 	drawWhateverTurnways(p2SpriteBuffer, player2PNG);
 
-	var p1SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+	CanvasElement p1SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 	drawWhatever(p1SpriteBuffer,player1PNG);
 	//don't need buffer for text?
-	var textSpriteBuffer = getBufferCanvas(querySelector("#chat_text_template"));
+	CanvasElement textSpriteBuffer = getBufferCanvas(querySelector("#chat_text_template"));
 	drawChatTextNonPlayer(textSpriteBuffer, introText, chat,player1Start, player2Start, player1Color, player2Color);
 	//drawBG(textSpriteBuffer, "#ff9999", "#ff00ff") //test that it's actually being rendered.
 	//p1 on left, chat in middle, p2 on right and flipped turnways.
@@ -1146,8 +1118,8 @@ void drawChatNonPlayer(canvas, chat, introText, player1PNG, player2PNG, player1S
 
 
 //hella simple, mostly gonna be used for corpses.
-void drawSinglePlayer(canvas, player){
-  var p1SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+void drawSinglePlayer(CanvasElement canvas, Player player){
+  CanvasElement p1SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 	drawSprite(p1SpriteBuffer,player);
   //drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff");
   copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,0,0);
@@ -1156,30 +1128,28 @@ void drawSinglePlayer(canvas, player){
 
 
 //need to parse the text to figure out who is talking to determine color for chat.
-void drawChat(canvas, player1, player2, chat, topicImage){
+void drawChat(CanvasElement canvas, Player player1, Player player2, String chat, String topicImage){
   if(checkSimMode() == true){
     return;
   }
 	//debug("drawing chat");
 	//draw sprites to buffer (don't want them pallete swapping each other)
 	//then to main canvas
-	var canvasSpriteBuffer = getBufferCanvas(querySelector("#canvas_template"));
+	CanvasElement canvasSpriteBuffer = getBufferCanvas(querySelector("#canvas_template"));
   CanvasRenderingContext2D ctx = canvasSpriteBuffer.getContext('2d');
 	String imageString = "pesterchum.png";
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
-	ctx.drawImage(img,0,0);
+	ImageElement img=querySelector("#${imageString}");
+			ctx.drawImage(img,0,0);
 
-	var p1SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+	CanvasElement p1SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 	drawSprite(p1SpriteBuffer,player1);
 
-	var p2SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+	CanvasElement p2SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 	drawSpriteTurnways(p2SpriteBuffer,player2);
 
 	//don't need buffer for text?
-	var textSpriteBuffer = getBufferCanvas(querySelector("#chat_text_template"));
+	CanvasElement textSpriteBuffer = getBufferCanvas(querySelector("#chat_text_template"));
 	String introText = "-- " +player1.chatHandle + " [" + player1.chatHandleShort()+ "] began pestering ";
 	introText += player2.chatHandle + " [" + player2.chatHandleShort()+ "] --";
 	drawChatText(textSpriteBuffer,player1, player2, introText, chat);
@@ -1190,8 +1160,8 @@ void drawChat(canvas, player1, player2, chat, topicImage){
 	copyTmpCanvasToRealCanvasAtPos(canvas, canvasSpriteBuffer,230,0);
 	copyTmpCanvasToRealCanvasAtPos(canvas, textSpriteBuffer,244,51);
 
-  if(topicImage){
-    var topicBuffer = getBufferCanvas(querySelector("#canvas_template"));
+  if(topicImage != null){
+    CanvasElement topicBuffer = getBufferCanvas(querySelector("#canvas_template"));
     drawTopic(topicBuffer, topicImage);
     copyTmpCanvasToRealCanvasAtPos(canvas, topicBuffer,0,0);
   }
@@ -1199,17 +1169,15 @@ void drawChat(canvas, player1, player2, chat, topicImage){
 
 
 
-void drawAb(canvas){
+void drawAb(CanvasElement canvas){
   if(checkSimMode() == true){
     return;
   }
   CanvasRenderingContext2D ctx = canvas.getContext('2d');
   String imageString = "ab.png";
   addImageTag(imageString);
-  var img=querySelector("#${imageString}");
-  var width = img.width;
-  var height = img.height;
-  ctx.drawImage(img,0,0);
+  ImageElement img=querySelector("#${imageString}");
+      ctx.drawImage(img,0,0);
 }
 
 
@@ -1229,7 +1197,7 @@ void drawJR(CanvasElement canvas, [CanvasRenderingContext2D ctx = null]){
 
 
 
-void drawJRTurnways(canvas){
+void drawJRTurnways(CanvasElement canvas){
   if(checkSimMode() == true){
     return;
   }
@@ -1244,22 +1212,20 @@ void drawJRTurnways(canvas){
 
 
 
-void drawTopic(canvas, topicImage){
+void drawTopic(CanvasElement canvas, String topicImage){
   if(checkSimMode() == true){
     return;
   }
   CanvasRenderingContext2D ctx = canvas.getContext('2d');
-  var imageString = topicImage;
+  String imageString = topicImage;
   addImageTag(imageString);
-  var img=querySelector("#${imageString}");
-  var width = img.width;
-  var height = img.height;
-  ctx.drawImage(img,0,0);
+  ImageElement img=querySelector("#${imageString}");
+      ctx.drawImage(img,0,0);
 }
 
 
 
-void drawComboText(canvas, comboNum){
+void drawComboText(CanvasElement canvas, int comboNum){
 	//alert(comboNum + "x CORPSESMOOCH COMBO!!!");
 	CanvasRenderingContext2D ctx = canvas.getContext("2d");
 	ctx.font = "14px Courier New Bold";
@@ -1272,18 +1238,18 @@ void drawComboText(canvas, comboNum){
 	for(int i = 0; i<comboNum; i++){
 		excite += "!";
 	}
-	ctx.fillText(comboNum + "x CORPSESMOOCH COMBO"+excite,20,20);
+	ctx.fillText("${comboNum}x CORPSESMOOCH COMBO"+excite,20,20);
 
 }
 
 
 
-void drawChatTextJRPlayer(canvas, introText, chat, player){
-  num space_between_lines = 25;
-	num left_margin = 8;
-	num line_height = 18;
-	num start = 18;
-	num current = 18;
+void drawChatTextJRPlayer(CanvasElement canvas, String introText, String chat, Player player){
+  //int space_between_lines = 25;
+	int left_margin = 8;
+	int line_height = 18;
+	//int start = 18;
+	int current = 18;
 	CanvasRenderingContext2D ctx = canvas.getContext("2d");
 	ctx.font = "12px Times New Roman";
   if(player.sbahj){
@@ -1297,12 +1263,12 @@ void drawChatTextJRPlayer(canvas, introText, chat, player){
 
 
 
-void drawChatTextNonPlayer(canvas, introText, chat, player1Start, player2Start, player1Color, player2Color){
-  num space_between_lines = 25;
-	num left_margin = 8;
-	num line_height = 18;
-	num start = 18;
-	num current = 18;
+void drawChatTextNonPlayer(CanvasElement canvas, String introText, String chat, String player1Start, String player2Start, String player1Color, String player2Color){
+  //int space_between_lines = 25;
+	int left_margin = 8;
+	int line_height = 18;
+	//int start = 18;
+	int current = 18;
 	CanvasRenderingContext2D ctx = canvas.getContext("2d");
 	ctx.font = "12px Times New Roman";
 	ctx.fillStyle = "#000000";
@@ -1314,12 +1280,12 @@ void drawChatTextNonPlayer(canvas, introText, chat, player1Start, player2Start, 
 
 
 
-void drawChatText(canvas, player1, player2, introText, chat){
-	num space_between_lines = 25;
-	num left_margin = 8;
-	num line_height = 18;
-	num start = 18;
-	num current = 18;
+void drawChatText(CanvasElement canvas, Player player1, Player player2, String introText, String chat){
+	//int space_between_lines = 25;
+	int left_margin = 8;
+	int line_height = 18;
+	//int start = 18;
+	int current = 18;
 	CanvasRenderingContext2D ctx = canvas.getContext("2d");
 	ctx.font = "12px Times New Roman";
   if(player1.sbahj){
@@ -1334,7 +1300,7 @@ void drawChatText(canvas, player1, player2, introText, chat){
 
 
 
-void drawSolidBG(canvas, color){
+void drawSolidBG(CanvasElement canvas, color){
   CanvasRenderingContext2D ctx = canvas.getContext("2d");
 	ctx.fillStyle = color;
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -1342,11 +1308,10 @@ void drawSolidBG(canvas, color){
 
 
 
-void drawBG(canvas, color1, color2){
-	//var c = querySelector("#${canvasId}");
-	CanvasRenderingContext2D ctx = canvas.getContext("2d");
+void drawBG(CanvasElement canvas, color1, color2){
+		CanvasRenderingContext2D ctx = canvas.getContext("2d");
 
-	var grd = ctx.createLinearGradient(0, 0, 170, 0);
+	CanvasGradient grd = ctx.createLinearGradient(0, 0, 170, 0);
 	grd.addColorStop(0, color1);
 	grd.addColorStop(1, color2);
 
@@ -1356,11 +1321,10 @@ void drawBG(canvas, color1, color2){
 
 
 
-void drawBGRadialWithWidth(canvas, startX, endX, width, color1, color2){
-	//var c = querySelector("#${canvasId}");
-	CanvasRenderingContext2D ctx = canvas.getContext("2d");
+void drawBGRadialWithWidth(CanvasElement canvas, startX, endX, width, color1, color2){
+		CanvasRenderingContext2D ctx = canvas.getContext("2d");
 
-	var grd = ctx.createRadialGradient(width/2,canvas.height/2,5,width,canvas.height,width);
+	CanvasGradient grd = ctx.createRadialGradient(width/2,canvas.height/2,5,width,canvas.height,width);
 	grd.addColorStop(0, color1);
 	grd.addColorStop(1, color2);
 
@@ -1370,11 +1334,11 @@ void drawBGRadialWithWidth(canvas, startX, endX, width, color1, color2){
 
 
 
-void denizenKill(canvas, player){
+void denizenKill(CanvasElement canvas, Player player){
   if(checkSimMode() == true){
     return;
   }
-  var p1SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+  CanvasElement p1SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
   //drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff");
 	CanvasRenderingContext2D ctx = p1SpriteBuffer.getContext('2d');
 //  drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff");
@@ -1382,56 +1346,48 @@ void denizenKill(canvas, player){
   //ctx.rotate(90*Math.PI/180);
 	String imageString = "denizoned.png";
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
-	ctx.drawImage(img,0,0); //why can't i use a buffer, it's not showing up..
+	ImageElement img=querySelector("#${imageString}");
+			ctx.drawImage(img,0,0); //why can't i use a buffer, it's not showing up..
   copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,0,0);//why is it so far right???
 
 }
 
 
 
-void stabs(canvas, player){
+void stabs(CanvasElement canvas, Player player){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString = "stab.png";
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
-	ctx.drawImage(img,0,0);
+	ImageElement img=querySelector("#${imageString}");
+			ctx.drawImage(img,0,0);
 	swapColors(canvas, "#fffc00", player.bloodColor);
 }
 
 
 
-void kingDeath(canvas, player){
+void kingDeath(CanvasElement canvas, Player player){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString = "sceptre.png";
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
-	ctx.drawImage(img,0,0);
+	ImageElement img=querySelector("#${imageString}");
+			ctx.drawImage(img,0,0);
 	swapColors(canvas, "#fffc00", player.bloodColor);
 }
 
 
 
-void bloodPuddle(canvas, player){
+void bloodPuddle(CanvasElement canvas, Player player){
     CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString = "blood_puddle.png";
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
-	ctx.drawImage(img,0,0);
+	ImageElement img=querySelector("#${imageString}");
+			ctx.drawImage(img,0,0);
 	swapColors(canvas, "#fffc00", player.bloodColor);
 }
 
 
 
-void drawSpriteTurnways(canvas, player){
+void drawSpriteTurnways(CanvasElement canvas, Player player){
   if(checkSimMode() == true){
     return;
   }
@@ -1447,7 +1403,7 @@ void drawSpriteTurnways(canvas, player){
 
 
 
-void drawBabySprite(canvas, player){
+void drawBabySprite(CanvasElement canvas, Player player){
   if(checkSimMode() == true){
     return;
   }
@@ -1478,7 +1434,7 @@ void drawSprite(CanvasElement canvas, Player inputplayer, [CanvasRenderingContex
         //print("drawing ghost or doomed player from scratch: " + player);
         drawSpriteFromScratch(canvas, player, ctx, false);
     }else{
-      var canvasDiv = querySelector("#${player.spriteCanvasID}");
+      CanvasElement canvasDiv = querySelector("#${player.spriteCanvasID}");
       //also take care of face scratches and mind control symbols.
       copyTmpCanvasToRealCanvasAtPos(canvas, canvasDiv,0,0);
     }
@@ -1632,7 +1588,7 @@ void drawSpriteFromScratch(CanvasElement canvas, Player player, [CanvasRendering
 
 
 void playerToSprite(CanvasElement canvas, Player player){
-	CanvasRenderingContext2D ctx = canvas.getContext('2d');
+	//CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	if(player.robot == true){
 		robotSprite(canvas, player);
 	}else if(player.trickster){
@@ -1649,128 +1605,110 @@ void playerToSprite(CanvasElement canvas, Player player){
 
 
 
-void robo_face(canvas, player){
+void robo_face(CanvasElement canvas, Player player){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString = "robo_face.png";
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
-	ctx.drawImage(img,0,0);
+	ImageElement img=querySelector("#${imageString}");
+			ctx.drawImage(img,0,0);
 }
 
 
 
-void scar_face(canvas, player){
+void scar_face(CanvasElement canvas, Player player){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString = "calm_scratch_face.png";
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
-	ctx.drawImage(img,0,0);
+	ImageElement img=querySelector("#${imageString}");
+			ctx.drawImage(img,0,0);
 }
 
 
 
-void scratch_face(canvas, player){
+void scratch_face(CanvasElement canvas, Player player){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString = "scratch_face.png";
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
-	ctx.drawImage(img,0,0);
+	ImageElement img=querySelector("#${imageString}");
+			ctx.drawImage(img,0,0);
 	swapColors(canvas, "#fffc00", player.bloodColor); //it's their own blood
 }
 
 
 
 //not just murder mode, you could have killed a murder mode player.
-void bloody_face(canvas, player){
-	if(player.victimBlood){
+void bloody_face(CanvasElement canvas, Player player){
+	if(player.victimBlood != null){
 		CanvasRenderingContext2D ctx = canvas.getContext('2d');
 		String imageString = "bloody_face.png";
 		addImageTag(imageString);
-		var img=querySelector("#${imageString}");
-		var width = img.width;
-		var height = img.height;
-		ctx.drawImage(img,0,0);
+		ImageElement img=querySelector("#${imageString}");
+						ctx.drawImage(img,0,0);
 		swapColors(canvas, "#440a7f", player.victimBlood); //it's not their own blood
 	}
 }
 
 
 
-void drawDiamond(canvas){
+void drawDiamond(CanvasElement canvas){
   if(checkSimMode() == true){
     return;
   }
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString = "Moirail.png";
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
-	ctx.drawImage(img,0,0);
+	ImageElement img=querySelector("#${imageString}");
+			ctx.drawImage(img,0,0);
 }
 
 
 
-void drawHeart(canvas){
+void drawHeart(CanvasElement canvas){
   if(checkSimMode() == true){
     return;
   }
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString = "Matesprit.png";
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
-	ctx.drawImage(img,0,0);
+	ImageElement img=querySelector("#${imageString}");
+			ctx.drawImage(img,0,0);
 }
 
 
 
-void drawClub(canvas){
+void drawClub(CanvasElement canvas){
   if(checkSimMode() == true){
     return;
   }
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString = "Auspisticism.png";
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
-	ctx.drawImage(img,0,0);
+	ImageElement img=querySelector("#${imageString}");
+			ctx.drawImage(img,0,0);
 }
 
 
 
-void drawSpade(canvas){
+void drawSpade(CanvasElement canvas){
   if(checkSimMode() == true){
     return;
   }
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString = "Kismesis.png";
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
-	ctx.drawImage(img,0,0);
+	ImageElement img=querySelector("#${imageString}");
+			ctx.drawImage(img,0,0);
 }
 
 
 
-void hairBack(canvas, player){
+void hairBack(CanvasElement canvas, Player player){
   CanvasRenderingContext2D ctx = canvas.getContext('2d');
-	String imageString = "Hair/hair_back"+player.hair+".png";
+	String imageString = "Hair/hair_back${player.hair}.png";
   //print(imageString);
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
-	ctx.drawImage(img,0,0);
+	ImageElement img=querySelector("#${imageString}");
+			ctx.drawImage(img,0,0);
   if(player.sbahj){
     sbahjifier(canvas);
   }
@@ -1784,14 +1722,12 @@ void hairBack(canvas, player){
 }
 
 
-void hair(canvas, player){
+void hair(CanvasElement canvas, Player player){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
-	String imageString = "Hair/hair"+player.hair+".png";
+	String imageString = "Hair/hair${player.hair}.png";
 	addImageTag(imageString);
-	var img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
-	ctx.drawImage(img,0,0);
+	ImageElement img=querySelector("#${imageString}");
+			ctx.drawImage(img,0,0);
   if(player.sbahj){
     sbahjifier(canvas);
   }
@@ -1808,19 +1744,17 @@ void hair(canvas, player){
 
 //if the Waste of Mind/Observer sends a time player back
 //the influence is visible.
-void drawTimeGears(canvas){
+void drawTimeGears(CanvasElement canvas){
 	if(checkSimMode() == true){
     return;
   }
-  var p1SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+  CanvasElement p1SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
   //drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff");
   CanvasRenderingContext2D ctx = p1SpriteBuffer.getContext('2d');
   String imageString = "gears.png";
   addImageTag(imageString);
-  var img=querySelector("#${imageString}");
-  var width = img.width;
-  var height = img.height;
-  ctx.drawImage(img,0,0);
+  ImageElement img=querySelector("#${imageString}");
+      ctx.drawImage(img,0,0);
   copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,0,0);
 
 }
@@ -1828,26 +1762,22 @@ void drawTimeGears(canvas){
 
 
 //more than just yellow yard can do this.
-void influenceSymbol(canvas, symbol){
+void influenceSymbol(CanvasElement canvas, String symbol){
   CanvasRenderingContext2D ctx = canvas.getContext('2d');
-  var imageString = symbol;
+  String imageString = symbol;
   addImageTag(imageString);
-  var img=querySelector("#${imageString}");
-  var width = img.width;
-  var height = img.height;
-  ctx.drawImage(img,0,0);
+  ImageElement img=querySelector("#${imageString}");
+      ctx.drawImage(img,0,0);
 }
 
 
 
-void halo(canvas, symbol){
+void halo(CanvasElement canvas, String symbol){
   CanvasRenderingContext2D ctx = canvas.getContext('2d');
   String imageString = "halo.png";
   addImageTag(imageString);
-  var img=querySelector("#${imageString}");
-  var width = img.width;
-  var height = img.height;
-  ctx.drawImage(img,0,0);
+  ImageElement img=querySelector("#${imageString}");
+      ctx.drawImage(img,0,0);
 }
 
 
@@ -1856,14 +1786,12 @@ void halo(canvas, symbol){
 
 //if the Waste of Mind/Observer sends a time player back
 //the influence is visible.
-void wasteOfMindSymbol(canvas, player){
+void wasteOfMindSymbol(CanvasElement canvas, Player player){
   CanvasRenderingContext2D ctx = canvas.getContext('2d');
   String imageString = "mind_forehead.png";
   addImageTag(imageString);
-  var img=querySelector("#${imageString}");
-  var width = img.width;
-  var height = img.height;
-  ctx.drawImage(img,0,0);
+  ImageElement img=querySelector("#${imageString}");
+      ctx.drawImage(img,0,0);
 }
 
 
@@ -1872,9 +1800,7 @@ void princeTiara(CanvasElement canvas, Player player){
 	String imageString = "prince_hat.png";
 	addImageTag(imageString);
 	ImageElement img=querySelector("#${imageString}");
-	var width = img.width;
-	var height = img.height;
-	CanvasElement c2 = getBufferCanvas(canvas); //don't want to do color replacement on the existing image.
+			CanvasElement c2 = getBufferCanvas(canvas); //don't want to do color replacement on the existing image.
 	CanvasRenderingContext2D ctx2 = c2.context2D;
 	ctx2.drawImage(img,0,0);
 	aspectPalletSwap(c2, player);
@@ -1884,72 +1810,66 @@ void princeTiara(CanvasElement canvas, Player player){
 
 
 //TODO put classes in THIS order and just have a single line that is all_classes.index_of(player.class_name);
-String playerToRegularBody(player){
+String playerToRegularBody(Player player){
   if(easter_egg) return playerToEggBody(player);
   return "Bodies/" + "reg"+(classNameToInt(player.class_name)+1).toString()+".png";
 }
 
 
 
-String playerToDreamBody(player){
+String playerToDreamBody(Player player){
   if(easter_egg) return playerToEggBody(player);
   return "Bodies/" + "dream"+(classNameToInt(player.class_name)+1).toString()+".png";
 }
 
 
 
-String playerToEggBody(player){
+String playerToEggBody(Player player){
   return "Bodies/" + "egg"+(classNameToInt(player.class_name)+1).toString()+".png";
 }
 
 
 
-void robotSprite(canvas, player){
+void robotSprite(CanvasElement canvas, Player player){
   CanvasRenderingContext2D ctx = canvas.getContext('2d');
-	var imageString;
+	String imageString;
 	if(!player.godTier){
 		imageString = playerToRegularBody(player);
 	}else{
 		imageString = playerToGodBody(player);
 	}
 	  addImageTag(imageString);
-	  var img=querySelector("#${imageString}");
-	  var width = img.width;
-	  var height = img.height;
-	  ctx.drawImage(img,0,0);
+	  ImageElement img=querySelector("#${imageString}");
+	  	  	  ctx.drawImage(img,0,0);
 	  robotPalletSwap(canvas, player);
 	  //eeeeeh...could figure out how to color swap symbol, but lazy.
 }
 
 
 
-void tricksterSprite(canvas, player){
+void tricksterSprite(CanvasElement canvas, Player player){
   CanvasRenderingContext2D ctx = canvas.getContext('2d');
-	var imageString;
+	String imageString;
 	if(!player.godTier){
 		imageString = playerToRegularBody(player);
 	}else{
 		imageString = playerToGodBody(player);
 	}
 	  addImageTag(imageString);
-	  var img=querySelector("#${imageString}");
-	  var width = img.width;
-	  var height = img.height;
-	  ctx.drawImage(img,0,0);
+	  ImageElement img=querySelector("#${imageString}");
+	  	  	  ctx.drawImage(img,0,0);
 	  candyPalletSwap(canvas, player);
   //aspectSymbol(canvas, player);
 }
 
 
 
-void regularSprite(canvas, player){
-	var imageString = playerToRegularBody(player);
+void regularSprite(CanvasElement canvas, Player player){
+	String imageString = playerToRegularBody(player);
   CanvasRenderingContext2D ctx = canvas.getContext('2d');
   addImageTag(imageString);
-  var img=querySelector("#${imageString}");
-  var width = img.width;
-  var height = img.height;
-  ctx.drawImage(img,0,0);
+  ImageElement img=querySelector("#${imageString}");
+      ctx.drawImage(img,0,0);
   if(player.sbahj){
     sbahjifier(canvas);
   }
@@ -1959,36 +1879,32 @@ void regularSprite(canvas, player){
 
 
 
-void dreamSprite(canvas, player){
-  var imageString = playerToDreamBody(player);
+void dreamSprite(CanvasElement canvas, Player player){
+  String imageString = playerToDreamBody(player);
   addImageTag(imageString);
-  var img=querySelector("#${imageString}");
-  var width = img.width;
-  var height = img.height;
-  CanvasRenderingContext2D ctx = canvas.getContext("2d");
+  ImageElement img=querySelector("#${imageString}");
+      CanvasRenderingContext2D ctx = canvas.getContext("2d");
   ctx.drawImage(img,0,0);
   dreamPalletSwap(canvas, player);
 }
 
 
 
-String playerToGodBody(player){
+String playerToGodBody(Player player){
   if(easter_egg) return playerToEggBody(player);
   return "Bodies/" + "god"+(classNameToInt(player.class_name)+1).toString()+".png";
 }
 
 
 
-void godTierSprite(canvas, player){
+void godTierSprite(CanvasElement canvas, Player player){
 	//draw class, then color like aspect, then draw chest icon
   //ctx.drawImage(img,canvas.width/2,canvas.height/2,width,height);
   CanvasRenderingContext2D ctx = canvas.getContext("2d");
-	var imageString = playerToGodBody(player);
+	String imageString = playerToGodBody(player);
   addImageTag(imageString);
-  var img=querySelector("#${imageString}");
-  var width = img.width;
-  var height = img.height;
-  ctx.drawImage(img,0,0);
+  ImageElement img=querySelector("#${imageString}");
+      ctx.drawImage(img,0,0);
   if(bardQuest && player.class_name == "Bard"){
     drawWhatever(canvas, "/Bodies/cod.png");
   }
@@ -2001,17 +1917,15 @@ void godTierSprite(canvas, player){
 
 
 
-void babySprite(canvas, player){
+void babySprite(CanvasElement canvas, Player player){
   CanvasRenderingContext2D ctx = canvas.getContext('2d');
-  String imageString = "Bodies/baby"+player.baby + ".png";
+  String imageString = "Bodies/baby${player.baby}.png";
   if(player.isTroll){
-    imageString = "Bodies/grub"+player.baby + ".png";
+    imageString = "Bodies/grub${player.baby}.png";
   }
   addImageTag(imageString);
-  var img=querySelector("#${imageString}");
-  var width = img.width;
-  var height = img.height;
-  ctx.drawImage(img,0,0);
+  ImageElement img=querySelector("#${imageString}");
+      ctx.drawImage(img,0,0);
   if(player.sbahj){
     sbahjifier(canvas);
   }
@@ -2025,31 +1939,27 @@ void babySprite(canvas, player){
 
 
 
-void aspectSymbol(canvas, player){
+void aspectSymbol(CanvasElement canvas, Player player){
     CanvasRenderingContext2D ctx = canvas.getContext('2d');
-    var imageString = player.aspect + ".png";
+    String imageString = player.aspect + ".png";
     addImageTag(imageString);
-    var img=querySelector("#${imageString}");
-    var width = img.width;
-    var height = img.height;
-    ctx.drawImage(img,0,0);
+    ImageElement img=querySelector("#${imageString}");
+            ctx.drawImage(img,0,0);
 }
 
 
 
-void dreamSymbol(canvas, player){
+void dreamSymbol(CanvasElement canvas, Player player){
     CanvasRenderingContext2D ctx = canvas.getContext('2d');
-    var imageString = player.moon + "_symbol.png";
+    String imageString = player.moon + "_symbol.png";
     addImageTag(imageString);
-    var img=querySelector("#${imageString}");
-    var width = img.width;
-    var height = img.height;
-    ctx.drawImage(img,0,0);
+    ImageElement img=querySelector("#${imageString}");
+            ctx.drawImage(img,0,0);
 }
 
 
 
-void robotPalletSwap(canvas, player){
+void robotPalletSwap(CanvasElement canvas, Player player){
 	String oldcolor1 = "#FEFD49";
 	String oldcolor2 = "#FEC910";
 	String oldcolor3 = "#10E0FF";
@@ -2065,7 +1975,7 @@ void robotPalletSwap(canvas, player){
 
 	String new_color1 = "#0000FF";
 	String new_color2 = "#0022cf";
-	var new_color3 ="#B6B6B6";
+	String new_color3 ="#B6B6B6";
 	String new_color4 = "#A6A6A6";
 	String new_color5 = "#484848";
 	String new_color6 = "#595959";
@@ -2092,7 +2002,7 @@ void robotPalletSwap(canvas, player){
 
 
 
-void dreamPalletSwap(canvas, player){
+void dreamPalletSwap(CanvasElement canvas, Player player){
 	String oldcolor1 = "#FEFD49";
 	String oldcolor2 = "#FEC910";
 	String oldcolor3 = "#10E0FF";
@@ -2108,8 +2018,8 @@ void dreamPalletSwap(canvas, player){
 
 	String new_color1 = "#FFFF00";
 	String new_color2 = "#FFC935";
-	var new_color3 = getShirtColorFromAspect(player.aspect);
-	var new_color4 = getDarkShirtColorFromAspect(player.aspect);
+	String new_color3 = getShirtColorFromAspect(player.aspect);
+	String new_color4 = getDarkShirtColorFromAspect(player.aspect);
 	String new_color5 = "#FFCC00";
 	String new_color6 = "#FF9B00";
 	String new_color7 = "#C66900";
@@ -2147,7 +2057,7 @@ void dreamPalletSwap(canvas, player){
 
 
 
-void candyPalletSwap(canvas, player){
+void candyPalletSwap(CanvasElement canvas, Player player){
   //not all browsers do png gama info correctly. Chrome does, firefox does not, mostly.
   //remove it entirely with this command
   //pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB infile.png outfile.png
@@ -2344,7 +2254,7 @@ void candyPalletSwap(canvas, player){
 
 
 
-void aspectPalletSwap(canvas, player){
+void aspectPalletSwap(CanvasElement canvas, Player player){
   //not all browsers do png gama info correctly. Chrome does, firefox does not, mostly.
   //remove it entirely with this command
   //pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB infile.png outfile.png
@@ -2556,16 +2466,13 @@ void aspectPalletSwap(canvas, player){
 
 
 
-dynamic getBufferCanvas(canvas){
-	var tmp_canvas = document.createElement('canvas');
-	tmp_canvas.height = canvas.height;
-	tmp_canvas.width = canvas.width;
-	return tmp_canvas;
+dynamic getBufferCanvas(CanvasElement canvas){
+	return new CanvasElement(width: canvas.width, height: canvas.width);
 }
 
 
 
-void copyTmpCanvasToRealCanvasAtPos(canvas, tmp_canvas, x, y){
+void copyTmpCanvasToRealCanvasAtPos(CanvasElement canvas, CanvasElement tmp_canvas, int x, int y){
   CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	ctx.drawImage(tmp_canvas, x, y);
 }
@@ -2573,7 +2480,7 @@ void copyTmpCanvasToRealCanvasAtPos(canvas, tmp_canvas, x, y){
 
 
 //does not work how i hoped. does not render a canvas with alpha
-void copyTmpCanvasToRealCanvas50(canvas, tmp_canvas){
+void copyTmpCanvasToRealCanvas50(CanvasElement canvas, tmp_canvas){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
   ctx.globalAlpha = 0.5;
 	ctx.drawImage(tmp_canvas, 0, 0);
@@ -2582,7 +2489,7 @@ void copyTmpCanvasToRealCanvas50(canvas, tmp_canvas){
 
 
 
-void copyTmpCanvasToRealCanvas(canvas, tmp_canvas){
+void copyTmpCanvasToRealCanvas(CanvasElement canvas, tmp_canvas){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	ctx.drawImage(tmp_canvas, 0, 0);
 }
@@ -2590,29 +2497,31 @@ void copyTmpCanvasToRealCanvas(canvas, tmp_canvas){
 
 
 //http://stackoverflow.com/questions/5026961/html5-canvas-ctx-filltext-wont-do-line-breaks/21574562#21574562
-void fillTextMultiLine(canvas, text1, text2, color2, x, y) {
+void fillTextMultiLine(CanvasElement canvas, String text1, String text2, String color2, int x, int y) {
 	CanvasRenderingContext2D ctx = canvas.getContext("2d");
-	var lineHeight = ctx.measureText("M").width * 1.2;
-    var lines = text1.split("\n");
- 	for (num i = 0; i < lines.length; ++i) {
-   		ctx.fillText(lines[i], x, y);
-  		y += lineHeight;
+	double lineHeight = ctx.measureText("M").width * 1.2;
+    List<String> lines = text1.split("\n");
+    double ypos = y.toDouble();
+ 	for (int i = 0; i < lines.length; ++i) {
+   		ctx.fillText(lines[i], x, ypos);
+  		ypos += lineHeight;
   	}
 	//word wrap these
 	ctx.fillStyle = color2;
- 	wrap_text(ctx, text2, x, y, lineHeight, 3*canvas.width/4, "left");
+ 	wrap_text(ctx, text2, x, ypos, lineHeight, 3*canvas.width/4, "left");
 	ctx.fillStyle = "#000000";
 }
 
-void fillChatTextMultiLineJRPlayer(canvas, chat, player, x, y){
+void fillChatTextMultiLineJRPlayer(CanvasElement canvas, chat, player, x, y){
   CanvasRenderingContext2D ctx = canvas.getContext("2d");
-	var lineHeight = ctx.measureText("M").width * 1.2;
-    var lines = chat.split("\n");
-	var playerStart = player.chatHandleShort();
+	double lineHeight = ctx.measureText("M").width * 1.2;
+    List<String> lines = chat.split("\n");
+	String playerStart = player.chatHandleShort();
 	String jrStart = "JR: ";
- 	for (num i = 0; i < lines.length; ++i) {
+	double ypos = y;
+ 	for (int i = 0; i < lines.length; ++i) {
 		//does the text begin with player 1's chat handle short? if so: getChatFontColor
-		var ct = lines[i].trim();
+		String ct = lines[i].trim();
 
 		//check player 2 first 'cause they'll be more specific if they have same initials
 		if(ct.startsWith(playerStart)){
@@ -2628,8 +2537,8 @@ void fillChatTextMultiLineJRPlayer(canvas, chat, player, x, y){
 		}else{
 			ctx.fillStyle = "#000000";
 		}
-		var lines_wrapped = wrap_text(ctx, ct, x, y, lineHeight, canvas.width-50, "left");
-  		y += lineHeight * lines_wrapped;
+		int lines_wrapped = wrap_text(ctx, ct, x, ypos, lineHeight, canvas.width-50, "left");
+  		ypos += lineHeight * lines_wrapped;
   	}
 	//word wrap these
 	ctx.fillStyle = "#000000";
@@ -2637,13 +2546,14 @@ void fillChatTextMultiLineJRPlayer(canvas, chat, player, x, y){
 
 
 
-void fillChatTextMultiLineNonPlayer(canvas, chat, x, y, player1Start, player2Start, player1Color, player2Color){
+void fillChatTextMultiLineNonPlayer(CanvasElement canvas, String chat, int x, int y, String player1Start, String player2Start, String player1Color, String player2Color){
   CanvasRenderingContext2D ctx = canvas.getContext("2d");
-	var lineHeight = ctx.measureText("M").width * 1.2;
-  var lines = chat.split("\n");
- 	for (num i = 0; i < lines.length; ++i) {
+	double lineHeight = ctx.measureText("M").width * 1.2;
+  List<String> lines = chat.split("\n");
+  double ypos = y.toDouble();
+ 	for (int i = 0; i < lines.length; ++i) {
 		//does the text begin with player 1's chat handle short? if so: getChatFontColor
-		var ct = lines[i].trim();
+		String ct = lines[i].trim();
 		//check player 2 first 'cause they'll be more specific if they have same initials
 		if(ct.startsWith(player2Start)){
 			ctx.fillStyle = player2Color;
@@ -2654,8 +2564,8 @@ void fillChatTextMultiLineNonPlayer(canvas, chat, x, y, player1Start, player2Sta
 		}else{
 			ctx.fillStyle = "#000000";
 		}
-		var lines_wrapped = wrap_text(ctx, ct, x, y, lineHeight, canvas.width-50, "left");
-  	y += lineHeight * lines_wrapped;
+		int lines_wrapped = wrap_text(ctx, ct, x, ypos, lineHeight, canvas.width-50, "left");
+  	ypos += lineHeight * lines_wrapped;
   	}
 	//word wrap these
 	ctx.fillStyle = "#000000";
@@ -2664,15 +2574,15 @@ void fillChatTextMultiLineNonPlayer(canvas, chat, x, y, player1Start, player2Sta
 
 
 //matches line color to player font color
-void fillChatTextMultiLine(canvas, chat, player1, player2, x, y) {
+void fillChatTextMultiLine(CanvasElement canvas, chat, player1, player2, x, y) {
 	CanvasRenderingContext2D ctx = canvas.getContext("2d");
-	var lineHeight = ctx.measureText("M").width * 1.2;
-    var lines = chat.split("\n");
-	var player1Start = player1.chatHandleShort();
-	var player2Start = player2.chatHandleShortCheckDup(player1Start);
- 	for (num i = 0; i < lines.length; ++i) {
+	double lineHeight = ctx.measureText("M").width * 1.2;
+    List<String> lines = chat.split("\n");
+	String player1Start = player1.chatHandleShort();
+	String player2Start = player2.chatHandleShortCheckDup(player1Start);
+ 	for (int i = 0; i < lines.length; ++i) {
 		//does the text begin with player 1's chat handle short? if so: getChatFontColor
-		var ct = lines[i].trim();
+		String ct = lines[i].trim();
 
 		//check player 2 first 'cause they'll be more specific if they have same initials
 		if(ct.startsWith(player2Start)){
@@ -2692,7 +2602,7 @@ void fillChatTextMultiLine(canvas, chat, player1, player2, x, y) {
 		}else{
 			ctx.fillStyle = "#000000";
 		}
-		var lines_wrapped = wrap_text(ctx, ct, x, y, lineHeight, canvas.width-50, "left");
+		int lines_wrapped = wrap_text(ctx, ct, x, y, lineHeight, canvas.width-50, "left");
   		y += lineHeight * lines_wrapped;
   	}
 	//word wrap these
@@ -2703,26 +2613,26 @@ void fillChatTextMultiLine(canvas, chat, player1, player2, x, y) {
 int wrap_text(ctx, text, x, y, lineHeight, maxWidth, textAlign) {
   if(!textAlign) textAlign = 'center';
   ctx.textAlign = textAlign;
-  var words = text.split(' ');
-  List<dynamic> lines = [];
-  num sliceFrom = 0;
-  for(num i = 0; i < words.length; i++) {
-    var chunk = words.slice(sliceFrom, i).join(' ');
-    var last = i == words.length - 1;
-    var bigger = ctx.measureText(chunk).width > maxWidth;
+  List<String> words = text.split(' ');
+  List<String> lines = [];
+  int sliceFrom = 0;
+  for(int i = 0; i < words.length; i++) {
+    String chunk = words.sublist(sliceFrom, i).join(' ');
+    bool last = i == words.length - 1;
+    bool bigger = ctx.measureText(chunk).width > maxWidth;
     if(bigger) {
-      lines.add(words.slice(sliceFrom, i).join(' '));
+      lines.add(words.sublist(sliceFrom, i).join(' '));
       sliceFrom = i;
     }
     if(last) {
-      lines.add(words.slice(sliceFrom, words.length).join(' '));
+      lines.add(words.sublist(sliceFrom, words.length).join(' '));
       sliceFrom = i;
     }
   }
-  num offsetY = 0;
-  num offsetX = 0;
+  int offsetY = 0;
+  int offsetX = 0;
   if(textAlign == 'center') offsetX = maxWidth / 2;
-  for(num i = 0; i < lines.length; i++) {
+  for(int i = 0; i < lines.length; i++) {
     ctx.fillText(lines[i], x + offsetX, y + offsetY);
     offsetY = offsetY + lineHeight;
   }

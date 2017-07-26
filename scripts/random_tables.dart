@@ -776,13 +776,13 @@ String getRandomChatHandleOld(Random rand, String class_name, String aspect){
 
 
 
-void getLevelFromFree(Random rand){
+String getLevelFromFree(Random rand){
 	return rand.pickFrom(free_levels);
 }
 
 
 
-void getLevelFromInterests(i, interest){
+String getLevelFromInterests(int i, String interest){
 	if(music_interests.indexOf(interest) != -1){
 			return music_levels[i];
 	}else if (culture_interests.indexOf(interest) != -1){
@@ -812,6 +812,7 @@ void getLevelFromInterests(i, interest){
 	}else if (justice_interests.indexOf(interest) != -1){
 			return justice_levels[i];
 	}
+	return null;
 }
 
 
@@ -1274,36 +1275,36 @@ String moonToColor(moon){
 
 
 
-var moons = ["Prospit", "Derse"];
+List<String> moons = ["Prospit", "Derse"];
 
-var active_classes = ["Thief","Knight","Heir","Mage","Witch", "Prince", "Waste", "Scout", "Scribe"];
-var passive_classes = ["Rogue","Page","Maid","Seer","Sylph", "Bard"];
+List<String> active_classes = ["Thief","Knight","Heir","Mage","Witch", "Prince", "Waste", "Scout", "Scribe"];
+List<String> passive_classes = ["Rogue","Page","Maid","Seer","Sylph", "Bard"];
 //if you change the order of ANY of these classes, it will break ocDataStrings
-var classes = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
+List<String> classes = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
 //when a class is used, remove from below list. //if you change the order of ANY of these classes, it will break ocDataStrings
-var available_classes = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
-var available_classes_guardians = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
+List<String> available_classes = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
+List<String> available_classes_guardians = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
 
 //if you change the order of ANY of these classes, it will break ocDataStrings
-var custom_only_classes = ["Waste", "Scout", "Sage", "Scribe"]; //Lord, Muse, Guide, Scout, Scribe, Smith, Wright
-var required_aspects = ["Space", "Time"];
-var all_aspects = ["Space", "Time","Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
-var nonrequired_aspects = ["Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
-var available_aspects = ["Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
+List<String> custom_only_classes = ["Waste", "Scout", "Sage", "Scribe"]; //Lord, Muse, Guide, Scout, Scribe, Smith, Wright
+List<String> required_aspects = ["Space", "Time"];
+List<String> all_aspects = ["Space", "Time","Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
+List<String> nonrequired_aspects = ["Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
+List<String> available_aspects = ["Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
 
 //TODO eventually implent null land titles, like Mounds and Xenon.
-var space_land_titles = ["Frogs"];
-var time_land_titles = ["Quartz", "Clockwork", "Gears", "Melody","Cesium", "Clocks", "Ticking", "Beats", "Mixtapes","Songs", "Music", "Vuvuzelas", "Drums", "Pendulums"];
-var breath_land_titles = ["Wind","Breeze","Zephyr","Gales","Storms","Planes","Twisters", "Hurricanes","Gusts", "Windmills", "Pipes", "Whistles"];
-var doom_land_titles = ["Fire", "Death", "Prophecy", "Blight", "Rules", "Prophets", "Poison", "Funerals", "Graveyards", "Ash", "Disaster", "Fate", "Destiny", "Bones"];
-var blood_land_titles = ["Pulse", "Bonds", "Clots", "Bloodlines", "Ichor", "Veins", "Chambers", "Arteries", "Unions"];
-var heart_land_titles = ["Little Cubes","Hats","Dolls","Selfies","Mirrors", "Spirits", "Souls", "Jazz", "Shards", "Splinters"];
-var mind_land_titles = ["Thought", "Rationality", "Decisions","Consequences", "Choices", "Paths", "Trails", "Trials"];
-var light_land_titles = ["Treasure", "Light","Knowledge","Radiance", "Gambling", "Casinos", "Fortune", "Sun", "Glow", "Chance"];
-var void_land_titles = ["Silence", "Nothing","Void","Emptiness", "Tears", "Dust", "Night", "[REDACTED]", "???", "Blindness"];
-var rage_land_titles = ["Mirth","Whimsy","Madness","Impossibility", "Chaos", "Hate", "Violence", "Joy", "Murder", "Noise", "Screams","Denial"];
-var hope_land_titles = ["Angels","Hope","Belief","Faith","Determination", "Possibility", "Hymns", "Heroes", "Chapels", "Lies", "Bullshit"];
-var life_land_titles = ["Dew","Spring","Beginnings","Vitality", "Jungles", "Swamps", "Gardens", "Summer", "Chlorophyll", "Moss", "Rot", "Mold"];
+List<String> space_land_titles = ["Frogs"];
+List<String> time_land_titles = ["Quartz", "Clockwork", "Gears", "Melody","Cesium", "Clocks", "Ticking", "Beats", "Mixtapes","Songs", "Music", "Vuvuzelas", "Drums", "Pendulums"];
+List<String> breath_land_titles = ["Wind","Breeze","Zephyr","Gales","Storms","Planes","Twisters", "Hurricanes","Gusts", "Windmills", "Pipes", "Whistles"];
+List<String> doom_land_titles = ["Fire", "Death", "Prophecy", "Blight", "Rules", "Prophets", "Poison", "Funerals", "Graveyards", "Ash", "Disaster", "Fate", "Destiny", "Bones"];
+List<String> blood_land_titles = ["Pulse", "Bonds", "Clots", "Bloodlines", "Ichor", "Veins", "Chambers", "Arteries", "Unions"];
+List<String> heart_land_titles = ["Little Cubes","Hats","Dolls","Selfies","Mirrors", "Spirits", "Souls", "Jazz", "Shards", "Splinters"];
+List<String> mind_land_titles = ["Thought", "Rationality", "Decisions","Consequences", "Choices", "Paths", "Trails", "Trials"];
+List<String> light_land_titles = ["Treasure", "Light","Knowledge","Radiance", "Gambling", "Casinos", "Fortune", "Sun", "Glow", "Chance"];
+List<String> void_land_titles = ["Silence", "Nothing","Void","Emptiness", "Tears", "Dust", "Night", "[REDACTED]", "???", "Blindness"];
+List<String> rage_land_titles = ["Mirth","Whimsy","Madness","Impossibility", "Chaos", "Hate", "Violence", "Joy", "Murder", "Noise", "Screams","Denial"];
+List<String> hope_land_titles = ["Angels","Hope","Belief","Faith","Determination", "Possibility", "Hymns", "Heroes", "Chapels", "Lies", "Bullshit"];
+List<String> life_land_titles = ["Dew","Spring","Beginnings","Vitality", "Jungles", "Swamps", "Gardens", "Summer", "Chlorophyll", "Moss", "Rot", "Mold"];
 
 //typoed special snowlake once insteada snowflake, and now it's a land.
 List<String> free_land_titles = ["Snowlake", "Heat","Sand","Brains","Haze","Tea","Flow","Maps","Caves","Tents","Wrath","Rays","Glass","Lava","Magma"]
@@ -1318,186 +1319,186 @@ List<String> free_land_titles = ["Snowlake", "Heat","Sand","Brains","Haze","Tea"
 ..addAll(["Obsolescence","Deceit","Ruse","Distraction","Libraries","Blocks","Video Games","Vermin","Butchers","Meat","Clouds", "Horses"]);
 
 //google is an in joke because apparently google reports that all sessions are crashed and it is beautiful and google is a horrorterror.
-var corruptedOtherLandTitles = [Zalgo.generate("Google"), Zalgo.generate("Horrorterrors"),Zalgo.generate("Glitches"),Zalgo.generate("Grimoires"),Zalgo.generate("Fluthlu"),Zalgo.generate("The Zoologically Dubious")]
+List<String> corruptedOtherLandTitles = [Zalgo.generate("Google"), Zalgo.generate("Horrorterrors"),Zalgo.generate("Glitches"),Zalgo.generate("Grimoires"),Zalgo.generate("Fluthlu"),Zalgo.generate("The Zoologically Dubious")]
 ..addAll(corruptedOtherLandTitles);
 
 
 
-var space_levels = ["GREENTIKE", "RIBBIT RUSTLER", "FROG-WRANGLER"];
-var time_levels = ["MARQUIS MCFLY", "JUNIOR CLOCK BLOCKER", "DEAD KID COLLECTOR"];
-var breath_levels = ["BOY SKYLARK", "SODAJERK'S CONFIDANTE", "MAN SKYLARK"];
-var doom_levels = ["APOCALYPSE HOW", "REVELATION RUMBLER", "PESSIMISM PILGRIM"];
-var blood_levels = ["FRIEND HOARDER YOUTH","HEMOGOBLIN", "SOCIALIST BUTTERFLY"];
-var heart_levels = ["SHARKBAIT HEARTHROB", "FEDORA FLEDGLING","PENCILWART PHYLACTERY"];
-var mind_levels = ["NIPPER-CADET", "COIN-FLIPPER CONFIDANTE", "TWO-FACED BUCKAROO"];
-var light_levels = ["SHOWOFF SQUIRT","JUNGLEGYM SWASHBUCKLER","SUPERSTITIOUS SCURRYWART"];
-var void_levels = ["KNOW-NOTHING ANKLEBITER","INKY BLACK SORROWMASTER","FISTICUFFSAFICTIONADO"];
-var rage_levels = ["MOPPET OF MADNESS","FLEDGLING HATTER","RAGAMUFFIN REVELER"];
-var hope_levels = ["GADABOUT PIPSQUEAK","BELIVER EXTRAORDINAIRE","DOCTOR FEELGOOD"];
-var life_levels = ["BRUISE BUSTER","LODESTAR LIFER","BREACHES HEALER"];
+List<String> space_levels = ["GREENTIKE", "RIBBIT RUSTLER", "FROG-WRANGLER"];
+List<String> time_levels = ["MARQUIS MCFLY", "JUNIOR CLOCK BLOCKER", "DEAD KID COLLECTOR"];
+List<String> breath_levels = ["BOY SKYLARK", "SODAJERK'S CONFIDANTE", "MAN SKYLARK"];
+List<String> doom_levels = ["APOCALYPSE HOW", "REVELATION RUMBLER", "PESSIMISM PILGRIM"];
+List<String> blood_levels = ["FRIEND HOARDER YOUTH","HEMOGOBLIN", "SOCIALIST BUTTERFLY"];
+List<String> heart_levels = ["SHARKBAIT HEARTHROB", "FEDORA FLEDGLING","PENCILWART PHYLACTERY"];
+List<String> mind_levels = ["NIPPER-CADET", "COIN-FLIPPER CONFIDANTE", "TWO-FACED BUCKAROO"];
+List<String> light_levels = ["SHOWOFF SQUIRT","JUNGLEGYM SWASHBUCKLER","SUPERSTITIOUS SCURRYWART"];
+List<String> void_levels = ["KNOW-NOTHING ANKLEBITER","INKY BLACK SORROWMASTER","FISTICUFFSAFICTIONADO"];
+List<String> rage_levels = ["MOPPET OF MADNESS","FLEDGLING HATTER","RAGAMUFFIN REVELER"];
+List<String> hope_levels = ["GADABOUT PIPSQUEAK","BELIVER EXTRAORDINAIRE","DOCTOR FEELGOOD"];
+List<String> life_levels = ["BRUISE BUSTER","LODESTAR LIFER","BREACHES HEALER"];
 
-var maid_levels = ["SCURRYWART SERVANT", "SAUCY PILGRIM", "MADE OF SUCCESS"];
-var page_levels = ["APPRENTICE ANKLEBITER", "JOURNEYING JUNIOR", "OUTFOXED BUCKAROO"];
-var mage_levels = ["WIZARDING TIKE", "THE SORCERER'S SCURRYWART", "FAMILIAR FRAYMOTTIFICTIONADO"];
-var knight_levels = ["QUESTING QUESTANT", "LADABOUT LANCELOT", "SIR SKULLDODGER"];
-var rogue_levels = ["KNEEHIGH ROBINHOOD","DASHING DARTABOUT", "COMMUNIST COMMANDER"];
-var sylph_levels = ["SERENE SCALLYWAG", "MYSTICAL RUGMUFFIN","FAE FLEDGLING"];
-var thief_levels = ["RUMPUS RUINER", "HAMBURGLER YOUTH", "PRISONBAIT"];
-var heir_levels = ["UNREAL HEIR","HEIR CONDITIONER","EXTRAORDINHEIR"];
-var bard_levels = ["SKAIA'S TOP IDOL","POPSTAR BOPPER","SONGSCUFFER"];
-var prince_levels = ["PRINCE HARMING","ROYAL RUMBLER","DIGIT PRINCE"];
-var witch_levels = ["WESTWORD WORRYBITER","BUBBLETROUBLER","EYE OF GRINCH"];
-var seer_levels = ["SEEING iDOG","PIPSQUEAK PROGNOSTICATOR","SCAMPERVIEWER 5000"];
-var waste_levels = ["4TH WALL AFICIONADO","CATACLYSM COMMANDER","AUTHOR"];
-var scout_levels = ["BOSTON SCREAMPIE","COOKIE OFFERER","FIRE FRIEND"];
-var scribe_levels = ["MIDNIGHT BURNER","WRITER WATCHER","DIARY DEAREST"];
-var sage_levels = ["HERBAL ESSENCE","CHICKEN SEASONER","TOMEMASTER"];
-var generic_levels = ["SNOWMAN SAVIOR","NOBODY NOWHERE","NULLZILLA"];
+List<String> maid_levels = ["SCURRYWART SERVANT", "SAUCY PILGRIM", "MADE OF SUCCESS"];
+List<String> page_levels = ["APPRENTICE ANKLEBITER", "JOURNEYING JUNIOR", "OUTFOXED BUCKAROO"];
+List<String> mage_levels = ["WIZARDING TIKE", "THE SORCERER'S SCURRYWART", "FAMILIAR FRAYMOTTIFICTIONADO"];
+List<String> knight_levels = ["QUESTING QUESTANT", "LADABOUT LANCELOT", "SIR SKULLDODGER"];
+List<String> rogue_levels = ["KNEEHIGH ROBINHOOD","DASHING DARTABOUT", "COMMUNIST COMMANDER"];
+List<String> sylph_levels = ["SERENE SCALLYWAG", "MYSTICAL RUGMUFFIN","FAE FLEDGLING"];
+List<String> thief_levels = ["RUMPUS RUINER", "HAMBURGLER YOUTH", "PRISONBAIT"];
+List<String> heir_levels = ["UNREAL HEIR","HEIR CONDITIONER","EXTRAORDINHEIR"];
+List<String> bard_levels = ["SKAIA'S TOP IDOL","POPSTAR BOPPER","SONGSCUFFER"];
+List<String> prince_levels = ["PRINCE HARMING","ROYAL RUMBLER","DIGIT PRINCE"];
+List<String> witch_levels = ["WESTWORD WORRYBITER","BUBBLETROUBLER","EYE OF GRINCH"];
+List<String> seer_levels = ["SEEING iDOG","PIPSQUEAK PROGNOSTICATOR","SCAMPERVIEWER 5000"];
+List<String> waste_levels = ["4TH WALL AFICIONADO","CATACLYSM COMMANDER","AUTHOR"];
+List<String> scout_levels = ["BOSTON SCREAMPIE","COOKIE OFFERER","FIRE FRIEND"];
+List<String> scribe_levels = ["MIDNIGHT BURNER","WRITER WATCHER","DIARY DEAREST"];
+List<String> sage_levels = ["HERBAL ESSENCE","CHICKEN SEASONER","TOMEMASTER"];
+List<String> generic_levels = ["SNOWMAN SAVIOR","NOBODY NOWHERE","NULLZILLA"];
 
-var free_levels = ["NIPPER CADET","PESKY URCHIN","BRAVESPROUT","JUVESQUIRT","RUMPUS BUSTER","CHAMP-FRY","ANKLEBITER","CALLOUSED TENDERFOOT","RASCALSPRAT","GRITTY MIDGET","BRITCHES RIPPER","ALIEN URCHIN", "NESTING NEWB"];
+List<String> free_levels = ["NIPPER CADET","PESKY URCHIN","BRAVESPROUT","JUVESQUIRT","RUMPUS BUSTER","CHAMP-FRY","ANKLEBITER","CALLOUSED TENDERFOOT","RASCALSPRAT","GRITTY MIDGET","BRITCHES RIPPER","ALIEN URCHIN", "NESTING NEWB"];
 //only need two for each. since each player has two interests, combines to 4
-var music_levels = ["SINGING SCURRYWORT","MUSICAL MOPPET"];
-var culture_levels = ["APPRENTICE ARTIST","CULTURE BUCKAROO"];
-var writing_levels = ["SHAKY SHAKESPEARE","QUILL RUINER"];
-var pop_culture_levels = ["TRIVIA SMARTYPANTS","NIGHTLY NABBER"];
-var technology_levels = ["HURRYWORTH HACKER","CLANKER CURMUDGEON"];
-var social_levels = ["FRIEND-TO-ALL","FRIEND COLLECTOR"];
-var romantic_levels = ["QUESTING CUPID","ROMANCE EXPERT"];
-var academic_levels = ["NERDY NOODLER","SCAMPERING SCIENTIST"];
-var comedy_levels = ["PRATFALL PRIEST","BEAGLE PUSS DARTABOUT"];
-var domestic_levels = ["BATTERBRAT","GRITTY GUARDIAN"];
-var athletic_levels = ["MUSCLES HOARDER","BODY BOOSTER"];
-var terrible_levels = ["ENEMY #1","JERKWAD JOURNEYER"];
-var fantasy_levels = ["FAKEY FAKE LOVER","FANTASTIC DREAMER"];
-var justice_levels = ["JUSTICE JUICER","BALANCE RUMBLER"];
+List<String> music_levels = ["SINGING SCURRYWORT","MUSICAL MOPPET"];
+List<String> culture_levels = ["APPRENTICE ARTIST","CULTURE BUCKAROO"];
+List<String> writing_levels = ["SHAKY SHAKESPEARE","QUILL RUINER"];
+List<String> pop_culture_levels = ["TRIVIA SMARTYPANTS","NIGHTLY NABBER"];
+List<String> technology_levels = ["HURRYWORTH HACKER","CLANKER CURMUDGEON"];
+List<String> social_levels = ["FRIEND-TO-ALL","FRIEND COLLECTOR"];
+List<String> romantic_levels = ["QUESTING CUPID","ROMANCE EXPERT"];
+List<String> academic_levels = ["NERDY NOODLER","SCAMPERING SCIENTIST"];
+List<String> comedy_levels = ["PRATFALL PRIEST","BEAGLE PUSS DARTABOUT"];
+List<String> domestic_levels = ["BATTERBRAT","GRITTY GUARDIAN"];
+List<String> athletic_levels = ["MUSCLES HOARDER","BODY BOOSTER"];
+List<String> terrible_levels = ["ENEMY #1","JERKWAD JOURNEYER"];
+List<String> fantasy_levels = ["FAKEY FAKE LOVER","FANTASTIC DREAMER"];
+List<String> justice_levels = ["JUSTICE JUICER","BALANCE RUMBLER"];
 
-var level_bg_colors = ["#8ff74a","#ba1212","#ffffee","#f0ff00","#9c00ff","#2b6ade","#003614","#f8e69f","#0000ff","#eaeaea","#ff9600","#581212","#ffa6ac","#1f7636","#ffe1fc","#fcff00"];
-var level_font_colors = ["#264d0c","#ff00d2","#ff0000","#626800","#da92e0","#022e41","#aaffa6","#000052","#6dffdb","#e5d200","#00911b","#ff0000","#5e005f","#fbff8d","#000000","#"];
+List<String> level_bg_colors = ["#8ff74a","#ba1212","#ffffee","#f0ff00","#9c00ff","#2b6ade","#003614","#f8e69f","#0000ff","#eaeaea","#ff9600","#581212","#ffa6ac","#1f7636","#ffe1fc","#fcff00"];
+List<String> level_font_colors = ["#264d0c","#ff00d2","#ff0000","#626800","#da92e0","#022e41","#aaffa6","#000052","#6dffdb","#e5d200","#00911b","#ff0000","#5e005f","#fbff8d","#000000","#"];
 
-var space_quests = ["seeking out out potential Frog sources"]
+List<String> space_quests = ["seeking out out potential Frog sources"]
 	..add("restoring a half-ruined Frog shrine in the wilds of the Land")
 	..add("interogating consorts as to what the point of Frogs even is")
 	..add("navigating one's way through a deudly dungeon in complete darkness, relying only on one's spatial senses");
-var time_quests = ["manipulating the local stock exchange through a series of cunningly disguised time doubles"]
+List<String> time_quests = ["manipulating the local stock exchange through a series of cunningly disguised time doubles"]
 	..add("stopping a variety of disasters from happening before even the first player enters the medium")
 	..add("cheating at obstacle course time trials to get a finishing value of exactly 0.0 seconds");
-var breath_quests = ["putting out fires in consort villages through serendipitous gales of wind"]
+List<String> breath_quests = ["putting out fires in consort villages through serendipitous gales of wind"]
 	..add("delivering mail through a complicated series of pneumatic tubes")
 	..add("paragliding through increasingly elaborate obstacle courses to become the champion (it is you)");
-var doom_quests = ["calculating the exact moment a planet quake will destroy a consort village with enough time remaining to perform evacuation"]
+List<String> doom_quests = ["calculating the exact moment a planet quake will destroy a consort village with enough time remaining to perform evacuation"]
 	..add("setting up increasingly complex Rube Goldberg machines to defeat all enemies in a dungeon at once")
 	..add("obnoxiously memorizing the rules of a minigame, and then blatantly  abusing them to achieve an otherwise impossible victory");
-var blood_quests = ["uniting warring consort nations against a common enemy"]
+List<String> blood_quests = ["uniting warring consort nations against a common enemy"]
 	..add("organizing 5 bickering consorts long enough to transverse a dungeon with any degree of competence")
 	..add("learning the true meaning of this human disease called friendship");
-var heart_quests = ["providing a matchmaking service for the local consorts (ships guaranteed)"]
+List<String> heart_quests = ["providing a matchmaking service for the local consorts (ships guaranteed)"]
 	..add("doing battle with shadow clones that are eventually defeated when you accept them as a part of you")
 	..add("correctly picking out which item represents them out of a vault of a thousand bullshit shitty stuffed animals");
-var mind_quests = ["manipulating the local consorts into providing dungeon clearing services"]
+List<String> mind_quests = ["manipulating the local consorts into providing dungeon clearing services"]
 	..add("presiding over increasingly hard consort court cases, punishing the guilty and pardoning the innocent")
 	..add("pulling pranks as a minigame, with bonus points awarded for pranks performed on those who 'had it coming'");
-var light_quests = ["winning at increasingly unfair gambling challenges"]
+List<String> light_quests = ["winning at increasingly unfair gambling challenges"]
 	..add("researching way too much lore and minutia to win at trivia contests")
 	..add("explaining how to play a mini game to particularly stupid consorts until they finally get it");
-var void_quests = ["destroying and/or censoring embarrassing consort records"]
+List<String> void_quests = ["destroying and/or censoring embarrassing consort records"]
 	..add("definitely doing quests, just...not where we can see them")
 	..add("playing a hilariously fun boxing minigame");
-var rage_quests = ["fighting hordes upon hordes of enemies in increasingly unfair odds until defeating them all in a berserk rage"] //You can't believe how easy it is. You just have to go... a little crazy. And then, suddenly, it all makes sense, and everything you do turns to gold.
+List<String> rage_quests = ["fighting hordes upon hordes of enemies in increasingly unfair odds until defeating them all in a berserk rage"] //You can't believe how easy it is. You just have to go... a little crazy. And then, suddenly, it all makes sense, and everything you do turns to gold.
 	..add("figuring out increasingly illogical puzzles until lateral thinking becomes second nature")
 	..add("dealing with the most annoying dungeon challenges ever, each more irritating and aneurysm inducing than the last");
-var hope_quests = ["performing bullshit acts of faith, like walking across invisible bridges"]
+List<String> hope_quests = ["performing bullshit acts of faith, like walking across invisible bridges"]
 	..add("becoming the savior of the local consorts, through fulfillment of various oddly specific prophecies")
 	..add("brainstorming a variety of ways the local consorts can solve their challenges");
-var life_quests = ["coaxing the fallow farms of the local consorts into becoming fertile"]
+List<String> life_quests = ["coaxing the fallow farms of the local consorts into becoming fertile"]
 	..add("healing a seemingly endless parade of stricken consorts")
 	..add("finding and rescuing consort children trapped in a burning building");
 
 
-var maid_quests = ["doing the consorts' menial errands, like delivering an item to a dude standing RIGHT FUCKING THERE"]
+List<String> maid_quests = ["doing the consorts' menial errands, like delivering an item to a dude standing RIGHT FUCKING THERE"]
 	..add("repairing various ways the session has been broken")
 	..add("protecting various consorts with game powers");
-var page_quests = ["going on various quests of self discovery and confidence building"]
+List<String> page_quests = ["going on various quests of self discovery and confidence building"]
 	..add("partnering with a local consort hero to do great deeds and slay evil foes")
 	..add("learning to deal with disapointment after dungeon after dungeon proves to have all the enemies, and none of the treasure");
-var mage_quests = ["performing increasingly complex alchemy for demanding, moody consorts"]
+List<String> mage_quests = ["performing increasingly complex alchemy for demanding, moody consorts"]
 	..add("learning to silence their Mage Senses long enough to not go insane")
 	..add("learning to just let go and let things happen");
-var knight_quests = ["protecting the local consorts from a fearsome foe"]
+List<String> knight_quests = ["protecting the local consorts from a fearsome foe"]
 	..add("protecting the session from various ways it can go shithive maggots")
 	..add("questing to collect the 7 bullshit orbs of supreme bullshit and deliver them to the consort leader");
-var rogue_quests = ["robbing various tombs and imp settlements to give to impoverished consorts"]
+List<String> rogue_quests = ["robbing various tombs and imp settlements to give to impoverished consorts"]
 	..add("stealing a priceless artifact in order to fund consort orphanages")
 	..add("planning an elaborate heist to steal priceless grist from a boss ogre in order to alchemize shoes for orphans");
-var sylph_quests = ["restoring a consort city to its former glory"]
+List<String> sylph_quests = ["restoring a consort city to its former glory"]
 	..add("preserving the legacy of a doomed people")
 	..add("providing psychological counseling to homeless consorts");
-var thief_quests = ["robbing various enemy imps and ogres to obtain vast riches"]
+List<String> thief_quests = ["robbing various enemy imps and ogres to obtain vast riches"]
 	..add("planning an elaborate heist that relies on several hard-to-predict factors going absolutely perfectly")
 	..add("torrenting vast amounts of grist from the other players");
-var heir_quests = ["retrieving a sword from a stone"]
+List<String> heir_quests = ["retrieving a sword from a stone"]
 	..add("completing increasingly unlikely challenges through serendepitious coincidences")
 	..add("inheriting and running a successful, yet complex company");
-var bard_quests = ["allowing events to transpire such that various quests complete themselves"]
+List<String> bard_quests = ["allowing events to transpire such that various quests complete themselves"]
 	..add("baiting various enemies into traps for an easy victory")
 	..add("watching as their manipulations result in consorts rising up to defeat imps");
-var prince_quests = ["destroying enemies thoroughly"]
+List<String> prince_quests = ["destroying enemies thoroughly"]
 	..add("riding in at the last minute to defeat the local consorts hated enemies")
 	..add("learning to grow as a person, despite the holes in their personality");
-var seer_quests = ["making the various bullshit rules of SBURB part of their personal mythos"]
+List<String> seer_quests = ["making the various bullshit rules of SBURB part of their personal mythos"]
 	..add("collaborating with the exiled future carapacians to manipulate Prospit and Derse according to how its supposed to go")
 	..add("suddenly understanding everything, and casting sincere doubt at the laughable insinuation that they ever didn't");
-var witch_quests = ["performing elaborate punch card alchemy through the use of a novelty witch's cauldron"]
+List<String> witch_quests = ["performing elaborate punch card alchemy through the use of a novelty witch's cauldron"]
 	..add("deciding which way to go in a series of way-too-long mazes")
 	..add("solving puzzles in ways that completely defy expectations");
-var waste_quests = ["being a useless piece of shit and reading FAQs to skip the hard shit in levels","causing ridiculous amounts of destruction trying to skip quest lines","learning that sometimes you have to do things right, and can't just skip ahead"];
-var scout_quests = ["exploring areas no Consort has dared to trespass in","getting lost in ridiculously convoluted mazes","playing map-creating mini games"];
-var scribe_quests = ["taking down the increasingly random and nonsensical oral history of a group of local Consorts","playing typing themed mini games.","saving an important piece of a riddle from a crumbling building"];
-var sage_quests = ["making the lore of SBURB part of their personal mythos","learning to nod wisely and remain silent when Consorts start yammering on about the Ultimate Riddle","participating in riddle contests to prove their intelligence to local Consorts"];
-var generic_quests = ["definitely doing class related quests", "solving consorts problems in a class themed manner", "absolutely not goofing off"];
+List<String> waste_quests = ["being a useless piece of shit and reading FAQs to skip the hard shit in levels","causing ridiculous amounts of destruction trying to skip quest lines","learning that sometimes you have to do things right, and can't just skip ahead"];
+List<String> scout_quests = ["exploring areas no Consort has dared to trespass in","getting lost in ridiculously convoluted mazes","playing map-creating mini games"];
+List<String> scribe_quests = ["taking down the increasingly random and nonsensical oral history of a group of local Consorts","playing typing themed mini games.","saving an important piece of a riddle from a crumbling building"];
+List<String> sage_quests = ["making the lore of SBURB part of their personal mythos","learning to nod wisely and remain silent when Consorts start yammering on about the Ultimate Riddle","participating in riddle contests to prove their intelligence to local Consorts"];
+List<String> generic_quests = ["definitely doing class related quests", "solving consorts problems in a class themed manner", "absolutely not goofing off"];
 
 
 //if bike quests are too common, lock them to real selves only, no dream selves.
-var bike_quests = ["performing the SWEETEST bike stunts in all of SBURB", "doing bike stunts so sick they are illegal by Dersite standards", "doing bike stunts with air so unreal time just stops and everybody wishes to be them", "performing an endless grind on prospit's moon chain"]
+List<String> bike_quests = ["performing the SWEETEST bike stunts in all of SBURB", "doing bike stunts so sick they are illegal by Dersite standards", "doing bike stunts with air so unreal time just stops and everybody wishes to be them", "performing an endless grind on prospit's moon chain"]
 	..add("getting air so unreal that they jump from one planet to another on their sick nasty bike")
 	..add("writing dope as fuck Bike Stunt FAQs to keep their sanity")
 	..add("singing a song, you know, from that shitty kids cartoon? 'wake up in the morning there's a brand new day ahead the sun is bright and the clouds smile down and all your friends are dead '");
 
 
-var denizen_space_quests = ["trying to figure out why the Forge is unlit"]
+List<String> denizen_space_quests = ["trying to figure out why the Forge is unlit"]
 	..add("clearing various bullshit obstacles to lighting the Forge")
 	..add("lighting the Forge");  //TODO requires a magic ring.
 
-var denizen_time_quests = ["searching through time for an unbroken legendary piece of shit weapon"]
+List<String> denizen_time_quests = ["searching through time for an unbroken legendary piece of shit weapon"]
 	..add("realizing that the legendary piece of shit weapon was broken WAY before they got here")
 	..add("alchemizing an unbroken version of the legendary piece of shit weapon to pawn off as the real thing to Hephaestus");
 
-var denizen_breath_quests = ["realizing that the Denizen has thoroughly clogged up the pneumatic system"]
+List<String> denizen_breath_quests = ["realizing that the Denizen has thoroughly clogged up the pneumatic system"]
 	..add("trying to manually unclog the pneumatic system")
 	..add("using Breath powers to unclog the pneumatic system");
 
-var denizen_doom_quests = ["listening to consorts relate a doomsday prophecy that will take place soon"]
+List<String> denizen_doom_quests = ["listening to consorts relate a doomsday prophecy that will take place soon"]
 	..add("realizing technicalities in the doomsday prophecy that would allow it to take place but NOT doom everyone")
 	..add("narrowly averting the doomsday prophecy through technicalities, seeming coincidence, and a plan so convoluted that at the end of it no one can be sure the plan actually DID anything");
 
-var denizen_blood_quests = ["convincing the local consorts to rise up against the Denizen"]
+List<String> denizen_blood_quests = ["convincing the local consorts to rise up against the Denizen"]
 	..add(" give unending speeches about the power of friendship and how they are all fighting for loved ones back home to confused and impressionable consorts")
 	..add("completely overthrowing the Denizen's underlings in a massive battle");
 
-var denizen_heart_quests = ["starting an underground rebel group to free the consorts from the oppressive underling government"]
+List<String> denizen_heart_quests = ["starting an underground rebel group to free the consorts from the oppressive underling government"]
 	..add("having a huge public protest against the underling government, displaying several banned fashion items")
 	..add("convincing the local consorts that the only thing that can stifle their identity is their own fear");
 
-var denizen_mind_quests = ["learning of the systemic corruption in the local consort's justice system"]
+List<String> denizen_mind_quests = ["learning of the systemic corruption in the local consort's justice system"]
 	..add("rooting out corrupt consort officials, and exposing their underling backers")
 	..add("setting up a self-sufficient consort justice system");
 
 
-var denizen_light_quests = ["realizing the the entire point of SBURB has been a lie"]
+List<String> denizen_light_quests = ["realizing the the entire point of SBURB has been a lie"]
 	..add("learning the true purpose of SBURB")
 	..add("realizing just how important frogs and grist and the Ultimate Alchemy truly are");
 
 
-var denizen_void_quests = ["???"]
+List<String> denizen_void_quests = ["???"]
 	..add("[redacted]")
 	..add("[void players, am I right?]");
 
