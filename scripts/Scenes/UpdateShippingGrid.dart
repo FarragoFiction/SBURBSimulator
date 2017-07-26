@@ -561,7 +561,7 @@ class UpdateShippingGrid extends Scene{
 			if(player.getWorstEnemyFromList(this.session.players) == this.chosenShipper.player) reasonsAgainst += 5; //I REALLY hate the shipper.
 			return reasonsFor > reasonsAgainst;
 	}
-	bool evaluatePaleProposal(player, target){
+	bool evaluatePaleProposal(Player player, Player target){
 			int reasonsFor = 1; //come on, you know you like them.
 			int reasonsAgainst = 0;
 			reasonsAgainst += player.getDiamonds().length; //I am already in a relationship
@@ -575,7 +575,7 @@ class UpdateShippingGrid extends Scene{
 			if(player.getWorstEnemyFromList(this.session.players) == this.chosenShipper.player) reasonsAgainst += 5; //I REALLY hate the shipper.
 			return reasonsFor > reasonsAgainst;
 	}
-	bool evaluateAshenProposal(player, target){
+	bool evaluateAshenProposal(Player player, Player target){
 			if(this.chosenShipper.player == player || this.chosenShipper.player == target) return false; // you can't be in a quadrant with yourself, dunkass.
 			int reasonsFor = 1; //come on, you know you like them.
 			int reasonsAgainst = 0;
@@ -592,7 +592,7 @@ class UpdateShippingGrid extends Scene{
 
 			return reasonsFor > reasonsAgainst;
 	}
-	bool evaluateBlackProposal(player, target){
+	bool evaluateBlackProposal(Player player, Player target){
 			int reasonsFor = 1; //come on, you know you like them.
 			int reasonsAgainst = 0;
 			reasonsAgainst += player.getSpades().length; //I am already in a relationship
