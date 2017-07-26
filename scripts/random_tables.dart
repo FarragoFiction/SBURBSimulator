@@ -1130,7 +1130,7 @@ dynamic indexToWords(i){
 
 
 void debug(String str){
-	querySelector("#debug").appendHtml("<br>" + str);
+	querySelector("#debug").appendHtml("<br>" + str,treeSanitizer: NodeTreeSanitizer.trusted);
 }
 
 

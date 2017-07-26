@@ -91,7 +91,7 @@ class DoLandQuest extends Scene{
 	void renderContent(Element div){
 		var content = this.content(div);
 		//if(simulationMode) return;  will doing things like this speed AB up. might want to refactor gameEntity so only one div redered at fight end and not consantly.
-		div.appendHtml("<br> <img src = 'images/sceneIcons/quest_icon.png'>"+content);
+		div.appendHtml("<br> <img src = 'images/sceneIcons/quest_icon.png'>"+content,treeSanitizer: NodeTreeSanitizer.trusted);
 
 	}
 	dynamic addImportantEvent(){

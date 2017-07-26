@@ -27,7 +27,7 @@ main() {
 		rap(2,player2);
 		rap(1,player1);
 		rap(2,player2);
-		querySelector("#score").innerHtml = "Player1: $player1Score Player2: $player2Score";
+		querySelector("#score").setInnerHtml("Player1: $player1Score Player2: $player2Score");
 
 }
 
@@ -74,12 +74,12 @@ void rap(playerNum, Player player){
 
 //red text
 void rapper1Line(line){
-	querySelector("#rap").appendHtml("<font color='red'>"+line+"</font><br>");
+	querySelector("#rap").appendHtml("<font color='red'>"+line+"</font><br>",treeSanitizer: NodeTreeSanitizer.trusted);
 }
 
 
 
 //blue text
 void rapper2Line(line){
-	querySelector("#rap").appendHtml("<font color='blue'>"+line+"</font><br>");
+	querySelector("#rap").appendHtml("<font color='blue'>"+line+"</font><br>",treeSanitizer: NodeTreeSanitizer.trusted);
 }

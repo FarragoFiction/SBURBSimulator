@@ -483,7 +483,7 @@ class Session {
 		}else{
 			div = "<div class = 'scene' id='scene${this.currentSceneNum}'></div>";
 		}
-		querySelector("#story").appendHtml(div);
+		querySelector("#story").appendHtml(div,treeSanitizer: NodeTreeSanitizer.trusted);
 		return querySelector("#scene${this.currentSceneNum}");
 	}
 	dynamic getLineage(){

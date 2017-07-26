@@ -230,11 +230,11 @@ class EngageMurderMode extends Scene{
 	void rapBattle(Element div, Player player1, Player player2){
 		this.session.rapBattle = true;
 		String narration = "The " + player1.htmlTitle() + " is contemplating murder. Can their rage be soothed by a good old-fashioned rap battle?<Br>";
-		div.appendHtml(narration);
+		div.appendHtml(narration,treeSanitizer: NodeTreeSanitizer.trusted);
 		String player1Start = player1.chatHandleShort()+ ": ";
 		String player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		String canvasHTML = "<br><canvas id='canvas" + (div.id) +"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
-		div.appendHtml(canvasHTML);
+		div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
 		CanvasElement canvasDiv = querySelector("#canvas"+  (div.id));
 		String chatText = "";
 
@@ -251,7 +251,7 @@ class EngageMurderMode extends Scene{
 		drawChat(canvasDiv, player1, player2, chatText,"discuss_raps.png");
 		if(p1score + p2score > 6){ //it's not winning that calms them down, but sick fires in general.
 			//print("rap sick fires in session: " + this.session.session_id + " score: " + (p1score + p2score))
-			div.appendHtml("<img class = 'sickFiresCentered' src = 'images/sick_fires.gif'><br> It seems that the " + player1.htmlTitle() + " has been calmed down, for now.");
+			div.appendHtml("<img class = 'sickFiresCentered' src = 'images/sick_fires.gif'><br> It seems that the " + player1.htmlTitle() + " has been calmed down, for now.",treeSanitizer: NodeTreeSanitizer.trusted);
 			if(player1.murderMode) player1.unmakeMurderMode();
 			if(player2.murderMode) player2.unmakeMurderMode(); //raps calm EVERYBODY down.
 			//rap battles are truly the best way to power level.
@@ -260,7 +260,7 @@ class EngageMurderMode extends Scene{
 			this.session.sickFires = true;
 		}else{
 			String canvasHTML2 = "<br><canvas id='canvas2" + (div.id) +"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
-			div.appendHtml(canvasHTML2);
+			div.appendHtml(canvasHTML2,treeSanitizer: NodeTreeSanitizer.trusted);
 			CanvasElement canvasDiv2 = querySelector("#canvas2"+  (div.id));
 			String chatText2 = "";
 			chatText2 += Scene.chatLine(player1Start, player1,"Fuck. That was LAME! It makes me so FUCKING ANGRY!");
@@ -288,7 +288,7 @@ class EngageMurderMode extends Scene{
 			return;//nobody i actually want to kill??? why am i in murder mode?
 		}
 		String canvasHTML = "<br><canvas id='canvas" + (div.id) +"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
-		div.appendHtml(canvasHTML);
+		div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
 
 		CanvasElement canvasDiv = querySelector("#canvas"+  (div.id));
 
@@ -312,7 +312,7 @@ class EngageMurderMode extends Scene{
 		}
 		//reset capitilization quirk
 		this.player.quirk.capitalization = rand.nextIntRange(0,5);
-		div.appendHtml("<br>"+this.content());
+		div.appendHtml("<br>"+this.content(),treeSanitizer: NodeTreeSanitizer.trusted);
 		this.chat(div);
 	}
 	String content(){

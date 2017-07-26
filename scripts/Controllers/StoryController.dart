@@ -71,15 +71,15 @@ class StoryController extends SimController {
     if(curSessionGlobalVar.session_id == 33){
       document.title = "NepetaQuest by jadedResearcher";
       querySelector("#heading").setInnerHtml("NepetaQuest by jadedResearcher (art assistance by karmicRetribution) ");
-      querySelector("#story").appendHtml(" <a href = 'index2.html?seed=${getRandomSeed}&nepeta=:33'>The furryocious huntress makes sure to bat at this link to learn a secret!</a>");
+      querySelector("#story").appendHtml(" <a href = 'index2.html?seed=${getRandomSeed}&nepeta=:33'>The furryocious huntress makes sure to bat at this link to learn a secret!</a>",treeSanitizer: NodeTreeSanitizer.trusted);
     }else if(curSessionGlobalVar.session_id == 420){
       document.title ="FridgeQuest by jadedResearcher";
       querySelector("#heading").setInnerHtml("FridgeQuest by jadedResearcher (art assistance by karmicRetribution) ");
-      querySelector("#story").appendHtml(" <a href = 'index2.html?seed=${getRandomSeed}&honk=:o)'>wHoA. lIkE. wHaT If yOu jUsT...ReAcHeD OuT AnD ToUcHeD ThIs? HoNk!</a>");
+      querySelector("#story").appendHtml(" <a href = 'index2.html?seed=${getRandomSeed}&honk=:o)'>wHoA. lIkE. wHaT If yOu jUsT...ReAcHeD OuT AnD ToUcHeD ThIs? HoNk!</a>",treeSanitizer: NodeTreeSanitizer.trusted);
     }else if(curSessionGlobalVar.session_id == 88888888){
       document.title ="SpiderQuuuuuuuuest!!!!!!!! by jadedResearcher";
       querySelector("#heading").setInnerHtml("SpiderQuuuuuuuuest!!!!!!!!  by jadedResearcher (art assistance by karmicRetribution) ");
-      querySelector("#story").appendHtml(" <a href = 'index2.html?seed=${getRandomSeed}&luck=AAAAAAAALL'>Only the BEST Observers click here!!!!!!!!</a>");
+      querySelector("#story").appendHtml(" <a href = 'index2.html?seed=${getRandomSeed}&luck=AAAAAAAALL'>Only the BEST Observers click here!!!!!!!!</a>",treeSanitizer: NodeTreeSanitizer.trusted);
     }else if(curSessionGlobalVar.session_id == 0){
       document.title = "0_0 by jadedResearcher";
       querySelector("#heading").setInnerHtml("0_0 by jadedResearcher (art assistance by karmicRetribution) ");
@@ -95,7 +95,7 @@ class StoryController extends SimController {
     }else if(curSessionGlobalVar.session_id == 613){
       document.title ="OpenBound Simulator by jadedResearcher";
       querySelector("#heading").setInnerHtml("OpenBound Simulator by jadedResearcher (art assistance by karmicRetribution) ");
-      querySelector("#story").appendHtml(" <a href = 'index2.html?seed=${getRandomSeed}&open=bound'>Rebubble this link?.</a>");
+      querySelector("#story").appendHtml(" <a href = 'index2.html?seed=${getRandomSeed}&open=bound'>Rebubble this link?.</a>",treeSanitizer: NodeTreeSanitizer.trusted);
     }else if(curSessionGlobalVar.session_id == 612){
       document.title ="HiveBent Simulator by jadedResearcher";
       querySelector("#heading").setInnerHtml("HiveBent Simulator by jadedResearcher (art assistance by karmicRetribution) ");
@@ -103,7 +103,7 @@ class StoryController extends SimController {
     }else if(curSessionGlobalVar.session_id == 1025){
       document.title ="Fruity Rumpus Asshole Simulator by jadedResearcher";
       querySelector("#heading").setInnerHtml("Fruity Rumpus Asshole Simulator by jadedResearcher (art assistance by karmicRetribution) ");
-      querySelector("#story").appendHtml(" <a href = 'index2.html?seed=${getRandomSeed}&rumpus=fruity'>I will have order in this RumpusBlock!!!</a>");
+      querySelector("#story").appendHtml(" <a href = 'index2.html?seed=${getRandomSeed}&rumpus=fruity'>I will have order in this RumpusBlock!!!</a>",treeSanitizer: NodeTreeSanitizer.trusted);
     }
   }
 
@@ -192,7 +192,7 @@ class StoryController extends SimController {
     if (params == window.location.href) params = "";
     String str = '<div class = "links"><a href = "index2.html?seed=${initial_seed}&' + params + ' ">Shareable URL </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <a href = "character_creator.html?seed${initial_seed}&' + params + ' " target="_blank">Replay Session  </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp<a href ;= "index2.html">Random Session URL </a> </div>';
     querySelector("#seedText").setInnerHtml(str);
-    querySelector("#story").appendHtml("Session: ${initial_seed}");
+    querySelector("#story").appendHtml("Session: ${initial_seed}",treeSanitizer: NodeTreeSanitizer.trusted);
   }
 
   @override

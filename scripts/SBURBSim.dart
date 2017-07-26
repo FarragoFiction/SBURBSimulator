@@ -135,21 +135,21 @@ bool printCorruptionMessage(String msg, String url, String lineNo, String column
   Player space = findAspectPlayer(curSessionGlobalVar.players, "Space");
   Player time = findAspectPlayer(curSessionGlobalVar.players, "Time");
   if(curSessionGlobalVar.crashedFromPlayerActions){
-    querySelector("#story").appendHtml("<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. HORRORTERROR INFLUENCE: COMPLETE.");
+    querySelector("#story").appendHtml("<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. HORRORTERROR INFLUENCE: COMPLETE.",treeSanitizer: NodeTreeSanitizer.trusted);
     recomendedAction = "OMFG JUST STOP CRASHING MY DAMN SESSIONS. FUCKING GRIMDARK PLAYERS. BREAKING SBURB DOES NOT HELP ANYBODY! ";
   }else if(curSessionGlobalVar.players.length < 1){
-    querySelector("#story").appendHtml("<BR>ERROR: USELESS 0 PLAYER SESSION DETECTED.");
+    querySelector("#story").appendHtml("<BR>ERROR: USELESS 0 PLAYER SESSION DETECTED.",treeSanitizer: NodeTreeSanitizer.trusted);
     recomendedAction = ":/ REALLY? WHAT DID YOU THINK WAS GOING TO HAPPEN HERE, THE FREAKING *CONSORTS* WOULD PLAY THE GAME. ACTUALLY, THAT'S NOT HALF BAD AN IDEA. INTO THE PILE.";
   }else if(curSessionGlobalVar.players.length < 2){
-    querySelector("#story").appendHtml("<BR>ERROR: DEAD SESSION DETECTED.");
+    querySelector("#story").appendHtml("<BR>ERROR: DEAD SESSION DETECTED.",treeSanitizer: NodeTreeSanitizer.trusted);
     recomendedAction = ":/ YEAH, MAYBE SOME DAY I'LL DO DEAD SESSIONS FOR YOUR SPECIAL SNOWFLAKE SINGLE PLAYER FANTASY, BUT TODAY IS NOT THAT DAY.";
   }else if(space == null){
-    querySelector("#story").appendHtml("<BR>ERROR: SPACE PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED.");
+    querySelector("#story").appendHtml("<BR>ERROR: SPACE PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED.",treeSanitizer: NodeTreeSanitizer.trusted);
     curSessionGlobalVar.crashedFromCustomShit = true;
     recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A SPACE PLAYER, DUNKASS. ";
   }else if(time == null){
     curSessionGlobalVar.crashedFromCustomShit = true;
-    querySelector("#story").appendHtml("<BR>ERROR: TIME PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED");
+    querySelector("#story").appendHtml("<BR>ERROR: TIME PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED",treeSanitizer: NodeTreeSanitizer.trusted);
     recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A TIME PLAYER, DUNKASS. ";
   }else{
     curSessionGlobalVar.crashedFromSessionBug = true;
@@ -165,7 +165,7 @@ bool printCorruptionMessage(String msg, String url, String lineNo, String column
   ].join(' - ');
   print(message);
   String str = "<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. LAST ERROR: " + message + " ABORTING.";
-  querySelector("#story").appendHtml(str);
+  querySelector("#story").appendHtml(str,treeSanitizer: NodeTreeSanitizer.trusted);
   crashEasterEgg(url);
 
 
@@ -181,15 +181,15 @@ bool printCorruptionMessage(String msg, String url, String lineNo, String column
     var plea = start + "style ;= 'color: " +getColorFromAspect(player.aspect) +"; " + end +str + words+ "</b>";
     //print(getColorFromAspect(getRandomElementFromArray(curSessionGlobalVar.players).aspect+";") )
 
-    querySelector("#story").appendHtml(plea);
+    querySelector("#story").appendHtml(plea,treeSanitizer: NodeTreeSanitizer.trusted);
   }
 
   for(int i = 0; i<3; i++){
-    querySelector("#story").appendHtml("<BR>...");
+    querySelector("#story").appendHtml("<BR>...",treeSanitizer: NodeTreeSanitizer.trusted);
   }
   //once I let PLAYERS cause this (through grim darkness or finding their sesions disk or whatever), have different suggested actions.
   //maybe throw custom error?
-  querySelector("#story").appendHtml("<BR>SUGGESTED ACTION: " + recomendedAction);
+  querySelector("#story").appendHtml("<BR>SUGGESTED ACTION: " + recomendedAction,treeSanitizer: NodeTreeSanitizer.trusted);
   renderAfterlifeURL();
 
   print("Corrupted session: " + scratchedLineageText(curSessionGlobalVar.getLineage()) + " helping AB return, if she is lost here.");
@@ -244,7 +244,7 @@ window.addEventListener("error", (e) {
 void crashEasterEgg(String url) {
 
   String canvasHTML = "<br><canvas class ;= 'void' id='canvasVoidCorruptionEnding"+"' width;='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-  querySelector("#story").appendHtml(canvasHTML);
+  querySelector("#story").appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
   var canvas = querySelector("#canvasVoidCorruptionEnding");
   String chat = "";
   chat += "RS: We are gathered here today in loving memory of- \n";
@@ -328,7 +328,7 @@ void scratchEasterEggCallBack(){
   scratch += " What will happen?";
   print("about to switch players");
 
-  querySelector("#story").innerHtml = (scratch);
+  querySelector("#story").setInnerHtml(scratch);
   if(!simulationMode) window.scrollTo(0, 0);
 
   var guardians = raggedPlayers; //if i use guardians, they will be all fresh and squeaky. want the former players.
@@ -341,7 +341,7 @@ void scratchEasterEggCallBack(){
   }
   String canvasHTML = "<br><canvas id='canvas" + guardianID+"' width='" +canvasWidth.toString() + "' height="+ch.toString() + "'>  </canvas>";
 
-  guardianDiv.appendHtml(canvasHTML);
+  guardianDiv.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
   Element canvasDiv = querySelector("#canvas"+ guardianID);
   poseAsATeam(canvasDiv, guardians); //everybody, even corpses, pose as a team.
 
@@ -354,7 +354,7 @@ void scratchEasterEggCallBack(){
   }
   canvasHTML = "<br><canvas id='canvas" + playerID+"' width='" +canvasWidth.toString() + "' height="+ch.toString() + "'>  </canvas>";
 
-  playerDiv.appendHtml(canvasHTML);
+  playerDiv.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
   canvasDiv = querySelector("#canvas"+ playerID);
 
   //need to render self for caching to work for this
@@ -393,7 +393,7 @@ void renderAfterlifeURL(){
     html += '<br><br><a href = "index2.html?seed=' +curSessionGlobalVar.session_id.toString() +'&' + params + ' " target;="_blank">Shareable URL </a> ';
     html += "<Br><Br>Simulation took: " + msToTime(stopTime.difference(startTime)) + " to render. ";
     //print("gonna append: " + html);
-    querySelector("#story").appendHtml(html);
+    querySelector("#story").appendHtml(html,treeSanitizer: NodeTreeSanitizer.trusted);
   }else{
     print("no ghosts");
   }

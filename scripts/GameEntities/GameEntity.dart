@@ -182,14 +182,14 @@ class GameEntity implements Comparable{
     var theirs = getAverageSanity(living_enemies);
     if(mine+200 < theirs && this.session.rand.nextDouble() < 0.5){
       print("Too insane to use fraymotifs: " + htmlTitleHP() +" against " + target.htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id.toString());
-      div.appendHtml(" The " + htmlTitleHP() + " wants to use a Fraymotif, but they are too crazy to focus. ");
+      div.appendHtml(" The " + htmlTitleHP() + " wants to use a Fraymotif, but they are too crazy to focus. ",treeSanitizer: NodeTreeSanitizer.trusted);
       return false;
     }
     mine = getStat("freeWill") ;
     theirs = getAverageFreeWill(living_enemies);
     if(mine +200 < theirs && this.session.rand.nextDouble() < 0.5){
       print("Too controlled to use fraymotifs: " + htmlTitleHP() +" against " + target.htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id.toString());
-      div.appendHtml(" The " + htmlTitleHP() + " wants to use a Fraymotif, but Fate dictates otherwise. ");
+      div.appendHtml(" The " + htmlTitleHP() + " wants to use a Fraymotif, but Fate dictates otherwise. ",treeSanitizer: NodeTreeSanitizer.trusted);
       return false;
     }
 
@@ -202,8 +202,8 @@ class GameEntity implements Comparable{
         chosen = f; //all else equal, prefer the one with more members.
       }
     }
-    div.appendHtml("<Br><br>"+chosen.useFraymotif(this, living_allies, target, living_enemies) + "<br><Br>");
-    div.appendHtml("<Br><br>"+chosen.useFraymotif(this, living_allies, target, living_enemies) + "<br><Br>");
+    div.appendHtml("<Br><br>"+chosen.useFraymotif(this, living_allies, target, living_enemies) + "<br><Br>",treeSanitizer: NodeTreeSanitizer.trusted);
+    div.appendHtml("<Br><br>"+chosen.useFraymotif(this, living_allies, target, living_enemies) + "<br><Br>",treeSanitizer: NodeTreeSanitizer.trusted);
     chosen.usable = false;
     return true;
   }
@@ -231,23 +231,23 @@ class GameEntity implements Comparable{
       flipOut("how terrifying " + Team.getTeamsNames(enemies) + " were");
       if(getStat("mobility") > Team.getTeamsStatAverage(enemies, "mobility")){
         //console.log(" player actually absconds: they had " + player.hp + " and enemy had " + enemy.getStat("power") + this.session.session_id)
-        div.appendHtml("<br><img src = 'images/sceneIcons/abscond_icon.png'> The " + htmlTitleHP() + " absconds right the fuck out of this fight. ");
+        div.appendHtml("<br><img src = 'images/sceneIcons/abscond_icon.png'> The " + htmlTitleHP() + " absconds right the fuck out of this fight. ",treeSanitizer: NodeTreeSanitizer.trusted);
         mySide.absconded.add(this);
         mySide.remainingPlayersHateYou(div, this);
         return true;
       }else{
-        div.appendHtml(" The " + htmlTitleHP() + " tries to absconds right the fuck out of this fight, but the " + Team.getTeamsNames(enemies) + " blocks them. Can't abscond, bro. ");
+        div.appendHtml(" The " + htmlTitleHP() + " tries to absconds right the fuck out of this fight, but the " + Team.getTeamsNames(enemies) + " blocks them. Can't abscond, bro. ",treeSanitizer: NodeTreeSanitizer.trusted);
         return false;
       }
     }else if(reasonsToLeave > reasonsToStay){
       if(getStat("mobility") > Team.getTeamsStatAverage(enemies, "mobility")){
         //console.log(" player actually absconds: " + this.session.session_id)
-        div.appendHtml("<br><img src = 'images/sceneIcons/abscond_icon.png'>  Shit. The " + htmlTitleHP() + " doesn't know what to do. They don't want to die... They abscond. ");
+        div.appendHtml("<br><img src = 'images/sceneIcons/abscond_icon.png'>  Shit. The " + htmlTitleHP() + " doesn't know what to do. They don't want to die... They abscond. ",treeSanitizer: NodeTreeSanitizer.trusted);
         mySide.absconded.add(this);
         mySide.remainingPlayersHateYou(div, this);
         return true;
       }else{
-        div.appendHtml(" Shit. The " + htmlTitleHP() + " doesn't know what to do. They don't want to die... Before they can decide whether or not to abscond " + Team.getTeamsNames(enemies) + " blocks their escape route. Can't abscond, bro. ");
+        div.appendHtml(" Shit. The " + htmlTitleHP() + " doesn't know what to do. They don't want to die... Before they can decide whether or not to abscond " + Team.getTeamsNames(enemies) + " blocks their escape route. Can't abscond, bro. ",treeSanitizer: NodeTreeSanitizer.trusted);
         return false;
       }
     }
@@ -346,7 +346,7 @@ class GameEntity implements Comparable{
         ", but not before a lot of grumbling and arguing about how the pact shouldn't even be VALID anymore since the player is fucking GODTIER, they are going to revive fucking ANYWAY. But yeah, MAYBE it'd be judged HEROIC or some shit. Fine, they agree to go into a ghost coma or whatever. ";
       }
       ret += "It will be a while before the ghost recovers.";
-      div.appendHtml(ret);
+      div.appendHtml(ret,treeSanitizer: NodeTreeSanitizer.trusted);
       Player myGhost = this.session.afterLife.findClosesToRealSelf(this);
       removeFromArray(myGhost, this.session.afterLife.ghosts);
      // CanvasElement canvas = drawReviveDead(div, this, source, undrainedPacts[0][1]);
@@ -355,7 +355,7 @@ class GameEntity implements Comparable{
         addStat("currentHP",100); //i won't let you die again.
       }else if(undrainedPacts[0][1] == "Doom"){
         addStat("minLuck",100); //you've fulfilled the prophecy. you are no longer doomed.
-        div.appendHtml("The prophecy is fulfilled. ");
+        div.appendHtml("The prophecy is fulfilled. ",treeSanitizer: NodeTreeSanitizer.trusted);
       }
     }
   }

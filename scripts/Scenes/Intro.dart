@@ -62,7 +62,7 @@ class Intro  extends IntroScene{
 		if(this.player.object_to_prototype.getStat("power") > 200 && rand.nextDouble() > .8){
 			String divID = (div.id);
 			String canvasHTML = "<br><canvas id;='canvaskernel" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
-			div.appendHtml(canvasHTML);
+			div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
 			CanvasElement canvas = querySelector("#canvaskernel"+ divID);
 			List<Player> times = findAllAspectPlayers(this.session.players, "Time"); //they don't have to be in the medium, though
 			Player timePlayer = rand.pickFrom(times); //ironically will probably allow more timeless sessions without crashes.
@@ -92,7 +92,7 @@ class Intro  extends IntroScene{
 			this.player.object_to_prototype.helpPhrase = " is interested in trying to figure out how to play the game, since but for shenanigans they would be playing it themselves.";
 
 		}
-		div.appendHtml(ret);
+		div.appendHtml(ret,treeSanitizer: NodeTreeSanitizer.trusted);
 		return "";
 	}
 	dynamic addImportantEvent(){

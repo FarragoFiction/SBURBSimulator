@@ -417,7 +417,7 @@ void addImageTag(String url){
 	//only do it if image hasn't already been added.
 	if(imageSelector(url) == null) {
 		String tag = '<img id="' + escapeId(url) + '" src = "images/' + url + '" class="loadedimg">';
-		querySelector("#image_staging").appendHtml(tag);
+		querySelector("#image_staging").appendHtml(tag,treeSanitizer: NodeTreeSanitizer.trusted);
 	}
 
 }
@@ -453,7 +453,7 @@ function imgLoaded(imgElement) {
 CanvasElement drawReviveDead(Element div, Player player, Player ghost, String enablingAspect){
   String canvasId = "${div.id}commune_${player.chatHandle}${ghost.chatHandle}${player.getStat("power")}${ghost.getStat("power")}";
   String canvasHTML = "<br><canvas id;='" + canvasId +"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
-  div.appendHtml(canvasHTML);
+  div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
   CanvasElement canvas = querySelector("#${canvasId}");
   CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
   drawSprite(pSpriteBuffer,player);

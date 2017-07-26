@@ -93,7 +93,7 @@ void addImageTagLoading(url){
 		String tag = '<img id="' + escapeId(url) + '" src = "images/' + url + '" class="loadedimg">';
 		//var urlID = urlToID(url);
 		//String tag = '<img id ;="' + urlID + '" src = "' + url + '" style;="display:none">';
-		querySelector("#loading_image_staging").appendHtml(tag);
+		querySelector("#loading_image_staging").appendHtml(tag,treeSanitizer: NodeTreeSanitizer.trusted);
 	}else{
 		//print("I thought i found a document with id of: " + url);
 

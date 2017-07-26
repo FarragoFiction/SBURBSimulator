@@ -31,14 +31,14 @@ class DoEctobiology extends Scene {
 			ch = (canvasHeight*1.5).round();
 		}
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='$canvasWidth' height='$ch'>  </canvas>";
-		div.appendHtml(canvasHTML);
+		div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
 		//different format for canvas code
 		Element canvasDiv = querySelector("#canvas"+ divID);
 		poseBabiesAsATeam(canvasDiv, this.leader, this.playersMade, getGuardiansForPlayers(this.playersMade));
 	}
 	@override
 	void renderContent(Element div){
-		div.appendHtml("<br><img src = 'images/sceneIcons/ectobiology_icon.png'>"+this.content());
+		div.appendHtml("<br><img src = 'images/sceneIcons/ectobiology_icon.png'>"+this.content(),treeSanitizer: NodeTreeSanitizer.trusted);
 		this.drawLeaderPlusBabies(div);
 	}
 	dynamic content(){

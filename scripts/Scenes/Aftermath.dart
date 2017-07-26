@@ -118,14 +118,14 @@ class Aftermath extends Scene {
 
 			end += " While various bullshit means of revival were being processed, the Black Royalty have fled Skaia to try to survive the Meteor storm. There is no more time, if the frog isn't deployed now, it never will be. There is no time for mourning. ";
 			this.session.opossumVictory = true; //still laughing about this. it's when the players don't kill the queen/king because they don't have to fight them because they are al lint he process of god tier reviving. so the royalty fucks off. and when the players wake up, there's no bosses, so they just pop the frog in the skia hole.
-			div.appendHtml(end);
+			div.appendHtml(end,treeSanitizer: NodeTreeSanitizer.trusted);
 			end = "<br><br>";
 		}else if(living.length>0){
 				if(living.length == this.session.players.length){
 					end += " All ";
 				}
 				end += "${living.length} players are alive.<BR>" ;
-				div.appendHtml(end);//write text, render mourning
+				div.appendHtml(end,treeSanitizer: NodeTreeSanitizer.trusted);//write text, render mourning
 				end = "<Br>";
 				this.mournDead(div);
 		}
@@ -182,7 +182,7 @@ class Aftermath extends Scene {
 
 			}
 	}else{
-		div.appendHtml(end);
+		div.appendHtml(end,treeSanitizer: NodeTreeSanitizer.trusted);
 		end = "<Br>";
 		this.mournDead(div);
 		end += this.democracyBonus();
@@ -191,7 +191,7 @@ class Aftermath extends Scene {
 	Player strongest = findStrongestPlayer(this.session.players);
 	end += "<br> The MVP of the session was: " + strongest.htmlTitle() + " with a power of: ${strongest.getStat("power")}";
 	end += "<br>Thanks for Playing!<br>";
-	div.appendHtml(end);
+	div.appendHtml(end,treeSanitizer: NodeTreeSanitizer.trusted);
 	String divID = (div.id) + "_aftermath" ;
 
 
@@ -294,7 +294,7 @@ class Aftermath extends Scene {
 		print(trollKidRock);
 		GameEntity purpleFrog = this.purpleFrog();
 		precedingText += "<img src ;= 'images/sceneicons/Purple_Frog_ANGERY.png'> What...what is going on? How...how can you have NEGATIVE 100% of a frog??? This...this doesn't look right.   The vast frog lets out a CROAK, but it HURTS.  It seems...hostile.  Oh fuck. <Br><br> The " + purpleFrog.htmlTitleHP() + " initiates a strife with the Players! Troll Kid Rock appears out of nowhere to help them. (What the hell???)<br><br><canvas id = 'trollKidRockAppears' width ;='400' height = '300'></canvas>";
-		div.appendHtml(precedingText);
+		div.appendHtml(precedingText,treeSanitizer: NodeTreeSanitizer.trusted);
 
 		List<Player> purpleFighters = this.getGoodGuys(trollKidRock);
 		//var callBack = this.finishPurpleStrife.bind(this, div, purpleFrog, purpleFighters, trollKidRock);
@@ -317,7 +317,7 @@ class Aftermath extends Scene {
 		}else{
 			ret += "With a final, deafening 'CROAK', the " + purpleFrog.name + " floats victorious over the remains of the Players.   The Horror Terrors happily colonize the new Universe, though, so I guess the GrimDark players would be happy with this ending?  <Br><Br> Thanks for Playing. ";
 		}
-		div.appendHtml(ret);
+		div.appendHtml(ret,treeSanitizer: NodeTreeSanitizer.trusted);
 		this.lastRender(div);
 	}
 	void lastRender(Element div){
@@ -325,7 +325,7 @@ class Aftermath extends Scene {
 	    if(div == null || div.text.length == 0) return; //don't try to render if there's no where to render to
 		for(int i = 0; i<this.session.players.length; i++){
 			String canvasHTML = "<canvas class = 'charSheet' id='lastcanvas${this.session.players[i].id}_${this.session.session_id}' width='800' height='1000'>  </canvas>";
-			div.appendHtml(canvasHTML);
+			div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
 			CanvasElement canvasDiv = querySelector("#lastcanvas${this.session.players[i].id}_${this.session.session_id}");
 			CanvasElement first_canvas = querySelector("#firstcanvas${this.session.players[i].id}_${this.session.session_id}");
 			CanvasElement tmp_canvas = getBufferCanvas(canvasDiv);
@@ -336,7 +336,7 @@ class Aftermath extends Scene {
 	}
 	void content(Element div, i){
 		String ret = " TODO: Figure out what a non 2.0 version of the Intro scene would look like. ";
-		div.appendHtml(ret);
+		div.appendHtml(ret,treeSanitizer: NodeTreeSanitizer.trusted);
 	}
 
 }

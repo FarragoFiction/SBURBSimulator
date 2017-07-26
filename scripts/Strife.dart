@@ -123,7 +123,7 @@ class Strife {
       icon = "<img src = 'images/sceneIcons/victory_icon.png'>";
     String endingHTML = "<Br><br> ${icon} The fight is over. ${winner
         .name} remains alive and unabsconded. <br>";
-    div.appendHtml(endingHTML);
+    div.appendHtml(endingHTML,treeSanitizer: NodeTreeSanitizer.trusted);
     winner.poseAsATeam(div);
   }
 
@@ -321,7 +321,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
   //handle doomed time clones here, too
   void summonBackup(GameEntity backup, div) {
     String canvasHTML = "<br><canvas id='canvasBackup${backup.id}" + (div.id) +"' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
-    div.appendHtml(canvasHTML);
+    div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
     var canvasDiv = querySelector("#canvasBackup"+ div.id);
     if(backup.doomed){
       var canvasDiv = querySelector("#canvas"+ div.id);
@@ -334,15 +334,15 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
         if(p.aspect == "Time" && p.session.rand.nextDouble() > .5){
           drawTimeGears(canvasDiv);
           //console.log("summoning a stable time loop player to this fight. " +this.session.session_id)
-          div.appendHTML("The " + backup.htmlTitleHP() + " has joined the Strife!!! (Don't worry about the time bullshit, they have their stable time loops on LOCK. No doom for them.)");
+          div.appendHTML("The " + backup.htmlTitleHP() + " has joined the Strife!!! (Don't worry about the time bullshit, they have their stable time loops on LOCK. No doom for them.)",treeSanitizer: NodeTreeSanitizer.trusted);
           return;
           }
       }//not a time player
       //console.log("summoning a player to this fight. " +this.session.session_id)
       String canvasHTML = "<br><canvas id='canvasDoomed${backup.id}" + (div.id) +"' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
-      div.appendHtml(canvasHTML);
+      div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
 
-      div.appendHTML("The " + backup.htmlTitleHP() + " has joined the Strife!!!");
+      div.appendHTML("The " + backup.htmlTitleHP() + " has joined the Strife!!!",treeSanitizer: NodeTreeSanitizer.trusted);
     }
     drawSinglePlayer(canvasDiv, backup);
   }
@@ -425,7 +425,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
           ret += member.checkDiedInAStrife(enemyTeams);
       }
     }
-    if(ret.isEmpty) div.appendHTML(ret);
+    if(ret.isEmpty) div.appendHTML(ret,treeSanitizer: NodeTreeSanitizer.trusted);
   }
 
   void giveGristFromTeams(List<Team>teams) {
@@ -465,7 +465,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
       ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
     }
     String canvasHTML = "<br><canvas id;='canvas" + div.id+"' width='" +canvasWidth.toString() + "' height;="+ch.toString() + "'>  </canvas>";
-    div.appendHtml(canvasHTML);
+    div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
     //different format for canvas code
     var canvasDiv = querySelector("#canvas"+ div.id);
     poseAsATeam(canvasDiv, poseable); //in handle sprites
