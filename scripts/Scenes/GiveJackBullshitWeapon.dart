@@ -32,7 +32,7 @@ class GiveJackBullshitWeapon extends Scene {
 
 	@override
 	void renderContent(Element div){
-		div.append("<br><img src = 'images/sceneIcons/jack_icon.png'> "+this.content());
+		appendHtml(div,"<br><img src = 'images/sceneIcons/jack_icon.png'> "+this.content());
 	}
 
 }

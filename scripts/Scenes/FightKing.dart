@@ -42,8 +42,8 @@ class FightKing extends Scene {
 	@override
 	void renderContent(Element div){
 		//print("rendering fight king);")
-		div.append("<br> <img src = 'images/sceneIcons/bk_icon.png'>");
-		div.append(this.content());
+		appendHtml(div, "<br> <img src = 'images/sceneIcons/bk_icon.png'>");
+    appendHtml(div,this.content());
 
 		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
 		var fighting = this.getGoodGuys();

@@ -25,7 +25,7 @@ class BeTriggered extends Scene{
 	}
 	@override
 	void renderContent(Element div){
-		div.append("<br><img src = 'images/sceneIcons/flipout_icon_animated.gif'>"+this.content());
+		appendHtml(div,"<br><img src = 'images/sceneIcons/flipout_icon_animated.gif'>"+this.content());
 	}
 	bool IsPlayerTriggered(player){
 		if(player.flipOutReason != null && !player.flipOutReason.isEmpty){

@@ -181,14 +181,14 @@ class PlanToExileJack extends Scene {
 			//leader gossips with friends
 			player2 = player1.getBestFriendFromList(findLivingPlayers(	this.session.players));
 			if(!player2){
-				div.append(this.content);
+				appendHtml(div,this.content());
 				return;
 			}else{
 				this.chatWithFriend(div,player1, player2);
 			}
 		}else{
 			//we get a narration
-			div.append(this.content);
+			appendHtml(div,this.content());
 		}
 	}
 	String content(){

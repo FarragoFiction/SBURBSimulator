@@ -40,7 +40,7 @@ class VoidyStuff extends Scene {
 		this.player.increasePower();
 		if(this.enablingPlayer.aspect == "Void") this.player.corruptionLevelOther += rand.nextIntRange(1,5); //void isn't a safe place to be.
 		//div.append("<br>"+this.content());
-		div.append("<br><img src = 'images/sceneIcons/shenanigans_icon.png'> ");
+    appendHtml(div,"<br><img src = 'images/sceneIcons/shenanigans_icon.png'> ");
 		this.chooseShenanigans(div);
 	}
 	void chooseShenanigans(div){

@@ -33,7 +33,7 @@ class MurderPlayers extends Scene {
 
 	@override
 	void renderContent(Element div){
-		div.append("<br> <img src = 'images/sceneIcons/murder_icon.png'>"+this.contentForRender(div));
+    appendHtml(div,"<br> <img src = 'images/sceneIcons/murder_icon.png'>"+this.contentForRender(div));
 	}
 	dynamic friendsOfVictimHateYou(victim, murderer){
 		var livePlayers = findLivingPlayers(this.session.players); //reroll it 'cause people might have died during this set of murders.'

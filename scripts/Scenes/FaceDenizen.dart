@@ -52,7 +52,7 @@ class FaceDenizen extends Scene{
 	}
 	@override
 	void renderContent(Element div){
-		div.append("<br><br>");
+		appendHtml(div,"<br><br>");
 		for(num i = 0; i<this.denizenFighters.length; i++){
 			var p = this.denizenFighters[i];
 			removeFromArray(p, this.session.availablePlayers);

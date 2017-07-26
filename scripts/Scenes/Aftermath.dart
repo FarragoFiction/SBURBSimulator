@@ -309,7 +309,10 @@ class Aftermath extends Scene {
 		drawTimeGears(tkrCanvas);//, trollKidRock);
 		drawSinglePlayer(tkrCanvas, trollKidRock);
 		fighters.add(Player.makeRenderingSnapshot(trollKidRock)); //sorry trollKidRock you are not REALLY a player.
-		purpleFrog.strife(div, fighters,0);
+		Team pTeam = new Team.withName("The Players", this.session, fighters);
+		Team dTeam = new Team(this.session, [purpleFrog]);
+		Strife strife = new Strife(this.session, [pTeam, dTeam]);
+		strife.startTurn(div);
 		String ret = "";
 		if(purpleFrog.getStat("currentHP") <= 0 || purpleFrog.dead) {
 			this.session.won = true;

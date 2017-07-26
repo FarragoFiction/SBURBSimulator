@@ -25,7 +25,7 @@ class DisengageMurderMode extends Scene {
 	@override
 	void renderContent(Element div){
 		//alert("disengaged");
-		div.append("<br>"+this.content());
+		appendHtml(div,"<br>"+this.content());
 	}
 	dynamic content(){
 		this.player.increasePower();

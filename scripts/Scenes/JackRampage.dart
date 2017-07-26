@@ -79,7 +79,7 @@ class JackRampage extends Scene{
 	void renderContent(Element div){
 		this.session.jackRampage = true;
 		//div.append("<br>"+this.content());
-		div.append("<br><img src = 'images/sceneIcons/jack_icon.png'> ");
+		appendHtml(div,"<br><img src = 'images/sceneIcons/jack_icon.png'> ");
 
 		//jack finds 0 or more players.
 		var stabbings = this.getStabList();
@@ -88,17 +88,17 @@ class JackRampage extends Scene{
 		if(stabbings.length == 0){
 			if(rand.nextDouble() > .5){
 				ret += " Jack listlessly shows his stabs to a few Prospitian pawns. ";
-				div.append(""+ret);
+        appendHtml(div,""+ret);
 			}else{
 				ret += " Jack listlessly shows his stabs to a few Dersite pawns. ";
-				div.append(""+ret);
+            appendHtml(div,""+ret);
 			}
 			ret += " Bored of this, he decides to show his stabs to BOTH the Black and White Kings.  The battle is over. The Reckoning will soon start.";
 			this.session.timeTillReckoning = 0;
 			this.session.king.setStat("currentHP",-99999999);
 			this.session.king.dead = true;
 			print("jack starts reckoning " + this.session.session_id.toString());
-			div.append(""+ret);
+        appendHtml(div,""+ret);
 		}else{
 
 
@@ -107,7 +107,7 @@ class JackRampage extends Scene{
 				//want to test out a dream self dying without active.
 				//print("jack kills nonactive dream self: " + this.session.session_id);
 				ret = "Jack has found the dream self of the " + stabbings[0].htmlTitleBasic() + ". He shows the sleeping body his stabs. The dream self is no longer available for revival shenanigans. ";
-				div.append(""+ret);
+        appendHtml(div,""+ret);
 				stabbings[0].dreamSelf = false;
 				var snop = Player.makeRenderingSnapshot(stabbings[0]);
 				snop.causeOfDeath = "after being sleep stabbed by Jack";
@@ -116,7 +116,7 @@ class JackRampage extends Scene{
 			}else{
 				this.setPlayersUnavailable(stabbings);
 				ret = "Jack has caught the " + getPlayersTitlesBasic(stabbings) + ".  Will he show them his stabs? Strife!";
-				div.append(""+ret);
+        appendHtml(div,""+ret);
 				this.renderPrestabs(div, stabbings); //pose as a team BEFORE getting your ass handed to you.
 				Team pTeam = new Team(this.session, stabbings);
 				Team dTeam = new Team(this.session, [this.session.jack]);

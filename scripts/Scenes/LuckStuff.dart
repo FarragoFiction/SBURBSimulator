@@ -46,14 +46,14 @@ class LuckStuff extends Scene{
 		this.numberTriggers ++;
 		//String ret = "<img src = 'images/fortune_event.png'/><Br>";  //maybe display image for this event, like not canvas, just image. Single image for event.
 		String ret = "";
-		div.append("<br> <img src = 'images/sceneIcons/luck_icon.png'>");
+    appendHtml(div,"<br> <img src = 'images/sceneIcons/luck_icon.png'>");
 		for(num i = 0; i<this.rolls.length; i++){
 			var roll = this.rolls[i];
 			removeFromArray(roll.player, this.session.availablePlayers);
 			var s = this.processRoll(roll,div) + "<br><Br>";
 			ret += s;
 		}
-		div.append("" + ret);
+    appendHtml(div,"" + ret);
 	}
 	String roll60(roll){
 		//print("roll60 in " + this.session.session_id);

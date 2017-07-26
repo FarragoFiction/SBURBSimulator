@@ -39,11 +39,11 @@ class GoGrimDark extends Scene {
 		if(alt && alt.alternateScene(div)){
 			return;
 		}
-		div.append("<br><img src = 'images/sceneIcons/grimdark_black_icon.png'>"+this.content());
+    appendHtml(div,"<br><img src = 'images/sceneIcons/grimdark_black_icon.png'>"+this.content());
 		if(this.player.grimDark ==4){
 			var divID = div.id + "grimdark";
 			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-			div.append(canvasHTML);
+      appendHtml(div,canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 			drawSinglePlayer(canvasDiv, this.player);
 		}

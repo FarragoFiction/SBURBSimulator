@@ -22,7 +22,7 @@ class QueenRejectRing extends Scene {
 
 	@override
 	void renderContent(Element div){
-		div.append("<br> <img src = 'images/sceneIcons/bq_icon.png'> "+this.content());
+		appendHtml(div,"<br> <img src = 'images/sceneIcons/bq_icon.png'> "+this.content());
 	}
 	dynamic content(){
 		this.session.queenRejectRing = true;

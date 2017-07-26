@@ -27,15 +27,14 @@ class GodTierRevival extends Scene {
 	}
 	@override
 	void renderContent(Element div){
-		div.append("<br>"+this.content());
-		num repeatTime = 1000;
+		appendHtml(div,"<br>"+this.content());
 		var divID = (div.id) + "_tiger";
 		var ch = canvasHeight;
 		if(this.godsToRevive.length > 6){
 			ch = canvasHeight*2;
 		}
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+ch + "'>  </canvas>";
-		div.append(canvasHTML);
+    appendHtml(div,canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);
 		List<dynamic> live_players = [];

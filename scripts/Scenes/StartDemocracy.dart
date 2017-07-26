@@ -36,7 +36,7 @@ class StartDemocracy extends Scene {
 	}
 	@override
 	void renderContent(Element div){
-		div.append("<br> <img src = 'images/sceneIcons/wv_icon.png'> "+this.content());
+		appendHtml(div, "<br> <img src = 'images/sceneIcons/wv_icon.png'> "+this.content());
 	}
 	@override
 	bool trigger(playerList){

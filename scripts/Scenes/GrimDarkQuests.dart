@@ -77,10 +77,11 @@ class GrimDarkQuests extends Scene{
 	void renderContent(Element div){
 		//print("A grim dark player is actively working to crash session " + this.session.session_id + " and this much health remains: " + this.session.sessionHealth );
 		//print("trying to crash session like an idiot: " + this.session.session_id);
-		div.append("<br><img src = 'images/sceneIcons/grimdark_black_icon.png'> "+this.content());
+    appendHtml(div,"<br><img src = 'images/sceneIcons/grimdark_black_icon.png'> "+this.content());
 		if(this.session.sessionHealth <= 0){
-			div.append("<br><br>YOU MANIACS! YOU BLEW IT UP! AH, DAMN YOU! GOD DAMN YOU ALL TO HELL! <br><br>Just joking. Well, I mean. Not about them blowing it up. Sessions fucked. But. I mean, come on. What did you THINK would happen? Stupid, lousy goddamned GrimDark players crashing my fucking sessions.");
-			this.crashSession();
+      appendHtml(div,"<br><br>YOU MANIACS! YOU BLEW IT UP! AH, DAMN YOU! GOD DAMN YOU ALL TO HELL! <br><br>Just joking. Well, I mean. Not about them blowing it up. Sessions fucked. But. I mean, come on. What did you THINK would happen? Stupid, lousy goddamned GrimDark players crashing my fucking sessions.");
+
+          this.crashSession();
 		}
 	}
 	dynamic content(){

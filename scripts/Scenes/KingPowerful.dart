@@ -18,7 +18,7 @@ class KingPowerful extends Scene {
 
 	@override
 	void renderContent(Element div){
-		div.append("<br>"+this.content());
+		appendHtml(div,"<br>"+this.content());
 	}
 
 	String content(){

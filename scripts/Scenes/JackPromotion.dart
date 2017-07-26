@@ -83,7 +83,7 @@ class JackPromotion extends Scene{
 		if(alt && alt.alternateScene(div)){
 			return;
 		}
-		div.append("<br> <img src = 'images/sceneIcons/jack_icon.png'>"+this.content());
+		appendHtml(div,"<br> <img src = 'images/sceneIcons/jack_icon.png'>"+this.content());
 	}
 
 
