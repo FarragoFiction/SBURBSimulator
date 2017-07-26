@@ -261,7 +261,7 @@ void crashEasterEgg(String url) {
   chat += "RS:" + convoTangents + "\n";
   chat += "AB: Yeah, I’m kinda too busy simulating hundreds of sessions right now to deal with this.  I’ll catch you again when I’m not busy, which is never, since flawless machines like myself are always making themselves useful.  Bye. \n";
 
-  drawChatNonPlayer(canvas, chat, "-- recursiveSlacker [RS] began pestering authorBot" + " [AB] --", "Credits/recursiveSlacker.png", "ab.png", "RS:", "AB:", "#000066", "#ff0000"  );
+  drawChatNonPlayer(canvas, chat, "-- recursiveSlacker [RS] began pestering authorBot" + " [AB] --", "images/Credits/recursiveSlacker.png", "ab.png", "RS:", "AB:", "#000066", "#ff0000"  );
 
 }
 
