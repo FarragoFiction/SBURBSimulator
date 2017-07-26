@@ -408,19 +408,19 @@ class Quirk {
 
 
 
-dynamic replaceStringAt(str, index, character){
-    return str.substr(0, index) + character + str.substr(index+character.length);
+String replaceStringAt(String str, int index, String character){
+    return str.substring(0, index) + character + str.substring(index+character.length);
 }
 
 
 
-dynamic multiplyCharacter(str, character, times){
+dynamic multiplyCharacter(String str, String character, int times){
         //querySelector("#debug").append("<Br>Going to multiply: " + character + " this many times: " + times);
         String tmp = "";
         for(int i = 0; i<times; i++){
             tmp += character;
         }
-        return str.replace(character, tmp);
+        return str.replaceAll(character, tmp);
 }
 
 

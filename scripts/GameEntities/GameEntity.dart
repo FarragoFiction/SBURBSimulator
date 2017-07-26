@@ -9,7 +9,7 @@ class GameEntity implements Comparable{
   String name;
   String fontColor = "#000000";
   bool ghost = false; //if you are ghost, you are rendered spoopy style
-  num grist; //everything has it.
+  num grist = 100; //everything has it.
   bool dead = false;
   bool exiled = false;
   List<dynamic> ghostPacts = []; //list of two element array [Ghost, enablingAspect]

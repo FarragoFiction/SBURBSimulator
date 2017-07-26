@@ -177,7 +177,7 @@ bool printCorruptionMessage(String msg, String url, String lineNo, String column
     String end = "'>";
 
     var words = curSessionGlobalVar.rand.pickFrom(rand);
-    words = Zalgo.generate(words); 
+    words = Zalgo.generate(words);
     var plea = start + "style = 'color: " +getColorFromAspect(player.aspect) +"; " + end +str + words+ "</b>";
     //print(getColorFromAspect(getRandomElementFromArray(curSessionGlobalVar.players).aspect+";") )
 
