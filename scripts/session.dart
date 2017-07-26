@@ -90,6 +90,69 @@ class Session {
 		this.rand = new Random(session_id);
 	}
 
+	//  //makes copy of player list (no shallow copies!!!!)
+  List<Player> setAvailablePlayers(List<Player> playerList) {
+    this.availablePlayers = [];
+    for(num i = 0; i<playerList.length; i++){
+      //dead players are always unavailable.
+      if(!playerList[i].dead){
+        this.availablePlayers.add(playerList[i]);
+      }
+    }
+    return this.availablePlayers;
+
+  }
+
+	//used to live in scene controller but fuck that noise (also used to be named processScenes2)
+	void processScenes(List<Player> playersInSession) {
+    //print("processing scene");
+    //querySelector("#story").append("processing scene");
+    setAvailablePlayers(playersInSession);
+    for(num i = 0; i<this.available_scenes.length; i++){
+      var s = this.available_scenes[i];
+      //var debugQueen = queenStrength;
+      if(s.trigger(playersInSession)){
+        //session.scenesTriggered.add(s);
+        this.numScenes ++;
+        s.renderContent(this.newScene());
+        if(!s.canRepeat){
+          //removeFromArray(s,session.available_scenes);
+          this.available_scenes.remove(s);
+        }
+      }
+    }
+
+    for(num i = 0; i<this.deathScenes.length; i++){
+      var s = this.deathScenes[i];
+      if(s.trigger(playersInSession)){
+        //	session.scenesTriggered.add(s);
+        this.numScenes ++;
+        s.renderContent(this.newScene());
+      }
+    }
+
+  }
+
+  void processReckoning(List<Player> playerList){
+    for(num i = 0; i<this.reckoningScenes.length; i++){
+      var s = this.reckoningScenes[i];
+      if(s.trigger(playerList)){
+        //session.scenesTriggered.add(s);
+        this.numScenes ++;
+        s.renderContent(this.newScene());
+      }
+    }
+
+    for(num i = 0; i<this.deathScenes.length; i++){
+      var s = this.deathScenes[i];
+      if(s.trigger(playerList)){
+        //	session.scenesTriggered.add(s);
+        this.numScenes ++;
+        s.renderContent(this.newScene());
+      }
+    }
+  }
+
 
 	void destroyBlackRing(){
 		this.queensRing = null;

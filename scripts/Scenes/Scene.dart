@@ -44,70 +44,8 @@ abstract class Scene {
       throw("todo");
   }
 
-  //makes copy of player list (no shallow copies!!!!)
-  static List<Player> setAvailablePlayers(List<Player> playerList, Session session){
-    session.availablePlayers = [];
-    for(num i = 0; i<playerList.length; i++){
-      //dead players are always unavailable.
-      if(!playerList[i].dead){
-        session.availablePlayers.add(playerList[i]);
-      }
-    }
-    return session.availablePlayers;
-  }
-
-  //TODO got rid of 1 entirely because haven't supported 1.0 in a while, so rename this when done.
-  static void processScenes2(List<Player> playerList, Session session){
-    //print("processing scene");
-    //querySelector("#story").append("processing scene");
-    setAvailablePlayers(playerList,session);
-    for(num i = 0; i<session.available_scenes.length; i++){
-      var s = session.available_scenes[i];
-      //var debugQueen = queenStrength;
-      if(s.trigger(playerList)){
-        //session.scenesTriggered.add(s);
-        session.numScenes ++;
-        s.renderContent(session.newScene());
-        if(!s.canRepeat){
-          //removeFromArray(s,session.available_scenes);
-          session.available_scenes.remove(s);
-        }
-      }
-    }
-
-    for(num i = 0; i<session.deathScenes.length; i++){
-      var s = session.deathScenes[i];
-      if(s.trigger(playerList)){
-        //	session.scenesTriggered.add(s);
-        session.numScenes ++;
-        s.renderContent(session.newScene());
-      }
-    }
 
 
-  }
-
-
-  //TODO got rid of 1 entirely because haven't supported 1.0 in a while, so rename this when done.
-  static void processReckoning2(playerList, session){
-    for(num i = 0; i<session.reckoningScenes.length; i++){
-      var s = session.reckoningScenes[i];
-      if(s.trigger(playerList)){
-        //session.scenesTriggered.add(s);
-        session.numScenes ++;
-        s.renderContent(session.newScene());
-      }
-    }
-
-    for(num i = 0; i<session.deathScenes.length; i++){
-      var s = session.deathScenes[i];
-      if(s.trigger(playerList)){
-        //	session.scenesTriggered.add(s);
-        session.numScenes ++;
-        s.renderContent(session.newScene());
-      }
-    }
-  }
 
   //scenes call this to know how to put together pesterlogs
   static String chatLine(start, player, line){

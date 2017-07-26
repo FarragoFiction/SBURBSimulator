@@ -31,9 +31,23 @@ main() {
 
 class StoryController extends SimController {
   StoryController() : super();
+
   @override
-  void callNextIntroWithDelay() {
-    // TODO: implement callNextIntroWithDelay
+  void callNextIntro(int player_index) {
+    if(player_index >= curSessionGlobalVar.players.length){
+      tick();//NOW start ticking
+      return;
+    }
+
+      var s = new Intro(curSessionGlobalVar);
+      var p = curSessionGlobalVar.players[player_index];
+      //var playersInMedium = curSessionGlobalVar.players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.
+      List<Player> playersInMedium = curSessionGlobalVar.players.sublist(0, player_index+1);
+      s.trigger(playersInMedium, p);
+      s.renderContent(curSessionGlobalVar.newScene(),player_index); //new scenes take care of displaying on their own.
+    curSessionGlobalVar.processScenes(playersInMedium);
+      player_index += 1;
+      callNextIntro(player_index);
   }
 
   @override
@@ -115,8 +129,17 @@ class StoryController extends SimController {
 
   @override
   void intro() {
-    throw "TODO";
-    // TODO: implement intro
+    createInitialSprites();
+    //advertisePatreon(querySelector("#story"));
+    callNextIntroWithDelay(0);
+  }
+
+  @override
+  void createInitialSprites(){
+    for(num i = 0; i<curSessionGlobalVar.players.length; i++){
+      Player player = curSessionGlobalVar.players[i];
+      player.renderSelf();
+    }
   }
 
   @override

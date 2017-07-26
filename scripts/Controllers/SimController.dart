@@ -18,6 +18,7 @@ abstract class SimController {
       SimController.instance = this;
   }
 
+  void createInitialSprites();
   void startSession();
   void shareableURL();
   void reinit();
@@ -32,6 +33,6 @@ abstract class SimController {
   void renderAfterlifeURL();
   void processCombinedSession();
   void intro();
-  void callNextIntroWithDelay();
+  void callNextIntro(int player_index);
   void recoverFromCorruption(); //AB will run next session, newspost will stop trying to get sessions, etc.
 }
