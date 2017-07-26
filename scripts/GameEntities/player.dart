@@ -466,11 +466,11 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	}
 	dynamic chatHandleShort(){
     RegExp exp = new RegExp(r"""\b(\w)|[A-Z]""", multiLine:true);
-    return exp.allMatches(chatHandle).join('').toUpperCase();
+    return joinMatches(exp.allMatches(chatHandle)).toUpperCase();
 	}
 	dynamic chatHandleShortCheckDup(otherHandle){
     RegExp exp = new RegExp(r"""\b(\w)|[A-Z]""", multiLine:true);
-    String tmp =  exp.allMatches(chatHandle).join('').toUpperCase();
+    String tmp = joinMatches(exp.allMatches(chatHandle)).toUpperCase();
 		if(tmp == otherHandle){
 			tmp = tmp + "2";
 		}
@@ -1118,7 +1118,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	}
 	String shortLand(){
 		RegExp exp = new RegExp(r"""\b(\w)""", multiLine:true);
-		return exp.allMatches(land).join('').toUpperCase();
+		return joinMatches(exp.allMatches(land)).toUpperCase();
 	}
 	String htmlTitle(){
 		return getFontColorFromAspect(this.aspect) + this.title() + "</font>";

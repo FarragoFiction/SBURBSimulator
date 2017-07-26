@@ -381,6 +381,22 @@ String msToTime(s) {
   return mins + " minutes and " + secs + " seconds";
 }
 
+String joinMatches(Iterable<Match> matches, [String joiner = null]) {
+	bool first = true;
+	StringBuffer sb = new StringBuffer();
+
+	for (Match m in matches) {
+		if (joiner != null && !first) {
+			sb.write(joiner);
+		}
+		first = false;
+
+		sb.write(m.group(0));
+	}
+
+	return sb.toString();
+}
+
 void renderAfterlifeURL(){
   if(curSessionGlobalVar.afterLife.ghosts.length > 0){
     stopTime = new DateTime.now();
