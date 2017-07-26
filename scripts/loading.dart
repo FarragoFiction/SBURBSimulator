@@ -110,7 +110,7 @@ dynamic checkDone(String skipInit){
   querySelector("#loading_stats").text = ("Images Loaded: $imagesLoaded");
 	if((imagesLoaded != 0 && imagesWaiting == imagesLoaded) || simulationMode == true){  //if i'm not using images, don't load them, dunkass.
 		//querySelector("#loading").remove(); //not loading anymore
-    if(skipInit != null){
+    if(skipInit != null && !skipInit.isEmpty){
 		if(callBack != null) return callBack();
       if(skipInit == "oc"){
         print("images loaded: $imagesLoaded");
