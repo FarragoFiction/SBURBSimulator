@@ -1571,7 +1571,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		querySelector("#playerSprites").appendHtml(canvasHTML);
 	}
 	void renderSelf(){
-		if(!this.spriteCanvasID) this.initSpriteCanvas();
+		if(!this.spriteCanvasID != null) this.initSpriteCanvas();
 		var canvasDiv = querySelector("#${this.spriteCanvasID}");
 
 		var ctx = canvasDiv.getContext("2d");
