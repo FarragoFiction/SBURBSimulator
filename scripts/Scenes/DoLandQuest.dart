@@ -18,7 +18,7 @@ class DoLandQuest extends Scene{
 	@override
 	dynamic trigger(List<Player> playerList){
 		this.playersPlusHelpers = [];
-		var availablePlayers = new List<String>.from(this.session.availablePlayers); //don't modify available players while you iterate on it, dummy
+		var availablePlayers = new List<Player>.from(this.session.availablePlayers); //don't modify available players while you iterate on it, dummy
 		for(num j = 0; j<this.session.availablePlayers.length; j++){
 			Player p = this.session.availablePlayers[j];
 			List<Player> ph = this.getPlayerPlusHelper(p, availablePlayers);
@@ -32,7 +32,7 @@ class DoLandQuest extends Scene{
 		return this.playersPlusHelpers.length > 0;
 	}
 	List<Player> getPlayerPlusHelper(p, availablePlayers){
-		if(!p.land || p.getStat("power") < 2 || p.grimDark > 3) return null;  //can't do quests at all.
+		if(p.land != null || p.getStat("power") < 2 || p.grimDark > 3) return null;  //can't do quests at all.
 		var helper = this.lookForHelper(p,availablePlayers);
 		if(helper && helper.grimDark >= 3) helper = null;  //grim dark players aren't going to do quests.
 		var playerPlusHelper = [p,helper];

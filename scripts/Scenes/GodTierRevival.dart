@@ -26,7 +26,7 @@ class GodTierRevival extends Scene {
 
 	}
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		div.append("<br>"+this.content());
 		num repeatTime = 1000;
 		var divID = (div.id) + "_tiger";

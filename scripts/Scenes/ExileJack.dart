@@ -17,7 +17,7 @@ class ExileJack extends Scene{
 		return (!this.session.jack.exiled && this.session.jack.getStat("power") < 10) && (this.session.jack.getStat("currentHP") >  0 && this.session.jack.crowned == null);
 	}
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		div.append("<br> <img src = 'images/sceneIcons/jack_icon.png'> "+this.content());
 	}
 	dynamic content(){

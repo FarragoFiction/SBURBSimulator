@@ -40,7 +40,7 @@ class SaveDoomedTimeLine extends Scene {
 	}
 
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		print("time clone " + this.timePlayer + " " + this.session.session_id.toString());
 		div.append("<br><img src = 'images/sceneIcons/time_icon.png'>"+this.content());
 		var divID = (div.id);

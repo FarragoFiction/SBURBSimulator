@@ -76,7 +76,7 @@ class JackRampage extends Scene{
 			//poseAsATeam(canvasDiv, stabbings, 2000); //can't do this anymore, mighit be  a sprite in there.
 		}
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		this.session.jackRampage = true;
 		//div.append("<br>"+this.content());
 		div.append("<br><img src = 'images/sceneIcons/jack_icon.png'> ");

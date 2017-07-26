@@ -30,7 +30,7 @@ class GetTiger extends Scene{
 
 	}
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		var text = this.content();
 
 		num repeatTime = 1000;

@@ -330,7 +330,7 @@ void updateGraphs(){
 		getGraphWithLabel(player.graphs, "power").points.add(player.getStat("power"));
 		getGraphWithLabel(player.graphs, "minLuck").points.add(player.minLuck);
 		getGraphWithLabel(player.graphs, "maxLuck").points.add(player.maxLuck);
-		getGraphWithLabel(player.graphs, "sanity").points.add(player.sanity);
+		getGraphWithLabel(player.graphs, "sanity").points.add(playergetStat("sanity"));
 		getGraphWithLabel(player.graphs, "landLevel").points.add(player.landLevel);
 		getGraphWithLabel(player.graphs, "bestFriendLevel").points.add(player.getHighestRelationshipValue());
 		getGraphWithLabel(player.graphs, "worstEnemyLevel").points.add(player.getLowestRelationshipValue());

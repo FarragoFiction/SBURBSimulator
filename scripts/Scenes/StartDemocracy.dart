@@ -35,7 +35,7 @@ class StartDemocracy extends Scene {
 		}
 	}
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		div.append("<br> <img src = 'images/sceneIcons/wv_icon.png'> "+this.content());
 	}
 	@override

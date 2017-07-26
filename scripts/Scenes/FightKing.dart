@@ -40,7 +40,7 @@ class FightKing extends Scene {
 	}
 
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		//print("rendering fight king);")
 		div.append("<br> <img src = 'images/sceneIcons/bk_icon.png'>");
 		div.append(this.content());

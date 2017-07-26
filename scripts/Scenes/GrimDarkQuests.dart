@@ -74,7 +74,7 @@ class GrimDarkQuests extends Scene{
 		throw new PlayersCrashedSession(getPlayersTitlesNoHTML(this.players) + " has foolishly crashed session: ${this.session.session_id}");
 	}
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		//print("A grim dark player is actively working to crash session " + this.session.session_id + " and this much health remains: " + this.session.sessionHealth );
 		//print("trying to crash session like an idiot: " + this.session.session_id);
 		div.append("<br><img src = 'images/sceneIcons/grimdark_black_icon.png'> "+this.content());

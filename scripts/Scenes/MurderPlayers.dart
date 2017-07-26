@@ -3,8 +3,8 @@ part of SBURBSim;
 
 class MurderPlayers extends Scene {
 	bool canRepeat = true;
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
-	List<dynamic> murderers = [];	
+	List<Player> playerList = [];  //what players are already in the medium when i trigger?
+	List<Player> murderers = [];
 
 
 	MurderPlayers(Session session): super(session);
@@ -20,7 +20,7 @@ class MurderPlayers extends Scene {
 			}
 		}
 
-		return this.murderers.length > null;
+		return this.murderers.length > 0;
 	}
 	dynamic addImportantEvent(player){
 		//print( "A player is dead. Dream Self: " + player.isDreamSelf + " God Destiny: " + player.godDestiny + " GodTier: " + player.godTier);
@@ -32,7 +32,7 @@ class MurderPlayers extends Scene {
 	}
 
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		div.append("<br> <img src = 'images/sceneIcons/murder_icon.png'>"+this.contentForRender(div));
 	}
 	dynamic friendsOfVictimHateYou(victim, murderer){
@@ -47,15 +47,15 @@ class MurderPlayers extends Scene {
 				//more they liked the victim, the more they hate you.
 				if(rv.saved_type == rv.diamond){
 					rm.value = -100;
-					p.sanity += -100;
+					p.addStat("sanity",-100);
 					ret += " The " + p.htmlTitle() + " is enraged that their Moirail was killed. ";
 				}else if(rv.saved_type == rv.heart){
 					rm.value = -100;
-					p.sanity += -100;
+          p.addStat("sanity",-100);
 					ret += " The " + p.htmlTitle() + " is enraged that their Matesprit was killed. ";
 				}else if(rv.saved_type == rv.spades){
 					rm.value = -100;
-					p.sanity += -100;
+          p.addStat("sanity",-100);
 					ret += " The " + p.htmlTitle() + " is enraged that their Kismesis was killed. ";
 				}else if (rv.type() == rv.goodBig){
 					rm.value = -20;

@@ -5,7 +5,7 @@ part of SBURBSim;
 class DoEctobiology extends Scene {
 	bool canRepeat = false;
 	List<Player> playerList = [];  //what players are already in the medium when i trigger?
-	var leader = null;
+	Player leader = null;
 	List<Player> playersMade = []; //keep track because not all players get made (multi session bullshit)
 
 	
@@ -17,7 +17,7 @@ class DoEctobiology extends Scene {
 	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
 		this.leader = getLeader(this.session.availablePlayers);  //dead men do no ectobiology
-		if(this.leader && this.leader.dead == false && this.session.ectoBiologyStarted == false){
+		if(this.leader != null && this.leader.dead == false && this.session.ectoBiologyStarted == false){
 			return this.leader.getStat("power") > (rand.nextDouble()*200); //can't do it right out of the bat. might never do it
 		}
 		return false;

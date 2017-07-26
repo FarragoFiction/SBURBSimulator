@@ -38,7 +38,7 @@ class ExileQueen extends Scene {
 		return ret;
 	}
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		div.append("<br>"+this.content());
 	}
 

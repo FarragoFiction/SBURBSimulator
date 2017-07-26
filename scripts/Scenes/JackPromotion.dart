@@ -77,7 +77,7 @@ class JackPromotion extends Scene{
 		return ret;
 	}
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		var alt = this.addImportantEvent();
 		//print("Alt for jack promotion is: " + alt);
 		if(alt && alt.alternateScene(div)){

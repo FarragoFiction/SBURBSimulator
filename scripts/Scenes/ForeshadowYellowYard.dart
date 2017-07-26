@@ -19,7 +19,7 @@ class ForeshadowYellowYard extends Scene{
 		return true;
 	}
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		//div.append("<br>"+this.content());
 		print("Yellow yard foreshadowing. " + this.session.session_id);
 		String canvasHTML = "<br><canvas id='canvasJRAB" + (div.id) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";

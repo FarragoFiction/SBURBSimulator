@@ -21,7 +21,7 @@ class PrepareToExileQueen extends Scene {
 	}
 
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		div.append("<br> <img src = 'images/sceneIcons/shenanigans_icon.png'>"+this.content());
 	}
 

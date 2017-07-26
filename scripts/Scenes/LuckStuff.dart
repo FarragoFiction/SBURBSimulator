@@ -42,7 +42,7 @@ class LuckStuff extends Scene{
 	}
 
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		this.numberTriggers ++;
 		//String ret = "<img src = 'images/fortune_event.png'/><Br>";  //maybe display image for this event, like not canvas, just image. Single image for event.
 		String ret = "";

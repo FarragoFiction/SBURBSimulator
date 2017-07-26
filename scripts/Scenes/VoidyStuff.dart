@@ -18,13 +18,13 @@ class VoidyStuff extends Scene {
 		this.player = null;
 		if(rand.nextDouble() > .5){
 			this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Void");
-			if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Rage"); //if there is no void player
+			if(this.enablingPlayer != null) this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Rage"); //if there is no void player
 		}else{
 			this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Rage");
-			if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Void"); //if there is no rage player
+			if(this.enablingPlayer != null) this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Void"); //if there is no rage player
 		}
 
-		if(this.enablingPlayer){
+		if(this.enablingPlayer != null){
 			if(this.enablingPlayer.isActive() || rand.nextDouble() > .5){
 				this.player = this.enablingPlayer;
 			}else{  //somebody else can be voided.
@@ -35,7 +35,7 @@ class VoidyStuff extends Scene {
 	}
 
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		this.player.increasePower();
 		this.player.increasePower();
 		if(this.enablingPlayer.aspect == "Void") this.player.corruptionLevelOther += rand.nextIntRange(1,5); //void isn't a safe place to be.

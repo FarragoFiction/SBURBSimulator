@@ -51,7 +51,7 @@
 		//var spriteBuffer = getBufferCanvas(querySelector("#canvas_template"));
 		drawChat(querySelector("#canvas"+ (div.id)), player1, player2, chatText, repeatTime);
 	}
-	void renderContent(div){
+	void renderContent(Element div){
 		String narration = "<br>And now, a message from me. jadedResearcher.";
 		div.append(narration);
 		this.chat(div);

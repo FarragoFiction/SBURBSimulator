@@ -79,7 +79,7 @@ class LevelTheHellUp extends Scene {
 
 	}
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
       String narration = "";
 			for(num i = 0; i<this.playerList.length; i++){
 				var p = this.playerList[i];

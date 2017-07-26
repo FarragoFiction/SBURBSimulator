@@ -567,7 +567,7 @@ class UpdateShippingGrid extends Scene{
 			reasonsAgainst += player.getDiamonds().length; //I am already in a relationship
 			reasonsAgainst += target.getDiamonds().length; //they are already in a relationship
 			if(player.getHearts().length == 0) reasonsFor ++; //I am single
-			if(player.sanity < 0) reasonsFor ++;  //i need SOMEBODY to stabilize me.
+			if(player.getStat("sanity") < 0) reasonsFor ++;  //i need SOMEBODY to stabilize me.
 			if(!player.isQuadranted()) reasonsFor += 4; //I am lonely
 			if(player.getBestFriend() == target) reasonsFor += 5; //I REALLY like them.
 			Relationship r = player.getRelationshipWith(this.chosenShipper.player);

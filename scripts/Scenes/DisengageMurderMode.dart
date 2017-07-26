@@ -3,8 +3,8 @@ part of SBURBSim;
 
 class DisengageMurderMode extends Scene {
 	bool canRepeat = true;
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
-	var player = null;	
+	List<Player> playerList = [];  //what players are already in the medium when i trigger?
+	Player player = null;
 
 
 	DisengageMurderMode(Session session): super(session);
@@ -15,15 +15,15 @@ class DisengageMurderMode extends Scene {
 		this.playerList = playerList;
 		//select a random player. if they've been triggered, random chance of going murderMode if enemies (based on how triggered.)
 		this.player = rand.pickFrom(this.session.availablePlayers);
-		if(this.player){
-			if(this.player.sanity > 1 &&  this.player.murderMode){
+		if(this.player != null){
+			if(this.player.getStat("sanity") > 1 &&  this.player.murderMode){
 				return true;
 			}
 		}
 		return false;
 	}
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		//alert("disengaged");
 		div.append("<br>"+this.content());
 	}

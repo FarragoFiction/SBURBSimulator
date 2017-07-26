@@ -302,18 +302,18 @@ void tricksterMode(){
 
 
 void debugRoyalRumble(){
-	if(!simulationMode) window.window.alert("royal rumble!");
+	if(!simulationMode) window.alert("royal rumble!");
 	for(num j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
 		p.isTroll = true; //only .evel 2 players up
 		p.bloodColor = "#99004d";
-		p.sanity = -10;
-		p.decideLusus(p);
+		p.addStat("sanity",-10);
+		p.decideLusus();
 		p.kernel_sprite = p.lusus;
 		p.relationships = [];
 		p.quirk = null;
 		p.generateRelationships(curSessionGlobalVar.players);  //heiresses hate each other
-		p.quirk = randomTrollSim(p);
+		p.quirk = randomTrollSim(curSessionGlobalVar.rand, p);
 	}
 
 }

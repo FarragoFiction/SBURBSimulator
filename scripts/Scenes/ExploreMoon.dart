@@ -63,7 +63,7 @@ class ExploreMoon extends Scene {
 
 
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		if(this.player1.moon == "Prospit")div.append("<br><img src = 'images/sceneIcons/prospit_icon.png'> ");
 		if(this.player1.moon == "Derse")div.append("<br><img src = 'images/sceneIcons/derse_icon.png'> ");
 		div.append(this.content());

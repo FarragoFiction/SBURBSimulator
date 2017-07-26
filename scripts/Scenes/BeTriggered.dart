@@ -3,8 +3,8 @@ part of SBURBSim;
 
 class BeTriggered extends Scene{
 	bool canRepeat = true;
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
-	List<dynamic> triggeredPlayers = [];
+	List<Player> playerList = [];  //what players are already in the medium when i trigger?
+	List<Player> triggeredPlayers = [];
 	List<dynamic> triggers = [];	
 
 
@@ -24,11 +24,11 @@ class BeTriggered extends Scene{
 		return this.triggeredPlayers.length > 0;
 	}
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		div.append("<br><img src = 'images/sceneIcons/flipout_icon_animated.gif'>"+this.content());
 	}
 	bool IsPlayerTriggered(player){
-		if(player.flipOutReason){
+		if(player.flipOutReason != null && !player.flipOutReason.isEmpty){
 			//print("I have a flip out reason: " + player.flipOutReason);
 			if(player.flippingOutOverDeadPlayer && player.flippingOutOverDeadPlayer.dead){
 				//print("I know about a dead player. so i'm gonna start flipping my shit. " + this.session.session_id);
@@ -47,86 +47,11 @@ class BeTriggered extends Scene{
 			return true; //i am flipping out over not a dead player, thank you very much.
 
 		}
-		if(-1 * player.sanity > rand.nextDouble() * 100 ){
+		if(-1 * player.getStat("sanity") > rand.nextDouble() * 100 ){
 			player.flipOutReason = "how they seem to be going shithive maggots for no goddamned reason";
 			return true;
 		}
 		return false;
-	}
-	String IsPlayerTriggeredOld(player){
-		//are any of your friends  dead?
-		var deadPlayers = findDeadPlayers(this.session.players);
-		var deadFriends = player.getFriendsFromList(deadPlayers);
-		var livePlayers = findLivingPlayers(this.session.players);
-		var worstEnemy = player.getWorstEnemyFromList(this.session.players);
-		var bestFriend = player.getBestFriendFromList(this.session.players);
-
-		var deadDiamond = player.hasDeadDiamond();
-		var deadHeart = player.hasDeadHeart();
-		if(deadDiamond && rand.nextDouble() > 0.3){
-			player.sanity += -1000;
-			player.damageAllRelationships();
-			player.damageAllRelationships();
-			player.damageAllRelationships();
-			//print("triggered by dead moirail in session" + this.session.session_id);
-			return " their dead Moirail, the " + deadDiamond.htmlTitleBasic() + " ";
-		}
-
-		if(deadHeart&& rand.nextDouble() > 0.2){
-			player.sanity += -1000;
-			//print("triggered by dead matesprit in session" + this.session.session_id);
-			return " their dead Matesprit, the " + deadHeart.htmlTitleBasic() + " ";
-		}
-		//small chance
-		if(deadPlayers.length > 0){
-			if(rand.nextDouble() > 0.9){
-				player.sanity += -10;
-				return deadPlayers.length +" dead players ";
-			}
-
-			if(worstEnemy != null && !worstEnemy.dead && player.getRelationshipWith(worstEnemy).type() == player.getRelationshipWith(worstEnemy).badBig){
-				player.sanity += -30;
-				player.getRelationshipWith(worstEnemy).decrease();
-				return deadPlayers.length + " players are dead (and that asshole the " + worstEnemy.htmlTitle() + " MUST be to blame) ";
-			}
-		}
-
-		//bigger chance
-		if(deadFriends.length > 0){
-			if(rand.nextDouble() > 0.5){
-				player.sanity += -10;
-				return deadFriends.length + " dead friends";
-			}
-
-			//if someone you have a crush on dies, you're triggered. period. (not necessarily gonna lose your shit, though.)
-			if(bestFriend != null && bestFriend.dead && player.getRelationshipWith(bestFriend).type() == player.getRelationshipWith(bestFriend).bigGood){
-				player.sanity += -30;
-				return " their dead crush, the " + bestFriend.htmlTitle() + " ";
-			}
-
-		}
-
-		//huge chance, the dead outnumber the living.
-		if(deadPlayers.length > livePlayers.length){
-			if(rand.nextDouble() > 0.1){
-				player.sanity += -30;
-				return " how absolutely fucked they are ";
-			}
-		}
-
-		if(player.doomedTimeClones.length > 0 && rand.nextDouble() > .9){
-			player.sanity += -10;
-			return " their own doomed Time Clones ";
-		}
-
-		if(player.denizenFaced && player.denizenDefeated && rand.nextDouble() > .95){
-			player.sanity += -10;
-			return " how terrifying " +player.getDenizen() + " was " ;
-		}
-
-		//TODO have triggers specific to classes or aspects, like time players having to abort a timeline.
-		return " absolutely nothing ";
-
 	}
 	dynamic content(){
 		String ret = "";

@@ -660,7 +660,7 @@ class RelationshipDrama extends Scene {
 	}
 
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		//div.append(this.content());
 		for(num i = 0; i<this.dramaPlayers.length; i++){
 				var p = this.dramaPlayers[i];

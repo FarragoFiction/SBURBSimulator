@@ -62,4 +62,6 @@ void callBackForLoadOCsFromFile(){
 void draw12(){
 	charCreatorHelperGlobalVar.draw12PlayerSummaries();
 }
-/*
+
+
+ */

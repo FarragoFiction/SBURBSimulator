@@ -587,7 +587,7 @@ class QuadrantDialogue extends Scene {
 	}
 
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		if(this.player1.aspect != "Time") removeFromArray(this.player1, this.session.availablePlayers);
 		if(this.player2.aspect != "Time") removeFromArray(this.player2, this.session.availablePlayers);
 		this.player1Start = this.player1.chatHandleShort()+ ": ";

@@ -116,7 +116,7 @@ class LifeStuff extends Scene {
 	}
 
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		//print("rendering content for life stuff (won't necessarily be on screen): " + this.enablingPlayerPairs.length + " " + this.session.session_id)
 		//div.append("<br>"+this.content());
 		for(num i = 0; i<this.enablingPlayerPairs.length; i++){

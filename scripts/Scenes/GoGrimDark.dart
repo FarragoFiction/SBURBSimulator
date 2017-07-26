@@ -34,7 +34,7 @@ class GoGrimDark extends Scene {
 	}
 
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		var alt = this.addImportantEvent();
 		if(alt && alt.alternateScene(div)){
 			return;

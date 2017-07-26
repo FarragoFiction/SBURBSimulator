@@ -51,7 +51,7 @@ class FaceDenizen extends Scene{
 		*/
 	}
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		div.append("<br><br>");
 		for(num i = 0; i<this.denizenFighters.length; i++){
 			var p = this.denizenFighters[i];
@@ -110,7 +110,7 @@ class FaceDenizen extends Scene{
 			if(denizen.getStat("currentHP") <= 0 || denizen.dead) {
 				p.denizenDefeated = true;
 				p.fraymotifs.addAll(p.denizen.fraymotifs);
-				p.getStat("power") = p.getStat("power")*2;  //current and future doubling of power.
+				p.addStat("power",p.getStat("power")*2);  //current and future doubling of power.
 				this.session.denizenBeat = true;
 			}else if(p.dead){
 				//print("denizen kill " + this.session.session_id);
@@ -131,7 +131,7 @@ class FaceDenizen extends Scene{
 				if(p.getStat("power") > 17){
 					ret += " They win handly, and obtain untold levels of power and sweet sweet hoarde grist. They gain all the levels. All of them. ";
 					p.denizenFaced = true;
-					p.getStat("power") = p.getStat("power")*2;  //current and future doubling of power.
+					p.getStat("power")*2;  //current and future doubling of power.
 					p.level_index +=3;
 					p.leveledTheHellUp = true;
 					p.denizenDefeated = true;
@@ -161,7 +161,7 @@ class FaceDenizen extends Scene{
 					ret += " They gain the power they need to acomplish their objectives. ";
 					p.denizenFaced = true;
 					p.denizenDefeated = true;
-					p.getStat("power") = p.getStat("power")*2;  //current and future doubling of power.
+					p.addStat("power",p.getStat("power")*2);   //current and future doubling of power.
 					p.leveledTheHellUp = true;
 					div.append("<br>"+ret);
 					this.session.denizenBeat = true;
@@ -188,7 +188,7 @@ class FaceDenizen extends Scene{
 				if(p.getStat("power") > 7){
 					ret += " They win handly, and obtain untold levels of power and sweet sweet hoarde grist. They gain all the levels. All of them. ";
 					p.denizenFaced = true;
-					p.getStat("power") = p.getStat("power")*2;  //current and future doubling of power.
+					p.addStat("power",p.getStat("power")*2);  //current and future doubling of power.
 					p.level_index +=3;
 					p.leveledTheHellUp = true;
 					p.denizenDefeated = true;
@@ -208,7 +208,7 @@ class FaceDenizen extends Scene{
 					ret += " They gain the power they need to acomplish their objectives. ";
 					p.denizenFaced = true;
 					p.denizenDefeated = true;
-					p.getStat("power") = p.getStat("power")*2;  //current and future doubling of power.
+					p.addStat("power",p.getStat("power")*2);   //current and future doubling of power.
 					p.leveledTheHellUp = true;
 					//this.session.denizenBeat = true;
 					//print("denizen beat through choice in session: " + this.session.session_id);

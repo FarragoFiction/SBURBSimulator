@@ -39,7 +39,7 @@ class FightQueen extends Scene {
 		poseAsATeam(canvasDiv, fightingPlayers);
 	}
 	@override
-	void renderContent(div){
+	void renderContent(Element div){
 		if(this.session.queen.getStat("power") < 0) print("rendering fight queen with negative power " +this.session.session_id.toString());
 		div.append("<br> <img src = 'images/sceneIcons/bq_icon.png'> ");
 		div.append(this.content());
