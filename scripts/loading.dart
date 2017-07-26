@@ -170,6 +170,7 @@ void loadImage(String img, String skipInit) {
 //load pesterchum, blood, big aspect symbols, echeladders, god tier level up, romance symbols, babies, grubs
 dynamic loadOther(String skipInit){
 	if(simulationMode == true) return checkDone(skipInit);
+		loadImage("Credits/recursiveSlacker.png", skipInit);
 	  if(cool_kid){
 		loadImage("/Bodies/coolk1dlogo.png",skipInit);
 		loadImage("/Bodies/coolk1dsword.png",skipInit);
