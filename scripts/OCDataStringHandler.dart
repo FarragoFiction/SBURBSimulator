@@ -25,20 +25,21 @@ class CharacterEasterEggEngine {
   CharacterEasterEggEngine() {}
 
 
-  dynamic loadArrayFromFile(arr, file, processForSim, callBack, that){
+  dynamic loadArrayFromFile(arr, String file, processForSim, callBack, that){
     //print("loading" + file);
     var that = this;
-    $.ajax({
-      url: file,
-      success:((data){
-        that.parseFileContentsToArray(arr, data.trim());
-        if(processForSim && callBack) return that.processForSim(callBack);
-        if(!processForSim && callBack) callBack(that);  //whoever calls me is responsible for knowing when all are loaded.
-
-      }),
-      dataType: "text"
+    HttpRequest.getString(file).then((data) {
+      // Do something with the response.
+      parseFileContentsToArray(arr, data.trim());
+      if(processForSim && callBack != null) return that.processForSim(callBack);
+      if(!processForSim && callBack != null) callBack(that);  //whoever calls me is responsible for knowing when all are loaded.
     });
+
+
   }
+
+
+
   void parseFileContentsToArray(arr, fileContents){
     this[arr] = fileContents.split("\n");
     //print(arr);
@@ -91,67 +92,67 @@ class CharacterEasterEggEngine {
   }
   void loadArraysFromFile(callBack, processForSim, that){
     //too confusing trying to only load the assest i'll need. wait for now.
-    this.loadArrayFromFile("redditCharacters","OCs/reddit.txt", processForSim);
-    this.loadArrayFromFile("tumblrCharacters","OCs/tumblr.txt", processForSim);
-    this.loadArrayFromFile("discordCharcters","OCs/discord.txt", processForSim);
-    this.loadArrayFromFile("creditsBuckaroos","OCs/creditsBuckaroos.txt", processForSim);
-    this.loadArrayFromFile("ideasWranglers","OCs/ideasWranglers.txt", processForSim);
-    this.loadArrayFromFile("patrons","OCs/patrons.txt", processForSim);
-    this.loadArrayFromFile("patrons2","OCs/patrons2.txt", processForSim);
-    this.loadArrayFromFile("patrons3","OCs/patrons3.txt", processForSim);
-    this.loadArrayFromFile("canon","OCs/canon.txt", processForSim);
-    this.loadArrayFromFile("bards","OCs/bards.txt", processForSim);
-    this.loadArrayFromFile("otherFandoms","OCs/otherFandoms.txt", processForSim,callBack,that) //last one in list has callback so I know to do next thing.
+    this.loadArrayFromFile("redditCharacters","OCs/reddit.txt", processForSim,null,null);
+    this.loadArrayFromFile("tumblrCharacters","OCs/tumblr.txt", processForSim,null,null);
+    this.loadArrayFromFile("discordCharcters","OCs/discord.txt", processForSim,null,null);
+    this.loadArrayFromFile("creditsBuckaroos","OCs/creditsBuckaroos.txt", processForSim,null,null);
+    this.loadArrayFromFile("ideasWranglers","OCs/ideasWranglers.txt", processForSim,null,null);
+    this.loadArrayFromFile("patrons","OCs/patrons.txt", processForSim,null,null);
+    this.loadArrayFromFile("patrons2","OCs/patrons2.txt", processForSim,null,null);
+    this.loadArrayFromFile("patrons3","OCs/patrons3.txt", processForSim,null,null);
+    this.loadArrayFromFile("canon","OCs/canon.txt", processForSim,null,null);
+    this.loadArrayFromFile("bards","OCs/bards.txt", processForSim,null,null);
+    this.loadArrayFromFile("otherFandoms","OCs/otherFandoms.txt", processForSim,callBack,that); //last one in list has callback so I know to do next thing.
   }
-  dynamic getPoolBasedOnEggs(){
+  dynamic getPoolBasedOnEggs(Random rand){
     List<dynamic> pool = [];
     //first, parse url params. for each param you find that's right, append the relevant characters into the array.
-    if(getParameterByName("reddit")  == "true"){
+    if(getParameterByName("reddit",null)  == "true"){
       pool.addAll(this.redditCharacters);
     }
 
-    if(getParameterByName("tumblr")  == "true"){
+    if(getParameterByName("tumblr",null)  == "true"){
       pool.addAll(this.tumblrCharacters);
     }
 
-    if(getParameterByName("discord")  == "true"){
+    if(getParameterByName("discord",null)  == "true"){
       pool.addAll(this.discordCharcters);
     }
 
-    if(getParameterByName("creditsBuckaroos")  == "true"){
+    if(getParameterByName("creditsBuckaroos",null)  == "true"){
       pool.addAll(this.creditsBuckaroos);
     }
 
-    if(getParameterByName("ideasWranglers")  == "true"){
+    if(getParameterByName("ideasWranglers",null)  == "true"){
       pool.addAll(this.ideasWranglers);
     }
 
-    if(getParameterByName("bards")  == "true"){
+    if(getParameterByName("bards",null)  == "true"){
       pool.addAll(this.bards);
     }
 
-    if(getParameterByName("patrons")  == "true"){
+    if(getParameterByName("patrons",null)  == "true"){
       pool.addAll(this.patrons);
     }
 
-    if(getParameterByName("patrons2")  == "true"){
+    if(getParameterByName("patrons2",null)  == "true"){
       pool.addAll(this.patrons2);
     }
 
-    if(getParameterByName("patrons3")  == "true"){
+    if(getParameterByName("patrons3",null)  == "true"){
       pool.addAll(this.patrons3);
     }
 
-    if(getParameterByName("canon")  == "true"){
+    if(getParameterByName("canon",null)  == "true"){
       pool.addAll(this.canon);
     }
 
-    if(getParameterByName("otherFandoms")  == "true"){
+    if(getParameterByName("otherFandoms",null)  == "true"){
       pool.addAll(this.otherFandoms);
     }
 
 
-    if(getParameterByName("creators")  == "true"){
+    if(getParameterByName("creators",null)  == "true"){
       pool.addAll(this.creatorCharacters);
     }
 
@@ -169,11 +170,11 @@ class CharacterEasterEggEngine {
     }
 
     //return pool;
-    return shuffle(pool); //boring if the same peeps are always first.
+    return shuffle(rand, pool); //boring if the same peeps are always first.
 
   }
-  dynamic processEasterEggsViewer(){
-    var pool = this.getPoolBasedOnEggs();
+  dynamic processEasterEggsViewer(Random rand){
+    var pool = this.getPoolBasedOnEggs(rand);
     return this.playerDataStringArrayToURLFormat(pool);
   }
   dynamic playerDataStringArrayToURLFormat(playerDataStringArray){
@@ -189,7 +190,7 @@ class CharacterEasterEggEngine {
       b += tmpb;
     }
     //then,
-    return dataBytesAndStringsToPlayers(b,s);
+    return dataBytesAndStringsToPlayers(b,s,null);
 
   }
   dynamic getAllReddit(){
