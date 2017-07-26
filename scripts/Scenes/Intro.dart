@@ -573,7 +573,7 @@ class Intro  extends IntroScene{
 	}
 	String getChat(player1, player2, div){
 
-		if(!player1.fromThisSession(this.session) || player1.land != null){
+		if(!player1.fromThisSession(this.session) || player1.land == null){
 			return this.alienChat(player1,div);
 		}
 
