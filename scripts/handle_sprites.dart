@@ -653,11 +653,11 @@ void drawCharSheet(CanvasElement canvas, Player player){
   int i = allStats.length;
 
     ctx.fillText("MANGRIT: ",left_margin,current+line_height*i);
-    ctx.fillText((player.permaBuffs["MANGRIT"]).round(),right_margin,current+line_height*i);
+    ctx.fillText((player.permaBuffs["MANGRIT"]).round().toString(),right_margin,current+line_height*i);
     i++;
 
   ctx.fillText("Quests Completed: ",left_margin,current+line_height*i);
-  ctx.fillText(player.getStat("landLevel").toString(),right_margin,current+line_height*i);
+  ctx.fillText(player.landLevel.toString(),right_margin,current+line_height*i);
   i++;
 
   ctx.fillText("Former Friends Killed: ",left_margin,current+line_height*i);

@@ -162,16 +162,15 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		//print("Strength for denizen " + name + " is: " + strength);
 		//based off existing denizen code.  care about which aspect i am.
 		//also make minion here.
-		var denizen = new Denizen("Denizen " +name, this.id, this.session);
-		var denizenMinion = new DenizenMinion(name + " Minion", this.id, this.session);
+		GameEntity denizen = new Denizen("Denizen " +name, this.id, this.session);
+		GameEntity denizenMinion = new DenizenMinion(name + " Minion", this.id, this.session);
 		var tmpStatHolder = {};
 		tmpStatHolder["minLuck"] = -10;
-		tmpStatHolder["abscondable"] = true; //players can decide to flee like little bitches
-        tmpStatHolder["canAbscond"] = false;
 		tmpStatHolder["maxLuck"] = 10;
 		tmpStatHolder["hp"] = 10 * strength;
 		tmpStatHolder["mobility"] = 10;
 		tmpStatHolder["sanity"] = 10;
+    tmpStatHolder["alchemy"] = 10;
 		tmpStatHolder["freeWill"] = 10;
 		tmpStatHolder["power"] = 5 * strength;
 		tmpStatHolder["grist"] = 1000;
@@ -180,7 +179,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			//alert("I have associated stats: " + i);
 			var stat = this.associatedStats[i];
 			if(stat.name == "MANGRIT"){
-				tmpStatHolder.power = tmpStatHolder.power * stat.multiplier * strength;
+				tmpStatHolder["power" ]= tmpStatHolder["power"] * stat.multiplier * strength;
 			}else{
 				tmpStatHolder[stat.name] += tmpStatHolder[stat.name] * stat.multiplier * strength;
 			} 
@@ -189,8 +188,8 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		//denizenMinion.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolder.sanity,tmpStatHolder.freeWill,tmpStatHolder.power,true, false, [],1000);
 		
 		denizenMinion.setStatsHash(tmpStatHolder);
-		tmpStatHolder.power = 10*strength;
-		for(var key in tmpStatHolder){
+		tmpStatHolder["power"] = 10*strength;
+		for(String key in tmpStatHolder.keys){
 			tmpStatHolder[key] = tmpStatHolder[key] * 2; // same direction as minion stats, but bigger. 
 		}
 		//denizen.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolder.sanity,tmpStatHolder.freeWill,tmpStatHolder.power,true, false, [],1000000);

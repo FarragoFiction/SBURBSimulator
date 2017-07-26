@@ -520,7 +520,7 @@ class Intro  extends IntroScene{
 		}
 		return chatText;
 	}
-	dynamic alienChat(player1, div){
+	dynamic alienChat(player1, Element div){
 		//print("inside alien chat");
 		var player2 = player1.getBestFriend(); //even if they are dead. even if they are from another session.
 		var player1Start = player1.chatHandleShort()+ ": ";
@@ -646,8 +646,8 @@ class Intro  extends IntroScene{
 	@override
 	void renderContent(div, i){
 		//foundRareSession(div, "This is just a test. " + this.session.session_id);
-		String canvasHTML = "<canvas style;='display:none' class = 'charSheet' id;='firstcanvas" + this.player.id.toString()+"_" + this.session.session_id.toString()+"' width='400' height;='1000'>  </canvas>";
-		div.append(canvasHTML);
+		String canvasHTML = "<canvas style='display:none' class = 'charSheet' id='firstcanvas" + this.player.id.toString()+"_" + this.session.session_id.toString()+"' width='400' height='1000'>  </canvas>";
+		div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
 		var canvasDiv = querySelector("#firstcanvas"+ this.player.id.toString()+"_" + this.session.session_id.toString());
 		drawCharSheet(canvasDiv,this.player);
 		this.player.generateDenizen();
@@ -665,7 +665,7 @@ class Intro  extends IntroScene{
 			if(this.player.dead==true){
 				print(session.session_id.toString() + " dead player enters, " +this.player.title());
 				narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably. I...I guess time flowing differently between universes is still a thing that is true, and they were able to contact them even before they died.  Shit, this is extra tragic.  <br>";
-				div.append(narration);
+				div.appendHtml(narration,treeSanitizer: NodeTreeSanitizer.trusted);
 				this.session.availablePlayers.add(this.player);
 				return;
 			}
@@ -717,7 +717,7 @@ class Intro  extends IntroScene{
 					narration += "The Black Queen's RING OF ORBS "+ this.session.convertPlayerNumberToWords() + "FOLD grows stronger from prototyping the " +  this.player.object_to_prototype.name +". ";
 				}
 			narration += "The Black King's SCEPTER grows stronger from prototyping the " +  this.player.object_to_prototype.name +". ";
-				div.append(narration);
+				div.appendHtml(narration,treeSanitizer: NodeTreeSanitizer.trusted);
 
 				return;
 			}
@@ -748,7 +748,7 @@ class Intro  extends IntroScene{
 			}
 			narration += "The Black King's SCEPTER grows stronger from prototyping the " +  this.player.object_to_prototype.name +". ";
 		}
-		div.append(narration);
+		div.appendHtml(narration,treeSanitizer: NodeTreeSanitizer.trusted);
 		this.chat(div);
 		this.session.availablePlayers.add(this.player);
 	}
