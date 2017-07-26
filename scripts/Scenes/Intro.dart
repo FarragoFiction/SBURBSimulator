@@ -660,7 +660,7 @@ class Intro  extends IntroScene{
 		if(this.player.land == null){
 			//print("This session is:  " + this.session.session_id + " and the " + this.player.title() + " is from session: " + this.player.ectoBiologicalSource + " and their land is: " + this.player.land);
 		}
-		if(!this.player.fromThisSession(this.session) || this.player.land != null){
+		if(!this.player.fromThisSession(this.session) || this.player.land == null){
 			narration += "<br>The " + this.player.htmlTitle() + " has been in contact with the native players of this session for most of their lives. It's weird how time flows differently between universes. Now, after inumerable shenanigans, they will finally be able to meet up face to face.";
 			if(this.player.dead==true){
 				print(session.session_id.toString() + " dead player enters, " +this.player.title());

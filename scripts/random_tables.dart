@@ -1306,6 +1306,10 @@ List<String> rage_land_titles = ["Mirth","Whimsy","Madness","Impossibility", "Ch
 List<String> hope_land_titles = ["Angels","Hope","Belief","Faith","Determination", "Possibility", "Hymns", "Heroes", "Chapels", "Lies", "Bullshit"];
 List<String> life_land_titles = ["Dew","Spring","Beginnings","Vitality", "Jungles", "Swamps", "Gardens", "Summer", "Chlorophyll", "Moss", "Rot", "Mold"];
 
+
+//google is an in joke because apparently google reports that all sessions are crashed and it is beautiful and google is a horrorterror.
+List<String> corruptedOtherLandTitles = [Zalgo.generate("Google"), Zalgo.generate("Horrorterrors"),Zalgo.generate("Glitches"),Zalgo.generate("Grimoires"),Zalgo.generate("Fluthlu"),Zalgo.generate("The Zoologically Dubious")];
+
 //typoed special snowlake once insteada snowflake, and now it's a land.
 List<String> free_land_titles = ["Snowlake", "Heat","Sand","Brains","Haze","Tea","Flow","Maps","Caves","Tents","Wrath","Rays","Glass","Lava","Magma"]
 ..addAll(["Shade","Frost","Rain","Fog","Trees","Flowers","Books","Technology","Ice","Water", "Waterfalls","Rocks"])
@@ -1316,11 +1320,10 @@ List<String> free_land_titles = ["Snowlake", "Heat","Sand","Brains","Haze","Tea"
 ..addAll(["Bone","Arenas","Wonder","Fluff","Cotton","Domes","Gold","Silver","Bronze","Ruby","Ribbon"])
 ..addAll(["Hair","Teeth","Tendrils","Mouths","Paint","Pain","Wood","Colors","Echoes","Fossils","Roses","Tulips","Mummies", "Zombies", "Corpses"])
 ..addAll(["Mysteries","Splendor","Luxury","Cash","Coins","Crystals","Gemstones","Cards","Tarot","Wagons","Puzzles","Mayhem","Redundancy","Redundancy"])
-..addAll(["Obsolescence","Deceit","Ruse","Distraction","Libraries","Blocks","Video Games","Vermin","Butchers","Meat","Clouds", "Horses"]);
+..addAll(["Obsolescence","Deceit","Ruse","Distraction","Libraries","Blocks","Video Games","Vermin","Butchers","Meat","Clouds", "Horses"])
 
-//google is an in joke because apparently google reports that all sessions are crashed and it is beautiful and google is a horrorterror.
-List<String> corruptedOtherLandTitles = [Zalgo.generate("Google"), Zalgo.generate("Horrorterrors"),Zalgo.generate("Glitches"),Zalgo.generate("Grimoires"),Zalgo.generate("Fluthlu"),Zalgo.generate("The Zoologically Dubious")]
 ..addAll(corruptedOtherLandTitles);
+
 
 
 
