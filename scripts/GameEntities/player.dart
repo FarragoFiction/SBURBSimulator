@@ -1566,7 +1566,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	}
 	void initSpriteCanvas(){
 		//print("Initializing derived stuff.");
-		this.spriteCanvasID = this.id.toString()+"spriteCanvas";
+		this.spriteCanvasID = "spriteCanvas${this.id.toString()}";
 		String canvasHTML = "<br/><canvas style='display:none' id='" + this.spriteCanvasID+"' width='" +400.toString() + "' height="+300.toString() + "'>  </canvas>";
 		querySelector("#playerSprites").appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
 		//print("append? -> $canvasHTML");

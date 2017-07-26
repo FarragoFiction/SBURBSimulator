@@ -158,8 +158,7 @@ class StoryController extends SimController {
 
   @override
   void recoverFromCorruption() {
-    throw "TODO";
-    // TODO: implement recoverFromCorruption
+    print("Other controllers will do something after corruption, but the sim just ends.");
   }
 
   @override
