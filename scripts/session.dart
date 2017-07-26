@@ -178,7 +178,7 @@ class Session {
 	dynamic addImportantEvent(important_event){
 		var alternate = this.yellowYardController.doesEventNeedToBeUndone(important_event);
 	//	print("alternate i got from yellowYardController is: " + alternate);
-		if(alternate){
+		if(alternate != null){
 		//	print("returning alternate");
 		  if(doEventsMatch(important_event, this.afterLife.timeLineSplitsWhen,false))  this.afterLife.allowTransTimeLineInteraction();
 			return alternate; //scene will use the alternate to go a different way. important event no longer happens.

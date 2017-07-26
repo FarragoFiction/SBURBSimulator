@@ -99,9 +99,9 @@ class Intro  extends IntroScene{
 		var current_mvp = findStrongestPlayer(this.session.players);
 		//print("Entering session, mvp is: " + current_mvp.power);
 		if(this.player.aspect == "Time" && !this.player.object_to_prototype.illegal){
-			return this.session.addImportantEvent(new TimePlayerEnteredSessionWihtoutFrog(this.session, current_mvp.power,this.player,null) );
+			return this.session.addImportantEvent(new TimePlayerEnteredSessionWihtoutFrog(this.session, current_mvp.getStat("power"),this.player,null) );
 		}else{
-			return this.session.addImportantEvent(new PlayerEnteredSession(this.session, current_mvp.power,this.player,null) );
+			return this.session.addImportantEvent(new PlayerEnteredSession(this.session, current_mvp.getStat("power"),this.player,null) );
 		}
 
 	}
@@ -568,7 +568,7 @@ class Intro  extends IntroScene{
 				}
 
 		}
-		drawChat(querySelector("#canvas"+ (div.attr("id"))), player1, player2, chatText,"discuss_sburb.png");
+		drawChat(querySelector("#canvas"+ (div.id)), player1, player2, chatText,"discuss_sburb.png");
 		return null;
 	}
 	dynamic getChat(player1, player2, div){
@@ -612,7 +612,7 @@ class Intro  extends IntroScene{
 	}
 	dynamic chat(div){
 		num repeatTime = 1000;
-		String canvasHTML = "<br><canvas id;='canvas" + (div.attr("id")) +"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + (div.id) +"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		//first, find/make pesterchum skin. Want it to be no more than 300 tall for now.
 		//then, have some text I want to render to it.
@@ -641,7 +641,7 @@ class Intro  extends IntroScene{
 			return;
 		}
 		//alien chat won't get here, renders itself cause can talk to dead
-		drawChat(querySelector("#canvas"+ (div.attr("id"))), player1, player2, chatText,"discuss_sburb.png");
+		drawChat(querySelector("#canvas"+ (div.id)), player1, player2, chatText,"discuss_sburb.png");
 	}
 	@override
 	void renderContent(div, i){
@@ -652,7 +652,7 @@ class Intro  extends IntroScene{
 		drawCharSheet(canvasDiv,this.player);
 		this.player.generateDenizen();
 		var alt = this.addImportantEvent();
-		if(alt && alt.alternateScene(div)){
+		if(alt != null && alt.alternateScene(div)){
 			return;
 		}
 		String narration = "";

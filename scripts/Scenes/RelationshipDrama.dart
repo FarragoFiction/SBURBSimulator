@@ -35,7 +35,7 @@ class RelationshipDrama extends Scene {
 	void celebratoryRapBattle(div, player1, player2){
 		//print("celbratory rap battles: " + this.session.session_id);
 		this.session.rapBattle = true;
-		var divId = (div.attr("id")) + player1.chatHandle + player1.id;
+		var divId = (div.id) + player1.chatHandle + player1.id;
 		var player1Start = player1.chatHandleShort()+ ": ";
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		String canvasHTML = "<br><canvas id;='canvas" + divId +"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
@@ -75,7 +75,7 @@ class RelationshipDrama extends Scene {
 		var player1 = player;
 		var player2 = crush;
 
-		var divID = (div.attr("id")) + "_" + player.chatHandle+"confess_crush_"+crush.chatHandle + player.id;
+		var divID = (div.id) + "_" + player.chatHandle+"confess_crush_"+crush.chatHandle + player.id;
 		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvasDiv = querySelector("#canvas"+ divID);
@@ -188,7 +188,7 @@ class RelationshipDrama extends Scene {
 			//alert("why can't I hold all these feels?");
 			return this.confessTooManyFeeling(div, player, crush); //don't just keep spinning your wheels.
 		}
-		var divID = (div.attr("id")) + "_" + player.chatHandle+"confess_crush_"+crush.chatHandle+ player.id;
+		var divID = (div.id) + "_" + player.chatHandle+"confess_crush_"+crush.chatHandle+ player.id;
 		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvasDiv = querySelector("#canvas"+ divID);
@@ -274,7 +274,7 @@ class RelationshipDrama extends Scene {
 		var relationship = player1.getRelationshipWith(crush);
 		String chatText = "";
 
-		var divID = (div.attr("id")) + "_" + player1.chatHandle+"advice_crush_"+crush.chatHandle + player1.id;
+		var divID = (div.id) + "_" + player1.chatHandle+"advice_crush_"+crush.chatHandle + player1.id;
 		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
@@ -298,7 +298,7 @@ class RelationshipDrama extends Scene {
 		var relationship = player1.getRelationshipWith(crush);
 		String chatText = "";
 
-		var divID = (div.attr("id")) + "_" + player1.chatHandle+"advice_crush_"+crush.chatHandle + player1.id;
+		var divID = (div.id) + "_" + player1.chatHandle+"advice_crush_"+crush.chatHandle + player1.id;
 		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
@@ -342,7 +342,7 @@ class RelationshipDrama extends Scene {
 		}
 		removeFromArray(player2, this.session.availablePlayers);
 
-		var divID = (div.attr("id")) + "_" + player.chatHandle+"advice_crush_"+crush.chatHandle + player.id;
+		var divID = (div.id) + "_" + player.chatHandle+"advice_crush_"+crush.chatHandle + player.id;
 		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
@@ -473,7 +473,7 @@ class RelationshipDrama extends Scene {
 			return this.corpseVent(div,player1,player2, jerk);
 		}
 		removeFromArray(player2, this.session.availablePlayers);
-		var divID = (div.attr("id")) + "_" + player.chatHandle+"vent_jerk_"+jerk.chatHandle +  player.id;
+		var divID = (div.id) + "_" + player.chatHandle+"vent_jerk_"+jerk.chatHandle +  player.id;
 		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		//different format for canvas code
@@ -551,7 +551,7 @@ class RelationshipDrama extends Scene {
 			return;
 		}
 		removeFromArray(jerk, this.session.availablePlayers);
-		var divID = (div.attr("id")) + "_" + player.chatHandle+"antagonize_jerk_"+jerk.chatHandle + player.id;
+		var divID = (div.id) + "_" + player.chatHandle+"antagonize_jerk_"+jerk.chatHandle + player.id;
 		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvasDiv = querySelector("#canvas"+ divID);

@@ -415,10 +415,10 @@ void processCombinedSession(){
 
 void foundRareSession(div, debugMessage){
 	print(debugMessage);
-	String canvasHTML = "<br><canvas id;='canvasJRAB" + (div.attr("id")) +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+	String canvasHTML = "<br><canvas id;='canvasJRAB" + (div.id) +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
 	div.append(canvasHTML);
 
-	var canvasDiv = querySelector("#canvasJRAB"+  (div.attr("id")));
+	var canvasDiv = querySelector("#canvasJRAB"+  (div.id));
 	String chat = "";
   chat += "AB: Just thought I'd let you know: " + debugMessage +"\n";
 	chat += "JR: *gasp* You found it! Thanks! You are the best!!!\n";

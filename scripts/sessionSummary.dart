@@ -223,7 +223,7 @@ class SessionSummary {
 				if(propertyName == "players"){
 					html += "<Br><b>" + propertyName + "</b>: " + getPlayersTitlesBasic(this.players);
 				}else if(propertyName == "mvp"){
-					html += "<Br><b>" + propertyName + "</b>: " + this.mvp.htmlTitle() + " With a Power of: " + this.mvp.power;
+					html += "<Br><b>" + propertyName + "</b>: " + this.mvp.htmlTitle() + " With a Power of: " + this.mvp.getStat("power");
 				}else if(propertyName == "frogLevel"){
 					html += "<Br><b>" + propertyName + "</b>: " + this.frogLevel + " (" + this.frogStatus +")";
 				}else if(propertyName == "session_id"){

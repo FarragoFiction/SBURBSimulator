@@ -29,7 +29,7 @@ class GodTierRevival extends Scene {
 	void renderContent(div){
 		div.append("<br>"+this.content());
 		num repeatTime = 1000;
-		var divID = (div.attr("id")) + "_tiger";
+		var divID = (div.id) + "_tiger";
 		var ch = canvasHeight;
 		if(this.godsToRevive.length > 6){
 			ch = canvasHeight*2;

@@ -69,14 +69,14 @@ class VoidyStuff extends Scene {
 		//make array of functions. call one at random.
 		//div you pass to fucntion is created here. div class is VOID, nothing or RAGE.
 
-		String normalDivHTML = "<span id ;= '" +div.attr("id")+ "voidyStuffNormal'>  </span> ";
+		String normalDivHTML = "<span id ;= '" +div.id+ "voidyStuffNormal'>  </span> ";
 		div.append(normalDivHTML);
-		var normalDiv = querySelector("#"+div.attr("id")+ "voidyStuffNormal");
+		var normalDiv = querySelector("#"+div.id+ "voidyStuffNormal");
 
-		String newDivHTML = "<span class ;='"+classDiv+"' id = '" +div.attr("id")+ "voidyStuffSpecial'>  </span> ";
+		String newDivHTML = "<span class ;='"+classDiv+"' id = '" +div.id+ "voidyStuffSpecial'>  </span> ";
 		div.append(newDivHTML);
-		normalDiv = querySelector("#"+div.attr("id")+ "voidyStuffNormal");
-		var newDiv = querySelector("#"+div.attr("id")+ "voidyStuffSpecial");
+		normalDiv = querySelector("#"+div.id+ "voidyStuffNormal");
+		var newDiv = querySelector("#"+div.id+ "voidyStuffSpecial");
 		//don't godtier as soon as you get in, too unfair to the other players.
 		if(this.player.godDestiny && this.player.power > 10 && !this.player.godTier && rand.nextDouble()>0.8 && this.player.land != null){
 			this.godTier(normalDiv, newDiv);
@@ -191,7 +191,7 @@ class VoidyStuff extends Scene {
 				ret += " The " +this.player.htmlTitleBasic() + " lies dead on the ground. ";
 				specialDiv.append(ret);
 
-				var divID = (specialDiv.attr("id")) + "denizenDeath";
+				var divID = (specialDiv.id) + "denizenDeath";
 				String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 				specialDiv.append(canvasHTML);
 				var canvas = querySelector("#canvas"+ divID);
@@ -206,7 +206,7 @@ class VoidyStuff extends Scene {
 		//print("Void/Rage ecto babies: " + this.session.session_id);
 		var playersMade = this.player.performEctobiology(this.session);
 		div.append(" Wait. Are those BABIES!? What is even going on here?");
-		var divID = (specialDiv.attr("id")) + "_babies";
+		var divID = (specialDiv.id) + "_babies";
 		var ch = canvasHeight;
 		if(this.session.players.length > 6){
 			ch = canvasHeight*1.5;
@@ -231,7 +231,7 @@ class VoidyStuff extends Scene {
 		var f = this.session.fraymotifCreator.makeFraymotif(rand, [this.player], 3);//first god tier fraymotif
 		this.player.fraymotifs.add(f);
 		specialDiv.append("Holy shit. Did the " + this.player.htmlTitleBasic() + " just randomly go GodTier? What the fuck is going on? Did they even die? This is some flagrant bullshit. Somehow they learned " + f.name + " too." );
-		var divID = (specialDiv.attr("id")) + "godBS";
+		var divID = (specialDiv.id) + "godBS";
 		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		specialDiv.append(canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);

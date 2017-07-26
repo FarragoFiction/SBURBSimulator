@@ -30,7 +30,7 @@ class GoGrimDark extends Scene {
 
 	dynamic addImportantEvent(){
 		var current_mvp = findStrongestPlayer(this.session.players);
-		return this.session.addImportantEvent(new PlayerWentGrimDark(this.session, current_mvp.power,this.player,null) );
+		return this.session.addImportantEvent(new PlayerWentGrimDark(this.session, current_mvp.getStat("power"),this.player,null) );
 	}
 
 	@override
@@ -41,7 +41,7 @@ class GoGrimDark extends Scene {
 		}
 		div.append("<br><img src = 'images/sceneIcons/grimdark_black_icon.png'>"+this.content());
 		if(this.player.grimDark ==4){
-			var divID = div.attr("id") + "grimdark";
+			var divID = div.id + "grimdark";
 			String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 			div.append(canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);

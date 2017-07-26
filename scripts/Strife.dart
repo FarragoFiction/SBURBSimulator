@@ -176,7 +176,7 @@ class Strife {
   void summonAuthor(div) {
     print("author is saving AB in session: " +
         this.session.session_id.toString());
-    var divID = (div.attr("id")) + "authorRocks";
+    var divID = (div.id) + "authorRocks";
     String canvasHTML = "<br><canvas id;='canvas" + divID + "' width='" +
         canvasWidth.toString() + "' height;=" + canvasHeight.toString() +
         "'>  </canvas>";

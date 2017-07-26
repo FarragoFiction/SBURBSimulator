@@ -26,7 +26,7 @@ class FightKing extends Scene {
 }
 	void renderGoodguys(div){
 		num repeatTime = 1000;
-		var divID = (div.attr("id")) + "_final_boss";
+		var divID = (div.id) + "_final_boss";
 		var ch = canvasHeight;
 		var fightingPlayers = this.getGoodGuys();
 		if(fightingPlayers.length > 6){

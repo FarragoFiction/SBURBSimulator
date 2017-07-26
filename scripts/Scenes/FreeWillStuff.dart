@@ -49,7 +49,7 @@ class FreeWillStuff extends Scene{
 	void renderPlayers(div){
 		//print("rendering free will player(s): " + this.session.session_id)
 
-		var divID = (div.attr("id")) + "_freeWillBulshit" + this.renderPlayer1.chatHandle;
+		var divID = (div.id) + "_freeWillBulshit" + this.renderPlayer1.chatHandle;
 		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);
@@ -67,7 +67,7 @@ class FreeWillStuff extends Scene{
 	}
 	void renderGodTier(div){
 		//print(this.playerGodTiered.title() + " rendering free will god tier: " + this.session.session_id)
-		var divID = (div.attr("id")) + "_freeWillBulshit" + this.playerGodTiered.chatHandle;
+		var divID = (div.id) + "_freeWillBulshit" + this.playerGodTiered.chatHandle;
 		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		var f = this.session.fraymotifCreator.makeFraymotif(rand, [this.playerGodTiered], 3);//first god tier fraymotif
 		this.playerGodTiered.fraymotifs.add(f);

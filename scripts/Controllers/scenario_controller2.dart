@@ -348,10 +348,10 @@ void processCombinedSession(){
 void advertisePatreon(div){
 	var player = curSessionGlobalVar.players[0];
 	var playerStart = player.chatHandleShort()+ ": ";
-	String canvasHTML = "<br><a target;='_blank' href = 'https:;//www.patreon.com/FarragoFiction'><canvas id;='canvasJRAB" + (div.attr("id")) +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas></a>";
+	String canvasHTML = "<br><a target;='_blank' href = 'https:;//www.patreon.com/FarragoFiction'><canvas id;='canvasJRAB" + (div.id) +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas></a>";
 	div.append(canvasHTML);
 
-	var canvasDiv = querySelector("#canvasJRAB"+  (div.attr("id")));
+	var canvasDiv = querySelector("#canvasJRAB"+  (div.id));
 	String chat = "";
 	chat += "JR: Hey!!! Sorry for the confusion, just bare with me, but this is pretty much the only way I have to talk directly to the Observers! \n";
 	chat += Scene.chatLine(playerStart, player,"What the actual fuck?");
@@ -370,10 +370,10 @@ void advertisePatreon(div){
 
 void foundRareSession(div, debugMessage){
 	print(debugMessage);
-	String canvasHTML = "<br><canvas id;='canvasJRAB" + (div.attr("id")) +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+	String canvasHTML = "<br><canvas id;='canvasJRAB" + (div.id) +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
 	div.append(canvasHTML);
 
-	var canvasDiv = querySelector("#canvasJRAB"+  (div.attr("id")));
+	var canvasDiv = querySelector("#canvasJRAB"+  (div.id));
 	String chat = "";
   chat += "AB: Just thought I'd let you know: " + debugMessage +"\n";
 	chat += "JR: *gasp* You found it! Thanks! You are the best!!!\n";

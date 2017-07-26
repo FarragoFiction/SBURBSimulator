@@ -301,8 +301,8 @@ class EngageMurderMode extends Scene{
 		drawChat(canvasDiv, player1, player2, chatText,"discuss_murder.png");
 	}
 	dynamic addImportantEvent(){
-		var current_mvp = findStrongestPlayer(this.session.players);
-		return this.session.addImportantEvent(new PlayerWentMurderMode(this.session, current_mvp.power,this.player, null) );
+		Player current_mvp = findStrongestPlayer(this.session.players);
+		return this.session.addImportantEvent(new PlayerWentMurderMode(this.session, current_mvp.getStat("power"),this.player, null) );
 	}
 	@override
 	void renderContent(Element div){

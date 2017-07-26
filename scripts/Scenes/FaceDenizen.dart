@@ -144,7 +144,7 @@ class FaceDenizen extends Scene{
 					ret += " Huh.  They were NOT ready for that.  They are easily crushed by their Denizen. DEAD.";
 					p.makeDead("fighting their Denizen way too early");
 					div.append("<br>"+ret);
-					var divID = (div.attr("id"));
+					var divID = (div.id);
 					String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 					div.append(canvasHTML);
 					var canvas = querySelector("#canvas"+ divID);

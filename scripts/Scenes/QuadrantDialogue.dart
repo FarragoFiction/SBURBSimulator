@@ -569,14 +569,14 @@ class QuadrantDialogue extends Scene {
 		return ret;
 	}
 	void chat(div){
-		String canvasHTML = "<br><canvas id;='canvas" + (div.attr("id")) +"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + (div.id) +"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var relationship = this.getQuadrant();
 		var relationship2 = this.getQuadrant2();
 		var chatText = this.getGreeting(relationship, relationship2);
 		chatText += this.getChat(relationship, relationship2);
-		drawChat(querySelector("#canvas"+ (div.attr("id"))), this.player1, this.player2, chatText,this.getDiscussSymbol(relationship));
-		//this.session.sceneRenderingEngine.drawChat(querySelector("#canvas"+ (div.attr("id"))), this.player1, this.player2, chatText, 0,this.getDiscussSymbol(relationship));
+		drawChat(querySelector("#canvas"+ (div.id)), this.player1, this.player2, chatText,this.getDiscussSymbol(relationship));
+		//this.session.sceneRenderingEngine.drawChat(querySelector("#canvas"+ (div.id)), this.player1, this.player2, chatText, 0,this.getDiscussSymbol(relationship));
 
 	}
 

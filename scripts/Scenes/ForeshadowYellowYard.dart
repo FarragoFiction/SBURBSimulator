@@ -22,10 +22,10 @@ class ForeshadowYellowYard extends Scene{
 	void renderContent(div){
 		//div.append("<br>"+this.content());
 		print("Yellow yard foreshadowing. " + this.session.session_id);
-		String canvasHTML = "<br><canvas id;='canvasJRAB" + (div.attr("id")) +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvasJRAB" + (div.id) +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 
-		var canvasDiv = querySelector("#canvasJRAB"+  (div.attr("id")));
+		var canvasDiv = querySelector("#canvasJRAB"+  (div.id));
 		String chat = "";
 		chat += "AB: Out of all the sessions I've seen (and as a flawless robot I have seen FAR more than any human) this one is EASILY in the top percentage of tragedy. Top fucking percent. \n";
 		chat += "JR: Shit...you really aren't kidding. \n";
@@ -39,10 +39,10 @@ class ForeshadowYellowYard extends Scene{
 		drawChatABJR(canvasDiv, chat);
 		chat = "";
 		if(this.timePlayer.dead){
-			String canvasHTML2 = "<br><canvas id;='canvasJRAB2" + (div.attr("id")) +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+			String canvasHTML2 = "<br><canvas id;='canvasJRAB2" + (div.id) +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
 			div.append(canvasHTML2);
 
-			var canvasDiv2 = querySelector("#canvasJRAB2"+  (div.attr("id")));
+			var canvasDiv2 = querySelector("#canvasJRAB2"+  (div.id));
 			print("time player is dead.");
 			chat += "JR: Though...I admit that without a time player my plan becomes a lot more impossible. \n ";
 			chat += "AB: Nah, I took care of that. See? There's the " + this.timePlayer.titleBasic()+" over there, now. Time shenanigans.  I wouldn't have brought you to a completely hopeless session.  \n ";

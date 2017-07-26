@@ -261,7 +261,7 @@ class LifeStuff extends Scene {
 		}
 	}
 	dynamic drawDreamBubbleH(div, player, ghost){
-		var canvasId = div.attr("id") + "commune_" +player.chatHandle;
+		var canvasId = div.id + "commune_" +player.chatHandle;
 		String canvasHTML = "<br><canvas id;='" + canvasId +"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = querySelector("#${canvasId}");
@@ -283,7 +283,7 @@ class LifeStuff extends Scene {
 		return canvas;
 	}
 	dynamic drawCommuneDead(div, player, ghost){
-		var canvasId = div.attr("id") + "commune_" +player.chatHandle;
+		var canvasId = div.id + "commune_" +player.chatHandle;
 		String canvasHTML = "<br><canvas id;='" + canvasId +"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = querySelector("#${canvasId}");
@@ -298,7 +298,7 @@ class LifeStuff extends Scene {
 	}
 	dynamic drawDrainDead(div, player, ghost, long){
 		print("drain dead in: " + this.session.session_id.toString());
-		var canvasId = div.attr("id") + "commune_" +player.chatHandle;
+		var canvasId = div.id + "commune_" +player.chatHandle;
 		String canvasHTML = "<br><canvas id;='" + canvasId +"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = querySelector("#${canvasId}");
@@ -347,7 +347,7 @@ class LifeStuff extends Scene {
 		}
 	}
 	void helpPlayerCommuneDead(div, player1, player2){
-			var divID = (div.attr("id")) + "_communeDeadWithGuide"+player1.chatHandle ;
+			var divID = (div.id) + "_communeDeadWithGuide"+player1.chatHandle ;
 			div.append("<div id ="+divID + "></div>");
 			var childDiv = querySelector("#"+divID);
 			String text = "";
@@ -412,7 +412,7 @@ class LifeStuff extends Scene {
 	}
 	void helpPlayerDrainDeadForPower(div, player1, player2){
 		//print("help drain dead for power: "+ player1.titleBasic() + this.session.session_id);
-		var divID = (div.attr("id")) + "_communeDeadWithGuide"+player1.chatHandle ;
+		var divID = (div.id) + "_communeDeadWithGuide"+player1.chatHandle ;
 		div.append("<div id ="+divID + "></div>");
 		var childDiv = querySelector("#"+divID);
 		var text = this.ghostPsionics(player1) +"The " + player1.htmlTitleBasic() + " allows the " + player2.htmlTitleBasic() + " to take power from the dead. ";
@@ -467,7 +467,7 @@ class LifeStuff extends Scene {
 			}
 	}
 	void helpDrainDeadForReviveSelf(div, player1, player2){
-		var divID = (div.attr("id")) + "_communeDeadWithGuide"+player1.chatHandle ;
+		var divID = (div.id) + "_communeDeadWithGuide"+player1.chatHandle ;
 		div.append("<div id ="+divID + "></div>");
 		var childDiv = querySelector("#"+divID);
 		var text = this.ghostPsionics(player1) + "The " + player1.htmlTitleBasic() + " assists the " + player2.htmlTitleBasic() + ". ";
@@ -486,7 +486,7 @@ class LifeStuff extends Scene {
 	void enableDreamBubbles(div, player){
 		//print("Turning on dream bubble afterlife: " + this.session.session_id);
 		this.session.dreamBubbleAfterlife = true;
-		var canvasId = div.attr("id") + "horror_terrors_" +player.chatHandle;
+		var canvasId = div.id + "horror_terrors_" +player.chatHandle;
 		String canvasHTML = "<br><canvas id;='" + canvasId +"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = querySelector("#${canvasId}");

@@ -18,7 +18,7 @@
 	}
 	void chat(div){
 		num repeatTime = 1000;
-		String canvasHTML = "<br><canvas id;='canvas" + (div.attr("id")) +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id;='canvas" + (div.id) +"' width='" +canvasWidth + "' height;="+canvasHeight + "'>  </canvas>";
 		div.append(canvasHTML);
 		//first, find/make pesterchum skin. Want it to be no more than 300 tall for now.
 		//then, have some text I want to render to it.
@@ -49,7 +49,7 @@
 		chatText += chatLine(player2Start, player2,"What is it with you and corpse bugs? ");
 		//TODO change text based on p1 and p2 relationships.  and vice versa. p1 is all flirty, p2 is a dick. yeeeessss.....
 		//var spriteBuffer = getBufferCanvas(querySelector("#canvas_template"));
-		drawChat(querySelector("#canvas"+ (div.attr("id"))), player1, player2, chatText, repeatTime);
+		drawChat(querySelector("#canvas"+ (div.id)), player1, player2, chatText, repeatTime);
 	}
 	void renderContent(div){
 		String narration = "<br>And now, a message from me. jadedResearcher.";

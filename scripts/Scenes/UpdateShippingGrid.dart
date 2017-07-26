@@ -173,7 +173,7 @@ class UpdateShippingGrid extends Scene{
 			player1 = Player.makeRenderingSnapshot(player1);
 			player1.chatHandle = "future" + player1.chatHandle.charAt(0).toUpperCase() + player1.chatHandle.slice(1);
 		}
-		var divID = (div.attr("id")) + "_canvas_shipping"+ this.chosenShipper.id;
+		var divID = (div.id) + "_canvas_shipping"+ this.chosenShipper.id;
 		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvasDiv = querySelector("#canvas"+ divID);
@@ -199,7 +199,7 @@ class UpdateShippingGrid extends Scene{
 		if(!this.romanceChat) return;
 		var player1 = this.chosenShipper.otp.r2.target;
 		var player2 = this.chosenShipper.otp.r1.target;
-		var divID = (div.attr("id")) + "_canvas_romance"+ this.chosenShipper.id;
+		var divID = (div.id) + "_canvas_romance"+ this.chosenShipper.id;
 		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvasDiv = querySelector("#canvas"+ divID);

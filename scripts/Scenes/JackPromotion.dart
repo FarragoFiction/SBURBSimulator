@@ -27,7 +27,7 @@ class JackPromotion extends Scene{
 	}
 	dynamic addImportantEvent(){
 		var current_mvp = findStrongestPlayer(this.session.players);
-		return this.session.addImportantEvent(new JackPromoted(this.session, current_mvp.power,null,null) );
+		return this.session.addImportantEvent(new JackPromoted(this.session, current_mvp.getStat("power"),null,null) );
 	}
 	dynamic content(){
 		String ret = " In a shocking turn of events, Jack Noir claims the Black Queen's RING OF ORBS " + this.session.convertPlayerNumberToWords();

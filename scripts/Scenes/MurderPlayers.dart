@@ -78,7 +78,7 @@ class MurderPlayers extends Scene {
 
 	}
 	void renderMurder(div, murderer, victim){
-		var divID = (div.attr("id")) + "_" + victim.chatHandle;
+		var divID = (div.id) + "_" + victim.chatHandle;
 		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);
@@ -95,7 +95,7 @@ class MurderPlayers extends Scene {
 	}
 	void renderDiamonds(div, murderer, diamond){
 
-		var divID = (div.attr("id")) + "_" + diamond.chatHandle;
+		var divID = (div.id) + "_" + diamond.chatHandle;
 		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);
@@ -116,7 +116,7 @@ class MurderPlayers extends Scene {
 	}
 	void renderClubs(div, murderer, victim, club){
 		//alert("clubs)")
-		var divID = (div.attr("id")) + "_" + club.chatHandle;
+		var divID = (div.id) + "_" + club.chatHandle;
 		String canvasHTML = "<br><canvas id;='canvas" + divID+"' width='" +canvasWidth.toString() + "' height;="+canvasHeight.toString() + "'>  </canvas>";
 		div.append(canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);
