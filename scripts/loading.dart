@@ -102,7 +102,7 @@ void addImageTagLoading(url){
 }
 
 String escapeId(String toEscape) {
-	return toEscape.replaceAll(new RegExp(r"\.|\/"),"");
+	return toEscape.replaceAll(new RegExp(r"\.|\/"),"_");
 }
 
 

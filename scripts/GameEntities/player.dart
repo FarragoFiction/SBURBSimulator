@@ -558,13 +558,13 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	}
 	@override
 	String htmlTitleBasic(){
-			return getFontColorFromAspect(this.aspect) + this.titleBasic() + "</font>";
+			return "${getFontColorFromAspect(this.aspect)}${this.titleBasic()}</font>";
 	}
-	@override
+	//@override
 	String titleBasic(){
 		String ret = "";
 
-		ret+= this.class_name + " of " + this.aspect;
+		ret+= "${this.class_name} of ${this.aspect}";
 		return ret;
 	}
 
@@ -1567,11 +1567,12 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	void initSpriteCanvas(){
 		//print("Initializing derived stuff.");
 		this.spriteCanvasID = this.id.toString()+"spriteCanvas";
-		String canvasHTML = "<br><canvas style;='display:none' id='" + this.spriteCanvasID+"' width;='" +400.toString() + "' height="+300.toString() + "'>  </canvas>";
+		String canvasHTML = "<br/><canvas style='display:none' id='" + this.spriteCanvasID+"' width='" +400.toString() + "' height="+300.toString() + "'>  </canvas>";
 		querySelector("#playerSprites").appendHtml(canvasHTML);
+		//print("append? -> $canvasHTML");
 	}
 	void renderSelf(){
-		if(!this.spriteCanvasID != null) this.initSpriteCanvas();
+		if(this.spriteCanvasID == null) this.initSpriteCanvas();
 		var canvasDiv = querySelector("#${this.spriteCanvasID}");
 
 		var ctx = canvasDiv.getContext("2d");
@@ -2153,22 +2154,22 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
     timeClone.setStat("currentHP", doomedPlayer.getStat("hp")); //heal
     timeClone.doomed = true;
     //from a different timeline, things went differently.
-    var rand = doomedPlayer.session.rand.nextDouble();
+    var r = doomedPlayer.rand.nextDouble();
     timeClone.setStat("power",doomedPlayer.session.rand.nextDouble() * 80+10);
-    if(rand > 0.9){
+    if(r > 0.9){
       timeClone.robot = true;
       timeClone.hairColor = getRandomGreyColor();
-    }else if(rand>.8){
+    }else if(r>.8){
       timeClone.godTier = !timeClone.godTier;
       if(timeClone.godTier){
         timeClone.setStat("power", 200); //act like a god, damn it.
       }
-    }else if(rand>.6){
+    }else if(r>.6){
       timeClone.isDreamSelf = !timeClone.isDreamSelf;
-    }else if(rand>.4){
+    }else if(r>.4){
       timeClone.grimDark = doomedPlayer.session.rand.nextIntRange(0,4);
       timeClone.addStat("power",50 * timeClone.grimDark);
-    }else if(rand>.2){
+    }else if(r>.2){
       timeClone.murderMode = !timeClone.murderMode;
     }
 
@@ -2181,16 +2182,16 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
     }
 
     if(timeClone.godTier){
-     var f = curSessionGlobalVar.fraymotifCreator.makeFraymotif([doomedPlayer], 3);//first god tier fraymotif
+     var f = curSessionGlobalVar.fraymotifCreator.makeFraymotif(doomedPlayer.rand, [doomedPlayer], 3);//first god tier fraymotif
       timeClone.fraymotifs.add(f);
     }
 
     if(timeClone.getStat("power") > 50){
-      var f = curSessionGlobalVar.fraymotifCreator.makeFraymotif([doomedPlayer], 2);//probably beat denizen at least
+      var f = curSessionGlobalVar.fraymotifCreator.makeFraymotif(doomedPlayer.rand, [doomedPlayer], 2);//probably beat denizen at least
       timeClone.fraymotifs.add(f);
     }
 
-    var f = curSessionGlobalVar.fraymotifCreator.makeFraymotif([doomedPlayer], 1);//at least did first quest
+    var f = curSessionGlobalVar.fraymotifCreator.makeFraymotif(doomedPlayer.rand, [doomedPlayer], 1);//at least did first quest
     timeClone.fraymotifs.add(f);
 
     return timeClone;

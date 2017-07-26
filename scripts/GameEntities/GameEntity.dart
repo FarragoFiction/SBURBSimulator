@@ -8,7 +8,7 @@ class GameEntity implements Comparable{
   //TODO replace 'minLuck' with 'destiny'
   String name;
   String fontColor = "#000000";
-  bool ghost; //if you are ghost, you are rendered spoopy style
+  bool ghost = false; //if you are ghost, you are rendered spoopy style
   num grist; //everything has it.
   bool dead = false;
   bool exiled = false;

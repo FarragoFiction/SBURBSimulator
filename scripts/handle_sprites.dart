@@ -29,7 +29,9 @@ List<int> hexToRgbA(String hex){
     return [(col>>16)&255, (col>>8)&255, col&255];
 }
 
-
+ImageElement imageSelector(String path) {
+	return querySelector("#${escapeId(path)}");
+}
 
 
 //sharpens the image so later pixel swapping doesn't work quite right.
@@ -94,7 +96,7 @@ void rainbowSwap(CanvasElement canvas){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	ImageData img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
 	String imageString = "rainbow.png";
-    ImageElement img=querySelector("#${imageString}");
+    ImageElement img = imageSelector(imageString);
     int width = img.width;
   	int height = img.height;
 	
@@ -145,7 +147,7 @@ void drainedGhostSwap(CanvasElement canvas){
 	CanvasRenderingContext2D ctx = canvas.context2D;
 	ImageData img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
 	String imageString = "ghostGradient.png";
-    ImageElement img=querySelector("#${imageString}");
+    ImageElement img = imageSelector(imageString);
     int width = img.width;
   	int height = img.height;
 	
@@ -174,7 +176,7 @@ void ghostSwap(CanvasElement canvas){
 	CanvasRenderingContext2D ctx = canvas.context2D;
 	ImageData img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
 	String imageString = "ghostGradient.png";
-    ImageElement img=querySelector("#${imageString}");
+    ImageElement img = imageSelector(imageString);
     int width = img.width;
   	int height = img.height;
 	
@@ -318,7 +320,7 @@ void wings(CanvasElement canvas, Player player){
   //int num = 5;
   String imageString = "Wings/wing$num.png";
   addImageTag(imageString);
-  ImageElement img=querySelector("#${imageString}");
+  ImageElement img = imageSelector(imageString);
   ctx.drawImage(img,0,0);//,width,height);
 
   swapColors(canvas, "#ff0000",player.bloodColor);
@@ -336,7 +338,7 @@ void grimDarkHalo(CanvasElement canvas, Player player){
       imageString = "squiddles_chaos.png";
     }
     addImageTag(imageString);
-    ImageElement img=querySelector("#${imageString}");
+    ImageElement img = imageSelector(imageString);
     ctx.drawImage(img,0,0);
 }
 
@@ -347,7 +349,7 @@ void fin1(CanvasElement canvas, Player player){
     CanvasRenderingContext2D ctx = canvas.getContext('2d');
     String imageString = "fin1.png";
     addImageTag(imageString);
-    ImageElement img=querySelector("#${imageString}");
+    ImageElement img = imageSelector(imageString);
     ctx.drawImage(img,0,0);
   }
 }
@@ -359,7 +361,7 @@ void fin2(CanvasElement canvas, Player player){
     CanvasRenderingContext2D ctx = canvas.getContext('2d');
     String imageString = "fin2.png";
     addImageTag(imageString);
-    ImageElement img=querySelector("#${imageString}");
+    ImageElement img = imageSelector(imageString);
     ctx.drawImage(img,0,0);
   }
 }
@@ -385,7 +387,7 @@ void leftHorn(CanvasElement canvas, Player player){
     CanvasRenderingContext2D ctx = canvas.getContext('2d');
     String imageString = "Horns/left${player.leftHorn}.png";
     addImageTag(imageString);
-    ImageElement img=querySelector("#${imageString}");
+    ImageElement img = imageSelector(imageString);
     ctx.drawImage(img,0,0);
     //print("Random number is: " + randNum);
 }
@@ -402,7 +404,7 @@ void rightHorn(CanvasElement canvas, Player player){
   String imageString = "Horns/right${player.rightHorn}.png";
   addImageTag(imageString);
 
-  ImageElement img=querySelector("#${imageString}");
+  ImageElement img = imageSelector(imageString);
   ctx.drawImage(img,0,0);
 }
 
@@ -413,8 +415,8 @@ void rightHorn(CanvasElement canvas, Player player){
 void addImageTag(String url){
   //print(url);
 	//only do it if image hasn't already been added.
-	if(querySelector("#${escapeId(url)}") == null) {
-		String tag = '<img id="' + url + '" src = "images/' + url + '" class="loadedimg">';
+	if(imageSelector(url) == null) {
+		String tag = '<img id="' + escapeId(url) + '" src = "images/' + url + '" class="loadedimg">';
 		querySelector("#image_staging").appendHtml(tag);
 	}
 
@@ -743,7 +745,7 @@ void drawLevelUp(CanvasElement canvas, Player player){
   CanvasRenderingContext2D ctx = canvasSpriteBuffer.getContext('2d');
   String imageString = "echeladder.png";
   addImageTag(imageString);
-  ImageElement img=querySelector("#${imageString}");
+  ImageElement img = imageSelector(imageString);
   ctx.drawImage(img,0,0,);
   swapColors(canvasSpriteBuffer, "#4a92f7", getColorFromAspect(player.aspect));
   //set fill before you start, don't set it in the for loop, expensive
@@ -792,7 +794,7 @@ void drawLevelUpGodTier(CanvasElement canvas, Player player){
 	CanvasRenderingContext2D ctx = godBuffer.getContext('2d');
 	String imageString = "godtierlevelup.png";
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${imageString}");
+	ImageElement img = imageSelector(imageString);
 	ctx.drawImage(img,0,0);
 
 	CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
@@ -820,7 +822,7 @@ void drawGodSymbolBG(CanvasElement canvas, Player player){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString = player.aspect + "Big.png";
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${imageString}");
+	ImageElement img = imageSelector(imageString);
 	ctx.drawImage(img,0,0);
 
 }
@@ -834,7 +836,7 @@ void drawWhateverTerezi(CanvasElement canvas, String imageString){
   }
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${imageString}");
+	ImageElement img = imageSelector(imageString);
 	//	//  //all true random
   int x = getRandomIntNoSeed(0, 50);
   int y = getRandomIntNoSeed(0,50);
@@ -865,7 +867,7 @@ void drawWhatever(CanvasElement canvas, String imageString){
   }
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${escapeId(imageString)}");
+	ImageElement img = imageSelector(imageString);
     if(img == null) {
         print("img was null!");
         print("was looking for ${escapeId(imageString)}");
@@ -882,7 +884,7 @@ void drawDreamBubble(CanvasElement canvas){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString ="dreambubbles.png";
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${escapeId(imageString)}");
+	ImageElement img = imageSelector(imageString);
 	ctx.drawImage(img,0,0);
 
 }
@@ -896,7 +898,7 @@ void drawHorrorterror(CanvasElement canvas){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString ="horrorterror.png";
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${imageString}");
+	ImageElement img = imageSelector(imageString);
 			ctx.drawImage(img,0,0);
 
 }
@@ -910,7 +912,7 @@ void drawMoon(CanvasElement canvas, Player player){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString =player.moon + ".png";
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${imageString}");
+	ImageElement img = imageSelector(imageString);
 			ctx.drawImage(img,0,0);
 }
 
@@ -962,7 +964,7 @@ void drawRelationshipChat(CanvasElement canvas, Player player1, player2, chat){
 	CanvasRenderingContext2D ctx = canvasSpriteBuffer.getContext('2d');
 	String imageString = "pesterchum.png";
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${imageString}");
+	ImageElement img = imageSelector(imageString);
 			ctx.drawImage(img,0,0);
 
 	CanvasElement p1SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
@@ -1031,7 +1033,7 @@ void drawChatJRPlayer(CanvasElement canvas, String chat, Player player){
 	CanvasRenderingContext2D ctx = canvasSpriteBuffer.getContext('2d');
 	String imageString = "pesterchum.png";
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${escapeId(imageString)}");
+	ImageElement img = imageSelector(imageString);
 		    if(img == null) {
         print("img was null!");
         print("was looking for ${escapeId(imageString)}");
@@ -1080,7 +1082,7 @@ void drawChatJRAB(CanvasElement canvas, chat){
 
 //drawChatTextNonPlayer canvas, introText, chat, player1Start, player2Start, player1Color, player2Color
 //could be spadeslick talking to one of his crew,  could be an easter egg recursiveSlacker
-void drawChatNonPlayer(CanvasElement canvas, chat, introText, player1PNG, player2PNG, player1Start, player2Start, player1Color, player2Color ){
+void drawChatNonPlayer(CanvasElement canvas, String chat, String introText, String player1PNG, String player2PNG, String player1Start, String player2Start, String player1Color, String player2Color ){
   if(checkSimMode() == true){
     return;
   }
@@ -1088,7 +1090,7 @@ void drawChatNonPlayer(CanvasElement canvas, chat, introText, player1PNG, player
   CanvasRenderingContext2D ctx = canvasSpriteBuffer.getContext('2d');
 	String imageString = "pesterchum.png";
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${escapeId(imageString)}");
+	ImageElement img = imageSelector(imageString);
     if(img == null) {
         print("img was null!");
         print("was looking for ${escapeId(imageString)}");
@@ -1139,7 +1141,7 @@ void drawChat(CanvasElement canvas, Player player1, Player player2, String chat,
   CanvasRenderingContext2D ctx = canvasSpriteBuffer.getContext('2d');
 	String imageString = "pesterchum.png";
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${imageString}");
+	ImageElement img = imageSelector(imageString);
 			ctx.drawImage(img,0,0);
 
 	CanvasElement p1SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
@@ -1176,7 +1178,7 @@ void drawAb(CanvasElement canvas){
   CanvasRenderingContext2D ctx = canvas.getContext('2d');
   String imageString = "ab.png";
   addImageTag(imageString);
-  ImageElement img=querySelector("#${imageString}");
+  ImageElement img = imageSelector(imageString);
       ctx.drawImage(img,0,0);
 }
 
@@ -1191,7 +1193,7 @@ void drawJR(CanvasElement canvas, [CanvasRenderingContext2D ctx = null]){
   }
   String imageString = "jr.png";
   addImageTag(imageString);
-  ImageElement img=querySelector("#${imageString}");
+  ImageElement img = imageSelector(imageString);
   ctx.drawImage(img,0,0);
 }
 
@@ -1219,7 +1221,7 @@ void drawTopic(CanvasElement canvas, String topicImage){
   CanvasRenderingContext2D ctx = canvas.getContext('2d');
   String imageString = topicImage;
   addImageTag(imageString);
-  ImageElement img=querySelector("#${imageString}");
+  ImageElement img = imageSelector(imageString);
       ctx.drawImage(img,0,0);
 }
 
@@ -1346,7 +1348,7 @@ void denizenKill(CanvasElement canvas, Player player){
   //ctx.rotate(90*Math.PI/180);
 	String imageString = "denizoned.png";
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${imageString}");
+	ImageElement img = imageSelector(imageString);
 			ctx.drawImage(img,0,0); //why can't i use a buffer, it's not showing up..
   copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,0,0);//why is it so far right???
 
@@ -1358,7 +1360,7 @@ void stabs(CanvasElement canvas, Player player){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString = "stab.png";
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${imageString}");
+	ImageElement img = imageSelector(imageString);
 			ctx.drawImage(img,0,0);
 	swapColors(canvas, "#fffc00", player.bloodColor);
 }
@@ -1369,7 +1371,7 @@ void kingDeath(CanvasElement canvas, Player player){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString = "sceptre.png";
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${imageString}");
+	ImageElement img = imageSelector(imageString);
 			ctx.drawImage(img,0,0);
 	swapColors(canvas, "#fffc00", player.bloodColor);
 }
@@ -1380,7 +1382,7 @@ void bloodPuddle(CanvasElement canvas, Player player){
     CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString = "blood_puddle.png";
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${imageString}");
+	ImageElement img = imageSelector(imageString);
 			ctx.drawImage(img,0,0);
 	swapColors(canvas, "#fffc00", player.bloodColor);
 }
@@ -1609,7 +1611,7 @@ void robo_face(CanvasElement canvas, Player player){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString = "robo_face.png";
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${imageString}");
+	ImageElement img = imageSelector(imageString);
 			ctx.drawImage(img,0,0);
 }
 
@@ -1619,7 +1621,7 @@ void scar_face(CanvasElement canvas, Player player){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString = "calm_scratch_face.png";
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${imageString}");
+	ImageElement img = imageSelector(imageString);
 			ctx.drawImage(img,0,0);
 }
 
@@ -1629,7 +1631,7 @@ void scratch_face(CanvasElement canvas, Player player){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString = "scratch_face.png";
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${imageString}");
+	ImageElement img = imageSelector(imageString);
 			ctx.drawImage(img,0,0);
 	swapColors(canvas, "#fffc00", player.bloodColor); //it's their own blood
 }
@@ -1642,7 +1644,7 @@ void bloody_face(CanvasElement canvas, Player player){
 		CanvasRenderingContext2D ctx = canvas.getContext('2d');
 		String imageString = "bloody_face.png";
 		addImageTag(imageString);
-		ImageElement img=querySelector("#${imageString}");
+		ImageElement img = imageSelector(imageString);
 						ctx.drawImage(img,0,0);
 		swapColors(canvas, "#440a7f", player.victimBlood); //it's not their own blood
 	}
@@ -1657,7 +1659,7 @@ void drawDiamond(CanvasElement canvas){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString = "Moirail.png";
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${imageString}");
+	ImageElement img = imageSelector(imageString);
 			ctx.drawImage(img,0,0);
 }
 
@@ -1670,7 +1672,7 @@ void drawHeart(CanvasElement canvas){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString = "Matesprit.png";
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${imageString}");
+	ImageElement img = imageSelector(imageString);
 			ctx.drawImage(img,0,0);
 }
 
@@ -1683,7 +1685,7 @@ void drawClub(CanvasElement canvas){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString = "Auspisticism.png";
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${imageString}");
+	ImageElement img = imageSelector(imageString);
 			ctx.drawImage(img,0,0);
 }
 
@@ -1696,7 +1698,7 @@ void drawSpade(CanvasElement canvas){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString = "Kismesis.png";
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${imageString}");
+	ImageElement img = imageSelector(imageString);
 			ctx.drawImage(img,0,0);
 }
 
@@ -1707,7 +1709,7 @@ void hairBack(CanvasElement canvas, Player player){
 	String imageString = "Hair/hair_back${player.hair}.png";
   //print(imageString);
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${imageString}");
+	ImageElement img = imageSelector(imageString);
 			ctx.drawImage(img,0,0);
   if(player.sbahj){
     sbahjifier(canvas);
@@ -1726,7 +1728,7 @@ void hair(CanvasElement canvas, Player player){
 	CanvasRenderingContext2D ctx = canvas.getContext('2d');
 	String imageString = "Hair/hair${player.hair}.png";
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${imageString}");
+	ImageElement img = imageSelector(imageString);
 			ctx.drawImage(img,0,0);
   if(player.sbahj){
     sbahjifier(canvas);
@@ -1753,7 +1755,7 @@ void drawTimeGears(CanvasElement canvas){
   CanvasRenderingContext2D ctx = p1SpriteBuffer.getContext('2d');
   String imageString = "gears.png";
   addImageTag(imageString);
-  ImageElement img=querySelector("#${imageString}");
+  ImageElement img = imageSelector(imageString);
       ctx.drawImage(img,0,0);
   copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,0,0);
 
@@ -1766,7 +1768,7 @@ void influenceSymbol(CanvasElement canvas, String symbol){
   CanvasRenderingContext2D ctx = canvas.getContext('2d');
   String imageString = symbol;
   addImageTag(imageString);
-  ImageElement img=querySelector("#${imageString}");
+  ImageElement img = imageSelector(imageString);
       ctx.drawImage(img,0,0);
 }
 
@@ -1776,7 +1778,7 @@ void halo(CanvasElement canvas, String symbol){
   CanvasRenderingContext2D ctx = canvas.getContext('2d');
   String imageString = "halo.png";
   addImageTag(imageString);
-  ImageElement img=querySelector("#${imageString}");
+  ImageElement img = imageSelector(imageString);
       ctx.drawImage(img,0,0);
 }
 
@@ -1790,7 +1792,7 @@ void wasteOfMindSymbol(CanvasElement canvas, Player player){
   CanvasRenderingContext2D ctx = canvas.getContext('2d');
   String imageString = "mind_forehead.png";
   addImageTag(imageString);
-  ImageElement img=querySelector("#${imageString}");
+  ImageElement img = imageSelector(imageString);
       ctx.drawImage(img,0,0);
 }
 
@@ -1799,7 +1801,7 @@ void wasteOfMindSymbol(CanvasElement canvas, Player player){
 void princeTiara(CanvasElement canvas, Player player){
 	String imageString = "prince_hat.png";
 	addImageTag(imageString);
-	ImageElement img=querySelector("#${imageString}");
+	ImageElement img = imageSelector(imageString);
 			CanvasElement c2 = getBufferCanvas(canvas); //don't want to do color replacement on the existing image.
 	CanvasRenderingContext2D ctx2 = c2.context2D;
 	ctx2.drawImage(img,0,0);
@@ -1839,7 +1841,7 @@ void robotSprite(CanvasElement canvas, Player player){
 		imageString = playerToGodBody(player);
 	}
 	  addImageTag(imageString);
-	  ImageElement img=querySelector("#${imageString}");
+	  ImageElement img = imageSelector(imageString);
 	  	  	  ctx.drawImage(img,0,0);
 	  robotPalletSwap(canvas, player);
 	  //eeeeeh...could figure out how to color swap symbol, but lazy.
@@ -1856,7 +1858,7 @@ void tricksterSprite(CanvasElement canvas, Player player){
 		imageString = playerToGodBody(player);
 	}
 	  addImageTag(imageString);
-	  ImageElement img=querySelector("#${imageString}");
+	  ImageElement img = imageSelector(imageString);
 	  	  	  ctx.drawImage(img,0,0);
 	  candyPalletSwap(canvas, player);
   //aspectSymbol(canvas, player);
@@ -1868,7 +1870,7 @@ void regularSprite(CanvasElement canvas, Player player){
 	String imageString = playerToRegularBody(player);
   CanvasRenderingContext2D ctx = canvas.getContext('2d');
   addImageTag(imageString);
-  ImageElement img=querySelector("#${imageString}");
+  ImageElement img = imageSelector(imageString);
       ctx.drawImage(img,0,0);
   if(player.sbahj){
     sbahjifier(canvas);
@@ -1882,7 +1884,7 @@ void regularSprite(CanvasElement canvas, Player player){
 void dreamSprite(CanvasElement canvas, Player player){
   String imageString = playerToDreamBody(player);
   addImageTag(imageString);
-  ImageElement img=querySelector("#${imageString}");
+  ImageElement img = imageSelector(imageString);
       CanvasRenderingContext2D ctx = canvas.getContext("2d");
   ctx.drawImage(img,0,0);
   dreamPalletSwap(canvas, player);
@@ -1903,7 +1905,7 @@ void godTierSprite(CanvasElement canvas, Player player){
   CanvasRenderingContext2D ctx = canvas.getContext("2d");
 	String imageString = playerToGodBody(player);
   addImageTag(imageString);
-  ImageElement img=querySelector("#${imageString}");
+  ImageElement img = imageSelector(imageString);
       ctx.drawImage(img,0,0);
   if(bardQuest && player.class_name == "Bard"){
     drawWhatever(canvas, "/Bodies/cod.png");
@@ -1924,7 +1926,7 @@ void babySprite(CanvasElement canvas, Player player){
     imageString = "Bodies/grub${player.baby}.png";
   }
   addImageTag(imageString);
-  ImageElement img=querySelector("#${imageString}");
+  ImageElement img = imageSelector(imageString);
       ctx.drawImage(img,0,0);
   if(player.sbahj){
     sbahjifier(canvas);
@@ -1943,7 +1945,7 @@ void aspectSymbol(CanvasElement canvas, Player player){
     CanvasRenderingContext2D ctx = canvas.getContext('2d');
     String imageString = player.aspect + ".png";
     addImageTag(imageString);
-    ImageElement img=querySelector("#${imageString}");
+    ImageElement img = imageSelector(imageString);
             ctx.drawImage(img,0,0);
 }
 
@@ -1953,7 +1955,7 @@ void dreamSymbol(CanvasElement canvas, Player player){
     CanvasRenderingContext2D ctx = canvas.getContext('2d');
     String imageString = player.moon + "_symbol.png";
     addImageTag(imageString);
-    ImageElement img=querySelector("#${imageString}");
+    ImageElement img = imageSelector(imageString);
             ctx.drawImage(img,0,0);
 }
 
@@ -2508,7 +2510,7 @@ void fillTextMultiLine(CanvasElement canvas, String text1, String text2, String 
   	}
 	//word wrap these
 	ctx.fillStyle = color2;
- 	wrap_text(ctx, text2, x, ypos, lineHeight, 3*canvas.width/4, "left");
+ 	wrap_text(ctx, text2, x, ypos, lineHeight, 3*canvas.width~/4, "left");
 	ctx.fillStyle = "#000000";
 }
 
@@ -2610,8 +2612,8 @@ void fillChatTextMultiLine(CanvasElement canvas, chat, player1, player2, x, y) {
 }
 
 //http://stackoverflow.com/questions/5026961/html5-canvas-ctx-filltext-wont-do-line-breaks
-int wrap_text(ctx, text, x, y, lineHeight, maxWidth, textAlign) {
-  if(!textAlign) textAlign = 'center';
+int wrap_text(CanvasRenderingContext2D ctx, String text, num x, num y, num lineHeight, int maxWidth, String textAlign) {
+  if(textAlign == null) textAlign = 'center';
   ctx.textAlign = textAlign;
   List<String> words = text.split(' ');
   List<String> lines = [];
@@ -2629,9 +2631,9 @@ int wrap_text(ctx, text, x, y, lineHeight, maxWidth, textAlign) {
       sliceFrom = i;
     }
   }
-  int offsetY = 0;
-  int offsetX = 0;
-  if(textAlign == 'center') offsetX = maxWidth / 2;
+  num offsetY = 0.0;
+  num offsetX = 0;
+  if(textAlign == 'center') offsetX = maxWidth ~/ 2;
   for(int i = 0; i < lines.length; i++) {
     ctx.fillText(lines[i], x + offsetX, y + offsetY);
     offsetY = offsetY + lineHeight;
