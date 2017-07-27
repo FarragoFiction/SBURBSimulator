@@ -108,16 +108,16 @@ class Fraymotif {
       }
       if(effectTypes["buff$i"].length > 0){
         stats = effectTypes["buff$i"];
-        var template = stats[0];
+        String template = stats[0];
         stats.remove(template);
         for(num j = 0; j<stats.length; j++){
           stats[j] = this.getStatWord(rand, stats[j], i); //i is who the target is, j is the stat.
         }
-        retArray.add(template.replace("STAT", [stats.sublist(0, -1).join(', '), stats.sublist(-1)[0]].join(stats.length < 2 ? '' : ' and ')));
+        retArray.add(template.replaceAll("STAT", turnArrayIntoHumanSentence(stats)));
       }
 
     }
-    String almostDone= [retArray.sublist(0, retArray.length-1).join(', '), retArray.sublist(retArray.length-1,0)].join(retArray.length < 2 ? '' : ' and ');
+    String almostDone=  turnArrayIntoHumanSentence(retArray);
     almostDone = almostDone[0].toUpperCase() + almostDone.substring(1) + "."; //sentence it.
     return this.replaceKeyWordsForFlavorTextBase(rand, almostDone);
 
