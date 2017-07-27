@@ -6,7 +6,7 @@ class GameEntity implements Comparable{
   //TODO figure out how i want tier 2 sprites to work. prototyping with a carapace and then a  player and then god tiering should result in a god tier Player that can use the Royalty's Items.
   Session session;
   //TODO replace 'minLuck' with 'destiny'
-  String name;
+  String name = "";
   String fontColor = "#000000";
   bool ghost = false; //if you are ghost, you are rendered spoopy style
   num grist = 100; //everything has it.
