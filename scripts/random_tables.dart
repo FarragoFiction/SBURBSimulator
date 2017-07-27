@@ -1233,7 +1233,7 @@ dynamic intToBloodColor(num){
 
 
 dynamic hexColorToInt(color){
-	return int.parse(color.replace("#",""), radix:16, onError:(String s) => 0xFFFFFF);
+	return int.parse(color.replaceAll("#",""), radix:16, onError:(String s) => 0xFFFFFF);
 }
 
 

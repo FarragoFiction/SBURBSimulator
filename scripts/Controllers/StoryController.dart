@@ -131,12 +131,6 @@ class StoryController extends SimController {
   }
 
   @override
-  void getSessionType() {
-    throw "TODO";
-    // TODO: implement getSessionType
-  }
-
-  @override
   void intro() {
     createInitialSprites();
     //advertisePatreon(querySelector("#story"));
@@ -151,10 +145,25 @@ class StoryController extends SimController {
     }
   }
 
+
+
+
   @override
   void processCombinedSession() {
-    throw "TODO";
-    // TODO: implement processCombinedSession
+    var tmpcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
+    if(tmpcurSessionGlobalVar){
+      curSessionGlobalVar = tmpcurSessionGlobalVar;
+      //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
+      appendHtml(querySelector("#story"),"<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Their sick frog may have screwed them over, but the connection it provides to their child universe will equally prove to be their salvation. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session <a href = 'index2.html?seed=$curSessionGlobalVar.session_id'>$curSessionGlobalVar.session_id</a>. You are a little scared to ask them why they are bringing the corpses with them. Something about...shipping??? That can't be right.");
+      checkSGRUB();
+      load(curSessionGlobalVar.players,[],""); //in loading.js
+    }else{
+      //scratch fuckers.
+      curSessionGlobalVar.makeCombinedSession = false;  //can't make a combo session, and skiaia is a frog so no scratch.
+      renderAfterlifeURL();
+      //renderScratchButton(curSessionGlobalVar);
+    }
+
   }
 
   @override
@@ -204,21 +213,39 @@ class StoryController extends SimController {
   }
 
   @override
-  void renderAfterlifeURL() {
-    throw "TODO";
-    // TODO: implement renderAfterlifeURL
-  }
-
-  @override
   void renderScratchButton(Session session) {
-    throw "TODO";
-    // TODO: implement renderScratchButton
+    var timePlayer = findAspectPlayer(curSessionGlobalVar.players, "Time");
+    if(!timePlayer) throw "CAN'T SCRATCH WITHOUT A TIME PLAYER, JACKASS";
+    print("scratch possible, button");
+    //alert("scratch [possible]");
+    //can't scratch if it was a a total party wipe. just a regular doomed timeline.
+    var living = findLivingPlayers(session.players);
+    if(living.length > 0 && (session.makeCombinedSession == false && session.hadCombinedSession == false)){
+      print("gonna render scratch");
+      var timePlayer = findAspectPlayer(session.players, "Time");
+      if(!session.scratched){
+        //this is apparently spoilery.
+        //alert(living.length  + " living players and the " + timePlayer.land + " makes a scratch available!");
+        if(session.scratchAvailable){
+          String html = '<img src="images/Scratch.png" onclick="scratchConfirm()"><br>Click To Scratch Session?';
+          appendHtml(querySelector("#story"),html);
+          renderAfterlifeURL();
+        }
+      }else{
+        print("no more scratches");
+        appendHtml(querySelector("#story"),"<br>This session is already scratched. No further scratches available.");
+        renderAfterlifeURL();
+      }
+    }else{
+      print("what went wrong? is makecomo?${session.makeCombinedSession}is all dead: " + living.length + " is had combo? " +session.hadCombinedSession.toString() );
+    }
   }
 
   @override
   void restartSession() {
-    throw "TODO";
-    // TODO: implement restartSession
+    querySelector("#story").setInnerHtml('<canvas id="loading" width="1000" height="354"> ');
+    window.scrollTo(0, 0);
+    checkEasterEgg(easterEggCallBackRestart,null);
   }
 
   @override

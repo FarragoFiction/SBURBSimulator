@@ -54,7 +54,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	PotentialSprite lusus = null;
 	Quirk quirk = null;
 
-	bool godDestiny;
+	bool godDestiny = false;
 	bool canGodTierRevive = true;  //even if a god tier perma dies, a life or time player or whatever can brings them back.
 	bool isDreamSelf = false;	//players can be triggered for various things. higher their triggerLevle, greater chance of going murdermode or GrimDark.
 	bool murderMode = false;  //kill all players you don't like. odds of a just death skyrockets.
@@ -491,7 +491,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	}
 	void makeAlive(){
 			if(this.dead == false) return; //don't do all this.
-			if(this.stateBackup) this.stateBackup.restoreState(this);
+			if(this.stateBackup != null) this.stateBackup.restoreState(this);
 			this.influencePlayer = null;
 			this.influenceSymbol = null;
 			this.dead = false;
@@ -1274,7 +1274,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			var p = potentialFriends[i];
 			if(p!=this){
 				var r = p.getRelationshipWith(this);
-				if(r && r.value > bestRelationshipSoFar.value){
+				if(r != null && r.value > bestRelationshipSoFar.value){
 					bestRelationshipSoFar = r;
 					friend = p;
 				}

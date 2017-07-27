@@ -22,16 +22,14 @@ abstract class SimController {
   void startSession();
   void shareableURL();
   void reinit();
-  void easterEggCallBack(); //TODO how do callbacks work in Dart?
+  void easterEggCallBack();
   void easterEggCallBackRestart();
   void checkSGRUB();
-  void getSessionType(); //TODO probably could live in session.
   void renderScratchButton(Session session); //Aftermath will call this.
   void restartSession();
   void tick();
   void reckoning();
   void reckoningTick();
-  void renderAfterlifeURL();
   void processCombinedSession();
   void intro();
   void callNextIntro(int player_index);

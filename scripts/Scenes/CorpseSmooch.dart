@@ -81,11 +81,11 @@ class CorpseSmooch extends Scene {
 		drawComboText(canvas, comboNum);
 	}
 	dynamic ignoreEnemies(player, royalty){
-		if(!royalty){
+		if(royalty == null){
 			return null;
 		}
 		var r = royalty.getRelationshipWith(player);
-		if(!r || (r && r.value < 0)){
+		if(r == null || (r !=null && r.value < 0)){
 			return null;
 		}
 		return royalty;
