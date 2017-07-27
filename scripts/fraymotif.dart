@@ -295,7 +295,7 @@ class Fraymotif {
 //no global functions any more. bad pastJR.
 class FraymotifCreator {
     //some types of fraymotifs, that are otherwise procedurally generated, should have stupid pun names. they are kept here.
- List<dynamic> premadeFraymotifNames = [];  
+ List<Fraymotif> premadeFraymotifNames = [];
 
 
 	FraymotifCreator() {}
@@ -467,13 +467,14 @@ class FraymotifCreator {
       return " " + ret; //extra word
     }
   }
-	dynamic tryToGetPreMadeName(Random rand, List<Player> players){
+	String tryToGetPreMadeName(Random rand, List<Player> players){
+	  if(players == null || players.isEmpty) return null;
     if(rand.nextDouble() > 0.5) return null; //just use the procedural name.
 
     if(this.premadeFraymotifNames.length == 0) this.initializePremadeNames();
     for(num i = 0; i<this.premadeFraymotifNames.length; i++){
         var f = this.premadeFraymotifNames[i];
-        var casters = f.getCastersNoOwner(players);
+        var casters = f.getCastersNoOwner(players[0].session.rand, players);
         if (casters.length == f.aspects.length) return f.name;
     }
     return null;

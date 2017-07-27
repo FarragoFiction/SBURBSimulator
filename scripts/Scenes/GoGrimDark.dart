@@ -2,8 +2,8 @@ part of SBURBSim;
 
 
 class GoGrimDark extends Scene {
-		List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
-	var player = null;	
+		List<Player> playerList = [];  //what players are already in the medium when i trigger?
+	Player player = null;
 
 
 	GoGrimDark(Session session): super(session);
@@ -35,7 +35,7 @@ class GoGrimDark extends Scene {
 	@override
 	void renderContent(Element div){
 		var alt = this.addImportantEvent();
-		if(alt && alt.alternateScene(div)){
+		if(alt != null && alt.alternateScene(div)){
 			return;
 		}
     appendHtml(div,"<br><img src = 'images/sceneIcons/grimdark_black_icon.png'>"+this.content());
