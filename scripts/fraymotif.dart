@@ -544,7 +544,7 @@ class FraymotifCreator {
   }
 	dynamic getFraymotifName(Random rand, List<Player> players, int tier){
     var name = this.tryToGetPreMadeName(rand, players);
-    if(name){
+    if(name != null){
         //print("Using a premade procedural fraymotif name: " + name + " " + players[0].session.session_id);
         return name; //premade is good enough here. let the called function handle randomness.
     }else{

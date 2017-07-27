@@ -3,12 +3,12 @@ part of SBURBSim;
 
 //if leader dies before last player is in OR before performing ectobiology, it's a doomed timeline.
 class SaveDoomedTimeLine extends Scene {
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
-	var timePlayer = null;
-	var leaderPlayer = null;
+	List<Player> playerList = [];  //what players are already in the medium when i trigger?
+	Player timePlayer = null;
+	Player leaderPlayer = null;
 	String reason = "";
-	var doomedTimeClone = null;
-	var enablingPlayer = null;	
+	Player doomedTimeClone = null;
+	Player enablingPlayer = null;
 
 
 	SaveDoomedTimeLine(Session session): super(session);
@@ -41,7 +41,7 @@ class SaveDoomedTimeLine extends Scene {
 
 	@override
 	void renderContent(Element div){
-		print("time clone " + this.timePlayer + " " + this.session.session_id.toString());
+		//print("time clone " + this.timePlayer + " " + this.session.session_id.toString());
 		appendHtml(div,"<br><img src = 'images/sceneIcons/time_icon.png'>"+this.content());
 		var divID = (div.id);
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
@@ -104,15 +104,15 @@ class SaveDoomedTimeLine extends Scene {
 					if(r.value > 0){
 						print(" fully restoring leader health from time shenanigans: " + this.session.session_id.toString());
 						ret += " They make it so that never happened. Forget about it. ";
-						this.leaderPlayer.currentHP = this.leaderPlayer.hp;
+						this.leaderPlayer.setStat("currentHP",this.leaderPlayer.getStat("hp"));
 					}else{
 						print(" barely restoring leader health from time shenanigans: " + this.session.session_id.toString());
 						ret += " They take a twisted pleasure out of waiting until the last possible moment to pull the " + this.leaderPlayer.htmlTitleBasic() + "'s ass out of the danger zone. ";
-						this.leaderPlayer.currentHP = this.leaderPlayer.hp/10;
+            this.leaderPlayer.setStat("currentHP",this.leaderPlayer.getStat("hp")/10);
 					}
 			}else{
 				print(" half restoring leader health from time shenanigans: " + this.session.session_id.toString());
-				this.leaderPlayer.currentHP = this.leaderPlayer.hp/2;
+        this.leaderPlayer.setStat("currentHP",this.leaderPlayer.getStat("hp")/2);
 				ret += " They interupt things before the " + this.leaderPlayer.htmlTitleBasic() +  " gets hurt too bad. ";
 			}
 
@@ -127,16 +127,16 @@ class SaveDoomedTimeLine extends Scene {
 					if(r.value > 0){
 						print(" fully restoring leader health from time shenanigans before all players in session: " + this.session.session_id.toString());
 						ret += " They make it so that never happened. Forget about it. ";
-						this.leaderPlayer.currentHP = this.leaderPlayer.hp;
+            this.leaderPlayer.setStat("currentHP",this.leaderPlayer.getStat("hp"));
 					}else{
 						print(" barely restoring leader health from time shenanigans before all players in session : " + this.session.session_id.toString());
 						ret += " They take a twisted pleasure out of waiting until the last possible moment to pull the " + this.leaderPlayer.htmlTitleBasic() + "'s ass out of the danger zone. ";
-						this.leaderPlayer.currentHP = this.leaderPlayer.hp/10;
+            this.leaderPlayer.setStat("currentHP",this.leaderPlayer.getStat("hp")/10);
 					}
 			}else{
 				print(" half restoring leader health from time shenanigans before all players in session: " + this.session.session_id.toString());
 				ret += " They interupt things before the " + this.leaderPlayer.htmlTitleBasic() +  " gets hurt too bad. ";
-				this.leaderPlayer.currentHP = this.leaderPlayer.hp/2;
+        this.leaderPlayer.setStat("currentHP",this.leaderPlayer.getStat("hp")/2);
 			}
 			this.session.doomedTimelineReasons.add(this.reason);
 		}else{
@@ -166,7 +166,7 @@ class SaveDoomedTimeLine extends Scene {
 			ret += " Time really is the shittiest aspect. They make sure everybody is dead in this timeline, as per inevitability's requirements, then they sullenly vanish in a cloud of clocks and gears. ";
 		}
 		this.doomedTimeClone = Player.makeDoomedSnapshot(this.timePlayer);
-		this.timePlayer.addDoomedTimeClone();
+		this.timePlayer.addDoomedTimeClone(this.doomedTimeClone);
 		return ret;
 	}
 
