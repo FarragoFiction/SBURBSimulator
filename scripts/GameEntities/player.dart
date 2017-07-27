@@ -1407,7 +1407,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			for(num i = 0; i<this.relationships.length; i++){
                 ret += this.relationships[i].value;
             }
-            return ret;
+            return ret.round();
 		}else {
 			return super.getStat(statName);
 		}
