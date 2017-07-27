@@ -12,6 +12,7 @@ class Random implements Math.Random {
 
 	@override
 	int nextInt([int max = 0xFFFFFFFF]) {
+		if (max == 0) {return 0;}
 		if (max < 0) {
 			return -this._impl.nextInt(-max);
 		}

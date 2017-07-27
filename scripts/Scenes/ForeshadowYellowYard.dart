@@ -2,7 +2,6 @@
 /*
 //not being used anymore since yellow yard is implemented.
 class ForeshadowYellowYard extends Scene{
-	bool canRepeat = false;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	this.timePlayer;
 	//this will be manually triggered, won't be from scene controller.
@@ -10,7 +9,7 @@ class ForeshadowYellowYard extends Scene{
 	
 
 
-	ForeshadowYellowYard(Session session): super(session);
+	ForeshadowYellowYard(Session session): super(session, false);
 
 
 	@override

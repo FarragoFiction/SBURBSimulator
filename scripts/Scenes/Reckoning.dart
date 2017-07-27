@@ -2,12 +2,11 @@ part of SBURBSim;
 
 
 class Reckoning extends Scene {
-	bool canRepeat = false;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	
 
 
-	Reckoning(Session session): super(session);
+	Reckoning(Session session): super(session, false);
 
 
 	@override

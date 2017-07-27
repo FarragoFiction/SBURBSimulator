@@ -3,8 +3,7 @@ part of SBURBSim;
 
 //x times corpse smooch combo.
 class CorpseSmooch extends Scene {
-	bool canRepeat = true;
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+		List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	List<dynamic> dreamersToRevive = [];
 	num combo = 0;	
 

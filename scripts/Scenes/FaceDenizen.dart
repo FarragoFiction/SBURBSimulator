@@ -2,8 +2,7 @@ part of SBURBSim;
 
 
 class FaceDenizen extends Scene{
-	bool canRepeat = true;
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+		List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	List<dynamic> denizenFighters = [];	
 
 

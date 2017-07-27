@@ -2,8 +2,7 @@ part of SBURBSim;
 
 
 class LifeStuff extends Scene {
-	bool canRepeat = true;
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+		List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	num combo = 0;	//arrays of [life/Doom player, other player] pairs. other player can be a corpse. other player can be null;
 	List<dynamic> enablingPlayerPairs = [];	//it's weird. even though this class treats Life and Doom players as the same, in practice they behave entirely differently.
 	//life players keep people from dying in the first place with high HP, while doom players make them die a LOT and become empowered by the afterlife.

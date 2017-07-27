@@ -2,9 +2,8 @@ part of SBURBSim;
 
 
 class LuckStuff extends Scene{
-	bool canRepeat = true;
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
-	List<dynamic> rolls = [];	//luck can be good or it can be bad.
+	List<Player> playerList = [];  //what players are already in the medium when i trigger?
+	List<Roll> rolls = [];	//luck can be good or it can be bad.
 	num minLowValue = -100;
 	num minHighValue = 200;
 	num landLevelNeeded = 12;
@@ -16,7 +15,7 @@ class LuckStuff extends Scene{
 	LuckStuff(Session session): super(session);
 
 	@override
-	bool trigger(playerList){
+	bool trigger(List<Player> playerList){
 		this.rolls = [];//reset
 		if(this.numberTriggers > 10){
 		//	print("too much luck events in " + this.session.session_id);
@@ -24,9 +23,9 @@ class LuckStuff extends Scene{
 		}
 		//what the hell roue of doom's corpse. corpses aren't part of the player list!
 		for(num i = 0; i<this.session.availablePlayers.length; i++){
-			var player = this.session.availablePlayers[i];
-			var rollValueLow = player.rollForLuck("minLuck");  //separate it out so that EITHER you are good at avoiding bad shit OR you are good at getting good shit.
-			var rollValueHigh = player.rollForLuck("maxLuck");
+			Player player = this.session.availablePlayers[i];
+			int rollValueLow = player.rollForLuck("minLuck");  //separate it out so that EITHER you are good at avoiding bad shit OR you are good at getting good shit.
+			int rollValueHigh = player.rollForLuck("maxLuck");
 			//can have two luck events in same turn, whatever. fuck this complicated code, what was i even thinking???
 			if(rollValueHigh > this.minHighValue){
 				//alert("High  roll of: " + rollValueHigh);
@@ -46,18 +45,18 @@ class LuckStuff extends Scene{
 		this.numberTriggers ++;
 		//String ret = "<img src = 'images/fortune_event.png'/><Br>";  //maybe display image for this event, like not canvas, just image. Single image for event.
 		String ret = "";
-    appendHtml(div,"<br> <img src = 'images/sceneIcons/luck_icon.png'>");
+        appendHtml(div,"<br> <img src = 'images/sceneIcons/luck_icon.png'>");
 		for(num i = 0; i<this.rolls.length; i++){
-			var roll = this.rolls[i];
+			Roll roll = this.rolls[i];
 			removeFromArray(roll.player, this.session.availablePlayers);
-			var s = this.processRoll(roll,div) + "<br><Br>";
+			String s = this.processRoll(roll,div) + "<br><Br>";
 			ret += s;
 		}
-    appendHtml(div,"" + ret);
+        appendHtml(div,"" + ret);
 	}
-	String roll60(roll){
+	String roll60(Roll roll){
 		//print("roll60 in " + this.session.session_id);
-		if(!roll.player.land || (roll.player.aspect != "Space" && roll.player.landLevel >= this.landLevelNeeded)){  //not lucky to get land level when you don't need it.
+		if(roll.player.land == null || (roll.player.aspect != "Space" && roll.player.landLevel >= this.landLevelNeeded)){  //not lucky to get land level when you don't need it.
 			return this.roll65(roll);
 		}
 		String ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + roll.player.shortLand()+ " when they suddenly tripped over a huge treasure chest! When opened, it revealed a modest hoarde of grist. It will be easier to complete their land quests now.";
@@ -65,20 +64,20 @@ class LuckStuff extends Scene{
 		this.session.goodLuckEvent = true;
 		return ret;
 	}
-	String roll65(roll){
+	String roll65(Roll roll){
 		//print("roll65 in " + this.session.session_id);
 		String land = "some random planet";
-		if(roll.player.land){
+		if(roll.player.land != null){
 			land = roll.player.shortLand();
 		}
-		var f = roll.player.getNewFraymotif();
+		Fraymotif f = roll.player.getNewFraymotif(roll.player.rand);
 		String ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + land + " when they suddenly tripped over a huge treasure chest! When opened, it revealed a modest cache of boonbucks. They will finally be able to afford that fraymotiff, "+f.name + ", they have had their eye on! ";
 		//roll.player.increasePower();
 		this.session.goodLuckEvent = true;
 		return ret;
 	}
-	String roll40(roll){
-		if(!roll.player.land){
+	String roll40(Roll roll){
+		if(roll.player.land == null){
 			return ""; //you've had enough bad luck. just...go rest or something.
 		}
 		//print("roll40 in " + this.session.session_id);
@@ -87,18 +86,18 @@ class LuckStuff extends Scene{
 		this.session.badLuckEvent = true;
 		return ret;
 	}
-	String roll35(roll){
+	String roll35(Roll roll){
 		print("unlucky trigger event: " + this.session.session_id.toString());
-		var items = ["soper slime", "candy", "apple juice", "alcohol", "cat nip","chocolate", "orange soda", "blanket","hat","lucky coin", "magic 8 ball"];
+		List<String> items = ["soper slime", "candy", "apple juice", "alcohol", "cat nip","chocolate", "orange soda", "blanket","hat","lucky coin", "magic 8 ball"];
 		String ret = "The " + roll.player.htmlTitle() + " has lost their " + rand.pickFrom(items) + ". Sure, it seems stupid to you or me but... it was one of the few things left holding their sanity together. They are enraged.";
-		roll.player.sanity += -1000;
+		roll.player.addStat("sanity", -1000);
 		this.session.badLuckEvent = true;
 		return ret;
 	}
-	String roll70(roll){
+	String roll70(Roll roll){
 		//print("roll70 in " + this.session.session_id);
-		var friend = rand.pickFrom(roll.player.getFriendsFromList(findLivingPlayers(this.session.players)));
-		if(!friend){
+		Player friend = rand.pickFrom(roll.player.getFriendsFromList(findLivingPlayers(this.session.players)));
+		if(friend == null){
 			return this.roll65(roll); //backup result.
 		}
 		String ret = "The " + roll.player.htmlTitle() + " was fucking around on the internet and accidentally sent the " + friend.htmlTitle() + " a message meant for someone else. Luckily, they seem flattered instead of offended. ";
@@ -108,10 +107,10 @@ class LuckStuff extends Scene{
 		this.session.goodLuckEvent = true;
 		return ret;
 	}
-	String roll30(roll){
+	String roll30(Roll roll){
 		//print("roll30 in " + this.session.session_id);
-		var friend = rand.pickFrom(roll.player.getFriendsFromList(findLivingPlayers(this.session.players)));
-		if(!friend){
+		Player friend = rand.pickFrom(roll.player.getFriendsFromList(findLivingPlayers(this.session.players)));
+		if(friend == null){
 			return this.roll65(roll); //backup result.
 		}
 		String ret = "The " + roll.player.htmlTitle() + " was fucking around on the internet and accidentally sent the " + friend.htmlTitle() + " a message meant for someone else. They will never live this down. The " + friend.htmlTitleBasic() + " seems pretty offended, too.";
@@ -121,18 +120,18 @@ class LuckStuff extends Scene{
 		this.session.badLuckEvent = true;
 		return ret;
 	}
-	String roll25(roll){
+	String roll25(Roll roll){
 		print("unluck grim dark: " + this.session.session_id.toString());
-		var items = ["magic cue ball", "grimoire", "original VHS tape of Mac and Me", "fluthlu doll", "dream catcher","squiddles plush", "Dr Seuss Book", "commemorative Plaque from a World Event That Never Happened","SCP-093"];
+		List<String> items = ["magic cue ball", "grimoire", "original VHS tape of Mac and Me", "fluthlu doll", "dream catcher","squiddles plush", "Dr Seuss Book", "commemorative Plaque from a World Event That Never Happened","SCP-093"];
 		String ret = "The " + roll.player.htmlTitle() + " has had a momentary lapse of judgement and alchemized a weapon with the " + rand.pickFrom(items) + " they just found. Any sane adventurer would cast these instruments of the occult into the FURTHEST RING and forget they ever existed. Instead, the " + roll.player.htmlTitleBasic() + " equips them. This is a phenomenally bad idea. ";
 		roll.player.corruptionLevelOther += 666; //will only increase corruption by one level, but in style
 		roll.player.addStat("power", 50);  //it IS a weapon, points out aspiringWatcher
 		this.session.badLuckEvent = true;
 		return ret;
 	}
-	String roll80(roll){
+	String roll80(Roll roll){
 		//print("roll80 in " + this.session.session_id);
-		if(!roll.player.land || (roll.player.aspect != "Space" && roll.player.landLevel >= this.landLevelNeeded)){  //not lucky to get land level when you don't need it.
+		if(roll.player.land == null || (roll.player.aspect != "Space" && roll.player.landLevel >= this.landLevelNeeded)){  //not lucky to get land level when you don't need it.
 			return this.roll85(roll);
 		}
 		String ret = "The " + roll.player.htmlTitle() + " tripped right through a glitched section of wall, only to find a single imp. 'Shh.' the imp says, handing over a frankly obscene bucket of grist, 'It's a secret to everybody.' The " + roll.player.htmlTitle() + " agrees that it would be ideal if it was a secret even to themselves, and prays for amnesia.  Like hell are they gonna leave behind the grist, though. Land quests don't solve themselves. " ;
@@ -141,10 +140,10 @@ class LuckStuff extends Scene{
 		this.session.goodLuckEvent = true;
 		return ret;
 	}
-	String roll85(roll){
+	String roll85(Roll roll){
 		//print("roll85 in " + this.session.session_id);
 		String land = "some random planet";
-		if(roll.player.land){
+		if(roll.player.land == null){
 			land = roll.player.shortLand();
 		}
 		String ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + land + " when they see a GOLD IMP. Those things are worth a ton of experience points, if you can manage to even damage them. Holy shit, did the " + roll.player.htmlTitle() + " just ONE SHOT them!? ";
@@ -155,9 +154,9 @@ class LuckStuff extends Scene{
 		this.session.goodLuckEvent = true;
 		return ret;
 	}
-	String roll20(roll){
+	String roll20(Roll roll){
 		//print("roll20 in " + this.session.session_id);
-		if(!roll.player.land){
+		if(roll.player.land == null){
 			return ""; //you've had enough bad luck. just...go rest or something.
 		}
 		String ret = "The " + roll.player.htmlTitle() + " tripped right through a glitched section of wall, only to find a single consort. 'Shh.' the imp says, handing over a frankly obscene bucket of...something, 'It's a secret to everybody.' The " + roll.player.htmlTitleBasic() + " agrees that it would be ideal if it was a secret even to themselves, and prays for amnesia.  They can't quite bring themselves to go near their consorts for a little while aftewards. " ;
@@ -165,7 +164,7 @@ class LuckStuff extends Scene{
 		this.session.badLuckEvent = true;
 		return ret;
 	}
-	String roll90(roll){
+	String roll90(Roll roll){
 		//print("roll90 in " + this.session.session_id);
 		String ret = "Holy shit, the " + roll.player.htmlTitle() + " just found a METAL PUMPKIN. Those things are worth a LOT of experience points! And they totally managed to explode it before it never existed in the first place! Score! Talk about luuuuuuuucky!" ;
 		roll.player.increasePower();
@@ -176,9 +175,9 @@ class LuckStuff extends Scene{
 		this.session.goodLuckEvent = true;
 		return ret;
 	}
-	String roll95(roll){
+	String roll95(Roll roll){
 		//print("roll95 in " + this.session.session_id);
-		if(!roll.player.land || (roll.player.aspect != "Space" && roll.player.landLevel >= this.landLevelNeeded)){  //not lucky to get land level when you don't need it.
+		if(roll.player.land == null || (roll.player.aspect != "Space" && roll.player.landLevel >= this.landLevelNeeded)){  //not lucky to get land level when you don't need it.
 			return this.roll90(roll);
 		}
 		String ret = "Through a frankly preposterous level of Scooby-Doo shenanigans, the  " + roll.player.htmlTitle() + " trips into a wall, which depresses a panel, which launches a catapult, which throws impudent fruit at a nearby Ogre, which wakes him up, which makes him wander away, which frees the local consorts from his tyranny, who then celebrate an end to their famine by eating the fruit.  All of which causes, like, a third of the main quest of "  + roll.player.shortLand() + " to be completed. ";
@@ -192,9 +191,9 @@ class LuckStuff extends Scene{
 
 		return ret;
 	}
-	String roll10(roll){
+	String roll10(Roll roll){
 		//print("roll10 in " + this.session.session_id);
-		if(!roll.player.land){
+		if(roll.player.land == null){
 			return "The " + roll.player.htmlTitle() + " gets a bad feeling, like maybe their land back in their home session just got damaged. But...it's not like they can ever go back, right? Who cares."; //you've had enough bad luck. just...go rest or something.
 		}
 		String ret = "Through a frankly preposterous level of Scooby-Doo shenanigans, the  " + roll.player.htmlTitle() + " trips into a wall, which depresses a panel, which launches a flaming rock via catapult, which crashes into a local consort village. Which immediately catches on fire, which makes them be refugees, which makes them immegrate to a new area, which disrupts the stability of the entire goddamned planet.  All of which causes, like, a third of the main quest of "  + roll.player.shortLand() + " to be fucked up. ";
@@ -202,8 +201,10 @@ class LuckStuff extends Scene{
 		this.session.badLuckEvent = true;
 		return ret;
 	}
-	String roll100(roll, div){
+	String roll100(Roll roll, Element div){
 		//print("roll100 in " + this.session.session_id + " roll is: " + roll.value);
+
+		this.session.goodLuckEvent = true; // moved to top because at the bottom it's dead code -PL
 
 		if(roll.player.godDestiny && !roll.player.godTier && (roll.player.dreamSelf || roll.player.isDreamSelf)){
 			String ret = " What the HELL!? The " + roll.player.htmlTitle() + " managed to somehow lose to REGULAR FUCKING ENEMIES!? Is that even POSSIBLE!? This is BULLSHIT. Wait. What's going on? How did they end up on their " ;
@@ -216,18 +217,18 @@ class LuckStuff extends Scene{
 				this.session.sacrificialSlab = true;
 				//roll.player.makeDead("luckily on their Sacrificial Slab") doesn't make a ghost 'cause the corpse itself revives'
 			}
-			var f = this.session.fraymotifCreator.makeFraymotif(rand, [roll.player], 3);//first god tier fraymotif
+			Fraymotif f = this.session.fraymotifCreator.makeFraymotif(rand, [roll.player], 3);//first god tier fraymotif
 			roll.player.fraymotifs.add(f);
 			ret += " They learn " + f.name + ". " ;
 			roll.player.makeGodTier();
 
 			this.session.luckyGodTier = true;
 			this.session.godTier = true;
-			var divID = (div.id) + "_luckGodBS" + roll.player.chatHandle;
+			String divID = (div.id) + "_luckGodBS" + roll.player.chatHandle;
 			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-			div.append(ret);
-			div.append(canvasHTML);
-			var canvas = querySelector("#canvas"+ divID);
+			appendHtml(div, ret);
+			appendHtml(div, canvasHTML);
+			CanvasElement canvas = querySelector("#canvas"+ divID);
 			drawGetTiger(canvas, [roll.player]); //only draw revivial if it actually happened.
 			return "";
 		}else{
@@ -239,10 +240,9 @@ class LuckStuff extends Scene{
 				return this.roll90(roll);
 			}
 		}
-		this.session.goodLuckEvent = true;
 
 	}
-	String roll0(roll, div){
+	String roll0(Roll roll, Element div){
 		//print("roll0 in " + this.session.session_id + " roll is: " + roll.value + " player min luck was: " + roll.player.minLuck + " and max luck was: " + roll.player.maxLuck);
 		if(roll.player.godDestiny && !roll.player.godTier && roll.player.dreamSelf){
 			roll.player.godDestiny = false;
@@ -252,14 +252,14 @@ class LuckStuff extends Scene{
 		}
 		String ret = "What the HELL!? The " + roll.player.htmlTitle() + " managed to somehow lose to REGULAR FUCKING ENEMIES!? Is that even POSSIBLE!? This is BULLSHIT. How unlucky do you even need to BE!? They are DEAD.";
 		roll.player.makeDead("from a Bad Break.");
-		div.append(ret);
+		appendHtml(div, ret);
 
-		var divID = (div.id) + "_badLuckDeath" + roll.player.chatHandle;
+		String divID = (div.id) + "_badLuckDeath" + roll.player.chatHandle;
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-		div.append(canvasHTML);
-		var canvas = querySelector("#canvas"+ divID);
+		appendHtml(div, canvasHTML);
+		CanvasElement canvas = querySelector("#canvas"+ divID);
 
-		var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+		CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 		drawSprite(pSpriteBuffer,roll.player);
 
 		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
@@ -268,7 +268,7 @@ class LuckStuff extends Scene{
 		return "";
 
 	}
-	String processRoll(roll, div){
+	String processRoll(Roll roll, Element div){
 		num amount = 5;
 		if(roll.value >= this.minHighValue && roll.value < this.minHighValue + amount){
 			return this.roll60(roll);
@@ -319,11 +319,8 @@ class LuckStuff extends Scene{
 
 
 class Roll {
-
 	Roll(this.player, this.value) {}
 
-
-
-	var player;
-	var value;
+	Player player;
+	num value;
 }

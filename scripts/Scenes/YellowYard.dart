@@ -2,7 +2,6 @@ part of SBURBSim;
 
 
 class YellowYard extends Scene {
-	bool canRepeat = false;
 	List<dynamic> playerList = [
 	]; //what players are already in the medium when i trigger?
 	Player timePlayer;
@@ -11,7 +10,7 @@ class YellowYard extends Scene {
 	//mostly just a collection of methods needed fo this.
 
 
-	YellowYard(Session session) : super(session);
+	YellowYard(Session session) : super(session, false);
 
 
 	@override

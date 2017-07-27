@@ -7,8 +7,7 @@ part of SBURBSim;
 
 //can get help from another player, different bonuses based on claspect if so.
 class DoLandQuest extends Scene{
-	bool canRepeat = true;
-	List<Player> playerList = [];  //what players are already in the medium when i trigger?
+		List<Player> playerList = [];  //what players are already in the medium when i trigger?
 	List<List<Player>> playersPlusHelpers = []; //who is doing a land quest this turn?
 	num landLevelNeeded = 12;	
 

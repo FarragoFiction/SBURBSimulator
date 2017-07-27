@@ -896,8 +896,8 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		this.associatedStatsInteractionEffect(player);
 
 		//no longer do this seperate. if close enough to modify with powers, close enough to be...closer.
-		dynamic r1 = this.getRelationshipWith(player);
-		if(r1){
+		Relationship r1 = this.getRelationshipWith(player);
+		if(r1 != null){
 			r1.moreOfSame();
 		}
 	}
@@ -908,13 +908,13 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		return rightClass && this.getStat("power") > 20; //need to be far enough in my claspect
 	}
 
-	dynamic performEctobiology(session){
+	List<Player> performEctobiology(Session session){
 		session.ectoBiologyStarted = true;
-		dynamic playersMade = findPlayersWithoutEctobiologicalSource(session.players);
+		List<Player> playersMade = findPlayersWithoutEctobiologicalSource(session.players);
 		setEctobiologicalSource(playersMade, session.session_id);
 		return playersMade;
 	}
-	dynamic isActive(){
+	bool isActive(){
 		return active_classes.indexOf(this.class_name) != -1;
 	}
 	void makeGuardian(){

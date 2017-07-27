@@ -2,8 +2,7 @@ part of SBURBSim;
 
 
 class DisengageMurderMode extends Scene {
-	bool canRepeat = true;
-	List<Player> playerList = [];  //what players are already in the medium when i trigger?
+		List<Player> playerList = [];  //what players are already in the medium when i trigger?
 	Player player = null;
 
 

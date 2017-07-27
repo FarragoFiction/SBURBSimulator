@@ -2,13 +2,12 @@ part of SBURBSim;
 
 
 class ExileQueen extends Scene {
-	bool canRepeat = false;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 
 	
 
 
-	ExileQueen(Session session): super(session);
+	ExileQueen(Session session): super(session, false);
 
 	@override
 	dynamic trigger(playerList){

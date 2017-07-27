@@ -3,8 +3,7 @@ part of SBURBSim;
 
 //known to lesser mortals as God Tier
 class GetTiger extends Scene{
-	bool canRepeat = true;
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+		List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	List<dynamic> deadPlayersToGodTier = [];	//doesn't matter if dream self 'cause sacrificial slab.
 	
 

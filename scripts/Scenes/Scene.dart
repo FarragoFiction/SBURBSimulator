@@ -1,9 +1,9 @@
 part of SBURBSim;
 abstract class Scene {
+	bool canRepeat;
   Session session;
-  bool canRepeat = true;
-  List<Player> playerList = new List<Player>(); //eventually get rid of this, but not today
-  Scene(this.session); //eventually take in session.
+    List<Player> playerList = new List<Player>(); //eventually get rid of this, but not today
+  Scene(Session this.session, [bool this.canRepeat = true]); //eventually take in session.
 
 
   //each scene should know how to be triggered.
@@ -63,11 +63,11 @@ abstract class Scene {
 }
 
 abstract class IntroScene {
+	bool canRepeat;
   Session session;
-  bool canRepeat = true;
-  List<Player> playerList = new List<
+    List<Player> playerList = new List<
       Player>(); //eventually get rid of this, but not today
-  IntroScene(this.session); //eventually take in session.
+  IntroScene(this.session, [this.canRepeat = false]); //eventually take in session.
 
 
   //apparently can't have method overloading. blugh.

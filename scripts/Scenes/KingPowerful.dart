@@ -2,10 +2,7 @@ part of SBURBSim;
 
 
 class KingPowerful extends Scene {
-	bool canRepeat = false;
-
-
-	KingPowerful(Session session): super(session);
+	KingPowerful(Session session): super(session, false);
 
 
   @override

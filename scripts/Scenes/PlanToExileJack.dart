@@ -2,13 +2,12 @@ part of SBURBSim;
 
 
 class PlanToExileJack extends Scene {
-	bool canRepeat = false;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	var planner = null;	//a player has to be not busy to be your friend right now.
 	
 
 
-	PlanToExileJack(Session session): super(session);
+	PlanToExileJack(Session session): super(session, false);
 
 
 	@override

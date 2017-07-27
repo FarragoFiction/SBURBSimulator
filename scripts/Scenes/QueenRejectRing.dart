@@ -2,13 +2,12 @@ part of SBURBSim;
 
 
 class QueenRejectRing extends Scene {
-	bool canRepeat = false;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 
 	
 
 
-	QueenRejectRing(Session session): super(session);
+	QueenRejectRing(Session session): super(session, false);
 
 
 	@override

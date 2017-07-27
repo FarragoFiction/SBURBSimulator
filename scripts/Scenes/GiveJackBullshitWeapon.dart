@@ -2,13 +2,12 @@ part of SBURBSim;
 
 
 class GiveJackBullshitWeapon extends Scene {
-	bool canRepeat = false;
 	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 
 	
 
 
-	GiveJackBullshitWeapon(Session session): super(session);
+	GiveJackBullshitWeapon(Session session): super(session, false);
 
 	@override
 	dynamic trigger(playerList){

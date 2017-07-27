@@ -2,12 +2,11 @@ part of SBURBSim;
 
 
 class Intro  extends IntroScene{
-	bool canRepeat = false;
 	List<dynamic> playerList = [];  //whatthis.session.players are already in the medium when i trigger?
 	Player player = null;
 
 
-	Intro(Session session): super(session);
+	Intro(Session session): super(session, false);
 
 	@override  //TODO is there no way to have an Intro trigger have more params than Scene?
 	bool trigger(List<Player> playerList, Player player){

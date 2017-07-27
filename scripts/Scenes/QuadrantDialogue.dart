@@ -6,8 +6,7 @@ part of SBURBSim;
 //resuability, yo
 //http://www.neoseeker.com/forums/26839/t1277308-random-npc-conversations/   (or i guess i could just play oblivion, but I want a LIST dammit, of memes to add.)
 class QuadrantDialogue extends Scene {
-	bool canRepeat = true;
-	Player player1 = null;
+		Player player1 = null;
 	Player player2 = null;
 	String player1Start = null;
 	String player2Start = null;	//this should have a higher priority than land quests, 'cause the point is relationships distract you from playing the damn game.

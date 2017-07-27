@@ -2,8 +2,7 @@ part of SBURBSim;
 
 
 class FreeWillStuff extends Scene{
-	//bool canRepeat = true;
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+	//	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
 	var decision = null;
 	Player player = null;
 	Player renderPlayer1 = null;

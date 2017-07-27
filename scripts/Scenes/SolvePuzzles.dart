@@ -4,9 +4,8 @@ part of SBURBSim;
 //if i am page or blood player, can't do this alone.
 
 class SolvePuzzles extends Scene {
-	bool canRepeat = true;
-	var player1 = null;
-	var player2 = null; //optional
+	Player player1 = null;
+	Player player2 = null; //optional
 
 
 	
@@ -15,7 +14,7 @@ class SolvePuzzles extends Scene {
 	SolvePuzzles(Session session): super(session);
 
 
-	dynamic checkPlayer(player){
+	void checkPlayer(Player player){
 		this.player1 = player;
 		this.player2 = null;
 		if(player.aspect == "Blood" || player.class_name == "Page"){
@@ -24,12 +23,12 @@ class SolvePuzzles extends Scene {
 				if(this.player2 == this.player1 && this.player2.aspect != "Time"){
 					this.player1 = null;
 					this.player2 = null;
-					return null;
+					return;
 				}
 
 			}else{
 				this.player1 = null;
-				return null;
+				return;
 			}
 		}
 
@@ -43,7 +42,7 @@ class SolvePuzzles extends Scene {
 
 	}
 	@override
-	bool trigger(playerList){
+	bool trigger(List<Player> playerList){
 		this.player1 = null; //reset
 		this.player2 = null;
 		for(num i = 0; i<this.session.availablePlayers.length; i++){
@@ -71,13 +70,13 @@ class SolvePuzzles extends Scene {
 	String getBullshitQuest(){
 		//if i stored this in random tables like my old stuff (this is may 2017, btw), then i couldn't avoid repeats as easily as i am here.
 		//remember kids: design and architecture really do fucking matter.
-			var landChosen = this.player1.land1;
+			String landChosen = this.player1.land1;
 			if(rand.nextDouble() > 0.5) landChosen = this.player1.land2;
 			//shits on adventure game tropes and just uses a cheat code to solve the puzzle (star.eyes from discorse)
-			var possibilities = ["learning the true meaning of " + landChosen,"learning to really hate the entire concept of " + landChosen,"getting really fucking sick of " + landChosen,  "getting coy hints about The Ultimate Riddle","shitting on adventure game tropes and just using a cheat code","killing underlings","delving into dungeons", "exploring ruins", "solving puzzles", "playing minigames", "learning about the lore"];
-			var thing1 = rand.pickFrom(possibilities);
+			List<String> possibilities = ["learning the true meaning of " + landChosen,"learning to really hate the entire concept of " + landChosen,"getting really fucking sick of " + landChosen,  "getting coy hints about The Ultimate Riddle","shitting on adventure game tropes and just using a cheat code","killing underlings","delving into dungeons", "exploring ruins", "solving puzzles", "playing minigames", "learning about the lore"];
+			String thing1 = rand.pickFrom(possibilities);
 			removeFromArray(thing1,possibilities);
-			var thing2 = rand.pickFrom(possibilities);
+			String thing2 = rand.pickFrom(possibilities);
 			return "random bullshit sidequests at " + this.player1.shortLand() + ", " + thing1 + " and " + thing2 + ". ";
 	}
 
@@ -86,7 +85,7 @@ class SolvePuzzles extends Scene {
 		//print("Ultimate Riddle for Player with power of: " + this.player1.getStat("power") + " and land level of: " + this.player1.landLevel + " " + this.player1);
 		appendHtml(div, "<br> <img src = 'images/sceneIcons/sidequest_icon.png'> "+this.content());
 	}
-	String spreadCoruption(player1, player2){
+	String spreadCoruption(Player player1, Player player2){
 		bool ret = false;
 		if(player2 != null && player2.grimDark>0){
 			player1.corruptionLevelOther += 5;
@@ -100,7 +99,7 @@ class SolvePuzzles extends Scene {
 
 		if(corruptedOtherLandTitles.indexOf(player1.land1) != -1 || corruptedOtherLandTitles.indexOf(player1.land2) != -1 ){
 			player1.corruptionLevelOther += 3;
-			if(player2) player2.corruptionLevelOther += 3;
+			if(player2 != null) player2.corruptionLevelOther += 3;
 			ret = true;
 		}
 
@@ -111,16 +110,16 @@ class SolvePuzzles extends Scene {
 		return "";
 
 	}
-	dynamic content(){
+	String content(){
 		//print("Solving puzzles at: " + this.player1.land);
 		String ret = "";
 		//remove player1 and player2 from available player list.
 		removeFromArray(this.player1, this.session.availablePlayers);
 		removeFromArray(this.player2, this.session.availablePlayers);
-		var r1 = null;
-		var r2 = null;
-		var living = findLivingPlayers(this.session.players);
-		var dead = findDeadPlayers(this.session.players);
+		//Relationship r1 = null;
+		//Relationship r2 = null;
+		List<Player> living = findLivingPlayers(this.session.players);
+		List<Player> dead = findDeadPlayers(this.session.players);
 		if(living.length == 1 && dead.length > 2){  //less of a reference if it's just one dead dude.
 			print("SWEET BIKE STUNTS, BRO: " + this.session.session_id.toString());
 			String realSelf = "";

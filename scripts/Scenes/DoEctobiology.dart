@@ -3,7 +3,6 @@ part of SBURBSim;
 
 //only needs to happen once, but if it DOESN'T happen before reckoning (or leader is permanently killed) doomed timeline.
 class DoEctobiology extends Scene {
-	bool canRepeat = false;
 	List<Player> playerList = [];  //what players are already in the medium when i trigger?
 	Player leader = null;
 	List<Player> playersMade = []; //keep track because not all players get made (multi session bullshit)
@@ -11,7 +10,7 @@ class DoEctobiology extends Scene {
 	
 
 
-	DoEctobiology(Session session): super(session);
+	DoEctobiology(Session session): super(session, false);
 
 	@override
 	bool trigger(List<Player> playerList){

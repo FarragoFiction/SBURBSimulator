@@ -101,7 +101,6 @@ THEN I will have the perfect shitty quadrant life.
 
 
 class UpdateShippingGrid extends Scene{
-	//bool canRepeat = true;
 	String shippingChat = null; //what should it say when I try to convince my otp to get together?
 	String romanceChat = null; //if i convince one member of my otp to get together, what do they say when they confess?
 	List<Shipper> shippers = [];  //Shipper objects are a player and their ships.

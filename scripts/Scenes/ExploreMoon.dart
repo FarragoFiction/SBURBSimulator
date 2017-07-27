@@ -2,8 +2,7 @@ part of SBURBSim;
 
 
 class ExploreMoon extends Scene {
-	bool canRepeat = true;
-	var player1 = null;
+		var player1 = null;
 	var player2 = null; //optional
 
 	
