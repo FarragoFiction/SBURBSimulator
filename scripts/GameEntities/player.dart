@@ -1693,17 +1693,17 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		//var buffer = new ByteBuffer(11);
 		StringBuffer ret = new StringBuffer(); //gonna return as a string of chars.;
 		var uint8View = new Uint8List(11);
-		uint8View[0] = json.hairColor >> 16 ;//hair color is 12 bits. chop off 4 on right side, they will be in buffer[1];
-		uint8View[1] = json.hairColor >> 8;
-		uint8View[2] = json.hairColor >> 0;
-		uint8View[3] = (json.class_name << 4) + json.aspect  ;//when I do fanon classes + aspect, use this same scheme, but have binary for "is fanon", so I know 1 isn't page, but waste (or whatever);
-		uint8View[4] = (json.victimBlood << 4) + json.bloodColor;
-		uint8View[5] = (json.interest1Category <<4) + json.interest2Category;
-		uint8View[6] = (json.grimDark << 5) + (json.isTroll << 4) + (json.isDreamSelf << 3) + (json.godTier << 2) + (json.murderMode <<1) + (json.leftMurderMode) ;//shit load of single bit variables.;
-		uint8View[7] = (json.robot << 7) + (json.moon << 6) + (json.dead << 5) + (json.godDestiny <<4) + (json.favoriteNumber);
-		uint8View[8] = json.leftHorn;
-		uint8View[9] = json.rightHorn;
-		uint8View[10] = json.hair;
+		uint8View[0] = json["hairColor"] >> 16 ;//hair color is 12 bits. chop off 4 on right side, they will be in buffer[1];
+		uint8View[1] = json["hairColor"] >> 8;
+		uint8View[2] = json["hairColor"] >> 0;
+		uint8View[3] = (json["class_name"] << 4) + json["aspect  ;//when I do fanon classes + aspect, use this same scheme, but have binary for "is fanon", so I know 1 isn't page, but waste (or whatever);
+		uint8View[4] = (json["victimBlood"] << 4) + json["bloodColor"];
+		uint8View[5] = (json["interest1Category"] <<4) + json["interest2Category"];
+		uint8View[6] = (json["grimDark"] << 5) + (json["isTroll"] << 4) + (json["isDreamSelf"] << 3) + (json["godTier"] << 2) + (json["murderMode"] <<1) + (json["leftMurderMode"]) ;//shit load of single bit variables.;
+		uint8View[7] = (json["robot"] << 7) + (json["moon"] << 6) + (json["dead"] << 5) + (json["godDestiny"] <<4) + (json["favoriteNumber"]);
+		uint8View[8] = json["leftHorn"];
+		uint8View[9] = json["rightHorn"];
+		uint8View[10] = json["hair"];
 		//print(uint8View);
 		for(num i = 0; i<uint8View.length; i++){
 			ret.writeCharCode(uint8View[i]);// += String.fromCharCode(uint8View[i]);
@@ -1712,8 +1712,10 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	}
 	dynamic toJSON(){
 		num moon = 0;
+		String cod = this.causeOfDrain;
+		if(cod == null) cod = "";
 		if(this.moon == "Prospit") moon =1;
-		var json = {"aspect": aspectToInt(this.aspect), "class_name": classNameToInt(this.class_name), "favoriteNumber": this.quirk.favoriteNumber, "hair": this.hair,  "hairColor": hexColorToInt(this.hairColor), "isTroll": this.isTroll ? 1 : 0, "bloodColor": bloodColorToInt(this.bloodColor), "leftHorn": this.leftHorn, "rightHorn": this.rightHorn, "interest1Category": interestCategoryToInt(this.interest1Category), "interest2Category": interestCategoryToInt(this.interest2Category), "interest1": this.interest1, "interest2": this.interest2, "robot": this.robot ? 1 : 0, "moon": moon,"causeOfDrain": this.causeOfDrain,"victimBlood": bloodColorToInt(this.victimBlood), "godTier": this.godTier ? 1 : 0, "isDreamSelf":this.isDreamSelf ? 1 : 0, "murderMode":this.murderMode ? 1 : 0, "leftMurderMode":this.leftMurderMode ? 1 : 0,"grimDark":this.grimDark, "causeOfDeath": this.causeOfDeath, "dead": this.dead ? 1 : 0, "godDestiny": this.godDestiny ? 1 : 0 };
+		var json = {"aspect": aspectToInt(this.aspect), "class_name": classNameToInt(this.class_name), "favoriteNumber": this.quirk.favoriteNumber, "hair": this.hair,  "hairColor": hexColorToInt(this.hairColor), "isTroll": this.isTroll ? 1 : 0, "bloodColor": bloodColorToInt(this.bloodColor), "leftHorn": this.leftHorn, "rightHorn": this.rightHorn, "interest1Category": interestCategoryToInt(this.interest1Category), "interest2Category": interestCategoryToInt(this.interest2Category), "interest1": this.interest1, "interest2": this.interest2, "robot": this.robot ? 1 : 0, "moon": moon,"causeOfDrain": cod,"victimBlood": bloodColorToInt(this.victimBlood), "godTier": this.godTier ? 1 : 0, "isDreamSelf":this.isDreamSelf ? 1 : 0, "murderMode":this.murderMode ? 1 : 0, "leftMurderMode":this.leftMurderMode ? 1 : 0,"grimDark":this.grimDark, "causeOfDeath": this.causeOfDeath, "dead": this.dead ? 1 : 0, "godDestiny": this.godDestiny ? 1 : 0 };
 		return json;
 	}
 	dynamic toString(){
@@ -2107,6 +2109,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
    static Player makeRenderingSnapshot(Player player) {
     Player ret = new Player();
     ret.robot = player.robot;
+    ret.godDestiny = player.godDestiny;
     ret.spriteCanvasID = player.spriteCanvasID;
     ret.doomed = player.doomed;
     ret.ghost = player.ghost;
