@@ -60,6 +60,13 @@ class StoryController extends SimController {
         sgrub = false;
       }
     }
+
+    // Apparently the main sim doesn't actually *have* a #heading... not that I can see anyway -PL
+    // TODO: confirm heading status?
+    if (querySelector("#heading") == null) {
+    	return;
+    }
+
     //can only get here if all are trolls.
     if(sgrub){
       document.title ="SGRUB Story Generator by jadedResearcher";

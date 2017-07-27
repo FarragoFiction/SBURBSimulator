@@ -593,13 +593,13 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		}
 		return null;
 	}
-	Fraymotif canMindControl(){
+	String canMindControl(){
 		for(num i = 0; i<this.fraymotifs.length; i++){
 			if(this.fraymotifs[i].name == "Mind Control") return this.fraymotifs[i].name;
 		}
 		return null;
 	}
-	Fraymotif canGhostCommune(){
+	String canGhostCommune(){
 		for(num i = 0; i<this.fraymotifs.length; i++){
 			if(this.fraymotifs[i].name == "Ghost Communing")return  this.fraymotifs[i].name;
 		}
@@ -609,28 +609,28 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		List<Fraymotif> psionics = [];
 		//telekenisis, mind control, mind reading, ghost communing, animal communing, laser blasts, vision xfold.
 			{
-			var f = new Fraymotif([], "Telekinisis", 1);
+			Fraymotif f = new Fraymotif([], "Telekinisis", 1);
 			f.effects.add(new FraymotifEffect("power", 2, true));
 			f.flavorText = " Large objects begin pelting the ENEMY. ";
 			psionics.add(f);
 		}
 
 		{
-			var f = new Fraymotif([], "Pyrokinisis", 1);
+			Fraymotif f = new Fraymotif([], "Pyrokinisis", 1);
 			f.effects.add(new FraymotifEffect("power", 2, true));
 			f.flavorText = " Who knew shaving cream was so flammable? ";
 			psionics.add(f);
 		}
 
 		{
-			var f = new Fraymotif([], "Aquakinesis", 1);
+			Fraymotif f = new Fraymotif([], "Aquakinesis", 1);
 			f.effects.add(new FraymotifEffect("power", 2, true));
 			f.flavorText = " A deluge begins damaging the ENEMY. ";
 			psionics.add(f);
 		}
 
 		{
-			var f = new Fraymotif([], "Mind Control", 1);
+			Fraymotif f = new Fraymotif([], "Mind Control", 1);
 			f.effects.add(new FraymotifEffect("freeWill", 3, true));
 			f.effects.add(new FraymotifEffect("freeWill", 3, false));
 			f.flavorText =
@@ -639,7 +639,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		}
 
 		{
-			var f = new Fraymotif([], "Optic Blast", 1);
+			Fraymotif f = new Fraymotif([], "Optic Blast", 1);
 			f.effects.add(new FraymotifEffect("power", 2, true));
 			f.flavorText =
 			" Appropriately colored eye beams pierce the ENEMY. ";
@@ -647,7 +647,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		}
 
 		{
-			var f = new Fraymotif([], "Ghost Communing", 1);
+			Fraymotif f = new Fraymotif([], "Ghost Communing", 1);
 			f.effects.add(new FraymotifEffect("sanity", 3, true));
 			f.effects.add(new FraymotifEffect("sanity", 3, false));
 			f.flavorText = " The souls of the dead start hassling all enemies. ";
@@ -655,7 +655,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		}
 
 		{
-			var f = new Fraymotif([], "Animal Communing", 1);
+			Fraymotif f = new Fraymotif([], "Animal Communing", 1);
 			f.effects.add(new FraymotifEffect("sanity", 3, true));
 			f.effects.add(new FraymotifEffect("sanity", 3, false));
 			f.flavorText = " Local animal equivalents start hassling all enemies. ";

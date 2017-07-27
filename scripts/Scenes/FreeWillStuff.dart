@@ -81,7 +81,7 @@ class FreeWillStuff extends Scene{
 	@override
 	void renderContent(Element div){
 		String psionic = "";
-		Fraymotif pname = this.player.canMindControl();
+		String pname = this.player.canMindControl();
 		if( pname != null){
 			print("psychic powers used to mind control in session: " + this.session.session_id.toString());
 			psionic =  " The " + this.player.htmlTitleBasic() + " uses their $pname. ";
