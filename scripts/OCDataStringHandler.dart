@@ -217,6 +217,7 @@ dynamic playersToDataBytes(players){
 
 dynamic playersToExtensionBytes(players){
   String ret = "";
+  return ret; //not working 4 now
   var builder = new ByteBuilder();
   //do NOT do this because it fucks up the single player strings. i know how many players there are other ways, don't worry about it.
   //builder.appendExpGolomb(players.length) //encode how many players, doesn't have to be how many bits.

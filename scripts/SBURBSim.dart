@@ -369,16 +369,17 @@ void scratchEasterEggCallBack(){
 
 
 //http://stackoverflow.com/questions/9763441/milliseconds-to-time-in-javascript
-String msToTime(s) {
-  var ms = s % 1000;
+String msToTime(Duration dur) {
+  num s = dur.inMilliseconds;
+  num ms = s % 1000;
   s = (s - ms) / 1000;
-  var secs = s % 60;
+  num secs = s % 60;
   s = (s - secs) / 60;
-  var mins = s % 60;
-  var hrs = (s - mins) / 60;
+  num mins = s % 60;
+  //num hrs = (s - mins) / 60;
 
   //return hrs + ':' + mins + ':' + secs + '.' + ms; //oh dear sweet hussie, I HOPE it won't take hours to load.
-  return mins + " minutes and " + secs + " seconds";
+  return "$mins minutes and $secs seconds";
 }
 
 U joinCollection<T,U>(Iterable<T> list, {U convert(T input), U combine(U previous, U element), U initial = null}) {

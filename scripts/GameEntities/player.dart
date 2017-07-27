@@ -1655,7 +1655,9 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	dynamic toDataStrings(includeChatHandle){
 		String ch = "";
 		if(includeChatHandle) ch = sanitizeString(this.chatHandle);
-		String ret = ""+sanitizeString(this.causeOfDrain) + ","+sanitizeString(this.causeOfDeath) + "," + sanitizeString(this.interest1) + "," + sanitizeString(this.interest2) + "," + sanitizeString(ch);
+    String cod = this.causeOfDrain;
+    if(cod == null) cod = "";
+		String ret = ""+sanitizeString(cod) + ","+sanitizeString(this.causeOfDeath) + "," + sanitizeString(this.interest1) + "," + sanitizeString(this.interest2) + "," + sanitizeString(ch);
 		return ret;
 	}
 	String toOCDataString(){
