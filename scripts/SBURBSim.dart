@@ -381,11 +381,11 @@ String msToTime(s) {
   return mins + " minutes and " + secs + " seconds";
 }
 
-U joinCollection<T,U>(Iterable<T> list, {U convert(T input), U combine(U previous, U element)}) {
+U joinCollection<T,U>(Iterable<T> list, {U convert(T input), U combine(U previous, U element), U initial = null}) {
 	Iterator<T> iter = list.iterator;
 
 	bool first = true;
-	U ret = null;
+	U ret = initial;
 
 	while(iter.moveNext()) {
 		if (first) {
@@ -398,8 +398,8 @@ U joinCollection<T,U>(Iterable<T> list, {U convert(T input), U combine(U previou
 
 	return ret;
 }
-String joinMatches(Iterable<Match> matches, [String joiner = ""]) => joinCollection(matches, convert:(Match m) => m.group(0), combine:(String p, String e) => "$p$joiner$e");
-String joinList<T>(Iterable<T> list, [String joiner = ""]) => joinCollection(list, convert:(T e) => e.toString(), combine:(String p, String e) => "$p$joiner$e");
+String joinMatches(Iterable<Match> matches, [String joiner = ""]) => joinCollection(matches, convert:(Match m) => m.group(0), combine:(String p, String e) => "$p$joiner$e", initial:"");
+String joinList<T>(Iterable<T> list, [String joiner = ""]) => joinCollection(list, convert:(T e) => e.toString(), combine:(String p, String e) => "$p$joiner$e", initial:"");
 
 void appendHtml(Element element, String html) {
 	element.appendHtml(html, treeSanitizer: NodeTreeSanitizer.trusted);

@@ -128,7 +128,7 @@ class UpdateShippingGrid extends Scene{
 		this.chosenShipper = this.getShipper(tmpPlayer);
 		this.chosenShipper.otp = null;
 
-		var newShips = this.printShips(this.getGoodShips(this.chosenShipper));
+		String newShips = this.printShips(this.getGoodShips(this.chosenShipper));
 		if(newShips != this.chosenShipper.savedShipText && this.chosenShipper.player.getStat("power") > this.chosenShipper.powerNeeded){
 			this.chosenShipper.powerNeeded += 5;
 			this.chosenShipper.savedShipText = newShips;
@@ -606,6 +606,7 @@ class UpdateShippingGrid extends Scene{
 	}
 	String content(){
 		////print("Updating shipping grid in: " + this.session.session_id);
+		print("Chosen Shipper: ${this.chosenShipper.player}");
 		removeFromArray(this.chosenShipper.player, this.session.availablePlayers);
 		this.chosenShipper.player.increasePower();
 		String shippingStyle = "They like the concillitory ships best, and default to those for people not yet in a quadrant.";
