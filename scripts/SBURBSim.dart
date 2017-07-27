@@ -370,13 +370,14 @@ void scratchEasterEggCallBack(){
 
 //http://stackoverflow.com/questions/9763441/milliseconds-to-time-in-javascript
 String msToTime(Duration dur) {
-  num s = dur.inMilliseconds;
+  num s = dur.inSeconds;
   num ms = s % 1000;
   s = (s - ms) / 1000;
   num secs = s % 60;
   s = (s - secs) / 60;
   num mins = s % 60;
   //num hrs = (s - mins) / 60;
+  //window.alert("s = $s ms = $ms secs = $secs mins = $mins");
 
   //return hrs + ':' + mins + ':' + secs + '.' + ms; //oh dear sweet hussie, I HOPE it won't take hours to load.
   return "$mins minutes and $secs seconds";
@@ -420,7 +421,17 @@ void renderAfterlifeURL(){
     //print("gonna append: " + html);
     querySelector("#story").appendHtml(html,treeSanitizer: NodeTreeSanitizer.trusted);
   }else{
-    print("no ghosts");
+    stopTime = new DateTime.now();
+    var params = window.location.href.substring(window.location.href.indexOf("?")+1);
+    if (params == window.location.href) params = "";
+
+    String html = "";
+    html += '<br><br><a href = "character_creator.html?seed=' +curSessionGlobalVar.session_id.toString() +'&' + params + ' " target="_blank">Replay Session </a> ';
+    html += "<br><br><a href = 'index2.html'>Random New Session?</a>";
+    html += '<br><br><a href = "index2.html?seed=' +curSessionGlobalVar.session_id.toString() +'&' + params + ' " target="_blank">Shareable URL </a> ';
+    html += "<Br><Br>Simulation took: " + msToTime(stopTime.difference(startTime)) + " to render. ";
+    //print("gonna append: " + html);
+    querySelector("#story").appendHtml(html,treeSanitizer: NodeTreeSanitizer.trusted);
   }
 }
 
