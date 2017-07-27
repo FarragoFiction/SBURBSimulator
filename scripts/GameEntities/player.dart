@@ -2631,7 +2631,7 @@ Player findStrongestPlayer(List<Player> playerList){
 
 
 
-List<Player> findDeadPlayers(List<Player> playerList){
+List<Player> findDeadPlayers(List<GameEntity> playerList){
 	List<Player> ret = [];
 	for(int i= 0; i<playerList.length; i++){
 		Player p = playerList[i];
@@ -2732,7 +2732,7 @@ num partyRollForLuck(List<Player> players){
 
 
 
-String getPlayersTitlesBasic(List<Player> playerList){
+String getPlayersTitlesBasic(List<GameEntity> playerList){
 	if(playerList.length == 0){
 		return "";
 	}
@@ -2977,7 +2977,7 @@ Player clonePlayer(Player player, Session session, bool isGuardian) {
   }
 
 
-  num getAverageSanity(List<Player> players) {
+  num getAverageSanity(List<GameEntity> players) {
     if (players.length == 0) return 0;
     num ret = 0;
     for (int i = 0; i < players.length; i++) {
@@ -2987,7 +2987,7 @@ Player clonePlayer(Player player, Session session, bool isGuardian) {
   }
 
 
-  num getAverageHP(List<Player> players) {
+  num getAverageHP(List<GameEntity> players) {
     if (players.length == 0) return 0;
     num ret = 0;
     for (int i = 0; i < players.length; i++) {
@@ -2997,7 +2997,7 @@ Player clonePlayer(Player player, Session session, bool isGuardian) {
   }
 
 
-  dynamic getAverageMobility(List<Player> players) {
+  dynamic getAverageMobility(List<GameEntity> players) {
     if (players.length == 0) return 0;
     num ret = 0;
     for (int i = 0; i < players.length; i++) {
@@ -3007,17 +3007,17 @@ Player clonePlayer(Player player, Session session, bool isGuardian) {
   }
 
 
-  dynamic getAverageRelationshipValue(List<Player> players) {
+  dynamic getAverageRelationshipValue(List<GameEntity> players) {
     if (players.length == 0) return 0;
     num ret = 0;
     for (int i = 0; i < players.length; i++) {
-      ret += players[i].getAverageRelationshipValue();
+      ret += players[i].getStat("RELATIONSHIPS");
     }
     return (ret / players.length).round();
   }
 
 
-  num getAveragePower(List<Player> players) {
+  num getAveragePower(List<GameEntity> players) {
     if (players.length == 0) return 0;
     num ret = 0;
     for (int i = 0; i < players.length; i++) {
@@ -3041,7 +3041,7 @@ Player clonePlayer(Player player, Session session, bool isGuardian) {
   }
 
 
-  num getAverageFreeWill(List<Player> players) {
+  num getAverageFreeWill(List<GameEntity> players) {
     if (players.length == 0) return 0;
     num ret = 0;
     for (int i = 0; i < players.length; i++) {

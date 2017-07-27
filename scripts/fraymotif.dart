@@ -80,15 +80,15 @@ class Fraymotif {
       effectTypes["buff$i"] = [];
     }
     for(num i = 0; i<this.effects.length; i++){
-      var e = this.effects[i];
+      FraymotifEffect e = this.effects[i];
       if(e.damageInsteadOfBuff){
-        if(effectTypes["damage"+ e.target].length == 0)   effectTypes["damage"+ e.target].add(e.toStringSimple());
+        if(effectTypes["damage"+ e.target.toString()].length == 0)   effectTypes["damage"+ e.target.toString()].add(e.toStringSimple());
         //no repeats
-        if( effectTypes["damage"+ e.target].indexOf(e.statName) == -1) effectTypes["damage"+ e.target].add(e.statName);
+        if( effectTypes["damage"+ e.target.toString()].indexOf(e.statName) == -1) effectTypes["damage"+ e.target.toString()].add(e.statName);
       }else{
-        if(effectTypes["buff"+ e.target].length == 0)   effectTypes["buff"+ e.target].add(e.toStringSimple());
+        if(effectTypes["buff"+ e.target.toString()].length == 0)   effectTypes["buff"+ e.target.toString()].add(e.toStringSimple());
         //no repeats
-        if( effectTypes["buff"+ e.target].indexOf(e.statName) == -1) effectTypes["buff"+ e.target].add(e.statName);
+        if( effectTypes["buff"+ e.target.toString()].indexOf(e.statName) == -1) effectTypes["buff"+ e.target.toString()].add(e.statName);
       }
     }
 
@@ -117,7 +117,7 @@ class Fraymotif {
       }
 
     }
-    String almostDone= [retArray.sublist(0, -1).join(', '), retArray.sublist(-1)[0]].join(retArray.length < 2 ? '' : ' and ');
+    String almostDone= [retArray.sublist(0, retArray.length-1).join(', '), retArray.sublist(retArray.length-1,0)].join(retArray.length < 2 ? '' : ' and ');
     almostDone = almostDone[0].toUpperCase() + almostDone.substring(1) + "."; //sentence it.
     return this.replaceKeyWordsForFlavorTextBase(rand, almostDone);
 
@@ -624,9 +624,9 @@ class FraymotifCreator {
     //effects are frozen at creation, basically.  if this fraymotif is created by a Bard of Breath in a session with a Prince of Time,
     //who then dies, and then a combo session results in an Heir of Time being able to use it with the Bard of Breath, then it'll still have the prince effect.
 class FraymotifEffect {
-	var statName;  //hp heals current hp AND revives the player.
-	var target; //self, allies or enemy or enemies, 0, 1, 2, 3
-	var damageInsteadOfBuff; // statName can either be applied towards damaging someone or buffing someone.  (damaging self or allies is "healing", buffing enemies is applied in the negative direction.)
+	String statName;  //hp heals current hp AND revives the player.
+	num target; //self, allies or enemy or enemies, 0, 1, 2, 3
+	bool damageInsteadOfBuff; // statName can either be applied towards damaging someone or buffing someone.  (damaging self or allies is "healing", buffing enemies is applied in the negative direction.)
 	num s = 0;  //convineience methods cause i don't think js has enums but am too lazy to confirm.
 	num a = 1;
 	num e = 2;

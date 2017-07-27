@@ -51,6 +51,7 @@ class Strife {
 
   bool denizenDoneWithYourShit(Element div) {
     List<GameEntity> members = findMembersOfDenizenFight();
+    if(members == null || members.length == 0) return false; //not a denizen fight
     Denizen d = members[0];
     Player p = members[1];
     if (members.length != 2) return false; //it's not a denizen fight.
@@ -110,7 +111,7 @@ class Strife {
 
 
   //need to list out who is dead, who absconded, and who is alive.  Who WON.
-  void describeEnding(div, winner) {
+  void describeEnding(Element div, Team winner) {
     processEnding();
     winner.level();
     winner.giveGristFromTeams(teams); //will filter out 'me'
@@ -118,12 +119,12 @@ class Strife {
     //anything i'm missing? go check current code
     String icon = "<img src = 'images/sceneIcons/defeat_icon.png'>";
     //if even one player is on the winning side, it's a victory.
-    if (winner.getPlayer() != null)
+    if (winner.findPlayer() != null)
       icon = "<img src = 'images/sceneIcons/victory_icon.png'>";
     String endingHTML = "<Br><br> ${icon} The fight is over. ${winner
         .name} remains alive and unabsconded. <br>";
     div.appendHtml(endingHTML,treeSanitizer: NodeTreeSanitizer.trusted);
-    winner.poseAsATeam(div);
+    winner.renderPoseAsATeam(div);
   }
 
 
@@ -417,14 +418,14 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
   }
 
   //will print out all deaths. and also cause them. because you don't auto die when hp is less than zero.
-  void checkForAPulse(div, List<Team> enemyTeams) {
+  void checkForAPulse(Element div, List<Team> enemyTeams) {
     String ret = "";
     for(GameEntity member in members) {
       if(!member.dead) {
           ret += member.checkDiedInAStrife(enemyTeams);
       }
     }
-    if(ret.isEmpty) div.appendHTML(ret,treeSanitizer: NodeTreeSanitizer.trusted);
+    if(ret.isEmpty) div.appendHtml(ret,treeSanitizer: NodeTreeSanitizer.trusted);
   }
 
   void giveGristFromTeams(List<Team>teams) {
@@ -468,10 +469,6 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     //different format for canvas code
     var canvasDiv = querySelector("#canvas"+ div.id);
     poseAsATeam(canvasDiv, poseable); //in handle sprites
-
-    //TODO need to figure out when to render Denizowned again.
-    //if(members[0].dead && members[0].denizen.name == this.name) denizenKill(canvasDiv, players[0]);
-      throw "TODO: pose as a team.";
   }
 
   //Denizen fights work differently

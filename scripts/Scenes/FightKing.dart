@@ -23,16 +23,15 @@ class FightKing extends Scene {
 	}
 	return living;
 }
-	void renderGoodguys(div){
-		num repeatTime = 1000;
-		var divID = (div.id) + "_final_boss";
-		var ch = canvasHeight;
+	void renderGoodguys(Element div){
+		String divID = (div.id) + "_final_boss";
+		num ch = canvasHeight;
 		var fightingPlayers = this.getGoodGuys();
 		if(fightingPlayers.length > 6){
 			ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
 		}
-		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+ch + "'>  </canvas>";
-		div.append(canvasHTML);
+		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+ch.toString() + "'>  </canvas>";
+		appendHtml(div,canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);
 		poseAsATeam(canvasDiv, fightingPlayers);
