@@ -20,13 +20,13 @@ part of SBURBSim;
 List<dynamic> yyrEventsGlobalVar = [];
 
 class YellowYardResultController {
- List<dynamic> eventsToUndo = [];    
+ List<ImportantEvent> eventsToUndo = [];
 
 
 	YellowYardResultController() {}
 
 
-	dynamic doesEventNeedToBeUndone(e){
+	ImportantEvent doesEventNeedToBeUndone(ImportantEvent e){
     //  print("Does: " + e.humanLabel() + " need to be undone?")
         for(num i = 0; i<this.eventsToUndo.length; i++){
           var e2 = this.eventsToUndo[i];

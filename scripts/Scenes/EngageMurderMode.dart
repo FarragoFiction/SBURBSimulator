@@ -13,7 +13,9 @@ class EngageMurderMode extends Scene{
 	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
 		//select a random player. if they've been triggered, random chance of going murderMode if enemies (based on how triggered.)
-		this.player = rand.pickFrom(this.session.availablePlayers);
+		if (!this.session.availablePlayers.isEmpty) {
+			this.player = rand.pickFrom(this.session.availablePlayers);
+		}
 		num moon = 0;
 
 		if(this.player != null){

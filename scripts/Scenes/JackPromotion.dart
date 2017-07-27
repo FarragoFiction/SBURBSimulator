@@ -2,16 +2,12 @@ part of SBURBSim;
 
 
 class JackPromotion extends Scene{
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
-
-	
-
+	List<Player> playerList = [];  //what players are already in the medium when i trigger?
 
 	JackPromotion(Session session): super(session, false);
 
-
 	@override
-	bool trigger(playerList){
+	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
 		if(this.session.jack.getStat("currentHP") <= 0 || this.session.jack.exiled) return false;  //jack can't be dead or exiled.
 		if(this.session.queensRing == null) return false; //all is moot if no ring
@@ -24,11 +20,11 @@ class JackPromotion extends Scene{
 
 		return false;
 	}
-	dynamic addImportantEvent(){
-		var current_mvp = findStrongestPlayer(this.session.players);
+	ImportantEvent addImportantEvent(){
+		Player current_mvp = findStrongestPlayer(this.session.players);
 		return this.session.addImportantEvent(new JackPromoted(this.session, current_mvp.getStat("power"),null,null) );
 	}
-	dynamic content(){
+	String content(){
 		String ret = " In a shocking turn of events, Jack Noir claims the Black Queen's RING OF ORBS " + this.session.convertPlayerNumberToWords();
 		ret += "FOLD. ";
 		if(this.session.queen.crowned != null && !this.session.queen.exiled){
@@ -77,9 +73,9 @@ class JackPromotion extends Scene{
 	}
 	@override
 	void renderContent(Element div){
-		var alt = this.addImportantEvent();
+		ImportantEvent alt = this.addImportantEvent();
 		//print("Alt for jack promotion is: " + alt);
-		if(alt && alt.alternateScene(div)){
+		if(alt != null && alt.alternateScene(div)){
 			return;
 		}
 		appendHtml(div,"<br> <img src = 'images/sceneIcons/jack_icon.png'>"+this.content());

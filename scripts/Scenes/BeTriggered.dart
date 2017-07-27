@@ -2,7 +2,7 @@ part of SBURBSim;
 
 
 class BeTriggered extends Scene{
-		List<Player> playerList = [];  //what players are already in the medium when i trigger?
+	List<Player> playerList = [];  //what players are already in the medium when i trigger?
 	List<Player> triggeredPlayers = [];
 	List<dynamic> triggers = [];	
 
@@ -10,11 +10,11 @@ class BeTriggered extends Scene{
 	BeTriggered(Session session): super(session);
 
 	@override
-	dynamic trigger(playerList){
+	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
 		this.triggeredPlayers = [];
 		for(num i = 0; i<this.session.availablePlayers.length; i++){
-			var p = this.session.availablePlayers[i];
+			Player p = this.session.availablePlayers[i];
 			if(this.IsPlayerTriggered(p) && rand.nextDouble() >.75){ //don't all flip out/find out at once. if i find something ELSE to flip out before i can flip out about this, well, oh well. SBURB is a bitch. 75 is what it should be when i'm done testing.
 				//print("shit flipping: " + p.flipOutReason + " in session " + this.session.session_id);
 				this.triggeredPlayers.add(p);
@@ -26,13 +26,13 @@ class BeTriggered extends Scene{
 	void renderContent(Element div){
 		appendHtml(div,"<br><img src = 'images/sceneIcons/flipout_icon_animated.gif'>"+this.content());
 	}
-	bool IsPlayerTriggered(player){
+	bool IsPlayerTriggered(Player player){
 		if(player.flipOutReason != null && !player.flipOutReason.isEmpty){
 			//print("I have a flip out reason: " + player.flipOutReason);
-			if(player.flippingOutOverDeadPlayer && player.flippingOutOverDeadPlayer.dead){
+			if(player.flippingOutOverDeadPlayer != null && player.flippingOutOverDeadPlayer.dead){
 				//print("I know about a dead player. so i'm gonna start flipping my shit. " + this.session.session_id);
 				return true;
-			}else if(player.flippingOutOverDeadPlayer){ //they got better.
+			}else if(player.flippingOutOverDeadPlayer != null){ //they got better.
 			//	print(" i think i need to know about a dead player to flip my shit. " + player.flippingOutOverDeadPlayer.title())
 				player.flipOutReason = null;;
 				player.flippingOutOverDeadPlayer = null;
@@ -52,7 +52,7 @@ class BeTriggered extends Scene{
 		}
 		return false;
 	}
-	dynamic content(){
+	String content(){
 		String ret = "";
 		for(num i = 0; i<this.triggeredPlayers.length; i++){
 			Player p = this.triggeredPlayers[i];

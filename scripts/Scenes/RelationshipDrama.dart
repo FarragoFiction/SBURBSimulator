@@ -481,8 +481,8 @@ class RelationshipDrama extends Scene {
 		//different format for canvas code
 		CanvasElement canvasDiv = querySelector("#canvas"+ divID);
 		player.addStat("sanity", 3);  //talking about it helps.
-		Player player1Start = player1.chatHandleShort()+ ": ";
-		Player player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
+		String player1Start = player1.chatHandleShort()+ ": ";
+		String player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		Relationship r1 = relationship;
 		Relationship r2 = player2.getRelationshipWith(player1);
 		Relationship r2jerk = player2.getRelationshipWith(jerk);
@@ -561,8 +561,8 @@ class RelationshipDrama extends Scene {
 		String chatText = "";
 		Player player1 = player;
 		Player player2 = jerk;
-		Player player1Start = player1.chatHandleShort()+ ": ";
-		Player player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
+		String player1Start = player1.chatHandleShort()+ ": ";
+		String player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		Relationship r1 = relationship;
 		Relationship r2 = player2.getRelationshipWith(player1);
 		chatText = "";

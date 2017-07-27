@@ -2,52 +2,51 @@ part of SBURBSim;
 
 
 class ExploreMoon extends Scene {
-		var player1 = null;
-	var player2 = null; //optional
+	Player player1 = null;
+	Player player2 = null; //optional
 
 	
 
 
 	ExploreMoon(Session session): super(session);
 
-	@override
-	dynamic checkPlayer(player) {
+	//@override //TODO: I... don't even know exactly what this was representing -PL
+	void checkPlayer(Player player) {
 		this.player1 = player;
-		if (this.player1.dreamSelf ==
-				false) { //can't explore a moon without a dream self.
+		if (this.player1.dreamSelf == false) { //can't explore a moon without a dream self.
 			this.player1 = null;
-			return null;
+			//return null;
 		}
 	}
 
 		String getProspitBullshit(){
-			var possibilities = ["attending dance parties", "fluttering about aimlessly", "chatting up Prospitans", "learning the recipe for HOLY PASTRIES", "listening to sermons on the vast Croak","attending dance offs", "protecting the sacred candy shop from burglars", "racing frogs"];
-			var thing1 = rand.pickFrom(possibilities);
+			List<String> possibilities = ["attending dance parties", "fluttering about aimlessly", "chatting up Prospitans", "learning the recipe for HOLY PASTRIES", "listening to sermons on the vast Croak","attending dance offs", "protecting the sacred candy shop from burglars", "racing frogs"];
+			String thing1 = rand.pickFrom(possibilities);
 			removeFromArray(thing1,possibilities);
-			var thing2 = rand.pickFrom(possibilities);
+			String thing2 = rand.pickFrom(possibilities);
 
 
 			String vision = "The visions of the future provided by Skaia were largely ignored.";
 			//have different vision based on predicted results. player power >> king power, predict success. player power << king, predict failure.
-			var dead = findDeadPlayers(this.session.players);
-			var living = findLivingPlayers(this.session.players);
+			List<Player> dead = findDeadPlayers(this.session.players);
+			List<Player> living = findLivingPlayers(this.session.players);
 
 			if(dead.length > 0) vision = "What is that cloud showing? Is that...grub sauce? Please be grub sauce." ;//the dead won't be rare. replace this if at all possible.;
 			if(this.session.timeTillReckoning < 3 && getAveragePower(living)>this.session.king.getStat("currentHP")*2) vision = "Wow, everybody sure looks happy in that cloud. Maybe things will turn out after all?";
 			if(this.session.timeTillReckoning < 3 && this.session.king.getStat("power")> getAverageHP(living) * 2) vision = "Um...Huh. That's. That's a lot of dead bodies. What's...what's going on in that cloud there?";
-			if(this.player1.grimDark > 2 || (this.player2 && this.player2.grimDark > 0)) vision = "Skaia's clouds are dark. " ;//final option. no visions for grim dark players.;
+			if(this.player1.grimDark > 2 || (this.player2 != null && this.player2.grimDark > 0)) vision = "Skaia's clouds are dark. " ;//final option. no visions for grim dark players.;
 
 			return "whimsical Prospit activities, such as " + thing1 + " and " + thing2 + ". " + vision;
 		}
 
 		String getDerseBullshit(){
-			var possibilities = ["attending dance parties", "cheating at poker", "keeping tabs on the lifeblood of Derse", "learning the Derse waltz","understanding the nuances of a stab","lying their asses off to anyone and everyone","attending jazz clubs","setting up black market businesses","dodging the Derse law","smuggling contraband","delivering finely crafted suits"];
-			var thing1 = rand.pickFrom(possibilities);
+			List<String> possibilities = ["attending dance parties", "cheating at poker", "keeping tabs on the lifeblood of Derse", "learning the Derse waltz","understanding the nuances of a stab","lying their asses off to anyone and everyone","attending jazz clubs","setting up black market businesses","dodging the Derse law","smuggling contraband","delivering finely crafted suits"];
+			String thing1 = rand.pickFrom(possibilities);
 			removeFromArray(thing1, possibilities);
-			var thing2 = rand.pickFrom(possibilities);
+			String thing2 = rand.pickFrom(possibilities);
 
-			var dead = findDeadPlayers(this.session.players);
-			var living = findLivingPlayers(this.session.players);
+			List<Player> dead = findDeadPlayers(this.session.players);
+			List<Player> living = findLivingPlayers(this.session.players);
 
 
 			String whisper = "The whisperings of the HorrorTerrors provided a nice backdrop.";
@@ -69,7 +68,7 @@ class ExploreMoon extends Scene {
 	}
 
 	@override
-	bool trigger(playerList){
+	bool trigger(List<Player> playerList){
 		this.player1 = null; //reset
 		this.player2 = null;
 		for(num i = 0; i<this.session.availablePlayers.length; i++){
@@ -93,14 +92,14 @@ class ExploreMoon extends Scene {
 			this.player1.boostAllRelationships();
 		}
 	}
-	dynamic content(){
+	String content(){
 		String ret = "";
 		//remove player1 and player2 from available player list.
 		removeFromArray(this.player1, this.session.availablePlayers);
 		removeFromArray(this.player2, this.session.availablePlayers);
 		//print(this.player1.title() + " is doing moon stuff with their land level at: " + this.player1.landLevel)
-		var r1 = null;
-		var r2 = null;
+		//var r1 = null;
+		//var r2 = null;
 		this.player1.increasePower();
 		if(this.player2 != null){
 			this.player2.increasePower();
@@ -125,8 +124,8 @@ class ExploreMoon extends Scene {
 		}
 
 		if(this.player2 != null){
-			var r1 = this.player1.getRelationshipWith(this.player2);
-			var r2 = this.player2.getRelationshipWith(this.player1);
+			Relationship r1 = this.player1.getRelationshipWith(this.player2);
+			Relationship r2 = this.player2.getRelationshipWith(this.player1);
 			if(r1.type() == " Totally In Love" && r2.type() == "Totally In Love"){
 				ret += " The two flirt a bit. ";
 			}else if(r2.type() == "Totally In Love"){

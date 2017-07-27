@@ -175,8 +175,8 @@ class Session {
 		}
 		return ret;  //lowest space player.
 	}
-	dynamic addImportantEvent(important_event){
-		var alternate = this.yellowYardController.doesEventNeedToBeUndone(important_event);
+	ImportantEvent addImportantEvent(ImportantEvent important_event){
+		ImportantEvent alternate = this.yellowYardController.doesEventNeedToBeUndone(important_event);
 	//	print("alternate i got from yellowYardController is: " + alternate);
 		if(alternate != null){
 		//	print("returning alternate");

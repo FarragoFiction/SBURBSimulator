@@ -30,19 +30,19 @@ class AfterLife {
 		this.ghosts = [];
 		this.timeLineSplitsWhen = importantEvent; //e can be null if undoing an undo
 	}
-	void unspawn(ghost){
+	void unspawn(Player ghost){
 		ghost.dead = true;
 	}
-	dynamic findGuardianSpirit(player){
+	Player findGuardianSpirit(Player player){
 		return player.rand.pickFrom(this.findAllAlternateSelves(player.guardian));
 	}
-	dynamic findLovedOneSpirit(player){
+	Player findLovedOneSpirit(Player player){
 		return player.rand.pickFrom(this.findAllDeadLovedOnes(player));
 	}
-	dynamic findHatedOneSpirit(player){
+	Player findHatedOneSpirit(Player player){
 		return player.rand.pickFrom(this.findAllDeadLovedOnes(player));
 	}
-	dynamic findAllDeadLovedOnes(player){
+	List<Player> findAllDeadLovedOnes(Player player){
 		List<dynamic> lovedOnes = [];
 		List<Player> hearts = player.getHearts();
 		List<Player> diamonds = player.getDiamonds();

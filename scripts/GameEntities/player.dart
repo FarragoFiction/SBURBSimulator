@@ -463,13 +463,13 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		}
 		return ret;
 	}
-	dynamic chatHandleShort(){
-    RegExp exp = new RegExp(r"""\b(\w)|[A-Z]""", multiLine:true);
-    return joinMatches(exp.allMatches(chatHandle)).toUpperCase();
+	String chatHandleShort(){
+        RegExp exp = new RegExp(r"""\b(\w)|[A-Z]""", multiLine:true);
+        return joinMatches(exp.allMatches(chatHandle)).toUpperCase();
 	}
-	dynamic chatHandleShortCheckDup(otherHandle){
-    RegExp exp = new RegExp(r"""\b(\w)|[A-Z]""", multiLine:true);
-    String tmp = joinMatches(exp.allMatches(chatHandle)).toUpperCase();
+	String chatHandleShortCheckDup(String otherHandle){
+        RegExp exp = new RegExp(r"""\b(\w)|[A-Z]""", multiLine:true);
+        String tmp = joinMatches(exp.allMatches(chatHandle)).toUpperCase();
 		if(tmp == otherHandle){
 			tmp = tmp + "2";
 		}
@@ -478,8 +478,8 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 
 	void makeGodTier(){
 		this.addStat("hp",500); //they are GODS.
-    this.addStat("currentHP",500); //they are GODS.
-    this.addStat("power",500); //they are GODS.
+        this.addStat("currentHP",500); //they are GODS.
+        this.addStat("power",500); //they are GODS.
 		this.increasePower();
 		this.godTier = true;
 		this.session.godTier = true;
@@ -703,8 +703,8 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	}
 
 	bool isVoidAvailable(){
-		var light = findAspectPlayer(findLivingPlayers(this.session.players), "Light");
-		if(light && light.godTier) return false;
+		Player light = findAspectPlayer(findLivingPlayers(this.session.players), "Light");
+		if(light != null && light.godTier) return false;
 		return true;
 	}
 	dynamic getPVPModifier(role){
@@ -1085,11 +1085,11 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			}
 		}
 	}
-	void increasePower(){
+	void increasePower([num magnitude = 1]){
 		if(this.session.rand.nextDouble() >.9){
 			this.leveledTheHellUp = true; //that multiple of ten thing is bullshit.
 		}
-		num powerBoost = 1;
+		num powerBoost = magnitude; //1; // oh man, ghost channellers are going to get absolutely RIPPED from this -PL
 
 		if(this.class_name == "Page"){  //they don't have many quests, but once they get going they are hard to stop.
 			powerBoost = powerBoost * 5;

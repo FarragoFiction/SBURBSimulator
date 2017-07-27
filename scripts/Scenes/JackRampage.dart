@@ -12,40 +12,40 @@ class JackRampage extends Scene{
 
 
 	@override
-	bool trigger(playerList){
+	bool trigger(List<Player> playerList){
 		//print("Jack is: " + this.session.jackStrength  + " and King is: " + this.session.kingStrength);
 		return this.session.jack.crowned != null && this.session.jack.getStat("currentHP") > 0 && !this.session.jack.dead; //Jack does not stop showing us his stabs.
 	}
-	dynamic getStabList(){
-		List<dynamic> potentialPlayers = [];
+	List<GameEntity> getStabList(){
+		List<Player> potentialPlayers = [];
 		for(num i = 0; i<this.session.availablePlayers.length; i++){
-			var p = this.session.availablePlayers[i];
+			Player p = this.session.availablePlayers[i];
 			if(p.class_name != "Witch"){
 				potentialPlayers.add(p); //don't make a big deal out of it, but jack doesn't want to hurt the witch. familiar loyalty, yo.
 				//this is actually a bad thing, too, cause it means the witch's OP sprite doesn't get to kick Jack's ass.
 			}
 		}
-		var numStabbings = rand.nextIntRange(1,Math.min(4,potentialPlayers.length));
+		int numStabbings = rand.nextIntRange(1,Math.min(4,potentialPlayers.length));
 		//print("Number stabbings is: " + numStabbings);
-		List<dynamic> ret = [];
+		List<GameEntity> ret = [];
 		if(potentialPlayers.length == 0){
 			return ret;
 		}
 		ret.add(rand.pickFrom(potentialPlayers)); //used to get slowest player, but too many perma deaths happened.
-		var friends = ret[0].getFriendsFromList(potentialPlayers);
+		List<Player> friends = ret[0].getFriendsFromList(potentialPlayers);
 		if(friends.length == 0) return ret;
 		//print("friends: " + friends.length);
 		for(int i = 0; i<=numStabbings; i++){
-			var f = rand.pickFrom(friends);
+			Player f = rand.pickFrom(friends);
 			//print(f);
 			if(this.canCatch(f)) ret.add(f);
 
 		}
 		//var unique = Array.from(new Set(ret));  breaks IE because IE is a whiny little bitch.
 		//var unique = [...new Set(ret)]  ;//IE ALSO bitches about this. Fucking IE.  I think it doesn't implement Sets. What the actual fuck.;
-    Set<Player> unique = new Set<Player>.from(ret);
+        Set<GameEntity> unique = new Set<GameEntity>.from(ret);
 
-		 ret = []; //add some sprites. this is literally the only other fight they are good for.
+		ret = []; //add some sprites. this is literally the only other fight they are good for.
 		for(Player g in unique){
 			ret.add(g);
 			ret.add(g.sprite);
@@ -63,15 +63,15 @@ class JackRampage extends Scene{
 			print("jack found a stab victim" + this.session.session_id.toString());
 		return true;
 	}
-	void renderPrestabs(div, stabbings){
-			num repeatTime = 1000;
-			var divID = (div.id) + "_final_boss";
-			var ch = canvasHeight;
+	void renderPrestabs(Element div, List<GameEntity> stabbings){
+			//num repeatTime = 1000;
+			//var divID = (div.id) + "_final_boss";
+			//var ch = canvasHeight;
 
-			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+ch + "'>  </canvas>";
+			//String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height='"+ch + "'>  </canvas>";
 			//div.append(canvasHTML);  //no. not if sprites can be here.
 			//different format for canvas code
-			var canvasDiv = querySelector("#canvas"+ divID);
+			//var canvasDiv = querySelector("#canvas"+ divID);
 			//poseAsATeam(canvasDiv, stabbings, 2000); //can't do this anymore, mighit be  a sprite in there.
 		}
 	@override
@@ -81,13 +81,13 @@ class JackRampage extends Scene{
 		appendHtml(div,"<br><img src = 'images/sceneIcons/jack_icon.png'> ");
 
 		//jack finds 0 or more players.
-		var stabbings = this.getStabList();
+		List<GameEntity> stabbings = this.getStabList();
 	//	if(stabbings.length > 1) print("Jack fighting more than one player: " + this.session.session_id);
 		String ret = "";
 		if(stabbings.length == 0){
 			if(rand.nextDouble() > .5){
 				ret += " Jack listlessly shows his stabs to a few Prospitian pawns. ";
-        appendHtml(div,""+ret);
+            appendHtml(div,""+ret);
 			}else{
 				ret += " Jack listlessly shows his stabs to a few Dersite pawns. ";
             appendHtml(div,""+ret);
@@ -100,15 +100,16 @@ class JackRampage extends Scene{
         appendHtml(div,""+ret);
 		}else{
 
+			Player stabbee = stabbings[0] is Player ? stabbings[0] : null;
 
-			if(stabbings[0].dreamSelf && !stabbings[0].isDreamSelf && rand.nextDouble() >.5){
+			if(stabbee != null && stabbee.dreamSelf && !stabbee.isDreamSelf && rand.nextDouble() >.5){
 				//jack kills the dream self instead of the active self. no strife. just death.
 				//want to test out a dream self dying without active.
 				//print("jack kills nonactive dream self: " + this.session.session_id);
-				ret = "Jack has found the dream self of the " + stabbings[0].htmlTitleBasic() + ". He shows the sleeping body his stabs. The dream self is no longer available for revival shenanigans. ";
+				ret = "Jack has found the dream self of the " + stabbee.htmlTitleBasic() + ". He shows the sleeping body his stabs. The dream self is no longer available for revival shenanigans. ";
         appendHtml(div,""+ret);
-				stabbings[0].dreamSelf = false;
-				var snop = Player.makeRenderingSnapshot(stabbings[0]);
+				stabbee.dreamSelf = false;
+				var snop = Player.makeRenderingSnapshot(stabbee);
 				snop.causeOfDeath = "after being sleep stabbed by Jack";
 				snop.isDreamSelf = true;
 				this.session.afterLife.addGhost(snop);
@@ -131,7 +132,7 @@ class JackRampage extends Scene{
 			removeFromArray(stabbings[i], this.session.availablePlayers);
 		}
 	}
-	dynamic addImportantEvent(players){//TODO reimplement this for boss fights
+	ImportantEvent addImportantEvent(players){//TODO reimplement this for boss fights
 		/*
 		var current_mvp = findStrongestPlayer(this.session.players);
 		for(num i = 0; i<players.length; i++){
@@ -141,7 +142,7 @@ class JackRampage extends Scene{
 			}
 		}
 		*/
-
+		return null;
 	}
 
 }

@@ -34,6 +34,7 @@ class Random implements Math.Random {
 	int nextIntRange(int min, int max) => this.nextInt(max-min) + min;
 
 	T pickFrom<T>(List<T> list) {
+		if (list.isEmpty) { return null; }
 		return list[this.nextInt(list.length)];
 	}
 }
