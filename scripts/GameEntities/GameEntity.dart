@@ -255,12 +255,12 @@ class GameEntity implements Comparable{
     return false;
   }
 
-  void aggrieve(div, GameEntity defense){
+  void aggrieve(Element div, GameEntity defense){
     GameEntity offense = this; //easier for now.
     String ret = "<br><Br> The " + offense.htmlTitleHP() + " targets the " + defense.htmlTitleHP() + ". ";
     if (defense.dead) ret +=
     " Apparently their corpse sure is distracting? How luuuuuuuucky for the remaining players!";
-    div.append(ret);
+    appendHtml(div, ret);
 
     //luck dodge
     //alert("offense roll is: " + offenseRoll + " and defense roll is: " + defenseRoll);
@@ -268,7 +268,7 @@ class GameEntity implements Comparable{
     if (defense.rollForLuck("minLuck") > offense.rollForLuck("minLuck") * 10 +
         200) { //adding 10 to try to keep it happening constantly at low levels
       print("Luck counter: " + defense.htmlTitleHP() + this.session.session_id.toString());
-      div.append("The attack backfires and causes unlucky damage. The " +
+      appendHtml(div,"The attack backfires and causes unlucky damage. The " +
           defense.htmlTitleHP() + " sure is lucky!!!!!!!!");
       offense.addStat("currentHP",-1 * offense.getStat("power") / 10); //damaged by your own power.
       //this.processDeaths(div, offense, defense);
@@ -276,7 +276,7 @@ class GameEntity implements Comparable{
     } else if (defense.rollForLuck("maxLuck") >
         offense.rollForLuck("maxLuck") * 5 + 100) {
       print("Luck dodge: " + defense.htmlTitleHP() + this.session.session_id.toString());
-      div.append("The attack misses completely after an unlucky distraction.");
+      appendHtml(div,"The attack misses completely after an unlucky distraction.");
       return;
     }
     //mobility dodge
@@ -295,7 +295,7 @@ class GameEntity implements Comparable{
       } else {
         ret += ". They miss pretty damn hard. ";
       }
-      div.append(ret + " ");
+      appendHtml(div,ret + " ");
       //this.processDeaths(div, offense, defense);
 
       return;
@@ -304,8 +304,7 @@ class GameEntity implements Comparable{
         rand > 25) {
       print(
           "Mobility dodge: " + defense.htmlTitleHP() + this.session.session_id.toString());
-      div.append(
-          " The " + defense.htmlTitleHP() + " dodges the attack completely. ");
+      appendHtml(div, " The " + defense.htmlTitleHP() + " dodges the attack completely. ");
       return;
     }
     //base damage
@@ -316,15 +315,15 @@ class GameEntity implements Comparable{
     if (defenseRoll > offenseRoll * 2) { //glancing blow.
       //print("Glancing Hit: " + this.session.session_id);
       hit = hit / 2;
-      div.append(" The attack manages to not hit anything too vital. ");
+      appendHtml(div," The attack manages to not hit anything too vital. ");
     } else if (offenseRoll > defenseRoll * 2) {
       //print("Critical hit.");
       ////print("Critical Hit: " + this.session.session_id);
       hit = hit * 2;
-      div.append(" Ouch. That's gonna leave a mark. ");
+      appendHtml(div," Ouch. That's gonna leave a mark. ");
     } else {
       //print("a hit.");
-      div.append(" A hit! ");
+      appendHtml(div," A hit! ");
     }
 
 

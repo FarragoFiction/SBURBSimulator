@@ -23,8 +23,7 @@ class Strife {
   void startTurn(div) {
     teams.sort(); //we do this every turn because mobility can change and should effect turn order.
     for (Team team in teams) {
-      team.takeTurn(
-          div, turnsPassed, teams); //will handling resetting player availablity
+      team.takeTurn(div, turnsPassed, teams); //will handling resetting player availablity
     }
     checkForSuddenEnding(
         div); //everyone is killed. or absconded in denizen case. calls processEnding on own.
@@ -277,7 +276,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     List<Team> otherTeams = getOtherTeams(teams);
     //loop on all members each member takes turn.
     for(GameEntity member in members) { //member will take care of checking if they are absconded or dead.
-      member.takeTurn(div, this, teams);
+      member.takeTurn(div, this, otherTeams);
     }
   }
 
