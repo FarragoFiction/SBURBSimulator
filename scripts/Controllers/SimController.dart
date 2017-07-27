@@ -30,6 +30,7 @@ abstract class SimController {
   void restartSession();
   void tick();
   void reckoning();
+  void reckoningTick();
   void renderAfterlifeURL();
   void processCombinedSession();
   void intro();

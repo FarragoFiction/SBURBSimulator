@@ -40,7 +40,7 @@ class StoryController extends SimController {
       tick();//NOW start ticking
       return;
     }
-
+      //TODO maybe readd timeout
       var s = new Intro(curSessionGlobalVar);
       var p = curSessionGlobalVar.players[player_index];
       //var playersInMedium = curSessionGlobalVar.players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.
@@ -159,8 +159,35 @@ class StoryController extends SimController {
 
   @override
   void reckoning() {
-    throw "TODO";
-    // TODO: implement reckoning
+    //print('reckoning');
+    Scene s = new Reckoning(curSessionGlobalVar);
+    s.trigger(curSessionGlobalVar.players);
+    s.renderContent(curSessionGlobalVar.newScene());
+    if(!curSessionGlobalVar.doomedTimeline){
+      reckoningTick();
+    }else{
+      renderAfterlifeURL();
+    }
+  }
+
+  @override
+  void reckoningTick() {
+    //print("Reckoning Tick: " + curSessionGlobalVar.timeTillReckoning);
+    if(curSessionGlobalVar.timeTillReckoning > -10){
+     //TODO readd timeout, maybe (i think i was calling it with time of 0 b4
+      curSessionGlobalVar.timeTillReckoning += -1;
+      curSessionGlobalVar.processReckoning(curSessionGlobalVar.players);
+      reckoningTick();
+    }else{
+      Scene s = new Aftermath(curSessionGlobalVar);
+      s.trigger(curSessionGlobalVar.players);
+      s.renderContent(curSessionGlobalVar.newScene());
+      if(curSessionGlobalVar.makeCombinedSession == true){
+        processCombinedSession();  //make sure everything is done rendering first
+      }else{
+        renderAfterlifeURL();
+      }
+    }
   }
 
   @override
@@ -255,7 +282,14 @@ class StoryController extends SimController {
 
   @override
   void tick() {
-    throw "TODO";
-    // TODO: implement tick
+    //TODO maybe readd timeout.
+    //print("Tick: " + curSessionGlobalVar.timeTillReckoning);
+    if(curSessionGlobalVar.timeTillReckoning > 0 && !curSessionGlobalVar.doomedTimeline){
+        curSessionGlobalVar.timeTillReckoning += -1;
+        curSessionGlobalVar.processScenes(curSessionGlobalVar.players);
+        tick();
+    }else{
+      reckoning();
+    }
   }
 }
